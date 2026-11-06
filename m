@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C5D606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 17:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CC9606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 17:37:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4MkpeH97;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ho15CKcB
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qN0VOm8S;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ed49qcPf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,62 +14,88 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sm4OrPi0zAjxyxaN26uT9wuIudWQNgaYQxVZ5vD4Joc=; b=4MkpeH97zhriHKZ0Xq6YvcXHj2
-	PVgz3LMV0BrQDbN0PoT8IaO76DyGf1dGxQT9TcyWwCrqTE45DrxX2LYmnoe8ap67BxKb7y7RqLVD/
-	0oPT3B1SleufW3uleDq23rFjnmRFroq9H+hjP6I4DQYggfV4FYHC3Hams9fLC12/ycN/M0jmHMJBn
-	V2kdISrNhgr5gM2qRFyUnZIFPHZ+BYn6jGm0/PqNzN10kE7Iv73dVvWo4WkKa6k30PoBase/8ABh2
-	zUY821g29fJ7qy+0RYDCPCy6F0VvSkMvf4RFbF+g84wrEzPlt9yZlATjJgyFxU+iJssQyNxqtPPVg
-	L+4wNf4Q==;
+	bh=5bCjFCftZY+2sQA45xJDozhTjhcUphJevAvIJETfdPY=; b=qN0VOm8SBCC5m3EzLtk27vJOpU
+	pXjqcNnNLvOjXiQwHdzUXSK5Ew062r2i+YfgGLAECjFK1ONwbrazn5vqsGagCiE5ZWQTiUANP2OPc
+	9h/0T7eVhpbtAid0LrAowW0mN16fiwlWuWDcW1gdCgg/K0UoeDlDtacOJAuDWLRN4VJY2XlCddA28
+	mLqbXO5mcLuafog2ngwRLvhI5gp9Ccak2lcFrDw3HC2o3XoWwZraoaHa81CBu44OfBPpoSIHX54mi
+	NGrc9zBrMVnJxfGY3LMUvosQ7z8jo3Gry9BNEIzwzq9vl8oxRalRfah2a7w+qbbMG29Gwwi+oFjPt
+	K+fXsfeg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPNqz-0000000DFFK-15Q6;
-	Fri, 06 Nov 2026 17:35:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xPNsC-0000000DFWO-2jaQ;
+	Fri, 06 Nov 2026 17:37:08 +0000
+Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPNqx-0000000DFEn-2Zca;
-	Fri, 06 Nov 2026 17:35:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5EE3F40DAB;
-	Fri,  6 Nov 2026 17:35:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 019931F0089F;
-	Fri,  6 Nov 2026 17:35:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1793986551;
-	bh=sm4OrPi0zAjxyxaN26uT9wuIudWQNgaYQxVZ5vD4Joc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ho15CKcB7O4FZs2HAbtefpKLJ/LqAH8zzCA74y7TPaatxXg0QE8bv/qA3KELSY6EW
-	 4NkpZqnp9/XvJAmRE/fUfWtPhr+EPvI/E64BEgo5puMhL6O7BI0T4cMbleCI1EleiI
-	 basOdYQyENe27qbK+jycvzN1+7mfXgCnYuTl2U/ljl9Hrq8U5CYWYnnsfIYH9el36+
-	 73C2bo8RjaoT5VFRXhEVgUX7H0dHGQwwFN9DPs84gv+6b4RVRFn4pGuq0gclGif5VB
-	 Na6rXacF7nQFpSh+Z+V+pF9eZDOOVyv6pvtHMjfWv35XmERXu73oaB5a+r8FrQgvuW
-	 +szG84Z/vn31w==
-Date: Fri, 6 Nov 2026 17:35:46 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Carlo Caione <ccaione@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/7] dt-bindings: clock: Add Amlogic S7 PLL clock
- controller
-Message-ID: <20261106-armed-spoils-909d7d4f7d21@spud>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-4-7d501d62621f@baylibre.com>
+	id 1xPNs8-0000000DFUr-3x9r
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 06 Nov 2026 17:37:06 +0000
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-3b09a65c76dso768151a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 09:37:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1793986623; x=1794591423; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=5bCjFCftZY+2sQA45xJDozhTjhcUphJevAvIJETfdPY=;
+        b=Ed49qcPf58IQxMvEmXnpqPA4mP/h+zVOdoJJIr98bdZmt6dXY9wP+zJ5Df6XE4Hd4Q
+         B2IDFeW+oRlI0u+9Qux7iGJVJtpoL1afUfRFk0pRlPXk1DXiF7CG0GzmC5TjjwOnFlr5
+         Er0qzZH+SmcfNzYe5+j3l9FTFHDwugIS8cvoUrPql9favNiWzMLVMcaRnr4yBesitPVU
+         TL6Rl5ND/VnjiDRZNrIQ8SWEWJFgyy8bo2uP5hGJcCdu8Tqla+Y7RB2u8IsNptsmY3a8
+         zlYRV95O4i2H0nhbyjwwXHh7MqdVROhZSIJzD9osTCdlCENhklUhWMX27m6zdcRix9uO
+         yj0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793986623; x=1794591423;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=5bCjFCftZY+2sQA45xJDozhTjhcUphJevAvIJETfdPY=;
+        b=ZYOYbHkXaKEOXpbzz+JlDDAC0dSorqYPA1xebdmw92FIS/Rzgsjcn3yXA4UI5AfRYc
+         kO0BXbpg4VvmYPzzyWPq21c3Lmv02jYHKxmk4i82OcHoDNqYmknBOqxdMS9W1bG+Vu9U
+         /bCbr5t+bJPpyC0Kws08TGp+4bXHUL2jbndVVjWfdaQeujRi2+D/DQZdiQ4nfwj3JerZ
+         auHLFZmhwMv1OfWvaDdogsYdTHNpxO797vHhi/wV15kgTW9CuvaGeGiMLNFmbw8Wgnk+
+         2wDLpZuF4tbbIsfAnd9YIjP1BEqt1HfQHrCiovQIMEgwH1MI7sfGSB5Xi6QxvQJqFluR
+         CN5w==
+X-Forwarded-Encrypted: i=1; AL+hErHfh+s+nkbzE5BjHFUfFbr4cuef7eH0Swb5s+BiOlYgX9qXnMR6o0LBQQSotCUvwZFUgXXnGMOlDxfzGNu99NwV@lists.infradead.org
+X-Gm-Message-State: APuU4Z/wqECASEQwll0a8vUf+o4onWFYYnCDC+hMN0/S67eNHjgCED1p
+	825unub7XNUSbdcXafXpWz+GtWumEFlACDJxKImATfl1bFZ20RE3lKNZ
+X-Gm-Gg: AYBFou2RhjK7R6yUWYOCNpGgZpfhg6etzsY0TwbbUkrMJ0VHyPorW6GLjcNUHeiUxDr
+	XoTrYbC/Q4/Tc/LFbkWMo0E+68XXc8emUnyyMDEb8RiK+nXxX91PnP0E2OD/VdHoncEc0suBPBh
+	wOOHBM1y10Isu6JTMa1yZer65yyXJrlEXBeKEuWXGtU6g0QW9MhXBcXvViBEbLh0lq9rS0kZkAw
+	7Q2j3rGmQ++RAJfOoqfHl79sbfKoGnzwfePAY6l7SeupM6+B9fYQfrnCYxZdPJ7OqkGJVqUBf+e
+	zfV4sXT6CcZRyGWvMl/gztUbjFxLCwXZ68htwXBJPACllUSqUGs86m+y54UsV8TL37cPIy0Mvf4
+	8o5B3O+VBh2lQ/vfynhX2dSsVaHVBeGi7mtR48vqr39yFTHP+lC2n4i5ZLlC24WVY4v2eMySavB
+	RHR6L5NqHQa+n8/nLbKb9MYjCtqMZY1GkwprO80tFU5e6C13FLDJ6RUeDDqZ6imwcIgVyHeqO4n
+	QphYd7novwnegplsRz3BDBRbPytq5OBE66hUao8tsVOZXiSUwSRZaUsxRQYJqlbD8QulkKh2XFj
+	I4AwV7WaBDGNmcdivy/2LiOE7A3c7+d7jhSugFIq0uKuphAyAmDCg51lCS1WXSbKbJuk
+X-Received: by 2002:a17:90b:5410:b0:3ab:5832:727d with SMTP id 98e67ed59e1d1-3b0db6e7fa8mr3207259a91.35.1793986623300;
+        Fri, 06 Nov 2026 09:37:03 -0800 (PST)
+Received: from google.com ([2a00:79e0:2ebe:8:64e:8358:c9cb:c17b])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b0f76ff45fsm983355a91.17.2026.11.06.09.36.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Nov 2026 09:37:00 -0800 (PST)
+Date: Fri, 6 Nov 2026 09:36:57 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Liu Chao <liuc63@xiaopeng.com>
+Cc: Markus Schneider-Pargmann <msp@baylibre.com>, 
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Juergen Borleis <jbe@pengutronix.de>, Denis Carikli <denis@eukrea.com>, Lee Jones <lee@kernel.org>, 
+	fangxy@xiaopeng.com, linux-input@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] Input: mx25-tcq - clamp the FIFO sample count to the
+ buffer size
+Message-ID: <au4Pt9K9145wF2r_@google.com>
+References: <20261106075127.3105907-1-liuc63@xiaopeng.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="O0FeJVII/ayv5UPE"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261106-upstream-s7-clk-v1-4-7d501d62621f@baylibre.com>
+In-Reply-To: <20261106075127.3105907-1-liuc63@xiaopeng.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261106_093704_982801_332C1B83 
+X-CRM114-Status: GOOD (  20.36  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,185 +106,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---O0FeJVII/ayv5UPE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Liu,
 
-On Fri, Nov 06, 2026 at 09:30:27AM +0100, Carlo Caione wrote:
-> The S7 PLL controller supplies clock sources for the peripheral clock
-> tree and receives its reference clocks through firmware-controlled
-> oscillator gates.
->=20
-> Add the binding and clock identifiers needed to describe this
-> controller and its connections.
->=20
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+On Fri, Nov 06, 2026 at 03:51:27PM +0800, Liu Chao wrote:
+> MX25_ADCQ_SR_FDN() reports up to 31 pending samples.  The IRQ thread
+> aligns the count down to a multiple of the sample count but never
+> bounds it by the size of sample_buf, so a FIFO backlog larger than
+> TSC_MAX_SAMPLES overruns the stack buffer.
+> 
+> Clamp the count before the alignment so that the result stays a
+> multiple of sample_count.
+> 
+> Fixes: 4f7ed234f2a5 ("Input: touchscreen: Add imx25 TCQ driver")
+> Cc: stable@vger.kernel.org
 
-This looks okay, but I don't want to sign off on it before seeing an
-answer the my quesiton on the other binding.
+This is a platform device, not something that can be randomly connected.
+SO barring silicon issues the condition should never happen. I do not
+think this makes sense to backport this.
 
-Thanks,
-Conor.
-
+> Signed-off-by: Liu Chao <liuc63@xiaopeng.com>
 > ---
->  .../bindings/clock/amlogic,s7-pll-clkc.yaml        | 73 ++++++++++++++++=
-++++++
->  include/dt-bindings/clock/amlogic,s7-pll-clkc.h    | 42 +++++++++++++
->  2 files changed, 115 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s7-pll-clkc.=
-yaml b/Documentation/devicetree/bindings/clock/amlogic,s7-pll-clkc.yaml
-> new file mode 100644
-> index 000000000000..e2b5ba5524a7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,s7-pll-clkc.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2026 BayLibre, SAS.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,s7-pll-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic S7 Series PLL Clock Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Carlo Caione <ccaione@baylibre.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s7-pll-clkc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: input fixed pll
-> +      - description: input gp0 pll
-> +      - description: input hifi pll
-> +      - description: input hifi1 pll
-> +      - description: input hdmi pll
-> +
-> +  clock-names:
-> +    items:
-> +      - const: fix
-> +      - const: gp0
-> +      - const: hifi
-> +      - const: hifi1
-> +      - const: hdmi
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/amlogic,s7-scmi-clkc.h>
-> +
-> +    soc {
-> +        #address-cells =3D <2>;
-> +        #size-cells =3D <2>;
-> +
-> +        clock-controller@8000 {
-> +            compatible =3D "amlogic,s7-pll-clkc";
-> +            reg =3D <0x0 0x8000 0x0 0x1e8>;
-> +            #clock-cells =3D <1>;
-> +            clocks =3D <&scmi_clk CLKID_TOP_PLL_OSC>,
-> +                     <&scmi_clk CLKID_TOP_PLL_OSC>,
-> +                     <&scmi_clk CLKID_TOP_PLL_OSC>,
-> +                     <&scmi_clk CLKID_TOP_PLL_OSC>,
-> +                     <&scmi_clk CLKID_HDMI_PLL_OSC>;
-> +            clock-names =3D "fix",
-> +                          "gp0",
-> +                          "hifi",
-> +                          "hifi1",
-> +                          "hdmi";
-> +        };
-> +    };
-> diff --git a/include/dt-bindings/clock/amlogic,s7-pll-clkc.h b/include/dt=
--bindings/clock/amlogic,s7-pll-clkc.h
-> new file mode 100644
-> index 000000000000..4014314a3eb0
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/amlogic,s7-pll-clkc.h
-> @@ -0,0 +1,42 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2026 BayLibre, SAS.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S7_PLL_CLKC_H
-> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S7_PLL_CLKC_H
-> +
-> +#define CLKID_FIXED_PLL_VCO			0
-> +#define CLKID_FIXED_PLL				1
-> +#define CLKID_FCLK_DIV2_DIV			2
-> +#define CLKID_FCLK_DIV2				3
-> +#define CLKID_FCLK_DIV3_DIV			4
-> +#define CLKID_FCLK_DIV3				5
-> +#define CLKID_FCLK_DIV4_DIV			6
-> +#define CLKID_FCLK_DIV4				7
-> +#define CLKID_FCLK_DIV5_DIV			8
-> +#define CLKID_FCLK_DIV5				9
-> +#define CLKID_FCLK_DIV7_DIV			10
-> +#define CLKID_FCLK_DIV7				11
-> +#define CLKID_FCLK_DIV2P5_DIV			12
-> +#define CLKID_FCLK_DIV2P5			13
-> +#define CLKID_GP0_PLL_DIV0P5			14
-> +#define CLKID_GP0_PLL_VCO			15
-> +#define CLKID_GP0_PLL				16
-> +#define CLKID_HIFI_PLL_DIV0P5			17
-> +#define CLKID_HIFI_PLL_VCO			18
-> +#define CLKID_HIFI_PLL				19
-> +#define CLKID_HIFI1_PLL_DIV0P5			20
-> +#define CLKID_HIFI1_PLL_VCO			21
-> +#define CLKID_HIFI1_PLL				22
-> +#define CLKID_HDMI_PLL_DIV0P5			23
-> +#define CLKID_HDMI_PLL_VCO			24
-> +#define CLKID_HDMI_PLL_OD0			25
-> +#define CLKID_HDMI_PLL_OD1			26
-> +#define CLKID_HDMI_PLL				27
-> +#define CLKID_HDMI_PLL_PIX_DIV5			28
-> +#define CLKID_HDMI_PLL_PIX_DIV6P25		29
-> +#define CLKID_HDMI_PLL_PIX_DIV7P5		30
-> +#define CLKID_HDMI_PLL_PIX			31
-> +
-> +#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S7_PLL_CLKC_H */
->=20
-> --=20
-> 2.56.0
->=20
+>  drivers/input/touchscreen/fsl-imx25-tcq.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/input/touchscreen/fsl-imx25-tcq.c b/drivers/input/touchscreen/fsl-imx25-tcq.c
+> index ff270b3b8572..fa8d8b736723 100644
+> --- a/drivers/input/touchscreen/fsl-imx25-tcq.c
+> +++ b/drivers/input/touchscreen/fsl-imx25-tcq.c
+> @@ -319,6 +319,7 @@ static irqreturn_t mx25_tcq_irq_thread(int irq, void *dev_id)
+>  	 */
+>  	regmap_read(priv->regs, MX25_ADCQ_SR, &stats);
+>  	samples = MX25_ADCQ_SR_FDN(stats);
+> +	samples = min_t(unsigned int, samples, TSC_MAX_SAMPLES);
 
---O0FeJVII/ayv5UPE
-Content-Type: application/pgp-signature; name=signature.asc
+Why is it valid to clamp instead of refusing invalid data?
 
------BEGIN PGP SIGNATURE-----
+>  	samples -= samples % priv->sample_count;
+>  
+>  	if (!samples)
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCau4P8QAKCRB4tDGHoIJi
-0k29AQCTJ294Vyu8WoKtwTE8vCVIj2e8Prhj+z474CV/zh6qUgD/QuGi2AwUeJZM
-rEmZ2XkOgYe+EHZj67+lAYXHcliGTgQ=
-=Aa3O
------END PGP SIGNATURE-----
+Thanks.
 
---O0FeJVII/ayv5UPE--
+-- 
+Dmitry
 
