@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32DA6083628
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B96606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xHzdfuj/;
-	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=Tuy1y/iM
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uqNGfKEN;
+	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=vQL1Kemy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
 	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=pvazUZ8GwALVMPvikyd9HIyqQPGJP1xRnMR9Mkuuq5g=; b=xHzdfuj/jxgVZv
-	Lw82uTVK/o7EjpH+gP9n1ATqd+9feL1Nmz9Hw4dBxyu8OmsUrPr/0sjOhK0cY545U4dJkBE43k8Tf
-	QxQ6NeoAlg2UmVhugPf6lnaW292Ya15nlR4g/NeKCtvdu4JZrs5bDfW9caWNRx97guIP8ilaT21ss
-	HL0lDcYH4Jg3tIvEJRB01qp5sG4Hzt/mSbjeRDwLKvIj/wmcM4Xlh3G4PkUNuOmZmUsXb4jSp4EWI
-	CjEpxD4W0sqxuuiYcgYXBlWL/MSM3fzndk9YPUBBAPFw4T1zQv+04+7uCRKYybLq6jmy46HH+H8PZ
-	GWUK+34pgJTblhDOjEVg==;
+	List-Owner; bh=6rJNUO6E54sMvUs2WMIZbbBsdevweP1GURHzVXhYi9c=; b=uqNGfKENeZH+OT
+	c8bqVul5/fy1lyLskRkzLLEv3Iq+YYwI8eEfHL7hv5I7LLnLuoj1DUm84gxi50mv9V2TLSZa3Lzvf
+	/GZe8dqWirUSdf+zawRb8UcxtRSCxAttmqyBdUnnn6zAjzmL5A3N+kg5z8tLbEEqUx9cWHaPp1ea8
+	AQHt0BfkpPdQl2uDLK64JtpMcdr6R7mf1o6YQkevBKqorL8vR+t3Y2zB3T79qnukVo6BZjIuSBu0I
+	exhcYsh77KHYeSTiNQUKb1IWOOkpDIDNsgkXGi/06lwy3CJAEGWKHVBl5bE6sKy45PYMhubAeZc4Y
+	R21kvqlALTqpzOB0q9AA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPL9n-0000000CiEG-2MM7;
+	id 1xPL9n-0000000CiEd-2ths;
 	Fri, 06 Nov 2026 14:43:07 +0000
 Received: from mailout2.w1.samsung.com ([210.118.77.12])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPL9g-0000000Ci6d-1eex
+	id 1xPL9i-0000000Ci9M-1r0z
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 14:43:02 +0000
+	Fri, 06 Nov 2026 14:43:03 +0000
 Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261106144258euoutp024896c522eb7cece168675d99790d92fb~le9RabMVi1397013970euoutp02a;
-	Fri,  6 Nov 2026 14:42:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261106144258euoutp024896c522eb7cece168675d99790d92fb~le9RabMVi1397013970euoutp02a
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261106144300euoutp022fe9ba632879a263b59dd1be5c370c27~le9Tgddn21426614266euoutp02X;
+	Fri,  6 Nov 2026 14:43:00 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261106144300euoutp022fe9ba632879a263b59dd1be5c370c27~le9Tgddn21426614266euoutp02X
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1793976178;
-	bh=pvazUZ8GwALVMPvikyd9HIyqQPGJP1xRnMR9Mkuuq5g=;
+	s=mail20170921; t=1793976180;
+	bh=6rJNUO6E54sMvUs2WMIZbbBsdevweP1GURHzVXhYi9c=;
 	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=Tuy1y/iMSKfBZwuXZQwMW5l8JCrFtBgAguab+c2GbqsJNFIR57SDJeNDcX97g+P9g
-	 UNkpn0TBtxGRr8tKaA3EYg9/BKL1oM+tZbNb1JrubHXRqM5KrxvNvsZIaYpZRMY7Bp
-	 FwekHtiiyhhfFmokD43m3dKmeTG3+Sw3fJxH88Uo=
+	b=vQL1KemyUL/i8iZISuvadb7LjWhfk9xrjaC2sDcM8Owe+O9RHy1wFufNoIOF94jcf
+	 p0JVcTX5g5tl+FMQDx9m1nv0Tf+LPOvYWUH9EP9PPWO7X7w1rERwDHFqKFiq4V0yTk
+	 PQ3uwEgwyYh+n8/Yo016rsYHh9MLBaxuU9NrIFjU=
 Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106144258eucas1p1f59ead3e337482e074bfb26f4553e70d~le9RDuTy80320903209eucas1p1Z;
-	Fri,  6 Nov 2026 14:42:58 +0000 (GMT)
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310~le9SqiDiy1206212062eucas1p2V;
+	Fri,  6 Nov 2026 14:42:59 +0000 (GMT)
 Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
 	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106144256eusmtip19a7550efce2282b6115acdd561526f25~le9Pf0jgn2998329983eusmtip12;
-	Fri,  6 Nov 2026 14:42:56 +0000 (GMT)
+	20261106144258eusmtip1a717ab7164c31bdd835911116d976388~le9RHsKmV0111901119eusmtip1_;
+	Fri,  6 Nov 2026 14:42:58 +0000 (GMT)
 From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Fri, 06 Nov 2026 15:42:46 +0100
-Subject: [PATCH v2 06/15] lib/lz4: backport upstream's aarch64 fast decode
- loop enablement
+Date: Fri, 06 Nov 2026 15:42:47 +0100
+Subject: [PATCH v2 07/15] lib/lz4: backport upstream's match length limit
+ fix
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-lz4-vendor-upstream-v2-6-ee04c3f0d7dc@samsung.com>
+Message-Id: <20261106-lz4-vendor-upstream-v2-7-ee04c3f0d7dc@samsung.com>
 In-Reply-To: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
 To: Michal Wilczynski <m.wilczynski@samsung.com>,  Nathan Chancellor
 	<nathan@kernel.org>,  Nick Desaulniers <ndesaulniers@google.com>,  Bill
@@ -82,26 +82,26 @@ Cc: linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
 	<m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org, 
 	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1749;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2240;
 	i=m.wilczynski@samsung.com; h=from:subject:message-id;
-	bh=YYDQiSfMdDchGst9Ca1G0wxCAGDujriJSlg8sDF+9gg=;
-	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9fZ6q4zL/9pVfolPi++x/a854xv96Q0qw1tHIG7dN/
-	d9s+CMn2FHKwiDGwSArpshydmO0keQ/hqflxx//gpnDygQyhIGLUwAmEu/J8FcgbHruVENh070C
-	inX9/h83PHhopfZcV2vr2U+3j85Ov6LLyPDoh9E2Lsvd3AFusSk2P5k4bKxM2O79qPE7VDht27M
-	XvqwA
+	bh=FeGwjLLCi9r5jO0sT4c2oOMQI6pybsCaTl5iiV1XLg0=;
+	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9fZ56U0Pa67C9pl5js81Djt4t++e+Y9b7J3lW8Y3NG
+	r1sg6NpHaUsDGIcDLJiiixnN0YbSf5jeFp+/PEvmDmsTCBDGLg4BWAi79MZGWakV6Uz+5RNvHEk
+	zKojQjHywl3bTtHiJs+mSS+WF12fZsHwTzdo44JtE7fGf1/aYSV3LyD68iubAoVt21jaD0zI/xv
+	xkw8A
 X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
 	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
-X-CMS-MailID: 20261106144258eucas1p1f59ead3e337482e074bfb26f4553e70d
+X-CMS-MailID: 20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261106144258eucas1p1f59ead3e337482e074bfb26f4553e70d
+X-RootMTR: 20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310
 X-EPHeader: CA
-X-CMS-RootMailID: 20261106144258eucas1p1f59ead3e337482e074bfb26f4553e70d
+X-CMS-RootMailID: 20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310
 References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
-	<CGME20261106144258eucas1p1f59ead3e337482e074bfb26f4553e70d@eucas1p1.samsung.com>
+	<CGME20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310@eucas1p2.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_064300_732557_04C959C5 
-X-CRM114-Status: GOOD (  13.19  )
+X-CRM114-CacheID: sfid-20261106_064302_758660_71BC6188 
+X-CRM114-Status: GOOD (  16.13  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,51 +113,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-v1.10.0 leaves LZ4_FAST_DEC_LOOP off for aarch64 built with clang, after
-a slowdown reported on some Android phones in 2019 (upstream PR #707).
-An arm64 kernel built with clang therefore decodes with the slower loop.
+v1.10.0 lets a match length's extension bytes run to four bytes before
+the end of the block, which leaves room for only a token and three
+literals where the format requires five. The fork rejected such blocks,
+v1.10.0 decodes them: 1f 41 01 00 ff 00 30 7a 7a 7a decodes to 278
+bytes instead of failing.
 
-Upstream has since enabled it for all aarch64, in three unreleased
-commits:
+Upstream fixed this in 587ed9557708 ("add comments explaining
+read_variable_length() ilimit bounds, fix match length limit"), on top
+of a read_variable_length() rework v1.10.0 does not have. Both versions
+accept the same final ip for a given limit, so change the limit at the
+two match length call sites to iend - (1 + LASTLITERALS), as upstream
+does. This is one byte stricter than the fork; no compressor produces
+the blocks it newly rejects.
 
-commit 0aa33884faf5 ("[LZ4] Limit disabling LZ4_FAST_DEC_LOOP to aarch64+clang+android")
-commit 51f8af506b4a ("Fix missing endif")
-commit ed86bc1ed802 ("AArch64: Enable LZ4_FAST_DEC_LOOP for Android")
-
-Arm measured +3.5% to +15.6% on Cortex-A510 to X4 with clang. Take the
-lz4.c hunks of all three. This goes away at the next re-sync.
+This goes away at the next re-sync.
 
 Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 ---
- lib/lz4/upstream/lz4.c | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
+ lib/lz4/upstream/lz4.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/lib/lz4/upstream/lz4.c b/lib/lz4/upstream/lz4.c
-index 0d474be0236a698d297ab9a430f5082485eb3709..ee69d57aae112f4057c050bbdab4cc0f2d30f9d9 100644
+index ee69d57aae112f4057c050bbdab4cc0f2d30f9d9..a45f3828141eec9baea59a5e97a3ff37d6474d6e 100644
 --- a/lib/lz4/upstream/lz4.c
 +++ b/lib/lz4/upstream/lz4.c
-@@ -478,12 +478,7 @@ static const int      dec64table[8] = {0, 0, 0, -1, -4,  1, 2, 3};
- #ifndef LZ4_FAST_DEC_LOOP
- #  if defined __i386__ || defined _M_IX86 || defined __x86_64__ || defined _M_X64
- #    define LZ4_FAST_DEC_LOOP 1
--#  elif defined(__aarch64__) && defined(__APPLE__)
--#    define LZ4_FAST_DEC_LOOP 1
--#  elif defined(__aarch64__) && !defined(__clang__)
--     /* On non-Apple aarch64, we disable this optimization for clang because
--      * on certain mobile chipsets, performance is reduced with clang. For
--      * more information refer to https://github.com/lz4/lz4/pull/707 */
-+#  elif defined(__aarch64__)
- #    define LZ4_FAST_DEC_LOOP 1
- #  else
- #    define LZ4_FAST_DEC_LOOP 0
+@@ -2120,7 +2120,7 @@ LZ4_decompress_generic(
+             DEBUGLOG(7, "  match length token = %u (len==%u)", (unsigned)length, (unsigned)length+MINMATCH);
+ 
+             if (length == ML_MASK) {
+-                size_t const addl = read_variable_length(&ip, iend - LASTLITERALS + 1, 0);
++                size_t const addl = read_variable_length(&ip, iend - (1 + LASTLITERALS), 0);
+                 if (addl == rvl_error) {
+                     DEBUGLOG(5, "error reading long match length");
+                     goto _output_error;
+@@ -2338,7 +2338,7 @@ LZ4_decompress_generic(
+ 
+     _copy_match:
+             if (length == ML_MASK) {
+-                size_t const addl = read_variable_length(&ip, iend - LASTLITERALS + 1, 0);
++                size_t const addl = read_variable_length(&ip, iend - (1 + LASTLITERALS), 0);
+                 if (addl == rvl_error) { goto _output_error; }
+                 length += addl;
+                 if (unlikely((uptrval)(op)+length<(uptrval)op)) goto _output_error;   /* overflow detection */
 
 -- 
 2.34.1
