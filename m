@@ -2,149 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8E9606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 15:51:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42443606A33E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 15:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KTgT+PmA;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=UhFHZ8+/
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QAoBmhmy;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Gg9Qwr4k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=cXW+vcjg9iGpUdKmyDWC8TvHbEJL3RzYtWOX6t+4Ntw=; b=KTgT+PmA2v5nGoKyrYHM6C4ySA
-	sO7neppNuKw2h49VRExbS9YtbWUjLborY+2V0QPvo1TmyB5kC4K4jwnV+cAVSfTeTBSq4PUlMyMBb
-	vy/nEwbHnfddzGKUFIWhDdCUOTeGb2MeM5uH1osA8dx9uRG7N8Kup+6n+xRQt0uKdJEgKL/5wX+lu
-	jaxY9UAQtFFCdD9oq1eL4RwVNCYIfCFDh2rf6kwi0VN9l0f+rcgjNxCiMs4yCLMAbzN/oFS09RJpV
-	DmSW/LMSD1tkn+o4HDdDL0MHzjCg4PX9A05hjc6KOHdSZ5Wyvu8Mv0AyCaJLPj2E+H04kTm99O5bK
-	2B1MaW5g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=XvM4aLwTGZj5FmeeGnzfblv0DB1LtfcDNVzyNu2uS04=; b=QAoBmhmy4p3Cji
+	VnQcRdWGrV51GaQtPJGp6O6YVnxABI3g91xwynELdI+BM8X68A5PRQM+ru95B5ka8dejWSpodQuLR
+	2mwoTDyqSR17YsLCR+rbYRGjaNOktQ4BkqiPtbvGnT/rNSl5etvZ/bOJecPknx9TXv8Y4ArZglec9
+	tiPFvoYqKM2DZP74wXxsW6vMtU1SaEJSNWvNOAVHGY3Vj/WYUeNTq1Qpzny1GlS+Y4/BvSBKIMzJJ
+	YzoQVGW2g30IUKA95HSPNZOgvEpaBUTeHIOHSSxj/wg6X51JbJPmXgJGgeoB3/ln9hpp4xe6OrMxt
+	WjekLznGpkoROpUjxcXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPME2-0000000CuAp-09yM;
-	Fri, 06 Nov 2026 15:51:34 +0000
-Received: from mail-eastus2azlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c110::3] helo=BN8PR05CU002.outbound.protection.outlook.com)
+	id 1xPME9-0000000CuD4-11wu;
+	Fri, 06 Nov 2026 15:51:41 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMDy-0000000Cu9q-0fd5
+	id 1xPME3-0000000CuBE-0Yoz
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 15:51:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I872N17SLtemxIG6M3adWwnISaqk1PXwEhdPxM12BXAq08OxqjbWiOeJwBIcRElZyBRBNhdSmfxc6VrtuLfK+oo+ZKcTx+C/LPvOG6aUhIcdoE28CwZzr3t4BoeQPRjQN4pNV0690TT8wn31wzKYqN1mqNVHUUxMHXp2mM67C5fBiYaQZ23IENInJuEB7NAyqHDUn3mD+mv0UTzBLrNUewigpASrO4Hb+eyj7BfSfTqEYERHTW6qtpZzNnGtC/TZ6nPN7Z2e2jJ2PyuDEW4tNVyHnWd0NZrCtC9KQeIm2iWQQimVBZBvJmQYXSFqZvs7atTScE1gCy9s1V7tAG5ahg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cXW+vcjg9iGpUdKmyDWC8TvHbEJL3RzYtWOX6t+4Ntw=;
- b=GxaUF7glmVMLTaxRX4nzTiM1ENSQuBgOKT+f39OsSjtKn9tayE5UeGzH6kZJc34YkVP+GddGRUJ8zy3I4awXi8ri7QCRV5vmohS5WmGsI/4gwwU+WamMfIvkVk06/x1bAdfjK3uV5P9GkUTs/g3XEY+8ICMii02eJwJjmHTfWLqfuzh7IdpG49zdFExJL6oTMx/D5vCbD8V13qBciq+w0Lj5i00N/cJOZ/iSHGnmpy5qNKIZN6bIYQ4tTApLROazm5jEKjVNrf5vRLIZ9OHdSY3NB4HGfQ4ZZke0TGlGpMOfrL1bLDTW8F4k87XyaHPLi05jNTVbH+hxFJhZSmC15A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cXW+vcjg9iGpUdKmyDWC8TvHbEJL3RzYtWOX6t+4Ntw=;
- b=UhFHZ8+/s4wo+RtT2uQvnjWsbNW6DKlh1LeBW/fDFDKNB1crgHHgIRVTwGfNom/Rh+Mt3whK2PSXXvZ/Mm+NvwIiq0buyoORHZnLGHswunGVbI/WySaDS/kNmDhmdDh2wrzw4l90LCGmgFqve6ii2wGsZvPZ44HG6TFbzj9prmw=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DS0SPRMB0124.namprd12.prod.outlook.com (2603:10b6:8:1fa::20) by
- MN2PR12MB4320.namprd12.prod.outlook.com (2603:10b6:208:15f::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.592.11; Fri, 6 Nov 2026 15:51:25 +0000
-Received: from DS0SPRMB0124.namprd12.prod.outlook.com
- ([fe80::24e7:97e0:923e:68d6]) by DS0SPRMB0124.namprd12.prod.outlook.com
- ([fe80::24e7:97e0:923e:68d6%6]) with mapi id 15.21.0592.007; Fri, 6 Nov 2026
- 15:51:25 +0000
-Message-ID: <dbeab5cb-fb61-4031-a694-96bb3deb5105@amd.com>
-Date: Fri, 6 Nov 2026 21:21:17 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] usb: dwc3: xilinx: Add Versal2 MMI USB 3.2
- controller support with flat probe model
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Cc: "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "michal.simek@amd.com" <michal.simek@amd.com>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20261020112636.2661087-1-radhey.shyam.pandey@amd.com>
- <20261020112636.2661087-3-radhey.shyam.pandey@amd.com>
- <auqNHpX4G30716Tj@vbox>
-Content-Language: en-US
-From: "Pandey, Radhey Shyam" <radheys@amd.com>
-In-Reply-To: <auqNHpX4G30716Tj@vbox>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN1PEPF000067E9.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c04::24) To DS0SPRMB0124.namprd12.prod.outlook.com
- (2603:10b6:8:1fa::20)
+	Fri, 06 Nov 2026 15:51:35 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7905660232;
+	Fri,  6 Nov 2026 15:51:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34CAA1F008A2;
+	Fri,  6 Nov 2026 15:51:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793980294;
+	bh=XvM4aLwTGZj5FmeeGnzfblv0DB1LtfcDNVzyNu2uS04=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject;
+	b=Gg9Qwr4kbO9AYEeCkv1K0UKo/cQYAwHPADpue+nH3AF5qWLOUVKq1FLTpzmMo50vD
+	 6zX6+wjFEwjVHNSD0lihrUxLXN/vzmWGUHs9aWLsm1FT+m25m35m5TYm1BHntIobIp
+	 2LtMExaObn5ZvNFXYv+DmeUvmasP/VxNyLixNLPYx16Vp3EkJs0a15YpPvdrtxCNDS
+	 soZHZdlkRSLDvMJpD6dEz8t70QU6AJXFsdVOw36r71g3zrQT88gEL5bE1ShZ+DvB/f
+	 mOpyFMfNtjzetB+RsDbTR5BLXtxYkJ+m0pxADoNINR1ErWv7v9GaDGH/ZyIvZSbVxc
+	 L2YS/0KQ3Zpcw==
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id 76971198003A;
+	Fri,  6 Nov 2026 10:51:31 -0500 (EST)
+Received: from ams-imap-11 ([10.64.2.31])
+  by ams-compute-02.internal (MEProxy); Fri, 06 Nov 2026 10:51:31 -0500
+X-ME-Sender: <xms:gfftapY6Upqe6PYvGFyUDwVT4AxOA7G-I4Wv5vbDj_AYY02iid2DTA>
+    <xme:gfftarOJfIeWDuHsc1tZjFE8TrAK9J8xJDZ9KBwhvHLYODmpMuij6kdcqqc0MkZr0
+    7ns0b9Y3wpeNBY_3yanaSvPBh5JflvoTZeOlVjbhHNj0qwJ1R9HLN41ig>
+X-ME-Proxy-Cause: dmFkZTFO9KjBOddWujNCaW26YpnSt+HPt4zfErT3xj3FNF/1a9rqlMvuEU3djbNRlHCnSO
+    j6CtxUPhdBxfm1x9PlRZCBJMaSeB/QVnMvLO3h6vjLjiABTb6G3oWXo/UMP02V2tyF9xSd
+    ylwodMfptCLfjKCGtbWfnSRz1ccecmbvLtSi65X9SjZjgrwJD5n5NV8Gyi1ZasftjpmyvN
+    dcbyOqogCBnuQWO+gKkGPJrxjvHerG2RYgmtL3oLXMx06xh5gVt9uVMDpOzw9Mx03spLtc
+    wrsZcXTDPOmOkFPvLM0oEXQxnLmR2R90sbQ0Zbd76luMVvKbQAwT+GGBKMM0wWMN0GRHtY
+    QCm41vfoF1hyeNG+ddEi+UcrooKkHGT56jtCZ9ePlC8nHjWLvAQ7DJSAyCMuemGZZWi3CZ
+    sTQAfP+RSuXfJiQja4zrSJ7bbpz/GzQasNZ7I9GOMtAFmEHCjEh+90tZtM73n5C3mTxkIO
+    PaUfPtxxDBzch/2PUqn+yh3YsgZAW2QQch6HhLc9bDbs7ii2ucY2IEzvFbrJA3+oJfa3vr
+    GKp2+513hG4ikORb9aZdvlEh1lCBcOxqin3spbIZOR+3PdHCbghmWaxB2nsQLENSSnlRzz
+    9EyV6FHND5H1JqR7NyFIj5lhT5t8hfAoe5ZXiEOj9SFzqKthVigoQcn7KtwQ
+X-ME-Proxy: <xmx:g_ftanCRJ5kjiSpMUjqJxmnIEqP3Q0EewyGDG1e332OI1YbhUnAukA>
+    <xmx:g_ftannsEEhk7ByYcfSbFgG6rvDjpI7PO-9cTsNcNxsO-zPmluskqw>
+    <xmx:g_ftaifBD0UM1zdPFwkSntUxTiciY2zs00h36A58E-zTb2BcZG64JA>
+    <xmx:g_ftarRCm__BadvffeAxf20m50iz-53X5jcv0DqFYc-xrPZ9fkQyCw>
+    <xmx:g_ftapvchXwaiiRFqNdzftmtn5cJ8hoQuqcF1erc0UOZOxht8jxeeZK4>
+Feedback-ID: ice86485a:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 9F732F80096; Fri,  6 Nov 2026 10:51:29 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0SPRMB0124:EE_|MN2PR12MB4320:EE_
-X-MS-Office365-Filtering-Correlation-Id: c91d9ccc-9903-4c76-a5a2-08df3c1dcfb4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|23010399003|376014|7416014|1800799024|18002099003|22082099003|10067099003|4143699003|11063799006|261026121527099003|56012099006;
-X-Microsoft-Antispam-Message-Info: YR1evuOQ5Yk5Vu1nGgj9wq8DUzDXADSlyWeIhZ1p9Hay9jaDmuIBv+JMJo6Ca/lQNrOd4M8G+GncwT9HAjO8CEmy0VtRO0HiW9b36KRdEQORv5A4FTLhiEdePYwQwbk0mQnAbmbpwurfBjyXDDd/TqsyLtRVVJaRCWXfpxWQAcVaH8FhNgshTRZvrhcT5KCaSU0B1vBbogNtNSA3CwdfB1IUezHq+RFakxARlozsYaJ81s0fp4G4AazDV0VHoaVrIQdYio9h+X9rA99CKJLCI8qkM1Gs6UUVzfpTA8Y+87btD6EFmB4j9Cb5ZEq/OjUrToA60WQ/MecKgdAWzLIayGd4TjlRcHiURHPEGUhLKLe8mOGDKzgapj0jK/EnoL1F6VgS5s0zfa3mPKjqoWrjrJZfhdx3GggpEa2GEvDt2aELUHFZm2kTX1BHtLQBix6DtYph5Tj8tv8Ha46oZVOEvzBojovOuSmo83fYopN2k9JXoHxNZUkNdewocI1cP8UQbdAZTRoL9PNP2OOj3KQDSWRD7KZj+dDLE6PA6hyRnGH1IhCNTYBt5les7QOlzTYpKiuoEVFd54liqBA7T2nayZUsYmLz4pqp7ce9cuJ4tkx0Y5Z/hjdai9GbxXMefbli
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0SPRMB0124.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(23010399003)(376014)(7416014)(1800799024)(18002099003)(22082099003)(10067099003)(4143699003)(11063799006)(261026121527099003)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b2VUM29KcEplRGJFOHlNczhReUlDaWNwSHRUYkQxMVhlZDZWRkdCa3hOVWk1?=
- =?utf-8?B?d3Y2eFFIallmbDVoaE5iMjdNUnFBSWZZL1hRYm5hZGFMNnh5QmhPamNQWkFM?=
- =?utf-8?B?N3h2SDBhdTNmaFZsQ0JpQVY3anNVWXF5TmlUNWhKUTMvSHg0V0Z5RlpwaFVX?=
- =?utf-8?B?cnNEUG5reVRaSTJRMmlKblVJOXcvdEdzM081L2hkYnR0Tml5SEVzc3Rhc0FD?=
- =?utf-8?B?eXo2NG4vT2R2eStsYlIvYmRoTnB6eWlMUHFONk1TdUNqSE8xMGdvbmQ0S0p5?=
- =?utf-8?B?Y3FmNmhYSFZCVk55TWxmME84OGhSRkYxR3F4cWZaNkl5dGlQemJvcjF0d2lP?=
- =?utf-8?B?Tm54TXNXZmJwSWw0OXlDcWo0NUFZMnU0SUlhN0hDSHdrQm9HeXVOTFlzUm9L?=
- =?utf-8?B?emtJTU9oYWZ5dnY4bmcvbVJiTXJCMldOQThpdEN4UUdva2ZjQnhEVW1YZlBv?=
- =?utf-8?B?YzA2aXVoZFlWalNheURXUnFJVS9rbktsUm5RTVR4dHNpT2VqQ2xYNUV2SWR4?=
- =?utf-8?B?OEQxWEQwaWZIaERzWThrYzV2dnliVnNaUzNySlFlbHI3a091bVlOWVMrdUNP?=
- =?utf-8?B?WklobmljblRVUnFnWW8wNjdRbDFxWDNWRTJlNDZkZEYwUndXZ1crRnpYZVNZ?=
- =?utf-8?B?TURIdzUvWFdVL0NjOEluSFBJUVN2cDYxWTlBTmwzSElLYjl5U0N1aHRwN2V6?=
- =?utf-8?B?cll6VElUcStaTmozYTcvMWJ3VlJ0RVhjd2hsZFd0TUQxTHIzVWMvaHBSeC9X?=
- =?utf-8?B?bXUxZzlUR2RvaXVOZE14djBOcVRDeVNuRUJHRGRNMjE1Vm1YLy9JS0kzZHlt?=
- =?utf-8?B?RlpVQkFPWkVPYnZzV0lwSFptWk02dGROMFcwYzUrYUkvWXMyMWhNSzlNK2tL?=
- =?utf-8?B?SGZpOGxhelRKVTBxMmxFSnU2Q3VZM0ZYcHl6VG5Qd1ZHUWJ0YVhHUzJ0cHZy?=
- =?utf-8?B?cGJoWWVqVUNmN0I2Tk1xeE9kcy9WMlBkYVMzdWllZzZadGRhQVJuY0JBYmZy?=
- =?utf-8?B?Mk9iUFh5Wkl6S1Vvd1lSbzEzeUZaRUtwdzYyU3k1MVJ2aWdTSmw0M21hVkpE?=
- =?utf-8?B?Snl2VGtFZmlJU2s1TytHVCtMaW4wRHpBUzFEcy9nUmlQeHQxdzQ1RldBRWND?=
- =?utf-8?B?NThCQWJYdWRaTFVtY3pod1k5ek1hUU5KLzJsWThCVTVNbk9UZTdZSUdHN2Er?=
- =?utf-8?B?ZXJXUUs1SUMvSHlHYURJZHFFVGwvb0JVTmxKWkMvQnRkY2wzUEh0amUrQkhp?=
- =?utf-8?B?RG1DUkFHOGpKVmNtZlhOZlllYU13Y05VcDhOaTM4by81Ti9KZ2VIQmRNRzVS?=
- =?utf-8?B?elRhRHFHaEpGd0pRa0d2VjU3NXc1TnhlcG00cklYelVoa0J3S0RNZk9Eb284?=
- =?utf-8?B?YktxdFFqQnpaV0h1Q091cTAwaFFJOU9tT1dCYnAxTXo4U2VRaGVIbkxXZ2xR?=
- =?utf-8?B?VXpZclE2LzJyRURuWG44OExWdGdTZVRNTzFNS1RWYUZWd2xDTVNmUkI5UTF5?=
- =?utf-8?B?d0svb0hFOUYweEdlc2ltZDVSaGVOZjdJNXF1VldWcG0zWURDVG9NcHpOcTJU?=
- =?utf-8?B?bVREbTlxV2tBbURqcFU1Q1BZZ2hYYUN1cFpHd3dGV2o2bXU3WFdQWDRsSmxY?=
- =?utf-8?B?MzAzc3FXd0kyMmZvdG5WaGhjN3l3Q3VmK3A0YzRDRmg3cXE3NVB2S3BTVmNv?=
- =?utf-8?B?SHV6REFzU09jazVJOXB3R0VNRFV1TUt2amdFUjl1aTFRN1VIWTgvdG54cDF6?=
- =?utf-8?B?QkthdzJsVlpSTFMrWEhwTjJlZ3M5MUFWQ0tyT0w5QjhLajlQZjcrUE56d0Vs?=
- =?utf-8?B?RytHb1NSOE8zdGI4eG9IaFFzSmk1a1A2YytJeE1IVlVIdWVPV3FZaERJeXdo?=
- =?utf-8?B?ekREZkZTajJLdXpINnJvbHo3RXhvaGRSYUlhTTRDOERHSE91VlU3eTFqQTBo?=
- =?utf-8?B?bmhZd3BBTytFd1VTbm1pQllzWEtYVFVSbzdsbmpVbThHTkp0Y2tSVXdXSk5K?=
- =?utf-8?B?YTVwOC9VRHoyOFl1M0owTXNrVUhVOEJ0SGZsTGQ1eTN0MzVJd1FDcGcybVN0?=
- =?utf-8?B?WGNxY3RFTjFnNTZPMnU5MTVNbTZwVXdJUXpzN2Q0NUo4RHl6R1d5OUJRNjYz?=
- =?utf-8?B?RFMyVTRDWUV6N2FXSm1hRHFKdE1iSGZRdnRab01IV1FJYnd5WHN1Z3pVMTBP?=
- =?utf-8?B?REJkU3Zib0Q4MitwUjlDaDNoanlDMlNSRVJKdS91L1lXQlB1T3dhdVdINk9D?=
- =?utf-8?B?VGtuK0JPQXFWOEVYUmViSU9ZNkxkYnJOSzRySDQxd09IOHZvV0NGRXFSdlly?=
- =?utf-8?Q?RlCKvSNC/ty4KUQpNO?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c91d9ccc-9903-4c76-a5a2-08df3c1dcfb4
-X-MS-Exchange-CrossTenant-AuthSource: DS0SPRMB0124.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 15:51:24.9550
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PJfmHQVg5RODGhNf0kJhE94EcLnRGuL32YHUsYx5B+W3whwlaXt0yb5WwIJohgQM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4320
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_075130_244583_47B1AB55 
-X-CRM114-Status: GOOD (  12.14  )
-X-Spam-Score: -2.1 (--)
+Date: Fri, 06 Nov 2026 16:51:09 +0100
+From: "Ard Biesheuvel" <ardb@kernel.org>
+To: "Jason Gunthorpe" <jgg@nvidia.com>, "Ard Biesheuvel" <ardb+git@google.com>
+Cc: linux-efi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "Mark Rutland" <mark.rutland@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>
+Message-Id: <ee4d4788-3d59-48c9-b5d3-ab7d166f4267@app.fastmail.com>
+In-Reply-To: <20261106143418.GC770409@nvidia.com>
+References: <20261106141936.2744481-7-ardb+git@google.com>
+ <20261106141936.2744481-11-ardb+git@google.com>
+ <20261106143418.GC770409@nvidia.com>
+Subject: Re: [PATCH 4/5] efi/arm64: Expose struct efi_image_info via the image header
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,48 +96,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/4/2026 7:14 AM, Thinh Nguyen wrote:
-> Hi,
-> 
-> On Tue, Oct 20, 2026, Radhey Shyam Pandey wrote:
-> 
-> ....
-> 
-> This doesn't apply on Greg's usb-testing branch. Please rebase and
-> resend.
-> 
-
-Hi Thinh,
-
-This series depends on:
-https://lore.kernel.org/all/20260928120015.3152461-1-radhey.shyam.pandey@amd.com 
-[1]
-Subject: [PATCH v3 0/3] usb: dwc3: xilinx: error path and teardown fixes
-Date: Mon, 28 Sep 2026 17:30:12 +0530	[thread overview]
-Message-ID: <20260928120015.3152461-1-radhey.shyam.pandey@amd.com> (raw)
 
 
-https://lore.kernel.org/all/20260928134215.3194328-1-radhey.shyam.pandey@amd.com 
-[2]
-Subject: [PATCH v2] usb: dwc3: xilinx: use device_get_match_data() in probe
-Date: Mon, 28 Sep 2026 19:12:15 +0530	[thread overview]
-Message-ID: <20260928134215.3194328-1-radhey.shyam.pandey@amd.com> (raw)
+On Fri, 6 Nov 2026, at 15:34, Jason Gunthorpe wrote:
+> On Fri, Nov 06, 2026 at 03:19:41PM +0100, Ard Biesheuvel wrote:
+>> From: Ard Biesheuvel <ardb@kernel.org>
+>> 
+>> The zboot compressed kernel and the uncompressed Image both contain a
+>> copy of the EFI stub, and both are tightly coupled to the kernel image.
+>> 
+>> However, the zboot stub is not linked into vmlinux like the ordinary EFI
+>> stub is, and so it does not have direct access to its symbols. This is
+>> needed today for things like image size and code size, but there are
+>> more cases coming (DRTM) where both stubs need to have a consistent view
+>> of these things.
+>> 
+>> So add a struct efi_image_info that is built into vmlinux and exposed
+>> via the image header, so that zboot can access it easily.
+>
+> I tried hard to avoid doing this because I didn't want to make the
+> struct layout ABI. I really see only negatives to that.
+>
+> Putting it here and documenting it in the rst is going to encourage
+> other bootloaders to look inside it and try to read the contents. :(
+>
 
-[1] is applied on usb-linus and [2] is reviewed but not merged.
+Fair point.
 
-Let me know if it's fine or I should rebase this series on top of 
-usb-linus and merge[2] in this series itself and send out v5.
+> The linker trick to inject the offset into zboot seemed better because
+> it completely prevents it from being ABI as nothing but the EFI stubs
+> can ever locate it.
+>
+> Also, I wanted it to eventually be cross arch and I don't know if
+> other arches have any spare space like this.
+>
 
-Thanks,
-Radhey
+Yeah so let's bring back the code injection hack but only for the
+offset of image info. 
 
+What I would still like to avoid (compared to your proposal) are:
+- having the efi_image_info pointer be a global that can be grabbed
+from anywhere, even though in zboot, it only becomes valid after
+the decompression has been performed;
+- putting every shared variable in the linker script.
+
+Please confirm whether those aspects look ok to you, and I'll respin
+this quickly.
 
 
