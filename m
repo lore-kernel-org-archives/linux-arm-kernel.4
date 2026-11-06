@@ -2,64 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59087606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12C9606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qoxWjpZe;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=IO1lsZCm
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NbIrDIeN;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=A+qPZ9qe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
 	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+WLW8LR9a7m1YlHZ+zZ84FTJgrDPlJ3AdbbFpi33+Wg=; b=qoxWjpZesJkaYh
-	Ws5HbATfNFsRou1N8tsLNJ3BSnUw9WKsxiJ5nw8c17qo38Rcmqp/Kz5UdlYxk20/mwjJKBnJkZE6d
-	tddDaN2CiJIVLKPZOpLeqMRvFgKyIcByO3duKJqYFImQur5/WgDzGIMMDwQfzAR48SL4ADeXsWN1G
-	CX8ZeZAfouikp3n+KrSExA7zk035ob3DIebDevTk1OwGBy0bODAXGwCp8gh9BTsRqo5g4YL/EBYYs
-	qKHAX0J+W+1k95Cjj9THMz5ETAEhhQ4mxlXmUzvxF7PYUboNCjhnI1zlDypkxTStgl2kg050TVTY2
-	iK4bs2del7cvkNQlnmQA==;
+	List-Owner; bh=+gyzgNhPsylvP06vZq5Elrbi2P3u4np1Q6XcqS10pRQ=; b=NbIrDIeNuORsZS
+	WvfWWoWyFHwzucKipJUZ39KGhvywOTe+3fg/lnN5e1a9c3pSjcb9Aht8vtmhkP46jqVihQb87lhJi
+	DPRNwiMyvfc0GVTwClSt0JIIUXZCR1Fw2L1vrFDrIrGNzaNecrd8qoTMMRu2uSHX5j8odfm2I98x2
+	ePTMBRzwXSxPq7gRcKdbtgEh3FXdnb4LjK7/VIw40OY/JbTyvRSnyPv7wyguCJxnQEfj4HH2M4Qe3
+	+I3sFVSE9TvNtrM0peCBNxvaq3x+9Qgnc7hTFtTo4fCpMTtn8s85XRQhVnvkJvpn/cnBwMZIvUOi5
+	Hmhaksc3BU+MYZkHG62A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPSwR-0000000DovW-3OuT;
-	Fri, 06 Nov 2026 23:01:51 +0000
+	id 1xPT2Q-0000000DpBw-2N8Y;
+	Fri, 06 Nov 2026 23:08:02 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPSwO-0000000Dov7-1oGL
+	id 1xPT2M-0000000DpBJ-3Kcj
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 23:01:50 +0000
+	Fri, 06 Nov 2026 23:08:01 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEB2F1650;
-	Fri,  6 Nov 2026 15:01:41 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE1B11650;
+	Fri,  6 Nov 2026 15:07:53 -0800 (PST)
 Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A3293F673;
-	Fri,  6 Nov 2026 15:01:42 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D216E3F632;
+	Fri,  6 Nov 2026 15:07:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794006104; bh=3S8qesdRfNmQe0ma5COPvlu/f0WMqm4btvUmh8g5L3c=;
+	t=1794006476; bh=RJP+8WlqG/AN8bbXr0dcvH9Qfm+ONJlgtpsBrXaYgLk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=IO1lsZCmgH0zr1zduBecEsrscwlQTwAWtBDwmXVhSMCAMyWcQuADAw84WvG/9cepr
-	 4eVatyJsrsWDBCGLNg9bISE/bzVgZqD1aG9o0o1n4JoBLVtuQGQ47jkeSdt/DVuuW9
-	 JCY6/RoWRoixluU8nKsVMnCJTB4HFzCGqHWbMRyE=
-Date: Sat, 7 Nov 2026 00:01:35 +0100
+	b=A+qPZ9qeYrog5H0PV6WbMfxCMDh5jvpniOk24HubukGL/m5QIsiHJKgayOMaz+FGW
+	 Kalpy6nnQROAErDm9Zk63zkruft/Zrg7oBdens2LnteHYp03qOBaDC4va0axjK3OJc
+	 OGBxNk0eVUlHwUlF/0U98vTxcm2KOfheIRTFd85U=
+Date: Sat, 7 Nov 2026 00:07:45 +0100
 From: Andre Przywara <andre.przywara@arm.com>
 To: Enzo Adriano <enzo.adriano.code@gmail.com>
-Cc: linusw@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com,
- samuel@sholland.org, Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] pinctrl: sunxi: preserve A733 firmware voltage modes
-Message-ID: <20261107000135.6b684277@ryzen.lan>
-In-Reply-To: <20261104-a733-pinctrl-v2@gmail.com>
-References: <20261104-a733-pinctrl-v2@gmail.com>
+Cc: krzk@kernel.org, Ulf Hansson <ulfh@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Maxime
+ Ripard <mripard@kernel.org>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, Junhui Liu
+ <junhui.liu@pigmoral.tech>
+Subject: Re: [PATCH] dt-bindings: mmc: describe the Allwinner A733 eMMC
+ controller
+Message-ID: <20261107000745.45b349d1@ryzen.lan>
+In-Reply-To: <20261103-a733-mmc3-withdraw-reply@gmail.com>
+References: <20261031020640-263f7b05-a7s-mmc-binding@gmail.com>
+	<20261102-steady-grateful-chimera-e2363a@quoll>
+	<20261103-a733-mmc3-withdraw-reply@gmail.com>
 Organization: Arm Ltd.
 X-Mailer: Claws Mail 4.4.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_150148_671436_BF1584C6 
-X-CRM114-Status: GOOD (  38.82  )
+X-CRM114-CacheID: sfid-20261106_150758_963162_43DEAE4E 
+X-CRM114-Status: GOOD (  25.06  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -71,186 +78,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed,  4 Nov 2026 15:56:39 -0500
+On Mon,  2 Nov 2026 19:41:55 -0500
 Enzo Adriano <enzo.adriano.code@gmail.com> wrote:
 
 Hi,
 
-> The A733 GPIO_POW_MOD_SEL voltage-mode fields are two bits wide on
-> both controllers (A733 User Manual v1.00, sections 18.14.6.1 and
-> 18.14.7.20). On the main controller, the one-bit
-> BIAS_VOLTAGE_PIO_POW_MODE_SEL handler writes bit N for bank N, which
-> is reserved or half of another bank's field.
-> 
-> Starting from the vendor firmware value 0x01155550, a request for PF
-> with a 1.8 V supply sets bit 5, changing PC from auto (01) to 1.8 V
-> (11). A request for PK with a 3.3 V supply clears bit 10, changing PF
-> from auto to 3.3 V. PB is supplied from VCC-IO (A733 Datasheet v1.01,
-> table 4-5), whose field is at bits 25:24, but a PB request writes
-> reserved bit 1 instead.
+> Hi Krzysztof,
+>=20
+> On Mon, Nov 02, 2026 at 08:27:19AM +0100, Krzysztof Kozlowski wrote:
+> > On Fri, Oct 30, 2026 at 10:26:47PM -0400, Enzo Adriano wrote:
+> >> AI assistance: Codex:gpt-6-astra.
+> >
+> > Drop, we do not advertise slop companies anymore.
+> >
+> >>
+> >> Assisted-by: LLM
+> > Drop
+>=20
+> Will do, here and in my other patches.
+>=20
+> >> This binding is a separate prerequisite for the disabled MMC3 node in
+> >
+> > How this can be a separate prerequisite? Binding without user is not a
+> > prerequisite.
+>=20
+> You're right, it isn't. It should not have been posted apart from its
+> user.
+>=20
+> >> the A733 DT v2. It does not add a sunxi-mmc driver match or claim an
+> >> operational eMMC path.
+> >
+> > Hm? Why?
+>=20
+> Because I can't test one. None of my three Cubie A7S boards detects an
+> eMMC, and their vendor device trees leave this controller disabled.
+>=20
+> [...]
+>=20
+> >> prerequisite-patch-id: 6fc03bfbd343042dd3b660938fcc09c5e7d48314
+> >
+> > So this cannot really be tested.
+>=20
+> Agreed. Those IDs came from my local tree and are no use to anyone else.
+>=20
+> I'm withdrawing this patch. Andr=C3=A9, you asked for the other MMC
+> controllers because the IP is the same, but the manual documents a
+> different descriptor layout for SMHC3 (A733 User Manual v1.00, tables
+> 11-3 to 11-6), and I have no hardware to test it on. The next DT
+> revision will describe MMC0-2 and leave SMHC3 out until someone can test
+> driver support. If either of you would rather have it described now,
+> tell me and I'll put it back, in the same series as its user.
 
-I guess this has been written by an agent who like to talk? There is
-really little point in explaining in multiple lines that
-two-bits-per-bank is not compatible with one-bit-per-bank.
-
-> A733 R-PIO has SEL at 0x340 and VAL at 0x348 and nothing at 0x344
-> (section 18.14.5.2), where the BIAS_VOLTAGE_PIO_POW_MODE_CTL_INV
-> handler it shares with A523-R writes the A523 control register. That
-> handler also writes bit N of SEL inverted: for PL with a 3.3 V supply
-> it sets bit 0, changing PL from 3.3 V (10) to 1.8 V (11).
-> 
-> v7.4-rc1 added A733 support with these handlers, so the writes happen
-> on the first request of a pin in a bank with a vcc-pX-supply in the
-> devicetree.
-> 
-> Select BIAS_VOLTAGE_NONE for both A733 controllers and give A733-R its
-> own descriptor, keeping the A523-R descriptor and behaviour. This
-> leaves the firmware voltage modes in place, including any that do not
-> match their supplies. It does not implement voltage switching.
-
-So I am not really happy with that. Given that we have existing
-problems with the banks not all lining up (PortB and VCC-IO and
-friends), just skipping the setup might be a pragmatic solution.
-But then the kernel should engage the auto setting, as we generally
-don't want to rely on firmware if we can help it.
-
-So as I suggested before: please introduce a symbol like
-BIAS_VOLTAGE_PIO_POW_AUTO or so, which also skips the explicit bank setup, like 
-BIAS_VOLTAGE_NONE does, but then triggers setting all banks to auto, somewhere in the
-generic pinctrl code. Just writing "01" to all banks should do it,
-don't get hung up on banks that the manual doesn't describe: mostly
-those bits either don't exist at all, or they belong to ports only
-exposed on other packages. PortI looks like such a candidate, reading
-the respective region tells me that there are 17 PortI pins implemented.
-Same thing we saw on the A523/T527 and also on H616/H700.
-
-> 
-> Fixes: 0535bfbfa97b ("pinctrl: sunxi: add support for the Allwinner A733")
-> Fixes: 31d68e10381c ("pinctrl: sunxi: a523-r: add a733-r compatible string")
-> Link: https://lore.kernel.org/all/20261014183516.172060-1-vinicius.eduardo.pedrosa@gmail.com/
-> Suggested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-> Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Cubie A7Z
-> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
-> ---
-> Changes in v2:
-> - Rebased on v7.4-rc1, which added the A733 pinctrl driver. Only the
->   context of the A733 hunk changed.
-> - Dropped the old base and its prerequisite-patch-id lines.
-> - Dropped the AI assistance and Assisted-by lines.
-> - Added Vinicius' Tested-by, from a Cubie A7Z on Linux 7.3-rc6 with his
->   local A733 patches, applied with a context adjustment: warm boots
->   only, no cold boot, 1.8 V switching or A523.
-> - Added Fixes tags, manual references and examples of the bits the old
->   handlers write.
-> 
-> Andre's RFT [1] fixes the same bug with a two-bit handler and changes
-> the same A733 line, so only one of the two can be applied. This patch
-> uses BIAS_VOLTAGE_NONE, as Vinicius recommended in that thread, rather
-> than an AUTO variant: manual section 18.14.4.6 gives auto as 01, but
-> as 10 for PC/PE/PK, which the 18.14.6.1 table lists as 3.3 V, and
-> there is no evidence that 01 is right on every silicon revision. The
-> cost is that firmware modes that do not match a bank's supply stay as
-> they are. Andre, if you prefer the AUTO variant, I can rework it.
-
-As mentioned above: Yes, please do. And don't read too much into
-silicon revisions or the manual not mentioning everything.
+Well, I was merely asking to list all instances that are the same. That
+one MMC controller is using a different IP is new, so I wasn't aware of
+that.
+And we don't submit bindings for something that has no driver and
+hasn't been tested. We have been bitten by subtle mistakes in the past,
+which lead to broken bindings, so just wait until we have some user for
+that. Adding to a binding and DT is always fine to do later.
 
 Cheers,
 Andre
 
-> 
-> [1] https://lore.kernel.org/r/20261013142351.771229-1-andre.przywara@arm.com
-> 
-> Tested on v7.4-rc1 on a Cubie A7S with vendor boot firmware (one RAM
-> boot from cold, then a warm reboot), with A733 CCU v6, AXP318W PMIC v8,
-> the sunxi IRQ-bank v3 series, the 8250_dw changes, my A733
-> firmware-clock patch and A7S DT v2 on top. The main and R-PIO
-> GPIO_POW_MOD_SEL registers (0x02000040, 0x07025340) read 0x01155550
-> and 0x000aaaaa in both U-Boot and Linux, and the PF selector
-> (0x02000070) read 1. The PMIC regulators registered over R-I2C0 and
-> MMC0 reads worked. The readback was taken before the unused-regulator
-> cleanup.
-> 
-> The main-controller value distinguishes the handlers: MMC0 requests
-> PF, and this DT gives PF a 1.8 V supply, so the old handler would have
-> set bit 5 (0x01155570). An unpatched kernel was not booted. The R-PIO
-> value does not: PL has no vcc-pl-supply in this DT, because PL carries
-> the PMIC bus, so the R-I2C0 request returns before writing, and the
-> old handler's write for PM (3.3 V) would set bit 1, which is already
-> set. Vinicius' test covers R-PIO: he added 3.3 V vcc-pl and vcc-pm
-> supplies, and also read the registers after the unused-regulator
-> cleanup.
-> 
-> Also built arm64 defconfig with W=1 (GCC) and the changed objects with
-> Clang. Not tested: 1.8 V switching, A523.
-> 
-> v1: https://lore.kernel.org/r/20261031020640-263f7b05-a7s-pinctrl@gmail.com
-> 
->  drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 20 +++++++++++++++----
->  drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c   |  3 ++-
->  2 files changed, 18 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> index cffc1e53eef1..1cfd81184350 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> @@ -30,17 +30,29 @@ static struct sunxi_pinctrl_desc a523_r_pinctrl_data = {
->  	.pin_base = PL_BASE,
->  };
->  
-> +static struct sunxi_pinctrl_desc a733_r_pinctrl_data = {
-> +	.irq_banks = ARRAY_SIZE(a523_r_irq_bank_map),
-> +	.irq_bank_map = a523_r_irq_bank_map,
-> +	/* A733 has two-bit voltage modes, without the A523 control register. */
-> +	.io_bias_cfg_variant = BIAS_VOLTAGE_NONE,
-> +	.pin_base = PL_BASE,
-> +};
-> +
->  static int a523_r_pinctrl_probe(struct platform_device *pdev)
->  {
-> +	struct sunxi_pinctrl_desc *desc;
-> +
-> +	desc = (struct sunxi_pinctrl_desc *)of_device_get_match_data(&pdev->dev);
->  	return sunxi_pinctrl_dt_table_init(pdev, a523_r_nr_bank_pins,
-> -					   a523_r_irq_bank_muxes,
-> -					   &a523_r_pinctrl_data,
-> +					   a523_r_irq_bank_muxes, desc,
->  					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
->  }
->  
->  static const struct of_device_id a523_r_pinctrl_match[] = {
-> -	{ .compatible = "allwinner,sun55i-a523-r-pinctrl", },
-> -	{ .compatible = "allwinner,sun60i-a733-r-pinctrl", },
-> +	{ .compatible = "allwinner,sun55i-a523-r-pinctrl",
-> +	  .data = &a523_r_pinctrl_data },
-> +	{ .compatible = "allwinner,sun60i-a733-r-pinctrl",
-> +	  .data = &a733_r_pinctrl_data },
->  	{}
->  };
->  
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-> index ca82f08a3a65..d4b0a40525f9 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-> @@ -24,7 +24,8 @@ static const u8 a733_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
->  static struct sunxi_pinctrl_desc a733_pinctrl_data = {
->  	.irq_banks = 10,
->  	.irq_read_needs_mux = true,
-> -	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
-> +	/* Preserve the firmware-configured two-bit voltage modes. */
-> +	.io_bias_cfg_variant = BIAS_VOLTAGE_NONE,
->  };
->  
->  static int a733_pinctrl_probe(struct platform_device *pdev)
-> 
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+
+>=20
+> Sorry for the noise.
+>=20
+> Best regards,
+> Enzo
+>=20
 
 
