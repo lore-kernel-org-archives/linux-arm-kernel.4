@@ -2,72 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12C9606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE44606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:08:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NbIrDIeN;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=A+qPZ9qe
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CgnJZymy;
+	dkim=pass (2048-bit key, unprotected) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=LHwt77bX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+gyzgNhPsylvP06vZq5Elrbi2P3u4np1Q6XcqS10pRQ=; b=NbIrDIeNuORsZS
-	WvfWWoWyFHwzucKipJUZ39KGhvywOTe+3fg/lnN5e1a9c3pSjcb9Aht8vtmhkP46jqVihQb87lhJi
-	DPRNwiMyvfc0GVTwClSt0JIIUXZCR1Fw2L1vrFDrIrGNzaNecrd8qoTMMRu2uSHX5j8odfm2I98x2
-	ePTMBRzwXSxPq7gRcKdbtgEh3FXdnb4LjK7/VIw40OY/JbTyvRSnyPv7wyguCJxnQEfj4HH2M4Qe3
-	+I3sFVSE9TvNtrM0peCBNxvaq3x+9Qgnc7hTFtTo4fCpMTtn8s85XRQhVnvkJvpn/cnBwMZIvUOi5
-	Hmhaksc3BU+MYZkHG62A==;
+	List-Owner; bh=WNhZ3bjj2Eb8mgbv1kD0sVMUWIuT3xxiAYU3u8mgKdw=; b=CgnJZymyApNQTh
+	1YzK3UqweSm3z/FIuYDRbzGMSOcS60i3dk5OOXg3drb2jFLIafpSdbFVFnWdlNrdK6Ze2IhPhBydK
+	agtSoTqbUIir1GiPxUrGEQXHfZdPyMWPqn/H/yN82tR5G3BnCZfjzWnRxbaCqawvNtBhSd+zZn0uH
+	JxNcESa9hURxvUcbTm2AYxte+vK6kQi7Fii26hRHL8u4rmdf0599Od0D4HPVL37OKNrYj502u1lEo
+	LRD/l1Ko2qdZeaUPzgIReT0z6QDuP2NBkfmT+Oirc7kOsCWJHdRj4hGArLixb8cwEtAmExgTKlC6Z
+	aBod8xCAnad7Z0ZtSTQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPT2Q-0000000DpBw-2N8Y;
-	Fri, 06 Nov 2026 23:08:02 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPT2M-0000000DpBJ-3Kcj
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 23:08:01 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE1B11650;
-	Fri,  6 Nov 2026 15:07:53 -0800 (PST)
-Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D216E3F632;
-	Fri,  6 Nov 2026 15:07:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794006476; bh=RJP+8WlqG/AN8bbXr0dcvH9Qfm+ONJlgtpsBrXaYgLk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=A+qPZ9qeYrog5H0PV6WbMfxCMDh5jvpniOk24HubukGL/m5QIsiHJKgayOMaz+FGW
-	 Kalpy6nnQROAErDm9Zk63zkruft/Zrg7oBdens2LnteHYp03qOBaDC4va0axjK3OJc
-	 OGBxNk0eVUlHwUlF/0U98vTxcm2KOfheIRTFd85U=
-Date: Sat, 7 Nov 2026 00:07:45 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Enzo Adriano <enzo.adriano.code@gmail.com>
-Cc: krzk@kernel.org, Ulf Hansson <ulfh@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Maxime
- Ripard <mripard@kernel.org>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, Junhui Liu
- <junhui.liu@pigmoral.tech>
-Subject: Re: [PATCH] dt-bindings: mmc: describe the Allwinner A733 eMMC
- controller
-Message-ID: <20261107000745.45b349d1@ryzen.lan>
-In-Reply-To: <20261103-a733-mmc3-withdraw-reply@gmail.com>
-References: <20261031020640-263f7b05-a7s-mmc-binding@gmail.com>
-	<20261102-steady-grateful-chimera-e2363a@quoll>
-	<20261103-a733-mmc3-withdraw-reply@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	id 1xPT2a-0000000DpFj-0Olx;
+	Fri, 06 Nov 2026 23:08:12 +0000
+Received: from mout.gmx.net ([212.227.17.21])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPT2U-0000000DpCj-2dk8;
+	Fri, 06 Nov 2026 23:08:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1794006479; x=1794611279; i=wahrenst@gmx.net;
+	bh=WNhZ3bjj2Eb8mgbv1kD0sVMUWIuT3xxiAYU3u8mgKdw=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+	 References:MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=LHwt77bX/IgrWrdyom8a6kWLJfkBC79Zw5uEEVXRdDI4ARWzVpAdqndbJbTvRS5l
+	 WXIsI1/7+JCX6R/2JVfek7pNLQgRag6rtlz45OODX7fh/gYjU8mqQ7/84mc2x9M1s
+	 aXukemyj4eTo+hDywWPNYSBc+yvSACF1FejSb7ysUaUI1hzouJV0UF0if8KMmBGXM
+	 hWEgwDMqdTJkrfTVQ8JVYbaYMZE4p1VZ5Rfl00bWQAfwVD+pyuPRvaGY6xva7qART
+	 bJUQFg8+zrSYRcbR0Tj0/Uhg8FDmJ/P1GUalhygsonH8ogc0T59lgtAMK+zYBklpk
+	 0Thr2S18aJBjjhz/YA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N9dsb-1wTWfr2K2v-00z2ed; Sat, 07
+ Nov 2026 00:07:58 +0100
+From: Stefan Wahren <wahrenst@gmx.net>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	kernel@pengutronix.de,
+	Fabio Estevam <festevam@gmail.com>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	Stefan Wahren <wahrenst@gmx.net>
+Subject: [PATCH 3/5] dt-bindings: gpio: mxs: Allow gpio-line-names to be set
+Date: Sat,  7 Nov 2026 00:07:43 +0100
+Message-ID: <20261106230746.21954-4-wahrenst@gmx.net>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261106230746.21954-1-wahrenst@gmx.net>
+References: <20261106230746.21954-1-wahrenst@gmx.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:H80gyH0AAke8yHwE10gt8xbgC3FEgZ5eLkSGucmI2e3jldXufXk
+ eoLN+eO66OHHivXhP4Fy8HVhwGdGbtDx2YZqtUHwT7zQg2+x07mQYfn+a51CqOXajp/bEPt
+ YzOZqiQoeEzo1Wxw+dW4V3592adbJIQRyVw4od/NzkHJk7vn5O+iuMsAGuwU7MHSij5/T0V
+ 2jmzhMOy7cSCISbH6fltA==
+UI-OutboundReport: notjunk:1;M01:P0:fDzb8SM7lac=;pWRKCZYVT7K+5JOFjrCp29AU1V/ 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
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_150758_963162_43DEAE4E 
-X-CRM114-Status: GOOD (  25.06  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261106_150807_534745_58F2F394 
+X-CRM114-Status: UNSURE (   7.72  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,82 +97,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon,  2 Nov 2026 19:41:55 -0500
-Enzo Adriano <enzo.adriano.code@gmail.com> wrote:
+Describe common "gpio-line-names" property to allow DTs to
+specify names for GPIO lines.
 
-Hi,
+Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+=2D--
+ Documentation/devicetree/bindings/gpio/gpio-mxs.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> Hi Krzysztof,
->=20
-> On Mon, Nov 02, 2026 at 08:27:19AM +0100, Krzysztof Kozlowski wrote:
-> > On Fri, Oct 30, 2026 at 10:26:47PM -0400, Enzo Adriano wrote:
-> >> AI assistance: Codex:gpt-6-astra.
-> >
-> > Drop, we do not advertise slop companies anymore.
-> >
-> >>
-> >> Assisted-by: LLM
-> > Drop
->=20
-> Will do, here and in my other patches.
->=20
-> >> This binding is a separate prerequisite for the disabled MMC3 node in
-> >
-> > How this can be a separate prerequisite? Binding without user is not a
-> > prerequisite.
->=20
-> You're right, it isn't. It should not have been posted apart from its
-> user.
->=20
-> >> the A733 DT v2. It does not add a sunxi-mmc driver match or claim an
-> >> operational eMMC path.
-> >
-> > Hm? Why?
->=20
-> Because I can't test one. None of my three Cubie A7S boards detects an
-> eMMC, and their vendor device trees leave this controller disabled.
->=20
-> [...]
->=20
-> >> prerequisite-patch-id: 6fc03bfbd343042dd3b660938fcc09c5e7d48314
-> >
-> > So this cannot really be tested.
->=20
-> Agreed. Those IDs came from my local tree and are no use to anyone else.
->=20
-> I'm withdrawing this patch. Andr=C3=A9, you asked for the other MMC
-> controllers because the IP is the same, but the manual documents a
-> different descriptor layout for SMHC3 (A733 User Manual v1.00, tables
-> 11-3 to 11-6), and I have no hardware to test it on. The next DT
-> revision will describe MMC0-2 and leave SMHC3 out until someone can test
-> driver support. If either of you would rather have it described now,
-> tell me and I'll put it back, in the same series as its user.
-
-Well, I was merely asking to list all instances that are the same. That
-one MMC controller is using a different IP is new, so I wasn't aware of
-that.
-And we don't submit bindings for something that has no driver and
-hasn't been tested. We have been bitten by subtle mistakes in the past,
-which lead to broken bindings, so just wait until we have some user for
-that. Adding to a binding and DT is always fine to do later.
-
-Cheers,
-Andre
-
-
->=20
-> Sorry for the noise.
->=20
-> Best regards,
-> Enzo
->=20
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml b/Docume=
+ntation/devicetree/bindings/gpio/gpio-mxs.yaml
+index 6cab04ebbdd4..79c9b0672334 100644
+=2D-- a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
++++ b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+@@ -119,6 +119,10 @@ patternProperties:
+=20
+       gpio-controller: true
+=20
++      gpio-line-names:
++        minItems: 1
++        maxItems: 32
++
+     required:
+       - compatible
+       - reg
+=2D-=20
+2.53.0
 
 
