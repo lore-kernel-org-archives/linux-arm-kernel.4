@@ -2,78 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53AA606D823
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:08:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD54D606EE82
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RQ3I1Lmp;
-	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=i1584vgL
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VpHtKKuh;
+	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=ai74M2c+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aljBCf9/MmrTLX/Ccg8ZLrEoj6cKNfroAB+y0foXNJE=; b=RQ3I1Lmpm34UZU
-	W3jYUsI5shGGAxUpoyDkpnpxkmp2cf0iTJOAdKkFTzJpTzqm8q8mu9RqJSNB0zS1LnNrvWA7f9CZg
-	36jB5mk1IV4un4td+xBL9iLYaHIK4Ktu/Suj1ONQjXUl4wTPrAKI78sbDjG8RQLBguUemChNjWn6O
-	LiYajIGCT3fbR5ZHevrCKpd+ZKrORkKPdZQX5JoOY0C292FWdgAD0uzPs7mwGX2UGKh6/LoVa/QJ8
-	P68OkHGms5D8+Jfxk0cqjbmVg6wwn4nTesuzofkJ3FNrSVQlATzZh2jQkE/1YRLIdfaRghAJOWKhH
-	T80asVo7FYnp7Qs/1XmA==;
+	List-Owner; bh=W127d2adflmjvt3WWavZucVr9TwbuK1rER800FERqDo=; b=VpHtKKuhIJdpe/
+	dy+aQW2RJN+u2D+Ae8CuECq/DmgGCLcHALbnKW0AdcQRuT1R/oDL9vbxhZWYqTCeHJrk0kEEYjz4Y
+	18vF4plF8cxK0+aULc3EFud4yanoJIDV2bZtXY6kHOLjwbqPMDXhvT9tITrW4MbpKMMwXru59enIb
+	KYwsTA4J1xromSJfG6WwQVNuMscJFCROrO9DsZERp0X5O+H1vr14KPorrxYoFjAuNhd0wW7rDMF7y
+	MOug3MtBYi5K/9i3PIjrbOGNeXi8ZFICDeX4DXG4cbbnDCAyzY7zqViIAHIs6duSbCeRWER6s2xg2
+	EvRDDia6HaUVtIwt6ORw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMUa-0000000CxRd-04Rr;
-	Fri, 06 Nov 2026 16:08:40 +0000
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
+	id 1xPMUd-0000000CxTz-0fbf;
+	Fri, 06 Nov 2026 16:08:43 +0000
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMUX-0000000CxPv-49Az
+	id 1xPMUY-0000000CxQP-44e5
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 16:08:39 +0000
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FEKhB2656491;
-	Fri, 6 Nov 2026 16:08:19 GMT
+	Fri, 06 Nov 2026 16:08:40 +0000
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FEAPk1094572;
+	Fri, 6 Nov 2026 16:08:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=aljBCf
-	9/MmrTLX/Ccg8ZLrEoj6cKNfroAB+y0foXNJE=; b=i1584vgLDNnIsuCIFXD2fo
-	1wZMi6H3d/AYRxHZbqExqi4xCW8XmahpJogKPOBVB8lG01z2XU5zte0L+SbfQv9g
-	fH6eZ2gcA//akwPwWzi+sD6FPgt1UXwLelb1uJVicjz7JFB34PHIbbCFyqYn4BYf
-	N+NDzdlkzjxrLmUJ5aUTf/ivCwWb4pxsVGPo5/Ll61CumHHLqIR3zS1E6O2P23qr
-	0XWRYA8VV/etp6idk8MWXLB+rrrfPOie5EPXU+VyEhXD+MUMFQkqUUpUt5O1VVIp
-	65eka0M+8xdIs16A63FJ0lYhgcZgw8Nkyi4hov7zM413l2H7qS3SJW3ASntYBTXw
+	:message-id:mime-version:references:subject:to; s=pp1; bh=W127d2
+	adflmjvt3WWavZucVr9TwbuK1rER800FERqDo=; b=ai74M2c+4gU6e6QH8W5V6z
+	G0Togt0SHtIMqwNEq9C0gVBmoAzc5yiwVkWMRwKvlUwuH2P+Z6/v4LW1VbISxxQq
+	O4Il+m7pZeDXQeA5fFM7066MH9tDf/E0vtpeBc+1tim1xBZD4iO4Rj24yyb+oRwA
+	dDecooXIkp+ua5ZjBK5HHtQUnjYCd9u8YhwlvcNIxUURH8o2ce0gtT8CkD3xZ5HK
+	eOjysexAaqR618eET1eFy9fFIs6lYJwwHeMxKU1e61jD4Od3kYm/qBQ0+h7rRCoC
+	HlhhV69DNyi8momXR3J53MrYKzf9r2vXoHDQrppjBxtLRriirT5DWCHxUhz04e/w
 	==
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4hs3rc5esv-1
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4hs3rawhyq-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 06 Nov 2026 16:08:19 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6F4xUJ2390175;
-	Fri, 6 Nov 2026 16:08:18 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4hs7h13wds-1
+	Fri, 06 Nov 2026 16:08:21 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6F4vHX3617207;
+	Fri, 6 Nov 2026 16:08:20 GMT
+Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4hrdd7ukc0-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Nov 2026 16:08:18 +0000 (GMT)
+	Fri, 06 Nov 2026 16:08:20 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6A6G8Fd652494794
+	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6A6G8Gur47579590
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 6 Nov 2026 16:08:15 GMT
+	Fri, 6 Nov 2026 16:08:16 GMT
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 265922004B;
-	Fri,  6 Nov 2026 16:08:15 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 5FFAF20040;
+	Fri,  6 Nov 2026 16:08:16 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id BDCD22005A;
-	Fri,  6 Nov 2026 16:08:14 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 03FC42005A;
+	Fri,  6 Nov 2026 16:08:16 +0000 (GMT)
 Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
 	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri,  6 Nov 2026 16:08:14 +0000 (GMT)
+	Fri,  6 Nov 2026 16:08:15 +0000 (GMT)
 From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 06 Nov 2026 17:07:36 +0100
-Subject: [PATCH v3 03/23] arm64: sysreg: Convert OSLSR to automatic
- register generation
+Date: Fri, 06 Nov 2026 17:07:39 +0100
+Subject: [PATCH v3 06/23] KVM: s390: arm64: Prepare for sharing arm64 SVE
+ and ftr-reg code
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-sysreg-v3-3-75e95980fb10@linux.ibm.com>
+Message-Id: <20261106-sysreg-v3-6-75e95980fb10@linux.ibm.com>
 References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
 In-Reply-To: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
@@ -102,35 +102,35 @@ Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
         linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
 X-Mailer: b4 0.14.3
 X-TM-AS-GCONF: 00
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfXx7H/w9GaMmvC
- wgKjs+HR7dhAyHENO+GdQFOat5SREYxDz9O5rPqdwCgFNuFUGnlTCdSg1r80ZsnRxznEj0twbYp
- cko3wZaAtPcfzs/r952L+3LIi8VcZB0=
-X-Proofpoint-GUID: xFcc7uGqZ-HYK0UJbpgCHve9C9pcjYKs
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX5jg/b7IN7rGs
- faYNdYhVC4YQCKnxMBn23kpjHTub3g22+J2QL3X5MXWz3VneOJapiOCQV7lNc6QFOo4/Ph1tzbP
- 9cbD5+7a5ucrgFm4PfxPCgT9C8CfFtl3YEJpYtWofPffVMPOYXBR/orXBsTzhGd1LOk3ZtJXGXc
- 5PE62NwDej8l2gKLUlfqa8Zre3LB4F4zM1dCGTFjd7iby1L1agu+jycE+fQxbf6hBZB7IRgluL7
- SQEQhaLXlZUu7mHf8Ru+1UChX4cwPJIHSd9KQMeu3s5nm1hqfJKiraSPjUOzU6ZtOmpg9eLNJDr
- Q8IZRYU9+elZBg5Rm95mmlBsWIvhv5ghtEOWW2u65BedwPyxmgAVA7jv7bzYOXLEcbL4iuCH3Xr
- Han6K9p2CgVLctxtkwaixMe+Dx9xc/STC4bwTGAchGxxzDMPm41CUfjgBc6FAm0cbXCgR2V82wY
- KsizHyymRZh6vmhxXFA==
-X-Proofpoint-ORIG-GUID: xFcc7uGqZ-HYK0UJbpgCHve9C9pcjYKs
-X-Authority-Analysis: v=2.4 cv=CY+dd7rl c=1 sm=1 tr=0 ts=6aedfb73 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
+X-Authority-Analysis: v=2.4 cv=QYDzLcbv c=1 sm=1 tr=0 ts=6aedfb75 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
- a=uoKN2WSkVIwsLX3wBB8A:9 a=QEXdDO2ut3YA:10
+ a=RnoormkPH1_aCDwRdu11:22 a=uAbxVGIbfxUO_5tXvNgY:22 a=VnNF1IyMAAAA:8
+ a=6ud2rAkrWTPY0GCDnFoA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-GUID: 9fyAJ52TrLGHCQDehdYavzsUJGtEwYpq
+X-Proofpoint-ORIG-GUID: 9fyAJ52TrLGHCQDehdYavzsUJGtEwYpq
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfXwoCa7takuaX0
+ zhk77HMKKmIq0whq5sF8gsi1FcjgsP25TQov/zaCk8W7DhZd2ydmpFdIbiKF8M+B8WPriknYjX/
+ a01Lp04mSnrTJXx44A4rqm49grtMg/4=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX+jvDCirEzeOj
+ bw7xbJbAPKhX6EWmqH9h46MNwnqPSEfZ7uhW+xWut916BADkjZCkR4k4cM373r0Q4B6jqtyiqdJ
+ e5k50Q3UCZMfLpFQ0D3Txqvi7W7t88L30Vkbr5Zl0D/ZEl6hyKAnS1TDM0AHi2jc5s7Z24/A13Q
+ Qy1kTAVR/taIKzuLLRozY82HQO4Ib/gqZyrYpbRD/MZHt4YA/DZk3iSoopYEj02Y7L9h/FC+L6Q
+ Aw8n0I/eMwneN3P9c4tsieu5Pbeh66DZ7Pu2fUwqe4w5tg0QJ2KZJECG99yRJeaqcn3TLyn0LbN
+ U0Gqve0AlT7aFjayv9d/7PxED9YKReJwQXN7wqeKvRZOPBC+mm8mZDRK/U8oxY2aOAlrbDNBsPL
+ /HhBLwq1SuEPa31KtEH+TT93oAebpZ8SzMciKv+6oZDQdgdleqxrJ1ANo8HYL1kDS5xeNGUfvNR
+ LxlYmIWWs1uE5Up2INA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-06_05,2026-11-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 bulkscore=0 phishscore=0 impostorscore=0
- malwarescore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 adultscore=0
+ spamscore=0 adultscore=0 clxscore=1015 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 malwarescore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611060062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_080838_152160_1FC651A0 
-X-CRM114-Status: GOOD (  16.12  )
+X-CRM114-CacheID: sfid-20261106_080839_092472_080007D5 
+X-CRM114-Status: GOOD (  12.81  )
 X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -149,11 +149,9 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Convert OSLSR to automatic register generation as per DDI0601. As
-OSLSR_OLSM is a composite field using bit 0 and bit 3 the combined
-values are still defined manually. While at it rename
-OSLSR_EL1_OSLM_IMPLEMENTED to OSLSR_EL1_OSLM_IMP to be consistent with
-the rest of the system register values.
+Add required SVE and feature-register definitions to the arm64 on s390
+host code. The definitions are required to be able to build shared SVE
+related code.
 
 No functional changes.
 
@@ -161,72 +159,47 @@ Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- arch/arm64/include/asm/sysreg.h | 12 +++++++-----
- arch/arm64/kvm/sys_regs.c       |  2 +-
- arch/arm64/tools/sysreg         | 14 ++++++++++++++
- 3 files changed, 22 insertions(+), 6 deletions(-)
+ arch/s390/kvm/arm64/arm.c   | 2 ++
+ arch/s390/kvm/arm64/guest.c | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysreg.h
-index e3b60ee03023..2ec9ba9cd896 100644
---- a/arch/arm64/include/asm/sysreg.h
-+++ b/arch/arm64/include/asm/sysreg.h
-@@ -186,11 +186,13 @@
- #define SYS_DBGWCRn_EL1(n)		sys_reg(2, 0, 0, n, 7)
- #define SYS_MDRAR_EL1			sys_reg(2, 0, 1, 0, 0)
+diff --git a/arch/s390/kvm/arm64/arm.c b/arch/s390/kvm/arm64/arm.c
+index bd9d85235f43..29d3add0bbda 100644
+--- a/arch/s390/kvm/arm64/arm.c
++++ b/arch/s390/kvm/arm64/arm.c
+@@ -8,6 +8,7 @@
+ #include <linux/kvm_host.h>
+ #include <linux/cleanup.h>
+ #include <linux/fpu.h>
++#include <linux/bitfield.h>
  
--#define SYS_OSLSR_EL1			sys_reg(2, 0, 1, 1, 4)
--#define OSLSR_EL1_OSLM_MASK		(BIT(3) | BIT(0))
--#define OSLSR_EL1_OSLM_NI		0
--#define OSLSR_EL1_OSLM_IMPLEMENTED	BIT(3)
--#define OSLSR_EL1_OSLK			BIT(1)
-+#define OSLSR_EL1_OSLM_MASK (OSLSR_EL1_OSLM0_MASK | OSLSR_EL1_OSLM1_MASK)
-+#define OSLSR_EL1_OSLM_NI						\
-+	((OSLSR_EL1_OSLM1_NI << OSLSR_EL1_OSLM1_SHIFT) |		\
-+	(OSLSR_EL1_OSLM0_VAL_0 << OSLSR_EL1_OSLM0_SHIFT))
-+#define OSLSR_EL1_OSLM_IMP						\
-+	((OSLSR_EL1_OSLM1_IMP << OSLSR_EL1_OSLM1_SHIFT) |		\
-+	(OSLSR_EL1_OSLM0_VAL_0 << OSLSR_EL1_OSLM0_SHIFT))
+ #include <asm/access-regs.h>
  
- #define SYS_OSDLR_EL1			sys_reg(2, 0, 1, 3, 4)
- #define SYS_DBGPRCR_EL1			sys_reg(2, 0, 1, 4, 4)
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-index 2b28b929f9f3..8c91de6a4097 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
-@@ -3309,7 +3309,7 @@ static const struct sys_reg_desc sys_reg_descs[] = {
- 	{ SYS_DESC(SYS_MDRAR_EL1), trap_raz_wi },
- 	{ SYS_DESC(SYS_OSLAR_EL1), trap_oslar_el1 },
- 	{ SYS_DESC(SYS_OSLSR_EL1), trap_oslsr_el1, reset_val, OSLSR_EL1,
--		OSLSR_EL1_OSLM_IMPLEMENTED, .set_user = set_oslsr_el1, },
-+		OSLSR_EL1_OSLM_IMP, .set_user = set_oslsr_el1, },
- 	{ SYS_DESC(SYS_OSDLR_EL1), trap_raz_wi },
- 	{ SYS_DESC(SYS_DBGPRCR_EL1), trap_raz_wi },
- 	{ SYS_DESC(SYS_DBGCLAIMSET_EL1), trap_raz_wi },
-diff --git a/arch/arm64/tools/sysreg b/arch/arm64/tools/sysreg
-index 997c62ab72e6..5d38f115bac1 100644
---- a/arch/arm64/tools/sysreg
-+++ b/arch/arm64/tools/sysreg
-@@ -122,6 +122,20 @@ Res0	63:1
- Field	0	OSLK
- EndSysreg
+@@ -24,6 +25,7 @@
+ #include "trace.h"
  
-+Sysreg	OSLSR_EL1	2	0	1	1	4
-+Res0	63:4
-+UnsignedEnum	3	OSLM1
-+	 0b0	NI
-+	 0b1	IMP
-+EndEnum
-+UnsignedEnum	2	nTT
-+EndEnum
-+Field	1	OSLK
-+UnsignedEnum	0	OSLM0
-+	 0b0	VAL_0
-+EndEnum
-+EndSysreg
+ static unsigned long system_supported_vcpu_features(struct kvm_vcpu *vcpu);
++#define read_sanitised_ftr_reg(_id) 0
+ 
+ #define __INCL_GEN_ARM_FILE
+ #include "generated/arm.inc"
+diff --git a/arch/s390/kvm/arm64/guest.c b/arch/s390/kvm/arm64/guest.c
+index 4ea6fe2c270d..8b5ee9e79a4f 100644
+--- a/arch/s390/kvm/arm64/guest.c
++++ b/arch/s390/kvm/arm64/guest.c
+@@ -5,6 +5,12 @@
+ #include <arm64/kvm_emulate.h>
+ #include <arm64/kvm_nested.h>
+ 
++#define SVE_VQ_MIN	__SVE_VQ_MIN
++#define SVE_NUM_ZREGS	KVM_ARM64_SVE_NUM_ZREGS
++#define SVE_NUM_PREGS	KVM_ARM64_SVE_NUM_PREGS
 +
- Sysreg	SPMACCESSR_EL1	2	0	9	13	3
- UnsignedEnum	63:62	P31
- 	0b00	TRAP_RW
++#define vcpu_sve_slices(_vcpu) 1
++
+ #define __INCL_GEN_ARM_FILE
+ #include "generated/guest.inc"
+ #undef __INCL_GEN_ARM_FILE
 
 -- 
 2.56.0
