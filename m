@@ -2,110 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81578606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC62606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=08nFM1fa;
-	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=MhPfV8AU
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KjEv5iDv;
+	dkim=pass (1024-bit key, unprotected) header.d=grimler.se header.i=@grimler.se header.a=rsa-sha256 header.s=key1 header.b=kADcVJZM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
-	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
-	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RHo4ksSMFTqpRYw3uQoglMFwqaYV5jcly92lZB1Eo2I=; b=08nFM1faUUV6Ow
-	G59L+hE3aJOiL5FO22IVM/k+F0Fn4d7BEkHbnO+eYk2l+w0pekT8RhohoroHv2oyAcJnivkytsk8e
-	y+PyTWmEBnAP7SGfqfnZLkQVz7n4RVkY660p9BE8QmQxvf+vblN3/Bbhh6jEqhKhvul1Za4frIL9x
-	bJlyMdTmo6WYc2txAA8JB2zfBwZ/UrD0oIW/IEG8G5EQ6OV9RRlgyWvOUvHcNh+QjQMP0ZriIbVk/
-	ohTU8T7ltvCPXtEk8uR0A5Ku8Xp189fYm6PLSkE0TnFArzSOV2YC8zA8EHROHP8z2cSvQgI/xgYQ6
-	AbXhy2gZVqU/pOqpzpkg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nXpHtbwIXWqa0CUduYYty9A7kDwxd+/CalGYDzCTKjw=; b=KjEv5iDvo9LdmdLfStp9ry6Jfz
+	u1pNkOP3jsYRnjKJlAEZuXpFDzoYoyybAAwh80HvKj4s0yBL+5BBczdDUXim3u0asagxTWQSj9xf1
+	kBjtWKoY8PuW+j09/nOyjjeElo7BKhC5i6txnWRG4uBkGwo3d/8NGXdmo7IoG2HYhBZRjQ614W+as
+	8Nf86txlS+OzDJbwXZ79XoqsilbcpjchgBiJOuvbGmQLoODHoye8ytmYlBETFo7VgxLI4+QQSyQLR
+	5juxU1ccofqundpwl2kbmK5Kj5vTNmlZ3/hJBvaDg/yh0uOX8Zr/YNYts+k+DjUskr1Spktk04X3E
+	XM53+Z8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPKTI-0000000CWa2-3maA;
-	Fri, 06 Nov 2026 13:59:12 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1xPLCT-0000000Cjj7-1v41;
+	Fri, 06 Nov 2026 14:45:53 +0000
+Received: from out-56.mta1.migadu.com ([2001:41d0:203:375::38] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPKT9-0000000CWIe-3gHi;
-	Fri, 06 Nov 2026 13:59:05 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261106135901euoutp025e40b27f9535daf9f0959da75b18707e~leW5OHKrU2548725487euoutp02Y;
-	Fri,  6 Nov 2026 13:59:01 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261106135901euoutp025e40b27f9535daf9f0959da75b18707e~leW5OHKrU2548725487euoutp02Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1793973541;
-	bh=RHo4ksSMFTqpRYw3uQoglMFwqaYV5jcly92lZB1Eo2I=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=MhPfV8AUAsjkSxgc1xGxqc94xKeL39Jfx0vT59kwFrHRipIk9hnBoERuZQcrJNdma
-	 hQ1BJtvojUaJJPgE9rS0LhI2ua7JrHfvTJq9dKDeCzhr4yolB+W+x0n3+lq+cGZ0wJ
-	 x4Q425/iyuRVtdfAqcEyCOLOFxQdQSF0VSg2qIFk=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106135900eucas1p17159021cc747335b62cad6b3326605be~leW41-tE92279422794eucas1p1K;
-	Fri,  6 Nov 2026 13:59:00 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106135859eusmtip192823125372105a1533bc3e8d32faa4c~leW3LPF5p0570305703eusmtip1y;
-	Fri,  6 Nov 2026 13:58:59 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Fri, 06 Nov 2026 14:58:40 +0100
-Subject: [PATCH v7 06/19] dt-bindings: display: verisilicon: Add
- starfive,jh7110-dc8200
+	id 1xPLCN-0000000Cji9-05rp
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 06 Nov 2026 14:45:52 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=dsRJ/0z/yE/5s58BMhmlVSFV04GmqnxwznaEjY/5328=;
+ c=simple/simple; d=grimler.se;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1793976343; v=1; x=1794581143;
+ b=kADcVJZMgmNCz98SwUVAOSfSrkz7gIzWbzN1tnaTaC/CyM5NEQ9+X5mynXCfvmbkw7XuInM9
+ NAROZSBHoV0/9CqgXDtzIomW7cYT/ppqX/Fhy/LhrHWO5UoPgPn3onXSrZp9k+rthRSGL4m1cHm
+ gD0Trg+KBvMvns8fnRoJ1Jmg=
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by mta12.migadu.com with ESMTPS id cf432eae1467532f;
+	Fri, 06 Nov 2026 14:45:39 +0000
+X-Mizu-Trace-ID: cf432eae1467532f
+X-Migadu-Flow: FLOW_OUT
+Date: Fri, 6 Nov 2026 15:45:36 +0100
+From: Henrik Grimler <henrik@grimler.se>
+To: Young-Jun Hong <nirvanah@nirvanahyj.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] clk: samsung: exynos5420: add VPLL rates for 650,
+ 700 and 750 MHz
+Message-ID: <20261106144536.GA3678@localhost>
+References: <20261106054210.2893230-1-nirvanah@nirvanahyj.com>
+ <20261106054210.2893230-3-nirvanah@nirvanahyj.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-jh7110-clean-send-v7-6-68f7ea9913db@samsung.com>
-In-Reply-To: <20261106-jh7110-clean-send-v7-0-68f7ea9913db@samsung.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,  Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Andrzej Hajda
-	<andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,  Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,  Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,  Luca Ceresoli
-	<luca.ceresoli@bootlin.com>,  Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,  Philipp Zabel
-	<p.zabel@pengutronix.de>,  Emil Renner Berthing <kernel@esmil.dk>,  Hal Feng
-	<hal.feng@starfivetech.com>, Heiko Stuebner <heiko@sntech.de>,  Paul
-	Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,  Albert Ou
-	<aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,  Dominique
-	Belhachemi <db@domibel.de>, Andy Yan <andyshrk@163.com>,  David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,  Yakir Yang
-	<kuankuan.y@gmail.com>,  Dmitry Baryshkov
-	<dmitry.baryshkov@oss.qualcomm.com>,  Michal Wilczynski
-	<m.wilczynski@samsung.com>,  Conor Dooley <conor@kernel.org>, William Qiu
-	<william.qiu@starfivetech.com>,  Xingyu Wu <xingyu.wu@starfivetech.com>,
-	Sandy Huang <hjc@rock-chips.com>,  Manivannan Sadhasivam <mani@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-riscv@lists.infradead.org,  Marek
-	Szyprowski <m.szyprowski@samsung.com>,  Maud Spierings
-	<maud_spierings@murena.io>,  Graham Markall <hello@big-grey.co.uk>,  Icenowy
-	Zheng <zhengxingda@iscas.ac.cn>,  Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	Joshua Peisach <jpeisach@ubuntu.com>,  =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>,  Cristian Ciocaltea
-	<cristian.ciocaltea@collabora.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=976;
-	i=m.wilczynski@samsung.com; h=from:subject:message-id;
-	bh=41iA01RWnUWvGtQAbZNvE1TbUzxo7jNLq+NLQx4Yies=;
-	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9vSsm5r6ZtZgnfvsSnoCmb6cyo5SjvohP8ys1eWZdH
-	Jqayd3SUcrCIMbBICumyHJ2Y7SR5D+Gp+XHH/+CmcPKBDKEgYtTACbi8Yfhr0yfwz2XhCqmgH9n
-	RL7x/Z612rVCebOk8exE0T/nHnJ5mjEyfHmfdC15jdZNm/V5bF+m6pRlTmYSZ5BWCxbzfMKxgam
-	HAwA=
-X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
-	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
-X-CMS-MailID: 20261106135900eucas1p17159021cc747335b62cad6b3326605be
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261106135900eucas1p17159021cc747335b62cad6b3326605be
-X-EPHeader: CA
-X-CMS-RootMailID: 20261106135900eucas1p17159021cc747335b62cad6b3326605be
-References: <20261106-jh7110-clean-send-v7-0-68f7ea9913db@samsung.com>
-	<CGME20261106135900eucas1p17159021cc747335b62cad6b3326605be@eucas1p1.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261106054210.2893230-3-nirvanah@nirvanahyj.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_055904_187847_C42D2011 
-X-CRM114-Status: UNSURE (   9.45  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261106_064547_778695_B2F835AD 
+X-CRM114-Status: GOOD (  18.01  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,37 +79,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The JH7110 embeds a DC8200. The binding requires an SoC specific
-compatible ahead of the generic one, so add the JH7110 to the enum.
+Hi Young-Jun,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- Documentation/devicetree/bindings/display/verisilicon,dc.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Fri, Nov 06, 2026 at 02:41:49PM +0900, Young-Jun Hong wrote:
+> The VPLL drives the G3D (Mali) clock on Exynos 5420/5422. Its rate table
+> stops at 600 MHz, so GPU OPPs above 600 MHz cannot be reached:
+> clk_set_rate() silently keeps fout_vpll at 600 MHz.
+> 
+> Add the 650, 700 and 750 MHz rows (VCO 1300/1400/1500 MHz, using the same
+> P/M/S style as the APLL rows).
 
-diff --git a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-index 919a9001220120054cb62d1d01b7293367266f95..05a202633cd273fec358c095c64584d959d96d90 100644
---- a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-+++ b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
-@@ -16,6 +16,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - starfive,jh7110-dc8200
-           - thead,th1520-dc8200
-       - const: verisilicon,dc # DC IPs have discoverable ID/revision registers
- 
+What you mean with "using the same P/M/S style as the APLL rows"?
 
--- 
-2.34.1
+> Tested on Samsung ARTIK 10 (Exynos 5422): with these rows the G3D devfreq
+> reaches 700 and 750 MHz, and the OpenCL accuracy suite passes 96/96 at
+> 750 MHz with a board-specific 1.35 V OPP.
+> 
+> The analysis, the code and this changelog were produced with Claude
+> Code (Anthropic), a coding assistant.
 
+Was it tested by a human?
+
+> Signed-off-by: Young-Jun Hong <nirvanah@nirvanahyj.com>
+> ---
+>  drivers/clk/samsung/clk-exynos5420.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/clk/samsung/clk-exynos5420.c b/drivers/clk/samsung/clk-exynos5420.c
+> index 400a5c59815c..1b4b0ae16765 100644
+> --- a/drivers/clk/samsung/clk-exynos5420.c
+> +++ b/drivers/clk/samsung/clk-exynos5420.c
+> @@ -1451,6 +1451,9 @@ static const struct samsung_pll_rate_table exynos5420_epll_24mhz_tbl[] = {
+>  };
+>  
+>  static const struct samsung_pll_rate_table exynos5420_vpll_24mhz_tbl[] = {
+> +	PLL_35XX_RATE(24 * MHZ, 750000000U,  125, 2, 1),
+> +	PLL_35XX_RATE(24 * MHZ, 700000000U,  175, 3, 1),
+> +	PLL_35XX_RATE(24 * MHZ, 650000000U,  325, 6, 1),
+
+Do you have any references, like vendor kernel sources, to back up
+these choices of dividers and scalar?
+
+Best regards,
+Henrik Grimler
+
+>  	PLL_35XX_RATE(24 * MHZ, 600000000U,  200, 2, 2),
+>  	PLL_35XX_RATE(24 * MHZ, 543000000U,  181, 2, 2),
+>  	PLL_35XX_RATE(24 * MHZ, 480000000U,  160, 2, 2),
+> -- 
+> 2.47.3
+> 
+> 
 
