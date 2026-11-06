@@ -2,88 +2,145 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E6E606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399BF606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u3Cb6zsJ;
-	dkim=pass (2048-bit key, unprotected) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=rFRTx8Jv
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I/yvIFCp;
+	dkim=pass (1024-bit key, unprotected) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=QlqAR2/L
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=i1PWLC3z8H8jzlrLhFnG5KaswhUfnp3kDROS88cQmeg=; b=u3Cb6zsJmRyznj
-	GZ1VbbeFN52ly1cyjKijjaYVQMH3DqLuyicFsoIr7cEkAueTUyRicIrJ2sYPnwky3f/YA8s1hTuHd
-	n7LD1cylcXxU2d7pTJSL5dFhrOWfRfvcFJWI0nEtjoEpL431yA/hUpmqnDurZwG+X0mTXFk15nz7F
-	02Wewi8+HsB019QtJcg6QFKqSpc4UGzLz7lPghTWVcEYSgAaW4otJbiZWDKw6ZmLNMTlNzvbQNqu8
-	PtGknWW5HmGRMkEptqjVj81xKBeb08nL2TZJFurW8L8UkmhGtlSPHPepEsFnvg4wEtGdbSlfdiGQK
-	IwZr1m7uQIvKlEjCwVtA==;
+	List-Owner; bh=hMBEnef/2C6VY7J0rq6xUNhjJQKuBdQi9fpeFe3UBP0=; b=I/yvIFCpf1uIN6
+	EQ42pNMMbptQUvAh7swBGn//sQIxRcTGFHPwCGF2Nwj6b63mD68g20LDYWwlyKDUyAAVHmqE79BZC
+	Q0wSy8ojraOJZLTKAU1ZhDedE7MqoHE4OIBXwc1TxX+0IR9QyyIxV1ql1M0hMPvAkYZ5O4DNsfEvH
+	skbVXxiZcv/WTtMZNIXa8hfjd5liftdtAJrKqRuBYzYVDEAKGLUA9wn0Fq5EwHy5syiC+CtKARLNh
+	a5wU8JI/FMQTki6eKO6UcTzY/n9nMH5PW156V+sKujlj10dxfWFi8GdB6VCHBcY7rv8UBLf9+gaxH
+	FLIKdXCEu5yYROepO6dA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPT2r-0000000DpUO-0vUM;
-	Fri, 06 Nov 2026 23:08:29 +0000
-Received: from mout.gmx.net ([212.227.17.20])
+	id 1xPTYl-0000000Drym-2zH5;
+	Fri, 06 Nov 2026 23:41:27 +0000
+Received: from mail-pj1-x1063.google.com ([2607:f8b0:4864:20::1063])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPT2m-0000000DpKs-3u5l;
-	Fri, 06 Nov 2026 23:08:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1794006481; x=1794611281; i=wahrenst@gmx.net;
-	bh=i1PWLC3z8H8jzlrLhFnG5KaswhUfnp3kDROS88cQmeg=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=rFRTx8JviHsMHnlU07YU5hu9A/Hd+FVsG9SU8lMFwm+7RfXK2UrNZQxeHxAGk5sK
-	 Ca4iahCdXn8LMjR1I2aMEX7WOaCfwLCf818p6sfh5KJ0deBvBBymBqrJL0IcS6rfV
-	 KgHzkbaKsqceO0ATelnl9Zqj/Y2vPfyvohfpoLkFtaUvZCswLs7XQfdWzTTcMH2bC
-	 6HnJ3MUOA1RFwkc6bzOs9OUQdV8qZkpOnc+gR/G0AV+w/lzdPz8Rc+R6qqGddKecQ
-	 FcN4EuuN90+s2ex6oQVL+XJEewL9K+4ISzcauNpN7jo63OoVSXkISdB20qn/jKC+s
-	 WHRMdzjRq15pvZP11w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mqb1c-1wm1YX19VI-00fzne; Sat, 07
- Nov 2026 00:08:01 +0100
-From: Stefan Wahren <wahrenst@gmx.net>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Vincent Mailhol <mailhol@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	kernel@pengutronix.de,
-	Fabio Estevam <festevam@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH 5/5] ARM: mxs: add EVAchargeSE board support
-Date: Sat,  7 Nov 2026 00:07:45 +0100
-Message-ID: <20261106230746.21954-6-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261106230746.21954-1-wahrenst@gmx.net>
-References: <20261106230746.21954-1-wahrenst@gmx.net>
+	id 1xPTYj-0000000DryR-1Ggi
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 06 Nov 2026 23:41:26 +0000
+Received: by mail-pj1-x1063.google.com with SMTP id 98e67ed59e1d1-3b0b3754f57so672493a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 15:41:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794008483; x=1794613283;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=hMBEnef/2C6VY7J0rq6xUNhjJQKuBdQi9fpeFe3UBP0=;
+        b=w9LdGcgerejkE0ilSMSdt3adA/v6eaDSq3BSYEPuHyDRbyxCzUhQaWABoZQJOodw8G
+         MYkm+rFGcFXUgrQ87ihzHPEIuKhvXooDdICOqsuYxBV/g4EJMShjrjTwBKyOrLtPsNNa
+         adbAnSqO0zLoF8WgGOOYwzFHGRtgrX/g5qeqCFN0ldNb2SnMimAHTQur1vkXJ6pXGrWN
+         D2TIRFqF0uYgUjqsQuJj81Etx7hF8YdvZ3hX6j6D51sp4rbxhuEartE0p/B4yxjqTJBO
+         +RWjRxBCJI58mOBwVVMUK4lcYE8ww9xF3q5f30wd8yXIv87vkzgux2Ni+7maB/UMKzU1
+         Xa7Q==
+X-Forwarded-Encrypted: i=1; AL+hErHQj57N0Y2GhExeNApqztWnGhYqAJ+OX94GPpdICpbIXDV/ebFWRa4GN+brrk9SUQyhKbgHv0TV6q5WdK3sKb9i@lists.infradead.org
+X-Gm-Message-State: APuU4Z+wT4JBlz7FjX67sFuX+GD3kVDEwwAF8eeSqSBPnZnLLZ5ufM+5
+	xFr5BH2mLHVpbc3junN6j2mjZnCdwMRTH5O9ec4yngrOWdWZD8CkH7vugb3iU6QtHqiytNNiCcN
+	F/5dmgfKqWrL/9dejiRvLOM8GsMACrPnAzdiS1UUzd8rLyl7R+DHJZo4SFqLMX6x+VJuWHBpM+D
+	TSHI/iouThIU34LyqbmpvxfJW3RX2KdhQjpRxeYscpFBVgRxs0+oWG9TYdIblEIkpCNuhcwVDsZ
+	c86B7iDULlmm+DAkL+DRirdDhKh66Svw0Y=
+X-Gm-Gg: AYBFou3G974Gm9xi7uH0mN9h4f0Q++AnAwbWWlybtSIrb/JCoSOQeRfEOJGsyiQRFTY
+	z6JlH3Dg7kOAqwky0Fb50L8g7mFlO3Iri/HcYOxLRiAodY38PXXW2woy35we6sPm2cIILjY5CiP
+	H+QugAhk9d8pBUTs6Qm/pim3RFRSSUaVwOEzh3hlmU5G/qN1iR8hrT+HzHKcDVNV0HllvWO+eGJ
+	YwraLj/QACVMlKTlJnmYA6bp02DxT2sfhabkNZggQaJkw6YFe3pBjc/trkDL/IVaXbpKU0ZzjEp
+	t3xPVgxgCgnq/hM9Y/F4APJlpijBfdYjin+ibJrvliF+IlKO5cdtWxxMsABlJbhTjcIsVRu8FQe
+	MC+PVwHSkmqPS+HoyxtYBVaCKlxcOHHYJIGDPPTcCaeACTyxNBQMEGM9/Md2PbzZpgxcTFWwW3I
+	UkIKrtQ/FoFb8VaFTY16dcZx5wa014Gn+Bcyp0VnI0
+X-Received: by 2002:a17:90a:d883:b0:3b0:9e2c:9b61 with SMTP id 98e67ed59e1d1-3b0db706c32mr4262745a91.35.1794008483177;
+        Fri, 06 Nov 2026 15:41:23 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-13.dlp.protect.broadcom.com. [144.49.247.13])
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b0fc47d277sm321514a91.1.2026.11.06.15.41.21
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 06 Nov 2026 15:41:23 -0800 (PST)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-36fa5673fccso2379434eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 15:41:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1794008480; x=1794613280; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hMBEnef/2C6VY7J0rq6xUNhjJQKuBdQi9fpeFe3UBP0=;
+        b=QlqAR2/LN2mZted5/9gIaethEHekgM7fUrc1sDkK49YdDuKkT2/84UpUTQHCtUjQRU
+         dDYQ9hfnzclcOt9f2iE7ifn0sjA5fDXw1ZXNGAbNLnRmBUyZHwDzzuXwLBZQZW9+zkJT
+         KYb5uGbxXd+Y1fiQCGCQaWvaz8rGUxelYdBZA=
+X-Forwarded-Encrypted: i=1; AKwUvBzY5PaVQeaLS+IfrSnrYPXl+cP9c1MnUV6GHGtxeI4ZNH3VRzVoiC/CJtY2V9Mzj99iHtnf4nFi5KqXv1voXikV@lists.infradead.org
+X-Received: by 2002:a05:7022:f101:b0:174:cf1b:235c with SMTP id a92af1059eb24-1b25d38507bmr4463656c88.43.1794008479834;
+        Fri, 06 Nov 2026 15:41:19 -0800 (PST)
+X-Received: by 2002:a05:7022:f101:b0:174:cf1b:235c with SMTP id a92af1059eb24-1b25d38507bmr4463610c88.43.1794008478957;
+        Fri, 06 Nov 2026 15:41:18 -0800 (PST)
+Received: from [192.168.1.179] (ip70-187-214-22.oc.oc.cox.net. [70.187.214.22])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b25e4d36efsm9170226c88.17.2026.11.06.15.41.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Nov 2026 15:41:18 -0800 (PST)
+Message-ID: <0d59cd31-909b-4ed9-ab86-ed6ceae6ca03@broadcom.com>
+Date: Fri, 6 Nov 2026 15:41:15 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:tIWuPLUY7Z1+p2pu1Ul/6bBgUgkILXhmYuBSwOeBQhXy+mKwvK9
- khhQAs010XaMRZCNmIgNMochQe++Y2YKKLRVJ92uRikDXswgDBS1VVkWAfwMIgcbRnvd5uV
- zRgi9NL5OL1P/7miKarho/9F3g5jMP0Qsz+8IMxjrOgOlkq1WwsZulrmsz12znLkXlwTIQE
- TZaF2msZOjtGA/t20xqLg==
-UI-OutboundReport: notjunk:1;M01:P0:f1K5Zogfkws=;V5KeBP/XA6lXpqzJv7nOtdd1HJ2 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 Kp2NO5u/dcG85227GPdFLfS+cYZny19UYHAdOCs=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] MAINTAINERS: fix bouncing {sbranden,rjui}@broadcom.com
+To: Jiri Slaby <jirislaby@kernel.org>, Ray Jui <ray.jui@broadcom.com>
+Cc: torvalds@linux-foundation.org, linux-kernel@vger.kernel.org,
+ bcm-kernel-feedback-list@broadcom.com, linux-arm-kernel@lists.infradead.org,
+ Scott Branden <scott.branden@broadcom.com>
+References: <510bf9b037c522ccfba270926c95170291115ef3.1793602003.git.jirislaby@kernel.org>
+ <CAJ8Y1dTUmFXTHnoPuYMNKULVdaQPtr4S8OiCqhHKZ05WeyGCFA@mail.gmail.com>
+ <b9537359-9558-43b3-975f-de2a1017e463@kernel.org>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <b9537359-9558-43b3-975f-de2a1017e463@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_150827_024070_42DA4950 
-X-CRM114-Status: GOOD (  11.49  )
+X-CRM114-CacheID: sfid-20261106_154125_419603_8724BFA1 
+X-CRM114-Status: UNSURE (   8.32  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -95,350 +152,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-EVACharge SE is a ISO 15118 compliant controller for electric vehicle &
-charging stations.
 
-Supported features:
-  * 128 MB DDR2 RAM
-  * eMMC
-  * Debug UART
-  * 100 Mbit Ethernet
-  * USB 2.0 Host interface
-  * Powerline communication (QCA700x)
-  * CAN/RS232
 
-Link: https://chargebyte.com/products/controllers-modules/evse-controllers=
-/evacharge-se
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-=2D--
- arch/arm/boot/dts/nxp/mxs/Makefile            |   1 +
- .../boot/dts/nxp/mxs/imx28-evachargese.dts    | 294 ++++++++++++++++++
- 2 files changed, 295 insertions(+)
- create mode 100644 arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts
+On 11/5/2026 10:09 PM, Jiri Slaby wrote:
+> On 02. 11. 26, 17:20, Ray Jui wrote:
+>> Thanks, Jiri.
+> I am not sure who can pick this up, I tried couple of recipients without 
+> much success... I give up resending this for now -- you will likely need 
+> to pursue this yourselves. Maybe feed it through some your (broadcom) tree?
 
-diff --git a/arch/arm/boot/dts/nxp/mxs/Makefile b/arch/arm/boot/dts/nxp/mx=
-s/Makefile
-index d72ba702b6fa..4f9997da9ab8 100644
-=2D-- a/arch/arm/boot/dts/nxp/mxs/Makefile
-+++ b/arch/arm/boot/dts/nxp/mxs/Makefile
-@@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_MXS) +=3D \
- 	imx28-duckbill.dtb \
- 	imx28-eukrea-mbmx283lc.dtb \
- 	imx28-eukrea-mbmx287lc.dtb \
-+	imx28-evachargese.dtb \
- 	imx28-evk.dtb \
- 	imx28-m28cu3.dtb \
- 	imx28-m28evk.dtb \
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts b/arch/arm/bo=
-ot/dts/nxp/mxs/imx28-evachargese.dts
-new file mode 100644
-index 000000000000..75ddde226493
-=2D-- /dev/null
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts
-@@ -0,0 +1,294 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+//
-+// Copyright (C) 2017 I2SE GmbH
-+// Copyright (C) 2026 chargebyte GmbH
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx28.dtsi"
-+
-+/ {
-+	compatible =3D "chargebyte,imx28-evachargese", "fsl,imx28";
-+	model =3D "chargebyte EVAcharge SE";
-+
-+	aliases {
-+		ethernet1 =3D &qca7000;
-+	};
-+
-+	memory@40000000 {
-+		reg =3D <0x40000000 0x08000000>;
-+		device_type =3D "memory";
-+	};
-+
-+	flexcan1_tc: can-phy0 {
-+		compatible =3D "microchip,mcp2562", "ti,tcan1042";
-+		max-bitrate =3D <1000000>;
-+		#phy-cells =3D <0>;
-+	};
-+
-+	emmc_pwrseq: emmc-pwrseq {
-+		compatible =3D "mmc-pwrseq-emmc";
-+		pinctrl-0 =3D <&emmc_reset_pin>;
-+		pinctrl-names =3D "default";
-+		reset-gpios =3D <&gpio2 20 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	leds {
-+		compatible =3D "gpio-leds";
-+		pinctrl-0 =3D <&led_pins>;
-+		pinctrl-names =3D "default";
-+
-+		led-0 {
-+			color =3D <LED_COLOR_ID_RED>;
-+			function =3D LED_FUNCTION_HEARTBEAT;
-+			gpios =3D <&gpio3 5 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger =3D "heartbeat";
-+		};
-+
-+		led-1 {
-+			color =3D <LED_COLOR_ID_YELLOW>;
-+			function =3D LED_FUNCTION_PROGRAMMING;
-+			gpios =3D <&gpio3 4 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			color =3D <LED_COLOR_ID_YELLOW>;
-+			function =3D LED_FUNCTION_ACTIVITY;
-+			gpios =3D <&gpio1 16 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-3 {
-+			color =3D <LED_COLOR_ID_GREEN>;
-+			function =3D LED_FUNCTION_BOOT;
-+			gpios =3D <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger =3D "timer";
-+		};
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible =3D "regulator-fixed";
-+		regulator-always-on;
-+		regulator-max-microvolt =3D <3300000>;
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-name =3D "3P3V";
-+	};
-+};
-+
-+&auart0 {
-+	pinctrl-0 =3D <&auart0_2pins_a>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+};
-+
-+&auart2 {
-+	pinctrl-0 =3D <&auart2_2pins_b>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+};
-+
-+&can1 {
-+	phys =3D <&flexcan1_tc>;
-+	pinctrl-0 =3D <&can1_pins_b>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+};
-+
-+&duart {
-+	pinctrl-0 =3D <&duart_pins_a>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =3D "", "", "", "", "",
-+			  "", "", "DAUGHTER_GPIO_0", "LED_3", "",
-+			  "DAUGHTER_GPIO_1", "", "", "QCA7K_RESET", "QCA7K_GPIO_0",
-+			  "QCA7K_GPIO_1", "LED_2", "", "QCA7K_GPIO_2", "",
-+			  "", "QCA7K_GPIO_3", "", "", "",
-+			  "DAUGHTER_GPIO_2", "", "", "DAUGHTER_GPIO_3", "DAUGHTER_GPIO_4",
-+			  "DAUGHTER_GPIO_5";
-+	pinctrl-0 =3D <&daughter>;
-+	pinctrl-names =3D "default";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =3D "", "", "", "", "LED_1",
-+			  "LED_0", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "", "", "", "", "",
-+			  "QCA7K_INT";
-+};
-+
-+&i2c1 {
-+	pinctrl-0 =3D <&i2c1_pins_b>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+};
-+
-+&lradc {
-+	status =3D "okay";
-+};
-+
-+&mac0 {
-+	phy-handle =3D <&ethphy>;
-+	phy-mode =3D "rmii";
-+	phy-supply =3D <&reg_3p3v>;
-+	pinctrl-0 =3D <&mac0_pins_a &mac0_phy_reset_pin>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+
-+	mdio {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		ethphy: ethernet-phy@0 {
-+			compatible =3D "ethernet-phy-ieee802.3-c22";
-+			reg =3D <0>;
-+			clocks =3D <&clks 64>; /* enet_out */
-+			interrupt-parent =3D <&gpio4>;
-+			interrupts =3D <5 IRQ_TYPE_EDGE_FALLING>;
-+			max-speed =3D <100>;
-+			pinctrl-0 =3D <&mac0_phy_int_pin>;
-+			pinctrl-names =3D "default";
-+			reset-assert-us =3D <500>;
-+			reset-deassert-us =3D <500>;
-+			reset-gpios =3D <&gpio4 13 GPIO_ACTIVE_LOW>;
-+			smsc,disable-energy-detect;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	mac0_phy_reset_pin: mac0-phy-reset@0 {
-+		reg =3D <0>;
-+		fsl,pinmux-ids =3D <
-+			MX28_PAD_ENET0_RX_CLK__GPIO_4_13
-+		>;
-+		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-+		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-+		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-+	};
-+
-+	mac0_phy_int_pin: mac0-phy-int@0 {
-+		reg =3D <0>;
-+		fsl,pinmux-ids =3D <
-+			MX28_PAD_ENET0_TX_CLK__GPIO_4_5
-+		>;
-+		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-+		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-+		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-+	};
-+
-+	daughter: daughter-pins@0 {
-+		reg =3D <0>;
-+		fsl,pinmux-ids =3D <
-+			MX28_PAD_LCD_D07__GPIO_1_7     /* DAUGHTER_GPIO_0 */
-+			MX28_PAD_LCD_D10__GPIO_1_10    /* DAUGHTER_GPIO_1 */
-+			MX28_PAD_LCD_WR_RWN__GPIO_1_25 /* DAUGHTER_GPIO_2 */
-+			MX28_PAD_LCD_VSYNC__GPIO_1_28  /* DAUGHTER_GPIO_3 */
-+			MX28_PAD_LCD_HSYNC__GPIO_1_29  /* DAUGHTER_GPIO_4 */
-+			MX28_PAD_LCD_DOTCLK__GPIO_1_30 /* DAUGHTER_GPIO_5 */
-+		>;
-+		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-+		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-+		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-+	};
-+
-+	qca7k_pins: qca7k-pins@0 {
-+		reg =3D <0>;
-+		fsl,pinmux-ids =3D <
-+			MX28_PAD_I2C0_SDA__GPIO_3_25 /* SPI_INT */
-+			MX28_PAD_LCD_D13__GPIO_1_13  /* QCA7K_RESET */
-+			MX28_PAD_LCD_D14__GPIO_1_14  /* GPIO_0 */
-+			MX28_PAD_LCD_D15__GPIO_1_15  /* GPIO_1 */
-+			MX28_PAD_LCD_D18__GPIO_1_18  /* GPIO_2 */
-+			MX28_PAD_LCD_D21__GPIO_1_21  /* GPIO_3 */
-+		>;
-+		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-+		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-+		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-+	};
-+
-+	led_pins: led-pins@0 {
-+		reg =3D <0>;
-+		fsl,pinmux-ids =3D <
-+			MX28_PAD_LCD_D16__GPIO_1_16  /* LED_2 */
-+			MX28_PAD_LCD_D08__GPIO_1_8   /* LED_3 */
-+			MX28_PAD_AUART1_RX__GPIO_3_4 /* LED_1 */
-+			MX28_PAD_AUART1_TX__GPIO_3_5 /* LED_0 */
-+		>;
-+		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-+		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-+		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-+	};
-+
-+	emmc_reset_pin: emmc-reset@0 {
-+		reg =3D <0>;
-+		fsl,pinmux-ids =3D <
-+			MX28_PAD_SSP2_SS1__GPIO_2_20
-+		>;
-+		fsl,drive-strength =3D <MXS_DRIVE_4mA>;
-+		fsl,pull-up =3D <MXS_PULL_DISABLE>;
-+		fsl,voltage =3D <MXS_VOLTAGE_HIGH>;
-+	};
-+};
-+
-+&ssp0 {
-+	compatible =3D "fsl,imx28-mmc";
-+	bus-width =3D <8>;
-+	mmc-pwrseq =3D <&emmc_pwrseq>;
-+	no-sdio;
-+	non-removable;
-+	pinctrl-0 =3D <&mmc0_8bit_pins_a &mmc0_cd_cfg &mmc0_sck_cfg>;
-+	pinctrl-names =3D "default";
-+	vmmc-supply =3D <&reg_3p3v>;
-+
-+	status =3D "okay";
-+};
-+
-+&ssp2 {
-+	compatible =3D "fsl,imx28-spi";
-+	#address-cells =3D <1>;
-+	#size-cells =3D <0>;
-+	pinctrl-0 =3D <&spi2_pins_a &qca7k_pins>;
-+	pinctrl-names =3D "default";
-+
-+	status =3D "okay";
-+
-+	qca7000: ethernet@0 {
-+		compatible =3D "qca,qca7000";
-+		reg =3D <0x0>;
-+		interrupt-parent =3D <&gpio3>;
-+		interrupts =3D <25 IRQ_TYPE_EDGE_RISING>;
-+		spi-cpha;
-+		spi-cpol;
-+		spi-max-frequency =3D <12000000>;
-+	};
-+};
-+
-+&usb0 {
-+	dr_mode =3D "host";
-+
-+	status =3D "okay";
-+};
-+
-+&usb1 {
-+	status =3D "okay";
-+};
-+
-+&usbphy0 {
-+	status =3D "okay";
-+};
-+
-+&usbphy1 {
-+	status =3D "okay";
-+};
-=2D-=20
-2.53.0
+Yes, I will pick this up, thanks Jiri!
+-- 
+Florian
 
 
