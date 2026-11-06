@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82301606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 15:36:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDC7606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 15:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I33FmY8i;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=UIWBd+M6
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=44FmWOss;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=D09j6SRd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
 	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AEFWqOVqUPH0uPHGTt97DtrZ7Hg0Z/XjInfBc+a0biQ=; b=I33FmY8ik0NBTZ
-	e00bbsyvG8imvlpXev057anZXBJ2SNAN1kM431DFDjRsftTOtLOcrCqyNzHO2r0zeHSPlOsesiaJJ
-	GXVFFD5AQqPYcmsIVya++w7bNKWDUdeISrpTTiEl/hKC2u7cBwC11ohL9P7g6h+dnm9+S+8uYcBXz
-	IrVrfNdUMEuyyu6HJFR+UuADjQsVLZeepXuYpIako7rnyI3GN3M3FPajYqOa/9nk8WRAMCmkeaKns
-	ha8/u89A+4obOes670IM7IGBN57iOuOU/u1BcvnOFEFjGWLQxvA6/jBLkFM359/d8NlrL3nl8F0W0
-	OuvxDhW41HCSGS0dOOYg==;
+	List-Owner; bh=Oct7crPAx+5VdJ1/G9PKgpOdQz5b23KsddOolPSKnwg=; b=44FmWOssoX0yc0
+	7EnAPCVp5XlrJT5mqMl2+DC88rmf5T+UVo5y5uiSNwjDQkKbccZdrTdQlSenmfGf9I92qCAbCMFbD
+	GU/DCwjszpaX3+Y0EeaPI/0Ws8dTM5Zdi7hNWce9ME2hgOq3UKgkGvHnOFA7mSyJVoBsU7qk9Vk1F
+	DKvRA5Sf0D52zA0cUHfjUQuAVNrq4zd/F+VJmP3qMzkjHxumhGrEEXmis1P0k+uuqjx9RHxjB50k3
+	IofuSuAgQPBQaWAhhmuutYfkAwATDzv2jqBBsdq3N7PJjLUnvxMItAC8jNVc323rtY2pLw6ptn8A8
+	xolNfdauIyFE3iblLXzw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPLz4-0000000CqIO-2T7Z;
-	Fri, 06 Nov 2026 15:36:06 +0000
-Received: from mail-northeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c200::3] helo=DU2PR03CU002.outbound.protection.outlook.com)
+	id 1xPLyy-0000000CqEZ-0cUd;
+	Fri, 06 Nov 2026 15:36:00 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPLyw-0000000CqDU-1rq2
+	id 1xPLyu-0000000CqCU-0qpr
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 15:35:59 +0000
+	Fri, 06 Nov 2026 15:35:58 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b7B8N2tnWca6FL/qQ8NY1btN802zt2JcwZ9YAxuknr3dgaKFJJSsOklDt27mIGeWDXJvEB1p7+yRKtCptQq8XTwrlKYGfx1iI/xS8nWOjhLagoXv/Brzc91lHLiRqe5Hn5gTavBArhbjaFZHyBjYa0mMQFjujm3qC7SCS9EDy9xBS3w1O4n4KADGOBvwcQz21WZF/qMFIyHH6Sd2QBeWlhwYnd/c9pe2FRBnqQx3Vz2RI66FxmJQv+l2bAbtVKGapRqK0V2W4cRFZVx932eZ3MklPLtGK8G6BJc1QpSqd7GNhtPBCy8d/64Kr9b3XST65GxMXQRZr18bB6YbWTvKYQ==
+ b=WU/gIEhYS8eKEa8/aIk54akNwzOxJHGiiwZg3/egSiMF8t5gfkqwFD89sHeLO0jDS2MH9TkiZj4d8rq8hZKoFH7XObd0vUqrrxcpZK0IqU8wZ/wc07wPT8hNmyaqTpEvQ7QuZEAoI57exGGS/c/ph0CWMWElKAbPz51oXtyd6e9odZeTMo+FXiztw+B1YEa+j9BVwQJdx8+DScggM3LtUiN1fw6Ext+8OakPY7qcSdgFmxhTzMkf/pMub17MEfH/a4Q/qP51fedbZ3VbciD2EeWIpL2/SnfmZMRuUBbMudIpRzL2VCbd8d5jd/aRCLFYWYtmuzV7lod7BvxltwLXHg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AEFWqOVqUPH0uPHGTt97DtrZ7Hg0Z/XjInfBc+a0biQ=;
- b=xcSvb4F7caoqP33UuI3JP8myyk3cFWQgNDbjInczT6S/Qm8z65c2uzzwdNN6gSFIQnG5fmD3B/iWAocmLxZF/I31EDxb5+3bOj5zpHRevFHnWeKU30Cb8R3mieF+f3vlskFo2Hp/017eBctBXMZ/gPng/WAO7Mk9T38Erf21OQXOtrg3coKnrUNZ1RwgoUZheegRMHaAD662Y0XVoh+/2grXgB0SL9kHTQYScPqPZ2xvvt0+nl5uaV5WjG1Tm63HnHWS2YYNpEDAXgWMX7r36Zhmbxorh3qieJwP0V5pM2IwBYToBiwhfg2354P2VzOBipliWs5yK8rgRC4TJ4gkqQ==
+ bh=Oct7crPAx+5VdJ1/G9PKgpOdQz5b23KsddOolPSKnwg=;
+ b=Z5sPGTp9b3jwt5pCM0C3imPORV2oB+Lq8GzU7JLSVW7J3yUztuJNacVRcl2Pf/Prl0D/eqk6LXWBRDl+AAf6JIWXFqV87lHrXiM56vuOdqHFA3LuS8J08hBkAPBpO66cm4iatIi46zAYkchWDxUFV9mJICM5PiM+NxHG5tL6b2Keq8pd06ARn0oq81W6Mixty1cJd1qfIQCwfj5cbvfEA2HnrgCoDAysIky7kQP4PHSg0x0AaVA4F5ynGoaaJkMqvspTm3BDTVsYDEoboonH+PVJEussz/AwvGuVhm6fYhZD8e6UzQTyjLm+uxansxBqCnstpxT8ghL70luu+O8UdQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
  dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AEFWqOVqUPH0uPHGTt97DtrZ7Hg0Z/XjInfBc+a0biQ=;
- b=UIWBd+M6yrbIvjloXEfBIXQP62oDkyIE9B0sD6tmlDFNAHBGlCnZQHEFy6FOiMNqs5cMH0z4LqGgRloZmzx1rltC5rxbKq2ZKVydQxGXoslwFLxZXGGmZyK3cA9OjVPFRBmkjiH+OrbGLU7DaWpG37uVPUhSjcuRht1117YQjjv99M+VHw/ODoBSQzRUSGVJ6CuSiS4B1IP+foh3rAzzBvSmKxUEFrmh3KXxfZaQCDppT5x3NUNHbgccMEUwE2D50S925DnKyOxN295lBMtG0Lh5KQdGBpUYhABUOTdRVIqEsKwJG/1//2KqJq1sld3aih0BB58uwfZPzJRqySDflA==
-Received: from PA7P264CA0175.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:36f::12)
- by DU4PR10MB9398.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:5f4::15) with
+ bh=Oct7crPAx+5VdJ1/G9PKgpOdQz5b23KsddOolPSKnwg=;
+ b=D09j6SRdZTv7nNN3d7hLK6jPAtMktsFCbTlQsBlhLpEHi7ZL7a94l1bJZK+Z/usHEJ8rBif/YxCgQrSCxnTtYh3AOp6WeRDoAgUxpbMDG5zrYW7e6MfKOY8XJjh7W4WPEgJovB/MMfV2SNHR55pZH0WI6Oz7I9LbYWaz++JL0CofLjlT4Yjq9vJeE2esW0IXBMmtV2YnWUfZzWkYh1ytSJdhoJF2RXNqd5hJqWLZUR8lMtJJgBESGEVqVkacs/gEARtU115cFwmCYlougvfaI1HOTy6SoCnTV6ApI39PGNbY9Q4F9JgkZzRMabIbIrBJ8pVSK6jnQJkAjI27mGHfvg==
+Received: from PA7P264CA0452.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:398::23)
+ by DU0PR10MB7003.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:41e::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.4; Fri, 6 Nov 2026
- 15:35:53 +0000
-Received: from MI3PEPF00008499.eurprd03.prod.outlook.com
- (2603:10a6:102:36f:cafe::48) by PA7P264CA0175.outlook.office365.com
- (2603:10a6:102:36f::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.5; Fri, 6 Nov 2026
+ 15:35:50 +0000
+Received: from MI3PEPF0000848C.eurprd02.prod.outlook.com
+ (2603:10a6:102:398:cafe::6e) by PA7P264CA0452.outlook.office365.com
+ (2603:10a6:102:398::23) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.11 via Frontend Transport; Fri, 6
- Nov 2026 15:35:51 +0000
+ Nov 2026 15:35:50 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
  header.d=none;dmarc=fail action=none header.from=foss.st.com;
 Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- MI3PEPF00008499.mail.protection.outlook.com (10.167.240.184) with Microsoft
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ MI3PEPF0000848C.mail.protection.outlook.com (10.167.240.139) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Fri, 6 Nov 2026 15:35:51 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ 15.21.615.4 via Frontend Transport; Fri, 6 Nov 2026 15:35:50 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 6 Nov
- 2026 16:36:36 +0100
+ 2026 16:36:20 +0100
 Received: from localhost (10.48.87.14) by STKDAG1NODE2.st.com (10.75.128.133)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 6 Nov
- 2026 16:35:50 +0100
+ 2026 16:35:49 +0100
 From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Date: Fri, 6 Nov 2026 16:35:31 +0100
-Subject: [PATCH v3 2/8] dt-bindings: stm32: add kernel clocks for ETR and
- STM
+Date: Fri, 6 Nov 2026 16:35:30 +0100
+Subject: [PATCH v3 1/8] clk: stm32mp25: define the number of clocks in the
+ driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20261106-ups_mp25_clk_update-v3-2-4a32f68119ed@foss.st.com>
+Message-ID: <20261106-ups_mp25_clk_update-v3-1-4a32f68119ed@foss.st.com>
 References: <20261106-ups_mp25_clk_update-v3-0-4a32f68119ed@foss.st.com>
 In-Reply-To: <20261106-ups_mp25_clk_update-v3-0-4a32f68119ed@foss.st.com>
 To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
@@ -91,42 +91,42 @@ To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
 CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-stm32@st-md-mailman.stormreply.com>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1793979349; l=1203;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793979349; l=1835;
  i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
- bh=xQI1FA3IDu5N0xkbp4Z1vV2Sf7/6woM3b3ah21Sw1QE=;
- b=p+uJ+SQTN8tqYUU6dr1/Fvo+OfwUsPz3y1n1mfWKGaKka1ombn8bLy4/cm25vgvwzXjPRmXB8
- FU4sSkDVrDIDdJ6Zd1FCXHPmfii8jaNX5EbXX0H9HEDSv97EO9GvaX6
+ bh=KNz1PZCl4zM7ntbYiCIpnAt3EHPojWQTAKZ2hi6v3bY=;
+ b=/okksgdztb1nCGp0EU5U/57VQ1HbHmM7/rCzeElVqMac7BSNh8Sffle84+kHaEN92atZlyUhs
+ NNAczbaTG7ABh2v9G21wjDtenymgTYOEWSyQHXiV6Bvz2ExcNnodk8A
 X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
  pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
 X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
  (10.75.128.133)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PEPF00008499:EE_|DU4PR10MB9398:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e239213-19c6-4e9f-66e4-08df3c1ba348
+X-MS-TrafficTypeDiagnostic: MI3PEPF0000848C:EE_|DU0PR10MB7003:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a012724-48bb-4fae-15a6-08df3c1ba2c4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|36860700016|376014|23010399003|82310400026|11063799006|56012099006|261021121427099003|261009223027099003|261102123227099003|10067099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Wybk5hz2202kWRqsohJgj+AFvcIjiukwYDFGhl6NkO9dFHd7GLus1InNg+1VDTjcHU1wHsdaLVdEyJ8EkphMF0krMsc3hOq7M32hzG0hVdvguiBJ0eN4F0c21zFCpfQ8BnuXLmd7uH09w9LUNuOCfiJy/eawxfL/Kuil02pz9VF3l8MVEmBIuyQ9+2HHjmo7QuYswogSrWsBJkooHqyP3s9S5iSU+8lr48APIuBRPCBW8yCT9ojNkIBhL/6SKn5SzHzxVp1IZoTYDbk/9XKHFLdPaRLLdRU29oa8JIqIejRRzxUG5qWcM4U9tf3BlRGumvz8kSP07KXXu1pLPAOv/NAXlEIsdz1/GdC1KkHqvdaZXx125X2r4QatHBz5lekd4OjwvIITyigsiHGT5on0xC95gdfN6QAc6ADyLSlMGeyWFZaNPiGY1jIb950a+/b4dPJ7aK612MwG8RNKawyr5cK9Vj9vS/Dzxj8+NXyclhfJisU96IX1kN4zaGU3tGeem3K66Ql5gkoFrSQMe3X4LeNv+YnoTz28mZ01j5r5YQ3hx3jmxO7Pu68ap9iPW6a1OWsPGL/uaO9D7/J+p8UX+EyxwE78KV57bbtQN3+PyXEnN/mcrVrG3JkrWNKJQHHK1LFGm1vgrc+1Yvhyi3VCzpDjl4EGKDFTeT+aGMeN2ZEiTn+yZHij/kuc38YmEZtuxfRZbb4qVEa3R/XidhfMzQ==
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(36860700016)(376014)(23010399003)(82310400026)(11063799006)(56012099006)(261021121427099003)(261009223027099003)(261102123227099003)(10067099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|23010399003|7416014|1800799024|82310400026|36860700016|11063799006|56012099006|261021121427099003|261021123027099003|261009223027099003|261102123227099003|261026121527099003|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: rKp1ZRd128if5lauyXAZelnPaWA7alL8GIDks/l8F0JyfIJgSHJidkZJLPh756MFJOY4aXM/nWM0v/oIHN+jaRL/9SVerPZXeMAlMr0pIDiqVa21RGlwWYKl1qpE1aonCafM/KT7lNlR0qpWr1rI0zRyIjupBBEZu9Mih6KEFpssb3gdS0QvrwcYNmKWQBhmaBjLW7kEhTOysNhAo0i8618sTJOti1+TsCv8lvLPsxGsvkBOWlvEzNdH1YpnAX3pKDKvIsC6zVXkn9gtaVBHiu6uvCijco2Qs/zzEPjh7YR2/YMjWFegdoSZqB0csZUtoAVfmYcl9eE+D+S5Kc4ZP8xkctoKTmC8kBS8dD2vRY0cl+CQNkKmH+IT76LH1eC0QJgiz7TfHnTN/jGuGG9d8dWzguLT0bt9Np1nKhPE2VyQzMflMiX294tWYhCNSV59v6TMHRqCBXVNCEIumCPE+lj/818sW8zZno52VW0kd7lj+urtZ35+CaEOx5npqFg+tT4R0W2LXS3ah1Yy3STfyIw32KrKSkekUzhXgeg2g+bRHGshov5DceRoU3pi+m4zdfhIMC6k9yR7BzCg4y/vyfUmegwBfXcUBov44Jv6cjWwCVsSixefQKVkXlYO6/U3qWwOJRrRxZqrVS2I2SFhwwlfHMRbkALiznjagUV6pgq/Gm6aiOZGOxEs1E9508jHe+hYu9wLGleuxa2Jy9RtfA==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(23010399003)(7416014)(1800799024)(82310400026)(36860700016)(11063799006)(56012099006)(261021121427099003)(261021123027099003)(261009223027099003)(261102123227099003)(261026121527099003)(10067099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: PiCxaWwHxXRNVsNm9EUyiitMQbTQnsE7mvHwAwxTyqnmmZe5PfMIR4v9yJwMlrwGiy+8Zqc7GfuHBToV/9fn9/IbzjyjCtDyzd7W8oUoJpqNyYXtW2X7LUqyvmbWB3Lbt0FNxvUnkeQaGaUwFCmu1rrV99WzM9sbvnC/AoPa2tAuO1DXgv61tLgK4hF+x2vE4hhOOYMU/nrjoHHJQqlgOtFfCS8vYZglVfBeB+EVBMQAaBlkHO5xo6IsFjZgihqf4DePeeW/4Z1o/MNDRozurYC5YmZWV1oNTue/5o6C0ghKvqf+BhoZBp01y6G0RWYwd9KyTIP5ikILhc6Dh10NfbUUz4TsIxq6dglddExkuF2a96Q8YwOv6J0LiYfHxCyF1t3PxS/YMiBietlzeRGZdzMNWhuJ/AM7tDaFkhFz7ENxwHzU30M4DtoP5rQ58K7q
+X-MS-Exchange-AntiSpam-MessageData-0: pfZme2Qwg+VH7oNR3y4oB4o20x2cQAbgDrCFlYPpZVSXajfcVL+S7nbS0EYMw+/QzHq5zIn0B1U1F2XcucVv8scnM7RGFM92Jb7gE1ie31fvR6q8Udklu8XgU0UTq1BNj/oxfrfwhBcsN1QZHVc5f2TivEEJBZhnfn1RiOvj/Bg69W0iUkYBDDVSfreCPO0eY3JtY1hd3wv5IVFgbpgvImBOIHaHwoSmTOiYMdWuosjIy5o69vfZPxBUXihRspgCcTvVNIN6COw47WSeqfF+qAhsYZd5utRQyhTlCRAQz5PZAqqitYnDAYqdczwOr8FL9ehCyLEOrPQOwtK3fhxSqDenxJTvSd2x2hgtSFFzLQM+CcH8CTaSQ4wwnBG0xEysP3chPblTjN0ZQ0X2dFBD+MoPEE4deW4cb6tHUXZ0hsxEimBtWJLyVUeEob9JbCnz
 X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 15:35:51.0684
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 15:35:50.1748
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e239213-19c6-4e9f-66e4-08df3c1ba348
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a012724-48bb-4fae-15a6-08df3c1ba2c4
 X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF00008499.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: MI3PEPF0000848C.eurprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR10MB9398
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR10MB7003
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_073558_510931_1299F639 
-X-CRM114-Status: UNSURE (   9.43  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261106_073556_612058_CF85F7A0 
+X-CRM114-Status: GOOD (  14.83  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -146,39 +146,51 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the kernel clocks of the ETR (CK_KER_ETR) and of the STM
-(CK_KER_STM) for STM32MP25, with the matching SCMI clocks
-(CK_SCMI_KER_ETR and CK_SCMI_KER_STM).
-These are the trace (ATB) clocks of the CoreSight Embedded
-Trace Router and System Trace Macrocell, while the bus clocks
-only provide register access (APB).
+The size of the clock provider is given by STM32MP25_LAST_CLK, defined in
+the binding header. This is not part of the binding ABI: it has to be
+updated each time an ID is added, and the number of clocks handled by a
+given driver does not belong to a binding.
 
+Define the number of clocks in the driver instead, as done for the
+STM32MP21 driver, and drop it from the binding header. Both are done in
+the same patch as the macro has the same name in the two places.
+
+No functional change, the value is unchanged (344).
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 ---
- include/dt-bindings/clock/st,stm32mp25-rcc.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/clk/stm32/clk-stm32mp25.c            | 3 +++
+ include/dt-bindings/clock/st,stm32mp25-rcc.h | 2 --
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/clk/stm32/clk-stm32mp25.c b/drivers/clk/stm32/clk-stm32mp25.c
+index eb0bc918ecee..fa025a9f3f37 100644
+--- a/drivers/clk/stm32/clk-stm32mp25.c
++++ b/drivers/clk/stm32/clk-stm32mp25.c
+@@ -17,6 +17,9 @@
+ #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+ #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+ 
++/* Number of clock identifiers of the binding, SCMI ones excluded: highest ID + 1 */
++#define STM32MP25_LAST_CLK	(HSE_DIV2_CK + 1)
++
+ /* Clock security definition */
+ #define SECF_NONE		-1
+ 
 diff --git a/include/dt-bindings/clock/st,stm32mp25-rcc.h b/include/dt-bindings/clock/st,stm32mp25-rcc.h
-index 242f61205a9f..96b4cffbacb9 100644
+index b6cf05ad4be6..242f61205a9f 100644
 --- a/include/dt-bindings/clock/st,stm32mp25-rcc.h
 +++ b/include/dt-bindings/clock/st,stm32mp25-rcc.h
-@@ -363,6 +363,8 @@
- #define CK_BUS_ETHSWACMCFG	341
+@@ -364,8 +364,6 @@
  #define CK_BUS_ETHSWACMMSG	342
  #define HSE_DIV2_CK		343
-+#define CK_KER_ETR		344
-+#define CK_KER_STM		345
  
+-#define STM32MP25_LAST_CLK	344
+-
  #define CK_SCMI_ICN_HS_MCU	0
  #define CK_SCMI_ICN_SDMMC	1
-@@ -486,5 +488,7 @@
- #define CK_SCMI_SYSATB		120
- #define CK_SCMI_TSDBG		121
- #define CK_SCMI_STM500		122
-+#define CK_SCMI_KER_STM		123
-+#define CK_SCMI_KER_ETR		124
- 
- #endif /* _DT_BINDINGS_STM32MP25_CLKS_H_ */
+ #define CK_SCMI_ICN_DDR		2
 
 -- 
 2.43.0
