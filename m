@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74B96606A32D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2E660A2621
 	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uqNGfKEN;
-	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=vQL1Kemy
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YRMIzFxh;
+	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=F0Upi6Kj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
 	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6rJNUO6E54sMvUs2WMIZbbBsdevweP1GURHzVXhYi9c=; b=uqNGfKENeZH+OT
-	c8bqVul5/fy1lyLskRkzLLEv3Iq+YYwI8eEfHL7hv5I7LLnLuoj1DUm84gxi50mv9V2TLSZa3Lzvf
-	/GZe8dqWirUSdf+zawRb8UcxtRSCxAttmqyBdUnnn6zAjzmL5A3N+kg5z8tLbEEqUx9cWHaPp1ea8
-	AQHt0BfkpPdQl2uDLK64JtpMcdr6R7mf1o6YQkevBKqorL8vR+t3Y2zB3T79qnukVo6BZjIuSBu0I
-	exhcYsh77KHYeSTiNQUKb1IWOOkpDIDNsgkXGi/06lwy3CJAEGWKHVBl5bE6sKy45PYMhubAeZc4Y
-	R21kvqlALTqpzOB0q9AA==;
+	List-Owner; bh=FoTgZCV1Goo86SpjfyfS0uvZJSie1dRSA+Nptn0ArC8=; b=YRMIzFxhlUOSEx
+	318/fy1gXLYD83zol6mRUZps4S/MwxsR1mCEMpJHontAoojfhcOVghfJmoeLVcmMR7FPpHL34uxTY
+	FkrfUHQTVSEW7E4tqHaKRCajcx2fkecqnliPFkb0uSQMwplf8oXoit60U2j73KW37mcFRxIPmWyeC
+	ZAsbiwsGiudOJoPyZ/Bvcxt4+FsQhqPNefBYvg5dLP+Ot5NIXoRAxHZbjIhL8rQWFi9X3LGnVgob4
+	rpt/kfu65w8DjCdcMWBkmLk4ohAeSvzYj9y5qtey46aG0VJbYEQMQgJRkm4wxc7gpHBy4F++qTCUC
+	kVu/G4X6NzwXrS8CdTtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPL9n-0000000CiEd-2ths;
+	id 1xPL9n-0000000CiF5-3Q7F;
 	Fri, 06 Nov 2026 14:43:07 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPL9i-0000000Ci9M-1r0z
+	id 1xPL9k-0000000CiAh-1L5i
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 14:43:03 +0000
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261106144300euoutp022fe9ba632879a263b59dd1be5c370c27~le9Tgddn21426614266euoutp02X;
-	Fri,  6 Nov 2026 14:43:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261106144300euoutp022fe9ba632879a263b59dd1be5c370c27~le9Tgddn21426614266euoutp02X
+	Fri, 06 Nov 2026 14:43:05 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261106144302euoutp01e3afc94e2b93840d2dfd813d85bdd5a6~le9VP5hy42284422844euoutp01g;
+	Fri,  6 Nov 2026 14:43:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261106144302euoutp01e3afc94e2b93840d2dfd813d85bdd5a6~le9VP5hy42284422844euoutp01g
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1793976180;
-	bh=6rJNUO6E54sMvUs2WMIZbbBsdevweP1GURHzVXhYi9c=;
+	s=mail20170921; t=1793976182;
+	bh=FoTgZCV1Goo86SpjfyfS0uvZJSie1dRSA+Nptn0ArC8=;
 	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=vQL1KemyUL/i8iZISuvadb7LjWhfk9xrjaC2sDcM8Owe+O9RHy1wFufNoIOF94jcf
-	 p0JVcTX5g5tl+FMQDx9m1nv0Tf+LPOvYWUH9EP9PPWO7X7w1rERwDHFqKFiq4V0yTk
-	 PQ3uwEgwyYh+n8/Yo016rsYHh9MLBaxuU9NrIFjU=
+	b=F0Upi6KjRBpfkn3FB5uW1jbpRrKlWwvL4AQpNHG1SZhHs+7tFYTDgH36uD20Whmo+
+	 249aMJvUN9m1wbI5MTcglfe8IIANGRUi8+NDhua7cWFRVLgzStiAyhVegoNwDkaEhs
+	 32fq2YkHNJqqZoFqXo7zHCoMRFBOtIXlWF9UfaIA=
 Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310~le9SqiDiy1206212062eucas1p2V;
-	Fri,  6 Nov 2026 14:42:59 +0000 (GMT)
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20261106144301eucas1p1882c2f6ac262ef7c10c3e0cabe333a6b~le9USbGSR2112621126eucas1p12;
+	Fri,  6 Nov 2026 14:43:01 +0000 (GMT)
 Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
 	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106144258eusmtip1a717ab7164c31bdd835911116d976388~le9RHsKmV0111901119eusmtip1_;
-	Fri,  6 Nov 2026 14:42:58 +0000 (GMT)
+	20261106144259eusmtip10ef219b0b43a75100edc1390cf7fb029~le9St_xPI0550005500eusmtip1b;
+	Fri,  6 Nov 2026 14:42:59 +0000 (GMT)
 From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Fri, 06 Nov 2026 15:42:47 +0100
-Subject: [PATCH v2 07/15] lib/lz4: backport upstream's match length limit
- fix
+Date: Fri, 06 Nov 2026 15:42:48 +0100
+Subject: [PATCH v2 08/15] lib/lz4: add the build environment for the
+ vendored sources
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-lz4-vendor-upstream-v2-7-ee04c3f0d7dc@samsung.com>
+Message-Id: <20261106-lz4-vendor-upstream-v2-8-ee04c3f0d7dc@samsung.com>
 In-Reply-To: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
 To: Michal Wilczynski <m.wilczynski@samsung.com>,  Nathan Chancellor
 	<nathan@kernel.org>,  Nick Desaulniers <ndesaulniers@google.com>,  Bill
@@ -82,27 +82,27 @@ Cc: linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
 	<m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org, 
 	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2240;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=13756;
 	i=m.wilczynski@samsung.com; h=from:subject:message-id;
-	bh=FeGwjLLCi9r5jO0sT4c2oOMQI6pybsCaTl5iiV1XLg0=;
-	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9fZ56U0Pa67C9pl5js81Djt4t++e+Y9b7J3lW8Y3NG
-	r1sg6NpHaUsDGIcDLJiiixnN0YbSf5jeFp+/PEvmDmsTCBDGLg4BWAi79MZGWakV6Uz+5RNvHEk
-	zKojQjHywl3bTtHiJs+mSS+WF12fZsHwTzdo44JtE7fGf1/aYSV3LyD68iubAoVt21jaD0zI/xv
-	xkw8A
+	bh=WLJaU46vth6DQ+ro+pNGla0mX/S9QL0xdDoBMtKQdNY=;
+	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9fZ6qWNxu66Fd3TXH+1jM6uzPGrn9e6uMu1fvPLRK6
+	vqv91oSHaUsDGIcDLJiiixnN0YbSf5jeFp+/PEvmDmsTCBDGLg4BWAiUUWMDLf8Zy8oy5zAcylO
+	Q/qy6I9PG48nP3p6LcmpofbwsemLIl0ZGZaY1t9hClrGsTLjUYaKgUHdlpW/2O7ZZL0VLbD/ffM
+	eHwMA
 X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
 	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
-X-CMS-MailID: 20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310
+X-CMS-MailID: 20261106144301eucas1p1882c2f6ac262ef7c10c3e0cabe333a6b
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310
+X-RootMTR: 20261106144301eucas1p1882c2f6ac262ef7c10c3e0cabe333a6b
 X-EPHeader: CA
-X-CMS-RootMailID: 20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310
+X-CMS-RootMailID: 20261106144301eucas1p1882c2f6ac262ef7c10c3e0cabe333a6b
 References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
-	<CGME20261106144259eucas1p27d26efbc44beac102c03ec07ebed4310@eucas1p2.samsung.com>
+	<CGME20261106144301eucas1p1882c2f6ac262ef7c10c3e0cabe333a6b@eucas1p1.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_064302_758660_71BC6188 
-X-CRM114-Status: GOOD (  16.13  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261106_064304_652336_DB9C6946 
+X-CRM114-Status: GOOD (  24.93  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -121,49 +121,345 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-v1.10.0 lets a match length's extension bytes run to four bytes before
-the end of the block, which leaves room for only a token and three
-literals where the format requires five. The fork rejected such blocks,
-v1.10.0 decodes them: 1f 41 01 00 ff 00 30 7a 7a 7a decodes to 278
-bytes instead of failing.
+lz4_deps.h makes the vendored upstream sources build in the kernel. It
+gives every upstream entry point internal linkage, so an object carries
+only the codec it forwards, selects heap mode with failing allocators so
+LZ4HC's ~64K optimal-parser buffer stays off the stack, and renames the
+entry points the kernel re-exports so the kernel's own definitions can
+use the real names. LZ4LIB_VISIBILITY carries __maybe_unused for the
+functions an object does not use.
 
-Upstream fixed this in 587ed9557708 ("add comments explaining
-read_variable_length() ilimit bounds, fix match length limit"), on top
-of a read_variable_length() rework v1.10.0 does not have. Both versions
-accept the same final ip for a given limit, so change the limit at the
-two match length call sites to iend - (1 + LASTLITERALS), as upstream
-does. This is one byte stricter than the fork; no compressor produces
-the blocks it newly rejects.
+freestanding/ forwards the four ISO C headers upstream includes to their
+<linux/> equivalents. lz4_kernel_api.h undoes the renaming; it carries
+its own copy of the exported prototypes until a later patch can include
+<linux/lz4.h> instead.
 
-This goes away at the next re-sync.
+Two settings upstream leaves to the build:
+
+ - Unaligned access goes through memcpy() where the architecture has
+   efficient unaligned access, and through packed structs, as
+   get_unaligned() does, elsewhere. Left alone, upstream uses plain
+   misaligned loads on ARMv6.
+
+ - On ppc64le, lz4.c marks functions __attribute__((optimize("O2"))) for
+   GCC, which drops command line options such as -fno-strict-aliasing
+   for them; see commit 080b6f407635 ("bpf: Don't rely on GCC
+   __attribute__((optimize)) to disable GCSE"). lz4_deps.h defines
+   optimize() to nothing for upstream's sources.
+
+Nothing includes either header yet.
 
 Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 ---
- lib/lz4/upstream/lz4.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ lib/lz4/freestanding/limits.h |  14 +++++
+ lib/lz4/freestanding/stddef.h |  15 ++++++
+ lib/lz4/freestanding/stdint.h |  14 +++++
+ lib/lz4/freestanding/string.h |  14 +++++
+ lib/lz4/lz4_deps.h            | 118 ++++++++++++++++++++++++++++++++++++++++++
+ lib/lz4/lz4_kernel_api.h      |  90 ++++++++++++++++++++++++++++++++
+ 6 files changed, 265 insertions(+)
 
-diff --git a/lib/lz4/upstream/lz4.c b/lib/lz4/upstream/lz4.c
-index ee69d57aae112f4057c050bbdab4cc0f2d30f9d9..a45f3828141eec9baea59a5e97a3ff37d6474d6e 100644
---- a/lib/lz4/upstream/lz4.c
-+++ b/lib/lz4/upstream/lz4.c
-@@ -2120,7 +2120,7 @@ LZ4_decompress_generic(
-             DEBUGLOG(7, "  match length token = %u (len==%u)", (unsigned)length, (unsigned)length+MINMATCH);
- 
-             if (length == ML_MASK) {
--                size_t const addl = read_variable_length(&ip, iend - LASTLITERALS + 1, 0);
-+                size_t const addl = read_variable_length(&ip, iend - (1 + LASTLITERALS), 0);
-                 if (addl == rvl_error) {
-                     DEBUGLOG(5, "error reading long match length");
-                     goto _output_error;
-@@ -2338,7 +2338,7 @@ LZ4_decompress_generic(
- 
-     _copy_match:
-             if (length == ML_MASK) {
--                size_t const addl = read_variable_length(&ip, iend - LASTLITERALS + 1, 0);
-+                size_t const addl = read_variable_length(&ip, iend - (1 + LASTLITERALS), 0);
-                 if (addl == rvl_error) { goto _output_error; }
-                 length += addl;
-                 if (unlikely((uptrval)(op)+length<(uptrval)op)) goto _output_error;   /* overflow detection */
+diff --git a/lib/lz4/freestanding/limits.h b/lib/lz4/freestanding/limits.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..0d1cafbc77eb5d2f564b51feaa911748446abf60
+--- /dev/null
++++ b/lib/lz4/freestanding/limits.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * Freestanding <limits.h> for the vendored upstream LZ4 sources; lz4.c needs
++ * UINT_MAX and lz4hc.c needs INT_MAX.
++ */
++#ifndef __LZ4_FREESTANDING_LIMITS_H__
++#define __LZ4_FREESTANDING_LIMITS_H__
++
++#include <linux/limits.h>
++
++#endif
+diff --git a/lib/lz4/freestanding/stddef.h b/lib/lz4/freestanding/stddef.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..aaafd2413849210fa4ec4fa03ba0e9453a9fe026
+--- /dev/null
++++ b/lib/lz4/freestanding/stddef.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * Freestanding <stddef.h> for the vendored upstream LZ4 sources; -nostdinc
++ * drops the compiler's copy, and lz4.h needs size_t and NULL.
++ */
++#ifndef __LZ4_FREESTANDING_STDDEF_H__
++#define __LZ4_FREESTANDING_STDDEF_H__
++
++#include <linux/stddef.h>	/* NULL, offsetof */
++#include <linux/types.h>	/* size_t, ptrdiff_t */
++
++#endif
+diff --git a/lib/lz4/freestanding/stdint.h b/lib/lz4/freestanding/stdint.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..923db05b19f23fb4051d16e5df2bf134cd5ac11e
+--- /dev/null
++++ b/lib/lz4/freestanding/stdint.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * Freestanding <stdint.h> for the vendored upstream LZ4 sources; forwards to
++ * <linux/types.h>.
++ */
++#ifndef __LZ4_FREESTANDING_STDINT_H__
++#define __LZ4_FREESTANDING_STDINT_H__
++
++#include <linux/types.h>
++
++#endif
+diff --git a/lib/lz4/freestanding/string.h b/lib/lz4/freestanding/string.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..8f3ea3b63013608a780a52fe9c33bf5df557584e
+--- /dev/null
++++ b/lib/lz4/freestanding/string.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * Freestanding <string.h> for the vendored upstream LZ4 sources; lz4.c
++ * includes it for memcpy()/memset(), which must resolve under -nostdinc.
++ */
++#ifndef __LZ4_FREESTANDING_STRING_H__
++#define __LZ4_FREESTANDING_STRING_H__
++
++#include <linux/string.h>
++
++#endif
+diff --git a/lib/lz4/lz4_deps.h b/lib/lz4/lz4_deps.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..23d69c75867f71224cb533e9341bd38439b9dee8
+--- /dev/null
++++ b/lib/lz4/lz4_deps.h
+@@ -0,0 +1,118 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * Build environment for the vendored upstream LZ4 sources.
++ *
++ * upstream/ is LZ4 v1.10.0 plus three backports: 5ef1f16929b5, the aarch64
++ * fast loop (0aa33884faf5, 51f8af506b4a, ed86bc1ed802) and the match length
++ * limit of 587ed9557708, adapted.  Replace it with a later release rather
++ * than patch it further.  The three entry point files include this header
++ * first.
++ */
++
++#ifndef __LZ4_DEPS_H__
++#define __LZ4_DEPS_H__
++
++#include <linux/build_bug.h>	/* static_assert */
++#include <linux/compiler.h>	/* __maybe_unused */
++#include <linux/string.h>
++#include <linux/types.h>
++
++/* lz4.c uses "current" as a local; <asm/current.h> breaks the build. */
++#undef current
++
++/* Static so an object carries only the codec it forwards.  Each object
++ * forwards only some of them, so mark them __maybe_unused rather than turn
++ * off -Wunused-function, which the pre-boot builds would not see anyway.
++ */
++#define LZ4LIB_VISIBILITY static __maybe_unused
++
++/* Route upstream's "static linking only" entry points through
++ * LZ4LIB_VISIBILITY too.
++ */
++#define LZ4_PUBLISH_STATIC_FUNCTIONS
++
++/* Heap mode only: the stack mode puts LZ4HC's ~64K opt[] in a frame.
++ * Allocation goes through the failing stubs below; upstream handles
++ * NULL by returning 0.
++ */
++#define LZ4_USER_MEMORY_FUNCTIONS
++#define LZ4_HEAPMODE 1
++#define LZ4HC_HEAPMODE 1
++
++/* Failing stubs; nothing in the kernel reaches these. */
++static void *LZ4_malloc(size_t s) { return NULL; }
++static void *LZ4_calloc(size_t n, size_t s) { return NULL; }
++static void LZ4_free(void *p) { }
++
++/* Left alone, upstream reads unaligned words through packed structs, and
++ * on ARMv6 through plain misaligned dereferences.  Use memcpy(), upstream's
++ * documented default, where unaligned access is cheap, and packed structs,
++ * as get_unaligned() does, where it is not: there GCC builds a memcpy()'d
++ * word through a stack slot.
++ */
++#ifdef CONFIG_HAVE_EFFICIENT_UNALIGNED_ACCESS
++#define LZ4_FORCE_MEMORY_ACCESS 0
++#else
++#define LZ4_FORCE_MEMORY_ACCESS 1
++#endif
++
++/* On ppc64le GCC, lz4.c marks its decompression entry points and every
++ * LZ4_FORCE_INLINE helper optimize("O2"), which makes GCC forget command
++ * line options such as -fno-strict-aliasing for those functions (see commit
++ * 080b6f407635).  Expand the attribute to nothing; lz4_kernel_api.h undoes
++ * this.
++ */
++#define optimize(level)
++
++/* lz4.c sets this before including lz4.h, since its own code calls
++ * deprecated entry points.  lz4.h is included below, ahead of lz4.c.
++ */
++#define LZ4_DISABLE_DEPRECATE_WARNINGS 1
++
++/* Rename upstream's entry points out of the way; four of them take a
++ * trailing wrkmem argument in the kernel.
++ */
++#define LZ4_compress_fast		__lz4_compress_fast
++#define LZ4_compress_default		__lz4_compress_default
++#define LZ4_compress_destSize		__lz4_compress_destSize
++#define LZ4_resetStream			__lz4_resetStream
++#define LZ4_loadDict			__lz4_loadDict
++#define LZ4_saveDict			__lz4_saveDict
++#define LZ4_compress_fast_continue	__lz4_compress_fast_continue
++
++#define LZ4_decompress_safe		__lz4_decompress_safe
++#define LZ4_decompress_safe_partial	__lz4_decompress_safe_partial
++#define LZ4_setStreamDecode		__lz4_setStreamDecode
++#define LZ4_decompress_safe_continue	__lz4_decompress_safe_continue
++#define LZ4_decompress_safe_usingDict	__lz4_decompress_safe_usingDict
++
++#define LZ4_compress_HC			__lz4_compress_HC
++#define LZ4_resetStreamHC		__lz4_resetStreamHC
++#define LZ4_loadDictHC			__lz4_loadDictHC
++#define LZ4_compress_HC_continue	__lz4_compress_HC_continue
++#define LZ4_saveDictHC			__lz4_saveDictHC
++
++/* Upstream declares these bare, so both entry point objects would define
++ * them.  Declaring them static first gives them internal linkage (C11
++ * 6.2.2p4): this one in lz4.h, the three below in lz4.c.
++ */
++static __maybe_unused int LZ4_compress_destSize_extState(void *state, const char *src,
++		char *dst, int *srcSizePtr, int targetDstSize,
++		int acceleration);
++
++#include "upstream/lz4.h"
++
++static __maybe_unused int LZ4_compress_forceExtDict(LZ4_stream_t *LZ4_dict,
++		const char *source, char *dest, int srcSize);
++static __maybe_unused int LZ4_decompress_safe_forceExtDict(const char *source,
++		char *dest,
++		int compressedSize, int maxOutputSize,
++		const void *dictStart, size_t dictSize);
++static __maybe_unused int LZ4_decompress_safe_partial_forceExtDict(const char *source,
++		char *dest, int compressedSize, int targetOutputSize,
++		int dstCapacity, const void *dictStart, size_t dictSize);
++
++#endif /* __LZ4_DEPS_H__ */
+diff --git a/lib/lz4/lz4_kernel_api.h b/lib/lz4/lz4_kernel_api.h
+new file mode 100644
+index 0000000000000000000000000000000000000000..de75e5d976eb9dd318da5318a26b91d7aed81042
+--- /dev/null
++++ b/lib/lz4/lz4_kernel_api.h
+@@ -0,0 +1,90 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
++/*
++ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
++ * Author: Michal Wilczynski <m.wilczynski@samsung.com>
++ *
++ * lz4_kernel_api.h -- the LZ4 API this directory exports
++ *
++ * lz4_deps.h renames upstream's entry points to __lz4_* so that the kernel's
++ * own definitions can use the real names; this header undoes that renaming
++ * and the optimize() override, and declares what lib/lz4 exports.
++ *
++ * The same functions are declared to callers in <linux/lz4.h>, in terms of
++ * opaque stream types.  We cannot include that header here -- it and
++ * upstream's lz4.h describe the same library and collide -- so the
++ * declarations are repeated, expressed in upstream's own types.  Keep the two
++ * in step; <linux/lz4.h> is the one callers compile against.
++ *
++ * Include after upstream/lz4.c or upstream/lz4hc.c.
++ */
++
++#undef LZ4_compress_fast
++#undef LZ4_compress_default
++#undef LZ4_compress_destSize
++#undef LZ4_resetStream
++#undef LZ4_loadDict
++#undef LZ4_saveDict
++#undef LZ4_compress_fast_continue
++
++#undef LZ4_decompress_safe
++#undef LZ4_decompress_safe_partial
++#undef LZ4_setStreamDecode
++#undef LZ4_decompress_safe_continue
++#undef LZ4_decompress_safe_usingDict
++
++#undef LZ4_compress_HC
++#undef LZ4_resetStreamHC
++#undef LZ4_loadDictHC
++#undef LZ4_compress_HC_continue
++#undef LZ4_saveDictHC
++
++#undef optimize
++
++/*
++ * The objects that do not build lz4hc.c never see this type, and it is only
++ * ever used through a pointer here.  Upstream declares it the same way.
++ */
++typedef union LZ4_streamHC_u LZ4_streamHC_t;
++
++/* Compression.  wrkmem is LZ4_MEM_COMPRESS bytes, supplied by the caller. */
++int LZ4_compress_default(const char *source, char *dest, int inputSize,
++			 int maxOutputSize, void *wrkmem);
++int LZ4_compress_fast(const char *source, char *dest, int inputSize,
++		      int maxOutputSize, int acceleration, void *wrkmem);
++int LZ4_compress_destSize(const char *source, char *dest, int *sourceSizePtr,
++			  int targetDestSize, void *wrkmem);
++
++/* Streaming compression. */
++void LZ4_resetStream(LZ4_stream_t *LZ4_stream);
++int LZ4_loadDict(LZ4_stream_t *streamPtr, const char *dictionary,
++		 int dictSize);
++int LZ4_saveDict(LZ4_stream_t *streamPtr, char *safeBuffer, int dictSize);
++int LZ4_compress_fast_continue(LZ4_stream_t *streamPtr, const char *src,
++			       char *dst, int srcSize, int maxDstSize,
++			       int acceleration);
++
++/* Decompression. */
++int LZ4_decompress_safe(const char *source, char *dest, int compressedSize,
++			int maxDecompressedSize);
++int LZ4_decompress_safe_partial(const char *source, char *dest,
++				int compressedSize, int targetOutputSize,
++				int maxDecompressedSize);
++int LZ4_setStreamDecode(LZ4_streamDecode_t *LZ4_streamDecode,
++			const char *dictionary, int dictSize);
++int LZ4_decompress_safe_continue(LZ4_streamDecode_t *LZ4_streamDecode,
++				 const char *source, char *dest,
++				 int compressedSize, int maxDecompressedSize);
++int LZ4_decompress_safe_usingDict(const char *source, char *dest,
++				  int compressedSize, int maxDecompressedSize,
++				  const char *dictStart, int dictSize);
++
++/* HC compression.  wrkmem is LZ4HC_MEM_COMPRESS bytes. */
++int LZ4_compress_HC(const char *src, char *dst, int srcSize, int dstCapacity,
++		    int compressionLevel, void *wrkmem);
++void LZ4_resetStreamHC(LZ4_streamHC_t *streamHCPtr, int compressionLevel);
++int LZ4_loadDictHC(LZ4_streamHC_t *streamHCPtr, const char *dictionary,
++		   int dictSize);
++int LZ4_compress_HC_continue(LZ4_streamHC_t *streamHCPtr, const char *src,
++			     char *dst, int srcSize, int maxDstSize);
++int LZ4_saveDictHC(LZ4_streamHC_t *streamHCPtr, char *safeBuffer,
++		   int maxDictSize);
 
 -- 
 2.34.1
