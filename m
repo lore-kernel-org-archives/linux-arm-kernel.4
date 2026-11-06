@@ -2,99 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ABC7606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFEB8606A329
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UXwIIO6k;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=vBjzqXdS
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=siQurEoT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=stncjCpIcaZGwyCzQ3Mf39ygwW1cfGfLhkLPVcA4MfQ=; b=UXwIIO6kSAD/lf
-	r6vTnSMGurhHYcBPyHYTC+PXwpcE50NtAuvMBlTMNpLwJs20NPafJE36s3Apd/m0IIcBGNxy8etCP
-	M8pllqbUZcXExD6xoo9LG/DWwIO4iJYJ/J95sxNHtIZAflqz1Qt7CVQOPCYHe06CCNhb7VsFDsZhF
-	sDQ3OJ8Lp5fEcNQVngjnitcPDddV8EDkKOh+9rp8aLPcphOcnUeXBQ78LxuFy8H4hc2DhqBifZ8uN
-	Ct3raxbqDFoT7tCU0Y7fac38DtuBwZwabqTz+/4T4yGYIYKv9Y8hrv0rv+Cwv2LHC/9Jj+WC3ZmlL
-	7Z4kD64sjTDfus6kmC7w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Subject:Cc:To:
+	From:Mime-Version:Date:Message-ID:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=s81Qxk279B3OZvT8HyIcxZsvmqYvi7yEZFqL8sa0/fc=; b=siQurEoTsRL5Xlq0D+Bt4tTGOq
+	PvCLwDIHcQndVyROvynMUprhIlgIy93GofhS0L3JaamIEditah20dbuzfDN7JTZlTEYryX8VXFa1O
+	6Qh3pDEBTNuzDa4D/vkrS3yxEnBmLCyN8oofhxsaCUy6O4wcJlvofi624RS+0uNTMrFujg+HEAl+U
+	14kQTKj5T6sTkQPIyUKXR76YlozqHvNVGC2CvTH4aSumkES2PnztFfqAytuQANofKMHY7kuJJ3eJF
+	ySiQrN1H678j7IjQwtMGPFWTA2P5xcCjbnIOArYEsBKQB5L6eczYXmLJkJ6HxbQhjh8joQ8gnw65d
+	sv43UpKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMNe-0000000CwAK-39J2;
-	Fri, 06 Nov 2026 16:01:30 +0000
-Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
+	id 1xPMTg-0000000Cx9e-3LfP;
+	Fri, 06 Nov 2026 16:07:44 +0000
+Received: from mxhk.zte.com.cn ([160.30.148.35])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMNc-0000000Cw7y-31nP
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 16:01:29 +0000
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-cd60c5da24cso465379a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 08:01:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793980887; x=1794585687; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=stncjCpIcaZGwyCzQ3Mf39ygwW1cfGfLhkLPVcA4MfQ=;
-        b=vBjzqXdSBas7tTGLWSoM+FFqFCAI4aOdnGcYJweHV1yJgMFF49/bB8iET4FI7J63Yx
-         uh0dh5FtkNfnis4bN80k0xwVVlVatSTMyM3qHVwrqZTT3poM27wDPReT8/93w3bUQIQF
-         CQhlBJm5P80bFooi2HTuCKckCPuufRqSuiM6J3OA5ECdpQXAh5K+Vz9NiHBbmGiU1+iw
-         sKb6ibwGLo7rNn/J3W9Y2dVojHXoDdU1cl15bZVoV+Ptbjk3PP5ejeXbmdxxhwiyuoym
-         Y/jTsZXRWKhlcHmDccmNkbvDz3m8rO/Wz6j068udnwBrQnbE8l1y2tmKF17rlXqKaUky
-         4JnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793980887; x=1794585687;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=stncjCpIcaZGwyCzQ3Mf39ygwW1cfGfLhkLPVcA4MfQ=;
-        b=LQQplLqMn4GwF2zd95KeYEj2zeEghHYZsA3081HWIA2s3zgJNpez3N1Py5BDSlz+r4
-         nZL84AYxG0P1lee2ORFMZ+iwjLSqxkQhL+OqT0wLVCmQlOgxbVZGMqmZ3ej4nKW8D5uz
-         kqIBxNuHCb1WHDovX2wkSU1dva1ZvoiygGz02IcYpaWR/eS2vCwMhtUYF1MnayKV6Ubg
-         3J7MMxrA2dsGLpBN3ajX8kavNPk6SmiWoRjwSjDeZqXWGwbXk0605jN0Y+SPRDJnyKqr
-         Fgom2Nh+cK0d7YYNK9vRBd9zqMBnw1OxbTslCjbvESTe6L0wyA6Q3cRH0jzsevnMW/N7
-         JTrg==
-X-Forwarded-Encrypted: i=1; AKwUvBxDhOYHAc1Q4U1UPhKXRs6vv56dj131aNsEd/boNzrq96gPszRCrlIULwlIc8o7jFTLbsizjChwbO9c6ABt9EIM@lists.infradead.org
-X-Gm-Message-State: APuU4Z+ayaUiE3G6pFCca9Mw9L8pUjKAfuT7YVmz/MPEkdhWD9qCrjnL
-	QZGlU6FgfHkWVrZDG5ZpzhEfdkXDDMoHFl5fHDTL7F5KgGLMwFjMj8rl
-X-Gm-Gg: AYBFou2qUo7NZAZbGu++LzxCHbBn+zcXcLEKj55DznHsibt6xWOl+Wngad/ysBnhW6z
-	6KW9os1MX02Dh9jv9sWpClTRwCt/j7YIkzsYVWRJSLTZQ84GrwY18WMSSDnTrKDER6TLAy2JuBa
-	dHCZwVTeuUjFpZBpPTMz1A8oObqbEZ314SveoTmKiLivZsTC6hQ11pxr+9sutM5DeyXsrxNks8Z
-	nLIjK46W0MlUDgYKugjrYPQ2ahmftxfAPwCnkxVeioTAHZCZbjiakugq8JjZgIQutriKSvoHZTx
-	Mw3rWSzz8R9yxrstOYUNY17BMI8M61LZM+TBaDPdVntVS0xTEkQ1G4LLryvEip23V74tQTd65cW
-	6569FrXfvMSYqP9nKvswKAY/4xYpnYMMR5UkIErQpKbSoPGj7wbpdE47p+7dO2kLjsHxP/0sh0r
-	5VUu7fH7+eoplH9xmhC5PQUHGEF5Z/puLOOp6rjayqqF8FdS03bJgq6k5mHxaDlxSF3OBDVZuZR
-	Wm5jowJw7/fKn6VH7heRHnG62880KjwinmooeMYqqcIcUdKIAutM5HOTEmDjmDl0F27PvZYUJso
-	cDb71nkAHElIpfreaj/abGdxHffULqVPWtSGj5gwBeSHPVjU
-X-Received: by 2002:a05:6a21:599:b0:3eb:aa33:e586 with SMTP id adf61e73a8af0-3ebb29c72f3mr3246747637.32.1793980887506;
-        Fri, 06 Nov 2026 08:01:27 -0800 (PST)
-Received: from hj.. ([163.239.22.29])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cdb70a7fbcbsm727930a12.25.2026.11.06.08.01.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 08:01:26 -0800 (PST)
-From: hyunjungg <hj351016@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>,
-	linux-pm@vger.kernel.org
-Cc: Chen-Yu Tsai <wens@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Hyunjung Ko <hj351016@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH 3/3] power: supply: mt6360_charger: drain chrdet_work before the power supply is freed
-Date: Sat,  7 Nov 2026 01:00:57 +0900
-Message-ID: <20261106160057.2754689-4-hj351016@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261106160057.2754689-1-hj351016@gmail.com>
-References: <20261106160057.2754689-1-hj351016@gmail.com>
+	id 1xPMTb-0000000Cx8h-0CuJ;
+	Fri, 06 Nov 2026 16:07:42 +0000
+Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mxhk.zte.com.cn (FangMail) with ESMTPS id 4jLkbR68lnz8Xrrd;
+	Sat, 07 Nov 2026 00:07:31 +0800 (CST)
+Received: from xaxapp01.zte.com.cn ([10.88.99.176])
+	by mse-fl2.zte.com.cn with SMTP id 6A6G7LSP074678;
+	Sat, 7 Nov 2026 00:07:21 +0800 (+08)
+	(envelope-from shao.mingyin@zte.com.cn)
+Received: from mapi (xaxapp01[null])
+	by mapi (Zmail) with MAPI id mid32;
+	Sat, 7 Nov 2026 00:07:24 +0800 (CST)
+X-Zmail-TransId: 2af96aedfb3c6af-a8634
+X-Mailer: Zmail v1.0
+Message-ID: <20261107000724697MsR-XmE4V-ADPPMr3wGom@zte.com.cn>
+Date: Sat, 7 Nov 2026 00:07:24 +0800 (CST)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+From: <shao.mingyin@zte.com.cn>
+To: <ukleinek@kernel.org>, <linux-pwm@vger.kernel.org>
+Cc: <laurent.pinchart@ideasonboard.com>, <heiko@sntech.de>,
+        <ben.dooks@codethink.co.uk>, <benjamin.larsson@genexis.eu>,
+        <nuno.sa@analog.com>, <xiaoning.wang@nxp.com>,
+        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-rockchip@lists.infradead.org>
+Subject: =?UTF-8?B?W1BBVENIIDAvNV0gcHdtOiBmaXggb3ZlcmZsb3csIHRydW5jYXRpb24gYW5kIGVycm9yLXBhdGggcmVmZXJlbmNlIGxlYWtz?=
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL: mse-fl2.zte.com.cn 6A6G7LSP074678
+X-TLS: YES
+X-ENVELOPE-SENDER: shao.mingyin@zte.com.cn
+X-SOURCE-IP: 10.5.228.133 unknown Sat, 07 Nov 2026 00:07:31 +0800
+X-CLEAN: YES
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 6AEDFB43.004/4jLkbR68lnz8Xrrd
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_080128_768385_2C2B502C 
-X-CRM114-Status: GOOD (  16.29  )
+X-CRM114-CacheID: sfid-20261106_080739_250986_98AB1B6B 
+X-CRM114-Status: UNSURE (   6.25  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,85 +79,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Hyunjung Ko <hj351016@gmail.com>
+Five independent defects in four PWM drivers, found while reviewing
+linux-next next-20261030.  Two are 32-bit overflows that make the
+hardware readback report a wrong period or duty cycle, one is a 16-bit
+truncation of the on/off counters, and two are missing clock or
+runtime-PM cleanups on error paths.  All are reachable from the PWM
+sysfs interface or from the hardware readback path.
 
-mt6360_charger_probe() registers the chrdet_work cancellation via
-devm_work_autocancel() *before* devm_power_supply_register(), so devres
-(which unwinds in reverse) frees the power supply device first and only
-then cancels the work:
+The series is ordered by impact and is independent patch-by-patch; each
+patch applies on its own and taking a subset is fine.  Patches 1 and 4
+both touch pwm-dwc-core.c but different callbacks (dwc_pwm_get_state()
+and dwc_pwm_apply()), so they can be applied separately.
 
-	devm_work_autocancel(..., &mci->chrdet_work, ...);   /* registered 1st */
-	...
-	mci->psy = devm_power_supply_register(...);          /* registered 2nd */
-	...
-	schedule_work(&mci->chrdet_work);
+  1/5 pwm: dwc: Fix 32 bit overflow when computing duty/period in get_state
+  2/5 pwm: airoha: Fix 32 bit overflow when converting duty ticks to ns
+  3/5 pwm: adp5585: Clamp on/off counters to the 16 bit register range
+  4/5 pwm: dwc: Balance the runtime PM reference when configuring fails
+  5/5 pwm: rockchip: Fix pclk leak in get_state error path
 
-The work handler mt6360_chrdet_work() runs mt6360_handle_chrdet_ext_evt(),
-which calls power_supply_changed(mci->psy). chrdet_work is scheduled at
-the end of probe, so on an unbind that races that work, devres tears down
-in reverse order: devm_power_supply_register()'s release frees the power
-supply device before the devm_work_autocancel action drains chrdet_work,
-and the work then dereferences the freed mci->psy -> use-after-free.
+Shao Mingyin (5):
+  pwm: dwc: Fix 32 bit overflow when computing duty/period in get_state
+  pwm: airoha: Fix 32 bit overflow when converting duty ticks to ns
+  pwm: adp5585: Clamp on/off counters to the 16 bit register range
+  pwm: dwc: Balance the runtime PM reference when configuring fails
+  pwm: rockchip: Fix pclk leak in get_state error path
 
-Register the work cancellation after devm_power_supply_register() (and
-after the other devm resources), so reverse-order devres cleanup drains
-chrdet_work while mci->psy is still valid. chrdet_work is only scheduled
-later in probe, so moving the devm_work_autocancel() (which also
-initialises the work) down is safe.
+ drivers/pwm/pwm-adp5585.c  |  7 +++++++
+ drivers/pwm/pwm-airoha.c   |  8 ++++----
+ drivers/pwm/pwm-dwc-core.c | 12 ++++++++----
+ drivers/pwm/pwm-rockchip.c |  6 +++++-
+ 4 files changed, 24 insertions(+), 9 deletions(-)
 
-Found by code review; not runtime-reproduced (requires MT6360 PMIC
-hardware and a charger-detect event racing device unbind).
-
-[USER: add a Fixes: tag. SHA not verifiable in this graft-at-7.3 worktree.
- Blame the devm_work_autocancel() introduction in mt6360_charger.c on a
- full-history tree and confirm the 12-char SHA + subject before send.]
-Fixes: 0402e8ebb8b8 ("power: supply: mt6360_charger: add MT6360 charger support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Hyunjung Ko <hj351016@gmail.com>
 ---
- drivers/power/supply/mt6360_charger.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/power/supply/mt6360_charger.c b/drivers/power/supply/mt6360_charger.c
-index b4d4623..e382db4 100644
---- a/drivers/power/supply/mt6360_charger.c
-+++ b/drivers/power/supply/mt6360_charger.c
-@@ -790,9 +790,6 @@ static int mt6360_charger_probe(struct platform_device *pdev)
- 	mci->vinovp = 6500000;
- 	mutex_init(&mci->chgdet_lock);
- 	platform_set_drvdata(pdev, mci);
--	ret = devm_work_autocancel(&pdev->dev, &mci->chrdet_work, mt6360_chrdet_work);
--	if (ret)
--		return dev_err_probe(&pdev->dev, ret, "Failed to set delayed work\n");
- 
- 	ret = device_property_read_u32(&pdev->dev, "richtek,vinovp-microvolt", &mci->vinovp);
- 	if (ret)
-@@ -828,6 +825,16 @@ static int mt6360_charger_probe(struct platform_device *pdev)
- 	if (IS_ERR(mci->otg_rdev))
- 		return PTR_ERR(mci->otg_rdev);
- 
-+	/*
-+	 * Register the work cancellation only after the power supply is
-+	 * registered.  devres unwinds in reverse, so this guarantees the
-+	 * work (which calls power_supply_changed(mci->psy)) is drained
-+	 * before the power supply device is freed on unbind.
-+	 */
-+	ret = devm_work_autocancel(&pdev->dev, &mci->chrdet_work, mt6360_chrdet_work);
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret, "Failed to set delayed work\n");
-+
- 	schedule_work(&mci->chrdet_work);
- 
- 	return 0;
--- 
-2.43.0
-
+base-commit: 7649ba73f9e7e1e04d0b46213e39c79ae09dd55c
 
