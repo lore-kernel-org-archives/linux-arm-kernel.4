@@ -2,64 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E93606D829
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 18:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1C0606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 18:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yEPptN+G;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=JT+SQu3Y
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XGqkQ0h+;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=QOFmY3f5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:To:From:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=6/HJnC54xU4S0Hwp09zNKNs21RBXVSDeqUj8nn08OOw=; b=yEPptN+GQ6qyjev9ksra/l5tAF
-	qjxis2YeSsx/6PaesUjfqoXxhLO1AetDVpXsh/zkCXxGTFDxaFaeS6JZmAgC8NKhzMBuIry69+s05
-	XIg5HlbmW2tJscmaw0JRvB/1LssxDgiLZuRPTflea+UcK8X5gE3Bg4gBZanffJXBu032eqGYhj2ox
-	jnVxkiR2EZvgasubF4XEHybW4qAo3R9pwxRv7YpiEPQBK3q2MgYlDIc0ypbDRZb/7sDq393+lwui1
-	McXZKrIvkb7KdeNQBp9bNQMmKgwRqKhxh+NELZEhbLenR2/W7xyVwNox2eOqJp8w3G6H7OYGhJqtA
-	tONjBE9g==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:
+	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ner4HLqt8P3aTA3rkqClyXoS9WPb6d7Nw2R94iR6ruY=; b=XGqkQ0h+lz1+zQ
+	Nca9ioZH7emzENF243A2fJTem7KLDozHTrZlCMp5NEX+INNjEAiF+Z27aAyfCW2fsRq8qg0zuIN6B
+	eo2+2VtxikS6bHYhYDZRVSRr4mJx2ugge9LK8E6Ojy/wYum6DBQIv8Ej1bH13XgGczA/jSaptX5eQ
+	re9m4BE8qEk/mQI7KmMFvugyCt5ifCp/d9eWYI9sTB4uayh6yF5g+f3h/B9qzUeq5hLCE14TLFISB
+	hMVP6gctPYSE59S4pg0p5AGJgDOGKFzQ7UjWthuvuYtaPg6gvtechEKjq/vPmrkXz4Yv8xc92UlGr
+	5zHAgRTrbmzaU4jdztyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPOnz-0000000DPfT-1SRN;
-	Fri, 06 Nov 2026 18:36:51 +0000
+	id 1xPOo5-0000000DPi2-26AO;
+	Fri, 06 Nov 2026 18:36:57 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPOnq-0000000DPas-1W11
+	id 1xPOnz-0000000DPfq-32R9
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 18:36:47 +0000
+	Fri, 06 Nov 2026 18:36:53 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 179C91650;
-	Fri,  6 Nov 2026 10:36:38 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 295011650;
+	Fri,  6 Nov 2026 10:36:48 -0800 (PST)
 Received: from gaia.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 135CA3F673;
-	Fri,  6 Nov 2026 10:36:37 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B012E3F673;
+	Fri,  6 Nov 2026 10:36:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1793990201; bh=DJjEZhP5Hy5E4GIWKPZ45otGa4lVGkLO7vzlBu4usdE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=JT+SQu3YQ1o89rLEfEpFBY/gtK5kQSw5qoBcowIssxFIvLXuWcY/Ey6WtPOSCFI0q
-	 yikpABqzrNIWL+XIgFGxcJLqcH36TRP6JcTQviG17Bsfw4iL2tgs9774t/Pj69P9Hd
-	 x7F7WYaMjFsHJZ2JoVMv7JPgqQgGlbYBcEUDe4TU=
+	t=1793990211; bh=7ULSo94m9nkPCuWX576aB6lAnEnwhX48KblE/3XT8yc=;
+	h=From:To:Subject:Date:In-Reply-To:References:From;
+	b=QOFmY3f5TtXhb8oHDOllkyppL0ZWSK8FQJ5UPVoOGmLZT6wg6KGDCti0XGnB7OGhr
+	 vaCZwTu7osM0MxpqMr9WYrSj8G6tLadtcfCdpDhKhuRKMn+Z+OpZ+EbIDnaAZWxURB
+	 y7QbR9/kugsJ7MWHeRLU1fJ6X5tdu+Q/VvNbbjTg=
 From: Catalin Marinas <catalin.marinas@arm.com>
-To: Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	James Morse <james.morse@arm.com>,
-	Usama Arif <usama.arif@linux.dev>,
-	Kiryl Shutsemau <kirill@shutemov.name>
-Subject: Re: [PATCH v2 0/2] arm64: sdei: Handle exceptions taken inside the event handler
-Date: Fri,  6 Nov 2026 18:36:32 +0000
-Message-ID: <179399019204.2520879.14405140378460696016.b4-ty@b4>
+To: will@kernel.org,
+	mark.rutland@arm.com,
+	rppt@kernel.org,
+	baoquan.he@linux.dev,
+	sourabhjain@linux.ibm.com,
+	coiby.xu@gmail.com,
+	bgwin@google.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jinjie Ruan <ruanjinjie@huawei.com>
+Subject: Re: [PATCH v8] arm64: kexec_file: Fix elf_headers memory leak in retry loop
+Date: Fri,  6 Nov 2026 18:36:43 +0000
+Message-ID: <179399019202.2520879.12342583488895085376.b4-ty@b4>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261105120835.3321912-1-kirill@shutemov.name>
-References: <20261105120835.3321912-1-kirill@shutemov.name>
+In-Reply-To: <20261105125724.2283453-1-ruanjinjie@huawei.com>
+References: <20261105125724.2283453-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_103642_999266_067C4007 
-X-CRM114-Status: UNSURE (   9.62  )
+X-CRM114-CacheID: sfid-20261106_103651_805792_9890C2DD 
+X-CRM114-Status: UNSURE (   5.42  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -71,29 +75,23 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: "Kiryl Shutsemau \(Meta\)" <kas@kernel.org>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Peter Zijlstra <peterz@infradead.org>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, linux-kernel@vger.kernel.org, mrigendrachaubey <mrigendra.chaubey@gmail.com>, linux-arm-kernel@lists.infradead.org, Breno Leitao <leitao@debian.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 05 Nov 2026 12:08:32 +0000, Kiryl Shutsemau wrote:
-> An SDEI event can land anywhere, and a synchronous exception taken by its
-> handler breaks the context it interrupted:
+On Thu, 05 Nov 2026 20:57:24 +0800, Jinjie Ruan wrote:
+> A retry allocates new elf headers and overwrites image->elf_headers,
+> leaking the previous buffer.
 > 
->  - With KPTI, an event that lands in user space runs the handler on the
->    trampoline vectors, whose current-EL half is empty. The exception
->    loops there and the CPU is lost.
-> 
-> [...]
+> Free it before assigning.
 
 Applied to arm64 (for-next/fixes), thanks!
 
-[1/2] arm64: sdei: Run the event handler on the kernel vectors
-      https://git.kernel.org/arm64/c/9bf6ee7952c7
-[2/2] arm64: sdei: Preserve the interrupted context's exception registers
-      https://git.kernel.org/arm64/c/58c1eb84e977
+[1/1] arm64: kexec_file: Fix elf_headers memory leak in retry loop
+      https://git.kernel.org/arm64/c/ac302aea3d82
 
