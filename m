@@ -2,51 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65AD606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 21:25:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFFA606D808
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 21:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fbPfeOdb;
-	dkim=pass (1024-bit key, unprotected) header.d=cyberchaos.dev header.i=@cyberchaos.dev header.a=rsa-sha256 header.s=mail header.b=Q0o5G8L7
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c4zE5g78;
+	dkim=pass (1024-bit key, unprotected) header.d=cyberchaos.dev header.i=@cyberchaos.dev header.a=rsa-sha256 header.s=mail header.b=3e+kc3ag
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UMIk77T6D8aeVXKipe7tHa21wj0Z4+vE4becj0xztjY=; b=fbPfeOdbJhdCMU
-	uU1wjm+056KGfANJu75msZSjL2J2wbtMjOVHkzeu1vzXv6gaWVlEi3Mntcrr5KeP0lPpez0e94cVf
-	agIHJgSwnhAGz5A9/5fIyAhMSdMZuAV14bUHNFsBP5sCvUZCIoEWg1rdSS/12V+ggBnkTxl+tvLfE
-	YUGGZGClMoTUB9YhXMWtwOc1uP3raIKEavS4gpQ4YGDrUjGKzgi3bM4C8FWEXCtiW1Wx2xYV/+tyy
-	29jLJSzXilR0cOOmYGHoZE5ahRSfp/oCKuKyryqRXZWpOM6af7QwYrSBMJ6266M1krVz5/iX8y6ep
-	X6bgj+1cf5gulfMMuB+g==;
+	List-Owner; bh=bIVg0foxmqTG/8sVU2ZcbJWE1ifg0bPsxbq01Yjc28s=; b=c4zE5g7809BuQ+
+	xNw+Qpfeh6GYPFX+tfm1Qd1NBI6EzXn56v6xmsEuKDP7pB3FEsBelo46uSmrM3utjO2GBMyrMMh4D
+	e9STX2O4yRMD0RJi2fcrPsQPOcajgAntGS0kuvYk2sSti/PlOyKxPMuOfll4FQUxnkX6jV4W29bjg
+	LTcFFydhMIf1Rvz2Q1vfEMTFbySmcW9aqwy53efGe8d7lKD+wrR4L1+B5k/1b39HLVH8Oj5+TlkLt
+	F+KJ2p1cJCyWzylCJ+PjbdXLPcDgw6kksvoUldXksyjFVG3x6ZG/YIh5dIHFtqjR32gi4yInsXkBi
+	Z+8j5+zEnLSt+PoaeIbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPRQp-0000000DgV7-3lOR;
-	Fri, 06 Nov 2026 21:25:07 +0000
+	id 1xPRQq-0000000DgVh-1VXN;
+	Fri, 06 Nov 2026 21:25:08 +0000
 Received: from mail.cyberchaos.dev ([2a0f:4ac0::3a11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPRQl-0000000DgSC-1Zln
+	id 1xPRQm-0000000DgST-14Vn
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 06 Nov 2026 21:25:05 +0000
 From: Yureka Lilian <yureka@cyberchaos.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cyberchaos.dev;
-	s=mail; t=1794000300;
+	s=mail; t=1794000302;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UMIk77T6D8aeVXKipe7tHa21wj0Z4+vE4becj0xztjY=;
-	b=Q0o5G8L7Y5EjjCs0mhUkqsFOdKD2YSDMCssgqRwbfOZ4duD3VFYoVj0AGfasNcytX+Pj/A
-	X1K8ETHkLZ3oKSPRjx6sqX9lTALBFK3kF4wuG0NDcYembUOV4IaBXfmx8vf7Huw1432gOB
-	fpcJqJ/7S3SaQVCaP+TQ4cEwHNio3Uk=
-Date: Fri, 06 Nov 2026 22:24:50 +0100
-Subject: [PATCH v3 1/9] dt-bindings: interrupt-controller: apple,aic2: Add
+	bh=bIVg0foxmqTG/8sVU2ZcbJWE1ifg0bPsxbq01Yjc28s=;
+	b=3e+kc3ag/Rpn+K1bgd8vuzh0pyJIrhpqlte6vq2e8bzai4HenVpv6KqNHMQ9R9XM9BJQys
+	sIk30jzy4345bja2YgXbWBGS0Fu36KBE0OV3yVqfR00m5U1L3aOxTefm7kVbQI9Zy/uFjh
+	Xegoc7k0Wc7GmNp5zp9dyfEaS3Im4+A=
+Date: Fri, 06 Nov 2026 22:24:52 +0100
+Subject: [PATCH v3 3/9] dt-bindings: arm: power: apple,pmgr-pwrstate: Add
  t8142 compatible
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-apple-m5-initial-devicetrees-v3-1-cee55de54b2f@cyberchaos.dev>
+Message-Id: <20261106-apple-m5-initial-devicetrees-v3-3-cee55de54b2f@cyberchaos.dev>
 References: <20261106-apple-m5-initial-devicetrees-v3-0-cee55de54b2f@cyberchaos.dev>
 In-Reply-To: <20261106-apple-m5-initial-devicetrees-v3-0-cee55de54b2f@cyberchaos.dev>
 To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
@@ -64,8 +64,8 @@ Cc: Yureka Lilian <yureka@cyberchaos.dev>, asahi@lists.linux.dev,
  linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_132503_681026_4A6B3109 
-X-CRM114-Status: UNSURE (   7.25  )
+X-CRM114-CacheID: sfid-20261106_132504_462921_6132CC37 
+X-CRM114-Status: UNSURE (   8.04  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -86,27 +86,28 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Apple t8142 (M5) SoC uses an AIC3 as interrupt controller, same as
-the M3-M4 SoCs.
+The device power state management of the PMGR blocks on the Apple
+silicon M5 SoC (t8142) is compatible with the M1-M4 SoCs.
+Add "apple,t8142-pmgr-pwrstate" as M5 specific compatible.
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Yureka Lilian <yureka@cyberchaos.dev>
 ---
- Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml | 1 +
+ Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
-index 3c2b24be530e..b6ad9d9192a2 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
-@@ -49,6 +49,7 @@ properties:
-               - apple,t6041-aic3
-               - apple,t8132-aic3
-               - apple,t8140-aic3
-+              - apple,t8142-aic3
-           - const: apple,t8122-aic3
-       - const: apple,t8122-aic3
+diff --git a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+index a37a837a4eac..451f2a80f844 100644
+--- a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
++++ b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+@@ -51,6 +51,7 @@ properties:
+               - apple,t8122-pmgr-pwrstate
+               - apple,t8132-pmgr-pwrstate
+               - apple,t8140-pmgr-pwrstate
++              - apple,t8142-pmgr-pwrstate
+           - const: apple,t8103-pmgr-pwrstate
  
+   reg:
 
 -- 
 2.56.0
