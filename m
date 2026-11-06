@@ -2,63 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFDA606D808
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 17:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE768606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 17:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WdNVUBR7;
-	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Ob6o03Xe
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GZAaCM9j;
+	dkim=pass (2048-bit key, unprotected) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=XSwyrou1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=D1OP9qC177zA3aBfRfenxMIit8o8G0GoKrdtUwc1iHk=; b=WdNVUBR7FRYmk20oGlYStWBmO7
-	psnxXI3d29PC646fh8H2ig5/uBV0ac2334Vx2jdtnyVcA3M87VAU0nbTV41s/uTNfNNV4f9f4ATSM
-	y/kUik329QkJhqn4J6JBUhi9CC05Z6h9tTaDhx57tExXBIwtRGQ5bZnonuhW4U3L7PituOg7p5bbx
-	xh0gR7jnWCdKJ1EaTX8CEoRCLnt/IxiSlcvt4QQ6WWQvVtibFXwBFvjWLPoF+W1XV/N4H1TUEZGOM
-	hxMcgrKpw91IbSvOBGKZO72rlPbhejkiLrAzOKpXMAAEdHKpg5rlsoQphUjiD9hm2DwurolkksmHt
-	Ett3wZBw==;
+	bh=MLkiO5+iQTmH9kwercp9zyxtA2cVUMT1WfXqJlOm5MI=; b=GZAaCM9j/TO+h3OjhbW6OOSBmJ
+	coNv/wAlM7ZeF3rIquKb6OfLtenOvHnRdxKhnh0OFkttdyXIedK9MJmjokgnnuyx1OP6YDCB6JqAE
+	UU1I1giGIaB6+xD3QJIUlkhAbtb2C3J7xv3cUsLhTKIxctZAqGpnKVFF3GKEHAPbelD/QbCai52B6
+	UL9UPdyHPCDni9gkPs6tmAL5XazH3995fSZnCxTU1wbOQznJuNko9Vuri/JXLv9ooAjuFfqQvQQjR
+	Tnku7tIvgsANQOz3hL1IOKpSkkWSRGgi6dlosxjB52f7srNIt6sKV4zTW+qtimYSpw8/1AzriLqRO
+	Hxbyc+4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPNir-0000000DDzq-3Ob6;
-	Fri, 06 Nov 2026 17:27:29 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPNio-0000000DDyt-27we
+	id 1xPNjR-0000000DE7t-3udY;
+	Fri, 06 Nov 2026 17:28:05 +0000
+Received: from mail-ej1-x648.google.com ([2a00:1450:4864:20::648])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPNjP-0000000DE6l-0fn2
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 17:27:28 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CBB311477;
-	Fri,  6 Nov 2026 09:27:19 -0800 (PST)
-Received: from localhost (a079125.arm.com [10.164.21.43])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 282A43F632;
-	Fri,  6 Nov 2026 09:27:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1793986042; bh=6bzuAkIaDZvpb/WEZZmaV1YDCZ13Mh9rHG1iq3jJ37w=;
-	h=Date:From:To:Cc:Subject:From;
-	b=Ob6o03Xec1fUWggLPZ/Zu5jDYGGVgmIPtWdBk1KGltVeDja5el7//AVqGpMJtWish
-	 l7EuGPFP34NXFapK/r591dA5Uok+vifaW/hB3jYQZ50pImwfLBqcssjSMwuk9B3+6Z
-	 5gEQm0qrcKFXYkCxACwhnpuLvakHukn0Klu44rvQ=
-Date: Fri, 6 Nov 2026 22:57:19 +0530
-From: Linu Cherian <linu.cherian@arm.com>
-To: Will Deacon <will@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Kevin Brodsky <kevin.brodsky@arm.com>
-Cc: linux-arch@vger.kernel.org, linux-api@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Ryan Roberts <ryan.roberts@arm.com>
-Subject: [RFC] ARM64 ESR ownership issue for signal delivery
-Message-ID: <fp2tsl5lkj4rzvwfkkgogeka7uhd2bwkci37zvikjjtg7wkckd@qc2lyhdpdocx>
+	Fri, 06 Nov 2026 17:28:04 +0000
+Received: by mail-ej1-x648.google.com with SMTP id a640c23a62f3a-c3613c35145so112341166b.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 09:28:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1793986080; x=1794590880; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=MLkiO5+iQTmH9kwercp9zyxtA2cVUMT1WfXqJlOm5MI=;
+        b=XSwyrou1z9qTCd7td4lZnGpRutddipp940tUOH43S51u3GOnkK7JTQc6V+qUARaqnB
+         mWE8n7TG1GXNkYnAYCMTlU0DElWe+rRUiE15fM52pUt3G9wP6+tEv9Kr3FKZGOsI+/r7
+         YCggbodwSl4q5jjFRsjhC9ZCm8raPDzPwPyljuEPuX365PwpnsmzjqGYDWeOON+xSn44
+         j+AfL/qSayKn7bjsRbmwg9Ne62QWcZOoQKjL/R6TzblWPJ5y/7vGoGs84WKM6/wgzgqU
+         c87CMries/VBhH65yjiJXgA/HB4KRlqHSjlcrGArPKN7qMT7cfhl3nr0eTSgY5b8bnOY
+         tnhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1793986080; x=1794590880;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=MLkiO5+iQTmH9kwercp9zyxtA2cVUMT1WfXqJlOm5MI=;
+        b=Vnh3QTQIsLZAV+WFfZnuXbTeU+c6Posyq1fUP2N8EXEXwKAkT7oUODb3ZaylUhN8aN
+         B/8VC84cBRCpEVI993blRNxw8GYdUmj2pLWqj/fVMDRlRpkDszHDc7J153ZZX4bdOP1u
+         rwCn0UkjWuZMxa9kqPKgGhYKKpk1w4h3blx6maS3XzZRM2TNry6wavYOlX2GwzS4LRLQ
+         84lxdjKGn7J2SozDgyYahzuZfdfutZF1t2+muNGo6wqKUEMRxDShazvI96XnkGGffSI/
+         wvxuXUfX+Tzyfca5awSaxZxBjVOSETY1aH1DtnGPYltcT3jNi3mN4B4JCuByFAWa8R75
+         xXBw==
+X-Forwarded-Encrypted: i=1; AL+hErG+uYaJWCdI+hN5lRtcw4+oNy8snoxcrS5q0MCrehx0vHYwbhbPpapoUu2htN+hXLm8vcx6NHKJkcOIp75rPtkI@lists.infradead.org
+X-Gm-Message-State: APuU4Z9KRGzmvUeMn/JfAojOJj25pbvJmpmQJb9zUuWmK6R+2TwU8KL5
+	nLOjIpeaTwlGCFpY6ITeSeelSs3ps6J3vNRQmexflEwKHndmel57CmZCg28bKL11OZDhsdTV9xM
+	0QSsH5D/Dui93tQ==
+X-Received: from edzd18.prod.google.com ([2002:a05:6402:8d2:b0:6b4:6266:6380])
+ (user=smostafa job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6402:5191:b0:6b4:641:baed with SMTP id 4fb4d7f45d1cf-6b59783b40amr2200349a12.30.1793986080211;
+ Fri, 06 Nov 2026 09:28:00 -0800 (PST)
+Date: Fri,  6 Nov 2026 17:27:49 +0000
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.56.0.455.g6c5a503b38-goog
+Message-ID: <20261106172750.2678873-1-smostafa@google.com>
+Subject: [PATCH v3] KVM: arm64: Use consistent type for pool size
+From: Mostafa Saleh <smostafa@google.com>
+To: linux-kernel@vger.kernel.org, kvmarm@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Cc: maz@kernel.org, oupton@kernel.org, seiden@linux.ibm.com, 
+	joey.gouly@arm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, 
+	catalin.marinas@arm.com, will@kernel.org, vdonnefort@google.com, 
+	tabba@google.com, xuheng@cs.columbia.edu, Mostafa Saleh <smostafa@google.com>, 
+	Fuad Tabba <fuad.tabba@linux.dev>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_092726_653668_ABDBB8DF 
-X-CRM114-Status: GOOD (  16.44  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261106_092803_215952_74B26034 
+X-CRM114-Status: GOOD (  14.12  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,165 +91,96 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+All the pool sizes in the hypervisor are "unsigned long" but when
+they get passed to hyp_early_alloc_contig() or hyp_pool_init() they get
+truncated to 32-bits.
 
-I am sharing some details on the ARM64 ESR ownership issue during
-signal delivery, along with a few possible solutions.
-I would appriciate feedback on the scenarios and proposed approaches.
+That is not a big problem at the moment as to overflow this we need
+4G bytes of carveout (2 TB of host or guest system memory).
 
-Introduction to ESR
-~~~~~~~~~~~~~~~~~~~
+However when new users are added (as IOMMU) it is hard to reason
+about the carveout size anymore.
 
-ESR refers to an AArch64 system register, Exception syndrome register
-which holds the information about why an exception occurred.
+Fixes: e75960408723 ("KVM: arm64: Introduce an early Hyp page allocator")
+Fixes: 8e17c66249e9 ("KVM: arm64: Introduce a Hyp buddy page allocator")
+Reviewed-by: Fuad Tabba <fuad.tabba@linux.dev>
+Acked-by: Will Deacon <will@kernel.org>
+Signed-off-by: Mostafa Saleh <smostafa@google.com>
+---
+ arch/arm64/kvm/hyp/include/nvhe/early_alloc.h | 2 +-
+ arch/arm64/kvm/hyp/include/nvhe/gfp.h         | 4 ++--
+ arch/arm64/kvm/hyp/nvhe/early_alloc.c         | 2 +-
+ arch/arm64/kvm/hyp/nvhe/page_alloc.c          | 6 +++---
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
-For relevant hardware faults, Linux exposes this value to user space, by
-including ESR context in the signal frame. This was originally introduced [1]
-for user space instruction emulators to identify whether a fault is read/write
-and its access size without decoding the instruction itself.
+diff --git a/arch/arm64/kvm/hyp/include/nvhe/early_alloc.h b/arch/arm64/kvm/hyp/include/nvhe/early_alloc.h
+index dc61aaa56f31..462883c4e325 100644
+--- a/arch/arm64/kvm/hyp/include/nvhe/early_alloc.h
++++ b/arch/arm64/kvm/hyp/include/nvhe/early_alloc.h
+@@ -7,7 +7,7 @@
+ void hyp_early_alloc_init(void *virt, unsigned long size);
+ unsigned long hyp_early_alloc_nr_used_pages(void);
+ void *hyp_early_alloc_page(void *arg);
+-void *hyp_early_alloc_contig(unsigned int nr_pages);
++void *hyp_early_alloc_contig(unsigned long nr_pages);
+ 
+ extern struct kvm_pgtable_mm_ops hyp_early_alloc_mm_ops;
+ 
+diff --git a/arch/arm64/kvm/hyp/include/nvhe/gfp.h b/arch/arm64/kvm/hyp/include/nvhe/gfp.h
+index 3766333bace9..3a428dc40b14 100644
+--- a/arch/arm64/kvm/hyp/include/nvhe/gfp.h
++++ b/arch/arm64/kvm/hyp/include/nvhe/gfp.h
+@@ -29,6 +29,6 @@ void hyp_get_page(struct hyp_pool *pool, void *addr);
+ void hyp_put_page(struct hyp_pool *pool, void *addr);
+ 
+ /* Used pages cannot be freed */
+-int hyp_pool_init(struct hyp_pool *pool, u64 pfn, unsigned int nr_pages,
+-		  unsigned int reserved_pages);
++int hyp_pool_init(struct hyp_pool *pool, u64 pfn, unsigned long nr_pages,
++		  unsigned long reserved_pages);
+ #endif /* __KVM_HYP_GFP_H */
+diff --git a/arch/arm64/kvm/hyp/nvhe/early_alloc.c b/arch/arm64/kvm/hyp/nvhe/early_alloc.c
+index 00de04153cc6..9fef0c7d2185 100644
+--- a/arch/arm64/kvm/hyp/nvhe/early_alloc.c
++++ b/arch/arm64/kvm/hyp/nvhe/early_alloc.c
+@@ -21,7 +21,7 @@ unsigned long hyp_early_alloc_nr_used_pages(void)
+ 	return (cur - base) >> PAGE_SHIFT;
+ }
+ 
+-void *hyp_early_alloc_contig(unsigned int nr_pages)
++void *hyp_early_alloc_contig(unsigned long nr_pages)
+ {
+ 	unsigned long size = (nr_pages << PAGE_SHIFT);
+ 	void *ret = (void *)cur;
+diff --git a/arch/arm64/kvm/hyp/nvhe/page_alloc.c b/arch/arm64/kvm/hyp/nvhe/page_alloc.c
+index 57f86aa0f82f..51460d420c94 100644
+--- a/arch/arm64/kvm/hyp/nvhe/page_alloc.c
++++ b/arch/arm64/kvm/hyp/nvhe/page_alloc.c
+@@ -229,12 +229,12 @@ void *hyp_alloc_pages(struct hyp_pool *pool, u8 order)
+ 	return hyp_page_to_virt(p);
+ }
+ 
+-int hyp_pool_init(struct hyp_pool *pool, u64 pfn, unsigned int nr_pages,
+-		  unsigned int reserved_pages)
++int hyp_pool_init(struct hyp_pool *pool, u64 pfn, unsigned long nr_pages,
++		  unsigned long reserved_pages)
+ {
+ 	phys_addr_t phys = hyp_pfn_to_phys(pfn);
+ 	struct hyp_page *p;
+-	int i;
++	unsigned long i;
+ 
+ 	hyp_spin_lock_init(&pool->lock);
+ 	pool->max_order = min(MAX_PAGE_ORDER,
+-- 
+2.56.0.455.g6c5a503b38-goog
 
-Problem statement
-~~~~~~~~~~~~~~~~~
-
-ARM64 uses a task level field, current->thread.fault_code to retain the
-ESR state captured during faults. This is later used to generate the ESR
-context during signal frame generation. Essentially the ESR state stored
-in fault_code has no ownership relation with the signals queued.
-
-From Linux arm64 point of view, there are two categories,
-* Signals with relevant ESR context - triggered by hardware faults only
-* Signals without ESR context - triggered by hardware faults and software as well.
-
-Because fault_code has no signal ownership, an ESR captured for one signal can be
-included in the frame of an unrelated signal.
-
-Some possible error scenarios are given below that show the ESR ownership issue.
-
-Assumption:
-1. Signals described as being delivered to user space are assumed to have handlers
-installed that allow the task to continue.
-2. Cases 2 and 3 assume that the task is traced by ptrace
-
-Case 1: Hardware fault followed by an unrelated asynchronous signal
-
-* An EL0 exception generates and delivers a fault signal with ESR A.
-* current->thread.fault_code remains set after the signal is delivered.
-* A subsequent asynchronous SIGUSR1 is delivered
-* Since ESR context is added to signal frame based on non zero fault_code,
-  a stale ESR context can get attached to this non fault signal.
-
-Case 2: Two EL0 faults, each with distinct ESR values
-
-* An EL0 store to a read-only page triggers hardware fault with ESR A
-  and SIGSEGV gets queued.
-* At the SIGSEGV ptrace stop, ptrace tracer
-  - masks SIGSEGV
-  - queues SIGUSR1 to the tracee
-  - continues the tracee task with SIGSEGV and hence SIGSEGV gets requeued.
-    ie. PTRACE_CONT(..., SIGSEGV)
-  So essentially SIGSEGV gets deferred and SIGUSR1 gets processed first.
-* Task continues with SIGUSR1 user space handler which in turn triggers another
-  hardware fault with ESR B resulting in a SIGBUS. This overwrites ESR A in
-  the task level storage.
-* When the initially deferred SIGSEGV is later delivered,
-  its ESR context is generated from ESR B instead of ESR A.
-
-Case 3: One EL0 fault with valid ESR + software-originated fault signal without ESR
-
-* A task masks SIGBUS signal and then self-queues the same SIGBUS/BUS_ADRERR signal
-  This is software generated but uses the same encoding (signo, si_code)
-  of hardware fault signal.
-* The task then encounters a hardware fault with ESR A and SIGSEGV
-  gets queued.
-* At the SIGSEGV ptrace stop, ptrace tracer
-  - masks SIGSEGV,
-  - unmasks SIGBUS,
-  - continues the tracee with SIGSEGV and hence SIGSEGV gets requeued
-* Task continues with SIGBUS handling and the signal can get wrongly framed with ESR A.
-
-Open questions
-~~~~~~~~~~~~~~
-
-Are there any known users for ESR context in arm64 signal frames currently?
-If not, should we really continue exposing ESR context through signal frames ?
-
-Possible solutions
-~~~~~~~~~~~~~~~~~~
-
-If we wish to expose ESR context in signal frames, below are few options.
-
-Option 1: Task-level ESR with filtering (no changes to generic kernel)
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Category A: Non-synchronous signals
-Prevent signals such as SIGUSR1 from receiving an ESR context.
-Fix: Allow ESR framing only for sigmask(ksig->sig) & SYNCHRONOUS_MASK
-
-Category B: Synchronous signal codes that cannot carry ESR
-Exclude codes such as TRAP_PERF, BUS_MCEERR_AO, and SEGV_MTEAERR.
-Fix: Allow ESR framing only for ARM64 ESR-capable (signo, si_code) pair.
-
-Category C: ESR-capable pairs without a captured ESR
-Some software-generated signals use the same ESR-capable (signo, si_code)
-pair as hardware exceptions.
-Fix: Add current->thread.esr_valid, set only by ESR-capturing exception paths
-and cleared after consumption or invalidation.
-
-Required assumption: Multiple ESR-less ESR-capable(Cat C) signals may be outstanding
-while esr_valid is clear. While esr_valid is set, the signal owning the ESR must
-be the only outstanding ESR-capable signal until its ESR is framed or invalidated.
-
-Atleast cases 2 and 3 violate this assumption.
-
-Option 2: Per-signal ESR ownership flag
-+++++++++++++++++++++++++++++++++++++++
-
-Add a per signal ESR ownership flag, potentially using unused bits in the fields of
-_sigfault (part of struct kernel_siginfo) to mark which queued signal owns
-current->thread.fault_code.
-
-By default, the field should stay cleared.
-
-  - Set thread.esr_valid when an exception captures ESR.
-  - Set the signal’s ESR_VALID flag when queueing it.
-  - Generate an ESR context only when both are set.
-  - Clear thread.esr_valid after the owning signal has framed the ESR,
-     or when the owning signal is discarded
-  - Detect an ownership conflict if ESR is captured while thread.esr_valid
-    is already set.
-  - Detect stale ownership if a flagged signal is dequeued while thread.esr_valid
-     is clear.
-
-This approach resolves ambiguity between any number of ESR-less Category C signals
-and one ESR-owning signal. It detects, but does not solve, the case where multiple
-ESR-owning signals coexist.
-
-This may be involve fewer changes than Option 3, but then this option needs further
-validiation of layout compatibility and sanitization of siginfo passed from/to userspace.
-Also implications of reusing siginfo storage for kernel internal metada need to be
-looked further.
-
-Option 3: Add per-signal arch context
-+++++++++++++++++++++++++++++++++++++
-
-Probably a cleaner but more invasive solution is to add arch context
-(ESR value and valid bit) to each struct sigqueue (ie. outside struct kernel_siginfo)
-and propagate it into struct ksignal.
-Context aware APIs can be used to specify ESR value and its validity while existing
-APIs would leave the context invalid.
-
-This option could open a way for ptrace to get the precise ESR value and that can be really
-benefecial for POE2 use case.
-
-[1] https://github.com/torvalds/linux/commit/15af1942dd61ee236a48b3de14d6f31c0b9e8116
-
-Thanks,
-Linu Cherian.
 
