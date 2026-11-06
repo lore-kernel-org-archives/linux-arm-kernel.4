@@ -2,161 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464F8606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 22:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59087606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 23:02:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XPnAMDKB;
-	dkim=pass (2048-bit key, unprotected) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=hcedw4Jh
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qoxWjpZe;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=IO1lsZCm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Cc:To:
-	In-Reply-To:References:Message-Id:Content-Transfer-Encoding:Content-Type:
-	Subject:Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=V+NxTgG/Dg/uBowYyCP6sYSEbii5o64ppP9tiR0RYy4=; b=XPnAMDKBLutsMp3et4QOWAHjH1
-	ac7gKUHsKS5ImHbLxZEdinpSrLG/1gYh5biXpH73DAAWUq78lT02PjvDFzQPjZv7FggnpegxE1i9e
-	5wAbuzJMdwlt3rqcgLkNnqde7b7/QIxwj7tmZGcNjP/LOkmUODy3sZTvdyS7JdStfon/7KwzkD/B+
-	dOpZ3FKWL4PU6bc5JnJNpI7xqPQhxES0C1OFRglVdcE63gk6J1K2NJnXmCrZ5BJA5Jy+1qmDjBlAd
-	2bH+9qP+31wUGw7PfVIq0xBc9SPtSWA5fTdcwZHRkSFhEAmGK90IpdLphNqYz4BOLPw7ADkvVXJsl
-	IhFGPtmQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+WLW8LR9a7m1YlHZ+zZ84FTJgrDPlJ3AdbbFpi33+Wg=; b=qoxWjpZesJkaYh
+	Ws5HbATfNFsRou1N8tsLNJ3BSnUw9WKsxiJ5nw8c17qo38Rcmqp/Kz5UdlYxk20/mwjJKBnJkZE6d
+	tddDaN2CiJIVLKPZOpLeqMRvFgKyIcByO3duKJqYFImQur5/WgDzGIMMDwQfzAR48SL4ADeXsWN1G
+	CX8ZeZAfouikp3n+KrSExA7zk035ob3DIebDevTk1OwGBy0bODAXGwCp8gh9BTsRqo5g4YL/EBYYs
+	qKHAX0J+W+1k95Cjj9THMz5ETAEhhQ4mxlXmUzvxF7PYUboNCjhnI1zlDypkxTStgl2kg050TVTY2
+	iK4bs2del7cvkNQlnmQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPSer-0000000Do9k-1RXD;
-	Fri, 06 Nov 2026 22:43:41 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPSel-0000000Do5i-1ckp
+	id 1xPSwR-0000000DovW-3OuT;
+	Fri, 06 Nov 2026 23:01:51 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPSwO-0000000Dov7-1oGL
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 22:43:36 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vfP+o66zW6gn31YEC/XW6wKZDaXsurzRL4YlRIiXZj9c0P6AqcEOwOzBfKLXUt/2t4lVzulYCqEU6K3cbjRpQt4QATyi4dXGgexvxl63GtWbTebMWBMrGfG4RYhD7eV4CAAKjlXIdLy1DIHK29m8lCWp/5xWnKy03unqXlcb/dFIBJeyv3ZHYBCafnnQBJ0KhnesddAMBIvlC8emcSVCLw6Pga65s5+KopINmH2N8R9Zp4MaPQuYO/BfU+rjGBhlkg3cQWFeeC/ofadDpGVrMlp0WQLPX87pom1iG0fVJxfD8/f9X+9lepHtGoFppIn4ShPyFC7fFOdJFE2avDqafg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V+NxTgG/Dg/uBowYyCP6sYSEbii5o64ppP9tiR0RYy4=;
- b=pXC0K2xbCB+1E2lnbv/ZWlymXdI5jvX86cZZj8nOIhs7RB9H77JgN3irv0J+e9Jf0UBKPzwmgXftunO1zgSv+feX1jZZ726jBb06It3xfJdsrACb7xpUC4b505S+asr6sD6h8/KTVlBwQmTjZzG1pFDjZ3XDO+aPYZ4qIvHooegmcxUy7ZaMLm/abBD7UraeclWKgs/WmQPR6TwjvE6dvEjAxuf9EZUymAE3jXqV4ZRaphdKxTfSJF+f2EWt7GkgKEfWhvAeqXglp1iKMxHzg/SxttrZVYf4rhKjUaHgCS9ninemHP8acKBQz6QBCF2TO+tQGUO+ljHp8aCKusL7eA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V+NxTgG/Dg/uBowYyCP6sYSEbii5o64ppP9tiR0RYy4=;
- b=hcedw4Jh6lmTe/9AY/MnFvb2lYXVwjoOsG76mO6Y/3cvh7xtHyho25qTzVnumgiX67Eh69mk6UuyqZCYyR52VMM88pZqfosk9YDC2cPZhtOdNDSQ/hLKQz3t03IjBjPscwOlgVMfRgIuhuE4HcYeZnAdaDwkNIo8VTSGZwRPXt/vxfnzlrq0mM7BCuo3RfEedguVROg6Z+Okcd45wLguN8nR1k5a9CTl2tSrwakUryyarYQrbebSsZUZc6kzv6c1h/G+opwFY5QlI0xZX3mHzl2lN0EJ11j/q15OxAQCWYUJ9UQzuc4mpYjTRd0WbTj/WdSINheLGCke5C7LFky6BQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GVXPR04MB10731.eurprd04.prod.outlook.com (2603:10a6:150:227::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Fri, 6 Nov
- 2026 22:43:32 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%6]) with mapi id 15.21.0592.010; Fri, 6 Nov 2026
- 22:43:32 +0000
-From: Frank.Li@oss.nxp.com
-Date: Fri, 06 Nov 2026 17:43:10 -0500
-Subject: [PATCH 3/3] ASoC: sprd: use dmaengine_prep_slave_sg_context()
- instead of device_prep_slave_sg()
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-rio_sg-v1-3-bc54b4bd8c95@nxp.com>
-References: <20261106-rio_sg-v1-0-bc54b4bd8c95@nxp.com>
-In-Reply-To: <20261106-rio_sg-v1-0-bc54b4bd8c95@nxp.com>
-To: Matt Porter <mporter@kernel.crashing.org>, 
- Alexandre Bounine <alex.bou9@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
- Frank Li <Frank.Li@kernel.org>, 
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michal Simek <michal.simek@amd.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org, 
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sound@vger.kernel.org, imx@lists.linux.dev, 
- Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794004992; l=2064;
- i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
- bh=IwXts/1+LZKRnlqQdW6bwf8OAC6tU+GWZrBJRzMYiEQ=;
- b=rkuvsGbQXTfPFvlMTuIm1AadnJTbXZfo0n6BrfvXcs+LvVVgCBmWy7LUYwJ+xA8s63z3uP5VU
- wH627PUBTyRAXlhKHBqhgtqw7Fw+1BDB/xMI6RoUxzRu1jyOvealmvO
-X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
- pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
-X-ClientProxiedBy: PH7P222CA0029.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:33a::31) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Fri, 06 Nov 2026 23:01:50 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEB2F1650;
+	Fri,  6 Nov 2026 15:01:41 -0800 (PST)
+Received: from ryzen.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A3293F673;
+	Fri,  6 Nov 2026 15:01:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794006104; bh=3S8qesdRfNmQe0ma5COPvlu/f0WMqm4btvUmh8g5L3c=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=IO1lsZCmgH0zr1zduBecEsrscwlQTwAWtBDwmXVhSMCAMyWcQuADAw84WvG/9cepr
+	 4eVatyJsrsWDBCGLNg9bISE/bzVgZqD1aG9o0o1n4JoBLVtuQGQ47jkeSdt/DVuuW9
+	 JCY6/RoWRoixluU8nKsVMnCJTB4HFzCGqHWbMRyE=
+Date: Sat, 7 Nov 2026 00:01:35 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Enzo Adriano <enzo.adriano.code@gmail.com>
+Cc: linusw@kernel.org, wens@kernel.org, jernej.skrabec@gmail.com,
+ samuel@sholland.org, Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>,
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] pinctrl: sunxi: preserve A733 firmware voltage modes
+Message-ID: <20261107000135.6b684277@ryzen.lan>
+In-Reply-To: <20261104-a733-pinctrl-v2@gmail.com>
+References: <20261104-a733-pinctrl-v2@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GVXPR04MB10731:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7b8e6b05-9589-4fd4-14a3-08df3c576260
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|23010399003|19092799006|1800799024|261026140227099003|261021121427099003|261021123027099003|261028144727099003|261102123227099003|261022105027099003|10067099003|11063799006|261009223027099003|6133799003|22082099003|18002099003|921020|56012099006;
-X-Microsoft-Antispam-Message-Info: CjEsbT0gYvRN3bWT/EuU2DK49p8PyJgIw2t0csuAbwt1VxBzUgnhTmUST3Q9LStv2901ga/2pGrcVWju7aqcTkPTzeC7jsO3IEbuxHI4CyK+hChR+nicahs/pTVekDb3udjMs8r5HB61Zr2WjxPDy1xr1dnw7JuM7ZOeg4FVXVIpa8/ylE8sRDk1aX+z6ee4FaQr2ZTXkZi9XqbvG6YcOc3aWqkiNMnxCtyVapr9x2UIkFRAW0LveEW9+SCaf1oeblj2qQhOY7fVUdcVzALM0/mmYtQ3WKXU6j6RfMaieIQTUXwSxjHnob2wxaFH7nzJBiex4jnppHv/S4U9Yt5sESVe3H/Ij/wSB0Lsbhb+vt+x97dtmAKtPviwBSQ3asHqjtwXB/NjctAgo5jkQUr8re4vfy/He7M3x/vLJQOgWsrLE+bzTtLWe0w6Fok5XPJH6xgfKD0wJGD41DJIqSsC5xjo5DHmSR3FpEzI4kSKHtv3JUg89vpTFFgiRKQhKYaMRSOK0czXBDclm0wl2zkcpyPd/3KYWO3s+mHbUkpCqg4gssXeONNN1cF6Urm0C86vo/bxJzh0GkZsKQA3REFmCYDUb7eeh0tWg4QsrmXlLFUoy84lFvJM1JPQ5bdC7O+LDIBHVxLuN4g1j+U+I49djM7+I4FsjaIA1mnhcLQdyHggHhpFfkuiYBbReaBTLdGaA9vTV03f47e7wpADSuJchQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(23010399003)(19092799006)(1800799024)(261026140227099003)(261021121427099003)(261021123027099003)(261028144727099003)(261102123227099003)(261022105027099003)(10067099003)(11063799006)(261009223027099003)(6133799003)(22082099003)(18002099003)(921020)(56012099006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZTZYOUFDVXMzZTBpYWZSVVR6Z3REWFVRQldZTXJmYnRuYkhDbWRuZnl0NTZw?=
- =?utf-8?B?a0NjcHVIQk1kcWdYMElnWXAzdm8rZnJURTlmbHNvVWFnNTlXN1VLOEJqT1JP?=
- =?utf-8?B?N08yZUF0Zmp6QSttS29xY1VFa3ozdEs2UFNCQXE2SWJDeUc1ZCtGSDNMUkZB?=
- =?utf-8?B?R0RvczhlSUdESGcvbnFHY244cno2Q3dnK2VIaFNOOVpmemVrK0hnYUVjMjIv?=
- =?utf-8?B?a1R6amwvVExoYStJR3hERElqYzhMMjhLcjVvRi9ma1k3ZWNZQnI1SDZta21z?=
- =?utf-8?B?MGpvdXBiaUdiZWRnNWI2ZVBnQXFEMTIxU1Y4RlkwV0NRZlhCS0JZM3BCTHBW?=
- =?utf-8?B?dGVEZU04WGdZeHVBY3RIWWV5ek4vK2Evbnk4N0Y0aitDTEtNckROcnpHYlFO?=
- =?utf-8?B?TVo5NE94ejZDRHlTcjB0UXIyZ0FXMThjRE54UEZxNWZIbVJwUHQrS092L0dz?=
- =?utf-8?B?Y2FnYis0ZmN6dldPOHdBbTRtRmh1WG1ydm45NHJCd0dtc0wxL3BKMzhLdWps?=
- =?utf-8?B?TXlXSiswR0I4RTBpTGc0NXMzWHg5Yi9GdTBSSEJzeHI0Ynpwb2wrSXoyVWVt?=
- =?utf-8?B?ZGRJM1N0RnNDV3NpT3dVaVJXcFlJL2gzeHE0SEhNWDlMb1h2M214dTZ6MTNX?=
- =?utf-8?B?cGVyZFBhTlJPR1Jmd210R1dvaUJnN0NGQkk2Nmw2WDlaY2hHc3hlL21YRVZC?=
- =?utf-8?B?aWFwb3lsN2ZpTTJ0Z0ZjT3dnZ0M0WWVvMHJrQm44cWs2U2FWb0RiaDBlODg3?=
- =?utf-8?B?SXdGZG40SlV5bDN0b05rTzcvSWkwSlZaWTNEZGtQcEgrL2pqcElPeFBmekpW?=
- =?utf-8?B?dFYvT2k3TmRIRUpCTGw2NVU4UkxwL0hTaUltVjlBbk1sL0tWckJUajJzVkdZ?=
- =?utf-8?B?RDJHbjlwUitJazZtbE5jMmJ5VHM4QXEyZFZvOWhtckpKb1FEMjF6SFVzdldB?=
- =?utf-8?B?dVZ6Y0M0MTVmd0pwMzRuVDB2OG1wck9TN0hqYUVxV0ltK1BIcy9KMUtOcWVG?=
- =?utf-8?B?eExJSUVYVkVmelZBUURoWDVPU2hMdlYrQW9Dd0hXWWJYRG5kb1F3bUlBLzRZ?=
- =?utf-8?B?YWNGTU9aM1ZsdVF3bXNJdXNPcjg0SXdjaHhBZCtoWDdUSk8xV0NYMm4zQmVJ?=
- =?utf-8?B?K0lCWE82VDNrcnFUS3V6bDZLNHB6cWlwc0ZBZTBZOG5KWlpmOVc2MEFhdzFG?=
- =?utf-8?B?VVJsM0pDS2pHaG15d3UvaTZTTEpFWmVzRnIzNnVJcW9PSTdUYzNoVmloUi9E?=
- =?utf-8?B?cUNXaStuNi82K3JzSmVwWGdOSGJhZ2t5bTRVbXYySkxXTlRodWlGT0J1by9v?=
- =?utf-8?B?cDFpMmlTMzRVTUtVRW80S0xxVjE5anlYcFdjQnRYN2twYVJPTlQzU2IrYU03?=
- =?utf-8?B?YWRZdXhYNlJta0JkQWM1N2JoaWhzYXp3OUd4MU83RUF6bitiZ1A3eVJncWpr?=
- =?utf-8?B?TW5JNjJBcDVIL3FPTmlWTG5PeVhaSXljTWwwNnZkSnhWMS9sNUZXWmIwL2NB?=
- =?utf-8?B?eWpJVXJ6dndtVmFOU2ZKWGJOMGQvaFg5ZDZKSk1nZW1DNi9OZS9reHBBcTZN?=
- =?utf-8?B?UHNZdElzR1R3VGQ1WXJWaWFmUk0xZW80cit5ZmkxS2FXbXRqR0cvSjNtcEhk?=
- =?utf-8?B?SnNqR1dsQjBYejQweGZTVjlLSTBSczYvMWtIcFBrMDR2MWwxTEVMYmpRRUJw?=
- =?utf-8?B?L0tvb3dSSDNrQVF3d0JUNW9KT3ZveHZWa2ZkV2dESE9oNDFFanU3Q2tMZmt0?=
- =?utf-8?B?TUN3Q2cwVlpKSVV2SUp0OWZnY3ZNR3BzQnlHNVJjU0NOaHVVMW9LdE1uR1Nt?=
- =?utf-8?B?NmVvTW1TaUVMU1RRcDBPWVJqcjdNcXd4NTdFVGZtOHRxeFdKWWFPOEY4QTJM?=
- =?utf-8?B?SkFOMmpPenBZc2NBWjVlSStlUmxJQlM4Sk5FdCtJellSbnIvTkVEZXRBQU5i?=
- =?utf-8?B?YVJ1OVNhV0o1UXZSNFlvSlZuV0VQQ0VzdVhpdmJtTTVVRWo2dWgyc1BNVThM?=
- =?utf-8?B?OUlwYmYrc2FFZklvWUNTK1M0dC9XK25tdGQySDhCVmxRdFdPckI0TDd6bHhm?=
- =?utf-8?B?dm05ejNPQTB5cm9RbHRtWSs2K2hKWkU1TVZtT0U1V01aeDNKeVErL291ajI1?=
- =?utf-8?B?UCtUdUlGeGRLdHNFcVRraGlUcVNLdURsTmErMmt0UE5FUnA1Z3VneWZjdWNX?=
- =?utf-8?B?OXE5NmFOZDBBbmRvRkJoblowTmJTY0UySjJFR0Q2R0FwbkpNbTBZTWg2VmR4?=
- =?utf-8?B?UDV1RkcrOVV2U1NlT1poV3RjNnY5UmtwMm9GZGpYcmN3MmowLzV4ZSt3ajRs?=
- =?utf-8?B?ZTBFN3BIWlBGbDdSUWluMWZkWlhDQ0NoSCtwSlUxNnB0SnpRTk9yUTdObExF?=
- =?utf-8?Q?io6s+ICSSvisNoDPDrZjg/UQK9VnJ4Cg6X52Z?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b8e6b05-9589-4fd4-14a3-08df3c576260
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 22:43:32.0799
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: suVhoPcraoAk5eB6f5dChGNwbwY7UGczvCgm2lRLUD1HFhIJrqsPASk5dJmlxRGPuyvWXZj9pHmLSg262ZkfuxhtptE5/m/6DZnvJR+tc207vPxeXyuO8PMvOcSkfb45
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10731
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_144335_445716_91D8285D 
-X-CRM114-Status: GOOD (  12.32  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261106_150148_671436_BF1584C6 
+X-CRM114-Status: GOOD (  38.82  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -167,67 +71,186 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Frank Li <Frank.Li@nxp.com>
+On Wed,  4 Nov 2026 15:56:39 -0500
+Enzo Adriano <enzo.adriano.code@gmail.com> wrote:
 
-Replace direct calls to chan->device->device_prep_slave_sg() with the
-dmaengine_prep_slave_sg_context() helper in both sprd-pcm-dma.c and
-sprd-pcm-compress.c.
+Hi,
 
-No functional change. Prepare to make struct dma_device private to the DMA
-engine.
+> The A733 GPIO_POW_MOD_SEL voltage-mode fields are two bits wide on
+> both controllers (A733 User Manual v1.00, sections 18.14.6.1 and
+> 18.14.7.20). On the main controller, the one-bit
+> BIAS_VOLTAGE_PIO_POW_MODE_SEL handler writes bit N for bank N, which
+> is reserved or half of another bank's field.
+> 
+> Starting from the vendor firmware value 0x01155550, a request for PF
+> with a 1.8 V supply sets bit 5, changing PC from auto (01) to 1.8 V
+> (11). A request for PK with a 3.3 V supply clears bit 10, changing PF
+> from auto to 3.3 V. PB is supplied from VCC-IO (A733 Datasheet v1.01,
+> table 4-5), whose field is at bits 25:24, but a PB request writes
+> reserved bit 1 instead.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Last user use prep_sg with context argument. Suggest go through DMA Engine
-tree directly.
----
- sound/soc/sprd/sprd-pcm-compress.c | 6 +++---
- sound/soc/sprd/sprd-pcm-dma.c      | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+I guess this has been written by an agent who like to talk? There is
+really little point in explaining in multiple lines that
+two-bits-per-bank is not compatible with one-bit-per-bank.
 
-diff --git a/sound/soc/sprd/sprd-pcm-compress.c b/sound/soc/sprd/sprd-pcm-compress.c
-index a810c9c8a0b5b..228cb8741c438 100644
---- a/sound/soc/sprd/sprd-pcm-compress.c
-+++ b/sound/soc/sprd/sprd-pcm-compress.c
-@@ -236,9 +236,9 @@ static int sprd_platform_compr_dma_config(struct snd_soc_component *component,
- 	 * We configure the DMA request mode, interrupt mode, channel
- 	 * mode and channel trigger mode by the flags.
- 	 */
--	dma->desc = dma->chan->device->device_prep_slave_sg(dma->chan, sg,
--							    sg_num, dir,
--							    flags, &link);
-+	dma->desc = dmaengine_prep_slave_sg_context(dma->chan, sg,
-+						    sg_num, dir,
-+						    flags, &link);
- 	if (!dma->desc) {
- 		dev_err(dev, "failed to prepare slave sg\n");
- 		ret = -ENOMEM;
-diff --git a/sound/soc/sprd/sprd-pcm-dma.c b/sound/soc/sprd/sprd-pcm-dma.c
-index 968901ae4c335..bb72cb272d4b3 100644
---- a/sound/soc/sprd/sprd-pcm-dma.c
-+++ b/sound/soc/sprd/sprd-pcm-dma.c
-@@ -277,9 +277,9 @@ static int sprd_pcm_hw_params(struct snd_soc_component *component,
- 		 */
- 		flags = SPRD_DMA_FLAGS(SPRD_DMA_CHN_MODE_NONE, SPRD_DMA_NO_TRG,
- 				       SPRD_DMA_FRAG_REQ, SPRD_DMA_TRANS_INT);
--		data->desc = chan->device->device_prep_slave_sg(chan, sg,
--								sg_num, dir,
--								flags, &link);
-+		data->desc = dmaengine_prep_slave_sg_context(chan, sg,
-+							     sg_num, dir,
-+							     flags, &link);
- 		if (!data->desc) {
- 			dev_err(component->dev, "failed to prepare slave sg\n");
- 			ret = -ENOMEM;
+> A733 R-PIO has SEL at 0x340 and VAL at 0x348 and nothing at 0x344
+> (section 18.14.5.2), where the BIAS_VOLTAGE_PIO_POW_MODE_CTL_INV
+> handler it shares with A523-R writes the A523 control register. That
+> handler also writes bit N of SEL inverted: for PL with a 3.3 V supply
+> it sets bit 0, changing PL from 3.3 V (10) to 1.8 V (11).
+> 
+> v7.4-rc1 added A733 support with these handlers, so the writes happen
+> on the first request of a pin in a bank with a vcc-pX-supply in the
+> devicetree.
+> 
+> Select BIAS_VOLTAGE_NONE for both A733 controllers and give A733-R its
+> own descriptor, keeping the A523-R descriptor and behaviour. This
+> leaves the firmware voltage modes in place, including any that do not
+> match their supplies. It does not implement voltage switching.
 
--- 
-2.43.0
+So I am not really happy with that. Given that we have existing
+problems with the banks not all lining up (PortB and VCC-IO and
+friends), just skipping the setup might be a pragmatic solution.
+But then the kernel should engage the auto setting, as we generally
+don't want to rely on firmware if we can help it.
+
+So as I suggested before: please introduce a symbol like
+BIAS_VOLTAGE_PIO_POW_AUTO or so, which also skips the explicit bank setup, like 
+BIAS_VOLTAGE_NONE does, but then triggers setting all banks to auto, somewhere in the
+generic pinctrl code. Just writing "01" to all banks should do it,
+don't get hung up on banks that the manual doesn't describe: mostly
+those bits either don't exist at all, or they belong to ports only
+exposed on other packages. PortI looks like such a candidate, reading
+the respective region tells me that there are 17 PortI pins implemented.
+Same thing we saw on the A523/T527 and also on H616/H700.
+
+> 
+> Fixes: 0535bfbfa97b ("pinctrl: sunxi: add support for the Allwinner A733")
+> Fixes: 31d68e10381c ("pinctrl: sunxi: a523-r: add a733-r compatible string")
+> Link: https://lore.kernel.org/all/20261014183516.172060-1-vinicius.eduardo.pedrosa@gmail.com/
+> Suggested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+> Tested-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com> # Cubie A7Z
+> Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+> ---
+> Changes in v2:
+> - Rebased on v7.4-rc1, which added the A733 pinctrl driver. Only the
+>   context of the A733 hunk changed.
+> - Dropped the old base and its prerequisite-patch-id lines.
+> - Dropped the AI assistance and Assisted-by lines.
+> - Added Vinicius' Tested-by, from a Cubie A7Z on Linux 7.3-rc6 with his
+>   local A733 patches, applied with a context adjustment: warm boots
+>   only, no cold boot, 1.8 V switching or A523.
+> - Added Fixes tags, manual references and examples of the bits the old
+>   handlers write.
+> 
+> Andre's RFT [1] fixes the same bug with a two-bit handler and changes
+> the same A733 line, so only one of the two can be applied. This patch
+> uses BIAS_VOLTAGE_NONE, as Vinicius recommended in that thread, rather
+> than an AUTO variant: manual section 18.14.4.6 gives auto as 01, but
+> as 10 for PC/PE/PK, which the 18.14.6.1 table lists as 3.3 V, and
+> there is no evidence that 01 is right on every silicon revision. The
+> cost is that firmware modes that do not match a bank's supply stay as
+> they are. Andre, if you prefer the AUTO variant, I can rework it.
+
+As mentioned above: Yes, please do. And don't read too much into
+silicon revisions or the manual not mentioning everything.
+
+Cheers,
+Andre
+
+> 
+> [1] https://lore.kernel.org/r/20261013142351.771229-1-andre.przywara@arm.com
+> 
+> Tested on v7.4-rc1 on a Cubie A7S with vendor boot firmware (one RAM
+> boot from cold, then a warm reboot), with A733 CCU v6, AXP318W PMIC v8,
+> the sunxi IRQ-bank v3 series, the 8250_dw changes, my A733
+> firmware-clock patch and A7S DT v2 on top. The main and R-PIO
+> GPIO_POW_MOD_SEL registers (0x02000040, 0x07025340) read 0x01155550
+> and 0x000aaaaa in both U-Boot and Linux, and the PF selector
+> (0x02000070) read 1. The PMIC regulators registered over R-I2C0 and
+> MMC0 reads worked. The readback was taken before the unused-regulator
+> cleanup.
+> 
+> The main-controller value distinguishes the handlers: MMC0 requests
+> PF, and this DT gives PF a 1.8 V supply, so the old handler would have
+> set bit 5 (0x01155570). An unpatched kernel was not booted. The R-PIO
+> value does not: PL has no vcc-pl-supply in this DT, because PL carries
+> the PMIC bus, so the R-I2C0 request returns before writing, and the
+> old handler's write for PM (3.3 V) would set bit 1, which is already
+> set. Vinicius' test covers R-PIO: he added 3.3 V vcc-pl and vcc-pm
+> supplies, and also read the registers after the unused-regulator
+> cleanup.
+> 
+> Also built arm64 defconfig with W=1 (GCC) and the changed objects with
+> Clang. Not tested: 1.8 V switching, A523.
+> 
+> v1: https://lore.kernel.org/r/20261031020640-263f7b05-a7s-pinctrl@gmail.com
+> 
+>  drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 20 +++++++++++++++----
+>  drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c   |  3 ++-
+>  2 files changed, 18 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
+> index cffc1e53eef1..1cfd81184350 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
+> @@ -30,17 +30,29 @@ static struct sunxi_pinctrl_desc a523_r_pinctrl_data = {
+>  	.pin_base = PL_BASE,
+>  };
+>  
+> +static struct sunxi_pinctrl_desc a733_r_pinctrl_data = {
+> +	.irq_banks = ARRAY_SIZE(a523_r_irq_bank_map),
+> +	.irq_bank_map = a523_r_irq_bank_map,
+> +	/* A733 has two-bit voltage modes, without the A523 control register. */
+> +	.io_bias_cfg_variant = BIAS_VOLTAGE_NONE,
+> +	.pin_base = PL_BASE,
+> +};
+> +
+>  static int a523_r_pinctrl_probe(struct platform_device *pdev)
+>  {
+> +	struct sunxi_pinctrl_desc *desc;
+> +
+> +	desc = (struct sunxi_pinctrl_desc *)of_device_get_match_data(&pdev->dev);
+>  	return sunxi_pinctrl_dt_table_init(pdev, a523_r_nr_bank_pins,
+> -					   a523_r_irq_bank_muxes,
+> -					   &a523_r_pinctrl_data,
+> +					   a523_r_irq_bank_muxes, desc,
+>  					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
+>  }
+>  
+>  static const struct of_device_id a523_r_pinctrl_match[] = {
+> -	{ .compatible = "allwinner,sun55i-a523-r-pinctrl", },
+> -	{ .compatible = "allwinner,sun60i-a733-r-pinctrl", },
+> +	{ .compatible = "allwinner,sun55i-a523-r-pinctrl",
+> +	  .data = &a523_r_pinctrl_data },
+> +	{ .compatible = "allwinner,sun60i-a733-r-pinctrl",
+> +	  .data = &a733_r_pinctrl_data },
+>  	{}
+>  };
+>  
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
+> index ca82f08a3a65..d4b0a40525f9 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
+> @@ -24,7 +24,8 @@ static const u8 a733_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
+>  static struct sunxi_pinctrl_desc a733_pinctrl_data = {
+>  	.irq_banks = 10,
+>  	.irq_read_needs_mux = true,
+> -	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
+> +	/* Preserve the firmware-configured two-bit voltage modes. */
+> +	.io_bias_cfg_variant = BIAS_VOLTAGE_NONE,
+>  };
+>  
+>  static int a733_pinctrl_probe(struct platform_device *pdev)
+> 
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 
 
