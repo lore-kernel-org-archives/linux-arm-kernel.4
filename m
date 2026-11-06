@@ -2,51 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B329C606D81A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 21:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306A36082BD5
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 21:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QtMQG9sY;
-	dkim=pass (1024-bit key, unprotected) header.d=cyberchaos.dev header.i=@cyberchaos.dev header.a=rsa-sha256 header.s=mail header.b=p+fE5CBk
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=faqDXvxn;
+	dkim=pass (1024-bit key, unprotected) header.d=cyberchaos.dev header.i=@cyberchaos.dev header.a=rsa-sha256 header.s=mail header.b=B3piowaU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LdUco0IIu2WNvQ3HelRhrLk7d+A8em9tLh77azy1Ojs=; b=QtMQG9sY++rhsY
-	CgU+Z7jpQWxYPz9OqTlul6u9P2YsMCkc1XR10N0HxVcIUZxeY8RS+4CO/sujsXxi+3i9tvx4HH4ZB
-	8jxVbpqFI79ARydqLwstqP0GAACTeHowYyYNWXSgTCjVDhbuTL4jkfIPXZ0fHNv6h7zCZ6R7Jp8W1
-	73DgahiD1EF+MLRqwR0ttn/Vx9idPPuNbj2X+6pcfuSvCmCx9kBryRlxLFGys1ujbeatvw1zpiPzK
-	Tx8cf+XkDi50NejklheAAELt7Z1fBZ0CwHSOB1ia4HPoBco0sOa31U0u0CAI//rKe3Gc1rlZMurte
-	R2bIi+MMyhiJG48joHyw==;
+	List-Owner; bh=2Yj9uXfNvECITTH5PNv2goHZJzdSLFM4IX9SvvHkH7M=; b=faqDXvxn403Vrn
+	boe6IHopbaL25Js4rlJK91y0G548KvtqVNJkCIgM+qq9HAW4wf5cX5B+1jgdjNHNtXUuejqKZOUyz
+	e14JU44TOBLrWnybnamxKrpmq8Sn++g0YzuRCgJQOykheCVqayxsHHmZC3Yb8VJ//C9CcmILZeF5u
+	CU+UIypn65BzuvJ5aGmumVNpGE2ldi4BW+uzsBGMCYgGoqo0NvaOlC8ouFpZt6H2mttt0SmLpiBvd
+	njn0hNxTyYgQIIOx4kMgfNGK/5iLX1oIEwRZwa30HVBAJLONPgJkwelUx/lrhu5HM0O5KphtAFtIx
+	gUdX1LoOWwC7p6UCDmag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPR6u-0000000DdHx-1LvT;
+	id 1xPR6u-0000000DdJL-2yFh;
 	Fri, 06 Nov 2026 21:04:32 +0000
 Received: from mail.cyberchaos.dev ([195.39.247.168])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPR6o-0000000DdDv-0eje
+	id 1xPR6q-0000000DdEX-2UAZ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 21:04:27 +0000
+	Fri, 06 Nov 2026 21:04:29 +0000
 From: Yureka Lilian <yureka@cyberchaos.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cyberchaos.dev;
-	s=mail; t=1793999064;
+	s=mail; t=1793999066;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LdUco0IIu2WNvQ3HelRhrLk7d+A8em9tLh77azy1Ojs=;
-	b=p+fE5CBkiybwX3xjTAfsxh2AJzYlxQQ+I0ripjHdQey8ogzQCsJG+9MRMoAA0H4Pm0LXxD
-	YLEsBX6tCJZeS3ggeMWF1xagFdu+ncq1PyB2ZQ10VjITwhZCW3NjQ2M2nErQMBq3V+cqAZ
-	2dcjQSrRQ5BPFQDkRS5yMtXpSUmExeQ=
-Date: Fri, 06 Nov 2026 22:04:12 +0100
-Subject: [PATCH 03/15] dt-bindings: nvme: apple: Add apple,t8142-nvme-ans2
+	bh=2Yj9uXfNvECITTH5PNv2goHZJzdSLFM4IX9SvvHkH7M=;
+	b=B3piowaURxduETghUwcykSW590YjNnVPogiryIvOuogOzl2H8qnjedDPuCT7ERURfM3D9P
+	O2ld6EqIq+SmIqdOTrK9600Xt/tz4NxUpfUsUAfCYs1Gh1VLlkIUOp+usTVNXfVAVyxzl/
+	0Bo99Clcqr/6KCsctIvFfRu5t1Zlwk8=
+Date: Fri, 06 Nov 2026 22:04:14 +0100
+Subject: [PATCH 05/15] dt-bindings: mailbox: apple,mailbox: Add t8140
  compatible
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-apple-dts-m4-m5-nvme-v1-3-22f4827b4ece@cyberchaos.dev>
+Message-Id: <20261106-apple-dts-m4-m5-nvme-v1-5-22f4827b4ece@cyberchaos.dev>
 References: <20261106-apple-dts-m4-m5-nvme-v1-0-22f4827b4ece@cyberchaos.dev>
 In-Reply-To: <20261106-apple-dts-m4-m5-nvme-v1-0-22f4827b4ece@cyberchaos.dev>
 To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
@@ -59,8 +59,8 @@ Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  iommu@lists.linux.dev, Yureka Lilian <yureka@cyberchaos.dev>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_130426_378075_0A582B31 
-X-CRM114-Status: UNSURE (   7.60  )
+X-CRM114-CacheID: sfid-20261106_130428_846658_B0FE62D7 
+X-CRM114-Status: UNSURE (   7.61  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -81,26 +81,26 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"apple,t8142-nvme-ans2" on the Apple M5 SoC is compatible with
-"apple,t8132-nvme-ans2" so add its per-SoC compatible.
+The mailbox hardware remains unchanged on A18 Pro SoC so just add its
+per-SoC compatible.
 
 Signed-off-by: Yureka Lilian <yureka@cyberchaos.dev>
 ---
- Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml | 1 +
+ Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
-index 24c2be3b9544..b8b779f050bc 100644
---- a/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
-+++ b/Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
-@@ -24,6 +24,7 @@ properties:
-       - items:
-           - enum:
-               - apple,t8140-nvme-ans2
-+              - apple,t8142-nvme-ans2
-               - apple,t6041-nvme-ans2
-           - const: apple,t8132-nvme-ans2
-       - items:
+diff --git a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+index e870003d6cfd..774f63f0839e 100644
+--- a/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+@@ -32,6 +32,7 @@ properties:
+               - apple,t8112-asc-mailbox
+               - apple,t8122-asc-mailbox
+               - apple,t8132-asc-mailbox
++              - apple,t8140-asc-mailbox
+               - apple,t6000-asc-mailbox
+               - apple,t6020-asc-mailbox
+               - apple,t6030-asc-mailbox
 
 -- 
 2.56.0
