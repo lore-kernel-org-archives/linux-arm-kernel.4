@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2F20606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:24:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE82606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C7eohK7z;
-	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=i/OWvNdw
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RXTnzvp0;
+	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=dHqSZ+J7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4CRB45o87B1y6cGu+sB4g7GznXFnvc9TXSYvLCMuNzE=; b=C7eohK7zFFdMJR
-	NuLyXnjpuHp7Dl7X/WWN/oXW9QBAOdg72YFxSCmk0WS0eRerhZePpCR2qdzETzleJADGG9fUznh02
-	UoaDeHhZEFZTOlQ54AHgsI+rCza1xmmsCR/IxFRZu+hbGDsRRmv1xMZEA6Ztcubfm6XZTLL8GUh3N
-	U5NQ2RCURugDDwR2TtjXkdRI9sYR4cwqVwRYl6Jkk/hSxX2TRNU694NN6/pZ0hSBuUVkApB8u80Io
-	G09s7JWkMd2zhQLHPRzeXz9TgX7L19EOczUYVzPvJMzDqGuoFOr0B1aZCiwCqWZ0+Y2lfwN4KVFxP
-	Ytt8ZzIxiPBf2rFeGiEQ==;
+	List-Owner; bh=NwHGzADZz4Ks+lxsWJ5hHz46CrfiXovsx7AeNkAjrgA=; b=RXTnzvp0lUSIFl
+	ZEOIWkVlkTnABc5WLSnBuYkUErEwxi7SS3nek5c/XNVm6TlHi7gkVv1hJ6SaIAjhPGd0eXtQoUPoQ
+	t1EvhhbAaIsEmau9bNRj7fLBC2AljcyOfZLU2Qo4MkhmWBrggTzxUn1XFHjJzGydrAC+Q0N7RstPK
+	Zxps8IWriO7jadGgJbroOIqs7cWv7LjuThL7syh16UKQV6pHBkzrhioWRiCkixr3+IYyp/4PUfFql
+	l50GFXpcqPiPJ6li7wkxdIoEKIAbmvpy6+JEm1R6jhTMV5zH/O7Z/GlqLfx/x5awnSKHYU892M97/
+	mOrOIrwoFEnBm/3bCzxA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMUt-0000000Cxt5-3y2w;
-	Fri, 06 Nov 2026 16:08:59 +0000
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
+	id 1xPMUp-0000000CxlZ-2zWG;
+	Fri, 06 Nov 2026 16:08:55 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMUg-0000000Cxa0-144H
+	id 1xPMUb-0000000CxSO-3on7
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 16:08:53 +0000
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FEJon1095102;
-	Fri, 6 Nov 2026 16:08:28 GMT
+	Fri, 06 Nov 2026 16:08:43 +0000
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FECm52656392;
+	Fri, 6 Nov 2026 16:08:26 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=4CRB45
-	o87B1y6cGu+sB4g7GznXFnvc9TXSYvLCMuNzE=; b=i/OWvNdwLQoxolw0x+kxBo
-	BJJorq0xrZc707ltGuNzqSeyj8wlQizuMswYsnQPgrgShSivdB48aOIzBuYolKS9
-	zbxWahFlW6AkVnk+bRAUrm2LLkiaLIs1c3OJqFeJmghpGracGmLELzO6tST/7wHe
-	C7ZKTFJPX4K/UEsRjIRSqCKHW9qy1200TCLPUDOjNUAaqoFe6zN62lEG2t3DCJmK
-	f4DJfXoViD8P/I/X4ar1GZ+S0Yjs7QimWUBPDlLCB6yWI9WMxQMi3KDOyfsFzX/V
-	0WNE11MFiEpFr09hX4elKiNEBS+5UN6P9i6bzUY1bESfygBXcgSGy7BZ+mHpCtLg
+	:message-id:mime-version:references:subject:to; s=pp1; bh=NwHGzA
+	DZz4Ks+lxsWJ5hHz46CrfiXovsx7AeNkAjrgA=; b=dHqSZ+J7zThTnLR03HSsvi
+	jHmvQgQlsmrpYmmQVLTmCajeavDhYiLPVHl/inDSa3EUejob+osUMR9SI0VBNYQm
+	MFecLN1UaXCMCxMJ34SY6CxfD1k4arAWTJ2//vmaoGZ06C8wc+0z9Motnebw+otF
+	ZFYSPsMH4OknGXV88gOst7SaXf/G3zhzbzZvHoCyfJrKeST4vX74dw37oqufkh/u
+	2bOTyTNKV6sv6Kt+qMOuvgulw14wlViShbGKv7zascln3PHpFqKeBJjCMhV14gos
+	ZKtXliP2pKNJof/xvwG2MXe86vXye3Nex43FC+ckVh4GgOqRNs2B/a9qHco9G4EA
 	==
 Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4hs3rawj0g-1
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4hs3rc5eu0-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 06 Nov 2026 16:08:28 +0000 (GMT)
+	Fri, 06 Nov 2026 16:08:26 +0000 (GMT)
 Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FKCoL3577989;
-	Fri, 6 Nov 2026 16:08:27 GMT
-Received: from smtprelay03.fra02v.mail.ibm.com ([9.218.2.224])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4hqv1v871y-1
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FK7023577902;
+	Fri, 6 Nov 2026 16:08:25 GMT
+Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4hqv1v871q-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Nov 2026 16:08:27 +0000 (GMT)
+	Fri, 06 Nov 2026 16:08:25 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay03.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6A6G8I2v49283430
+	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6A6G8Lil32833872
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 6 Nov 2026 16:08:18 GMT
+	Fri, 6 Nov 2026 16:08:22 GMT
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 07D4320040;
-	Fri,  6 Nov 2026 16:08:18 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id DD2672004F;
+	Fri,  6 Nov 2026 16:08:21 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 9C3DD2006A;
-	Fri,  6 Nov 2026 16:08:17 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 770E92005A;
+	Fri,  6 Nov 2026 16:08:21 +0000 (GMT)
 Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
 	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri,  6 Nov 2026 16:08:17 +0000 (GMT)
+	Fri,  6 Nov 2026 16:08:21 +0000 (GMT)
 From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 06 Nov 2026 17:07:43 +0100
-Subject: [PATCH v3 10/23] s390: Add range check asm macro
+Date: Fri, 06 Nov 2026 17:07:52 +0100
+Subject: [PATCH v3 19/23] KVM: s390: arm64: Implement exception injection
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-sysreg-v3-10-75e95980fb10@linux.ibm.com>
+Message-Id: <20261106-sysreg-v3-19-75e95980fb10@linux.ibm.com>
 References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
 In-Reply-To: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
@@ -98,39 +98,38 @@ To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
         Arnd Bergmann <arnd@arndb.de>, Paolo Bonzini <pbonzini@redhat.com>
 Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
         linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
-        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>,
-        Jens Remus <jremus@linux.ibm.com>
+        linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
 X-Mailer: b4 0.14.3
 X-TM-AS-GCONF: 00
-X-Authority-Analysis: v=2.4 cv=QYDzLcbv c=1 sm=1 tr=0 ts=6aedfb7c cx=c_pps
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX28k5cGYA9Ixu
+ aQPCW1WFqvS75I39U2aDjZrF6/BnHcfhSg5kofro9ifOzz5P80F2YHq3rvY0FXz9QeEtE47xSpO
+ oej9lSF14S+V1dYmFkxpH7Aa0zlyh0w=
+X-Proofpoint-GUID: lfHOuCZAuMKuaHIBsR28JGIvc97ziHj5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfXzywuR5bIro98
+ LokhN+OfGkj1mNjPZMjH+GkbsKPLJ4QVsjDtRPFHSfZ6nKtYvV4nmaGPsdgpLg2+46zzjounRYR
+ NLksSeAUPr42Uu+4bRJqeJlq1DQzUCnKTxucpbjON0wUY7I9loemTdb2YlcxkRBn5eGTctsdhM7
+ 3UkRujx1jN0CB4OrTYujQWoL8xdEt9jcwAtii+XkQVVfehWQ0MNmVrMDRpd+0RfckL6TMzx/UrL
+ Bz70XSn51dwhroQUxUSIs9k7CF/3Im8px2Jd0Bes1emmRKzk0GZrqliqgUbVJZjTves0DYnCRwC
+ h/9fnmCynwnrV9xlbDChVnzWC3tbiYizsrquXeHK2zaiv8ph9/YW1A+Jh/JvjQ4khrhmNA8yCk0
+ yOI7pQ2zDSlY/2JivV0ZSUqolzGNtZSlhXKN+qtpp1r1GgdDrdyH5rj3wJblYM/lfR+3caZOy7S
+ dzD9tVCswDyDo8W/Clw==
+X-Proofpoint-ORIG-GUID: lfHOuCZAuMKuaHIBsR28JGIvc97ziHj5
+X-Authority-Analysis: v=2.4 cv=CY+dd7rl c=1 sm=1 tr=0 ts=6aedfb7a cx=c_pps
  a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=uAbxVGIbfxUO_5tXvNgY:22 a=VnNF1IyMAAAA:8
- a=Hoxe6d4Xkq5xC5L4oCMA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: O86VXZeJplvG5pQV7GWOTTNlEFrwTkH9
-X-Proofpoint-ORIG-GUID: O86VXZeJplvG5pQV7GWOTTNlEFrwTkH9
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX+rIkcwvVICcG
- MmnOTwlLClupEcx/fqG6cu2/FF+vTHLyoe4Pf6/3LVdScQhlPMjgOBOOiteUHSHr2vS6Uv8khIA
- rSOz5lEErX68Cp0rwIVv0Y9Q5EhMVYA=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX7h+sjArM/dLd
- +B7bCUGm1pawE3eVBEJ2r/L0FUV/dsaJXTakwBIrhHvLHaMoJPlrA6bOr+1+Xy0V680COXre4mS
- StcJzoN6RMaR0B0r0jD5nzZ/KGFhk82rxznWdMmDvjyUW/DUrzbJVFyNKF/8PcfOC1u+81ye0A3
- o0MjGnvt4DTlDYMCpVF1yeihjSP3qjr1H6b6XceKkk2dIMP1MNJEqqCo6exc5F/XVBmnvskjpmC
- iU630pZ7pkiaQS5Z3nqKQ07kGdpyTgyncI3IdHQlItIMPLTynXernKSz2rfCdYUfpLTICbOTCpl
- WafjsPfe4xJK+DhXafPGsrZwzx075olWeD542bfYf7LaEHZdYQvClN2V+czQ8LwIKX/nuuna7J3
- 12S4xlj9UJpIQlU9C0uDW20XL7KLpJgGRywFZdN6o/NX8V1PP0naWvmXvdOEbUQBLYjJYs0xgvs
- tvem/afzLK2NiaaO+dw==
+ a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
+ a=W5TDu8ZgCn-YWPwT9wYA:9 a=QEXdDO2ut3YA:10
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-06_05,2026-11-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 clxscore=1015 impostorscore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 malwarescore=0 phishscore=0
+ priorityscore=1501 suspectscore=0 bulkscore=0 phishscore=0 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 spamscore=0 clxscore=1015 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611060062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_080846_476756_016679FE 
-X-CRM114-Status: GOOD (  14.42  )
+X-CRM114-CacheID: sfid-20261106_080842_101865_ECB724C3 
+X-CRM114-Status: GOOD (  26.03  )
 X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -149,75 +148,285 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The range check macro turns cryptic assembler errors into an easy to
-understand error if e.g. someone mistypes an input value in an asm
-macro.
+Add exception injection support for s390 KVM arm64 architecture. This
+implements the core exception entry mechanism and fault injection
+functions needed for proper guest exception handling.
 
-Add an asm macro that verifies that a given input value is in a specific
-range. Add macros which check for ranges often used when creating
-instructions. While at it, add a range check for the register numbers in
-the GR_NUM and VX_NUM macro.
-
-Co-developed-by: Jens Remus <jremus@linux.ibm.com>
-Signed-off-by: Jens Remus <jremus@linux.ibm.com>
+Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
+Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- arch/s390/include/asm/insn-common-asm.h | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ arch/s390/include/asm/kvm_host_arm64.h |   2 +
+ arch/s390/kvm/arm64/Makefile           |   1 +
+ arch/s390/kvm/arm64/arm.c              |  15 ++---
+ arch/s390/kvm/arm64/exception.c        | 109 +++++++++++++++++++++++++++++++++
+ arch/s390/kvm/arm64/inject_fault.c     |  65 +++++++++++++++++++-
+ 5 files changed, 179 insertions(+), 13 deletions(-)
 
-diff --git a/arch/s390/include/asm/insn-common-asm.h b/arch/s390/include/asm/insn-common-asm.h
-index fd9b3cacb7c5..f3f10f2c92bb 100644
---- a/arch/s390/include/asm/insn-common-asm.h
-+++ b/arch/s390/include/asm/insn-common-asm.h
-@@ -9,6 +9,32 @@
+diff --git a/arch/s390/include/asm/kvm_host_arm64.h b/arch/s390/include/asm/kvm_host_arm64.h
+index 44deae423ace..79549434a1d6 100644
+--- a/arch/s390/include/asm/kvm_host_arm64.h
++++ b/arch/s390/include/asm/kvm_host_arm64.h
+@@ -425,4 +425,6 @@ static inline bool vgic_host_has_gicv5(void)
+ 	return false;
+ }
  
- #ifdef __ASSEMBLER__
++void kvm_adjust_pc(struct kvm_vcpu *vcpu);
++
+ #endif /* ASM_KVM_HOST_ARM64_H */
+diff --git a/arch/s390/kvm/arm64/Makefile b/arch/s390/kvm/arm64/Makefile
+index 24ac6f6f6278..b0f2da6ac482 100644
+--- a/arch/s390/kvm/arm64/Makefile
++++ b/arch/s390/kvm/arm64/Makefile
+@@ -11,6 +11,7 @@ ccflags-y += -I $(src) -I $(objtree)/$(obj) -I$(srctree)/arch/$(SRCARCH)/kvm/gma
  
-+.macro	RANGECHECK	min max val
-+	.if (\val < \min) || (\val > \max)
-+	.error "operand out of range (\val is not between \min and \max)"
-+	.endif
-+.endm
-+
-+.macro	ASSERT_U16	val
-+	RANGECHECK 0, 65535, \val
-+.endm
-+
-+.macro	ASSERT_S16	val
-+	RANGECHECK -32768, 32767, \val
-+.endm
-+
-+.macro	ASSERT_U8	val
-+	RANGECHECK 0, 255, \val
-+.endm
-+
-+.macro	ASSERT_U4	val
-+	RANGECHECK 0, 15, \val
-+.endm
-+
-+.macro	ASSERT_U5	val
-+	RANGECHECK 0, 31, \val
-+.endm
-+
- /*
-  * GR_NUM - Retrieve general-purpose register number
-  *
-@@ -24,6 +50,7 @@
- 	.endr
- 	.if \opd == 255
- 		\opd = \gr
-+		ASSERT_U4	\opd
- 	.endif
- .endm
+ kvm-arm64-local := \
+ 	arm.o \
++	exception.o \
+ 	feature.o \
+ 	guest.o \
+ 	handle_exit.o \
+diff --git a/arch/s390/kvm/arm64/arm.c b/arch/s390/kvm/arm64/arm.c
+index 4de0f17052cb..91e9f4a75ce7 100644
+--- a/arch/s390/kvm/arm64/arm.c
++++ b/arch/s390/kvm/arm64/arm.c
+@@ -390,14 +390,6 @@ int kvm_vm_ioctl_irq_line(struct kvm *kvm, struct kvm_irq_level *irq_level,
+ 	return -EINVAL;
+ }
  
-@@ -46,6 +73,7 @@
- 	.endr
- 	.if \opd == 255
- 		\opd = \vxr
-+		ASSERT_U5	\opd
- 	.endif
- .endm
+-static void adjust_pc(struct kvm_vcpu *vcpu)
+-{
+-	if (vcpu_get_flag(vcpu, INCREMENT_PC)) {
+-		kvm_skip_instr(vcpu);
+-		vcpu_clear_flag(vcpu, INCREMENT_PC);
+-	}
+-}
+-
+ static noinstr void arm_vcpu_enter_exit(phys_addr_t sae_block)
+ {
+ 	guest_timing_enter_irqoff();
+@@ -488,7 +480,7 @@ int kvm_arch_vcpu_ioctl_run(struct kvm_vcpu *vcpu)
  
+ 		trace_kvm_entry(*vcpu_pc(vcpu));
+ 
+-		adjust_pc(vcpu);
++		kvm_adjust_pc(vcpu);
+ 		vcpu_write_host_sys_reg(vcpu, vcpu->arch.hcr_el2, SYS_HCR_EL2);
+ 		vcpu_write_host_sys_reg(vcpu, vcpu->arch.hcrx_el2, SYS_HCRX_EL2);
+ 		vcpu_write_host_sys_reg(vcpu, vcpu->arch.mpidr, SYS_VMPIDR_EL2);
+@@ -511,8 +503,9 @@ int kvm_arch_vcpu_ioctl_run(struct kvm_vcpu *vcpu)
+ 
+ 	kvm_sigset_deactivate(vcpu);
+ out:
+-	if (unlikely(vcpu_get_flag(vcpu, INCREMENT_PC)))
+-		adjust_pc(vcpu);
++	if (unlikely(vcpu_get_flag(vcpu, PENDING_EXCEPTION) ||
++		     vcpu_get_flag(vcpu, INCREMENT_PC)))
++		kvm_adjust_pc(vcpu);
+ 
+ 	save_vx_regs(vcpu->arch.ctxt.vregs);
+ 	kernel_fpu_end(&fpu_save, KERNEL_FPC | KERNEL_VXR);
+diff --git a/arch/s390/kvm/arm64/exception.c b/arch/s390/kvm/arm64/exception.c
+new file mode 100644
+index 000000000000..93a2a2a8bcc8
+--- /dev/null
++++ b/arch/s390/kvm/arm64/exception.c
+@@ -0,0 +1,109 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include <linux/kvm_host.h>
++#include <arm64/kvm_emulate.h>
++#include <arm64/sysreg-defs.h>
++
++#include <arm64/ptrace.h>
++
++/*
++ * This performs the exception entry at a given EL (@target_mode), stashing PC
++ * and PSTATE into ELR and SPSR respectively, and compute the new PC/PSTATE.
++ * The EL passed to this function *must* be a non-secure, privileged mode with
++ * bit 0 being set (PSTATE.SP == 1).
++ *
++ * When an exception is taken, most PSTATE fields are left unchanged in the
++ * handler. However, some are explicitly overridden (e.g. M[4:0]). Luckily all
++ * of the inherited bits have the same position in the AArch64/AArch32 SPSR_ELx
++ * layouts, so we don't need to shuffle these for exceptions from AArch32 EL0.
++ *
++ * For the SPSR_ELx layout for AArch64, see ARM DDI 0487E.a page C5-429.
++ * For the SPSR_ELx layout for AArch32, see ARM DDI 0487E.a page C5-426.
++ *
++ * Here we manipulate the fields in order of the AArch64 SPSR_ELx layout, from
++ * MSB to LSB.
++ */
++static void enter_exception64(struct kvm_vcpu *vcpu, unsigned long target_mode,
++			      enum exception_type type)
++{
++	unsigned long sctlr, vbar, old_pstate, new, mode;
++	u64 exc_offset;
++
++	old_pstate = *vcpu_cpsr(vcpu);
++	mode = old_pstate & (PSR_MODE_MASK | PSR_MODE32_BIT);
++
++	if      (mode == target_mode)
++		exc_offset = CURRENT_EL_SP_ELx_VECTOR;
++	else if ((mode | PSR_MODE_THREAD_BIT) == target_mode)
++		exc_offset = CURRENT_EL_SP_EL0_VECTOR;
++	else if (!(mode & PSR_MODE32_BIT))
++		exc_offset = LOWER_EL_AArch64_VECTOR;
++	else
++		exc_offset = LOWER_EL_AArch32_VECTOR;
++
++	switch (target_mode) {
++	case PSR_MODE_EL1h:
++		vbar = vcpu_read_sys_reg(vcpu, VBAR_EL1);
++		sctlr = vcpu_read_sys_reg(vcpu, SCTLR_EL1);
++		vcpu_write_sys_reg(vcpu, *vcpu_pc(vcpu), ELR_EL1);
++		vcpu_write_sys_reg(vcpu, old_pstate, SPSR_EL1);
++		break;
++	default:
++		panic("Unknown PSR Mode: 0x%lx.", target_mode);
++	}
++
++	*vcpu_pc(vcpu) = vbar + exc_offset + type;
++
++	new = 0;
++
++	new |= (old_pstate & PSR_N_BIT);
++	new |= (old_pstate & PSR_Z_BIT);
++	new |= (old_pstate & PSR_C_BIT);
++	new |= (old_pstate & PSR_V_BIT);
++	new |= (old_pstate & PSR_DIT_BIT);
++	new |= (old_pstate & PSR_PAN_BIT);
++
++	if (!(sctlr & SCTLR_EL1_SPAN))
++		new |= PSR_PAN_BIT;
++
++	if (sctlr & SCTLR_ELx_DSSBS)
++		new |= PSR_SSBS_BIT;
++
++	new |= PSR_D_BIT;
++	new |= PSR_A_BIT;
++	new |= PSR_I_BIT;
++	new |= PSR_F_BIT;
++
++	new |= target_mode;
++
++	*vcpu_cpsr(vcpu) = new;
++}
++
++static void kvm_inject_exception(struct kvm_vcpu *vcpu)
++{
++	switch (vcpu_get_flag(vcpu, EXCEPT_MASK)) {
++	case unpack_vcpu_flag(EXCEPT_AA64_EL1_SYNC):
++		enter_exception64(vcpu, PSR_MODE_EL1h, except_type_sync);
++		break;
++	default:
++		WARN_ONCE(1, "Unsupported pending exception type: 0x%lx\n",
++			  vcpu_get_flag(vcpu, EXCEPT_MASK));
++		break;
++	}
++}
++
++/*
++ * Adjust the guest PC (and potentially exception state) depending on
++ * flags provided by the emulation code.
++ */
++void kvm_adjust_pc(struct kvm_vcpu *vcpu)
++{
++	if (vcpu_get_flag(vcpu, PENDING_EXCEPTION)) {
++		kvm_inject_exception(vcpu);
++		vcpu_clear_flag(vcpu, PENDING_EXCEPTION);
++		vcpu_clear_flag(vcpu, EXCEPT_MASK);
++	} else if (vcpu_get_flag(vcpu, INCREMENT_PC)) {
++		kvm_skip_instr(vcpu);
++		vcpu_clear_flag(vcpu, INCREMENT_PC);
++	}
++}
+diff --git a/arch/s390/kvm/arm64/inject_fault.c b/arch/s390/kvm/arm64/inject_fault.c
+index 425dbeaa421c..33f40c5188c9 100644
+--- a/arch/s390/kvm/arm64/inject_fault.c
++++ b/arch/s390/kvm/arm64/inject_fault.c
+@@ -2,6 +2,38 @@
+ 
+ #include <arm64/kvm_emulate.h>
+ 
++static void pend_sync_exception(struct kvm_vcpu *vcpu)
++{
++	kvm_pend_exception(vcpu, EXCEPT_AA64_EL1_SYNC);
++}
++
++static void inject_abt64(struct kvm_vcpu *vcpu, bool is_iabt, unsigned long addr)
++{
++	unsigned long cpsr = *vcpu_cpsr(vcpu);
++	bool is_aarch32 = vcpu_mode_is_32bit(vcpu);
++	u64 esr = 0;
++
++	if (kvm_vcpu_abt_iss1tw(vcpu))
++		esr |= ESR_ELx_FSC_SEA_TTW(kvm_vcpu_abt_gltl(vcpu));
++	else
++		esr |= ESR_ELx_FSC_EXTABT;
++
++	pend_sync_exception(vcpu);
++
++	esr |= ESR_ELx_IL;
++
++	if (is_aarch32 || (cpsr & PSR_MODE_MASK) == PSR_MODE_EL0t)
++		esr |= (ESR_ELx_EC_IABT_LOW << ESR_ELx_EC_SHIFT);
++	else
++		esr |= (ESR_ELx_EC_IABT_CUR << ESR_ELx_EC_SHIFT);
++
++	if (!is_iabt)
++		esr |= ESR_ELx_EC_DABT_LOW << ESR_ELx_EC_SHIFT;
++
++	vcpu_write_sys_reg(vcpu, addr, FAR_EL1);
++	vcpu_write_sys_reg(vcpu, esr, ESR_EL1);
++}
++
+ /**
+  * kvm_inject_undefined - inject an undefined instruction into the guest
+  * @vcpu: The vCPU in which to inject the exception
+@@ -11,11 +43,40 @@
+  */
+ void kvm_inject_undefined(struct kvm_vcpu *vcpu)
+ {
+-	/* Stub until s390 supports arm64 sysregs TODO sysregs*/
++	u64 esr = (ESR_ELx_EC_UNKNOWN << ESR_ELx_EC_SHIFT) | ESR_ELx_IL;
++
++	kvm_inject_sync(vcpu, esr);
++}
++
++static void __kvm_inject_sea(struct kvm_vcpu *vcpu, bool iabt, u64 addr)
++{
++	inject_abt64(vcpu, iabt, addr);
+ }
+ 
+ int kvm_inject_sea(struct kvm_vcpu *vcpu, bool iabt, u64 addr)
+ {
+-	/* Stub until s390 supports arm64 sysregs TODO sysregs*/
++	lockdep_assert_held(&vcpu->mutex);
++
++	__kvm_inject_sea(vcpu, iabt, addr);
+ 	return 1;
+ }
++
++void kvm_inject_size_fault(struct kvm_vcpu *vcpu)
++{
++	unsigned long addr, esr;
++
++	addr  = kvm_vcpu_get_fault_ipa(vcpu);
++	addr |= FAR_TO_FIPA_OFFSET(kvm_vcpu_get_hfar(vcpu));
++
++	__kvm_inject_sea(vcpu, kvm_vcpu_trap_is_iabt(vcpu), addr);
++
++	esr = vcpu_read_sys_reg(vcpu, ESR_EL1);
++	esr &= ~GENMASK_ULL(5, 0);
++	vcpu_write_sys_reg(vcpu, esr, ESR_EL1);
++}
++
++void kvm_inject_sync(struct kvm_vcpu *vcpu, u64 esr)
++{
++	pend_sync_exception(vcpu);
++	vcpu_write_sys_reg(vcpu, esr, ESR_EL1);
++}
 
 -- 
 2.56.0
