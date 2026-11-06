@@ -2,68 +2,132 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597B0606D805
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA32606EEB5
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:16:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vEFbnf4m;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sVAFxjo3
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Efbb01uo;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=bbRdIpzQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject
-	:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=sVfAXVYZ6FXAyGhrwa2GYGqDIM1fZELZB/+nyD7WsYo=; b=vEFbnf4mjbkAtfFCC10o9cn4kK
-	MihkThtNdMFFE3WTEVrP2zngj8xAmWKAlTXcLWj1jytCSuRbQd3lrmvOanDy+GLVWS1SQUr8S+dLv
-	tWubCsQ9KF+jJoltWRP/NnVlEPHseKZQxXNCF2QYIHfvVEJrjPS4rO7MO8REQqhS95t4q5QQh584E
-	qRr/sCmqaLMWuwi3Y8lcRZYvK121svoQTKovoSioLY20yj1C7DWWxduoQPYqcOQRTGNknrxHiCb0r
-	oaknrGqXKnu7SPD7dt9mSxSrvvOXfKvhL/d3vg4EtdX0FIJujmAxlHw2oGvpyMuLprYuG+97OpI+L
-	V5WzsDgw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AEFWqOVqUPH0uPHGTt97DtrZ7Hg0Z/XjInfBc+a0biQ=; b=Efbb01uo0dM1e2
+	pcoBnm/0bco77TbjqL/1wO5Xo6Aaz2x/IJlt0wkLnuwqwxC1dbZSDtQptIjglS/xYwGD6T8VL6lki
+	rr+Un05Rlk/D6Lx4zR9CF4JTt/PIwM1sLDYHWAzKqJrkIkE3PrwG5qgDT/LklPQLMWk8F17XwiYsO
+	sZElwUMdtJpxzAO8+H25ovfCWIolFXiw+A3U+QxZZ2Goeyb0tLRmJ8jrGzMfT6xV6HcY+6Yf+VcnI
+	ZCk/iUZ+hIuIwFY5jOYLMJ2GsINoIAaLqoGHgUvGBhRlXEjAdDPJcZ0nBpNWEcaN/v86JW6NI/ixQ
+	2x8KLpV6wcQDt0oMbE9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMax-0000000D0jE-0Kng;
-	Fri, 06 Nov 2026 16:15:15 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMau-0000000D0hk-2dYc
+	id 1xPMcN-0000000D118-1xdK;
+	Fri, 06 Nov 2026 16:16:43 +0000
+Received: from mail-norwayeastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c20f::7] helo=OSPPR02CU001.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPMcK-0000000D0zu-0r2v
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 16:15:13 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85702143D;
-	Fri,  6 Nov 2026 08:15:06 -0800 (PST)
-Received: from [10.2.213.24] (e137867.arm.com [10.2.213.24])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 01B1E3F673;
-	Fri,  6 Nov 2026 08:15:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1793981709; bh=IQ3sgomSiBn9gKzrzkAyQrVz3yw2Rr15QPLg09Ba0Ec=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sVAFxjo38ELex2XbmZkIS1mAV1VYURD8Ona57+AktCEEwLskVfJZUuxu2N8T7MXY6
-	 8X2PYWYpvfi41yClUaZl4MyK5hSGCA2d/d/g5GMAvllrNAQJXemnhWZ1qOmdSyLVuR
-	 CRKaR5f8Xa7TeLY4e0CHDNv2YWThOD02s62PxpcI=
-Message-ID: <1bae50ad-a65e-4ccb-b247-8d9544e4c5ee@arm.com>
-Date: Fri, 6 Nov 2026 16:14:56 +0000
+	Fri, 06 Nov 2026 16:16:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jNlqFgIZo7eEW8/H17QOzlLYkEXX/DpgB3EFoMtx+WDWAObXT9wx8FRsu3Eq+tvGeIwLa9FXtOzLv0NYRd+v9fM5ADL653ujSBCT2HSQTFMAh0DgVb4EVrwbxI65MgAcqyqUnwfXH68gUXgn4wDo++7eZVickDWs99fYf2uoCUP6t++YsgY0V9JGyDf9COBk3wjdR8+LRVBZQ7hB5z+PqanDOHe3pZ+V4mPWWjSpPJCxiY5D4DDj/N5pPBgwE7Hx6cf+v5B49pNFdKcDm19s2kl6Jyh5oG6j2uEhSULXbQHuePGJ8AZs59FqGeUQwHYW67IE36TCze9RzOztez/Ocw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AEFWqOVqUPH0uPHGTt97DtrZ7Hg0Z/XjInfBc+a0biQ=;
+ b=W/xMWbWWv0+afkgIaQgC4TU5N9B4bAc5aw9jijL/B0pnceakPj+kQUI/Fo1lnrvpLI4K1N8uTithPBO+aDBKZrmxaZMoX1/3cp/NN+7RYXR/3HkfF73kVkmeIJK7xY9/MoqyE5JUm13yV1p84JAd6N4ap2Xp/hq1xdXtu9y4NWx/aXC3Y9HRLYQ+AgZaYAyMPMXlqrT2xl8+KV6ils6WMgQMKEYIPvAeJ/tUSOcCP/jTy8NnqYp2b/JH3kyc+t8OZ4Q45rEt2BQb8slNlOR3+h1r1XZV4wGPufo4M4uBVxngjDrpvUEOW+6iKj2CSWQBzsSzo+66cqrWTmc5oirifw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AEFWqOVqUPH0uPHGTt97DtrZ7Hg0Z/XjInfBc+a0biQ=;
+ b=bbRdIpzQTur6tE6WdBLwr9cu7Kd6zDfPTIIblRclSo4cpBNEdIUX64SiJ6+qV44gIF6eUv4OcfPDBBYnqTwyJgUT6GCFi+t6bymROQAJQpKtCkVVHMgG1RWSQo/cWfiDsplMAw07jjhdYmskgApIxCefEcDj8X2kbTz9TuCXcIp6Y8z5kI1nQVhUokJ4CTxElDMgc9m+1cVWjeqdhqXlvBQxFuLiQI2LH1JW+QT+RspE72MiZ29JFiq7AiBWvJU6UEw9dLHUsaIjl+rSGLnQGR9/qARtqk5m1lL+xVbMUGjkOImfGKH2RgP/HTEq1n5IQHJy7IAnPUhL3vcvtzG2iQ==
+Received: from DU2PR04CA0016.eurprd04.prod.outlook.com (2603:10a6:10:3b::21)
+ by DB8PR10MB3751.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:161::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.5; Fri, 6 Nov 2026
+ 16:16:34 +0000
+Received: from MAD0EPF000008B4.eurprd04.prod.outlook.com
+ (2603:10a6:10:3b:cafe::8f) by DU2PR04CA0016.outlook.office365.com
+ (2603:10a6:10:3b::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.11 via Frontend Transport; Fri, 6
+ Nov 2026 16:16:34 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ MAD0EPF000008B4.mail.protection.outlook.com (10.167.241.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Fri, 6 Nov 2026 16:16:34 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 6 Nov
+ 2026 17:17:04 +0100
+Received: from localhost (10.48.87.14) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 6 Nov
+ 2026 17:16:33 +0100
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Date: Fri, 6 Nov 2026 17:16:32 +0100
+Subject: [PATCH v4 2/8] dt-bindings: stm32: add kernel clocks for ETR and
+ STM
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: sdei: Run the event handler on the kernel
- vectors
-To: Kiryl Shutsemau <kirill@shutemov.name>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>, James Morse <james.morse@arm.com>,
- Usama Arif <usama.arif@linux.dev>
-References: <20261105120835.3321912-1-kirill@shutemov.name>
- <20261105120835.3321912-2-kirill@shutemov.name>
-From: Ada Couprie Diaz <ada.coupriediaz@arm.com>
-Content-Language: en-US, en-GB, fr
-Organization: Arm Ltd.
-In-Reply-To: <20261105120835.3321912-2-kirill@shutemov.name>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261106-ups_mp25_clk_update-v4-2-9e32b817c38d@foss.st.com>
+References: <20261106-ups_mp25_clk_update-v4-0-9e32b817c38d@foss.st.com>
+In-Reply-To: <20261106-ups_mp25_clk_update-v4-0-9e32b817c38d@foss.st.com>
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1793981792; l=1203;
+ i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
+ bh=xQI1FA3IDu5N0xkbp4Z1vV2Sf7/6woM3b3ah21Sw1QE=;
+ b=qJF71oMxWAkclLZ/yPoyEzePSK50ZqNESr7qmbLhp7Pq6PdnRcgRLYn765aXFFjksQBhkzOMT
+ dG3JcuAEd+iDk+mg6ZicGq0pndil1/Yg3z4xqI7D6sC47MQpzh0F8OC
+X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
+ pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MAD0EPF000008B4:EE_|DB8PR10MB3751:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5f2e3abb-be72-44d6-5268-08df3c21537a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|376014|36860700016|7416014|1800799024|10067099003|18002099003|22082099003|56012099006|11063799006|261102123227099003|261021121427099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: 5lcnxKGhOyMwNLe9QELwyEPBMCriNoLVWr8hFm6EcHSMbHK+rHZRqhYTEu+T8HB/2L63HzIOMkycnRwtbQWb7T7a9iqLE7NpmGSLtd7ajLOSUFnd8ly8v7CyeijW+HYlESOjMMMAk2SbaO//lTH27a99FUmyjySflQeRXKSK0B8wGnknwVayz3pcMUgw/XyhJODM6WJjcKE2zZ+qHY8lSThNYwTPsoEzmGDtbR20M7uARyhT1SEPGieDCT+hexk2oIwppiGz0zb85C/gg2wAOhR5AgYMc2ggJ1Zd0JMd+tizIyD9/ROf2RIo1JMQ0czByXv5Cx58jnBwcDQYmTvuTHYeDF3fmyyl4g7gyimPKZc9Gq6n/urKBOoTTiWVYh9Hr+YrjeEhPkOHbHsbzbJTVlbD5hxubS6HsivsdIx8lX6YY6yeuJouhufU7brU5gt60CsOoP/g4bhQFnIpkN1FJ8G8YlHDJIIlr4hJpCUPyGAykYjU4Bm/3jBr2hJaAx5+L2MlmQ6xkvBnq8PfGydfuku+VayzrZlGeKBW67Gp0SzjJoiB9X8+wO/a7xG5eXirSlhuOjzYeeGoIxLLzmz7YS0d77lwe5N29w3ZecgE3JE6e/NgsmrZFy+Ne4kDWAvWY898xmiLPvuK0F9uc6zktCYCrN0+k0pcl+qut/9jGbTvtMZbyj5aoz0dTiZ7Zo9DOvmKrAgf/rRKdVxUhgVkpQ==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(376014)(36860700016)(7416014)(1800799024)(10067099003)(18002099003)(22082099003)(56012099006)(11063799006)(261102123227099003)(261021121427099003)(261009223027099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 37E+6DkrBEqunKGPvkLGAN86vRtGxecfuDbEJKLvewk1wKsF9hcq89EzJ5DP+Jl7V+LGF58tQ9e6/bupqd4ltGQK9N+iLofnzfEi4Jx6DA05gPo4PJW4gFtIIk1LMUQGb2xUgljOAsVLutCJmjAauqdVpnODtOMvFmnfJfSL1ulFQNZAaQKrGH3nVUTT/C2Qjw0fITyIeM/oZhkynqpBE+3HiX7o/7cdmt0fmBNm1MFEJ0PlcGej2rSZx2wRHiePGp6XK7JZbqWDAgtAOvyxaGzBoVNDmbFN/PQPU2EPmOmfxrZGuaVufKH3T0vefEAdJRwtd9eWI/2FA157vkHHN++6WW/UIP5IESyoIpRNTk42OHgJs9jwQJmq/D77t3BqKoJN/TJ30zzJFDyuJ9MiXAADelnk5UGo/dwKPhyiGC0edtcDoDcT+RNyX4SMFnwj
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 16:16:34.0916
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f2e3abb-be72-44d6-5268-08df3c21537a
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: MAD0EPF000008B4.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR10MB3751
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_081512_762711_2B5D341E 
-X-CRM114-Status: GOOD (  36.52  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261106_081640_247557_D8BB47D5 
+X-CRM114-Status: UNSURE (   9.32  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,194 +137,50 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: "Kiryl Shutsemau \(Meta\)" <kas@kernel.org>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Peter Zijlstra <peterz@infradead.org>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, mrigendrachaubey <mrigendra.chaubey@gmail.com>, linux-arm-kernel@lists.infradead.org, Breno Leitao <leitao@debian.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello,
+Add the kernel clocks of the ETR (CK_KER_ETR) and of the STM
+(CK_KER_STM) for STM32MP25, with the matching SCMI clocks
+(CK_SCMI_KER_ETR and CK_SCMI_KER_STM).
+These are the trace (ATB) clocks of the CoreSight Embedded
+Trace Router and System Trace Macrocell, while the bus clocks
+only provide register access (APB).
 
-On 05/11/2026 12:08, Kiryl Shutsemau wrote:
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+ include/dt-bindings/clock/st,stm32mp25-rcc.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> From: "Kiryl Shutsemau (Meta)" <kas@kernel.org>
->
-> With KPTI, VBAR_EL1 holds the trampoline vectors from the return to EL0
-> until the next exception from EL0 maps the kernel and installs the
-> kernel vectors. The trampoline vectors only handle exceptions from EL0;
-> their current-EL half is zero-filled.
->
-> An SDEI event is dispatched regardless of PSTATE.DAIF, so it lands there
-> whenever the CPU is in user space. The SDEI entry trampoline maps the
-> kernel but leaves VBAR_EL1 alone. [...]
+diff --git a/include/dt-bindings/clock/st,stm32mp25-rcc.h b/include/dt-bindings/clock/st,stm32mp25-rcc.h
+index 242f61205a9f..96b4cffbacb9 100644
+--- a/include/dt-bindings/clock/st,stm32mp25-rcc.h
++++ b/include/dt-bindings/clock/st,stm32mp25-rcc.h
+@@ -363,6 +363,8 @@
+ #define CK_BUS_ETHSWACMCFG	341
+ #define CK_BUS_ETHSWACMMSG	342
+ #define HSE_DIV2_CK		343
++#define CK_KER_ETR		344
++#define CK_KER_STM		345
+ 
+ #define CK_SCMI_ICN_HS_MCU	0
+ #define CK_SCMI_ICN_SDMMC	1
+@@ -486,5 +488,7 @@
+ #define CK_SCMI_SYSATB		120
+ #define CK_SCMI_TSDBG		121
+ #define CK_SCMI_STM500		122
++#define CK_SCMI_KER_STM		123
++#define CK_SCMI_KER_ETR		124
+ 
+ #endif /* _DT_BINDINGS_STM32MP25_CLKS_H_ */
 
-This quite broken indeed, thank you for sending a patch !
-
-However, given this and Catalin's comment regarding PMR save/restore,
-to me this sounds more like `arch/arm64/entry.S` is not doing its job
-properly for SDEI events, rather than the SDEI handler missing something.
-
-In fact, it appears that the SDEI trampoline misses a fair amount of
-the "regular" kernel and trampoline entry in general, which might subtly
-break more assumptions...
-
-> [...]
->
-> Install the kernel vectors in __sdei_handler() when VBAR_EL1 holds the
-> trampoline vectors, and restore it before returning to firmware. [...]
-
-Given that this is done in `entry.S` for a regular kernel entry,
-I feel like this should be done there too for SDEI : bringing the two
-paths closer rather than needing to do some additional special handling
-in the handler.
-
-`__sdei_asm_entry_trampoline` and `__sdei_asm_exit_trampoline` already
-check if the CPU was running at EL0 and maps/unmaps the kernel accordingly.
-We could swap VBAR to the EL1 vectors and back to the EL0 trampoline there...
-
-> The IRQ-like resume into user space must still go through the
-> trampoline to map the kernel. do_sdei_event() takes the interrupted
-> VBAR_EL1 and keeps basing the resume address on it.
-
-...and to maintain the expected behaviour on return, rather than using
-VBAR (which would bypass the trampoline in the EL0 IRQ-like resume case),
-we could explicitly choose the correct vector base for KPTI=on ?
-Something along those lines in `do_sdei_event()` :
-
-	/* KPTI=off => vectors or the appropriate mitigation, KPTI=on => trampoline */
-	unsigned long vbar = __raw_this_cpu_read(this_cpu_vector)
-	[...]
-	/* KPTI=on => have to bypass unmapped EL1 exceptions of the trampoline vector */
-	if (arm64_kernel_unmapped_at_el0() && mode == kernel_mode)
-		vbar = vectors
-	[...]
-	if (mode == kernel_mode)
-		return vbar + 0x280;
-	else if (mode & PSR_MODE32_BIT)
-		return vbar + 0x680;
-
-	return vbar + 0x480;
-
-> Fixes: 79e9aa59dc29 ("arm64: sdei: Add trampoline code for remapping the kernel")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Kiryl Shutsemau (Meta) <kas@kernel.org>
-> ---
->   arch/arm64/include/asm/sdei.h    |  3 ++-
->   arch/arm64/kernel/entry-common.c | 21 ++++++++++++++++++++-
->   arch/arm64/kernel/sdei.c         |  6 ++++--
->   3 files changed, 26 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/include/asm/sdei.h b/arch/arm64/include/asm/sdei.h
-> index b2248bd3cb58..a78a5337ff85 100644
-> --- a/arch/arm64/include/asm/sdei.h
-> +++ b/arch/arm64/include/asm/sdei.h
-> @@ -44,7 +44,8 @@ asmlinkage unsigned long __sdei_handler(struct pt_regs *regs,
->   					struct sdei_registered_event *arg);
->   
->   unsigned long do_sdei_event(struct pt_regs *regs,
-> -			    struct sdei_registered_event *arg);
-> +			    struct sdei_registered_event *arg,
-> +			    unsigned long vbar);
->   
->   unsigned long sdei_arch_get_entry_point(int conduit);
->   #define sdei_arch_get_entry_point(x)	sdei_arch_get_entry_point(x)
-> diff --git a/arch/arm64/kernel/entry-common.c b/arch/arm64/kernel/entry-common.c
-> index 11d3f888fcd8..8a17e3720f81 100644
-> --- a/arch/arm64/kernel/entry-common.c
-> +++ b/arch/arm64/kernel/entry-common.c
-> @@ -31,6 +31,7 @@
->   #include <asm/stacktrace.h>
->   #include <asm/sysreg.h>
->   #include <asm/system_misc.h>
-> +#include <asm/vectors.h>
->   
->   /*
->    * Where the context being returned to had an active percpu GPR critical
-> @@ -1040,6 +1041,7 @@ asmlinkage void noinstr __noreturn handle_bad_stack(struct pt_regs *regs)
->   asmlinkage noinstr unsigned long
->   __sdei_handler(struct pt_regs *regs, struct sdei_registered_event *arg)
->   {
-> +	unsigned long vbar;
->   	irqentry_state_t state;
->   	unsigned long ret;
->   
-> @@ -1065,10 +1067,27 @@ __sdei_handler(struct pt_regs *regs, struct sdei_registered_event *arg)
->   	else if (cpu_has_pan())
->   		set_pstate_pan(0);
->   
-> +	/*
-> +	 * With KPTI, VBAR_EL1 holds the trampoline vectors from the return to
-> +	 * EL0 until the next exception from EL0 maps the kernel. They only
-> +	 * handle exceptions from EL0: an exception taken here would run their
-> +	 * empty current-EL half and never come back. Switch to the kernel
-> +	 * vectors. The IRQ-like resume keeps using the interrupted VBAR, so it
-> +	 * still goes through the trampoline.
-> +	 */
-> +	vbar = read_sysreg(vbar_el1);
-> +	if (arm64_kernel_unmapped_at_el0() &&
-> +	    vbar == (unsigned long)__this_cpu_read(this_cpu_vector)) {
-> +		write_sysreg((unsigned long)vectors, vbar_el1);
-> +		isb();
-> +	}
-> +
->   	state = irqentry_nmi_enter(regs);
-> -	ret = do_sdei_event(regs, arg);
-> +	ret = do_sdei_event(regs, arg, vbar);
->   	irqentry_nmi_exit(regs, state);
->   
-> +	write_sysreg(vbar, vbar_el1);
-> +
->   	return ret;
->   }
-
-With what I mentioned above, this would be completely replaced by the
-changes in `entry.S`, with no change in `__sdei_handler()`.
-
->   #endif /* CONFIG_ARM_SDE_INTERFACE */
-> diff --git a/arch/arm64/kernel/sdei.c b/arch/arm64/kernel/sdei.c
-> index 778f2a1faac8..260c13106009 100644
-> --- a/arch/arm64/kernel/sdei.c
-> +++ b/arch/arm64/kernel/sdei.c
-> @@ -200,16 +200,18 @@ unsigned long sdei_arch_get_entry_point(int conduit)
->    *  SDEI_EV_HANDLED -  success, return to the interrupted context.
->    *  SDEI_EV_FAILED  -  failure, return this error code to firmware.
->    *  virtual-address -  success, return to this address.
-> + *
-> + * vbar is the interrupted context's VBAR_EL1, for the IRQ-like resume.
->    */
->   unsigned long __kprobes do_sdei_event(struct pt_regs *regs,
-> -				      struct sdei_registered_event *arg)
-> +				      struct sdei_registered_event *arg,
-> +				      unsigned long vbar)
->   {
->   	u32 mode;
->   	int i, err = 0;
->   	int clobbered_registers = 4;
->   	u64 elr = read_sysreg(elr_el1);
->   	u32 kernel_mode = read_sysreg(CurrentEL) | 1;	/* +SPSel */
-> -	unsigned long vbar = read_sysreg(vbar_el1);
->   
->   	if (arm64_kernel_unmapped_at_el0())
->   		clobbered_registers++;
-
-And this part would be made more explicit as to what vector base
-we should be jumping back to on return from firmware.
-
-
-What are your thoughts ?
-I understand that this is a completely different approach, but I feel it
-would be more in line with what we already do for other entry paths.
-This might even allow us to de-duplicate them in the future and reduce
-the chance of this happening again.
-
-If my suggestion is not sound, apart from what Catalin already mentioned
-the patch looks good to me !
-
-Kind regards,
-Ada
+-- 
+2.43.0
 
 
