@@ -2,72 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70120606A329
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:57:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34BBC606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 15:07:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m8/AAegt;
-	dkim=pass (2048-bit key, unprotected) header.d=debian.org header.i=@debian.org header.a=rsa-sha256 header.s=smtpauto.stravinsky header.b=u3dvrilR
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J9ToaE1b;
+	dkim=pass (2048-bit key, unprotected) header.d=deq.rocks header.i=@deq.rocks header.a=rsa-sha256 header.s=securedbylima-20251205 header.b=DcQqrWYJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ouqotmQz82VhTw/HxlXhVKKyO5h22zOiImm6TZVgam4=; b=m8/AAegtFd30b6+sk6O4CeE1Us
-	watG8wKS3YV5OQOEB/lYg/FVr3C7aqRr4hxiAZITVWQZYwK+YmCF89np+rGkNB+5/vq09z65Zi6n2
-	ykPYF3e9votNmCfQRlw94loSA4QJgIy4ZDB4fuGV/gYilIZj9F/BVJGH8hLutttOoNyT5d/hDQURW
-	zS+O43lPuPp9WWlxPINY6x/Mmdq7CF3I/xiffC4MT2Dj7MeKKwYlmvVRhYUTAtzGfGVzAO+0dXK1w
-	66HxB51xwJpZGPdEz5K+aUHbzpoutcdyUDv3dgDAsNBYengrllvc6vFK50GQ8P/hEatZIKqjMy7je
-	bCQCnpsQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=a24+d9xvaf+CDIz2+89Hx2fexrG15RfEetPbz91IQO8=; b=J9ToaE1b/RBAfs
+	/Rrpe/yr8CDK6+tYs0AS5lZq0yko3XHLbBdaUG+rswu2OCmEapp3w54xN3Ou7zLzlPYigSIXOHWx9
+	eJk3o6aLIZyDPYZ9eEOm5VjkFBrgP+NGIlsbhvCOhVPQRKpJ1KCS8LOhCljX9It1r2wnPlYPXXUcN
+	NCgAqIAFtifH+BmHck26UR2u944xYExOC0VwRWRtm4JVK0ux1oI8Sg01GnXOkyOvsqA6Edtp/UEZ7
+	09bOM/FNQNq6u5jtPHxFgYjZd+y/2l0FI5PNCHubc9OlBuWPu/CKeZ61ILtGWRMutfutiCIvf0/P7
+	oGU51GfPoYx6RqWjjoWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPLNN-0000000ClBS-19a0;
-	Fri, 06 Nov 2026 14:57:09 +0000
-Received: from stravinsky.debian.org ([2001:41b8:202:deb::311:108])
+	id 1xPLWt-0000000CmSL-2soR;
+	Fri, 06 Nov 2026 15:06:59 +0000
+Received: from mx5.mail-out.lima-city.de ([91.216.248.207])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPLNK-0000000ClAQ-3Cw0
+	id 1xPLWp-0000000CmQH-3xJ4
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 14:57:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
-	Reply-To:Content-ID:Content-Description;
-	bh=ouqotmQz82VhTw/HxlXhVKKyO5h22zOiImm6TZVgam4=; b=u3dvrilRnNU7Ioj9YIzB3OOZvI
-	yjkvNQuOwsrhDV00nJE23P+eZq7kGmMD/Hkdnv88wkAR/6NCkpliNOHRcPZoNJp0OVHv+B5EgmQCn
-	3mt9zC8It6d80EjxLBLtAaiO+MELt98bxX2pp7LD/+Uvx+dEOH2GnxrnNjd2LOo6lB3vp6jXkxBPu
-	Q8PKKcAMftLp8WcM3xqES9WYW3zKVcwRDQZTJSKzGJVd7M2+723Od9wuXHgGVgka+1IZjjvhKMby+
-	MaOf1rO7fJjtytn+dm8ToT+yK9toUrwT9iP+EfURTGM6uJaoXtO3lt5mn2tGGOQBbUlvzUk2b8evs
-	IRj+IZxA==;
-Received: from authenticated-user
-	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <leitao@debian.org>)
-	id 1xPLNB-009MYZ-0p;
-	Fri, 06 Nov 2026 14:56:57 +0000
-Date: Fri, 6 Nov 2026 06:56:52 -0800
-From: Breno Leitao <leitao@debian.org>
-To: Qu Wenruo <quwenruo.btrfs@gmx.com>
-Cc: linux-btrfs@vger.kernel.org, David Sterba <dsterba@suse.com>, 
-	Chris Mason <mason@kernel.org>, Qu Wenruo <wqu@suse.com>, Filipe Manana <fdmanana@kernel.org>, 
-	Boris Burkov <boris@bur.io>, Atish Patra <atish.patra@linux.dev>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: bug: btrfs: direct IO fallback racing with in-flight direct IO
- fails fsync
-Message-ID: <au3ql8KMn003QqJh@gmail.com>
-References: <auxv7Tg0xSq5yHmb@gmail.com>
- <c23d652d-4801-41e5-bdfc-ca8b91508647@gmx.com>
+	Fri, 06 Nov 2026 15:06:58 +0000
+Date: Fri, 6 Nov 2026 16:06:48 +0100
+X-Lima-ML-UUID: 59084f74-4df0-4d05-8f4d-796d5e595ebe
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=deq.rocks;
+	s=securedbylima-20251205; t=1793977612;
+	bh=a24+d9xvaf+CDIz2+89Hx2fexrG15RfEetPbz91IQO8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=DcQqrWYJrmn/TxAwJu3//ceI1EKsNKPNB8iDm6H18mLIZKbwXuz77tMxy2jzUuJoa
+	 IUZ2hw0xefq1/6Im1d3mtxNqxYDmw4m+OcCHHZF/IdnqcQGJ+VoQQo43iHqRmXPaSk
+	 YnXSFCJl1QLMYypmDUuFQDY3bNrV01msSjaXmFSzn1eBcW8DwKWqOo8os+EQ59X+qc
+	 TYDxHRB/h5CdG+ccCtGn9shroQvEX84ZFLZ8Gy/DjoMyaOZcb4Qj0+O4Sv4xrQ0wNE
+	 MnNR1H06/oBatRS969+5s12uKSIsXWFXz0Yq7UsN3m+Yqz/XpL9zxAsEktQl7+6PEi
+	 wUY2Nb0VTg8cA==
+From: =?UTF-8?B?QW5kcsOp?= Eikmeyer <dev@deq.rocks>
+To: Sasha Finkelstein <k@chaosmail.tech>
+Cc: Myria Sarvay <myrialsarvay@gmail.com>, marcel@holtmann.org,
+ luiz.dentz@gmail.com, linux-bluetooth@vger.kernel.org,
+ linux-kernel@vger.kernel.org, sven@kernel.org, j@jannau.net,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Yossef Osman
+ <Yossef.Osman@proton.me>, Aditya Garg <aditya.garg@linux.dev>
+Subject: Re: [PATCH v2 1/2] Bluetooth: btbcm: raise ACL priority on Apple
+ Broadcom controllers
+Message-ID: <20261106160648.05117894@kait2en-mbp15-1>
+In-Reply-To: <5F81A6CC-46B6-4C45-BB05-8483057EEE7C@chaosmail.tech>
+References: <20261105085750.120392-1-dev@deq.rocks>
+	<20261105085750.120392-2-dev@deq.rocks>
+	<au1uH6uxtsw2vHfP@macbookair>
+	<20261106083339.677cc75d@kait2en-mbp15-1>
+	<CB3B84A2-76AD-45F5-B2B9-39E5A9ED3BE7@chaosmail.tech>
+	<20261106113946.60c6c5f6@kait2en-mbp15-1>
+	<5F81A6CC-46B6-4C45-BB05-8483057EEE7C@chaosmail.tech>
+Organization: KaiT2en
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c23d652d-4801-41e5-bdfc-ca8b91508647@gmx.com>
-X-Debian-User: leitao
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_065706_807564_FCBD442C 
-X-CRM114-Status: GOOD (  42.89  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261106_070656_144213_A0A92908 
+X-CRM114-Status: UNSURE (   8.65  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,131 +79,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 08:15:23AM +1030, Qu Wenruo wrote:
-> 
-> 
-> 在 2026/11/5 22:37, Breno Leitao 写道:
-> > Hi,
-> > 
-> > Atish reported that arm64 production hosts (64K pages, 4K blocks) that
-> > keep VM disk images as NOCOW files on btrfs, opened with O_DIRECT, on
-> > 7.x based kernels, and it still reproduces in linux-next as of
-> > next-20261104:
-> > 
-> >    Page cache invalidation failure on direct I/O.  Possible data corruption due to collision with buffered I/O!
-> > 
-> > Besides the message, dio_warn_stale_pagecache() records -EIO in the
-> > mapping, so the next fsync() on the image fails. The message blames the
-> > application for mixing buffered and direct IO, but every write here is
-> > O_DIRECT: the buffered writes come from btrfs itself, when it falls back
-> > for writes that are not 4K aligned.
-> > 
-> > It does not look like a regression, since the fallback never waited for
-> > in-flight direct IO. 64K pages make it easy to hit, as a folio then holds
-> > 16 blocks. Since e9b7b9d9e78e5b ("btrfs: use IOMAP_DIO_BOUNCE flag
-> > instead of falling back to buffered IO"), COW files are exposed too.
-> > 
-> > I was able to come up with a reproducer that hits the issue within
-> > seconds with 64K pages. With XFS on a loop device backed by such a file,
-> > standing in for the VM, XFS shuts down on "log I/O error -5":
-> > 
-> >          https://github.com/leitao/btrfs-dio-fallback
-> > 
-> > My robot identified this as the root cause:
-> > 
-> > 1. Task A has an async O_DIRECT write in flight to one 4K block of a 64K
-> >     folio. iomap invalidated the page cache before submitting it, and the
-> >     inode lock was dropped.
-> > 2. Task B issues an O_DIRECT write whose offset, length or buffer is not
-> >     4K aligned. btrfs_direct_write() falls back to btrfs_buffered_write(),
-> >     which does not wait for in-flight direct IO, and dirties another block
-> >     of the same folio.
-> > 3. Task A's write completes. kiocb_invalidate_post_direct_write() finds
-> >     the folio dirty, so invalidate_inode_pages2_range() fails with -EBUSY
-> >     and dio_warn_stale_pagecache() records -EIO. The next fsync() fails.
-> > 
-> > ext4 fixed the same race in 15cdefd0c052 ("ext4: drain in-flight DIO
-> > before buffered write fallback"), and ext2, ntfs and exfat are getting
-> > the same fix. Doing the same in btrfs_buffered_write() for the fallback
-> > case makes the reproducer clean, and I can send that patch if it looks
-> > like the right direction.
-> > 
-> > This patch is a copy of the fixes above (from other FS) and make the
-> > reproducer happy.
-> > 
-> > commit 16cd17d1e8205f9f86b8da0a9b1ccefdb2665764
-> > Author: Breno Leitao <leitao@debian.org>
-> > Date:   Thu Nov 5 02:59:39 2026 -0800
-> > 
-> >      btrfs: drain in-flight direct IO before buffered write fallback
-> >      When btrfs_direct_write() cannot do a write as direct IO, because the
-> >      offset, the length or the user buffer is not aligned to the sectorsize,
-> >      or the range has compressed extents or page cache, it falls back to
-> >      btrfs_buffered_write(). That dirties the page cache without waiting for
-> >      direct IO still in flight from other tasks:
-> >      1) Task A submits an async direct write to block 1 of a folio. iomap
-> >         invalidates the page cache in the range and submits the bio, and the
-> >         inode lock is dropped.
-> >      2) Task B issues a 512 byte O_DIRECT write to block 0 of the same folio.
-> >         btrfs_direct_write() falls back to btrfs_buffered_write(), which
-> >         dirties the folio.
-> >      3) Task A's write completes. kiocb_invalidate_post_direct_write() finds
-> >         the folio dirty, invalidate_inode_pages2_range() fails with -EBUSY,
-> >         and dio_warn_stale_pagecache() logs:
-> >         [    2.048568] Page cache invalidation failure on direct I/O.  Possible data corruption due to collision with buffered I/O!
-> >         [    2.048574] File: /tmp/diorepro.JTCKpJ/block.img PID: 260 Comm: kworker/11:1
-> >         It also records -EIO in the mapping, so the next fsync() fails.
-> >      The two writes do not touch the same bytes, they only share a folio.
-> >      With 4K blocks on 64K pages a folio holds 16 blocks, so this is easy to
-> >      hit there. Meta's arm64 hosts with 64K pages hit it with VM disk images
-> >      that are NOCOW files on btrfs, opened with O_DIRECT. In a test, XFS on a
-> >      loop device with direct IO on such a file gets EIO on a log write and
-> >      shuts down within seconds.
-> >      Wait for in-flight direct IO before the fallback dirties the page cache,
-> >      as ext4 does since commit 15cdefd0c052 ("ext4: drain in-flight DIO
-> >      before buffered write fallback"). btrfs_buffered_write() holds the inode
-> >      lock exclusively there, so no new direct IO can start until the write is
-> >      done. NOWAIT writes never get there, as btrfs_direct_write() returns
-> >      -EAGAIN for them before falling back.
-> >      A reproducer that keeps 4K libaio O_DIRECT writes in flight while other
-> >      threads issue 512 byte O_DIRECT writes to the same folios of a NOCOW
-> >      file got 1123 fdatasync() EIOs in 10 seconds on a 64K page VM, and none
-> >      with this patch.
-> >      Fixes: f85781fb505e ("btrfs: switch to iomap for direct IO")
-> >      Reported-by: Atish Patra <atish.patra@linux.dev>
-> >      Signed-off-by: Breno Leitao <leitao@debian.org>
-> > 
-> > diff --git a/fs/btrfs/file.c b/fs/btrfs/file.c
-> > index f978c6524aa03f..2017a96814d857 100644
-> > --- a/fs/btrfs/file.c
-> > +++ b/fs/btrfs/file.c
-> > @@ -1334,6 +1334,14 @@ ssize_t btrfs_buffered_write(struct kiocb *iocb, struct iov_iter *iter)
-> >   	if (ret < 0)
-> >   		return ret;
-> > +	/*
-> > +	 * A direct write that fell back to buffered IO must not dirty folios
-> > +	 * while direct IO is in flight: its completion fails to invalidate
-> > +	 * them and records -EIO in the mapping.
-> > +	 */
-> > +	if (iocb->ki_flags & IOCB_DIRECT)
-> > +		inode_dio_wait(inode);
-> > +
-> 
-> Sashiko exposed a problem that the inode can already be enlarged before:
-> 
-> https://sashiko.dev/#/patchset/auxv7Tg0xSq5yHmb%40gmail.com
+On Fri, 6 Nov 2026 11:53:13 +0100
+Sasha Finkelstein <k@chaosmail.tech> wrote:
 
-That seems important as well, and not hard to fix. Let me try to hack
-something.
+Hi Sasha, coming back to this after testing
 
-Thanks,
---breno
+> >> You probably shouldn't, or at least base it on v2, not v3 (that one
+> >> ended up being a bad idea and caused firmware timeouts, so Asahi
+> >> downstream ships something more similar to v2).
+
+Linux doesn't keep ACL link across sleep. The core disconnects all
+links before suspend ("terminated by local host for suspend"). I saw
+that with S3 on the BCM4364 and with s2idle/s3 on the BCM4377. After
+resume my headphones reconnect and my patch sets the priority again.
+On the T2 Macs the BCM4377 BT itself does not come back from
+s2idle yet, even with patches 01, 04 and 05 from your 4388 series,
+so I couldn't test there. Would need to investigate, tho s2idle is not
+my priority right now.
+
+Since connection time works on these chips, I'd keep 1/2 as it is while
+being open for proposals.
+
+
+Andre
 
