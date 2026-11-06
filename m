@@ -2,64 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51268606D802
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 17:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39101606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 17:40:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tE6NtK+z;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=b46Iw0Is
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jyFos6D/;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=amHYenwN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Type:MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To
-	:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=V/Ki9KYCk1/u/T9+TLPXVuBQHKR32la5lHVotRJ9M9s=; b=tE6NtK+zj2CeDdQpQl1Wo6ZLs+
-	UIpwSp3c5d/b26Ngi+L3ii/4N4+VtBP1TL/CQxEM4OxD5ZZo1ax4bdqtK0PcFpvVxI8jL5AJaTC6l
-	aO4x3vwOaX46YKu0PBHzU/G1d0kN/OfygPRYiZjCuCtyusTwYGtplEu5rSOaE+GIPuWXbdtazOVfj
-	Rb6uvhO17ixbCtAdo5PLVSRN4uQ8ZXnGJeGxGKrc2fRd25yZroBp/VrUCrX+/6qAJBPfc4rimtT6E
-	CyEOjrGhuF3zfIp2ZNSuVDGbScrnl4Gk1yoUaBQCWEmvrwcbWjxqAzhsRLjYgBY3jHi2yVDx7HB6x
-	1PjLDWxw==;
+	bh=6iCz8uPmaivGK2IfBvxWCreSuE+UWU0XRqrSzi+k0Sw=; b=jyFos6D/d2gvCF3Ypn1ag1bLpP
+	E1FCq4PTMt2460yVsbc9zoMs2aES98i/ptpVZgwzUAanX97R/Y0mUhbHmgq6H0EwvISjGxKhn+TYB
+	yEbg/4q1I4u+qINMF43TTkgdDG9yAAz1NW5B8j8HlBRiy6l58K8y1xCbVKHG33GnEKUyPBp/kl9R9
+	c2n3EWVWbRAcXMyUv2Nn0+BEkuCevlIHBwUO9VpkzUYK05lT1egMTpYBVh0sgvcrulDUxjhjU+d9H
+	D7Q01kqcnm1WOs4xo7nxMoIUZRuxElbbwvAAflDgil2AbDLPRQNmqEe/LwHUjcSsz/L2N2fwX3PyN
+	DvEdXEzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPNu1-0000000DGDv-2eC2;
-	Fri, 06 Nov 2026 17:39:01 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPNtz-0000000DGCt-2Baj
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 17:39:00 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37C51153B;
-	Fri,  6 Nov 2026 09:38:55 -0800 (PST)
-Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E311E3F632;
-	Fri,  6 Nov 2026 09:38:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1793986738; bh=Au11w2LcZqWcY7AEya/LgeSWkZUdT+Gf4txaRTnYGZo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b46Iw0Iszy98SNd2Ysmjz5/eWk+qZHyrwWByFkmfYCpUNGC07OVTzMcnxF6B1tl5u
-	 dZTZWdyX3pVaWzbzKvqFf9udxyzvhmX7DaqTMaxgvh4Yv2OTOSjVj8jg7gV6rC2rGe
-	 vY5mjfipkuqKnqSBvbDhhZiwbQO82z5CZBo8whm8=
-Date: Fri, 6 Nov 2026 17:38:53 +0000
-From: Catalin Marinas <catalin.marinas@arm.com>
-To: Kiryl Shutsemau <kirill@shutemov.name>
-Subject: Re: [PATCH v2 1/2] arm64: sdei: Run the event handler on the kernel
- vectors
-Message-ID: <au4QrUV_l6QDeArN@arm.com>
-References: <20261105120835.3321912-1-kirill@shutemov.name>
- <20261105120835.3321912-2-kirill@shutemov.name>
- <auzM-l40BLsT3clg@arm.com>
- <au2-GegBg8kRmBs0@thinkstation>
+	id 1xPNvT-0000000DGTf-0GKw;
+	Fri, 06 Nov 2026 17:40:31 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPNvQ-0000000DGTU-3O0n;
+	Fri, 06 Nov 2026 17:40:28 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 292F3601BF;
+	Fri,  6 Nov 2026 17:40:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 653E01F0089F;
+	Fri,  6 Nov 2026 17:40:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1793986827;
+	bh=6iCz8uPmaivGK2IfBvxWCreSuE+UWU0XRqrSzi+k0Sw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=amHYenwN3Ln2et+kOQfWN1SJNABijL2Js0a5jRmO6CZZBpwmogMZbQNXk8UaJQ77K
+	 pRlHlptn6we3Cz9/4fvgNiCKJ3y/q7iymXFHpHNOtyCtA5kHEOHAn6kW8AC9XBgV1W
+	 PyBCeazkuXC1nAuvutr8op5aGvmkccpMFFKqS0SUPf3J2PMihYQyMBjodqu0Ty/yRv
+	 0WuC79D9XDKmg3CU37LdP0Vd1XXOdLgmxbxES4O5jwOcq3cSUHeB7CKlDVbexNGK7N
+	 p98A0G5HuXe65ZXZhV4RiYRkWj5e12u6TlAIRt7z7rVtB+OE+YvI2jK81Hf4Nd6d3u
+	 pqGWO4EQ0/P7g==
+Date: Fri, 6 Nov 2026 17:40:23 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Alexander Letuchiy <asalde.le1@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: serial: mediatek,uart: Add compatible
+ for MT6895
+Message-ID: <20261106-gulf-extended-fe3771d9d70e@spud>
+References: <20261105210622.523747-1-asalde.le1@gmail.com>
+ <20261105210622.523747-3-asalde.le1@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JYHp8Y84ezkOabFk"
 Content-Disposition: inline
-In-Reply-To: <au2-GegBg8kRmBs0@thinkstation>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_093859_603438_C11C69E0 
-X-CRM114-Status: GOOD (  15.81  )
-X-Spam-Score: -4.4 (----)
+In-Reply-To: <20261105210622.523747-3-asalde.le1@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,32 +75,32 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Usama Arif <usama.arif@linux.dev>, Peter Zijlstra <peterz@infradead.org>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org, Breno Leitao <leitao@debian.org>, mrigendrachaubey <mrigendra.chaubey@gmail.com>, Will Deacon <will@kernel.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 11:48:00AM +0000, Kiryl Shutsemau wrote:
-> On Thu, Nov 05, 2026 at 06:37:46PM +0000, Catalin Marinas wrote:
-> > Worth a separate patch to fix SDEI handling with pseudo-NMI on and no
-> > changes to __this_cpu_read() above needed. So, for this patch:
-> > 
-> > Reviewed-by: Catalin Marinas <catalin.marinas@arm.com>
-> 
-> Thanks!
-> 
-> Would it still make sense to switch to raw_cpu_read() in this patch for
-> stable@? The splat is new with this patch, so without it stable trees
-> would also need the PMR fix.
-> 
-> Let me know if you want a re-spin with raw_cpu_read().
+--JYHp8Y84ezkOabFk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-No need to respin, I can fix it locally.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
--- 
-Catalin
+--JYHp8Y84ezkOabFk
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCau4RBwAKCRB4tDGHoIJi
+0qIZAP9BbUTJCJBFwXZbdcK7EV7D1qfEEy9W5eTCWsx9+SR3ZAD/ZSPl3XM2WvFy
+tQJtKWnZ4EK9GySbgthNiOBevVPZbgA=
+=Nrh4
+-----END PGP SIGNATURE-----
+
+--JYHp8Y84ezkOabFk--
 
