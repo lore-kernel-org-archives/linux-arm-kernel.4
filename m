@@ -2,78 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C12760A2635
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D32606A9A8
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 16:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3nQl/+hC;
-	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=gS8sw9Wa
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bcpkUNf7;
+	dkim=pass (2048-bit key, unprotected) header.d=ibm.com header.i=@ibm.com header.a=rsa-sha256 header.s=pp1 header.b=fpAY2ft2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IrWQ8uyRNpiuUgwIHv/xG8dMDSEjnpkf5UrJq74oLLM=; b=3nQl/+hCEmKCFO
-	FmoU+N+q5z+WaKYKVI0/rxJDTiznSqNTvSkMJxkYWGGzPWmuO8JMSD+wwlPh/qwfCkT71tzvxaP6a
-	YBfWGOBAbQ2mUTXIur4XQyzQ7wo/bCS5fdJgH7yIah0AiRxuMea+3Zqm/PR3pPAMKsfSpvu1buczI
-	vpMuYStHMzdVlbgnTPQtM/fcYiXPqRLuHeB6ArnYi+wWg7j1G5B0RR61XAqa4v0HudEUxv3B/gTMs
-	lkR843vqSeO7qOxcf3frsjw1/w5IRcpwqyMXbH8do1gyKCTbktbJwdCINWIGVaaELnPmAGoD0wwkG
-	CMCJZKV2pDFt65BMEM/Q==;
+	List-Owner; bh=X63IZzZheOdrg6qDJSPKMNQvpa1xKEbFz3i9APvG6ho=; b=bcpkUNf7bTkDSk
+	opjJ9i03WO9niihPIcm3ACm2WycqY7NVXcPRvTsLxNFFMJHK/+Q02wLdMVs8FaNLK6VSogMuOWxFs
+	jXI7PFi8lzwowAL9dIoojPQ8ySh9x0tiPXrNcWc7IENJER9aRnX4fwzs7syVJ4a5Ef5eu6cICc5pQ
+	55qNSc+aTt1+vU+cdcXF7wPweafkqOW3X5Skk50s9cvj/ey1FkOMtJp7ealnyimf4KwEa9tBnOQk8
+	x19Mm0x0RorzyCiNIHnmnM+xzK+N0frCgtT8AIHF8R9mlG4PU8+fPT3E2jmXAR2AuiJ3VQq3+Z7Sl
+	CU8xZFYn2ACIKoJWFiiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMUd-0000000CxVB-3qJd;
-	Fri, 06 Nov 2026 16:08:43 +0000
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1])
+	id 1xPMUq-0000000Cxmf-1iQ6;
+	Fri, 06 Nov 2026 16:08:56 +0000
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPMUZ-0000000CxQu-1kQf
+	id 1xPMUc-0000000CxSh-2OVq
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 16:08:41 +0000
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FEEud2936029;
-	Fri, 6 Nov 2026 16:08:20 GMT
+	Fri, 06 Nov 2026 16:08:45 +0000
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FEEdZ1544351;
+	Fri, 6 Nov 2026 16:08:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
 	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=IrWQ8u
-	yRNpiuUgwIHv/xG8dMDSEjnpkf5UrJq74oLLM=; b=gS8sw9Wa9BfYd08n8DTEbD
-	XBD6xQxut0Tm0+QFg8a3hjC+3XZJQCWIj0jp5rH4t4eGJ0DOh/NAHszVLeedyr8V
-	6sLi1+3q1FyZoxMA8LMDFDnexPRAr7w0y8f/2cKSPAnwIZ3f061IKPFbFmYCa9my
-	r6Qxo0Y0LnQl1apyyF9jqP+BCMyIsce8aqRYOCs3epxdJhzg4osV/6Lb5T9VuZUA
-	6Qa8cmLLozN2m4uvED2DwhcYzrJhZDYFByh8WaBSahfWF3hPesovj7RladGsHqqk
-	duUAObWQ8YZtb89xnroSUEH857Obquzwr3aa8cSINuORK3cO3R5yMQC0/1TaOExA
+	:message-id:mime-version:references:subject:to; s=pp1; bh=X63IZz
+	ZheOdrg6qDJSPKMNQvpa1xKEbFz3i9APvG6ho=; b=fpAY2ft2FtxPoRiObry+DD
+	lGC7fKq+yhpW4dJ8LHW80LnMX70QdeREV4oFosjX3ldoorq3kk6f8uXcywbyS3Sx
+	s8LBHR0LlUC8C0cE3IDiyvJ6268fhgLQ/w5XELPWd4XS/4+jMAjb7oMizoPhGofk
+	2RGstIp44Zz4/OJTEZdoP+4Y89ARGrfejGONHCvhf+414PHJx731PEQI5YOPxeGK
+	L3mYvBP7QlDGMVma7ctBw7qgsJbjX4zJ9GcLP9Ist+8bGngota1C8T2DQMIvcmEO
+	3cstg0kneABRPe6GILZDm+tQs2sqtPlA7b51hsF60PaqIKa2Gx6eFo1KWKuzV6gQ
 	==
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4hs3rcdhet-1
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4hs3rbwf0a-1
 	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 06 Nov 2026 16:08:19 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6FK7xv3577902;
-	Fri, 6 Nov 2026 16:08:18 GMT
-Received: from smtprelay01.fra02v.mail.ibm.com ([9.218.2.227])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4hqv1v870k-1
+	Fri, 06 Nov 2026 16:08:24 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id 6A6F4vxf3617218;
+	Fri, 6 Nov 2026 16:08:24 GMT
+Received: from smtprelay04.fra02v.mail.ibm.com ([9.218.2.228])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4hrdd7ukcn-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Nov 2026 16:08:18 +0000 (GMT)
+	Fri, 06 Nov 2026 16:08:23 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (smtpav02.fra02v.mail.ibm.com [10.20.54.101])
-	by smtprelay01.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6A6G8EZ735389860
+	by smtprelay04.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 6A6G8JlY16646642
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 6 Nov 2026 16:08:14 GMT
+	Fri, 6 Nov 2026 16:08:19 GMT
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B9DC92004F;
-	Fri,  6 Nov 2026 16:08:14 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id A4F9220063;
+	Fri,  6 Nov 2026 16:08:19 +0000 (GMT)
 Received: from smtpav02.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 5889C2004B;
-	Fri,  6 Nov 2026 16:08:14 +0000 (GMT)
+	by IMSVA (Postfix) with ESMTP id 49C2E2004B;
+	Fri,  6 Nov 2026 16:08:19 +0000 (GMT)
 Received: from a46lp73.lnxne.boe (unknown [9.87.84.240])
 	by smtpav02.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Fri,  6 Nov 2026 16:08:14 +0000 (GMT)
+	Fri,  6 Nov 2026 16:08:19 +0000 (GMT)
 From: Steffen Eiden <seiden@linux.ibm.com>
-Date: Fri, 06 Nov 2026 17:07:35 +0100
-Subject: [PATCH v3 02/23] KVM: arm64: Extract number of sys_reg_desc into a
- constant
+Date: Fri, 06 Nov 2026 17:07:47 +0100
+Subject: [PATCH v3 14/23] KVM: s390: arm64: Verify machine feature set
+ before loading
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-sysreg-v3-2-75e95980fb10@linux.ibm.com>
+Message-Id: <20261106-sysreg-v3-14-75e95980fb10@linux.ibm.com>
 References: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
 In-Reply-To: <20261106-sysreg-v3-0-75e95980fb10@linux.ibm.com>
 To: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
@@ -102,35 +102,35 @@ Cc: linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
         linux-s390@vger.kernel.org, Steffen Eiden <seiden@linux.ibm.com>
 X-Mailer: b4 0.14.3
 X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: okE7hTDatj3n1WZfogT40Zd1Y7MAF8xp
-X-Authority-Analysis: v=2.4 cv=A635rKWG c=1 sm=1 tr=0 ts=6aedfb73 cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
+X-Proofpoint-ORIG-GUID: vCRx0Qew_klhVdlZSfdhXdccJwNGYSA5
+X-Proofpoint-GUID: vCRx0Qew_klhVdlZSfdhXdccJwNGYSA5
+X-Authority-Analysis: v=2.4 cv=MqLHeGae c=1 sm=1 tr=0 ts=6aedfb78 cx=c_pps
+ a=3Bg1Hr4SwmMryq2xdFQyZA==:117 a=3Bg1Hr4SwmMryq2xdFQyZA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VnNF1IyMAAAA:8
- a=cPKN5jb6Pdq7kSXABbwA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: okE7hTDatj3n1WZfogT40Zd1Y7MAF8xp
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX5OUXNknPa1yT
- PYi4gahsDzI3H5QhTYRjRp1Z6le/XUUYgJZJMMdjh/vNzlD2uROGkaQTE5dlc+R7S2fHGlPFph2
- 9TFCHSYelbppSkotpNJCSkrl08O6+sHwUpflo9xmZM7+jnRazWTs+Ew3ybHTvYp7wrNJZ6xOjqr
- abMbTXfXva809pF7qYNFx1Hv6/c+Qm82/XxPPTQomlx+eUPwhKocjNS24tdOFwvsc4jqt6nIqwG
- cuh+aVsMXAj7m2NTEKnz4z+eDKUUxgoCW+3l8UDPYZcBeCy4vslROF733JOP57qDBQGWzzHkUE4
- DE3hV+Ly/12T/1C0pPTw4tqj8sm4FbH5GTX2Mi9i0w7WqWEwx/X3KoQ81L+zym4t3GgO2lTeEa/
- aQzTkjpYQ2b757C2pK5BmXqL/VtAU01gD/6q10Ly3+5OPpRCLXPNrbBuo6TrHjk/XU4gThe1ZfO
- BimHVFdzRufJIz/Y1sw==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX/oR6f3OGjERy
- hJlSRmiMUQMGwEJdcWPXBmY1XZ0tsmnVp2gcNi7a7gFq71/5H/oFdzu64vsuIaUArHfUgeNx2m1
- cqeF9iwXS29qR/YLH33qQwDb8LMUsKo=
+ a=RnoormkPH1_aCDwRdu11:22 a=V8glGbnc2Ofi9Qvn3v5h:22 a=VnNF1IyMAAAA:8
+ a=AT7rqknK4rqI55-KZpcA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfXwecC2Xi9Vb0M
+ VQGX/7EekuaLRKidMa/iXpj08xzymqIGdCzNZvuCaGUcMI9gxA8PE9mf0gNNpic95PWBMLaKSpG
+ dzzC4GA3GIt6ndpI7vhWNXHDAJO60YY=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA2MDA2MiBTYWx0ZWRfX5f3P/jzU+mx5
+ kk1fxbMy7CoWhH/XoOLpPet8DUOss2cnqIcnsuxpEqsqB6JBiS9VzHe90drDsgahLkUGfPKrTC7
+ nh6mftJSTj3J8qbj/XGnAbiUtHLaMymHnjlupZ/kJBDCY6LM2zTWZEkMl5Pl6cAPhXVE8UWxDth
+ 91P9N+alQxVrN7BCP5GbzhV0Ho7p3lW4ihQSBhIdvVA2JgKZrTdSgqMGElrAPiF54tLgdJ02/Ax
+ Qnj/n7V2ZCzFyzHMCcOsUq+r0DKlPfD2umo6qTUGvdJdYEceN5BDbPRUU9fS216gkDKg9elKzGs
+ PVqcZ9R80MLiNguf7swYmIguZnUjm4rwmy8/xAKX+VbtPNQ0ARd496OAPZegxiXQgrpvnG9awbq
+ rNpcvhZDI31hm4gwGCEAV/oAEshv6BI9luZrzWjFv6ya/x+az1Grb0jPCG5L2beyvzUFw6uTLgf
+ MIvMnUZdHRl8nc2VNpQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-06_05,2026-11-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 priorityscore=1501 impostorscore=0 phishscore=0 spamscore=0
- malwarescore=0 adultscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ suspectscore=0 phishscore=0 priorityscore=1501 adultscore=0 clxscore=1015
+ malwarescore=0 impostorscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611060062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_080839_502987_08337C74 
-X-CRM114-Status: GOOD (  20.37  )
+X-CRM114-CacheID: sfid-20261106_080842_767795_441A7DD7 
+X-CRM114-Status: GOOD (  15.78  )
 X-Spam-Score: -2.6 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -149,134 +149,55 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Define the constant `num_sys_reg_descs` which stores the number of
-elements in the sys_reg_descs array. Replace all occurrences of
-ARRAY_SIZE(sys_reg_descs) with the new constant.
+Arm guests on s390 need more than the Arm Execution Facility alone. In
+addition, the PTFF time conversion functions are required. In addition
+the guest mapping relies on EDAT2 for large pages.
 
-This refactoring eases the integration of handling system registers for
-arm on s390. s390 needs code from the shared code to define the
-sys_reg_descs. But also the shared code needs the definition of the
-sys_reg_array and we cannot forward declare arrays and use their size
-before it is properly defined. This patch solves this chicken or egg
-problem. For the time being s390 cannot process the full arm64 defined
-sys_reg_descs array.
-
-No functional changes.
+Verify that these features are present before loading the kvm_arm64
+module. Every machine having the aef facility present should also
+support those. Print an error message if this is not the case.
 
 Co-developed-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Andreas Grapentin <gra@linux.ibm.com>
 Signed-off-by: Steffen Eiden <seiden@linux.ibm.com>
 ---
- arch/arm64/kvm/sys_regs.c | 26 ++++++++++++++------------
- 1 file changed, 14 insertions(+), 12 deletions(-)
+ arch/s390/kvm/arm64/arm.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
-index 0f0b0495b710..2b28b929f9f3 100644
---- a/arch/arm64/kvm/sys_regs.c
-+++ b/arch/arm64/kvm/sys_regs.c
-@@ -3976,6 +3976,8 @@ static const struct sys_reg_desc sys_reg_descs[] = {
- 	EL2_REG(SP_EL2, NULL, reset_unknown, 0),
- };
+diff --git a/arch/s390/kvm/arm64/arm.c b/arch/s390/kvm/arm64/arm.c
+index 62c2b45599b9..3af0b47b8377 100644
+--- a/arch/s390/kvm/arm64/arm.c
++++ b/arch/s390/kvm/arm64/arm.c
+@@ -741,9 +741,28 @@ long kvm_arch_vcpu_unlocked_ioctl(struct file *filp, unsigned int ioctl,
+ 	return -ENOIOCTLCMD;
+ }
  
-+static const size_t num_sys_reg_descs = ARRAY_SIZE(sys_reg_descs);
++static bool __init machine_supports_arm64_kvm(void)
++{
++	if (!sclp.has_aef || !aef_usable()) {
++		pr_info("ARM Execution Facility not available\n");
++		return false;
++	}
 +
- static bool handle_at_s1e01(struct kvm_vcpu *vcpu, struct sys_reg_params *p,
- 			    const struct sys_reg_desc *r)
++	if (!ptff_query(PTFF_QAGTO) || !ptff_query(PTFF_QAGPT)) {
++		pr_err("No ARM time conversion functions available (unexpected machine feature set)\n");
++		return false;
++	}
++	if (!cpu_has_edat2()) {
++		pr_err("No EDAT2 facility available (unexpected machine feature set)\n");
++		return false;
++	}
++
++	return true;
++}
++
+ static int __init kvm_s390_arm64_init(void)
  {
-@@ -5187,7 +5189,7 @@ static bool emulate_sys_reg(struct kvm_vcpu *vcpu,
- {
- 	const struct sys_reg_desc *r;
+-	if (!sclp.has_aef || !aef_usable())
++	if (!machine_supports_arm64_kvm())
+ 		return -ENODEV;
  
--	r = find_reg(params, sys_reg_descs, ARRAY_SIZE(sys_reg_descs));
-+	r = find_reg(params, sys_reg_descs, num_sys_reg_descs);
- 	if (likely(r)) {
- 		perform_access(vcpu, params, r);
- 		return true;
-@@ -5205,7 +5207,7 @@ static const struct sys_reg_desc *idregs_debug_find(struct kvm *kvm, loff_t pos)
- {
- 	unsigned long i, idreg_idx = 0;
- 
--	for (i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-+	for (i = 0; i < num_sys_reg_descs; i++) {
- 		const struct sys_reg_desc *r = &sys_reg_descs[i];
- 
- 		if (!is_vm_ftr_id_reg(reg_to_encoding(r)))
-@@ -5268,7 +5270,7 @@ static const struct sys_reg_desc *sr_resx_find(struct kvm *kvm, loff_t pos)
- {
- 	unsigned long i, sr_idx = 0;
- 
--	for (i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-+	for (i = 0; i < num_sys_reg_descs; i++) {
- 		const struct sys_reg_desc *r = &sys_reg_descs[i];
- 
- 		if (r->reg < __SANITISED_REG_START__)
-@@ -5370,7 +5372,7 @@ void kvm_reset_sys_regs(struct kvm_vcpu *vcpu)
- 	struct kvm *kvm = vcpu->kvm;
- 	unsigned long i;
- 
--	for (i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-+	for (i = 0; i < num_sys_reg_descs; i++) {
- 		const struct sys_reg_desc *r = &sys_reg_descs[i];
- 
- 		if (!r->reset)
-@@ -5594,8 +5596,8 @@ int kvm_arm_sys_reg_get_reg(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg
- 	if ((reg->id & KVM_REG_ARM_COPROC_MASK) == KVM_REG_ARM_DEMUX)
- 		return demux_c15_get(vcpu, reg->id, uaddr);
- 
--	return kvm_sys_reg_get_user(vcpu, reg,
--				    sys_reg_descs, ARRAY_SIZE(sys_reg_descs));
-+	return kvm_sys_reg_get_user(vcpu, reg, sys_reg_descs,
-+				    num_sys_reg_descs);
- }
- 
- int kvm_sys_reg_set_user(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg,
-@@ -5634,8 +5636,8 @@ int kvm_arm_sys_reg_set_reg(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg
- 	if ((reg->id & KVM_REG_ARM_COPROC_MASK) == KVM_REG_ARM_DEMUX)
- 		return demux_c15_set(vcpu, reg->id, uaddr);
- 
--	return kvm_sys_reg_set_user(vcpu, reg,
--				    sys_reg_descs, ARRAY_SIZE(sys_reg_descs));
-+	return kvm_sys_reg_set_user(vcpu, reg, sys_reg_descs,
-+				    num_sys_reg_descs);
- }
- 
- static unsigned int num_demux_regs(void)
-@@ -5723,7 +5725,7 @@ static int walk_sys_regs(struct kvm_vcpu *vcpu, u64 __user *uind)
- 	int err;
- 
- 	i2 = sys_reg_descs;
--	end2 = sys_reg_descs + ARRAY_SIZE(sys_reg_descs);
-+	end2 = sys_reg_descs + num_sys_reg_descs;
- 
- 	while (i2 != end2) {
- 		err = walk_one_sys_reg(vcpu, i2++, &uind, &total);
-@@ -5772,7 +5774,7 @@ int kvm_vm_ioctl_get_reg_writable_masks(struct kvm *kvm, struct reg_mask_range *
- 	if (clear_user(masks, KVM_ARM_FEATURE_ID_RANGE_SIZE * sizeof(__u64)))
- 		return -EFAULT;
- 
--	for (int i = 0; i < ARRAY_SIZE(sys_reg_descs); i++) {
-+	for (int i = 0; i < num_sys_reg_descs; i++) {
- 		const struct sys_reg_desc *reg = &sys_reg_descs[i];
- 		u32 encoding = reg_to_encoding(reg);
- 		u64 val;
-@@ -5957,7 +5959,7 @@ int __init kvm_sys_reg_table_init(void)
- 	int ret = 0;
- 
- 	/* Make sure tables are unique and in order. */
--	valid &= check_sysreg_table(sys_reg_descs, ARRAY_SIZE(sys_reg_descs), true);
-+	valid &= check_sysreg_table(sys_reg_descs, num_sys_reg_descs, true);
- 	valid &= check_sysreg_table(cp14_regs, ARRAY_SIZE(cp14_regs), false);
- 	valid &= check_sysreg_table(cp14_64_regs, ARRAY_SIZE(cp14_64_regs), false);
- 	valid &= check_sysreg_table(cp15_regs, ARRAY_SIZE(cp15_regs), false);
-@@ -5980,7 +5982,7 @@ int __init kvm_sys_reg_table_init(void)
- 
- 	check_feature_map();
- 
--	for (i = 0; !ret && i < ARRAY_SIZE(sys_reg_descs); i++)
-+	for (i = 0; !ret && i < num_sys_reg_descs; i++)
- 		ret = populate_sysreg_config(sys_reg_descs + i, i);
- 
- 	for (i = 0; !ret && i < ARRAY_SIZE(sys_insn_descs); i++)
+ 	kvm_init_qaaf();
 
 -- 
 2.56.0
