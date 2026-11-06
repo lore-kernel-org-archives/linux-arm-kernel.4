@@ -2,86 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B576606D803
-	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 21:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09B6606D81C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 21:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T6FAjW/d;
-	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=Y0OFJrYE
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bBOBKFyc;
+	dkim=pass (2048-bit key, unprotected) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=JC5/HUVV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sWWjal4kg7Bb+zbbKRMSSMoIbhDieiVkL3VfmhZSjks=; b=T6FAjW/dtsS+Nn
-	52qvsE9Z6nCvv8eZUKj7u7F/NyaJjz7WOv7Ci7a97HmhcgVtuth6It7RJj5kOvDbZPAmpkJnGQ6hu
-	MPK/cXl0WEy+sloqipriOmEciN9/9EmU6XO0/SYih/SmoRFRZXRUuS94fbYzAvO9I8S7ulPT7EYRU
-	J0x2bqfkoPifhCVdXDfp1C4B6IRdry2TaY63oFZHdZqGWv+TT7b78yLiqFGsqMYXIgljL5qLhjMHp
-	iOgFGM5/vrcMO7FUwvfbmx7rpC5+xXKfjSl/qFzlnuzRAftBUahuta/h+S/QE66Zs1VFG7ljQckgU
-	ndZx5/RHS4pxIYSVXJfg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=AjJGDSnrqmYUipHDjzg+wif1A7ljv8jU279SjBH7dJ4=; b=bBOBKFycvi6vcUctcYjFDSeHYC
+	ElnQxamgACQ7AQVIA//UFdGIsObED+I76PeF1QSk5Dm6/6z203VUTMrtPW1CXvrOhL+rtvN1SJ4DK
+	zsRL2xBHp1c6ng+LEW17SE5uIi/LKO5Z1llwXf4ve2X3oVGBgASH8h4rftMaYZusyxEXc+FQolJzi
+	R4FyeX9gEAL0KBXyqIMqXPQxAe0yKr3RqGl35vdYIOoCLvOrSPz9y67r+6Dkx+quk6LOgXXkjSNlD
+	GTZmY0F2q9CYqUzLeYDyRu5DOqSHN4ukZsmQLT8fMzAut2uQTOW9bqqTNSdvkNDXYrkzYE222nK5d
+	VsQhK14w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPRwA-0000000DkNF-1Q4f;
-	Fri, 06 Nov 2026 21:57:30 +0000
+	id 1xPRw9-0000000DkKU-1rIf;
+	Fri, 06 Nov 2026 21:57:29 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPRw7-0000000DkHB-0GHA;
-	Fri, 06 Nov 2026 21:57:28 +0000
+	id 1xPRw3-0000000DkFh-1nfG;
+	Fri, 06 Nov 2026 21:57:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1794002240;
-	bh=KU/YEFe4JzRFcgmGM8I2qV26IQDEGg/npT6S9CcZluo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Y0OFJrYEBo/ZQ67iXHxq68DAVcxSc/5yJ65BxIMtmzxoi6mIORZMgZo0OSnbpeK9W
-	 F3k6upV8o8u3wonv2/Bc21V5yWa6Oo46Vz6D5UtXwL6oyVP54EMV6hCy54YSWpYdZ5
-	 zFprHrXSAkKITZVb3Ue5s3YcCvAU/OsLOhZPFqj+sFIJOtvhpeRLSD3PyWmlsO7tRG
-	 yBFAdKOLn077SceHMW05PzJazRH8qpcQnlGpltvZFipyyt5PvyUNq5oOgnpKiwbSD1
-	 nY1HpfIGbhIpG9JLdNf/4Zc986KZoQVMDrJAFTW16L6aZ6zjFImgY16Epq5wj9eV7C
-	 H/NFutHBdiGJw==
+	bh=GwsxCh0AXOERUXo7gF0gQrMDOeUWpvtvAN+2/W8c+Eg=;
+	h=From:Subject:Date:To:Cc:From;
+	b=JC5/HUVVUUKB+7jlmcuSkL1H69b/fsB0X7cx49xzmFlutM+WfmZV+B/Ja1+M7Xgug
+	 D4z1kLG/8yWv7rIcCThR1ZACjPEx9euPq3Legd3BDQn3S+xQbiYqSTNh+hW9fWGOV3
+	 5htShih36DZ85BzCvGSylSUQBdhAK0gd5nohKDus/J4ZxCFXqkACxALN6NdDBC/aDr
+	 L19QKR3YPTxf9+oz8gR3DMDSgKcdDWSLO2Lfq0IK2am0pd9R7wdKgWryvgjiWh2wBt
+	 W8MQfle4dHGWscBvhzexq95/ipvCAEOG9uuzkYt7o45M3B/2AIB9PMAVzeFd/V7eKH
+	 79A9tyrpEs1zA==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A910517E0A80;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5ACCB17E0411;
 	Fri, 06 Nov 2026 22:57:20 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 19411480035; Fri, 06 Nov 2026 22:57:20 +0100 (CET)
+	id 1183348002B; Fri, 06 Nov 2026 22:57:20 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Fri, 06 Nov 2026 22:57:10 +0100
-Subject: [PATCH 5/5] arm64: dts: rockchip: Add Bluetooth to RK3588 EVB1
+Subject: [PATCH 0/5] arm64: dts: rockchip: Enable more features on RK3588
+ EVB1
+Date: Fri, 06 Nov 2026 22:57:05 +0100
+Message-Id: <20261106-rk3588-evb1-dt-updates-v1-0-bdbe16223589@collabora.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-rk3588-evb1-dt-updates-v1-5-bdbe16223589@collabora.com>
-References: <20261106-rk3588-evb1-dt-updates-v1-0-bdbe16223589@collabora.com>
-In-Reply-To: <20261106-rk3588-evb1-dt-updates-v1-0-bdbe16223589@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQ6CMAyA4VchPduEssjQVzEcxlq1miBZBzEhv
+ LsTjt/h/1cwSSoG12qFJIuafsYCOlUQn2F8CCoXQ1M3LVHdYnq7c9ehLAMhZ5wnDlkM2Xl3Ie+
+ jDwwlnpLc9buPb/1hm4eXxPy/wbb9AH7ewtZ6AAAA
+X-Change-ID: 20261106-rk3588-evb1-dt-updates-d3739177c7ad
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
  kernel@collabora.com, Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2510;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=780;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=KU/YEFe4JzRFcgmGM8I2qV26IQDEGg/npT6S9CcZluo=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGruTUDhUQVicPoNxtxccVrec0dAAQEnlbepf
- Z4vNAZIrbhsJokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq7k1AAAoJENju1/PI
- O/qaWycP/jrWeVm6udq9KbIRARBPUsUY5H8nx4/zJ59EvCTZ0ELerG4Mp+NWNlMs3HtbqwUtbd0
- COZCYCtnI25b0kRefTr2GOJFk6qmWnVguUlbGB2Wlr4Sqr+3WSngSdDYZ26cxBbsEiOMeZPOP7o
- J5ckOgx8/nx4Z9Sc1FFoU2yGzqtwKwAI7F/UD5ryLVazmILZSWiSRkgxkNsdrd8Chm6iR4WSfO9
- Z0kJ4Aq7prDbDCYuwzPnBW85MtapNLhYBUC/Tze9z8j0Wf6QfsZISfmP6shagUDs6Hbu8qaZk2p
- qiPzhMQ+OwT3M2aHFUKQMzwY+J4sayWdurhmnFVs4CoG/zmdcxgjqK3qAlrEgsKV6DrYI2noIyI
- Cg8Zj5FSEUBxjBhlJ/+T00VQISo96rmS3RnNiwysDEfZTrMvNh95QyBCIGwmfv/nYl+5qQkFNOU
- LCr2aHFApUjimDjhhcBCTNzvHVDSjk9ZBbf+AcVsUq1iSLEbSZMGLnC4pJYlJhi0dVA7uiSqgeJ
- dsINdbO+nAcaWwRVHW+oLaIOuyo/TZLmhWz0D6KUDHt9Vq7f6A9p/+zfvGJS6WsNifN+G5M/tgO
- Ueej5Cwc6FcUxQ5T4Cp/pVRNAOwNu+NzXJyOjfEijP+imyQXfe846m2rxHnrQEvrWtZ+VIj5V62
- a/B/iTW3EsUblJCSbm58plA==
+ bh=GwsxCh0AXOERUXo7gF0gQrMDOeUWpvtvAN+2/W8c+Eg=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGruTT8yHuUp5JsA0YUEcSipA8BPrEgv9tOTn
+ BpyKhKn7iHae4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq7k0/AAoJENju1/PI
+ O/qant8QAIDMrLDxob+tGOo/PrHD97F9SUAJP2RGPodQFfQpg+NG/3ouQBzRCayD5KaJCQHBAjt
+ 1BOMrZfXRUj/ZpFIldVJCvV69ybFHSLnqQv0emDwRFP4PGNJPPDv8sSAmvKaKdUGeDECvfpvfl2
+ hrddw7mjU6LBzOT7nB98U5AKEY/cBBIYQfc4pSVYRdcvMendL9BHoaCSBkdky0AClNDpVqWAM4M
+ ZtrcwchjkrzZS1l0WwKqPjDz+SqmNIKhVJfnxheJGWkXqpfw4+KGHU+VkWSZxQIL+7vMI614uOS
+ Sn896Fp0XI5MTDXvk7M9I6Zs89sV4WC8wbCqv1qL6C/4Q6dZdWyIbuKjwea58Gl7AscjtRUNhY6
+ rJpXQfpnE16e9YEEujM/E6fAKmz5KV8p2+bv4dggRPAsGFqRm4gMQi2v/xtBYL/FN0T75exnLAS
+ n23770Hiviq39bY2B2VEcwXmAkgWRue37jIZ0AB5X2uJKbtvFysQ+dx3GknsKPWZdYl6vxgAm/z
+ rRB5XUggr1L+uN7jbp1DVFnCMgHrHg5CO7EVDN+q1LwbsGnZYLeexO2FjDEsYUcjkEBnJ2npASr
+ NEBn4MIPR/nP1SyifNTOYk9GUM7uLVAS6LWXVv65nErQrW1en6Aq29UltqXFbxsUBaheBUqcNvO
+ v0Wklf9t7kLVpG/+iMewngg==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_135727_366591_F496CA7B 
-X-CRM114-Status: GOOD (  13.56  )
+X-CRM114-CacheID: sfid-20261106_135723_653881_D2C5AF30 
+X-CRM114-Status: UNSURE (   8.13  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,83 +106,25 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The RK3588 EVB1 has an AP6275P WIFI6/BT Module. The WLAN side is
-connected via PCIe and already described. This adds the BT side, which
-is connected via UART. BT is also connected to I2S, which can be used
-for BT audio. By default BT audio is routed via the HCI UART interface
-instead.
-
-The added I2S complexity is avoided for now, but would require the
-following steps:
-
-1. Setup "brcm,bt-pcm-int-params" in the bluetooth node
-2. Add a simple sound card for Bluetooth using &i2s2_2ch (using default
-   M1 pinmux) on the CPU side and "linux,bt-sco" on the codec side
-3. Extending "linux,bt-sco", so that it supports 2 channels, because
-   the Rockchip I2S hardware cannot output single channel
+Enable a bunch of features on the RK3588 EVB1.
 
 Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 37 ++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Sebastian Reichel (5):
+      arm64: dts: rockchip: Add missing PCIe wake pinmux on RK3588 EVB1
+      arm64: dts: rockchip: Enable NPU on RK3588 EVB1
+      arm64: dts: rockchip: Enable HDMI sound on RK3588 EVB1
+      arm64: dts: rockchip: Add DSI panel to RK3588 EVB1
+      arm64: dts: rockchip: Add Bluetooth to RK3588 EVB1
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-index 327ca13b60f0..f578e7dd5aa1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-@@ -695,6 +695,20 @@ speaker_amplifier_en: speaker-amplifier-en {
- 		};
- 	};
- 
-+	bluetooth {
-+		bt_pwr_en: bluetooth-pwren {
-+			rockchip,pins = <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		bt_wake_host_irq: bluetooth-wake-host {
-+			rockchip,pins = <3 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		bt_wake_gpio: bluetooth-wake {
-+			rockchip,pins = <3 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	rtl8111 {
- 		rtl8111_isolate: rtl8111-isolate {
- 			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -1522,6 +1536,29 @@ &uart2 {
- 	status = "okay";
- };
- 
-+&uart8 {
-+	pinctrl-0 = <&uart8m1_xfer &uart8m1_ctsn &uart8m1_rtsn>;
-+	pinctrl-names = "default";
-+	uart-has-rtscts;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&hym8563>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wakeup";
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
-+		max-speed = <1500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_wake_host_irq &bt_wake_gpio &bt_pwr_en>;
-+		shutdown-gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_HIGH>;
-+		vbat-supply = <&vcc3v3_pciewl_vbat>;
-+		vddio-supply = <&vccio_wl>;
-+	};
-+};
-+
- &usb_host0_ehci {
- 	status = "okay";
- };
+ arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 180 ++++++++++++++++++++++-
+ 1 file changed, 179 insertions(+), 1 deletion(-)
+---
+base-commit: cabb6811c38a46337d5f4252b4dc390f9296856c
+change-id: 20261106-rk3588-evb1-dt-updates-d3739177c7ad
 
--- 
-2.53.0
+Best regards,
+--  
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
