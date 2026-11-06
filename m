@@ -2,59 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5C2606D824
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F61B6082BCA
 	for <linux-arm-kernel@archiver.kernel.org>; Fri,  6 Nov 2026 14:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tXyYtLyB;
-	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=EN46cMg4
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jI5i6Fv1;
+	dkim=pass (1024-bit key, unprotected) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=M8gZZwbj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:Cc:
 	To:In-Reply-To:Message-Id:Content-Transfer-Encoding:MIME-Version:Subject:Date
 	:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZukkpYT3qCCda2Jxa+XkaNLKI/uzan+hwGewF/8rdTw=; b=tXyYtLyBm+SBHt
-	Fyk5VGJhUbxBvax6xHv9SHtv1xlZkvLcCy0GJGTGQUFzDSKXFPQ/MfSsWJXdyRO1EPUnmbapYVEWb
-	hjQKVfxY1sv3WcjKP4j3zv7Psz53+1EJP1J/cGE46uGyKyC2ClydauMwQHdAYrrY9Rfgj4FQC9RCo
-	SitaJ4Q+rLK5u2JdVu9dtEJIK2K+yRi46zxIebRgjUz7YB/V6ZAjQV6EJ6ln89zAm+TejSikHMTY/
-	2HVYYoyasb5xMw/VEWp9I+9TqQqnmAgnRx0fMi0FC27vDJoNn6vet788fEo/ncLqa2Dy6iwELeRky
-	51j00offE9patJmWedpg==;
+	List-Owner; bh=78E49OBy2vOoRp7AN/TR4ZTGCJZbMDDSfbiqD0uAN1c=; b=jI5i6Fv1XqUjMu
+	9xIx67nUUXzB8QkXHvgPe4iiYCsQLjG7e+t04Oo3OHgeVkVoYuZKEu/TFNDywd7ji3PPSAwIPiX6s
+	l45hbrqCFwV/pLaWZSIeqQvUVhGtkbdOhigT50ku8yXVnRkTXBsxTCgO3JEsjqTPecfqF9aS6vUbv
+	Xu5vDIs80kVZAIUWkXOLbNpEYOKbkxo0cOyHHvxFmh5KZ++z90vwR9D9Ty0pVgQC58Loa8AWixEEA
+	WcJ/VoN4KuVX7zk9v90Bzs5sHIoRbCdil+J/MOvWKyrCsX3r0lN/MVMFp+nSWgc0RSBJN7uIWAMWq
+	DTCr0okuxCxdq+ja2wxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPL9a-0000000Ci3c-2aSk;
-	Fri, 06 Nov 2026 14:42:54 +0000
-Received: from mailout2.w1.samsung.com ([210.118.77.12])
+	id 1xPL9e-0000000Ci5c-3hob;
+	Fri, 06 Nov 2026 14:42:58 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPL9Y-0000000Ci2S-0yQw
+	id 1xPL9Z-0000000Ci2U-3NkV
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 06 Nov 2026 14:42:54 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20261106144250euoutp022e1a6a3073d383bd646015487e8568c9~le9JpKhy81199311993euoutp02D;
-	Fri,  6 Nov 2026 14:42:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20261106144250euoutp022e1a6a3073d383bd646015487e8568c9~le9JpKhy81199311993euoutp02D
+	Fri, 06 Nov 2026 14:42:56 +0000
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261106144251euoutp0124c3e0e8100b38fae754f436843806e8~le9Kc-C1K2317823178euoutp01Q;
+	Fri,  6 Nov 2026 14:42:51 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261106144251euoutp0124c3e0e8100b38fae754f436843806e8~le9Kc-C1K2317823178euoutp01Q
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1793976170;
-	bh=ZukkpYT3qCCda2Jxa+XkaNLKI/uzan+hwGewF/8rdTw=;
+	s=mail20170921; t=1793976171;
+	bh=78E49OBy2vOoRp7AN/TR4ZTGCJZbMDDSfbiqD0uAN1c=;
 	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=EN46cMg4Z5AshlKXcWj6iq9nVx+1cEFRUR3OeEX1SELWiBSHo0MXSd8R+ZRpXPqPo
-	 5J9fZGzBi/ektMzl9T564UxSBe3S67f6f+YsOPNBKFF7rocyARFmA/WbDBCKVPMy1l
-	 grLUbbLxfYwtJc30nNwsRnyAAGoxoUyejvqHmnV0=
+	b=M8gZZwbjD4LgP+xP0uC24mjXC9kKwoMA/TiWFSHNOnP9zE5gyBdPfBpVXF2Y7o78u
+	 JwPYDfW9yoAJKd7B7pt0Y/A1+ivUHknlVBTlWJNJjwfsurupjK6UuIo8GeqoOQqQpZ
+	 n79l67FhNKVWWq212/kD400VVKiW+DDI1gdDo6Ms=
 Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106144249eucas1p1ca5f03b764c6305120da3e8b65f76ed1~le9JAlvFx2626526265eucas1p1j;
-	Fri,  6 Nov 2026 14:42:49 +0000 (GMT)
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20261106144250eucas1p23dbd9566bcf265bb48728cedff315031~le9KDaSv51206712067eucas1p2W;
+	Fri,  6 Nov 2026 14:42:50 +0000 (GMT)
 Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
 	[106.210.136.40]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261106144247eusmtip1bdfc91f54320939f93a2226da03397ef~le9G89u5c0161401614eusmtip13;
-	Fri,  6 Nov 2026 14:42:47 +0000 (GMT)
+	20261106144249eusmtip1c345bf2ed8b7c6eeaaffcd2c9e7cf626~le9IhzIcG0491904919eusmtip1d;
+	Fri,  6 Nov 2026 14:42:48 +0000 (GMT)
 From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Fri, 06 Nov 2026 15:42:41 +0100
-Subject: [PATCH v2 01/15] lib/decompress_unlz4: use
- LZ4_decompress_safe_partial() before boot
+Date: Fri, 06 Nov 2026 15:42:42 +0100
+Subject: [PATCH v2 02/15] lib/lz4: remove LZ4_decompress_fast() and its
+ variants
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261106-lz4-vendor-upstream-v2-1-ee04c3f0d7dc@samsung.com>
+Message-Id: <20261106-lz4-vendor-upstream-v2-2-ee04c3f0d7dc@samsung.com>
 In-Reply-To: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
 To: Michal Wilczynski <m.wilczynski@samsung.com>,  Nathan Chancellor
 	<nathan@kernel.org>,  Nick Desaulniers <ndesaulniers@google.com>,  Bill
@@ -82,27 +82,27 @@ Cc: linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
 	<m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org, 
 	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1628;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10729;
 	i=m.wilczynski@samsung.com; h=from:subject:message-id;
-	bh=i98BIOEMfPRofAmIfLEP+RTKtUlRGNT17p8zNX3eSM8=;
-	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9fZ6ynW99606dIwL7ulQ6Bbe9jN7M8lqzVe7sNB/dw
-	JkrA5JWdZSyMIhxMMiKKbKc3RhtJPmP4Wn58ce/YOawMoEMYeDiFICJrAtn+Kd4oT3eQJe/yUhy
-	6odrlWpckv+rc3a+M/rqfupkEZNc9AyG/453bnjdSWxq+LLd5e7mt6pKC87ZPImexDM9MuXEZx3
-	FWh4A
+	bh=BKqLz3nPV4nIxU4/LOt8w19Fm/2lu9lum9paP/eOwAI=;
+	b=owGbwMvMwCGWumv6zndzRCIZT6slMWS9fZ4iuFzskPBCtZnBN9LdLrLOYeBuFBe5Emr92Uuqm
+	vX4hhXfO0pZGMQ4GGTFFFnObow2kvzH8LT8+ONfMHNYmUCGMHBxCsBELq5lZOh8PJFvteO7+ZP4
+	xLVXTOmTahE0fHPxvebD+b9n3nRgsuFh+KeVqniopO3Uo1z3c6cOdG9pusOht23+pv3LtkrvWjF
+	VqpIRAA==
 X-Developer-Key: i=m.wilczynski@samsung.com; a=openpgp;
 	fpr=CDB15B3219FE00E577C7E3FA65BA97B9EE9C1459
-X-CMS-MailID: 20261106144249eucas1p1ca5f03b764c6305120da3e8b65f76ed1
+X-CMS-MailID: 20261106144250eucas1p23dbd9566bcf265bb48728cedff315031
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261106144249eucas1p1ca5f03b764c6305120da3e8b65f76ed1
+X-RootMTR: 20261106144250eucas1p23dbd9566bcf265bb48728cedff315031
 X-EPHeader: CA
-X-CMS-RootMailID: 20261106144249eucas1p1ca5f03b764c6305120da3e8b65f76ed1
+X-CMS-RootMailID: 20261106144250eucas1p23dbd9566bcf265bb48728cedff315031
 References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
-	<CGME20261106144249eucas1p1ca5f03b764c6305120da3e8b65f76ed1@eucas1p1.samsung.com>
+	<CGME20261106144250eucas1p23dbd9566bcf265bb48728cedff315031@eucas1p2.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_064252_838057_B9B2FB85 
-X-CRM114-Status: GOOD (  14.68  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261106_064254_165415_104AFCF9 
+X-CRM114-Status: GOOD (  26.67  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,55 +116,262 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The pre-boot decompressor is the only in-tree user of
-LZ4_decompress_fast(), which upstream has deprecated since v1.9. It
-never checks the input against the chunk length in the header.
+LZ4_decompress_fast(), LZ4_decompress_fast_continue() and
+LZ4_decompress_fast_usingDict() have no users left. Upstream has
+deprecated all three since v1.9: they take only the decompressed size,
+so a corrupt or malicious stream has nothing to stop the decoder from
+reading past the end of its input.
 
-Decode with LZ4_decompress_safe_partial() instead, bounded by the chunk
-length and by the expected output length. Count every chunk against the
-size the image ends with, and fail a chunk that decodes short or comes
-after that size is reached.
-
-x86 decompresses in place; the margin arch/x86/boot/header.S reserves,
-(output >> 8) + 128K, covers the safe decoder's 32-byte overshoot.
+Remove them, their exports and their declarations in <linux/lz4.h>,
+along with the two helpers only they used. Doing it before lib/lz4 moves
+to upstream LZ4 keeps them out of the glue that move adds.
 
 Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 ---
- lib/decompress_unlz4.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ include/linux/lz4.h      | 81 ----------------------------------------------
+ lib/lz4/lz4_decompress.c | 84 ------------------------------------------------
+ 2 files changed, 165 deletions(-)
 
-diff --git a/lib/decompress_unlz4.c b/lib/decompress_unlz4.c
-index c0dbb3cea915eb91d8f4ac26c38c4785bbf19770..dc20c22e087900e21da49f9fcb267e6b511e1072 100644
---- a/lib/decompress_unlz4.c
-+++ b/lib/decompress_unlz4.c
-@@ -151,14 +151,17 @@ STATIC inline int INIT unlz4(u8 *input, long in_len,
- 			}
- 		}
- #ifdef PREBOOT
--		if (out_len >= uncomp_chunksize) {
-+		if (out_len >= uncomp_chunksize)
- 			dest_len = uncomp_chunksize;
--			out_len -= dest_len;
--		} else
-+		else
- 			dest_len = out_len;
-+		out_len -= dest_len;
+diff --git a/include/linux/lz4.h b/include/linux/lz4.h
+index ad6042a718b5428792b795db7a8d4ad44c24a985..0df69e2b1ad523c291e3a96ab5595df9239f7252 100644
+--- a/include/linux/lz4.h
++++ b/include/linux/lz4.h
+@@ -249,27 +249,6 @@ int LZ4_compress_destSize(const char *source, char *dest, int *sourceSizePtr,
+  *	Decompression Functions
+  **************************************************************************/
  
--		ret = LZ4_decompress_fast(inp, outp, dest_len);
--		chunksize = ret;
-+		ret = LZ4_decompress_safe_partial(inp, outp, chunksize,
-+						  dest_len, dest_len);
-+		/* A chunk once the image's stated size is reached is corrupt. */
-+		if (!dest_len || ret != (int)dest_len)
-+			ret = -1;
- #else
- 		dest_len = uncomp_chunksize;
+-/**
+- * LZ4_decompress_fast() - Decompresses data from 'source' into 'dest'
+- * @source: source address of the compressed data
+- * @dest: output buffer address of the uncompressed data
+- *	which must be already allocated with 'originalSize' bytes
+- * @originalSize: is the original and therefore uncompressed size
+- *
+- * Decompresses data from 'source' into 'dest'.
+- * This function fully respect memory boundaries for properly formed
+- * compressed data.
+- * It is a bit faster than LZ4_decompress_safe().
+- * However, it does not provide any protection against intentionally
+- * modified data stream (malicious input).
+- * Use this function in trusted environment only
+- * (data to decode comes from a trusted source).
+- *
+- * Return: number of bytes read from the source buffer
+- *	or a negative result if decompression fails.
+- */
+-int LZ4_decompress_fast(const char *source, char *dest, int originalSize);
+-
+ /**
+  * LZ4_decompress_safe() - Decompression protected against buffer overflow
+  * @source: source address of the compressed data
+@@ -561,44 +540,6 @@ int LZ4_decompress_safe_continue(LZ4_streamDecode_t *LZ4_streamDecode,
+ 	const char *source, char *dest, int compressedSize,
+ 	int maxDecompressedSize);
  
+-/**
+- * LZ4_decompress_fast_continue() - Decompress blocks in streaming mode
+- * @LZ4_streamDecode: the 'LZ4_streamDecode_t' structure
+- * @source: source address of the compressed data
+- * @dest: output buffer address of the uncompressed data
+- *	which must be already allocated with 'originalSize' bytes
+- * @originalSize: is the original and therefore uncompressed size
+- *
+- * This decoding function allows decompression of multiple blocks
+- * in "streaming" mode.
+- * Previously decoded blocks *must* remain available at the memory position
+- * where they were decoded (up to 64 KB)
+- * In the case of a ring buffers, decoding buffer must be either :
+- *    - Exactly same size as encoding buffer, with same update rule
+- *      (block boundaries at same positions) In which case,
+- *      the decoding & encoding ring buffer can have any size,
+- *      including very small ones ( < 64 KB).
+- *    - Larger than encoding buffer, by a minimum of maxBlockSize more bytes.
+- *      maxBlockSize is implementation dependent.
+- *      It's the maximum size you intend to compress into a single block.
+- *      In which case, encoding and decoding buffers do not need
+- *      to be synchronized, and encoding ring buffer can have any size,
+- *      including small ones ( < 64 KB).
+- *    - _At least_ 64 KB + 8 bytes + maxBlockSize.
+- *      In which case, encoding and decoding buffers do not need to be
+- *      synchronized, and encoding ring buffer can have any size,
+- *      including larger than decoding buffer. W
+- * Whenever these conditions are not possible, save the last 64KB of decoded
+- * data into a safe buffer, and indicate where it is saved
+- * using LZ4_setStreamDecode()
+- *
+- * Return: number of bytes decompressed into destination buffer
+- *	(necessarily <= maxDecompressedSize)
+- *	or a negative result in case of error
+- */
+-int LZ4_decompress_fast_continue(LZ4_streamDecode_t *LZ4_streamDecode,
+-	const char *source, char *dest, int originalSize);
+-
+ /**
+  * LZ4_decompress_safe_usingDict() - Same as LZ4_setStreamDecode()
+  *	followed by LZ4_decompress_safe_continue()
+@@ -623,28 +564,6 @@ int LZ4_decompress_safe_usingDict(const char *source, char *dest,
+ 	int compressedSize, int maxDecompressedSize, const char *dictStart,
+ 	int dictSize);
+ 
+-/**
+- * LZ4_decompress_fast_usingDict() - Same as LZ4_setStreamDecode()
+- *	followed by LZ4_decompress_fast_continue()
+- * @source: source address of the compressed data
+- * @dest: output buffer address of the uncompressed data
+- *	which must be already allocated with 'originalSize' bytes
+- * @originalSize: is the original and therefore uncompressed size
+- * @dictStart: pointer to the start of the dictionary in memory
+- * @dictSize: size of dictionary
+- *
+- * This decoding function works the same as
+- * a combination of LZ4_setStreamDecode() followed by
+- * LZ4_decompress_fast_continue()
+- * It is stand-alone, and doesn't need an LZ4_streamDecode_t structure.
+- *
+- * Return: number of bytes decompressed into destination buffer
+- *	(necessarily <= maxDecompressedSize)
+- *	or a negative result in case of error
+- */
+-int LZ4_decompress_fast_usingDict(const char *source, char *dest,
+-	int originalSize, const char *dictStart, int dictSize);
+-
+ #define LZ4_DECOMPRESS_INPLACE_MARGIN(compressedSize)          (((compressedSize) >> 8) + 32)
+ 
+ #ifndef LZ4_DISTANCE_MAX	/* history window size; can be user-defined at compile time */
+diff --git a/lib/lz4/lz4_decompress.c b/lib/lz4/lz4_decompress.c
+index 3a2cd9acada4a09ef70a344090d48167c46088a1..f89b0e547f2156990c16770f69f89e0d8b46156d 100644
+--- a/lib/lz4/lz4_decompress.c
++++ b/lib/lz4/lz4_decompress.c
+@@ -474,14 +474,6 @@ int LZ4_decompress_safe_partial(const char *src, char *dst,
+ 				      noDict, (BYTE *)dst, NULL, 0);
+ }
+ 
+-int LZ4_decompress_fast(const char *source, char *dest, int originalSize)
+-{
+-	return LZ4_decompress_generic(source, dest, 0, originalSize,
+-				      endOnOutputSize, decode_full_block,
+-				      withPrefix64k,
+-				      (BYTE *)dest - 64 * KB, NULL, 0);
+-}
+-
+ /* ===== Instantiate a few more decoding cases, used more than once. ===== */
+ 
+ static int LZ4_decompress_safe_withPrefix64k(const char *source, char *dest,
+@@ -517,17 +509,6 @@ static int LZ4_decompress_safe_forceExtDict(const char *source, char *dest,
+ 				      (const BYTE *)dictStart, dictSize);
+ }
+ 
+-static int LZ4_decompress_fast_extDict(const char *source, char *dest,
+-				       int originalSize,
+-				       const void *dictStart, size_t dictSize)
+-{
+-	return LZ4_decompress_generic(source, dest,
+-				      0, originalSize,
+-				      endOnOutputSize, decode_full_block,
+-				      usingExtDict, (BYTE *)dest,
+-				      (const BYTE *)dictStart, dictSize);
+-}
+-
+ /*
+  * The "double dictionary" mode, for use with e.g. ring buffers: the first part
+  * of the dictionary is passed as prefix, and the second via dictStart + dictSize.
+@@ -546,18 +527,6 @@ int LZ4_decompress_safe_doubleDict(const char *source, char *dest,
+ 				      (const BYTE *)dictStart, dictSize);
+ }
+ 
+-static FORCE_INLINE
+-int LZ4_decompress_fast_doubleDict(const char *source, char *dest,
+-				   int originalSize, size_t prefixSize,
+-				   const void *dictStart, size_t dictSize)
+-{
+-	return LZ4_decompress_generic(source, dest,
+-				      0, originalSize,
+-				      endOnOutputSize, decode_full_block,
+-				      usingExtDict, (BYTE *)dest - prefixSize,
+-				      (const BYTE *)dictStart, dictSize);
+-}
+-
+ /* ===== streaming decompression functions ===== */
+ 
+ int LZ4_setStreamDecode(LZ4_streamDecode_t *LZ4_streamDecode,
+@@ -636,45 +605,6 @@ int LZ4_decompress_safe_continue(LZ4_streamDecode_t *LZ4_streamDecode,
+ 	return result;
+ }
+ 
+-int LZ4_decompress_fast_continue(LZ4_streamDecode_t *LZ4_streamDecode,
+-	const char *source, char *dest, int originalSize)
+-{
+-	LZ4_streamDecode_t_internal *lz4sd = &LZ4_streamDecode->internal_donotuse;
+-	int result;
+-
+-	if (lz4sd->prefixSize == 0) {
+-		assert(lz4sd->extDictSize == 0);
+-		result = LZ4_decompress_fast(source, dest, originalSize);
+-		if (result <= 0)
+-			return result;
+-		lz4sd->prefixSize = originalSize;
+-		lz4sd->prefixEnd = (BYTE *)dest + originalSize;
+-	} else if (lz4sd->prefixEnd == (BYTE *)dest) {
+-		if (lz4sd->prefixSize >= 64 * KB - 1 ||
+-		    lz4sd->extDictSize == 0)
+-			result = LZ4_decompress_fast(source, dest,
+-						     originalSize);
+-		else
+-			result = LZ4_decompress_fast_doubleDict(source, dest,
+-				originalSize, lz4sd->prefixSize,
+-				lz4sd->externalDict, lz4sd->extDictSize);
+-		if (result <= 0)
+-			return result;
+-		lz4sd->prefixSize += originalSize;
+-		lz4sd->prefixEnd  += originalSize;
+-	} else {
+-		lz4sd->extDictSize = lz4sd->prefixSize;
+-		lz4sd->externalDict = lz4sd->prefixEnd - lz4sd->extDictSize;
+-		result = LZ4_decompress_fast_extDict(source, dest,
+-			originalSize, lz4sd->externalDict, lz4sd->extDictSize);
+-		if (result <= 0)
+-			return result;
+-		lz4sd->prefixSize = originalSize;
+-		lz4sd->prefixEnd = (BYTE *)dest + originalSize;
+-	}
+-	return result;
+-}
+-
+ int LZ4_decompress_safe_usingDict(const char *source, char *dest,
+ 				  int compressedSize, int maxOutputSize,
+ 				  const char *dictStart, int dictSize)
+@@ -693,26 +623,12 @@ int LZ4_decompress_safe_usingDict(const char *source, char *dest,
+ 		compressedSize, maxOutputSize, dictStart, dictSize);
+ }
+ 
+-int LZ4_decompress_fast_usingDict(const char *source, char *dest,
+-				  int originalSize,
+-				  const char *dictStart, int dictSize)
+-{
+-	if (dictSize == 0 || dictStart + dictSize == dest)
+-		return LZ4_decompress_fast(source, dest, originalSize);
+-
+-	return LZ4_decompress_fast_extDict(source, dest, originalSize,
+-		dictStart, dictSize);
+-}
+-
+ #ifndef STATIC
+ EXPORT_SYMBOL(LZ4_decompress_safe);
+ EXPORT_SYMBOL(LZ4_decompress_safe_partial);
+-EXPORT_SYMBOL(LZ4_decompress_fast);
+ EXPORT_SYMBOL(LZ4_setStreamDecode);
+ EXPORT_SYMBOL(LZ4_decompress_safe_continue);
+-EXPORT_SYMBOL(LZ4_decompress_fast_continue);
+ EXPORT_SYMBOL(LZ4_decompress_safe_usingDict);
+-EXPORT_SYMBOL(LZ4_decompress_fast_usingDict);
+ 
+ MODULE_LICENSE("Dual BSD/GPL");
+ MODULE_DESCRIPTION("LZ4 decompressor");
 
 -- 
 2.34.1
