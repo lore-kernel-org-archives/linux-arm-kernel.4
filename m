@@ -2,125 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F6F606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 00:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173C8606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 00:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Mx/AMpdw;
-	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=g5Sv/5N5
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nONfxpX7;
+	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=TT6lDaci
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:In-Reply-To:References:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=b1jw8/k9HF1Z0QFcfzQluiREZXrKVRI5j5BkQVxckCU=; b=Mx/AMpdwlBuVC1
-	agKd/tRNyghXr4tT+nHi7IHaTrV/WA1Jj2v4pr/hQVy1cRRMtjqvHCYnop/aTji1AOMIAYbM4BzZQ
-	mGxg6+NnGhws57dU1EB9xUDsG9F0yKAhSk5UTNIgkr713rkoQpoXQiFt62o1Jpz5nwtokYJL33E3v
-	fX5vTddkb9c8v8lM1tIMOoC1bTWyJ4lxpo1/7lR2pZu6FGN3zYD3AtKdCmuTjJrTUJYpq5il6v+52
-	5rlHlePMIAcNrVOCuR2SPePiTouCMUMRGewOL8apBTWS09BdJtXhLLebim6EVC/XvpTBxbXGUGiBf
-	pf5vCbr5yfVdhjmPd2ag==;
+	Content-Type:Cc:To:Message-Id:MIME-Version:Subject:Date:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=cx9Rp6YTIeNtyaa0iGfIZ36b9vGqaRX5Tus/vFI1EQk=; b=nONfxpX7ZyhT5SMFc+wM7silEx
+	5zI7yCPJciFGUFSVj4AWZ7CI9UM2TIYslvHZ6edPsiLAVsjsB60+i3OOKZjLbxS5dB9YCpC5FvI4/
+	63DytVIWeicJFQ08k/YJkbz4xb+QD0PMDEzpjP8nFYtxeEBL96iFbYLwbjL14xm0lj7la603ZMIEb
+	5ZoCiU1/Cl0aY+V3agIg82QKbz5RuhgrWunb92eCStu19rPS5lbrrnsCDzY6TcczIiGkvVdw3hYTi
+	uMxu+6dB85br3ygq/lzHkVRfTzoEgLH68jaW6QFr1ljtnejIDsea57cIEoDN3toZY/Port7vKMMX2
+	g2t7SPSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPTxd-0000000DteK-2JpC;
-	Sat, 07 Nov 2026 00:07:09 +0000
+	id 1xPU5I-0000000DuNV-2B4w;
+	Sat, 07 Nov 2026 00:15:04 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPTxL-0000000DtTk-3Nc0
+	id 1xPU5C-0000000DuMD-2GDc
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 00:06:55 +0000
+	Sat, 07 Nov 2026 00:15:02 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794010011;
+	s=mimecast20190719; t=1794010497;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b1jw8/k9HF1Z0QFcfzQluiREZXrKVRI5j5BkQVxckCU=;
-	b=g5Sv/5N5tmcNUADUtr1asSIWBgejqqksZ24XqE4n8CXfYveWQ75VbAjnDq11vqQ5li8CsL
-	L/3hUXxe2tSnI1QknOoqyoW7d/HqosCAhpkeKaZWPZ/WNXso+KeB2qhUhPK4ot+2r5l6EG
-	kI1B1wxX3xfJrEZRGFJAM2ux0Zanqqs=
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=cx9Rp6YTIeNtyaa0iGfIZ36b9vGqaRX5Tus/vFI1EQk=;
+	b=TT6lDacixGosxWdcD2b50CLxI1afEyyBKYMASU0D8pTGnvD9DyrDE4BeK4DexzBRGnWH+l
+	srnIzef60tmrrWmY0j1PKL/WDjothdhJQ+RpJs1ku9sGI97iuNSqZhJ/6+ybvmTh9Jl4vk
+	cpA2r7AKJx+x1oIdhqy1jj79YWZ4xOk=
 Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
  [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-692-1OMZ-uJZM9eMSws81WLEZQ-1; Fri, 06 Nov 2026 19:06:48 -0500
-X-MC-Unique: 1OMZ-uJZM9eMSws81WLEZQ-1
-X-Mimecast-MFC-AGG-ID: 1OMZ-uJZM9eMSws81WLEZQ_1794010007
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-53661e036a2so23583561cf.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 16:06:48 -0800 (PST)
+ us-mta-564-8XucF7HgOSi9cVd3tP2rbg-1; Fri, 06 Nov 2026 19:14:56 -0500
+X-MC-Unique: 8XucF7HgOSi9cVd3tP2rbg-1
+X-Mimecast-MFC-AGG-ID: 8XucF7HgOSi9cVd3tP2rbg_1794010496
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-544019b1831so23379031cf.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 16:14:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794010007; x=1794614807;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=b1jw8/k9HF1Z0QFcfzQluiREZXrKVRI5j5BkQVxckCU=;
-        b=U6LrT+5tP1VhVnIGQtDm72uyjUB9COn2iT18xy4RTyFZziVscHXxw3ggaEFD9OUTc8
-         6ffFvHjTR8Gn8bBKYly2xwAJDMcEDh92x+FOxQXjG2Y4wmPCVMwBj2Ng2zur1zIPyUXZ
-         i46e26IILu9wTebTIBIgxfOCcIuVKWchRLNkejDUrSrcO91dmZjv667WduK974w4VDgR
-         Hlg2CEAM1Xx5ikrIlymWF4MNiYEaTA/QysF0zStUPTf8KX/ivASu+guUZPIcj3UtZWYH
-         UFUWevYpIAFRsApNb2ryXYJclzdf0Yw9LDUWV0988YS2Zg9mn9Fj6pEO8HwayuneKtnp
-         uDnQ==
-X-Gm-Message-State: APuU4Z8dXvQXrnPlaWZHv+NbMIRtm66kEyc6RyRa8Tx9dEZLbf0wvCWq
-	oMrku7jH/OadK89q9ImGN9LWww0ab6OWF8FX5qC6uVfk2pUXK0ybUBzCA3r3S3IzSkj4hduV7Kn
-	Dxfi0RZ2vxRVxCMb9Q/hi8SO7AA3G8AgcwJmqyuOdK5W6DMq3MMScigs+XPu75o6TnXxXPbJTEC
-	vO
-X-Gm-Gg: AYBFou2jGw5ldreZ+rnL6CgIPY3hbMCQneLNJbLRJoFHdv8ytjPG9uLnEfTREtPJ5qt
-	+0WvQNDHnLjjLfvjzPbCXv/dzomKRjC0IyRyXXBfPNDJdkPxawIkOjE52/VUZHAEKDoovm4pMXX
-	KjrTu4dlfUAioyZNncGse//zgGaFFDd1kjYRf1R+gdM8K6o+NcikEwq70/a/gxgD2FDmigGoBg/
-	lZTvLBFPD0hkp8e8bg6zxwNE4Q3lK7pKeXF5YKIpo3RFIXdGzB/vBU9GkWIdm8PVGrff7BEmJNF
-	bu2T1lB0Re9CCViUml7MUJjcy1Hr1+G1uhY2V5Mg5RxPIo7UrOsfGLF6YvHsMU0cK8RRD7zKCKR
-	z9HGU92Dge5dYTeHlXgXyViXadYq26pT7+oG2GkyM9IfbrXQLHPVpzODWGI+7V/oVAbxPA49Dhg
-	NDbI7XyT6sQiFLsrT2
-X-Received: by 2002:a05:622a:114b:b0:537:f05d:881a with SMTP id d75a77b69052e-54e132997ddmr61751661cf.12.1794010007253;
-        Fri, 06 Nov 2026 16:06:47 -0800 (PST)
-X-Received: by 2002:a05:622a:114b:b0:537:f05d:881a with SMTP id d75a77b69052e-54e132997ddmr61751141cf.12.1794010006668;
-        Fri, 06 Nov 2026 16:06:46 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794010496; x=1794615296;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=cx9Rp6YTIeNtyaa0iGfIZ36b9vGqaRX5Tus/vFI1EQk=;
+        b=BJKfedv0CTDci6kQ6zGhcVazJgRlwVUDmYGX+PTvoSDqL8r9IdwwMxQX6gRe5x042I
+         ec0mzmiLD6AHWfwNu4NhBpgK4bTa5CxBAlFs1kIBwe1+AHJWCmaISsR4iftYSxx+LR+m
+         X/nvH3jXotseeWTpbFHl7mXxItt+zIfuoucPqFBbWU9E4pfKDxwEb3nm48c5zpbfwlqv
+         W2uBUw318Ddv9YaH8gytxZ+0/k/JC+jwgaWRh1UmRvoOhVTvuyI6v/piD6CGL21lv/nM
+         M7nfz2hdovDmTqUEhKtW9Mj06/32FDlg4BEIlPT/lTkAJChbiCinZ9HP7pNojY2D9r28
+         pbkg==
+X-Forwarded-Encrypted: i=1; AKwUvBxLVNWIRsWwwFG2GwcmeuyAl69+CYB25ZIo/fncYSJET74z4G2ZJmwqJC/wsx3aV0YIsVJ7e5EUnzQZEhdcumIA@lists.infradead.org
+X-Gm-Message-State: APuU4Z/7UzzXRzmxUWDge1fYTnV34vKFHKcCDgmxBC4XsOXo+10yP5xM
+	dkl8YJKuj19VTHOhuAPtj6homw4atf04zYInYyCEDyh6dseOWRXO8TrLXfz/ftkW+ajXrpcAViG
+	lHOeMc8jEYpcn6Flz+CcFeop42VDjfULxHIdg9nL3X59sKriRbyTFgM23qmRIkeHrdKemv+UzrV
+	Y0+7KuaYbu
+X-Gm-Gg: AYBFou3SgOZjyqKxCo/HNytnpK+wUeUEpm3ibb8gcKs2SaBiq+hDwRC+Imk78Bf1waB
+	79+ckVDtlxbI83Q4IarZqtPr6Anjw6b+zU7PdC0HJS1LaUdlSJ4wGmiJnqIj9gKf60vyFE+A5vz
+	zHk5fLj4MLlsdkawHu6FxGrnQnsSYCses4eY1GWPFfi6gai4ca2GMV0LN3pJML+MnNVQaFJoaUN
+	C2KBCpasvt4MfpJkypXfFuoOPYglXDs6CLDTdZCb/ztu9nNovz53DrfZWQaiUxn6+T1+spTGpBJ
+	HJkGhyC7j7gdFhc/Fz9A4LSxCf8vXYPS3NVvKhO7RS8dDzzjEbtfAPpg7wMUyiGS3qgOk4i9VKZ
+	zu3J3p7l+eBmYr5SLSt+ExS/nqsXt9tSjhWI/5xzpzauvzPKt9EUrh8RidvoLjXWjyDfDZvucRl
+	rsUqDLlCHp7Z4e+qj0
+X-Received: by 2002:a05:622a:138c:b0:54d:812b:ac2 with SMTP id d75a77b69052e-54e138860femr73961191cf.28.1794010495478;
+        Fri, 06 Nov 2026 16:14:55 -0800 (PST)
+X-Received: by 2002:a05:622a:138c:b0:54d:812b:ac2 with SMTP id d75a77b69052e-54e138860femr73960931cf.28.1794010495047;
+        Fri, 06 Nov 2026 16:14:55 -0800 (PST)
 Received: from bmasney-x1.rmtuswv.csb ([69.43.42.202])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ea6acc4a7sm31624376d6.44.2026.11.06.16.06.42
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ea6a591a4sm31938846d6.20.2026.11.06.16.14.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 16:06:42 -0800 (PST)
+        Fri, 06 Nov 2026 16:14:54 -0800 (PST)
 From: Brian Masney <bmasney@redhat.com>
-Date: Fri, 06 Nov 2026 19:06:10 -0500
-Subject: [PATCH 3/3] dmaengine: fsldma: convert to subsys_platform_driver()
+Date: Fri, 06 Nov 2026 19:14:21 -0500
+Subject: [PATCH] mailbox: convert to subsys_platform_driver()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261106-dmaengine-subsys-v1-3-780eeddbf3ef@redhat.com>
-References: <20261106-dmaengine-subsys-v1-0-780eeddbf3ef@redhat.com>
-In-Reply-To: <20261106-dmaengine-subsys-v1-0-780eeddbf3ef@redhat.com>
-To: Ludovic Desroches <ludovic.desroches@microchip.com>, 
- Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, 
- Paul Cercueil <paul@crapouillou.net>, Viresh Kumar <vireshk@kernel.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- =?utf-8?q?Andreas_F=C3=A4rber?= <afaerber@suse.de>, 
- Manivannan Sadhasivam <mani@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Linus Walleij <linusw@kernel.org>, 
- Zhang Wei <zw@zh-kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
- imx@lists.linux.dev, linux-actions@lists.infradead.org, 
- linux-riscv@lists.infradead.org, linuxppc-dev@lists.ozlabs.org, 
- Brian Masney <bmasney@redhat.com>
+Message-Id: <20261106-mailbox-subsys-v1-1-a0696237223d@redhat.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM3QpAQBCG4VvRHNuyhLgVOWBnMPLXDiK5d4vDp
+ 77vvUDIMgnk3gWWdhaeJwfte2C6ampJMTpDGISJ1kGixoqHej6UbLWcojJEjKMUIyID7rRYavj
+ 4gkX52y17Mutbgft+ADFe+d9yAAAA
+X-Change-ID: 20261106-mailbox-subsys-9ddd537d3eec
+To: Jassi Brar <jassisinghbrar@gmail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Brian Masney <bmasney@redhat.com>
 X-Mailer: b4 0.17-dev-d96cb
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1227; i=bmasney@redhat.com;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2807; i=bmasney@redhat.com;
  s=20250903; h=from:subject:message-id;
- bh=hy3g6mWddGYLX6Myo7kSoYtQp+hY5Hbo/vUsysOb4zQ=;
- b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLLeZbeeNxabtVqgmXFuKMOEE2yy/Scinn4R5Zj7TWhOt
- atoruLqjlIWBjEuBlkxRZYluUYFEamrbO/d0WSBmcPKBDKEgYtTACbiOouR4cR1jkNqh68wrEm/
- stlDUKbx8PxggVfG0h+OhJx8eL8//yQjw16uPZumb/y3PVJc7N7WsJVuGVcamc2sSnpsTuX05Pi
- UMQAA
+ bh=3AfqlmxfhvtOFs2P8v1lkeNi768e0FuNou3yM1xZYxY=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLLe5Va/njKX4/zvh8ZCU29Zn++fUlxuaP7/8lR/lw+nt
+ x5I/K/a11HKwiDGxSArpsiyJNeoICJ1le29O5osMHNYmUCGMHBxCsBELD8x/FN2Dr8RvTypYk7L
+ 5G0vZQtW7Jh4dPsWLhmFiWsSK35ysSkw/E/vjD12wDx/od6djL7jvetjL7icSr0fsDtr9cdTRTX
+ 7S5gA
 X-Developer-Key: i=bmasney@redhat.com; a=openpgp;
  fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: -tRZZUKWaFk4xpMXS2ZPFkDcFz09h6BPl09hay0iFNM_1794010007
+X-Mimecast-MFC-PROC-ID: WowSVpqSBrjPHFB1TxXESnJOaRYKTovWDqBXKspYNuM_1794010496
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_160653_952243_2FBE46A6 
-X-CRM114-Status: GOOD (  10.97  )
+X-CRM114-CacheID: sfid-20261106_161458_690037_570DAF1C 
+X-CRM114-Status: GOOD (  10.06  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -132,52 +123,103 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Reduce boilerplate code in this driver and convert it over to use
+Reduce boilerplate code in these drivers and convert them over to use
 the macro subsys_platform_driver().
-
-Note that this driver previously displayed a log message during init
-time, and this change drops that message.
 
 Signed-off-by: Brian Masney <bmasney@redhat.com>
 ---
- drivers/dma/fsldma.c | 14 +-------------
- 1 file changed, 1 insertion(+), 13 deletions(-)
+ drivers/mailbox/mailbox-xgene-slimpro.c | 13 +------------
+ drivers/mailbox/mtk-cmdq-mailbox.c      | 13 +------------
+ drivers/mailbox/zynqmp-ipi-mailbox.c    | 12 +-----------
+ 3 files changed, 3 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/dma/fsldma.c b/drivers/dma/fsldma.c
-index 99a878ed1444..fd3dca7616a8 100644
---- a/drivers/dma/fsldma.c
-+++ b/drivers/dma/fsldma.c
-@@ -1431,19 +1431,7 @@ static struct platform_driver fsldma_of_driver = {
- /* Module Init / Exit                                                         */
- /*----------------------------------------------------------------------------*/
+diff --git a/drivers/mailbox/mailbox-xgene-slimpro.c b/drivers/mailbox/mailbox-xgene-slimpro.c
+index 1f87a84e5995..f489bcabceff 100644
+--- a/drivers/mailbox/mailbox-xgene-slimpro.c
++++ b/drivers/mailbox/mailbox-xgene-slimpro.c
+@@ -243,18 +243,7 @@ static struct platform_driver slimpro_mbox_driver = {
+ 	},
+ };
  
--static __init int fsldma_init(void)
+-static int __init slimpro_mbox_init(void)
 -{
--	pr_info("Freescale Elo series DMA driver\n");
--	return platform_driver_register(&fsldma_of_driver);
+-	return platform_driver_register(&slimpro_mbox_driver);
 -}
 -
--static void __exit fsldma_exit(void)
+-static void __exit slimpro_mbox_exit(void)
 -{
--	platform_driver_unregister(&fsldma_of_driver);
+-	platform_driver_unregister(&slimpro_mbox_driver);
 -}
 -
--subsys_initcall(fsldma_init);
--module_exit(fsldma_exit);
-+subsys_platform_driver(fsldma_of_driver);
+-subsys_initcall(slimpro_mbox_init);
+-module_exit(slimpro_mbox_exit);
++subsys_platform_driver(slimpro_mbox_driver);
  
- MODULE_DESCRIPTION("Freescale Elo series DMA driver");
+ MODULE_DESCRIPTION("APM X-Gene SLIMpro Mailbox Driver");
  MODULE_LICENSE("GPL");
+diff --git a/drivers/mailbox/mtk-cmdq-mailbox.c b/drivers/mailbox/mtk-cmdq-mailbox.c
+index 96462ca84471..262832753fa5 100644
+--- a/drivers/mailbox/mtk-cmdq-mailbox.c
++++ b/drivers/mailbox/mtk-cmdq-mailbox.c
+@@ -875,18 +875,7 @@ static struct platform_driver cmdq_drv = {
+ 	}
+ };
+ 
+-static int __init cmdq_drv_init(void)
+-{
+-	return platform_driver_register(&cmdq_drv);
+-}
+-
+-static void __exit cmdq_drv_exit(void)
+-{
+-	platform_driver_unregister(&cmdq_drv);
+-}
+-
+-subsys_initcall(cmdq_drv_init);
+-module_exit(cmdq_drv_exit);
++subsys_platform_driver(cmdq_drv);
+ 
+ MODULE_DESCRIPTION("Mediatek Command Queue(CMDQ) Mailbox driver");
+ MODULE_LICENSE("GPL v2");
+diff --git a/drivers/mailbox/zynqmp-ipi-mailbox.c b/drivers/mailbox/zynqmp-ipi-mailbox.c
+index 42d2583e44ca..f2a082f2dc7e 100644
+--- a/drivers/mailbox/zynqmp-ipi-mailbox.c
++++ b/drivers/mailbox/zynqmp-ipi-mailbox.c
+@@ -1023,17 +1023,7 @@ static struct platform_driver zynqmp_ipi_driver = {
+ 	},
+ };
+ 
+-static int __init zynqmp_ipi_init(void)
+-{
+-	return platform_driver_register(&zynqmp_ipi_driver);
+-}
+-subsys_initcall(zynqmp_ipi_init);
+-
+-static void __exit zynqmp_ipi_exit(void)
+-{
+-	platform_driver_unregister(&zynqmp_ipi_driver);
+-}
+-module_exit(zynqmp_ipi_exit);
++subsys_platform_driver(zynqmp_ipi_driver);
+ 
+ MODULE_LICENSE("GPL v2");
+ MODULE_DESCRIPTION("Xilinx ZynqMP IPI Mailbox driver");
 
--- 
-2.56.0
+---
+base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
+base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+change-id: 20261106-mailbox-subsys-9ddd537d3eec
+
+Best regards,
+--  
+Brian Masney <bmasney@redhat.com>
 
 
