@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217AB6083638
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB814606D80A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:38:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yNfca91S;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=ZZ5RksHz;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=BZP9tWKz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OGIT9Hv2;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=S59sJduE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -15,93 +14,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nX/BKmNSgCueREMdF/8Pl/MQjIYzPNWNVVbIpr0RXxI=; b=yNfca91SfrE+fQ2e4aAn7NykVi
-	W7PhkoOF3/hcbkB1xsWAv3QO55IxtV2mZ+IMHYc4OtjU2oDPxEMm9veFAqvuDXL3OkKr8NVB7Gihe
-	YcACE3nUxVqHr9RXRSuViBgwU2aCL4PXd210jJ3hpVv3RlILe7WtbczGlxKK92C1FTKxO7fOaRLtf
-	NWwV6M5jL/zh4R5zDR7/+r5+ZZ+f5Z8IOQgycjJx0RaaIbYrhqVBiaXUxqsSk8XtxXXrdVIIq8HEm
-	dR7L0nABeAR/5n0cbI4VdndRCQkbIQvtuj+2eWKVSK9xyyqRLxvDkR9NXSdqm7/q+QjGuPQBFjdj8
-	wjaU/A1Q==;
+	bh=W2dZ65y0GQkNS0zpTty1NYFlxTIjfXpbYdGN63CkZpc=; b=OGIT9Hv2LjNQuwLoP/3FSaeP+4
+	WWThYj7MV7MEQwXjFnHEzktLope2ihSlMcoEsIMBrT6IFUpS+TAGpGYMohdXHYP7ZFjzcPFug/6AX
+	hj4d1MxdP4HwZL+4LV6kmY5gXJChHeHqK/DImGOfL0OLhXrCDTkeiZ0KUd6GL/wY7gwmsKOfRygPp
+	SG1qkbu0mJdgWkvhMOHSo+cI4RrX/qa1R+Dvpzi5aVYmtUQohhzFn6ESw2McrgVlc34TY5F58Ji5v
+	McEkzsRexELNWXu5j3ufRaZHGF/gIr2Gwj0UoyDatK0bXRyh01fW8mLlm0sb+rAMo3mFdohiQba3I
+	lAxRBD/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiU0-0000000Ev2j-3ng2;
-	Sat, 07 Nov 2026 15:37:32 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xPiUL-0000000EvdN-2dPk;
+	Sat, 07 Nov 2026 15:37:53 +0000
+Received: from mail-ej1-x646.google.com ([2a00:1450:4864:20::646])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiTw-0000000Euv2-2hWf
-	for linux-arm-kernel@bombadil.infradead.org;
-	Sat, 07 Nov 2026 15:37:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:Cc:To:From:Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=nX/BKmNSgCueREMdF/8Pl/MQjIYzPNWNVVbIpr0RXxI=; b=ZZ5RksHzqhLnegwrM3AkeZjdub
-	zJN82cGYWBT1kcenhbs17vI8IcUm1tgOsDdjwKa/4gH4w/nXgkY1IsENmpE9//N0h9D1Q5JtLRlNw
-	eKrkPFeJP25kbhMte3qch5rE47+udPTkrTskufMSOyx68dj01/svUKh6EJs/L42rtkCIgD3hs35pG
-	Jbl7U5VJvK1tq/XOs3KutO06SAFqGuMFkSzjtOmHabdoESeixOSgEsoBQlMIg09gB+zJUHPQAnoao
-	vWnW2uz539OXaudyhT6ybk3v1SCuKwMvWtsKLzRVfMIlLreaalB9QJmTTOqRxmJueabyiTL9Q+LoN
-	eOLDd5FQ==;
-Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiTu-00000005Hwz-05CD
+	id 1xPiU0-0000000Euzl-2AVE
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 15:37:27 +0000
-Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c3f88d2ff28so137684366b.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:24 -0800 (PST)
+	Sat, 07 Nov 2026 15:37:34 +0000
+Received: by mail-ej1-x646.google.com with SMTP id a640c23a62f3a-c210c66672eso190359666b.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794065844; x=1794670644; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794065850; x=1794670650; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=nX/BKmNSgCueREMdF/8Pl/MQjIYzPNWNVVbIpr0RXxI=;
-        b=BZP9tWKzT8ZHRjAbvuNEP9PrnkJgcOOwL+EKQyJIUGPWqoQm6uicNlEQdJ6NRCpaLZ
-         LjBraQXxdLGukHcmmzPY7tSKKlWik1yTogvfUi6ADVpG/e3LcdTCtbOzk26K//P86EPk
-         R5fdLyb9VGf6T5lBSvyxyIuX+WOD5QOXsexb496uK6gPtwpveCBS9vuHyoioxoo3iZr4
-         exaDFEtiD239a56gMB95i0wnH6Zyx7KC1UoHkoUfcyu32ChLghk6D+7gPaLFXnVAj3KP
-         gk7zt7eULVmtw4bUPqrHVDUlLJRWgade7lTdeWJaj4OKX+rImiw4+okP+bv2a7H0kAGG
-         6SCA==
+        bh=W2dZ65y0GQkNS0zpTty1NYFlxTIjfXpbYdGN63CkZpc=;
+        b=S59sJduEyi3xT4WyhFzRpcQRpmihgAQpPuG6jfrME8k8ofv13QfygExWTil+CHcEft
+         MF0BIm/O+N+nGcs5hDOM9UbKXQgfNufxoCgidXLubJnfAXCfE8eb4nyzH4FyBIrk3TlL
+         X5Q2rRS8rzI57ryr7Xbil0WC7P09HZ6xKBD9CwEeHJYKdaY4uSUTjEvG1tS0w3O60sJE
+         YxPNbi/j18V9po7mY34P9UscmvG/MPSXdnQ8kzs72GS5wfRiqX8xIJZiKg+kWQpXDXUb
+         GSCgUBqyHyEjXFZkw6vcyrhbDq6dS8xyiaXQtPhVSjStK5LJXLFG7GFuTt4IGcwk5aPn
+         jYCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794065844; x=1794670644;
+        d=1e100.net; s=20260707; t=1794065850; x=1794670650;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=nX/BKmNSgCueREMdF/8Pl/MQjIYzPNWNVVbIpr0RXxI=;
-        b=r6O6Mkxei/Ow2sWNI5PjeP7vGDb+xezGQo9hL7AKvAtmzWh7GgkU9kOTw2aYW0vs0t
-         yAT3BMSYIjEiqw67gP9MXANICHIUg9D5DpSAAtAD3qfxVf0gnush5ZsydL3u/D4sv32T
-         Fu6D2dXMXrn5lJACSayFRVKUJzRHbxgrrPzHhvibXWHBBvX96Y5rlZY1Ht7YXrkLH5ll
-         WM3elhrG1lrwPhSQqTmLcjnlHOEzmg19XAwibqQdEHLgUsSE/mqhz+EBQOg2d1eWYf1G
-         pOynvbyMCY95oyxRZ/79VRkZyaEDkaEFd5kmKYBivXn9U4fDpYXIjoGMjr0UUDojRUeG
-         1TOg==
-X-Forwarded-Encrypted: i=1; AL+hErEZnFWaTA7DbTJ+cb4z67/L2GuXiJQKRXgrSSlr1eVQ+vyc99Fq3QTR9cmtnGknF/YL8EvgF6Y8WAKoJI9N2PVp@lists.infradead.org
-X-Gm-Message-State: APuU4Z+sGtCX9zmpf5k8HkfS2I2fSsdHLLkBbyRgpQwx2I2w8cyc0TmZ
-	1nOhiHOIWLi9QL9vS6mcdQIYpKRr8W4LGMhUg3ajW9ctoZZJ5MH+N+sxBGP4RGqFq3lMwb6LhTc
-	rQw==
-X-Received: from ejcr19.prod.google.com ([2002:a17:906:2813:b0:c31:9562:e7c8])
- (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a17:907:3c8f:b0:c3f:d8f2:f08e
- with SMTP id a640c23a62f3a-c4d3542619emr438107666b.44.1794065843438; Sat, 07
- Nov 2026 07:37:23 -0800 (PST)
-Date: Sat, 07 Nov 2026 16:36:17 +0100
+        bh=W2dZ65y0GQkNS0zpTty1NYFlxTIjfXpbYdGN63CkZpc=;
+        b=NWKSS3tpqidjtyS98dhJNHVaYfA9A4aAcfgXPquH8YY/uHmpuuIiZDzrG7ozXeLmCl
+         Wt91ze1SDNOGpQNVsGlZFGqtYgZNIFfLOhIapXdol7q51dkqWLy4e/idZxaOrw/drnCS
+         +U3lqPn0ScQca8J73nxjQG7V6mR+x/s2VHM2FJAb/Zob3sKBXtsxJmxVPBgmoH7BrbxG
+         fqTN2Me3Na9Oo1ugape1bdSYBgr49Fvl5DSepjJzD/l2g/NJ/8RH0VEi19JmyOG2vPQ/
+         B8v9seU6RJOtgpt5WI3lXgI0kGYbFUe2dMS7hpDqVn2eaYQoKEf2e8qPK5eusRei52l1
+         3n7Q==
+X-Forwarded-Encrypted: i=1; AKwUvBw5XEGYZh21nO54LsCAXCpfl2zNiZAwpktu+2+CLOG5nlnyFVhIWh1OaA62rlriwwVE+M3br2sZWAZ5R8syj2qL@lists.infradead.org
+X-Gm-Message-State: APuU4Z9qS0Bu3gEhqDTVMqchfYkvglF+etLbyjSARHaqBTw3d9UmLdlQ
+	xM6895/2M6lv4CbhU7D5UABlp5MpYW5CVvsTyuSR4drbuBdBec7K1N5JQQDWI2GCJMMjw3ikvAX
+	k/g==
+X-Received: from ejz21.prod.google.com ([2002:a17:907:e415:b0:c31:5e56:5742])
+ (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a17:907:c0b:b0:c41:731c:534
+ with SMTP id a640c23a62f3a-c4d352c83c7mr470461666b.24.1794065850014; Sat, 07
+ Nov 2026 07:37:30 -0800 (PST)
+Date: Sat, 07 Nov 2026 16:36:22 +0100
 In-Reply-To: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Mailer: b4 0.14.3
-Message-ID: <20261107-mte-kasan-split-v1-11-d84ea5f30f94@google.com>
-Subject: [PATCH 11/24] kasan: provide empty stub for kasan_report_async()
+Message-ID: <20261107-mte-kasan-split-v1-16-d84ea5f30f94@google.com>
+Subject: [PATCH 16/24] arm64: Refactor KERNEL_GCR_EL1 out of <sysreg.h>
 From: "=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Alexander Potapenko <glider@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	Andrey Konovalov <andreyknvl@gmail.com>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
-	Dmitry Vyukov <dvyukov@google.com>, kasan-dev@googlegroups.com, linux-mm@kvack.org, 
 	"=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_153725_959241_C066F014 
-X-CRM114-Status: GOOD (  11.57  )
-X-Spam-Score: -7.6 (-------)
+X-CRM114-CacheID: sfid-20261107_073732_645346_08C1321A 
+X-CRM114-Status: GOOD (  14.29  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,54 +97,140 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Allow callers to compile without #ifdef guards.
+Rework the constant to make the resulting sysreg value (and computation)
+obvious at the usage site and clearly indicate that the GCR_EL1.Exclude
+is specifically set by a KASAN policy.
 
-Cc: Alexander Potapenko <glider@google.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Andrey Konovalov <andreyknvl@gmail.com>
-Cc: Andrey Ryabinin <ryabinin.a.a@gmail.com>
-Cc: Dmitry Vyukov <dvyukov@google.com>
-Cc: kasan-dev@googlegroups.com
-Cc: linux-mm@kvack.org
+As a result, <sysreg.h> is now KASAN-agnostic and writers of GCR_EL1
+explicitly depend on KASAN headers, as they should.
+
 Signed-off-by: Pierre-Cl=C3=A9ment Tosi <ptosi@google.com>
 ---
- include/linux/kasan.h | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ arch/arm64/include/asm/mte-kasan.h | 16 ++++++++++++++++
+ arch/arm64/include/asm/sysreg.h    | 16 ----------------
+ arch/arm64/kernel/entry.S          |  3 ++-
+ arch/arm64/kernel/mte.c            |  4 +++-
+ 4 files changed, 21 insertions(+), 18 deletions(-)
 
-diff --git a/include/linux/kasan.h b/include/linux/kasan.h
-index bf233bde68c7..e429fb483176 100644
---- a/include/linux/kasan.h
-+++ b/include/linux/kasan.h
-@@ -541,12 +541,6 @@ static inline void *kasan_reset_tag(const void *addr)
+diff --git a/arch/arm64/include/asm/mte-kasan.h b/arch/arm64/include/asm/mt=
+e-kasan.h
+index 9d00e9460b0f..6f63c788470a 100644
+--- a/arch/arm64/include/asm/mte-kasan.h
++++ b/arch/arm64/include/asm/mte-kasan.h
+@@ -5,10 +5,26 @@
+ #ifndef __ASM_MTE_KASAN_H
+ #define __ASM_MTE_KASAN_H
 =20
- #endif /* CONFIG_KASAN_SW_TAGS || CONFIG_KASAN_HW_TAGS*/
++#include <linux/bits.h>
++#include <linux/const.h>
++#include <linux/kasan-tags.h>
++
+ #include <asm/compiler.h>
+ #include <asm/cputype.h>
+ #include <asm/mte-def.h>
+=20
++/*
++ * KASAN always uses a whole byte for its tags. With CONFIG_KASAN_HW_TAGS =
+it
++ * only uses tags in the range 0xF0-0xFF, which we map to MTE tags 0x0-0xF=
+.
++ */
++#ifdef CONFIG_KASAN_HW_TAGS
++#define __MTE_TAG_MIN		(KASAN_TAG_MIN & 0xf)
++#define __MTE_TAG_MAX		(KASAN_TAG_MAX & 0xf)
++#define KASAN_GCR_INCL		GENMASK(__MTE_TAG_MAX, __MTE_TAG_MIN)
++#else
++#define KASAN_GCR_INCL		UL(0)
++#endif
++
+ #ifndef __ASSEMBLER__
+=20
+ #include <linux/types.h>
+diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysre=
+g.h
+index 51c6a54d7146..7d82c769ae69 100644
+--- a/arch/arm64/include/asm/sysreg.h
++++ b/arch/arm64/include/asm/sysreg.h
+@@ -11,7 +11,6 @@
+=20
+ #include <linux/bits.h>
+ #include <linux/stringify.h>
+-#include <linux/kasan-tags.h>
+ #include <linux/kconfig.h>
+=20
+ #include <asm/gpr-num.h>
+@@ -921,21 +920,6 @@
+ #define SYS_GCR_EL1_RRND	(BIT(16))
+ #define SYS_GCR_EL1_EXCL_MASK	0xffffUL
 =20
 -#ifdef CONFIG_KASAN_HW_TAGS
+-/*
+- * KASAN always uses a whole byte for its tags. With CONFIG_KASAN_HW_TAGS =
+it
+- * only uses tags in the range 0xF0-0xFF, which we map to MTE tags 0x0-0xF=
+.
+- */
+-#define __MTE_TAG_MIN		(KASAN_TAG_MIN & 0xf)
+-#define __MTE_TAG_MAX		(KASAN_TAG_MAX & 0xf)
+-#define __MTE_TAG_INCL		GENMASK(__MTE_TAG_MAX, __MTE_TAG_MIN)
+-#define KERNEL_GCR_EL1_EXCL	(SYS_GCR_EL1_EXCL_MASK & ~__MTE_TAG_INCL)
+-#else
+-#define KERNEL_GCR_EL1_EXCL	SYS_GCR_EL1_EXCL_MASK
+-#endif
 -
--void kasan_report_async(void);
+-#define KERNEL_GCR_EL1		(SYS_GCR_EL1_RRND | KERNEL_GCR_EL1_EXCL)
 -
--#endif /* CONFIG_KASAN_HW_TAGS */
--
- #ifdef CONFIG_KASAN_GENERIC
- void __init kasan_init_generic(void);
- #else
-@@ -562,9 +556,11 @@ static inline void kasan_init_sw_tags(void) { }
- #ifdef CONFIG_KASAN_HW_TAGS
- void kasan_init_hw_tags_cpu(void);
- void __init kasan_init_hw_tags(void);
-+void kasan_report_async(void);
- #else
- static inline void kasan_init_hw_tags_cpu(void) { }
- static inline void kasan_init_hw_tags(void) { }
-+static inline void kasan_report_async(void) { }
+ /* RGSR_EL1 Definitions */
+ #define SYS_RGSR_EL1_TAG_MASK	0xfUL
+ #define SYS_RGSR_EL1_SEED_SHIFT	8
+diff --git a/arch/arm64/kernel/entry.S b/arch/arm64/kernel/entry.S
+index 8d17f61d1b5b..d1d9a7a049a7 100644
+--- a/arch/arm64/kernel/entry.S
++++ b/arch/arm64/kernel/entry.S
+@@ -21,6 +21,7 @@
+ #include <asm/esr.h>
+ #include <asm/irq.h>
+ #include <asm/memory.h>
++#include <asm/mte-kasan.h>
+ #include <asm/mmu.h>
+ #include <asm/processor.h>
+ #include <asm/ptrace.h>
+@@ -176,7 +177,7 @@ alternative_else_nop_endif
+ alternative_cb	ARM64_ALWAYS_SYSTEM, kasan_hw_tags_enable
+ 	b	1f
+ alternative_cb_end
+-	mov	\tmp, KERNEL_GCR_EL1
++	mov	\tmp, #(SYS_GCR_EL1_RRND | (SYS_GCR_EL1_EXCL_MASK & ~KASAN_GCR_INCL))
+ 	msr_s	SYS_GCR_EL1, \tmp
+ 1:
  #endif
+diff --git a/arch/arm64/kernel/mte.c b/arch/arm64/kernel/mte.c
+index 0d998289edcb..725f48faec3e 100644
+--- a/arch/arm64/kernel/mte.c
++++ b/arch/arm64/kernel/mte.c
+@@ -23,6 +23,7 @@
+ #include <asm/barrier.h>
+ #include <asm/cpufeature.h>
+ #include <asm/mte.h>
++#include <asm/mte-kasan.h>
+ #include <asm/ptrace.h>
+ #include <asm/sysreg.h>
 =20
- #ifdef CONFIG_KASAN_VMALLOC
+@@ -320,7 +321,8 @@ void mte_cpu_setup(void)
+ 			 MAIR_ATTRIDX(MAIR_ATTR_NORMAL_TAGGED,
+ 				      MT_NORMAL_TAGGED));
+=20
+-	write_sysreg_s(KERNEL_GCR_EL1, SYS_GCR_EL1);
++	write_sysreg_s(SYS_GCR_EL1_RRND | (SYS_GCR_EL1_EXCL_MASK & ~KASAN_GCR_INC=
+L),
++		       SYS_GCR_EL1);
+=20
+ 	/*
+ 	 * If GCR_EL1.RRND=3D1 is implemented the same way as RRND=3D0, then
 
 --=20
 2.56.0.455.g6c5a503b38-goog
