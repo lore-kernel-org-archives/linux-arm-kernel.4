@@ -2,91 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8BCB606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 00:34:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED06606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 00:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GS49b211;
-	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=Jq84orGE
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4FjAcujB;
+	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=O5K6U3Yk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:In-Reply-To:References:Message-Id:MIME-Version:Subject:
-	Date:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9EpZk2mArj9f3PAZHMhYhxIIajV8999GqCaFVZmGcaQ=; b=GS49b211O32nuJ
-	9Q2KVCbyZFl7505YdNFSUCfHQ7vkg81zqOHIu1R6R8l3u6y9CmBomo5lnjBmrXY0w6TMN7lh4wk3N
-	xVXCAHelGonOAnVV2Ljo+p8vBnb+aeNI9HKUaJhjJyj2z3CUd+STgpunb6tSaq4k3bxu4pfbLWnwt
-	rbcB8xuLSbKEV+FsPC91eOh+cC6/gowKE0oqUlC4qejHuNw/jwM5eDT7aLi7DbY1Xn8tQG6JE2J8r
-	rVciuUEEis7blTVYaCC87qB5OUWhk0/I8q78JI5IgUyoiPnNUzDmjQBYSdzyPtNPqAzu6IqyDNhkY
-	wR4iAyyNHMzKZrPBcyow==;
+	Content-Type:Cc:To:MIME-Version:Message-Id:Date:Subject:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=E3RVJFr6ZUPogzBkgGP2loWx7cvpSKnyKS/nkizj98k=; b=4FjAcujBgPbDGw9EgJcsDY+6dE
+	139A4V5wLcoxNS8UrGhA9ZpIIXhxgsSTwC9P4vx8G6Hf6GYu+OyymFkafHUh1lbQcqwt18u3YMVEm
+	XRoIXTyzVKTFRPSNdwHlPHlvOqy8P/EPg6lh7jBTVROi+7RvsoFBMJ15R8eUht+X9V8OgpyRkuWHW
+	Vuq4X9/TAg5pqcTZyui4IiiwgfJ1mdADVkuHvAATdY2FUZByanIJvXW1HcP2hNsYw5dMx8FYgSTSa
+	eyXnT/YO7o6r0IkhYkCVPYazn7Xz//kkTvjyJi7+KMBAmGcK2jEKNMNwJJfSGgN8OWzGzXJSW/elY
+	rupvfSDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPUNf-0000000DvlT-35rg;
-	Sat, 07 Nov 2026 00:34:06 +0000
+	id 1xPUNj-0000000Dvm0-2aAi;
+	Sat, 07 Nov 2026 00:34:07 +0000
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPUN8-0000000DvgP-0lTt
+	id 1xPUN6-0000000DvgM-0Exb
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 00:33:57 +0000
+	Sat, 07 Nov 2026 00:34:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794011609;
+	s=mimecast20190719; t=1794011606;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9EpZk2mArj9f3PAZHMhYhxIIajV8999GqCaFVZmGcaQ=;
-	b=Jq84orGEbv5gemYodNaS/Zkp8XdpfsiR3DASh0ID9xN6e32GiapCeUe7Exlx5zpmP4z1Lu
-	qUByevFMA7FPHEBLZ8d4si6IiBXsoaIAdjX9xlOEup0ZQvjpH3h/L7WiQVKqMwGN4UulHx
-	Q9GyBcpRqoo+SIauS1CfuaqirdTVM3U=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=E3RVJFr6ZUPogzBkgGP2loWx7cvpSKnyKS/nkizj98k=;
+	b=O5K6U3YknfjGidM7jM6CHGgT3dvTMBRHP6se8UGqSFmiQKX2DUTEy/D5wlgYRBuskFtNwA
+	SL6gezn2grCqBe8flVY7sBI9QRYtnrGiHzVeXUr9Avma7grPsVUqeIb+RxcFzTxrTboqr0
+	HvwApzw+Ya0nI9vjs/d3Gorya68KuGM=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-449-LCKAH1woNnC6TkmPrNx35A-1; Fri, 06 Nov 2026 19:33:28 -0500
-X-MC-Unique: LCKAH1woNnC6TkmPrNx35A-1
-X-Mimecast-MFC-AGG-ID: LCKAH1woNnC6TkmPrNx35A_1794011608
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-534f3fe0236so23922611cf.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 16:33:28 -0800 (PST)
+ us-mta-357-cRwUU5DyOeixn5k0rEf5IQ-1; Fri, 06 Nov 2026 19:33:25 -0500
+X-MC-Unique: cRwUU5DyOeixn5k0rEf5IQ-1
+X-Mimecast-MFC-AGG-ID: cRwUU5DyOeixn5k0rEf5IQ_1794011605
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-93909014c85so279991885a.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 16:33:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794011608; x=1794616408;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=9EpZk2mArj9f3PAZHMhYhxIIajV8999GqCaFVZmGcaQ=;
-        b=agkq/lgXzkFsqfPJ3dOH8TMFMEu+QgItqyyyG/YfPuLWWiI+LA2ZK7mHuq1pRAL3Ta
-         XN+C1lIc8Tkthan2QG76Y7SIbJ30ncDQU2IYewwyYsEz7CAxjPlPiB6+bTFCBEjcj6yt
-         /jCElSPmidv1Setx6lpbOQAeIOSATOrDiOI67qT1syYTYgPf/GWtwJEgy4S4D1XYsT/9
-         NGmvxp2CX/qFziJXOs1ShOCCHY/5IjgnOyWJ9QtrhAQZ+1cDc1uFJjQZYhaR9mU91Kx/
-         BgU0oKQgzDwi9e+65b7o+NwjYfOG6w4SAghCyRy2FbxaR7rDXTyFghUgNoOS5nlJT8fw
-         3UMQ==
-X-Forwarded-Encrypted: i=1; AKwUvBys6UoK4POs3zGkGgY4gy42tMkzFWLR7u4V6t6VbyenN3rI2TykA/YYWOOnxfJ3z1cL5JBbunaM9lMEgZDx+9p1@lists.infradead.org
-X-Gm-Message-State: APuU4Z+kh18HJ3XXKG8gzNQOUq/1PnCHVTn7x6DpRx5O21nSlCN0I6gK
-	vTnBTa8BVsCSp8U+asQpHtv1TzZuCBFfoh1MzBlscPdNU1Z6fuIX9/VPUo4kQ/Pt5Va2YV4Y01V
-	ECph65wd1qG/hbOOt5+S9Ud+nAiZBQL3v4iEAY68dqpIpgAs5SO9ZmiWcTfSF8nR4jHM2MNC6da
-	zOVdQgrrPYsOA=
-X-Gm-Gg: AYBFou1r5HNjpvr3RnfCrqJPlSKdGzYiyq7JHae1GNf1rQ6lRJCCeVZegijPMzxVKtw
-	2xm1YibugPdpEWQaVYn5U5l9jXDQsr1rD9knMdSRYL/OM8A7EqpGao5crso4LlwkAio7koqeUxH
-	RY/nyimSRDXzpcn0ai6/lz2UtncKHInVDea0n8PFSXEgyhY98IL2Aladn8FPKWJAmU3W09wSmXD
-	B0P/rUIvQyYKze8NKvAtPvp4nNvmVJe4drG8SxdOE7z7OJOmR0ns7n4Gm+gpkqWvcnhas1atcqb
-	HR9RQ4GxmUplHa8sUQu95sO6TeztwkczarglzaTW7y98FrD/qgp7hG8+t6QWEYhJg3go45hg1Gf
-	pD+JEnHrfRlQXtuC9TapbHDshRKWrqqJnr5+S+OI+sCk29/VPhabhNjxoUgFavID8VHqZEGmSJ+
-	eeNR1JtLjtjqCwXa2q
-X-Received: by 2002:a05:622a:4c1a:b0:536:64c9:b1b0 with SMTP id d75a77b69052e-54e1496d927mr73578391cf.36.1794011607838;
-        Fri, 06 Nov 2026 16:33:27 -0800 (PST)
-X-Received: by 2002:a05:622a:4c1a:b0:536:64c9:b1b0 with SMTP id d75a77b69052e-54e1496d927mr73578081cf.36.1794011607417;
-        Fri, 06 Nov 2026 16:33:27 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794011605; x=1794616405;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=E3RVJFr6ZUPogzBkgGP2loWx7cvpSKnyKS/nkizj98k=;
+        b=PP8qF0/kHX/N4Ld9gpNuqluzQg4I8iTMIWcy2FUYf+Z6kyHCXj4UcbSY+8duwR9EMF
+         DL4vTl4Q7fyJ3Pw2A+8YpzdwqbamRSAqX394d/QwuWsmZ51UjlzqEw+xFi0S626Q63iL
+         xttZ/NJIPeYbHNDC0HyWbZNh35HbmNUI0SCNMD5wjT5etvTCLLEeYSnJ/omEvNG6Ryeo
+         HJ3oN72qWjCvT9yArSWbc2r40xPiI26fZqT/tmKViranjCmKdHNzFvXoX1AAISGkwJaD
+         o9zTfxR2TQ4X0nfcrh86ss9Zt73FUE3zfaamcKx40wBHyHzIlMKwmJ+rxsRuXTxR0ZD+
+         F6gA==
+X-Forwarded-Encrypted: i=1; AKwUvByEVl9Rf3Y++Fhx2esu50OZHHO2FPibQXRSY+Hq5n9Pt75wV+LaFwuzGd68/RBknLt+3gDF5PahZB2Z/WxDHX3Z@lists.infradead.org
+X-Gm-Message-State: APuU4Z824GnWFKFTCGGMWUxfX2JxXImP6THFp4+6mmZw4ZzGHO6e0VMp
+	jnsJKTB33w2q2A+ZGwRoWjxmkNOaeaZOUhZMBPuJJoEoXaq2ycy2ItDY482QjPQ9tWhP2/Ruvpa
+	5neVSdOcUK6FWVxGNkv/A+e54vvrbnbTxgLMcfjQtIFLfbP6uLaa8OEyW5B2g7u55h0X3plZUdq
+	v2
+X-Gm-Gg: AYBFou0kTkY2CzQPbLiLQiW3gHENMrlrUVJ+B8cOjg0yvinJdt3NFCXlh3KtGXdNOxK
+	nr85s/S0H19kjYN5ManMpvsxQ8ak70msU85tANSGpPDnVX+CSOrPJFqIXdPAOipBdzkUA6ZqxG4
+	htv+LR6a7AJS+L9khPJK7bNofi8s+NLBF/0+N78KAVnNolgrw8qTFOrMAk+fOJYC3d9rZHpgaJO
+	HH9lj6OGsBhIhQbqOSgX/3zLW9oYmEoEPwdt5EAPwVqE9e9kBmgP9d1HBu3VQ3k5ffDPrISclAp
+	yIwlCiX5NX1kiEVFGnfsnGG8vobXH/LhVc/ky0Y0t71BKrTmwpWxmalEU1kD+RgHwne/s06nimI
+	pdsY8TJS88zhMxswhvo3/PC67ByhJ55HxU6qTK/2oSET0z1G+EUsNCrBYOox62ZhDipmbq3Kanx
+	+6/hjhAc6Obn0WYtUf
+X-Received: by 2002:a05:620a:4541:b0:943:e135:525e with SMTP id af79cd13be357-945f35df6aemr679392085a.64.1794011605025;
+        Fri, 06 Nov 2026 16:33:25 -0800 (PST)
+X-Received: by 2002:a05:620a:4541:b0:943:e135:525e with SMTP id af79cd13be357-945f35df6aemr679386985a.64.1794011604452;
+        Fri, 06 Nov 2026 16:33:24 -0800 (PST)
 Received: from bmasney-x1.rmtuswv.csb ([69.43.42.202])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ea6a2c5d9sm32684126d6.10.2026.11.06.16.33.25
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ea6a2c5d9sm32684126d6.10.2026.11.06.16.33.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 16:33:26 -0800 (PST)
+        Fri, 06 Nov 2026 16:33:23 -0800 (PST)
 From: Brian Masney <bmasney@redhat.com>
-Date: Fri, 06 Nov 2026 19:33:09 -0500
-Subject: [PATCH 2/2] spi: pxa2xx: convert to subsys_platform_driver()
+Subject: [PATCH 0/2] spi: convert to subsys_platform_driver()
+Date: Fri, 06 Nov 2026 19:33:07 -0500
+Message-Id: <20261106-spi-subsys-v1-0-a51a08f21cf2@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Message-Id: <20261106-spi-subsys-v1-2-a51a08f21cf2@redhat.com>
-References: <20261106-spi-subsys-v1-0-a51a08f21cf2@redhat.com>
-In-Reply-To: <20261106-spi-subsys-v1-0-a51a08f21cf2@redhat.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ5AMBCF4as0s9akLRpxFbEoBmNB00GIuLti+
+ SXv/RcwBkKGUlwQcCemZY7QiYB2dPOAkrpoMMpYrZWV7Eny1vDJMjU6t64rVKZSiAcfsKfji1X
+ 177icsF3fAtz3A0/01BtuAAAA
+X-Change-ID: 20261106-spi-subsys-32156ad80403
 To: Mark Brown <broonie@kernel.org>, 
  Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
  Daniel Mack <daniel@zonque.org>, Haojian Zhuang <haojian.zhuang@gmail.com>, 
@@ -94,23 +95,24 @@ To: Mark Brown <broonie@kernel.org>,
 Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, Brian Masney <bmasney@redhat.com>
 X-Mailer: b4 0.17-dev-d96cb
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1444; i=bmasney@redhat.com;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=714; i=bmasney@redhat.com;
  s=20250903; h=from:subject:message-id;
- bh=g2ewlZkjpkqGNUKfIKVBhFWyd1ww0rgtdqdUZikqli0=;
- b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLLeFZ79Gnr8VqxV2xXlxut6DlN2X/yyUWh96xJGle9LF
- nbPUbA51VHKwiDGxSArpsiyJNeoICJ1le29O5osMHNYmUCGMHBxCsBErngyMjzPmXZdcsHZs9/2
- 3jzqOjmn+MO0M+ZTSl48PrLIZ6eQvqIdI8OJf/9t3lUfZ6iJl3m6zNZU8EJo/PFFj1fs3Xz9N4d
- mXiYHAA==
+ bh=cIQXJAsIsjkJ34lMdb75pVRHd+pc+H4nZCxj/MzmMlk=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLLeFZ5qcOWcvczJwniSi3iPR8yiM3Uf8q/N3WDFesZar
+ f6+qaNiRykLgxgXg6yYIsuSXKOCiNRVtvfuaLLAzGFlAhnCwMUpABM5acHIsEUhtY+b/+OxZQKx
+ 76O+fbW+puK/avkau+k3A869usQrpMXwV36KfIX6uqAZTJHyU7sMI3qvfH511WPVr/fKLn4r6nn
+ 9+AE=
 X-Developer-Key: i=bmasney@redhat.com; a=openpgp;
  fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: kGs9BgNNpgNj2Qdzjs7WDbOCm1LKYKrFAEuUxbMpliE_1794011608
+X-Mimecast-MFC-PROC-ID: nR3pkpNNS8dFobT80aReBcGW6HqqNSushp1_q5fU5vQ_1794011605
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_163347_752923_3B2421D2 
-X-CRM114-Status: GOOD (  13.72  )
+X-CRM114-CacheID: sfid-20261106_163347_752220_F3AD2CFE 
+X-CRM114-Status: UNSURE (   8.26  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,59 +124,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Reduce boilerplate code in this driver and convert it over to use
+Reduce boilerplate code in these drivers and convert them over to use
 the macro subsys_platform_driver().
-
-Note that this needs to rename the driver variable to pxa2xx_spi_driver
-to avoid a compilation error with the macro.
 
 Signed-off-by: Brian Masney <bmasney@redhat.com>
 ---
+Brian Masney (2):
+      spi: omap-uwire: convert to subsys_platform_driver()
+      spi: pxa2xx: convert to subsys_platform_driver()
+
+ drivers/spi/spi-omap-uwire.c      | 14 +-------------
  drivers/spi/spi-pxa2xx-platform.c | 14 ++------------
- 1 file changed, 2 insertions(+), 12 deletions(-)
+ 2 files changed, 3 insertions(+), 25 deletions(-)
+---
+base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
+base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
+change-id: 20261106-spi-subsys-32156ad80403
 
-diff --git a/drivers/spi/spi-pxa2xx-platform.c b/drivers/spi/spi-pxa2xx-platform.c
-index 849a14cd0343..2151ed168e57 100644
---- a/drivers/spi/spi-pxa2xx-platform.c
-+++ b/drivers/spi/spi-pxa2xx-platform.c
-@@ -198,7 +198,7 @@ static const struct of_device_id pxa2xx_spi_of_match[] = {
- };
- MODULE_DEVICE_TABLE(of, pxa2xx_spi_of_match);
- 
--static struct platform_driver driver = {
-+static struct platform_driver pxa2xx_spi_driver = {
- 	.driver = {
- 		.name	= "pxa2xx-spi",
- 		.pm	= pm_ptr(&pxa2xx_spi_pm_ops),
-@@ -209,17 +209,7 @@ static struct platform_driver driver = {
- 	.remove = pxa2xx_spi_platform_remove,
- };
- 
--static int __init pxa2xx_spi_init(void)
--{
--	return platform_driver_register(&driver);
--}
--subsys_initcall(pxa2xx_spi_init);
--
--static void __exit pxa2xx_spi_exit(void)
--{
--	platform_driver_unregister(&driver);
--}
--module_exit(pxa2xx_spi_exit);
-+subsys_platform_driver(pxa2xx_spi_driver);
- 
- MODULE_AUTHOR("Stephen Street");
- MODULE_DESCRIPTION("PXA2xx SSP SPI Controller platform driver");
-
--- 
-2.56.0
+Best regards,
+--  
+Brian Masney <bmasney@redhat.com>
 
 
