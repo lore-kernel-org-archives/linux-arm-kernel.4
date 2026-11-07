@@ -2,51 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5CD606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 01:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B248A606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 01:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UeAm2d42
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bEM4cUYu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nF1NbnWux934O0IIsujFl9xGbyeeKPnw5llJQ+nZFxA=; b=UeAm2d42NNRF6jdiwapJtvOdB+
-	9Vu1wikxwUQPxfwghbXHAKtzHjprtARxcjsDJmltVj273ODEJ5MDD3oE7aVvSFYWZkLtS33njN/Xd
-	Ko1u/NtyFFkywRxOP3jBqa8vYHx2K+X+7zxVBz2MfwNXaO9tXYXqwm355fQyKeUtMlUMM+Nj1KHLK
-	u2CtfvfD+sitwKUmOXX1UbUnh0SKjDairL3XhKSmcA7PLu19JxRPRn6EkYXFZsOkgUOzUsJ+33NOJ
-	TNv7pCDmPTOQfr9gXvElmaLdSrPImwbumFlfgTSf9TEoD+/n+qNo24hfTnKZ0xhBx8/TuM9dPg7hW
-	fMSqSvoA==;
+	bh=sdXFT9W9Wyc62fL8WwLK3bZAHiberLn+3ZtXwWxtjc4=; b=bEM4cUYuUtkcgZ7/uQWYDO5S68
+	7now7Zc4omFQkE3dZhdYpgkAFbiXXbOwzsJubyu7B92RpXS1BUrpHYr8Nbs7xw9a0jUJxdIT33khk
+	g/UhdhdBSMs9OHx6IhSBVMt3aY7PxB1q+qlWESuyr0nfYcCtZmE8aVH2rlcoc1K6IYDj6pqM/EK94
+	14JHURcenkAEkvg+yQntOuQ+YAYURcga9OuPAdLJtM7p8z6cT19vk+4DtH4QrIhHNsnhVUGkIrH+u
+	DOosSArQ+ygY/FIMKOqYxa4V6o879pDTgWZ2Gqgwx8sfi1P0OjhEK63D4sB7yxpp9DBaZ6iheTWC0
+	PWIBHl/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPUxT-0000000Dyv7-2gr9;
-	Sat, 07 Nov 2026 01:11:03 +0000
-Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1xPUxU-0000000Dyw7-0ITF;
+	Sat, 07 Nov 2026 01:11:04 +0000
+Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPUws-0000000DyqD-2lJq
+	id 1xPUws-0000000Dypt-2X6f
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 01:10:41 +0000
+	Sat, 07 Nov 2026 01:10:58 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BhGnnyi7xacB6tCA95mljpvd3umOVUQklP/N4sFjADPOJkwRmoZV69OquGXJNPufDxCrBPhxuXEms1PhofwCq0JzJrp2/3WWHq/Lb3gY5RtlyjK9t4zcSI2Xu1d5ZCp5R8bzGHR8gt/mipcgDrB9o+S0S3KGpRkLuLzoNXnN0x/Sn1w1AVvl1stz/vUlzVG+raKCz+x82OUepuFL7ZJ9KIPzIeaLhyh7VTEIAye7GOWxjtmoJidxmcSY4xAcB92WxaEyQ+rfaahi0i+bEG7BT8EiYJk7QylkQem8vVQQF0DM329SJTmbPNOB+bTACNnnPR5wX+wrouztN83jCFmk+Q==
+ b=D3DZ6AicCSXgjEjULNMel3dl3RiwQR+TeVNttBPyMWpWfiGOGCO1UqhBl/8auKg4My7qT/fQAHAnxJieo/dMKtuCc/egjs0HCZ8QTKPjXSfPB8Qex+o7IW3LTjZxMzDGoYdbON9GY20vhfbXWRWLVg8JdFVMArq4QepSJGj42f4hTM7439gPBQsHUD4teMSJflYF0AA5V5CZuKLh6uzjHi5+LljTh0PBfnBYL7I3SB1OJ5uRInpQTmxhD2leFdIv+fk7Sb9VRTe+UHvw7eEptjIeJ/f0GpnIDhsK8emuHIHkOLC9GERAnfhhaN0Pauo3PKKfSz0wKUM2+amB88kAdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nF1NbnWux934O0IIsujFl9xGbyeeKPnw5llJQ+nZFxA=;
- b=Fz9YMC/c21nn1mLUbMcU4aUetbZIDgbo5wa00Ho2gfpKI4u06lk2KFHX/sjfmqQQrlUOpB9F52rSYLnfABa68vQadeHah6fyDlGs8e//9vYQEA0FruQ1NinFPXhm1BsP1pkBqfD8sI9oN2K64yZXRzdSImOydWfdKnvWJb6EnNPTNdqEaeFVNDAvg6CGBTTiCC54mJHrtMywVLWhtpZvvciy48SyK6AOX/helD4YI5qDC8qyRcNdVaXAXp3l60zF9h3qoP6U+65BJhKcPiXyZhpBTlvPIIWVEWgLc4L9kzenfALBhq/GcbtSjpmkOVU3aIMSZY5FTMu9GyjopLY5Og==
+ bh=sdXFT9W9Wyc62fL8WwLK3bZAHiberLn+3ZtXwWxtjc4=;
+ b=mpZBZVzp2So6mN/f71puE6sL517/OVU0z0Oxe7hCk+XvoEiFkhAr8zVnnyn10neZoN5PYmC504EdtiDEJg8Mtayumja524VoYiTMjhNxgY5z7Iaq6WHCVV1nKSbM8scLa2YsX3dWDACfnMDLC2RQThhEImrCXEZ2iv+PEUqnuZNe7PzIbzdlCRicUiiXicvDPkQaSAVPies+TOILe8fttul9UpD5Ta/QKKXMC9mG6bfkSfcayf4lrNzlH4jDF3UBkbc2JEh7PqWcHScJthstXKyqK2/tGL7PnKQgq5mQs8Z36Q2aAxjI1JlOid2wjmdI2Y6A47+ndJ9SZHu796Bv+A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
  dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
  not signed); arc=none (0)
-Received: from PS2PR01CA0044.apcprd01.prod.exchangelabs.com
- (2603:1096:300:58::32) by KL1PR0601MB5535.apcprd06.prod.outlook.com
- (2603:1096:820:b5::14) with Microsoft SMTP Server (version=TLS1_2,
+Received: from SI2PR01CA0047.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::10) by SE3PR06MB8642.apcprd06.prod.outlook.com
+ (2603:1096:101:334::5) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.5; Sat, 7 Nov 2026
  01:10:14 +0000
-Received: from TY2PEPF0000AB85.apcprd03.prod.outlook.com
- (2603:1096:300:58:cafe::f) by PS2PR01CA0044.outlook.office365.com
- (2603:1096:300:58::32) with Microsoft SMTP Server (version=TLS1_3,
+Received: from OSA0EPF000000C8.apcprd02.prod.outlook.com
+ (2603:1096:4:193:cafe::72) by SI2PR01CA0047.outlook.office365.com
+ (2603:1096:4:193::10) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.11 via Frontend Transport; Sat, 7
  Nov 2026 01:10:14 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
@@ -56,12 +56,12 @@ Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
  222.71.101.198 as permitted sender) receiver=protection.outlook.com;
  client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
 Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- TY2PEPF0000AB85.mail.protection.outlook.com (10.167.253.5) with Microsoft
+ OSA0EPF000000C8.mail.protection.outlook.com (10.167.240.54) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.21.615.4 via Frontend Transport; Sat, 7 Nov 2026 01:10:13 +0000
 Received: from gary-System-Product-Name (unknown [172.16.64.55])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 10BF040920E2;
-	Sat,  7 Nov 2026 09:10:13 +0800 (CST)
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id E40814102E61;
+	Sat,  7 Nov 2026 09:10:12 +0800 (CST)
 From: Gary Yang <gary.yang@cixtech.com>
 To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
 	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -74,43 +74,39 @@ Cc: linux-usb@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	cix-kernel-upstream@cixtech.com,
-	gary.yang@cixtech.com,
-	stable@vger.kernel.org
-Subject: [PATCH 3/4] arm64: dts: cix: fix I2C bus address and size cells on Sky1
-Date: Sat,  7 Nov 2026 09:10:11 +0800
-Message-ID: <20261107011012.3655873-4-gary.yang@cixtech.com>
+	gary.yang@cixtech.com
+Subject: [PATCH 0/4] usb: typec: add CIX Type-C PD controller driver
+Date: Sat,  7 Nov 2026 09:10:08 +0800
+Message-ID: <20261107011012.3655873-1-gary.yang@cixtech.com>
 X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20261107011012.3655873-1-gary.yang@cixtech.com>
-References: <20261107011012.3655873-1-gary.yang@cixtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB85:EE_|KL1PR0601MB5535:EE_
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C8:EE_|SE3PR06MB8642:EE_
 Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 11a8199d-be37-42cd-d45a-08df3c6be0d3
+X-MS-Office365-Filtering-Correlation-Id: 56f66ecf-3ca6-4d50-07fd-08df3c6be0cc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|36860700016|82310400026|23010399003|7416014|376014|22082099003|18002099003|6133799003|10067099003|261026121527099003|261102123227099003|56012099006|261021121427099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: 0+OwgyFN256T6wMqvJ5k8i04yBHNQWLSWXcaNMc49dTolqKKbok/W5rG4CHJTb5Hdy1C5kx5z+vjf6fh1UiUuRZSioJe2DUb8WJPRxjjCsZB41DsjI/uQWaWv0MyKt+FuhEonAyCFr8cPB4Md7WY+l87ItPFxGpEjoROhSJFY4TQusYdOhl1+Pu4Nwl/c+4jnteIKik080quKNaMVMbt2I6hs2rQtYWIgNYmalhs74/i4IlAP8NPE6Q52+R49jDPrn4WD2lf89HZYBW9yr5D5hNR+6yWRSOEcmaxlyV2q6g6Gq8pZh1n5XP4rNTeJFgw+51rz3DHeF8ejlSiSlYmPZ3M308HiQ7vidwdzEA79VDo0Dj26KYNdyZrugR0JcoDbU8XsCUzdWD4HIzkq5oYGTAl3/0BHf+K8RTFJyckLhaGEbntzM3px1AgzxTU+FtrVvCwHe/BfWaRB9paGPW6qTQqdHdqb2wIpjNTqMJYiL9W8Zio5WMlS6ZszKxpCASofGxL6tDyxzkZPb1VWJVLc+eU1Th8e3FNlYpWSNqYkYQm09LGQEHaMnXgNwTEB3o1KnNBIXqg7tIeG37/jEV8xVlaaKbOCjVQ9clEr97MlxtOiVOt2c/cLowl4TJ5K4YLjdhAtolD99th5djAErjow2UsnKZWNBn3CsM7boUesYtJjoh3Oygzg6xKaua4k0w+
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(23010399003)(7416014)(376014)(22082099003)(18002099003)(6133799003)(10067099003)(261026121527099003)(261102123227099003)(56012099006)(261021121427099003)(261009223027099003);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|376014|23010399003|36860700016|1800799024|10067099003|18002099003|56012099006|261026121527099003|261022105027099003|261028144727099003|261021121427099003|261021123027099003|261009223027099003|261102123227099003|261026140227099003|261022075727099003;
+X-Microsoft-Antispam-Message-Info: G6EeKiXGxW8ggpaMZeCPdeLBP548wH+/j8aNIPx6eExsuSqgp0H10luVqhQfRDzEYTAGPilFmqnCtCjPLKtXKirj+hNfFr94Nklhoafzode8c/oqqLcT2ojYHwsKDnIym4eHOPz+sCxO55rUW54XPJsZUmFwuPHda7iLcu73QIKwGa1Mv5V2AK1R2oVYAMrBVl1SP20tJY1kKiU44pNJzzZjHvUhrVet6khjnvxJMzVvUXMjsXhfVOXLB8xz8DdPq6VfmrcTlPDETRCgD/vqbEvQJtga1G5JQIURVGCuipSu9CASIeI/QVrVRkjxbAjGvpf97Im20ppp5iftP0uwetHVxQPgZxkBH5OCh1JjwToeV3gp0iwLLiq9ZV6s32siXalfFLn6y5y6Tq8x7bGfsAFHsH5LqevkjBJdKdCCPn7J2wQnKei/4BVtFG7DjHIxbc6CBuCJaiQ2eKlZC0zIlgZ9Yl8RFZeiMdoBb3WypVnzfpcSIGojcXRDtqWM5r92YcDvaqUaf6rpf+41M1FvqgYEsrHkoyOWDZs1PU8CKyuE7diGyylawxlmOhe1cKEQuWtGqgtX7u2KoLdh4ZrCvgqDEqQjDZc8hRmukRev1BB9kyGFSHgrHHC4/NKQ1c2DG44rxnNkGmbRB0PivGQCseAYlOjKAHgcM+xbnurcUJwYqm+Veb95GogeO5Z1dBafjQ9UWqe/Y29HI92ozghJdg==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(23010399003)(36860700016)(1800799024)(10067099003)(18002099003)(56012099006)(261026121527099003)(261022105027099003)(261028144727099003)(261021121427099003)(261021123027099003)(261009223027099003)(261102123227099003)(261026140227099003)(261022075727099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: WvKJ6g1mVigJE1y1i+30pgYQbfGC5NsKZMqqxxksgnbz8jH0GleWnmHODtAEUB9WxmcGXvcnu6vvnf0VOcqtPyEh1HOZ8lK5+oFZwuLyA4nLBamp854otRWHz84A6fz1wFCB7JYdLXBDZcikKfL83+lGOqnhg7cxx+HnM4DdbLkCXB7rJ+/6XMnWLQqHVHNepMWGyMnY3pgnN6xdwAKgzuT23oOnxkTbB+psZjFJXroOqZ2ruvQERdNw93duGUBJ+GJ83BKePiLQKglfS+EFLxvzTYIT90V/AAYMu9414pSYlfQMqwGpdcNYJ/JNQWXr+MkL+VSh/wAXB3oyXcOOtUNmGDjts47edFsipXlvDI93yQPD8a2pG+rhoCdIxPMZgiVzijqMWEnU9+5rhlem/Hxsp2j/bygn45rCxPsSB0Jo8JMQtPO36yUovr6rAOV1
+X-MS-Exchange-AntiSpam-MessageData-0: gXjgvXYVqh9frnAy350uhioGpHfHMyqI7afi/HqU47Tnu41sCyZCUbgI5ygKBlEqCcJE1d9/sbRq3UKTvu8aGz4BJZ4G7uJGNbsVe8QTPk2Y2++L2OOGue7L9qb6Hw8SSsWv4JOQdvRiyc9drgtUFZpW5/3DMK8kIgTELexjqVobClOLCf/IkYaMlMa2JgbPvUQqOO3Mz/TsaT9S8zJ7wGluTepyzVbrL9V4YPUhEmtxwGjPUYmIgEp+tBhAz1j7GPvhIpG9mRZ/oaz35YOyIkMp/HuuPRamnyFvIYEhx4HVsLvMQ+5w2vPaDr5rW9R6IILtnS2aQUFSOkgxADIbEuV3MOo8ZF5Se0cQB67ZFrvAztZGfktkzJ3mHr6KYSwGfsbUyRGhaxdrVx02kx94FtofZGmBoTswKfG7RvpKiqclDB5IVRXZl2M9FoiBMuBZ
 X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2026 01:10:13.8986
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2026 01:10:13.8171
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11a8199d-be37-42cd-d45a-08df3c6be0d3
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56f66ecf-3ca6-4d50-07fd-08df3c6be0cc
 X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB85.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000C8.apcprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5535
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE3PR06MB8642
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_171026_802343_76EC171B 
-X-CRM114-Status: UNSURE (   9.00  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261106_171026_644613_10F56E1A 
+X-CRM114-Status: GOOD (  14.36  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,105 +118,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The I2C controller nodes inherit #address-cells = <2> and #size-cells
-= <2> from the soc@0 bus, but I2C child devices always use a
-single-cell address and no size. With the inherited values every
-child node triggers a reg_format warning, and a device described on
-the bus would be decoded with the wrong address layout.
+This series adds a Type-C PD controller driver for CIX platforms and
+enables it on the Radxa Orion O6.
 
-Set #address-cells = <1> and #size-cells = <0> on all eight I2C
-controllers, matching the I3C nodes that already do so.
+The first supported controller is the Realtek RTS5453H, a stand-alone
+port controller: the CC and USB Power Delivery state machines run in
+its firmware and are configured through vendor registers rather than
+the TCPC register interface, so it cannot be driven by the tcpm
+framework. The driver translates the controller status registers into
+Type-C class notifications and drives the platform PHY's orientation
+switch and mode mux.
 
-Fixes: fad32e8ac460 ("arm64: dts: cix: add DT nodes for all I2C and I3C ports for sky1")
-Cc: stable@vger.kernel.org
-Signed-off-by: Gary Yang <gary.yang@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+The driver is named after the CIX platform integration rather than the
+RTS5453H so that further register-compatible PD controllers can be
+supported without renaming it.
 
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index 0a820f45feb9..a18e8fd43fcf 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -290,6 +290,8 @@ soc@0 {
- 		i2c0: i2c@4010000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04010000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C0_APB>;
- 			interrupts = <GIC_SPI 286 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -299,6 +301,8 @@ i2c0: i2c@4010000 {
- 		i2c1: i2c@4020000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04020000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C1_APB>;
- 			interrupts = <GIC_SPI 287 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -308,6 +312,8 @@ i2c1: i2c@4020000 {
- 		i2c2: i2c@4030000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04030000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C2_APB>;
- 			interrupts = <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -317,6 +323,8 @@ i2c2: i2c@4030000 {
- 		i2c3: i2c@4040000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04040000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C3_APB>;
- 			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -326,6 +334,8 @@ i2c3: i2c@4040000 {
- 		i2c4: i2c@4050000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04050000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C4_APB>;
- 			interrupts = <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -335,6 +345,8 @@ i2c4: i2c@4050000 {
- 		i2c5: i2c@4060000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04060000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C5_APB>;
- 			interrupts = <GIC_SPI 291 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -344,6 +356,8 @@ i2c5: i2c@4060000 {
- 		i2c6: i2c@4070000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04070000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C6_APB>;
- 			interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -353,6 +367,8 @@ i2c6: i2c@4070000 {
- 		i2c7: i2c@4080000 {
- 			compatible = "cdns,i2c-r1p14";
- 			reg = <0x0 0x04080000 0x0 0x10000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
- 			clock-frequency = <400000>;
- 			clocks = <&scmi_clk CLK_TREE_FCH_I2C7_APB>;
- 			interrupts = <GIC_SPI 293 IRQ_TYPE_LEVEL_HIGH 0>;
+Patch 1 adds the devicetree binding, patch 2 adds the driver and its
+MAINTAINERS entry, patch 3 fixes the I2C bus #address-cells/#size-cells
+on Sky1 so that child devices can be described on the buses, and patch 4
+adds the two controllers and the I2C1 pinmux to the Orion O6 board.
+
+Orientation switching and USB/DisplayPort lane muxing are performed
+by the platform combo PHY. That PHY driver is not upstream yet, so
+the DTS does not link the connector to it in this series; the ports
+are still registered and their state is reported through the Type-C
+class.
+
+Tested on a Radxa Orion O6 (Sky1): attach/detach, USB-only and DP-only
+alt modes, cable orientation detection and HPD reporting all work.
+
+Gary Yang (4):
+  dt-bindings: usb: add Realtek RTS5453H Type-C port controller
+  usb: typec: add CIX Type-C PD controller driver
+  arm64: dts: cix: fix I2C bus address and size cells on Sky1
+  arm64: dts: cix: add RTS5453 PD controllers to Orion O6
+
+ .../bindings/usb/realtek,rts5453h.yaml        | 126 +++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  51 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |  16 +
+ drivers/usb/typec/Kconfig                     |  11 +
+ drivers/usb/typec/Makefile                    |   1 +
+ drivers/usb/typec/cix_pd.c                    | 777 ++++++++++++++++++
+ 7 files changed, 989 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5453h.yaml
+ create mode 100644 drivers/usb/typec/cix_pd.c
+
+
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 -- 
 2.50.1
 
