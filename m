@@ -2,78 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E5F7606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 06:45:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A588E606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 06:54:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mmcaoCq8;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=PLiMgy2m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YPonhh82;
+	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=G1onGQ1W
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
-	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p0Q+aPh9FXmspSlImRXpx816BsnlvW0umQZjVoRPYEU=; b=mmcaoCq8foiBi7
-	KpZRApOCFFtNH3LJ33B6QemGAIUFNs4xY2QWMZvY/ecMFfL6lHdwlWEhL/qefLuTx6rHA1WokTgRy
-	xMrioFGDhX26tB3oJaps4mCrC4Uct6xoZoblBMmjietdiGRkBz/PcDHBJAsTxcQ1pxabW0xQcHJTN
-	kYBDdcI3RqBGtVLs/nqFi2JFETyq0mcopHMO++0ERaiucjfBFO0ILVtGibVUkbEIUpO3Dk4IUuYQn
-	GPRqZDxVSR+XfcfnNbyyzoTdcPMHIAeoI6HqAVugmmksxWtpGVejWt47eqlPBd2rtY+IhvuCpbJ+M
-	DUuGdEEVZa4q5odBkeLQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=/FCux6jgIPm46jP4gUFYYgvKYW+4Rz5Ju8SSHD0kUhE=; b=YPonhh823m63K2sYIrggm5w4cX
+	orj3wu5WnWXZbJujNIqNgGaAEc0YwpU6d30Y6+kon8sRAka0J1QGd62x6+BwWKtGZU8Yvp4jkdvfa
+	PTTzvwr48rQkQxTy1olyLlBWDHqBowSpNCPl5XeqlO2UZ4E0RFsHDAUEXQ8BFkAq9SyolxpCcknHF
+	huk5O19PKzukdwJueQOALwYmJqvPRRY9qfBtDOfXZqw/UfEVLzQdCLEtYBLFhxFAccpOJJkzJwK87
+	OzxV7AW1VGVshkKzTA3CB12/Vz+OVpbZpYpu+1ozsmQ2bNgF06OBGDnRt/53lUa7rvviiwQ+T11vZ
+	R2d0lqgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPaBH-0000000EHhH-2ux2;
-	Sat, 07 Nov 2026 06:45:39 +0000
-Received: from out-156.mta0.migadu.com ([2001:41d0:1004:224b::9c] helo=mta0.migadu.com)
+	id 1xPaK5-0000000EHxz-39fs;
+	Sat, 07 Nov 2026 06:54:45 +0000
+Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPaBC-0000000EHgn-2RGr
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 06:45:35 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=l8FwMw+tmHQ7yeBnzjT9XdJgKx4elexMVrnBE3P9GII=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794033932; v=1; x=1794638732;
- b=PLiMgy2mkCsCeBwAzcCbel54H98GbsWHqYUPAwA5TRiOgHIetnjEEAApj6O5kb7uV3oKEhxR
- LGsMaFY4sLqQldb0T6GTheqink0+up+b5DfPjNWpu057NaTIe9xJfNGONa4kUuFMRghIbI0vCPD
- uLnvROtZzHXdMzbJHO5d1TDk=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by mta10.migadu.com with ESMTPS id c05da5992c7d8cdf;
-	Sat, 07 Nov 2026 06:45:29 +0000
-X-Mizu-Trace-ID: c05da5992c7d8cdf
-X-Migadu-Flow: FLOW_OUT
-Content-Type: text/plain;
-	charset=us-ascii
+	id 1xPaK1-0000000EHwv-1gez;
+	Sat, 07 Nov 2026 06:54:45 +0000
+Received: from lgs.. (unknown [101.76.249.61])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 53d65d8fa;
+	Sat, 7 Nov 2026 14:54:36 +0800 (GMT+08:00)
+From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH] media: mediatek: mdp3: Fix potential use-after-free on SCP removal
+Date: Sat,  7 Nov 2026 14:54:35 +0800
+Message-ID: <20261107-0d0c29e10a-media-mediatek-mdp3-1@mail.sdu.edu.cn>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.200.71.1.16\))
-Subject: Re: [PATCH v2 13/20] arm64: Support hugetlb vmemmap optimization
-From: Muchun Song <muchun.song@linux.dev>
-In-Reply-To: <20261003002123.505555-14-jthoughton@google.com>
-Date: Sat, 7 Nov 2026 14:45:11 +0800
-Cc: Will Deacon <will@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Oscar Salvador <osalvador@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>,
- Nikos Nikoleris <nikos.nikoleris@arm.com>,
- Linu Cherian <linu.cherian@arm.com>,
- Mark Rutland <mark.rutland@arm.com>,
- David Hildenbrand <david@kernel.org>,
- Ryan Roberts <ryan.roberts@arm.com>,
- Nanyong Sun <sunnanyong@huawei.com>,
- Yu Zhao <yuzhao@google.com>,
- Frank van der Linden <fvdl@google.com>,
- David Rientjes <rientjes@google.com>,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-mm@kvack.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <CAF9824D-CDC5-48E6-A1F6-840CB299EADB@linux.dev>
-References: <20261003002123.505555-1-jthoughton@google.com>
- <20261003002123.505555-14-jthoughton@google.com>
-To: James Houghton <jthoughton@google.com>
-X-Mailer: Apple Mail (2.3901.200.71.1.16)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa1b4c9a39903a1kunmde59ae2f82b65
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCT0hIVkNKGEtOSk5MGhoeGVYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0hKTE
+	1DVUpLS1VKQktLWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=G1onGQ1WeE2CyEpmKCJixxA/33f6sKFropE31Up8JTuxaXXSkhd0XLVIDTC+kVxOAALy6gbEsLbUhTadqDe+nSf7IkGdYznvlNDZD8BPOK5M6creVX4+iLleoBfx21wOwBsLzuA9aSqswWQxMQ/LMwHBMDRvV+eX/UqA1J8Spzo=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
+	bh=/FCux6jgIPm46jP4gUFYYgvKYW+4Rz5Ju8SSHD0kUhE=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_224534_766831_80977E00 
-X-CRM114-Status: GOOD (  19.84  )
+X-CRM114-CacheID: sfid-20261106_225442_364653_F1A244DC 
+X-CRM114-Status: GOOD (  21.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,108 +70,339 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+MDP contexts can outlive the SCP driver whose data they use for VPU
+teardown. Unregistering only the V4L2 parent neither disconnects the
+video node nor finishes these sessions.
 
+Link MDP to SCP and disconnect the video node before draining jobs and
+closing every VPU session. Release hardware dependencies during remove,
+while retaining the software state for the last open file. Balance the
+remoteproc references on session shutdown and failed initialization.
 
-> On Oct 3, 2026, at 08:21, James Houghton <jthoughton@google.com> =
-wrote:
->=20
-> Support HVO if HW AF and BBML3 are supported. These are the required
-> features for the vmemmap to be modified in place.
->=20
-> On arm64 systems that do not have the required hardware features to
-> support HVO, the HVO sysctl will not appear, and any attempts to =
-enable
-> HVO (either via the command line or via
-> CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_DEFAULT_ON=3Dy) will have no =
-effect.
->=20
-> Signed-off-by: James Houghton <jthoughton@google.com>
-> ---
-> arch/arm64/Kconfig               | 2 ++
-> arch/arm64/include/asm/hugetlb.h | 7 +++++++
-> mm/hugetlb_vmemmap.c             | 4 ++++
-> 3 files changed, 13 insertions(+)
->=20
-> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-> index b51d23a62c92..e4c87487bc7f 100644
-> --- a/arch/arm64/Kconfig
-> +++ b/arch/arm64/Kconfig
-> @@ -92,7 +92,9 @@ config ARM64
-> 	select ARCH_WANT_DEFAULT_TOPDOWN_MMAP_LAYOUT
-> 	select ARCH_WANT_FRAME_POINTERS
-> 	select ARCH_WANT_HUGE_PMD_SHARE if ARM64_4K_PAGES || =
-(ARM64_16K_PAGES && !ARM64_VA_BITS_36)
-> +	select ARCH_WANT_HUGETLB_VMEMMAP_RO_AFTER_INIT
-> 	select ARCH_WANT_LD_ORPHAN_WARN
-> +	select ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP if ARM64_HW_AFDBM
+This issue was found by our static analysis tool under development.
 
-Because vmemmap optimization depends on compound_info_has_mask(), before
-enabling HVO on arm64, its vmemmap start address needs to be aligned to
-MAX_FOLIO_VMEMMAP_ALIGN. Therefore, a prerequisite patch is required.
+Fixes: 61890ccaefaf ("media: platform: mtk-mdp3: add MediaTek MDP3 driver")
+Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
+---
+Validation: Changed-object compilation passed with W=1 in the recorded
+configuration. No hardware/kernel runtime test or full linked-kernel
+build.
+OpenAI Codex assisted with source review, patch implementation and
+commit-message drafting. The submitter has reviewed the changes.
 
-Thanks,
-Muchun
+ .../platform/mediatek/mdp3/mtk-mdp3-core.c    | 84 ++++++++++++++-----
+ .../platform/mediatek/mdp3/mtk-mdp3-core.h    |  1 +
+ .../platform/mediatek/mdp3/mtk-mdp3-m2m.c     | 34 ++++++--
+ .../platform/mediatek/mdp3/mtk-mdp3-m2m.h     |  3 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-vpu.c     |  2 +-
+ 5 files changed, 96 insertions(+), 28 deletions(-)
 
-> 	select ARCH_WANTS_EXECMEM_LATE
-> 	select ARCH_WANTS_NO_INSTR
-> 	select ARCH_WANTS_THP_SWAP if ARM64_4K_PAGES
-> diff --git a/arch/arm64/include/asm/hugetlb.h =
-b/arch/arm64/include/asm/hugetlb.h
-> index d038ff14d16c..938d7896a31e 100644
-> --- a/arch/arm64/include/asm/hugetlb.h
-> +++ b/arch/arm64/include/asm/hugetlb.h
-> @@ -11,6 +11,7 @@
-> #define __ASM_HUGETLB_H
->=20
-> #include <asm/cacheflush.h>
-> +#include <asm/cpufeature.h>
-> #include <asm/mte.h>
-> #include <asm/page.h>
->=20
-> @@ -65,6 +66,12 @@ extern void huge_ptep_modify_prot_commit(struct =
-vm_area_struct *vma,
-> 					 unsigned long addr, pte_t =
-*ptep,
-> 					 pte_t old_pte, pte_t new_pte);
->=20
-> +#define __HAVE_ARCH_HVO_SUPPORTED
-> +static inline bool arch_hugetlb_vmemmap_optimization_supported(void)
-> +{
-> +	return system_supports_bbm_through_af();
-> +}
-> +
-> #include <asm-generic/hugetlb.h>
->=20
-> static inline void __flush_hugetlb_tlb_range(struct vm_area_struct =
-*vma,
-> diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-> index c1c736dd08b9..fabf2b25fe59 100644
-> --- a/mm/hugetlb_vmemmap.c
-> +++ b/mm/hugetlb_vmemmap.c
-> @@ -85,6 +85,10 @@ static int vmemmap_split_pmd(pmd_t *pmd, struct =
-page *head, unsigned long start,
->=20
-> 		/* Make pte visible before pmd. See comment in =
-pmd_install(). */
-> 		smp_wmb();
-> +		/*
-> +		 * On arm64, this requires BBML3. Its support has =
-already been
-> +		 * checked.
-> +		 */
-> 		pmd_populate_kernel(&init_mm, pmd, pgtable);
-> 		if (!(walk->flags & VMEMMAP_SPLIT_NO_TLB_FLUSH))
-> 			flush_tlb_kernel_range(start, start + PMD_SIZE);
-> --=20
-> 2.56.0.rc1.315.gc6ed9934b7-goog
->=20
+diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
+index f412aadb5996..9fe42181a08c 100644
+--- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
++++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.c
+@@ -108,6 +108,7 @@ int mdp_vpu_get_locked(struct mdp_dev *mdp)
+ err_init_vpu:
+ 	mdp_vpu_unregister(mdp);
+ err_reg_vpu:
++	rproc_shutdown(mdp->rproc_handle);
+ err_load_vpu:
+ 	mdp->vpu_count--;
+ 	return ret;
+@@ -118,19 +119,24 @@ void mdp_vpu_put_locked(struct mdp_dev *mdp)
+ 	if (--mdp->vpu_count == 0) {
+ 		mdp_vpu_dev_deinit(&mdp->vpu);
+ 		mdp_vpu_unregister(mdp);
++		rproc_shutdown(mdp->rproc_handle);
+ 	}
+ }
+ 
+-void mdp_video_device_release(struct video_device *vdev)
++static void mdp_hardware_cleanup(struct mdp_dev *mdp)
+ {
+-	struct mdp_dev *mdp = (struct mdp_dev *)video_get_drvdata(vdev);
+ 	int i;
+ 
++	flush_workqueue(mdp->job_wq);
++	flush_workqueue(mdp->clock_wq);
++
+ 	for (i = 0; i < mdp->mdp_data->pp_used; i++)
+ 		if (mdp->cmdq_clt[i])
+ 			cmdq_mbox_destroy(mdp->cmdq_clt[i]);
+ 
++	mdp_vpu_shared_mem_free(&mdp->vpu);
+ 	scp_put(mdp->scp);
++	mdp->scp = NULL;
+ 
+ 	destroy_workqueue(mdp->job_wq);
+ 	destroy_workqueue(mdp->clock_wq);
+@@ -151,10 +157,16 @@ void mdp_video_device_release(struct video_device *vdev)
+ 		if (!IS_ERR_OR_NULL(m))
+ 			mtk_mutex_put(m);
+ 	}
++}
++
++void mdp_video_device_release(struct video_device *vdev)
++{
++	struct mdp_dev *mdp = video_get_drvdata(vdev);
+ 
+-	mdp_vpu_shared_mem_free(&mdp->vpu);
+ 	v4l2_m2m_release(mdp->m2m_dev);
++	ida_destroy(&mdp->mdp_ida);
+ 	kfree(mdp);
++	video_device_release(vdev);
+ }
+ 
+ static void mdp_put_device(void *_dev)
+@@ -213,11 +225,45 @@ static int mdp_mm_subsys_deploy(struct mdp_dev *mdp, enum mdp_infra_id id)
+ 	return 0;
+ }
+ 
++static int mdp_get_scp(struct mdp_dev *mdp)
++{
++	struct device_node *node;
++	struct platform_device *scp_pdev;
++	struct device_link *link;
++	int ret = -EPROBE_DEFER;
++
++	node = of_parse_phandle(mdp->pdev->dev.of_node, "mediatek,scp", 0);
++	if (node) {
++		scp_pdev = of_find_device_by_node(node);
++		of_node_put(node);
++	} else {
++		scp_pdev = __get_pdev_by_id(mdp->pdev, NULL, MDP_INFRA_SCP);
++	}
++	if (!scp_pdev)
++		return -EPROBE_DEFER;
++
++	link = device_link_add(&mdp->pdev->dev, &scp_pdev->dev,
++			       DL_FLAG_AUTOREMOVE_CONSUMER);
++	if (!link) {
++		ret = -ENOMEM;
++		goto err_put;
++	}
++	if (!device_is_bound(&scp_pdev->dev))
++		goto err_put;
++
++	mdp->scp = platform_get_drvdata(scp_pdev);
++	if (mdp->scp)
++		return 0;
++
++err_put:
++	put_device(&scp_pdev->dev);
++	return ret;
++}
++
+ static int mdp_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct mdp_dev *mdp;
+-	struct platform_device *mm_pdev;
+ 	struct resource *res;
+ 	int ret, i, mutex_id;
+ 
+@@ -285,27 +331,16 @@ static int mdp_probe(struct platform_device *pdev)
+ 		goto err_destroy_job_wq;
+ 	}
+ 
+-	mdp->scp = scp_get(pdev);
+-	if (!mdp->scp) {
+-		mm_pdev = __get_pdev_by_id(pdev, NULL, MDP_INFRA_SCP);
+-		if (WARN_ON(!mm_pdev)) {
+-			dev_err(&pdev->dev, "Could not get scp device\n");
+-			ret = -ENODEV;
+-			goto err_destroy_clock_wq;
+-		}
+-		mdp->scp = platform_get_drvdata(mm_pdev);
+-	}
+-
+-	if (!mdp->scp) {
+-		ret = -EPROBE_DEFER;
++	ret = mdp_get_scp(mdp);
++	if (ret)
+ 		goto err_destroy_clock_wq;
+-	}
+ 
+ 	mdp->rproc_handle = scp_get_rproc(mdp->scp);
+ 	dev_dbg(&pdev->dev, "MDP rproc_handle: %p", mdp->rproc_handle);
+ 
+ 	mutex_init(&mdp->vpu_lock);
+ 	mutex_init(&mdp->m2m_lock);
++	INIT_LIST_HEAD(&mdp->contexts);
+ 
+ 	for (i = 0; i < mdp->mdp_data->pp_used; i++) {
+ 		mdp->cmdq_clt[i] = cmdq_mbox_create(dev, i);
+@@ -373,10 +408,19 @@ static int mdp_probe(struct platform_device *pdev)
+ static void mdp_remove(struct platform_device *pdev)
+ {
+ 	struct mdp_dev *mdp = platform_get_drvdata(pdev);
++	struct video_device *vdev = mdp->m2m_vdev;
+ 
+-	v4l2_device_unregister(&mdp->v4l2_dev);
++	if (!vdev) {
++		kfree(mdp);
++		return;
++	}
+ 
+-	dev_dbg(&pdev->dev, "%s driver unloaded\n", pdev->name);
++	/* Keep the software state until removal and all open files finish. */
++	get_device(&vdev->dev);
++	mdp_m2m_device_unregister(mdp);
++	mdp_hardware_cleanup(mdp);
++	v4l2_device_unregister(&mdp->v4l2_dev);
++	put_device(&vdev->dev);
+ }
+ 
+ static int __maybe_unused mdp_suspend(struct device *dev)
+diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
+index 05cade1d098e..cf9662bd2792 100644
+--- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
++++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-core.h
+@@ -134,6 +134,7 @@ struct mdp_dev {
+ 	struct v4l2_m2m_dev			*m2m_dev;
+ 	/* synchronization protect for m2m device operation */
+ 	struct mutex				m2m_lock;
++	struct list_head			contexts;
+ 	atomic_t				suspended;
+ 	refcount_t				job_count;
+ };
+diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.c
+index ad3ae89c231c..ce0efe15866d 100644
+--- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.c
++++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.c
+@@ -490,7 +490,7 @@ static int mdp_m2m_queue_init(void *priv,
+ 	src_vq->buf_struct_size = sizeof(struct v4l2_m2m_buffer);
+ 	src_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
+ 	src_vq->dev = &ctx->mdp_dev->pdev->dev;
+-	src_vq->lock = &ctx->ctx_lock;
++	src_vq->lock = &ctx->mdp_dev->m2m_lock;
+ 
+ 	ret = vb2_queue_init(src_vq);
+ 	if (ret)
+@@ -504,7 +504,7 @@ static int mdp_m2m_queue_init(void *priv,
+ 	dst_vq->buf_struct_size = sizeof(struct v4l2_m2m_buffer);
+ 	dst_vq->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_COPY;
+ 	dst_vq->dev = &ctx->mdp_dev->pdev->dev;
+-	dst_vq->lock = &ctx->ctx_lock;
++	dst_vq->lock = &ctx->mdp_dev->m2m_lock;
+ 
+ 	return vb2_queue_init(dst_vq);
+ }
+@@ -577,6 +577,11 @@ static int mdp_m2m_open(struct file *file)
+ 		goto err_free_ctx;
+ 	}
+ 
++	if (!video_is_registered(vdev)) {
++		ret = -ENODEV;
++		goto err_unlock_mutex;
++	}
++
+ 	ret = ida_alloc(&mdp->mdp_ida, GFP_KERNEL);
+ 	if (ret < 0)
+ 		goto err_unlock_mutex;
+@@ -593,7 +598,6 @@ static int mdp_m2m_open(struct file *file)
+ 	ctx->fh.ctrl_handler = &ctx->ctrl_handler;
+ 	v4l2_fh_add(&ctx->fh, file);
+ 
+-	mutex_init(&ctx->ctx_lock);
+ 	ctx->m2m_ctx = v4l2_m2m_ctx_init(mdp->m2m_dev, ctx, mdp_m2m_queue_init);
+ 	if (IS_ERR(ctx->m2m_ctx)) {
+ 		dev_err(dev, "Failed to initialize m2m context\n");
+@@ -609,8 +613,6 @@ static int mdp_m2m_open(struct file *file)
+ 		goto err_release_m2m_ctx;
+ 	}
+ 
+-	mutex_unlock(&mdp->m2m_lock);
+-
+ 	/* Default format */
+ 	default_format.type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
+ 	default_format.fmt.pix_mp.width = limit->out_limit.wmin;
+@@ -620,6 +622,9 @@ static int mdp_m2m_open(struct file *file)
+ 	default_format.type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+ 	mdp_m2m_s_fmt_mplane(file, &ctx->fh, &default_format);
+ 
++	list_add_tail(&ctx->list, &mdp->contexts);
++	mutex_unlock(&mdp->m2m_lock);
++
+ 	dev_dbg(dev, "%s:[%d]", __func__, ctx->id);
+ 
+ 	return 0;
+@@ -647,6 +652,7 @@ static int mdp_m2m_release(struct file *file)
+ 	struct device *dev = &mdp->pdev->dev;
+ 
+ 	mutex_lock(&mdp->m2m_lock);
++	list_del(&ctx->list);
+ 	v4l2_m2m_ctx_release(ctx->m2m_ctx);
+ 	if (mdp_m2m_ctx_is_state_set(ctx, MDP_VPU_INIT))
+ 		mdp_vpu_put_locked(mdp);
+@@ -727,7 +733,25 @@ int mdp_m2m_device_register(struct mdp_dev *mdp)
+ 
+ void mdp_m2m_device_unregister(struct mdp_dev *mdp)
+ {
++	struct mdp_m2m_ctx *ctx;
++
++	mutex_lock(&mdp->m2m_lock);
+ 	video_unregister_device(mdp->m2m_vdev);
++	v4l2_m2m_suspend(mdp->m2m_dev);
++
++	list_for_each_entry(ctx, &mdp->contexts, list) {
++		vb2_queue_error(v4l2_m2m_get_src_vq(ctx->m2m_ctx));
++		vb2_queue_error(v4l2_m2m_get_dst_vq(ctx->m2m_ctx));
++		v4l2_m2m_streamoff(NULL, ctx->m2m_ctx,
++				   V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
++		v4l2_m2m_streamoff(NULL, ctx->m2m_ctx,
++				   V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
++		if (mdp_m2m_ctx_is_state_set(ctx, MDP_VPU_INIT)) {
++			mdp_vpu_put_locked(mdp);
++			atomic_andnot(MDP_VPU_INIT, &ctx->curr_param.state);
++		}
++	}
++	mutex_unlock(&mdp->m2m_lock);
+ }
+ 
+ void mdp_m2m_job_finish(struct mdp_m2m_ctx *ctx)
+diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.h b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.h
+index dfc59e5b3b87..f473f5f20aa2 100644
+--- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.h
++++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-m2m.h
+@@ -27,6 +27,7 @@ struct mdp_m2m_ctrls {
+ };
+ 
+ struct mdp_m2m_ctx {
++	struct list_head			list;
+ 	u32				id;
+ 	struct mdp_dev			*mdp_dev;
+ 	struct v4l2_fh			fh;
+@@ -36,8 +37,6 @@ struct mdp_m2m_ctx {
+ 	u32				frame_count[MDP_M2M_MAX];
+ 
+ 	struct mdp_frameparam		curr_param;
+-	/* synchronization protect for mdp m2m context */
+-	struct mutex			ctx_lock;
+ };
+ 
+ int mdp_m2m_device_register(struct mdp_dev *mdp);
+diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.c
+index 67f3001153ae..c1fd639930e5 100644
+--- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.c
++++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-vpu.c
+@@ -62,7 +62,7 @@ void mdp_vpu_shared_mem_free(struct mdp_vpu_dev *vpu)
+ {
+ 	struct device *dev;
+ 
+-	if (IS_ERR_OR_NULL(vpu))
++	if (IS_ERR_OR_NULL(vpu) || !vpu->scp)
+ 		return;
+ 
+ 	dev = scp_get_device(vpu->scp);
 
+base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
 
