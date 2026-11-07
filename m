@@ -2,65 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69426606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 21:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27662606D812
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 22:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZQIwrq9;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fz4M1Fry
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZojygZ9W;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BJGDUGFM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qgiZfVkbT+ltFV+Gs85pEhwixm7z8KILQaRaCe49ats=; b=LZQIwrq9Fydn7l
-	K5e1b6gNfSmduyax9m49BGDxzSOvS1mILzkN2az6TtL2o6nj9kHhgcGlwVT+h6LvNW6BAxwquZH57
-	K4CyHGz/eC2mAsqb983/p4oYczNblUdSvyr0MlSMcpTRnwpUdu+gDOqyh99oFGUmsJZ0tAjmvbfXP
-	Qs2TCfeFUfb7kuGP+TubqTM0bw+PwbQUL2iwLI0hFTk95bIioFWukguhEZ6qZ3KqEC2YvnHllqbxu
-	0FOyQQwYnvi66VqbQja2d5PtSELU5JTf05E5o4X+dJDP9BCde0TuaEGZ+3zcToQRsP7FAcYBqupTK
-	9v6v2hmX9H8H3fh0G8+w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=R9mxM4jj9umMgpGEnC3ywyFmHTkF33AVyWG7Zk844IE=; b=ZojygZ9Wb8PzXqKfw1cIU6M7k3
+	qk893mpw8y5WLNyOOb+i0zS3YXHakpuu2o1QxkAiDX/l6c8Ni82hn2B2V11oTWI9B5DPmWQ/4wNWt
+	tbqbKUrq8xMJT3qFlk8dTKjUtLRKg8mzHWtnHo3JtTRXotFotsoOSpMnsDghGZdSRMkXfW4QwXTmn
+	wx8RnscwogkwIGhYHGxnUB/BEYC1xa59ihlVgjtetpYprIJM3jFyAUrtIGf2OTU1vmSre990EIo4A
+	D9VZ5AQ2/Ii52VyEyNWp8EkEZBXy/qBHN9ziCrOkuYKQlp9svOp5djZBENZKGeJE2fQt4Qs/MdAS8
+	5kGcgXdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPo18-0000000FRDQ-1u20;
-	Sat, 07 Nov 2026 21:32:06 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xPoSe-0000000FRsV-42ZM;
+	Sat, 07 Nov 2026 22:00:32 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPo17-0000000FRDK-1VOP
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 21:32:05 +0000
+	id 1xPoSd-0000000FRsJ-1WvX;
+	Sat, 07 Nov 2026 22:00:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5DC9D601FA;
-	Sat,  7 Nov 2026 21:32:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DDB31F0089F;
-	Sat,  7 Nov 2026 21:32:03 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B432E43D43;
+	Sat,  7 Nov 2026 22:00:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD9BA1F0089F;
+	Sat,  7 Nov 2026 22:00:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794087124;
-	bh=qgiZfVkbT+ltFV+Gs85pEhwixm7z8KILQaRaCe49ats=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=fz4M1FryT3Yseeo0Ckq/XKTVvefg36YFTiOD5nxt3lsHacpBaRxgbsyTwgfDPiU8n
-	 Gc/WYWHiEy6jXkWNEwWKAqVydkn+8H2xxy8rI0LGtfze5WpGRUFRIN3H3mhjbfvwG4
-	 XltiwX3qN+WAAPj7s7DYSDPXZVcvNrYIkHgvncOSCrghW7XAwqcQaLynHo2MOHA5T8
-	 JzB6Pn761qG73w7OH8ltQ6U/yb/O8je4CWp5hDzdlmh+fPmXDDqM7XSMvj4I8hFQdV
-	 CNnITmJMUZacXX5dRGZED99KSZM6Y3axEFF6EYbVIJzxrdkBuPKh0ftQP47994c00c
-	 C1q7lkxwUCXeA==
-Date: Sat, 7 Nov 2026 21:31:56 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Chi-Wen Weng <cwweng.linux@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- cwweng@nuvoton.com
-Subject: Re: [PATCH v4 2/2] iio: adc: Add Nuvoton MA35D1 EADC driver
-Message-ID: <20261107213156.18e651c4@jic23-hlaptop>
-In-Reply-To: <20261104091136.151269-3-cwweng.linux@gmail.com>
-References: <20261104091136.151269-1-cwweng.linux@gmail.com>
-	<20261104091136.151269-3-cwweng.linux@gmail.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	s=k20260515; t=1794088830;
+	bh=R9mxM4jj9umMgpGEnC3ywyFmHTkF33AVyWG7Zk844IE=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=BJGDUGFMJe2pGxq+tPXY5B/2pUVIbR0qIdoNuJBE36kppS7P4bakHEMXwc1lLnznC
+	 0LtswL9qQkT7s8mpn4zp/XC96TTPeIkBihLgAst9ZtUAPDnuGj7x4OGBRaCtBDf8Jh
+	 4VNO4bm9jGh9fMhJmGMb60bRQdapfG13MwECWc1vBGnbCaFRUJ8wi5U1lw8HC4UURq
+	 KoXqNhLU0sTuRW+zFiF6Jw5mD87pFynMF0N0DKxvKW2iRcJn6ofibSSCGOCv7WfFN+
+	 lmgh6PNw80pZYdWLereKkRSya8xC3+RT8p7rOy+4SSOSb0jXJYrw2/eUPOLcClaW5A
+	 ltoreifmz8HAQ==
+Subject: Re: [PATCH net-next v2 1/2] net: ethernet: mtk_eth_soc: skip page_pool
+From: netdev-bot+sashiko@kernel.org
+To: sandeeph@loljews.com
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, linux@armlinux.org.uk,
+ mason-cw.chang@mediatek.com, frank-w@public-files.de,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Sat, 07 Nov 2026 22:00:29 +0000
+Message-ID: <179408882923.994134.9885831030402062778@kernel.org>
+In-Reply-To: <patch-79206c12217411fcdbff905b65eecfb2@loljews.com>
+References: <patch-79206c12217411fcdbff905b65eecfb2@loljews.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,568 +72,153 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed,  4 Nov 2026 17:11:36 +0800
-Chi-Wen Weng <cwweng.linux@gmail.com> wrote:
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
 
-> From: Chi-Wen Weng <cwweng@nuvoton.com>
-> 
-> Add an IIO driver for the Enhanced Analog-to-Digital Converter found on
-> Nuvoton MA35D1 SoCs.
-> 
-> Support single-ended and fixed differential input pairs, direct
-> conversion, and triggered buffered capture using sample module 0.
-> 
-> The hardware supports multiple sample modules, but this initial driver
-> uses sample module 0 only and therefore supports one active voltage
-> channel per buffered scan.
-> 
-> Signed-off-by: Chi-Wen Weng <cwweng@nuvoton.com>
-Hi Chi-Wen
+Critical: 0 · High: 0 · Medium: 1 · Low: 1
 
-Mostly I suspect I have overlapped with Andy, but maybe there
-are a few additional things in here to tidy up for v5!
-Thanks,
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Jonathan
+- [Medium] The page_pool gate added in mtk_rx_alloc()
+  (drivers/net/ethernet/mediatek/mtk_eth_soc.c:2827) checks…
+- [Low] The commit message gives the reason for the gate as "On NETSYS v2
+  and later every RX ring gets a page_pool ... The HW-LRO ring already…
 
-> diff --git a/drivers/iio/adc/ma35d1_eadc.c b/drivers/iio/adc/ma35d1_eadc.c
-> new file mode 100644
-> index 000000000000..b45ad3ef5264
-> --- /dev/null
-> +++ b/drivers/iio/adc/ma35d1_eadc.c
+--
 
-> +#define MA35D1_EADC_DAT(n)		(0x000 + (n) * 0x004)
-> +#define MA35D1_EADC_CTL			0x050
-> +#define MA35D1_EADC_SWTRG		0x054
-> +#define MA35D1_EADC_SCTL(n)		(0x080 + (n) * 0x004)
-> +#define MA35D1_EADC_INTSRC0		0x0d0
-> +#define MA35D1_EADC_CMP(n)		(0x0e0 + (n) * 0x004)
-> +#define MA35D1_EADC_STATUS2		0x0f8
-> +#define MA35D1_EADC_SELSMP0		0x140
-> +#define MA35D1_EADC_REFADJCTL		0x150
-> +
-> +#define MA35D1_EADC_CTL_ADCEN		BIT(0)
-> +#define MA35D1_EADC_CTL_EADCRST		BIT(1)
-> +#define MA35D1_EADC_CTL_ADCIEN0		BIT(2)
-> +#define MA35D1_EADC_CTL_ADCIEN_MASK	GENMASK(5, 2)
-> +#define MA35D1_EADC_CTL_DIFFEN		BIT(8)
-> +#define MA35D1_EADC_CTL_DMOF		BIT(9)
-> +#define MA35D1_EADC_CTL_VREFSEL_MASK	GENMASK(11, 10)
-> +#define MA35D1_EADC_CTL_VREFSEL_1V6	FIELD_PREP(MA35D1_EADC_CTL_VREFSEL_MASK, 0)
-> +
-> +#define MA35D1_EADC_SCTL_CHSEL_MASK	GENMASK(3, 0)
-> +#define MA35D1_EADC_SCTL_TRGSEL_MASK	GENMASK(21, 16)
-> +#define MA35D1_EADC_SCTL_INTPOS		BIT(22)
-> +
-> +#define MA35D1_EADC_RESOLUTION		12
-> +#define MA35D1_EADC_DIFF_SCALE_BITS	(MA35D1_EADC_RESOLUTION - 1)
-> +
-> +#define MA35D1_EADC_DAT_RESULT_12BIT	GENMASK(MA35D1_EADC_RESOLUTION - 1, 0)
-> +#define MA35D1_EADC_DAT_OV		BIT(16)
-> +#define MA35D1_EADC_DAT_VALID		BIT(17)
-> +
-> +#define MA35D1_EADC_INTSRC0_MASK		GENMASK(8, 0)
-> +#define MA35D1_EADC_INTSRC0_SPLIEN0	BIT(0)
-I'm a little unclear on this.  The MASK above implies a field
-yet, fields don't contain bits.  So what is going on here?
-If you need a full register mask, then define all the fields
-and build it from those.
+net: ethernet: mtk_eth_soc: skip page_pool
 
-> +#define MA35D1_EADC_STATUS2_ADIF0	BIT(0)
+With this change, mtk_rx_alloc() creates a page_pool for an RX ring only
+when ring->frag_size fits in PAGE_SIZE. Rings with larger buffers fall
+back to the existing netdev_alloc_frag()/mtk_max_lro_buf_alloc() path.
 
-I generally prefer to see register addresses, fields and values
-all together as it makes it easier to check naming (or datasheet values).
-A visual trick that works well is to use some indenting to make it
-clear what is what.
+Link: https://github.com/mediatek/mtk-openwrt-feeds
 
-#define MA35D1_EADC_STATUS2	0x0f8 /* The register*/
-#define   MAX35D1_EADC_STATUS2_FIELD0	GENMASK(X, Y)
-#define     MAX35D1_EADC_STATU2_FIELD0_VAL0	0
-
-Obviously the value bit only applies if you need defines
-to interpret the field values.  I picked a bad register
-to illustrate this with as it doesn't have those :(
-
-
-> +#define MA35D1_EADC_CMP_EADCMPIE	BIT(1)
-> +#define MA35D1_EADC_REFADJCTL_PDREF	BIT(0)
-> +#define MA35D1_EADC_SELSMP0_SMPT0_MASK	GENMASK(1, 0)
-> +#define MA35D1_EADC_SELSMP_LONG		FIELD_PREP(MA35D1_EADC_SELSMP0_SMPT0_MASK, 3)
-
-> +
-> +static int ma35d1_adc_disable_irq(struct ma35d1_adc *adc)
-> +{
-> +	return regmap_clear_bits(adc->regmap, MA35D1_EADC_CTL, MA35D1_EADC_CTL_ADCIEN0);
-> +}
-
-Obviously not used nearly as much, but just for visual pairing
-I'd be tempted to add an adc_enable_irq()
-helper as well.  
-
-
-> +
-> +static int ma35d1_adc_config_channel(struct ma35d1_adc *adc,
-> +				     const struct iio_chan_spec *chan)
-> +{
-> +	struct regmap *map = adc->regmap;
-> +	unsigned int mask;
-> +	int ret;
-> +
-> +	mask = MA35D1_EADC_CTL_DIFFEN | MA35D1_EADC_CTL_DMOF;
-> +	ret = regmap_assign_bits(map, MA35D1_EADC_CTL, mask, chan->differential);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * INTPOS = 0 generates ADIF0 at end of conversion. TRGSEL = 0 disables
-> +	 * the hardware trigger; conversions are started through SWTRG0.
+> diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> index ad0fdc4133fb6..29370376f0322 100644
+> --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
+> @@ -2819,7 +2819,12 @@ static int mtk_rx_alloc(struct mtk_eth *eth, int ring_no, int rx_flag)
+>  	if (!ring->data)
+>  		return -ENOMEM;
+>  
+> -	if (mtk_page_pool_enabled(eth)) {
+> +	/* page_pool hands out order-0 pages and the pool is created with
+> +	 * MTK_PP_MAX_BUF_SIZE, so only rings whose buffers fit in a page can
+> +	 * use it.  The larger rings (HW-LRO, and 9K jumbo once enabled) take
+> +	 * the netdev_alloc_frag()/mtk_max_lro_buf_alloc() path below.
 > +	 */
-> +	mask = MA35D1_EADC_SCTL_CHSEL_MASK |
-> +	       MA35D1_EADC_SCTL_TRGSEL_MASK |
-> +	       MA35D1_EADC_SCTL_INTPOS;
-> +	ret = regmap_update_bits(map, MA35D1_EADC_SCTL(0), mask,
-> +				 FIELD_PREP(MA35D1_EADC_SCTL_CHSEL_MASK,
-> +					    chan->channel));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_update_bits(map, MA35D1_EADC_INTSRC0,
-> +				  MA35D1_EADC_INTSRC0_MASK,
-> +				  MA35D1_EADC_INTSRC0_SPLIEN0);
 
-This code was the reason I looked more closely at what that _MASK
-was above.  Normally when we use regmap_update_bits() it is
-to set a value in a field.  It wasn't clear there was a field
-here.  I'd expect this to look more like the SCTL handling just
-above where the mask includes all the specific fields that make
-up that GENMASK(8, 0)
+[Severity: Low]
+Is the HW-LRO part of this comment and of the commit message accurate?
+The commit message says:
 
+    On NETSYS v2 and later every RX ring gets a page_pool.
+    ...
+    The HW-LRO ring already needs 12K buffers, and 9K jumbo adds more such
+    rings; for those the descriptor length is larger than a page, so the
+    pool cannot back them.
 
-> +}
-> +
-> +static void ma35d1_adc_abort_conversion(struct ma35d1_adc *adc)
-> +{
-> +	struct regmap *map = adc->regmap;
-> +	struct device *dev = regmap_get_device(map);
-> +	int ret;
-> +
-> +	ret = ma35d1_adc_disable_irq(adc);
-> +	if (ret)
-> +		dev_err(dev, "failed to disable ADC interrupt: %d\n", ret);
-> +
-> +	/*
-> +	 * Reset the EADC control circuits to terminate a conversion which may
-> +	 * still be in progress. EADCRST is cleared automatically by hardware
-> +	 * when the reset completes and the EADC register values are preserved.
-> +	 */
-> +	ret = ma35d1_adc_reset_control(adc);
-> +	if (ret)
-> +		dev_err(dev, "failed to reset timed out conversion: %d\n", ret);
-> +
-> +	/* Drain an interrupt which may already have been latched by the GIC. */
-> +	synchronize_irq(adc->irq);
-> +
-> +	ret = regmap_write(map, MA35D1_EADC_STATUS2, MA35D1_EADC_STATUS2_ADIF0);
-> +	if (ret)
-> +		dev_err(dev, "failed to clear ADC interrupt status: %d\n", ret);
-> +}
-> +
-> +static int ma35d1_adc_read_conversion(struct ma35d1_adc *adc,
-> +				      const struct iio_chan_spec *chan, u16 *raw)
-> +{
-> +	struct regmap *map = adc->regmap;
-> +	unsigned int val;
-> +	long timeout;
-> +	int ret;
-> +
-> +	reinit_completion(&adc->completion);
-> +
-> +	ret = regmap_write(map, MA35D1_EADC_STATUS2, MA35D1_EADC_STATUS2_ADIF0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ma35d1_adc_config_channel(adc, chan);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_set_bits(map, MA35D1_EADC_CTL, MA35D1_EADC_CTL_ADCIEN0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(map, MA35D1_EADC_SWTRG, BIT(0));
-> +	if (ret)
-> +		goto disable_irq;
-That handling is only used here. I'd pull the code up here.
-> +
-> +	timeout = wait_for_completion_timeout(&adc->completion,
-> +					      MA35D1_EADC_TIMEOUT);
-> +	if (!timeout) {
-> +		ma35d1_adc_abort_conversion(adc);
+mtk_page_pool_enabled() returns mtk_is_netsys_v2_or_greater(eth). MTK_HWLRO
+is set only in mt2701_data, mt7622_data, mt7623_data and mt7629_data, and
+all of those are .version = 1. MT7981_CAPS, MT7986_CAPS and MT7988_CAPS
+don't include it. So a HW-LRO ring is never allocated on a SoC that has
+page_pool enabled.
 
-However, I'm not sure if the disable irq should be here?
-It is in side there so maybe add a comment just to avoid confusion
-as I guess the careful ordering of the abort_conversion function
-matters.
+At this commit, every ring that reaches the new check uses ETH_DATA_LEN,
+and mtk_add_mac() limits max_mtu:
 
-> +		return -ETIMEDOUT;
-> +	}
-> +
-> +	ret = ma35d1_adc_disable_irq(adc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(map, MA35D1_EADC_DAT(0), &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!(val & MA35D1_EADC_DAT_VALID))
-> +		return -EIO;
-> +
-> +	if (val & MA35D1_EADC_DAT_OV)
-> +		return -EOVERFLOW;
-> +
-> +	*raw = FIELD_GET(MA35D1_EADC_DAT_RESULT_12BIT, val);
-> +
-> +	return 0;
-> +
-> +disable_irq:
-> +	ma35d1_adc_disable_irq(adc);
+	eth->netdev[id]->max_mtu = MTK_MAX_RX_LENGTH_2K - MTK_RX_ETH_HLEN;
 
-See above. I suggest adding an _enable_irq() helper. The reason for
-that was this code as I couldn't immediately spot what this paired
-with.  There are also few places where this is relevant. At least
-one seems to leave it on (the abort_conversion one)
+As a result, ring->frag_size <= PAGE_SIZE is always true here. The patch
+doesn't change behavior until the following "add 9K jumbo" patch.
 
+Could the commit message describe this as preparation for jumbo frames?
+As written, it could be read as a fix for an existing HW-LRO overrun on
+v2+, for example by stable backporters.
 
-> +
-> +	return ret;
-> +}
+The next patch in the series renames mtk_max_lro_buf_alloc() to
+mtk_max_buf_alloc() and enables 9K jumbo. After that, this comment still
+says mtk_max_lro_buf_alloc() and "9K jumbo once enabled". Should that
+patch also update the comment?
 
-> +
-> +static int ma35d1_adc_sign_extend(u16 raw)
-> +{
-> +	return sign_extend32(raw, MA35D1_EADC_DIFF_SCALE_BITS);
-> +}
-Is there enough value in this helper to make it worth
-the reader having to go see what it does?
+> +	if (mtk_page_pool_enabled(eth) && ring->frag_size <= PAGE_SIZE) {
 
-Marginal I think. If this was to avoid a long line, don't worry
-too much about it as only ever so slightly over 80 chars.
+[Severity: Medium]
+Does this check match what the pool can actually hold? The comment refers
+to MTK_PP_MAX_BUF_SIZE, but the condition compares frag_size with
+PAGE_SIZE.
 
-> +
-> +static int ma35d1_adc_read_raw(struct iio_dev *indio_dev,
-> +			       const struct iio_chan_spec *chan,
-> +			       int *val, int *val2, long mask)
-> +{
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	u16 raw;
-> +	int ret;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW: {
-> +		IIO_DEV_ACQUIRE_DIRECT_MODE(indio_dev, claim);
-> +		if (IIO_DEV_ACQUIRE_FAILED(claim))
-> +			return -EBUSY;
-> +
-> +		guard(mutex)(&adc->lock);
-> +
-> +		if (adc->suspended)
-> +			return -EBUSY;
-> +
-> +		ret = ma35d1_adc_read_conversion(adc, chan, &raw);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (chan->differential)
-> +			*val = ma35d1_adc_sign_extend(raw);
-> +		else
-> +			*val = raw;
-> +
-> +		return IIO_VAL_INT;
-> +	}
-> +	case IIO_CHAN_INFO_SCALE:
-> +		*val = adc->vref_mV;
-> +		/* Differential mode has a VREF / 2048 LSB; single-ended uses /4096. */
-> +		*val2 = chan->differential ? MA35D1_EADC_DIFF_SCALE_BITS :
-> +					       MA35D1_EADC_RESOLUTION;
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int ma35d1_adc_update_scan_mode(struct iio_dev *indio_dev,
-> +				       const unsigned long *scan_mask)
-> +{
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	int bit;
-> +
-> +	adc->scan_chan = NULL;
-> +	iio_for_each_active_channel(indio_dev, bit) {
-> +		const struct iio_chan_spec *chan = &indio_dev->channels[bit];
-> +
-> +		if (chan->type != IIO_VOLTAGE)
-> +			return -EINVAL;
-> +
-> +		adc->scan_chan = chan;
+The pool uses the page_pool layout:
 
-This seems to hint you can be other than onehot.  I think not,
-so just break out of the loop here.
+mtk_create_page_pool() {
+    ...
+		.offset = MTK_PP_HEADROOM,
+		.max_len = MTK_PP_MAX_BUF_SIZE,
+    ...
+}
 
-> +	}
-> +
-> +	if (!adc->scan_chan)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
+#define MTK_PP_MAX_BUF_SIZE	(PAGE_SIZE - MTK_PP_PAD)
 
-> +
-> +static int ma35d1_adc_parse_channels(struct iio_dev *indio_dev,
-> +				     struct device *dev)
-> +{
-> +	DECLARE_BITMAP(used_single_inputs, MA35D1_EADC_MAX_EXT_CHANNELS);
-> +	DECLARE_BITMAP(used_diff_pairs, MA35D1_EADC_NUM_DIFF_PAIRS);
-> +	DECLARE_BITMAP(used_regs, MA35D1_EADC_MAX_EXT_CHANNELS);
-> +	struct iio_chan_spec *channels;
-> +	unsigned int scan_index;
-> +	int num_channels;
-> +	int ret;
-> +
-> +	bitmap_zero(used_single_inputs, MA35D1_EADC_MAX_EXT_CHANNELS);
-> +	bitmap_zero(used_diff_pairs, MA35D1_EADC_NUM_DIFF_PAIRS);
-> +	bitmap_zero(used_regs, MA35D1_EADC_MAX_EXT_CHANNELS);
-> +
-> +	num_channels = device_get_child_node_count(dev);
-> +	if (!num_channels)
-> +		return dev_err_probe(dev, -ENOENT, "no ADC channels configured\n");
-> +
-> +	if (num_channels > MA35D1_EADC_MAX_EXT_CHANNELS)
-> +		return dev_err_probe(dev, -ENOSPC, "too many ADC channels\n");
-> +
-> +	channels = devm_kcalloc(dev, size_add(num_channels, 1),
-> +				sizeof(*channels), GFP_KERNEL);
-> +	if (!channels)
-> +		return -ENOMEM;
-> +
-> +	scan_index = 0;
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		bool has_diff, has_single;
-> +		u32 reg, vinp, vinn;
-> +
-> +		ret = fwnode_property_read_u32(child, "reg", &reg);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "missing channel reg property\n");
-> +
-> +		if (reg >= MA35D1_EADC_MAX_EXT_CHANNELS)
-> +			return dev_err_probe(dev, -ENOSPC,
-> +					     "invalid ADC channel index %u\n", reg);
-> +
-> +		if (test_and_set_bit(reg, used_regs))
-> +			return dev_err_probe(dev, -EEXIST,
-> +					     "duplicate ADC channel index %u\n", reg);
-> +
-> +		has_single = fwnode_property_present(child, "single-channel");
-> +		has_diff = fwnode_property_present(child, "diff-channels");
-> +		if (has_single && has_diff)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "channel %u has conflicting input properties\n",
-> +					     reg);
-> +
-> +		if (has_diff) {
+MTK_PP_PAD is XDP_PACKET_HEADROOM (256) plus the aligned skb_shared_info.
 
-The indent is getting a bit large, perhaps a pair of helpers to cover
-differential vs single would make this more readable?
+The descriptor length is calculated for the netdev_alloc_frag() layout
+instead:
 
-> +			u32 inputs[2];
-> +
-> +			ret = fwnode_property_read_u32_array(child, "diff-channels",
-> +							     inputs, ARRAY_SIZE(inputs));
-> +			if (ret)
-> +				return dev_err_probe(dev, ret,
-> +						     "invalid diff-channels for index %u\n",
-> +						     reg);
-> +
-> +			vinp = inputs[0];
-> +			vinn = inputs[1];
-> +			if (vinp >= 4 || vinn != vinp + 4)
-> +				return dev_err_probe(dev, -ECHRNG,
-> +						     "invalid differential inputs %u-%u\n",
-> +						     vinp, vinn);
-> +
-> +			if (test_and_set_bit(vinp, used_diff_pairs))
-> +				return dev_err_probe(dev, -EEXIST,
-> +						     "duplicate differential inputs %u-%u\n",
-> +						     vinp, vinn);
-> +
-> +			channels[scan_index] = (struct iio_chan_spec) {
-> +				.type = IIO_VOLTAGE,
-> +				.indexed = 1,
-> +				.differential = 1,
-> +				.channel = vinp,
-> +				.channel2 = vinn,
-> +				.address = reg,
-> +				.scan_index = scan_index,
-> +				.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +						      BIT(IIO_CHAN_INFO_SCALE),
-> +				.scan_type = {
-> +					.format = IIO_SCAN_FORMAT_SIGNED_INT,
-> +					.realbits = MA35D1_EADC_RESOLUTION,
-> +					.storagebits = 16,
-> +					.endianness = IIO_CPU,
-> +				},
-> +			};
-> +		} else {
-> +			if (has_single) {
-> +				ret = fwnode_property_read_u32(child, "single-channel",
-> +							       &vinp);
-> +				if (ret)
-> +					return dev_err_probe(dev, ret,
-> +							     "invalid single-channel for index %u\n",
-> +							     reg);
-> +			} else {
-> +				vinp = reg;
-> +			}
-> +
-> +			if (vinp >= MA35D1_EADC_MAX_EXT_CHANNELS)
-> +				return dev_err_probe(dev, -ECHRNG,
-> +						     "invalid ADC input %u\n", vinp);
-> +
-> +			if (test_and_set_bit(vinp, used_single_inputs))
-> +				return dev_err_probe(dev, -EEXIST,
-> +						     "duplicate ADC input %u\n", vinp);
-> +
-> +			channels[scan_index] = (struct iio_chan_spec) {
-> +				.type = IIO_VOLTAGE,
-> +				.indexed = 1,
-> +				.channel = vinp,
-> +				.address = reg,
-> +				.scan_index = scan_index,
-> +				.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +						      BIT(IIO_CHAN_INFO_SCALE),
-> +				.scan_type = {
-> +					.format = IIO_SCAN_FORMAT_UNSIGNED_INT,
-> +					.realbits = MA35D1_EADC_RESOLUTION,
-> +					.storagebits = 16,
-> +					.endianness = IIO_CPU,
-> +				},
-> +			};
-> +		}
-> +
-> +		scan_index++;
-> +	}
-> +
-> +	channels[scan_index] = IIO_CHAN_SOFT_TIMESTAMP(scan_index);
-> +
-> +	indio_dev->channels = channels;
-> +	indio_dev->num_channels = scan_index + 1;
-> +
-> +	return 0;
-> +}
+mtk_max_buf_size() {
+	int buf_size = frag_size - NET_SKB_PAD - NET_IP_ALIGN -
+		       SKB_DATA_ALIGN(sizeof(struct skb_shared_info));
+    ...
+}
 
-> +static int ma35d1_adc_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	struct regmap *map = adc->regmap;
-> +	int ret;
-> +
-> +	ret = iio_device_suspend_triggering(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mutex_lock(&adc->lock);
-This one is trickier than the case below.  A simple refactor
-to pull out everything from here onwards though and you can do
+mtk_rx_alloc() then programs that value for page_pool buffers too:
 
-	ret = iio_device_suspend_triggering(indio_dev);
-	if (ret)
-		return ret;
+	rxd->rxd2 = RX_DMA_PREP_PLEN0(ring->buf_size);
 
-	ret = whateverhelper();
-	if (ret)
-		iio_device_resume_triggering(indio_dev)	
+buf_size is larger than MTK_PP_MAX_BUF_SIZE once frag_size goes above
+about PAGE_SIZE - 256 + NET_SKB_PAD + NET_IP_ALIGN (around 3906 with 4K
+pages). Those rings still pass the frag_size <= PAGE_SIZE check.
 
-	return ret;
+For example, with the "add 9K jumbo" patch applied, consider an MT7988
+with 4K pages, CONFIG_MAX_SKB_FRAGS between 42 and 45, and an MTU set
+before ifup so that rx_buf_len is 3072:
 
-I see Andy raised this as well, but wanted to add a few more
-breadcrumbs on how I'd suggest improving the code to meet
-his suggestion.
+    frag_size = 3200 + 768 = 3968   (passes this check)
+    buf_size = 3134
+    MTK_PP_MAX_BUF_SIZE = 4096 - 256 - 768 = 3072
 
-> +
-> +	ret = ma35d1_adc_disable_irq(adc);
-> +	if (ret)
-> +		goto resume_triggering;
-> +
-> +	synchronize_irq(adc->irq);
-> +
-> +	ret = regmap_clear_bits(map, MA35D1_EADC_CTL, MA35D1_EADC_CTL_ADCEN);
-> +	if (ret) {
-> +		/*
-> +		 * ADCIEN0 is enabled only while a conversion is active. Holding
-> +		 * adc->lock here guarantees that no conversion is in progress, so
-> +		 * leave it disabled. The next conversion enables it again.
-> +		 */
-> +		goto resume_triggering;
-> +	}
-> +
-> +	adc->suspended = true;
-> +	clk_disable_unprepare(adc->clk);
-> +	adc->clk_enabled = false;
-> +	mutex_unlock(&adc->lock);
-> +
-> +	return 0;
-> +
-> +resume_triggering:
-> +	mutex_unlock(&adc->lock);
-> +	iio_device_resume_triggering(indio_dev);
-> +
-> +	return ret;
-> +}
-> +
-> +static int ma35d1_adc_resume(struct device *dev)
-> +{
-> +	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-> +	struct ma35d1_adc *adc = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	mutex_lock(&adc->lock);
+The hardware may then DMA up to page offset 256 + 3134 = 3390, which is
+past the start of skb_shared_info at 3328.
 
-scoped_guard() or a suitable helper will simplify the
-code flow here.
+In that case PP_FLAG_DMA_SYNC_DEV syncs only max_len bytes for the
+device. In mtk_poll_rx(), build_skb(data, PAGE_SIZE) sets up shinfo on top
+of the received bytes. For pktlen > 3072, skb_put() would move tail past
+skb->end and hit skb_over_panic().
 
-> +
-> +	ret = clk_prepare_enable(adc->clk);
-> +	if (ret)
-> +		goto unlock;
-> +
-> +	adc->clk_enabled = true;
-> +	ret = ma35d1_adc_hw_init(adc);
-> +	if (ret) {
-> +		clk_disable_unprepare(adc->clk);
-> +		adc->clk_enabled = false;
-> +		goto unlock;
-> +	}
-> +
-> +	adc->suspended = false;
-> +	mutex_unlock(&adc->lock);
-> +
-> +	return iio_device_resume_triggering(indio_dev);
-> +
-> +unlock:
-> +	mutex_unlock(&adc->lock);
-> +
-> +	return ret;
-> +}
+It isn't confirmed whether the MAC actually delivers frames between 3073
+and 3134 bytes, since that depends on hardware frame length limits. With
+the default CONFIG_MAX_SKB_FRAGS=17, this window isn't reached.
 
+Would ring->buf_size <= MTK_PP_MAX_BUF_SIZE be a better condition here?
+It would match the limits mtk_change_mtu() and mtk_xdp_setup() already
+check against MTK_PP_MAX_BUF_SIZE.
 
+>  		struct page_pool *pp;
+>  
+>  		pp = mtk_create_page_pool(eth, &ring->xdp_q, ring_no,
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/patch-2793186c653124c4c0b3d463bde2ea3a%40loljews.com
 
