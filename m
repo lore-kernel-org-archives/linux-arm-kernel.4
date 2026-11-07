@@ -2,64 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50A9C606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 17:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30013606D827
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 17:06:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HIKOzLiZ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BHAhYTR1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OzAb8LHP;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gqBwnHBb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FNKUE9KN5gqUNftHqErKO4XRPnmFTGx1efebnCS4O7w=; b=HIKOzLiZGNj1/s
-	joaCBl/76Zo4hFvawjYUujze1XAN4F1+YuEk6wtSPUsU3WGwbiIZba/uARa76j0EBZCZx8tRG2IFN
-	c1yQ1P33uNFjgbNG3SPn8+Q7IhQAJbIV4cScLAecDYEhlcM14GHgbjUd6dXQaHSe11kPkeiPTHiDH
-	KbmdUSGlyBw7IN6NPs5kDOqPmtFjrymtoCG/1sR5mE9nYq035Ck3nuTYCFHUz4GAK+qGXpD/B0JDe
-	/pCfwA3KtCaDwpj1GR6WkSNEEGllupGKq4TanG2Zt54Hg8cACTxsOce4mwftlvhFsmwsOHeiAJU90
-	j6AXWFpdji5k7JyPagoA==;
+	List-Owner; bh=Fe4F4dXUwFtHilALHNjDKqLA8kT583a1m+7DZY5OsBc=; b=OzAb8LHPELwQoj
+	Zrb0CTf+A5zzR04v7EfvhgMO+lu9noVl7RaFsB9Xd88GNuiVS9jKnL+ZO3MeonWiiNnCeHz2p0BSM
+	OragmHSdTV0JRli0fTi1zQYYZbdSoXtude7z91zCpGNRQMl3TZCsmSZNuNUD/XOaytU9qw0B9fmCX
+	8p3EKyGpdj5iX0r/wZMj+hHqFnBSCGB/qcytSKrOXfEUqRaoB98q9KUl2r+2XLXIMwjWTSo3gtFbS
+	m/aW43i4xO0ap4LCUbniso8ccktvsK5zlSFPpZiRLtW19cCkgzsrv+49YgVIzJMan+J/tHIfbXWzv
+	/tOZjRptawp2Lk1Yrm5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjrY-0000000F4hB-2spc;
-	Sat, 07 Nov 2026 17:05:56 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPjrh-0000000F4lU-0CPm;
+	Sat, 07 Nov 2026 17:06:05 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjrX-0000000F4gm-1d7p;
-	Sat, 07 Nov 2026 17:05:55 +0000
+	id 1xPjrf-0000000F4kl-49jg;
+	Sat, 07 Nov 2026 17:06:04 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 266CF4376A;
-	Sat,  7 Nov 2026 17:05:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8AC21F008BC;
-	Sat,  7 Nov 2026 17:05:53 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8C9F16020A;
+	Sat,  7 Nov 2026 17:06:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 991641F008A1;
+	Sat,  7 Nov 2026 17:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794071155;
-	bh=FNKUE9KN5gqUNftHqErKO4XRPnmFTGx1efebnCS4O7w=;
+	s=k20260515; t=1794071162;
+	bh=Fe4F4dXUwFtHilALHNjDKqLA8kT583a1m+7DZY5OsBc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=BHAhYTR17CvWOCfIwPyzFwTvS4Xhyt2C7Cyt48wzNl4x++bt5Y/f54VkWLcidgVr8
-	 V0i2qp2vOufmVhMtRaHkoH/sgowjTTLQsIjo7KOCwDOkk+GJSVd8OMueFNYuX3h+ra
-	 9eBGFiXJgnUH6E3JunuVa3x5aoeo5vUEsImDF0K5ZHfyUVYUxyiiHLU6pF9vTz73Lf
-	 LFt5/5Odk6GEQY5NVOK5H07sidjGPyXIHh+y0OroHZWYyrG//o9H6jtCauYds7dm5+
-	 JHY9k8tsru965IG8JjeCkfk18/bCSHHT8tBlppx07+Pu0zH9UifgvX4QWHaE9O830e
-	 cGf8na2IgzFTw==
+	b=gqBwnHBbT4ltjC04v5T/t2uExKYybCerw9doHxHPyU8ZjB7LhTARzIskVeS1s4LsY
+	 niBjboNRR3EEqKstWkSmfEyI0DI/5lK2LS8gZ0SEkSkxuLVvP4IHNTGZ7B0nFdWLdv
+	 SriFBZ1beIye7YD1SV6ffuDrMOUZeQ+PsZ4z1Ke03+WZN/bXPee09MrElNMgwPt7tC
+	 6WVFnI9qER3+JTIRHSyuIju+QyVvo3w7KszLuVp0koF3g/OG8Jhgnn5EM2Vd6odkRf
+	 IH7zZMz0qk0jr5pNVQepPry2IH2nuCl66eMzB0Znga6KdrwqE3+cmFX0Khr5tnl3pr
+	 kWsxvBA3mAGVA==
 From: Manivannan Sadhasivam <mani@kernel.org>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+To: Shawn Lin <shawn.lin@rock-chips.com>, 
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, 
  =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Jingoo Han <jingoohan1@gmail.com>, Shawn Lin <shawn.lin@rock-chips.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- "Yury Norov (NVIDIA)" <yury.norov@gmail.com>, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Alexey Charkov <alchark@flipper.net>, linux-pci@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, kernel@collabora.com
-In-Reply-To: <20261105-rockchip-pcie-system-suspend-v9-0-a2e55846649e@collabora.com>
-References: <20261105-rockchip-pcie-system-suspend-v9-0-a2e55846649e@collabora.com>
-Subject: Re: [PATCH v9 0/9] PCI: dw-rockchip: add system suspend support
-Message-Id: <179407115382.87267.12160393716568806842.b4-ty@b4>
-Date: Sat, 07 Nov 2026 22:35:53 +0530
+ Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Igor Velkov <iav@iav.lv>
+Cc: Rob Herring <robh@kernel.org>, linux-pci@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20261103-rockchip-pcie-async-v1-1-4dcadb94af64@iav.lv>
+References: <20261103-rockchip-pcie-async-v1-1-4dcadb94af64@iav.lv>
+Subject: Re: [PATCH] PCI: rockchip-host: Enable async probe by default
+Message-Id: <179407116151.87338.4711703729751463299.b4-ty@b4>
+Date: Sat, 07 Nov 2026 22:36:01 +0530
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -83,40 +79,24 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Thu, 05 Nov 2026 14:33:08 +0100, Sebastian Reichel wrote:
-> I've been working on fixing up at least basic system suspend support on
-> the Rockchip RK3576 platform. This series is a follow-up for Shawn Lin's
-> series with feedback from Niklas Cassel and Manivannan Sadhasivam being
-> handled as well as some of my own changes fixing up things I noticed.
+On Tue, 03 Nov 2026 06:07:35 +0000, Igor Velkov wrote:
+> The probe waits for the link to come up, and with an empty slot it
+> holds the deferred-probe worker for about 0.7 s. On ROCK Pi 4 with
+> UHS-I enabled for the SD card, the I/O-domain driver then binds only
+> after the card has switched to 1.8 V, and tuning fails ("All phases
+> bad!").
 > 
-> Tested boards:
->  * Sige5 (RK3576)
->  * Rock 4D (RK3576)
->  * RK3588 EVB1 (RK3588)
->  * ODROID-M1 (RK3568), Igor Velkov (previous version)
+> Probe asynchronously, as commit c0e1eb441b1d ("PCI: qcom: Enable async
+> probe by default") does for the Qualcomm host driver. This does not
+> order the I/O domain before dw_mmc in general; an explicit dependency
+> was proposed in [1] and not merged.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/9] PCI: dw-rockchip: Fix LTSSM set functions
-      commit: 46d1b4f773b3a8d640c4cb44ccc2daf60043b737
-[2/9] PCI: dw-rockchip: Restore vpcie3v3 regulator handle
-      commit: 6c57adbbae715f91455c270e397cf8a604e27585
-[3/9] PCI: dw-rockchip: Move devm_phy_get out of phy_init
-      commit: 1335c85fdd3ae2bf118bf345e456f4f472ea0dc0
-[4/9] PCI: dw-rockchip: Add helper function for enhanced LTSSM control mode
-      commit: f266f1b24aaf63d33995ae81c54d903391f416b5
-[5/9] PCI: dw-rockchip: Add helper function for controller mode
-      commit: 301d905b81c16409a644a9bdad37cece03d5ee9d
-[6/9] PCI: dw-rockchip: Add helper function for DLL interrupts
-      commit: 7c7fdcb6bb28d377fba5be67d9672384081c0ce4
-[7/9] PCI: dw-rockchip: Add pme_turn_off support
-      commit: 7bd39e56b21329d99e59b7eb7dff760c2280d1bf
-[8/9] PCI: dw-rockchip: Set broken L1SS resume flag
-      commit: 39365e59ffcebbdf910935875a55af9bee83257f
-[9/9] PCI: dw-rockchip: Add system PM support
-      commit: efb2c00e3c47895aecee624d039473534764a6f8
+[1/1] PCI: rockchip-host: Enable async probe by default
+      commit: abc53e14b57aa29fb0ec822a2a9eb5b279cd05b0
 
 Best regards,
 -- 
