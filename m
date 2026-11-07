@@ -2,106 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82416606D805
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E66A606D80D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qni10EId;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iJodq1ml
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NdehE250;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=flQax6z3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1x0su3qFIaIhLOOHVTg63Xzz5NRDGI3ilAjVRn4Y+J0=; b=qni10EIdqzGqEHtCtC3AJMHAt2
-	9tqwaV1QrWl5AXrVivTGllhU3VJXsgISvr2sCyBK/kMoMCmZy0It5YQ+c+RLXKcA47kXS9FUtgKKQ
-	4TP5UT7/03n0dKSWme5CciqtnJTFRTSnJRPRHRudT2VGKj0Il1nEooHHQXcElNKViXKsV9TuEd4Yj
-	pLjy88eUd01yZ5ypSc/IwDTa0WyfwFetzfdSbzbsvHBYiF8wz/nf5UmjHiO3yANhqrkMWnOLqB5JQ
-	dJkaYMypkMcwaoPG3/KBmb1An4/aPaMCix4OaB4AQdGE2TgR4UykwlNpT8G2VrUiaZ4KjbEhVC/Aa
-	fyV3nOVQ==;
+	bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=; b=NdehE250OqZGLTpORyMmaR3slz
+	EBjsqN5OHLw7UQRFLPHAdyASA8YfTWu21ovyFTe7di1570FM8Cx/MLeGXFPrtIlkpjyfTkpngL9uK
+	53l9Pqr4gBb4EXLLLHmWjvsqsLViYKhZIiqd6zQ7voZFwU40w0s28646/5d5ZEEI9GTbG+McxddsP
+	+Rg7evni1H06jA1t3YcoZ/Oht3kQTMVGapJTZ1caGWt+O+BtOj2uw2KBmM2Tmj/5MNQGGV8UonCjw
+	/EfNskh49kgDKqO/NoI2FJ0wu82s3p9xYfyZwxMAeiV7HHWpJ2JGokyiZdhPeVEXx9f7RArZy327S
+	Ub1GsN9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdQm-0000000ESNH-2O1f;
-	Sat, 07 Nov 2026 10:13:52 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xPdTD-0000000ESYc-40op;
+	Sat, 07 Nov 2026 10:16:23 +0000
+Received: from mail-yw1-x1133.google.com ([2607:f8b0:4864:20::1133])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdQl-0000000ESN8-0dpF;
-	Sat, 07 Nov 2026 10:13:51 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1CD65601E3;
-	Sat,  7 Nov 2026 10:13:50 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794046429;
-	b=BFFzFEyLQlad4lN8VqQPiQP9oB9Z2XmmXQsUhIsTUSdXPmKl6yJAKjCgM6cynk4VQhNs
-	 A7wdrZtbV2nCCQNhiPzwp8wRl8kG7JUKgLfqDMZzq9UnLMGkw7+EgYg92lQDsYcZxsaKp
-	 HWbzJqX6KCngXz6zl7x44T+P1PJzjMCBF9xK5opvBpaTdaPcYzub4zXanxOZKo7MvwboA
-	 jLZmfVdnBOG06whPTNnw6e1fhxfVZmM1CzOe9yaffkuTPBfoFgoRk6uP1qGkGsuHYXVIh
-	 m7QmG335LpduEVbmdMH3b8hUqdjOW3EYikgK+Y1iUl1DUeL23RqSwQqu9+HBD0vFNRw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794046429;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=1x0su3qFIaIhLOOHVTg63Xzz5NRDGI3ilAjVRn4Y+J0=;
-	b=xr2nd3/g0n7ooPr5PiV1VYx6Ry5aK2D1CQqXEjrh02qcSgN0t2pWfUYYz7ETV7jQ/34o
-	 uqfJnzU6R7TpIGjMc4AHz35qx2mI02X2ONvuBy3Z/Coe+VIh78NATsrRb79sN2rZD1drZ
-	 r+ks9c4Z7+v6jg/UiTGxhYKem6crjbAoItEPjODEegOQyC050YqexT64oOmcRUeUMTDhx
-	 OM3fIHfnM5cDWoXyLPxqMVEtr3YqFKFkwTLDt/GmNPpRQU0NLCM0V+ByUE/y7jAiHqgEA
-	 +yRRz0VxNXUzgnzbhHz2d/RvoLkMNMc+E4wD4NaWSpJ8otyoeWZdeTeLlmoMPW4w1lg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5BF8E1F008A1;
-	Sat,  7 Nov 2026 10:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794046429;
-	bh=1x0su3qFIaIhLOOHVTg63Xzz5NRDGI3ilAjVRn4Y+J0=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=iJodq1mlSBtu854QVQ9ONyTD8j5Q95lYmdwTqfxnAsksfn20dPcESK1HxVB7tUFK5
-	 8QaQrGLUe1AapT8b4xshPMS29njcmVSln4HZzphVip6JHGzMXsh1jrv8hGBhUisJ8h
-	 hmDVZczDUcf8FmRlM3CKW3/ivKDGOjmAlBJodUEqsh3PgMdvZOSifiQm/qvt/fQ5jj
-	 W1uPPB0wrLYe2rEvBTxPfO6l5/a1GlCknPpDAwv3lKc6fbb2snBCmf00ifLCiIW5Yb
-	 3b8Jg+Gghcmo5pYCo5po3Ex7lwIjfWjuqakh0tujF9H1VCz1el5GTupr8F6AKd+z6o
-	 eqplaZPvdQacQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E1B2C47B59;
-	Sat,  7 Nov 2026 10:13:48 +0000 (UTC)
-From: Rui Cao via B4 Relay <devnull+i.udp0.com@kernel.org>
-Date: Sat, 07 Nov 2026 18:13:43 +0800
-Subject: [PATCH] spi: mt65xx: Remove the CPU latency QoS request when probe
- fails
+	id 1xPdTB-0000000ESXs-1Vmi
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 07 Nov 2026 10:16:22 +0000
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-8b0db268bd8so10433947b3.1
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 02:16:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794046580; cv=none;
+        d=google.com; s=arc-20260327;
+        b=L/ReX6lzuwxs+fBmZ/IIzrh4RAQ4c6VjrswAdOifkXRDCivbozyF5u2/eLV9S9sI9B
+         gBmUGCqGq8AiSAYDSAjBHy0Lw0Lc+hKHAj6ZNdIHrTOE46HaFIJO0J8+bbxgSNMuA4ZI
+         Hk+CLUVwTzB+qXQF96z7aUbcEzL3KrL9irM2nPIqGw5vgpTAKfhsyYh4+W1+N2zjm8sY
+         3PwKdEhnXPwx2gBfqGvcUsGbdiECqavOYdRaZqv+Un5CUiGPTOWpUXWPsybYbnm8dmTv
+         /yfkGBFjDbRJRRY7PWPeVOEkVeBr3juPr56vooJ0Tt8ok0Y3cbrTeACg093wKBp5PECx
+         TEzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=;
+        fh=u7WkXmSsWaknWw7FMI594aAxpmbJzmADf0KLC3xXwrs=;
+        b=ZbO3rxCq2ZXkPDbUGma3t+etfhOM3tw+0yJ5D7KeL5QOpE9JNGNJMZg+vGvPrQanDo
+         PzF4IOTdNQq+SjWxav6h6nSILuCh2xqlNXBAFyqix6Z9MNRZxumDEdVelEtCEMI+5t+R
+         9vqPq35IkcAWoq/1POxG7uUGq4UpWBvl9LNzW65t16B77DgnmOKcsW+0unB7gthehFB7
+         cDFUiMIyuH8c2zrBJ0afDKx26ztG/xeWBe2eKpf8aP9Pulj1S0SnXcGyPP96VknqUlAh
+         XeA3hGVQnfaosrANwx0nMApPzHiD/J3oHU/aefQ9RK4VT0YfyaQCA6p0hBehUlYgbLl+
+         btFw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794046580; x=1794651380; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=;
+        b=flQax6z3TDX1JgQ2/8B708xhMwvqMWYAawUOR1gj01LJGZG0xdsWBK7eaETrgAKwuu
+         VALY3GBi4iofBUV/iblXGFaSFB06iUbEPiOzpA0GrNpCj2A1Cc0O/ATHGT5n9qbEXCWl
+         bdoUVdan+8EfJGvOpDocSxXrpQ0AswMthw81S2fKtyOApZJVM4PLZeV5E4Vu/6j06OfB
+         n+L6DkGCqn3RtewyIaYJTdPgJah4CRaQo6MLZFJR0GFKSUb+fv6lLtDVo7y3xtTEIzib
+         1NXjuA8YgKTODGurBqy6ZKIWN+GnTn7qsxFICkpAnptSWY9pGgHIbg9bP6crtHBL9409
+         CEJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794046580; x=1794651380;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=;
+        b=VZsYAMQDXswcfDkr/TbBn9uFFd+7pArh6hA9YOChuPfPAnktoIugcx1xyqojza74vf
+         5GdRgK8fzXsEy+7+H7QowZ2d0zAROovKq6ZqqIM7agLf/VE16uviSBbLNHvhIqg88OQw
+         8UzvB49C1GzULh5cCOa+9XIEddLrDeeYIugeUMWztfqaNDbQghIrMVx6XARmWcIlV0nU
+         Dtvke6rgrX9TwdAK2DjrY95pUFUXim7u3Fw1ZcxPvdnSUNba/N7DAzoo6fSQ6z5aJyUN
+         aBNmW5m1xHkzmLUf2Ji9exloMs25tg1JeFr1cC5HPPLkWhfVaoF+3bTx80QUYM/3I8rw
+         K7Ow==
+X-Forwarded-Encrypted: i=1; AL+hErHf1aUsVdu7JuooX7WQKynZ+gW492rBN8JLoSS9VSNoz1nfLmJ5BoCvU8ubZjsvMI15auk9RQl6iQZszykRviSD@lists.infradead.org
+X-Gm-Message-State: APuU4Z9S0GUw3y5yTJ00HQ4/tboo9xXPxqVOJFYyKFKZ+hyEHL9kQEQy
+	VemcY0g+5BrMMHxSXgrbXgq6PI0kTpKPmOxIfooMSzGrFHdf+Xx7gUNEaYnXTdi3dB2qk5hqqg1
+	R2s4RzIzcizjaDOizgpzXNDH3VZyQcxA=
+X-Gm-Gg: AYBFou0pbV3oXbfRCtHTTES7ntIDwNJUeSnyhcRJeF7sy0V+ujaQAptfbFG+HwuMHEF
+	JT/MA1gdoNYMcJyJFL2pXQZRs/rpBv54Sg/zZlUxrknLHsoP8fwpRwmhr1sCbhQR1Q7a9D6Wn1c
+	kQHuo9umISdYzFvEFRdYVXx7EG7NycxLmJ59UxnFf3SnYs32+tKrRVtfMj57H8ew8T6s90EsqJk
+	AMahkvjGRaXVNkdyaXL5PTIuVQi+i3Co1IyV9K6Gnew5Q0kqQ77NWFxGLTb8+5XTihCAMsQ0VGk
+	mKQUESap5RvaMSqSnRqae1X+AdEE0UfPzIgziBIk9kMySOJlLSTGPHvf5jLupaQ8gYhZn7ixj81
+	a+PTEns1yfQAwDXm4BirD5iocx1ixaRQkYyO06ZCBv9ho/6bqr/M97Tq7tY4=
+X-Received: by 2002:a05:690c:289:b0:8b0:a252:77c6 with SMTP id
+ 00721157ae682-8b3418dfee1mr22332297b3.19.1794046579785; Sat, 07 Nov 2026
+ 02:16:19 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261107-mt65xx-qos-fix-v1-1-9d9c16a584e4@udp0.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQwNz3dwSM9OKCt3C/GLdtMwKXWOjZBPDtBRjC9OURCWgpoKiVKAw2MD
- oWAi/uDQpKzW5BGSKUm0tANz3mEtyAAAA
-X-Change-ID: 20261107-mt65xx-qos-fix-32c41fd385da
-To: Mark Brown <broonie@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Leilk Liu <leilk.liu@mediatek.com>
-Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- stable@vger.kernel.org, Rui Cao <i@udp0.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794046428; l=2424;
- i=i@udp0.com; s=20261107; h=from:subject:message-id;
- bh=J9ck0Rmxdd1nbYdPYBN9FG+4oXVrAofA+j7Izp5hqPk=;
- b=REkzO9qjpDLtQwUJ2L7TcXugkI2yWMutN5NdD7o8ySpatBLXAbAjyDeG80TTMDedIQn2d/x9A
- T87E08PacYsCghHh8+DjFlPTrQv5tXsVOQTQ3KN19p0+P+wXDg8ZjGo
-X-Developer-Key: i=i@udp0.com; a=ed25519;
- pk=XZJKcKgnUUjjyw8KuKy7u2QeIX0JLY/L1Fxzwwje41w=
-X-Endpoint-Received: by B4 Relay for i@udp0.com/20261107 with auth_id=1443
-X-Original-From: Rui Cao <i@udp0.com>
-Content-Transfer-Encoding: 7bit
+References: <20261106-hantro-remove-v1-1-d0a4678886d7@gmail.com> <0597b71f39fd945d531d3e996d982d5d3a3b9a28.camel@collabora.com>
+In-Reply-To: <0597b71f39fd945d531d3e996d982d5d3a3b9a28.camel@collabora.com>
+From: Sergei Khomenkov <shomenkow@gmail.com>
+Date: Sat, 7 Nov 2026 12:16:08 +0200
+X-Gm-Features: AclHuK8U4hp329_sClLRJdwqt0M9udYoGIyX3Gq2TqxXtvVHZa2zNAR132StXO0
+Message-ID: <CADxDoMSrwDQfFD-VejUvh3shpo6BKjFWMzXUtsoK=t7=AhPATg@mail.gmail.com>
+Subject: Re: [PATCH] media: verisilicon: suspend the device before
+ unregistering it on remove
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Cc: Benjamin Gaignard <benjamin.gaignard@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil+cisco@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Frank Li <Frank.Li@nxp.com>, 
+	Tharit Tangkijwanichakul <tharitt97@gmail.com>, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261107_021621_414693_026EF871 
+X-CRM114-Status: GOOD (  20.43  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,80 +120,68 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: i@udp0.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Rui Cao <i@udp0.com>
+Hi Nicolas,
 
-mtk_spi_probe() adds its CPU latency QoS request before the chip select
-checks, the interrupt request and spi_register_controller(), and none of
-their error paths removes it again. The request is embedded in the
-driver's private data, which devres frees once the probe has failed, so
-the global CPU latency constraint list keeps a node in freed memory. The
-next cpu_latency_qos_add_request() from any driver walks into it.
+> To be verified, but its not entirely logical here. My impression was that you
+> want to unregister the dev entry sooner, so that it prevent newly open, and turn
+> existing fh into a mode where all ioctl will fail.
 
-On a Redmi Note 13 5G (MT6833), an SPI controller whose probe failed the
-pad_num/num_chipselect check left such a node behind, and the UFS host
-adding its own request a moment later oopsed in plist_add():
+That part stays first. media_device_unregister() and
+hantro_remove_{dec,enc}_func() still run at the top of hantro_remove().
+The patch only moves v4l2_device_unregister() and clk_bulk_unprepare()
+below the runtime PM calls. v4l2_device_unregister() touches no node
+here: it clears the driver data, which equals &vpu->v4l2_dev (the first
+member of struct hantro_dev), and drops the device reference.
 
-Unable to handle kernel paging request at virtual address fffffffffffffff8
+> Can you do some extra code inspection and report why you strictly need to modify
+> the clock states before you unregister the device?
 
-The same happens whenever spi_register_controller() fails, which
-includes -EPROBE_DEFER while the chip select GPIOs are looked up.
+hantro_runtime_suspend() reads the driver data, and with power/control
+at "auto" and the default 100 ms autosuspend delay remove() calls it.
+The driver core resumes the device before remove(), and its put only
+arms the autosuspend timer. So pm_runtime_dont_use_autosuspend()
+suspends the device synchronously, the path in the 8e26d4c20ed2 trace.
+With the current order the driver data is NULL by then: an unbind or
+module unload oopses, after clk_bulk_unprepare() has warned
+"Unpreparing enabled". (My reading of the code: with autosuspend_delay_ms
+at 0 the device is already suspended when remove() runs; I did not test
+that case.)
 
-Nothing needs the request before the controller is registered: only the
-prepare_message() and unprepare_message() callbacks update it. Add it
-just before the registration and remove it if the registration fails.
+So two things are strict: runtime PM stopped before
+v4l2_device_unregister(), and the clocks disabled before
+clk_bulk_unprepare(). The new clk_bulk_disable() does not use the driver
+data, so it only has to come before the unprepare.
 
-Fixes: 632556d5799a ("spi: mt65xx: add PM QoS support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Rui Cao <i@udp0.com>
----
- drivers/spi/spi-mt65xx.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I suspend through the PM core, not by hand, so that the runtime suspend,
+with any genpd power-off, still runs before reset_control_assert(), as
+8e26d4c20ed2 wants. I could only test on RK3026, whose VPU has no power
+domain, resets or IOMMU. A run on RK3588 or i.MX8M would help.
 
-diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-index b845a599f7c..49c31d4bd71 100644
---- a/drivers/spi/spi-mt65xx.c
-+++ b/drivers/spi/spi-mt65xx.c
-@@ -1295,8 +1295,6 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 		clk_disable_unprepare(mdata->spi_hclk);
- 	}
- 
--	cpu_latency_qos_add_request(&mdata->qos_request, PM_QOS_DEFAULT_VALUE);
--
- 	if (mdata->dev_comp->need_pad_sel) {
- 		if (mdata->pad_num != host->num_chipselect)
- 			return dev_err_probe(dev, -EINVAL,
-@@ -1323,11 +1321,13 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "failed to register irq\n");
- 
-+	cpu_latency_qos_add_request(&mdata->qos_request, PM_QOS_DEFAULT_VALUE);
- 	pm_runtime_enable(dev);
- 
- 	ret = spi_register_controller(host);
- 	if (ret) {
- 		pm_runtime_disable(dev);
-+		cpu_latency_qos_remove_request(&mdata->qos_request);
- 		return dev_err_probe(dev, ret, "failed to register host\n");
- 	}
- 
+> p.s. are you sure outside of test build, that PM can be disabled on any of the
+> platform hantro driver runs ?
 
----
-base-commit: d48723711bae9b8cdc56719c448ba42fef28cbee
-change-id: 20261107-mt65xx-qos-fix-32c41fd385da
+If you mean CONFIG_PM=n: not on Rockchip or i.MX8M, which select PM. On
+sunxi, AT91 and STM32 PM is only a default (SUSPEND=y selects PM_SLEEP),
+so it can be turned off, but then the driver never enables its clocks:
+only hantro_runtime_resume() does. The IS_ENABLED(CONFIG_PM) test is for
+such builds and COMPILE_TEST. There pm_runtime_status_suspended()
+returns false, so unbind would disable clocks that were never enabled
+and hit the "already disabled" WARN. I can drop it if you prefer.
 
-Best regards,
---  
-Rui Cao <i@udp0.com>
+The block itself is for runtime PM forbidden through sysfs
+(power/control set to "on"), which root or a udev rule can do on any
+platform. Then nothing suspends the device, and it is still active after
+pm_runtime_disable(). I tested that case on the board. cedrus and
+mali-c55 (2c9b9bcc2569) power off by hand in remove() the same way.
 
-
+Thanks,
+Sergei
 
