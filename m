@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43268606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 06:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2628606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 06:06:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eV0QhaW4;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=EQIfEmjU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N+zIM5YT;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tA12445h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,64 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=AKa+5Wpszs7j7cPw/Xoo3jlJeQpFmBrGSTTM1AaN5Jk=; b=eV0QhaW4lkih0yFCEDRuGka5ss
-	lAhau7sxJHPy0YORq3x0Hu4dJXh4EE6WvYY3o/Q/FHGULvuiusiuYuPKKzicmEVUoup1z+hpiOJgY
-	6MLlBHN+Keb8Q8FeOkHla3sgd2zB6oTvNvIFlquewgD4Wle9nDdakNRNUw8UBO8nAma3b3QWzuchx
-	kDPuhl6/aBAW8CdhlxBJci+70Lyj1WKC2yIr91/jX3dP6tOwrA9rZh2oBRURxfsaPD0Bmhz4KVKiH
-	ylBAAdaiwZumQWu/AE7TkdbHnvugHJSUQdnhbriK8zIwB2xuLMXaZLvIhqmEkORS7bcuM2QAuHSYU
-	XnoNuMcA==;
+	bh=KkFDcS6ihm3QPilltMV71tLbM4fsnU6mSyPVCXhKIRs=; b=N+zIM5YTb1cBf6wpR1n1r131ll
+	DFFkiA71IHZWSZwPYEnht/rOonrNeLo8vaVvOrVrNXhPuQNKaXSXlbqTtwhTe8vCWw/BNmqbBn9jx
+	B10y7fBka3pBQA4lWX6GHBpTIqM9H6nXm0B1mg/No9dYh2WEIRAwISFh2zSmHWw0Q0M+NFbrpYxn+
+	2IBW00aV+zS+hL4i5rwdm+H6ZMIsqSN8a9ScgWrn1dlE59ZgdiSDu+JUAYR4fnf4ORaG4SIVtXg6A
+	DyrQdIIXqbMVK+W0ZZs3jy/SP1WyLasoTNWsoucwWZgAo/c9VR3Nrcwo8wMzhsEr3iPcBtWhRGPNi
+	K85qoDDw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPZW8-0000000EFpy-3vj1;
-	Sat, 07 Nov 2026 06:03:08 +0000
-Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
+	id 1xPZYs-0000000EG2C-2ANX;
+	Sat, 07 Nov 2026 06:05:58 +0000
+Received: from mail-pf1-x42b.google.com ([2607:f8b0:4864:20::42b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPZW5-0000000EFpf-2Mhr
+	id 1xPZYo-0000000EG1m-0mgS
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 06:03:06 +0000
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-2e9eb579c0eso7393945ad.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 22:03:04 -0800 (PST)
+	Sat, 07 Nov 2026 06:05:55 +0000
+Received: by mail-pf1-x42b.google.com with SMTP id d2e1a72fcca58-8b271e573adso613064b3a.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 22:05:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794031384; x=1794636184; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794031553; x=1794636353; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=AKa+5Wpszs7j7cPw/Xoo3jlJeQpFmBrGSTTM1AaN5Jk=;
-        b=EQIfEmjUsdHf6nSiDlFJ903FuCKjTbcbqsIPihdpLeU8GStdYr0vR3kd7nTp2IEuKZ
-         qf5SFyUZYsT5+4k2RoNAzg4mYTnIulTgYsXxZIrZx7Qat8U/Se5A0cS6kqy7IbsTdhq/
-         li+fZ/26vYRvQvpiDJUvY1T+BmSl1GqjQa2ZwCOeQIcqFqApn01IUYB81YJPy9vM9OrF
-         /kjTPecvxJfcJ8V0bBXBL44QlhApPsj55FOIowcUFtWinwiTOfU7VH0P7mxPijhwDJp8
-         ieYCHL/ORHaxp6yqEi6laV9EQHntge2iv0Tq5k7YC1P4LU5/CmBPG2Ywsty1m76iG6yl
-         vr8A==
+        bh=KkFDcS6ihm3QPilltMV71tLbM4fsnU6mSyPVCXhKIRs=;
+        b=tA12445hy7HzCyJBVoC1IT/o4nMGMDTyROtTb3KYoJBXFUu4A1Mvj5F+1AHxAxQb0b
+         +ZFfWUcLbNrdgQ6p+VQ5ahA3l2HpY1yH26jWKB5K5E5/GLT10tBAGMaMUMSCoeYvHHy0
+         yqQ5hyM9/RzNbrSEAR9+5CNoZ2wgKHSfIoY5DIS732MHIYPObWJeKQexwaiBne9B13GT
+         itZc4HKdY+igLGNiGxg5T9tJIudIxaCEFuFQerX3rVVoV0w/vRC48Ni7J4oPa4NJ/7+K
+         DBvpC974nexm/frH3CtF9y7ugWoO8yT04YdmAlWQyxGDPQGVC5fNdo5I+DnXPTV/lKGl
+         YR5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794031384; x=1794636184;
+        d=1e100.net; s=20260707; t=1794031553; x=1794636353;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=AKa+5Wpszs7j7cPw/Xoo3jlJeQpFmBrGSTTM1AaN5Jk=;
-        b=mN4zJScCvIbcv/X7+U1eazlFnV8+pTWJfT/weU9KMv2X9F6ZAxohugGW/iRFJ/Hp33
-         uiHjZx780cfvLAlFCGhZwW3IdGdGcsz2VhWEMhLo08S8CC0mahQR0Rw6edbAjtOH/Ynx
-         sfH2pdOviixIIeucD9jyjy43vtZemmd3r7WujcLcnT4il85w4kciGbDsLyyPynueOW5t
-         59XXwDiplaCYxOVmRMa9Nc7wdqkmUFnjxHU30HFLva9Ag4iDnnWC7iKFLZWBGAYWWp3e
-         0TpeCQni+soCXFwCMDf7lxhhYuTGTRoKedHW4EY4m1EwAdMBZ7Y93vNiwMcn9HIztORe
-         6/aw==
-X-Forwarded-Encrypted: i=1; AL+hErF9TCkl1f53MRA4hncTx9EJb0/ugfU/GzFkJDdQV39stOwTay9Y+vngV097guXFGWYYHO0h4EDHqMv06Slwgz7Z@lists.infradead.org
-X-Gm-Message-State: APuU4Z87sHTrGUvf+szUNTgbs390kiUXzZ1jh11QJOruGaOIjnLnanVv
-	+NNU2zmnY/NtyE9pzXb4EfV7y6TjYbnmpwmj+/SXR8R7T15XzZbl4SSEaPykkIiqu5M=
-X-Gm-Gg: AYBFou2BzuhvLVwtJ8TeiSEEqxBwU5rkdenFJtSOfvhrO+oo11pP02hsab0TBA6Cq5d
-	Ce8NipEM22dhKlkPR2W0ybabCm6JbGM1PqzTwnvmm8VXQr7k9IJRXIKL+mv4/Rgu+vpfINqJUbz
-	M10isD0cXuLYDdWPsUeQsf5TC3OJ84/YgpSvJ1ULDivVPutd06lnbtLga1K75SJZAm+vPAKfUTj
-	aNTIcFx0zaZyc1TYifg5rNwYOGwWn2M0tC508ZNWDsANn7F2FINpQhiO2s1bEynTOMVHL4AQvsX
-	run590s8Ljz4C07H0f1610fWVQ4XLn/v9uPHNZ4fOGE6mikrB3jbPxDSP0OUEbKd+faaTHKzWX6
-	7DJ8alfN+MC4f5DJlcGi8RDPpj0V1x/zSAEyvzA4GdhBuH8gAKnCYXt00QHBS4Y+Slpm6hPdu9y
-	xge/UNXFn3n8qQjqFOufwHOkhSKy8LbBaO1tNViOTePkN044Ng/jG6F/4krxK3bQyruMquQEX8E
-	DrYexuFAqI9WHBF5OELzIUP9cTKCG8+5lMpBmEDVJmBI9k8cdHwIOVk0dJUIKkVN3n1JPmt6JAP
-	fg8pRJML+350WGZztLZN19eI26zIH5wyGBIfvtMzmR7TOeicf002DbWlRCcZk52I
-X-Received: by 2002:a17:903:22c2:b0:2ed:146c:cbba with SMTP id d9443c01a7336-2ed409890b5mr53794365ad.21.1794031383945;
-        Fri, 06 Nov 2026 22:03:03 -0800 (PST)
+        bh=KkFDcS6ihm3QPilltMV71tLbM4fsnU6mSyPVCXhKIRs=;
+        b=C7V5TqKvZgvTV9QakpiRBLavbA9Jg99SttrohfBLyOtynEuAcStPBLCNvHAKF4pV/T
+         K+UUbdyQ5bWf9zI7a+uJ4yxEh/QOK6xCDQEIKEBpVJJW9qCvc7OcpSGLohVY79/zjkp8
+         bWYjEv2rqltMrt7/b6adxhIaxQPA29K1ql0DWkZ4uqaigGKvS9x8Es7FifspYq/nmJDJ
+         Iph2XK3Cn5Eb4FE7p4vUeq4pD1HAbFC4Br+yPvhCn7jnuVmw+XAvTiBdASJg3jvFPzOd
+         SgkNaQE95zEqLdw7iWQoTA+lXSnckjWN/6X4gMNS8USzZUt2d8IM75BkQaDnX3VIiKf0
+         y6IA==
+X-Forwarded-Encrypted: i=1; AKwUvBzqbp54Nzj2LT33YQ9jsiCr3OOgK4mdpiUnt8XGmSq5EbMev/AO7MnYI2PdQzU+4c3QaMSmpFHdzyAzrAX/pN0W@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Bl3tqzxe0Y3e2xrFoe5tAOF2Ewuc6BV1HcFkIm0X3r1oI5S5z
+	mhyRzRrbHxPK3E9FWgnCkFrfopDjema9B0/evSVFltWEzVQDVYL5p4Ll
+X-Gm-Gg: AYBFou0kF+UgMgK3m+vMuI3qBRuFrFMoD6zpmP0S0X6auwAIz68mPsoL7MXeHkyoqqb
+	zST8QmutIZrl/RnTGV/LaK6erl947zDlqz+pLW+7I246DkyzjwnKt+DCHLUpR+sf3ZBG1D354Nd
+	UpMS8gYR0Rz423QtH7LZTUvciMvNopil0yLi0oStD63L9C7J99zDvADaWFyjhfMOhno+D2W+bgq
+	Db4byGhpazyy1mPBbToi3i1vs80c85iA1kxRPWDPC2qsUyioaXsYdYaijM4KUOXzcdBOqIvLWKN
+	E5CSuAptAKbt1N0nsB19S8hxpfjXepqSQyW15TDNKwx/uANiebfNGgZu2gPIQWY2yiBCSZ6rP4l
+	IvhyNI7PJgWMMcYY4v2szKbOl9Utmp/HDvZSkR8eND4H0H3gGozUeteUdGDVrjlzCrSslLh4e0N
+	wldORCXCRion4p5Curit7FkO33IaF2/R/Otge5kQR0qZHF03wcM1QjRA8dtjo+LR7g86xyK8PQK
+	CmdQT43iaxRRaho37VbmaPnZ85WcTSBEDPGSJj3RG1d2CyyfNBXVjJfAYHrw3JUBh0wie8/V2Kn
+	7qkA6IgFsX0TgOc78yhiZHrcu/SzUUNnuAqWVRiBFyygG0Nl/117I2D/voLIqFFo
+X-Received: by 2002:a05:6a00:4605:b0:8a0:6414:a54c with SMTP id d2e1a72fcca58-8b37b4781dfmr4725632b3a.32.1794031553173;
+        Fri, 06 Nov 2026 22:05:53 -0800 (PST)
 Received: from fedora.lan (d173-183-236-7.abhsia.telus.net. [173.183.236.7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ed47d7bd2esm10488765ad.56.2026.11.06.22.03.02
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8b3597f0539sm1176326b3a.31.2026.11.06.22.05.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 22:03:03 -0800 (PST)
+        Fri, 06 Nov 2026 22:05:52 -0800 (PST)
 From: Artem Novak <artem122novak@gmail.com>
 To: andrew@lunn.ch,
 	gregory.clement@bootlin.com,
@@ -83,17 +83,16 @@ Cc: robh@kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Artem Novak <artem122novak@gmail.com>
-Subject: [PATCH] ARM: dts: kirkwood: Remove duplicate DS212 compatible
-Date: Sat,  7 Nov 2026 00:03:00 -0600
-Message-ID: <20261107060300.597337-1-artem122novak@gmail.com>
+Subject: [PATCH v2] ARM: dts: kirkwood: Remove duplicate DS212 compatible
+Date: Sat,  7 Nov 2026 00:05:49 -0600
+Message-ID: <20261107060549.598466-1-artem122novak@gmail.com>
 X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_220305_615000_C2979E97 
-X-CRM114-Status: UNSURE (   9.96  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261106_220554_225504_86D35174 
+X-CRM114-Status: GOOD (  10.51  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,6 +111,16 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+
+The Synology DS212 Device Tree lists "synology,ds212pv10" twice
+in its compatible property. The corresponding Kirkwood binding
+also repeats this entry.
+
+Remove the duplicate from both the Device Tree and its binding
+so that the documented compatible sequence contains only unique
+identifiers.
+
+The compatible ordering is otherwise unchanged.
 
 Signed-off-by: Artem Novak <artem122novak@gmail.com>
 ---
