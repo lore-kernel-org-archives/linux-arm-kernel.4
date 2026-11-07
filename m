@@ -2,69 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADA5606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 04:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6704606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 04:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eUDzNISn;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DtZznDKI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZV1p2L17;
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.a=rsa-sha256 header.s=google header.b=Z6mXwWRR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dRexF36N57Z46Z1WRdsd2m/GPXEarnkSgvBnWou7EuA=; b=eUDzNISn4Bp8Pn
-	7PXQdoMos3pk+aLaSbux3CgLEFPajb57hfdw2e2pKMVkReNLoMuj1oEnwHE94uWDoKnbr6kb1qJg2
-	PB4sreLUBOlUkeT4W4We1nt8YuAWKfbzSuKNuyt/KICk8ucXh9xxyQV3zIcBpW7H1hBKC7zDhO+9J
-	I5Ds1cXM6KCnAOy3DuBSoFDSbpkDrPngyGAWGnMZC2GBdqRX1WRY8s+zSdG/1pDN3TQQzBk3KZOSY
-	lZOkyrl25Cqbjo3N2Pm3EF6+v5IdGB/ggyXyVIpRphr2YskEiCMoJFjHAN3LbGiXUJ5Ql19hloaJY
-	5GhSy45VUbHbKmaDV+xA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=tMJYIXC5HK/L92Fsjcvgr4iGfrMwtNzZGIshDMxf8u0=; b=ZV1p2L17+SUiX1SkcCFYnvHQ+t
+	GHM1qTSoBmKj+zMRBhO6CSQO7Aoa6y2W8JbtzuFfZ8wOWAT0E67E84OzS+ALs3fbhZPIgzMmci0Yh
+	eL+Za64JWYv/m8I7lDuMj46yln3CuT97a9f9oMBegf+UOu0sX2tSc87CyP6O8ly32mgRUDx1gnWeq
+	WLrNjl9/Xh1ZwzMrl9pRqPuN53vyKf2a0B/k42JGvsXjfDvD27qSUraP5H/f5Wxbmbxq6VRE5dRUi
+	UChR7f1mrn7SupB+OghhJfvDOALHCWsMtuyrDugXCGIlhRW16DXtkPBJT+WmpkWVFGlRgvdLZEXkT
+	FOHvSLqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPXa1-0000000EA92-0L7l;
-	Sat, 07 Nov 2026 03:59:01 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xPY62-0000000EBxg-2LZZ;
+	Sat, 07 Nov 2026 04:32:06 +0000
+Received: from mail-pg1-x529.google.com ([2607:f8b0:4864:20::529])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPXZz-0000000EA8v-1Ado
+	id 1xPY5x-0000000EBwF-1y2Y
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 03:58:59 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8641441B6A;
-	Sat,  7 Nov 2026 03:58:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A45C1F0089F;
-	Sat,  7 Nov 2026 03:58:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794023938;
-	bh=dRexF36N57Z46Z1WRdsd2m/GPXEarnkSgvBnWou7EuA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=DtZznDKISdnKZ0FGYvWYiT5NSn+rIogg1rCnMr8u6Z2eY2+D4VWOi7cEJN1+OcZEf
-	 ltIqVeyCdy3Z0TWV6Dr2vfXfUBOdIQqcAWR+Z13aDYb1Wmd81QPIpQRfZOXu4pNIXc
-	 PDSf9dLQA/voAgEe/589gopb5Sl25HwhZNXQA/AUFx9iaZ9gC9gI0jOYMbe2IdaiPg
-	 W6CMADXkFe2P3SgkGMaxVZYd6FsGufDGiCQ7Q5mbQ4C8KrpzxinPEIK4VQWyXFFzpZ
-	 oALunCcd2IEriAcRxIhF6v04rQ/yA4hP5iV9r68a9BvOWPQPlTck8iuJzF+xRSnm6o
-	 j6M0CO69YXtcA==
-Date: Sat, 7 Nov 2026 03:58:51 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Joshua Crofts <crofts@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Eugen Hristev
- <ehristev@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
- <claudiu.beznea@tuxon.dev>, Haibo Chen <haibo.chen@nxp.com>, Frank Li
- <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH 00/10] iio: remove redundant
- pm_runtime_dont_use_autosuspend() calls
-Message-ID: <20261107035851.0c8cb3e5@jic23-hlaptop>
-In-Reply-To: <20261105121635.1612-1-crofts@kernel.org>
-References: <20261105121635.1612-1-crofts@kernel.org>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	Sat, 07 Nov 2026 04:32:04 +0000
+Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-cc147d86bebso163418a12.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 20:31:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance.com; s=google; t=1794025917; x=1794630717; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=tMJYIXC5HK/L92Fsjcvgr4iGfrMwtNzZGIshDMxf8u0=;
+        b=Z6mXwWRRP+a3TYu6WNdL09X8y8ZvTjaQR8xlhguFl87+PXUxUAGl1Bb+I6YtW0rMxN
+         qYZFHo/IFbQWhdSBfloqhwVzn9XwHxciIY1P573yd0cidlc4Ly5PCh3g8RvfTem2/atU
+         8jvoxGwV0yTxS6+UnR2F66EQ/hvNft9sp5IH7Sm8LALVZJFF6aNWElRRGbg8TsjOGNwF
+         NG6/eZh/7STzcP84oDp508f7vNPbjJ+x8496RgCeLlSYe/u6uOggarpVzquLL2rfHw1M
+         7vlXkBJjkvBZHsl2g2mZOjc2iW+zcNO76uxeB6TTzAgs8GaNyXjntJUQqCaMjoYsRqTt
+         F83g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794025917; x=1794630717;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=tMJYIXC5HK/L92Fsjcvgr4iGfrMwtNzZGIshDMxf8u0=;
+        b=L//DWDCBNMly1jCupdkENLpPklAmfg8QygnUepvkZ47/WJvjGp75Ei4klv0Lbh0FyC
+         PdbShtTrpqi66nOPxgQc3z1LMHr+48rG3sjLgvHTyD59uZct1jW/d5GVTgl1OflDMHBu
+         5DxtwE0jemXCJnpN3ojNL3LX1RTvwSnGAY25TplCqsE4cv7yfe8gad8r01K8b/+dyl9p
+         nlYl/8x8R8lX4x7fQXqV+UC8gDzwjlFgqh6IoHJTbFgiih5XQJhdSuWJpJSpd3hjT0yI
+         u0h14zTeN+0hzP7WR8G88ipLEGmSRX6ZIGD+Z5nN9HWWhUgm3MUIUcLbwL3E0uM7ps91
+         Rmfw==
+X-Forwarded-Encrypted: i=1; AL+hErGuUyOPO2bjOySBd9KL6q3FSbWOT9ny2j9wujlEozBAbOWLaJ/0nWfmLerCwoqX00JMlMdGJ0ZTUNAQq5OUD1xd@lists.infradead.org
+X-Gm-Message-State: APuU4Z9NBk1A6hp4u1W152VEepaj/ceDmRST2u3axZ/27C2+MiVgp6HC
+	2AYv/5xl9gRyBkVQuxzN5vWoFBYwUZCHYusySvyWH7hWZpZRQ4TpqpbUS90SXMTE7AE=
+X-Gm-Gg: AYBFou1TKJdc5ZrB8bLncM0tBnjLYeJRAf36hi1BKw+DPSL3vCQRH6bs2AgnCtZaEsV
+	irjPCjmgUylCfycc50XQTjZBQcSfD16WpJh6FqGC+UPtMVyfcZrv8n3xjsVzRWqQ/p6WqvNceHY
+	Z7JSvQa9I4OeOQ9B7I/mlPJnAvVBMCifC+z8JwQax3btv9Csxnwcw4M1NETB7yC78OnpR95AhQj
+	rAgBZBkxcc5Q1wWVo1G98bTujZFzVCGMSalJWzxsMbjUtrh+c2+aO8pyzrObvwgGhzppq8WZHiN
+	/1YsCprg4SXQF2jr4AMt1JMQPXBz864WM0HXKpw92BAy9giQf+2B4MFI+5SLHeAPpJQZIQY/ler
+	LzqQHxrW1DvIWP2G1d75QWt06NQO+b354xQx3KiHelL5Jz20zxFi+c9CKzvZJCXVsPCezqHz7uj
+	6YujB+MV5Cb2c7GSjHW1Ljy6yFcOn0l1x91xFAiEG2d0fH81UcQCQWHdn/NCJp1Hz1ZDhVnwwJr
+	vebMlB988J5xdqUzZ6K350uD6xskcLMltZ1coTmYiMvODXIO1DeSPeNlLSBUWF0FRThhhuhikpz
+	uhJL/6WibO3ko1tAXrFK2nDX4U8V7nPG3x7cEHScyBOwY47aoiyqLS0OYGsu
+X-Received: by 2002:a17:90b:3c0a:b0:3a0:eec6:b065 with SMTP id 98e67ed59e1d1-3b1060a6be4mr758538a91.13.1794025917280;
+        Fri, 06 Nov 2026 20:31:57 -0800 (PST)
+Received: from G6L4RL2QG9 ([2409:8a00:1832:6900:c8de:13da:804b:a0fa])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b10584b66bsm1578451a91.14.2026.11.06.20.31.47
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Fri, 06 Nov 2026 20:31:56 -0800 (PST)
+From: Muchun Song <songmuchun@bytedance.com>
+To: David Hildenbrand <david@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>
+Cc: Lance Yang <lance.yang@linux.dev>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <chleroy@kernel.org>,
+	Ritesh Harjani <ritesh.list@gmail.com>,
+	Shrikanth Hegde <sshegde@linux.ibm.com>,
+	Oscar Salvador <osalvador@suse.de>,
+	Qi Zheng <qi.zheng@linux.dev>,
+	Muchun Song <muchun.song@linux.dev>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	linux-mm@kvack.org,
+	linuxppc-dev@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	x86@kernel.org,
+	loongarch@lists.linux.dev,
+	linux-s390@vger.kernel.org,
+	Muchun Song <songmuchun@bytedance.com>
+Subject: [PATCH v3 0/5] mm: Simplify device DAX vmemmap optimization plumbing
+Date: Sat,  7 Nov 2026 12:31:17 +0800
+Message-ID: <20261107043122.25650-1-songmuchun@bytedance.com>
+X-Mailer: git-send-email 2.54.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261106_203203_501761_D54B1F72 
+X-CRM114-Status: GOOD (  12.84  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,23 +118,95 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_2 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu,  5 Nov 2026 12:16:25 +0000
-Joshua Crofts <crofts@kernel.org> wrote:
+Hi,
 
-> Since commit d1706f9da9f4 ("PM: runtime: call pm_runtime_dont_use_autosuspend() on reinit()"),
-> driver core is now responsible for undoing any
-> pm_runtime_use_autosuspend() calls on driver exit.
-This sort of series I particularly like.
+This series is split out from the earlier, larger series "mm: Generalize
+HVO for HugeTLB and device DAX" [1]. While the parent series generalizes
+vmemmap optimization across HugeTLB and device DAX, this subset addresses
+a single, self-contained step: simplifying the device DAX vmemmap
+optimization plumbing.
 
-Applied!
+After device DAX was converted to section-based vmemmap optimization,
+whether a mapping can be optimized is carried in mem_section, and the
+architecture-specific population path can handle any remaining fallback.
+The code still retains the DAX-specific vmemmap_can_optimize() helper, a
+PowerPC override, and @pgmap arguments threaded through lower-level
+vmemmap population and memory-removal interfaces. These duplicate the
+section-order policy and keep otherwise generic paths coupled to
+dev_pagemap.
 
-Jonathan
+This series removes that obsolete plumbing by consolidating the
+optimization policy around memory-section metadata and simplifying the
+generic and architecture-specific population paths. This also eliminates
+dependencies that are no longer needed once the optimization state is
+carried by the memory section.
+
+This leaves the section compound order as the single source of truth for
+vmemmap optimization and decouples the generic sparse-vmemmap and
+memory-hotplug paths from device DAX.
+
+This is another smaller step toward the broader HVO generalization.
+
+[1] https://lore.kernel.org/20260513130542.35604-1-songmuchun@bytedance.com/
+
+v3:
+- Rebase onto mm-new at 684242af7090.
+- Move section_vmemmap_optimization_disable() out of line to fix the
+  LoongArch header-order build failure (reported by Sashiko and the
+  kernel test robot).
+- Keep section_vmemmap_optimizable() in mm/sparse.h and leave the
+  vmemmap_optimizable_order() relocation in patch 4.
+- Tighten the disable helper checks to require one aligned memory
+  section.
+- Collect Reviewed-by from Lance Yang.
+
+v2: https://lore.kernel.org/20261105061217.13302-1-songmuchun@bytedance.com/
+- Rebase onto mm-new at dba8aba0a9a0
+- Add section_vmemmap_optimization_disable() and use it for PowerPC,
+  LoongArch, and altmap fallbacks.
+- Add a LoongArch patch that keeps device DAX vmemmap optimization
+  disabled while leaving HugeTLB HVO unchanged.
+- Ignore section compound orders that cannot be optimized.
+- Add direct vmemmap-optimization.h includes for architecture users.
+
+v1: https://lore.kernel.org/20261030140720.1256062-1-songmuchun@bytedance.com/
+
+Muchun Song (5):
+  powerpc/mm: make vmemmap_populate_compound_pages() static
+  powerpc/mm: drop powerpc vmemmap_can_optimize()
+  loongarch/mm: disable device DAX vmemmap optimization
+  mm/sparse-vmemmap: drop vmemmap_can_optimize()
+  mm/sparse-vmemmap: drop @pgmap from vmemmap population APIs
+
+ arch/arm64/mm/mmu.c                        |  5 +--
+ arch/loongarch/mm/init.c                   |  7 ++--
+ arch/powerpc/include/asm/book3s/64/radix.h | 12 ------
+ arch/powerpc/mm/book3s64/radix_pgtable.c   | 23 ++++-------
+ arch/powerpc/mm/init_64.c                  |  2 +
+ arch/powerpc/mm/mem.c                      |  5 +--
+ arch/riscv/mm/init.c                       |  5 +--
+ arch/s390/mm/init.c                        |  5 +--
+ arch/x86/mm/init_64.c                      |  5 +--
+ include/linux/memory_hotplug.h             |  8 ++--
+ include/linux/mm.h                         | 40 +------------------
+ include/linux/vmemmap-optimization.h       | 31 +++++++++------
+ mm/memory_hotplug.c                        | 16 ++++----
+ mm/memremap.c                              |  4 +-
+ mm/sparse-vmemmap.c                        | 46 +++++++++++++++-------
+ mm/sparse.c                                |  6 +--
+ 16 files changed, 89 insertions(+), 131 deletions(-)
+
+
+base-commit: 684242af7090928ada5e48fd40a0f3a539b3fd5b
+-- 
+2.54.0
+
 
