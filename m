@@ -2,73 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4182606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 13:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F0D606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 13:23:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RBuBAH5n;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=UNtIDXRn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Cq918Lpe;
+	dkim=pass (2048-bit key, unprotected) header.d=udp0.com header.i=@udp0.com header.a=rsa-sha256 header.s=sig1 header.b=Q67QI6z6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Oe5tXB2jftoFJ092Hy5Qi6HgkiNB7NYIPiHV7mzfpLQ=; b=RBuBAH5n7Ma3X6A8VkaNd89Dg2
-	/SwjUFr1qzJJBETS7w5kXXjLerCqrtyN+ozUzU25ie0KX1bnalX3K4BHLPQKPEV+2hVvBNYLHrr+y
-	fu+p1gd8Sw86z2MKA4aTrjjfGxY+ojhl43cZi7ZQQuAsIw0wmXUxM6Sx3M+K6CofpLMfffw3rKjkp
-	KZslpckPGvB+kl+kRgj/8enwr+SLLvoecWntYfkevFUGAab0kSxi1cRVNqH3sYr1xUCCX+bvnVuSt
-	ErUsJZv2fgEWPcSHiqjN19j5Abr3PHoRAZCsXo+MZyy1PO200DCPgMR+jjNEnBwH+EGKDdLPLHnNY
-	mOy/zmvg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=XkH+vWqZucV2P2/xeZrqT3HKbZQaLRyiqkAW1d5j9jQ=; b=Cq918LpegONJ+C
+	ud/Ye5rzjY9KV+mTn7xqsO8wVmZbRhOu07l2tJNxqPea7AmiEuiyL4tlWaMf2VLs4G+qYXATIdstE
+	WdVplZMEFrhRtVXYFpKsGvukyUAWDbRkkPVgyZTsinvdkLaXSgv3+VBcP+skORvO+Lw4hBb8a4w+S
+	GruxC2X8XqYc8b2UYHEsU+KTZMJSl/ypWlYZwqle+cYv7QigcD8fHg5ArsefZieDrntmDdIQdDq98
+	PcMXr2soiiBreAu5oHm5T8OUrtamV1rKwdw/dLEK8cBcgXKgazbk3J19qArnCkJgwNvLGi/dRPq1X
+	AhE8h9l2YJrWFkWutA0A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPgFv-0000000EiCn-2Qlr;
-	Sat, 07 Nov 2026 13:14:51 +0000
-Received: from out-65.mta1.migadu.com ([2001:41d0:203:375::41] helo=mta1.migadu.com)
+	id 1xPgON-0000000Eiyd-1EET;
+	Sat, 07 Nov 2026 13:23:35 +0000
+Received: from ms-2004h-snip6-4.eps.apple.com ([2a01:b747:3002:205::4b] helo=outbound.ms.icloud.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPgFs-0000000EiBb-0U2q
+	id 1xPgOK-0000000Eixc-2bPj
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 13:14:49 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=6r+u5+/t9rmLKRKE+pLYilMAZFIRYxNtrYJN5SugYMs=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794057284; v=1; x=1794662084;
- b=UNtIDXRnCqeIFejYU1k3WYN5kkpS36B6or3E06/TyDfoj7t/Vjjef07tfOLtWQO26ulMmEwS
- nMD246QwcGOBox8nnaw1x8kdDR4E2IUV9HhuRIH9giDb8A613EtF1/wNn7Qsww9B/BUIS/THcAn
- KTOb7GsEM7N1M3O3otL4zRM8=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 55edf2a64f55ee4f;
-	Sat, 07 Nov 2026 13:14:44 +0000
-X-Mizu-Trace-ID: 55edf2a64f55ee4f
-X-Migadu-Flow: FLOW_OUT
-Date: Sat, 7 Nov 2026 21:14:34 +0800
-From: Peng Fan <peng.fan@linux.dev>
-To: Nicolin Chen <nicolinc@nvidia.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Jason Gunthorpe <jgg@ziepe.ca>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Jean-Philippe Brucker <jpb@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH RFC v7 7/7] iommu/arm-smmu-v3: Wire up shared-SID STE
- ordering and feature gating
-Message-ID: <au8kOjsfkFhs1ye7@fedora>
-References: <20261030-smmu-shared-sid-ver7-2026-10-26-v7-0-961726ebd6ab@Example.Com>
- <20261030-smmu-shared-sid-ver7-2026-10-26-v7-7-961726ebd6ab@Example.Com>
- <aujbMKormSlNQMOm@nvidia.com>
+	Sat, 07 Nov 2026 13:23:34 +0000
+Received: from outbound.ms.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-west-3a-60-percent-4 (Postfix) with ESMTPS id F1DB81800F73;
+	Sat, 07 Nov 2026 13:23:26 +0000 (UTC)
+X-ICL-RepId: 01a1b62d-a406-7ee0-92a7-aa3fdd673dcc
+X-ICL-Out-Info: HUtFAUMEWwJACUgBTUQeDx5WFlZNRAJCTQtKAEMGWwZeCEEHQwVaC1BcHA4Edx5WAAlWUAJaS1QUBA1XHQdFUR9UWEEOCloFUFEdXwIKBEcEWxdGA1NFXwMXEVABWB5WXloXXk1HH0BNYkkBWhlbHEAXSm5NUw8PBV0IA0NUBF9QVBFXUAtbAEYBQAZVckYHRAhPHlkHWQtdAEp2XBopCzEOTgopBFgEM384RglHWxwTVhUNTUMSQhUEG0YeQwRfL10XXgxeBQ==
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=udp0.com; s=sig1; t=1794057809; x=1825593809; bh=XkH+vWqZucV2P2/xeZrqT3HKbZQaLRyiqkAW1d5j9jQ=; h=Content-Type:Mime-Version:Subject:From:Date:Message-Id:To:x-icloud-hme; b=Q67QI6z699y4Il3JSoGzy9/3agUy+eFvfdcNU5kmsd1agU3tKJcYqejCOrZXhRcp6NaTqBTzalpa2ACczGTyVlgZ4ysmoPZqJzBaTx2kJrZ6SDXvObPUKL582NMxy3Yf4q5ufLiDAvZK7kePK2vUa0V0RsCvmkStN/0rONdpABDRafF5oYunofXzKNMyUqWobOFs7zn59AyEodaG2Y+7lt4vV0au/FGxeIKTp/Y77DmjBTcvMVNBt6XYuQPz9AMuBj7EEzWkWLTdxQA9pBZw0vwvj0jL6C5IKB+8jF2TUaBDjPf/L4d4C/UkInea1cHzlJ1zr01jiVxOQ4XXQ+HqAQ==
+mail-alias-created-date: 1755760572767
+Received: from smtpclient.apple (unknown [17.156.208.39])
+	by p00-icloudmta-asmtp-us-west-3a-60-percent-4 (Postfix) with ESMTPSA id 5273618000BE;
+	Sat, 07 Nov 2026 13:23:19 +0000 (UTC)
+Content-Type: text/plain;
+	charset=us-ascii
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aujbMKormSlNQMOm@nvidia.com>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.100.1.1.12\))
+Subject: Re: [PATCH 2/4] dt-bindings: watchdog: mediatek,mtk-wdt: Add MT6833
+From: i@udp0.com
+In-Reply-To: <NHTtBa55FlZroePPfTapZ39Pvy1b4wyqCCdSD04TWCQXFLmLQy2sA6FNcAybpbZP5XAT42Ze_JPK1F8mA3c49Wk7dm8_Uir4anxYntb_CNI=@protonmail.com>
+Date: Sat, 7 Nov 2026 21:23:06 +0800
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ linux-watchdog@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+Message-Id: <0268858E-5417-4029-92E1-B9A769D336CF@udp0.com>
+References: <20261107-mt6833-base-v1-0-bda21083e9f3@udp0.com>
+ <20261107-mt6833-base-v1-2-bda21083e9f3@udp0.com>
+ <NHTtBa55FlZroePPfTapZ39Pvy1b4wyqCCdSD04TWCQXFLmLQy2sA6FNcAybpbZP5XAT42Ze_JPK1F8mA3c49Wk7dm8_Uir4anxYntb_CNI=@protonmail.com>
+To: Roman Vivchar <rva333@protonmail.com>
+X-Mailer: Apple Mail (2.3901.100.1.1.12)
+X-Proofpoint-ORIG-GUID: 95eXpZTJhLMQL2DA2HK0aiuKYkqwkhMZ
+X-Authority-Info-Out: v=2.4 cv=JcWxbEKV c=1 sm=1 tr=0 ts=6aef2650
+ cx=c_apl:c_pps:t_out a=kRaGL2Q7qLiahLf3O6OaIA==:117
+ a=kRaGL2Q7qLiahLf3O6OaIA==:17 a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VihV-RlftAohqbJ1NDcA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA3MDA1MyBTYWx0ZWRfX4q5Zr7QYhpp/
+ PijRaXHDjgtCoIUFHOzLSWz0IjqKqdGrXY0156XKKKtYnM79/iKqlLd3Cww7UF1AlrgAIogNSoc
+ RxkaG6f7QJVHnVyFp2zikNGFXP+/NqEm3adM4X0q+7Rerq2nhlmUjkbNB2TMqyILMXAVs2byt0C
+ re+evaIkMmo+AOOCjL54QGyXAlS2kfoQCYGMi77omjCXA4QgTbPRCSpEZo0n0QxAQM+vYGU5546
+ LH7DYXSQUbhsl4QOMarBwR8aynppmn2R1c3cBIk9WgKVOWu5uQ792Df1FM/w3Dsv7sbvADcNkjF
+ pZ+Uii6U8P1TkRe9RBB6SabMi0h+wILpD+ShLSOKl9DDuuy0vtb6A/ISpSB5G0=
+X-Proofpoint-GUID: 95eXpZTJhLMQL2DA2HK0aiuKYkqwkhMZ
+X-JNJ: AAAAAAABhz3Oh/EPhCGAyIy6KvmkLp7t7H18Lp9MeSUEuUYuOLaDxL0B7oLDYsDhsmWO2q
+ 6F42SgfSUyu6PBKz0FwBsZVi+kbcmRcqsbSn3lhSM6m9MoI8RRSnyNQXfDSZ11Wd4rZ+eI
+ qppeNSauUXS4WyrvDGBoOaH0dwBHc/FUrzxIFuaXkfO66j/B563ndOGebhqOkaM9+WAj3v
+ WAnuqTLWJVnN71jpS/ThuXybbmyMTqGx7OGgGk48m67gS6TfPe66vSCIK+0VCkDf32L0Yx
+ CzO+MG+KhK5WzYjslbn4W/tOXjdYNfafplXcgsJBP3FVHs1WbI5tKbiS0v879uJfd1aSYA
+ P6zFjyvE+1aPlUzUr/6FINWvT8FPbtzU7DAkjf0cVYMQzAW2UXbE2gK6+MtRv1tWWhWa6M
+ 6uXXz3s3dosVJ/zbkxayIXOHevMrdSzmsUjDh1hIcoAu+JUxZgq0yrKUu0vYP9bfg2SgKM
+ AVQxD7HhlCz7hChGkxs1RH76DkhBb8bna96/TxRDCubco1/o8hNUy6ApXCpdB5T9noFSzk
+ DqKJm6b4u+uGsn7fpJpwnXkoz4l8v699dn4EGl078BYz0dIwu9xAgmgY8/+G9PzjTdSTKQ
+ c2JwlNpQouvzsiYyGoTPlJOC2b5KGqmZhzVKaMJyLIukkonng/vDAM5PBuUyzFFNycemiG
+ IDr5adFI9+J/4FyidrTw0n5M+ysPjPkoO4UCXMwjAf2YHYMlx0Pgq/9r61jTC0oVQX5UgU
+ vFpvfueAHn4q41PrkiMhwGCWBTmLXYdJ8pfrjVYpYCPRwMdY5R25Ch5fPwm5DuVfE/4mOe
+ tja1itNC5QdG29/7+IUtuECogI+u16wodX3UsJBogdWYEY4C6LPa6/RTTeZ+b5j5o7MQfi
+ xXCrrkcgHiqLwG2SBqNBejAJs8r+d6Uxv3qjZFKh3/usjJICtUt2qYoNY87G6+yaqTTTXX
+ pR7HgWFHns+gA9ScipZqvEdaXFZFTGvmyFzByLonJGp4dZvsFi86U8etrTyYOx47hoVw7T
+ teQZADgQd18gEcefXK8/DVErtlzIrIhKBvqdTaIiyDnlCKkxMxrJxvLjQfx0tySIvpHmRj
+ 6TYErlvnMwoZ+OG2UiDXAqk4GeJ09Ct8ho4b0WbFRPYKlQN4c0ZyRAo2OJ7aUXzuvFFE+5
+ i4RS+pm/oJ4lL1D8ZjHKrjxkaioFHES/smdb0B7Wc6imhcFFHis19EuhYiSAeT4rGYYVeT
+ D+lR0pRJM6boTjhDp9K/q4tKRWHrwP5oV1VOl/yCJm5+BcaC9ZtpVnFfGf6X/U9gS2DAYh
+ 86l3zkl50nRXMPG3E7NGB3LQ1rgDnjMM6WYYgQ8Xp4L0UopdA687X5nLeVI6TQKe2pgrjY
+ 71xnwBNt8xGFbZdAgS4zzNAVYobgbenR80bdnRmcjPhpV/1ziwTNMQYse4bt09ZbfLC668
+ GgoBI=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_051448_295991_6DBC1228 
-X-CRM114-Status: GOOD (  13.96  )
+X-CRM114-CacheID: sfid-20261107_052332_997002_00BE679D 
+X-CRM114-Status: UNSURE (   9.09  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,66 +118,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 02, 2026 at 10:49:20AM -0800, Nicolin Chen wrote:
->On Fri, Oct 30, 2026 at 08:09:39PM +0800, Peng Fan (OSS) wrote:
->> From: Peng Fan <peng.fan@nxp.com>
->> 
->> With the per-domain CD table, every non-PASID sharer of a SID builds the
->> same normal-domain STE: same S1ContextPtr, S1DSS and S1CDMAX. Disable
->> stall and ATS for shared SIDs as well, so the remaining STE fields are
->> common too, and let any sharer program the STE. This also handles the
->> case where one device's driver attaches before the stream owner's driver:
->> the first attach now installs a valid STE instead of leaving the boot or
->> firmware STE in place.
->> 
->> A release or blocked attach must not abort a shared STE while other
->> sharers remain, otherwise it would break their ongoing DMA. Skip those
->> writes while the SID is shared; the last master (no longer shared) still
->> tears the STE down. This also means removing one device from a shared
->> group no longer leaves the survivors aborted.
->> 
->> Fault events on shared SIDs cannot be attributed to a specific master,
->> so arm_smmu_find_master() returns NULL when the stream's shared_masters
->> list is non-empty.
->> 
->> Disable SVA, PASID, vSMMU nesting, ATS and IOPF/stall for shared-SID
->> masters since all of them require an unambiguous SID-to-device mapping.
->> Reject sharing at insert_master() time if either master has stall enabled,
->> or if the existing master has PASID or ATS enabled.
->> 
->> Introduce arm_smmu_master_stall_enabled() to describe the policy actually
->> programmed into the hardware: a master stalls only if it asked for it and
->> its StreamID is not shared.
->
->Why do we need this? A stall_enabled master shouldn't share its
->SID in the first place.
->
->> Add arm_smmu_is_shared_sid() as an inline helper in arm-smmu-v3.h so that
->
->Use arm_smmu_master_shares_sid or arm_smmu_master_has_shared_sid.
->
->> arm-smmu-v3-sva.c and arm-smmu-v3-iommufd.c can use it without repeating
->> the list_empty() pattern.
->> 
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->
->Please check sashiko findings; all seems valid.
->
->https://sashiko.dev/#/patchset/20261030-smmu-shared-sid-ver7-2026-10-26-v7-0-961726ebd6ab%40Example.Com
+Hi Roman,
 
-Yeah. I checked them every time. Seems the patchset will be bloating again.
+On Saturday, November 7th, 2026, Roman Vivchar wrote:
+> Does mt6833 watchdog have the same resets as mt6589? Please take a look
+> at mt6895 series [1].
 
-Thanks
-Peng
+Thanks, I had missed that the mt6589 entry now registers a TOPRGU reset
+controller. MT6833's resets don't match it: MediaTek's kernel for this
+phone resets the connectivity CPU through bit 12 of WDT_SWSYSRST, past
+MT6589's twelve lines. That kernel has no full reset table for MT6833,
+though, and nothing in this series uses the resets.
 
->
->Nicolin
->
+So, as in the MT6895 thread, I'll make mediatek,mt6833-wdt a standalone
+compatible in v2, with a match entry in mtk_wdt.c that has no reset
+data; the resets can follow once their layout is known. I'll wait for
+comments on the rest of the series before sending it.
+
+Best regards,
+Rui
+
 
