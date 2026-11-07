@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E26606A32F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 13:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5A4606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 13:50:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4PgPDW7q;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gq7c3PX9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L9UYLh0w;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=TDvNt+gU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Af7cKlFoogk/50NAo6rFkgmdxcBnIE+i0cwBb3cAFcE=; b=4PgPDW7qmWnQmK
-	Txq8nOIRL7X5eCGpRg5We50urQKkbvY/il1Z/f5gJknsuz8tQVUhC6QBHWcWekwnvmHqOFQZac8mV
-	7n2pwMswXwpyIlbRC/aTTMDKjHKTfzyYdILFJenltI4z53br49SbFOFv6gggAA5SxNfe6gL86lfxC
-	2WLhTuaohx8+pJK/57Hjk4Sqvd3AvSPJ98SjpT4TcK9DROvNcIZiyr4xnMd0ea50gUCOORX9jrwsD
-	DiGL2EsofIGe+5I+HnXZ882MHfxJ2XoTs+f8/IVJGsHGwu+vWUQIe2cmRgpKZ4GkSykf+/IZ7YMje
-	Wjg6fW7JikQSvXbMbvpA==;
+	List-Owner; bh=LValEK7sCbZl9kgj7RilnfIodlMc9vaM8NFPGguTOMw=; b=L9UYLh0w+VUIDi
+	iLl1aNC2jMfx+gKstpBAmhihUFhIHvygRGFCiHclwPEOEyDrg5T74SO/84RGZ0s5WYHClRWUt4U1K
+	I3AV9h4ZxVXGGIPnSJYLzFDK4BBm1gvNGLok6IFQtEnp5l3VyJishAUqDtifFyL4DwjW6JJephd0g
+	P2VVsFMg2t/dszsThSq+Psq2tWfY09fFCPTAYGmnCodiGcnY+FXQUtmxnQfyg8epL3iw4D5f7BQRG
+	7RC4C3u/QR1j6UKcZ9Zwq0qWkG4J2Gj4fXnjjOcxOD2hyLfnsB+TfPekxqnIyVuD6wnASiurUHAHB
+	kTATXTksxoGWuRa586ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPgoR-0000000ElAp-0e1B;
-	Sat, 07 Nov 2026 13:50:31 +0000
-Received: from mail-dy1-x132f.google.com ([2607:f8b0:4864:20::132f])
+	id 1xPgob-0000000ElH2-18NN;
+	Sat, 07 Nov 2026 13:50:41 +0000
+Received: from mail-dy1-x1329.google.com ([2607:f8b0:4864:20::1329])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPgoO-0000000El8n-39pD
+	id 1xPgoV-0000000ElDl-1evl
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 13:50:29 +0000
-Received: by mail-dy1-x132f.google.com with SMTP id 5a478bee46e88-37198ed3727so263385eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 05:50:28 -0800 (PST)
+	Sat, 07 Nov 2026 13:50:40 +0000
+Received: by mail-dy1-x1329.google.com with SMTP id 5a478bee46e88-36eb1cb7aabso2441847eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 05:50:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794059428; x=1794664228; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794059434; x=1794664234; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Af7cKlFoogk/50NAo6rFkgmdxcBnIE+i0cwBb3cAFcE=;
-        b=gq7c3PX94rSTOt8wlLvafqR2hukv0odYJddHcycUTmirGR85BT0tPDjB/o2IcYSj+h
-         KssYgkTjF3CihPDHUFyeFLMEJp/dsChwCNqy8IISXMk3ORBLkCbIjZGQ8MzzGYJAU0lb
-         HppO7LgQVAn44A9nVz3ovjXGUkWZdPPDU4RN/iStBoHnQNCtULwcbWUu17vLkoYwOyUt
-         lN2xfDcP5OdZl44GpBpDkR1YfnZStTXn+rhR1bAAz/mns+nWlrFsrYs6MXWZzmhG6jtV
-         yJQxi1YG32xgPACstra0FAk588SxDca4oW0wyg5kwMxWLa3BLW3perP3oVeCbA3/CtGb
-         Yadg==
+        bh=LValEK7sCbZl9kgj7RilnfIodlMc9vaM8NFPGguTOMw=;
+        b=TDvNt+gUlOvo6Hg2V6snaDLGvfifj1engpHqHzN9w1fSiSXVLjTBP7vNyubAkAsvRN
+         2g/cYvcceX0Cv/jBp1U1Zcfp4VSgnk3j20PmBgETkv3S2sh3GPTJtmQ9UsE3y62s2sa5
+         UatRJlFMJNIfT1Ojt+t7FBIWTHir8FpQPfwi/7ZjOIQE/x+rILofewdDhRCgvMN8YUox
+         87BtvgWNR5hbyDcBZXjRF8eutm+nq23M93EJ+c0ywNVNE8wo4jDY3jeP4RPYZmCzlB7A
+         fNXRV9nZ6TpNuyWgzMg04bNFHKF7b/rFojX70GLHgGPxPOiq5FDi4Gk9NkvIOHm1ljRP
+         nIJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794059428; x=1794664228;
+        d=1e100.net; s=20260707; t=1794059434; x=1794664234;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Af7cKlFoogk/50NAo6rFkgmdxcBnIE+i0cwBb3cAFcE=;
-        b=kCcvYJCouITYDw9eUJepLO9T63FdSrWeVp2ze07sAPATKZbWZbOK9Ss7bXTXMsQd6U
-         iW2LFgExwj7q8sLX6a1ihJiwt5pHnoBYm//NevlRpVLbJiovZNXVpalpvjwOuU0lvcyT
-         xgkg7f3z8LLf4k7Ycmt23LxuXJOvCSQj6UAbuc2qKPXaNvOeA+BvsiFV2vDiuHxOeG9I
-         o2dGdKXjuwmiTG9lHMpcycqJ1+fV8DP/CxyXvr4hWfdlD0FMz1v1exZj9KaztjKPo7N9
-         54pi/M0EKga/MlZY9eNLik/eREgFEBquloAAZwsqtuWHGCcS2aZKHZPYs1QSSuwDnpRQ
-         zVtw==
-X-Forwarded-Encrypted: i=1; AKwUvBw77V2dBW23jxLEe1SHzGy8TgZXFJXiqoGDeKcniaq5ga4NKdDWpg3fZDc+Sl1e20zf5cMjYuoy05ayHhqz4xS1@lists.infradead.org
-X-Gm-Message-State: APuU4Z8al4eGrSGrcsOJNdGPYgHscHqB+wM42tz6aEwo30rymL2PRdwd
-	ZbkL+36kzYO2W4R1TTeHRZoIsI9f4I24ClXOJr1WVUpYFWY3FJOsg/dx
-X-Gm-Gg: AYBFou0vanPBLMGcn82FYxxFqCF/fpfCXpaSE0awWik0LM5hh0Dzxr0kz5i9pmiDjZB
-	xvk8I4g59EjDn7ckQHvzEhHMwpf9fCGYRlGHuuGzGFENRIcrnsyX0npIGcfNmRac5bUV8GMFHLN
-	iIbOj1x7jd38CyQGZ03AsCE5AAH3QugE70vGcIEAKuXxtnnlt5jS2+baRe1KOlpz/PBdFQxBAJY
-	FFDIl8feMm4nUcq0IumgP7KrtrUVXonabZMsS9um4czGwrpwOnQhOdBkbhyKA93hOcqGOI8PcWm
-	N2xfr/JRW9v5JgwcLDkwQSr33/x/+EBsXpGIkpG4/73XKv3MPTGeSgViMxmAuo5p5dmdfTTQy5Z
-	8q3SqZJOparV4iQ5k/tLC7Hp1l5R3IJnGzfFPjW8lV56nP1hS59sAY8NvTV7cV8b5wVFOLU41Ql
-	kV8TArF7o9zoBgISvubbo+Q+Sh0yE8p+Ol4vulsErz+2F/edyog5OxKEKdo/4MX/EKoOOH3PKgb
-	XkrM8e0/pr6dNjrQyv3RMC+q2SP4ddU0N0Z/N0MtPCp/j+yz12nam2WihOkMHldwhurDzBaDKaN
-	uj4dyBlV+3eoMfcCPWT84RWd1Ik6p4NYBFPTH5SmheaCasveiYe4XefhcA==
-X-Received: by 2002:a05:7300:c00c:10b0:343:5f5f:eef0 with SMTP id 5a478bee46e88-370f7c856a4mr3702462eec.21.1794059427852;
-        Sat, 07 Nov 2026 05:50:27 -0800 (PST)
+        bh=LValEK7sCbZl9kgj7RilnfIodlMc9vaM8NFPGguTOMw=;
+        b=i5EpsNLTcHqyuRSa0V/cKnEjkcYbmYwheF7ACHao3UG0KWR8oYQPwPFEaefRlbljhI
+         ib+H4h8ypdkqMgfBeRn+2dtap8H3YSBrkUjnHqOG0IrVqrCNmCEJRRbb7PhMWZizZRo5
+         IS4jB/yMLYAchHihMXF+HOZ8auTP7eLrPf/Rv5iMODbfIQuJcMGbgVgnunvKrATtPEaI
+         VUOByhWMAAvl/T/GDfWj7E1S8OSrx9RsIQsGdXXQteAPDcouDSiopdo4+1PzmOxWBWJj
+         eX3vCapqB9I/mc846qvAsif7NFHs/NgzGXOfLSKlDiPtkGwiUn+ioxZsL0bbB+kF5b1u
+         OzMA==
+X-Forwarded-Encrypted: i=1; AL+hErHgodMQ4ECRZ6WIx1J3iW94DBOrabPGDD9vP2z256SI3PViqfnxlEJ6HBfmUZL+mWFD6sxGg7/jBwuSM+29IXBz@lists.infradead.org
+X-Gm-Message-State: APuU4Z/TlDcZEwQwNh2Go9/vs4rLWPlxaMIRQ8yxxaIu2w7aT8Sy3Hwf
+	1zeCkxuXTnq6nGLyZ6RlUs6FqHqChMrng6hOKpenor5Xl37DqSnMhKjNaZaQpTWHQgE=
+X-Gm-Gg: AYBFou0D1eA5qElAb5Zw4Xg+pGmf9EfAwvof5F60u5uvp34BLlCZGExPRZQQZLKuNcf
+	+uTMl+K1gJ+054llGrhYEg0h1QfTmrVqj3JxSLYSTwk3FUZV6EZZtTet9KGxlfqTMlep8UmAE+6
+	qSXZH5EaJIKbpbncimnm2tMsVg7q/rOa7gu7GG8+HUxJjqVVB8Ci6b5/HTy0vXKuY7ePIKgDxSF
+	jQvGRHQSXN1P47ruO7os5A8Slp/qC7e4P3uq98U0GaZL3mLiuQnbnsgU+30VbuRqeEYMdWouasK
+	G1LmKH5Ky3yr3gxe1JT7Db3Z52HCCKEEDk1XlkUfw4n7GJfjttL/PynbwGau4evQN8fsaZWkMlt
+	eUVdg3aMMw98vKIQKR66IYC2BohVXgxM38YJJljyINQEkPyUwKFeffWo3BMRUnhRawaDNoPt31A
+	uIYQJ9Gq4jPhXpxwHsG8H0r5tJSP9eHlex8wylmIoTkBcrYBNCzB/cECGlc6dvc9IS+1qetQFSU
+	LUB7N15QQy7uQAo+iarUjWccS5JP9rmfEZv1HgcaYv7nZpxMlVfogL1czPZN6nOVadJrl2ZGMD1
+	w3uIAaOdLttWit41vWRWYLOsAj2fphki+tgw4eCyfea3OSrZtz3uuW1gqg==
+X-Received: by 2002:a05:693c:66cc:20b0:36a:1452:8dad with SMTP id 5a478bee46e88-36f7612b26dmr7574830eec.20.1794059434348;
+        Sat, 07 Nov 2026 05:50:34 -0800 (PST)
 Received: from mi-OptiPlex-7060.mioffice.cn ([43.224.245.234])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-36fa922c6c7sm21280820eec.10.2026.11.07.05.50.21
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-36fa922c6c7sm21280820eec.10.2026.11.07.05.50.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 05:50:27 -0800 (PST)
+        Sat, 07 Nov 2026 05:50:33 -0800 (PST)
 From: Wen Jiang <jiangwenxiaomi@gmail.com>
 To: akpm@linux-foundation.org,
 	catalin.marinas@arm.com,
@@ -96,9 +96,9 @@ Cc: baohua@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linuxppc-dev@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v12 04/10] arm64/hugetlb: drop the init_mm special case in clear_flush()
-Date: Sat,  7 Nov 2026 21:49:47 +0800
-Message-Id: <20261107134953.748622-5-jiangwenxiaomi@gmail.com>
+Subject: [PATCH v12 05/10] arm64/vmalloc: allow arch_vmap_pte_range_map_size() to batch multiple CONT_PTE
+Date: Sat,  7 Nov 2026 21:49:48 +0800
+Message-Id: <20261107134953.748622-6-jiangwenxiaomi@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261107134953.748622-1-jiangwenxiaomi@gmail.com>
 References: <20261107134953.748622-1-jiangwenxiaomi@gmail.com>
@@ -106,8 +106,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_055028_793275_7FDD1AF6 
-X-CRM114-Status: GOOD (  10.67  )
+X-CRM114-CacheID: sfid-20261107_055035_438649_DC33DEDD 
+X-CRM114-Status: GOOD (  14.07  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,43 +127,58 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Wen Jiang <jiangwen6@xiaomi.com>
+From: "Barry Song (Xiaomi)" <baohua@kernel.org>
 
-clear_flush() calls flush_tlb_kernel_range() when mm is &init_mm. This
-was added by commit 06fc959fcff7 ("arm64/mm: Support huge pte-mapped
-pages in vmap") because vmap called set_huge_pte_at(&init_mm, ...).
+Allow arch_vmap_pte_range_map_size to batch across multiple CONT_PTE
+blocks, reducing both PTE setup and TLB flush iterations.
 
-Now that vmap uses vmap_pte_set_huge()/vmap_pte_clear_huge(),
-mm/vmalloc.c is no longer a caller of set_huge_pte_at() on arm64. The
-only remaining callers passing &init_mm are in arch/powerpc, which uses
-its own implementation. Remove the dead branch.
+Previously the function returned a single CONT_PTE_SIZE for an aligned
+range, so the caller mapped one CONT_PTE block per iteration. Now, for a
+CONT_PTE_SIZE-aligned range, it returns the largest CONT_PTE-aligned size
+that fits within both the remaining range and the caller's max_page_shift,
+so a single vmap_pte_set_huge() call installs several CONT_PTE blocks at
+once.
 
-No functional change.
-
+Signed-off-by: Barry Song (Xiaomi) <baohua@kernel.org>
 Signed-off-by: Wen Jiang <jiangwen6@xiaomi.com>
-Reviewed-by: Barry Song <baohua@kernel.org>
-Reviewed-by: Uladzislau Rezki (Sony) <urezki@gmail.com>
+Tested-by: Xueyuan Chen <xueyuan.chen21@gmail.com>
+Tested-by: Leo Yan <leo.yan@arm.com>
 Reviewed-by: Dev Jain <dev.jain@arm.com>
 ---
- arch/arm64/mm/hugetlbpage.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ arch/arm64/include/asm/vmalloc.h | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/mm/hugetlbpage.c b/arch/arm64/mm/hugetlbpage.c
-index 8e799c1fe0aa6..ce247b06fe03d 100644
---- a/arch/arm64/mm/hugetlbpage.c
-+++ b/arch/arm64/mm/hugetlbpage.c
-@@ -206,10 +206,7 @@ static void clear_flush(struct mm_struct *mm,
- 	for (i = 0; i < ncontig; i++, addr += pgsize, ptep++)
- 		__ptep_get_and_clear_anysz(mm, addr, ptep, pgsize);
+diff --git a/arch/arm64/include/asm/vmalloc.h b/arch/arm64/include/asm/vmalloc.h
+index 4ec1acd3c1b34..c29704a19e276 100644
+--- a/arch/arm64/include/asm/vmalloc.h
++++ b/arch/arm64/include/asm/vmalloc.h
+@@ -23,10 +23,12 @@ static inline unsigned long arch_vmap_pte_range_map_size(unsigned long addr,
+ 						unsigned long end, u64 pfn,
+ 						unsigned int max_page_shift)
+ {
++	unsigned long size;
++
+ 	/*
+-	 * If the block is at least CONT_PTE_SIZE in size, and is naturally
+-	 * aligned in both virtual and physical space, then we can pte-map the
+-	 * block using the PTE_CONT bit for more efficient use of the TLB.
++	 * If the range is at least CONT_PTE_SIZE and naturally aligned in both
++	 * virtual and physical space, return the largest CONT_PTE-aligned size
++	 * that fits, for more efficient use of the TLB.
+ 	 */
+ 	if (max_page_shift < CONT_PTE_SHIFT)
+ 		return PAGE_SIZE;
+@@ -40,7 +42,9 @@ static inline unsigned long arch_vmap_pte_range_map_size(unsigned long addr,
+ 	if (!IS_ALIGNED(PFN_PHYS(pfn), CONT_PTE_SIZE))
+ 		return PAGE_SIZE;
  
--	if (mm == &init_mm)
--		flush_tlb_kernel_range(saddr, addr);
--	else
--		__flush_hugetlb_tlb_range(&vma, saddr, addr, pgsize, TLBF_NOWALKCACHE);
-+	__flush_hugetlb_tlb_range(&vma, saddr, addr, pgsize, TLBF_NOWALKCACHE);
+-	return CONT_PTE_SIZE;
++	size = min(end - addr, 1UL << max_page_shift);
++	size = round_down(size, CONT_PTE_SIZE);
++	return size;
  }
  
- void set_huge_pte_at(struct mm_struct *mm, unsigned long addr,
+ #define arch_vmap_pte_range_unmap_size arch_vmap_pte_range_unmap_size
 -- 
 2.34.1
 
