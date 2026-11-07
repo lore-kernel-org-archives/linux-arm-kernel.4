@@ -2,93 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32884606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82416606D805
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a++RQ5Dz;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=eWYJGGRB;
-	dkim=pass (2048-bit key) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=YA3oaAqq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qni10EId;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iJodq1ml
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TjMdFk8RF2kaRdnGIftRqRXHaK9TIJqelTHCSWvnKbg=; b=a++RQ5DzSigGVW
-	v1yP4L2vKRsJSiUe7cVjtbo2xEdTSCXvHq5rmBsYsRI4ItDw99G8yj5LJ1GjNZaa0llyy9Y/xK0hs
-	rZZQkEAmg5tFgSisQIFN/Jr4SEeP7ardahAQgeC+ZBm6ivncvK0+ckF7jAC/o10vMMSXOT0xbtBzt
-	eg6Z4c65jqLcBZ+djvjy8EDmWBA5XwdATQ1WVDL3oaeCyPBfywchptbw+Mn5pxgwZ0JJAHhAJGgLL
-	ORUxFOQTqMTZP73RFvQLiSRoRw+TikQGSPZaz0UsN/wb2qLE4z7DHUh8Hw1u8NjGku5O3dLyK/VRH
-	2e8HZnP11L9qxgbYVRbw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=1x0su3qFIaIhLOOHVTg63Xzz5NRDGI3ilAjVRn4Y+J0=; b=qni10EIdqzGqEHtCtC3AJMHAt2
+	9tqwaV1QrWl5AXrVivTGllhU3VJXsgISvr2sCyBK/kMoMCmZy0It5YQ+c+RLXKcA47kXS9FUtgKKQ
+	4TP5UT7/03n0dKSWme5CciqtnJTFRTSnJRPRHRudT2VGKj0Il1nEooHHQXcElNKViXKsV9TuEd4Yj
+	pLjy88eUd01yZ5ypSc/IwDTa0WyfwFetzfdSbzbsvHBYiF8wz/nf5UmjHiO3yANhqrkMWnOLqB5JQ
+	dJkaYMypkMcwaoPG3/KBmb1An4/aPaMCix4OaB4AQdGE2TgR4UykwlNpT8G2VrUiaZ4KjbEhVC/Aa
+	fyV3nOVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdFj-0000000ES4I-2azO;
-	Sat, 07 Nov 2026 10:02:27 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xPdQm-0000000ESNH-2O1f;
+	Sat, 07 Nov 2026 10:13:52 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdFj-0000000ES49-1NgJ
-	for linux-arm-kernel@bombadil.infradead.org;
-	Sat, 07 Nov 2026 10:02:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=TjMdFk8RF2kaRdnGIftRqRXHaK9TIJqelTHCSWvnKbg=; b=eWYJGGRB6YJSDWx5tNBc9D7TeS
-	0J2Wq+86pDeCGTlk2aQZ1bX3A20WezVYgM+VffNYwXpSh2X6J/r8SEGE6qLR1tAB2w5NzOFfnEy0X
-	EbhkdvIpLcp1KPwugdKir/CU2bKSBSsP7vmQ8fJzwS+wqQHUstx1IqYDEX9Yl0MlLXLbGNYouuCSH
-	54xbosV4QGQVOQXrKo6GL3C5bxzr+VTGCcse0m9tZSMRJczdSf2nq2hhMWEsqtFenFPCl5wnkpgKs
-	biNcmMVNSEAEI2tKOEDihlg2FgS6L3zX2RxjQZe6tH5F/x8tTIVfdZ75XQNeUPmmzeOOO14blMQSA
-	0m2HAisw==;
-Received: from mail.kernelriot.com ([74.208.142.49])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdFg-0000000579N-24Oy
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 10:02:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
-	s=kr2026; t=1794045741;
-	bh=+/ah8vkaUP87DIJHEblp3tls1hoAvi5cG63uzTk2jyA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:From;
-	b=YA3oaAqqZeN6mMwRbLlWFxUHJTOS/YV5Tf0YMXVoJGIeGL1kBg3ADZFfe5MNss8vE
-	 MIEoobu/aDKNIrDejwSZFcURBEatbOt+BAIuzjkZ12NRCYmeGkrHMnGDIOSWsNpEGL
-	 MLf7cp1GrS1iC0Gx4bH5sxaEq5fH4DhVKFjeqsM2x7fbVWaYgtZRG2Ft0H2JG9ORJ6
-	 zI2LEmpGjLw+Yx/XISWN6bbUKkyzu/ViR20cEfpKUwmyJpEkeI11ITx49iO45mk6sZ
-	 XwvkqaG4hxP0HO+2XeRh9sURl+EKV0txlu5rE6XO/0QqJ00xhuY0DmB5bfzSISoDvF
-	 lMG6KdXpegkHw==
-Received: by mail.kernelriot.com (Postfix, from userid 995)
-	id 3E6128147A; Sat,  7 Nov 2026 10:02:21 +0000 (UTC)
-From: Magnus Leatti <magnusleatti@kernelriot.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
-	Nicolai Buchwitz <nb@tipi-net.de>,
-	thomas.petazzoni@bootlin.com,
-	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net v2] net: stmmac: Clear DMA errors for multi-channel interrupts
-Date: Sat,  7 Nov 2026 07:01:40 -0300
-Message-ID: <20261107100140.8279-1-magnusleatti@kernelriot.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <179379704484.488856.2140619507341432623@kernel.org>
-References: <20261103125430.962715-1-maxime.chevallier@bootlin.com> <179379704484.488856.2140619507341432623@kernel.org>
+	id 1xPdQl-0000000ESN8-0dpF;
+	Sat, 07 Nov 2026 10:13:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1CD65601E3;
+	Sat,  7 Nov 2026 10:13:50 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794046429;
+	b=BFFzFEyLQlad4lN8VqQPiQP9oB9Z2XmmXQsUhIsTUSdXPmKl6yJAKjCgM6cynk4VQhNs
+	 A7wdrZtbV2nCCQNhiPzwp8wRl8kG7JUKgLfqDMZzq9UnLMGkw7+EgYg92lQDsYcZxsaKp
+	 HWbzJqX6KCngXz6zl7x44T+P1PJzjMCBF9xK5opvBpaTdaPcYzub4zXanxOZKo7MvwboA
+	 jLZmfVdnBOG06whPTNnw6e1fhxfVZmM1CzOe9yaffkuTPBfoFgoRk6uP1qGkGsuHYXVIh
+	 m7QmG335LpduEVbmdMH3b8hUqdjOW3EYikgK+Y1iUl1DUeL23RqSwQqu9+HBD0vFNRw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794046429;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=1x0su3qFIaIhLOOHVTg63Xzz5NRDGI3ilAjVRn4Y+J0=;
+	b=xr2nd3/g0n7ooPr5PiV1VYx6Ry5aK2D1CQqXEjrh02qcSgN0t2pWfUYYz7ETV7jQ/34o
+	 uqfJnzU6R7TpIGjMc4AHz35qx2mI02X2ONvuBy3Z/Coe+VIh78NATsrRb79sN2rZD1drZ
+	 r+ks9c4Z7+v6jg/UiTGxhYKem6crjbAoItEPjODEegOQyC050YqexT64oOmcRUeUMTDhx
+	 OM3fIHfnM5cDWoXyLPxqMVEtr3YqFKFkwTLDt/GmNPpRQU0NLCM0V+ByUE/y7jAiHqgEA
+	 +yRRz0VxNXUzgnzbhHz2d/RvoLkMNMc+E4wD4NaWSpJ8otyoeWZdeTeLlmoMPW4w1lg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5BF8E1F008A1;
+	Sat,  7 Nov 2026 10:13:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794046429;
+	bh=1x0su3qFIaIhLOOHVTg63Xzz5NRDGI3ilAjVRn4Y+J0=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=iJodq1mlSBtu854QVQ9ONyTD8j5Q95lYmdwTqfxnAsksfn20dPcESK1HxVB7tUFK5
+	 8QaQrGLUe1AapT8b4xshPMS29njcmVSln4HZzphVip6JHGzMXsh1jrv8hGBhUisJ8h
+	 hmDVZczDUcf8FmRlM3CKW3/ivKDGOjmAlBJodUEqsh3PgMdvZOSifiQm/qvt/fQ5jj
+	 W1uPPB0wrLYe2rEvBTxPfO6l5/a1GlCknPpDAwv3lKc6fbb2snBCmf00ifLCiIW5Yb
+	 3b8Jg+Gghcmo5pYCo5po3Ex7lwIjfWjuqakh0tujF9H1VCz1el5GTupr8F6AKd+z6o
+	 eqplaZPvdQacQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id E1B2C47B59;
+	Sat,  7 Nov 2026 10:13:48 +0000 (UTC)
+From: Rui Cao via B4 Relay <devnull+i.udp0.com@kernel.org>
+Date: Sat, 07 Nov 2026 18:13:43 +0800
+Subject: [PATCH] spi: mt65xx: Remove the CPU latency QoS request when probe
+ fails
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_100224_580398_F2664760 
-X-CRM114-Status: UNSURE (   9.03  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -0.2 (/)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261107-mt65xx-qos-fix-v1-1-9d9c16a584e4@udp0.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzNDQwNz3dwSM9OKCt3C/GLdtMwKXWOjZBPDtBRjC9OURCWgpoKiVKAw2MD
+ oWAi/uDQpKzW5BGSKUm0tANz3mEtyAAAA
+X-Change-ID: 20261107-mt65xx-qos-fix-32c41fd385da
+To: Mark Brown <broonie@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Leilk Liu <leilk.liu@mediatek.com>
+Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ stable@vger.kernel.org, Rui Cao <i@udp0.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794046428; l=2424;
+ i=i@udp0.com; s=20261107; h=from:subject:message-id;
+ bh=J9ck0Rmxdd1nbYdPYBN9FG+4oXVrAofA+j7Izp5hqPk=;
+ b=REkzO9qjpDLtQwUJ2L7TcXugkI2yWMutN5NdD7o8ySpatBLXAbAjyDeG80TTMDedIQn2d/x9A
+ T87E08PacYsCghHh8+DjFlPTrQv5tXsVOQTQ3KN19p0+P+wXDg8ZjGo
+X-Developer-Key: i=i@udp0.com; a=ed25519;
+ pk=XZJKcKgnUUjjyw8KuKy7u2QeIX0JLY/L1Fxzwwje41w=
+X-Endpoint-Received: by B4 Relay for i@udp0.com/20261107 with auth_id=1443
+X-Original-From: Rui Cao <i@udp0.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,37 +111,80 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: i@udp0.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Should the Fixes: tag point at 1b9707e6f1a9 instead, or also include it?
-> As written, stable may backport this to 5.13+ trees that cannot hit these
-> storms.
+From: Rui Cao <i@udp0.com>
 
-A data point for the RBU case from the YT6801, same 64-byte UDP RX
-flood, all on the same 7.0.13 kernel:
+mtk_spi_probe() adds its CPU latency QoS request before the chip select
+checks, the interrupt request and spi_register_controller(), and none of
+their error paths removes it again. The request is embedded in the
+driver's private data, which devres frees once the probe has failed, so
+the global CPU latency constraint list keeps a node in freed memory. The
+next cpu_latency_qos_add_request() from any driver walks into it.
 
-  stmmac from 7.0.13 (has 6ccf12ae111e, not 1b9707e6f1a9):
-    no storm; the MAC interrupt never fires (4 streams for 10 s,
-    and 8 streams plus TX for 30 s)
-  stmmac from 7.2.11, built for 7.0.13:
-    storm, the machine hangs
-  the same, with only 1b9707e6f1a9 reverted:
-    no storm
+On a Redmi Note 13 5G (MT6833), an SPI controller whose probe failed the
+pad_num/num_chipselect check left such a node behind, and the UFS host
+adding its own request a moment later oopsed in plist_add():
 
-So on this hardware the RBU storm needs 1b9707e6f1a9. I did not test
-the RPS case.
+Unable to handle kernel paging request at virtual address fffffffffffffff8
 
-> Since RBU and RPS were enabled only for statistics, was masking them in
-> multi-MSI mode considered as an alternative?
+The same happens whenever spi_register_controller() fails, which
+includes -EPROBE_DEFER while the chip select GPIOs are looked up.
 
-For reference, d3265c19b35d ("net: stmmac: xgmac2: disable RBUE in
-default RX interrupt mask") took that route for xgmac2.
+Nothing needs the request before the controller is registered: only the
+prepare_message() and unprepare_message() callbacks update it. Add it
+just before the registration and remove it if the registration fails.
 
-Magnus
+Fixes: 632556d5799a ("spi: mt65xx: add PM QoS support")
+Cc: stable@vger.kernel.org
+Signed-off-by: Rui Cao <i@udp0.com>
+---
+ drivers/spi/spi-mt65xx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
+index b845a599f7c..49c31d4bd71 100644
+--- a/drivers/spi/spi-mt65xx.c
++++ b/drivers/spi/spi-mt65xx.c
+@@ -1295,8 +1295,6 @@ static int mtk_spi_probe(struct platform_device *pdev)
+ 		clk_disable_unprepare(mdata->spi_hclk);
+ 	}
+ 
+-	cpu_latency_qos_add_request(&mdata->qos_request, PM_QOS_DEFAULT_VALUE);
+-
+ 	if (mdata->dev_comp->need_pad_sel) {
+ 		if (mdata->pad_num != host->num_chipselect)
+ 			return dev_err_probe(dev, -EINVAL,
+@@ -1323,11 +1321,13 @@ static int mtk_spi_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "failed to register irq\n");
+ 
++	cpu_latency_qos_add_request(&mdata->qos_request, PM_QOS_DEFAULT_VALUE);
+ 	pm_runtime_enable(dev);
+ 
+ 	ret = spi_register_controller(host);
+ 	if (ret) {
+ 		pm_runtime_disable(dev);
++		cpu_latency_qos_remove_request(&mdata->qos_request);
+ 		return dev_err_probe(dev, ret, "failed to register host\n");
+ 	}
+ 
+
+---
+base-commit: d48723711bae9b8cdc56719c448ba42fef28cbee
+change-id: 20261107-mt65xx-qos-fix-32c41fd385da
+
+Best regards,
+--  
+Rui Cao <i@udp0.com>
+
+
 
