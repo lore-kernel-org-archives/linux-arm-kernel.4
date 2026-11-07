@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227FB606A333
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A173606D80C
 	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IGhZx2bE;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZKFQH9//
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W8CF7Kgn;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=SLyKHpmv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,64 +14,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ceh8RfChhYT4i+JdVCWUzDWUzJpR0l4QIJp9mPrhShg=; b=IGhZx2bEdHaI0tDi/iveum9aFo
-	AtzjrfeSJE6X/C+TM+vRZhb/TbFye7MS039C6HsbjMdJibYXPJ/aHj1xo32bQv3mc5Qf2+Qa+LnUz
-	d5So1gVc2cPCgbqPnYerOXjSyyyPUZNfGghx7l0GQA0QZwU/d0O4BzBw1n0Qq/Rrerv5hnt6FXIvZ
-	jNCMCvcWivpQ6rI0WMerLYNjrJjQg1+xbEGVCE/Y3/A/w8ipXFacl2CD3cAHMo6zoQGwju5Gpw3zo
-	ZSq/jNN3LxH8kW991Y7NSWPowZFuo7YZqzV3MCDFp8L5wA/xsJH6gbgyPzAbSEnRool+JeYoKd+8w
-	Uv8ERrsw==;
+	bh=jOV6lTw8YySq2i4oC3X//ATDtyU8VTfMlCzGQrdwAeA=; b=W8CF7KgnBacVT85LVa9GgCVVR4
+	0EmF9SFxZ4ln+m7uihGP0xj2qPy/dJVc8cMvp/OwjJQ9mpPLHlf1VvukRP/eaTcMVMYlJQjzePA5L
+	hYDOFsoiznfEiMiB+UHeSwYZx54A50fsKLwDJ7dEMXIr7eiIOQ5yW8nDJOdCxnw4VZUS8VwiNvjDn
+	6DCcHfXANzuTAeyLJTpWNrbn/f28lOQMBa7uJjjWhPZzNHMytuUuwD2aoi2xYdZKbjqRgiWhQTT9S
+	Ai7E9yyytp41W0qX7B8bbreXlYVT9qSXlgHljql/0CEKD6JtNMOrGHYHotL/ASF5qFavPVIrOcErv
+	vwuki9sQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiUM-0000000Evet-0piN;
-	Sat, 07 Nov 2026 15:37:54 +0000
-Received: from mail-ej1-x648.google.com ([2a00:1450:4864:20::648])
+	id 1xPiUN-0000000Evhx-2clc;
+	Sat, 07 Nov 2026 15:37:55 +0000
+Received: from mail-ed1-x548.google.com ([2a00:1450:4864:20::548])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiU3-0000000Ev4b-30lA
+	id 1xPiU7-0000000EvF5-3d7T
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 15:37:37 +0000
-Received: by mail-ej1-x648.google.com with SMTP id a640c23a62f3a-c210c66672eso190362166b.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:34 -0800 (PST)
+	Sat, 07 Nov 2026 15:37:41 +0000
+Received: by mail-ed1-x548.google.com with SMTP id 4fb4d7f45d1cf-6b565e7a09aso247276a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794065853; x=1794670653; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794065857; x=1794670657; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=ceh8RfChhYT4i+JdVCWUzDWUzJpR0l4QIJp9mPrhShg=;
-        b=ZKFQH9//95dVmF2KiHk0FWmxI3v19T1GZYfHVr49xq+mG0LtNUMB292l4/vJPLKcc3
-         6IB3Xq2YZzv+AmeLRzbBYexoUjWZzMWq4x/GZg06rOQjW7qj83poo0d0dEjZJTEzEz6q
-         n12TKnBGzprrLKFN1w+HD+Y7IsBs1u0OfIB6SoqL84O/cWoaqiczPQvNF+WRjuSdYa81
-         Dm9uTUgggsu8L67QhLPPWlSvu0UU+LvGeRWiJM8fDaWtvWGZPBux1sb4r+dVQvlfrNPT
-         fD7WsiNx6/JQ1CItTYbyVv6t5klrQA8c7vgcqCG9w/kABCm85vsGOOmMM6VyUAoOG2mV
-         34ig==
+        bh=jOV6lTw8YySq2i4oC3X//ATDtyU8VTfMlCzGQrdwAeA=;
+        b=SLyKHpmvjRGkS/m8cv+3aeBHo8jub2hUPpEDdwsNiHJ77+26tNK8EdaH4DdlGmQ7zN
+         PoHRjynYnQGZU5sbzGAZ/N53RTesNPxiDOiE8pqcvEpvlHGsI1W2mkGqDkcRtpxTJBRO
+         I7YYVRTBaLie67NH6iGOuFznLnipnzrgghjbucqQSLjkFVOlskIhtmBM/A07jZ1B3bXn
+         FlDG5VxDwnCYRwKDmxoWc9W5CCVeIWqX7d3dL92WXSPkCiYWULXAquSBz4nUWU1kyyYC
+         FkLFvtaUKjCfzuEBaAxLHduORVD04mHVHrVnURFWHfMleFzT60mJ6dT9BPJVu+o7lZ9W
+         5gjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794065853; x=1794670653;
+        d=1e100.net; s=20260707; t=1794065857; x=1794670657;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ceh8RfChhYT4i+JdVCWUzDWUzJpR0l4QIJp9mPrhShg=;
-        b=teGOdpIzRyfL67i0fhrFvFOTOEpAZqtgcJAYJyPNPWWjZa50I8bWHqIP+QkcwfWA17
-         TCa8voIKsiRh0xIasH5Qi6JbJovv0yP3nJ7D7S284rtnwdj2LshbtaokV5JN+Nca+nND
-         +nbu3KkYktf5PleiJ8/PKiokL5IGcSmpz2HQR0DSOjObhK/l33SNXbwlXlmkNLAFS6fa
-         bnBl0RZV93DGMQaPkivLnz7vgvx+rv2e/72bpf4lOkaaUk1/WoZPG8eKAjoq9UsNIIQE
-         b8Zwr3evmaumuZ6H+YwLur7wVCg6asG8ew7OQBfmfoKRl5uYOClXBJ77lQcruXXIT+cu
-         QhNQ==
-X-Forwarded-Encrypted: i=1; AKwUvByNuLWw3cou6N0vG2lAbeAjf71teS7+tHV1TjGoQqjoexWTLDcpRhbogwOizZNK22EI5A+/ukU79a3fO10qCUfL@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Y6Tb8ewPw2CJL5vIPt2llBXcQj89PbdLTqPjn1rvUF3qntFKG
-	u3YYROjPndhxnHO++Rep9G0hufYS/aZrPzklc7C01rViqZNp8BuIsFN5vpamaTzDIKMQIUVV9J7
-	hrw==
-X-Received: from ejfg8.prod.google.com ([2002:a17:906:3b08:b0:c2e:1bc5:6c6c])
- (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a17:907:2d94:b0:c40:bbd2:62f6
- with SMTP id a640c23a62f3a-c4d35268ecemr454740566b.19.1794065852609; Sat, 07
- Nov 2026 07:37:32 -0800 (PST)
-Date: Sat, 07 Nov 2026 16:36:24 +0100
+        bh=jOV6lTw8YySq2i4oC3X//ATDtyU8VTfMlCzGQrdwAeA=;
+        b=btDw9CGllpfBv0u15WsXXudyOrF58vi4X9Y2/hQqr2Tqn6MyQalEsJk786QopDWvRW
+         iMW2mQ4ZcGzN7B+BpkgXFzXNifUPw9cTacyNeaV0n08urrCRdpebtfHtD58WFkbAvzyw
+         S6tG89ZBW4/Uj9QnMbURKXYlfLnSnomoO2lpl4LNLHmJ3gMV9Jdn36MDzabnI6659Hoi
+         wdPMIx/YlTjnHlmxOt4mCkQzkqWvqBMOFD1CEOzrY3eSfJBnR7iwDsAoQGA9ZhO2l34t
+         nLmTh3dOFXRats4uU3RTjQKf8lItDRo/Hop9AUcUndB1z4XP4WklGoqh3AYGnICuNmZZ
+         XtMw==
+X-Forwarded-Encrypted: i=1; AL+hErEMLbYWHggJVYR4Qc0fpcSdgzsJfSAAmQX1SnEbagEszBWvvByim1z5cW29QWW4qSWgPGSp1uvN0xRZnHnxvZJC@lists.infradead.org
+X-Gm-Message-State: APuU4Z9RIkdt8ALaO/Fk+G3Fj/RqtOeix7zZctabvTOyDYzazRbXyWSE
+	HYZpGdVfI/lcOLJDD7dn7VNbRI5Pjo1C5YSXCXOZXPskb37DpQmm7NTUVJ0XD8f5ODxil2i+Q7O
+	mJw==
+X-Received: from eddq13.prod.google.com ([2002:a05:6402:518d:b0:6b6:fcaf:dc3a])
+ (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:1ec4:b0:6b4:206d:724b
+ with SMTP id 4fb4d7f45d1cf-6b5977d7e53mr4186090a12.7.1794065856781; Sat, 07
+ Nov 2026 07:37:36 -0800 (PST)
+Date: Sat, 07 Nov 2026 16:36:27 +0100
 In-Reply-To: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Mailer: b4 0.14.3
-Message-ID: <20261107-mte-kasan-split-v1-18-d84ea5f30f94@google.com>
-Subject: [PATCH 18/24] arm64: Inline and remove mte_check_tfsr_*()
+Message-ID: <20261107-mte-kasan-split-v1-21-d84ea5f30f94@google.com>
+Subject: [PATCH 21/24] arm64: Introduce mte_tag[_and_zero]_range()
 From: "=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
@@ -80,8 +80,8 @@ Cc: Mark Rutland <mark.rutland@arm.com>, Vincenzo Frascino <vincenzo.frascino@ar
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_073736_041256_8C004354 
-X-CRM114-Status: GOOD (  19.91  )
+X-CRM114-CacheID: sfid-20261107_073739_937534_9FA02893 
+X-CRM114-Status: GOOD (  18.97  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,229 +101,168 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Inline mte_check_tfsr_{entry,exit}() into the kernel entry/exit helpers,
-which should ever be their only callers and therefore were an unneeded
-extra layer of indirection. This allows deduplicating checks that were
-performed within the functions and outside.
-
-Inline mte_check_tfsr_el1() as the now-trivial check-and-report,
-improving readability of the code and clearly showing the dependency on
-KASAN, while abstracting away synchronization for mte_suspend_enter().
-Use an early kasan_hw_tags_enabled() guard to let the compiler optimize
-it all out when !KASAN_HW_TAGS.
-
-As a result, <mte.h> finally drops its dependency on KASAN.
-
-Note that mte_enter_from_kernel_mode() now clears TCO before checking
-TFSR, which should be functionally equivalent and even provide a
-negligibly higher coverage.
+Carve the KASAN-agnostic MTE logic out of the KASAN arch function, so
+that it can be reused without needing to depend on a KASAN header.
 
 Signed-off-by: Pierre-Cl=C3=A9ment Tosi <ptosi@google.com>
 ---
- arch/arm64/include/asm/mte.h     | 45 ------------------------------------=
+ arch/arm64/include/asm/mte-kasan.h | 57 ++++------------------------------=
 ----
- arch/arm64/kernel/entry-common.c | 22 ++++++++++++++++----
- arch/arm64/kernel/mte.c          | 28 ++++++++-----------------
- arch/arm64/mm/copypage.c         |  1 +
- 4 files changed, 28 insertions(+), 68 deletions(-)
+ arch/arm64/include/asm/mte.h       | 47 +++++++++++++++++++++++++++++++
+ 2 files changed, 53 insertions(+), 51 deletions(-)
 
+diff --git a/arch/arm64/include/asm/mte-kasan.h b/arch/arm64/include/asm/mt=
+e-kasan.h
+index 66d72d0d3c43..81a8cf3b9a95 100644
+--- a/arch/arm64/include/asm/mte-kasan.h
++++ b/arch/arm64/include/asm/mte-kasan.h
+@@ -9,7 +9,6 @@
+ #include <linux/const.h>
+ #include <linux/kasan-tags.h>
+=20
+-#include <asm/cputype.h>
+ #include <asm/mte-def.h>
+=20
+ #define __KASAN_TAG_MTE_MASK		GENMASK(MTE_TAG_SIZE - 1, 0)
+@@ -32,6 +31,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/types.h>
+=20
++#include <asm/mte.h>
+ #include <asm/sysreg.h>
+=20
+ #define KASAN_TAG_MTE_MASK		GENMASK_U8(MTE_TAG_SIZE - 1, 0)
+@@ -81,58 +81,13 @@ static inline void *mte_set_random_tag(const void *addr=
+)
+ 	return (void *)__tag_set(addr, kasan_tag_from_mte(mte_tag_of(addr)));
+ }
+=20
+-/*
+- * Assign allocation tags for a region of memory based on the pointer tag.
+- * Note: The address must be non-NULL and MTE_GRANULE_SIZE aligned and
+- * size must be MTE_GRANULE_SIZE aligned.
+- */
+ static inline void mte_set_mem_tag_range(void *addr, size_t size, u8 tag,
+-					 bool init)
+-{
+-	u64 curr, mask, dczid, dczid_bs, dczid_dzp, end1, end2, end3;
+-
+-	/* Read DC G(Z)VA block size from the system register. */
+-	dczid =3D read_cpuid(DCZID_EL0);
+-	dczid_bs =3D 4ul << (dczid & 0xf);
+-	dczid_dzp =3D (dczid >> 4) & 1;
+-
+-	curr =3D (u64)mte_tagged(addr, kasan_tag_to_mte(tag));
+-	mask =3D dczid_bs - 1;
+-	/* STG/STZG up to the end of the first block. */
+-	end1 =3D curr | mask;
+-	end3 =3D curr + size;
+-	/* DC GVA / GZVA in [end1, end2) */
+-	end2 =3D end3 & ~mask;
+-
+-	/*
+-	 * The following code uses STG on the first DC GVA block even if the
+-	 * start address is aligned - it appears to be faster than an alignment
+-	 * check + conditional branch. Also, if the range size is at least 2 DC
+-	 * GVA blocks, the first two loops can use post-condition to save one
+-	 * branch each.
+-	 */
+-#define SET_MEMTAG_RANGE(stg_post, dc_gva)		\
+-	do {						\
+-		if (!dczid_dzp && size >=3D 2 * dczid_bs) {\
+-			do {				\
+-				curr =3D stg_post(curr);	\
+-			} while (curr < end1);		\
+-							\
+-			do {				\
+-				dc_gva(curr);		\
+-				curr +=3D dczid_bs;	\
+-			} while (curr < end2);		\
+-		}					\
+-							\
+-		while (curr < end3)			\
+-			curr =3D stg_post(curr);		\
+-	} while (0)
+-
+-	if (init)
+-		SET_MEMTAG_RANGE(__stzg_post, __dc_gzva);
++					 bool zero)
++{
++	if (zero)
++		mte_tag_and_zero_range(addr, size, kasan_tag_to_mte(tag));
+ 	else
+-		SET_MEMTAG_RANGE(__stg_post, __dc_gva);
+-#undef SET_MEMTAG_RANGE
++		mte_tag_range(addr, size, kasan_tag_to_mte(tag));
+ }
+=20
+ void mte_enable_kernel_sync(void);
 diff --git a/arch/arm64/include/asm/mte.h b/arch/arm64/include/asm/mte.h
-index 1308e37c43c6..1e20a43c0a67 100644
+index 8826d64c8e33..9ba215b2b0fd 100644
 --- a/arch/arm64/include/asm/mte.h
 +++ b/arch/arm64/include/asm/mte.h
-@@ -12,7 +12,6 @@
- #ifndef __ASSEMBLER__
+@@ -18,6 +18,7 @@
 =20
- #include <linux/bitfield.h>
--#include <linux/kasan-enabled.h>
- #include <linux/page-flags.h>
- #include <linux/sched.h>
- #include <linux/types.h>
-@@ -264,49 +263,5 @@ static inline bool folio_try_hugetlb_mte_tagging(struc=
-t folio *folio)
+ #include <asm/barrier.h>
+ #include <asm/cpufeature.h>
++#include <asm/cputype.h>
+ #include <asm/pgtable-types.h>
+ #include <asm/sysreg.h>
+=20
+@@ -101,6 +102,52 @@ static inline bool task_uses_sync_mte_faults(struct ta=
+sk_struct *task)
+ 	return task->thread.sctlr_user & (1UL << SCTLR_EL1_TCF0_SHIFT);
  }
- #endif
 =20
--#ifdef CONFIG_KASAN_HW_TAGS
--void mte_check_tfsr_el1(void);
--
--static inline void mte_check_tfsr_entry(void)
--{
--	if (!kasan_hw_tags_enabled())
--		return;
--
--	if (!system_uses_mte_async_or_asymm_mode())
--		return;
--
--	mte_check_tfsr_el1();
--}
--
--static inline void mte_check_tfsr_exit(void)
--{
--	if (!kasan_hw_tags_enabled())
--		return;
--
--	if (!system_uses_mte_async_or_asymm_mode())
--		return;
--
--	/*
--	 * The asynchronous faults are sync'ed automatically with
--	 * TFSR_EL1 on kernel entry but for exit an explicit dsb()
--	 * is required.
--	 */
--	dsb(nsh);
--	isb();
--
--	mte_check_tfsr_el1();
--}
--#else
--static inline void mte_check_tfsr_el1(void)
--{
--}
--static inline void mte_check_tfsr_entry(void)
--{
--}
--static inline void mte_check_tfsr_exit(void)
--{
--}
--#endif /* CONFIG_KASAN_HW_TAGS */
--
- #endif /* __ASSEMBLER__ */
- #endif /* __ASM_MTE_H  */
-diff --git a/arch/arm64/kernel/entry-common.c b/arch/arm64/kernel/entry-com=
-mon.c
-index ea385f579269..db4ff003a5b6 100644
---- a/arch/arm64/kernel/entry-common.c
-+++ b/arch/arm64/kernel/entry-common.c
-@@ -73,19 +73,29 @@ static __always_inline void irqentry_exit_pcpu_adjust(s=
-truct pt_regs *regs)
-=20
- static __always_inline void mte_enter_from_kernel_mode(void)
- {
--	mte_check_tfsr_entry();
--
- 	/*
- 	 * Taking an exception sets TCO but clearing it can be expensive on
- 	 * some architectures so first check that MTE is actually required.
- 	 */
- 	if (kasan_hw_tags_enabled() || uaccess_requires_mte(current))
- 		set_pstate_tco(0);
++/*
++ * Assign allocation tags for a region of memory (and optionally zero it).
++ * Note: The address must be non-NULL and MTE_GRANULE_SIZE aligned and
++ * size must be MTE_GRANULE_SIZE aligned.
++ */
++#define __mte_tag_range(addr, size, tag, stg_post, dc_gva)		\
++do {									\
++	u64 curr, mask, dczid, dczid_bs, dczid_dzp, end1, end2, end3;	\
++	/* Read DC G(Z)VA block size from the system register. */	\
++	dczid =3D read_cpuid(DCZID_EL0);					\
++	dczid_bs =3D 4ul << (dczid & 0xf);				\
++	dczid_dzp =3D (dczid >> 4) & 1;					\
++	curr =3D (u64)mte_tagged(addr, tag);				\
++	mask =3D dczid_bs - 1;						\
++	/* STG/STZG up to the end of the first block. */		\
++	end1 =3D curr | mask;						\
++	end3 =3D curr + size;						\
++	/* DC GVA / GZVA in [end1, end2) */				\
++	end2 =3D end3 & ~mask;						\
++	/* STG on first block is faster than alignment check + branch.*/\
++	if (!dczid_dzp && size >=3D 2 * dczid_bs) {			\
++		/* Post-condition saves one branch in each loop. */	\
++		do {							\
++			curr =3D stg_post(curr);				\
++		} while (curr < end1);					\
++									\
++		do {							\
++			dc_gva(curr);					\
++			curr +=3D dczid_bs;				\
++		} while (curr < end2);					\
++	}								\
++	while (curr < end3)						\
++		curr =3D stg_post(curr);					\
++} while (0)
 +
-+	if (!kasan_hw_tags_enabled())
-+		return;
++static inline void mte_tag_range(void *addr, size_t size, u8 tag)
++{
++	__mte_tag_range(addr, size, tag, __stg_post, __dc_gva);
++}
 +
-+	/* Asynchronous faults are sync'ed automatically on kernel entry. */
-+	if (system_uses_mte_async_or_asymm_mode() && __mte_get_reset_tfsr())
-+		kasan_report_async();
- }
-=20
- static __always_inline void mte_exit_to_kernel_mode(void)
- {
--	mte_check_tfsr_exit();
-+	if (!kasan_hw_tags_enabled())
-+		return;
++static inline void mte_tag_and_zero_range(void *addr, size_t size, u8 tag)
++{
++	__mte_tag_range(addr, size, tag, __stzg_post, __dc_gzva);
++}
++#undef __mte_tag_range
 +
-+	/* Asynchronous faults require explicit sync'ing on kernel exit. */
-+	if (system_uses_mte_async_or_asymm_mode() && mte_get_reset_tfsr())
-+		kasan_report_async();
- }
+ #ifdef CONFIG_ARM64_MTE
 =20
- static __always_inline void mte_enter_from_user_mode(void)
-@@ -96,7 +106,11 @@ static __always_inline void mte_enter_from_user_mode(vo=
-id)
-=20
- static __always_inline void mte_exit_to_user_mode(void)
- {
--	mte_check_tfsr_exit();
-+	if (!kasan_hw_tags_enabled())
-+		return;
-+
-+	if (system_uses_mte_async_or_asymm_mode() && mte_get_reset_tfsr())
-+		kasan_report_async();
- }
-=20
- /*
-diff --git a/arch/arm64/kernel/mte.c b/arch/arm64/kernel/mte.c
-index 725f48faec3e..b65e3aa3bd07 100644
---- a/arch/arm64/kernel/mte.c
-+++ b/arch/arm64/kernel/mte.c
-@@ -5,6 +5,7 @@
-=20
- #include <linux/bitops.h>
- #include <linux/cpu.h>
-+#include <linux/kasan.h>
- #include <linux/kasan-enabled.h>
- #include <linux/kernel.h>
- #include <linux/mm.h>
-@@ -180,14 +181,6 @@ int mte_enable_kernel_store_only(void)
- }
- #endif
-=20
--#ifdef CONFIG_KASAN_HW_TAGS
--void mte_check_tfsr_el1(void)
--{
--	if (__mte_get_reset_tfsr())
--		kasan_report_async();
--}
--#endif
--
- /*
-  * This is where we actually resolve the system and process MTE mode
-  * configuration into an actual value in SCTLR_EL1 that affects
-@@ -285,6 +278,9 @@ void mte_thread_switch(struct task_struct *next)
- 	if (!kasan_hw_tags_enabled() && uaccess_requires_mte(next))
- 		set_pstate_tco(0);
-=20
-+	if (!kasan_hw_tags_enabled())
-+		return;
-+
- 	if (!system_uses_mte_async_or_asymm_mode())
- 		return;
-=20
-@@ -296,7 +292,8 @@ void mte_thread_switch(struct task_struct *next)
- 	 * are synchronized before this point.
- 	 */
- 	isb();
--	mte_check_tfsr_el1();
-+	if (__mte_get_reset_tfsr())
-+		kasan_report_async();
- }
-=20
- void mte_cpu_setup(void)
-@@ -348,18 +345,11 @@ void mte_suspend_enter(void)
- 	if (!system_supports_mte())
- 		return;
-=20
--	if (!system_uses_mte_async_or_asymm_mode())
-+	if (!kasan_hw_tags_enabled())
- 		return;
-=20
--	/*
--	 * The barriers are required to guarantee that the indirect writes
--	 * to TFSR_EL1 are synchronized before we report the state.
--	 */
--	dsb(nsh);
--	isb();
--
--	/* Report SYS_TFSR_EL1 before suspend entry */
--	mte_check_tfsr_el1();
-+	if (system_uses_mte_async_or_asymm_mode() && mte_get_reset_tfsr())
-+		kasan_report_async();
- }
-=20
- void mte_suspend_exit(void)
-diff --git a/arch/arm64/mm/copypage.c b/arch/arm64/mm/copypage.c
-index cd5912ba617b..e6796bf1fad1 100644
---- a/arch/arm64/mm/copypage.c
-+++ b/arch/arm64/mm/copypage.c
-@@ -7,6 +7,7 @@
-  */
-=20
- #include <linux/bitops.h>
-+#include <linux/kasan-enabled.h>
- #include <linux/mm.h>
-=20
- #include <asm/page.h>
+ /* track which pages have valid allocation tags */
 
 --=20
 2.56.0.455.g6c5a503b38-goog
