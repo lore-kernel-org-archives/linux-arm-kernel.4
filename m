@@ -2,98 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B93DC606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 05:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC07606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 05:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E5t4MH7T;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zL7XIwJJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gl1vqZ7a;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NaYNtGBA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vCTgyycIflOX8DIFUkseDn+OY9DjAvHPkZI6oEwJhxA=; b=E5t4MH7TZXCuDTkJ40iRl8D4YK
-	CQ92/WbNht0sVAjAzRHNLjcKFh2QwlYO+JFbSlECaNXSVptzGkK+gV1P9S/XvR74PnIUvd2cZ0qsS
-	MdReIwha5LXM+8EIK+601yudNi2DU0kRViBd0/mAJnvab41Kpjm5n/X07UEf+uOcJ6qVDx0s8L0Rk
-	QqBkv3cz3ZYSamelzh0KBRko0IG7o/GxJFDR3pRREzGv+HsF/p97+tkbT0jOQU1uKgniyubjGFGkm
-	kcGdobkf3o76ujaa22Zy9+i8LC1OurTlSigIeoUmdVx4Zl+bFN/aCz5Qwvva+ZNZ2MTsujSCnIVvO
-	8WaQMJ5Q==;
+	bh=k6a9rw1NTm5jSqcWk0YZ2ZnFUj3olcprcB7my6xtpkM=; b=gl1vqZ7aPkLUjgpRdZJJHCYq5O
+	c4iN15eK4N86gTN+m8KBrbF4FuAtx06PnUuAblTREJqK4UmK1SA0h1+Y32GAiciL8ZNc2nceiEvgc
+	PPvLKnNVfOfc8kjn3r/rrUanbUFyTe92GxvY7pHrjV5qvnP2R7LbIJMdcF9puS2bF7OiJmviOMtmC
+	chGHuCj7BngLRUuZqH9azZe6aM+FOxDHCJ/CX5EcoV1uvovO4DxhZtHjZzJ/Q3lcwRnJOihpkuovB
+	zNOHXYtjyH7/9vD3+04Y7RtAg3LvYoHWru8EMotoewVPOMPTHinvqT+k7ed6XR16lyN3ntS3iITFg
+	JrbvQZxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPYo6-0000000EDjs-11zf;
-	Sat, 07 Nov 2026 05:17:38 +0000
-Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
+	id 1xPZON-0000000EFcg-0W8A;
+	Sat, 07 Nov 2026 05:55:07 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPYo3-0000000EDjQ-0aIC
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 05:17:36 +0000
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-2e9d7791b00so9627635ad.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 21:17:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794028654; x=1794633454; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=vCTgyycIflOX8DIFUkseDn+OY9DjAvHPkZI6oEwJhxA=;
-        b=zL7XIwJJdE/+iORHhLCdcE9W7hcOUSlEYS8FuDIEXmXfmf9rmsm+6PLgKw77NP8Nvk
-         T+7qe1DRmYwCcYGaQpveBAZSZtUbDzFG5v7E4HQd2d5MakB3iGoueyih7H6q0qxYFfu/
-         2egXDj51A7F+5IAV1PhUtn8B+XrR8PRxN9wVrFvGABVi5Nda2tk35BU4EmpFHchkj9Eg
-         cCI6pBFwzIRsikSVAjc/QyRfxIW8NQpJj8iXZmLINk4aA3U/czkaVgDC0sXpGPRfZFGk
-         Akou2DGislffQJG1nY+ori6johC+tbO7u6F1pheZ2wO6s9o6YARQ2NKkuewLv5gzcpJL
-         UpoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794028654; x=1794633454;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=vCTgyycIflOX8DIFUkseDn+OY9DjAvHPkZI6oEwJhxA=;
-        b=2bw+UrpV/6bNqBG/ewuqNcuVd8x8Yi+5HpMH4UsTAHsD58SNGNAambIsam/2NsUg6D
-         CWnUWJQZr7CUvXxfG/TSVAwS1c3d93hc0Sg1zlawJ5AN80a9bShipexy6lZCF5R1q64S
-         zMQn57MH/maI03hoyUkWI4fCODktCr28mVROrgVs7CF1Gf/qpOanHoL9UiXk9eDNz38s
-         xPzQkv21B5sKHklgGND92zKKyUQPMoT7/mu8ADpzB8i+Wimt0IAIjgwm//8QF3z4eYdJ
-         SINkbuUi4D9+YX/0NbuCO9jgdQNO7BbivrWLfSlUh0GcXxMy4W4lB4nyaxj+XMoNwxIG
-         BImg==
-X-Forwarded-Encrypted: i=1; AL+hErHao8mj/QxfC2lLgk0+YLOyhA0AAOBUxqSwcJiW4mQgq6MiY1a61iWAvGOBoQPk5eR6uTHRY+plNZQYUkWEjP+1@lists.infradead.org
-X-Gm-Message-State: APuU4Z9jwp6jpbFuw9x7x2/JBpBNuouxAbvhbYdd0hnwJ/ot8h1/ZgzV
-	7bBsGv9D2GvHgaA9FZZfi0+VNDNwvf18Saxv1EEHjs7Tq03q+7fYn+4e
-X-Gm-Gg: AYBFou24YI/kNMILBQUFi88l7etDK+YgdpoHXQSo1vGIa+d1/pborRSEUiuu3CIn4fW
-	anH6fYQ2iyyXT6KTLwXhmjxvjL0xB03nQiPi24xpwKGVG5XUQ55o58bpImST28y0m/Ao4R/bIwd
-	COW6VUWQF3APYQQOwebvfOhL00zWjCvgbUi1DyDIS8GinGmiaehe5SnRiWXLOZ7uMYNPgLDhOss
-	GkWnYzHA6U+hFAF1sz5GsXk5f0Y3BBtB/Ky3xq9IELCIn/gfRWXjYyM3/5xXLT1E9UgQok3vcZN
-	Pxru6Rsv7w5Xp11ROFTizaVOdgVBXezNSoM8wrcsc+u54fkPPFShoF3RNKO7gpiychOtK/LhWIT
-	+1aVfKMDAD7WyGie+LYlRzCmF4tQWrG5zF8Ul762vaacMhTNDCwPyxlwsOmr6dJiAMTVP881D57
-	emQqBaFJZAEa54gNJhlOIUDgZ1P/JgUNCV3dZ/gDaBkSJGusuH4I2mClO9uruuZDW5gppUTZ4LW
-	Q2MX3YbtbalhFxDLKKOq7asMaQiHWF4zkmXFPLhiTygWNtwXQPCb9UxTdiwbv5KbWpvw1lj2HvF
-	iOdchBYpaEa6MT8r9vZAhQ==
-X-Received: by 2002:a17:90b:3c86:b0:3ab:413:49bc with SMTP id 98e67ed59e1d1-3b0db7074c1mr4345247a91.37.1794028654209;
-        Fri, 06 Nov 2026 21:17:34 -0800 (PST)
-Received: from a1-free ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b103435561sm1133772a91.3.2026.11.06.21.17.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 21:17:33 -0800 (PST)
-From: TAKANO Mitsuhiro <takano32@gmail.com>
-To: linux-perf-users@vger.kernel.org,
-	Arnaldo Carvalho de Melo <acme@kernel.org>,
-	Namhyung Kim <namhyung@kernel.org>
-Cc: Ian Rogers <irogers@google.com>,
-	John Garry <john.garry@linux.dev>,
-	James Clark <james.clark@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
-	TAKANO Mitsuhiro <takano32@gmail.com>
-Subject: [PATCH] perf vendor events arm64: AmpereOne/AmpereOneX: Fix typos
-Date: Sat,  7 Nov 2026 05:17:30 +0000
-Message-ID: <20261107051730.1880691-1-takano32@gmail.com>
-X-Mailer: git-send-email 2.53.0
+	id 1xPZOL-0000000EFcX-1iTG;
+	Sat, 07 Nov 2026 05:55:05 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 817A36062B;
+	Sat,  7 Nov 2026 05:55:04 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794030904;
+	b=MP0O/Vs0B2yUDJAjGJOgKZTbmGK8A4JuTEXfB61rJjr7FVBeAm1nn1myUYrqiRBI3Kfm
+	 0wXYfQXXSQoxCoxwZD5+89ncll599kFq6XYsH3xhoWgISbWKYYwA+oflRa7Cbcj0LMzJq
+	 8bkItnMwJdI4M5jBvfhS0/gj6SU3sRV1tBXB5BvzGdDacJmhJ1jba9AhRxGcuhSyrA0Px
+	 fZHSyMFBMlOKVyCsimwnKrIQeNWI69JT6lvpFLrPPTACZjAZDIYyhWFYYN6Xs4N9vp8Bw
+	 RVIeopHQ6DmGhRmY21T6FEr4sWGKxmGnmlBH8Dy8+8ectl5WZAke5x7TrRBzJjOO6DQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794030904;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
+	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
+	 Content-Transfer-Encoding;
+	bh=k6a9rw1NTm5jSqcWk0YZ2ZnFUj3olcprcB7my6xtpkM=;
+	b=f1n5EIamrd3n8ruGUK6PGOG48c+BcmJ4U7mcdjrB782Rgkv3a5hd8RJPIwY9PsLcRSaW
+	 tj+UKpwmNcPhIcXHMFdHuT+zMyinCdMIrAYFPoucJ40oVzn91A6KkuE9b5Xm2Ed3apzbo
+	 JGYIlNbx8mK1qQDC1jyCw0aEuQf1oT5ZIoKaaBDsIWQ1zaAF07qPiMkWPu/k3c7y4aFhE
+	 AoD8RNA6XyLf6uMO6HAwg7FA0b65XTv4xVMstvk7AKBTs/xe/tuizvd+lySXXVV1GKJuz
+	 HNbHwsVdqcYncc8NQcyOrcbu0FkbRaKp44mCJHIvdIaUT05H0JM9SsoSuiFGMznGllg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 809231F0089F;
+	Sat,  7 Nov 2026 05:55:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794030904;
+	bh=k6a9rw1NTm5jSqcWk0YZ2ZnFUj3olcprcB7my6xtpkM=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=NaYNtGBAv5I2SirX8wR8g6hay9g4MBIGfkpy8p5UFaLn/VJMiPvIUPKcFpuNDRzv+
+	 oVAG7METzXFWc4o6zhxuhd0d6oT8hdfgL6gSHnvedR/CUUzWMEs3O8vUQMjIpCJwxu
+	 AgfomGIIFcZDDJwL+NKld6Y66vNkKn9R/+qkOZ2HU8CP8lCKIJ2CieK+/7662LRNu7
+	 JYLrvjjTjRiRLNG75kMm46cMbI4DAg3S41RS/gnrpDYXwXmuWrQhfM8XmZ62lZlL4s
+	 Tm29KqZzkPVVOzlpThDcWC9rXGACyU0eDZVTfZ+385E/ONxA/XBStGQfG4t4XpsBdO
+	 51fOzjHC8M0SA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 10FF747AD0;
+	Sat,  7 Nov 2026 05:55:03 +0000 (UTC)
+From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
+Date: Sat, 07 Nov 2026 07:55:00 +0200
+Subject: [PATCH] gpio: rockchip: restore interrupt settings after
+ hibernation
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_211735_216000_470B5C92 
-X-CRM114-Status: GOOD (  12.62  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261107-b4-gpio-rockchip-hib-v1-1-19f4d163a55e@iav.lv>
+X-B4-Tracking: v=1; b=H4sIADS97moC/x3MQQqAIBBA0avErBtQy6KuEi1SpxyCFIUIpLsnL
+ d/i/wKZElOGuSmQ6ObM4aqQbQPWb9dByK4alFCDlGJE0+MROWAK9rSeI3o2OAptu91pZfoJaho
+ T7fz822V93w+7uc8zZgAAAA==
+To: Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, Jianqun Xu <jay.xu@rock-chips.com>, 
+ linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Velkov <iav@iav.lv>, stable@vger.kernel.org
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4448; i=iav@iav.lv;
+ h=from:subject:message-id;
+ bh=Dk4H/o+1eyRMlxB1wc6jS7hkgNHj7wT6TPN6Ut/qDU4=;
+ b=owGbwMvMwCVmNH1q96v4SmbG02pJDFnv9po6dYmpXb28vvvIlp/mXtva1HY+EvnfE9X0OUCqO
+ fYz99KIjlIWBjEuBlkxRZYJhzRuZSy5+tffw/wBzBxWJpAhDFycAjCR8xGMDI8aXPqLJyzbVBVo
+ vm3T2zVfH91ZWvvCJtXQgP/k3vVctsEM/9P1/fnerJbZtzOyccbmzfME7BNft7Xl+gX92Kddv+A
+ 4ExMA
+X-Developer-Key: i=iav@iav.lv; a=openpgp;
+ fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
+X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
+X-Original-From: Igor Velkov <iav@iav.lv>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -103,116 +111,122 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Three distinct words are misspelled in eight description fields in the
-AmpereOne and AmpereOneX PMU tables: "Preditable" in BPU_BTB_UPDATE
-(AmpereOneX only), "satisified" in LD_FROM_ST_FWD, and "misprediciton"
-in the branch_mispredict metric.  jevents.py copies the strings into the
-generated tables, so perf list prints them and a grep for the correct
-spelling misses the entries.
+From: Igor Velkov <iav@iav.lv>
 
-Fix both fields where an entry has them; the metrics entries carry only a
-brief description.  No event code, metric expression or reported value
-changes, and the generated tables are not tracked, so the diff is JSON
-only.  ISTALL - the other codespell hit here - is the ETM stall-control
-bit name, left alone.
+Restore from hibernation follows a cold boot. The boot kernel probes
+the GPIO banks, sets every interrupt enable bit, leaves the trigger of
+each line it did not request at the reset value, and then hands over
+to the image. The image restores only the interrupt masks, so a line
+it had set up for both edges comes back with the reset trigger.
 
-Written with Hermes Agent, an LLM assistant.  Running jevents.py on this
-change produces none of the three words; perf was not rebuilt, so the
-perf list output was not checked.
+On ODROID-M1 the headphone detect line (GPIO0_B0) is requested for
+both edges and is low with nothing plugged in. After a power loss in
+hybrid sleep its reset trigger fires again as soon as the edge handler
+acknowledges it, and the system does not come back. With this patch
+the board resumed 4 of 4 times, without it 0 of 5.
 
-Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
+Save the interrupt enable, type, polarity and both-edge registers with
+the masks and write them back before unmasking. In a normal suspend
+the bank keeps its registers, so this writes back what is already
+there. For lines that emulate both edges on GPIO v1, take the polarity
+from the current pin level.
+
+Fixes: 936ee2675eee ("gpio/rockchip: add driver for rockchip gpio")
+Cc: stable@vger.kernel.org
+Signed-off-by: Igor Velkov <iav@iav.lv>
 ---
- .../arch/arm64/ampere/ampereone/core-imp-def.json         | 4 ++--
- .../pmu-events/arch/arm64/ampere/ampereone/metrics.json   | 2 +-
- .../arch/arm64/ampere/ampereonex/core-imp-def.json        | 8 ++++----
- .../pmu-events/arch/arm64/ampere/ampereonex/metrics.json  | 2 +-
- 4 files changed, 8 insertions(+), 8 deletions(-)
+Tested on ODROID-M1 (RK3568, GPIO v2): hybrid sleep with power removed
+during sleep 4/4, deep sleep 10/10. The GPIO v1 path was not tested on
+hardware.
+---
+ drivers/gpio/gpio-rockchip.c       | 21 +++++++++++++++++++++
+ drivers/pinctrl/pinctrl-rockchip.h |  8 ++++++++
+ 2 files changed, 29 insertions(+)
 
-diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereone/core-imp-def.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereone/core-imp-def.json
-index 879ff21e0b17..5a82a7717060 100644
---- a/tools/perf/pmu-events/arch/arm64/ampere/ampereone/core-imp-def.json
-+++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereone/core-imp-def.json
-@@ -450,10 +450,10 @@
-         "BriefDescription": "OFB full cycles"
-     },
-     {
--        "PublicDescription": "Load satisified from store forwarded data",
-+        "PublicDescription": "Load satisfied from store forwarded data",
-         "EventCode": "0xD605",
-         "EventName": "LD_FROM_ST_FWD",
--        "BriefDescription": "Load satisified from store forwarded data"
-+        "BriefDescription": "Load satisfied from store forwarded data"
-     },
-     {
-         "PublicDescription": "L1 prefetcher, load prefetch requests generated",
-diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereone/metrics.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereone/metrics.json
-index 324104438e78..76cdf38b1e58 100644
---- a/tools/perf/pmu-events/arch/arm64/ampere/ampereone/metrics.json
-+++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereone/metrics.json
-@@ -260,7 +260,7 @@
-     {
-         "MetricName": "branch_mispredict",
-         "MetricExpr": "(BR_MIS_PRED_RETIRED / GPC_FLUSH) * slots_lost_misspeculation_fraction",
--        "BriefDescription": "Fraction of slots lost due to branch misprediciton",
-+        "BriefDescription": "Fraction of slots lost due to branch misprediction",
-         "MetricGroup": "TopdownL2",
-         "ScaleUnit": "1percent of slots"
-     },
-diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/core-imp-def.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/core-imp-def.json
-index eb5a2208d260..558b13fd7d0d 100644
---- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/core-imp-def.json
-+++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/core-imp-def.json
-@@ -84,10 +84,10 @@
-         "BriefDescription": "Predictable branch speculatively executed, unpredicted, that mispredict"
-     },
-     {
--        "PublicDescription": "Preditable branch update the BTB region buffer entry",
-+        "PublicDescription": "Predictable branch update the BTB region buffer entry",
-         "EventCode": "0x11c",
-         "EventName": "BPU_BTB_UPDATE",
--        "BriefDescription": "Preditable branch update the BTB region buffer entry"
-+        "BriefDescription": "Predictable branch update the BTB region buffer entry"
-     },
-     {
-         "PublicDescription": "Count predict pipe stalls due to speculative return address predictor full",
-@@ -438,10 +438,10 @@
-         "BriefDescription": "Fill buffer full"
-     },
-     {
--        "PublicDescription": "Load satisified from store forwarded data",
-+        "PublicDescription": "Load satisfied from store forwarded data",
-         "EventCode": "0xD605",
-         "EventName": "LD_FROM_ST_FWD",
--        "BriefDescription": "Load satisified from store forwarded data"
-+        "BriefDescription": "Load satisfied from store forwarded data"
-     },
-     {
-         "PublicDescription": "Store retirement pipe stall",
-diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/metrics.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/metrics.json
-index a29aadc9b2e3..a0dc917b9462 100644
---- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/metrics.json
-+++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/metrics.json
-@@ -260,7 +260,7 @@
-     {
-         "MetricName": "branch_mispredict",
-         "MetricExpr": "(BR_MIS_PRED_RETIRED / GPC_FLUSH) * slots_lost_misspeculation_fraction",
--        "BriefDescription": "Fraction of slots lost due to branch misprediciton",
-+        "BriefDescription": "Fraction of slots lost due to branch misprediction",
-         "MetricGroup": "TopdownL2",
-         "ScaleUnit": "1percent of slots"
-     },
+diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
+index 0f46ff095a24..83a5cc8f3fe6 100644
+--- a/drivers/gpio/gpio-rockchip.c
++++ b/drivers/gpio/gpio-rockchip.c
+@@ -489,6 +489,11 @@ static void rockchip_irq_suspend(struct irq_data *d)
+ 	struct rockchip_pin_bank *bank = gc->private;
+ 
+ 	bank->saved_masks = irq_reg_readl(gc, bank->gpio_regs->int_mask);
++	bank->saved_en = rockchip_gpio_readl(bank, bank->gpio_regs->int_en);
++	bank->saved_type = rockchip_gpio_readl(bank, bank->gpio_regs->int_type);
++	bank->saved_polarity = rockchip_gpio_readl(bank, bank->gpio_regs->int_polarity);
++	if (bank->gpio_type == GPIO_TYPE_V2)
++		bank->saved_bothedge = rockchip_gpio_readl(bank, bank->gpio_regs->int_bothedge);
+ 	irq_reg_writel(gc, ~gc->wake_active, bank->gpio_regs->int_mask);
+ }
+ 
+@@ -496,7 +501,23 @@ static void rockchip_irq_resume(struct irq_data *d)
+ {
+ 	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(d);
+ 	struct rockchip_pin_bank *bank = gc->private;
++	u32 polarity = bank->saved_polarity;
++
++	/*
++	 * Restore from hibernation follows a cold boot: write the enables and
++	 * the trigger back before we unmask.
++	 */
++	if (bank->toggle_edge_mode) {
++		u32 data = readl(bank->reg_base + bank->gpio_regs->ext_port);
+ 
++		polarity &= ~bank->toggle_edge_mode;
++		polarity |= ~data & bank->toggle_edge_mode;
++	}
++	rockchip_gpio_writel(bank, bank->saved_en, bank->gpio_regs->int_en);
++	rockchip_gpio_writel(bank, bank->saved_type, bank->gpio_regs->int_type);
++	rockchip_gpio_writel(bank, polarity, bank->gpio_regs->int_polarity);
++	if (bank->gpio_type == GPIO_TYPE_V2)
++		rockchip_gpio_writel(bank, bank->saved_bothedge, bank->gpio_regs->int_bothedge);
+ 	irq_reg_writel(gc, bank->saved_masks, bank->gpio_regs->int_mask);
+ }
+ 
+diff --git a/drivers/pinctrl/pinctrl-rockchip.h b/drivers/pinctrl/pinctrl-rockchip.h
+index 950097699643..ea280843fcb9 100644
+--- a/drivers/pinctrl/pinctrl-rockchip.h
++++ b/drivers/pinctrl/pinctrl-rockchip.h
+@@ -303,6 +303,10 @@ struct rockchip_drv {
+  * @db_clk: clock of the gpio debounce
+  * @irq: interrupt of the gpio bank
+  * @saved_masks: Saved content of GPIO_INTEN at suspend time.
++ * @saved_en: interrupt enables, saved at suspend time.
++ * @saved_type: interrupt level/edge type, saved at suspend time.
++ * @saved_polarity: interrupt polarity, saved at suspend time.
++ * @saved_bothedge: interrupt both-edge enables (GPIO v2), saved at suspend time.
+  * @pin_base: first pin number
+  * @nr_pins: number of pins in this bank
+  * @name: name of the bank
+@@ -332,6 +336,10 @@ struct rockchip_pin_bank {
+ 	struct clk			*db_clk;
+ 	int				irq;
+ 	u32				saved_masks;
++	u32				saved_en;
++	u32				saved_type;
++	u32				saved_polarity;
++	u32				saved_bothedge;
+ 	u32				pin_base;
+ 	u8				nr_pins;
+ 	char				*name;
 
-base-commit: d48723711bae9b8cdc56719c448ba42fef28cbee
+---
+base-commit: 0fa38ba784896f2fc32c9dacd33822f844b21906
+change-id: 20261107-b4-gpio-rockchip-hib-705c3fd52b49
+
+Best regards,
 -- 
-2.53.0
+Igor Velkov <iav@iav.lv>
+
 
 
