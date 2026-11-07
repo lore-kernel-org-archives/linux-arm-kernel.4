@@ -2,99 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497C7606D805
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 14:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D0CE606D816
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 14:14:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V/X4ip8i;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.a=rsa-sha256 header.s=google header.b=gjnYwTDk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hv3nad3+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f1IRyn2/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=J0t2KdflhR1USZ5uSPDHpmPQ6LbU6AJD684om9GpEew=; b=V/X4ip8ibgIc3Kvn7eWeCyr7vL
-	JPVzX03MpdbsXA4Ic9PR8NLLmFZmwicZZuZEBUCViGNLSVSu3ZYxbb3lyS3LDlt6Z8FRya3lTOPnO
-	Mge93fIZ44ACXtd//dO71esHIY1QkFPnz6Wt8F9kdgNAEhXHCZG5n0UT74bI9VHcpsK9/oY5XR0As
-	okYHOkVOPpsxKgWclYr6G1GR4HWN6EV4rV4XghB+cmCdlJzm7ija8sSf0GepVkjkQpiYLNqpaBKkz
-	1Pbgy/kiK140Z2ndFqXVk7LqVQfDXfKUGsg+dDjsDhrrhLwRuXFrkOBCsZGBiZYhG/00683OBXW0u
-	1+aMDPQA==;
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=RPPlRfAa8q8m8kCH4uT5obJP/Uf1/VTGNGMMDfFCbMQ=; b=hv3nad3+dq0E4C
+	vfV8zwYiTdFFbfgc1V30O4mISJpd4PD+aKbW9+Ocvg5Llhv26UhZwXtueVahnLjA8ShslYAO0/lcZ
+	1c2ieuxSL7IRUajcgktQIw3riZ7Py/mZjtOTsf97MF8rOmyaC/8vILwO3RvC93+ROTEGVjL100tVe
+	qNqpzYlS4qMHRH2A3FNFd5hO8sZeMv1nXtiFwpZIz/RnK2Bh/F7mB+gZMQbUdv/jMom9eJF757Nss
+	Gc1aYn7MV5ltpG9EqCZTLNB77rqLdcFfnz8+HE2SggIs498QDvUsYd0RTmgy7fhYMK3NpydbOcxwN
+	kGZmprwHxvsqOxXIQySQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPhBW-0000000Enqi-0KoM;
-	Sat, 07 Nov 2026 14:14:22 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xPhBZ-0000000EnrY-12P8;
+	Sat, 07 Nov 2026 14:14:25 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPhBT-0000000EnqI-1lax
+	id 1xPhBV-0000000Enqc-2ddu
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 14:14:20 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a140e7405dso14840135e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 06:14:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1794060857; x=1794665657; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=J0t2KdflhR1USZ5uSPDHpmPQ6LbU6AJD684om9GpEew=;
-        b=gjnYwTDkIezwU1qoXMNgKU8DDqmsg53SpmreyHWntXVQC89SP3YnXNuomTUOoM5Pom
-         3v2nviscXy26g0dQSJjOIrNZB1ToYuAksLV18MIiWMqfYKok71t+7NWTr8S0osF9v5iT
-         dTeu58ts+1MlF5782Ml3hgYPSl5b1SRCpyGYk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794060857; x=1794665657;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=J0t2KdflhR1USZ5uSPDHpmPQ6LbU6AJD684om9GpEew=;
-        b=mnak6NIz3CP66NXnBEBgqnA2o20BTVJoCKQXICOS7rhXQRcY0AS3jeMYXQ4xCIR3+D
-         Lkt9mUGpxYAVi7Xq/kP5yR79T9CbWUT8ThY+M9yiHKWPbCRIzbjxstHg4qmKfcB1MREC
-         r+D0FqK1atCXiL4dduLItDwtPUhchEAHqtvX0Z3ymYIyKCiX+HvIqAI3t9+IbpLAwWFE
-         jQjtja1v9eenXMtC23jCtU19G3qElOm07afCdF6a2BxGkz+5/EDA1bv72FFYcwXfiKx5
-         6Tmr4pgtcRxgu8CzBJ9pzPl0+yRmF1EuhJ5IGiNaLBcflsbBaPWZ/e8cac3wUBTCrrKL
-         pt3w==
-X-Forwarded-Encrypted: i=1; AL+hErFyIzPcLlCHEN5fbkHOdPRmgvpQezGdtIhzcPPY1K4Z9c5QY3xK+9h3cyTEWEYwUEuXfp1v+lbnOqc8MgJ2MeaF@lists.infradead.org
-X-Gm-Message-State: APuU4Z9L+LFN/eSi8hUqgYfUCQnGK8LwJ7GtHcZ1sH87IKYcybw6CPP9
-	aV1cgHBGS8M4H91IgzMy8jJaqAjymGOyOeUKY0f5vZUBAD9RB2/VzaEWYQAzNqix3P4=
-X-Gm-Gg: AYBFou1mYe1c8GpNpdOvGGGajIZynzef6CTB9q/IW+icEf8Tyc4VeHpZjbBZVfktZRM
-	fRg10T7tbL+d9sggDIYG8VQ0CcUB0XhJz4eLTWnP8e5OtKZqqpFFl0JY13FjQjujPM3MzvrK63y
-	NhM1Ru2W7PT/PdZah+9sY2bqT+ageUwZNiBB3R+FkDShOxTO0OBu58jRq/EmN88PWMdZkOtHNC2
-	mGtADxui/AyE18nlifLqVAqdgFjdBgLK2sMWkg6aHW7vKOgR93lyOkVZG5TiglTOlr6faG7ZYvG
-	SS7dsBX7IvVI8f1xkWx1SRpsW+/zgu9GQEbmohFOxqsBlxxyqycMIPn+jZk9ZUKz7As/xOPh0NZ
-	VMO/soKNzplqbVjsHFTZJpbzLZWqPvU4lu0NbClXDrCLhclnxOrWCfDvfXfl9EoAXmk2tt3mI/6
-	XqiSbM7IJey4v+qmziKL+wlgJdv94KdJq7Y/P5zy2FVSB8Tl0CFbyKqlAfMuhNLeOlEZ/MfOF2h
-	U+2dHLQOfYONdghPon7G9Tlq1rinT2nTdgUnaF4vDRkUFFSak+4I79ZXGbEhN4o+Msowr7FZrQb
-	DtxWfw5VMqG2Ptw2FU9pe7WpxIQDLyv5mml0joPWMjWBp/eLs8MPYSATlD5nb+1RwaLTuIqR5YL
-	UXr74fTXGqvGooywL41LERBEcQw1OlNwirw2Y+39l/cQ5oxH7GYR/7T9AfYDYgLB2dfae4FCfgW
-	0uA2ESaZYZRzL/XerGIZj7j1ATFA==
-X-Received: by 2002:a05:6000:178d:b0:48e:5550:c64c with SMTP id ffacd0b85a97d-492753739f8mr11843574f8f.14.1794060856956;
-        Sat, 07 Nov 2026 06:14:16 -0800 (PST)
-Received: from dario-ThinkPad-P14s-Gen-5.homenet.telecomitalia.it (host-79-14-29-58.business.telecomitalia.it. [79.14.29.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-492d809df21sm9757531f8f.54.2026.11.07.06.14.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 06:14:15 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	michael@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH] arm64: dts: st: add boot phase tags for Engicam MicroGEA-STM32MP257D-RMM
-Date: Sat,  7 Nov 2026 15:13:48 +0100
-Message-ID: <20261107141353.2228391-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
+	Sat, 07 Nov 2026 14:14:21 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 55E2D43D60;
+	Sat,  7 Nov 2026 14:14:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C741F0089F;
+	Sat,  7 Nov 2026 14:14:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794060861;
+	bh=RPPlRfAa8q8m8kCH4uT5obJP/Uf1/VTGNGMMDfFCbMQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=f1IRyn2/Dk6JQfdqfRFHHDKQGpk1hoxJ7mMklxxgAGoXuepM3aaQwhHCJPPBTZyjY
+	 YZCbYosjuNx9EDZ+KdOsRvOwC3ENGERUNG+/kL3CSgAGJbfWXXN+wK/QeCzH+vWn1L
+	 6zuwWQrxM+JzLEVPupOA7tqs98h/VwqfHQsLBm5t7HcsHyrNSYuunJrTt5b36WroZ3
+	 CIiXkaxIIb1AnrmvBKTq+d/tShMiVh/RX+Fo5i0zu/WKmn7KbdfDYLw1pQF7iGBOLk
+	 R4Mf5NyOVd4hZ/NkXJb4HNcaLWhb2Q+tAo4ULKfprXH1ZVotTjZeA5FvFlS/6ZbhiA
+	 6sf4KXWxSAxGw==
+Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
+	by traversing.sirena.org.uk (Postfix) with ESMTP id DBE0F29E6B03;
+	Sat, 07 Nov 2026 14:14:17 +0000 (GMT)
+From: Mark Brown <broonie@kernel.org>
+To: Ban Tao <fengzheng923@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Joao Schim <joao@schimsalabim.eu>, 
+ linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Jiale Yao <yaojiale02@163.com>
+Cc: stable@vger.kernel.org
+In-Reply-To: <20261028050626.133421-1-yaojiale02@163.com>
+References: <20261028050626.133421-1-yaojiale02@163.com>
+Subject: Re: [PATCH] ASoC: sunxi: sun50i-dmic: resume device for control
+ access
+Message-Id: <179405379422.3424803.12187103513130159217.b4-ty@b4>
+Date: Sat, 07 Nov 2026 12:16:34 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_061419_525070_22D789AF 
-X-CRM114-Status: GOOD (  10.22  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1131; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=Gu1jY485f4IoGWid9OKwTb1mv5ZWsLOBY84mmSMNKrE=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLLeG1kmymo8l2CKLdzRIesYnnZH6qabygPdQB+zUwUPZ
+ i/MVGbvKGVhEONikBVTZInL4n5ZX/J6Dd/BhW0wc1iZQIYwcHEKwES8Ghn+uwsysivcezXhK0vs
+ yai2pyp1nlECsz9Xs23uVtjXLdRXxMjwT42Jb1YKx4ydCdu/C5RftOu0twy0EFym42kkENs9iYs
+ dAA==
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,68 +84,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the bootph-all tag to the nodes used by the bootloader during the
-early stages of bootup.
+On Wed, 28 Oct 2026 13:06:26 +0800, Jiale Yao wrote:
+> ASoC: sunxi: sun50i-dmic: resume device for control access
 
-This includes the console UART with its pins and the display controller,
-used for the splash screen.
+Applied to
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
 
----
+Thanks!
 
- .../dts/st/stm32mp257d-engicam-microgea-rmm.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+[1/1] ASoC: sunxi: sun50i-dmic: resume device for control access
+      https://git.kernel.org/broonie/sound/c/73ade6a51c79
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257d-engicam-microgea-rmm.dts b/arch/arm64/boot/dts/st/stm32mp257d-engicam-microgea-rmm.dts
-index 96b7cb6b5bc1..4495b168fdaf 100644
---- a/arch/arm64/boot/dts/st/stm32mp257d-engicam-microgea-rmm.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257d-engicam-microgea-rmm.dts
-@@ -163,6 +163,10 @@ sgtl5000_rx_endpoint: endpoint@1 {
- 	};
- };
- 
-+&ltdc {
-+	bootph-all;
-+};
-+
- &m_can1 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&m_can1_pins_a>;
-@@ -269,7 +273,20 @@ &usart2 {
- 	pinctrl-0 = <&usart2_pins_a>;
- 	pinctrl-1 = <&usart2_idle_pins_a>;
- 	pinctrl-2 = <&usart2_sleep_pins_a>;
-+	bootph-all;
- 	/delete-property/ dmas;
- 	/delete-property/ dma-names;
- 	status = "okay";
- };
-+
-+&usart2_pins_a {
-+	bootph-all;
-+
-+	pins1 {
-+		bootph-all;
-+	};
-+
-+	pins2 {
-+		bootph-all;
-+	};
-+};
----
-base-commit: d48723711bae9b8cdc56719c448ba42fef28cbee
-branch: stm32mp257d-rmm-bootph
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
--- 
-2.43.0
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
