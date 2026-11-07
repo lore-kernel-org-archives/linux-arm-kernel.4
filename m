@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 907E6606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 06:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1B6606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 06:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ODz9iUid;
-	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=YmFHj0H7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xqQuz6ab;
+	dkim=pass (1024-bit key) header.d=mail.sdu.edu.cn header.i=@mail.sdu.edu.cn header.a=rsa-sha256 header.s=default header.b=FV9/e+DD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,55 +14,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pmCe0GVS8cEYC38vku8ybkaWHsFIKYjNTpdj8ylZk48=; b=ODz9iUidAl7W+TF+sgC8wPcozQ
-	nDL+RFI2ba4Lue9guuDSWRtGv0mV20gnQumnMkyyGXQNe1exAmVeHhQJYkSr3YZvstabkl/dqRHVi
-	/KOCIXkliRYle1fFvZCnsoemB48OqxKmQpun3KT8PlV3P+DJYQJ2Dw+bObtX9eEThipqOW9uzZ2Rz
-	B+6RVy+iA6X89Q3UQ/hvrmaUqVOygYqMe/fTzwymcsyYZzxBamUsUI7MB4e4yoNElFWpj11O9BBy8
-	21AOC8MYaG+1UfmE741yyoYjgQeu9sl5MW9qE3mYXLSYt+Ok63EyFZG+srysk5nU65j1W1uF6vpwz
-	w/Lx+AHw==;
+	bh=E0aUa3hDU1kr8wBZk8oZBIWIwJyImWt2F40Ntf0+M8Y=; b=xqQuz6abjoReiJNGE8hhcaQfGK
+	G6k1G1bve4kvL4FiqAxYJMki37d4XQN6NSYaeOD6hR+e2rCTN0PN+Mb7TmeD2zvaIfqn9pFXlQONm
+	c+AEfUNX0EGrpXhmUHW32HONi4zUlc7klzrLkEC5tL/FMjE4e3Aicc97foZzjSQ3p9KgCCZBuElZ+
+	Xfs+Z91oVPFXfE8VH8wdDuinE9d+VybVSLZr02o2Zb70/h5M5PnyoFyrtXdSQzYUJOZsJeLKwa3rE
+	kSE9zxUfNE0PQTieQAcxj6p7S2WVrqA9rbF2f/qr3gMgWYjyJWfQ7rvQm4Oa0Pkuydqr+NkS1vd+Q
+	b3Ks29hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPaKB-0000000EI0x-0qTF;
+	id 1xPaKB-0000000EI0d-0F37;
 	Sat, 07 Nov 2026 06:54:51 +0000
 Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPaK5-0000000EHwt-1zHp
+	id 1xPaK5-0000000EHws-1JhL
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 06:54:48 +0000
+	Sat, 07 Nov 2026 06:54:46 +0000
 Received: from lgs.. (unknown [101.76.249.61])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 53d65d8f6;
-	Sat, 7 Nov 2026 14:54:33 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 53d65d8f3;
+	Sat, 7 Nov 2026 14:54:31 +0800 (GMT+08:00)
 From: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Frank Li <Frank.Li@nxp.com>,
+To: Philipp Zabel <p.zabel@pengutronix.de>,
 	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>
 Cc: linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] media: nxp: imx8-isi: Fix potential pipe leaks on removal
-Date: Sat,  7 Nov 2026 14:54:32 +0800
-Message-ID: <20261107-0d0c29e10a-media-imx8-isi-1@mail.sdu.edu.cn>
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] media: coda: Fix potential use-after-free after VDOA removal
+Date: Sat,  7 Nov 2026 14:54:30 +0800
+Message-ID: <20261107-0d0c29e10a-media-coda-1@mail.sdu.edu.cn>
 X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1b4c99a7603a1kunmda8f23ec82b57
+X-HM-Tid: 0aa1b4c990bb03a1kunmeb5d581082b4d
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSUwZVh5MTkpJSkweGhpKTFYeHw
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZTxhDVkpLThpLHUkYQ0MeTFYeHw
 	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlKS0pVTE1VSU9CVU1KWVdZFhoPEhUdFFlBWU9LSFVKS0hKTE
 	1DVUpLS1VKQktLWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=YmFHj0H7QXjLneSXJgVlUSWz/8im3yh9zy6Qw7AowFUbYGfvqtGlOhkbJQY6mX8iMnNfqeieZM1Q7ED+0/5AmanoqFsKAonwO4Ek4pzYGgPeshEecc+tZmqDdQYCjuRLdfDWTuelclOI832jQwIERDbnHJwurWo/+r2HrUujW8Y=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
-	bh=pmCe0GVS8cEYC38vku8ybkaWHsFIKYjNTpdj8ylZk48=;
+	b=FV9/e+DDCp6Y53QuDBlChI1sS0VjP2qCvk64BSfSRGzrcxc9byubICv3Ko0qwCpHpcAbTnVV/74u4crvb76WgYDWFVMUoQIEJO9FhdqKSORqMi9L4cWOfEyHhN4eDCPhu/JgSwKytPeGcJBs9ZXeAdQftPwH7zNXMT3qMKC/SYg=; s=default; c=relaxed/relaxed; d=mail.sdu.edu.cn; v=1;
+	bh=E0aUa3hDU1kr8wBZk8oZBIWIwJyImWt2F40Ntf0+M8Y=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_225445_882709_5FEF979D 
-X-CRM114-Status: GOOD (  20.31  )
+X-CRM114-CacheID: sfid-20261106_225445_588763_44985EB3 
+X-CRM114-Status: GOOD (  21.45  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,573 +74,354 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The allocated pipe array is never freed. Its embedded video devices
-and their parent state can also remain in use by open files after
-unregistration, so freeing the array during remove is not sufficient.
+VDOA can be unbound while CODA still holds its driver data and open
+contexts. Their next transfer or close then accesses released state
+and device-managed resources.
 
-Keep the state until both device-managed cleanup and the last V4L2
-reference finish. Disconnect and drain capture and M2M queues before
-releasing hardware resources, and complete outstanding capture power
-references so late closes cannot affect a newly bound instance. Apply
-the same cleanup to partially registered devices on probe failure.
+Retain the VDOA state for its consumers and contexts. Serialize hardware
+access with removal, stop outstanding transfers and balance the clock
+references before disconnecting the retained contexts. Also release a
+VDOA context when opening CODA fails.
 
 This issue was found by our static analysis tool under development.
 
-Fixes: cf21f328fcaf ("media: nxp: Add i.MX8 ISI driver")
+Fixes: e7f3c5481035 ("[media] coda: use VDOA for un-tiling custom macroblock format")
 Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
 ---
-Validation: Changed-object compilation passed with W=1 in the recorded
-configuration. No hardware/kernel runtime test or full linked-kernel
-build.
+Validation: x86-64 GCC W=1 changed-object compilation passed. An
+extracted-code test with mocked services reports an ASan failure before
+the fix and passes after it; this is not a kernel reproducer. No
+hardware test, ARM64 build or full linked-kernel build.
 OpenAI Codex assisted with source review, patch implementation and
 commit-message drafting. The submitter has reviewed the changes.
 
- .../platform/nxp/imx8-isi/imx8-isi-core.c     | 94 ++++++++++++-------
- .../platform/nxp/imx8-isi/imx8-isi-core.h     | 16 ++++
- .../platform/nxp/imx8-isi/imx8-isi-m2m.c      | 80 +++++++++++-----
- .../platform/nxp/imx8-isi/imx8-isi-video.c    | 40 +++++---
- 4 files changed, 162 insertions(+), 68 deletions(-)
+ .../platform/chips-media/coda/coda-common.c   |  14 +-
+ .../platform/chips-media/coda/imx-vdoa.c      | 133 ++++++++++++++++--
+ .../platform/chips-media/coda/imx-vdoa.h      |   8 ++
+ 3 files changed, 134 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-index 0ae5f35e017c..bd046a0751b9 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-@@ -114,6 +114,47 @@ static void mxc_isi_pipe_unregister(struct mxc_isi_pipe *pipe)
- 	mxc_isi_video_unregister(pipe);
+diff --git a/drivers/media/platform/chips-media/coda/coda-common.c b/drivers/media/platform/chips-media/coda/coda-common.c
+index be37ea568bfe..b519cf8541de 100644
+--- a/drivers/media/platform/chips-media/coda/coda-common.c
++++ b/drivers/media/platform/chips-media/coda/coda-common.c
+@@ -396,7 +396,7 @@ const char *coda_product_name(int product)
+ 	}
  }
  
-+static void mxc_isi_release(struct kref *ref)
-+{
-+	struct mxc_isi_dev *isi = container_of(ref, struct mxc_isi_dev, ref);
-+	unsigned int i;
-+
-+	mxc_isi_m2m_cleanup(isi);
-+	for (i = 0; i < isi->num_pipes; ++i)
-+		mxc_isi_pipe_cleanup(&isi->pipes[i]);
-+	if (isi->crossbar_initialized)
-+		mxc_isi_crossbar_cleanup(&isi->crossbar);
-+	if (isi->media_initialized)
-+		media_device_cleanup(&isi->media_dev);
-+	kfree(isi->pipes);
-+	put_device(isi->dev);
-+	kfree(isi);
-+}
-+
-+static void mxc_isi_put(void *data)
-+{
-+	struct mxc_isi_dev *isi = data;
-+
-+	kref_put(&isi->ref, mxc_isi_release);
-+}
-+
-+static void mxc_isi_v4l2_release(struct v4l2_device *v4l2_dev)
-+{
-+	struct mxc_isi_dev *isi =
-+		container_of(v4l2_dev, struct mxc_isi_dev, v4l2_dev);
-+
-+	mxc_isi_put(isi);
-+}
-+
-+static void mxc_isi_video_unregister_all(struct mxc_isi_dev *isi)
-+{
-+	unsigned int i;
-+
-+	mxc_isi_m2m_unregister(isi);
-+	for (i = 0; i < isi->num_pipes; ++i)
-+		mxc_isi_pipe_unregister(&isi->pipes[i]);
-+}
-+
- static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
+-static struct vdoa_data *coda_get_vdoa_data(void)
++static struct vdoa_data *coda_get_vdoa_data(struct device *dev)
  {
- 	struct fwnode_handle *node = dev_fwnode(isi->dev);
-@@ -128,9 +169,11 @@ static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
- 	media_dev->dev = isi->dev;
+ 	struct device_node *vdoa_node;
+ 	struct platform_device *vdoa_pdev;
+@@ -410,9 +410,7 @@ static struct vdoa_data *coda_get_vdoa_data(void)
+ 	if (!vdoa_pdev)
+ 		goto out;
  
- 	media_device_init(media_dev);
-+	isi->media_initialized = true;
+-	vdoa_data = platform_get_drvdata(vdoa_pdev);
+-	if (!vdoa_data)
+-		vdoa_data = ERR_PTR(-EPROBE_DEFER);
++	vdoa_data = devm_vdoa_get(dev, &vdoa_pdev->dev);
  
- 	/* Initialize and register the V4L2 device. */
- 	v4l2_dev->mdev = media_dev;
-+	v4l2_dev->release = mxc_isi_v4l2_release;
- 	strscpy(v4l2_dev->name, "mx8-img-md", sizeof(v4l2_dev->name));
+ 	put_device(&vdoa_pdev->dev);
+ out:
+@@ -2721,6 +2719,8 @@ static int coda_open(struct file *file)
+ err_clk_enable:
+ 	pm_runtime_put_sync(dev->dev);
+ err_pm_get:
++	if (ctx->vdoa)
++		vdoa_context_destroy(ctx->vdoa);
+ 	v4l2_fh_del(&ctx->fh, file);
+ 	v4l2_fh_exit(&ctx->fh);
+ err_coda_name_init:
+@@ -3220,9 +3220,9 @@ static int coda_probe(struct platform_device *pdev)
+ 	dev->iram_pool = pool;
  
- 	ret = v4l2_device_register(isi->dev, v4l2_dev);
-@@ -140,6 +183,8 @@ static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
- 		goto err_media;
+ 	/* Get vdoa_data if supported by the platform */
+-	dev->vdoa = coda_get_vdoa_data();
+-	if (PTR_ERR(dev->vdoa) == -EPROBE_DEFER)
+-		return -EPROBE_DEFER;
++	dev->vdoa = coda_get_vdoa_data(&pdev->dev);
++	if (IS_ERR(dev->vdoa))
++		return PTR_ERR(dev->vdoa);
+ 
+ 	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
+ 	if (ret)
+diff --git a/drivers/media/platform/chips-media/coda/imx-vdoa.c b/drivers/media/platform/chips-media/coda/imx-vdoa.c
+index cd085c1c73f4..d9249c943dfa 100644
+--- a/drivers/media/platform/chips-media/coda/imx-vdoa.c
++++ b/drivers/media/platform/chips-media/coda/imx-vdoa.c
+@@ -9,7 +9,9 @@
+ #include <linux/clk.h>
+ #include <linux/device.h>
+ #include <linux/interrupt.h>
++#include <linux/kref.h>
+ #include <linux/module.h>
++#include <linux/mutex.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/platform_device.h>
+ #include <linux/videodev2.h>
+@@ -74,6 +76,12 @@ enum {
+ };
+ 
+ struct vdoa_data {
++	struct kref		ref;
++	/* Serializes context hardware access with removal. */
++	struct mutex		lock;
++	unsigned int		num_contexts;
++	bool			removed;
++	int			irq;
+ 	struct vdoa_ctx		*curr_ctx;
+ 	struct device		*dev;
+ 	struct clk		*vdoa_clk;
+@@ -126,7 +134,7 @@ static irqreturn_t vdoa_irq_handler(int irq, void *data)
+ 	return IRQ_HANDLED;
+ }
+ 
+-int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
++static int vdoa_wait(struct vdoa_ctx *ctx)
+ {
+ 	struct vdoa_data *vdoa = ctx->vdoa;
+ 
+@@ -142,17 +150,43 @@ int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
+ 
+ 	return 0;
+ }
++
++int vdoa_wait_for_completion(struct vdoa_ctx *ctx)
++{
++	struct vdoa_data *vdoa = ctx->vdoa;
++	int ret;
++
++	mutex_lock(&vdoa->lock);
++	ret = vdoa->removed ? -ENODEV : vdoa_wait(ctx);
++	mutex_unlock(&vdoa->lock);
++
++	return ret;
++}
+ EXPORT_SYMBOL(vdoa_wait_for_completion);
+ 
++static void vdoa_stop(struct vdoa_data *vdoa)
++{
++	if (!vdoa->curr_ctx)
++		return;
++
++	if (vdoa_wait(vdoa->curr_ctx))
++		writel(VDOASRR_SWRST, vdoa->regs + VDOASRR);
++	writel(0, vdoa->regs + VDOAIE);
++	synchronize_irq(vdoa->irq);
++	vdoa->curr_ctx = NULL;
++}
++
+ void vdoa_device_run(struct vdoa_ctx *ctx, dma_addr_t dst, dma_addr_t src)
+ {
+ 	struct vdoa_q_data *src_q_data, *dst_q_data;
+ 	struct vdoa_data *vdoa = ctx->vdoa;
+ 	u32 val;
+ 
+-	if (vdoa->curr_ctx)
+-		vdoa_wait_for_completion(vdoa->curr_ctx);
++	mutex_lock(&vdoa->lock);
++	if (vdoa->removed)
++		goto out_unlock;
+ 
++	vdoa_stop(vdoa);
+ 	vdoa->curr_ctx = ctx;
+ 
+ 	reinit_completion(&ctx->completion);
+@@ -192,9 +226,44 @@ void vdoa_device_run(struct vdoa_ctx *ctx, dma_addr_t dst, dma_addr_t src)
+ 	/* Enable interrupts and start transfer */
+ 	writel(VDOAIE_EITERR | VDOAIE_EIEOT, vdoa->regs + VDOAIE);
+ 	writel(VDOASRR_START, vdoa->regs + VDOASRR);
++out_unlock:
++	mutex_unlock(&vdoa->lock);
+ }
+ EXPORT_SYMBOL(vdoa_device_run);
+ 
++static void vdoa_release(struct kref *ref)
++{
++	struct vdoa_data *vdoa = container_of(ref, struct vdoa_data, ref);
++
++	put_device(vdoa->dev);
++	kfree(vdoa);
++}
++
++static void vdoa_put(void *data)
++{
++	struct vdoa_data *vdoa = data;
++
++	kref_put(&vdoa->ref, vdoa_release);
++}
++
++struct vdoa_data *devm_vdoa_get(struct device *dev, struct device *supplier)
++{
++	struct vdoa_data *vdoa;
++	int ret;
++
++	device_lock(supplier);
++	vdoa = dev_get_drvdata(supplier);
++	if (vdoa)
++		kref_get(&vdoa->ref);
++	device_unlock(supplier);
++	if (!vdoa)
++		return ERR_PTR(-EPROBE_DEFER);
++
++	ret = devm_add_action_or_reset(dev, vdoa_put, vdoa);
++	return ret ? ERR_PTR(ret) : vdoa;
++}
++EXPORT_SYMBOL(devm_vdoa_get);
++
+ struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
+ {
+ 	struct vdoa_ctx *ctx;
+@@ -204,16 +273,26 @@ struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
+ 	if (!ctx)
+ 		return NULL;
+ 
++	mutex_lock(&vdoa->lock);
++	if (vdoa->removed)
++		goto err_unlock;
++
+ 	err = clk_prepare_enable(vdoa->vdoa_clk);
+-	if (err) {
+-		kfree(ctx);
+-		return NULL;
+-	}
++	if (err)
++		goto err_unlock;
+ 
++	kref_get(&vdoa->ref);
++	vdoa->num_contexts++;
+ 	init_completion(&ctx->completion);
+ 	ctx->vdoa = vdoa;
++	mutex_unlock(&vdoa->lock);
+ 
+ 	return ctx;
++
++err_unlock:
++	mutex_unlock(&vdoa->lock);
++	kfree(ctx);
++	return NULL;
+ }
+ EXPORT_SYMBOL(vdoa_context_create);
+ 
+@@ -221,12 +300,15 @@ void vdoa_context_destroy(struct vdoa_ctx *ctx)
+ {
+ 	struct vdoa_data *vdoa = ctx->vdoa;
+ 
+-	if (vdoa->curr_ctx == ctx) {
+-		vdoa_wait_for_completion(vdoa->curr_ctx);
+-		vdoa->curr_ctx = NULL;
++	mutex_lock(&vdoa->lock);
++	if (!vdoa->removed) {
++		if (vdoa->curr_ctx == ctx)
++			vdoa_stop(vdoa);
++		clk_disable_unprepare(vdoa->vdoa_clk);
++		vdoa->num_contexts--;
+ 	}
+-
+-	clk_disable_unprepare(vdoa->vdoa_clk);
++	mutex_unlock(&vdoa->lock);
++	vdoa_put(vdoa);
+ 	kfree(ctx);
+ }
+ EXPORT_SYMBOL(vdoa_context_destroy);
+@@ -291,11 +373,16 @@ static int vdoa_probe(struct platform_device *pdev)
+ 		return ret;
  	}
  
-+	kref_get(&isi->ref);
-+
- 	/* Register the crossbar switch subdev. */
- 	ret = mxc_isi_crossbar_register(&isi->crossbar);
- 	if (ret < 0) {
-@@ -211,33 +256,25 @@ static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
- 	return 0;
- 
- err_m2m:
--	mxc_isi_m2m_unregister(isi);
- 	v4l2_async_nf_cleanup(&isi->notifier);
- err_v4l2:
-+	mxc_isi_video_unregister_all(isi);
- 	v4l2_device_unregister(v4l2_dev);
-+	media_device_unregister(media_dev);
-+	v4l2_device_put(v4l2_dev);
- err_media:
--	media_device_cleanup(media_dev);
- 	return ret;
- }
- 
- static void mxc_isi_v4l2_cleanup(struct mxc_isi_dev *isi)
- {
--	unsigned int i;
-+	mxc_isi_video_unregister_all(isi);
- 
- 	v4l2_async_nf_unregister(&isi->notifier);
- 	v4l2_async_nf_cleanup(&isi->notifier);
--
- 	v4l2_device_unregister(&isi->v4l2_dev);
- 	media_device_unregister(&isi->media_dev);
--
--	mxc_isi_m2m_unregister(isi);
--
--	for (i = 0; i < isi->pdata->num_channels; ++i)
--		mxc_isi_pipe_unregister(&isi->pipes[i]);
--
--	mxc_isi_crossbar_unregister(&isi->crossbar);
--
--	media_device_cleanup(&isi->media_dev);
-+	v4l2_device_put(&isi->v4l2_dev);
- }
- 
- /* -----------------------------------------------------------------------------
-@@ -479,11 +516,15 @@ static int mxc_isi_probe(struct platform_device *pdev)
- 	unsigned int i;
- 	int ret = 0;
- 
--	isi = devm_kzalloc(dev, sizeof(*isi), GFP_KERNEL);
-+	isi = kzalloc_obj(*isi);
- 	if (!isi)
+-	vdoa = devm_kzalloc(&pdev->dev, sizeof(*vdoa), GFP_KERNEL);
++	vdoa = kzalloc_obj(*vdoa);
+ 	if (!vdoa)
  		return -ENOMEM;
  
--	isi->dev = dev;
-+	isi->dev = get_device(dev);
-+	kref_init(&isi->ref);
-+	ret = devm_add_action_or_reset(dev, mxc_isi_put, isi);
+-	vdoa->dev = &pdev->dev;
++	vdoa->dev = get_device(&pdev->dev);
++	kref_init(&vdoa->ref);
++	mutex_init(&vdoa->lock);
++	ret = devm_add_action_or_reset(&pdev->dev, vdoa_put, vdoa);
 +	if (ret)
 +		return ret;
- 	platform_set_drvdata(pdev, isi);
  
- 	isi->pdata = of_device_get_match_data(dev);
-@@ -521,48 +562,35 @@ static int mxc_isi_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, ret,
- 				     "Failed to initialize crossbar\n");
- 
-+	isi->crossbar_initialized = true;
-+
- 	for (i = 0; i < isi->pdata->num_channels; ++i) {
- 		ret = mxc_isi_pipe_init(isi, i);
- 		if (ret < 0) {
- 			dev_err(dev, "Failed to initialize pipe%u: %d\n", i,
- 				ret);
--			goto err_xbar;
-+			return ret;
- 		}
-+		isi->num_pipes++;
- 	}
- 
- 	ret = mxc_isi_v4l2_init(isi);
- 	if (ret < 0) {
- 		dev_err(dev, "Failed to initialize V4L2: %d\n", ret);
--		goto err_xbar;
-+		return ret;
- 	}
- 
- 	mxc_isi_debug_init(isi);
- 
+ 	vdoa->vdoa_clk = devm_clk_get(vdoa->dev, NULL);
+ 	if (IS_ERR(vdoa->vdoa_clk)) {
+@@ -310,6 +397,7 @@ static int vdoa_probe(struct platform_device *pdev)
+ 	ret = platform_get_irq(pdev, 0);
+ 	if (ret < 0)
+ 		return ret;
++	vdoa->irq = ret;
+ 	ret = devm_request_threaded_irq(&pdev->dev, ret, NULL,
+ 					vdoa_irq_handler, IRQF_ONESHOT,
+ 					"vdoa", vdoa);
+@@ -323,6 +411,22 @@ static int vdoa_probe(struct platform_device *pdev)
  	return 0;
--
--err_xbar:
--	while (i--)
--		mxc_isi_pipe_cleanup(&isi->pipes[i]);
--	mxc_isi_crossbar_cleanup(&isi->crossbar);
--
--	return ret;
  }
  
- static void mxc_isi_remove(struct platform_device *pdev)
- {
- 	struct mxc_isi_dev *isi = platform_get_drvdata(pdev);
--	unsigned int i;
++static void vdoa_remove(struct platform_device *pdev)
++{
++	struct vdoa_data *vdoa = platform_get_drvdata(pdev);
++
++	platform_set_drvdata(pdev, NULL);
++	mutex_lock(&vdoa->lock);
++	vdoa_stop(vdoa);
++	disable_irq(vdoa->irq);
++	while (vdoa->num_contexts) {
++		clk_disable_unprepare(vdoa->vdoa_clk);
++		vdoa->num_contexts--;
++	}
++	vdoa->removed = true;
++	mutex_unlock(&vdoa->lock);
++}
++
+ static const struct of_device_id vdoa_dt_ids[] = {
+ 	{ .compatible = "fsl,imx6q-vdoa" },
+ 	{}
+@@ -331,6 +435,7 @@ MODULE_DEVICE_TABLE(of, vdoa_dt_ids);
  
- 	mxc_isi_debug_cleanup(isi);
--
--	for (i = 0; i < isi->pdata->num_channels; ++i) {
--		struct mxc_isi_pipe *pipe = &isi->pipes[i];
--
--		mxc_isi_pipe_cleanup(pipe);
--	}
--
- 	mxc_isi_v4l2_cleanup(isi);
--	mxc_isi_crossbar_cleanup(&isi->crossbar);
- }
+ static struct platform_driver vdoa_driver = {
+ 	.probe		= vdoa_probe,
++	.remove		= vdoa_remove,
+ 	.driver		= {
+ 		.name	= VDOA_NAME,
+ 		.of_match_table = vdoa_dt_ids,
+diff --git a/drivers/media/platform/chips-media/coda/imx-vdoa.h b/drivers/media/platform/chips-media/coda/imx-vdoa.h
+index a62eab476d58..e0ab414ddf5a 100644
+--- a/drivers/media/platform/chips-media/coda/imx-vdoa.h
++++ b/drivers/media/platform/chips-media/coda/imx-vdoa.h
+@@ -6,11 +6,13 @@
+ #ifndef IMX_VDOA_H
+ #define IMX_VDOA_H
  
- static const struct of_device_id mxc_isi_of_match[] = {
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-index 58b47335afc7..b1357ab67148 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-@@ -10,6 +10,7 @@
- #ifndef __MXC_ISI_CORE_H__
- #define __MXC_ISI_CORE_H__
++struct device;
+ struct vdoa_data;
+ struct vdoa_ctx;
  
-+#include <linux/kref.h>
- #include <linux/list.h>
- #include <linux/math.h>
- #include <linux/mutex.h>
-@@ -208,6 +209,8 @@ struct mxc_isi_video {
+ #if (defined CONFIG_VIDEO_IMX_VDOA || defined CONFIG_VIDEO_IMX_VDOA_MODULE)
  
- 	/* Protects the vdev and vb2_q operations */
- 	struct mutex			lock;
-+	unsigned int			users;
-+	bool				disconnected;
++struct vdoa_data *devm_vdoa_get(struct device *dev, struct device *supplier);
+ struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa);
+ int vdoa_context_configure(struct vdoa_ctx *ctx,
+ 			   unsigned int width, unsigned int height,
+@@ -22,6 +24,12 @@ int vdoa_wait_for_completion(struct vdoa_ctx *ctx);
  
- 	struct v4l2_pix_format_mplane	pix;
- 	const struct mxc_isi_format_info *fmtinfo;
-@@ -270,6 +273,9 @@ struct mxc_isi_pipe {
- };
- 
- struct mxc_isi_m2m {
-+	/* Serializes open, close and disconnection of all contexts. */
-+	struct mutex			contexts_lock;
-+	struct list_head		contexts;
- 	struct mxc_isi_dev		*isi;
- 	struct mxc_isi_pipe		*pipe;
- 
-@@ -287,6 +293,10 @@ struct mxc_isi_m2m {
- };
- 
- struct mxc_isi_dev {
-+	struct kref			ref;
-+	unsigned int			num_pipes;
-+	bool				crossbar_initialized;
-+	bool				media_initialized;
- 	struct device			*dev;
- 
- 	const struct mxc_isi_plat_data	*pdata;
-@@ -354,6 +364,7 @@ int mxc_isi_video_buffer_prepare(struct mxc_isi_dev *isi, struct vb2_buffer *vb2
- #ifdef CONFIG_VIDEO_IMX8_ISI_M2M
- int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev);
- int mxc_isi_m2m_unregister(struct mxc_isi_dev *isi);
-+void mxc_isi_m2m_cleanup(struct mxc_isi_dev *isi);
- void mxc_isi_m2m_suspend(struct mxc_isi_m2m *m2m);
- int mxc_isi_m2m_resume(struct mxc_isi_m2m *m2m);
  #else
-@@ -366,6 +377,11 @@ static inline int mxc_isi_m2m_unregister(struct mxc_isi_dev *isi)
- {
- 	return 0;
- }
-+
-+static inline void mxc_isi_m2m_cleanup(struct mxc_isi_dev *isi)
+ 
++static inline struct vdoa_data *devm_vdoa_get(struct device *dev,
++					      struct device *supplier)
 +{
++	return NULL;
 +}
 +
- static inline void mxc_isi_m2m_suspend(struct mxc_isi_m2m *m2m)
+ static inline struct vdoa_ctx *vdoa_context_create(struct vdoa_data *vdoa)
  {
- }
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
-index b729eecad0fe..5349e09e9b57 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
-@@ -46,6 +46,7 @@ struct mxc_isi_m2m_ctx_queue_data {
- };
- 
- struct mxc_isi_m2m_ctx {
-+	struct list_head list;
- 	struct v4l2_fh fh;
- 	struct mxc_isi_m2m *m2m;
- 
-@@ -629,6 +630,10 @@ static int mxc_isi_m2m_open(struct file *file)
- 	struct mxc_isi_m2m_ctx *ctx;
- 	int ret;
- 
-+	guard(mutex)(&m2m->contexts_lock);
-+	if (!video_is_registered(vdev))
-+		return -ENODEV;
-+
- 	ctx = kzalloc_obj(*ctx);
- 	if (!ctx)
- 		return -ENOMEM;
-@@ -654,6 +659,7 @@ static int mxc_isi_m2m_open(struct file *file)
- 		goto err_ctx;
- 
- 	v4l2_fh_add(&ctx->fh, file);
-+	list_add_tail(&ctx->list, &m2m->contexts);
- 
- 	return 0;
- 
-@@ -670,6 +676,8 @@ static int mxc_isi_m2m_release(struct file *file)
- {
- 	struct mxc_isi_m2m_ctx *ctx = file_to_isi_m2m_ctx(file);
- 
-+	guard(mutex)(&ctx->m2m->contexts_lock);
-+	list_del(&ctx->list);
- 	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
- 	mxc_isi_m2m_ctx_ctrls_delete(ctx);
- 
-@@ -740,6 +748,8 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 	m2m->pipe = &isi->pipes[0];
- 
- 	mutex_init(&m2m->lock);
-+	mutex_init(&m2m->contexts_lock);
-+	INIT_LIST_HEAD(&m2m->contexts);
- 
- 	/* Initialize the video device and create controls. */
- 	snprintf(vdev->name, sizeof(vdev->name), "mxc_isi.m2m");
-@@ -750,6 +760,7 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 	vdev->minor	= -1;
- 	vdev->release	= video_device_release_empty;
- 	vdev->vfl_dir	= VFL_DIR_M2M;
-+	vdev->lock	= &m2m->contexts_lock;
- 
- 	vdev->device_caps = V4L2_CAP_STREAMING | V4L2_CAP_VIDEO_M2M_MPLANE;
- 	video_set_drvdata(vdev, m2m);
-@@ -759,14 +770,14 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 	if (IS_ERR(m2m->m2m_dev)) {
- 		dev_err(isi->dev, "failed to initialize m2m device\n");
- 		ret = PTR_ERR(m2m->m2m_dev);
--		goto err_mutex;
-+		goto err_return;
- 	}
- 
- 	/* Register the video device. */
- 	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
- 	if (ret < 0) {
- 		dev_err(isi->dev, "failed to register m2m device\n");
--		goto err_m2m;
-+		goto err_return;
- 	}
- 
- 	/*
-@@ -790,11 +801,11 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 	vdev->entity.function = MEDIA_ENT_F_IO_V4L;
- 	ret = media_entity_pads_init(&vdev->entity, 1, &m2m->pad);
- 	if (ret)
--		goto err_video;
-+		goto err_unregister;
- 
- 	ret = media_device_register_entity(v4l2_dev->mdev, &vdev->entity);
- 	if (ret)
--		goto err_entity_cleanup;
-+		goto err_unregister;
- 
- 	ret = media_create_pad_link(&vdev->entity, 0,
- 				    &m2m->isi->crossbar.sd.entity,
-@@ -802,13 +813,13 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 				    MEDIA_LNK_FL_IMMUTABLE |
- 				    MEDIA_LNK_FL_ENABLED);
- 	if (ret)
--		goto err_entity_unreg;
-+		goto err_unregister;
- 
- 	m2m->intf = media_devnode_create(v4l2_dev->mdev, MEDIA_INTF_T_V4L_VIDEO,
- 					 0, VIDEO_MAJOR, vdev->minor);
- 	if (!m2m->intf) {
- 		ret = -ENOMEM;
--		goto err_entity_unreg;
-+		goto err_unregister;
- 	}
- 
- 	link = media_create_intf_link(&vdev->entity, &m2m->intf->intf,
-@@ -816,7 +827,7 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 				      MEDIA_LNK_FL_ENABLED);
- 	if (!link) {
- 		ret = -ENOMEM;
--		goto err_devnode;
-+		goto err_unregister;
- 	}
- 
- 	link = media_create_intf_link(&m2m->pipe->video.vdev.entity,
-@@ -825,23 +836,14 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2_dev)
- 				      MEDIA_LNK_FL_ENABLED);
- 	if (!link) {
- 		ret = -ENOMEM;
--		goto err_devnode;
-+		goto err_unregister;
- 	}
- 
- 	return 0;
- 
--err_devnode:
--	media_devnode_remove(m2m->intf);
--err_entity_unreg:
--	media_device_unregister_entity(&vdev->entity);
--err_entity_cleanup:
--	media_entity_cleanup(&vdev->entity);
--err_video:
--	video_unregister_device(vdev);
--err_m2m:
--	v4l2_m2m_release(m2m->m2m_dev);
--err_mutex:
--	mutex_destroy(&m2m->lock);
-+err_unregister:
-+	mxc_isi_m2m_unregister(isi);
-+err_return:
- 	return ret;
- }
- 
-@@ -849,13 +851,43 @@ int mxc_isi_m2m_unregister(struct mxc_isi_dev *isi)
- {
- 	struct mxc_isi_m2m *m2m = &isi->m2m;
- 	struct video_device *vdev = &m2m->vdev;
-+	struct mxc_isi_m2m_ctx *ctx;
- 
-+	if (!video_is_registered(vdev))
-+		return 0;
-+
-+	guard(mutex)(&m2m->contexts_lock);
- 	video_unregister_device(vdev);
-+	v4l2_m2m_suspend(m2m->m2m_dev);
-+	list_for_each_entry(ctx, &m2m->contexts, list) {
-+		guard(mutex)(&ctx->vb2_lock);
-+		vb2_queue_error(v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx));
-+		vb2_queue_error(v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx));
-+		v4l2_m2m_streamoff(NULL, ctx->fh.m2m_ctx,
-+				   V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-+		v4l2_m2m_streamoff(NULL, ctx->fh.m2m_ctx,
-+				   V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-+	}
- 
--	v4l2_m2m_release(m2m->m2m_dev);
--	media_devnode_remove(m2m->intf);
--	media_entity_cleanup(&vdev->entity);
--	mutex_destroy(&m2m->lock);
-+	if (m2m->intf) {
-+		media_devnode_remove(m2m->intf);
-+		m2m->intf = NULL;
-+	}
-+	media_device_unregister_entity(&vdev->entity);
- 
- 	return 0;
- }
-+
-+void mxc_isi_m2m_cleanup(struct mxc_isi_dev *isi)
-+{
-+	struct mxc_isi_m2m *m2m = &isi->m2m;
-+
-+	if (!m2m->isi)
-+		return;
-+
-+	if (!IS_ERR_OR_NULL(m2m->m2m_dev))
-+		v4l2_m2m_release(m2m->m2m_dev);
-+	media_entity_cleanup(&m2m->vdev.entity);
-+	mutex_destroy(&m2m->contexts_lock);
-+	mutex_destroy(&m2m->lock);
-+}
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
-index fc907d357149..2ac860876491 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
-@@ -1370,6 +1370,10 @@ static int mxc_isi_video_open(struct file *file)
- 	struct mxc_isi_video *video = video_drvdata(file);
- 	int ret;
- 
-+	guard(mutex)(&video->lock);
-+	if (!video_is_registered(&video->vdev))
-+		return -ENODEV;
-+
- 	ret = v4l2_fh_open(file);
- 	if (ret)
- 		return ret;
-@@ -1380,6 +1384,7 @@ static int mxc_isi_video_open(struct file *file)
- 		return ret;
- 	}
- 
-+	video->users++;
- 	return 0;
- }
- 
-@@ -1388,11 +1393,14 @@ static int mxc_isi_video_release(struct file *file)
- 	struct mxc_isi_video *video = video_drvdata(file);
- 	int ret;
- 
--	ret = vb2_fop_release(file);
-+	guard(mutex)(&video->lock);
-+	ret = _vb2_fop_release(file, NULL);
- 	if (ret)
- 		dev_err(video->pipe->isi->dev, "%s fail\n", __func__);
- 
--	pm_runtime_put(video->pipe->isi->dev);
-+	if (!video->disconnected)
-+		pm_runtime_put(video->pipe->isi->dev);
-+	video->users--;
- 	return ret;
- }
- 
-@@ -1460,6 +1468,14 @@ int mxc_isi_video_resume(struct mxc_isi_pipe *pipe)
-  * Registration
-  */
- 
-+static void mxc_isi_video_device_release(struct video_device *vdev)
-+{
-+	struct mxc_isi_video *video = video_get_drvdata(vdev);
-+
-+	mxc_isi_video_ctrls_delete(video);
-+	media_entity_cleanup(&vdev->entity);
-+}
-+
- int mxc_isi_video_register(struct mxc_isi_pipe *pipe,
- 			   struct v4l2_device *v4l2_dev)
- {
-@@ -1490,7 +1506,7 @@ int mxc_isi_video_register(struct mxc_isi_pipe *pipe,
- 	vdev->ioctl_ops	= &mxc_isi_video_ioctl_ops;
- 	vdev->v4l2_dev	= v4l2_dev;
- 	vdev->minor	= -1;
--	vdev->release	= video_device_release_empty;
-+	vdev->release	= mxc_isi_video_device_release;
- 	vdev->queue	= q;
- 	vdev->lock	= &video->lock;
- 
-@@ -1543,7 +1559,8 @@ int mxc_isi_video_register(struct mxc_isi_pipe *pipe,
- 	return 0;
- 
- err_video_unreg:
--	video_unregister_device(vdev);
-+	mxc_isi_video_unregister(pipe);
-+	return ret;
- err_ctrl_free:
- 	mxc_isi_video_ctrls_delete(video);
- err_me_cleanup:
-@@ -1556,14 +1573,15 @@ void mxc_isi_video_unregister(struct mxc_isi_pipe *pipe)
- {
- 	struct mxc_isi_video *video = &pipe->video;
- 	struct video_device *vdev = &video->vdev;
-+	unsigned int i;
- 
--	mutex_lock(&video->lock);
-+	if (!video->pipe || !video_is_registered(vdev))
-+		return;
- 
--	if (video_is_registered(vdev)) {
--		video_unregister_device(vdev);
--		mxc_isi_video_ctrls_delete(video);
--		media_entity_cleanup(&vdev->entity);
--	}
-+	vb2_video_unregister_device(vdev);
- 
--	mutex_unlock(&video->lock);
-+	guard(mutex)(&video->lock);
-+	for (i = 0; i < video->users; ++i)
-+		pm_runtime_put(video->pipe->isi->dev);
-+	video->disconnected = true;
- }
+ 	return NULL;
 
 base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
 
