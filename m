@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99023606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA961606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HlslpX+/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cJ353Bxl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1XSGDWlI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dzw2DrLP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eZM++BX8xZsQxJCDpXHirlsgqErEbRg0Tg12fOOlkHk=; b=HlslpX+/w2ESKS
-	auOXSoC1AlI0q+jcBJ84egBMESEvpHonmWeIAXSEi3sWnbYMvZeOPoxOAHSarpFbXrkJe4lFnnd3d
-	iCM5RCekCnq6rnyVINZOMwRSeArlwHsmH8bkDgoS8rFcKQ/nmLk+aYJPuB6GzZ05cwjg8ltJo4Xmn
-	D3lBJt/GXEDqHjocCZMEJMUhvfBP+MktrzeQEPJAoGjp5jMjDaMcl8pUbM9j6J9bL//4BnuIWUcY1
-	sWWiOr0s7eJHzaPHP8nPddQELUqUwd7ushbVtQgOKIFhJtzzGNWW1HzBXwn3PxmEL0FwGg+ftPnPf
-	ekuOeWo/86D/AX/KVkJw==;
+	List-Owner; bh=Y180jtVIl9H2E6DxVOXvPpmcMQTvALtSPs5lwc7SY4A=; b=1XSGDWlIUbbfL5
+	yl3+SaA6zsR2GAvLUGpyDVBtPuSCPmIyQxq6ImIKyKDVbib9wrcimYuHXkXHzDhvLl0tI5/O55/1m
+	xmFMbNV5zntDUX4h+I5zdMoOLYjrIi6Ruh7IyuufnJ++18HjWSi0h4Mw4wa4GYTrZ8SSkIHBXLr02
+	kKtGIZQcVQm7VR8cmAiGEeS6GBMbyDhbmRWNu0dehFVAUxDNfyvhXHIkhQ86V8kJtkZQePqULPEFh
+	1KAm5vbRjiN/stW+bdoFeH+wGcKRoxpHnUXA+8cT6Vdg1W57j+Y94t1S+0GOXQihSIOwkXkOOHb6z
+	lHN3q/H9/APStIptPgIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPe2o-0000000EZWv-0JpX;
-	Sat, 07 Nov 2026 10:53:10 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xPe3H-0000000EZdx-1Blv;
+	Sat, 07 Nov 2026 10:53:39 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPe2m-0000000EZWa-1b4Z
+	id 1xPe3G-0000000EZdl-1I4o
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 10:53:08 +0000
+	Sat, 07 Nov 2026 10:53:38 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C2994601EA;
-	Sat,  7 Nov 2026 10:53:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E2EC1F008A1;
-	Sat,  7 Nov 2026 10:53:04 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 0AFCD43AD0;
+	Sat,  7 Nov 2026 10:53:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 989CD1F008A1;
+	Sat,  7 Nov 2026 10:53:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794048787;
-	bh=eZM++BX8xZsQxJCDpXHirlsgqErEbRg0Tg12fOOlkHk=;
+	s=k20260515; t=1794048817;
+	bh=Y180jtVIl9H2E6DxVOXvPpmcMQTvALtSPs5lwc7SY4A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=cJ353BxlPZRJTNd6rvdHQc8v05Ocp2yXR7njFSjrKT1hsN5XJ69HQGcpfV9AZkwgr
-	 5T33vlNY56aYvWv0RHbo0RYQW35bleti2pfCo/Q3tjqXJARzm5lYi6IDB9Xp7o66ZA
-	 ANPFw2brmHTMOBLy2uoUxHQ2/qWuluJomhw/YFbiKfCBhtLZyNGpZCkQsqbY8Gqan9
-	 l47TMr/BynWhWAeS2YvhettkwdKv8VKfm+5q5YqsLcT5VNHZmQdVTTfEw6tX8Xoj19
-	 A7AlAa9Vii4Zs78wsKmE1TCsQa9eid5r/myWUmuhY4CaciNK3/gfEUm/xHvF0pDevw
-	 OSgSbxfqfYoJA==
-Message-ID: <4a0a327e-10b3-491e-8eee-12e72e71629b@kernel.org>
-Date: Sat, 7 Nov 2026 11:53:01 +0100
+	b=dzw2DrLPNnFzvATWGALmZmpt8Cou5+f6k3Y/Wds/QZT1d7y9Q0PqGC2A2epOlHiIU
+	 rv70BpLUlt+ZUGy+zsJ98IlxGxVwc9UoCo/azTLGr6n2z01d3Qm+O/hrex3iMCcUU8
+	 dMprg2UjZGg2Sgwr/G6zZkbqIe20zDFpfEnLXKBRyxzvma3mP3EXrRZLdFhGMxOQ9e
+	 TuCaZvhK6eLKZhrY2r43J3VNnSuxxwBcKo3Y9o5bV5slP71BAH4B5hCUIXAchw+TMa
+	 r0sn5P9IWJJeqS2x7h71KIMmNEeCzxIgZJsgOS5q0x+nvUqQr9h/cDa/cNp7TZ+ptQ
+	 9RU7mhVHVC52w==
+Message-ID: <65af581e-caac-430a-88b1-3b7425c5209e@kernel.org>
+Date: Sat, 7 Nov 2026 11:53:32 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: cix: fix I2C bus address and size cells
- on Sky1
+Subject: Re: [PATCH 4/4] arm64: dts: cix: add RTS5453 PD controllers to Orion
+ O6
 To: Gary Yang <gary.yang@cixtech.com>,
  Heikki Krogerus <heikki.krogerus@linux.intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -57,9 +57,9 @@ To: Gary Yang <gary.yang@cixtech.com>,
  Conor Dooley <conor+dt@kernel.org>, Fugang Duan <fugang.duan@cixtech.com>
 Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- cix-kernel-upstream@cixtech.com, stable@vger.kernel.org
+ cix-kernel-upstream@cixtech.com
 References: <20261107011012.3655873-1-gary.yang@cixtech.com>
- <20261107011012.3655873-4-gary.yang@cixtech.com>
+ <20261107011012.3655873-5-gary.yang@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,7 +105,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261107011012.3655873-4-gary.yang@cixtech.com>
+In-Reply-To: <20261107011012.3655873-5-gary.yang@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -127,47 +127,29 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 07/11/2026 02:10, Gary Yang wrote:
-> The I2C controller nodes inherit #address-cells = <2> and #size-cells
-> = <2> from the soc@0 bus, but I2C child devices always use a
-> single-cell address and no size. With the inherited values every
-> child node triggers a reg_format warning, and a device described on
-> the bus would be decoded with the wrong address layout.
+> Describe the two Realtek RTS5453H port controllers on the Orion O6
+> I2C1 bus and add the I2C1 pin configuration.
 > 
-> Set #address-cells = <1> and #size-cells = <0> on all eight I2C
-> controllers, matching the I3C nodes that already do so.
+> The controllers route orientation and DisplayPort mode changes
+> through the USB/DP combo PHY lane switches, but that PHY support is
+> not upstream yet, so the connector graph endpoints are left out for
+> now. The Type-C ports are still registered and reported, only the
+> lane switching is deferred until the PHY nodes are available.
 > 
-> Fixes: fad32e8ac460 ("arm64: dts: cix: add DT nodes for all I2C and I3C ports for sky1")
-> Cc: stable@vger.kernel.org
+> Both controllers report through the same level-triggered interrupt
+> line, which the driver handles with a shared interrupt. The I2C bus
+> runs at 100 kHz because the RTS5453H I2C interface does not support
+> higher rates.
+> 
 > Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 51 +++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 
-1. Fixes cannot depend on the driver.
-
-2. Also, explain what is the bug here. Your commit msg has absolutely no
-indication of the bug.
-
-3. DTS cannot be combined in this patchset and must be split. Don't mix
+DTS cannot be combined in this patchset and must be split. Don't mix
 patches from independent subsystems when you send something explicitly
 targeting only one subsystem.
 See also: Documentation/devicetree/bindings/submitting-patches.rst
-
-
-> ---
->  arch/arm64/boot/dts/cix/sky1.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-> index 0a820f45feb9..a18e8fd43fcf 100644
-> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
-> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-> @@ -290,6 +290,8 @@ soc@0 {
->  		i2c0: i2c@4010000 {
->  			compatible = "cdns,i2c-r1p14";
->  			reg = <0x0 0x04010000 0x0 0x10000>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-
-How is this a fix? Really.
-
 
 
 Best regards,
