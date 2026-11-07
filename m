@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F14606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 07:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 760AA606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 07:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zlfjsm+6;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H9HhWnec
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M+HgFhox;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=e7XZKBhe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bP0SvI1SyNFWGaznG9wghum5HnnqOxchfJ6Ki1mewRQ=; b=Zlfjsm+6qaXMdL
-	0MwKqdTTTq4+eMrKyzBZxS/Z2WgHf5+Nz62hLSGlRwsGVlZXCQkCRs8Vm2TzRga9QJaGcplpavout
-	tFqUG7W6Rl5ZBn5uDHFW9gDYqc1MsKhJ2p1ohPbHXxhZghL24dkAgapGgeiuwls0sONMQC3x6e+lU
-	5n2VG3Aup/mlD0MfcIOtnSTZJQ+kBNAhU5USwSYQESwNKojIxKQoAf201bFZs3S5Kw9yqn1pmVI1g
-	6dEJEvokLNMNSGuYB27Cu6+KserZZftleCdD0hgh00KVoRfXuoUTGVoxAKQSOMsjwNweFfaycMAzz
-	YfujywxhWDtJtc4QWP8A==;
+	List-Owner; bh=mb6zscB9xA65zKWgADOGhrqsQ/nGHmGTb9eOGjPV3Qo=; b=M+HgFhoxleU/6C
+	+6nJRk3G6p1Y5ajNvWv17W+vpNyK4g+fAiDveXZDsfumA2wS6XTlHtlMBVvxcGUcSuwpl2uwosOhT
+	/wf3TQYQ/4HAhUiuFZZ0UJIFqHSNSSYWSzHpvIolvbgcxDHvQlbda2Rc0GeNu6XZ7u4+y5F9t003N
+	IuJmIvtwUgLtZz6/3a5OpSLQ1K1wQU6Dln2PjsnervowU9jkE1AHzomaoOQzL5F7mCTnRElaUgbw9
+	bcwlZEn29247CP0ntv55EHGJIMZ3TiV89nFxTwZ6XqV2N/FnINA4lK25C0hOiD/cbbH6xNQPw6VpY
+	0YTfkwmgilvkGdFWb1FA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPawA-0000000EKNl-4994;
-	Sat, 07 Nov 2026 07:34:06 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xPawG-0000000EKR3-0NhA;
+	Sat, 07 Nov 2026 07:34:12 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPaw7-0000000EKMY-1ylY
+	id 1xPawC-0000000EKOo-3P11
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 07:34:03 +0000
+	Sat, 07 Nov 2026 07:34:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E592460D96;
-	Sat,  7 Nov 2026 07:34:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4806C1F0089F;
-	Sat,  7 Nov 2026 07:33:58 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1742160F6B;
+	Sat,  7 Nov 2026 07:34:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D6821F0089F;
+	Sat,  7 Nov 2026 07:34:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794036842;
-	bh=bP0SvI1SyNFWGaznG9wghum5HnnqOxchfJ6Ki1mewRQ=;
+	s=k20260515; t=1794036847;
+	bh=mb6zscB9xA65zKWgADOGhrqsQ/nGHmGTb9eOGjPV3Qo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=H9HhWnecdxRy9vEC4nHuQJSaDvquhMBI/PT801hH48JTsRd3zA+RCmU/HDJCkHKUz
-	 9hBx9hkFGuKGERrF2UnNiTcLwsiPNUfWAxAI0rfswINB7IfINNe83yyNK+Ej2D+BCS
-	 OXkL33cMm88csVmrZIt58Pz2+7egV/OvVOGoKu09CBbZGnbXWOzHJqhYy+ZdFrfrBu
-	 MRItFyzQ637jbhvKdvyl+N32L+rfyvgF5fvoCSkonAy/HLJm1lpO6w3gkcU+/RYKwS
-	 90HlrZFYjMZt8hjUpU5+ACKyyckNqKjK2xddxpsbAhtly/u4OqUwOEiIqAPv/gzhqs
-	 ccw0wttMDE0sg==
+	b=e7XZKBheSrKbie5VnFexSeQbIOTBncXvr7lTKpAFdHOkLHTyzufBqIEvQc9/QUiZ8
+	 bL0NQ6orZouqNfUCKfpZ93GbXCDENZP3lgZx7PEYSf5lLFHd5Bq9UYCUbBfFHXQg+x
+	 OsAnvXdsQb7OPApbsT+etftmAEHezMs1DTCkZNlGpuF8bwSR7PFW/NFSpZ03yzXh6y
+	 1KHmLi06/f4BWOxmc2z1ozGzpCSYF1c5a6f309R7NTf0wba/KhbLzfqP7cnjE828pi
+	 RKrj7UhzORA2cvJwgMKPTkt0PKzzUB37T0ehen5rlXy5L2w/Gr8ikx2vFSsL8eQTMh
+	 QyeG/kAuci3Ag==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Catalin Marinas <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>,
@@ -59,9 +59,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	kasan-dev@googlegroups.com,
 	linux-mm@kvack.org
-Subject: [PATCH 3/4] arm64: stacktrace: Always inline internal stack boundary helpers
-Date: Sat,  7 Nov 2026 15:13:38 +0800
-Message-ID: <20261107071339.17467-4-jszhang@kernel.org>
+Subject: [PATCH 4/4] arm64: alternatives: Make branch and ADRP offset helpers noinst
+Date: Sat,  7 Nov 2026 15:13:39 +0800
+Message-ID: <20261107071339.17467-5-jszhang@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261107071339.17467-1-jszhang@kernel.org>
 References: <20261107071339.17467-1-jszhang@kernel.org>
@@ -86,156 +86,177 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The noinstr stack walkers reach the stack boundary and frame-record
-helpers through an __always_inline call chain. However, these shared
-helpers do not themselves guarantee inlining.
+patch_alternative() must avoid instrumented code while alternatives
+are being modified, before cache maintenance completes. However, its
+branch and ADRP offset helpers are instrumentable. A GCC build with
+function tracing enabled emitted ftrace patchable entries for these
+helpers.
 
-With CONFIG_CC_OPTIMIZE_FOR_SIZE=y, GCC emitted several stack
-information helpers and unwind_find_stack() out of line in .text.
+Mark the four offset helpers noinstr. Introduce private
+__always_inline immediate encoding and decoding implementations for
+their use, and force inline the immediate mask helper.
 
-Mark the shared stack boundary and frame-record helpers
-__always_inline to keep their instructions in the non-instrumentable
-walkers
+The offset helpers pass constant encoding types, allowing the compiler
+to eliminate invalid-type diagnostic paths. Keep the public immediate
+helpers as wrappers to preserve diagnostics for other callers.
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 Assisted-by: LLM
 ---
- arch/arm64/include/asm/stacktrace.h        | 16 ++++++++--------
- arch/arm64/include/asm/stacktrace/common.h | 12 ++++++------
- 2 files changed, 14 insertions(+), 14 deletions(-)
+ arch/arm64/lib/insn.c | 57 ++++++++++++++++++++++++++++---------------
+ 1 file changed, 37 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm64/include/asm/stacktrace.h b/arch/arm64/include/asm/stacktrace.h
-index 6d3280932bf5..b370c0e1e337 100644
---- a/arch/arm64/include/asm/stacktrace.h
-+++ b/arch/arm64/include/asm/stacktrace.h
-@@ -22,7 +22,7 @@ extern void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk,
+diff --git a/arch/arm64/lib/insn.c b/arch/arm64/lib/insn.c
+index e70ac0238515..b98610fcab32 100644
+--- a/arch/arm64/lib/insn.c
++++ b/arch/arm64/lib/insn.c
+@@ -21,7 +21,7 @@
+ #define AARCH64_INSN_N_BIT	BIT(22)
+ #define AARCH64_INSN_LSL_12	BIT(22)
  
- DECLARE_PER_CPU(unsigned long *, irq_stack_ptr);
- 
--static inline struct stack_info stackinfo_get_irq(void)
-+static __always_inline struct stack_info stackinfo_get_irq(void)
+-static int __kprobes aarch64_get_imm_shift_mask(enum aarch64_insn_imm_type type,
++static __always_inline int aarch64_get_imm_shift_mask(enum aarch64_insn_imm_type type,
+ 						u32 *maskp, int *shiftp)
  {
- 	unsigned long low = (unsigned long)raw_cpu_read(irq_stack_ptr);
- 	unsigned long high = low + IRQ_STACK_SIZE;
-@@ -33,13 +33,13 @@ static inline struct stack_info stackinfo_get_irq(void)
- 	};
+ 	u32 mask;
+@@ -86,7 +86,12 @@ static int __kprobes aarch64_get_imm_shift_mask(enum aarch64_insn_imm_type type,
+ #define ADR_IMM_LOSHIFT		29
+ #define ADR_IMM_HISHIFT		5
+ 
+-u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
++/*
++ * Keep the immediate helpers inline so noinstr callers using constant encoding
++ * types do not call instrumentable code, including the invalid-type diagnostics.
++ */
++static __always_inline u64
++__aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
+ {
+ 	u32 immlo, immhi, mask;
+ 	int shift;
+@@ -101,8 +106,8 @@ u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
+ 		break;
+ 	default:
+ 		if (aarch64_get_imm_shift_mask(type, &mask, &shift) < 0) {
+-			pr_err("%s: unknown immediate encoding %d\n", __func__,
+-			       type);
++			pr_err("%s: unknown immediate encoding %d\n",
++			       "aarch64_insn_decode_immediate", type);
+ 			return 0;
+ 		}
+ 	}
+@@ -110,8 +115,14 @@ u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
+ 	return (insn >> shift) & mask;
  }
  
--static inline bool on_irq_stack(unsigned long sp, unsigned long size)
-+static __always_inline bool on_irq_stack(unsigned long sp, unsigned long size)
+-u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
+-				  u32 insn, u64 imm)
++u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
++{
++	return __aarch64_insn_decode_immediate(type, insn);
++}
++
++static __always_inline u32
++__aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
++			      u32 insn, u64 imm)
  {
- 	struct stack_info info = stackinfo_get_irq();
- 	return stackinfo_on_stack(&info, sp, size);
+ 	u32 immlo, immhi, mask;
+ 	int shift;
+@@ -131,8 +142,8 @@ u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
+ 		break;
+ 	default:
+ 		if (aarch64_get_imm_shift_mask(type, &mask, &shift) < 0) {
+-			pr_err("%s: unknown immediate encoding %d\n", __func__,
+-			       type);
++			pr_err("%s: unknown immediate encoding %d\n",
++			       "aarch64_insn_encode_immediate", type);
+ 			return AARCH64_BREAK_FAULT;
+ 		}
+ 	}
+@@ -144,6 +155,12 @@ u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
+ 	return insn;
  }
  
--static inline struct stack_info stackinfo_get_task(const struct task_struct *tsk)
-+static __always_inline struct stack_info stackinfo_get_task(const struct task_struct *tsk)
++u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
++					  u32 insn, u64 imm)
++{
++	return __aarch64_insn_encode_immediate(type, insn, imm);
++}
++
+ u32 aarch64_insn_decode_register(enum aarch64_insn_register_type type,
+ 					u32 insn)
  {
- 	unsigned long low = (unsigned long)task_stack_page(tsk);
- 	unsigned long high = low + THREAD_SIZE;
-@@ -50,7 +50,7 @@ static inline struct stack_info stackinfo_get_task(const struct task_struct *tsk
- 	};
- }
- 
--static inline bool on_task_stack(const struct task_struct *tsk,
-+static __always_inline bool on_task_stack(const struct task_struct *tsk,
- 				 unsigned long sp, unsigned long size)
- {
- 	struct stack_info info = stackinfo_get_task(tsk);
-@@ -61,7 +61,7 @@ static inline bool on_task_stack(const struct task_struct *tsk,
- 
- DECLARE_PER_CPU(unsigned long [OVERFLOW_STACK_SIZE/sizeof(long)], overflow_stack);
- 
--static inline struct stack_info stackinfo_get_overflow(void)
-+static __always_inline struct stack_info stackinfo_get_overflow(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_ptr(overflow_stack);
- 	unsigned long high = low + OVERFLOW_STACK_SIZE;
-@@ -76,7 +76,7 @@ static inline struct stack_info stackinfo_get_overflow(void)
- DECLARE_PER_CPU(unsigned long *, sdei_stack_normal_ptr);
- DECLARE_PER_CPU(unsigned long *, sdei_stack_critical_ptr);
- 
--static inline struct stack_info stackinfo_get_sdei_normal(void)
-+static __always_inline struct stack_info stackinfo_get_sdei_normal(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_read(sdei_stack_normal_ptr);
- 	unsigned long high = low + SDEI_STACK_SIZE;
-@@ -87,7 +87,7 @@ static inline struct stack_info stackinfo_get_sdei_normal(void)
- 	};
- }
- 
--static inline struct stack_info stackinfo_get_sdei_critical(void)
-+static __always_inline struct stack_info stackinfo_get_sdei_critical(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_read(sdei_stack_critical_ptr);
- 	unsigned long high = low + SDEI_STACK_SIZE;
-@@ -105,7 +105,7 @@ static inline struct stack_info stackinfo_get_sdei_critical(void)
- #ifdef CONFIG_EFI
- extern u64 *efi_rt_stack_top;
- 
--static inline struct stack_info stackinfo_get_efi(void)
-+static __always_inline struct stack_info stackinfo_get_efi(void)
- {
- 	unsigned long high = (u64)efi_rt_stack_top;
- 	unsigned long low = high - THREAD_SIZE;
-diff --git a/arch/arm64/include/asm/stacktrace/common.h b/arch/arm64/include/asm/stacktrace/common.h
-index 821a8fdd31af..7c502ae276b9 100644
---- a/arch/arm64/include/asm/stacktrace/common.h
-+++ b/arch/arm64/include/asm/stacktrace/common.h
-@@ -35,7 +35,7 @@ struct unwind_state {
- 	int nr_stacks;
- };
- 
--static inline struct stack_info stackinfo_get_unknown(void)
-+static __always_inline struct stack_info stackinfo_get_unknown(void)
- {
- 	return (struct stack_info) {
- 		.low = 0,
-@@ -43,7 +43,7 @@ static inline struct stack_info stackinfo_get_unknown(void)
- 	};
- }
- 
--static inline bool stackinfo_on_stack(const struct stack_info *info,
-+static __always_inline bool stackinfo_on_stack(const struct stack_info *info,
- 				      unsigned long sp, unsigned long size)
- {
- 	if (!info->low)
-@@ -55,7 +55,7 @@ static inline bool stackinfo_on_stack(const struct stack_info *info,
- 	return true;
- }
- 
--static inline void unwind_init_common(struct unwind_state *state)
-+static __always_inline void unwind_init_common(struct unwind_state *state)
- {
- 	state->stack = stackinfo_get_unknown();
- }
-@@ -70,7 +70,7 @@ static inline void unwind_init_common(struct unwind_state *state)
-  *
-  * Return: a pointer to the relevant stack_info if found; NULL otherwise.
+@@ -1299,23 +1316,23 @@ u32 aarch64_insn_gen_adr(unsigned long pc, unsigned long addr,
+  * signed value (so it can be used when computing a new branch
+  * target).
   */
--static struct stack_info *unwind_find_stack(struct unwind_state *state,
-+static __always_inline struct stack_info *unwind_find_stack(struct unwind_state *state,
- 					    unsigned long sp,
- 					    unsigned long size)
+-s32 aarch64_get_branch_offset(u32 insn)
++s32 noinstr aarch64_get_branch_offset(u32 insn)
  {
-@@ -99,7 +99,7 @@ static struct stack_info *unwind_find_stack(struct unwind_state *state,
-  *
-  * Return: 0 upon success, an error code otherwise.
+ 	s32 imm;
+ 
+ 	if (aarch64_insn_is_b(insn) || aarch64_insn_is_bl(insn)) {
+-		imm = aarch64_insn_decode_immediate(AARCH64_INSN_IMM_26, insn);
++		imm = __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_26, insn);
+ 		return (imm << 6) >> 4;
+ 	}
+ 
+ 	if (aarch64_insn_is_cbz(insn) || aarch64_insn_is_cbnz(insn) ||
+ 	    aarch64_insn_is_bcond(insn)) {
+-		imm = aarch64_insn_decode_immediate(AARCH64_INSN_IMM_19, insn);
++		imm = __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_19, insn);
+ 		return (imm << 13) >> 11;
+ 	}
+ 
+ 	if (aarch64_insn_is_tbz(insn) || aarch64_insn_is_tbnz(insn)) {
+-		imm = aarch64_insn_decode_immediate(AARCH64_INSN_IMM_14, insn);
++		imm = __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_14, insn);
+ 		return (imm << 18) >> 16;
+ 	}
+ 
+@@ -1327,35 +1344,35 @@ s32 aarch64_get_branch_offset(u32 insn)
+  * Encode the displacement of a branch in the imm field and return the
+  * updated instruction.
   */
--static inline void unwind_consume_stack(struct unwind_state *state,
-+static __always_inline void unwind_consume_stack(struct unwind_state *state,
- 					struct stack_info *info,
- 					unsigned long sp,
- 					unsigned long size)
-@@ -142,7 +142,7 @@ static inline void unwind_consume_stack(struct unwind_state *state,
-  *
-  * Return: 0 upon success, an error code otherwise.
-  */
--static inline int
-+static __always_inline int
- unwind_next_frame_record(struct unwind_state *state)
+-u32 aarch64_set_branch_offset(u32 insn, s32 offset)
++u32 noinstr aarch64_set_branch_offset(u32 insn, s32 offset)
  {
- 	struct stack_info *info;
+ 	if (aarch64_insn_is_b(insn) || aarch64_insn_is_bl(insn))
+-		return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_26, insn,
++		return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_26, insn,
+ 						     offset >> 2);
+ 
+ 	if (aarch64_insn_is_cbz(insn) || aarch64_insn_is_cbnz(insn) ||
+ 	    aarch64_insn_is_bcond(insn))
+-		return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_19, insn,
++		return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_19, insn,
+ 						     offset >> 2);
+ 
+ 	if (aarch64_insn_is_tbz(insn) || aarch64_insn_is_tbnz(insn))
+-		return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_14, insn,
++		return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_14, insn,
+ 						     offset >> 2);
+ 
+ 	/* Unhandled instruction */
+ 	BUG();
+ }
+ 
+-s32 aarch64_insn_adrp_get_offset(u32 insn)
++s32 noinstr aarch64_insn_adrp_get_offset(u32 insn)
+ {
+ 	BUG_ON(!aarch64_insn_is_adrp(insn));
+-	return aarch64_insn_decode_immediate(AARCH64_INSN_IMM_ADR, insn) << 12;
++	return __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_ADR, insn) << 12;
+ }
+ 
+-u32 aarch64_insn_adrp_set_offset(u32 insn, s32 offset)
++u32 noinstr aarch64_insn_adrp_set_offset(u32 insn, s32 offset)
+ {
+ 	BUG_ON(!aarch64_insn_is_adrp(insn));
+-	return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_ADR, insn,
++	return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_ADR, insn,
+ 						offset >> 12);
+ }
+ 
 -- 
 2.55.0
 
