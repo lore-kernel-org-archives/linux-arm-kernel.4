@@ -2,105 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB24B606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 20:31:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62856606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 20:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vnFvUqws;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QVEjE+63
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uvUm6B3L;
+	dkim=pass (1024-bit key) header.d=chaosmail.tech header.i=@chaosmail.tech header.a=rsa-sha256 header.s=mail header.b=LkAf2X5V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=v6bUcassHdLO/GXw3zM5VIE7wDA3ZUXzoBbv/LJY2ZY=; b=vnFvUqwsVYm6+R9vJ1KyZBTafa
-	sM2q5vQyorpvepHLEjobZXG38gCghSBRSVfxa/BhCq16llnjZRBSjObRIf62Ft46jsvP54ykzy6B7
-	klVF1eKA8mLzyncRfBHkT7oebUX2mxtlNyZjMZgIQo8e44ZwK8L1If5tOt/ULmDR+jhBCBJGY1x8V
-	LoHvYYqdAH5n3mlL6onKZE22G0AYUl6aMfxLa+vjgyyu2XefmKH1bsX1T9SY/guA1JDTiUiH+SD06
-	hW0YbDWxFltfzigK8YJh5N8VlYA/0k716ikyREWML9moz+cSrWjLHBkACjQb5jIt5yvbszVQlmTA1
-	YQL/QGZw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=C2sizMumrU6ZkmgLRCVGfCVsT99H5CNjhvx5bAA7wsY=; b=uvUm6B3L4/8WH1
+	ZWEoKWN0f6kYaH1CpP7o5yoLR2kq5ihXqNJMxlttlC96x3ZDOgLbXBr6RsTiXM1hWhhF3L1kUi1x1
+	azvEK0LMbozrUF+l4IlvMhkLxom+oQqDjvFIr0ZR5lXoS2o3s70OUAMhK3BVg3Pp8NFt6+5EAI/9o
+	byKJi+/5OJZ2QtcNjrew5P2LZDboUCV2qWtd603TpPvwmSSj/sDr+5HV5YygvhjlNl9rhayRIyEqO
+	J/KZ/0+J1jAwUFH7IvVtOnkGHuTtaCn8GI9TUYyGkpbEM3yo7Hi15BqanFgYv3mkBl7ZGvAObW5DZ
+	zrcmqfmni4JQOK5yCBrw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPn4L-0000000FMQC-3YpV;
-	Sat, 07 Nov 2026 20:31:21 +0000
-Received: from mgamail.intel.com ([192.198.163.9])
+	id 1xPn9Y-0000000FNBt-1Xw2;
+	Sat, 07 Nov 2026 20:36:44 +0000
+Received: from chaosmail.tech ([77.81.229.115])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPn4I-0000000FMP2-3dRh;
-	Sat, 07 Nov 2026 20:31:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794083479; x=1825619479;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OahVgGzTA/BbKK0ba5EuajCKzsBQJEMIYUqKxYPZyv0=;
-  b=QVEjE+63IMJ57BjjxDteVkY/7eyoIsrHLdA4f01nWQtVTVAcbZ1JEIF4
-   5cYgoELqtq2kwfyD7IpvvSvPZYygzr0V4J6ttq510/V4mfgD7Md3I636A
-   uwxXbmX/xE73K2I8+/VFR1OD8F5XgGAUVOghjF05aOFNpeSIn/cnGvcZ/
-   g6zxX83Hb6eNwO6irCVnr4KmCfyzN6hq6VDp/eU2WIlylhIQ46M2QT95t
-   swS28f0z2d+ERVyAzIl9xs4I+rfxcGKrHR9bRIZBxL8RmqEYAM6Dm31K0
-   sfxi9hCyWWg+YMFy+Ni/iJuySzTqDJPQKAHem45wsJN/fmtdTwM0EBXYG
-   A==;
-X-CSE-ConnectionGUID: hhq1W5mQSd+qOuX6LRhw3Q==
-X-CSE-MsgGUID: /XnKCjbvSqWjD1v3N9gcgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11959"; a="2751104"
-X-IronPort-AV: E=Sophos;i="6.27,200,1787036400"; 
-   d="scan'208";a="2751104"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2026 12:31:18 -0800
-X-CSE-ConnectionGUID: o7l63MtfQnShQRRzlIJVWg==
-X-CSE-MsgGUID: Lctc+yuNQwKIuKfWJsyFdg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,200,1787036400"; 
-   d="scan'208";a="7876352"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 07 Nov 2026 12:31:12 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xPn47-00000000rX5-3vnH;
-	Sat, 07 Nov 2026 20:31:07 +0000
-Date: Sun, 8 Nov 2026 04:30:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
-	Xaver Hugl <xaver.hugl@gmail.com>, Vidith Madhu <vmadhu@nvidia.com>,
-	"Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
-	Leo Li <sunpeng.li@amd.com>,
-	Harry Wentland <harry.wentland@amd.com>,
-	Fangzhi Zuo <Jerry.Zuo@amd.com>,
-	Daniel Stone <daniels@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Helge Deller <deller@gmx.de>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andyshrk@163.com>,
-	Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2 20/27] drm/connector: hdmi: Add QMS state validation
- and computation
-Message-ID: <202611080413.OlzAJilt-lkp@intel.com>
-References: <20261105-vrr-limiter-uapi-v2-20-55f4215be2c2@collabora.com>
+	id 1xPn9S-0000000FN9p-0qiu
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 07 Nov 2026 20:36:42 +0000
+Received: by chaosmail.tech (Postfix) id 629471C9690;
+	Sat, 07 Nov 2026 20:36:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chaosmail.tech;
+	s=mail; t=1794083791;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=C2sizMumrU6ZkmgLRCVGfCVsT99H5CNjhvx5bAA7wsY=;
+	b=LkAf2X5VAvOKqnQ8ej4NhLF2T582iEg0Xdg3J3OdDkbnb5OcMv6GiICLgK8ws8zLmir1G3
+	1ynBCFF8ZJ2er4uttL/UAe1krJIPy3OdgpBv/ByOgNfmYLli3DQRNZlVSPsEg2uhg8J3Qt
+	Kp79yIshf6+Hbnji4LMfSAU3u3Jy0Pg=
+From: Sasha Finkelstein <k@chaosmail.tech>
+Date: Sat, 07 Nov 2026 21:36:23 +0100
+Subject: [PATCH v11 1/6] dt-bindings: spmi: apple,spmi: Add t603x and t8122
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261105-vrr-limiter-uapi-v2-20-55f4215be2c2@collabora.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261107-t603x-spmi-v11-1-322490215f58@chaosmail.tech>
+References: <20261107-t603x-spmi-v11-0-322490215f58@chaosmail.tech>
+In-Reply-To: <20261107-t603x-spmi-v11-0-322490215f58@chaosmail.tech>
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
+ Neal Gompa <neal@gompa.dev>, Stephen Boyd <sboyd@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Sasha Finkelstein <k@chaosmail.tech>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794083789; l=1683;
+ i=k@chaosmail.tech; s=20241124; h=from:subject:message-id;
+ bh=w1uF1sHRL6ww/RmxY7obycFKrx9sLGMqFsMCKG2iCz8=;
+ b=9N/LH6P0QJldMuPlVKH0Ue9dShBgGSQnDpOga7GZ6ZFr7rPuW/5OlcJMjd6VEI7o3FoJ0GPc1
+ M5MMtV7pyFxAKHuvJ190sSg1GGV/LnEIZzJCn+dVdCv1/NvopChg1q+
+X-Developer-Key: i=k@chaosmail.tech; a=ed25519;
+ pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_123118_970744_8BC90FE3 
-X-CRM114-Status: GOOD (  11.17  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261107_123638_770960_C1FB9338 
+X-CRM114-Status: UNSURE (   7.92  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,38 +80,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Nicolas,
+Add t603x and t8122 compatibles, interrupt support, and support for
+SPMI controllers that are not always-on.
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Janne Grunau <j@jannau.net>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
+---
+ .../devicetree/bindings/spmi/apple,spmi.yaml       | 29 ++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-[auto build test WARNING on 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4]
+diff --git a/Documentation/devicetree/bindings/spmi/apple,spmi.yaml b/Documentation/devicetree/bindings/spmi/apple,spmi.yaml
+index 3e5b14bc8c31..4e73083ecec3 100644
+--- a/Documentation/devicetree/bindings/spmi/apple,spmi.yaml
++++ b/Documentation/devicetree/bindings/spmi/apple,spmi.yaml
+@@ -20,8 +20,11 @@ properties:
+       - items:
+           - enum:
+               - apple,t6020-spmi
++              - apple,t6030-spmi
++              - apple,t6031-spmi
+               - apple,t8012-spmi
+               - apple,t8015-spmi
++              - apple,t8122-spmi
+           - const: apple,t8103-spmi
+       - items:
+           - enum:
+@@ -34,10 +37,36 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  interrupts:
++    maxItems: 1
++    description: Optional, operates in polled mode if not present
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 2
++
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - apple,t8122-spmi
++          - apple,t6030-spmi
++          - apple,t6031-spmi
++then:
++  required:
++    - interrupt-controller
++    - "#interrupt-cells"
++    - interrupts
++
+ unevaluatedProperties: false
+ 
+ examples:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nicolas-Frattaroli/drm-Add-VRR-state/20261105-165152
-base:   0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4
-patch link:    https://lore.kernel.org/r/20261105-vrr-limiter-uapi-v2-20-55f4215be2c2%40collabora.com
-patch subject: [PATCH v2 20/27] drm/connector: hdmi: Add QMS state validation and computation
-config: loongarch-randconfig-1001-20261108 (https://download.01.org/0day-ci/archive/20261108/202611080413.OlzAJilt-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 16.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261108/202611080413.OlzAJilt-lkp@intel.com/reproduce)
+-- 
+2.56.0
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611080413.OlzAJilt-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/gpu/drm/display/drm_hdmi_state_helper.c:1031 function parameter 'conn_state' not described in 'hdmi_validate_qms'
->> Warning: drivers/gpu/drm/display/drm_hdmi_state_helper.c:1031 function parameter 'conn_state' not described in 'hdmi_validate_qms'
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
