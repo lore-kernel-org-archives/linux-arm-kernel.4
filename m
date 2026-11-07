@@ -2,103 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4225606D835
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFB5F606D81F
 	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 16:39:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3w+iup84;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=ICOVPZVS;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nvJBAxmd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DIH9rmun;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=hMyGl4pY;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=CKGq67Vg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=asWdhl3Pp2O56PoH+ShacAZ49+nr8lbfDLql5h7tLgo=; b=3w+iup84wLUzU6
-	p03xDrWRIW7lxgv2T66q0xEp8n2UboBFKDvnrz88F8JgKvxyvR2bUCzWe1ngtadZCQQrW4cLkbbYX
-	3Q30dIGxctAiKy4YUn6BXBd/Qr2AmVhf84nuHPPaDZ6Sh4sISKdUciHLU0LCOm3VBuGTX25eKENlV
-	fQpYsRt0XIwkHVMwmFi/gcFZ9SxGOG/4vNdSg9Q+KSInmDUPdOChHOLU76/fjO6+iRE7WA3g6cWdM
-	EWAmZRpFgud+5MD09hI+bVKuUOlc5pfIQtaZYtC1+rLfmFUviiQi8kneW8RUHfpMrClFJVaDePXTW
-	KEn9xdhOOTINUSndpNCA==;
+	List-Owner; bh=UMDkxpgyre+waMfCtjfzdU/2CLXXfR7MyacRoArghZk=; b=DIH9rmunn0fRme
+	2sTPwSA532V/Q8SMSWoQKc8STWSlT9x9JyN1taxUaQLwQvgD9IuS2lAsbprRr++JMYHNPUt+wifMf
+	eVk/AThfZT9xpHFHla3PHogK3goAbWiOXvIebMV16+zpYE0/DjJVuh9jAE9ekro+crJrL0kWeUbfq
+	MvAv/Vf2IQF358LOddHHi6O3FDH7nkrrTwaIJffawmOsCeDHx6K+G1RbQAwoTQYYtG1HY3u62ZWf3
+	c3Bu8ngGrbwT82aOG2wsrKXwYP8V52AxGZoWwknInRPfzAoZuACPfRj7PXGlmi837VWfU6CDo9kA2
+	m+T+NPsliu2rsWOmgubg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjRW-0000000F0c4-23TV;
+	id 1xPjRW-0000000F0bg-1YZD;
 	Sat, 07 Nov 2026 16:39:02 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjRL-0000000F0TR-0r5Q
+	id 1xPjRK-0000000F0SB-2Y5x
 	for linux-arm-kernel@bombadil.infradead.org;
-	Sat, 07 Nov 2026 16:38:51 +0000
+	Sat, 07 Nov 2026 16:38:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
 	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Sender:Reply-To:Content-ID:Content-Description;
-	bh=asWdhl3Pp2O56PoH+ShacAZ49+nr8lbfDLql5h7tLgo=; b=ICOVPZVSJ+QyfSJAV0VK605ICV
-	hg+v4xBwGzU3rSjWLcCDcfn1OTwClYNvUAUOuYcVj5yzwLDlJWqN7kwTF3gFLsuc+2Yb9JeobA55H
-	0rCf68GKA6N2hUtCiRKhAuoeouj0G39uRKCf1Ht02I6lvoJhoqT4JjX1xlQTGQ5BQJEiFXB9dPGhS
-	hcAiJqG/MtHhyYmhQ/6thtRsQ9Mv68YgwQXvc29jNY9pxSzGYpMabm3VR95pVUv1I+gJf6nLEl9No
-	6w/SwLVp3P/fTBBH89c39mhBBuwsdaXcjiaz3JF13gAHVHURQq+uwFzHoAbN1Ho3iriMhs8cy/AFu
-	rli9zA2w==;
+	bh=UMDkxpgyre+waMfCtjfzdU/2CLXXfR7MyacRoArghZk=; b=hMyGl4pYvkCoRT+MZsO9BKdWjD
+	nqhjXWoIM2XbKLPSqk0RrJdb2rypa76H4TYnNFenP1IoqJlnM+PRPn2Mc75469/PDpdIQcBmIvuWo
+	L7XOGoYZV2hJlAvzHdVCJuA86BODrvQcghLS/atH9hy3Ehj3PviXqnpWss2kSGMMI/EZkkJhxKJNo
+	KHR3zXhsiU9YnWBgbyN4B1qgQy/G4Ux1R4S1iMwhXDmydik01vvrEbQ9N+SJdujtVUS2bPXOzBD/J
+	ziqegx3Bqge1pGsvrjKUaLw4nUTbhB28YfRO+UGp9kYUM7tuCuDrPdnzkYF/qy0oYi7qegrWSL/ql
+	/VIrx08Q==;
 Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPjRH-00000005KFP-42Or
+	id 1xPjRH-00000005KFH-42As
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 16:38:50 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so12027615e9.3
+	Sat, 07 Nov 2026 16:38:49 +0000
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a35ac4475dso13145605e9.2
         for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 08:38:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20260707; t=1794069526; x=1794674326; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=asWdhl3Pp2O56PoH+ShacAZ49+nr8lbfDLql5h7tLgo=;
-        b=nvJBAxmdyYzT+HEuOF42c0U5mxDe5mV83yfMZ5IyRSKvzuHTFMeDd3eVIpjvrPvwzg
-         1sH3BGph/CmpZB7bIHDpKEKkre/KlCDXfrzYpRAEJrVezbgMEbCKwNgx2uQzmB2SMr7r
-         fSvvNso6S6DCxmGrIjmQRon5j8QExa4xX02Pr+/XVPK+3OdHgz0yNw+YGPD3W79SVdat
-         ur2uAzJ9r5Iw4YKm1rECAKiO8l3Y5MnQCZ/vSN7svOfefjTwqdRw6IE0Znwnugc1kEsR
-         QveRIdNIbNlHQKnTNGteh+E6hAdSEN9t7YC/3YvVoBhD85zWPrb6ykQAI2gR5KPKio1u
-         fK1A==
+        bh=UMDkxpgyre+waMfCtjfzdU/2CLXXfR7MyacRoArghZk=;
+        b=CKGq67VgPev4tEQBD6KCixLXY7rav+2NB0K53lUI1dGFGOrNw0oVrzEyFNoBoLqkLU
+         G2tGgSg5qe/rAEu3bJAa0OhYUG5LXxDXddXH6izzFmAQAMBTbOAl064xrBB5AlYDsVja
+         w5xk/kB2YmWHS1SYgBa480C2KD1347x42UB5YuQirZweovBFC+iU+fnonL7T7s2bugC6
+         IqJh3I18vKFgoivg/Y9rdcs0plLe61D8WZaMUv2Fc+MKT6Z2EVg9+lAxbOuANky9SPFl
+         F5OVXoPzPm0LcyK6ANFswFUNgwqDxciwl8Yg+bkQ9+paxOidsZtgKadgTUXwPAHJkrba
+         gLQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20260707; t=1794069526; x=1794674326;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=asWdhl3Pp2O56PoH+ShacAZ49+nr8lbfDLql5h7tLgo=;
-        b=mm38pqeOGtTW9GLB3mb9LuRpdvaoEi9Eae8CzymTZpDxp5CHh3+p17I5/ZEyDVE08R
-         mR9bB8+wpLC0L13NJIv+RWcqNoSg36zY0uTeMSEkq/TR1ZzDueA1I3kXwSjF21HfTnJX
-         QGGsbmjhOVCaCCn9CCEpYaVAfZFdPz1cpBkdPhKN1cHZ/cSQpDZpehk0y0PL35O59Qg1
-         KjW7ABIMrdfvRlCOCe3F/ER5mmA7cPPV6f5YgsZbhoY05My+F0l1gW7Omt1ga+9ceEWg
-         ABaIUWkoiqlMoKrI1sjDP6+snf5wWLLWzFfggLoBHTznMPf7XksvQCFQ2MG1SCYUky2H
-         V32Q==
-X-Forwarded-Encrypted: i=1; AKwUvByBtvibmisBSZgkD4j/CTCIKw1x5f4BfucFpSQIaFdLhXgkyO//8/brWHm1BEjHsM8YDC9tukV5bTUBNkhH/Bqk@lists.infradead.org
-X-Gm-Message-State: APuU4Z9wVtGCeWSUl/yXka+JZ4n9Al2NhAng9Js3xm+/YKHfl3BmB6WQ
-	mbRJ7kZkmbHsu1SOp3YR3nvBzM48WzhUVS8slPyu6IyPZVJm7AK2MRfw+UNA3WHL
-X-Gm-Gg: AYBFou34YA9p0aPgXplraGwSji6Zy2Zmw8p5jTObBliYuxqQim435butHINLAQWUBG+
-	YYop7tVY4eofbmGDWLUXUSvGQ4TVEopXxQkKZD0fBio7GSr28Cqm22Lzll2lIR5L+0f80ZZhyBi
-	lUg9wBFMWUMx9L32tHWCIcgKXo9CJaRdx0XqX5Gd5Ufm6zV5BnEiF97l4ooOjPOBhTjS5qPjEjL
-	iQ43bGrJdqoQ8Iv0s8jPYEyVoQev1mJROZG2V3Q6l0Tbifx+upF/dINx5OO9+UkhxtmYQxc+nBe
-	uK144HKAo2zj8K2M+tZtwpVytNBQRFVRdwx0LM9XaZmBBFozOcKpm0S/a7HiHuunUkN3/1kEvDB
-	Lb8hrXeYIMlyW8I5nD7u9zz6rrEsuzCeu9RWEqssGmW4nKx3jQYyTpcWEzWmuvMYQK/Tt6XJGfU
-	8xao5CB9sXhiccnX+4DthRaEl57aDE9qirOyU9FZW+TV+klSnNyIJ0z1ctfSntgfnvE2sno5xLk
-	Q1IniS2gztGaYwBtd4CVlac5FvI0ZBKOMmThZwYsK/2nrM3OUruUQ4FmbMCgFCViSafdBgTKLyI
-	LK6VIKdwoYRFHEIiMUNhf8Ys6SwQ/+SV79Bil7lUeCh9sNUcjdfKX13ulYqmxhkXin9fiE4AvTy
-	Jukf70lfHMVziDH5Iz3YZpv9uEoX8BgnmqQRxLQ==
-X-Received: by 2002:a05:600c:19cf:b0:4a6:42cc:bf66 with SMTP id 5b1f17b1804b1-4b6de789199mr109400575e9.11.1794069526433;
-        Sat, 07 Nov 2026 08:38:46 -0800 (PST)
+        bh=UMDkxpgyre+waMfCtjfzdU/2CLXXfR7MyacRoArghZk=;
+        b=mfmDJGllhqRsJ1MM0x3bo41CDExXKAkaESetN62idFSXCCnfxwryLH/6gHUJsd/BGo
+         oiMAxisA2S1F/VHPLId7fQ1HePOFvdictWYYraa0tpfQkx7nQEcDCoXGif0jjeHlIGgP
+         MFU/D0Hxy/F0Hyo1/5PLAaOd3zphNm5MqTI9GI0j/Dc0hGtkDO8PKJj5izp2Gwu77CVN
+         r+q1uMc/wCZz2Acmec4q262KzFI0Kf6GQOgOifhc5uuJYoRLGvwhF6rpZVkd/oDl7Haa
+         yfPXT1AKAsNlhv3KVs1uZkCHV/WoZbROae4BHsgFwdY0bMyH/rbD3LdfY1XOpEiJDbh3
+         /uVw==
+X-Forwarded-Encrypted: i=1; AKwUvBxst4mavBq/7wHBtfpLtdqGaMz1uQld4hLWSOsCpIu/vSUd93ko7PfgyCLN1By6Uc7ICiuuoC//KDm/fBhZ/M7R@lists.infradead.org
+X-Gm-Message-State: APuU4Z9huPjkRuCkoHJ4BGkhFZ/BAKmWRnZXNKLCHmUBD1lcYrcTzMOB
+	j32Un3YIM0geZFyMizz2p7KNbWe50zO2TJo7buYpI1mssUGgzHtz10M27n3BJybf
+X-Gm-Gg: AYBFou1K0Y4UJoMkD+K+a2mX+s5BC66L57euqaPGGV/kY2a5+rxgojXo5R6/JiCLvt0
+	y3Io03TQ8JoXq9ZMNlPqUYlBHOnh0W7tLadqi+QmFldrzfdAohX/xAbGwSFNHIyiUugTcOZjDW+
+	LGjcShmvstDd9v+G97Jxb2k5f9vKuttpCE98Yvo0OjcVySULk0lNValcG06ffHE7Tn512lfr99Z
+	TpDAORbjJW9vciMno79u33xC3vfAMfC1QL31C5wwmndd+0FpWrlpFAmb9J5VfTXBxPCCHCo1ivt
+	aClGpWgRtOx9v0zLDZD3cqgE2MUWNX6qZ9mMw93MDLv53eJaPiR+zbhWSaBtQOVThpfBY8Io7+I
+	irLRa/t3FznWIcQ9uOEUwIq4V9adhKsoWo2F01APsc+wSYBZiRgBzz4MVZdDyNN24RUho3AddO7
+	dfsW9jTJ3hidL9y51Q8kFCBK5YXtJREGX9CZNFeyXXJVDCUC4A9751YkPMAOmWCK4XjK3EtLGxx
+	Qrdvb3kndbOLpWCvFaoOvSpqZSCLa7kkuVPldkjtUVQsTt1vHs4LRox/wiLz6btHpPl2n/nFTay
+	FkFY7J6X+Ebr90lojRpUnu4p1uuLLlxGGf+yLzmnx5guc7Sq3LMFrYAP+H12ON2C7ZPA1zWhRXr
+	3Grx9lzYw9mBcPOY=
+X-Received: by 2002:a05:600c:6206:b0:4a2:967:dfb8 with SMTP id 5b1f17b1804b1-4b6dfab3fa9mr100515655e9.20.1794069525785;
+        Sat, 07 Nov 2026 08:38:45 -0800 (PST)
 Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
         by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b7bb101537sm36117925e9.0.2026.11.07.08.38.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 08:38:46 -0800 (PST)
+        Sat, 07 Nov 2026 08:38:45 -0800 (PST)
 From: Sander Speetjens <sander.speetjens@gmail.com>
-Date: Sat, 07 Nov 2026 17:38:09 +0100
-Subject: [PATCH 5/6] firmware: raspberrypi: Document memory barriers in
- property list path
+Date: Sat, 07 Nov 2026 17:38:08 +0100
+Subject: [PATCH 4/6] firmware: raspberrypi: Remove unnecessary braces in
+ transaction helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261107-fix-raspberrypi-firmware-v1-5-707362c710cd@gmail.com>
+Message-Id: <20261107-fix-raspberrypi-firmware-v1-4-707362c710cd@gmail.com>
 References: <20261107-fix-raspberrypi-firmware-v1-0-707362c710cd@gmail.com>
 In-Reply-To: <20261107-fix-raspberrypi-firmware-v1-0-707362c710cd@gmail.com>
 To: Florian Fainelli <florian.fainelli@broadcom.com>, 
@@ -109,26 +109,26 @@ Cc: linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  sander.speetjens@gmail.com
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1034;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=910;
  i=sander.speetjens@gmail.com; h=from:subject:message-id;
- bh=P9wmJ6Smi8MVD/GA5S6rtkoUUYTGbgyj85KQ4DXkfhY=;
- b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBq71QRFlLMnlbeWb11lO41qioslLYVWcI/ZHRz/
- v4NLYvUx7CJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCau9UEQAKCRB4zXhFDAXI
- ZwxOD/4og+dmsi4eHShCswi47DDv9ZHedikmZkzDjOGZyYC35LtAC/RuRjfTE6hdkqjCfTZAvLJ
- 90kj3EoIKiiB2E3UlFRjsvM7qWyS06TYSpHU+6Y3i3gTfMZTAbGcodIQCCH5Gj2YayYn8tNPtg8
- S17jhQpBQr+eAiHhd2NMtt/PhKCXwmBVfYrck/qZsfSC4xeNQdfi3aaaykGfgvNkWRhqfQi7fQa
- Tfh2JYejd8qdF6TC+VZPgHziKKh/+wh/j0O+aQ1LTCH3aWUVtbF8D1xb9D8esp8Y55MFBgnxJHc
- /QX3fw1yW1aho61RKhNSMQMaKd7+1BCrdCFaHtzbtivpaNTk5ZAPKUL50CEx50ug8Xc9m2lDPjX
- AAw5cs3Jl2aJn+TKZyniqgpgNmtsk4vV0HLJdLFloqfO0YnJPezfK3GnHCvnLNjOyBEK/nvL6Wt
- Xc2iSisov2RiNoQqqnWdZVWnw8l6RtWQWksJXTO3UPfed/BrKG4/cy9QtsMz1Mc+5kzqqUBAenr
- BzTFuJN6wyEhDFpFMbx8dSwugn/gZcae3KcrjcrSZCLcN1t3oU8U1xhIWk4eplcGSP0fxkbbkug
- Kdb3mnv9AQIS/iIGwq27hbJCSgiJ3zseWcEzY1c90pGTAwHlMMxSd9q32scL3qW9UiHRsUIOTd6
- aTudNqUBZQTnN+Q==
+ bh=R8pNK8uv7/mdLr9QZyRKpk7qvj0fnfV1DdkNj860TPY=;
+ b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBq71QR5PC7gaudY0cAfXzsqY320Tt41IkMhILgT
+ 9tLy+DoLZmJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCau9UEQAKCRB4zXhFDAXI
+ Z9LfD/wPxoPXBI8XQxGlbbYTYfiKQhwcFZCxfqsS0TSYyMpXwXZ8sNE8NR1klea/xDW21FdP1fY
+ B5j0hRrWlV2t02OtXlRtB+tF5yrK5iS7NyomAbj6hD965lhsfCEyqIzTlkFEPmugmTv4oAWCuGq
+ E30g1unfsaCVY6hK9Zwy1HT/0qpXmzFVy6yASSHkL0Muawo/ha5pr3HBmjJtZEoNlXBYp5+EoIA
+ b3wViy/dCGa3RzGRPADQgwmcCRdtabTcrdMqVMWxjK/bV51K6OrjpLUESIwf/d6f+6UqtpV5eLw
+ H1e5FDbzNPAcJjwwD/FX15Bn8B7xg1txHzWs55Ngcal57l2E1glmXwL7m1rIhZCkj6BZQaffBwl
+ vgomsMYjggBb14uQ1quJV3JNKTiKFZgezhISXlLAWqu+WnK/vCMunnyhM8vapKRRbWhtDydNOFY
+ e9QFSvjjzpY1OlKW53JplNWTmi7FI63849bSjQx2KdYmJUyjALLSQ4mmbQg7IRIQ7w79fQuert6
+ SuMZWftAHwJ9q+bHkpxu9ev8yCatOSSqMsXwoxNnoM8N+76TJ2N8UGOserUkaSbBKaNWOMtFmUB
+ YICz4dprytiKYMKe6q0n9gAYPJ1HIUq7qG+WebjY4sYdNCSqtwZv3DWt45RiXO/UfrgiCteXp+9
+ kom68PVTxmIMbSw==
 X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
  fpr=56524A8B001A11C3EEC9510178CD78450C05C867
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_163848_005543_4AD5B5F2 
-X-CRM114-Status: GOOD (  11.20  )
+X-CRM114-CacheID: sfid-20261107_163847_981346_4D602A30 
+X-CRM114-Status: GOOD (  12.30  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -148,31 +148,32 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add comments explaining the wmb() before the firmware transaction and
-the rmb() before reading the response, as required by coding style.
+Braces are not needed around the single-statement arms of the
+wait_for_completion_timeout() check.
 
 Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
 ---
- drivers/firmware/raspberrypi.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/firmware/raspberrypi.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
-index d9a569a6dae7..57f21e4e65d6 100644
+index 04163c3f385d..d9a569a6dae7 100644
 --- a/drivers/firmware/raspberrypi.c
 +++ b/drivers/firmware/raspberrypi.c
-@@ -110,10 +110,12 @@ int rpi_firmware_property_list(struct rpi_firmware *fw,
- 	buf[1] = RPI_FIRMWARE_STATUS_REQUEST;
- 	memcpy(&buf[2], data, tag_size);
- 	buf[size / 4 - 1] = RPI_FIRMWARE_PROPERTY_END;
-+	/* Make sure the writes to the buffer are visible to the firmware. */
- 	wmb();
- 
- 	ret = rpi_firmware_transaction(fw, MBOX_CHAN_PROPERTY, bus_addr);
- 
-+	/* Make sure we see the firmware's response before reading it. */
- 	rmb();
- 	memcpy(data, &buf[2], tag_size);
- 	if (ret == 0 && buf[1] != RPI_FIRMWARE_STATUS_SUCCESS) {
+@@ -60,11 +60,10 @@ rpi_firmware_transaction(struct rpi_firmware *fw, u32 chan, u32 data)
+ 	reinit_completion(&fw->c);
+ 	ret = mbox_send_message(fw->chan, &message);
+ 	if (ret >= 0) {
+-		if (wait_for_completion_timeout(&fw->c, HZ)) {
++		if (wait_for_completion_timeout(&fw->c, HZ))
+ 			ret = 0;
+-		} else {
++		else
+ 			ret = -ETIMEDOUT;
+-		}
+ 	} else {
+ 		dev_err(fw->cl.dev, "mbox_send_message returned %d\n", ret);
+ 	}
 
 -- 
 2.56.0
