@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0490F60A3821
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8214C60A380A
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aChuWbSi;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=l2Lv/S+Z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mctug38M;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=W2lxtKYh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,74 +14,77 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xZJrP1aJDDxFBFBygqsoNEypPFzVS6oeHoKisvrveOQ=; b=aChuWbSiswl+TJWI8sJGOPbnAp
-	sLUChw3jlM1OKcFkW6sjXxV2dE1Th9EsowN3IPkh7gIHaDs48CQskLe5g5zsDnzlxhpVrdb5HcRZm
-	+k+u6+tWQYayB4xKQ4v2JqpiJb9iJtjrfve8gq/t7TBNFEAqch8rm5i3vTnBBnPvfbzCljdMsmtrX
-	trA4PONSFXWhY20UpL64DbnsZwTztATekFoCUdF37pMKAOfGGot/A6giFghMhK4YSiLpw31QnbGBr
-	4kM8pyemGS0GS0v5JzqH3U3Q4cG0niMuZNls03mTkUmUA9MTmg7q7lrpx6azKC4ZVA9jGI/ri78Jm
-	mumn8htw==;
+	bh=BA87cHxXtTWR3BYiMzRslM1IopR1GCSiZApOjRzAgt8=; b=mctug38M/BaDMYAYAkd88TGIzt
+	dUrOMDZ6EOhI3DuFgbAKg8gQl+EtHrzH7OU1mbgRZGH7pnNyIPYCTX/2ib+7OZ+opgBXF/l9GtZ2k
+	9cCDEGME5fQL0sCy3CumMLiBx978KA7Cv3mKd5pINuRPM2aJlpVOCLWwBEaP21jailaphg90ENIcV
+	URHIOpuihfYr4VS53ITnfM151Vw9ZI3kukDBXXQwd4Le9qyZO9Yk2D7gNNE3FCi3ouVHWKCQv9hhE
+	ouImuflaQ4/80uwv7xZWQmWC6yt7gKo0DYoRisun8apfCUBbqJzQumXnHaz5iRENP9dP2IOtgn8D9
+	iQzzUhng==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiU0-0000000Ev1F-0uQt;
+	id 1xPiU0-0000000Ev1t-2QBv;
 	Sat, 07 Nov 2026 15:37:32 +0000
-Received: from mail-ed1-x546.google.com ([2a00:1450:4864:20::546])
+Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiTq-0000000Euom-37wu
+	id 1xPiTr-0000000Eupl-0t5b
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 07 Nov 2026 15:37:28 +0000
-Received: by mail-ed1-x546.google.com with SMTP id 4fb4d7f45d1cf-6b3f6d9827eso1512779a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:20 -0800 (PST)
+Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c41b03cd1dcso155942666b.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794065839; x=1794670639; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794065840; x=1794670640; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=xZJrP1aJDDxFBFBygqsoNEypPFzVS6oeHoKisvrveOQ=;
-        b=l2Lv/S+ZtoJ9BQg5zVV748n2GBNHdhS03JZrP7pvgXUDn6zsjKNPO2Yu+eebrTN7Vl
-         RADQSX78bie+f6rwiHfw03g7y3/07r6K81oNP97xSIJOqwLHF8EsBtG+MWFH9WsUqdbz
-         LEdfKX22ftF6ElrD7nLYYf65CCLc2714ExBUtrWI3Hqda0OZkGPCACi+2ldf6J0p4nsf
-         0Vn+uBsKZbihKWnJ3QCh+WBT1d6DjoahUT1tvBBYk8duTOZ++JmMXJJtMesv+RqIHyLk
-         /LewQrWkast3YhftJ4xR6Qr7IpnDo3PoMVSVuDQIMG1Pr5BZCHCoR0NL7ZniDsLMsfY1
-         SOKw==
+        bh=BA87cHxXtTWR3BYiMzRslM1IopR1GCSiZApOjRzAgt8=;
+        b=W2lxtKYh7Yw3aBu1ffdTlh8pOaxaFnJkEubjAsGcEN9efwBkdXKMVtGSIOegf4Vdbn
+         aIRYR1x+y2SyX5//O14dNl03ADSsZf58lIkki5BGG7MJgyuY2qsjv1uFAx7gIGr1D3wT
+         7KTM899/tEpgRy6WGtiRm994ufqBlrUot2sxvexTL7/D3/JZja+4sIZPxwLoEcRPsHhm
+         t+KfGA8e+yrRDQ3rzfFyqiDU0gwC6xVQ/RJ/BLTmA4QNGhmFs2Nf1AAQ1beZmIaPfitJ
+         R8m6F2qBusNSK3POHY7MihYF7mP59NKmcNwxbiZA4y97zKMO6UDd8xItzSBqGw++10PU
+         NOmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794065839; x=1794670639;
+        d=1e100.net; s=20260707; t=1794065840; x=1794670640;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=xZJrP1aJDDxFBFBygqsoNEypPFzVS6oeHoKisvrveOQ=;
-        b=iSi/8fkkp3eSWN9lXWqJ/1eQiCq0Oz7ffTy5vaEVpkyy7b1uuWLrT3XVUGJfGxmr7h
-         W1Kp3azD9ZPoLEMUUvvilQ3vxGxjH2AeGovAKATg++d3NTU89ecCaJ1PfecPN5GB8IB8
-         Lw4Q8MWh0iAff9MkCGwre5UVnpgJN6tUjCZ5NN7QjY4NZCgAm8576z9f+Hd9Qfn9fkhA
-         mGCffVXmu4yWG6/MGDQPSZuuBJjYESn1OuqU6Cf+wnPEPxv/8XAS7sHra+ftxAGjsw+j
-         L+FOcf+xR9MdcHI2RzwYLhAypwTH96SKM+FPVOiyQfcJnIqEy/dtFO3I2qoc9mJw9ve3
-         oF8Q==
-X-Forwarded-Encrypted: i=1; AL+hErHG5a+qGWSVzw16KWz6LVXO+Pb5MMceZW1xXtsstyJkbNHOGAu+x6EZrRGiKUv+KThLNPvV7bzDGzddnbP3lNm9@lists.infradead.org
-X-Gm-Message-State: APuU4Z/fWm9tosUdRgqHVGFHUHqY7JtoWAzq6sTG5fFyeVIVoN/CHEjl
-	LhnU104A3t1CsME6tDb2hcxSiWtDW0ZgL715sjFBq4WuVeJQZBEaJl/XlPT4UdV9/RB4UAIe0JO
-	+5Q==
-X-Received: from edt6.prod.google.com ([2002:a05:6402:4546:b0:6b5:77e8:bf7d])
- (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:90d:b0:6b4:88e8:6074
- with SMTP id 4fb4d7f45d1cf-6b5977caf87mr3835118a12.22.1794065838990; Sat, 07
- Nov 2026 07:37:18 -0800 (PST)
-Date: Sat, 07 Nov 2026 16:36:14 +0100
+        bh=BA87cHxXtTWR3BYiMzRslM1IopR1GCSiZApOjRzAgt8=;
+        b=j590EeWdG9ANpkw3TEBZa0pqC3xgETwLddj/IfcClmcsbMdSHm2UkKo+zpOptZ+ZeF
+         Qx9mrDbl9BveMPNUoLG7pAemZ0Uw9nISo3SHnzTDj9TCQa4vJ9jDlq/BzrWwjdNCcSlL
+         myxHuqr6amvBCt+uZPAHuzwLcJxU0z/XaERIYp8FL83AMY07YkfA/kIf5iQQqIHEWdty
+         56hG0b6LOsXyAZxuc9JKJBjQktu9O4kr28mWgbBCFOPfBs2GX04hOypLrk0JBI36DuUt
+         z4wi48oVZ+l/xlKdQjkHAxFLOsTp1oLX83iLAOHFvHwgbi2lYk7qr0L9LpJd3t9bm8G7
+         HJMQ==
+X-Forwarded-Encrypted: i=1; AKwUvBxjhb/3UXG4BMtnH6HX9hAy5tSeWJ3O0Po+2N5pDOSRay39ncI3kF+mPROojv4rPb+yhYJ6pnfl1oRU99qKfO6G@lists.infradead.org
+X-Gm-Message-State: APuU4Z/79zwDcQdyneAwlCRrVU8E1SMi/cIPYMTrFgWASpgkqimWqU5e
+	Iyy/rf2Wnq2gtZW8bA4gUfYYxbMPaLEjet+BROjRpEiplSn9Adqa9HHUciBnDncfS1FJwix0u7J
+	6Qw==
+X-Received: from ejblu34.prod.google.com ([2002:a17:906:fae2:b0:c4d:356c:195b])
+ (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a17:906:9fd0:b0:c40:80eb:c54e
+ with SMTP id a640c23a62f3a-c4d3449c0c7mr421982466b.4.1794065840288; Sat, 07
+ Nov 2026 07:37:20 -0800 (PST)
+Date: Sat, 07 Nov 2026 16:36:15 +0100
 In-Reply-To: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Mailer: b4 0.14.3
-Message-ID: <20261107-mte-kasan-split-v1-8-d84ea5f30f94@google.com>
-Subject: [PATCH 08/24] arm64: Introduce mte_get_reset_tfsr() helpers
+Message-ID: <20261107-mte-kasan-split-v1-9-d84ea5f30f94@google.com>
+Subject: [PATCH 09/24] kasan: rework hw_{force=>flush}_async_tag_fault()
 From: "=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Alexander Potapenko <glider@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	Andrey Konovalov <andreyknvl@gmail.com>, Andrey Ryabinin <ryabinin.a.a@gmail.com>, 
+	Dmitry Vyukov <dvyukov@google.com>, kasan-dev@googlegroups.com, linux-mm@kvack.org, 
 	"=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_073722_798374_6EB1AF3A 
-X-CRM114-Status: GOOD (  15.61  )
+X-CRM114-CacheID: sfid-20261107_073723_264398_DE4D30D5 
+X-CRM114-Status: GOOD (  12.13  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -97,101 +100,82 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In an effort to untangle MTE from KASAN, split a reusable MTE helper out
-of mte_check_tfsr_el1(), providing two variants, to accommodate the
-contexts under which it gets called: one synchronising TFx before
-reading it and another delegating that responsibility to the caller.
+Separate common arch-agnostic KASAN policy (fault reporting) from arch
+HW details (fault flushing) by reworking the function's signature.
 
-Name the helpers similarly to __dsu_pmu_get_reset_overflow().
+Update its only definition (in arm64) accordingly.
 
-This prepares for a rework of the KASAN API to simplify circular header
-dependencies, as KASAN calls into mte_check_tfsr_el1(), which calls back
-into a kasan_*() function.
+This resolves #include challenges arising from the circular dependency:
 
+  mte_check_tfsr_exit() =3D=3D> kasan_report_async()
+    kasan_report_async() =3D=3D> <linux/kasan.h>
+      <linux/kasan.h> =3D=3D> hw_force_async_tag_fault()
+        hw_force_async_tag_fault() =3D=3D> arch_force_async_tag_fault()
+          arch_force_async_tag_fault() =3D=3D> mte_check_tfsr_exit()
+
+Cc: Alexander Potapenko <glider@google.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Andrey Konovalov <andreyknvl@gmail.com>
+Cc: Andrey Ryabinin <ryabinin.a.a@gmail.com>
+Cc: Dmitry Vyukov <dvyukov@google.com>
+Cc: kasan-dev@googlegroups.com
+Cc: linux-mm@kvack.org
 Signed-off-by: Pierre-Cl=C3=A9ment Tosi <ptosi@google.com>
 ---
- arch/arm64/include/asm/mte.h | 31 +++++++++++++++++++++++++++++++
- arch/arm64/kernel/mte.c      | 12 +-----------
- 2 files changed, 32 insertions(+), 11 deletions(-)
+ arch/arm64/include/asm/memory.h | 2 +-
+ mm/kasan/hw_tags.c              | 3 ++-
+ mm/kasan/kasan.h                | 2 +-
+ 3 files changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/include/asm/mte.h b/arch/arm64/include/asm/mte.h
-index 1d6113ae786f..614fff7dc35f 100644
---- a/arch/arm64/include/asm/mte.h
-+++ b/arch/arm64/include/asm/mte.h
-@@ -17,7 +17,9 @@
- #include <linux/sched.h>
- #include <linux/types.h>
+diff --git a/arch/arm64/include/asm/memory.h b/arch/arm64/include/asm/memor=
+y.h
+index a2b7a33966ff..8e751b56d20c 100644
+--- a/arch/arm64/include/asm/memory.h
++++ b/arch/arm64/include/asm/memory.h
+@@ -316,7 +316,7 @@ static inline const void *__tag_set(const void *addr, u=
+8 tag)
+ #define arch_enable_tag_checks_write_only()	mte_enable_kernel_store_only()
+ #define arch_suppress_tag_checks_start()	mte_enable_tco()
+ #define arch_suppress_tag_checks_stop()		mte_disable_tco()
+-#define arch_force_async_tag_fault()		mte_check_tfsr_exit()
++#define arch_flush_async_tag_fault()		mte_get_reset_tfsr()
+ #define arch_get_random_tag()			mte_get_random_tag()
+ #define arch_get_mem_tag(addr)			mte_get_mem_tag(addr)
+ #define arch_set_mem_tag_range(addr, size, tag, init)	\
+diff --git a/mm/kasan/hw_tags.c b/mm/kasan/hw_tags.c
+index a848eb2f9910..c4772eebb80d 100644
+--- a/mm/kasan/hw_tags.c
++++ b/mm/kasan/hw_tags.c
+@@ -428,7 +428,8 @@ EXPORT_SYMBOL_IF_KUNIT(kasan_enable_hw_tags);
 =20
-+#include <asm/barrier.h>
- #include <asm/pgtable-types.h>
-+#include <asm/sysreg.h>
-=20
- void mte_clear_page_tags(void *addr);
- unsigned long mte_copy_tags_from_user(void *to, const void __user *from,
-@@ -31,6 +33,35 @@ void mte_invalidate_tags_area(int type);
- void *mte_allocate_tag_storage(void);
- void mte_free_tag_storage(char *storage);
-=20
-+static __always_inline bool __mte_get_reset_tfsr(void)
-+{
-+	u64 tfsr_el1 =3D read_sysreg_s(SYS_TFSR_EL1);
-+
-+	if (likely(!(tfsr_el1 & SYS_TFSR_EL1_TF1)))
-+		return false;
-+
-+	/*
-+	 * Note: isb() is not required after this direct write
-+	 * because there is no indirect read subsequent to it
-+	 * (per ARM DDI 0487F.c table D13-1).
-+	 */
-+	write_sysreg_s(0, SYS_TFSR_EL1);
-+
-+	return true;
-+}
-+
-+static __always_inline bool mte_get_reset_tfsr(void)
-+{
-+	/*
-+	 * The barriers are required to guarantee that the indirect writes
-+	 * to TFSR_EL1 are synchronized before we report the state.
-+	 */
-+	dsb(nsh);
-+	isb();
-+
-+	return __mte_get_reset_tfsr();
-+}
-+
- #ifdef CONFIG_ARM64_MTE
-=20
- /* track which pages have valid allocation tags */
-diff --git a/arch/arm64/kernel/mte.c b/arch/arm64/kernel/mte.c
-index 8025ee1f7fdb..47432c9c4de0 100644
---- a/arch/arm64/kernel/mte.c
-+++ b/arch/arm64/kernel/mte.c
-@@ -182,18 +182,8 @@ int mte_enable_kernel_store_only(void)
- #ifdef CONFIG_KASAN_HW_TAGS
- void mte_check_tfsr_el1(void)
+ VISIBLE_IF_KUNIT void kasan_force_async_fault(void)
  {
--	u64 tfsr_el1 =3D read_sysreg_s(SYS_TFSR_EL1);
--
--	if (unlikely(tfsr_el1 & SYS_TFSR_EL1_TF1)) {
--		/*
--		 * Note: isb() is not required after this direct write
--		 * because there is no indirect read subsequent to it
--		 * (per ARM DDI 0487F.c table D13-1).
--		 */
--		write_sysreg_s(0, SYS_TFSR_EL1);
--
-+	if (__mte_get_reset_tfsr())
- 		kasan_report_async();
--	}
+-	hw_force_async_tag_fault();
++	if (hw_flush_async_tag_fault())
++		kasan_report_async();
  }
- #endif
+ EXPORT_SYMBOL_IF_KUNIT(kasan_force_async_fault);
 =20
+diff --git a/mm/kasan/kasan.h b/mm/kasan/kasan.h
+index fc9169a54766..be5dcf6b052c 100644
+--- a/mm/kasan/kasan.h
++++ b/mm/kasan/kasan.h
+@@ -431,7 +431,7 @@ static inline const void *arch_kasan_set_tag(const void=
+ *addr, u8 tag)
+ #define hw_enable_tag_checks_asymm()		arch_enable_tag_checks_asymm()
+ #define hw_suppress_tag_checks_start()		arch_suppress_tag_checks_start()
+ #define hw_suppress_tag_checks_stop()		arch_suppress_tag_checks_stop()
+-#define hw_force_async_tag_fault()		arch_force_async_tag_fault()
++#define hw_flush_async_tag_fault()		arch_flush_async_tag_fault()
+ #define hw_enable_tag_checks_write_only()	arch_enable_tag_checks_write_onl=
+y()
+ #define hw_get_random_tag()			arch_get_random_tag()
+ #define hw_get_mem_tag(addr)			arch_get_mem_tag(addr)
 
 --=20
 2.56.0.455.g6c5a503b38-goog
