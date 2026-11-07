@@ -2,78 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D0CE606D816
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 14:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D00606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 14:20:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hv3nad3+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f1IRyn2/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EK4zfm1l;
+	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=OfoZT1md
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RPPlRfAa8q8m8kCH4uT5obJP/Uf1/VTGNGMMDfFCbMQ=; b=hv3nad3+dq0E4C
-	vfV8zwYiTdFFbfgc1V30O4mISJpd4PD+aKbW9+Ocvg5Llhv26UhZwXtueVahnLjA8ShslYAO0/lcZ
-	1c2ieuxSL7IRUajcgktQIw3riZ7Py/mZjtOTsf97MF8rOmyaC/8vILwO3RvC93+ROTEGVjL100tVe
-	qNqpzYlS4qMHRH2A3FNFd5hO8sZeMv1nXtiFwpZIz/RnK2Bh/F7mB+gZMQbUdv/jMom9eJF757Nss
-	Gc1aYn7MV5ltpG9EqCZTLNB77rqLdcFfnz8+HE2SggIs498QDvUsYd0RTmgy7fhYMK3NpydbOcxwN
-	kGZmprwHxvsqOxXIQySQ==;
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=6Xy4g2k9SgZBU5SQWNQcYqwfJeIbihBIIqmeCYm2TIs=; b=EK4zfm1l4sOmkKaLUcCPQAZom3
+	mT1lDc6iEqkwAlPh5Aw//G651SIg8ZE4aDahrxN46e6lKpVAv56IWzgzzAtyp9eemNxYO1C71mNet
+	RcdeUdLUP/EB4NXGes60XyfAFDkHGsB06Eyjvk0PTieE2jcORV+q1WA5Oxwt2IAcmgbY5txnq3Nmr
+	K45QqtPT7S690dQD7SJ+VXUrq9InRRfTvx4ep4tNgxRQKbRrIrSO5mR67AcbWDhym1cWObOHbyPd8
+	hmTgE/RJwL63dZ2Diu12pStlcpdbW0xsKPZuyyxSecc4RKyRXdFUwo1TA+jLx+F7iBzMnprpu3QUa
+	2X8Z+vSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPhBZ-0000000EnrY-12P8;
-	Sat, 07 Nov 2026 14:14:25 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPhBV-0000000Enqc-2ddu
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 14:14:21 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 55E2D43D60;
-	Sat,  7 Nov 2026 14:14:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C741F0089F;
-	Sat,  7 Nov 2026 14:14:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794060861;
-	bh=RPPlRfAa8q8m8kCH4uT5obJP/Uf1/VTGNGMMDfFCbMQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=f1IRyn2/Dk6JQfdqfRFHHDKQGpk1hoxJ7mMklxxgAGoXuepM3aaQwhHCJPPBTZyjY
-	 YZCbYosjuNx9EDZ+KdOsRvOwC3ENGERUNG+/kL3CSgAGJbfWXXN+wK/QeCzH+vWn1L
-	 6zuwWQrxM+JzLEVPupOA7tqs98h/VwqfHQsLBm5t7HcsHyrNSYuunJrTt5b36WroZ3
-	 CIiXkaxIIb1AnrmvBKTq+d/tShMiVh/RX+Fo5i0zu/WKmn7KbdfDYLw1pQF7iGBOLk
-	 R4Mf5NyOVd4hZ/NkXJb4HNcaLWhb2Q+tAo4ULKfprXH1ZVotTjZeA5FvFlS/6ZbhiA
-	 6sf4KXWxSAxGw==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id DBE0F29E6B03;
-	Sat, 07 Nov 2026 14:14:17 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: Ban Tao <fengzheng923@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Joao Schim <joao@schimsalabim.eu>, 
- linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Jiale Yao <yaojiale02@163.com>
-Cc: stable@vger.kernel.org
-In-Reply-To: <20261028050626.133421-1-yaojiale02@163.com>
-References: <20261028050626.133421-1-yaojiale02@163.com>
-Subject: Re: [PATCH] ASoC: sunxi: sun50i-dmic: resume device for control
- access
-Message-Id: <179405379422.3424803.12187103513130159217.b4-ty@b4>
-Date: Sat, 07 Nov 2026 12:16:34 +0000
+	id 1xPhHF-0000000EoD3-2MFF;
+	Sat, 07 Nov 2026 14:20:17 +0000
+Received: from cmccmta4.chinamobile.com ([111.22.67.137])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPhH4-0000000EoC7-0YdW;
+	Sat, 07 Nov 2026 14:20:16 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cmss.chinamobile.com; s=default; l=0;
+	h=from:subject:message-id:to:cc:mime-version;
+	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+	b=OfoZT1mdEV1XwpGxGjrElEH0VxKM7xWy8hj6ScvZu/fK/lGZH2KUTc0M3cAQOwMeQs8XZyYTQSp1O
+	 auK57dKui2koR4W18X4TmUSbN3XZAfq9ChAgf1nWgIj6hEoMikmhRYM645W9Mcde/ViKs4RaWQgner
+	 87cSA96ODVUKBqUc=
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM-FLAG: 00000000
+Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
+	by rmmx-syy-dmz-app08-12008 (RichMail) with SMTP id 2ee86aef337b2d3-57246;
+	Sat, 07 Nov 2026 22:19:44 +0800 (CST)
+X-RM-TRANSID: 2ee86aef337b2d3-57246
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM-FLAG: 00000000
+Received: from [198.18.0.79] (unknown[112.23.104.16])
+	by rmsmtp-syy-appsvr10-12010 (RichMail) with SMTP id 2eea6aef337e00c-47617;
+	Sat, 07 Nov 2026 22:19:44 +0800 (CST)
+X-RM-TRANSID: 2eea6aef337e00c-47617
+From: Xia Yan <yanxia@cmss.chinamobile.com>
+To: netdev@vger.kernel.org
+Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, David S. Miller <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Yanqing Wang <ot_yanqing.wang@mediatek.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ yana06070@163.com
+Subject: [PATCH net-next] net: ethernet: mtk-star-emac: fix device_node leak
+ in mtk_star_probe()
+Date: Sat, 07 Nov 2026 22:19:42 +0800
+Message-ID: <1794061182000.57993.3986467551914992480@cmss.chinamobile.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1131; i=broonie@kernel.org;
- h=from:subject:message-id; bh=Gu1jY485f4IoGWid9OKwTb1mv5ZWsLOBY84mmSMNKrE=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLLeG1kmymo8l2CKLdzRIesYnnZH6qabygPdQB+zUwUPZ
- i/MVGbvKGVhEONikBVTZInL4n5ZX/J6Dd/BhW0wc1iZQIYwcHEKwES8Ghn+uwsysivcezXhK0vs
- yai2pyp1nlECsz9Xs23uVtjXLdRXxMjwT42Jb1YKx4ydCdu/C5RftOu0twy0EFym42kkENs9iYs
- dAA==
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261107_062008_882161_400B6CE6 
+X-CRM114-Status: UNSURE (   9.95  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,42 +81,60 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 28 Oct 2026 13:06:26 +0800, Jiale Yao wrote:
-> ASoC: sunxi: sun50i-dmic: resume device for control access
+mtk_star_probe() gets the PHY node from the "phy-handle" property
+with of_parse_phandle(). The helper takes a reference on the node it
+returns. The node is used by of_phy_connect() each time the netdevice
+is opened.
 
-Applied to
+That reference is never dropped. Every error return after the lookup
+leaks it. Unbind leaks it as well: the driver is devm-only and has no
+remove callback.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
+Release it with a devm action, registered right after the lookup.
+The error paths and the unbind path then drop the node through the
+devm cleanup.
 
-Thanks!
+Found during a code review of the OF node handling in ethernet drivers.
 
-[1/1] ASoC: sunxi: sun50i-dmic: resume device for control access
-      https://git.kernel.org/broonie/sound/c/73ade6a51c79
+Signed-off-by: Xia Yan <yanxia@cmss.chinamobile.com>
+---
+ drivers/net/ethernet/mediatek/mtk_star_emac.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+index b83886a41121..bac4a24c5979 100644
+--- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
++++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+@@ -1501,6 +1501,11 @@
+ 	clk_bulk_disable_unprepare(MTK_STAR_NCLKS, priv->clks);
+ }
+ 
++static void mtk_star_of_node_put(void *data)
++{
++	of_node_put(data);
++}
++
+ static int mtk_star_set_timing(struct mtk_star_priv *priv)
+ {
+ 	struct device *dev = mtk_star_get_dev(priv);
+@@ -1603,6 +1608,11 @@
+ 		return -ENODEV;
+ 	}
+ 
++	ret = devm_add_action_or_reset(dev, mtk_star_of_node_put,
++				       priv->phy_node);
++	if (ret)
++		return ret;
++
+ 	priv->rmii_rxc = of_property_read_bool(of_node, "mediatek,rmii-rxc");
+ 	priv->rx_inv = of_property_read_bool(of_node, "mediatek,rxc-inverse");
+ 	priv->tx_inv = of_property_read_bool(of_node, "mediatek,txc-inverse");
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
