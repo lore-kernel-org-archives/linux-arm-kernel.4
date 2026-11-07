@@ -2,64 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C68606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 11:01:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F4E606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 11:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gQck6nSJ;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=SZ1oVdH0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D8loPSfd;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PxbTz3v3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Subject:Cc
-	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=kBXkyTlojH4uL63bSswEOrUWuL0WEvMQDYQ8Uv3J1TA=; b=gQck6nSJOnFq3MfF3ZpjXW2HZD
-	/8/sTTRX6SjCSao4k5QOPzsO9OgBJrePyGtIc251ehN8Kna+s+BpaL+JkZdjgh48GsprE4+2j9SM6
-	NVkXH8rrUeN7BVAXEIfxTgxEZBzKFnDYSe9DxeypQO1L269oMHaG6f75KU3RfapNz+t25ZE4SyB8Y
-	v8mhpoM1wWZ1/iG8Tyrp4bf94FDEMMC+p1wLXBkOokaqhS5a8lYrbTW9rbQwn7VNHW+hHx3hRvCgH
-	Zx4XhJvgM61as0NeilAtq0jWhZse2KCEx5GqeSz0Szv3sdUHuxxO5n31jblcGd8VfSmqul7fzKU4U
-	22PvtBaA==;
+	bh=neb1Pm3VUu3QzsGpdwql7eQhsQbPn8IiR/3LY1PC9Bw=; b=D8loPSfdR5XDXfu5EYTv3zmjOL
+	36IFSVYtMksCnMKJo9Db567SbQ4ORvqSIh361LFtLICiZAlZdK9IDj5g/+ezOQvy0v5sD/UmwRVJr
+	o+A/U/uu35j7CCkHMWxe1P/A2uhqlaL7zR2vTx4oHuk15vr6WYPGn0zs3Eobc3Vah5BngpTq+QjrW
+	Y9vJP9I24K5dTyPjxLTD1SgHSTFkOHzdMazLYUxmeisw2JxhIH81d1u2uYN5JuM/pKLKw4aaXhf1w
+	tzb9xDKnmR6e0oESo3G8SFNBDkTeKOXS+DvHD+7Ns/VfOFIEce95fARq0qok7SIM823aWsYUgejJ4
+	oYpMSggw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPeAz-0000000EaXu-1ea8;
-	Sat, 07 Nov 2026 11:01:37 +0000
-Received: from perceval.ideasonboard.com ([213.167.242.64])
+	id 1xPeIo-0000000Eavr-1grS;
+	Sat, 07 Nov 2026 11:09:42 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPeAv-0000000EaXU-1HpP
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 11:01:36 +0000
-Received: from killaraus.ideasonboard.com (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D85F1C14;
-	Sat,  7 Nov 2026 11:59:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1794049147;
-	bh=W7NW3Qj6PaImYAp39PMi3+HLoLZTTPDXnAGDxIJLkvk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SZ1oVdH0IiVVVgyZRq4+4QJnNMAcKA1heCQRNUmdQ+Q/Kjv1pp28flHG/gHr9aiEq
-	 /hJP0pm/v//Z01UXMEGXyJ/MTggpMvW3zfXoy/+ulW1FqeBOVcc1UzdCcF32gxb2hE
-	 1fyTA6CVqOiV0jPZJmdpZ5rg/3DtonaoSEmJRwTY=
-Message-ID: <03690d4f815fa696cd645e16a394edfd@killaraus.ideasonboard.com>
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-Cc: Frank Li <Frank.Li@nxp.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] media: nxp: imx8-isi: Fix potential pipe leaks on removal
-Date: Sat, 07 Nov 2026 13:01:23 +0200
-In-Reply-To: <20261107-0d0c29e10a-media-imx8-isi-1@mail.sdu.edu.cn>
-References: <20261107-0d0c29e10a-media-imx8-isi-1@mail.sdu.edu.cn>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+	id 1xPeIn-0000000Eavh-01SM;
+	Sat, 07 Nov 2026 11:09:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 98C4F41964;
+	Sat,  7 Nov 2026 11:09:40 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794049780;
+	b=kugV2qi2xsc6CnK0AU/UeUI9O4Hz8HMA7z2NGhj2r2p6i5JWUMCdoXWK2wbnRvVU1C5+
+	 aePhWv5aov+rO78U6AyrGKDKnJzRZmLINIcvUpcqbfc5wz0vRhR+S2w8g7ZGrZULYDBOq
+	 8oZCptOF/rsk8onOdwduApDVxrjU4SJhId1USouXjQv3Mv3dMT7eTpK2/74a+JfEazcOs
+	 vw0/SFkgB0RbfUc/YG3Idp30cTdMBZjqmkyc6luMAWphJ62ewhaxrwS3jk9taSbQXTVpG
+	 n1yHfYYVEnUCQAvga4Tmh2al5AzI9U2Wsfd/soUFmqJhUkIFz+okkhU/M49DKLRo+fw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794049780;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=neb1Pm3VUu3QzsGpdwql7eQhsQbPn8IiR/3LY1PC9Bw=;
+	b=VONUzrJaVpnRVJhddr8f+lDG/NPgXXMXZBkU8mgs4vTYGO9j+6+6SvZn/jmoeutOFtzu
+	 ZFGMrbB2tj0Xd+BpIqvAhq4n8/kXIbKhf/NVgLR+WHmYNV59GcX1RSR27q/dKAY4qmlzZ
+	 fsqqmlKR3sJMMjCeQ5rTthqc58s+mnXVfehFTL6Y1pFUnD3wO6ydTgw9AUMERsV+iSVgv
+	 bhLmvJIPysZTjQ7BAE7R+anEL1AOGCv0cBh0xteMQALPYHOQpo70NO89RMYezXdicPGHM
+	 yu+zD1iQSN3URlQjIF7ckx/X6C98Lb5oDRRJf3gp1EP9QXqRBdkFGnuW/cWyuKah0mA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 13BC81F008A2;
+	Sat,  7 Nov 2026 11:09:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794049780;
+	bh=neb1Pm3VUu3QzsGpdwql7eQhsQbPn8IiR/3LY1PC9Bw=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=PxbTz3v3uuTuqIy3eZo+R27eJTf3bMidYfy3Itf05XNarG/XyYhqF+rUTMYVCMgjH
+	 2+KyEi8xHvCRXNul+MEVph0TOUd/4NZex8Sieykq7At4+4iYQz/x58e1mFJHBLTMvc
+	 nocl3CPpTpBGaX5J7g9McWQbhcPaCrVHJ5UVqw+zusIlH129HAxHQ/j5YE1BHmKWbE
+	 vdnEzbWfHrkPuZP933DfBlDhZXLL5t7w9CBKnVDyMPCoLbOm0TZ0uAbk4G7KPQuCRf
+	 n2nyJC2heDMZ9ntKAcBIjkaTCxqYdP18EeTvcTuHbGIMtJAohZNXeEvPFch7lVzSgO
+	 GUsxH5varN7aA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 867E747B6F;
+	Sat,  7 Nov 2026 11:09:39 +0000 (UTC)
+From: Rui Cao via B4 Relay <devnull+i.udp0.com@kernel.org>
+Date: Sat, 07 Nov 2026 19:09:36 +0800
+Subject: [PATCH] power: supply: mt6360_charger: Set the input voltage limit
+ in CHG_CTRL6
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_030133_984781_AC184EBA 
-X-CRM114-Status: GOOD (  32.78  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261107-mt6360-charger-mivr-v1-1-ae6fcfb21bb9@udp0.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/yXMUQqDMBCE4avIPnchibBir1L6UJNRt6AtGxVBv
+ HvT9vFjmP+gDFNkulYHGTbN+poL/KWiOD7mAaypmIIL4r1reFqkFsdltAHGk27GdWrRRIj0KVB
+ 5vg297r/q7f53Xrsn4vJN0Xl+AKY5/ox3AAAA
+X-Change-ID: 20261107-mt6360-charger-mivr-3d9e7ce66fd2
+To: Sebastian Reichel <sre@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ stable@vger.kernel.org, Rui Cao <i@udp0.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794049778; l=1708;
+ i=i@udp0.com; s=20261107; h=from:subject:message-id;
+ bh=NPOAHTLtaaexfTH0i/P9IAyN1qGjNjezFTQY55cDejE=;
+ b=24QLSek8cMBjCn+fV0DFLLs5uhUl1By3RsW5vERTdOt7I/qC5khu7TXxFtXcFiRARw5suDHJZ
+ uTrousjJyxYDHY0mD2B+7hQyb0GD+LofX2iDGcNVkNZDpK3LfSVyc2B
+X-Developer-Key: i=i@udp0.com; a=ed25519;
+ pk=XZJKcKgnUUjjyw8KuKy7u2QeIX0JLY/L1Fxzwwje41w=
+X-Endpoint-Received: by B4 Relay for i@udp0.com/20261107 with auth_id=1443
+X-Original-From: Rui Cao <i@udp0.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,626 +110,62 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: i@udp0.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello,
+From: Rui Cao <i@udp0.com>
 
-This is an automated reply.
+mt6360_charger_set_mivr() updates the MIVR field (bits 7:1) of
+CHG_CTRL3, but MIVR lives in CHG_CTRL6, where mt6360_charger_get_mivr()
+reads it and MediaTek's own MT6360 charger driver writes it. CHG_CTRL3
+holds the input current limit (AICR, bits 7:2) instead.
 
-You have sent a patch or bug report that appears to have been generated
-by an LLM. The commit message, code and/or problem description show
-little to no real understanding of the issue and changes being proposed.
+Writing input_voltage_limit therefore never changed the voltage limit
+and replaced the input current limit with the MIVR selector: 4.5 V, for
+example, set AICR to 250 mA.
 
-Such patches or reports require a large amount of work to handle. They
-rely on maintainers to propose - and often even implement - a proper
-design. The probability that the author will learn from the experience
-to improve their future contributions is close to zero.
+Write the MIVR field of CHG_CTRL6.
 
-As a result, to make good use of maintainer time and keep the kernel
-development process sustainable, your contribution has been rejected.
+Tested on a Redmi Note 13 5G (MT6833 with an MT6360): with this change,
+writing 4.6 V to input_voltage_limit only moves CHG_CTRL6 from 0x0d to
+0x0f and reads back as 4.6 V, while CHG_CTRL3 stays at 0x72 and
+input_current_limit at 1.5 A.
 
-If you believe the change you proposed is important, take time to study
-the problem, learn, and develop a solution without AI assistance.
-Answering this e-mail or generating a new version of a patch by feeding
-this reply to an LLM will only result in your e-mails being ignored.
+Fixes: 0402e8ebb8b8 ("power: supply: mt6360_charger: add MT6360 charger support")
+Cc: stable@vger.kernel.org
+Signed-off-by: Rui Cao <i@udp0.com>
+---
+ drivers/power/supply/mt6360_charger.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Please note that if your patch attempted to address an important
-problem, maintainers or other contributors can submit and merge a
-similar or entirely different fix without crediting you.
+diff --git a/drivers/power/supply/mt6360_charger.c b/drivers/power/supply/mt6360_charger.c
+index b4d46234315..ccd5c200629 100644
+--- a/drivers/power/supply/mt6360_charger.c
++++ b/drivers/power/supply/mt6360_charger.c
+@@ -414,7 +414,7 @@ static int mt6360_charger_set_mivr(struct mt6360_chg_info *mci,
+ 
+ 	linear_range_get_selector_within(&mt6360_chg_range[MT6360_RANGE_VMIVR], val->intval, &sel);
+ 	return regmap_update_bits(mci->regmap,
+-				  MT6360_PMU_CHG_CTRL3,
++				  MT6360_PMU_CHG_CTRL6,
+ 				  MT6360_VMIVR_MASK,
+ 				  sel << MT6360_VMIVR_SHFT);
+ }
 
-Your contributions to the Linux kernel will be welcome if you genuinely
-desire to invest your time and learn.
+---
+base-commit: d48723711bae9b8cdc56719c448ba42fef28cbee
+change-id: 20261107-mt6360-charger-mivr-3d9e7ce66fd2
 
-Thank you,
+Best regards,
+--  
+Rui Cao <i@udp0.com>
 
-Laurent's mail bot
 
-On Sat, 07 Nov 2026 14:54:32 +0800, Guangshuo Li <liguangshuo@mail.sdu.edu.cn=
-> wrote:
-> The allocated pipe array is never freed. Its embedded video devices
-> and their parent state can also remain in use by open files after
-> unregistration, so freeing the array during remove is not sufficient.
->=20
-> Keep the state until both device-managed cleanup and the last V4L2
-> reference finish. Disconnect and drain capture and M2M queues before
-> releasing hardware resources, and complete outstanding capture power
-> references so late closes cannot affect a newly bound instance. Apply
-> the same cleanup to partially registered devices on probe failure.
->=20
-> This issue was found by our static analysis tool under development.
->=20
-> Fixes: cf21f328fcaf ("media: nxp: Add i.MX8 ISI driver")
-> Signed-off-by: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-> ---
-> Validation: Changed-object compilation passed with W=3D1 in the recorded
-> configuration. No hardware/kernel runtime test or full linked-kernel
-> build.
-> OpenAI Codex assisted with source review, patch implementation and
-> commit-message drafting. The submitter has reviewed the changes.
->=20
->  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 94 ++++++++++++-------
->  .../platform/nxp/imx8-isi/imx8-isi-core.h     | 16 ++++
->  .../platform/nxp/imx8-isi/imx8-isi-m2m.c      | 80 +++++++++++-----
->  .../platform/nxp/imx8-isi/imx8-isi-video.c    | 40 +++++---
->  4 files changed, 162 insertions(+), 68 deletions(-)
->=20
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/=
-media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index 0ae5f35e017c..bd046a0751b9 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -114,6 +114,47 @@ static void mxc_isi_pipe_unregister(struct mxc_isi_pip=
-e *pipe)
->  	mxc_isi_video_unregister(pipe);
->  }
-> =20
-> +static void mxc_isi_release(struct kref *ref)
-> +{
-> +	struct mxc_isi_dev *isi =3D container_of(ref, struct mxc_isi_dev, ref);
-> +	unsigned int i;
-> +
-> +	mxc_isi_m2m_cleanup(isi);
-> +	for (i =3D 0; i < isi->num_pipes; ++i)
-> +		mxc_isi_pipe_cleanup(&isi->pipes[i]);
-> +	if (isi->crossbar_initialized)
-> +		mxc_isi_crossbar_cleanup(&isi->crossbar);
-> +	if (isi->media_initialized)
-> +		media_device_cleanup(&isi->media_dev);
-> +	kfree(isi->pipes);
-> +	put_device(isi->dev);
-> +	kfree(isi);
-> +}
-> +
-> +static void mxc_isi_put(void *data)
-> +{
-> +	struct mxc_isi_dev *isi =3D data;
-> +
-> +	kref_put(&isi->ref, mxc_isi_release);
-> +}
-> +
-> +static void mxc_isi_v4l2_release(struct v4l2_device *v4l2_dev)
-> +{
-> +	struct mxc_isi_dev *isi =3D
-> +		container_of(v4l2_dev, struct mxc_isi_dev, v4l2_dev);
-> +
-> +	mxc_isi_put(isi);
-> +}
-> +
-> +static void mxc_isi_video_unregister_all(struct mxc_isi_dev *isi)
-> +{
-> +	unsigned int i;
-> +
-> +	mxc_isi_m2m_unregister(isi);
-> +	for (i =3D 0; i < isi->num_pipes; ++i)
-> +		mxc_isi_pipe_unregister(&isi->pipes[i]);
-> +}
-> +
->  static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
->  {
->  	struct fwnode_handle *node =3D dev_fwnode(isi->dev);
-> @@ -128,9 +169,11 @@ static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
->  	media_dev->dev =3D isi->dev;
-> =20
->  	media_device_init(media_dev);
-> +	isi->media_initialized =3D true;
-> =20
->  	/* Initialize and register the V4L2 device. */
->  	v4l2_dev->mdev =3D media_dev;
-> +	v4l2_dev->release =3D mxc_isi_v4l2_release;
->  	strscpy(v4l2_dev->name, "mx8-img-md", sizeof(v4l2_dev->name));
-> =20
->  	ret =3D v4l2_device_register(isi->dev, v4l2_dev);
-> @@ -140,6 +183,8 @@ static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
->  		goto err_media;
->  	}
-> =20
-> +	kref_get(&isi->ref);
-> +
->  	/* Register the crossbar switch subdev. */
->  	ret =3D mxc_isi_crossbar_register(&isi->crossbar);
->  	if (ret < 0) {
-> @@ -211,33 +256,25 @@ static int mxc_isi_v4l2_init(struct mxc_isi_dev *isi)
->  	return 0;
-> =20
->  err_m2m:
-> -	mxc_isi_m2m_unregister(isi);
->  	v4l2_async_nf_cleanup(&isi->notifier);
->  err_v4l2:
-> +	mxc_isi_video_unregister_all(isi);
->  	v4l2_device_unregister(v4l2_dev);
-> +	media_device_unregister(media_dev);
-> +	v4l2_device_put(v4l2_dev);
->  err_media:
-> -	media_device_cleanup(media_dev);
->  	return ret;
->  }
-> =20
->  static void mxc_isi_v4l2_cleanup(struct mxc_isi_dev *isi)
->  {
-> -	unsigned int i;
-> +	mxc_isi_video_unregister_all(isi);
-> =20
->  	v4l2_async_nf_unregister(&isi->notifier);
->  	v4l2_async_nf_cleanup(&isi->notifier);
-> -
->  	v4l2_device_unregister(&isi->v4l2_dev);
->  	media_device_unregister(&isi->media_dev);
-> -
-> -	mxc_isi_m2m_unregister(isi);
-> -
-> -	for (i =3D 0; i < isi->pdata->num_channels; ++i)
-> -		mxc_isi_pipe_unregister(&isi->pipes[i]);
-> -
-> -	mxc_isi_crossbar_unregister(&isi->crossbar);
-> -
-> -	media_device_cleanup(&isi->media_dev);
-> +	v4l2_device_put(&isi->v4l2_dev);
->  }
-> =20
->  /* -----------------------------------------------------------------------=
-------
-> @@ -479,11 +516,15 @@ static int mxc_isi_probe(struct platform_device *pdev)
->  	unsigned int i;
->  	int ret =3D 0;
-> =20
-> -	isi =3D devm_kzalloc(dev, sizeof(*isi), GFP_KERNEL);
-> +	isi =3D kzalloc_obj(*isi);
->  	if (!isi)
->  		return -ENOMEM;
-> =20
-> -	isi->dev =3D dev;
-> +	isi->dev =3D get_device(dev);
-> +	kref_init(&isi->ref);
-> +	ret =3D devm_add_action_or_reset(dev, mxc_isi_put, isi);
-> +	if (ret)
-> +		return ret;
->  	platform_set_drvdata(pdev, isi);
-> =20
->  	isi->pdata =3D of_device_get_match_data(dev);
-> @@ -521,48 +562,35 @@ static int mxc_isi_probe(struct platform_device *pdev)
->  		return dev_err_probe(dev, ret,
->  				     "Failed to initialize crossbar\n");
-> =20
-> +	isi->crossbar_initialized =3D true;
-> +
->  	for (i =3D 0; i < isi->pdata->num_channels; ++i) {
->  		ret =3D mxc_isi_pipe_init(isi, i);
->  		if (ret < 0) {
->  			dev_err(dev, "Failed to initialize pipe%u: %d\n", i,
->  				ret);
-> -			goto err_xbar;
-> +			return ret;
->  		}
-> +		isi->num_pipes++;
->  	}
-> =20
->  	ret =3D mxc_isi_v4l2_init(isi);
->  	if (ret < 0) {
->  		dev_err(dev, "Failed to initialize V4L2: %d\n", ret);
-> -		goto err_xbar;
-> +		return ret;
->  	}
-> =20
->  	mxc_isi_debug_init(isi);
-> =20
->  	return 0;
-> -
-> -err_xbar:
-> -	while (i--)
-> -		mxc_isi_pipe_cleanup(&isi->pipes[i]);
-> -	mxc_isi_crossbar_cleanup(&isi->crossbar);
-> -
-> -	return ret;
->  }
-> =20
->  static void mxc_isi_remove(struct platform_device *pdev)
->  {
->  	struct mxc_isi_dev *isi =3D platform_get_drvdata(pdev);
-> -	unsigned int i;
-> =20
->  	mxc_isi_debug_cleanup(isi);
-> -
-> -	for (i =3D 0; i < isi->pdata->num_channels; ++i) {
-> -		struct mxc_isi_pipe *pipe =3D &isi->pipes[i];
-> -
-> -		mxc_isi_pipe_cleanup(pipe);
-> -	}
-> -
->  	mxc_isi_v4l2_cleanup(isi);
-> -	mxc_isi_crossbar_cleanup(&isi->crossbar);
->  }
-> =20
->  static const struct of_device_id mxc_isi_of_match[] =3D {
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/=
-media/platform/nxp/imx8-isi/imx8-isi-core.h
-> index 58b47335afc7..b1357ab67148 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> @@ -10,6 +10,7 @@
->  #ifndef __MXC_ISI_CORE_H__
->  #define __MXC_ISI_CORE_H__
-> =20
-> +#include <linux/kref.h>
->  #include <linux/list.h>
->  #include <linux/math.h>
->  #include <linux/mutex.h>
-> @@ -208,6 +209,8 @@ struct mxc_isi_video {
-> =20
->  	/* Protects the vdev and vb2_q operations */
->  	struct mutex			lock;
-> +	unsigned int			users;
-> +	bool				disconnected;
-> =20
->  	struct v4l2_pix_format_mplane	pix;
->  	const struct mxc_isi_format_info *fmtinfo;
-> @@ -270,6 +273,9 @@ struct mxc_isi_pipe {
->  };
-> =20
->  struct mxc_isi_m2m {
-> +	/* Serializes open, close and disconnection of all contexts. */
-> +	struct mutex			contexts_lock;
-> +	struct list_head		contexts;
->  	struct mxc_isi_dev		*isi;
->  	struct mxc_isi_pipe		*pipe;
-> =20
-> @@ -287,6 +293,10 @@ struct mxc_isi_m2m {
->  };
-> =20
->  struct mxc_isi_dev {
-> +	struct kref			ref;
-> +	unsigned int			num_pipes;
-> +	bool				crossbar_initialized;
-> +	bool				media_initialized;
->  	struct device			*dev;
-> =20
->  	const struct mxc_isi_plat_data	*pdata;
-> @@ -354,6 +364,7 @@ int mxc_isi_video_buffer_prepare(struct mxc_isi_dev *is=
-i, struct vb2_buffer *vb2
->  #ifdef CONFIG_VIDEO_IMX8_ISI_M2M
->  int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struct v4l2_device *v4l2=
-_dev);
->  int mxc_isi_m2m_unregister(struct mxc_isi_dev *isi);
-> +void mxc_isi_m2m_cleanup(struct mxc_isi_dev *isi);
->  void mxc_isi_m2m_suspend(struct mxc_isi_m2m *m2m);
->  int mxc_isi_m2m_resume(struct mxc_isi_m2m *m2m);
->  #else
-> @@ -366,6 +377,11 @@ static inline int mxc_isi_m2m_unregister(struct mxc_is=
-i_dev *isi)
->  {
->  	return 0;
->  }
-> +
-> +static inline void mxc_isi_m2m_cleanup(struct mxc_isi_dev *isi)
-> +{
-> +}
-> +
->  static inline void mxc_isi_m2m_suspend(struct mxc_isi_m2m *m2m)
->  {
->  }
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c b/drivers/m=
-edia/platform/nxp/imx8-isi/imx8-isi-m2m.c
-> index b729eecad0fe..5349e09e9b57 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-m2m.c
-> @@ -46,6 +46,7 @@ struct mxc_isi_m2m_ctx_queue_data {
->  };
-> =20
->  struct mxc_isi_m2m_ctx {
-> +	struct list_head list;
->  	struct v4l2_fh fh;
->  	struct mxc_isi_m2m *m2m;
-> =20
-> @@ -629,6 +630,10 @@ static int mxc_isi_m2m_open(struct file *file)
->  	struct mxc_isi_m2m_ctx *ctx;
->  	int ret;
-> =20
-> +	guard(mutex)(&m2m->contexts_lock);
-> +	if (!video_is_registered(vdev))
-> +		return -ENODEV;
-> +
->  	ctx =3D kzalloc_obj(*ctx);
->  	if (!ctx)
->  		return -ENOMEM;
-> @@ -654,6 +659,7 @@ static int mxc_isi_m2m_open(struct file *file)
->  		goto err_ctx;
-> =20
->  	v4l2_fh_add(&ctx->fh, file);
-> +	list_add_tail(&ctx->list, &m2m->contexts);
-> =20
->  	return 0;
-> =20
-> @@ -670,6 +676,8 @@ static int mxc_isi_m2m_release(struct file *file)
->  {
->  	struct mxc_isi_m2m_ctx *ctx =3D file_to_isi_m2m_ctx(file);
-> =20
-> +	guard(mutex)(&ctx->m2m->contexts_lock);
-> +	list_del(&ctx->list);
->  	v4l2_m2m_ctx_release(ctx->fh.m2m_ctx);
->  	mxc_isi_m2m_ctx_ctrls_delete(ctx);
-> =20
-> @@ -740,6 +748,8 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struc=
-t v4l2_device *v4l2_dev)
->  	m2m->pipe =3D &isi->pipes[0];
-> =20
->  	mutex_init(&m2m->lock);
-> +	mutex_init(&m2m->contexts_lock);
-> +	INIT_LIST_HEAD(&m2m->contexts);
-> =20
->  	/* Initialize the video device and create controls. */
->  	snprintf(vdev->name, sizeof(vdev->name), "mxc_isi.m2m");
-> @@ -750,6 +760,7 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struc=
-t v4l2_device *v4l2_dev)
->  	vdev->minor	=3D -1;
->  	vdev->release	=3D video_device_release_empty;
->  	vdev->vfl_dir	=3D VFL_DIR_M2M;
-> +	vdev->lock	=3D &m2m->contexts_lock;
-> =20
->  	vdev->device_caps =3D V4L2_CAP_STREAMING | V4L2_CAP_VIDEO_M2M_MPLANE;
->  	video_set_drvdata(vdev, m2m);
-> @@ -759,14 +770,14 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, str=
-uct v4l2_device *v4l2_dev)
->  	if (IS_ERR(m2m->m2m_dev)) {
->  		dev_err(isi->dev, "failed to initialize m2m device\n");
->  		ret =3D PTR_ERR(m2m->m2m_dev);
-> -		goto err_mutex;
-> +		goto err_return;
->  	}
-> =20
->  	/* Register the video device. */
->  	ret =3D video_register_device(vdev, VFL_TYPE_VIDEO, -1);
->  	if (ret < 0) {
->  		dev_err(isi->dev, "failed to register m2m device\n");
-> -		goto err_m2m;
-> +		goto err_return;
->  	}
-> =20
->  	/*
-> @@ -790,11 +801,11 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, str=
-uct v4l2_device *v4l2_dev)
->  	vdev->entity.function =3D MEDIA_ENT_F_IO_V4L;
->  	ret =3D media_entity_pads_init(&vdev->entity, 1, &m2m->pad);
->  	if (ret)
-> -		goto err_video;
-> +		goto err_unregister;
-> =20
->  	ret =3D media_device_register_entity(v4l2_dev->mdev, &vdev->entity);
->  	if (ret)
-> -		goto err_entity_cleanup;
-> +		goto err_unregister;
-> =20
->  	ret =3D media_create_pad_link(&vdev->entity, 0,
->  				    &m2m->isi->crossbar.sd.entity,
-> @@ -802,13 +813,13 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, str=
-uct v4l2_device *v4l2_dev)
->  				    MEDIA_LNK_FL_IMMUTABLE |
->  				    MEDIA_LNK_FL_ENABLED);
->  	if (ret)
-> -		goto err_entity_unreg;
-> +		goto err_unregister;
-> =20
->  	m2m->intf =3D media_devnode_create(v4l2_dev->mdev, MEDIA_INTF_T_V4L_VIDEO,
->  					 0, VIDEO_MAJOR, vdev->minor);
->  	if (!m2m->intf) {
->  		ret =3D -ENOMEM;
-> -		goto err_entity_unreg;
-> +		goto err_unregister;
->  	}
-> =20
->  	link =3D media_create_intf_link(&vdev->entity, &m2m->intf->intf,
-> @@ -816,7 +827,7 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, struc=
-t v4l2_device *v4l2_dev)
->  				      MEDIA_LNK_FL_ENABLED);
->  	if (!link) {
->  		ret =3D -ENOMEM;
-> -		goto err_devnode;
-> +		goto err_unregister;
->  	}
-> =20
->  	link =3D media_create_intf_link(&m2m->pipe->video.vdev.entity,
-> @@ -825,23 +836,14 @@ int mxc_isi_m2m_register(struct mxc_isi_dev *isi, str=
-uct v4l2_device *v4l2_dev)
->  				      MEDIA_LNK_FL_ENABLED);
->  	if (!link) {
->  		ret =3D -ENOMEM;
-> -		goto err_devnode;
-> +		goto err_unregister;
->  	}
-> =20
->  	return 0;
-> =20
-> -err_devnode:
-> -	media_devnode_remove(m2m->intf);
-> -err_entity_unreg:
-> -	media_device_unregister_entity(&vdev->entity);
-> -err_entity_cleanup:
-> -	media_entity_cleanup(&vdev->entity);
-> -err_video:
-> -	video_unregister_device(vdev);
-> -err_m2m:
-> -	v4l2_m2m_release(m2m->m2m_dev);
-> -err_mutex:
-> -	mutex_destroy(&m2m->lock);
-> +err_unregister:
-> +	mxc_isi_m2m_unregister(isi);
-> +err_return:
->  	return ret;
->  }
-> =20
-> @@ -849,13 +851,43 @@ int mxc_isi_m2m_unregister(struct mxc_isi_dev *isi)
->  {
->  	struct mxc_isi_m2m *m2m =3D &isi->m2m;
->  	struct video_device *vdev =3D &m2m->vdev;
-> +	struct mxc_isi_m2m_ctx *ctx;
-> =20
-> +	if (!video_is_registered(vdev))
-> +		return 0;
-> +
-> +	guard(mutex)(&m2m->contexts_lock);
->  	video_unregister_device(vdev);
-> +	v4l2_m2m_suspend(m2m->m2m_dev);
-> +	list_for_each_entry(ctx, &m2m->contexts, list) {
-> +		guard(mutex)(&ctx->vb2_lock);
-> +		vb2_queue_error(v4l2_m2m_get_src_vq(ctx->fh.m2m_ctx));
-> +		vb2_queue_error(v4l2_m2m_get_dst_vq(ctx->fh.m2m_ctx));
-> +		v4l2_m2m_streamoff(NULL, ctx->fh.m2m_ctx,
-> +				   V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
-> +		v4l2_m2m_streamoff(NULL, ctx->fh.m2m_ctx,
-> +				   V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +	}
-> =20
-> -	v4l2_m2m_release(m2m->m2m_dev);
-> -	media_devnode_remove(m2m->intf);
-> -	media_entity_cleanup(&vdev->entity);
-> -	mutex_destroy(&m2m->lock);
-> +	if (m2m->intf) {
-> +		media_devnode_remove(m2m->intf);
-> +		m2m->intf =3D NULL;
-> +	}
-> +	media_device_unregister_entity(&vdev->entity);
-> =20
->  	return 0;
->  }
-> +
-> +void mxc_isi_m2m_cleanup(struct mxc_isi_dev *isi)
-> +{
-> +	struct mxc_isi_m2m *m2m =3D &isi->m2m;
-> +
-> +	if (!m2m->isi)
-> +		return;
-> +
-> +	if (!IS_ERR_OR_NULL(m2m->m2m_dev))
-> +		v4l2_m2m_release(m2m->m2m_dev);
-> +	media_entity_cleanup(&m2m->vdev.entity);
-> +	mutex_destroy(&m2m->contexts_lock);
-> +	mutex_destroy(&m2m->lock);
-> +}
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c b/drivers=
-/media/platform/nxp/imx8-isi/imx8-isi-video.c
-> index fc907d357149..2ac860876491 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-video.c
-> @@ -1370,6 +1370,10 @@ static int mxc_isi_video_open(struct file *file)
->  	struct mxc_isi_video *video =3D video_drvdata(file);
->  	int ret;
-> =20
-> +	guard(mutex)(&video->lock);
-> +	if (!video_is_registered(&video->vdev))
-> +		return -ENODEV;
-> +
->  	ret =3D v4l2_fh_open(file);
->  	if (ret)
->  		return ret;
-> @@ -1380,6 +1384,7 @@ static int mxc_isi_video_open(struct file *file)
->  		return ret;
->  	}
-> =20
-> +	video->users++;
->  	return 0;
->  }
-> =20
-> @@ -1388,11 +1393,14 @@ static int mxc_isi_video_release(struct file *file)
->  	struct mxc_isi_video *video =3D video_drvdata(file);
->  	int ret;
-> =20
-> -	ret =3D vb2_fop_release(file);
-> +	guard(mutex)(&video->lock);
-> +	ret =3D _vb2_fop_release(file, NULL);
->  	if (ret)
->  		dev_err(video->pipe->isi->dev, "%s fail\n", __func__);
-> =20
-> -	pm_runtime_put(video->pipe->isi->dev);
-> +	if (!video->disconnected)
-> +		pm_runtime_put(video->pipe->isi->dev);
-> +	video->users--;
->  	return ret;
->  }
-> =20
-> @@ -1460,6 +1468,14 @@ int mxc_isi_video_resume(struct mxc_isi_pipe *pipe)
->   * Registration
->   */
-> =20
-> +static void mxc_isi_video_device_release(struct video_device *vdev)
-> +{
-> +	struct mxc_isi_video *video =3D video_get_drvdata(vdev);
-> +
-> +	mxc_isi_video_ctrls_delete(video);
-> +	media_entity_cleanup(&vdev->entity);
-> +}
-> +
->  int mxc_isi_video_register(struct mxc_isi_pipe *pipe,
->  			   struct v4l2_device *v4l2_dev)
->  {
-> @@ -1490,7 +1506,7 @@ int mxc_isi_video_register(struct mxc_isi_pipe *pipe,
->  	vdev->ioctl_ops	=3D &mxc_isi_video_ioctl_ops;
->  	vdev->v4l2_dev	=3D v4l2_dev;
->  	vdev->minor	=3D -1;
-> -	vdev->release	=3D video_device_release_empty;
-> +	vdev->release	=3D mxc_isi_video_device_release;
->  	vdev->queue	=3D q;
->  	vdev->lock	=3D &video->lock;
-> =20
-> @@ -1543,7 +1559,8 @@ int mxc_isi_video_register(struct mxc_isi_pipe *pipe,
->  	return 0;
-> =20
->  err_video_unreg:
-> -	video_unregister_device(vdev);
-> +	mxc_isi_video_unregister(pipe);
-> +	return ret;
->  err_ctrl_free:
->  	mxc_isi_video_ctrls_delete(video);
->  err_me_cleanup:
-> @@ -1556,14 +1573,15 @@ void mxc_isi_video_unregister(struct mxc_isi_pipe *=
-pipe)
->  {
->  	struct mxc_isi_video *video =3D &pipe->video;
->  	struct video_device *vdev =3D &video->vdev;
-> +	unsigned int i;
-> =20
-> -	mutex_lock(&video->lock);
-> +	if (!video->pipe || !video_is_registered(vdev))
-> +		return;
-> =20
-> -	if (video_is_registered(vdev)) {
-> -		video_unregister_device(vdev);
-> -		mxc_isi_video_ctrls_delete(video);
-> -		media_entity_cleanup(&vdev->entity);
-> -	}
-> +	vb2_video_unregister_device(vdev);
-> =20
-> -	mutex_unlock(&video->lock);
-> +	guard(mutex)(&video->lock);
-> +	for (i =3D 0; i < video->users; ++i)
-> +		pm_runtime_put(video->pipe->isi->dev);
-> +	video->disconnected =3D true;
->  }
->=20
-> base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
->=20
 
