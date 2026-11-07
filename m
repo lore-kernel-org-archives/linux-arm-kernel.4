@@ -2,105 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91BDD606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 09:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32884606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e+rsZ4zb;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=LirhC5eM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a++RQ5Dz;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=eWYJGGRB;
+	dkim=pass (2048-bit key) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=YA3oaAqq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XBdcxSgsOzWhMK/iioasbAbzzS822OCTsFGBZkPYLKU=; b=e+rsZ4zbmyjfFr
-	wtxdUeNgDTGv9IIrM5KHizICKPA4hvF0v+bsvGUm3pl9nYGic3MHYMBpacDYmsWGbHrXxU7DHx2dH
-	hZB6dE/q3Y8/zNSM+LRlkgLCtmd35gdWsxFs23xDzCm9ZyCXz8Yib3np0T1i6PVzOzl8AcD7x9WtD
-	jbhBIF6MPedyDw3MAK8WY/YcClJ9mMn4rOqPTFKinY8eATaKlbGyJWVHS3rorepsMQHjyDlWOI4Im
-	cQefCbsz/uimDtrEXE9xZNJBsLRrRiNUeqfmc2h0BILfROiT62DQ5hyyn20GzizPVae8r6LuXe9Hx
-	cOcS0O0GNF1utB0ScVbQ==;
+	List-Owner; bh=TjMdFk8RF2kaRdnGIftRqRXHaK9TIJqelTHCSWvnKbg=; b=a++RQ5DzSigGVW
+	v1yP4L2vKRsJSiUe7cVjtbo2xEdTSCXvHq5rmBsYsRI4ItDw99G8yj5LJ1GjNZaa0llyy9Y/xK0hs
+	rZZQkEAmg5tFgSisQIFN/Jr4SEeP7ardahAQgeC+ZBm6ivncvK0+ckF7jAC/o10vMMSXOT0xbtBzt
+	eg6Z4c65jqLcBZ+djvjy8EDmWBA5XwdATQ1WVDL3oaeCyPBfywchptbw+Mn5pxgwZ0JJAHhAJGgLL
+	ORUxFOQTqMTZP73RFvQLiSRoRw+TikQGSPZaz0UsN/wb2qLE4z7DHUh8Hw1u8NjGku5O3dLyK/VRH
+	2e8HZnP11L9qxgbYVRbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPcU7-0000000EPJs-35pM;
-	Sat, 07 Nov 2026 09:13:15 +0000
-Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
+	id 1xPdFj-0000000ES4I-2azO;
+	Sat, 07 Nov 2026 10:02:27 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPcU5-0000000EPJ3-0PIA
+	id 1xPdFj-0000000ES49-1NgJ
+	for linux-arm-kernel@bombadil.infradead.org;
+	Sat, 07 Nov 2026 10:02:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
+	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Type:Content-ID:Content-Description;
+	bh=TjMdFk8RF2kaRdnGIftRqRXHaK9TIJqelTHCSWvnKbg=; b=eWYJGGRB6YJSDWx5tNBc9D7TeS
+	0J2Wq+86pDeCGTlk2aQZ1bX3A20WezVYgM+VffNYwXpSh2X6J/r8SEGE6qLR1tAB2w5NzOFfnEy0X
+	EbhkdvIpLcp1KPwugdKir/CU2bKSBSsP7vmQ8fJzwS+wqQHUstx1IqYDEX9Yl0MlLXLbGNYouuCSH
+	54xbosV4QGQVOQXrKo6GL3C5bxzr+VTGCcse0m9tZSMRJczdSf2nq2hhMWEsqtFenFPCl5wnkpgKs
+	biNcmMVNSEAEI2tKOEDihlg2FgS6L3zX2RxjQZe6tH5F/x8tTIVfdZ75XQNeUPmmzeOOO14blMQSA
+	0m2HAisw==;
+Received: from mail.kernelriot.com ([74.208.142.49])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xPdFg-0000000579N-24Oy
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 09:13:14 +0000
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-6b70d5b07faso2049a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 01:13:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794042791; x=1794647591; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=XBdcxSgsOzWhMK/iioasbAbzzS822OCTsFGBZkPYLKU=;
-        b=LirhC5eMfpFULQE6YLZwMtyFjhBSWf/O9bcDC1UlA5ScqMO4M9gaARYMPDslZa0XkF
-         GdqU06RAEEOuCv8AqLlFc4pq4VW/XaaG99mtj8ddIb5+zY/6K7vpgadjsuqQpYMRUmkx
-         8Wn3oySdjbTCzHErBqdvpICdjzo+PajbtTbbyywQR/n01b98hDBnw6SX0TbyGYasan3n
-         /bgzNL2VMNpV4bjOWh8bWPOGf1IL2D/iApuYKKfWwDOkBx6k2wFeYqkI4uC51JVLOSFt
-         F7sQt0hRpyCHFGOMSKJQo3wV25A/J0jPkiH0PdixeOjUerN2CMAY/JL0uaHrNICFCmGI
-         D0qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794042791; x=1794647591;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=XBdcxSgsOzWhMK/iioasbAbzzS822OCTsFGBZkPYLKU=;
-        b=NlKAW50/JyJ2Q8A1Mm1iD69dyag5OYyEEcvM8nqVWnIlGZt1TZv7Qq89pezVCiCIcX
-         xuD8QKvf6un2Frp7+olA9YQ7p5IUp8QsVqwJByy0lnozFNQRrc3ygr9TI+QL1O1uxP4w
-         wze0Z5tVIyoLj7yr3Om8wMjnflJYLpftTf5hW5iZ2JnTUe2GtI3BgevRlVsc/DV0tjiI
-         AnccEtEmyghv/zZ5HMyr/YiO6GGsXSssB22yxEXxwUc9NflX6KxPTveQ86kgP7nCJp4e
-         /Ti4kUxHT4BBrIMeSyQGtplrFWpcnKHz+Utqb6zncKRID4QEXUnuX/sambHqc8Px6msM
-         46PA==
-X-Forwarded-Encrypted: i=1; AL+hErEWce8mQXxf5d28n/G1Nur1X7XvSDhPsyvCu8fk2X59GBizN4ysjDPW98TJby2VSXzpWumRgtq6IkZSb9Uvw18L@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Y5KTVyKhq60dcZ7gRmo5c+t4FCk/bymGD1tT4jMIkKc7yJz0d
-	oDrcF3PenGItzeesZlS3AgVeLMAGJBsbeleduQiNkZXzS92+RPKLykYc
-X-Gm-Gg: AYBFou3PhXiEylYa6usZyFClkddjaOW/ko3358u4BIQb9zUdFqJnZB37zmHnN3+cgqR
-	XlMFpFbv4GvUQ1geoV1u/HmHPiB9JU35pDxaCJi1COT9O4bEjwbjQDj4mCdS//g1LG8wQoW2Aqx
-	82eVYA3j1v9Lv0LN61sdOBSot4rfO/aKo0z0bpF35BaPg4Uvf8/2Pa/kTqFx6S8XvtNnxTSrvSv
-	K4epk8BMGj6QLoJryGBaVPgXstWzyrKzZnmQwojTcscH/khKraRimy1OsfOJM3mrv5u9GDtRNCV
-	mwPYop3Q6EneiroRRGCv7kkzczb0GnJBc4PV0mu08YVFzgdFKNhljCgMLIqFvS0HKgWiiglXC4C
-	BshE5MaAL4hnWya5g7k1LBl+1MpQLxv5pw3O5M6bzEQRKFTREzqYSQAw5M9QbWCvtRcL9hfwJbk
-	l0Ul5WjryMfJYaUvsn1jwQcmZdZ9bOkFBTEsZP8S6x/nyYRnj+w3LETwAVCLfgbRF2xsklUuL6y
-	4Bt2m2sP29WVSt3PG6K7/7fJZyBY7IfRWLvJKEQ9GMTA16Jdpp0PWgBvTg7QpAZXqVY7RKx4bJp
-	va6fh12z2swsB24CCbZHev50Jl6iRSAJyxD2lsPQnXwyQTJTgQ==
-X-Received: by 2002:aa7:c3cb:0:b0:6b3:c422:9257 with SMTP id 4fb4d7f45d1cf-6b597805d85mr2374834a12.25.1794042790711;
-        Sat, 07 Nov 2026 01:13:10 -0800 (PST)
-Received: from letov ([62.41.24.155])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b6e82bc5d7sm1405043a12.13.2026.11.07.01.13.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 01:13:09 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-To: Akari Tsuyukusa <akkun11.open@gmail.com>
-Cc: Alexander Letuchiy <asalde.le1@gmail.com>,
-	Roman Vivchar <rva333@protonmail.com>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-watchdog@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/5] dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT6895
-Date: Sat,  7 Nov 2026 12:13:02 +0300
-Message-ID: <20261107091302.16545-1-asalde.le1@gmail.com>
+	Sat, 07 Nov 2026 10:02:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
+	s=kr2026; t=1794045741;
+	bh=+/ah8vkaUP87DIJHEblp3tls1hoAvi5cG63uzTk2jyA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:From;
+	b=YA3oaAqqZeN6mMwRbLlWFxUHJTOS/YV5Tf0YMXVoJGIeGL1kBg3ADZFfe5MNss8vE
+	 MIEoobu/aDKNIrDejwSZFcURBEatbOt+BAIuzjkZ12NRCYmeGkrHMnGDIOSWsNpEGL
+	 MLf7cp1GrS1iC0Gx4bH5sxaEq5fH4DhVKFjeqsM2x7fbVWaYgtZRG2Ft0H2JG9ORJ6
+	 zI2LEmpGjLw+Yx/XISWN6bbUKkyzu/ViR20cEfpKUwmyJpEkeI11ITx49iO45mk6sZ
+	 XwvkqaG4hxP0HO+2XeRh9sURl+EKV0txlu5rE6XO/0QqJ00xhuY0DmB5bfzSISoDvF
+	 lMG6KdXpegkHw==
+Received: by mail.kernelriot.com (Postfix, from userid 995)
+	id 3E6128147A; Sat,  7 Nov 2026 10:02:21 +0000 (UTC)
+From: Magnus Leatti <magnusleatti@kernelriot.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+	Nicolai Buchwitz <nb@tipi-net.de>,
+	thomas.petazzoni@bootlin.com,
+	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net v2] net: stmmac: Clear DMA errors for multi-channel interrupts
+Date: Sat,  7 Nov 2026 07:01:40 -0300
+Message-ID: <20261107100140.8279-1-magnusleatti@kernelriot.com>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <au7UMdlP9O6oo41i@buffalo-ssd>
-References: <au7UMdlP9O6oo41i@buffalo-ssd>
+In-Reply-To: <179379704484.488856.2140619507341432623@kernel.org>
+References: <20261103125430.962715-1-maxime.chevallier@bootlin.com> <179379704484.488856.2140619507341432623@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_011313_206146_1F75136A 
-X-CRM114-Status: GOOD (  10.60  )
-X-Spam-Score: -0.8 (/)
+X-CRM114-CacheID: sfid-20261107_100224_580398_F2664760 
+X-CRM114-Status: UNSURE (   9.03  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,30 +99,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-4.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Akari,
-(Resending as plain text, the lists rejected my previous reply because
-it had an HTML part. Sorry for the duplicate.)
+> Should the Fixes: tag point at 1b9707e6f1a9 instead, or also include it?
+> As written, stable may backport this to 5.13+ trees that cannot hit these
+> storms.
 
-On Sat, Nov 07, 2026 at 08:18 AM, Akari Tsuyukusa wrote:
-> Please give MT6895 its own "mediatek,mt6895-wdt" compatible without
-> "mediatek,mt6589-wdt" fallback. Its TOPRGU reset support can be added
-> once the actual reset layout has been confirmed.
+A data point for the RBU case from the YT6801, same 64-byte UDP RX
+flood, all on the same 7.0.13 kernel:
 
-Thanks for the explanation, I missed that the mt6589 entry now
-registers a reset controller. I'll make mediatek,mt6895-wdt a
-standalone compatible in v2 and add a driver match entry for it without
-reset data.
+  stmmac from 7.0.13 (has 6ccf12ae111e, not 1b9707e6f1a9):
+    no storm; the MAC interrupt never fires (4 streams for 10 s,
+    and 8 streams plus TX for 30 s)
+  stmmac from 7.2.11, built for 7.0.13:
+    storm, the machine hangs
+  the same, with only 1b9707e6f1a9 reverted:
+    no storm
 
-I'll wait for comments on the rest of the series before sending v2.
+So on this hardware the RBU storm needs 1b9707e6f1a9. I did not test
+the RPS case.
 
-Best regards,
-Alexander
+> Since RBU and RPS were enabled only for statistics, was masking them in
+> multi-MSI mode considered as an alternative?
+
+For reference, d3265c19b35d ("net: stmmac: xgmac2: disable RBUE in
+default RX interrupt mask") took that route for xgmac2.
+
+Magnus
 
