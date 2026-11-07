@@ -2,62 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9332F606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 13:26:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDD9606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 13:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L2fAdq2G;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.a=rsa-sha256 header.s=protonmail3 header.b=Y8DWwUWc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VOWkgVAs;
+	dkim=pass (2048-bit key, unprotected) header.d=udp0.com header.i=@udp0.com header.a=rsa-sha256 header.s=sig1 header.b=jpBoo1XD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:From:
-	To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:To:References:Message-Id:
+	Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:
+	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=w/RdA1rSr8ljWy2SisaHpv0mqfzAzdPn/dHrxjJoI+Y=; b=L2fAdq2GysR2uT
-	8T9xShmsZivjWo5nCg++GPhlmjctGsN4kcY/KES79u7/tKrERKI1zMWEqaesL9TSpc1us7UhyG1A5
-	PcSNMXpt0uKTicPisecv8Z2uSVr/kKLmy2Ok2bnwvlurDXyEbqT6rvPE7r6rra2GthXpt8GRoKGkT
-	SXiYuh581GUiH3pubKGa2qX0g8ZGQBrfflhmNyGkSW0GmjAdnL6yh/zNOZUzk9Wb1rFIxvuHDTVOn
-	N1MTzlCvXpH3cYPGKM7QFz7qfrSraXqliYQHSDa/I5qdcigTF0TRQdHddD+MlSpziNgXeBc2CXXWq
-	TrO4xTknn9WAULE6ElmQ==;
+	List-Owner; bh=rFxyzpjR8N7WWh7CzPxB6p/viDtuv0fjnp7Ia/uade4=; b=VOWkgVAs5GUwB6
+	aYXkJjSjgOkzCeHkO5BE/ctceG4BKKtXS24d7xZF5jHcL1rC0Idwz+1kEBr69p1riEVMULHBamkFh
+	TdG48MIcYeWuHYywHj7XEjgWJJ0IwSwiqc9Sz4NIxfV8Hq835Ug+Jk1/Ce6Eb2/JY8DilzR65Wtaa
+	6nPn9Q0tQNMtH1nyolT8sbCcgXs9nOJkMqK5PS9wuwKA9FJ/UWEZuDPrDZKREGhMtRFFYMmPta2Zm
+	BZqcsjq06ASSSGoXEmSIVqMqOT4+n8Ouf7b3M3wu1J7vdhcQjhHf5cx2BCXJgLWBgNmiKFrCCF0o4
+	v4bpeRyNgglKvJj95NsA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPgQz-0000000EjPo-3TBS;
-	Sat, 07 Nov 2026 13:26:17 +0000
-Received: from mail-106119.protonmail.ch ([79.135.106.119])
+	id 1xPgal-0000000EkTg-066g;
+	Sat, 07 Nov 2026 13:36:23 +0000
+Received: from ms-2002j-snip6-3.eps.apple.com ([2a01:b747:3002:204::67] helo=outbound.ms.icloud.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPgQx-0000000EjM3-0VSg
+	id 1xPgah-0000000EkSc-2Bp9
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 13:26:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1794057971; x=1794317171;
-	bh=w/RdA1rSr8ljWy2SisaHpv0mqfzAzdPn/dHrxjJoI+Y=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=Y8DWwUWcLzDJA8th58OdrPyldokIroba+TMQbsU+lBbtDrJUW6ma7TwLMuowqApf/
-	 VbZzOCMUlrXMUfPj6J0GSFsvL1FdGqCb4Fk10PqRCwiD7fFg/nDIsrm8GyVFuo4J8Z
-	 UoHIPEXQmDVs8nGfBJb2n199QvySGdjtVyltJsdh2OZ7kMwT/GZkI9Au87pWTpNNw3
-	 q6VACuNR/ZsfrmTjVcu7MzibDwOHry3dU6y6jhz/I7vC+froYTfiS/plvLNFG8ws27
-	 z+vPlsFLARkI8I5yVjlQchb9rA4H2VrubN2iNseU/2i4PH3icxiixHdnuobq9sjzDV
-	 eyB6OLdNjo+nQ==
-Date: Sat, 07 Nov 2026 13:26:04 +0000
-To: i@udp0.com
-From: Roman Vivchar <rva333@protonmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>, Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-watchdog@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: mediatek: Add MT6833 and the Xiaomi Redmi Note 13 5G
-Message-ID: <FmgvoyT_AgANJAPnjEgEdlKRY0s2nXWF2Wm88KAM2KNKgiWpC0VzBcAukgMmYb_8H67s9wIRvgqcDgWO79Yc-PjdNoBiUS1KejZMWptvLhM=@protonmail.com>
-In-Reply-To: <20261107-mt6833-base-v1-4-bda21083e9f3@udp0.com>
-References: <20261107-mt6833-base-v1-0-bda21083e9f3@udp0.com> <20261107-mt6833-base-v1-4-bda21083e9f3@udp0.com>
-Feedback-ID: 173184497:user:proton
-X-Pm-Message-ID: 6c6b17e26323889f84a277a4c51ad887a1e9c5d0
+	Sat, 07 Nov 2026 13:36:21 +0000
+Received: from outbound.ms.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-west-3a-60-percent-2 (Postfix) with ESMTPS id 843571800123;
+	Sat, 07 Nov 2026 13:36:15 +0000 (UTC)
+X-ICL-RepId: 01a1b639-5e0e-742c-ae14-7d8c8fec6c3d
+X-ICL-Out-Info: HUtFAUMEWwJACUgBTUQeDx5WFlZNRAJCTQtKAEMGWwZeCEEHQwVaC1BcHA4Edx5WAAlWUAJaS1QUBA1XHQdFUR9UWEEOCloFUFEdXwIKBEcEWxdGA1NFXwMXEVABWB5WXloXXk1HH0BNYkkBWhlbHEAXSm5NUw8PBV0IA0NUBF9QVBFXUAtZcEYIOgspB0YEMgFKHlkEWQJdAT0FWRpYADZ8THJcci4LR3o4RglHWxwTVhUNTUMSQhUEG0YeQwRfL10XXgxeBQ==
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=udp0.com; s=sig1; t=1794058578; x=1825594578; bh=rFxyzpjR8N7WWh7CzPxB6p/viDtuv0fjnp7Ia/uade4=; h=Content-Type:Mime-Version:Subject:From:Date:Message-Id:To:x-icloud-hme; b=jpBoo1XD0//T3x3qRCR3Z3oH2nqYkExzXIldw4NIjVynVI5fZHEr3L2hzRX8Sny9Z02fnJWaDQNuwhMK8iRqjRm22js9KKpQAJ/IY4CraHlxYUg3aZuoh3/spQ6rKIMzjlmql9DT7SYSQ3HvTEl0iwKd1He3z4TPF9hj3XYsFc0s1bJsOcc5oeIKHLcJEjxW6RpHU/x/LODRE3JpJF5GL1fst6N7eNl67tt+9CN6yA7+kZs006b/pdrA8u/DQlU4BDPPplhaaB0E61XvAudTkEtu4GbQNMllRFcQX955cZe4aj+AL8VhJnX3Rf+z7wtNf/PESsxgqn4kBkxW0RoV8Q==
+mail-alias-created-date: 1755760572767
+Received: from smtpclient.apple (unknown [17.156.208.39])
+	by p00-icloudmta-asmtp-us-west-3a-60-percent-2 (Postfix) with ESMTPSA id 2672D1800125;
+	Sat, 07 Nov 2026 13:36:09 +0000 (UTC)
+Content-Type: text/plain;
+	charset=us-ascii
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3901.100.1.1.12\))
+Subject: Re: [PATCH 4/4] arm64: dts: mediatek: Add MT6833 and the Xiaomi Redmi
+ Note 13 5G
+From: i@udp0.com
+In-Reply-To: <FmgvoyT_AgANJAPnjEgEdlKRY0s2nXWF2Wm88KAM2KNKgiWpC0VzBcAukgMmYb_8H67s9wIRvgqcDgWO79Yc-PjdNoBiUS1KejZMWptvLhM=@protonmail.com>
+Date: Sat, 7 Nov 2026 21:35:56 +0800
+Cc: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@mediatek.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ linux-watchdog@vger.kernel.org,
+ linux-serial@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <2B61B8D0-6B82-4320-8E64-32FE4A1EE97C@udp0.com>
+References: <20261107-mt6833-base-v1-0-bda21083e9f3@udp0.com>
+ <20261107-mt6833-base-v1-4-bda21083e9f3@udp0.com>
+ <FmgvoyT_AgANJAPnjEgEdlKRY0s2nXWF2Wm88KAM2KNKgiWpC0VzBcAukgMmYb_8H67s9wIRvgqcDgWO79Yc-PjdNoBiUS1KejZMWptvLhM=@protonmail.com>
+To: Roman Vivchar <rva333@protonmail.com>
+X-Mailer: Apple Mail (2.3901.100.1.1.12)
+X-Proofpoint-ORIG-GUID: xg0NYAvCjjnnHfMB8W3AAJqLJ_pQYUaR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA3MDA1NCBTYWx0ZWRfX9RZQ/dWoFKZx
+ /2cLfeuzZW6f/zXPfQiw3r8iS8TU9ObxI0mhgkemMaDyP/qm+x9tbhIsp8jv+1qtjdU6+aIU9Zw
+ VD2/UxmhxQkJxQNxMQ0bitFhk3+OIkqQGXrpEtui55jX/4Bjqh6qN2WQSGDbRn0rWQudYyw3kcA
+ kjg6Qd7kCVCo6IlTZytoTVRsnZ8+9UqleUc9Hsdcx44VTFE99MIH5NkUh4BsAXR5MwJR0E2isax
+ q0wiVyDFRVx4gM8zPLZjZG2n9+x4A0KemXXbt80Z+PwzFcxuv3OcQbNaPh0WMDPDW1FGBmZQXd7
+ zZr0E1uqJkbXOC1nvgI/Di6Y4Ary4c86GuDaYmbTKFvgv+qvoMtwNYBxzDloEE=
+X-Authority-Info-Out: v=2.4 cv=AqjjHe9P c=1 sm=1 tr=0 ts=6aef2951
+ cx=c_apl:c_pps:t_out a=kRaGL2Q7qLiahLf3O6OaIA==:117
+ a=kRaGL2Q7qLiahLf3O6OaIA==:17 a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=bJxQ3BvwTHO1ZzqQ4rYA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-GUID: xg0NYAvCjjnnHfMB8W3AAJqLJ_pQYUaR
+X-JNJ: AAAAAAABXO7N7jFApZXgqN86sy/Yyaev+vDbjjG0xhSRuPW5ySlxe5l1R1j4CMFko3eWZy
+ 9uiccDWS1id2lmROUcivh7iBWIivtxpZ/Kud+KJQjUC7bkXI4LJzLh8Zs7Ud5rrrhQS1Uj
+ RFkLqucaRqwPikr5cEG5cqxjkZucnJ4vaobuPGdKWkYfCVjv6QieusvzMVYv3ioK3depGx
+ G9W0MiSsnnNHrCk/xOS1j7M0Y/76sO9Vh4kN4ic9sM4xrmmPfhL9P8h8sOwRGsBG3q00AZ
+ 6ZQE4LnPipbKSVrvs8umLGl+/UFk06QnGZGcWyRkbjCLUAgy19Z815n9YfxYa1MkGnsQe/
+ 7nLgrj9GYv2ctsy7n4WAqNK0idSLi0wkajpl8pfnxjTUiV7fFU35qAVZp1ZjTtUDxEWCtx
+ diBeQ3wes7rKFLDkUPvKiwpejcA0ofr7+rEyeWwo7/aNL0FT0aath+U9E1+FhNGStHakmp
+ DpYF8Uh3ZB1rAcsqaET0C+oWjK96mycfKMGnlCq3FnY6j0mb6+HhuRpPQzPN2z2BRqoE36
+ esR9PUGMs6iR/HS+0onlnyCX26OWV19grkILNM+ZPve3Fgfr9RiRGaGcC6fMGcCQ1X2Pth
+ TuNvTE7JZXfOtbv8r2clkwutkqWaCwWTm4tzk2R407PDLKILKG+sPtiK4/E26YDHMCfiCr
+ xnodOd3j2qdmfnkw2mdQ9fLp1HIaUVKPj+eEnVdaIytBgBdNO8OwL2Wy8jeRvIccLC/W+d
+ WWlvZMqCUN3S7bTz8SGQxDlYXrZCebAOS91tlzLSmG3zX4IyDZD0ZGXVa0/VGFJJkhboYk
+ gSgyGv2Fsv4oalcwPgGSaKJuri5Z4eIKm1wJf7a0UhSaInsS9ADE6fbWAJvJZHNYR3q8De
+ 0RtP4ve8OLCM8+tErYUpjAHq1RegJ3K+/m2vBXOTDjcU2FSslOkc4TiV5xLO1wHk1mcRgf
+ U21buSbmy6IWR8BggjsUeCBYrVSgKVuNP5NSeoIx3q7SqpDVvOhuP6muDzvkbg5TKZt58p
+ L3Ud24Qe3iQioL23RDgdDlA1Q/GxMPxYbg6LWBG3dSdCyKtR5qUmb/Gr4STYWV4HnmSx+O
+ bQn30Aon0BQDj0A142jMgLPJ7i/gm7xuRjlosBEkaxsxpHdSB1QDcTGSz4JB1J8brrz5FI
+ SitIkmbYJmODT7L9BGhydaHKcbtqs96iU59kJJEYF2X055uXf8W7/Tjb6OBx9yqcXY2BN2
+ egQCx2yexGksEUoDPP5FhYCIS9JqWLNECij2swduqb0vnKI+voWtUwQA+ObZlULRg3cIfl
+ ssN6NMHsHkexDBDKZf7AFw5GhXPZ3sb7CIn+Scr8Jp6brlhMQGueKZhQNN1UOihHvjid06
+ jCrns1WbLuJTfXRohsi3kbmz6XGaLqII660RA82/beAaeo3SzjsAbMaAAM4Bso+bdgvRkK
+ HqJd/7qsATUd6mi0nnKt/jCNOY0knc
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_052615_332091_1930C9DA 
-X-CRM114-Status: GOOD (  18.19  )
-X-Spam-Score: -2.5 (--)
+X-CRM114-CacheID: sfid-20261107_053620_025321_FDB35586 
+X-CRM114-Status: GOOD (  11.09  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,139 +118,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Saturday, November 7th, 2026 at 2:22 PM, Rui Cao via B4 Relay <devnull+i=
-.udp0.com@kernel.org> wrote:
+Hi Roman,
 
-> From: Rui Cao <i@udp0.com>
->=20
-> Add a device tree for MediaTek's MT6833 (Dimensity 700): its eight
-> cores, six Cortex-A55 and two Cortex-A76 in one DynamIQ cluster, with
-> their caches and PMUs, PSCI, the architected timer, the GICv3, the
-> watchdog and the first UART.
->=20
-> Add the Xiaomi Redmi Note 13 5G (gold) on it, with its memory, the
-> regions its bootloader reserves for the firmware it starts, and the
-> framebuffer the bootloader leaves the panel scanning out.
->=20
-> The cache sizes are the ones the cores report in CCSIDR_EL1. The
-> bootloader programs CNTFRQ_EL0 (13 MHz), so the timer has no
-> clock-frequency.
->=20
-> Signed-off-by: Rui Cao <i@udp0.com>
-> ---
->  arch/arm64/boot/dts/mediatek/Makefile              |   1 +
->  .../arm64/boot/dts/mediatek/mt6833-xiaomi-gold.dts | 205 +++++++++++++
->  arch/arm64/boot/dts/mediatek/mt6833.dtsi           | 341 +++++++++++++++=
-++++++
->  3 files changed, 547 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/=
-mediatek/Makefile
-> index a86fb313b1a..b8466d4a3d6 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6795-evb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6795-sony-xperia-m5.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6797-evb.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6797-x20-dev.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt6833-xiaomi-gold.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-rfb1.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7622-bananapi-bpi-r64.dtb
->  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7981b-cudy-wr3000-v1.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6833-xiaomi-gold.dts b/arch/a=
-rm64/boot/dts/mediatek/mt6833-xiaomi-gold.dts
-> new file mode 100644
-> index 00000000000..6bdcf407fb6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt6833-xiaomi-gold.dts
-> @@ -0,0 +1,205 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/*
-> + * Xiaomi Redmi Note 13 5G (gold)
-> + *
-> + * Copyright (C) 2026 Rui Cao <i@udp0.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt6833.dtsi"
-> +
-> +/ {
-> +=09model =3D "Xiaomi Redmi Note 13 5G";
-> +=09compatible =3D "xiaomi,gold", "mediatek,mt6833";
-> +=09chassis-type =3D "handset";
-> +
-> +=09chosen {
-> +=09=09#address-cells =3D <2>;
-> +=09=09#size-cells =3D <2>;
-> +=09=09ranges;
-> +
-> +=09=09/* The bootloader leaves the panel lit, scanning out this buffer *=
-/
-> +=09=09framebuffer@73c10000 {
-> +=09=09=09compatible =3D "simple-framebuffer";
-> +=09=09=09reg =3D <0 0x73c10000 0 (4352 * 2400)>;
-> +=09=09=09width =3D <1080>;
-> +=09=09=09height =3D <2400>;
-> +=09=09=09stride =3D <4352>;
-> +=09=09=09format =3D "a8r8g8b8";
-> +=09=09};
-> +=09};
-> +
-> +=09memory@40000000 {
-> +=09=09device_type =3D "memory";
-> +=09=09reg =3D <0 0x40000000 1 0x80000000>;
-> +=09};
-> +
-> +=09/*
-> +=09 * The regions the bootloader reserves for the firmware it starts (AT=
-F,
-> +=09 * TEE, GenieZone, the SSPM, MCUPM and SCP coprocessors, the modem) a=
-nd
-> +=09 * for itself, as it reports them.
-> +=09 */
+On Saturday, November 7th, 2026, Roman Vivchar wrote:
+> Shouldn't the boot shim populate /memory and the dynamic =
+/reserved-memory
+> nodes from the vendor FDT instead of hardcoding them here? There are
+> multiple phone variants, which may have different reserved memory =
+addresses.
 
-Shouldn't the boot shim populate /memory and the dynamic /reserved-memory
-nodes from the vendor FDT instead of hardcoding them here? There are
-multiple phone variants, which may have different reserved memory addresses=
-.
+It already does: it takes the memory node and the regions LK reserves
+from the tree LK passes, matched by address, so the ones here are only
+the values from a 6 GB unit. You're right that they don't belong here,
+then. In v2 the memory node will be left for the shim to size, and
+reserved-memory will keep only what the kernel uses itself: the ramoops
+region and the framebuffer.
 
-> +=09reserved-memory {
-> +=09=09#address-cells =3D <2>;
-> +=09=09#size-cells =3D <2>;
-> +=09=09ranges;
-> +
-> +=09=09aee-debug-kinfo@48080000 {
-> +=09=09=09reg =3D <0 0x48080000 0 0x10000>;
-> +=09=09=09no-map;
-> +=09=09};
+> No interrupts?
 
-...
-
-> diff --git a/arch/arm64/boot/dts/mediatek/mt6833.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt6833.dtsi
-> new file mode 100644
-> index 00000000000..4c5f1381ca6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt6833.dtsi
-
-...
-
-> +=09=09watchdog: watchdog@10007000 {
-> +=09=09=09compatible =3D "mediatek,mt6833-wdt", "mediatek,mt6589-wdt";
-> +=09=09=09reg =3D <0 0x10007000 0 0x100>;
-> +=09=09};
-> +
-
-No interrupts?
+I don't know of one routed to Linux. MediaTek's device tree for this
+phone gives the watchdog none, nor do the mainline ones for MT8186,
+MT8188, MT8192 and MT8195, and MediaTek's kernel registers a handler
+with the secure firmware (MTK_SIP_KERNEL_WDT) for watchdog timeouts
+rather than taking an interrupt.
 
 Best regards,
-Roman
+Rui=
 
