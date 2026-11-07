@@ -2,77 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13E48606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 03:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5FA606D805
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 04:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mbnEjsn6;
-	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=MDRyLQRw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0ye8ZB1j;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=UbKOBze2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
-	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
-	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+NfG3aoVVDYg320wMNuDSmqyNFEaM7V/GRWW/LuOKlc=; b=mbnEjsn6RkiGbH
-	jBykbWzBLrbbOnjc9tQ3jYYZIZHixwy3LF0uPjB5bjOa5DQoji09iq5jcALehnK7V+C3WrAeG/bjl
-	tGoLzCCwgsOa+85VNQUZ625V4a6jgaSkrfvI4z2sgZkaAURkDvh6XSrh7sT16HKKeVYzhL+ym9gR+
-	P2MfBkZPXt5SaiJQFYvb3I+raxUDIVX95yIUnFr0c5gl71883YHwpuDTh+PslLr15lNkLjIl3/u/e
-	21K2pej7kLiKFYMbbOxNsLUGpuwkOcl9RVxnsP80btvAr7y4SIWDYBXq/KEFNuAtmBN32qPHQFrFg
-	tO9CpUSQi1xpJXVTJsUA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=prsA8JhE/unyEIYGc6slZThJHzBfFZOfgI66gJXsR94=; b=0ye8ZB1j19SGM5vbDfezwxgh47
+	/TzZ1gSyE5rljVdke9+cxxhq4kbuGyDTj7tkMXfhJ4TDKPRvIJxEKnGDv7NcXDxDHZKIS0Z0dS1DY
+	XI6him1K9yY3okyFN6yVSMYJToHpzXTDu27XYKdl8u6uCKDghqqKptL0XNTJg+xWhVqZX5pg0gynE
+	gmlpIgqT3ijOeDTeH8Dg4aGE/F0LFsPpRNRcrQu5Kayp6F1y8Rm705c/70+s/BioQFiFmkwERWCCg
+	pMSiQ7xWojkG7dDK9reMx9LgKYsARGI8H7hJF1RiQ0eAOjmgH6Zr0bILUre/xwG8wg8mfloLUk1+H
+	blQGrJ2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPWch-0000000E6o4-2DNI;
-	Sat, 07 Nov 2026 02:57:43 +0000
-Received: from out162-62-58-216.mail.qq.com ([162.62.58.216])
+	id 1xPXkG-0000000EAOt-3ZDH;
+	Sat, 07 Nov 2026 04:09:36 +0000
+Received: from mail-dy1-x1347.google.com ([2607:f8b0:4864:20::1347])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPWcb-0000000E6n7-30Yn;
-	Sat, 07 Nov 2026 02:57:42 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1794020248; bh=+NfG3aoVVDYg320wMNuDSmqyNFEaM7V/GRWW/LuOKlc=;
-	h=From:To:Cc:Subject:Date:References:In-Reply-To;
-	b=MDRyLQRweWcf+xUdMyrRKSmQ4ym8LxPSKGEuTbq8sda/LnBrQsChWSTv29ATNeLl1
-	 5kWV0jo2YqJvU6DKgoUr+AJrGje3BPSoyvyrUwYRyCseF+TMcqFg43W8vPcKoVyG/T
-	 IgribdMGCx+0gdmxzvXarCy4BkxVGjuwgdB5/LrI=
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
-X-QQ-XMAILINFO: MdmyWVu0InhASiUkhb//VhxE+kD9CHxdhJTc2eGlkCfKL+hSZzxtKPiKVMWgqY
-	 Lv/UzTv+iDbo7dMZuvj8UN+79ox9/cI1AEMe33S2r7bt3E1M7gv8SGTY9I6pqBky60sk3/mm0O29D
-	 v0tNVj8tRScQbUZinQwt1KFWKmyu1mcSFjpMRKY99eqQ2XcKYoS2kJBZ4JXHIhrufiW9AK7duvXRg
-	 KsCUp8IMW+hWAen10Hz/NonxkHKmrw8902WefN6BT2pi5LZRVi6hT0uRjYwpmCFaBwOCVjazaFZkW
-	 wEvJ2oVheUjYu7K2SVD3dwVH3rg8F1Ym9357Bt5Beoc/RzPFu25LZVECBn5HSGTziBRNIiIuN0BYv
-	 dEY1lbfOgnkbsHmmhhBbM8zSlEo/FBbqBSFXTl0VIE558t1XIs5A0mDldpoYzntiRPQJhZW5ZJhQ+
-	 aXfkpv1h/TX3CVwZKdOX088TERlmDzC1alWuo2aXUMAqKmn5cyZEA2Wx1M+jtxE7XQ9k+lBvG+1l3
-	 Zq1Zh1i3lLMsxAXOGVv4s+FAEJn+M52EhPVreYm8frXOB6zR9f9VIq7AEjHL1lVVAPiG/jnSsdK8g
-	 gl2D5ZEXeGnzyuJvVRK3zNJas9038c4pPTfTWudT0QbHKHcaiCsMBWWtcjr37NAAuyBE3cDToy1Ye
-	 f/fPG5YwGmKcivHs3GSJKCOilYZAH/0NjqGLv3nOMYkIHgSrD4VBqR216mgFGUrYRlRoIglr8SnBX
-	 Vwd9JgaaP0nTboNq8nqGOxkpMXE3N/smmQPyKgVHltVRYPhEjlLCfRnQDg5ahGRRGyn5xfrQC8gxe
-	 1s2Xm/45nDEHVn54Il7wDgGZkucaaWxag1IMmsMYB5qNw+XLMaJV3txEO+bkf7nIXCmNSp5T74x47
-	 JWyeAwNoPjkPUyKjUhtMl566EFDTKOjES7UsQlzb9uxvGRMYCqArnqRcqrnsawcwhe1woh2u7iiVl
-	 juAaZyli3jPdvYY9zMs7UVjONkCX33DbPmQFGSBmrAvtZ92wlRp/O2VU0cnkVetSzWwX5d04zH20e
-	 1OGx3SKWYgTJfYdLdBm+X0RZ6S74lhVe/Wnze8B3OhuP+NB45fbHc/8kqfCjn4GsLlGU6WyVm2SDO
-	 tfRx5hWc/qYBDj4PUGmY2/bZ
-From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
-To: "=?utf-8?B?SGVpa28gU3TDvGJuZXI=?=" <heiko@sntech.de>, "=?utf-8?B?TWFyYyBLbGVpbmUtQnVkZGU=?=" <mkl@pengutronix.de>, "=?utf-8?B?VmluY2VudCBNYWlsaG9s?=" <mailhol@kernel.org>, "=?utf-8?B?RGF2aWQgUy4gTWlsbGVy?=" <davem@davemloft.net>, "=?utf-8?B?V29sZmdhbmcgR3JhbmRlZ2dlcg==?=" <wg@grandegger.com>, "=?utf-8?B?T2xpdmVyIEhhcnRrb3Bw?=" <socketcan@hartkopp.net>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?RXJpYyBEdW1hemV0?=" <edumazet@kernel.org>, "=?utf-8?B?SmFrdWIgS2ljaW5za2k=?=" <kuba@kernel.org>, "=?utf-8?B?UGFvbG8gQWJlbmk=?=" <pabeni@redhat.com>, "=?utf-8?B?U2ltb24gSG9ybWFu?=" <horms@kernel.org>, "=?utf-8?B?Sm9uYXRoYW4gQ29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?U2h1YWggS2hhbg==?=" <skhan@linuxfoundation.org>, "=?utf-8?B?UmFuZHkgRHVubGFw?=" <rdunlap@infradead.org>
-Cc: "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, "=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bmV0ZGV2?=" <netdev@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
-Subject: Re: [PATCH net v7 0/7] can: fix bus-off restart and device close races
+	id 1xPXk2-0000000EAM2-3vR8
+	for linux-arm-kernel@lists.infradead.org;
+	Sat, 07 Nov 2026 04:09:25 +0000
+Received: by mail-dy1-x1347.google.com with SMTP id 5a478bee46e88-30c0d568830so2794446eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 20:09:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794024561; x=1794629361; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=prsA8JhE/unyEIYGc6slZThJHzBfFZOfgI66gJXsR94=;
+        b=UbKOBze2q6Pf+3tKATOvDwwwwjGfa4FFJi3gEhY/WVrT/eduXv/dp7mi6APKMjIdhs
+         VWAb86Yi64sZlRsplriOiEEj5Rz0k9SfwVtGrbe2kwD6Q4M7isMGgEQrvpQ2/PFIs6vz
+         XvctoTK1XYcd7GIuJPy/N9g+pznAlyv5vYXO0Dvt8Bjl46Cy0+HkFh0CKpeolQfU1JCN
+         ecMQNuUs0f59hNsavFAcX3GEJlYiCPD/0J98LP9znHXBV+f1G9aP1DAhu4edc4EIyIWk
+         ARqT+ZBvFXRfstfcAq6KA2W0H2krYlLV4NrHpWss4BW7BbXB1vOJVc5VV0VkSUAy5big
+         EGbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794024561; x=1794629361;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=prsA8JhE/unyEIYGc6slZThJHzBfFZOfgI66gJXsR94=;
+        b=XspJcjMCffjhtn82BVzjjLCjLCzp+1FiJeH+a4jbEYltc+EPW05zRSDX+DsanrOvoV
+         KZFh1Y55n2xcgKa5YuFFJp3elLfzD7mDdG3uQdjt+j2tc7WBgbTBYlh76+oywGYXro2L
+         3I+Wb3I0Jxgl2bQTsFf2cuJxrT5CauEOnj/T4WTEFpsRwUPbWugT2Eb0PpolIMBjYRMp
+         vGcZtOdsV7HQRKw1EcgEe4vtEc9iPeZeuu55FKbXiA0xF3t+X3QOegd5VowFfaIXkYa5
+         Qqn4AdyIP62YPbk5m5Jth/u4x/bJZzUapTZidWmB+HFAlEt3EYMnqWVtKFxI62Pv76Ka
+         11yw==
+X-Forwarded-Encrypted: i=1; AKwUvBw+/O7q91uJTupJxGsYr3WG696JN1WhqFgM7rBCbPNjhuwuOer6jRIEnGZKWXMwFDZ81S03n5hpszOHRcWuqzIa@lists.infradead.org
+X-Gm-Message-State: APuU4Z9q8FiV0L2T/QOd+eUdlLXdqEruvJ9fX7O+23Nh0d/ySg73Yo+W
+	ZWd3lyh7eJhHhdj6Wq9Si3okKykAj5/OP1+LMn+9OyexgovpRixqcjwtRDrL3ZkwjzIdMkXA5oI
+	javi9Xkrqdg==
+X-Received: from dloo22-n1.prod.google.com ([2002:a05:7023:a56:10b0:1b2:4d89:1614])
+ (user=irogers job=prod-delivery.src-stubby-dispatcher) by 2002:a05:7022:7e0a:b0:1b2:611a:8a10
+ with SMTP id a92af1059eb24-1b2611a8dd5mr4522194c88.19.1794024561095; Fri, 06
+ Nov 2026 20:09:21 -0800 (PST)
+Date: Fri,  6 Nov 2026 20:09:11 -0800
+In-Reply-To: <20261107040913.1384033-1-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Sat, 7 Nov 2026 10:57:26 +0800
-X-Priority: 3
-Message-ID: <tencent_B3369A1199D0849091BB8015C41BBFF0A607@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <20261106-rockchip-canfd-restart-close-v7-0-accdb11bc845@qq.com>
-	<16255046.uLZWGnKmhe@diego>
-In-Reply-To: <16255046.uLZWGnKmhe@diego>
-X-QQ-mid: xmsezb41-0t1794020246tqmnr7ex0
+References: <20261107040913.1384033-1-irogers@google.com>
+X-Mailer: git-send-email 2.56.0.455.g6c5a503b38-goog
+Message-ID: <20261107040913.1384033-2-irogers@google.com>
+Subject: [PATCH v18 1/3] dt-bindings: perf: Add Broadcom Raspberry Pi AXI PMU definition
+From: Ian Rogers <irogers@google.com>
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Jonathan Corbet <corbet@lwn.net>
+Cc: Dom Cobley <popcornmix@gmail.com>, Uwe Kleine-Koenig <u.kleine-koenig@baylibre.com>, 
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+	bcm-kernel-feedback-list@broadcom.com, Shuah Khan <skhan@linuxfoundation.org>, 
+	Randy Dunlap <rdunlap@infradead.org>, devicetree@vger.kernel.org, 
+	linux-perf-users@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Ian Rogers <irogers@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_185738_317039_748B0121 
-X-CRM114-Status: GOOD (  18.90  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261106_200922_982255_5CD6960B 
+X-CRM114-Status: GOOD (  15.22  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,42 +97,99 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SGksCgo+ID7CoFRoaXPCoHNlcmllc8KgZGVwZW5kc8Kgb27CoHRoZcKgdGhyZWXCoHBhdGNo
-ZXPCoGluwqAiY2FuOsKgc2tiOsKgbWFrZcKgQ0FOwqBza2IKPiA+wqBmcmVlaW5nwqBzYWZl
-wqBpbsKgYW55wqBJUlHCoGNvbnRleHQiwqBbMV3CoGFuZMKgdGhlwqB0aHJlZcKgcGF0Y2hl
-c8KgaW7CoCJjYW46Cj4gPsKgcm9ja2NoaXBfY2FuZmQ6wqBmaXjCoFRYwqBzdGFsbHPCoGFu
-ZMKgcmFjZXMiwqBbMl0uCj4gPsKgCj4gPsKgWzFdwqBodHRwczovL2xvcmUua2VybmVsLm9y
-Zy9saW51eC1jYW4vdGVuY2VudF9DRDA1RjAyMEJBRkIyNTM3RjVEMUY0Q0JCNDI1NTg4RUE4
-MEFAcXEuY29tLwo+ID7CoFsyXcKgaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGludXgtY2Fu
-L3RlbmNlbnRfRTI1QzlCRTY2ODkyNjRFNDEzOEE0NjQ4MDNCODEwRkRGRDA5QHFxLmNvbS8K
-PiAKPiBCb3RowqB0aGVzZcKgc2VyaWVzwqBhcmXCoGZyb23CoGp1bHnCoGFuZMKgc2VlbWlu
-Z2x5wqBmcm9twqBiZWZvcmXCoHlvdcKgc3RhcnRlZAo+IHVzaW5nwqB0aGXCoGI0LXJlbGF5
-LsKgU2/CoHRoZXnCoG1hecKgb3LCoG1hecKgbm90wqBoYXZlwqBzdXJ2aXZlZMKgdGhlwqBr
-ZXJuZWwKPiByZWxlYXNlc8KgYW5kwqB0aGVpcsKgdGhyZWFkaW5nwqBpc8KgYnJva2VuwqBi
-b3RowqBvbsKgbG9yZcKgYW5kwqBpbsKgYW55wqBtYWlib3gKPiB0aGV5wqBhcnJpdmVkwqBp
-bi4KPiAKPiBBbmTCoGlmwqB0aGVyZcKgaGF2ZW4ndMKgYmVlbsKgYW55wqByZXNwb25zZXPC
-oHRvwqB0aGVtwqBzaW5jZcKgdGhlbizCoEknZMKgdGhpbmsKPiB0aGV5wqBoYXZlwqBiZWVu
-wqBsb3N0wqBvcsKgc28uCj4gCj4gU2/CoEknZMKgc3VnZ2VzdMKgcm9sbGluZ8KgYm90aMKg
-eW91csKgZGVwZW5kZW5jaWVzwqBmb3J3YXJkwqBvbsKgdG9wwqBvZsKgdGhlwqBjYW4KPiB0
-cmVlwqBhbmTCoHNlbmRpbmfCoHRoZW3CoGFzwqBhwqBuZXfCoHZlcnNpb24swqBzb8KgdGhh
-dMKgcmV2aWV3ZXJzwqBjYW7CoGZpbmTCoHRoZW0/CgpUaGFuayB5b3UgdmVyeSBtdWNoIGZv
-ciB0aGUgZ3VpZGFuY2UhIDotUAoKSSBqdXN0IGNoZWNrZWQ6IHRoZSAiY2FuOiBza2I6IG1h
-a2UgQ0FOIHNrYiBmcmVlaW5nIHNhZmUgaW4gYW55IElSUQpjb250ZXh0IiBzZXJpZXMgd2Fz
-IG1lcmdlZCBpbnRvIG1haW5saW5lIHllc3RlcmRheSwgc28gSSB3b24ndCBzZW5kIGEKbmV3
-IHZlcnNpb24gb2YgaXQuIEknbGwgcmVtb3ZlIGl0cyBsaW5rIGZyb20gdGhlIGNvdmVyIGxl
-dHRlci4KClRoZSAiY2FuOiByb2NrY2hpcF9jYW5mZDogZml4IFRYIHN0YWxscyBhbmQgcmFj
-ZXMiIHNlcmllcyBzdGlsbCBoYXMgc29tZQppc3N1ZXMgcmVwb3J0ZWQgYnkgdGhlIGJvdHMg
-ZHVyaW5nIHN1Ym1pc3Npb24gdG8gdGhlIG5ldCB0cmVlIHRoYXQgSQpuZWVkIHRvIGFkZHJl
-c3MuIFNpbmNlIHRob3NlIHBhdGNoZXMgb3ZlcmxhcCB3aXRoIHRoaXMgc2VyaWVzLCBJIHBs
-YW4KdG8gZm9sZCB0aGVtIGludG8gdGhlIG5leHQgdmVyc2lvbiAodjgpIGFuZCBzZW5kIHRo
-ZW0gdG9nZXRoZXIuCgpCZXN0IHJlZ2FyZHMsCkN1bmhhbyBMdQoKcHctYm90OiBjcgoKCgo=
+Add device tree bindings for the Broadcom Raspberry Pi AXI PMU block
+found on BCM2835, BCM2711, and BCM2712 SoCs.
+
+The hardware exposes two MMIO register blocks: the primary monitor
+evaluates the System fabric and the secondary monitor evaluates the
+VideoCore VPU fabric.
+
+Co-developed-by: Dom Cobley <popcornmix@gmail.com>
+Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+Signed-off-by: Ian Rogers <irogers@google.com>
+---
+ .../bindings/perf/brcm,bcm2835-axiperf.yaml   | 44 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 2 files changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/brcm,bcm2835-axiperf.yaml
+
+diff --git a/Documentation/devicetree/bindings/perf/brcm,bcm2835-axiperf.yaml b/Documentation/devicetree/bindings/perf/brcm,bcm2835-axiperf.yaml
+new file mode 100644
+index 000000000000..e1a5a16b8d75
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/brcm,bcm2835-axiperf.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/brcm,bcm2835-axiperf.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM2835/2711/2712 AXI Performance Monitor
++
++maintainers:
++  - Ian Rogers <irogers@google.com>
++
++description:
++  The Broadcom BCM2835 series (including BCM2711 and BCM2712) features hardware
++  performance monitors on the AXI bus for evaluating memory bandwidth and
++  system traffic. Two monitor register blocks are present, with the primary
++  monitor evaluating the System fabric and the secondary monitor evaluating the
++  VideoCore VPU fabric. This block is distinct from the BCM5301X AXI Trace
++  Module.
++
++properties:
++  compatible:
++    enum:
++      - brcm,bcm2711-axiperf
++      - brcm,bcm2712-axiperf
++      - brcm,bcm2835-axiperf
++
++  reg:
++    items:
++      - description: System monitor registers
++      - description: VPU monitor registers
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    pmu@7e009800 {
++        compatible = "brcm,bcm2835-axiperf";
++        reg = <0x7e009800 0x100>,
++              <0x7ee08000 0x100>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 93abbb315065..b8a3cb005c91 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -5338,6 +5338,13 @@ N:	bcm113*
+ N:	bcm216*
+ N:	kona
+ 
++BROADCOM BCM2835 AXI PMU DRIVER
++M:	Ian Rogers <irogers@google.com>
++L:	linux-perf-users@vger.kernel.org
++L:	linux-rpi-kernel@lists.infradead.org (moderated for non-subscribers)
++S:	Maintained
++F:	Documentation/devicetree/bindings/perf/brcm,bcm2835-axiperf.yaml
++
+ BROADCOM BCM2835 CAMERA DRIVERS
+ M:	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+ L:	linux-media@vger.kernel.org
+-- 
+2.56.0.455.g6c5a503b38-goog
 
 
