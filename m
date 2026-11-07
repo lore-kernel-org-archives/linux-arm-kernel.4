@@ -2,89 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B8F7606A32C
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 18:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CAA3606D804
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 18:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mJSCPHQN;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZHsiN0wz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QGkzIsYx;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=e6t0lvzx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pqjxgeb2LvNzA5lyIDyXZ22UP4O9SLF5sZs86JhTX4g=; b=mJSCPHQNbHZb8Hpl3kvs1DPlOy
-	fRvMPxSlN4Tquhtks+YpkMyLKI8cZWD/3pQmvnU1EXlLZUhgt3S/eJI8jiWtbWwMm3NrP5s2QCfRJ
-	lsFX0Rp+6pwI1XMNWKpmC0qfLIQ3Uh4R1D4jsjaSIv5ZUI1mD8sEK2t8uPw2HRgnwMD1iI04CjsYd
-	vIw663QnucSoOQrqC8lqQe46tohYXG2HQKMdQorCn/gRzwpl5kPaVhod11/hkIjNl6tzrP5k8SqMc
-	xvIfgUE+5u9lf+LBNbXEEW3rNzMQ+3f5sQWYVcX50MovM4sv2BG/15mqFMPee9e7Y5QkTSAQwYXW8
-	OAcMi8xg==;
+	bh=qIUo8w5jnVZGhZQV3yXbT0Mmx7eP44OB6GHW9QwQx2s=; b=QGkzIsYxl6vzuqEiGD2GDixTYs
+	g9LEYxyV8bhA3lT/JraMYQG8mUP3EKr1i1nJ+FTEK2UzRtKtnhfNCg+2V86gsZE4E3kMP25g+MbPG
+	RxhOe03HOi9ogPeQPUR1v941tB4z3D+YHoUvHLlciFl4EzoDO0buNALTKvP5nOB4jFi3dGn5lhaLF
+	PgYu61FepevGGvok8OBKN0VNeEW9NtiXEhhXYNAAc5zlzoWLYLT3lh5TkdzDktTHJ1RPh/LNHuTK8
+	QvdYrad8xFO0sA6s29I7gR6TtDoRYXKQBgzG0QRlfxLgAmVDiKwK/bo0m0A5NiWzhcd64o4cD633G
+	4jEx6cMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPknr-0000000F9An-3VhA;
-	Sat, 07 Nov 2026 18:06:11 +0000
-Received: from mgamail.intel.com ([192.198.163.18])
+	id 1xPl3U-0000000F9qp-17LE;
+	Sat, 07 Nov 2026 18:22:20 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPknn-0000000F9AJ-34ml
+	id 1xPl3Q-0000000F9o1-2gql
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 18:06:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794074767; x=1825610767;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QUH3kL1d5cW8qdNODM5EpH+O8pqgfABidKcSlg6biNw=;
-  b=ZHsiN0wzkGI0Q5h811ckNneB49tkXxR7hCJZu4Pm8IbH5dtqudXZ+WKI
-   GlBESLmrrwmlXkP8rtHMkfmbhtnAHFgnZXvM1hJMyyyzPlvpb0ojt6iKj
-   DZg0p6VtUdhXoOPKZ8mPnD+rfAsImKaT+j6UI/aKP3IYSClhyFQFHZcqb
-   W9SSAGfL4EUUSxkIGyc74yzvJCkpRrtEPt9kxsjQa9opetT2+I55QSFkC
-   SJb+DzfcmTLlZLFcCe3XMrrCLneIgvRkAmyFw17JQAsmb4Ehb9K5KSUTy
-   dkModbb2PZY/8ZUc+wNhXaPJVI5XVu1TkTlueXYFMZLeOiG4Ou8QcCx0/
-   Q==;
-X-CSE-ConnectionGUID: lf/8O12MSy2PYbmVPtkhRA==
-X-CSE-MsgGUID: 1Zu0ra7zRaqJKmRRkHl5Tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11959"; a="2906326"
-X-IronPort-AV: E=Sophos;i="6.27,200,1787036400"; 
-   d="scan'208";a="2906326"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2026 10:06:06 -0800
-X-CSE-ConnectionGUID: VJXgjaVGS1mBFaTiUWSFdQ==
-X-CSE-MsgGUID: G87rpHNQTDSdSsZyvVi+qA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,200,1787036400"; 
-   d="scan'208";a="7421238"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 07 Nov 2026 10:06:04 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xPknh-00000000rM3-1fFq;
-	Sat, 07 Nov 2026 18:06:01 +0000
-Date: Sun, 8 Nov 2026 02:05:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Gary Yang <gary.yang@cixtech.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fugang Duan <fugang.duan@cixtech.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
-	gary.yang@cixtech.com
-Subject: Re: [PATCH 2/4] usb: typec: add CIX Type-C PD controller driver
-Message-ID: <202611080223.qvA6HnF0-lkp@intel.com>
-References: <20261107011012.3655873-3-gary.yang@cixtech.com>
+	Sat, 07 Nov 2026 18:22:18 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a2153c8525so12593885e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 10:22:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794075734; x=1794680534; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=qIUo8w5jnVZGhZQV3yXbT0Mmx7eP44OB6GHW9QwQx2s=;
+        b=e6t0lvzxX2AvJEXZSjrm97PeSfTJNE4G4e4uijUVZH2OIhw1bxWtQoBmqc7q30Ag0T
+         2L81Th/GfPFnw+Uqq0RLIl+tXSACcHyn03kaZpLHO8jEVb89O1evvEu11SxyyJYjFkmQ
+         KFpXHINT33CGBlkXCWpjATTJUAGcsO8zYajc2pVf2iN2UAupQYeTVloRpHyOEtySU1aa
+         TZqbPJ2+m37ntc5x4LTSh0T9I43IejVPYEVLIYdRb6ZF4//s+3pCZydSwFcVsVSXoLfZ
+         C2B5Tl8ezoAsQ6XxJMS6rcmjqO0SMXs+Iqsr3n0eSgAPrv/ujcPnO4uYSIVyqX4H2Avn
+         HsFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794075734; x=1794680534;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=qIUo8w5jnVZGhZQV3yXbT0Mmx7eP44OB6GHW9QwQx2s=;
+        b=vrdqvVpCEpP/0KTbAcha3bCxd658fI/Z438RjTv3+NDsrZ31jxtErfT72BfflcLWKp
+         4ruLRicdz9Ey+/qWXqgsvmG59Wh1sc6uUvCK+iydR/617jluwBsmU5QDZTtXwnVVPjTz
+         /clfB/VEIi1xU2ijPhN8sDqWmRLWcQJovxDgd/Z/f27WhDjybCN03bl1rTFW7Ao8nU7V
+         WQPIF4ifEkYmaZD9zWc/SbjXn7VBPlw42AA0n85Oe3duSAiERt8AD4CNmsj28QmKWuYU
+         gnDwzP2TqBeTyr8EfXuLiQhpH2sAkdGenI+0K6dBnzSTO8AAnRwSNrGoYokVxCfxdQrz
+         2jSA==
+X-Forwarded-Encrypted: i=1; AKwUvBxibMlYwvE+oYxX6hJGYQ690Scknhi7tybHg9kVEHH8fa1y1jyVjJQERQsikNvXNYmZtpv0oIEQvOVMt28GTE+N@lists.infradead.org
+X-Gm-Message-State: APuU4Z/B7pyem2GU8spxqcBnnZubSeJT3h5SU1Nq4tl6mEFlHOlWRfR/
+	K5H/5IuYAJ3aP6YS13vhZioYlqv1/RnhFLh3RJbHshIzlhOyAEKUg9YqUlq9oZQR7gY=
+X-Gm-Gg: AYBFou0+MUmT8cx+JjceLUpWn8Rq0xsUssBuXNpUDLrSL0UVi0nHZWZ5xokPJaJuA8+
+	VoHEjwZH54EXdIU0a2PmXf6is3prraKALH6cPLRSAXgpmByiAES7Qc2HggQumajrhl/QGXnZNXT
+	mglcEnQDsjInFRlCYAenjTAlEXa6q9OOIdU6CTRBC2evImT4xK3vuEUmpxpmFtk81l87NYG1STD
+	ycWZlqWuW45aUCrTrK8RIVtTHzwUVvIJpJODqvDf05V20twisJf62mNZRzISJdbyABRQ6rKSJnW
+	a6/f7N2dnD6XTC87Po/uBW7qrA6sz3v7pkqqexym+08B7tzTsgIxkFNJQA5mN4Qbt4k0yya1N/p
+	6VmDLeE+TzwjiqdJ7vfOfmc8Kciup0GYkGH2NdqQzs/HD/Pe/nipl3p4klRqu6BcPip6O8j3eLW
+	1J8g9KRQOL3273oHa2MbrnHCm3uMDEiFstPvf6fRuU63utQvxvJB/5SMKhCYMbGrf2XCzPabMZN
+	7WWdPO0Su/hAYgn2Oe+LeJes5YScgb8R53//h62f1Em+ptTqWT4KPhnqOAVMe/cBRO9kfiqlNPC
+	AB4ZwGon6rrx2UlTndZv2KFxE3rfQT65Ft8ZJH1A0CNIfPR2FWkPGHGulF2PIL7C3r9ODbR/WgV
+	wVHdqJQ4kyhq6WdPfj7kRN7z6wyyqirkOmAf5
+X-Received: by 2002:a05:600c:348f:b0:4a1:f377:5c6c with SMTP id 5b1f17b1804b1-4b6de788f12mr102711915e9.10.1794075734154;
+        Sat, 07 Nov 2026 10:22:14 -0800 (PST)
+Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b76cbd082dsm59551055e9.1.2026.11.07.10.22.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Nov 2026 10:22:13 -0800 (PST)
+From: Sander Speetjens <sander.speetjens@gmail.com>
+Subject: [PATCH v2 0/6] firmware: raspberrypi: Style cleanups and fix child
+ device lifetime
+Date: Sat, 07 Nov 2026 19:21:30 +0100
+Message-Id: <20261107-fix-raspberrypi-firmware-v2-0-5bfe605a5cc5@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261107011012.3655873-3-gary.yang@cixtech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/43NTQqDMBBA4auEWTslSTGhrnoPcRHjqAP1h0lJF
+ fHupZ6g27f43gGJhClBpQ4Qypx4maFStlAQxzAPhNxBpcBq64zRHnveUEJaWxLZV8aeZfoEIWz
+ pEZ22nfNlCYWCVajn7aLrplAwcnovsl+nbH71DzQb1Oi1vzsbvdGxew5T4NctLhM053l+AYDyQ
+ Q3AAAAA
+X-Change-ID: 20261107-fix-raspberrypi-firmware-be9c602d6755
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
+ Stephen Boyd <sboyd@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ sander.speetjens@gmail.com
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1762;
+ i=sander.speetjens@gmail.com; h=from:subject:message-id;
+ bh=0rEgn/6yzRAJIGB+6WT8d+hJikkPqbyZkdSE8/Lf2L8=;
+ b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBq72xV8RRfQstVxHlzO/Uw/9nrDdf3i1iA4/BKs
+ TEh1kgTbNqJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCau9sVQAKCRB4zXhFDAXI
+ Z2ZcD/0d0jRDf27K/pqicnJj9cUKv/CamEep7l9ryUSiGGLLSJIg3q0Xv+TjC9eSoBHMyG+KOOF
+ 0bkwyldbA9hOxWtKjTjPPzWL01c1TzWK0uRB6cdCYVMPtqYS9Gl5OB7eNYCyz3bgyIE4MhQ5/hL
+ fuyD5ahh62gfkQ6rvIq7HawHP36v3U3yxZSJe1v+5THrE47/MOF3YxeCvzpZn6SE3TbZOa0iowr
+ Ln2S1MwDY4WPIYYOU5l7ZDWtwzpcvokV3xBsG79w+J0mGJ2yGP3suAcLzUpbPWwwOj6xiRvAngY
+ uGVDzXKLia9mvXL+ccIYXt6B2GNDqTF9zS/YO7xQmT3Fwgcc6mGZaqSiaQpSpWzid1CNdHmUQKE
+ 6Wel9sAnv7sdcvKQ+Xz6NTVu4l6bCFpbxXIkywmMkElBg6OaGRHu5ZY+XrKvGTk73gA3ORrkumD
+ 6ZIMYD9lbK7prNTKvi7K6EZ8L6nUcsvCceDfn39ZxIAotVRQ96dGKBbE+Jd9uAOSOT2vdaIFact
+ SsZzJtuvKmcF2gNHkYu4OcbCfiq9ajjq71W8YRfsTnDp2MJU0vgU8uanNGSGyhQJi6+eqayxReO
+ I7wovhglVMESvA4iGcpHkCLZwTHoMxD6aa1rwnhYmPVQrhFkxtqW0shkRouPv3rGpcKQCwuq6MQ
+ o2iB7DlsmRRvyMA==
+X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
+ fpr=56524A8B001A11C3EEC9510178CD78450C05C867
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_100608_681175_98D2DC81 
-X-CRM114-Status: GOOD (  15.87  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261107_102216_711485_773ED59A 
+X-CRM114-Status: GOOD (  10.13  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,114 +127,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Gary,
+This series does minor style cleanups in the Raspberry Pi firmware
+driver and fixes the lifetime handling of the hwmon and clock child
+devices.
 
-kernel test robot noticed the following build errors:
+The first five patches address checkpatch warnings (missing blank lines
+after declarations, incorrect indentation, unnecessary braces, and
+undocumented memory barriers).
 
-[auto build test ERROR on 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4]
+The final patch moves the hwmon and clock platform device pointers from
+globals into struct rpi_firmware.  This pairs their lifetime with the
+parent device and prevents leaks or incorrect unregistration if the
+driver is probed more than once.  It also checks the return value of
+platform_device_register_data() so that an error pointer is never
+stored.  Registration failures are not propagated because the child
+devices are optional.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Gary-Yang/dt-bindings-usb-add-Realtek-RTS5453H-Type-C-port-controller/20261107-091009
-base:   6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-patch link:    https://lore.kernel.org/r/20261107011012.3655873-3-gary.yang%40cixtech.com
-patch subject: [PATCH 2/4] usb: typec: add CIX Type-C PD controller driver
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20261108/202611080223.qvA6HnF0-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 16.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261108/202611080223.qvA6HnF0-lkp@intel.com/reproduce)
+---
+Changes in v2:
+- Move platform device pointers to rpi firmware struct
+- Link to v1: https://lore.kernel.org/r/20261107-fix-raspberrypi-firmware-v1-0-707362c710cd@gmail.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611080223.qvA6HnF0-lkp@intel.com/
+---
+Sander Speetjens (6):
+      firmware: raspberrypi: Add blank line after declaration in response_callback
+      firmware: raspberrypi: Fix indentation of return statement
+      firmware: raspberrypi: Add blank line after declaration in probe error path
+      firmware: raspberrypi: Remove unnecessary braces in transaction helper
+      firmware: raspberrypi: Document memory barriers in property list path
+      firmware: raspberrypi: Store child devices in struct rpi_firmware
 
-All errors (new ones prefixed by >>):
+ drivers/firmware/raspberrypi.c | 61 ++++++++++++++++++++++++++----------------
+ 1 file changed, 38 insertions(+), 23 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261107-fix-raspberrypi-firmware-be9c602d6755
 
-   drivers/usb/typec/cix_pd.c: In function 'cix_pd_probe':
->> drivers/usb/typec/cix_pd.c:628:17: error: implicit declaration of function 'irq_set_status_flags' [-Wimplicit-function-declaration]
-     628 |                 irq_set_status_flags(client->irq, IRQ_DISABLE_UNLAZY);
-         |                 ^~~~~~~~~~~~~~~~~~~~
->> drivers/usb/typec/cix_pd.c:628:51: error: 'IRQ_DISABLE_UNLAZY' undeclared (first use in this function)
-     628 |                 irq_set_status_flags(client->irq, IRQ_DISABLE_UNLAZY);
-         |                                                   ^~~~~~~~~~~~~~~~~~
-   drivers/usb/typec/cix_pd.c:628:51: note: each undeclared identifier is reported only once for each function it appears in
+Best regards,
+-- 
+Sander Speetjens <sander.speetjens@gmail.com>
 
-
-vim +/irq_set_status_flags +628 drivers/usb/typec/cix_pd.c
-
-   587	
-   588	static int cix_pd_probe(struct i2c_client *client)
-   589	{
-   590		struct cix_pd *rts;
-   591		int ret;
-   592	
-   593		dev_dbg(&client->dev, "IRQ %d supplied\n", client->irq);
-   594		rts = devm_kzalloc(&client->dev, sizeof(*rts), GFP_KERNEL);
-   595		if (!rts)
-   596			return -ENOMEM;
-   597	
-   598		rts->dev = &client->dev;
-   599		rts->irq = client->irq;
-   600		mutex_init(&rts->lock);
-   601		mutex_init(&rts->irq_lock);
-   602		cix_pd_typec_init_state(rts);
-   603	
-   604		if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C))
-   605			return dev_err_probe(&client->dev, -ENODEV,
-   606					     "i2c check functionality failed\n");
-   607	
-   608		rts->regmap = devm_regmap_init_i2c(client, &cix_pd_regmap_config);
-   609		if (IS_ERR(rts->regmap))
-   610			return dev_err_probe(&client->dev, PTR_ERR(rts->regmap),
-   611					     "failed to init regmap\n");
-   612	
-   613		i2c_set_clientdata(client, rts);
-   614	
-   615		ret = cix_pd_init_ports(rts);
-   616		if (ret)
-   617			return ret;
-   618	
-   619		ret = cix_pd_event_handler(rts, 0);
-   620		if (ret) {
-   621			dev_err(&client->dev, "failed to read initial status: %d\n", ret);
-   622			if (ret == -ESHUTDOWN)
-   623				ret = -EIO;
-   624			goto err_unregister_ports;
-   625		}
-   626	
-   627		if (client->irq > 0) {
- > 628			irq_set_status_flags(client->irq, IRQ_DISABLE_UNLAZY);
-   629			ret = request_threaded_irq(client->irq, NULL, cix_pd_irq_handle,
-   630						   IRQF_SHARED | IRQF_ONESHOT,
-   631						   dev_name(&client->dev), rts);
-   632			if (ret) {
-   633				dev_err(&client->dev, "failed to request irq: %d\n", ret);
-   634				goto err_unregister_ports;
-   635			}
-   636			rts->irq_requested = true;
-   637		}
-   638	
-   639		ret = device_create_file(&client->dev, &dev_attr_disable_pd_interrupt);
-   640		if (ret)
-   641			dev_warn(&client->dev,
-   642				 "Failed to create sysfs attribute, ret = %d\n", ret);
-   643	
-   644		device_set_wakeup_capable(&client->dev, true);
-   645	
-   646		return 0;
-   647	
-   648	err_unregister_ports:
-   649		cix_pd_unregister_ports(rts);
-   650		return ret;
-   651	}
-   652	
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
