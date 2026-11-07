@@ -2,115 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E66A606D80D
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2B71606D813
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NdehE250;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=flQax6z3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Wd5dzb/E;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z7nBQC8k
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=; b=NdehE250OqZGLTpORyMmaR3slz
-	EBjsqN5OHLw7UQRFLPHAdyASA8YfTWu21ovyFTe7di1570FM8Cx/MLeGXFPrtIlkpjyfTkpngL9uK
-	53l9Pqr4gBb4EXLLLHmWjvsqsLViYKhZIiqd6zQ7voZFwU40w0s28646/5d5ZEEI9GTbG+McxddsP
-	+Rg7evni1H06jA1t3YcoZ/Oht3kQTMVGapJTZ1caGWt+O+BtOj2uw2KBmM2Tmj/5MNQGGV8UonCjw
-	/EfNskh49kgDKqO/NoI2FJ0wu82s3p9xYfyZwxMAeiV7HHWpJ2JGokyiZdhPeVEXx9f7RArZy327S
-	Ub1GsN9A==;
+	bh=vIYgct9FxdEdL8Nwdi7Ov80zcE71hXhp5102ksEy65Y=; b=Wd5dzb/EmcheqHl2zk/PhhTMSn
+	NsuUAi4dYZAknsIF/uXd5Ud8L5QropYk7AIAzmzj2oT2ngto6C9VP6vLvlhrtbrUGDy352negx+oS
+	eejKDG6etIwVGJT2Eqfa40GkaRahDHOxN0YHI4GR+0R5owLLEV9+V85UTDx+6mkNN2SHquZqsLoWO
+	LKo/uHU+WrHMlGngQToHyOJ3gZrs0hooRRJl21IpDRTT4wn24vNaHnH3BCgD0b3WwZw/PGRyochFw
+	SN16tGnuv71y04I4iY4J45ayrV2+Nb9FQqOotYv2J4+uH6Kcv3AyUcSeJdAq8yj9UBfSFkmlyfBWF
+	/fWinFVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdTD-0000000ESYc-40op;
-	Sat, 07 Nov 2026 10:16:23 +0000
-Received: from mail-yw1-x1133.google.com ([2607:f8b0:4864:20::1133])
+	id 1xPdyu-0000000EY5m-3Tsx;
+	Sat, 07 Nov 2026 10:49:08 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPdTB-0000000ESXs-1Vmi
+	id 1xPdys-0000000EY4z-2vjJ
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 10:16:22 +0000
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-8b0db268bd8so10433947b3.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 02:16:20 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794046580; cv=none;
-        d=google.com; s=arc-20260327;
-        b=L/ReX6lzuwxs+fBmZ/IIzrh4RAQ4c6VjrswAdOifkXRDCivbozyF5u2/eLV9S9sI9B
-         gBmUGCqGq8AiSAYDSAjBHy0Lw0Lc+hKHAj6ZNdIHrTOE46HaFIJO0J8+bbxgSNMuA4ZI
-         Hk+CLUVwTzB+qXQF96z7aUbcEzL3KrL9irM2nPIqGw5vgpTAKfhsyYh4+W1+N2zjm8sY
-         3PwKdEhnXPwx2gBfqGvcUsGbdiECqavOYdRaZqv+Un5CUiGPTOWpUXWPsybYbnm8dmTv
-         /yfkGBFjDbRJRRY7PWPeVOEkVeBr3juPr56vooJ0Tt8ok0Y3cbrTeACg093wKBp5PECx
-         TEzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=;
-        fh=u7WkXmSsWaknWw7FMI594aAxpmbJzmADf0KLC3xXwrs=;
-        b=ZbO3rxCq2ZXkPDbUGma3t+etfhOM3tw+0yJ5D7KeL5QOpE9JNGNJMZg+vGvPrQanDo
-         PzF4IOTdNQq+SjWxav6h6nSILuCh2xqlNXBAFyqix6Z9MNRZxumDEdVelEtCEMI+5t+R
-         9vqPq35IkcAWoq/1POxG7uUGq4UpWBvl9LNzW65t16B77DgnmOKcsW+0unB7gthehFB7
-         cDFUiMIyuH8c2zrBJ0afDKx26ztG/xeWBe2eKpf8aP9Pulj1S0SnXcGyPP96VknqUlAh
-         XeA3hGVQnfaosrANwx0nMApPzHiD/J3oHU/aefQ9RK4VT0YfyaQCA6p0hBehUlYgbLl+
-         btFw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794046580; x=1794651380; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=;
-        b=flQax6z3TDX1JgQ2/8B708xhMwvqMWYAawUOR1gj01LJGZG0xdsWBK7eaETrgAKwuu
-         VALY3GBi4iofBUV/iblXGFaSFB06iUbEPiOzpA0GrNpCj2A1Cc0O/ATHGT5n9qbEXCWl
-         bdoUVdan+8EfJGvOpDocSxXrpQ0AswMthw81S2fKtyOApZJVM4PLZeV5E4Vu/6j06OfB
-         n+L6DkGCqn3RtewyIaYJTdPgJah4CRaQo6MLZFJR0GFKSUb+fv6lLtDVo7y3xtTEIzib
-         1NXjuA8YgKTODGurBqy6ZKIWN+GnTn7qsxFICkpAnptSWY9pGgHIbg9bP6crtHBL9409
-         CEJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794046580; x=1794651380;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Txc3E1PcXQlFNp7c7FiKp/5yHJpupSAoBNaMzkRlDf0=;
-        b=VZsYAMQDXswcfDkr/TbBn9uFFd+7pArh6hA9YOChuPfPAnktoIugcx1xyqojza74vf
-         5GdRgK8fzXsEy+7+H7QowZ2d0zAROovKq6ZqqIM7agLf/VE16uviSBbLNHvhIqg88OQw
-         8UzvB49C1GzULh5cCOa+9XIEddLrDeeYIugeUMWztfqaNDbQghIrMVx6XARmWcIlV0nU
-         Dtvke6rgrX9TwdAK2DjrY95pUFUXim7u3Fw1ZcxPvdnSUNba/N7DAzoo6fSQ6z5aJyUN
-         aBNmW5m1xHkzmLUf2Ji9exloMs25tg1JeFr1cC5HPPLkWhfVaoF+3bTx80QUYM/3I8rw
-         K7Ow==
-X-Forwarded-Encrypted: i=1; AL+hErHf1aUsVdu7JuooX7WQKynZ+gW492rBN8JLoSS9VSNoz1nfLmJ5BoCvU8ubZjsvMI15auk9RQl6iQZszykRviSD@lists.infradead.org
-X-Gm-Message-State: APuU4Z9S0GUw3y5yTJ00HQ4/tboo9xXPxqVOJFYyKFKZ+hyEHL9kQEQy
-	VemcY0g+5BrMMHxSXgrbXgq6PI0kTpKPmOxIfooMSzGrFHdf+Xx7gUNEaYnXTdi3dB2qk5hqqg1
-	R2s4RzIzcizjaDOizgpzXNDH3VZyQcxA=
-X-Gm-Gg: AYBFou0pbV3oXbfRCtHTTES7ntIDwNJUeSnyhcRJeF7sy0V+ujaQAptfbFG+HwuMHEF
-	JT/MA1gdoNYMcJyJFL2pXQZRs/rpBv54Sg/zZlUxrknLHsoP8fwpRwmhr1sCbhQR1Q7a9D6Wn1c
-	kQHuo9umISdYzFvEFRdYVXx7EG7NycxLmJ59UxnFf3SnYs32+tKrRVtfMj57H8ew8T6s90EsqJk
-	AMahkvjGRaXVNkdyaXL5PTIuVQi+i3Co1IyV9K6Gnew5Q0kqQ77NWFxGLTb8+5XTihCAMsQ0VGk
-	mKQUESap5RvaMSqSnRqae1X+AdEE0UfPzIgziBIk9kMySOJlLSTGPHvf5jLupaQ8gYhZn7ixj81
-	a+PTEns1yfQAwDXm4BirD5iocx1ixaRQkYyO06ZCBv9ho/6bqr/M97Tq7tY4=
-X-Received: by 2002:a05:690c:289:b0:8b0:a252:77c6 with SMTP id
- 00721157ae682-8b3418dfee1mr22332297b3.19.1794046579785; Sat, 07 Nov 2026
- 02:16:19 -0800 (PST)
+	Sat, 07 Nov 2026 10:49:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 253BE4012B;
+	Sat,  7 Nov 2026 10:49:06 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794048546;
+	b=zT3PUvKOMnKur9dP6GlyhJNOc3I9UV39mCzo/q05/vQ5uChn/jfrTSmqnpS7Uterkpvw
+	 X/3tV46CWzdkn8k9CTCHg7mkteMKCngf4lYAYtLD4pc8LRqT1Hzip9ppIjV6Wr2SzZ/Sx
+	 DuZ7cSTFiUk7PD7Oc5V3030jTsuFosccpdoiSVSUyhVNmKOrqoI7cNaKo9obzIcXIiOjY
+	 mK88Tl8v8i6q4hJDcGYxSeomx/Ds/3WS4yKD5ZFN/LDwA4LsnrY2nALn98+Fc54sGSjzE
+	 mntkkrUmW6o+aY+z9hFnuMsXcfxE9Rl1sfFrzvTfJaMs4CkZhAMZe79UrYugOexjkwg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794048546;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=vIYgct9FxdEdL8Nwdi7Ov80zcE71hXhp5102ksEy65Y=;
+	b=Jx7b1LlaXHaz3sIOre+IXcxdcdZtJOl7euTx6CNM8MRqhZcsq/2PBDHKNcs915DFKXLu
+	 maW4ulDuzE+TD7JhDI2I9+1+IDj1mOVfk4iXG8/JAJy/Egy42QVk+WjlLdjVTS6HHfdIE
+	 TlE6MfOZGmwvQfyU9rFCEoFWnpZzf5HjfUcKWXlM3y7k+O2BJVCxgk5xXKUjKdFzn7eIY
+	 bpc/8fbKs3es71dtBua7idkCu/0niLZODonwENne6m5isg3fBbjH3Sqk3cBfRAEMFX856
+	 3eHQsGO7NaG+W7VbOeMeZvguIVnhMJy6piayJh3M2Jh2+imDMI/cW+2ue0oaznxk3hA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 0B3741F008A2;
+	Sat,  7 Nov 2026 10:49:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794048546;
+	bh=vIYgct9FxdEdL8Nwdi7Ov80zcE71hXhp5102ksEy65Y=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=Z7nBQC8kyTKj6pW+T/+5no8MU9flRduqht6Xe2Hg8h2v/Cwhgk2GjP7JKF9zibNd9
+	 kTW6oPKjtsSbopQVY3UN33JBv+gKFn8mIYFT/g4qv3QeDlStOpoqMwQEdj7i3cr/2U
+	 m/VUt/VSxt1eckFk56XnBu6JvasbWWHt+fLrAxJaqzT/3U7hPdxPRHyxX17pQ9ahsY
+	 YDRefqVHqmrqU/hiHBV0v1FK/FNUSGng/gBW5SaO/55ybDlV0/wjt4x84Xuu4J7Oit
+	 f3KMqx1ObVoe4WLhfEyQ0tBc9+WY75fxn39otEaYUO8Ayi7GFqZDzrvXKy/TdmPAuc
+	 nbTwsJF551k3g==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 86F9D47B76;
+	Sat,  7 Nov 2026 10:49:04 +0000 (UTC)
+From: Myria Sarvay via B4 Relay <devnull+myrialsarvay.gmail.com@kernel.org>
+Date: Sat, 07 Nov 2026 21:48:49 +1100
+Subject: [PATCH v2 02/15] drivers/perf: apple_m1: Remove unused variables
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261106-hantro-remove-v1-1-d0a4678886d7@gmail.com> <0597b71f39fd945d531d3e996d982d5d3a3b9a28.camel@collabora.com>
-In-Reply-To: <0597b71f39fd945d531d3e996d982d5d3a3b9a28.camel@collabora.com>
-From: Sergei Khomenkov <shomenkow@gmail.com>
-Date: Sat, 7 Nov 2026 12:16:08 +0200
-X-Gm-Features: AclHuK8U4hp329_sClLRJdwqt0M9udYoGIyX3Gq2TqxXtvVHZa2zNAR132StXO0
-Message-ID: <CADxDoMSrwDQfFD-VejUvh3shpo6BKjFWMzXUtsoK=t7=AhPATg@mail.gmail.com>
-Subject: Re: [PATCH] media: verisilicon: suspend the device before
- unregistering it on remove
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Cc: Benjamin Gaignard <benjamin.gaignard@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil+cisco@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Frank Li <Frank.Li@nxp.com>, 
-	Tharit Tangkijwanichakul <tharitt97@gmail.com>, linux-media@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_021621_414693_026EF871 
-X-CRM114-Status: GOOD (  20.43  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261107-m3-plus-pmu-events-v2-2-acf1e78da039@gmail.com>
+References: <20261107-m3-plus-pmu-events-v2-0-acf1e78da039@gmail.com>
+In-Reply-To: <20261107-m3-plus-pmu-events-v2-0-acf1e78da039@gmail.com>
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sven Peter <sven@kernel.org>, 
+ Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, 
+ Marc Zyngier <maz@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-perf-users@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ asahi@lists.linux.dev, Yuvan Shen <yuvanshen09@gmail.com>, 
+ Myria Sarvay <myrialsarvay@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1077;
+ i=myrialsarvay@gmail.com; h=from:subject:message-id;
+ bh=EV9fXCfpL3fKlyENxSrnQelkd6v71gDBFcBUcbGRPcg=;
+ b=kA0DAAoWUkRBGKit/ukByyZiAGrvAhuiEb8Z1U79UtMuB3jppw2vSZr9YBVd6ehn9EEHlYM5m
+ oh1BAAWCgAdFiEELzVmK5MGgNJ1pkW0UkRBGKit/ukFAmrvAhsACgkQUkRBGKit/ulGHQD/ZBKe
+ pqjGQ6JyFX3Qkph4r3K87D0/UipcTgbP1BRt11kBAOos0/WKS4V4c/u8rgoYM9oFAk67XawY2h1
+ r7RuF9jcC
+X-Developer-Key: i=myrialsarvay@gmail.com; a=openpgp;
+ fpr=2F35662B930680D275A645B452444118A8ADFEE9
+X-Endpoint-Received: by B4 Relay for myrialsarvay@gmail.com/default with
+ auth_id=1027
+X-Original-From: Myria Sarvay <myrialsarvay@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,68 +114,48 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: myrialsarvay@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Nicolas,
+From: Myria Sarvay <myrialsarvay@gmail.com>
 
-> To be verified, but its not entirely logical here. My impression was that you
-> want to unregister the dev entry sooner, so that it prevent newly open, and turn
-> existing fh into a mode where all ioctl will fail.
+These variables are calculated elsewhere as well, remove the extra dead
+code.
 
-That part stays first. media_device_unregister() and
-hantro_remove_{dec,enc}_func() still run at the top of hantro_remove().
-The patch only moves v4l2_device_unregister() and clk_bulk_unprepare()
-below the runtime PM calls. v4l2_device_unregister() touches no node
-here: it clears the driver data, which equals &vpu->v4l2_dev (the first
-member of struct hantro_dev), and drops the device reference.
+Signed-off-by: Myria Sarvay <myrialsarvay@gmail.com>
+Fixes: a639027a1be1 ("drivers/perf: Add Apple icestorm/firestorm CPU PMU driver")
+---
+ drivers/perf/apple_m1_cpu_pmu.c | 7 -------
+ 1 file changed, 7 deletions(-)
 
-> Can you do some extra code inspection and report why you strictly need to modify
-> the clock states before you unregister the device?
+diff --git a/drivers/perf/apple_m1_cpu_pmu.c b/drivers/perf/apple_m1_cpu_pmu.c
+index 1f73c8a77462..de4026c63afd 100644
+--- a/drivers/perf/apple_m1_cpu_pmu.c
++++ b/drivers/perf/apple_m1_cpu_pmu.c
+@@ -421,13 +421,6 @@ static void m1_pmu_configure_counter(unsigned int index, unsigned long config_ba
+ /* arm_pmu backend */
+ static void m1_pmu_enable_event(struct perf_event *event)
+ {
+-	bool user, kernel;
+-	u8 evt;
+-
+-	evt = event->hw.config_base & M1_PMU_CFG_EVENT;
+-	user = event->hw.config_base & M1_PMU_CFG_COUNT_USER;
+-	kernel = event->hw.config_base & M1_PMU_CFG_COUNT_KERNEL;
+-
+ 	m1_pmu_configure_counter(event->hw.idx, event->hw.config_base);
+ 	m1_pmu_enable_counter(event->hw.idx);
+ 	m1_pmu_enable_counter_interrupt(event->hw.idx);
 
-hantro_runtime_suspend() reads the driver data, and with power/control
-at "auto" and the default 100 ms autosuspend delay remove() calls it.
-The driver core resumes the device before remove(), and its put only
-arms the autosuspend timer. So pm_runtime_dont_use_autosuspend()
-suspends the device synchronously, the path in the 8e26d4c20ed2 trace.
-With the current order the driver data is NULL by then: an unbind or
-module unload oopses, after clk_bulk_unprepare() has warned
-"Unpreparing enabled". (My reading of the code: with autosuspend_delay_ms
-at 0 the device is already suspended when remove() runs; I did not test
-that case.)
+-- 
+2.55.0
 
-So two things are strict: runtime PM stopped before
-v4l2_device_unregister(), and the clocks disabled before
-clk_bulk_unprepare(). The new clk_bulk_disable() does not use the driver
-data, so it only has to come before the unprepare.
 
-I suspend through the PM core, not by hand, so that the runtime suspend,
-with any genpd power-off, still runs before reset_control_assert(), as
-8e26d4c20ed2 wants. I could only test on RK3026, whose VPU has no power
-domain, resets or IOMMU. A run on RK3588 or i.MX8M would help.
-
-> p.s. are you sure outside of test build, that PM can be disabled on any of the
-> platform hantro driver runs ?
-
-If you mean CONFIG_PM=n: not on Rockchip or i.MX8M, which select PM. On
-sunxi, AT91 and STM32 PM is only a default (SUSPEND=y selects PM_SLEEP),
-so it can be turned off, but then the driver never enables its clocks:
-only hantro_runtime_resume() does. The IS_ENABLED(CONFIG_PM) test is for
-such builds and COMPILE_TEST. There pm_runtime_status_suspended()
-returns false, so unbind would disable clocks that were never enabled
-and hit the "already disabled" WARN. I can drop it if you prefer.
-
-The block itself is for runtime PM forbidden through sysfs
-(power/control set to "on"), which root or a udev rule can do on any
-platform. Then nothing suspends the device, and it is still active after
-pm_runtime_disable(). I tested that case on the board. cedrus and
-mali-c55 (2c9b9bcc2569) power off by hand in remove() the same way.
-
-Thanks,
-Sergei
 
