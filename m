@@ -2,101 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF91606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 02:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871A8606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 02:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WC+26oaP;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pUiAVQ1n
+	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=InuP0mNO;
+	dkim=pass (1024-bit key, unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=hvJR7mQK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gpBdG3pRFRFDOygXYdEjj/pMvx6yFZ2VtI5mPZqbzcw=; b=WC+26oaPJGM4FI
-	Qij0OLGz23oIEe5nuD7A3EnBlb1uxHV3gEzFTRkUp+ya2RpzzHNCl/vXpxguZ3GqT7kpw5OlLUbY/
-	T4P2RyOk/6GNFdMTy9sW7kh287JZo7/BnHSh8iPzuu5jeX6Ia3oixeIVbbEE7rICxcfz2f7tiRErY
-	AfRkLV6ovazGCP7u0HwNo5kUjcgLSwahOMnd6pF1Ke9sitSFD51PJaVouisf/MQX4I8v83FskXic8
-	l+CKGNzwN8pMDxeLiLODxiDF/yd/V4m8hfuqAn9JhXks2KEOuhU9spqUso8dxP0PQXG9ISKYX+thY
-	XxCMerEKe1J1YTKT1xaA==;
+	List-Owner; bh=Z8Cc7N+D8LwMYtORpVehAaXnRfBR/5w4HT9eKf1jaIE=; b=InuP0mNOxZjP76
+	QDD/q7GPiEcudI1Ty56FMEh0g7gHARVdR28q5L+EkD1D8QRgvUBSf7p4x932JexrwD/jsKr/Crjb5
+	FwU05xHoKAsa1EAr2KpoxozvZiuhwnJbI97ND6Du9QJPRSpG/lgSF3QE3LMeUdrtOMMomZaSkzrmA
+	5y1rbCKMGdoxUnAI5MH2lbuhBO5+Il2xmbYJWPqZp3Eyvtbt32Lics5XZLYrMx6er+Ym7lQM0aMae
+	mwQIdN2ZI9Ed//3Z+0rb4/5OhUhDT6VOFKsxd6JLUfBvB6TQrBx74LF047n9fEr2qb1cUZzrCyEeA
+	aEFaKGf5Xb1Q9lfyCiAw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPW41-0000000E3mx-3MDq;
-	Sat, 07 Nov 2026 02:21:53 +0000
-Received: from mail-pj1-x1032.google.com ([2607:f8b0:4864:20::1032])
+	id 1xPWH3-0000000E54Z-0AJW;
+	Sat, 07 Nov 2026 02:35:21 +0000
+Received: from mail-m822136198.xmail.ntesmail.com ([8.221.36.198])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPW3z-0000000E3mT-07yf
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 02:21:52 +0000
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-3b08a162d4bso706585a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 06 Nov 2026 18:21:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794018110; x=1794622910; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=gpBdG3pRFRFDOygXYdEjj/pMvx6yFZ2VtI5mPZqbzcw=;
-        b=pUiAVQ1nY9LS5tHOtTsvz/9OQ4Ny+xboQWnMluGGc81za0eTSqYjvzT84UgJh2LTEx
-         q0VNfkPujN3kSdNscQ3/NxwKeN6vPktJmRkYLALGg/UkMibX80vTgaZUY37gdMKo3Yuo
-         huRYXYZuXy+67gyEuiM0Ga0+MLJoWiM9lka8DXz7M0dhs7trckn6T5HNmYdHWwuO4UvK
-         W04eEgTyU4/fPNrntCxm/JGJmJ2DhXLNA+NEZwuYB/xyuQkSrmFXejYxMmvYD3w9KKSz
-         sCIdh2IO9T0bDBujC+8m91KTD+mqp7LUbSa7FygOup6mvJQV5iaEdx+SF8cQLJHr31gh
-         3ISg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794018110; x=1794622910;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=gpBdG3pRFRFDOygXYdEjj/pMvx6yFZ2VtI5mPZqbzcw=;
-        b=H8ZXipHJjantysXuoKbUR+7QY58F6LLpCZxgKgPFLXAnVROya29rby3dLj7MdHqNq+
-         5YQj3dtEqHhZccNN9gYVAP7ORpguX/sRJY2CVsa8Hbs8bSKfk1gZO3QjE1KGNQb6wlgn
-         tG0QUcYcJhMmIAikE5vA1DIDNqZImYkgxGxTEJhCxQdN26k9ipAkqZmYBmz08XRB7da2
-         oWFsN0UrGdT+4F+G54FeZp0c8KSqj4p0mcQI8e32dYXhxtnDzlokFF8H5yLBcc18hrO+
-         hBorAs0SWVDUQwpbuicjESZqc0/nk8hjjo8P+mNI+Z/s+P3UIhuljV7IyzAq7ji1M9pT
-         GWvQ==
-X-Forwarded-Encrypted: i=1; AL+hErGFKCw47PgtKkHe2j3bAOHSiKoUNjouWsoH6JOSll6mKN0sHmIpGhAj9fB+ifa5+ORFNi8Ji/U5sFOI77/1qtW0@lists.infradead.org
-X-Gm-Message-State: APuU4Z/S9voN4eO+NPZNjaUICtsgKBfJ04D6csdwipK/WB+bOqePBRHc
-	gs/8UUIFTqfiTRbwhSsOWhn/jd/X9RD89AwlX7353VVA02G1FM8Q9Wte
-X-Gm-Gg: AYBFou0eiw79Qfy0JOswxulbhqva+vReq3kl/aPJGSAd/8f0kYske0tEjXLqcBnqBpb
-	53Ogy8OI10JYBivJDyXhS5HIi3wmvJLzoiHuhhjxS1ymEpBgsNrx2akMyXyVn1bfKk1eCumK6G1
-	QZ0sdNghJgHAz4GF79tNIJPfa5p10Gfa9Xei0BtO3sm7vyotbA282kHcV2YYSLLekzFrcbbKjVU
-	AT/KIc18hQJh9LUYArka1u7NblYFoNLNC1oDduh9Pp8Mb+VjxlppeoicLgQYgJGUivWF0x6gcK0
-	+EY134zg1V7x0xizYrwUZ+4SrbVH0roBl4rCToOWEay7AtAA1UhzRowL3HCBQMahDidy/bAwQV6
-	h7aUF9ARAKLzreo+2nJX2nSmbzsJQevSTFIEEdNUfpy7Xdk5n4mlriuWV+ue4Dla9GwxZibzcCf
-	pRKkB43v3oq/EYBv3u373cu6bsgq48b6dkFh9NJSIf5IClcHr723cfJKtXTjtA/DKHAKbXBCMTQ
-	kJTUEKSTo/62dCCwWKP7qyQ9e1iikatbkIkvLKHjVeqLpk21U3fSOGhxXmTxWHURAOhuUTUnMi6
-	xpYP41fz2J1CNVzlRsNh
-X-Received: by 2002:a17:90b:2e0b:b0:3ac:b048:fa13 with SMTP id 98e67ed59e1d1-3b0db7258a0mr3904710a91.67.1794018110033;
-        Fri, 06 Nov 2026 18:21:50 -0800 (PST)
-Received: from a1-free ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1057c3db1sm1287015a91.4.2026.11.06.18.21.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2026 18:21:49 -0800 (PST)
-From: TAKANO Mitsuhiro <takano32@gmail.com>
-To: linux-perf-users@vger.kernel.org,
-	Arnaldo Carvalho de Melo <acme@kernel.org>
-Cc: Namhyung Kim <namhyung@kernel.org>,
-	Ian Rogers <irogers@google.com>,
-	John Garry <john.garry@linux.dev>,
-	James Clark <james.clark@linaro.org>,
-	Will Deacon <will@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	TAKANO Mitsuhiro <takano32@gmail.com>,
-	Ilkka Koskinen <ilkka@os.amperecomputing.com>
-Subject: [PATCH v3] perf vendor events arm64 AmpereOneX: Deprecate BPU_FLUSH_MEM_FAULT
-Date: Sat,  7 Nov 2026 02:21:45 +0000
-Message-ID: <20261107022145.1713159-1-takano32@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261103112609.3772250-1-takano32@gmail.com>
-References: <20261103112609.3772250-1-takano32@gmail.com>
+	id 1xPWGy-0000000E52h-394w;
+	Sat, 07 Nov 2026 02:35:19 +0000
+Received: from [172.16.12.48] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 53d327815;
+	Sat, 7 Nov 2026 10:35:05 +0800 (GMT+08:00)
+Message-ID: <6c9adabe-d632-471e-8fc1-aafe62115167@rock-chips.com>
+Date: Sat, 7 Nov 2026 10:35:04 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, =?UTF-8?Q?Enrique_Hern=C3=A1ndez_Bello?=
+ <ehbello@gmail.com>, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, bhelgaas@google.com, robh@kernel.org, heiko@sntech.de,
+ linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 0/2] PCI: rockchip-host: Retry training and hot-reset
+ a JMB585 on RK3399
+To: Igor Velkov <iav@iav.lv>
+References: <20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv>
+ <4316c1da-f7ff-4fa5-a330-512800474e45@rock-chips.com>
+ <20261026-rockchip-pcie-shawn-reply-1@iav.lv>
+ <ff204558-dc22-4d38-b0dc-2c727f983f9f@rock-chips.com>
+ <20261028173117.3457220-1-ehbello@gmail.com>
+ <20261030-rockchip-pcie-s2idle-a53-1@iav.lv>
+ <20261106-rockchip-pcie-ltssm-trace-1@iav.lv>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20261106-rockchip-pcie-ltssm-trace-1@iav.lv>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa1b3dc0c7703a4kunm35aff5ba43fb5c
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCH05IVkodTkMdQ0MaQ05DQ1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=hvJR7mQKfA7FUkt0VirpverykUfmFAKCqEGfnoaFE19hYtPSjIDT+bQoNAzsni6ZjJ95cow7WggmSs3Gwjfm/stmx3uITTnBYv6AeFs0jQ/stl/IBgUbjN5LMFgjxQuqQuh+G7tvz2bLzeP3wYkGUl53+ShdslJ2whRbz7l7gWA=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=Z8Cc7N+D8LwMYtORpVehAaXnRfBR/5w4HT9eKf1jaIE=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261106_182151_079875_5B0A7B71 
-X-CRM114-Status: GOOD (  17.34  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261106_183517_776742_EA86C17C 
+X-CRM114-Status: GOOD (  22.78  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,88 +78,80 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-AmpereOne named event 0x121 BPU_FLUSH_MEM_FAULT until
-commit 10a149e4b4a9 ("perf vendor events arm64 AmpereOne: Rename
-BPU_FLUSH_MEM_FAULT to GPC_FLUSH_MEM_FAULT") renamed it.  The next patch
-in that series, 16438b652b46, added the AmpereOneX tables with the old
-name in memory.json, so 0x121 carries two names: GPC_FLUSH_MEM_FAULT in
-core-imp-def.json and BPU_FLUSH_MEM_FAULT in memory.json, and the
-default perf list output shows both.  The old name has been in every
-release since v6.8, so removing the name would break anything that
-refers to it.
+在 2026/11/06 星期五 13:09, Igor Velkov 写道:
+> Hi Shawn,
+> 
+> I traced the LTSSM on the Helios64 (RK3399 + JMB585, x2, 2.5 GT/s) by
+> polling PCIE_CLIENT_DEBUG_OUT_0 about every 2 us during link training
+> and the waits after it. This changes what the RFC said, so here are the
+> data and a question.
+> 
+> A failing link bring-up looks like this:
+> 
+> - the LTSSM reaches L0 as fast as in a good one;
+> - then it leaves L0 for Recovery (RcvrLock/RcvrCfg/Idle, about 5 us)
+>    every 199..204 us, for as long as I watch: 488 times per 100 ms;
+> - link_st in BASIC_STATUS1 becomes 3 only 15..47 ms after training
+>    starts, or not within 700 ms; the latter is the "link training gen1
+>    timeout" with LTSSM 0x10;
+> - the RC shows nothing: AER and the device status are clear, and a dump
+>    of the client, core management and root port config registers is
+>    identical to a good bring-up.
+> 
+> A good bring-up has no Recovery entry after L0. A config read on a bad
+> link gets no completion; that is the abort I reported. 200 us is the
+> optional Flow Control Update timeout, so I suspect that one side does
+> not see the DLLPs of the other.
+> 
+> The state survives Recovery but not Detect: a port re-init or a hot
+> reset is just one more bring-up, with the same odds. So the hot reset
+> of patch 2/2 does not cure anything, and the time the link takes to
+> return is not a reliable sign either.
+> 
+> Unbind/bind cycles with a bad bring-up (a cycle is one training plus
+> one hot reset):
+> 
+>    Helios64, JMB585, x2                     6 of 104
+>    same, PHY refclk 100 MHz from NPLL       4 of 33
+>    same, num-lanes = <1>                    0 of 104
+>    ROCK Pi 4A, WD SN770 NVMe, x4            0 of 100
+>    same, num-lanes = <2>                    0 of 100
+> 
+> So it takes both lanes and the JMB585.
+> 
+> Is anything like this known for the RK3399 with a two-lane endpoint,
+> for example lane-to-lane skew of the transmitter, or a PHY setting that
 
-Mark the entry deprecated instead of deleting it, as Ian Rogers asked:
-perf list then shows 0x121 once, and perf stat -e bpu_flush_mem_fault
-keeps working.  The x86 tables use the same wording, and the same
-reasoning brought back deprecated AMD events in
-commit eda39f98bbc5 ("perf vendor events amd: Reintroduce deprecated
-Zen 5 core events").  The entry still registers event=0x121, and no
-other event changes; after regenerating the tables only the two
-descriptions and the deprecation flag differ.
-perf list --deprecated still prints the name in the text output.  perf
-list -j cannot show deprecated events at all: the JSON printer honours
-the flag, but --deprecated is wired only into the text print state, so
-the JSON state never sees it.  No metric expression and no other file
-refers to either name.
+I didn't know an issue like this. But yes, there is an option to disable
+the automatic deskew adjusting algorithm by:
+phy_wr_cfg(rk_phy, 0x6, BIT(1)); // dis auto deskew
+phy_wr_cfg(rk_phy, 0x4, deskew trim value); // deskew value, 0x0 <-> 0xf
+phy_wr_cfg(rk_phy, 0xb, deskew magnitude vale); //Default 00 is 2x, 01
+is 1x, 11 is 3x and 10 turns it off
 
-The duplicate came in because jevents checks repeated names, not event
-codes, and one encoding carrying several names is legitimate, so nothing
-is added for that here.  No AmpereOneX machine was available, so the
-listing was not run on hardware; Ilkka Koskinen, who added both tables,
-tried v1 and v2 and reports that they behave as expected, and his
-Acked-by covers v2, which differs from this version only in that full
-stop.  The JSON edit and this changelog were written with an LLM
-assistant, Hermes Agent, working from the code and the thread; the
-checks above were run here.
 
-Fixes: 16438b652b46 ("perf vendor events arm64 AmpereOneX: Add core PMU events and metrics")
-Suggested-by: Ian Rogers <irogers@google.com>
-Link: https://lore.kernel.org/20261021224527.167637-1-takano32@gmail.com
-Link: https://lore.kernel.org/CAP-5=fX+2eRGCHcU43sqU=gi9iKvxqyS6ipwRSnvFcap3D+QzQ@mail.gmail.com
-Link: https://lore.kernel.org/42801873-8908-07a6-aed1-c7076c689e8e@os.amperecomputing.com
-Link: https://lore.kernel.org/a188c604-46c0-48fb-9cbd-9eacad88b5c9@linaro.org
-Reviewed-by: James Clark <james.clark@linaro.org>
-Acked-by: Ilkka Koskinen <ilkka@os.amperecomputing.com>
-Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
----
-v3: add the full stop after the new event name, as James Clark
-    asked, and carry his Reviewed-by.  Also correct three
-    statements in this changelog: the JSON printer does consult
-    the flag (the option is simply not wired to it),
-    regeneration changes the two descriptions as well as the
-    flag, and Ilkka Koskinen's Acked-by was given for v2.
+> affects it? And is there a bit in DEBUG_OUT_0/1 that tells which side
+> directs the Recovery?
+> 
 
- .../perf/pmu-events/arch/arm64/ampere/ampereonex/memory.json | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+These debug section lies on  Appendix section of PCIe chanpter, RK3399
+TRM. You could try to find some clue by dumping DEBUG_DATA_OUT info.
+Most kinds of these problems should be obvious to the PCIe analyzer
+but might not be easy to check from the register IMO.
 
-diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/memory.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/memory.json
-index 6c06bc928415..b0934a7b252c 100644
---- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/memory.json
-+++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/memory.json
-@@ -35,9 +35,10 @@
-         "ArchStdEvent": "MEM_ACCESS_CHECKED_WR"
-     },
-     {
--        "PublicDescription": "Flushes due to memory hazards",
-+        "PublicDescription": "This event is deprecated. Refer to new event GPC_FLUSH_MEM_FAULT. Flushes due to memory hazards",
-         "EventCode": "0x121",
-         "EventName": "BPU_FLUSH_MEM_FAULT",
--        "BriefDescription": "Flushes due to memory hazards"
-+        "BriefDescription": "This event is deprecated. Refer to new event GPC_FLUSH_MEM_FAULT",
-+        "Deprecated": "1"
-     }
- ]
-
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
--- 
-2.53.0
+> Both boards ran the same build: v7.3.1 with the Armbian patches and the
+> tracing. The Helios64 DT has no ep-gpios there, the ROCK Pi 4A DT has.
+> 
+> Thanks,
+> Igor
+> 
 
 
