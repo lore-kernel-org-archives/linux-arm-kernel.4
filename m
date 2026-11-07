@@ -2,76 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7732606D809
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 14:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5343606D81E
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 14:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ae343SvM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P8gT+Gu1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3yOGG2gz;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=XYuv4fYM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9g83XKjzZTeyLQGk1ow/bSkcIG4drLaeQk6IwDzT3zk=; b=Ae343SvMsExqAm
-	ZfvLLEsfKH7T0ggySwG4SW1QqGvq2y0TVwkifjTYs2caJz7BvTgMJtUrbqtq7LI8HOIxpW4bVgqpI
-	JRBmEerOCJu8ZwZ+mXXs4PS+6iZNO8kc2Hj4cxX6iwjT7eSH0ETcg8xamhJTle/FgYNfclXCUTTaZ
-	1yCZcWNbS3egWmWPSVX0s5ueEURG+fKeGZ+w44/rZEork0iz8i/BrJrbYfq+YJQKUTHu9cXopoMCz
-	Vsz5kJpf+qjySv3zSF5LfO6icavCdEUA4iGMWcWmIlyiNGsoYOeGC+qQzDboauWzt8GOWkY5wbibr
-	WZlj52hpnzGUtnYfBL4A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rCtCLaXuoBajgUckhWEDWeKqUiY5Jp/q685S3dMTOBU=; b=3yOGG2gzmkB66uzghKH2RBR8QA
+	shO0y+vO6muUslJpwlQLbI/95JZdslhdsnDOTnzG6cKcCwt/xHjVMUKt5qBDa1RpkOamVbt3BWYpT
+	kiccN2AidwAt4jsGB/8ggUo0dOCc4x4/oH9Td6ufU21ClMI+REd322RCkW9dFCK4AAdnVa82234RL
+	DGi9FM+wQWRSKp+GtKF7MvHGydK9+5os4ypCgQzCtFtH2uH5b34nvBiq81TPqbqI/4HPaHQVIgZKR
+	Dk6r0qJoiDYYzdgWK+RSGvwkT88HIWlyBf90tSkK779E89M538l73kRFaRL9McOQ6R8Ef1bDVQcoX
+	bhtyDu0g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPhgb-0000000EqZ6-3qUw;
-	Sat, 07 Nov 2026 14:46:29 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xPhk6-0000000Er2Y-1qxY;
+	Sat, 07 Nov 2026 14:50:06 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPhga-0000000EqYd-3JYk
-	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 14:46:28 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 58E6A60610;
-	Sat,  7 Nov 2026 14:46:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E17691F008A2;
-	Sat,  7 Nov 2026 14:46:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794062787;
-	bh=9g83XKjzZTeyLQGk1ow/bSkcIG4drLaeQk6IwDzT3zk=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=P8gT+Gu1GC2EG6dx1GhPwtW3AQ3Hi4q1a36yNnYxJl/OLu+iwpl94Wvu16pzz0G/A
-	 5QHRXoCjGTyAHWAlVIRj98TndteskmkU9ucNAkuJF36AxYUeGYbAUQTe8OdF5K4UiL
-	 pahn+xp+m05p0CjJh06nXEREjaFb3fMbi1ZMVlNo49jgBWw/AkyMRL+s3d+PjhRX5h
-	 Na5H8YE69MmuwpLVZaTe/MCkaS87gOn3m13CsP1Osfw6jm27xfKQXkQ++I+SERHIFo
-	 ++SHDUAunAnEGUakSOBIeOQk48QsBUUnwbfJs0C8JTW6b3hR6hRPlidwKRAdEItGb/
-	 Fy1Vj7ZsEuG4A==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 99A242A4C627;
-	Sat, 07 Nov 2026 14:46:24 +0000 (GMT)
+	id 1xPhk3-0000000Er28-3cG8;
+	Sat, 07 Nov 2026 14:50:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=rCtCLaXuoBajgUckhWEDWeKqUiY5Jp/q685S3dMTOBU=; b=XYuv4fYMGfp8WiLCq7bsTniChM
+	x8V2AxaJTLLbaFlm3r5jQWBGYPawdLNVgYZ3MJX8dPrAcBBZU7fgEAfk+qJ0Jgc94vK6gMgg9HGCa
+	ty3mMgbt1Wl5eUiXOJMA5ZZNq6AcIFaEIO5aMZweUrTusjxTGXtN2IQdnQ1K/c0zaNeEN1y3NA/wv
+	Z2Uc4uXtjeGObyJf+ElqpA5FQci4z8n4oH+1tE6muB/lYxBW5MGNxybGdZJloi110/LC2IGU5yLkN
+	Ew0cFYosZD3ERCzLVZq4r29Mspj9YRYuv2mauBKSy6esUH3tT6nnjaYbw0L69ngw4jSJerd17qZcX
+	EWTDz4cw==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: rafael@kernel.org, Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, Shuah Khan <shuah@kernel.org>,
+ Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v5 3/6] powercap: dtpm: Remove duplicate RK3399 CPU hierarchy
+ nodes
+Date: Sat, 07 Nov 2026 15:49:56 +0100
+Message-ID: <2454229.bcXerOTE6V@phil>
+In-Reply-To: <f9b6ff8250f27e117facd372735b6c1f46e74926.1793666444.git.daniel.lezcano@oss.qualcomm.com>
+References: <cover.1793666444.git.daniel.lezcano@oss.qualcomm.com>
+ <f9b6ff8250f27e117facd372735b6c1f46e74926.1793666444.git.daniel.lezcano@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v5 0/4] ASoC: cdns: Add Cadence I2S-SC and I2S-MC
- controller support
-From: Mark Brown <broonie@kernel.org>
-To: joakim.zhang@cixtech.com
-Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
- p.zabel@pengutronix.de, cix-kernel-upstream@cixtech.com, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20261106105208.1246554-1-joakim.zhang@cixtech.com>
-References: <20261106105208.1246554-1-joakim.zhang@cixtech.com>
-Date: Sat, 07 Nov 2026 14:46:13 +0000
-Message-Id: <179406277372.3424803.9881358554237732478.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=346; i=broonie@kernel.org;
- h=from:subject:message-id; bh=u/N0h64SRsZ/w9k8PNo1ZMh550o6eRNoHATFKEl4ACw=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLLeW24/fGCKxyxVjrqtvQcjGH5M0Np/ZGbm/mc7+efaz
- rmlMDOroqOUhUGMi0FWTJElLov7ZX3J6zV8Bxe2wcxhZQIZwsDFKQAT+fSb4X9i9Bd39RZRjiPy
- GhobP5WWn5403+JC7uGTC3W58h1m/vjAyLD4Kb9I66wH0THzJ+x/FhiWECJ5dOUqJVftsoaqPUk
- vGDkB
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261107_065003_928177_506C20F1 
+X-CRM114-Status: GOOD (  19.88  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,22 +69,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
-> 
-> This series adds support for the Cadence I2S-SC and I2S-MC controllers
-> integrated in the CIX SKY1 audio subsystem, together with their DT
-> bindings.
+Am Dienstag, 3. November 2026, 05:48:17 Mitteleurop=C3=A4ische Normalzeit s=
+chrieb Daniel Lezcano:
+> The DTPM CPU backend registers one powercap zone per cpufreq policy,
+> not per CPU. On RK3399, CPUs sharing the same cpufreq policy therefore
+> map to the same DTPM zone.
+>=20
+> Remove the redundant CPU nodes from the RK3399 hierarchy and keep only
+> one CPU node per cpufreq policy. The backend already suppresses duplicate
+> registration through its per-CPU state, so the removed entries are
+> redundant descriptions of the same zones. Keep both CPU policy domains
+> and the GPU in the hierarchy, preparing for one created zone per generic
+> hierarchy node.
+>=20
+> Also fix indentation in the Rockchip device match table.
+>=20
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+> Reviewed-by: Lukasz Luba <lukasz.luba@arm.com>
+> ---
+> Changes in v5 (since v4):
+> - Add Reviewed-by from Lukasz Luba; no code changes.
+>=20
+> Changes in v4 (since v3):
+> - Rebase on v7.3; no code or commit-description changes.
+>=20
+> Changes in v3 (since v2):
+> - Rebase on v7.3-rc7.
+> - Fix Rockchip match-table indentation here rather than in patch 1.
+> - Clarify that the existing backend suppresses duplicate registration.
+>=20
+>  drivers/soc/rockchip/dtpm.c | 22 +++++-----------------
+>  1 file changed, 5 insertions(+), 17 deletions(-)
+>=20
+> diff --git a/drivers/soc/rockchip/dtpm.c b/drivers/soc/rockchip/dtpm.c
+> index b36d4f752c30..e71f315fbb6b 100644
+> --- a/drivers/soc/rockchip/dtpm.c
+> +++ b/drivers/soc/rockchip/dtpm.c
+> @@ -20,30 +20,18 @@ static struct dtpm_node __initdata rk3399_hierarchy[]=
+ =3D {
+>  	[2] =3D { .name =3D "/cpus/cpu@0",
+>  		.type =3D DTPM_NODE_DT,
+>  		.parent =3D &rk3399_hierarchy[1] },
+> -	[3] =3D { .name =3D "/cpus/cpu@1",
+> +	[3] =3D { .name =3D "/cpus/cpu@100",
+>  		.type =3D DTPM_NODE_DT,
+>  		.parent =3D &rk3399_hierarchy[1] },
+> -	[4] =3D { .name =3D "/cpus/cpu@2",
+> +	[4] =3D { .name =3D "/gpu@ff9a0000",
+>  		.type =3D DTPM_NODE_DT,
+>  		.parent =3D &rk3399_hierarchy[1] },
+> -	[5] =3D { .name =3D "/cpus/cpu@3",
+> -		.type =3D DTPM_NODE_DT,
+> -		.parent =3D &rk3399_hierarchy[1] },
+> -	[6] =3D { .name =3D "/cpus/cpu@100",
+> -		.type =3D DTPM_NODE_DT,
+> -		.parent =3D &rk3399_hierarchy[1] },
+> -	[7] =3D { .name =3D "/cpus/cpu@101",
+> -		.type =3D DTPM_NODE_DT,
+> -		.parent =3D &rk3399_hierarchy[1] },
+> -	[8] =3D { .name =3D "/gpu@ff9a0000",
+> -		.type =3D DTPM_NODE_DT,
+> -		.parent =3D &rk3399_hierarchy[1] },
+> -	[9] =3D { /* sentinel */ }
+> +	[5] =3D { /* sentinel */ }
+>  };
+> =20
+>  static struct of_device_id __initdata rockchip_dtpm_match_table[] =3D {
+> -        { .compatible =3D "rockchip,rk3399", .data =3D rk3399_hierarchy =
+},
+> -        {},
+> +	{ .compatible =3D "rockchip,rk3399", .data =3D rk3399_hierarchy },
+> +	{},
+>  };
+> =20
+>  static int __init rockchip_dtpm_init(void)
 
-This is basically fine - there are some smaller issues but they can be
-fixed incrementally.
+checked against the cpu clusters, this of course looks correct
 
--- 
-Mark Brown <broonie@kernel.org>
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+
+
+
 
