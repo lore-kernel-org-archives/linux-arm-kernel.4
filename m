@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA961606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBA4606A32C
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 10:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1XSGDWlI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dzw2DrLP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oPcf1ppn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VhayLTax
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Y180jtVIl9H2E6DxVOXvPpmcMQTvALtSPs5lwc7SY4A=; b=1XSGDWlIUbbfL5
-	yl3+SaA6zsR2GAvLUGpyDVBtPuSCPmIyQxq6ImIKyKDVbib9wrcimYuHXkXHzDhvLl0tI5/O55/1m
-	xmFMbNV5zntDUX4h+I5zdMoOLYjrIi6Ruh7IyuufnJ++18HjWSi0h4Mw4wa4GYTrZ8SSkIHBXLr02
-	kKtGIZQcVQm7VR8cmAiGEeS6GBMbyDhbmRWNu0dehFVAUxDNfyvhXHIkhQ86V8kJtkZQePqULPEFh
-	1KAm5vbRjiN/stW+bdoFeH+wGcKRoxpHnUXA+8cT6Vdg1W57j+Y94t1S+0GOXQihSIOwkXkOOHb6z
-	lHN3q/H9/APStIptPgIA==;
+	List-Owner; bh=xmQhl7g8B7wmPUKml5FZxysCguQB96b4jBwJEHOOVFE=; b=oPcf1ppnOGnobV
+	SGd/9wSFUVuYf7saC23a4oLR++iZ2IcJJ25yFfsD3aPgU0vlUATijVokwkMMwNhZyZk+TNKeNAUdC
+	v5YfwUgM0lbDzJTtcej3d6OboIjs2HefufKLW1F4WIHf88btPMDma7EnjZYt5VHoa/gzywQucwJnP
+	v3p/Dy8o50YsD2f3fqpc+21Sdi6xBHXArzb0bZr9RL+PWdAN9GygNaakWNKf2WFopWzjxoxRWbjo1
+	YrUvqVf2rGbgEe9dpNBwiMUc/rdERFYw3qu4064WDAnTzYxyHflkVtySHVn54LCaxHV0mzTZzT8QQ
+	gi1oYGbXAgKTPRSuQ3AQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPe3H-0000000EZdx-1Blv;
-	Sat, 07 Nov 2026 10:53:39 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPe3t-0000000EZjo-2Avq;
+	Sat, 07 Nov 2026 10:54:17 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPe3G-0000000EZdl-1I4o
+	id 1xPe3s-0000000EZjh-2sVb
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 10:53:38 +0000
+	Sat, 07 Nov 2026 10:54:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0AFCD43AD0;
-	Sat,  7 Nov 2026 10:53:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 989CD1F008A1;
-	Sat,  7 Nov 2026 10:53:34 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3DE16419F7;
+	Sat,  7 Nov 2026 10:54:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 919A91F0089F;
+	Sat,  7 Nov 2026 10:54:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794048817;
-	bh=Y180jtVIl9H2E6DxVOXvPpmcMQTvALtSPs5lwc7SY4A=;
+	s=k20260515; t=1794048856;
+	bh=xmQhl7g8B7wmPUKml5FZxysCguQB96b4jBwJEHOOVFE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=dzw2DrLPNnFzvATWGALmZmpt8Cou5+f6k3Y/Wds/QZT1d7y9Q0PqGC2A2epOlHiIU
-	 rv70BpLUlt+ZUGy+zsJ98IlxGxVwc9UoCo/azTLGr6n2z01d3Qm+O/hrex3iMCcUU8
-	 dMprg2UjZGg2Sgwr/G6zZkbqIe20zDFpfEnLXKBRyxzvma3mP3EXrRZLdFhGMxOQ9e
-	 TuCaZvhK6eLKZhrY2r43J3VNnSuxxwBcKo3Y9o5bV5slP71BAH4B5hCUIXAchw+TMa
-	 r0sn5P9IWJJeqS2x7h71KIMmNEeCzxIgZJsgOS5q0x+nvUqQr9h/cDa/cNp7TZ+ptQ
-	 9RU7mhVHVC52w==
-Message-ID: <65af581e-caac-430a-88b1-3b7425c5209e@kernel.org>
-Date: Sat, 7 Nov 2026 11:53:32 +0100
+	b=VhayLTaxHu/cTHUPCyT2zZAIWZ3Diz6Jg6hcC8O4vkCKe7cg8OdQ36UeYvomVX3sh
+	 g8vnxpO2bwWImqa0RPDqBzo4Llp4Dz00JsND/1aBzTTZ1MLnkGXmVhplyJ+VRyY+TL
+	 qq8+04g5ulMGJb1rAwj19bd51P5IERQB8iq9YAXtihuvsjdcgLmqHV98QNcpO8cU4d
+	 05FLWnxRyHM/BKKvKmben9h5xII3mOZD/Twzcg5PtF6XrvCBU2O1TyFW5UKcmkdz2I
+	 yvUmtUt9Aostgnkir15IdUk9JJLI6h6s58BAGCz1I9e26yJFK9XQb/jMGegLLq7Dnc
+	 e+yf90G0CCwFg==
+Message-ID: <2990b649-b860-435c-bc8b-0990396aca6b@kernel.org>
+Date: Sat, 7 Nov 2026 11:54:10 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: cix: add RTS5453 PD controllers to Orion
- O6
+Subject: Re: [PATCH 1/4] dt-bindings: usb: add Realtek RTS5453H Type-C port
+ controller
 To: Gary Yang <gary.yang@cixtech.com>,
  Heikki Krogerus <heikki.krogerus@linux.intel.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -59,7 +59,7 @@ Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  cix-kernel-upstream@cixtech.com
 References: <20261107011012.3655873-1-gary.yang@cixtech.com>
- <20261107011012.3655873-5-gary.yang@cixtech.com>
+ <20261107011012.3655873-2-gary.yang@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,7 +105,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261107011012.3655873-5-gary.yang@cixtech.com>
+In-Reply-To: <20261107011012.3655873-2-gary.yang@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -127,30 +127,21 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 07/11/2026 02:10, Gary Yang wrote:
-> Describe the two Realtek RTS5453H port controllers on the Orion O6
-> I2C1 bus and add the I2C1 pin configuration.
+> Document the Realtek RTS5453H stand-alone USB Type-C port controller.
+> The controller is connected over I2C and manages a single USB Type-C
+> connector, described with the generic USB connector binding.
 > 
-> The controllers route orientation and DisplayPort mode changes
-> through the USB/DP combo PHY lane switches, but that PHY support is
-> not upstream yet, so the connector graph endpoints are left out for
-> now. The Type-C ports are still registered and reported, only the
-> lane switching is deferred until the PHY nodes are available.
-> 
-> Both controllers report through the same level-triggered interrupt
-> line, which the driver handles with a shared interrupt. The I2C bus
-> runs at 100 kHz because the RTS5453H I2C interface does not support
-> higher rates.
+> The connector's OF graph links to the Type-C orientation switch and
+> mode mux provided by the platform PHY.
 > 
 > Signed-off-by: Gary Yang <gary.yang@cixtech.com>
 > ---
->  arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 51 +++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
+>  .../bindings/usb/realtek,rts5453h.yaml        | 126 ++++++++++++++++++
+>  1 file changed, 126 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5453h.yaml
+> 
 
-DTS cannot be combined in this patchset and must be split. Don't mix
-patches from independent subsystems when you send something explicitly
-targeting only one subsystem.
-See also: Documentation/devicetree/bindings/submitting-patches.rst
-
+Valid comments from Sashiko.
 
 Best regards,
 Krzysztof
