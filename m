@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9750D6082BC7
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9236082BD5
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4j/x+muI;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=BkwGgeuT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CAhY9UK7;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=HRyUv+Vy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,74 +14,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8bPXM2LkmtpK7Ni258d7gmUaqYy5Bmjl3oUXnjWcb2s=; b=4j/x+muIcJCUK5rZ1dxdQPbi+3
-	h48OjumdhaWnwMrHId0MtzelPCjwKnNY/D++i3TmZMtHjmKCD7UMdPGiYWk/HvdVr/NLLb9QLcxZQ
-	D3fVesaC+A3wTyQKuAtQHEz9JhbbWz9GtPeA8FhpvRnkztlCyDxTKLJ6y2soOe4ZKY+qLfcS3qSLV
-	/Iaq7Oz92dQh5Duv1guXdSZGL03vQG8GgSK80Xvvvki50+f6LLegKOSsEPwicSKXfZuLabPw7KMk8
-	T1Qy1EE5QWUSw1T7gvRugBNb9R7oBqLyeNkib66pTP//7peHeBPJFvjIAaz5hAgb57INB2sANrOPB
-	Pvh78KMQ==;
+	bh=NJbzZ1rJU+QBfldfCtIUj3qILBrc3I/5agYUjCN+MFM=; b=CAhY9UK7OD7q7fLWGtvwEEpc4B
+	Z8Cyj80kAElpgqvXCEAGsmtYexyQixawRK6la2c4C6Z0voS64jQllvM5Pd9WPuAtruEvfasfw6a7c
+	VRlV8XQk1B+dIsqsbItcmfG91EVdS3/b2Q4mQVXHKjZp8oREX9pNWSgZe3eDbEQYRYooew4psia2R
+	ZXxtOXhGvINbdRruFPwBETnjOjkFJ3VE6PdQatFj8kTmIbBacAUjX3ag0qNyHZwqy9hrKErqqfNJG
+	4GjMnkPlUiaMtVS4RIKJ0E2NcQB9C57kt/3y5mtH1aRjW+90bLXAbuAJZnjFNDfJJqq0yCySDCwI8
+	kigkFh3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiTl-0000000Eump-10zz;
+	id 1xPiTl-0000000EumV-0WPe;
 	Sat, 07 Nov 2026 15:37:17 +0000
-Received: from mail-ej1-x646.google.com ([2a00:1450:4864:20::646])
+Received: from mail-ej1-x645.google.com ([2a00:1450:4864:20::645])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiTh-0000000Euk0-15qQ
+	id 1xPiTg-0000000Eujf-15ZC
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 15:37:14 +0000
-Received: by mail-ej1-x646.google.com with SMTP id a640c23a62f3a-c40bbd26f74so144374766b.0
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:12 -0800 (PST)
+	Sat, 07 Nov 2026 15:37:13 +0000
+Received: by mail-ej1-x645.google.com with SMTP id a640c23a62f3a-c41dae9db9dso189332166b.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794065831; x=1794670631; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794065829; x=1794670629; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=8bPXM2LkmtpK7Ni258d7gmUaqYy5Bmjl3oUXnjWcb2s=;
-        b=BkwGgeuT3cOMTHrvexPyzxhwJIQCQMSnthDi+m2MnsMB//YlM5C/KqEj50d+7db6ce
-         H0Z/8LtL8GOKjxDdBXjgfdnZKZ/ZsakZm8oQVhQbBcOoho9fxznWUnyHl7u5D5d7z4DP
-         RtQrNtsilqpzRx12ZKoaioFlgUSfhSRk0fftnIH0yFcCK13rA2KrGIxfNT5BWel9b+Bs
-         n6ZndF9+6xZV+T0q9x7pBpWcKaej51RA8F+7h7RpuBSdmJt+8gKJwMctQa8Af8F0VMnb
-         XEjPjDDX+/VmiOmNgAUG5FXnE5ngIpALkxSCplQqrccFMDBug1GTuYiaDkdbyldLWHQy
-         NZOA==
+        bh=NJbzZ1rJU+QBfldfCtIUj3qILBrc3I/5agYUjCN+MFM=;
+        b=HRyUv+Vyiyq3EwcsL32rG11z/z2B127rOTNYp3OoAgX0F3H6n4xsMpG3aLZBJ2F0qF
+         FJLUM0uue/bImpzJiDqaoPOR6Em5PBoC61zFE6YivSjXN5r0bh71Q8WbFL411i21h/sS
+         CXlEMoVvh8cwccwufNNUnb2Fvr6/Uk0c6A2MW421+Tgp88dz4EsIKvi0B+m0d/NjgrjQ
+         jCvzap6/XNUcf+d7ZTCPpaOUSqQOgF4UQ788PGkYwVoqtWV42Km41p51/cM5QXyikilb
+         HTlVSIDTswIWgcJbDt+sI7W2NrEY4e/L/X2Beo7Urmuypqb1Qys30Qtm8GH4HeXMLtUc
+         +Kfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794065831; x=1794670631;
+        d=1e100.net; s=20260707; t=1794065829; x=1794670629;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=8bPXM2LkmtpK7Ni258d7gmUaqYy5Bmjl3oUXnjWcb2s=;
-        b=e2h5UNXlPqV9x9VdEpJhrsXEr1jfJnvoU4Zjm2nAkQ4WJO6k+2qJUDTQWxfdsjreyx
-         6BZmxaj4vPxBP3yg4gFs3RYJ8HX6jnmcCL+Iq4HpeYiwR17o80mQh3SBDnMMBgxuXggh
-         MkldqLSm+qWfhpqTDrWMYbDjlJiKnYjXCxfXkS39dGG8k4fyyR093x6yWTHSafHyFUUr
-         8Opk3xD8Ikf2YwshrC7KyTLW5g9Ial4s1LZKQ/dM7NHZKSphAGXd5r2qZOYMSRw5+qFn
-         uwieKInpld/djyAw5ev40HYp0vlh4KxwbbgHGv0tCdzXCtxheGr2n5FM4bnHMTG32KbP
-         wpag==
-X-Forwarded-Encrypted: i=1; AL+hErFZOPoSWHsYqiB1pQCuxKtHzBoN1c4rzH0FlZAGlDzIFtFBgJtRx3CuelxYochPloK7U44iktbFQ0gHLmGjOJ4J@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hCAfeHL3iZ9QNwM1FlLzGtwHnuJqaYFUzQOuVhJERZ6fSFU4j
-	tYVCCtc/Q8nOGU4yYCA6vHDnqTeIffDkDa/kY7fVlb7OiDRJmOPjYQ8KydyrD7ifnfqLTOZICVo
-	lhQ==
-X-Received: from ejbc21.prod.google.com ([2002:a17:906:3415:b0:c49:c3a3:7a4b])
- (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a17:906:ef0c:b0:c4c:eb17:3da
- with SMTP id a640c23a62f3a-c4d34baf049mr438869066b.22.1794065830762; Sat, 07
- Nov 2026 07:37:10 -0800 (PST)
-Date: Sat, 07 Nov 2026 16:36:09 +0100
+        bh=NJbzZ1rJU+QBfldfCtIUj3qILBrc3I/5agYUjCN+MFM=;
+        b=yABNsS1/+UFWTJyh6OfK/RQ5R/OAyg2k/NKSDTuGLRxwryJRwQjcuQbJq6QxVxDwGt
+         uqrl7UX9erN9yqUxDhwcz11ULx3/SrmjVab4hnSv7uEj8FG5WWFlq8ytDYdUwMl8af6M
+         w60IuV5GAzHRdXWJPJE7OmmNUL3tOVhASw6EtkX33zzylM+C16fBTGl2ncaexH0LdH38
+         8GFiV5ra1DgzhMxUS8tLAel57uPkne2NjJzfoFfjcbpFvFOjB1uRBNi1xh4+k1nVj1u0
+         Imry1y4g78zjB3Jh8Ya2oak9zjM5v+S6nsm+8LGzj3/JjH4sUEyOPGRJCpm1VUm2ugSn
+         WjKQ==
+X-Forwarded-Encrypted: i=1; AL+hErHcrB6aWIXv6IUWk8o3h2qQk5KskYf+6KC7yOZrFGqFSxnUiVuE4+ev3JIsEtubeNRuw7yGZYpwzHBHr6Bz5B4S@lists.infradead.org
+X-Gm-Message-State: APuU4Z/9Mw0e2Lac/c6ywJ3N+j3M8c17cMwle+9awcbkgVcmFNKzpvT2
+	P6KBY1SdLkpbd4BVmI8H2nmN4H5V1uTPPZ/wgDl/U8fNzwvJHMLFLIjtFklZdd0Xr6gNawh5M6p
+	j9A==
+X-Received: from ejpc8.prod.google.com ([2002:a17:906:54c8:b0:c3f:c35a:7704])
+ (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a17:907:c0a:b0:c33:dbe8:291c
+ with SMTP id a640c23a62f3a-c4d35448ab9mr515861766b.20.1794065829385; Sat, 07
+ Nov 2026 07:37:09 -0800 (PST)
+Date: Sat, 07 Nov 2026 16:36:08 +0100
 In-Reply-To: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Mailer: b4 0.14.3
-Message-ID: <20261107-mte-kasan-split-v1-3-d84ea5f30f94@google.com>
-Subject: [PATCH 03/24] arm64: Fix volatility of IRG inline assembly
+Message-ID: <20261107-mte-kasan-split-v1-2-d84ea5f30f94@google.com>
+Subject: [PATCH 02/24] kselftest/arm64: Test lazy PSTATE.TCO handling
 From: "=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Peter Collingbourne <peter@pcc.me.uk>, Shuah Khan <shuah@kernel.org>, linux-kselftest@vger.kernel.org, 
 	"=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_073713_342303_3C23AB16 
-X-CRM114-Status: GOOD (  12.86  )
+X-CRM114-CacheID: sfid-20261107_073712_339036_E7BF5384 
+X-CRM114-Status: GOOD (  20.82  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,41 +102,202 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the 'volatile' qualifier, without which both GCC and Clang treat the
-function as pure, potentially collapsing multiple inlined calls into a
-single one (returning the same not-so-random tag) through CSE or moving
-an inlined call within a loop out of it. This is not compatible with
-IRG's architecturally-defined RNG side effects.
+Reproduce a bug introduced by commit 38ddf7dafaea ("arm64: mte: avoid
+clearing PSTATE.TCO on entry unless necessary") where TCO wasn't cleared
+when it should have, by detecting that the kernel misses MTE faults when
+accessing (tagged) memory of a process running sync MTE.
 
-As existing KASAN callers are either not inlined or guarded by runtime
-conditions, the compiler isn't allowed to hoist the non-volatile asm.
-Note that commit 85f49cae4dfc ("arm64: mte: add in-kernel MTE helpers")
-originally introduced the helper as an out-of-line function (in mte.c),
-so the risk then was even smaller than when defined in a header.
-
-I'll mark this 'Fixes' since it addresses UB but won't request stable
-backports, as none of the issues mentioned above were actually hit.
-
-Fixes: 2cb34276427a ("arm64: kasan: simplify and inline MTE functions")
+Cc: Peter Collingbourne <peter@pcc.me.uk>
+Cc: Shuah Khan <shuah@kernel.org>
+Cc: linux-kselftest@vger.kernel.org
 Signed-off-by: Pierre-Cl=C3=A9ment Tosi <ptosi@google.com>
 ---
- arch/arm64/include/asm/mte-kasan.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ tools/testing/selftests/arm64/mte/.gitignore       |   1 +
+ tools/testing/selftests/arm64/mte/check_lazy_tco.c | 152 +++++++++++++++++=
+++++
+ 2 files changed, 153 insertions(+)
 
-diff --git a/arch/arm64/include/asm/mte-kasan.h b/arch/arm64/include/asm/mt=
-e-kasan.h
-index de910f1c19e1..43510341b965 100644
---- a/arch/arm64/include/asm/mte-kasan.h
-+++ b/arch/arm64/include/asm/mte-kasan.h
-@@ -111,7 +111,7 @@ static inline u8 mte_get_random_tag(void)
- {
- 	void *addr;
-=20
--	asm(__MTE_PREAMBLE "irg %0, %0"
-+	asm volatile(__MTE_PREAMBLE "irg %0, %0"
- 		: "=3Dr" (addr));
-=20
- 	return mte_get_ptr_tag(addr);
+diff --git a/tools/testing/selftests/arm64/mte/.gitignore b/tools/testing/s=
+elftests/arm64/mte/.gitignore
+index f6937f890039..70ebc3883a26 100644
+--- a/tools/testing/selftests/arm64/mte/.gitignore
++++ b/tools/testing/selftests/arm64/mte/.gitignore
+@@ -4,6 +4,7 @@ check_tags_inclusion
+ check_child_memory
+ check_mmap_options
+ check_prctl
++check_lazy_tco
+ check_ksm_options
+ check_user_mem
+ check_hugetlb_options
+diff --git a/tools/testing/selftests/arm64/mte/check_lazy_tco.c b/tools/tes=
+ting/selftests/arm64/mte/check_lazy_tco.c
+new file mode 100644
+index 000000000000..28174495056a
+--- /dev/null
++++ b/tools/testing/selftests/arm64/mte/check_lazy_tco.c
+@@ -0,0 +1,152 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (C) 2026 Google LLC
++/*
++ * Validate that the kernel does not leave PSTATE.TCO set on kernel entry =
+and/or
++ * thread switching, when it should be clear i.e. when kernel accesses (su=
+ch as
++ * uaccess) are expected to be tag checked.
++ */
++
++#include <sys/wait.h>
++
++#include "kselftest.h"
++#include "mte_common_util.h"
++#include "mte_def.h"
++
++#define BUG_EXIT_CODE	99
++#define MAX_TRIALS	32
++
++static void handle_signal(int sig);
++
++/*
++ * We validate that uaccesses are tag checked by tricking the kernel into
++ * triggering a tag check fault while accessing user (tagged) memory. If t=
+he
++ * kernel does not report an error, we assume that PSTATE.TCO was set, sil=
+encing
++ * the hardware exception.
++ *
++ * To achieve this with robust userspace-kernel synchronization, we alloca=
+te a
++ * signal handler stack in PROT_MTE memory, tagged with 0x0 so that our si=
+gnal
++ * handler can safely run without triggering tag check violations from SP
++ * (untagged) accesses. We only re-tag (with a non-zero value) the uppermo=
+st
++ * granule of the stack, where the kernel must write user->next_frame.
++ *
++ * When the parent process sends SIGUSR1 to its child, the following happe=
+ns:
++ * - TCO should be cleared before the uaccess
++ * - the kernel writes user->next_frame to the tagged stack granule
++ * - (if MTE is properly enabled, a synchronous tag fault is raised)
++ * - if the fault was detected and handled, SIGSEGV should be delivered
++ * - if it was not detected or raised, the initial SIGUSR1 is received
++ */
++static void setup_sigaltstack_tripwire(int sig)
++{
++	size_t sz =3D MT_ALIGN_UP((size_t)MINSIGSTKSZ + 2 * (size_t)getpagesize()=
+);
++	void *altstack, *top_granule;
++	struct sigaction sa =3D {};
++	stack_t ss =3D {};
++
++	/* Enable non-zero IRG, needed for tagging the sigaltstack. */
++	if (mte_switch_mode(MTE_NONE_ERR, MTE_ALLOW_NON_ZERO_TAG, false) !=3D 0)
++		ksft_exit_fail_msg("Failed to enable MTE tag generation\n");
++
++	altstack =3D mte_allocate_memory(sz, USE_MMAP, 0, false);
++	if (check_allocated_memory(altstack, sz, USE_MMAP, false) !=3D KSFT_PASS)
++		ksft_exit_fail_msg("Failed to allocate MTE sigaltstack\n");
++
++	top_granule =3D (char *)altstack + sz - MT_GRANULE_SIZE;
++	if (!mte_insert_tags(top_granule, MT_GRANULE_SIZE))
++		ksft_exit_fail_msg("Failed to tag sigaltstack top granule\n");
++
++	ss.ss_sp =3D altstack;
++	ss.ss_size =3D sz;
++	if (sigaltstack(&ss, NULL) !=3D 0)
++		ksft_exit_fail_perror("sigaltstack()");
++
++	sa.sa_handler =3D handle_signal;
++	sa.sa_flags =3D SA_ONSTACK;
++	sigemptyset(&sa.sa_mask);
++	if (sigaction(sig, &sa, NULL) !=3D 0)
++		ksft_exit_fail_perror("sigaction()");
++}
++
++static __noreturn void stress_test_lazy_tco(void)
++{
++	const unsigned long sync_ctrl =3D
++		PR_TAGGED_ADDR_ENABLE | PR_MTE_TCF_SYNC |
++		(MTE_ALLOW_NON_ZERO_TAG << PR_MTE_TAG_SHIFT);
++
++	if (prctl(PR_SET_PDEATHSIG, SIGKILL, 0, 0, 0) !=3D 0)
++		_exit(KSFT_FAIL);
++
++	for (;;) {
++		if (prctl(PR_SET_TAGGED_ADDR_CTRL, sync_ctrl, 0, 0, 0) !=3D 0)
++			_exit(KSFT_FAIL);
++		if (prctl(PR_SET_TAGGED_ADDR_CTRL, 0, 0, 0, 0) !=3D 0)
++			_exit(KSFT_FAIL);
++	}
++}
++
++static void handle_signal(int sig __always_unused)
++{
++	if (prctl(PR_GET_TAGGED_ADDR_CTRL, 0, 0, 0, 0) & PR_MTE_TCF_SYNC)
++		_exit(BUG_EXIT_CODE);
++}
++
++static int spam_signal_until_child_exit(pid_t pid, int sig)
++{
++	int status =3D 0;
++	pid_t ret;
++
++	do {
++		if (kill(pid, sig) !=3D 0)
++			ksft_exit_fail_perror("kill()");
++		mte_wait_after_trig();
++		ret =3D waitpid(pid, &status, WNOHANG);
++	} while (ret =3D=3D 0);
++	if (ret !=3D pid)
++		ksft_exit_fail_perror("waitpid()");
++
++	if (WIFSIGNALED(status) && WTERMSIG(status) =3D=3D SIGSEGV)
++		return KSFT_PASS;
++
++	if (WIFEXITED(status) && WEXITSTATUS(status) =3D=3D BUG_EXIT_CODE)
++		return KSFT_FAIL;
++
++	ksft_exit_fail_msg("Unexpected child wait status %#x\n", status);
++}
++
++static int check_lazy_tco(void)
++{
++	for (int trial =3D 0; trial < MAX_TRIALS; trial++) {
++		pid_t child =3D fork();
++
++		if (child < 0)
++			ksft_exit_fail_perror("fork()");
++
++		if (!child)
++			stress_test_lazy_tco();
++
++		if (spam_signal_until_child_exit(child, SIGUSR1) =3D=3D KSFT_PASS)
++			continue;
++
++		ksft_print_msg("Detected invalid TCO state\n");
++		return KSFT_FAIL;
++	}
++
++	return KSFT_PASS;
++}
++
++int main(void)
++{
++	int err;
++
++	ksft_print_header();
++
++	err =3D mte_default_setup();
++	if (err)
++		return err;
++
++	ksft_set_plan(1);
++	setup_sigaltstack_tripwire(SIGUSR1);
++	ksft_test_result_report(check_lazy_tco(), "Check lazy TCO clearing\n");
++	mte_restore_setup();
++	ksft_finished();
++}
 
 --=20
 2.56.0.455.g6c5a503b38-goog
