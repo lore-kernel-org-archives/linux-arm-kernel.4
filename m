@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97BC60A381F
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0490F60A3821
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 15:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ehw+AXC3;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=KXfih8iR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aChuWbSi;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=l2Lv/S+Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,74 +14,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=M19XchmpvjLlLoNr8MoVn8Z+VpoH2MJVmxwn0RCJick=; b=ehw+AXC3oNfPJ/QP7KW0mJCLJK
-	WZzNur2dCp1M749ZV3Z3rN+rXAkLP3+Dx/gj976MPhdL2sLWjRJeC8HjjSYwT4APhYzGwXg233tPl
-	yTftP4MgWp/9/Ge4bI3WpiI6tBh1r672XTosT/RpGm7JpujiWYr5h8IJ+e9vcRh1i4470crxx+e5e
-	Lu/mEhfarHJZhDfGV1TB3nap2LASgXLmrgfvodmedglsEsUk0oyK36BBQLgtuLykEa1yatm4i8wVk
-	nv8WTnjJT5bPSXNdEDfuzS/qIQyI5Ouerjjgaf1xlIE8iXxWbIBVI7h6xPhO4f0OySi7+uJIXeCOl
-	pOrrCciA==;
+	bh=xZJrP1aJDDxFBFBygqsoNEypPFzVS6oeHoKisvrveOQ=; b=aChuWbSiswl+TJWI8sJGOPbnAp
+	sLUChw3jlM1OKcFkW6sjXxV2dE1Th9EsowN3IPkh7gIHaDs48CQskLe5g5zsDnzlxhpVrdb5HcRZm
+	+k+u6+tWQYayB4xKQ4v2JqpiJb9iJtjrfve8gq/t7TBNFEAqch8rm5i3vTnBBnPvfbzCljdMsmtrX
+	trA4PONSFXWhY20UpL64DbnsZwTztATekFoCUdF37pMKAOfGGot/A6giFghMhK4YSiLpw31QnbGBr
+	4kM8pyemGS0GS0v5JzqH3U3Q4cG0niMuZNls03mTkUmUA9MTmg7q7lrpx6azKC4ZVA9jGI/ri78Jm
+	mumn8htw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiU0-0000000Ev1l-1VON;
+	id 1xPiU0-0000000Ev1F-0uQt;
 	Sat, 07 Nov 2026 15:37:32 +0000
-Received: from mail-ed1-x545.google.com ([2a00:1450:4864:20::545])
+Received: from mail-ed1-x546.google.com ([2a00:1450:4864:20::546])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPiTr-0000000Euns-0Fb4
+	id 1xPiTq-0000000Euom-37wu
 	for linux-arm-kernel@lists.infradead.org;
 	Sat, 07 Nov 2026 15:37:28 +0000
-Received: by mail-ed1-x545.google.com with SMTP id 4fb4d7f45d1cf-6b1bc2e62d5so2009214a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:18 -0800 (PST)
+Received: by mail-ed1-x546.google.com with SMTP id 4fb4d7f45d1cf-6b3f6d9827eso1512779a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 07:37:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794065837; x=1794670637; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794065839; x=1794670639; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=M19XchmpvjLlLoNr8MoVn8Z+VpoH2MJVmxwn0RCJick=;
-        b=KXfih8iRLzjgLdu2cN37K6BsZLEJdwgyY6BG0D5FEitdIQ9BhtM5Nkpx4D6+03bjJz
-         XksbyhaW1OyX/wU0g3kwBEgSbXSqc444Nd8OKEmdPzb71VLncaLQIug3mMFZZEZ55VB/
-         uPpcZMwdeCEH1A/mgXCRGlIxrdKjGNCsLvtJHNj/eYx691rD7e/7d1J9WQAdnWDjTm2V
-         2PX24HpjgBzGqwzuf3CpXycmuzbzhEfN097msc2V481l4poy0KvwSjD4bXggd8jHP1QA
-         ljm8Xdtg8zS7TJNxBOi/W5SXvbp8lnk108aanNhZO1gHSG5nnH7lRcw4mym0SKI9V2dc
-         J/+g==
+        bh=xZJrP1aJDDxFBFBygqsoNEypPFzVS6oeHoKisvrveOQ=;
+        b=l2Lv/S+ZtoJ9BQg5zVV748n2GBNHdhS03JZrP7pvgXUDn6zsjKNPO2Yu+eebrTN7Vl
+         RADQSX78bie+f6rwiHfw03g7y3/07r6K81oNP97xSIJOqwLHF8EsBtG+MWFH9WsUqdbz
+         LEdfKX22ftF6ElrD7nLYYf65CCLc2714ExBUtrWI3Hqda0OZkGPCACi+2ldf6J0p4nsf
+         0Vn+uBsKZbihKWnJ3QCh+WBT1d6DjoahUT1tvBBYk8duTOZ++JmMXJJtMesv+RqIHyLk
+         /LewQrWkast3YhftJ4xR6Qr7IpnDo3PoMVSVuDQIMG1Pr5BZCHCoR0NL7ZniDsLMsfY1
+         SOKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794065837; x=1794670637;
+        d=1e100.net; s=20260707; t=1794065839; x=1794670639;
         h=content-transfer-encoding:content-type:cc:to:from:subject
          :message-id:references:mime-version:in-reply-to:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=M19XchmpvjLlLoNr8MoVn8Z+VpoH2MJVmxwn0RCJick=;
-        b=VVCm87ccNwx2XL0eLdSc+sFrXh2O8oq1fPWi1jPCBY8T9Wqw6ZVDQjH8y9V2Z6p0qT
-         Z00u35kpBAI+UAx9v58hTQCU1HoB3vd5vLhdv4eL7dkhnmVqZDO781Uh5pWqxaaI8aec
-         Dy98julqdPjmJqYgOlltPyApauZQIRr8USEHkDA7h7nsyMBkKtPdFpVhWxXynYJia7kq
-         k+FsFUKU2+UMq0A2kv+D1vZQxGqzqWKgQiNzYOdHTAJGoRCbyaL3s0Yg7Y/J/DWzjLcK
-         I9rUuF7+DuDpmOHAXk469ndT/nbDgSwIei2ZMZ3oqSgB7uPzg6Rf6xxWhCbxI1LXpNum
-         DJ/g==
-X-Forwarded-Encrypted: i=1; AL+hErHP6ov+90/8AtD2rXysFMTxekpFoL8dw+kHvraiE8qPsWo8Rntlzsm6PtP5dKXAQgJpKFBbxwTJi/0I8KEED7Bu@lists.infradead.org
-X-Gm-Message-State: APuU4Z/VLNokRh1yDuURUAoACelvmwYKjLac5sZ153bORqDHFNf+1qI8
-	//nTuT+WfaWuWgHEZjBpod1IOrCbPGAnPAPJjEO9CwQAvXt3xT/flOXDLAiF7RRvtV937RtG++c
-	gYQ==
-X-Received: from edcnu31-n2.prod.google.com ([2002:a05:6402:c51f:20b0:6af:acb1:c04d])
- (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:1947:b0:6b4:9c38:a990
- with SMTP id 4fb4d7f45d1cf-6b5977f393bmr4155606a12.31.1794065837376; Sat, 07
- Nov 2026 07:37:17 -0800 (PST)
-Date: Sat, 07 Nov 2026 16:36:13 +0100
+        bh=xZJrP1aJDDxFBFBygqsoNEypPFzVS6oeHoKisvrveOQ=;
+        b=iSi/8fkkp3eSWN9lXWqJ/1eQiCq0Oz7ffTy5vaEVpkyy7b1uuWLrT3XVUGJfGxmr7h
+         W1Kp3azD9ZPoLEMUUvvilQ3vxGxjH2AeGovAKATg++d3NTU89ecCaJ1PfecPN5GB8IB8
+         Lw4Q8MWh0iAff9MkCGwre5UVnpgJN6tUjCZ5NN7QjY4NZCgAm8576z9f+Hd9Qfn9fkhA
+         mGCffVXmu4yWG6/MGDQPSZuuBJjYESn1OuqU6Cf+wnPEPxv/8XAS7sHra+ftxAGjsw+j
+         L+FOcf+xR9MdcHI2RzwYLhAypwTH96SKM+FPVOiyQfcJnIqEy/dtFO3I2qoc9mJw9ve3
+         oF8Q==
+X-Forwarded-Encrypted: i=1; AL+hErHG5a+qGWSVzw16KWz6LVXO+Pb5MMceZW1xXtsstyJkbNHOGAu+x6EZrRGiKUv+KThLNPvV7bzDGzddnbP3lNm9@lists.infradead.org
+X-Gm-Message-State: APuU4Z/fWm9tosUdRgqHVGFHUHqY7JtoWAzq6sTG5fFyeVIVoN/CHEjl
+	LhnU104A3t1CsME6tDb2hcxSiWtDW0ZgL715sjFBq4WuVeJQZBEaJl/XlPT4UdV9/RB4UAIe0JO
+	+5Q==
+X-Received: from edt6.prod.google.com ([2002:a05:6402:4546:b0:6b5:77e8:bf7d])
+ (user=ptosi job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:90d:b0:6b4:88e8:6074
+ with SMTP id 4fb4d7f45d1cf-6b5977caf87mr3835118a12.22.1794065838990; Sat, 07
+ Nov 2026 07:37:18 -0800 (PST)
+Date: Sat, 07 Nov 2026 16:36:14 +0100
 In-Reply-To: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
 X-Mailer: b4 0.14.3
-Message-ID: <20261107-mte-kasan-split-v1-7-d84ea5f30f94@google.com>
-Subject: [PATCH 07/24] arm64: Skip redundant TCO clear post-kernel entry
+Message-ID: <20261107-mte-kasan-split-v1-8-d84ea5f30f94@google.com>
+Subject: [PATCH 08/24] arm64: Introduce mte_get_reset_tfsr() helpers
 From: "=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 To: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
 Cc: Mark Rutland <mark.rutland@arm.com>, Vincenzo Frascino <vincenzo.frascino@arm.com>, 
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Peter Collingbourne <peter@pcc.me.uk>, "=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
+	"=?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?=" <ptosi@google.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_073723_116309_EFE99904 
-X-CRM114-Status: GOOD (  12.37  )
+X-CRM114-CacheID: sfid-20261107_073722_798374_6EB1AF3A 
+X-CRM114-Status: GOOD (  15.61  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,56 +101,96 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For performance reasons, kernel entry might skip clearing TCO. Still,
-tasks expecting synchronous uaccess tag faults to be reported (and
-therefore raised) require it to be clear; this is why thread switching
-and MTE enabling functions were calling into mte_disable_tco_entry().
-However, when the kernel itself uses MTE (for KASAN), it must have
-cleared TCO on kernel entry.
+In an effort to untangle MTE from KASAN, split a reusable MTE helper out
+of mte_check_tfsr_el1(), providing two variants, to accommodate the
+contexts under which it gets called: one synchronising TFx before
+reading it and another delegating that responsibility to the caller.
 
-Use that invariant to skip redundantly clearing TCO and/or checking the
-task's SCTLR. As kasan_hw_tags_enabled() uses a static branch, TCO
-maintenance is completely optimized out the moment HW KASAN is enabled.
+Name the helpers similarly to __dsu_pmu_get_reset_overflow().
 
-Cc: Peter Collingbourne <peter@pcc.me.uk>
+This prepares for a rework of the KASAN API to simplify circular header
+dependencies, as KASAN calls into mte_check_tfsr_el1(), which calls back
+into a kasan_*() function.
+
 Signed-off-by: Pierre-Cl=C3=A9ment Tosi <ptosi@google.com>
 ---
- arch/arm64/kernel/mte.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ arch/arm64/include/asm/mte.h | 31 +++++++++++++++++++++++++++++++
+ arch/arm64/kernel/mte.c      | 12 +-----------
+ 2 files changed, 32 insertions(+), 11 deletions(-)
 
+diff --git a/arch/arm64/include/asm/mte.h b/arch/arm64/include/asm/mte.h
+index 1d6113ae786f..614fff7dc35f 100644
+--- a/arch/arm64/include/asm/mte.h
++++ b/arch/arm64/include/asm/mte.h
+@@ -17,7 +17,9 @@
+ #include <linux/sched.h>
+ #include <linux/types.h>
+=20
++#include <asm/barrier.h>
+ #include <asm/pgtable-types.h>
++#include <asm/sysreg.h>
+=20
+ void mte_clear_page_tags(void *addr);
+ unsigned long mte_copy_tags_from_user(void *to, const void __user *from,
+@@ -31,6 +33,35 @@ void mte_invalidate_tags_area(int type);
+ void *mte_allocate_tag_storage(void);
+ void mte_free_tag_storage(char *storage);
+=20
++static __always_inline bool __mte_get_reset_tfsr(void)
++{
++	u64 tfsr_el1 =3D read_sysreg_s(SYS_TFSR_EL1);
++
++	if (likely(!(tfsr_el1 & SYS_TFSR_EL1_TF1)))
++		return false;
++
++	/*
++	 * Note: isb() is not required after this direct write
++	 * because there is no indirect read subsequent to it
++	 * (per ARM DDI 0487F.c table D13-1).
++	 */
++	write_sysreg_s(0, SYS_TFSR_EL1);
++
++	return true;
++}
++
++static __always_inline bool mte_get_reset_tfsr(void)
++{
++	/*
++	 * The barriers are required to guarantee that the indirect writes
++	 * to TFSR_EL1 are synchronized before we report the state.
++	 */
++	dsb(nsh);
++	isb();
++
++	return __mte_get_reset_tfsr();
++}
++
+ #ifdef CONFIG_ARM64_MTE
+=20
+ /* track which pages have valid allocation tags */
 diff --git a/arch/arm64/kernel/mte.c b/arch/arm64/kernel/mte.c
-index d1dd9b80173a..8025ee1f7fdb 100644
+index 8025ee1f7fdb..47432c9c4de0 100644
 --- a/arch/arm64/kernel/mte.c
 +++ b/arch/arm64/kernel/mte.c
-@@ -5,6 +5,7 @@
-=20
- #include <linux/bitops.h>
- #include <linux/cpu.h>
-+#include <linux/kasan-enabled.h>
- #include <linux/kernel.h>
- #include <linux/mm.h>
- #include <linux/prctl.h>
-@@ -290,7 +291,8 @@ void mte_thread_switch(struct task_struct *next)
- 	mte_update_gcr_excl(next);
-=20
- 	/* TCO may not have been disabled on exception entry for the current task=
-. */
--	mte_disable_tco_entry(next);
-+	if (!kasan_hw_tags_enabled())
-+		mte_disable_tco_entry(next);
-=20
- 	if (!system_uses_mte_async_or_asymm_mode())
- 		return;
-@@ -409,7 +411,8 @@ long set_mte_ctrl(struct task_struct *task, unsigned lo=
-ng arg)
- 		mte_update_sctlr_user(task);
- 		mte_update_gcr_excl(task);
- 		update_sctlr_el1(task->thread.sctlr_user);
--		mte_disable_tco_entry(task);
-+		if (!kasan_hw_tags_enabled())
-+			mte_disable_tco_entry(task);
- 		preempt_enable();
- 	}
+@@ -182,18 +182,8 @@ int mte_enable_kernel_store_only(void)
+ #ifdef CONFIG_KASAN_HW_TAGS
+ void mte_check_tfsr_el1(void)
+ {
+-	u64 tfsr_el1 =3D read_sysreg_s(SYS_TFSR_EL1);
+-
+-	if (unlikely(tfsr_el1 & SYS_TFSR_EL1_TF1)) {
+-		/*
+-		 * Note: isb() is not required after this direct write
+-		 * because there is no indirect read subsequent to it
+-		 * (per ARM DDI 0487F.c table D13-1).
+-		 */
+-		write_sysreg_s(0, SYS_TFSR_EL1);
+-
++	if (__mte_get_reset_tfsr())
+ 		kasan_report_async();
+-	}
+ }
+ #endif
 =20
 
 --=20
