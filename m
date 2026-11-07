@@ -2,101 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A805C606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 08:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C7F606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Sat,  7 Nov 2026 08:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kpb0cjrW;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=f8/Ufdiz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NCCgRmSx;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VCI53vjs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=An1bRoE/6CxmwaSRosrMArcH/TfHD3aBe6vo4ktdg0I=; b=Kpb0cjrWiqpgnrWSMp/w6DTS1H
-	GWo5cZcXPehykRS4tggMUERnI0E+IIwZu8XIDH8Rwk833GMUImuFpawqZ/Qp2piJpiTUup5dK53lI
-	9uCbducoKKyl+uTc8nxQAdRA5lkBbSYmXTNkSc2F9bkIM8f6kv4nb0onTXIlsm52vK0vJI4eSCLU+
-	lJEvFISiZCCpvTz4dB84XpoXlwLBE7Xqp8JfIawUh9IF6OYU4uuIhAGKCMAClxYx2j6S5TY4xZ98Y
-	ivl+QmI8bDnwsvFAuOQLnI2H9RA7gxL9hQWBrpEW2DRnQ9+32eMwiInNwBgeuMc3wR+wy/lo5hycb
-	0HcSqOWQ==;
+	bh=aXXbFIqeuNqZ+gcGb1wBjBrEJR2db0REnn66oJVi+ng=; b=NCCgRmSx8axDKJcE8f8JUaw0jb
+	UjE1HAwYqWaGUZASuxLec+VRE0R3vS+CrLQmYzcxJhYg0Ld2cfVJs1s9hk7/yOZIS91qeeCn4QbwH
+	w37UzjQ1z4r9dMZjqaPymE59iL4rFecND4gjHydACL7RaW+2iOsVzqflVkEgLyC26rrSjF420w7FP
+	Kb1M+y7eWrONmFXsRzopLKfTuLhNIXIcfP/qAWzSrqhHndNBZ71qslWbQBn6zBay6IpCe4jL8s8FT
+	keZlEij9lU2DppMRX902bCib5clpDpapXgBecI8FXy7qNjQnXLPQ9OhY41elRlfMZSS/QikgP7SlI
+	BOYj/Ahg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPbd3-0000000EMu1-44Rp;
-	Sat, 07 Nov 2026 08:18:26 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1xPbtD-0000000ENsN-1VzN;
+	Sat, 07 Nov 2026 08:35:07 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPbd1-0000000EMtM-1kos
+	id 1xPbtB-0000000ENsG-3fQx
 	for linux-arm-kernel@lists.infradead.org;
-	Sat, 07 Nov 2026 08:18:24 +0000
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2ea7190aea1so5570865ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Sat, 07 Nov 2026 00:18:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794039502; x=1794644302; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=An1bRoE/6CxmwaSRosrMArcH/TfHD3aBe6vo4ktdg0I=;
-        b=f8/UfdizIpn/WEFxo2SCLdZ9nmup3J2+/coAH/6386X1+fOxpi3jJ2UObbXqeu6sHi
-         cx9ftUo5XxAWJz8ow/hk0TlyoMaRInJncTIqUpU4WhkxzvD150fZYtzwa8ftkuwV0f0P
-         eUMXVzlbRsEPfQpTJY44DfFFzaSVe0F90q0PuepuNA5y3Soy6qi6yCrz8T36Oio8yyPA
-         FnNpRecx8Z77MCw/0rDO2+x8D3yeRGIQOpih5+IYpZe6n/+aW4EvIhgBhm14s8+9gGbi
-         p+vHYUHBvF9zmXquvRcLb0ntbDWokwPJ39QZHT9snGcU6189JntxFrY6hP6m4SDgaC5C
-         jDwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794039502; x=1794644302;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=An1bRoE/6CxmwaSRosrMArcH/TfHD3aBe6vo4ktdg0I=;
-        b=xx+GzvZIGFeGGMniYve7H34duhegTWR6mpceesPz/vvfEd5mPldP3t+GOrnGGp+X/8
-         rQ1Et5x1mHafwYOVZc+u0bjt/0+pJJ4M1BRSCU+u1W9HonoeCqCIXyLFUb/FQUbKoMTr
-         oL7/j+/1htgMG2SSfU6YanbUFy3kcCVyNczJNMLwMJqjzScalcg3xKBqyVSJ8OPX4snl
-         w0dKA+WqbzoxrPWPf2ZNWAgWQsfi/12KLLISjUvcnI5V+7t2XXbTGdscDH7w1e1GCuUg
-         tY4L60aIpvlcRtMMeLAoZ/bHWTij02Cm9BezJyvyCq4zSpoxRNC2JF/3Lhf5Kb9K3Wxk
-         l7nA==
-X-Forwarded-Encrypted: i=1; AL+hErFPngeXVBdLzZNZgT5XSFwTfhVWPuAy8pT/kMncE3rcdvivEywH6BhQP9wntJ3TsARxhYz0YdYZt7WXoZfH1RJi@lists.infradead.org
-X-Gm-Message-State: APuU4Z/5Tg1MZdlafnAAEkfHZSXy7oIuiN1dg8fWUpP0IrK5AP6jECUR
-	AoXnGQRLrM6CSMLgBGIr5mU47zdJ080OX5hnPLL3mH2VMVHD12kEtJh4
-X-Gm-Gg: AYBFou2l2IjmtqxMlzSzduYOhTUsPwkNbHFpMo9JAZfspLftVuMamni3c8NPOVKsuf1
-	CROKtDht/Vp116CVxtwO9i+0VttbJmFnSn7zk4G2+JHEShZMH+hmMJ+tKb5Vwxcx69OIjBccxx6
-	/NaP2SwpehE+clc4YwAGm6hyLie5MLljnEvB7CSiill3CV1dQ0/6IzYcPu/pt/j/AQWLJd0HuUJ
-	swqOPFrxhJkJ/EgAYiqUVHCOTICChikXIPsMnWa4zoXHtk0lkk3RnTVlfb1cELkzjurs/3Kv16j
-	X4mpb2rLIjsX7CpBWTLRV83gur6U8fii7CAyp/Hr2oi4c+E0WDPBgftTXakgTAEiFM/GsBi+NH3
-	YE70Q0U11fbwjMkRjinAjwFL/6EIdJuc8lm1d0vIkTwXUaU4BehQB7lG6YeU++2AY8Mo2EE9lB1
-	JmRCY8GDT6aIueJPCc69wK64kwdDpyq3tByThGz77/8/YNOWm7eFjlSYYr6nkmOehDajWGxKQER
-	XTgpP4ZvRRKszAEHu0Vn+AXpHqRnd1ZLzt+/pLdicZFohk5ZMRlrp1al3xyLA2PY3CXDrtWEYtk
-	gI6KAP75shI4XEU6Ag==
-X-Received: by 2002:a17:902:d48d:b0:2e8:1c7b:3b6e with SMTP id d9443c01a7336-2ed40aca726mr55809015ad.26.1794039501791;
-        Sat, 07 Nov 2026 00:18:21 -0800 (PST)
-Received: from buffalo-ssd ([2a09:bac5:45bc:1e1e::300:1a])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ed47528e5dsm11943395ad.4.2026.11.07.00.18.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2026 00:18:21 -0800 (PST)
-Date: Sat, 7 Nov 2026 17:18:17 +0900
-From: Akari Tsuyukusa <akkun11.open@gmail.com>
-To: Alexander Letuchiy <asalde.le1@gmail.com>
-Cc: Roman Vivchar <rva333@protonmail.com>, devicetree@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/5] dt-bindings: watchdog: mediatek,mtk-wdt: Add
- compatible for MT6895
-Message-ID: <au7UMdlP9O6oo41i@buffalo-ssd>
-References: <xUMh3NwVp4cBhFsWWFE2Xng4h8YH95iJM37_I158WAyVmsRCPbirWT1iU8eMFeiSFw8xco0X45o-2NOeB6Jc4_nWAg25pFPgDMwK3mKzm34=@protonmail.com>
- <20261105222435.571449-1-asalde.le1@gmail.com>
+	Sat, 07 Nov 2026 08:35:05 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 65C8543CE1
+	for <linux-arm-kernel@lists.infradead.org>; Sat,  7 Nov 2026 08:35:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F6781F008A1;
+	Sat,  7 Nov 2026 08:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794040504;
+	bh=aXXbFIqeuNqZ+gcGb1wBjBrEJR2db0REnn66oJVi+ng=;
+	h=From:Date:Subject:To:Cc;
+	b=VCI53vjsIrd/IEA1+mmAlrhkEdAWLeO1Y1vTyyKnIjdU7PePP5OL4Ij1JlCMWPquh
+	 DwrTJaPxlasnH1jw9Wf+QmlyTB2L+ghysBxD/tXOKc/1FvPHe7B78YlWkHX+TcyMoD
+	 Td3CHvLBb3b09dMtdeD+Je+00vvnXzK9pqIufQNFv+Q/G7EbfCA321vGIZmFUjt32z
+	 1ReI177KkjwRj3c28vdf1dkk6t2wuo8+R9yIREMO4J0+8Oy9gLN3K7u1mWGqy1gJmp
+	 4mj0mDb3tzUF9A4ojsVJCp/y9yNFFlh3sM9d8gauy6Ozis7RYtE+zMKsw4Adk8qyUS
+	 iRq0OaLvv23tQ==
+From: Linus Walleij <linusw@kernel.org>
+Date: Sat, 07 Nov 2026 09:35:00 +0100
+Subject: [PATCH] dt-bindings: gpio: nomadik: Describe DB8500 and GPIO hogs
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261105222435.571449-1-asalde.le1@gmail.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_001823_486931_C90B7269 
-X-CRM114-Status: GOOD (  17.74  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261107-ux500-gpio-hogs-v1-1-123fb308fe90@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/x3MwQmAMAwF0FXCPxtIBRW7inhQG2suVloUQdxd8
+ A3wHhTNpgWeHmS9rFja4clVhGWb9qhsAZ5QS906Jx2fdyPC8bDEW4qFewlrE2SeWnGoCEfW1e5
+ /HMb3/QDJZ74vYQAAAA==
+X-Change-ID: 20261107-ux500-gpio-hogs-90df5d0ba601
+To: devicetree@vger.kernel.org, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,59 +72,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Alexander,
-(Resending with the Cc recipients I missed; sorry for the duplicate.)
+The DB8500 boards use a specific compatible with the Nomadik fallback,
+line names and GPIO hogs. Describe these existing uses without changing
+the GPIO register or interrupt constraints. Found with CHECK_DTBS=1.
 
-On Fri, Nov 06, 2026 at 01:24:34AM +0300, Alexander Letuchiy wrote:
-> On Thu, Nov 5, 2026 at 11:50 PM, Roman Vivchar wrote:
-> > Does mt6895 actually share the same reset layout as mt6589? Given the
-> > generation leap between these, the former is very unlikely to use
-> > the same resets.
-> 
-> The vendor kernel for this SoC binds the watchdog with the same
-> compatible list ("mediatek,mt6895-wdt", "mediatek,mt6589-wdt") at the
-> same address, and its register definitions are identical to mtk_wdt.c.
-> 
-> The TOPRGU reset layout is the one thing I can't confirm, as I found no
-> reset table for MT6895 there. This series does not use it: the DT has
-> no #reset-cells and no consumers. If reset lines are needed later, I
-> will add a dedicated mt6895_data to the driver.
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+Describe the existing DB8500 compatible, GPIO line names and GPIO hogs.
+---
+ .../devicetree/bindings/gpio/st,nomadik-gpio.yaml     | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 
-The MT6589 wdt driver now also registers a TOPRGU reset controller:
-f12d5facded7 ("watchdog: mediatek: Add wdt/toprgu resets for mt6589")
+diff --git a/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml b/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml
+index e871149c520f..e70f3b5ce7a6 100644
+--- a/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml
+@@ -19,9 +19,13 @@ properties:
+     pattern: "^gpio@[0-9a-f]+$"
+ 
+   compatible:
+-    enum:
+-      - st,nomadik-gpio
+-      - mobileye,eyeq5-gpio
++    oneOf:
++      - enum:
++          - st,nomadik-gpio
++          - mobileye,eyeq5-gpio
++      - items:
++          - const: stericsson,db8500-gpio
++          - const: st,nomadik-gpio
+ 
+   reg:
+     maxItems: 1
+@@ -34,6 +38,10 @@ properties:
+ 
+   gpio-controller: true
+ 
++  gpio-line-names:
++    minItems: 1
++    maxItems: 32
++
+   interrupt-controller: true
+ 
+   "#interrupt-cells":
+@@ -60,6 +68,11 @@ properties:
+   resets:
+     maxItems: 1
+ 
++patternProperties:
++  "-hog$":
++    type: object
++    $ref: /schemas/gpio/gpio-hog.yaml#
++
+ required:
+   - compatible
+   - reg
 
-The driver now registers a reset controller with 12 reset lines
-for the "mediatek,mt6589-wdt" compatible, regardless of whether the DT
-specifies #reset-cells or has any reset consumers.
-"mediatek,mt6589-wdt" used to be a watchdog-only fallback,
-since it did not register a TOPRGU reset controller.
-That is no longer true.
-
-Since the MT6895 reset layout is unconfirmed, it must not claim
-compatibility with the MT6589 TOPRGU reset controller by using
-"mediatek,mt6589-wdt" as a fallback.
-The compatible list is part of the Device Tree ABI and cannot be
-changed later.
-
-As I noted in [1], "mediatek,mt6589-wdt" is only a safe fallback where
-the reset layout is known to match. Many SoCs do not share MT6589's
-reset layout, and MT6895 gives no reason to be treated as an exception.
-We should not add yet another MT6589 fallback whose reset layout is not
-known to be correct.
-
-Please give MT6895 its own "mediatek,mt6895-wdt" compatible without
-"mediatek,mt6589-wdt" fallback. Its TOPRGU reset support can be added
-once the actual reset layout has been confirmed.
-
-[1] https://lore.kernel.org/linux-mediatek/xqnpukvhtezpqhwjnxbqeddiaqlro4m5yjukpplv5mjfxodlfp@ijaf2trst7p4/
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261107-ux500-gpio-hogs-90df5d0ba601
 
 Best regards,
-Akari
+--  
+Linus Walleij <linusw@kernel.org>
+
 
