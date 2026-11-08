@@ -2,75 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC79606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CC3606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QXToMIrk;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ZL7T7561
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Pspzwx+/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H3JtE6+S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sORGFzRD8E4HzQkwXuFsiWbFglj3g8iaUxPq0zUsHdo=; b=QXToMIrkz2GDd5
-	gGKEWAEjQdpSOwuA8qXlBEDGMOcoFyHo+UO93vvY1NhVIhotoQsDG5UBes3rMA4ca1ENWvwRa34vf
-	/wpIf9ToPJvsfr+e8hN7drC7jpoVMDFRmbKz5jMdE7vR3xPa/IcXivoUH6+/9tMHFqYBYlzYtfxO1
-	LU5bLlKulHR1M/wtuxZBcSjBnTmafYwe/l6rbwBUw9lBWS80mHgiPfcJgz61oIBLHKu83OFjk5PeP
-	dhOnsH8SdQhfsP8C2o/OkHsB15FZQyhnblgUeXNA/i9e6SgoUB0ADscD9kAca6JkL1twBxqRjz6HZ
-	oXT48JPxUpkeaZGtXjCw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ghvcB3Oep4ElkXVE3zWUAz9PnP9Knjes6ZFfb+9rHos=; b=Pspzwx+/ZH7gzXFX4mseXoqAv9
+	XSLoVazb2MOTVLCSsBUvzc6udgrhmslxEAlqaWcgxDL5Hvinpxe3cbX7OSSEUHHGNSWG7wbkLMr0I
+	VzeMFfXEe5FunYeSGBo6XjLc5usidg26DFqBR5QMsM1QqnqEOoduKToFXHH+xgrnO5Y/lwS0BEMiY
+	ASjTh9W+AgXG966qv3yKbg8mXjIlsCGHwX75ddudBnCW/oXV09iXSDhmi0W0+kH+7RM4WGZhXyMCU
+	yS+4hWaI4HY7mTUSMxbvxmR7VpJ/5SSKLMD4x2jHIAswxaBeqRJGpNvS7p5OigvFWb8QRjLGH/KzM
+	b35tZ2cA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ3Zz-0000000GEig-42Q7;
-	Sun, 08 Nov 2026 14:09:07 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xQ3j8-0000000GEvT-3TM8;
+	Sun, 08 Nov 2026 14:18:34 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ3Zw-0000000GEiL-0y4U
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 14:09:06 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 07E5F1A1577;
-	Sun,  8 Nov 2026 14:08:59 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id B64B360025;
-	Sun,  8 Nov 2026 14:08:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5ABC9103288D3;
-	Sun,  8 Nov 2026 15:08:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794146937; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=sORGFzRD8E4HzQkwXuFsiWbFglj3g8iaUxPq0zUsHdo=;
-	b=ZL7T7561Lu4FFwwsI7q0I9RZ2BQQlKh+5WelkTXTfY642Co5faUCOke7jxn9QZSQFt+Udr
-	u2wQcYlfcdX9sC6fI0Tad2Qqu4QNVzH96Ba2zmocZovrYEfPzhp+KXZIU1jOY7WMmkvD2K
-	1Kpu9W3Lk8G3sxablbgrJD3UE8iqyytlGBq2DlLMGC8i5rq99oI3iq41a+/GOqtzVMe2Q0
-	Ijfu0iGvXv6lBraFURij0WGZQFy2eZNapHctiGgj1ukc0QNFBeABvS4da5liFp8ocP3WEr
-	mE01PN2hwO1cEkzAWpBkqRqbt+woN1nVOQlAdiJmqMR5E1xyC6Z+DJYsoIv43g==
-Message-ID: <864f2931-4eb7-45c5-b58f-23339eb3af11@bootlin.com>
-Date: Sun, 8 Nov 2026 15:08:49 +0100
+	id 1xQ3j8-0000000GEvK-0Dvo;
+	Sun, 08 Nov 2026 14:18:34 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D25D740D9A;
+	Sun,  8 Nov 2026 14:18:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0E3A1F0089F;
+	Sun,  8 Nov 2026 14:18:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794147512;
+	bh=ghvcB3Oep4ElkXVE3zWUAz9PnP9Knjes6ZFfb+9rHos=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=H3JtE6+SZAD59Z0SNA3Zvz10WdKGP+jyNoqW9bIBQrTLt+4IA5mHyHJpj2GCDQ+U2
+	 0mF2z6afAXUx8O2tuJl35LCgByPldWzAqtQiIoByLOm8tfWL1zwmXLxVuo53PfbHu3
+	 lJcaSibs7BCp+9QVB3dnoOGLLJLttv0SIQmdN6rGqhb+LkJ8VJiDxQkcrwQoHEJPiz
+	 vLIhaDUEleIe3Zfg718UGhfXyaq8gbnrQ11mMII9yu3RqMnicz2Oa6N9Nj4mj1ZCmE
+	 GHNhf4MJCtqtvUVOs65Y46ahDERPglOeB27qIaW9HUXTqcsY9zCJE3IZlCZj0tgSpp
+	 5/kFsc2fFMn1A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=lobster-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xQ3j4-0000000Cpjj-2AGA;
+	Sun, 08 Nov 2026 14:18:30 +0000
+Date: Sun, 08 Nov 2026 14:21:53 +0000
+Message-ID: <87mrrj8ku6.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Hongyan Xu <getshell@seu.edu.cn>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Robert Richter <rric@kernel.org>,
+	Zhou Wang <wangzhou1@hisilicon.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH 1/3] PCI: apple: Fix ECAM config window use-after-free
+In-Reply-To: <20261108105640.875-2-getshell@seu.edu.cn>
+References: <20261108105640.875-1-getshell@seu.edu.cn>
+	<20261108105640.875-2-getshell@seu.edu.cn>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] net: stmmac: release MDIO node if bus data allocation
- fails
-To: Wentao Liang <vulab@iscas.ac.cn>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Simon Horman
- <horms@kernel.org>, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261108110231.315004-1-vulab@iscas.ac.cn>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20261108110231.315004-1-vulab@iscas.ac.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_060904_460829_91631D6A 
-X-CRM114-Status: GOOD (  23.82  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: getshell@seu.edu.cn, bhelgaas@google.com, linux-pci@vger.kernel.org, daire.mcnamara@microchip.com, conor.dooley@microchip.com, rric@kernel.org, wangzhou1@hisilicon.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, robh@kernel.org, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,73 +91,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
-On 11/8/26 12:02, Wentao Liang wrote:
-> stmmac_mdio_setup() takes a reference on the MDIO device tree node and
-> stores it in plat->mdio_node before allocating plat->mdio_bus_data. If
-> that allocation fails, the function returns -ENOMEM and the caller
-> jumps to error_put_phy, which only drops plat->phy_node, so the
-> reference on the MDIO node is leaked.
+On Sun, 08 Nov 2026 10:56:37 +0000,
+Hongyan Xu <getshell@seu.edu.cn> wrote:
 > 
-> Release the reference before returning, using an error label so that
-> the cleanup stays in one place.
+> pcie-apple.c has no ->remove for pci_host_common_init(), so unbinding only
+> runs devres_release_all(): gen_pci_unmap_cfg() -> pci_ecam_free() frees the
+> ECAM config window while the bus tree stays registered - only
+> pci_remove_bus() unlinks a bus, and only pci_host_common_remove() reaches
+> it for a root bus.  The next config access is a use-after-free in
+> pci_ecam_map_bus(), which reads cfg->ops->bus_shift.
+> Trigger: CONFIG_PCIE_APPLE=m; as root, one command: # rmmod apple_pcie
 > 
-> The issue was found by a static analysis tool; the candidate was then
-> audited and the fix was prepared with the help of DeepSeek and
-> GPT-6.1 Sol. It was identified by code inspection only and was not
-> triggered; this patch was compile-tested, not tested on hardware.
-> 
-> Fixes: 1a981c0586c0 ("net: stmmac: Make MDIO bus reset optional")
-> Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
+> Fix: add .remove = pci_host_common_remove, as pci-host-generic.c does since
+> commit 01fcb7f777a9 ("PCI: Add support for unbinding the generic PCI host
+> controller"), so pci_remove_root_bus() unlinks the bus before devres frees
+> cfg.  Scope: cfg lifetime only; its IRQ handlers stay unreleased, so the
+> module is still unsafe to unload.
 
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Then this patch is pointless. Either you prevent the module from being
+unloaded, or you fully handle the removal. Any intermediate state is
+just churn.
 
-Maxime
+The former is easy enough to do, and gives you the basis to deal with
+the latter.
 
-> ---
-> Changes in v2:
-> - Sorry for the very late follow-up to the review.
-> - Use a goto-based error label, as suggested by Simon Horman,
->   instead of an inline of_node_put().
-> - Describe how the issue was found and how it was tested, as
->   requested by netdev-bot.
-> - Drop Cc: stable@vger.kernel.org: the leak is only reachable when
->   the bus data allocation fails.
-> 
->  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index 3ea16d618215..ded352afd103 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -356,12 +356,17 @@ static int stmmac_mdio_setup(struct plat_stmmacenet_data *plat,
->  						   sizeof(*plat->mdio_bus_data),
->  						   GFP_KERNEL);
->  		if (!plat->mdio_bus_data)
-> -			return -ENOMEM;
-> +			goto err_put_mdio_node;
->  
->  		plat->mdio_bus_data->needs_reset = true;
->  	}
->  
->  	return 0;
-> +
-> +err_put_mdio_node:
-> +	of_node_put(plat->mdio_node);
-> +	plat->mdio_node = NULL;
-> +	return -ENOMEM;
->  }
->  
->  /**
+Thanks,
 
+	M.
+
+-- 
+Jazz isn't dead. It just smells funny.
 
