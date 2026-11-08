@@ -2,35 +2,34 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEFE5606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:57:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C797606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ADQNDKcr;
-	dkim=pass (1024-bit key) header.d=seu.edu.cn header.i=@seu.edu.cn header.a=rsa-sha256 header.s=default header.b=QYWI+OfY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VJaFLuBc;
+	dkim=pass (1024-bit key) header.d=seu.edu.cn header.i=@seu.edu.cn header.a=rsa-sha256 header.s=default header.b=TkyLtaea
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=2EQJ24xhE/gqkBYq4fXAFxjW7usX/BJnOafpsVnIudM=; b=ADQNDKcrJ/vvip0oTwuJPmUDZd
-	2gp0hR5nLOgNimw6J+Qtafuv+I4d8EzFgUaagxRrCBCu/QfIEBFOZ2BLjzMCNvSXDI4HuFUG8zYvr
-	BbiUsLD6jRQXhwqLce75swzyWZpOXXmvLWuRpS8IxIaYrUyO8uWV+yCnkTK4GzogwsEzYtX6DAW3X
-	U/xXw4ZPg/w0O8g3dCWm0Vo2FXPRkVb0AXoONosjQD1YzirHVqGPVab8zWsQVTJKQevjDkmpoHa83
-	s5Hg1HiPv1ZuqyX36FSuPj1RYL2YN6B5/GQIgZu5cDrajS8bJQV2oH9EOIr31pGj4B4WtzIGJVeAG
-	0Ofgotvw==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=LQfWZFMR9WFMzlyRF7ueDqFRTYrzGXVUt1ZgeBbyRAQ=; b=VJaFLuBcgENnrR
+	3pBdsAxzCFUgkH+n0tmquwB3Q3+FgD9/CO0mjWpDg1Zwtf4lW3kzubsRUipLWMbMn7/KZztSIrNVt
+	hV+PeMGY2sUKryZb+n2AxDfD7PQMr6Nq4E0/lOEkOT2RIaNM73UyhmW0cBoUb5ZTHE5cNYJY+LYkg
+	eiCpN7P95EMJ7UYmJEaVHkqajnWBHCOhmAAyArQ/3nymmI3qNWEv/nl9GhBW0f4mvELAagnFMt104
+	k9KUvTip5C8E/nhbFy6o0zCx0zXvuNrBz2/DC4XEhaMuJ9cSLm4z9Ay2qMJemzKl6i9zWuZeNyIsV
+	ZWUlmMu1Vbgpjiz1NChQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ0a3-0000000G0Pj-1VJz;
+	id 1xQ0a3-0000000G0P9-0fTV;
 	Sun, 08 Nov 2026 10:56:59 +0000
-Received: from mail-m155101.qiye.163.com ([101.71.155.101])
+Received: from mail-m49197.qiye.163.com ([45.254.49.197])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ0Zy-0000000G0Mk-2yg1;
+	id 1xQ0Zy-0000000G0Ml-1M4F;
 	Sun, 08 Nov 2026 10:56:56 +0000
 Received: from LAPTOP-99KJFSET (unknown [223.75.64.82])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 53e3dfdd9;
-	Sun, 8 Nov 2026 18:56:41 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 53e3dfdda;
+	Sun, 8 Nov 2026 18:56:43 +0800 (GMT+08:00)
 From: Hongyan Xu <getshell@seu.edu.cn>
 To: Bjorn Helgaas <bhelgaas@google.com>,
 	linux-pci@vger.kernel.org
@@ -48,26 +47,28 @@ Cc: Marc Zyngier <maz@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org,
 	Hongyan Xu <getshell@seu.edu.cn>
-Subject: [PATCH 0/3] PCI: Fix ECAM config window use-after-free in five drivers
-Date: Sun,  8 Nov 2026 18:56:36 +0800
-Message-ID: <20261108105640.875-1-getshell@seu.edu.cn>
+Subject: [PATCH 1/3] PCI: apple: Fix ECAM config window use-after-free
+Date: Sun,  8 Nov 2026 18:56:37 +0800
+Message-ID: <20261108105640.875-2-getshell@seu.edu.cn>
 X-Mailer: git-send-email 2.50.1.windows.1
+In-Reply-To: <20261108105640.875-1-getshell@seu.edu.cn>
+References: <20261108105640.875-1-getshell@seu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1bacda3db03a1kunm546e4281ce696
+X-HM-Tid: 0aa1bacdac5103a1kunm546e4281ce699
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaTUpJVktCHR4dSkkeHkIZHVYeHw
-	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVTE5VTU9VQ0lZV1kWGg8SFR0UWUFZT0tIVUpLSUJDQ0
-	xVSktLVUtZBg++
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkaSU1CVhpMGUJPSxhMThhCS1YeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVTE5VTU9VQ0lZV1kWGg8SFR0UWUFZT0tIVUpLSUJDQk
+	pVSktLVUtZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=QYWI+OfYUyLjpbyMqMN5fJs14PBc1lVUJKUIdzK6W8iuOtsyYsJCCSgqQjccvS2PiQJlDRRFeyTvgLuVttsNZaLkI0Ok2Ryyo/oGoM6lwMtp2cARTfu6bJMn2vZ4kKvflKzyMhqAGmg9yT/zhPtsq6CWr8gaZpWY/I91WPLak7s=; s=default; c=relaxed/relaxed; d=seu.edu.cn; v=1;
-	bh=2EQJ24xhE/gqkBYq4fXAFxjW7usX/BJnOafpsVnIudM=;
+	b=TkyLtaeaGRYaWaR08vym002xhqiPJty9Igz67U9WHKDH1KRi5m4YECuVnF87xHBMvmRijKYmt1SsdDcbQcsSO6ezhfRTl0Vbn8aOZ1F9/KLgLpLf1IjsgD9T52MrZN8E15wtVobzquPYDHYYwUPuqBb11d3SESEw7482kYZ8Q4k=; s=default; c=relaxed/relaxed; d=seu.edu.cn; v=1;
+	bh=LQfWZFMR9WFMzlyRF7ueDqFRTYrzGXVUt1ZgeBbyRAQ=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_025654_935799_F39F812E 
-X-CRM114-Status: UNSURE (   6.69  )
+X-CRM114-CacheID: sfid-20261108_025654_595254_39B42C41 
+X-CRM114-Status: UNSURE (   9.07  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -80,46 +81,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Five PCI host controller drivers use pci_host_common_probe() or
-pci_host_common_init() but install no ->remove, so unbinding frees the ECAM
-config window through devres while the bus tree is still registered, and
-the next config space access is a use-after-free.
+pcie-apple.c has no ->remove for pci_host_common_init(), so unbinding only
+runs devres_release_all(): gen_pci_unmap_cfg() -> pci_ecam_free() frees the
+ECAM config window while the bus tree stays registered - only
+pci_remove_bus() unlinks a bus, and only pci_host_common_remove() reaches
+it for a root bus.  The next config access is a use-after-free in
+pci_ecam_map_bus(), which reads cfg->ops->bus_shift.
+Trigger: CONFIG_PCIE_APPLE=m; as root, one command: # rmmod apple_pcie
 
-Patch 1/3 is the apple driver.  CONFIG_PCIE_APPLE=m plus
-module_platform_driver() means one root command, "rmmod apple_pcie", is
-enough to trigger it.
+Fix: add .remove = pci_host_common_remove, as pci-host-generic.c does since
+commit 01fcb7f777a9 ("PCI: Add support for unbinding the generic PCI host
+controller"), so pci_remove_root_bus() unlinks the bus before devres frees
+cfg.  Scope: cfg lifetime only; its IRQ handlers stay unreleased, so the
+module is still unsafe to unload.
 
-This series fixes the lifetime of cfg only.  It does not make these drivers
-safe to unload: apple's IRQ handlers and microchip's PLDA IRQ domains are
-still not released, both pre-existing and out of scope here.
+Fixes: 1e33888fbe44 ("PCI: apple: Add initial hardware bring-up")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongyan Xu <getshell@seu.edu.cn>
+---
+ drivers/pci/controller/pcie-apple.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-The defect was found by code review; the trigger steps are in each patch,
-but no oops or KASAN report is attached, as none was measured.
-
-Patch 3/3 is one commit for the three remaining drivers and therefore
-carries three Fixes: tags; it can be split apart if you prefer.
-
-Hongyan Xu (3):
-  PCI: apple: Fix ECAM config window use-after-free
-  PCI: microchip: Fix ECAM config window use-after-free
-  PCI: thunder-pem, hisi, thunder-ecam: Fix ECAM config window
-    use-after-free
-
- drivers/pci/controller/dwc/pcie-hisi.c            | 1 +
- drivers/pci/controller/pci-thunder-ecam.c         | 1 +
- drivers/pci/controller/pci-thunder-pem.c          | 1 +
- drivers/pci/controller/pcie-apple.c               | 1 +
- drivers/pci/controller/plda/pcie-microchip-host.c | 1 +
- 5 files changed, 5 insertions(+)
-
+diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
+index 2d92fc79f6dd..805171551e01 100644
+--- a/drivers/pci/controller/pcie-apple.c
++++ b/drivers/pci/controller/pcie-apple.c
+@@ -884,6 +884,7 @@ MODULE_DEVICE_TABLE(of, apple_pcie_of_match);
+ 
+ static struct platform_driver apple_pcie_driver = {
+ 	.probe	= apple_pcie_probe,
++	.remove	= pci_host_common_remove,
+ 	.driver	= {
+ 		.name			= "pcie-apple",
+ 		.of_match_table		= apple_pcie_of_match,
 -- 
 2.50.1.windows.1
 
