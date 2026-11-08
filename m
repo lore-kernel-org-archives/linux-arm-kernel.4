@@ -2,78 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69810606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7CA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1sGwVK12;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PNpKxx95
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1tVxO/Bb;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=IwjcfgP9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=v1Af1P1P1zbev8CYQkts6hQ+hHJRvEA7sX0TkjFdZnw=; b=1sGwVK12OZ2uyD
-	uDnNb0sw9ApcN8CC9Npy90TlVG2DWzhPFYp+6h/pX+fsmrCVlIpv/1sA7NVO+MbC/Co4DPfWitIGM
-	GMJyBUMU0zwFIa23YpNQ495P5H3uHgQojaARI8ti3BDxT07somjxqZY/kVULi3/Xmax5UuOab+xoO
-	sYCOnNWSX0LG8QWcQu5MENOvhvKfnq6Q5XpGjZOLi7ebIayiZoCqI+gOgK9ir1VSlvX4ePDT1+QiY
-	Br3xo46QOI9AitXsHk+xFSSIyKcYxsXLGrhM08eZmk0Ygv5wkXlD2ZGNUY1cK7Opq4r5I+94raqpK
-	ZO76niEGXuerUkY3pmGA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=muKBTpgIwomUfoL+ebA1PuO9dc4a3sXML+kuNL0YxMc=; b=1tVxO/BbZw38GFrw7ukRfMpSIp
+	58VoFR14rXFc4NCvwDSw4O9iQoY6w1LCEKBNtv9p2MhB3ewmtzuBnqpFLM70MeOLyupGoceWWVeYy
+	IAR2NF2A08OEZYTeV/jZdxBNXt0DHwFR0qyKW4Pn3jZBsDotHnuJ8QLf6Wi+9GB6BmiZ7bhDlsItW
+	Lgbpla/9xSv7FImomgq+CF9d4gS6CCTZXIP4bV69l/wyTkgbAbX2WYOZ8rRdQQ2q7+dV8xD2/Ww4a
+	gBomDxjzp0JCfCr52CnJ8WFJmPyN2JrZnsqM9VZnRpeolncv1RjnN0BtUrOz61sG3paauoVmFmCT9
+	hf6ey/5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ05w-0000000Fxvk-1YSC;
-	Sun, 08 Nov 2026 10:25:52 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQ07F-0000000FyCQ-35eC;
+	Sun, 08 Nov 2026 10:27:13 +0000
+Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ05u-0000000FxvO-1zD5;
-	Sun, 08 Nov 2026 10:25:50 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3F3A6402D5;
-	Sun,  8 Nov 2026 10:25:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 028201F0089F;
-	Sun,  8 Nov 2026 10:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794133550;
-	bh=v1Af1P1P1zbev8CYQkts6hQ+hHJRvEA7sX0TkjFdZnw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=PNpKxx95tQplb5JM4+uP1TWChj9AbUwLPfociXRfICTLjmxCZsejaOIwW3ME4ie8R
-	 HmFXofTZWu8JpP2MW43DM3+pDXHvi6hiHE17B7I/TUzxhh+fQSFDtDXxMreH/NWSsf
-	 8cyq8mBKLjCB7wDMu2KOl38Yo9G8k7b6ZgzLer+FnR/iTPIzqX1Z+Xk2WojQCfGufD
-	 OhfJx3Z+C4C0m1RWkFRA6otBVj/6VmSmnoH+K1jsr/xbUyatur17pMbrlWXNnaxLqf
-	 kt7iny3qW7m7ps+H9EYZMM7+TR57qqGMlkwl9ookoNI6pROi4I6zbnHf0wMz3GF8FK
-	 WyrbCqg68nmEA==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 8509A2BDF03E;
-	Sun, 08 Nov 2026 10:25:48 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Jiri Kosina <jikos@kernel.org>, 
- Andi Shyti <andi.shyti@kernel.org>, Chen-Yu Tsai <wenst@chromium.org>
-Cc: Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, chrome-platform@lists.linux.dev, 
- linux-input@vger.kernel.org, linux-i2c@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261103043734.2179858-1-wenst@chromium.org>
-References: <20261103043734.2179858-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH v7 0/8] arm64: mediatek: Chromebook trackpad
- supply fixes
-Message-Id: <179406980914.3424803.6201831446824678583.b4-ty@b4>
-Date: Sat, 07 Nov 2026 16:43:29 +0000
+	id 1xQ07B-0000000FyBg-2XJJ
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 08 Nov 2026 10:27:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:content-transfer-encoding
+	:in-reply-to; s=k1; bh=muKBTpgIwomUfoL+ebA1PuO9dc4a3sXML+kuNL0Yx
+	Mc=; b=IwjcfgP9iE46P2DVCrb8sqNBMdYcjPCP+KPKR5KgJZIcdkl2QaXc87hQ6
+	sp+ynLqDh6YI4nV3O/sH//uny4WjwTFNTxjflcWFA19CAYvu1xzgKBiV5rh7tQeU
+	xYPW/YrgHJPaicHFEeSzlWD4Mp8B2M2d643TDPsSCQiIycpcrd3+E2DHKBTFzxgH
+	ifisSvEKyK7l80w0ybuhVc9b/b79mY88dWUQPvalg0A6M87JZu0lvJ0rKJgTP3wh
+	Ybo3SbY+Q8/7r9y4bzZ3danVSh1+z5qT7GKf7ezMEqvHg9hnpg4rYErjT1RZK/oU
+	c1jdXwqloTmzQKHl7AGykEcnWZQGQ==
+Received: (qmail 2810692 invoked from network); 8 Nov 2026 11:27:07 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Nov 2026 11:27:07 +0100
+X-UD-Smtp-Session: l3s3148p1@tsR9ScFf1Ixe20rG
+Date: Sun, 8 Nov 2026 11:27:06 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Dmitry Guzman <Dmitry.Guzman@mobileye.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	srinidhi kasagar <srinidhi.kasagar@stericsson.com>,
+	Ben Dooks <ben-linux@fluff.org>,
+	Andrea Gallo <andrea.gallo@stericsson.com>,
+	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/8] i2c: nomadik: handle pm_runtime errors
+Message-ID: <avBOeuNEVo4xn3o6@shikoro>
+References: <20261103-i2c-nomadik-fixes-v1-0-655c6af2cb70@mobileye.com>
+ <20261103-i2c-nomadik-fixes-v1-6-655c6af2cb70@mobileye.com>
+ <CAD++jLm+m+YNhTaUnTm=dwO4p8xYe8OjZ7qhQ9_u15dnxURiVQ@mail.gmail.com>
+ <auxDe0lmVCDu_iXA@shikoro>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1241; i=broonie@kernel.org;
- h=from:subject:message-id; bh=YiAPZOAOOLU5YOLoZTNzrcCrnz944fe3k/TYLXO5sfw=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI++OmIHPW+E3fsCTvnHlePnZLv27l4DoQUyWulREY6x
- 286EMfYUcrCIMbFICumyBKXxf2yvuT1Gr6DC9tg5rAygQxh4OIUgImoXGb4X8KwJZIzezXroi7x
- WYeFpnm4m6/L3b/AvFr18r6k/sLE8wz/M/1VJh02W1fszLh1RtSWKfKXivZ3yAftjY+w65/y++Y
- 2ZgA=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <auxDe0lmVCDu_iXA@shikoro>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_022709_936193_D4590FB3 
+X-CRM114-Status: GOOD (  21.29  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,50 +78,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 03 Nov 2026 12:37:24 +0800, Chen-Yu Tsai wrote:
-> arm64: mediatek: Chromebook trackpad supply fixes
+On Thu, Nov 05, 2026 at 10:51:07AM +0200, Wolfram Sang wrote:
+> On Thu, Nov 05, 2026 at 09:42:02AM +0100, Linus Walleij wrote:
+> > On Tue, Nov 3, 2026 at 9:30 AM Dmitry Guzman <Dmitry.Guzman@mobileye.com> wrote:
+> > 
+> > > In nmk_i2c_xfer(), pm_runtime_get_sync() is called on start and then
+> > > the controller registers are accessed without checking the return value.
+> > > If pm_runtime_get_sync() fails, access to the register of the device that
+> > > was not correctly powered on may cause a bus fault or other unpredictable
+> > > system behavior.
+> > >
+> > > Check the return value of pm_runtime_get_sync() and it if is not 0,
+> > > return the error immediately.
+> > >
+> > > Signed-off-by: Dmitry Guzman <Dmitry.Guzman@mobileye.com>
+> > (...)
+> > > -       pm_runtime_get_sync(&priv->adev->dev);
+> > > +       i = pm_runtime_get_sync(&priv->adev->dev);
+> > > +       if (i)
+> > > +               return i;
+> > 
+> > It's a bit odd to reuse the i (= iterator...) variable for this.
+> > I would just add an int ret or int err for this.
 > 
-> Hi everyone,
-> 
-> This is v7 of my Chromebook trackpad supply fixes and optimization
-> series.
-> 
-> [...]
+> Yes, please.
 
-Applied to
+I changed this to:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.5
+@@ -730,11 +730,12 @@ static int nmk_i2c_xfer_one(struct nmk_i2c_dev *priv, u16 flags)
+ static int nmk_i2c_xfer(struct i2c_adapter *i2c_adap,
+ 		struct i2c_msg msgs[], int num_msgs)
+ {
+-	int status = 0;
+-	int i;
++	int status, i;
+ 	struct nmk_i2c_dev *priv = i2c_get_adapdata(i2c_adap);
+ 
+-	pm_runtime_get_sync(&priv->adev->dev);
++	status = pm_runtime_get_sync(&priv->adev->dev);
++	if (status)
++		return status;
+ 
+ 	/* setup the i2c controller */
+ 	setup_i2c_controller(priv);
 
-Thanks!
-
-[1/8] regulator: core: Add "enable and wait" functions
-      https://git.kernel.org/broonie/regulator/c/9f9bcca6adc3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+while applying.
 
 
