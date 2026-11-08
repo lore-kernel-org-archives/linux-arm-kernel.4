@@ -2,75 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA13606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 09:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77E01606D835
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:07:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L5jxK1jq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W2zeZ5s2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KvLhPH7B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Message-ID:Date:References:In-Reply-To
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=d9oSnze2vw3oc+VVxfYM2BcxQUZjEbs0B685TTsdPkk=; b=L5jxK1jq+MhNlZE2f+vUeBpk3v
-	sYvH9Mc3IQlDynQ0gJsQPpAEJ6qTyijUvNposVG1+ukXR6FUd/Rb57y93s2GjjGQeoOpbtfKgFIsS
-	Ufz8ZofmbavHqfhyK+Tu2CjCrskYgtya4fReHS+46zN/T6qLMruNETpe1kdcBZYe9KYeCecwwPXKk
-	GtIh63QeOE/82efcE4ju5SLYpylDmHoW3Ke+VbnUKbFe1PTaTc6Uvr7xipXcDk3JysNsOVKEbSyJm
-	5KeyNQ4SvD/aGQE+S5AKjzNflqgAAzFDVHwvtrHEKaTQi7X8shR/Pxn1RKSrWiidxgrhkuFKEYbnT
-	AovT2dcQ==;
+	bh=/CBIxBtxe5cLJliqrEr89kFFnMkA85ZCth8NQT0Zhdo=; b=W2zeZ5s2kym9yCdSzzJY7mftUi
+	Mws0/d+c4r6Sye1u+G6erH+2eiA19v8tasKysFd5VG7gxKsd+qVmSqHcrG8yAWwx7NQhygmjVGa7m
+	zT2JrRXr1nRmvFUBEd1+69yF9ACIFmjqb5EOhxWYG+LRs/nf1yiRUCJsJ6s3P5YHrCaCYH4oATO78
+	0MCZnz3YhazOobCocPjBqQrXI3SdqOukb/gxGaCT9WUo412H079LfEvY95ZNsR4kvm0bVPMz8PV+i
+	3eG3uegESV3CHufDw+RM314MPZ1r8+CjcgvxHUttsvW/l75GgWyL97inG7VGj7zBjHtbh491SvG91
+	wmAD5q7g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPzaj-0000000FvqL-45cS;
-	Sun, 08 Nov 2026 09:53:37 +0000
-Received: from smtp25.cstnet.cn ([159.226.251.25] helo=cstnet.cn)
+	id 1xPznc-0000000FwIq-0bit;
+	Sun, 08 Nov 2026 10:06:56 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPzag-0000000Fvpv-3Nf1;
-	Sun, 08 Nov 2026 09:53:36 +0000
-Received: from [172.100.0.8] (unknown [36.110.52.2])
-	by APP-05 (Coremail) with SMTP id zQCowAB3ELabRvBq5PiYAA--.38431S2;
-	Sun, 08 Nov 2026 17:53:31 +0800 (CST)
-Subject: Re: [PATCH] mailbox: mtk-cmdq: Fix GCE clock reference leak in
- cmdq_get_clocks()
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Jason-JH Lin <jason-jh.lin@mediatek.com>,
- Jassi Brar <jassisinghbrar@gmail.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <2026091720-erased-urchin-8903@gregkh>
-References: <20260917093745.2144930-1-vulab@iscas.ac.cn>
- <2026091720-erased-urchin-8903@gregkh>
-Date: Sun, 08 Nov 2026 09:53:42 -0000
-Message-ID: <179413162201.2723269.10723981032501014855@iscas.ac.cn>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	id 1xPznb-0000000FwIU-0Taf
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 08 Nov 2026 10:06:55 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 59D9A433E9;
+	Sun,  8 Nov 2026 10:06:54 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794132414;
+	b=gjwXEXSrIIFZKF+0wUN8fhMUo8NuLZw+ZcgR7U1uwSzxsWLkl4fPHcc33TDsBpVPMvjr
+	 JBo9xw5HTEMcB6rczqMOaQzPa9sYTMTfaJ2x0c8BnkbJc7dU+xk1vKPM4BroYuqgfekT5
+	 bpx2GJ+QIFaxwjHpCcEG2O+ADOAAgAs4yeZorxNtbwz48vy2wSSop1AvmI1C69g0gpvRv
+	 L42fGfg/T+KOqXPdrVL1UG9YGz2lrmWZb4pLQj1PBq60Eb6vdMV5A5eXVzN/Qev4aXUZV
+	 yr/dtBqz2rKBn8tdnnMP6HzsX7p32tmCj9S84efiTH6/wk6B/ipT9RjKOKjx/ZDdAqQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794132414;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=/CBIxBtxe5cLJliqrEr89kFFnMkA85ZCth8NQT0Zhdo=;
+	b=clMj8vIEASOoWeQpWDmbNzAS9RH4SgttRm6/CpJ/l2n3a/ynMcEC3UrFLIPapIvnKSZK
+	 iSdHjMG+8KRbpbsXfYRutlZud7SIGucTdP9w1GY/Qg4eBcJ5dQuMqERO55eg5vG/8m20U
+	 EJqPsB5dqSm/HRi3LEfC6oUUB+ijOZoTXdgXpCGYsZU2G4FdlT4UBNTqMxQz1jhUWHuAW
+	 o/XbgtEFe4ycr4e3enxW1M+YjZBrckPuMexVMislr7OCaxgJkk7keORekkzfb6RaComiB
+	 G5EERJXFBl915qTacUyWL5+zyWhckhdjPyJh5BTBCmVErXSaJR1QVXhsvib3SD/CM+w==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 870AE1F0089F;
+	Sun,  8 Nov 2026 10:06:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794132414;
+	bh=/CBIxBtxe5cLJliqrEr89kFFnMkA85ZCth8NQT0Zhdo=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=KvLhPH7BfjsHpLg/3a6uI53+BWg8QV1PgaNxg7i7/SYvFZdSVInvD4nZlRDcPPxjK
+	 TNGcUsOqIvWOfar1j/QYyFwZLVLhoUwc6XPsLGz/UQ2Cnfakcu6l9zWPnZ9eIy1MiH
+	 Hxnj9KJNEnyOFDIGeZgDaCzxvRnA/WKLhozjE+NdnO+M3UFTH7pFtDwUI6HdSC3olg
+	 n4lflx/vRSzEij9nDC7OxNmmDKh9eBKxwOIK9knQTlyQWJwlaoWuJbVcA/PceGu4Hc
+	 js8Ke+e18Zv7HS93eJ2iw+OpWQRFNF02gs1L/P4ejhamOieem3qPWWDrETLsVwaKXq
+	 S3NNrXo5GFVaw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 0CED647ECF;
+	Sun,  8 Nov 2026 10:06:53 +0000 (UTC)
+From: Vincent Jardin via B4 Relay <devnull+vjardin.free.fr@kernel.org>
+Date: Sun, 08 Nov 2026 11:06:50 +0100
+Subject: [PATCH v3 2/5] dt-bindings: soc: fsl: layerscape-dcfg: add the
+ LX2160A pad-mux child
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CM-TRANSID: zQCowAB3ELabRvBq5PiYAA--.38431S2
-X-Coremail-Antispam: 1UD129KBjvdXoWrKFWxWF4DtrWxuF43WrW7Jwb_yoWDGrb_Wa
-	yvyr9rWw18XFW7ta1DCr4UZrWSg3yUu345G348Xa13t34UXFsrXFs8K3s3ZFy3KFWSqFnr
-	Grn8Aw13Aw47ZjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbxkYjsxI4VWkKwAYFVCjjxCrM7CY07I20VC2zVCF04k26cxKx2IY
-	s7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4
-	kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_
-	Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26r
-	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-	6xIIjxv20xvE14v26r126r1DMcIj6I8E87Iv67AKxVWxJr0_GcWlOx8S6xCaFVCjc4AY6r
-	1j6r4UM4x0Y48IcVAKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxAI
-	w28IcVCjz48v1sIEY20_Gr43Wr1UJr1l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4
-	xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43
-	MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I
-	0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8
-	JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2KfnxnUUI43ZEXa7IU5
-	FksPUUUUU==
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCRIFA2rv4kic0wAAs9
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_015335_249130_7FAC9343 
-X-CRM114-Status: UNSURE (   8.96  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261108-for-upstream-lx2160a-rcw-pinmux-v1-v3-2-5a0063f1da9e@free.fr>
+References: <20261108-for-upstream-lx2160a-rcw-pinmux-v1-v3-0-5a0063f1da9e@free.fr>
+In-Reply-To: <20261108-for-upstream-lx2160a-rcw-pinmux-v1-v3-0-5a0063f1da9e@free.fr>
+To: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
+ Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+ Vladimir Oltean <vladimir.oltean@nxp.com>, Vincent Jardin <vjardin@free.fr>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794132412; l=1618;
+ i=vjardin@free.fr; s=20260525; h=from:subject:message-id;
+ bh=NV7ikdkPmY9swMmgPPLfT7uHu5tnhWSgtC9GlwjwoQA=;
+ b=HWpUJ1RYuSjYL0KrlrQ9yYqQhY5OFmSV9BDxpxQQ4oEFdU1EBPF3/iBvnGdWb1yjctEiy5xli
+ I3zIhT7fEbCCTMH4CawT1BFrQ0senC5UPUWxCLsscMfrPvzNo6AlfCA
+X-Developer-Key: i=vjardin@free.fr; a=ed25519;
+ pk=hppgLeFpGpKOi7LNwGEZ4jOYofJCoGd4Jf1ltAabiLw=
+X-Endpoint-Received: by B4 Relay for vjardin@free.fr/20260525 with
+ auth_id=871
+X-Original-From: Vincent Jardin <vjardin@free.fr>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,36 +116,70 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: vjardin@free.fr
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Greg,
+From: Vincent Jardin <vjardin@free.fr>
 
-Sorry for the very late reply, and for the confusion and extra work this
-caused. You are right: I kept sending patches while not answering the
-review comments on the ones I had already sent, so it looked like the
-patches were coming from an unattended bot. They were not bot output, but
-I skipped the part that matters, and having to drop them is work I caused.
+On the LX2160A the DCFG node holds the pad mux, overridden through its
+DCSR view. Allow fsl,lx2160a-dcfg with simple-mfd, so that the child is
+populated, and the pinctrl child, on the LX2160A only.
 
-For transparency about how they were produced: the candidate issues came
-from our static analysis tooling, and I used DeepSeek and GPT-6.1 Sol to
-help audit the candidates and prepare the fixes. I decide what to send and
-I am responsible for it; the problem was that I sent far more than I could
-follow up on.
+Signed-off-by: Vincent Jardin <vjardin@free.fr>
+---
+ .../bindings/soc/fsl/fsl,layerscape-dcfg.yaml          | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-I have stopped sending new patches. I am going through the outstanding
-feedback manually, one thread at a time, and will reply to each one. I will
-not send patches in batches again, and will only submit what I can review,
-test and answer questions about myself.
+diff --git a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
+index fc14fd0bf84b..6661c7d08340 100644
+--- a/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
++++ b/Documentation/devicetree/bindings/soc/fsl/fsl,layerscape-dcfg.yaml
+@@ -32,6 +32,7 @@ properties:
+       - items:
+           - enum:
+               - fsl,ls1028a-dcfg
++              - fsl,lx2160a-dcfg
+           - const: syscon
+           - const: simple-mfd
+ 
+@@ -66,10 +67,27 @@ patternProperties:
+   "^clock-controller@[0-9a-f]+$":
+     $ref: /schemas/clock/fsl,flexspi-clock.yaml#
+ 
++  "^pinctrl@[0-9a-f]+$":
++    $ref: /schemas/pinctrl/fsl,lx2160a-rcw-pinmux.yaml#
++    description:
++      The pad muxes of the RCW on the LX2160A, at their RCWSR12 to RCWSR14
++      window, overridden through the DCSR view of this block.
++
+ required:
+   - compatible
+   - reg
+ 
++allOf:
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              const: fsl,lx2160a-dcfg
++    then:
++      patternProperties:
++        "^pinctrl@[0-9a-f]+$": false
++
+ additionalProperties: false
+ 
+ examples:
 
-Sorry again for the noise.
+-- 
+2.43.0
 
-Regards,
-Wentao Liang
 
 
