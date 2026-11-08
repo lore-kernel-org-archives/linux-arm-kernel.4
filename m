@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72288606D83B
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 17:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005ED606D833
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 17:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BAYC5JpJ;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=FFYQAXc1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n39cGPsY;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=QYInMVi/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,66 +14,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:To:From:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NmyEWJc1Ic7Z/rksgvIEk89eDaTsRIbN9HNjuWwu8cA=; b=BAYC5JpJ4B/zUwGxqVQH1gRf2i
-	izhdeMYZl72iSN439NvHTd/x/hltFAxCUXgGgcs7/uZf5P65URFzaghUp6mtl0V6WTSoz3OK/rAN4
-	EDhze+SAp6fKHERsTm+oyhgsOaQ1mMowiOSv+JhgKPYQTYEg7j7NArQbq0qfTJqjDHQVFhwaAJ6GM
-	K/ktscppNSCVS47xxvnJ3WjxYzbmqwt+Wb6MkRsaIIsgL/v389DHOCGi+mhFK7CetjyX1xMZv9dtr
-	r+NXV3rPmcWJWh1CJqU2/BY13ie5xZNHcLYHMewe68GPEdhlrLp/bWwYHKWvP3dGtpLEUe3jpdrYz
-	xKszkY8g==;
+	bh=YXcaywW82/OwTpJaNMPSCSwp6PL1lwbEbYBT4RlUze8=; b=n39cGPsYC0qP5LOcOxUfAOvDmL
+	Nm67QokBIAdz7TLmwmhS8qNBmlqIM1mV/3VnPltVak7gn4yqGeKPENcWQcQ37wyqSNZzHedsRkKda
+	OatSo3dA60sll8CWqcMmCRnyFxjF5u5n52JBhmAnLJrCO0jynSvfSk+CRKS2IK7iROcmUTLa4IGxQ
+	lTygbZnO5AlpyKL5k1v3cBOyL6Xj7YzcdVyZxIzwGuTSZZQJxmSkgNQiyrz//L6e0vEccSlwgQT6w
+	DvQr+4w5R4Mf0wzlPXJAzplfE2FbuRrStUkVFH71vWio/2ZSJ7Airf07yCjJBn32VWd16Wru+7R8e
+	DDl21iog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ6d0-0000000GQln-3HHd;
-	Sun, 08 Nov 2026 17:24:26 +0000
-Received: from xmbghk7.mail.qq.com ([43.163.128.44])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ6ct-0000000GQjF-1taX
-	for linux-arm-kernel@lists.infradead.org;
+	id 1xQ6cv-0000000GQkN-2ZWM;
 	Sun, 08 Nov 2026 17:24:21 +0000
+Received: from out203-205-221-164.mail.qq.com ([203.205.221.164])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQ6ct-0000000GQjD-1GmY
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 08 Nov 2026 17:24:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1794158653; bh=NmyEWJc1Ic7Z/rksgvIEk89eDaTsRIbN9HNjuWwu8cA=;
+	t=1794158649; bh=YXcaywW82/OwTpJaNMPSCSwp6PL1lwbEbYBT4RlUze8=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=FFYQAXc1xWyQuIB8eNGgGZFRoX5FVVTGO/y40V3IEqfHmD2995JverP+VZ+9ns7m9
-	 DAmzshq8bAi0d9wShpzOrUFqTt2EkRnPNHDDZjOsormulSp+WWZOsSg3uexDhewceX
-	 y8+fOBUETQkhjpwCjJNfYuAS14DYu9HfBoTmteyQ=
+	b=QYInMVi/0IJ1xu5rrNkVRE0OGi6yLvtYPJ6uCGl7kG2mtNeKpyBZ/QfgDQPTfHsJz
+	 FcwTA4LzCXyDgb//nV8IPY5XqIuPc0+LMVLJ898o2ALjbACJ9Msll/ds9F/H//gufu
+	 KzgxmRyLlnXUPTQDUf5X1vCpho5xrd51bUaXxhnQ=
 Received: from [127.0.1.1] ([5.195.0.150])
 	by newxmesmtplogicsvrszc56-0.qq.com (NewEsmtp) with SMTP
 	id 5F906C5D; Mon, 09 Nov 2026 01:23:57 +0800
-X-QQ-mid: xmsmtpt1794158651t44il0cdn
-Message-ID: <tencent_8AA2EA5638DD0246FDAA553AD6E31759410A@qq.com>
-X-QQ-XMAILINFO: M1rD3f8svNznPs19ki3w231F8oYPXsRSoFBm+zE6AJTP782SOyUS7n++LFzCih
-	 NZFiATXOwMZ2XKgUIgs8aM95A0UE9BIKjaC1HQ53Qo+IiTdh8SPn6XVX5jMl4n8K6BjjDAI2O3Tv
-	 F23Nlircw7FAKRQ1EsoibqMHhnz0NbGMBintRwebUYlQdiL04IlDRf5AQHvWsA/n9NtY5/+Fo1MP
-	 JDLlO7eVfHh1EmBKLHbuh0yH/j4fdmQwP8nZg99EXHGYAH+QZ8+fqVy2VNzER8HvAB7ggbPUCE+K
-	 CxeWkK8Ib+y57VJT6TPXJIDlnbYvYJEdqmKcsFd+yBon6ud+W/3lwt/GChqoHzJuBPo0UqVkb1S9
-	 TCqW7I3ulc3PyrodtSz1RUxy4yTJGuRgM3RSD/p+4vBKbDrcSydynZ88+4DhbECDp8JbbhvZLMKZ
-	 ikJyxZO1bgqcZLPg7a22Kptd080qH/0Exm8+HoioVHuSg+lHH2oL8XcWTOvYbUvKls8woq0+4/Fr
-	 w0h6ODcVTjCga2/hObCwaj2G2Key/DoUmJpBwOwhsUiY0RFqKfAJebcfBqhXTBRDYoRqIZfN+XI8
-	 +L2QDb6+VLAzCaX0vIqdOa/PxWt36Zj+JePWM2eDpxONy8uJl1M3tPlVk7iDcUIrV0fvyMUuE3BI
-	 Gxjmc5oSdyI5e6GeHsB6Eal8dbE2hjiG0AJqdvp/LF957fI7FZ+vPH3J008+IuqpF08s+nw7XD7y
-	 1Zv/cY0wP44AWuM6XPs1fDzW/9fETUA6wOyi76b5dvWbmotdaH0PtPgy/8n0VQDDxBMXIgWn/jQ/
-	 Y+jEmodRCFLUTEXlIsaVcZpceEYMv8LC8Sa3uW7s0ku02UFe/cLgMYo03gG++nPkE3vSTloa9Qo2
-	 r/aL+fMT/c4ojJ5h6blioZm7dm37nsSPq9kYlA1/Jweweb9rSW7eg3cYtxtLsQ/eeoGPM2FSeTqR
-	 Vj1V7J81iM3mnhYLbLUmwsjBrmenJs+JMImCC2Oeu1yWgPp76AoLCBR5wJjYlD8WPgl6dwH//GBL
-	 v4hOJufPox5T48dsWT4SSqq03aogLTm0NLsd7eBH98mu1aNqSBA6ohIwhbDfUWlhZsf9tT3yC0Xx
-	 0vS0yO
-X-QQ-XMRINFO: Mp0Kj//9VHAxzExpfF+O8yhSrljjwrznVg==
+X-QQ-mid: xmsmtpt1794158646t9xll2mry
+Message-ID: <tencent_B3A6FAF92249C8215D13A70D408EDFE8CA07@qq.com>
+X-QQ-XMAILINFO: MllZffuBkEb5boNCQzmaUwllHI1wfo8Ka7ClInv3/51fNUUapbjuYbgYfimhjB
+	 GUM0w0uBpzA3xogDudQnRqcQwUSnZLnPXyueFgW+Bk1cZClF130458+FudhE6OmjNNhHlrQxg29I
+	 sBlna+vVU1LiH576UI1cNiNQqctkhQ5dG98tYFPuJTMeQCpuqyBwthR2b6uCQJloHhtHhjvAL49L
+	 9hjUYhluCcbu0noSSeWwnbj6uC3i264xv7iILWEhhhEpCaQQRWejdpMsupN/jK9I1qKtPrJjzlZM
+	 84o8dq9x57v5/UpEuFnBhUcCDLrBHM0HZlSvWEebvEkQsz0TasXLzSb5MmjBs/KnHOaeCNIyJp7n
+	 zZTLeJOYpXUTZ+ff8XlSdrW8k42usYbqEwq0zx4UsMoxzIMT5WNN+MQLJnV0BcwiA8Om5aQzOx0o
+	 M1tfPH36gDSWqEKIEaaJrLRFmRbq76dBzhiFvXuw0I5Cl+tUjHUmbLfOw/tGwydPRMEDbVD4QdjK
+	 fRdenc+39X3wNwEarJ0wqZbzlbUMuXp0S19kk3ODJFeIQHGjgFf1WMgpqRDWnGX8wiye+5cVC8YM
+	 wbsQ9wGN7app4n1XTC4f9/0rrYy9+7tWKE1jKuSquEJlOwXqfw0yLeZflXnjZPV3XtJ8EC+s6pVg
+	 LZq0OAw2qwa6ay3djQgnyJ0jzHCniXXod/alnGr1L0AAGNQ0ikgeseA3japcYL7XecNk8hEx+XrG
+	 TU0PtSeRTecYS0r9W+xKw39QU0y5KoVAFh2dIWo3K4eyxBZtlOHDisCm+reJqkZEI6WSufNtPRhu
+	 MPfZS03slI65W06sszj06jbKan2qMKRuwUhqmYlUKHVe9E9Mvwv41mpFADzFjHgvvhvg8It9rc74
+	 AJEcEn8KI8QGUSg95Slygki6eBzjPesog85VxWl+PPItUC6JAtDaM351BPoq7bcOZtbQr/L3Z/Ds
+	 q6T2hSDMB8UToYfeZ1LQuNONOBLervkon6vCjNqJkhL+AxHmbcRYZIpKv58kIwpBzdqQFexgINCc
+	 6dzQE1qO4cYmT3AjIZyV2o3uducA0abi8HcNLFct0SDFwe2S53
+X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
 From: Jiawen Liu <1298662399@qq.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>, Arnd Bergmann <arnd@arndb.de>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] misc: atmel-ssc: handle clock enable failure
-In-Reply-To: <2026100111-tinwork-unglue-3b65@gregkh>
-References: <tencent_95E7173942FAE82639FD03E6FFCE5516D60A@qq.com> <2026100111-tinwork-unglue-3b65@gregkh>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, Alim Akhtar <alim.akhtar@samsung.com>
+Subject: Re: [PATCH] i2c: i2c-s3c2410: fix runtime PM cleanup
+In-Reply-To: <aoRq_1DgSUrmR_i_@zenone.zhora.eu>
+References: <tencent_692077742B9CE600137EC92B0FEA258A8C09@qq.com> <aoRq_1DgSUrmR_i_@zenone.zhora.eu>
 Date: Sun, 08 Nov 2026 21:22:12 +0400
-X-OQ-MSGID: <179415853265.5.11620130792194703406@qq.com>
+X-OQ-MSGID: <179415853265.5.8299501898122494056@qq.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_092419_882280_6D0A41AB 
-X-CRM114-Status: UNSURE (   6.36  )
+X-CRM114-CacheID: sfid-20261108_092419_713277_546148E1 
+X-CRM114-Status: UNSURE (   6.71  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.8 (-)
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,13 +90,17 @@ X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Greg,
+Hi Andi,
 
-Thanks for catching this. The Signed-off-by name should match the From line;
-I'll use my full name, Jiawen Liu.
+Thanks for the suggested wording and tags. The proposed ordering works for me.
 
-I'll recheck the patch against the current tree and the recipient list before
-preparing an update.
+One detail: the driver keeps the clock prepared and enables it for each
+transfer. Could the description say "keeping the clock prepared until
+adapter teardown is complete"? This preserves the prepare reference for
+transfers that a client may perform during removal.
+
+Please also add the proposed Fixes and Cc: stable tags. I'll use my full
+name, Jiawen Liu, in future Signed-off-by lines.
 
 Thanks,
 Jiawen
