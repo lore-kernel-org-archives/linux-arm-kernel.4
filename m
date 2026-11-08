@@ -2,107 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC29606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:13:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100F2606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N3sk7vp7;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AN6afmdx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=13R9MEMU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ygaGJYoEs4KFSYAAlwAVylXljw/N65/5dysb1mPUS9Q=; b=N3sk7vp7TDBPCimf/fjQAcwhLq
-	FNdcb2/TSRoU7RukPh3qditHIdlpPzc7H+oZSMXVqlHEqbY4tQXvA2fqgiFNjMXJmSxTubpbOK6Rb
-	VXy30u/8K4/pY1xK2s82TEtnumaMIEiGro545i0NgXd+WrL0cBqX+TD9WIKKI6Ijrt0av/lT/xFCU
-	/e6MYPYaAqW9yz5nB+SwNiGYPQaVjvm4sUl+ywuyvTQNFm44vEarB3ZYN+5FsF3AQRb5scgDH5HYJ
-	7TfBS5ExbdkM2GphVsZwQeCA7EDcXyweIsRdytyg/WF6lGmHUGM4dS/iupcfItEAp+ekIb9yYsocM
-	0satW9cw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=oE9ERfXDMWCFW7DkhWsG/cmmyFOvts4e8qG7WMEgvy8=; b=13R9MEMUiRQKl9
+	N96E/ZebiZuNIuqF4vEX++D3aPMszqJQZdXtCYw+Uf0OznKk0kokvcpRZ99aaF/Re6uOJnGxhbeu7
+	FLA/4b0Bzhjb5nCl32McjGKk/JmmSTs39Y5kFhmBqEyMUxZWWHCmPX4Hf9fLAzMin2gNfXo/adr3D
+	Slk522wZs84uO/0Wx+3IbeS8OKvsfIofuRuj+/T1l4XdstYVUZlg0f7MioCTFxlJSYq3dZzABqAWK
+	aI1hr/tDot6OoJblyRAbp0MY5Tom0XaQjbAP4ZJLDcuUfjnCDFDGT8DFYE9bWATG3JosJxNBZ14GM
+	lBmv9xtfMWIqm7Ze9gHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ1lo-0000000G79O-1gZ6;
-	Sun, 08 Nov 2026 12:13:12 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1xQ1nr-0000000G7JZ-3HTT;
+	Sun, 08 Nov 2026 12:15:19 +0000
+Received: from smtp25.cstnet.cn ([159.226.251.25] helo=cstnet.cn)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ1lm-0000000G790-0xu2
+	id 1xQ1np-0000000G7JE-0adE
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 12:13:11 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-49318428d98so21859f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 04:13:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794139988; x=1794744788; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=ygaGJYoEs4KFSYAAlwAVylXljw/N65/5dysb1mPUS9Q=;
-        b=AN6afmdxvNNSGoFL7Cq0tpc34Y4OOXYVXrbPP+1z3hnNxl/zdOmtgzb+y+38M/jGks
-         l2fn6HfiMimjRvE4lxRP/DdlOYolahVoQ5X0LxA8DrAAAz/7qDHoDqtx3C+xqSh5g+N4
-         Vvac8Xi4ANbK9ymzGh/fDVX+qg55PfMtdbxJ1rZQqdTBDP6gz47ejxA5lMAwedPXRe46
-         Z7GLifRynZGaeAn/sRGDqYWzbq8wvchpqFITco3gr2l+Y8HYLbiA28tbOgFm+9ajxrMl
-         MaqlfxdnJUIk+a8b6rIPqm0ekemya5shn+ssSW+M0CWrcxSAR9ceYEndFrsoSyZd4f4c
-         1ybw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794139988; x=1794744788;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=ygaGJYoEs4KFSYAAlwAVylXljw/N65/5dysb1mPUS9Q=;
-        b=EHMqqSrpmLsgeiHFiIL5+Gjwa2iPZfp55XJe/E4QSGW7xOIU6kf8SYhKkO0vwqr2KK
-         DBQ6JDpyS+m22RBsEvfBx0196uBDbN/PyjiHSaek4NdxC9ijN+rwV5QCIsP9HuJtIysY
-         XgSZ8eLusjKCJ8HFEemgbcqG9s/EQw7VYR52OpBcTJKB9OFDDA8eT9WhKLIt59WhQVfY
-         UHVsHQfoocRZ6nlNqKupsjvwyDRBfYoCeZtaF4S9Wb+2+pWG4s6YdKYxKYroDgRIxzQ4
-         NfpblKmgSm4BSAxgUD00a0H+wH3MxpxdKO1OfHiDeslg8R7wgdoJkySmhW4vNAUf0N3W
-         KE3Q==
-X-Forwarded-Encrypted: i=1; AL+hErGJJIyqFSsoMzTdX/e95Li/7ecd+XOGI9gAHJlEPqCvAjyGQpOb7ck0511f/O2Q1X9do/pH3KpxBxbhNGY9VysR@lists.infradead.org
-X-Gm-Message-State: APuU4Z9p+fTZoHug/dbYNuLgCpV0tZizRJg8N0ET4gh7PmMJA+PQfogu
-	61yearHDO5poV9cYKVuAnzX2Czpnbnq67+42wSlz7fCEpb4V1bBjEW27
-X-Gm-Gg: AYBFou3VCWP4yCswpchnP/M8k6soN0Pys5jeW3Cj9MT7ov07tFD6WdfR6+wjsEjN04g
-	wSJAwjppzmBtBYPW9nMfH39D8/22bVqNuyQV4MQdDNH1zJ0lQb7xXXuz5RLq2mIByw7yP7E1rUu
-	tsyFjkraMbckJQl3PxKbgbwq3fJzJF+6Gd3SubBexmRAqilAL7sBpc7hHFp8+yi0wQbEzuaAlZV
-	vISEYtZLQxpCRacqf6f2RX7egWwJ6Y/ToYVHoW5sFmb8bOer1TOm9Veaq1lNBv0I4VC/f4BNUiG
-	7OvW7Se00JCo0pokZzG1jxMYSntd9UOUetacTPiRS+IPogjErOAhNAZX5cwbKWxWyDwDD3pYydH
-	djuKc4IikAfYE55EnHZGYBWagbHyNTKibYuh/7tFAzJuuwUa/qM70hkE7uwBWPCJcN+Rhwkq9Sg
-	vyuaOmkjWnn/F50tdFtxnUosiBJFI0GPggmxmQTSck8R5NuCDv9Omku1jxwvv/8zPEIv7UibU57
-	PQ0IBs81trm518er7GQL11tmcNCk36Jol1kkYCN/iOXVBRuK+hilOZvVyqnMhmB+7ZtR19jxX4s
-	w+C0pQ/l8J6dK7hYWNgFS5tDeQZarOyK1ZG7HxuxeHCAsmwVSfCG3Tjn7t6DRDweTOdLDS2+h0d
-	IoXQyMerJk4vb1ilSMa/pI6vBhUGJMazdH5FXiKZVFk8PKdoZtRs=
-X-Received: by 2002:a5d:584e:0:b0:488:823d:5086 with SMTP id ffacd0b85a97d-49583ee2ab6mr3013316f8f.0.1794139987564;
-        Sun, 08 Nov 2026 04:13:07 -0800 (PST)
-Received: from localhost.localdomain (80-108-121-211.cable.dynamic.surfer.at. [80.108.121.211])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49597090444sm3945815f8f.31.2026.11.08.04.13.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2026 04:13:05 -0800 (PST)
-From: Christian Gmeiner <christian.gmeiner@gmail.com>
-Date: Sun, 08 Nov 2026 13:12:59 +0100
-Subject: [PATCH] drm/mxsfb: Complete page flips only once the new buffer is
- latched
+	Sun, 08 Nov 2026 12:15:18 +0000
+Received: from [172.100.0.8] (unknown [36.110.52.2])
+	by APP-05 (Coremail) with SMTP id zQCowABX8rfSZ_BqLxubAA--.39623S2;
+	Sun, 08 Nov 2026 20:15:14 +0800 (CST)
+From: Wentao Liang <vulab@iscas.ac.cn>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ linux@prisktech.co.nz,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Subject: [PATCH] serial: vt8500: Use devm_clk_get_enabled()
+Date: Sun, 08 Nov 2026 12:15:30 +0000
+Message-ID: <1794138380.2883200.vulab@iscas.ac.cn>
+In-Reply-To: <CABjd4Yy-9A0xWCDfZemHOTZDrDdtdO05nUjmN=w=sLwYjzZn8Q@mail.gmail.com>
+References: <20260917155834.2161361-1-vulab@iscas.ac.cn>
+ <CABjd4Yy-9A0xWCDfZemHOTZDrDdtdO05nUjmN=w=sLwYjzZn8Q@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261108-mxsfb-flip-latch-v1-1-ad816b23b646@igalia.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MTQqAIBBA4avErBtQK4muEi3MxhqwHzQiEO+et
- PwW7yWIFJgiDFWCQA9HPo8CWVdgN3OshLwUgxJKSyl63N/oZnSeL/TmthuS6xrbdkrPRkPJrkC
- O3385Tjl/QGTg9WIAAAA=
-X-Change-ID: 20261108-mxsfb-flip-latch-ef53c4526ba6
-To: Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Emil Velikov <emil.l.velikov@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: dri-devel@lists.freedesktop.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Christian Gmeiner <cgmeiner@igalia.com>, stable@vger.kernel.org
-X-Mailer: b4 0.14.3
+X-CM-TRANSID: zQCowABX8rfSZ_BqLxubAA--.39623S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAF4kXr47ArWfAF18ZF4Dtwb_yoW5KryxpF
+	ykKa98KF4kJFWxKa10yF1UAa4rZr40ya17Grn8GayFvw13ArWxtFySy34v9FWUZrWkC3Wj
+	y3yrA3sFyFWUuaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvYb7Iv0xC_Kw4lb4IE77IF4wAFc2x0x2IEx4CE42xK8VAvwI8I
+	cIk0rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2
+	AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v2
+	6r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxV
+	W0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv
+	7VC0I7IYx2IY67AKxVWUtVWrXwAv7VC2z280aVAFwI0_Cr1j6rxdMcvjeVCFs4IE7xkEbV
+	WUJVW8JwACjcxG0xvEwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCF
+	04k20xvE74AGY7Cv6cx26r48ZrWUJr1UMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I
+	8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8
+	ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x
+	0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_
+	Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0xZFpf9x07
+	b818PUUUUU=
+X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiBwYFA2rv42DP8QAAs-
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_041310_334736_A7642394 
-X-CRM114-Status: GOOD (  22.90  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261108_041517_599597_C02A4897 
+X-CRM114-Status: GOOD (  21.23  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,154 +81,97 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
-	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Christian Gmeiner <cgmeiner@igalia.com>
+Hi Alexey,
 
-The controller copies NEXT_BUF to CUR_BUF at the end of each frame. When
-a commit writes NEXT_BUF just after that point, the new buffer is only
-scanned out one frame later, but the event armed in atomic_flush is
-still sent at the next frame done interrupt. Userspace then renders into
-a buffer that is still on screen, which shows up as half drawn frames
-when a compositor renders directly into its scanout buffers.
+Sorry for the very late reply. Working through the review comments I got
+in September has taken me far longer than it should have.
 
-Keep the event in the driver and send it from the interrupt handler once
-CUR_BUF matches NEXT_BUF, and AS_BUF matches AS_NEXT_BUF for an enabled
-overlay. On i.MX8MQ about 2% of the flips completed one frame early
-before this change, for both planes.
+Your suggestion was right, but the leak fix went in before I could act on
+it: it is commit 9d8955281d92 ("serial: vt8500: Fix clock reference leak
+in vt8500_serial_probe()") in mainline, and it kept the clk_put() you
+asked me to replace. It has been backported to the stable trees by now as
+well. So the patch below is not a v2 of that one, which would only resend
+something that is already applied, but a follow-up that does the
+conversion on top of it.
 
-Fixes: b9f5937680a8 ("drm: mxsfb: Enable vblank handling")
-Cc: stable@vger.kernel.org
-Signed-off-by: Christian Gmeiner <cgmeiner@igalia.com>
+devm_clk_get_enabled() gets the clock and enables it in one call and
+registers the disable and put with devm, so both the manual error handling
+and the clk_put() go away. Probe now returns the error code from the clock
+lookup instead of a hard-coded -EINVAL, and the clock is released
+automatically through devres. The success path is unchanged and nothing
+else in the driver is touched.
+
+For the record on where this came from: the candidate came from our static
+analysis tooling, and DeepSeek and GPT-6.1 Sol were used to audit it and to
+help write the change. I reviewed the result and I am responsible for it.
+The patch is build-tested only: it compiles cleanly with W=1 for arm
+(vt8500_v6_v7_defconfig, CONFIG_SERIAL_VT8500=y) and passes
+checkpatch.pl --strict; I have no VT8500 hardware to test it on.
+
+Thanks for the review,
+Wentao
+
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Wentao Liang <vulab@iscas.ac.cn>
+Date: Sun, 8 Nov 2026 11:41:30 +0000
+Subject: [PATCH] serial: vt8500: Use devm_clk_get_enabled()
+
+vt8500_serial_probe() gets the clock with of_clk_get() and enables it
+with clk_prepare_enable(), so the reference has to be dropped by hand on
+the error path, and the clock is never disabled or released afterwards,
+even though the rest of the probe is devm-managed.
+
+Use devm_clk_get_enabled() instead, which gets and enables the clock in
+one call and registers the teardown with devm. The manual error handling
+and the clk_put() can then go, and probe returns the actual error code
+from the clock lookup rather than a hard-coded -EINVAL.
+
+The clock still stays enabled as long as the port is in use, so the
+success path is unchanged.
 ---
- drivers/gpu/drm/mxsfb/mxsfb_drv.c |  2 +-
- drivers/gpu/drm/mxsfb/mxsfb_drv.h |  3 +++
- drivers/gpu/drm/mxsfb/mxsfb_kms.c | 47 ++++++++++++++++++++++++++++++++++++++-
- 3 files changed, 50 insertions(+), 2 deletions(-)
+ drivers/tty/serial/vt8500_serial.c | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-index 641691fc92c8..d21f12074a81 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-@@ -166,7 +166,7 @@ static irqreturn_t mxsfb_irq_handler(int irq, void *data)
- 	reg = readl(mxsfb->base + LCDC_CTRL1);
+diff --git a/drivers/tty/serial/vt8500_serial.c b/drivers/tty/serial/vt8500_serial.c
+index fc6fdc751b16..73922523dff6 100644
+--- a/drivers/tty/serial/vt8500_serial.c
++++ b/drivers/tty/serial/vt8500_serial.c
+@@ -603,7 +603,6 @@ static int vt8500_serial_probe(struct platform_device *pdev)
+ 	struct resource *mmres;
+ 	struct device_node *np = pdev->dev.of_node;
+ 	const unsigned int *flags;
+-	int ret;
+ 	int port;
+ 	int irq;
  
- 	if (reg & CTRL1_CUR_FRAME_DONE_IRQ) {
--		drm_crtc_handle_vblank(&mxsfb->crtc);
-+		mxsfb_crtc_handle_vblank(mxsfb);
- 		if (mxsfb->crc_active) {
- 			crc = readl(mxsfb->base + LCDC_V4_CRC_STAT);
- 			vbc = drm_crtc_accurate_vblank_count(&mxsfb->crtc);
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.h b/drivers/gpu/drm/mxsfb/mxsfb_drv.h
-index bdc47ce5be79..9264ca53999d 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.h
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.h
-@@ -49,6 +49,8 @@ struct mxsfb_drm_private {
- 	u32				bus_format;
+@@ -647,17 +646,10 @@ static int vt8500_serial_probe(struct platform_device *pdev)
+ 	if (IS_ERR(vt8500_port->uart.membase))
+ 		return PTR_ERR(vt8500_port->uart.membase);
  
- 	bool				crc_active;
-+
-+	struct drm_pending_vblank_event	*event;
- };
- 
- static inline struct mxsfb_drm_private *
-@@ -61,5 +63,6 @@ void mxsfb_enable_axi_clk(struct mxsfb_drm_private *mxsfb);
- void mxsfb_disable_axi_clk(struct mxsfb_drm_private *mxsfb);
- 
- int mxsfb_kms_init(struct mxsfb_drm_private *mxsfb);
-+void mxsfb_crtc_handle_vblank(struct mxsfb_drm_private *mxsfb);
- 
- #endif /* __MXSFB_DRV_H__ */
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_kms.c b/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-index bbc2a2df9f16..c7e516758a1a 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_kms.c
-@@ -328,6 +328,7 @@ static int mxsfb_crtc_atomic_check(struct drm_crtc *crtc,
- static void mxsfb_crtc_atomic_flush(struct drm_crtc *crtc,
- 				    struct drm_atomic_commit *state)
- {
-+	struct mxsfb_drm_private *mxsfb = to_mxsfb_drm_private(crtc->dev);
- 	struct drm_pending_vblank_event *event;
- 
- 	event = crtc->state->event;
-@@ -338,12 +339,54 @@ static void mxsfb_crtc_atomic_flush(struct drm_crtc *crtc,
- 
- 	spin_lock_irq(&crtc->dev->event_lock);
- 	if (drm_crtc_vblank_get(crtc) == 0)
--		drm_crtc_arm_vblank_event(crtc, event);
-+		mxsfb->event = event;
- 	else
- 		drm_crtc_send_vblank_event(crtc, event);
- 	spin_unlock_irq(&crtc->dev->event_lock);
- }
- 
-+static bool mxsfb_crtc_buffers_latched(struct mxsfb_drm_private *mxsfb)
-+{
-+	if (readl(mxsfb->base + mxsfb->devdata->cur_buf) !=
-+	    readl(mxsfb->base + mxsfb->devdata->next_buf))
-+		return false;
-+
-+	if (mxsfb->devdata->has_overlay &&
-+	    (readl(mxsfb->base + LCDC_AS_CTRL) & AS_CTRL_AS_ENABLE) &&
-+	    readl(mxsfb->base + LCDC_AS_BUF) != readl(mxsfb->base + LCDC_AS_NEXT_BUF))
-+		return false;
-+
-+	return true;
-+}
-+
-+static void mxsfb_crtc_finish_page_flip(struct mxsfb_drm_private *mxsfb)
-+{
-+	struct drm_crtc *crtc = &mxsfb->crtc;
-+
-+	drm_crtc_send_vblank_event(crtc, mxsfb->event);
-+	drm_crtc_vblank_put(crtc);
-+	mxsfb->event = NULL;
-+}
-+
-+void mxsfb_crtc_handle_vblank(struct mxsfb_drm_private *mxsfb)
-+{
-+	struct drm_crtc *crtc = &mxsfb->crtc;
-+
-+	drm_crtc_handle_vblank(crtc);
-+
-+	/*
-+	 * The controller copies NEXT_BUF to CUR_BUF at the end of a frame. If
-+	 * the commit wrote NEXT_BUF after that point, the new buffer is only
-+	 * scanned out from the next frame on. Complete the flip only once the
-+	 * hardware has latched it, otherwise userspace gets back a buffer that
-+	 * is still being scanned out.
-+	 */
-+	spin_lock(&crtc->dev->event_lock);
-+	if (mxsfb->event && mxsfb_crtc_buffers_latched(mxsfb))
-+		mxsfb_crtc_finish_page_flip(mxsfb);
-+	spin_unlock(&crtc->dev->event_lock);
-+}
-+
- static void mxsfb_crtc_atomic_enable(struct drm_crtc *crtc,
- 				     struct drm_atomic_commit *state)
- {
-@@ -425,6 +468,8 @@ static void mxsfb_crtc_atomic_disable(struct drm_crtc *crtc,
- 		crtc->state->event = NULL;
- 		drm_crtc_send_vblank_event(crtc, event);
+-	vt8500_port->clk = of_clk_get(pdev->dev.of_node, 0);
++	vt8500_port->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+ 	if (IS_ERR(vt8500_port->clk)) {
+ 		dev_err(&pdev->dev, "failed to get clock\n");
+-		return  -EINVAL;
+-	}
+-
+-	ret = clk_prepare_enable(vt8500_port->clk);
+-	if (ret) {
+-		dev_err(&pdev->dev, "failed to enable clock\n");
+-		clk_put(vt8500_port->clk);
+-		return ret;
++		return PTR_ERR(vt8500_port->clk);
  	}
-+	if (mxsfb->event)
-+		mxsfb_crtc_finish_page_flip(mxsfb);
- 	spin_unlock_irq(&drm->event_lock);
  
- 	drm_crtc_vblank_off(crtc);
-
----
-base-commit: 19e67d977d3d4d0c54f03906ef578578190db9e1
-change-id: 20261108-mxsfb-flip-latch-ef53c4526ba6
-
-Best regards,
+ 	vt8500_port->vt8500_uart_flags = *flags;
 -- 
-Christian Gmeiner <cgmeiner@igalia.com>
+2.34.1
 
 
