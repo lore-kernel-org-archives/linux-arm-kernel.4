@@ -2,73 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF52606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131F0606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fp1kDspk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kGiSysfj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Xy8XtfZn;
+	dkim=pass (2048-bit key, unprotected) header.d=jannau.net header.i=@jannau.net header.a=rsa-sha256 header.s=fm1 header.b=GK42ABHy;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=0eC0qwAa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+tm4BTgPIBAp6plHBDahXEWTBlRuFrOeb/xwJ8hxjCg=; b=Fp1kDspkv7VuPt
-	PWu8EwWt7N53AENt+qSEScM9ky4qFY0DY6Y2Jmg3+fIjum2MAUPJOjcUkSUeMkzNzkEZjUqogNieP
-	LwUeSyuS83nfVOyYygz2yc83tKIIiIkkCowmLR67RR8CIIV6atKyzORK4Xmrq8qi6T1h443eY8RD0
-	FPmpOi3PPwtmV1YgGYymF5mwznGe/YWMG556wMHjrHILy6QAc7fw2qiUXXwDjf6IyhXJQg/FiWPQ/
-	OykvthQhrshzgA8v5IOUAknD9+bLVxTKOcD1YGeUNOJP2b0YMJmphG3lU0HX/xZpwiwsc/mdKug9V
-	COsmf5RcDevYevUCEN3g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=9G8iDq9PgStkjmR+yV5JSPWsbqrzQ4CGM0C2KH6B3hI=; b=Xy8XtfZnsp1c27dtPDbNkWNonD
+	4Ty9s2Ru8SLCGRqY8OpquRe5PefnIAjPnG+iNivD9ZmBeOoUosvn49iq3k1WwD4C3gr/fOyQUej9o
+	pGop1fp0gX9h4rpHJXPOqNPTcMIAbjUdBfWYERfkfRe0d1lNXNX2KlUpOTbFL1UGbl55Pfu77m8Nm
+	/WfG6nlUOXCL/aM1oMWq56NWoDsj6+apafW98SWVf6bQaoU/n1jlbPVrE8somwxzjAS3tUzu0iD9r
+	JYbT6aUu2iFm2ZjUIiy17xDl/Q7I1ZIrWZ+RlONo9LEroEv0hcHdgGiPsl59lrq6EKpd94dXGPGBH
+	EO8xf2dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ47P-0000000GH8K-093h;
-	Sun, 08 Nov 2026 14:43:39 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQ4Li-0000000GHb4-1Wa1;
+	Sun, 08 Nov 2026 14:58:26 +0000
+Received: from fout-a7-smtp.messagingengine.com ([103.168.172.150])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ47N-0000000GH82-3GMc
+	id 1xQ4Lf-0000000GHZf-1GyF
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 14:43:37 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4F48440B55;
-	Sun,  8 Nov 2026 14:43:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B4CD1F0089F;
-	Sun,  8 Nov 2026 14:43:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794149017;
-	bh=+tm4BTgPIBAp6plHBDahXEWTBlRuFrOeb/xwJ8hxjCg=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=kGiSysfj8kybVExITvIa+Rgny3CtFnYPEHPOMdnhj22NbAlhnmy6lZgGJbZeLuE68
-	 grHW2l5ETugYjbqt+olg0hmCxMet4DY9rcqoblhoGP5rQzdf5L4VSK9i79FxqtCYPh
-	 UvxBu/oPZejSjxcC7fp522TVbY2NiIyIply5YT3LqBn9MaRuKd/ws574umzmPm7Ete
-	 druprc/WJ+WFFWdzFWPokJ5MfMogoAy0Y4vbIkl+KRxYCRaC7h6uatklEB/W7IrY4s
-	 Z3ahnI2cJsA0vBb5645z1v1TlQO6UP60UIsO/Pctn//txxC90ubq6AOQsTIoehfBk+
-	 4ms8nbsz1ZQSA==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id AA0E22CCC443;
-	Sun, 08 Nov 2026 14:43:34 +0000 (GMT)
+	Sun, 08 Nov 2026 14:58:24 +0000
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfout.phl.internal (Postfix) with ESMTP id E5F7DEC058C
+	for <linux-arm-kernel@lists.infradead.org>; Sun,  8 Nov 2026 09:58:21 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-04.internal (MEProxy); Sun, 08 Nov 2026 09:58:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+	:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm1; t=1794149901; x=1794236301; bh=9G8iDq9PgS
+	tkjmR+yV5JSPWsbqrzQ4CGM0C2KH6B3hI=; b=GK42ABHyjBtdZT3jPCUSYX7jxL
+	O+a6kIhNL09GUpYqD/jfA30j1rRoAqkw3ihFAUhcmNyTVdmKDFJYhsUGl8owJ3lN
+	Fjl/B/sXfDq4ZVvxEhYlerI3kh+pD9f4rtI2mGy0mDqdWy/LqrINfQ4cocvTIH4q
+	sYm7vw+NRAL9h7z6Z37DdhFIcI+/1JhLh0OnZjA2FYumNGlh4JOdTN7wx/d6vH+k
+	4ZQYWOD3RnyB4pynE833Zz2yK/X3NL7IPwpVa3kH3e26wsTIEzhp+R0sgVMzPmQ1
+	jE/isXCy054cXhHAO8ES0I1PpSCpuATxGNU0L/BfEkmZV2Lc/0bRf4jkg7tw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1794149901; x=1794236301; bh=9G8iDq9PgStkjmR+yV5JSPWsbqrzQ4CGM0C
+	2KH6B3hI=; b=0eC0qwAaFWFVLOIZyG4V3PFu4nYgGrm7GW9vSqBj9as/vJRAar7
+	Keg/DYEnt2297sZd43L/sMcKH7Qfi8CEBTJdGj6fEO0D2ohCUlw6AMcsYCUtUuR2
+	Ig0WD5Ji5hQRYu6U5XYf2GtHg52W47MqyeVwlZ6zOtLwUV18k7xBfidOeB9R7RtD
+	OtLI7KKv/VLkCAR+wMlOBrqS7YqBYQ9MQjyNZmwl6YXIljSaeuRlw8LYF32WqGSk
+	YddmVZsIzdU7P0mprh+CAuetmGKP53ZqyIuAGwzDbKYa5K2gLrSTIlYBaZP0PxXp
+	XTrZrUd2YIOWlx4x/7CLUTqbf7CA46vM5DQ==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=jannau.net a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1794149901; d=jannau.net;
+	mf=PGpAamFubmF1Lm5ldD4=;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm1:rsa-sha256:MtavheI9QOjprb9g8R4j5aJF4aUDy4dE1vhMyu6XNumM2Qg
+	NvlZrO15uGK8UeeO9AoNXywL/WE+Twm1O3FFdgXowIYnqOu+8FBf9HpjRvKqmVg0
+	ffsPmqeJJSPM+bkehR2tvcR9IXYQw50w57dRcN5i70pBmsFBdYMgmBQFcyHeaB+j
+	vE65Wo+m1qx9/kTShtPDFrne94L7oYGaZc/9z5O+SQy7o+yT74r59w3uvUB4wwRp
+	3Xg3KOhMCfr2aitJHjBHs43yOZOmGbbQElOxV3OeBULbweqq4tRjG6gu9SolCprm
+	ZKRRP0u567uFy2PwzY8HMEGLtUhHTjan+/oZ8KQ==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-disposition,content-type,date,feedback-id,from,
+	in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:FVyg89EHhanLbUX+laxjF8YLXPMSx/LDlmdfiJ03Z3c=:CEgt00gN0SsvFLw1HJqV8+/SJMLe87wDDOVUlEnHRF0=;
+X-ME-Sender: <xms:DY7watBszlm3goS9QnMsC-Gp_1lHJyNUYonfhfC29_fhVaXtl1qCsw>
+    <xme:DY7wakeOY2b7m8CSgmR1FqPAHwAfNkOM6q2_9NtMqfbiAjAkoxTvQXoq3atu9Hmfz
+    Po7rAvC-5pFHFwvJ5P-1uSSRPXcDLsOPHSp91Ih_P53DR5BxzuWEzU>
+X-ME-Received: <xmr:DY7wakKm5BsrHEARH_yqJ3DjXzxF8jyKm1UFJGc_TMbla-JxMpz6yNugCxbYcyzb00NkbNjSmDwMPvvfsmRvPufZcQsZFqXdqTA>
+X-ME-Proxy-Cause: dmFkZTEHaGvpM3yxaQgu7rtFJBM85WX2facGuVlKhrud5kZMZGJGAOISDqwmz6jyz80blO
+    wFnvuQ+m27u39K5gByo/qMS1BLzGiNq1BRkmQyy2hF12i2ibFLohw6efovrLPzcmPSNOV+
+    miVWWlsRsC6ziQhIxNbhhhfHh+0Ow3eEH1YtfkMFsanYBY0y8Y7sinzZ7xGJcQgJyThpab
+    2T2NhRphpP4DzlG3paTwC1s40JSsocbvuTMJ6Ka/u1qxrn0JfZ0tLEZhXu56wJk4SzA+ok
+    qB3lnuQ4sNxBb3PhUEXIkRRGuL+nSL3rIigFQZ605d5V+T5H/ioElZ+yvKEo2O+HxhrFVy
+    S9nWH2NPcFxXRD+8VygpJa5YhRlra+pu6HcvORoCZpqn4DcQAYMSq8qcb9Wevlg2Sy7rYw
+    XCuHk/P9H9q/jxQihgkORYjSScwJZMgGWD5q7dVS/KPQzsojZqZgsOXRZmhjD9b53wbTXR
+    jlizqXWJpUajNTwE6BxevGgOFYOhK82RUXPuk13lg6JK9BPfelAkT33Lw4JNQA0CqEQbRv
+    FI/KyJhVI9yRfc6QVqWNM7igKd0qcpzhGU1EC5a81E2LW717KD/8q+NnBzhIieuSl3b4WJ
+    tX6bbuJmeYIA3jb3od+FGXmk0NayAiW87XHE9wMWVk5HgG6ItW47NBd/T26w
+X-ME-Proxy: <xmx:DY7wan1XA8ZCjYIXi7Qyk39YzIfBzX4CaCvv7LGHUxBa92lLlxRUpg>
+    <xmx:DY7waujoBaYELkOLySvqVA4BNbILcaDUq0P-VmfpW-3AD3n6QiUz7A>
+    <xmx:DY7waoUKksn_a4PdtRnoXSJcRS9acH5fKSuIDq9_WZnRHx8zj_aLEw>
+    <xmx:DY7watXHs3ciSeTtk4Bu82bRFmp-_bdaI71i9VuMxOI0WlEcEdc3Kg>
+    <xmx:DY7wapU9UPUHTu8dgLy5yDRN2iV0y_DaXSvrzpSr-QYlK6RCk0YuXaKQ>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 8 Nov 2026 09:58:21 -0500 (EST)
+Date: Sun, 8 Nov 2026 15:58:20 +0100
+From: Janne Grunau <j@jannau.net>
+To: Sven Peter <sven@kernel.org>
+Cc: Neal Gompa <neal@gompa.dev>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] soc: apple: Fix swapped paddr and size shift
+Message-ID: <20261108145820.GA1462246@robin.jannau.net>
+References: <20261108-b4-sart-fix-v1-1-dab7dc1e9adb@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v1 0/2] spi: zynq-qspi: use a flash larger than 16 MiB
-From: Mark Brown <broonie@kernel.org>
-To: Mario Behn <mario.behn@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Michal Simek <michal.simek@amd.com>, 
- linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261105203734.979168-1-mario.behn@gmail.com>
-References: <20261105203734.979168-1-mario.behn@gmail.com>
-Date: Sun, 08 Nov 2026 14:43:32 +0000
-Message-Id: <179414901284.3711751.10991353733886072058.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=364; i=broonie@kernel.org;
- h=from:subject:message-id; bh=pqc5RxFKFgQ0bMGkW74l/iVdEQnONDkkAA36niVKYPg=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+dE07pszyzk46L8Jkdm5wRuvue1+Uk/7ZNFXfKq92F
- 1KQcDzWUcrCIMbFICumyBKXxf2yvuT1Gr6DC9tg5rAygQxh4OIUgImsamP4p7H4fkXu18t56z8c
- adxxm1E4zr1AfnG4wd/2AqE5QSc53BgZ3v5xkpX3++v7sVm00zNCfUboleDsyds5Pz77xbW9LpG
- fCQA=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261108-b4-sart-fix-v1-1-dab7dc1e9adb@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_065823_488916_67BB9B0E 
+X-CRM114-Status: GOOD (  14.65  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,20 +124,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The Zynq-7000 QSPI controller sends at most 3 address bytes. spi-nor
-> needs 4-byte addresses for a flash larger than 16 MiB, so on a board
-> with a 32 MiB W25Q256 (the ADALM-PLUTO+ has one) the probe fails with
-> -EINVAL and no mtd device appears.
+On Sun, Nov 08, 2026 at 03:35:11PM +0100, Sven Peter wrote:
+> Right now we assign the paddr shift to the size shift and vice-versa.
+> Luckily, this doesn't matter because they are the same for all SART
+> versions but fixing this doesn't hurt.
+> 
+> Fixes: b170143ae111 ("soc: apple: Add SART driver")
+> Signed-off-by: Sven Peter <sven@kernel.org>
+> ---
+>  drivers/soc/apple/sart.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/soc/apple/sart.c b/drivers/soc/apple/sart.c
+> index 66b99955b395..5f1f9ec5d311 100644
+> --- a/drivers/soc/apple/sart.c
+> +++ b/drivers/soc/apple/sart.c
+> @@ -258,8 +258,8 @@ static int sart_set_entry(struct apple_sart *sart, int index, u8 flags,
+>  	if (paddr & ((1 << sart->ops->paddr_shift) - 1))
+>  		return -EINVAL;
+>  
+> -	paddr >>= sart->ops->size_shift;
+> -	size >>= sart->ops->paddr_shift;
+> +	paddr >>= sart->ops->paddr_shift;
+> +	size >>= sart->ops->size_shift;
+>  
+>  	if (size > sart->ops->size_max)
+>  		return -EINVAL;
 
-This doesn't apply against current code, please check and resend.
+Reviewed-by: Janne Grunau <j@jannau.net>
 
--- 
-Mark Brown <broonie@kernel.org>
+Janne
 
