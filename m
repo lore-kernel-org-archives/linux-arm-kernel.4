@@ -2,123 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB292606D808
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 21:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0366606EE93
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 21:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ebuu5vLW;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=I33SFePs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W+bIYXmf;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=SLL+6081
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yP+R+yf5xY4dHL5c8agyL0IxXu0xVt/tENjfyE274v8=; b=Ebuu5vLWb3sebH
-	NIG19BfWRkz8zpfhvDQt5hVf73YsYKrgjTsohcGRDC8LFlTW6/zwWvbFXYrG9KaGiqP2E1Zy2s129
-	ARFiIfVlHaUFoEsL5UEqtLkQqft439vG/CVX3ybUw2dP9U5VXGajkg38K5fgFrC7vxKX8BzdMpc8O
-	K23vNr/86Nxrp2183TKnhlV8Gl0uTTFPk+701IXJvfaqvJPnSeVbMyZloDXUdkWGPfmP1OqioIFKn
-	vSZrrl1LrrG6CTINqZE5ZBc1eBMmx+p3xTTdbcpwkM9SWKqDKEFv7LNbDQ3jmtiqlEBksbZUmwNbI
-	OeLE7bGerfUaM3QgaJHQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=YTSxjFXKckoe7BQVg2xBxOJM8UYR0Yr3mMiLFLwfLDM=; b=W+bIYXmfajmKOz05SUqfr2RM9O
+	wRleowaOMWnqJjWlfbEoGGDxrLg1XJMSe8U3J0M0tujerONcgToL/OZ27iDz+N9oLS5tG/k5Ha1xx
+	lwuoPhaUdvtekMEPh7YjQxh4/lZPWpMqHdIJwcwPH8X0v8FftECx//QmIkn1prh7WM+FVA+/+lnCd
+	N7ft5quHHQYQMnvPPT1Z61uJnfqtnW+6aYuMdrhj0WJDqsq3D60/OmLMQXaePUDu/jy0lOFj7KJea
+	wp4oCtEr0tSfvD99LrhqFQEaMlSRkRsupMyZtn4ILixPz9gASpN1EydkMKE/esQ0CY6LhHx7IthAk
+	BnRrfQRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQAhT-0000000Gkhi-3tZy;
-	Sun, 08 Nov 2026 21:45:19 +0000
-Received: from mail-yx1-xb130.google.com ([2607:f8b0:4864:20::b130])
+	id 1xQAmO-0000000Gl8v-1rsK;
+	Sun, 08 Nov 2026 21:50:24 +0000
+Received: from mail-dy2-x09.google.com ([2607:f8b0:4864:36::9])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQAhQ-0000000Gkgc-342D
+	id 1xQAmL-0000000Gl8X-49I7
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 21:45:18 +0000
-Received: by mail-yx1-xb130.google.com with SMTP id 956f58d0204a3-67bec5dc8d4so127801d50.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 13:45:16 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794174315; cv=none;
-        d=google.com; s=arc-20260327;
-        b=rg983+s9nS5YkrIYbDxWuhxpwNXANvQ60OjYN4jHs1vfa+RL/djndN9auMBBXIMLuc
-         Roaz/WRBFPFTl40sjgtzM9dIK9Exy/w7JuWpTNJWrhNdasoVKpNsDpMFNWOksZ+ATspo
-         rp1uOBILcNHCG4AE7B5LWu5Obv867i21O1vRTZxwvnhT9RN8GxBtc6eXMztU8sXfwctX
-         ZbQtFXx1zzOl0oBGCSSkzBmQGLrRhJVN4ZKsam64VBuMKFuAfJb93+MG9AAqCHsiUhQK
-         1xDdYrc8LxD2OUYel89ORiMLppnXqjUAUWq5DYNYIYc24cNRQU037lqtZSyBN4j5YwOv
-         areA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=yP+R+yf5xY4dHL5c8agyL0IxXu0xVt/tENjfyE274v8=;
-        fh=/UaXBaAN2tUSeJ+j0RWQRuAMy/Rom/jn+bA4UOXbDJI=;
-        b=CWiqoUbCTG0g1kfNOhXQkNdJVbnZCaLTkIRpPANUwOlI02UEA6DMgWfIIeXBScQwnv
-         h1/Dh0Y288IRn5Nq/DE6Di80uwiyVITAq1d2+vqCt1Wb1EAqJKexa2FZ0LLWi02TtbZa
-         y3ONpZrgUsk6s79hGQs9VEJLVQy9YEpf9YV4bCJb5zF68clrWpG4c8FbIgRCe2U9by7E
-         UhNeyc0zJP7QZwlPp/vz/UuHcLbC14A3knEnacy60RquH4jMO50DTj3ctR7C/8UmC3vj
-         RJGZvAPVFIEqzJjgksgh597ZKNe+RCdfBCkquNyUDkqvoZnToX5e4zCmV4JthC4Rbk4i
-         N6qw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Sun, 08 Nov 2026 21:50:23 +0000
+Received: by mail-dy2-x09.google.com with SMTP id 5a478bee46e88-36caa19b0ffso315696eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 13:50:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1794174315; x=1794779115; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=yP+R+yf5xY4dHL5c8agyL0IxXu0xVt/tENjfyE274v8=;
-        b=I33SFePsOKYJmwvFPyo1BpmQaV76PW6sVkR8P2RI+Nt7PAIvAss23ZA+tn4vWR6UsH
-         CqjVwM82+QtR+OzNt14AVh6tkdqsDpbHSmwknrYrks6irdM/VUqwPTSJAXk/DHRk+gt1
-         ZqwqcsYg9xf70BZN+oy/7J7WEWFFEVdSY+O4+HbZV3pEIS2G6ZrHa2Zaf2GobdqTVOSP
-         DdlF2ryTFUJD57KO9hMQlstr31JwbbsK7sY7hymnhkV0hlfwqVCMv3TEarVbbRJidjUV
-         aSErMjyWbezckt4Bcqn5zeIPveV1WMyWErnnNRz4vrHGMtSZaGpJ1FNLahdWCj8qM6dk
-         9bxQ==
+        d=gmail.com; s=20260707; t=1794174621; x=1794779421; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=YTSxjFXKckoe7BQVg2xBxOJM8UYR0Yr3mMiLFLwfLDM=;
+        b=SLL+6081EgUuCyumu7av/Rc0wR0SWwfCmBnvI6QztILNGuPVegdo/9DCziivyA3SmY
+         T5uT+syS4zIrbJTmmC2Y/MmMIdNMCZhE/k93XaNkno+vhe8Mt26+AqkvnPb9eCZAruLu
+         gH1v+qnRUz+WmiYdPUeulPVQXeVEyKTcKxi4NJe84C9QRfZw4TRmsyblymXXedLeECg6
+         7m5tDW5S4q4dG0E68dUmekrI4f9DueixEZQkfkaWzxyfNBCUCLf7GxNlDYVtvwWPXc5Y
+         LkSow3aBYDP/6rDKzrK719YV/9Hi2IThhxvoulZTs6zKJHUQqs7kF+MSf6vVeFsCbNR9
+         qYXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794174315; x=1794779115;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=yP+R+yf5xY4dHL5c8agyL0IxXu0xVt/tENjfyE274v8=;
-        b=oeEodojZqMSswXbT+LxsLwPLEoW8dUzVunzgn60JwP6vwKlwnOtNxXX/nvkY8bOkpI
-         3PPo/be1LfkTvgWLebRpzA9tiHP63/2AdAf8ES6/SgKb97aP0//Hn3FSz5+iotw7a+Wo
-         QZ3xbVx3s7yqEKHdOpZUHQO0bTWxviGequvRteeM66bdxD4YZXu5OxB3lmnx16qX8oVn
-         /ydYFocl8cM9hmLG/N7nYgkoIkMJRD8Pp+EiaBOjCn42b0yRj1he7HtNh3brMBhLOsst
-         KzZUq47cRHVHb318nUvsjzSOPSeBLGVCFN4O6ydsySfiKAnW6h1ihSPCOk6ystHpUq9j
-         XlOw==
-X-Forwarded-Encrypted: i=1; AL+hErHnPvTkXkTzvyrZj+iOlb+ynQuu/ih/N4e5ROVXwUUT8wo7bQHNbQiulhU7gmcFwr8jaIG/W/SbpkaLnav2gsoQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z9blULALUepeBQevJi9NDTLqWcxqhHdV7QBlAElXNT4UDcFNdvD
-	/dQC9TT3R3R+ZAUdgWhtGJZngHguHs1pZeyjD7LTCLeuOQaHJUeANnShScACS/cg4Chz5u/BjIu
-	48jJS1EkLUQPWvGq/J4fMTKIuH3zF1++QEedv
-X-Gm-Gg: AYBFou2tiw0ce56IdUxIu/5sDtCCyAMb8kXQcAn99NClJlT04RASVAR9QS09l2C3jQf
-	YUlt3qIsRuw86dL6NLDZJxy2gcDFTwPOKuvfZAsS3h1reKP8U6cAMf2idGfe/SuJSmFJXdTsgBc
-	vKTtRYklK630Snv2qa8gor8nfBBkFpaOKX/veE38cN36tle3GpLpiV6DhcekOcQ/T11XRdGDUAj
-	CmR9/QCobGl4WaoVg14Y97nQNdbBlivL3v7p6rZ6CvTRxu/wYccb4J8JoYQWow6s4Ea66emw7BO
-	Uwgd/yJgwnsGmFhNTKyOCo+HQXRfOOfCHOiEXX9d7keGRZfzl8VZr7fhokllVxiThEA8SL8zRem
-	ltyY4rgDr/y95+sY66uVu9Zb1ZYOJcVL63atJKRWpaHlpK/NQ2RyIgygdI8AgxgbpRaL01g==
-X-Received: by 2002:a05:690e:bca:b0:67c:1dca:7f9 with SMTP id
- 956f58d0204a3-67c3d9bb63cmr1402384d50.48.1794174315509; Sun, 08 Nov 2026
- 13:45:15 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794174621; x=1794779421;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=YTSxjFXKckoe7BQVg2xBxOJM8UYR0Yr3mMiLFLwfLDM=;
+        b=nIZc2E6+ep2bONNK8EYjT/N+iGPyW32ihNHMaf09bNQmuI0+97Arf8ZwoNO6grprAm
+         Wt0Iq5IrIppJd3rUQtNeCr/cxJ/9W+7E2AEBfK6mh6oAo+UyTrmMvTS6nCjLAdgAyxLI
+         2gKj3qM9+O6NK00rcjKM32lE4aeHndEr1E6HQnQKEx8hZ32QJ0OmdaGTlg/Ak97dHWwQ
+         Pd3dKnq1bjUwX/HgAAkk5a/RBBucCX+sqjvfBvKf+kxNhcS06ww1YLudQ8YS6R+ynaIl
+         M3Z7rZe03x0YspEG4i/YhZxzECm0yMToxqXS6imERYE9+E73OhUdQWfSbKRagFBZRA4k
+         hFHw==
+X-Forwarded-Encrypted: i=1; AL+hErGtWTQsnq/i1H1PkOB2F0EBsWjH54GXbSTCATkxVX6vzgdn5J0uER1oUYfxQNtA6tml6zTZjsyHyt9UImOUHKBE@lists.infradead.org
+X-Gm-Message-State: APuU4Z/wIQHT/3DUlr/hPboa+/pwM31EtfthYzI++Lv06sprsBo8IDNr
+	YYsstJJa36fPuCEnB3J2ut4Y8uCLIEtYuYnZj2ndqUCgeJNeJqba0nOc
+X-Gm-Gg: AYBFou2aVnagv4e1DnOch42J3UKsAHb+e8qAqJwSXUQYBK7cmaM0if6tJR9/glrl/HI
+	aQ1VC2ujd+cBWELjCgbXrk59QgPDoglznRRR1EjS/Blo5pdHnrxU/axiLuFspDDCO4UCDoWsaZl
+	M5P0hA2lOfB0yLk7I3kWwyPmOCp4+EPVbijXDmsSUw3nW5Xhs7j1hTb8wZKekgWk2SC9eVFT2oC
+	jIfgqBo2jAHd018/FvBQ+iKz6+yDBDlkser6W94bAp4y0R/AoqIiKuQQAkijFf2cpbjU+27WeOt
+	7ydLss9N7thNHk0QAw4+FI33Mw5acaFfAXtosPpNsHJ5SBDpfXEzr+ZxEDe3o29rjIJN4t6vs6G
+	KcfI2Ku+SKAyLuhggbFAAy4DEap2MVM75sQT3e18UwNITIhPDvAatWkSSrV/suCWDwsKItaeE5l
+	150akZwRfc/pW8Wmi7l5Q/mTtooLX02paoSOSKn8qVaGQJ9L2NWsgytHK+d0LfmpY6ODHjK6WgN
+	vfFozLzmSKTBUUSZd6YHf3C5Ekw0xDGNqfE4MeLhJq3gibv/ZEpt9BC5CNSAec7viGAyF7JbBH9
+	5BzZChUQMkcaRSrE4gjtGuMmPAszPp8N/GWNWDKnZctERZ5Ge88QcCAnBChcR7WSTTM6idA=
+X-Received: by 2002:a05:7300:2215:b0:36d:48e:82de with SMTP id 5a478bee46e88-37256615312mr6819539eec.12.1794174620977;
+        Sun, 08 Nov 2026 13:50:20 -0800 (PST)
+Received: from AERO17.taila7786d.ts.net ([45.95.212.224])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37265efd2dcsm7587575eec.17.2026.11.08.13.50.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Nov 2026 13:50:20 -0800 (PST)
+From: Pufan Jin <cyan2254650260@gmail.com>
+To: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] ARM: dts: zynq: Add ALINX AX7Z020B development board
+Date: Mon,  9 Nov 2026 05:50:08 +0800
+Message-ID: <20261108215010.351256-1-cyan2254650260@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261025192219.209137-1-christian.koever-draxl@student.uibk.ac.at>
- <20261025192219.209137-5-christian.koever-draxl@student.uibk.ac.at>
- <at7lXEqds7ukoR2V@vireshk-B250M-D3H> <1jbj8gkff1.fsf@starbuckisacylon.baylibre.com>
- <at8WfX_G0tfTlFrm@vireshk-B250M-D3H> <9556e959-daf3-4c85-8794-9613e7e7a9ae@gmail.com>
- <A45EC676-5B14-4932-A4CF-87ED3B71108D@gmail.com> <4a51e879-708c-49dc-a08a-3f64eeec8bbf@amlogic.com>
- <CAFBinCBkJJeRPKLFBA9KYjwXMxFjow_NOtvFoKRQdxD=rOPW3w@mail.gmail.com> <48b333a3-ef88-4739-a087-3ed9d8ec60a4@amlogic.com>
-In-Reply-To: <48b333a3-ef88-4739-a087-3ed9d8ec60a4@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 8 Nov 2026 22:45:04 +0100
-X-Gm-Features: AclHuK-tzL5nxnrCwLMP_029tOJZYuTko3n3lDgTKGXJ3pWmAcdiBipcjDbfc6k
-Message-ID: <CAFBinCCgmRmk--W53wqdJhF-SzJbai--s7wyzDNt3LpfN00spw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] cpufreq: add an Amlogic speed-bin driver
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Christian Hewitt <christianshewitt@gmail.com>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Jerome Brunet <jbrunet@baylibre.com>, christian.koever-draxl@student.uibk.ac.at, 
-	neil.armstrong@linaro.org, sboyd@kernel.org, bmasney+clk@redhat.com, 
-	khilman@baylibre.com, rafael@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	=?UTF-8?B?Q2hyaXN0aWFuIFN0ZWZhbiBLw7Z2w6lyLURyYXhs?= <ckoever@outlook.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_134516_792596_2D63FB76 
-X-CRM114-Status: GOOD (  32.43  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261108_135022_027973_76256EF1 
+X-CRM114-Status: GOOD (  13.18  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,102 +101,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 3, 2026 at 10:46=E2=80=AFAM Chuan Liu <chuan.liu@amlogic.com> w=
-rote:
->
-> Hi Martin,
->      Thank you for joining this discussion. :)
->
-> I have re-examined the capabilities provided by pm_opp and cpufreq-dt,
-> and it seems that we may also be able to adapt A9 fairly well based on
-> the amlogic-cpufreq.c here. So we have no objections to the driver
-> implementation in amlogic-cpufreq.c here.
->
-> I was most worried about before was that cpufreq-dt might not fully
-> handle the complicated clock and supply adjustment logic between
-> multiple clusters, which would have required adding a separate
-> cpufreq_driver. But it now looks like this can be solved by adding the
-> corresponding config_clks() and config_regulators() callbacks in
-> dev_pm_opp_set_config().
-That's great news, indeed!
+This series adds device tree support for the ALINX AX7Z020B development
+board, based on the Xilinx Zynq-7000 SoC (XC7Z020-2CLG400I).
 
-[...]
-> > - Meson8/8b/8m2 (32-bit ARM Cortex-A5/A9) where we need to reparent
-> > the CPU clock to XTAL for stable operating during clock changes (which
-> > should go into a cpufreq driver that implements target_intermediate).
-> > There's no secure monitor or firmware involved for CPU clocks.
->
-> BTW, could we put the CPU clock handling logic in the clock driver like
-> G12A does (though, of course, handling it in the cpufreq driver might
-> minimize the coupling between the clock and cpufreq drivers)? That way
-> we could fully reuse the existing cpufreq-dt?
-Common clock framework maintainers don't want muxes to be programmed
-magically in clock notifiers (which is what G12A and Meson8* do).
-So there's a chance that for new drivers they would just NACK that approach=
-.
-I don't recall the exact reason anymore - but from my perspective
-using a cpufreq driver for this is the cleanest approach (although a
-few lines of code extra).
+Note: the "alinx" vendor prefix is not part of this series, it is already
+present as commit 1f06cd374a60 ("dt-bindings: vendor-prefixes: Add ALINX
+vendor prefix") in the Xilinx for-next branch.
 
-Additionally: I believe the udelay(100) in the G12A and Meson8*
-implementation is not even clock related but a delay to wait for the
-regulator to become stable.
+The platform consists of two physical layers:
 
-> > - GXBB/GXL/GXM use SCPI firmware CPU clock control so to my knowledge
-> > we're good with what we have (meaning: no custom cpufreq driver
-> > needed)
-> > - G12A single cluster, no DSU: needs a cpufreq driver that implements
-> > target_intermediate (currently it's managed on clock driver side in
-> > kernel space, no firmware involved)
-> > - G12B multi cluster, no DSU: needs a cpufreq driver that implements
-> > target_intermediate (currently it's managed on clock driver side in
-> > kernel space, no firmware involved)
->
-> The cpufreq-related resources on the SoCs mentioned above are relatively
-> clean: each cluster has only one independent clock and supply of its
-> own, and these SoCs also do not support voltage selection based on chip
-> binning.
-That makes things simple, indeed: each cluster follows the same logic
-using it's own resources.
+1. ALINX AC7Z020 system on module (SoM), in zynq-alinx-ac7z020.dtsi:
+   - Xilinx XC7Z020-2CLG400I SoC (dual ARM Cortex-A9, 33.333333MHz PS_CLK)
+   - 1024 MiB DDR3 SDRAM (2x MT41K256M16RE-125, 32-bit bus)
+   - 32 MiB QSPI Flash (Winbond W25Q256FVEI) with 4 MTD partitions
+   - DevCFG FPGA manager
 
-> > - SM1 single cluster and DSU: needs a cpufreq driver that implements
-> > target_intermediate (currently it's managed on clock driver side in
-> > kernel space, no firmware involved)
->
-> Compared with the SoCs above, the difference for SM1 is that it needs to
-> additionally manage a DSU clock. In this case, the clock-related
-> handling can be added in dev_pm_opp_set_config() in amlogic-cpufreq.c
-> (by implementing clk_names and config_clks in struct dev_pm_opp_config).
-I think so far mainline is not touching the DSU clock at all.
+2. The AX7Z020B board (AC7Z020 SoM plus carrier board), described in
+   zynq-alinx-ax7z020b.dts:
+   - Serial console via USB-UART bridge (CP2102, MIO 48-49)
+   - MicroSD slot on SDHCI0 (MIO 40-45)
+   - Gigabit Ethernet via GEM0 (MIO 16-27 RGMII, MIO 52-53 MDIO)
+     with JLSemi JL2121 PHY at MDIO address 1 and RJ45 link/activity LEDs
+   - USB 2.0 host via USB3320C ULPI PHY (MIO 28-39), reset on MIO 46
+   - Dual CAN buses (CAN0 on MIO 10-11, CAN1 on MIO 12-13) with
+     SN65HVD232 transceivers
+   - I2C bus on MIO 50-51 with 24LC04 EEPROM, DS1338 RTC and LM75 sensor
+   - 2x SMA AD inputs and a spare differential pair wired to XADC aux
+     channels VAUX1/VAUX9/VAUX12. XADC is a hard macro accessible from the
+     PS without PL configuration, the channels are enabled via the
+     xlnx,channels property.
 
-[...]
-> All in all, it looks like we can currently support all Amlogic SoCs in a
-> single amlogic-cpufreq.c? Then, for the specific characteristics of
-> different SoCs, we can differentiate them through the "compatible"
-> property and add the corresponding drvdata for each.
->
-> I'll also try to support S7/A9 with representative differences based on
-> this patch.
-Great, let's look at some code rather than discussing theory on how to
-write code :-)
+Tested on hardware: boot from SD card, UART console, SD card, GbE with
+iperf3 (940+ Mbps) and netdev LED trigger hardware offload, USB host,
+dual CAN (SocketCAN at 500 kbps), I2C sensors, QSPI flash MTD partitions,
+and XADC temperature/voltage plus the external AD aux channels via IIO.
 
-There's one last detail that we have to manage in case we also want to
-include the Meson8* code into the same file:
-config MESON_SM depends on ARM64_4K_PAGES
-32-bit kernel builds can't satisfy this (meaning: we end up with
-linker errors). I think a simple way to get around this is to add stub
-functions to include/linux/firmware/meson/meson_sm.h.
-I'll take care of that once I can submit Meson8 support patches for
-your upcoming amlogic-cpufreq.c!
+The DTB passes CHECK_DTBS=y and the bindings pass dt_binding_check.
 
+Pufan Jin (2):
+  dt-bindings: soc: xilinx: Add ALINX AX7Z020B board
+  ARM: dts: zynq: Add ALINX AX7Z020B development board
 
-Best regards,
-Martin
+ .../bindings/soc/xilinx/xilinx.yaml           |   6 +
+ arch/arm/boot/dts/xilinx/Makefile             |   1 +
+ .../boot/dts/xilinx/zynq-alinx-ac7z020.dtsi   |  72 +++++++++
+ .../boot/dts/xilinx/zynq-alinx-ax7z020b.dts   | 137 ++++++++++++++++++
+ 4 files changed, 216 insertions(+)
+ create mode 100644 arch/arm/boot/dts/xilinx/zynq-alinx-ac7z020.dtsi
+ create mode 100644 arch/arm/boot/dts/xilinx/zynq-alinx-ax7z020b.dts
+
+-- 
+2.56.0
 
