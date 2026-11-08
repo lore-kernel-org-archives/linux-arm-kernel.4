@@ -2,79 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E82E606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 11:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C174606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F5AYGwZK;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WMz0X66j
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rNx75FkZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nR5kpjUT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=DSWbuaX0SJuwDI4LQsCoGiLcfjjnNXDBy8qwE7KddlA=; b=F5AYGwZKfi9Hrr
-	Yf4REE7NPR1SFradFRgNX2HJD9Kn1WMTC0MFWYZgaxI8eaZ+AOFkU7LvNqIA22qKynYqBKWJHEtgt
-	h6VvBcp6gaEG23sM9Anf5ft0lLDdscv6x4xKFSnQrurX+GIJ9wpmCutAT9W7qsvlRqYQebG2GpPNG
-	WeP+ndwooaXSXWHkXHfMN4D3CozYg++txS1Hpc7tgMSIMzdbq1qNGR8hsyayM4rbZsLVKvxe1yQiH
-	mUCWP7gXg4HT4uDg5ZSgLcjk2nFpdije5bPffOlhusxMOPXXF9q70GdUkIyJby0zcCEBvjk4iK5ON
-	kkSOCFGYNrWgqPK36Xhw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=S53t+YVv3ElnijbCvjTcj9y1Ev0v2nk/Dmj5oB/Gyio=; b=rNx75FkZW2h454v9EKNmOxb78p
+	4seIejq4dKgn1bgt+pNpcTqNWkVixIhtktvrY6zZ/y8TTEGf0cC0KrrRYHLel014fY/Y7ulKl0Y9o
+	CD3G+vgdrzZTcVCGKcqfRI4oFtaRpIdmYnGHJqrIy+GH+yB2we05BbHb/ysiRLTQyVheXYSw2bBNS
+	vaSS6wYZN+0Yf8OB8ox6X2QqYOauVsXRMYCbpvFE4F49LSaa8hQMDGWzrDizQ2os+8CIXwSiAepi3
+	aWrD3H2Kpww/Pwvpt83h7Lugdv6Cq+c5ZEypcP2xV9+ksQSyBFn8loMG0tPYTdncBLP6cfvYJ1c/t
+	tls2wo1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ1OZ-0000000G66I-45HC;
-	Sun, 08 Nov 2026 11:49:11 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQ1kK-0000000G73m-0k8u;
+	Sun, 08 Nov 2026 12:11:40 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ1OZ-0000000G65v-0HqZ;
-	Sun, 08 Nov 2026 11:49:11 +0000
+	id 1xQ1kI-0000000G73a-42me;
+	Sun, 08 Nov 2026 12:11:39 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 94F8641772;
-	Sun,  8 Nov 2026 11:49:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53A8E1F0089F;
-	Sun,  8 Nov 2026 11:49:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 74B0160213;
+	Sun,  8 Nov 2026 12:11:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB93E1F0089F;
+	Sun,  8 Nov 2026 12:11:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794138550;
-	bh=DSWbuaX0SJuwDI4LQsCoGiLcfjjnNXDBy8qwE7KddlA=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=WMz0X66jbpOohzsjuh9vxcswu8HYEcikxFzY4dXmi1VM8IX8FrDwIjI7tvd/d85/G
-	 t5WPkKOgnDBMk7EesnJ1q3pISxPevscLytTJMTBfNyo7fS4+T/6glOsSRggAkZsOmo
-	 TaTl84edzchzGKPlrys2DoZ7Byu6/PMotPFE+oypk2gRy2M56iQvjagHW+1+Cpgf3e
-	 ZvipXoZyLGKpc+/FN7GgQmLBI4kJf0qsKxDaMe+eB+1V2wH+eRmIKK6FZoiRnwt0gG
-	 tYofxFgjId/uxbnTcW87RYa/uBvsLyFupyIpqJcbm6hJvqYjXW82LbH+xQtzD8tslb
-	 OaRa+9Qh9rUmw==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id F0C312BF95D0;
-	Sun, 08 Nov 2026 11:49:07 +0000 (GMT)
+	s=k20260515; t=1794139897;
+	bh=S53t+YVv3ElnijbCvjTcj9y1Ev0v2nk/Dmj5oB/Gyio=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=nR5kpjUT4Wz2G43xQ1mhvZSmnOy/blyN/ZgcgtUTv0fvfpnkeB9l1bihpYRrBnqIN
+	 USRotrf/P2EZ3gn3upJextTqLcr4Wgen45hlWDHi9gqqQfRX6TqZUwR68EofUTEupk
+	 X1+mJMyXXU3+sB5szdefkIEjWMK8Fsxa3AA+3oA6lPAdo0/iEfedMfoBQgPiTZdN+o
+	 RNnVsvYw24rZWP0Rh59U2g/LuiT7umvllk0MVqLqC5JIGwPS9Qedi30L4hhTYdXT5U
+	 9AA/kiYT3LrD7CYre4bv9aB/M0WsYYWnWY8wvUzS9k+uxXRmHTktzYpKQiRyp4yjhH
+	 8wl9nRbpc1WiQ==
+Subject: Re: [PATCH 5/5] ARM: mxs: add EVAchargeSE board support
+From: netdev-bot+sashiko@kernel.org
+To: wahrenst@gmx.net
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linusw@kernel.org, brgl@kernel.org, Frank.Li@nxp.com, vkoul@kernel.org,
+ mkl@pengutronix.de, neil.armstrong@linaro.org, mailhol@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ mani@kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-can@vger.kernel.org, linux-phy@lists.infradead.org, kuba@kernel.org
+Date: Sun, 08 Nov 2026 12:11:35 +0000
+Message-ID: <179413989528.488853.11075194967877927671@kernel.org>
+In-Reply-To: <20261106230746.21954-6-wahrenst@gmx.net>
+References: <20261106230746.21954-6-wahrenst@gmx.net>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 2/3] ASoC: codecs: rk3308: restore audio and
- headphone support
-From: Mark Brown <broonie@kernel.org>
-To: Xing Zheng <zhengxing@rock-chips.com>
-Cc: broonie@kernel.org, heiko@sntech.de, linux-sound@vger.kernel.org, 
- luca.ceresoli@bootlin.com, lgirdwood@gmail.com, perex@perex.cz, 
- tiwai@suse.com, linux-kernel@vger.kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- huangtao@rock-chips.com, sugar.zhang@rock-chips.com, lxt@rock-chips.com, 
- xing.zheng@rock-chips.com
-In-Reply-To: <20261101044149.2018744-3-zhengxing@rock-chips.com>
-References: <20261101040125.1864141-1-zhengxing@rock-chips.com>
- <20261101044149.2018744-1-zhengxing@rock-chips.com>
- <20261101044149.2018744-3-zhengxing@rock-chips.com>
-Date: Sun, 08 Nov 2026 11:49:06 +0000
-Message-Id: <179413854645.3630016.583220481348524508.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5345; i=broonie@kernel.org;
- h=from:subject:message-id; bh=+YDT/dn4HPJjiVmxqxZl4zbdPOrhe2/fO2TYbbPmE6s=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+JG7OuXHtxJ6vy/a0HpcWWPnpTOEN098lq8UKmb80d
- STefN49oaOUhUGMi0FWTJElLov7ZX3J6zV8Bxe2wcxhZQIZwsDFKQATOS7DyHCjw7O+intRWv3l
- fQ+NQ2NKN+StFNvT+JRh26O0M1duFbsyMtz657SIkyEzQ8NnpTbP3NXcfXn7Fte92lr2Pc/Lunf
- XY34A
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,130 +72,161 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Restore the vendor analog enable and disable order and settling delays
-> through shared DAPM supply events for codec revisions A, B and C. Use
-> virtual intermediate widgets to prevent coalesced or repeated analog
-> writes without adding startup, shutdown or hw_free DAI operations.
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
 
-This change is far too big and complex to be a single patch, doing a
-whole bunch of different things with limited overlap.  It's all really
-difficult to follow, please split it up into independent changes.  The
-jack detection should be split out at a minimum, and probably there
-should be multiple refactorings.
+Critical: 0 · High: 0 · Medium: 1 · Low: 1
 
-> +static int rk3308_codec_output_routes(struct rk3308_codec_priv *rk3308)
-> +{
-> +	static const struct snd_soc_dapm_route routes[][2] = {
-> +		{
-> +			{ "L_LINEOUT_EN", NULL, "DAC_L_HPMIX_SEL" },
-> +			{ "R_LINEOUT_EN", NULL, "DAC_R_HPMIX_SEL" },
-> +		}, {
-> +			{ "L_HPOUT_EN", NULL, "DAC_L_HPMIX_SEL" },
-> +			{ "R_HPOUT_EN", NULL, "DAC_R_HPMIX_SEL" },
-> +		},
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
+
+- [Medium] The ethernet-phy@0 node in
+  arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts (an SMSC LAN87xx-class…
+- [Low] The patch only adds
+  arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts and a dtb entry in…
+
+--
+
+ARM: mxs: add EVAchargeSE board support
+
+This adds a devicetree for the chargebyte EVAcharge SE. It is an i.MX28
+based ISO 15118 controller for EV charging stations. The DTS enables eMMC,
+the debug UART, Ethernet, USB host, QCA7000 powerline over SPI, CAN and the
+board LEDs.
+
+Link: https://chargebyte.com/products/controllers-modules/evse-controllers/evacharge-se
+
+> ARM: mxs: add EVAchargeSE board support
+
+[Severity: Low]
+This isn't a bug, but the patch only touches arch/arm/boot/dts/nxp/mxs/.
+Should the subject use the dts prefix, for example "ARM: dts: mxs: Add
+chargebyte EVAcharge SE board"? The previous patch in this series, "ARM:
+dts: imx28: add alternative pinmux for CAN1", already uses that form.
+
+The product name is also spelled three different ways:
+
+  subject:    "EVAchargeSE"
+  body:       "EVACharge SE is a ISO 15118 compliant controller ..."
+  DTS model:  model = "chargebyte EVAcharge SE";
+
+The dt-bindings patch "dt-bindings: arm: fsl: support chargebyte EVAcharge
+SE" uses "EVAcharge SE". Could the spelling be the same everywhere?
+
+> diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts b/arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts
+> new file mode 100644
+> index 0000000000000..75ddde2264936
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nxp/mxs/imx28-evachargese.dts
+> @@ -0,0 +1,294 @@
+
+[ ... ]
+
+> +&mac0 {
+> +	phy-handle = <&ethphy>;
+> +	phy-mode = "rmii";
+> +	phy-supply = <&reg_3p3v>;
+> +	pinctrl-0 = <&mac0_pins_a &mac0_phy_reset_pin>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy: ethernet-phy@0 {
+> +			compatible = "ethernet-phy-ieee802.3-c22";
+> +			reg = <0>;
+> +			clocks = <&clks 64>; /* enet_out */
+> +			interrupt-parent = <&gpio4>;
+> +			interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+> +			max-speed = <100>;
+> +			pinctrl-0 = <&mac0_phy_int_pin>;
+> +			pinctrl-names = "default";
+> +			reset-assert-us = <500>;
+> +			reset-deassert-us = <500>;
+> +			reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
+> +			smsc,disable-energy-detect;
+
+[Severity: Medium]
+Can the PHY ID be read here while the PHY is still held in reset?
+
+This node only has the generic c22 compatible, with no
+ethernet-phy-idXXXX.XXXX entry. So fwnode_mdiobus_register_phy() reads the
+ID over MDIO before phylib has requested the reset GPIO:
+
+drivers/net/mdio/fwnode_mdio.c:fwnode_mdiobus_register_phy() {
+    ...
+	if (is_c45 || fwnode_get_phy_id(child, &phy_id))
+		phy = get_phy_device(bus, addr, is_c45);
+	else
+		phy = phy_device_create(bus, addr, phy_id, 0, NULL);
+    ...
+}
+
+The reset-gpios line is requested only after that, through this path:
+
+phy_device_register()
+  mdiobus_register_device()
+    mdio_device_register_reset()
+
+The reset is deasserted later still, in phy_probe().
+
+If nRST is low during the scan, the ID reads as all ones and
+get_phy_device() returns -ENODEV. __of_mdiobus_parse_phys() then just
+prints "MDIO device at address 0 is missing". The phy-handle in mac0 points
+at a PHY that was never registered, so Ethernet doesn't come up.
+
+One way to hit this is to unbind and rebind the FEC driver, or to reload a
+modular fec. On removal, phy_remove() and phy_device_remove() assert the
+reset before the GPIO is released:
+
+drivers/net/phy/phy_device.c:phy_device_remove() {
+    ...
+	/* Assert the reset signal */
+	phy_device_reset(phydev, 1);
+
+	mdiobus_unregister_device(&phydev->mdio);
+    ...
+}
+
+mdio_device_unregister_reset() then calls gpiod_put(), but the pin keeps
+driving low. The next scan finds the PHY still in reset.
+
+The same failure could happen at first boot if the bootloader leaves
+GPIO4_13 low. This DTS muxes that pad as GPIO with MXS_PULL_DISABLE.
+
+Documentation/devicetree/bindings/net/ethernet-phy.yaml covers this case.
+It says that if a PHY needs a particular reset sequence before its ID
+registers can be read, the compatible list "must contain an entry with the
+correct PHY ID".
+
+imx28-btt3.dtsi also has a LAN8720 with reset-gpios, and it does this:
+
+	/* LAN8720Ai - PHY ID */
+	compatible = "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
+
+Could this node get an explicit ethernet-phy-id compatible too? The
+smsc,disable-energy-detect property suggests an SMSC PHY, and the ID would
+need to match the part fitted on this board.
+
+> +		};
 > +	};
-> +	struct snd_soc_dapm_context *dapm = snd_soc_component_to_dapm(rk3308->component);
-> +	u32 mask = rk3308->dac_output == 11 ? 3 :
-> +		rk3308->dac_output == 0 ? 1 : 2;
+> +};
 
-Magic numbers...  I have no idea what this is intended to mean.
-
-> +	int i, ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(routes); i++) {
-> +		if (!((mask ^ rk3308->output_routes_mask) & BIT(i)))
-> +			continue;
-> +		if (mask & BIT(i))
-> +			ret = snd_soc_dapm_add_routes(dapm, routes[i], ARRAY_SIZE(routes[i]));
-> +		else
-> +			ret = snd_soc_dapm_del_routes(dapm, routes[i], ARRAY_SIZE(routes[i]));
-> +		if (ret)
-> +			return ret;
-> +		rk3308->output_routes_mask ^= BIT(i);
-> +	}
-
-This is dynamically hotpluggin DAPM routes at runtime which is a really
-weird way of doing things.  Why are you doing things this way?  Normally
-routing changes would done through DAPM routing changes in mux and mixer
-widgets.  Why are you doing things this way?  It's a lot of code, and
-the userspace impacts are likely to cause confusion.
-
-> +	if (!ret && rk3308->hpdet_jack)
-> +		snd_soc_jack_report(rk3308->hpdet_jack,
-> +				    output ? SND_JACK_HEADPHONE : 0, SND_JACK_HEADPHONE);
-
-This is going to report that the user has inserted or removed something
-physically based on a control write, this is obviously not something
-that should happen.  The user can physically see if something has been
-plugged and this is going to report something different...
-
-> +static int rk3308_codec_hpdet_init(struct platform_device *pdev,
-> +				   struct rk3308_codec_priv *rk3308)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	int ret;
-> +
-> +	if (rk3308->codec_ver == ACODEC_VERSION_A ||
-> +	    of_property_read_bool(np, "rockchip,no-hp-det") ||
-
-Why do we need this property, the machine driver sets up the jack?
-
-> +	    !of_find_property(np, "rockchip,detect-grf", NULL))
-
-of_property_present()
-
-> +		if (headphone)
-> +			for (gain = 0; gain <= max(gain_l, gain_r); gain++) {
-> +				regmap_update_bits(rk3308->regmap, RK3308_DAC_ANA_CON05,
-> +						   RK3308_DAC_x_HPOUT_GAIN_MSK,
-> +					min_t(unsigned int, gain, gain_l));
-> +				regmap_update_bits(rk3308->regmap, RK3308_DAC_ANA_CON06,
-> +						   RK3308_DAC_x_HPOUT_GAIN_MSK,
-> +					min_t(unsigned int, gain, gain_r));
-> +			}
-> +		rk3308_codec_resync_adcs(rk3308);
-> +	} else {
-> +		/* Vendor DAC disable steps 3-19, after the external amps are off. */
-> +		if (hp & (RK3308_DAC_L_HPOUT_EN | RK3308_DAC_R_HPOUT_EN))
-> +			for (gain = max(gain_l, gain_r); gain >= 0; gain--) {
-> +				regmap_update_bits(rk3308->regmap, RK3308_DAC_ANA_CON05,
-> +						   RK3308_DAC_x_HPOUT_GAIN_MSK,
-> +					min_t(unsigned int, gain, gain_l));
-> +				regmap_update_bits(rk3308->regmap, RK3308_DAC_ANA_CON06,
-> +						   RK3308_DAC_x_HPOUT_GAIN_MSK,
-> +					min_t(unsigned int, gain, gain_r));
-> +				usleep_range(200, 300);
-> +			}
-
-The ramp down has a delay but the ramp up doesn't, is that intentional?
-
-> -	SND_SOC_DAPM_ADC("ADC1_WORK", "Capture", RK3308_ADC_ANA_CON05(0), 2, 0),
-> -	SND_SOC_DAPM_ADC("ADC2_WORK", "Capture", RK3308_ADC_ANA_CON05(0), 6, 0),
-> -	SND_SOC_DAPM_ADC("ADC3_WORK", "Capture", RK3308_ADC_ANA_CON05(1), 2, 0),
-> -	SND_SOC_DAPM_ADC("ADC4_WORK", "Capture", RK3308_ADC_ANA_CON05(1), 6, 0),
-> -	SND_SOC_DAPM_ADC("ADC5_WORK", "Capture", RK3308_ADC_ANA_CON05(2), 2, 0),
-> -	SND_SOC_DAPM_ADC("ADC6_WORK", "Capture", RK3308_ADC_ANA_CON05(2), 6, 0),
-> -	SND_SOC_DAPM_ADC("ADC7_WORK", "Capture", RK3308_ADC_ANA_CON05(3), 2, 0),
-> -	SND_SOC_DAPM_ADC("ADC8_WORK", "Capture", RK3308_ADC_ANA_CON05(3), 6, 0),
-> +	SND_SOC_DAPM_ADC("ADC1_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(0), 2, 0),
-> +	SND_SOC_DAPM_ADC("ADC2_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(0), 6, 0),
-> +	SND_SOC_DAPM_ADC("ADC3_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(1), 2, 0),
-> +	SND_SOC_DAPM_ADC("ADC4_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(1), 6, 0),
-> +	SND_SOC_DAPM_ADC("ADC5_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(2), 2, 0),
-> +	SND_SOC_DAPM_ADC("ADC6_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(2), 6, 0),
-> +	SND_SOC_DAPM_ADC("ADC7_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(3), 2, 0),
-> +	SND_SOC_DAPM_ADC("ADC8_WORK", "HiFi Capture", RK3308_ADC_ANA_CON05(3), 6, 0),
-
-Why the rename?
+[ ... ]
 
 -- 
-Mark Brown <broonie@kernel.org>
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261106230746.21954-1-wahrenst%40gmx.net
 
