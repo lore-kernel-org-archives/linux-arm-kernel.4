@@ -2,64 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE8A606D808
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 06:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213D4606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 06:59:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FMmQCs7H;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=neLHx5rF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IgQlzC7W;
+	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm1 header.b=R2pCNZfs;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=BaiwJNkM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vva7iXLKmqzxW6bOy9Y/PVkyCGWqTmEYhH94TgnKVwQ=; b=FMmQCs7HKfGs+Z6AUF/f3sVMNX
-	OIrO8RR0S5eHJzVpJjyUOr/dMML8asWMbyrhojExLEg294uNyfzWsuMh/lA1Us2Lier0NfWKxKoJF
-	sEDFeJSf2+ecVN9joGppWb9bJqxohAoEoRTX4FUTL0gTOyJv+jWiJrIobrVR3SrTpaTY29/Z8UpZu
-	ARxKmpXq/cMwyIZf9gUNUcReYCXga7q3XO/ZYBg9hwkhwTEKel47KSZlMUNQ2hhiGtu5T6ACNfdZy
-	YIypdGMf8QKchA6utGeUw/TnekNSa/O2fQJTU2yDhQ/n+FDJe7CuFRilpHlhxwAYtfaeMloJHVwWJ
-	KN2kbkLA==;
+	bh=5c5YwQfw6glIQ3sp4LG2WJX6kW+CuAO4TASY3DLJo6c=; b=IgQlzC7WNWEhZ+zbW4MPV+6wUo
+	h4sxGKwxD402qkuZsX73sxO6GS2FJgzj2FsYNGfN/wcFIXfrK5dNB/gN0yD9uzjkwOEXKjbZlyzrm
+	IxsIRl/STi12MwDIsmw6uzACeGftUeX5K6FMnYUERb/sd0FBPPEYvbROYAGfbasVqCFyvQCJiRS2f
+	vtGzPYdiVOAo5bZmCoUm7dC5xGcI5sjHsGJHakqO+22LCsGEh7p2A7wnSWxhlXQvcSt6JcujFGQB3
+	cZ6I9e4tjhv4pSOmrEJJ3XsLCx/rM7OZ1a+fwGk6CE7Aq3GffREvEn2eEvdhUXyy1+ZYBz5OsqNmp
+	Doy7rBAA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPwsJ-0000000Fj6k-0jXr;
-	Sun, 08 Nov 2026 06:59:35 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPwsP-0000000Fj87-1Cvo;
+	Sun, 08 Nov 2026 06:59:41 +0000
+Received: from fhigh-b3-smtp.messagingengine.com ([202.12.124.154])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPwsH-0000000Fj6e-2JPg
+	id 1xPwsM-0000000Fj6p-3yV9
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 06:59:33 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D773940236;
-	Sun,  8 Nov 2026 06:59:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A22F1F008A6;
-	Sun,  8 Nov 2026 06:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794121171;
-	bh=vva7iXLKmqzxW6bOy9Y/PVkyCGWqTmEYhH94TgnKVwQ=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=neLHx5rFirJcj1fN5b+9sWjkf513iEWsGo4ex/spWYT3B41qzfbmTqcTcwAtFDRvJ
-	 3iHTMYTIq8SA1h5Fu+J/ck1GR52vLyI8SCHOUhVjDpvLw4owvhyfnYyeXvE8a0xTII
-	 MkLhvMA1Y3wRfYvXz3BJH/8vxfcDSZYI/JQUaBR0AlFtyV7pIu4pLwa6moJ2dqw8g5
-	 SJ1hQlGa6djQmBFbAboxMSZZqqaELyRim3Ge2nGsoaHLkBcYxEY5kFziPq7R0OgTU9
-	 +JM76HfSH82JkhMjhKSm+FDgz4JFb5qr4t8mgPWkNstBO7ALbSrM5TpjxUl9GnkHxF
-	 GSALqTtGtCK8Q==
-Subject: Re: [PATCH net] net: ti: icss-iep: fix deadlock when disabling PPS
-From: netdev-bot+sashiko@kernel.org
-To: hj351016@gmail.com
-Cc: danishanwar@ti.com, rogerq@kernel.org, netdev@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Sun, 08 Nov 2026 06:59:30 +0000
-Message-ID: <179412117075.994134.3223982666310946745@kernel.org>
-In-Reply-To: <20261107063726.3388730-1-hj351016@gmail.com>
-References: <20261107063726.3388730-1-hj351016@gmail.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Sun, 08 Nov 2026 06:59:40 +0000
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 39DC07A0115
+	for <linux-arm-kernel@lists.infradead.org>; Sun,  8 Nov 2026 01:59:36 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-05.internal (MEProxy); Sun, 08 Nov 2026 01:59:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
+	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
+	:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to; s=fm1; t=1794121171; x=1794207571; bh=5c5YwQfw6g
+	lIQ3sp4LG2WJX6kW+CuAO4TASY3DLJo6c=; b=R2pCNZfsdGPizmH5CFvrMPVhSi
+	OAJH4u+rQ0yqv9p2Wtb10U/13JqZ5eHfEorwGfC2TP5FmVf0nPdnHtcyNun3ysvt
+	ufyX+AM3FCXyAr2ketrgBeEX0Qzx+sNt/hCclyEjNZCgyLiQNznmBBI+3YbRDbno
+	JyPb36dliryUdP4JKJJwLytADlpuTypj+LaXNGKNHcZ9MJ/mzQ4jC4tbd5nW/TNc
+	vR8SIhr4MSa7F/AecrkXBnk2ZvzcWefNG2F1QlvRpz5hQR8rxjFpX1WiN5vkLDT9
+	hagwji5hLb7FRepYcdp7Rg1r40EiH7Q5hE6tCsgm75hQLBXcuL4NRjgWJcPw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+	1794121171; x=1794207571; bh=5c5YwQfw6glIQ3sp4LG2WJX6kW+CuAO4TAS
+	Y3DLJo6c=; b=BaiwJNkMLqwzOWQcRZZ7F8J83bvyMzXYj1itNLJhGP6dGbo9VDY
+	fLZeL+XvErD1jsMz97S3E8Vsc3MkzgA32Oh2FRvcTgA7rUrs62zkEK6EhrltO8pU
+	VH4zdoatvU9MntcNB7v9MODrE7shoTSWG9K95BuAmica6z5kyXvGAZlzG2WECaRp
+	vipYBrPTj4UE9uZgEhEjPkmbCS9LUxX8jiYyUFLT6cNv1Fj7mAOBwLHJzxtGOrn9
+	jz8mgrf0BT+jU1SIpi6VYqO6GJU3162g0Bgh68h0WA91YhcS1/X+kW25pdtbx/+h
+	mDOmyQY2G8whs6UBQJ6mStRI8jMlqEtR7jg==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=gahingwoo.com a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1794121171; d=gahingwoo.com;
+	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm1:rsa-sha256:Cd7kej3wxsBDsoceakmBDrrOlsZPnlNcj0k+iqGG4ziXOg7
+	AWkACiW5qmMiA0Ni4BmRmuK3UnwadHzE3pSWqMtqsEOY1DKPiPI6qHgEUf8r0ePh
+	YSAHshHD25j/FrWbYgN/9UyARw1Mt5VwhcfYNKwpXQ6LmEmfJIpUeVoj1IqnUJYS
+	xj4Qy7fHQov5ynUO6v5c+shdoCpGD9LH/B0Z2rWYtZK3axI3o78RSMwEbTz04PET
+	FJjfO/MW5ws4Uah1Usjv4jJYz+s9KJHlftZ7iKINc2NB5sPjLJ/jQOTgcVViWfev
+	xA8jauBddQ5eQKxZczUrZzq3f6GC6L8wofvlzyw==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=9;
+	hn=cc,content-transfer-encoding,date,feedback-id,from,
+	message-id,mime-version,subject,to;
+Message-Instance: m=1; h=sha256:0Hb6NGQTbSiP6J9K8ROHO2Z8lf23EXIb76JFPze2l+8=:lIARtbVoyFTth3P9LXxTFUZ0gGbe4ogIP4TasWzB74c=;
+X-ME-Sender: <xms:0R3wakADAhVpUtvk0PojSS1Fnbs5bIIv-h-f4KepwONWz0JXkGPTWw>
+    <xme:0R3wai9jViP-GoO5mFkUCsW0FRJIBf99zjIrOlzqV2HSoIm4pFW9XwZdTzEbocA0-
+    Vr1kHxA5kvswsCv-jvvAYC95UbWGG6lbKNwp7caIK6QcN_S277Mu43g>
+X-ME-Received: <xmr:0R3wau2_FuWMJ9JmGKBnZLwinNaEct-wyhcsqRHrHQ6jIUjj6HULVeQyJFZ2BKy4e8uQffK9>
+X-ME-Proxy-Cause: dmFkZTFWwKTEx2JlF6gbxz/CcZ5fOIEPMTwVUWzP082guo7LQMgK7h789MowHkag1AGdJv
+    Qi5S3iCW7IkIlV0pVZbVxPkmE51+n7fGqs28fdNBe7OImR6ZReSfOcge1vefQ2dYIPjd/3
+    8oouzHrOzwizmnPo1Jrj2K0Cz6p+y7cnDV1Q7f64sIfTb/RehvLUFbgwKi6YssWkzdFwq6
+    PiOomVYP7898vo56/KT6uE/vFspwIACRCqrPnfnGSDvko45DWPmIgV1QsN1iiB6XoRbR5/
+    hqF7mdebvlnyTwN4YuJ6h5Db0Q4msVL+t3WXN9SrQ1fzPlgWJWmpS+HhRxJYCi1m+5oETc
+    Hf/c0rOLaIGYwsXYUJk9RDSvEHRxWZa5odvrMxGFaVYAzpZ+RJ6pmy7HNp+L6KNMbjZvcs
+    5w4IeTnfFHNhPQQDXU6R0fvBgaB8bdUCo2xV+DP47ptSNs2iew7ns9kHjQaMGBcENSDf6/
+    1n/tGYGTDpygfLAksUvvLewffFcyx3AiAuqTTRNQpBYBRjpD3ImuWZZwEIJ7NaPqz2Ep0i
+    18NtNYfg3+xwDtsI5f84X0HU/kW5w1owhcdQZh5+RAm/sDzXXggz/GJ3dNjWp/b9ew7SN/
+    tfKtl6cZGQqJIXK0jvbXvDXh6ES2z+DXksOqFyi8EDmUX3DsGB8IwnAhIF2g
+X-ME-Proxy: <xmx:0R3wahTC7yxmYtakbLUznZAn9t9if0Fy93KVG1ar7_RatWT5ahJz_g>
+    <xmx:0R3wapj_xiA45HSZ_mXP_UzBWDt_4dsh_9Qnbbrj15vMN_mZ60ub7g>
+    <xmx:0R3warZa_YTgKxAvMtBxd5tRo-OKbLO7byRud17rUUgFTasbB4wgfg>
+    <xmx:0R3walEYCYjyyHdOG4qxGLNKQPqPju1LTZLedIb1PASn4FGkBN_9wQ>
+    <xmx:0x3wak7QszLLyOVvxgx-4hIUGD2clfHh3Rw9oszNcOA9TTF1ZsIPB8xj>
+Feedback-ID: i7a5e4b5f:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 8 Nov 2026 01:59:19 -0500 (EST)
+From: Jiaxing Hu <gahing@gahingwoo.com>
+To: tomeu@tomeuvizoso.net,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	joro@8bytes.org,
+	will@kernel.org,
+	robin.murphy@arm.com,
+	ulfh@kernel.org,
+	p.zabel@pengutronix.de,
+	ogabbay@kernel.org,
+	zhangqing@rock-chips.com
+Cc: royalnet026@gmail.com,
+	abel.vesa@oss.qualcomm.com,
+	sebastian.reichel@collabora.com,
+	sidong.yang@furiosa.ai,
+	u.kleine-koenig@baylibre.com,
+	chaoyi.chen@rock-chips.com,
+	shawn.lin@rock-chips.com,
+	finley.xiao@rock-chips.com,
+	diederik@cknow-tech.com,
+	alchark@flipper.net,
+	leonard@lausen.nl,
+	jeff.hugo@oss.qualcomm.com,
+	rfoss@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-rockchip@lists.infradead.org,
+	iommu@lists.linux.dev,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jiaxing Hu <gahing@gahingwoo.com>
+Subject: [PATCH v16 00/16] accel/rocket: RK3576 NPU (RKNN) enablement
+Date: Sun,  8 Nov 2026 19:59:01 +1300
+Message-ID: <20261108065917.135194-1-gahing@gahingwoo.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261107_225939_177198_1FDBE8CA 
+X-CRM114-Status: GOOD (  19.02  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,261 +152,118 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issue(s) to consider.
+This series adds RK3576 NPU (RKNN) support to the mainline DRM rocket
+driver.
 
-Critical: 0 · High: 0 (1) · Medium: 3 · Low: 0
+Based on: next-20261105
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Changes in v16:
 
-- [Medium] The patch moves cancel_work_sync(&iep->work) out of the
-  ptp_clk_mutex critical section in icss_iep_pps_enable()…
-- [Medium] After the patch, an icss_iep_cap_cmp_work() instance can run
-  after icss_iep_pps_enable(0) has disabled and cleared the compare…
-- [Medium] The commit message says that because the compare is disabled
-  before the drain, 'no new work can be scheduled once the mutex is…
+- Tomeu: rewrote the descriptions and code comments of the accel/rocket
+  patches; I write them in Chinese first and translate them into English
+  with an LLM. Added a GET_PARAM ioctl that gives userspace the NPU
+  hardware version (13/16). Please check whether the proposed enum values
+  are fine (RK3588 = 1, RK3576 = 2).
+- Heiko: shortened the commit messages of 1/16 and 3/16 and kept the
+  original comment in 3/16; moved to one power domain per core, and cut
+  the IOMMU clocks from five to four. The measurements are in 8/16 and
+  15/16.
+- Chaoyi: removed the unneeded comment in 11/16.
+- Sashiko: 4/16 now drops the runtime PM reference after
+  rocket_core_reset(), with an A/B test showing that the old order hangs
+  the board.
 
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but the shared
-  iep->work is never drained when periodic output (perout) is disabled,…
+Testing, on a ROCK 4D and an ArmSoM CM5-IO, both running Armbian edge 7.3
+with the v16 changes:
 
---
+- Tested with charsiu (https://github.com/gahingwoo/charsiu), an open
+  source LLM inference runtime. It drives the NPU directly through the
+  rocket UAPI (/dev/accel), without Mesa or the vendor runtime.
+- Llama-3.2-1B (Q4_0), with both NPU cores running together, gives
+  correct results.
+- Perplexity on the same model and the same text is 41.1009, identical to
+  the previous version.
+- On the ROCK 4D, tested IOMMU clock combinations; four clocks are needed.
+- On the ROCK 4D, repeated resets with a 2 ms job timeout, to compare the
+  two orders of dropping the runtime PM reference.
 
-net: ti: icss-iep: fix deadlock when disabling PPS
+Armbian has merged support based on v14, in armbian/build#11162
+and armbian/build#11163.
 
-This commit moves cancel_work_sync(&iep->work) in icss_iep_pps_enable()
-out of the ptp_clk_mutex critical section. The PPS disable path then no
-longer waits for icss_iep_cap_cmp_work() while it holds the mutex that the
-work handler needs.
+Known issue: after repeated resets with a 2 ms job timeout, the IOMMU
+does not recover ("MMU_DTE_ADDR is not functioning"). I have not looked
+into it further.
 
-> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
-> index ec085897edf09..6264061a4eab3 100644
-> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
-> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+Tool use:
 
-[ ... ]
+An LLM helped me read code and technical material and write part of the
+implementation. Some of the code in the series was first drafted by an
+LLM, and the commit messages and cover letters of earlier versions were
+mostly written by an LLM.
 
-> @@ -607,7 +608,7 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
->  	} else {
->  		ret = icss_iep_perout_enable_hw(iep, &rq.perout, on);
->  		if (iep->cap_cmp_irq)
-> -			cancel_work_sync(&iep->work);
-> +			drain_work = true;
->  	}
->  
->  	if (!ret)
-> @@ -616,6 +617,15 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
->  exit:
->  	mutex_unlock(&iep->ptp_clk_mutex);
+I reviewed the generated code and tested the changes on real hardware.
+I also used an LLM to write test scripts and to compare register write
+traces.
 
-[Severity: Medium]
-Once the mutex is dropped here, can icss_iep_cap_cmp_work() run against
-compare hardware that has just been disabled and cleared?
+For v16 I rewrote the cover letter, commit messages and code comments
+myself in Chinese first and translated them into English with an LLM.
 
-There seem to be two ways for this to happen:
+Tag changes:
 
-  - A handler already blocked in mutex_lock(&iep->ptp_clk_mutex) now
-    continues. This is the case the patch fixes.
+- Picked up Heiko's Reviewed-by tags from v15.
+- 4/16 changed after Heiko's Reviewed-by. Heiko, please confirm whether
+  it still applies.
+- Igor's Tested-by on 4/16 was given on the earlier code, so I've dropped
+  it until it is retested.
+- 8/16 has Conor's Acked-by. The clock count changed from five to four;
+  Conor, please confirm whether it still applies.
 
-  - A work item that was pending but not yet started begins running
-    between mutex_unlock() and cancel_work_sync(). In that case
-    cancel_work_sync() only waits for it to finish.
+Igor Paunovic (1):
+  accel/rocket: request the core clocks by name
 
-The handler doesn't check pps_enabled or perout_enabled after it takes the
-mutex:
+Jiaxing Hu (15):
+  accel/rocket: take the completion register writes under job_lock
+  accel/rocket: wait for a running IRQ handler before resetting a core
+  accel/rocket: let the core suspend after a reset
+  accel/rocket: factor the completion tail out of the IRQ handler
+  dt-bindings: npu: rockchip: add rockchip,rk3576-rknn-core
+  dt-bindings: power: rockchip: allow resets in a power domain node
+  dt-bindings: iommu: rockchip: describe the RK3576 NPU MMU
+  pmdomain: rockchip: add optional per-domain power-on settle delay
+  pmdomain: rockchip: cycle an optional power-domain reset on power-on
+  accel/rocket: select the per-core clock and reset counts from match
+    data
+  accel/rocket: add RK3576 NPU (RKNN) support
+  accel/rocket: add a GET_PARAM ioctl for the hardware version
+  arm64: dts: rockchip: add NPU core domain clocks and resets to rk3576
+  arm64: dts: rockchip: add NPU (RKNN) nodes to rk3576
+  arm64: dts: rockchip: enable the NPU on rk3576-rock-4d
 
-icss_iep_cap_cmp_work() {
-	mutex_lock(&iep->ptp_clk_mutex);
+ .../bindings/iommu/rockchip,iommu.yaml        | 26 ++++++
+ .../npu/rockchip,rk3588-rknn-core.yaml        | 40 ++++++++-
+ .../power/rockchip,power-controller.yaml      |  8 ++
+ .../boot/dts/rockchip/rk3576-rock-4d.dts      | 22 +++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 82 ++++++++++++++++-
+ drivers/accel/rocket/rocket_core.c            | 14 ++-
+ drivers/accel/rocket/rocket_core.h            | 10 ++-
+ drivers/accel/rocket/rocket_device.c          |  3 +-
+ drivers/accel/rocket/rocket_drv.c             | 61 +++++++++++--
+ drivers/accel/rocket/rocket_drv.h             |  2 +
+ drivers/accel/rocket/rocket_job.c             | 84 ++++++++++++-----
+ drivers/pmdomain/rockchip/pm-domains.c        | 89 ++++++++++++++-----
+ include/uapi/drm/rocket_accel.h               | 40 +++++++++
+ 13 files changed, 419 insertions(+), 62 deletions(-)
 
-	ns = readl(iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
-	...
-	ns_next = ns + iep->period;
-	writel(lower_32_bits(ns_next),
-	       iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
-	...
-	pevent.pps_times.ts_real = ns_to_timespec64(ns);
-	pevent.type = PTP_CLOCK_PPSUSR;
-	pevent.index = 0;
-	ptp_clock_event(iep->ptp_clock, &pevent);
-	...
-}
 
-icss_iep_perout_enable_hw(on=0) has just written 0 to CMP1_REG0/REG1. The
-late handler would then set CMP1 to 0 + iep->period, which undoes the
-"clear CMP regs" step. It would also send a PTP_CLOCK_PPSUSR event with a
-zero (1970) timestamp.
-
-pps_event() doesn't check whether PPS is enabled. It records the assert,
-increments assert_sequence, wakes /dev/ppsN readers and calls
-pps_kc_event(), all after userspace has turned PPS off.
-
-Before this patch, the blocked case deadlocked and the pending case was
-cancelled under the mutex, so this behaviour is new.
-
-Should icss_iep_cap_cmp_work() return early under the mutex when neither
-pps_enabled nor perout_enabled is set?
-
->  
-> +	/*
-> +	 * Drain the capture-compare work only after dropping ptp_clk_mutex.
-> +	 * icss_iep_cap_cmp_work() acquires ptp_clk_mutex itself, so calling
-> +	 * cancel_work_sync() while the mutex is held deadlocks when a handler
-> +	 * instance is already running and waiting for that same mutex.
-> +	 */
-> +	if (drain_work)
-> +		cancel_work_sync(&iep->work);
-
-[Severity: Medium]
-The drain now runs outside ptp_clk_mutex and doesn't re-check
-pps_enabled or perout_enabled. Could it cancel work that belongs to a
-later enable?
-
-pps_enable_store() and period_store() in drivers/ptp/ptp_sysfs.c call
-ops->enable() without ptp->pincfg_mux. That means they aren't serialized
-against the PTP_ENABLE_PPS ioctl path or against each other.
-
-One possible sequence:
-
-CPU0 (disable)                       CPU1 (sysfs enable)
-icss_iep_pps_enable(iep, 0)
-  pps_enabled = false
-  mutex_unlock()
-                                     icss_iep_pps_enable(iep, 1)
-                                       program CMP1, set CMP_EN
-                                       pps_enabled = true
-                                     first CMP1 hit:
-                                     icss_iep_cap_cmp_irq()
-                                       schedule_work(&iep->work)
-  cancel_work_sync(&iep->work)
-    removes the new session's work
-
-icss_iep_cap_cmp_work() is the only code that moves CMP1 forward. Once
-its work is cancelled, no further compare events or PPS pulses are
-produced, while the driver still reports pps_enabled == true.
-
-The other order is possible as well. Suppose an old-session work instance
-is blocked in mutex_lock() and gets the mutex after CPU1's enable. It
-would read the new boundary B from CMP1, write B + period and send a
-PPSUSR event stamped B before time B arrives. The first real edge of the
-new session would be skipped.
-
-Before this patch the cancel ran under ptp_clk_mutex, so a concurrent
-enable had to wait for it.
-
-[Severity: Medium]
-The commit message says:
-
-    The hardware compare is
-    already disabled by icss_iep_perout_enable_hw() before the drain, so no new
-    work can be scheduled once the mutex is released.
-
-Is that guaranteed? icss_iep_cap_cmp_irq() reads pps_enabled with no lock
-and no ordering against this path. Nothing calls
-synchronize_irq(iep->cap_cmp_irq) before the drain:
-
-icss_iep_cap_cmp_irq() {
-	val = readl(iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
-	if (val & BIT(1)) {
-		writel(BIT(1), iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
-		if (iep->pps_enabled || iep->perout_enabled)
-			schedule_work(&iep->work);
-	...
-}
-
-Suppose a CMP1 hit was latched just before CMP_EN was cleared, and its
-handler on CPU1 has already read pps_enabled == true.
-
-CPU0 can then set pps_enabled = false, drop the mutex and call
-cancel_work_sync(). That call returns immediately because nothing is
-pending.
-
-CPU1 then calls schedule_work(), and the work runs after PPS has been
-disabled.
-
-On teardown, ptp_clock_unregister() -> ptp_disable_all_events() ->
-icss_iep_pps_enable(0) runs first. After that the pps source and
-ptp_clock are released, and icss_iep_exit() sets iep->ptp_clock to NULL.
-A work item queued this late could call ptp_clock_event() on a freed or
-NULL ptp_clock.
-
-On PREEMPT_RT the handler is force-threaded and can be preempted between
-the flag read and schedule_work(), so the window is wider there.
-
-The old code had the same race with a larger window. However, the commit
-message's argument depends on this window being closed.
-
-Would a synchronize_irq() after clearing pps_enabled, together with a
-state check in the work handler, close it?
-
-> +
->  	return ret;
->  }
->  
-
-[Severity: High]
-This isn't a bug introduced by this patch, but the perout disable path has
-a related problem. icss_iep_cap_cmp_irq() also queues iep->work when
-perout_enabled is set, but icss_iep_perout_enable(..., 0) never drains it:
-
-icss_iep_perout_enable() {
-	...
-	ret = icss_iep_perout_enable_hw(iep, req, on);
-	if (!ret)
-		iep->perout_enabled = !!on;
-
-exit:
-	mutex_unlock(&iep->ptp_clk_mutex);
-
-	return ret;
-}
-
-On teardown, icss_iep_exit() unregisters the clock and sets it to NULL
-before perout is turned off:
-
-icss_iep_exit() {
-	if (iep->ptp_clock) {
-		ptp_clock_unregister(iep->ptp_clock);
-		iep->ptp_clock = NULL;
-	}
-	icss_iep_disable(iep);
-
-	if (iep->pps_enabled)
-		icss_iep_pps_enable(iep, false);
-	else if (iep->perout_enabled)
-		icss_iep_perout_enable(iep, NULL, false);
-	...
-}
-
-The ptp_disable_all_events() call inside ptp_clock_unregister() only
-disables EXTTS and PPS. The PPS disable returns -EBUSY while perout is
-enabled, so the work isn't drained there either.
-
-Can a work item queued while perout is active run icss_iep_cap_cmp_work()
-after this point? It could be queued before teardown, or by an IRQ that
-arrives before CMP_EN is cleared. If it runs, ptp_clock_event() would use
-a NULL or freed iep->ptp_clock and pps_device.
-
-This can be reached from ndo_stop via prueth_emac_common_stop(), or from
-prueth_remove(). It needs an IEP with an iep_cap_cmp interrupt and the
-icssg_prueth clockops, which set n_per_out = 1.
-
-Also, iep->ptp_clock = NULL is assigned without holding ptp_clk_mutex.
-
-Should icss_iep_perout_enable() also call cancel_work_sync() on disable?
-And should icss_iep_exit() drain iep->work before it unregisters the
-clock?
-
+base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261107063726.3388730-1-hj351016%40gmail.com
+2.43.0
+
 
