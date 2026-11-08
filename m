@@ -2,114 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D8B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 20:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B430E606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 20:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XFLM7+uN;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=iRpnnt9S
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TLl1e0Fs;
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.a=rsa-sha256 header.s=mail header.b=Vn3pYSmQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+r/5TJaydvCVS9bMQGNHRRQWxJ1iL8YMIg0lKVket3I=; b=XFLM7+uNV78ptfD8d4CbhRIMp4
-	VCqZFVQrYswENnBZNZFxMLWNw+NcvpzLNT2tCnxNNjTPYa/hQk2VJgOV8mhdP7hFg9Rsm51gSH9U3
-	95cY5b8zfoNFTXCh2GvRGbtUpi0kENnpiGoK6OW/5JjcizIV37zclGXWQuUcECbuZePMzzf4SKk/S
-	O7zZfzL/FKPnrROIXz6FmT2l1epMCvEW7rHLwcGksEyB00oiv+vCgGRsEvTYfMJhwTcc1pK1Xt/dn
-	ijb9IztWWJQivURg1xcD8B45T/dE8SUITGOu+ppX96DIbW0RmnZitb/+mSyh6sB1vn4d1yu5GADoc
-	sW9dl1wg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AGFdlabeqEb35qWp8FLEWRPggysLe3Q3O4790UcL76Q=; b=TLl1e0FsQAcwx6
+	+Zk8HDyCoqTpD0x/+phHbBWWAZ43xc20iZGmpAmuUaVrtDwoJ7T9eZxxI2r500hcKzrgDkqZ9JDka
+	9hm1t5uaF8dqzTDXw+G6xWGdlzBllAGVAVYKNVy0irZGg9lzLabFNCiRNDgviiLk8B4h5kLLZF5r+
+	No8tWXs9+rd3XwNx4tk13p8cTS60FHUMba3zlfXQRg3yHKn5nBolUUIRSw1Vb8+kBN01apt0ThTeq
+	37bX3DDCys/jja89jFcO9S3bU7/M9VlgxnZwSuna1PfF1EUk5aphHW4Kfdsl3Fbi0aqmsLi1JTk+L
+	E7kFccyOh7L1q2YHDKRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ9it-0000000GbKK-0qAq;
-	Sun, 08 Nov 2026 20:42:43 +0000
-Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
+	id 1xQ9uS-0000000GeCZ-3vMC;
+	Sun, 08 Nov 2026 20:54:40 +0000
+Received: from layka.disroot.org ([178.21.23.139])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ9iq-0000000GbJy-2RIz
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 20:42:42 +0000
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4a214af2076so1639625e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 12:42:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794170558; x=1794775358; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=+r/5TJaydvCVS9bMQGNHRRQWxJ1iL8YMIg0lKVket3I=;
-        b=iRpnnt9SVxZ0c9ZjpWO/5aTudnY+8RaanDH9g6JQtktOcw7B2XIPg9ehuZPBd7PSzP
-         a9XB0b8IdTKr4vXVC6bQx6M7w9QEmN/qZxoTRO7HXWavqFilymX6zq8QXkx/GhX9z4+6
-         EwXeYFEHxfia2keOEMj0FQOKrN4kqwIYHnx2W8ili1t7L9mg/PcLN7ACmwc/74pMUIKS
-         XIXS7jOlLOH5q3V77gT3wkT9gx47/4WcGQQdvVdf7pjo+RsLR2bQXUxEV0m3vUO8LqP+
-         03rVqHPxGoBcq/khzJA/VWuMEpkhjXnZRiVoHeGCbaxw0uCPo3zVHqx/6W6etC6nG6eL
-         dC6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794170558; x=1794775358;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=+r/5TJaydvCVS9bMQGNHRRQWxJ1iL8YMIg0lKVket3I=;
-        b=u6v+XI/9faM5xbmOr/crvY278LO9ak8OqE+Pq9a/zIMB7fLXsZOwnmIamhUzn+V5r+
-         p9QfJDt2kOYT+jkLAopNwdaF+BdBDr+r+3yZT+d3zn3QR4z0JjEUW581jV3fFsaEyrgX
-         MXKPd9L3Dbf7EIzKO9I+8XeGZCG5Be0bav0lqYdW4y87BhMc8BLbu1tZPPzR0HY6Bk+X
-         Coa7jwEns0X7efm19zhc5rBKZGJ6NiVrXXUwV3X4HxdapWsceX/qle/16tlCcqfrx5KG
-         +zwC3GJjKrezT66YtzAs1mU2ljC5XC+fy+tCx8bVjWRFCzt/EV+9sgyE2IXwCI87tXT6
-         4IoA==
-X-Forwarded-Encrypted: i=1; AL+hErG5NwQ2XMhWv5fGlSJ50J3SxdRphttL0/joA9GVVvE+2L+UO9/CSyG9YZ0/s+HtpTVkj/qbrxWMYo50e01/EbxD@lists.infradead.org
-X-Gm-Message-State: APuU4Z/V0mllLsSCMyvUFiRiRv8O8bmtADe8igd6fkVk9sA01dReu5C0
-	gjlLN++jz+9INqX7gj0poc3KSUm/3DwqAT9Zz2aiuzaBeZcMx/IuzVEAr1lyBJ3YaTg=
-X-Gm-Gg: AYBFou0gpMFKsTC3ah/lF5Ac13zX3MuG6dF9ISbp0NcZ4YLJsRTC4jLRE8wANFlGb82
-	ssZLREvGVLdNvayQJekwlTPN4aPIRvxUdDOaQE9jKzLALamGIwertMCzRSxyxOdfSUk1EdXINPD
-	iiPVkZ3hEzB75ocwdi/DJwC+jtqfnYoWsp3plFeiDMzhrMlHW/En10P2L3epRIPvwA1H/jHXtyH
-	Qyky9e7K8SMN7D26jMBm/71zbu3bpupD6HnqRNp4HYtzjDTPId4/0cqs53v0CM5q8L6b9he+JBz
-	pPPl9QQV/gPh1+yIzkFMONGeJbjocKpE+L5wP09UQuETSnqa+sELArxJwa4ub4GZaSjypX99H5D
-	3FW6ZNpjX0hR135Q/qktxriJneUmEiwgMVYxQo9R4dqokSICDjg60oJyJEAWMhusyk8ihb9T3zu
-	5AxxNbfoUEmLRe8k9AuI+dVu8nh5+tWSGzC8LKuZTYtEd7OJd6/SwZkFH4TrNNi8G7ezAKpPNAp
-	jOpbH0p848JiBVbv36upwWpmZ0DJrY1ac3qGcNxfoLQVthPQoilx91UayHXvRtHHn+RiOtF9EaZ
-	YETfk/dWrRJtPqAg80JHOVGmuippgPGyVnLUTI1OYy1vPWJSodcz4e4P1JQloA==
-X-Received: by 2002:a05:600c:3f12:b0:4a2:148b:c88c with SMTP id 5b1f17b1804b1-4b963c6c56emr43762005e9.8.1794170558149;
-        Sun, 08 Nov 2026 12:42:38 -0800 (PST)
-Received: from [192.168.0.2] ([197.250.160.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49592f38e55sm6105532f8f.4.2026.11.08.12.42.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2026 12:42:37 -0800 (PST)
-From: =?utf-8?q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>
-Date: Sun, 08 Nov 2026 23:42:28 +0300
-Subject: [PATCH v14] mfd: zx297520v3: Add a clock and reset MFD driver
+	id 1xQ9uQ-0000000GeC3-0Bc1;
+	Sun, 08 Nov 2026 20:54:40 +0000
+Received: from mail01.layka.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 5961380A2A;
+	Sun, 08 Nov 2026 21:54:32 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id cvJPPhnADycg; Sun,  8 Nov 2026 21:54:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1794171271; bh=InPWc+RU9xrIYZPwWZph+YHnci8PesbBzJmr4nqrB88=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Vn3pYSmQqEceRkJZKJj1Zo+LO6hy43qE3j4/jglkyH619+BHAdg40gyz7ds5O9HDW
+	 EhRFI44zAkB5p4GRzMrCV8I7JHl+RyePjPkZ+O9uRojHoH9nsX+fRI5H/hR9QTQ/Wc
+	 9jAC/lp3VSx3yDd2wuXhC5s3j3ORjBgzifSgmCHqXQAzH2KQvAYKN6C/DpM62eUCZs
+	 jDRx0cPPsa0YrnC87jc2iBYWvNUI2/BXCm79T7p/zVU8ADJwvVviqvFhIy8yhkl1/Y
+	 AoYT59awzvh8dB8PAydkEjKXo1uZxlOF5DGQJnWZDkb7p5H2ZWP0ntyZzJhS/r4yFl
+	 hV/czRNTYQHIQ==
+From: Florian Maurer <fmaurer@disroot.org>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Florian Maurer <fmaurer@disroot.org>,
+	Felix Fietkau <nbd@nbd.name>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH wireless 1/2] wifi: mt76: npu: return rx slots to the NPU only after refilling them
+Date: Sun,  8 Nov 2026 20:53:48 +0000
+Message-ID: <20261108205350.2956138-1-fmaurer@disroot.org>
+In-Reply-To: <au3igPTxdz3i64SO@lore-desk>
+References: <cover.1793927986.git.fmaurer@disroot.org> <d6314f34e0965464207656d38a145490b6437aa5.1793927986.git.fmaurer@disroot.org> <au3igPTxdz3i64SO@lore-desk>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261108-zx29clk-v14-1-48694e5a9d10@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDE10FJSSM
- xLz0lN1M1OAAkpGBkZmhoYGFrpVFUaWyTnZusZJBubGSZYpRkYpZkpA1QVFqWmZFWCjomMh/OL
- SpKzU5BKQdqXaWgC28Y4ibAAAAA==
-X-Change-ID: 20261108-zx29clk-3b073b9d22d6
-To: Lee Jones <lee@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-kernel@vger.kernel.org, mfd@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- =?utf-8?q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9555;
- i=stefandoesinger@gmail.com; h=from:subject:message-id;
- bh=FBBK+RiV6zGGBiX6mgds9dkqH/GmsNXnUpzR+KrqbXw=;
- b=owEBiQJ2/ZANAwAIAT0TvMhUTxoiAcsmYgBq8N64TtNpWJrauSNBd7Gk/210cVnrulk9o6Nx0
- aneEg4eKiyJAk8EAAEIADkWIQRDFvS2qgVbJ5UyXWw9E7zIVE8aIgUCavDeuBsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMiwyLDIACgkQPRO8yFRPGiKYwRAAp9CZh0hzFMORyx82IEbKfXr59xVIzdc
- /LnelLBGqqgpN454oiZ1/bGiZYbGyODT4eHHJaF+iHni+BxypkQI7G49/Kp7T+JT76v3xv0+PpL
- 6dSzsaiZQBfFSpqH35XQdJXIRt5KbG/CG+7ykfsQfnVTTzPEhavF42KYcOWer+NiX7nltS2heKM
- MMJcowSxO1IG0OnJRbkKKyJQXClnjtOFbwqAbhGeCrrNcEm/fCE9KKt5KrGA7mJ2BZ/64WVLgmZ
- 3dy5NU0WmgZNioQI1+4bzaCWC1X/2SjVRimGjkOZcgRrtk1vFZrLmTcnTeIw17clhCllJmhj/HS
- f69J+kfQZjhQFwhvQo+V+4tGVbfA1gMVtN7RLlTQ2kPeKAt5dtQ8WSAIoBPbgZg2CY/Lks1zayn
- 8fjSZFbwksbrpBzeEUpxejjzEwlhmui/xg89JyuTZk5P52gsSPYBigIaGecd1p89KFJfBmC6tiG
- NTKaPeooCC1606YlvD5XmVBUV0huixxoJWTprJRHCmv9ao5zFWn1dg2/hlgsX4f07G9oqoRQiB4
- wgx5vWT9ZujM94z5WX/HwrJhXT07OCIvf/fWv+mHqZ/LlS44o7own+LZYEd0SF1MW9Ib5cLWsE6
- v7uhworEs8g4KTSXQnwHEnFop9lBJNSGCH4ZcuJPmGH20+gLPf6k=
-X-Developer-Key: i=stefandoesinger@gmail.com; a=openpgp;
- fpr=4F9C2C8728019633893EBBB98CB81F9A72BBA155
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_124240_686713_F1182C42 
-X-CRM114-Status: GOOD (  36.13  )
+X-CRM114-CacheID: sfid-20261108_125438_641836_FD2D0F07 
+X-CRM114-Status: GOOD (  24.10  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,276 +79,121 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This driver registers child devices for the zx297520v3 clock and reset
-controllers. The clock child will be driven by the already committed
-clk/zte/clk-zx297520v3 driver and the reset part by a separate reset
-driver.
+On Fri, Nov 06, 2026 at 03:21:52PM +0100, Lorenzo Bianconi wrote:
+>> +	Q_WRITE(q, dma_idx, (q->head + 1) % q->ndesc);
+>
+> why are you writing q->head here?
 
-Signed-off-by: Stefan Dösinger <stefandoesinger@gmail.com>
----
-v14: Trimmed the header comment to give a quick description of the
-hardware and driver, but remove references to ZTE's downstream kernel
-(Lee Jones).
+Once the ring is full, (q->head + 1) % q->ndesc == q->tail, so the
+value is the same as today. Only the timing changes: the slots go back
+to the NPU after they have a new buffer, not before.
 
-Re-add MAINTAINERS addition. The DT and clock parts are upstream
-already, so it should apply without conflicts now. This way the
-MAINTAINERS entry is introduced in the same commit as the file it refers
-to.
+The +1 assumes the NPU completes slots only up to dma_idx - 2. Every
+slot it can still complete then lies between its own position and
+q->head - 1. The host has not consumed those yet, so they still have a
+buffer. If the refill fails, the same value is written again and the
+ring stalls instead of handing back an empty slot. A debug patch that
+cleared DONE after each consumed slot saw no slot completed early in
+60 minutes of rx load, though I can't tell how often the NPU reached
+that slot. Can you confirm this is how the NPU treats dma_idx?
 
-v13: Break out the MAINTAINERS change so Lee can selectively apply this
-patch. I made sure it compiles without the DT binding headers.
+>> +	if (nframes > q->queued)
+>> +		return NULL;
+>
+> can this really occur?
 
-Changes v12:
-Added comments elaborating on the role of the driver and the hardware.
+I have not seen it. The slot at q->head is never cleared while the ring
+is full: it is the one kept free, consumed in the previous round, so it
+still has DONE set. If the NPU has completed the first slots of a frame
+up to q->head - 1, the count reaches past q->queued and the next DONE
+check finds that stale bit. A page pool failure makes the stale region
+larger.
 
-Regarding the names: zx297520v3 is the SoC's name (chip marking, boot
-messages). TOPCRM, MATRIXCRM, LSPCRM are ZTE's names for the MMIO blocks
-in their downstream sources. Sadly no datasheet is available. "clk",
-"reset" names for the child nodes are mine.
+> I got your time, and I agree this is an issue we need to fix but I guess we
+> should avoid a double loop. What about the patch below? (just compiled and not
+> tested).
 
-Regarding personal copyright: I am not affiliated with ZTE nor paid by
-them. This is my personal hobby project. I am using knowledge extracted
-from ZTE's kernel dumps, but not code.
+Keeping the partial frame in q->rx_head is nicer, and it lets the slots
+of a half-received frame be refilled early. Comments inline.
 
-Changes v10 (All Lee Jones):
-*) drop "select REGMAP_MMIO"
-*) Drop comment about unimplemented hwlocks
-*) Use MFD_CELL_[NAME|OF]
-*) Renamed the device type enum and its values
-*) Use device_get_match_data instead of the of_ variant
-*) Improved debug messages
+> +	if (!nframes) {
+> +		nframes = FIELD_GET(NPU_RX_DMA_PKT_COUNT_MASK,
+> +				    desc[q->tail].info);
+> +		nframes = max_t(int, nframes, 1);
+> +	}
 
-Changes v9:
-Deassert the LSP reset and enable the LSP pclk here. In practice the
-boot rom needs to do that because it prints to an LSP-connected UART and
-reads the boot policy from the LSP connected flash chip.
+PKT_COUNT is read before DONE of this slot, see my reply to 2/2. Once
+q->pending keeps the count across polls, a stale count of 1 would
+stick. On top of your patch, something like (not compiled):
 
-In doing so, I migrated the match data to an enum as mfd.md suggests.
+	if (!nframes) {
+		u32 ctrl = READ_ONCE(desc[q->tail].ctrl);
 
-Changes v8:
-*) Remove .of_compatible from PHY mfd child
+		if (!q->queued || !FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, ctrl))
+			return -EBUSY;
 
-*) Move to drivers/mfd (Sashiko)
+		/* PKT_COUNT is only valid once the first slot is complete */
+		dma_rmb();
+		nframes = FIELD_GET(NPU_RX_DMA_PKT_COUNT_MASK,
+				    desc[q->tail].info);
+		nframes = max_t(int, nframes, 1);
+	}
 
-For me either soc/zte or mfd/ is fine. Note though that this MFD parent
-is very specific to the zx297520v3 SoC. I don't expect this to be reused
-anywhere else. There are two more MFD-ish devices in there: soc_sys at
-0x140000, which I plan to handle in the same driver, and an i2c PMIC,
-which would get its own host driver.
+> +	while (nframes > 0) {
+> +		struct mt76_queue_entry *e = &q->entry[q->tail];
+>  		int len = FIELD_GET(NPU_RX_DMA_DESC_CUR_LEN_MASK,
+> -				    desc[index].ctrl);
+> +				    desc[q->tail].ctrl);
+[...]
+> +		if (!FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, desc[q->tail].ctrl))
+> +			return -EBUSY;
 
-*) Use PLATFORM_DEVID_AUTO (Sashiko). NONE was intentional as I only
-ever expect one instance, but I don't see any harm in doing the standard
-thing and use AUTO
+Three things here:
 
-*) On the suggestion not to put the link to mfd_cells[] into match data:
-I see that it is spelled out in Sashiko's mfd.md, written by Lee Jones,
-the MFD maintainer. I would appreciate some education on the rationale
-behind it: Putting a pointer into the void *data is a common pattern in
-the kernel. I don't understand in which situation this can possibly
-break?
+- ctrl is loaded twice, so len can come from before the slot was
+  completed.
+- Nothing stops the loop at q->queued == 0, so it can take the stale
+  slot at q->head, whose buffer already belongs to an skb, and
+  q->queued goes negative.
+- q->pending is never set, so after -EBUSY the next poll reads
+  PKT_COUNT from desc[q->tail].info, which is now a later slot of the
+  same frame.
 
-Both structs are static const in the same compilation unit. data is a
-const void *, not a uintptr_t or kernel_ulong_t, so it seems passing a
-pointer is the intended use. What am I missing?
+So:
 
-Changes v7:
-Add phy MFD child
+		u32 ctrl = READ_ONCE(desc[q->tail].ctrl);
+		int len;
 
-Changes v6: Make the ZTE SoC driver section depend on HAS_IOMEM
-(Sashiko). The entire MFD section, which contains MFD_CORE, depends on
-HAS_IOMEM even with COMPILE_TEST.
+		if (!q->queued || !FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, ctrl)) {
+			q->pending = nframes;
+			return -EBUSY;
+		}
 
-Add a NULL ptr check for of_device_get_match_data (Sashiko). While not
-uniform, rave-sp, rohm-bd9576, atc260x, da9052-i2c protect against
-incorrect manual attachment that way.
+		dma_rmb();
+		len = FIELD_GET(NPU_RX_DMA_DESC_CUR_LEN_MASK, ctrl);
 
-Add lspclk here as well in an attempt to satisfy both Conor Dooley, who
-asks for MFD for top and matrix, and Philipp Zabel, who prefers aux but
-at least wants the reset driver limited to one driver type.
+[...]
+>  	Q_WRITE(q, dma_idx, q->tail);
 
-Changes v5: Use MFD instead of Aux bus for top and matrix crm because of
-extra functionality: Reboot in top, hwlock in Matrix.
+This still hands the slots back before mt76_npu_fill_rx_queue() refills
+them, so the oops is still there. It needs to stay at the end of the
+refill as in my patch. With your structure that also lets a frame that
+runs into the free slot finish, since the NPU gets new slots after
+every poll.
 
-LSP clocks stay with the aux bus and are thus not handled in this
-driver. The clk driver will bind directly to the lspcrm node.
----
- MAINTAINERS                      |   1 +
- drivers/mfd/Kconfig              |  12 +++++
- drivers/mfd/Makefile             |   2 +
- drivers/mfd/zte-zx297520v3-crm.c | 106 +++++++++++++++++++++++++++++++++++++++
- 4 files changed, 121 insertions(+)
+I can fold this into a v2, test it on the W1700K for 60 minutes under
+rx load, this time with a counter for misframed frames, and send it
+with the results. Since the structure is yours, I'd add
+Co-developed-by and your Signed-off-by if that's fine with you. If
+you'd rather post it yourself, I'll test yours instead.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93abbb315065..6c38600ad2f2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3987,6 +3987,7 @@ F:	Documentation/devicetree/bindings/clock/zte,zx297520v3-topcrm.yaml
- F:	arch/arm/boot/dts/zte/
- F:	arch/arm/mach-zte/
- F:	drivers/clk/zte/
-+F:	drivers/mfd/zte-zx297520v3-crm.c
- F:	include/dt-bindings/clock/zte,zx297520v3-clk.h
- F:	include/dt-bindings/phy/zte,zx297520v3-topcrm.h
- F:	include/dt-bindings/reset/zte,zx297520v3-reset.h
-diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 87ed55c155f0..06292949accd 100644
---- a/drivers/mfd/Kconfig
-+++ b/drivers/mfd/Kconfig
-@@ -2597,5 +2597,17 @@ config MFD_MAX7360
- 	  additional drivers must be enabled in order to use the functionality
- 	  of the device.
- 
-+config MFD_ZTE_ZX297520V3_CRM
-+	tristate "ZTE zx297520v3 Clock and Reset Manager"
-+	depends on ARCH_ZTE || COMPILE_TEST
-+	select MFD_CORE
-+	default SOC_ZX297520V3
-+	help
-+	  Say yes here to enable the driver for the ZTE zx297520v3 clock and
-+	  reset manager MFD driver. This driver provides the host device for
-+	  the clock and reset drivers and is required to boot the SoC. You
-+	  will also need to enable CLK_ZTE_ZX297520V3 and RESET_ZTE_ZX297520V3
-+	  to build the actual clock and reset child drivers.
-+
- endmenu
- endif
-diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index f8101d2a9ce9..7a19ddedb13b 100644
---- a/drivers/mfd/Makefile
-+++ b/drivers/mfd/Makefile
-@@ -305,3 +305,5 @@ obj-$(CONFIG_MFD_RSMU_SPI)	+= rsmu_spi.o rsmu_core.o
- obj-$(CONFIG_MFD_UPBOARD_FPGA)	+= upboard-fpga.o
- 
- obj-$(CONFIG_MFD_LOONGSON_SE)	+= loongson-se.o
-+
-+obj-$(CONFIG_MFD_ZTE_ZX297520V3_CRM)	+= zte-zx297520v3-crm.o
-diff --git a/drivers/mfd/zte-zx297520v3-crm.c b/drivers/mfd/zte-zx297520v3-crm.c
-new file mode 100644
-index 000000000000..7c29a860be3f
---- /dev/null
-+++ b/drivers/mfd/zte-zx297520v3-crm.c
-@@ -0,0 +1,106 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2026 Stefan Dösinger
-+ *
-+ * The zx297520v3 CRM controllers are primarily clock controllers, but they all have reset controls
-+ * as well. Top and Matrix controllers have further auxiliary functions: Reboot and USB PHY in Top,
-+ * hardware mutex in Matrix. This driver breaks the functionality apart to handle them in drivers in
-+ * individual subsystems.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/mfd/core.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/reset.h>
-+
-+enum zx_device_type {
-+	TYPE_INVALID = 0,
-+	TYPE_TOPCRM,
-+	TYPE_MATRIXCRM,
-+	TYPE_LSPCRM,
-+};
-+
-+static const struct mfd_cell zx297520v3_topcrm_cells[] = {
-+	MFD_CELL_NAME("zx297520v3-topclk"),
-+	MFD_CELL_NAME("zx297520v3-topreset"),
-+	MFD_CELL_OF("reboot", NULL, NULL, 0, 0, "syscon-reboot"),
-+	MFD_CELL_NAME("zx297520v3-usb-phy"),
-+};
-+
-+static const struct mfd_cell zx297520v3_matrixcrm_cells[] = {
-+	MFD_CELL_NAME("zx297520v3-matrixclk"),
-+	MFD_CELL_NAME("zx297520v3-matrixreset"),
-+};
-+
-+static const struct mfd_cell zx297520v3_lspcrm_cells[] = {
-+	MFD_CELL_NAME("zx297520v3-lspclk"),
-+	MFD_CELL_NAME("zx297520v3-lspreset"),
-+};
-+
-+static int zx297520v3_crm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct mfd_cell *cells;
-+	struct reset_control *reset;
-+	enum zx_device_type type;
-+	unsigned int num_cells;
-+	struct clk *pclk;
-+
-+	type = (enum zx_device_type)(kernel_ulong_t)device_get_match_data(dev);
-+	switch (type) {
-+	case TYPE_TOPCRM:
-+		cells = zx297520v3_topcrm_cells;
-+		num_cells = ARRAY_SIZE(zx297520v3_topcrm_cells);
-+		break;
-+
-+	case TYPE_MATRIXCRM:
-+		cells = zx297520v3_matrixcrm_cells;
-+		num_cells = ARRAY_SIZE(zx297520v3_matrixcrm_cells);
-+		break;
-+
-+	case TYPE_LSPCRM:
-+		cells = zx297520v3_lspcrm_cells;
-+		num_cells = ARRAY_SIZE(zx297520v3_lspcrm_cells);
-+
-+		pclk = devm_clk_get_enabled(dev, "pclk");
-+		if (IS_ERR(pclk))
-+			return dev_err_probe(dev, PTR_ERR(pclk), "Could not get 'pclk'\n");
-+
-+		reset = devm_reset_control_get_exclusive_deasserted(dev, NULL);
-+		if (IS_ERR(reset))
-+			return dev_err_probe(dev, PTR_ERR(reset),
-+					     "Failed to deassert reset control\n");
-+		break;
-+
-+	default:
-+		return -ENODEV;
-+	}
-+
-+	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, cells, num_cells, NULL, 0, NULL);
-+}
-+
-+static const struct of_device_id of_match_zx297520v3_crm[] = {
-+	{ .compatible = "zte,zx297520v3-topcrm", .data = (void *)TYPE_TOPCRM },
-+	{ .compatible = "zte,zx297520v3-matrixcrm", .data = (void *)TYPE_MATRIXCRM },
-+	{ .compatible = "zte,zx297520v3-lspcrm", .data = (void *)TYPE_LSPCRM },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, of_match_zx297520v3_crm);
-+
-+static struct platform_driver zx297520v3_crm = {
-+	.probe = zx297520v3_crm_probe,
-+	.driver = {
-+		.name = "zx297520v3-crm",
-+		.of_match_table = of_match_zx297520v3_crm,
-+	},
-+};
-+module_platform_driver(zx297520v3_crm);
-+
-+MODULE_AUTHOR("Stefan Dösinger <stefandoesinger@gmail.com>");
-+MODULE_DESCRIPTION("ZTE zx297520v3 CRM driver");
-+MODULE_LICENSE("GPL");
-
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261108-zx29clk-3b073b9d22d6
-
-Best regards,
---  
-Stefan Dösinger <stefandoesinger@gmail.com>
-
+Thanks,
+Florian
 
