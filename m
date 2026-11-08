@@ -2,76 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB09606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B58606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:35:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PAELjsB/;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=gNtdwvxs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EqJMTs5h;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IEE9/9H6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uhVqLbfyLXDEoo+nGg3B4gzN+ZBZTp0o6+BrUhDsqM8=; b=PAELjsB/dbABgjzfYaLG/V3Nle
-	JDRvpOTicZstSrAlxmTqzZsFOAHJa88zQzPJjtHgQwT/YuXq75nS9G8gCuEIqvH/zopmkXIxt1h1D
-	R/xf9HcGtLBMB49mj2KdG5UcZ38sTXuhu4QyOFL15FJJXNWFcqfGrG/t3ELM0ohU5NTUk6gVVVVZq
-	AJ9rko/miV832pF5rgg6N2Eja8zyZRUcougKEtvXZfdr4XTPq0+GZVPqTu+4O6njw1uSE0nKnZkTp
-	oTNnN7Aau+CSZm92kniF8gTpOQEuHkIeBXiODJaUoa7rRlIB6nS5c1JjJcAbpzqVp4NfeG2oEoeG0
-	4gaoxDmw==;
+	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=; b=EqJMTs5hfyvdG1veufjeTY+i3J
+	AzaJxdbC0nodv+UEaP+zFUDWNrWMDxqqQppxO+1oJkeRaUPKBpizC7qVKcRDWAsaX18Gyfx2u4FLx
+	kIL16DsDXAatJrDPXSnl2dU9ooPnJ2DcN7OiDmq4e6KiU5zi2MrxQyJpcNSu7yjzRP0+RGdFtj+xv
+	4j1obpYfEUOFHqIxlGy9smQvg9SGJhwCXK8qeWNaIN1WkMTvq5dPzY17fJo2nL5CMSJAXbalfub/E
+	2FHr3WgDDQ+aEnGW6mPm9KpvVS3HrSYj7CVQwe4wtfKV0VTyzec/dGlkuIrIrp6qAi/tnYiemWTQk
+	uvp3BuTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ25l-0000000GAOS-0vOJ;
-	Sun, 08 Nov 2026 12:33:49 +0000
-Received: from mgamail.intel.com ([198.175.65.9])
+	id 1xQ1Ae-0000000G3iE-3BYh;
+	Sun, 08 Nov 2026 11:34:48 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ25i-0000000GANz-0vGC
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 12:33:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794141227; x=1825677227;
-  h=date:from:to:cc:subject:message-id;
-  bh=uEbPs2mqhd1rSlOjq8iMmobHrI7hxpcGB5ucKP27QJs=;
-  b=gNtdwvxsInC8BU9ohODR08DJ8bUmUIx1vtpCuw4fzbA36gvaagYOu/Mx
-   kW3wZEcOZhTUK5sGxmwqGQSyXsCHGPaQ9ZPO4WEJGHcRyRz8p0QLQWHGU
-   QY/KhHVFotvTqX75mPH2IsCCjsKkVCKKXwUe8A/18ojOVXLagEmSC+/iM
-   vsZ2aYXzhwFKl61vWLffNGEz+UjrfA6PO56MmCIaHOY32OwkKQ8ePhJSt
-   OUfktB0WHHhmI1/Ihl7Vp9QOZajYPaxHcfWsp+MD8LQTAc8ECsXzrLfvn
-   P/FL2oz/6Kp510AWDLSEloQCgkn3AIiIeoJuzZeqdLcY7g6lRubZVydEv
-   Q==;
-X-CSE-ConnectionGUID: IffzEoKvTkuTKIvSsPOiNg==
-X-CSE-MsgGUID: lawjJ+dHT1+qoD9izzstLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11959"; a="2788539"
-X-IronPort-AV: E=Sophos;i="6.27,202,1787036400"; 
-   d="scan'208";a="2788539"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2026 04:33:46 -0800
-X-CSE-ConnectionGUID: czrn0QbbQjaipixWBYCDtg==
-X-CSE-MsgGUID: +5qRAEdpQ9eaixAJr9VeLw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,202,1787036400"; 
-   d="scan'208";a="7785761"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 08 Nov 2026 04:33:44 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xQ25d-00000000swZ-2bXV;
-	Sun, 08 Nov 2026 12:33:41 +0000
-Date: Sun, 08 Nov 2026 20:33:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Subject: [linusw-nomadik:b4:gp2ap030] BUILD SUCCESS
- 68669d537410b2216c86b63ff1cbe3b6701acdb9
-Message-ID: <20261108203324.1WYkaDep-lkp@intel.com>
-User-Agent: s-nail v14.9.25
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_043346_340976_802291AB 
-X-CRM114-Status: UNSURE (   5.24  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+	id 1xQ1Aa-0000000G3Zd-0o51;
+	Sun, 08 Nov 2026 11:34:44 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 731AB6185C;
+	Sun,  8 Nov 2026 11:34:43 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794137683;
+	b=pfB3WnInxVz4qNINoe8IKrtKO++ZTnQQJ3PTVX/72+zqJ0R95vs0u0Yes6i1/bKHP86e
+	 S0f8Lwa1w2cpg35jA6x67vpkLLEhIVRwox4vycrRZNr8S2lYuOyIBbtzbRncR2XoziJef
+	 wTC4qHdXHR6BzvWY2I1q2PwvE+ufnib6d9DUBkuace87j1IvSmkOB9ylwBfbk4LudBO6k
+	 CDSzpHZE0k6I2ghVS8pDjT9IbEkXQMRMF0vmNBvwGjt5k0n/0MZKIlNY6cG9epJxPNo7L
+	 NlyNWtmICmRLQo1ol6QRU8pSB/cpFrNn6hCN9YxxmlJlKXJz6EB7p/vlbfpkrQIeE4g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794137683;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=;
+	b=Hj2oG2ftjdrGQDth2c4FJUgPaTFfRTZ/xD/E9bMgmMBQ8apqNOUGH2y1a0/18ttN4s7b
+	 2Oj5OJy2W1XeI/HexyxrKTvf+E8FSGiVyPvRzWa7KkCEIboXpMBg/TZhFPFwu9qvX5v6I
+	 FqWVrQeojiwcnQ+07WShBeQv/c720awBpLvIiiFNy2EKxlEMqKxLCYNQochdQ5U8NgyJj
+	 d/rMvfLAinMvPHwtcXvdb/0WbNrEE79FQD5VBMLpGjoqw2C+nXu4om76pMR8Ud98ToP+3
+	 KhKcyzfsFR6ABcZu/dIN6ocsRXMcrflV7vNxFIgGl/a1dTiV0ZEJ4pJ6KdHpOViqymQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 9FA201F008BD;
+	Sun,  8 Nov 2026 11:34:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794137683;
+	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=IEE9/9H6UAOyw2YQw4PGJ4Zzm9dMnGBivmCmaK5JNG1PU4f/QY7JksqJqHNRVJNVu
+	 eLX3ISDgnegNLpZYIWRMX9HMAdf0FvXupwnWjcqE3W6ElMCpHnIAGVzazl/41gGpEl
+	 V6vltkIdNRvJPR1oVLSYZHoXMGUgh01a3NgYYr/fYQ4pk2oVPCdP9f7ZkGCHaWL4NJ
+	 m5NFnAg1oaMKHa0M7JXjN/spbrId7AxSnXwSGbL8YGkA2swsdvmi/SB57r8n5AKNDb
+	 BXCrj96dgpT1FfzPOBevl2uu1RL/7lIAYsX6EvEQ12qIatFv0K3MdFd9pOaDFvYDaA
+	 p1TunOHY/cUEg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 9140747F25;
+	Sun,  8 Nov 2026 11:34:40 +0000 (UTC)
+From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
+Date: Sun, 08 Nov 2026 19:33:34 +0800
+Subject: [PATCH net v8 07/10] can: rockchip_canfd: disable RX offload on
+ open failure
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261108-rockchip-canfd-restart-close-v8-7-3e7a23fd9eae@qq.com>
+References: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
+In-Reply-To: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
+ Vincent Mailhol <mailhol@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Oliver Hartkopp <socketcan@hartkopp.net>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, 
+ Wolfgang Grandegger <wg@grandegger.com>
+Cc: Cunhao Lu <1579567540@qq.com>, linux-can@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-doc@vger.kernel.org, stable@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794137678; l=1266;
+ i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
+ bh=cT3cBscQt29TWUgsPQ2sU0B4DpllcnyjvFZowBvWmU4=;
+ b=dhLHV7rlkebwzAATJwM8J4svxDcUflj7QK25eIun213cPz2nEgDdvcNLyoIsLYbP5RkxORQOl
+ YW5bwGCNcM2CS1ILiQu0LI2XM7x+OhVmfCWHwQ1VrIsuBfAVlGSv7n9
+X-Developer-Key: i=1579567540@qq.com; a=ed25519;
+ pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
+X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
+ auth_id=1177
+X-Original-From: Cunhao Lu <1579567540@qq.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,221 +116,54 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git b4/gp2ap030
-branch HEAD: 68669d537410b2216c86b63ff1cbe3b6701acdb9  iio: light: gp2ap020a00f: Add GP2AP030A00F support
+From: Cunhao Lu <1579567540@qq.com>
 
-elapsed time: 780m
+rkcanfd_open() enables RX offload before requesting the IRQ. If
+request_irq() fails, the error path leaves the offload enabled. A later
+open calls napi_enable() on an already enabled NAPI instance.
 
-configs tested: 192
-configs skipped: 3
+Disable RX offload on that error path before stopping the controller and
+releasing the runtime PM reference.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Fixes: ff60bfbaf67f ("can: rockchip_canfd: add driver for Rockchip CAN-FD controller")
+Cc: stable@vger.kernel.org
+Signed-off-by: Cunhao Lu <1579567540@qq.com>
 
-tested configs:
-alpha                              allnoconfig    gcc-16.2.0
-alpha                             allyesconfig    gcc-16.2.0
-alpha                                defconfig    gcc-16.2.0
-arc                               allmodconfig    clang-24
-arc                                allnoconfig    gcc-16.2.0
-arc                               allyesconfig    clang-24
-arc                                  defconfig    gcc-16.2.0
-arc                             hsdk_defconfig    clang-24
-arc                      nsimosci_hs_defconfig    gcc-16.2.0
-arc                   randconfig-1000-20261108    gcc-11.5.0
-arc                   randconfig-1001-20261108    gcc-11.5.0
-arm                                allnoconfig    gcc-16.2.0
-arm                               allyesconfig    clang-24
-arm                                  defconfig    gcc-16.2.0
-arm                             dove_defconfig    gcc-16.2.0
-arm                           ep93xx_defconfig    clang-24
-arm                         multi_v7_defconfig    gcc-16.2.0
-arm                   randconfig-1000-20261108    gcc-11.5.0
-arm                   randconfig-1001-20261108    gcc-11.5.0
-arm                   randconfig-1002-20261108    gcc-11.5.0
-arm                   randconfig-1003-20261108    gcc-11.5.0
-arm                         realview_defconfig    clang-19
-arm                            stm32_defconfig    gcc-16.2.0
-arm64                             allmodconfig    clang-24
-arm64                              allnoconfig    gcc-16.2.0
-arm64                                defconfig    gcc-16.2.0
-arm64                       quartz64_defconfig    clang-24
-arm64                       quartz64_defconfig    gcc-16.2.0
-arm64                 randconfig-1000-20261108    clang-24
-arm64                 randconfig-1001-20261108    clang-24
-arm64                 randconfig-1002-20261108    clang-24
-arm64                 randconfig-1003-20261108    clang-24
-csky                              allmodconfig    gcc-16.2.0
-csky                               allnoconfig    gcc-16.2.0
-csky                                 defconfig    gcc-16.2.0
-csky                  randconfig-1000-20261108    clang-24
-csky                  randconfig-1001-20261108    clang-24
-hexagon                           allmodconfig    gcc-16.2.0
-hexagon                            allnoconfig    gcc-16.2.0
-hexagon                              defconfig    gcc-16.2.0
-hexagon               randconfig-1000-20261108    gcc-16.2.0
-hexagon               randconfig-1001-20261108    gcc-16.2.0
-i386                              allmodconfig    clang-22
-i386                               allnoconfig    gcc-16.2.0
-i386                              allyesconfig    clang-22
-i386        buildonly-randconfig-1000-20261108    clang-22
-i386        buildonly-randconfig-1001-20261108    clang-22
-i386        buildonly-randconfig-1002-20261108    clang-22
-i386        buildonly-randconfig-1003-20261108    clang-22
-i386        buildonly-randconfig-1004-20261108    clang-22
-i386        buildonly-randconfig-1005-20261108    clang-22
-i386                                 defconfig    gcc-16.2.0
-i386                  randconfig-1000-20261108    gcc-14
-i386                  randconfig-1001-20261108    gcc-14
-i386                  randconfig-1002-20261108    gcc-14
-i386                  randconfig-1003-20261108    gcc-14
-i386                  randconfig-1004-20261108    gcc-14
-i386                  randconfig-1005-20261108    gcc-14
-i386                  randconfig-1006-20261108    gcc-14
-i386                  randconfig-1007-20261108    clang-22
-i386                  randconfig-1008-20261108    clang-22
-i386                  randconfig-1009-20261108    clang-22
-i386                  randconfig-1010-20261108    clang-22
-i386                  randconfig-1011-20261108    clang-22
-i386                  randconfig-1012-20261108    clang-22
-i386                  randconfig-1013-20261108    clang-22
-loongarch                         allmodconfig    clang-24
-loongarch                          allnoconfig    gcc-16.2.0
-loongarch                            defconfig    clang-24
-loongarch             randconfig-1000-20261108    gcc-16.2.0
-loongarch             randconfig-1001-20261108    gcc-16.2.0
-m68k                              allmodconfig    gcc-16.2.0
-m68k                               allnoconfig    gcc-16.2.0
-m68k                              allyesconfig    clang-24
-m68k                                 defconfig    clang-24
-m68k                           sun3x_defconfig    clang-24
-microblaze                         allnoconfig    gcc-16.2.0
-microblaze                        allyesconfig    gcc-16.2.0
-microblaze                           defconfig    clang-24
-mips                              allmodconfig    gcc-16.2.0
-mips                               allnoconfig    gcc-16.2.0
-mips                              allyesconfig    gcc-16.2.0
-mips                            gcw0_defconfig    clang-19
-mips                         qi_lb60_defconfig    gcc-16.2.0
-mips                            xway_defconfig    clang-19
-nios2                             allmodconfig    clang-20
-nios2                              allnoconfig    clang-24
-nios2                                defconfig    clang-24
-nios2                 randconfig-1000-20261108    gcc-16.2.0
-nios2                 randconfig-1001-20261108    gcc-16.2.0
-openrisc                          allmodconfig    clang-20
-openrisc                           allnoconfig    clang-24
-openrisc                             defconfig    gcc-16.2.0
-openrisc                     or1ksim_defconfig    gcc-16.2.0
-parisc                            allmodconfig    gcc-16.2.0
-parisc                             allnoconfig    clang-24
-parisc                            allyesconfig    clang-17
-parisc                               defconfig    gcc-16.2.0
-parisc                 generic-32bit_defconfig    clang-24
-parisc                randconfig-1000-20261108    clang-24
-parisc                randconfig-1001-20261108    clang-24
-parisc64                             defconfig    clang-24
-powerpc                     adder875_defconfig    gcc-16.2.0
-powerpc                      akebono_defconfig    clang-19
-powerpc                           allmodconfig    gcc-16.2.0
-powerpc                            allnoconfig    clang-24
-powerpc                       bamboo_defconfig    gcc-16.2.0
-powerpc               randconfig-1000-20261108    clang-24
-powerpc               randconfig-1001-20261108    clang-24
-powerpc                      taishan_defconfig    clang-19
-powerpc                  xes_mpc85xx_defconfig    gcc-16.2.0
-powerpc64                         alldefconfig    gcc-16.2.0
-powerpc64             randconfig-1000-20261108    clang-24
-powerpc64             randconfig-1001-20261108    clang-24
-riscv                             allmodconfig    clang-24
-riscv                              allnoconfig    clang-24
-riscv                             allyesconfig    clang-24
-riscv                                defconfig    gcc-16.2.0
-riscv              nommu_k210_sdcard_defconfig    gcc-16.2.0
-s390                              allmodconfig    clang-17
-s390                               allnoconfig    clang-24
-s390                              allyesconfig    gcc-16.2.0
-s390                                 defconfig    gcc-16.2.0
-sh                                allmodconfig    gcc-16.2.0
-sh                                 allnoconfig    clang-24
-sh                                allyesconfig    clang-17
-sh                         apsh4ad0a_defconfig    clang-19
-sh                                   defconfig    gcc-14
-sh                  kfr2r09-romimage_defconfig    clang-24
-sh                           r7785rp_defconfig    clang-19
-sh                           rsk7269_defconfig    clang-24
-sh                            se7750_defconfig    clang-24
-sh                         sh7763rdp_defconfig    clang-19
-sh                             shmin_defconfig    gcc-16.2.0
-sparc                              allnoconfig    clang-24
-sparc                                defconfig    gcc-16.2.0
-sparc                 randconfig-1000-20261108    gcc-8.5.0
-sparc                 randconfig-1001-20261108    gcc-8.5.0
-sparc                        sparc32_defconfig    gcc-16.2.0
-sparc64                           allmodconfig    clang-20
-sparc64                              defconfig    gcc-14
-sparc64               randconfig-1000-20261108    gcc-8.5.0
-sparc64               randconfig-1001-20261108    gcc-8.5.0
-um                                allmodconfig    clang-17
-um                                 allnoconfig    clang-24
-um                                allyesconfig    gcc-16.2.0
-um                                   defconfig    gcc-14
-um                              i386_defconfig    gcc-14
-um                    randconfig-1000-20261108    gcc-8.5.0
-um                    randconfig-1001-20261108    gcc-8.5.0
-um                            x86_64_defconfig    gcc-14
-x86_64                            allmodconfig    clang-22
-x86_64                             allnoconfig    clang-24
-x86_64                            allyesconfig    clang-22
-x86_64      buildonly-randconfig-1000-20261108    gcc-14
-x86_64      buildonly-randconfig-1001-20261108    gcc-14
-x86_64      buildonly-randconfig-1002-20261108    gcc-14
-x86_64      buildonly-randconfig-1003-20261108    gcc-14
-x86_64      buildonly-randconfig-1004-20261108    gcc-14
-x86_64      buildonly-randconfig-1005-20261108    gcc-14
-x86_64                               defconfig    gcc-14
-x86_64                                   kexec    clang-22
-x86_64                randconfig-1000-20261108    gcc-14
-x86_64                randconfig-1001-20261108    gcc-14
-x86_64                randconfig-1002-20261108    gcc-14
-x86_64                randconfig-1003-20261108    gcc-14
-x86_64                randconfig-1004-20261108    gcc-14
-x86_64                randconfig-1005-20261108    gcc-14
-x86_64                randconfig-1006-20261108    clang-22
-x86_64                randconfig-1007-20261108    clang-22
-x86_64                randconfig-1008-20261108    clang-22
-x86_64                randconfig-1009-20261108    clang-22
-x86_64                randconfig-1010-20261108    clang-22
-x86_64                randconfig-1011-20261108    clang-22
-x86_64                randconfig-1012-20261108    clang-22
-x86_64                randconfig-1013-20261108    clang-22
-x86_64                randconfig-1014-20261108    clang-22
-x86_64                randconfig-1015-20261108    clang-22
-x86_64                randconfig-1016-20261108    clang-22
-x86_64                randconfig-1017-20261108    clang-22
-x86_64                                rhel-9.4    clang-22
-x86_64                            rhel-9.4-bpf    gcc-14
-x86_64                           rhel-9.4-func    clang-22
-x86_64                     rhel-9.4-kselftests    clang-22
-x86_64                          rhel-9.4-kunit    gcc-14
-x86_64                            rhel-9.4-ltp    gcc-14
-x86_64                           rhel-9.4-rust    clang-22
-xtensa                             allnoconfig    clang-24
-xtensa                            allyesconfig    clang-20
-xtensa                 generic_kc705_defconfig    gcc-16.2.0
-xtensa                randconfig-1000-20261108    gcc-8.5.0
-xtensa                randconfig-1001-20261108    gcc-8.5.0
+---
+Changes in v7:
+- Split the open error cleanup into a separate patch.
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Changes in v3:
+- Disable RX offload when request_irq() fails during open.
+---
+ drivers/net/can/rockchip/rockchip_canfd-core.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
+index 59a79fe057e6..d05264605efc 100644
+--- a/drivers/net/can/rockchip/rockchip_canfd-core.c
++++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
+@@ -747,6 +747,7 @@ static int rkcanfd_open(struct net_device *ndev)
+ 	return 0;
+ 
+ out_rkcanfd_chip_stop:
++	can_rx_offload_disable(&priv->offload);
+ 	rkcanfd_chip_stop_sync(priv, CAN_STATE_STOPPED);
+ 	pm_runtime_put(ndev->dev.parent);
+ out_close_candev:
+
+-- 
+2.34.1
+
+
 
