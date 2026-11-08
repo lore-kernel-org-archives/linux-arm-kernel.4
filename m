@@ -2,62 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A60606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 23:06:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B7B7606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 23:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pF6l8moM;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=U+xl+M8D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ptAkw1XD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jpGUSey5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=r+y8CQ+aNutDnqhoFEXjnp4bJTLJopAbpRetz6dHelc=; b=pF6l8moMXvJkav
-	FgVVdo6EHkRrViEp1sMBlAe77Us6oUihKxD58HvLh9QOyM3iJJuJef+sAt0b4/K+GeHO7ayNDHD8L
-	jjscTQdzSArLwlDk7IG73+oCFPrK+MNBClTRAMh+Irf1eCagTY3bUClXBVXwbkUdZyQncCR+D+4VP
-	gtWlcQ/yPkuNPmAo1Vgyk5TEjZ/MXhifzfwaHiP70/JGgI0QNT5C7qJKCEEMR24PhaJL5//LCxirg
-	GLs0IehoOyxy3Wyzjujuyv2WFv4puFtVEN2FWniQFUVX7BMYKJMrZSYKMQYeeoDjmXUG2W8h9EzkE
-	d0XIseVCfZF5IPObkOyw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=C2reihoSd8+x5X3GrAOxEQiq3mx4R4XS9zazh7fb3Us=; b=ptAkw1XD7IPn3tUK7kKp5ePjdn
+	VQjE4+pZRWyr2xyTZ+0ueFjp/VmpC9klV7ir060tNXN/mXrVIHoNdSIrf7JFqAa4RwF8m0qaOo+k/
+	RkYFHfMYtYjg11WJ8zlCr8RQPkHDQT/Fkv7bkTce6Fjb7MOatPnyYw2/vQ20moUySrnme4FZsKE7P
+	lU47HQTxvlQvkrZPQxZr6heExqzY8NEisBc3n7YVAs0YCJkCOhuL1jo/AAHDO8d6z50bL5MELw2aV
+	+tYX04TRZdTjDUbgvxhaiQf2p9R5DUTRGhzHoJvdLiEfC4v86tpkGHGFcEvcPQFChUwyGHmZC+O/d
+	FGXeux2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQBxj-0000000GsMI-2j29;
-	Sun, 08 Nov 2026 23:06:11 +0000
-Received: from sender-op-o17.zoho.eu ([136.143.169.17])
+	id 1xQC8S-0000000GsoE-0WZl;
+	Sun, 08 Nov 2026 23:17:16 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQBxg-0000000GsLo-3IEj;
-	Sun, 08 Nov 2026 23:06:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794179162; cv=none; 
-	d=zohomail.eu; s=zohoarc; 
-	b=U+XdoxztM7eUIcyKziLbVWP8OQzzFhPIlMFZhr4hdtPqgrf/9tt4ahY8NuVCXRZODMqUFgKNN1J74C2CY/Ebxl1rscXqEEgrxo/mfKlkj2NFt4gMcuHT5XFKdiPbpAlmV6i3ud6bwMeJic7KGRcIFc2d06qEOX4tKytxtgLvCaw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-	t=1794179162; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=r+y8CQ+aNutDnqhoFEXjnp4bJTLJopAbpRetz6dHelc=; 
-	b=WCJkCA7y3/E+eXiLYiRkmsp/A7i7i3XYL+UE0CwJzk3uuBGugLiStR7W/xqD1xJbDpvq8kF0fTXmjv6ipimcYbyHJpVuSOOiOcC8toZ8k9TZXV1bqgZRICpK6dalakePHnQqOyyzEPCnhTuxhCq2nnKOTZnC0owig3AE2hWDrKA=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-	dkim=pass  header.i=iav.lv;
-	spf=pass  smtp.mailfrom=iav@iav.lv;
-	dmarc=pass header.from=<iav@iav.lv>
-DKIM-Signature: a=rsa-sha256; b=U+xl+M8D5b6oVRqjnpVsocm0e+FbUMz3SZYXQ88EcUMnerg8h+e3ZrWFG0cxMLFG379cPDnWnUh+gz3gCoyy2/aXj0f9wC015pIgHjYOYnXCr2VXbm20LOzCV8SNSO6ipSFNsw+PmFIoUXA4FqQW9bV82AlJQxy5m5R2vJgMM8w=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=r+y8CQ+aNutDnqhoFEXjnp4bJTLJopAbpRetz6dHelc=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zoho.eu with SMTPS id 1794179160553615.2293146265968;
-	Mon, 9 Nov 2026 00:06:00 +0100 (CET)
-Date: Mon, 09 Nov 2026 01:05:59 +0200
-From: Igor Velkov <iav@iav.lv>
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Enrique Hernández Bello <ehbello@gmail.com>, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, bhelgaas@google.com, robh@kernel.org, heiko@sntech.de, linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Igor Velkov <iav@iav.lv>
-Subject: Re: [PATCH RFC 0/2] PCI: rockchip-host: Retry training and hot-reset a JMB585 on RK3399
-Message-ID: <20261109-rockchip-pcie-deskew-result-1@iav.lv>
-In-Reply-To: <6c9adabe-d632-471e-8fc1-aafe62115167@rock-chips.com>
-References: <20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv> <20261106-rockchip-pcie-ltssm-trace-1@iav.lv> <6c9adabe-d632-471e-8fc1-aafe62115167@rock-chips.com>
+	id 1xQC8Q-0000000Gso1-4B2y;
+	Sun, 08 Nov 2026 23:17:15 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5A69761184;
+	Sun,  8 Nov 2026 23:17:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC3A21F0089F;
+	Sun,  8 Nov 2026 23:17:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794179833;
+	bh=C2reihoSd8+x5X3GrAOxEQiq3mx4R4XS9zazh7fb3Us=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=jpGUSey5vvxY92S+HSf4OjpfJZrKayxou0qil8Xw8HI0KUYAGMdJ8qvI5skRIcVqJ
+	 V5OeCHHEYJ3Vf7jlLwQ00IKnbUyWU+PCNZ5C14m/P6TfbC4CerkGeqUBMWvt/9CSU3
+	 vOzZ1fPI7/x4s7fTfR07RFmFucr1tUU/gKar+9Xx92BCNdmPpYjJV2UMvcEC5enA99
+	 Jx1lPLuRKGwGKwbC2/W88g1DCeh6wsi5yzGUV/QN8NRyP61gx6Tuvw15s+PLAYb0jk
+	 qoWrt82mORcGdsnMmq+Iuo9quSFeAd3RLRtXGLGwClBr0T9S2hIDA3ZcbAEC6UE+kw
+	 AHaXbFVtg0DeA==
+Date: Sun, 8 Nov 2026 23:17:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Carlo Caione <ccaione@baylibre.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 6/7] dt-bindings: clock: Add Amlogic S7 peripherals clock
+ controller
+Message-ID: <20261108-resurrect-mumbo-10daa7ac0cf0@spud>
+References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
+ <20261106-upstream-s7-clk-v1-6-7d501d62621f@baylibre.com>
+ <20261106-unwilling-preoccupy-156dbb310448@spud>
+ <au4p0xYEFkgEU6T4@macbook>
+ <20261106-headband-buckwheat-fecbd459ee85@spud>
+ <au5RoF6BooP14xhY@macbook>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_150609_126225_5AE9C0F0 
-X-CRM114-Status: UNSURE (   8.03  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hSqhUowhvI7bmoOF"
+Content-Disposition: inline
+In-Reply-To: <au5RoF6BooP14xhY@macbook>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -68,40 +84,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Shawn,
+--hSqhUowhvI7bmoOF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks. Deskew makes no difference. Helios64, x2, bind/unbind, variants
-alternating every cycle, bad link bring-ups:
+On Fri, Nov 06, 2026 at 11:27:38PM +0100, Carlo Caione wrote:
+> On Fri, Nov 06, 2026 at 20:48:01 +0100, Conor Dooley wrote:
+> > On Fri, Nov 06, 2026 at 08:34:37PM +0100, Carlo Caione wrote:
+> > > On Fri, Nov 06, 2026 at 17:34:14 +0100, Conor Dooley wrote:
+> > >=20
+> > > > > +    #include <dt-bindings/clock/amlogic,s7-pll-clkc.h>
+> > > > > +    #include <dt-bindings/clock/amlogic,s7-scmi-clkc.h>
+> > > > > +
+> > > > > +    soc {
+> > > > > +        #address-cells =3D <2>;
+> > > > > +        #size-cells =3D <2>;
+> > > > > +
+> > > > > +        clock-controller@0 {
+> > > > > +            compatible =3D "amlogic,s7-peripherals-clkc";
+> > > > > +            reg =3D <0x0 0x0 0x0 0x49c>;
+> > > >=20
+> > > > What's with the weird numbers in this example?
+> > > >=20
+> > > > Examples don't have to be real, but when it looks like this the
+> > > > immediate thought is that the modelling of the device might be
+> > > > incorrec.t
+> > >=20
+> > > The numbers are actually real, but the example simply lost their cont=
+ext
+> > > because I copied the node from the S7 dtsi (not yet submitted), where
+> > > the controller sits under the APB bus node (bus@fe000000) and the bus
+> > > ranges make the addresses relative to it.
+> > >=20
+> > > 		apb: bus@fe000000 {
+> > > 			compatible =3D "simple-bus";
+> > > 			reg =3D <0x0 0xfe000000 0x0 0x480000>;
+> > > 			#address-cells =3D <2>;
+> > > 			#size-cells =3D <2>;
+> > > 			ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> > >=20
+> > > 			clkc_periphs: clock-controller@0 {
+> > > 				compatible =3D "amlogic,s7-peripherals-clkc";
+> > > 				reg =3D <0x0 0x0 0x0 0x49c>;
+> > > 				#clock-cells =3D <1>;
+> > > 				...
+> > >=20
+> > > In V2 I'll use an absolute address for the sake of clarity (PLL has t=
+he
+> > > same issue).
+> >=20
+> > Before you do that, can you please share with me the s7 dtsi? Cos surely
+> > you've got it in some git repo online somewhere.
+>=20
+> The S7 dtsi is already upstream at [0], the peripheral clock controller
+> and PLL will be enabled in that DTSI with a following series after the
+> bindings and the drivers in this set are acked, following the diffs that
+> will be submitted:
 
-  defaults 6/104, auto deskew off + trim 0xf: 5/104
-  defaults 6/104, magnitude off: 6/104
+Right. The device does seem to have nodes of odd sizes and start
+addresses, so this at least is not making anything worse.
 
-Your mail has the magnitude at 0xb, but TRM V1.3 part 2, 17.6.10.1 has
-TX_TERMINATION_TRIM there and DESKEW_MAGNITUDE at 0xc, so I wrote 0xc.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-DEBUG_DATA_OUT did show something. With Debug Mux Control (0x208) = 5,
-share of samples with in_dllp0_data_valid set, 100 ms window after hot reset:
+--hSqhUowhvI7bmoOF
+Content-Type: application/pgp-signature; name=signature.asc
 
-  good bring-ups 0.16% (99), bad bring-ups 51% (3, range 45-53)
+-----BEGIN PGP SIGNATURE-----
 
-The first training looks the same: 0.15% (97) against 47% (5). mgmt_dllp_error,
-crc32_error and in_tlp_error stay 0 in all of them. With the mux at 4,
-start_replay, replay timeout and dl_protocol_error stay 0 too.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavEC8wAKCRB4tDGHoIJi
+0kSzAP9D+07DueUyQidEmOTviYikdTVwB4OjYhIW3eDHUkvnNAEAw27P7rZuFiZP
+JlFXjpIzLkFe/xvXdJ5/TibIL+soSAc=
+=F15I
+-----END PGP SIGNATURE-----
 
-So in a bad bring-up the RC receives a constant error-free stream of DLLPs.
-I read that as the JMB585 repeating flow control init because it does not
-get what the RC sends, but this bus does not show the DLLP type. It would put
-the fault in the RC to JMB585 direction, on x2 only.
-
-Is there an RC transmitter setting worth trying for that, such as swing or
-de-emphasis? If not, I will stop looking for the cause here.
-
-Igor
+--hSqhUowhvI7bmoOF--
 
