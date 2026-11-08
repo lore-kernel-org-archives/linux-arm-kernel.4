@@ -2,30 +2,30 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E8C3606D80D
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 13:20:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE1F606A33E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 13:20:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uLcPcAql;
-	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=UoTVeSE0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ETCLIr4Y;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=gr/6HmWm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sFHPBhyxEeqzI/mLr3+tgL1IHWLq7an7I5T8KPeBRhc=; b=uLcPcAqlWTRrm6
-	OTJ4ZH/2UAc5nvO+Q3drQuzIog5Xk4OBqHZbDNG1X8PXJWEvC8j9qWxWpBik8AbvhHpDJurllUg5N
-	+Lp11KM++IBMQU3dr1LSzGhOe6+E5qFzv0ypaTc/bQeO4JBWh+Mmw4rC+4hMcubFhVa74g3J6pcom
-	vKGA7qdG0UL7o24s6fNUIHpZPj8KWLR50Zqm+8HQUitOZXSRXBjcBf9g8rRyRTFDHekw9XQA6AaMk
-	PVQYRqCakRhk0eBqRY3bDs1RCxJBfrdvv/oXHCU36VruB6b8DjMuqboDoIuwtirxQPurLVVuYekDO
-	U/LiOmkVPE5z18oP17+A==;
+	List-Owner; bh=AxuQz5LK3GiuVobsA9FvWNWs2WJqoUY+Mb4H5LniejY=; b=ETCLIr4YwJjC5s
+	hVFKinAAJSJ8ivzk3u5ylqD03Gwu1EWFCreIFroL/3Td98jSQqdsrlswnwlD9hM5fo05OBv6oX1/b
+	aNhfeUAWuY4W8KEEi1GER9YII+pxbGZc212SN0kroqJprgdoQHUaKL2Vy7W/UvjISHNLMdMKcIeva
+	LT3PODHgNXnBT3/z0RhHEPf6fdh0BrbEjFtTnHh0zZsP1Dc4CqwTMD6awcEumuTkvNLXN5glT62Vw
+	2t4Xpsouri7tsJ0Rq9FwHeCzLOiIZgkSO0RDlmaPTXM6nCuf/sBUFB7wp1bBXuVKtZuX86zfikhF/
+	1OexGb4Mp2NOnDVZqQ4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ2p0-0000000GCFT-2LUd;
+	id 1xQ2p0-0000000GCFo-37B6;
 	Sun, 08 Nov 2026 13:20:34 +0000
 Received: from esa4.hc555-34.eu.iphmx.com ([207.54.77.171])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ2ox-0000000GCDq-16ox
+	id 1xQ2ox-0000000GCDo-0RjY
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 08 Nov 2026 13:20:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
@@ -33,34 +33,34 @@ DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   t=1794144031; x=1825680031;
   h=from:date:subject:mime-version:content-transfer-encoding:
    message-id:references:in-reply-to:to:cc;
-  bh=upY+Mz2RBSTRetbNF/wY4CRuGU76bONdjwh7Q0RZt1g=;
-  b=UoTVeSE0FrGFGxpAJ3PqYkKahPzlnAhMGNqgOCbK7yE+cNet1VhbYz+H
-   gtxGegX5QxVirpI6tFpwZC5+uVsOys7VIqQlG+WPt4h86cDna+sgJYoUB
-   2sjEYL8BFZQ0GaIk2c9gccrXAfTSIMltMUdQeVZwgooEpquDmbyX36HQr
-   gDhAGCzFGPlrOlz2oAvjNnEISd59iaYp/P95Mmjzu7+tDxkovxTK5Ga1F
-   hATZYzPKW1Amz6DtkJELfF9VzWmIX81uQ5tb6LsMP1zz1AEAnXXtgcV2E
-   qnp1YkvuujGbgZqCec+oDF5HLAaxJJ3CtYoKg9CjsDbijBuaM/aSB1qg3
-   A==;
-X-CSE-ConnectionGUID: nogDTVEtS5mHxkCILY+3Jg==
-X-CSE-MsgGUID: gZL5EhjjRjy6GH/uiV6QLw==
+  bh=JLH0TVSF7/Dj1JD2tP+0+XyeKgziUbRuQS+T9+oJsjE=;
+  b=gr/6HmWmrFZ3mx0ZEo+Aol89SJERUXV2nRJz8CGPIhI0VihAXxSJgh70
+   hhcni4UMLopA8NONUG1RSCiIzPlmgzxNu4UjD8NXzn0sPAudyiX2UMUDf
+   EfAYtEvxfZsg+RYXr2rn37AYgxSnPYOStQSXkAhs3lskPVlRZoQfHL7ou
+   nGmmGPQeDtVuZ3juDqjvxh+JaQtrGImMN/eWjaP9Allt0SPN2SQEBo+hB
+   xTcElPKbaQMyHqdeDhEV7amOV5cSOdRAUwDquLw76HWRp7EB4yx1RzIp5
+   puhYCnJD/T4ceKd6sSUJwbkZQ/xPUP+zHOdegAYCLBWrt80y3oDJ4cPLT
+   Q==;
+X-CSE-ConnectionGUID: oKz5XGsYRq2h87HlQVw4bw==
+X-CSE-MsgGUID: LYLnP3tMS5+DjiG9fOsRaA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces01_data.me-corp.lan) ([146.255.191.134])
-  by esa4.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2026 15:20:29 +0200
-X-CSE-ConnectionGUID: WSxVgLy6RN2kmPh+/ozyhA==
-X-CSE-MsgGUID: sNbE+X9kS8+AS8m5znFH4A==
+Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
+  by esa4.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2026 15:20:27 +0200
+X-CSE-ConnectionGUID: YPgsWQeNT9K0LOvGBXfyiA==
+X-CSE-MsgGUID: koslSIjWTMyBeFcTUZAnBQ==
 Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.2])
-  by ces01_data.me-corp.lan with SMTP; 08 Nov 2026 15:28:36 +0200
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Sun, 08 Nov 2026 15:20:27 +0200
+  by ces02_data.me-corp.lan with SMTP; 08 Nov 2026 15:28:30 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Sun, 08 Nov 2026 15:20:26 +0200
 From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Date: Sun, 08 Nov 2026 15:20:12 +0200
-Subject: [PATCH 3/5] dt-bindings: mips: mti,mips-cm: add performance
- counter interrupt
+Date: Sun, 08 Nov 2026 15:20:11 +0200
+Subject: [PATCH 2/5] MIPS: CM: export the symbols needed to access the GCRs
+ from a module
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261108-i6500-cm3-pmu-v1-3-bd119584891a@mobileye.com>
+Message-Id: <20261108-i6500-cm3-pmu-v1-2-bd119584891a@mobileye.com>
 References: <20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com>
 In-Reply-To: <20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com>
 To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
@@ -81,8 +81,8 @@ Cc: linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
  Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_052031_617306_9A1EC90E 
-X-CRM114-Status: GOOD (  11.62  )
+X-CRM114-CacheID: sfid-20261108_052031_617738_CCC8B46A 
+X-CRM114-Status: GOOD (  14.20  )
 X-Spam-Score: -4.0 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,33 +101,81 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CM3 asserts so_cm_perf_cnt_int when one of its performance counters
-overflows. Whether that output is connected to an interrupt controller
-input is up to the SoC integrator, so describe it as an optional
-'interrupts' property of the coherency-manager node. When absent, the
-counters have to be polled by software.
+Allow modules to use the GCR and CPC accessors from asm/mips-cm.h and
+asm/mips-cpc.h:
+
+- mips_gcr_base and mips_cpc_base are the mapped register blocks;
+- the CPS_ACCESSOR macros consult mips_cm_is64 on every 64-bit register
+  access;
+- mips_cm_lock_other() / mips_cm_unlock_other() are the only way to
+  reach the registers of another cluster through the redirect block.
+
+This is a prerequisite for building the CM3 PMU driver as a module.
 
 Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 ---
- Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/mips/kernel/mips-cm.c  | 5 +++++
+ arch/mips/kernel/mips-cpc.c | 2 ++
+ 2 files changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-index d129d6382847..ca7a6717ecdf 100644
---- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-+++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
-@@ -38,6 +38,12 @@ properties:
+diff --git a/arch/mips/kernel/mips-cm.c b/arch/mips/kernel/mips-cm.c
+index 7c9c5dc38823..afe0664e4dcf 100644
+--- a/arch/mips/kernel/mips-cm.c
++++ b/arch/mips/kernel/mips-cm.c
+@@ -5,6 +5,7 @@
+  */
  
-     maxItems: 1
+ #include <linux/errno.h>
++#include <linux/export.h>
+ #include <linux/of.h>
+ #include <linux/percpu.h>
+ #include <linux/spinlock.h>
+@@ -14,8 +15,10 @@
+ #include <asm/mipsregs.h>
  
-+  interrupts:
-+    description:
-+      Performance counter overflow interrupt of the CM (so_cm_perf_cnt_int).
-+      When absent, the performance counters are polled by software.
-+    maxItems: 1
-+
- required:
-   - compatible
+ void __iomem *mips_gcr_base;
++EXPORT_SYMBOL_GPL(mips_gcr_base);
+ void __iomem *mips_cm_l2sync_base;
+ int mips_cm_is64;
++EXPORT_SYMBOL_GPL(mips_cm_is64);
+ bool mips_cm_is_l2_hci_broken;
+ 
+ static char *cm2_tr[8] = {
+@@ -373,6 +376,7 @@ void mips_cm_lock_other(unsigned int cluster, unsigned int core,
+ 	 */
+ 	mb();
+ }
++EXPORT_SYMBOL_GPL(mips_cm_lock_other);
+ 
+ void mips_cm_unlock_other(void)
+ {
+@@ -389,6 +393,7 @@ void mips_cm_unlock_other(void)
+ 
+ 	preempt_enable();
+ }
++EXPORT_SYMBOL_GPL(mips_cm_unlock_other);
+ 
+ void mips_cm_error_report(void)
+ {
+diff --git a/arch/mips/kernel/mips-cpc.c b/arch/mips/kernel/mips-cpc.c
+index 3e386f7e1545..4a8bd56bc2e8 100644
+--- a/arch/mips/kernel/mips-cpc.c
++++ b/arch/mips/kernel/mips-cpc.c
+@@ -6,6 +6,7 @@
+ 
+ #include <linux/bitfield.h>
+ #include <linux/errno.h>
++#include <linux/export.h>
+ #include <linux/percpu.h>
+ #include <linux/of.h>
+ #include <linux/of_address.h>
+@@ -14,6 +15,7 @@
+ #include <asm/mips-cps.h>
+ 
+ void __iomem *mips_cpc_base;
++EXPORT_SYMBOL_GPL(mips_cpc_base);
+ 
+ static DEFINE_PER_CPU_ALIGNED(spinlock_t, cpc_core_lock);
  
 
 -- 
