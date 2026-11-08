@@ -2,55 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E93C606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 15:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51488606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 15:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cTmr37Lv;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XlY0HOBz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2pm8tMfJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VANkD8zB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YQwAZIQCIzqI6AW2s7hIgTJM7Q1k0CCAwWdPKYZscao=; b=cTmr37Lv6C1Wk1
-	OLpQii5tQz3LNNvnYVJILYRuncyByrfMrEQqUIDi5ieQ+EsuOef5tiqbtqoK1pP+LWm5KyF77rm9t
-	2LO4HtAJ9IYjlvv6C1k38QSuVvX41PHPABpEZ+iqBkO6hxwdbSWDrzrgxbiG5+GKK8mPKPcOoMe3C
-	zltW2Mg/PLV6wmH7bHr+5xm5tUJ5CCaruq1RRvS0FrqToADVqg0dZU5uzZ5qV3qJuEzduQK31WN/O
-	na4wmoUxaOaHfkoZtanrfRL06jkDRdHnnJbOnGRqbQHsdeQUS1dleUljNEZSynchUVPYJ/5+l58O/
-	vF2DAP2uIWW+aE+gp7Eg==;
+	List-Owner; bh=7lzO5lTnNfmgMByl+cfN1fLaYWgS/5t+cBwb5xgHPS4=; b=2pm8tMfJzGfuqf
+	DCbF2E9zSdmCIfPS9qbCqE3t94DITNIXkCei8puDcJkbIO8WXaSZqqmpwCFKLgXG+R+c0f78iEwxu
+	THnSblPkmX8X21G2/G3ESlfcl87ui04+oeRHdMBdjEjAuRXBKLOVke38ySu9Ip9PiNa8uWn1OZN3E
+	HrzzKJmDWIh53HCQW0qD0ZRty8BKjxpFbPJVIrA8gBkS+tZlvNh3q110QnILcR8t9mFVOFOcpxu8D
+	9CfIze/z/kRuK4UQKwpmncHd85Hl5RDlsBferL0TcKtMGmk6Rtf1Vi/cu/JmkmYhBFwZA0sjvpIif
+	rpXw6MKo09KmbfGKOQqg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ5Ar-0000000GLSl-3Clw;
-	Sun, 08 Nov 2026 15:51:17 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQ5BF-0000000GM4D-0S5H;
+	Sun, 08 Nov 2026 15:51:41 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ5Ao-0000000GLNb-1RL1
+	id 1xQ5Aq-0000000GLOn-2L9F
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 15:51:14 +0000
+	Sun, 08 Nov 2026 15:51:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1E17D436D9;
-	Sun,  8 Nov 2026 15:51:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52A9D1F008A1;
-	Sun,  8 Nov 2026 15:51:13 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 54AC343E80;
+	Sun,  8 Nov 2026 15:51:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A34C1F0089F;
+	Sun,  8 Nov 2026 15:51:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794153074;
-	bh=YQwAZIQCIzqI6AW2s7hIgTJM7Q1k0CCAwWdPKYZscao=;
+	s=k20260515; t=1794153076;
+	bh=7lzO5lTnNfmgMByl+cfN1fLaYWgS/5t+cBwb5xgHPS4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=XlY0HOBz3S/bhTg9UpObs3NuJBOfJ54EgoHXqGMP5l7uHwnny3C/tAuf9bUYEa30P
-	 s/VBWWj6JFryx5QQ0QhJxrnFcpAL62vD+eFphJXadzrRAvd8auIeTkbuqSWTpr9qQK
-	 y7Z0HrvBadopNDWjsXUF3Qektyd0tsQ7W5vifqLcGqe2sAld8/v4sM8NvnBPcKZNe/
-	 Io3zNUd0CRYL4//a+l22b5Iqoy/zRGQyOVdU2ZV+I2/p1IZoPwBvsMKFUvFmteHMJG
-	 RjSi0ButjtLAgnrFrxcQSWSAk1UWeJacoujkILgc0C596IElk6tVV4OkCyX5F1YS18
-	 1TpHmfI2Oxb+Q==
+	b=VANkD8zBjo1LCoLV/V9BAEb3HaMg57Qj5LHwB/fOnSN8k6XyZ7y8ZZKaZBw3X1GY/
+	 D11LlyN+CV+CAv602i7rqBIl68LMw6yRmF0U72ESiMthXilv/w5qkouZcVfjqPh4Ec
+	 frdIserPpNnNsLcbYIeu+O9auBFNOHlhU3t4sgTdiAp6NFKiB+8V8XDtVt4jAsJx5Z
+	 RQ5Y0CsB7XFRhbEawkqIIIIwGocAvaW5kR7FFI8x1UhZ7neK72AZDkf7b8B32FnO0m
+	 jA3JlerUhl8bzfxh2oSXCrpZwkFngt3DmkH4ilOFchjrCo/QrvAXCdM/j/XJXwnDVn
+	 ODcccO/GNtV1g==
 From: Linus Walleij <linusw@kernel.org>
-Date: Sun, 08 Nov 2026 16:51:08 +0100
-Subject: [PATCH v2 12/15] ARM: configs: u8500: Enable security features
+Date: Sun, 08 Nov 2026 16:51:10 +0100
+Subject: [PATCH v2 14/15] ARM: configs: u8500: Enable audio graph card2
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261108-ux500-defconfig-update-v2-12-13b701e66cbd@kernel.org>
+Message-Id: <20261108-ux500-defconfig-update-v2-14-13b701e66cbd@kernel.org>
 References: <20261108-ux500-defconfig-update-v2-0-13b701e66cbd@kernel.org>
 In-Reply-To: <20261108-ux500-defconfig-update-v2-0-13b701e66cbd@kernel.org>
 To: Stefan Hansson <newbyte@postmarketos.org>, 
@@ -67,74 +67,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable ext4 access controls and security labels, encrypted keys,
-security hooks and the userspace crypto interfaces.
-
-Enable XTS mode for encrypted volumes and kernel-mode NEON support.
-
-An LLM coding assistant was used to add and validate the XTS and
-kernel-mode NEON options.
-
-Enable the BPF JIT compiler alongside the existing BPF syscall support.
+Replace the removed MOP500 machine-driver option with the generic
+audio graph card2 used by the new Ux500 device tree descriptions.
 
 Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
- arch/arm/configs/u8500_defconfig | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/arm/configs/u8500_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/configs/u8500_defconfig b/arch/arm/configs/u8500_defconfig
-index ec9a8e3c107b..704bc2290411 100644
+index 15cf96e4fdcc..c43b2e39d295 100644
 --- a/arch/arm/configs/u8500_defconfig
 +++ b/arch/arm/configs/u8500_defconfig
-@@ -3,6 +3,7 @@ CONFIG_POSIX_MQUEUE=y
- CONFIG_NO_HZ_IDLE=y
- CONFIG_HIGH_RES_TIMERS=y
- CONFIG_BPF_SYSCALL=y
-+CONFIG_BPF_JIT=y
- CONFIG_PREEMPT=y
- CONFIG_BSD_PROCESS_ACCT=y
- CONFIG_BSD_PROCESS_ACCT_V3=y
-@@ -40,6 +41,7 @@ CONFIG_CPU_IDLE_GOV_TEO=y
- CONFIG_ARM_U8500_CPUIDLE=y
- CONFIG_VFP=y
- CONFIG_NEON=y
-+CONFIG_KERNEL_MODE_NEON=y
- CONFIG_MODULES=y
- CONFIG_MODULE_UNLOAD=y
- CONFIG_BLK_DEV_BSGLIB=y
-@@ -241,6 +243,8 @@ CONFIG_EXT2_FS_XATTR=y
- CONFIG_EXT2_FS_POSIX_ACL=y
- CONFIG_EXT2_FS_SECURITY=y
- CONFIG_EXT4_FS=y
-+CONFIG_EXT4_FS_POSIX_ACL=y
-+CONFIG_EXT4_FS_SECURITY=y
- CONFIG_FUSE_FS=m
- CONFIG_OVERLAY_FS=m
- CONFIG_VFAT_FS=y
-@@ -254,6 +258,15 @@ CONFIG_NFS_FS=y
- CONFIG_ROOT_NFS=y
- CONFIG_NLS_CODEPAGE_437=y
- CONFIG_NLS_ISO8859_1=y
-+CONFIG_ENCRYPTED_KEYS=y
-+CONFIG_SECURITY=y
-+CONFIG_SECURITYFS=y
-+CONFIG_SECURITY_NETWORK=y
-+CONFIG_SECURITY_PATH=y
-+CONFIG_CRYPTO_XTS=y
-+CONFIG_CRYPTO_USER_API_HASH=y
-+CONFIG_CRYPTO_USER_API_SKCIPHER=y
-+CONFIG_CRYPTO_USER_API_AEAD=y
- CONFIG_CRYPTO_DEV_STM32_HASH=y
- CONFIG_CRYPTO_DEV_STM32_CRYP=y
- CONFIG_XZ_DEC=y
+@@ -190,6 +190,7 @@ CONFIG_SND=y
+ # CONFIG_SND_SPI is not set
+ CONFIG_SND_SOC=y
+ CONFIG_SND_SOC_UX500=y
++CONFIG_SND_AUDIO_GRAPH_CARD2=y
+ # CONFIG_HID_SUPPORT is not set
+ CONFIG_USB_MUSB_HDRC=y
+ CONFIG_USB_MUSB_UX500=y
 
 -- 
 2.56.0
