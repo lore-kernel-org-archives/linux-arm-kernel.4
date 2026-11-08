@@ -2,74 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE54606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 13:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC79606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DXT9pwwf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YZ41GiMZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QXToMIrk;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=ZL7T7561
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=A+3QXez5hXJ+ayjKDjl1I9e1rtrnLR+Lcr3Xxi/T/SQ=; b=DXT9pwwflGiRv9
-	D55n9JKu8aRh8yHlr6FStxQfD01YS46CKn7IsPM+DiK2XlPxgl9CneLMPvqi3kkm4ogheolTFeNmM
-	2d2XAPS96K1a7A3VrMFOXSDenezwKx+NCLOQaWcW1GjqyC6qB+wdv12bFfAM3bQYnN54MuS7192Y9
-	6sADjzsz3jJ/VRC/iWf2iCH+pfAPl5/Jv/Y4RZE9sJnKEu7nKbjxUkdsPZ5UKzLmm1N/JPYrOkhmy
-	+rnKd2zkF4Bh0CqtPOIpONTyiLLWm+JzroRhu7L65LqpaN+QYLIesJj7xMxMPV7X0SbN3+JEoW+k7
-	JDeCi0FiH4yDLbeLDwLQ==;
+	List-Owner; bh=sORGFzRD8E4HzQkwXuFsiWbFglj3g8iaUxPq0zUsHdo=; b=QXToMIrkz2GDd5
+	gGKEWAEjQdpSOwuA8qXlBEDGMOcoFyHo+UO93vvY1NhVIhotoQsDG5UBes3rMA4ca1ENWvwRa34vf
+	/wpIf9ToPJvsfr+e8hN7drC7jpoVMDFRmbKz5jMdE7vR3xPa/IcXivoUH6+/9tMHFqYBYlzYtfxO1
+	LU5bLlKulHR1M/wtuxZBcSjBnTmafYwe/l6rbwBUw9lBWS80mHgiPfcJgz61oIBLHKu83OFjk5PeP
+	dhOnsH8SdQhfsP8C2o/OkHsB15FZQyhnblgUeXNA/i9e6SgoUB0ADscD9kAca6JkL1twBxqRjz6HZ
+	oXT48JPxUpkeaZGtXjCw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ3CI-0000000GDxy-36Hw;
-	Sun, 08 Nov 2026 13:44:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQ3Zz-0000000GEig-42Q7;
+	Sun, 08 Nov 2026 14:09:07 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ3CH-0000000GDxL-3HLY
+	id 1xQ3Zw-0000000GEiL-0y4U
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 13:44:37 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2ECA742455;
-	Sun,  8 Nov 2026 13:44:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9C411F008A1;
-	Sun,  8 Nov 2026 13:44:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794145477;
-	bh=A+3QXez5hXJ+ayjKDjl1I9e1rtrnLR+Lcr3Xxi/T/SQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=YZ41GiMZ7LsOgeLQxKQKzEetgdrn06s7GBXpW5tTRima1s1Nqvbclj8ChgX2bNFvN
-	 j0CbbbClZjWFNbAXD3/NvFj7dQph9BSgQWgPpdQteDiqcrrDUWuwRoTHrd9dCASmE0
-	 58TTOghF3xGWVTCoSFrTVTUkDKuJNlYAdFGsOTI3rEg8k79VCpTP3uRPzET5+vQc1m
-	 OrKL4wIl22LBXNh7zd+Kf+i1WAjhkDpq94Te1vcj07uO6M1mgSguHwlnCvwrQcoD38
-	 53zI90g274tKn2kXvzWi44MUSJpZaZDljRw1t/k7wvXujITTK2Sqa3ZKvVBNCVXB7j
-	 gfWPjytunBN4A==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 111522C79350;
-	Sun, 08 Nov 2026 13:44:34 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, wens@kernel.org, 
- jernej.skrabec@gmail.com, samuel@sholland.org, 
- Jude Gyimah <jude.gyimah87@gmail.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-In-Reply-To: <20261104135300.3723057-1-jude.gyimah87@gmail.com>
-References: <20261104135300.3723057-1-jude.gyimah87@gmail.com>
-Subject: Re: [PATCH] ASoC: sunxi: sun50i-dmic: select REGMAP_MMIO
-Message-Id: <179413865613.3630016.12205411582383893622.b4-ty@b4>
-Date: Sun, 08 Nov 2026 11:50:56 +0000
+	Sun, 08 Nov 2026 14:09:06 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 07E5F1A1577;
+	Sun,  8 Nov 2026 14:08:59 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B64B360025;
+	Sun,  8 Nov 2026 14:08:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5ABC9103288D3;
+	Sun,  8 Nov 2026 15:08:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794146937; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=sORGFzRD8E4HzQkwXuFsiWbFglj3g8iaUxPq0zUsHdo=;
+	b=ZL7T7561Lu4FFwwsI7q0I9RZ2BQQlKh+5WelkTXTfY642Co5faUCOke7jxn9QZSQFt+Udr
+	u2wQcYlfcdX9sC6fI0Tad2Qqu4QNVzH96Ba2zmocZovrYEfPzhp+KXZIU1jOY7WMmkvD2K
+	1Kpu9W3Lk8G3sxablbgrJD3UE8iqyytlGBq2DlLMGC8i5rq99oI3iq41a+/GOqtzVMe2Q0
+	Ijfu0iGvXv6lBraFURij0WGZQFy2eZNapHctiGgj1ukc0QNFBeABvS4da5liFp8ocP3WEr
+	mE01PN2hwO1cEkzAWpBkqRqbt+woN1nVOQlAdiJmqMR5E1xyC6Z+DJYsoIv43g==
+Message-ID: <864f2931-4eb7-45c5-b58f-23339eb3af11@bootlin.com>
+Date: Sun, 8 Nov 2026 15:08:49 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] net: stmmac: release MDIO node if bus data allocation
+ fails
+To: Wentao Liang <vulab@iscas.ac.cn>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Simon Horman
+ <horms@kernel.org>, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261108110231.315004-1-vulab@iscas.ac.cn>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20261108110231.315004-1-vulab@iscas.ac.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1105; i=broonie@kernel.org;
- h=from:subject:message-id; bh=ylsVSqvchlpBGitrKoVFx9daA4azP/C+WV10mY0Rnr4=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+1BzUuiZTIrVp79LVu/btuubYdahFp5P3tU7yt8b1p
- in8hgvdO0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjCR2NMMv9mTBC2PaLk5Lj+p
- +FJmF/db4RufvJwvPK8ttDvzZda1CecZ/unsjnC0j+hOS/947upc15mtPVw7045Z7tG85sWnqro
- 5mw8A
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-Last-TLS-Session-Version: TLSv1.3
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_060904_460829_91631D6A 
+X-CRM114-Status: GOOD (  23.82  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,43 +81,73 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 04 Nov 2026 14:53:00 +0100, Jude Gyimah wrote:
-> ASoC: sunxi: sun50i-dmic: select REGMAP_MMIO
+Hi,
 
-Applied to
+On 11/8/26 12:02, Wentao Liang wrote:
+> stmmac_mdio_setup() takes a reference on the MDIO device tree node and
+> stores it in plat->mdio_node before allocating plat->mdio_bus_data. If
+> that allocation fails, the function returns -ENOMEM and the caller
+> jumps to error_put_phy, which only drops plat->phy_node, so the
+> reference on the MDIO node is leaked.
+> 
+> Release the reference before returning, using an error label so that
+> the cleanup stays in one place.
+> 
+> The issue was found by a static analysis tool; the candidate was then
+> audited and the fix was prepared with the help of DeepSeek and
+> GPT-6.1 Sol. It was identified by code inspection only and was not
+> triggered; this patch was compile-tested, not tested on hardware.
+> 
+> Fixes: 1a981c0586c0 ("net: stmmac: Make MDIO bus reset optional")
+> Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-Thanks!
+Maxime
 
-[1/1] ASoC: sunxi: sun50i-dmic: select REGMAP_MMIO
-      https://git.kernel.org/broonie/sound/c/4267121a564e
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> ---
+> Changes in v2:
+> - Sorry for the very late follow-up to the review.
+> - Use a goto-based error label, as suggested by Simon Horman,
+>   instead of an inline of_node_put().
+> - Describe how the issue was found and how it was tested, as
+>   requested by netdev-bot.
+> - Drop Cc: stable@vger.kernel.org: the leak is only reachable when
+>   the bus data allocation fails.
+> 
+>  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> index 3ea16d618215..ded352afd103 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> @@ -356,12 +356,17 @@ static int stmmac_mdio_setup(struct plat_stmmacenet_data *plat,
+>  						   sizeof(*plat->mdio_bus_data),
+>  						   GFP_KERNEL);
+>  		if (!plat->mdio_bus_data)
+> -			return -ENOMEM;
+> +			goto err_put_mdio_node;
+>  
+>  		plat->mdio_bus_data->needs_reset = true;
+>  	}
+>  
+>  	return 0;
+> +
+> +err_put_mdio_node:
+> +	of_node_put(plat->mdio_node);
+> +	plat->mdio_node = NULL;
+> +	return -ENOMEM;
+>  }
+>  
+>  /**
 
 
