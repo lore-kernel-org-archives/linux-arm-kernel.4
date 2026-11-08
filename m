@@ -2,77 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F088E606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 19:03:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1A3606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 19:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3QkMPdLQ;
-	dkim=pass (2048-bit key, unprotected) header.d=justthetip.ca header.i=@justthetip.ca header.a=rsa-sha256 header.s=key1 header.b=gR+IAZru
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XUxOj0Ci;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=AQvmD1Yz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=MMJC+UT8sGZ/SEbe6GXLi4vINWtNqNdvv9JEfWOOst8=; b=3QkMPdLQEjw/3W
-	y8cHtug3qAZAHGXrrGqtwQnDjq92GPf+uXIYu4EeKlWyQ0Q5SQr/r4NXNde931o9+V+Ul0+/rvQSQ
-	GIv8sLE//PkvHezfkMTC7bUkXGc1xbMIMQc8KPp8hTRqeu1OPZuuymQvzceNFE4rVpcVA4ZpNme5h
-	nnjexhUwWv+U2s+MK4S803Xr8/3uYj6g9wIM9e/B3DrscqJ4aXSJvTxT8jkU5c8Vcy8GrFRffrpVn
-	dt2vpvry6dnzVkVlPEq3gFtn4Ev9gGmS3f71zNuCsRZ/JZN/261yu4nAkNIWaV64p0obwSKjkpf48
-	cwKdgj0XTDLHgEil1Zug==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:In-Reply-To:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Vh/9TrYwU99E4PCgRdKtI1GiSkx+bWoa8oDdIzOoHTQ=; b=XUxOj0CiwViOwAn1MbpXYV1nL2
+	/cmc78NnbuNdq9w5pHt0LxI07LWEuoSbFvxW9w4KJrJS+T5h85mSNbcWdAJrCLg/b3l0nKYWQshgw
+	JhqmzkNynVSK0gPWL2l7V7Z7gPBIPqZ7G3+/mOH4uSFrDm/4uHsCLDMnaMCWyOO5uy7xGUikO+A/A
+	jyYHlZvudSCXfITrYRtyCSHdN1368PNGSsI2Z8HdNW2Ja2s8v5Jd4nqa3vzVyXbxznn4c2x+18As/
+	kwY7k30m8ONiNw6t2FxynzakWdm+h93pQ8XGMu1cXFeF9CV/zvh7hB2830snZb52OjCbqJf60xoiS
+	NkqApijg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ8An-0000000GVav-3IOG;
-	Sun, 08 Nov 2026 19:03:25 +0000
-Received: from out-204.mta1.migadu.com ([95.215.58.204] helo=mta1.migadu.com)
+	id 1xQ8R3-0000000GVzq-3463;
+	Sun, 08 Nov 2026 19:20:13 +0000
+Received: from sender-op-o15.zoho.eu ([136.143.169.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ8Ak-0000000GVZo-1wWp
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 19:03:24 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=dBs2msg8YEIickwk5+jlQJhTIp1QkhB2iQlPBWT0rRA=;
- c=simple/simple; d=justthetip.ca;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794164597; v=1; x=1794769397;
- b=gR+IAZruwssR0B/2yjMGgquxo4vZS9IUgZ52MglUzwp1sfK6xJ2CTg0IaAchqir1+8HEkbRc
- Ln1Qmq6iK1r4+MNVU9gGx2iIdK5vDJLd+SPcZJF3TEoHQIkb3OFhNG+aKGFv4dBMi2VUmoDkxYy
- 5MM4UX/7zVvIUKdhiAEe/pt+kTBTla8RQHmni3L7U4+uMSkKL1J3h+Zjau+ix5oAvKgYjB0BkvN
- 9tPwvkgtp8MOmTm84AwJhl8vCtCdsMvYe7aIREy8zNqEhLhuwylA65kETNUOa8XFqhNPERdvN45
- 4IlLdrmx4baP9AxVtY1Wy8urkBWMXRNe2ab1mnggT6Zdw==
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 889c5ad5da6531b2;
-	Sun, 08 Nov 2026 19:03:17 +0000
-X-Mizu-Trace-ID: 889c5ad5da6531b2
-X-Migadu-Flow: FLOW_OUT
-From: Devin Wittmayer <lucid_duck@justthetip.ca>
-To: Josef Schlehofer <pepe.schlehofer@gmail.com>
-Cc: Felix Fietkau <nbd@nbd.name>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Ryder Lee <ryder.lee@mediatek.com>,
-	Shayne Chen <shayne.chen@mediatek.com>,
-	Sean Wang <sean.wang@mediatek.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Ming Yen Hsieh <mingyen.hsieh@mediatek.com>,
-	JB Tsai <jb.tsai@mediatek.com>,
-	Allan Wang <allan.wang@mediatek.com>,
-	Quan Zhou <quan.zhou@mediatek.com>,
-	linux-wireless@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH wireless-next 0/2] wifi: mt76: mt7925: LED support for USB adapters
-Date: Sun,  8 Nov 2026 12:03:13 -0700
-Message-ID: <20261108190313.11505-1-lucid_duck@justthetip.ca>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261103133528.53197-1-pepe.schlehofer@gmail.com>
-References: <20261103133528.53197-1-pepe.schlehofer@gmail.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+	id 1xQ8R0-0000000GVzJ-3vIR;
+	Sun, 08 Nov 2026 19:20:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794165599; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=H1luY180cpXtbO29I367UMSNTK6y0KyF55ZvVdEna/3s7vvoWRNa7gHyBt/xypqZZMGVuk/EmUAtcvUHPvvAWQR/1veMMrR6PWvpshYeipulwQ+jpW//C7+R5QwUlYj3RD0wLQISLwxIHf96zyiqGdkZJ0JXcdkCXADBJR872f0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1794165599; h=Cc:Cc:Date:Date:From:From:In-Reply-To:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Vh/9TrYwU99E4PCgRdKtI1GiSkx+bWoa8oDdIzOoHTQ=; 
+	b=au8oB9kOxtxGgufNSqVsCnUYGolNFTIKo4ZiWBNef9t72FTe4VNMUnBb+pIBI3iQhhAQSFyokmTJELFAp2MAF1HgtJUdAzV2q7zJJNMtUl4ZowfcpI3tKDblRcs3NxoYfLPPyRPdC+1CkkYyniDyRUC/Nep1cL4TUAw8kii+zOw=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=AQvmD1YzyKqMNB5XrsP9jMBdwMKIHBOezeGPp3sqpeiPnayjypwvDzH7sur3GtV1X6v7SR5FPmrMmzjnMigJuSpl6Pgh8B08Fvjq/VZh31AShvhBxrkeWGdkoM2lS/w3nbUwkJBv32S1IY4AQU8omKjuSlNVa/qo7yl4iSylw3U=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=Vh/9TrYwU99E4PCgRdKtI1GiSkx+bWoa8oDdIzOoHTQ=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 1794165597779665.0347627600589;
+	Sun, 8 Nov 2026 20:19:57 +0100 (CET)
+Date: Sun, 08 Nov 2026 21:19:56 +0200
+From: Igor Velkov <iav@iav.lv>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: iav@iav.lv, Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Jianqun Xu <jay.xu@rock-chips.com>, linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] gpio: rockchip: restore the bank registers after hibernation
+Message-ID: <20261108-re-v2-gpio-rockchip-hib-dbclk@iav.lv>
+In-Reply-To: <20261108-b4-gpio-rockchip-hib-v2-1-27d3d510cb73@iav.lv>
+References: <20261108-b4-gpio-rockchip-hib-v2-1-27d3d510cb73@iav.lv>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_110322_921015_A0892C01 
-X-CRM114-Status: GOOD (  10.83  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261108_112011_254813_2E7C03C9 
+X-CRM114-Status: UNSURE (   5.37  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,35 +65,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On Tue, Nov 03, 2026 at 02:35:26PM +0100, Josef Schlehofer wrote:
-> Tested on a Turris Omnia with an A9000 and firmware 20231227 over
-> several days. The LED follows the throughput trigger and manual
-> brightness changes, and turns off when the radio goes down.
+Hi Heiko,
 
-I tried it on an A9000 too and watched the LED on each of these:
+Please hold v2: Sashiko is right about the debounce clock. On ODROID-M1,
+after hybrid sleep with a power cut, a line with debounce saw 0/8 edges
+and a control line without debounce 8/8 (one run). dbclk_gpio3 and its
+parent dbclk_gpio read enable count 1 with the hardware gate closed;
+opening both by hand gave 8/8.
 
-  wireless-next b8e5b0ae8, x86, the series as posted
-  6.18.34, Raspberry Pi 5, arm64, the same changes
-  6.18 LTS, x86, the same changes
+With WoL on, aclk_gmac0 and pclk_gmac0 come back the same way and the
+network stays down after restore. So this looks wider than GPIO, and
+fixing it per driver looks like the wrong level.
 
-It switched off and on as asked and blinked with traffic, on firmware
-20260813 and 20261016, and the LED was registered again after a USB
-reauthorize. No warnings in the kernel log, and on wireless-next an
-MT7921AU and an MT7922 join and pass traffic with the series loaded.
+Should the Rockchip clock driver write its gates back after restore, as
+at91, tegra210 and ti do through clk_restore_context()? I find no
+restore_context in drivers/clk/rockchip.
 
-> Sean, JB, is it fine to drive these GPIO registers from the host, or
-> does the firmware rely on GPIO 8 staying in its default function?
-
-With the pin switched to a GPIO output, the A9000 joined and passed
-traffic on all three.
-
-Tested-by: Devin Wittmayer <lucid_duck@justthetip.ca> # NETGEAR A9000
+Igor
 
