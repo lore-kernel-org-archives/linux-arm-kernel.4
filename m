@@ -2,76 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64D8E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 11:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05228606D805
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 11:34:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dcR3UZrQ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NzP8/1yb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B6BU7tOo;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=N4phKShs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bl5cMf5oVLZLpdRHQBsSexs2yAIQ352WYuyU3qzrEtQ=; b=dcR3UZrQVYKWWm
-	gynM/hr/01fJTGo1BW71YKSU3OUFiKBCKMo4lQrgIOvkgP5Ikpzi8sP8Lz2oRUI68/LDYecxQ4k06
-	2RdSJCRkJCHZKc4c2lfxgjQNXvWOZGJ8lM/M/hYDjV0pUCQVQs1WovTx/UFkradd1FhFcOmEzsCkp
-	+XVh5gg1R/wa1g4q0b56GnXRlplbI9TBnLTiv+lQdKnpQBiPRHFWkWsw9FhNwAb4eV7z51dBVO7Ob
-	MjISAa2uDIidh1haCJchFKe9Pxiz2A0VAdhnW46NVypTt2GAjxxb/YJx3254K4joEc09MPT69v3o9
-	F9I4bByvL+lVfRprj2ZA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=irh7FtabIZf9G5NtC74mI7+F4qF39JvEMv9fHyqNNSU=; b=B6BU7tOoXpiJbN85YuG7bbpVBB
+	OEkQMg/W9RVwV3YfDjw3w2pA1INRFncK7bzxXVGE0/ZwpapCrrwNpNAjLBB2OVzPx4ntDPuewFsfe
+	DFBG/nRLBVTGegDP5gn6FSqIQUnwcJlF9Or6/kj7fYoW7Xj5gSjV/M11iIQcOHBLDZxscittjPoGS
+	IRF40uaE+hbh6K44ukawmM5G6l91DWCj2NdSENnl24xy8m7Tmj3T+giCnN0utkG5MmQfZWJtJEJjU
+	DU1FLlKQBfwbiSbqQJ/+Bcu/2Ai1nwRprlBanG2KeWPSoHROZu6WcjxO7ornMAwp8gIjMSU9J961j
+	4oVpUWyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ0sf-0000000G2Ez-2eFU;
-	Sun, 08 Nov 2026 11:16:13 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQ1AZ-0000000G3Ze-3o8l;
+	Sun, 08 Nov 2026 11:34:43 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ0sd-0000000G2Et-2cZo
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 11:16:11 +0000
+	id 1xQ1AY-0000000G3Yt-22dZ;
+	Sun, 08 Nov 2026 11:34:42 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id C131A60D66;
-	Sun,  8 Nov 2026 11:16:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49FA01F0089F;
-	Sun,  8 Nov 2026 11:16:10 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A82CD6122E;
+	Sun,  8 Nov 2026 11:34:41 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794137681;
+	b=NM9Fi8rrt5YNCNf/OeifaEVDn+bqb9ZcADo5hZrDeK9AVFO4YDlrOPREZg32BV8l9nZE
+	 AxHKX+3Op89XpxAa2zNps5XUMVytr4FtSUgEvJ9UkmphN0L+pUVqWan6Iz1YIC8aRpV0G
+	 vcOoY46ROdv8182Ht6BPF7PDul/vgJfY4wgF8njewmGUFuGSLj2kCr2L5uVjQwFRKyx0a
+	 PA81T0m4HJ1DVzEp6bNhekcDcTlinSMHz7dMILUDcjv6TU4rjF3uuVmuV7jBIJooiT0cF
+	 1OMUGb2I5YFBUpv67Es87J3b2E2/EJwy9nyAlTRpKNXzsVOcw31FNHfhBn2k7f9kPhg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794137681;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=irh7FtabIZf9G5NtC74mI7+F4qF39JvEMv9fHyqNNSU=;
+	b=S4U84FbJMTwHtvp8jyw/yToMoHC9EMp42lJH1YFIgDZsiLpW5lRaQ9Sa4bwSoK6E8v1C
+	 xO1f3i9tnTUoYZ5SwirkMqPntc9AAVmVsow9YuYTJEtHFjYZjiS6PDQLbs5p13rRunN2l
+	 ge9auoGqX6ZwAgqzv7xTXILLKDShLhIppP4UcGtlvIo+bdi0qlCkRr5/1qwkgEhdZjwN5
+	 c74qksvxTHCuINXoK9gASI9WcdVXGLSMs7gIU0zFvAgOfiuxo0CLSvfcclNuDj5B3M2SZ
+	 AjRDuo9QfUULV/MWyAItqYAgbxClinEJwPzU8QkF5dkwjWKqdKvnWqVJ/btCZuLuyzQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id C4F921F008A3;
+	Sun,  8 Nov 2026 11:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794136570;
-	bh=bl5cMf5oVLZLpdRHQBsSexs2yAIQ352WYuyU3qzrEtQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=NzP8/1ybPNNC63stC3DucCJWIybl+rq/FQ/wL5OSXq34eU8VNUi+Rr2FmZ+7JDfpX
-	 /q/h3GIWv+KGMvni/3YslSsUuSYNA/bibl2oyyk25mDhu1zGypHExPBRsmRdeSKKTL
-	 C18jQdxNPnk4rcbgg3dgiGVaAtX+zWTP/fDn1IVBV3mKnyLEHhFnZTsnVRy5DVXoqF
-	 49smLFhWnF/AWJAkAtP3j97FssR/RK3ZBWokBwVe6Ovqtw7fVwHxIIH0Hq1wGQjpYD
-	 1rkRaNLGmFi8DQ389fQP2shS1zMTkCF1gDH2WStNKSxNMMbDkCZ7QPE3yaOWAR7MQF
-	 s+feziLNjUC/w==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 65F052BF8FE7;
-	Sun, 08 Nov 2026 11:16:08 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
- joakim.zhang@cixtech.com
-Cc: cix-kernel-upstream@cixtech.com, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20261106105208.1246554-1-joakim.zhang@cixtech.com>
-References: <20261106105208.1246554-1-joakim.zhang@cixtech.com>
-Subject: Re: [PATCH v5 0/4] ASoC: cdns: Add Cadence I2S-SC and I2S-MC
- controller support
-Message-Id: <179406285258.3424803.5597609174879659303.b4-ty@b4>
-Date: Sat, 07 Nov 2026 14:47:32 +0000
+	s=k20260515; t=1794137681;
+	bh=irh7FtabIZf9G5NtC74mI7+F4qF39JvEMv9fHyqNNSU=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=N4phKShsnuVPT9bSG5HGbp2ly6lelu5KmPLmwis51hHqeczdww7dQTm2pe2KM1MGz
+	 xEiJVK+JKfQbvkIU/YbotXTRisgQrM4BQfbLtkjzXCqDMGFRlWQL7PuugFxSlQcSd1
+	 cwSRkNg80/7obgLeEcTgXpplOBBGdjYoYAj6n1+fgIDacNvuSC30wTO32Zrx+xKNfh
+	 +yuVH5hRhFe/gOUeDyoKHd+g+LKLZEbe06soPoZ6NBwbyHOpADdQxU2O6CQDwre4Kb
+	 8eo3RpA3ytWTCelDA35CDC8sw9JF6dDz7YL64a0fkmKg9fW+brDERPe/oHpyBflrXw
+	 BddJW6n24qnZA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 4BAB247F15;
+	Sun,  8 Nov 2026 11:34:40 +0000 (UTC)
+From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
+Date: Sun, 08 Nov 2026 19:33:30 +0800
+Subject: [PATCH net v8 03/10] can: rockchip_canfd: retry the outstanding TX
+ buffer
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261108-rockchip-canfd-restart-close-v8-3-3e7a23fd9eae@qq.com>
+References: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
+In-Reply-To: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
+ Vincent Mailhol <mailhol@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Oliver Hartkopp <socketcan@hartkopp.net>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, 
+ Wolfgang Grandegger <wg@grandegger.com>
+Cc: Cunhao Lu <1579567540@qq.com>, linux-can@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-doc@vger.kernel.org, stable@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794137678; l=1735;
+ i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
+ bh=mAdiDJWuUPvQyM82hTpk52wGLUSpbq2jpnpY6emM93U=;
+ b=5PD3i2rXvndHL9umpnZZAsui/1VjENqN/gRejX7O7unl+AadS6RIjqskIrEeKTbuOi2Z5U+n+
+ V5DughzQwSGAMzCZBZhEjnvCjwIxOfZtZl3wXwGzioCjFv+ItgjAm8I
+X-Developer-Key: i=1579567540@qq.com; a=ed25519;
+ pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
+X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
+ auth_id=1177
+X-Original-From: Cunhao Lu <1579567540@qq.com>
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1710; i=broonie@kernel.org;
- h=from:subject:message-id; bh=uhrYFssuSak78sxGGNOhK5N5ATA6z/IM+mXG+2w/KbE=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+RP6Y7Vrcy+35eMN+5Yr0Z+FStwvjXWa9+trr8fKN+
- k5rnh08HaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE8gQBi5OAZgIewnD/1KOl2V769pP+rzl
- jbgo+DjoXkT0lZ+PppcJhInLxM+JFWT4zaZdbNrtv1cuQZm1J8NZX/3Esmydpzqi631kpC/4rJ7
- BBQA=
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,58 +116,60 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 06 Nov 2026 18:52:04 +0800, joakim.zhang@cixtech.com wrote:
-> ASoC: cdns: Add Cadence I2S-SC and I2S-MC controller support
-> 
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
-> 
-> This series adds support for the Cadence I2S-SC and I2S-MC controllers
-> integrated in the CIX SKY1 audio subsystem, together with their DT
-> bindings.
-> 
-> [...]
+From: Cunhao Lu <1579567540@qq.com>
 
-Applied to
+rkcanfd_xmit_retry() uses tx_head to select the buffer for the erratum 6
+retransmission. With a TX FIFO depth of one, the masked head and tail
+indices both select buffer 0. With two buffers and one outstanding frame,
+tx_head selects the next free buffer instead of the pending one.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
+Use tx_tail to retry the outstanding buffer. Otherwise, the pending echo
+entry can remain incomplete and leave the TX queue stopped.
 
-Thanks!
+Backports must include the preceding TX serialization fix or equivalent
+synchronization. It prevents completion and retry from observing a newly
+published head before its initial TX command and serializes the
+MODE/CMD/MODE sequences used by submission and retry.
 
-[1/4] ASoC: dt-bindings: Add Cadence I2S-SC controller
-      https://git.kernel.org/broonie/sound/c/5d2a3da8b792
-[2/4] ASoC: cdns: Add Cadence I2S-SC controller driver
-      https://git.kernel.org/broonie/sound/c/81bb3e5fda49
-[3/4] ASoC: dt-bindings: Add Cadence I2S-MC controller
-      https://git.kernel.org/broonie/sound/c/fe1cecba2f2a
-[4/4] ASoC: cdns: Add Cadence I2S-MC controller driver
-      https://git.kernel.org/broonie/sound/c/a6feafc3bbed
+Fixes: a5605d61c7dd ("can: rockchip_canfd: enable full TX-FIFO depth of 2")
+Cc: stable@vger.kernel.org
+Signed-off-by: Cunhao Lu <1579567540@qq.com>
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+---
+Changes in v8:
+- Apply the retry-slot correction after TX serialization.
+---
+ drivers/net/can/rockchip/rockchip_canfd-tx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+diff --git a/drivers/net/can/rockchip/rockchip_canfd-tx.c b/drivers/net/can/rockchip/rockchip_canfd-tx.c
+index caa71cf8e39a..8998b7855d15 100644
+--- a/drivers/net/can/rockchip/rockchip_canfd-tx.c
++++ b/drivers/net/can/rockchip/rockchip_canfd-tx.c
+@@ -63,8 +63,8 @@ static void rkcanfd_start_xmit_write_cmd(const struct rkcanfd_priv *priv,
+ 
+ void rkcanfd_xmit_retry(struct rkcanfd_priv *priv)
+ {
+-	const unsigned int tx_head = rkcanfd_get_tx_head(priv);
+-	const u32 reg_cmd = RKCANFD_REG_CMD_TX_REQ(tx_head);
++	const unsigned int tx_tail = rkcanfd_get_tx_tail(priv);
++	const u32 reg_cmd = RKCANFD_REG_CMD_TX_REQ(tx_tail);
+ 
+ 	lockdep_assert_held(&priv->tx_lock);
+ 
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+-- 
+2.34.1
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
 
 
