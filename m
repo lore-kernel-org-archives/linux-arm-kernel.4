@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE95606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 23:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE40D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 23:32:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VonO92+E;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eToLnO18
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zT30NKNc;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=njl/gkPF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,63 +14,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nRTwl6PA7scPTUTp4EChbVpQM+LG2WC8AJwvqiPP/m8=; b=VonO92+ERrBxp3ON0MXa4dYNey
-	ZnHAuDb3pbZJBxxkaujU2/XGxu9wua4v5ZG1Lkn6GkudPdcqnrVisF38pFUPUMLXP32TZfRSAWXRS
-	pdGCq6N6QynpZETaLcOYBnRvLEDOOi/OnIziLtV/JC03Aey/GLy1h45jzFDkKLPcItAcIm7IU76O2
-	EE2PBLob8RO485+u1ej68KayTHeMk/bilA8LSdEO7vGp12//Khp2tJEuEB4JDflD3sYfgPS4C2ZBT
-	Yzqz7dKQFg0wYe0dcUkevwb99pwCKfXrjq1mjwn36aigONLyjfna4O30GJow3928wYNsZYGJTghHt
-	ETNX5D+g==;
+	bh=RIAxd3jomjJTAeBATxn+eqNDxCWaLYEphq5oj8QW39o=; b=zT30NKNc9GdKUGtQI/6BfbEEie
+	+J+sSmexq8q3WCmaHzKnSdnRTtakSb1fa4dn9annQSD0j4UpbcwwjnYKlbC2oCmuLQVUyvQqT3iAT
+	19AhopbcpGuQZZRVIzdvwVLIHJIlJoV4wz/HJCNv+aZHqVWcyyPugWYi+smKMR9dvZsftkftkKlLA
+	nxp/IxmE+yT2LzPwN2vXoOAnOpE8VaVqiujMa+DYcnS6OC0DBndOyzxjAVwjVR3OcNd9H7tMZ9wde
+	qIvLZwRBi2lPMbRGCkqAV9AoAYRaNp5SriQwnq1KyqrgI9cdSOZmijN8w+RSekFxs+CS84tJ1txl+
+	4268OnEg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQCCg-0000000GtGx-1ZQg;
-	Sun, 08 Nov 2026 23:21:38 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQCNX-0000000Gunx-1mz7;
+	Sun, 08 Nov 2026 23:32:51 +0000
+Received: from mgamail.intel.com ([198.175.65.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQCCe-0000000GtGA-1SPp;
-	Sun, 08 Nov 2026 23:21:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F26B544DE5;
-	Sun,  8 Nov 2026 23:21:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9216E1F0089F;
-	Sun,  8 Nov 2026 23:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794180095;
-	bh=nRTwl6PA7scPTUTp4EChbVpQM+LG2WC8AJwvqiPP/m8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=eToLnO1866ewRebs6N6G5BSxQTF2U2Kc0UhdYgEdR47hwwyqAlfeSiJo6o0SvAIlH
-	 joEW6TVssRzjzRjZ7V2nf1+5lSQvqv/tZz4AvyQ0iiAbmQQ3teSj2rVHOMPhaIKJy9
-	 e1XEi/FsoXOoZzwsMGxQnBa6o38deA7bIfoyaUc88ZmWrnI58+0BNx7g3P9WotHXEi
-	 f+U+josKVZ3jA0a8ixgOMiMj2cE5Wp3pPHZXrB+2zjoeJOT4wVOXqHft6ToH+mXb1E
-	 9YsSOmViP0nd+o0Q3bhvuWTU+qRSqHrvdU4AC/gBAfKzqKVUWprfuycMOuKXnhJr8F
-	 FSCP5pxfZvcpg==
-Date: Sun, 8 Nov 2026 23:21:30 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Carlo Caione <ccaione@baylibre.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	id 1xQCNT-0000000Guna-3WcA;
+	Sun, 08 Nov 2026 23:32:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794180768; x=1825716768;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Fi54V+VFdqsG4yBOFRiGtGx1WzCG1Fe17uVh8OseR/Q=;
+  b=njl/gkPFRa/M774rjksgEhDasOG/T0QQ2ESVUlNqMJTbH09Zd/y2qpoN
+   juf7xhnMvzIE2FNUt11qMYWF+tQcN9KGn+J5O5p4co5JyMiGmdesmODhS
+   jZbe20cGaxc6/67RYmqpNMxAJiuF2kQGn1oKCOoiVv10WFkT4SL9khI5h
+   CeWUvgyzkTCrHRrmCf0HhYUPP+Ql87rs6cZBxEBKpwWGKot+VNXGGwgvC
+   AJ2SVKEm1meI5T0olG7gnrdvAac9nK8vPu9KuCzilf1LopK2dExdmiW/e
+   cIaaW6hHBuAUNNgwKaV7UVE5ApQ+reK9i2E87wG65jJfGDkd0gzVV4+PD
+   Q==;
+X-CSE-ConnectionGUID: V38y1jAMTcWJIDYtSXp97g==
+X-CSE-MsgGUID: VCFdq/AsS6WOvdKtUUk3QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2909847"
+X-IronPort-AV: E=Sophos;i="6.27,202,1787036400"; 
+   d="scan'208";a="2909847"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2026 15:32:47 -0800
+X-CSE-ConnectionGUID: JYca/77zS7yncDSYRey/VA==
+X-CSE-MsgGUID: OTEb+65GRAGJzDOpXDgMrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,202,1787036400"; 
+   d="scan'208";a="7605594"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 08 Nov 2026 15:32:44 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xQCNM-00000000tX3-3EMA;
+	Sun, 08 Nov 2026 23:32:40 +0000
+Date: Mon, 9 Nov 2026 07:32:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sasha Finkelstein <k@chaosmail.tech>, Sven Peter <sven@kernel.org>,
+	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+	Vinod Koul <vkoul@kernel.org>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jian Hu <jian.hu@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/7] dt-bindings: clock: Add Amlogic S7 PLL clock
- controller
-Message-ID: <20261108-poker-appetizer-ae578e06f4ed@spud>
-References: <20261106-upstream-s7-clk-v1-0-7d501d62621f@baylibre.com>
- <20261106-upstream-s7-clk-v1-4-7d501d62621f@baylibre.com>
- <20261106-armed-spoils-909d7d4f7d21@spud>
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Sasha Finkelstein <k@chaosmail.tech>
+Subject: Re: [PATCH 3/4] phy: apple: atc: Add initial M3 series support
+Message-ID: <202611090709.TnLL9fnj-lkp@intel.com>
+References: <20261108-t8122-phy-v1-3-c2783b2a53a8@chaosmail.tech>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="h18CTd9oqNUWFnDa"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261106-armed-spoils-909d7d4f7d21@spud>
+In-Reply-To: <20261108-t8122-phy-v1-3-c2783b2a53a8@chaosmail.tech>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_153247_965628_634E2709 
+X-CRM114-Status: UNSURE (   9.87  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,46 +96,38 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---h18CTd9oqNUWFnDa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Sasha,
 
-On Fri, Nov 06, 2026 at 05:35:46PM +0000, Conor Dooley wrote:
-> On Fri, Nov 06, 2026 at 09:30:27AM +0100, Carlo Caione wrote:
-> > The S7 PLL controller supplies clock sources for the peripheral clock
-> > tree and receives its reference clocks through firmware-controlled
-> > oscillator gates.
-> >=20
-> > Add the binding and clock identifiers needed to describe this
-> > controller and its connections.
-> >=20
-> > Signed-off-by: Carlo Caione <ccaione@baylibre.com>
->=20
-> This looks okay, but I don't want to sign off on it before seeing an
-> answer the my quesiton on the other binding.
+kernel test robot noticed the following build warnings:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+[auto build test WARNING on 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4]
 
---h18CTd9oqNUWFnDa
-Content-Type: application/pgp-signature; name=signature.asc
+url:    https://github.com/intel-lab-lkp/linux/commits/Sasha-Finkelstein/dt-bindings-phy-atcphy-Add-M3-series/20261108-164340
+base:   6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+patch link:    https://lore.kernel.org/r/20261108-t8122-phy-v1-3-c2783b2a53a8%40chaosmail.tech
+patch subject: [PATCH 3/4] phy: apple: atc: Add initial M3 series support
+config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20261109/202611090709.TnLL9fnj-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261109/202611090709.TnLL9fnj-lkp@intel.com/reproduce)
 
------BEGIN PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611090709.TnLL9fnj-lkp@intel.com/
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavED+gAKCRB4tDGHoIJi
-0okdAQDMcXKZJeoTJVuXMbKA2aRXY0cbDWEgmMPMk8XpvQYvMQEAydnvuYk5uJNd
-9LftLcLzS81VFE0iJ4VqHKGF4dmyBww=
-=B5wK
------END PGP SIGNATURE-----
+All warnings (new ones prefixed by >>):
 
---h18CTd9oqNUWFnDa--
+>> Warning: drivers/phy/apple/atc.c:678 struct member 'hw' not described in 'apple_atcphy'
+>> Warning: drivers/phy/apple/atc.c:678 struct member 'hw' not described in 'apple_atcphy'
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
