@@ -2,111 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C888D606D801
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0063E606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 14:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=inNdbS7l;
-	dkim=pass (2048-bit key, unprotected) header.d=jannau.net header.i=@jannau.net header.a=rsa-sha256 header.s=fm1 header.b=g77xhHKi;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=S1JiRCX5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=siexj/rX;
+	dkim=pass (2048-bit key, unprotected) header.d=jannau.net header.i=@jannau.net header.a=rsa-sha256 header.s=fm1 header.b=mV0Ciyg8;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=qpOTgGmx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=woCjHpIzbFmhHn2FzYvCeJCH86EIjicWwYTiJAIuiP0=; b=inNdbS7ly6kPAH
-	5Rr+odlOQKtf51a37bW5u5RvR0HVCw36j5iEcpJkja4P21kF4AKvo9DAjGw9EI4N6kJF/NjCc+lsU
-	f/sFYHSRohp/kYfkZAiZYVXjBi+zAqQizaZ1C44ncWaIxbP5f9zAS41V6VkyHp2OSX0SZSY+pCdBh
-	fQbRW6vzm+RSnLGZ5Eu4sDExZm2Gv4oafmlbJDCGYAstpoSDB3Ussl6a18hMRqE4O9bOJOLC2Dgj0
-	wCiy1YDTpKNS13BMAbjHOOSeIX1NGdc21817xdU5BLXGW0m9q8y8qYSAcSMdDoVRZTP8L901fSzOs
-	PHpg5dkJlUELwA92RCxQ==;
+	List-Owner; bh=SxBhdvt3/eeerEg5f6ojJgesCn4pQWjwm05oda2BD8o=; b=siexj/rXvUcgA7
+	kH3KHaC1Fn/mu84afxTKuXRJ/CRoV5dmMQIYtbnkcZoFjmBBNJ+wNVRHlLxl+Fpzb1E4U7MG/YRva
+	c1AwhQG2Y7Mmh24cgojBLFnOSaBai/SLyvTFeUIg17jdEGRwML6kKLyHwICrriJgnyl/bCKGynnF6
+	iFjuvwQo2IfYVhOCZd/oGQ0bNVI2ibprHnGmeI/ofEb2FoEO+yMtTU75GjhU4nVO3AQrILGwWTJmg
+	ZwUJWCbB0waX2PJEB2akAJyMLWI/Kmw/ykJdIXQywBKXyw1AtMMPh5WbJbTYdKdhVdB4U4bN3Bz1U
+	Vb+V5TwyGDm2a5CJOteQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ3nO-0000000GFFg-2EGt;
-	Sun, 08 Nov 2026 14:22:58 +0000
+	id 1xQ3nT-0000000GFIP-353K;
+	Sun, 08 Nov 2026 14:23:03 +0000
 Received: from fhigh-a2-smtp.messagingengine.com ([103.168.172.153])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ3nL-0000000GFEU-3YTb
+	id 1xQ3nL-0000000GFEj-3fab
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 14:22:57 +0000
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id B89A41400124
-	for <linux-arm-kernel@lists.infradead.org>; Sun,  8 Nov 2026 09:22:52 -0500 (EST)
+	Sun, 08 Nov 2026 14:22:58 +0000
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 05E75140012D
+	for <linux-arm-kernel@lists.infradead.org>; Sun,  8 Nov 2026 09:22:55 -0500 (EST)
 Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-05.internal (MEProxy); Sun, 08 Nov 2026 09:22:52 -0500
+  by phl-compute-01.internal (MEProxy); Sun, 08 Nov 2026 09:22:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
 	:cc:content-transfer-encoding:content-type:content-type:date
 	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1794147772;
-	 x=1794234172; bh=woCjHpIzbFmhHn2FzYvCeJCH86EIjicWwYTiJAIuiP0=; b=
-	g77xhHKiwGUpPp1bAq1Bt83pcZ/Jis0P5OCRhrdwiIgXa5PX7UgyxVFlvy2p7oG3
-	TNA6XxQlX809+unZUcLVQucJJXM2v6CPA5LX4rEvE4fA6kaar7XCUlSa+G4DNsJK
-	g7lGoPqJbf6Fgk+kCwSKkN+Ye1R+c9agfzxRuG9bkuws2OVmuyMuycg0QvrDAWuQ
-	pICkgYMdeBBV1BdsGurhMBS6LLsBIcwd3eUlH+IWC7nU+XkQP2sVRM8GyECJabpl
-	C7gs6gYT3SxtYYILNXLnF0YdjxHC7450QJZMqQAn8KisHAaX2SyDJcso/IBhPrxL
-	awczdOyRop8uWNOV+X7zag==
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1794147774;
+	 x=1794234174; bh=SxBhdvt3/eeerEg5f6ojJgesCn4pQWjwm05oda2BD8o=; b=
+	mV0Ciyg8eg/KgJroi+v+WBtZYDdX8DiurvCsKyQdvA/d+KxJfxTlgXlvytcLnZe7
+	AJXaTHSI1XRyMon2iKP4J25fW3y0w2dpbX1wrLg/IUXwgjwBtdZwnonP0pAU6dxs
+	cupLEyEinHW+8DH2DlTHxfitTlFpKFzUt6xGls3KPCPUfbOEobdpLJaPzLN/9zol
+	jfTUZ4UbZuusaNRPe0ljCGVkAzpX9RpyXEn71+MRWGkSxzHAuY9VY99aGDVNyR7p
+	1rmH95/s4+mRCtn8gVbfhH+FrAV5+ICdfIvD3u8RpAktkscauNDuV7tUeglcO2TO
+	YGJSHF5qv6DSARXC0GAcfQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794147772; x=
-	1794234172; bh=woCjHpIzbFmhHn2FzYvCeJCH86EIjicWwYTiJAIuiP0=; b=S
-	1JiRCX5tY492f+3KvqZTvRcUjN0u8uSL9qTEO/eYdxQUDhVacHwACGFDRg1q9WpD
-	CtpuBYDNN8dDl+07cN4seVcojM/t2Me1DtHnPGdAuCKWacNyr7NspoapzNblZMuq
-	c61i2280C/pLQp2h+kDHFAIvqxa79DSywxKzrrd5Oi8rWlulz4mjhycg9Xw+5s2c
-	XkC2cjEdDvzO3BWrYBWLK6awX4nI0fE7pWjMjkbIGl/droSkWBpGmImlE75vcT8y
-	HyE4fOM+H9X/qrz+/c4SkxN49L3O0tRBs1SMcXKYu6T9f9VQinxhK4/P1y/zXynO
-	yx1EGq52g6dlB4n/GDMFA==
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794147774; x=
+	1794234174; bh=SxBhdvt3/eeerEg5f6ojJgesCn4pQWjwm05oda2BD8o=; b=q
+	pOTgGmxSGldvn2y0/sQV+07FYJz8B2qxVbmZJ3wYQZ/bG1WWn4DKqGnjGfxxhPgC
+	0ov91W+NRXAvrKZaF0wWJmDp9Bzg+c41ms4bwJR3KuJne/lDb2O2rfUrjV1IjLBT
+	VpWNpZXQunucGWGcngpzPbRl4D5aCwKzNwyrS8DmBIQdHSLcUe8qBWYS8l4xqKCj
+	IEuxIJvavyk2/cFEWmkgxzwS7YwuOyZ+GP3oeB2JJbpwEW4Ssrgye+AYdkl7oc8G
+	oHOXHoV7s2jTFNH3/Hin6OcovaSBfOCmCLpraAUVod2OLbBpqX5MJnDyCzaMoV2C
+	+ldKSxt1V+RtsCIlQlgyw==
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=sign d=jannau.net a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794147772; d=jannau.net;
+DKIM2-Signature: i=1; m=1; t=1794147774; d=jannau.net;
 	mf=PGpAamFubmF1Lm5ldD4=;
 	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm1:rsa-sha256:I7aNuj4zyX+LG3okXlzlpcyV3npE6ZP3k1E56GOZymUro+9
-	moOqEb0bjCF4XNRLT5n0U2PeFnhMC86XuEfNCMzFSpNe+3g72pp/xkdU+iu2Zufs
-	8cu1LGkW+9ZWaTzw3w4g2zCJ1oo4CzecFNliTK678StrgYazAE2v+WQmNEfSJDnc
-	tCrCsMFqbUnuzTXagorJzwDuTu5VfLcrADWSu7WykJAwgDKiK1gDqbsq4bRuo7hq
-	vCAlJtTAttRjiIoxkj++ZKPIZpYGzvYdFrs/FosMo35Xnql8b6Gr9AZFLWuzsOmw
-	CVwBxsTCAvSVsj3WjGQgPOUZ78eRYJSwmCXgzig==;
+	s=fm1:rsa-sha256:lcrWbNSyHFrf2kJP6nEhsX1H4b9DWoB/0QDFFE8pvjBORmk
+	z2rew/g+HoCxxifOAyVu7SnI0sDZavrzjSLb2THTrtTbW8eWc92YqjwZgnoXgfrK
+	NVG3VtPiESoLOuSuOX7jGBaJcQARyZx8b1N5kDoi2k8CrOzl2S8EZBbWGeuJwVGH
+	kSvPUQIJRvg/WmOVyVgvSGy+14OTH5h+C782HMvIW1F6YgZzuspubhWNhXOETREG
+	ctISRq53WLaj9J2A/DzsYoLxRIbwrDm9iReQE4r0FnmHibVlsYxUDv+Kx1ULZVbX
+	iOsyNNpRzvLISpmnDiNsgMCZ0js95mS6/rI1lpw==;
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=mi-m=1; hc=12;
 	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
 	from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:ONM+wdC2mc2GHio0FXqthaw8hL3ScbvB1IVRgFrqR4U=:4YuJB7yJn3hvOe+uv0QUJ7U19Zk9FgiQxUYecbj5q5o=;
-X-ME-Sender: <xms:vIXwan_1KhIzNOuJKcz2qUmMWo0Iotl_maUZ0B8WJnjkCMe9btZCiQ>
-    <xme:vIXwalE4CSo6V4bHtD897kjqIyJxNMMQTh8sq4BQoCX6YKIjFPRM2Fwlf9qyUcwKJ
-    fVPDgIYEO9G8LkYqTqEN2oCXI_jKIYZSItw9RUtOOPxfZNTNpWKuQxv>
-X-ME-Received: <xmr:vIXwauR_6PKSOhYnD6mgXm4dpNbVmxSlaYufiVqO_8fdRZ3exY8XNfOSo-pFE2LWIcD7BB5tbCEayk_sJFqnVFrRHTDUdH2VU58>
-X-ME-Proxy-Cause: dmFkZTGAYn/JwI0NEHfb7CIV0+JF4g1gQSai3gkcHhm/2QbriRgW/y5c2skXuQufRnEs4B
-    Zliq3AjZY4mmGjBkelBsYyJVBEkqVwHh5ON65q1orasDnTAQVYfc8yCFL3HjBq9Cjw2vet
-    DuKRRPH+34k7V7hOnH2lkf+HFY6hXu/s4B2JQov+1sPyV3JDoiBigbmQ9m9rCMyZgrJc1j
-    0952wIsVkerVEgKSSz0oxOnpfKFk+0tXBqCoLojENDwRF143YOTStk4ujykJBNzByTM+1x
-    d/u6jgutlWOuyk5bFqmopUjAfGRljp7tv8RdgJJOkBWLlx8FcpR+ErFd+ogIPl7x8SPTgY
-    idH6qRdNkfNKC6KWuFjtq7Lp6kBuBAsUw45kl/jSWoW6yOms1wkRzHH6UIL1I3ZT5CEeAS
-    YSJnGrP+B1cgHkEUZADi4kX20wHML59eTSElfkNfmQykZivFT3WI6UInUROn2vHrDRtpac
-    m0YiSy4PRDvHzZBC2DmOE2DN3jhu1ESNNdTOU5+Qbo7XOzTHb4IGBk2m1tpkBYy2Csm8kZ
-    J8V0X95zOKwa2UxFdKN7MT2cBt6KtHgLgTpuejk8L/3kFpstvF+U+F+absRFADeA2b5JSk
-    fuYduKCHjU8lI08OvR6g1UfNjpmizzYkswBd3yZELuL6hdPDh8ruL2x2U5QA
-X-ME-Proxy: <xmx:vIXwarsCDPK1J6OGyi3DiYf_d_Mioe0_-DBSdgHeIZAvOitlr51HGA>
-    <xmx:vIXwajA1m52ioj7VLugpb-TzlM652I1iQ1ZQB6fEfG4N_-CBbFEDvA>
-    <xmx:vIXwagcjAkpMGyaUAND5swdA65Nj_gM_5aSE4o1o6CfqKSK6EERl5w>
-    <xmx:vIXwajqGxHwxvW-NFWe0Qv62tSnfuv7jfgoJ3Idw5_wY7UrZu4UllQ>
-    <xmx:vIXwah84xXQv-VFC14xVYKNgzP0GpHu6Akwg5yoYBv2pj9ok6u5ACY1n>
+Message-Instance: m=1; h=sha256:LqiGbhzvV/5wHY++2IHN2VcOrs5T3DYfqW2xXfxsbxI=:ysfuKteBBK3BrJYrQIb9r0AKuLdd060EUuL2t+e9shQ=;
+X-ME-Sender: <xms:voXwakUbeaEDuGHwcZw7ZhFp1mMMWsZ0J31FfYoQs9p2raIS1U5dAA>
+    <xme:voXwap8xx-pJ3SdPIhCHvSqMqVDOJ1oJmEzpsrSk6t5RhAYnnvyk-PmIuRvyd4eGT
+    Np3U_6vgtZEi6lb1Cr0YVw5OW7QpkVVWD79vW9rIHfIpO2eYhdVpHc>
+X-ME-Received: <xmr:voXwahq6rynjK1-zJ3w-ncuecVxQhCOzUSC6PQNoe0XrgJCXLlsqLzeYRn667KjsF_nqMCicBAAvBM7cBBr2ZYzKN53tN9Wtst4>
+X-ME-Proxy-Cause: dmFkZTGo3CfmNkGVcoCqQm+2xF5BgQTQHLEob89QGgMg/fmpPsx9Ba22YEWDsCMCAsJVht
+    iPMwYglQfWngG0EQiTCIk1j//mHbmcbWVDR0k5U/uGGvuPWIdI5VF0QmVDi2K9omMvQXse
+    1SsImkgs2/+NnGnQwBHgKzDKk3rdaZCpy9lOm/CBgsoPRaB2SL90jN/DpplvLkjqri7DRF
+    34GZFZT6mx2KG6dtb3J1oKeeuxv77VarACJ5K9flwFuG4XW+zRuJ4up6S+R6m6RCgUFeXK
+    suuZS7ohMrlLQBXad0P686p3sxTyrb8JLChbCEM521ZgNKvK+lIcmDaAFt7tO6sNGMYckN
+    rvrJsI9LRFl515cpEds7Ss+uhqdKn2okNVzRDH0E1zSLFLuVyGYZXerw+/5cQOzHgVuY1g
+    uVcRHL5a34vXKahVXYAqlh/+JKJil5Me/JVezsQrgh+mGNmqzwUMEcE6ZqBmWNapPw9NOQ
+    4xRZu0026ChhypY2dSNV1JN2hYS2u8x1JzwhZtWiu3BxIYkXgDgcldkrmR8zg8YK1Wml0r
+    eNdk5cHz7noWTS3dwMfDzAY6MtbKFBpNy2hRXdReTDF96dcfL4SG0qJCKKD38ncXPirnNi
+    RFzpusk0VqGZ5mreOhhlbyD7Y8acFGCcpFz5EIepmEb+Gjsss5XEIHgN7nxg
+X-ME-Proxy: <xmx:voXwarlP9MAvdmLHF70XscswxpNb-xCh7UWYSVjd3ciUJ1xqumu_NQ>
+    <xmx:voXwalYx2KkA8f3n7yACTimpGmkcWMPC7V5Lyp__HUW6j-b8fezhzw>
+    <xmx:voXwajWji7EnxAPsDV7GkNM6guXnsOiv6YrHa77pGaTW1yqLg0wp5g>
+    <xmx:voXwatBt4SmDtepLr65PG24pp5HsNgka7ztdmwCI1VX-kY8jn7UOLA>
+    <xmx:voXwasWAlz73OB2LcAKYJg5li_C5wlzHy_bWMciLaZ2psQViqVST0bYE>
 Feedback-ID: i47b949f6:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 8 Nov 2026 09:22:51 -0500 (EST)
+ 8 Nov 2026 09:22:53 -0500 (EST)
 From: Janne Grunau <j@jannau.net>
-Date: Sun, 08 Nov 2026 15:22:35 +0100
-Subject: [PATCH v2 1/7] arm64: dts: apple: t8122: Keep ps_apcie_phy_sw
- always-on
+Date: Sun, 08 Nov 2026 15:22:36 +0100
+Subject: [PATCH v2 2/7] dt-bindings: PCI: apple,pcie: Add M3 generation
+ compatibles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261108-apple-m3-pcie-v2-1-0e5ffec71da4@jannau.net>
+Message-Id: <20261108-apple-m3-pcie-v2-2-0e5ffec71da4@jannau.net>
 References: <20261108-apple-m3-pcie-v2-0-0e5ffec71da4@jannau.net>
 In-Reply-To: <20261108-apple-m3-pcie-v2-0-0e5ffec71da4@jannau.net>
 To: Sven Peter <sven@kernel.org>, Neal Gompa <neal@gompa.dev>, 
@@ -122,17 +122,18 @@ Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
  linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1044; i=j@jannau.net;
- h=from:subject:message-id; bh=4YuJB7yJn3hvOe+uv0QUJ7U19Zk9FgiQxUYecbj5q5o=;
- b=owGbwMvMwCW2UNrmdq9+ahrjabUkhqwPrVumWWs/zn+Tfz0yLkUh4cLu5dwRdy+Fu800f3ZZz
- THzWIBux0QWBjEuBksxRZYk7ZcdDKtrFGNqH4TBzGFlAhkiLdLAAAQsDHy5iXmlRjpGeqbahnqG
- RjrGOkYMXJwCMNUszxgZtghvkHDIOvROQOL1veqUc4e3NvgW7VzVbSm16pGm+OXzLxgZdjxbV/b
- PVkL5n4b6Ed6IW7NMRGwmCNfyTTb6V7XcIMacBwA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1113; i=j@jannau.net;
+ h=from:subject:message-id; bh=ysfuKteBBK3BrJYrQIb9r0AKuLdd060EUuL2t+e9shQ=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhqwPrVvObfxnF7zLc5rK546ZIfYd8cJyGeITcmYETz597
+ vTSt33rOiayMIhxMViKKbIkab/sYFhdoxhT+yAMZg4rE8gQaZEGBiBgYeDLTcwrNdIx0jPVNtQz
+ NNIx1jFi4OIUgKneps3wTzmn/a3TBtHf/zROH320L4u5Y+rCtYbysj8r4rqOZujo/mX4p8PGIHT
+ o32MxlZVOVU9Sa+RTlq/SnRxYLDBn2qzbkUcv8wIA
 X-Developer-Key: i=j@jannau.net; a=openpgp;
  fpr=8B336A6BE4E5695E89B8532B81E806F586338419
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_062255_962873_4DCCFDCF 
-X-CRM114-Status: GOOD (  10.37  )
+X-CRM114-CacheID: sfid-20261108_062255_989109_8523C094 
+X-CRM114-Status: UNSURE (   7.68  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -151,30 +152,37 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The APCIE_PHY_SW power state is in Apple's device tree a child of the
-virtual storage and general purpose PCIe power-states. MacOS however
-keeps it always powered on. Mirror this behaviour like the M2 Pro/Max
-device trees already do in t602x-pgmr.dtsi.
+The PCIe controller on Apple M3, M3 Pro, Max and Ultra SoCs are
+compatible with the one on M2 Pro and Max. Add their per SoC compatibles
+"apple,t8122-pcie" (M3), "apple,t6030-pcie" (M3 Pro) and
+"apple,t6031-pcie" (M3 Max/Ultra) to the bindings.
 
-Fixes: c65ab4905e58 ("arm64: dts: apple: Initial t8122 (M3) device trees")
 Signed-off-by: Janne Grunau <j@jannau.net>
----
- arch/arm64/boot/dts/apple/t8122-pmgr.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/apple/t8122-pmgr.dtsi b/arch/arm64/boot/dts/apple/t8122-pmgr.dtsi
-index 3f8be74b5ea8..3206787dd208 100644
---- a/arch/arm64/boot/dts/apple/t8122-pmgr.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8122-pmgr.dtsi
-@@ -899,7 +899,7 @@ ps_apcie_phy_sw: power-controller@4a0 {
- 		#power-domain-cells = <0>;
- 		#reset-cells = <0>;
- 		label = "apcie_phy_sw";
--		power-domains = <&ps_apcie_st>, <&ps_apcie_gp>;
-+		apple,always-on; /* macOS does not turn this off */
- 	};
+---
+Changes in v2:
+- modified subject line
+---
+ Documentation/devicetree/bindings/pci/apple,pcie.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/pci/apple,pcie.yaml b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+index c0852be04f6d..a40b5d5b9a5b 100644
+--- a/Documentation/devicetree/bindings/pci/apple,pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/apple,pcie.yaml
+@@ -41,6 +41,12 @@ properties:
+               - apple,t8112-pcie
+               - apple,t6000-pcie
+           - const: apple,pcie
++      - items:
++          - enum:
++              - apple,t6030-pcie
++              - apple,t6031-pcie
++              - apple,t8122-pcie
++          - const: apple,t6020-pcie
+       - const: apple,t6020-pcie
  
- 	ps_atc0_cio_pcie: power-controller@4a8 {
+   reg:
 
 -- 
 2.56.0
