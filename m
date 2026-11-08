@@ -2,111 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91B58606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD80F606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 12:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EqJMTs5h;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IEE9/9H6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fir/d/IB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GA3Nz6Fd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=; b=EqJMTs5hfyvdG1veufjeTY+i3J
-	AzaJxdbC0nodv+UEaP+zFUDWNrWMDxqqQppxO+1oJkeRaUPKBpizC7qVKcRDWAsaX18Gyfx2u4FLx
-	kIL16DsDXAatJrDPXSnl2dU9ooPnJ2DcN7OiDmq4e6KiU5zi2MrxQyJpcNSu7yjzRP0+RGdFtj+xv
-	4j1obpYfEUOFHqIxlGy9smQvg9SGJhwCXK8qeWNaIN1WkMTvq5dPzY17fJo2nL5CMSJAXbalfub/E
-	2FHr3WgDDQ+aEnGW6mPm9KpvVS3HrSYj7CVQwe4wtfKV0VTyzec/dGlkuIrIrp6qAi/tnYiemWTQk
-	uvp3BuTg==;
+	bh=SqIX2mCTTdvrGkHHwPQDrdPdPMbgYsDAz9BPYUkZpzI=; b=Fir/d/IB7oZkzcLSZ3Elh+wwMs
+	fxEmXO02ov2Zj4keOVP/WDPerKW7vkjyVLBmPf9+9/KpwI4Zkox/nyTK9JceJysEDX0XMndqrNu8r
+	lF+xT70IrXPcPF0nx/RyjNPMOpUkS1BakVOT+hDEFVFH2VpfsRdF+kMJF6WbO5JRWct1iEEbH0doy
+	SgwTOm02yUelYGjcOCrZ8H04hsd+bDjQHp42g5S9Pfw0nY/Ly63TncEj8qFR722GeAcnOyP0JlRsR
+	k49wAb8fqGYyglu7GGYJgq6psTpl/O/iHIdDwaIhHppby9AfXEIaBzGKOcrLB3mdnpbSa7QrP8juw
+	twvgmxVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ1Ae-0000000G3iE-3BYh;
-	Sun, 08 Nov 2026 11:34:48 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQ2AN-0000000GAgM-2xxX;
+	Sun, 08 Nov 2026 12:38:35 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ1Aa-0000000G3Zd-0o51;
-	Sun, 08 Nov 2026 11:34:44 +0000
+	id 1xQ2AM-0000000GAg0-2Af4;
+	Sun, 08 Nov 2026 12:38:34 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 731AB6185C;
-	Sun,  8 Nov 2026 11:34:43 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794137683;
-	b=pfB3WnInxVz4qNINoe8IKrtKO++ZTnQQJ3PTVX/72+zqJ0R95vs0u0Yes6i1/bKHP86e
-	 S0f8Lwa1w2cpg35jA6x67vpkLLEhIVRwox4vycrRZNr8S2lYuOyIBbtzbRncR2XoziJef
-	 wTC4qHdXHR6BzvWY2I1q2PwvE+ufnib6d9DUBkuace87j1IvSmkOB9ylwBfbk4LudBO6k
-	 CDSzpHZE0k6I2ghVS8pDjT9IbEkXQMRMF0vmNBvwGjt5k0n/0MZKIlNY6cG9epJxPNo7L
-	 NlyNWtmICmRLQo1ol6QRU8pSB/cpFrNn6hCN9YxxmlJlKXJz6EB7p/vlbfpkrQIeE4g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794137683;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=;
-	b=Hj2oG2ftjdrGQDth2c4FJUgPaTFfRTZ/xD/E9bMgmMBQ8apqNOUGH2y1a0/18ttN4s7b
-	 2Oj5OJy2W1XeI/HexyxrKTvf+E8FSGiVyPvRzWa7KkCEIboXpMBg/TZhFPFwu9qvX5v6I
-	 FqWVrQeojiwcnQ+07WShBeQv/c720awBpLvIiiFNy2EKxlEMqKxLCYNQochdQ5U8NgyJj
-	 d/rMvfLAinMvPHwtcXvdb/0WbNrEE79FQD5VBMLpGjoqw2C+nXu4om76pMR8Ud98ToP+3
-	 KhKcyzfsFR6ABcZu/dIN6ocsRXMcrflV7vNxFIgGl/a1dTiV0ZEJ4pJ6KdHpOViqymQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 9FA201F008BD;
-	Sun,  8 Nov 2026 11:34:42 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A178D608FA;
+	Sun,  8 Nov 2026 12:38:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EEA11F0089F;
+	Sun,  8 Nov 2026 12:38:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794137683;
-	bh=hoOu0Vyn1UsqFVigZaJGQ7Rr3+ALT0LUzsBJsVYCYy4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IEE9/9H6UAOyw2YQw4PGJ4Zzm9dMnGBivmCmaK5JNG1PU4f/QY7JksqJqHNRVJNVu
-	 eLX3ISDgnegNLpZYIWRMX9HMAdf0FvXupwnWjcqE3W6ElMCpHnIAGVzazl/41gGpEl
-	 V6vltkIdNRvJPR1oVLSYZHoXMGUgh01a3NgYYr/fYQ4pk2oVPCdP9f7ZkGCHaWL4NJ
-	 m5NFnAg1oaMKHa0M7JXjN/spbrId7AxSnXwSGbL8YGkA2swsdvmi/SB57r8n5AKNDb
-	 BXCrj96dgpT1FfzPOBevl2uu1RL/7lIAYsX6EvEQ12qIatFv0K3MdFd9pOaDFvYDaA
-	 p1TunOHY/cUEg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 9140747F25;
-	Sun,  8 Nov 2026 11:34:40 +0000 (UTC)
-From: Cunhao Lu via B4 Relay <devnull+1579567540.qq.com@kernel.org>
-Date: Sun, 08 Nov 2026 19:33:34 +0800
-Subject: [PATCH net v8 07/10] can: rockchip_canfd: disable RX offload on
- open failure
+	s=k20260515; t=1794141513;
+	bh=SqIX2mCTTdvrGkHHwPQDrdPdPMbgYsDAz9BPYUkZpzI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=GA3Nz6FdmkLoZEuOml4+tut+ZIxKGBV+EPLu+WQFsUO9NT8MikKE4bdk520qQE+qg
+	 Q3doag/Yro9ATD+zOx8gqxiwuVZ7sFDuflHqQWxjLl/NYwE2gVCy0g2guOY8UMUk93
+	 t+FNjo/CqCszsy6SRVeTEviamp1W6yfNWd75vadz3FneSXHMqWAgLoegktD/PSlTCI
+	 esYj4FkV55XMxosq21lsDvh/3t6LGY+E4ysYkvAG4gzZ7gtsqGjK8lsVx3hbQRpJ9f
+	 lAz337IUpVNFN1gstseBoJZpf2aYdPSdxRjyaD7++Qklf8DWv0EMvrXYxL2nWW/BbN
+	 WOSZ18f0hTY/Q==
+From: Thomas Gleixner <tglx@kernel.org>
+To: Han / =?utf-8?B?7ZWc7IOB7JqwU2FuZ3dvbw==?= <sangwoo.han@nearthlab.com>,
+ Bjorn Helgaas
+ <helgaas@kernel.org>
+Cc: jim2101024@gmail.com, florian.fainelli@broadcom.com,
+ lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
+ bhelgaas@google.com, bcm-kernel-feedback-list@broadcom.com,
+ robh@kernel.org, linux-pci@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Inochi
+ Amaoto <inochiama@gmail.com>
+Subject: Re: [PATCH] PCI: brcmstb: Reserve only the MSI vectors that are
+ handed out
+In-Reply-To: <87h5i3xael.ffs@fw13>
+References: <CAFg7d9becn9_=ZzNwQ7bSBBNid28t_RnofL-Vb1cZVHVHxS9fw@mail.gmail.com>
+ <20261013160612.GA1522005@bhelgaas>
+ <CAFg7d9a2p2jtGyThS1M=2ZFDX0y5rpSK3H34ZuTz09R5r_ff0A@mail.gmail.com>
+ <87h5i3xael.ffs@fw13>
+Date: Sun, 08 Nov 2026 13:38:29 +0100
+Message-ID: <87fqxbwla2.ffs@fw13>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261108-rockchip-canfd-restart-close-v8-7-3e7a23fd9eae@qq.com>
-References: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
-In-Reply-To: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, kernel@pengutronix.de, 
- Vincent Mailhol <mailhol@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Oliver Hartkopp <socketcan@hartkopp.net>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, 
- Wolfgang Grandegger <wg@grandegger.com>
-Cc: Cunhao Lu <1579567540@qq.com>, linux-can@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, stable@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794137678; l=1266;
- i=1579567540@qq.com; s=20261015; h=from:subject:message-id;
- bh=cT3cBscQt29TWUgsPQ2sU0B4DpllcnyjvFZowBvWmU4=;
- b=dhLHV7rlkebwzAATJwM8J4svxDcUflj7QK25eIun213cPz2nEgDdvcNLyoIsLYbP5RkxORQOl
- YW5bwGCNcM2CS1ILiQu0LI2XM7x+OhVmfCWHwQ1VrIsuBfAVlGSv7n9
-X-Developer-Key: i=1579567540@qq.com; a=ed25519;
- pk=sUTWrzlIwT4C7ctjNfVZAzzg0G7QUn2XxRGpYsw4RtM=
-X-Endpoint-Received: by B4 Relay for 1579567540@qq.com/20261015 with
- auth_id=1177
-X-Original-From: Cunhao Lu <1579567540@qq.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,54 +75,214 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: 1579567540@qq.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Cunhao Lu <1579567540@qq.com>
+On Fri, Oct 30 2026 at 20:20, Thomas Gleixner wrote:
+> On Fri, Oct 30 2026 at 21:59, Han wrote:
+>> On Thu, Oct 01 2026 at 21:29, Thomas Gleixner wrote:
+>>   The buggy address is located 0 bytes to the right of
+>>    allocated 48-byte region [ffff8000053a6880, ffff8000053a68b0)
+>>
+>> The report is caused by the patch. __msi_domain_alloc_irqs() passes
+>> nvec_aligned (4) to __irq_domain_alloc_irqs() together with
+>> desc->affinity, which has only nvec_used (3) entries. alloc_descs()
+>> then reads all 4 entries. The fourth entry is read past the end of
+>> the array. If the data there has no CPU set, the allocation fails
+>> with -ENOSPC. Without PCI_IRQ_AFFINITY, desc->affinity is NULL, so
+>> this read does not happen.
+>
+> Ah. I missed that detail. I'll look at it on Monday.
 
-rkcanfd_open() enables RX offload before requesting the IRQ. If
-request_irq() fails, the error path leaves the offload enabled. A later
-open calls napi_enable() on an already enabled NAPI instance.
+The updated patch below should handle that situation too.
 
-Disable RX offload on that error path before stopping the controller and
-releasing the runtime PM reference.
+Thanks,
 
-Fixes: ff60bfbaf67f ("can: rockchip_canfd: add driver for Rockchip CAN-FD controller")
-Cc: stable@vger.kernel.org
-Signed-off-by: Cunhao Lu <1579567540@qq.com>
-
+        tglx
 ---
-Changes in v7:
-- Split the open error cleanup into a separate patch.
-
-Changes in v3:
-- Disable RX offload when request_irq() fails during open.
----
- drivers/net/can/rockchip/rockchip_canfd-core.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
-index 59a79fe057e6..d05264605efc 100644
---- a/drivers/net/can/rockchip/rockchip_canfd-core.c
-+++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
-@@ -747,6 +747,7 @@ static int rkcanfd_open(struct net_device *ndev)
- 	return 0;
+--- a/drivers/base/platform.c
++++ b/drivers/base/platform.c
+@@ -421,7 +421,7 @@ int devm_platform_get_irqs_affinity(stru
+ 		ptr->irq[i] = irq;
+ 	}
  
- out_rkcanfd_chip_stop:
-+	can_rx_offload_disable(&priv->offload);
- 	rkcanfd_chip_stop_sync(priv, CAN_STATE_STOPPED);
- 	pm_runtime_put(ndev->dev.parent);
- out_close_candev:
-
--- 
-2.34.1
-
-
+-	desc = irq_create_affinity_masks(nvec, affd);
++	desc = irq_create_affinity_masks(nvec, nvec, affd);
+ 	if (!desc) {
+ 		ret = -ENOMEM;
+ 		goto err_free_devres;
+--- a/drivers/pci/msi/api.c
++++ b/drivers/pci/msi/api.c
+@@ -286,7 +286,7 @@ int pci_alloc_irq_vectors_affinity(struc
+ 			 * for the single interrupt case.
+ 			 */
+ 			if (affd)
+-				irq_create_affinity_masks(1, affd);
++				irq_create_affinity_masks(1, 1, affd);
+ 			pci_intx(dev, 1);
+ 			return 1;
+ 		}
+--- a/drivers/pci/msi/msi.c
++++ b/drivers/pci/msi/msi.c
+@@ -414,8 +414,14 @@ static int msi_capability_init(struct pc
+ 	 */
+ 	pci_msi_set_enable(dev, 0);
+ 
++	/*
++	 * Make sure a MULTI-MSI allocation is power of two even if the
++	 * requested number of vectors (@nvec) is not.
++	 */
++	unsigned int nvec_aligned = roundup_pow_of_two(nvec);
++
+ 	struct irq_affinity_desc *masks __free(kfree) =
+-		affd ? irq_create_affinity_masks(nvec, affd) : NULL;
++		affd ? irq_create_affinity_masks(nvec, nvec_aligned, affd) : NULL;
+ 
+ 	guard(msi_descs_lock)(&dev->dev);
+ 	return __msi_capability_init(dev, nvec, masks);
+@@ -704,7 +710,7 @@ static int msix_setup_interrupts(struct
+ 				 int nvec, struct irq_affinity *affd)
+ {
+ 	struct irq_affinity_desc *masks __free(kfree) =
+-		affd ? irq_create_affinity_masks(nvec, affd) : NULL;
++		affd ? irq_create_affinity_masks(nvec, nvec, affd) : NULL;
+ 
+ 	guard(msi_descs_lock)(&dev->dev);
+ 	return __msix_setup_interrupts(dev, entries, nvec, masks);
+--- a/include/linux/interrupt.h
++++ b/include/linux/interrupt.h
+@@ -370,7 +370,7 @@ extern int
+ irq_set_affinity_notifier(unsigned int irq, struct irq_affinity_notify *notify);
+ 
+ struct irq_affinity_desc *
+-irq_create_affinity_masks(unsigned int nvec, struct irq_affinity *affd);
++irq_create_affinity_masks(unsigned int nvec, unsigned int totvec, struct irq_affinity *affd);
+ 
+ unsigned int irq_calc_affinity_vectors(unsigned int minvec, unsigned int maxvec,
+ 				       const struct irq_affinity *affd);
+@@ -425,7 +425,7 @@ irq_set_affinity_notifier(unsigned int i
+ }
+ 
+ static inline struct irq_affinity_desc *
+-irq_create_affinity_masks(unsigned int nvec, struct irq_affinity *affd)
++irq_create_affinity_masks(unsigned int nvec, unsigned int totvec, struct irq_affinity *affd)
+ {
+ 	return NULL;
+ }
+--- a/kernel/irq/affinity.c
++++ b/kernel/irq/affinity.c
+@@ -17,13 +17,17 @@ static void default_calc_sets(struct irq
+ 
+ /**
+  * irq_create_affinity_masks - Create affinity masks for multiqueue spreading
+- * @nvecs:	The total number of vectors
++ * @nvecs:	The number of active vectors for which affinity spreading is required
++ * @totvecs:	The total number of required descriptors to handle the over
++ *		allocation for PCI/MSI which requires power of two even if @nvec is
++ *		not power of two. The extra descriptors are filled with default
++ *		affinity and not relevant for the spreading calcuations.
+  * @affd:	Description of the affinity requirements
+  *
+  * Returns the irq_affinity_desc pointer or NULL if allocation failed.
+  */
+ struct irq_affinity_desc *
+-irq_create_affinity_masks(unsigned int nvecs, struct irq_affinity *affd)
++irq_create_affinity_masks(unsigned int nvecs, unsigned int totvecs, struct irq_affinity *affd)
+ {
+ 	unsigned int affvecs, curvec, usedvecs, i;
+ 	struct irq_affinity_desc *masks = NULL;
+@@ -56,7 +60,7 @@ irq_create_affinity_masks(unsigned int n
+ 	if (!affvecs)
+ 		return NULL;
+ 
+-	masks = kzalloc_objs(*masks, nvecs);
++	masks = kzalloc_objs(*masks, totvecs);
+ 	if (!masks)
+ 		return NULL;
+ 
+@@ -90,7 +94,7 @@ irq_create_affinity_masks(unsigned int n
+ 		curvec = affd->pre_vectors + affvecs;
+ 	else
+ 		curvec = affd->pre_vectors + usedvecs;
+-	for (; curvec < nvecs; curvec++)
++	for (; curvec < totvecs; curvec++)
+ 		cpumask_copy(&masks[curvec].mask, irq_default_affinity);
+ 
+ 	/* Mark the managed interrupts */
+--- a/kernel/irq/irqdomain.c
++++ b/kernel/irq/irqdomain.c
+@@ -1611,6 +1611,17 @@ static void irq_domain_free_irqs_hierarc
+ 	if (!domain->ops->free)
+ 		return;
+ 
++	/*
++	 * MSI device domains are capable of bulk free.
++	 *
++	 * CHECKME: Are all MSI parent domains capable?
++	 */
++	if (domain->flags & (IRQ_DOMAIN_FLAG_MSI_DEVICE | IRQ_DOMAIN_FLAG_MSI_PARENT)) {
++		if (irq_domain_get_irq_data(domain, irq_base))
++			domain->ops->free(domain, irq_base, nr_irqs);
++		return;
++	}
++
+ 	for (i = 0; i < nr_irqs; i++) {
+ 		if (irq_domain_get_irq_data(domain, irq_base + i))
+ 			domain->ops->free(domain, irq_base + i, 1);
+--- a/kernel/irq/msi.c
++++ b/kernel/irq/msi.c
+@@ -1333,20 +1333,28 @@ static int __msi_domain_alloc_irqs(struc
+ 
+ 		ops->set_desc(&arg, desc);
+ 
+-		virq = __irq_domain_alloc_irqs(domain, -1, desc->nvec_used,
++		/* Make sure a MULTI-MSI allocation is power of two */
++		unsigned int nvec_aligned = roundup_pow_of_two(desc->nvec_used);
++
++		virq = __irq_domain_alloc_irqs(domain, -1, nvec_aligned,
+ 					       dev_to_node(dev), &arg, false,
+ 					       desc->affinity);
+ 		if (virq < 0)
+ 			return msi_handle_pci_fail(domain, desc, allocated);
+ 
+-		for (i = 0; i < desc->nvec_used; i++) {
++		for (i = 0; i < nvec_aligned; i++) {
+ 			irq_set_msi_desc_off(virq, i, desc);
+ 			irq_debugfs_copy_devname(virq + i, dev);
+ 			ret = msi_init_virq(domain, virq + i, vflags);
+ 			if (ret)
+ 				return ret;
+ 		}
++
+ 		if (info->flags & MSI_FLAG_DEV_SYSFS) {
++			/*
++			 * This only exposes desc->nvec_used and ignores the
++			 * overallocated MULTI-MSI ones.
++			 */
+ 			ret = msi_sysfs_populate_desc(dev, desc);
+ 			if (ret)
+ 				return ret;
+@@ -1610,13 +1618,15 @@ static void __msi_domain_free_irqs(struc
+ 			continue;
+ 
+ 		/* Make sure all interrupts are deactivated */
+-		for (i = 0; i < desc->nvec_used; i++) {
++		unsigned int nvec_aligned = roundup_pow_of_two(desc->nvec_used);
++
++		for (i = 0; i < nvec_aligned; i++) {
+ 			irqd = irq_domain_get_irq_data(domain, desc->irq + i);
+ 			if (irqd && irqd_is_activated(irqd))
+ 				irq_domain_deactivate_irq(irqd);
+ 		}
+ 
+-		irq_domain_free_irqs(desc->irq, desc->nvec_used);
++		irq_domain_free_irqs(desc->irq, nvec_aligned);
+ 		if (info->flags & MSI_FLAG_DEV_SYSFS)
+ 			msi_sysfs_remove_desc(dev, desc);
+ 		desc->irq = 0;
 
