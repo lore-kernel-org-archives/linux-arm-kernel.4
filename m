@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D197606A32A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ABF4606A334
 	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 07:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XsA4GsHE;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k8i9txHT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TAG6eYLe;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=emGWWdij
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=CMJPYHCR3UWFcu4EK4LpYSERF3fcb1Y5+7uAUBqJvYc=; b=XsA4GsHE4RevvBk3C6EUgcs5wf
-	ldR3napS5HZ4+m7lFY+xbLNo9pPbmwxkbzCjQG1lWTj+jSOKbRTgDqr+Q6jlTiTpxuifto7OJhVT3
-	2o64R4oDMQxAwsj6R8ibuRUpKsCf6e6QyYiMzguaYa2dFfun+nylB14+8MwSp+vnbqBbDHoo2euKk
-	sT6QH/AntSyhHTEGCTqoNNovwG+a4lhShDJLQ8jbGaN7ml0fFJlMvIC6l+hC4Ec/oX7Nm6S4xJROf
-	GW5+INls+zuWZuq2lyjbFTT6LUgrC2z384K3MxmWeoQ+3Cx/xeFiiHe2o23ZHFVw8qbITmsP5YIzD
-	6SKhFAAQ==;
+	bh=AtXVbbErWYhfqAHbYerdgFucAGtzxEu/+zlU33IiXxQ=; b=TAG6eYLeFL0pOE1kzpF/Yc7yEv
+	+fZdmVZdNzBiq0g5GM2Fmka6elTF/ssPiDaNY6Vicj3jq3x/A85H4LLXooM7kRbSc5LO7QWPzNu+f
+	Y6PFMusq4/wNBrJ0iZpAeLqLOp8+KICFl+PyRayarKDGEgqgipD2yRF+p155S2/5v9VpQ6tdzhkVO
+	Hy2uhKfeBUWloEbDWsRIlR10p+CUhRJkSJONlOPfk/nzGIJLly//kruun5O5BkPxURrG+JD84gab8
+	cHqzRM+FVo3/4zdkm9tfa0DLMvNdCU9e2aAH62753NlfCJSmp3Hj4SynQPmvVo+QTZ+hLO68x3rxP
+	l4BRRrqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPxH9-0000000Fmmr-24nh;
-	Sun, 08 Nov 2026 07:25:15 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPxHG-0000000Fmqr-1Pjb;
+	Sun, 08 Nov 2026 07:25:22 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPxH8-0000000Fmmd-0ZrI
+	id 1xPxHA-0000000Fmnb-3hoZ
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 07:25:14 +0000
+	Sun, 08 Nov 2026 07:25:16 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7DD7441B0C;
-	Sun,  8 Nov 2026 07:25:13 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 22DB46142E;
+	Sun,  8 Nov 2026 07:25:16 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794122713;
-	b=TllsEtyi6wTlyO2xU/Rg+T8p5Frk330uUX6AV1YpiAEZW8zNln9ObcFkb76VgjR20e80
-	 3ern6ACToGW05aGg5uIGxpeTlVA9T8EcHhOPATkYqIN1HkTtGVPs1CscuDV0yS+Z0TgsH
-	 PqF+sMTDAicFaw/cxQ2ZceQPgBsu5AmOO6511e/Ij/WE0yO62Zm8/JoYYkGSpZRxxMhJf
-	 PqhFXu1i3VfpuchMS+hxo4H4O3KVM20rqOwLb7uW0xaIcOLINZgAwsbuL/5mAEuYqppXl
-	 r1cun1Wk4xvIAMIBle3oTDfFXmlkzbOmY0UBGlnDJB9vIEQqFDkNgJxOr99XNvTO8TQ==
+	t=1794122715;
+	b=omFflpyjX7eZt1MCpUKpktc0XtBNVO8K4lUYA2zOcxKD8NQdduwB+cJlSnTKpDRktzPW
+	 8DiewTvk2jMZbiMi/smH25zvMxc9kdn6KxbHxjOWBC6dfPUFOe5v4bIWpG2CqohPJ927s
+	 Bkw9E/2oocNMv+4izLoSWkJfQ8WvLdEUA4S2hEZqzeyFtRJr5NzOSMyANuzTlAaShwiev
+	 Y1tbYmcl0Trnm72V8ntPFwLI67O7Bf8bZFxkk1px6mPG2V2T2DvEzMTie9Y9uhnFo2YuX
+	 twSU/NZmnpcDHtqAacpWM7YULsRcFdmzHeADtqEF/E/Mvf5hCAdU+SkR6XWptu9yzzA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794122713;
+	c=relaxed/relaxed; t=1794122715;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=CMJPYHCR3UWFcu4EK4LpYSERF3fcb1Y5+7uAUBqJvYc=;
-	b=HpBrenB3GcPfBPGQaYFg30g1zfHGv9G4pyRH2sfwk9HdvYHF7HLJ2YiniyWqJ34kKigg
-	 H2mn6kuZifLHjXlGuv0f2klZdnMEpzbw4jNgwfIm6JMErPLzkB6Zva+SNzh41O5DGEtYp
-	 vgIasgG6qYb65K7h5mttNFuEUugcp2Qk54GYoWvFg47/Il/uNbdQ304KfJfCC572InytQ
-	 +3xvpCFQBZPg5pXJOvuV3kPmJUhGqImQiApKSf9sYR0a300Bl9EnAjvYhJGG+H/eJu5ZB
-	 hVUR4OMsxcAhfmTR1egNwskFI7hqmCSZT+akDQpoFoexN3PcrOcq2BWJRjWZuxmhwfw==
+	bh=AtXVbbErWYhfqAHbYerdgFucAGtzxEu/+zlU33IiXxQ=;
+	b=CigEz+EwrgEs9EEyn+d4//l1V7NFmA7JRZuxEpvxhaOs9Lh47/VoKfrYKejHvNWqNF6v
+	 jeRhWHCBAaNwGOJFg84oY9Bhxh3xgCVXwVLFDu4IMoVgIcORDGRo9O9UTb5gtGal3aRR6
+	 dOECauQChdy4wln7rc4cRlIOSK7HtFVRRTDuXPESYLFg/ZYOMf30wrc/w4QBqIdB7uNJK
+	 zk6wkWaRCebXC+wlmv3S+Gx6eu5YQCOHBsa+acqunq47DAtdJ6L9LSb4w54VmQEzOiK+t
+	 0s0HTCeM86fKkNd4MhqaeHO7yKBzWpfSBkv5WT+iXi2s36GGnFf4E3MHs7Ttf6ENeAg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A72DC1F0089F;
-	Sun,  8 Nov 2026 07:25:12 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2FB881F008BF;
+	Sun,  8 Nov 2026 07:25:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794122713;
-	bh=CMJPYHCR3UWFcu4EK4LpYSERF3fcb1Y5+7uAUBqJvYc=;
+	s=k20260515; t=1794122715;
+	bh=AtXVbbErWYhfqAHbYerdgFucAGtzxEu/+zlU33IiXxQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=k8i9txHT0H7aeOvmB33vcR6VTjnDep0IXOm9BretlbSHqoEsw4pCloo5vRyK5UcA3
-	 BmVFnLvdJ+NKmQIhT5b6QwoJ6dkaJ74YJWjnv59S4geS0EYAbdMibXVmiWx4jYfCg0
-	 m48aTV3sDYXfU3tGLXmhfzpkuPh69zg+8QbVnbCMLq+1cCJN2m+COWDB76YyHs29Lh
-	 efHQ4Lj4ZAx3IuvWUJ5vUzvYw1rZi+4Q4TMakjB35Edmemv5pJsUh0b3hAwukTcfh+
-	 QvBEZ+oZmIv+t6GWwd36o0futTbvqia3zD0eoNmSNHxMFOgcCD/j1Ea6TCn1U92+tp
-	 oXT28l43rkMog==
+	b=emGWWdijk358n+GFcJhMyuooIu3B7BYedloPYzBBirg+p5c3xyy7Rg6Dp0tP8Lz6h
+	 mdqlt+sbWuz5ZfaeE96Z8x/nWlQU2/hVJwxaNOJcW6gMLz4R2BuFg+Smm3C1th5/N6
+	 cHY8xXC7nSeXXMvA9QclWsacqNu9KEzCaP5MagvPY/XmRyk4VPXCbZQTB8we4OF9SM
+	 7PZeNPfQ8pkEtXcaMPEy5LWmycIEAkcnJyobnL9Y/r9Zj4y9/C+HK4AA3v56TZZJIL
+	 jZxgtqpaqLwCK2BdNLZ94KlBS0/SHcdYQeA6sgeFNwSYPfUywlbWwIRDJgIZtK4MbC
+	 VO/Dxstj1nZ8w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 2098647E25;
+	by lkml.kernel.org (Postfix) with ESMTP id 911F747E73;
 	Sun,  8 Nov 2026 07:25:12 +0000 (UTC)
 From: Michael Reeves via B4 Relay <devnull+michael.reeves077.gmail.com@kernel.org>
-Date: Sun, 08 Nov 2026 07:25:06 +0000
-Subject: [PATCH v5 1/8] dt-bindings: mailbox: apple: Add DockChannel
- mailbox
+Date: Sun, 08 Nov 2026 07:25:13 +0000
+Subject: [PATCH v5 8/8] arm64: dts: apple: Enable DockChannel HID on M2 and
+ M3 laptops
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261108-b4-apple-mtp-keyboard-v5-1-e2c97b82669a@gmail.com>
+Message-Id: <20261108-b4-apple-mtp-keyboard-v5-8-e2c97b82669a@gmail.com>
 References: <20261108-b4-apple-mtp-keyboard-v5-0-e2c97b82669a@gmail.com>
 In-Reply-To: <20261108-b4-apple-mtp-keyboard-v5-0-e2c97b82669a@gmail.com>
 To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, 
@@ -92,13 +92,13 @@ To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
  Michael Reeves <michael.reeves077@gmail.com>
 Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-input@vger.kernel.org, Yureka Lilian <yureka@cyberchaos.dev>
+ linux-input@vger.kernel.org, Hector Martin <marcan@marcan.st>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794122710; l=4117;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794122710; l=7011;
  i=michael.reeves077@gmail.com; s=20261107; h=from:subject:message-id;
- bh=q8ZQCkixKuefi/vxbk7igJsaOCC31V/LgDgV4zCFnzo=;
- b=G/y6CarAnTtn4Yzb866F46SzwZVdrqfl5xBLJ2vYkbpRTmqPgF9IlhFYb330CUU31rNQgWyIZ
- rKtFg11n9TCBOWGJyUm5ZzzGc+XNe+y/LU7X3HFVJDv0UhKLCMAZyYu
+ bh=zDBnGRKF6WdRKeYPVV1cRA9LKeT1joknp1YiOamAuYY=;
+ b=7ih6zc2CRUNGW7YZSoHyM3WcE1c3TcQ48RNtmqYUpdjnnEIqMyrLYmtf5KlnK1OE7BIp2u85l
+ +HtEF51PWMyDaJ0IrNrPn60Sw82yJPXZmYteimVwG23S1m6gcsvtCrA
 X-Developer-Key: i=michael.reeves077@gmail.com; a=ed25519;
  pk=ykwkLcuByJYb/cdLc2UuoYP03pIzwrscEZg30+4tJL8=
 X-Endpoint-Received: by B4 Relay for michael.reeves077@gmail.com/20261107
@@ -126,127 +126,320 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Michael Reeves <michael.reeves077@gmail.com>
 
-DockChannel is a FIFO and interrupt block used by Apple coprocessors
-to exchange byte-stream traffic with the AP.
+Enable the MTP mailbox, DART, DockChannel mailbox, and HID transport on
+the M2 and M3 laptop device trees using this internal input path.
 
-Describe it as a mailbox provider for HID and serial clients. The FIFO
-interrupt pair is configurable because MTP and DebugUSB use different
-pairs.
+Add a keyboard alias and enable DockChannel HID on each machine so the
+transport can expose the internal keyboard.
 
-Suggested-by: Yureka Lilian <yureka@cyberchaos.dev>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Co-developed-by: Hector Martin <marcan@marcan.st>
+Signed-off-by: Hector Martin <marcan@marcan.st>
 Signed-off-by: Michael Reeves <michael.reeves077@gmail.com>
 ---
- .../bindings/mailbox/apple,t8112-dockchannel.yaml  | 88 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 89 insertions(+)
+ arch/arm64/boot/dts/apple/t602x-j414-j416.dtsi | 24 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112-j413.dts       | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112-j415.dts       | 19 +++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112-j493.dts       | 21 ++++++++++++++++++++-
+ arch/arm64/boot/dts/apple/t8122-j504.dts       | 22 ++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8122-j613.dts       | 22 ++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8122-j615.dts       | 22 ++++++++++++++++++++++
+ 8 files changed, 167 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mailbox/apple,t8112-dockchannel.yaml b/Documentation/devicetree/bindings/mailbox/apple,t8112-dockchannel.yaml
-new file mode 100644
-index 000000000000..9afd58613074
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/apple,t8112-dockchannel.yaml
-@@ -0,0 +1,88 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/apple,t8112-dockchannel.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/apple/t602x-j414-j416.dtsi b/arch/arm64/boot/dts/apple/t602x-j414-j416.dtsi
+index 0e806d8ddf81..98d58b340aee 100644
+--- a/arch/arm64/boot/dts/apple/t602x-j414-j416.dtsi
++++ b/arch/arm64/boot/dts/apple/t602x-j414-j416.dtsi
+@@ -16,6 +16,12 @@
+ 
+ #include "t600x-j314-j316.dtsi"
+ 
++/ {
++	aliases {
++		keyboard = &mtp_hid;
++	};
++};
 +
-+title: Apple DockChannel FIFO Mailbox
+ &framebuffer0 {
+ 	power-domains = <&ps_disp0_cpu0>, <&ps_dptx_phy_ps>;
+ };
+@@ -43,3 +49,21 @@ &wifi0 {
+ &bluetooth0 {
+ 	compatible = "pci14e4,5f72";
+ };
 +
-+maintainers:
-+  - Michael Reeves <michael.reeves077@gmail.com>
++&mtp_mbox {
++	status = "okay";
++};
 +
-+description:
-+  DockChannel is a hardware FIFO and interrupt block used on Apple SoCs for
-+  low-latency byte stream communication with co-processors.
++&mtp_dart {
++	status = "okay";
++};
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: apple,t8112-dockchannel
-+      - items:
-+          - enum:
-+              - apple,t6020-dockchannel
-+              - apple,t6030-dockchannel
-+              - apple,t6031-dockchannel
-+              - apple,t8122-dockchannel
-+          - const: apple,t8112-dockchannel
++&mtp_dockchannel {
++	status = "okay";
++};
 +
-+  reg:
-+    items:
-+      - description: Interrupt control registers
-+      - description: FIFO configuration registers
-+      - description: FIFO data registers
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi b/arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi
+index bbee373044f9..555c160e6bd7 100644
+--- a/arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi
++++ b/arch/arm64/boot/dts/apple/t603x-j514-j516.dtsi
+@@ -21,6 +21,7 @@ / {
+ 	chassis-type = "laptop";
+ 
+ 	aliases {
++		keyboard = &mtp_hid;
+ 		serial0 = &serial0;
+ 	};
+ 
+@@ -67,3 +68,21 @@ &serial0 {
+ &fpwm0 {
+ 	status = "okay";
+ };
 +
-+  reg-names:
-+    items:
-+      - const: irq
-+      - const: config
-+      - const: data
++&mtp_mbox {
++	status = "okay";
++};
 +
-+  interrupts:
-+    maxItems: 1
++&mtp_dart {
++	status = "okay";
++};
 +
-+  "#mbox-cells":
-+    const: 0
++&mtp_dockchannel {
++	status = "okay";
++};
 +
-+  apple,irq-index:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 15
-+    default: 1
-+    description: |
-+      Index of the FIFO interrupt pair in the interrupt control registers.
-+      TX uses bit (2 * index) and RX uses bit (2 * index + 1). The configuration
-+      and data register resources must describe the corresponding FIFO.
-+      If absent, pair 1 is used for compatibility with older keyboard nodes.
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t8112-j413.dts b/arch/arm64/boot/dts/apple/t8112-j413.dts
+index 7ccfceb08093..04a394abf479 100644
+--- a/arch/arm64/boot/dts/apple/t8112-j413.dts
++++ b/arch/arm64/boot/dts/apple/t8112-j413.dts
+@@ -20,6 +20,7 @@ / {
+ 
+ 	aliases {
+ 		bluetooth0 = &bluetooth0;
++		keyboard = &mtp_hid;
+ 		wifi0 = &wifi0;
+ 	};
+ 
+@@ -93,3 +94,21 @@ &fpwm1 {
+ };
+ 
+ #include "hwmon-laptop.dtsi"
 +
-+  nonposted-mmio: true
++&mtp_mbox {
++	status = "okay";
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - "#mbox-cells"
++&mtp_dart {
++	status = "okay";
++};
 +
-+additionalProperties: false
++&mtp_dockchannel {
++	status = "okay";
++};
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/apple-aic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t8112-j415.dts b/arch/arm64/boot/dts/apple/t8112-j415.dts
+index fdc3409d2e07..ae28c75e8f97 100644
+--- a/arch/arm64/boot/dts/apple/t8112-j415.dts
++++ b/arch/arm64/boot/dts/apple/t8112-j415.dts
+@@ -20,6 +20,7 @@ / {
+ 
+ 	aliases {
+ 		bluetooth0 = &bluetooth0;
++		keyboard = &mtp_hid;
+ 		wifi0 = &wifi0;
+ 	};
+ 
+@@ -93,3 +94,21 @@ &fpwm1 {
+ };
+ 
+ #include "hwmon-laptop.dtsi"
 +
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
++&mtp_mbox {
++	status = "okay";
++};
 +
-+        mailbox@24eb14000 {
-+            compatible = "apple,t8112-dockchannel";
-+            reg = <0x2 0x4eb14000 0x0 0x4000>,
-+                  <0x2 0x4eb30000 0x0 0x4000>,
-+                  <0x2 0x4eb34000 0x0 0x4000>;
-+            reg-names = "irq", "config", "data";
-+            interrupt-parent = <&aic>;
-+            interrupts = <AIC_IRQ 850 IRQ_TYPE_LEVEL_HIGH>;
-+            #mbox-cells = <0>;
-+            apple,irq-index = <1>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b2eaee98852f..0c1963150f04 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2720,6 +2720,7 @@ F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
- F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
- F:	Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
- F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-+F:	Documentation/devicetree/bindings/mailbox/apple,t8112-dockchannel.yaml
- F:	Documentation/devicetree/bindings/mfd/apple,smc.yaml
- F:	Documentation/devicetree/bindings/net/bluetooth/brcm,bcm4377-bluetooth.yaml
- F:	Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
++&mtp_dart {
++	status = "okay";
++};
++
++&mtp_dockchannel {
++	status = "okay";
++};
++
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
+index 7cea5c594810..8e29872ce907 100644
+--- a/arch/arm64/boot/dts/apple/t8112-j493.dts
++++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0+ OR MIT
+ /*
+- * Apple MacBook Pro (13-inch, M1, 2022)
++ * Apple MacBook Pro (13-inch, M2, 2022)
+  *
+  * target-type: J493
+  *
+@@ -24,6 +24,7 @@ / {
+ 	 */
+ 	aliases {
+ 		bluetooth0 = &bluetooth0;
++		keyboard = &mtp_hid;
+ 		touchbar0 = &touchbar0;
+ 		wifi0 = &wifi0;
+ 	};
+@@ -149,3 +150,21 @@ touchbar0: touchbar@0 {
+ 
+ #include "hwmon-laptop.dtsi"
+ #include "hwmon-fan.dtsi"
++
++&mtp_mbox {
++	status = "okay";
++};
++
++&mtp_dart {
++	status = "okay";
++};
++
++&mtp_dockchannel {
++	status = "okay";
++};
++
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t8122-j504.dts b/arch/arm64/boot/dts/apple/t8122-j504.dts
+index e60ec3039196..05ae01262c85 100644
+--- a/arch/arm64/boot/dts/apple/t8122-j504.dts
++++ b/arch/arm64/boot/dts/apple/t8122-j504.dts
+@@ -18,6 +18,10 @@ / {
+ 	compatible = "apple,j504", "apple,t8122", "apple,arm-platform";
+ 	model = "Apple MacBook Pro (14-inch, M3, 2023)";
+ 
++	aliases {
++		keyboard = &mtp_hid;
++	};
++
+ 	led-controller {
+ 		compatible = "pwm-leds";
+ 
+@@ -35,3 +39,21 @@ led-0 {
+ &fpwm1 {
+ 	status = "okay";
+ };
++
++&mtp_mbox {
++	status = "okay";
++};
++
++&mtp_dart {
++	status = "okay";
++};
++
++&mtp_dockchannel {
++	status = "okay";
++};
++
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t8122-j613.dts b/arch/arm64/boot/dts/apple/t8122-j613.dts
+index 40274a983849..c6070cc4aa42 100644
+--- a/arch/arm64/boot/dts/apple/t8122-j613.dts
++++ b/arch/arm64/boot/dts/apple/t8122-j613.dts
+@@ -17,6 +17,10 @@ / {
+ 	compatible = "apple,j613", "apple,t8122", "apple,arm-platform";
+ 	model = "Apple MacBook Air (13-inch, M3, 2024)";
+ 
++	aliases {
++		keyboard = &mtp_hid;
++	};
++
+ 	led-controller {
+ 		compatible = "pwm-leds";
+ 
+@@ -34,3 +38,21 @@ led-0 {
+ &fpwm1 {
+ 	status = "okay";
+ };
++
++&mtp_mbox {
++	status = "okay";
++};
++
++&mtp_dart {
++	status = "okay";
++};
++
++&mtp_dockchannel {
++	status = "okay";
++};
++
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
+diff --git a/arch/arm64/boot/dts/apple/t8122-j615.dts b/arch/arm64/boot/dts/apple/t8122-j615.dts
+index 61833f6d019b..71bf2949d8a6 100644
+--- a/arch/arm64/boot/dts/apple/t8122-j615.dts
++++ b/arch/arm64/boot/dts/apple/t8122-j615.dts
+@@ -17,6 +17,10 @@ / {
+ 	compatible = "apple,j615", "apple,t8122", "apple,arm-platform";
+ 	model = "Apple MacBook Air (15-inch, M3, 2024)";
+ 
++	aliases {
++		keyboard = &mtp_hid;
++	};
++
+ 	led-controller {
+ 		compatible = "pwm-leds";
+ 
+@@ -34,3 +38,21 @@ led-0 {
+ &fpwm1 {
+ 	status = "okay";
+ };
++
++&mtp_mbox {
++	status = "okay";
++};
++
++&mtp_dart {
++	status = "okay";
++};
++
++&mtp_dockchannel {
++	status = "okay";
++};
++
++&mtp_hid {
++	status = "okay";
++	apple,has-stm;
++	hid-country-code = <0>;
++};
 
 -- 
 2.56.0
