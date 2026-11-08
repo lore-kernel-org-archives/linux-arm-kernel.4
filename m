@@ -2,101 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63086606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 18:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95742606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 18:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XQF0JOYT;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UNlHGTGs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=w2aeCh0Y;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Mx+PLTyF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xD6Dy3y4d1wnxROTLCHN7ijMhBMBe0bu6u+PB8rbtjg=; b=XQF0JOYThwPKMQ
-	DFpZQH/O/hSpvgMzjUOtdpAcQNJbORYTf+xptDkyX9d+BgadREC6oapsZSW+h0YqskIQfl6M75zA1
-	+sZxkIF2PdJgCjfUs6Hl8MjyhTeTiAfk8TjdV1o4v/7MF8dyd766vLuhtcBkyd+S3fscJIT3Yoqqc
-	XY4//3DpunQ9FN0FxPI8tHkf+J1+AopCCxVrIbPk1P03qzcu1/6irDucfwMEpu0AF3Cmy1uFjXvhs
-	XTlaSGThKwB9i1MTqIyagSsBkZQnkRxHq7rLpcolB52hAJr3KSBaoAGaxbAo9kYt++roysykzQZ/0
-	37/LhqNSD80JHpp9mVDg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=/B4X/7yk4kEItQksOCxb/0SjSH6EesHie45gtXRCpSs=; b=w2aeCh0Y+aLDe3lKiPw5IO1QgF
+	HK0Px3O0+HfZbMBMTgiPRD/TYaIDmdKo61omV0oMf7Us+w/rvor241r4HK2UZ3wX70SmpRnNc0MpQ
+	DNYj54lCRjEGjrNsJ2fEn6hHRh7CPo2qO/YajoiJhoLeKKs3j0WBggTrwhkep+irDWy8yf9UE38b8
+	WcZTrRcJxUJJPWLaPTSqEMyls8pA4vBBYqyq/A+EMGW2awg26ssQlseWzFqoxY+2ustplWsPxdw0k
+	hRpResTq5FuqW0hlfYKubYm5ejSFDmLA7vTyOLwqyFPs65aF7gBb77ySoqPy+FEnhgNx9ifS/vhtw
+	QVk4tlaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ7cu-0000000GUJn-3oJ6;
-	Sun, 08 Nov 2026 18:28:24 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1xQ7n5-0000000GUnK-0DXT;
+	Sun, 08 Nov 2026 18:38:55 +0000
+Received: from mail-dl1-x122d.google.com ([2607:f8b0:4864:20::122d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ7cq-0000000GUG2-0UR2
+	id 1xQ7n1-0000000GUmx-1KwN
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 18:28:21 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6b4bd3d98bfso221303a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 10:28:19 -0800 (PST)
+	Sun, 08 Nov 2026 18:38:52 +0000
+Received: by mail-dl1-x122d.google.com with SMTP id a92af1059eb24-1b3a05f8b5bso353049c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 10:38:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794162498; x=1794767298; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=xD6Dy3y4d1wnxROTLCHN7ijMhBMBe0bu6u+PB8rbtjg=;
-        b=UNlHGTGsAPjxN1UZo2oAuFY99H2TNjG09yuUvin9tbe9wZiCUi7NV+9Vpknks38HGD
-         U5LFs1ey9bOzL41kMiuiJLLWmZt/kKQshV5BGJKLaZSh10dBqqsr4NbFcQ3UNQ6erFM+
-         GcZWZsWjPe63WS5rSXRbVpDnmQT8WI7U8lhUBtZR1T+qHiuXOXyGw5bx/CmaZ4uRdJRZ
-         +qG9pI+O57KVvIg504P1BQ6QKc0IOTU89142fpKUT6MYk60rCI8KatF4W2HbtEKO8OeF
-         Akax7vHKyq/FpZ7faz8k0waJGSsF5+Uae8QMFjrOEvBg7dWvTfohrgZg+WrWW6DsboYo
-         ty5g==
+        d=gmail.com; s=20260707; t=1794163130; x=1794767930; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=/B4X/7yk4kEItQksOCxb/0SjSH6EesHie45gtXRCpSs=;
+        b=Mx+PLTyF0PlXmhdAR4gIRNBeOPzqSSaY5y8/2pOVuZqTMBlLgdRrG7+fmv3P9pykl0
+         JHJbZdIsLH9sdFYxqSGMnE5vCFsXYQ0RfkcyiT13AJAiscR92e2REUNCs0l3BzpmqSU1
+         cJtbPymQgwCo77JG5SqR7wLrzvul51qse7TE/8Dq+3nIUizsmDPNd7TuO4Ag7gpdmTVn
+         WNefJOtDVSpSDr0VrcI5epJpwZ8Cb2+bU02zjceA82l2fRJKzvoJrgiGoqChRmJ34b8R
+         gjjHNikpMoS66jUlWEaIBM/ZRbF5reTgS1dpXggQzlBGeaOH26p7j1W3W2pUQaoY8ucL
+         6wmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794162498; x=1794767298;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=xD6Dy3y4d1wnxROTLCHN7ijMhBMBe0bu6u+PB8rbtjg=;
-        b=RTOuGwH8IeBi+HiwGwnKvB5IVCDKgNuzRY/BYdWneOccLk+zIWio3elj3jAYAltl8C
-         7vyR0lnCiLrPJhlLV+5iFtNTjrN/zQHX+GugvkQzORgwFpMY8smMeXxxX32NT0Mvbvx6
-         /QwN9lxoycnocf48mz4z7eYohSpAApzEpJrwfwXVnE1p6p97lb2G+AfSvxMFwnYgb7hh
-         ko0bSZn/ORWlC9B2h7AAC3eFDNnE8BWkFSDsbI2Ko6bfW/JL/95VJLYmoWA6naqam/9U
-         po0evl0XDm2WISnW7Mu3FpUetnQamrxaXmDh+9IN0H/M7u9SVmV2t1USeGbOSr9ttrZv
-         JFug==
-X-Forwarded-Encrypted: i=1; AL+hErGVHfcGfWhCypP0pmFeuivDAOjPkqdb/H7FDIrYPr4CzhosPjIJ/xN6oen3vHQZ+zdwEjhIl/g4AOoRvftOSgBV@lists.infradead.org
-X-Gm-Message-State: APuU4Z9RRCbo6Fqja3fJ5uzh8GCwGh2KUL59Ez+fyXLEHul060FsrEpb
-	M72UxjWg9gBp+nShLSNm+JFczWLuBHHdwB7DtfOa3rPJU2zZHoBrs7GQ
-X-Gm-Gg: AYBFou2VVoUqtwu4MqHiDqsJxtApIpqfRlJMlp+L645l8ws88unuu1iJUNfc9ZKoIyO
-	tHMlxU+/d4Q8eSpNQlN0/1vmHCr2NHNUcGWEXiXrihGYzQjd7T5J3bQWwDe8hT4ER2yW5j4HtI9
-	JbrNjI1hOPMHIoe7gtrkxTFK+UlPBCJVvXZsvQ+XKV3lw+cfMTFGEi4Sfvm2T2Rg2JXnTfvS/Tg
-	McBCAm1ssNs1eBCs67OnD2tAr/sWLZkm4KmW1aYvCo5TyDae/sux87PL8CmGGEi9NjLclmvqF26
-	Sj14456m3UkEgPUkECs/k4ZgOOlgRv0xkRS89OPKJLEkSyZatUYWFjhCXiZuG8NAgvlYcQC5hFp
-	Y0AMzthK3ieE01/NUcETXD0ELrwFZpgbFrko2zb2KVtcRv/+gJzGukYCPmVh1sAugQ7/ECclNcJ
-	U9fbU8CnrNpvjExIjyeut4hAUAgChCh7bTibOlOM3Fx1lJw1LORY6GWCITH6OhLzSfjF9FMZlY+
-	rpkILtITvDfokjqVny3tx0bYzqJi+kjJsOvupGbxaG58QmEK5IKpjOzPHaM7QNGIdtywZGBJFnm
-	tdAHILlbGOe3fD98RbHBCft3QtpB9gkDQaFsT69ceIa36FE2+6AVJ5i5H9LbwvyL
-X-Received: by 2002:a17:907:1b18:b0:c3f:c856:fb7a with SMTP id a640c23a62f3a-c4d6d166840mr141985166b.3.1794162497894;
-        Sun, 08 Nov 2026 10:28:17 -0800 (PST)
-Received: from [192.168.1.100] ([163.245.50.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c4d6a47515dsm75254366b.44.2026.11.08.10.28.16
+        d=1e100.net; s=20260707; t=1794163130; x=1794767930;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=/B4X/7yk4kEItQksOCxb/0SjSH6EesHie45gtXRCpSs=;
+        b=18mDbKqCKzzXo+pXCofoulTqpPNFZnAJYlPzkPnmkIhcKD9Vwxpn2JQj7uQ4d7qq8g
+         OTVFqWjHmyFWMH1qwSZKAIjs0xNiDUIuc/D73rPzxVXbuZ527d99Q/ikFJNAOB84URv7
+         MOE26bYCzIritE3SrzDmanELbKmV3pFofDRfbuNXYe0MP24NYlOsenYAfzVfA/ZMuBkG
+         GeAD5/FU65/+PySoPA6ApauvSxEaPPMjQ4NLg2fRSUlcdY5Hym0CMC+R2buFKmH8GnZj
+         8w16OgHmcS7SAxJFTW8xiWcOFcWc8M5paIlCTrNBSoWglazjf5fhgnbyv5nTv3Se2luU
+         BOJw==
+X-Forwarded-Encrypted: i=1; AL+hErGoywCAY2irErjPEor/AbR5jWC8eKE5o6ZK7t/jeMJsP3MP2BvXKOsBrHlKuW19m7FxCKebv088mRxfluu2kChs@lists.infradead.org
+X-Gm-Message-State: APuU4Z/mlAvuRL4D4ScjC+yR+sQfKbGOveZSYJhJIC+1HoV3/bQaRtZ0
+	B2XKEoQN1lOQqKK0/n8Ahdy/0frdg4UxvJi2nnxQwLNs9fH0nWso8YCt
+X-Gm-Gg: AYBFou0P0FSm+4zgmXlaTt0bQWJNoyUzjMrssb0fzs5WXR9MeXOkShxxV5wmNyz3O6u
+	So0iGS4jtFDEkJUPU3se2S4O9M10T+2Ky7uKCZWbIBPqsmFnYnQqLHY4RMXjwIarNZOeKiDZToe
+	ZpbCQRS7jtxnp6qhQfAeXyJ+owMiQtipKJlm5du28iWt5fHBcfxBZwSc7sX+n9R1dkfu8L555h3
+	EaG65eVscc0kws5hZCtYSxXbRI95J+3L5ZWgnRPacwOqpjECGqMHm1aUjl6T5tdEUWdYeY3Lf0X
+	3KCeGc7CeFmLR+zySG/RfWS7rSvTGDUNRy8h9DVnhGlnJ3ZacW7usLYmWA7xviEFm82f50PrOoE
+	Mwb0rk6oyZNCQK8ltZDxaMG9aQmqen08ULiu+0QiH0+uXBryDxYdRDlrHn1X9h13PSsZmQD88Y7
+	sPO4/wdrgSZaJH47CHQzOpIQcc84m1UkEmX1DEWyx1pj8MoVQ0pGbbXSFYP3jajKUr7b5/WIj1V
+	KBLh6kN7e9cP/Q96C3VU6FcAsJCzB7gKrCTcq+GEJHxtajVN8B8e+Ks81ThCpUlGYRWvs+IwrrN
+	ZkEXczjGYmyEWE6UNBEkLSw/wvyEMbTIJCK89AwHfQ==
+X-Received: by 2002:a05:7300:ea17:b0:36f:6d81:3f99 with SMTP id 5a478bee46e88-37254d99c2dmr3974841eec.7.1794163129784;
+        Sun, 08 Nov 2026 10:38:49 -0800 (PST)
+Received: from a1-free ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-372632d7d62sm10527237eec.3.2026.11.08.10.38.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2026 10:28:17 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-Date: Sun, 08 Nov 2026 21:27:10 +0300
-Subject: [PATCH 1/2] dt-bindings: pinctrl: mediatek: Document MT6895 pin
- controller
+        Sun, 08 Nov 2026 10:38:49 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: linux-perf-users@vger.kernel.org,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>
+Cc: Ian Rogers <irogers@google.com>,
+	James Clark <james.clark@linaro.org>,
+	John Garry <john.garry@linux.dev>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	TAKANO Mitsuhiro <takano32@gmail.com>
+Subject: [PATCH] perf vendor events arm64 AmpereOneX: Fix misspelled PublicDescription keys
+Date: Sun,  8 Nov 2026 18:38:46 +0000
+Message-ID: <20261108183846.3804875-1-takano32@gmail.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261108-pinctrl-mt6895-v1-1-f704c443b31a@gmail.com>
-References: <20261108-pinctrl-mt6895-v1-0-f704c443b31a@gmail.com>
-In-Reply-To: <20261108-pinctrl-mt6895-v1-0-f704c443b31a@gmail.com>
-To: Linus Walleij <linusw@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Alexander Letuchiy <asalde.le1@gmail.com>, Sean Wang <sean.wang@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
-X-Mailer: b4 0.15.2
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_102820_219033_D570AD63 
-X-CRM114-Status: GOOD (  17.24  )
+X-CRM114-CacheID: sfid-20261108_103851_381533_FB1EB78E 
+X-CRM114-Status: GOOD (  13.49  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,262 +108,156 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add device tree bindings for the pin controller found in the MediaTek
-Dimensity 8000/8100 (MT6895) SoC.
+Sixteen of the 28 entries in mmu.json spell PublicDescription as
+"PublicDescrition"; the other 12 spell it correctly.  jevents.py reads
+only the keys it asks for by name, so those 16 fields are dead.
 
-The controller has 227 GPIOs spread over a GPIO base and 13 IOCFG
-blocks, and an EINT controller made of five blocks (W, E, S, N, C).
+Fixing them does not change the perf list output: every one of the 16
+entries has a BriefDescription with the same text, and jevents.py drops
+the long description when it equals the brief one (jevents.py:405).
+Running jevents.py for arm64 before and after this change gives a
+byte-identical generated string table.  This is a cleanup, not a fix for
+anything a user can see.
 
-Pins with PUPD/R1/R0 or RSEL pull-ups take the raw MTK_PUPD_SET_R1R0_*
-and MTK_PULL_SET_RSEL_* values in bias-pull-up and bias-pull-down.
-There is no public table of the RSEL resistances for this SoC, so the
-binding does not offer the ohm-based values used on MT8188 and MT8195.
+The file becomes self-consistent again, and the field works if the brief
+text is ever changed on its own.  No text, name, code or expression
+changes.
 
-Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
+Written with Hermes Agent, an LLM assistant; the tables were regenerated
+with jevents.py on top of this change, perf was not rebuilt.
+
+Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
 ---
- .../bindings/pinctrl/mediatek,mt6895-pinctrl.yaml  | 228 +++++++++++++++++++++
- 1 file changed, 228 insertions(+)
+ .../arch/arm64/ampere/ampereonex/mmu.json     | 32 +++++++++----------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6895-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6895-pinctrl.yaml
-new file mode 100644
-index 000000000000..e3ecfffc084e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6895-pinctrl.yaml
-@@ -0,0 +1,228 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mediatek,mt6895-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek MT6895 Pin Controller
-+
-+maintainers:
-+  - Alexander Letuchiy <asalde.le1@gmail.com>
-+
-+description:
-+  The MediaTek MT6895 Pin controller is used to control SoC pins.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6895-pinctrl
-+
-+  reg:
-+    items:
-+      - description: pin controller base
-+      - description: rm group IO
-+      - description: rt group IO
-+      - description: rmm group IO
-+      - description: bl group IO
-+      - description: bm group IO
-+      - description: br group IO
-+      - description: brr group IO
-+      - description: lb group IO
-+      - description: lm group IO
-+      - description: rtt group IO
-+      - description: tr group IO
-+      - description: tl group IO
-+      - description: lt group IO
-+      - description: EINT controller W block
-+      - description: EINT controller E block
-+      - description: EINT controller S block
-+      - description: EINT controller N block
-+      - description: EINT controller C block
-+
-+  reg-names:
-+    items:
-+      - const: base
-+      - const: rm
-+      - const: rt
-+      - const: rmm
-+      - const: bl
-+      - const: bm
-+      - const: br
-+      - const: brr
-+      - const: lb
-+      - const: lm
-+      - const: rtt
-+      - const: tr
-+      - const: tl
-+      - const: lt
-+      - const: eint-w
-+      - const: eint-e
-+      - const: eint-s
-+      - const: eint-n
-+      - const: eint-c
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    description:
-+      Number of cells in GPIO specifier. Since the generic GPIO binding is used,
-+      the amount of cells must be specified as 2. See the below mentioned gpio
-+      binding representation for description of particular cells.
-+    const: 2
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  gpio-line-names:
-+    maxItems: 247
-+
-+  interrupts:
-+    description: EINT controller interrupt
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+# PIN CONFIGURATION NODES
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    additionalProperties: false
-+
-+    patternProperties:
-+      '^pins':
-+        type: object
-+        allOf:
-+          - $ref: /schemas/pinctrl/pincfg-node.yaml
-+          - $ref: /schemas/pinctrl/pinmux-node.yaml
-+        description:
-+          A pinctrl node should contain at least one subnodes representing the
-+          pinctrl groups available on the machine. Each subnode will list the
-+          pins it needs, and how they should be configured, with regard to muxer
-+          configuration, pullups, drive strength, input enable/disable and input
-+          schmitt.
-+
-+        properties:
-+          pinmux:
-+            description:
-+              Integer array, represents gpio pin number and mux setting.
-+              Supported pin number and mux are defined as macros in
-+              arch/arm64/boot/dts/mediatek/mt6895-pinfunc.h for this SoC.
-+
-+          drive-strength:
-+            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+
-+          drive-strength-microamp:
-+            enum: [125, 250, 500, 1000]
-+
-+          bias-pull-down:
-+            oneOf:
-+              - type: boolean
-+                description: normal pull down.
-+              - enum: [100, 101, 102, 103]
-+                description: PUPD/R1/R0 pull down type. See MTK_PUPD_SET_R1R0_
-+                  defines in dt-bindings/pinctrl/mt65xx.h.
-+              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-+                description: RSEL pull down type. See MTK_PULL_SET_RSEL_ defines
-+                  in dt-bindings/pinctrl/mt65xx.h.
-+
-+          bias-pull-up:
-+            oneOf:
-+              - type: boolean
-+                description: normal pull up.
-+              - enum: [100, 101, 102, 103]
-+                description: PUPD/R1/R0 pull up type. See MTK_PUPD_SET_R1R0_
-+                  defines in dt-bindings/pinctrl/mt65xx.h.
-+              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-+                description: RSEL pull up type. See MTK_PULL_SET_RSEL_ defines
-+                  in dt-bindings/pinctrl/mt65xx.h.
-+
-+          bias-disable: true
-+
-+          output-high: true
-+
-+          output-low: true
-+
-+          input-enable: true
-+
-+          input-disable: true
-+
-+          input-schmitt-enable: true
-+
-+          input-schmitt-disable: true
-+
-+        required:
-+          - pinmux
-+
-+        additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/pinctrl/mt65xx.h>
-+    #define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) | 0)
-+    #define PINMUX_GPIO6__FUNC_SCL0 (MTK_PIN_NO(6) | 1)
-+    #define PINMUX_GPIO7__FUNC_SDA0 (MTK_PIN_NO(7) | 1)
-+
-+    pio: pinctrl@10005000 {
-+        compatible = "mediatek,mt6895-pinctrl";
-+        reg = <0x10005000 0x1000>,
-+              <0x11c20000 0x1000>,
-+              <0x11c30000 0x1000>,
-+              <0x11c40000 0x1000>,
-+              <0x11d10000 0x1000>,
-+              <0x11d30000 0x1000>,
-+              <0x11d40000 0x1000>,
-+              <0x11d50000 0x1000>,
-+              <0x11d60000 0x1000>,
-+              <0x11e10000 0x1000>,
-+              <0x11ea0000 0x1000>,
-+              <0x11eb0000 0x1000>,
-+              <0x11f20000 0x1000>,
-+              <0x11f30000 0x1000>,
-+              <0x11e50000 0x1000>,
-+              <0x11ce0000 0x1000>,
-+              <0x11de0000 0x1000>,
-+              <0x11fe0000 0x1000>,
-+              <0x1c01e000 0x1000>;
-+        reg-names = "base", "rm", "rt", "rmm", "bl", "bm", "br",
-+                    "brr", "lb", "lm", "rtt", "tr", "tl", "lt",
-+                    "eint-w", "eint-e", "eint-s", "eint-n", "eint-c";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&pio 0 0 227>;
-+        interrupt-controller;
-+        interrupts = <GIC_SPI 259 IRQ_TYPE_LEVEL_HIGH 0>;
-+        #interrupt-cells = <2>;
-+
-+        gpio-pins {
-+            pins {
-+                pinmux = <PINMUX_GPIO0__FUNC_GPIO0>;
-+                bias-pull-up;
-+                drive-strength = <6>;
-+            };
-+        };
-+
-+        i2c0-pins {
-+            pins-bus {
-+                pinmux = <PINMUX_GPIO6__FUNC_SCL0>,
-+                         <PINMUX_GPIO7__FUNC_SDA0>;
-+                bias-pull-up = <MTK_PULL_SET_RSEL_111>;
-+                drive-strength-microamp = <1000>;
-+            };
-+        };
-+    };
+diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
+index 66d83b680651..9457f9be4ecc 100644
+--- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
++++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
+@@ -30,37 +30,37 @@
+         "BriefDescription": "Data TLB translation cache hit on S2L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data TLB translation cache hit on S2L1 walk cache entry",
++        "PublicDescription": "Data TLB translation cache hit on S2L1 walk cache entry",
+         "EventCode": "0xd805",
+         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L1_WALK",
+         "BriefDescription": "Data TLB translation cache hit on S2L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data TLB translation cache hit on S2L0 walk cache entry",
++        "PublicDescription": "Data TLB translation cache hit on S2L0 walk cache entry",
+         "EventCode": "0xd806",
+         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L0_WALK",
+         "BriefDescription": "Data TLB translation cache hit on S2L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data-side S1 page walk cache lookup",
++        "PublicDescription": "Data-side S1 page walk cache lookup",
+         "EventCode": "0xd807",
+         "EventName": "MMU_D_S1_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Data-side S1 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Data-side S1 page walk cache refill",
++        "PublicDescription": "Data-side S1 page walk cache refill",
+         "EventCode": "0xd808",
+         "EventName": "MMU_D_S1_WALK_CACHE_REFILL",
+         "BriefDescription": "Data-side S1 page walk cache refill"
+     },
+     {
+-        "PublicDescrition": "Data-side S2 page walk cache lookup",
++        "PublicDescription": "Data-side S2 page walk cache lookup",
+         "EventCode": "0xd809",
+         "EventName": "MMU_D_S2_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Data-side S2 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Data-side S2 page walk cache refill",
++        "PublicDescription": "Data-side S2 page walk cache refill",
+         "EventCode": "0xd80a",
+         "EventName": "MMU_D_S2_WALK_CACHE_REFILL",
+         "BriefDescription": "Data-side S2 page walk cache refill"
+@@ -90,61 +90,61 @@
+         "BriefDescription": "Level 2 instruction translation buffer allocation"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L2 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry",
+         "EventCode": "0xd901",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L2_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L1 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry",
+         "EventCode": "0xd902",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L1_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L0 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry",
+         "EventCode": "0xd903",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L0_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L2 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry",
+         "EventCode": "0xd904",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L2_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L1 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry",
+         "EventCode": "0xd905",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L1_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L0 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry",
+         "EventCode": "0xd906",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L0_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S1 page walk cache lookup",
++        "PublicDescription": "Instruction-side S1 page walk cache lookup",
+         "EventCode": "0xd907",
+         "EventName": "MMU_I_S1_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Instruction-side S1 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S1 page walk cache refill",
++        "PublicDescription": "Instruction-side S1 page walk cache refill",
+         "EventCode": "0xd908",
+         "EventName": "MMU_I_S1_WALK_CACHE_REFILL",
+         "BriefDescription": "Instruction-side S1 page walk cache refill"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S2 page walk cache lookup",
++        "PublicDescription": "Instruction-side S2 page walk cache lookup",
+         "EventCode": "0xd909",
+         "EventName": "MMU_I_S2_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Instruction-side S2 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S2 page walk cache refill",
++        "PublicDescription": "Instruction-side S2 page walk cache refill",
+         "EventCode": "0xd90a",
+         "EventName": "MMU_I_S2_WALK_CACHE_REFILL",
+         "BriefDescription": "Instruction-side S2 page walk cache refill"
 
+base-commit: fa4ad798f6f681031775266044ba1b0cf3c670bd
 -- 
-2.56.0
+2.53.0
 
 
