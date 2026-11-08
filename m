@@ -2,67 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB733606D13F
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 20:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1422B607599E
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 20:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V87Lq+h/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KnAjCatM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U+D2fU32;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R/AmbXwC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+TGNtBkbY9q8F7TsjFNpGCb5Omd+5aPs8mlI1uZL4OA=; b=V87Lq+h/Wf+Au9
-	vHK37wLk/6w6Y6vUEXHgN7NkLaOGSMITdSvQJPUJA4wiGh5eHHBa6kXeYCdxQDH2+z5Mbt+1JJj+2
-	EZD8IWeWEkpqaWsaAj/ry6aPRXQl0SE9jnpuqvkykD+7uV/6D3M+jgrGSJHSlxtCS6QhY0LbY12+7
-	IXz94z1K0UwB+boT2fQnYGDAdx2GNLlkbfU0Vgatjnsv70ssL+fIUa2W7raZqgQCMcQ01NQGk65rv
-	00GXQTfbFL5IKr7MV578YJ0KfoYG34BtEt51hDm5Ba0MZO0UYRY7huURXm8NLuvCSG8EVW+vJuAL6
-	DcA9XL+2fxM6SPu6Ywyw==;
+	List-Owner; bh=pty5Na5czxWmLcr3DhwnruNlYgAYUZ0cOJMqyYF/qPo=; b=U+D2fU32o9hIFh
+	Ym8nMVDUvWhuPQmVtIyNFZMUdIShghvsVEWMwGOVv/lj7kcnbo9A+i/QPEwKtQm3TRS4Pk0JcoY5C
+	L9uOSxICAXruQ67fJN13PpQkYQs3XeCB85fiyEX3ir9aZGgbmO5iWudd76l5AWQJ8WjZVmd8a4ZKM
+	2/xFmafSyCRyRUSs3T1w1EE3Hz65cQztvN5OU5VxDFlIy2iAEx+D5dcwvhCvYBv7YyFAE06NDyCNp
+	M3UkHliQ0/POj2yN7PzqAP5XxgzW0ASLWh1UhKqWikQICsSl6UhiWMwwBECMsCn67nQ6p9VVwSAX9
+	ddGNgPavFmxJOOyCnfJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ9Pp-0000000GZKG-390W;
-	Sun, 08 Nov 2026 20:23:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQ9Qc-0000000GZWj-3j3E;
+	Sun, 08 Nov 2026 20:23:50 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ9Pl-0000000GZJH-3ZK2
+	id 1xQ9Qb-0000000GZVZ-0R8z
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 20:22:57 +0000
+	Sun, 08 Nov 2026 20:23:49 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4EE8261D0C;
-	Sun,  8 Nov 2026 20:22:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 841471F008A4;
-	Sun,  8 Nov 2026 20:22:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1B63761D36;
+	Sun,  8 Nov 2026 20:23:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42F671F008BC;
+	Sun,  8 Nov 2026 20:23:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794169377;
-	bh=+TGNtBkbY9q8F7TsjFNpGCb5Omd+5aPs8mlI1uZL4OA=;
+	s=k20260515; t=1794169427;
+	bh=pty5Na5czxWmLcr3DhwnruNlYgAYUZ0cOJMqyYF/qPo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=KnAjCatM6jtU5Iv559+8anP65FzZlX7oYCx74Fw01CPC5a3xdNRotIhg1ODU06D0Z
-	 3O1AJitHI8qNpJZ2TdesIlen+KA2pweXMoaeeHhllEvRpgnrKYuf0ca+5X+X+T9PFM
-	 e/mBp6YgR/gVUPKPhiNoIDdM14QFYZOpRJ09ag0pzjshIOv8+Y81RqT/WW64I0qwoX
-	 DtDmRmZCQeEWg//12huru/SDg4iR2BmknRNu5YUL8sWqyRS8GFsfjJplxY7V1MeZFX
-	 qw5EMIto1jlAmgezvxoMpI6F4YHfNBQi/76v2ANljD9tyY7j7gIxQfpF2huzvsHkkP
-	 4Ur940OSHY4ig==
+	b=R/AmbXwCyIf/6qaAWYpld/3ApbmG8zuTbRfCFm11EBFAQJm/vSGNZ/laXtuhHNdWI
+	 3SjfQHs/hm+DkZ0ANWGBw+5qLuA72ZYwH16ewqQUlZrj5e5tjytzMA7sDFNF+Nh9D9
+	 mJvNprpTPSLWLGmTmyU4bcq4/7l574YIo6b79moele3g+31ZfKHcnCNATYMvVycAxy
+	 Htl3em2lNJG8XfkPQp61cZLERAtgLrEcdxiXAFOd9uGQIQp4BuWkPFLfcvh5ex2fsT
+	 otnQzuSAztCq7StxpxlLPHBaWJvLKUvAoZTb6sl7UBHyLDDtB/xIUy4pYIVGwOYLWg
+	 +OO5uBSWsk1mA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>
-Cc: Abel Vesa <abelvesa@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v7 0/2] Add initial support for Qualcomm Kuno SoC
-Date: Sun,  8 Nov 2026 14:19:51 -0600
-Message-ID: <179416929284.628393.3018595425203478493.b4-ty@b4>
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3] ARM: defconfig: qcom: Drop Qualcomm SoC drivers with defaults
+Date: Sun,  8 Nov 2026 14:20:29 -0600
+Message-ID: <179416929563.628393.4268358059417035573.b4-ty@b4>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260929-kuno-soc-support-v7-0-530f62dc4020@oss.qualcomm.com>
-References: <20260929-kuno-soc-support-v7-0-530f62dc4020@oss.qualcomm.com>
+In-Reply-To: <20261104-qcom-soc-kconfig-v3-1-6bd233ccd1ba@oss.qualcomm.com>
+References: <20261104-qcom-soc-kconfig-v3-1-6bd233ccd1ba@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -85,23 +77,15 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 29 Sep 2026 15:18:05 +0530, Hardeep Sharma wrote:
-> This series adds initial support for the Qualcomm Kuno SoC and the Kuno
-> IDP reference board.
-> 
-> Kuno is a 32-bit ARM (Cortex-A7) Qualcomm platform. The rest of the
-> series (bindings, GCC, RPMh clocks and power domains, interconnect,
-> pinctrl, geni-se) has been applied and is in linux-next, so v7 carries
-> only the SoC and IDP board devicetree, plus a small geni-se binding
-> update that lets the QUP wrapper use one address/size cell on 32-bit
-> SoCs.
-> 
-> [...]
+On Wed, 04 Nov 2026 15:40:26 +0100, Krzysztof Kozlowski wrote:
+> Several Qualcomm SoC drivers have defaults, so their defconfig entries
+> are redundant.  Keep the few options which choose specific choice
+> different than the default.
 
 Applied, thanks!
 
-[2/2] ARM: dts: qcom: Add initial device tree for Kuno SoC
-      commit: 7f6a63bc5fc9bed3fac66ac57000882926d25f84
+[1/1] ARM: defconfig: qcom: Drop Qualcomm SoC drivers with defaults
+      commit: fc5dca8a2541450d7035f339e35008ca99c001a0
 
 Best regards,
 -- 
