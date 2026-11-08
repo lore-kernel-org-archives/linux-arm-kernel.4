@@ -2,66 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 058AC606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 03:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AF5606A31A
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 04:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1NP5LWMF;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=P8WiBGr9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y1hkq1JE;
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.a=rsa-sha256 header.s=alien8 header.b=j/fPd0cp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lM3R06lN5RqvDRl/k2tH4ahMeiHYdM12iCHEJrgC6wk=; b=1NP5LWMFT0xf6V
-	re4hSJLGav6z0VuuFe19Q2isf0ykqabiOK7/+A3KFpMI47V1UAEumT60NeG11QnTRvokdGb0d6uPY
-	gNZRZMho/SlEAMHOuD2boNW4dolc/Rwlfi2QK6TagaDW1VdW0on730vT+1stJHJ5Ry+Apz2hziTsf
-	WqQN9ebuTk1PwVNQ/GlzM49tXzC2FLdfpgmq50Eh0A2ka9NDpQpdrDP6ya8IgnAjIxjA4vbSG5r+I
-	mjifgZ+fjKlcFC3huDX2XCHhoY3EDrnOtLISE3N7IJrwkc4mfGoWDRof2zAvM/T75nXS4WpT67dyG
-	2Q9G3iv6B25jWhoFqSPg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8VwTVjzVBE3sZdY/bqGZDMPlbD8bcC2MNX+1REQD2iM=; b=Y1hkq1JEZ8FAzVYADNsUGN68ow
+	wiYwoKPSj1awF0HGiCcDM/psqR4F6B/UGybi+61rSY3au4gxJ57rFOG3UXpBNdk2/mqPUBiHHYxqs
+	JptYgWsi5pZ2RPQ07q07GgxpV1wY8WhUH9GzAUlKe0XucxAZXINdpbLr0HqE+sHPIlgyFlT41yRMJ
+	AbHFONWSN4qvBnCKG3G+BijJ2yq5bsyjnyI+DmfKDKqNNSOuaa6ruwJqLluk6eNA0rc2Y2QETF4A7
+	Xg4S5nml5EzrIDezjh0dR8NN3WeTtRBQJkDuND0RhFR76/8FqaHIYIOr1nzqJpd5Lj1K9TBggvaQ/
+	KAxUxhNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPtNK-0000000FdMW-3veD;
-	Sun, 08 Nov 2026 03:15:22 +0000
-Received: from mail-m160236537.xmail.ntesmail.com ([160.236.53.7])
+	id 1xPuUD-0000000Ffr5-1Ltj;
+	Sun, 08 Nov 2026 04:26:33 +0000
+Received: from mail.alien8.de ([2a01:4f9:3051:3f93::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPtNF-0000000FdLv-39x9;
-	Sun, 08 Nov 2026 03:15:21 +0000
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 53e05798d;
-	Sun, 8 Nov 2026 11:15:11 +0800 (GMT+08:00)
-Message-ID: <f066ac3f-1720-479b-a2e9-198a96d03dd6@rock-chips.com>
-Date: Sun, 8 Nov 2026 11:15:09 +0800
+	id 1xPuUB-0000000Ffqf-0tM4
+	for linux-arm-kernel@lists.infradead.org;
+	Sun, 08 Nov 2026 04:26:32 +0000
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 6707940E03E4;
+	Sun,  8 Nov 2026 04:26:23 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id iJlV_KB44njB; Sun,  8 Nov 2026 04:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1794111980; bh=8VwTVjzVBE3sZdY/bqGZDMPlbD8bcC2MNX+1REQD2iM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j/fPd0cpOp75azdi04OqBwaDYMDz42+uOx7jGukqaYL6hEkmvaSknKfH/L/NnHVAS
+	 zg2MSzp/1D7mtAUommgMgudvBaV93xQl2op+Z3GWaPmqH789VF6YoSYKO3IrjXU94W
+	 XuykEaIKKW6CFpzhAL5ZI53K4XtAASiSRPG9xyQEx2rcNE5aVy3mUx/uNc/N+8Pzkr
+	 malm2kWVu0RxSI6QZLFdViOkRSnInwWu3nS/VOV8htzR2gIuAkl0Wzvi73Nh22im5e
+	 hrs7ipatT+6HaExvVM1AvnuuKwjC529EKZDESXbcGWuZxa6Wf0MsI498ibURbkQStA
+	 yrTzb6OqY1IRGxLaynj87/34z9RHY8zCRiG9p9R9Nkf6+2De4VzGRdQZtuHQrvbDMT
+	 MRlS00NaOpXBYNRY916hk2RpChIMJUzm3m3ZO9lBhg2fXBNHykXJBZmOCIA8yhzkdy
+	 hzBd7K5TU6peqS7lfRctFM4u9yeRCnHKBad2wK9Vx5RuXZKcWXnfx+rs1wdcXZLc9c
+	 IXBSG0WU0m6qbxknguYzFejbsfKcvtozANdRr0/7ntAdt0LMI7IzbLo73RC5iG3KWd
+	 mQOtv8jZU+dkUhXfrgc1z5TrQUtygVXCtVfoIW9TIS2a0T84uUQV2kyxuXRj5N7/aw
+	 zpz/lOvcIgb/ADvrBhNC9yOg=
+Received: from stx.tnic (unknown [IPv6:2600:1700:38ca:c00::42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id A28EB40E01E1;
+	Sun,  8 Nov 2026 04:26:05 +0000 (UTC)
+Date: Sat, 7 Nov 2026 20:26:02 -0800
+From: Borislav Petkov <bp@alien8.de>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Stefan Schaeckeler <sschaeck@cisco.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Tony Luck <tony.luck@intel.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+	Borislav Petkov <bp@suse.de>
+Subject: Re: [PATCH v5 6/9] EDAC/aspeed: Replace regmap with direct register
+ access
+Message-ID: <20261108042602.GDau_52vqJcQSrUAf0@fat_crate.local>
+References: <20261007-edac-v5-0-5c31fc5df4cf@aspeedtech.com>
+ <20261007-edac-v5-6-5c31fc5df4cf@aspeedtech.com>
+ <20261105045635.GBauwMg0oqd2tVPH-4@fat_crate.local>
+ <TYZPR06MB7920FD1C150DCB201DB88367F2742@TYZPR06MB7920.apcprd06.prod.outlook.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Add DSI panel to RK3588 EVB1
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- kernel@collabora.com
-References: <20261106-rk3588-evb1-dt-updates-v1-0-bdbe16223589@collabora.com>
- <20261106-rk3588-evb1-dt-updates-v1-4-bdbe16223589@collabora.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261106-rk3588-evb1-dt-updates-v1-4-bdbe16223589@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa1b9271f9d03a7kunm71851a523ae3dc
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCS0kYVh9OTxlIH0sYQh9PQ1YVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=P8WiBGr9wnTcvHB2H8l9sl8SKmN0k54UNOfHgSTjHwSZ13FvJWN3ot57OepT4gft0OATr3R288gLEOJE989yutl2wuvTLvA/8KHdc8pKGoQAx1kCBPrutFigfI0NXpdxjVjHQ9W/6CAj1AxtbWZIuYDnRia5x6m/+/Ghp15zQxk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=lM3R06lN5RqvDRl/k2tH4ahMeiHYdM12iCHEJrgC6wk=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <TYZPR06MB7920FD1C150DCB201DB88367F2742@TYZPR06MB7920.apcprd06.prod.outlook.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_191518_970979_E752C5F6 
-X-CRM114-Status: GOOD (  14.20  )
+X-CRM114-CacheID: sfid-20261107_202631_429888_C40EBAE9 
+X-CRM114-Status: UNSURE (   7.21  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -73,177 +99,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Sebastian,
+On Sun, Nov 08, 2026 at 02:01:45AM +0000, Ryan Chen wrote:
+...
 
-On 11/7/2026 5:57 AM, Sebastian Reichel wrote:
-> The RK3588 EVB1 comes with a W552793DBA-V10 Touchscreen/Display
-> combination. It contains a Wanchanglong W552793BAA panel and a
-> Goodix GT1158 touchscreen. This adds the DT description of it.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 90 ++++++++++++++++++++++++
->  1 file changed, 90 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> index 6a95a8bb6fb8..327ca13b60f0 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> @@ -204,6 +204,15 @@ vcc12v_dcin: regulator-vcc12v-dcin {
->  		regulator-max-microvolt = <12000000>;
->  	};
->  
+> Patches 7/9 and 8/9 follow the same changes.
 
-I seem unable to apply the patch to the latest linux-next tree.
+Ok, pls use
 
-So I tried to resolve the conflict manually, but the actual
-test screen did not display. I will look into this further.
+https://git.kernel.org/pub/scm/linux/kernel/git/bp/bp.git/log/?h=edac-drivers-aspeed
 
+to put your changes ontop.
 
-> +	vcc3v3_lcd_mipi: regulator-vcc3v3-lcd-mipi {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_lcd_mipi";
-> +		regulator-boot-on;
-> +		enable-active-high;
-> +		gpio = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-> +		vin-supply = <&vcc_3v3_s0>;
-> +	};
-> +
->  	vcc3v3_pcie30: regulator-vcc3v3-pcie30 {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vcc3v3_pcie30";
-> @@ -338,6 +347,43 @@ &cpu_l3 {
->  	cpu-supply = <&vdd_cpu_lit_s0>;
->  };
->  
-> +&dsi0 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +
-> +	panel@0 {
-> +		compatible = "wanchanglong,w552793baa", "raydium,rm67200";
-> +		reg = <0>;
-> +		backlight = <&backlight>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&lcd_rst_gpio>;
-> +		vdd-supply = <&vcc3v3_lcd_mipi>;
-> +		iovcc-supply = <&vcc3v3_lcd_mipi>;
-> +		vsp-supply = <&vcc5v0_sys>;
-> +		vsn-supply = <&vcc5v0_sys>;
-> +		reset-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			mipi_panel_in: endpoint {
-> +				remote-endpoint = <&dsi0_out_panel>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&dsi0_in {
-> +	dsi0_in_vp3: endpoint {
-> +		remote-endpoint = <&vp3_out_dsi0>;
-> +	};
-> +};
-> +
-> +&dsi0_out {
-> +	dsi0_out_panel: endpoint {
-> +		remote-endpoint = <&mipi_panel_in>;
-> +	};
-> +};
-> +
->  &gmac0 {
->  	clock_in_out = "output";
->  	phy-handle = <&rgmii_phy>;
-> @@ -495,6 +541,22 @@ hym8563: rtc@51 {
->  	};
->  };
->  
-> +&i2c6 {
-> +	status = "okay";
-> +
-> +	gt1x: touchscreen@14 {
-> +		compatible = "goodix,gt1158";
-> +		reg = <0x14>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&touchscreen_pins>;
-> +		reset-gpios = <&gpio0 RK_PD2 GPIO_ACTIVE_HIGH>;
-> +		AVDD28-supply = <&vcc3v3_lcd_mipi>;
-> +		VDDIO-supply = <&vcc3v3_lcd_mipi>;
-> +	};
-> +};
-> +
->  &i2c7 {
->  	status = "okay";
->  
-> @@ -543,6 +605,10 @@ rgmii_phy: ethernet-phy@1 {
->  	};
->  };
->  
-> +&mipidcphy0 {
-> +	status = "okay";
-> +};
-> +
->  &pcie2x1l0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pcie2_0_rst>, <&pcie2_0_wake>, <&pcie2_0_clkreq>, <&wifi_host_wake_irq>;
-> @@ -664,6 +730,12 @@ hym8563_int: hym8563-int {
->  		};
->  	};
->  
-> +	mipi_dsi {
-> +		lcd_rst_gpio: lcd-rst {
-> +			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +
->  	pcie2 {
->  		pcie2_0_rst: pcie2-0-rst {
->  			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-> @@ -692,6 +764,14 @@ vcc3v3_pcie30_en: vcc3v3-pcie30-en {
->  		};
->  	};
->  
-> +	touchscreen {
-> +		touchscreen_pins: touchscreen-pins {
-> +			rockchip,pins =
-> +				<0 RK_PD2 RK_FUNC_GPIO &pcfg_pull_up>,
-> +				<0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
-> +		};
-> +	};
-> +
->  	usb {
->  		vcc5v0_host_en: vcc5v0-host-en {
->  			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> @@ -1534,3 +1614,13 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
->  		remote-endpoint = <&hdmi1_in_vp1>;
->  	};
->  };
-> +
-> +&vp3 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	vp3_out_dsi0: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-> +		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-> +		remote-endpoint = <&dsi0_in_vp3>;
-> +	};
-> +};
-> 
+> Thanks your help.
+
+Same here.
+
+Thx!
 
 -- 
-Best, 
-Chaoyi
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
 
