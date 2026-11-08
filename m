@@ -2,91 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2543F606A31A
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 06:19:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE8A606D808
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 06:59:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SGg+DwtB;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EnfvlOi6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FMmQCs7H;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=neLHx5rF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bSKNeRhoYj51dd326u4b+S/qwJ1yJgRLl0Pp5aorhH0=; b=SGg+DwtBu58vgC3zCkYZgrTG7e
-	ji+IU827+R+IXMGZpQyiNJvFxn8FAoqI8wLiKU5D+PbDBOISpTNN8sj6jmHeoODf665NcM5IqLOij
-	IGbAfNFrU8q25w+Latf8iRJEaOcZUfX45E9EwSLd+oPNY9F63z0g0OWG1pIZeGmrtCQI26FQH4ahz
-	ZDqupIDrFUlx8lQ8wNbI+Tp7QF8GyyyPJ2jVapd2rpEM5hNGPOBVphIzXCFcZeF33lyT81CTjieEL
-	hAr0Yq3NJI4CJZXJG10WYksrl5BMqN/EqFBeSnirzOSaYn2t7YYRO2GLpRxI4AMBGkRcevbvig7dL
-	mXczdBFQ==;
+	bh=vva7iXLKmqzxW6bOy9Y/PVkyCGWqTmEYhH94TgnKVwQ=; b=FMmQCs7HKfGs+Z6AUF/f3sVMNX
+	OIrO8RR0S5eHJzVpJjyUOr/dMML8asWMbyrhojExLEg294uNyfzWsuMh/lA1Us2Lier0NfWKxKoJF
+	sEDFeJSf2+ecVN9joGppWb9bJqxohAoEoRTX4FUTL0gTOyJv+jWiJrIobrVR3SrTpaTY29/Z8UpZu
+	ARxKmpXq/cMwyIZf9gUNUcReYCXga7q3XO/ZYBg9hwkhwTEKel47KSZlMUNQ2hhiGtu5T6ACNfdZy
+	YIypdGMf8QKchA6utGeUw/TnekNSa/O2fQJTU2yDhQ/n+FDJe7CuFRilpHlhxwAYtfaeMloJHVwWJ
+	KN2kbkLA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPwFL-0000000Fhyk-13pb;
-	Sun, 08 Nov 2026 06:19:19 +0000
-Received: from mgamail.intel.com ([192.198.163.10])
+	id 1xPwsJ-0000000Fj6k-0jXr;
+	Sun, 08 Nov 2026 06:59:35 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPwFI-0000000FhyP-1ATZ
+	id 1xPwsH-0000000Fj6e-2JPg
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 06:19:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794118756; x=1825654756;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pLWtdzulAJWXAefk0jF40+RB4tS7wf4qyhp071KtEyw=;
-  b=EnfvlOi6WKms+1JMjugYx47Ek9PFqlC+Yu+KI+XFxSIb6xmXuru07AVJ
-   Lwav+Gje/okQMQcUORrQ7lyWZUhi615/pf+T+wn8wokc329iAqTqfwgmo
-   0GuTOlU/I0GRW7pLZEWPD/PBk68JaUau1Uy8zdCnIsBqWviSzT76mCnzv
-   uZNnDMQx4z+ABIcgXP+CNg5hWPBhodBcYRZydxvmJxH8RJKqYdAa1iGfV
-   dTuUbUwNyWiZAwN+Qj28ix/xL+yYXsLeQgtNpvPdTphRY3+QEJ42taCxI
-   r7A+37BWNbtgsevdxFjtv5tOnd2BsrI1CqitW6avLSRyZ9uwqhhqXrFiw
-   Q==;
-X-CSE-ConnectionGUID: FS5iJFakRoeYdYT1DI5BjA==
-X-CSE-MsgGUID: PfxjYP15Tm29GmrJWEo40A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11959"; a="2779946"
-X-IronPort-AV: E=Sophos;i="6.27,200,1787036400"; 
-   d="scan'208";a="2779946"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Nov 2026 22:19:13 -0800
-X-CSE-ConnectionGUID: f4exIxHnQQ2lp12beg0EPg==
-X-CSE-MsgGUID: 38M9y+PyQvqsqXa8cqYT4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,200,1787036400"; 
-   d="scan'208";a="7738434"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 07 Nov 2026 22:19:10 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1xPwF9-00000000sGZ-0Dno;
-	Sun, 08 Nov 2026 06:19:07 +0000
-Date: Sun, 8 Nov 2026 14:18:39 +0800
-From: kernel test robot <lkp@intel.com>
-To: Tim Michals <tcmichals@gmail.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-sunxi@lists.linux.dev, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Tim Michals <tcmichals@gmail.com>
-Subject: Re: [PATCH v3 7/7] remoteproc: sunxi: Add KUnit tests
-Message-ID: <202611081401.aakRznh0-lkp@intel.com>
-References: <20261101185735.762559-8-tcmichals@gmail.com>
+	Sun, 08 Nov 2026 06:59:33 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D773940236;
+	Sun,  8 Nov 2026 06:59:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A22F1F008A6;
+	Sun,  8 Nov 2026 06:59:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794121171;
+	bh=vva7iXLKmqzxW6bOy9Y/PVkyCGWqTmEYhH94TgnKVwQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=neLHx5rFirJcj1fN5b+9sWjkf513iEWsGo4ex/spWYT3B41qzfbmTqcTcwAtFDRvJ
+	 3iHTMYTIq8SA1h5Fu+J/ck1GR52vLyI8SCHOUhVjDpvLw4owvhyfnYyeXvE8a0xTII
+	 MkLhvMA1Y3wRfYvXz3BJH/8vxfcDSZYI/JQUaBR0AlFtyV7pIu4pLwa6moJ2dqw8g5
+	 SJ1hQlGa6djQmBFbAboxMSZZqqaELyRim3Ge2nGsoaHLkBcYxEY5kFziPq7R0OgTU9
+	 +JM76HfSH82JkhMjhKSm+FDgz4JFb5qr4t8mgPWkNstBO7ALbSrM5TpjxUl9GnkHxF
+	 GSALqTtGtCK8Q==
+Subject: Re: [PATCH net] net: ti: icss-iep: fix deadlock when disabling PPS
+From: netdev-bot+sashiko@kernel.org
+To: hj351016@gmail.com
+Cc: danishanwar@ti.com, rogerq@kernel.org, netdev@vger.kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date: Sun, 08 Nov 2026 06:59:30 +0000
+Message-ID: <179412117075.994134.3223982666310946745@kernel.org>
+In-Reply-To: <20261107063726.3388730-1-hj351016@gmail.com>
+References: <20261107063726.3388730-1-hj351016@gmail.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261101185735.762559-8-tcmichals@gmail.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261107_221916_367257_344E547F 
-X-CRM114-Status: GOOD (  12.34  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,145 +72,259 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Tim,
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-kernel test robot noticed the following build errors:
+Critical: 0 · High: 0 (1) · Medium: 3 · Low: 0
 
-[auto build test ERROR on 7649ba73f9e7e1e04d0b46213e39c79ae09dd55c]
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tim-Michals/dt-bindings-mailbox-Add-Allwinner-A523-message-box/20261101-125729
-base:   7649ba73f9e7e1e04d0b46213e39c79ae09dd55c
-patch link:    https://lore.kernel.org/r/20261101185735.762559-8-tcmichals%40gmail.com
-patch subject: [PATCH v3 7/7] remoteproc: sunxi: Add KUnit tests
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20261108/202611081401.aakRznh0-lkp@intel.com/config)
-compiler: clang version 24.0.0git (https://github.com/llvm/llvm-project fc9576e3b179738d99c5babe5cd9d6c1f883e0db)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261108/202611081401.aakRznh0-lkp@intel.com/reproduce)
+- [Medium] The patch moves cancel_work_sync(&iep->work) out of the
+  ptp_clk_mutex critical section in icss_iep_pps_enable()…
+- [Medium] After the patch, an icss_iep_cap_cmp_work() instance can run
+  after icss_iep_pps_enable(0) has disabled and cleared the compare…
+- [Medium] The commit message says that because the compare is disabled
+  before the drain, 'no new work can be scheduled once the mutex is…
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202611081401.aakRznh0-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/remoteproc/sunxi_rproc_kunit.c:962:58: error: no member named 'usage_count' in 'struct dev_pm_info'
-     962 |         KUNIT_EXPECT_EQ(test, atomic_read(&ctx->priv.dev->power.usage_count), 0);
-         |                                            ~~~~~~~~~~~~~~~~~~~~ ^
-   include/kunit/test.h:1034:28: note: expanded from macro 'KUNIT_EXPECT_EQ'
-    1034 |         KUNIT_EXPECT_EQ_MSG(test, left, right, NULL)
-         |                                   ^~~~
-   include/kunit/test.h:1039:8: note: expanded from macro 'KUNIT_EXPECT_EQ_MSG'
-    1039 |                                    left, ==, right,                            \
-         |                                    ^~~~
-   include/kunit/test.h:874:9: note: expanded from macro 'KUNIT_BINARY_INT_ASSERTION'
-     874 |                                     left, op, right,                           \
-         |                                     ^~~~
-   include/kunit/test.h:840:15: note: expanded from macro 'KUNIT_BASE_BINARY_ASSERTION'
-     840 |         const typeof(left) __left = (left);                                    \
-         |                      ^~~~
->> drivers/remoteproc/sunxi_rproc_kunit.c:962:58: error: no member named 'usage_count' in 'struct dev_pm_info'
-     962 |         KUNIT_EXPECT_EQ(test, atomic_read(&ctx->priv.dev->power.usage_count), 0);
-         |                                            ~~~~~~~~~~~~~~~~~~~~ ^
-   include/kunit/test.h:1034:28: note: expanded from macro 'KUNIT_EXPECT_EQ'
-    1034 |         KUNIT_EXPECT_EQ_MSG(test, left, right, NULL)
-         |                                   ^~~~
-   include/kunit/test.h:1039:8: note: expanded from macro 'KUNIT_EXPECT_EQ_MSG'
-    1039 |                                    left, ==, right,                            \
-         |                                    ^~~~
-   include/kunit/test.h:874:9: note: expanded from macro 'KUNIT_BINARY_INT_ASSERTION'
-     874 |                                     left, op, right,                           \
-         |                                     ^~~~
-   include/kunit/test.h:840:31: note: expanded from macro 'KUNIT_BASE_BINARY_ASSERTION'
-     840 |         const typeof(left) __left = (left);                                    \
-         |                                      ^~~~
-   drivers/remoteproc/sunxi_rproc_kunit.c:977:58: error: no member named 'usage_count' in 'struct dev_pm_info'
-     977 |         KUNIT_EXPECT_EQ(test, atomic_read(&ctx->priv.dev->power.usage_count), 1);
-         |                                            ~~~~~~~~~~~~~~~~~~~~ ^
-   include/kunit/test.h:1034:28: note: expanded from macro 'KUNIT_EXPECT_EQ'
-    1034 |         KUNIT_EXPECT_EQ_MSG(test, left, right, NULL)
-         |                                   ^~~~
-   include/kunit/test.h:1039:8: note: expanded from macro 'KUNIT_EXPECT_EQ_MSG'
-    1039 |                                    left, ==, right,                            \
-         |                                    ^~~~
-   include/kunit/test.h:874:9: note: expanded from macro 'KUNIT_BINARY_INT_ASSERTION'
-     874 |                                     left, op, right,                           \
-         |                                     ^~~~
-   include/kunit/test.h:840:15: note: expanded from macro 'KUNIT_BASE_BINARY_ASSERTION'
-     840 |         const typeof(left) __left = (left);                                    \
-         |                      ^~~~
-   drivers/remoteproc/sunxi_rproc_kunit.c:977:58: error: no member named 'usage_count' in 'struct dev_pm_info'
-     977 |         KUNIT_EXPECT_EQ(test, atomic_read(&ctx->priv.dev->power.usage_count), 1);
-         |                                            ~~~~~~~~~~~~~~~~~~~~ ^
-   include/kunit/test.h:1034:28: note: expanded from macro 'KUNIT_EXPECT_EQ'
-    1034 |         KUNIT_EXPECT_EQ_MSG(test, left, right, NULL)
-         |                                   ^~~~
-   include/kunit/test.h:1039:8: note: expanded from macro 'KUNIT_EXPECT_EQ_MSG'
-    1039 |                                    left, ==, right,                            \
-         |                                    ^~~~
-   include/kunit/test.h:874:9: note: expanded from macro 'KUNIT_BINARY_INT_ASSERTION'
-     874 |                                     left, op, right,                           \
-         |                                     ^~~~
-   include/kunit/test.h:840:31: note: expanded from macro 'KUNIT_BASE_BINARY_ASSERTION'
-     840 |         const typeof(left) __left = (left);                                    \
-         |                                      ^~~~
-   drivers/remoteproc/sunxi_rproc_kunit.c:1107:48: error: no member named 'usage_count' in 'struct dev_pm_info'
-    1107 |         KUNIT_EXPECT_EQ(test, atomic_read(&dev->power.usage_count), 0);
-         |                                            ~~~~~~~~~~ ^
-   include/kunit/test.h:1034:28: note: expanded from macro 'KUNIT_EXPECT_EQ'
-    1034 |         KUNIT_EXPECT_EQ_MSG(test, left, right, NULL)
-         |                                   ^~~~
-   include/kunit/test.h:1039:8: note: expanded from macro 'KUNIT_EXPECT_EQ_MSG'
-    1039 |                                    left, ==, right,                            \
-         |                                    ^~~~
-   include/kunit/test.h:874:9: note: expanded from macro 'KUNIT_BINARY_INT_ASSERTION'
-     874 |                                     left, op, right,                           \
-         |                                     ^~~~
-   include/kunit/test.h:840:15: note: expanded from macro 'KUNIT_BASE_BINARY_ASSERTION'
-     840 |         const typeof(left) __left = (left);                                    \
-         |                      ^~~~
-   drivers/remoteproc/sunxi_rproc_kunit.c:1107:48: error: no member named 'usage_count' in 'struct dev_pm_info'
-    1107 |         KUNIT_EXPECT_EQ(test, atomic_read(&dev->power.usage_count), 0);
-         |                                            ~~~~~~~~~~ ^
-   include/kunit/test.h:1034:28: note: expanded from macro 'KUNIT_EXPECT_EQ'
-    1034 |         KUNIT_EXPECT_EQ_MSG(test, left, right, NULL)
-         |                                   ^~~~
-   include/kunit/test.h:1039:8: note: expanded from macro 'KUNIT_EXPECT_EQ_MSG'
-    1039 |                                    left, ==, right,                            \
-         |                                    ^~~~
-   include/kunit/test.h:874:9: note: expanded from macro 'KUNIT_BINARY_INT_ASSERTION'
-     874 |                                     left, op, right,                           \
-         |                                     ^~~~
-   include/kunit/test.h:840:31: note: expanded from macro 'KUNIT_BASE_BINARY_ASSERTION'
-     840 |         const typeof(left) __left = (left);                                    \
-         |                                      ^~~~
-   6 errors generated.
-
-
-vim +962 drivers/remoteproc/sunxi_rproc_kunit.c
-
-   949	
-   950	/* Everything as before prepare(): resets asserted, clocks off, no PM reference */
-   951	static void expect_powered_off(struct kunit *test, struct test_context *ctx,
-   952				       struct mock_providers *mp, bool core_held)
-   953	{
-   954		int i;
-   955	
-   956		KUNIT_EXPECT_TRUE(test, mp->asserted[RST_CFG]);
-   957		KUNIT_EXPECT_TRUE(test, mp->asserted[RST_SRAM]);
-   958		KUNIT_EXPECT_TRUE(test, mp->asserted[RST_DEBUG]);
-   959		KUNIT_EXPECT_EQ(test, mp->asserted[RST_CORE], core_held);
-   960		for (i = 0; i < NR_CLK; i++)
-   961			KUNIT_EXPECT_FALSE_MSG(test, clk_hw_is_prepared(&mp->clk[i].hw), "clock %d", i);
- > 962		KUNIT_EXPECT_EQ(test, atomic_read(&ctx->priv.dev->power.usage_count), 0);
-   963	}
-   964	
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but the shared
+  iep->work is never drained when periodic output (perout) is disabled,…
 
 --
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+net: ti: icss-iep: fix deadlock when disabling PPS
+
+This commit moves cancel_work_sync(&iep->work) in icss_iep_pps_enable()
+out of the ptp_clk_mutex critical section. The PPS disable path then no
+longer waits for icss_iep_cap_cmp_work() while it holds the mutex that the
+work handler needs.
+
+> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ethernet/ti/icssg/icss_iep.c
+> index ec085897edf09..6264061a4eab3 100644
+> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
+> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+
+[ ... ]
+
+> @@ -607,7 +608,7 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
+>  	} else {
+>  		ret = icss_iep_perout_enable_hw(iep, &rq.perout, on);
+>  		if (iep->cap_cmp_irq)
+> -			cancel_work_sync(&iep->work);
+> +			drain_work = true;
+>  	}
+>  
+>  	if (!ret)
+> @@ -616,6 +617,15 @@ static int icss_iep_pps_enable(struct icss_iep *iep, int on)
+>  exit:
+>  	mutex_unlock(&iep->ptp_clk_mutex);
+
+[Severity: Medium]
+Once the mutex is dropped here, can icss_iep_cap_cmp_work() run against
+compare hardware that has just been disabled and cleared?
+
+There seem to be two ways for this to happen:
+
+  - A handler already blocked in mutex_lock(&iep->ptp_clk_mutex) now
+    continues. This is the case the patch fixes.
+
+  - A work item that was pending but not yet started begins running
+    between mutex_unlock() and cancel_work_sync(). In that case
+    cancel_work_sync() only waits for it to finish.
+
+The handler doesn't check pps_enabled or perout_enabled after it takes the
+mutex:
+
+icss_iep_cap_cmp_work() {
+	mutex_lock(&iep->ptp_clk_mutex);
+
+	ns = readl(iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
+	...
+	ns_next = ns + iep->period;
+	writel(lower_32_bits(ns_next),
+	       iep->base + reg_offs[ICSS_IEP_CMP1_REG0]);
+	...
+	pevent.pps_times.ts_real = ns_to_timespec64(ns);
+	pevent.type = PTP_CLOCK_PPSUSR;
+	pevent.index = 0;
+	ptp_clock_event(iep->ptp_clock, &pevent);
+	...
+}
+
+icss_iep_perout_enable_hw(on=0) has just written 0 to CMP1_REG0/REG1. The
+late handler would then set CMP1 to 0 + iep->period, which undoes the
+"clear CMP regs" step. It would also send a PTP_CLOCK_PPSUSR event with a
+zero (1970) timestamp.
+
+pps_event() doesn't check whether PPS is enabled. It records the assert,
+increments assert_sequence, wakes /dev/ppsN readers and calls
+pps_kc_event(), all after userspace has turned PPS off.
+
+Before this patch, the blocked case deadlocked and the pending case was
+cancelled under the mutex, so this behaviour is new.
+
+Should icss_iep_cap_cmp_work() return early under the mutex when neither
+pps_enabled nor perout_enabled is set?
+
+>  
+> +	/*
+> +	 * Drain the capture-compare work only after dropping ptp_clk_mutex.
+> +	 * icss_iep_cap_cmp_work() acquires ptp_clk_mutex itself, so calling
+> +	 * cancel_work_sync() while the mutex is held deadlocks when a handler
+> +	 * instance is already running and waiting for that same mutex.
+> +	 */
+> +	if (drain_work)
+> +		cancel_work_sync(&iep->work);
+
+[Severity: Medium]
+The drain now runs outside ptp_clk_mutex and doesn't re-check
+pps_enabled or perout_enabled. Could it cancel work that belongs to a
+later enable?
+
+pps_enable_store() and period_store() in drivers/ptp/ptp_sysfs.c call
+ops->enable() without ptp->pincfg_mux. That means they aren't serialized
+against the PTP_ENABLE_PPS ioctl path or against each other.
+
+One possible sequence:
+
+CPU0 (disable)                       CPU1 (sysfs enable)
+icss_iep_pps_enable(iep, 0)
+  pps_enabled = false
+  mutex_unlock()
+                                     icss_iep_pps_enable(iep, 1)
+                                       program CMP1, set CMP_EN
+                                       pps_enabled = true
+                                     first CMP1 hit:
+                                     icss_iep_cap_cmp_irq()
+                                       schedule_work(&iep->work)
+  cancel_work_sync(&iep->work)
+    removes the new session's work
+
+icss_iep_cap_cmp_work() is the only code that moves CMP1 forward. Once
+its work is cancelled, no further compare events or PPS pulses are
+produced, while the driver still reports pps_enabled == true.
+
+The other order is possible as well. Suppose an old-session work instance
+is blocked in mutex_lock() and gets the mutex after CPU1's enable. It
+would read the new boundary B from CMP1, write B + period and send a
+PPSUSR event stamped B before time B arrives. The first real edge of the
+new session would be skipped.
+
+Before this patch the cancel ran under ptp_clk_mutex, so a concurrent
+enable had to wait for it.
+
+[Severity: Medium]
+The commit message says:
+
+    The hardware compare is
+    already disabled by icss_iep_perout_enable_hw() before the drain, so no new
+    work can be scheduled once the mutex is released.
+
+Is that guaranteed? icss_iep_cap_cmp_irq() reads pps_enabled with no lock
+and no ordering against this path. Nothing calls
+synchronize_irq(iep->cap_cmp_irq) before the drain:
+
+icss_iep_cap_cmp_irq() {
+	val = readl(iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
+	if (val & BIT(1)) {
+		writel(BIT(1), iep->base + reg_offs[ICSS_IEP_CMP_STAT_REG]);
+		if (iep->pps_enabled || iep->perout_enabled)
+			schedule_work(&iep->work);
+	...
+}
+
+Suppose a CMP1 hit was latched just before CMP_EN was cleared, and its
+handler on CPU1 has already read pps_enabled == true.
+
+CPU0 can then set pps_enabled = false, drop the mutex and call
+cancel_work_sync(). That call returns immediately because nothing is
+pending.
+
+CPU1 then calls schedule_work(), and the work runs after PPS has been
+disabled.
+
+On teardown, ptp_clock_unregister() -> ptp_disable_all_events() ->
+icss_iep_pps_enable(0) runs first. After that the pps source and
+ptp_clock are released, and icss_iep_exit() sets iep->ptp_clock to NULL.
+A work item queued this late could call ptp_clock_event() on a freed or
+NULL ptp_clock.
+
+On PREEMPT_RT the handler is force-threaded and can be preempted between
+the flag read and schedule_work(), so the window is wider there.
+
+The old code had the same race with a larger window. However, the commit
+message's argument depends on this window being closed.
+
+Would a synchronize_irq() after clearing pps_enabled, together with a
+state check in the work handler, close it?
+
+> +
+>  	return ret;
+>  }
+>  
+
+[Severity: High]
+This isn't a bug introduced by this patch, but the perout disable path has
+a related problem. icss_iep_cap_cmp_irq() also queues iep->work when
+perout_enabled is set, but icss_iep_perout_enable(..., 0) never drains it:
+
+icss_iep_perout_enable() {
+	...
+	ret = icss_iep_perout_enable_hw(iep, req, on);
+	if (!ret)
+		iep->perout_enabled = !!on;
+
+exit:
+	mutex_unlock(&iep->ptp_clk_mutex);
+
+	return ret;
+}
+
+On teardown, icss_iep_exit() unregisters the clock and sets it to NULL
+before perout is turned off:
+
+icss_iep_exit() {
+	if (iep->ptp_clock) {
+		ptp_clock_unregister(iep->ptp_clock);
+		iep->ptp_clock = NULL;
+	}
+	icss_iep_disable(iep);
+
+	if (iep->pps_enabled)
+		icss_iep_pps_enable(iep, false);
+	else if (iep->perout_enabled)
+		icss_iep_perout_enable(iep, NULL, false);
+	...
+}
+
+The ptp_disable_all_events() call inside ptp_clock_unregister() only
+disables EXTTS and PPS. The PPS disable returns -EBUSY while perout is
+enabled, so the work isn't drained there either.
+
+Can a work item queued while perout is active run icss_iep_cap_cmp_work()
+after this point? It could be queued before teardown, or by an IRQ that
+arrives before CMP_EN is cleared. If it runs, ptp_clock_event() would use
+a NULL or freed iep->ptp_clock and pps_device.
+
+This can be reached from ndo_stop via prueth_emac_common_stop(), or from
+prueth_remove(). It needs an IEP with an iep_cap_cmp interrupt and the
+icssg_prueth clockops, which set n_per_out = 1.
+
+Also, iep->ptp_clock = NULL is assigned without holding ptp_clk_mutex.
+
+Should icss_iep_perout_enable() also call cancel_work_sync() on disable?
+And should icss_iep_exit() drain iep->work before it unregisters the
+clock?
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261107063726.3388730-1-hj351016%40gmail.com
 
