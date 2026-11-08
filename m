@@ -2,70 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8710D606EEA4
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 13:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64865606A33C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 13:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZmmUBjmR;
-	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=Q6wJh23r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oBRydOah;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=ovdZp0dA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=NMaYDAFbFDHoZRuN5JaVw6zHt8W9tmMQG3Imac9QJIc=; b=ZmmUBjmRZZSY33lZrVVGEIdjF7
-	c8Wp2BYWKQuuQzXi46cDK1UlatWzYLZnJNypstWuhZStrYXNfvFqdY39SEn0sT/pPesvajrrUA41O
-	OEC5XEevBzLrbUa8dhz0kRp/QsRkv6G2DhE+PbEs5wLy9sp/idN08vOcPfDCEFlRILO2B3zkxVEsb
-	vNevf0nrjPeXByIlzO42lmq9G1twyeOJKPy52byO31xspgtREoft5TzOuoWOK9p7px/T12/b0w1sY
-	y1e99InyCTthdTYKNpyrkKOFC/v5Sr4XxUTDxIZavvnhTLgaNtoS4DLjqutXPEskTqpzJPcO91ZrO
-	6/Qu0Gcw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=E3uK4ToIL2mUz3Svln8sWa7foOIYRKuRK6T5m3vJSVY=; b=oBRydOahiZubvJ
+	i70rKAj1hK7Hahc9JIftZEmmDRuTrh+U1vomdUnmBDwB8rlP0lpP3PB0Z1DjB+sTTr16ttKih4YiA
+	zc2B0CbABlX+UC7KVxnFMv3G3hiAaRU5EquXL4mGhVBR9eGb9gkOlZeGXaL4sF5Mb999fY97zzm8t
+	/i2wMwbtkf95Ock+Gwe+Iqitc6AAKEmspZQE/ak2VArliISfSyDighSqDkdM/fFD69wksYZ1k7jgy
+	k2Zn+pUR5QeIstzjwdwZDoN8EFv6WWZMN+foEyAQSB8IfmbwrnNOCIeBgV2xrWBsDJICHcH6vj+rc
+	ONqIod7oyLX9TjdH3y0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ2p4-0000000GCHz-44Ob;
-	Sun, 08 Nov 2026 13:20:38 +0000
-Received: from esa4.hc555-34.eu.iphmx.com ([207.54.77.171])
+	id 1xQ2p5-0000000GCIK-0FpR;
+	Sun, 08 Nov 2026 13:20:39 +0000
+Received: from esa3.hc555-34.eu.iphmx.com ([207.54.77.50])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ2ox-0000000GCDm-0tlQ
+	id 1xQ2oy-0000000GCEN-44WM
 	for linux-arm-kernel@lists.infradead.org;
 	Sun, 08 Nov 2026 13:20:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
-  t=1794144031; x=1825680031;
-  h=from:subject:date:message-id:mime-version:
-   content-transfer-encoding:to:cc;
-  bh=FrEnwb0WNypyTVTEhplcLKt7FgICC0VSO8uTuYeBtlY=;
-  b=Q6wJh23rI0RGCo2jYF6mkoXwUJOL4R8MuoLyEL/68sW2cIaxQBTPLUw9
-   W52JQm9gyK45dkuXa6uRkX3tuaxJ3enzTzslRdvYgFFG3UZFUaJZ8HMFp
-   UjQ26g8K4miYhntPIBBWU2lkZAfugXyHrdmXLaeR3czxYEl+77BGCr4t/
-   HX2guNpC/BjyJmjPErVKW83OHVR8b7fu4//LY5CzlC/P+8FxZnkwhjvzR
-   rsPn6O9gF5wxIQoqpBns8gc3aThwDMWF3JOq59jajOFegdIJthtSA/HdY
-   KG9ufp3W78ZUe2kk1UxuzW3rctZXol03OY/knZuGPz5c///kL295rjvM9
-   g==;
-X-CSE-ConnectionGUID: oKz5XGsYRq2h87HlQVw4bw==
-X-CSE-MsgGUID: +LzHBqzNSi28vQ5uYLxeCg==
+  t=1794144033; x=1825680033;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:references:in-reply-to:to:cc;
+  bh=CVPab+eqiu3Puch8ckhPaA7dUxIgv7j+PTZCvvIA2cs=;
+  b=ovdZp0dAlmbieelNlQeM2Xh1bOjUUsw4eYXOwjsJ3HoSx0A1OoSQe4IG
+   jdlqbjj3lTk31oDjO8mc6iZO1y+PhVsMV6oIpI24w77LtjMWAqq0Y75Oj
+   5mpYoI9VbjyBPbbX9nCGQT1nbJTqr6hW218brrO38C4MRdSzHgHEOKzbk
+   fPzwCuaqPzAFnRkyNfhAJArTWUpz66x2nuhIrbU9QGfPQD9m/2wAhnLVS
+   Ajc5X67ra6dbyJxucHlk9s5b/c56UVNnnaCTXgBEIz17EPleIPWgLHIiK
+   yoj5GeodfPOEhxAALh4EU35QBTEPRD2trar8y26uT5pCOUnTD7UV9TycA
+   A==;
+X-CSE-ConnectionGUID: zybtT9kDR5GGTu2OsmKe5A==
+X-CSE-MsgGUID: oftXl63DRbu6olFUNI64Kg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
-  by esa4.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2026 15:20:26 +0200
-X-CSE-ConnectionGUID: 4izjUNGfSYOzPytRPXsd3A==
-X-CSE-MsgGUID: SQGFD0xOSvydhC8Mpc344w==
+Received: from unknown (HELO ces04_data.me-crop.lan) ([146.255.191.134])
+  by esa3.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2026 15:20:31 +0200
+X-CSE-ConnectionGUID: kIVhbG17Tb6TDfj/1RjtSQ==
+X-CSE-MsgGUID: b8fvuy/nSUu7glftSj8A0A==
 Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.2])
-  by ces02_data.me-corp.lan with SMTP; 08 Nov 2026 15:28:27 +0200
-Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Sun, 08 Nov 2026 15:20:24 +0200
+  by ces04_data.me-crop.lan with SMTP; 08 Nov 2026 15:28:31 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Sun, 08 Nov 2026 15:20:30 +0200
 From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-Subject: [PATCH 0/5] perf: add PMU driver for the MIPS Coherence Manager 3
- performance counters
-Date: Sun, 08 Nov 2026 15:20:09 +0200
-Message-Id: <20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com>
+Date: Sun, 08 Nov 2026 15:20:14 +0200
+Subject: [PATCH 5/5] MIPS: eyeq6_defconfig: enable the CM3 PMU
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAp38GoC/yXMzQ5FQAxA4VeRrm+T1iDhVeQuGEUlfjKDSMS7G
- yy/xTkneHEqHoroBCe7ep2nAP5FYPtq6gS1CYaY4oyZGDVLidCOBpdxw6Ribk2e14khCM3ipNX
- j/ZX/z36rB7HrM4HrugFuq936cQAAAA==
-X-Change-ID: 20261101-i6500-cm3-pmu-4a11f399b430
+Message-Id: <20261108-i6500-cm3-pmu-v1-5-bd119584891a@mobileye.com>
+References: <20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com>
+In-Reply-To: <20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com>
 To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
@@ -84,8 +80,8 @@ Cc: linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
  Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_052031_966873_E58DE867 
-X-CRM114-Status: GOOD (  30.41  )
+X-CRM114-CacheID: sfid-20261108_052033_285818_26C335D0 
+X-CRM114-Status: GOOD (  11.32  )
 X-Spam-Score: -4.0 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,163 +100,36 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Coherence Manager 3 (CM3) of the MIPS I6500 multiprocessing system
-is the point where the requests of all cores, I/O coherence units and
-the hardware prefetcher are serialized before reaching the shared L2
-cache and the memory interface. It carries a small set of performance
-counters which observe this traffic: two programmable 32-bit event
-counters and a 32-bit cycle counter, programmed through the GCR global
-debug block (GCR_DB_PC_*).
-
-The counters can count requests serialized by the CM, requests received
-by an IOCU, requests issued on the memory interface, AXI handshake
-cycles on the memory and IOCU buses, and PDTrace statistics. Each event
-is refined by a 64-bit qualifier made of groups of bits (originating
-port, thread, command, cacheability, L1/L2 line state, eviction, bank,
-scheduler, ...): a request is counted when it matches a set bit in
-every group, so the same event can be narrowed down to, for example,
-L2 misses caused by coherent reads from core 1.
-
-This is the only visibility into the L2 and the memory interface that
-the I6500 offers; the per-core counters stop at the L1. It is the
-natural place to attribute memory bandwidth to cores and IOCUs, or to
-measure the L2 hit rate of a workload, on SoCs such as the Mobileye
-EyeQ6H.
-
-This series adds an uncore perf driver for these counters.
-
-Design notes
-------------
-
-The driver binds to the existing coherency-manager device tree node
-("mti,mips-cm" / "mobileye,eyeq6-cm") and reuses the GCR mapping
-already set up by mips_cm_probe(), so no new reg property is needed:
-the GCR base is discovered from CP0 CMGCRBase as for everything else in
-the CM. The register definitions go into asm/mips-cm.h next to the
-other GCRs, following the existing accessor scheme.
-
-Events are described by two fields: 'event' (config:0-8) is the number
-written to GCR_DB_PC_EVENT, with 0x100 as a pseudo event selecting the
-cycle counter, and 'qual' (config1:0-63) is the raw qualifier. A
-qualifier of 0 picks a per-event default counting every occurrence;
-this matters for the I/O and AXI events, whose qualifiers contain
-encoded values (IOCU number, AXI channel) rather than masks, so "all
-ones" is not a sensible default there. Named events cover the common
-combinations and, since they are plain event=/qual= strings, serve as
-templates for custom qualifiers.
-
-A multi-cluster system has one CM3, and thus one set of counters, per
-cluster. The number of clusters comes from GCR_CONFIG and one PMU is
-registered per cluster, named mips_cm3_pmu_<cluster>. A cluster need
-not have CPUs, online or at all, for its CM to be busy: its L2 and
-memory interface may serve the I/O devices behind its IOCUs while its
-cores are absent or powered down. The counters of a cluster are thus
-accessed through the GCR redirect block (GCR_Cx_OTHER with BLOCK set
-to the debug block) from whichever CPU the PMU runs on, which may be in
-any cluster. The one thing required is that the CM of the counted
-cluster is powered, which the driver checks in the CPC (the CM "core"
-STAT_CONF sequencer state) when an event is opened; the counters of a
-cluster that is powered down at probe time are initialized on first
-use, and events on it fail with -ENODEV until then. The counters are
-shared by the whole cluster: events are system-wide only, pinned to one
-CPU which follows CPU hotplug, and sampling, task events and the
-exclude_* attributes are rejected.
-
-Overflow is where the SoC integration leaks in. The CM3 has a
-so_cm_perf_cnt_int output, but whether it is wired to a GIC input is
-the integrator's choice and is not discoverable. The binding therefore
-gains an optional 'interrupts' property: when present the driver uses
-it to extend the 32-bit counters, otherwise it polls them every 250 ms,
-which is comfortably below the time the fastest event needs to wrap
-at the CM3 clock rates. Both paths yield 64-bit counts. No DTS change
-is included because the EyeQ6H routing of that signal is not documented
-on my side; the driver works in polling mode without it.
-
-The interrupt can only serve the cluster the CPUs live in, and only
-when they all live in that one cluster. Each cluster's CM drives its
-own interrupt output into its own GIC, and the GIC driver routes a
-shared interrupt to the cluster of its affinity CPU, so a single
-'interrupts' entry cannot serve several clusters at once. The PMUs of
-the other clusters, and all PMUs when CPUs are spread over clusters,
-are polled.
-
-The driver can be built as a module. That requires exporting
-mips_gcr_base, mips_cpc_base, mips_cm_{lock,unlock}_other() and, less
-obviously, mips_cm_is64, since the CPS accessor macros consult it on
-every 64-bit GCR access. All are exported _GPL.
-
-Patches
--------
-
-Patch 1 adds the GCR_DB_PC_* register and field definitions, with
-local and redirect accessors.
-
-Patch 2 exports the CM and CPC symbols needed by a modular user of the
-GCR accessors.
-
-Patch 3 extends the mti,mips-cm binding with the optional performance
-counter interrupt.
-
-Patch 4 is the driver itself together with its admin-guide document,
-which describes the perf interface and transcribes the event numbers
-and qualifier layouts so that users do not need the TRM to build a
-qualifier.
-
-Patch 5 enables the driver (as a module) in eyeq6_defconfig.
-
-Testing
--------
-
-Built with eyeq6_defconfig with the driver both built-in and as a
-module; every patch of the series builds on its own, and the binding
-and the document pass their respective checkers.
-
-Run on the EyeQ6H board with 2 clusters, loaded as module in polling mode.
-
-[   66.128375] mips_cm3_pmu coherency-manager: mips_cm3_pmu_0: 2 counters + cycles, polled
-[   66.129617] mips_cm3_pmu coherency-manager: mips_cm3_pmu_1: 2 counters + cycles, polled
-
-dev / # perf stat -a -e mips_cm3_pmu_0/cm_requests_l2_hit/,mips_cm3_pmu_0/cm_requests_l2_miss/,mips_cm3_p
-mu_1/cm_requests_l2_hit/,mips_cm3_pmu_1/cm_requests_l2_miss/,mips_cm3_pmu_0/cycles/,mips_cm3_pmu_1/cycles
-/ sleep 1
-
- Performance counter stats for 'system wide':
-
-            505821      mips_cm3_pmu_0/cm_requests_l2_hit/                                   
-             49083      mips_cm3_pmu_0/cm_requests_l2_miss/                                   
-            184893      mips_cm3_pmu_1/cm_requests_l2_hit/                                   
-             37760      mips_cm3_pmu_1/cm_requests_l2_miss/                                   
-        1807514589      mips_cm3_pmu_0/cycles/                                      
-        1807491360      mips_cm3_pmu_1/cycles/                                      
-
-       1.005857149 seconds time elapsed
+Enable perf events and build the Coherence Manager 3 PMU driver as a
+module.
 
 Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 ---
-Vladimir Kondratiev (5):
-      MIPS: CM: add CM3 performance counter GCR definitions
-      MIPS: CM: export the symbols needed to access the GCRs from a module
-      dt-bindings: mips: mti,mips-cm: add performance counter interrupt
-      perf: add MIPS Coherence Manager 3 (CM3) PMU driver
-      MIPS: eyeq6_defconfig: enable the CM3 PMU
+ arch/mips/configs/eyeq6_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
 
- Documentation/admin-guide/perf/index.rst           |   1 +
- Documentation/admin-guide/perf/mips_cm3_pmu.rst    | 337 +++++++
- .../devicetree/bindings/mips/mti,mips-cm.yaml      |   6 +
- arch/mips/configs/eyeq6_defconfig                  |   2 +
- arch/mips/include/asm/mips-cm.h                    |  51 +-
- arch/mips/kernel/mips-cm.c                         |   5 +
- arch/mips/kernel/mips-cpc.c                        |   2 +
- drivers/perf/Kconfig                               |  12 +
- drivers/perf/Makefile                              |   1 +
- drivers/perf/mips_cm3_pmu.c                        | 988 +++++++++++++++++++++
- 10 files changed, 1404 insertions(+), 1 deletion(-)
----
-base-commit: c03c1a14507dfaf8b856c2608f9ac216021fc222
-change-id: 20261101-i6500-cm3-pmu-4a11f399b430
+diff --git a/arch/mips/configs/eyeq6_defconfig b/arch/mips/configs/eyeq6_defconfig
+index 0a00a201937b..2d06d9ed6526 100644
+--- a/arch/mips/configs/eyeq6_defconfig
++++ b/arch/mips/configs/eyeq6_defconfig
+@@ -19,6 +19,7 @@ CONFIG_USER_NS=y
+ CONFIG_SCHED_AUTOGROUP=y
+ CONFIG_BLK_DEV_INITRD=y
+ CONFIG_EXPERT=y
++CONFIG_PERF_EVENTS=y
+ CONFIG_EYEQ=y
+ CONFIG_MACH_EYEQ6H=y
+ CONFIG_MIPS_CPS=y
+@@ -86,6 +87,7 @@ CONFIG_MMC_SDHCI_PLTFM=y
+ CONFIG_MMC_SDHCI_CADENCE=y
+ # CONFIG_IOMMU_SUPPORT is not set
+ CONFIG_RESET_CONTROLLER=y
++CONFIG_MIPS_CM3_PMU=m
+ # CONFIG_NVMEM is not set
+ CONFIG_EXT4_FS=y
+ CONFIG_EXT4_FS_POSIX_ACL=y
 
-Best regards,
---  
-Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+-- 
+2.43.0
 
 
