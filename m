@@ -2,110 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA7D606D804
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80960606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:17:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M9TwR1Rg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nlJriO2I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ucmj7niX;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=iSLg7Ze4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=g1GO0N9RZa7XxF5IhvFVAct0JfNThmJRb5rQhjdL3DU=; b=M9TwR1RgiRTvlKgDO2A8iT3zdd
-	KHqh4Ab/qR2fBNcLXs3VNCVTEfue54BiGZ+A+4LNsAcxe4C2H37ZdooWyIDBLO2KLr9nC7eumxcW3
-	VGrTCXSUdgrSbrXSZTjbyTEezzmDQAlHNWk5+5Hq5mUFeNj/aZ1hcHV173aZKM4gwRlIm7zOrt38M
-	Dy53MrWQQZoxhuxbkXakesx6/jNo1yZhMcjInznMErAkfAo1NlXxF4gknRYKJDjIoVmvuSEdU+5ve
-	51cKBnzrq5fq+3oixiR3Foq5DURoiqnadu10QYrh9UngJ6/318WSBXE/R5EmSINxQWoSk1/6lgQbb
-	jXqc1jmg==;
+	bh=UrgRuA4qIN8HYiSqMukKi9v17NzPiBhuFI6MYq6PyEA=; b=Ucmj7niXdRYwrAWGLkYpe4n5lm
+	h6vkIOllaBMSWftltqHbpCQvC18VQEta6jjzZxQBL3DG5iik4wCSXm47brvZjksn9BNzx7e2YNu2h
+	XxdkIyEFpo41r7J3mkU/t2BUilMmQhxoie3p+1zEziZvjHnpuMAYc1PEeZtX9FGPXaSvBpg53jR2r
+	XYSA8YiGyOQ7/at6fcgnBNOpqUGx5aj5gVFlnFsXx4ufZk3xRSXUZFgqS5Ht07FKxIQMUmVWzC1Wi
+	KxhkOQlXScZs1YMY5/TXgfOX0xUXtAxrko2VLtAMncK/0Q269MZR5oOfzaOJXD4rZIcLzh8hOMvZr
+	Q6atgQxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPzne-0000000FwJx-1r5u;
-	Sun, 08 Nov 2026 10:06:58 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xPzxO-0000000FxIj-15P4;
+	Sun, 08 Nov 2026 10:17:02 +0000
+Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xPznb-0000000FwIW-1S0l
+	id 1xPzxK-0000000FxIM-1Mjj
 	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 10:06:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1B63B43CCC;
-	Sun,  8 Nov 2026 10:06:55 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794132415;
-	b=0jAmR3JjNP9khpbqfFnxA/YgXeOq6F95Jh8Yr8+y79tjeXyI7CleyeLY9dWNF6L3vRhj
-	 03bxK5bRoVDrQLJoaq3SLrjsG5bX7K3MWmTcd8ttgW2buBmsvM542FkxExIDIFPqhHI9Q
-	 5jN357Is2UJ53L0Il/POusq8wz/dMzwgKNJGfD9gQlEwNHhQ12rSA+CHz+hRAydXbgwac
-	 DoANeR9aBOQddVxNMWnycDp2B82CzG+s8DRnPRPQIAK9dgnfhk+bapEzepN/u2A1orE5F
-	 HkUjW/Dn5A9FhrzSr1wPcmDAilESNaSGLV/oYsBzOywVPyk1voEBL4gMh77lERnxC7w==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794132415;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=g1GO0N9RZa7XxF5IhvFVAct0JfNThmJRb5rQhjdL3DU=;
-	b=edwKSPvp8jT80ukuLuH9tQeK9I4DFgl5zZqcAhTPYzmV5TfgtoiOy/mCDFS0SWEaNhML
-	 xQk6XCRLMkwViW70w62L9VXPthIZmWHVzie3VjxIRyApi3iV+Ind1dprPfdh6RXHxxOKk
-	 E1eVHqGyz9faZyj83DOSOZ3P9Viwi0W9hlB9E5BYXyJAj4XUoBt+hEldh8quidFRKYJ7F
-	 ItyrDVxoAcggyOiGmdTs9X2gZ+aZBPhbis4U9BvGhdbduXCNiGUYl3PakTEjUtLshfY1q
-	 eTkK8y1rA4jxPprlt3NOmemihSqe0u5kxRqx+1uFNwLelnvel4AB1DfvREatLa/vbuQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 8D3A91F008A3;
-	Sun,  8 Nov 2026 10:06:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794132414;
-	bh=g1GO0N9RZa7XxF5IhvFVAct0JfNThmJRb5rQhjdL3DU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=nlJriO2IGP7RVBOgkcNeJQc46C9tTI9rg4S7arrI6Fx6sjNOY5llkDWh5eKcuxEzq
-	 dY3t66ASRwWhkU84qeJZFYBxW3eyIpVFGgwEpgxHNV9CiStjpytijb74bC1l+GvJyh
-	 qwWSLOmGqO9aUo023JsrS5XVW/+GFdVZpMmf5+PVVHD56xGAXHt7VxMviZ5Z/tCLAk
-	 CGuxkh+oZV+WSKFAC+WDBcVeSoYgHokeoyeTsGZAqAbHzrx+tO5rbbXR5SO1Y0hcPD
-	 ED8eJthdkwSeuBqf9/EK8dzfIkrQAW57h+8GcLGknjWspXoxAnbZltbEdbAVzM0MOG
-	 CoUkphjG12ynQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1C46A47ED3;
-	Sun,  8 Nov 2026 10:06:53 +0000 (UTC)
-From: Vincent Jardin via B4 Relay <devnull+vjardin.free.fr@kernel.org>
-Date: Sun, 08 Nov 2026 11:06:51 +0100
-Subject: [PATCH v3 3/5] soc: fsl: guts: add the RCW override of any RCWSR
+	Sun, 08 Nov 2026 10:17:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=UrgR
+	uA4qIN8HYiSqMukKi9v17NzPiBhuFI6MYq6PyEA=; b=iSLg7Ze4i8YhUgniD/xU
+	PiEdi+qumx6BmJbCyrCDaKqmve1usIpJpojNOJaDxuj666kJmGdsM7OJgswSaNVM
+	xEIedPFCRBHqysZZGQvl8wm7R/HRFCc1QqN+T61ICIOMNNbwTJqgvsBT6OvyKdPe
+	7q5Zew4GGssjRwnOJK1R1khs4o91zACTkKRbWRhWXNr4Mom6MPVSeCr6VWxML2Xx
+	/7iuehdxvj7P0MSX4ek5P/gU70Bmex8ZLAvaXFaz7uvq2VIH/+i0saMg/os80/aZ
+	dH/+Af0dvEoEWKgfKAweA8ivsCPbzJr41ffK7mwQS2Hci1gbp9jL8IBdH2ZH8BBJ
+	Zg==
+Received: (qmail 2808041 invoked from network); 8 Nov 2026 11:16:54 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Nov 2026 11:16:54 +0100
+X-UD-Smtp-Session: l3s3148p1@DHDJJMFfCLVe20rG
+Date: Sun, 8 Nov 2026 11:16:48 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Dmitry Guzman <Dmitry.Guzman@mobileye.com>
+Cc: Linus Walleij <linusw@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	srinidhi kasagar <srinidhi.kasagar@stericsson.com>,
+	Ben Dooks <ben-linux@fluff.org>,
+	Andrea Gallo <andrea.gallo@stericsson.com>,
+	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/8] i2c: nomadik: fix several issues in fault handling,
+ optimize layout
+Message-ID: <avBMEGxmWtANGbZH@shikoro>
+References: <20261103-i2c-nomadik-fixes-v1-0-655c6af2cb70@mobileye.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261108-for-upstream-lx2160a-rcw-pinmux-v1-v3-3-5a0063f1da9e@free.fr>
-References: <20261108-for-upstream-lx2160a-rcw-pinmux-v1-v3-0-5a0063f1da9e@free.fr>
-In-Reply-To: <20261108-for-upstream-lx2160a-rcw-pinmux-v1-v3-0-5a0063f1da9e@free.fr>
-To: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>, 
- Frank Li <Frank.Li@nxp.com>, Jacky Bai <ping.bai@nxp.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- NXP S32 Linux Team <s32@nxp.com>, Linus Walleij <linusw@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
- Vladimir Oltean <vladimir.oltean@nxp.com>, Vincent Jardin <vjardin@free.fr>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794132412; l=4011;
- i=vjardin@free.fr; s=20260525; h=from:subject:message-id;
- bh=zMby9g9Gw8IHCSfvPJh/Ob7NvLFrXegdSthe00uEpLg=;
- b=2b1nOVqOafOScXjWJwLBfaZRxAk5LXAMFetO1Zi2NRhoOC9E019pnsyEBWgl0ObkpuXfGHhY1
- SemDGmin9KTAOpDCHsTO6HO7nr4HADSit4kn5z43VV4xJEDzzCT/X3J
-X-Developer-Key: i=vjardin@free.fr; a=ed25519;
- pk=hppgLeFpGpKOi7LNwGEZ4jOYofJCoGd4Jf1ltAabiLw=
-X-Endpoint-Received: by B4 Relay for vjardin@free.fr/20260525 with
- auth_id=871
-X-Original-From: Vincent Jardin <vjardin@free.fr>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261103-i2c-nomadik-fixes-v1-0-655c6af2cb70@mobileye.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_021659_260954_52FB138A 
+X-CRM114-Status: UNSURE (   7.67  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,133 +74,26 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: vjardin@free.fr
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,T_SPF_TEMPERROR,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Vincent Jardin <vjardin@free.fr>
+Hi Dmitry,
 
-fsl_guts_rcw_rmw() only serves the SerDes lane modes. Export it for
-other fields of the RCW:
- - fsl_guts_rcw_read() reads a status register
- - fsl_guts_rcw_override() changes fields of one under rcwcr_lock and
-   waits for the status register to follow
- - fsl_guts_rcw_override_supported() tells whether the DCSR view of DCFG,
-   which holds the override registers, is mapped
+> Patches #1..#5 were previously submitted as a part of a patchset that
+> introduces detailed fault reporting feature in i2c-nomadik and
+> i2c-designware drivers and i2c-core.
 
-Signed-off-by: Vincent Jardin <vjardin@free.fr>
----
- drivers/soc/fsl/guts.c   | 73 ++++++++++++++++++++++++++++++++++++++++++++++++
- include/linux/fsl/guts.h |  3 ++
- 2 files changed, 76 insertions(+)
+It was a good move to seperate these patches from the bigger series. I
+trust Linus' review, fixed the minor issues, and applied it to my
+for-andi breanch.
 
-diff --git a/drivers/soc/fsl/guts.c b/drivers/soc/fsl/guts.c
-index 28361c63e26c..d2e3f66d0da4 100644
---- a/drivers/soc/fsl/guts.c
-+++ b/drivers/soc/fsl/guts.c
-@@ -369,6 +369,79 @@ int fsl_guts_lane_set_mode(int serdes_idx, int lane, enum lynx_lane_mode lane_mo
- }
- EXPORT_SYMBOL_NS_GPL(fsl_guts_lane_set_mode, "FSL_GUTS");
- 
-+/**
-+ * fsl_guts_rcw_read() - read a RCW status register
-+ * @index: one-based index, RCWSR1 to RCWSR32
-+ * @val: the value read
-+ *
-+ * Return: 0 on success, -ENODEV before the DCFG block is mapped,
-+ * -EINVAL when @index is not 1 to 32
-+ */
-+int fsl_guts_rcw_read(unsigned int index, u32 *val)
-+{
-+	if (!soc.dcfg_ccsr)
-+		return -ENODEV;
-+	if (index < 1 || index > ARRAY_SIZE(soc.dcfg_ccsr->rcwsr))
-+		return -EINVAL;
-+
-+	*val = fsl_guts_read(&soc.dcfg_ccsr->rcwsr[index - 1]);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_NS_GPL(fsl_guts_rcw_read, "FSL_GUTS");
-+
-+/**
-+ * fsl_guts_rcw_override() - override fields of a RCW
-+ * @index: one-based index of the RCWSR and RCWCR pair
-+ * @val: the new value of the fields, in place
-+ * @mask: the fields to change
-+ *
-+ * The fields outside @mask keep the value the status register shows. The
-+ * override register is written and the status register polled until it
-+ * shows the result, as fsl_guts_lane_set_mode() does for a SerDes lane.
-+ *
-+ * Context: takes rcwcr_lock, shared with fsl_guts_lane_set_mode(), and
-+ * busy-polls the status register for up to RCW_TIMEOUT_US. Does not
-+ * sleep; must not be called from interrupt context.
-+ *
-+ * Return: 0 on success, -EOPNOTSUPP without a DCSR mapping of DCFG,
-+ * negative error otherwise
-+ */
-+int fsl_guts_rcw_override(unsigned int index, u32 val, u32 mask)
-+{
-+	int err;
-+
-+	if (!soc.dcfg_ccsr)
-+		return -ENODEV;
-+	if (!soc.dcfg_dcsr)
-+		return -EOPNOTSUPP;
-+	if (index < 1 || index > ARRAY_SIZE(soc.dcfg_ccsr->rcwsr))
-+		return -EINVAL;
-+
-+	spin_lock(&soc.rcwcr_lock);
-+	err = fsl_guts_rcw_rmw(index - 1, val & mask, mask);
-+	spin_unlock(&soc.rcwcr_lock);
-+	if (err)
-+		pr_err("RCW override of RCWSR%u failed: %pe\n", index,
-+		       ERR_PTR(err));
-+
-+	return err;
-+}
-+EXPORT_SYMBOL_NS_GPL(fsl_guts_rcw_override, "FSL_GUTS");
-+
-+/**
-+ * fsl_guts_rcw_override_supported() - can a Reset Configuration Word be
-+ *				       overridden?
-+ *
-+ * Return: true when the DCFG block is mapped with its DCSR view, the
-+ * second reg of the dcfg node, which holds the override registers
-+ */
-+bool fsl_guts_rcw_override_supported(void)
-+{
-+	return soc.dcfg_ccsr && soc.dcfg_dcsr;
-+}
-+EXPORT_SYMBOL_NS_GPL(fsl_guts_rcw_override_supported, "FSL_GUTS");
-+
- static u64 fsl_guts_get_soc_uid(const char *compat, unsigned int offset)
- {
- 	struct device_node *np;
-diff --git a/include/linux/fsl/guts.h b/include/linux/fsl/guts.h
-index 8d5ffb985fee..7127de897c23 100644
---- a/include/linux/fsl/guts.h
-+++ b/include/linux/fsl/guts.h
-@@ -142,6 +142,9 @@ int fsl_guts_lane_validate(int serdes_idx, int lane,
- 			   enum lynx_lane_mode lane_mode);
- int fsl_guts_lane_set_mode(int serdes_idx, int lane,
- 			   enum lynx_lane_mode lane_mode);
-+int fsl_guts_rcw_read(unsigned int index, u32 *val);
-+int fsl_guts_rcw_override(unsigned int index, u32 val, u32 mask);
-+bool fsl_guts_rcw_override_supported(void);
- 
- /* Alternate function signal multiplex control */
- #define MPC85xx_PMUXCR_QE(x) (0x8000 >> (x))
+Happy hacking,
 
--- 
-2.43.0
-
+   Wolfram
 
 
