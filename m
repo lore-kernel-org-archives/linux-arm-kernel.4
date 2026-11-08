@@ -2,71 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7CA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521D3606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 10:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1tVxO/Bb;
-	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=IwjcfgP9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5DcrjiyM;
+	dkim=pass (1024-bit key) header.d=seu.edu.cn header.i=@seu.edu.cn header.a=rsa-sha256 header.s=default header.b=Fx2EmbYc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=muKBTpgIwomUfoL+ebA1PuO9dc4a3sXML+kuNL0YxMc=; b=1tVxO/BbZw38GFrw7ukRfMpSIp
-	58VoFR14rXFc4NCvwDSw4O9iQoY6w1LCEKBNtv9p2MhB3ewmtzuBnqpFLM70MeOLyupGoceWWVeYy
-	IAR2NF2A08OEZYTeV/jZdxBNXt0DHwFR0qyKW4Pn3jZBsDotHnuJ8QLf6Wi+9GB6BmiZ7bhDlsItW
-	Lgbpla/9xSv7FImomgq+CF9d4gS6CCTZXIP4bV69l/wyTkgbAbX2WYOZ8rRdQQ2q7+dV8xD2/Ww4a
-	gBomDxjzp0JCfCr52CnJ8WFJmPyN2JrZnsqM9VZnRpeolncv1RjnN0BtUrOz61sG3paauoVmFmCT9
-	hf6ey/5g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=cdRs1y/AAehQi9CrjP0m/d+HyxgJqc5pCMHkj04zq68=; b=5DcrjiyMPeocKU
+	/3boJgENyNQdDJNW3ezjqZkKtBwxW9Jf1thogl8NUpbSa0I0s0IKcGgD/Z2UYTBBYQENBVrkRcMX6
+	062LidLtbwgBTpL7WHpKShhDgw0CgLqm9jG+TIT0OL9xoPKNi48B+HkVqr9q49WxpS6P/islPMngy
+	4sGdYxUn8TickslJ7hl6SRBrlmOF9f7FozAbm9YXWIWo/8t/92YQdWQ3RihaccmTuOTMpgFyHXeyZ
+	yxphCJqwcvveJukj6wlIaOtvO1FUUsbDC+s4wuUpjJKY1635dmIqROgAk///7SLpBrOYXdn9TV+em
+	u6ke/gbDwLpO6iHE2CkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ07F-0000000FyCQ-35eC;
-	Sun, 08 Nov 2026 10:27:13 +0000
-Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
+	id 1xQ0a0-0000000G0OI-441y;
+	Sun, 08 Nov 2026 10:56:56 +0000
+Received: from mail-m155101.qiye.163.com ([101.71.155.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ07B-0000000FyBg-2XJJ
-	for linux-arm-kernel@lists.infradead.org;
-	Sun, 08 Nov 2026 10:27:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:content-transfer-encoding
-	:in-reply-to; s=k1; bh=muKBTpgIwomUfoL+ebA1PuO9dc4a3sXML+kuNL0Yx
-	Mc=; b=IwjcfgP9iE46P2DVCrb8sqNBMdYcjPCP+KPKR5KgJZIcdkl2QaXc87hQ6
-	sp+ynLqDh6YI4nV3O/sH//uny4WjwTFNTxjflcWFA19CAYvu1xzgKBiV5rh7tQeU
-	xYPW/YrgHJPaicHFEeSzlWD4Mp8B2M2d643TDPsSCQiIycpcrd3+E2DHKBTFzxgH
-	ifisSvEKyK7l80w0ybuhVc9b/b79mY88dWUQPvalg0A6M87JZu0lvJ0rKJgTP3wh
-	Ybo3SbY+Q8/7r9y4bzZ3danVSh1+z5qT7GKf7ezMEqvHg9hnpg4rYErjT1RZK/oU
-	c1jdXwqloTmzQKHl7AGykEcnWZQGQ==
-Received: (qmail 2810692 invoked from network); 8 Nov 2026 11:27:07 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Nov 2026 11:27:07 +0100
-X-UD-Smtp-Session: l3s3148p1@tsR9ScFf1Ixe20rG
-Date: Sun, 8 Nov 2026 11:27:06 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Dmitry Guzman <Dmitry.Guzman@mobileye.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	srinidhi kasagar <srinidhi.kasagar@stericsson.com>,
-	Ben Dooks <ben-linux@fluff.org>,
-	Andrea Gallo <andrea.gallo@stericsson.com>,
-	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/8] i2c: nomadik: handle pm_runtime errors
-Message-ID: <avBOeuNEVo4xn3o6@shikoro>
-References: <20261103-i2c-nomadik-fixes-v1-0-655c6af2cb70@mobileye.com>
- <20261103-i2c-nomadik-fixes-v1-6-655c6af2cb70@mobileye.com>
- <CAD++jLm+m+YNhTaUnTm=dwO4p8xYe8OjZ7qhQ9_u15dnxURiVQ@mail.gmail.com>
- <auxDe0lmVCDu_iXA@shikoro>
+	id 1xQ0Zw-0000000G0Mn-27D0;
+	Sun, 08 Nov 2026 10:56:55 +0000
+Received: from LAPTOP-99KJFSET (unknown [223.75.64.82])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 53e3dfddc;
+	Sun, 8 Nov 2026 18:56:45 +0800 (GMT+08:00)
+From: Hongyan Xu <getshell@seu.edu.cn>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org
+Cc: Marc Zyngier <maz@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Robert Richter <rric@kernel.org>,
+	Zhou Wang <wangzhou1@hisilicon.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Hongyan Xu <getshell@seu.edu.cn>
+Subject: [PATCH 2/3] PCI: microchip: Fix ECAM config window use-after-free
+Date: Sun,  8 Nov 2026 18:56:38 +0800
+Message-ID: <20261108105640.875-3-getshell@seu.edu.cn>
+X-Mailer: git-send-email 2.50.1.windows.1
+In-Reply-To: <20261108105640.875-1-getshell@seu.edu.cn>
+References: <20261108105640.875-1-getshell@seu.edu.cn>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <auxDe0lmVCDu_iXA@shikoro>
+X-HM-Tid: 0aa1bacdb3b703a1kunm546e4281ce69c
+X-HM-MType: 10
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCSUlMVklLQk0eHUhIQhpNQlYeHw
+	5VEwETFhoSFyQUDg9ZV1kYEgtZQVlJSUhVTE5VTU9VQ0lZV1kWGg8SFR0UWUFZT0tIVUpLSUJDQ0
+	xVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Fx2EmbYcTelZqH92CqZdzGbSV16vLlYNdGGMORlC5U++gI3ZH1AUWAHr2Cz3rvlORmhI6JeCg5H/hOXkui3QDezjd5OC8NLDl1dMiXTwb6Zhg8YBy4EHCc6hPH7BO9Ltktkobbd2FU/XbjVPVL9t8dWEPqlMFRlZg2X9nb22qPM=; s=default; c=relaxed/relaxed; d=seu.edu.cn; v=1;
+	bh=cdRs1y/AAehQi9CrjP0m/d+HyxgJqc5pCMHkj04zq68=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_022709_936193_D4590FB3 
-X-CRM114-Status: GOOD (  21.29  )
+X-CRM114-CacheID: sfid-20261108_025653_159809_543EC7B6 
+X-CRM114-Status: UNSURE (   8.57  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,58 +81,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 05, 2026 at 10:51:07AM +0200, Wolfram Sang wrote:
-> On Thu, Nov 05, 2026 at 09:42:02AM +0100, Linus Walleij wrote:
-> > On Tue, Nov 3, 2026 at 9:30 AM Dmitry Guzman <Dmitry.Guzman@mobileye.com> wrote:
-> > 
-> > > In nmk_i2c_xfer(), pm_runtime_get_sync() is called on start and then
-> > > the controller registers are accessed without checking the return value.
-> > > If pm_runtime_get_sync() fails, access to the register of the device that
-> > > was not correctly powered on may cause a bus fault or other unpredictable
-> > > system behavior.
-> > >
-> > > Check the return value of pm_runtime_get_sync() and it if is not 0,
-> > > return the error immediately.
-> > >
-> > > Signed-off-by: Dmitry Guzman <Dmitry.Guzman@mobileye.com>
-> > (...)
-> > > -       pm_runtime_get_sync(&priv->adev->dev);
-> > > +       i = pm_runtime_get_sync(&priv->adev->dev);
-> > > +       if (i)
-> > > +               return i;
-> > 
-> > It's a bit odd to reuse the i (= iterator...) variable for this.
-> > I would just add an int ret or int err for this.
-> 
-> Yes, please.
+mc_host_probe() calls pci_host_common_probe() but has no ->remove, so an
+unbind only runs devres_release_all(): gen_pci_unmap_cfg() ->
+pci_ecam_free() frees the ECAM config window while the bus tree stays
+registered - only pci_remove_bus() unlinks a bus, and only
+pci_host_common_remove() reaches it for a root bus.  The next config access
+is a use-after-free in pci_ecam_map_bus(), which reads cfg->ops->bus_shift.
+Trigger: overlay rmdir in configfs, not rmmod (builtin_platform_driver()).
 
-I changed this to:
+Fix: add .remove = pci_host_common_remove, as pci-host-generic.c does since
+commit 01fcb7f777a9 ("PCI: Add support for unbinding the generic PCI host
+controller"), so pci_remove_root_bus() unlinks the bus before devres frees
+cfg.  Scope: the PLDA IRQ domains it creates are not devres managed and
+stay unreleased - a separate, pre-existing issue.
 
-@@ -730,11 +730,12 @@ static int nmk_i2c_xfer_one(struct nmk_i2c_dev *priv, u16 flags)
- static int nmk_i2c_xfer(struct i2c_adapter *i2c_adap,
- 		struct i2c_msg msgs[], int num_msgs)
- {
--	int status = 0;
--	int i;
-+	int status, i;
- 	struct nmk_i2c_dev *priv = i2c_get_adapdata(i2c_adap);
+Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip PolarFire PCIe controller driver")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hongyan Xu <getshell@seu.edu.cn>
+---
+ drivers/pci/controller/plda/pcie-microchip-host.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+index 24bbf93b8051..f7b75013d9fc 100644
+--- a/drivers/pci/controller/plda/pcie-microchip-host.c
++++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+@@ -821,6 +821,7 @@ MODULE_DEVICE_TABLE(of, mc_pcie_of_match);
  
--	pm_runtime_get_sync(&priv->adev->dev);
-+	status = pm_runtime_get_sync(&priv->adev->dev);
-+	if (status)
-+		return status;
- 
- 	/* setup the i2c controller */
- 	setup_i2c_controller(priv);
-
-while applying.
+ static struct platform_driver mc_pcie_driver = {
+ 	.probe = mc_host_probe,
++	.remove = pci_host_common_remove,
+ 	.driver = {
+ 		.name = "microchip-pcie",
+ 		.of_match_table = mc_pcie_of_match,
+-- 
+2.50.1.windows.1
 
 
