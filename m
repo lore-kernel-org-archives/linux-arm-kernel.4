@@ -2,48 +2,48 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D782F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 18:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E87EB606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Sun,  8 Nov 2026 18:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xx2McMNw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EpOJe8fu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kTnq4imZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hAkHLf5B
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9XXKh7vT6Q9jU2uqPmQkXruUZ4A17pBIXI6HbC2dxI8=; b=xx2McMNwmZgI9t
-	JuGQZ9cSLQbjrsMQ25je1GClonVohK1rrWeeeRbnWEeyFRzSZ+XItdzkTsVhqEOeuPiy3RXaYLCps
-	wM2wA9HQcFcSg4+s6fz+ItHHEf1nuP6gr1pnROp35JrgB+fUkxVL/SKHZcaWpC+kCqX+5+CAv+fVn
-	AIyzybWMiOuq23gDfBCkEMu5fUZQfZjyPSUTOGgvKRdWPnxvUEmNsutq0vaf0k/VdMBcWkOtMqwyo
-	TCDRAryDDJQ4GqnUvlWZ6ky4s6MvziL/EyScri99w/Yht2H163F8dphrl+8Bd9dbNr8FDtNX3um1e
-	ZzhfzmTPdm5/h9a3F28g==;
+	List-Owner; bh=g4hSmDe/hNxM+mVYy6mm3ToAC8B9Vj/cAi+kvaP3/tw=; b=kTnq4imZ5WHu4E
+	q6IRy/g94p5N/ksxxNR7Lwz+M3cAyY16xejyFn7dnKIxQFSPSbxVcVKbOs0QEw7aqr06EO+HGtL8E
+	OHFl+Tb+rl198010Gxf3PyXtr81gEYly1iJko74ABSXLO2OyCPQs8WpeqWWqWi7Iz15sS+bW6mQIP
+	DeAHHxmAxY1SoGokxBrtqS+D8aJGNP9V8V+/JRWcna5daoz89KbGeiP3WG4skZR5cB6Ra4MymGKIP
+	d+FgLIeD9RoEjOqPVkFThMSIjlKeo3HnEc0qCFqOM4U6ZGqTWaVjKWNUFK2hwHeZyiKtZBNOtLqNA
+	78UugmdvyzgKzLF6Ff8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ7Ql-0000000GSnF-3c8x;
-	Sun, 08 Nov 2026 18:15:51 +0000
+	id 1xQ7SU-0000000GSuT-0oA3;
+	Sun, 08 Nov 2026 18:17:38 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQ7Qk-0000000GSn6-2aSV;
-	Sun, 08 Nov 2026 18:15:50 +0000
+	id 1xQ7SS-0000000GSuK-4C8K;
+	Sun, 08 Nov 2026 18:17:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 182D443F05;
-	Sun,  8 Nov 2026 18:15:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A13D1F0089F;
-	Sun,  8 Nov 2026 18:15:45 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BD9C141B15;
+	Sun,  8 Nov 2026 18:17:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6208F1F0089F;
+	Sun,  8 Nov 2026 18:17:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794161750;
-	bh=9XXKh7vT6Q9jU2uqPmQkXruUZ4A17pBIXI6HbC2dxI8=;
+	s=k20260515; t=1794161856;
+	bh=g4hSmDe/hNxM+mVYy6mm3ToAC8B9Vj/cAi+kvaP3/tw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=EpOJe8fuD462bWokak//lTzCAvxRzr/1+rYPgEcxh6qM0WkQFziwQfD7EZRrWOK0B
-	 KQusSYWyp/GOrFqo8nIalkTpyDoj4vbHw/t+dpp90XILSplXDo8kHwU0671KBULaAr
-	 RQAXYwtaqkspNvWVcNsFoSWiTDQfzCVwnQfnHb+Tpu5hcxwiVuRo+g5nAD43diZrVT
-	 zUMCtRghKc+aqiSWk/UctFlsGMsyj76lXzCEksXdekiLvuMEh60+7ign+ztb4ct3ec
-	 bX1XgDkmlpXC4YFTaoR7x8oHAu7000cSocwSegkNVGzEJBs646yD1p7RdTTIZhWZ5s
-	 gHKAWwG9+egig==
-Message-ID: <2ec53558-07d8-4824-821b-03e39da672aa@kernel.org>
-Date: Sun, 8 Nov 2026 19:15:43 +0100
+	b=hAkHLf5B2tv9F1+dzjDqdVR6k60D/15cmhkxtgW897siA9SGc0XscJqjW4V/ech4K
+	 yw4+9h2O/FbgBD1BN1G6gPOX5mRPlKi0hUZ5cvwoWE1bIZwdq+QUcCsQFvYBMnHbyN
+	 WGgBu3JWpqhRt+n23qKZZJbXARtzGL9jgaQX/1h+DOLJzl858I8c4rws/umvBP0qW+
+	 s7phRIXI/RdWSD3keJZ5xTw47MTDzittQDNDjWQx6IO7JsyRV6VgSLFp6vC3MpHyBj
+	 JwMrf8s/nt18oV4+im+WnzWjrdwAsHo13pxY26pXPdUaOLfrRG7cZeVivDVJ3wVmky
+	 dEFab83yXXfJw==
+Message-ID: <4a6ae329-0d73-4ab7-bd87-7acafcb8778b@kernel.org>
+Date: Sun, 8 Nov 2026 19:17:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
@@ -81,8 +81,6 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
 
 On 11/8/26 16:43, Sasha Finkelstein wrote:
 > Adds initial support for the new t8122 phy. USB/TB only for now, DP
@@ -90,62 +88,27 @@ On 11/8/26 16:43, Sasha Finkelstein wrote:
 >
 > Signed-off-by: Sasha Finkelstein <k@chaosmail.tech>
 > ---
-
-So I wonder if it's time to split this into multiple files now.
-Maybe something like atc.c that does the core stuff (probing, 
-phy/reset/etc. interfacing, mode transitions, tunables, etc.) and then 
-atc-t8103.c and atc-t8112.c for the hardware specific parts since 
-especially DP seems to be quite different between the two generations now.
-
-
->   drivers/phy/apple/atc.c | 382 +++++++++++++++++++++++++++++++++++++-----------
->   1 file changed, 297 insertions(+), 85 deletions(-)
-
-[...]
-
-> diff --git a/drivers/phy/apple/atc.c b/drivers/phy/apple/atc.c
-> index 45f1280a6faa..256a08499646 100644
-> --- a/drivers/phy/apple/atc.c
-> +++ b/drivers/phy/apple/atc.c
-> @@ -100,9 +100,15 @@
->   #define AUSPLL_FREQ_CFG 0x2224
->   #define AUSPLL_FREQ_REFCLK GENMASK(1, 0)
->   
-> +#define AUS_COMMON_SHIM_BLK_BIAS_REG 0x0a00
-> +#define AUS_COMMON_SHIM_BLK_BIAS_REG_BGBIAS_OV BIT(1)
-> +
->   #define AUS_COMMON_SHIM_BLK_VREG 0x0a04
->   #define AUS_VREG_TRIM GENMASK(6, 2)
 >   
 [...]
->   	atcphy->mode = mode;
+>   /**
+>    * struct apple_atcphy - Apple Type-C PHY device struct
+>    * @np: Device node pointer
+> @@ -599,9 +647,10 @@ struct apple_atcphy {
+>   		struct apple_tunable *lane_usb4[2];
+>   	} tunables;
 >   
-> @@ -2201,6 +2387,7 @@ static int atcphy_probe_mux(struct apple_atcphy *atcphy)
->   
->   static int atcphy_load_tunables(struct apple_atcphy *atcphy)
->   {
-> +	size_t tunable_count;
->   	struct {
->   		const char *dt_name;
->   		struct apple_tunable **tunable;
-> @@ -2216,8 +2403,14 @@ static int atcphy_load_tunables(struct apple_atcphy *atcphy)
->   		{ "apple,tunable-lane0-dp", &atcphy->tunables.lane_dp[0], atcphy->res.core },
->   		{ "apple,tunable-lane1-dp", &atcphy->tunables.lane_dp[1], atcphy->res.core },
->   	};
-> -
-> -	for (int i = 0; i < ARRAY_SIZE(tunables); i++) {
-> +	if (atcphy->hw->gen == ATCPHY_GENERATION_T8122) {
-> +		tunable_count = ARRAY_SIZE(tunables) - 2;
-> +		atcphy->tunables.lane_dp[0] = NULL;
-> +		atcphy->tunables.lane_dp[1] = NULL;
-> +	} else
-> +		tunable_count = ARRAY_SIZE(tunables);
+> +	const struct atcphy_hw *hw;
+>   	enum atcphy_mode mode;
+> -	bool swap_lanes;
+>   	int dp_link_rate;
+> +	bool swap_lanes;
 
-nit: I think else { .. } looks nicer when the if already has braces even 
-though it's just a single line.
-
+ugh.. somehow dropped this comment from the email i just sent..
+is there any reason you move swap_lanes around here?
 
 
 Sven
+
+
 
 
