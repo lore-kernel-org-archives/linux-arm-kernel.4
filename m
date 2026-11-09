@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD87B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD6C1606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:01:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qMA2Uk10;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DNEPzL0/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E7dDBDVZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iF6GzHcR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
 	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PUYXlgXOcVHlfHOjoXYqr0W2HQuorszYX6zWp63OOsY=; b=qMA2Uk10svFc5D
-	f38Kvev5ADWjxw+WquSAKGAAlwtvO4vzXL08kdzKZRh4/UVjXV5nfKrXbn48TvFgEqoltsl+nOHWo
-	zo48hEdJphcidnVJf2oVwIJ8ntXCUc5fh8bFYIr3tg65aQVBjEzZ/WB2w/fDaDeUKrqwLrlxqynfJ
-	oNsuYQleAXCgw7Ewwp6b4mOw8nDQQ/CYV8df6UhY0b1XU0LVKerfiJCOyxXFnfcR1Xc+P9mPaQdXZ
-	L2fyk1EP65CNCOG21gP82GSUVz85ejR2D9SEtWrvm6k2VGUmFFqOPTiq8Dj4tEefggTEj+k2Msxaj
-	clzJ3op0l+E+sMX5OKhg==;
+	List-Owner; bh=W40un1XNAqPtcoImBzGbxmEQEgO2uX7YR4GLBCynYYQ=; b=E7dDBDVZGk6Dkl
+	Vzw+sHa9X4Fob4j0hDr7iwn3dsBNAKfsDgaGBz3lbhcM8iSEbe9KQC+v5Y9q+5i87p/4Nb6Q0vjFZ
+	KaxJj4+mStMw0BrrRDLiAzyj6D+9jhBc2+xwUBH7D3FHEwTM31xnxFPZ5UEFEu5lLWn2VzY0JTvv8
+	k7wTjGRRKqgh0m8JLqyB11JICRm7nQjXG+TJ5icG4ZreZk5ZHKAXSb0PZz5kzzyUBPp9+NdYB9d0D
+	UKuKIi7OGhPSJZzUKZx4sZj9Fuiz7yx78RbCg0qgFnc71gjmII7/gMyY5MLahsfdbsDJQ6goizPya
+	jkxgrvgftoX00Ern9gmg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWTm-00000001iaU-2SdL;
-	Mon, 09 Nov 2026 21:00:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQWUK-00000001ihy-3IsK;
+	Mon, 09 Nov 2026 21:01:12 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWTm-00000001iaC-0BjL;
-	Mon, 09 Nov 2026 21:00:38 +0000
+	id 1xQWUJ-00000001ihg-2tyZ;
+	Mon, 09 Nov 2026 21:01:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C813743BB5;
-	Mon,  9 Nov 2026 21:00:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E280D1F0089F;
-	Mon,  9 Nov 2026 21:00:29 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1EFDC43489;
+	Mon,  9 Nov 2026 21:01:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C6991F008A1;
+	Mon,  9 Nov 2026 21:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794258037;
-	bh=PUYXlgXOcVHlfHOjoXYqr0W2HQuorszYX6zWp63OOsY=;
+	s=k20260515; t=1794258071;
+	bh=W40un1XNAqPtcoImBzGbxmEQEgO2uX7YR4GLBCynYYQ=;
 	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=DNEPzL0/endA1uY3nTdlc/VOe25Cchx/Eo+x2Fdakt62o4aYzwszu1V8DSP5ipyi7
-	 Bp68gEBsLEPOcDSJ8W5TCuUgfwCnAmPhzNPR9e8kLGmbVJ4uCZMc+YXJycmhcjiu4d
-	 rV39MP4QnnqFf0aKKvKaqwgcAw2UgWVKMXAvkFOdEcfvlujvgzFGtglmjmdg4aWUYc
-	 yNKrPgwguvLzgKCmCpakc21C4NDwY9aEG8xX+ld08AQavrDRyassiH1NLpL4NXFhuG
-	 bR7TFMoPE3I2Tq2Epp8vAvE3dtvE2yQa43DfhJE/gnNCqd5+4AHtzS8mMCYK43y5ME
-	 w1NoqhwzWjanw==
+	b=iF6GzHcRZmIKjnW69pOqsfO3jKAeD20Cdt392q+PS9hRNVpMtyfXiSFvnZi5+nGeO
+	 XyA/Ck7Fozg+jjB7td5JXyNuj700k9Nf5A9KGOkWl1F0BUQJe4yLx7pS/4nFpaiRUk
+	 x7AWekRNXn5bQCVkUh5iCDNKJmZNu7gjlX0mpe4FRQ5REGfUUaDyp+ieAACA0+Kz0v
+	 qePEDEBsL7DZSqucOiLJ9ErFUjCdXfZ6PeK0XGNFr6m96sFeombWoKBtcACxeDunFu
+	 Il035pDznLn2FokxjL2V6c2ePy10UMnns3fIUxZYdmcAN08iFQIZzQBqbBMPsXZP2D
+	 cMa3/QG9SZXMw==
 Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id E37FC30217EB;
+	by traversing.sirena.org.uk (Postfix) with ESMTP id C64CD30217EA;
 	Mon, 09 Nov 2026 20:59:39 +0000 (GMT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v4 06/22] ASoC: ops: Introduce 'soc_set_enum_kctl'
+Subject: Re: [PATCH v4 05/22] ASoC: ops: Introduce 'snd_soc_ctl_activate'
 From: Mark Brown <broonie@kernel.org>
 To: James Calligeros <jcalligeros99@gmail.com>
 Cc: David Rhodes <david.rhodes@cirrus.com>, 
@@ -67,18 +67,18 @@ Cc: David Rhodes <david.rhodes@cirrus.com>,
  linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20261103-macaudio-v4-6-637484efe46d@gmail.com>
+In-Reply-To: <20261103-macaudio-v4-5-637484efe46d@gmail.com>
 References: <20261103-macaudio-v4-0-637484efe46d@gmail.com>
- <20261103-macaudio-v4-6-637484efe46d@gmail.com>
+ <20261103-macaudio-v4-5-637484efe46d@gmail.com>
 Date: Mon, 09 Nov 2026 20:59:38 +0000
-Message-Id: <179425797819.3711751.131370181090870189.b4-review@b4>
+Message-Id: <179425797818.3711751.12937263042321950225.b4-review@b4>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=764; i=broonie@kernel.org;
- h=from:subject:message-id; bh=LC7c8xgtOqcQVsOq7+PY63O6vUwrZU5EM9lhyhjytO0=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+mVgzbI5k6vi5/8Qiw3+fvfdceH8s0DKlsU26kqP1R
- 9TfurVcHaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE9gQLk4BmMiShwz/E5X4PYODLnEccSu1
- erflBkfh63mxTh/lHXVzuj4tV014xcjw3vh6++Wl962fvXMN6u7ZtG5FTr6CzISeu+2uixd+nbe
- JDQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=615; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=xvmkDp6UJdRL/ikpcXrp5a9qw8WBoVYhDOKggMTTKA8=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+mVhLfZutsGLFm5NREsxh81TmK534tEw69faZh2Xvb
+ DPO5p2y6ShlYRDjYpAVU2SJy+J+WV/yeg3fwYVtMHNYmUCGMHBxCsBElqcyMnTt/cX6NiT78a4j
+ 3hLbP96dumXapB9us2+qqLMLVG/+1F7IyPC3cd+ZEyk/joiv7+c6O399yQO2tFe8+ociNE8pHee
+ SnsUMAA==
 X-Developer-Key: i=broonie@kernel.org; a=openpgp;
  fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -99,31 +99,24 @@ X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> The new function is to be used to set enumerated controls to desired
-> values. It is something a machine driver may call in fixup_controls.
+> This function mirrors wraps the sound/core 'snd_ctl_activate_id'
+> for ASoC. Machine drivers may call it to lock down kcontrols
+> during fixup_controls.
 
-The subject has soc_set_enum_kctl() but the code has
-snd_soc_set_enum_kctl().
+> +int snd_soc_ctl_activate(struct snd_soc_card *card,
+> +			 const char *name, int active)
+> +{
+> +	struct snd_kcontrol *kctl;
+> +	int ret = -EINVAL;
 
-> +/**
-> + * snd_soc_set_enum_kctl - Set enumerated control matching a name
-> + *
-> + * @card: where to look for the controls
-> + * @name: name
-> + * @value: string value to set the controls to
-> + *
-> + * Return 0 on success, else error.
-> + */
-
-
-> +	for (i = 0; i < info->count; i++)
-> +		evalue->value.enumerated.item[i] = sel;
+> +	kctl = snd_soc_card_get_kcontrol(card, name);
 > +
-> +	return kctl->put(kctl, evalue);
-> +}
+> +	if (kctl) {
+> +		ret = snd_ctl_activate_id(card->snd_card, &kctl->id, active);
+> +		if (ret < 0)
 
-put() returns 1 on change which is not what the kerneldoc says, the code
-is the better choice here.
+As Cezary pointed out this return is redundant, we could just exit above
+if there's no kctl.
 
 -- 
 Mark Brown <broonie@kernel.org>
