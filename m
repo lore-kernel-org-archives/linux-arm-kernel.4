@@ -2,71 +2,130 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F43606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 18:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B9A606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 18:49:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GUnTxDjQ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZwBvG3Ku
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aVnAiI9m;
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=eRmCzhFW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wzcq643kxqzm6dmiI//QkyvyRvgf5SDiG72cWiaVszc=; b=GUnTxDjQmYumWAXy8z6kTqjrDJ
-	WSSWfD6QnjmksQoKJB6s4jV1eM4XXv/oGn262or2zIVybjZlRRvTFMIkvaZ290CDMLwmKHwrezCwO
-	C3MJ0YeI0/qO7eEdabRn6vQ2lQP0zivNp61ifj4/6X5JhYKARrAIzTcERD7G5S701XVyVuEbRcF7F
-	ZvbZGYU10RNjrMbus8DdEizXN3XZ41u9UOckedWdUXO5vvhXMEG0g/DhhVVhz3fBRAmz4EOSoqMV0
-	2gK8F5qKRH7WV7WnoZXalIp+qGWdjlpAmAB/7x2zxGWk5YC8X1/W/stFHWTG4rf/F1AlAIou7Z36x
-	Zac8nKjQ==;
+	bh=O+PQWQ9PbJFOCn9EB5efiBTAKX4GJUUBrxAtO9OF3Dc=; b=aVnAiI9mk0AGM8n/Ug08lydgZl
+	jVYGNJFPYYJSFrySqC7OHB020f/0HvlEspzINwL6KKhf1vBC0po2cg2GZgylng/Eq3zH3gktNXH0m
+	zp2DErPYSfowWwESjvBNDMiIQqZCWSLlC14lwC+BHrod8PD2LzX/ywoGXqhIsZ5JzCnDatuxnQ2R2
+	0tbiDWg/+fIqUvx9QbsQr27pZHgAxJPhqUxS2lwtoiFiawO1xVeI8tuU02t89JfMzlAGYTna6OZgC
+	/P0A7X6nDx/807yqYjNy38jbMjcnP3OYKEscACUXMJVXO5Ny4YTQYdSiYlCKCnRMkrZsk6L8DYCQh
+	+zVMctAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQUPe-00000001UaD-0XyN;
-	Mon, 09 Nov 2026 18:48:14 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQUQW-00000001Uog-1m23;
+	Mon, 09 Nov 2026 18:49:08 +0000
+Received: from mail-qt1-x834.google.com ([2607:f8b0:4864:20::834])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQUPc-00000001UZy-2C0q;
-	Mon, 09 Nov 2026 18:48:12 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9799061133;
-	Mon,  9 Nov 2026 18:48:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F39181F0089F;
-	Mon,  9 Nov 2026 18:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794250091;
-	bh=wzcq643kxqzm6dmiI//QkyvyRvgf5SDiG72cWiaVszc=;
-	h=From:To:Cc:Subject:Date;
-	b=ZwBvG3Ku4ZEwKSKey17VtGpJlOGR7qSBiroi5pBDv8Aw5R1tZ2MCU/eWgnF/33DS5
-	 h/zqFPVc3LQLug14ppeQv8CNu8NpLAY2BCrW4zPdB/CQ/0Bzs94BOHpadBvfwE+EU/
-	 SOcbuPHL3VQouyX0LpqkU8K3pTzhsrIbX3cNouXEzVs900C3ZbuzJUcGAbxZOUTULy
-	 tcOVZ8yYFL5Xu5yeijdEdnBtUBjsAulBNpkYv0OfITgqxP6nmRLYZmx07/j7w59dtp
-	 fVFxaE4Is5/s6PjIETaMJOSGL6/Z2v3G4eHnueTyipoMnLHhvtS3Za2Nuqty0uefsz
-	 2lsBotMH0L9Jw==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sandy Huang <hjc@rock-chips.com>,
-	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andyshrk@163.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Andy Yan <andy.yan@rock-chip.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: display: rockchip: Allow single 'port' node for DP input port
-Date: Mon,  9 Nov 2026 12:47:58 -0600
-Message-ID: <20261109184759.467215-1-robh@kernel.org>
-X-Mailer: git-send-email 2.53.0
+	id 1xQUQU-00000001Ums-0ZKr
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 18:49:07 +0000
+Received: by mail-qt1-x834.google.com with SMTP id d75a77b69052e-533797e72e8so7273761cf.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 10:49:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1794250143; x=1794854943; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=O+PQWQ9PbJFOCn9EB5efiBTAKX4GJUUBrxAtO9OF3Dc=;
+        b=eRmCzhFWMme7+BxVAhHZSfRMJ+nscQPZJEue7jDx4ROCPSRzcOcSRWk0NLa2v0j6V3
+         5M+rpRuOXXA3btF5gv1anlvwIwxB6lmrfvW4E+aa4RTJ/0ak4eyjFcjdIraMKBe+vivs
+         Tu/82Myx+WUlpQTru1aycoKo6wJbgLWGXXF8dDLt94sUNxqQtrtUW77aps4rTAjaNz+M
+         z0yb65j6PSwXjeIZzvU33LIj76qeU4So9xp5crA6bTdaoZMEM0amI8wuZDBbJKyl3UbO
+         ZPMj+0WH6rmoWWHjSbvZCaHH07ppNIqL0kq259w8m9qCGVJmymLjmm+C1rs0Asm71uPr
+         5y5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794250143; x=1794854943;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=O+PQWQ9PbJFOCn9EB5efiBTAKX4GJUUBrxAtO9OF3Dc=;
+        b=l15Xov87l1+XlT69l9N+6zL25CiW47LbbWfahVYW6HSmM9MLa+v4shd0E6FvlGVLYJ
+         AgNvVZNj/UFTBuKFome48rkE/Eoz6Ck1Wlc87Z1OhViA3FjQnCCquIqjgfs5oWKynNF9
+         xynd9u4bHRR4zPG9Io/2qDbUoeyW4QgZ1RRGD16dpKXMULrifrpHDYVP7oSKaZ83Tn7J
+         Xqfp+IZisyDYHx10rsgCiRQqqe3GR+HUX89B+xWJQYFUIVOgYDBwgbwhr74rGUSe+YOA
+         Uqt/CTwmEGj2tAskCk6yD5Zm8SenOb1QenrqPA3yLUIzUM7SqlWZXe5gDFDHwb1XI4Na
+         D3pA==
+X-Forwarded-Encrypted: i=1; AL+hErHTFM25gOp3D++Euph7FIe20nyD4TH7zraZEN/gP4F9xQXQRa2jWyTq/h3CXOPBsxOZbecHdKuJBPPWWzoUlEwm@lists.infradead.org
+X-Gm-Message-State: APuU4Z9q0o8pv0lMPP1qtC+pQChdzjtBarjew3ssUq8/W3k+Q4IyoWrI
+	8G5Bs7DeSka6qE6nH69Htj78tp9JdUYkBH90H7VRKiimtHyAm+aLwclKJZvqmayBRbE=
+X-Gm-Gg: AYBFou1DTYUhvTxi41lR5cB0EvN8dJmYj+kgUK+zTW12k55fv0l5SFdb2pHYZO3RYBK
+	Zz2Jw1g4I6VCBiZOurwK4nN0L1/+5/A+aTZpdmSArcf4gRV7ICjhZQGjFtJOxIIbZ1TCobAHfb4
+	1NXKvjtxvSFA1i/XILbcP5ktGb8vtxT4C2HPOMi9yLzhFYQB65285YwVfz72VHhQv/MEVpYTO7t
+	jFfeoCeoDJ2Gafep+hsoCxNwxXBGY4CaSvtNrSuIqbxBDUFxtdiDrEDnEdbgHpj8otRyvgr73rl
+	7d6ZkgadayilB3F3wEp1pNReMTmXxnWfblkN6/tKDMWY9Q6eshH6zKuXRS1GmOjzJKX9X7mWaR2
+	5ymv5Cc5/8kZPtJkBEUEkYWnBU5EoGgPjHWq4r5OuntjsYLrb9VwY/RSqp7V40grYK4TxEpaJhG
+	E+BSn3faUyUzfFtog9KvpKH8te+kqBoagQyJ60gDSyOzIBzpUFDY21EJYw6pQ21hb7TAFPk74Q3
+	+j8pZxCARp+/AyBX0JhnWFO2EBbusL2gyUmw6MMtGTIJZgugKy+CaEzJ4L8AI4zO2g9BrWo+Ial
+	UjtKX0eRSC5mb+l3Xz5NCHBADlJbJeatixxqMG7mlT6ySJxtHfwutpssKS8TmOM8DCB9qpLoDLQ
+	3OvcC3j3r+ZOuebNM/7PgDa5QWpFcxSQ=
+X-Received: by 2002:a05:622a:40e:b0:536:3600:f0af with SMTP id d75a77b69052e-555253df92fmr3996711cf.7.1794250142846;
+        Mon, 09 Nov 2026 10:49:02 -0800 (PST)
+Received: from ziepe.ca (hlfxns010zw-159-2-239-150.pppoe-dynamic.high-speed.ns.bellaliant.net. [159.2.239.150])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5550af60493sm3967801cf.4.2026.11.09.10.49.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 10:49:02 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1xQUQP-00000002A6b-35np;
+	Mon, 09 Nov 2026 14:49:01 -0400
+Date: Mon, 9 Nov 2026 14:49:01 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+Cc: Jacob Pan <jacob.pan@linux.microsoft.com>,
+	"Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
+	"iommu@lists.linux.dev" <iommu@lists.linux.dev>,
+	Alex Williamson <alex@shazbot.org>,
+	Alexey Kardashevskiy <aik@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>,
+	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-coco@lists.linux.dev" <linux-coco@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH v8 12/15] iommufd/viommu: Allow PCI TSM backends to
+ provide vIOMMU operations
+Message-ID: <20261109184901.GQ663069@ziepe.ca>
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-13-aneesh.kumar@kernel.org>
+ <20261104152351.00002565@linux.microsoft.com>
+ <20261105004934.GE3889730@ziepe.ca>
+ <20261105091622.00004a9c@linux.microsoft.com>
+ <CO1PR11MB48352506BB91C461F25147098C762@CO1PR11MB4835.namprd11.prod.outlook.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CO1PR11MB48352506BB91C461F25147098C762@CO1PR11MB4835.namprd11.prod.outlook.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_104906_194302_B7EAC6CD 
+X-CRM114-Status: GOOD (  27.35  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,61 +136,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Existing RK3399 users have only a single 'port' node. This was common before
-connector nodes were defined. Allow for this since there are already stable
-users.
+On Fri, Nov 06, 2026 at 08:03:48AM +0000, Tian, Kevin wrote:
+> > From: Jacob Pan <jacob.pan@linux.microsoft.com>
+> > Sent: Friday, November 6, 2026 1:16 AM
+> > 
+> > Hi Jason,
+> > 
+> > On Wed, 4 Nov 2026 20:49:34 -0400
+> > Jason Gunthorpe <jgg@ziepe.ca> wrote:
+> > 
+> > > On Wed, Nov 04, 2026 at 03:23:51PM -0800, Jacob Pan wrote:
+> > >
+> > > > I am thinking MSHV/pKVM can register an assignment-only tsm_dev to
+> > > > leverage this? Could PCI/TSM support this role without
+> > > > device-security?
+> > >
+> > > It is certainly not what TSM was originally imagined for, but with our
+> > > new arrangement, yah maybe so?
+> > I will rebase on this set and send out patches for a detailed review.
+> > 
+> > > TSM basically just becomes this weird overlay driver on the PCI device
+> > > that does stuff. Some of the stuff it might do:
+> > >  - Register an attestation subsystem device to do SPDM
+> > >  - Register to allow iommufd to create a viommu
+> > >  - Some status sysfs ?
+> > >  - ??
+> > >
+> > So we may expand pci tsm to have more than one role? currently it has
+> > one.
+> > int pci_tsm_register(struct tsm_dev *tsm_dev) {
+> > ...
+> > 	roles = is_link_tsm(tsm_dev) + is_devsec_tsm(tsm_dev) +
+> > 		is_assignment_tsm(tsm_dev);
+> > 	if (roles != 1)
+> > 		return -EINVAL;
+> 
+> Not sure what'd be a proper name for this, but it sounds to me that
+> it tries to over-abstract something into tsm. The reused logic related
+> to assignment or viommu is relatively small, so the other option below
+> sounds better if it can work.
+> 
+> Or it may be the original provider framework that Aneesh proposed,
+> so tsm/MSHV/pKVM can each register its own backend...
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../rockchip/rockchip,rk3399-cdn-dp.yaml      | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+That is definately undesirable for TSM
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-index 195f665970bf..425b27346132 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3399-cdn-dp.yaml
-@@ -63,7 +63,12 @@ properties:
-     $ref: /schemas/graph.yaml#/properties/ports
- 
-     properties:
--      port@0:
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output of the CDN DP
-+
-+    patternProperties:
-+      '^port(@0)?$':
-         $ref: /schemas/graph.yaml#/properties/port
-         description: Input of the CDN DP
- 
-@@ -74,13 +79,11 @@ properties:
-           endpoint@1:
-             description: Connection to the VOPL
- 
--      port@1:
--        $ref: /schemas/graph.yaml#/properties/port
--        description: Output of the CDN DP
--
--    required:
--      - port@0
--      - port@1
-+    oneOf:
-+      - required:
-+          - port@0
-+      - required:
-+          - port
- 
-   power-domains:
-     maxItems: 1
--- 
-2.53.0
+I think the very best answer for this is to get the viommu from the
+"kvm" fd, I just don't quite know how you implement it..
 
+Maybe just register something like a notifier chain where the struct
+file * and the viommu type value goes in and a viommu object comes
+back out?
+
+Jason
 
