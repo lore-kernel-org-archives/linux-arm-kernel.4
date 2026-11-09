@@ -2,77 +2,130 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0D6606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 09:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 651826082BC9
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 09:24:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FtE+i+D5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PWMKq2ci
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yr7aCAAt;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=PRGagTXx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=8h0PI3x5L84bxHJWgvhwyPcSqbxezc6i6wUfYwT0/gw=; b=FtE+i+D5BUt4BZUtEr8XQawjBk
-	hLMjM+CzWl1GFH3bVhlabABgT2tuk/qM++yU0pbDMG7zTSi0Fj3H/WpVHBqfMttYJbThZErFrK7J1
-	CCCwJruEehOQL923syla3ROhOrJqZW6Qs5lzBwRVhDSLngLHsRRyh4/7TdieFTAXuZYBLXMlIdrRl
-	mAHHPW3srMKsnpcv7IXXDCnQLOVJ6aghjTg6PkaoG48+09NfOPX6TR75XUBj72eWM/0vem5nWnRii
-	IvkcJmJZoLeU8h7N5v6xs9RnRcZxVUF7eH41ekyyKY+MtIGlvc1/3ANf2ggtQ0fuuU6tTaYcHzyFH
-	/j/vuxCQ==;
+	bh=BdIE8R/bzxSVd2WmbbN6K8nNATk8upKcAMkubt0TIMI=; b=Yr7aCAAtg7doafdLCPtKnRLvbd
+	llETX2UGog6YzDbViPgk4sgLJIETJcW+VCdUjmqFyk6dOAZN6aUsNSKMjhPVHs6W01lxUeNz3/0j5
+	888s8p0o7UewBuqJp2vIwPuwzu77I3dubZ4YQbHH4ewcVohMjepXdlux+vtX3MxYftKQD3y6ME8z6
+	ov9LhTcOMXOkWyJTRoU4cboIlnJHV8aL2K75HPFOT1b/u3Yfo1WbCuOKz50R16gCl+ODE/us+TP3S
+	kNjahjqVlsaXpM0n/NUdCqjlhmYuiCrkXjQJEgTDOT15Cwk2aI9XBsNf0e9MtlJ0DJ/SGuDNCHHO7
+	POPGoamw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLYY-00000000Ef7-49FI;
-	Mon, 09 Nov 2026 09:20:50 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQLbw-00000000FVW-3XY6;
+	Mon, 09 Nov 2026 09:24:20 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLYY-00000000Ees-0WFu;
-	Mon, 09 Nov 2026 09:20:50 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8AEBB43D06;
-	Mon,  9 Nov 2026 09:20:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B8531F008A2;
-	Mon,  9 Nov 2026 09:20:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794216049;
-	bh=8h0PI3x5L84bxHJWgvhwyPcSqbxezc6i6wUfYwT0/gw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=PWMKq2cik7On9nLBWZZo+q2yFr8sWXi/dqsHfAOWf5G8lTU47xEhSOhDJMI8XikaX
-	 5m07d7IVQvL4OmfmjXbpZC1xKhl0bnPIHFCc1+GnK9lePH1J9OXffOSC3rolXJf+DP
-	 k4ocKY24KRkrPS6q7WNJrkW/H6guwGWdd1Qlf00BWCHthyiEskC+lVYU1caVCSxDJ4
-	 8mr+TmUNdQsWrTcx+JFHlqbf5vM/T8amfu0IckZaVZKSK+i+YeSGHR/TccZjqYXArb
-	 yGxJbGTMk29VHdRtuVjfBsvlx9exyhCVwGps8u3eDDtXsofy9sTxR1LmMTyHZmh202
-	 /IyFsFh/XTSVw==
-Date: Mon, 9 Nov 2026 10:20:41 +0100
-From: "Oscar Salvador (SUSE)" <osalvador@kernel.org>
-To: Muchun Song <songmuchun@bytedance.com>
-Cc: David Hildenbrand <david@kernel.org>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Lance Yang <lance.yang@linux.dev>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <chleroy@kernel.org>,
-	Ritesh Harjani <ritesh.list@gmail.com>,
-	Shrikanth Hegde <sshegde@linux.ibm.com>,
-	Oscar Salvador <osalvador@suse.de>, Qi Zheng <qi.zheng@linux.dev>,
-	Muchun Song <muchun.song@linux.dev>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>, linux-mm@kvack.org,
-	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	id 1xQLbu-00000000FV0-43uY
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 09 Nov 2026 09:24:19 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=BdIE8R/bzxSVd2WmbbN6K8nNATk8upKcAMkubt0TIMI=; b=PRGagTXxsbnMYd6UYY9aDO5qGJ
+	sU/XaXI9sdM7pxpziUcxEdwjiGRMeMk5zktXQCPfPXkY0P5B65Qz4BHAqGCTXH0HTK3WlXYZfmJCU
+	URzAnAwFCb7HSIjtICNE8luNKRJvfEghN7Plyw2ts/x8oDV0G3rW81VgDIsnRSDkttjKfuuJLhXlT
+	IKiUj9kn5eOIx4Lhk+cMj2sqCye3GkBMY6uBHviMAbABuEyVJivEdXWgLpNzk7gR5lbZO973IOR29
+	3cmfbXv+FZuJ8v+A05Q0OdZYt3EqO075YEAdmY4vv6mxOBjkReF00BRH5y2WSJVSxd3YN6U0Bk/AS
+	uMIgCy7A==;
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQLbo-00000006Wb1-2Q7s
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 09:24:15 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OGrfXzGJ6b66tCXkuM/jHEWEAeF/1rzR3jAxNe/LXfXdAy3yPfYjt+vnB8z7i9m4mliE7laIrHLRUOEevSC1jsZsdC9TEwZ2l+6McrEtR43J/NSZRTHf0zA17FRIJToC9np2g3eRRMksXVkXimgEDh6Wu5p7y+p+cVXjsdgntr71fR8+vvLTAcUaHvsFT7BcBuAJ9JDn+hbm+RetW3cySMktk+vaqySpigMT86hVYTIIaU8Ci7eFlcxBsJL9P7PIvlOcfBYvokEwR7gQugh0nFTZzGyZk8xhnjSitL5eLF9Zt2B8wgIDb6mu7Dt7fFo9JWf87tpd9Vn4i/nZDRRxvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BdIE8R/bzxSVd2WmbbN6K8nNATk8upKcAMkubt0TIMI=;
+ b=dz3LJy7jhY9W4I9x1hhAj1/tFVHV4K8TaFsLHQtimMLw6kA9tPOaFL7TheoAo2acZgs1N+EulZH8+p2TNY2YJzweRW8HZT9z/KWexSXjFeZzf2MnzU+IKfLcQXtpA1IQA0OcFDLMWDFcgIroNsHQaepijoQIzDm1mRFIceIxsFT28JqHf3QRpPrNN0Wee+l8PP17bdnSUjEFxz6qiX13/wpI4+j63xDjGfMNYl9c9zm5OwOvKLZ4+vUHEbih0puqC6vbeCeu8Zmp13e58qzLA4748aO+XW2V8FL4KDw6Ji5119wnnyRiCsm9zCJqMCOaok6wIO6jBQYp+STTgYNhrA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PUVP216CA0023.KORP216.PROD.OUTLOOK.COM (2603:1096:301:16e::12)
+ by SEZPR06MB5414.apcprd06.prod.outlook.com (2603:1096:101:65::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.5; Mon, 9 Nov 2026
+ 09:24:02 +0000
+Received: from TY2PEPF0000AB86.apcprd03.prod.outlook.com
+ (2603:1096:301:16e:cafe::a1) by PUVP216CA0023.outlook.office365.com
+ (2603:1096:301:16e::12) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.12 via Frontend Transport; Mon, 9
+ Nov 2026 09:24:02 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB86.mail.protection.outlook.com (10.167.253.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 9 Nov 2026 09:24:01 +0000
+Received: from gary-System-Product-Name (unknown [172.16.64.55])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6C52F40920EA;
+	Mon,  9 Nov 2026 17:24:00 +0800 (CST)
+From: Gary Yang <gary.yang@cixtech.com>
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fugang Duan <fugang.duan@cixtech.com>
+Cc: linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org, x86@kernel.org,
-	loongarch@lists.linux.dev, linux-s390@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] mm/sparse-vmemmap: drop vmemmap_can_optimize()
-Message-ID: <avGQadeXQU0ayFYv@localhost.localdomain>
-References: <20261107043122.25650-1-songmuchun@bytedance.com>
- <20261107043122.25650-5-songmuchun@bytedance.com>
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	gary.yang@cixtech.com
+Subject: [PATCH v2 1/2] dt-bindings: usb: add Realtek RTS5453H Type-C port controller
+Date: Mon,  9 Nov 2026 17:23:59 +0800
+Message-ID: <20261109092400.202219-2-gary.yang@cixtech.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20261109092400.202219-1-gary.yang@cixtech.com>
+References: <20261109092400.202219-1-gary.yang@cixtech.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261107043122.25650-5-songmuchun@bytedance.com>
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB86:EE_|SEZPR06MB5414:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: bd785c99-bac2-4afb-4198-08df3e43314e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|82310400026|36860700016|23010399003|1800799024|261009223027099003|261028144727099003|261102123227099003|261021121427099003|261021123027099003|261022105027099003|261022075727099003|261026121527099003|261026140227099003|56012099006|3023799007|10067099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: TRWJKw4vF7CzrkcscblXrryEl7XDlrq4T8pDqlDqM2Ca4IO350nXRCwkfJaVUQArbmnmzt7Sp6ziVE3GTA3O3GRGOXwCdLjGudargvtkrhN3TuMlpXUtlmxCagV5hZN4Y8OeqDuQU8vbIVyJv8BLlOwbp2+O6RiXVJ7cY5sw4GN6lYwR9rbVspLgZ8bJrT5x9luRQkwuQs+RAWMLY29QWVxtdEl3uv+XH8bWrF9KoLTlSGMtwP5LcveOulpwLrG3f5NqbhJAY2I5lk3H/w06ZirqBcm13m8tF3aVdTnpwVqwQbRUWaGhBFRNmCXXx33MGys1+ZxbRN0EZbvcAXH6SWMR5DrprxqC3sjo1wEIf+mltauOVs4WBZOG8LJPFWXEflLT+FFLdKY1yo+xDEeMY2gyOVIfnS5UqYyQagY07iafvP4H1JIoDYEEof7WQ8kEFXIxM8bsgHw6vYpmoyF71JxHdHeDsWz7REN2+EOtdyXAflBkc9o6JxLhh7RmgG1j+lA3MRaeL6lECCYjHTm6+CojJbaHKSc6DykAXlj+5/0jWNC2yUAGqkoeRWo14yQhg0n6o7zLi2afUp0ktGvNkqTQLLdMuLq5WI87QUzvzdGIJuvAANEYycNpX1ySDs1eqR3emUR81XhHxIru1mcJ9w==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700016)(23010399003)(1800799024)(261009223027099003)(261028144727099003)(261102123227099003)(261021121427099003)(261021123027099003)(261022105027099003)(261022075727099003)(261026121527099003)(261026140227099003)(56012099006)(3023799007)(10067099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: P3dNWpgiFkebTKgQTVEMfM0eKb34uHvGhq2dVykoUTdX4J/fDA+XUXR7ZWA1TCF20EkSpKIKgCGWwoEnLhHHv1YZ3IIHfZsZ+UtD7eygBWssaWGqIZJO9gaKRI3cDddWo6eEyjI/npUVJebkJOqj+GDe1xTe8xZ0ORhty2iwUGZAURfSfZM+13e+pl0YenapZszKtNBWaPBzQ7TavOKrpzRJBTUC1bi63edf3i0AZUPkt370TCS8Eq+OOL8Qb10Dwavb8l0HZK602YQKLffNV8la3JA2hc+XB1uT9lBuDPiAbHgQj5laSEsrr/1kVQuLMGUYZFUgo69zPnB+AzCgH6gXV6Wd4J0vPpabtdp3B6z7VB7POxP/zq1HeoS6QA7Rc3suYWZHmviw4p3p9lcyEf5hYyUavd/BZobuXENG9xuzNS9IKHW3pWRDLf0GyU53
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 09:24:01.8278
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd785c99-bac2-4afb-4198-08df3e43314e
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB86.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB5414
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_092412_765975_61144C19 
+X-CRM114-Status: GOOD (  13.57  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,27 +136,145 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 07, 2026 at 12:31:21PM +0800, Muchun Song wrote:
-> section_vmemmap_optimizable() can already decide whether a section uses
-> vmemmap optimization based on the section compound order. The DAX-specific
-> vmemmap_can_optimize() helper duplicates that policy, so remove it to
-> simplify the code.
-> 
-> Signed-off-by: Muchun Song <songmuchun@bytedance.com>
+Document the Realtek RTS5453H stand-alone USB Type-C port controller.
+The controller is connected over I2C and manages a single USB Type-C
+connector, described with the generic USB connector binding.
 
-Reviewed-by: Oscar Salvador (SUSE) <osalvador@kernel.org>
+The connector's OF graph links to the Type-C orientation switch and
+mode mux provided by the platform PHY.
 
- 
+Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+---
+ .../bindings/usb/realtek,rts5453h.yaml        | 112 ++++++++++++++++++
+ 1 file changed, 112 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5453h.yaml
 
+diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5453h.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5453h.yaml
+new file mode 100644
+index 000000000000..14bbd563e66a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/realtek,rts5453h.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/realtek,rts5453h.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Realtek RTS5453H USB Type-C port controller
++
++description: |
++  The RTS5453H is a stand-alone USB Type-C port controller with USB
++  Power Delivery support. It is controlled over I2C and reports
++  changes of the port state through an interrupt line.
++
++  Orientation switching and USB/DisplayPort lane muxing are performed by
++  the platform PHY. The controller finds the Type-C switch and mux
++  through the OF graph of its connector node.
++
++maintainers:
++  - Gary Yang <gary.yang@cixtech.com>
++
++properties:
++  compatible:
++    const: realtek,rts5453h
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  connector:
++    type: object
++    $ref: /schemas/connector/usb-connector.yaml#
++    unevaluatedProperties: false
++    description:
++      The USB Type-C connector managed by this controller.
++
++    required:
++      - data-role
++      - power-role
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - connector
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        typec@30 {
++            compatible = "realtek,rts5453h";
++            reg = <0x30>;
++            interrupt-parent = <&gpio0>;
++            interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
++
++            connector {
++                compatible = "usb-c-connector";
++                data-role = "host";
++                power-role = "source";
++
++                ports {
++                    #address-cells = <1>;
++                    #size-cells = <0>;
++
++                    port@0 {
++                        reg = <0>;
++
++                        typec_hs_ep: endpoint {
++                            remote-endpoint = <&usb_hs_ep>;
++                        };
++                    };
++
++                    port@1 {
++                        reg = <1>;
++
++                        typec_ss_ep: endpoint {
++                            remote-endpoint = <&usb_ss_ep>;
++                        };
++                    };
++                };
++            };
++        };
++    };
++
++    usb {
++        usb-role-switch;
++
++        port {
++            usb_hs_ep: endpoint {
++                remote-endpoint = <&typec_hs_ep>;
++            };
++        };
++    };
++
++    usb-mux {
++        orientation-switch;
++        mode-switch;
++
++        port {
++            usb_ss_ep: endpoint {
++                remote-endpoint = <&typec_ss_ep>;
++            };
++        };
++    };
 -- 
-Oscar Salvador
-SUSE Labs
+2.50.1
+
 
