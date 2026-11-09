@@ -2,103 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E172E606AAD5
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:40:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DE2606EE86
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fc37o8st;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=gy/pUHLL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UHMtuM3T;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RwYrWyq9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=sx1g5ye6adgoDbOeyAiWR4bH+5HwaMNsR4cQud6nf1o=; b=fc37o8stDO20A/
-	f7aileyXc45iKIhjAQxuhrk8IURJJ3b5R81iZNKN1RobCAu+GcQYHDpYMQumt+Vcv7+lYqk1tBCk2
-	PZpkQStiGDrtKunQbiuGii/W+Sh53vtD0ux41ru6w5sPIXkBPinA9oXeo11/JwQMMKaTnClFnlNEz
-	otbpq2jq8A1rH3ZWBcGJnW6XcASX/GtH9E/7FCllXWWL+J92V2FZ3gICItjFeaTfBlGVcBFBlaJxC
-	CEXibVWJVHHkD47cSdOvPlcGyVfsSzHcoxezG0Y5rX+PKMvold3kNTDZ5yxjJbyYho4KfYnlVEkw8
-	iJd9ajtGgNgRw6K2Advw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=pqc2L1WzcvzIZX23ze7NEAQi3S+/FWCxRg0BqVfI6Vg=; b=UHMtuM3Tx+wvnHWy9jaTBPn5N2
+	dd/jy21McBM5db84eQxwzX4Pfw7YazvoJJPmFMjMyPiCTv/+7pnnXfFITP47cp/oLeKTzy2pnnbR6
+	hhv4J8SYat0RtrKqEr6uD1Ylyx+7wQPq7cCY9L+H5d7i9lmXODnNtoYHNfkBCDnF1T1DorknDBkC+
+	XeigbSJUU5sLhFbmQnIy99l1MbS6M6yQnie426ng1iSeHfb3pjpq8NK+tpov1b8sv4Z6IeEsWk0Sr
+	rD4Sqpt61IR0+LUEI521/x85IDyOEulhZh9YG1QNeGQXawlndThnBqNi9fZxGcbqvuiw1sUtSWXv0
+	gxTncUUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSPf-00000001DVS-1VCT;
-	Mon, 09 Nov 2026 16:40:07 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1xQSTw-00000001Dor-0Evp;
+	Mon, 09 Nov 2026 16:44:32 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSPd-00000001DUk-03Mv
+	id 1xQSTv-00000001Dok-1R07
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:40:06 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4918c2d727fso566630f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:40:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794242403; x=1794847203; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=sx1g5ye6adgoDbOeyAiWR4bH+5HwaMNsR4cQud6nf1o=;
-        b=gy/pUHLLGLFRG5HR8hMzqGUWg22Z3l1PoGRkn2RMRo/KHx3+zVw0QxXfHhntW3bnYp
-         uR32oA6OoIVKkgH1G27/iN0eBioCGNhaIMxckeOcRtex5uGDS2HhXOvT5Du6FgP2KJTd
-         hjA7DTH7frHGlAosAtzTbODQnYoOGAM6KeZFvqJZ4KFPVhleway068fzCZNDi2lv2N5l
-         v2OdR+LDF5qPT4CW5p9f8X2jAbRK2mwC4a1gX7WF77sEpqVGqxSOgey+XzjdD1iZ/onG
-         T5P1GZmkrfTZHj/ZqZl7a6WnyGbsHYwVBVfR436kuD5jcmJF8myeTry59RXMKPqXl7uz
-         +y5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794242403; x=1794847203;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=sx1g5ye6adgoDbOeyAiWR4bH+5HwaMNsR4cQud6nf1o=;
-        b=bwHHKRHLe1P/0xrHbV6DaHBJ+oFwZlIm3BTiQExU48O10LTgLmb/P+olp+9TZgyHZP
-         9aPArjh2547cN3zljFvKcwgfMxYIuOR8SuvJfs6vz5QyXnGBun0JkZByAZwDpgn+HxeF
-         9DNJR1m5eTVt2QwabVhMSY2Da0VbHNG9uKRCjZh+5fJSZ11Z1Ji+54nar2osRdhPROI9
-         0PK/qRZsyJn28cNlO58ztLrE7IruV8jjkoKS3NOezd5kc8HMPptzmC+Cq3JnBxu0Haqg
-         F+zebov6CSlMMPeb0sMqsl2ZvCawbZzKw0pOiFzQvS1nNea842zaO4B+LHEDYhgeEYFK
-         XjTw==
-X-Gm-Message-State: APuU4Z+TuxBUlaSwviFjc661OXLguOBKlckyLlkGcXli5psv0m51af9l
-	29J8zqcv4qZDoZVsXHU0imTmuXWa0Pa6nKsz60RuiI3wLrLfXOpNY6VterZTcniX7t8=
-X-Gm-Gg: AYBFou0ok50djwQtbvAPBGI0Ieb8sMVf+z0iXl0J7qn1dgKd8peJB0daSoHRabao7oJ
-	ILwhPnTR+ytLWr2LBepb+cF30ZNYPVCZieffhAJ0V4NCB1X2S1KAKdjF6yAQH0dMQ8EcrkH+m+D
-	ItJbwNbJZz66KWGbE6sUwpMmUB0Gg2I5Xf+K5DJNOz06z8DdA72uNv/aey3ZBKTiBzxoXF/bDkD
-	lPTwA01sOhzhtI9RV9YdBUiRy14rTEx8pkQTshcz6gN8v7TEtmiwQq34R/nQK8FRYO9gWtHjHbX
-	4HlRAerqMgYAoHpDTcFfTWMnBaVC19g9SHgVN5qf9a21nnC5pBAXjDWJqcLT5BhsyQmpZUCkaUd
-	1oHssbPMfgeuzkok2qPQZQ1mxkWv4VKdaBC5DCluFNCJcuKHVLJDoCaL/IW03MbfJ7Ep3IO8t08
-	THrTaLBuex7K4nmcFyONdb8eIExGmujquAHGHjZSg+j14PcSqrbT9kIZXZ4mbOsxGBEDY20cOaW
-	etPvlPY37Vg5uBLSK6pGe+elEONoOGQvzizPmIoOvMf+aHAdllYHmVI1pXocs6DGhCxFaakq+fH
-	SlV0kX2or302gbL3Tg==
-X-Received: by 2002:a05:6000:1848:b0:494:bf39:21a5 with SMTP id ffacd0b85a97d-4982e82bf9emr1102f8f.10.1794242402825;
-        Mon, 09 Nov 2026 08:40:02 -0800 (PST)
-Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49596ea5008sm11062337f8f.26.2026.11.09.08.40.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2026 08:40:02 -0800 (PST)
-Message-ID: <f8a2f477-2dc7-45a9-a2f0-f6e279ebf8f1@linaro.org>
-Date: Mon, 9 Nov 2026 16:40:01 +0000
+	Mon, 09 Nov 2026 16:44:31 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 69AC962C5A;
+	Mon,  9 Nov 2026 16:44:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB6DB1F0089F;
+	Mon,  9 Nov 2026 16:44:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794242670;
+	bh=pqc2L1WzcvzIZX23ze7NEAQi3S+/FWCxRg0BqVfI6Vg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=RwYrWyq9onaHDWrzcgUAnNT+SCoruSQGm9pYpLkASnNzt+eJw6UaP/20lLzCx53Tg
+	 Wq/fzGQuKca+BL62LT2ecyreaIjmIcz1jp30nfdV++sUhfKFKT63PaTdjKFfDyafEr
+	 98bjeO0KYM4XsracQeh3hGCrUI4SmuGqKunKrLyeAPTyqW9tfaZxcRwJL5ATMQ9lQa
+	 XMSohEDAX5THIp9B+tYk3akCt1kk3PX4zT3DVK50IjlwwQLynszpFmdpQ9R/SUmz4V
+	 uy8S+96lC7Ed1ISDIhV4df+jGQMzks7Ar7XQ/Qm3powg856/HDIl9f5zyAz6yLg+84
+	 zi8dbhTRQ83cw==
+Date: Mon, 9 Nov 2026 11:44:25 -0500
+From: Nathan Chancellor <nathan@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Nicolas Schier <nsc@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Daniel Mack <daniel@zonque.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Sasha Levin <sashal@kernel.org>, linux-input@vger.kernel.org,
+	linux-kbuild@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Input: apm-power - remove driver
+Message-ID: <20261109164425.GB1608140@ax162>
+References: <20261109080944.3802916-1-dmitry.torokhov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/23] coresight: trbe: Clear TRBSR status at stop
- sites
-To: Leo Yan <leo.yan@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Mike Leach <mike.leach@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
- Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_084005_086501_AE0B317B 
-X-CRM114-Status: GOOD (  21.13  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261109080944.3802916-1-dmitry.torokhov@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,76 +71,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-On 16/10/2026 17:55, Leo Yan wrote:
-> TRBSR_EL1 records the status of the buffer that just stopped. Clearing
-> it in trbe_enable_hw() postpones cleanup until another run starts. If
-> AUX output cannot restart, for example when AUX space is exhausted,
-> that clear never executes. Clear the status in arm_trbe_disable()
-> after disabling TRBE instead.
-
-Why is leaving it set a problem though? That's not mentioned. Maybe 
-there is some later patch that requires it?
-
-It seems like clearing on enable is cleaner because it only requires one 
-call to clear, but this replaces it with two separate calls without 
-really saying what the benefit of the extra complexity is.
-
+On Mon, Nov 09, 2026 at 12:09:44AM -0800, Dmitry Torokhov wrote:
+> The apm-power input handler solely listens for EV_PWR KEY_SUSPEND
+> events to queue APM_USER_SUSPEND via legacy APM emulation. The only
+> in-tree platforms generating those events are legacy Sharp Zaurus ARM
+> machines (spitz/borzoi/akita and collie), none of which were converted
+> to Device Tree. Both mach-pxa board files and mach-sa1100 were marked
+> deprecated in v7.3 by commit cc7852314abd ("ARM: PXA: mark remaining
+> board files as deprecated") and commit 7d92e50ceacd ("ARM: mark
+> mach-sa1100 as deprecated"), and are queued for removal in v7.5. None
+> of the remaining ARM platforms or other APM_EMULATION targets
+> (MIPS_ALCHEMY, PMAC_APM_EMU, and SH_HP6XX) emit EV_PWR input events or
+> enable CONFIG_INPUT_APMPOWER, and arch/arm/configs/pxa_defconfig
+> already dropped CONFIG_PXA_SHARPSL at the same time, leaving its
+> CONFIG_INPUT_APMPOWER=m entry inert.
 > 
-> trbe_handle_overflow() can start the next run without calling
-> arm_trbe_disable(). Clear the stopped buffer's syndrome and status bits
-> while TRBE is disabled, before attempting the AUX restart. This also
-> leaves the status clean when the restart fails.
+> Normalizing dashes and underscores in scripts/modules-check.sh for v7.5
+> exposes a module name collision (apm_power) between
+> drivers/input/apm-power.ko and drivers/power/supply/apm_power.ko.
+> Remove this obsolete input bridge to resolve the collision rather than
+> renaming a module whose last target platforms are going away in the
+> same cycle.
 > 
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-trbe.c | 10 +++++++++-
->   1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 26e7554d6bdd31f8a55a8bc3a7b6d4c49b984b9b..dd9c9330bb0c739795f300dafc6ce34e72fbf280 100644
-> --- a/drivers/hwtracing/coresight/coresight-trbe.c
-> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -655,7 +655,6 @@ static void trbe_enable_hw(struct trbe_buf *buf)
->   	WARN_ON(buf->trbe_hw_base < buf->trbe_base);
->   	WARN_ON(buf->trbe_write < buf->trbe_hw_base);
->   	WARN_ON(buf->trbe_write >= buf->trbe_limit);
-> -	clr_trbe_status();
->   	set_trbe_base_pointer(buf->trbe_hw_base);
->   	set_trbe_write_pointer(buf->trbe_write);
->   
-> @@ -1069,6 +1068,8 @@ static int arm_trbe_disable(struct coresight_device *csdev)
->   		return -EINVAL;
->   
->   	trbe_drain_and_disable_local(cpudata);
-> +	clr_trbe_status();
-> +
->   	buf->cpudata = NULL;
->   	cpudata->buf = NULL;
->   	cpudata->mode = CS_MODE_DISABLED;
-> @@ -1095,6 +1096,13 @@ static int trbe_handle_overflow(struct perf_output_handle *handle)
->   	unsigned long size;
->   	struct etm_event_data *event_data;
->   
-> +	/*
-> +	 * Clear the status. No context synchronization is required here,
-> +	 * since context synchronization will be performed before TRBE is
-> +	 * re-enabled (see trbe_enable_hw()).
-> +	 */
-> +	clr_trbe_status();
-> +
->   	size = trbe_get_trace_size(handle, buf, true);
->   	if (buf->snapshot)
->   		handle->head += size;
-> 
+> Reported-by: Sasha Levin <sashal@kernel.org>
+> Closes: https://lore.kernel.org/r/20261108225808.1809266-1-sashal@kernel.org
+> Link: https://lore.kernel.org/r/20261109-apm-power-input-rename-v1-1-0609e7b91825@kernel.org
+> Link: https://lore.kernel.org/r/e4da2f9d-d3b9-4267-9b64-b0f2cb43402a@app.fastmail.com
+> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
+Thanks a lot for helping with this.
+
+Reviewed-by: Nathan Chancellor <nathan@kernel.org>
+
+Nicolas, do you prefer taking this via kbuild-next directly or having
+Dmitry take it via the input tree and giving us an immutable branch? I
+assume the chance of conflicts or follow-ups are low, so we can probably
+just take it directly but I don't want to assume your preference.
+
+-- 
+Cheers,
+Nathan
 
