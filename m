@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0088C606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D35760A3820
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oJMkJdXG;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=j/k9NAXp;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=IaOhcNEV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0aTnPLI;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=T2AsfrTX;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=hSEb/1Fx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PtHDYady7phNq27ntokTbSRWYS9Lun+LGBxYvYPNZY8=; b=oJMkJdXGetxWcv
-	/JsOGiGwFRF1NmFzZ1pK5ybOAGwrxfnRRwLAuNYMzLU9Sp+1ivUPFoXmLtdCD+u3ayuG1ZB+Tem4r
-	xmKjk4o93CkR5IXhGp+TtBAb4QSMeuiNsciQLxNMn5whg5XOyb3JeyWTWUuwwjqjvdhJtQshXHmrR
-	3obvby7d7D6NaA0FUWruuBfd/dBU6dGBivBMwHfa4DzeSXj+Dckac6cD1objEW6EbNuV0UK7UcY3S
-	ji02rcXt+w35FMQ9xTbc4XrnDO7S6MAZ0VnmupPHIFYH+jpZwx9HmV8hpHbTUfqUD6B3hBhC1P8ho
-	phwL5k3Pd78waEsoVO8g==;
+	List-Owner; bh=uWThlNDxx8k9coc2dZrQvIwrgPoJzUnjIpsnGUgbQxc=; b=h0aTnPLIGoIAX4
+	2pv187YQEbZHJuIh7R7PVY847Lct/juRYzXJHAV6ExApsCCOBXWidGyMmVX/ZIR4+8hLzjOCV7B+F
+	Ku6LVYYm+N9a2nZvAY97vJpnRdWmKaeSXAnczssTTkhtVIsmdC0HpQoHVUgNgSsvyrUMjsAogotAc
+	ozE6fMTL4QwKWGCT30Tbi9tQnb/yRA7KPTS2Ltpgl4RWxOIsNadtWXN/jWoRZ/QY8lT6/JdqyQlXs
+	2qHgLlaja+lSmJECTki3FBovPC9pl0Dc5Quk8mK689ujy5NzqOLB7SzRX2ne1vH56/nWXhJHT5cUq
+	4Wm19SPzjoLe24MyCeyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4P-000000007bb-3Cqc;
-	Mon, 09 Nov 2026 08:49:41 +0000
+	id 1xQL4a-000000007lK-1DqV;
+	Mon, 09 Nov 2026 08:49:52 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4L-000000007YE-2UEl
+	id 1xQL4X-000000007iT-0L3b
 	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 09 Nov 2026 08:49:37 +0000
+	Mon, 09 Nov 2026 08:49:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=PtHDYady7phNq27ntokTbSRWYS9Lun+LGBxYvYPNZY8=; b=j/k9NAXpwN2uKAfkNsXNywKUl3
-	G5pI6DS9e0jIhWHrgXO6GzRsmG7kYGNDntsYWDp7wxDbC5V0SsWGzwonD3WAoVAKLKdcx0WqAE67G
-	v3giLptVWai+y4MeDuew06FtSeoqHYARQdmvCQLGPk+7KPNnv3ELBIpDVuut7+RcTYOCF/2PNp8Bx
-	YzzsBjOhMWYN5HupgBXT1MkDdTY7jTfPdO5SCmTyc5HE9BAqCTw3B6zbQJUjb7f9wUkokvxbVf+jF
-	BmS/EYLeI8xcLNsh/pP9Ot2Zx4qLb+HdUaFqPRaxHViRozPKqJ30bH+3oRyAmLJCcFx0g5Ll1InYy
-	mHkXcFUg==;
-Received: from out-222.mta1.migadu.com ([95.215.58.222] helo=mta1.migadu.com)
+	bh=uWThlNDxx8k9coc2dZrQvIwrgPoJzUnjIpsnGUgbQxc=; b=T2AsfrTXdUNgJv5EzLePKKjog+
+	4JT38j10mNNVZ8CqWcChAdOYZTlXB8u3rHBV2jwMkFlRLzrksmAfWh3vSADrPzwXarP93CQhKpWTR
+	9ccIOvRrPr9cD5RCs2llyDE13KAPmKLPAWFZ+15LrppOR6bL+in5QdQvrD6BWxcQPLgUp3OiZrRke
+	mYRs5zW3M0LFHoq1/ITmpqBq+Ux9IBKa61jPgBPiN+ie3CJFIIj22CkoS+yGlWsBCyCSLADOMiW/P
+	Lu04nMPviYWIfX3objV8443THhyFJ3HbKsOQ8oU8nos4boI/kQ/tYNZoURfgJTsKcxcLDMovjuiYY
+	XYFYEWYA==;
+Received: from out-231.mta0.migadu.com ([2001:41d0:1004:224b::e7] helo=mta0.migadu.com)
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4I-00000006TYw-1IUa
+	id 1xQL4N-00000006TZj-3YwQ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 08:49:36 +0000
+	Mon, 09 Nov 2026 08:49:46 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=ovcORW3DsB2JukpcYhWq0sTqhjhRqe8m4MhePuk/qqE=;
+DKIM-Signature: a=rsa-sha256; bh=tieCJB5xPHFID0PWIkTmfQAHSOPwOh5HA6tVxBq05s0=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794214173; v=1; x=1794818973;
- b=IaOhcNEVbXajw44iBVdsXJnOT7pDf7QqB9hgcYyslWk2I94wMn4unXDwh2lfPuNTru7VfSLl
- epHa5etOrNigbUaGHK7O2UGJwKGaGfclhM7AQfayV5IR+/T4PHJqI5jSFv4+7/+ylUK/nrXptlx
- 9W+tPzhutMFSSS6HtRI2dApQ=
+ t=1794214177; v=1; x=1794818977;
+ b=hSEb/1Fx4YSgGT9RJa3fhefkK5thhzaT01aiVI8Y54Z22V7X1Hx3AMrEZxnxKqrXle7s3VRF
+ bLnIJ6AvO5e7f23+RAFmZXYMIHi8RFCSTVGkySi3ogjGJGgbjEZp5y8OODuBLuYeU3W7oV2923A
+ SraLZjCgwkJ5ayv3P9LjX+1U=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 6eeedc8a73996927;
-	Mon, 09 Nov 2026 08:49:32 +0000
-X-Mizu-Trace-ID: 6eeedc8a73996927
+Received: by smtp.migadu.com with ESMTPS id 7e8d9e8db2fd6fbd;
+	Mon, 09 Nov 2026 08:49:37 +0000
+X-Mizu-Trace-ID: 7e8d9e8db2fd6fbd
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -78,9 +78,9 @@ Cc: Will Deacon <will@kernel.org>,
 	kvm@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/19] KVM: arm64: selftests: Add pkvm_mem_share hypercall test
-Date: Mon,  9 Nov 2026 08:48:45 +0000
-Message-ID: <20261109084854.840576-11-fuad.tabba@linux.dev>
+Subject: [PATCH v2 14/19] KVM: arm64: selftests: Add pkvm_irq interrupt test
+Date: Mon,  9 Nov 2026 08:48:49 +0000
+Message-ID: <20261109084854.840576-15-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261109084854.840576-1-fuad.tabba@linux.dev>
 References: <20261109084854.840576-1-fuad.tabba@linux.dev>
@@ -88,8 +88,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_084934_545495_8CFF2C26 
-X-CRM114-Status: GOOD (  24.08  )
+X-CRM114-CacheID: sfid-20261109_084941_359703_80B98032 
+X-CRM114-Status: GOOD (  21.80  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,433 +109,305 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A protected guest gives the host access to one of its pages with
-MEM_SHARE and takes it back with MEM_UNSHARE. The page is a host page,
-whose size HYP_MEMINFO returns. At teardown EL2 zeroes every page the
-guest hasn't left shared.
+The host emulates a protected guest's vGIC, so EL2 copies the list
+registers to and from the host each time the host runs the vCPU. EL2
+also keeps its own copy of the guest's virtual timer state, which the
+host can't change.
 
-Exercise the three calls, the host's access to shared and private pages,
-and the zeroing. Also check that KVM_RUN fails with EIO on
-hugetlb-backed memory, that sharing an IPA outside every memslot makes
-the guest take an external abort, and that faults each requiring new
-stage-2 tables succeed.
+Check that the virtual timer's PPI arrives exactly once, with CVAL and
+CTL kept across exits, that SGIs pass between two vCPUs, and that the
+timer wakes a vCPU in WFI.
 
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- tools/testing/selftests/kvm/Makefile.kvm      |   1 +
- .../selftests/kvm/arm64/pkvm_mem_share.c      | 394 ++++++++++++++++++
- 2 files changed, 395 insertions(+)
- create mode 100644 tools/testing/selftests/kvm/arm64/pkvm_mem_share.c
+ tools/testing/selftests/kvm/Makefile.kvm     |   1 +
+ tools/testing/selftests/kvm/arm64/pkvm_irq.c | 268 +++++++++++++++++++
+ 2 files changed, 269 insertions(+)
+ create mode 100644 tools/testing/selftests/kvm/arm64/pkvm_irq.c
 
 diff --git a/tools/testing/selftests/kvm/Makefile.kvm b/tools/testing/selftests/kvm/Makefile.kvm
-index aa256fb66d226..88c1159cb3bf1 100644
+index 1e40e793aa6f3..13998964facd5 100644
 --- a/tools/testing/selftests/kvm/Makefile.kvm
 +++ b/tools/testing/selftests/kvm/Makefile.kvm
-@@ -191,6 +191,7 @@ TEST_GEN_PROGS_arm64 += arm64/external_aborts
- TEST_GEN_PROGS_arm64 += arm64/mmio_sign_ext
+@@ -192,6 +192,7 @@ TEST_GEN_PROGS_arm64 += arm64/mmio_sign_ext
  TEST_GEN_PROGS_arm64 += arm64/page_fault_test
  TEST_GEN_PROGS_arm64 += arm64/pkvm_host_abi
-+TEST_GEN_PROGS_arm64 += arm64/pkvm_mem_share
+ TEST_GEN_PROGS_arm64 += arm64/pkvm_id_regs
++TEST_GEN_PROGS_arm64 += arm64/pkvm_irq
+ TEST_GEN_PROGS_arm64 += arm64/pkvm_mem_share
  TEST_GEN_PROGS_arm64 += arm64/pkvm_psci
- TEST_GEN_PROGS_arm64 += arm64/psci_test
- TEST_GEN_PROGS_arm64 += arm64/sea_to_user
-diff --git a/tools/testing/selftests/kvm/arm64/pkvm_mem_share.c b/tools/testing/selftests/kvm/arm64/pkvm_mem_share.c
+ TEST_GEN_PROGS_arm64 += arm64/pkvm_smccc
+diff --git a/tools/testing/selftests/kvm/arm64/pkvm_irq.c b/tools/testing/selftests/kvm/arm64/pkvm_irq.c
 new file mode 100644
-index 0000000000000..9a4e96fc8d046
+index 0000000000000..f92fa6f0de8de
 --- /dev/null
-+++ b/tools/testing/selftests/kvm/arm64/pkvm_mem_share.c
-@@ -0,0 +1,394 @@
++++ b/tools/testing/selftests/kvm/arm64/pkvm_irq.c
+@@ -0,0 +1,268 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * pkvm_mem_share - MEM_SHARE, MEM_UNSHARE and HYP_MEMINFO, and EL2 zeroing a
-+ * protected VM's private pages at teardown.
++ * pkvm_irq - the virtual timer's PPI and SGIs in a protected VM.
 + *
-+ * Copyright (C) 2025 Google LLC
++ * Copyright (C) 2026 Google LLC
 + * Author: Fuad Tabba <fuad.tabba@linux.dev>
 + */
 +
-+#include <errno.h>
-+#include <setjmp.h>
-+#include <signal.h>
-+#include <stdio.h>
++#include <pthread.h>
 +
-+#include <linux/arm-smccc.h>
++#include <linux/bitfield.h>
++#include <linux/psci.h>
++#include <asm/cputype.h>
 +
++#include "arch_timer.h"
++#include "gic.h"
++#include "gic_v3.h"
 +#include "kvm_util.h"
 +#include "pkvm.h"
 +#include "processor.h"
 +#include "test_util.h"
 +
-+/*
-+ * A page here is a host page, the granule EL2 shares in. Set in the guest's
-+ * copy by the host before the first run.
-+ */
-+static u64 granule;
++#define TIMER_MS	10
++#define WAIT_MS		30000
++#define NR_EXITS	16
++#define SGI_ROUNDS	16
 +
-+#define GUEST_MEMSLOT	(PKVM_IDMAP_MEMSLOT + 1)
-+#define GPA_BASE	BIT_ULL(30)
-+#define GVA_BASE	GPA_BASE
-+#define GPA_PAGES	16
-+#define GPA_SIZE	((size_t)GPA_PAGES * granule)
++#define SGI_PING	1
++#define SGI_PONG	2
 +
-+/* Each case uses its own pages of the guest memslot. */
-+#define P_SHARE			0
-+#define P_SHARED_AT_TEARDOWN	1
++/* Set in the guest's copy by the host before the first run. */
++static u32 vtimer_irq;
++static u64 boot_entry;
++static u64 vcpu_mpidr[2];
++static u64 vcpu_ctx[2];
 +
-+/* Recognizable value the host must still see in a page that isn't zeroed. */
-+#define DIRTY_VAL		0x0badf00ddeadbeefUL
++static u32 irqs[2];
++static u32 last_intid[2];
++static u32 ready;
 +
-+/* An aligned IPA outside every memslot. */
-+#define OUTSIDE_IPA		BIT_ULL(31)
++#define wait_until(cond)							\
++do {										\
++	u64 __end = timer_get_cntct(VIRTUAL) + msec_to_cycles(WAIT_MS);	\
++										\
++	while (!(cond))								\
++		__GUEST_ASSERT(timer_get_cntct(VIRTUAL) < __end,		\
++			       "timed out waiting for %s", #cond);		\
++} while (0)
 +
-+/* What one last-level stage-2 table maps: 2M on a 4K host. */
-+#define BLOCK_SIZE		(granule / 8 * granule)
-+
-+/* One page in each block of a memslot centered on 512G. */
-+#define PRESSURE_MEMSLOT	(GUEST_MEMSLOT + 1)
-+#define PRESSURE_PAGES		64
-+#define PRESSURE_SIZE		((u64)PRESSURE_PAGES * BLOCK_SIZE)
-+#define PRESSURE_GPA		(BIT_ULL(39) - PRESSURE_SIZE / 2)
-+#define PRESSURE_GVA		BIT_ULL(32)
-+
-+/* Commands that act on a page take its index. */
-+enum guest_cmd {
-+	CMD_HOST_INC_SHARED = 1,
-+	CMD_HOST_ACCESS_PRIVATE,
-+};
-+
-+#define HOST_CMD(cmd, idx)	GUEST_SYNC_ARGS(cmd, idx, 0, 0, 0)
-+
-+static u64 page_ipa(int idx)
++static void guest_irq_handler(struct ex_regs *regs)
 +{
-+	return GPA_BASE + (u64)idx * granule;
++	u32 intid = gic_get_and_ack_irq();
++	u32 cpu = guest_get_vcpuid();
++
++	if (intid == IAR_SPURIOUS)
++		return;
++
++	if (intid == vtimer_irq) {
++		__GUEST_ASSERT(timer_get_ctl(VIRTUAL) & CTL_ISTATUS, "CNTV_CTL 0x%x",
++			       timer_get_ctl(VIRTUAL));
++		GUEST_ASSERT(timer_get_cntct(VIRTUAL) >= timer_get_cval(VIRTUAL));
++		/* Mask the timer before the EOI, or its level-sensitive PPI is taken again. */
++		timer_set_ctl(VIRTUAL, CTL_IMASK);
++	}
++
++	WRITE_ONCE(last_intid[cpu], intid);
++	gic_set_eoi(intid);
++	WRITE_ONCE(irqs[cpu], irqs[cpu] + 1);
 +}
 +
-+static volatile u64 *page_va(int idx)
++static void guest_irq_init(unsigned int nr_cpus)
 +{
-+	return (volatile u64 *)(GVA_BASE + (u64)idx * granule);
-+}
-+
-+static unsigned long hvc_share(u64 ipa, u64 arg2, u64 arg3)
-+{
-+	return pkvm_hvc(ARM_SMCCC_VENDOR_HYP_KVM_MEM_SHARE_FUNC_ID, ipa, arg2, arg3);
-+}
-+
-+static unsigned long hvc_unshare(u64 ipa, u64 arg2, u64 arg3)
-+{
-+	return pkvm_hvc(ARM_SMCCC_VENDOR_HYP_KVM_MEM_UNSHARE_FUNC_ID, ipa, arg2, arg3);
-+}
-+
-+static void test_meminfo(void)
-+{
-+	u32 meminfo = ARM_SMCCC_VENDOR_HYP_KVM_HYP_MEMINFO_FUNC_ID;
-+
-+	GUEST_ASSERT_EQ(pkvm_hvc(meminfo, 0, 0, 0), granule);
-+
-+	GUEST_ASSERT_EQ(pkvm_hvc(meminfo, 1, 0, 0), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(pkvm_hvc(meminfo, 0, 1, 0), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(pkvm_hvc(meminfo, 0, 0, 1), SMCCC_RET_INVALID_PARAMETER);
-+}
-+
-+static void test_arg_validation(void)
-+{
-+	u64 ipa = page_ipa(P_SHARE);
-+
-+	/* Non-zero arg2 or arg3, and an unaligned IPA, are rejected before any page walk. */
-+	GUEST_ASSERT_EQ(hvc_share(ipa, 1, 0), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(hvc_share(ipa, 0, 1), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(hvc_share(ipa + 0x80, 0, 0), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(hvc_unshare(ipa, 1, 0), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(hvc_unshare(ipa, 0, 1), SMCCC_RET_INVALID_PARAMETER);
-+	GUEST_ASSERT_EQ(hvc_unshare(ipa + 0x80, 0, 0), SMCCC_RET_INVALID_PARAMETER);
-+}
-+
-+static void test_share_unshare(void)
-+{
-+	volatile u64 *val = page_va(P_SHARE);
-+	u64 ipa = page_ipa(P_SHARE);
-+
-+	*val = 42;
-+
-+	HOST_CMD(CMD_HOST_ACCESS_PRIVATE, P_SHARE);
-+	GUEST_ASSERT_EQ(*val, 42);
-+
-+	GUEST_ASSERT_EQ(hvc_share(ipa, 0, 0), SMCCC_RET_SUCCESS);
-+	GUEST_ASSERT_EQ(hvc_share(ipa, 0, 0), SMCCC_RET_INVALID_PARAMETER);
-+
-+	HOST_CMD(CMD_HOST_INC_SHARED, P_SHARE);
-+	GUEST_ASSERT_EQ(*val, 43);
-+
-+	GUEST_ASSERT_EQ(hvc_unshare(ipa, 0, 0), SMCCC_RET_SUCCESS);
-+	GUEST_ASSERT_EQ(hvc_unshare(ipa, 0, 0), SMCCC_RET_INVALID_PARAMETER);
-+
-+	HOST_CMD(CMD_HOST_ACCESS_PRIVATE, P_SHARE);
-+	GUEST_ASSERT_EQ(*val, 43);
-+}
-+
-+/* Dirty every page, so that a page that reads 0 after teardown is one EL2 zeroed. */
-+static void guest_dirty_region(void)
-+{
-+	volatile u64 *p = (volatile u64 *)GVA_BASE;
-+	size_t i;
-+
-+	for (i = 0; i < GPA_SIZE / sizeof(*p); i++)
-+		p[i] = DIRTY_VAL;
-+}
-+
-+static void guest_code(void)
-+{
++	local_irq_disable();
 +	pkvm_guest_init();
-+
-+	test_meminfo();
-+	test_arg_validation();
-+	test_share_unshare();
-+
-+	guest_dirty_region();
-+
-+	/* Teardown doesn't zero a page the guest left shared. */
-+	GUEST_ASSERT_EQ(hvc_share(page_ipa(P_SHARED_AT_TEARDOWN), 0, 0), SMCCC_RET_SUCCESS);
-+
-+	GUEST_DONE();
++	gic_init(GIC_V3, nr_cpus);
 +}
 +
-+static void expect_sea_handler(struct ex_regs *regs)
++static u64 start_vtimer(void)
 +{
-+	u64 esr = read_sysreg(esr_el1);
++	u64 cval = timer_get_cntct(VIRTUAL) + msec_to_cycles(TIMER_MS);
 +
-+	GUEST_ASSERT_EQ(ESR_ELx_EC(esr), ESR_ELx_EC_DABT_CUR);
-+	GUEST_ASSERT_EQ(esr & ESR_ELx_FSC_TYPE, ESR_ELx_FSC_EXTABT);
-+
-+	GUEST_DONE();
++	gic_irq_enable(vtimer_irq);
++	timer_set_cval(VIRTUAL, cval);
++	timer_set_ctl(VIRTUAL, CTL_ENABLE);
++	return cval;
 +}
 +
-+static void guest_share_outside(void)
++static void guest_vtimer(void)
 +{
-+	pkvm_guest_init();
-+
-+	hvc_share(OUTSIDE_IPA, 0, 0);
-+	GUEST_FAIL("MEM_SHARE of an IPA outside every memslot returned to the guest");
-+}
-+
-+/*
-+ * Each fault requires a new stage-2 last-level table, and the first one above
-+ * 512G a new table at every level below the root.
-+ */
-+static void guest_memcache_pressure(void)
-+{
-+	volatile u64 *p = (volatile u64 *)PRESSURE_GVA;
++	u64 cval;
 +	int i;
 +
-+	pkvm_guest_init();
++	guest_irq_init(1);
++	cval = start_vtimer();
 +
-+	for (i = 0; i < PRESSURE_PAGES; i++)
-+		p[i * granule / sizeof(*p)] = i + 1;
-+	for (i = 0; i < PRESSURE_PAGES; i++)
-+		GUEST_ASSERT_EQ(p[i * granule / sizeof(*p)], i + 1);
++	/* Exits before the timer fires, then with its interrupt pending but masked. */
++	for (i = 0; i < NR_EXITS; i++)
++		GUEST_SYNC(i);
++	wait_until(timer_get_ctl(VIRTUAL) & CTL_ISTATUS);
++	for (i = 0; i < NR_EXITS; i++)
++		GUEST_SYNC(i);
 +
++	GUEST_ASSERT_EQ(timer_get_cval(VIRTUAL), cval);
++	GUEST_ASSERT_EQ(timer_get_ctl(VIRTUAL), CTL_ENABLE | CTL_ISTATUS);
++	GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), 0);
++
++	local_irq_enable();
++	wait_until(READ_ONCE(irqs[0]));
++
++	/* The EOI must reach the host, or it presents the interrupt again. */
++	for (i = 0; i < NR_EXITS; i++)
++		GUEST_SYNC(i);
++	local_irq_disable();
++
++	GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), 1);
++	GUEST_ASSERT_EQ(READ_ONCE(last_intid[0]), vtimer_irq);
 +	GUEST_DONE();
 +}
 +
-+static void guest_touch_one_page(void)
++static void send_sgi(int id, u32 intid)
 +{
-+	pkvm_guest_init();
++	u64 mpidr = vcpu_mpidr[id];
 +
-+	*page_va(0) = 1;
-+
-+	GUEST_DONE();
++	/* The target reads this vCPU's counters once it has taken the SGI. */
++	dsb(ishst);
++	write_sysreg_s(FIELD_PREP(ICC_SGI1R_SGI_ID_MASK, intid) |
++		       FIELD_PREP(ICC_SGI1R_AFFINITY_1_MASK, MPIDR_AFFINITY_LEVEL(mpidr, 1)) |
++		       FIELD_PREP(ICC_SGI1R_TARGET_LIST_MASK, BIT(MPIDR_AFFINITY_LEVEL(mpidr, 0))),
++		       SYS_ICC_SGI1R_EL1);
++	isb();
 +}
 +
-+static sigjmp_buf sigsegv_jmpbuf;
-+static volatile void *sigsegv_expected;
-+
-+/* The test maps the guest memslot itself, so it can read the memory after the VM is freed. */
-+static u64 *guest_mem;
-+
-+static u64 *host_page(int idx)
++static void guest_sgi_primary(void)
 +{
-+	return guest_mem + (size_t)idx * granule / sizeof(*guest_mem);
-+}
++	u32 k;
 +
-+static void sigsegv_handler(int sig, siginfo_t *si, void *ctx)
-+{
-+	TEST_ASSERT(si->si_addr == sigsegv_expected,
-+		    "SIGSEGV at %p, expected %p", si->si_addr, sigsegv_expected);
-+	siglongjmp(sigsegv_jmpbuf, 1);
-+}
++	guest_irq_init(2);
++	gic_irq_enable(SGI_PONG);
 +
-+static void host_access_private(int idx)
-+{
-+	struct sigaction old, sa = {
-+		.sa_sigaction	= sigsegv_handler,
-+		.sa_flags	= SA_SIGINFO,
-+	};
-+	volatile u64 *p = host_page(idx);
-+	bool faulted = false;
++	GUEST_ASSERT_EQ(pkvm_hvc(PSCI_0_2_FN64_CPU_ON, vcpu_mpidr[1], boot_entry, vcpu_ctx[1]),
++			PSCI_RET_SUCCESS);
++	wait_until(READ_ONCE(ready));
 +
-+	sigsegv_expected = (void *)p;
-+	sigaction(SIGSEGV, &sa, &old);
-+	if (sigsetjmp(sigsegv_jmpbuf, 1) == 0)
-+		(*p)++;
-+	else
-+		faulted = true;
-+	sigaction(SIGSEGV, &old, NULL);
++	local_irq_enable();
++	for (k = 1; k <= SGI_ROUNDS; k++) {
++		send_sgi(1, SGI_PING);
 +
-+	TEST_ASSERT(faulted, "Host accessed private guest memory without faulting");
-+}
-+
-+static void on_sync(struct kvm_vcpu *vcpu, struct ucall *uc)
-+{
-+	u64 *p = host_page(uc->args[2]);
-+
-+	switch (uc->args[1]) {
-+	case CMD_HOST_INC_SHARED:
-+		(*p)++;
-+		break;
-+	case CMD_HOST_ACCESS_PRIVATE:
-+		host_access_private(uc->args[2]);
-+		break;
-+	default:
-+		TEST_FAIL("Unexpected guest command %lu", uc->args[1]);
++		/* vCPU 1 sends PONG only once it has taken PING, so neither is in flight. */
++		wait_until(READ_ONCE(irqs[0]) >= k);
++		GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), k);
++		GUEST_ASSERT_EQ(READ_ONCE(irqs[1]), k);
++		GUEST_ASSERT_EQ(READ_ONCE(last_intid[0]), SGI_PONG);
++		GUEST_ASSERT_EQ(READ_ONCE(last_intid[1]), SGI_PING);
 +	}
++	local_irq_disable();
++
++	GUEST_DONE();
 +}
 +
-+static void assert_page(int idx, u64 val)
++/* The primary's guest_irq_init() set up ucall and the distributor. */
++static void guest_sgi_secondary(void)
 +{
-+	u64 *p = host_page(idx);
-+	size_t i;
++	u32 k;
 +
-+	for (i = 0; i < granule / sizeof(*p); i++)
-+		TEST_ASSERT(p[i] == val, "Guest page %d holds 0x%lx, not 0x%lx, after teardown",
-+			    idx, p[i], val);
++	gic_init(GIC_V3, 2);
++	gic_irq_enable(SGI_PING);
++	local_irq_enable();
++	WRITE_ONCE(ready, 1);
++
++	for (k = 1; k <= SGI_ROUNDS; k++) {
++		wait_until(READ_ONCE(irqs[1]) >= k);
++		send_sgi(0, SGI_PONG);
++	}
++	local_irq_disable();
++
++	GUEST_DONE();
 +}
 +
-+static void test_run(void)
++static void guest_wfi(void)
 +{
-+	const char *name = "share/unshare, and teardown zeroing";
++	guest_irq_init(1);
++	start_vtimer();
++
++	/* WFI can complete before the timer fires, so wait in it until the handler has run. */
++	while (!READ_ONCE(irqs[0])) {
++		wfi();
++		local_irq_enable();
++		isb(); /* handle IRQ */
++		local_irq_disable();
++	}
++
++	GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), 1);
++	GUEST_ASSERT_EQ(READ_ONCE(last_intid[0]), vtimer_irq);
++	GUEST_DONE();
++}
++
++static void irq_vm_setup(struct kvm_vm *vm, struct kvm_vcpu *vcpu)
++{
++	vm_install_exception_handler(vm, VECTOR_IRQ_CURRENT, guest_irq_handler);
++	write_guest_global(vm, vtimer_irq, vcpu_get_vtimer_irq(vcpu));
++}
++
++static void test_one_vcpu(void *guest_code)
++{
 +	struct kvm_vcpu *vcpu;
 +	struct kvm_vm *vm;
-+	int i;
 +
 +	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_code);
-+	guest_mem = kvm_mmap(GPA_SIZE, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1);
-+	vm_set_user_memory_region2(vm, GUEST_MEMSLOT, 0, GPA_BASE, GPA_SIZE, guest_mem, -1, 0);
-+	virt_map(vm, GVA_BASE, GPA_BASE, GPA_SIZE / vm->page_size);
-+	write_guest_global(vm, granule, granule);
-+
-+	pkvm_run_loop(vcpu, on_sync);
-+	kvm_vm_free(vm);
-+
-+	for (i = 0; i < GPA_PAGES; i++)
-+		assert_page(i, i == P_SHARED_AT_TEARDOWN ? DIRTY_VAL : 0);
-+	kvm_munmap(guest_mem, GPA_SIZE);
-+
-+	ksft_test_result_pass("%s\n", name);
-+}
-+
-+/*
-+ * EL2 turns the share into a stage-2 translation fault on the IPA with ISV clear.
-+ * The host finds no memslot for the IPA and injects an external abort.
-+ */
-+static void test_share_outside_memslot(void)
-+{
-+	struct kvm_vcpu *vcpu;
-+	struct kvm_vm *vm;
-+
-+	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_share_outside);
-+	vm_install_sync_handler(vm, VECTOR_SYNC_CURRENT, ESR_ELx_EC_DABT_CUR, expect_sea_handler);
++	irq_vm_setup(vm, vcpu);
 +
 +	pkvm_run_loop(vcpu, NULL);
-+	kvm_vm_free(vm);
 +
-+	ksft_test_result_pass("share of an IPA outside every memslot takes an external abort\n");
++	kvm_vm_free(vm);
 +}
 +
-+static void test_memcache_pressure(void)
++static void wire_mpidr(struct kvm_vm *vm, struct kvm_vcpu *vcpu)
 +{
-+	const char *name = "faults that each require new stage-2 tables";
-+	struct kvm_vcpu *vcpu;
-+	struct kvm_vm *vm;
-+	void *mem;
-+	int i;
++	u64 mpidr = vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_MPIDR_EL1));
 +
-+	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_memcache_pressure);
++	write_guest_global(vm, vcpu_mpidr[vcpu->id], mpidr & MPIDR_HWID_BITMASK);
++}
 +
-+	/* 32G on a 64K host, of which the guest touches one page per block. */
-+	mem = kvm_mmap(PRESSURE_SIZE, PROT_READ | PROT_WRITE,
-+		       MAP_PRIVATE | MAP_ANONYMOUS | MAP_NORESERVE, -1);
-+	vm_set_user_memory_region2(vm, PRESSURE_MEMSLOT, 0, PRESSURE_GPA, PRESSURE_SIZE,
-+				   mem, -1, 0);
-+	for (i = 0; i < PRESSURE_PAGES; i++)
-+		virt_pg_map(vm, PRESSURE_GVA + i * granule, PRESSURE_GPA + i * BLOCK_SIZE);
-+	write_guest_global(vm, granule, granule);
-+
++static void *vcpu_thread(void *vcpu)
++{
 +	pkvm_run_loop(vcpu, NULL);
-+	kvm_vm_free(vm);
-+	kvm_munmap(mem, PRESSURE_SIZE);
-+
-+	ksft_test_result_pass("%s\n", name);
++	return NULL;
 +}
 +
-+static unsigned long hugetlb_free_pages(void)
++static void test_sgi(void)
 +{
-+	unsigned long nr = 0;
-+	char line[64];
-+	FILE *f;
-+
-+	f = fopen("/proc/meminfo", "r");
-+	TEST_ASSERT(f, "fopen /proc/meminfo");
-+
-+	while (fgets(line, sizeof(line), f)) {
-+		if (sscanf(line, "HugePages_Free: %lu", &nr) == 1)
-+			break;
-+	}
-+	fclose(f);
-+
-+	return nr;
-+}
-+
-+/* Hugetlb pages aren't swap-backed, so the first fault on them fails. */
-+static void test_hugetlb_refused(const char *name)
-+{
-+	struct kvm_vcpu *vcpu;
++	struct kvm_vcpu *vcpus[2];
++	pthread_t thread;
 +	struct kvm_vm *vm;
-+	u64 npages;
-+	int ret;
++	gpa_t ctx;
 +
-+	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_touch_one_page);
-+	npages = get_backing_src_pagesz(VM_MEM_SRC_ANONYMOUS_HUGETLB) / vm->page_size;
-+	vm_userspace_mem_region_add(vm, VM_MEM_SRC_ANONYMOUS_HUGETLB, GPA_BASE, GUEST_MEMSLOT,
-+				    npages, 0);
-+	virt_map(vm, GVA_BASE, GPA_BASE, 1);
++	vm = pkvm_vm_create(2, 0, vcpus);
++	irq_vm_setup(vm, vcpus[0]);
 +
-+	ret = _vcpu_run(vcpu);
-+	TEST_ASSERT(ret == -1 && errno == EIO,
-+		    "hugetlb-backed memslot: KVM_RUN rc %d errno %d", ret, errno);
++	pkvm_vcpu_setup_boot(vcpus[0], guest_sgi_primary);
++	wire_mpidr(vm, vcpus[0]);
++	wire_mpidr(vm, vcpus[1]);
++	write_guest_global(vm, boot_entry, pkvm_idmap_gpa(vm));
++	ctx = pkvm_vcpu_setup_boot_secondary(vcpus[1], guest_sgi_secondary);
++	write_guest_global(vm, vcpu_ctx[1], ctx);
++
++	pthread_create(&thread, NULL, vcpu_thread, vcpus[1]);
++	pkvm_run_loop(vcpus[0], NULL);
++	pthread_join(thread, NULL);
 +
 +	kvm_vm_free(vm);
-+
-+	ksft_test_result_pass("%s\n", name);
 +}
 +
 +int main(void)
 +{
-+	const char *hugetlb = "hugetlb memory rejected for a protected VM";
-+
 +	TEST_REQUIRE(pkvm_supported());
-+	granule = getpagesize();
 +
 +	ksft_print_header();
-+	ksft_set_plan(4);
++	ksft_set_plan(3);
 +
-+	test_run();
-+
-+	if (hugetlb_free_pages())
-+		test_hugetlb_refused(hugetlb);
-+	else
-+		ksft_test_result_skip("%s: no hugetlb pages free\n", hugetlb);
-+
-+	test_share_outside_memslot();
-+	test_memcache_pressure();
++	test_one_vcpu(guest_vtimer);
++	ksft_test_result_pass("virtual timer PPI across exits\n");
++	test_sgi();
++	ksft_test_result_pass("SGIs between two vCPUs: %d rounds\n", SGI_ROUNDS);
++	test_one_vcpu(guest_wfi);
++	ksft_test_result_pass("the virtual timer wakes a vCPU waiting in WFI\n");
 +
 +	ksft_finished();
 +}
