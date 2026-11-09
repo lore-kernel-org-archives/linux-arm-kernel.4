@@ -2,78 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61EA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 04:55:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72C4606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 05:16:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lboPKwQA;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=pigmoral.tech header.i=@pigmoral.tech header.a=rsa-sha256 header.s=zmail header.b=JhM5iZI3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0zKeLBVd;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=OKOXxN8Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TVjYb4BBcraXHmLMuxAJ4VYWO2AEgU5Dcu295blPONo=; b=lboPKwQAO2bjii
-	2tVWLJA1H2UDBus0+fxJRgUkN6rG4c2NB/dfgk+y+uw7OTyMnyrQXOnoHEOcn61Tvoq6lGegE2C13
-	puqGhKLqqazX/YI7vbJTnxLn0VQnGOi0cGyR4jPVpPnsoouA+kTKn8AoiFymVl+2Wah5dJ6ZIhUnS
-	l9PTI5btfyUwDaN9jMv6v3Zns3yi+uB/A/NIW8waNOYBnfkmUCEVXXOmpg5iNXPBe3dZewGzhgmr0
-	eqqhNIG/87bYt2QiSfsc45iJOW/r7Gc/E4wUgXZ/FiVcMeShpc4SvBbbJbPJOFISvNVeeD1bF5XEo
-	Ol6jQ2QyWrcYyKFnxGPQ==;
+	List-Owner; bh=+H+W40F3xi/JoWhY4dp3q7kYo1VTM28uEFHWyVVy0qE=; b=0zKeLBVdG1bBo8
+	O4Itln7P1QOEI3Ydv2wD3jtGh+oX1orrqBRp1JAj9WBA4LaKg0lZKC6wIoENryaycTrbwYgWJEQLk
+	g7C0dTegO7OZcGMPo03r/2sxNFhjTfGNKiQCnI4FN3+DA3VbJZ6uzqEpmALe5JTdBY3ip+6uVk9mW
+	yI5TivaIInyKZ3V79Q9eSvwtem0dSaJXIyPxS8ZhmewptM2jCkkDIjvF+XeZ5gyMYdLp/2sGIoYP3
+	zCRuWaceW6kSVWchmZIgj00CdNJ0Fnss0hHoGukLCv2IGiL2J1qvyc7EbIIY/RRFhwg1Y7iiRQbkw
+	Nhv6mjudTvD1TwgYPFLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQHQ1-0000000HMfB-3rqg;
-	Mon, 09 Nov 2026 04:55:45 +0000
-Received: from sender5-op-o12.zoho.com ([165.173.182.12])
+	id 1xQHjk-0000000HOOO-16e6;
+	Mon, 09 Nov 2026 05:16:08 +0000
+Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQHPy-0000000HMen-0FUR;
-	Mon, 09 Nov 2026 04:55:44 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794200117; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=kgJ06YONRy5PtT6LHHPXY7TeZ2USZKKkLv8VZandB6V0/jYTAD5MvY/abxIpfJJFHvhFWImCLYhTZydSTic0Z01jk7gYNT43rJGqer251Q++Ix2yk2HeUdVCujgY7ckjqQ1u9FFJderC3M8BUeYFhHh3B+5fVMXYF8u/gYTxadM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794200117; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=TVjYb4BBcraXHmLMuxAJ4VYWO2AEgU5Dcu295blPONo=; 
-	b=JpBUlC2mqu54blu6aDoBbT/qtR6O1cOs4yA9O0dwWCfAC5hfHKXxxVVVWJfoB4yqdA2NQxjl8Ug8RYyhZSgVnQeCJ2gRoi37EChlObs7aDKGX1YWKFBK/Fce/Am4weGpuQV0GXb4GjoDItAkXP4RWME0kT2mpmbgsvCFVtJjpfU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: a=rsa-sha256; b=JhM5iZI38onPijDbb/bTo6SBqko9SM8euQYqdXR7Rge9qDB6vu8o53ARCnp9UqaIVhzgBI0Xhj1icaq7Bd+WrCPBNMtUwAjy0+Oc6xUN9gl8IIcATPbCKWj0FOz2sI69wwQoMKuXHh1KUF6gB0U8eHn9aU+LJ5zu0+HSNvQZHu4=; c=relaxed/relaxed; s=zmail; d=pigmoral.tech; v=1; bh=TVjYb4BBcraXHmLMuxAJ4VYWO2AEgU5Dcu295blPONo=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 17942001166001004.3701295111581;
-	Sun, 8 Nov 2026 20:55:16 -0800 (PST)
+	id 1xQHjh-0000000HOO2-3FQQ
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 05:16:07 +0000
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c4d5b2db4bbso83024866b.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 21:16:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794201363; cv=none;
+        d=google.com; s=arc-20260327;
+        b=h7qrDxM+Mx+/QEDvzZgxcTOy15mjmCeFA5BVzHRTTaqUqrYpcZMHUP8PduhrMlM/4p
+         j+n7njPb7ILhnIqDPUt9aHWRXcRAvg6a+3QIdhW5JbSc/5PBzuQCN+g05h3DpNixKhtE
+         wlGVfQYRqMqPzBNk6taMREocLRTgg/i1ZghaZbubLpcjrMGvHoDQtUAMgr0xTs2+04/A
+         zy5Ywj70KadCXJNg6LTPFJvtPCWSW3pPaUpIN1uy/fLux+e0wqZmV7MlF9JZ0ah0JXJy
+         R0zby60WOQC8ybNjsGiiikcEs2hpSbcyJpudWJm5Tw69VXfoJtij13FyZBhnSYhABWXb
+         XG0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=+H+W40F3xi/JoWhY4dp3q7kYo1VTM28uEFHWyVVy0qE=;
+        fh=9upwd+AZCMi9Bj8RmSE2AA5xhP7VYE3U29H6MOOuCVw=;
+        b=qWUMwv8plg7kOXihDwYFHIRoCM2NGHrrc3q7Hm0o3wQDZqM0HZDss5bdz2jepMTz3C
+         mtlZmNC0GINNGfDbCd9dPhOUrrg1miLaMJNvfwr5d69iifeRYDkTZXJBX6uoRbtrstTx
+         QFhreAehXHx0CUeQrMT/I2jLykU8zWtKDmi0KBAy3gnqSfpasbIgF1MILB+tSW6vkC/w
+         qZ9fHyqhfkf5Twxuvctqk78gAppzYqkyRCwWJpYM34NnsiwzIJvNBXpdgM7m6ioerfTM
+         jT5kwnXADTQ6/k2AJrU/Hrw+sMWze/cwg0Pp85RxMuo/v8Znd7OvZ5ajVq0A/cPSpXxb
+         sMDQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794201363; x=1794806163; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=+H+W40F3xi/JoWhY4dp3q7kYo1VTM28uEFHWyVVy0qE=;
+        b=OKOXxN8ZMKbYiSwPDDZjedj9kpUqps3LaKY6tHkquUW3gFfEwBMBGoMZ5DhD60+J8T
+         IXlVWl5H7cYaAfqNqv3Aw6JAIrIXni4217nCj96iBtRXT2guVDoAoq9Z6zaReh5HVhfq
+         Diqxa+CK7up/32vaqQhCd7UVr12wVeZK5+Qg0oQJT5AnZ8LbBTRBTQw5EflNB/o7Rggd
+         jTFSqFvbt6cc1AKwabU3a+HhOTZo9dJDKRAOTlskS98U7ePrdab+aXeEnRgY+mTQAjX6
+         0xswth8w2zaAd3jI5vTBQZWVqEjPHYo+MH5vJrNkYuKKDHmJL4XR6tlGvlJRr+Tk15hr
+         KeFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794201363; x=1794806163;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=+H+W40F3xi/JoWhY4dp3q7kYo1VTM28uEFHWyVVy0qE=;
+        b=DEHMJJfw4pYzDQVpuuDDWB78ozOKyyd+wfzWA5Eu+9qHuksSixnS0l2pjUTNQgwjYy
+         nCHAsNfwb9aXoj/JnrZkXC9NtmkUQ2iqltdG61y7/aBwiYhEGhBFJLB/PVJ+3H4CNJxA
+         e2xcUlZjC700tqHmRndlYRhPa2LuGPdAImeOFTt5Mlg3q5LITpkG+/RXIz90lOPSxTJg
+         51FITY5BmtqUzdJLfyJd6wh9cEZNQvAkgBaBDWlV4KMguZduXUH9K/++YbCmjxG/C1Pq
+         mibdEmobBn2iJFYHkrMB+BoP37sU9y7u7J6DSm7aVyIi9cknWf8AOQEYe9SfOZ2Z4Nfe
+         JiJQ==
+X-Forwarded-Encrypted: i=1; AL+hErFQ8TU8iU+XKTgTYpMPJZ9KyTzcCFEbxnn2ssow/TCK33Dlz0EOkJtIUrnky8jem1oGwcjp619GKzuvhL+Na22u@lists.infradead.org
+X-Gm-Message-State: APuU4Z/XY+qZRAoyCN76BgI+pn21VGplMAC1IpCEn3VU/bI2DmR34TqQ
+	TlkDLg0sQGKOgjEPvcnLDavTn58ZZDgeSAO1wZl9+5pV9rmquy2HL1Liah18ZDvyT7sINyPFmjL
+	Q2425CeYWhst63VGYcY7vL+EgpHdeCE8=
+X-Gm-Gg: AYBFou0KGEcn3IB9a87+4NHMsNwo2bsE+75Z4JI7jQZR/fXHdm9uzZ3zulhBwRwtahP
+	TagtURqGKNx/PrJJPyetJueNxCD7yHWOTvaxpyFOHFXcQZzILJkztWEktmj6Sm7tmNgn3O+wTwa
+	1ipvveZwaFgv64jN7c+rDcmAIxV9cL0z0xj+3YrcQwdzRLz+igE7n/u/t4ITYVTrvxcundfd3yK
+	wlsz0//SGKKnDxmNjFSp578eH0MlWKrCuoCv6f0+C8FQoDe+xfH+A/alNDk5U3oM7lQaMg9h/4b
+	aM68Ss0kmPDY+nWuHmb2NveESuYWyiU18KzUq3AmMDf5SeEdtYqZTOM6R5ttbtNdLgkNNr1s1sw
+	eDwxEupivQCzf9dOAHrRdnSalErO4GgSNn9yJkOrIhTbfh9k9pbGp/psmXjufAA7mJ7w=
+X-Received: by 2002:a17:907:94cc:b0:c48:a838:c17e with SMTP id
+ a640c23a62f3a-c4d5278459amr332595566b.14.1794201363497; Sun, 08 Nov 2026
+ 21:16:03 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20261027-drm-misc-next-manta-auxbus-v1-0-3a45c3cf531d@a-marquet.fr>
+ <20261027-drm-misc-next-manta-auxbus-v1-1-3a45c3cf531d@a-marquet.fr>
+In-Reply-To: <20261027-drm-misc-next-manta-auxbus-v1-1-3a45c3cf531d@a-marquet.fr>
+From: Inki Dae <daeinki@gmail.com>
+Date: Mon, 9 Nov 2026 14:15:25 +0900
+X-Gm-Features: AclHuK-Znic_YSiZSxmlzXLOPryrS4zIPNf3mp5uhFcTlxhpKBhiJT7EHmt8c3E
+Message-ID: <CAAQKjZPYAn98+8Wtjesr7GCh1s_pX8mWizW=HoY5Pj9xO9St=Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] drm/bridge: analogix_dp: deassert DP_PHY_PD on
+ power-on for exynos
+To: tb@a-marquet.fr
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Jingoo Han <jingoohan1@gmail.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
+	Kyungmin Park <kyungmin.park@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Douglas Anderson <dianders@chromium.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	Lukas Timmermann <linux@timmermann.space>, Henrik Grimler <henrik@grimler.se>, 
+	Hendrik Noack <hendrik-noack@gmx.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 09 Nov 2026 12:55:07 +0800
-Message-Id: <DMQEUUHANG74.30N8VT6UGHO0M@pigmoral.tech>
-Cc: "Stephen Boyd" <sboyd@kernel.org>, "Brian Masney"
- <bmasney+clk@redhat.com>, "Jerome Brunet" <jbrunet+clk@baylibre.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Chen-Yu Tsai" <wens@kernel.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Samuel Holland"
- <samuel@sholland.org>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Paul
- Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
- Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Richard
- Cochran" <richardcochran@gmail.com>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>, "Jerome
- Brunet" <jbrunet@baylibre.com>, "Andre Przywara" <andre.przywara@arm.com>,
- "Norman Herms" <dockseed@proton.me>, "Vinicius Pedrosa"
- <vinicius.eduardo.pedrosa@gmail.com>
-Subject: Re: [PATCH v6 3/8] clk: sunxi-ng: a733: Add PRCM CCU
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Enzo Adriano" <enzo.adriano.code@gmail.com>, <junhui.liu@pigmoral.tech>
-X-Mailer: aerc 0.22.0
-References: <20261009-a733-clk-v6-0-ae8178fce7e8@pigmoral.tech>
- <20261009-a733-clk-v6-3-ae8178fce7e8@pigmoral.tech>
- <20261103-a733-ccu-v6-fw-clocks@gmail.com>
-In-Reply-To: <20261103-a733-ccu-v6-fw-clocks@gmail.com>
-X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_205542_467522_FDCADCE5 
-X-CRM114-Status: GOOD (  14.82  )
+X-CRM114-CacheID: sfid-20261108_211605_880870_78D4A579 
+X-CRM114-Status: GOOD (  26.63  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -85,60 +131,150 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Enzo,
+Hi,
 
-On Tue Nov 3, 2026 at 9:33 AM CST, Enzo Adriano wrote:
-> Hi Junhui,
+2026=EB=85=84 10=EC=9B=94 27=EC=9D=BC (=ED=99=94) =EC=98=A4=ED=9B=84 9:17, =
+Alexandre Marquet via B4 Relay
+<devnull+tb.a-marquet.fr@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
-> On Fri, Oct 09, 2026 at 11:52:08PM +0800, Junhui Liu wrote:
->> +static SUNXI_CCU_P_DATA_WITH_MUX_GATE(r_cpu_timer0, "r-timer0", r_apb_p=
-arents, 0x100,
->> +				      1, 3,	/* P */
->> +				      4, 3,	/* mux */
->> +				      BIT(0),	/* gate */
->> +				      0);
+> From: Alexandre Marquet <tb@a-marquet.fr>
 >
-> On a Cubie A7S with vendor boot firmware, v6 reaches a Linux shell but
-> stalls at warm reboot. The system-controller firmware uses the R-domain
-> timer and mailboxes without Linux clock consumers, so disabling these
-> clocks as unused can leave its services unavailable.
+> On exynos platforms at least, calling
+> analogix_dp_set_analog_power_down() to power on (with enable=3Dfalse) CH0
+> to CH3 or the AUX bus currently produces no effect, unless the function
+> is first called to power on everything (by setting block to POWER_ALL or
+> ANALOG_TOTAL). The reason for this is that DP_PHY_PD being asserted
+> (which is its default state) renders every other register bit
+> ineffective.
 >
-> Could you consider marking r-timer0, bus-r-timer, bus-r-riscv and
-> bus-r-msgbox here, and bus-msgbox0 in 7/8, CLK_IS_CRITICAL in the next
-> revision? My standalone patch has the diff, firmware references and
-> board results:
-> https://lore.kernel.org/r/20261031020640-263f7b05-a7s-clock@gmail.com
-
-I'd prefer not to mark these clocks as critical just for the vendor
-firmware. You can see my reply in v5:
-
-https://lore.kernel.org/linux-sunxi/DLYAHDTH3129.3AYF0OSHL8RJ8@pigmoral.tec=
-h/
-
-Since you've already submitted a separate patch adding these critical
-flags, I'll leave that to you. If the maintainers agree that these
-clocks should be marked critical, your patch can be picked up.
-
+> This is particularly an issue for AUX bus initialization, that tends to
+> happen before anything else (e.g., to request EDID), and thus, before
+> anything has any chance to request a power on of the whole analog
+> section of the chip.
 >
-> With those five flags, two RAM boots of my A7S integration completed
-> warm reboots without clk_ignore_unused, and all five clocks reported
-> enabled. That is one board on vendor firmware. Vinicius reported native
-> PSCI reboot working on an A7Z without local critical flags on
-> bus-r-riscv and bus-r-msgbox, with TF-A and U-Boot built from source, so
-> the boot chain may matter. I haven't tested suspend, or shown that each
-> of the five flags is needed on its own.
+> This commit allows analogix_dp_set_analog_power_down() to power on any
+> block, by deasserting DP_PHY_PD if needed.
 >
-> Thanks,
-> Enzo
+> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
+> ---
+>  drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c | 19 +++++++++++++----=
+--
+>  1 file changed, 13 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/=
+gpu/drm/bridge/analogix/analogix_dp_reg.c
+> index c1344a3f013a..9f634d4e4793 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+> @@ -256,6 +256,19 @@ void analogix_dp_set_analog_power_down(struct analog=
+ix_dp_device *dp,
+>         if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_data->dev_t=
+ype))
+>                 phy_pd_addr =3D ANALOGIX_DP_PD;
+>
+> +       reg =3D readl(dp->reg_base + phy_pd_addr);
+> +
+> +       if (dp->plat_data && (dp->plat_data->dev_type =3D=3D EXYNOS_DP)) =
+{
+> +               /* On exynos, register AUX_PD and CH[0-3]_PD have no effe=
+ct if
+> +                * DP_PHY_PD is asserted. So, when powering any of them u=
+p, we
+> +                * need to deassert DP_PHY_PD first.
+> +                */
+> +               if (!enable && (reg & DP_PHY_PD)) {
+> +                       reg &=3D ~DP_PHY_PD;
+> +                       reg |=3D AUX_PD | CH0_PD | CH1_PD | CH2_PD | CH3_=
+PD;
+> +               }
 
---=20
-Best regards,
-Junhui Liu
+When DP_PHY_PD is set, this path clears it but leaves the bandgap
+power-down bits unchanged. If the register retains 0xff from
+POWER_ALL(true), an AUX_BLOCK, false call produces 0xcf; both
+DP_INC_BG and DP_EXP_BG remain set. Could you check whether AUX can
+operate in that state?
+I suggest limiting the new handling to AUX_BLOCK and CH[0-3]_BLOCK.
+When the bandgap bits are set, keep the other blocks powered down,
+release DP_INC_BG, wait as the existing POWER_ALL(false) path does,
+and then release the remaining required bits and the requested block.
+This also avoids changing ANALOG_TOTAL, false, which currently only
+clears DP_PHY_PD.
+
+Thanks,
+Inki Dae
+
+> +       }
+> +
+>         switch (block) {
+>         case AUX_BLOCK:
+>                 if (dp->plat_data && analogix_dp_is_rockchip(dp->plat_dat=
+a->dev_type))
+> @@ -263,7 +276,6 @@ void analogix_dp_set_analog_power_down(struct analogi=
+x_dp_device *dp,
+>                 else
+>                         mask =3D AUX_PD;
+>
+> -               reg =3D readl(dp->reg_base + phy_pd_addr);
+>                 if (enable)
+>                         reg |=3D mask;
+>                 else
+> @@ -272,7 +284,6 @@ void analogix_dp_set_analog_power_down(struct analogi=
+x_dp_device *dp,
+>                 break;
+>         case CH0_BLOCK:
+>                 mask =3D CH0_PD;
+> -               reg =3D readl(dp->reg_base + phy_pd_addr);
+>
+>                 if (enable)
+>                         reg |=3D mask;
+> @@ -282,7 +293,6 @@ void analogix_dp_set_analog_power_down(struct analogi=
+x_dp_device *dp,
+>                 break;
+>         case CH1_BLOCK:
+>                 mask =3D CH1_PD;
+> -               reg =3D readl(dp->reg_base + phy_pd_addr);
+>
+>                 if (enable)
+>                         reg |=3D mask;
+> @@ -292,7 +302,6 @@ void analogix_dp_set_analog_power_down(struct analogi=
+x_dp_device *dp,
+>                 break;
+>         case CH2_BLOCK:
+>                 mask =3D CH2_PD;
+> -               reg =3D readl(dp->reg_base + phy_pd_addr);
+>
+>                 if (enable)
+>                         reg |=3D mask;
+> @@ -302,7 +311,6 @@ void analogix_dp_set_analog_power_down(struct analogi=
+x_dp_device *dp,
+>                 break;
+>         case CH3_BLOCK:
+>                 mask =3D CH3_PD;
+> -               reg =3D readl(dp->reg_base + phy_pd_addr);
+>
+>                 if (enable)
+>                         reg |=3D mask;
+> @@ -321,7 +329,6 @@ void analogix_dp_set_analog_power_down(struct analogi=
+x_dp_device *dp,
+>                 else
+>                         mask =3D DP_PHY_PD;
+>
+> -               reg =3D readl(dp->reg_base + phy_pd_addr);
+>                 if (enable)
+>                         reg |=3D mask;
+>                 else
+>
+> --
+> 2.43.0
+>
+>
+>
 
