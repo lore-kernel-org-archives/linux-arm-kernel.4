@@ -2,106 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841A4606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 17:51:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE241606A8C0
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 17:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kKUIRGA8;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=edR5xeY1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A/0f+nnu;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=D8F6Efrj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GFzABPh/i3DTYACKwlsIa8uWdbyDlbj1NiTPGOeH3RM=; b=kKUIRGA8DW6z32
-	seQIebd4RiClaW5dgpyTT9vxihXfJTTuE6EjyXCO6NbDW+wt2Z0cE+yokRndIpZwtCBEthct1epNd
-	MV8s7oTYc4ibSjrgRutPU/Mkrx1Tou9vv69RXgOwe2K/iXJbN2X5jtRkr1wUmWu3k3ojOCx1V2vXW
-	xHIZ3fIv1FiRV47+gDyBVib7jeM+1jAb1Y6VFl1cRe2VxDPk03WZ6rBN+TYyvHop/MzcgRfQbwhk+
-	+tAWvqidSnKRnEo2E0a4NMBTXUZU67R896zFDJZNrPsDw8xVVYluzmXdctPBkoUmuqylAFYZvv7S0
-	XC7+invF+arcU6uNxPuQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8wat53Psvud3JS3sFezrDUXTpsr4pX7AT/AN9ixBrd4=; b=A/0f+nnukgATFx0TMOVcaNDGEL
+	WRDxrMEoInzroYbd75K7og8FTD9a7ivCwtC8rWr04kctmkMRemQymyrKUgeccHTJhljBRIgx8skvv
+	a6jBl47ZUf+RwpfirCHKUrFRjWQ5oHHxdszlaa1iLNNuQK+cw1zZ3K/VhWPHtJjRUN/E+Ch4D3nbI
+	5c8kZoymXMJPXztN2q7gOW7NZWnjEVC+svUM7Vk8/sDOUrTrOEpu86ZM5BPBx8p+6i4rux7x45QWH
+	t9yMmovgkFN3NveZ8LQPx9NModJVPjOmtFDUWu8vPY++bvp/jJWM7TysNgRqvgn4fgu/p79rhhrao
+	MvBCYI9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQTWj-00000001Oct-0qOV;
-	Mon, 09 Nov 2026 17:51:29 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1xQTXH-00000001PDw-1X4Z;
+	Mon, 09 Nov 2026 17:52:05 +0000
+Received: from sender5-op-o11.zoho.com ([165.173.182.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQTWY-00000001OR5-0n98
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 17:51:19 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-491aaed7565so739122f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 09:51:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794246676; x=1794851476; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=GFzABPh/i3DTYACKwlsIa8uWdbyDlbj1NiTPGOeH3RM=;
-        b=edR5xeY1H/Nd/qTCEpqTgeO7ko3PaEUUsE+Xi8g75Y3g4iUSDKC4AL83VA5njfkU5D
-         FnDQzX/N/vhmLHMlS3y86fxSgDhpnz71wRdJ2EKIFbqbUdC43tYRtVLUvBiShmq00LMC
-         qoXOY+DhJOj9dq5zJ2fbXUNGLr3Vu8jOt8CYx9m7g97bRb/cKsLePsKNXAsEiND1v0v5
-         VU00DMK8PAtPGx98IDPW040q7SYn3EcE8IIPZk+nnMegFIp0omubAq34bRZMY6VvOnFv
-         Ktcny6NGsGzLXskajSzzMa2td15XfGuvgDlveE8wA/K/5nuFXKzWVidmUXxHK9dU3h+I
-         bfqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794246676; x=1794851476;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=GFzABPh/i3DTYACKwlsIa8uWdbyDlbj1NiTPGOeH3RM=;
-        b=J2y+0TcEvkaCJONGEn2AIIjxrWzmCnc2YdSRFNm2y1OcAlmGy8QGL/mfjNr+gsszgB
-         /BVI8cMq9asH0W7PegN4kflRKkGdStveTXIiq4Ujskir2z65Ig7OfUd81kTMb87UF99W
-         il/1MkUer1ukkuk8037BG56FKjMpQ2uiV6f0XBuUe/hRtF4ru48+3H9xLmnlGkhY9suN
-         tyDU3sYHTSwbLH7N3JRhmbE00pItzkq9jzJv0/SXen0RICP0XbsQKPs/J2EZ9KMjrhqV
-         ADOO0U5u5byLdNqVPnj8B424ABM1bBparUaNzClFmYHdAM9u9H1rrEdaXI64w6OTiMlI
-         PRUA==
-X-Forwarded-Encrypted: i=1; AL+hErGpvvLjN2MIz8C63T2DGo69hunrXk6JjUJS90x/mkcnPZbD1WkLO0Lvt9nj6RpCJ6/QUFeOOAzTrY2tV/LdkIZ4@lists.infradead.org
-X-Gm-Message-State: APuU4Z/5qAl0mhjTbVXXyiX5ec1Wqf/PH872pNzotCBLdbibC4DS/rCm
-	IMnF1+uX445RA4o0gosUsoMWV6HSyyGfuOe307JgM6Y68RsOZG9dWeP/
-X-Gm-Gg: AYBFou3mf4M20OZIxboJxUaialDDVVDL5XgfwYSQm0iAz8+HgB/vE5ISxwuozimJTnE
-	6z/nmP2ew84iATuAnISe1jiDwwC3wSI+hi2L4RAfZTjgh8RmyiFTzDJ8qg6on3zLzlHiXBtdqeq
-	Pz3OqMuOwcv4y+HoC+vhxdSD6RZCuqwFa2a0qVa/l/zRT/KLR5fk5UTIP5/i3KZ3tuK324JMsTu
-	npOFwB4Bu4GV3/HIeQ06biE/N3QfTbhYGPfgGE332aVBgnSailFxGKr+w8LhkRlBJZpa+PNWAS5
-	91imJbkmJ0hIgnukwAfMWmbRpHf5kSJABUTgI3S6Vap6J2rOB2zKRP5ymCSzukSw1jGDu537XkB
-	w4WDwiw+AwJTkB2rkwIXfS5m5n6mIN2+odjO+mGUFX8Ys67VIbYg8oYOmhNszr0wZBVsqD2JZGP
-	QCLS60vbWa/NIUDsGn77LhR6ceNdiNXSGEXOhHV7dnQ7pAlDsQ1WTzibSlgbKKdRXlwMr50tRmB
-	IXrDz913W+6afpR9L9PS0agyDEQKN/HW0MsTJJeEpyzM1FHPQSAKaSOnuEX1S5EwD9CJL2WD0n5
-	XTX5+YIBdJP7H91NRwQrLqgxK4vYcXpWsIIU2gMIt/Qz/NuvJ9HS/zOw2Bdy5WLXwqnjGywUq5B
-	4C53X8ZdC34ghGyTf9naf0eheXovesKdSiwy4hvgNJkwFq/Pf5TvIczFkwoOzM0Ltha2EDUHnUu
-	rtJyiCxND+3CAqTKdVnx6Vqb14cBTI7inqaFlr1AlINsV30sLlQB1VsRvW6czN/q5JfjwhiF9As
-	lKv7ByfU1I/erSVsW7xBLNWAu8B+r+6y6O9ln3LicvlgIE1kvA=
-X-Received: by 2002:a05:6000:29d9:b0:492:b1c5:6db4 with SMTP id ffacd0b85a97d-4982fd3e550mr237732f8f.26.1794246675934;
-        Mon, 09 Nov 2026 09:51:15 -0800 (PST)
-Received: from jernej-laptop (86-58-12-36.dynamic.telemach.net. [86.58.12.36])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498369a4238sm200717f8f.54.2026.11.09.09.51.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 09:51:15 -0800 (PST)
-From: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>
-Cc: Maxime Ripard <mripard@kernel.org>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	linux-media@vger.kernel.org,
-	linux-staging@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH v2 08/11] staging: media: cedrus: vp8: use the vendor probability table size
-Date: Mon,  9 Nov 2026 18:50:13 +0100
-Message-ID: <20261109175016.42061-9-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261109175016.42061-1-jernej.skrabec@gmail.com>
-References: <20261109175016.42061-1-jernej.skrabec@gmail.com>
+	id 1xQTWr-00000001Oo5-3EyY;
+	Mon, 09 Nov 2026 17:51:41 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794246681; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=h7kpuxT8pWirPQ54VgpQtE9xL1PwEjNh19a0fQgoOmrEw+y5epd2g0IqZLkAYS3imi+RdSNW3ShNJpQJVvqpnVT0demBs89VLn44yLXUYQiZcbsXwsDveyxuoQ1hEIaMqDhy3XL3wdMzDxE26/GMlLPHsDQpiOAB1ZKNUf+X2mA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794246681; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=8wat53Psvud3JS3sFezrDUXTpsr4pX7AT/AN9ixBrd4=; 
+	b=Caa/WXxF1mB84C+AdYTUbscN/OshEYs/cpfRgpaQsqszd27WN0eKrWx1AUj02Oq4njov9oCGy0WB8h+hZNUK7jp5QXwug326f6TFdup8UyPbhwuApNfNDkUYjSyUJX17E3YofTZlEpb6Y63paRYI56WPp/vq9F6t19Sk3TKGe88=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=D8F6EfrjZCeUbWQJ9nYIIWJD7EzO9OQvAvbISMLaODm5ONzFKux3VuB5vr6aPTuXjFpL7hqsjus7GWxIMxfpm+8IFQPsyKm3mLSRL/t16qfdki/31bVSBjXZ2Z7JHKi+zoaNQNtZaP/yVPK0dLMjGFRVca2e8APfmqk1Elhbtmw=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=8wat53Psvud3JS3sFezrDUXTpsr4pX7AT/AN9ixBrd4=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794246680680202.33766214015657;
+	Mon, 9 Nov 2026 09:51:20 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id EC6BC180317; Mon, 09 Nov 2026 18:51:15 +0100 (CET)
+Date: Mon, 9 Nov 2026 18:51:15 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
+Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Add DSI panel to RK3588 EVB1
+Message-ID: <avIEPncVnojQBqpX@venus>
+References: <20261106-rk3588-evb1-dt-updates-v1-0-bdbe16223589@collabora.com>
+ <avDN3pPY5Qwt9B1p@venus>
+ <b60b7079-b7b6-4d83-8167-2e4fc6021aae@rock-chips.com>
+ <5573124.44csPzL39Z@diego>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="e6zrp2dlq4xzmy2v"
+Content-Disposition: inline
+In-Reply-To: <5573124.44csPzL39Z@diego>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.236.36
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_095118_247196_2BA9A3E9 
-X-CRM114-Status: GOOD (  14.95  )
+X-CRM114-CacheID: sfid-20261109_095137_904954_9AF5E531 
+X-CRM114-Status: GOOD (  33.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,45 +80,122 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The driver allocates the VP8 probability table with 0x2400 bytes, which
-is the size the old Allwinner A10 library uses. All newer vendor
-libraries allocate 0x5400 bytes and never write the area past 0x11b0
-from the CPU. The hardware uses that area as scratch space, most likely
-for the segment map, and its usage grows with the frame size: a
-3840x2160 stream makes the hardware access memory past 0x2400 and
-causes IOMMU page faults.
 
-Allocate the table with 0x5400 bytes, like the vendor libraries do.
+--e6zrp2dlq4xzmy2v
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Add DSI panel to RK3588 EVB1
+MIME-Version: 1.0
 
-Fixes: 3c39a16d30d8 ("media: cedrus: Add support for VP8 decoding")
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- drivers/staging/media/sunxi/cedrus/cedrus_vp8.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi,
 
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c b/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c
-index fecca343bd92..84bf18fd231d 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus_vp8.c
-@@ -25,7 +25,7 @@
- #include "cedrus_hw.h"
- #include "cedrus_regs.h"
- 
--#define CEDRUS_ENTROPY_PROBS_SIZE 0x2400
-+#define CEDRUS_ENTROPY_PROBS_SIZE 0x5400
- #define VP8_PROB_HALF 128
- #define QUANT_DELTA_COUNT 5
- 
--- 
-2.43.0
+On Mon, Nov 09, 2026 at 02:26:44PM +0100, Heiko St=FCbner wrote:
+> Am Montag, 9. November 2026, 02:31:35 Mitteleurop=E4ische Normalzeit schr=
+ieb Chaoyi Chen:
+> > Hi Sebastian,
+> > On 11/9/2026 3:42 AM, Sebastian Reichel wrote:
+> > > Hello Chaoyi,
+> > >=20
+> > > On Sun, Nov 08, 2026 at 11:15:09AM +0800, Chaoyi Chen wrote:
+> > >> Hi Sebastian,
+> > >>
+> > >> On 11/7/2026 5:57 AM, Sebastian Reichel wrote:
+> > >>> The RK3588 EVB1 comes with a W552793DBA-V10 Touchscreen/Display
+> > >>> combination. It contains a Wanchanglong W552793BAA panel and a
+> > >>> Goodix GT1158 touchscreen. This adds the DT description of it.
+> > >>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > >>> ---
+> > >>>  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 90 ++++++++++++=
+++++++++++++
+> > >>>  1 file changed, 90 insertions(+)
+> > >>>
+> > >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arc=
+h/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > >>> index 6a95a8bb6fb8..327ca13b60f0 100644
+> > >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> > >>> @@ -204,6 +204,15 @@ vcc12v_dcin: regulator-vcc12v-dcin {
+> > >>>  		regulator-max-microvolt =3D <12000000>;
+> > >>>  	};
+> > >>> =20
+> > >>
+> > >> I seem unable to apply the patch to the latest linux-next tree.
+> > >>
+> > >> So I tried to resolve the conflict manually, but the actual
+> > >> test screen did not display. I will look into this further.
+> > >=20
+> > > Strange. The base of this series was Heiko's for-next tree from
+> > > Friday. No RK3588 EVB1 patches landed since then:
+> > >=20
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.=
+git/commit/?h=3Dfor-next&id=3Dcabb6811c38a46337d5f4252b4dc390f9296856c
+> > >=20
+> > > If your board uses the original Rockchip bootloader, which shows a
+> > > Rockchip logo on the panel, you also need Cristian's latest YUV420
+> > > patches that reset VOP2 at probe time avoiding some issues with the
+> > > pre-initialized panel as a side effect. Those were recently applied
+> > > by Heiko to the DRM tree, so testing on linux-next is indeed
+> > > sensible.
+> > >=20
+> >=20
+> > Hmm, the newest linux-next tag which I used is next-20261105, and Heiko=
+'s=20
+> > tree last updated date is1106. I'll give it a try on Heiko's tree.
+> >=20
+> > And I'm using mainline U-Boot, which obtained from the latest nightly b=
+uild:
+> > https://gitlab.collabora.com/hardware-enablement/rockchip-3588/debian-i=
+mage-recipes.
+> >=20
+> > The backlight working correctly, and the DCS command has been sent, but=
+ nothing display.
+> > Perhaps I should look elsewhere.
+>=20
+> I would assume it could be the SPLL (again).
+>=20
+> I.e. a recent u-boot change broke the SPL-based forced clock init and Jon=
+as
+> fixed that in [0]. Had the black display again recently too.
+>=20
+> And it seems it hasn't been merged yet.
 
+Sounds reasonable. FWIW I only tested with the pre-flashed Rockchip
+U-Boot (as described above). I intentionally keep that on my RK3588
+EVB1, so that I can test RK3588 with vendor TF-A/U-Boot and upstream
+or downstream kernel. All my other boards run upstream TF-A/U-Boot.
+
+Greetings,
+
+-- Sebastian
+
+--e6zrp2dlq4xzmy2v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmryCAwACgkQ2O7X88g7
++prfaRAAmlmXmWHu8bIULwz9sG0Yd8KbbbbewcRNaoeu3IOYhrlR5wn84GcoPcoO
+cpdl+tlqxaQi3DMZf78qbZd1pn5Wf3rht7HJN8X6cYn2W17MKiTA1NDKZTM7Y10H
+88ArpSU4xEFeXFKNabi8S6KQoatb1W3oPvswck4M6sIkq9JyR3bUXmwuf+9gOguA
+pRQrsosvpKorzFJoxNiSvesfG27I3HlexIB532Xh8Rau1LZbor1d0qhBqbkLh7EJ
+ivYC74fvrEtSXB3LX6ngAoWvaH4wvf2Ety9iJR2zZntB//NfpHNQR5E5ZWsD9Isf
+pkmcSKFQwH8jPxZ0iECGdt2/HzccTz9/gCqGjxoxxMTqEqzZ667rlP6Du0yCJvjN
+36UGVlxF36N017d/PZYhEqw1MivtkNZtCK3WrOibY8rQs8x7ddHkPq6H5lhcTHci
+8jjlrKodpza3OjIXbiQmAhepZK4PMz5wX+bxpi9NUFvMgFo64zyGGr7cBUgtss9i
+DPEt76MM4zOcwzjIMBA6Zl1lltrxpclppy6nD5v3FbKnfFUBlMUlT9jqz88By/al
+NQJxK0RB2mCwyMUsZraj0sK1x/qaf1aHBuUtobIG0wwxIQp3Yx7M9jsiOjMt+QUZ
+US31lSvdzuTP6GX3euj7gMUNihfoUt/P9H0+z9hkCNJS2ubvRoQ=
+=gnl0
+-----END PGP SIGNATURE-----
+
+--e6zrp2dlq4xzmy2v--
 
