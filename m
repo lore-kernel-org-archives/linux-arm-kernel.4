@@ -2,103 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45380606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1A0606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hc0aOool;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=OwZGEoLB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JRRqDvEc;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=A6WOF9om
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FGfYDpuV3icdfKs35Y88PCFmQpt8If2+8yLawkeKFOk=; b=hc0aOooldNL5D+
-	7JjvrwsS1mJ1xTJWoYQ3U5EcRC1z2EKLHURHk53XPkUcqaay4qZovJkIrbF/RUsOYW0GofJfRGPIQ
-	VHnuGI+SWxN+Wc9PPsuqlK0QcuEDG6QsBbxRCYNSHEhqv0wKewDgzGi7fjX/suysT32iLfRlxpi3R
-	WRC8IS0OJ3ywk9SDojD+6cn3S2HjchHmJ9O+lLvrVS9LcxXf03TPd/NpG3QrFYstfNECbJnXAJqSE
-	QfbWHt9qLcPxTy4Ah1hqeYbHWVsU2T5TCHH7sWLE4Jq3IIatUhhU6xmXpZUD8n77U2DRLuccuZQ1e
-	88HHoBgj7U7BdkEFBjDg==;
+	List-Owner; bh=r83k1cNkUhctdhSteH8YPD8rm/QpmvN7geVl+a5ebSw=; b=JRRqDvEcT6EwyR
+	Il0LOsRDWtlMHsnuQJRH5QaxOllFNmSbM3ZOTZkTx5TSIvZbCYERIVgZuwRlStB39wqMVMNpdo6JP
+	bb5uZvY8lBuBLKOk4sQEEKMH82nQ6UYomWehJo+Nozxq5cSJnV0IuqVZ5ez2lii3QzTZ5HEQOYGWb
+	QVvxzfpcCSxeZ454ftjXUg4HgZUiLRwSs1rb0Mnxe/voPsgfFKvSc4GtA+GcMTWOx2PpkEC1iQ0g0
+	bPy1aWqtr0ampOhl4WYmLz3hmEXShgVk6qMzr3k4tnWjR/CGjbyUV9TMRph1CpwcEuPbVx9kivO0F
+	2Pl4opYQIIEC50iC3aBA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQMhm-00000000QSe-2e7h;
-	Mon, 09 Nov 2026 10:34:26 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1xQMlz-00000000R65-3uiU;
+	Mon, 09 Nov 2026 10:38:47 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQMhj-00000000QRd-3WPr
+	id 1xQMlx-00000000R5P-1SZ0
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 10:34:25 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-4922523d1afso346040f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 02:34:23 -0800 (PST)
+	Mon, 09 Nov 2026 10:38:46 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-48e1d0e5dafso442087f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 02:38:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794220462; x=1794825262; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1794220723; x=1794825523; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=FGfYDpuV3icdfKs35Y88PCFmQpt8If2+8yLawkeKFOk=;
-        b=OwZGEoLBtp3ZYGqXQKM2VFPeyMZ5NDfokKl3yZ3W5/X1CM+lR//5c1ZLXViPYtXYBY
-         4LEGqlTtrZeQ6VRn9tSobn0iFmV+q4++VZsOgzgzxOw3EUr1MuE0D8/9KMtTksivlIgb
-         RF/l/kZCGbTT4KYGyYZqdPODD+xiy8QWIRXmccjCH4qzVVCw1OlqfN2MszIEKkddMizW
-         AP/fWFrecefqoPmmr0xOOW+NxTcQPVLsu++e6uTmPmap/dv6HjEb19fl+YBxQ0ApZbg+
-         F8xZ9Yf7X4xs1fHl3MV252wz2cXllA6QWU66ARFMjwbN5CoitwnzLo2k2TX0nFcIEut4
-         Y3gw==
+        bh=r83k1cNkUhctdhSteH8YPD8rm/QpmvN7geVl+a5ebSw=;
+        b=A6WOF9omnk3mFulnXZUIEbbGycNABTSlFFWz+4fyFgb3KLnlTxe+2970lNij9hfyW0
+         G9scDvXMTO38sTHFHBUfHSIqZyPLNZKanOvdc/BTa9IWPbB3oRzK5UkIzuxqxx0X144I
+         ty66l/Oe2EdoRRkS45R0lCPPWxXnhdaaC8KOyiWOxGpRRQ/oCghUx4bec8SasJ2c5zCT
+         heC6bIU0X9GiAM1KLw0siYZUoBzqhLw9wCe78SzfETvp/3oN3MnouQKn7r76ndcwjnLZ
+         ZGgt3VFb798S/ZG0qNcM8S/5kziI0BsAyerIgvooF47I/gLw5BfHw/YcTi5xysJmr7Jm
+         K+TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794220462; x=1794825262;
+        d=1e100.net; s=20260707; t=1794220723; x=1794825523;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=FGfYDpuV3icdfKs35Y88PCFmQpt8If2+8yLawkeKFOk=;
-        b=TJAVXiLnrumNk11w/Nh/2M0HiWH5HSQhPuM8/tXnX824L9gh1brlUOy/Dhr3VR4DBY
-         DaszPVWIpjm9CM+oA5pcsVZScEBUyBr55tJZS+N1GjNpfl16h1XNBBzCYquvWMmJd3aZ
-         ZRHMpRmKVu5LJRd2aoC3grUakr3SMMu124LrbfXkPHtVNwIuqkNYP2N3RkqdVF7IQ7ad
-         X6uuDk9sWO9w6QOf/9uSPiT6bew6etwf9Wgwc4j9PifXlSfr3oOVH3m+UEPZ9pE2xRtu
-         r6jGb7oF5johk2TJFCrPz0VNDDd9c02FrO7Y0zRi9be+Qt+AZdLbSaOPPdDeZfBzKLek
-         iYmQ==
-X-Forwarded-Encrypted: i=1; AL+hErFS+FPakmBt4xDdZ2kIevD7/5js03dvjJsN7CtS3NlGs/UVzfikrtMXl32Kfc9v15Dv+q2dzBIMGomxwogs8Ce3@lists.infradead.org
-X-Gm-Message-State: APuU4Z+ilxfALZMsoJ/aVd8xUFt0YB5tKFNKK2yJhAhVL6LSO4Sxu4P/
-	6ColwLBB2BGm7Z9klzBno8wbFV2KcIIkroRHhcoSCbPmdHMvjOR8rKkyVWCIWnDdeWU=
-X-Gm-Gg: AYBFou1QJ7ux/jLzmm+H7aFitrzoE8WMLRozAgj1QH+SEXyKtwKi/kC0hN4tbzgmjsw
-	EqVdb//UOWIVrL4fbmtMW0y9IK9ebzcYzNsB1Lg1gJcd+SK58BgijBkTnUV3CqDhcE9sH7oDN+j
-	GqDzCLDUQktc0yZSoJZ4onSEhzXh+AaEv15YDQkoS9huVN5hQxR5wfyB4kPekhHlvIhYq7ttxYz
-	EZblmTXvHyF/bTcu0z8Xjq7NZaBxtEVzJRIRnPUzgFTaBzHRur6B0RurC+plduX6FtU1n7JJGtQ
-	OiGLua9CgfkX2XsAnFOVegHDutngE28nk5TEi3PdPKesVqdPb7Dpcc1Ax0BZGLeiQsimFnsBN0j
-	ybQ3HmkqUyU/vI3XOnUsC67WH4KAbfN6NgV9k7IxP083906jzY6e11xS54Sa4ZW+dztWiPZCgpZ
-	VXwDaIFlgbikpzr520JCjnc8bqGUeIbLgO7ERdxBpJRtK4OgyqtSm/MyRndG1mdeTEnJp+7/GTE
-	ezlnALjFmCkPHx9uZEpgXMcD81ssFhp6UMvY9DVS1ZLzWhhROrZRX3WiBygXGrj2upVQQlWHNLB
-	c+7Hla4phUyti5QgyYs+tq2nqwuOg7iySedBHMbQKwQyUEIX66d+TQ==
-X-Received: by 2002:a05:6000:4305:b0:48e:e9e:129 with SMTP id ffacd0b85a97d-4958363c1a9mr8033944f8f.29.1794220461897;
-        Mon, 09 Nov 2026 02:34:21 -0800 (PST)
+        bh=r83k1cNkUhctdhSteH8YPD8rm/QpmvN7geVl+a5ebSw=;
+        b=r6oPBCx2nOpbbJ7A+EM+LaG8RoVm/K9s0xdfhIRpdpfS+eUFHKghlggq6x5V9KSej8
+         XPAjO5oAeAMOH/DlFBWO+I5KH9WmjncH6rX261uORo53ijiH0L8ZM5h4jL8PD8blLYLR
+         PRet4CLxgC/ttmV4a/fnBaQTFvdVFTUYTdj5/SExQsPcEqghS3VUGUJ8VUg7ud3op5Hj
+         gtsgmuSUproxJrNAIa406LDpgQuFp5/VgtRDduR9Vnw+k7Pkjzcv7kPTYDYlEyso5SQ7
+         2Zf7xx5gpXzgZWSlHrcbVjUg9fbN7Bo09udVXc+3CBK35xjgdrou7oiWnxGM3KwNuWVQ
+         hWag==
+X-Forwarded-Encrypted: i=1; AL+hErEM9JkM1iDQ7/bfIGJDQl0z73QdZqVAY+a0rpDjE+nMfvOwK1kACQm/FQm3H/jTFeFHqE3LQFgWKTaIgQvFTvnh@lists.infradead.org
+X-Gm-Message-State: APuU4Z+JN1bAxPBxYwlhqNhwnOXTFZdDD95o3pDiBVD5o7C0kkVjxzKF
+	HJb9gKzEVefFOj6sIz/O/k7I3/6p7w3/t1DQpQnEsv+lvn/pyiaQyyUlWJtFeJizt2M=
+X-Gm-Gg: AYBFou03ZgNeUqGjvBBYh6sw2Q4kNek5vO3QUqjb2QoRFuJrmlkoEKZUP/pEYTwDNlQ
+	j14rOCfEg9rTl58KDndfdi96iX1ipxJyfVKbacjwAorqwwrrTpkW9XHq2tsrMPAbjRiqj1vDVFo
+	mOaTsBIGk9MXCnxJ12ZMCqJNRbABYW5ZL2QVS6zfTCgSV41tNIyH+Yo0Ma0qio1F8bquP7PHcAg
+	x23Bxdvy5OWi5aRv9/mxxk/QCtEP/Tkr42JM8x4c/U3vmggCs2s244aGPZ7JMkWKPIjjEzwVx+y
+	Ilt70+SP/4PuII2qHo+laGwKfGD/z1GerO/uP4UTVBQ9b/mx5TebV09QYsTgOtOFsY4YKoz0PJn
+	CaaYqwpHMnc6vTUkek5v24D+Xlj+xLThuTsMfzevKDOp+9PaFpoq7I6dWUr3T/PLKEU+mx02EgG
+	7pjP9tAmEvx0k1ZhMc0deMpTJB/ebQr+6ILeeT9vLONiHB/JfpbLCGaunljlYDx8SWYMMC7SR42
+	ycQnLmwysbPNvZ91fb61LTQASK34ljpWVxmXOd7vithkcJN2KzrxWYf6JlY25YIVNobYdtFAeTH
+	qsXost2T7HZYryfcT5CBu4ikJK1Hla+z
+X-Received: by 2002:a5d:5f47:0:b0:48e:6669:fefb with SMTP id ffacd0b85a97d-4958b62ee80mr7635031f8f.22.1794220723287;
+        Mon, 09 Nov 2026 02:38:43 -0800 (PST)
 Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4959774736bsm10021500f8f.43.2026.11.09.02.34.20
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49596ea5008sm9181122f8f.26.2026.11.09.02.38.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2026 02:34:21 -0800 (PST)
-Message-ID: <6f6f69b2-6005-4574-972d-efe80b8a8b5a@linaro.org>
-Date: Mon, 9 Nov 2026 10:34:20 +0000
+        Mon, 09 Nov 2026 02:38:42 -0800 (PST)
+Message-ID: <3e75a65e-0dab-4c7c-8d2d-264c31ecd985@linaro.org>
+Date: Mon, 9 Nov 2026 10:38:42 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] coresight: fix resource leaks on path build failure
-To: Jie Gan <jie.gan@oss.qualcomm.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>
+Subject: Re: [PATCH] [v2] coresight: funnel: inport schedule by priority can
+ not take work
+To: Chao Xu <xuchao066@163.com>
 Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Mike Leach <mike.leach@arm.com>,
- Leo Yan <leo.yan@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Mathieu Poirier <mathieu.poirier@linaro.org>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20260513-fix-memory-leak-issue-v1-1-49822d7bc7d4@oss.qualcomm.com>
- <51a86fe7-95b8-4f49-96bc-2245c334b7f6@oss.qualcomm.com>
+ linux-kernel@vger.kernel.org, suzuki.poulose@arm.com, mike.leach@arm.com,
+ leo.yan@arm.com, alexander.shishkin@linux.intel.com
+References: <20261027151457.5713-1-xuchao066@163.com>
 Content-Language: en-US
 From: James Clark <james.clark@linaro.org>
-In-Reply-To: <51a86fe7-95b8-4f49-96bc-2245c334b7f6@oss.qualcomm.com>
+In-Reply-To: <20261027151457.5713-1-xuchao066@163.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_023423_917343_29F218BE 
-X-CRM114-Status: GOOD (  16.71  )
+X-CRM114-CacheID: sfid-20261109_023845_434805_BBABE31E 
+X-CRM114-Status: GOOD (  15.25  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,77 +115,40 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 
-On 09/11/2026 01:24, Jie Gan wrote:
+On 27/10/2026 15:14, Chao Xu wrote:
+> The CoreSight SoC-600 TRM, section 10.11.2, PRIORITYCONTROL, a funnel
+> rejects priority register writes whenever any port is enabled. The
+> current sequence therefore prevent the configured priorities from
+> taking effect. Write the priority register before enabling the
+> first port.
 > 
+> Signed-off-by: Chao Xu <xuchao066@163.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-funnel.c | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> On 5/13/2026 9:32 AM, Jie Gan wrote:
->> Two related leaks when _coresight_build_path() encounters an error after
->> coresight_grab_device() has already incremented the pm_runtime, module,
->> and device references for a node:
->>
->> 1. In _coresight_build_path(), if kzalloc_obj() for the path node fails
->>     after coresight_grab_device() succeeds, coresight_drop_device() was
->>     never called, permanently leaking all three references.
->>
->> 2. In coresight_build_path(), on failure the partial path was freed with
->>     kfree(path) instead of coresight_release_path(path).  kfree() only
->>     frees the coresight_path struct itself; it does not iterate path_list
->>     to call coresight_drop_device() and kfree() for each coresight_node
->>     already added by deeper recursive calls, leaking both the pm_runtime,
->>     module, and device references and the node memory for every element
->>     on the partial path.
->>
->> Fix both by adding coresight_drop_device() in the OOM unwind of
->> _coresight_build_path(), and replacing kfree(path) with
->> coresight_release_path(path) in coresight_build_path().
->>
->> Fixes: 32b0707a4182 ("coresight: Add try_get_module() in 
->> coresight_grab_device()")
->> Fixes: b3e94405941e ("coresight: associating path with session rather 
->> than tracer")
->> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> 
-> Gentle ping.
-> 
->> ---
->>   drivers/hwtracing/coresight/coresight-core.c | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/ 
->> hwtracing/coresight/coresight-core.c
->> index 46f247f73cf6..c1354ea8e11d 100644
->> --- a/drivers/hwtracing/coresight/coresight-core.c
->> +++ b/drivers/hwtracing/coresight/coresight-core.c
->> @@ -825,8 +825,10 @@ static int _coresight_build_path(struct 
->> coresight_device *csdev,
->>           return ret;
->>       node = kzalloc_obj(struct coresight_node);
->> -    if (!node)
->> +    if (!node) {
->> +        coresight_drop_device(csdev);
->>           return -ENOMEM;
->> +    }
->>       node->csdev = csdev;
->>       list_add(&node->link, &path->path_list);
->> @@ -851,7 +853,7 @@ struct coresight_path *coresight_build_path(struct 
->> coresight_device *source,
->>       rc = _coresight_build_path(source, source, sink, path);
->>       if (rc) {
->> -        kfree(path);
->> +        coresight_release_path(path);
+> diff --git a/drivers/hwtracing/coresight/coresight-funnel.c b/drivers/hwtracing/coresight/coresight-funnel.c
+> index 0abc11f0690c..500ff72a83c8 100644
+> --- a/drivers/hwtracing/coresight/coresight-funnel.c
+> +++ b/drivers/hwtracing/coresight/coresight-funnel.c
+> @@ -62,13 +62,15 @@ static int dynamic_funnel_enable_hw(struct funnel_drvdata *drvdata, int port)
+>   		rc = coresight_claim_device_unlocked(csdev);
+>   		if (rc)
+>   			goto done;
+> +
+> +		/* Update priorities while all ports are disabled */
+> +		writel_relaxed(drvdata->priority, drvdata->base + FUNNEL_PRICTL);
+>   	}
+>   
+>   	functl &= ~FUNNEL_HOLDTIME_MASK;
+>   	functl |= FUNNEL_HOLDTIME;
+>   	functl |= (1 << port);
+>   	writel_relaxed(functl, drvdata->base + FUNNEL_FUNCTL);
+> -	writel_relaxed(drvdata->priority, drvdata->base + FUNNEL_PRICTL);
+>   done:
+>   	CS_LOCK(drvdata->base);
+>   	return rc;
 
-@Suzuki, there's a conflict here. This will need to be 
-coresight_release_path_locked() if we also take "coresight: etm-perf: 
-Serialize AUX topology access" from my Sashiko fixes.
-
->>           return ERR_PTR(rc);
->>       }
->>
->> ---
->> base-commit: e98d21c170b01ddef366f023bbfcf6b31509fa83
->> change-id: 20260513-fix-memory-leak-issue-034b4a45265e
->>
->> Best regards,
-> 
+Reviewed-by: James Clark <james.clark@linaro.org>
 
 
