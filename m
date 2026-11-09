@@ -2,74 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE241606A8C0
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 17:52:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126A3606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 18:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A/0f+nnu;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=D8F6Efrj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fLOsnmzh;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LIJrPBYa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8wat53Psvud3JS3sFezrDUXTpsr4pX7AT/AN9ixBrd4=; b=A/0f+nnukgATFx0TMOVcaNDGEL
-	WRDxrMEoInzroYbd75K7og8FTD9a7ivCwtC8rWr04kctmkMRemQymyrKUgeccHTJhljBRIgx8skvv
-	a6jBl47ZUf+RwpfirCHKUrFRjWQ5oHHxdszlaa1iLNNuQK+cw1zZ3K/VhWPHtJjRUN/E+Ch4D3nbI
-	5c8kZoymXMJPXztN2q7gOW7NZWnjEVC+svUM7Vk8/sDOUrTrOEpu86ZM5BPBx8p+6i4rux7x45QWH
-	t9yMmovgkFN3NveZ8LQPx9NModJVPjOmtFDUWu8vPY++bvp/jJWM7TysNgRqvgn4fgu/p79rhhrao
-	MvBCYI9g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=d83Kt88Nu157+vux/kvDitp5mRWQIZYWnDgojwr6MgE=; b=fLOsnmzhj210fx
+	CaZkx4OC5VgxQLdvMY8us+RxmTaPQgddWMmp+M+NX6j7bGMcr5UKSqNrmk/c7F7fOq3WZEPb7GwOc
+	/WRRo6Feg/1H6NYR0VqN2xcYg5wTB9MzWTi8h2ZAY77TzazRMpKZX+Q0UGyNuWoqRLsYzXVeFF8RU
+	R6AxH8wg5UTG/+K9rnw3apssbeb4t54Ke7cB5GO+8oAzd9TsfYVbRNIwQXpt/WsTC32tANJ+TG8i+
+	7DnuO469gMdjdfpI8bEN5qn92857NzqY8oV2qo/IDiTev16wgTyl2m8ZFnVpVD12F5EbQP2WnLBXx
+	n28uYTABlhfX7oCLMTKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQTXH-00000001PDw-1X4Z;
-	Mon, 09 Nov 2026 17:52:05 +0000
-Received: from sender5-op-o11.zoho.com ([165.173.182.11])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQTWr-00000001Oo5-3EyY;
-	Mon, 09 Nov 2026 17:51:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794246681; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=h7kpuxT8pWirPQ54VgpQtE9xL1PwEjNh19a0fQgoOmrEw+y5epd2g0IqZLkAYS3imi+RdSNW3ShNJpQJVvqpnVT0demBs89VLn44yLXUYQiZcbsXwsDveyxuoQ1hEIaMqDhy3XL3wdMzDxE26/GMlLPHsDQpiOAB1ZKNUf+X2mA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794246681; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=8wat53Psvud3JS3sFezrDUXTpsr4pX7AT/AN9ixBrd4=; 
-	b=Caa/WXxF1mB84C+AdYTUbscN/OshEYs/cpfRgpaQsqszd27WN0eKrWx1AUj02Oq4njov9oCGy0WB8h+hZNUK7jp5QXwug326f6TFdup8UyPbhwuApNfNDkUYjSyUJX17E3YofTZlEpb6Y63paRYI56WPp/vq9F6t19Sk3TKGe88=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=D8F6EfrjZCeUbWQJ9nYIIWJD7EzO9OQvAvbISMLaODm5ONzFKux3VuB5vr6aPTuXjFpL7hqsjus7GWxIMxfpm+8IFQPsyKm3mLSRL/t16qfdki/31bVSBjXZ2Z7JHKi+zoaNQNtZaP/yVPK0dLMjGFRVca2e8APfmqk1Elhbtmw=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=8wat53Psvud3JS3sFezrDUXTpsr4pX7AT/AN9ixBrd4=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794246680680202.33766214015657;
-	Mon, 9 Nov 2026 09:51:20 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id EC6BC180317; Mon, 09 Nov 2026 18:51:15 +0100 (CET)
-Date: Mon, 9 Nov 2026 18:51:15 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Add DSI panel to RK3588 EVB1
-Message-ID: <avIEPncVnojQBqpX@venus>
-References: <20261106-rk3588-evb1-dt-updates-v1-0-bdbe16223589@collabora.com>
- <avDN3pPY5Qwt9B1p@venus>
- <b60b7079-b7b6-4d83-8167-2e4fc6021aae@rock-chips.com>
- <5573124.44csPzL39Z@diego>
+	id 1xQTWP-00000001OJT-0rPD;
+	Mon, 09 Nov 2026 17:51:09 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQTWL-00000001OHf-3POG
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 17:51:07 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D41C91476;
+	Mon,  9 Nov 2026 09:50:58 -0800 (PST)
+Received: from [10.211.55.3] (unknown [10.57.89.2])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2F1AF3F673;
+	Mon,  9 Nov 2026 09:50:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794246661; bh=/lUfAw9eGMej+oyjsDlyMUKexHDWWLSK8vp6iNpaMGE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LIJrPBYaMVxejvF/SjJMtfkE9HSusKM3mY/ffkVmMYKoaI2YCkHdPerlL9BjOS9vK
+	 7g4hzUBHwZ0djO8Rck28/KPSTbyoCcQ7AV2VBcZPa9tJaXCVYo9n2bENTERhVefUYN
+	 h5H28MvNzCQ3ZanTJxJXhQUgdrfWLh25iYjvXksw=
+Message-ID: <dc1398f4-b81c-4ad8-b706-df89a1622e6c@arm.com>
+Date: Mon, 9 Nov 2026 17:50:57 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="e6zrp2dlq4xzmy2v"
-Content-Disposition: inline
-In-Reply-To: <5573124.44csPzL39Z@diego>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.236.36
-X-ZohoMailClient: External
+User-Agent: Thunderbird Daily
+Subject: Re: [RFC PATCH 00/6] resctrl: Support mba_MBps on MPAM
+To: Jinjie Ruan <ruanjinjie01@gmail.com>, babu.moger@amd.com, bp@alien8.de,
+ corbet@lwn.net, Dave.Martin@arm.com, fenghuay@nvidia.com,
+ james.morse@arm.com, rdunlap@infradead.org, reinette.chatre@intel.com,
+ skhan@linuxfoundation.org, tony.luck@intel.com, x86@kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Cc: ruanjinjie@huawei.com
+References: <20261109132621.3862497-1-ruanjinjie01@gmail.com_quarantine>
+Content-Language: en-US
+From: Ben Horgan <ben.horgan@arm.com>
+In-Reply-To: <20261109132621.3862497-1-ruanjinjie01@gmail.com_quarantine>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_095137_904954_9AF5E531 
-X-CRM114-Status: GOOD (  33.57  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_095105_941825_4681AB49 
+X-CRM114-Status: GOOD (  31.78  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,122 +73,114 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi Jinjie,
 
---e6zrp2dlq4xzmy2v
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: Add DSI panel to RK3588 EVB1
-MIME-Version: 1.0
+On 09/11/2026 13:26, Jinjie Ruan wrote:
+> From: Jinjie Ruan <ruanjinjie@huawei.com>
+> 
+> Resctrl offers two ways to describe an MBA policy:
+> - The percentage interface writes a fraction of the maximum bandwidth
+>   into the hardware control register
+> - The MBA software controller (mounted with -o mba_MBps) takes
+>   an absolute target in MiB/s and adjusts that percentage based on
+>   the MBM counters sampled once per second.
+> 
+> The problem is that a percentage alone isn't enough. How much bandwidth
+> a percentage actually corresponds to depends on the memory frequency,
+> the channel count, how many threads are generating traffic, the access
+> pattern, and the traffic of other groups. Neither MPAM nor x86 resctrl
+> reports the maximum bandwidth in MiB/s. So an administrator who wants
+> to enforce an absolute budget (a tenant SLA, a noisy-neighbour limit)
+> has to measure and re-tune the percentage on every machine. x86 resctrl
+> has had this software controller since 2018; MPAM has never been able
+> to use it. This series makes it work on MPAM.
 
-Hi,
+I see that you are enabling the software controller at the same time as
+assignable mbm counters. This means that if you enable the software
+controller and create too many monitor groups then the software
+controller will stop working. Any user applications already using the
+software controller would be broken.
 
-On Mon, Nov 09, 2026 at 02:26:44PM +0100, Heiko St=FCbner wrote:
-> Am Montag, 9. November 2026, 02:31:35 Mitteleurop=E4ische Normalzeit schr=
-ieb Chaoyi Chen:
-> > Hi Sebastian,
-> > On 11/9/2026 3:42 AM, Sebastian Reichel wrote:
-> > > Hello Chaoyi,
-> > >=20
-> > > On Sun, Nov 08, 2026 at 11:15:09AM +0800, Chaoyi Chen wrote:
-> > >> Hi Sebastian,
-> > >>
-> > >> On 11/7/2026 5:57 AM, Sebastian Reichel wrote:
-> > >>> The RK3588 EVB1 comes with a W552793DBA-V10 Touchscreen/Display
-> > >>> combination. It contains a Wanchanglong W552793BAA panel and a
-> > >>> Goodix GT1158 touchscreen. This adds the DT description of it.
-> > >>> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > >>> ---
-> > >>>  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts | 90 ++++++++++++=
-++++++++++++
-> > >>>  1 file changed, 90 insertions(+)
-> > >>>
-> > >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> > >>> index 6a95a8bb6fb8..327ca13b60f0 100644
-> > >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> > >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
-> > >>> @@ -204,6 +204,15 @@ vcc12v_dcin: regulator-vcc12v-dcin {
-> > >>>  		regulator-max-microvolt =3D <12000000>;
-> > >>>  	};
-> > >>> =20
-> > >>
-> > >> I seem unable to apply the patch to the latest linux-next tree.
-> > >>
-> > >> So I tried to resolve the conflict manually, but the actual
-> > >> test screen did not display. I will look into this further.
-> > >=20
-> > > Strange. The base of this series was Heiko's for-next tree from
-> > > Friday. No RK3588 EVB1 patches landed since then:
-> > >=20
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.=
-git/commit/?h=3Dfor-next&id=3Dcabb6811c38a46337d5f4252b4dc390f9296856c
-> > >=20
-> > > If your board uses the original Rockchip bootloader, which shows a
-> > > Rockchip logo on the panel, you also need Cristian's latest YUV420
-> > > patches that reset VOP2 at probe time avoiding some issues with the
-> > > pre-initialized panel as a side effect. Those were recently applied
-> > > by Heiko to the DRM tree, so testing on linux-next is indeed
-> > > sensible.
-> > >=20
-> >=20
-> > Hmm, the newest linux-next tag which I used is next-20261105, and Heiko=
-'s=20
-> > tree last updated date is1106. I'll give it a try on Heiko's tree.
-> >=20
-> > And I'm using mainline U-Boot, which obtained from the latest nightly b=
-uild:
-> > https://gitlab.collabora.com/hardware-enablement/rockchip-3588/debian-i=
-mage-recipes.
-> >=20
-> > The backlight working correctly, and the DCS command has been sent, but=
- nothing display.
-> > Perhaps I should look elsewhere.
->=20
-> I would assume it could be the SPLL (again).
->=20
-> I.e. a recent u-boot change broke the SPL-based forced clock init and Jon=
-as
-> fixed that in [0]. Had the black display again recently too.
->=20
-> And it seems it hasn't been merged yet.
+Would instead teaching MPAM about the mbm_default fixed allocation of
+counters be better? If a platform has sufficient bandwidth counters then
+we can ensure there is a counter for every monitor group. If necessary,
+we can also reduce the number of CLOSID/RMID the driver reports so that
+there is one per monitor group.
 
-Sounds reasonable. FWIW I only tested with the pre-flashed Rockchip
-U-Boot (as described above). I intentionally keep that on my RK3588
-EVB1, so that I can test RK3588 with vendor TF-A/U-Boot and upstream
-or downstream kernel. All my other boards run upstream TF-A/U-Boot.
+Thanks,
 
-Greetings,
+Ben
 
--- Sebastian
+> 
+> What this series does
+> =====================
+> 
+> MPAM refuses mba_MBps in two places:
+> - Its MBM counters are assignable, and supports_mba_mbps() refuses
+>   the option when they are.
+> - Its maximum bandwidth control is a soft limit by default, which
+>   can't hold a single requester down to the target.
+>   MPAMF_MBW_IDR.MAX_LIM reports whether the hard limit exists.
+> 
+> MPAM also makes two generic defects reachable:
+> - Writing the control register sleeps (smp_call_on_cpu()), while
+>   the worker runs under the RCU read lock
+> - A 16-bit fraction lets the minimum control value reach zero, which
+>   divides by zero in the estimator
+> 
+> The patches:
+> 
+> - Patches 1 and 2 fix the two generic defects.
+> - Patches 3 and 4 make the loop runnable on MPAM: the worker takes the
+>   CPU hotplug lock around the sleeping control update, and assignable
+>   counters are accepted with a fixed assignment mode.
+> - Patches 5 and 6 handle the maximum: the driver sets HARDLIM and
+>   records the MAX_LIM behaviours, and mba_MBps is refused where only
+>   the soft limit exists.
+> 
+> x86 has no assignable counters in the mode where the controller is
+> allowed, and does not set the soft-limit flag, so its behaviour is
+> unchanged.
+> 
+> Testing
+> =======
+> 
+> With the MPAM MSC model in QEMU:
+> 
+> - From a 9606 MiB/s baseline, a 7000 MiB/s target converges to
+>   6888 MiB/s and a 9000 MiB/s target to 8766 MiB/s.
+> - The memory-side MSC register shows MBW_MAX.HARDLIM set.
+> - A modelled MSC that implements only the soft limit refuses the
+>   mba_MBps mount, while a plain mount succeeds.
+> - With mbm_assign_on_mkdir forced on while the controller is in use,
+>   a write of 0 is refused, and the user's value is restored after
+>   unmount.
+> - The KUnit tests for the MPAM driver pass.
+> 
+> Jinjie Ruan (6):
+>   fs/resctrl: Avoid division by zero in the MBA software controller
+>   fs/resctrl: Do not update bandwidth from a failed counter read
+>   fs/resctrl: Take the CPU hotplug lock for software controller updates
+>   fs/resctrl: Allow mba_MBps with assignable MBM counters
+>   fs/resctrl: Reject mba_MBps when the maximum is only a soft limit
+>   arm_mpam: Program the hard limit for the software controller
+> 
+>  Documentation/filesystems/resctrl.rst | 13 +++-
+>  drivers/resctrl/mpam_devices.c        | 55 +++++++++++++----
+>  drivers/resctrl/mpam_internal.h       |  4 ++
+>  drivers/resctrl/mpam_resctrl.c        |  9 +++
+>  fs/resctrl/monitor.c                  | 86 +++++++++++++++++++++------
+>  fs/resctrl/rdtgroup.c                 | 48 ++++++++++++---
+>  include/linux/resctrl.h               |  5 ++
+>  7 files changed, 179 insertions(+), 41 deletions(-)
+> 
 
---e6zrp2dlq4xzmy2v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmryCAwACgkQ2O7X88g7
-+prfaRAAmlmXmWHu8bIULwz9sG0Yd8KbbbbewcRNaoeu3IOYhrlR5wn84GcoPcoO
-cpdl+tlqxaQi3DMZf78qbZd1pn5Wf3rht7HJN8X6cYn2W17MKiTA1NDKZTM7Y10H
-88ArpSU4xEFeXFKNabi8S6KQoatb1W3oPvswck4M6sIkq9JyR3bUXmwuf+9gOguA
-pRQrsosvpKorzFJoxNiSvesfG27I3HlexIB532Xh8Rau1LZbor1d0qhBqbkLh7EJ
-ivYC74fvrEtSXB3LX6ngAoWvaH4wvf2Ety9iJR2zZntB//NfpHNQR5E5ZWsD9Isf
-pkmcSKFQwH8jPxZ0iECGdt2/HzccTz9/gCqGjxoxxMTqEqzZ667rlP6Du0yCJvjN
-36UGVlxF36N017d/PZYhEqw1MivtkNZtCK3WrOibY8rQs8x7ddHkPq6H5lhcTHci
-8jjlrKodpza3OjIXbiQmAhepZK4PMz5wX+bxpi9NUFvMgFo64zyGGr7cBUgtss9i
-DPEt76MM4zOcwzjIMBA6Zl1lltrxpclppy6nD5v3FbKnfFUBlMUlT9jqz88By/al
-NQJxK0RB2mCwyMUsZraj0sK1x/qaf1aHBuUtobIG0wwxIQp3Yx7M9jsiOjMt+QUZ
-US31lSvdzuTP6GX3euj7gMUNihfoUt/P9H0+z9hkCNJS2ubvRoQ=
-=gnl0
------END PGP SIGNATURE-----
-
---e6zrp2dlq4xzmy2v--
 
