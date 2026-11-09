@@ -2,139 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B75F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 02:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414A2606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 02:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kJorOsrV;
-	dkim=pass (1024-bit key, unprotected) header.d=renesas.com header.i=@renesas.com header.a=rsa-sha256 header.s=selector1 header.b=fm7i+5Od
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lakrt+wQ;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=RSzMaBpz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Date:
-	Content-Type:In-Reply-To:Subject:Cc:To:From:Message-ID:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=yomQRAW8KO5MzFG+nb0CnIeAiJp4ssWom4/L+WcvyiU=; b=kJorOsrVG4tPNByiY5/cAzuEAL
-	bWPzlvzrqXAWHEgxYhRyCC44+U+hGcYw0LXUbIqnRzMUN1xfe4lnuyhwPJFeHfKgRsXDMD/WY7If3
-	WGwdMChsRCYhR9wQfhwbmQa/aNSo/2YIApOBFyIMTgT4c973OwDS6IhVC7ScyIeAx60SPvKhjGT1e
-	UDzPconfQxo7pCh6X8iQXCwLUlptZIYaCCkXEB8M8ygUuzPEFOS7TqZ7LQBQjb4MLP0TfOsUMvv9K
-	bKFAoGOeLCfoNzEC7G6OYo3snbbh0dHKeFyMQYtUcgD5jAs6XJGrTYefxRROuD/xoDW2MxG2Q5hEu
-	gDOOHn4A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=We4ESE2til4bSkM1vEMn0soL7vZrg8WY8DZ2Y26nFnk=; b=Lakrt+wQAIHUAz
+	iTuRyCZ9VPfKBTh2GV2hE+3sgOr5QE+f0aIylkMjE/Y6E2pRZzfOnEAJ7UzCysSrtOzs66RVeTud+
+	8BxYL1xjB9zc94KRzWrhDke0wWE0DzVeLQweiy8nzsPovXkv62j0cLFW9P9Dgp/6Hy+a79gey23br
+	cKpmp8ZXCSYLwCSiKLmvXAjepk7crIe6kUFRFaMkgYySk9PikNlZjyb5/EqheDwOeHlCOAyhLepXX
+	Rx4qgvx5My+tRa8dP/tWA1CzJigREm7+ABstOrj0wWxKsotgYgEdwij8KTF7GS3F+cKYQBybgNdiX
+	kLCAFszqJQyTbQ5D8ozw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQEjW-0000000H67I-20ks;
-	Mon, 09 Nov 2026 02:03:42 +0000
-Received: from mail-japaneastazlp170110002.outbound.protection.outlook.com ([2a01:111:f403:c405::2] helo=TYVP286CU001.outbound.protection.outlook.com)
+	id 1xQEmr-0000000H6NO-0Zoj;
+	Mon, 09 Nov 2026 02:07:09 +0000
+Received: from mail-m9352.xmail.ntesmail.com ([103.126.93.52])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQEjT-0000000H65O-438w;
-	Mon, 09 Nov 2026 02:03:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AZCYUdm8crWykWdceLVZ820Rt0kS7vBVwyuLcASzQkZx/vvhq3OiJjYDhueEakatdIvMiIy1k0Klypi9Noskuh8NDjpNHXBoVRfmvyc042pp1zqezyvP2iWEtOOv5VKqkdS/X9IRqXr1kJNNQBlmWU+opbT85MrSNQhQ4hRTrNGK9Q2gEKCrsTDA9PfijW/GXA/Ly7m6ZmnGbmu1H5dE7F/U5JehCHZ5S3iH6wtvBOoNeLtbaPDVVBu83dUoJv6iGI4w/06M87kO2LqBEyAMIMANd0BLD0UOuNxXpHBAFOGqPhnHdeuvaJxoVsgyD0xeIeE911luYpeEhUooLgH25w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yomQRAW8KO5MzFG+nb0CnIeAiJp4ssWom4/L+WcvyiU=;
- b=ImvAiy0ZVBfoTYYzhc0c2fl3bDQPvxmV97SXgBBb/+TpUPZGii7VJ3f8INMEhYKwyqqfawwqTkD3jfbcJrBYaOHCw+dc2gMlBQsDQlq5ofGuEFQrYg8ENiCFPQObBqy/NifTD/FL5k4UPuEhFORYzFa/2Y+aPbRrG86aw2sgJd8vuvj1RMQEO692btXLPtIfua0EUwTkE1miJFBPOj+DdICam+c3UShfrnsU3UfvC3kx+Ba03uKGnroHJUl1Xea++qTg3EWM5p/eM9bNdQphdwOVHnaCP6EI81/VMzRISnKfn6r2dqD2a/QWv8Puhr54Z1CjH5sdWag7u6NvDXvFMQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yomQRAW8KO5MzFG+nb0CnIeAiJp4ssWom4/L+WcvyiU=;
- b=fm7i+5Od22aZXdDCysaBRy6lCNCrhK1Zu3MWdzDhUCt6ZJ5b0eDuKMUZeON+kdj3vydFz42Sh+fo2ZkAz8+PXGhtApiptWSPOp4T534HAApt9TDZHUYFOcxf2ZO5r/iS9raWxrjUb1Vz3nLQPj0tbCtqC5RobWKNpsJmFwESGyk=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYYPR01MB15175.jpnprd01.prod.outlook.com (2603:1096:405:27d::8)
- by TY4PR01MB13993.jpnprd01.prod.outlook.com (2603:1096:405:204::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
- 2026 02:03:29 +0000
-Received: from TYYPR01MB15175.jpnprd01.prod.outlook.com
- ([fe80::9bfd:a110:68f1:134d]) by TYYPR01MB15175.jpnprd01.prod.outlook.com
- ([fe80::9bfd:a110:68f1:134d%6]) with mapi id 15.21.0592.010; Mon, 9 Nov 2026
- 02:03:29 +0000
-Message-ID: <87v766pxqn.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: <shao.mingyin@zte.com.cn>
-Cc: <broonie@kernel.org>,
-	<linux-sound@vger.kernel.org>,
-	<lgirdwood@gmail.com>,
-	<heiko@sntech.de>,
-	<linux-rockchip@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<wens@kernel.org>,
-	<jernej.skrabec@gmail.com>,
-	<samuel@sholland.org>,
-	<linux-sunxi@lists.linux.dev>,
-	<linux-renesas-soc@vger.kernel.org>,
-	<srini@kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/5] ASoC: rsnd: fix SSIU node reference leak in rsnd_dma_of_path
-In-Reply-To: <20261107160827257FwoXZMjcThgcfD-ZPfKsk@zte.com.cn>
-User-Agent: Wanderlust/2.15.9 Emacs/30.2 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Mon, 9 Nov 2026 02:03:28 +0000
-X-ClientProxiedBy: OS3PR01CA0039.jpnprd01.prod.outlook.com
- (2603:1096:604:dd::8) To TYYPR01MB15175.jpnprd01.prod.outlook.com
- (2603:1096:405:27d::8)
+	id 1xQEmo-0000000H6Mv-01r6;
+	Mon, 09 Nov 2026 02:07:08 +0000
+Received: from [172.16.12.48] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 53eeadfd9;
+	Mon, 9 Nov 2026 10:06:57 +0800 (GMT+08:00)
+Message-ID: <60fbb95c-63cc-4d22-9e2b-51332a50054d@rock-chips.com>
+Date: Mon, 9 Nov 2026 10:06:55 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYYPR01MB15175:EE_|TY4PR01MB13993:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c03fa11-81b3-46f2-e695-08df3e05a5d5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|23010399003|7416014|52116014|366016|18002099003|22082099003|10067099003|11063799006|261028144727099003|261022105027099003|56012099006|261026140227099003|38350700014;
-X-Microsoft-Antispam-Message-Info: vCnMCfH0Tp0WNhZSA2/s549oGDi4Hg0GK5eFUTERT5kc3p73jyKvzspMH+CUJTv289ABwgvjGewJTfeSwZWyS2FLwVJIYGhhVTyFpnPC5h/TJ4eQlbV4tbBKKJ9xP5jCWl8iyiLig5xEEigxZhSyNoOZ4pHGfvM2/A27TpcojdGJc7fvidGpACNf/X6QfNVpCakofS9S+mMQ6/SD/VUKMO3nAZDC/KVWuCLEP9btphXOvEqHIyCkl/uXqx14q6W1tQTQCPoiQhB8s2+zIm9D92p5l7f6teCRmBe+kabPjKSxsJQApmxGum7/oOyHiJuslPU6bA3WqDDI6WkPFwUnZuEMhAMMMvl447IRA+Dej2AcKsjjH4Op+1wf9JFG65YV8yvg2IeAL1lQzmzoTQAiEoomoJQu5XkK0hRbaLK4V/egww9syMkJ7rFAFTJy8oWwHt6p7503rZkeDgnOdbu5SaMDXxeyrO4eRC5u2W6uJBCYgP31Mbzi8j5qBYkxJ54tbmyz6NLbvbriPpGGrbcz0nEngiALRFeh+NS6bqhb0pSjnYRJ3MapIWHa+C4j1CaPT0g7wxm2S8WyTXJllxGfPVcSd+7XbxQAXcrdTm1VhT7k3EdkDP0TLlpXUXtndCBB9vf1qEtQELLOnSwO6W+cVkvPVObLWJQhXXn/t5bVAnTM0hDFMeA0HZrZcNdWrm1QwB4K1uDRPaKb6uUeM1l009NXLwETj4cu89I9Ij8PIPs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB15175.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(23010399003)(7416014)(52116014)(366016)(18002099003)(22082099003)(10067099003)(11063799006)(261028144727099003)(261022105027099003)(56012099006)(261026140227099003)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0piyin11ViYUUgutyaW3BGMQYCTzrA6LVL3DdH17yaGRiKZGcry4F8pkLy9e?=
- =?us-ascii?Q?yXQF4HS835/0t/bL/++ybTi/nmsfmkUhX4rMf7qlEqUALx7SGlcpOuedt9Ex?=
- =?us-ascii?Q?4d0AIbJjH8e3C3Hu2wu4h0oyArv3J717DbfpQL+1l4jjlRs0ipy4M3SIv8ve?=
- =?us-ascii?Q?QOTICq3cw41VhzlopH1+1ApMz8TRVx6pSa3qaf+eR04LV8o6Bw6ErEz/G6QQ?=
- =?us-ascii?Q?zkLWHPxe0fCYeXyti0kUlKqBOffRRWBnBGc52gjEmOlvOP5TEbrn9h6pBewi?=
- =?us-ascii?Q?kT2wv1NDvCZZqgCnqLILmRBk8az1Fcw6KdJILidsPdMqMh83M8zKawGzNPoa?=
- =?us-ascii?Q?/ern3GOaV2ZcdhHnBzmH6iaeh9oV/2430Xy5XwQ/tR1WVOud4z63/FbylV/x?=
- =?us-ascii?Q?uYNSfwvF0b21MkdkTtV3+EbMhKD4gJEccs+AzBpf4YnDnDwhjW8t3SMnb0IU?=
- =?us-ascii?Q?XmDQJ03ddIIASa6lvR+VqspLsQA1k6X1Kfm+PUKoDX6RVFYaAQpR47qDQ+E0?=
- =?us-ascii?Q?cPzlb96/4KGrZ0GzPRjPk9w+GRK08H8HtEzImEQBuR2ZeuX2hygjJomcikSX?=
- =?us-ascii?Q?JHCBqRYWFY3ItXZjHZkqiD2ih7JfOuMf+cNih53NWli61Hnw47Mc/Ly45G6h?=
- =?us-ascii?Q?LXs+jR5Nh6eRRyqPaE3IYQZpEajdSKgEWpSf8C0JLOjx3GE+w6YKqPbTd6um?=
- =?us-ascii?Q?MM6WXlDFqXX05xqwmHkZSBo9JeP27D9q7EQpX30qf/pYd1d6r8UuCr/6cUsd?=
- =?us-ascii?Q?fblFgB3bFILIAhmV0kvmKI84lgNFLd4s/VMifss+XBjqVsz7eMmmbkaFP1el?=
- =?us-ascii?Q?pMGTXRelcBmE8O+LnI9eTVJB6d64XIiLQaTlolWbigwEFTlyCGWwtzp05iob?=
- =?us-ascii?Q?/xQFYhaQmj4LLMco6fn6KR7Bgh6lw6+9cI5nc/bk4IkQERo1ctllsqqLsoVw?=
- =?us-ascii?Q?zLfPxb7ATl7L3iS+tX8BrTXAN7t87BgaqjQGgzesaGCAyxh4slStIq39qkNN?=
- =?us-ascii?Q?jx8+uwDE/sm0gT6xVzjzRdHeFIRQOzkkBakobpp4UC9PgeIHmsmFbym3sRvr?=
- =?us-ascii?Q?Y7vgF0faHRburcopm1N1JPDqt4mmR6Hne6Afio6mKWlLfPENyYSifOR67tUP?=
- =?us-ascii?Q?yQdGAD0MoZDy9zXdOUGxVfG8TtZlQe50L3ipRDVK4m7sZbHXu/4yjvH9Q/GZ?=
- =?us-ascii?Q?4iR86y/jeBWpgTNcSvbdYEQGMTZ5u8MFpH50/kzyDskKksUUA8Je0iRrxK+V?=
- =?us-ascii?Q?m8R4jpL8V49L925GIPqJQQJPe0DXGoQjZCtVofcWKS6d4y+cYuGz2ib3jtEf?=
- =?us-ascii?Q?nOJaH2o6U78qEoCn5hN+0tFKVGnCrqHsTehnDzaxTJ9+mEkcborukC3RjicA?=
- =?us-ascii?Q?qpbD6AHH14STnFeeHiOxRTlPgNlE7gJ5R4PmadgUFChI535uD4yyz/zjPi/N?=
- =?us-ascii?Q?oGSOObROnF1Oj+MYbd3Pfo57o8pPAuwHQYTer8ZyLYtqDXgjzwZiHuChwXh+?=
- =?us-ascii?Q?RJL9w4mc38adq4MCBHQZsAgNusihtmxUqUUVjfB95p3PPyI/nRUewqGsRq4c?=
- =?us-ascii?Q?zZuq4P3BqckFll0uuaP9EpUy2XmxhLyS9BtDTyxdrqDSwhrq4F3LkZb/857N?=
- =?us-ascii?Q?ztpjtSMrGlo3n9vEv73HMgb4GtFYYAiLeKljbAMCOq2jtwWlkTVNo7Bl49w7?=
- =?us-ascii?Q?s9em7scRxjXxaugF3vBicud/bPS3KSS5ZjjtXWwBzjdyKQZSXbVQ3z2qwNAm?=
- =?us-ascii?Q?Mk3mZ9eXFAg3zvEBJSHBXvgPjoukKiU=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c03fa11-81b3-46f2-e695-08df3e05a5d5
-X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB15175.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 02:03:28.9772
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VsXH8iRV3lQVzCaEvTPOztBTaQaU0Ep7sQaYMlo5PkNRcS6tl7uejVoqHUmpAbG33acYZLOwf2xOD3M0/aqwUeQ6jvLEkkZEfHTuGfP4QYguvrMGgvTxlA0FTEl+YB1A
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB13993
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, =?UTF-8?Q?Enrique_Hern=C3=A1ndez_Bello?=
+ <ehbello@gmail.com>, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, bhelgaas@google.com, robh@kernel.org, heiko@sntech.de,
+ linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 0/2] PCI: rockchip-host: Retry training and hot-reset
+ a JMB585 on RK3399
+To: Igor Velkov <iav@iav.lv>
+References: <20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv>
+ <20261106-rockchip-pcie-ltssm-trace-1@iav.lv>
+ <6c9adabe-d632-471e-8fc1-aafe62115167@rock-chips.com>
+ <20261109-rockchip-pcie-deskew-result-1@iav.lv>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20261109-rockchip-pcie-deskew-result-1@iav.lv>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa1be0f01f703a4kunm84dec09857da6c
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZQ0hKGlZIH01CGUNDTk
+	5MQk9WFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
+	tIVUJCSU5LVUpLS1VKQktCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=RSzMaBpzKBX5tqLpuWQ15ZQyFDH114v8q2IeBzHG+Vp+GQV3bxrhL7Kcukqj4D585i+sB7hqCNAmmV5+6/8cW1TRIEKMKs7Cvk18QPkUaOOQk3gusQTpcjDlblAIqw8/pktunXi45CRaK61wjrAV/kL9AvGg/8sY2nt5fnKVZUg=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=We4ESE2til4bSkM1vEMn0soL7vZrg8WY8DZ2Y26nFnk=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_180340_003412_1030F457 
-X-CRM114-Status: UNSURE (   6.21  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261108_180706_615483_3C16E329 
+X-CRM114-Status: GOOD (  15.11  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -146,34 +75,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-Hi
-
-> From: Shao Mingyin <shao.mingyin@zte.com.cn>
+在 2026/11/09 星期一 7:05, Igor Velkov 写道:
+> Hi Shawn,
 > 
-> rsnd_ssiu_of_node() returns the child node obtained by
-> of_get_child_by_name(), which holds a reference.  rsnd_dma_of_path()
-> only tests that node and never drops the reference, so every DMA path
-> setup leaks the SSIU node.
+> Thanks. Deskew makes no difference. Helios64, x2, bind/unbind, variants
+> alternating every cycle, bad link bring-ups:
 > 
-> Put the node after the SSIU branch has used it.
+>    defaults 6/104, auto deskew off + trim 0xf: 5/104
+>    defaults 6/104, magnitude off: 6/104
 > 
-> Fixes: 4e7788fb8018 ("ASoC: rsnd: add SSIU BUSIF support")
-> Signed-off-by: Shao Mingyin <shao.mingyin@zte.com.cn>
-> ---
+> Your mail has the magnitude at 0xb, but TRM V1.3 part 2, 17.6.10.1 has
+> TX_TERMINATION_TRIM there and DESKEW_MAGNITUDE at 0xc, so I wrote 0xc.
 
-Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Sorry, my typo.
 
-Thank you for your help !!
+> 
+> DEBUG_DATA_OUT did show something. With Debug Mux Control (0x208) = 5,
+> share of samples with in_dllp0_data_valid set, 100 ms window after hot reset:
+> 
+>    good bring-ups 0.16% (99), bad bring-ups 51% (3, range 45-53)
+> 
+> The first training looks the same: 0.15% (97) against 47% (5). mgmt_dllp_error,
+> crc32_error and in_tlp_error stay 0 in all of them. With the mux at 4,
+> start_replay, replay timeout and dl_protocol_error stay 0 too.
+> 
+> So in a bad bring-up the RC receives a constant error-free stream of DLLPs.
+> I read that as the JMB585 repeating flow control init because it does not
+> get what the RC sends, but this bus does not show the DLLP type. It would put
+> the fault in the RC to JMB585 direction, on x2 only.
+> 
+> Is there an RC transmitter setting worth trying for that, such as swing or
+> de-emphasis? If not, I will stop looking for the cause here.
+> 
 
-Best regards
----
-Kuninori Morimoto
+Reg 0xa is for swing, it says: "This value should be set to (64-56*0 .9/
+VDD09) depending on actual voltage of VDD09"
+
+But de-emphasis is fixed in each kind of bus speed.
+
+> Igor
+> 
+
 
