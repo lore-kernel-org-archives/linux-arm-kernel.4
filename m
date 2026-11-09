@@ -2,76 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702CA606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF76606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4kk/cPYV;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ZTWtgRAO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qLTcgN6d;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Yy8KUHkg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Mc6ORBvaJXkIqHPJBuJecDTVyV5lInOmdqCj61j+210=; b=4kk/cPYVuy0ywK
-	si0fg0IS4wb1aNS5zdvo70WJGuwSy4FMc2Z4Mv7X8YDW6gtdvguWt93AhVtJCWqKGB0Nxi7IAa7R5
-	4cOAuaY4Xu6Lbi0OHC6y9AzR5xhgcJZsQRuxECOf7ElDyhilaEpPEzLgy/BXfheBhnoxLoDI2EaFa
-	QXzWHrYDN0tKU6gGBYP1RKRZ8RX8siH0uLRSucYEHiFem0WqRwPyl341YtkVvtdsodlPFLGVL9x8O
-	81UvEy3x2KTAJ/BOJY/vyPsJxpOkjiFfPSYGO9lGSIQ3g2dpEE248r3RDXie/bhbFgDVMJqIs+wVl
-	7uZ7MvV8Xbr3pyK9dItw==;
+	List-Owner; bh=uD1oqeBZyv6GKQsYCnFzfqSw22a5mcNlcyGEnHcJ5IE=; b=qLTcgN6diaHvic
+	s+ky1ULnxWo0eNEYlotDza20XAAtL1XJFJ/T5CZHim4pXL0bJWexNsecuwzTlnTr1QWm+bveAQjFg
+	YpkGUKyirtpNIfnLtEwhwJeHVxDCjF3Ng7XoBGLExux6V3aevVwDADdTs53N8ghp2kF6V43j6xyqa
+	SE3k2R1ZiZrlYavFh9H1ZJWP0uWn3YMHRBWLGm+kLEbxeOgzLq5h4RA+IeQfUNpz3FbtHNIDKT0N+
+	GBdkfW9jqTfyhIGC9uxYbn3VQgPUyg7u9ugja5KXtDSQOnNXgYNI7gbhM87HvCx8M5EVcZgErwrjn
+	T3L6PLyybzalR9Gm6AUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQPOg-00000000nee-19Eb;
-	Mon, 09 Nov 2026 13:26:54 +0000
-Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
+	id 1xQPOl-00000000nho-1lbJ;
+	Mon, 09 Nov 2026 13:26:59 +0000
+Received: from mail-pj2-x05.google.com ([2607:f8b0:4864:39::5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQPOd-00000000ncj-2WPq
+	id 1xQPOi-00000000ng9-3ITS
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 13:26:52 +0000
-Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-3ac9f49b984so445842a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 05:26:51 -0800 (PST)
+	Mon, 09 Nov 2026 13:26:58 +0000
+Received: by mail-pj2-x05.google.com with SMTP id 98e67ed59e1d1-3aec0b1d816so444465a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 05:26:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794230810; x=1794835610; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794230816; x=1794835616; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Mc6ORBvaJXkIqHPJBuJecDTVyV5lInOmdqCj61j+210=;
-        b=ZTWtgRAO461VC2oREVqa1iQeehja0hgfu827lm94429V3aGFh+3AZCObtiekvzr/yy
-         8Pxs5R6c2LF/SiG7PdjhJqw7Z3kf2Io+0YtFUJV7JCZfv++9Do2V4/rgDDfY2Lh5h/WN
-         teLkUCaGW+tCzlFJzfo+rkze5XlAqmL3CLpFFhk+4Spg62EIIsHiIaD95yZIyw1jWYv0
-         lGvow0KawiAyf4gxumixbh4jOOo+TxOzE7p7qBSpiWFlEkLMS7DuVinYCT+KdksbTPMc
-         RdKzHzKChl+ur2KCDX5pP53bfSJVFxS6a28jlUAusk/EEpuJDtuesYmJWCvfE0vWsRxn
-         VRhw==
+        bh=uD1oqeBZyv6GKQsYCnFzfqSw22a5mcNlcyGEnHcJ5IE=;
+        b=Yy8KUHkgmqXTNzHr4s7k7pGikL+4RJQ/Y7nwwP1oDVhHGtEJB7yoJKgwhJtesQuhwM
+         4SGsIEc3MfKjyQzscdH+wxlEx3cBWg92ACU/t3bLf4HO8SzM8FWg+Hamds+J3YJp1G1C
+         bPyjwg5j9KSK8qyZhoq9IabBQSITO/0rgWHZfAHsy55oiKsPHGXfv3RFqw9mfl0wNlV8
+         naEzmoH8Q6VGjCFvooQE5EoU0w40I0+D1wKxyioZGIQ3dWqrCC4M4VajYgU52oBMl4Hr
+         gjlhCuecwgV3eJEWYThFHnGa8zs3FQEqakFUZenkKb1auMS0j61CyOCPPETB6yYCvE5J
+         qlPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794230810; x=1794835610;
+        d=1e100.net; s=20260707; t=1794230816; x=1794835616;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Mc6ORBvaJXkIqHPJBuJecDTVyV5lInOmdqCj61j+210=;
-        b=2svRSU56JWwmlezOsmcheurM1WCP5bvPqrTbm3KIyuWIWIC+r/R4Edcyq8vBpJU5Jk
-         0vCPShto98SCRu8mWACD+JkODKDkUE+it7fq8QydlEeq/n7XokVVW2INNbFcVFcHjW5O
-         v+G7/C84tUJU+waYcT8FKTjLQtyJAdv3AC+QXG4m4bjFrZ6PW8Hf7d35bD7uRP6KUqCd
-         og+Lv5b45Fql3s4c/GxgbAJ3E+qlFYuwGitd83tH12tLBkLKzi2w2QPpMjpt3n7Sxjrl
-         pvwu/nkgkDB3SJCIwQzmahxVCeO1fOcDJTzbjK3KxGfG4pPCbDbmNXMBs3XRMpU7e4Ek
-         nmYg==
-X-Forwarded-Encrypted: i=1; AL+hErGqP9RA9Uvs2NIxl/zcOdyN3+/OJSX4r1O47P4l6VF2Nh45cQwIqa44y+CkOEX9JRU31VsAIZbkrOnJ2eEtnL09@lists.infradead.org
-X-Gm-Message-State: APuU4Z/0QCd7erQyGbrZC8saujPgJUUn0FYg99Y8JQm3EHtQIUfqi34Q
-	W76bXKGjXSqi53z4MeVyS5c4UVqQHGsijyiKKzG6jPyc619Z01TdKog+
-X-Gm-Gg: AYBFou34ryjp7A/Dss//Csxft1YA32zbBKIpFhWl2dWGc+X5HDgJOVEnvHdaral9cQE
-	zhwDAM1miwAPQkeaC2uM44ubBddu1VIjgWr5HYXzPSpDqo85NPWZPxB1glro3hNhzu6KiNmA1Y3
-	ENxNWbRDuYKioWdNq8jLKJOLLB+nIhKvlMNqiyYBmg2MgeNkYHbU9VltnIwZxOS5qaamNQRraVE
-	sInkJ74vP9pHn6tTnzDp5MIV86t1VmAWDZey3aNWDhKyFIckndRQ2/1lI4QFFWZ3LxKOmRStFUN
-	1deCEQb8cFGgq9moY+xtqHxx8ebu66SK0e8/D50aoVqFSPUS7uY785DSPIcXs+rMjxFdotjsbfu
-	9sSvxSx45NDNjzwQKT1ob7hoBXTHAT0CWMM4AFdpnVwvpeFUepnqqrbwVj3ufuSIUYSGwGvpfMo
-	cc/6+FF57mHj3yj33RMkj97zho4FJfk+/QBGOic7yObsiSHvipoa/S++VspG/sjpLSYvUMNX/oE
-	JAHHc3KXzp6YG5ou5m/mEejUwwQk+KTXdtDKyOqvAa5jnJenQdBQbjzNEOFdrC5D4x20QRNXoQC
-	fVsjBq1ie9ldgG3icM0Mc+NtQnF4ARp+1xcsqrB6yRtFOh7QVLbIV62QwSs5ce8=
-X-Received: by 2002:a17:90b:586c:b0:3ac:9669:8461 with SMTP id 98e67ed59e1d1-3b1067af4b3mr4721850a91.15.1794230810060;
-        Mon, 09 Nov 2026 05:26:50 -0800 (PST)
+        bh=uD1oqeBZyv6GKQsYCnFzfqSw22a5mcNlcyGEnHcJ5IE=;
+        b=rAoyDW6XtozS9DZf+y8yuL/xJmvb5rskSanu8QC0zbpoWUTtPsIJeOIxnUyPwBuOoK
+         blWFlxmauZ92hpP4IM37F/8PtzmkIiZ9oSGb55tDUgBIBU3Wv+/sKv65/MSXcg+cr+Vz
+         lA1aFLA1I044NdfDXnTdmmT752nlwNQXZU4wAAmw0d6uHEv3VovqCQbG9j7t8IZUMOVk
+         JU3QnXUkV+eIl5ujIA6fp+8POrnJ0lwQ9/96PrXlAQ6fN7WLGoDc+DQGlS0IUjKDvoHp
+         enH/+mWK5Vejpyy5OF6o3dfoniAKO525UIBA5Zcj9VhoRKFU8N9CP1A8BID1+VPsZkEk
+         cWTQ==
+X-Forwarded-Encrypted: i=1; AL+hErHdANz5kgBKzqEHS6dnK8kANuNJ7m+F+tEnfRJR8W+18zzTWRs5LvWBwjKqNhgn2h54RyUtW2sXM+ocJtmvRA5h@lists.infradead.org
+X-Gm-Message-State: APuU4Z8/7Bi5R/6KOBl6hpjD9STtEmq3w9ve+mdebyRKkfDimsKynNi6
+	k0a25JtfWno/NSU8+8z8mga2QHOFbWqrpUayxpLsuXmkCKk8MQrqrhsk
+X-Gm-Gg: AYBFou3gmU7fEjtowYDX8b0wajY3Z8LA0D5WCTIrwHwXAtmLnE54uMS3BnUJE5CNScw
+	Ai44UFAfWBDXS69bT/jcfFDN0UvSzypT0oQOwCk8Fd/nU1NBqsl8RAi5AMSoHW+KYf5o7mMggT0
+	ppBi4IAiTm5KmfDjwn1VJcEQDmq489CZLKndr9fbD1uKOu3kolRMd+NN+yKW9wktU82bJtHdIo5
+	axvgxgi/LGJOLVf6ZbszJz0Q/IRrgTeX3/fFhZONg6jKKlYYE3MvxPQ6MNZN/FHkF6ZL7vpRnUU
+	ll+cpL2J5ZZ+oo2I1il4Vjd7IKGy9AA1X8qgm86QvtwhaB3HqWWacu+ZGiSpffRcdU+Mq/Iarsl
+	wFMYn4v6mVd9Yrrgi9fXuWi0VgbYn5/3EBCnysAv0sQoMLFPCaR4Rm6lKvrV0m4JX0mBdMJM60B
+	+RggRJP92mBF47rS9laeqbjIiGYc20sNT9iQ3g76SiCwfSCTSH0OcTOOfyAVBtllgySMrA0iQ9V
+	UHpoHk4OaTLHnwIF2D/gfkddhTBKXOJfRmjBrcw6JlZ801GNk9yt3HCq6PObdEfmlDn4uXYaYfC
+	+eYwyj8Hxd7TedKEu5UyxU4fslpunaCkXbhrrwrjgCp6lk2a8E1POjb192yZOdKBn2QrAvZioig
+	m5Rz3bXwN
+X-Received: by 2002:a17:90b:2ec7:b0:3ab:884b:65a8 with SMTP id 98e67ed59e1d1-3b12d46479fmr3367677a91.26.1794230815591;
+        Mon, 09 Nov 2026 05:26:55 -0800 (PST)
 Received: from r00799764-ThinkCentre-M920t-N000.. ([139.159.170.67])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cdb969331f0sm1661701a12.18.2026.11.09.05.26.45
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cdb969331f0sm1661701a12.18.2026.11.09.05.26.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 05:26:49 -0800 (PST)
+        Mon, 09 Nov 2026 05:26:55 -0800 (PST)
 From: Jinjie Ruan <ruanjinjie01@gmail.com>
 To: babu.moger@amd.com,
 	ben.horgan@arm.com,
@@ -89,9 +90,9 @@ To: babu.moger@amd.com,
 	linux-doc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
 Cc: ruanjinjie@huawei.com
-Subject: [RFC PATCH 3/6] fs/resctrl: Take the CPU hotplug lock for software controller updates
-Date: Mon,  9 Nov 2026 21:26:18 +0800
-Message-ID: <20261109132621.3862497-4-ruanjinjie01@gmail.com>
+Subject: [RFC PATCH 4/6] fs/resctrl: Allow mba_MBps with assignable MBM counters
+Date: Mon,  9 Nov 2026 21:26:19 +0800
+Message-ID: <20261109132621.3862497-5-ruanjinjie01@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261109132621.3862497-1-ruanjinjie01@gmail.com>
 References: <20261109132621.3862497-1-ruanjinjie01@gmail.com>
@@ -99,8 +100,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_052651_654049_9668E5C5 
-X-CRM114-Status: GOOD (  22.87  )
+X-CRM114-CacheID: sfid-20261109_052656_841982_3A0DD058 
+X-CRM114-Status: GOOD (  30.12  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,126 +123,219 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 
-update_mba_bw() runs from the MBM overflow worker and calls the
-architecture to read and write the control of the domain of its CPU,
-under the RCU read lock.
+The MBA software controller adjusts the hardware bandwidth control from
+MBM counters to meet the value written to the schemata file. It needs
+a counter for the event selected by mba_MBps_event in every monitoring
+group, so mba_MBps is refused when the MBM counters are assignable. On
+MPAM every group has its own PARTID and PMG and the bandwidth monitors
+are assigned from a fixed pool, so users can only pick a percentage of
+a maximum that firmware does not report.
 
-Writing the control can sleep: MPAM uses smp_call_on_cpu() and waits
-for a CPU that reaches the MSC, so that CPU must stay online. The
-hotplug lock cannot be taken after rdtgroup_mutex, because the offline
-path takes the hotplug lock first, and sleeping in the RCU read-side
-section is invalid.
+Allow the controller when the architecture has a fixed assignment mode
+and assigns counters when a group is created. Enable
+mbm_assign_on_mkdir while the controller is in use, restore its
+previous value when the controller is disabled, and refuse to unassign
+the controller's counter meanwhile. Every group created while the
+controller is enabled then has a counter in every domain where the
+shared pool still has one. A group whose counter could not be assigned
+contributes no bandwidth, so the controller measures less than the
+groups use and can raise the control above the user's target; warn
+when that happens.
 
-Take the hotplug lock with cpus_read_trylock() before rdtgroup_mutex.
-Skip a round when it is not available; a blocking lock would deadlock
-against the offline path, which holds the write lock while it drains
-this worker. With the lock held the control domain cannot be removed,
-so drop the RCU read lock. Where the update does not sleep, a round is
-only skipped while hotplug runs.
+Only MPAM has a fixed assignment mode; systems where the counters are
+not assignable, or the mode is not fixed, keep the previous behavior.
 
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- fs/resctrl/monitor.c  | 28 +++++++++++++++++++---------
- fs/resctrl/rdtgroup.c |  8 +++++---
- 2 files changed, 24 insertions(+), 12 deletions(-)
+ Documentation/filesystems/resctrl.rst |  7 +++--
+ fs/resctrl/monitor.c                  | 43 ++++++++++++++++++++++++---
+ fs/resctrl/rdtgroup.c                 | 35 ++++++++++++++++++----
+ 3 files changed, 73 insertions(+), 12 deletions(-)
 
+diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
+index b52795e03303..d70aec6f7096 100644
+--- a/Documentation/filesystems/resctrl.rst
++++ b/Documentation/filesystems/resctrl.rst
+@@ -471,7 +471,8 @@ with the following files:
+ 	Determines if a counter will automatically be assigned to an RMID, MBM event
+ 	pair when its associated monitor group is created via mkdir. Enabled by default
+ 	on boot, also when switched from "default" mode to "mbm_event" counter assignment
+-	mode. Users can disable this capability by writing to the interface.
++	mode. Users can disable this capability by writing to the interface. While the
++	MBA software controller is enabled, auto assignment cannot be disabled.
+ 
+ 	"0":
+ 		Auto assignment is disabled.
+@@ -704,7 +705,9 @@ When monitoring is enabled all MON groups may also contain:
+ 	   mbm_total_bytes:0=e;1=e
+ 	   mbm_local_bytes:0=e;1=e
+ 
+-	Assignments can be modified by writing to the interface.
++	Assignments can be modified by writing to the interface. While the
++	MBA software controller is enabled, the counter of the event the
++	controller uses cannot be unassigned.
+ 
+ 	Examples:
+ 
 diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
-index 2319e8e619bd..76990bb80ee9 100644
+index 76990bb80ee9..72917cf4a8e7 100644
 --- a/fs/resctrl/monitor.c
 +++ b/fs/resctrl/monitor.c
-@@ -640,19 +640,18 @@ void mon_event_count(void *info)
- /*
-  * Find the software controller's ctrl domain that contains @cpu on resource @r.
-  *
-- * Only called from the mbm_over worker via update_mba_bw() where the returned
-- * domain is kept alive by cancel_delayed_work_sync() in
-- * resctrl_offline_ctrl_domain(). This drains this worker and then waits on
-- * rdtgroup_mutex held here before the architecture can free the ctrl domain.
-+ * Only called from the mbm_over worker via update_mba_bw(), which holds the
-+ * CPU hotplug lock so the domain cannot be removed while it is being used.
-  *
-- * Context: Call from RCU read-side critical section.
-+ * Context: Call with the CPU hotplug lock held.
-  */
- static struct rdt_ctrl_domain *get_sc_ctrl_domain_from_cpu(int cpu,
- 							   struct rdt_resource *r)
- {
- 	struct rdt_ctrl_domain *d;
- 
--	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list) {
-+	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list,
-+				lockdep_is_cpus_held()) {
- 		/* Find the domain that contains this CPU */
- 		if (cpumask_test_cpu(cpu, &d->hdr.cpu_mask))
- 			return d;
-@@ -713,7 +712,8 @@ static void update_mba_bw(struct rdtgroup *rgrp, struct rdt_l3_mon_domain *dom_m
- 	if (WARN_ON_ONCE(!pmbm_data))
- 		return;
- 
--	guard(rcu)();
-+	lockdep_assert_cpus_held();
-+
- 	dom_mba = get_sc_ctrl_domain_from_cpu(smp_processor_id(), r_mba);
- 	if (!dom_mba) {
- 		pr_warn_once("Failure to get domain for MBA update\n");
-@@ -882,11 +882,19 @@ void mbm_handle_overflow(struct work_struct *work)
- 	struct rdt_l3_mon_domain *d;
- 	struct list_head *head;
- 	struct rdt_resource *r;
-+	bool cpus_read_locked = false;
- 
- 	/*
--	 * Safe to run without CPU hotplug lock. Work is guaranteed to be
-+	 * Reading counters is safe without the CPU hotplug lock: the work is
- 	 * canceled before the domain structure is removed.
-+	 *
-+	 * Programming the control can sleep and may need the hotplug lock,
-+	 * which cannot be taken after rdtgroup_mutex. Try it first; if
-+	 * hotplug is in progress skip the update and retry next round.
- 	 */
-+	if (is_mba_sc(NULL))
-+		cpus_read_locked = cpus_read_trylock();
-+
- 	mutex_lock(&rdtgroup_mutex);
- 
- 	/*
-@@ -921,7 +929,7 @@ void mbm_handle_overflow(struct work_struct *work)
- 		list_for_each_entry(crgrp, head, mon.crdtgrp_list)
- 			mbm_update(r, d, crgrp);
- 
--		if (is_mba_sc(NULL))
-+		if (is_mba_sc(NULL) && cpus_read_locked)
- 			update_mba_bw(prgrp, d);
+@@ -1197,6 +1197,12 @@ ssize_t resctrl_mbm_assign_on_mkdir_write(struct kernfs_open_file *of, char *buf
+ 		goto out_unlock;
  	}
  
-@@ -935,6 +943,8 @@ void mbm_handle_overflow(struct work_struct *work)
++	if (!value && is_mba_sc(NULL)) {
++		rdt_last_cmd_puts("mbm_assign_on_mkdir is required by the software controller\n");
++		ret = -EBUSY;
++		goto out_unlock;
++	}
++
+ 	r->mon.mbm_assign_on_mkdir = value;
  
  out_unlock:
- 	mutex_unlock(&rdtgroup_mutex);
-+	if (cpus_read_locked)
-+		cpus_read_unlock();
+@@ -1329,18 +1335,28 @@ static int rdtgroup_assign_cntr_event(struct rdt_l3_mon_domain *d, struct rdtgro
+ void rdtgroup_assign_cntrs(struct rdtgroup *rdtgrp)
+ {
+ 	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
++	int ret = 0;
+ 
+ 	if (!r->mon_capable || !resctrl_arch_mbm_cntr_assign_enabled(r) ||
+ 	    !r->mon.mbm_assign_on_mkdir)
+ 		return;
+ 
+ 	if (resctrl_is_mon_event_enabled(QOS_L3_MBM_TOTAL_EVENT_ID))
+-		rdtgroup_assign_cntr_event(NULL, rdtgrp,
+-					   &mon_event_all[QOS_L3_MBM_TOTAL_EVENT_ID]);
++		ret |= rdtgroup_assign_cntr_event(NULL, rdtgrp,
++						  &mon_event_all[QOS_L3_MBM_TOTAL_EVENT_ID]);
+ 
+ 	if (resctrl_is_mon_event_enabled(QOS_L3_MBM_LOCAL_EVENT_ID))
+-		rdtgroup_assign_cntr_event(NULL, rdtgrp,
+-					   &mon_event_all[QOS_L3_MBM_LOCAL_EVENT_ID]);
++		ret |= rdtgroup_assign_cntr_event(NULL, rdtgrp,
++						  &mon_event_all[QOS_L3_MBM_LOCAL_EVENT_ID]);
++
++	/*
++	 * The software controller measures a group through these counters.
++	 * A group whose counter could not be assigned contributes no
++	 * bandwidth, and the controller can then raise the control above
++	 * the user's target.
++	 */
++	if (ret && is_mba_sc(NULL))
++		pr_warn_ratelimited("Failed to assign MBM counters to a group; its bandwidth is not measured by the MBA software controller\n");
  }
  
- /**
+ /*
+@@ -1763,6 +1779,19 @@ static struct mon_evt *mbm_get_mon_event_by_name(struct rdt_resource *r, char *n
+ 	return NULL;
+ }
+ 
++/*
++ * Return the event the MBA software controller uses as its input for @rdtgrp.
++ * A monitor group has no event of its own: its bandwidth is summed into the
++ * parent control group, which is the group with the mba_MBps_event setting.
++ */
++static enum resctrl_event_id rdtgrp_mba_mbps_event(struct rdtgroup *rdtgrp)
++{
++	if (rdtgrp->type == RDTMON_GROUP)
++		return rdtgrp->mon.parent->mba_mbps_event;
++
++	return rdtgrp->mba_mbps_event;
++}
++
+ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *d,
+ 					struct rdtgroup *rdtgrp, struct mon_evt *mevt)
+ {
+@@ -1776,6 +1805,12 @@ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *
+ 		ret = rdtgroup_assign_cntr_event(d, rdtgrp, mevt);
+ 		break;
+ 	case '_':
++		if (is_mba_sc(NULL) &&
++		    mevt->evtid == rdtgrp_mba_mbps_event(rdtgrp)) {
++			rdt_last_cmd_puts("Counter is in use by the software controller\n");
++			ret = -EBUSY;
++			break;
++		}
+ 		rdtgroup_unassign_cntr_event(d, rdtgrp, mevt);
+ 		break;
+ 	default:
 diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
-index 57ab090072c2..b32831871f70 100644
+index b32831871f70..957a3df7af83 100644
 --- a/fs/resctrl/rdtgroup.c
 +++ b/fs/resctrl/rdtgroup.c
-@@ -4519,9 +4519,11 @@ void resctrl_offline_ctrl_domain(struct rdt_resource *r, struct rdt_ctrl_domain
- 	 * no new worker iteration can find it; drain any worker that already
- 	 * holds a pointer to it before the architecture frees the domain.
- 	 *
--	 * Software controller is enabled/disabled on mount/unmount with
--	 * cpus_read_lock() held. Running here with cpus_write_lock() so
--	 * there are no concurrent changes to software controller status.
-+	 * The overflow worker holds the CPU hotplug read lock around its
-+	 * software controller updates, and mount/unmount enable/disable the
-+	 * software controller with the read lock held. Running here with
-+	 * cpus_write_lock() means there are no in-flight software controller
-+	 * updates and no concurrent change of the software controller status.
- 	 */
- 	if (r->rid == RDT_RESOURCE_MBA && is_mba_sc(r)) {
- 		struct rdt_resource *l3 = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+@@ -2610,10 +2610,10 @@ static void mba_sc_domain_destroy(struct rdt_resource *r,
+  * The MBA software controller is supported only if MBM is supported and MBA is
+  * in linear scale, and the MBM monitor scope is the same as MBA control scope.
+  *
+- * The software controller cannot be supported when the MBM counters are
+- * assignable.  There is no guarantee that MBM counters are assigned to the
+- * event backing the software controller in all monitoring domains of all
+- * monitoring groups.
++ * The controller needs a counter for its event in every monitoring group.
++ * With assignable counters that is only guaranteed when the architecture
++ * uses a fixed assignment mode and assigns counters automatically; keep
++ * that assignment enabled while the controller is in use.
+  */
+ static bool supports_mba_mbps(void)
+ {
+@@ -2623,9 +2623,16 @@ static bool supports_mba_mbps(void)
+ 	return (resctrl_is_mbm_enabled() &&
+ 		r->alloc_capable && is_mba_linear() &&
+ 		r->ctrl_scope == rmbm->mon_scope &&
+-		!rmbm->mon.mbm_cntr_assignable);
++		(!rmbm->mon.mbm_cntr_assignable ||
++		 rmbm->mon.mbm_cntr_assign_fixed));
+ }
+ 
++/*
++ * The value mbm_assign_on_mkdir had before the software controller forced
++ * it on, restored when the controller is disabled.
++ */
++static bool mba_sc_saved_assign_on_mkdir;
++
+ /*
+  * Enable or disable the MBA software controller
+  * which helps user specify bandwidth in MBps.
+@@ -2633,6 +2640,7 @@ static bool supports_mba_mbps(void)
+ static int set_mba_sc(bool mba_sc)
+ {
+ 	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_MBA);
++	struct rdt_resource *rmbm = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+ 	u32 num_closid = resctrl_arch_get_num_closid(r);
+ 	struct rdt_ctrl_domain *d;
+ 	unsigned long fflags;
+@@ -2643,6 +2651,21 @@ static int set_mba_sc(bool mba_sc)
+ 
+ 	r->membw.mba_sc = mba_sc;
+ 
++	/*
++	 * The software controller needs a counter for its event in every
++	 * monitoring group. Keep the automatic assignment enabled while the
++	 * controller is in use and restore the previous value afterwards,
++	 * as the user can change it while the controller is not in use.
++	 */
++	if (rmbm->mon.mbm_cntr_assignable) {
++		if (mba_sc) {
++			mba_sc_saved_assign_on_mkdir = rmbm->mon.mbm_assign_on_mkdir;
++			rmbm->mon.mbm_assign_on_mkdir = true;
++		} else {
++			rmbm->mon.mbm_assign_on_mkdir = mba_sc_saved_assign_on_mkdir;
++		}
++	}
++
+ 	rdtgroup_default.mba_mbps_event = mba_mbps_default_event;
+ 
+ 	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
+@@ -3352,7 +3375,7 @@ static int rdt_parse_param(struct fs_context *fc, struct fs_parameter *param)
+ 		ctx->enable_cdpl2 = true;
+ 		return 0;
+ 	case Opt_mba_mbps:
+-		msg = "mba_MBps requires MBM (mbm_event mode not supported) and linear scale MBA at L3 scope";
++		msg = "mba_MBps requires MBM and linear scale MBA at L3 scope";
+ 		if (!supports_mba_mbps())
+ 			return invalfc(fc, msg);
+ 		ctx->enable_mba_mbps = true;
 -- 
 2.43.0
 
