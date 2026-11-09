@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7289B606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33BB606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nL7XvRNg;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=E0unIzX4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oRLXk405;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=C7iZl5Wx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=E94mD6UqzqWlubVjmImfagf/ISNcFzjBebrECEaQ6oI=; b=nL7XvRNg8ZaCUH
-	pUa/1H0ZjP2FqUcX7FApga74H9Nu2Kand7FBf/DlnE+AXk5gi0I7+KrOpuGcOfxn0WKfML+D8aAKg
-	PV5ODjBZqtK48xBWNvsWCfIVoM/f3D54B31t/sCLFhb7lvH9guT4PWv0yUW/gHLM7Jx2GDL0XY4W+
-	LS7/3x1dkYzCQCOq6NkHg8aAcasza/NXcZWPP4nD5u/JjI3dLMxkOWN0zkXzzciCggpF8uIwfqQlJ
-	s/DCJlQ39HeXP2draaMDSeI/SYsgFfb2F+sKnp8EZ10IBNJ6N270OJPODAuAGr91kk9NVl6lw5DK6
-	vjMELSs47fgoOe99FG8w==;
+	List-Owner; bh=HLQUQrvkB5NlDBFN5FcVzx8KLfF0LKh/icPsqn2UKI4=; b=oRLXk405Mbcp18
+	DjJnLeQhHRqrcbWb8lLnBTfckTIqq7im0JuUmK5XkskezG1CxpuqX6yKWrEZRdbxpuHaJtbLJL5y+
+	k0mgebKSYQ/GBNyEAZJHE5LkwrLkRKdTwSa4c9v3fs/XHhQwZePYxWTC6qWRan9uGQiIhfEQlRtiy
+	KvizKm2T04Xo4ONAGsYJMmUZr143zy84yvX+6CUeBC1ghkYH5VVS2JdCiOKAwgWjEFBrqiji4+bMx
+	Oo62g0OR7EsTs+LAvbietCFZdP35VzV3vDRwc4O+iOJ3GM39S8aCTmiuwtXsYbKrNvtdmsH8BC3cU
+	fHD5hFhahn9DPVGg9/Ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWrE-00000001kQ1-357C;
-	Mon, 09 Nov 2026 21:24:52 +0000
-Received: from mail-westusazlp170120002.outbound.protection.outlook.com ([2a01:111:f403:c001::2] helo=SJ2PR03CU001.outbound.protection.outlook.com)
+	id 1xQWrw-00000001kyt-04Wq;
+	Mon, 09 Nov 2026 21:25:36 +0000
+Received: from mail-westcentralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c112::5] helo=CY7PR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWr3-00000001kLG-3n3Q
+	id 1xQWrB-00000001kOJ-3AYk
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 21:24:47 +0000
+	Mon, 09 Nov 2026 21:24:55 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FdCMLq98vxo74+Q/F1TQMeWQ7hXZ3GV0AqsGirLx+pt0I2YxDDGh0TL9ufr1GYOOR+xjRlYR2Sfrl1LVaOeR9AzDhOdE+mIcNcmpMd5uP/uoDZI4xNyH4LAvbgqhVTyrummVvNUJdkV3qhHGl6OgELAyUgyD/J+Dmyf+1F2MV1SPHZoNY8eq84YHEiaAu7EXmf+c0utr9l/FaFo6BcBWu4xWhS4wsKGYaz/OW6I+4BK674dVCm6TU2TAq8f3giudz+6hZ8NfzvI7a3S3EQWtKrWaBBcxL9+75Yy7m2RME5AMAiYtL+4SxBA/aDvIkXQnmqN9LcQ95GxlgH1nAr7Ogg==
+ b=DmEe7qBPji2twVT4BYMHfd8VWC26M5LmyVtP4mYijHfHFD2TcwN0OCdlz5R+Y+ea7QUnDlG3kFdpVkLCcvsWikGyb12WYNvLd8hc10KfDyp4pz5l7fIWfdkmq4equf/qOBDIEpyM7UasJWFT8hyHrW1HvQxrT7lRaainxSOqtRCBH6ByiNsiNYohbn49YZoJBp7gpHXtzv0eMDbVbXYbvLpOmXOMsIN1hTGzgg5t1iQ/xxX9sEuka/WP4rDync/BYE2FHTVEPNu+xB/zGVLmPD8NVLheXNQGdSPlT2UTmz+JUvRfubPFKIOeuxnwHioehMdIdwamr4Ke90vdzjKNxQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E94mD6UqzqWlubVjmImfagf/ISNcFzjBebrECEaQ6oI=;
- b=qLSYDbI/xJGrzQ1Ssku7iTjfwlpAVARgRVbhdtbSPD6QXpFwNPpwKbVkfJurAj6WlGUzrawvwgHagsZpfyWaYvktTnNFdRPN6IqDkaGwdvjCfwH1el5skzoGThPYn34zQm17g7ltdPWVCUJyAsiuE9jWC325X141dL+4ZFXJdb1wh7qJzp//m3sEfqt2c/o8Xejq7oQ09kkxdbgkZNNm1TYe4LUyOGAbDqDkEddOvLAoem35cswrAF0O6uPjIGa3iWiOt8VMS9G3eei9TwPowiKexKa5mLJdoAE1hiTzWyMfVWjrHuFB1NwM9wVEywdcW3L1VnsoLYaWBWUS4aNA4Q==
+ bh=HLQUQrvkB5NlDBFN5FcVzx8KLfF0LKh/icPsqn2UKI4=;
+ b=zSurgVQmDtZ5B7ZplfDAwuJuwlQkLPY7pP6pvwY/Y8DyFPW4mcwxTARflKkDkp2Au4jdMI5LGZsgSb4o49I//N2A/4qRkdnAvqQV4bmwbbfKgqyUWJZU7iWhgG+JIbcU5gGr6rhIkhYGN/SNunlms//ZbSmSIIu1h+VoEDjtByMD3wu7GcZSWoQ2S8GAVKZjhwtD3RpF3WT8PMb7heKF5bKv+IXwlGtIOTmCtFtLzWR81D9sBKHD620rsi2+ckNYia7xlT0p2Qz0G5Y7e5DJTrSp/ZkFJbezK/XXbvZw8hmCB1mqp1BUNqfSzVHM/TaV5KmifnwktKBtYC/OotrdYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E94mD6UqzqWlubVjmImfagf/ISNcFzjBebrECEaQ6oI=;
- b=E0unIzX4FB+YBnjw2W10ILEQYAW1a9ku0yuarROjjsSdO77SwHU+PqwuOm1ACc9pohPI/t3pM8zwTFa9UtvDys05EoFiMPKa4JQ78mcErYcKzL4wOkvg94m79UXvzCISFImQPeFJltzEpas7zGyIZ4NMt+ZnzWC9rVgUWa/D4T/+Id4Ts5jYqU+857xtho17P/NxJsQpyKhQc12rD7jo9j6RCfFB3AWEF7ESYW/7uiVCqyjbwudjQEsgmw5j3sZIBwBkRgcxhKKKEPw7JLlemOFjMSG3OcvlcOst7OvKcobb6ci9If4mGmlpzuyYTHz8OS1VJT1bHNYitOspKRxDhA==
+ bh=HLQUQrvkB5NlDBFN5FcVzx8KLfF0LKh/icPsqn2UKI4=;
+ b=C7iZl5WxZXFN9pNOI+HFsapreKvpi2ejO4GTzk7wTPft27oCzSJU6kulTkNIZd/aAocAKno9Tcvvzy0thUWlf1mr8jJ9X7R3vCzpx+w83+X5hQCMK0gA+n7dmryTTrE6ozsWfOEalhM5P7SBdwky1j5KxqpRGU1J1E6TV160FuynJAj5dG/8+Jq+1uQmdHz6jWObGQp8+Khs2qo1e7kJ2RsM15uSAlikiu25yAfI7H3NEOD6my8AYkA3nJrnwVpakSFhoaY9EVEnOvbUCKAF720A7CB2ypSVLUYIStuSfmVDleANKipw1/uUxBG5UrMrdnBNSubFABLxw3hI4yN6xA==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com (2603:10b6:5:399::11)
- by CH3PR12MB7546.namprd12.prod.outlook.com (2603:10b6:610:149::18) with
+ by SA1PR12MB6869.namprd12.prod.outlook.com (2603:10b6:806:25d::7) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.9; Mon, 9 Nov 2026
- 21:24:34 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
+ 2026 21:24:42 +0000
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73]) by DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73%4]) with mapi id 15.21.0569.011; Mon, 9 Nov 2026
- 21:24:34 +0000
+ 21:24:41 +0000
 From: Fenghua Yu <fenghuay@nvidia.com>
 To: Reinette Chatre <reinette.chatre@intel.com>,
 	Tony Luck <tony.luck@intel.com>,
@@ -73,72 +73,72 @@ To: Reinette Chatre <reinette.chatre@intel.com>,
 Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Fenghua Yu <fenghuay@nvidia.com>
-Subject: [PATCH RFC v3 01/15] resctrl: De-hardcode L3 monitor infrastructure
-Date: Mon,  9 Nov 2026 13:24:13 -0800
-Message-ID: <20261109212427.1409204-2-fenghuay@nvidia.com>
+Subject: [PATCH RFC v3 07/15] arm_mpam: Refine L3 topology and class selection
+Date: Mon,  9 Nov 2026 13:24:19 -0800
+Message-ID: <20261109212427.1409204-8-fenghuay@nvidia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261109212427.1409204-1-fenghuay@nvidia.com>
 References: <20261109212427.1409204-1-fenghuay@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0064.namprd05.prod.outlook.com
- (2603:10b6:a03:332::9) To DM4PR12MB5230.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR05CA0084.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::29) To DM4PR12MB5230.namprd12.prod.outlook.com
  (2603:10b6:5:399::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|CH3PR12MB7546:EE_
-X-MS-Office365-Filtering-Correlation-Id: e345bb2d-1a25-4220-fc50-08df3ea7d9a8
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|SA1PR12MB6869:EE_
+X-MS-Office365-Filtering-Correlation-Id: aca9b814-7392-44f6-9466-08df3ea7de15
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|7416014|921020|11063799006|56012099006|261026121527099003|261021123027099003|5023799004|261102123227099003|261009223027099003|261021121427099003|261026140227099003|261028144727099003|261022113327099003|261022075727099003|261022105027099003|10067099003|6133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: doiaar3NqZTcRlAEXNCtHfUY7+ifXmfmOU2vFrUUl76wsNISPEFJE+zoGzHO0itaL/FrUwqpKCyimzQkhLOaJlnTmFq7VtuR2UCH82lZWwmn+3i3L+qR8r5IgBg2LEoH/dg+/O+vOx2K1sPJMjghvFig0GmHUS0cWvo4xEok1AQDl1xyt+0QJxiuumzaUvFWX+hYdx3D0+vo59IrtUSHYKsOh6cIVI1ysOEZzFeJNdV/cb7iNx60qQ7NinMqMPbRr0fX9Sz/51SCql242+cf7ETM7eCvED5SbgL5EEshF95Ia3RYNk95xr0X7EEpaq9lq+2CfEX5HLde+zPCU+YwcyMFHLuJeqJpI/oAONGuHd1uQmQcBYQU9LhvFEzQRANg0/0ydSU89STzpK4gk+TtU7oKOjSiGMJMUlPdyKsuknbiuOGET7VU9i6F1Q08LMJ0IN+PsqtbXB/ARnBuWmqYxZxlBhrSgiXwUenuh/daquCx/ubyk9oYW1OUZHTYI1dRdDS9i6fvVCAqtTf3aT1iBsIIovySSHwidYiA1nBwzCPg9wuC+MYsKDRv12k8oO256weIuAtpimlgQRK9PDKl3baP3JH34atALtrRwUUczoOKvXD90fbP4vlBj54TFBV2mE1vSDdK7QZHAdpyXjJHn3Sps27JnGEGOsbBuVwYU3hKl+BvvocTH2GjHBbu452fW6VwRp2kMo4oq11NQEreUw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(7416014)(921020)(11063799006)(56012099006)(261026121527099003)(261021123027099003)(5023799004)(261102123227099003)(261009223027099003)(261021121427099003)(261026140227099003)(261028144727099003)(261022113327099003)(261022075727099003)(261022105027099003)(10067099003)(6133799003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|23010399003|921020|261009223027099003|261026140227099003|11063799006|56012099006|261021123027099003|261021121427099003|261022105027099003|261026121527099003|261028144727099003|261102123227099003|18002099003|22082099003|10067099003;
+X-Microsoft-Antispam-Message-Info: uYTAesGPpVDKAz/lb0irS+QoJQZ4vVEpXuM8s22R2MInm5zJCPubn2mmwNzGcUc/FWLKunjMQUacAWrXVAccx0CxTgehqwXiNVGZ1T8AOAibjbqVhcZxzFIxeoinT9VeheSZKaL5JmgEuDXTIvvgQQtjKig0E4H+CFilm+tOsfVAvOwFYsFUHtmUjKPvBiCV0KS/oaJNcuXKcjUs6WBmOKThgHP2VmYX8dQ5VawUL5f/p9xr3X/8458Usaga1x4iEpPS2ruuxXcGssr3wGXoSnOqH0N+wFdDNKQurpeSV6NpEso3BQlvJsad0k93pXuoVQKkRD3m+sJ8ZqyLwxTblYcoHxCSmEjDtyQRSjZNQlaZCTL3QoKYnmjShMirRDmRx2RuLJvDWqYBtFJ7l/eNnujd10fvygOQ+NfR/vyPFiI0/ijusuQy1+vYVryrRZi9n5ZLzTrt5JK/NvJ4G8nsLiO5NBWtuKjKs+v+ww+jAw3n/ZKU6X6vadwjQh9ObveW6aWfKRSxxcFztPYnFUwNYpG8TPA6MuaOnjWpneGaZYRk3s3g/xMQHm0IzJeUD4XW6WDz75aieijkX9qszEErksiyXrXJ9NUBZAIG/AEgR/+AxTEA8VyepBt38pzbEJZ9eJtY7jtudfbMHwZyLgGomXUPeLE9HjXFaIufISnkFpylOQTJwOTHZvG56XDYV/C8UzoD0k5UZE0E/gglaFzibQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(23010399003)(921020)(261009223027099003)(261026140227099003)(11063799006)(56012099006)(261021123027099003)(261021121427099003)(261022105027099003)(261026121527099003)(261028144727099003)(261102123227099003)(18002099003)(22082099003)(10067099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YiE/hm4BUvyV/TplIUuCROxsUpqt+9/vhidWSMSk4N4JYANmeWTJN1rN9p0w?=
- =?us-ascii?Q?aHWrhT4frR7I9YX5QFk2I5fu2r2xlwRKNmf5s/qzU8hUGuixAV9t5CMwTHuW?=
- =?us-ascii?Q?vVA8Awj3whxSndmgVw4UqXeFrOiecguBQbFrgmeYT2qn6VcAmZXZFAiapJc8?=
- =?us-ascii?Q?Lun/mZdEBK92CSKrGOz98pL7+lyawS6MbuGCaKCPWCbmcnJZ6a3n3zn5Q8f0?=
- =?us-ascii?Q?MBUly51EyecnEzVz6ZoV2BOoUnY+yX94Oca1LL1213NRdW9cPtnULIkiFNQt?=
- =?us-ascii?Q?QWOrgznihaY8/I5gBYUOS/ghMbxhu0nb7zs6o3SK9zgnPjNx1i/XMqnckGbY?=
- =?us-ascii?Q?f7eVLxbgaJUo0xHzqebMJq6Yaq0oR07KCTdQMDcTpiKqNHh/2anV2EmRWy4F?=
- =?us-ascii?Q?mTgINXCAvut/eR92Qm+gkH0O8LCM3w0Newe37TaLnnUpHgde9tz2Lfpw3QuJ?=
- =?us-ascii?Q?iXNmwoZdmNbZmluPFRJ8sqHtsPbIK4YKw4ndldH1uc+zqTv2YAAkPlxkvPi1?=
- =?us-ascii?Q?HzCAYxanxyG0qHPpFveu9zgnWxiGonugFlUm+4gb5qbWYQa7+kcuSi5Z0gJ4?=
- =?us-ascii?Q?yekBoh0QJtfyP/asQPkrEBQdnpw1VIFtUMDwnSx17utdaUNVL9DEsy21SBJ/?=
- =?us-ascii?Q?zGbNEs2foJ20IgYiJzaAFZJty8VaUY8kqU8grueInRSEkf1gfi8sw65sY07F?=
- =?us-ascii?Q?N7lS8t+K/af2A7U9CkTHQ75yCEUsNQwhEja9OLS6yyj7LZPbO8+/7Smj4Jp0?=
- =?us-ascii?Q?JzmRZDAmi5YnL+UrWniGcxNXNQCz6hmYTcvqutX2MVNE7hLeAMxwRuRIPzyL?=
- =?us-ascii?Q?QPgPGAevDaJyNpIKjBS4WQCX28feh9wnIHZ5eFfCfg/QrOJkmWrR2quE46LY?=
- =?us-ascii?Q?L4Jt9nQPL7npPcwtTtaUbhPH9O+AYF8WRXb/QC01peeI+OH8YS8aJ3WxnXf6?=
- =?us-ascii?Q?2AnIv9G2BOpdInQRyK49mbAgxl0qITINhDYc6DNbZ2U4u0O3xovpP3hmR6k0?=
- =?us-ascii?Q?q0SgdY9bHw8G+UVdDx9Xc3MoXio0SZ41DHCokmkH8JtaLfS4EagKbORCz0BV?=
- =?us-ascii?Q?4xHZikgL2LMDJXmzbEQEq9oFjelEi5iuu+gGp3fbfCgXQpyztg03Ypkk4lqq?=
- =?us-ascii?Q?LDIEe6URlZfrGgaKPEulRsCJxvPAS5ARARAU80WYMcBoynk5acnmJ36GAtHt?=
- =?us-ascii?Q?KqTvIJSXBmreRrRyqQ9VIwWWXx54eOG1iDfaCTyOPF0gMou+ZbBHTRLUF+KS?=
- =?us-ascii?Q?iB0fMsi8nO9HLmgEcalN8QJwz/+AR24+rxJWCNIDGO6oTZQ8vmuGxtVSje3q?=
- =?us-ascii?Q?/xtD+eM/S5FpxAyy2/ogR4S9zPbe8xxKZd01FP6QYXr9eJi9qP5c5KEVSKJk?=
- =?us-ascii?Q?pAFnPOKV5cAycfYrjGYZGwFs+4ijxJV4RFtiEloT+xEuL1QZIhVkVSg42GzS?=
- =?us-ascii?Q?Ddzqbis0sQEpfmmMZ0Do4QMSbKAawO7NiLCkFhH7cTZF4xFf4SF1osIDmUzs?=
- =?us-ascii?Q?7YwMXmJNcplhHP4u9qvTxU2Q508qJaMCEbpnzLJgDAJ8/CYhHgnlu8Nz3Boe?=
- =?us-ascii?Q?hXGcr3vgXR7vumWR9AfdW8QR0O4UoxP7KAOROXgCZrFh74Xb4FLHPFwWkzcq?=
- =?us-ascii?Q?P6vfd7Z5RJqJ6Tgaey3jiyUKuDY1iD2FmlYhAqCa4wi9HIBht5+uVGXojTj+?=
- =?us-ascii?Q?ebh0/+fU+PUmED24D537RCrFQFw8Afhok9r9Jlut/RJ1vnvt45B+E55FcVFC?=
- =?us-ascii?Q?Fn9HkGEx5Q=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vQFY5qhS0UBz2QSStTdRzh1EJmbAimdiop0232Iq4ZyMQTBX/ohpUAlce0Yf?=
+ =?us-ascii?Q?ZcJcQKIuCBAJBJWpshX8dqrHXIS3Hfl7rQjbj2J1zQ3AQAZ3HlREic6ywaRV?=
+ =?us-ascii?Q?7hKCqJx5vqHj7OFbC7JIckTSVGf0uv7nmOMsLssg/Ns8hbvHbZhLZKp3pWG1?=
+ =?us-ascii?Q?p9b6O/cDJe+y4hJh49+ygciQ3kSzTQgySm3QAQumINdbp33xHmZPVFB2TTTD?=
+ =?us-ascii?Q?jfJRbKB5eC8frt95xrC/hBApjrQLBffNyoTkGd3yDxvFYTNhO9HI50IRHcxt?=
+ =?us-ascii?Q?LcagKi4naxH1sz0MHEKPhN4u/mdDo/usQR5c3ZYXlu+M5ZV1nLyY3kASPg4C?=
+ =?us-ascii?Q?9adeZD2XExnpalYgYCrRwWusjm4MKXBPrjbr8qE4E2s92unOxN5dSICZh21y?=
+ =?us-ascii?Q?9x4Bb+ovbda3I2Wm3InswFkebcCvJgdemKM/QklCQlpltea2/M65FaaeE3PM?=
+ =?us-ascii?Q?9/4fL1/fFJ/X7kp3tDugNcXol5DxFRdX2Ysme+LUQXh4cl5SSiD/4WeWqPpM?=
+ =?us-ascii?Q?cmaozUz4abQmGKkXnM3XHSRZXenYN+tCcX6IixVemL0fppZvNQBn5/lQP978?=
+ =?us-ascii?Q?d5Ia0lrlzFO0fMb6+TkbjAscO4ktx4g/lFBmReNVNBOaExcn7vi6OTArFNVG?=
+ =?us-ascii?Q?W/ExMtoiez6iTLqXSJ9DHH14GEMAAKKMw6lhEg5kTHQSgjioj0/Ujh8TSc/F?=
+ =?us-ascii?Q?fAedG4eTFGokbmFRbUZd70RXPAvuOj6H43Au/AF69trWNV+MFh+edu5hj8v/?=
+ =?us-ascii?Q?gmIsgE4p1MRrWYywp/5YyZqM9+awXIaaqCDoVp1Ql+IDqg3lY+4jF2i+TpoH?=
+ =?us-ascii?Q?5EPjLwYglALyMXnqMj/Mg1qpdZe6o1NSdt3fMZx/s0zPSX0TluRjSUlWbSf0?=
+ =?us-ascii?Q?igoTjgxAQcYtGBlUQaUbj1MYZWFhyk6VID/cXUfDkUyvkDp3cYsrZdofJVRh?=
+ =?us-ascii?Q?4nBoeqGjjB0M5Ee0RuMae44zUuN2Q4VGHQuBR6lQzMdVmC4Ne/suQAvOzU60?=
+ =?us-ascii?Q?nmHWih3yJ6U4OZWdc/4hlUI/WKkPv4vWrk9YhZ0yyLFdcX+d2eZQ7mBA3lVe?=
+ =?us-ascii?Q?D/1nvvoswq6vzdOK1+kguamOCG0jeDMf3R0MhCa5TnH0q8tF/F97bG3W3dj/?=
+ =?us-ascii?Q?YaI9k7DRHus6faAB28ZPEQqyGmpBhRwGEL1c9Dio+W5LCmMIKxoHdEVUpt/D?=
+ =?us-ascii?Q?wh9TG0creph8yERmKWYqL0P2uaR9oZMy+EVZCElxzwOwQUx7Knqsv6HCXPOe?=
+ =?us-ascii?Q?r1mL+/wDg2Fhkc0rDfbIeQZjwiq+xOApJFgGWQq8ltihckbuWEhFnx8GJFG2?=
+ =?us-ascii?Q?zXUTErDa6Wq52KpP3iWSOmw8Z3lET5Zxe6ElhxjN1uBgGQ4esOkRmQAntezc?=
+ =?us-ascii?Q?E3LazMHw15Q8BAG2SCtBrtjpw7teqCyiBEa48LBGyAfvC0pwSLlyMAs8hACc?=
+ =?us-ascii?Q?/X/YsYk8vS8xOcbtxowl1cS/lkGqeLd+PZPjk1Zt4TeT92KHpFxgbephy/f5?=
+ =?us-ascii?Q?fNQTZGSUhaC/5qlbVz7qWT2CH4wm//61byrGzVEEw2red/a3B0q5jRZlWc6h?=
+ =?us-ascii?Q?jE42ELRV4o9qIc27mlyDyAf5lqC805hjiWCheVhnz0IVvv8vM+NfXF/VbO6q?=
+ =?us-ascii?Q?qYEljS2sLXZWMRPVI+FCbpBnDQmlVCnYwNJMKC9IQrAl2HhjyOlokhrcGb24?=
+ =?us-ascii?Q?cG+uekBXfLLw0KrNgYm0ZhhFk2Bc/K05xCHIVZyMu23Aq8QRdyx/gXXkJVck?=
+ =?us-ascii?Q?OKOeEAxi5g=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e345bb2d-1a25-4220-fc50-08df3ea7d9a8
+X-MS-Exchange-CrossTenant-Network-Message-Id: aca9b814-7392-44f6-9466-08df3ea7de15
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5230.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:34.3461
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:41.7705
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: znmibTKWtGLDSBFQ8GnKgk0HRZE1IWUdQoKPq7koq9ViFVVybQLiJHaCGub6Aj3N5INAy1N1Bs7qqY0yYsQVCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7546
+X-MS-Exchange-CrossTenant-UserPrincipalName: r72SIFG+z1WboIP3GDnMIpPdp0MXZV+TMtY4hAMhz+s/EPVt4dbmzxp7lbqOIzCHhtv6Mom0ZyXxb7ackXPQ8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6869
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_132441_954849_64DAE591 
-X-CRM114-Status: GOOD (  18.04  )
+X-CRM114-CacheID: sfid-20261109_132451_210032_F413E77E 
+X-CRM114-Status: GOOD (  13.65  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -158,316 +158,102 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ARM MPAM can expose MBM counters on an MBA (memory-level MSC) resource
-as well as on L3, but the resctrl monitor core hardcodes
-RDT_RESOURCE_L3 in domain validation, online/offline, and assignment
-paths. That prevents reusing the same monitor infrastructure for MBA
-without copying large chunks of code.
+After enabling memory-level MSCs, the existing class-picking heuristics
+still treat every candidate like an L3 cache MSC. That rejects valid
+memory classes for MBWU counters and applies L3 egress checks to MBA
+classes on CPU-less or system-wide affinities, leaving no monitor or
+control class selected on affected platforms.
 
-Generalise the monitor layer to operate on any resource ID while
-keeping existing L3 userspace behaviour unchanged:
-- Rename resctrl_l3_mon_resource_init/exit to resctrl_mon_init/exit
-- Factor MBM counter assignment show/write helpers for reuse
-- Validate monitor domains using r->rid instead of hardcoding L3
-- Allow monitor domain online/offline for any resource ID
+Adjust the heuristics so memory classes can back MBWU directly, L3
+topology matching is only required for level-3 MBA candidates, and
+traffic matching is skipped when the class already spans all CPUs.
+Also tolerate components with no online CPUs once at least one
+component has matched.
 
 Signed-off-by: Shanker Donthineni <sdonthineni@nvidia.com>
 Signed-off-by: Fenghua Yu <fenghuay@nvidia.com>
 ---
- fs/resctrl/internal.h |  4 +-
- fs/resctrl/monitor.c  | 94 +++++++++++++++++++++++++++----------------
- fs/resctrl/rdtgroup.c | 35 +++++++++++-----
- 3 files changed, 86 insertions(+), 47 deletions(-)
+ drivers/resctrl/mpam_resctrl.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
 
-diff --git a/fs/resctrl/internal.h b/fs/resctrl/internal.h
-index 4bd09b1541c7..af2e6e0b2af8 100644
---- a/fs/resctrl/internal.h
-+++ b/fs/resctrl/internal.h
-@@ -381,9 +381,9 @@ int alloc_rmid(u32 closid);
- 
- void free_rmid(u32 closid, u32 rmid);
- 
--int resctrl_l3_mon_resource_init(void);
-+int resctrl_mon_init(void);
- 
--void resctrl_l3_mon_resource_exit(void);
-+void resctrl_mon_exit(void);
- 
- void mon_event_count(void *info);
- 
-diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
-index 1552ce2b4f7e..2b5654f05480 100644
---- a/fs/resctrl/monitor.c
-+++ b/fs/resctrl/monitor.c
-@@ -432,7 +432,7 @@ static int __l3_mon_event_count(struct rdtgroup *rdtgrp, struct rmid_read *rr)
- 	struct mbm_state *m;
- 	u64 tval = 0;
- 
--	if (!domain_header_is_valid(rr->hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3)) {
-+	if (!domain_header_is_valid(rr->hdr, RESCTRL_MON_DOMAIN, rr->r->rid)) {
- 		rr->err = -EIO;
- 		return -EINVAL;
- 	}
-@@ -583,7 +583,7 @@ static void mbm_bw_count(struct rdtgroup *rdtgrp, struct rmid_read *rr)
- 	struct rdt_l3_mon_domain *d;
- 	struct mbm_state *m;
- 
--	if (!domain_header_is_valid(rr->hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3))
-+	if (!domain_header_is_valid(rr->hdr, RESCTRL_MON_DOMAIN, rr->r->rid))
- 		return;
- 	d = container_of(rr->hdr, struct rdt_l3_mon_domain, hdr);
- 	m = get_mbm_state(d, closid, rmid, rr->evt->evtid);
-@@ -1688,9 +1688,9 @@ int resctrl_available_mbm_cntrs_show(struct kernfs_open_file *of,
- 	return ret;
- }
- 
--int mbm_L3_assignments_show(struct kernfs_open_file *of, struct seq_file *s, void *v)
-+static int mbm_assignments_show(struct kernfs_open_file *of, struct seq_file *s,
-+				void *v, struct rdt_resource *r)
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index 47a7b18d841d..72302f6021d7 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -865,10 +865,12 @@ static bool topology_matches_l3(struct mpam_class *victim)
  {
--	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
- 	struct rdt_l3_mon_domain *d;
- 	struct rdtgroup *rdtgrp;
- 	struct mon_evt *mevt;
-@@ -1735,6 +1735,12 @@ int mbm_L3_assignments_show(struct kernfs_open_file *of, struct seq_file *s, voi
- 	return ret;
- }
+ 	int cpu, err;
+ 	struct mpam_component *victim_iter;
++	bool matched_once = false;
  
-+int mbm_L3_assignments_show(struct kernfs_open_file *of, struct seq_file *s, void *v)
-+{
-+	return mbm_assignments_show(of, s, v,
-+				    resctrl_arch_get_resource(RDT_RESOURCE_L3));
-+}
+ 	lockdep_assert_cpus_held();
+ 
+ 	cpumask_var_t __free(free_cpumask_var) tmp_cpumask = CPUMASK_VAR_NULL;
 +
- /*
-  * mbm_get_mon_event_by_name() - Return the mon_evt entry for the matching
-  * event name.
-@@ -1829,10 +1835,10 @@ static int resctrl_parse_mbm_assignment(struct rdt_resource *r, struct rdtgroup
- 	return -EINVAL;
- }
+ 	if (!alloc_cpumask_var(&tmp_cpumask, GFP_KERNEL))
+ 		return false;
  
--ssize_t mbm_L3_assignments_write(struct kernfs_open_file *of, char *buf,
--				 size_t nbytes, loff_t off)
-+static ssize_t mbm_assignments_write(struct kernfs_open_file *of, char *buf,
-+				     size_t nbytes, loff_t off,
-+				     struct rdt_resource *r)
- {
--	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
- 	struct rdtgroup *rdtgrp;
- 	char *token, *event;
- 	int ret = 0;
-@@ -1877,6 +1883,13 @@ ssize_t mbm_L3_assignments_write(struct kernfs_open_file *of, char *buf,
- 	return ret ?: nbytes;
- }
+@@ -882,8 +884,11 @@ static bool topology_matches_l3(struct mpam_class *victim)
+ 		}
  
-+ssize_t mbm_L3_assignments_write(struct kernfs_open_file *of, char *buf,
-+				 size_t nbytes, loff_t off)
-+{
-+	return mbm_assignments_write(of, buf, nbytes, off,
-+			resctrl_arch_get_resource(RDT_RESOURCE_L3));
-+}
-+
- static int closid_num_dirty_rmid_alloc(struct rdt_resource *r)
- {
- 	if (IS_ENABLED(CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID)) {
-@@ -1916,40 +1929,21 @@ static void closid_num_dirty_rmid_free(void)
- 	}
- }
+ 		cpu = cpumask_any_and(&victim_iter->affinity, cpu_online_mask);
+-		if (WARN_ON_ONCE(cpu >= nr_cpu_ids))
++		if (WARN_ON_ONCE(cpu >= nr_cpu_ids)) {
++			if (matched_once)
++				continue;
+ 			return false;
++		}
  
--/**
-- * resctrl_l3_mon_resource_init() - Initialise global monitoring structures.
-- *
-- * Allocate and initialise global monitor resources that do not belong to a
-- * specific domain. i.e. the closid_num_dirty_rmid[] used to find the CLOSID
-- * with the cleanest set of RMIDs.
-- * Called once during boot after the struct rdt_resource's have been configured
-- * but before the filesystem is mounted.
-- * Resctrl's cpuhp callbacks may be called before this point to bring a domain
-- * online.
-- *
-- * Return: 0 for success, or -ENOMEM.
-- */
--int resctrl_l3_mon_resource_init(void)
-+static void resctrl_mon_resource_init(struct rdt_resource *r)
- {
--	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
--	int ret;
-+	unsigned long fflags;
+ 		cpumask_clear(tmp_cpumask);
+ 		err = find_l3_equivalent_bitmask(cpu, tmp_cpumask);
+@@ -903,6 +908,7 @@ static bool topology_matches_l3(struct mpam_class *victim)
  
--	if (!r->mon_capable)
--		return 0;
--
--	ret = closid_num_dirty_rmid_alloc(r);
--	if (ret)
--		return ret;
-+	fflags = RFTYPE_RES_CACHE;
- 
- 	if (resctrl_arch_is_evt_configurable(QOS_L3_MBM_TOTAL_EVENT_ID)) {
- 		mon_event_all[QOS_L3_MBM_TOTAL_EVENT_ID].configurable = true;
- 		resctrl_file_fflags_init("mbm_total_bytes_config",
--					 RFTYPE_MON_INFO | RFTYPE_RES_CACHE);
-+					 RFTYPE_MON_INFO | fflags);
- 	}
- 	if (resctrl_arch_is_evt_configurable(QOS_L3_MBM_LOCAL_EVENT_ID)) {
- 		mon_event_all[QOS_L3_MBM_LOCAL_EVENT_ID].configurable = true;
- 		resctrl_file_fflags_init("mbm_local_bytes_config",
--					 RFTYPE_MON_INFO | RFTYPE_RES_CACHE);
-+					 RFTYPE_MON_INFO | fflags);
+ 			return false;
+ 		}
++		matched_once = true;
  	}
  
- 	if (resctrl_is_mon_event_enabled(QOS_L3_MBM_LOCAL_EVENT_ID))
-@@ -1967,21 +1961,51 @@ int resctrl_l3_mon_resource_init(void)
- 									    NON_TEMP_WRITE_TO_LOCAL_MEM);
- 		r->mon.mbm_assign_on_mkdir = true;
- 		resctrl_file_fflags_init("num_mbm_cntrs",
--					 RFTYPE_MON_INFO | RFTYPE_RES_CACHE);
-+					 RFTYPE_MON_INFO | fflags);
- 		resctrl_file_fflags_init("available_mbm_cntrs",
--					 RFTYPE_MON_INFO | RFTYPE_RES_CACHE);
-+					 RFTYPE_MON_INFO | fflags);
- 		resctrl_file_fflags_init("event_filter", RFTYPE_ASSIGN_CONFIG);
- 		if (r->mon.mbm_cntr_configurable)
- 			resctrl_file_mode_init("event_filter", 0644);
- 		resctrl_file_fflags_init("mbm_assign_on_mkdir", RFTYPE_MON_INFO |
--					 RFTYPE_RES_CACHE);
-+					 fflags);
- 		resctrl_file_fflags_init("mbm_L3_assignments", RFTYPE_MON_BASE);
-+		resctrl_file_fflags_init("mbm_assign_mode", RFTYPE_MON_INFO |
-+					 fflags);
- 	}
-+}
+ 	return true;
+@@ -1041,13 +1047,15 @@ static void mpam_resctrl_pick_mba(void)
+ 			continue;
+ 		}
+ 
+-		if (!topology_matches_l3(class)) {
++		if (class->level == 3 && !topology_matches_l3(class)) {
+ 			pr_debug("class %u topology doesn't match L3\n",
+ 				 class->level);
+ 			continue;
+ 		}
+ 
+-		if (!traffic_matches_l3(class)) {
++		/* Check memory at egress from L3 for MSC with L3 */
++		if (!cpumask_equal(&class->affinity, cpu_possible_mask) &&
++		    !traffic_matches_l3(class)) {
+ 			pr_debug("class %u traffic doesn't match L3 egress\n",
+ 				 class->level);
+ 			continue;
+@@ -1175,8 +1183,9 @@ static void mpam_resctrl_pick_counters(void)
+ 		}
+ 
+ 		if (class_has_usable_mbwu(class) &&
+-		    topology_matches_l3(class) &&
+-		    traffic_matches_l3(class)) {
++		    ((class->type == MPAM_CLASS_MEMORY) ||
++		    (topology_matches_l3(class) &&
++		    traffic_matches_l3(class)))) {
+ 			pr_debug("class %u has usable MBWU, and matches L3 topology and traffic\n",
+ 				 class->level);
+ 
+@@ -1314,6 +1323,9 @@ static int mpam_resctrl_pick_domain_id(int cpu, struct mpam_component *comp)
+ 	if (class->type == MPAM_CLASS_CACHE)
+ 		return comp->comp_id;
+ 
++	if (mpam_class_memory(class))
++		return comp->comp_id;
 +
-+/**
-+ * resctrl_mon_init() - Initialise global monitoring structures.
-+ *
-+ * Allocate and initialise global monitor resources that do not belong to a
-+ * specific domain. i.e. the closid_num_dirty_rmid[] used to find the CLOSID
-+ * with the cleanest set of RMIDs.
-+ * Called once during boot after the struct rdt_resource's have been configured
-+ * but before the filesystem is mounted.
-+ * Resctrl's cpuhp callbacks may be called before this point to bring a domain
-+ * online.
-+ *
-+ * Return: 0 for success, or -ENOMEM.
-+ */
-+int resctrl_mon_init(void)
-+{
-+	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
-+	int ret;
-+
-+	if (!r->mon_capable)
-+		return 0;
-+
-+	ret = closid_num_dirty_rmid_alloc(r);
-+	if (ret)
-+		return ret;
-+
-+	resctrl_mon_resource_init(r);
- 
- 	return 0;
- }
- 
--void resctrl_l3_mon_resource_exit(void)
-+void resctrl_mon_exit(void)
- {
- 	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
- 
-diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
-index 416b73c57016..a658e4958562 100644
---- a/fs/resctrl/rdtgroup.c
-+++ b/fs/resctrl/rdtgroup.c
-@@ -5102,10 +5102,17 @@ void resctrl_offline_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *h
- 	if (resctrl_mounted && resctrl_arch_mon_capable())
- 		rmdir_mondata_subdir_allrdtgrp(r, hdr);
- 
--	if (r->rid != RDT_RESOURCE_L3)
-+	/*
-+	 * The remaining teardown operates on struct rdt_l3_mon_domain, which
-+	 * only backs the L3 and memory bandwidth monitor resources. Other
-+	 * mon_capable resources (e.g. the package-scoped RDT_RESOURCE_PERF_PKG)
-+	 * embed a smaller domain struct, so casting their header here would read
-+	 * past the allocation.
-+	 */
-+	if (r->rid != RDT_RESOURCE_L3 && r->rid != RDT_RESOURCE_MBA)
- 		goto out_unlock;
- 
--	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3))
-+	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, r->rid))
- 		goto out_unlock;
- 
- 	d = container_of(hdr, struct rdt_l3_mon_domain, hdr);
-@@ -5135,7 +5142,7 @@ void resctrl_offline_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *h
-  * Called when the first CPU of a domain comes online, regardless of whether
-  * the filesystem is mounted.
-  * During boot this may be called before global allocations have been made by
-- * resctrl_l3_mon_resource_init().
-+ * resctrl_mon_init().
-  *
-  * Called during CPU online that may run as soon as CPU online callbacks
-  * are set up during resctrl initialization. The number of supported RMIDs
-@@ -5209,10 +5216,18 @@ int resctrl_online_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *hdr
- 
- 	mutex_lock(&rdtgroup_mutex);
- 
--	if (r->rid != RDT_RESOURCE_L3)
-+	/*
-+	 * domain_setup_l3_mon_state() and the workers below operate on struct
-+	 * rdt_l3_mon_domain, which only backs the L3 and memory bandwidth
-+	 * monitor resources. Other mon_capable resources (e.g. the
-+	 * package-scoped RDT_RESOURCE_PERF_PKG) embed a smaller domain struct,
-+	 * so skip the per-RMID setup for them and only create their filesystem
-+	 * directories.
-+	 */
-+	if (r->rid != RDT_RESOURCE_L3 && r->rid != RDT_RESOURCE_MBA)
- 		goto mkdir;
- 
--	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, RDT_RESOURCE_L3))
-+	if (!domain_header_is_valid(hdr, RESCTRL_MON_DOMAIN, r->rid))
- 		goto out_unlock;
- 
- 	d = container_of(hdr, struct rdt_l3_mon_domain, hdr);
-@@ -5361,13 +5376,13 @@ int resctrl_init(void)
- 	if (ret)
- 		return ret;
- 
--	ret = resctrl_l3_mon_resource_init();
-+	ret = resctrl_mon_init();
- 	if (ret)
- 		return ret;
- 
- 	ret = sysfs_create_mount_point(fs_kobj, "resctrl");
- 	if (ret) {
--		resctrl_l3_mon_resource_exit();
-+		resctrl_mon_exit();
- 		return ret;
- 	}
- 
-@@ -5402,7 +5417,7 @@ int resctrl_init(void)
- 
- cleanup_mountpoint:
- 	sysfs_remove_mount_point(fs_kobj, "resctrl");
--	resctrl_l3_mon_resource_exit();
-+	resctrl_mon_exit();
- 
- 	return ret;
- }
-@@ -5441,7 +5456,7 @@ static bool resctrl_online_domains_exist(void)
-  * When called by the architecture code, all CPUs and resctrl domains must be
-  * offline. This ensures the limbo and overflow handlers are not scheduled to
-  * run, meaning the data structures they access can be freed by
-- * resctrl_l3_mon_resource_exit().
-+ * resctrl_mon_exit().
-  *
-  * After resctrl_exit() returns, the architecture code should return an
-  * error from all resctrl_arch_ functions that can do this.
-@@ -5468,6 +5483,6 @@ void resctrl_exit(void)
- 	 * it can be used to umount resctrl.
- 	 */
- 
--	resctrl_l3_mon_resource_exit();
-+	resctrl_mon_exit();
- 	free_rmid_lru_list();
- }
+ 	if (topology_matches_l3(class)) {
+ 		/* Use the corresponding L3 component ID as the domain ID */
+ 		int id = get_cpu_cacheinfo_id(cpu, 3);
 -- 
 2.53.0
 
