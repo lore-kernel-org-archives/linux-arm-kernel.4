@@ -2,109 +2,145 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783F3606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDAE606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N6Glp7XD;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ks3HV+lP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rXsG3Zlu;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=PD6hAaI0;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=ROwGUDtg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=SPHik1JiSrjEQWR2A1Dp/yVw2IW4Nu3YxvN6n6vFj/o=; b=N6Glp7XDX3CFRVUvw895k4LgK8
-	XUn3Z0y9cwhhaSLhpRH3X4NmrjqE73E825OGbEYte/X4iBE5AR/XBIf/cT851fkEFYK20O7qa416+
-	kX/GkTadieSWAfD1MXpSr+vbaQc1fPR4thhxVgvuZoMuHpK4Ok9GPV1H42UkjVAhJmL1GNk7288k+
-	qGwG+EP6St3ZzufVQkwUcxZYhv0kSX/rA37YTNeH99jL/NINIXWoAtfFV1cVItc755FrcI1RDbtx7
-	sBAzKymaXx1sAtLIkOw2vZM5NPKdlmCsiULzOU2IeS7J5AfKskHO8xDw4ZKB/hclV9JpinRAUCzNR
-	V6gMpBeQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=f9Ly0H2eD+VpB4ntoQnCNH5IaZ4AVMAVdM1dy+tGVBg=; b=rXsG3ZluHSLtat
+	7ki5prEP6CLdSB/z8+UjQHgwLhuZaBXGZKR2PCO1BO8Ypkoys5paGOBuNEwaJ4m/rQadyTSzO0yft
+	i0ivDtz5HVExE4Oh0ziHmm4gJqB7JQqPbwrX5Mykpgx0m4muKysNVVY8QafwWVPcBLwqbfgH+JqO+
+	PAqiQfFUByaBsyYX72UB/cZj3uVnN/HE5WgAeYYF5E0/1L7Zxx54OuJ/A+Pelfry22O8FNAPr4gQo
+	uWKzz+0Lshp7j7iyHhAI7ZyP1ItAmvwHssUEi6A0LU9wuRLF8ITiY0kFyBfdpzaoqCivSkKnVaLWf
+	ULIsgQojOrnWeu1YMFoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOY3-00000000gux-0FHv;
-	Mon, 09 Nov 2026 12:32:31 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQPGg-00000000mft-3i0g;
+	Mon, 09 Nov 2026 13:18:39 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOXv-00000000gli-0fa5;
-	Mon, 09 Nov 2026 12:32:23 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9722A6320D;
-	Mon,  9 Nov 2026 12:32:22 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794227542;
-	b=B9WRVBTOZlxu1uGbYsrmIzGTF1KPMunaoWxwsEx8I6s0Y7Imjk7pM/qf/7b+5gau3f2/
-	 OzJr4LnjTkPypVQ19Bb2ad7ylBas0o1ZmDFYAqiSn3AGNAB+Pjg0Gajj4rGssO3XMm3Qp
-	 bmvnb6MPE7bAXEhIsPZmkpn33uuqGe1yvnJvBwrTAD13w++ey9gf/5HEKFNOmAZS2Czso
-	 k+0JIkgnJoxpwkEKgW4cJ+STn9x23NjJEE0WJJi2M4OU3aheHzqwKJmonNNasKMOwXeSI
-	 xNBXARDYPM4aPLFiKIvav3Pbv+HJCuYFNs0g2sAj3b+CxzJ+KavSxyJlc3JyZaS9p8Q==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794227542;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=SPHik1JiSrjEQWR2A1Dp/yVw2IW4Nu3YxvN6n6vFj/o=;
-	b=wgM7Xz0V+/o1Rfpbnzuad4cKzmoQ5RizKD4DlyK/e7jQL/E2csdv+qOgPorqGDEgBOD0
-	 IatCT3TD7WM4GmkNzQhVyDVG+KUNODgHH0HI67y/DL+wvyhzaKnxdgr0iGKK5dFIt1a7N
-	 acWc+K50NtAIKU6apt4UR2O2mZy0e94n80NVBaqZC8EL9JMLuH5bVopt/0rOql1SlkjfP
-	 Wn6klvLX6za4w6+KIucNWdNlUxbl6YHTVIOBlbI21sfT3vJuUV94AXZ3Jl3gb6oOKN3b8
-	 Sbfg4eqfQX+yZtcJoWJungFOHqEYNZGAkHeolFHY007wOssRApy+Stu+2L98IV1bIUw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A54601F008BE;
-	Mon,  9 Nov 2026 12:32:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794227542;
-	bh=SPHik1JiSrjEQWR2A1Dp/yVw2IW4Nu3YxvN6n6vFj/o=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=ks3HV+lPIEUvy44lHe6kp2tkbqv95oBP374kVy8T94WY6f9F74inIyDeipQijI8ny
-	 yXmiDwnwq2dxHy/Hsx7OXpkLNY1DsjmB7KruuqYjwwbhds10K3tzz/jue/s0eLaUHv
-	 McNoEnjTI38wklePeZip986NwJgrYF0OUCXz24P0OmjY2zncrhhT2z1BZXNe+w484g
-	 BujQGDuSDP4g7sDW6KKdNZHsKOF+Gd18Oo3tjzyMKMNCqtuDD2gms52ZQKlrDxfTSm
-	 ZyLc5eBhnW36qTbgmXg7sVD8FdLE7crI7fHvjtxZ19FI2w0tdtwwDL+JAWSJjY2HSC
-	 0apP3Oo+lydMw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 70F214849E;
-	Mon,  9 Nov 2026 12:32:20 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Mon, 09 Nov 2026 13:32:21 +0100
-Subject: [PATCH v6 6/6] arm64: dts: rockchip: describe PCIe RTL8125
- Ethernet on ROCK 5 ITX
+	id 1xQPGe-00000000mf1-1mT2
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 13:18:37 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A9DEodv1322908
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 9 Nov 2026 13:18:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	f9Ly0H2eD+VpB4ntoQnCNH5IaZ4AVMAVdM1dy+tGVBg=; b=PD6hAaI0nLrQm9uz
+	XCzX7+Col9KxUfgrilTFUnFUvNpqmRvwYtuGFnEZiIuepCYs4LKA+ae1LDXy/3je
+	OcN8+Gf44pc3um2q6ZOC8id8nsSyzQIouuJ5iIcVRvMZ/vbHRr3Fcycfcbon7yJ7
+	jsHHjSh/gU/yRGykgvmJgCvMLCelJjghkpXI5rN6/DINd3q60Ov5SmYhxCwUeADb
+	XBTD7zsQmIfmFMiFOU2nudE0Vg1mAoNrDeE+FcRM3/hfBW6qdVJQTzapG4g1lQ5l
+	SQp/LKfJSGFaV2ucmVL87hPeYJIutMXOwHole6MZ3SIUd8vYXbv4oBas7W6UxLel
+	vZ1E2g==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hue0qr6qw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 13:18:35 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-93edac5877bso9073785a.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 05:18:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794230315; x=1794835115; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=f9Ly0H2eD+VpB4ntoQnCNH5IaZ4AVMAVdM1dy+tGVBg=;
+        b=ROwGUDtgf/TXZsUaoCu8P5c6HthazOXM4LOFiirRfuvQ3fXkdst0JF7VwGk23llDJU
+         H1KlDd7ESrucV1E9kBUDNFB+cMinx2qrbVVIUXpjuULIkeEFFIS+mKMh8QidPDJn+L2q
+         NmWZZcyi9wibaRdzjBmJxj911DAbPaI0ZU09GB/XeNNvCZhPck4tDxF55D84CowJA7Ie
+         rBdA95cKIYb2PzaJgbtmgOWTtSSmY1vvqVgRZMMIWkvZC41WUju/z9C2Ju3gkU14wUez
+         moSHreWCxBwW/xJfy4XeyTDyoRqUYIBm4MQ3nQ9icfOxo4zXigWDMl24guC35cgakq+k
+         zZ6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794230315; x=1794835115;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=f9Ly0H2eD+VpB4ntoQnCNH5IaZ4AVMAVdM1dy+tGVBg=;
+        b=tBCPV24rB9ZrjbWMykreUhs/uEx3HXrLwwItQCb9eKrNi9IQGoDTEJAwTNkovRGHQs
+         Fc3DLmHs0muaY4/TmnwP9/E9c4fFS5qMUOSLyFudiCLksjWRxzNx3PUhx97yAgIj3Jl9
+         SWukDZ8B8co29QNaTOSGciHECwlt8cLpbLAijKdj0qTovdOPSxrVZVUMojuWnce7J5Km
+         5G1JJx43mF7x6Z8vtpFmNWt2yGcWf8ZcIwA8+rOclSC8ZWRn/bEcwJorHIZ/oYeNAiA2
+         Wm9y0/TbMYGlZGskVUUtIaCqcfYXxJ27rs+CLj6BFM2l4EKcEx+qKle+7UKZ7c+VRPNl
+         yNeA==
+X-Forwarded-Encrypted: i=1; AL+hErEIV9vhkeW8iD+Jgtn+FGbNSVqkf5SI0/yVtLCSGctztBQ/kEpR27rpUJjBhLKqh7NhAcR0AhgSOHYJkFeHP9ZZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z8kgNM3UmmIxyWd5t8/Gvo7ddwxWrlv0c2YGv/NBIYa1Uoi9gfi
+	i839LzWOUj17sMYnwKiTZOiWyWMjwcDQDVdMlVT3uqm5gRRhkatV0/jK8p8YTmmkvoCG0fLISBq
+	BbIrh7xuTBZZFkrVN3ONmspRsCdLOmer5B1T0N+TckuPZxVnpaXoFhCNHv4XMqfLrNk+pjqyWbF
+	6ZVg==
+X-Gm-Gg: AYBFou2gBRjS4g5Zmbst9XQ8GYpw4WyyinVQtM7bQ5YdHfGSd4mYBPUEJ54y5Rl7LcW
+	2sWQdoEGEaIk2vQRd5dEOpWkoTPMYYqkchD/OLPGdvofoPErmqr4IOpl8XMq/nHhBgroYYn0Pfv
+	gRcoWmeYOQhWwaI+1QC60FKsmpbX2zAvrzsZVLvHdR7KPmnZopYDOqrI+E2n0Bv9vR3QeAcNwIA
+	QVb9OwJt5J9bSfMo1znAj/ze+h3DBkkJdx5eX/5Vn5BJ7AotHBTPH4p/nAvl5oAn4qt+/HucS52
+	s3oixZjs2re9rZFQvqJhK50zMSXva2xMTJOwkMqeclcUmP298nNq3lN5XTm3d9wd8NHVrnoGfc6
+	pZPP7NeKePMeO/AD80A23sQVDu3nKA0z+dp5ifUNm7gHr0zfdN0r5vuB7+DaOCN8O1pDf9A==
+X-Received: by 2002:a05:620a:a90d:b0:945:c5b3:6356 with SMTP id af79cd13be357-94784143254mr685964985a.2.1794230314760;
+        Mon, 09 Nov 2026 05:18:34 -0800 (PST)
+X-Received: by 2002:a05:620a:a90d:b0:945:c5b3:6356 with SMTP id af79cd13be357-94784143254mr685958685a.2.1794230314176;
+        Mon, 09 Nov 2026 05:18:34 -0800 (PST)
+Received: from [192.168.226.72] ([178.235.128.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c4d69f93858sm167363866b.24.2026.11.09.05.18.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2026 05:18:33 -0800 (PST)
+Message-ID: <1704850e-c461-4ba1-9a01-7fae3167bf5d@oss.qualcomm.com>
+Date: Mon, 9 Nov 2026 14:18:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-rk3588-dts-rtl-eth-describe-dt-alias-v6-6-91f1efefba0b@pardini.net>
-References: <20261109-rk3588-dts-rtl-eth-describe-dt-alias-v6-0-91f1efefba0b@pardini.net>
-In-Reply-To: <20261109-rk3588-dts-rtl-eth-describe-dt-alias-v6-0-91f1efefba0b@pardini.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1839;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=wCLAexHdVkD0jpxkUE9ppJGf4g2Tzpw3hn/wf3LCfHA=;
- b=owEBbQGS/pANAwAKATteP+Oex+3pAcsmYgBq8b1TWy6Z8ypuZjA136KddZ2dUSBysSOVhFyWT
- 2MthJcSKISJATMEAAEKAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCavG9UwAKCRA7Xj/jnsft
- 6ZseB/9DPncY7tXNZ1Pc+fRxccZBkMS/xty8tA8bsrQ1Gm3LUiwmVVWcUVmuPmMUYx1XCF5VjkR
- oITtKrxpJlugGtCGHkScPy/X0WzmabA9Csz58gqrPhmi4NoK6InzzV9BRs9V+6+oa8rOLF6Rjp5
- Z2tvUE+oNWxzHzJz09o8Gdh/gNi3dAzHY7dgU6l12jKciOQyV4yu/ovK7I3DbuGY/ysQwcL8kih
- oC+rmL7i4eidMAkaspJKUqlBwc+11muQyBj29KidP/NxIk2AcKisGEN15e/VzehklW5S1ToOPnm
- 5cCMFjLK4OJwnyVzJJYxL2QHzlMDTQzi6QeuVISb2LSIf2QW
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] iommu/arm-smmu-qcom: Add SM8550 MDSS compatible
+To: nacht@dxdmail.cc, Rob Clark <robin.clark@oss.qualcomm.com>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        "Joerg Roedel (AMD)" <joro@8bytes.org>
+Cc: iommu@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261107-b4-smmu-sm8550-v1-1-777d0a41170b@dxdmail.cc>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20261107-b4-smmu-sm8550-v1-1-777d0a41170b@dxdmail.cc>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDA1MiBTYWx0ZWRfX6IFYh0rNjBxO
+ qnmoaZNjGlL/ddJemsITNiNdWTi5EEqYMTpIHr2EHrLrii9tTxXm2PqdvgwhgbJ74HUlrFx7S7Y
+ tP9zD4J0LB5cQAeskQPmBr3XIasRS2xFLgFc/tOHPT6p/DpmBZoc3laIzLAQOP0UOfNs12D4lXs
+ AGigZP6Dle/gCqTDy/uXpxHz6aTrcTbwxA5oDQDaBpmUT5cMTDSkUxwenMC9ftPllgjuMnoOfET
+ Dbt4WCe0HT0ljD3Sp4PwJVDnybtVpxci2DQCXmfEAeyLlWCX/1qglcGWqNBJX7W8NgrIe8l+R2B
+ MpAN0sppw5whENgnQySh6sSfZ5ixtiG0PPTAy6t39QbarxcIfmMIS1S65oI8YQDG9qlDbAvhx2s
+ WpZz0hEqjkE7y0cFNbmyhO/q6UKYZt8tISVlhH777+Iy7k71XDPZdhHzV0mioxVX0bfu2nbv4dV
+ eDr94hUmsFMU/AeMPtQ==
+X-Authority-Analysis: v=2.4 cv=DZuCOftW c=1 sm=1 tr=0 ts=6af1c82b cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=PRfkaYvzSr8QmIIGAkY2Sg==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=EUspDBNiAAAA:8 a=UwK4q1c8QMLSmQHnhC8A:9 a=QEXdDO2ut3YA:10
+ a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: qLgxjTrfGb36q82Vb3aVyQnfOwvUFcpF
+X-Proofpoint-ORIG-GUID: qLgxjTrfGb36q82Vb3aVyQnfOwvUFcpF
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDA1MiBTYWx0ZWRfX+pbW66cAGVim
+ 7cC401jmO7dPe3beX+TPkS4HevUK9tpJA2dUHGz3fZzM+FmXp6zj/ub8QRXGfgPKff4B+Uc9CzQ
+ qzDDN/0zbap669vs50ydCft6v7rPN/M=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-09_05,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 spamscore=0 phishscore=0 malwarescore=0 adultscore=0
+ impostorscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611090052
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_051836_471301_CF8B5694 
+X-CRM114-Status: GOOD (  11.98  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,88 +150,27 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: ricardo@pardini.net
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ricardo Pardini <ricardo@pardini.net>
+On 11/7/26 9:00 PM, Nizat Mikayilli via B4 Relay wrote:
+> From: Nizat Mikayilli <nacht@dxdmail.cc>
+> 
+> Add the SM8550 MDSS compatible to the clients list, as it also needs an
+> identity domain at boot. Otherwise the scanout of the bootloader's
+> splash screen causes unhandled context faults and the screen goes
+> black.
+> 
+> Signed-off-by: Nizat Mikayilli <nacht@dxdmail.cc>
+> ---
 
-The Radxa ROCK 5 ITX carries two on-board Realtek RTL8125 NICs behind
-pcie2x1l1 and pcie2x1l2.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Describe the PCI function nodes and attach ethernet0/ethernet1
-aliases, so that U-Boot's fdt_fixup_ethernet() can fill in their MAC
-addresses from its ethaddr/eth1addr environment.
-
-Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 30 ++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index 9d3d26d4600b..dd9767edd42c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -20,6 +20,8 @@ / {
- 	compatible = "radxa,rock-5-itx", "rockchip,rk3588";
- 
- 	aliases {
-+		ethernet0 = &rtl_eth0;
-+		ethernet1 = &rtl_eth1;
- 		mmc0 = &sdhci;
- 		mmc1 = &sdmmc;
- 		mmc2 = &sdio;
-@@ -631,6 +633,20 @@ &pcie2x1l1 {
- 	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_lan>;
- 	status = "okay";
-+
-+	pcie@0,0 {
-+		reg = <0x300000 0 0 0 0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+		device_type = "pci";
-+		bus-range = <0x31 0x3f>;
-+
-+		rtl_eth0: ethernet@0,0 {
-+			compatible = "pci10ec,8125";
-+			reg = <0x310000 0 0 0 0>;
-+		};
-+	};
- };
- 
- /* RTL8125B_2 */
-@@ -640,6 +656,20 @@ &pcie2x1l2 {
- 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_lan_phy2>;
- 	status = "okay";
-+
-+	pcie@0,0 {
-+		reg = <0x400000 0 0 0 0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+		device_type = "pci";
-+		bus-range = <0x41 0x4f>;
-+
-+		rtl_eth1: ethernet@0,0 {
-+			compatible = "pci10ec,8125";
-+			reg = <0x410000 0 0 0 0>;
-+		};
-+	};
- };
- 
- &pcie30phy {
-
--- 
-2.47.3
-
-
+Konrad
 
