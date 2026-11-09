@@ -2,174 +2,132 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB84606EEA3
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA421606D80E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:07:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ci6Ht7WX;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Qb863sBI;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=bnjkkoL3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kJyLZJAZ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=afUEFwZ3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AjrhCINlUbKIbvCUMy8NACyvmSbvDdLn5Ljj7rMFcZY=; b=ci6Ht7WXwLkX0F
-	cECiAXLLH1Q0+2l07eIH2WuUR5TZ5SMW0UgacBneO/KzAobSYxBjQTOV8Idpg1TGGYuS7uG4hE3e9
-	kPvwXvcr0lNWmD8Y1m7SSgXQvQAXPArH72nl6DTAImycCr6RbbeWtLODQD1wm5fL1pEzBx4jTiBIC
-	CFDKE+IJw+nc8U3Qogcu84qWuDOvNVh/5zDWAcRZ+ItyQkx/ta1a9v12VcGW+WyfaNRPS1cIkxzOk
-	yu99DNzFCK9s60j2aA27Eq4gJe9I3Vw5VjYqwgskvnBzSMVDgQPs0XFmxIuzb8M30QqrexdZDwsV2
-	7KBfQE0F6PkkqfJneIQQ==;
+	List-Owner; bh=Bz0xvoYzYwh65/jPnpZ9VDL5Ou4lONvp9lP3X3Nkvgs=; b=kJyLZJAZojDTK2
+	qjTQahOviNcSHTISxyU0Ztq4az3KZDKybvRVtAccZK922HW+AIp0kQfM2MSVtBeqUNOVKtTyT7Hyz
+	XQZl1P3XgUfoYTJ4TdnG0FeluIxbb1/oKqUxV3MZ5KaZhSFlKPU+ivs87Y0oksDhk4qZqt1SO8TMF
+	wpmBVYC5soL41vmI8ZX1EdihkVi1P7MqlHk4PZ7Wa/dHdlFR7NuooKy4ZO+4pc54E7nW4TBqEOhif
+	8PezZr6YO2CtcZq1IHRlweNayJzr8ZyOy0LISBVow1GCK1WLtLM0/41ZvJap6t6xcA9SLU99C7X4K
+	VUx1Ahmj4pMukJEKPMvg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQMHm-00000000MAF-2BaZ;
-	Mon, 09 Nov 2026 10:07:34 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xQMHs-00000000MDn-2hUA;
+	Mon, 09 Nov 2026 10:07:40 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQMHj-00000000M8l-1iYI
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 10:07:32 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A99uwma3035286
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 9 Nov 2026 10:07:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AjrhCINlUbKIbvCUMy8NACyvmSbvDdLn5Ljj7rMFcZY=; b=Qb863sBIHPMRDAn0
-	hes8I7xH7m4yMwSRxsNLe/4HAEiM+QtaDNVayXp9m0sO1myCv43xXTfSyHo0UfZ6
-	XOgdTP9+inmJQdkuOan2FHy+EW3bo+ccojW+OIiW/UjB2oLXXPFJ1KRChj9WRS9a
-	4ZvldPqTgTLeLnHnojOY+PTMFnMVBu0VAOa1mVf4jDlB7CxQAKGlY+DsFlnjfXgx
-	mgzko6BcUp844bHQwbRmDDfNVTVXeaEsBh0skLlXH+tJuhYtIPa9c2e2QH81h/dO
-	c8zFafIkUW4TZ+0h1HZ7sz/K8r0P52vsI7LXpuqxjTMSTzwHJOEN0ZGCGAiXSimf
-	qyP1SQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hsvc6nrdv-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 10:07:30 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3b0a519048eso653556a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 02:07:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794218849; x=1794823649; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=AjrhCINlUbKIbvCUMy8NACyvmSbvDdLn5Ljj7rMFcZY=;
-        b=bnjkkoL3SgQ5gppvZLxJog0GbMd/jn9d0+tIf0YslX5FhHXXodFKXa8oCu3KQ+JJ8r
-         PelQZpZKHrRfwIX+nyTdthkGofuQ9suYR7eVQX6yoLOdH8ojHVbgoHZzDGtuZhq5JBPw
-         A2fhnZNJPspDLBGlRkzWMiXdGi+Iayvk24U1bYfK7F7BA/p+gSBkTpZfSdVII1b+czST
-         N68qQ+adlTejsekWCCfu2hvQf1fMnAnnf8teQjv3mS1mJK9E5dB4fWOSuZfsaCfYnI9/
-         7frI00bvgl5NhBqiggDs6KvvTBpDUCiEwnQ0wTDd3SK1wg6p7LmobKCFhItnr/JE1vm8
-         AAWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794218849; x=1794823649;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=AjrhCINlUbKIbvCUMy8NACyvmSbvDdLn5Ljj7rMFcZY=;
-        b=E6iMa7tu3WRlSWMzLTkhNVki1AjOueIR5MNtDelAyHjCs7065JwBi6t1XPB5/vJKo+
-         KCF2boH0d/xpE26mmw4mmMdzk18S0g2fcljP6x9/rZa+iOEZ4CnWwOK9uEs82iOTtlJU
-         DF1p0tCG/WKRxZrYRNNvGjXA5/6eMJ84SjjVyzrhzl6OVRq849ZSwO7Ww3ZGEqlG+lML
-         iSSp2NdXRhs94yJaqJict3E5x/Ko7Ej3aDGA4fF4OJlFIabHX9c8YTAEDL1LosiMqpLa
-         D8dkRkY6E53CrXm43WHHegTh2OCIBOb9WVxkPXn+2UyP3cYEAYTO4kyJeXCU0j9Z2D40
-         LeGw==
-X-Forwarded-Encrypted: i=1; AL+hErFUbc8tpIseytL5okmvqWMMA6Iz1vAaFvKqOgNCkwdgaunf7Qh/szJjqsKKgbhiFSnbMtD5ZY8uLA0wav2vPt6G@lists.infradead.org
-X-Gm-Message-State: APuU4Z/vWwSfjbqKMVeHx07D19Tw7DhvbNZbNexiMCqgpcc+XfMCHJwv
-	iSn/1/NNCO/n6tgKWFNJZpJ9uw34qUjtgU6McnLBWz65wqt7orUPCpoEU2/ogcWwwJ+FCiqhtbm
-	tCRF+KDaFUyJ05oGDVIcUFgQFwSoyqTsZEFb/9zGGV7jlMZXUwqLQWKn/YfgbmdZ2rfk0UqRj6q
-	4gHw==
-X-Gm-Gg: AYBFou3wza1IRFaLxfLKt7nHPjYUYwF7Relt/8GvQNcpwDM/Cmges4NYQGLpWY8lzyp
-	Anm15LAp2w/doRktIQMFmjYSim1MHZdgcJh9IrLpYdgrXVOssPIjPRV1fES1OkM1RSn0dUi9BLU
-	+61rat9XfFOcN088KML+Z0KNGGLbkwfYEPS3Lw2qY55pVpte0P3D1WWL58tAPXl3F2154oYctPu
-	sFJgN/s+n+rDkOucqxUkyuFvNjSBnj5yFeFvffAel8fkNcO2rSQWSTF2MAHFcyKDuRLCFYE75JF
-	cq5KFTeTq4Soy5hjtdzrWQqpsIIXiTR8dflrX636LgkEPAF2rbcKLsYlncJPdt0tFXz72lTTg5R
-	gyCsj0SEaZ2RQ+4OmZU0AhcKVvmmg+M1IOQbsxPr4BZgVeljeviQbyjDjiikCsSpfqIydCe1dzf
-	0msIZcqyEGMyC3OQ/O81O3hyXIaIp5
-X-Received: by 2002:a17:90b:53cb:b0:3ab:5758:3757 with SMTP id 98e67ed59e1d1-3b12d5ef7f7mr3152463a91.61.1794218849173;
-        Mon, 09 Nov 2026 02:07:29 -0800 (PST)
-X-Received: by 2002:a17:90b:53cb:b0:3ab:5758:3757 with SMTP id 98e67ed59e1d1-3b12d5ef7f7mr3152416a91.61.1794218848687;
-        Mon, 09 Nov 2026 02:07:28 -0800 (PST)
-Received: from yli42-gv.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1054a53e4sm10034531a91.0.2026.11.09.02.07.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 02:07:27 -0800 (PST)
-From: Yin Li <yin.li@oss.qualcomm.com>
-Date: Mon, 09 Nov 2026 18:05:34 +0800
-Subject: [PATCH v5 2/7] arm_mpam: Fix MSC MMIO window size off-by-one with
- resource_size()
+	id 1xQMHq-00000000MCc-2KHr;
+	Mon, 09 Nov 2026 10:07:38 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id CD9C060D10;
+	Mon,  9 Nov 2026 10:07:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 369121F008A1;
+	Mon,  9 Nov 2026 10:07:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794218857;
+	bh=Bz0xvoYzYwh65/jPnpZ9VDL5Ou4lONvp9lP3X3Nkvgs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=afUEFwZ3A+zm2lwlCnUzjkL95kbVoJfAR2yvV9Fn2PZvdR/l6AfU6PNJYmnm50Rdl
+	 9fungTpc0+mhQ6bOjVsHeurtsZQROOSCvnaZbdpO66gIlDf90UA5faJBKu7YaZiYza
+	 gMEYRN9389/tFmdz3+HvDJ84kU99IHKAHCaYm6UtjNypCnHoHYlFNCIdG+7VtWAs5G
+	 fRUziMTM2kT4LXkhh3QiuaWdL4jHGz7NhFhqNtipyi6E9sfcCvBwpu81u4k8BQ6Kyu
+	 YrOFrYPqUgrUSKfaCadmzDrgd/w9WJDK1x0l7XgyA0r8CnlzoEHeF/md8CQSCFLDAJ
+	 lv0m06dTE3M9g==
+Message-ID: <4eaff54b-39ae-45c5-a982-44325eacee63@kernel.org>
+Date: Mon, 9 Nov 2026 11:07:20 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20261109-mpam-resctrl-dt-knp-support-v5-2-150335a79381@oss.qualcomm.com>
-References: <20261109-mpam-resctrl-dt-knp-support-v5-0-150335a79381@oss.qualcomm.com>
-In-Reply-To: <20261109-mpam-resctrl-dt-knp-support-v5-0-150335a79381@oss.qualcomm.com>
-To: James Morse <james.morse@arm.com>, Rob Herring <robh@kernel.org>,
-        Shanker Donthineni <sdonthineni@nvidia.com>,
-        Ben Horgan <ben.horgan@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Danilo Krummrich <dakr@kernel.org>,
-        Reinette Chatre <reinette.chatre@intel.com>,
-        Fenghua Yu <fenghuay@nvidia.com>, Jonathan Cameron <jic23@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Gavin Shan <gshan@redhat.com>
-Cc: Yin Li <yin.li@oss.qualcomm.com>, Andre Przywara <andre.przywara@arm.com>,
-        Drew Fustini <fustini@kernel.org>,
-        =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-        Shaopeng Tan <tan.shaopeng@jp.fujitsu.com>,
-        trilok.soni@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
-        ganapatrao.kulkarni@oss.qualcomm.com,
-        Srivathsa L Rao <srivathsa.rao@oss.qualcomm.com>,
-        Huang Yiwei <huang.yiwei@oss.qualcomm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
-        devicetree@vger.kernel.org, Ping Li <leeonion.muyu@gmail.com>,
-        stable@vger.kernel.org, kernel test robot <lkp@intel.com>,
-        Jinjie Ruan <ruanjinjie@huawei.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794218815; l=1979;
- i=yin.li@oss.qualcomm.com; s=20260811; h=from:subject:message-id;
- bh=M5HKKySRXJjebPuf/KLcSrGcy+Dr1wAQmzTykz+vO0Q=;
- b=Q4QHKXfPyNxTfeRfp19balrlzMk5OdUU4eKG1aMyyqKAydxt1uebl+7SdXXRpbAEmQKQ5kN5Z
- 6b+fSzkJixxCQwVFnssHT0MQsX9Umf3yTmY82A8IiSaPn1rVqaz8JAS
-X-Developer-Key: i=yin.li@oss.qualcomm.com; a=ed25519;
- pk=e/2LM97aSWGBMrxY240URBi9Zi8/kL5hXgB+VHkYvW0=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDA0MCBTYWx0ZWRfX6ru6y0AxEsie
- T6TVJKg/RnJ6rkBHJNWLgjnIViK4zF8AwNS0+vyk+fomQrIoOeLjzQ6OXKu/7XMfaWVwahTOq+b
- hrXRYE+onZlm0lAYMDZT/Gvb8xLQgzHCwNiqFlPlHJ4ysUJdGnB90PQe9BaGeYjM+VZlYjMTaeZ
- TGv8KLiXmqgfFWnSsu3Jo/J5UXvHiJq2S7IwV4ve60eSrUCnbbLBE5n9j9RTTs1AFi8FNV1bhiP
- xa9Y+PQOQJSyke/dxxAyA9ZkHOE7dAfZmylpnJCybM6Pty4zsif3riHx7/tomCl2PeJgfdS75kk
- REVFzC15/RGMltWm7dA3v7lcqYYq2B1MuCoKRXrgRpd65CUHPw6uZacjblba6Ya5lsKsUsftJ/V
- aajI5RCa5CrBiRnhJEkDPqvBKnlgW2GKr0uqf6ngwu8r1lmPaMHKCmODms0XpJCzsfe4gC2DIK+
- Ahih1OENxHQoVCsOS+g==
-X-Authority-Analysis: v=2.4 cv=WOjqzXsR c=1 sm=1 tr=0 ts=6af19b62 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=7CQSdrXTAAAA:8
- a=i0EeH86SAAAA:8 a=s3E7sL18FQBPR4dFS-QA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDA0MCBTYWx0ZWRfX2AIFgZMxC4Zk
- cocSUULxW0snPnniOKt2cojdPwI8sxKzOjVV8KL3mcWjPHsOyex1o/H3MahBRRMyTU6diiX2YQm
- 3sx7Uol49ahKQBIwob0kJYrJYsPyUKE=
-X-Proofpoint-ORIG-GUID: 4VRBVVgOQmXFtonc1ifrgkJZ1lau9qFq
-X-Proofpoint-GUID: 4VRBVVgOQmXFtonc1ifrgkJZ1lau9qFq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-09_04,2026-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 phishscore=0 priorityscore=1501 clxscore=1015
- lowpriorityscore=0 bulkscore=0 spamscore=0 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611090040
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_020731_570672_49E27B95 
-X-CRM114-Status: GOOD (  17.84  )
-X-Spam-Score: -2.8 (--)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 16/17] arm64: dts: qcom: Add initial Halliday dtsi
+To: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Robert Marko <robimarko@gmail.com>,
+ Guru Das Srinagesh <linux@gurudas.dev>, Thomas Gleixner <tglx@kernel.org>,
+ Radu Rendec <radu@rendec.net>, Lee Jones <lee@kernel.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ "Joerg Roedel (AMD)" <joro@8bytes.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Wesley Cheng <wesley.cheng@oss.qualcomm.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Bart Van Assche <bvanassche@acm.org>,
+ Bean Huo <beanhuo@micron.com>, Stanley Jhu <stanleyjhu@google.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Amit Kucheria <amitk@kernel.org>,
+ Thara Gopinath <thara.gopinath@gmail.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Georgi Djakov <djakov@kernel.org>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mfd@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, linux-usb@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20261109-halliday-dts-v1-0-289114ab8197@gmail.com>
+ <20261109-halliday-dts-v1-16-289114ab8197@gmail.com>
+ <9dbfc665-089c-45f7-bca2-74caee322885@kernel.org>
+ <20261109085019.1751534-1-lightofmysoul@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20261109085019.1751534-1-lightofmysoul@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -180,57 +138,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-struct resource uses an inclusive end address, so the window size is
-end - start + 1. do_mpam_msc_drv_probe() computed it as end - start,
-which is one byte too small.
+On 09/11/2026 09:50, Stanislav Aleksandrov wrote:
+> On 09/11/2026 09:29, Krzysztof Kozlowski wrote:
+>> Odd license, suggests you copied it.
+>>
+>> You should retain original copyrights as well.
+> 
+> The license is BSD-3-Clause because I used sm8550.dtsi as the template
+> for the node layout. The values come from Qualcomm's downstream
+> anorak.dtsi, which has no license or copyright header. v2 will add the
+> Linaro copyright from sm8550.dtsi. I'll fix the other comments in v2
+> too.
 
-mapped_hwpage_sz is used by the register access bounds checks, which
-have the form "offset + width > mapped_hwpage_sz". With the size one
-byte too small, an access to the last register in the window is
-incorrectly flagged as out of bounds: for a 0x1000 window, a 4-byte
-access at offset 0xFFC (bytes 0xFFC..0xFFF, legal) computes
-0xFFC + 4 = 0x1000 > 0xFFF and falsely warns.
+Sounds good.
 
-Use resource_size() so the size is correct. The ">" bounds checks are
-correct as-is once the size is accurate and are left unchanged.
-
-Fixes: f04046f2577a ("arm_mpam: Add probe/remove for mpam msc driver and kbuild boiler plate")
-Cc: stable@vger.kernel.org
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202609030809.ObirDhR3-lkp@intel.com/
-Signed-off-by: Yin Li <yin.li@oss.qualcomm.com>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-Reviewed-by: Ben Horgan <ben.horgan@arm.com>
-Reviewed-by: Jinjie Ruan <ruanjinjie@huawei.com>
-Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-Reviewed-by: Srivathsa L Rao <srivathsa.rao@oss.qualcomm.com>
----
- drivers/resctrl/mpam_devices.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-index 05f785328dc2..bea231dac7e6 100644
---- a/drivers/resctrl/mpam_devices.c
-+++ b/drivers/resctrl/mpam_devices.c
-@@ -2506,7 +2506,7 @@ static struct mpam_msc *do_mpam_msc_drv_probe(struct platform_device *pdev)
- 			dev_err_once(dev, "Failed to map MSC base address\n");
- 			return ERR_CAST(io);
- 		}
--		msc->mapped_hwpage_sz = msc_res->end - msc_res->start;
-+		msc->mapped_hwpage_sz = resource_size(msc_res);
- 		msc->mapped_hwpage = io;
- 	} else if (msc->iface == MPAM_IFACE_PCC) {
- 		u32 mpam_fb_msc_id;
-
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
