@@ -2,73 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21594606D80B
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:13:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4393A606D837
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:13:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E+OHjaWS;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=TJ5bOWAO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=27RhFiR/;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=Q+P23cMQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZuOsQOHsiS8QPwDnFYQbHYafUjBRSGU2wZy1UicFmfk=; b=E+OHjaWS+TRnXs
-	3AqOIvgWAYZe9yKo2qqynnvYvYduJKfWxtWvLnci+6RK8ZJsjOrc+++Iqdq3KE79tHxQS5F4kGFof
-	eI1g1IAvhhoi9Rs2BXMPCHqqtXVBvn2Unx9jRkqreAXOIfBXR4ehE6AkRZVLWWlx/Ilt/x7Jj5c0A
-	/3fFru75//Og+n0h6LYbHfun8f2MlM7h8TQi60yrgFYkZwNLGDNZtD5X0V+J/xo6lE5vdF7ZOfUIl
-	7IrZWf/okawszqUgfqwQ7yOZNU20f6YoV5HdV2VLwGpcc66kW9ygb96VVohqpUGCdZeXY6zwUF7Y7
-	IOU2zaFp/jHsubkzCw0w==;
+	List-Owner; bh=ElgkdLRGZuyI/zcANKeRh9fMZ2znqsSy1p9YbwRC0uI=; b=27RhFiR/QSnBkg
+	/L6US8zSwA73IjVkWqVdUF9xEgJ3Z8T2wBqCmMNeWqs1PCYl1LrCoMgYomDMJhLWhLChkud5vAPod
+	dyXppNEnD4sWM7D2s+qUtwPQXH78dsjvcoLKL5faQ00lYEl1H559GLcuInnCG8nhxzkcmogq6eTCu
+	DSX2C9ydpRUmIfeNDq7mZYEHUgn+8rTLKEYH1wMK6lAFj+uX+7jRoWZ8n9UWhGh7NL2s37SZS2R9H
+	IVo/hNfLwIYGbI99Zhri8OuIvVeF5FexzkqpDNLRglvMhAYnbhtnUCBpAlHt4gMFYZ0vMdu23ESLw
+	mOa9V+T6X0USrQDzLeyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQ7B-00000000uwD-3cjN;
-	Mon, 09 Nov 2026 14:12:53 +0000
-Received: from mail-dy1-x1331.google.com ([2607:f8b0:4864:20::1331])
+	id 1xQQ7E-00000000uzF-4C5v;
+	Mon, 09 Nov 2026 14:12:57 +0000
+Received: from mail-dl1-x122f.google.com ([2607:f8b0:4864:20::122f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQ77-00000000usK-2F6h
+	id 1xQQ7B-00000000uuy-1gKy
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 14:12:51 +0000
-Received: by mail-dy1-x1331.google.com with SMTP id 5a478bee46e88-37071c0f42aso1749776eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 06:12:49 -0800 (PST)
+	Mon, 09 Nov 2026 14:12:55 +0000
+Received: by mail-dl1-x122f.google.com with SMTP id a92af1059eb24-1b3ada81853so619940c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 06:12:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1794233568; x=1794838368; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1794233572; x=1794838372; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ZuOsQOHsiS8QPwDnFYQbHYafUjBRSGU2wZy1UicFmfk=;
-        b=TJ5bOWAOPaO0/kJArIwvoY4oWo2mTAHQCDChccdV+sbfCfwHcUSjpWZYq+/7dybgKW
-         LKHpxGJZi/Cp3ndsfqgELEMzvtXZm1YGXFbDDy/p+h4uLTv8T9peRdqGOiIneM8W+8J4
-         cz/LZodqHnvZRzR2sJ5Oq2/uBsciYd2R4g/go=
+        bh=ElgkdLRGZuyI/zcANKeRh9fMZ2znqsSy1p9YbwRC0uI=;
+        b=Q+P23cMQuB7VOMoULaG+hOOl1NDgtIM7f0GFc9OJnl2B9RyUnA8KDUtnvufc3iGaVO
+         ALaw4AbO3h/p9fY4akGWdzuYPfRxk6+fCDzISwcB+OwM3Rl5e79uaVdiOsWZlPl+f+YW
+         YYqBzQj7qDFuaY3q+XuligMqpf+x1oXmQiOOI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794233568; x=1794838368;
+        d=1e100.net; s=20260707; t=1794233572; x=1794838372;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=ZuOsQOHsiS8QPwDnFYQbHYafUjBRSGU2wZy1UicFmfk=;
-        b=uV6RQ/dMhDYeydDoxpdc1blmKNFT282s3IjtCJ2m7rHiVii3AT0XUSQiDCfGEEF2hk
-         LHvRD2nKPZWKjJ4HM4kL02vp5+g6yqmH9PlTTcSvm/T28+9pWRh9OVdXtxTJnkrYhVZt
-         3qHRPc+oxSG7FHtbH++Au3VKkwgnU74iheOmBChbi5SA2e/cPnqmfeEdKgoEWFDahilA
-         WMUEJnIeQX88IYN+nGn4sqVElyRwotm7vRuEP8u2oECyQrSixIx6Yi+0fYBKmGegB+mK
-         uEb8Yw/kApsfjjHb+RB4rnNoOVdkmkRy5dFnN8x0Fq9awYzW3dyqnrhwJpjx+1xfhrsG
-         NiKQ==
-X-Forwarded-Encrypted: i=1; AL+hErGCbxznLjMvxb+OwN+/zjMfdCtmO4m6i2VuB9X7QU1ZD27ExOzWIHeSeApwdZMZcJG4MU++qhv3zkkJnAlI03ay@lists.infradead.org
-X-Gm-Message-State: APuU4Z/qpCGTOt6ikULcmb+/55h3dRmIMJkzMfISiRouRj9wLSBp7OFi
-	vlYUNJmekCDdQZqYL3hq2DA/TTYJ1+aimTnzNzS1ELoa1hb/esSOWsqb0XyFXfPDKA==
-X-Gm-Gg: AYBFou1SwgHV6iyYBzA5SIbxDbOVm2vNssICPjKvvavsk6fewzjcyGS2kWMRdJo9wWm
-	eoQHTLDa3KSE8Bp8smJQJSYIWTkpAtce8yg1kLHPArkUr2RMN7QV0TS75IXXS0OSNfO8JsI9JdL
-	S9s6hnRA0gQcsQDUdBOzPcuwpSKOdFCpLpFOoQY6hYRo8FkfSJcoh/2LpzMnvXNJBzXDelctGPT
-	eoR3zrtBFG0aHVEh495yRmzFSvFLvkcYQxXFC/eQTE/a89j7xchOEvSZgzX92zgTVb+Kx3YSqk5
-	uw/UV6ndZsxAguymGBz515OLb4xmIy+4qUbRMXRcqX7zeKxiwO/a05tDEQou+46T0EVcWMxY0SY
-	stzxqadHVTQxU7uiaXknRmoHP31gc1+jlWuuthhuzmIS3XQenQCnn1InRAQEci4Yv6jXlJLfu7m
-	oX26wU6dfkLneo5Kj/3YgBVAHAv3XVTt+cyj7RHaIyn98HQoVVUAwN5jmtmujKf+oEdmvkJg06P
-	cNHOSMiKQ98/E1+z3JxEOtpSg0wUkC4yBd8CfDEJ2WLZ3h/24D6SWzac62qjeIr1p/u0M2E5aKX
-	HE5aaGVOE6RYOPEbF5oxPw3sa2xZj2VMEXW2A3P3Ep0fqvh7imRwpawz7tAt
-X-Received: by 2002:a05:693c:41c7:10b0:368:7c2d:a612 with SMTP id 5a478bee46e88-37336acea27mr4873781eec.10.1794233568342;
-        Mon, 09 Nov 2026 06:12:48 -0800 (PST)
+        bh=ElgkdLRGZuyI/zcANKeRh9fMZ2znqsSy1p9YbwRC0uI=;
+        b=WRxo+R9qMfX8zwPopN5y60sFFpAijVUrv9Vx0aoc/vZ2nVh73LQl3WMaQdVVOHriDE
+         vuOQq/Z075KdJKdia8vQyJSplyzpfjAqlVZ5fqqo1ugkE7r9mFADnBrdMWxJ4U6l33qx
+         J4bD5lVBcC+fg9akEhrTM9MIhtuSytA7WXI3ghncZCXjIl4Q0JAyknySL0ooHkFnhYDv
+         FieeOtf2za1AjbE3OV5aUb6CRLdIUCpI2iA/J2HJmKNZHTPffDD8xekiyj0GRc+x1rSF
+         Alj3icMRMrEwb7AQ9ny+J+KdUGD1ycFNnKBxeFq7BTTln+mTXLMDmq3v6d9ev09rOMtD
+         smfw==
+X-Forwarded-Encrypted: i=1; AL+hErFFy7v8jVDDRaAqo3uJYElxcfn8Xob4pAjIUO17HYyF09eeuyiCVta6DTRxAHJoTHSY2F8vjwf/X4ve5Zv7GQ1t@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+R1H3jD1cy84FN5y173dS35eP4cICyGdSfgINd4HBdPKOQ3vr
+	ee8H9iHBYe5L3cFAtbqzGIEg4r4b7Pab+Sdx2YkFR+woZQaJ9ZQnjpZuwbcImCXZSg==
+X-Gm-Gg: AYBFou0uMm5QUgSpijNkD5ufL8frDUir4ai0zLXvR+/eVayDc6LWpARkDlvZ4UoxaO1
+	s8i6HFYCJpJpAstIn9HN3btWSVY7kly2Hdap9AshCSIt3MiUhL5fpQn2g/twWRlh6a+DG0tWgLm
+	COg/Qnd2Qrp11gIvg/VLX08t33g1Rl6oDS781kUwO8Ig8xfBLaCfMITdKvPc36KoTQIj0Uv0U7l
+	uWj17nD+YyQ/r8gq89zpybckaqnb5oKII94ulZBJhMp9SHT2O8GirHt/0C/PYbnDaLHl0Ft+j8Q
+	b/7sZBFzHxbxHrEVYbTpbUSB+BOS+rP69s8ip9SOn3e4E3akYz2GUaIyVpmBwgvxhFx4duN2573
+	+kwL3nTInv6KGnvghTCsA2tWEi4tcRjqkoW/oldDCSBCcHwE8LfZnmJ5vgA7PgJ33gAo1pPtG1z
+	pjtjSWT0WlBVB9NphPfkVnn8Gm8FqYdCPOCA2KxgdBxedTNQApTZvESrAgPVsxEX0J5DFmqKFb9
+	oUqrAxy+swjDS4kV09C5MUpclw43i8q6hDQEdbvUewCI2xS3WvTRAKHiSkcbhsKLrTaiqWU0ywR
+	8iKCQae0E+t/vOQJccron7nI1sNM54CMETntv2LBv6vZkV+AL3blfxEk4t4b
+X-Received: by 2002:a05:701b:2905:b0:192:74cf:1db2 with SMTP id a92af1059eb24-1b39fe88736mr6517005c88.11.1794233572139;
+        Mon, 09 Nov 2026 06:12:52 -0800 (PST)
 Received: from localhost ([2a00:79e0:203d:7:24d0:a2cf:66c5:ef86])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-372631df629sm13253988eec.1.2026.11.09.06.12.46
+        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-1b37560d95dsm12254569c88.11.2026.11.09.06.12.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2026 06:12:48 -0800 (PST)
+        Mon, 09 Nov 2026 06:12:51 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
@@ -76,9 +76,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 2/5] arm64: dts: mediatek: mt8173-elm: Fix DA9212 compatible, node names and labels
-Date: Mon,  9 Nov 2026 22:12:29 +0800
-Message-ID: <20261109141233.983830-3-wenst@chromium.org>
+Subject: [PATCH 3/5] arm64: dts: mediatek: mt8173-elm: Fix DA9212 regulator names
+Date: Mon,  9 Nov 2026 22:12:30 +0800
+Message-ID: <20261109141233.983830-4-wenst@chromium.org>
 X-Mailer: git-send-email 2.56.0.455.g6c5a503b38-goog
 In-Reply-To: <20261109141233.983830-1-wenst@chromium.org>
 References: <20261109141233.983830-1-wenst@chromium.org>
@@ -86,8 +86,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_061249_606670_7014217D 
-X-CRM114-Status: GOOD (  14.80  )
+X-CRM114-CacheID: sfid-20261109_061253_748784_D400688B 
+X-CRM114-Status: GOOD (  13.85  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,87 +107,41 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The CPU and GPU regulator on Elm and Hana is a DA9212, not a DA9211,
-according to the schematics. The DA9212 has two dual-phase bucks,
-which is what the device tree describes with BUCKA and BUCKB, while
-the DA9211 has a single four-phase buck.
+The default names VBUCKA and VBUCKB don't mean anything in the context
+of the device, and don't match the rail names from the schematics.
 
-Change "da9211" to "da9212" in the compatible string, node names and
-labels to match the actual part. Drop the unused label on the PMIC
-node. While at it, change the PMIC node name to be more generic.
+Use the proper names from the schematics.
 
-The mismatch against the schematics was flagged by an agent. Manually
-tested on a Hana (Telesu) device.
+Manually tested on a Hana (Telesu) device.
 
 Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index dd0373b45b56..be6e6fd7cd36 100644
+index be6e6fd7cd36..c6751adb1c2a 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -171,7 +171,7 @@ &watchdog {
- };
- 
- &mfg_async {
--	domain-supply = <&da9211_vgpu_reg>;
-+	domain-supply = <&da9212_vgpu_reg>;
- };
- 
- &cec {
-@@ -187,12 +187,12 @@ &cpu1 {
- };
- 
- &cpu2 {
--	proc-supply = <&da9211_vcpu_reg>;
-+	proc-supply = <&da9212_vcpu_reg>;
- 	sram-supply = <&mt6397_vsramca7_reg>;
- };
- 
- &cpu3 {
--	proc-supply = <&da9211_vcpu_reg>;
-+	proc-supply = <&da9212_vcpu_reg>;
- 	sram-supply = <&mt6397_vsramca7_reg>;
- };
- 
-@@ -307,13 +307,13 @@ &i2c1 {
- 	clock-frequency = <1500000>;
- 	status = "okay";
- 
--	da9211: da9211@68 {
--		compatible = "dlg,da9211";
-+	regulator@68 {
-+		compatible = "dlg,da9212";
- 		reg = <0x68>;
- 		interrupts-extended = <&pio 15 IRQ_TYPE_LEVEL_LOW>;
+@@ -314,7 +314,7 @@ regulator@68 {
  
  		regulators {
--			da9211_vcpu_reg: BUCKA {
-+			da9212_vcpu_reg: BUCKA {
- 				regulator-name = "VBUCKA";
+ 			da9212_vcpu_reg: BUCKA {
+-				regulator-name = "VBUCKA";
++				regulator-name = "vdvfs1";
  				regulator-min-microvolt = < 700000>;
  				regulator-max-microvolt = <1310000>;
-@@ -325,7 +325,7 @@ da9211_vcpu_reg: BUCKA {
- 							   DA9211_BUCK_MODE_AUTO>;
+ 				regulator-min-microamp = <2000000>;
+@@ -326,7 +326,7 @@ da9212_vcpu_reg: BUCKA {
  			};
  
--			da9211_vgpu_reg: BUCKB {
-+			da9212_vgpu_reg: BUCKB {
- 				regulator-name = "VBUCKB";
+ 			da9212_vgpu_reg: BUCKB {
+-				regulator-name = "VBUCKB";
++				regulator-name = "vgpu";
  				regulator-min-microvolt = < 700000>;
  				regulator-max-microvolt = <1310000>;
-@@ -658,7 +658,7 @@ pins-mux {
- 	};
- 
- 	i2c1_pins_a: i2c1-pins {
--		pins-da9211 {
-+		pins-da9212 {
- 			pinmux = <MT8173_PIN_15_EINT15__FUNC_GPIO15>;
- 			bias-pull-up;
- 		};
+ 				regulator-min-microamp = <2000000>;
 -- 
 2.56.0.455.g6c5a503b38-goog
 
