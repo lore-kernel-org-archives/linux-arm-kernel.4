@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A003606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 20:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827E1606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 20:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3x+qX7/X;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WCR+mA6F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0eHznEsX;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZVfZc6uh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=7miTEOiplQxcmJ88x1q2T7iLbj4kl+6UoeaymDMDFLo=; b=3x+qX7/Xf2ztPC
-	jpTOHw3u7RPe6DXJgymqF/7vAsbqUpau5V2jUg2vYm5r1eCIFb2siTfeWdE89J7MKfqpaRSYYRRs0
-	gCm3OB5VB2P3tsqStDOYywPwglr9kEHkEN7liZJXAjlAgBTmIFymtPg0QTZf/YHE4d/QhN4bPR4GM
-	AXUVA6dTopSkMhbUOPB1V1XgQR5rlusDj+oxxiMELi316RtPCCU5LaZxYiQyumHnLO6lRfKKC0Sje
-	uHFWJpndIgx+eRrBObQFizEFNdf5IbQtKB6JCrnn/TJ1KMwqMdDSfjF1BwshaFFZKTbbqLPwwc9jR
-	gL5ME4ph6uEAYv8xJMQg==;
+	List-Owner; bh=ega1vQ2CDY/HzdEsbyX1IiM/sEcRjuH77QeUKn5VUh0=; b=0eHznEsXjDMB7s
+	2Q9N7guMSSlVGV489HrzkTEkolakV4qJwxn08S+MKrf00lxyQBFZkbYTtUn/sP2yN7SWx5RbuYUrI
+	eSdKiGsKdHqe1OQIS1eDJ9UzcsOP2jqgF38dDRdFK/COiEs5wMILtEutjcHMUscPV3jpS/wNLD3xj
+	Dm8eBoupIi+/INpmVnUqg395AfIEQwX/RFekN99j1kih265bJuvxk6CM7wAhek4IB/N8n8zWFPn9R
+	Fzzt0Pi4fkRxtdkTpENz0z6imXZtYdQSkVh3u+9tuAHiZZLAAikDEdfGj//b3EUcVGDDedesBTJWd
+	u7e9SN8PttL6Fz2691Jg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWJo-00000001gpV-3l1U;
-	Mon, 09 Nov 2026 20:50:20 +0000
+	id 1xQWJy-00000001gs9-0jSy;
+	Mon, 09 Nov 2026 20:50:30 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWJn-00000001got-3GsZ
+	id 1xQWJs-00000001gr8-1yhX
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 20:50:19 +0000
+	Mon, 09 Nov 2026 20:50:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2B9FE4581B;
+	by sea.source.kernel.org (Postfix) with ESMTP id 3CF014582B;
+	Mon,  9 Nov 2026 20:50:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96E5E1F008A1;
 	Mon,  9 Nov 2026 20:50:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F4471F0089F;
-	Mon,  9 Nov 2026 20:50:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794257419;
-	bh=7miTEOiplQxcmJ88x1q2T7iLbj4kl+6UoeaymDMDFLo=;
+	s=k20260515; t=1794257424;
+	bh=ega1vQ2CDY/HzdEsbyX1IiM/sEcRjuH77QeUKn5VUh0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=WCR+mA6FhrXWzBVl/1COK51IUdy8LfFnqMehYmnxGdjBSB/luoY3wOvfhxJP4KH8U
-	 NSgoj3liX65nPulNP3UdtUf3XxOo+HF4tl2Ql7+n0MRTPRKQZBMAFKQ79vfrwSQO++
-	 syunUMGE0glhowcAbxypI1wZfx3ipJrdjio4YOAuYKWcPjquYhjFIfX4CTT/qYzbkY
-	 CeYGGyOgoDHKCLJZBxE+xy2D0PgTZNGFOyviTQqNdqzEabC9t1oMFpUzcisaMG2Esn
-	 fvDEpw9XKNS5wQAgeygD6VfU2WODjW4iMwu/i0J/n+zjLtMuwDhwOklzkCnT5NWqn3
-	 QCeLu42Fmrocw==
+	b=ZVfZc6uhCnWKWT7yjeZaaFliUPH67rtfP9YvS+RAzc9EYIRj5KsdxSljTh+HzP6wN
+	 8oT7BwTCgfwxyUtJvMoWBchM1IQeo/3F1Ji7HihLhGlluo2cmJw9wv4iXiZcQYRDxs
+	 4KEt8+gClZDhjzai9o8bNZ93LD+COKQyj/cBj6fwqiEt2/936uUf6DjxsEpcK9zrRs
+	 BuVPRehYgu5dAwqWvlPg3JZtp6pIXLvfAqHMCS2QmBZX6suzqk9ZAaKs7xiFs1cmjz
+	 ZsyYa9n6o2neoiBspLFrUY/+BdOfnljqDS3l/I2XbAel3kg913mXuMGPpuqJspZRiI
+	 yf5taFtq85QJA==
 From: Joshua Crofts <crofts@kernel.org>
-Date: Mon, 09 Nov 2026 21:50:02 +0100
-Subject: [PATCH 1/6] i2c: cadence: remove redundant
+Date: Mon, 09 Nov 2026 21:50:03 +0100
+Subject: [PATCH 2/6] i2c: img-scb: remove redundant
  pm_runtime_dont_use_autosuspend() call
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-i2c-remove-dont-use-autosuspend-v1-1-49a08b8daf36@kernel.org>
+Message-Id: <20261109-i2c-remove-dont-use-autosuspend-v1-2-49a08b8daf36@kernel.org>
 References: <20261109-i2c-remove-dont-use-autosuspend-v1-0-49a08b8daf36@kernel.org>
 In-Reply-To: <20261109-i2c-remove-dont-use-autosuspend-v1-0-49a08b8daf36@kernel.org>
 To: Michal Simek <michal.simek@amd.com>, Andi Shyti <andi.shyti@kernel.org>, 
@@ -68,11 +68,11 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
  linux-renesas-soc@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
  Joshua Crofts <crofts@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794257409; l=889;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794257409; l=849;
  i=crofts@kernel.org; s=20261015; h=from:subject:message-id;
- bh=x0cVAUy8IYjp+jUMgpdBKfb2DOQoqoodKMXtnZKYq4A=;
- b=Jnfhon4DZRhrhz8foy+27RAp2SH+92NVbHheQRsorpw5srsM50CwbNsPxenkwav2DT07DMMxI
- Bv1lWNDJp4aDrvZXLh5zIU6+LnAkp8IffMOZPXZc5eEkOVKIIL1KGc0
+ bh=NodHhw1ykeg2hVN9scG0KViJ0ETpgpTWRaROalsumsk=;
+ b=MgGri77pJ3gRjcUCX0+nBVvyiHYhN+Y4cV6mXpDSwFGS8nu0ny/pA3mgQKzpT5/fXEC79dYYI
+ zkkfFeOPVTZDiSkoQL6V98YCp1SkK/ASR3511i9DsoEHzhjwhCh2azM
 X-Developer-Key: i=crofts@kernel.org; a=ed25519;
  pk=RTDOoVwgeL4oFdASj9U+cxJuIjXuXk73zkjnGOJKbEo=
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -101,21 +101,21 @@ Remove the redundant function call.
 
 Signed-off-by: Joshua Crofts <crofts@kernel.org>
 ---
- drivers/i2c/busses/i2c-cadence.c | 1 -
+ drivers/i2c/busses/i2c-img-scb.c | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/drivers/i2c/busses/i2c-cadence.c b/drivers/i2c/busses/i2c-cadence.c
-index 0c6887da47d1..8e65ea474a84 100644
---- a/drivers/i2c/busses/i2c-cadence.c
-+++ b/drivers/i2c/busses/i2c-cadence.c
-@@ -1628,7 +1628,6 @@ static void cdns_i2c_remove(struct platform_device *pdev)
- 
+diff --git a/drivers/i2c/busses/i2c-img-scb.c b/drivers/i2c/busses/i2c-img-scb.c
+index 9d2ee449a40b..9b7142bf0059 100644
+--- a/drivers/i2c/busses/i2c-img-scb.c
++++ b/drivers/i2c/busses/i2c-img-scb.c
+@@ -1403,7 +1403,6 @@ static int img_i2c_probe(struct platform_device *pdev)
+ 	if (!pm_runtime_enabled(&pdev->dev))
+ 		img_i2c_runtime_suspend(&pdev->dev);
  	pm_runtime_disable(&pdev->dev);
- 	pm_runtime_set_suspended(&pdev->dev);
 -	pm_runtime_dont_use_autosuspend(&pdev->dev);
+ 	return ret;
+ }
  
- 	i2c_del_adapter(&id->adap);
- 	clk_notifier_unregister(id->clk, &id->clk_rate_change_nb);
 
 -- 
 2.56.0
