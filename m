@@ -2,83 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6382D6083612
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BF96082BFD
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:01:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oAokUMPE;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KyOdeZkA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vHaZvhq9;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Y6QGzbK4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=x8+hwW/5zTCinXQlt6chk8M/+naLfTi9oCAtj9giEx8=; b=oAokUMPEFkIOqQP/lA7fkWezdm
-	3hCVjzT7equ8eNHDDTepEYOsiKbFklRLL8vnpOkt25PEHk4I/uIKehVFUDniD83tOmq03fGZJV+BI
-	6wwL2cMuydMhJATSWekRNTHSvh/MlHUunP3NEeX2lK9OiH2k5FhDj+F5FPAWYci39oLh9XB86Yggr
-	g9pMd/FDuEvk0VBii4GFj5AaTOIeA0+gAtDuprrsuAJQgr1AB/ZtmyVjtAG1yNVW2MeVhysl6lirH
-	8KGZ2zQa8T1Wee4xxGORSvDgN7idohv8cAA03a77YTLzHCKf2w9J6oedOhWjrgy4RAY4dPTEVX5DD
-	yPRrlVnw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=BWpLaVBRkOlQWYeoX9SPxGyEXeXPe7MtwkGKCwhz/ks=; b=vHaZvhq91Y9BRv
+	DvYBXprPeIZy/TGvkD2PjqP+6iAtAWH/+WrAqOMQbKJVe5S3EU/lRdTJNurBWpI8EQ6ScaFTEE6X7
+	2iXaM9DA5VFRLq0XWA74PoK7bk8/FufwY2GjpD+HDtossmOgqE0g1SNa3sN2j5PcC3GKnOQfAA+0T
+	77yjPFpn/rXGn0Vlu+DzgxvErAC9Jjb0NIc/KXVWUG+9Sh0YmIiDb5c+DvvnFoayhJGji0tnKRBg6
+	4IIST8kqVQcN/f4pjwZ8B235POBNhVz+HYT6m+IpTgYh0FfexdTL1OSmS2yQunolvem+diHckAhqR
+	A3NbkySYKXvgjGO7pNHw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRmr-000000016vr-0ql1;
-	Mon, 09 Nov 2026 16:00:01 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRmp-000000016vL-2MsU
+	id 1xQRna-000000017FY-0YpR;
+	Mon, 09 Nov 2026 16:00:46 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQRnU-000000017B3-2gyr
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 15:59:59 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 219F745A1C
-	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 15:59:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 075A81F008A7
-	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 15:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794239999;
-	bh=x8+hwW/5zTCinXQlt6chk8M/+naLfTi9oCAtj9giEx8=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=KyOdeZkA0xw/oDMdNjVIUrd6YB1WGQgFRJrMI1zKTl34GQK3Iz5RjyJdnt6RSHcYP
-	 ckkpWeijwjC5d9JGTcKCPKFBdFq1DmsHPGfMGuJdJMG2TMVEKo4AYkfZeB0p6nPhpm
-	 3JD3YyzU39scsGUV7/GoNmyp/X7wDiwsZ30O223vVfkFFacqyni8pWrhXYLuIeDQmR
-	 Hesn6xvv3NhELHTDK84pS/P+1EWlWGNeSrEExs/qZv05asTkUqX7d61S9Mi+A7VoZu
-	 Yk2/dr/6lGMgp95FFUhBKzbyQ1548YaTuhz3MmafJm5bpP60/Wa9bgELEnzWSjtGcz
-	 qREr+Mt3dKmQg==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3adf87fc0c6so7113951fa.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 07:59:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErG26g8karBuZRrcYMGzBOLVS9/yAnAO/EwQJ03MH7d7YulUev7nG/t8f2Nc5Hct4GZKvP0l8QiIz5bQobULggVG@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Yioagr4N/aNzN8xnI1DmVNdP+VtrUmyETGuWShH/Z1WnMU/IW
-	V/+4SqKpkMhwMn1oimj6ChC43gZEHQUcTWEfjjgB61RioBH+X0QQbtHdhAhmGMCa6tboLXs1eWQ
-	sBJUGh2oCyzwyHTQqvjDOJI8EpmcMHdk=
-X-Received: by 2002:a05:651c:e17:b0:3a8:7b84:be96 with SMTP id
- 38308e7fff4ca-3adfa482a5cmr11743561fa.27.1794239997190; Mon, 09 Nov 2026
- 07:59:57 -0800 (PST)
+	Mon, 09 Nov 2026 16:00:43 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1FD351516;
+	Mon,  9 Nov 2026 08:00:37 -0800 (PST)
+Received: from localhost.localdomain (e123572-lin.cambridge.arm.com [10.2.208.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 42CD23F632;
+	Mon,  9 Nov 2026 08:00:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794240040; bh=echuUgtLkD2a7BAD+7hYclWLN8NT3mDQAmCpjSBvsFk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=Y6QGzbK49+REvpkxtERwwRHEONKDKFghwySdcsjRjdlI517MmjfTwR3s6m0QobYBa
+	 3sn/jaGFagkhKCpOG1rpEsWtLz8+b48zchh/AEr560CrvtaBdlQ6wiNUmHQvX3sRzZ
+	 twgysJBNhnxsNOoKzScZ0QEdN3mSvpMohb/PcPNc=
+From: Kevin Brodsky <kevin.brodsky@arm.com>
+Date: Mon, 09 Nov 2026 15:58:26 +0000
+Subject: [PATCH RFC v10 01/22] mm: Introduce kpkeys
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261009-a733-clk-v6-0-ae8178fce7e8@pigmoral.tech> <20261009-a733-clk-v6-5-ae8178fce7e8@pigmoral.tech>
-In-Reply-To: <20261009-a733-clk-v6-5-ae8178fce7e8@pigmoral.tech>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 10 Nov 2026 00:59:44 +0900
-X-Gmail-Original-Message-ID: <CAGb2v66PV8nKSoU+4qA6Z6AS62V0xkuPBjKSy=jUf7Oh0=bv6w@mail.gmail.com>
-X-Gm-Features: AclHuK9QXxwYcsEJa5-pvHGGLGfB5fBZTAKpVeZDXOjgDPABVDtQI4CTaoQK7OI
-Message-ID: <CAGb2v66PV8nKSoU+4qA6Z6AS62V0xkuPBjKSy=jUf7Oh0=bv6w@mail.gmail.com>
-Subject: Re: [PATCH v6 5/8] clk: sunxi-ng: a733: Add bus clocks support
-To: Junhui Liu <junhui.liu@pigmoral.tech>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Richard Cochran <richardcochran@gmail.com>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, netdev@vger.kernel.org, 
-	Jerome Brunet <jbrunet@baylibre.com>, Enzo Adriano <enzo.adriano.code@gmail.com>, 
-	Andre Przywara <andre.przywara@arm.com>, Norman Herms <dockseed@proton.me>, 
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261109-kpkeys-v10-1-aa6c4d9603bc@arm.com>
+References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
+In-Reply-To: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
+To: linux-hardening@vger.kernel.org
+Cc: Kevin Brodsky <kevin.brodsky@arm.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Ard Biesheuvel <ardb+git@google.com>, Andy Lutomirski <luto@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, 
+ "David Hildenbrand (Arm)" <david@kernel.org>, Jann Horn <jannh@google.com>, 
+ Jeff Xu <jeffxu@chromium.org>, Joey Gouly <joey.gouly@arm.com>, 
+ Kees Cook <kees@kernel.org>, Linu Cherian <linu.cherian@arm.com>, 
+ Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>, 
+ Mark Brown <broonie@kernel.org>, Matthew Wilcox <willy@infradead.org>, 
+ Maxwell Bland <mbland@motorola.com>, 
+ "Mike Rapoport (IBM)" <rppt@kernel.org>, 
+ Peter Zijlstra <peterz@infradead.org>, 
+ Pierre Langlois <pierre.langlois@arm.com>, 
+ =?utf-8?q?Pierre-Cl=C3=A9ment_Tosi?= <ptosi@google.com>, 
+ Quentin Perret <qperret@google.com>, 
+ Rick Edgecombe <rick.p.edgecombe@intel.com>, 
+ Ryan Roberts <ryan.roberts@arm.com>, Vlastimil Babka <vbabka@kernel.org>, 
+ Will Deacon <will@kernel.org>, Yang Shi <yang@os.amperecomputing.com>, 
+ Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org, x86@kernel.org, 
+ Ira Weiny <iweiny@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=6214;
+ i=kevin.brodsky@arm.com; s=20260427; h=from:subject:message-id;
+ bh=echuUgtLkD2a7BAD+7hYclWLN8NT3mDQAmCpjSBvsFk=;
+ b=M7uxGf8m8LgUdUIOChPJY5rfo9p8Svpg9/S7sTLYMAlbmUhfhg1wFRDmHdZYq6jO29fCVU69I
+ eijdTIw94XWBsyMBWozP3mIqOnAkhHm0jYlOLiP4EQdKhP9fTFoezeO
+X-Developer-Key: i=kevin.brodsky@arm.com; a=ed25519;
+ pk=N2QG+eJKrvkNovwhhwJhnJ4+ScVfsGCHldmqLfcMTFs=
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_080040_927379_E4C9E238 
+X-CRM114-Status: GOOD (  23.01  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,70 +95,215 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Oct 10, 2026 at 12:54=E2=80=AFAM Junhui Liu <junhui.liu@pigmoral.te=
-ch> wrote:
->
-> Add the essential bus clocks in the Allwinner A733 CCU, including AHB,
-> APB0, APB1, APB_UART, and MBUS. These buses are necessary for many other
-> functional modules. Additional clocks such as trace and gic are also
-> added as they fall within the register address range of the bus clocks,
-> even though they are not strictly bus clocks.
->
-> The MBUS clock is marked as critical to ensure the memory bus remains
-> operational at all times. And the hardware requires an update bit
-> (bit 27) to be set so that the configuration takes effect and the
-> updated parameters can be correctly read back for the MBUS clock.
->
-> The GIC clock is also marked as critical. The bootloader may leave the
-> GIC running on a PLL parent, and disabling that PLL during
-> clk_disable_unused would hang the interrupt controller and the system.
->
-> Tested-by: Jerome Brunet <jbrunet@baylibre.com>
-> Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
-> Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
-> ---
->  drivers/clk/sunxi-ng/ccu-sun60i-a733.c | 108 +++++++++++++++++++++++++++=
-++++++
->  1 file changed, 108 insertions(+)
->
-> diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c b/drivers/clk/sunxi-n=
-g/ccu-sun60i-a733.c
-> index 3368801053ec..371c4297c3ab 100644
-> --- a/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
-> +++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733.c
+kpkeys is a simple framework to enable the use of protection keys
+(pkeys) to harden the kernel itself. This patch introduces the basic
+API in <linux/kpkeys.h>: a pair of functions to enter/leave a kpkeys
+context, and macros to define guard objects.
 
-[...]
+Each kpkeys context specifies permissions for the pkeys managed by the
+framework. kpkeys_enter_context() applies those permissions and
+returns a state for kpkeys_leave_context() to restore.
 
-> +static SUNXI_CCU_M_DATA_WITH_MUX_GATE(gic_clk, "gic", gic_parents, 0x560=
-,
-> +                                     0, 5,     /* M */
-> +                                     24, 3,    /* mux */
-> +                                     BIT(31),  /* gate */
-> +                                     CLK_IS_CRITICAL);
-> +
-> +static const struct clk_parent_data mbus_parents[] =3D {
-> +       { .hw =3D &sys_24M_clk.hw },
-> +       { .hw =3D &pll_periph1_600M_clk.hw },
-> +       { .hw =3D &pll_ddr_clk.common.hw },
-> +       { .hw =3D &pll_periph1_480M_clk.common.hw },
-> +       { .hw =3D &pll_periph1_400M_clk.hw },
-> +       { .hw =3D &pll_npu_clk.common.hw },
-> +};
+The saved state is represented by struct kpkeys_state, with one
+field for the arch state (typically the saved pkeys register value).
+The other field is used to skip the restore step in case we were
+already in the context passed to enter_context().
 
-Don't know why I didn't see this earlier, but my LLM agent flagged this.
+Support for kpkeys must be indicated by selecting ARCH_HAS_KPKEYS.
+The architecture must then provide:
 
-Based on the manual (1.0) and BSP sources, the periph PLL sources are
-from periph0, not periph1.
+* struct arch_kpkeys_state in <asm/kpkeys_types.h>
 
-Once fixed, my review stands.
+* arch_kpkeys_enter_context() in <asm/kpkeys.h>:
+  if needed, sets the new state and saves the original one in
+  arch_kpkeys_state; reports whether the context was actually
+  changed
+
+* arch_kpkeys_leave_context() in <asm/kpkeys.h>:
+  restores the original state
+
+* arch_supports_kpkeys() in <asm/kpkeys.h>:
+  returns whether the system has an appropriate hardware feature to
+  support kpkeys
+
+To start with, only KPKEYS_CTX_DEFAULT is available, granting
+RW access to the default pkey (0).
+
+Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
+---
+ include/linux/kpkeys.h       | 107 +++++++++++++++++++++++++++++++++++++++++++
+ include/linux/kpkeys_types.h |  25 ++++++++++
+ mm/Kconfig                   |   2 +
+ 3 files changed, 134 insertions(+)
+
+diff --git a/include/linux/kpkeys.h b/include/linux/kpkeys.h
+new file mode 100644
+index 000000000000..69ec4808d850
+--- /dev/null
++++ b/include/linux/kpkeys.h
+@@ -0,0 +1,107 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef _LINUX_KPKEYS_H
++#define _LINUX_KPKEYS_H
++
++#include <linux/bug.h>
++#include <linux/cleanup.h>
++#include <linux/kpkeys_types.h>
++
++/**
++ * KPKEYS_GUARD_NOOP() - helper to define a guard type that does nothing
++ * @name: the name of the guard type
++ *
++ * Define a guard type that does nothing, useful to match a real guard type
++ * that is defined under an #ifdef.
++ */
++#define KPKEYS_GUARD_NOOP(name)						\
++	__DEFINE_CLASS_IS_CONDITIONAL(name, false);			\
++	DEFINE_CLASS(name, bool, (void)_T, false, void);		\
++	static inline void *class_##name##_lock_ptr(bool *_T)		\
++	{ return _T; }
++
++#ifdef CONFIG_ARCH_HAS_KPKEYS
++
++#include <asm/kpkeys.h>
++
++/**
++ * KPKEYS_GUARD_COND() - helper to define a guard type that conditionally
++ *                       switches to a given kpkeys context
++ * @name: the name of the guard type
++ * @ctx: the kpkeys context to switch to
++ * @cond: an expression that is evaluated as condition
++ *
++ * Define a guard type that switches to @ctx if @cond evaluates to true,
++ * and does nothing otherwise.
++ */
++#define KPKEYS_GUARD_COND(name, ctx, cond)				\
++	__DEFINE_CLASS_IS_CONDITIONAL(name, false);			\
++	DEFINE_CLASS(name, struct kpkeys_state,				\
++		     kpkeys_leave_context(&_T),				\
++		     (cond) ? kpkeys_enter_context(ctx) :		\
++			      (struct kpkeys_state) {}, void);		\
++	static inline							\
++	void *class_##name##_lock_ptr(struct kpkeys_state *_T)		\
++	{ return _T; }
++
++/**
++ * KPKEYS_GUARD() - helper to define a guard type that switches to a given
++ *                  kpkeys context if kpkeys are supported
++ * @name: the name of the guard type
++ * @ctx: the kpkeys context to switch to
++ *
++ * Define a guard type that switches to @ctx if the system supports kpkeys.
++ */
++#define KPKEYS_GUARD(name, ctx)						\
++	KPKEYS_GUARD_COND(name, ctx, kpkeys_supported())
++
++/**
++ * kpkeys_enter_context() - enter a kpkeys context
++ * @ctx: the context to switch to
++ *
++ * Enters the specified kpkeys context. @ctx must be a compile-time constant.
++ *
++ * Return: state to be passed to kpkeys_leave_context().
++ */
++static __always_inline
++struct kpkeys_state kpkeys_enter_context(enum kpkeys_ctx ctx)
++{
++	struct kpkeys_state state = {};
++
++	BUILD_BUG_ON_MSG(!__builtin_constant_p(ctx),
++			 "kpkeys_enter_context() only takes constant values");
++	BUILD_BUG_ON_MSG(ctx < 0 || ctx >= KPKEYS_CTX_COUNT,
++			 "Invalid value passed to kpkeys_enter_context()");
++
++	state.entered_context = arch_kpkeys_enter_context(ctx, &state.arch_state);
++	return state;
++}
++
++/**
++ * kpkeys_leave_context() - leave a kpkeys context
++ * @state: state returned by kpkeys_enter_context()
++ *
++ * Restores the state saved when entering a kpkeys context. If no context was
++ * entered, this function does nothing.
++ */
++static __always_inline
++void kpkeys_leave_context(const struct kpkeys_state *state)
++{
++	if (state->entered_context)
++		arch_kpkeys_leave_context(&state->arch_state);
++}
++
++static inline bool kpkeys_supported(void)
++{
++	return arch_supports_kpkeys();
++}
++
++#else /* CONFIG_ARCH_HAS_KPKEYS */
++
++static inline bool kpkeys_supported(void)
++{
++	return false;
++}
++
++#endif /* CONFIG_ARCH_HAS_KPKEYS */
++
++#endif /* _LINUX_KPKEYS_H */
+diff --git a/include/linux/kpkeys_types.h b/include/linux/kpkeys_types.h
+new file mode 100644
+index 000000000000..9de59092e9c3
+--- /dev/null
++++ b/include/linux/kpkeys_types.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef _LINUX_KPKEYS_TYPES_H
++#define _LINUX_KPKEYS_TYPES_H
++
++#include <linux/types.h>
++
++#ifdef CONFIG_ARCH_HAS_KPKEYS
++#include <asm/kpkeys_types.h>
++#endif
++
++#if defined(CONFIG_ARCH_HAS_KPKEYS) && !defined(__ASSEMBLY__)
++
++enum kpkeys_ctx {
++	KPKEYS_CTX_DEFAULT = 0,
++	KPKEYS_CTX_COUNT,
++};
++
++struct kpkeys_state {
++	bool entered_context;
++	struct arch_kpkeys_state arch_state;
++};
++
++#endif /* CONFIG_ARCH_HAS_KPKEYS && !__ASSEMBLY__ */
++
++#endif /* _LINUX_KPKEYS_TYPES_H */
+diff --git a/mm/Kconfig b/mm/Kconfig
+index afff1b25b543..4635628de622 100644
+--- a/mm/Kconfig
++++ b/mm/Kconfig
+@@ -1265,6 +1265,8 @@ config ARCH_USES_HIGH_VMA_FLAGS
+ 	bool
+ config ARCH_HAS_PKEYS
+ 	bool
++config ARCH_HAS_KPKEYS
++	bool
+ 
+ config ARCH_USES_PG_ARCH_2
+ 	bool
+
+-- 
+2.56.0
+
 
