@@ -2,62 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D010A606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:51:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA3B606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c17mf7HW;
-	dkim=pass (2048-bit key) header.d=picomail.one header.i=@picomail.one header.a=rsa-sha256 header.s=mail header.b=gHpbuhBN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mRtyAlpE;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aOf0s6xz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cXbJk2INOtDbIQpp5ZPiMsPF5rN/iKWVctoi+2geGYo=; b=c17mf7HWzQCU0RRkBIvXLoQJsB
-	zfkvR51t2+zFJsNUkab8p0jPZaE+nljgegfCHnEtheBbeN7D4FUKDU5M6uwcmtFovcKUMQfPC7DJR
-	4dFxy9zzrFIZyacUfnhNQGaR1pDwYNKLQcQcWfxDjKddmefoOYS0UJMKWJcvJVdl5YtzYcM9y7pfJ
-	KZCkvIk96v0f7CG8UCNoTjIIrXIJTYYE2TxIAE3ViN/nIZ0J/0jUQw6wQ+XKJgm3UyUzStDuVS48f
-	hLvgujmEnInEqXe8YEyNqO7dbP0/IQIdARNNFqxdPyl81BqQGPeO7OjDT3liLDDTxN/WGjsx+cOmj
-	LxdesRJg==;
+	bh=pM4LipmI99ts7wfLn3qsR8+LD0Ifz71Ahhr5FYGBQ4s=; b=mRtyAlpEJJnzBVVYwqI0AQXZTz
+	7KztAt2hx+VDE0rONDfawTX8ytWyRVibtqXejV3MfA6rlKmNJ8MrlkdQoimbNPy0XiaXq3fYQbQFj
+	SI/P8KTKILddI1bizYCfveWgQIB0r4bIKFmIYWaiQaX+mZsnDg8rWa9TorgUdDfvLApaG7gJ5wRhK
+	bLKTO3iwELS0baxTcM7c1wIbNUYcijRI9U1/3mShiJ6Opz1KG+1wUQjquzvTz2762N3h/umH01+9x
+	We3sYf0bRv2Amf2ZGMM0sLXVBDg8/teyx57R1+tGFSSHQW+oVvx6DtnINHx1jZhfL1ERY417muPvV
+	Z/Clen2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQhz-00000000zB6-22su;
-	Mon, 09 Nov 2026 14:50:55 +0000
-Received: from mail.picomail.one ([2a13:7e80:0:3d1::33])
+	id 1xQQiJ-00000000zHM-4A89;
+	Mon, 09 Nov 2026 14:51:15 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQhx-00000000z9x-1LTt;
-	Mon, 09 Nov 2026 14:50:54 +0000
-From: Jonathan Schmid <kernel@picomail.one>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=picomail.one;
-	s=mail; t=1794235843;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=cXbJk2INOtDbIQpp5ZPiMsPF5rN/iKWVctoi+2geGYo=;
-	b=gHpbuhBNgY/RTmYVoFBqFHZ+iIeeulOWb/8hr/zhuVyid+3RigOTD/xGsnBu6M+YXy3+8y
-	4U+YjLn5S2JxWWrHuPDZFD5+YuxQL+5nNLaUWm7mv2Ao2jDlPcGGzdL1uGkZRCaMlmMz8M
-	D5XZm7Y6lMnTc/vs4CjR8r0KGdhNP9TsAdErFZWcR/rttC4VtdAPN1/Rdhyuz9UWdqhMkP
-	SvLihVgkBvwRpgsZHJBPUFIK0aZCdt8EDshpPOJMtPrhCYewJFIMXn3bzgbS2zazTJa7Bf
-	vBoZT0ZHYXyZJHqQKkZe28SEd4SiMLQ1p13r9M9P/5/eALWbKJ/pEiq8z4uE/w==
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Detlev Casanova <detlev.casanova@collabora.com>,
-	linux-rockchip@lists.infradead.org,
+	id 1xQQiI-00000000zGz-3wiw;
+	Mon, 09 Nov 2026 14:51:14 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 13E6D60DF8;
+	Mon,  9 Nov 2026 14:51:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E3DF1F0089F;
+	Mon,  9 Nov 2026 14:51:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794235873;
+	bh=pM4LipmI99ts7wfLn3qsR8+LD0Ifz71Ahhr5FYGBQ4s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=aOf0s6xzsne0Ce67KvbSWi7+yFLYuu1UzCT0NV+sxtYUffj01d8FsQNIe51ES0kRb
+	 LOJ4pdgQq/lgMjCqu5tI0L29yl1+Qgn5Mrvhat02h1C20iJ4FvTqg8lQrKdSILLt7T
+	 WCj1uKdtbPgBeFSKKPshOCIhtTntUQ7HeMyqvfC1E7/Z6irjzK8ztlQkC/8Qrk2bkD
+	 clTQSOvYjj6C91uMNFJ8jtQfMAykBfYua4hjI6QRJcwLUbp3EwWuvKsGGZvhclkV79
+	 QRCxIEWJ8Mdm0YdmdvZ2t5cWjrKz14AYMh8WevL9vinjtueLthPC9rnqJfdCO3/l+x
+	 v+CcpGxp0V/Gw==
+Date: Mon, 9 Nov 2026 08:51:10 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ian Rogers <irogers@google.com>
+Cc: Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+	bcm-kernel-feedback-list@broadcom.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jonathan Schmid <kernel@picomail.one>,
-	stable@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Pull down the eMMC data strobe on RK3576
-Date: Mon,  9 Nov 2026 15:50:22 +0100
-Message-ID: <20261109145022.75261-1-kernel@picomail.one>
+	linux-rpi-kernel@lists.infradead.org,
+	Dom Cobley <popcornmix@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Uwe Kleine-Koenig <u.kleine-koenig@baylibre.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Randy Dunlap <rdunlap@infradead.org>,
+	linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org,
+	devicetree@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>
+Subject: Re: [PATCH v19 1/3] dt-bindings: perf: Add Broadcom Raspberry Pi AXI
+ PMU definition
+Message-ID: <179423587020.3133545.6594248101575070050.robh@kernel.org>
+References: <20261109080126.417161-1-irogers@google.com>
+ <20261109080126.417161-2-irogers@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_065053_508910_E6787A5F 
-X-CRM114-Status: GOOD (  13.08  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261109080126.417161-2-irogers@google.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,49 +88,25 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The eMMC data strobe (DS) is only driven by the card while it sends data
-or the CRC status token; in between, the card releases the line. RK3576
-configures emmc_strb with pcfg_pull_none, so DS floats between
-transfers.
 
-In HS400 the host samples the CRC status token that follows each written
-block with DS. With the floating line it misreads the token now and
-then: the write ends with a data CRC error and is retried. Nothing is
-logged and the data ends up intact, but the errors show up in the
-controller's err_stats in debugfs, and write throughput drops.
+On Mon, 09 Nov 2026 00:01:24 -0800, Ian Rogers wrote:
+> Add device tree bindings for the Broadcom Raspberry Pi AXI PMU block
+> found on BCM2835, BCM2711, and BCM2712 SoCs.
+> 
+> The hardware exposes two MMIO register blocks: the primary monitor
+> evaluates the System fabric and the secondary monitor evaluates the
+> VideoCore VPU fabric.
+> 
+> Co-developed-by: Dom Cobley <popcornmix@gmail.com>
+> Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+> Signed-off-by: Ian Rogers <irogers@google.com>
+> ---
+>  .../bindings/perf/brcm,bcm2835-axiperf.yaml   | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/brcm,bcm2835-axiperf.yaml
+> 
 
-On a board with RK3576S and a 64 GB eMMC 5.1 in HS400 enhanced strobe
-mode at 200 MHz, mainline shows about one data CRC error per 16 MiB
-written (1123 over 18 GiB) and writes at about 50 MB/s. Changing only
-the strobe pin from pull-none to pull-down at runtime gives 0 errors
-over 15 GiB written and about 176 MB/s; the drive strength and the pull
-of the clock pin made no difference.
-
-Pull-down is the reset value of the pad, which the vendor kernel keeps
-(its eMMC node has no pinctrl), and RK3588 already uses pcfg_pull_down
-for its eMMC data strobe.
-
-Fixes: 57b1ce903966 ("arm64: dts: rockchip: Add rk3576 SoC base DT")
-Cc: stable@vger.kernel.org
-Signed-off-by: Jonathan Schmid <kernel@picomail.one>
----
- arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
-index 98c9f8013..2ce5e1bfd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-pinctrl.dtsi
-@@ -613,7 +613,7 @@ emmc_cmd: emmc-cmd {
- 		emmc_strb: emmc-strb {
- 			rockchip,pins =
- 				/* emmc_strb */
--				<1 RK_PB2 1 &pcfg_pull_none>;
-+				<1 RK_PB2 1 &pcfg_pull_down>;
- 		};
- 	};
- 
--- 
-2.55.0
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
