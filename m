@@ -2,105 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B6F606D809
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:44:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF80B606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eT2RSrfX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dMBxRQI0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tcbO0c5o;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=bPIAGUus
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fsb5m8uyyKxFLJlwAnbap8+GD4wIrFORIE3SZs3ZMVo=; b=eT2RSrfXIS1U+juGQoV+f9MnaH
-	sTK2G7mxfo44cJzG89X7n8vsR2RVai4XhK/m/czg3isLaBxhLTT12gd+StYhMoukhfXiytB5D4PRc
-	PymWlAOaEUP6ZkqVy2q4ZiMcL9vebkTMuwpuwGciAwfXz0VilXLTM8ds3gzadHL4n4Cxy6LmWoOF3
-	vbxcrSena+MlMZiwDi9DWtaSXXXHjlVb9QWVZVPe4vz06lUo91pRt1wD2lOANvaaV5e5EhB8ktgmw
-	ufpxhmA5S1S/wn0vEO7EmNGxZUX+PHa7LSmj1XCLZ0emsLNa/RxELluLXu6yx3q0nsvbOLKNF0t9i
-	uTyi3W1g==;
+	bh=IrVeQKBGEQiIhXPASB7aO1B/hnuopAlb12g77nEvd+E=; b=tcbO0c5ozeJ+flvr4xxH8qCt+V
+	1bNVjACktvvaunQ7c8mBUNadG7yrJw09N2uqg7EksrHqGh1ZGqrel+6xJx+fFtwmu2+Fb4glJ8znK
+	5E6RSzw5vitvGibY2/ABnprMsOH0K8xsX/YRQkCK7MqIPovh1dbb+zUxO/JZklds2L3kusSUsJKmT
+	kpJ32n/0s2Aq0BIhRny/CUCsF+JJPBr8NY+TVONLuv7WPIuW0F2Md861keZmI6ESBkudWpuEs+6wz
+	zbOXHjJCZc8DWB1PUjaju9mIP1yv9UMd9++e34sWlWFd7wfzKDJpC9OZ0PVr+oTqkO4E3N0wt3Wnu
+	45/NEQRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQc3-00000000y5w-1xkQ;
-	Mon, 09 Nov 2026 14:44:47 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQQgk-00000000yyk-124v;
+	Mon, 09 Nov 2026 14:49:38 +0000
+Received: from mail-pj1-x102d.google.com ([2607:f8b0:4864:20::102d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQc1-00000000y4x-2hWn;
-	Mon, 09 Nov 2026 14:44:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B855F61806;
-	Mon,  9 Nov 2026 14:44:44 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794235484;
-	b=yhjrbbsh2duDWcroTpZpqxGrJwLlHaQziuooKgtaCJmXPmagxQkrtZWrZwXsVnS60Elw
-	 F24aArwEq4T7NgszDPixHJtLl2dE0Ai/cAI5zZR85D4dpOd64EqV4lVjvlVmylP7QZizU
-	 5DY/vgpIHGEsPEl0SAxaUeDFr1NRpyvSShs3BOiMZACkcZrqAHN1H7SMRIkaNyA2jKySl
-	 g5/76fg498B4erCCQtlIkl4HJ2go/o0urNn6DjiMLMl0JY38/f8wNEL/AnWgYbjdIPWDB
-	 YGluDUChBafY5RbQB7pAWv1REA+Qb2EoU0Vn7E4YQMsRE64QIy1iYPvuKq09jl+H2OQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794235484;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=fsb5m8uyyKxFLJlwAnbap8+GD4wIrFORIE3SZs3ZMVo=;
-	b=wjemTBBjOS2RyBSz4sgKIfGQ/s5qQotb8JR0ruUdPP9LzPujivfmYu6xKLDJksaGelun
-	 y0WPFcS+NAA09CGInd0VHcsYLahd1/hAXHKN3/WOLCMc5G5YvpMBzsGGrYw3hoUPFcx0E
-	 3yaJJZEGV6nxwvh9ewx50FfSc6j4+FymGSSjj4w3nFrKk9/sGBOwsdX3oW8TDdFuh0lge
-	 f7/AgvyMoJ2CsNb6EezKYXfY9xMGATY/JqIgCONspggSBN/Bi4tap5b9j2NathP/5xcmn
-	 WGmvDVql74h6R2PjU91omg+cZ49k1GICdtqoMmFMjgbIXkltSRnA6NsGFXNcwF/e0vw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D996A1F008A1;
-	Mon,  9 Nov 2026 14:44:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794235484;
-	bh=fsb5m8uyyKxFLJlwAnbap8+GD4wIrFORIE3SZs3ZMVo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=dMBxRQI0llMdrBh6hP6xnnUoTgY15KtNT57x6NshNioljgg9bEmJIP9yS98SXkqOT
-	 3x1mja5NN4MjYSgIhKLjGb9reHv/1iZ9iUjxJ14m+KVS+e25k8ZflnDgQ1BKPKIlDe
-	 ut0Az7UTPUtztQfy+4RqBTcAQiWVAIsJCtgiG93Q3MT2l6vxcHEN9hNVyg9FOpkrSv
-	 JYR5sVcuAc/J5JRz3rAGghie4kYxu8qpA+UBZN16ef45IiiofOoq9i3Zov2xRhCZny
-	 Qxh6pATLuJq7EyCXZxlAyLM3UWHI+CI5wVtl+FBzpVdMV0xGM3bP4GHMI77UyT5Tv8
-	 KHebWqDxFBYag==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 587FD48501;
-	Mon,  9 Nov 2026 14:44:43 +0000 (UTC)
-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD_via_B4_Relay?= <devnull+cleverline1mc.gmail.com@kernel.org>
-Date: Mon, 09 Nov 2026 15:41:00 +0100
-Subject: [PATCH 2/2] serial: 8250_dw: Select U6_16550A for 64-byte FIFO
+	id 1xQQgh-00000000yxh-49kp
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 14:49:37 +0000
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-3ad787e0593so486029a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 06:49:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1794235774; x=1794840574; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=IrVeQKBGEQiIhXPASB7aO1B/hnuopAlb12g77nEvd+E=;
+        b=bPIAGUusKmnbSdDSoAcfBF3JIGgcuaakUwJNM9jTATvTP53Q5la220MBtQklg6s1GK
+         Afbcg1kUTtQoQz/nc7ue5by+HlTcrNJz4l1I3dDfI25FVS2/1LiqpU5wdVpNGzRl1Tgb
+         hV1vonIUkJzAmvDeAGvMHUgVsCyngF+zteh2yYZRiVFvcolSQjkXr6wBSbnw1vQ8NFE5
+         56d06/TYXoy/SYDRTA04HdqNqMLii55T+wnI8kVRYS+Rb4VIYAgG+/jqXof8vtIN/HxL
+         kIUug8D58mO9wGr0MvsHg2AyGzc8TcAKmQlPMQrxH48Czw6UtjLDUXbvHw2q2bxcFGBM
+         /Bcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794235774; x=1794840574;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=IrVeQKBGEQiIhXPASB7aO1B/hnuopAlb12g77nEvd+E=;
+        b=cGA9YIX7XlZNrhDEJcmjG5q2gR7FoUus3sJ3Q6APQltEiKW2MmrPzLIKC8VDaFiWEC
+         nmJhzatVG8A3eHqeM0ExlHu5EkYnC+AwFx9ELpDA+S2lUS4w8VUBQiO+SKti/FKAXj4N
+         sCbU0P0985BLnFFBq7TSm68Sg0upfvG6gbY3VgVtYXPbGgovQ3syRaIxmh7OB2HEayRp
+         pidqK0MJu7af/ZEr7ytQ3XBDZPWsdkBHyl9lpM5Y+5KtpQWplv+IgmvHAMS2oLxKjdtC
+         bgGRkDMyV9xP3B3NJZJeHSjY16NMwuv5HWZVLtbicrybsz/nfsuLk7LSd7+l9zmWx2hn
+         WruQ==
+X-Forwarded-Encrypted: i=1; AL+hErGG5Ks/RBJG/AzmyXRKW48pGgXwzZbOq0W2G7W8q202RGA3AeaPtXGXB4+pn5zOvQBFw73HsphvDo3eQsFK6xQC@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Jjqt+fU6J7emvnVfrvTVZUhfzgOMnEI16ROkUfGNXi96t+Kvc
+	qCelvKUyPzgHLq0zcI501zX70dZ8ixsYM3A6zGfFTADgyVSpYuogLdENADQSg7VMNaE=
+X-Gm-Gg: AYBFou10oqTbF3Bcjuz7cNoLM4TQhHIH4hQdTvE0jXdbl9ZlHUV6YHs1VQksxMH7ysY
+	UApnMtRUFhweM+P50yC+hxP7aviGGu0lKs0qfk2HRveRBHUEDiyB7YKuzMt4bNxomb2Try7Y+7K
+	KNoqKhY0LtNjPnnGnXUnm1rlFtX+iM+mk8l6NFTaD6cxBsHU/4p+TEYEfZPB6izJH3yjJKjwm6J
+	M2dhIxeyQGxcME4wC1Xxe3bv39sK/M0SWDLnWDH+qGGWHdixjbUohobjCAkl37qTZOLW3MYj1pN
+	Y7J+XVHSwWY3+6SxFhhWUafHCPbiiQT3pwYRI0sHbzYq49aPK3y+FumOHOzdsCrkYqQs6FZM3zQ
+	R6daGPRws1mAaW01ctvSW9jlif3UFQc9eVWXx8TSEIjGPxgPqzATagfsYAZcFrXdjiff52QdzyI
+	aCY9FY6r4ezdBL9QS0ughv65Qcr8MD/Ye6bvy/FN7lH+zRI34zNsTQdgeziDbkPUe3cFxocaA8p
+	M4nqy+jmnRpLPsK0nrRh7PpEcvzr/MfP0PleNPM7NyOMeOsIKP430yNxcbAT3DU1Cgk8EkNLb/l
+	eQmOqbcMe1wos3DC9j6+XNGTaXccig==
+X-Received: by 2002:a17:90b:384c:b0:3b0:9317:5849 with SMTP id 98e67ed59e1d1-3b12d1080d0mr4128385a91.1.1794235774376;
+        Mon, 09 Nov 2026 06:49:34 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:54d7:1b5:4356:16fb])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b0fc27e829sm6647786a91.0.2026.11.09.06.49.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 06:49:33 -0800 (PST)
+Date: Mon, 9 Nov 2026 08:49:31 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: sashiko-reviews@lists.linux.dev, Bjorn Andersson <andersson@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	linux-remoteproc@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v3 1/2] remoteproc: elf_loader: Create new callback for
+ copying segments to remote cpu
+Message-ID: <avHde2RgEUtQj846@p14s>
+References: <cover.1793879714.git.u.kleine-koenig@baylibre.com>
+ <50647b7d731fa54fdc3e2869f02de2096acdcff2.1793879714.git.u.kleine-koenig@baylibre.com>
+ <sashiko-outbox-198999@kernel.org>
+ <auyGiW91Ir0JcuxG@monoceros>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-8250-select-u6-64bit-v1-2-04bc8332fa34@gmail.com>
-References: <20261109-8250-select-u6-64bit-v1-0-04bc8332fa34@gmail.com>
-In-Reply-To: <20261109-8250-select-u6-64bit-v1-0-04bc8332fa34@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>, 
- Miroslav Ondra <ondra@faster.cz>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794235482; l=1747;
- i=cleverline1mc@gmail.com; s=20241112; h=from:subject:message-id;
- bh=tbchbKgf4kvxbU+PFwpYUbA6/5DTF0wZIBoRBHeTq0o=;
- b=orLP3TrrB5XbdCVxNkTqhcupcoB3GSd2j6ojGBCGcI5BM8ZlnWV2XkvAZBQ9gF2MXQEi7dB93
- bzVu4JHI50IDYkkU6Rog+KjlWtj92H5Gl/jhz+nmPZdLGYmi7SZsbtx
-X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
- pk=EJoEbw03UiRORQuCiEyNA8gH1Q6fIpEWnn/MyaWOWX0=
-X-Endpoint-Received: by B4 Relay for cleverline1mc@gmail.com/20241112 with
- auth_id=275
-X-Original-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <auyGiW91Ir0JcuxG@monoceros>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_064936_061421_95415C18 
+X-CRM114-Status: GOOD (  27.52  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,59 +111,68 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: cleverline1mc@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Kryštof Černý <cleverline1mc@gmail.com>
+On Thu, Nov 05, 2026 at 02:41:37PM +0100, Uwe Kleine-K�nig wrote:
+> Hello,
+> 
+> On Thu, Nov 05, 2026 at 12:10:05PM +0000, sashiko-bot@kernel.org wrote:
+> > > diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> > > index 00019b1895e6e..e750a127cbc4a 100644
+> > > --- a/include/linux/remoteproc.h
+> > > +++ b/include/linux/remoteproc.h
+> > > @@ -75,6 +75,7 @@ enum rsc_handling_status {
+> > >   * @detach:	detach from a device, leaving it powered up
+> > >   * @kick:	kick a virtqueue (virtqueue id given as a parameter)
+> > >   * @da_to_va:	optional platform hook to perform address translations
+> > > + * @memcpy_tova:optional platform hook to copy data into remote memory range
+> > >   * @parse_fw:	parse firmware to extract information (e.g. resource table)
+> > >   * @handle_rsc:	optional platform hook to handle vendor resources. Should return
+> > >   *		RSC_HANDLED if resource was handled, RSC_IGNORED if not handled
+> > > @@ -99,6 +100,9 @@ struct rproc_ops {
+> > >  	int (*detach)(struct rproc *rproc);
+> > >  	void (*kick)(struct rproc *rproc, int vqid);
+> > >  	void * (*da_to_va)(struct rproc *rproc, u64 da, size_t len, bool *is_iomem);
+> > > +	int (*memcpy_tova)(struct rproc *rproc, u64 da, const void *src,
+> > > +			   size_t filesz, size_t memsz);
+> > 
+> > [Severity: Low]
+> > This isn't a bug, but is memcpy_tova the best name for this callback in
+> > struct rproc_ops?
+> > 
+> > Across the remoteproc subsystem (such as in struct rproc_mem_entry and
+> > ops->da_to_va), da denotes a remote processor device address while va denotes
+> > a kernel virtual address. Since rproc_elf_load_segments() passes the
+> > untranslated device address da directly to this callback (including for
+> > devices where remote memory is not mapped into CPU virtual address space at
+> > all), calling it memcpy_tova seems somewhat misleading.
+> > 
+> > In addition, when rproc->ops->memcpy_tova is provided,
+> > rproc_elf_load_segments() skips both the filesz copy and the trailing
+> > memsz - filesz zeroing step. Should the kernel-doc comment for @memcpy_tova in
+> > include/linux/remoteproc.h document that implementations must copy filesz
+> > bytes to da and zero-fill the remaining memsz - filesz bytes when
+> > memsz > filesz?
+> 
+> That's a valid concern. Maybe `populate_segment` would be a better name?
+> I considered being more verbose in the kdoc entry, but all the other
+> entries are very sparse, too, so didn't want to add a 5 line comment for
+> the new callback among all the one-liners. But I can if you tell me your
+> preferences.
+>
 
-DesignWare 8250 ports that describe their FIFO in the CPR register are
-always configured as PORT_16550A, regardless of the FIFO depth. On
-UARTs with a 64-byte FIFO, such as those on the Rockchip RK3328, this
-selects the 16-byte rxtrig_bytes table {1, 4, 8, 14}. The rx_trig_bytes
-sysfs attribute then reports 8 bytes while the hardware triggers at 32,
-and writes to it program the wrong trigger level.
+I would stick with ->memcpy_tova() to keey the mcmcpy() semantic already
+rproc_elf_load_segments().  But yes, go ahead and add the 5 line comment.
 
-Select PORT_U6_16550A when the CPR reports a 64-byte FIFO. Generic
-autoconfig already assigns this type to a 16550A with a 64-byte FIFO,
-and its rxtrig_bytes table matches the DesignWare FCR RT encoding.
-
-The FIFO size, TX load size and capabilities are still taken from the
-CPR, and the default FCR value is the same for both types, so the
-hardware is programmed exactly as before. The port type reported to
-userspace changes from 16550A to U6_16550A.
-
-Co-developed-by: Miroslav Ondra <ondra@faster.cz>
-Signed-off-by: Miroslav Ondra <ondra@faster.cz>
-Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
----
- drivers/tty/serial/8250/8250_dwlib.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/tty/serial/8250/8250_dwlib.c b/drivers/tty/serial/8250/8250_dwlib.c
-index 9bb02a4ab11f..ae556b06b03a 100644
---- a/drivers/tty/serial/8250/8250_dwlib.c
-+++ b/drivers/tty/serial/8250/8250_dwlib.c
-@@ -236,9 +236,9 @@ void dw8250_setup_port(struct uart_port *p)
  
- 	/* Select the type based on FIFO */
- 	if (reg & DW_UART_CPR_FIFO_MODE) {
--		p->type = PORT_16550A;
- 		p->flags |= UPF_FIXED_TYPE;
- 		p->fifosize = DW_UART_CPR_FIFO_SIZE(reg);
-+		p->type = (p->fifosize == 64) ? PORT_U6_16550A : PORT_16550A;
- 		up->capabilities = UART_CAP_FIFO | UART_CAP_NOTEMT;
- 	}
- 
-
--- 
-2.47.3
+> Best regards
+> Uwe
 
 
 
