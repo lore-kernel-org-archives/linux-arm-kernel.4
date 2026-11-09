@@ -2,34 +2,34 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9CB60A380C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2258960A3821
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Eu7pr0Cq;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=OUEDMP3X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0DAPo5C3;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=CS/ORvyn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=LeYzTo+5wlknwYT2A1AiMm8a2kxcJTAnRlx8DbSHsAY=; b=Eu7pr0CqlwGE9i
-	ohGySXvZYHETXK6eO+NZhXMVj+kTuSMdn4rj/nXEvewxc0ni2pCZRyZ2By9OyRq9FPGVCpiZoGKdt
-	il/HkrFi6CWUHiNvT+4h6N4w7IU8ekBQHbAHDxWYH6cUNlPqGILP0rvFtdswq/gEIBtIZrzq9gEvD
-	VDKbWqiYG+jMXmQQG/NYedwcumcB5jP22ZMo4v4dp3pALd68TLlSBOSysM3DLNJLOgPBW1zfJdt4n
-	lnIAbOV3ztWD7kfPvINPk0GLv6zLRJqpu7cAdCuzNVsD57PJt/3LzHdJXTl7XLnLWB1zFTDFlw5r6
-	0TB2g0+b2zBP03JdwiNA==;
+	List-Owner; bh=lVgMJDLJX58FGOIw6UkQAA3RMYGX2BCLpb7/jWTZW50=; b=0DAPo5C3eBoE51
+	2xXKOXUt0x68SnhPrvA0erCLWdCRjcqT3H4EdqqdGUJuCrWymBX6s1wE7rFT/p4Z9cJ2v+5t0MZMN
+	yjn3BR0P1eDV+PHUGC3/xHfuvkBTYUeL/FrKB+jINhAlAEIh4tXprtv3kb3aY/ycrOx4UMtPfDby8
+	fGincBOtCUSPUi42ZfsdLnrcJQ18OxeJ6aqvQfkNTDqDAnXcQ+lPBMxlxOQN5oc7JCvADIkPbJ/nS
+	k+V8iiU2LlT3lext0fQ8m2qgPRFV4f2tt88nC7N/GMucieMsG6KNSI+YljGe+3zLhC/+3BZoxK0Pg
+	S3eT6JMLeuhgQpZ2Y4eQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSaO-00000001Evj-1zgF;
+	id 1xQSaO-00000001Eut-04Dq;
 	Mon, 09 Nov 2026 16:51:12 +0000
 Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSaC-00000001EnI-3ZkE;
+	id 1xQSaC-00000001EnH-3YBF;
 	Mon, 09 Nov 2026 16:51:06 +0000
 Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
 	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 5910720282F;
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 4D90120282D;
 	Mon, 09 Nov 2026 17:50:53 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	s=20260414; t=1794243053;
@@ -37,48 +37,48 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LeYzTo+5wlknwYT2A1AiMm8a2kxcJTAnRlx8DbSHsAY=;
-	b=OUEDMP3X+H7nBdctbWihUwJMWZ/UimvsNEVpxN+C5u7LLlC0barKq3fhLCTcuCZFPxG8+I
-	ytl3yv3eD9jLUFWIdUrdz6nW2jc+Ayy/SDNp3AiM31287+jSvHdDUCcjkZjhg1g33WkOX4
-	jU5YOzX12NHA6Sry7VRDIoxnooP3TQB7+QGbNWw2hME7uT5BH9JMTjhAWyAGbMbip1uDOY
-	1aKE8EzO7JpNj3tJeSe0bpPfIR2+Hyp+yuLSaHD8uDIFxZDiTvaRh7tjz8bpwYajsjnGiR
-	/AYdarse5u/kG2VGCp/AYh8pDMjPqYB7p4K6H3eQzvFGlECh8nfiO6gP3gzHvw==
+	bh=lVgMJDLJX58FGOIw6UkQAA3RMYGX2BCLpb7/jWTZW50=;
+	b=CS/ORvyn+5/F6dPFXZ9GqC8y4Z8+YhX8ksBoz6n8aaNft8rKXntmvoFPlf3iT48NtoM1W9
+	P1Wce06BMa2B/1wToWihGslgbk15/cAruIQ9RuMzHSegGQAuBWRyZheD5aJsn5wfe25Gm+
+	5a9S0UhRLFWbFzD9nbEVKyc3e0XN62etEt200qSNyEyWQBkfVcnLVagU6vN53DR+jKS2kA
+	29mbgur4/JpeGv+67O4DHmm7gRcXbCSvTnOd+vPVlAJ7sXbbl90Xxeilga7rr2QEnL9hui
+	GCD6DNki7F5Vx7OwhsATaUJ6jSpWKO4isx4i6wHFwNrB/mAQRz6IOcUvWGQBcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	s=20260414; t=1794243053;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=LeYzTo+5wlknwYT2A1AiMm8a2kxcJTAnRlx8DbSHsAY=;
-	b=fQl7v0NGFM7wgh4mXnglAEngFo6hANYgPniCBk8DGElGIsz5gWs7HHBGi1eCNDoVdIZq6S
-	qVZMWX1pigcl8qQqw1LBoaGxHZe7JKsz1mxMwdZcmpbdT7ksBnFTxJxiM8fIDMG9peguvG
-	QOtZPEqIrEeFYlna8mhqw+I76EW2RVrMxmVcKHe2201+nCzKgHb4IWv9wbg0ePU1L1gTJX
-	T4vmiA3/i+InxJjftzRLnX8mAsCBbdw6pJfqyCkwaPqHqvO2y5YplMJmKupsP83QDkPTlo
-	GLOySyxVkB7Pp2THtjY2xZnXl61h9/rsHiF35uNOywSZk/luKlkG3mz05gT6jA==
+	bh=lVgMJDLJX58FGOIw6UkQAA3RMYGX2BCLpb7/jWTZW50=;
+	b=PXgRLUKCuvfrQDA8vc2I42oOvG4L/zNBtfmD/avdDlj+A1qzqp9UhuAHJhaupB2TFt9u87
+	wTQrOgAxK9xvLPFPUndnsEhXmQ8bGaULbegkB3D2DrR/FcMcRTNjvMBnPIoEJ8XIMYwBcG
+	6a9WSrvwL9iYGmWFphjDGxJxz9eLa6pDYLBNXfPlR4PZKfgsvwIIB1rRfc9EdOyhfu4Z2O
+	GDZesRnVi8nrE8D7gVTjRJ8cnRuFXnbqd5I7XF2ENOqVL9Xm+ixpzYcX3JmCumey3CyRbY
+	Y/bknPpgyveUUkfvT67H/JTMNeinyPRJLKtvzbQoGYB78PaMLj2+ka5sIAqveg==
 ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794243053; a=rsa-sha256;
 	cv=none;
-	b=eEFP4y6BrgcSQazXwCx20JCFkXxSgI8dXu8Xl9GZUa4uB+6J38Fr1tWmm5uV963dnpuFOw
-	FKP389PJsas9i+9SaLEwRFJSW0CI8MHubwk/TRpsOIMPmuJzewO5DhdhHd9QTRKmmCZPRl
-	/C+mExfjC6yr7SW6cyMPy8zxqYv48Lar88uKMhi2Tcd2ltul7q57oNs/DNZ1o68kJZ3vz7
-	1XptTuP8LOEuvuMkyqnfyE9DDlVbGMgU6k7mkCRZCnoM5PtP6dkLnIeY8l2ANxoBaPN62n
-	J/0hoEWtbaYTYzlTRXSLyNqcbFntxECW7cRzYQIvgO6CHeJOWkgS8Ha67x756w==
+	b=Ikl+eSriyuigOLb4tCvWi4ImZKaK1Fu92onltxBUFxSgbtLbMU9BwDYc46OF/+6WGhUMT6
+	Z+GSA1P8GJymfVKs3aQ+7cO8aJp0Gn+/ucEq3xbWwVGFoB9jpp8nBNmChATXcR1GtLvQGc
+	P3gNbgos3c6QS4sKvGdnYLART3z4tQP2CvAOYWbfqBowOr0gIi/5WOpx6VsrQJKifAmCMq
+	DppcTb10xvF2m6pKmfQVVqzMNY35LP397siZTj7ruKRXvPwt7BzzR23J8sRlp88DGODGGA
+	1OQdf1mYeexn7SBZEbd1/yl3QkN9Ab8w6mN8+uWDJXPyIb9rb58ocf8kP2QbYw==
 ARC-Authentication-Results: i=1;
 	ORIGINATING;
 	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1xQSa5-003N3i-0v;
+	id 1xQSa5-003N3i-0l;
 	Mon, 09 Nov 2026 17:50:53 +0100
 From: Philipp Zabel <p.zabel@pengutronix.de>
-Date: Mon, 09 Nov 2026 17:50:46 +0100
-Subject: [PATCH v2 4/8] reset: lantiq: Use regmap_test_bits in
- lantiq_rcu_reset_status
+Date: Mon, 09 Nov 2026 17:50:45 +0100
+Subject: [PATCH v2 3/8] reset: k210: Use regmap_test_bits in
+ k210_rst_status
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-reset-regmap-test-bits-v2-4-c886689bb85e@pengutronix.de>
+Message-Id: <20261109-reset-regmap-test-bits-v2-3-c886689bb85e@pengutronix.de>
 References: <20261109-reset-regmap-test-bits-v2-0-c886689bb85e@pengutronix.de>
 In-Reply-To: <20261109-reset-regmap-test-bits-v2-0-c886689bb85e@pengutronix.de>
 To: Damien Le Moal <dlemoal@kernel.org>, 
@@ -93,8 +93,8 @@ Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
  Philipp Zabel <p.zabel@pengutronix.de>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_085101_064681_BA7E11BB 
-X-CRM114-Status: UNSURE (   8.89  )
+X-CRM114-CacheID: sfid-20261109_085101_076097_9692F62D 
+X-CRM114-Status: UNSURE (   8.57  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -115,34 +115,35 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Simplify lantiq_rcu_reset_status() by using regmap_test_bits().
-No functional change.
+Simplify k210_rst_status() by using regmap_test_bits().
+Now returns 1 if asserted for all bits.
 
+Reviewed-by: Damien Le Moal <dlemoal@kernel.org>
 Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
- drivers/reset/reset-lantiq.c | 8 +-------
+ drivers/reset/reset-k210.c | 8 +-------
  1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/reset/reset-lantiq.c b/drivers/reset/reset-lantiq.c
-index 652a45890cb2..6d7200b17790 100644
---- a/drivers/reset/reset-lantiq.c
-+++ b/drivers/reset/reset-lantiq.c
-@@ -37,14 +37,8 @@ static int lantiq_rcu_reset_status(struct reset_controller_dev *rcdev,
+diff --git a/drivers/reset/reset-k210.c b/drivers/reset/reset-k210.c
+index e77e4cca377d..58ad8be18741 100644
+--- a/drivers/reset/reset-k210.c
++++ b/drivers/reset/reset-k210.c
+@@ -59,14 +59,8 @@ static int k210_rst_status(struct reset_controller_dev *rcdev,
+ 			   unsigned long id)
  {
- 	struct lantiq_rcu_reset_priv *priv = to_lantiq_rcu_reset_priv(rcdev);
- 	unsigned int status = (id >> 8) & 0x1f;
--	u32 val;
+ 	struct k210_rst *ksr = to_k210_rst(rcdev);
+-	u32 reg, bit = BIT(id);
 -	int ret;
  
--	ret = regmap_read(priv->regmap, priv->status_offset, &val);
+-	ret = regmap_read(ksr->map, K210_SYSCTL_PERI_RESET, &reg);
 -	if (ret)
 -		return ret;
 -
--	return !!(val & BIT(status));
-+	return regmap_test_bits(priv->regmap, priv->status_offset, BIT(status));
+-	return reg & bit;
++	return regmap_test_bits(ksr->map, K210_SYSCTL_PERI_RESET, BIT(id));
  }
  
- static int lantiq_rcu_reset_status_timeout(struct reset_controller_dev *rcdev,
+ static int k210_rst_xlate(struct reset_controller_dev *rcdev,
 
 -- 
 2.47.3
