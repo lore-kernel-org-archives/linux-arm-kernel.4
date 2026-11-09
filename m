@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CB20606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1519B606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XYE1IqyH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Wi70OnYd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PZ35eloE;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ifqPUIQb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bP0SvI1SyNFWGaznG9wghum5HnnqOxchfJ6Ki1mewRQ=; b=XYE1IqyHeMFTI9
-	vt+ksMiQTM5vVauK3/m9tz7Oi04xj8BboraREo8ulO460H3TwTGgSKDijBdSZQO+zvLTlVKkkPsBU
-	bA8qHRq/OIBJlDwew0RmsCeIvEmLOz20gL3zLaa51wqiqnecPxwTkdnsXBa3MbTaTFKN+OHOsUr83
-	bkrRGdwPn0vbEi78Wbcpq8f8yM1N4Ufjr1O2ZOSUyTSDiFgSZOhxhzM8ZHG9/mO0fskTa6WdyRbgA
-	XfoB0NT2gslm/whC3oiDZ21/os2hHWDBzSqDIVnSiGkBdU2XD1TYkEVO5bGAlctA40g9cY1SsPsTn
-	7ucTcD1vOe5B/n7cwfdg==;
+	List-Owner; bh=6LYzOqgVWc34uRY6ovO7R7m1hhJFjX7us7aa10zp4XA=; b=PZ35eloEM0BWaF
+	ZTBmcKb2SbyGX/60AImVRVxlUQClf8lOk3LjFjyAZJg3QVbd1TuVYo0wdSWM7eXiwGgK5hebrDtG4
+	gQpYSj+IkNYOfVQnzEdS1q+//o75YcsR0TruY0Dp7s+SZLNzNoTcs8YqzXWRMEUE3cFMN6bGWkWdE
+	arHaKmGmYaGvy/GgkbeLjK+p6UIdfIRYylN4CABugA1Euy8xFUl0+N0b/uyhbrLRLHSM6/4Zeo4nC
+	oZ1uSx01nRD4beIlIpm0PFLCtcmPcvBR+x4BP4OSXP5hL+wAB/vcCmTIRK20XfQeX6hQHVIyz076X
+	X68WzJYmrnYTebaYj3tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQO7u-00000000c7N-068w;
-	Mon, 09 Nov 2026 12:05:30 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQO7y-00000000cB3-0d8G;
+	Mon, 09 Nov 2026 12:05:34 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQO7s-00000000c5t-1XyT
+	id 1xQO7w-00000000c9y-3HNu
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 12:05:28 +0000
+	Mon, 09 Nov 2026 12:05:32 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CB0F463175;
+	by sea.source.kernel.org (Postfix) with ESMTP id 710DA458A5;
+	Mon,  9 Nov 2026 12:05:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDEAA1F0089F;
 	Mon,  9 Nov 2026 12:05:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A39FC1F008A2;
-	Mon,  9 Nov 2026 12:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794225927;
-	bh=bP0SvI1SyNFWGaznG9wghum5HnnqOxchfJ6Ki1mewRQ=;
+	s=k20260515; t=1794225932;
+	bh=6LYzOqgVWc34uRY6ovO7R7m1hhJFjX7us7aa10zp4XA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Wi70OnYdXmU/O5nlE/GYtPpXZc8dZ424yjRjXLwEb6eTHY1K8E+36UyZSllQUnGCB
-	 WQkz5zKyd6wqkCbfXFNIXaR1/R90WpjbgNB1/01+YQkDQ2ANmTwfMH+5ifbsMrEb7q
-	 GkfDMhHXHhrpxrMVXW/sfzie1Hnru04kpBlgkiSA/Hs4JrAzE+/VqHiCLS+/RKB68+
-	 ZEfKMa+J6A2lPZa4UFALIHcd8Q5uR+b9B5Ojdt5CbuDb+VYE0CNOYysFUzkPlusF1Q
-	 hJ1tcHpm+kPyQtPHtcNolz6olZ7kUUl4DkKPFuTDs01ql81IZCQfXaj/i0bXkxpndd
-	 3/uFwMb3OWb3g==
+	b=ifqPUIQb4197CXOoo3zkk/P+62IWE3W6hw3VXHH7BmaZDJzTj/sylmfjzUn/heM/o
+	 Dy3qocNvWVFwIqtPRM05SK7rH7jllGShFdSL1cRyz7QQ/mkOqRGeBPNiZRUO8mrxRm
+	 FIachU3c43wQuZXo5Uct+uIktJlmVTYkENycEl9wY+AjWuGD9c6TxAz1oGp/9/UG2+
+	 XGuWNxEDTKXdIbIkn+pWSeDgW1jw3znXhbtuXBKg7H3oAZHzcnibIYvO90zTJhWf1j
+	 3bP/GAN+qstiydBQLS9s63mMSLiQr3I7JY3AW6z//o+NeybqI0nzbTP8tHEzysVNuR
+	 YHkTNUk0CoDNQ==
 From: Jisheng Zhang <jszhang@kernel.org>
 To: Catalin Marinas <catalin.marinas@arm.com>,
 	Will Deacon <will@kernel.org>,
@@ -59,9 +59,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	kasan-dev@googlegroups.com,
 	linux-mm@kvack.org
-Subject: [PATCH v2 4/6] arm64: stacktrace: Always inline internal stack boundary helpers
-Date: Mon,  9 Nov 2026 19:44:57 +0800
-Message-ID: <20261109114500.20298-5-jszhang@kernel.org>
+Subject: [PATCH v2 5/6] arm64: lib: Disable branch profiling for architecture library code
+Date: Mon,  9 Nov 2026 19:44:58 +0800
+Message-ID: <20261109114500.20298-6-jszhang@kernel.org>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261109114500.20298-1-jszhang@kernel.org>
 References: <20261109114500.20298-1-jszhang@kernel.org>
@@ -86,156 +86,38 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The noinstr stack walkers reach the stack boundary and frame-record
-helpers through an __always_inline call chain. However, these shared
-helpers do not themselves guarantee inlining.
+arch/arm64/Kbuild disables branch profiling through subdir-ccflags-y.
+However, arch/arm64/lib/ is built separately through libs-y and does
+not inherit that flag.
 
-With CONFIG_CC_OPTIMIZE_FOR_SIZE=y, GCC emitted several stack
-information helpers and unwind_find_stack() out of line in .text.
+Consequently, CONFIG_TRACE_BRANCH_PROFILING can introduce explicit
+profiling instrumentation into library code, including helpers used
+while applying alternatives. noinstr does not suppress instrumentation
+inserted by the branch-profiling macros.
 
-Mark the shared stack boundary and frame-record helpers
-__always_inline to keep their instructions in the non-instrumentable
-walkers
+Disable branch profiling in arch/arm64/lib/Makefile to extend the
+existing arm64 policy to this directory
 
 Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 Assisted-by: LLM
 ---
- arch/arm64/include/asm/stacktrace.h        | 16 ++++++++--------
- arch/arm64/include/asm/stacktrace/common.h | 12 ++++++------
- 2 files changed, 14 insertions(+), 14 deletions(-)
+ arch/arm64/lib/Makefile | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/include/asm/stacktrace.h b/arch/arm64/include/asm/stacktrace.h
-index 6d3280932bf5..b370c0e1e337 100644
---- a/arch/arm64/include/asm/stacktrace.h
-+++ b/arch/arm64/include/asm/stacktrace.h
-@@ -22,7 +22,7 @@ extern void dump_backtrace(struct pt_regs *regs, struct task_struct *tsk,
+diff --git a/arch/arm64/lib/Makefile b/arch/arm64/lib/Makefile
+index 38ffd359123c..59d714865c00 100644
+--- a/arch/arm64/lib/Makefile
++++ b/arch/arm64/lib/Makefile
+@@ -1,5 +1,9 @@
+ # SPDX-License-Identifier: GPL-2.0
  
- DECLARE_PER_CPU(unsigned long *, irq_stack_ptr);
++# Built via libs-y, so the flags in arch/arm64/Kbuild do not reach here.
++# Branch profiling isn't noinstr-safe.
++ccflags-$(CONFIG_TRACE_BRANCH_PROFILING) += -DDISABLE_BRANCH_PROFILING
++
+ # KCSAN uses udelay for introducing watchpoint delay; avoid recursion.
+ KCSAN_SANITIZE_delay.o := n
  
--static inline struct stack_info stackinfo_get_irq(void)
-+static __always_inline struct stack_info stackinfo_get_irq(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_read(irq_stack_ptr);
- 	unsigned long high = low + IRQ_STACK_SIZE;
-@@ -33,13 +33,13 @@ static inline struct stack_info stackinfo_get_irq(void)
- 	};
- }
- 
--static inline bool on_irq_stack(unsigned long sp, unsigned long size)
-+static __always_inline bool on_irq_stack(unsigned long sp, unsigned long size)
- {
- 	struct stack_info info = stackinfo_get_irq();
- 	return stackinfo_on_stack(&info, sp, size);
- }
- 
--static inline struct stack_info stackinfo_get_task(const struct task_struct *tsk)
-+static __always_inline struct stack_info stackinfo_get_task(const struct task_struct *tsk)
- {
- 	unsigned long low = (unsigned long)task_stack_page(tsk);
- 	unsigned long high = low + THREAD_SIZE;
-@@ -50,7 +50,7 @@ static inline struct stack_info stackinfo_get_task(const struct task_struct *tsk
- 	};
- }
- 
--static inline bool on_task_stack(const struct task_struct *tsk,
-+static __always_inline bool on_task_stack(const struct task_struct *tsk,
- 				 unsigned long sp, unsigned long size)
- {
- 	struct stack_info info = stackinfo_get_task(tsk);
-@@ -61,7 +61,7 @@ static inline bool on_task_stack(const struct task_struct *tsk,
- 
- DECLARE_PER_CPU(unsigned long [OVERFLOW_STACK_SIZE/sizeof(long)], overflow_stack);
- 
--static inline struct stack_info stackinfo_get_overflow(void)
-+static __always_inline struct stack_info stackinfo_get_overflow(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_ptr(overflow_stack);
- 	unsigned long high = low + OVERFLOW_STACK_SIZE;
-@@ -76,7 +76,7 @@ static inline struct stack_info stackinfo_get_overflow(void)
- DECLARE_PER_CPU(unsigned long *, sdei_stack_normal_ptr);
- DECLARE_PER_CPU(unsigned long *, sdei_stack_critical_ptr);
- 
--static inline struct stack_info stackinfo_get_sdei_normal(void)
-+static __always_inline struct stack_info stackinfo_get_sdei_normal(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_read(sdei_stack_normal_ptr);
- 	unsigned long high = low + SDEI_STACK_SIZE;
-@@ -87,7 +87,7 @@ static inline struct stack_info stackinfo_get_sdei_normal(void)
- 	};
- }
- 
--static inline struct stack_info stackinfo_get_sdei_critical(void)
-+static __always_inline struct stack_info stackinfo_get_sdei_critical(void)
- {
- 	unsigned long low = (unsigned long)raw_cpu_read(sdei_stack_critical_ptr);
- 	unsigned long high = low + SDEI_STACK_SIZE;
-@@ -105,7 +105,7 @@ static inline struct stack_info stackinfo_get_sdei_critical(void)
- #ifdef CONFIG_EFI
- extern u64 *efi_rt_stack_top;
- 
--static inline struct stack_info stackinfo_get_efi(void)
-+static __always_inline struct stack_info stackinfo_get_efi(void)
- {
- 	unsigned long high = (u64)efi_rt_stack_top;
- 	unsigned long low = high - THREAD_SIZE;
-diff --git a/arch/arm64/include/asm/stacktrace/common.h b/arch/arm64/include/asm/stacktrace/common.h
-index 821a8fdd31af..7c502ae276b9 100644
---- a/arch/arm64/include/asm/stacktrace/common.h
-+++ b/arch/arm64/include/asm/stacktrace/common.h
-@@ -35,7 +35,7 @@ struct unwind_state {
- 	int nr_stacks;
- };
- 
--static inline struct stack_info stackinfo_get_unknown(void)
-+static __always_inline struct stack_info stackinfo_get_unknown(void)
- {
- 	return (struct stack_info) {
- 		.low = 0,
-@@ -43,7 +43,7 @@ static inline struct stack_info stackinfo_get_unknown(void)
- 	};
- }
- 
--static inline bool stackinfo_on_stack(const struct stack_info *info,
-+static __always_inline bool stackinfo_on_stack(const struct stack_info *info,
- 				      unsigned long sp, unsigned long size)
- {
- 	if (!info->low)
-@@ -55,7 +55,7 @@ static inline bool stackinfo_on_stack(const struct stack_info *info,
- 	return true;
- }
- 
--static inline void unwind_init_common(struct unwind_state *state)
-+static __always_inline void unwind_init_common(struct unwind_state *state)
- {
- 	state->stack = stackinfo_get_unknown();
- }
-@@ -70,7 +70,7 @@ static inline void unwind_init_common(struct unwind_state *state)
-  *
-  * Return: a pointer to the relevant stack_info if found; NULL otherwise.
-  */
--static struct stack_info *unwind_find_stack(struct unwind_state *state,
-+static __always_inline struct stack_info *unwind_find_stack(struct unwind_state *state,
- 					    unsigned long sp,
- 					    unsigned long size)
- {
-@@ -99,7 +99,7 @@ static struct stack_info *unwind_find_stack(struct unwind_state *state,
-  *
-  * Return: 0 upon success, an error code otherwise.
-  */
--static inline void unwind_consume_stack(struct unwind_state *state,
-+static __always_inline void unwind_consume_stack(struct unwind_state *state,
- 					struct stack_info *info,
- 					unsigned long sp,
- 					unsigned long size)
-@@ -142,7 +142,7 @@ static inline void unwind_consume_stack(struct unwind_state *state,
-  *
-  * Return: 0 upon success, an error code otherwise.
-  */
--static inline int
-+static __always_inline int
- unwind_next_frame_record(struct unwind_state *state)
- {
- 	struct stack_info *info;
 -- 
 2.55.0
 
