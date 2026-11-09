@@ -2,106 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0081606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 03:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78E11606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 03:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ySIJtdJL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Wm61kTRA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S/eVXgsJ;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=KDC2SmH3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=pJzY35+Iq1WY5o8SwGQBlJsXXYfxvzqCFf4SStexuJ8=; b=ySIJtdJL2YY/rshDtHW1t6oQ6f
-	InbOSig2fJ/J+VMMWFcBOLOZJFV5GtpMffFlEIujP0AmablHfRkXFOJaoz8/x/avDwBcHPi9Klfg+
-	AYZ1QDHloJQ3IRSWVzcC5HFligoTORVtsPxsX6G+ud1voHWNVJM5qNm1B+LXHkopceH1WCRt+fOsu
-	LDZLyBL4cnn/CsAMx9lgHeCEgMoKwwulHvODpZ5ARRNIUOojfHLl84iQyhXTvmjWe8F/yHAJLwTLi
-	iwHNwVw0Dz69oG5kh/PshTKI14G1TidP3tbDxetfGxEFP71zsi1tiIF7yuh19jD7HptKtDtvlNA+K
-	VogvGP7A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=7+1+PZFd2GII1zKvv2aHrH8V0Dvf1LcNr2LNa2B/+bw=; b=S/eVXgsJUM2pbo
+	hApywnRWQjzbYF5mAF3OhUJDsunaAOHMSRSkOy7vrgL4iWxE3wEar2Z4YY9SzFdYd7QQSu9NgpeLm
+	y/iPLQ/qLjuJU3GJ1bhsyejSvu8uGueC/MI1c8ZnJXQLzBTWpCAnD/QOxp2OPIgid5mbYZj1lBmXz
+	Q4oHhIDunwAx0OEL7Oj+5JClgd34DLwFbmBEStDjs6aqMZbb35k/iYyGrDm6TIpZT+a4jNFZgrPmE
+	YNjGoiEpcpyuxd7O6IysMi2C4vk9i2j47imuCD6QXai/7rxFTLmoSFBQF/xQb40pgLTIgExBWK8kW
+	tnfPEGKabrL0Ca3k0F+Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQGKb-0000000HFkb-0Ei5;
-	Mon, 09 Nov 2026 03:46:05 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQGLt-0000000HFux-1g37;
+	Mon, 09 Nov 2026 03:47:25 +0000
+Received: from xmbghk7.mail.qq.com ([43.163.128.53])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQGKa-0000000HFkD-2C44;
-	Mon, 09 Nov 2026 03:46:04 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id F3306611E2;
-	Mon,  9 Nov 2026 03:46:02 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794195962;
-	b=JD/C/0ZoKT5fd9yma5QiqbU2D1fGGGhtXcy22Ru8/BTRF1mlDhxPAmwCUPAkcMdD2U4j
-	 Raq4m5QqyX/STkgywDZICZ17t/5UbYuchXuQLGQwRNjI4ALriASH8MXNnkTSKqQ664qum
-	 kHWQnHtwyfii1lxJ12qEkBcc+Gywgpvpa5xgfPmP8UowJ/YH94ssNIAsdtdoV9+u2UcG1
-	 STZ2RpTFpWjm8822xUR0sbHnhJLyToKz2U7TvtTnwLxDBuAHadedvg+D0c6JTA3GZJa+E
-	 rM3CNnRv7cxMAJWxzqRDzTEiwhPwl+ZA3lghQVKyEYV8z6kysInYXTS4EHWxok7kW9w==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794195962;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=pJzY35+Iq1WY5o8SwGQBlJsXXYfxvzqCFf4SStexuJ8=;
-	b=qoToWs05at8uPNKmmGuwO0luB77Ru1xEn6kEyDqBnyx8Llm65Byp5zT0jkQZW52x9MHb
-	 utix3dQdP9kJRNkq8iSFWXq16ornNg26prGXwAAtoejvoUrRXzU0qlNI8/1V0y4N9gumF
-	 e3bdjYc65w8S3YniQXBXZlK84gjieVvUFfwiEQFzVhsyjrIn6Y4Oapq4Cxp2t1Rq8Vlwh
-	 0KuHbQ1dIQu5asVhxqEhsvVcVg3DN0DvZ9i02Mmzu5uWNo1tYNBb2fMXD0p/NIXBuiRXp
-	 L0R0DXbSQ9e0pE5HOTic8ZX6ylKQtRGmk2H/xVj47J4Zd/XJLnqFK3617DmtP4ryTMg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 1FF5E1F0089F;
-	Mon,  9 Nov 2026 03:46:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794195962;
-	bh=pJzY35+Iq1WY5o8SwGQBlJsXXYfxvzqCFf4SStexuJ8=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=Wm61kTRAVF0xchiB9hWNx6ek03/7njs5z7oVR5BooNuBXeNzMW6nQXa7KQTWHlC37
-	 AjJdcjHF25L/gpP8LnLPisRAf0rKNqard3T5cOtjUZ+mjhV9fkOQ4EXMvguYL7270g
-	 MmI2pPlhqqoQxNnE2tonekEoL3bhlYJ7COkm1eiv+s5PS+7oa2A80V2+vKbnvJdK8h
-	 2jh64skhy40G2NIRiYzmXrxWrW3A87BXSTAwKRvYCaVtaxcMwoBb+XykY6Evk8m7Wt
-	 SrP0QxuBAfHMeDH8Y3QxCf9XLNK/W13Y8NTwT40AA6R78nhqotnG50vR7TxWI9f8gb
-	 9u2YdY/R7RSow==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 9F7664826E;
-	Mon,  9 Nov 2026 03:46:01 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 09 Nov 2026 03:45:58 +0000
-Subject: [PATCH] arm64: dts: rockchip: Enable SDR104 on the Kobol Helios64
- SD card
+	id 1xQGLq-0000000HFua-0DwP
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 03:47:24 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1794196038; bh=7+1+PZFd2GII1zKvv2aHrH8V0Dvf1LcNr2LNa2B/+bw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=KDC2SmH3UdUqTAj/naxHFvfTao7XlpSet7tQIZzg+YBlYiMajF461CMioKaj/0pCy
+	 I5mx2c1PQD8Rzhbl3Pkk4CTd89aviDffBfYETGfgiPu1svwCEhYLD2QrpQDLYpia7j
+	 FRkDC1GNAEMhw90KrGYcivjnNGgrmoKeF7Ks6ZDI=
+Received: from [100.125.153.207] ([139.159.170.67])
+	by newxmesmtplogicsvrszc50-0.qq.com (NewEsmtp) with SMTP
+	id BCF20465; Mon, 09 Nov 2026 11:47:15 +0800
+X-QQ-mid: xmsmtpt1794196035t0rwr8jma
+Message-ID: <tencent_90CC2DA414E74CDF71D24A6ADAC784336206@qq.com>
+X-QQ-XMAILINFO: NOGirAuTnwHF/KpxD9OFSpM3LriLQs2mH/B0slkH4kz1eDZ9sqIUCKMvAsfqo+
+	 pLJXc/Fu+EW2AJk7AkmtqhruK1se1lIbdRaT9NiNIpMKzN+cQ4ytdg69LVtsoGJ2zywNMaEDW/Ck
+	 g1Om437R3M2X+3/ZDZJTgo8hcARoNJ+oxvMs/xf82IOYx2zxrpKwwHlEQddO31wzmwFuEbwWobm4
+	 ia3HB38VCW+ZMdYN08EgcSQ54ZhJmr79++EaLqp7WSScIH0fe5R5FWP85TGasObfpZwmpEAC8YwT
+	 x6heU80jK0DqyBTCq/KyPeiBnZBPjJqAC0ugnj9hVpLklUP2RaaolOm8NuXdt11ULirrvvi8ExPV
+	 x9x2zlGvUBkD1AsPf62urvPQk8TguPOMS02f4nP+ASVv89HWI8GqtGh/zBU5hraTLHlc2vMxKgAg
+	 vAtcQzjsI15W1aLEDGqx+Ok2w83TVMZIjEQGc0jaRPVHDyUkBMZGw7QTtVZb09J89cgCNLkUQInl
+	 SenKGqMFscDKWuC8YDf/RQBhHH26yyoNWMgszcbL3iJwDfPg6fUxJPTPKVfJHDQoFG9orrnBXFVE
+	 oR+1tBDHrJ6UYNCG0NmynRLjXeAIK5wb+qfvR9/ijVIeo/6osIX4k9Ly9AAmhudAHWPV8Q0SiEuk
+	 9upCL5bS5SfHZkqwQAPuaeLfFTNlyKxpJ8ju5X19NdlGHJrR8tnz4/G/9f1Ek/VCnw88MMtyw2tF
+	 u8FdiMK0529VKzzCLSvURYXbBtmBb/ql5KIez0IvEHhXvPBMLMbJbjLLRvJO0x8GPNyRjd7ZTG1f
+	 pmoIWM4sLzo6p/VSnERfdD0m4tAHON2iExo6kytw8qFu1Lv6zxdGyCFNRRTKJC/9uXGYmWe0d2cD
+	 oatJwXWawuaItDqYTmYNkNv4FYzviFps0f20ZnkchHxYYdm42M3J25tsVJxxtAnYNTCxIrSFa866
+	 OPiobQH68ZigCsfkdH5ZYkz/2YT/Y2svAbsmlQIOjvdop5JpxGZhiKged4rOS85a7d1rOdDFfsdr
+	 tU86MNLAuv06+uUHNXPHpDIP51+4mSMGJvhr34s6X8JjNGPWSsNuCLZgrf9/o=
+X-QQ-XMRINFO: M/715EihBoGS53Pa7FxY/h8cOY8DgkUKgQ==
+X-OQ-MSGID: <676c4f1b-1daa-48d9-b444-11db0fda69fd@qq.com>
+Date: Mon, 9 Nov 2026 11:47:15 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-helios64-sd-uhs-v1-1-ef8fc370d282@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAPVB8WoC/x3MQQqAIBBA0avErBtIk8iuEi1CxxwIC4cikO6et
- HyL/wsIZSaBqSmQ6WbhI1WotgEX17QRsq8G3elBqc5ipJ0PGQyKxysKWqMNhV4F60ao1Zkp8PM
- f5+V9P9MS6/thAAAA
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2313; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=dC7wpDaNbCjkiANOAYK+QKZwUz9weOXO+ehiRLkJWy0=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkfHX9I/uZ4N0sia0uS55ILh0VNsmYbVFUmHvgnJ2pys
- NVwqu3KjlIWBjEuBlkxRZYJhzRuZSy5+tffw/wBzBxWJpAhDFycAjCRywEM/+OEa00n7HvzzvxX
- oMBxhck7s6OEUn5dXbKXy1lfkGv/tQcM/xRfRk9cMMnGicWyffGChzM+aQk0LZ1Q6dozrYBFImv
- TfSYA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8] arm64: kexec_file: Stop using the Image text_offset
+To: Catalin Marinas <catalin.marinas@arm.com>,
+ Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: will@kernel.org, mark.rutland@arm.com, pratyush@kernel.org,
+ leitao@debian.org, mpilaniy@redhat.com, yeoreum.yun@arm.com,
+ graf@amazon.com, pasha.tatashin@soleen.com, akpm@linux-foundation.org,
+ baoquan.he@linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, rppt@kernel.org
+References: <20261105125442.2282987-1-ruanjinjie@huawei.com>
+ <au4JOjnQlx2aSpiE@arm.com>
+Content-Language: en-US
+From: Jinjie Ruan <2118537295@qq.com>
+In-Reply-To: <au4JOjnQlx2aSpiE@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_194722_419218_44BBEE42 
+X-CRM114-Status: GOOD (  26.56  )
+X-Spam-Score: 0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,71 +88,104 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.0 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
+Hi Catalin,
 
-The SD card I/O supply vcc_sdio_s0 can switch between 1.8 V and 3.0 V and
-is already described as vqmmc-supply and as the sdmmc I/O domain supply,
-but the card only runs in high speed mode.
+在 2026/11/7 01:07, Catalin Marinas 写道:
+> On Thu, Nov 05, 2026 at 08:54:42PM +0800, Jinjie Ruan wrote:
+>> image_load() adds text_offset to kernel_segment->mem and subtracts it
+>> from kernel_segment->memsz.  For CMA backed segments this breaks the
+>> load path: the payload is copied to page_address(cma), which is the CMA
+>> base, while image->start is set to the adjusted address, so kexec jumps
+>> into the middle of the kernel.  kimage_map_segment() has the same
+>> mismatch when a segment has been moved.
+>>
+>> The adjusted memsz also breaks the release path: the CMA pages are
+>> freed using segment->memsz >> PAGE_SHIFT, which is fewer than were
+>> allocated, leaking the tail of the allocation.
+>>
+>> Since commit 751c263bb74f ("arm64: remove TEXT_OFFSET randomization")
+> 
+> This commit only removed the randomisation. The one you want mentioned
+> here is cfa7ede20f13 ("arm64: set TEXT_OFFSET to 0x0 in preparation for
+> removing it entirely"). Although this removing never happened (see more
+> below).
 
-Allow SDR104. With a SanDisk 32 GB card it runs at 148.5 MHz, and direct
-read goes from 23 MB/s to 53-66 MB/s.
+You  are right!  we should correct the commit.
 
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Tested on Helios64 with Linux 7.3, its device tree plus this property,
-and the U-Boot and .config of Armbian, PCIe host driver not loaded: 15
-warm reboots and 3 cold starts, SDR104 at 148.5 MHz each time, no SD
-errors in dmesg, a written file read back with the same checksum. One
-card only. Writes stay at about 11 MB/s.
+> 
+>> TEXT_OFFSET is always zero.  This has been upstream since v5.8, so no
+>> LTS kernel carries a non-zero text_offset.  Drop the adjustment and
+>> reject images with a non-zero value instead of booting them from a
+>> wrong address.  With the adjustment gone, segments stay at their CMA
+>> base and the release size matches the allocation.
+>>
+>> Cc: Catalin Marinas <catalin.marinas@arm.com>
+>> Cc: Will Deacon <will@kernel.org>
+>> Cc: Mike Rapoport <rppt@kernel.org>
+>> Link: https://lore.kernel.org/all/20260921090450.807575-2-ruanjinjie@huawei.com/
+>> Link: https://lore.kernel.org/all/20260921090450.807575-3-ruanjinjie@huawei.com/
+>> Fixes: 07d24902977e ("kexec: enable CMA based contiguous allocation")
+>> Suggested-by: Mike Rapoport <rppt@kernel.org>
+>> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+>> ---
+>> v2:
+>> - Split out from the patch set.
+>> - Link to v7: https://lore.kernel.org/all/20261026075201.699550-1-ruanjinjie@huawei.com/
+>> ---
+>>   arch/arm64/kernel/kexec_image.c | 13 ++++++++-----
+>>   1 file changed, 8 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/arch/arm64/kernel/kexec_image.c b/arch/arm64/kernel/kexec_image.c
+>> index 78b1f956d8d7..7d6baea3d28f 100644
+>> --- a/arch/arm64/kernel/kexec_image.c
+>> +++ b/arch/arm64/kernel/kexec_image.c
+>> @@ -80,12 +80,17 @@ static void *image_load(struct kimage *image,
+>>   	kbuf.bufsz = kernel_len;
+>>   	kbuf.mem = KEXEC_BUF_MEM_UNKNOWN;
+>>   	kbuf.memsz = le64_to_cpu(h->image_size);
+>> +	/*
+>> +	 * Pre-v5.8 images carry a non-zero text_offset, which is no longer
+>> +	 * honored; reject them instead of loading them at a wrong address.
+>> +	 */
+>>   	text_offset = le64_to_cpu(h->text_offset);
+>> +	if (text_offset) {
+>> +		pr_err("Unsupported Image text_offset 0x%lx\n", text_offset);
+>> +		return ERR_PTR(-ENOEXEC);
+>> +	}
+> 
+> If it's only CMA getting it wrong, can we not just set
+> image->no_cma = true here and continue as normal?
+> 
 
-Armbian kernels carry this property with PCIe enabled. In their console
-logs tuning sometimes fails when it coincides with the PCIe probe, as on
-ROCK Pi 4, and the retry reaches SDR104 every time. The cause is not
-confirmed on this board; async probe, applied as
-https://lore.kernel.org/r/20261103-rockchip-pcie-async-v1-1-4dcadb94af64@iav.lv
-is not tested in this combination.
+Yes, it also works.
 
-A normal reboot powers the card off, but after a watchdog reset or a
-panic the card stays at 1.8 V. An SPL that does not set the SD I/O domain
-from vcc_sdio_s0 then fails to read the card until a power cycle. Armbian's
-U-Boot does this (such resets 8 of 8, on Armbian's DTB). The board is not
-in mainline U-Boot yet; v2 of
-https://lore.kernel.org/r/20261021-b4-helios64-v1-1-74afe8aa6d72@iav.lv
-will carry it. Kobol's U-Boot is not checked.
----
- arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts | 1 +
- 1 file changed, 1 insertion(+)
+I tested this cma problem on QEMU arm64 with cma=64M and an Image header
+whose text_offset is 0x80000.
+- Without fix , it jump 512K past the CMA copy and never boot;
+- With the fix, it loads from normal memory and the second kernel boots.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-index f13ea2df7a30..35153e84f206 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-@@ -781,6 +781,7 @@ &sdmmc {
- 	disable-wp;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdmmc_clk &sdmmc_cmd &sdmmc_cd &sdmmc_bus4>;
-+	sd-uhs-sdr104;
- 	vmmc-supply = <&vcc3v0_sd>;
- 	vqmmc-supply = <&vcc_sdio_s0>;
- 	status = "okay";
+> While text_offset is 0 now, I don't think we concluded it should be
+> deprecated. There was a recent push back on the attempt to document the
+> always 0 behaviour:
 
----
-base-commit: c3baae5f1a15645cddadcb2b9abddef5df291f59
-change-id: 20261109-helios64-sd-uhs-9424ef31f9c8
+Thank you! I will fix it with your suggestion.
 
 Best regards,
--- 
-Igor Velkov <iav@iav.lv>
+Jinjie
+
+> 
+> https://lore.kernel.org/all/20260604140839.1930847-1-linux@rasmusvillemoes.dk/
+> 
 
 
 
