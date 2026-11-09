@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6977606A322
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C57606A337
 	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oQ8Wm8K5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IbgIlGB5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VaCHfOc5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OFv5ScoH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GtnnKDUixDs6YcFBue9AjIw6JGQ+hZhqw+n93Z0Tnoo=; b=oQ8Wm8K5RbO1fEauKkoEpd+/o0
-	cVtYhQzcseYySK3yyGYb6D2Sj/dth/GjKcizWeiAK3mNbdh2lIXySsdSUxybicRxres5ZzHx0ABQo
-	OEUhAry95K76QbxMDM5YDMYmHYXpdD+lWBZAbwMM6cZp0dAzx6BDEfG0soTiP3gjj0VmF6o1linKs
-	o2Fxe5H3hIXgzyk1QWAU7P3APFx+5ib0yzWkgndFCMmgPAwPiRROF4RDsB0EGpLi0p100vHJd9pk1
-	OZujfYiP3d0F+HXpadwaCSgxPm3XtAOpCuVE8IedT3wpYZahtQjyAQq76NdCDM2STd96BOrC5JqNQ
-	OlgUu66A==;
+	bh=uQPEtNnmLlScHzIoED0cbGAI+vw3fcSsbnPTSfV6adM=; b=VaCHfOc5SThGETEmtVwOgfp9RK
+	9L0vOUBDo+OJPVibtchW+6K/ecl65kKxZ37jxQaKijeowhDcwCBHP38auTHW7ZouXBJzrZri6LpMn
+	syXb9fyJdrOymgx2At6yxtYzPEeRhSgH4LX7+YIv9HRqRkcYMvdpkJo2iki/n4FxRI42dE1P1FmfH
+	vaOTylUBg83ocqQOeEgU37palf2Z38qh5W+ADNe5VYIyOpZTCTghTp/kjh7lIMqQA0KUxrqIPL0Te
+	QNFcGDY/pbU5IONw5zhdxHOXgJsPum0Xa2VbB4ngsLMEdaGDphsJS0jZHEQQ5ELJuMx8TysewMBSW
+	7oRJuIeA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQPfF-00000000rNd-0CeM;
-	Mon, 09 Nov 2026 13:44:01 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQPfF-00000000rNq-0j7E;
+	Mon, 09 Nov 2026 13:44:06 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQPfE-00000000rMK-0AYE;
+	id 1xQPfE-00000000rMU-0Dnp;
 	Mon, 09 Nov 2026 13:44:00 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 76D4640933;
+	by sea.source.kernel.org (Postfix) with ESMTP id CB600416FC;
 	Mon,  9 Nov 2026 13:43:59 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794231839;
-	b=wbFCzZPnt7Ik+gtLJumpPuqF5LmkHGFnka65GKEaaV3OSQlsY+z6Z8HLVLjRg0hppPQP
-	 aNs+mjkb1ZOso0+dNxfwvD8uF15Kw2+3S/gBhX/XKOF8TDJTj35KuO9g+HhExp0+/NY4X
-	 LOLu9lQ0LFMBqSMl4SELh3Jr44zvPj9RdRkLxe1P86kKpyWHiTZLvdwLJmiOdBSu9zG4I
-	 Sr1I8jI3NL6yHgAGxiue8f2Qlpwnsz+KPbc5VKzTvUv3JzFsHQ7a534O2lL1hFh+HJ0EK
-	 RrFSxjFUONW2/sMjGPa50fiN7GoPojSkQXK8Q0391cFaEqfv8dYqTv0wQU0N/1QpNOg==
+	b=lG96xWLSy5XFfp2TMOIYrBVkKaQ+VBADwRz4p/M2sUwZ5/zRbjGhLs8jHA/fTInXt5JH
+	 NHFM+sYE7acMZlympfex1cMEKiMDe6+On9ddowo53UTKLm9ALHa4dqFzVSuxLEULxy0Ki
+	 ZZ1qybt4b8//Izwevapqm3OmDfnYgWGyNW/v93AKFdCnNA2aupdg58NUpxkfIvx0mb8j3
+	 wZ9uh3gx0PfODpVk2rfNhbohELad4LNpwnBKzt+WwrGSRLMtoGicZIS0FhEDLnL4aQDlH
+	 KmlHqT6o+pWrzGWeaMG2sff4tfFiX/kYU6CYBkGZ+3sds15gvl9sDQ9MCdDPgt0Ixkw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794231839;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=GtnnKDUixDs6YcFBue9AjIw6JGQ+hZhqw+n93Z0Tnoo=;
-	b=F6/IakttLtW6jObX9bQ7sFijE6XWbho6M4mIalMvjlifegGSFR9RIWJKbQHvC0rwdxdt
-	 nSW4xgauiKzrZNdfekvj3DCROu+BMwkMBgOLrJO4zt3BxQfDxuWb2AOP+c8nRoJXHpwdW
-	 rBRVB+JA9+rkzq13iQvhYiof9JzHnxGm+3Pd9O42pjxSpW191NsrKSQJUG5HK81tc51ta
-	 CqqtB2V3C/v7rz8ztzMtNUq8quI5X0Gf+x2Bl2ji/1DArvoCia0NOmC/MpVzsz7VMwoPn
-	 G2f2v2sYo7yF9G/CSr+q76usK3UTFOyUBJX8xBwjhyS0huCVwoA4PBDQSEMpn+UB9QA==
+	bh=uQPEtNnmLlScHzIoED0cbGAI+vw3fcSsbnPTSfV6adM=;
+	b=cqm9nPwAZPY2fjZiArfLYyw3VQ9gCurGoqhE4NwI3DMMQe5mz3jfA3IXNnVA7tFMjGmt
+	 ZbIK05gmypGp1djMFkrTtp+DJ1GHpwRVY3mLsGPmMDWTENX0Cib9vGuXhEzLjyVYvi4+O
+	 Hs93N0N5q5Qoj15r94F2/CS4uhh4Rz3L+WiXpqza8o5Ub+5+lHOD3yoLPfYIf83KuqIM5
+	 ugtHYRhmDUm8oJEzLQy7hFrTzJ4FadHkkXk5hvpRqJJ3HO/99wHzed43ITBilyEjPTu6v
+	 Kt7V3iXVH1x7w2IVBCOWO98hZhBz0E0UYhhfIYijp9QjGFeYQcWWxgMERGbQAdJHPsg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 336DA1F008A1;
+	by smtp.kernel.org (Postfix) with ESMTPS id 5A2901F008A3;
 	Mon,  9 Nov 2026 13:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794231839;
-	bh=GtnnKDUixDs6YcFBue9AjIw6JGQ+hZhqw+n93Z0Tnoo=;
+	bh=uQPEtNnmLlScHzIoED0cbGAI+vw3fcSsbnPTSfV6adM=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IbgIlGB58wiNwULIAQYrTiVp6BeWsPw4QefYrrCANl5Sjt+qweb+WwMBLH3yC8oc2
-	 s4MKzMMlOApMPm5s/oZoodDiGQG26Hd7IQLCMoXal4Hs9uVMb59qym/W4Yv6pQsYsE
-	 tQhGTQrnwsgH/E/b0tO8/vcM+uh8lL7mmrhqgRUN+W0Q6YaAij4UHS+jzjY1sqNIb1
-	 Ccypn2jjjm0TH/v8a+M/2C15B5r+zY0Q2kPMWy2M9Eeegu8k95Xn8nNtrld0+uBzUk
-	 Eph0CKg0sBFpY2VgHfEspvQGTrZa862M3eLxwC6pjl5pkBinXtXGsoG2+hlJ7oiF+k
-	 k4PwQL+VUI8Qw==
+	b=OFv5ScoHr6NEX0ohHKaYpAnOpZrheTiWrjXo99Rlw0ygg1U/Dn2oZPucD7D+8evGk
+	 3ZdZ6nLr/wwUQMeiwrO0+o3V4FNVo6AKlCD15SjOWuyiwb6dBPGZnlLzTGRsZQvJAq
+	 rcRTKisoxYnKf1AqpS5adK5I7K/uq0hrDQb95ZRoLAVRLBuq2paQZqIW2tjyQ+s8ol
+	 a5IWZTRu+qt+El3jWoPmmaqwBKUVVvrALlDIhQjxzRRg2Df/NeAtmCw2ybQ5w2EVdm
+	 HY2WvmPMfTprGz22zP/oPpqBZb14pNIwXoecP2b5HKsQnWLFs5UleEunL1Acfd0lXo
+	 u+z+Buf8ObpoA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id BA3EB484B5;
+	by lkml.kernel.org (Postfix) with ESMTP id DFA6F484C5;
 	Mon,  9 Nov 2026 13:43:57 +0000 (UTC)
 From: Sergei Khomenkov via B4 Relay <devnull+shomenkow.gmail.com@kernel.org>
-Date: Mon, 09 Nov 2026 16:43:51 +0300
-Subject: [PATCH 1/3] media: verisilicon: stop the VEPU1 JPEG encoder after
- an unfinished frame
+Date: Mon, 09 Nov 2026 16:43:53 +0300
+Subject: [PATCH 3/3] media: verisilicon: leave room for the JPEG header and
+ one stream burst
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-hantro-buflimit-v1-1-f0b86ce61e66@gmail.com>
+Message-Id: <20261109-hantro-buflimit-v1-3-f0b86ce61e66@gmail.com>
 References: <20261109-hantro-buflimit-v1-0-f0b86ce61e66@gmail.com>
 In-Reply-To: <20261109-hantro-buflimit-v1-0-f0b86ce61e66@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
@@ -94,11 +94,11 @@ Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
  linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org, 
  stable@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794231837; l=3446;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794231837; l=2875;
  i=shomenkow@gmail.com; s=20261104; h=from:subject:message-id;
- bh=zI1doLggNAdKArdfoF8NOsjTBvai2n/eWahpgrADzl4=;
- b=8i+V7bEymp3SbAXhd4ILpebsao8cHm3kZV+rAwGPEaCvrJGhxMx0PLQmL0tt4yySDSzHBZ10+
- s0AYQgzA3KKCl4CkjCPqkaPVq/KO2cNlL5R+YVmF9czzhtjDif/g6CW
+ bh=WFzfE2RiWdT+i+qq0glggXPv17AxZu0PiVwPxE5rxXQ=;
+ b=pPK6FLWKeibNzXyvohaaL0PsnBvzKTougQAG6KwXp2yfxpo4tasR1lz+/mNE91PalLZ0uU93p
+ 0Pp3dUaw9zCAA3hw1AA6gCnAy32OCAfz/TuRbgsnNesnOQZWA78mcPb
 X-Developer-Key: i=shomenkow@gmail.com; a=ed25519;
  pk=FwuHDVe7aiISDMLmQEcMC+RflEIJ6kEp/ekwznWXmI8=
 X-Endpoint-Received: by B4 Relay for shomenkow@gmail.com/20261104 with
@@ -126,72 +126,63 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Sergei Khomenkov <shomenkow@gmail.com>
 
-When a JPEG stream does not fit the CAPTURE buffer, the H1 raises an
-interrupt with BUFFER_FULL set and FRAME_RDY clear, and pauses with the
-enable bit of H1_REG_ENC_CTRL still set, waiting for more output space.
-rockchip_vpu1_vepu_irq() returns the buffer with the ERROR flag but
-clears only the interrupt and AXI registers, so the next job is
-programmed into the paused encoder: its ENC_CTRL write aborts the paused
-frame, which raises a reset interrupt while the new job is being set up,
-and that job times out. The watchdog then calls
-rockchip_vpu1_enc_reset(), which sets H1_REG_INTERRUPT_DIS_BIT, and the
-JPEG encoder path never clears that bit again, so every later job times
-out as well. That second problem is not addressed here.
+hantro_try_fmt() keeps any non-zero sizeimage on the JPEG encoder's
+CAPTURE queue, however small, and hantro_buf_prepare() then accepts a
+plane of that size. hantro_jpeg_header_assemble() writes the 624-byte
+header into the plane with the CPU before the hardware starts, and a
+plane smaller than the header also makes the WARN_ON() in
+hantro_h1_jpeg_enc_set_buffers() and
+rockchip_vpu2_jpeg_enc_set_buffers() fire on every job, which userspace
+can trigger at will. After the header the encoder writes its stream in
+bursts, one of them even when the stream limit is 0; on the RK3026
+VEPU1 a burst is 64 bytes. A plane smaller than the header plus 64 bytes
+is therefore written past its end.
 
-Write 0 to the enable register when an interrupt does not report a
-finished frame. The write comes before the interrupt and AXI registers
-are cleared, and before the next job is scheduled. On the RK3026 it
-raises no interrupt of its own: in the test below the encoder raised one
-interrupt per frame and no job timed out.
-
-The encoder rarely gets there today, because the stream limit it is
-given is eight times too large; the next patch fixes that, and then
-every frame that does not fit ends this way.
-
-rockchip_vpu2_vepu_irq() and stm32mp25_venc_irq() do not stop the
-encoder either. I cannot test the VEPU2 or the STM32MP25, so this patch
-leaves them alone.
+Raise a smaller request to header_size + 64, so that every plane the
+driver accepts holds the header and at least one such burst.
 
 Found with an LLM coding assistant while porting mainline Linux to a
 Rockchip RK3026 board (VEPU1); the assistant also drafted the code and
-this message. Tested on that board with the stream limit fixed: without
-this change the job after a buffer-full interrupt gets a reset interrupt
-and every later job times out; with it the frame that does not fit comes
-back with the ERROR flag and the following jobs, overflowing or not,
-complete as before (10 alternating jobs, and four overflowing frames
-queued back to back followed by fitting ones). Counted in
-/proc/interrupts over 24 runs of the series (48 frames, 16 of them
-ending in a buffer full), every frame raised exactly one interrupt, so
-the stop write raises none. Only buffer full was exercised, not bus
-errors or the hardware timeout. Not tested on other SoCs.
+this message. Tested on that board: a 640x480 CAPTURE format set with
+sizeimage 1, 600, 656 and 689 reads back 688, 688, 688 and 689, a
+656-byte DMABUF plane is then refused with EINVAL, and frames that do
+not fit a 688-byte plane stop exactly at its end and come back with the
+ERROR flag. A request of 600, now raised to 688, encodes with no
+warning; before this change it was kept, and the encode hit the
+WARN_ON() at hantro_h1_jpeg_enc.c:50 (hantro_h1_jpeg_enc_set_buffers(),
+reported in hantro_h1_jpeg_enc_run()). Also before it, with 32 and 8
+bytes after the header (a stream limit of 0), the encoder wrote one
+burst, 32 and 56 bytes past the plane. The burst size is measured there
+only; not tested on other SoCs.
 
 Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
 Cc: stable@vger.kernel.org
 Signed-off-by: Sergei Khomenkov <shomenkow@gmail.com>
 ---
- drivers/media/platform/verisilicon/rockchip_vpu_hw.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/media/platform/verisilicon/hantro_v4l2.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-index 02673be9878e..144d320302a1 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-@@ -376,6 +376,15 @@ static irqreturn_t rockchip_vpu1_vepu_irq(int irq, void *dev_id)
- 	state = (status & H1_REG_INTERRUPT_FRAME_RDY) ?
- 		VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
+index 83af9fa1ce94..cc35beac8338 100644
+--- a/drivers/media/platform/verisilicon/hantro_v4l2.c
++++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
+@@ -394,6 +394,16 @@ static int hantro_try_fmt(const struct hantro_ctx *ctx,
+ 		 */
+ 		pix_mp->plane_fmt[0].sizeimage = fmt->header_size +
+ 			pix_mp->width * pix_mp->height * fmt->max_depth;
++	} else if (fmt->codec_mode == HANTRO_MODE_JPEG_ENC) {
++		/*
++		 * The JPEG encoder writes the header with the CPU, then the
++		 * stream in bursts, one of them even when the stream limit
++		 * is 0. Leave room for both; a burst is 64 bytes on the
++		 * RK3026 VEPU1.
++		 */
++		pix_mp->plane_fmt[0].sizeimage =
++			max_t(u32, pix_mp->plane_fmt[0].sizeimage,
++			      fmt->header_size + 64);
+ 	}
  
-+	/*
-+	 * An interrupt without FRAME_RDY does not end the frame: after a
-+	 * buffer full the encoder pauses with its enable bit still set,
-+	 * waiting for more output space. Stop it, so that the next job is
-+	 * not programmed into a paused encoder.
-+	 */
-+	if (!(status & H1_REG_INTERRUPT_FRAME_RDY))
-+		vepu_write(vpu, 0, H1_REG_ENC_CTRL);
-+
- 	vepu_write(vpu, 0, H1_REG_INTERRUPT);
- 	vepu_write(vpu, 0, H1_REG_AXI_CTRL);
- 
+ 	return 0;
 
 -- 
 2.53.0
