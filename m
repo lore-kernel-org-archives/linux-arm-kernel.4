@@ -2,81 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F74606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 20:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5460C606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 20:39:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XzjOBLVJ;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A8FIBdKP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PZiOmxGF;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=iv63CrR+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uSmqEwTPBCw7yv/vu+RoTvS1k78wUQRDkeFSllXkLKI=; b=XzjOBLVJzo+2Fu
-	I8Zi650HAL2wOG0QtZhSEhjmUP0QEQSDd+zEZ2ZJlDGj7pNuYEcnz+UbZpDES3DXb0aRyF2JWSX/G
-	n5SJk4YfX2L1jRoWwvRVmcHgegH+ZvZW91Cd3NYA9B42lH9G4RbGWY//cJO4lSRbc1a9qqJj1Y0WE
-	Tu6MSBq8LZN7eWINVbSMjkPRhv1XeotQlFOxpwy7tMzleturURMCmyqipMbGUFUptsHNIcyCDv02D
-	sbpuM5ntCol3Q2mHP8MGjAmEUCnjY+gJxk7v96L91PArahQcWOMjLCYG71p1XQBtf97wGoadGnPGr
-	NAeQARZ7sKRXpJjXGJKA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=KXTKxpvQmG4qWI9EEs3gz14VI5DReG+qhWlAxe45/Nc=; b=PZiOmxGFSLilf6h3kYtV9oeRAc
+	hKqmFE+Pj9gvDiJFH5b+/M7Zkh3jfG9ryFc36LoQwqiOP1EzKb83mOe7YVEShzAesXADlkqZ48P8I
+	gDxepiApCMCIVtj194y6OsKo+UQ0ig4teTuZaCyOa18+FoDqnt1ZzQyv+WKKfp39duNMSxBL1gbiX
+	MgWFJ4FFlMLsOW9JS+ZdtsvFTTSOuPq1atzjzlqsVbRG+6LL12ZnSI/iV2wg+6lltXuUS0oCCBGSN
+	7nltVHB/4NoHZKG3jOakMFKVncIpFJyekfHzcNIqsIwE0JIPKMI7D5Iit8Lg5Q+tHUTRx2Nc/sz5b
+	FBJANICw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQVy5-00000001eMp-3cWz;
-	Mon, 09 Nov 2026 20:27:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQW8v-00000001fXq-3t5K;
+	Mon, 09 Nov 2026 20:39:05 +0000
+Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQVy2-00000001eLu-28Zh;
-	Mon, 09 Nov 2026 20:27:50 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 007DE42B6D;
-	Mon,  9 Nov 2026 20:27:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7830A1F008A1;
-	Mon,  9 Nov 2026 20:27:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794256069;
-	bh=uSmqEwTPBCw7yv/vu+RoTvS1k78wUQRDkeFSllXkLKI=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=A8FIBdKPcoGsNZlhGhiZxSuNdfssvT5PPZ6PrGGJaBdnGlh1o1Uoc3D7idyPnLDiT
-	 opYuDkhI6iTo2Dkz+j/2fqI0v2JoKsTponThIl770h6qo0JswzOFpuPxvcoISfhMLO
-	 96j3RJ4LE5aydnXA6E3B6PD9yMVvYhuO+YDa7DOayKR1+meLwulbZPWOyrGw/Zy9XR
-	 15iPrvzzJn0jCEPLUw84HtOy53ejShG6QX23kJRYzSx+whednhH04vvje3HVr3t+Dm
-	 nW4yxHSm4PYTVRKI2m50h9lbf4d2syeJKmb9gnxqIi/Ac3TCjiT0EH0AYw5cSRm0nW
-	 MzROyVWkrB9Sw==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 7B1B130216A7;
-	Mon, 09 Nov 2026 20:27:04 +0000 (GMT)
+	id 1xQW8s-00000001fWr-2P4o
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 20:39:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=KXTK
+	xpvQmG4qWI9EEs3gz14VI5DReG+qhWlAxe45/Nc=; b=iv63CrR+NkxkquUtgPAq
+	xEKCX7A9CKbbZWNdTu2lcZahuFZDtMGnqQQ74Y5qcP5fyoa0paj0o/gfo0jeMsZ6
+	PUhWd1+03dTf4bDg/7g13tuVG0PJyP69YOLSYVc6vscb0Esftjgpico9K2F0e2xU
+	gvPI1j2AzUtP8sFgOGxN5+wrZK9aRo7OODlLLtmbTavBpp4cc+f3ayz56AjDrTM7
+	aIr0jOIJewj/VJVAAKUhDiEPrqOdvMOCfJ5VhEGGkSH+TSBpt13R0IfL+HDHvTnx
+	8+eFb37xTHxQT6+/hxTCIVsdO15/jY1Sm9fqCbGQtGVpZU1gjvbCe1rBSfuvlv6E
+	QQ==
+Received: (qmail 3406806 invoked from network); 9 Nov 2026 21:38:58 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Nov 2026 21:38:58 +0100
+X-UD-Smtp-Session: l3s3148p1@1JSC891fWJ0ujntg
+Date: Mon, 9 Nov 2026 21:38:56 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Dmitry Guzman <Dmitry.Guzman@mobileye.com>
+Cc: Linus Walleij <linusw@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	srinidhi kasagar <srinidhi.kasagar@stericsson.com>,
+	Ben Dooks <ben-linux@fluff.org>,
+	Andrea Gallo <andrea.gallo@stericsson.com>,
+	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/8] i2c: nomadik: handle pm_runtime errors
+Message-ID: <avIvYMDqQtyBVIWI@ninjato>
+References: <20261103-i2c-nomadik-fixes-v1-0-655c6af2cb70@mobileye.com>
+ <20261103-i2c-nomadik-fixes-v1-6-655c6af2cb70@mobileye.com>
+ <avFwLctRcnJHtINQ@ninjato>
+ <avFzEaxgam-UuZH0@ninjato>
+ <20261109100606.493ca48095bcc3527be18573@mobileye.com>
+ <avICFAh07d7XrAIY@shikoro>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 5/5] spi: atmel: fix division by zero when transfer
- speed is zero
-From: Mark Brown <broonie@kernel.org>
-To: shao.mingyin@zte.com.cn
-Cc: broonie@kernel.org, linux-spi@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- pjw@kernel.org, samuel.holland@sifive.com, william.zhang@broadcom.com, 
- kursad.oney@broadcom.com, jonas.gorski@gmail.com, 
- bcm-kernel-feedback-list@broadcom.com, anand.gore@broadcom.com, 
- florian.fainelli@broadcom.com, rafal@milecki.pl, 
- linux-arm-kernel@lists.infradead.org, sven@kernel.org, j@jannau.net, 
- neal@gompa.dev, asahi@lists.linux.dev, ryan.wanner@microchip.com, 
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
- claudiu.beznea@tuxon.dev
-In-Reply-To: <20261106234803459Z94udUX-Ai29-OfBFRND6@zte.com.cn>
-References: 20261106234751020Egf42VCVVlsSC_Msov4HO@zte.com.cn
- <20261106234803459Z94udUX-Ai29-OfBFRND6@zte.com.cn>
-Date: Mon, 09 Nov 2026 20:27:03 +0000
-Message-Id: <179425602307.3711751.7845465463671042950.b4-review@b4>
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=913; i=broonie@kernel.org;
- h=from:subject:message-id; bh=5Ht5M+VjLA+M4Oeg4Wh7v9V7rBg4ioA0/PuJ6uvdihU=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+6cwo4GpdvnHDs+b2EqXGWWmFbOv3bLGv27Gy+iRXw
- +xl6+0CO0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAjAR/XKG/+mKh+SPln9/OHVZ
- iTCL3Tnj7mVTVhZfq9utt/jr8s0KtXMY/udUHd3KsWHVo+SciZ4KfYlxvJ7TO/hbzxa9OPSEs/v
- IY04A
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avICFAh07d7XrAIY@shikoro>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_123903_502122_5136E926 
+X-CRM114-Status: UNSURE (   7.41  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -87,32 +79,18 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> atmel_spi_one_transfer() calls atmel_spi_set_xfer_speed() for every
-> transfer.  A device whose max_speed_hz is zero (no spi-max-frequency
-> property, or created through the spidev sysfs new_device interface
-> without a speed) leaves the transfer speed at zero, and the divider
-> calculation divides by it.  spi_setup() would only clamp the speed if
-> host->max_speed_hz was set, which this driver does not do.
 
-...
+> Having a leak less and cleaner code? Yes, I am sold :)
 
-> Clamp the divisor to 1 Hz so the zero never reaches the division.
+Can you please resend an updated patch? The code change is easy for a
+rebase but the commit message needs to be rewritten completely which
+calls for a new version of the patch, I'd think.
 
-> -	scbr = DIV_ROUND_UP(bus_hz, xfer->speed_hz);
-> +	scbr = DIV_ROUND_UP(bus_hz, max_t(u32, xfer->speed_hz, 1));
-
-This has a similar issue with limiting, in this case even worse as we
-generate an invalid SCBR value and then validate it later in the
-function.  We should just set the maximum instead of bothering with the
-division if we're subsituting a default here.
-
--- 
-Mark Brown <broonie@kernel.org>
 
