@@ -2,90 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C648F606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 22:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96FEA606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 22:51:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tbbKFhqf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YS340XH9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nWxXYeR+;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=N+1eX0lt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lbmh/0Z0zwTEAIGZ8vw8plOMg7G98sTILva2sucTUcE=; b=tbbKFhqfBXRBCZ
-	E3xdjBFZ3eCs6aE41eBj2CzAGNVBMUtTwry4BDLMm0p0PYWjlI/YCuKehAZM19tBrsPOPr/uNXYVh
-	5pQDY6obFn4MoP0IVwqj5hMGL511jv1/Zg2z56dNcuwpqJ+Dhxs/g+wHfprWq7LpfOZFdNltnTSHP
-	2kqiv2y0FCgXr16EIRDUoPQ6HISet4vs2zSbNx9OojKCj+1RM78g+dLNM8Jqqvv6EQso3jA1l16Rp
-	68RcOvFuKxgT+QG7k+QnQrpN7F0m6cauvLpSZlzrSixa6usKPMqPq0mRiZtrzbZGpg/2Hg3Ex86dQ
-	MNXj5O0fRNHUegNtGogQ==;
+	List-Owner; bh=O8KHCux6DdBKzEkjUoqO1TbETr0T7myPvKNAkvAeZEo=; b=nWxXYeR+/E+a/b
+	o+pYROcBW30OffV3Ehu0SpYMojaQaJJAFeNC2vMfsWwAEIPpOYqBqTvGtBIuE//G7y72PqcwYBPXv
+	0NjlzYoBlp+ejdNjgNSM4KbB/8HKZLdG3qCLHrKqgzcWQSpYVzuWdPeo74k2MphexjQip8tFCLCcL
+	Tw6Tk9nunjc1XEedLXTM3Y+GxSo0MK80V5r7LoN5AmuMJ/OX453mmKK9bVW29LIKbHpsp2SqXXFnw
+	gVhCvSfSdl6DauyiPSX6eEoCb3X7ooClMUucZwNiz5gte4169alk5vjbuyJ0KmTqClODxfV73rVg2
+	E3mYfBl7RUJR6D2YVkLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQY6L-00000001u4q-3HfM;
-	Mon, 09 Nov 2026 22:44:33 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQY6K-00000001u4J-19rg;
-	Mon, 09 Nov 2026 22:44:32 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5701A60A7A;
-	Mon,  9 Nov 2026 22:44:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B61871F0089F;
-	Mon,  9 Nov 2026 22:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794264271;
-	bh=lbmh/0Z0zwTEAIGZ8vw8plOMg7G98sTILva2sucTUcE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=YS340XH9AgYiYC0jmay2BOZ8psYLNTS9Zrj+ai1c0l0V3ody+zwIbLGKaNGAGBa4J
-	 d9aPJgiLauxuP8BmJQSc4iHfqQSdIMPFvqoZdhvllfDpSeXc3vutC6h9i9MK/xnRN9
-	 dIRg1N6rLkEd2ZBuRQl19ce7kHwCYP6jorqrFPJxo1LriWVol/DWOFmnbLH1HMilCc
-	 7Uj68OXXpLHznUZRlz7kcg6kTHT3s1XEMPq+7NHYItafxe7T66Oh3nx8NXaqJT/l7T
-	 dBvKnsrMMJzH/z0kiG9OTMLFTueglK0GqfYsdJKUEz8yrPmdhSIpTDARYW5sQLa6NL
-	 pdO/hDQ3kA+2g==
-Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 351CF303EFF9;
-	Mon, 09 Nov 2026 22:44:27 +0000 (GMT)
-From: Mark Brown <broonie@kernel.org>
-To: Vladimir Moravcevic <vmoravcevic@axiado.com>, 
- Tzu-Hao Wei <twei@axiado.com>, Swark Yang <syang@axiado.com>, 
- Prasad Bolisetty <pbolisetty@axiado.com>, 
- Karthikeyan Mitran <kmitran@axiado.com>, 
- Alain Volmat <alain.volmat@foss.st.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Michal Simek <michal.simek@amd.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Heiko Stuebner <heiko@sntech.de>, Jyan Chou <jyanchou@realtek.com>, 
- Yu-Chun Lin <eleanor.lin@realtek.com>, 
- Laxman Dewangan <ldewangan@nvidia.com>, 
- Thierry Reding <thierry.reding@kernel.org>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Sowjanya Komatineni <skomatineni@nvidia.com>, 
- Joshua Crofts <crofts@kernel.org>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-tegra@vger.kernel.org
-In-Reply-To: <20261108-spi-dont-use-autosuspend-v1-0-3587b0183cbe@kernel.org>
-References: <20261108-spi-dont-use-autosuspend-v1-0-3587b0183cbe@kernel.org>
-Subject: Re: [PATCH 00/11] spi: remove redundant
- pm_runtime_dont_use_autosuspend() calls
-Message-Id: <179425512291.3711751.11313466595449863242.b4-ty@b4>
-Date: Mon, 09 Nov 2026 20:12:02 +0000
+	id 1xQYDC-00000001ud3-2ojH;
+	Mon, 09 Nov 2026 22:51:38 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQYD9-00000001ucj-3xUs
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 22:51:37 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F186814BF;
+	Mon,  9 Nov 2026 14:51:30 -0800 (PST)
+Received: from [10.57.66.183] (unknown [10.57.66.183])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 25CC83F85F;
+	Mon,  9 Nov 2026 14:51:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794264694; bh=maXvj0CLcHHwIox8S+lKpiL0hGRDaPZhNzhXsuq3WZk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=N+1eX0ltPT9Wy2JU8iL7JDkbbLYXUHCGzVG3CYzFvGsCFD3vH9pMR0OqjOXAt0dro
+	 TNY6vd0aSgtPeLSBCBoaU+/pENk4EMCdEGdjoiXRX91195R7V3wFkgXF5h9z/7kc4K
+	 xjLPM+sg+KiHX46i7qbWQbnu4xd2fCzQ7ClHvtLk=
+Message-ID: <a79a52db-2361-4303-9d43-87837f349f48@arm.com>
+Date: Mon, 9 Nov 2026 22:51:30 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/23] coresight: trbe: Clear TRBSR status at stop
+ sites
+Content-Language: en-GB
+To: Leo Yan <leo.yan@arm.com>, Mike Leach <mike.leach@arm.com>,
+ James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
+ Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ coresight@lists.linaro.org
+References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2825; i=broonie@kernel.org;
- h=from:subject:message-id; bh=fGK1+6kBLTgLKjWD8aKdb74u71yNwRTJZfTglc1HBn0=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI++ZwODWpPPLn8k2Swd6BwZ+i06Lcex+7e3ZW06bQrL
- 8vrE7O/dpSyMIhxMciKKbLEZXG/rC95vYbv4MI2mDmsTCBDGLg4BWAiHC2MDGc67Hb+5puz5IRx
- GdsjBpnZF97yZonUlPO0X+D66L1UIZKR4au03ISGG6cDm2792q+lcTQvZNuXKQqR0/3a7jyzWrv
- Sjx8A
-X-Developer-Key: i=broonie@kernel.org; a=openpgp;
- fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_145136_145142_CE11C293 
+X-CRM114-Status: GOOD (  19.36  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,71 +76,75 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 08 Nov 2026 13:16:47 +0100, Joshua Crofts wrote:
-> spi: remove redundant pm_runtime_dont_use_autosuspend() calls
+On 16/10/2026 17:55, Leo Yan wrote:
+> TRBSR_EL1 records the status of the buffer that just stopped. Clearing
+> it in trbe_enable_hw() postpones cleanup until another run starts. If
+> AUX output cannot restart, for example when AUX space is exhausted,
+> that clear never executes. Clear the status in arm_trbe_disable()
+> after disabling TRBE instead.
 > 
-> Since commit d1706f9da9f4 ("PM: runtime: call pm_runtime_dont_use_autosuspend() on reinit()"),
-> driver core is now responsible for undoing any
-> pm_runtime_use_autosuspend() calls on driver exit.
+> trbe_handle_overflow() can start the next run without calling
+> arm_trbe_disable(). Clear the stopped buffer's syndrome and status bits
+> while TRBE is disabled, before attempting the AUX restart. This also
+> leaves the status clean when the restart fails.
 > 
-> Remove the redundant function calls.
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-trbe.c | 10 +++++++++-
+>   1 file changed, 9 insertions(+), 1 deletion(-)
 > 
-> [...]
+> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
+> index 26e7554d6bdd31f8a55a8bc3a7b6d4c49b984b9b..dd9c9330bb0c739795f300dafc6ce34e72fbf280 100644
+> --- a/drivers/hwtracing/coresight/coresight-trbe.c
+> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
+> @@ -655,7 +655,6 @@ static void trbe_enable_hw(struct trbe_buf *buf)
+>   	WARN_ON(buf->trbe_hw_base < buf->trbe_base);
+>   	WARN_ON(buf->trbe_write < buf->trbe_hw_base);
+>   	WARN_ON(buf->trbe_write >= buf->trbe_limit);
+> -	clr_trbe_status();
 
-Applied to
+TRBSR_ELx is UNKNOWN at reset and if we don't clear it at probe time, we 
+endup running the first session with unknown values. It is safer to
+clear this at enable_hw.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-7.5
+Suzuki
 
-Thanks!
 
-[01/11] spi: axiado: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/9c5ba93a5a13
-[02/11] spi: cadence-quadspi: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/4a1cab30f7e0
-[03/11] spi: cadence: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/e5187e13ce1f
-[04/11] spi: stm32: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/6d2a6ec8942d
-[05/11] spi: stm32-qspi: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/73f3bb4134f4
-[06/11] spi: zynqmp-gqspi: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/affeee16b705
-[07/11] spi: mtk-nor: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/634d73e929cb
-[08/11] spi: orion: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/ca8b81eca7f1
-[09/11] spi: rockchip-sfc: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/b90c9acd16cb
-[10/11] spi: rtk-nor: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/1fcfd0275515
-[11/11] spi: tegra210-quad: remove redundant pm_runtime_dont_use_autosuspend() calls
-        https://git.kernel.org/broonie/spi/c/ff3bd58298fc
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+>   	set_trbe_base_pointer(buf->trbe_hw_base);
+>   	set_trbe_write_pointer(buf->trbe_write);
+>   
+> @@ -1069,6 +1068,8 @@ static int arm_trbe_disable(struct coresight_device *csdev)
+>   		return -EINVAL;
+>   
+>   	trbe_drain_and_disable_local(cpudata);
+> +	clr_trbe_status();
+> +
+>   	buf->cpudata = NULL;
+>   	cpudata->buf = NULL;
+>   	cpudata->mode = CS_MODE_DISABLED;
+> @@ -1095,6 +1096,13 @@ static int trbe_handle_overflow(struct perf_output_handle *handle)
+>   	unsigned long size;
+>   	struct etm_event_data *event_data;
+>   
+> +	/*
+> +	 * Clear the status. No context synchronization is required here,
+> +	 * since context synchronization will be performed before TRBE is
+> +	 * re-enabled (see trbe_enable_hw()).
+> +	 */
+> +	clr_trbe_status();
+> +
+>   	size = trbe_get_trace_size(handle, buf, true);
+>   	if (buf->snapshot)
+>   		handle->head += size;
+> 
 
 
