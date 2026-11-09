@@ -2,69 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED09606A322
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 02:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F92606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 02:44:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P3ADukch;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.a=rsa-sha256 header.s=2022a header.b=DAcUw3xM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KovtKIyU;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FOJ0zh4z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=OjFjDEv6r6cygeke1RGOx0xnQni07udazDvq2kGmw6Q=; b=P3ADukchbdiuzowSs0XtDoSLT7
-	zYkeTSNjxuj3Ef0mdLgC+xzxim2xpyWtNtCGdqSe/WQrpjFMFSqnEa84gxYRAZA1836/ZkCmMQZau
-	D9eOpnaPLUoo4BjegxFgeRah1cy0V7VvI2cg7DF8Kqt1kLaBYSDMvPxuQb9m93xoGmEeIBinw5t5i
-	UPhWK518tau2B1K/f2XPnOUv1mHCJ6Vsr9MgTFdDm32uHcb3fM27RjnbvVEZDupM1p6O8cw1r9JxK
-	cKGs7lnBl85G2RWu6PuiCeQsNzLd9tQDG1gpq+ZDIqDujwxsMSLjHjsen+Wj5sBWTNBZWAZScs2Kf
-	hlm5piDA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Yq6Wg8dZm4uB3bJQCmf1miWvm1ABWBJ7TTfz/AA487Q=; b=KovtKIyULmHcCr
+	AyFZ/hAill8sRoq7RmHFDxdviTMi1Ks+xQWtCBVLLm5GrQ0nhj9lGlSEPbm5Bmu6yOtIas/UKvxEI
+	qM2Fbjgw5yq29v8RerOU950IZDx0tHzO9yP6gmEo0Wy73Yu8fLeftjmGeSDhlTMpf59GD+fNolOLc
+	F788inOWMGSVPhHuT8JejfKuYyZWv5HMGcCturAuSirnEe8EAHogGX+cR3+++7ZB1zWrEAaAMf007
+	b9n5P92Dpbor7pRKi0YLnElz+HRelX6CRIQ7HDi3Aw27pMqnSfv5BSXnH7SsL1KfFdo/lIpcJ0CtY
+	wEyc9Wmxa67NMk3jzxUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQFKN-0000000H9Kq-2ASI;
-	Mon, 09 Nov 2026 02:41:47 +0000
-Received: from pi.codeconstruct.com.au ([203.29.241.158] helo=codeconstruct.com.au)
+	id 1xQFMQ-0000000H9T0-37BE;
+	Mon, 09 Nov 2026 02:43:54 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQFKL-0000000H9Jt-0wd2
+	id 1xQFMP-0000000H9Su-12es
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 02:41:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1794192096;
-	bh=OjFjDEv6r6cygeke1RGOx0xnQni07udazDvq2kGmw6Q=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=DAcUw3xMa4qeJC1vFRGVhhYj1tSb0WLQ9EQbRR5f/o0vdPPNqQcoYpE6ZxBhUNULY
-	 5KF9zDQuoC3MtcxEayVxCfq1VRXVOQ0KjPMcz8+YhPW6Imo/0M8F4XV3irgDTvme+1
-	 7rvC/x+hNTHcp27znFou+cqgG8H67smYgDZjU78Ru8Iwh+p66c9XP47tn7yTyJLsXG
-	 Xfj1g+3owQrm6MHyrwM/9BvS7f1oqMQ/HtM7BsvyDNyNvcoxe8+rPZWIhzmwxhVxGH
-	 H0qrLlvfZTgwu+4d1D/eAOv63vQNgL8gqIilCnN5c3r0j72WQrOlk+p+QZ3HxO/sUf
-	 xHvau8a+rWNoQ==
-Received: from [192.168.68.117] (unknown [180.150.112.139])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id F2FBE64952;
-	Mon,  9 Nov 2026 10:41:32 +0800 (AWST)
-Message-ID: <245d0e9d4043c0957716a6a32985b6ea5a8cb9ef.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 0/3] ARM: dts: aspeed: ventura2: Add LTC2305 ADCs and
- GPIO line names
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Kyle Hsieh <kylehsieh1995@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, Ryan Chen <ryan_chen@aspeedtech.com>, Billy Tsai
-	 <billy_tsai@aspeedtech.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Date: Mon, 09 Nov 2026 13:11:31 +1030
-In-Reply-To: <20261106-ventura2-dts-update-v1-0-b085ece9bf57@gmail.com>
-References: <20261106-ventura2-dts-update-v1-0-b085ece9bf57@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	Mon, 09 Nov 2026 02:43:53 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 43B3A61EE8
+	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 02:43:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F059E1F008A5
+	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 02:43:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794192232;
+	bh=Yq6Wg8dZm4uB3bJQCmf1miWvm1ABWBJ7TTfz/AA487Q=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=FOJ0zh4zJXUQw4MziVD3+8dAw51F6b6lLyXVd/YcSGtZJ1UlcpBa9IuP7EEE2Ussp
+	 MiD6q6N/pA+iXEZTrQi/BpeHnXOhpf9oR3xPLJuLxtonwwcUCmvpyJPNh/YVyyewap
+	 87sSEPx5drY4YCIFBfMJmlEqUO7Z2v5aUEANUG5iwiqyWMHgDmdF0fiiXfcsUYRK22
+	 hy+vXP5RcPIC2K26wbgfVeyImwX1pmqe57yocWa6N+7lIzQwksReCyjTSRjVhRTjFo
+	 q6F3dlBIZQC/Ksbh0CM52+fKp/w9yP0ZgQ0lpA/BJuOdjF93lhrUOA4bEp5UYpHNI3
+	 tKHt+PLWdZr0A==
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6b57182c4c6so555637a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 18:43:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHVjl5CaxsgnvyQx3TEhtShQ6BO9B3pGU/KtroZn8DPDe3XSBzFedOA8MdZqJ6X/TxhKmS7QdaaO4QI6tFx3CrC@lists.infradead.org
+X-Gm-Message-State: APuU4Z93JOfFMm1JfG6H9KYcq639wcPcDL/ITkGgaX+2BhsgAJ5bMrNC
+	0HDeL4OBQo2DhdBP7ydhSuywNzcl3bLvugLcMlHV93cW6VcA8MvjglegemvSPGoAdhGVODOLeWp
+	Cjyjy9IVvxMNDiElrQ0XXLykt2yHPosY=
+X-Received: by 2002:a05:6402:4487:b0:6b5:7de8:87cd with SMTP id
+ 4fb4d7f45d1cf-6b72249a189mr1729932a12.42.1794192230805; Sun, 08 Nov 2026
+ 18:43:50 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_184145_471229_DFA39A47 
-X-CRM114-Status: GOOD (  12.70  )
-X-Spam-Score: -2.1 (--)
+References: <20261106084034.1579494-1-songwei.chai@oss.qualcomm.com>
+ <au2UzljzfMaiL7F6@hovoldconsulting.com> <5df6771c-a440-45cb-bdb9-ca25b42287fa@oss.qualcomm.com>
+In-Reply-To: <5df6771c-a440-45cb-bdb9-ca25b42287fa@oss.qualcomm.com>
+From: Saravana Kannan <saravanak@kernel.org>
+Date: Sun, 8 Nov 2026 18:43:39 -0800
+X-Gmail-Original-Message-ID: <CACRMN=d8OnSHZ=4DOmfWafwYL+8ZTGggrxdWV2-iTptEJmd19A@mail.gmail.com>
+X-Gm-Features: AclHuK83znKgPlPm3mYNg-jihIjo0y5-ZXz-onGQXWzrK1htisLXcdgRQNPmioU
+Message-ID: <CACRMN=d8OnSHZ=4DOmfWafwYL+8ZTGggrxdWV2-iTptEJmd19A@mail.gmail.com>
+Subject: Re: [PATCH v1] driver core: Demote "Fixed dependency cycle(s)"
+ message to debug level
+To: "Songwei.Chai" <songwei.chai@oss.qualcomm.com>
+Cc: Johan Hovold <johan@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
+	dakr@kernel.org, driver-core@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	songchai@qti.qualcomm.com, linux-arm-kernel@lists.infradead.org, 
+	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org, 
+	devicetree@vger.kernel.org, Saravana Kannan <saravanak@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,32 +89,60 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 2026-11-06 at 11:08 +0800, Kyle Hsieh wrote:
-> This series is a follow-up to the Ventura2 devicetree.
->=20
-> Patch 1 describes the three LTC2305 ADCs fitted on Ventura2 and exposes
-> the valve voltages read by the bus 3 ADCs through iio-hwmon.
->=20
-> The LTC2305 ADCs use their internal 4.096V reference, so no vref-supply
-> is described. Patch 1 therefore depends on "dt-bindings: iio: adc:
-> ltc2497: Make vref-supply optional for LTC2305/LTC2309"; without it,
-> dtbs_check reports a missing vref-supply for the LTC2305 nodes.
+On Sun, Nov 8, 2026 at 6:08=E2=80=AFPM Songwei.Chai
+<songwei.chai@oss.qualcomm.com> wrote:
+>
+>
+> On 11/6/2026 4:50 PM, Johan Hovold wrote:
+> > [ +CC: Saravana ]
+> >
+> > On Fri, Nov 06, 2026 at 04:40:34PM +0800, Songwei Chai wrote:
+> >> fw_devlink detects and relaxes dependency cycles automatically, so thi=
+s
+> >> is not an error condition requiring user action. On complex DT
+> >> topologies (e.g. CoreSight), this message can fire for many node
+> >> pairs and adds noise to the boot log, even though it's primarily
+> >> useful for debugging. Switch pr_info() to pr_debug() so it stays
+> >> available via dynamic debug when actually needed, without cluttering
+> >> default boot logs.
+> >>
+> >> For example, on sm8750 this produces 125 such lines in the boot log in
+> >> total, 80 of which are CoreSight-related, e.g.:
+> >>
+> >> [    0.057190] /soc@0/funnel@10041000: Fixed dependency cycle(s) with =
+/soc@0/stm@10002000
+> >> [    0.057211] /soc@0/stm@10002000: Fixed dependency cycle(s) with /so=
+c@0/funnel@10041000
+> >> [    0.057229] /soc@0/funnel@10041000: Fixed dependency cycle(s) with =
+/soc@0/tpda@10004000
+> >> [    0.057249] /soc@0/tpda@10004000: Fixed dependency cycle(s) with /s=
+oc@0/funnel@10041000
+> >> [    0.057254] /soc@0/tpdm@1000f000: Fixed dependency cycle(s) with /s=
+oc@0/tpda@10004000
+> >> [    0.057260] /soc@0/tpda@10004000: Fixed dependency cycle(s) with /s=
+oc@0/tpdm@1000f000
+> > I reported this elsewhere a while back:
+> >
+> >       https://lore.kernel.org/all/Z6t45aOGDkotqM4Z@hovoldconsulting.com=
+/
+> >
+> > Are you sure it's not the coresight bindings that should be fixed?
+>
+> No, Johan, I don't think this is a Coresight bindings issue.
+>
+> This is the mechanical result of the standard bidirectional graph
+> binding + fw_devlink's direction-agnostic phandle scan =E2=80=94 it will =
+appear
+> on any SoC/CoreSight topology using the standard binding, and there's no
+> alternative binding syntax that avoids it.
 
-Can you provide a link to this patch? I am yet to find it on lore.
+You can add the post-init-providers property so Linux/OSes can know
+which dependency is not a probe time or initialization time
+dependency.
 
->=20
-> Patch 2 names the presence detect GPIO of the optional COM Express
-> module so userspace can determine whether the module is present.
->=20
-> Patch 3 names the reset GPIOs of the three USB-to-UART bridges so
-> userspace can reset the bridges.
+A lot of cycles can be broken by adding just a few of these. It'll
+make sure the coresight stuff gets probed in the right order, and more
+importantly also does suspend/resume, etc in the right order too.
 
-This isn't so much a summary as something self-evident from looking at
-the contained patches.
-
-In my opinion what you write here should identify broad patterns across
-the patch series (perhaps how you've grouped the patches and why, if
-necessary) and not rehash the commit messages.
-
-Andrew
+-Saravana
 
