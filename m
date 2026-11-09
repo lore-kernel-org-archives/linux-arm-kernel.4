@@ -2,96 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EFC3606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9459606D80E
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PXQT78zR;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=VQVB+vHH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KZVxhn0N
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=q8x7zVGGkfSdWA+EkndmqEqSgl70Bo/p7FSSNehigJg=; b=PXQT78zRE48SKhWGvEh/g4q0Va
-	FRPD4m/6W52Vst76gBNVXDtxN/UNlZA7tGofrtJsGZrm6YFSRS0W/QbL+AwwaHMzkgnFxwE952c6c
-	DZ+9D0xsgYsKNERYEkwb3phq4LHfn+s6163u+emX5d63aLmbE1hGCMmLKpJ7duVVt4HuX21sALgmb
-	Zn/kAj5u5Aqet2HLDhH/qchuFM+Khkov93HbLO/Ruie7+XteRGGKPGnQCCBmKwjoSmBmpYpg4bDl2
-	KTO+54LyRb6H7SaXB0RtheXrgJCeheEH3Q8Y2oZvqromBEt15rqVA7CooJLrr7PRwWDP1Li1CdbOG
-	V66BJMqA==;
+	bh=a/GTny8y0Fq03kHeou/H4pJdVMeDeQY+v7vRik/494U=; b=KZVxhn0NJ2KDhwZTbmyU1mP6TV
+	psjw08KscJnUKr/LP7qdQxtvpjkU5wX6/XGYmCmQ7HHMzw1xrw3pfXFCLbzHWb2BvGRadUIHEcJGm
+	zHonAqueZqj3sYnilh4XE9gul9ZCHuk9CdcdudWmTC5uGL/X7txpgRukDjk62bgTRNXBahrOMfeh5
+	H5jgFy+BAzFaWsjg7SygR8MvudatxmwGu+YWyJ44KGH5S7JEwAsnJzPX71KlvMjk4qxXTdSXOCBMr
+	TJBcVptTxrwKtVZ+5gzWGPknAB3a8yWu8U7jidcUkwVblRPmgDGtToD/LhYtJSqSTGq+DsjsImP1E
+	JH7lW3WQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOAh-00000000cyD-0GKE;
-	Mon, 09 Nov 2026 12:08:23 +0000
-Received: from mail-dl1-x1229.google.com ([2607:f8b0:4864:20::1229])
+	id 1xQOBa-00000000dB0-2FCO;
+	Mon, 09 Nov 2026 12:09:18 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOAd-00000000cwl-2Qpn
+	id 1xQOBV-00000000d98-1MFy
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 12:08:21 +0000
-Received: by mail-dl1-x1229.google.com with SMTP id a92af1059eb24-15ea896ddc8so1438099c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 04:08:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1794226098; x=1794830898; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=q8x7zVGGkfSdWA+EkndmqEqSgl70Bo/p7FSSNehigJg=;
-        b=VQVB+vHHRYO/c6ADphSOberJeb/AcxVIhkj7/l237BInDdsert5zos9Qtj0tW6wlEo
-         xRqlwST/rZmzJ5cZRk4a8PdtIh932Y7PGZGjP7UmLNqiyM07GziJUtFC4w/N/AyF2+No
-         eGvdxj3vbigvByXqCHaGqKSEFa22WP3Bk/IxI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794226098; x=1794830898;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=q8x7zVGGkfSdWA+EkndmqEqSgl70Bo/p7FSSNehigJg=;
-        b=01Qsj7toFjc13bK8M9FwvCQcTCrv+JLf3T+KUJl1JG/4lzrA5eJ0v7JrkeysqvI+iw
-         ZjdSg0Jf7TuqeKUJaGeSIwh8epeelRiYsRsDLDp/cvAQZdrg7NxFtTIr5G3MDUrk1yk+
-         RuzokY5wXoubzJ1s0NyaXGGA+4+ffhPQRpCijQgHJNB8OH+rsLwiinUn9BKZeIlg5tQR
-         UGzRnuhGwD7QY8/BJA7YekJ0B6b6Dmv6owADA+BBQb9/hZwh7pT3ocvDtGQ+QUQLI9tt
-         8GZryPdq4SFAIhFCc0nZXaLQ2p4u1eQldlPqgPp+c+DTiQ/j1rkiSF5lTe9HF8dviOgB
-         kvuA==
-X-Forwarded-Encrypted: i=1; AL+hErE3gX3EldBmNMFKTV0gdMR6LYXyq/Kt+7Tid3GQWGmLKw/l3ikoxXh6igDcYTrq+RUOLYOJMouHAp2ca1YEdanM@lists.infradead.org
-X-Gm-Message-State: APuU4Z/U4WquCazGJZxIipU02RxjyBAgqt2b46nD+dKzJmQhLvGpo5Ho
-	5hxU5E1IxV+yBv/Jq/huiunSfLN2f45fcJP29D8wh/Y1Ua+PD3GlMSeossJnWMXOUg==
-X-Gm-Gg: AYBFou2DmespQZqQ1coQ615QyRGeQkEqWSyMVA+cQE0JoOsw0RukJRoUSqvOMgaBgPo
-	k5DTrB9Hw2lsz+9LBbzoEWlSiV/pL5yKjeiAmT2Upxi6pyTk39aEjITY5XLimB3sk66jXIvu8BT
-	Cv0u9xso+ftM4pYzrT1ANA8nkvbvkopjlyqluR97FNGrk0jmXkRSLWNqzIZMmWZjPRzDtCWl2v5
-	Xahtwo0O/EhYAOeKaoTz7KiwuU1OsJbyOB4jpRkTPlnmDs2s+gyF4x81eliuZiky6kFnyQ2nr8Q
-	oR7owm4NaLigEzixMwy9AxpJiUXLIsqAIdZKuvejSmiSw7z5iKtZT2CqG34jqgU4tvsANEzfMfO
-	6tBlbc5GMRYqnx5KoGfVsJz+BiTDGp2qXQxvQ0ouToOH04GtztU5crZdVTacxWBqp7Htf2ouIFF
-	0WH+Y4xNFmqsH7kBlfnX4cYRvg2gDh512VnaUekecVtMtXguocyA5uTjf7Cjd90Z/YEX4DLI2BX
-	Ru0/dm5GgHqPrMKFEmbDAGk6Ae0jXF7q/VjEItWmJI0eAbq6URH/OZKKX08280RORb8ESAgyQua
-	Ipv/GHlUWHCgA4B8I6k7cB+n7ehoilFrtLi7nBbGBdresFYq0LY06MMgKShPxGJLYgzCV7CtypJ
-	l/Wf3RA==
-X-Received: by 2002:a05:701b:270c:b0:14a:8cff:fbb8 with SMTP id a92af1059eb24-1b39fea8a78mr6100575c88.28.1794226098355;
-        Mon, 09 Nov 2026 04:08:18 -0800 (PST)
-Received: from localhost ([2a00:79e0:203d:7:24d0:a2cf:66c5:ef86])
-        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-1b3755e936bsm16025308c88.6.2026.11.09.04.08.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2026 04:08:17 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Daniel Lezcano <daniel.lezcano@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	Ryan Brue <ryanbrue.dev@gmail.com>,
-	linux-mediatek@lists.infradead.org,
+	Mon, 09 Nov 2026 12:09:17 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SAz5uplkhZjAJ/HkDOi67tbM0vQ4uEHATap4kRKlo7J4m3jZO04lTg7PRDTvRmam35HO3fgpB5zhGm/HV4ykFu2HIkasXyYh7G0qUCkm9mHsP8G9W5CzRMSpaMOpBs1vUiXRGw6ajbs/7zbgiq0huSYvZ4thtbc4kWz/EH0VJQekv7SIyXpbNp6YIdPNqqBlwkRx4E3//RNJBuJ5e4Fy+ssNGpRlVUrjKQOM23wAOu7+IgwLoaJdjzZYl+qGcyy26WxSvQSYVBSC8wYz23r3h4yMHXBX7yiWUfiDi/SxfRHUtF4zabQz9z3NMRi6Ea9h5m/9kvPMqhOdoghlV7+cjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a/GTny8y0Fq03kHeou/H4pJdVMeDeQY+v7vRik/494U=;
+ b=t1REAI0JYwu2L541JTC+9VFKgNNiZeSUr6dMiBx6ymbtsaGO1gtmRCMHb0lOHYKUWI/VxtZfwfMQfCo1N+taaUjeszC5Uf3OTopunkaisYLzdX49pivGhlqJGPlhXkrZqMuF7BD0Evec0UacZyyNWOyRugZY6z7oR3TfGi2xmW7osqxgFMj8eBBGQujAYYhyo090VFFRlNWSaa8xJve9+GwzbhEYhAWOIKmdfv+VWV7uchuZSfWoz/BZi5BHOX9DLj3FBlhyOui4HWbpMkZTqt551gIsWbU+/mJsv+fRYKP1tGpXl6uRaetbztMOOBxQP+MS+OJ+Tqb8XhplJHAB9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SI3PR02CA0013.apcprd02.prod.outlook.com (2603:1096:4:295::10)
+ by SEZPR06MB8912.apcprd06.prod.outlook.com (2603:1096:101:33d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.7; Mon, 9 Nov 2026
+ 12:09:05 +0000
+Received: from OSA0EPF000000CC.apcprd02.prod.outlook.com
+ (2603:1096:4:295:cafe::84) by SI3PR02CA0013.outlook.office365.com
+ (2603:1096:4:295::10) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.13 via Frontend Transport; Mon, 9
+ Nov 2026 12:09:05 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CC.mail.protection.outlook.com (10.167.240.58) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 9 Nov 2026 12:09:04 +0000
+Received: from cix (unknown [172.16.64.42])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 2D89D4102E74;
+	Mon,  9 Nov 2026 20:09:02 +0800 (CST)
+From: Cunyuan Liu <cunyuan.liu@cixtech.com>
+To: boris.brezillon@collabora.com,
+	steven.price@arm.com,
+	liviu.dudau@arm.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	gary.yang@cixtech.com,
+	fugang.duan@cixtech.com
+Cc: daniel.almeida@collabora.com,
+	aliceryhl@google.com,
+	p.zabel@pengutronix.de,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] clocksource/drivers/timer-mediatek: Don't override the arch timer sched_clock
-Date: Mon,  9 Nov 2026 20:07:56 +0800
-Message-ID: <20261109120757.847266-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.56.0.455.g6c5a503b38-goog
+	linux-kernel@vger.kernel.org,
+	rust-for-linux@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	robin.wang@cixtech.com,
+	cunyuan.liu@cixtech.com
+Subject: [PATCH v2 0/3] Add initial GPU support for CIX Sky1
+Date: Mon,  9 Nov 2026 20:08:58 +0800
+Message-ID: <20261109120902.125242-1-cunyuan.liu@cixtech.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CC:EE_|SEZPR06MB8912:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: af872209-5929-4319-701d-08df3e5a3fd0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|36860700016|1800799024|82310400026|56012099006|261021123027099003|261021121427099003|261022105027099003|261022075727099003|261009223027099003|261026140227099003|261028144727099003|261026121527099003|261102123227099003|10067099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: foHW/4yj7Jh+S7ImBFbxQboGzflUB85LVE6u3nRhB4W4/Dkihc4VXfQfdLPS1iCnv+ikU8QyO37K2eW3tDGTyKUAbVFsXjmQTSvUPyT2sZYcYUqsyVeGE2RlfcWx++nmPUmDJMDWRy8Wmrk0HToZmq05rkieTKmXmZDho3wnEBasz/k+ThpERsBrVGxCWZN7xl3OEVId/eaTU13TyMuVAeqbQgp60SXv+4KLEofm8+z8KeUi4mF0mCP70KXxD0T8biBkC7zdosAVSvzm/M7twWewxM9tIHz4SKJUez4dAurKZ/5z/Cl+Z5B/7L1W2diZDm+0Vg+FQpb/w/kEnjq8rFcS1d1qAQAr1pFHAbsTO+02emI0dimv9K6cyh5t4FDiHph7xYUXpicbcs56HNS1DgbMp1kw8Y43x9RiUfolj4ALFnM5cibZEpN8hxToQmUqjzaupOVrkLcMSONa3ORLmjApUWlNN37T4wq47n9NIYzEr1lfLMUCCxIBvg7nTcWkoGM8Ubi9KDq1Vt4teOk2l5whScz3zHLzmDLT4NOp6FFksVjcMsoXcM6VnGMsaXd33aivO2XrKm6bluSaXvO/WCIqjaNy4gKaJGfLpotCE/GHNMovzDl0P8X3IVWYcAauKxHiHlaAOqhelCgchC7OQQ==
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(36860700016)(1800799024)(82310400026)(56012099006)(261021123027099003)(261021121427099003)(261022105027099003)(261022075727099003)(261009223027099003)(261026140227099003)(261028144727099003)(261026121527099003)(261102123227099003)(10067099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: I49n9k9nsQ/JjEnBu0+OEa6NZpXlHwolbNj4kMi/cb/Mf+6uLFNRwJJZVmDh1T5zFPMp9GSHAzLCa8MTbs6DBZ5q7ygSIawaFMr7zav5GTwf2Uw2uUC6JFKA72vwZmxdxQzTTawOxRzBT5Mxd4Y1DvTFTHN0zR0DSkw6UqOpplG3iUtKg2RFPY4bgxbEPVBB/bg6qdb7W7cEw1TaM2NUIKjqVRPNsOeoc1mTMflY+CwnwTuALr8jpoQoAZx/SDV4zXCnq62WlaN0cGBuziNkLx7Ne2FWYSfVjRtsJoMutTsZ4yqJhFaSqA/aLGstq55666AziJ8XYrkXqjS/0zEjXXBUoo5uSX7TL/NEUHV0Pl8BG1hKl0BUEt52rMxwHzt14KyTQwnRnblHWkuVKCK78cPLThCT0Mcs9+R/DGap/19QzEEE3Nh6AP3H3S3t8xPy
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 12:09:04.6083
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: af872209-5929-4319-701d-08df3e5a3fd0
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000CC.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB8912
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_040819_782181_BA8F7BE5 
-X-CRM114-Status: GOOD (  21.88  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_040913_368082_A5CCC107 
+X-CRM114-Status: GOOD (  13.81  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,107 +125,78 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since the driver was converted to a platform driver, the GPT probes
-late, after the architected timer has registered itself as sched_clock.
-sched_clock_register() only refuses counters with a lower rate, and
-sched_clock has no notion of priority, so the 32-bit GPT counter, which
-runs at the same 13 MHz as the arch timer on MT8173, replaces the 56-bit
-arch timer counter as sched_clock:
+This series adds initial support for the Mali GPU on CIX Sky1 and
+enables it on the Radxa Orion O6 board.
 
-  sched_clock: 56 bits at 13MHz, resolution 76ns, wraps every 4398046511101ns
-  ...
-  sched_clock: 32 bits at 13MHz, resolution 76ns, wraps every 165191050201ns
+The GPU requires an external reset before the driver first accesses
+the hardware. Add optional reset support to Panthor to perform this
+reset during initialization.
 
-Before the conversion, both drivers used TIMER_OF_DECLARE and
-timer-mediatek.o is linked before arm_arch_timer.o, so the arch timer
-registered last and won.
+This initial version keeps the PM firmware default clock settings and
+skips devfreq. It does not read OPPs or request a performance level.
+The firmware sets the default GPU frequency to 1 GHz. No devfreq
+governor or GPU cooling device is registered.
 
-The narrower GPT counter wraps more often and is slower to read over
-MMIO than the arch timer system register. Doing the switch at runtime
-also runs enable_sched_clock_irqtime(), which may sleep, with interrupts
-disabled, causing a splat.
+Configure the system-level cache before L2 power-on using the settings
+from the working CIX Sky1 driver. On Sky1, devices on the MMHUB bus
+cannot access the system-level cache, so buffers shared between the GPU
+and MMHUB devices require a specific system-level cache policy. Without
+this configuration, the GPU display output is corrupted.
 
-Other drivers worked around the same problem in the same way, see
+The series contains three patches:
+[1/3] dt-bindings: gpu: Add CIX Sky1 Mali support
+[2/3] drm/panthor: Add initial support for CIX Sky1
+[3/3] arm64: dts: cix: Add GPU support for Sky1 Orion O6
 
-  commit 37b8b003c483 ("clocksource/drivers/sun4i-timer: Only register a sched_clock on sun4i and sun5i")
-  commit 10720e120e2b ("clocksource/drivers/imx-tpm: Exclude sched clock for ARM64")
 
-Only register the GPT as sched_clock if the ARM architected timer is not
-present. This currently includes MT6572, MT6580, MT6582, and MT6592, as
-seen in their respective .dtsi files. This follows the example of
-sun4i-timer.
+Tested on Radxa Orion O6:
+  - Offscreen rendering with pixel readback
+  - kmscube
+  - glmark2 at 1080p
+  - Runtime suspend and resume with a retained EGL context
+  - Reset-worker operations
+  - Module unload and reload
 
-The analysis of the boot log and git history, and drafting of this
-change, were done with an AI agent. The agent originally proposed using
-arch_timer_get_rate(), which was replaced by the author.
 
-Manually tested on a MT8173 Hana (Telesu).
+Changes in v2:
+  - Use devm_reset_control_get_optional_exclusive() unconditionally,
+    remove the redundant NULL check before reset_control_reset(), and
+    drop needs_external_reset, as suggested by Philipp Zabel.
+  - Add Conor Dooley's Acked-by to the unchanged binding patch.
 
-Fixes: 7a097aba7255 ("clocksource/drivers/timer-mediatek: Convert to OF probing")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
+Link to v1:
+https://lore.kernel.org/all/20261106104735.1651267-1-cunyuan.liu@cixtech.com/
 
-For the ARMv7 SoCs such as the MT2701, MT8127, and MT8135, the firmware
-has to correctly set the arch timer frequency, as their device trees do
-not have the clock-frequency property.
 
-OTOH we could let sched_clock_register() reject replacing the current
-counter if the new one runs at the same rate. But that would be a
-separate discussion: if more drivers are converted to standard platform
-drivers, then the probe order is no longer easily known like before
-by the link order.
+Best regards,
+Cunyuan
 
-The splat is a separate issue that I already reported [1].
+Cunyuan Liu (3):
+  dt-bindings: gpu: Add CIX Sky1 Mali support
+  drm/panthor: Add initial support for CIX Sky1
+  arm64: dts: cix: Add GPU support for Sky1 Orion O6
 
-[1] https://lore.kernel.org/all/20261109095036.GA722431@google.com/
----
- drivers/clocksource/timer-mediatek.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ .../bindings/gpu/arm,mali-valhall-csf.yaml    | 51 +++++++++++++++++++
+ arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  4 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             | 16 ++++++
+ drivers/gpu/drm/panthor/panthor_devfreq.c     | 11 +++-
+ drivers/gpu/drm/panthor/panthor_device.c      | 13 +++++
+ drivers/gpu/drm/panthor/panthor_device.h      | 19 +++++++
+ drivers/gpu/drm/panthor/panthor_drv.c         | 14 +++++
+ drivers/gpu/drm/panthor/panthor_gpu.c         | 14 +++++
+ drivers/gpu/drm/panthor/panthor_gpu_regs.h    |  2 +
+ 9 files changed, 143 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
-index 1b2cbcc2795a..ef67cc783635 100644
---- a/drivers/clocksource/timer-mediatek.c
-+++ b/drivers/clocksource/timer-mediatek.c
-@@ -15,6 +15,7 @@
- #include <linux/interrupt.h>
- #include <linux/irqreturn.h>
- #include <linux/module.h>
-+#include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/sched_clock.h>
-@@ -334,8 +335,20 @@ static int mtk_gpt_init(struct platform_device *pdev)
- 	clocksource_mmio_init(timer_of_base(&to) + GPT_CNT_REG(TIMER_CLK_SRC),
- 			      node->name, timer_of_rate(&to), 300, 32,
- 			      clocksource_mmio_readl_up);
--	gpt_sched_reg = timer_of_base(&to) + GPT_CNT_REG(TIMER_CLK_SRC);
--	sched_clock_register(mtk_gpt_read_sched_clock, 32, timer_of_rate(&to));
-+
-+	/*
-+	 * sched_clock has no priorities; a counter with the same rate
-+	 * replaces the current one. Only these SoCs lack the ARM architected
-+	 * timer, which is otherwise the better sched_clock.
-+	 */
-+	if (of_machine_is_compatible("mediatek,mt6572") ||
-+	    of_machine_is_compatible("mediatek,mt6580") ||
-+	    of_machine_is_compatible("mediatek,mt6582") ||
-+	    of_machine_is_compatible("mediatek,mt6592")) {
-+		gpt_sched_reg = timer_of_base(&to) + GPT_CNT_REG(TIMER_CLK_SRC);
-+		sched_clock_register(mtk_gpt_read_sched_clock, 32,
-+				     timer_of_rate(&to));
-+	}
- 
- 	/* Configure clock event */
- 	mtk_gpt_setup(&to, TIMER_CLK_EVT, GPT_CTRL_OP_REPEAT);
+
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 -- 
-2.56.0.455.g6c5a503b38-goog
+2.53.0
 
 
