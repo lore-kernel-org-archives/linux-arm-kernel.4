@@ -2,73 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C04606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:58:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DBEC606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SEXl3Wwn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mvPaeoAB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LqQKiMKn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=3LPJ2HrlKN7oBMUZEavDpBpJi9yr4o7ZrCUYt7Dpr8Q=; b=SEXl3WwnPaHy3q0EkqXPBE1Hvs
-	p+RzxdLKtj30/0kYVbdfpdZ2BUpVLww9FErblVq/tXKAESlsAiSp3On1xyO+YOq/MI8oIdW5nQPAq
-	DjJhva5o9LZXos+ltBriC/vbQP/hYhtjJJV7LsTaNZ5YbUlJon4cS8kKfoK2K6JkidQQfzCNikgfP
-	RgS/+YDNiiN0Tiekw8nSXuSz9Z0gPlItKBwNyjMFaJZhxttBZgEIwNAMYpougIqCEYT627fWodLE9
-	prmXsFc7feE7jLTU7ulBjzUd4vAZDy8PoGyNbS/zwl//ty5gp66ZnGuPHgewIT40CL0DQlGm5q5Ld
-	iGOrx7rg==;
+	bh=CjOvZKlvZft8qBVkpgInrkwiduQn9vDLXCRBkO1lIrI=; b=mvPaeoABBKzNF0BIwzzLX+ykqA
+	aVpCLC+4Ig3VsZ0/HHZZxFQ2UF6LKhvRpIKiCPrXYAEXti59Z0Dui7bELWE5r+xj1Zk/sgViTtFUf
+	b9dnJuRaNIsRY6aaey1dzbSmR1beVcNB5knvcz+xpSa4PiZtW3C/J/nniPwCHxkgKZyjyAcxvPKQ4
+	h5+J3WiimZit2NUwLYA2J/1Vblq8nSl5YogBC/CbR/hYSDWl+ShtAJvCuhfW/TievciJFcwqN67jc
+	txF6NHoRYojj7tDuwL8RuBT4Puohm11v5Y0ZqPyvsNxkp05yX+MGdWZoe0SpQytOGCR4jKh/URm2y
+	iSYV86ow==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQO0j-00000000ak4-0my2;
-	Mon, 09 Nov 2026 11:58:05 +0000
-Received: from mail.aspeedtech.com ([211.20.114.72] helo=twmbx01.aspeedtech.com)
+	id 1xQO1l-00000000ara-1zXH;
+	Mon, 09 Nov 2026 11:59:09 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQO0b-00000000aiM-3Bmq
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 11:58:04 +0000
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Mon, 9 Nov
- 2026 19:57:48 +0800
-Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.39 via Frontend
- Transport; Mon, 9 Nov 2026 19:57:48 +0800
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-Date: Mon, 9 Nov 2026 19:57:44 +0800
-Subject: [PATCH] PCI: aspeed: Drop PROBE_PREFER_ASYNCHRONOUS to fix
- enumeration race
+	id 1xQO1k-00000000ar4-21Yr;
+	Mon, 09 Nov 2026 11:59:08 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 7835F63095;
+	Mon,  9 Nov 2026 11:59:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EC7F1F008BE;
+	Mon,  9 Nov 2026 11:59:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794225547;
+	bh=CjOvZKlvZft8qBVkpgInrkwiduQn9vDLXCRBkO1lIrI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=LqQKiMKnWUnThuvM6vcThPSJ4kddSJeQNoYgTNVLXct71OrwG1zaWznekW2i6hQUc
+	 Qiij5xuYWbfMio9OLPEeDczGJm/cIQf2pqUznQMjIYV0nE4u5+pI9A2W5myaYD/Jxo
+	 MFmFd5XDjv3NoN494RQG9p8eG1ikn8U0xl+MPbmzAIxMlh1ZeBaCPIxSydmJqhfMyi
+	 YR+QZ8MZ0j8OvsHF8V/K5LuPoNAx1ItX3PkYOxrj/r9O4wdBOr2GgN1fY1VmRanX95
+	 owCdLypLmIwjMfpk66ZrSgEbiOgSaoOWq71f8Mo3x6id3ofgn5Ra1+Hz0xFFnYQtcE
+	 iSEKagEMLNbSw==
+Received: by traversing.sirena.org.uk (Postfix, from userid 1000)
+	id 79B892D3F6C2; Mon, 09 Nov 2026 11:59:04 +0000 (GMT)
+Date: Mon, 9 Nov 2026 11:59:04 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Cyril Chao <Cyril.Chao@mediatek.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, llvm@lists.linux.dev,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v1 0/1] ASoC: mediatek: mt8189: Use AVOUT for DP and HDMI
+ jacks
+Message-ID: <d92ec73b-9a75-4301-a0d3-b849c3184673@sirena.org.uk>
+References: <20261109032424.625004-1-Cyril.Chao@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261109-aspeed-pcie-sync-probe-v1-1-71cc9e718623@aspeedtech.com>
-X-B4-Tracking: v=1; b=H4sIADe18WoC/x3MQQqAIBBG4avErBvIgsCuEi1Mf2s2Jg5EEd09a
- fkt3ntIUQRKU/NQwSkqR6owbUN+d2kDS6imvutHYzrLTjMQOHsB650853Ks4OhMsCPWwcNSjXN
- BlOsfz8v7fi+WRZZoAAAA
-X-Change-ID: 20261109-aspeed-pcie-sync-probe-fa1d96eb3ce9
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan
- Sadhasivam" <mani@kernel.org>, Rob Herring <robh@kernel.org>, Bjorn Helgaas
-	<bhelgaas@google.com>, Joel Stanley <joel@jms.id.au>, Andrew Jeffery
-	<andrew@codeconstruct.com.au>, Ryan Chen <ryan_chen@aspeedtech.com>, "Billy
- Tsai" <billy_tsai@aspeedtech.com>
-CC: <linux-aspeed@lists.ozlabs.org>, <linux-pci@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	"Jacky Chou" <jacky_chou@aspeedtech.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794225468; l=1635;
- i=jacky_chou@aspeedtech.com; s=20251031; h=from:subject:message-id;
- bh=s6Law+1V/WSTB0M0wQ+df/1sBAiY3koHL3kisdnpil8=;
- b=LUMFJRsfpnYqDcQzTsKxiRuUo3UGu9RdRs4M0DD8r19Mo94UXrSlUGkK4aZ/qKCDzkk8T4S2+
- QRj93BW4SwtADPkEpcmNMfvJwqPuLiA0vtNXhKM0+cEhtqH8E2JXCYn
-X-Developer-Key: i=jacky_chou@aspeedtech.com; a=ed25519;
- pk=8XBx7KFM1drEsfCXTH9QC2lbMlGU4XwJTA6Jt9Mabdo=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_035757_810087_B0C919CA 
-X-CRM114-Status: GOOD (  12.09  )
-X-Spam-Score: -1.9 (-)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="l+9r/ggjKvtaRv5j"
+Content-Disposition: inline
+In-Reply-To: <20261109032424.625004-1-Cyril.Chao@mediatek.com>
+X-Cookie: Whoever dies with the most toys wins.
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,54 +80,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The ASPEED PCIe RC driver opts in to asynchronous probing via
-PROBE_PREFER_ASYNCHRONOUS. This allows the driver core to probe it
-on a kthread in parallel with other drivers instead of waiting for
-it to finish during the synchronous probe pass.
 
-On boards where a PCIe endpoint driver is bound early (e.g. built
-into the kernel or probed from an initcall that runs before late_
-initcall), this races against the RC driver: the EP driver can start
-probing before the RC driver has finished enumerating the bus, so the
-EP device is not yet present and the EP driver fails to bind.
+--l+9r/ggjKvtaRv5j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Remove PROBE_PREFER_ASYNCHRONOUS so the RC driver probes
-synchronously again, guaranteeing that bus enumeration completes
-before any downstream EP driver's probe() runs.
+On Mon, Nov 09, 2026 at 11:24:08AM +0800, Cyril Chao wrote:
+> This single-patch series declares the MT8189 DP and HDMI jacks as AV
+> outputs, matching the status reported by the HDMI codec and exposing
+> the video-output input switch when jack input devices are enabled.
 
-Fixes: 9aa0cb68fcc1 ("PCI: aspeed: Add ASPEED PCIe RC driver")
-Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
----
- drivers/pci/controller/pcie-aspeed.c | 1 -
- 1 file changed, 1 deletion(-)
+Please don't send cover letters for single patches, if there is anything
+that needs saying put it in the changelog of the patch or after the ---
+if it's administrative stuff.  This reduces mail volume and ensures that=20
+any important information is recorded in the changelog rather than being
+lost.=20
 
-diff --git a/drivers/pci/controller/pcie-aspeed.c b/drivers/pci/controller/pcie-aspeed.c
-index ecb7562f84c0..def5591010ca 100644
---- a/drivers/pci/controller/pcie-aspeed.c
-+++ b/drivers/pci/controller/pcie-aspeed.c
-@@ -1104,7 +1104,6 @@ static struct platform_driver aspeed_pcie_driver = {
- 		.name = "aspeed-pcie",
- 		.of_match_table = aspeed_pcie_of_match,
- 		.suppress_bind_attrs = true,
--		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
- 	},
- 	.probe = aspeed_pcie_probe,
- };
+--l+9r/ggjKvtaRv5j
+Content-Type: application/pgp-signature; name="signature.asc"
 
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261109-aspeed-pcie-sync-probe-fa1d96eb3ce9
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
--- 
-Jacky Chou <jacky_chou@aspeedtech.com>
+iHUEABYKAB0WIQReagvpf3TrrA7BoYYv73Ows9A4iQUCavG1gQAKCRAv73Ows9A4
+iQbeAQDm+zJK/irl1t6ZLB+k5GYfuInzTNEv71Md4KEhZ9z/9gEA1QrY700airU8
+muU3Y6OQLYfWh4wxCJhLygKL+SWfhwY=
+=NFhw
+-----END PGP SIGNATURE-----
 
+--l+9r/ggjKvtaRv5j--
 
