@@ -2,66 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3EF606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 07:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B11606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 07:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=20xJFWy4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PYyZ4rjo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jF6wShQC;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QUJUZjuY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lPe+9nTj86U4VmyBT29yr8pYap7kZ2kWsN2cIll7KGM=; b=20xJFWy4WJeRHB
-	kZC4rQ7D3tV27IH/yrhaARnahnWqeQQh4SGeBrcBKDv3FvibL83/PYLnvHkQeVj/1OKnkDDajWcts
-	blKaShptlBNJeBVu4nBSu8faE5XZHV08nOW6vsuAPaUzQtJ5H7HjGbBSJQUiR6n9eytgVk+5z2ljS
-	l4A+TRzjm4wpVydzxn2y/gR21g/ylE4bzf/a/unyUIWjcMHMXuRb7dz6d4ARAXYXX+SWSAHL1jgj5
-	tfyW5dOqqvNUVQ4bd9c/Sf5QjlGlcddBR3p1un5nXOASnfMxxLeZ3srvhCzTJBg3ybkyU2YCg0KTB
-	81GEhRrqgwfOx9bKZy4A==;
+	List-Owner; bh=YHsIe+6yk2rHtgcsN9K0X9/VIE4GS8pTEpwTi7k8aRA=; b=jF6wShQC8e0ldH
+	yhAKCC0/Y/EsRKJPqfIn5/vHHGsizn9CTDiu9kYpKRLZ1IQXjXxcL4o9yzxcG9lhOpUDrugpwVkfy
+	u2zy1UI6I+aJ0WCsHh3CefRpfggVOk+aT9JNydIDpNpeQJDKiVwO1ky4AyfrTsuSNEMYraldstRaV
+	pp+adI1OZcze5Ahz74v71Ici8NWZ0varpiU0o4UimUZ8XRC0olRiYWoYOuDxYpRlwVK5ArpMpOKmw
+	xfqBhIXUIwNbrdG26/PSjJrYFOiohV+Ge/77Eml0KxF6yQ0GKXagdCEGEK6GUYIXRgFCSFzM+oT4T
+	X+LLZUIQE/dL7Q4IF4Mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQJou-0000000HZG3-3KRf;
-	Mon, 09 Nov 2026 07:29:36 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQJpP-0000000HZNd-051G;
+	Mon, 09 Nov 2026 07:30:07 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQJot-0000000HZFZ-35hk
+	id 1xQJpN-0000000HZMy-1p8B
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 07:29:35 +0000
+	Mon, 09 Nov 2026 07:30:05 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DBEB462DD3;
-	Mon,  9 Nov 2026 07:29:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D061F0089F;
-	Mon,  9 Nov 2026 07:29:28 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id EA1294098C;
+	Mon,  9 Nov 2026 07:30:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 712221F008BE;
+	Mon,  9 Nov 2026 07:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794209374;
-	bh=lPe+9nTj86U4VmyBT29yr8pYap7kZ2kWsN2cIll7KGM=;
+	s=k20260515; t=1794209404;
+	bh=YHsIe+6yk2rHtgcsN9K0X9/VIE4GS8pTEpwTi7k8aRA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=PYyZ4rjo75FHIVLNEw31B2S9SrJ/I1fC0KvCx+ZKI09m3u0kdl16cT2NqjaBzdGd6
-	 PI52Xa0vb4XoxojyxRnRVmPuLXg+/LsBrpRBLpL59IbGFUKDrkDNoQIYFeOC096KHW
-	 dvKDNIgek8PG5QddQcihl1g3EOjqfFPkZ7mSZLpQWWSoNuDP2yT2sjDIqDSduk3Zai
-	 PwPTK8+yQfXNpVusJmb5foQt6iZWbfcHc+LuZK6XkJMy+qyNXi762Q70h0kFvhF3qk
-	 6nJ3YsufEZ8Z9yGGMuWuOocJa1/7/keeoBnv1byYm71zoL/yyGvBcUe7v0aR5TYhhZ
-	 Tm904DuJI2kEg==
-Message-ID: <80990ab6-5072-43a2-b829-177c956080c6@kernel.org>
-Date: Mon, 9 Nov 2026 08:29:26 +0100
+	b=QUJUZjuYfxOSz6pip8ibC3zrHMpsfA9to2z6CC8oBADDu4wRuFdZ1VAuPzyjzGkv4
+	 IDkKSPvcAFqjmVXJGzxdDnUslUlpY7nHHzwaY2ZLCnmCqPd1aVmqiXsUWXkAyoZoQK
+	 mhkTgk23JMEo4CTlxYPiNu7GkPw0KQsfb9X7l5uhdJ0SFPc+YVNdikfJgi2g+LsvaB
+	 vPPHrFvU0pr1yP0cQRRrWc4AQXcySghNhEFvneKpj4fcv9IaO2KZQ/Z64vNJUzctuQ
+	 YN0QHUqL1M1ZB6d0EHtnJ3eD5cSEK2kS6fHJmWNQg6TOIxmlc5lGYin+Lr5dzJQ55s
+	 FB3nD2lNuIdjA==
+Message-ID: <391f12cf-d86e-428b-906f-df6d8128ee05@kernel.org>
+Date: Mon, 9 Nov 2026 08:29:59 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: dsp: fsl,dsp: document debug reset
- control
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: shengjiu.wang@oss.nxp.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, shengjiu.wang@nxp.com, daniel.baluta@nxp.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- andersson@kernel.org, mathieu.poirier@linaro.org, Frank.Li@nxp.com,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20261105024106.338791-1-shengjiu.wang@oss.nxp.com>
- <20261105024106.338791-2-shengjiu.wang@oss.nxp.com>
- <20261106-savvy-invaluable-gaur-7af1b6@quoll>
- <CAA+D8AMxrUb-Pj74wrRn=vEyRUFKWWsR4Eq1LZ2ErsX=rRq=rA@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: cix: add RTS5453 PD controllers to Orion
+ O6
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Fugang Duan <fugang.duan@cixtech.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ cix-kernel-upstream@cixtech.com
+References: <20261107011012.3655873-1-gary.yang@cixtech.com>
+ <20261107011012.3655873-5-gary.yang@cixtech.com>
+ <65af581e-caac-430a-88b1-3b7425c5209e@kernel.org>
+ <avEq_ngShxlvFSbS@gary-System-Product-Name>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,7 +107,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <CAA+D8AMxrUb-Pj74wrRn=vEyRUFKWWsR4Eq1LZ2ErsX=rRq=rA@mail.gmail.com>
+In-Reply-To: <avEq_ngShxlvFSbS@gary-System-Product-Name>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -120,34 +120,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 09/11/2026 03:22, Shengjiu Wang wrote:
-> On Fri, Nov 6, 2026 at 8:57 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 09/11/2026 03:07, Gary Yang wrote:
+> hi Krzysztof:
+> 
+> Thanks for your comments!
+> 
+> On 2026-11-07 11:53, Krzysztof Kozlowski wrote:
+> 
+>> EXTERNAL EMAIL
 >>
->> On Thu, Nov 05, 2026 at 10:41:03AM +0800, shengjiu.wang@oss.nxp.com wrote:
->>> From: Shengjiu Wang <shengjiu.wang@nxp.com>
+>> On 07/11/2026 02:10, Gary Yang wrote:
+>>> Describe the two Realtek RTS5453H port controllers on the Orion O6
+>>> I2C1 bus and add the I2C1 pin configuration.
 >>>
->>> The HiFi4 DSP provides a separate reset control for its debug logic.
->>> Keep this reset deasserted so that an external debug agent can access
->>> the DSP and perform debug operations.
+>>> The controllers route orientation and DisplayPort mode changes
+>>> through the USB/DP combo PHY lane switches, but that PHY support is
+>>> not upstream yet, so the connector graph endpoints are left out for
+>>> now. The Type-C ports are still registered and reported, only the
+>>> lane switching is deferred until the PHY nodes are available.
 >>>
->>> Also require the reset properties for the i.MX8ULP HiFi4 DSP.
+>>> Both controllers report through the same level-triggered interrupt
+>>> line, which the driver handles with a shared interrupt. The I2C bus
+>>> runs at 100 kHz because the RTS5453H I2C interface does not support
+>>> higher rates.
+>>>
+>>> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+>>> ---
+>>>  arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 51 +++++++++++++++++++++++
+>>>  1 file changed, 51 insertions(+)
 >>
->> That's ABI break without explanation.
+>> DTS cannot be combined in this patchset and must be split. Don't mix
+>> patches from independent subsystems when you send something explicitly
+>> targeting only one subsystem.
+>> See also: Documentation/devicetree/bindings/submitting-patches.rst
 >>
 > 
-> The i.MX8ULP HiFi4 DSP has not been enabled upstream before. This series
-> adds the DSP node for the first time, so there should be no existing upstream
-> DT relying on this compatible without the reset properties.
+> Do you mean the driver does not depend on DTS? Previously, it was acceptable
+> to put the DTS at the end of a patchset or place the DTS in a separate patchset. 
+> That’s why I put the DTS at the end of the patchset. Has the rule changed now?
+> 
 
-That does not change the fact that you break ABI, does it?
+Why can't you read the docs I pointed?
 
 Best regards,
 Krzysztof
