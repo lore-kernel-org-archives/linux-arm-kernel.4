@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5B4606EEA1
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85949608363D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WsZ6GOQr;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=MGip1yh/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=otMWa5Tn;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=YL6YeJQ3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Ut9Nym0C5U+5iZecBoNIMpMDQzMmxDB90w5AyEXvzQ0=; b=WsZ6GOQrb/pTCF
-	biKdKmqVFnvFaIWeN60SsDuaW3gnCkF7mQplqYGVw8hHY9ZvXmgbuHAPy1o+ClUFBJojwomqqGKDn
-	g9d7Tw41a9nH+H1U2Q7nYpbaboKIlWp0LhafdCNxX75TiG8leiWw/i9779Bh832KV4gmfg+doVm/z
-	QA0xnzWamPCvBNfj/sSdpixNQOBn0MdiOndbs8Ez9p7snTZ0VPySmnNaGdFEFMAhCb1IlNGiTOXlW
-	6XXXGkSHVFY2UVqcmDuu3eyTIRMJyKEG3GGjlGGhR/nmqgn0Xry4f0OvNmPZ9i/UhBiBkuNg4tNPP
-	GBgZA7YK67MhJiWJ95XA==;
+	List-Owner; bh=Zfhi2uYcrWS/onncXrRxzhgsb74qv1ON63T8diGgF5g=; b=otMWa5TnfuJTaK
+	it1JMoY4LiZvdWjXLWhH1fgB8jDEjA7+1vjFu6wI3+9PAPNzqgCPzJUon28eqTUXbbiBIWJM5AuMq
+	GWAw/CXes6pfVSpXLnQ5krKV0F2TqTmgrLy+rBL80abv8JJsuC0twjujBRO71Sip8R/OSbzKQD6mO
+	VB7IupCxe0R85YElW96Rp0aZ32DGjrRXLcyqrb4w1QlDBywXFj2v0hudHj3I81enBgI1uwGXGZWUi
+	lyByQbXcLIX5H/LonTb+GXoMp43ctNfiL3TJ62VU+qiR0Qs5Me4lFrszNjAzB+nrkT2ARbKqDHRZh
+	2npAEVO+HsRlLENP+tgA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQKoD-000000004Ze-2ah9;
+	id 1xQKoD-000000004Z1-1fGz;
 	Mon, 09 Nov 2026 08:32:57 +0000
-Received: from out-4.mta1.migadu.com ([95.215.58.4] helo=mta1.migadu.com)
+Received: from out-48.mta0.migadu.com ([2001:41d0:1004:224b::30] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQKo5-000000004QK-1bcv
+	id 1xQKo3-000000004Na-1PmF
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 08:32:54 +0000
+	Mon, 09 Nov 2026 08:32:53 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=PSYHOaV+7+K1ZX7ZkDN48fB/sJAUPij7DWY83+YiVG4=;
+DKIM-Signature: a=rsa-sha256; bh=BurFVrCnVIlezKhxQf4QLGiBVCBkQ4OWvY1E35/7u7Q=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794213167; v=1; x=1794817967;
- b=MGip1yh/CT47MbTuFklWtwk+2wVglhpOYoUuqDH6Pgc6pK0WVJZ7yDLlZYaYAF/+MMQL1r6d
- Xn/YeS5Tuaj1jc77YAMB7ZkYaMci6fmM6pVz54CujLzigCdIMsiKJc6K8u5m1IXbqd9HEkc/eXt
- 0sIb1gbqEcOP7RPwUuVIhTwQ=
+ t=1794213165; v=1; x=1794817965;
+ b=YL6YeJQ3kRqwqwNZSS8RsoE2Zbl+cSfHej+ruOe+b5T9E+ofFbKuxCz74feHWrOLAU1iAeHS
+ 4m9yU+/sZaazyd/m2xfW2plFzHyvTGchqE7VOn/2tWzHsp3SYGdniNKKe6Mzd+KaN6XGVt2KdJF
+ R5VTrouhvmt0SL5dN1R/beII=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id f12ea6fb60e66e67;
-	Mon, 09 Nov 2026 08:32:47 +0000
-X-Mizu-Trace-ID: f12ea6fb60e66e67
+Received: by smtp.migadu.com with ESMTPS id 5055768b8c5f843b;
+	Mon, 09 Nov 2026 08:32:45 +0000
+X-Mizu-Trace-ID: 5055768b8c5f843b
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -57,9 +57,9 @@ Cc: Joey Gouly <joey.gouly@arm.com>,
 	Fuad Tabba <tabba@google.com>,
 	kvm@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 14/16] KVM: arm64: Advertise ECBHB, TIDCP1, TTST and LVA to protected VMs
-Date: Mon,  9 Nov 2026 08:32:03 +0000
-Message-ID: <20261109083205.806619-15-fuad.tabba@linux.dev>
+Subject: [PATCH 12/16] KVM: arm64: Advertise FAMINMAX, LSFE, LSUI and FPRCVT to protected VMs
+Date: Mon,  9 Nov 2026 08:32:01 +0000
+Message-ID: <20261109083205.806619-13-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261109083205.806619-1-fuad.tabba@linux.dev>
 References: <20261109083205.806619-1-fuad.tabba@linux.dev>
@@ -67,9 +67,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_003251_705909_3D729013 
-X-CRM114-Status: UNSURE (   8.90  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261109_003247_653823_C46ED1BC 
+X-CRM114-Status: GOOD (  11.38  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -89,38 +88,85 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Advertise FEAT_ECBHB, FEAT_TIDCP1, FEAT_TTST and FEAT_LVA to protected
-VMs, capping VARange at LVA, since LVA3 requires FEAT_D128. TIDCP1's
-control, SCTLR_EL1.TIDCP, is switched with the rest of SCTLR_EL1.
+Advertise FEAT_FAMINMAX, FEAT_LSFE, FEAT_LSUI and FEAT_FPRCVT to
+protected VMs, the ID_AA64ISAR3_EL1 fields a non-protected VM sees.
 
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- arch/arm64/kvm/hyp/nvhe/sys_regs.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/include/asm/kvm_hyp.h   |  1 +
+ arch/arm64/kvm/arm.c               |  1 +
+ arch/arm64/kvm/hyp/nvhe/sys_regs.c | 13 ++++++++++++-
+ 3 files changed, 14 insertions(+), 1 deletion(-)
 
+diff --git a/arch/arm64/include/asm/kvm_hyp.h b/arch/arm64/include/asm/kvm_hyp.h
+index ab22b395d0908..fa9a99cae32a7 100644
+--- a/arch/arm64/include/asm/kvm_hyp.h
++++ b/arch/arm64/include/asm/kvm_hyp.h
+@@ -148,6 +148,7 @@ extern u64 kvm_nvhe_sym(id_aa64zfr0_el1_sys_val);
+ extern u64 kvm_nvhe_sym(id_aa64isar0_el1_sys_val);
+ extern u64 kvm_nvhe_sym(id_aa64isar1_el1_sys_val);
+ extern u64 kvm_nvhe_sym(id_aa64isar2_el1_sys_val);
++extern u64 kvm_nvhe_sym(id_aa64isar3_el1_sys_val);
+ extern u64 kvm_nvhe_sym(id_aa64mmfr0_el1_sys_val);
+ extern u64 kvm_nvhe_sym(id_aa64mmfr1_el1_sys_val);
+ extern u64 kvm_nvhe_sym(id_aa64mmfr2_el1_sys_val);
+diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+index fe60535e4f358..1981646df42ce 100644
+--- a/arch/arm64/kvm/arm.c
++++ b/arch/arm64/kvm/arm.c
+@@ -2831,6 +2831,7 @@ static void kvm_hyp_init_symbols(void)
+ 	kvm_nvhe_sym(id_aa64isar0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR0_EL1);
+ 	kvm_nvhe_sym(id_aa64isar1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR1_EL1);
+ 	kvm_nvhe_sym(id_aa64isar2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR2_EL1);
++	kvm_nvhe_sym(id_aa64isar3_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64ISAR3_EL1);
+ 	kvm_nvhe_sym(id_aa64mmfr0_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64MMFR0_EL1);
+ 	kvm_nvhe_sym(id_aa64mmfr1_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64MMFR1_EL1);
+ 	kvm_nvhe_sym(id_aa64mmfr2_el1_sys_val) = read_sanitised_ftr_reg(SYS_ID_AA64MMFR2_EL1);
 diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-index 08805c7e4e5a7..8e9283dae3484 100644
+index b325bab5431a8..73ef47a8e687b 100644
 --- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
 +++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-@@ -170,7 +170,9 @@ static const struct pvm_ftr_bits pvmid_aa64mmfr1[] = {
- 	MAX_FEAT(ID_AA64MMFR1_EL1, SpecSEI, IMP),
- 	MAX_FEAT(ID_AA64MMFR1_EL1, ETS, IMP),
- 	MAX_FEAT(ID_AA64MMFR1_EL1, AFP, IMP),
-+	MAX_FEAT(ID_AA64MMFR1_EL1, TIDCP1, IMP),
- 	MAX_FEAT(ID_AA64MMFR1_EL1, CMOW, IMP),
-+	MAX_FEAT(ID_AA64MMFR1_EL1, ECBHB, IMP),
+@@ -27,6 +27,7 @@ u64 id_aa64zfr0_el1_sys_val;
+ u64 id_aa64isar0_el1_sys_val;
+ u64 id_aa64isar1_el1_sys_val;
+ u64 id_aa64isar2_el1_sys_val;
++u64 id_aa64isar3_el1_sys_val;
+ u64 id_aa64mmfr0_el1_sys_val;
+ u64 id_aa64mmfr1_el1_sys_val;
+ u64 id_aa64mmfr2_el1_sys_val;
+@@ -223,6 +224,14 @@ static const struct pvm_ftr_bits pvmid_aa64isar2[] = {
  	FEAT_END
  };
  
-@@ -178,6 +180,8 @@ static const struct pvm_ftr_bits pvmid_aa64mmfr2[] = {
- 	MAX_FEAT(ID_AA64MMFR2_EL1, CnP, IMP),
- 	MAX_FEAT(ID_AA64MMFR2_EL1, UAO, IMP),
- 	MAX_FEAT(ID_AA64MMFR2_EL1, IESB, IMP),
-+	MAX_FEAT(ID_AA64MMFR2_EL1, VARange, 52),
-+	MAX_FEAT_ENUM(ID_AA64MMFR2_EL1, ST, 48_47),
- 	MAX_FEAT(ID_AA64MMFR2_EL1, AT, IMP),
- 	MAX_FEAT(ID_AA64MMFR2_EL1, IDS, IMP),
- 	MAX_FEAT(ID_AA64MMFR2_EL1, TTL, IMP),
++static const struct pvm_ftr_bits pvmid_aa64isar3[] = {
++	MAX_FEAT(ID_AA64ISAR3_EL1, FAMINMAX, IMP),
++	MAX_FEAT(ID_AA64ISAR3_EL1, LSFE, IMP),
++	MAX_FEAT(ID_AA64ISAR3_EL1, LSUI, IMP),
++	MAX_FEAT(ID_AA64ISAR3_EL1, FPRCVT, IMP),
++	FEAT_END
++};
++
+ /* DoubleLock and MTPMU are hidden, but their Not-Implemented values are non-zero. */
+ static const struct pvm_ftr_bits pvmid_aa64dfr0[] = {
+ 	MAX_FEAT(ID_AA64DFR0_EL1, DebugVer, V8P8),
+@@ -289,6 +298,8 @@ static u64 pvm_calc_id_reg(const struct kvm_vcpu *vcpu, u32 id)
+ 		return get_restricted_features(vcpu, id_aa64isar1_el1_sys_val, pvmid_aa64isar1);
+ 	case SYS_ID_AA64ISAR2_EL1:
+ 		return get_restricted_features(vcpu, id_aa64isar2_el1_sys_val, pvmid_aa64isar2);
++	case SYS_ID_AA64ISAR3_EL1:
++		return get_restricted_features(vcpu, id_aa64isar3_el1_sys_val, pvmid_aa64isar3);
+ 	case SYS_ID_AA64MMFR0_EL1:
+ 		return get_restricted_features(vcpu, id_aa64mmfr0_el1_sys_val, pvmid_aa64mmfr0);
+ 	case SYS_ID_AA64MMFR1_EL1:
+@@ -722,7 +733,7 @@ static const struct sys_reg_desc pvm_sys_reg_descs[] = {
+ 	AARCH64(SYS_ID_AA64ISAR0_EL1),
+ 	AARCH64(SYS_ID_AA64ISAR1_EL1),
+ 	AARCH64(SYS_ID_AA64ISAR2_EL1),
+-	ID_UNALLOCATED(6,3),
++	AARCH64(SYS_ID_AA64ISAR3_EL1),
+ 	ID_UNALLOCATED(6,4),
+ 	ID_UNALLOCATED(6,5),
+ 	ID_UNALLOCATED(6,6),
 -- 
 2.47.3
 
