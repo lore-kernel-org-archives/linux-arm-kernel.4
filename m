@@ -2,79 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F35F606A33B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1311606A33A
 	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 17:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wpyDCECq;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zFpbxydf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3gkjhbDu;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cJX3zL5y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6lQZd1bM6K+vPoeN+FFObtB7PVIN9WoNQwEnxWfTQwg=; b=wpyDCECqLwYBMr
-	/f6GXL6BmPMjGPJYpTdA3795giZX4hMm+BhgaaTqjioqUc58nakT9a5WrVmlgUjtinMiN+K1WTPE9
-	Pz02ZLFDuwvYP5j/0dvgcmAd/X1eBp7wLlEzwDexhMJP6b2f1YpE/TSAgLNF0IJZY42v+tYO2CJEo
-	1eRK2YczSB4NfzM8c+BQF8ezr3jFyxRhz4MXEPSn/B7ujij59i5rdyXJUqLAZtklfQ4WWtDgD4Agi
-	94zX4LISrj+aF0cM9QTHWag1yzq/veJHRvmIuSUND67A2zrUCAnx1SDLrqOMP+Yu2kocTf04snvCW
-	/6aAyodoL8xRcpx2TXkA==;
+	List-Owner; bh=aNMBR4KqypyM8nZC0Zd6F06XAJ3Q0+V3qNyKzqi9O44=; b=3gkjhbDuL3hKOI
+	nyolpOoa7fY3k/zBXRix5fbxeFKgu3BeibDftRbni5EpgfiMusO911IDrQc0SwsDkkeAFYXonfF26
+	8LgwcAEnIFFr3vNkgpuvKOXvc6euSdQoI5YnPJVaROZSU5SHyTqyRrJeta9kOG8tLBFlTvaiZcKvC
+	7shD/K0OpCBUbEPAHZer2NoGCLlsNPD6WZoYyTD5IZXW/VnNwR2JMbbO12U8Spkq1RPZIlb4ZPoI8
+	QhqInl+5rXLcjp98COwNQkuxchAtsToUg6J7dVDuYfhqP1ydoTD8KgaRt1uOImEIW5avqdX65QCzm
+	DLpjiObkHV3PYnFea3Zw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQTWj-00000001OdY-2EKS;
-	Mon, 09 Nov 2026 17:51:29 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1xQTWj-00000001OeS-3jPe;
+	Mon, 09 Nov 2026 17:51:30 +0000
+Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQTWY-00000001OSC-43iH
+	id 1xQTWa-00000001OTU-3Jgu
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 17:51:20 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-491971ac844so1146560f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 09:51:18 -0800 (PST)
+	Mon, 09 Nov 2026 17:51:21 +0000
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso8166775e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 09:51:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794246677; x=1794851477; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794246679; x=1794851479; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6lQZd1bM6K+vPoeN+FFObtB7PVIN9WoNQwEnxWfTQwg=;
-        b=zFpbxydf8mLU1nZS9svXpNfHaRO8aosVlMFR2cDPVIgtVLgGnbStFw8KdJLG1AASSM
-         +cUOiNdVJwiKCPkCofEhHgTgighiTJT7P1Q+JwdXOgDDv9zLryNmtLxVpQUGpmEbEqh4
-         94VQNNsa9uAgpPtLMV8ABY28NcBH6gfZFl3F0pPIFANZ7Tv7sgwfSxC38ApBfBuiHspZ
-         SjkyVKKB0WpHVE2pINenpOQ+N/VgY/HK1mwlrEll+8mGd+GIsp0c4FmpRKo5C0cvOdMl
-         c1Kw6lcXZT8VBW/gxg6zo0zaB1+wGRFNqom69SqAo1vF3SWd2OXTwgxwWZulscP9ed+o
-         uuog==
+        bh=aNMBR4KqypyM8nZC0Zd6F06XAJ3Q0+V3qNyKzqi9O44=;
+        b=cJX3zL5y4KXxINb8FHYzxJEoMrANaE4waqzujh5hjLEYNHRsuzBR1QNJVUxuxiBZUg
+         1lL8eKUKLjqvwLTDpk9MxIwxlrsbu3LkxRjTI7VkgCs2Z8FehT4N0eHiqJx79Fo3oops
+         MqlLaVrkbLIf6f4AcfnDLWd9iTXDd2nnjj2h8+IaQk6taVSYBzV3H+SeTHQCqq0taDlp
+         OL9KtwHfm+LJFB6Jz6LNRRcicnTSJ5GQuy7RShJlyoUTmX6/AVsUNVbGx4nXz4uLw0dR
+         +RbLFOrTZunf5qq1AAMpQWACbbB0RX++k3ERc/nEKmxyKz92mLxCGpT/1SWEwY2qUatB
+         TvFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794246677; x=1794851477;
+        d=1e100.net; s=20260707; t=1794246679; x=1794851479;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=6lQZd1bM6K+vPoeN+FFObtB7PVIN9WoNQwEnxWfTQwg=;
-        b=PB3Y+IdDGiK2thgZ5dueWH/CSEcqTFQwjUqs2/KP+DLnGuA8DLQ8oa3GON5pJ/4zuK
-         XJIIjjd8xWFslYFDd0byrZZ6PWCA7jtLMiAaxDPejjLZWv3xNjUtCiHhxHVPv0lQ4APL
-         H041OvRtVWtpnU2r/USJJu/zLzVKnQlY5mbyt7jONWSAJXWPdIYZCWpXyCsygDYe+YPW
-         TqiXOvg+yrfLf5hiFBrf30TJeQ2osLuaho43rDZlGaCuP/XkGpUGBP1C4kaOQm3Cpj9u
-         jweyCgQITb2Cj3pjOa+hu4TdCkr1rXsOpsDn8lQA04Iv6vSx3ZOk03JvsUP2qTFIK5mx
-         EvPQ==
-X-Forwarded-Encrypted: i=1; AL+hErGkqmcmy5KjjfB/vkysoaJCZhCkfuDq1iCEU2nPpsQgcXJdWQ55YLqoqhE8xYoqkRu4bOGUxIW/SIDSQkCd1y9Y@lists.infradead.org
-X-Gm-Message-State: APuU4Z+pFEk1wp/BT+EqArnU0/5m0UVAvkqrClniU9CjFcZMuYtCn2kU
-	JEE8C6caDDaOOj6jYrjCQLPZBSCLSpfLtW89qFQUrWgK5YMVXvhK0dqR
-X-Gm-Gg: AYBFou34u5Clh7tMFpmd7All//D+FTkMQViN+GhvOC0TymgeFBSdxHLtzgZUJBND9pL
-	N455cP3jQSAgQpzn4QFajbljCzc6P3flWEbsg0uMpv+//N6hM7cmZGw6vTuaF/7JIQeY2PoW3zv
-	gaIi4tw4TQ9FtFbq4LRc2kblw66riGX/TbiY5tiauvi0/q8Te7sjmNThxvze89ESgbfb1T4RGak
-	Yh/K1PbtubaxIqy38TMoQl54kHIIkPTmJz6wbMOx59uScOvV5ss16UGHvHr92qElgJKjkYXdIY9
-	WJ6KZKP4PPZx7EYgj+Mcfgh8p8FcL2WX2dKeadiqWbxVf38P6lAz1BKP0TIfN0Re3f3cUXweHFW
-	iaBu54JQa/3vT6/3B25fkBZn+3M22HuGa/uKQwi8AcPLi/axRxqi6aNzdL9tPUOKMkV7ALhgsHt
-	ixwoOFhTTqP3SWDz8R2wk5ajGeDbGif/vA3UoSIicwyYKWf3UKJSkTSwX70Z2xVRLtB6pwPbiAv
-	0KSCwDqkLp2EOnQsMjc4iV+6++lJNwyZhLtvOu8MrVOmx/49enA2ElLcQW1gHBrTZpzoskoiYuv
-	ZKth8bktrkazIeV9ih81RdvEAVR5Q/TJClVDNyhU1GuzulK+/YFvCmPjxwPu27eoMuGJww2JK9g
-	h60Di2NCofOkYataZ7F/XebVmOiXfswxulHAx1OGfEZfMAQK2lSpIAozOzD/xCXH8u0QybEikPH
-	nQeURAr2qYdirhPXhaV9LkpGKDsrmw6F8x5MrQXLEaAfiTDt9Gw5gKBz110IxvZvawGf9fnhU2o
-	rt/p/2ni1O1Q0Sz1KB27hNuMApsLENSIQLfGwi/YDSD3afDTtY=
-X-Received: by 2002:a05:600c:3e88:b0:4b0:bc65:b9b5 with SMTP id 5b1f17b1804b1-4b963c8809emr85435405e9.35.1794246677280;
-        Mon, 09 Nov 2026 09:51:17 -0800 (PST)
+        bh=aNMBR4KqypyM8nZC0Zd6F06XAJ3Q0+V3qNyKzqi9O44=;
+        b=1g2IA1Py6yu2Kel/H4MLOC/pHFQCqwqXiSRa2pfs5ggqBcwlbUDSt7g/L9+kG5Id1P
+         gXNVzSPURTI4n2bi8UpiqNFDLK7saSdIeE7CBqJ3cIuW1xC1TBOkF3TE5INsRHvOZzth
+         wy3qLSbAAyDsUzs++sb5wDSNpxb/9OQweXP6d70HlKvmplieGjszhaJxVPdcTcfk3QES
+         ZQRYkHujL1gY8aQxScdFKYNw+7FnpPge5V6HxcjgJOgdXBbPqNzUMKw5A3/YGCrVtGKu
+         8VA78zGp/DjUYLR4lFMPR+mJ7VSoQmIDDBrZnH7SP7hzLh21Ox4v3vC/Do4zMisUWHd0
+         gSiA==
+X-Forwarded-Encrypted: i=1; AL+hErEnU52tm6061FiDPn2gmY5ReOnH5A8vta5WzUxx1OTBz9eOTd1IQz6NEVZT5z0GnxOIfXfGoM3OIVGkCS3/YcfX@lists.infradead.org
+X-Gm-Message-State: APuU4Z/9l7RzK4I8j5G3sZamX9UG1FZAcEhqFa5GtJsR3qJa+Z549r1f
+	Ec+QkDANlnMccTdAmQ6EbL5nAozbKpRtXwAa1w0qu9I5G19y8dWjXrAK
+X-Gm-Gg: AYBFou2cJEXtrWlHdwI39CBxJ3EV0/JCsmIvFYNRAVb1wwlkONOB5mDNxfLx2E/7hsz
+	2DanmuhglCn0RSXlZDvkGXqiJiaPEmein4oDkBooKr3uz/ahWv0FI3ecBtG3ofU6wXu2R/hnINI
+	sdystK0mIlPxQ10wxnYrANP+wzOjLOIG0cp9L3FNTXDUMl8iAbZ5mvLkrV8B8HJpaSqaj3OyjAN
+	9/zYh6rUt1gNHfKzBtOvo4vaR5W1nC2sM1xuYsyE6vdRuuWfhBTbVcQV4ZWenjGo+9n+5uFOQrI
+	Uxq3JQxLILurzWSa26MLkg8wnnBss30njx6KSxRsfuY/R5V5BTI1zvjVfxzgGwLw1qh1zQmTn+u
+	SQjUAdhqkHabKlrLS6riEfPV1vlzz8puxRzvGKL6hZLD13atRpX1knSmra/2VYQvjhOghsXR+bN
+	3qHXT/lMeMdVCekkaBJrita7xvnXFZkEo6O+jf0ZIDfoFoLT+NGHWiZ8aVee5S6cZqM5OpZhO/f
+	3Afzx/NutqxhlFv0qDKrLhdCs/uWmnxAVntZ3ZQBq33QEKcdV0QshU1Ua66IUcCTyYHLA8nYAAG
+	rpWj+edRx1imDn3sA9xnmkdZtpHfQbaW+Sht9e1RL7j5g6AoXzs0SpStF0SlXXNhkwGDXij+sgm
+	WpH5EH11xohU0decLGdj4LQfBlEBCyvCt5pLQ2vwh7bE0GEq3/U7m2b7vusv0F2BkFUyJmlUfCL
+	p99UZvJ/lPwu030cJPfY0VNtn7Eo9/mNIFPWukh/A4Xh51ZNlFyeliM18pYms2ok390I000vKMF
+	Fr4oy44p3cM87+8Er6hq44tnQzFTKPCog1J63fzl9iST4GZhdL2euBOvw4R8LeCtRWoelnT
+X-Received: by 2002:a05:600c:1c02:b0:4a7:d9b1:b684 with SMTP id 5b1f17b1804b1-4ba0230cc8emr216685e9.2.1794246678645;
+        Mon, 09 Nov 2026 09:51:18 -0800 (PST)
 Received: from jernej-laptop (86-58-12-36.dynamic.telemach.net. [86.58.12.36])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498369a4238sm200717f8f.54.2026.11.09.09.51.16
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498369a4238sm200717f8f.54.2026.11.09.09.51.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 09:51:16 -0800 (PST)
+        Mon, 09 Nov 2026 09:51:18 -0800 (PST)
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Hans Verkuil <hverkuil@kernel.org>
@@ -90,9 +90,9 @@ Cc: Maxime Ripard <mripard@kernel.org>,
 	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH v2 09/11] staging: media: cedrus: h616: use the 256-bit DDR mode
-Date: Mon,  9 Nov 2026 18:50:14 +0100
-Message-ID: <20261109175016.42061-10-jernej.skrabec@gmail.com>
+Subject: [PATCH v2 10/11] staging: media: cedrus: h264: clear the DRAM buffer sizes on start
+Date: Mon,  9 Nov 2026 18:50:15 +0100
+Message-ID: <20261109175016.42061-11-jernej.skrabec@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261109175016.42061-1-jernej.skrabec@gmail.com>
 References: <20261109175016.42061-1-jernej.skrabec@gmail.com>
@@ -100,8 +100,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_095119_038530_B9C3E8EC 
-X-CRM114-Status: GOOD (  20.87  )
+X-CRM114-CacheID: sfid-20261109_095120_864368_E85F0980 
+X-CRM114-Status: GOOD (  14.36  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,123 +121,40 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With the DDR mode in VE_MODE set to 128-bit, which the driver uses on
-all SoCs, the H616 H.264 engine reads corrupted reference chroma, while
-luma is fine. H.264 and VP8 P frames come out with bit-exact luma, but
-with about 22 dB PSNR chroma. H.265 and MPEG-2 are unaffected.
+Above 2048 pixels, the H.264 decoder puts its deblocking and intra
+prediction buffers into DRAM, and stop() frees them when their sizes
+are not zero. start() only sets the sizes for wide pictures and nothing
+clears them, so a narrow stream after a wide one on the same file
+handle frees the buffers of the wide one again. The codec data is also
+shared with the other codecs, whose data can end up in the sizes.
 
-The vendor library selects the DDR mode based on the VE IC version. It
-uses the 256-bit mode without the 2 MiB reconstruction write mode on
-the H616, and keeps the 128-bit mode with the 2 MiB reconstruction
-write mode on older SoCs, like the H6. Doing the same on the H616 makes
-all codecs bit-exact (tested with BA_MW_D, CABA2_Sony_E,
-vp80-00-comprehensive-002, AMP_A_Samsung_7 and MEI.stream16).
+Clear the sizes at the start of start().
 
-Make the VE_MODE DDR settings a variant property and add an H616
-variant, which uses the 256-bit mode. Replace the FIXME about the
-DDR mode with a description of what the vendor library does.
-
-Fixes: 1f24d4307515 ("staging: media: sunxi: cedrus: add H616 variant")
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Fixes: 03e612e701a6 ("media: cedrus: Fix H264 4k support")
 Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 ---
- drivers/staging/media/sunxi/cedrus/cedrus.c    | 14 +++++++++++++-
- drivers/staging/media/sunxi/cedrus/cedrus.h    |  2 ++
- drivers/staging/media/sunxi/cedrus/cedrus_hw.c | 14 ++++++++++----
- 3 files changed, 25 insertions(+), 5 deletions(-)
+ drivers/staging/media/sunxi/cedrus/cedrus_h264.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.c b/drivers/staging/media/sunxi/cedrus/cedrus.c
-index 6c6aa45f5f96..09b789640646 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus.c
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus.c
-@@ -27,6 +27,7 @@
- #include "cedrus_video.h"
- #include "cedrus_dec.h"
- #include "cedrus_hw.h"
-+#include "cedrus_regs.h"
+diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_h264.c b/drivers/staging/media/sunxi/cedrus/cedrus_h264.c
+index 97958ceee8d1..e7a3bfbc3531 100644
+--- a/drivers/staging/media/sunxi/cedrus/cedrus_h264.c
++++ b/drivers/staging/media/sunxi/cedrus/cedrus_h264.c
+@@ -573,6 +573,14 @@ static int cedrus_h264_start(struct cedrus_ctx *ctx)
+ 	unsigned int pic_info_size;
+ 	int ret;
  
- #define CEDRUS_VP8_MAX_WIDTH	4080U
- 
-@@ -679,6 +680,17 @@ static const struct cedrus_variant sun50i_h6_cedrus_variant = {
- 	.mod_rate	= 600000000,
- };
- 
-+static const struct cedrus_variant sun50i_h616_cedrus_variant = {
-+	.capabilities	= CEDRUS_CAPABILITY_UNTILED |
-+			  CEDRUS_CAPABILITY_MPEG2_DEC |
-+			  CEDRUS_CAPABILITY_H264_DEC |
-+			  CEDRUS_CAPABILITY_H265_DEC |
-+			  CEDRUS_CAPABILITY_H265_10_DEC |
-+			  CEDRUS_CAPABILITY_VP8_DEC,
-+	.mod_rate	= 600000000,
-+	.ve_mode_ddr	= VE_MODE_DDR_MODE_BW_256,
-+};
++	/*
++	 * The sizes tell stop() whether the DRAM buffers below were
++	 * allocated. Clear them, as they are only set for wide pictures and
++	 * the codec data is shared with the other codecs.
++	 */
++	ctx->codec.h264.deblk_buf_size = 0;
++	ctx->codec.h264.intra_pred_buf_size = 0;
 +
- static const struct of_device_id cedrus_dt_match[] = {
- 	{
- 		.compatible = "allwinner,sun4i-a10-video-engine",
-@@ -726,7 +738,7 @@ static const struct of_device_id cedrus_dt_match[] = {
- 	},
- 	{
- 		.compatible = "allwinner,sun50i-h616-video-engine",
--		.data = &sun50i_h6_cedrus_variant,
-+		.data = &sun50i_h616_cedrus_variant,
- 	},
- 	{ /* sentinel */ }
- };
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.h b/drivers/staging/media/sunxi/cedrus/cedrus.h
-index 572e70a94b3f..78efd3938c77 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus.h
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus.h
-@@ -181,6 +181,7 @@ struct cedrus_dec_ops {
- struct cedrus_variant {
- 	unsigned int	capabilities;
- 	unsigned int	mod_rate;
-+	u32		ve_mode_ddr;
- };
- 
- struct cedrus_dev {
-@@ -204,6 +205,7 @@ struct cedrus_dev {
- 	struct reset_control	*rstc;
- 
- 	unsigned int		capabilities;
-+	u32			ve_mode_ddr;
- 
- 	struct delayed_work	watchdog_work;
- };
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-index 444fb53878d1..b66d855daaf8 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus_hw.c
-@@ -36,11 +36,16 @@ int cedrus_engine_enable(struct cedrus_ctx *ctx)
- 	u32 reg = 0;
- 
  	/*
--	 * FIXME: This is only valid on 32-bits DDR's, we should test
--	 * it on the A13/A33.
-+	 * The DDR mode depends on the SoC. Like the vendor library, use the
-+	 * 128-bit mode with the 2 MiB reconstruction write mode, unless the
-+	 * variant says otherwise.
- 	 */
--	reg |= VE_MODE_REC_WR_MODE_2MB;
--	reg |= VE_MODE_DDR_MODE_BW_128;
-+	if (ctx->dev->ve_mode_ddr) {
-+		reg |= ctx->dev->ve_mode_ddr;
-+	} else {
-+		reg |= VE_MODE_REC_WR_MODE_2MB;
-+		reg |= VE_MODE_DDR_MODE_BW_128;
-+	}
- 
- 	switch (ctx->src_fmt.pixelformat) {
- 	case V4L2_PIX_FMT_MPEG2_SLICE:
-@@ -254,6 +259,7 @@ int cedrus_hw_probe(struct cedrus_dev *dev)
- 		return -EINVAL;
- 
- 	dev->capabilities = variant->capabilities;
-+	dev->ve_mode_ddr = variant->ve_mode_ddr;
- 
- 	irq_dec = platform_get_irq(dev->pdev, 0);
- 	if (irq_dec <= 0)
+ 	 * NOTE: All buffers allocated here are only used by HW, so we
+ 	 * can add DMA_ATTR_NO_KERNEL_MAPPING flag when allocating them.
 -- 
 2.43.0
 
