@@ -2,69 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFEF606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3ED606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aUDUAYCE;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Yb4YDHnB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UiYTA4RA;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=P9KcMmX6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=k47tfCEJkcbLr56UWWN1mV8xEAHsP5jrj/tsgJbgRzY=; b=aUDUAYCEoiJZwI59YUphfIDPy+
-	5pngrF+/bbKCctxxpjdNXTVL/BEFN87DURV+AjxHIXemyRI9WUrF7fQakBmQULC8Gt0U0voQjMIc8
-	enNx6EvGeiDEX8Jv/G7bW4w5xM9Mx/24QgttkHrDHf7kiVFXa1DRl/Q/SI5TlsVV1Yygj9x2IWS69
-	Pc8OJ8NQCplMs1WuSE/lBtp+u28etl/JKDDukWYre706dxCcJQ1N84BcctisxIP36WB7aq3r0nMsT
-	rFFFliz29THe4UnO78uNcbjHjABW4+4wRNgR5VZK7SY0vH5J3ewT1iR+NWeFyEpxgKfgkaTpMSWeG
-	aZIduOfQ==;
+	bh=3unQo8WlkCpFMzh/dOetPGuf+DaxLLVXBYgvviJEGVA=; b=UiYTA4RAyLWVT4yuvOyiQFlLA0
+	p/ColGjalIxRA6hLH8cw+q6NWwQ4HHPtJ4XJufCYNggYuy0EvWe2tdc5vLk3w4RbcJLnHrD21Kq2Z
+	phtqyL5tWCVszsTORZRrcUnlXTEJzKn/09slB53LLtIEcyLgfzUU5ALQvC8PKfAI3mHrPpkWvzzUz
+	9UmW+Gb7yMwMx6nwZhHM16+6sK3QcVgtiUXEh3xTNiCcxZn0UZMNvigGV3X3xLaYEr3mOjrxicPL6
+	NCf6x80gk/l4pMn5eleYMO0rgyqkrWxvO8e2KctDybUsNJ4qqhjzxTsktcYRifXs3tISN8pqbzpXz
+	JhQqYq0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQS4f-00000001B6K-0Pbx;
-	Mon, 09 Nov 2026 16:18:25 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQS77-00000001BHC-1gYW;
+	Mon, 09 Nov 2026 16:20:57 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQS4c-00000001B5j-2KLF
+	id 1xQS74-00000001BGp-13yP
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:18:23 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 06B2C61194;
-	Mon,  9 Nov 2026 16:18:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ABB01F008A1;
-	Mon,  9 Nov 2026 16:18:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794241101;
-	bh=k47tfCEJkcbLr56UWWN1mV8xEAHsP5jrj/tsgJbgRzY=;
-	h=From:To:Cc:Subject:Date;
-	b=Yb4YDHnB6Exb1cY689qfkUxTSs0Q7/s5VcUWYeEkZb4yE/wLfvx6tGanvomg/z3qP
-	 N3OTyYEn/sEwcb3hyG5fLlcC+N/8xex1np/vAi+p87Dle/Lk0Ump+HJKF+jVihxd61
-	 ahIYnX9T42wZAGKaoco8OOJQ2farJD7VCzWe5xgHIPphIPxso2D/3JlbRqHQMrZFO/
-	 P8WQrH4SuHsNYg/66xhThGu2fp8KBcAEmmkJH2dJszxLItK2mhbhhnHBMBEmPNHcPM
-	 AOHlwepOogENYNfPiekZtRlS45yh5Ae7ZZmzY+TnwssULifj+7VkPqkvEUBm2Xoc7x
-	 rLvQ09AjZsG3w==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: sashiko-bot@kernel.org,
-	stable@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: nxp/imx6: Fix imx6qdl pico dwarf and nymph includes
-Date: Mon,  9 Nov 2026 10:18:09 -0600
-Message-ID: <20261109161812.3629546-1-robh@kernel.org>
-X-Mailer: git-send-email 2.53.0
+	Mon, 09 Nov 2026 16:20:55 +0000
+Received: from ptx.office.stw.pengutronix.de (ptx.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::109])
+	(Authenticated sender: relay-from-ptx.office.stw.pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id B196720062C;
+	Mon, 09 Nov 2026 17:20:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794241245;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3unQo8WlkCpFMzh/dOetPGuf+DaxLLVXBYgvviJEGVA=;
+	b=P9KcMmX65ZjtvR9i/6ts0xQ4fBJR8NUyNsRGaAnLchg+oWiQnwyhtW4GCt04sOe6yalih6
+	LryAPynYC1gDKrDibmqe+D1jpH1bh3oIseStQkztYgq6D5djAa2nMw0C8WZ1RCCYPCWQPg
+	nXbZ3gxjxnUte3uNDBa3yZ1i8WrLvl/dSQ4T+dgMLXNNFCwOhF591K1+uMDI2A3s+wUumw
+	qVZzwPiW+xBWXcCFWlyvvcYq1RQvDCCOmfgUxHPyYujLGwn1L8tN9ijJFGV8T7zUcmF2Bc
+	d27ItT5AgmkUNOwJ+9zOh0aXVCkoqsNWxx6duzA9gPDQa084nHnrUmfNgb4MQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794241245;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3unQo8WlkCpFMzh/dOetPGuf+DaxLLVXBYgvviJEGVA=;
+	b=Pw1IIp3Z32rUuuXL2Sq/cW0/Fi9adMQA/hYp17pKFTQkswpnYtXBSvUlRyopHC2iBV+IHj
+	BYvUCmnKXPOd7TtRtNCrvfmOPmZXmdVKqtlRgrGw9rnk3cbDj76+PEdXeF/v16+me4RePC
+	W44+n/mcvg1DZ8W60lBv8x4d/poqqiR7piJ7YZwhLVPG8R45C5EFLKfNs9sZbecW2KVgpm
+	PK0RuAGYdrrA2k5MU80Yxh4uuTCs4MClKyopAA0Xqr092iulpn2Gij8TX0Wy6nnHs361lg
+	fsESRoITjU3TinZKIIdOZTezCWiAK2s83p7IfmmfGXGiMpaZNZXe8tr8qftjVA==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794241245; a=rsa-sha256;
+	cv=none;
+	b=Zo9ReRp1D/g8eNY/8B5OdRpwZbO2YnZMWzUtnqrLN3rx9PYfX8Olh/7/jn6jL9oMFfUNZp
+	Ci1Jc/+35FaoDYse0tmRnc+1cpJ7g6VTw/xv143XkxjUpn+s/x5zWtGYoDhJFvLIqEKi6u
+	ap0347JwZZWKpDlSIQ2qLgVaRYjGVX1qPepzmInS6LAzoW7vyb6OAAXhnVVj8CfpYODdz0
+	i3BrxgpoI2buRW7umeWZ5HveSv64kgOheXErFQrKQQ7zeURq0yIeaBHA25IAnHrrVbXIBz
+	kE94w08E7EkS19wF4Jjn+LHtrcUKTlS96LHcpmARSSAc2clets5jY/7aCk+ghA==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=relay-from-ptx.office.stw.pengutronix.de smtp.mailfrom=mfe@pengutronix.de
+Received: by ptx.office.stw.pengutronix.de (Postfix, from userid 1064)
+	id 9A94E1BF632; Mon, 09 Nov 2026 17:20:45 +0100 (CET)
+Date: Mon, 9 Nov 2026 17:20:45 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] ARM: dts: nxp/imx6: Drop unused kontron-samx6i .dtsi
+Message-ID: <q5fzh5ay25uujgbhztuj4rhf6d2lypxqeqely6jx7uyt3mivg5@a7yxcdiubv4x>
+References: <20261109161713.3618477-1-robh@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261109161713.3618477-1-robh@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_082054_442033_2D8101B8 
+X-CRM114-Status: GOOD (  10.04  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,121 +97,20 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The imx6q/dl pico dwarf and nymph boards appear to have a copy-n-paste
-error including the imx6qdl-pico-pi.dtsi by mistake. The
-imx6qdl-pico-dwarf.dtsi and imx6qdl-pico-nymph.dtsi were otherwise unused.
+On 26-11-09 10:17, Rob Herring (Arm) wrote:
+> These 2 kontron-samx6i .dtsi files are not included anywhere in the tree
+> and can't be tested. The kontron-samx6i support is already in place in
+> the imx6(q|dl)-kontron-samx6i-ads2.dts files which just include all the
+> necessary .dtsi files directly.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Fixing the typos introduces some DT schema warnings, so fix them. The
-supplies for MPL3115 are a guess based on other dwarf variants.
-
-Reported-by: sashiko-bot@kernel.org
-Link: https://lore.kernel.org/all/sashiko-outbox-199279@kernel.org
-Fixes: 98670a0bb0ef ("ARM: dts: imx6qdl: Add imx6qdl-pico support")
-Cc: stable@vger.kernel.org
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- arch/arm/boot/dts/nxp/imx/imx6dl-pico-dwarf.dts   | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6dl-pico-nymph.dts   | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6q-pico-dwarf.dts    | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6q-pico-nymph.dts    | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi | 3 +++
- arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi | 1 +
- 6 files changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-pico-dwarf.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-pico-dwarf.dts
-index d85b15a8c127..dd8ce2df876c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-pico-dwarf.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-pico-dwarf.dts
-@@ -9,7 +9,7 @@
- /dts-v1/;
- 
- #include "imx6dl.dtsi"
--#include "imx6qdl-pico-pi.dtsi"
-+#include "imx6qdl-pico-dwarf.dtsi"
- 
- / {
- 	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Dwarf baseboard";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-pico-nymph.dts b/arch/arm/boot/dts/nxp/imx/imx6dl-pico-nymph.dts
-index 32ccfc5d41ce..4ce0d0d0756c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6dl-pico-nymph.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6dl-pico-nymph.dts
-@@ -9,7 +9,7 @@
- /dts-v1/;
- 
- #include "imx6dl.dtsi"
--#include "imx6qdl-pico-pi.dtsi"
-+#include "imx6qdl-pico-nymph.dtsi"
- 
- / {
- 	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Nymph baseboard";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-pico-dwarf.dts b/arch/arm/boot/dts/nxp/imx/imx6q-pico-dwarf.dts
-index 479a63ed42af..5e1f8b79593d 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-pico-dwarf.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-pico-dwarf.dts
-@@ -9,7 +9,7 @@
- /dts-v1/;
- 
- #include "imx6q.dtsi"
--#include "imx6qdl-pico-pi.dtsi"
-+#include "imx6qdl-pico-dwarf.dtsi"
- 
- / {
- 	model = "TechNexion PICO-IMX6 Quad Board and Dwarf baseboard";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-pico-nymph.dts b/arch/arm/boot/dts/nxp/imx/imx6q-pico-nymph.dts
-index e8ad4c12b263..d688b5bb6c6a 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-pico-nymph.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-pico-nymph.dts
-@@ -9,7 +9,7 @@
- /dts-v1/;
- 
- #include "imx6q.dtsi"
--#include "imx6qdl-pico-pi.dtsi"
-+#include "imx6qdl-pico-nymph.dtsi"
- 
- / {
- 	model = "TechNexion PICO-IMX6 Quad Board and Nymph baseboard";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi
-index 3a968782e854..feaadacfe7ff 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi
-@@ -22,6 +22,8 @@ &i2c1 {
- 	mpl3115@60 {
- 		compatible = "fsl,mpl3115";
- 		reg = <0x60>;
-+		vdd-supply = <&reg_3p3v>;
-+		vddio-supply = <&reg_3p3v>;
- 	};
- };
- 
-@@ -31,6 +33,7 @@ io-expander@25 {
- 		reg = <0x25>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		interrupt-controller;
- 		#interrupt-cells = <2>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi
-index 3d56a4216448..a13f4d49c05d 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi
-@@ -30,6 +30,7 @@ io-expander@25 {
- 		reg = <0x25>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
-+		interrupt-controller;
- 		#interrupt-cells = <2>;
- 	};
- };
--- 
-2.53.0
-
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
