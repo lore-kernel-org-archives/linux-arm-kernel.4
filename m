@@ -2,67 +2,185 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E51D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 06:25:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0569B606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 06:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uAKzYqGx;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.a=rsa-sha256 header.s=2022a header.b=j/Qeg7lB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XMzqDt+v;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=XzYMB7wD;
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-mediateko365-onmicrosoft-com header.b=ke8aQPRa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=tZbehCCVWAQp16KYzP4ZlOLAW7PdEXUmB6Gq4qGN56g=; b=uAKzYqGxpkpY6rTZskblqjmZvG
-	UHpFjTxW1bvZh4DgFf9k4/TcGmfc/lczYxutUiydGOW4icTxu4dQcRoQwJ0sbd8gKLJlEuem1NDSC
-	8WA9LCuxr/FAE9B8KEKk90Ng/bnf8PeXdfyKv3ZFRyzUxup+6CCq7V3lWvBs1X9fWHmuURSgdIYPo
-	rf5DQL0OKc2tCcVh/hse5/iuF9Hz+63tqoj2AoPOjsestyI+vgcSL4JfOmrsFUpydQ3ql4n+KK1xf
-	IDxQCIlUTnMaqYU+fZ7HT6604mgso6NQJMMpfcjI0nlt7mBwYiyjCc6mIm0J+f/pBYj6/Ng0Pg9Mj
-	iiNv0FEQ==;
+	bh=DA0zdyRbiIWQrEWXvg6GCX4hQ4YGjenFgp9uqUNMqVQ=; b=XMzqDt+vzf+dnqntYLbFzza09/
+	xYr0cpsTJxu4etO91HcwsOqRTjUkd7K04a3WAjUPCxnVpEC+pTIZfaKHUwGaC0Efl/jM0gtdWl/64
+	qjsl6yif9R41Ix1b02SbKP4FZrHpoj/5E3ZaLwI1qqDNRGXdZtBj1lk+CuDHITu2yKN5t4EjXCEN9
+	UM50L3ELt+/4a4Ojs0ky6p2vGHX6zgTQHrYemUYhLTXQztMqWXBc/mUhYGrZbzZTA8zsrQj9gF8li
+	QHOqeZCMbzbQ6nWwqSqr6u1V4MYpOTKeGFsEiK2Ve2F9urvBHSkdgZLOcHe1rxpyyM+bjYknDwvhf
+	kzhm2vNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQIoX-0000000HUjs-30V3;
-	Mon, 09 Nov 2026 06:25:09 +0000
-Received: from pi.codeconstruct.com.au ([203.29.241.158] helo=codeconstruct.com.au)
+	id 1xQJ2s-0000000HW8l-337O;
+	Mon, 09 Nov 2026 06:39:58 +0000
+Received: from mailgw02.mediatek.com ([216.200.240.185])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQIoU-0000000HUiz-2dEo
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 06:25:08 +0000
+	id 1xQJ2p-0000000HW80-2gQB;
+	Mon, 09 Nov 2026 06:39:56 +0000
+X-UUID: 5ba80fa6dc0811f1acbe4559397dec65-20261108
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=DA0zdyRbiIWQrEWXvg6GCX4hQ4YGjenFgp9uqUNMqVQ=;
+	b=XzYMB7wDA5K9prSD2Ih/lw58dqFqtFEnTsANVh+nxnnnJLt3WfYPWDzBV/5n8Eyak7z+YcqwrUI7scMLpI2ugQn2jgb6LyuewODf2P5baSSR/F1BbHP55tvWuj+Bo1kRlC+kmDHW8PiPQ9ZUcX4Nt7xy8TUIgpfLeDFQUW6sC7o=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:89efc6ce-7bf9-4b46-9667-76db8e2729bd,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:b0318ac,CLOUDID:cdb40457-a87d-42b7-8ffd-9e23ca174329,B
+	ulkID:nil,BulkQuantity:0,SF:80|81|82|83|102|110|111|836|865|888|898,TC:-5,
+	Content:0|15|50|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:n
+	il,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 5ba80fa6dc0811f1acbe4559397dec65-20261108
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1113228916; Sun, 08 Nov 2026 23:39:48 -0700
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 9 Nov 2026 14:39:45 +0800
+Received: from SI4PR04CU002.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Mon, 9 Nov 2026 14:39:45 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZGUqgZD4o565/SJNxO67KI4KV+KQoyukhYaCKvLUHgW3jAf48+3PARb85EVXov8lhfI7adhy9gChx2QxKoe6fo2N/qqwy/FT8ViwKTohrXi5RQVeLfo2iqTvj2135DrHrFxN5vi8dVmmvqxrVLWwNGpZF61JElXH4wVYKRC2LbnVU9g+ValGTvh3QHntmYC/gcNG728mY6CpxYJFTh/eI3HG2MR/kIGtNsUu1UHU3nBdHZuoifA7T3l7js9JQBOtMCA37t1KdPpby7IIJJca3tE3Ytj74ast7ePGA0122YXfBvQPR+p5QC7vuIGgc+dUMX93rFSxeQ3Lzp9KbMI1NA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DA0zdyRbiIWQrEWXvg6GCX4hQ4YGjenFgp9uqUNMqVQ=;
+ b=h5/VNITqbhQJvUWoSyHxAuJFfdq09LIuP3k6u0xsceOFLFsI+465bCLAAHWAOcdUjmV4YP8zzPd+l0Z+9tzg6RD136XdhhGsU2dpAZDQn110oqokFfdTXdEyijCS+GgdOrXtF9STYDoICX8XFKd02Pca1fpkyidTFFEPLF2Xv9+La7SYMXo1mT8Kc74YJIG/OkM+Nre6XGRCskmgXYBxZ8iZORbvwi7RobyaXWrhi3JhYRcaSoDqePcisvvmwIJcT5/ZsnUCHC29QusyOfgTk1hPSwB7KGb3VEhQMHR07HX7Uu5pHxk7J4gx15TtSR0E5H2R4NCnzcdYP3ODabVE8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1794205498;
-	bh=tZbehCCVWAQp16KYzP4ZlOLAW7PdEXUmB6Gq4qGN56g=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=j/Qeg7lBnFx7MbZ6d/nyR6LaZF2TIRCIpbxGcpl0PX8fkVaAsg7NcArOWgfjqkf/l
-	 jZHZ3uUOoRovxymn8fAFzr1DKUb/nh74Db/6/CD4Dsvh1Z5n1wK/j573XzdTwmt+Or
-	 8mBbbRN2fvHYSmvi+QoGOBfa8A4IoEjpVWnxICnollgS2EKc5rFti4jUZRW+AIsXlX
-	 ceobV1fOOQaUYe/aKAySXOFMr/7kJ+5Vqd75QnaFh+bR+GtqcXAO9QW8LTXkBBQXpJ
-	 reECfD7fz+hT/ZRrAxh0ExM9NmXYb1xMlCs0Ns2Q51K1jT+628vrrlGjFgbH8zUyzL
-	 xScxue7q7aEYw==
-Received: from [192.168.68.117] (unknown [180.150.112.139])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 54B956E9E9;
-	Mon,  9 Nov 2026 14:24:57 +0800 (AWST)
-Message-ID: <91edc3ed1d65a6765530895c6574714bfd76b8d0.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: Add NVIDIA MGX Vera C2 BMC
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Jacky Huang <jackyhuang@nvidia.com>, Joel Stanley <joel@jms.id.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Ryan Chen <ryan_chen@aspeedtech.com>,
- Billy Tsai	 <billy_tsai@aspeedtech.com>, devicetree@vger.kernel.org, 
-	linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-Date: Mon, 09 Nov 2026 16:54:56 +1030
-In-Reply-To: <70b7dd4c538ce72a2caf3b4420af3889e9b2dab7.1793705210.git.jackyhuang@nvidia.com>
-References: <cover.1793705210.git.jackyhuang@nvidia.com>
-	 <70b7dd4c538ce72a2caf3b4420af3889e9b2dab7.1793705210.git.jackyhuang@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DA0zdyRbiIWQrEWXvg6GCX4hQ4YGjenFgp9uqUNMqVQ=;
+ b=ke8aQPRaBEQhoHaD2PIEE5PDAFbQdJHBdafWrUJliHexGN6vpoTUJTdz/CNVQ33VJt1MuLWxHkRssC+vF73+wFQ/hgYh1OPp9NYN8Hit9q4ijY/eOg2ZBOINN6gZWfTL5US8Nb0CX6tqyfNw/LCNAwSkyP8uyfkUmpZl7zlHzIU=
+Received: from KUYPR03MB9902.apcprd03.prod.outlook.com (2603:1096:d10:91::20)
+ by TYZPR03MB9574.apcprd03.prod.outlook.com (2603:1096:405:399::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
+ 2026 06:39:42 +0000
+Received: from KUYPR03MB9902.apcprd03.prod.outlook.com
+ ([fe80::9598:2e59:20dd:960b]) by KUYPR03MB9902.apcprd03.prod.outlook.com
+ ([fe80::9598:2e59:20dd:960b%5]) with mapi id 15.21.0592.010; Mon, 9 Nov 2026
+ 06:39:42 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "agentzoan@gmail.com"
+	<agentzoan@gmail.com>, "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+CC: =?utf-8?B?TmF0aGFuIEx1ICjlkYLmnbHpnJYp?= <Nathan.Lu@mediatek.com>,
+	"simona@ffwll.ch" <simona@ffwll.ch>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, =?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
+	<Nancy.Lin@mediatek.com>, =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?=
+	<Jason-JH.Lin@mediatek.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "airlied@gmail.com"
+	<airlied@gmail.com>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] drm/mediatek: mtk_crtc: Pick the connector route on
+ every CRTC enable
+Thread-Topic: [PATCH 3/3] drm/mediatek: mtk_crtc: Pick the connector route on
+ every CRTC enable
+Thread-Index: AQHdWRmWSndTB6Oa2UqgMGTqAR6PM7cld/+A
+Date: Mon, 9 Nov 2026 06:39:41 +0000
+Message-ID: <ee8ef5532faac8aaa137d6e947037e79575e6a6f.camel@mediatek.com>
+References: <20261011004248.1117649-1-agentzoan@gmail.com>
+	 <20261011004248.1117649-4-agentzoan@gmail.com>
+In-Reply-To: <20261011004248.1117649-4-agentzoan@gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.52.3-0ubuntu1.1 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: KUYPR03MB9902:EE_|TYZPR03MB9574:EE_
+x-ms-office365-filtering-correlation-id: 5ed8af18-abdf-4172-918e-08df3e2c3c46
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|42112799006|7416014|23010399003|376014|22082099003|18002099003|10067099003|3023799007|38070700021|4143699003|11063799006|261028144727099003|261026121527099003|261102123227099003|261022075727099003|261022105027099003|56012099006|261021121427099003|261021123027099003|261026140227099003|261009223027099003;
+x-microsoft-antispam-message-info: Yc1jWwRo6nTvRPnri8DaKMeuHArrMo2anftVTBKATeDtVU+uD92PChjjXfg2WxNEZkxqOYubp2RYj/Qv2TPZonFjm82ciL1X5tr1TiUo57NSFSexSNLtmgEbC6QuW18cBJAu921vqW4TGwYUHSg1WcmKZzJeHCJMjPYt2N0zugYW2sCg99gwfyTpMdl3Vr7TyB9/2ll+/vUDojuM61qJTk8xNCZJLaCpIY3jYUuu29J+eyQy0T7PncWvIW4U5OUg50yaoCqW2sdNqPlACXm4+GMxyxVoSoSQNkoST5eCRivQT5mU8acADtrtFPolSdzpeJd4xOWisHU4l0d7me0YeoIAdSgAu4jQIONZMRz3hMquVhCGwFDJeXXtc46gZRowVRjiwtnQnPRmQu320LZKyEJXmKA7uM03eaVPhZRlEQyByXFxFnPDGuxLNQWoRVRiqag7QZAihVYj9ZrsDB8qnp+A1yjmqEf+OLnEFGB4FcnpHF3119rPZDwyOTM1p5Pt62m6BdHwQ7F+adQ28PoMzAsd0QzehaMDXcQ0BqLtqGZUj/SKXLd62tn1X4pat9MPlAiLb4xQI/rIyeqPtu5iPT/36oc7UN+S1A1KWewMe8iudJMfThIHtKNmL3zRlmWPIqrhVQ25DihwJjGBKY885ajv9npgbrWqaGhN4067TW9Sa00dUNx8SXGKFn9Qcm/il2ephwXGp/20j/CN/X9KCaV/V85Zd1m5YzSWGRw5Arw=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KUYPR03MB9902.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(42112799006)(7416014)(23010399003)(376014)(22082099003)(18002099003)(10067099003)(3023799007)(38070700021)(4143699003)(11063799006)(261028144727099003)(261026121527099003)(261102123227099003)(261022075727099003)(261022105027099003)(56012099006)(261021121427099003)(261021123027099003)(261026140227099003)(261009223027099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?WUUxVlRzRGVoK2ljQVJueUpOSC9pYVI2TmJsMkhRM0oyUC9GVHNtSHBIYkRm?=
+ =?utf-8?B?REkzdmE5QXVvWVhXMVgrK25YRFFJRjF2N2Q3L0FpUjUvL0xPQngreWV5dEth?=
+ =?utf-8?B?UGpTTTVpWWw3OFp0Vm5IRG5hSGc4clhncDVIQ3J1VUtxTzFLRGpycXBUb1pl?=
+ =?utf-8?B?bDJ5aG14Vys5L3dMQUlnM015Z1g3RjNtcEJHdDBvSHFOemRuTTRTUDJoSHZS?=
+ =?utf-8?B?TjYxU09hdU54RUhaYWpEUS9oZ3FqaGd1cllzN2JXanRXcytQTmtBUjlOWjV3?=
+ =?utf-8?B?TFdqM2l0ZVl0WGtpcHljdEtpTWdpYkpZOGFpWndwRTg4bERnNFhjMSsrSExD?=
+ =?utf-8?B?YkNmVU1oSFVWMmlTZnM2QXpXM3N3SUZxNlBDRVFxZzhGRk5vYlZBcGdpRkRS?=
+ =?utf-8?B?SXZIQm9XRjY2bFVXMXRSZi93SHNwRW1iRmdaWEUxM0p3U0RENGJpekNzcVNG?=
+ =?utf-8?B?a3JEZmtpV2xZNEMrRE1QS3k0UFhTclNiTU9KVlExVkhlU2JCbHBlNGQyVW1F?=
+ =?utf-8?B?TncvdzFTU2RmeUpBQUtGdGtaUDl6LzZENjlDanZwWHVTdVJqOGdZaThKRzJa?=
+ =?utf-8?B?UnVtTDFvTHM1WEFyZUs1WXZvd2U0WE9XbXRpN2Q0WkhaQnpUVkFORnpBbHNI?=
+ =?utf-8?B?UUlNcEJHOHovYXg0U2VqbVdJZE50VDJselBsRDYwcVE1WFFpZi9renJTUm9V?=
+ =?utf-8?B?ZS9HR094TTdLampMcllyR2IrRUpxMzZqTHJ6R3FRM2JkbkFLbWdDY2pCYURl?=
+ =?utf-8?B?ZkdaR05CbG1IeXlsYlRjRG1yM3E4dzl2RUtiRC9vVS9RcHBpNVdOYkQ3TGRC?=
+ =?utf-8?B?Qno4K3Flak5kaG54Zkl3ZUxhcnRtZVRVaHc0MWZMdlNDTG1sdUJ1b0hzYW9i?=
+ =?utf-8?B?YUR6VnVNMTJpM1F2ejEyclZCWklDdVVLOWdnRmNwaHdzc3liZndVT1NLTHZt?=
+ =?utf-8?B?L2tUNFRKRGFTWVBJcnBzZ0xtS0RVSUlVbGR2cFlGNzdwQnhvRitUY1ZJQ01p?=
+ =?utf-8?B?alJRUTZYUjJqUE91SUhzT0JrOXRjTXg2eUpGeTNqTDd3ZjlKWDVHVzFWekh4?=
+ =?utf-8?B?bHErZ2hJcVhUWXAyeE1tbDUycUdrWGlmRWRpY2xiY0xQQ0QrVjF6SjNvTVlE?=
+ =?utf-8?B?bXlPcnNlelh3NmNOaW1UMnp0NldKQlE0MnI2WUkzaElRZ2VaMzkyWnVyM1RO?=
+ =?utf-8?B?SmFqeFV5cW9ZYnN6WkhCNGRtUUhkL082NWYxNTNGdWd1bkx3Mnp4dEkwTDNp?=
+ =?utf-8?B?SjNacndsdllhNzA2ZEU4TVJuMTc4bEhzNzRXTjFETFpqeFpiRG1JRDFwWmht?=
+ =?utf-8?B?WEF2aVNOdTlmbVdXZzRuY0VORmMvMCtuNGNDeENvaVFWU0l1OStWekl5czlm?=
+ =?utf-8?B?ZkVPVGZ0Yk9WR3dHc2g5UElwV1BxazNlU1pBd3BTMStubDhadjZ2SkxHc2hP?=
+ =?utf-8?B?Y01oVFJ4NURQSHJMN0FLbG10b21Ec1ZSbnlaQzF2aDE3elhSU2hBUXZPUWpC?=
+ =?utf-8?B?bFNGdDlXT0c0Z051emdXUEpRR24rZ0VmRFMzdkNRWW5XWTA2SkQyWUV0WnVm?=
+ =?utf-8?B?dzh0L0dLcFl5YnFmK1c5S2xXTUNTMURyRHVLYUQvV2ErUWVmd2Q0R09tVWNE?=
+ =?utf-8?B?azBqaDVseFRQNWs5allwcnVpTERFd3IreHpGZ0xLTU5yTHRCNVdlTlFULy9H?=
+ =?utf-8?B?VHh1emJjZmJvbDF5OTQyN3ZEWHlvOC9OWE1FZkZEUmg4dXpnV01JRkxleDVD?=
+ =?utf-8?B?dlFIWFp6OGlXbk9ZakNGL2xZQVRlTk9aTWxCYnVUMHZJV1RvaDBKd0FaT3pC?=
+ =?utf-8?B?WCs3bHpMUUJ3Q1RTVFNBRldkS2RSVlJzblM4VUFwU2hMMk5KclFnUzhWNmhw?=
+ =?utf-8?B?WFhKMnJpOFoyTGJoUUs4STBOVyt5ZEYyQlNxUlpKaVd1UnRWbW9ENjlLTXd3?=
+ =?utf-8?B?UytmdTR3bE1aTWorcGZLMEt3d3MrSXZ0a1pnRkt5UDAxSDRueTdxYm9RUnFJ?=
+ =?utf-8?B?TnlxcDBvdzRWbEtGTGFzenFlaVNmR1hNM0ZHT1pPTVFEcEhGam9UL1Z6d1My?=
+ =?utf-8?B?dk9EeTZQMTZ5L3BESHRNdm9VUlp4RktiTUlqR1pjVzJyenJRVWtMd1VxUDJs?=
+ =?utf-8?B?TC9Cdk44Qzc3UHZNVDU2YTU2aGQ4Rm5rSy8xenJuNFpOcFN6a0pUMlRTNEcx?=
+ =?utf-8?B?allkeU44eEVMRk1kMUVCNlNzK08wMDE4ZHROWDlUK1FRcHFMYjNjNjBUSmJw?=
+ =?utf-8?B?ZFFjWnVCeVN1d2tndjhGRFZ6eS9BYkx6TXJPbk5jbTNTenpuTHR3eVVSSy84?=
+ =?utf-8?B?Sm5GOExCRy8rN01TOEhQN3pINnRSd1FzRUtBVFJCR09lNWJrSU0zUT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5AA476603AE1F84BBD7D679B34852AF3@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: wXX4WmWVPl8NA4MlShvdnuqt+SLZgBynnPMg9BCdLxye84YzZNGamQe+4yaN7prHXucxkHQG/60F8U9P6zxVyoG9TrTVKW7b6b2+5i+MEQt0kuUk1Gpzs0BK5m9XEldzolfSG44rclg1cmr+PNPJwX1jLQ4d9YRNVXnrmWvN6H30nffxZI4fnqglgSgbHDyzVbaM792cPhSaPnWkpHMUj0VhDayRgfBfEy0W99HoKfzpx302YDU1sN5JZXvzkfvnL5TESkUJFTg6iktxMNWo7BEeTahrJZG46tZwdSCa6dCOqoc884FqRxR6Qw/8pqIEghUkeZEWUSTuu2CpmkiZyA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: KUYPR03MB9902.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ed8af18-abdf-4172-918e-08df3e2c3c46
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2026 06:39:42.0008
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eSqTV1TuigsvHT4rMTO3KBuvt5HLo1WaHyqAW01nPk3A8SHxGV13tjY06UCfwBKmifSnVE1mpQ1V3/OUlji5sQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB9574
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_222506_897986_AE58E049 
-X-CRM114-Status: GOOD (  16.57  )
+X-CRM114-CacheID: sfid-20261108_223955_699514_51716A46 
+X-CRM114-Status: GOOD (  26.81  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -74,251 +192,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,UNPARSEABLE_RELAY autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 2026-11-03 at 20:47 +0900, Jacky Huang wrote:
-> Add support for the NVIDIA MGX Vera C2 BMC based on the
-> ASPEED AST2600 SoC.
-
-Can you please expand the description of the platform? Why was it
-designed and built? What's its purpose?
-
->=20
-> Signed-off-by: Jacky Huang <jackyhuang@nvidia.com>
-> ---
-> Changes in v2:
-> - Specify the console and baud rate in stdout-path and drop bootargs.
-> - Use generic GPIO expander, fan controller and regulator node names.
-> - Fix gpio-line-names indentation and GPIO bank comment formatting.
-> - Remove duplicate GPIO line names.
->=20
-> =C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0 1 +
-> =C2=A0.../aspeed/aspeed-bmc-nvidia-vr-c2-bmc.dts=C2=A0=C2=A0=C2=A0 | 1275=
- +++++++++++++++++
-> =C2=A02 files changed, 1276 insertions(+)
-> =C2=A0create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-c2=
--bmc.dts
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
-/Makefile
-> index 6874b621d..e5c44d423 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -66,6 +66,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
-> =C2=A0	aspeed-bmc-microsoft-olympus.dtb \
-> =C2=A0	aspeed-bmc-nvidia-gb200nvl-bmc.dtb \
-> =C2=A0	aspeed-bmc-nvidia-msx4-bmc.dtb \
-> +	aspeed-bmc-nvidia-vr-c2-bmc.dtb \
-> =C2=A0	aspeed-bmc-opp-lanyang.dtb \
-> =C2=A0	aspeed-bmc-opp-mowgli.dtb \
-> =C2=A0	aspeed-bmc-opp-nicole.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-c2-bmc.dts b/a=
-rch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-c2-bmc.dts
-> new file mode 100644
-> index 000000000..a044dfa00
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-vr-c2-bmc.dts
-> @@ -0,0 +1,1275 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/i2c/i2c.h>
-> +
-> +/ {
-> +	model =3D "AST2600 MGX Vera C2 BMC";
-> +	compatible =3D "nvidia,vr-c2-bmc", "aspeed,ast2600";
-> +
-> +	aliases {
-> +		i2c16 =3D &i2c_usbhub;
-> +		i2c17 =3D &i2c_tpm;
-> +		i2c18 =3D &i2c_dp;
-> +		i2c19 =3D &i2c_rtc;
-> +		i2c20 =3D &i2c_fan_ctrl0;
-> +		i2c21 =3D &i2c_fan_ctrl1;
-> +		i2c22 =3D &i2c_fan_iox;
-> +		i2c23 =3D &i2c_fan_hsc;
-> +		i2c30 =3D &i2c_mcio_c0c1_north0;
-> +		i2c31 =3D &i2c_mcio_c0c1_north1;
-> +		i2c32 =3D &i2c_mcio_c0c1_north2;
-> +		i2c33 =3D &i2c_mcio_c0c1_north3;
-> +		i2c34 =3D &i2c_mcio_c0c1_north4;
-> +		i2c35 =3D &i2c_mcio_c0c1_north5;
-> +		i2c36 =3D &i2c_mcio_c0c1_north6;
-> +		i2c37 =3D &i2c_mcio_c0c1_north7;
-> +		i2c40 =3D &i2c_mcio_c0_south0;
-> +		i2c41 =3D &i2c_mcio_c0_south1;
-> +		i2c42 =3D &i2c_mcio_c0_south2;
-> +		i2c43 =3D &i2c_mcio_c0_south3;
-> +		i2c44 =3D &i2c_mcio_c0_south4;
-> +		i2c45 =3D &i2c_mcio_c0_south5;
-> +		i2c46 =3D &i2c_mcio_c0_south6;
-> +		i2c47 =3D &i2c_mcio_c0_south7;
-> +		i2c50 =3D &i2c_mcio_c1_south0;
-> +		i2c51 =3D &i2c_mcio_c1_south1;
-> +		i2c52 =3D &i2c_mcio_c1_south2;
-> +		i2c53 =3D &i2c_mcio_c1_south3;
-> +		i2c54 =3D &i2c_mcio_c1_south4;
-> +		i2c55 =3D &i2c_mcio_c1_south5;
-> +		i2c56 =3D &i2c_mcio_c1_south6;
-> +		i2c57 =3D &i2c_mcio_c1_south7;
-> +		serial2 =3D &uart3;
-> +		serial4 =3D &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path =3D "serial4:115200n8";
-> +	};
-> +
-> +	leds {
-> +		compatible =3D "gpio-leds";
-> +
-> +		fault-led {
-> +			gpios =3D <&exp7 12 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		power-led {
-> +			gpios =3D <&exp7 8 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		uid-led {
-> +			gpios =3D <&exp7 10 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type =3D "memory";
-> +		reg =3D <0x80000000 0x80000000>;
-> +	};
-> +
-> +	standby_power_regulator: regulator-standby-power {
-> +		compatible =3D "regulator-fixed";
-> +		enable-active-high;
-> +		gpio =3D <&gpio0 ASPEED_GPIO(M, 3) GPIO_ACTIVE_HIGH>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-max-microvolt =3D <1800000>;
-> +		regulator-min-microvolt =3D <1800000>;
-> +		regulator-name =3D "standby_power";
-> +	};
-> +
-> +	reserved-memory {
-> +		ranges;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <1>;
-> +
-> +		framebuffer@9f000000 {
-> +			reg =3D <0x9f000000 0x01000000>;
-> +			no-map;
-> +		};
-> +
-> +		ramoops@a0000000 {
-> +			compatible =3D "ramoops";
-> +			reg =3D <0xa0000000 0x100000>;
-> +			max-reason =3D <2>;
-> +			record-size =3D <0x10000>;
-> +		};
-> +
-> +		framebuffer {
-> +			compatible =3D "shared-dma-pool";
-> +			alignment =3D <0x01000000>;
-> +			reusable;
-> +			size =3D <0x01000000>;
-> +		};
-> +
-> +		video_engine_memory: jpegbuffer {
-> +			compatible =3D "shared-dma-pool";
-> +			alignment =3D <0x01000000>;
-> +			reusable;
-> +			size =3D <0x02000000>;
-> +		};
-> +	};
-> +};
-> +
-> +/*
-> + * NVIDIA multi-interface MCU enumerates as hid-generic by default
-> + * and binds to hid-cp2112 at runtime
-> + */
-> +&ehci1 {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <0>;
-> +
-> +	status =3D "okay";
-> +
-> +	hub@1 {
-> +		compatible =3D "usb424,2514";
-> +		reg =3D <1>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		hub@2 {
-> +			compatible =3D "usb424,2422";
-> +			reg =3D <2>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			hub@1 {
-> +				compatible =3D "usb424,2514";
-> +				reg =3D <1>;
-> +				#address-cells =3D <1>;
-> +				#size-cells =3D <0>;
-> +
-> +				device@1 {
-> +					compatible =3D "usb955,cf11";
-> +					reg =3D <1>;
-> +					#address-cells =3D <2>;
-> +					#size-cells =3D <0>;
-> +
-> +					cp2112: interface@1 {
-> +						compatible =3D "usbif955,cf11.config1.1";
-> +						reg =3D <1 1>;
-> +						#gpio-cells =3D <2>;
-> +						gpio-controller;
-> +						#interrupt-cells =3D <2>;
-> +						interrupt-controller;
-> +
-> +						i2c {
-> +							#address-cells =3D <1>;
-> +							#size-cells =3D <0>;
-> +
-> +							/* CPU0 IROT/thermal/SOCAMM/JTAG */
-> +							gpio@50 {
-> +								compatible =3D "nxp,pca9555";
-> +								reg =3D <0x50>;
-> +								gpio-controller;
-> +								#gpio-cells =3D <2>;
-> +								interrupt-controller;
-> +								#interrupt-cells =3D <2>;
-> +								interrupt-parent =3D <&cp2112>;
-> +								interrupts =3D <0 IRQ_TYPE_LEVEL_LOW>;
-> +								gpio-line-names =3D
-> +									"CPU0_IROT_RECOVERY_L_3V3-I",
-> +									"CPU0_IROT_FATAL_ERR_L_3V3-I",
-> +									"CPU0_OVERT_L-I",
-> +									"C0_THERM_WARN_N-I",
-> +									"C0_S0_THERM_OVERT_N-I",
-> +									"CPU0_CHIPTHROT_L-I",
-> +									"C0_SOCAMM_0_ID_PRSNT_N_1V8-I",
-> +									"C0_SOCAMM_1_ID_PRSNT_N-I",
-> +									"C0_SOCAMM_2_ID_PRSNT_N-I",
-> +									"C0_SOCAMM_3_ID_PRSNT_N-I",
-> +									"C0_SOCAMM_4_ID_PRSNT_N-I",
-> +									"C0_SOCAMM_5_ID_PRSNT_N-I",
-> +									"C0_SOCAMM_6_ID_PRSNT_N-I",
-> +									"C0_SOCAMM_7_ID_PRSNT_N-I",
-> +									"MCU_JTAG_BYPASS_CPU0_S-O",
-> +									"MCU_JTAG_BYPASS_CPU0-O";
-
-I assume the -{I,O} suffixes refer to input or output. Are they
-necessary?
-
-Andrew
+T24gU2F0LCAyMDI2LTEwLTEwIGF0IDIwOjQyIC0wNDAwLCB6b2FuMzcgd3JvdGU6DQo+IEV4dGVy
+bmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRz
+IHVudGlsIHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+IA0K
+PiANCj4gbXRrX2NydGNfdXBkYXRlX291dHB1dCgpIG9ubHkgcGlja3MgdGhlIG91dHB1dCBjb21w
+b25lbnQgb2YgYSBDUlRDDQo+IHdpdGggY29ubmVjdG9yIHJvdXRlcyB3aGVuIGNvbm5lY3RvcnNf
+Y2hhbmdlZCBpcyBzZXQgaW4gdGhlIGNvbW1pdCB0aGF0DQo+IGVuYWJsZXMgdGhlIENSVEMuIEJ1
+dCBjb25uZWN0b3JzX2NoYW5nZWQgb25seSBzYXlzIHRoYXQgdGhlIGNvbm5lY3RvcnMNCj4gY2hh
+bmdlZCBpbiB0aGF0IGNvbW1pdCwgbm90IHNpbmNlIHRoZSBDUlRDIHdhcyBsYXN0IGVuYWJsZWQu
+IEEgY29ubmVjdG9yDQo+IGNhbiBiZSBhdHRhY2hlZCB0byAob3IgbW92ZWQgdG8pIHRoZSBDUlRD
+IHdoaWxlIGl0IGlzIGluYWN0aXZlLCBhbmQgdGhlDQo+IGxhdGVyIGNvbW1pdCB0aGF0IG9ubHkg
+c2V0cyBBQ1RJVkUgdGhlbiBoYXMgYWN0aXZlX2NoYW5nZWQgYnV0IG5vdA0KPiBjb25uZWN0b3Jz
+X2NoYW5nZWQ6DQo+IA0KPiAtIElmIHRoZSBDUlRDIGhhZCBuZXZlciBiZWVuIGVuYWJsZWQsIHRo
+ZSByb3V0ZSBzbG90IGlzIHN0aWxsIE5VTEwgYW5kDQo+ICAgbXRrX2NydGNfZGRwX2h3X2luaXQo
+KSBkZXJlZmVyZW5jZXMgaXQgKG10a19kZHBfY29tcF9jbGtfZW5hYmxlKCkNCj4gICBhbmQgc28g
+b24pLg0KPiAtIElmIHRoZSBDUlRDIHdhcyBkcml2ZW4gdGhyb3VnaCBhbm90aGVyIHJvdXRlIGJl
+Zm9yZSwgZS5nLiBhIENSVEMNCj4gICBzaGFyZWQgYnkgYW4gSERNSSBicmlkZ2Ugb24gRFNJIGFu
+ZCBhIERpc3BsYXlQb3J0IG91dHB1dCB0aGF0IGlzDQo+ICAgc3dpdGNoZWQgb2ZmIChEUE1TKSB3
+aGlsZSB0aGUgbW9uaXRvciBtb3ZlcyBmcm9tIG9uZSB0byB0aGUgb3RoZXIsDQo+ICAgdGhlIHBp
+cGVsaW5lIGlzIHNldCB1cCBmb3IgdGhlIG9sZCBvdXRwdXQuDQo+IA0KPiB1cGRhdGVfb3V0cHV0
+KCkgb25seSBydW5zIGZyb20gYXRvbWljX2VuYWJsZSBhbmQgdGhlIGxvb2t1cCBpcyBhIHNob3J0
+DQo+IGxvb3Agb3ZlciB0aGUgcm91dGVzLCBzbyBkbyBpdCBvbiBldmVyeSBlbmFibGUuDQo+IA0K
+PiBGaXhlczogMDEzODliMzI0Yzk3ICgiZHJtL21lZGlhdGVrOiBBZGQgY29ubmVjdG9yIGR5bmFt
+aWMgc2VsZWN0aW9uIGNhcGFiaWxpdHkiKQ0KPiBBc3Npc3RlZC1ieTogTExNDQo+IFNpZ25lZC1v
+ZmYtYnk6IHpvYW4zNyA8YWdlbnR6b2FuQGdtYWlsLmNvbT4NCj4gLS0tDQo+IA0KPiBOb3RlczoN
+Cj4gICAgIFRlc3Rpbmc6IGZvdW5kIGJ5IHJlYWRpbmcgdGhlIGNvZGUuIFRoZSBzYW1lIGNoYW5n
+ZSBydW5zIG9uIHRoZSBNVDgxODkNCj4gICAgIENocm9tZWJvb2sgZGVzY3JpYmVkIGluIHBhdGNo
+IDEsIHdoZXJlIG9uZSByb3V0ZWQgQ1JUQyBkcml2ZXMgZWl0aGVyDQo+ICAgICBIRE1JIG9yIFVT
+Qi1DIERpc3BsYXlQb3J0OiBEUE1TIG9mZi9vbiBhbmQgc3VzcGVuZC9yZXN1bWUgd2l0aCBhIERQ
+DQo+ICAgICBtb25pdG9yIGF0dGFjaGVkIGNvbWUgYmFjay4gVGhlIHNlcXVlbmNlIHRoYXQgZmFp
+bHMgd2l0aG91dCBpdA0KPiAgICAgKGNvbm5lY3RvciBhdHRhY2hlZCBvciBzd2FwcGVkIHdoaWxl
+IHRoZSBDUlRDIGlzIGluYWN0aXZlLCB0aGVuIG9ubHkNCj4gICAgIEFDVElWRSBzZXQpIHdhcyBu
+b3QgcmVwcm9kdWNlZCBvbiBwdXJwb3NlLiBDb21waWxlLXRlc3RlZCAoVz0xKSBvbg0KPiAgICAg
+bmV4dC0yMDI2MTAwOC4NCj4gDQo+ICBkcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2NydGMu
+YyB8IDMgLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMyBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2NydGMuYyBiL2RyaXZlcnMvZ3B1
+L2RybS9tZWRpYXRlay9tdGtfY3J0Yy5jDQo+IGluZGV4IDcwNDkzMWIzNjliNi4uMGJmZDE3ZjY4
+MjgyIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2NydGMuYw0K
+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2NydGMuYw0KPiBAQCAtNjk1LDkg
+KzY5NSw2IEBAIHN0YXRpYyB2b2lkIG10a19jcnRjX3VwZGF0ZV9vdXRwdXQoc3RydWN0IGRybV9j
+cnRjICpjcnRjLA0KPiAgICAgICAgIHN0cnVjdCBtdGtfZHJtX3ByaXZhdGUgKnByaXY7DQo+ICAg
+ICAgICAgdW5zaWduZWQgaW50IGVuY29kZXJfbWFzayA9IGNydGNfc3RhdGUtPmVuY29kZXJfbWFz
+azsNCj4gDQo+IC0gICAgICAgaWYgKCFjcnRjX3N0YXRlLT5jb25uZWN0b3JzX2NoYW5nZWQpDQo+
+IC0gICAgICAgICAgICAgICByZXR1cm47DQo+IC0NCg0KQWdyZWUgdGhpcyBtb2RpZmljYXRpb24s
+IGJ1dCBiZWxvdyBkZWJfZGJnKCkgYWJvdXQgY29ubmVjdG9yc19jaGFuZ2VkIHNob3VsZCBhbHNv
+IHJlbW92ZWQuDQoNClJlZ2FyZHMsDQpDSw0KDQo+ICAgICAgICAgaWYgKCFtdGtfY3J0Yy0+bnVt
+X2Nvbm5fcm91dGVzKQ0KPiAgICAgICAgICAgICAgICAgcmV0dXJuOw0KPiANCj4gLS0NCj4gMi40
+My4wDQo+IA0KDQo=
 
