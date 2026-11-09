@@ -2,114 +2,150 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FA04606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 01:13:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20949606D815
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 01:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bGhRJIEi;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jpvTyjk/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4QUqp/bE;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=IIK81rKF;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=HVaS1D6Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=M4WCF4P9vPVA9cU7Tv+J0UseXV6GQroxb3gEfse06vk=; b=bGhRJIEib+DiR+86LYh6i0cZwO
-	jmQsQE8x42t3w++wdvGTotRok7BAl6r1yBHr17p4ZBF72krVoQ5F1+s8KzlEjFA5svD1bDjJH5It1
-	YOurudLLi4kSdajnSa6AyxG/C9ZXalFn/dW8wc63tg3+RNA4Lklg1efs+tfdZwG+M2idTOxsj9TQK
-	4mJWuL3KhWmbPw/vTPANJ/Y3HB13tFk0LkzIT8/7Zj3q6OqiwDTjaOr0/el/uG6hqgAs5MklRnx5X
-	nV/+eZQJWGgKlxWKE5qxVnVQorCZJmDJV6EGRaQnpWbmELElJZhHrgW3wD1XHa4gKAShn30UJvm/p
-	I0oxlQEQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=uw2xNVXE3nPEvcSRMwLt65q7UQPCULUZxs5qUuZDgjs=; b=4QUqp/bES2rJ1l
+	jIcIVO543TLYlir9rfqDOTH4stznQUd0qt0OjCa9mh/pbhSLJlBQlf3+zW8hHwx6ud1Hw60XES609
+	1Tt9EBm7qz2EvbWnaCGjMqc4qCHAbfZJz8/7VsYr1h6fJIGWusOXo9KtCDRVv1EO2g4eGbDDEKEsy
+	VkPOUv9Ubpf0Rz7OAOggpNRlwjMEywxgpZrbkmLsnJ//9131hhRM2Gq+LVGk2ZKqfp7DSQpoW+oDk
+	GNRz8C+J1cMCGX8LQRZAQ2Bqf0To7M+evGqiAat381FotlykmjfcAeb6ho3v1NQhKj/ZVCCayWLog
+	hJy5C5BGSouOUNrX004w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDwe-0000000H11R-2QRj;
-	Mon, 09 Nov 2026 01:13:12 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQE5E-0000000H1w4-1LD6;
+	Mon, 09 Nov 2026 01:22:04 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDwc-0000000H116-20Ac;
-	Mon, 09 Nov 2026 01:13:10 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9C3776111B;
-	Mon,  9 Nov 2026 01:13:09 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794186789;
-	b=HqkDk+o/mRP/jzqyr8a0kQjiVo2O0bzD3K+K297/YODfcHJ5FQMKWHDOZqpdiRaihCrH
-	 tRCX8JFAQKJxkujgV5UhOeCN4uDBShEHPxLrzv/5DHgiguJr1GEioElfqKSKh3fA2L2DN
-	 tDJf5cTcpYajht/2GJzNS0OQsIPjTU1KqxbpiX5mFOo7sVfD+BLKAQkW4NtpoIntXojFo
-	 UEtMAjHS+tcBWAZmBtC4mDo8GAowqJa99Fwp4Ld30JTzMGnQTR6x9HM+9yBN7nyXhgniN
-	 4OycmrkjfBoEGxJXUDP+4ZcCuppJxgpjTl4pnMMw9p2Ewf3ARVgEd02CxFgmkbCoBhw==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794186789;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=M4WCF4P9vPVA9cU7Tv+J0UseXV6GQroxb3gEfse06vk=;
-	b=VQo3GHlgP35LXmM7hBUfgV70W2wEUyNH0MnGolCflW0hlwFnQypfLh9uDHaymwYlOSjF
-	 86Rcr+rfRLDat7/4TZ5eWJMvrQKqWI1jJVK3adaPtH1ohwTC657hHto8hHJmk5gajCyOU
-	 58wnCeAYT6KogkXeWp0o/1pvQ6vfEpf8HG56iS3SxyBJgzM9JMl/IV9qS4C1pFj0+Zp5a
-	 Q+iTaHOGHF+xGo8CVT4xbglaIf3wW1tIKwpopn2zulJCzWl+DlcaEPLbOkeMn74ptPKR5
-	 4qr35BH4AbBWiz7SHa44Tx5KRo8lJcCE7lNwmWcjeOCZBHonA1vPlsiTV79cDntWTKw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 9D2A21F0089F;
-	Mon,  9 Nov 2026 01:13:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794186789;
-	bh=M4WCF4P9vPVA9cU7Tv+J0UseXV6GQroxb3gEfse06vk=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=jpvTyjk/fb0I/liZiqB24WRLZW+AxBb1dpFfOqONpXGH+X2CdbOKBf0xtWf9c0aGz
-	 b2K84UT6bzyNB/ktSdNBIKpWpPNyQbz6iqYut730z+C4jLvdRhx7Qi6Kzi9HEqys8q
-	 GrLfFAXOYqStJD3owU6ZPLTLy/906+fHnFffpux3Za1T8RCZwwkTQMKbvvchD+JA3p
-	 IPkhPGeOWCng9JJw57TzSCUMJ5kiw5hTWRA/V9qmR1bvr/zDZTXQc82ZctC4D//WHw
-	 b785I1BBopf5RLI6i+/b5OQYS0mZp5INxPRcE8s6uOUmh4xPXoViy1x0RM5HQQXV8Q
-	 FvyW7af9dezPg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E5336481E7;
-	Mon,  9 Nov 2026 01:13:07 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Mon, 09 Nov 2026 02:12:47 +0100
-Subject: [PATCH] phy: rockchip: naneng-combphy: fix RK3588 SATA pipe_con1
- register offset
+	id 1xQE5A-0000000H1vW-300V
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 01:22:02 +0000
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A90Go8n1922656
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 9 Nov 2026 01:21:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	uw2xNVXE3nPEvcSRMwLt65q7UQPCULUZxs5qUuZDgjs=; b=IIK81rKFxtWQTOdJ
+	aseFKM+lDCaWD618ZA0BMXPQKSCUL57ICi1T68Ke7ad4lBBD2CsVsSrzQ4g0ITYK
+	b0ReAEtp6Fb9ZCmGqIZdtzHFL34GJ5Q2SldcIKihX5eKso1Rrli/DmLcwrpB1K0H
+	8+RAaqQmUV46wBb3neU8SM/UGwgiUXve8ha749zkKsZJKBfdFtkFz9xVk8QURWLu
+	3l9GhtbYvvF/yIwsNoSRALJ+G3MPNO03tzRt1XtohPEf25PLW6XrjRQy7DAC7O2L
+	asnmoq54bLVvATLV7WCXRj+asB6guC60ukLX5zLsIZkHPOPA4JBGpYohNttiLA09
+	oyR6vQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hsw99ky0m-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 01:21:59 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3ae19907a31so276534a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 17:21:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794187318; x=1794792118; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=uw2xNVXE3nPEvcSRMwLt65q7UQPCULUZxs5qUuZDgjs=;
+        b=HVaS1D6Yb/rwcFi7jOUrpDX9SLDOM4x/Jnu/6/7ZhUcDCI0R0qtChtxma0tvza66s/
+         TOOpV7C0nrRpVYJoMvX7Oh4rL52yPg2hAw19zK7dVz/RDTbGx6K2gZpdaapu4OZZCCML
+         bOVVULvteuoyVblW3MshOQO4izTDaEiYsMy9pEDF98xjILxmucxfHfo83nd76ApKhI9+
+         PO7Y0ofw27YBlQBf4kQG8WsI7/+Xu709QmCiG6GJBVThpcy7ZdaD6AptHs27HPXEU1Mg
+         tUDZm3LByqbxjpbNIu2Nz46CmFECm3xnNMr9rqcFBZVBrDEMDRq5xir44qQtlEfJMr0r
+         y6Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794187318; x=1794792118;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=uw2xNVXE3nPEvcSRMwLt65q7UQPCULUZxs5qUuZDgjs=;
+        b=WLIMGxIqX4+x3vN9mjEJ7Zgzyxmpn/qGLJ1QA4gQlrMpiTChnq3xsmPZOWrg5Bx88L
+         BJgaa2DXrPSozVNOApYb6/t1pb3cZNCCyHiZHVWkm8mcXFLNIAh8S3N2JkUGetIMJ0Wn
+         Y2kadyCyD3EBT5LrmsOoe2sxdsA/ZPFyNEdHCAjOmCOf0nasCu07WFR0gl4R52BngL/W
+         7oBp/coGNYiiXwFPnaE6K51c0IUgm5QH5zMGLElcV1iN16fFwl94BUiUif/RE98Lwl5c
+         zUMB2gxbTkBuVNoHkdVoXcsWqTXvJ3en0L1+7yyPHQiSf26BDBhwq2OHQVHsz2QpeU6P
+         4AlA==
+X-Forwarded-Encrypted: i=1; AL+hErEfClPg6uSLB0TTWbFtDB6LTldVJ1dfu11+5Moq3pad+OBkCRydLf+mSvsD5Urv/33l0cfFFkUcE9xVTWMUK8/w@lists.infradead.org
+X-Gm-Message-State: APuU4Z+QsbA7/6mlpiPjHoZe0AgyVus7EuIkrR6aA5ED85owHxuMXXpR
+	xnAuwqng7rQNHExu2Fhyqg64An+r3jhIKdRb02Heh17EPe9dNn/nQf5HzNH8v+UUlPt2RcpSLni
+	X28D75d5BWrVT8AYnIc9Rf5h+G3Lii364LxMqv6CND/Fx7OU27feLVC5ifIlCASpxsIodi/CX8w
+	HDPw==
+X-Gm-Gg: AYBFou2mk3iKPLza7WTJmWJaX/dV5pq427an28vnF/b+E8VcyDC8k6q78Ds/ZYwk06a
+	1ZOawXSxcgt6FI7UtNW/eG3YiNInaWKvrKglUT8J1q89Ik1wloaBn2bXU8wkZN5/UWWn7iLuydG
+	B0m5OrfCKQdFhUOMP/L4n6t5X4fPbV1T1o31cVG4B6PSYXu+2c1j4TfYz8e1HGx9+DYNFrMH1I9
+	V0dsgWB8tqNAEHSAjKLkWuQTK+8cVoXSjRwhLU1jk2j/1d7jGBcDL8cs4FAHE9dgn3AOmPHVlPo
+	GBgwyJFtO0/N2mFR7Klfd/np4uQ2NfCGiS6yAj8pj4wJyKZgeDuWETrBDFcE8U2HzVK6cK00KD0
+	XTNc37GCjYZNfZ7sJUU/+9KX/6/PG+3D0TS38IDlxyOTBJVdybstT7RX+fPiBmUwwTgpF
+X-Received: by 2002:a17:90b:564e:b0:3b1:d40:2c4e with SMTP id 98e67ed59e1d1-3b12cb3ee6dmr1874645a91.0.1794187318429;
+        Sun, 08 Nov 2026 17:21:58 -0800 (PST)
+X-Received: by 2002:a17:90b:564e:b0:3b1:d40:2c4e with SMTP id 98e67ed59e1d1-3b12cb3ee6dmr1874635a91.0.1794187317899;
+        Sun, 08 Nov 2026 17:21:57 -0800 (PST)
+Received: from [10.64.68.243] ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b127970954sm4788398a91.15.2026.11.08.17.21.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Nov 2026 17:21:57 -0800 (PST)
+Message-ID: <172f1a97-6567-4cf1-9c28-82938bea33dc@oss.qualcomm.com>
+Date: Mon, 9 Nov 2026 09:21:52 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-rk3588-combphy-sata2-6g-v1-1-e9135c91de6a@pardini.net>
-X-B4-Tracking: v=1; b=H4sIAA4e8WoC/yXMQQ6CMBBA0auQWTtJO7WEeBXjoq0jDEYgHTQQw
- t2tsnyL/zdQzsIKl2qDzB9RGYcCe6ogdWFoGeVeDGSotobOmJ/ONw2m8RWnbkUNcyCsWzQuRme
- st94TlHrK/JDlf77eDus79pzm3w72/QseLD3mewAAAA==
-X-Change-ID: 20261024-rk3588-combphy-sata2-6g-03bb30151552
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Andrew Powers-Holmes <aholmes@omnom.net>, 
- Lucas Tanure <lucas.tanure@collabora.com>
-Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Yifeng Zhao <yifeng.zhao@rock-chips.com>, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3342;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=jlST7yEBtCPASzfQnAPw8q1ZkwqNOjqfjEA41xMvY/o=;
- b=owEBbQGS/pANAwAKATteP+Oex+3pAcsmYgBq8R4jm7OV4UEZAdR8JkXG5eZsGJPwj1sBnGC/K
- PdtxEN5/k2JATMEAAEKAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCavEeIwAKCRA7Xj/jnsft
- 6WQWCACpnX6vXbIOFFGIjGte8vXc9/ErH0o2XWlf2nqbLvgp3rSw6bTjqbhrhX2OuywVjojnqh/
- 6khuk8OfiBwqUFDKqwYmRTGWr4BoABoM87ivNn5mXU8R6p1EugVNX5uNqfvYHzXGp1kRDtZWEcG
- DHJ2gacTWr5D86YdFw3279g8y+yn1/hXblWc/9e8TR36+3deh/cODH5k8diskaURtUdcMgCseDP
- j4W0w21u2FWlsKGALXGoTfaHR/H0NgGohEW+dYv59PxHSvnCqUOXy/Fso9MjgvVaF/tfwXWeO2k
- dPzwqX2nK64jpCTrxJDlRrSJJ+FOFvHLR3KobzP7R+bVxTuv
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] coresight: tpda: fix race between refcnt check and
+ register access
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+ <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
+        Leo Yan <leo.yan@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Tao Zhang <tao.zhang@oss.qualcomm.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20260408-fix-race-condition-issue-v1-1-9a148d07e08f@oss.qualcomm.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <20260408-fix-race-condition-issue-v1-1-9a148d07e08f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: ECBm0su95HTDmafkrTwV-khv0yi1VSow
+X-Proofpoint-GUID: ECBm0su95HTDmafkrTwV-khv0yi1VSow
+X-Authority-Analysis: v=2.4 cv=CMq/zhrD c=1 sm=1 tr=0 ts=6af12037 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=c7d8TTRRwYqZNTvHBSMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDAwNSBTYWx0ZWRfXwSGMOZHECf5V
+ LMZ0oIH9aAKmN2PTT6OQUscC1GOUwX+18hDmXtgSlySlDdmT6fjmacEJtc9cNXdqHvSi0M/R0+V
+ TRm+9PaD4gAE4pxbdAQgC+fIRhxXruzPlcdEOtzP58KKqE8O8Xmsp/PIrtMjNb3nntCSSyWloZO
+ pTRdoTQEl/zGA7P7udFMqDCoBVQS6VYdtEwk0F5bFgHbOMJtkG1nGjRL9x7sPHHFL67zW72yHr2
+ /VMMBiH09fP61djvzWTXDhHaVzi6k+kXdZld/0TSjsx4/L7eubqrdBNvsTgSLk40wVA0CNw5+y5
+ cx1MK3J7c868GQ2zwIwuKzG0QJo2HRoLZjDdFRqKUjFkKMDfqEB49+qmONq8ECAu93QxM4eOfmt
+ WJtNpYBTyo4MFlZUQv/fh0AoIadrGzVNNOcTvAAaxp4Jg0/aLUiUAjp4/0M6ZdUlxOmQYCg01XJ
+ jYFEmAlwWtiBZRxM66w==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDAwNSBTYWx0ZWRfX9e+3/mlVBWUa
+ JnKmTvOyDMjvnFF7aQMHVub7DRYHqs1pEK3B7npMoUlsYZjNWDBULVFKvBHQuv3HHmWCmNQ1VNw
+ Fs1Jb5Wo00a2iUk5TB65EtX3ACy8Dr8=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-09_01,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
+ adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611090005
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_172200_795217_2CF3E0FB 
+X-CRM114-Status: GOOD (  21.31  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,92 +155,137 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: ricardo@pardini.net
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ricardo Pardini <ricardo@pardini.net>
 
-On RK3588, the sata2 PHY speed is selected by sata2_phy_spdmode in
-PHP_GRF_PHP_CON1[1:0] (offset 0x0004), with sata2_phy_rx_err in bit 2.
-rk3588_combphy_grfcfgs has pipe_con1_for_sata at offset 0x0000 though,
-so the value 0x2 (6.0 Gb/s, rx_err cleared) ends up in PHP_GRF_PHP_CON0
-and CON1 is never written.
 
-This leaves sata2 at its 1.5 Gb/s reset value, so the link only trains
-at 1.5 Gb/s, even with a 6 Gb/s capable disk and no SControl speed
-limit. sata0 and sata1 are not affected: their speed fields are in
-PHP_GRF_PHP_CON0 and are set by pipe_con0_for_sata.
+On 4/8/2026 9:23 PM, Jie Gan wrote:
+> Several sysfs show/store handlers check csdev->refcnt before acquiring
+> the spinlock, then access hardware registers inside the lock.  This is
+> a race: between the check and the lock acquisition, the following can
+> occur on another CPU:
+> 
+>    CPU 0 (sysfs reader)              CPU 1 (disable path)
+>    ─────────────────────────────     ──────────────────────────────────
+>    refcnt == 1, check passes
+>    [waiting for spinlock]            tpda_disable(): refcnt → 0
+>                                      debug clock disabled
+>    spinlock acquired
+>    readl_relaxed()  ← FAULT/hang
+> 
+> tpda_disable() decrements csdev->refcnt under the same spinlock, so
+> moving the refcnt check inside the lock closes the race.
+> 
+> Fix all six affected sysfs handlers: global_flush_req_show/store,
+> syncr_mode_show, syncr_count_show, and port_flush_req_show/store.
+> 
+> Fixes: 8e1c358a3b0e ("coresight: tpda: add global_flush_req sysfs node")
+> Fixes: 33f04ead7c49 ("coresight: tpda: add logic to configure TPDA_SYNCR register")
+> Fixes: a089d585a7f4 ("coresight: tpda: add sysfs node to flush specific port")
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> ---
 
-The register layout is described in the RK3588 TRM V1.0 Part1, section
-6.17 "PHP_GRF Register Description". Rockchip fixed this in their BSP
-kernel in 2022 by moving pipe_con1_for_sata to offset 0x0004.
 
-Tested with an mSATA SSD on sata2 (combphy2_psu). Before:
+Gentle ping.
 
-  ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
-  Timing O_DIRECT disk reads: 374 MB in 3.01 seconds = 124.45 MB/sec
 
-After:
-
-  ata2: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
-  Timing O_DIRECT disk reads: 1266 MB in 3.00 seconds = 421.78 MB/sec
-
-Fixes: a03c44277253 ("phy: rockchip: Add naneng combo phy support for RK3588")
-Cc: stable@vger.kernel.org
-Link: https://github.com/rockchip-linux/kernel/commit/2f5fe2c0bbd4fa95102aadd60da1100989103aa0
-Cc: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
----
-This fixes the pipe_con1 GRF offset for SATA in the RK3588 combphy
-table, so sata2 links train at 6 Gb/s instead of being stuck at
-1.5 Gb/s.
-
-I found it when an mSATA SSD on sata2 would only link at 1.5 Gb/s,
-and traced it to Rockchip's BSP kernel, which fixed the same offset in
-2022 in a commit titled "config sata2 rate to 6G for rk3588" (linked
-in the patch). The RK3588 TRM V1.0 Part1 (section 6.17) agrees:
-sata2_phy_spdmode is in PHP_GRF_PHP_CON1, while the sata0/sata1 speed
-fields are in PHP_GRF_PHP_CON0 and already set correctly.
-
-The misplaced write lands in PHP_GRF_PHP_CON0[2:0], which are the PCIe
-link reset grant bits, and turns on the one for pcie3x2 whenever a
-combphy is put in SATA mode. I don't know of any effect from that, but
-this patch stops it too.
-
-Only sata2 was tested. U-Boot has the same table and the same problem;
-a fix is being sent there separately.
----
- drivers/phy/rockchip/phy-rockchip-naneng-combphy.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-index 3102a99128f6..c469222dba8b 100644
---- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-+++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-@@ -1395,7 +1395,7 @@ static const struct rockchip_combphy_grfcfg rk3588_combphy_grfcfgs = {
- 	.con3_for_sata		= { 0x000c, 15, 0, 0x00, 0x0407 },
- 	/* pipe-grf */
- 	.pipe_con0_for_sata	= { 0x0000, 11, 5, 0x00, 0x22 },
--	.pipe_con1_for_sata	= { 0x0000, 2, 0, 0x00, 0x2 },
-+	.pipe_con1_for_sata	= { 0x0004, 2, 0, 0x00, 0x2 },
- 	.pipe_pcie1l0_sel	= { 0x0100, 0, 0, 0x01, 0x0 },
- 	.pipe_pcie1l1_sel	= { 0x0100, 1, 1, 0x01, 0x0 },
- };
-
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261024-rk3588-combphy-sata2-6g-03bb30151552
-
-Best regards,
---  
-Ricardo Pardini <ricardo@pardini.net>
-
+>   drivers/hwtracing/coresight/coresight-tpda.c | 18 ++++++++++++------
+>   1 file changed, 12 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/drivers/hwtracing/coresight/coresight-tpda.c
+> index 89c8f71f0aff..63a979312463 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpda.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
+> @@ -360,10 +360,10 @@ static ssize_t global_flush_req_show(struct device *dev,
+>   	struct tpda_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>   	unsigned long val;
+>   
+> +	guard(spinlock)(&drvdata->spinlock);
+>   	if (!drvdata->csdev->refcnt)
+>   		return -EINVAL;
+>   
+> -	guard(spinlock)(&drvdata->spinlock);
+>   	val = readl_relaxed(drvdata->base + TPDA_CR);
+>   	/* read global_flush_req bit */
+>   	val &= TPDA_CR_FLREQ;
+> @@ -382,10 +382,13 @@ static ssize_t global_flush_req_store(struct device *dev,
+>   	if (kstrtoul(buf, 0, &val))
+>   		return -EINVAL;
+>   
+> -	if (!drvdata->csdev->refcnt || !val)
+> +	if (!val)
+>   		return -EINVAL;
+>   
+>   	guard(spinlock)(&drvdata->spinlock);
+> +	if (!drvdata->csdev->refcnt)
+> +		return -EINVAL;
+> +
+>   	val = readl_relaxed(drvdata->base + TPDA_CR);
+>   	/* set global_flush_req bit */
+>   	val |= TPDA_CR_FLREQ;
+> @@ -404,10 +407,10 @@ static ssize_t syncr_mode_show(struct device *dev,
+>   	struct tpda_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>   	unsigned long val, syncr_val;
+>   
+> +	guard(spinlock)(&drvdata->spinlock);
+>   	if (!drvdata->csdev->refcnt)
+>   		return -EINVAL;
+>   
+> -	guard(spinlock)(&drvdata->spinlock);
+>   	syncr_val = readl_relaxed(drvdata->base + TPDA_SYNCR);
+>   	val = FIELD_GET(TPDA_SYNCR_MODE_CTRL_MASK, syncr_val);
+>   
+> @@ -440,10 +443,10 @@ static ssize_t syncr_count_show(struct device *dev,
+>   	struct tpda_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>   	unsigned long val;
+>   
+> +	guard(spinlock)(&drvdata->spinlock);
+>   	if (!drvdata->csdev->refcnt)
+>   		return -EINVAL;
+>   
+> -	guard(spinlock)(&drvdata->spinlock);
+>   	val = readl_relaxed(drvdata->base + TPDA_SYNCR);
+>   	val &= TPDA_SYNCR_COUNT_MASK;
+>   
+> @@ -478,10 +481,10 @@ static ssize_t port_flush_req_show(struct device *dev,
+>   	struct tpda_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>   	unsigned long val;
+>   
+> +	guard(spinlock)(&drvdata->spinlock);
+>   	if (!drvdata->csdev->refcnt)
+>   		return -EINVAL;
+>   
+> -	guard(spinlock)(&drvdata->spinlock);
+>   	val = readl_relaxed(drvdata->base + TPDA_FLUSH_CR);
+>   
+>   	return sysfs_emit(buf, "0x%lx\n", val);
+> @@ -498,10 +501,13 @@ static ssize_t port_flush_req_store(struct device *dev,
+>   	if (kstrtou32(buf, 0, &val))
+>   		return -EINVAL;
+>   
+> -	if (!drvdata->csdev->refcnt || !val)
+> +	if (!val)
+>   		return -EINVAL;
+>   
+>   	guard(spinlock)(&drvdata->spinlock);
+> +	if (!drvdata->csdev->refcnt)
+> +		return -EINVAL;
+> +
+>   	CS_UNLOCK(drvdata->base);
+>   	writel_relaxed(val, drvdata->base + TPDA_FLUSH_CR);
+>   	CS_LOCK(drvdata->base);
+> 
+> ---
+> base-commit: f3e6330d7fe42b204af05a2dbc68b379e0ad179e
+> change-id: 20260408-fix-race-condition-issue-d44203254b87
+> 
+> Best regards,
 
 
