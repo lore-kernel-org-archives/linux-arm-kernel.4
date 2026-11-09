@@ -2,91 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478D0606A333
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E88606A334
 	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oSWa6Lyr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GQSf27vL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nL+FMyHx;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fUJKdjCe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XUsyqx7ECPHW4CQONcrbGlANSZUF1R9oFqc+hq23tPs=; b=oSWa6LyrejlLFUn0QH9KE1zkiy
-	kn/MgUJtdb4lTSif64jAmE0/JyzwfBy1zMI9RV3B2rPtVht1h3kxzwuYD5eI1oeREkXMd6W3nyn16
-	00WMuMlt7lvQj35E6uz+VT8E+zwamI4gCic1YJ8dDVwAWjRwMUP8GO0xwX8oRO1rg4befdWS8OKZd
-	ribtV++XiRGN5YgyJ0bRsL1P9yPzl4Xq+rMAiae/Kieycgqlf/LO3SHVFzuy3iqfW29VDUKpdeoUn
-	78I93dLHQYcgup4isG+7bjIvaZtVSTNRzTACf+wmnQCPAuU2HdQULwZF1nXzy0OpSJVwcerDXDCP/
-	cVF8J5dQ==;
+	bh=ybdiC4v8M6MlJX8IenI/O7Y+PfdEKUgT1iXHB+Uir/M=; b=nL+FMyHxWGYVS4OQ+Q/5t5nv3F
+	hyuYhiIzJJxMURz6hjmY87eDIDrljIa3ihXp2WNWw1Hl32pRGEqatNrQkGj109nKO0Cbl6enKQcZL
+	OhaD3RdTGk57USQg9sBAY3L69agwk5vMzdhntZn1gaH4aWWS1j6w8dcPvplFUSsqh6TA69EfEyTNx
+	ykWO8Q1dgONFO1vQyRG6HDUErrKevbFyXDfvFxRXUK2yW7Kwd+tx5b3gmiwquzqY2N2zo2848LgUo
+	/omXdgLTfJZ/s8bYshqHDqrP99U5828mZnhgw02QrjiOWogGcrmO95EDbTDdFZCBxqBtFwH5sgd/5
+	WQEobS3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWVL-00000001irr-0Oc6;
+	id 1xQWVL-00000001isB-1Nph;
 	Mon, 09 Nov 2026 21:02:15 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWVD-00000001iqe-03kW
+	id 1xQWVD-00000001iqh-24gt
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 09 Nov 2026 21:02:10 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4E04660F2F;
+	by tor.source.kernel.org (Postfix) with ESMTP id D46D1609F3;
 	Mon,  9 Nov 2026 21:02:06 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794258126;
-	b=QC8j/6g8iJOoMGNr85K2m9cwiYaqz3L18fX65VRJOSeOtXrV1fJTRBo8OFoC9Lj/dP3m
-	 UWcK/LE4Xub8/TmscwBElGc7OH49u0EO5UMZ2k4NnPD8Wi0fdyrvtjW1NMn41qDXoKTDs
-	 kSvnvFjAMMI+ZKGguFGUOi7NVnoIVU10P/N2d8RlRNY2aTFANuKhbNyiHVA2G125RmYol
-	 2nQX8oNvps7swhl5GbrV8a9pli6n4X6rRyuhi6kN3m8sVbCPFx5zKaSSztDduE/Zt9WQE
-	 7yZ5A5p/d5ZTJfO4Q0T824VaTTJ0/eM2BTWBrCVR+VBvEDLn1RnYTfo4S54GMRmtQuw==
+	b=ILlpUuNYwZyRmFQrSJX9eDFf3ungVoWp8cMszD6653DM8Q/bPesJaguk30aZRqZEyF6c
+	 c0LzNdbrxAGj8lAS9h+p+gO9GjHViCWar0cklw0Rxqsu+b+s+trHZhc0YcRJxDJEwKDW+
+	 Mly9RkguZZeEYnDpE2njuTBX+mHMQhRhN+6Ag5UdlQ4lr8A+OCAE3hEEWbq1UXdWehosy
+	 yfCdUO3SKBr+YbaUQ6ixdwn2XT/2vAJb+0U8/cYQbEeETw1OnS8l+tAhIdzCdAfzs48wx
+	 Mp7euOlhx0n8sbkTvMZ/Zy5vWvPJIw+1hH7xg/7ofEk5TSbDIVXb/r+p82dYptT6Nwg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794258126;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=XUsyqx7ECPHW4CQONcrbGlANSZUF1R9oFqc+hq23tPs=;
-	b=OAdd96u4h5uGdgZd3o95cTycIdL92WFnakzlPg743FdlTyX9OuaJNMdYRTx1ywGYI1dQ
-	 jKwV0y4VGTCujFu3bOkvu3NHqRg64Qo6OnY8uFE1eVRKhkOs3J1f7nrL/FBSV3+gs/83P
-	 3rzX2vCHAeO9HVulWlqqR5vxQBUz6q8mnBhzQy6R2q3KjGfkhvxCowNs4/fvkdvaLhSvB
-	 bzXuOY6hgF1zxoAS3XEPJhIaVcczQze/MbuzpSj0aHoG5jst4h54WEZo0OvnCTUfGU0U/
-	 QzTHgDj3TqdVOQkvg8jMRAjCfm9vEszGldXvbhYe/ETly1w26HkXewqFoG0+qiGiWEQ==
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=ybdiC4v8M6MlJX8IenI/O7Y+PfdEKUgT1iXHB+Uir/M=;
+	b=zQIXUFY3UQhIuH6pPofc+6Rk/aknpBzk85EwtgUcpsIduV0JIIARn8lq5UK+001+1E2E
+	 td6DahCbKPF/tDBItR8qHXti1ciWtxYmzdvsxBqKJAXjwoYik9g3NMeoGwJPQMlJiNJu8
+	 wG9J6xLkDsxQdU+nSppxCWfOZ+eQYBxMhZl6Ng/a9vJ8YTyiK42l4OMimsWGNr+BQKE/B
+	 PHiSpTjR/yvPB2XCAwoJy5/58YnjgYycpUMv7nIwm7POzHRRMHbx133COCnMI3cFH6bp6
+	 +ppHvlYyoycov7aEcoCluqJVT5eMBKcWxcoJzx83etdgJ1URbwfXtuyvsUXpmgjx0Ew==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 02E881F008A2;
+	by smtp.kernel.org (Postfix) with ESMTPS id 02E9B1F008A3;
 	Mon,  9 Nov 2026 21:02:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794258126;
-	bh=XUsyqx7ECPHW4CQONcrbGlANSZUF1R9oFqc+hq23tPs=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=GQSf27vLaqkigPKWESjDjl3lrLhMTaJy+2rI7l+qzM9xbWMphbiK3YmCO3uf7MjdF
-	 r8BjMIOOsU5iXH4drHXcxLLRdu/0e2gJirIWSZndtG3pihgwfLqPjvX77DzzGrwNPj
-	 cKEy3vj/z0tBlSfkJcmcCZaAN5RmW1HCutiFLmcKRy5ak1fQbh7xQaL3ZumWucxSdg
-	 rbqyB3SfoZqPwm1IRBCTPSzSZn9pUn0C6tBofGEQs/KPRv1ybvIoY2/e7MwXS0GrKq
-	 5iY1iFU2rFZUv77SdtyugsC0pcEcfnxvYfyFT+AU4yNjRcrEnepZyzn46HUfEWELFF
-	 W574tHmBBfNgQ==
+	bh=ybdiC4v8M6MlJX8IenI/O7Y+PfdEKUgT1iXHB+Uir/M=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=fUJKdjCe+HW7LRzytHgED8RESMNh24BjLkv6/TkDmsOWOdGr+SWdvWshd1A4VOaY4
+	 +GNPk6zfbQx3Zo0IRMnWONhLhLCsQMjpzyiXNMM5UwhtvdRoZeX4+h3F4v7xPallaE
+	 7chuD7eLu/mDxwC7MxSaGFhRNVKpcn0H8CKvRCFnORTwHUsSbxtIv/2IDWVHyfYGrG
+	 3YNlFkmWfErKBXm9qDnmT5VkMxXSumqGBaXHfD6bA33msXNr27zWH5Vue3XIAt1GoP
+	 i4KlkxJhdx00aEm7SJ0zg8gu0SxSG1RwJ5N3RFdHDJiNlFXrs0jiLrnHhb/yYHHq1u
+	 95WWefpNGOa5g==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 5278C48679;
+	by lkml.kernel.org (Postfix) with ESMTP id 7AB4F4867D;
 	Mon,  9 Nov 2026 21:02:04 +0000 (UTC)
 From: Umer Uddin via B4 Relay <devnull+umer.uddin.mentallysanemainliners.org@kernel.org>
-Subject: [PATCH v2 0/2] Add support for Samsung Galaxy Tab A 10.1 (2019,
- 4G)
-Date: Mon, 09 Nov 2026 21:02:01 +0000
-Message-Id: <20261109-gta3xllte-support-v2-0-85c31b6efebd@mentallysanemainliners.org>
+Date: Mon, 09 Nov 2026 21:02:03 +0000
+Subject: [PATCH v2 2/2] arm64: exynos: Add initial support for Samsung
+ Galaxy Tab A 10.1 (2019, 4G)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32Nyw6DIBQFf8WwLg0ooY9V/6NxgXBRGgTDRaMx/
- nvV7rucZM6clSAkB0iexUoSTA5dDDuUl4LoToUWqDM7k5KVknP2oG1W1ex9BorjMMSUqZXCWHG
- TptKS7LshgXXz2XzXP8ax+YDOR+gwOoc5puU8nfjh/etPnDJqNNOisereCPHqIWTl/YIqQK9c8
- C5AwmtMLam3bfsCD+HNL9UAAAA=
-X-Change-ID: 20261109-gta3xllte-support-f64df476d3c6
+Message-Id: <20261109-gta3xllte-support-v2-2-85c31b6efebd@mentallysanemainliners.org>
+References: <20261109-gta3xllte-support-v2-0-85c31b6efebd@mentallysanemainliners.org>
+In-Reply-To: <20261109-gta3xllte-support-v2-0-85c31b6efebd@mentallysanemainliners.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>, 
  Peter Griffin <peter.griffin@linaro.org>, 
  Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
@@ -96,17 +92,18 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Umer Uddin <umer.uddin@mentallysanemainliners.org>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794258123; l=1578;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794258123; l=4267;
  i=umer.uddin@mentallysanemainliners.org; s=20261109;
  h=from:subject:message-id;
- bh=agqWjBLMvEse0eu1plUAKimZM+XtZzwOh/y90EL/9AY=;
- b=9onZelZpLaXYd6RnSVn5XhXY5jMFeZzxh9Kme4kcVPNeUPmqcwl1ca/2BCLee1Pj0m0HMWxtF
- VQFrfwzVOl0BhYFfR1zeC6zjgyBK5mimt26TUQifjzlvtY/cshDbcpd
+ bh=eEsZaspggx8BPKN712bRu9JrPSLF48OkOU10L6YuavM=;
+ b=0vHH1hvp7TgGIuMg2ilVfQYx133OOp+vlddohJYFReaI+hUvfkoslhBKcnfMF+fuTTlBcAO5K
+ xAVEoapDqnwCSwEKDv1138rw/WwlAwZda808714wUsC2tSAlz7OBa2Q
 X-Developer-Key: i=umer.uddin@mentallysanemainliners.org; a=ed25519;
  pk=Hsgrt4A72CFTe27AI1AAWlnLsiQrlb4+T+cbrfWDhUA=
 X-Endpoint-Received: by B4 Relay for
  umer.uddin@mentallysanemainliners.org/20261109 with auth_id=1466
 X-Original-From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,59 +115,182 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: umer.uddin@mentallysanemainliners.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi guys,
+From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
 
-This series adds support for Samsung Galaxy Tab A 10.1 (2019, 4G).
+Add initial support for Samsung Galaxy Tab A 10.1 (2019) is a tablet that
+is based on Exynos7885, this patch adds support for the LTE variant.
 
-The device trees have been tested with dtbs_check W=1 and scripts/dtc/dt-check-style
-with --mode strict flag and both results in no warnings.
+This device tree adds support for the following:
 
-This initial bringup consists of:
- * pinctrl
- * internal eMMC
- * gpio-keys
- * simple-framebuffer
-
-This is enough to reach a shell in an initramfs. More platform support
-will be added in the future.
-
-The preferred way to boot kernel is by using a shim bootloader called
-uniLoader [1], which works around some issues with the stock bootloader,
-primarily the decon trigger control quirk, causing the framebuffer to not
-refresh.
-
-[1] https://github.com/ivoszbg/uniLoader
+- SimpleFB
+- 2GB RAM
+- Buttons
+- Internal eMMC
 
 Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
 ---
-Changes in v2:
-- Fixed dts oversights pointed out via Sashiko.
-- Link to v1: https://patch.msgid.link/20261109-gta3xllte-support-v1-0-dc0c4bfa8b44@mentallysanemainliners.org
-
----
-Umer Uddin (2):
-      dt-bindings: arm: samsung: samsung-boards: Add bindings for SM-T515 board
-      arm64: exynos: Add initial support for Samsung Galaxy Tab A 10.1 (2019, 4G)
-
- .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
  arch/arm64/boot/dts/exynos/Makefile                |   1 +
  .../arm64/boot/dts/exynos/exynos7885-gta3xllte.dts | 129 +++++++++++++++++++++
- 3 files changed, 131 insertions(+)
----
-base-commit: c916d326360966fa41b1d9c3fb659215053387f5
-change-id: 20261109-gta3xllte-support-f64df476d3c6
+ 2 files changed, 130 insertions(+)
 
-Best regards,
---  
-Umer Uddin <umer.uddin@mentallysanemainliners.org>
+diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
+index 7534b773d28f..f1946a95cb42 100644
+--- a/arch/arm64/boot/dts/exynos/Makefile
++++ b/arch/arm64/boot/dts/exynos/Makefile
+@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
+ 	exynos7870-j6lte.dtb		\
+ 	exynos7870-j7xelte.dtb		\
+ 	exynos7870-on7xelte.dtb		\
++	exynos7885-gta3xllte.dtb	\
+ 	exynos7885-jackpotlte.dtb	\
+ 	exynos850-a217f.dtb		\
+ 	exynos850-e850-96.dtb		\
+diff --git a/arch/arm64/boot/dts/exynos/exynos7885-gta3xllte.dts b/arch/arm64/boot/dts/exynos/exynos7885-gta3xllte.dts
+new file mode 100644
+index 000000000000..03476f8b1200
+--- /dev/null
++++ b/arch/arm64/boot/dts/exynos/exynos7885-gta3xllte.dts
+@@ -0,0 +1,129 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Samsung Galaxy Tab A 10.1 (2019, 4G) (gta3xllte/SM-T515) device tree source
++ *
++ * Copyright (c) 2026, Umer Uddin <umer.uddin@mentallysanemainliners.org>
++ */
++
++/dts-v1/;
++#include "exynos7885.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++
++/ {
++	model = "Samsung Galaxy Tab A 10.1 (2019, 4G)";
++	compatible = "samsung,gta3xllte", "samsung,exynos7885";
++	chassis-type = "tablet";
++
++	aliases {
++		mmc0 = &mmc_0;
++		serial0 = &serial_0;
++		serial1 = &serial_1;
++		serial2 = &serial_2;
++	};
++
++	chosen {
++		ranges;
++		#address-cells = <2>;
++		#size-cells = <1>;
++
++		framebuffer0: framebuffer@ec000000 {
++			compatible = "simple-framebuffer";
++			reg = <0 0xec000000 0x01400000>;
++			width = <1200>;
++			height = <1920>;
++			stride = <(1200 * 4)>;
++			format = "a8r8g8b8";
++		};
++	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&key_volup &key_voldown &key_power>;
++		pinctrl-names = "default";
++
++		power-key {
++			gpios = <&gpa1 7 GPIO_ACTIVE_LOW>;
++			label = "Power";
++			wakeup-source;
++			linux,code = <KEY_POWER>;
++		};
++
++		voldown-key {
++			gpios = <&gpa1 6 GPIO_ACTIVE_LOW>;
++			label = "Volume Down";
++			linux,code = <KEY_VOLUMEDOWN>;
++		};
++
++		volup-key {
++			gpios = <&gpa1 5 GPIO_ACTIVE_LOW>;
++			label = "Volume Up";
++			linux,code = <KEY_VOLUMEUP>;
++		};
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x0 0x80000000 0x3dd00000>,
++		      <0x0 0xc0000000 0x40000000>;
++	};
++
++	reserved-memory {
++		ranges;
++		#address-cells = <2>;
++		#size-cells = <1>;
++
++		cont_splash_mem: framebuffer@ec000000 {
++			reg = <0 0xec000000 0x01400000>;
++			no-map;
++		};
++	};
++};
++
++&mmc_0 {
++	bus-width = <8>;
++	cap-mmc-highspeed;
++	card-detect-delay = <200>;
++	clock-frequency = <800000000>;
++	mmc-hs200-1_8v;
++	mmc-hs400-1_8v;
++	mmc-hs400-enhanced-strobe;
++	non-removable;
++	pinctrl-0 = <&sd0_clk_fast_slew_rate_3x &sd0_cmd &sd0_rdqs
++		     &sd0_bus1 &sd0_bus4 &sd0_bus8>;
++	pinctrl-names = "default";
++
++	samsung,dw-mshc-ciu-div = <3>;
++	samsung,dw-mshc-ddr-timing = <2 4>;
++	samsung,dw-mshc-hs400-timing = <0 2>;
++	samsung,dw-mshc-sdr-timing = <0 4>;
++
++	status = "okay";
++};
++
++&oscclk {
++	clock-frequency = <26000000>;
++};
++
++&pinctrl_alive {
++	key_power: key-power-pins {
++		samsung,pins = "gpa1-7";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
++	};
++
++	key_voldown: key-voldown-pins {
++		samsung,pins = "gpa1-6";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
++	};
++
++	key_volup: key-volup-pins {
++		samsung,pins = "gpa1-5";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
++	};
++};
+
+-- 
+2.56.0
 
 
 
