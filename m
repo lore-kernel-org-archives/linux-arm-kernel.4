@@ -2,69 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BAB606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 07:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7365C606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 07:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AXaSEso5;
-	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=FUI09/nk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QAAahRtX;
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.a=rsa-sha256 header.s=korg header.b=qMT/iSQy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=n6uuG2uPB07i0EMDMp6389WOiI/04+FhVXHCP2g9r7o=; b=AXaSEso5tRobmdp5PVWr5PoqTP
-	J+aMcIpJMeLTDTdkY9p/0J6gFOQgzZ1v5jHE7gPQCFc0Da032O/MNrTvWeVpj7XOXqnShHn1HY09k
-	u8hf7KcGkGmJVGUTugFvlKkPihPKmUtJ01vh/OUO62oN/Dwit3JgVsqNtk6Tq3QlSfMru3B3uwQ1h
-	twt6F3BS2xP6AR1M8f2VSGH34Jn3S4gtHr2r/uNdKIqM6oy8mpoxeKFs9X+MH24DomflqCeE0DXIs
-	a16aivpugJteNz41ZkJYNEYq/jFIxZFKNvHDAF0aO9VcvoW7jiMAH4lmNGhZxp4AtcLcjHKegEaKI
-	zo9xT6rg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Mime-Version:References:In-Reply-To:Message-Id:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=R60RtisWcqPaJsP3z5umkKLOFCDRWj8EeZj2DKpMtAQ=; b=QAAahRtXaVk6Si
+	eO3IikRX6Aa0PEWwvFjl/EL8nmt07hLm1AYyr1iu7fIXxBrrO9tnlTnzpSiDCYvM/pIzJxSx/qdzj
+	y4uSdhVQkmaFnelUcMucyfOaHrz86pig3ePq3tRFi5U5fq7p0Xo9guNVJNFxjnrOCeuDgxxsVgesp
+	L82vH2H90IuIbiP76895St57s60Dc2OE0C0P7f11XrHi4lcNI2SskEt/XL+wSDAlkbNWNHjJ0yWP6
+	idgcaE76WLW1JXZspouLFgH1GmCqOOEpjDZXCnfMLO2sU0oRJSjr9laQ1uWCYhe/GXGD65lkrWoaO
+	196eRDsA/k9q36mJWsdg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQJPS-0000000HXgF-0H5p;
-	Mon, 09 Nov 2026 07:03:18 +0000
-Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
+	id 1xQJUk-0000000HXqU-2o6R;
+	Mon, 09 Nov 2026 07:08:46 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQJPO-0000000HXfr-2p6R
+	id 1xQJUi-0000000HXqN-3J2k
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 07:03:17 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=n6uu
-	G2uPB07i0EMDMp6389WOiI/04+FhVXHCP2g9r7o=; b=FUI09/nkUWlAuWPONUzm
-	PBpyFxvz/uvZaoBZMiRROWtgh4kAXo/iNQpNNBHmnyoC5VOoayHkypsy9YXg8p5R
-	doZHakc+1UkQUcclrwYqT4Dw7uLw1AKy/Ol4DoPqIin7IBrDx8K78ga4JkQQDJ5j
-	4WpS/zSLvQD58t/WiZgnEfwnzhciwGhgfuoLUzum5a3pyYKNu16F6EgCxc12OR4M
-	oO1zfTqPBzFPXG8DgNMdNwNJq2WJA/J4Obkxc2oIryygANbp8/ngx9cdlmg+B7Sj
-	baY6vQ3riQZuriQDZcCMmzCODNaqzY/Dny0LEAXeuL/ZlHyB1/pnABJfMLWL5QNd
-	qQ==
-Received: (qmail 3132570 invoked from network); 9 Nov 2026 08:03:09 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Nov 2026 08:03:09 +0100
-X-UD-Smtp-Session: l3s3148p1@qpDxjdJfkNoujntg
-Date: Mon, 9 Nov 2026 08:03:09 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Dmitry Guzman <Dmitry.Guzman@mobileye.com>
-Cc: Linus Walleij <linusw@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	srinidhi kasagar <srinidhi.kasagar@stericsson.com>,
-	Ben Dooks <ben-linux@fluff.org>,
-	Andrea Gallo <andrea.gallo@stericsson.com>,
-	linux-i2c@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/8] i2c: nomadik: handle pm_runtime errors
-Message-ID: <avFwLctRcnJHtINQ@ninjato>
-References: <20261103-i2c-nomadik-fixes-v1-0-655c6af2cb70@mobileye.com>
- <20261103-i2c-nomadik-fixes-v1-6-655c6af2cb70@mobileye.com>
+	Mon, 09 Nov 2026 07:08:44 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id AD594405CF;
+	Mon,  9 Nov 2026 07:08:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E782B1F0089F;
+	Mon,  9 Nov 2026 07:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux-foundation.org; s=korg; t=1794208123;
+	bh=R60RtisWcqPaJsP3z5umkKLOFCDRWj8EeZj2DKpMtAQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=qMT/iSQysf11EbkSRNfEw5+UOG45cxeA4/obABZTaIw5jUZNkssXGGYgeRSJMbaYy
+	 4E8KZZmnu6+b5WKd/WEV/xp+PLbFam/lUK9OTHuHSBpa5qP5AL4fflcKZd+3cWe9S8
+	 lJqz1moFNyVTZFHsRQlHIuxUMxLy/q96EhQPpliE=
+Date: Sun, 8 Nov 2026 23:08:42 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Wen Jiang <jiangwenxiaomi@gmail.com>
+Cc: catalin.marinas@arm.com, will@kernel.org, urezki@gmail.com,
+ linux-mm@kvack.org, baohua@kernel.org, dev.jain@arm.com,
+ ryan.roberts@arm.com, anshuman.khandual@arm.com, david@kernel.org,
+ rppt@kernel.org, leo.yan@arm.com, xueyuan.chen21@gmail.com,
+ chleroy@kernel.org, maddy@linux.ibm.com, mpe@ellerman.id.au,
+ npiggin@gmail.com, ajd@linux.ibm.com, jiangwen6@xiaomi.com,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v12 00/10] mm/vmalloc: Speed up ioremap, vmalloc and
+ vmap with contiguous memory
+Message-Id: <20261108230842.3a77b9fe2d4bfc2a04b355a5@linux-foundation.org>
+In-Reply-To: <20261107134953.748622-1-jiangwenxiaomi@gmail.com>
+References: <20261107134953.748622-1-jiangwenxiaomi@gmail.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261103-i2c-nomadik-fixes-v1-6-655c6af2cb70@mobileye.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_230315_611210_614B6834 
-X-CRM114-Status: UNSURE (   7.42  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,23 +71,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,NICE_REPLY_A,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Sat,  7 Nov 2026 21:49:43 +0800 Wen Jiang <jiangwenxiaomi@gmail.com> wrote:
 
-> -	pm_runtime_get_sync(&priv->adev->dev);
-> +	i = pm_runtime_get_sync(&priv->adev->dev);
-> +	if (i)
-> +		return i;
+> This patchset accelerates ioremap, vmalloc, and vmap when the memory is
+> physically fully or partially contiguous.
 
-Testbots revealed a smatch warning:
+Thanks.  This looks pretty mature and reviewed.  I'll add it to the
+pipeline for linux-next testing.
 
-drivers/i2c/busses/i2c-nomadik.c:737 nmk_i2c_xfer() warn: pm_runtime_get_sync() also returns 1 on success
+Sashiko likes it.  I'm working on a different AI review setup which
+finds different things.  Very slowly.  I'll let you know if anything
+interesting pops out.
 
-I will fix it here.
+Do we have sufficient ARM review?
 
 
