@@ -2,139 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC92E606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68771606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LtcoYjjv;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=W6CF4JLU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z/gEMxUc;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Qzcy7j5c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Message-Id:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=zx9nBsm3vl4/11ecHOgKP9fQmlf4UBxjC4vWblmEF3c=; b=LtcoYjjvoxMej14h1+M6h8b3MS
-	FElUjf6cDPRjKKbhZpVsv1R9DWGaKrT43zcZsaut4O5UezcqHwtFRjv/pvy6TVxrsfZPptP7zp054
-	qSTyBg3i0HJiz6MQcxP70sspZBDoYf10xflVrGlp5X7tg2lsQlZL5ihzxhLpnMZzlf3/ccQChqMzq
-	OJXIV/SX3UNgaaABi3QdlaX38Zn45c7vaqtAZfji6pRNVVxUjbGhVOuKoGWQtE8lmk4BAAGApdFHi
-	bZZQGcJPDLSqanO8/rO+/sws6aq6459rgRTeI8x5KwvqXMvGYZZyNIjgYFMnmxeVBlkP8SbLo45Ob
-	wQ9L4/Zw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=PYV844ivqJ39fhXbpbQJt7ThrmrdZ/Uef1Hl7B/7mic=; b=z/gEMxUc/ey+/W
+	yKgMP1kMKfiIDSJT67IhNUaQmFbejFA7sHPoQfZN5x99sAQWdGWizLhlYYR745UScSO65GuB1ViKP
+	OmR57sPlylUaEjCZheI9LkBtAlUEJk9yQrRgtK4VpGNUsYBl/VBPguYJtWC3IJvFWPu8Xe157zZuN
+	+SUElOKIzhwGQvlBtCDW00vPXNt904aqLwpDykAcKTKQzhW2sGpihenQ3ZUBtRal70Xd7Uo11hZBy
+	9WoEgtAlGAUyGBPy8SgUSizfb68UtBmwboKFggCidP73yTrop85mLhzUl5EJrdmXJNK8hSYoO+K2r
+	HENFijstiZjl2HLqoUAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQNbT-00000000X1K-1oTl;
-	Mon, 09 Nov 2026 11:31:59 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQNbQ-00000000X0V-2D9I
+	id 1xQNf1-00000000XNe-0FFG;
+	Mon, 09 Nov 2026 11:35:39 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQNez-00000000XN8-1ATM
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 11:31:58 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BOn28d59FEE8AuFMQQChyGVkScSQKT9zD1um/6yrgy1He+04ZsYUQaU1lSpHrWiKH5OycnlGnvp+LJojKSAXu7S5qO057DV3Mf2Jp8El+V7FUa9eSgXbMk/TCUHpu09LtgRDayMBzf/F0DQWc6nPGeCJZak7Z94fFphIeBF0TPWFeamPOwVIpUM3+TZLJtr58DRb0dE8RQEoxmx5OCs94TodOPvV2rqbqXITwRuTIG2yz35xSV1sv8ZD9f3Q/alTuuVAGy1wWVmZxoDTsANO+8z9inyQCAM07izamHwfyRPJr49oEyo2dmUhbxfynELYy7zsYJXgLTgtIoedcqP55g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zx9nBsm3vl4/11ecHOgKP9fQmlf4UBxjC4vWblmEF3c=;
- b=CeENtuu5uqfpGK93huCTc889EJKhiM6SNOWACNLKKn8mTzJFBE32OFKraLwN7hebfo1AMpnhvU7Pvfjth0WYyn64Y2zVN1kpodO9PxHY4MneEvfKWsiuPR/vF2CMqq8Yu2JaMuB3ruEmXu4P/zPXejTTzza5RnObNHkWosoglwpCEElPX0AC/tULClOIvA0mVr/MNirCE2T5LZ/ws4LjW7qacR4H1ajcCt3HE1MjPPKZUwSVWFm9S/n+fgx0o6eBiTevpQxib4YZpb5Z1P+kAU5HhedK02e42qtid+9aBogN+VA6N+3HuS+9PYDeIDJk6mckkZjKxJ637vLdaJE8CA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zx9nBsm3vl4/11ecHOgKP9fQmlf4UBxjC4vWblmEF3c=;
- b=W6CF4JLUozIKddodkQKk1h4M39EMOu8nVEpvxEgzZnPRVxPwUrQT3jt3BIHiP/AjfwMy9inlLvvXJpxj3btQ0aLGzpuaXPAdkTewnmdKKSX2tARfziAXYEkziSQ29FgpEfkoq4FGbrT4Q5RrPKK1VvbOi/3p7FClZCGKHmLrseAgDPhP6AGr/4xbvwZp+i70seYfm/JfMIU2yPsYXT7I5tElzflVEGCwdJTK0v0sOGcwCNAXGaauzVgMHsteR1dmsqg847OOw8r96V5Z4U0xqzQqEqtOARlFDu0tcGjxZb5LUCakY3HQCU4dAImH5s2yFfpD3jtyYzGxZlFYSFamWw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4472.eurprd04.prod.outlook.com (2603:10a6:20b:23::20)
- by DU0PR04MB9670.eurprd04.prod.outlook.com (2603:10a6:10:31e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
- 2026 11:31:44 +0000
-Received: from AM6PR04MB4472.eurprd04.prod.outlook.com
- ([fe80::aed9:e8b9:c352:9ba0]) by AM6PR04MB4472.eurprd04.prod.outlook.com
- ([fe80::aed9:e8b9:c352:9ba0%6]) with mapi id 15.21.0592.010; Mon, 9 Nov 2026
- 11:31:44 +0000
-From: Stefan Ghetu <stefan.ghetu@nxp.com>
-To: abelvesa@kernel.org,
-	peng.fan@nxp.com,
-	sboyd@kernel.org
-Cc: bmasney+clk@redhat.com,
-	jbrunet+clk@baylibre.com,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-clk@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Florin Pavelescu <florin.pavelescu@nxp.com>,
-	Stefan Ghetu <stefan.ghetu@nxp.com>
-Subject: [PATCH v2] clk: imx: pll14xx: Fix potential integer overflow
-Date: Mon,  9 Nov 2026 13:31:38 +0200
-Message-Id: <20261109113138.10845-1-stefan.ghetu@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR4P281CA0416.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:d0::19) To AM6PR04MB4472.eurprd04.prod.outlook.com
- (2603:10a6:20b:23::20)
+	Mon, 09 Nov 2026 11:35:38 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 37FB61516;
+	Mon,  9 Nov 2026 03:35:33 -0800 (PST)
+Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B59B93F85F;
+	Mon,  9 Nov 2026 03:35:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794224136; bh=rTLHWsiv8pph/dAfc4DcKVgal8O6MwfZfU2M1D232cA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Qzcy7j5c8+tbgnD1Z9hB0H2xfYVSag9SEoaDEDoibA7M1o5laQrfJaS2pa7i5zACm
+	 0Wgo+QHOtul0e27z4on0wY4fO+kWBT/9IiUgRtGqRXOU8DsIHZh5o41QjjaZjx8WoB
+	 tleUJKwVUK/luuLMar6jw5SH1NCbv5e66XgI8lXc=
+Message-ID: <06e52c9c-9026-4279-b8c0-53a54a667dad@arm.com>
+Date: Mon, 9 Nov 2026 11:35:31 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4472:EE_|DU0PR04MB9670:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c47ad66-aeb9-4432-a77e-08df3e550804
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|23010399003|19092799006|10067099003|11063799006|56012099006|261021123027099003|261021121427099003|261022075727099003|261009223027099003|261026121527099003|261102123227099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Z9v5oBCYWLfYolDy6+0Z/vEz8mUNefJJwqNZuPTRalpbzyRt4PDKjU5nj+CLdm47ENvnGnG01K7LvXAX7jsuTS1eZxBT9dHr5vPTrQ5wGYqXszCTQWFzUli6JAIJ0R8lP3uLPnmwJkJC3HkpSeFk8wzxR/xZosy+P6PcValckN9W+Nz9nVW0ODQOCI/j5V+1XP/bvDXb23jIh/4iusuottZrvnX7j/VVDMoHfLDgVzrbi9Pq6OPq1hvAR3yQ4YHSM9n40XhIEBhV61VzmncEBBzW/Khf/mNswxbGILY/jgAzO3ry5rr4jDNv8z6aa0q867VRDvAdeVRE4RFlngyG3awmqRm0sSXd6f5uKGuXsOjBP0e41EjVQhpOxZtDa0aps2P0H/Ff+7+xbxoy6MsqL7Vwd97xFCbSITN/POOBD5ipBAA9e6zQWE1Wv2bRhFNytrMlMCiVBKIZyIGUcEIQBqdNEEe77DY6X6Ks4tfy1C9RAjcC7y9DWB4+LaOiccfwPXJHpBepCGPJVE82+eA8DbhfCbpB1JAZQ8yNFUtMsjqLAHYNgRe3CLdCOt9wuvITNRV9SsY5VNqdGgXGxRS9HOlHdEUzUfRH3ax2y+VT7VQ3sQdxRBvdOemOliEzX7BGbYdXxMkYJUdOROO5eRbVvRLaPsb59e2OEQKuMZN7wtk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4472.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(23010399003)(19092799006)(10067099003)(11063799006)(56012099006)(261021123027099003)(261021121427099003)(261022075727099003)(261009223027099003)(261026121527099003)(261102123227099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sTGefgqH1PCBH2+6V7b3RtSKIESHSpLVVzMEK/+LqZ/fWSVYY53epy0pF2VF?=
- =?us-ascii?Q?eblxmRLIuVz29+XE8EcRooTiKdy+KxcufLWTx6SZ14N+BvH3U1F6k/C4UMZn?=
- =?us-ascii?Q?8HZvAseYNvgYVeQ5gwoUs7lfObAFGk50kNNexXAjpP9YXIxcOAJZdkx1tWPb?=
- =?us-ascii?Q?JzXr0JeWO/YtfOH7YuwEOryGe7ptj47aLuxxgnuVmJ2b5wMkDHGe+/xtNUOj?=
- =?us-ascii?Q?blR8XlcL83sjTa8M1MBihnHkG0yrb45NtwnF5fgMmoB6M2wiiShBiXk0pMMN?=
- =?us-ascii?Q?F1vapBCn0lGdmL1lqrq23RYm8Khg5z3barV8z8TpaF1FS+Ulcb6tvaOiit5H?=
- =?us-ascii?Q?oi3Zg4Y/YZlaL0DsY4wZYDReSBNRaFeTzEIY64wgQNv5Jo8OxYZQ74Qw+ioZ?=
- =?us-ascii?Q?BmkyZVlLuW2ZzqySrZ+ctxPWsEkd6j0W+TPDIeFxdao18n4RndFNoZZn/7cP?=
- =?us-ascii?Q?xFgqHnzpdt3rmIniqTleuZapKSIva+ALr3uZaCHRN3WRiIFS5DbxJLGvKu+2?=
- =?us-ascii?Q?5eBOSIA353avL7fsNw0pGGNKeO1Kqin59XiEMfiJqhOusfsl/vfbO2WeAjr6?=
- =?us-ascii?Q?seCDuLCUX27ualRZd6w4kyOWnMdo5KrxzAsOu9yERv1KgANr6J0zd5X+PqB1?=
- =?us-ascii?Q?K6tQmWKzB4dfn0FmrvPuTfXWfQ+KXY8ofoE8Bvn7xI04/SkLvhDTMnwqBrJp?=
- =?us-ascii?Q?uZHl+470cWR1zYLPBuK1yZq5tBMk8lZG545Ordz1uGoVEoFoQMXHxpNgDex9?=
- =?us-ascii?Q?8gAHz0NNZ/E5o8cPjdpyeMeAvGhmbD2ifSCsl/LOaMKQ9TKDxY8LAbc3sxD/?=
- =?us-ascii?Q?5DWTvHYNjAZb1tB1TmdSP4KLI7WwVrvXgWbzAIt44ZGMBSQf22H+pzaGCCmy?=
- =?us-ascii?Q?Svy7Bd0TB+Ef6Ok0F5OPdKiaMJk4XYDLCTI8F081ekj1NIfuuYoT4bPx7q6K?=
- =?us-ascii?Q?Iqhj0lYlWh67O4BO5B34AO5Vc3F0WVfrrqkqdovs9GJ7oQsoVXhh3AqhmmOp?=
- =?us-ascii?Q?LWbI8Pmyjk9K/yAp+yYIgFgKYdOVtAWQXi4Mn1W5vVs9hd5y7xJKPuO/dRuq?=
- =?us-ascii?Q?R9iDRPxbAO/mNu7OWJQ6wMAlelKiF4eKQfpQ5nuJW4Z6kpEGobSlgoRPY0XR?=
- =?us-ascii?Q?77k87Ex4+csktebs6L0scawXSsKgy8s+6+B+GmcuxpZIU258o7cL4rGzFfmw?=
- =?us-ascii?Q?Unh0hdvX+yzIP50JZNbU9WDtdU+iZNB3OBCNn134zXCQAf8hCjf8pd8/tlAs?=
- =?us-ascii?Q?THijoy3F2VsNFU+X8JL7M+29yz9ghPFgjvcl13V2PdaO33gr/1+m8KZHbiSt?=
- =?us-ascii?Q?GfSWL+EdKkbxqQ1UijbWdkzbQnpJ3SPluNpHhFV9qh/D0B4QPvv0OrCVGXMa?=
- =?us-ascii?Q?yVyCGAUDC9OcyBf5Woi3hjQjvcC/oHlmaiH40JiwAOeQt0VlYbzhkOSjzqKr?=
- =?us-ascii?Q?bl7mC3NH47XDDVqpujcjxo/k2BBQHA8ttmD5SdT/Ttdd4/ex0jJeJ+A2i8Dm?=
- =?us-ascii?Q?JxoYwontI/OAkePpGV2pjJ9xfzgQjo4d/j5NI9TyE2xZwMWDuaIGzwPNHP73?=
- =?us-ascii?Q?AwijKTjGDQYb7AuP8V3w7ckljHBggdpHUhzAi1zAJ1gUk+FMdiHwLZJdLxUn?=
- =?us-ascii?Q?Hymsi9W7nJSnI8pNuPKXsP+P57YaY/6p8odO7oZrDQ1vxRpPHnFbS89SbHxg?=
- =?us-ascii?Q?u6/XZpoHAcH2fWpCu+9DCwYbQQXbYa69ElnK25x3Oad9iXocsDhSxJk/L5tE?=
- =?us-ascii?Q?7eFExUHZlg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c47ad66-aeb9-4432-a77e-08df3e550804
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4472.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 11:31:43.9353
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QkLQ1rIRtiXsqXB8I4H/GUcGeTdCFTIb2YVgHZ8XHCVIuf2C6hd65weYLPeekmwYPL0CcxBU4M6zs+EIUqN0oA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9670
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/11] KVM: arm64: CCA: Support runtime faulting of memory
+To: Fuad Tabba <tabba@google.com>
+Cc: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
+ kvmarm@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>,
+ Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>,
+ James Morse <james.morse@arm.com>, Oliver Upton <oliver.upton@linux.dev>,
+ Zenghui Yu <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>,
+ Christoffer Dall <christoffer.dall@arm.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>
+References: <20261102141304.126883-1-steven.price@arm.com>
+ <20261102141304.126883-11-steven.price@arm.com>
+ <fa0ee5a1-4c49-4c1f-bfbb-c270dc4b6301@arm.com>
+ <CA+EHjTy970AWnhYoZ5OqxQ8ojCAELeejw60y2NmpDsM_ZMdu4Q@mail.gmail.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <CA+EHjTy970AWnhYoZ5OqxQ8ojCAELeejw60y2NmpDsM_ZMdu4Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_033156_583592_345E0DC5 
-X-CRM114-Status: GOOD (  11.75  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261109_033537_405704_5DA126CC 
+X-CRM114-Status: GOOD (  19.48  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -145,44 +84,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Florin Pavelescu <florin.pavelescu@nxp.com>
+Hi Fuad
 
-Cast to u64, so that multiplications and additions will be done
-in 64-bit arithmetic and the possibility of integer overflow is eliminated.
+Thanks for sharing the pVM gmem details, some more questions below.
 
-Fixes: 53990cf9d5b48 ("clk: imx: pll14xx: consolidate rate calculation")
-Signed-off-by: Florin Pavelescu <florin.pavelescu@nxp.com>
-Signed-off-by: Stefan Ghetu <stefan.ghetu@nxp.com>
----
-Changes in v2:
-- Drop the redundant (u64) cast on kdiv, as suggested by Frank Li.
-  Adding a 32-bit value to a u64 already promotes it to u64.
+On 09/11/2026 07:40, Fuad Tabba wrote:
+> Hi Suzuki, Steve,
+> 
+> On Thu, 05 Nov 2026 17:30:16 +0000, Suzuki K Poulose
+> <suzuki.poulose@arm.com> wrote:
+> [...]
+>>> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+> [...]
+>>> @@ -1816,13 +1828,28 @@ static int gmem_abort(const struct kvm_s2_fault_desc *s2fd,
+>>>          /* Pairs with the smp_wmb() in kvm_mmu_invalidate_end(). */
+>>>          smp_rmb();
+>>>
+>>> +        if (kvm_vm_is_realm(kvm)) {
+>>> +                is_realm_private = kvm_realm_is_private_address(&kvm->arch.realm,
+>>> +                                                                s2fd->fault_ipa);
+>>> +
+>>> +                if (is_realm_private != kvm_gmem_is_private_gfn(kvm, canonical_gfn)) {
+> [...]
+>> I am wondering there is a way to make it a bit more generic. The issue
+>> is, only Realm has private memory with guest_memfd for now. Don't know
+>> the pKVM plans for it.
+> 
+> The plan is for protected pKVM VMs to be backed by guest_memfd too,
+> which would also hold each page's private/shared state [1]. So
+> kvm_arch_has_private_mem() will be true for them, and this comparison
+> applies as is. Only how the expected state is computed differs: for a
+> pVM it comes from the per-page share state rather than an IPA bit.
 
- drivers/clk/imx/clk-pll14xx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+When you say, per-page, you mean per-IPA or per "backing page" ? i.e.,
+can pKVM do something like :
 
-diff --git a/drivers/clk/imx/clk-pll14xx.c b/drivers/clk/imx/clk-pll14xx.c
-index c6438144e507..ee9a9e4c392a 100644
---- a/drivers/clk/imx/clk-pll14xx.c
-+++ b/drivers/clk/imx/clk-pll14xx.c
-@@ -124,7 +124,7 @@ static long pll14xx_calc_rate(struct clk_pll14xx *pll, int mdiv, int pdiv,
- 	u64 fout = prate;
- 
- 	/* fout = (m * 65536 + k) * Fin / (p * 65536) / (1 << sdiv) */
--	fout *= (mdiv * 65536 + kdiv);
-+	fout *= ((u64)mdiv * 65536 + kdiv);
- 	pdiv *= 65536;
- 
- 	do_div(fout, pdiv << sdiv);
--- 
-2.34.1
+    kvm_ipa_is_private(kvm, ipa) ?
+
+(similar to Realm) or does it need the struct page backing the "ipa" ?
+
+> 
+> Steve, could you gate the guest_memfd checks on
+> kvm_arch_has_private_mem(kvm) rather than kvm_vm_is_realm(), this one
+> and the memslot check you proposed for 02/11? Only the
+> kvm_realm_is_private_address() and realm_map_ipa() calls are
+> realm-specific, and they could be VM_REALM cases of a switch on
+> vm_flavor, as Marc asked for on the v21 memslot check [2]. The macro
+> would then only widen to protected VMs when pKVM's guest_memfd support
+
+Makes sense.
+
+Suzuki
+
+> lands.
+> 
+> Cheers,
+> /fuad
+> 
+> [1] https://lore.kernel.org/all/CA+EHjTz+WgXEW5RTxXf4oGeEb1Tsm5Ha4nOc4S1jBcp7jxP4+A@mail.gmail.com/
+> [2] https://lore.kernel.org/all/86mrsw2jrn.wl-maz@kernel.org/
 
 
