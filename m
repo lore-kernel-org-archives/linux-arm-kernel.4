@@ -2,73 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F20606D803
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21594606D80B
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hjc4UNoS;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=TcSDr+w5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E+OHjaWS;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=TJ5bOWAO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=P6VJcdeGPLmQQkKLnT/yRNbiCAJPKjitwFw5ODXVfxM=; b=Hjc4UNoSe/7d+J
-	EAplTRgbpQu10c+eTlSXDX6x9OYyqFwGJaov+zC20/qbVSb5HJ0oCX6eme3VVszW2GTfsA6AjgGE0
-	mRLvKn/uGUbhDy2aEa17Gg47DInQMh07h2ds558pljyp5Dinr/cO9niv+LCSFBWZUPDPbRVF2t7ww
-	KAlhNSnnEIPhD6Qbr/SDL5qT1RMs0+935+uFMX9zQDighlHnHk0caDP57jKxlT7u3gUTCUhgdwgAz
-	9VjINzpA4H3xDex4WT3dyJX9cZsFwdY0Qu7ePPzeT6H5JB2a+D6yG86ZAFjX8Hn2PnUOuynchl2lP
-	Z7tAT12ccotA9Q/QDnQQ==;
+	List-Owner; bh=ZuOsQOHsiS8QPwDnFYQbHYafUjBRSGU2wZy1UicFmfk=; b=E+OHjaWS+TRnXs
+	3AqOIvgWAYZe9yKo2qqynnvYvYduJKfWxtWvLnci+6RK8ZJsjOrc+++Iqdq3KE79tHxQS5F4kGFof
+	eI1g1IAvhhoi9Rs2BXMPCHqqtXVBvn2Unx9jRkqreAXOIfBXR4ehE6AkRZVLWWlx/Ilt/x7Jj5c0A
+	/3fFru75//Og+n0h6LYbHfun8f2MlM7h8TQi60yrgFYkZwNLGDNZtD5X0V+J/xo6lE5vdF7ZOfUIl
+	7IrZWf/okawszqUgfqwQ7yOZNU20f6YoV5HdV2VLwGpcc66kW9ygb96VVohqpUGCdZeXY6zwUF7Y7
+	IOU2zaFp/jHsubkzCw0w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQ77-00000000usP-0q5E;
-	Mon, 09 Nov 2026 14:12:49 +0000
-Received: from mail-dl1-x122b.google.com ([2607:f8b0:4864:20::122b])
+	id 1xQQ7B-00000000uwD-3cjN;
+	Mon, 09 Nov 2026 14:12:53 +0000
+Received: from mail-dy1-x1331.google.com ([2607:f8b0:4864:20::1331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQ74-00000000upt-1lnO
+	id 1xQQ77-00000000usK-2F6h
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 14:12:48 +0000
-Received: by mail-dl1-x122b.google.com with SMTP id a92af1059eb24-1438d9363fbso529815c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 06:12:46 -0800 (PST)
+	Mon, 09 Nov 2026 14:12:51 +0000
+Received: by mail-dy1-x1331.google.com with SMTP id 5a478bee46e88-37071c0f42aso1749776eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 06:12:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1794233565; x=1794838365; darn=lists.infradead.org;
+        d=chromium.org; s=google; t=1794233568; x=1794838368; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=P6VJcdeGPLmQQkKLnT/yRNbiCAJPKjitwFw5ODXVfxM=;
-        b=TcSDr+w5eL6ZE+0wk+1mMWdLbnljdv5ZOV1e6t8n/ykcq6644/k2q3Bmo476WKHZ5D
-         pa6CU70xIupXRYcrgCl3R+rJ6+0Z9QwcoqZPQvxu8T9YjB3w2h3VP3yVuCi/NEQe912Y
-         UgpCCLUp5tdEcMAiWc9YOfrCALd90/5DYah2U=
+        bh=ZuOsQOHsiS8QPwDnFYQbHYafUjBRSGU2wZy1UicFmfk=;
+        b=TJ5bOWAOPaO0/kJArIwvoY4oWo2mTAHQCDChccdV+sbfCfwHcUSjpWZYq+/7dybgKW
+         LKHpxGJZi/Cp3ndsfqgELEMzvtXZm1YGXFbDDy/p+h4uLTv8T9peRdqGOiIneM8W+8J4
+         cz/LZodqHnvZRzR2sJ5Oq2/uBsciYd2R4g/go=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794233565; x=1794838365;
+        d=1e100.net; s=20260707; t=1794233568; x=1794838368;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=P6VJcdeGPLmQQkKLnT/yRNbiCAJPKjitwFw5ODXVfxM=;
-        b=ylnYH3wv1fBP1h1hAj+Yir8pM3Z0TzS0KMNcxmW1LNWZQMXL3avbcXip7yTmrQd8Es
-         zrYkxFxe+bAZrDInUtbtoMiFSEVo92QYnjv/p6G9bVsq3+HZHKUzwWMlizgMUjlKPI76
-         ATsM0K970OflOc5IXlwbK++YfVaV7spGvLiLiyVVDCulFOH+Z4K3E2nXtItpwisyp5Kf
-         k9mxyiX/b/AU0F2cQOCXgai00mgwQBCEkgAQyu899wNGTH8zSfDzTPhm80ALgWlc1gOt
-         b1qq/DLut1m3TWqQI2nOIdDWCpYkid2aRAm4m2DdLik+1N2o53B+TmEl2kXNLQMVXxq/
-         uIAQ==
-X-Forwarded-Encrypted: i=1; AL+hErGFaoxUWOgNvIBgTQKl8Vr474nszdvD7PszSUZuni9SbJsj94mKqL3gPQwpNiHHPYmBgGZIGeRFwGjcV+RTPjXe@lists.infradead.org
-X-Gm-Message-State: APuU4Z+hTHkZzUBCLCBMTdFw4oD7UJIJ/+Vmn9S9z+OrdjLMhUCumj7D
-	6u2TtdOUrHzMB67FTvrkc1p7yWz1YvYU82R3ePxJHGqliKHNO+uwnc1Qmn87lmy7vg==
-X-Gm-Gg: AYBFou0CzxZcCTpRIAo4TcFuWOjClTTwhrwRde3dCV4DZ4Ts19PyrhclpWBH9YNMu2f
-	zA9WIP7CKqt1YNI9Pr/wWxx3n6+s5gf89723LemWMp1A3UXUPoY0JXcA9t123nc9S84dE+ON6VO
-	ENR09bmCNZWpf5PMYkOog0+404haKXn56Jh/h4oduUKkt0Fw3M0Wgim8PlokLSWVZ+tcLryxPVs
-	4F+FnARKbSlh0Ikkw1i84P+9/4VcFnLWb/6XEdWzetNMJ+zvuyKSGWqwaUKWlMqyP6LabopEv2o
-	nr5cD1luK+ExCeiIQj15+mAV52DV34/i5W0Grg5NK6EOVWormW+FLOB/NRhWPBHF4Q5JE3k4F9H
-	B6cMNnzfXkyYsyl8zo+x1qdO4h+BuHHmKPgHbwqFeXFeLrAijHuDV7T/sZAW3Sc2CtIiY1fQhCO
-	6o5Q8yc1AotRRiJ4LMvA8fevAK64RL88oo0ZH/Nlz0y6AZSBOzDq4noNBWzb0mxBvGcFfwLU/+N
-	D0HiDtFdwoBf2Q7bCKWzvk5xC+8tif2+GaPyN2Womo/B0CG02GFGxMYpCZAnqJ2Q62Je3hfwLJM
-	wLdfDHaFb+VA9ldNzYsPsQXqe77KXtw03pHKPMPz+IdOZcVPFTCpWNIyxCee
-X-Received: by 2002:a05:701b:428a:20b0:194:e9e5:11b0 with SMTP id a92af1059eb24-1b269b0c10fmr10662445c88.14.1794233565388;
-        Mon, 09 Nov 2026 06:12:45 -0800 (PST)
+        bh=ZuOsQOHsiS8QPwDnFYQbHYafUjBRSGU2wZy1UicFmfk=;
+        b=uV6RQ/dMhDYeydDoxpdc1blmKNFT282s3IjtCJ2m7rHiVii3AT0XUSQiDCfGEEF2hk
+         LHvRD2nKPZWKjJ4HM4kL02vp5+g6yqmH9PlTTcSvm/T28+9pWRh9OVdXtxTJnkrYhVZt
+         3qHRPc+oxSG7FHtbH++Au3VKkwgnU74iheOmBChbi5SA2e/cPnqmfeEdKgoEWFDahilA
+         WMUEJnIeQX88IYN+nGn4sqVElyRwotm7vRuEP8u2oECyQrSixIx6Yi+0fYBKmGegB+mK
+         uEb8Yw/kApsfjjHb+RB4rnNoOVdkmkRy5dFnN8x0Fq9awYzW3dyqnrhwJpjx+1xfhrsG
+         NiKQ==
+X-Forwarded-Encrypted: i=1; AL+hErGCbxznLjMvxb+OwN+/zjMfdCtmO4m6i2VuB9X7QU1ZD27ExOzWIHeSeApwdZMZcJG4MU++qhv3zkkJnAlI03ay@lists.infradead.org
+X-Gm-Message-State: APuU4Z/qpCGTOt6ikULcmb+/55h3dRmIMJkzMfISiRouRj9wLSBp7OFi
+	vlYUNJmekCDdQZqYL3hq2DA/TTYJ1+aimTnzNzS1ELoa1hb/esSOWsqb0XyFXfPDKA==
+X-Gm-Gg: AYBFou1SwgHV6iyYBzA5SIbxDbOVm2vNssICPjKvvavsk6fewzjcyGS2kWMRdJo9wWm
+	eoQHTLDa3KSE8Bp8smJQJSYIWTkpAtce8yg1kLHPArkUr2RMN7QV0TS75IXXS0OSNfO8JsI9JdL
+	S9s6hnRA0gQcsQDUdBOzPcuwpSKOdFCpLpFOoQY6hYRo8FkfSJcoh/2LpzMnvXNJBzXDelctGPT
+	eoR3zrtBFG0aHVEh495yRmzFSvFLvkcYQxXFC/eQTE/a89j7xchOEvSZgzX92zgTVb+Kx3YSqk5
+	uw/UV6ndZsxAguymGBz515OLb4xmIy+4qUbRMXRcqX7zeKxiwO/a05tDEQou+46T0EVcWMxY0SY
+	stzxqadHVTQxU7uiaXknRmoHP31gc1+jlWuuthhuzmIS3XQenQCnn1InRAQEci4Yv6jXlJLfu7m
+	oX26wU6dfkLneo5Kj/3YgBVAHAv3XVTt+cyj7RHaIyn98HQoVVUAwN5jmtmujKf+oEdmvkJg06P
+	cNHOSMiKQ98/E1+z3JxEOtpSg0wUkC4yBd8CfDEJ2WLZ3h/24D6SWzac62qjeIr1p/u0M2E5aKX
+	HE5aaGVOE6RYOPEbF5oxPw3sa2xZj2VMEXW2A3P3Ep0fqvh7imRwpawz7tAt
+X-Received: by 2002:a05:693c:41c7:10b0:368:7c2d:a612 with SMTP id 5a478bee46e88-37336acea27mr4873781eec.10.1794233568342;
+        Mon, 09 Nov 2026 06:12:48 -0800 (PST)
 Received: from localhost ([2a00:79e0:203d:7:24d0:a2cf:66c5:ef86])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-372660f444csm21084768eec.19.2026.11.09.06.12.43
+        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-372631df629sm13253988eec.1.2026.11.09.06.12.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2026 06:12:44 -0800 (PST)
+        Mon, 09 Nov 2026 06:12:48 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Matthias Brugger <matthias.bgg@gmail.com>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
@@ -76,9 +76,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH 1/5] arm64: dts: mediatek: mt8173-elm: Clean up unused MT6397 regulators
-Date: Mon,  9 Nov 2026 22:12:28 +0800
-Message-ID: <20261109141233.983830-2-wenst@chromium.org>
+Subject: [PATCH 2/5] arm64: dts: mediatek: mt8173-elm: Fix DA9212 compatible, node names and labels
+Date: Mon,  9 Nov 2026 22:12:29 +0800
+Message-ID: <20261109141233.983830-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.56.0.455.g6c5a503b38-goog
 In-Reply-To: <20261109141233.983830-1-wenst@chromium.org>
 References: <20261109141233.983830-1-wenst@chromium.org>
@@ -86,8 +86,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_061246_467720_CC33E0F3 
-X-CRM114-Status: GOOD (  14.77  )
+X-CRM114-CacheID: sfid-20261109_061249_606670_7014217D 
+X-CRM114-Status: GOOD (  14.80  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,92 +107,87 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Several MT6397 (MT6391) PMIC regulator nodes in mt8173-elm.dtsi are
-not actually used on either Elm or Hana according to the board
-schematics. They may have been copied from the EVB dts.
+The CPU and GPU regulator on Elm and Hana is a DA9212, not a DA9211,
+according to the schematics. The DA9212 has two dual-phase bucks,
+which is what the device tree describes with BUCKA and BUCKB, while
+the DA9211 has a single four-phase buck.
 
-- buck_vgpu: Output pins are unconnected; GPU power is supplied by an
-  external DA9212 buck regulator instead.
-- ldo_va28: Only connected to a decoupling capacitor for the PMIC's
-  internal audio codec and fuel gauge ADC blocks, both of which are
-  unused as both boards use an external ALC5650 codec and EC-managed
-  smart battery.
-- ldo_vgp4: Only routed to a test point on Elm and an unpopulated
-  resistor on Hana.
-- ldo_vibr: Output pins are unconnected.
+Change "da9211" to "da9212" in the compatible string, node names and
+labels to match the actual part. Drop the unused label on the PMIC
+node. While at it, change the PMIC node name to be more generic.
 
-Keep these regulator nodes in place so that the regulator core still
-considers them constrained and can disable any unused rails left on at
-power-up (such as ldo_va28), but drop all their properties and unused
-labels. This is meant to preserve prior behavior.
+The mismatch against the schematics was flagged by an agent. Manually
+tested on a Hana (Telesu) device.
 
-Checking the regulator nodes against the schematics, drafting the change
-and reviewing it were done by an agent. Manually tested on a Hana
-(Telesu) device.
-
+Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 26 ++++++--------------
- 1 file changed, 8 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-index 2c6ec714e117..dd0373b45b56 100644
+index dd0373b45b56..be6e6fd7cd36 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-@@ -988,12 +988,8 @@ mt6397_vcore_reg: buck_vcore {
- 				regulator-always-on;
+@@ -171,7 +171,7 @@ &watchdog {
+ };
+ 
+ &mfg_async {
+-	domain-supply = <&da9211_vgpu_reg>;
++	domain-supply = <&da9212_vgpu_reg>;
+ };
+ 
+ &cec {
+@@ -187,12 +187,12 @@ &cpu1 {
+ };
+ 
+ &cpu2 {
+-	proc-supply = <&da9211_vcpu_reg>;
++	proc-supply = <&da9212_vcpu_reg>;
+ 	sram-supply = <&mt6397_vsramca7_reg>;
+ };
+ 
+ &cpu3 {
+-	proc-supply = <&da9211_vcpu_reg>;
++	proc-supply = <&da9212_vcpu_reg>;
+ 	sram-supply = <&mt6397_vsramca7_reg>;
+ };
+ 
+@@ -307,13 +307,13 @@ &i2c1 {
+ 	clock-frequency = <1500000>;
+ 	status = "okay";
+ 
+-	da9211: da9211@68 {
+-		compatible = "dlg,da9211";
++	regulator@68 {
++		compatible = "dlg,da9212";
+ 		reg = <0x68>;
+ 		interrupts-extended = <&pio 15 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 		regulators {
+-			da9211_vcpu_reg: BUCKA {
++			da9212_vcpu_reg: BUCKA {
+ 				regulator-name = "VBUCKA";
+ 				regulator-min-microvolt = < 700000>;
+ 				regulator-max-microvolt = <1310000>;
+@@ -325,7 +325,7 @@ da9211_vcpu_reg: BUCKA {
+ 							   DA9211_BUCK_MODE_AUTO>;
  			};
  
--			mt6397_vgpu_reg: buck_vgpu {
--				regulator-name = "vgpu";
--				regulator-min-microvolt = < 700000>;
--				regulator-max-microvolt = <1350000>;
--				regulator-ramp-delay = <12500>;
--				regulator-enable-ramp-delay = <115>;
-+			buck_vgpu {
-+				/* unused */
- 			};
+-			da9211_vgpu_reg: BUCKB {
++			da9212_vgpu_reg: BUCKB {
+ 				regulator-name = "VBUCKB";
+ 				regulator-min-microvolt = < 700000>;
+ 				regulator-max-microvolt = <1310000>;
+@@ -658,7 +658,7 @@ pins-mux {
+ 	};
  
- 			mt6397_vdrm_reg: buck_vdrm {
-@@ -1017,8 +1013,8 @@ mt6397_vtcxo_reg: ldo_vtcxo {
- 				regulator-always-on;
- 			};
- 
--			mt6397_va28_reg: ldo_va28 {
--				regulator-name = "va28";
-+			ldo_va28 {
-+				/* unused */
- 			};
- 
- 			mt6397_vcama_reg: ldo_vcama {
-@@ -1079,11 +1075,8 @@ mt6397_vgp3_reg: ldo_vgp3 {
- 				regulator-enable-ramp-delay = <218>;
- 			};
- 
--			mt6397_vgp4_reg: ldo_vgp4 {
--				regulator-name = "vgp4";
--				regulator-min-microvolt = <1200000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-enable-ramp-delay = <218>;
-+			ldo_vgp4 {
-+				/* unused */
- 			};
- 
- 			mt6397_vgp5_reg: ldo_vgp5 {
-@@ -1100,11 +1093,8 @@ mt6397_vgp6_reg: ldo_vgp6 {
- 				regulator-enable-ramp-delay = <218>;
- 			};
- 
--			mt6397_vibr_reg: ldo_vibr {
--				regulator-name = "vibr";
--				regulator-min-microvolt = <1300000>;
--				regulator-max-microvolt = <3300000>;
--				regulator-enable-ramp-delay = <218>;
-+			ldo_vibr {
-+				/* unused */
- 			};
+ 	i2c1_pins_a: i2c1-pins {
+-		pins-da9211 {
++		pins-da9212 {
+ 			pinmux = <MT8173_PIN_15_EINT15__FUNC_GPIO15>;
+ 			bias-pull-up;
  		};
- 
 -- 
 2.56.0.455.g6c5a503b38-goog
 
