@@ -2,130 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFF3606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 19:42:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54269606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 19:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BYTSndQK;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=EOZU0itS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FV4LhKd3;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FsVMDLq+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LCr3WCOsL13MOjtm+aHMaQmG1DxZ+QVChZmLyUFkF5M=; b=BYTSndQKD+BTa7UHBk2vUCXdsi
-	x/CQqP95EHnlZVvVgaRflcNkeO1p9TZSdNU30p9V9ZqOQpCns0K8TJCsUi7rm/F3XMxo+HHI6DJUk
-	JscTce+gmN3SXcUQOtLjh6Rb/1DDm5vokI/r3a55RiN3ZcQqwwYipHtbu0yiHI2zBxcExNNSDhCk8
-	S1veaMrSHL9odMKwG2n1/lpph2gk2g9kd7Pi/hzKJYqkGR6QtjvSW2wq8JA061yDgKt/c7CRH6a3i
-	u7j3n0AgsCA85/eTT2JQLZPFhMYeeNSPquTZedrEglY2PtUTAuV75+FsNiKJ5YZdADIjYVcTMoBbr
-	EPpEVP4Q==;
+	bh=Q4lNPn/UK40kisCgS/o/tQFd2nFoymjIVtaW1cQeiCw=; b=FV4LhKd3Z2ek6nba0hz+AQnbwi
+	dg+MpHu0pRJFV5AP9V3lwW2AfPyoGBZeLwvF7AmNejAeoF2u3dcf4ZCDanz+/9G7n/4HRtfh2tHIb
+	ZovvbV3F4LriDr8xuwhX7zmGvRq87enIT8OHJ3DHtW/sOV/id0S4LhFmryrvzv8qNQVGOtf9/ZoIY
+	9syuDLktyeLmzK2DaE45420r/m0oLmp/lOZCQFLcbLQpz152SefxlAS8uEpibXUWSjLTLOjmH62TF
+	wYN9BzuUi8Qexxm1UAf22/mJCeBxOqrFdsgU+hu5wS7maqlBk+tWWd7NvgmT4CF8TlRx16Y4CqcpU
+	OlrJQNxQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQVGE-00000001Zvi-2cLX;
-	Mon, 09 Nov 2026 19:42:34 +0000
-Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
+	id 1xQVJD-00000001a7d-0NBO;
+	Mon, 09 Nov 2026 19:45:39 +0000
+Received: from mgamail.intel.com ([198.175.65.17])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQVGB-00000001ZvM-2rzU
+	id 1xQVJB-00000001a7D-0TC0
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 19:42:32 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qHDCr2I9Uxb9/7kuKc1cynYzgF9gdvKRMkr1lz2yKWrjT42VaHG81uqwrfdCi+D7dmux2MiinzXlGLNZ9PxqmWDwYV4h2YUDqGrRvTfqyQixCbq94iKd/8AlMi7GyO7cl32yTxMVq2FWUV47yPEJA+HPR/KCrr5huzDr5xRao7CMNKDID/t176RoI0zqSEwGDHXj2r1Zo8UadcuGxJv6lEKruORVcvuxPz84v24TvppY6REJA3OJ7omvSeGE/jkBDw7gDm3lxr/5odohSfzMRJhsj8sUM7Il5OrvLW75hVxm3h15zlLP1TVWXO79XxtcOFshtbuH5hQfGRbULh6Lfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LCr3WCOsL13MOjtm+aHMaQmG1DxZ+QVChZmLyUFkF5M=;
- b=rrs8JALdBZiph65o0DdLHT4fqbD9jzz5/Lh++jRQGafPChCwjjPqoVXQyGYJ8QS/XjQnkGY6SILAJ2r27ay9A25SPth8A+mrMak4s+qaWjdskUwA5AsMax/3JDI1iKdmwXKGKp0q4b86R+rzdglrZNd/PKCF5VjlIPWcDuyVqJdSJQEEhnIDbGojTZeYqqGu6DmZNPirJvCnG7WZduMPayRBBfZ0hW3v/MKs89HBbgS+lkXc6nzP3OyqW2DkaoY+VyLH9/BVqk/Q5cUnb+AqN0tQJu42DOqJdnRE9evZO0KAGbg2YzADEs8Ytmonc3r8vNB7/Dj5ZrS+Uw5R1eFucQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=linux.dev smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LCr3WCOsL13MOjtm+aHMaQmG1DxZ+QVChZmLyUFkF5M=;
- b=EOZU0itSOG2yauOU76+az6NckkgXfRMoqyfK9nMVkI9lcHvHRDYUm7lXzfHUuY7kBdahH5MIX1VE9EZWrmqqOdzjLWWtjTZ4tz7xxdVcic4zVb2pqno8pB4ljRDo+zSyrKeqCvAVvJq28hWXasTaY9PbqgXP7RJeIic1+geiRdALLC63V/IQP5WOlYyRNa3qRxEK1ZNxk1EP6d/DYamQsYsjvBReFaZE6n6Mtsc7lNUVIqQSjJOdGvlsjzwNaLVyFi9aFEKQi6uoK739UdUk5LlwUNo2nyWxYI/DPO0f3yW/mrY1XytfEq83Zo0tHM5qwQ4lNVwYsdEUuKAwWxA5AA==
-Received: from BN0PR04CA0192.namprd04.prod.outlook.com (2603:10b6:408:e9::17)
- by CH2PR12MB4279.namprd12.prod.outlook.com (2603:10b6:610:af::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.16; Mon, 9 Nov
- 2026 19:42:20 +0000
-Received: from BL6PEPF00022572.namprd02.prod.outlook.com
- (2603:10b6:408:e9:cafe::8a) by BN0PR04CA0192.outlook.office365.com
- (2603:10b6:408:e9::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.13 via Frontend Transport; Mon, 9
- Nov 2026 19:42:19 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 216.228.117.161) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BL6PEPF00022572.mail.protection.outlook.com (10.167.249.40) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 9 Nov 2026 19:42:18 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 9 Nov
- 2026 11:41:57 -0800
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail202.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 9 Nov
- 2026 11:41:56 -0800
-Received: from nvidia.com (10.127.8.13) by mail.nvidia.com (10.129.68.8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56 via Frontend
- Transport; Mon, 9 Nov 2026 11:41:53 -0800
-Date: Mon, 9 Nov 2026 11:41:49 -0800
-From: Nicolin Chen <nicolinc@nvidia.com>
-To: Peng Fan <peng.fan@linux.dev>
-CC: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Jason Gunthorpe <jgg@ziepe.ca>, "Joerg
- Roedel (AMD)" <joro@8bytes.org>, Thierry Reding <thierry.reding@kernel.org>,
-	Krishna Reddy <vdumpa@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
-	Jean-Philippe Brucker <jpb@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
-	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Peng Fan
-	<peng.fan@nxp.com>
-Subject: Re: [PATCH RFC v7 4/7] iommu/arm-smmu-v3: Use a per-domain CD table
- for non-PASID streams
-Message-ID: <avIh/TUA3rPsytWw@nvidia.com>
-References: <20261030-smmu-shared-sid-ver7-2026-10-26-v7-0-961726ebd6ab@Example.Com>
- <20261030-smmu-shared-sid-ver7-2026-10-26-v7-4-961726ebd6ab@Example.Com>
- <auU/RARTx8dv5mAE@nvidia.com>
- <au8iwj68zXO1us_8@fedora>
+	Mon, 09 Nov 2026 19:45:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794253537; x=1825789537;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=dmur0JcSjI2h2Sn4a6LIR095JVkgSSE5Iw2d6Hhzk9U=;
+  b=FsVMDLq+Mdg+QVKbt+CSMo6Sq+5KSUyoTO4shsrZSlV1LkhqsQs69Prs
+   cCj1NNM6n19THfymMJdgmTegwFmjfjsPcnDya9f6EJaomAjkqXPY+q9EV
+   BMAIccnBzg/Y7aKGkw2ouRKFxdocxLTUdyRv5cKK3WjLn1SJNIh6zDkWh
+   hSO/XSA/x22ZXQeVrD1JcPGMdlRqcarQHMQ+igrVRH+vnO3lIz63pFnsH
+   JjdgptXz6sgtpUw4tnyhqEupeNmkt0fDqutcdKcLtMwZxjqPCinveQcEU
+   q+eTPHcJWpuGKRaste5TFrsdoSfa9GUb37D5D2KQ/VclyaF0cqMO3T1qk
+   A==;
+X-CSE-ConnectionGUID: glJTE+8RRdmT6xKSd9BUJA==
+X-CSE-MsgGUID: ne41P8zyQlKO/HsO6xysVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3015816"
+X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
+   d="scan'208";a="3015816"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2026 11:45:36 -0800
+X-CSE-ConnectionGUID: kViXZNE9R2ico6E4XGQLrA==
+X-CSE-MsgGUID: ymLHrCHYTDuxbi0VO1H2QQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
+   d="scan'208";a="8285756"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.144])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2026 11:45:33 -0800
+Date: Mon, 9 Nov 2026 21:45:30 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	"Simek, Michal" <michal.simek@amd.com>,
+	"Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"amitrkcian2002@gmail.com" <amitrkcian2002@gmail.com>
+Subject: Re: [PATCH 2/6] iio: adc: versal-sysmon: validate temperature
+ hysteresis
+Message-ID: <avIi2pDCcaKDx3Ro@ashevche-desk.local>
+References: <20261102122112.1723130-1-amit.kumar-mahapatra@amd.com>
+ <20261102122112.1723130-3-amit.kumar-mahapatra@amd.com>
+ <aumyreagvU6zewKI@ashevche-desk.local>
+ <DS7PR12MB9503E787CBD5E9292B5637CEDC762@DS7PR12MB9503.namprd12.prod.outlook.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <au8iwj68zXO1us_8@fedora>
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022572:EE_|CH2PR12MB4279:EE_
-X-MS-Office365-Filtering-Correlation-Id: ffa45807-98d4-4692-e74a-08df3e9990a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|36860700016|376014|23010399003|7416014|22082099003|18002099003|261026140227099003|261028144727099003|261026121527099003|56012099006|261022105027099003|261009223027099003|261021135927099003|11063799006|4143699003|10067099003;
-X-Microsoft-Antispam-Message-Info: vz5q7miqPN+v4rnCLBvlXqshdJfU5B8Hj4JffgD/JNJMASvsYX+kIleQntUwD/Bime2m0WDASYtkmyrY7eNKWjvso7urvhesYEL6ZLz/W5enJ7ux3cCXGoqnIqi73I6hdKM6cnqoAuXTl3AQry9tI6UMsQdFOG4HXoekkX9M+8cVFpSCoNWa298LWWXjAVGyFSPXgm8+ghGKpUuyCvgChQjspnpfoXYO86Szf7Nr3Kt6ewXzg29PgWQAt1muaOVyyiQnErPp6bOEnccx0TfaWHnEtq3fbFF+KXhAzzJgPaOBEThk2ZxSYsZLiugh0rrMXr9cx8+qrbxP68fqRVWCg9HzLCow4AFLBEh2KHV9fEVmJK6CP7JUIIFUxKM4cO3Q90BGz7i+p6ZxIekLygfWt33x4yb2zuevpDtuS1BG1wtuJji01rFUDnB2ipyWuQhFgroFMTHdmPtxcOhtXLLP6TeXXHHRo6zyCvz2zyJTrB5SA4OI/rChdwZbBiC83/eBRPF5P+GfT0UUSSBm5UTIkp28t01XWOiEIbt8YKY0wgp+W44rkNuF6ld9PoxbzmZ17oIurHVv/Z9J8E8aIvCLrQA9qord64kWkss6JoCJPaQF9ow1u1B/05rfRqtn7CfC1HQy33mQ19iDuLLr9xN+lmByRVepTiyObKvEG5JKDBQrFYcMlbco7KAqmOEtwrne0yvCDFPUDBx9BRtZItKlnA==
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(376014)(23010399003)(7416014)(22082099003)(18002099003)(261026140227099003)(261028144727099003)(261026121527099003)(56012099006)(261022105027099003)(261009223027099003)(261021135927099003)(11063799006)(4143699003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 1PRS4eQjulnp5TRMyLmi9vzb4aqZdcsYRt7O3wCvu8bEGWthVPKoNrAbhqdPlZ3Piw3L+HgcY9uokmagn490aCFIvfh/t4asn+/VTwKcow14jKEsmMwFj72UBslXLn0R5mVkrvcQdyc0wY7f8zkJGcXRviWw3ppgw4p8PrN7Me0jMQXfyUyITaqjzj/PodG0fE/I1OkPhOlCZnsI3ZBS6JvUsq2Jsc9pu/aXufLaeRXoB2oWUXu2HYgxaYuujt6aR8ZefNLGCs980xj9A7JZbFbb3IhXLcQ31oiomeiD7D5SK6JiV0OZUqDqVucd+c+2bVqHLx+MHFnhY0GG1dTbmbp/hLO/aF5TnVkHTbYzpj69EoZwklNmeJOk+/cpuNcAqG6NRMrCmcrjd/cta1wks1rnEaEsat7QkSEAbSWMiKVWTWsW3ncVysbyY0ZRikRc
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 19:42:18.5906
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ffa45807-98d4-4692-e74a-08df3e9990a5
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022572.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4279
+In-Reply-To: <DS7PR12MB9503E787CBD5E9292B5637CEDC762@DS7PR12MB9503.namprd12.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_114231_737414_07E6A2FD 
-X-CRM114-Status: GOOD (  19.05  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_114537_199576_71F46697 
+X-CRM114-Status: GOOD (  16.38  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -143,54 +107,33 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 07, 2026 at 09:08:18PM +0800, Peng Fan wrote:
-> On Fri, Oct 30, 2026 at 06:07:16PM -0700, Nicolin Chen wrote:
-> >On Fri, Oct 30, 2026 at 08:09:36PM +0800, Peng Fan (OSS) wrote:
-> >>  	if (!arm_smmu_ssids_in_use(&master->cd_table)) {
-> >>  		struct iommu_domain *sid_domain =
-> >>  			iommu_driver_get_domain_for_dev(master->dev);
-> >>  		bool ats_always_on = master->ats_always_on &&
-> >>  				     sid_domain->type != IOMMU_DOMAIN_BLOCKED;
-> >> -		bool downgrade = sid_domain->type == IOMMU_DOMAIN_IDENTITY ||
-> >> -				 sid_domain->type == IOMMU_DOMAIN_BLOCKED;
-> >> +		bool s1 = (sid_domain->type & __IOMMU_DOMAIN_PAGING) &&
-> >> +			  to_smmu_domain(sid_domain)->stage ==
-> >> +				  ARM_SMMU_DOMAIN_S1;
-> >>  
-> >> -		if (!ats_always_on && downgrade)
-> >> -			sid_domain->ops->attach_dev(sid_domain, dev,
-> >> -						    sid_domain);
-> >> +		if (!ats_always_on &&
-> >> +		    (s1 || sid_domain->type == IOMMU_DOMAIN_IDENTITY ||
-> >> +		     sid_domain->type == IOMMU_DOMAIN_BLOCKED))
-> >> +			ret = sid_domain->ops->attach_dev(sid_domain, dev,
-> >> +							  sid_domain);
+On Fri, Nov 06, 2026 at 11:35:00AM +0000, Mahapatra, Amit Kumar wrote:
+> > -----Original Message-----
+> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > Sent: Tuesday, November 3, 2026 3:39 PM
+> > On Mon, Nov 02, 2026 at 05:51:08PM +0530, Amit Kumar Mahapatra wrote:
+
+...
+
+> > >     sysmon_q8p7_to_millicelsius(upper_reg, &upper_mc);
+> > >     sysmon_q8p7_to_millicelsius(lower_reg, &lower_mc);
+> > > -   *hysteresis = upper_mc - lower_mc;
+> > > +   *hysteresis = max(upper_mc - lower_mc, 0);
 > >
-> >This covers almost all the possible domain types here. So, just
-> >drop that downgrade, and it should cover the other cases:
-> >
-> >		if (!ats_always_on)
+> > But you can use abs_diff() and let it make the problem of the supplier.
 > 
-> Thanks, I agree the reachable set here is only S1/identity/blocked, and the
-> outer condition is effectively !ats_always_on. The separate downgrade
-> check is gone in v8.
-> 
-> However, I don't think we can fold the inner check into a single
-> attach_dev() call for all cases. For an S1 RID domain this is a PASID
-> teardown path, and arm_smmu_attach_dev() -> arm_smmu_attach_prepare() can
-> allocate with GFP_KERNEL and return -ENOMEM. The IOMMU core requires
-> set_dev_pasid() not to fail here,
+> I went with max() because an inverted pair (lower above upper) doesn't
+> really describe a hysteresis, so treating it as zero seemed the safest
+> reading. With abs_diff(), an inverted 80/90 pair would be read as
+> 10 degrees, and the next threshold write would then set the lower
+> threshold to 70.
 
-You got the point that S1 shouldn't propagate the return code.
+Bu where did it come from? HW or DT? If the latter, we may just reject
+the wrong values at probe time, no?
 
-The non-S1 case is the previous "downgrade" path, which didn't
-propagate the return code either.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-So what I was saying is simply:
--		if (!ats_always_on && downgrade)
-+		if (!ats_always_on)
- 			sid_domain->ops->attach_dev(sid_domain, dev,
- 						    sid_domain);
 
-Nicolin
 
