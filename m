@@ -2,60 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FA76082BD8
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3CBD60735C8
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Egzx4ePZ;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=YND6bMzo;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=dkRV3vDH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AGC4zK4+;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=p2blvFPa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Pgz6boN4kPnt6gDALHRvgvIhz0jT89VwBf1sm3F9K/k=; b=Egzx4ePZejC6q0
-	QlVOl8XMW8ig3gyWFq4ke1o8SRaB2bc0TqjYA42iE+KcIO05urhrZBqM+mKqRR7F+ADBLtmlzSGXC
-	Iaz/hU0oD6MRdsbu+AJc2oFe6GlKyE08/GiKmFppoEHHmyfeApvepDV2ZzIWQ+m+qVE8xTPSGPuS6
-	yXRl9oC7mvEXPGsfmLVoJ+qfnAzFr/AGLe7HkKSd5HESFQP7I4o1ZOIzmGZLMcnnazCFK2dkL9vN2
-	i8PKcDkPNlVvJlM59KHTCynSNCKAv1AF1jUSsWWzqkINhR1BynBaezAbvFfXH5owWN0m9bYHIMRkM
-	xOk06XjOMnsOwrBqz4Xw==;
+	List-Owner; bh=/IWC4Ezrv13mnRLgYAS+OGpQRhiZxP+CWXUuP5MxY5k=; b=AGC4zK4+FdZso3
+	mKJ3mOMV+r/R9NKGcsAdzxChqNYO0pZqLyCLLED8kf2v0Egnd/XKTgqpqorVjmcpkg9deHYgpSXnR
+	UJSumTKPc4GQFA9ql62Os/T0BwcjWFTcoHHaSkwd3tkJfmx1kWGyyK9yGvLJknJUTHMtLdDxZ/OsZ
+	5uzOz/IyCF3pIHRhsFXfrJ7E5w66NcfKGBlsmlacd8AK3RNdbmjPftTG0VvnhcX+UXDigoRzDO77w
+	WiDWQCDLpmKKuUu3e+jfiuZnusmGSw33X0AImgXmh2RVPtzyZlCuMnEbhgQZEBV9vcRUesGks94m1
+	oLDGcbdix+E9st5pgIjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4a-000000007lA-0pGV;
-	Mon, 09 Nov 2026 08:49:52 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xQL4i-000000007vk-1sYk;
+	Mon, 09 Nov 2026 08:50:00 +0000
+Received: from out-39.mta1.migadu.com ([95.215.58.39] helo=mta1.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4W-000000007iH-44AX
-	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 09 Nov 2026 08:49:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
-	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-Type:Content-ID:Content-Description;
-	bh=Pgz6boN4kPnt6gDALHRvgvIhz0jT89VwBf1sm3F9K/k=; b=YND6bMzocQb4Ad/eI9zJ6DOE/R
-	beL+MdtQS31JPOqd+3FIJWgVP0Vkxt8+O5dixP6HE0HBvBZ3gxFnTvm3roK5y3YppncE3xbch8xAb
-	39ddM0AnAIm0syXzdYYJfVrvc9z34geQEnoB5iWIfgJuMrRKTAjSQKJhFPUYVNwfE+PTJN6QWBjO1
-	/u5DJn0gsWbfruhVMl2I//+sPx40kIKKlEREgzrZ9VQqT44ZTgyQy0a2YZHOZiKwSVBkta/9HIWr5
-	FGJdUReBmdeioaMBR2adujcfOsW+cyc0vhKERKdTMqgYAC/r8ZY4nqXSrhCA1yzm5nmeMMwsfiQnv
-	b5670s4Q==;
-Received: from out-228.mta0.migadu.com ([2001:41d0:1004:224b::e4] helo=mta0.migadu.com)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4N-00000006TZg-14mZ
+	id 1xQL4d-000000007nm-0l8g
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 08:49:46 +0000
+	Mon, 09 Nov 2026 08:49:57 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=La1x2LkqcyYZCK+glL9ieQttCEuyP9HscydJiwzIbiw=;
+DKIM-Signature: a=rsa-sha256; bh=skF3Q2kCAVK6QTvon75TdZ0hQ5efPIx2rz2Mq7wxPjQ=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794214177; v=1; x=1794818977;
- b=dkRV3vDHeyO0tUMFx9q37JNcOUxNLAspFOHFiofF4dJ81kSqZqIAB9Kkh/uyhyUbd/8h/j0/
- gfoZhTduWTQYNqtKcxCmJernqBadrj2g3EXO8j0yPCNDKo+WEQSlOns92FX2NxFxdDaKp+v59cM
- 8BNJoIAXS7GrCeMvNsPtr3mo=
+ t=1794214193; v=1; x=1794818993;
+ b=p2blvFPas2dHVup8gOoWIvdycqKygalVMSGl9x3nfg60jvl38GtLQo+TqjklTn8BDJgnJuIq
+ 3V0a3/4tRARL3wVhhaBETVeTWZqJ1siU7d0WtIsi8hmOqg5H2wS+rt+3PrpTSkdn1uBAXJHP6vt
+ wyjFqHmZPjn9d4s/T6YKLzXA=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id c5a3d1c981718f74;
-	Mon, 09 Nov 2026 08:49:36 +0000
-X-Mizu-Trace-ID: c5a3d1c981718f74
+Received: by smtp.migadu.com with ESMTPS id 3788735acdf328b4;
+	Mon, 09 Nov 2026 08:49:53 +0000
+X-Mizu-Trace-ID: 3788735acdf328b4
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -78,9 +62,9 @@ Cc: Will Deacon <will@kernel.org>,
 	kvm@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 13/19] KVM: arm64: selftests: Add pkvm_vcpu_regs register-state test
-Date: Mon,  9 Nov 2026 08:48:48 +0000
-Message-ID: <20261109084854.840576-14-fuad.tabba@linux.dev>
+Subject: [PATCH v2 15/19] KVM: arm64: selftests: Add pkvm_isolation host-access test
+Date: Mon,  9 Nov 2026 08:48:50 +0000
+Message-ID: <20261109084854.840576-16-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261109084854.840576-1-fuad.tabba@linux.dev>
 References: <20261109084854.840576-1-fuad.tabba@linux.dev>
@@ -88,9 +72,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_084941_312148_A7453E0B 
-X-CRM114-Status: GOOD (  21.65  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261109_004955_383423_B3803659 
+X-CRM114-Status: GOOD (  21.28  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,254 +93,262 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A protected vCPU's registers are held at EL2, which handles some exits
-itself and returns others to the host. The host can move the vCPU's
-thread to another CPU at any exit. The guest's registers have to keep
-their values through all of that.
+The host keeps its userspace mapping of a protected guest's memory, but
+can't reach the data through it. The host kernel's copy_to_user() and
+copy_from_user() on that mapping fail. If the host kernel pins a page
+and accesses it through its own mapping, as process_vm_readv() does,
+EL2 zeroes and reclaims the page, and the guest loses it.
 
-Verify that x19-x28 and v0-v31 keep the values the guest loaded across
-each kind of exit, and across a host CPU migration at every MMIO exit.
+Test each of these, that MADV_DONTNEED and munmap() leave the guest's
+pages pinned and accounted, and that a normal VM's fault on them fails.
 
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
  tools/testing/selftests/kvm/Makefile.kvm      |   1 +
- .../selftests/kvm/arm64/pkvm_vcpu_regs.c      | 218 ++++++++++++++++++
- 2 files changed, 219 insertions(+)
- create mode 100644 tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c
+ .../selftests/kvm/arm64/pkvm_isolation.c      | 225 ++++++++++++++++++
+ 2 files changed, 226 insertions(+)
+ create mode 100644 tools/testing/selftests/kvm/arm64/pkvm_isolation.c
 
 diff --git a/tools/testing/selftests/kvm/Makefile.kvm b/tools/testing/selftests/kvm/Makefile.kvm
-index 8855c9abb2fd0..1e40e793aa6f3 100644
+index 13998964facd5..68bdd01f62270 100644
 --- a/tools/testing/selftests/kvm/Makefile.kvm
 +++ b/tools/testing/selftests/kvm/Makefile.kvm
-@@ -195,6 +195,7 @@ TEST_GEN_PROGS_arm64 += arm64/pkvm_id_regs
+@@ -193,6 +193,7 @@ TEST_GEN_PROGS_arm64 += arm64/page_fault_test
+ TEST_GEN_PROGS_arm64 += arm64/pkvm_host_abi
+ TEST_GEN_PROGS_arm64 += arm64/pkvm_id_regs
+ TEST_GEN_PROGS_arm64 += arm64/pkvm_irq
++TEST_GEN_PROGS_arm64 += arm64/pkvm_isolation
  TEST_GEN_PROGS_arm64 += arm64/pkvm_mem_share
  TEST_GEN_PROGS_arm64 += arm64/pkvm_psci
  TEST_GEN_PROGS_arm64 += arm64/pkvm_smccc
-+TEST_GEN_PROGS_arm64 += arm64/pkvm_vcpu_regs
- TEST_GEN_PROGS_arm64 += arm64/psci_test
- TEST_GEN_PROGS_arm64 += arm64/sea_to_user
- TEST_GEN_PROGS_arm64 += arm64/set_id_regs
-diff --git a/tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c b/tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c
+diff --git a/tools/testing/selftests/kvm/arm64/pkvm_isolation.c b/tools/testing/selftests/kvm/arm64/pkvm_isolation.c
 new file mode 100644
-index 0000000000000..41023b62800aa
+index 0000000000000..f083d0434238a
 --- /dev/null
-+++ b/tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c
-@@ -0,0 +1,218 @@
++++ b/tools/testing/selftests/kvm/arm64/pkvm_isolation.c
+@@ -0,0 +1,225 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * pkvm_vcpu_regs - a protected guest's registers across every kind of exit.
++ * pkvm_isolation - what the host can and can't do with a protected VM's memory.
 + *
 + * Copyright (C) 2026 Google LLC
 + * Author: Fuad Tabba <fuad.tabba@linux.dev>
 + */
 +
-+#include <sched.h>
++#include <errno.h>
++#include <sys/mman.h>
++#include <sys/uio.h>
++#include <unistd.h>
 +
 +#include "kvm_util.h"
 +#include "pkvm.h"
 +#include "processor.h"
 +#include "test_util.h"
 +
-+/* Accesses to this IPA, outside every memslot, exit to the VMM as MMIO. */
-+#define MMIO_IPA	BIT_ULL(31)
-+#define MMIO_READ_VAL	0x0123456789abcdefUL
++#define DATA_MEMSLOT	(PKVM_IDMAP_MEMSLOT + 1)
++#define DATA_GPA	BIT_ULL(30)
++#define DATA_PAGES	16
++#define DATA_SIZE	((size_t)DATA_PAGES * MIN_PAGE_SIZE)
 +
-+/* One new host page per stage-2 fault. */
-+#define FAULT_MEMSLOT	(PKVM_IDMAP_MEMSLOT + 1)
-+#define FAULT_GPA	BIT_ULL(30)
++#define GUEST_VAL	0x0badf00ddeadbeefUL
++#define HOST_VAL	0x0123456789abcdefUL
 +
-+#define NR_EXITS	64
-+
-+enum exit_kind {
-+	EXIT_MMIO_WRITE,
-+	EXIT_MMIO_READ,
-+	EXIT_HVC,
-+	EXIT_SYSREG_EL2,
-+	EXIT_SYSREG_HOST,
-+	EXIT_S2_FAULT,
-+	NR_EXIT_KINDS,
-+};
-+
-+static const char * const exit_kind_names[] = {
-+	[EXIT_MMIO_WRITE]	= "MMIO writes to the VMM",
-+	[EXIT_MMIO_READ]	= "MMIO reads from the VMM",
-+	[EXIT_HVC]		= "hypercalls EL2 handles",
-+	[EXIT_SYSREG_EL2]	= "sysreg traps EL2 handles",
-+	[EXIT_SYSREG_HOST]	= "sysreg traps the host handles",
-+	[EXIT_S2_FAULT]		= "stage-2 faults on new memory",
-+};
-+
-+/* x19-x28, v0-v31, then what the exit left in x0. */
-+struct reg_state {
-+	u64 x[10];
-+	u64 v[32][2];
-+	u64 x0;
-+};
-+
-+#define REG_WORDS	(offsetof(struct reg_state, x0) / sizeof(u64))
-+
-+static_assert(offsetof(struct reg_state, v) == 80, "v0 offset");
-+static_assert(offsetof(struct reg_state, x0) == 592, "x0 offset");
-+
-+#define X_REGS	"19, 20, 21, 22, 23, 24, 25, 26, 27, 28"
-+#define V_REGS	"0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "		\
-+		"16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31"
-+
-+/* @op x19-x28 and v0-v31 at their struct reg_state offsets from @buf. */
-+#define REGS_OP(op, buf)								\
-+	".irp num, " X_REGS "\n" op "	x\\num, [%[" buf "], #8 * (\\num - 19)]\n.endr\n"	\
-+	".irp num, " V_REGS "\n" op "	q\\num, [%[" buf "], #80 + 16 * \\num]\n.endr\n"
-+
-+/* Load the registers, take the exit @insn causes, and store them again. */
-+#define REGS_ACROSS(insn, addr)								\
-+({											\
-+	asm volatile(REGS_OP("ldr", "in") insn "\n" REGS_OP("str", "out")		\
-+		     "str	x0, [%[out], #592]\n"						\
-+		     : : [in] "r"(&regs_in), [out] "r"(&regs_out), [arg] "r"(addr)		\
-+		     : "x0", "x1", "x2", "x3",						\
-+		       "x19", "x20", "x21", "x22", "x23", "x24", "x25", "x26", "x27", "x28",	\
-+		       "v0", "v1", "v2", "v3", "v4", "v5", "v6", "v7",			\
-+		       "v8", "v9", "v10", "v11", "v12", "v13", "v14", "v15",		\
-+		       "v16", "v17", "v18", "v19", "v20", "v21", "v22", "v23",		\
-+		       "v24", "v25", "v26", "v27", "v28", "v29", "v30", "v31",		\
-+		       "memory");							\
-+})
-+
-+/* Set in the guest's copy by the host before the first run. */
-+static int exit_kind;
-+static u64 host_page_size;
-+
-+static struct reg_state regs_in, regs_out;
-+
-+static void guest_regs_across_exits(void)
++static volatile u64 *page_va(int idx)
 +{
-+	u64 *in = (u64 *)&regs_in, *out = (u64 *)&regs_out;
-+	int i, j;
++	return (volatile u64 *)(DATA_GPA + (u64)idx * MIN_PAGE_SIZE);
++}
++
++/* The host acts on the guest's memory at the sync, then the guest checks it. */
++static void guest_code(void)
++{
++	int i;
 +
 +	pkvm_guest_init();
 +
-+	for (i = 0; i < NR_EXITS; i++) {
-+		/* Different in every word and on every exit. */
-+		for (j = 0; j < REG_WORDS; j++)
-+			in[j] = 0x0101010101010101UL * (j + 1) ^ (u64)i << 32;
++	for (i = 0; i < DATA_PAGES; i++)
++		*page_va(i) = GUEST_VAL + i;
 +
-+		switch (exit_kind) {
-+		case EXIT_MMIO_WRITE:
-+			REGS_ACROSS("str	x0, [%[arg]]", MMIO_IPA);
-+			break;
-+		case EXIT_MMIO_READ:
-+			REGS_ACROSS("ldr	x0, [%[arg]]", MMIO_IPA);
-+			GUEST_ASSERT_EQ(regs_out.x0, MMIO_READ_VAL);
-+			break;
-+		case EXIT_HVC:
-+			REGS_ACROSS("mov	w0, #0x80000000\n hvc	#0", 0);
-+			break;
-+		case EXIT_SYSREG_EL2:
-+			REGS_ACROSS("mrs	x0, id_aa64pfr0_el1", 0);
-+			break;
-+		case EXIT_SYSREG_HOST:
-+			REGS_ACROSS("mrs	x0, clidr_el1", 0);
-+			break;
-+		case EXIT_S2_FAULT:
-+			REGS_ACROSS("str	x0, [%[arg]]", FAULT_GPA + i * host_page_size);
-+			break;
-+		}
++	GUEST_SYNC(0);
 +
-+		for (j = 0; j < REG_WORDS; j++)
-+			__GUEST_ASSERT(out[j] == in[j], "exit %d: %s%d is 0x%lx, not 0x%lx", i,
-+				       j < 10 ? "x" : "v", j < 10 ? 19 + j : (j - 10) / 2,
-+				       out[j], in[j]);
-+	}
++	for (i = 0; i < DATA_PAGES; i++)
++		GUEST_ASSERT_EQ(*page_va(i), GUEST_VAL + i);
 +
 +	GUEST_DONE();
 +}
 +
-+static cpu_set_t host_cpus;
-+
-+/* Move this thread, and with it the vCPU's next run, to another of its CPUs. */
-+static void migrate_thread(void)
++static void guest_np_read(void)
 +{
-+	int cpu = sched_getcpu();
-+
-+	do
-+		cpu = (cpu + 1) % CPU_SETSIZE;
-+	while (!CPU_ISSET(cpu, &host_cpus));
-+
-+	pin_self_to_cpu(cpu);
-+	TEST_ASSERT_EQ(sched_getcpu(), cpu);
++	*page_va(0);
++	GUEST_DONE();
 +}
 +
-+static void run_regs_across_exits(struct kvm_vcpu *vcpu, bool migrate)
++/* The host kernel's copy to or from private memory faults, and the uaccess fixup fails it. */
++static void host_write_from_private(void *hva)
 +{
-+	struct kvm_run *run = vcpu->run;
-+	u64 data = MMIO_READ_VAL;
-+	struct ucall uc;
++	ssize_t ret;
++	int fds[2];
 +
-+	for (;;) {
-+		vcpu_run(vcpu);
++	TEST_ASSERT(!pipe(fds), "pipe: errno %d", errno);
 +
-+		if (run->exit_reason == KVM_EXIT_MMIO && run->mmio.phys_addr == MMIO_IPA) {
-+			if (!run->mmio.is_write)
-+				memcpy(run->mmio.data, &data, sizeof(data));
-+			if (migrate)
-+				migrate_thread();
-+			continue;
-+		}
++	ret = write(fds[1], hva, MIN_PAGE_SIZE);
++	TEST_ASSERT(ret == -1 && errno == EFAULT,
++		    "write() from private memory: rc %zd errno %d", ret, errno);
 +
-+		switch (get_ucall(vcpu, &uc)) {
-+		case UCALL_DONE:
-+			return;
-+		case UCALL_ABORT:
-+			REPORT_GUEST_ASSERT(uc);
-+			break;
-+		default:
-+			TEST_FAIL("Unexpected exit: %s", exit_reason_str(run->exit_reason));
-+		}
-+	}
++	close(fds[0]);
++	close(fds[1]);
 +}
 +
-+/* With @migrate, the vCPU moves to another host CPU at every MMIO exit. */
-+static void test_regs_across_exits(enum exit_kind kind, bool migrate)
++static void host_read_into_private(void *hva)
++{
++	u64 val = HOST_VAL;
++	ssize_t ret;
++	int fds[2];
++
++	TEST_ASSERT(!pipe(fds), "pipe: errno %d", errno);
++	TEST_ASSERT_EQ(write(fds[1], &val, sizeof(val)), sizeof(val));
++
++	ret = read(fds[0], hva, sizeof(val));
++	TEST_ASSERT(ret == -1 && errno == EFAULT,
++		    "read() into private memory: rc %zd errno %d", ret, errno);
++
++	close(fds[0]);
++	close(fds[1]);
++}
++
++/* The host's long-term pins keep the guest's pages and their locked-memory accounting. */
++static void host_dontneed(void *hva)
++{
++	size_t locked = pkvm_host_locked_vm();
++
++	kvm_madvise(hva, DATA_SIZE, MADV_DONTNEED);
++	TEST_ASSERT_EQ(pkvm_host_locked_vm(), locked);
++
++	/* The host's mapping now has a new page, which the guest doesn't see. */
++	TEST_ASSERT_EQ(*(u64 *)hva, 0);
++	*(u64 *)hva = HOST_VAL;
++}
++
++static void host_munmap(void *hva)
++{
++	size_t locked = pkvm_host_locked_vm();
++
++	kvm_munmap(hva, DATA_SIZE);
++	TEST_ASSERT_EQ(pkvm_host_locked_vm(), locked);
++}
++
++/* A normal VM's fault on private memory fails, and the protected guest keeps its data. */
++static void host_np_vm_on_private(void *hva)
 +{
 +	struct kvm_vcpu *vcpu;
-+	unsigned int npages;
 +	struct kvm_vm *vm;
++	int ret;
 +
-+	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_regs_across_exits);
-+	npages = NR_EXITS * getpagesize() / vm->page_size;
-+	vm_userspace_mem_region_add(vm, VM_MEM_SRC_ANONYMOUS, FAULT_GPA, FAULT_MEMSLOT, npages, 0);
-+	virt_map(vm, FAULT_GPA, FAULT_GPA, npages);
-+	virt_map(vm, MMIO_IPA, MMIO_IPA, 1);
-+	write_guest_global(vm, exit_kind, kind);
-+	write_guest_global(vm, host_page_size, getpagesize());
++	vm = vm_create_with_one_vcpu(&vcpu, guest_np_read);
++	vm_set_user_memory_region(vm, DATA_MEMSLOT, 0, DATA_GPA, getpagesize(), hva);
++	virt_map(vm, DATA_GPA, DATA_GPA, 1);
 +
-+	run_regs_across_exits(vcpu, migrate);
++	ret = _vcpu_run(vcpu);
++	TEST_ASSERT(ret == -1 && errno == EPERM,
++		    "normal VM's fault on private memory: rc %d errno %d", ret, errno);
 +
 +	kvm_vm_free(vm);
 +}
 +
++static void (*host_action)(void *hva);
++
++static void on_sync(struct kvm_vcpu *vcpu, struct ucall *uc)
++{
++	host_action(addr_gpa2hva(vcpu->vm, DATA_GPA));
++}
++
++static struct kvm_vm *vm_create_with_data(struct kvm_vcpu **vcpu)
++{
++	struct kvm_vm *vm = pkvm_vm_create_with_one_vcpu(vcpu, guest_code);
++
++	vm_userspace_mem_region_add(vm, VM_MEM_SRC_ANONYMOUS, DATA_GPA, DATA_MEMSLOT,
++				    DATA_PAGES, 0);
++	virt_map(vm, DATA_GPA, DATA_GPA, DATA_PAGES);
++	return vm;
++}
++
++static void test_host_access(void (*action)(void *hva), const char *name)
++{
++	struct kvm_vcpu *vcpu;
++	struct kvm_vm *vm;
++
++	vm = vm_create_with_data(&vcpu);
++
++	host_action = action;
++	pkvm_run_loop(vcpu, on_sync);
++
++	kvm_vm_free(vm);
++	TEST_ASSERT_EQ(pkvm_host_locked_vm(), 0);
++
++	ksft_test_result_pass("%s\n", name);
++}
++
++/*
++ * The host never reads the guest's data: a kernel copy from private memory
++ * reads zeros, and the guest's next access to the page fails.
++ */
++static void test_process_vm_readv(void)
++{
++	u64 buf[2] = { HOST_VAL, HOST_VAL };
++	struct iovec local = { .iov_base = buf, .iov_len = sizeof(buf) };
++	struct kvm_vcpu *vcpu;
++	struct iovec remote;
++	struct kvm_vm *vm;
++	struct ucall uc;
++	ssize_t ret;
++	int i;
++
++	vm = vm_create_with_data(&vcpu);
++	vcpu_run(vcpu);
++	TEST_ASSERT_EQ(get_ucall(vcpu, &uc), UCALL_SYNC);
++
++	remote = (struct iovec){ .iov_base = addr_gpa2hva(vm, DATA_GPA), .iov_len = sizeof(buf) };
++	ret = process_vm_readv(getpid(), &local, 1, &remote, 1, 0);
++	TEST_ASSERT_EQ(ret, sizeof(buf));
++	for (i = 0; i < ARRAY_SIZE(buf); i++)
++		TEST_ASSERT(!buf[i], "process_vm_readv() of private memory read 0x%lx", buf[i]);
++
++	/* The guest's next access is its read of that page. */
++	ret = _vcpu_run(vcpu);
++	TEST_ASSERT(ret == -1 && errno == EFAULT,
++		    "guest access after process_vm_readv(): rc %zd errno %d", ret, errno);
++
++	kvm_vm_free(vm);
++	TEST_ASSERT_EQ(pkvm_host_locked_vm(), 0);
++
++	ksft_test_result_pass("process_vm_readv() of private memory reads no guest data\n");
++}
++
++static const struct {
++	void (*action)(void *hva);
++	const char *name;
++} host_accesses[] = {
++	{ host_write_from_private, "write() from private memory fails with EFAULT" },
++	{ host_read_into_private, "read() into private memory fails with EFAULT" },
++	{ host_dontneed, "MADV_DONTNEED of private memory leaves the guest's data" },
++	{ host_munmap, "munmap() of private memory leaves the guest's data" },
++};
++
 +int main(void)
 +{
-+	int kind;
++	const char *np_vm = "a normal VM's fault on private memory fails with EPERM";
++	int i;
 +
 +	TEST_REQUIRE(pkvm_supported());
 +
 +	ksft_print_header();
-+	ksft_set_plan(1 + NR_EXIT_KINDS);
++	ksft_set_plan(ARRAY_SIZE(host_accesses) + 2);
 +
-+	for (kind = 0; kind < NR_EXIT_KINDS; kind++) {
-+		test_regs_across_exits(kind, false);
-+		ksft_test_result_pass("x19-x28 and v0-v31 across %s\n", exit_kind_names[kind]);
-+	}
++	for (i = 0; i < ARRAY_SIZE(host_accesses); i++)
++		test_host_access(host_accesses[i].action, host_accesses[i].name);
 +
-+	kvm_sched_getaffinity(0, sizeof(host_cpus), &host_cpus);
-+	if (CPU_COUNT(&host_cpus) < 2) {
-+		ksft_test_result_skip("x19-x28 and v0-v31 across host CPU migrations: one CPU\n");
-+	} else {
-+		test_regs_across_exits(EXIT_MMIO_WRITE, true);
-+		kvm_sched_setaffinity(0, sizeof(host_cpus), &host_cpus);
-+		ksft_test_result_pass("x19-x28 and v0-v31 across host CPU migrations\n");
-+	}
++	test_process_vm_readv();
++
++	test_host_access(host_np_vm_on_private, np_vm);
 +
 +	ksft_finished();
 +}
