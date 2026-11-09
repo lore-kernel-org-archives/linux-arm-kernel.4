@@ -2,120 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FEA606A7B2
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E172E606AAD5
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:40:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N6VoyDFh;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=mXI+B7Mg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fc37o8st;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=gy/pUHLL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=; b=N6VoyDFhDXEN3K
-	Ostg/F7AYLDAEMMi+YC8QXfgPaRet6alGqbVZsIcFccC6B6S0veauHx1OmmHvRRb8ZiSx0GiVa4ky
-	gWmX/GtPDkuDyGVSy1CUXcPlVyuWe6zNiTadLbGteoQ5L6ykIvhzbFiA/HS1OffqQKmBdpQb1C/PD
-	wJCKABLCsHWO/TBz8CUU4kPljoKiwrrrCCpwN8/t1u2orCRqzO5LjpZr5gkL9w+tnkpiop/yG6yNp
-	nEFj07siGG2etqCPO/NeumJU0vclFny4PKFZfJXD0k0ic4AYQt+eSuYgfCiP2EIX4DKG7NTUf9d41
-	CegoIio2mn/tQ0nh+Eqw==;
+	List-Owner; bh=sx1g5ye6adgoDbOeyAiWR4bH+5HwaMNsR4cQud6nf1o=; b=fc37o8stDO20A/
+	f7aileyXc45iKIhjAQxuhrk8IURJJ3b5R81iZNKN1RobCAu+GcQYHDpYMQumt+Vcv7+lYqk1tBCk2
+	PZpkQStiGDrtKunQbiuGii/W+Sh53vtD0ux41ru6w5sPIXkBPinA9oXeo11/JwQMMKaTnClFnlNEz
+	otbpq2jq8A1rH3ZWBcGJnW6XcASX/GtH9E/7FCllXWWL+J92V2FZ3gICItjFeaTfBlGVcBFBlaJxC
+	CEXibVWJVHHkD47cSdOvPlcGyVfsSzHcoxezG0Y5rX+PKMvold3kNTDZ5yxjJbyYho4KfYnlVEkw8
+	iJd9ajtGgNgRw6K2Advw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSOq-00000001DLK-2P69;
-	Mon, 09 Nov 2026 16:39:17 +0000
-Received: from mail-qt1-x832.google.com ([2607:f8b0:4864:20::832])
+	id 1xQSPf-00000001DVS-1VCT;
+	Mon, 09 Nov 2026 16:40:07 +0000
+Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSOo-00000001DKQ-12Zh
+	id 1xQSPd-00000001DUk-03Mv
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:39:15 +0000
-Received: by mail-qt1-x832.google.com with SMTP id d75a77b69052e-5383c97c8cfso300571cf.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:39:12 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794242352; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Cbow0zi0XESjqTiIWHztTXBg5H4TMpMIxUrwLek9Pr1PRtxGIyJNK3hM/tmkt+Xko0
-         gQTtbqxjvEi/RFM15X/yR86rZs0ZHQUFPKJb3++y+M15WRVaVuVDelnMQAw73mn9pXw3
-         ibH0WAeUvuqxUhb2WrlL5QEWY8IM2L6GYlMsiaSPmVWKvUiMM373Hv2SQl38FZ3fcXgz
-         exDGiQaxpllFF8M5uJ477Rs2xmMIDBpCKTr/RvVCCJboBIeEjxKIyh+6uYkPdZiyRrxN
-         YWxXQyfiTsytUhfI6aOT7pfs0KoU5Bx/ald/yrlyyzOtRHTCuui2osUQHt9y9izeunmP
-         d/aw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=;
-        fh=hmwSPhGrOth4MNoia/1xu0RZTXtSDmqWR/LSqv5ENn0=;
-        b=LactMIlWMbs2ao0GHRFIT4/DA+ioIw4muS13IvRhK/kue65yNNPuuboLScrRsjDvaJ
-         CVbEtAdb0d42TW8mNHyl3bOLgWejRq/zkTxNRidd2dk6pfKFo4ptms+PyR+YoxBstpZt
-         uWYl72gaRBC9xt9DyRpbF99hcNl/8LMMIGe+lADlrzgOQSy3XyZ4E3VO73KKBvVN+ylv
-         x0uDgVCnntlMvg+8YagBU9DtJ0Bhu0MtuAbf/JzKisXWa8JbWV54Z+Dx6lr3L4K4S9fO
-         TLPNai/hgL1ZBtl1A4lwl8HA0X8xtCHNzHF19D3tT8lY9Nm2+PrIcJvr29qE21rs1OJx
-         LpFg==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Mon, 09 Nov 2026 16:40:06 +0000
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4918c2d727fso566630f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:40:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794242352; x=1794847152; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=;
-        b=mXI+B7Mg45oG6AklCE8rbAW9zaK5ndIL96zZLHbmyPOC40oAE1gY6qijVk7dXIdntY
-         9SuC7i7VqD8jPXZD4xoU4lBY7nsK32lZbC5TQmcUrItNndabMyK5031W8vqlQpni4/Mz
-         7CPqdVH8OPIkwlQEYYNlTQipnolY0lzUoW0eqoHDOE/8ztw7JTNqkx3x2IxSpVZkOyOX
-         3aTYXqYNpaxyuhOsmLFWArcuyK/1k6jsujYRrwBOL31w1Y7MzeeAtt5kX+Yf3MsbztJi
-         iVhMf294scaqhGXWpy6c9hIQZqTajTHqfxTFvC+eBAnkLDkEcDz9pKJNL6C/MRFAtqKZ
-         NRjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794242352; x=1794847152;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=linaro.org; s=google; t=1794242403; x=1794847203; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=;
-        b=mloh35PHPmQzhVABz4iv4GV4zZjbVlam/78qjuSlHBQ5wBhceXkVU8XpVuNhto4BSF
-         9yc4Jb9vHKC75p7vK/YdXUhTzRIuGwLoW5Ggz6MrAAekAG38e9XDDZiykMeZsSvgExB6
-         /ZSrtFhdYNL3zpyhAlBWXPVRaWTeke9l3H2w/ZDyOAwHRER17ZKRbesyrjyJxy+f0MIM
-         Hv5r8notLifmMCL80X+I23rsr7AaswalTk2rhvGkByX9C/jwdtwHnPUvm3BH8r05btQY
-         4YjU8U36NmViBXVKB5kaEIzjLmhKWHvV+Yd/pNXXnWtQHDfsj6W4QBvr1T32JkIzrJKh
-         DxLQ==
-X-Forwarded-Encrypted: i=1; AL+hErHznG86zqNbePwIfWOGHvAhO7k7bkyy7hzGY1Fk2NtIaYFb4FuZIi/OVVloHqJUI2/d38YTHUr1uPtq/4FMPpnd@lists.infradead.org
-X-Gm-Message-State: APuU4Z+xY87znkRfIam77YHGJz2lVDdmedEfdWqPvW27+fdBZqhIdp0M
-	e8OK6xLbEuWR2ka0+xGqtHgDkdLikEa1C4Af7WRWSL9v92rLmfs+ViTeCxWq8k2QxBfo1UqopSy
-	K62LeV175wyyuGdZnnqdiWCee5WwVus1WoUEvIwT5b9J7BZ2xGfeYELBy
-X-Gm-Gg: AYBFou0sWxQFuCeAyqzC8sb5sKFtXEOvHqU7J9iGEIMOPhuhvDlrEckkN2F+J1xazen
-	OdvdEXheNQwiibNKK+PHKTl2SWeB3atvJyFmrPZ/41hYiiJ3u0DegZLS7yuIJm/kV1ctGSUuGXn
-	KGb49Zxr52R6TtOKpV0miBAEekOAMeEKu6BEo9zPfvN+HVNKbZXzIC8mwYUZ/uOaD9IuKizRe0F
-	nFa/SW7At4V7W5KTOGChH0EPmpXvHIU0q0e4KngD3rY14K0D48Pw6AzkOwWhe4QquDGLzKuWkpu
-	dUUjweSewQBXMPinhTED2xulxfPnIQvSpDaN/dFC5AfsLoYteOqv0KJIhOJNRGZtTn2urSoErV9
-	ZRjKuIcYNbXaV5wUjUM4kEq0w2iUpj0cG0HwNS2+txs4p9AoN+5Z2o6Q992CcIAroyfU=
-X-Received: by 2002:a05:622a:2b4b:b0:532:8423:1e78 with SMTP id
- d75a77b69052e-55519d553afmr66891cf.10.1794242351337; Mon, 09 Nov 2026
- 08:39:11 -0800 (PST)
+        bh=sx1g5ye6adgoDbOeyAiWR4bH+5HwaMNsR4cQud6nf1o=;
+        b=gy/pUHLLGLFRG5HR8hMzqGUWg22Z3l1PoGRkn2RMRo/KHx3+zVw0QxXfHhntW3bnYp
+         uR32oA6OoIVKkgH1G27/iN0eBioCGNhaIMxckeOcRtex5uGDS2HhXOvT5Du6FgP2KJTd
+         hjA7DTH7frHGlAosAtzTbODQnYoOGAM6KeZFvqJZ4KFPVhleway068fzCZNDi2lv2N5l
+         v2OdR+LDF5qPT4CW5p9f8X2jAbRK2mwC4a1gX7WF77sEpqVGqxSOgey+XzjdD1iZ/onG
+         T5P1GZmkrfTZHj/ZqZl7a6WnyGbsHYwVBVfR436kuD5jcmJF8myeTry59RXMKPqXl7uz
+         +y5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794242403; x=1794847203;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=sx1g5ye6adgoDbOeyAiWR4bH+5HwaMNsR4cQud6nf1o=;
+        b=bwHHKRHLe1P/0xrHbV6DaHBJ+oFwZlIm3BTiQExU48O10LTgLmb/P+olp+9TZgyHZP
+         9aPArjh2547cN3zljFvKcwgfMxYIuOR8SuvJfs6vz5QyXnGBun0JkZByAZwDpgn+HxeF
+         9DNJR1m5eTVt2QwabVhMSY2Da0VbHNG9uKRCjZh+5fJSZ11Z1Ji+54nar2osRdhPROI9
+         0PK/qRZsyJn28cNlO58ztLrE7IruV8jjkoKS3NOezd5kc8HMPptzmC+Cq3JnBxu0Haqg
+         F+zebov6CSlMMPeb0sMqsl2ZvCawbZzKw0pOiFzQvS1nNea842zaO4B+LHEDYhgeEYFK
+         XjTw==
+X-Gm-Message-State: APuU4Z+TuxBUlaSwviFjc661OXLguOBKlckyLlkGcXli5psv0m51af9l
+	29J8zqcv4qZDoZVsXHU0imTmuXWa0Pa6nKsz60RuiI3wLrLfXOpNY6VterZTcniX7t8=
+X-Gm-Gg: AYBFou0ok50djwQtbvAPBGI0Ieb8sMVf+z0iXl0J7qn1dgKd8peJB0daSoHRabao7oJ
+	ILwhPnTR+ytLWr2LBepb+cF30ZNYPVCZieffhAJ0V4NCB1X2S1KAKdjF6yAQH0dMQ8EcrkH+m+D
+	ItJbwNbJZz66KWGbE6sUwpMmUB0Gg2I5Xf+K5DJNOz06z8DdA72uNv/aey3ZBKTiBzxoXF/bDkD
+	lPTwA01sOhzhtI9RV9YdBUiRy14rTEx8pkQTshcz6gN8v7TEtmiwQq34R/nQK8FRYO9gWtHjHbX
+	4HlRAerqMgYAoHpDTcFfTWMnBaVC19g9SHgVN5qf9a21nnC5pBAXjDWJqcLT5BhsyQmpZUCkaUd
+	1oHssbPMfgeuzkok2qPQZQ1mxkWv4VKdaBC5DCluFNCJcuKHVLJDoCaL/IW03MbfJ7Ep3IO8t08
+	THrTaLBuex7K4nmcFyONdb8eIExGmujquAHGHjZSg+j14PcSqrbT9kIZXZ4mbOsxGBEDY20cOaW
+	etPvlPY37Vg5uBLSK6pGe+elEONoOGQvzizPmIoOvMf+aHAdllYHmVI1pXocs6DGhCxFaakq+fH
+	SlV0kX2or302gbL3Tg==
+X-Received: by 2002:a05:6000:1848:b0:494:bf39:21a5 with SMTP id ffacd0b85a97d-4982e82bf9emr1102f8f.10.1794242402825;
+        Mon, 09 Nov 2026 08:40:02 -0800 (PST)
+Received: from [192.168.1.3] ([37.18.141.193])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49596ea5008sm11062337f8f.26.2026.11.09.08.40.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2026 08:40:02 -0800 (PST)
+Message-ID: <f8a2f477-2dc7-45a9-a2f0-f6e279ebf8f1@linaro.org>
+Date: Mon, 9 Nov 2026 16:40:01 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261109080126.417161-1-irogers@google.com> <20261109080126.417161-2-irogers@google.com>
- <179423587020.3133545.6594248101575070050.robh@kernel.org>
-In-Reply-To: <179423587020.3133545.6594248101575070050.robh@kernel.org>
-From: Ian Rogers <irogers@google.com>
-Date: Mon, 9 Nov 2026 08:38:59 -0800
-X-Gm-Features: AclHuK8feNx1zDrXSRA0wP-1jAG_C3k6aMQ0LXM4MGvjXYCUb91zzoIWLHYo0TA
-Message-ID: <CAP-5=fVDVds_q7NjAcapJw4pUx2psF2c9AsaKZC7nJbcOHOJ-A@mail.gmail.com>
-Subject: Re: [PATCH v19 1/3] dt-bindings: perf: Add Broadcom Raspberry Pi AXI
- PMU definition
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org, 
-	bcm-kernel-feedback-list@broadcom.com, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, Dom Cobley <popcornmix@gmail.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Mark Rutland <mark.rutland@arm.com>, 
-	Uwe Kleine-Koenig <u.kleine-koenig@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Randy Dunlap <rdunlap@infradead.org>, linux-perf-users@vger.kernel.org, 
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Shuah Khan <skhan@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/23] coresight: trbe: Clear TRBSR status at stop
+ sites
+To: Leo Yan <leo.yan@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@arm.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Anshuman Khandual <anshuman.khandual@arm.com>,
+ Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
+ Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
+References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_083914_293151_012F8591 
-X-CRM114-Status: GOOD (  14.54  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261109_084005_086501_AE0B317B 
+X-CRM114-Status: GOOD (  21.13  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -126,40 +109,76 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 9, 2026 at 6:51=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
->
->
-> On Mon, 09 Nov 2026 00:01:24 -0800, Ian Rogers wrote:
-> > Add device tree bindings for the Broadcom Raspberry Pi AXI PMU block
-> > found on BCM2835, BCM2711, and BCM2712 SoCs.
-> >
-> > The hardware exposes two MMIO register blocks: the primary monitor
-> > evaluates the System fabric and the secondary monitor evaluates the
-> > VideoCore VPU fabric.
-> >
-> > Co-developed-by: Dom Cobley <popcornmix@gmail.com>
-> > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
-> > Signed-off-by: Ian Rogers <irogers@google.com>
-> > ---
-> >  .../bindings/perf/brcm,bcm2835-axiperf.yaml   | 44 +++++++++++++++++++
-> >  MAINTAINERS                                   |  7 +++
-> >  2 files changed, 51 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/perf/brcm,bcm2835=
--axiperf.yaml
-> >
->
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Thanks Rob, and I appreciate the testing.
 
-Ian
+On 16/10/2026 17:55, Leo Yan wrote:
+> TRBSR_EL1 records the status of the buffer that just stopped. Clearing
+> it in trbe_enable_hw() postpones cleanup until another run starts. If
+> AUX output cannot restart, for example when AUX space is exhausted,
+> that clear never executes. Clear the status in arm_trbe_disable()
+> after disabling TRBE instead.
+
+Why is leaving it set a problem though? That's not mentioned. Maybe 
+there is some later patch that requires it?
+
+It seems like clearing on enable is cleaner because it only requires one 
+call to clear, but this replaces it with two separate calls without 
+really saying what the benefit of the extra complexity is.
+
+> 
+> trbe_handle_overflow() can start the next run without calling
+> arm_trbe_disable(). Clear the stopped buffer's syndrome and status bits
+> while TRBE is disabled, before attempting the AUX restart. This also
+> leaves the status clean when the restart fails.
+> 
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-trbe.c | 10 +++++++++-
+>   1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
+> index 26e7554d6bdd31f8a55a8bc3a7b6d4c49b984b9b..dd9c9330bb0c739795f300dafc6ce34e72fbf280 100644
+> --- a/drivers/hwtracing/coresight/coresight-trbe.c
+> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
+> @@ -655,7 +655,6 @@ static void trbe_enable_hw(struct trbe_buf *buf)
+>   	WARN_ON(buf->trbe_hw_base < buf->trbe_base);
+>   	WARN_ON(buf->trbe_write < buf->trbe_hw_base);
+>   	WARN_ON(buf->trbe_write >= buf->trbe_limit);
+> -	clr_trbe_status();
+>   	set_trbe_base_pointer(buf->trbe_hw_base);
+>   	set_trbe_write_pointer(buf->trbe_write);
+>   
+> @@ -1069,6 +1068,8 @@ static int arm_trbe_disable(struct coresight_device *csdev)
+>   		return -EINVAL;
+>   
+>   	trbe_drain_and_disable_local(cpudata);
+> +	clr_trbe_status();
+> +
+>   	buf->cpudata = NULL;
+>   	cpudata->buf = NULL;
+>   	cpudata->mode = CS_MODE_DISABLED;
+> @@ -1095,6 +1096,13 @@ static int trbe_handle_overflow(struct perf_output_handle *handle)
+>   	unsigned long size;
+>   	struct etm_event_data *event_data;
+>   
+> +	/*
+> +	 * Clear the status. No context synchronization is required here,
+> +	 * since context synchronization will be performed before TRBE is
+> +	 * re-enabled (see trbe_enable_hw()).
+> +	 */
+> +	clr_trbe_status();
+> +
+>   	size = trbe_get_trace_size(handle, buf, true);
+>   	if (buf->snapshot)
+>   		handle->head += size;
+> 
+
 
