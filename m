@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43B660A2615
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D23606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C2R+5PBz;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=gh5a2XlU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JEEEvvFG;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=SdusPW9e
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mHHH96gtNOMMf/aQXG172DRpNbt1paOaJR3DXNGY5Lk=; b=C2R+5PBzx+cK0g
-	yFz+Ub8/U4lYBe7RRtDtC2nzK2fhYHMQrHoRaXhX/BrinLvr2+1YGUCH6C114UrB+JTiy8Zwucx/W
-	VRlx6G9BGhFyctk1neqWfdDGXmzRXSebju9NpxLQa1hGeZQEBsS4tWeN3kCdr7S7ri80ubaCvrRWm
-	3evFljF6/rGgawZ04TGTBXEjfkt8w6piIDGUkr+yaojur+1d+6KafU/vcgWxbl+0qJC2WlBC3Y4yT
-	+dbLzlipFqx29RwImM41v2B6n8T4RRMLrIB0EKlodKTLgs8yNEo2+jyXfIse7nTHILRyEXW5fMeth
-	djRgHc7lWaYlS5KOQcIA==;
+	List-Owner; bh=ikddIXqF3DONwjLi5Em8ykshRTz1Na7HdzITCo1sXgo=; b=JEEEvvFGAFkCp9
+	xCTEyO7e4rU820M/VMQRZkvtr6y0zX9hl2+JKIAa4P4/uURBJ+UXgSwUGx1b6+potNcvQjMFf3Yru
+	Msc1bu24DTNFlvUTYNWsb+cuZGpnSzkOQAIz9dMWsZDgrrL9cZfx861fAgXCRHaPJGz2/TVYgmd5R
+	muReqMnl/QuzGdrrkffDrJaCNDcxUFIjKELqaTo8p/k9WHIYmqRVZMhq470FT/Fsvet6uC+OmELoy
+	zYqtKTTNmzapCv4DWxQD5j4Hcs6NlR8TKaG3GPfeQqNoLP/5DTc/WWud6nxa6ojW5n10FnVFUbiwP
+	6pCL/IQlFj1cmouX3SMw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWwB-00000001mDd-3UqN;
-	Mon, 09 Nov 2026 21:29:59 +0000
+	id 1xQWwO-00000001mQ8-2JPQ;
+	Mon, 09 Nov 2026 21:30:12 +0000
 Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWw6-00000001m8x-2klx
+	id 1xQWwB-00000001m8x-3Cto
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 21:29:56 +0000
+	Mon, 09 Nov 2026 21:30:00 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RFH7f8eEFRC5NU48WiNNdnWaVbsq4r/yQjcGVfvvrPyMbQeqdVITJi3UrGCel3zUkgh7IqR5btZFd9NxcsSK6VOC3TDILrHMPlin8FOIm+K/ACyCSG7QEszPFGJDwl8TJ3D+bg11uI0ylBGQNs9VZhxfrzrBM3F1HAanbl5mO72JSIhb1dULKgF03FG4eJtH6TE7c2tyMVJ8C2daIeSPvLqtmK2W/v0Oc2TrwaslV1B8XsbIbPLKcmy/tts3AJSNf0ECvkT98zSQtesO2kfHWocJj8wUZNl+tnq9E20h+12Z7fJGr/+V7QcDGyEOs7JFDCJqi+BRkj1+tzx3wNzL/A==
+ b=UeKzh816EfK1ATA7M0TbBr492lnBuK3mpehTA+ZYNc4YIEg3nmKC6Wl7Gpf1w5Qf5+/MiEeysyfLNnq8tpXFEh4hoHpML7vylO4XK+yFzKe1NXaTIAH9GUjPfzHmIoTJm92j6Qj+XXNVDY67JWFhW+dFCNzPdYNmyofivVtA918qgN+Kjo+il3+Zkbw0yDTIbsCYGX1+VSk+9HFhXZsFgOV3ELd/8PL8/m36fTpOUgWIsBaL0LGoWPBg4UF7AbUJvCtsNnS012yNgT84/SM+75DxBdDCxVojvSke8qWnQBwdrPHQOmP4o8d2310Bq4dLDjt6YyrRd8KnQEYJE4ERzg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mHHH96gtNOMMf/aQXG172DRpNbt1paOaJR3DXNGY5Lk=;
- b=yHpbAMGxjYlu2P5BxrTQmuccJf2MQICGC06DpJjUrGyRVawbowHkUza7rKc5j6h9jKwlw9wvWj9G3vSlcsb7pJsxtF/GQXw6M6BmD0xZ281aN0qV4ujyUlK6Jk3luR2xATGBy8v6NpacfPsR/ggRvCFIz/Lp9EdFyzpYifeqFvEG1jbberG4wcyhpM+n0E5dv+0qCHy0WcSb3tksloQePPw7HFfa+x7i8hoSoBQfew2qE07P6L++MipxBxYm4d8XrFPcZMCPi3u3dM86T32Ca/yhmXICioAbmSoR0gBp7F3/Hb5xGFeh+ko54G764LvWjpxyxC+h362ltkzfwi7xaA==
+ bh=ikddIXqF3DONwjLi5Em8ykshRTz1Na7HdzITCo1sXgo=;
+ b=Vw9gdG24umWShkusSEx/S/gHXSsgLqzYaigh/hZ+4AAKj8gVjG8Fw0Jcs7lQk1RIxJUtBROOjH/VmXP5XwD+ultiZfBgv09ZgMH6+TT0q/XRN60pGY57WhYbBggcwoB3zkm67hyeKoTpDWPvNMG0rpnRLkZpOgzCLZZaWDXM+iUCE3WdrHv3nVqm4OfbAOusB171oOeHkCALkhOh6iJZC5jjna9BzhO9KuBiiSbuYLbIFhTH17gNndqRpOxHcZ97buTjDg+B/lor2aTDdVyFchWmE/Mquo5lfHEf/seAQGayPsSjnrfC/o6Jrt+kSfFhdO8enaZtFx/ndhBR/wjqwg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mHHH96gtNOMMf/aQXG172DRpNbt1paOaJR3DXNGY5Lk=;
- b=gh5a2XlUYzh4fwe237L+gD7lfKDCgLPgHIyKUOI4VZ6PiFoCskVuB61ogHmh46bCkHyaFpiOm6/8XqqXn4ybY6TrWf1NztBT15N5ee0ZfCoeCk4d43jFgr95Vxpv7rtjisWP81TmQbw3owO1VnFUWoFBSuUfAEDayRe/xEtLleQHQoJ+tzGP4+fw9WuyUhQqermajFPFMbgooeFKKnb2qMnoeTlIkku+5uSFEQP/w1/Sk98kEAztiffbrx9VJy/vEdhG41zZpEwS3D8eW1rGE/jyi2ecNMaqazVHOV54w5Slj9vDo7dU8NhORXiGmvcfDlsCmOBeVCRtKuPYGOG1/Q==
+ bh=ikddIXqF3DONwjLi5Em8ykshRTz1Na7HdzITCo1sXgo=;
+ b=SdusPW9e4GHNdg5sFBrAkubEYnpKEuVH9rAYByvqmmH1jnSA9dqy17zkkZDOSxL1xBYtYFNguht9Beoup7kGIDciLiRVzb6tnZPxNosE1r3/WLGPF5f3Zvfw3LetRlZ8eOX5nHGsrMyjnYtJNQBDJoljNlTlVH/jqwQ0lpCkntoAaCpSQLamQskUHGE2csOxmOQiBA5//Aso+7idYgokI4YsXyPtptJsGpqNcTl5h8aY52dpkbBSRQ6LXmf2UskUIkrYwsZJCYkhHITmk9xUXQeMzi2caLs9srEKMw1/YhNDoJDlKeK8SCQUX/4wUFwHBbuJ8+eONgGpNxqfidItBw==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com (2603:10b6:5:399::11)
  by PH0PR12MB8031.namprd12.prod.outlook.com (2603:10b6:510:28e::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Mon, 9 Nov
- 2026 21:29:47 +0000
+ 2026 21:29:49 +0000
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73]) by DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73%4]) with mapi id 15.21.0569.011; Mon, 9 Nov 2026
- 21:29:47 +0000
+ 21:29:49 +0000
 From: Fenghua Yu <fenghuay@nvidia.com>
 To: Reinette Chatre <reinette.chatre@intel.com>,
 	Tony Luck <tony.luck@intel.com>,
@@ -73,72 +73,72 @@ To: Reinette Chatre <reinette.chatre@intel.com>,
 Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Fenghua Yu <fenghuay@nvidia.com>
-Subject: [PATCH RFC v1 3/6] arm_mpam: resctrl: track MBW max hard-limit in config
-Date: Mon,  9 Nov 2026 13:29:34 -0800
-Message-ID: <20261109212937.1409570-4-fenghuay@nvidia.com>
+Subject: [PATCH RFC v1 5/6] arm_mpam: Add MB_MAXHLM_NODE and Node scope
+Date: Mon,  9 Nov 2026 13:29:36 -0800
+Message-ID: <20261109212937.1409570-6-fenghuay@nvidia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261109212937.1409570-1-fenghuay@nvidia.com>
 References: <20261109212937.1409570-1-fenghuay@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BY3PR05CA0024.namprd05.prod.outlook.com
- (2603:10b6:a03:254::29) To DM4PR12MB5230.namprd12.prod.outlook.com
+X-ClientProxiedBy: BY1P220CA0012.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:59d::8) To DM4PR12MB5230.namprd12.prod.outlook.com
  (2603:10b6:5:399::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|PH0PR12MB8031:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7355d0ba-9243-454b-007b-08df3ea893d4
+X-MS-Office365-Filtering-Correlation-Id: 6dac2600-e66b-4851-aafb-08df3ea89550
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|23010399003|921020|11063799006|261021121427099003|261021123027099003|261009223027099003|261022105027099003|56012099006|261026140227099003|261026121527099003|261102123227099003|261028144727099003|18002099003|22082099003|10067099003|3023799007;
-X-Microsoft-Antispam-Message-Info: ZHqFLstZBGjlD1IxyYkwUySw1zhqL4NmdBDmJeYh7PrUzH2dl7Rv1t8w5eQLc2tCDUPYuEfujRUEyAXfc/lgZug6YxzPKW1hjnfhuqWZzr2cagDjH+tnTl+wWtdMcP7RU0G/x8IFojh0itQ69bbJY4sRiN2/O8r/iBoIwJWBYZAzE6Ege0lgfmufF/zFq4o27ggWnZPOv5FlO5a31mo+hSPf19Ix2JAqL+L39oTNoThgR1i5c0C+64QPyMbUGCHbaMCDVc6yR9/L6faAy28t+xA5yAnhWawIPvg4jxScvyfPbNNC6JaENAjaJlilQXPoFnjAsWoA1ogvoxejfXttDychiG09fTAjOof+qMU/6Lzy4te8DOY+4FCQdLV1q14F0xN0yciSUGkbda6kWSycGPYpwSO/i/3wPj5hUxLFkpALm7fwN2Ar+et1mgc4Pd5oQPXviQRqIGAZ3fzTmP3p/WDRqN4NBSohQeFVmbCfNAaczWjk1ZKL5u8MDx+A2nBc853gg19QwX13SJwNxArz0FLnOv3uCiQLpXf0EuMyPJ/eo8wVmHQZIDTDZPH/xPdB6zyPjjUS/s6gKOgY5HJrZPgakKkD6Ze4+fyV7bv995C8Mi5p2m6lb+p7m8F46dLZDg2UnOl0FHbYzQzAl2WBe3WFWhBm107IzDBsDMD9G6vaNBb+yD5M37BeguTTvESEHxIl6WdRc21SOfT3gQxl2Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(921020)(11063799006)(261021121427099003)(261021123027099003)(261009223027099003)(261022105027099003)(56012099006)(261026140227099003)(261026121527099003)(261102123227099003)(261028144727099003)(18002099003)(22082099003)(10067099003)(3023799007);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014|23010399003|921020|260925021911599003|260925022911599003|260925021311599003|11063799006|261021121427099003|261021123027099003|261009223027099003|261022105027099003|56012099006|261026140227099003|261026121527099003|261102123227099003|261028144727099003|18002099003|22082099003|6133799003|10067099003|3023799007;
+X-Microsoft-Antispam-Message-Info: 6FactSMcyTu8dgBb4Ep+ILEbH8LFbUhhO5d35JUJ/yHxiYuEWi9qdw7UopoAuK9MHVXyaDDhM/9d5oGiBcs2HDDt7G5IYs231EbSz2Uvaz0TZrRxcj9E7sNTF0GT6xrEEj++KP8Ztr/Clbw1w2i8etg7uRy16T0G41H2uNeAJjPCeFXuQm8rcUO+YprxDRvSXTYNMXN1+rgAethgl9fBj8YKDwJexeAUNoa/9QpWeUGIEOPv8h0PsSXtt9zTishFREKsIdJNfYjhf44he0ssLvyKYOy3oMit/B3yOjVQN8PuUmJBKAp1wuDybAE7lTtdkHt0Mx3WCIS6UK3tDKfsd7Rf4BcxQuGdr0h9yiWT20pRBrY+NTqntUIzjTs5EYQYkL3vv05YR6zMTvAKM0i4sQ16Z9QvJa4oAY+MPKsen20MDuiHAyV9d94IynsD4gj4oq9lFSpxagh1dZZHkoiczmxdSqHY3kx0TRbcmcoqMbrq2l0R7YolTrP2cC8wCMvV9ap16EAHatdzadVOFjRGpmcRXtfMH7+1ZlCuXQ0Jm/m+Llxbk3M7eIr4qZgtZ+uDAafVMEmNUD6vriPS+Auzuby32MenXp/YMbk+F/LTIEHpBL3+pqQbjypMZ8ilHwvJcRd4/P3R47yuipFzKgqXZIKv5YLjN84x4rq5cRGJj5OD4Eghx8wUK1Wvr+ybsR2zjOuncDH8LMSddD3GRMLncA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(921020)(260925021911599003)(260925022911599003)(260925021311599003)(11063799006)(261021121427099003)(261021123027099003)(261009223027099003)(261022105027099003)(56012099006)(261026140227099003)(261026121527099003)(261102123227099003)(261028144727099003)(18002099003)(22082099003)(6133799003)(10067099003)(3023799007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/QD3mKLmfqcthRvcx/kiW9jlgM2zGtQslFX2p685Gk0F68WU0iuN20r90Euv?=
- =?us-ascii?Q?CWlnRpKyrJ8SC6q45C+6KnVr5tZlPJ47GMKx0wWAwboX/nAYFTcaPuQdZFqh?=
- =?us-ascii?Q?InrgwODWE+69baDPCacTYf7Ipz2sR3D5YRK5QD/FOnXzszPlifo9kLERpxpi?=
- =?us-ascii?Q?nZW4N7tR2zyEZgqPglrUD1ehTYdShQrU9K7EqA7Oy9S/LGCP50vTZvX+8nit?=
- =?us-ascii?Q?eFbkhfq22/5NhnuwCq1hVsKWfalUtH4oqA0fBEy+tbI0sghM4jaU1sHicKmE?=
- =?us-ascii?Q?vdIOo8lTZbLbkRkyskQwdgc5gxu1xceXmOh2JB/6wJynboVrWKqbAzyMMIPo?=
- =?us-ascii?Q?FfX9tbFOCD8/7Bx4oXypilQEAZ1pfx3QKkVTuHceM6BjZ0nvVn1/B5KWauDx?=
- =?us-ascii?Q?udZC9Ix+SYI1s3aHv7uRs9mGRbiLPIsBQTo+0Ovsb92UYlVb97w2bIGjLy8Q?=
- =?us-ascii?Q?uS9ILcRR/yQouVRCoV40T/GHkoN06CNQpqYTWNBTWKhwdeFAYwf8OjNaoX2d?=
- =?us-ascii?Q?r4sMWHebN4/Y6cD2jzCqcBx3wGtGf/OVQDDdWuq6wKeGkL+Lh0rBNfXvWK5f?=
- =?us-ascii?Q?ulHENPdAF69rPI9dg2VCk01MYKC3hVv0IpqKOSDWl0qST0L+++Cj/GRVVuz3?=
- =?us-ascii?Q?r8h3C5w44snAtGLS7U2KFPWfX8gbfdS0dkx5kl34fqV5XHyRErSrk0ks3J6f?=
- =?us-ascii?Q?lzoU71nmfhdiSG5TPrPVfBb2JITwlBZcdGSTfaYHm9szLiHBTLHvuy0TtCqD?=
- =?us-ascii?Q?iY2x9RkVqf+OK7PUV+BXyT39GvgSQULByWQIiGBYA3LOcV7F/Lt0+bKfdy7V?=
- =?us-ascii?Q?sQ8+vNRw0lwr5AR9MjnbfeVRQKXYM3YABlX9VjcrhGTEb6UAtc25PTh/lJ7N?=
- =?us-ascii?Q?pGybqbVsqtCHY4ryq67PFoo+EJZMDEPFrd2eBcIuYAykymg26SKIQ+aBXKhC?=
- =?us-ascii?Q?FbgOB0YwAfmseJsR9npe18sKI3tw/WPjJVJDxr1XXxS1Cn/Ex19hqvY45GxM?=
- =?us-ascii?Q?lAa1dFFr+fisBnBJ5cYvmFreH2EI1W7oZjzKLrCvi5MQ/+vbt1fWvgjI9XEt?=
- =?us-ascii?Q?KEeCRhD6X1lFDv/A75WskfOxzTjW7R72rIjV9DC6PCQSBcMwHRct17nr6hAZ?=
- =?us-ascii?Q?gDOxAUJReUFNFEgueGN78TtPbKvx7yCeUEB+AwCLCXTcQLzK1qgvbZAVsDaS?=
- =?us-ascii?Q?j6qmcdwVTKZQv3kdgOHQoCsMAP3QqdK+3CnkLJizTggxMfj4qqaW4feRg1jx?=
- =?us-ascii?Q?+aYbOJ5e07rtzkpnKdpfCjtl6xICQKbicFnDpSxkfhHYINxc8TGoxf48iYbj?=
- =?us-ascii?Q?zAAQMg86Czw3PdJUGVoSqtDumaPczXN8AV9z91nm+RlhQwtoE3j8YzBj3ITV?=
- =?us-ascii?Q?nCNqs6vOh9SDMsqc9exQO4HOWBvcxaw9v/MDPmvK4B+kLNUhn/AwPbQ7oRjS?=
- =?us-ascii?Q?BNMMDXAc3RF4xvjs0Pvyi2ELoRtWitbcvPWr6zIriV0/E6D4V6YtgFr6zjzt?=
- =?us-ascii?Q?UNG6fcYMatI8VxE+qcE/zw0nERQD7KDV3chxv44UCsrmnh2Mq41tWoZf6lfv?=
- =?us-ascii?Q?2UY9hJHQIIU/MJFVRnS36tAvUuusglOlb79cDrhnHDE80AnpGMlQdED2hDtJ?=
- =?us-ascii?Q?UKZh3pfjvz/32r+XPwkDBxCe1gwZhhP9A6R71hdwFa+ZqduMC4bECyCB4ujr?=
- =?us-ascii?Q?tRts671tyg4tjEHqXTjvDsLChrQYkNCXNXQ7t/4kFO3FYGfTpRH8xJmA88Vm?=
- =?us-ascii?Q?9ThlPbSIgQ=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3TwHWNags8t8Y0iSMX+/PUm5Zo7VafuEXt/nb3P7nmgbrgyAIs8CYD0mUtWi?=
+ =?us-ascii?Q?6kbRReLgOkATnVEpUWnweyyBWruw4NnPOpzoM/TtDw9BTHxNCcAZXlFCqi+o?=
+ =?us-ascii?Q?GBle+FZCoHTi9rkSvJvlz4R8QQwMukX/tL/IX4hE8qA4w3KPriB3y6NYnUEt?=
+ =?us-ascii?Q?xXDStgSSt/wFDo2asy6xi76nPRZbvQuZg8JuqV6+qasmeAuvVv3aEUWmVkLl?=
+ =?us-ascii?Q?nZOMulSg4lgoBNbG0SleQlTjqAsTlmu1IFHwK5szyXQy/Qc3Ka6onqPvEQ6v?=
+ =?us-ascii?Q?c6pZR3dhjrlsnGBqzU0GV/JzIJReaNlvxDfNJRnJNeFHUE90RmIiVvQ+m7LG?=
+ =?us-ascii?Q?iXPfHUbXry5CwY6LbqV5a6FFOS+vg4YYi2wmuWx0d9+x9qG5OK+Sd5ivL5TH?=
+ =?us-ascii?Q?00EzXgmMCjmjOxdU4xssNDM+Zx89V9yESEE5uCwDevhv3yCzp0tmD5OcRSHB?=
+ =?us-ascii?Q?MjEE0z39kpn+x7MmPO1ZHJViitRlCtJ9HAOC5BiVRU3M0sEyufWOCC/cY7Zw?=
+ =?us-ascii?Q?H+fo6fRRnCf6PrtiitUUHqTtYt9TLKcFlDuyrYj+FEV5decZsXj9xK0sgkVq?=
+ =?us-ascii?Q?troKvj3h2tZEAkWB61bAX9SQIUgmuEpG7CHX/DzKGGMc0DGj9adr2V8RUFWD?=
+ =?us-ascii?Q?pH/e5j3f+Mmww/4InFoWB3s6ShEHlL3gA2lZ4BaNibyitYQdXWCJz4GHfsZh?=
+ =?us-ascii?Q?37pqU/Y8dqXTdE6iDs+lgIaOxjtcL35QmyB8fuNyMzMAcm25rh8b7otEMEZ9?=
+ =?us-ascii?Q?8rhO/tjIN7+ExT4iDLjSFt+My8AH0FAaU6EjfDIu4Kvg0VGNSVBA9+TWR7vm?=
+ =?us-ascii?Q?J/RfNHUiUk1xztqInBVKIiwItGOw4mDyF/MQeSqlYzrGcHQd72gry7qoMfk9?=
+ =?us-ascii?Q?XBcpNRIg5D7fmlUKBecqiBDEhsKCc3iRGU5YQrZ/9z+h+X/27xcT8tZ4oDgQ?=
+ =?us-ascii?Q?kgfXiUtwbgrWV03QTW11EIJxb4+QTXejKbiS2P8l+g4CK7ovdzkUEMOlSEp8?=
+ =?us-ascii?Q?SiTv1QgMo7/L1KOAefRTGSyYuSJZn6zGMq/oGhszwdA13cYwJZbywzwZeLw0?=
+ =?us-ascii?Q?095kCpG4b93XmmYr9HuYfYvKgIjcnOP2FuokH8PgYiQdOvtWWi+3NNI8B3hy?=
+ =?us-ascii?Q?v77KexEBWM9zVJD5BfF/K7Bg8u4VMa5BqVYKNgnsXfX35T2e089EMUX70AYP?=
+ =?us-ascii?Q?mJrpEbC6Rkuc8gO5k2zlZGY1UfQlc8687ODRO3aKXnrGnXwWDbuv7juzIdlq?=
+ =?us-ascii?Q?woWa/4owVZ1xxMW+sV5BFYfRQzD/UYfDV5O3ePQAxMZ4eeGtB+Lb3lM6KgBG?=
+ =?us-ascii?Q?+aF5GRvE9WNQcYtx6VYIEHRnQLUo14h/IfeHizYwDLVYf9n95ldqICmWDUTp?=
+ =?us-ascii?Q?dYOhL4RaT65ALiSrgWEpjmVaRe/JRBmmf3KArSsdjp+tHafgmUw6OOmENejb?=
+ =?us-ascii?Q?j1txwVqikK60ll+hWHSMj8aqROvCCzZnqRPpuFI0zmvfbJ+BFmM7cL9N6wp3?=
+ =?us-ascii?Q?yymJxaEsZ/70akACC2pP742qM0205Tfc1nZnW03eTgpPSJVNrMtsm+nwKswh?=
+ =?us-ascii?Q?t/Ql4QG32GkKLCMCnhVE4b18cKa1Z0VUeglJBg5DdkYkAU7l4G4Q2BKXeKJD?=
+ =?us-ascii?Q?PFf63vq9xD+CBonXwZ9aqhfPhbn6+zZfJ0wQTEuEL5UjXK07rAgLJTj5EdHd?=
+ =?us-ascii?Q?6ofbI7dbd9WMDsW9ioFPnwJiaUfGuofoBhoTdDFu6+M1zlP+7rqWrXQvNHXe?=
+ =?us-ascii?Q?2PydFj3Bxg=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7355d0ba-9243-454b-007b-08df3ea893d4
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6dac2600-e66b-4851-aafb-08df3ea89550
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5230.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:29:46.6990
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:29:49.1796
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: se5ziOe1Ub8n40Ode8ughw5Z+RPGMmjJo71zS7NF/SFCPvU/T6CulTxEFkKrkmM7ZmeAjWF81CzIMijigZuI6g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: JsscLPh8X7aZ2TVH6uN9l/qn9DNY+sg4k+nmKbauCSRs9pmcH6Zh+dQXTlu5kD5+pPyuuejqBCcsotPU8wkLiA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8031
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_132954_712163_2548BA93 
-X-CRM114-Status: GOOD (  14.75  )
+X-CRM114-CacheID: sfid-20261109_132959_807830_EEAD32A1 
+X-CRM114-Status: GOOD (  17.55  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -158,79 +158,209 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Once userspace sets MB_MAXHLM schemata, the driver must program the
-HARDLIM bit in MPAMCFG_MBW_MAX. Without tracking the per-domain hard-
-limit state in mpam_config, bandwidth reprogramming would ignore the
-schemata and leave hard limits unchanged in hardware.
+Memory-level MSCs expose their domains as NUMA nodes, so their
+hard-limit control must be named MB_MAXHLM_NODE rather than MB_MAXHLM.
+Add RESCTRL_CTRL_NAME_MAXHLM_NODE and create it for memory classes.
+Set the MBA resource ctrl_scope to RESCTRL_NODE for those classes.
 
-Add mbw_max_hardlim to mpam_config and set MPAMCFG_MBW_MAX bit 31
-(HARDLIM) when reprogramming MBW_MAX on hardware that supports hard
-limiting.
+Add resctrl_ctrl_maxhlm() so the schemata parser, group setup, default
+value, and resctrl_arch_get_config()/resctrl_arch_update_one() accept
+both hard-limit names.
+
+The hard-limit control is a 0/1 HARDLIM toggle. Set its scalar range
+to 0..1 with a reset value of 0 instead of inheriting the bandwidth
+percentage range.
 
 Signed-off-by: Fenghua Yu <fenghuay@nvidia.com>
 ---
- drivers/resctrl/mpam_devices.c  | 27 ++++++++++++++++++++++++---
- drivers/resctrl/mpam_internal.h |  1 +
- 2 files changed, 25 insertions(+), 3 deletions(-)
+ drivers/resctrl/mpam_resctrl.c | 47 ++++++++++++++++++++++++++++++----
+ fs/resctrl/ctrlmondata.c       |  3 ++-
+ fs/resctrl/rdtgroup.c          |  2 +-
+ include/linux/resctrl.h        | 12 +++++++--
+ 4 files changed, 55 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-index 1e56e8f3858e..7dee6617b134 100644
---- a/drivers/resctrl/mpam_devices.c
-+++ b/drivers/resctrl/mpam_devices.c
-@@ -1664,10 +1664,29 @@ static void mpam_reprogram_ris_partid(struct mpam_msc_ris *ris, u16 partid,
- 	}
- 
- 	if (mpam_has_feature(mpam_feat_mbw_max, rprops)) {
--		if (mpam_has_feature(mpam_feat_mbw_max, cfg))
--			mpam_write_partsel_reg(msc, MBW_MAX, cfg->mbw_max);
--		else
-+		if (mpam_has_feature(mpam_feat_mbw_max, cfg) ||
-+		    mpam_has_feature(mpam_feat_mbw_max_hardlim_rw, cfg)) {
-+			u32 mbw_val;
-+
-+			/*
-+			 * HARDLIM shares MPAMCFG_MBW_MAX with the bandwidth
-+			 * field. A hard-limit update does not program
-+			 * bandwidth: the shadow value is not live until an
-+			 * MB write, and reset leaves the register at
-+			 * MPAMCFG_MBW_MAX_MAX. Keep that programmed value.
-+			 */
-+			if (mpam_has_feature(mpam_feat_mbw_max, cfg))
-+				mbw_val = cfg->mbw_max;
-+			else
-+				mbw_val = MPAMCFG_MBW_MAX_MAX;
-+
-+			if (mpam_has_feature(mpam_feat_mbw_max_hardlim_rw, cfg) &&
-+			    cfg->mbw_max_hardlim)
-+				mbw_val |= MPAMCFG_MBW_MAX_HARDLIM;
-+			mpam_write_partsel_reg(msc, MBW_MAX, mbw_val);
-+		} else {
- 			mpam_write_partsel_reg(msc, MBW_MAX, MPAMCFG_MBW_MAX_MAX);
-+		}
- 	}
- 
- 	if (mpam_has_feature(mpam_feat_mbw_prop, rprops))
-@@ -2986,6 +3005,8 @@ static bool mpam_update_config(struct mpam_config *cfg,
- 	maybe_update_config(cfg, mpam_feat_cpor_part, newcfg, cpbm, has_changes);
- 	maybe_update_config(cfg, mpam_feat_mbw_part, newcfg, mbw_pbm, has_changes);
- 	maybe_update_config(cfg, mpam_feat_mbw_max, newcfg, mbw_max, has_changes);
-+	maybe_update_config(cfg, mpam_feat_mbw_max_hardlim_rw, newcfg,
-+			    mbw_max_hardlim, has_changes);
- 
- 	return has_changes;
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index ea1fb7fc7e01..f1325ffb6343 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -1266,10 +1266,14 @@ void resctrl_arch_config_cntr(struct rdt_resource *r, struct rdt_l3_mon_domain *
+ 	resctrl_arch_reset_cntr(r, d, closid, rmid, cntr_id, evtid);
  }
-diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-index 6be32b2cb0ab..59d04cb663da 100644
---- a/drivers/resctrl/mpam_internal.h
-+++ b/drivers/resctrl/mpam_internal.h
-@@ -324,6 +324,7 @@ struct mpam_config {
- 	u32	cpbm;
- 	u32	mbw_pbm;
- 	u16	mbw_max;
-+	bool	mbw_max_hardlim;
  
- 	struct mpam_garbage	garbage;
+-static void _mpam_resctrl_ctrl_init_mba(struct mpam_resctrl_ctrl *mpam_ctrl,
++static void _mpam_resctrl_ctrl_init_mba(struct rdt_resource *r,
++					struct mpam_resctrl_ctrl *mpam_ctrl,
+ 					struct mpam_props *cprops,
+ 					enum resctrl_ctrl_name name)
+ {
++	struct mpam_resctrl_res *res;
++	struct mpam_class *class;
++
+ 	mpam_ctrl->r_ctrl.type = RESCTRL_CTRL_SCALAR;
+ 	mpam_ctrl->r_ctrl.name = name;
+ 	INIT_LIST_HEAD_RCU(&mpam_ctrl->r_ctrl.domains);
+@@ -1287,6 +1291,35 @@ static void _mpam_resctrl_ctrl_init_mba(struct mpam_resctrl_ctrl *mpam_ctrl,
+ 	mpam_ctrl->r_ctrl.scalar.gran = get_mba_granularity(cprops);
+ 
+ 	__set_bit(RESCTRL_SCALAR_FLAG_LINEAR, mpam_ctrl->r_ctrl.scalar.flags);
++
++	/*
++	 * The hard-limit control is a 0/1 HARDLIM toggle. It must not
++	 * inherit the bandwidth percentage range.
++	 */
++	if (resctrl_ctrl_maxhlm(&mpam_ctrl->r_ctrl)) {
++		mpam_ctrl->r_ctrl.scalar.min = 0;
++		mpam_ctrl->r_ctrl.scalar.max = 1;
++		mpam_ctrl->r_ctrl.scalar.reset_val = 0;
++		mpam_ctrl->r_ctrl.scalar.gran = 1;
++	}
++
++	res = container_of(r, struct mpam_resctrl_res, resctrl_res);
++	class = res->class;
++	if (mpam_class_memory(class))
++		r->ctrl_scope = RESCTRL_NODE;
++}
++
++static enum resctrl_ctrl_name get_ctrl_name_maxhlm(struct rdt_resource *r)
++{
++	struct mpam_resctrl_res *res;
++	struct mpam_class *class;
++
++	res = container_of(r, struct mpam_resctrl_res, resctrl_res);
++	class = res->class;
++	if (mpam_class_memory(class))
++		return RESCTRL_CTRL_NAME_MAXHLM_NODE;
++
++	return RESCTRL_CTRL_NAME_MAXHLM;
+ }
+ 
+ static int mpam_resctrl_ctrl_init_mba(struct rdt_resource *r,
+@@ -1305,10 +1338,10 @@ static int mpam_resctrl_ctrl_init_mba(struct rdt_resource *r,
+ 	res = container_of(r, struct mpam_resctrl_res, resctrl_res);
+ 	class = res->class;
+ 	if (mpam_class_memory(class)) {
+-		_mpam_resctrl_ctrl_init_mba(mpam_ctrl, cprops,
++		_mpam_resctrl_ctrl_init_mba(r, mpam_ctrl, cprops,
+ 					    RESCTRL_CTRL_NAME_NODE);
+ 	} else {
+-		_mpam_resctrl_ctrl_init_mba(mpam_ctrl, cprops,
++		_mpam_resctrl_ctrl_init_mba(r, mpam_ctrl, cprops,
+ 					    RESCTRL_CTRL_NAME_DEF);
+ 	}
+ 
+@@ -1318,14 +1351,16 @@ static int mpam_resctrl_ctrl_init_mba(struct rdt_resource *r,
+ 	 * this fails.
+ 	 */
+ 	if (mpam_has_feature(mpam_feat_mbw_max_hardlim_rw, cprops)) {
++		enum resctrl_ctrl_name name;
++
+ 		ctrl_maxhlm = kzalloc_obj(*ctrl_maxhlm);
+ 		if (!ctrl_maxhlm) {
+ 			kfree(mpam_ctrl);
+ 			return -ENOMEM;
+ 		}
+ 
+-		_mpam_resctrl_ctrl_init_mba(ctrl_maxhlm, cprops,
+-					    RESCTRL_CTRL_NAME_MAXHLM);
++		name = get_ctrl_name_maxhlm(r);
++		_mpam_resctrl_ctrl_init_mba(r, ctrl_maxhlm, cprops, name);
+ 	}
+ 
+ 	/*
+@@ -1588,6 +1623,7 @@ u32 resctrl_arch_get_config(struct rdt_resource *r, struct resctrl_ctrl *ctrl,
+ 				configured_by = mpam_feat_mbw_max;
+ 			break;
+ 		case RESCTRL_CTRL_NAME_MAXHLM:
++		case RESCTRL_CTRL_NAME_MAXHLM_NODE:
+ 			configured_by = mpam_feat_mbw_max_hardlim_rw;
+ 			break;
+ 		default:
+@@ -1671,6 +1707,7 @@ int resctrl_arch_update_one(struct rdt_resource *r, struct resctrl_ctrl *ctrl,
+ 			}
+ 			return -EINVAL;
+ 		case RESCTRL_CTRL_NAME_MAXHLM:
++		case RESCTRL_CTRL_NAME_MAXHLM_NODE:
+ 			if (mpam_has_feature(mpam_feat_mbw_max_hardlim_rw, cprops) &&
+ 			    mpam_has_feature(mpam_feat_mbw_max, cprops)) {
+ 				/*
+diff --git a/fs/resctrl/ctrlmondata.c b/fs/resctrl/ctrlmondata.c
+index 9111b0130783..352a3f847b4b 100644
+--- a/fs/resctrl/ctrlmondata.c
++++ b/fs/resctrl/ctrlmondata.c
+@@ -189,7 +189,7 @@ static int parse_bw(struct rdt_parse_data *data, struct rdt_resource_final *f,
+ 	}
+ 
+ 	/* Parse mb_maxhlm line */
+-	if (ctrl->name == RESCTRL_CTRL_NAME_MAXHLM) {
++	if (resctrl_ctrl_maxhlm(ctrl)) {
+ 		if (!mb_maxhlm_validate(data->buf, &bw_val, r, ctrl))
+ 			return -EINVAL;
+ 
+@@ -397,6 +397,7 @@ static const char * const resctrl_ctrl_name[] = {
+ 	[RESCTRL_CTRL_NAME_REGION0_MIN]		= "REGION0_MIN",
+ 	[RESCTRL_CTRL_NAME_REGION0_MAX]		= "REGION0_MAX",
+ 	[RESCTRL_CTRL_NAME_MAXHLM]	= "MAXHLM",
++	[RESCTRL_CTRL_NAME_MAXHLM_NODE]	= "MAXHLM_NODE",
  };
+ 
+ const char *resctrl_ctrl_name_str(enum resctrl_ctrl_name name)
+diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
+index 01e69d0d9e96..1a6dbad15fd5 100644
+--- a/fs/resctrl/rdtgroup.c
++++ b/fs/resctrl/rdtgroup.c
+@@ -4429,7 +4429,7 @@ static int rdtgroup_init_alloc(struct rdtgroup *rdtgrp)
+ 		for_each_enabled_ctrl(ctrl, r) {
+ 			if (r->rid == RDT_RESOURCE_MBA ||
+ 			    r->rid == RDT_RESOURCE_SMBA) {
+-				if (ctrl->name == RESCTRL_CTRL_NAME_MAXHLM) {
++				if (resctrl_ctrl_maxhlm(ctrl)) {
+ 					rdtgroup_init_mb_hlim(ctrl);
+ 					continue;
+ 				}
+diff --git a/include/linux/resctrl.h b/include/linux/resctrl.h
+index 5711154145f8..1c75ac68d68f 100644
+--- a/include/linux/resctrl.h
++++ b/include/linux/resctrl.h
+@@ -403,6 +403,7 @@ struct resctrl_mon {
+  * @RESCTRL_CTRL_NAME_REGION0_MIN:	"REGION0_MIN"
+  * @RESCTRL_CTRL_NAME_REGION0_MAX:	"REGION0_MAX"
+  * @RESCTRL_CTRL_NAME_MAXHLM:	"MAXHLM"
++ * @RESCTRL_CTRL_NAME_MAXHLM_NODE:"MAXHLM_NODE"
+  */
+ enum resctrl_ctrl_name {
+ 	RESCTRL_CTRL_NAME_DEF,
+@@ -412,7 +413,8 @@ enum resctrl_ctrl_name {
+ 	RESCTRL_CTRL_NAME_REGION0_MIN,
+ 	RESCTRL_CTRL_NAME_REGION0_MAX,
+ 	RESCTRL_CTRL_NAME_MAXHLM,
+-	RESCTRL_CTRL_NAME_LAST = RESCTRL_CTRL_NAME_MAXHLM
++	RESCTRL_CTRL_NAME_MAXHLM_NODE,
++	RESCTRL_CTRL_NAME_LAST = RESCTRL_CTRL_NAME_MAXHLM_NODE
+ };
+ 
+ /**
+@@ -603,6 +605,12 @@ int resctrl_arch_control_mode_set(struct rdt_resource *r,
+  */
+ void resctrl_arch_sync_cpu_closid_rmid(void *info);
+ 
++static inline bool resctrl_ctrl_maxhlm(struct resctrl_ctrl *ctrl)
++{
++	return ctrl->name == RESCTRL_CTRL_NAME_MAXHLM ||
++	       ctrl->name == RESCTRL_CTRL_NAME_MAXHLM_NODE;
++}
++
+ /**
+  * resctrl_get_default_ctrlval() - Return the default control value for this
+  *                                 control.
+@@ -619,7 +627,7 @@ static inline u32 resctrl_get_default_ctrlval(struct resctrl_ctrl *ctrl)
+ 		return BIT_MASK(ctrl->bitmap.cbm_len) - 1;
+ 	case RESCTRL_CTRL_SCALAR:
+ 		/* The hard-limit toggle defaults to off. */
+-		if (ctrl->name == RESCTRL_CTRL_NAME_MAXHLM)
++		if (resctrl_ctrl_maxhlm(ctrl))
+ 			return 0;
+ 
+ 		return ctrl->scalar.reset_val;
 -- 
 2.53.0
 
