@@ -2,100 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEB460A3819
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 23:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3631606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 23:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3z7PVzwl;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=F6VpjWcT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p0Lg7m9Q;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=EnhAQr+o
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:To:
+	From:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+skd4ReZXdp3+ybDH7k1AcOUqtthV7E8Fkq0B8eZiX8=; b=3z7PVzwlNuHFt+
-	IOr20u5P0T4GdzV8YoCLb3n81PpH57qRYH6f/Mt1vSqYnd5W/kBD1MZnSiJVHAwSIgkZWjdYn43TA
-	D2J87Eakuf44LdYubj+thMi1Pn93Jr+FVoWjv5XIsVlLGf33SdOVjOQVCKR9RysZWvvJ4AwuZ0OaI
-	P9jAcvOhMh/NDccuRC6Sj042Vk75EG7xvVU1yIuO+fXJBh2AREPKTzHP2H44pf/KvBtm3egZiLfTx
-	fOWNyuXkNy5UWZ4wuSkvOFSDN+mIZPz3g5GK1qbAkWYGENJ9PookVeod75zB5B+6GwAMtd3Leg37B
-	gXZF17Eyu7sgQMHWGnXw==;
+	List-Owner; bh=ijwWYpzQDAx+cj1CGF6sEPYVaJ2fNy45DbFhO/CRy14=; b=p0Lg7m9Q3uMMdu
+	vgL7qtq2fiRp7mzfnwSaBRyvfeAPI72l1rgCYvYxDFsPsO7mpfCCByVzuDnAscwZOJuFodFc5bMjr
+	03AcZTK1G5fXovul4tYKGnorAYM+OeeN8coVUDgwG7FkTGF6oNiBfEGlpn+78cRz3rEebMYZ3gJGI
+	2NyIsKYkoY4+v5KeBcon0b0ptqei/FbwbaIx+LeMP4s7RRHPpKCpQtIXLDEb39ktXlQ68rpnouybI
+	qSfb6WhBZYuD5Yip2iC5+e+863nRudv724FDH7/mSXC/6b43kecO5iM5VayKA9JNMXjT15DVPW/Gd
+	2QL5zGW1bSFE8z98qgwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQZ6C-00000001xkL-49B5;
-	Mon, 09 Nov 2026 23:48:28 +0000
-Received: from mail-pl1-x634.google.com ([2607:f8b0:4864:20::634])
+	id 1xQZ6D-00000001xkh-0RCO;
+	Mon, 09 Nov 2026 23:48:29 +0000
+Received: from mail-pf1-x42e.google.com ([2607:f8b0:4864:20::42e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQZ67-00000001xiR-1pKS
+	id 1xQZ69-00000001xil-06em
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 23:48:24 +0000
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-2e96502e447so12031745ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 15:48:23 -0800 (PST)
+	Mon, 09 Nov 2026 23:48:26 +0000
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-8b58d6f67a5so849244b3a.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 15:48:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794268102; x=1794872902; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1794268104; x=1794872904; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :subject:references:in-reply-to:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=+skd4ReZXdp3+ybDH7k1AcOUqtthV7E8Fkq0B8eZiX8=;
-        b=F6VpjWcTRNMhM+XWTdUXZBYt2g8/rdC/yqz0g94sNhWZaEbZnCqdR98fwm2ASLQloH
-         4ECG/jFmOwQoLRf+xUJ1rmBVta8PfSEaF17PxH87cq79N5Rc/kN+cYLBVV/oqOykTina
-         nO5OkGgX26f70peH5dQWq6AEtXldURdzAYa2FYP22yjb4/INP4WKBCekUFsm4dlVkf4e
-         Hy/uRmoXkEvTQPPh9cEImsMcNpizwA2z+3hGtdRiYpjmVBw5sOxHJmNehmPHojKzwcca
-         fg6Ega+X7VhJfEHiEvIzkzCWjBXB14TT0yp8jlx0M2VL/OLgM5zTzBpk2CKdh+gfoSO2
-         HbPQ==
+        bh=ijwWYpzQDAx+cj1CGF6sEPYVaJ2fNy45DbFhO/CRy14=;
+        b=EnhAQr+owJ9IGVrVplGTGdjGW0D1nlixzsTkiBinQLMokTRPmQRmcWnE9LtgBuk2D6
+         EnDv+qHKT9NiImeDGD2HLxrYRHvawQd+Hk+MHHBzAWn0D8yY3snVH5VVYZXAg1AYqBcD
+         d5A+R9VfUzZUXTIa3ohmoI/6eN3JanOhBr9aKaY2VWXaHmRv7gbk6Fmb+7CYbU0QP/U7
+         rM5z8VkpQkOsfEtYeQaFOeDqXmgELyMGA2dmKo2M3yfsFDe3gAPr6r8zi5ABRdcIQk6t
+         fmvjGiOZwPazufpk0fEZ8PbuAuxa9ZhKJCyAVd8fhF1C4eKmGfbB5clRhmdxsHgpZP/K
+         l+WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794268102; x=1794872902;
+        d=1e100.net; s=20260707; t=1794268104; x=1794872904;
         h=content-transfer-encoding:content-type:mime-version:date:message-id
-         :subject:references:in-reply-to:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=+skd4ReZXdp3+ybDH7k1AcOUqtthV7E8Fkq0B8eZiX8=;
-        b=MVm4HXxA0qTiTfHnFDanbR3uB+C7WN0m+OoDcY8L0W8eYaS79Q760p/1juKX3O2oyi
-         VSwCk+x78RhimpI6+02HA4hKCyD0tXIfswpLyZavxJuuWagQS3nWSAdaoitHS+VYHKTO
-         GSUR0E88bJd9nn8SOzH6MwLDga2RIyyI/F+r2B77Wys3xBGr9OjqLHBAtv4+DvJMIzbW
-         5KnytvSLok1gN2IhOOan/PpSY9Tz4PKRGLQTKxWN2vQuOZC8xwwS2Oq3uPon4j2D/OgG
-         12ODy28hS1f8+9xhZdVsYWWm7EqAs0XnPSuT6koQC2wrZYWCmSupkyoDcsLpBlmSeIe8
-         +LhA==
-X-Forwarded-Encrypted: i=1; AL+hErEUEVn0FhB+RoiCcT5t62NUp9yZgUaypCasg74FUUzz+2j5/kWLAXIDbx+KxDyog3WoBYQB614FnG01C3ihaoM+@lists.infradead.org
-X-Gm-Message-State: APuU4Z+BO4hBKiW2yoIeI0zA4uppcNinZ54RPYJMv6OVXNTxHI0WoXlz
-	jk6KBjdF5v07Vhy2RdYQOd500Lap4d8f7h6iXAWNCru2l43GbYj0hqaIo8ZaWZ0Biog=
-X-Gm-Gg: AYBFou2w0hkVZL+oVeS+L2XoupYZFllHEqcIuFoT9Wlzuc2s5alL495GwztkipG8+c6
-	ooCTP1rvXJBpiGfrbhriImZZhdgFdWfbxgyo8BbtHEuq8SJtDOjWzkQc8FlYqcJ/HBd4JL9ZZAX
-	blr/7pIA36qkqAH+WdotnDo14URSU4lXny7rWaZJh8t9CpCsH4TZ4tP0FWPnWEGSmWSvM0PNvvU
-	ofcjpG9VqMqEtzIv+ifPbq1RSz8WD9Z84LUf75LBze+vzgK0mdP4/O3tiN2hLPyYjmUwuGo4aQV
-	KLUyMcNUgxXIwlrIpYzLaUw+61GkmaUsQCAmKZsPuGJF1ScsTCfz4KNKu+x+FaoYQBRqrk+8wdW
-	O4U4EM64kXErRIObI+1qCfkiu0iJPoOkhOol554cpyXp0fMYQVct5iZXZhoeEGb6QKyBD6NVvsT
-	1fKbyytwGfEMa4oYApLb9rUUUdG7vnw7lQGW2hCJ7USL32lg+puoJpSK7WWnMSoGO5GorAP5BeS
-	M8i/RyGizy8C9mIJ63nYnrhgn9ZA7urZ2sXZoHRlNpKpKq28sPiAKOlI2DQNuIrlcfIwiPXv62v
-	TZsQpEd9BIbHkZdUzRpKW9Zx
-X-Received: by 2002:a17:903:3c6d:b0:2dd:ad73:c93a with SMTP id d9443c01a7336-2edb9246e43mr6572065ad.27.1794268102310;
-        Mon, 09 Nov 2026 15:48:22 -0800 (PST)
+         :subject:references:in-reply-to:to:from:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ijwWYpzQDAx+cj1CGF6sEPYVaJ2fNy45DbFhO/CRy14=;
+        b=sys4kWpiqsiJEiTSEc8dXor5z2iBKrHfuZmGL+9rJQF75Pn3ntCNhh5T6eYrlO7i4K
+         R4GJKwysM614V+5lShG0QoxinFDLUSKMWHqcLQogUUKKladQ80OlXxOmhrQcRPuAxmLo
+         U0ME0m4LWEi9sy5vvrKnQyoYGpnCJ9Po4c6uQZ1lVQl+T1kZ4QtJFGWbd2iQ9DF25bn6
+         b+XulSo3DbPlVLBy9JCZMDfCsW+jnoY0GcjzW180o/vUW5c7xIFcNv2j52R3ZU0WMPH9
+         tRnXIs2nmv1PFidoeD4gGOHJn47xGgV8/g/lB0ECe/IIPJ8+oo59Wso5dVUUUXnoOe7r
+         SpWg==
+X-Forwarded-Encrypted: i=1; AL+hErHWGDB27c4RUN5TVxWa919iJOjquOSx3EGYALYP+nsoo8uZSGB+aCA/dQFGVg1yLB7fN9BOK9SR52KOaLg1S2Sx@lists.infradead.org
+X-Gm-Message-State: APuU4Z+/qr3ey0jov/hctQwDzQC4YBRNtepMTomBKhCvD2J7gtgSVCpi
+	GcEJ91rmltLyeO7roNpQRK3AreXh2tNOUxgUCG3r+CGq+QUGZSH1+sLfI3ev4vxzRvQ=
+X-Gm-Gg: AYBFou1mdFCVVuNDpZplkWyxa5tfIwtppZil3O82QfHoQNv7IWH4Wjsvkrz+Wz2mxVG
+	7oaKK6aJqIfmmtIvYVlrLGAOnTwuzxGmsPPGmVSovadwffMeylh/Wtw+3FG8fB5DZC//OXmo4B5
+	xAaqICxJs908Anq2EuX//QaanUEjKwBxlfpmsuBa1d/few1cn+exQMd+Y3iZwGd5il8gFuxy74e
+	B0MV7vtFg2BtEi+Mc3r9MI3LSOVHERzmjppjVdsmRp8fEIQl69sagyqNXNM0BQJV7+KO8EQ8v6g
+	OyAYlBE54BswTrSeqc9Mg+vVjVengMARnQSYF9OL/ZC5Lfx7Ybmrkflps9DtBz3m4Qph7rd7CEW
+	5EwGcCwixUSv8KmzziK5+Xna3pZKnjTtbJNifufdru8XFB9e5JnnvfZszzQMSfxbyWVaM742Zfo
+	4+eCKl2MHdPgJW8KhzMO+IORDibbxwnWRMXMZOUnxBVeTfoH+9SWly+3vkwJuSi8PGKKlZTLUia
+	1UrHloAb8ybOjZvLdtuemAtYzbZinbB/hqJG6z3ot0n45YVooYo3jnAbj+vh/lbq4CttQAA3ixS
+	CtuKjZBIMQFa5Rb8qpbpK9vd
+X-Received: by 2002:a05:6a20:4326:b0:3e0:ba43:3d3d with SMTP id adf61e73a8af0-3f18c10ea0cmr750328637.9.1794268104158;
+        Mon, 09 Nov 2026 15:48:24 -0800 (PST)
 Received: from localhost ([97.126.173.69])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-2edb6e108bfsm2626145ad.76.2026.11.09.15.48.21
+        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-cdd8d67e52esm204829a12.10.2026.11.09.15.48.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 15:48:21 -0800 (PST)
+        Mon, 09 Nov 2026 15:48:23 -0800 (PST)
 From: Kevin Hilman <khilman@baylibre.com>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, 
- Tony Lindgren <tony@atomide.com>, Russell King <linux@armlinux.org.uk>, 
- Andrew Goodbody <andrew.goodbody@linaro.org>, 
- Rouven Czerwinski <rouven.czerwinski@linaro.org>, 
- Ettore Chimenti <ettore.chimenti@linaro.org>
-Cc: linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261030-patch-ektor5-dm81xx-vd-v1-1-8ba90608c25b@linaro.org>
-References: <20261030-patch-ektor5-dm81xx-vd-v1-1-8ba90608c25b@linaro.org>
-Subject: Re: [PATCH] ARM: OMAP2+: ti81xx: use non-scalable voltage domains
-Message-Id: <179426810111.2265990.13077488859947627237.b4-ty@b4>
-Date: Mon, 09 Nov 2026 15:48:21 -0800
+To: paul@pwsan.com, aaro.koskinen@iki.fi, rogerq@kernel.org, 
+ tony@atomide.com, linux@armlinux.org.uk, linux-omap@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Andreas Kemnade <andreas@kemnade.info>
+In-Reply-To: <20261031120519.655248-1-andreas@kemnade.info>
+References: <20261031120519.655248-1-andreas@kemnade.info>
+Subject: Re: [PATCH] ARM: omap: omap_hwmod: do not WARN() on missing nodes
+ for hwmods
+Message-Id: <179426810249.2265990.13290382980271745471.b4-ty@b4>
+Date: Mon, 09 Nov 2026 15:48:22 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_154823_479049_FF41FB37 
-X-CRM114-Status: UNSURE (   9.55  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261109_154825_072800_DAEDC4A7 
+X-CRM114-Status: GOOD (  11.44  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,22 +110,22 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Fri, 30 Oct 2026 11:40:30 +0100, Ettore Chimenti wrote:
-> TI81xx SoCs reuse omap3xxx_voltagedomains_init(), which registers the
-> OMAP34xx/36xx voltage domains for every SoC except AM35xx. Those
-> domains are marked scalable and reference OMAP3 Voltage Controller and
-> Voltage Processor instances, which do not exist on DM814x/DM816x, and
-> no PMIC data is registered for these SoCs either.
-> 
-> As a result, omap_voltage_late_init() tries to set them up on every
-> boot and bails out early with:
+On Sat, 31 Oct 2026 13:05:19 +0100, Andreas Kemnade wrote:
+> If devices are converted from hwmod to ti-sysc, there might be an interim
+> state with the hwmod data still present but the devicetree not referencing
+> the hwmod. In such cases, the hwmod device data is still there,
+> the hwmod infrastructure does ignore that device but prints out a big
+> alarming WARN().
+> Be more silent in that case to avoid needing putting devicetree and
+> code changes into one patch but into one series, only require the
+> hwmod cleanup to come after the devicetree conversion.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] ARM: OMAP2+: ti81xx: use non-scalable voltage domains
-      commit: ed20363e55aa1ea0dcf865f6776354f1628f5375
+[1/1] ARM: omap: omap_hwmod: do not WARN() on missing nodes for hwmods
+      commit: 540f8176aaa989b08eb66e4d5c4d4ea9093c1f80
 
 Best regards,
 -- 
