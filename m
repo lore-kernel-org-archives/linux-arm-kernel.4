@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6844D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7757A606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sYcCSoK5;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=SJ0fPz8C
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xZ6noYzU;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=hdIEPlIe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NwqgeVLFMAw4H+tW72jySvQLUb9zUD/fSahQOrxSoNs=; b=sYcCSoK5p9KLd5
-	uMfFlf4YxzyUjQrb87q2vqa8e8lqjMfTeZrlWEDglNGAZp47CE4g7IXGov2gHr9MFiHuoeOKAX2t/
-	Mz5TrAz8RMQ0fo+1lkoiqSLrieucV3Zh+HyZBrzxtEvCP/012hHxprgM2+CHa818shzLtAO5aMd3F
-	11Wa4RIlA2BaR1l5dyA8TcZWvUE/mEJ/q0AI0+5t+qLRHqQBXHR11BD6kdtmRy5mmZHvpwL6zBC1M
-	dQVr+uypw4kwgq9nByk8ivJ5wvYddk6G02P/7OQbnbkNhhR2H1WAIYYUVvF6KKs8mV/hPiSJKh4gM
-	/u827/74H3gf/Bs0ATiQ==;
+	List-Owner; bh=1F8EhvxRsHNCE/li/Bbp9x+lqTT08lvh1eTHgoUQufc=; b=xZ6noYzU1nwdHH
+	7rMgeXpgtcsq7eRhKiaYV2Y6G0l75IRyd99/MEJ1Mj7QX/E18o3M3T5RuvMPViMYd3gOByXoXLMyn
+	mNQouobq4R3J8Y59byDgKUWgPFbSEwQZI+xPCXqDWEvgBvLkNRSiWM24tF/JKJV334QF06SDQtRfN
+	2MIevjZtb1zhE93gsc+ZRPSJb7i/T0gWWi6ujOGz22K9TyXRjbwePVHbUYYelk17nyLiwc6sMPJo2
+	D3DWJIURqSryByigNLPvWVLBh1FYPcWkKP2wi4Rk2ZMTESy8YDflFM9QwYCRxJU8TrHzi/6CmUhcn
+	PpRGJdXAgbnl+jTWrICA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWsE-00000001lE2-14sI;
+	id 1xQWsE-00000001lEO-1i86;
 	Mon, 09 Nov 2026 21:25:54 +0000
-Received: from mail-eastusazlp170120007.outbound.protection.outlook.com ([2a01:111:f403:c101::7] helo=BL0PR03CU003.outbound.protection.outlook.com)
+Received: from mail-westcentralusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c112::5] helo=CY7PR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWrE-00000001kP9-3tpH
+	id 1xQWrB-00000001kOK-33jb
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 21:24:57 +0000
+	Mon, 09 Nov 2026 21:25:00 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h+fyS9vutkwsa3cz7jOT6/1MoRq2F+vKRxXeQXY7tSw2Bb9Bc2WCDrcYOK6EGs1kPI5f2gpSe5Qq9/NhyAxmM4rvY5OGvvY2Frri4+PheLvaWVWGXEkob3H2EBHvhTdHDjjEgCi2wyb+QKdGQV1ybF0eVhubSg7APgHrSLeqrHsQIhFcJ8dn9pJ+3MaL/EV8wtIa/r5h/g077hRZGSqVYKNh79awMlL+NBfJNcGauj3GlnhGg4KU2cFXTqBUbXjF72Ttqo1RDviajNv4msvw1b1gRd2t+eH+S2KPFMxUzoAs7eyidBASj/ZYWwSFlafVp9JGgesr+9eFFWdrwFj7ZA==
+ b=VEtmyWlmNz2UV0F+7KeKlTw0NFbrhaWMuDdYfZ9/uVTb44YtvtHkumNj/yNBtyN0PFF+RXX+vg6BMb+Q7mwf+KEJGdDXpQHqXI6V8GcRqJqHYj54roenlR36tEY56zo2qcwd4WbsMA7GCnnZ2HyiIVjIhyFN9BvvkHLRPhPasHN2vHLQ0QOTUrfmyQcUKUZAEH0NioLPpZexkJEJVCWjRGrBOzHCiUbQYsraOyIXK4wpHgEHuSlUNC+nQ+fUOzNMA43DhsqK/5CGvmsRJw77OdcNAi9YRgmT9QmlNii+cmTHYyY2b3bDNI2QBjMUy9u/tcp33bsRQW6wEV10+vpGQA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NwqgeVLFMAw4H+tW72jySvQLUb9zUD/fSahQOrxSoNs=;
- b=N0DCg+APl0FoKsglnrw8qsdUWX9AddyKCxRDltNrWq6IhKh5DIW0NxnDIA38SCfoORz2MSMyAWchs7/JQk4gtzzE0FGUBPlChCQMUPivniJR57+bvkvnTvCB2retB5gsxziXaKWF5jKIlqUXNJDPiFAUtsa8izQEME8GTGA5lxV44jmWS/HNmGq64aCfJogOWD6HcozmM95VyqScZNx+EWINMISdiatTTloxYsLnGFif4WDo220gslsh5Wv2rszguzBBi9Lw4h62vvLyDXZ10TnBmMkGRadedtpTO49dNXzcZ2Ck2gkyHHL/IPRzHhUd+k8gjR3O3SyzsmB3xwuMVg==
+ bh=1F8EhvxRsHNCE/li/Bbp9x+lqTT08lvh1eTHgoUQufc=;
+ b=K1zrUbCvU2WZZPEg7TCk5NmDQ7pxBlGe4m6x0yYvOCbQ00q262wcJ/flmxhEfmo5Rx+tzgBAYpcSWappjrHfBx6JHgtZmJipjp2VxVglGXeCd5TmL4AfqLihtVfuiA8A3qbIuiEPFiCnaGGkyc8zhxkLf6cNdnre4IAUJK1mh5yhHCwOuSH1RGmVcPSSa6Byr4XVBTQUNZzIp+/2fWcUclFzwXfq/U5+YM+ipTtfVq6fR3GJIXMrdvzGGIR/fxr4pCkUyS/r39LCxdcpOIZFf3sLVsP9xVSy6/NadCmyi9Mw7xrUlFkjZmmEqc9zGJZAFO+irXnXS/tqAOGvQmO7yw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NwqgeVLFMAw4H+tW72jySvQLUb9zUD/fSahQOrxSoNs=;
- b=SJ0fPz8CaoCfkvrBBhPA1f/JilQ/M8fMWyTt8dl/ZleMwwAPzDwZTWFB1jVWG3E0X2+UHkAXhwTPMf61N6/n3jkQrcxPzEGm97Y6ayfB6YejTfB9jy9oNHrnHTeIWT3ncrVjoPtb547RgTWLZ8ZGVkRQSSDm0Y/qggEgbnn/s1gVUPZ1pMO+UBHRjTXCSCBtXlffcBVUnS+sdEEKio+tlD30sKtvGjNM8TsWcXeuxqAbtdqziWhcW0yNw3awj7i6OQaKx4sheF9DYXSiZYZM0VsJ8ErQixY0LaMezD0kWUFtOZnuo1uuP9td7s88YopZxt7f3Ejh34yI3u7wBtf1Yw==
+ bh=1F8EhvxRsHNCE/li/Bbp9x+lqTT08lvh1eTHgoUQufc=;
+ b=hdIEPlIeyfJp+C1LPVN3ET9we/RGVVPypyVY38z5g5wDUlTpw7fz5kKDyPPbp1DMynrXqhpMsnaE/Uh9VDXyBaw9OMagJWAMboYWlDoxZN9MMvyMx/hYCQ6dbiLPBaZ9qyU//GMXlJwA+VVRBjv2P7Z+zVKV3Ce8ouA5IebW3lS3JoGJ0+PyQRIHr3xhFBoQ2/uu0IAm/8ZUm1hKbyajy7NGN3w3+QLrEAOUK78AxdUb5wkSsFvjvziCc74AoXNHLrpO6Cxpg6f37qEDkr1j/hUIMEfSYlqrG44WUNwsz0EnVpSeZ+qIr5GhUrLTtK2QwJ3NgtBRGLyaFauuf02+Hg==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com (2603:10b6:5:399::11)
- by SA3PR12MB176418.namprd12.prod.outlook.com (2603:10b6:806:513::20) with
+ by CY0PR12MB226969.namprd12.prod.outlook.com (2603:10b6:930:130::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Mon, 9 Nov
- 2026 21:24:48 +0000
+ 2026 21:24:45 +0000
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73]) by DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73%4]) with mapi id 15.21.0569.011; Mon, 9 Nov 2026
- 21:24:47 +0000
+ 21:24:45 +0000
 From: Fenghua Yu <fenghuay@nvidia.com>
 To: Reinette Chatre <reinette.chatre@intel.com>,
 	Tony Luck <tony.luck@intel.com>,
@@ -73,9 +73,9 @@ To: Reinette Chatre <reinette.chatre@intel.com>,
 Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Fenghua Yu <fenghuay@nvidia.com>
-Subject: [PATCH RFC v3 12/15] Documentation: resctrl: document mbm_NODE_assignments
-Date: Mon,  9 Nov 2026 13:24:24 -0800
-Message-ID: <20261109212427.1409204-13-fenghuay@nvidia.com>
+Subject: [PATCH RFC v3 10/15] arm_mpam: Handle CPU-less numa nodes
+Date: Mon,  9 Nov 2026 13:24:22 -0800
+Message-ID: <20261109212427.1409204-11-fenghuay@nvidia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261109212427.1409204-1-fenghuay@nvidia.com>
 References: <20261109212427.1409204-1-fenghuay@nvidia.com>
@@ -87,58 +87,58 @@ X-ClientProxiedBy: SJ0PR13CA0024.namprd13.prod.outlook.com
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|SA3PR12MB176418:EE_
-X-MS-Office365-Filtering-Correlation-Id: f77b83de-23a9-4c9d-871f-08df3ea7e19f
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|CY0PR12MB226969:EE_
+X-MS-Office365-Filtering-Correlation-Id: 812b2c3d-7eca-4903-8935-08df3ea7e03c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|366016|1800799024|921020|11063799006|261028144727099003|261021123027099003|261021121427099003|261022105027099003|261009223027099003|261026121527099003|261026140227099003|56012099006|261102123227099003|22082099003|18002099003|6133799003|10067099003;
-X-Microsoft-Antispam-Message-Info: lTkZjqZ6eaar9DpXn4/7Vh3ZBgIskrv5tTEsx0bKTYwJ7av7vlWABpIsWbJz6NOyY7iaiWQzmE9pFZHzyC4bFU9jB8l2KUstw8NlT/Y5NwGeUIcmnlH08AXl5tSMgRTFI6Bc7ETy/i3ZXVJuocRzv6QQGO9Fur/lYsOisiribEfllzQmk6Q5rKb6pyf1cMUER3LuKlwrEoRDNE3zVnAlN31hlY+WfpjnnN0MK9y5RVJEx16quoQw4fO0VWEr2e849dvcsmPu+nJkU5a8dFR1oyfydCPjjFTlHfQD9vvTqqGqIJnSTKKTM5KxVJKpDMKvc0IGmCSDL0wTm7r3XgO/Q8iOOy/Ad/TdrD0JrAIWsRZ1iUmVxxr+dn4/zveE+gp0ycdrLpuVzxDhJpntucZG1Kbx9FZ9wrg9SQgPziBu0Cj20M6rTKarFEHYDEVhq9czYkh2LtM8M1mKRCpz+MBK64wbRQmycIOe7HUxzGXZOL6ePWopkQqb9Ka3kufvIY+1c3CdjBvGzoI9xx6b87GDJUFwlcxrYK2y8XtV9nGub7A43l5MuiQLDMsjT3CysvwGFYVV9e85Td2DNm0yPpB37I90L7+tcQ4IZSp3lufiDlhKL30C1+hV0nxoezflWO/0AygkH/dnyjluHM4pj588nZq0Qx59cv4TrsS9rpbFHMj5P3nSy1O/nY3UNKD1/ztX7oG5cejMV1GktPAmD/WgYQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(366016)(1800799024)(921020)(11063799006)(261028144727099003)(261021123027099003)(261021121427099003)(261022105027099003)(261009223027099003)(261026121527099003)(261026140227099003)(56012099006)(261102123227099003)(22082099003)(18002099003)(6133799003)(10067099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|366016|1800799024|921020|11063799006|5023799004|261021121427099003|261022105027099003|261026140227099003|56012099006|261021123027099003|261026121527099003|261028144727099003|261009223027099003|261102123227099003|10067099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: w/u1nd94hlnNbZAJ8g09iE6n8Y6ZRXuaZv7v5CLVd7goNjkhrdrM5Hs3wP9iNkO70X3Ofway5+hKXDUQx0bVQTht5TW+9xpS5rVIw41Rqpwj0R/FExSFTA9O6oZvCxPrlpyfPUsz2jWUIgLbLJvVYBR+IyRZE0Ekx3tdvHWCF0OxA7rLFXHRoCXOyTxivU3F6e+QgUTfcNLZOoj1rC8PrJrurvPEGS73LTM+RzWuJaqZB8Lp7v+0EvzuXZkGOMDWhUwsoLmYMQloXhWVLS74coTUWgX3ic5N6hjfSypvvfUueZ8EZOOLcQxe5k0hv2DmtudBPSc0N+Y8HfEFZYLA2jfj5j5ppYRUianpFl6yqnc5q/KbLBWgNRv+7QrcP+W9QFJm+xDXwvlgvuu0P/GLVs0XTeetkAl2Ialgjk7MtUtM5bc53IGcfgy4V1IbNPrzfvInx1D4Rrf3VxVtn5d9GzBQvL3FYvJxDIrVeQNYDA054J+aDAIcIH1pQF4Q5cP0OtUriu9ZO+JsFJWID3hxpQY9+IahWfDnEDXsJttbvk1Q6wAld1ppnGd8NBhP/rA04NHckBbj7r0BEr6B2RvtIhSPXMxiS9zLfF65DZoHob+vo91LE5h8bfJrXOfZ4+WO8/kXmEJvoa9o/9WoJK+q55EpRhpDcMEYE1qjSc1EeTvSoJQI1fWttXW5rFpeE1izNj+IWG5T7645u3Y+FyCXsA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(366016)(1800799024)(921020)(11063799006)(5023799004)(261021121427099003)(261022105027099003)(261026140227099003)(56012099006)(261021123027099003)(261026121527099003)(261028144727099003)(261009223027099003)(261102123227099003)(10067099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ii+d4ToiQ7gF4W7EeuIywDfNLxEZSM3TmU2Z1q2p14LfjpVBz33bmVuUvVzl?=
- =?us-ascii?Q?4heAXAGqvZJNze2sg0ZbcQpNCzJYjvorRMs1uEmkcENIxp8usiwhQqzJL67+?=
- =?us-ascii?Q?t1rHPvd1ixDkNqDJbKMP+mPkz0kWn/iL9wuldriyQeOD29ycX7Onr9c9CbK5?=
- =?us-ascii?Q?+puAGymKoTAQmHAeiZ4jEy14ZgLWjQfwkfVfThDJQHJXWQVmOxV4xm1czXv2?=
- =?us-ascii?Q?pXvr7kilWpUZChkcNYUhWy5f+Nx71bOreJnEEcs9Lu/8gW2oBhj6qlSZoG+g?=
- =?us-ascii?Q?WwjmwVBgQHeG7hLJ9vR18PFOn52iuSKaijf5bbsuM2ou1iM1fdgfie4KnusA?=
- =?us-ascii?Q?+WzC0D/TKYZz1f932QrUbzE3UQQ5Mh0neeB1WwginXnnShA1AVsY/bnYYoNv?=
- =?us-ascii?Q?0qnZjpgtJPOhkf5QiVR51FXeN/xcrOjImwT1mYodY+bN5FI7EuysgjirxtQa?=
- =?us-ascii?Q?IpQ8oK6VHWQFo7UeyrRmd5W4+spkK0XSMHpfcD6lZI9rAiPpETd3XubIcNaC?=
- =?us-ascii?Q?q25FaELYmTIQ1ZqJluQXQIHcqSKd3KMvND6FyNnYvxOnK2kQKgYmmpEpohXF?=
- =?us-ascii?Q?CAnt79kV/zyDzvFjCYqiDk9eOt/W9WFK83eETuxbu0KdBeyMTBAZZ1HqdgrJ?=
- =?us-ascii?Q?sddNg7k0F7PnVPleoIhB7Mf6cn7ZXB1V2B1xRVa8i8a5Lwg9fRNPITI3rRec?=
- =?us-ascii?Q?Q1A9+04jMoOmwQK/k6LpHi0ZtqlV+GXMaff/s2A5HQK7tvUfrrGisPsUYwR4?=
- =?us-ascii?Q?md3o+HvMS9+nsHf2QJ6HoW/8oShFLuci//o6Te0kiSijQj6C59hjL7tq5YOM?=
- =?us-ascii?Q?vFijL0KGdPcIa4OKTx+jZDVZbfAjv3Xi8edmodavAWcWHTYdsTC0uE1BiGTO?=
- =?us-ascii?Q?X+jDIzI208B1kkXfViMpv7B5cneJXhoE4YFPFZAKsbccRGaDdmG417APKOZQ?=
- =?us-ascii?Q?WC2l+Kw9f4rVuq6rnKMZ2P2xqqVS9lyDg9tq6Q9Lr6hPByKUmimdlvkeKLxb?=
- =?us-ascii?Q?0kwxaWAIrthYAWdqW0M3HyVFlWXoHCMIWbx6M9zpvAoxNEof4F1MPk1PhgPA?=
- =?us-ascii?Q?MTDBq4xxfyw+ptRc/ygLIYD5XPJRnkkR12mVM261IKy7Xm1I+Cjx61DaFzE9?=
- =?us-ascii?Q?0hmrv/BHbPaW6+qgxhiNNMmTU8Et4vAjZdGn3sMjdccVYlnxF3VxXJf1jhpP?=
- =?us-ascii?Q?qG3tjrgSgoIZmD8SYzU0Mq215PC61qvNZ4kE0a7O4lDrchmvRWmX4RcxuGyf?=
- =?us-ascii?Q?AWLRAOqr3dePwIyFZosi6xX6afHRv8QPy9d1GQ68AYfEjKIhyBc0iDs5fLVf?=
- =?us-ascii?Q?v2put1T5P6FQHa1R8LGj46oKLEm/dVNtPEFRYL8ieB+G2r44/vdhG7+XI9BH?=
- =?us-ascii?Q?vM+YuJ+2wxTOwiXyjJBuTFy+TFnU39ZNM1bm5ifGFhwlFvTboCiXDni4UtVE?=
- =?us-ascii?Q?e/RNQwIzi4Pe1efSF5ffWHGsL4KVTEmcs6rjOfnO0s04dvRyjd8i+ndnFb1p?=
- =?us-ascii?Q?IzH9h0Vx4IQsU9wKDXnd6A16fpOzdcExNoTRkGoR7EVz3Jmb2pPXvaWe2obx?=
- =?us-ascii?Q?PrIyvIcu5A85rSo1eZ1hkxD81jMc0p6+pxg/dIlse0bgxkzihdZVjShdXfeL?=
- =?us-ascii?Q?KrA3Ax3uyMhCCoG03PdT/M1bbrgcOy71Mya/uMqw5YbpIojJQw3CwBSZe9vE?=
- =?us-ascii?Q?Nelbp9QvGQ2BPOi7Rtjj3ygZE37eGU0wHKTdYDoBxPdZu0j3rCx4gdsHyCD3?=
- =?us-ascii?Q?znAVTOgrpg=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YM5ToQngQNT/ZCNyrGzU1ZToHzVOKG1wrVUIaz8PTQi1S5lRbE2MQVLAXZd4?=
+ =?us-ascii?Q?ZxSzg0iENY/8Hhbg2RiFXrRkgExGn4EQN5EVjJYoA97TJUETfH9kbtoBSlZ7?=
+ =?us-ascii?Q?ZqrYhUERDZ0/At0QFWiAwStC23bbPdb/wn8aEaNM/xSLaVyxtQeVXnnulO+P?=
+ =?us-ascii?Q?Xovevlfb0QGhUDRrslRKgTBax9pmPfJxVg6eEnAAR5Clq7H098wxYW3sbdTe?=
+ =?us-ascii?Q?RO7pxFpdhJqJ61CMOSQWXxBTUHIpa35kgIEVvDO3iP1u1aYJHxOisxakOmD0?=
+ =?us-ascii?Q?yaR4bUQ3ARXW55RWHF2caOG6MTs7XtVr5sC91F6diqLbJKd8LsaWrnCvJyJN?=
+ =?us-ascii?Q?ej2WVhdriv37MQncADO+q7x0KB8yv+GF3ILV9hjpPFovA/9pZFut2CG23Mk7?=
+ =?us-ascii?Q?ulsXafEhlEvWu08Ag6Niu9ZvfAbW0Lx5Ba4iNBYZiYRGKdfl5C3RDnMIX7Vw?=
+ =?us-ascii?Q?ZBK52X9T96roWhbQQ7Di1E9tXlfr38ZJw+Z5kgdS8YB74hh5suZZLdrpNRS0?=
+ =?us-ascii?Q?SyksN1o3/G8Hnr5OPW4vlfU8ZGtOJxTpbpuOn8LqMVfkr56F1tbErZiApLWb?=
+ =?us-ascii?Q?X21Lv3LskvkFVNA6MOn27HAXkWVeC6K7dVKGuxAdC9xG7+R5TQlMeQmqsoeK?=
+ =?us-ascii?Q?xt92es0ARFBO+9jSBPEVC/VF0/T+jlj6n+zgpvBPoTjVBTaXonTo4VM8r2A+?=
+ =?us-ascii?Q?c5KW+qI/xdx5ni2FsNXuiZAH63Cr6h2Ce4u0/JTXhbGSyYupzBWdtLPafUtc?=
+ =?us-ascii?Q?0qKGgW6S7JarVBWYF+F3xs9FxaKHxyWvi2PLqzFv5kptS9zcghLzXGdFwiTA?=
+ =?us-ascii?Q?wqNpSXKowLVD1ig1TH+3mKwr75QNN+hW8opD6IoM0RluW6bALku4bpure316?=
+ =?us-ascii?Q?WAZFwBmVx3WEw2UZxBtUiEI4m3KyAdE2e43Nj9XUegYCjb8v3f3Ob9WuNwt8?=
+ =?us-ascii?Q?Vjvz5sursTzn0mg+Bcymp+FzsTEA7QSBnvdKimle1lpXgbeSdLX/Ta4ktsyl?=
+ =?us-ascii?Q?PS79+erghYCjp03USEWwdbtmbuc83vBaPcDxV6UkkjlfOaMH+MaVMp6pCXwl?=
+ =?us-ascii?Q?vvJOalCoCACXmp66hApSw4alqnfU787uPnVvJg0bKUgNeW6mGiiB0F4knaMX?=
+ =?us-ascii?Q?zeY998rRpD+h9/S879bMNWg0ioL0R8kLvy7w2MBA5Qjq8k4jX0YevA3iTvXH?=
+ =?us-ascii?Q?8HzUODSWDVmrH72SbzQ/aW7yc6bro4N1sAuLBvmAX/Db7zDCiJJWgjucgGao?=
+ =?us-ascii?Q?LQ0L41SpifTlEErngfAS6qC4Fai+SaZuMY8X4bqYxnT07UMDkzJXJz+9Xhv7?=
+ =?us-ascii?Q?a8wighlapQmKgcH+RCEFT4HtnqZmU+VdMkhBdpGJrzi57seFPwWKKdLPU49l?=
+ =?us-ascii?Q?ZGtkVBSipyCowur+9aUU+gIZw9FnGhiBu0TsJOuplTA4DRVJp/I+nMtJ3C5N?=
+ =?us-ascii?Q?cerG2qevC+59Z6FcpoH/hjvhjztg1a6Oqveyg+/xksn5uQmABqV/zGlXlSMH?=
+ =?us-ascii?Q?4TArK7cPos+gdM/YeInJYmNvegnBjq04v9Y3W/u/kfP9qnHAXQ+zdMW32hfh?=
+ =?us-ascii?Q?GPs4GyXcndxjN0jzacXVJuJoXB/q/JCLijt9c1sLev14MbmDy6lAzGwKTxXp?=
+ =?us-ascii?Q?egBR7jHDiRI8HBjXfFgXN3zT4aWlUOKIgsGfucYnbfZrY8w81IBVOAefOKsJ?=
+ =?us-ascii?Q?wDbjDD2I7kFxhqrWCS0/A8PYu65QTHjVY9kZ+SHxHUZIc/A+Uj8AHtTDnEJp?=
+ =?us-ascii?Q?zkO0rp0GiA=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f77b83de-23a9-4c9d-871f-08df3ea7e19f
+X-MS-Exchange-CrossTenant-Network-Message-Id: 812b2c3d-7eca-4903-8935-08df3ea7e03c
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5230.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:47.7410
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:45.4357
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EO2qJ6G2BuKPFAbPqGJtVRKqx6xfjZ38PH37rNbVZo7PznKB9HKR12bcxo9XXYqIbh26MOH5McrKZDt/lm97IQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB176418
+X-MS-Exchange-CrossTenant-UserPrincipalName: ldGhVf3zCN6Zgf1J6hHEdWTmkAWnUSdq9P5loZx6zNC+Y99sEk2fp7UaszRLzTwv4mXiUR483ZyJmt3di3KMWg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY0PR12MB226969
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_132452_996141_A1389596 
-X-CRM114-Status: GOOD (  12.47  )
+X-CRM114-CacheID: sfid-20261109_132451_212260_F48CC202 
+X-CRM114-Status: GOOD (  18.73  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -158,47 +158,150 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MBM counter assignment uses mbm_NODE_assignments when the counters are
-backed by a NUMA-node MSC. An L3-cache MSC keeps mbm_L3_assignments.
-Document both files.
+On some ARM servers a NUMA node can expose a memory MPAM MSC without
+any local CPUs (for example, a memory-only node that still participates
+in bandwidth control). mpam_ris_get_affinity() derives affinity from
+the component's NUMA node ID, so these MSCs end up with an empty CPU
+mask and are never registered. Without a fallback, resctrl cannot see
+or control bandwidth on those nodes.
 
+When the derived cpumask is empty, fall back to cpu_possible_mask so
+the MSC can be managed and traffic from remote CPUs is still accounted
+for. Track the borrowed case with ris->cpu_less and keep that mask out
+of class->affinity on create and destroy: those CPUs already contribute
+through CPU-ful nodes in the class, and subtracting the borrowed mask
+later would remove CPUs other live nodes still depend on. Emit an
+informational message reporting each CPU-less node when this happens.
+
+Signed-off-by: Shanker Donthineni <sdonthineni@nvidia.com>
 Signed-off-by: Fenghua Yu <fenghuay@nvidia.com>
 ---
- Documentation/filesystems/resctrl.rst | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ drivers/resctrl/mpam_devices.c  | 59 ++++++++++++++++++++++++++++-----
+ drivers/resctrl/mpam_internal.h |  8 +++++
+ 2 files changed, 59 insertions(+), 8 deletions(-)
 
-diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
-index 434e6f42db4a..6ead819a7a2a 100644
---- a/Documentation/filesystems/resctrl.rst
-+++ b/Documentation/filesystems/resctrl.rst
-@@ -550,8 +550,10 @@ with the following files:
- 	the user. Each event within a resctrl group can be assigned independently.
+diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+index b69f99488111..cb6096e9d2cf 100644
+--- a/drivers/resctrl/mpam_devices.c
++++ b/drivers/resctrl/mpam_devices.c
+@@ -508,10 +508,13 @@ static void get_cpumask_from_node_id(u32 node_id, cpumask_t *affinity)
+ static int mpam_ris_get_affinity(struct mpam_msc *msc, cpumask_t *affinity,
+ 				 enum mpam_class_types type,
+ 				 struct mpam_class *class,
+-				 struct mpam_component *comp)
++				 struct mpam_component *comp,
++				 bool *cpu_less)
+ {
+ 	int err;
  
- 	In this mode, a monitoring event can only accumulate data while it is backed
--	by a hardware counter. Use "mbm_L3_assignments" found in each CTRL_MON and MON
--	group to specify which of the events should have a counter assigned. The number
-+	by a hardware counter. Use the assignment file in each CTRL_MON and MON
-+	group: "mbm_L3_assignments" when MBM is backed by an L3-cache MSC, or
-+	"mbm_NODE_assignments" when MBM is backed by a NUMA-node MSC.
-+	The number
- 	of counters available is described in the "num_mbm_cntrs" file. Changing the
- 	mode may cause all counters on the resource to reset.
++	*cpu_less = false;
++
+ 	switch (type) {
+ 	case MPAM_CLASS_CACHE:
+ 		err = mpam_get_cpumask_from_cache_id(comp->comp_id, class->level,
+@@ -528,7 +531,17 @@ static int mpam_ris_get_affinity(struct mpam_msc *msc, cpumask_t *affinity,
+ 		break;
+ 	case MPAM_CLASS_MEMORY:
+ 		get_cpumask_from_node_id(comp->comp_id, affinity);
+-		/* affinity may be empty for CPU-less memory nodes */
++		/*
++		 * A CPU-less memory node has no local CPUs. Borrow the CPUs that
++		 * can reach the MSC so the node still gets a resctrl domain, and
++		 * flag it so the borrowed mask is kept out of class->affinity.
++		 */
++		if (cpumask_empty(affinity)) {
++			dev_info(&msc->pdev->dev,
++				 "CPU-less numa node %u\n", comp->comp_id);
++			cpumask_copy(affinity, cpu_possible_mask);
++			*cpu_less = true;
++		}
+ 		break;
+ 	case MPAM_CLASS_UNKNOWN:
+ 		return 0;
+@@ -582,7 +595,8 @@ static int mpam_ris_create_locked(struct mpam_msc *msc, u8 ris_idx,
+ 		return PTR_ERR(vmsc);
+ 	}
  
-@@ -859,9 +861,12 @@ When monitoring is enabled all MON groups will also contain:
+-	err = mpam_ris_get_affinity(msc, &ris->affinity, type, class, comp);
++	err = mpam_ris_get_affinity(msc, &ris->affinity, type, class, comp,
++				    &ris->cpu_less);
+ 	if (err) {
+ 		if (list_empty(&vmsc->ris))
+ 			mpam_vmsc_destroy(vmsc);
+@@ -594,8 +608,24 @@ static int mpam_ris_create_locked(struct mpam_msc *msc, u8 ris_idx,
+ 	INIT_LIST_HEAD_RCU(&ris->vmsc_list);
+ 	ris->vmsc = vmsc;
  
- When monitoring is enabled all MON groups may also contain:
++	/*
++	 * comp->affinity must include the borrowed mask for CPU-less nodes:
++	 * mpam_resctrl_online_cpu() matches CPUs against comp->affinity to
++	 * create per-component domains. Overlap between CPU-less and CPU-ful
++	 * components is expected; each match gets its own domain keyed by
++	 * comp->comp_id, not by first-match lookup.
++	 *
++	 * class->affinity is different: it tracks CPUs with a local MSC in
++	 * this class. A CPU-less node borrows the CPUs that can reach its MSC
++	 * (see mpam_ris_get_affinity()) only so that it gets a per-component
++	 * resctrl domain. Those CPUs already contribute to class->affinity
++	 * through their own CPU-ful node, so folding the borrowed mask in here
++	 * would let mpam_ris_destroy() later subtract CPUs that other live
++	 * nodes in the class still depend on.
++	 */
+ 	cpumask_or(&comp->affinity, &comp->affinity, &ris->affinity);
+-	cpumask_or(&class->affinity, &class->affinity, &ris->affinity);
++	if (!ris->cpu_less)
++		cpumask_or(&class->affinity, &class->affinity, &ris->affinity);
+ 	list_add_rcu(&ris->vmsc_list, &vmsc->ris);
+ 	list_add_rcu(&ris->msc_list, &msc->ris);
  
--"mbm_L3_assignments":
-+"mbm_L3_assignments" / "mbm_NODE_assignments":
- 	Exists when "mbm_event" counter assignment mode is supported and lists the
--	counter assignment states of the group.
-+	counter assignment states of the group. "mbm_L3_assignments" is
-+	exposed when MBM is backed by an L3-cache MSC.
-+	"mbm_NODE_assignments" is exposed when MBM is backed by a NUMA-node
-+	MSC. The file format is the same.
+@@ -612,11 +642,24 @@ static void mpam_ris_destroy(struct mpam_msc_ris *ris)
+ 	lockdep_assert_held(&mpam_list_lock);
  
- 	The assignment list is displayed in the following format:
+ 	/*
+-	 * It is assumed affinities don't overlap. If they do the class becomes
+-	 * unusable immediately.
++	 * A CPU-less node's borrowed affinity was deliberately never folded into
++	 * class->affinity (see mpam_ris_create_locked()), so it must not be
++	 * subtracted here: doing so would remove CPUs that other live nodes in
++	 * the class still rely on.
++	 *
++	 * Every RIS of a CPU-less component borrowed cpu_possible_mask masked by
++	 * its own msc->accessibility (see mpam_ris_get_affinity()), so these
++	 * borrowed masks overlap across sibling RIS. Such a mask must not be
++	 * subtracted from comp->affinity either: a component backed by more than
++	 * one MSC keeps a live sibling RIS after this one is destroyed, and
++	 * subtracting the overlapping mask would wrongly empty comp->affinity
++	 * while that sibling still needs it. The borrowed affinity is released
++	 * when the component itself is torn down.
+ 	 */
+-	cpumask_andnot(&class->affinity, &class->affinity, &ris->affinity);
+-	cpumask_andnot(&comp->affinity, &comp->affinity, &ris->affinity);
++	if (!ris->cpu_less) {
++		cpumask_andnot(&class->affinity, &class->affinity, &ris->affinity);
++		cpumask_andnot(&comp->affinity, &comp->affinity, &ris->affinity);
++	}
+ 	clear_bit(ris->ris_idx, &msc->ris_idxs);
+ 	list_del_rcu(&ris->msc_list);
+ 	list_del_rcu(&ris->vmsc_list);
+diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
+index dfa3ceb734d4..1c9e0e8b78a9 100644
+--- a/drivers/resctrl/mpam_internal.h
++++ b/drivers/resctrl/mpam_internal.h
+@@ -369,6 +369,14 @@ struct mpam_msc_ris {
+ 	struct mpam_props	props;
+ 	bool			in_reset_state;
  
++	/*
++	 * A CPU-less memory node has no CPUs of its own, so this RIS borrows the
++	 * CPUs that can reach its MSC (see mpam_ris_get_affinity()) purely so
++	 * the node still gets a resctrl domain. When set, the borrowed mask in
++	 * @affinity must not be folded into the owning class's affinity.
++	 */
++	bool			cpu_less;
++
+ 	cpumask_t		affinity;
+ 
+ 	/* member of mpam_vmsc:ris */
 -- 
 2.53.0
 
