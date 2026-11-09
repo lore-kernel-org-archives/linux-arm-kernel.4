@@ -2,67 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 989A8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE9C606A322
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TkBp47+W;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Tera4tdh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oMGeMTWz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mkzwO33h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Cc:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject
-	:MIME-Version:Date:Message-ID:Reply-To:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Z9c1zFsWXDHo689mQwpOhi6Fn3DBrnj+Q9G41hJhu+E=; b=TkBp47+WjE75029CpX8KAeCmxk
-	+ZozxmtkYTlLxkQdDkB3KRWgFHsoAoKBs8mXo+4mN9DTvC0E9minNDc2bdwWLEIbJVGD3aT6hZugR
-	VBiQDiLE+eWBmqrysHTp5HozetJu81M3JLDS3fz714TRfANTYJK9Mg9ufsDYC1RS8cUtgUoj252Ze
-	WRAspSTH+8ZCOdrX9LlDFN08qzxQciTAIIOMtzwJiR9dgHcAUTI4B1sY5F07ACX+zMEMtRM9sC7z2
-	XVrijMITSCKq/0NEXnMpdB2dASQuAh0mMFpMdsbpc8LISF5wmn27ObIDvQz/wQogmI8H4YY+Ri+DZ
-	/8rzq83Q==;
+	bh=9ebXATzX05Df16FiAh5Nm/p4sDKyPv4TJ/TgufECg+4=; b=oMGeMTWzm5Sl+MPg4zJYAChFrI
+	5iY3KFQaw8yME5zs5s1Nr/eQYjNzXXjI0fiboRk0S5by4gUHXlFZtKCbqMi6bxmia88JyQ43nQTnM
+	UTGGfxKlD2kWRPzNS8fAEofS8EhJbt+Tqjm+JAqbtTUAL2vv3o45kT/+R3i18yDsxokDp9moLePdj
+	gY1Xa7OUNAJPSiilGCjpkXgsRT5mDZ2BtFDR/vrE1ajH+hYy2fMfqTMWQqe2P6LJtCeDoRbQr2zSb
+	hsJCHZS+d6jk4VkrF/oTzu5u7CyYzM8A0llylNOdcp67j6U5M5sxIWcsBjdz45o5WEBjq+NGbqXvR
+	r93Bak+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQN48-00000000TLp-2ekX;
-	Mon, 09 Nov 2026 10:57:32 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQN45-00000000TLE-3lkN
-	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 10:57:31 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E48D81576;
-	Mon,  9 Nov 2026 02:57:23 -0800 (PST)
-Received: from [10.2.213.24] (unknown [10.2.213.24])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B5D3F3F632;
-	Mon,  9 Nov 2026 02:57:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794221846; bh=Z9c1zFsWXDHo689mQwpOhi6Fn3DBrnj+Q9G41hJhu+E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Tera4tdhCJ9uhUnrCN+O/Y3S9ujYF/Brro2cvC/AyUHVJJlATHBn7msiUYxjnFMqN
-	 BiiCudGO471/42SyaiaC7pCz0Cq3tOeVe0mfnmYgyv+913It9DxXWGkYjk80YuzxWV
-	 wY+/Va4fZbToqzB5GjMpjr9WoSXO6RjSwH9FFYQc=
-Message-ID: <4f143547-0e12-4dd5-9a20-32ad27642834@arm.com>
-Date: Mon, 9 Nov 2026 10:57:08 +0000
+	id 1xQN6p-00000000TYL-0btI;
+	Mon, 09 Nov 2026 11:00:19 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQN6o-00000000TXx-17J2;
+	Mon, 09 Nov 2026 11:00:18 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id ABBC441FC5;
+	Mon,  9 Nov 2026 11:00:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CF5D1F008BF;
+	Mon,  9 Nov 2026 11:00:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794222017;
+	bh=9ebXATzX05Df16FiAh5Nm/p4sDKyPv4TJ/TgufECg+4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=mkzwO33h0wsAB3f+iua+afPLtSG0tD1sagQf930L4myQZcO8ZI1apUs2YFx5ma+s1
+	 Jp9yCzPwICbE3XnK7pNbFt7M5ZxI3XeUtH3VSt9e70zYWLt7tFnb+s9lOLar1wQ4UM
+	 k7aOjAR5FJT9y/q+SDNsC9jxEvtfKWHcGxLnIDoZUt7oIV66zDk4xZZJVpkfwt3EeR
+	 bIu3SXWQ7NgVfhRmuVmj+C0QqauE8r/Ok01iFjeNvo6OQy4bRAoRGwfyFDiCA/BX5W
+	 Mx18/zm+rjtUTzRkt41JqOBnwTuD3pRjm/kepHKUGY5Zx8InEj8AOuux9mShU/2P9t
+	 Zt9Zvax17SpcQ==
+Date: Mon, 9 Nov 2026 12:00:15 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Florian Maurer <fmaurer@disroot.org>
+Cc: Felix Fietkau <nbd@nbd.name>, Ryder Lee <ryder.lee@mediatek.com>,
+	Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, stable@vger.kernel.org
+Subject: Re: [PATCH wireless 1/2] wifi: mt76: npu: return rx slots to the NPU
+ only after refilling them
+Message-ID: <avGnv8Jr7BAiQhG1@lore-desk>
+References: <cover.1793927986.git.fmaurer@disroot.org>
+ <d6314f34e0965464207656d38a145490b6437aa5.1793927986.git.fmaurer@disroot.org>
+ <au3igPTxdz3i64SO@lore-desk>
+ <20261108205350.2956138-1-fmaurer@disroot.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: sdei: Run the event handler on the kernel
- vectors
-To: Catalin Marinas <catalin.marinas@arm.com>,
- Mark Rutland <mark.rutland@arm.com>
-References: <20261105120835.3321912-1-kirill@shutemov.name>
- <20261105120835.3321912-2-kirill@shutemov.name>
- <1bae50ad-a65e-4ccb-b247-8d9544e4c5ee@arm.com> <au4eDdjGkb9tn_T_@arm.com>
-From: Ada Couprie Diaz <ada.coupriediaz@arm.com>
-Content-Language: en-US, en-GB, fr
-Organization: Arm Ltd.
-In-Reply-To: <au4eDdjGkb9tn_T_@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_025730_001327_D99D6A7B 
-X-CRM114-Status: GOOD (  16.05  )
-X-Spam-Score: -4.4 (----)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hdi8mowsotR5kEpm"
+Content-Disposition: inline
+In-Reply-To: <20261108205350.2956138-1-fmaurer@disroot.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,38 +76,336 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Cc: "Kiryl Shutsemau \(Meta\)" <kas@kernel.org>, Thomas Huth <thuth@redhat.com>, Vladimir Murzin <vladimir.murzin@arm.com>, Usama Arif <usama.arif@linux.dev>, Peter Zijlstra <peterz@infradead.org>, Marc Zyngier <maz@kernel.org>, Jinjie Ruan <ruanjinjie@huawei.com>, kernel-team@meta.com, Doug Anderson <dianders@chromium.org>, stable@vger.kernel.org, linux-kernel@vger.kernel.org, mrigendrachaubey <mrigendra.chaubey@gmail.com>, James Morse <james.morse@arm.com>, linux-arm-kernel@lists.infradead.org, Breno Leitao <leitao@debian.org>, Kiryl Shutsemau <kirill@shutemov.name>, Will Deacon <will@kernel.org>, Linus Walleij <linusw@kernel.org>, Dawei Li <dawei.li@linux.dev>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Catalin,
+--hdi8mowsotR5kEpm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 06/11/2026 18:35, Catalin Marinas wrote:
-> Hi Ada,
->
-> On Fri, Nov 06, 2026 at 04:14:56PM +0000, Ada Couprie Diaz wrote:
->> What are your thoughts ?
->> I understand that this is a completely different approach, but I feel it
->> would be more in line with what we already do for other entry paths.
-> I agree moving this closer to the normal entry path makes sense and the
-> PMR handling probably belongs there as well. However, I think there are
-> implications for VHE (the handler runs at EL2 with VBAR_EL2) and for an
-> event that interrupts a KVM world switch on the hyp vectors. I need to
-> dig some more into this.
-Ah, I was unsure about KVM, but that makes sense...
-> In the meantime, I queued Kiryl's two patches, they're small enough for
-> stable. Any entry.S rework can come on top of them for future kernels.
+> On Fri, Nov 06, 2026 at 03:21:52PM +0100, Lorenzo Bianconi wrote:
+> >> +	Q_WRITE(q, dma_idx, (q->head + 1) % q->ndesc);
+> >
+> > why are you writing q->head here?
+>=20
+> Once the ring is full, (q->head + 1) % q->ndesc =3D=3D q->tail, so the
+> value is the same as today. Only the timing changes: the slots go back
+> to the NPU after they have a new buffer, not before.
+>=20
+> The +1 assumes the NPU completes slots only up to dma_idx - 2. Every
 
-That sounds good, given handling KVM properly otherwise would
-require more digging. I would be happy to have a look at such a rework
-at some point ; I will bring it up with Mark R.
+I guess this is used to mark what is the next index the mt76 driver is
+expecting but I guess airoha folks can provide more details about it.
 
-> Thanks.
-Thanks,
-Ada
+> slot it can still complete then lies between its own position and
+> q->head - 1. The host has not consumed those yet, so they still have a
+> buffer. If the refill fails, the same value is written again and the
+> ring stalls instead of handing back an empty slot. A debug patch that
+> cleared DONE after each consumed slot saw no slot completed early in
+> 60 minutes of rx load, though I can't tell how often the NPU reached
+> that slot. Can you confirm this is how the NPU treats dma_idx?
+
+q->head and q->tail are not the same when we have refilled the queue with n=
+ew
+buffers. Moreover, I think if mt76_npu_fill_rx_queue() fails (so mt76_get_p=
+age_pool_buf()
+returns NULL) it is not correct to use q->head for dma_idx, we should use q=
+->tail.
+
+>=20
+> >> +	if (nframes > q->queued)
+> >> +		return NULL;
+
+Can you please check the updated patch below?
+
+> >
+> > can this really occur?
+>=20
+> I have not seen it. The slot at q->head is never cleared while the ring
+> is full: it is the one kept free, consumed in the previous round, so it
+> still has DONE set. If the NPU has completed the first slots of a frame
+> up to q->head - 1, the count reaches past q->queued and the next DONE
+> check finds that stale bit. A page pool failure makes the stale region
+> larger.
+>=20
+> > I got your time, and I agree this is an issue we need to fix but I gues=
+s we
+> > should avoid a double loop. What about the patch below? (just compiled =
+and not
+> > tested).
+>=20
+> Keeping the partial frame in q->rx_head is nicer, and it lets the slots
+> of a half-received frame be refilled early. Comments inline.
+>=20
+> > +	if (!nframes) {
+> > +		nframes =3D FIELD_GET(NPU_RX_DMA_PKT_COUNT_MASK,
+> > +				    desc[q->tail].info);
+> > +		nframes =3D max_t(int, nframes, 1);
+> > +	}
+>=20
+> PKT_COUNT is read before DONE of this slot, see my reply to 2/2. Once
+> q->pending keeps the count across polls, a stale count of 1 would
+> stick. On top of your patch, something like (not compiled):
+>=20
+> 	if (!nframes) {
+> 		u32 ctrl =3D READ_ONCE(desc[q->tail].ctrl);
+>=20
+> 		if (!q->queued || !FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, ctrl))
+> 			return -EBUSY;
+>=20
+> 		/* PKT_COUNT is only valid once the first slot is complete */
+> 		dma_rmb();
+> 		nframes =3D FIELD_GET(NPU_RX_DMA_PKT_COUNT_MASK,
+> 				    desc[q->tail].info);
+> 		nframes =3D max_t(int, nframes, 1);
+
+ack, I can fix it.
+
+> 	}
+>=20
+> > +	while (nframes > 0) {
+> > +		struct mt76_queue_entry *e =3D &q->entry[q->tail];
+> >  		int len =3D FIELD_GET(NPU_RX_DMA_DESC_CUR_LEN_MASK,
+> > -				    desc[index].ctrl);
+> > +				    desc[q->tail].ctrl);
+> [...]
+> > +		if (!FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, desc[q->tail].ctrl))
+> > +			return -EBUSY;
+>=20
+> Three things here:
+>=20
+> - ctrl is loaded twice, so len can come from before the slot was
+>   completed.
+
+ack, I can fix it.
+
+> - Nothing stops the loop at q->queued =3D=3D 0, so it can take the stale
+>   slot at q->head, whose buffer already belongs to an skb, and
+>   q->queued goes negative.
+
+please see above
+
+> - q->pending is never set, so after -EBUSY the next poll reads
+>   PKT_COUNT from desc[q->tail].info, which is now a later slot of the
+>   same frame.
+
+I can fix it.
+
+>=20
+> So:
+>=20
+> 		u32 ctrl =3D READ_ONCE(desc[q->tail].ctrl);
+> 		int len;
+>=20
+> 		if (!q->queued || !FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, ctrl)) {
+> 			q->pending =3D nframes;
+> 			return -EBUSY;
+> 		}
+>=20
+> 		dma_rmb();
+> 		len =3D FIELD_GET(NPU_RX_DMA_DESC_CUR_LEN_MASK, ctrl);
+>=20
+> [...]
+> >  	Q_WRITE(q, dma_idx, q->tail);
+>=20
+> This still hands the slots back before mt76_npu_fill_rx_queue() refills
+> them, so the oops is still there. It needs to stay at the end of the
+> refill as in my patch. With your structure that also lets a frame that
+> runs into the free slot finish, since the NPU gets new slots after
+> every poll.
+
+I guess q->tail should point to the next already allocated buffer, right? T=
+he
+only corner case is when we consume the all the allocated buffers. In this =
+case
+we should wait to update it. Do you agree? Can you please check the updated
+patch below?
+
+>=20
+> I can fold this into a v2, test it on the W1700K for 60 minutes under
+> rx load, this time with a counter for misframed frames, and send it
+> with the results. Since the structure is yours, I'd add
+> Co-developed-by and your Signed-off-by if that's fine with you. If
+> you'd rather post it yourself, I'll test yours instead.
+
+Sure, feel free to add your Co-developed-by tag if the patch below works.
+
+Regards,
+Lorenzo
+
+diff --git a/drivers/net/wireless/mediatek/mt76/mt76.h b/drivers/net/wirele=
+ss/mediatek/mt76/mt76.h
+index 2ade848fe3bb..9537c6d28e8d 100644
+--- a/drivers/net/wireless/mediatek/mt76/mt76.h
++++ b/drivers/net/wireless/mediatek/mt76/mt76.h
+@@ -249,6 +249,7 @@ struct mt76_queue {
+ 	int ndesc;
+ 	int queued;
+ 	int buf_size;
++	int pending;
+ 	bool stopped;
+ 	bool blocked;
+=20
+diff --git a/drivers/net/wireless/mediatek/mt76/npu.c b/drivers/net/wireles=
+s/mediatek/mt76/npu.c
+index c4c7c0af6321..3ca83985376d 100644
+--- a/drivers/net/wireless/mediatek/mt76/npu.c
++++ b/drivers/net/wireless/mediatek/mt76/npu.c
+@@ -56,61 +56,81 @@ void mt76_npu_queue_cleanup(struct mt76_dev *dev, struc=
+t mt76_queue *q)
+ 		q->tail =3D (q->tail + 1) % q->ndesc;
+ 		q->queued--;
+ 	}
++	if (q->rx_head) {
++		dev_kfree_skb(q->rx_head);
++		q->rx_head =3D NULL;
++		q->pending =3D 0;
++	}
+ 	spin_unlock_bh(&q->lock);
+ }
+=20
+-static struct sk_buff *mt76_npu_dequeue(struct mt76_dev *dev,
+-					struct mt76_queue *q,
+-					u32 *info)
++static int mt76_npu_rx_process_entry(struct napi_struct *napi)
+ {
++	struct mt76_dev *dev =3D mt76_priv(napi->dev);
++	enum mt76_rxq_id qid =3D napi - dev->napi;
++	struct mt76_queue *q =3D &dev->q_rx[qid];
+ 	struct airoha_npu_rx_dma_desc *desc =3D (void *)q->desc;
+-	int i, nframes, index =3D q->tail;
+-	struct sk_buff *skb =3D NULL;
++	int nframes =3D q->pending;
++	u32 info =3D 0;
++
++	do {
++		struct mt76_queue_entry *e =3D &q->entry[q->tail];
++		u32 ctrl =3D READ_ONCE(desc[q->tail].ctrl);
++		int len;
+=20
+-	nframes =3D FIELD_GET(NPU_RX_DMA_PKT_COUNT_MASK, desc[index].info);
+-	nframes =3D max_t(int, nframes, 1);
++		if (!q->queued) {
++			q->pending =3D nframes;
++			return -EBUSY;
++		}
+=20
+-	for (i =3D 0; i < nframes; i++) {
+-		struct mt76_queue_entry *e =3D &q->entry[index];
+-		int len =3D FIELD_GET(NPU_RX_DMA_DESC_CUR_LEN_MASK,
+-				    desc[index].ctrl);
++		if (!FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, ctrl)) {
++			q->pending =3D nframes;
++			return -EBUSY;
++		}
+=20
+-		if (!FIELD_GET(NPU_RX_DMA_DESC_DONE_MASK, desc[index].ctrl)) {
+-			dev_kfree_skb(skb);
+-			return NULL;
++		dma_rmb();
++		len =3D FIELD_GET(NPU_RX_DMA_DESC_CUR_LEN_MASK, ctrl);
++		info =3D desc[q->tail].info;
++		if (nframes =3D=3D q->pending && !nframes) {
++			nframes =3D FIELD_GET(NPU_RX_DMA_PKT_COUNT_MASK, info);
++			nframes =3D max_t(int, nframes, 1);
+ 		}
+=20
+ 		dma_sync_single_for_cpu(dev->dma_dev, e->dma_addr[0],
+ 					e->dma_len[0],
+ 					page_pool_get_dma_dir(q->page_pool));
+=20
+-		if (!skb) {
+-			skb =3D napi_build_skb(e->buf, q->buf_size);
+-			if (!skb)
+-				return NULL;
++		if (!q->rx_head) {
++			q->rx_head =3D napi_build_skb(e->buf, q->buf_size);
++			if (!q->rx_head)
++				return -ENOMEM;
+=20
+-			__skb_put(skb, len);
+-			skb_reset_mac_header(skb);
+-			skb_mark_for_recycle(skb);
++			__skb_put(q->rx_head, len);
++			skb_reset_mac_header(q->rx_head);
++			skb_mark_for_recycle(q->rx_head);
+ 		} else {
+-			struct skb_shared_info *shinfo =3D skb_shinfo(skb);
++			struct skb_shared_info *shinfo =3D skb_shinfo(q->rx_head);
+ 			struct page *page =3D virt_to_head_page(e->buf);
+ 			int nr_frags =3D shinfo->nr_frags;
+=20
+ 			if (nr_frags < ARRAY_SIZE(shinfo->frags))
+-				skb_add_rx_frag(skb, nr_frags, page,
++				skb_add_rx_frag(q->rx_head, nr_frags, page,
+ 						e->buf - page_address(page),
+ 						len, q->buf_size);
+ 		}
+=20
+-		*info =3D desc[index].info;
+-		index =3D (index + 1) % q->ndesc;
+-	}
+-	q->tail =3D index;
+-	q->queued -=3D i;
++		q->tail =3D (q->tail + 1) % q->ndesc;
++		q->queued--;
++	} while (--nframes > 0);
++
++	dev->drv->rx_skb(dev, qid, q->rx_head, &info);
++	mt76_rx_poll_complete(dev, qid, napi);
++	q->rx_head =3D NULL;
++	q->pending =3D 0;
++
+ 	Q_WRITE(q, dma_idx, q->tail);
+=20
+-	return skb;
++	return 0;
+ }
+=20
+ void mt76_npu_check_ppe(struct mt76_dev *dev, struct sk_buff *skb,
+@@ -155,18 +175,10 @@ static int mt76_npu_rx_poll(struct napi_struct *napi,=
+ int budget)
+ 		goto out;
+=20
+ 	while (done < budget) {
+-		struct sk_buff *skb;
+-		u32 info =3D 0;
+-
+-		skb =3D mt76_npu_dequeue(dev, &dev->q_rx[qid], &info);
+-		if (!skb)
++		if (mt76_npu_rx_process_entry(napi))
+ 			break;
+-
+-		dev->drv->rx_skb(dev, qid, skb, &info);
+-		mt76_rx_poll_complete(dev, qid, napi);
+ 		done++;
+ 	}
+-
+ 	mt76_npu_fill_rx_queue(dev, &dev->q_rx[qid]);
+ out:
+ 	if (done < budget && napi_complete(napi))
+
+>=20
+> Thanks,
+> Florian
+
+--hdi8mowsotR5kEpm
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCavGnvwAKCRA6cBh0uS2t
+rK53AP41fpR0W9WTmx7U4xEDM44WDHEZ601wxZU2z7p0sw+djQD+P3O2wq3TnIPD
+pVeyRYBb/8kMz681T+ZYh3gfrZxVuA8=
+=6OW0
+-----END PGP SIGNATURE-----
+
+--hdi8mowsotR5kEpm--
 
