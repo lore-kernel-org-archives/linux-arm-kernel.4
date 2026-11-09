@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D35760A3820
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77FA76082BD8
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h0aTnPLI;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=T2AsfrTX;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=hSEb/1Fx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Egzx4ePZ;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=YND6bMzo;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=dkRV3vDH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uWThlNDxx8k9coc2dZrQvIwrgPoJzUnjIpsnGUgbQxc=; b=h0aTnPLIGoIAX4
-	2pv187YQEbZHJuIh7R7PVY847Lct/juRYzXJHAV6ExApsCCOBXWidGyMmVX/ZIR4+8hLzjOCV7B+F
-	Ku6LVYYm+N9a2nZvAY97vJpnRdWmKaeSXAnczssTTkhtVIsmdC0HpQoHVUgNgSsvyrUMjsAogotAc
-	ozE6fMTL4QwKWGCT30Tbi9tQnb/yRA7KPTS2Ltpgl4RWxOIsNadtWXN/jWoRZ/QY8lT6/JdqyQlXs
-	2qHgLlaja+lSmJECTki3FBovPC9pl0Dc5Quk8mK689ujy5NzqOLB7SzRX2ne1vH56/nWXhJHT5cUq
-	4Wm19SPzjoLe24MyCeyQ==;
+	List-Owner; bh=Pgz6boN4kPnt6gDALHRvgvIhz0jT89VwBf1sm3F9K/k=; b=Egzx4ePZejC6q0
+	QlVOl8XMW8ig3gyWFq4ke1o8SRaB2bc0TqjYA42iE+KcIO05urhrZBqM+mKqRR7F+ADBLtmlzSGXC
+	Iaz/hU0oD6MRdsbu+AJc2oFe6GlKyE08/GiKmFppoEHHmyfeApvepDV2ZzIWQ+m+qVE8xTPSGPuS6
+	yXRl9oC7mvEXPGsfmLVoJ+qfnAzFr/AGLe7HkKSd5HESFQP7I4o1ZOIzmGZLMcnnazCFK2dkL9vN2
+	i8PKcDkPNlVvJlM59KHTCynSNCKAv1AF1jUSsWWzqkINhR1BynBaezAbvFfXH5owWN0m9bYHIMRkM
+	xOk06XjOMnsOwrBqz4Xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4a-000000007lK-1DqV;
+	id 1xQL4a-000000007lA-0pGV;
 	Mon, 09 Nov 2026 08:49:52 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4X-000000007iT-0L3b
+	id 1xQL4W-000000007iH-44AX
 	for linux-arm-kernel@bombadil.infradead.org;
 	Mon, 09 Nov 2026 08:49:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=uWThlNDxx8k9coc2dZrQvIwrgPoJzUnjIpsnGUgbQxc=; b=T2AsfrTXdUNgJv5EzLePKKjog+
-	4JT38j10mNNVZ8CqWcChAdOYZTlXB8u3rHBV2jwMkFlRLzrksmAfWh3vSADrPzwXarP93CQhKpWTR
-	9ccIOvRrPr9cD5RCs2llyDE13KAPmKLPAWFZ+15LrppOR6bL+in5QdQvrD6BWxcQPLgUp3OiZrRke
-	mYRs5zW3M0LFHoq1/ITmpqBq+Ux9IBKa61jPgBPiN+ie3CJFIIj22CkoS+yGlWsBCyCSLADOMiW/P
-	Lu04nMPviYWIfX3objV8443THhyFJ3HbKsOQ8oU8nos4boI/kQ/tYNZoURfgJTsKcxcLDMovjuiYY
-	XYFYEWYA==;
-Received: from out-231.mta0.migadu.com ([2001:41d0:1004:224b::e7] helo=mta0.migadu.com)
+	bh=Pgz6boN4kPnt6gDALHRvgvIhz0jT89VwBf1sm3F9K/k=; b=YND6bMzocQb4Ad/eI9zJ6DOE/R
+	beL+MdtQS31JPOqd+3FIJWgVP0Vkxt8+O5dixP6HE0HBvBZ3gxFnTvm3roK5y3YppncE3xbch8xAb
+	39ddM0AnAIm0syXzdYYJfVrvc9z34geQEnoB5iWIfgJuMrRKTAjSQKJhFPUYVNwfE+PTJN6QWBjO1
+	/u5DJn0gsWbfruhVMl2I//+sPx40kIKKlEREgzrZ9VQqT44ZTgyQy0a2YZHOZiKwSVBkta/9HIWr5
+	FGJdUReBmdeioaMBR2adujcfOsW+cyc0vhKERKdTMqgYAC/r8ZY4nqXSrhCA1yzm5nmeMMwsfiQnv
+	b5670s4Q==;
+Received: from out-228.mta0.migadu.com ([2001:41d0:1004:224b::e4] helo=mta0.migadu.com)
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4N-00000006TZj-3YwQ
+	id 1xQL4N-00000006TZg-14mZ
 	for linux-arm-kernel@lists.infradead.org;
 	Mon, 09 Nov 2026 08:49:46 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=tieCJB5xPHFID0PWIkTmfQAHSOPwOh5HA6tVxBq05s0=;
+DKIM-Signature: a=rsa-sha256; bh=La1x2LkqcyYZCK+glL9ieQttCEuyP9HscydJiwzIbiw=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
  t=1794214177; v=1; x=1794818977;
- b=hSEb/1Fx4YSgGT9RJa3fhefkK5thhzaT01aiVI8Y54Z22V7X1Hx3AMrEZxnxKqrXle7s3VRF
- bLnIJ6AvO5e7f23+RAFmZXYMIHi8RFCSTVGkySi3ogjGJGgbjEZp5y8OODuBLuYeU3W7oV2923A
- SraLZjCgwkJ5ayv3P9LjX+1U=
+ b=dkRV3vDHeyO0tUMFx9q37JNcOUxNLAspFOHFiofF4dJ81kSqZqIAB9Kkh/uyhyUbd/8h/j0/
+ gfoZhTduWTQYNqtKcxCmJernqBadrj2g3EXO8j0yPCNDKo+WEQSlOns92FX2NxFxdDaKp+v59cM
+ 8BNJoIAXS7GrCeMvNsPtr3mo=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 7e8d9e8db2fd6fbd;
-	Mon, 09 Nov 2026 08:49:37 +0000
-X-Mizu-Trace-ID: 7e8d9e8db2fd6fbd
+Received: by smtp.migadu.com with ESMTPS id c5a3d1c981718f74;
+	Mon, 09 Nov 2026 08:49:36 +0000
+X-Mizu-Trace-ID: c5a3d1c981718f74
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -78,9 +78,9 @@ Cc: Will Deacon <will@kernel.org>,
 	kvm@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 14/19] KVM: arm64: selftests: Add pkvm_irq interrupt test
-Date: Mon,  9 Nov 2026 08:48:49 +0000
-Message-ID: <20261109084854.840576-15-fuad.tabba@linux.dev>
+Subject: [PATCH v2 13/19] KVM: arm64: selftests: Add pkvm_vcpu_regs register-state test
+Date: Mon,  9 Nov 2026 08:48:48 +0000
+Message-ID: <20261109084854.840576-14-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261109084854.840576-1-fuad.tabba@linux.dev>
 References: <20261109084854.840576-1-fuad.tabba@linux.dev>
@@ -88,8 +88,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_084941_359703_80B98032 
-X-CRM114-Status: GOOD (  21.80  )
+X-CRM114-CacheID: sfid-20261109_084941_312148_A7453E0B 
+X-CRM114-Status: GOOD (  21.65  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,305 +109,254 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The host emulates a protected guest's vGIC, so EL2 copies the list
-registers to and from the host each time the host runs the vCPU. EL2
-also keeps its own copy of the guest's virtual timer state, which the
-host can't change.
+A protected vCPU's registers are held at EL2, which handles some exits
+itself and returns others to the host. The host can move the vCPU's
+thread to another CPU at any exit. The guest's registers have to keep
+their values through all of that.
 
-Check that the virtual timer's PPI arrives exactly once, with CVAL and
-CTL kept across exits, that SGIs pass between two vCPUs, and that the
-timer wakes a vCPU in WFI.
+Verify that x19-x28 and v0-v31 keep the values the guest loaded across
+each kind of exit, and across a host CPU migration at every MMIO exit.
 
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- tools/testing/selftests/kvm/Makefile.kvm     |   1 +
- tools/testing/selftests/kvm/arm64/pkvm_irq.c | 268 +++++++++++++++++++
- 2 files changed, 269 insertions(+)
- create mode 100644 tools/testing/selftests/kvm/arm64/pkvm_irq.c
+ tools/testing/selftests/kvm/Makefile.kvm      |   1 +
+ .../selftests/kvm/arm64/pkvm_vcpu_regs.c      | 218 ++++++++++++++++++
+ 2 files changed, 219 insertions(+)
+ create mode 100644 tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c
 
 diff --git a/tools/testing/selftests/kvm/Makefile.kvm b/tools/testing/selftests/kvm/Makefile.kvm
-index 1e40e793aa6f3..13998964facd5 100644
+index 8855c9abb2fd0..1e40e793aa6f3 100644
 --- a/tools/testing/selftests/kvm/Makefile.kvm
 +++ b/tools/testing/selftests/kvm/Makefile.kvm
-@@ -192,6 +192,7 @@ TEST_GEN_PROGS_arm64 += arm64/mmio_sign_ext
- TEST_GEN_PROGS_arm64 += arm64/page_fault_test
- TEST_GEN_PROGS_arm64 += arm64/pkvm_host_abi
- TEST_GEN_PROGS_arm64 += arm64/pkvm_id_regs
-+TEST_GEN_PROGS_arm64 += arm64/pkvm_irq
+@@ -195,6 +195,7 @@ TEST_GEN_PROGS_arm64 += arm64/pkvm_id_regs
  TEST_GEN_PROGS_arm64 += arm64/pkvm_mem_share
  TEST_GEN_PROGS_arm64 += arm64/pkvm_psci
  TEST_GEN_PROGS_arm64 += arm64/pkvm_smccc
-diff --git a/tools/testing/selftests/kvm/arm64/pkvm_irq.c b/tools/testing/selftests/kvm/arm64/pkvm_irq.c
++TEST_GEN_PROGS_arm64 += arm64/pkvm_vcpu_regs
+ TEST_GEN_PROGS_arm64 += arm64/psci_test
+ TEST_GEN_PROGS_arm64 += arm64/sea_to_user
+ TEST_GEN_PROGS_arm64 += arm64/set_id_regs
+diff --git a/tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c b/tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c
 new file mode 100644
-index 0000000000000..f92fa6f0de8de
+index 0000000000000..41023b62800aa
 --- /dev/null
-+++ b/tools/testing/selftests/kvm/arm64/pkvm_irq.c
-@@ -0,0 +1,268 @@
++++ b/tools/testing/selftests/kvm/arm64/pkvm_vcpu_regs.c
+@@ -0,0 +1,218 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * pkvm_irq - the virtual timer's PPI and SGIs in a protected VM.
++ * pkvm_vcpu_regs - a protected guest's registers across every kind of exit.
 + *
 + * Copyright (C) 2026 Google LLC
 + * Author: Fuad Tabba <fuad.tabba@linux.dev>
 + */
 +
-+#include <pthread.h>
++#include <sched.h>
 +
-+#include <linux/bitfield.h>
-+#include <linux/psci.h>
-+#include <asm/cputype.h>
-+
-+#include "arch_timer.h"
-+#include "gic.h"
-+#include "gic_v3.h"
 +#include "kvm_util.h"
 +#include "pkvm.h"
 +#include "processor.h"
 +#include "test_util.h"
 +
-+#define TIMER_MS	10
-+#define WAIT_MS		30000
-+#define NR_EXITS	16
-+#define SGI_ROUNDS	16
++/* Accesses to this IPA, outside every memslot, exit to the VMM as MMIO. */
++#define MMIO_IPA	BIT_ULL(31)
++#define MMIO_READ_VAL	0x0123456789abcdefUL
 +
-+#define SGI_PING	1
-+#define SGI_PONG	2
++/* One new host page per stage-2 fault. */
++#define FAULT_MEMSLOT	(PKVM_IDMAP_MEMSLOT + 1)
++#define FAULT_GPA	BIT_ULL(30)
++
++#define NR_EXITS	64
++
++enum exit_kind {
++	EXIT_MMIO_WRITE,
++	EXIT_MMIO_READ,
++	EXIT_HVC,
++	EXIT_SYSREG_EL2,
++	EXIT_SYSREG_HOST,
++	EXIT_S2_FAULT,
++	NR_EXIT_KINDS,
++};
++
++static const char * const exit_kind_names[] = {
++	[EXIT_MMIO_WRITE]	= "MMIO writes to the VMM",
++	[EXIT_MMIO_READ]	= "MMIO reads from the VMM",
++	[EXIT_HVC]		= "hypercalls EL2 handles",
++	[EXIT_SYSREG_EL2]	= "sysreg traps EL2 handles",
++	[EXIT_SYSREG_HOST]	= "sysreg traps the host handles",
++	[EXIT_S2_FAULT]		= "stage-2 faults on new memory",
++};
++
++/* x19-x28, v0-v31, then what the exit left in x0. */
++struct reg_state {
++	u64 x[10];
++	u64 v[32][2];
++	u64 x0;
++};
++
++#define REG_WORDS	(offsetof(struct reg_state, x0) / sizeof(u64))
++
++static_assert(offsetof(struct reg_state, v) == 80, "v0 offset");
++static_assert(offsetof(struct reg_state, x0) == 592, "x0 offset");
++
++#define X_REGS	"19, 20, 21, 22, 23, 24, 25, 26, 27, 28"
++#define V_REGS	"0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, "		\
++		"16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31"
++
++/* @op x19-x28 and v0-v31 at their struct reg_state offsets from @buf. */
++#define REGS_OP(op, buf)								\
++	".irp num, " X_REGS "\n" op "	x\\num, [%[" buf "], #8 * (\\num - 19)]\n.endr\n"	\
++	".irp num, " V_REGS "\n" op "	q\\num, [%[" buf "], #80 + 16 * \\num]\n.endr\n"
++
++/* Load the registers, take the exit @insn causes, and store them again. */
++#define REGS_ACROSS(insn, addr)								\
++({											\
++	asm volatile(REGS_OP("ldr", "in") insn "\n" REGS_OP("str", "out")		\
++		     "str	x0, [%[out], #592]\n"						\
++		     : : [in] "r"(&regs_in), [out] "r"(&regs_out), [arg] "r"(addr)		\
++		     : "x0", "x1", "x2", "x3",						\
++		       "x19", "x20", "x21", "x22", "x23", "x24", "x25", "x26", "x27", "x28",	\
++		       "v0", "v1", "v2", "v3", "v4", "v5", "v6", "v7",			\
++		       "v8", "v9", "v10", "v11", "v12", "v13", "v14", "v15",		\
++		       "v16", "v17", "v18", "v19", "v20", "v21", "v22", "v23",		\
++		       "v24", "v25", "v26", "v27", "v28", "v29", "v30", "v31",		\
++		       "memory");							\
++})
 +
 +/* Set in the guest's copy by the host before the first run. */
-+static u32 vtimer_irq;
-+static u64 boot_entry;
-+static u64 vcpu_mpidr[2];
-+static u64 vcpu_ctx[2];
++static int exit_kind;
++static u64 host_page_size;
 +
-+static u32 irqs[2];
-+static u32 last_intid[2];
-+static u32 ready;
++static struct reg_state regs_in, regs_out;
 +
-+#define wait_until(cond)							\
-+do {										\
-+	u64 __end = timer_get_cntct(VIRTUAL) + msec_to_cycles(WAIT_MS);	\
-+										\
-+	while (!(cond))								\
-+		__GUEST_ASSERT(timer_get_cntct(VIRTUAL) < __end,		\
-+			       "timed out waiting for %s", #cond);		\
-+} while (0)
-+
-+static void guest_irq_handler(struct ex_regs *regs)
++static void guest_regs_across_exits(void)
 +{
-+	u32 intid = gic_get_and_ack_irq();
-+	u32 cpu = guest_get_vcpuid();
++	u64 *in = (u64 *)&regs_in, *out = (u64 *)&regs_out;
++	int i, j;
 +
-+	if (intid == IAR_SPURIOUS)
-+		return;
-+
-+	if (intid == vtimer_irq) {
-+		__GUEST_ASSERT(timer_get_ctl(VIRTUAL) & CTL_ISTATUS, "CNTV_CTL 0x%x",
-+			       timer_get_ctl(VIRTUAL));
-+		GUEST_ASSERT(timer_get_cntct(VIRTUAL) >= timer_get_cval(VIRTUAL));
-+		/* Mask the timer before the EOI, or its level-sensitive PPI is taken again. */
-+		timer_set_ctl(VIRTUAL, CTL_IMASK);
-+	}
-+
-+	WRITE_ONCE(last_intid[cpu], intid);
-+	gic_set_eoi(intid);
-+	WRITE_ONCE(irqs[cpu], irqs[cpu] + 1);
-+}
-+
-+static void guest_irq_init(unsigned int nr_cpus)
-+{
-+	local_irq_disable();
 +	pkvm_guest_init();
-+	gic_init(GIC_V3, nr_cpus);
-+}
 +
-+static u64 start_vtimer(void)
-+{
-+	u64 cval = timer_get_cntct(VIRTUAL) + msec_to_cycles(TIMER_MS);
++	for (i = 0; i < NR_EXITS; i++) {
++		/* Different in every word and on every exit. */
++		for (j = 0; j < REG_WORDS; j++)
++			in[j] = 0x0101010101010101UL * (j + 1) ^ (u64)i << 32;
 +
-+	gic_irq_enable(vtimer_irq);
-+	timer_set_cval(VIRTUAL, cval);
-+	timer_set_ctl(VIRTUAL, CTL_ENABLE);
-+	return cval;
-+}
++		switch (exit_kind) {
++		case EXIT_MMIO_WRITE:
++			REGS_ACROSS("str	x0, [%[arg]]", MMIO_IPA);
++			break;
++		case EXIT_MMIO_READ:
++			REGS_ACROSS("ldr	x0, [%[arg]]", MMIO_IPA);
++			GUEST_ASSERT_EQ(regs_out.x0, MMIO_READ_VAL);
++			break;
++		case EXIT_HVC:
++			REGS_ACROSS("mov	w0, #0x80000000\n hvc	#0", 0);
++			break;
++		case EXIT_SYSREG_EL2:
++			REGS_ACROSS("mrs	x0, id_aa64pfr0_el1", 0);
++			break;
++		case EXIT_SYSREG_HOST:
++			REGS_ACROSS("mrs	x0, clidr_el1", 0);
++			break;
++		case EXIT_S2_FAULT:
++			REGS_ACROSS("str	x0, [%[arg]]", FAULT_GPA + i * host_page_size);
++			break;
++		}
 +
-+static void guest_vtimer(void)
-+{
-+	u64 cval;
-+	int i;
-+
-+	guest_irq_init(1);
-+	cval = start_vtimer();
-+
-+	/* Exits before the timer fires, then with its interrupt pending but masked. */
-+	for (i = 0; i < NR_EXITS; i++)
-+		GUEST_SYNC(i);
-+	wait_until(timer_get_ctl(VIRTUAL) & CTL_ISTATUS);
-+	for (i = 0; i < NR_EXITS; i++)
-+		GUEST_SYNC(i);
-+
-+	GUEST_ASSERT_EQ(timer_get_cval(VIRTUAL), cval);
-+	GUEST_ASSERT_EQ(timer_get_ctl(VIRTUAL), CTL_ENABLE | CTL_ISTATUS);
-+	GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), 0);
-+
-+	local_irq_enable();
-+	wait_until(READ_ONCE(irqs[0]));
-+
-+	/* The EOI must reach the host, or it presents the interrupt again. */
-+	for (i = 0; i < NR_EXITS; i++)
-+		GUEST_SYNC(i);
-+	local_irq_disable();
-+
-+	GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), 1);
-+	GUEST_ASSERT_EQ(READ_ONCE(last_intid[0]), vtimer_irq);
-+	GUEST_DONE();
-+}
-+
-+static void send_sgi(int id, u32 intid)
-+{
-+	u64 mpidr = vcpu_mpidr[id];
-+
-+	/* The target reads this vCPU's counters once it has taken the SGI. */
-+	dsb(ishst);
-+	write_sysreg_s(FIELD_PREP(ICC_SGI1R_SGI_ID_MASK, intid) |
-+		       FIELD_PREP(ICC_SGI1R_AFFINITY_1_MASK, MPIDR_AFFINITY_LEVEL(mpidr, 1)) |
-+		       FIELD_PREP(ICC_SGI1R_TARGET_LIST_MASK, BIT(MPIDR_AFFINITY_LEVEL(mpidr, 0))),
-+		       SYS_ICC_SGI1R_EL1);
-+	isb();
-+}
-+
-+static void guest_sgi_primary(void)
-+{
-+	u32 k;
-+
-+	guest_irq_init(2);
-+	gic_irq_enable(SGI_PONG);
-+
-+	GUEST_ASSERT_EQ(pkvm_hvc(PSCI_0_2_FN64_CPU_ON, vcpu_mpidr[1], boot_entry, vcpu_ctx[1]),
-+			PSCI_RET_SUCCESS);
-+	wait_until(READ_ONCE(ready));
-+
-+	local_irq_enable();
-+	for (k = 1; k <= SGI_ROUNDS; k++) {
-+		send_sgi(1, SGI_PING);
-+
-+		/* vCPU 1 sends PONG only once it has taken PING, so neither is in flight. */
-+		wait_until(READ_ONCE(irqs[0]) >= k);
-+		GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), k);
-+		GUEST_ASSERT_EQ(READ_ONCE(irqs[1]), k);
-+		GUEST_ASSERT_EQ(READ_ONCE(last_intid[0]), SGI_PONG);
-+		GUEST_ASSERT_EQ(READ_ONCE(last_intid[1]), SGI_PING);
-+	}
-+	local_irq_disable();
-+
-+	GUEST_DONE();
-+}
-+
-+/* The primary's guest_irq_init() set up ucall and the distributor. */
-+static void guest_sgi_secondary(void)
-+{
-+	u32 k;
-+
-+	gic_init(GIC_V3, 2);
-+	gic_irq_enable(SGI_PING);
-+	local_irq_enable();
-+	WRITE_ONCE(ready, 1);
-+
-+	for (k = 1; k <= SGI_ROUNDS; k++) {
-+		wait_until(READ_ONCE(irqs[1]) >= k);
-+		send_sgi(0, SGI_PONG);
-+	}
-+	local_irq_disable();
-+
-+	GUEST_DONE();
-+}
-+
-+static void guest_wfi(void)
-+{
-+	guest_irq_init(1);
-+	start_vtimer();
-+
-+	/* WFI can complete before the timer fires, so wait in it until the handler has run. */
-+	while (!READ_ONCE(irqs[0])) {
-+		wfi();
-+		local_irq_enable();
-+		isb(); /* handle IRQ */
-+		local_irq_disable();
++		for (j = 0; j < REG_WORDS; j++)
++			__GUEST_ASSERT(out[j] == in[j], "exit %d: %s%d is 0x%lx, not 0x%lx", i,
++				       j < 10 ? "x" : "v", j < 10 ? 19 + j : (j - 10) / 2,
++				       out[j], in[j]);
 +	}
 +
-+	GUEST_ASSERT_EQ(READ_ONCE(irqs[0]), 1);
-+	GUEST_ASSERT_EQ(READ_ONCE(last_intid[0]), vtimer_irq);
 +	GUEST_DONE();
 +}
 +
-+static void irq_vm_setup(struct kvm_vm *vm, struct kvm_vcpu *vcpu)
++static cpu_set_t host_cpus;
++
++/* Move this thread, and with it the vCPU's next run, to another of its CPUs. */
++static void migrate_thread(void)
 +{
-+	vm_install_exception_handler(vm, VECTOR_IRQ_CURRENT, guest_irq_handler);
-+	write_guest_global(vm, vtimer_irq, vcpu_get_vtimer_irq(vcpu));
++	int cpu = sched_getcpu();
++
++	do
++		cpu = (cpu + 1) % CPU_SETSIZE;
++	while (!CPU_ISSET(cpu, &host_cpus));
++
++	pin_self_to_cpu(cpu);
++	TEST_ASSERT_EQ(sched_getcpu(), cpu);
 +}
 +
-+static void test_one_vcpu(void *guest_code)
++static void run_regs_across_exits(struct kvm_vcpu *vcpu, bool migrate)
++{
++	struct kvm_run *run = vcpu->run;
++	u64 data = MMIO_READ_VAL;
++	struct ucall uc;
++
++	for (;;) {
++		vcpu_run(vcpu);
++
++		if (run->exit_reason == KVM_EXIT_MMIO && run->mmio.phys_addr == MMIO_IPA) {
++			if (!run->mmio.is_write)
++				memcpy(run->mmio.data, &data, sizeof(data));
++			if (migrate)
++				migrate_thread();
++			continue;
++		}
++
++		switch (get_ucall(vcpu, &uc)) {
++		case UCALL_DONE:
++			return;
++		case UCALL_ABORT:
++			REPORT_GUEST_ASSERT(uc);
++			break;
++		default:
++			TEST_FAIL("Unexpected exit: %s", exit_reason_str(run->exit_reason));
++		}
++	}
++}
++
++/* With @migrate, the vCPU moves to another host CPU at every MMIO exit. */
++static void test_regs_across_exits(enum exit_kind kind, bool migrate)
 +{
 +	struct kvm_vcpu *vcpu;
++	unsigned int npages;
 +	struct kvm_vm *vm;
 +
-+	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_code);
-+	irq_vm_setup(vm, vcpu);
++	vm = pkvm_vm_create_with_one_vcpu(&vcpu, guest_regs_across_exits);
++	npages = NR_EXITS * getpagesize() / vm->page_size;
++	vm_userspace_mem_region_add(vm, VM_MEM_SRC_ANONYMOUS, FAULT_GPA, FAULT_MEMSLOT, npages, 0);
++	virt_map(vm, FAULT_GPA, FAULT_GPA, npages);
++	virt_map(vm, MMIO_IPA, MMIO_IPA, 1);
++	write_guest_global(vm, exit_kind, kind);
++	write_guest_global(vm, host_page_size, getpagesize());
 +
-+	pkvm_run_loop(vcpu, NULL);
-+
-+	kvm_vm_free(vm);
-+}
-+
-+static void wire_mpidr(struct kvm_vm *vm, struct kvm_vcpu *vcpu)
-+{
-+	u64 mpidr = vcpu_get_reg(vcpu, KVM_ARM64_SYS_REG(SYS_MPIDR_EL1));
-+
-+	write_guest_global(vm, vcpu_mpidr[vcpu->id], mpidr & MPIDR_HWID_BITMASK);
-+}
-+
-+static void *vcpu_thread(void *vcpu)
-+{
-+	pkvm_run_loop(vcpu, NULL);
-+	return NULL;
-+}
-+
-+static void test_sgi(void)
-+{
-+	struct kvm_vcpu *vcpus[2];
-+	pthread_t thread;
-+	struct kvm_vm *vm;
-+	gpa_t ctx;
-+
-+	vm = pkvm_vm_create(2, 0, vcpus);
-+	irq_vm_setup(vm, vcpus[0]);
-+
-+	pkvm_vcpu_setup_boot(vcpus[0], guest_sgi_primary);
-+	wire_mpidr(vm, vcpus[0]);
-+	wire_mpidr(vm, vcpus[1]);
-+	write_guest_global(vm, boot_entry, pkvm_idmap_gpa(vm));
-+	ctx = pkvm_vcpu_setup_boot_secondary(vcpus[1], guest_sgi_secondary);
-+	write_guest_global(vm, vcpu_ctx[1], ctx);
-+
-+	pthread_create(&thread, NULL, vcpu_thread, vcpus[1]);
-+	pkvm_run_loop(vcpus[0], NULL);
-+	pthread_join(thread, NULL);
++	run_regs_across_exits(vcpu, migrate);
 +
 +	kvm_vm_free(vm);
 +}
 +
 +int main(void)
 +{
++	int kind;
++
 +	TEST_REQUIRE(pkvm_supported());
 +
 +	ksft_print_header();
-+	ksft_set_plan(3);
++	ksft_set_plan(1 + NR_EXIT_KINDS);
 +
-+	test_one_vcpu(guest_vtimer);
-+	ksft_test_result_pass("virtual timer PPI across exits\n");
-+	test_sgi();
-+	ksft_test_result_pass("SGIs between two vCPUs: %d rounds\n", SGI_ROUNDS);
-+	test_one_vcpu(guest_wfi);
-+	ksft_test_result_pass("the virtual timer wakes a vCPU waiting in WFI\n");
++	for (kind = 0; kind < NR_EXIT_KINDS; kind++) {
++		test_regs_across_exits(kind, false);
++		ksft_test_result_pass("x19-x28 and v0-v31 across %s\n", exit_kind_names[kind]);
++	}
++
++	kvm_sched_getaffinity(0, sizeof(host_cpus), &host_cpus);
++	if (CPU_COUNT(&host_cpus) < 2) {
++		ksft_test_result_skip("x19-x28 and v0-v31 across host CPU migrations: one CPU\n");
++	} else {
++		test_regs_across_exits(EXIT_MMIO_WRITE, true);
++		kvm_sched_setaffinity(0, sizeof(host_cpus), &host_cpus);
++		ksft_test_result_pass("x19-x28 and v0-v31 across host CPU migrations\n");
++	}
 +
 +	ksft_finished();
 +}
