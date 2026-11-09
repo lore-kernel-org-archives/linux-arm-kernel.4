@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE7C5606D828
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11813606D802
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W/nah2kP;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=GgtV2rMd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UXjx3LHy;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=t/vDo6jt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AfXeCeneHqNmuixn/C9DCjk2UEGT5HCCQsR07Fy0vVk=; b=W/nah2kPsDT6/s
-	THtKQW6rP2emdXR022Hc6xzVjigBM0e6ayuckSCajR79N2plKnkgP0UL25pXFwAcUDfaetECWMsCG
-	RiPQD6sz6pJ2etSMMZPf1PmUmT5HK0vAWUx1zIW1C2u2xsZpw4VX60nPOjh/yV6xBMiTAWMFaZx61
-	CUjSyyibG0umRULwjMS9PJONb16VPL/cuiNwYAsibAHojgHmxKeX16VrzPcICBm4xsgLaY7fUwDro
-	6pvlhQ6Rwvd3E7qHEbswqa6T3EveNt8XWrOLcIuOTNqYQGsM22UceCSosMwA2EDcxRuX9av12wmEs
-	DIA7zZhivVkG/tfPnfBg==;
+	List-Owner; bh=zV83cBOy84RU8O9pg+oy+O4d35Nqre8Izu9ZB0pqdss=; b=UXjx3LHy+kKlaW
+	guxMg94jf8I1JS/opU9mDO9t1rSeROhsljnOfGtbgdV9f+8/b1/6lJyhiZPHMrkuopYb0TEmlBofb
+	HddHhRRiTgOfocIzn62Xoz21hMj/2ipC1oaVEtgxe9UhXe/O2CEWkgr0kWOWNOrt2hk0hPSQ8BljX
+	MlYID1o2ln4WsYIMfTk7TUcWjJpWw/XAPPUQpNG1mBxJfaMb1yi7WC9fUPS8+MQxZ9+Pc4xoqkIJ4
+	DZzhwo94LySr3BLZ/QMXeJt87X4CzH20tZ7FQ3h6QydYpMdCvTC1+ilfpuHmplNPW5mwyfZSzFALK
+	kVN/iBddWtZzGWii94og==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL41-000000007HF-3UOK;
-	Mon, 09 Nov 2026 08:49:17 +0000
-Received: from out-152.mta1.migadu.com ([95.215.58.152] helo=mta1.migadu.com)
+	id 1xQL45-000000007Jt-3w3w;
+	Mon, 09 Nov 2026 08:49:21 +0000
+Received: from out-180.mta0.migadu.com ([2001:41d0:1004:224b::b4] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL3z-000000007EH-1VLy
+	id 1xQL40-000000007Ey-2iXC
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 08:49:16 +0000
+	Mon, 09 Nov 2026 08:49:17 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=RoNzd28AyvTb0ibr+4xItgKDPl/EqyvaBO8VS7dD1Vo=;
+DKIM-Signature: a=rsa-sha256; bh=uIZ6vQOatewDcLF1CVEzKXKmFmuT3AB0I9r88VqX4Hc=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794214153; v=1; x=1794818953;
- b=GgtV2rMdHkAv2ej+ig2FtoiekZcw/PpaUYvKu19D7m/vypxOQTR90wu3EHIc6YIRNambBwlV
- qlp4ZWhZfcpA46YgvjovCbehCYIqw28KSvEGwlSDoQysx4BTsp1nVgccCDqm8IzSf8HFNxb4EQ0
- EaJ2G+V1y52yXP2AYhS7LVPI=
+ t=1794214154; v=1; x=1794818954;
+ b=t/vDo6jtjV9dL6z49wsYmqXOmYaE2AauwWqetG6T+DyFEzqi243y9hrY20ywHjXO+9rykJhM
+ wohLpBRZp/jF+dDXE/CJgnibF3oWKksu9VRBwOjRxbAjepXt/NulZEOZ8LgHPgj1RjzWS8Mo8Wm
+ CKly++lZRASmyLG4bpfVOJAM=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 00fa88a3a43f583a;
-	Mon, 09 Nov 2026 08:49:13 +0000
-X-Mizu-Trace-ID: 00fa88a3a43f583a
+Received: by smtp.migadu.com with ESMTPS id 1eec5c458fbcf882;
+	Mon, 09 Nov 2026 08:49:14 +0000
+X-Mizu-Trace-ID: 1eec5c458fbcf882
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
@@ -62,9 +62,9 @@ Cc: Will Deacon <will@kernel.org>,
 	kvm@vger.kernel.org,
 	linux-kselftest@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 05/19] KVM: selftests: Export the ucall pool's guest physical address
-Date: Mon,  9 Nov 2026 08:48:40 +0000
-Message-ID: <20261109084854.840576-6-fuad.tabba@linux.dev>
+Subject: [PATCH v2 06/19] KVM: arm64: selftests: Add protected-VM boot trampoline
+Date: Mon,  9 Nov 2026 08:48:41 +0000
+Message-ID: <20261109084854.840576-7-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261109084854.840576-1-fuad.tabba@linux.dev>
 References: <20261109084854.840576-1-fuad.tabba@linux.dev>
@@ -72,8 +72,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_004915_767762_9499022F 
-X-CRM114-Status: GOOD (  12.82  )
+X-CRM114-CacheID: sfid-20261109_004916_858525_5A0FD358 
+X-CRM114-Status: GOOD (  15.88  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,55 +93,157 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A protected guest's memory is private until the guest itself shares it,
-so the guest has to share the ucall pool before its first ucall. The
-host can't do that for it. Only the guest's copy of ucall_pool holds the
-pool's address.
+From: Will Deacon <will@kernel.org>
 
-Add get_ucall_pool_gpa(), which reads that copy, so that the host can
-pass the address to the guest.
+EL2 takes only PC and X0 from the host when it boots a protected vCPU,
+and resets everything else. So the registers the selftest library sets
+before the first run never reach the guest.
 
+Boot a protected guest through a trampoline that restores X0-X7, seven
+EL1 system registers and the stack pointer from a block X0 points to,
+then enables the MMU and branches to the guest's entry point.
+
+Signed-off-by: Will Deacon <will@kernel.org>
+Reviewed-by: Joey Gouly <joey.gouly@arm.com>
 Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
 ---
- tools/testing/selftests/kvm/include/ucall_common.h | 1 +
- tools/testing/selftests/kvm/lib/ucall_common.c     | 9 ++++++++-
- 2 files changed, 9 insertions(+), 1 deletion(-)
+ tools/testing/selftests/kvm/Makefile.kvm      |  1 +
+ .../selftests/kvm/include/arm64/pkvm.h        | 49 ++++++++++++++++
+ .../selftests/kvm/lib/arm64/pvm-entry.S       | 57 +++++++++++++++++++
+ 3 files changed, 107 insertions(+)
+ create mode 100644 tools/testing/selftests/kvm/include/arm64/pkvm.h
+ create mode 100644 tools/testing/selftests/kvm/lib/arm64/pvm-entry.S
 
-diff --git a/tools/testing/selftests/kvm/include/ucall_common.h b/tools/testing/selftests/kvm/include/ucall_common.h
-index cbdcb0a50c4f9..3a6cdf9aa0464 100644
---- a/tools/testing/selftests/kvm/include/ucall_common.h
-+++ b/tools/testing/selftests/kvm/include/ucall_common.h
-@@ -41,6 +41,7 @@ __printf(5, 6) void ucall_assert(u64 cmd, const char *exp,
- u64 get_ucall(struct kvm_vcpu *vcpu, struct ucall *uc);
- void ucall_init(struct kvm_vm *vm, gpa_t mmio_gpa);
- int ucall_nr_pages_required(u64 page_size);
-+gpa_t get_ucall_pool_gpa(struct kvm_vm *vm);
- 
- /*
-  * Perform userspace call without any associated data.  This bare call avoids
-diff --git a/tools/testing/selftests/kvm/lib/ucall_common.c b/tools/testing/selftests/kvm/lib/ucall_common.c
-index 029ce21f9f2fa..aa1f0f92c6d1d 100644
---- a/tools/testing/selftests/kvm/lib/ucall_common.c
-+++ b/tools/testing/selftests/kvm/lib/ucall_common.c
-@@ -21,10 +21,17 @@ int ucall_nr_pages_required(u64 page_size)
- 
- /*
-  * ucall_pool holds per-VM values (global data is duplicated by each VM), it
-- * must not be accessed from host code.
-+ * must not be accessed from host code. The host reads only a VM's copy.
-  */
- static struct ucall_header *ucall_pool;
- 
-+gpa_t get_ucall_pool_gpa(struct kvm_vm *vm)
-+{
-+	struct ucall_header **pool = addr_gva2hva(vm, (gva_t)&ucall_pool);
+diff --git a/tools/testing/selftests/kvm/Makefile.kvm b/tools/testing/selftests/kvm/Makefile.kvm
+index 17a4256e90819..c254e82f9a786 100644
+--- a/tools/testing/selftests/kvm/Makefile.kvm
++++ b/tools/testing/selftests/kvm/Makefile.kvm
+@@ -35,6 +35,7 @@ LIBKVM_arm64 += lib/arm64/gic_v3.c
+ LIBKVM_arm64 += lib/arm64/gic_v3_its.c
+ LIBKVM_arm64 += lib/arm64/handlers.S
+ LIBKVM_arm64 += lib/arm64/processor.c
++LIBKVM_arm64 += lib/arm64/pvm-entry.S
+ LIBKVM_arm64 += lib/arm64/spinlock.c
+ LIBKVM_arm64 += lib/arm64/ucall.c
+ LIBKVM_arm64 += lib/arm64/vgic.c
+diff --git a/tools/testing/selftests/kvm/include/arm64/pkvm.h b/tools/testing/selftests/kvm/include/arm64/pkvm.h
+new file mode 100644
+index 0000000000000..29600342eca13
+--- /dev/null
++++ b/tools/testing/selftests/kvm/include/arm64/pkvm.h
+@@ -0,0 +1,49 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (C) 2025 Google LLC
++ * Author: Will Deacon <will@kernel.org>
++ */
 +
-+	return addr_gva2gpa(vm, (gva_t)*pool);
-+}
++#ifndef SELFTEST_KVM_ARM64_PKVM_H
++#define SELFTEST_KVM_ARM64_PKVM_H
 +
- void ucall_init(struct kvm_vm *vm, gpa_t mmio_gpa)
- {
- 	struct ucall_header *hdr;
++#ifndef __ASSEMBLER__
++/*
++ * Register state the boot trampoline (pvm-entry.S) restores. Only PC and X0
++ * survive to a protected guest's first run, so X0 points at this block.
++ */
++struct pvm_boot_args {
++	u64	jump_tgt;
++
++	u64	regs[8];
++	u64	cpacr_el1;
++	u64	sctlr_el1;
++	u64	tcr_el1;
++	u64	mair_el1;
++	u64	ttbr0_el1;
++	u64	vbar_el1;
++
++	u64	tpidr_el1;
++	u64	sp_el1;
++};
++#endif
++
++#define PVM_BOOT_ARGS_OFF_JUMP_TGT	0
++#define PVM_BOOT_ARGS_OFF_X0		(PVM_BOOT_ARGS_OFF_JUMP_TGT + 8)
++#define PVM_BOOT_ARGS_OFF_X1		(PVM_BOOT_ARGS_OFF_X0 + 8)
++#define PVM_BOOT_ARGS_OFF_X2		(PVM_BOOT_ARGS_OFF_X1 + 8)
++#define PVM_BOOT_ARGS_OFF_X3		(PVM_BOOT_ARGS_OFF_X2 + 8)
++#define PVM_BOOT_ARGS_OFF_X4		(PVM_BOOT_ARGS_OFF_X3 + 8)
++#define PVM_BOOT_ARGS_OFF_X5		(PVM_BOOT_ARGS_OFF_X4 + 8)
++#define PVM_BOOT_ARGS_OFF_X6		(PVM_BOOT_ARGS_OFF_X5 + 8)
++#define PVM_BOOT_ARGS_OFF_X7		(PVM_BOOT_ARGS_OFF_X6 + 8)
++#define PVM_BOOT_ARGS_OFF_CPACR_EL1	(PVM_BOOT_ARGS_OFF_X7 + 8)
++#define PVM_BOOT_ARGS_OFF_SCTLR_EL1	(PVM_BOOT_ARGS_OFF_CPACR_EL1 + 8)
++#define PVM_BOOT_ARGS_OFF_TCR_EL1	(PVM_BOOT_ARGS_OFF_SCTLR_EL1 + 8)
++#define PVM_BOOT_ARGS_OFF_MAIR_EL1	(PVM_BOOT_ARGS_OFF_TCR_EL1 + 8)
++#define PVM_BOOT_ARGS_OFF_TTBR0_EL1	(PVM_BOOT_ARGS_OFF_MAIR_EL1 + 8)
++#define PVM_BOOT_ARGS_OFF_VBAR_EL1	(PVM_BOOT_ARGS_OFF_TTBR0_EL1 + 8)
++#define PVM_BOOT_ARGS_OFF_TPIDR_EL1	(PVM_BOOT_ARGS_OFF_VBAR_EL1 + 8)
++#define PVM_BOOT_ARGS_OFF_SP_EL1	(PVM_BOOT_ARGS_OFF_TPIDR_EL1 + 8)
++
++#endif /* SELFTEST_KVM_ARM64_PKVM_H */
+diff --git a/tools/testing/selftests/kvm/lib/arm64/pvm-entry.S b/tools/testing/selftests/kvm/lib/arm64/pvm-entry.S
+new file mode 100644
+index 0000000000000..d00abe03f8f84
+--- /dev/null
++++ b/tools/testing/selftests/kvm/lib/arm64/pvm-entry.S
+@@ -0,0 +1,57 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (C) 2025 Google LLC
++ * Author: Will Deacon <will@kernel.org>
++ */
++
++#include "pkvm.h"
++
++	.text
++	.balign 16
++	.globl	pvm_entry_start
++pvm_entry_start:
++	mov	x30, x0
++
++	ldr	x0, [x30, #PVM_BOOT_ARGS_OFF_X0]
++	ldr	x1, [x30, #PVM_BOOT_ARGS_OFF_X1]
++	ldr	x2, [x30, #PVM_BOOT_ARGS_OFF_X2]
++	ldr	x3, [x30, #PVM_BOOT_ARGS_OFF_X3]
++	ldr	x4, [x30, #PVM_BOOT_ARGS_OFF_X4]
++	ldr	x5, [x30, #PVM_BOOT_ARGS_OFF_X5]
++	ldr	x6, [x30, #PVM_BOOT_ARGS_OFF_X6]
++	ldr	x7, [x30, #PVM_BOOT_ARGS_OFF_X7]
++
++	ldr	x8, [x30, #PVM_BOOT_ARGS_OFF_JUMP_TGT]
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_CPACR_EL1]
++	msr	cpacr_el1, x9
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_TCR_EL1]
++	msr	tcr_el1, x9
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_MAIR_EL1]
++	msr	mair_el1, x9
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_TTBR0_EL1]
++	msr	ttbr0_el1, x9
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_VBAR_EL1]
++	msr	vbar_el1, x9
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_TPIDR_EL1]
++	msr	tpidr_el1, x9
++
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_SP_EL1]
++	mov	sp, x9
++
++	/* No stale TLB entries, and the writes above in effect, before the MMU is on. */
++	tlbi	vmalle1
++	dsb	nsh
++	isb
++	ldr	x9, [x30, #PVM_BOOT_ARGS_OFF_SCTLR_EL1]
++	msr	sctlr_el1, x9
++	isb
++
++	br	x8
++	.globl	pvm_entry_end
++pvm_entry_end:
 -- 
 2.47.3
 
