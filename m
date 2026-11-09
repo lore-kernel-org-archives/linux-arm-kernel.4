@@ -2,72 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC282606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C9C606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0X9CtKjF;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=GaB8fV1b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XDvINi9K;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=uFt9q5Em
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ezlQIpBeCLKp3BblnMdViA21cKifwksyw0/26Kc1RZI=; b=0X9CtKjF7dGSkG
-	WLS4W0KDIMj03ucae0wdxaG8x9S5LF/R3u2BtbExNWGT11lXfyijG8YfDChnOSlK00GeyzkAPOmBs
-	r2O7qVeOHIN4yEyHzq6Ecf7Ce6PiplJrF/vzLkl8O3xILcafw6GiOLodbwOJm9pt5Fb6C/6gqTbIi
-	HYTc8xs8q18fFwvmpTIM2OCm9j8cYns8OXiGAGoyUHF0ZW8AS1UB8O1s9b8YOrLFwCcmvapOxHuhC
-	zA9oY9X7ch0yHlQOaxsmUGrFHTW40m7B3UZvzWOsAVomMGqg8HXw8/l/lyA7UBgqRMSTCg1CXvGJB
-	isaBK/CRn4HL8bZ8z+1A==;
+	List-Owner; bh=7ehu9uwlN6f/BG1RO8PBmrITOSCd6PjFswkCZHpoDnw=; b=XDvINi9KLuZWMy
+	PYwCS736dx1gRjvhF2YCPphPN/XmC6XzW/J/DVJyo+OYZL84xUj+mr0ALFW8qU11XFUMSwA1XW4x1
+	YQvH1DFMcC/mLB9FSQCWsaHOSnRyV6iuGLizWF2HCaHICa1WgJKk0j2DlQ8bhhBqzaEUT8Paq2+ox
+	/LAAppb5SG9HMEHR94JRX8H/GNpLQ+pot60aKgLUuDLbpGfmBwirxLbDqAGsqLc0f/ssfWDcun015
+	gHYCDVbTJKfDs8drrK9/VKOZAyUr7jN1qDCHGhrOu0EjYgBiLp0euS+CpyegOPJEQDgv4Ilm8zte5
+	ObrtMH2dkJ8wqLXGAhnA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOb7-00000000i0D-1Xih;
-	Mon, 09 Nov 2026 12:35:41 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOb4-00000000hzI-1n8R;
-	Mon, 09 Nov 2026 12:35:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794227734;
-	bh=uz6Pxf5P1OBQ1OuxMZ+mpEwGfimAtMPaXnOF09sKZoc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GaB8fV1byCSC9EYTiwgvgZwhDJLwctYNUTvoOHmIWggOil37/GIKZPA4bDmSiD+r0
-	 NakpRnw2P2aP0m/dW2BRc2bEUKMJCwYtXkGCc43pNfdZtp6k3H8oz1kDGJxpqaemiA
-	 Ukk6H7yKGtL1Jjw7AY/RLhL8ZyTo+tiW/O1vl4zok85PGzWdsNXLx4TmscyQKCSG00
-	 4z345XE6XdYIlhQe7FfGCXWsTR1dsLaonEdKK63OAOss6Orb7qjaYEEWbgt/lBmU3n
-	 otvWPS4nm3IGY2KU+H/2FlhtMZH3T0V1Y91pK01Ldt6FhvIRa7sSdQjVYikSLo3mkU
-	 D6o1Z+iFXOS8w==
-Received: from [100.64.1.21] (unknown [100.64.1.21])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6E5C317E0390;
-	Mon, 09 Nov 2026 13:35:34 +0100 (CET)
-Message-ID: <379c2b3d-ab98-4b58-86fe-da2276ede617@collabora.com>
-Date: Mon, 9 Nov 2026 13:35:33 +0100
+	id 1xQOcI-00000000iCV-2a6b;
+	Mon, 09 Nov 2026 12:36:54 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQOcG-00000000iBc-1ADI
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 12:36:53 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 217B11476;
+	Mon,  9 Nov 2026 04:36:46 -0800 (PST)
+Received: from LeoBrasDK.cambridge.arm.com (LeoBrasDK.cambridge.arm.com [10.2.212.21])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E073D3F632;
+	Mon,  9 Nov 2026 04:36:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794227809; bh=UBP2ZQMotIV6KdGg51IlwlZyPK5SoCkTkNpFStNN7gk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=uFt9q5EmP8uuPALMSgfayO0dNqoORyBCQdhiZe3CK0taECNUwQhxIWqLhzLTBPWgM
+	 3jgBDN+oV0RLIwow4mH1pcauwWkxyN9pTumuGwFJQrHNgzFw2E3SNVtPux6ES3mZob
+	 02X8lK7uRyzbzi2r9wT5O5j+O+467vIwcDH+vhds=
+From: Leonardo Bras <leo.bras@arm.com>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Leonardo Bras <leo.bras@arm.com>,
+	Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Raghavendra Rao Ananta <rananta@google.com>,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 0/3] Optimize S2 hugepage splitting, introduce skip-level flags
+Date: Mon,  9 Nov 2026 12:36:41 +0000
+Message-ID: <avG-WdfUaCalKdZU@LeoBrasDK>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <86y0b528zu.wl-maz@kernel.org>
+References: <20261106161240.1345126-1-leo.bras@arm.com> <86y0b528zu.wl-maz@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] clocksource/drivers/timer-mediatek: Enable the GPT irq
- before registering
-To: Chen-Yu Tsai <wenst@chromium.org>, Ryan Brue <ryanbrue.dev@gmail.com>
-Cc: Daniel Lezcano <daniel.lezcano@kernel.org>,
- Thomas Gleixner <tglx@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Luca Leonardo Scorcia <l.scorcia@gmail.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20261103-timer-mediatek-gpt-irq-order-v1-1-6d1ddf977224@gmail.com>
- <CAGXv+5FSG5P3-4-eijurDA68NzcFOXJN5k12WV9SJ+_3wmTjPQ@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5FSG5P3-4-eijurDA68NzcFOXJN5k12WV9SJ+_3wmTjPQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_043538_642393_BD2BFBAE 
-X-CRM114-Status: GOOD (  26.31  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_043652_360183_FCB67F14 
+X-CRM114-Status: GOOD (  13.30  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,88 +81,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/9/26 10:54, Chen-Yu Tsai wrote:
-> On Wed, Nov 4, 2026 at 8:18 AM Ryan Brue <ryanbrue.dev@gmail.com> wrote:
->>
->> Since the driver probes as a platform device, the GPT clock event is
->> registered late in boot, when PSCI CPU idle may already have put CPUs
->> into a state that stops their local timer. Those CPUs wait in the
->> oneshot broadcast mask on the hrtimer broadcast, and
->> tick_install_broadcast_device() arms the new broadcast device to expire
->> at once so that it wakes them.
->>
->> mtk_gpt_init() sets the timer's bit in GPT_IRQ_EN only after
->> clockevents_config_and_register(). The forced event fires while the bit
->> is clear, nothing is latched in the status register, and the waiting
->> CPUs are never woken. On an MT8173 tablet with the CPU_SLEEP_0 idle
->> state in use, this hung the boot in 20 of 40 boots, and in none of 16
->> with this change.
->>
->> Enable the interrupt before registering the clock event. The IRQ line
->> stays disabled until enable_irq(), so the handler still can't run before
->> the clock event is set up.
->>
->> Fixes: 7a097aba7255 ("clocksource/drivers/timer-mediatek: Convert to OF probing")
->> Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+On Fri, Nov 06, 2026 at 04:57:25PM +0000, Marc Zyngier wrote:
+> On Fri, 06 Nov 2026 16:12:35 +0000,
+> Leonardo Bras <leo.bras@arm.com> wrote:
+> > 
+> > 
+> > While playing with dirty-bit tracking, I decided to take a look on how page
+> > splitting works. Found out all entries are walked, even though we don't need
+> > to walk the level-3 entries, as they don't need to be split. 
 > 
-> This seems to have fixed the cpuidle related stalls I was seeing. I
-> didn't do that many rounds of boot tests though.
-> 
-> Tested-by: Chen-Yu Tsai <wenst@chromium.org> # on Hana (Telesu)
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> 
-> I do think we should expedite this into the kernel, as a 50% chance
-> of stalling is not great. It was even higher for me and somehow I
-> had to do a hard power cycle by rebooting the EC to get it unstuck.
+> What's the point of this "RESEND"? Anything different from what you
+> sent on Sept 30th? Since it is still numbered v4, I assume nothing has
+> changed...
 > 
 
-Agreed.
+Hi Marc, 
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+That's correct, nothing changed since the previous version.
+Since it got no feedback since Sept 30th, I decided to resend it in order 
+to maybe get some further reviewing.
 
->> ---
->> Since v7.4-rc1 the MediaTek timer probes as a platform device, and on
->> MT8173 with PSCI CPU idle the boot then hangs about half the time: the
->> broadcast device is armed at once to wake CPUs that are already idle,
->> and that event is lost because the GPT's interrupt is enabled only after
->> registration. Traced on the board with prints in
->> tick_install_broadcast_device() and mtk_gpt_init().
->> ---
->>   drivers/clocksource/timer-mediatek.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
->> index 842d6ee4259e..1b2cbcc2795a 100644
->> --- a/drivers/clocksource/timer-mediatek.c
->> +++ b/drivers/clocksource/timer-mediatek.c
->> @@ -339,10 +339,10 @@ static int mtk_gpt_init(struct platform_device *pdev)
->>
->>          /* Configure clock event */
->>          mtk_gpt_setup(&to, TIMER_CLK_EVT, GPT_CTRL_OP_REPEAT);
->> +       mtk_gpt_enable_irq(&to, TIMER_CLK_EVT);
->>          clockevents_config_and_register(&to.clkevt, timer_of_rate(&to),
->>                                          TIMER_SYNC_TICKS, 0xffffffff);
->>
->> -       mtk_gpt_enable_irq(&to, TIMER_CLK_EVT);
->>          enable_irq(timer_of_irq(&to));
->>
->>          return 0;
->>
->> ---
->> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
->> change-id: 20261103-timer-mediatek-gpt-irq-order-a878ed869f84
->>
->> Best regards,
->> --
->> Ryan Brue <ryanbrue.dev@gmail.com>
->>
->>
+Thanks!
+Leo
+
 
