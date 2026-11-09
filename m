@@ -2,108 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908DF606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 00:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A1F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 01:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eNk+OV+K;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=k8L9S03m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fuC3CcQk;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=b+Id5PbC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=w/CDc/ekChpK1MEr5fDIpNGu1oRamZM5e+eEMVQj/7E=; b=eNk+OV+KFQEsFpx9UsBIjtlJ9P
-	hJrEz1yew/+8nDbW3sIdsoLpZp7GwWFdtX86TktBE6mh/B424UoCenPrv+89sPRwRrkmYRgbBSEOH
-	jYCH3yZbJa9u69VkUes0nhoDCS05zDEQq9Sv3re9WNk+HwOf8YZVLgco+RzCRHbrAZG2ryciX3ST7
-	I5c1Sqv/LPV9YsLUAJoOpi7sDMo3LciMbG5zRYbBi7ntdtDa2S0GwVD3DtRTI+zpu+lfT32i4bqEt
-	iKCXHSMZFncFYQSw7eiV8C+51AbKkMxLxX7y6XwuDeE8m3KJXsrSKxNJeJTqVWVgVlFNOV33+soet
-	Yg2ir+Wg==;
+	bh=Frm8Ld1QHHVrzUA5GQZVw3rqE7QJ68oePOVoIDDUukc=; b=fuC3CcQkk0aXHZlfESHrJF2wPV
+	c1ogBYu2cCzbJ8RH7Re9CNmLGFLjrJ+jGWMDZk+mlU+rz6grEqERYkuy6ZknOcQcwDbD4jryksAfE
+	0K5jJLBSWMXiSOh43p624MQ3eGZqx9hQzd8w5zHUXp5gqqHwBhVDPFDWn1o/KIYO0tBRlcreG5dBp
+	7MejIbrPbsCeQzG2UOgC30yP2m27RXIpIYanQVn4RwroNL0NIRg7PKezxYAk9la/5MMCnbXQxEMSb
+	TSQEfyCbX6opbeGTixCHgVpejprW0KO/EJXSjLKvh82OhOBww5cxX23c26PX0M4FVw2ToGbXfC3FY
+	wPiGn0Yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDhr-0000000H0Ur-0CJX;
-	Mon, 09 Nov 2026 00:57:55 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQDuw-0000000H0sp-0hhF;
+	Mon, 09 Nov 2026 01:11:26 +0000
+Received: from sender6-op-o11.zoho.com ([165.173.180.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDhp-0000000H0Ud-2HV0;
-	Mon, 09 Nov 2026 00:57:53 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 01DD46182A;
-	Mon,  9 Nov 2026 00:57:53 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794185872;
-	b=oFtotlonBixhADIUAaRFb/R9eMIbYHB68t5Dp9YdKn8p035HsN5/CVVW1cl1Vi0VnmdO
-	 hxr2ZDGnNLu06Jy0tDHCr2okQEt97Wks6bw7SukTgqRuKyGCy+MS6kWLnIuezzXYIFvRx
-	 XbLOUX16ehdd1aDSMy0eavAlhe7qZOu/0j4pGoqq+yZpx8297RSPYUaXcTlAC8/wrEszR
-	 TKiZnB1nMhOyGQSzMeMyFAg86C/rxHiQcQVfbWneYh9dzvSNOujiH4o0NSVtWoCIc4Oqg
-	 RXIjlii04MQBATfn1e2W8KGsnN/zPFkxOQhK9h2THfDb6kc8uHu/Slk55PaXmPLlH6g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794185872;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:To:Cc:X-Mailer:X-Developer-Signature:
-	 X-Developer-Key:X-Endpoint-Received:X-Original-From:Reply-To:
-	 Content-Transfer-Encoding;
-	bh=w/CDc/ekChpK1MEr5fDIpNGu1oRamZM5e+eEMVQj/7E=;
-	b=dV1A4t9XuKShgiXAc+9Ewo1uXYNMlPMZMg2W1DH+56FUCKuPuQxTgKLCFQEBOTbC7AKf
-	 sAaceBnQMilESeUG7ecZppQIaYIs8R5ZyOW4Q/D5k+Eaxz7ZwBBAJUdUXRL5b43ELVpse
-	 6vH/g564dYZj1tAVTC/XTn71ngv9HxdrDltXPwWZ1jWZjaXaSzt9ettwZfjQpSDiV/oa0
-	 9QZzrej2hnIFud6TwhJhWuR9bLwD8Zt8zkV/nmRRjHQl8KUcAojheJAXSDgZlz/zwUcf4
-	 rxL+zmb7VCGi9JHfaoENTZEWPjDeP6KEIU2/qxk8nDCP+UCQp5aCN3r+ZVfdf19Py6A==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3954B1F0089F;
-	Mon,  9 Nov 2026 00:57:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794185872;
-	bh=w/CDc/ekChpK1MEr5fDIpNGu1oRamZM5e+eEMVQj/7E=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=k8L9S03m3BDqv8PczotWE3y1CXKgKWUtkn2VvTC3249n2qgohy+rBLEDsFkOvVj/7
-	 CPc6bkKvRtY3uT/YqDKFtGbDY5FkODbAWC54f53saPt/vj2DU7yBzouDml+Puu5B3Q
-	 56zCjPFefmzNgooLepmCgqPxPnRpeqUs20OMlc7AXfoCM/54N3J2iJSx4LLwx/rf1p
-	 13uIUQF58KpRSf210pruj6kk41tF6ZU1aM3g6F8Gv78gyu/rdEUluLXGgZ0ZxWz54g
-	 a3ovwriD7g0Z1S94keHCjHW2Huj7j6k653L1IG678tGn6CPsdvf0jgRJ5vzxkGRZGf
-	 ioCuA20uyFoxQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A9A7E4075E;
-	Mon,  9 Nov 2026 00:57:51 +0000 (UTC)
-From: Igor Velkov via B4 Relay <devnull+iav.iav.lv@kernel.org>
-Date: Mon, 09 Nov 2026 00:57:49 +0000
-Subject: [PATCH] arm64: dts: amlogic: meson-sm1-odroid: mark the Ethernet
- PHY as a wakeup source
+	id 1xQDut-0000000H0sR-1gFJ;
+	Mon, 09 Nov 2026 01:11:24 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794186680; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=KP965G8gNTMXnOxdmYqv3VegVDyYxZjTMCfqdCMlwasTJEwk082tTk6NmHHdc9KnNzik3brm/jt9gb9ttHgClIG3pK7Ccq2ZWPRfqtuQMtM0AmTpPB53xvLpZPzWtVb6Sdd+YHDr7wtYpb4qtrdkV4Z97rBsbg3ahTG/pxk33xo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794186680; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Frm8Ld1QHHVrzUA5GQZVw3rqE7QJ68oePOVoIDDUukc=; 
+	b=KBlG6TI5MZffl2bZP/tJRVMEsmjF2moYAiNOpxXdtvC7uZG4H37fKKljMEoKIK+THaskaVVZ5igeYViASIgvFbxNS9+RBTMhtxB6E5tXqLZPWv5o8+nEEPl3EXXFfJcY6ozSv9cEQSbpf8gvrA/aGrx8o1A90xaaTcrIqceLPEs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=b+Id5PbCX3AVSwyxjoQuhreG3Ca6WHoor5xr6ydh4NCvgX1mXdZzCKuEK52ttJARkqW2zhYXgo9Gd1CG1gXWigvMer+/oxX5eGSzvwi9egn1/B81yQ2J8cyb4k+lIgEsJEk8nW0vCeNjijWfClExtiFNtLlglVf9WVeXU+frkh0=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=Frm8Ld1QHHVrzUA5GQZVw3rqE7QJ68oePOVoIDDUukc=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794186679307914.4749060070615;
+	Sun, 8 Nov 2026 17:11:19 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id D5A5F1808E6; Mon, 09 Nov 2026 02:11:18 +0100 (CET)
+Date: Mon, 9 Nov 2026 02:11:18 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: hyunjungg <hj351016@gmail.com>
+Cc: linux-pm@vger.kernel.org, Chen-Yu Tsai <wens@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] power: supply: fix work-vs-devres teardown
+ use-after-free
+Message-ID: <avEdYFDUHIj6mq0Z@venus>
+References: <20261106160057.2754689-1-hj351016@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-hc4-phy-wakeup-v1-1-d98784ecac88@iav.lv>
-X-B4-Tracking: v=1; b=H4sIAIwa8WoC/x3MSQqAMAxA0atI1gYaJ6hXERe1RhsELS1OiHe3u
- HyL/x+IHIQjtNkDgQ+Jsq0JlGdgnVlnRhmToVBFQ6Q0OluhdzeeZuHdo7ZU82BMScSQIh94kus
- fdv37flgHcaZgAAAA
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Velkov <iav@iav.lv>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1953; i=iav@iav.lv;
- h=from:subject:message-id;
- bh=th9XEIxslt9+U3iOsvDowXn3pt6YXgBXd1xZpRrr4n4=;
- b=owGbwMvMwCVmNH1q96v4SmbG02pJDFkfpfry3jIbvs9Z9Uatelmny21OjdLSH79fPbD2nPIzI
- mF67HyGjlIWBjEuBlkxRZYJhzRuZSy5+tffw/wBzBxWJpAhDFycAjCRMCOGf7ofCvuMDwa/vHVx
- zlTZbeVOSdWZE/2Nv/j83z819/luTRuG/6VWdbxz7a99TLhh3Ngh/o//ywEJu7TgQx/uaf9m9Wi
- sZgMA
-X-Developer-Key: i=iav@iav.lv; a=openpgp;
- fpr=90C228DA68A4D5FD4F4837E03297958BEA5F7903
-X-Endpoint-Received: by B4 Relay for iav@iav.lv/default with auth_id=1060
-X-Original-From: Igor Velkov <iav@iav.lv>
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3sgy7kbr5gvb4f26"
+Content-Disposition: inline
+In-Reply-To: <20261106160057.2754689-1-hj351016@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.182.33
+X-ZohoMailClient: External
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261108_171123_521305_0EF7239A 
+X-CRM114-Status: GOOD (  14.82  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,66 +77,87 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: iav@iav.lv
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Igor Velkov <iav@iav.lv>
 
-The RTL8211F interrupt is wired to GPIOZ_14 and described in the PHY
-node, but the node does not declare that it can wake the board. Without
-wakeup-source the Realtek driver does not make the PHY wakeup capable,
-so phylink leaves Wake-on-LAN to the MAC, and a magic packet does not
-wake the board from s2idle.
+--3sgy7kbr5gvb4f26
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 0/3] power: supply: fix work-vs-devres teardown
+ use-after-free
+MIME-Version: 1.0
 
-Signed-off-by: Igor Velkov <iav@iav.lv>
----
-Tested on ODROID-HC4 with Linux 7.4-rc1 and the U-Boot and .config of
-Armbian: s2idle, Wake-on-LAN set with ethtool after the link is up. With
-this change a magic packet woke the board 5 of 5 times, in 8 s, with
-pm_wakeup_irq pointing at the PHY. Without it, 0 of 2: the RTC alarm
-woke the board.
+Hi,
 
-The test DTB had two other changes: the RTC alarm interrupt [1] and PCIe
-disabled. With PCIe enabled the board did not resume 2 of 2. In the one
-console capture resume starts when the packet is sent, then a hard LOCKUP
-and a panic follow while pci_pm_resume_noirq() of the root port runs;
-pci-meson has no system PM. So on the HC4 with its stock DT this property
-alone does not give working Wake-on-LAN yet.
+On Sat, Nov 07, 2026 at 01:00:54AM +0900, hyunjungg wrote:
+> From: Hyunjung Ko <hj351016@gmail.com>
+>=20
+> Three power-supply drivers register a poll/detect/charger-detect work for
+> device-managed cancellation (devm_[delayed_]work_autocancel()) in their p=
+robe
+> *before* they register the power_supply via devm_power_supply_register().=
+ devres
+> unwinds in reverse order, so on unbind the power_supply device is release=
+d first
+> and the work is cancelled last. The work handlers call power_supply_chang=
+ed()
+> and dereference the power_supply, so a work instance still pending/runnin=
+g in
+> that window touches the already-freed power_supply device -> use-after-fr=
+ee.
+>=20
+> Each patch moves the devm work-cancel registration to *after*
+> devm_power_supply_register() (and before the IRQ/poll that arms the work)=
+, so
+> teardown drains the work before the power_supply is freed. No functional =
+change
+> otherwise. The relocated devm_[delayed_]work_autocancel() still runs its =
+INIT
+> before the work's first queue site, so no queue-before-INIT window is add=
+ed.
+>=20
+> This is the same class as the recently-applied cimax2/extcon work-vs-devr=
+es
+> fixes. Found by static analysis / code review; none is reproduced on hard=
+ware
+> (each needs its charger/PMIC/gauge chip and is not QEMU-reproducible) -- =
+treat
+> accordingly.
 
-Not tested on ODROID-C4, which shares this node.
+Please don not send direct AI output. You need to drop useless
+comments and trim down / rewrite commit messages to a sensible
+length. Instead of huge amount of spam.
 
-[1] https://lore.kernel.org/r/20261019-hc4-rtc-alarm-irq-v1-1-078fc79e596f@iav.lv
----
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Greetings,
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-index e6f02d738a21..9a4684dfbde3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1-odroid.dtsi
-@@ -277,6 +277,7 @@ external_phy: ethernet-phy@0 {
- 		interrupt-parent = <&gpio_intc>;
- 		/* MAC_INTR on GPIOZ_14 */
- 		interrupts = <IRQID_GPIOZ_14 IRQ_TYPE_LEVEL_LOW>;
-+		wakeup-source;
- 	};
- };
- 
+-- Sebastian
 
----
-base-commit: 81e55899e134541583a4e611ff750e1868671c67
-change-id: 20261109-hc4-phy-wakeup-9c15ebaa311e
+--3sgy7kbr5gvb4f26
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
--- 
-Igor Velkov <iav@iav.lv>
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmrxHbIACgkQ2O7X88g7
++poe5g/+ND+IudgGMavaYHWAq7LCDjhvxcm1V3Vn7sBhoNzaT22/LDNlL7a5VbPa
+TX00osbNQCELsH3CwfnCx46PmOAqWvQiLMz1yoTTMBxM5XSi4wRCEnUmvS0QJRP/
+KhDAeGaR+0t7FpgtTjKlM2AJP9NgjVB2NK4F5rlcdlKBUAyfHXGfp5kxVh2hv0ns
+Yo3wFquqlYxzXbHKVGUH9OsE/f3vuiSLhZPZh/UbUFGzzKzn+SmRDx2edMCTXYSP
+zNCDXhwqfclvwErrnEtCXxCYtAY9atPJr6FtSVz9SqYfI72n9Ms1QSGUikvv2fZv
+Iy2qmGFXqEuzIz5GboSvaFZN1+QsDfXXMe1+IlcutSsFOPi92uymSLFfoItLnw0b
+vOfSQWg2WmaPa1RfjwJhIaqS4UuGj9GXL9+GoIUNPw6coaA45Pqv+EDwY/j6mYwl
+0wsb8WUXnsZmcbIAZ4Rau5nsQyHU0FVQKajapECVLELodWIbKpV8nbijUMrUKlHf
+hbFnaJPST8I42E+tD3HG1W0n72viZ5smTUsBwh6P322430iUnGtAFmnI0Y7FJz9f
+CwHxdD0KEmiFJWjcGwUv+rhQVdhisCdv0b6wRS4YGrHHA/cypYsjbNxW9RyQvEQp
+1kvT+ScdETMReV5gctHUFd010wS0NcoLUc3syx1+ZPTYEQvfKH0=
+=yLSK
+-----END PGP SIGNATURE-----
 
+--3sgy7kbr5gvb4f26--
 
