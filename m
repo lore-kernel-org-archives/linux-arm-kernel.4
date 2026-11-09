@@ -2,85 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C30A606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 05:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8AC606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 05:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gdqeSYRl;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=MMq0OsFY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fsYHC9F/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ijlKxu8n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=JSOyM4K5zrqmDFF61CwIn14s5ShEHbu2alo+0Cxugro=; b=gdqeSYRlZDRyX+
-	iHHMoSVQy0HpR/QFeZKBGaxxTvCP7vru5l097NrsMJHMafys9wJNa5OGRVBZw/PAVnCVN/NkljUOu
-	CE0B0PFAd5MWYNc38bc+sqm9Z4q/lyz1dh+xITAGC+bVV1mzt6R6NiTtq9IEGxuxnLr3lAL8ArxaS
-	+0IWzLzQHAUg6rlLSv93ZeN4FUBNMUZ3URxMVlp3yZDXpVWEtvGcQzT6ymGfaFPFeDt/7FFJEsEDm
-	tHLBMfvSLg8Uz6hi4NdDPymdhXY9Ge0wRsAJSqiz+gOdQHX/ZdEYOVNd7syfGVofBN6/ngpQ1fTi0
-	NRL7FHD4o+upQYXXP1yQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=W1mfR/+JXbp1hpCZu9HuoqLOwrMsPqWR8ZMYk9Ds6Ng=; b=fsYHC9F/e2EvYfNvbBvtlXkRwL
+	MjvHcXhmKoDqZ6QWvuVIEQb+NxojaqqX7wwFx7AviHgVAI/5seSkWWAlOE4IuXj6ckJwZ1a9xpMtz
+	Je+oHyz+6bpp0rXu3eQGMy3OP0LwNbHbD4nlSh1kkgDJNPWXji2fvt7h7iJavf8m2s/xXXiSKbO6m
+	FGQruflb4MI73GmYdqHfcVLQ4p0KAIlNvvrVg6JIFNQgjc427M7xyAaARJNAZ/sBAhS+TKj+Fy/ag
+	LbEy3teTVy+U2tbaoPb7xCaL+PJcj+OmRyis05B6cQWbDT0BhFHwqJ+EPT7TsI5rgxGS7IQ82yhhv
+	n6pcSkAQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQIFA-0000000HSJa-3OKz;
-	Mon, 09 Nov 2026 05:48:36 +0000
-Received: from out-178.mta1.migadu.com ([95.215.58.178] helo=mta1.migadu.com)
+	id 1xQIKF-0000000HSpd-3V6A;
+	Mon, 09 Nov 2026 05:53:51 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQIF5-0000000HSHw-3DlY
+	id 1xQIKE-0000000HSpX-3OAJ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 05:48:35 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=JSOyM4K5zrqmDFF61CwIn14s5ShEHbu2alo+0Cxugro=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794203309; v=1; x=1794808109;
- b=MMq0OsFYOeDFfLKeanMq/JRW5emG22N+JN82VeucMQQPT+M2lExIrVamS+c7q+asXdJ1pdl2
- 1X0kSw1FOEdPQI/obnIvW1WVZJsWlAMtC3SyfA526L1kdBXP241tfsR5N7B2uuz87yZGgwPpUpd
- dE+PwLyiJkXRbdzGAO40uSAY=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id bae7ce2de6921a50;
-	Mon, 09 Nov 2026 05:48:29 +0000
-X-Mizu-Trace-ID: bae7ce2de6921a50
-X-Migadu-Flow: FLOW_OUT
-From: Lance Yang <lance.yang@linux.dev>
-To: songmuchun@bytedance.com
-Cc: david@kernel.org,
-	maddy@linux.ibm.com,
-	rppt@kernel.org,
-	akpm@linux-foundation.org,
-	lance.yang@linux.dev,
-	mpe@ellerman.id.au,
-	npiggin@gmail.com,
-	chleroy@kernel.org,
-	ritesh.list@gmail.com,
-	sshegde@linux.ibm.com,
-	osalvador@suse.de,
-	qi.zheng@linux.dev,
-	muchun.song@linux.dev,
-	chenhuacai@kernel.org,
-	kernel@xen0n.name,
-	linux-mm@kvack.org,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	x86@kernel.org,
-	loongarch@lists.linux.dev,
-	linux-s390@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] mm/sparse-vmemmap: drop vmemmap_can_optimize()
-Date: Mon,  9 Nov 2026 13:48:23 +0800
-Message-ID: <20261109054823.45056-1-lance.yang@linux.dev>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20261107043122.25650-5-songmuchun@bytedance.com>
-References: <20261107043122.25650-5-songmuchun@bytedance.com>
+	Mon, 09 Nov 2026 05:53:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 8E09A4090B;
+	Mon,  9 Nov 2026 05:53:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 459FF1F0089F;
+	Mon,  9 Nov 2026 05:53:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794203630;
+	bh=W1mfR/+JXbp1hpCZu9HuoqLOwrMsPqWR8ZMYk9Ds6Ng=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=ijlKxu8n/cdoHYoaEVAKvBG2RpOt+W23Lb9OFOL3uAySOP2c4vvmvXKKsfHW4RbVB
+	 9yk5/JkSPA1SQm21DI37LVMJGSnoL1NyCehVi4f8LG5XsYpXEUFvhyrVuez2mbzdel
+	 hpy3vnYy4Gf6eS9HTrZEV2hOZxLuNWRj2q0fhkrhZAjBTSTWocr6prPkZBGi1gVyG3
+	 XvMgEPU5KoeCey2RYtUrg2vSwDrWmTqkM/Fo0jhMx/ayNBz0gw8ihXy15ARQJiMzkM
+	 osdowQDUTqaumgEdN4QGi3toLKjsoVBDOidmdJHmfIKoMau6rKuGsyfp1wa1mgo1OU
+	 wb/gdwnXuc9Jg==
+Subject: Re: [PATCH net v2] net: stmmac: Disable queues before
+ netif_tx_disable in xdp_release
+From: netdev-bot+sashiko@kernel.org
+To: muhammad.nazim.amirul.nazle.asmade@altera.com
+Cc: netdev@vger.kernel.org, kuba@kernel.org, maxime.chevallier@bootlin.com,
+ ansuelsmth@gmail.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, ast@kernel.org, daniel@iogearbox.net,
+ hawk@kernel.org, john.fastabend@gmail.com, sdf@fomichev.me,
+ faizal.abdul.rahim@intel.com, noor.azura.ahmad.tarmizi@intel.com,
+ yoong.siang.song@intel.com, rohan.g.thomas@altera.com,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ bpf@vger.kernel.org
+Date: Mon, 09 Nov 2026 05:53:48 +0000
+Message-ID: <179420362880.994134.12466150409496809199@kernel.org>
+In-Reply-To: <20261105053916.22353-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
+References: <20261105053916.22353-1-muhammad.nazim.amirul.nazle.asmade@altera.com>
+X-sashiko-severity: High
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_214832_303798_AEDDC487 
-X-CRM114-Status: UNSURE (   6.19  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,28 +77,192 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Thank you for your contribution! Sashiko AI review found 2 potential
+issue(s) to consider.
 
-On Sat, Nov 07, 2026 at 12:31:21PM +0800, Muchun Song wrote:
->section_vmemmap_optimizable() can already decide whether a section uses
->vmemmap optimization based on the section compound order. The DAX-specific
->vmemmap_can_optimize() helper duplicates that policy, so remove it to
->simplify the code.
->
->Signed-off-by: Muchun Song <songmuchun@bytedance.com>
->---
+Critical: 0 · High: 1 (1) · Medium: 1 · Low: 0
 
-With the arch fallbacks handled by the previous patches, we can just drop
-vmemmap_can_optimize() now ;)
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Nothing jumped out at me, so:
+- [High] The patch moves the hrtimer_cancel() loop on tx_q->txtimer ahead
+  of netif_tx_disable().
+- [Medium] The reorder only blocks one of the two places that can wake a
+  TX queue after netif_tx_disable() in stmmac_xdp_release().
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+Pre-existing issues:
+- [High] This problem wasn't introduced by this patch, but it is a use-
+  after-free in the same teardown.
+
+--
+
+net: stmmac: Disable queues before netif_tx_disable in xdp_release
+
+This commit reorders stmmac_xdp_release(). NAPI is now disabled and the TX
+coalescing hrtimers are cancelled before netif_tx_disable() is called. The
+goal is to stop stmmac_tx_clean() from waking a TX queue while the DMA
+rings are being torn down, using the same order as __stmmac_release().
+
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 7ffed295eb14a..7d1497392b8b5 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -7264,15 +7264,15 @@ void stmmac_xdp_release(struct net_device *dev)
+>  	struct stmmac_priv *priv = netdev_priv(dev);
+>  	u8 chan;
+>  
+> -	/* Ensure tx function is not running */
+> -	netif_tx_disable(dev);
+> -
+>  	/* Disable NAPI process */
+>  	stmmac_disable_all_queues(priv);
+>  
+>  	for (chan = 0; chan < priv->plat->tx_queues_to_use; chan++)
+>  		hrtimer_cancel(&priv->dma_conf.tx_queue[chan].txtimer);
+>  
+> +	/* Ensure tx function is not running */
+> +	netif_tx_disable(dev);
+
+[Severity: High]
+hrtimer_cancel() now runs before netif_tx_disable(). Can a stmmac_xmit()
+or stmmac_tso_xmit() that is already in flight re-arm tx_q->txtimer after
+the cancel has returned?
+
+stmmac_tx_timer_arm() checks the NAPI state and then acts on it:
+
+stmmac_main.c:stmmac_tx_timer_arm() {
+    ...
+	if (unlikely(!napi_is_scheduled(napi))) {
+		if (unlikely(!(hrtimer_active(&tx_q->txtimer))))
+			hrtimer_start(&tx_q->txtimer,
+				      STMMAC_COAL_TIMER(tx_coal_timer),
+				      HRTIMER_MODE_REL);
+	} else {
+    ...
+}
+
+One possible interleaving:
+
+CPU1 (stmmac_xmit, txq lock held)
+stmmac_tx_timer_arm()
+  napi_is_scheduled(napi) returns false
+  <hardirq, or preempted on PREEMPT_RT>
+
+CPU0 (stmmac_xdp_release)
+stmmac_disable_all_queues()      /* napi_disable() sets SCHED */
+hrtimer_cancel(&tx_q->txtimer)   /* nothing queued, returns */
+
+CPU1
+  hrtimer_start(&tx_q->txtimer, ...)
+
+CPU0
+netif_tx_disable()   /* waits for the txq lock, timer stays queued */
+
+stmmac_xdp_set_prog() then calls stmmac_xdp_open() straight away, and
+stmmac_xdp_open() does:
+
+	hrtimer_setup(&tx_q->txtimer, stmmac_tx_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+
+The coalesce timer defaults to 5ms and ethtool can raise it to 100ms, so
+the stray timer is likely still queued at that point. Would re-initializing
+a queued hrtimer corrupt the per-CPU hrtimer base?
+
+Before this patch, netif_tx_disable() ran first, so in-flight xmits were
+drained before the timers were cancelled.
+
+The commit message says:
+
+  "Once NAPI is disabled, NAPI_STATE_SCHED stays set, so
+  stmmac_tx_timer_arm() takes the hrtimer_try_to_cancel() path and new
+  transmissions cannot re-arm the TX timers after hrtimer_cancel()."
+
+This seems to hold only for transmissions that check the NAPI state after
+napi_disable(). Would the order stmmac_disable_all_queues() ->
+netif_tx_disable() -> hrtimer_cancel() close both this window and the
+stmmac_tx_clean() one?
+
+> +
+>  	/* Free the IRQ lines */
+>  	stmmac_free_irq(dev, REQ_IRQ_ERR_ALL, 0);
+>  
+
+[Severity: Medium]
+Disabling NAPI first stops the wake in stmmac_tx_clean(). Is there still a
+second waker in the window between netif_tx_disable() and
+stmmac_free_irq()?
+
+stmmac_tx_err() also calls netif_tx_wake_queue(). It runs from the hard
+IRQ handlers stmmac_dma_interrupt() and stmmac_msi_intr_tx() when the
+status is tx_hard_error:
+
+stmmac_main.c:stmmac_tx_err() {
+    ...
+	stmmac_start_tx_dma(priv, chan);
+
+	priv->xstats.tx_errors++;
+	netif_tx_wake_queue(netdev_get_tx_queue(priv->dev, chan));
+}
+
+The IRQ lines stay requested until stmmac_free_irq(), which now runs after
+netif_tx_disable(). stmmac_xdp_release() never sets STMMAC_DOWN, so the
+STMMAC_DOWN check in stmmac_msi_intr_tx() does not filter this either.
+
+Suppose the DMA reports TPS or FBE in that window. The queue is woken
+again and TX DMA is restarted. Could the NET_TX softirq then call
+stmmac_xmit() while stmmac_stop_all_dma() and free_dma_desc_resources()
+are freeing the descriptor ring and tx_skbuff/tx_skbuff_dma?
+
+The trigger needs a fatal bus error or a transmit-process-stopped status in
+this window, so it is narrow. __stmmac_release() has the same
+netif_tx_disable() -> stmmac_free_irq() window. It is still the same
+failure the commit message describes: the queue restarts after
+netif_tx_disable() and ndo_start_xmit() runs during ring teardown.
+
+[Severity: High]
+This isn't a bug introduced by this patch, but it is the ndo_xdp_xmit()
+race the v2 changelog mentions. Can stmmac_xdp_xmit() write into the TX
+rings that free_dma_desc_resources() is freeing here?
+
+On program removal, stmmac_xdp_set_prog() does:
+
+	if (!prog)
+		xdp_features_clear_redirect_target(dev);
+
+	need_update = !!priv->xdp_prog != !!prog;
+	if (if_running && need_update)
+		stmmac_xdp_release(dev);
+
+Nothing waits for a grace period between these two calls.
+stmmac_disable_all_queues() only calls synchronize_rcu() when an RX queue
+has an xsk_pool.
+
+Another device's NAPI may already have passed the feature check in
+__xdp_enqueue() and queued frames in a devmap bulk queue. When it flushes
+through bq_xmit_all() -> stmmac_xdp_xmit(), the only gate is:
+
+	if (unlikely(test_bit(STMMAC_DOWN, &priv->state)))
+		return -ENETDOWN;
+
+stmmac_xdp_release() never sets STMMAC_DOWN. stmmac_xdp_xmit() also takes
+__netif_tx_lock() without checking whether the queue is stopped, so
+netif_tx_disable() does not fence it.
+
+stmmac_xdp_xmit_xdpf() then writes into tx_q->dma_tx and
+tx_q->tx_skbuff_dma. __free_dma_tx_desc_resources() releases that memory
+with dma_free_coherent() and kfree().
+
+The v2 changelog already says this will be handled separately.
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261105053916.22353-1-muhammad.nazim.amirul.nazle.asmade%40altera.com
 
