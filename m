@@ -2,53 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033AC606EEA7
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 332EE606EE93
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1QpUgob/;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=dH8ZXeaw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JK+zsGLm;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=fnUFRjLL;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=MjOO+13E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wDt336sOLHXoyK1vJ5DHTHNJA3h4jiPSQ6EBbN6VPPU=; b=1QpUgob/DQKKXN
-	ZZtYSmlJ6uhCGFB6ghXMVZ1uCnBZCvOFtJvb/Jh635bXZc98O0BjBNjbK5MjIQrQv1MkGg7LPiTL4
-	4RrINUMU8S8bH2f4NORSc8cJ0IOTZvlGuKBblwywqFywNfXaCqSlchI+TWYLMORTfvrmwOesFS5u7
-	Fq1Mn0dgBAjMYbzcnx+uM9ms/IaHSpIVYsKs7nCzt+ZhA/QanesRjWVcOlYLOBl8Rv1oBY61lcjMs
-	3H4+lLP5kr//sVCFpaowPurtmwWnIibl4sk3Q6/pWuu4cLAjGt2+vx5RAp2oUEmXRSHJCnsgcPzTK
-	msWI+Gc4s1SaHM3HOFQQ==;
+	List-Owner; bh=MPDGF6IXWrblzJC60iTMPME/YZHsX/XZwrmc6jtde8w=; b=JK+zsGLmcpBfri
+	KjMEOVgoMctM/7x/eOuB4bwSwV8Ks2ZYXLkQmnoZP3nx6XeX6+VgsRebSRxVWJdgB5oHueqSYDfsW
+	XyiF6PEan8gLedYPoR4W9nipgjOGUt6GdfL8WLo7sy/mdpYbAlksszx1EBhYKg96X1XdWcoreWmZG
+	qouEhTL1AFLnZYLPSNleM9++3+WZBqliYyhjE9GOkM/OZMLm+M/vRywtfZgtvHBekPcqYDMCw+WUg
+	PVELHP1WH+jAd8C8bU8zQIzJxn6Ok78IhSeJwLZ5CUhKxgin+dcsrPv3ZHYjOIXSl601wU51+PcQN
+	zuZZ65+CyISbMvGPAxIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRpF-000000018pe-2dfO;
+	id 1xQRpJ-000000018vG-3wDQ;
+	Mon, 09 Nov 2026 16:02:34 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQRpF-000000018od-3GOO
+	for linux-arm-kernel@bombadil.infradead.org;
 	Mon, 09 Nov 2026 16:02:29 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=MPDGF6IXWrblzJC60iTMPME/YZHsX/XZwrmc6jtde8w=; b=fnUFRjLLFLRliZVLppXwI1mPta
+	fGsYpaGbDaJH74JpC7x+0K2Nb6S5UnIexTwFvWlOIQInWBK2B2qsTDbt46thMD1h8bttQ7NTyqGm8
+	kS+Eg4RsxaXN9tHN32vL5WyQ2fpgYewZiWuyxom5IlsloEoWW/dRgGqU0bg5eWkuTfewueerwvYw+
+	qASGhZEzhVEM8d6WQ+U+P8ls9BxrQJa2CqDsh1U7XrJbmW6KqsxdL/f/plM3S6sC0ASsqzUGpbGdx
+	kZGVREtfURW5VBqNUfTj3Fu3PKq5s4fXg7hFV0Wmm3GljJxyyhSco6oSew/8gsJXfdo7CZmjiZP/G
+	CyNZ9H/g==;
 Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRp6-000000018eP-2iBS
+	by desiato.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQRpC-00000006upH-13fA
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:02:22 +0000
+	Mon, 09 Nov 2026 16:02:28 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23A1E1516;
-	Mon,  9 Nov 2026 08:02:16 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 586202F;
+	Mon,  9 Nov 2026 08:02:21 -0800 (PST)
 Received: from localhost.localdomain (e123572-lin.cambridge.arm.com [10.2.208.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 41B3D3F632;
-	Mon,  9 Nov 2026 08:02:14 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7C6A83F632;
+	Mon,  9 Nov 2026 08:02:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794240139; bh=NFQEFSsYO/fKnRgE7J5ZDxamR8/pZMozASGHFiXFzxE=;
+	t=1794240144; bh=7lQIZULh5J1Hl9TkWIvvH26oFjy2YjVKRIp92NAf5N0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=dH8ZXeawxo9RYVWjKlz7VEpjb0FcZ2mBlznPXMI297grRoAkdMGTUFZAdtqQ2aB8C
-	 QAT7+pPg38V9AmeqHCdZL7tGeQk0d6JEhmHFaveFPzheIA0+E5uC4CuyHsOAOiEjVj
-	 FUXkCI059PuOzATmarafG9qY4ZXGvOFOmhN05d1E=
+	b=MjOO+13EDwQFxplh8y2zy9+3siFjwxsSmc+dzoPYHyKnmN1JvLNhY/W07LEnJC+1l
+	 sysFGL4K4QoHQg0D/keeeiYly5kz212yq/Zfq+xgd5tfW3DTl2WJg2hBWxPJCuMyqk
+	 naaRRee+6j6TbSnsP7JfOgtcwa0AEuecMqKJ48rw=
 From: Kevin Brodsky <kevin.brodsky@arm.com>
-Date: Mon, 09 Nov 2026 15:58:45 +0000
-Subject: [PATCH RFC v10 20/22] arm64: kpkeys: Enable
- kpkeys_hardened_pgtables support
+Date: Mon, 09 Nov 2026 15:58:46 +0000
+Subject: [PATCH RFC v10 21/22] arm64: mm: Map kernel image alias of
+ init_pg_dir read-only
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-kpkeys-v10-20-aa6c4d9603bc@arm.com>
+Message-Id: <20261109-kpkeys-v10-21-aa6c4d9603bc@arm.com>
 References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
 In-Reply-To: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
 To: linux-hardening@vger.kernel.org
@@ -76,17 +92,17 @@ Cc: Kevin Brodsky <kevin.brodsky@arm.com>,
  Ira Weiny <iweiny@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, 
  Thomas Gleixner <tglx@kernel.org>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=759;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=3031;
  i=kevin.brodsky@arm.com; s=20260427; h=from:subject:message-id;
- bh=NFQEFSsYO/fKnRgE7J5ZDxamR8/pZMozASGHFiXFzxE=;
- b=PIyC1APa/UtTe2vo0XydEUgKuIvFCyLXYBF/FwYrpD/9Sxq+MAqmcDszgEbt7wQGtA3IiadoY
- of5pIoerUJaBLMTbjWxhnozwdg5vsRjGujKle7TLPrIZ86KcBsAMXdB
+ bh=7lQIZULh5J1Hl9TkWIvvH26oFjy2YjVKRIp92NAf5N0=;
+ b=LoDGFEClYfGo5mtYK/pK9ZnXOnv9T2HDXy6Aj90eQ6QdUKa6c5axkQLFxUd9JMNimrSP5Ydw3
+ 0qkvhmxlsYxA3T1KVntwfvUbp5XSYIBU2rSgq697LjbRqZ4mmrLsYXT
 X-Developer-Key: i=kevin.brodsky@arm.com; a=ed25519;
  pk=N2QG+eJKrvkNovwhhwJhnJ4+ScVfsGCHldmqLfcMTFs=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_080220_770297_1C057BED 
-X-CRM114-Status: GOOD (  10.00  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261109_160226_634707_CF739139 
+X-CRM114-Status: GOOD (  16.20  )
+X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,27 +121,71 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-All the pieces are in place to advertise support for
-kpkeys_hardened_pgtables. Do it by selecting
-ARCH_HAS_KPKEYS_HARDENED_PGTABLES if ARM64_POE is enabled.
+Page tables in init_pg_dir are always modified via the linear map.
+kpkeys_hardened_pgtables now prevents arbitrary code from writing
+page tables via the linear map; map the kernel image alias of
+init_pg_dir read-only to ensure that the kpkeys protection cannot be
+bypassed.
 
+Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
 Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
 ---
- arch/arm64/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/include/asm/sections.h | 1 +
+ arch/arm64/kernel/pi/map_kernel.c | 9 +++++++--
+ arch/arm64/mm/mmu.c               | 8 ++++++++
+ 3 files changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index f7e4ffbc07ac..28023dd0fd4b 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -2301,6 +2301,7 @@ config ARM64_POE
- 	select ARCH_USES_HIGH_VMA_FLAGS
- 	select ARCH_HAS_PKEYS
- 	select ARCH_HAS_KPKEYS
-+	select ARCH_HAS_KPKEYS_HARDENED_PGTABLES
- 	help
- 	  The Permission Overlay Extension is used to implement Memory
- 	  Protection Keys. Memory Protection Keys provides a mechanism for
+diff --git a/arch/arm64/include/asm/sections.h b/arch/arm64/include/asm/sections.h
+index 51b0d594239e..dc961cf67168 100644
+--- a/arch/arm64/include/asm/sections.h
++++ b/arch/arm64/include/asm/sections.h
+@@ -23,6 +23,7 @@ extern char __irqentry_text_start[], __irqentry_text_end[];
+ extern char __mmuoff_data_start[], __mmuoff_data_end[];
+ extern char __entry_tramp_text_start[], __entry_tramp_text_end[];
+ extern char __relocate_new_kernel_start[], __relocate_new_kernel_end[];
++extern char __pi_init_pg_dir[], __pi_init_pg_end[];
+ 
+ static inline size_t entry_tramp_text_size(void)
+ {
+diff --git a/arch/arm64/kernel/pi/map_kernel.c b/arch/arm64/kernel/pi/map_kernel.c
+index fb44cbdd2f29..81ca3e98f0f7 100644
+--- a/arch/arm64/kernel/pi/map_kernel.c
++++ b/arch/arm64/kernel/pi/map_kernel.c
+@@ -92,8 +92,13 @@ static void __init map_kernel(u64 kaslr_offset, u64 va_offset, int root_level)
+ 		    __inittext_end, prot, false, root_level);
+ 	map_segment(init_pg_dir, &pgdp, va_offset, __initdata_begin,
+ 		    __initdata_end, data_prot, false, root_level);
+-	map_segment(init_pg_dir, &pgdp, va_offset, _data, _end, data_prot,
+-		    true, root_level);
++	map_segment(init_pg_dir, &pgdp, va_offset, _data, init_pg_dir,
++		    data_prot, true, root_level);
++	/* Map init_pg_dir separately as we will remap it read-only later on */
++	map_segment(init_pg_dir, &pgdp, va_offset, init_pg_dir, init_pg_end,
++		    data_prot, true, root_level);
++	map_segment(init_pg_dir, &pgdp, va_offset, init_pg_end, _end,
++		    data_prot, true, root_level);
+ 	dsb(ishst);
+ 
+ 	idmap_cpu_replace_ttbr1((phys_addr_t)init_pg_dir);
+diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+index c1e3260bd0db..b6a4371dd03f 100644
+--- a/arch/arm64/mm/mmu.c
++++ b/arch/arm64/mm/mmu.c
+@@ -1267,6 +1267,14 @@ void mark_rodata_ro(void)
+ 	update_mapping_prot(__pa_symbol(_text), (unsigned long)_text,
+ 			    (unsigned long)_stext - (unsigned long)_text,
+ 			    PAGE_KERNEL_RO);
++	/*
++	 * Map the kernel image mapping of init_pg_dir read-only; it should
++	 * only be written via the linear map.
++	 */
++	section_size = (unsigned long)__pi_init_pg_end - (unsigned long)__pi_init_pg_dir;
++	update_mapping_prot(__pa_symbol(__pi_init_pg_dir),
++			    (unsigned long)__pi_init_pg_dir,
++			    section_size, PAGE_KERNEL_RO);
+ 
+ 	/* Map the kernel data/bss as invalid in the linear map */
+ 	mark_linear_data_alias_valid(false);
 
 -- 
 2.56.0
