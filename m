@@ -2,66 +2,138 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DC4606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 22:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DD8606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 22:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u73INQ1f;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=njFuq5MS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qj8M5Mwr;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ajtDnW5e;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=guIo+k6i
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Nl3oOExTQ74HMckae6PwPrluldj6ZE8tIHdfvvG9Ot8=; b=u73INQ1f7PbCdW13OaVoIMh5AM
-	KxKrvM7t2JtWBxVcugSJKh4v1HF3uNC1ligCFNA691gYAQ2nQsmf+9748/U4q9knPwg1hhf9x0XAI
-	8akysCHeCQmSkKqV9APpOjolXmFKD9ZSNyHMRdxvBHF7ibGa4VjlKlAWRPIyWrCXnCSyVn9S0/DAg
-	r4/HhFkPP5+Tbip7RCzHFmYVNG0jHov+qDLNZO1H0EYV/KguPLzHy0rDZy0pCZv+tLoIjetRTGl7H
-	o8nJRyIgdxmpFIgZRVKxZhCUo0fcRfjO8CfBTwhAS/Y7Zlaa38QauwTYdUjLZieyq26HVR8WRtfxD
-	/TaHnfVA==;
+	bh=St7kPuwx8TTNbOiHL4PqED3PJrgepz3coZt/Tr0CXik=; b=Qj8M5Mwr9OqfsE0rlBjJ1ersIe
+	jXoOtrqhJaZdw1G4svU55WAv5TOLn10WQtOQK/N7GuMgF1TU6RfKLpjVkUrpF/doC6JTDhWGD2iSp
+	yM4Ij9WImLTi2b+aMMGOCJG78k7pOGu83Y8fCCV0ZelRsU5MIpk77CCeDROWuLJejkVUbpeDCii3p
+	xDzvAeny9BC2mO6oNi56ThomXCBqneQkINyu3iXpptd6mAt5IdAztXDcG8HuJzwZTIcKJlgJOLvRs
+	G+JLUeOczLc194wUesWMJxaRlvhYVpVtlj44JqMcvxw33nbhRhYfa3m5dbOXo8Lsl4QCr0WBVmn4s
+	X49PMNkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQXic-00000001rl4-0EMl;
-	Mon, 09 Nov 2026 22:20:02 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQXlA-00000001s5v-1I0m;
+	Mon, 09 Nov 2026 22:22:40 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQXiY-00000001rj6-0Y4k;
-	Mon, 09 Nov 2026 22:19:58 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 53C2B6351A;
-	Mon,  9 Nov 2026 22:19:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 132AE1F008A1;
-	Mon,  9 Nov 2026 22:19:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794262797;
-	bh=Nl3oOExTQ74HMckae6PwPrluldj6ZE8tIHdfvvG9Ot8=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=njFuq5MSbhNWD+iPwxeZemyqGDrtkevt59lMI/R6DXeWA+G4U0i1Bf7XrZ5GW14bh
-	 /ZwcUoUPCeaji4I1u6F4i+mWEqWoF5MPi5+Tb/U8ERA/6rxQZDb4m5QnMeJn+1cqrK
-	 a4gpVq9oWRl0ipkGNjCs90euBNmOXxvt491afj+gDvED1Lk0G/nRcR0hUSV14DT5+l
-	 QKD2CvTUQcginqywgkkk/WgC29G9s4fdbTh4y7atOwB7w4MC4USFrPHyaWsiYRobUg
-	 2HFQhPSOZLgc4y2c0lb317pW05eHKc4mBlcJEUx2Do1khAPPcVmrWXdtFiDZSCm2D4
-	 mB7aqbTDPgocQ==
-Subject: Re: [PATCH net-next v3 2/2] net: ethernet: mtk_eth_soc: add 9K jumbo
-From: netdev-bot+sashiko@kernel.org
-To: sandeeph@loljews.com
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, linux@armlinux.org.uk,
- mason-cw.chang@mediatek.com, frank-w@public-files.de,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 09 Nov 2026 22:19:55 +0000
-Message-ID: <179426279563.994134.6856575949361866323@kernel.org>
-In-Reply-To: <patch-10770ae7af4227d4823574c6689a7a4c@loljews.com>
-References: <patch-10770ae7af4227d4823574c6689a7a4c@loljews.com>
-X-sashiko-severity: High
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xQXl7-00000001s5Z-2sCA
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 22:22:38 +0000
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A9LA7BB870778
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 9 Nov 2026 22:22:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=St7kPuwx8TTNbOiHL4PqED3PJrgepz3coZt
+	/Tr0CXik=; b=ajtDnW5e4q8b0C5U7nUAfVEjLFRrUXtHsy+nsTE2A0LcKOVRcf6
+	LKO3fwxicgD3OSVqPzZWYiQ8ceKqU5szlzyRmKlCQqutYkqFRsCL3UAco8Etfn14
+	tLro5FQqMCzGbHeE5qEN5co4PrG3Srtk0C549MlU8nAVS3UDxLx2AGg1U0lFtyum
+	hSMD813FFNE0GP2osx7hK59sZujkfWUI6KSNURdKc/8+35+k64TE/03uTNbEMQMc
+	fgm1iwzjY4MputaLPqXHbEWieZGoVu8oXxCnbM+44uyNU3FrmSc79MRs4l3eh6LI
+	5ZYLIk2fchik5+wD8rUtwGqMiEh2BJnsv/A==
+Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hua58b0j3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 22:22:35 +0000 (GMT)
+Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-30c0d568830so3562184eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 14:22:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794262954; x=1794867754; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=St7kPuwx8TTNbOiHL4PqED3PJrgepz3coZt/Tr0CXik=;
+        b=guIo+k6iyf7bCOCI3C53oKZRcH1Ydvg/ITYcCpNYPnyEoCP8afJH9W7Fb1utMBCMX4
+         ojKUB1I5eur2AsIGkYMY5JpViepue0iwxZQyHIBze33ExmA2LKtQapXBJ/2nPY8+VASn
+         FMfzy768Bx0g87RddllEwDa/5iKJ0wFtc+dINE5L0a6+DtXdpw5CaC+pQsmiEJraOqU2
+         gUKcEldRUlQYlFqa5z9TxWYCqtLb1n6QDxExRJgInpoRnPpE+kAxxpmwAW2zBC5Cho+r
+         xyXAO7ohmDLMYMv8fBO0vXwGh4w+QbqcaT68BQM9SbvTkjKokscdJFkVBMxeyHHMQz5U
+         6J/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794262954; x=1794867754;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=St7kPuwx8TTNbOiHL4PqED3PJrgepz3coZt/Tr0CXik=;
+        b=xCzYCMYQMtF8qH8JAmOqvqRwz2tZCmDl2WrzVbs98kf2L5dm9OObkpzIIBL9fjLoID
+         bc1QTJH77+s8OK/nPgTDn5bleOd67lEnPECDdllC/g/EGARlImW9I0u5rciPxZmQltp8
+         Ks0SDq5Z1vPju2diw+sMBjOj9GcIx7GgqZ+7yHfYM9QR0jeQKKA3fNcyw/fIJf1Y1/oX
+         IXZoHxyCxqcyXAAQdMM+HkogpRP6Ii2mWBuXzhLo8fLbC+r0y6XuSt/F3JnwALxCBm6O
+         K8ct9txZvuSTQHOV46zP4KtX/O8YGSWk/Nd+yI7j5Z3ZcoSEhHptnu+q5cMJfVY9zuvy
+         6MOw==
+X-Forwarded-Encrypted: i=1; AL+hErEFayLbInU2K+bmsAKZrM253zmOZ6YplMgIyDEEEiAz7TBUOQ8M1BhRgjj9yZdh/a4oDDKjPpTFuhr4SoJBRnBC@lists.infradead.org
+X-Gm-Message-State: APuU4Z+oFV1nQAflPneD2RftT2+7eAavY9Tpn7w5Um7VUx2mxcWRrte3
+	B/p+Cl6wjp+V0Y1pgaEoTvgFXdwCcvwg28nRhhIG6XKpEqF51QfAG0OHe8TvPrQ80Rqbh/tw0BS
+	F92DXUtvtQy6mxFAGaAW+8MgW1+1MC1Ne2DSRakg9Z2WuoedRAff/J/p40UPNtSOKbd5RZwVdPW
+	SMXndSLTwgMA==
+X-Gm-Gg: AYBFou0kL3iBXALbPsjK1BpaHGmz4qZmDVWQKr0TKS8HNTUZ4YP6iFAZ6g1r+AuaMFq
+	qBtet7CD9zd5dkYicaTXSFm1rupMDlSMSqISIVokab48dgvOGVMLrH7z8CrJc7v0tS0EZ94rLrr
+	9gjBo6BRbEOhjWdCCZDZf04zbwE4kv01+sDQdBi50CX0Pglf4IzYkVnmyhqMy/uLwC2UZ1M+Vfj
+	Wxn6i6yDoHqJfAglAZMzVuU+ATxecaKadEgaUID7WETTI7T1o8kn6gbo18J5c34J7leSGBXKpmR
+	asov1ihCVQZNLKAZdPSgE7c9eMqqPs8VNvnOVNC25GLOn4BvRPojGM5EM2/ZjuAc3amtrwryuWK
+	/fXOUXGflnhcx92UijKfOGF6cYLPiD+2VUtCilErNPOZOhvu+bTwV3vLAgE+/aTyQapsPKwf0BZ
+	M1W7FyRI37qTzoTAOYmsFM1v1El0qs0bL/iXyimm+/zij8nbSp4r9F0vuBS0dz1Dv1
+X-Received: by 2002:a05:7301:781:b0:36f:4a4e:6218 with SMTP id 5a478bee46e88-3753ab03351mr439507eec.38.1794262953997;
+        Mon, 09 Nov 2026 14:22:33 -0800 (PST)
+X-Received: by 2002:a05:7301:781:b0:36f:4a4e:6218 with SMTP id 5a478bee46e88-3753ab03351mr439447eec.38.1794262953068;
+        Mon, 09 Nov 2026 14:22:33 -0800 (PST)
+Received: from hu-sibis-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3751fe32276sm1252133eec.8.2026.11.09.14.22.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 14:22:32 -0800 (PST)
+From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+To: robin.clark@oss.qualcomm.com, will@kernel.org, robin.murphy@arm.com
+Cc: joro@8bytes.org, kees+treewide@kernel.org, gregkh@linuxfoundation.org,
+        dakr@kernel.org, panchuang@vivo.com, prakash.gupta@oss.qualcomm.com,
+        akaieurus@gmail.com, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] iommu/arm-smmu: Work around Qualcomm SMMU-500 TLBIVAL granule issue
+Date: Tue, 10 Nov 2026 03:52:14 +0530
+Message-Id: <20261109222214.3988154-1-sibi.sankar@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDA4OSBTYWx0ZWRfX0Ohur6MAwPUu
+ 2otpMglYIMQkF74vvmio/HVFTKrznehVkOdFnVsYuE44NIZaj0X3BQIeos8sIu4owZsJcZJJDZ6
+ dIcqjxNhBM/HZKB+JU4DXS1+va2yXaSc1pfIP91VePpGEVl113Kdu+iqiCVVBno/sn1EZy70k8r
+ 2iD3H0d6ezOE9Fo2Wy3mcoiDYZhoA5x2aDRUkeA5Uc0fjsV7mmdqW8HgwXsRlL956MiyP98q6Ug
+ JcneuBk5wg5LI3WXoTYlYvma7T7ZOqzCKxbA9fbaMKuCj0OV8r7ZSvtnNbVEZKWnv6fTHKX9cKN
+ SIGG2VNoo/JPx+3uyjlhErlz/pAjDcYtxV2NOpKVkjre0UsB04vEP1mjBhqMq8Jwxxx+aIbbarD
+ xh4RvgeypvZmR+QyxJ+e8agJzJBlZ0cPiwAdlPZn2xTvdhHVJoEWG2Q6QfjcClnusYzbloEqAq2
+ rK9uoyZDGVs6l+l3t8A==
+X-Proofpoint-ORIG-GUID: yay_okEGr7ANp6w_vrHMFeLHWLJgl_Az
+X-Proofpoint-GUID: yay_okEGr7ANp6w_vrHMFeLHWLJgl_Az
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDA4OSBTYWx0ZWRfXwWT++3RaPU06
+ /dptvfifX2X43CaSzMWJrxPJ/9aZZQ5raIsN0d2fnc2UCflb9Hjt5QONYueJn2hwyiXuTUqKpuf
+ UA0wLnL+AdayM9LUZGzmB6nJ7BiE/Vo=
+X-Authority-Analysis: v=2.4 cv=C9V8WgP+ c=1 sm=1 tr=0 ts=6af247ab cx=c_pps
+ a=Uww141gWH0fZj/3QKPojxA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=EUspDBNiAAAA:8
+ a=cRIvcy3ebCmbRUWD2K0A:9 a=PxkB5W3o20Ba91AHUih5:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-09_07,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 clxscore=1011 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611090089
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_142237_731967_9913DB95 
+X-CRM114-Status: GOOD (  20.11  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,432 +144,118 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 11 potential
-issue(s) to consider.
+From: Prakash Gupta <prakash.gupta@oss.qualcomm.com>
+
+Qualcomm SMMU-500 has an issue with TLBIVA/TLBIVAL where only the
+base-page-size entry at the base IOVA is invalidated, leaving stale
+TLB entries for the rest of the range.
+
+This causes use-after-free: after dma_free_coherent() unmaps a large
+buffer, the device can still access freed physical memory through stale
+TLB entries. On FastRPC workloads this manifests as ADSP crashes when
+the ELF loader writes to a freed PA that has been reallocated.
+
+Force the TLB invalidation step granule to the minimum page size for
+all Qualcomm SMMU-500 domains, ensuring each page in the range is
+individually invalidated. The minimum page size from pgsize_bitmap is
+used rather than hardcoded 4K to correctly handle 16K and 64K granule
+configurations.
+
+This increases the number of TLB invalidation operations for large
+ranges, but correctness takes precedence.
+
+Signed-off-by: Prakash Gupta <prakash.gupta@oss.qualcomm.com>
+Co-developed-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+---
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 28 ++++++++++++++++++++++
+ drivers/iommu/arm/arm-smmu/arm-smmu.c      |  3 +++
+ drivers/iommu/arm/arm-smmu/arm-smmu.h      |  1 +
+ 3 files changed, 32 insertions(+)
+
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+index 795e8ec7e8fa..a51152b4e24b 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+@@ -430,6 +430,24 @@ static const struct of_device_id qcom_smmu_client_of_match[] __maybe_unused = {
+ 	{ }
+ };
+ 
++static const char * const qcom_smmu_500_tlbival_errata[] = {
++	"qcom,eliza-smmu-500",
++	"qcom,glymur-smmu-500",
++	"qcom,hawi-smmu-500",
++	"qcom,ipq9650-smmu-500",
++	"qcom,kaanapali-smmu-500",
++	"qcom,maili-smmu-500",
++	"qcom,milos-smmu-500",
++	"qcom,nord-smmu-500",
++	"qcom,sdx75-smmu-500",
++	"qcom,shikra-smmu-500",
++	"qcom,sm8550-smmu-500",
++	"qcom,sm8650-smmu-500",
++	"qcom,sm8750-smmu-500",
++	"qcom,x1e80100-smmu-500",
++	NULL,
++};
++
+ static int qcom_smmu_init_context(struct arm_smmu_domain *smmu_domain,
+ 		struct io_pgtable_cfg *pgtbl_cfg, struct device *dev)
+ {
+@@ -440,6 +458,16 @@ static int qcom_smmu_init_context(struct arm_smmu_domain *smmu_domain,
+ 
+ 	smmu_domain->cfg.flush_walk_prefer_tlbiasid = true;
+ 
++	/*
++	 * Qualcomm SMMU-500 has an issue with TLBIVA/TLBIVAL where only
++	 * the base-page-size entry at the base IOVA is invalidated. Force
++	 * the minimum page granule on affected SoCs to ensure the full range
++	 * is covered.
++	 */
++	if (of_device_compatible_match(smmu->dev->of_node,
++				       qcom_smmu_500_tlbival_errata))
++		smmu_domain->cfg.force_min_tlbival_granule = true;
++
+ 	client_match = qsmmu->data->client_match;
+ 
+ 	if (client_match)
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+index 8d50a4ad221d..92251536e9b0 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
+@@ -286,6 +286,9 @@ static void arm_smmu_tlb_inv_range_s1(unsigned long iova, size_t size,
+ 	struct arm_smmu_cfg *cfg = &smmu_domain->cfg;
+ 	int idx = cfg->cbndx;
+ 
++	if (cfg->force_min_tlbival_granule)
++		granule = 1UL << __ffs(smmu_domain->domain.pgsize_bitmap);
++
+ 	if (smmu->features & ARM_SMMU_FEAT_COHERENT_WALK)
+ 		wmb();
+ 
+diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.h b/drivers/iommu/arm/arm-smmu/arm-smmu.h
+index 26d2e33cd328..85d1f2d7ec50 100644
+--- a/drivers/iommu/arm/arm-smmu/arm-smmu.h
++++ b/drivers/iommu/arm/arm-smmu/arm-smmu.h
+@@ -359,6 +359,7 @@ struct arm_smmu_cfg {
+ 	enum arm_smmu_cbar_type		cbar;
+ 	enum arm_smmu_context_fmt	fmt;
+ 	bool				flush_walk_prefer_tlbiasid;
++	bool				force_min_tlbival_granule;
+ };
+ #define ARM_SMMU_INVALID_IRPTNDX	0xff
+ 
 
-Critical: 0 · High: 1 · Medium: 5 · Low: 5
-
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [High] mtk_xdp_setup() can accept an XDP program that then never runs.
-- [Medium] The patch changes the GMAC MCR max-RX limit on every non-
-  MT7628 SoC, not just MT7988.
-- [Medium] mtk_pdma_set_sdl() writes `FIELD_PREP(GENMASK(30,16),
-  MTK_PDMA_LRO_SDL + eth->rx_buf_len)` into PDMA RX_CFG (0x6a10) on…
-- [Medium] Normal and QDMA RX rings now use high-order compound pages
-  whenever frag_size > PAGE_SIZE: `mtk_max_buf_alloc(ring->frag_size,…
-- [Medium] On MT7988, GMAC1 (built-in switch, DT phy-mode 'internal')
-  counts as XGMII in mtk_interface_mode_is_xgmii(), so mtk_add_mac()…
-- [Medium] In the XGMII branch, mtk_set_mcr_max_rx() writes the exact
-  byte value it receives into MTK_XMAC_RX_CFG2[13:0] (`min_t(u32, val,…
-- [Low] The commit message says the patch programs the PDMA RX SDL
-  'replacing the field instead of OR-ing into the value already there',…
-- [Low] The stated motivation is to let DSA raise the conduit MTU for 9K,
-  but the -EBUSY check in mtk_change_mtu() (lines 4453-4455) tests the…
-- [Low] The commit message says the patch is a forward-port of Mason
-  Chang's 'change default rx buffer length' and 'add 9k jumbo frame…
-- [Low] The comment above the page_pool gate in mtk_rx_alloc() (lines
-  2865-2871) is now wrong in two ways.
-- [Low] The comment in mtk_dma_init() (lines 3360-3364) says
-  eth->rx_buf_len is 'Derived here, at ring allocation, so…
-
---
-
-net: ethernet: mtk_eth_soc: add 9K jumbo
-
-This adds a MTK_NETSYS_RX_9K capability for MT7988 and advertises a 9K
-max_mtu on the XGMII MACs. The shared RX rings are sized from the largest
-MTU of any MAC, and the GMAC/XMAC max-rx limits and the PDMA RX SDL are
-programmed from that shared length. While DMA is running, MTU increases
-that need larger buffers fail with -EBUSY, and XDP is rejected when the
-buffer length is larger than MTK_PP_MAX_BUF_SIZE.
-
-Link: https://github.com/frank-w/BPI-Router-Linux/commit/b4c6cb1d5532
-Link: https://github.com/mediatek/mtk-openwrt-feeds
-
-> - program the PDMA RX SDL max frame from the shared buffer length,
->   replacing the field instead of OR-ing into the value already there;
-
-[Severity: Low]
-Is this description accurate? In the baseline, MTK_PDMA_LRO_SDL and
-MTK_RX_CFG_SDL_OFFSET are only defined in mtk_eth_soc.h. Nothing in
-mtk_eth_soc.c uses them, and this patch adds the .rx_cfg reg map entry.
-
-So there was no OR-ing to replace. The patch adds a new write to PDMA
-RX_CFG through mtk_pdma_set_sdl(). It runs on every MT7988 DMA init and
-on MTU changes while DMA is down, including at the default 1500 MTU.
-
-Could the commit message say this is a new register write and not a fix
-to existing behaviour?
-
-> This is a forward-port of the MediaTek downstream jumbo work: Mason
-> Chang's "change default rx buffer length" and "add 9k jumbo frame
-> support" (MediaTek OpenWrt feed 999-eth-30/31, carried in
-> frank-w/BPI-Router-Linux), plus Frank Wunderlich's "try to fix crash the
-> right way".
-
-[ ... ]
-
-> Signed-off-by: Sandeep Haemoon <sandeeph@loljews.com>
-
-[Severity: Low]
-Should this carry credit tags for the original authors? The only trailer
-is the submitter's Signed-off-by. There is no Co-developed-by: and
-Signed-off-by: pair for Mason Chang or Frank Wunderlich, and no original
-From:. Documentation/process/submitting-patches.rst asks for these when
-porting someone else's work.
-
-> diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-> index f2b2fb1130ff9..c7bc8eaea7ab0 100644
-> --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-> +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-
-[ ... ]
-
-> @@ -554,6 +555,41 @@ static int mtk_mac_prepare(struct phylink_config *config, unsigned int mode,
->  	return 0;
->  }
->  
-> +static void mtk_set_mcr_max_rx(struct mtk_mac *mac, u32 val)
-> +{
-> +	struct mtk_eth *eth = mac->hw;
-> +	u32 mcr_cur, mcr_new;
-> +
-> +	if (MTK_HAS_CAPS(eth->soc->caps, MTK_SOC_MT7628))
-> +		return;
-> +
-> +	if (!mtk_interface_mode_is_xgmii(eth, mac->interface)) {
-> +		mcr_cur = mtk_r32(mac->hw, MTK_MAC_MCR(mac->id));
-> +		mcr_new = mcr_cur & ~MAC_MCR_MAX_RX_MASK;
-
-[ ... ]
-
-> +	} else if (mtk_is_netsys_v3_or_greater(mac->hw) &&
-> +		   mac->id != MTK_GMAC1_ID) {
-
-[Severity: Medium]
-After this patch, does anything program an RX length limit for GMAC1 on
-MT7988? GMAC1 is the built-in switch port with phy-mode internal, and
-mtk_interface_mode_is_xgmii() treats PHY_INTERFACE_MODE_INTERNAL as
-XGMII.
-
-Once mtk_mac_config() sets mac->interface to INTERNAL, the MCR branch
-above is skipped because the interface is XGMII. This branch is then
-skipped by the mac->id != MTK_GMAC1_ID check.
-
-Next, mtk_mac_config() does:
-
-	if (mtk_interface_mode_is_xgmii(eth, state->interface)) {
-		mtk_w32(mac->hw, MTK_GDMA_XGDM_SEL, MTK_GDMA_EG_CTRL(mac->id));
-		mtk_w32(mac->hw, MAC_MCR_FORCE_LINK_DOWN, MTK_MAC_MCR(mac->id));
-
-That leaves MAX_RX in MTK_MAC_MCR(0) at the 1518 encoding.
-mtk_xgdm_mac_link_up() also returns early for GMAC1. In the baseline,
-mtk_change_mtu() wrote MAX_RX into MTK_MAC_MCR(0).
-
-At the same time, mtk_add_mac() advertises a 9K max_mtu for GMAC1,
-because INTERNAL counts as XGMII.
-
-Depending on the hardware, one of two things seems to follow. Either 9K
-never works on the DSA conduit, or GMAC1 has no programmed limit at all.
-In the second case, does the commit message's "no MAC accepts a frame
-the rings cannot hold" hold for this MAC?
-
-> +		mcr_cur = mtk_r32(mac->hw, MTK_XMAC_RX_CFG2(mac->id));
-> +		mcr_new = mcr_cur & ~MTK_XMAC_MAX_RX_MASK;
-> +		mcr_new |= FIELD_PREP(MTK_XMAC_MAX_RX_MASK,
-> +				      min_t(u32, val, MTK_MAX_RX_LENGTH_9K));
-
-[Severity: Medium]
-Unlike the coarse buckets used for the GMAC MCR, this writes the exact
-byte value into XMAC_RX_CFG2. mtk_change_mtu() passes:
-
-	int length = new_mtu + MTK_RX_ETH_HLEN;
-
-and MTK_RX_ETH_HLEN is ETH_HLEN + ETH_FCS_LEN, with no VLAN_HLEN.
-
-Shrinking the MTU is allowed while running. After a runtime shrink to
-MTU 1500 on MT7988 GMAC2, the XMAC limit becomes 1518. Would full-size
-802.1Q tagged frames (1522 bytes) then be dropped by the MAC, even
-though the rings hold at least 2048 bytes?
-
-Likewise, at max_mtu the limit is capped at 9216, so tagged frames at
-max_mtu could not be received either.
-
-mtk_mac_config() also writes eth->rx_buf_len (at least 2048) into this
-register on every open. The effective limit then depends on whether the
-last operation was an MTU change or a reopen.
-
-[ ... ]
-
-> @@ -649,6 +685,13 @@ static void mtk_mac_config(struct phylink_config *config, unsigned int mode,
->  		mac->interface = state->interface;
->  	}
->  
-> +	/* What a MAC may accept is a property of the shared RX rings, so
-> +	 * rewrite the limit on every mac_config and not only when the
-> +	 * interface mode changes: a reopen after an MTU change must narrow
-> +	 * the MACs that still carry the previous, larger limit.
-> +	 */
-> +	mtk_set_mcr_max_rx(mac, eth->rx_buf_len);
-
-[Severity: Medium]
-Is it intended that this affects every non-MT7628 SoC, and not only
-MT7988?
-
-mtk_rx_buf_len_from_mtu() never returns less than MTK_MAX_RX_LENGTH_2K.
-Every open goes through
-phylink_start()->phylink_mac_initial_config()->mtk_mac_config(). So on
-MT7621/7622/7623/7629/7981/7986 the GMAC MCR now gets
-MAC_MCR_MAX_RX_2048 at any MTU.
-
-In the baseline, mtk_mac_config() did not touch this field, and
-mtk_hw_init() used dev->mtu + MTK_RX_ETH_HLEN. A 1500 MTU interface got
-the 1518 bucket and a 1504 DSA conduit got 1536. mtk_hw_init() now uses
-eth->rx_buf_len as well.
-
-So on all of these SoCs, frames up to 2048 bytes are accepted at a 1500
-MTU, where before they were dropped and counted as rx_long_errors. The
-commit message doesn't seem to mention this change.
-
-mtk_change_mtu() also still calls:
-
-	mtk_set_mcr_max_rx(mac, length);
-
-with the per-device new_mtu + MTK_RX_ETH_HLEN. Doesn't that make the
-same MTU give a different hardware limit, depending on whether an MTU
-change or a reopen happened last?
-
-[ ... ]
-
-> @@ -2310,7 +2352,8 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
->  			if (ring->frag_size <= PAGE_SIZE)
->  				new_data = napi_alloc_frag(ring->frag_size);
->  			else
-> -				new_data = mtk_max_lro_buf_alloc(GFP_ATOMIC);
-> +				new_data = mtk_max_buf_alloc(ring->frag_size,
-> +							     GFP_ATOMIC);
-
-[Severity: Medium]
-With a 9K MTU, the normal and QDMA rings now take this path.
-mtk_max_buf_alloc() allocates whole pages:
-
-	data = __get_free_pages(gfp_mask | __GFP_COMP | __GFP_NOWARN,
-				get_order(size));
-
-For a frag_size of about 9.6K that is 16 KiB. Later in mtk_poll_rx(),
-the skb is still built with:
-
-	skb = build_skb(data, ring->frag_size);
-
-So skb->truesize comes from frag_size, not from the 16 KiB actually
-allocated. Does that under-report the memory pinned by each skb by
-about 40%? Remote traffic could then pin about 1.7x what the socket
-rcvbuf and tcp_mem limits allow.
-
-Before this patch only the HWLRO rings had this mismatch. Now it covers
-every RX buffer once any MAC's MTU is above about 3.5K.
-
-[ ... ]
-
-> @@ -2812,8 +2855,8 @@ static int mtk_rx_alloc(struct mtk_eth *eth, int ring_no, int rx_flag)
->  		rx_dma_size = soc->rx.dma_size;
->  	}
->  
-> -	ring->frag_size = mtk_max_frag_size(rx_data_len);
-> -	ring->buf_size = mtk_max_buf_size(ring->frag_size);
-> +	ring->frag_size = mtk_max_frag_size(eth, rx_data_len);
-> +	ring->buf_size = mtk_max_buf_size(eth, ring->frag_size);
-
-[Severity: Low]
-This isn't a bug, but the comment a few lines below, above the page_pool
-check in mtk_rx_alloc(), is now stale:
-
-	 * length fits that.  Today every ring does; this is the preparation
-	 * for the 9K support in the next patch, where the normal ring grows
-	 * past the pool's limit and takes the netdev_alloc_frag()/
-	 * mtk_max_lro_buf_alloc() path below instead.
-
-This patch renames mtk_max_lro_buf_alloc() to mtk_max_buf_alloc(). This
-patch is also the 9K support. With eth->rx_buf_len up to 9216, not every
-ring fits MTK_PP_MAX_BUF_SIZE any more.
-
-[ ... ]
-
-> @@ -3256,6 +3300,55 @@ static int mtk_dma_busy_wait(struct mtk_eth *eth)
-
-[ ... ]
-
-> +static void mtk_pdma_set_sdl(struct mtk_eth *eth)
-> +{
-> +	const struct mtk_reg_map *reg_map = eth->soc->reg_map;
-> +	u32 val;
-> +
-> +	if (!mtk_is_netsys_v3_or_greater(eth))
-> +		return;
-> +
-> +	val = mtk_r32(eth, reg_map->pdma.rx_cfg);
-> +	val &= ~MTK_RX_CFG_SDL_MASK;
-> +	val |= FIELD_PREP(MTK_RX_CFG_SDL_MASK,
-> +			  MTK_PDMA_LRO_SDL + eth->rx_buf_len);
-> +	mtk_w32(eth, val, reg_map->pdma.rx_cfg);
-
-[Severity: Medium]
-Is MTK_PDMA_LRO_SDL + eth->rx_buf_len the intended value? The comment in
-mtk_dma_init() says the SDL is programmed "from rx_buf_len so jumbo
-frames up to it are accepted by the DMA engine".
-
-The code writes 0x3800 (14336) at 2K and 0x5400 (21504) at 9K. That is
-about 12 KiB more than both rx_buf_len and the per-descriptor
-ring->buf_size.
-
-MTK_PDMA_LRO_SDL is 0x3000, the same as MTK_MAX_LRO_RX_LENGTH. That is
-an HW LRO constant, and MT7988 does not use HW LRO here.
-
-The new MTK_RX_CFG_SDL_MASK, GENMASK(30, 16), sits under the "PDMA Global
-Configuration Register" comment in mtk_eth_soc.h but is applied to
-rx_cfg. At 9K, + and | give different values (0x5400 vs 0x3400), and the
-write sets bit 30. If the real field is narrower, could this overwrite a
-neighbouring RX_CFG control bit?
-
-This register was never written before, so every MT7988 board now loses
-its reset default, even at the default 1500 MTU. Is the field layout
-documented somewhere?
-
-[ ... ]
-
-> @@ -3784,7 +3877,8 @@ static int mtk_xdp_setup(struct net_device *dev, struct bpf_prog *prog,
->  		return -EOPNOTSUPP;
->  	}
->  
-> -	if (dev->mtu > MTK_PP_MAX_BUF_SIZE) {
-> +	if (dev->mtu > MTK_PP_MAX_BUF_SIZE ||
-> +	    mtk_rx_buf_len(eth) > MTK_PP_MAX_BUF_SIZE) {
-
-[Severity: High]
-Can this accept an XDP program that never runs?
-
-mtk_rx_buf_len() recomputes the length from the current MTUs, but the
-live rings were built from eth->rx_buf_len. mtk_change_mtu() allows a
-shrink while DMA is running and leaves eth->rx_buf_len unchanged, so the
-two values can differ.
-
-On MT7988:
-
-1. Set GMAC2 to MTU 9000 while it is down, then bring up GMAC2 and
-   GMAC1. mtk_dma_init() sets eth->rx_buf_len to 9216, so
-   ring->buf_size is larger than MTK_PP_MAX_BUF_SIZE and
-   mtk_rx_alloc() creates no page_pool.
-
-2. Run "ip link set <gmac2> mtu 1500" while it is running. The old 9000
-   MTU still gives 9216, which is not larger than eth->rx_buf_len, so
-   there is no -EBUSY and the rings stay at 9K.
-
-3. Attach XDP to either netdev. dev->mtu is 1500 and mtk_rx_buf_len(eth)
-   is 2048, so this check passes.
-
-If the target is running, mtk_stop() returns early here, because the
-other MAC still holds a reference:
-
-	if (!refcount_dec_and_test(&eth->dma_refcnt))
-		return 0;
-
-mtk_open() then only does refcount_inc(). If the target is down,
-nothing is reopened. Either way the rings are not rebuilt.
-
-mtk_poll_rx() only calls mtk_xdp_run() inside if (ring->page_pool). So
-every packet goes through build_skb() and up the stack while the program
-shows as attached.
-
-The commit message says this case is rejected "instead of letting a
-program attach and never run". Should this check also look at
-eth->rx_buf_len, or at whether the live rings have a page_pool?
-
-[ ... ]
-
-> @@ -4357,14 +4427,33 @@ static int mtk_change_mtu(struct net_device *dev, int new_mtu)
->  	int length = new_mtu + MTK_RX_ETH_HLEN;
->  	struct mtk_mac *mac = netdev_priv(dev);
->  	struct mtk_eth *eth = mac->hw;
-> +	bool running;
-> +	u32 rx_buf_len;
->  	int max_mtu, i;
->  
-> +	/* The RX rings are shared by every MAC, so the buffer length follows
-> +	 * the largest MTU of all of them, including the new one.
-> +	 */
-> +	max_mtu = mtk_max_gmac_mtu(eth);
-> +	if (new_mtu > max_mtu)
-> +		max_mtu = new_mtu;
-> +	rx_buf_len = mtk_rx_buf_len_from_mtu(max_mtu);
-
-[ ... ]
-
-> +	running = refcount_read(&eth->dma_refcnt);
-> +	if (running && rx_buf_len > eth->rx_buf_len)
-> +		return -EBUSY;
-
-[Severity: Low]
-running comes from the DMA refcount that all MACs share, not from
-whether this netdev is up.
-
-On MT7988 boards where any other GMAC is up (for example a WAN port on
-GMAC2 or GMAC3), raising the DSA conduit to a jumbo MTU returns -EBUSY,
-even if the conduit itself is down. dsa_user_change_mtu() passes that
-error back to the user port.
-
-DSA brings the conduit up whenever a user port is up. Wouldn't raising a
-user port MTU on a live system then always fail, so that 9K DSA only
-works once every GMAC is down?
-
-The commit message describes the -EBUSY rule, but not that it limits the
-DSA flow it is meant to enable.
-
-> +
->  	mtk_set_mcr_max_rx(mac, length);
->  	WRITE_ONCE(dev->mtu, new_mtu);
->  
-> @@ -4372,6 +4461,11 @@ static int mtk_change_mtu(struct net_device *dev, int new_mtu)
->  	for (i = 0; i < ARRAY_SIZE(eth->ppe); i++)
->  		mtk_ppe_update_mtu(eth->ppe[i], max_mtu);
->  
-> +	if (!running) {
-> +		eth->rx_buf_len = rx_buf_len;
-> +		mtk_pdma_set_sdl(eth);
-> +	}
-
-[Severity: Low]
-The comment in mtk_dma_init() says eth->rx_buf_len is "Derived here, at
-ring allocation, so eth->rx_buf_len always describes the buffers the
-rings actually hold". Here it is assigned while no rings exist.
-
-rx_buf_len is also computed from mtk_max_gmac_mtu() before
-WRITE_ONCE(dev->mtu, new_mtu), so this device's old MTU still counts.
-
-For example, shrinking the only 9000 MTU device to 1500 while it is down
-leaves eth->rx_buf_len at 9216 and the SDL programmed for 9216.
-mtk_xdp_setup() computes 2048 from the new MTUs, so the two disagree
-until the next mtk_dma_init() recomputes the value.
-
-Should this use the new MTUs, or leave eth->rx_buf_len to mtk_dma_init()?
-
->  	return 0;
->  }
-
-[ ... ]
-
+base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/patch-aad4cfa8d9522d1f7dbc9893ea12e813%40loljews.com
+2.34.1
+
 
