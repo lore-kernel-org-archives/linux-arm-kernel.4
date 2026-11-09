@@ -2,52 +2,53 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5939860A6F4F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5977260A6F50
 	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EpubWtNA;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=DZGU+qoU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Pcx+/Y0P;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=pAn2SFZ+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FL5Kx3AUeCmxtQnGnnWTgoFnfi9x0Ew1zUUgZ1tmvPk=; b=EpubWtNAlGE6/z
-	9UXZOVHRmujdVWtoBhHX5DIKZovCK9ZQ4gS85kZzFhBR/sJ9yZRac0usCGQv9ObP5qi5yzNdzQJEp
-	Nz8V6S9adzlaXrdzgfPI7EJNE/XDPgLmWI+EnCIMkkRNrFQMZpUXCbnjM7R+6ktRJYfD0hwC0bCAu
-	JKhXbebKtRehViG2+vZEZ9z4MHG5xaYw4c163Tj64wV+V2UaOi2GL0eKeyUuwLAezs2Tyqhw2imuD
-	/yfoL5CAFBiQgggSrWQI4KPhzuvzrHiHGRrwAz/VsFkFxZdKs9HTCs3xr7ZmRQpivtDQyOmJGmAcg
-	/syf02W/PLC+4GvD9C2A==;
+	List-Owner; bh=QJscV3NGSsLPzzmUC/ClWQH3voh7QzyOkJMx5kRXbyo=; b=Pcx+/Y0PhmzSzO
+	3Y8s/EEp4Cq1pOreAqJOISW+osDp7chuB2Bi29073A3KlCMJW7Dvo4atZFXtalaQn0wUi5viIWi3o
+	GNd9Mxpc1SdNmnPZQEKV4rGosboY46rpy6LRPmQP7wt3ab97FKa+czciSmfDNLOIJrwrxtRUKtMy6
+	xw4gve3gOiSsdR3WtoaGM7sRS72BqGCTiPoDSmEakPxXJbQE+pk6YRmkaBh9BDx/6waO/G9ov4Umg
+	UaEvb92ubNZEloQUIpxi19dEi6cHTFXc/76xZ6zz6bj4V+B8jOO1GeQuhg2KfKuUEZ1H9lo10VAFi
+	gPsF6AqbRetXZNZwl92w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRoZ-0000000185y-3r0m;
+	id 1xQRoZ-0000000185T-37Ex;
 	Mon, 09 Nov 2026 16:01:47 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRoQ-000000017xI-2kTc
+	id 1xQRoK-000000017rA-3PIW
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:01:42 +0000
+	Mon, 09 Nov 2026 16:01:36 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6B0DD14BF;
-	Mon,  9 Nov 2026 08:01:34 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 367451516;
+	Mon,  9 Nov 2026 08:01:29 -0800 (PST)
 Received: from localhost.localdomain (e123572-lin.cambridge.arm.com [10.2.208.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8F09B3F632;
-	Mon,  9 Nov 2026 08:01:32 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5C1483F632;
+	Mon,  9 Nov 2026 08:01:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794240097; bh=FJhxPDyYVdBG5bX8IuKyyMgqF3Nmg2Z/S4Ly98Gbm0Q=;
+	t=1794240092; bh=CAIyfUtJbjmfrkqxkWqZ7YLIG0a17tfM6+7+J94AUX8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=DZGU+qoUNwtnqV/JUKbMv9TCdVdPFTHjn3xhVDCFs2NiQszgkOPYy6MeFaiKAyeGe
-	 lALp04xTRVdYeolq1s6qX5/Au3ZOkCX42+T6MbIiJO+7MkuLcT//S4x68+avHavHXc
-	 ZTz3NyvO64EuR+p5wp3JjrtAOWyGjM39QNUDdEOM=
+	b=pAn2SFZ+GktBtPCYVQ/Ez/focYKHrodPzOaECMjUkflBU7DpxHyZELa3aBwAwmFiL
+	 BdFJw+SChQQqxXrR+dV2Ij6KjY9LKipu0V00hbyxEjpFFb9jTZN19DZtLGKV9lTDpm
+	 kREzA0g3iOl3k4Yu/GFdZeVNiCkyhOMEPlFp71Cs=
 From: Kevin Brodsky <kevin.brodsky@arm.com>
-Date: Mon, 09 Nov 2026 15:58:37 +0000
-Subject: [PATCH RFC v10 12/22] mm: kpkeys: Protect regular page tables
+Date: Mon, 09 Nov 2026 15:58:36 +0000
+Subject: [PATCH RFC v10 11/22] mm: kpkeys: Introduce
+ kpkeys_hardened_pgtables feature
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-kpkeys-v10-12-aa6c4d9603bc@arm.com>
+Message-Id: <20261109-kpkeys-v10-11-aa6c4d9603bc@arm.com>
 References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
 In-Reply-To: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
 To: linux-hardening@vger.kernel.org
@@ -75,16 +76,16 @@ Cc: Kevin Brodsky <kevin.brodsky@arm.com>,
  Ira Weiny <iweiny@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, 
  Thomas Gleixner <tglx@kernel.org>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=5221;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=6143;
  i=kevin.brodsky@arm.com; s=20260427; h=from:subject:message-id;
- bh=FJhxPDyYVdBG5bX8IuKyyMgqF3Nmg2Z/S4Ly98Gbm0Q=;
- b=N9Y50oJC035I6cz85GsnRJy64slnDo6TL/8rzblh2yRCsgVCTagovaG2p4NnaC2dSArHieM48
- xMAOSyQE8vHAvSZaisSwZlhfhdYt6qh3ZFAUCA0gbP2XMD4XyHEd7aL
+ bh=CAIyfUtJbjmfrkqxkWqZ7YLIG0a17tfM6+7+J94AUX8=;
+ b=o+1OCV6c8nE69uhycwwo0znE2NnD1Tad/IfI+JQDg+qFfcBQ2GcXsvu0cHVgjBWGW9D7x9EIR
+ 2p64pT0+rQaCr3uAGocy46SDGZQ6lEy27oczr/YL1piHSmm20FRBp2n
 X-Developer-Key: i=kevin.brodsky@arm.com; a=ed25519;
  pk=N2QG+eJKrvkNovwhhwJhnJ4+ScVfsGCHldmqLfcMTFs=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_080138_837906_74F12A30 
-X-CRM114-Status: GOOD (  18.92  )
+X-CRM114-CacheID: sfid-20261109_080133_024451_0052D30C 
+X-CRM114-Status: GOOD (  23.81  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,169 +105,200 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If the kpkeys_hardened_pgtables feature is enabled, page table pages
-(PTPs) should be protected by modifying the linear mapping to map
-them with a privileged pkey (KPKEYS_PKEY_PGTABLES). This patch
-introduces a new page allocator for that purpose:
+kpkeys_hardened_pgtables is a hardening feature based on kpkeys. It
+aims to prevent the corruption of page tables by: 1. mapping all
+page table pages, both kernel and user, with a privileged pkey
+(KPKEYS_PKEY_PGTABLES), and 2. granting write access to that pkey
+only when running at in a privileged kpkeys context
+(KPKEYS_CTX_PGTABLES). This patch introduces basic infrastructure;
+the implementation of both aspects follows.
 
-* kpkeys_pgtable_alloc() allocates a new PTP and sets the linear
-  mapping to KPKEYS_PKEY_PGTABLES for that page
+The feature is exposed as CONFIG_KPKEYS_HARDENED_PGTABLES; it
+requires explicit architecture opt-in by selecting
+ARCH_HAS_KPKEYS_HARDENED_PGTABLES, since much of the page table
+handling is arch-specific. It also depends on
+ARCH_HAS_SET_DIRECT_MAP to modify the direct mapping of page tables
+using set_direct_map_pkey().
 
-* kpkeys_pgtable_free() frees such a PTP and restores the linear
-  mapping to the default pkey
+Supported architectures must also provide
+arch_supports_kpkeys_early() in <asm/kpkeys.h>. This will be used
+during early boot to detect whether kpkeys_hardened_pgtables is
+going to be enabled (e.g. to decide how to allocate early page
+tables).
 
-This interface is then hooked into pagetable_alloc() and
-pagetable_free(), protecting all page tables created once the buddy
-allocator is available. Early page tables are allocated in other
-ways and will be protected in subsequent patches.
+Because this feature relies on kpkeys being supported and modifies
+attributes of the linear map, it must be inactive during early boot.
+mm_core_init() enables it before any call to pagetable_alloc() is
+made.
 
-This implementation of kpkeys_pgtable_{alloc,free}() is minimal and
-relies on the linear map being fully PTE-mapped - otherwise
-calling set_direct_map_pkey() on a single page may result in
-splitting a block mapping, which in turn requires allocating a new
-PTP. A more elaborate implementation could be added later to handle
-this situation.
-
-Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
 Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
 ---
- include/linux/kpkeys.h        | 10 +++++++++
- include/linux/mm.h            | 14 +++++++++++--
- mm/kpkeys_hardened_pgtables.c | 47 +++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 69 insertions(+), 2 deletions(-)
+ include/linux/kpkeys.h        | 33 +++++++++++++++++++++++++++++++++
+ include/linux/kpkeys_types.h  |  5 +++++
+ mm/Kconfig                    |  3 +++
+ mm/Makefile                   |  1 +
+ mm/kpkeys_hardened_pgtables.c | 16 ++++++++++++++++
+ mm/mm_init.c                  |  2 ++
+ security/Kconfig.hardening    | 12 ++++++++++++
+ 7 files changed, 72 insertions(+)
 
 diff --git a/include/linux/kpkeys.h b/include/linux/kpkeys.h
-index cd3281223778..6c183c86b7d2 100644
+index 69ec4808d850..cd3281223778 100644
 --- a/include/linux/kpkeys.h
 +++ b/include/linux/kpkeys.h
-@@ -119,6 +119,9 @@ static inline bool kpkeys_hardened_pgtables_early_enabled(void)
- 	return arch_supports_kpkeys_early();
- }
+@@ -4,6 +4,7 @@
  
-+struct page *kpkeys_pgtable_alloc(gfp_t gfp, unsigned int order);
-+void kpkeys_pgtable_free(struct page *page, unsigned int order);
+ #include <linux/bug.h>
+ #include <linux/cleanup.h>
++#include <linux/jump_label.h>
+ #include <linux/kpkeys_types.h>
+ 
+ /**
+@@ -104,4 +105,36 @@ static inline bool kpkeys_supported(void)
+ 
+ #endif /* CONFIG_ARCH_HAS_KPKEYS */
+ 
++#ifdef CONFIG_KPKEYS_HARDENED_PGTABLES
 +
- void kpkeys_hardened_pgtables_init(void);
- 
- #else /* CONFIG_KPKEYS_HARDENED_PGTABLES */
-@@ -133,6 +136,13 @@ static inline bool kpkeys_hardened_pgtables_early_enabled(void)
- 	return false;
- }
- 
-+static inline struct page *kpkeys_pgtable_alloc(gfp_t gfp, unsigned int order)
++DECLARE_STATIC_KEY_FALSE(kpkeys_hardened_pgtables_key);
++
++static inline bool kpkeys_hardened_pgtables_enabled(void)
 +{
-+	return NULL;
++	return static_branch_unlikely(&kpkeys_hardened_pgtables_key);
 +}
 +
-+static inline void kpkeys_pgtable_free(struct page *page, unsigned int order) {}
++static inline bool kpkeys_hardened_pgtables_early_enabled(void)
++{
++	return arch_supports_kpkeys_early();
++}
 +
- static inline void kpkeys_hardened_pgtables_init(void) {}
- 
- #endif /* CONFIG_KPKEYS_HARDENED_PGTABLES */
-diff --git a/include/linux/mm.h b/include/linux/mm.h
-index 6af3b7008f1a..2af713841035 100644
---- a/include/linux/mm.h
-+++ b/include/linux/mm.h
-@@ -39,6 +39,7 @@
- #include <linux/iommu-debug-pagealloc.h>
- #include <linux/kcsan-checks.h>
- #include <linux/vmemmap-optimization.h>
-+#include <linux/kpkeys.h>
- 
- struct mempolicy;
- struct anon_vma;
-@@ -3950,7 +3951,12 @@ static inline bool ptdesc_test_kernel(const struct ptdesc *ptdesc)
-  */
- static inline struct ptdesc *pagetable_alloc_noprof(gfp_t gfp, unsigned int order)
- {
--	struct page *page = alloc_pages_noprof(gfp | __GFP_COMP, order);
-+	struct page *page;
++void kpkeys_hardened_pgtables_init(void);
 +
-+	if (kpkeys_hardened_pgtables_enabled())
-+		page = kpkeys_pgtable_alloc(gfp | __GFP_COMP, order);
-+	else
-+		page = alloc_pages_noprof(gfp | __GFP_COMP, order);
++#else /* CONFIG_KPKEYS_HARDENED_PGTABLES */
++
++static inline bool kpkeys_hardened_pgtables_enabled(void)
++{
++	return false;
++}
++
++static inline bool kpkeys_hardened_pgtables_early_enabled(void)
++{
++	return false;
++}
++
++static inline void kpkeys_hardened_pgtables_init(void) {}
++
++#endif /* CONFIG_KPKEYS_HARDENED_PGTABLES */
++
+ #endif /* _LINUX_KPKEYS_H */
+diff --git a/include/linux/kpkeys_types.h b/include/linux/kpkeys_types.h
+index 9de59092e9c3..09f15a9565cf 100644
+--- a/include/linux/kpkeys_types.h
++++ b/include/linux/kpkeys_types.h
+@@ -8,10 +8,15 @@
+ #include <asm/kpkeys_types.h>
+ #endif
  
- 	return page_ptdesc(page);
- }
-@@ -3959,8 +3965,12 @@ static inline struct ptdesc *pagetable_alloc_noprof(gfp_t gfp, unsigned int orde
- static inline void __pagetable_free(struct ptdesc *pt)
- {
- 	struct page *page = ptdesc_page(pt);
-+	unsigned int order = compound_order(page);
++#ifndef KPKEYS_PKEY_PGTABLES
++#define KPKEYS_PKEY_PGTABLES	1
++#endif
++
+ #if defined(CONFIG_ARCH_HAS_KPKEYS) && !defined(__ASSEMBLY__)
  
--	__free_pages(page, compound_order(page));
-+	if (kpkeys_hardened_pgtables_enabled())
-+		kpkeys_pgtable_free(page, order);
-+	else
-+		__free_pages(page, order);
- }
+ enum kpkeys_ctx {
+ 	KPKEYS_CTX_DEFAULT = 0,
++	KPKEYS_CTX_PGTABLES,
+ 	KPKEYS_CTX_COUNT,
+ };
  
- #ifdef CONFIG_ASYNC_KERNEL_PGTABLE_FREE
+diff --git a/mm/Kconfig b/mm/Kconfig
+index 4635628de622..cf3b6105c4ad 100644
+--- a/mm/Kconfig
++++ b/mm/Kconfig
+@@ -1267,6 +1267,9 @@ config ARCH_HAS_PKEYS
+ 	bool
+ config ARCH_HAS_KPKEYS
+ 	bool
++config ARCH_HAS_KPKEYS_HARDENED_PGTABLES
++	bool
++	depends on ARCH_HAS_KPKEYS && ARCH_HAS_SET_DIRECT_MAP
+ 
+ config ARCH_USES_PG_ARCH_2
+ 	bool
+diff --git a/mm/Makefile b/mm/Makefile
+index 2a3ec53d62ee..07b67eaa1b3b 100644
+--- a/mm/Makefile
++++ b/mm/Makefile
+@@ -149,3 +149,4 @@ obj-$(CONFIG_EXECMEM) += execmem.o
+ obj-$(CONFIG_TMPFS_QUOTA) += shmem_quota.o
+ obj-$(CONFIG_LAZY_MMU_MODE_KUNIT_TEST) += tests/lazy_mmu_mode_kunit.o
+ obj-$(CONFIG_MEM_ALLOC_PROFILING) += alloc_tag.o
++obj-$(CONFIG_KPKEYS_HARDENED_PGTABLES) += kpkeys_hardened_pgtables.o
 diff --git a/mm/kpkeys_hardened_pgtables.c b/mm/kpkeys_hardened_pgtables.c
-index 4c654e0cf585..2311fd8da6bb 100644
---- a/mm/kpkeys_hardened_pgtables.c
+new file mode 100644
+index 000000000000..4c654e0cf585
+--- /dev/null
 +++ b/mm/kpkeys_hardened_pgtables.c
-@@ -1,12 +1,59 @@
- // SPDX-License-Identifier: GPL-2.0-only
- #include <linux/kpkeys.h>
- #include <linux/mm.h>
-+#include <linux/set_memory.h>
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: GPL-2.0-only
++#include <linux/kpkeys.h>
++#include <linux/mm.h>
++
++#include <kunit/visibility.h>
++
++__ro_after_init DEFINE_STATIC_KEY_FALSE(kpkeys_hardened_pgtables_key);
++EXPORT_SYMBOL_IF_KUNIT(kpkeys_hardened_pgtables_key);
++
++void __init kpkeys_hardened_pgtables_init(void)
++{
++	if (!kpkeys_supported())
++		return;
++
++	static_branch_enable(&kpkeys_hardened_pgtables_key);
++}
+diff --git a/mm/mm_init.c b/mm/mm_init.c
+index d99af80ec752..347246135ce1 100644
+--- a/mm/mm_init.c
++++ b/mm/mm_init.c
+@@ -21,6 +21,7 @@
+ #include <linux/buffer_head.h>
+ #include <linux/kmemleak.h>
+ #include <linux/kfence.h>
++#include <linux/kpkeys.h>
+ #include <linux/page_ext.h>
+ #include <linux/pti.h>
+ #include <linux/pgtable.h>
+@@ -2733,6 +2734,7 @@ void __init mm_core_init(void)
+ 	kmemleak_init();
+ 	ptlock_cache_init();
+ 	pgtable_cache_init();
++	kpkeys_hardened_pgtables_init();
+ 	debug_objects_mem_init();
+ 	vmalloc_init();
+ 	/* If no deferred init page_ext now, as vmap is fully initialized */
+diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
+index 81c81ad983ad..9a6f50103482 100644
+--- a/security/Kconfig.hardening
++++ b/security/Kconfig.hardening
+@@ -271,6 +271,18 @@ config BUG_ON_DATA_CORRUPTION
  
- #include <kunit/visibility.h>
+ 	  If unsure, say N.
  
- __ro_after_init DEFINE_STATIC_KEY_FALSE(kpkeys_hardened_pgtables_key);
- EXPORT_SYMBOL_IF_KUNIT(kpkeys_hardened_pgtables_key);
++config KPKEYS_HARDENED_PGTABLES
++	bool "Harden page tables using kernel pkeys"
++	depends on ARCH_HAS_KPKEYS_HARDENED_PGTABLES
++	help
++	  This option makes all page tables mostly read-only by
++	  allocating them with a non-default protection key (pkey) and
++	  only enabling write access to that pkey in routines that are
++	  expected to write to page table entries.
++
++	  This option has no effect if the system does not support
++	  kernel pkeys.
++
+ endmenu
  
-+static int set_pkey_pgtable(struct page *page, unsigned int nr_pages)
-+{
-+	unsigned long addr = (unsigned long)page_address(page);
-+	int ret;
-+
-+	ret = set_direct_map_pkey(addr, nr_pages, KPKEYS_PKEY_PGTABLES);
-+
-+	WARN_ON(ret);
-+	return ret;
-+}
-+
-+static int set_pkey_default(struct page *page, unsigned int nr_pages)
-+{
-+	unsigned long addr = (unsigned long)page_address(page);
-+	int ret;
-+
-+	ret = set_direct_map_pkey(addr, nr_pages, 0);
-+
-+	WARN_ON(ret);
-+	return ret;
-+}
-+
-+struct page *kpkeys_pgtable_alloc(gfp_t gfp, unsigned int order)
-+{
-+	struct page *page;
-+	int ret;
-+
-+	page = alloc_pages_noprof(gfp, order);
-+	if (!page)
-+		return page;
-+
-+	ret = set_pkey_pgtable(page, 1 << order);
-+	if (ret) {
-+		__free_pages(page, order);
-+		return NULL;
-+	}
-+
-+	return page;
-+}
-+
-+void kpkeys_pgtable_free(struct page *page, unsigned int order)
-+{
-+	set_pkey_default(page, 1 << order);
-+	__free_pages(page, order);
-+}
-+
- void __init kpkeys_hardened_pgtables_init(void)
- {
- 	if (!kpkeys_supported())
+ config CC_HAS_RANDSTRUCT
 
 -- 
 2.56.0
