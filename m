@@ -2,86 +2,72 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E76606D801
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 03:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206C4606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 03:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XyK/Ef8a;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=SuJDtysg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S3BQEtkd;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=pigmoral.tech header.i=@pigmoral.tech header.a=rsa-sha256 header.s=zmail header.b=NxiCE+6y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=jFjDMeCOUfqx4tB4jN7qVpzUMoCyGqzAHhigGnXoPxQ=; b=XyK/Ef8ajrkaYaA5MHHEZf2mOI
-	Eyd9z/OhIDqfEvPyruBVfOVl4NFheltf38ohqCsJkvmyYuLR1hzTIWrohAKe74BU13s+tHrUBJtZ9
-	8wjvNAsHUmbZBzmt4ZevE4X+BGGnMCTB8NlBYizyX+vipvsofERT+pwSETOhhFC2kCq8IXeU7E8xT
-	ng4TdM+5PTwFd+xsGUY/oqEU1PrKf0M7L0BXr0OLXiPcRKdkz6iug79xMuRZBCGXfPBhA2FSjy7lL
-	zWjVov+B7RSrEdiL2DkNCkzZp41BOOzm/0eMCEzmmXt7/uRMIVctEQUemp9StVnARmlj+ZWxpxThP
-	mrjvxdEA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
+	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=TpD4Qm/8zgFf7AXrcg7HkBUl+/qWD0ZfHjTxcOeCSqY=; b=S3BQEtkdFqX/W+
+	Wx9fmq0I/HFSHyMvH+XMmY/d+Q915NhI9q/+oxh9xMry4i2xEasMa5nI5J2d511qksSrA5JYad7xJ
+	GEXDpRMFHFXj+mPHt16fWTaEYcMjD8fCm4om5iN61JoxQggysHv6Sgp4MNBZt0Gj/tqEEXkqsPUGK
+	ORqUIUJoAznKN5XasPPAnuzKgcQhz7k79hkjLYg7nEraY9SU0sWlSwVQsTo0TMOgpORpG5RaHYO8n
+	6IaG49cDwNAtelNMrY7NCrody6vbB+kp8F/YaN7TQStH5wLirraWNxkp9PRMcl8NQ9uiYZ8qALU4r
+	FYdByOIOL+O5YODPuJCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQFzx-0000000HBUl-3tJz;
-	Mon, 09 Nov 2026 03:24:45 +0000
-Received: from mailgw01.mediatek.com ([216.200.240.184])
+	id 1xQG2S-0000000HBws-1etL;
+	Mon, 09 Nov 2026 03:27:20 +0000
+Received: from sender6-op-o12.zoho.com ([165.173.180.12])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQFzs-0000000HBRL-2Kr4;
-	Mon, 09 Nov 2026 03:24:41 +0000
-X-UUID: 171c191adbed11f1afed4741b24580c9-20261108
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=jFjDMeCOUfqx4tB4jN7qVpzUMoCyGqzAHhigGnXoPxQ=;
-	b=SuJDtysgK3t4uXc5L/Co7akhTjokQkP0yZ9y7qumuX1JFentI4BoQnK1LH17CMGI7q0awAM38gBPlz4uBCW+QUCwJWD2q+KTW2/zMiYqAgghCoDPdX7/wie4zItAsy2d/9S2xSN0ai9OjS5IP0WntH6x52YMDRPubGgSpCPQZKk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:8c4e152c-2999-43d7-88b4-8e83acde7770,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:b0318ac,CLOUDID:0329f2ce-02bc-447e-ab88-2baec399874a,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
-	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 171c191adbed11f1afed4741b24580c9-20261108
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <cyril.chao@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1791299977; Sun, 08 Nov 2026 20:24:36 -0700
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 9 Nov 2026 11:24:34 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Mon, 9 Nov 2026 11:24:33 +0800
-From: Cyril Chao <Cyril.Chao@mediatek.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Nathan Chancellor
-	<nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill
- Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>
-CC: <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<llvm@lists.linux.dev>, Cyril Chao <cyril.chao@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Cyril Chao
-	<Cyril.Chao@mediatek.com>
-Subject: [PATCH v1 1/1] ASoC: mediatek: mt8189: Use AVOUT for DP and HDMI jacks
-Date: Mon, 9 Nov 2026 11:24:09 +0800
-Message-ID: <20261109032424.625004-2-Cyril.Chao@mediatek.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261109032424.625004-1-Cyril.Chao@mediatek.com>
-References: <20261109032424.625004-1-Cyril.Chao@mediatek.com>
+	id 1xQG2P-0000000HBva-0WQO
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 03:27:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794194827; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=FUu2k3l16OUWOAD4erVCXqWmWp0ZbO7uL6E9N9cxh/0G+nIHi37Smp7jFkEgO15xvi3MfBlYj/Wt28RwGlKW9uhcZ4dEe3d3OsAl5aI9PSHFs2GOcfm2Sly81rvNwTnmmi01HV9mEgwHOAhj91VjrOZXzH2ARsGkeJtVW99rUhs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794194827; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=TpD4Qm/8zgFf7AXrcg7HkBUl+/qWD0ZfHjTxcOeCSqY=; 
+	b=lcvaIHG27YaH56p5ryrNyrFFIHCDvrAj1SEEnD0cFR84fu6WBRPI670Hlhex6904kTUn9w/TEVXrCkQmAJjiN4P5yOd48dxwZmsgx+gxSVwLG7UYkydb/jlIq8ZFf9OIFCXXchgXeczFm6TZYmDeh8t+hPZKLtM5RCzhCt8iuTQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pigmoral.tech;
+	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
+	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
+DKIM-Signature: a=rsa-sha256; b=NxiCE+6yfbr4oEFyZobyLdCcJ1q0wNqxmj65j3ziHU2e3kwtsEVwGnOUzKoTSks6zPfYmfWBbY5yOMbX/AEK9nxCE22ZY14yWRGOaQZWGBzFNvWk4N6JH4O+a07bHyp8P8NW1sSNJN20LDQ4+9apCfeq5CdjxCvzsadx7bE2mPw=; c=relaxed/relaxed; s=zmail; d=pigmoral.tech; v=1; bh=TpD4Qm/8zgFf7AXrcg7HkBUl+/qWD0ZfHjTxcOeCSqY=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794194826003917.809001112961;
+	Sun, 8 Nov 2026 19:27:06 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 09 Nov 2026 11:27:00 +0800
+Message-Id: <DMQCZDVK4SR9.1TARE71NCL8T8@pigmoral.tech>
+Cc: "Chen-Yu Tsai" <wens@kernel.org>, "Jernej Skrabec"
+ <jernej.skrabec@gmail.com>, "Samuel Holland" <samuel@sholland.org>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Brian Masney" <bmasney+clk@redhat.com>,
+ "Jerome Brunet" <jbrunet+clk@baylibre.com>, "Andre Przywara"
+ <andre.przywara@arm.com>, "Enzo Adriano" <enzo.adriano.code@gmail.com>,
+ <linux-clk@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v6 6/8] clk: sunxi-ng: a733: Add mod clocks support
+From: "Junhui Liu" <junhui.liu@pigmoral.tech>
+To: "Vinicius Pedrosa" <vinicius.eduardo.pedrosa@gmail.com>, "Junhui Liu"
+ <junhui.liu@pigmoral.tech>
+X-Mailer: aerc 0.22.0
+References: <20261009-a733-clk-v6-0-ae8178fce7e8@pigmoral.tech>
+ <20261009-a733-clk-v6-6-ae8178fce7e8@pigmoral.tech>
+ <20261028180913.2829389-1-vinicius.eduardo.pedrosa@gmail.com>
+In-Reply-To: <20261028180913.2829389-1-vinicius.eduardo.pedrosa@gmail.com>
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_192440_596896_EA9FE068 
-X-CRM114-Status: GOOD (  12.05  )
+X-CRM114-CacheID: sfid-20261108_192717_543613_1000E886 
+X-CRM114-Status: GOOD (  14.97  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,71 +79,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The HDMI codec reports DP and HDMI connection status as SND_JACK_AVOUT,
-which combines SND_JACK_LINEOUT and SND_JACK_VIDEOOUT. The machine driver
-creates these jacks with SND_JACK_LINEOUT, omitting the video-output
-capability and its SW_VIDEOOUT_INSERT events when
-CONFIG_SND_JACK_INPUT_DEV is enabled.
+Hi Vinicius,
 
-Use SND_JACK_AVOUT for both jack creation and pin masks to match the
-codec's audio/video output reporting.
+Thanks for reviewing and testing this.
 
-Fixes: d218ea171430 ("ASoC: mediatek: mt8189: add machine driver with nau8825")
-Signed-off-by: Cyril Chao <Cyril.Chao@mediatek.com>
----
- sound/soc/mediatek/mt8189/mt8189-nau8825.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+On Thu Oct 29, 2026 at 2:09 AM CST, Vinicius Pedrosa wrote:
+> Hi Junhui,
+>
+> In patch 6/8, usb2-u2-ref is declared as a plain mux, but the manual
+> has a gate at bit 31 of 0x1348, and its reset value is 0. So the CCU
+> driver can't enable it.
+>
+> -static SUNXI_CCU_MUX_DATA(usb2_u2_ref_clk, "usb2-u2-ref", usb01_ref_pare=
+nts, 0x1348, 24, 3, 0);
+> +static SUNXI_CCU_MUX_DATA_WITH_GATE(usb2_u2_ref_clk, "usb2-u2-ref", usb0=
+1_ref_parents,
+> +                                    0x1348, 24, 3, BIT(31), 0);
 
-diff --git a/sound/soc/mediatek/mt8189/mt8189-nau8825.c b/sound/soc/mediatek/mt8189/mt8189-nau8825.c
-index 5d652d0cf01e..b551477cef51 100644
---- a/sound/soc/mediatek/mt8189/mt8189-nau8825.c
-+++ b/sound/soc/mediatek/mt8189/mt8189-nau8825.c
-@@ -74,14 +74,14 @@ enum mt8189_jacks {
- static struct snd_soc_jack_pin mt8189_dp_jack_pins[] = {
- 	{
- 		.pin = "DP",
--		.mask = SND_JACK_LINEOUT,
-+		.mask = SND_JACK_AVOUT,
- 	},
- };
- 
- static struct snd_soc_jack_pin mt8189_hdmi_jack_pins[] = {
- 	{
- 		.pin = "HDMI",
--		.mask = SND_JACK_LINEOUT,
-+		.mask = SND_JACK_AVOUT,
- 	},
- };
- 
-@@ -369,7 +369,7 @@ static int mt8189_dptx_codec_init(struct snd_soc_pcm_runtime *rtd)
- 	struct snd_soc_component *component = snd_soc_rtd_to_codec(rtd, 0)->component;
- 	int ret;
- 
--	ret = snd_soc_card_jack_new_pins(rtd->card, "DP Jack", SND_JACK_LINEOUT,
-+	ret = snd_soc_card_jack_new_pins(rtd->card, "DP Jack", SND_JACK_AVOUT,
- 					 jack, mt8189_dp_jack_pins,
- 					 ARRAY_SIZE(mt8189_dp_jack_pins));
- 	if (ret) {
-@@ -394,7 +394,7 @@ static int mt8189_hdmi_codec_init(struct snd_soc_pcm_runtime *rtd)
- 	struct snd_soc_component *component = snd_soc_rtd_to_codec(rtd, 0)->component;
- 	int ret;
- 
--	ret = snd_soc_card_jack_new_pins(rtd->card, "HDMI Jack", SND_JACK_LINEOUT,
-+	ret = snd_soc_card_jack_new_pins(rtd->card, "HDMI Jack", SND_JACK_AVOUT,
- 					 jack, mt8189_hdmi_jack_pins,
- 					 ARRAY_SIZE(mt8189_hdmi_jack_pins));
- 	if (ret) {
+I'll add the missing gates to both usb01_ref_clk and usb2_u2_ref_clk
+in the next version.
 
-base-commit: c937f492dd40a8398d955cf0f4f9e11d7268bcb5
--- 
-2.45.2
+>
+> I hit this on my Cubie A7Z with a USB stick on the DWC3 port (the DT
+> and the USB2 PHY driver for that port are local, not posted):
+>
+> - v6 as posted: 0x02003348 stays 0 and the DWC3 soft reset times out
+>   (-110), 4/4 boots, one of them cold.
+> - same kernel, only bit 31 set from U-Boot: the host works, 3/3.
+> - with the change above: works, 3/3.
+>
+> Same DTB and initramfs in every run. The SerDes gates were also the
+> same, so I haven't checked whether they matter on their own.
+>
+> My boot chain (U-Boot SPL, TF-A, U-Boot) leaves bit 31 clear. I don't
+> know what the vendor one does.
+>
+> Thanks,
+> Vinicius
 
+--=20
+Best regards,
+Junhui Liu
 
