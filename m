@@ -2,109 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F724606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3A1606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 13:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r2YcF+uM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TSuCuoSA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X36Iua05;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KSRdQUGq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=dxn+6uDuz6ndoJKiaFtcZm94n3JA2PZg9wgDsgFvyfw=; b=r2YcF+uM5HNd0AsDOqYyQRZtW3
-	VlR1QsVTFQgH00OD5alSNpEXZtTeqC18mtuYhd5lA5iiizMuE0otLUUi5sQ+825qtukBxVCc+3ssq
-	i+nVVhQ0wH9lBz4d5Qa4NilXY2LrzEYbyvlTqmIqNrWtLpe6S8X2tfi1gOLhWR0m+bGw/ZNIV9+Zt
-	pgsioHqwBfe2cbNswFMRXBo2gp8HVGrVG8rMESDuuwDb6A7CrUA/o1+rnJ5SC1IlJE4PE69WH8JKo
-	DzhcjgkWAGF/nQu7pQiKX7/cKua1OEHNy7uPQNTTqDjz+fLgQnoM+OXBgDUUbU7BEtoI3RbCcqa9e
-	uWtd3Egg==;
+	bh=ORer9DhCnuaZoXr0bk+u3MIlDvmVjzbI7uxg7VutLSY=; b=X36Iua05JELPAmI8EXMAQDLrfe
+	q1HM5rDM4mTf8gI8+4PI8DBOlG5IWCgxVaf0Y2pDjYU0sOpVnF/1p5LMYPtp2t40lc0QKMxTh1oFB
+	lwj5Pa8BaqwCf8waXIGh9DK3lCRmQnIGGEI89hiE43wiDh6TdzP7L9fBNx8sIB/VQQuAtDu+fpWgo
+	lXq4mWq+lGglla35sYyLKtvNvFKn5BtkKvpxQY5h0LD/xkiyw1lCTIUfYMP76Njf7aCIo8d66CQ+d
+	bbfS3EcDy2bzMotKD9LMJcFOI5HOobQIXDjnq1Wvs8G0/rm968L0B5XGkK/hQWbdQLRp0QLFyxESj
+	y5WvUkQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOY2-00000000gsP-1ELm;
-	Mon, 09 Nov 2026 12:32:30 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQPWF-00000000p6N-0nlv;
+	Mon, 09 Nov 2026 13:34:43 +0000
+Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOXu-00000000glf-3jqT;
-	Mon, 09 Nov 2026 12:32:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A46B7458FB;
-	Mon,  9 Nov 2026 12:32:22 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794227542;
-	b=HaduDaU1VmQ5rUWATXf2EjfXvF4b1oSR0EF/gYxiH/8jYe65vumNGALmr7bB+59bcUlC
-	 mGC0XWN6rtFFhkeYJRv1ayFz8wpMYuSlAFNlhFfv6BgzN5l9sxxo0v26tZ03JSPBnh/Vm
-	 ck3A+3dtZ+fVVEuulfhRzlCcx7b25aAfuvndgPf372yE7r57bSQDWscntG+0ZPc5dwXoC
-	 fEUjcGagSHUruf2ytaGfWSVcFXFX0BieyA/pMhiG+uCsRsTsxXFQOB3V/vRjb080+ozsW
-	 l7izvKAusAT/0udXwtxnoI62jcQr/DD+VsvSFRcwBWhURk+lFNjNu84iaWwCpL4UpbQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794227542;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=dxn+6uDuz6ndoJKiaFtcZm94n3JA2PZg9wgDsgFvyfw=;
-	b=UTBaCL0gXZn4Y2fw3xWFKrRoZdeGWeAmpLcIXSZ2Uee6QaTL0bjeCvTlLU2m1xGzIoTc
-	 xA0iuy+Oe+9ZTbbYj8ko9zFGH5ruVaPFP4XAVVk1QpW/8/shTsczlAbTRc1gfHENka+0L
-	 brtapqM5wYosigBzx9wj2s4VUQRUJURj/BARgYBympNGTj8APuI7d5IedYqxXE/yRnyCs
-	 wWZFrwLHkEWATaDB3LCvOOCMSDCBQp8YxEZGAvPbo+tqTRg0njChfPC8UoN+joOCH2Llj
-	 V/PjIXB01Xw6g4rQgtAYOQSkbUPiQsMNUvNL+XHDbkKIRK0sES7gMFSoNkIx+e99jkQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 9E4321F008A7;
-	Mon,  9 Nov 2026 12:32:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794227542;
-	bh=dxn+6uDuz6ndoJKiaFtcZm94n3JA2PZg9wgDsgFvyfw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=TSuCuoSA9DKf50OAYMmD/RggCkukek6tVSJfZlNKA2zAtffz6NlGvSOcPThg9xgOx
-	 nXYFbm8bj9xcnvfS3tqK/ynrEiJxt+GS98Iiu4OXPBCZ5Xt84V4ztW1/zQSeMOHC+1
-	 KhpO7BHgSebUcRGCK6Aw5s1zy+KtwHvbau/c+Lp8UFoceIx3tX7PIa8OsD1QCcQllP
-	 ZvPl8oHY6dwLwVwFjTlWkG+lf/wOOniFD4gF6RTno7b1uHkFaoaySgoxVNT3FQFhnr
-	 rlNCwMKsG72InIkCMO/e6ZZ2PxHJOIrhk+0uILZdCg3cIreCkghBQG2R0kZOZadI7C
-	 +3Y+9Q+7w7yzQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 304F04848E;
-	Mon,  9 Nov 2026 12:32:20 +0000 (UTC)
-From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
-Date: Mon, 09 Nov 2026 13:32:17 +0100
-Subject: [PATCH v6 2/6] arm64: dts: rockchip: describe PCIe RTL8125
- Ethernet on ROCK 5 family
+	id 1xQPWC-00000000p5k-0hds
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 13:34:41 +0000
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-491aaed7565so538205f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 05:34:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794231278; x=1794836078; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=ORer9DhCnuaZoXr0bk+u3MIlDvmVjzbI7uxg7VutLSY=;
+        b=KSRdQUGqGEho0DZvzP48LXXaCCwL+9olXe9yYVGeQWmtkM3mZuXC7Ra1VxqULZqHAx
+         re8qJAlg8ceEK0yE+FbEggYqAItDnHaQ94vba8SKlROfc5lqppHQoaF6Wt44P1ehZYsC
+         gVl70iDknZer6M+X+NmPOUbGOagU+oDrIGLNtRz5Ll4IWmgCbGoCNNf6ApSsg+qmFaUv
+         I9XpjKB8CowArVyDBxgnMIkxqS8UvUFzTxaiCMP49uXzfzaZjCp9nYourFbjj/oKmTUR
+         fB5CxLASL8fQGNSMg7jeRNoUnbLoO3mQpI1hbTNR6JB/liS5Z714k4Y7XQVD8BAFOM6q
+         LIHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794231278; x=1794836078;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=ORer9DhCnuaZoXr0bk+u3MIlDvmVjzbI7uxg7VutLSY=;
+        b=iwD8FoUG8gSpL9RPpEOZn+kNgvsVzMk1YwXF43buJXGauNcztt3bVOoJMAy1hA2ahE
+         a2j+jWMfH6xT6iWhD2dubcvUq/jg8t43rdkNwRmUPP/7RWPOH49W7+Fb55CSi/IX6u9p
+         RJwqkLNx+3XKJ40qIX/5Uc8I1L6Ea01h6O8cEWdP4ZkRvKn6XybJSTnNvFTYtP878UyO
+         GD50ktlnSj+7/BZ1XTaIvZCXuMx5rQlqPnoWwy9SBiSm+ChsNnWETAo+wCD7FxEWJBbC
+         lwcL49eHL9U0cSAyOqMQPlkSBcKtXinp5sVPJm05+GYBukXxND+56S6B7Bg2H4atXSoD
+         RU6Q==
+X-Forwarded-Encrypted: i=1; AL+hErF5Xt8y40defmFW4FST2YLVgoF4gC614DyiG4RjQQ2Zx02ljAoMeMXMWsQfPfPCGJhSwVqDpaRhhMizWqffIj56@lists.infradead.org
+X-Gm-Message-State: APuU4Z+j5gE8j7j5sYbzAFDiP6hJyEQLcFDgbxVMiR0u+puHEeZc+CCY
+	rKv8xYZ4dQoV11HueRK+mFqhZ4ES+ugoxxs4JYoqxQ3E3aJKDDPZ/3Ko
+X-Gm-Gg: AYBFou1/k/DxVj9fdIEeJ0ItM8D8BwBDdr+HWRgU9p3k+Ff+zcF8B2G4uQl9TyguEe7
+	JymoFizxFRST64kpL7TqE37uYq5SHaAPO/g1onX38yoitIF4UNa9kuTwP+6TUL2p/DOL2bQTEV8
+	cjOMVVjNVFMUrBEAjOPtXtFa7QyYnXQ5zgA0C0LxzORrwqrZpDSVhOK8Ny59xpHYGy7Fyb419X/
+	uz6TD/Ok5Ho0l0gUXfkvNIGLCDc5faaeOIdnDv0vnnjUpB0ErJqAYms74uigJHHwcy1XUAsc6kp
+	oBNyP5GRnu/uM9iuATPqzjeFy7mdv0BLnEhHE8Bztku8tti2stmSQaaMNNdZfQP/oUS945gOOHh
+	YsJxlXtyctF4XewmKmnb+gWYp4RCxn3tyihralsWYrmv1Cx2Acp7wdZ0bgB8vs59ixvQ65f0X+C
+	f7TCq8qxRyocZ/SEjRV7Vs1hmO/sYOaHazYgKZhgJTOBe9bi4blCqHJpZvqUor56hJoM7PSA+be
+	jjodKxFfwyWev3RrK5JQfMmVKdyssFXwbil9QYZy7i4omZR/ctTxArnZAfEIV5K0Gvn4U0ZmQ7t
+	Iiv3dwjAagWHcGY8J48olWqzJ4SvErAz7U6CKVvOm4cjvG1TQ1qYpyrZDBQq3O1Hn0XB4sUSAb/
+	nqlR842WYss5ncu+6b+d2OKxqtg==
+X-Received: by 2002:a05:6000:1789:b0:48e:6f76:de98 with SMTP id ffacd0b85a97d-495829c1025mr7989710f8f.9.1794231277701;
+        Mon, 09 Nov 2026 05:34:37 -0800 (PST)
+Received: from PKL-HASEEBA-LT.. ([39.36.57.162])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49592f39899sm9140435f8f.3.2026.11.09.05.34.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 05:34:37 -0800 (PST)
+From: Haseeb Ashraf <haseebashraf091@gmail.com>
+To: maz@kernel.org,
+	Oliver Upton <oupton@kernel.org>
+Cc: Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	fahad.arslan@siemens.com,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 0/2] KVM: arm64: nv: Skip empty spans when unmapping a shadow S2
+Date: Mon,  9 Nov 2026 18:34:29 +0500
+Message-ID: <20261109133431.185154-1-haseebashraf091@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261109-rk3588-dts-rtl-eth-describe-dt-alias-v6-2-91f1efefba0b@pardini.net>
-References: <20261109-rk3588-dts-rtl-eth-describe-dt-alias-v6-0-91f1efefba0b@pardini.net>
-In-Reply-To: <20261109-rk3588-dts-rtl-eth-describe-dt-alias-v6-0-91f1efefba0b@pardini.net>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Ricardo Pardini <ricardo@pardini.net>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2524;
- i=ricardo@pardini.net; h=from:subject:message-id;
- bh=5FUQR0rfH+5npztwgihS2KzQbqIydyXcLzR1mZxE4zY=;
- b=owEBbQGS/pANAwAKATteP+Oex+3pAcsmYgBq8b1Rqz7/SAbQQrbe2CSUO+hzIC8QLvggk98+u
- ViJ9qqcmPCJATMEAAEKAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCavG9UQAKCRA7Xj/jnsft
- 6akgCACPf5E8p9CxpNI6k7h61C2X8pqJyIjbMbEgil14qH4Y6PD4y+iOQ10b0ZXhptGKo1hMiH5
- B4zpkjSDnl7FXeg5KC47PJkceMtW1py9xJVtvGLFLn8TIt9XuRLpn+sFZlPRln4GcRfMYJFHaTN
- rI9Uc3K/mPRqtXYNyGGp73dWRLscyYr3+vcB70l1MT0UVRNwEHwGahCVwkVAjxMGw2eXN4aN99o
- dRRr6D00wYnQj0anuovVoRLfsywaLaeghrDeRwbMTpw6RbTydFL01bAQlcx28s+cXaNOuORvZNE
- e15Orv1Kiyc3VDuNagGttKp2MjNfO7hbfRtoM31rHN4ZCfcr
-X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
- fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
-X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
- auth_id=588
-X-Original-From: Ricardo Pardini <ricardo@pardini.net>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_053440_222504_860A2A78 
+X-CRM114-Status: UNSURE (   9.03  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,106 +109,57 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: ricardo@pardini.net
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,LOTS_OF_MONEY,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ricardo Pardini <ricardo@pardini.net>
+Emulating TLBI VMALLS12E1IS, emulating TLBI ALLE1IS and recycling a
+shadow stage-2 all unmap the whole nested IPA space in chunks of the
+largest block size, even when the table is empty. With a 48-bit PARange
+and 4kB pages that is 262144 unmap calls per shadow MMU, each ending in a
+range TLBI when FEAT_TLBIRANGE and FWB are available.
 
-The Radxa ROCK 5B, 5B+ and 5T carry an on-board Realtek RTL8125 NIC
-behind pcie2x1l2; the ROCK 5T has a second one behind pcie2x1l1.
+Measured cost: one full-range unmap of a shadow MMU takes 0.87-1.06 s on
+AmpereOne (Xen on KVM, 4kB pages, function_graph). On Graviton4
+(Xen-on-KVM, 48-bit IPA) a single VMALLS12E1IS trap took 1.46-9.50 s over
+twelve samples (median 3.09 s), all of it in stage2_apply_range().
 
-Describe the PCI function nodes and attach ethernet0 (and, on the
-ROCK 5T, ethernet1) aliases, so that U-Boot's fdt_fixup_ethernet() can
-fill in their MAC addresses from its ethaddr/eth1addr environment.
+Patch 1 adds kvm_stage2_unmap_all(), which skips spans covered by a zero
+descriptor at least as large as an unmap chunk, keeps the tracked unmap
+for everything else, removes the guest stage-2 records of skipped spans,
+and ends with the VMID-wide TLBI that VMALLS12E1IS requires. It converts
+the VMALLS12E1IS handler. Patch 2 converts kvm_nested_s2_unmap() (ALLE1IS,
+whole-VM unmap) and the pending unmap of a recycled shadow MMU.
 
-The shared NIC goes in rk3588-rock-5b-5bp-5t.dtsi, the ROCK 5T's second
-NIC in rk3588-rock-5t.dts.
+The series is based on master, which already has the guest stage-2
+tracking. It overlaps with the unmerged kvm-arm64/unmap-vmall work, which
+defines a kvm_stage2_unmap_all() with the same name and signature; if that
+lands first, patch 1 becomes "skip empty spans in kvm_stage2_unmap_all()".
+As far as I can tell, that WIP helper does not touch the guest stage-2
+tracking records, which this series does.
 
-Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
----
- .../arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi | 15 +++++++++++++++
- arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts        | 18 ++++++++++++++++++
- 2 files changed, 33 insertions(+)
+All twelve Graviton4 samples, in ftrace order:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-index b8d90936fc20..e8a3eb33e402 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-@@ -10,6 +10,7 @@
- 
- / {
- 	aliases {
-+		ethernet0 = &rtl_eth0;
- 		mmc0 = &sdhci;
- 		mmc1 = &sdmmc;
- 		mmc2 = &sdio;
-@@ -488,6 +489,20 @@ &pcie2x1l2 {
- 	reset-gpios = <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
- 	status = "okay";
-+
-+	pcie@0,0 {
-+		reg = <0x400000 0 0 0 0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+		device_type = "pci";
-+		bus-range = <0x41 0x4f>;
-+
-+		rtl_eth0: ethernet@0,0 {
-+			compatible = "pci10ec,8125";
-+			reg = <0x410000 0 0 0 0>;
-+		};
-+	};
- };
- 
- &pcie30phy {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-index 425036146b6d..b1a3e4b2165f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-@@ -8,6 +8,10 @@ / {
- 	model = "Radxa ROCK 5T";
- 	compatible = "radxa,rock-5t", "rockchip,rk3588";
- 
-+	aliases {
-+		ethernet1 = &rtl_eth1;
-+	};
-+
- 	analog-sound {
- 		compatible = "audio-graph-card";
- 		label = "rk3588-es8316";
-@@ -76,6 +80,20 @@ &pcie2x1l1 {
- 	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
- 	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
- 	status = "okay";
-+
-+	pcie@0,0 {
-+		reg = <0x300000 0 0 0 0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+		ranges;
-+		device_type = "pci";
-+		bus-range = <0x31 0x3f>;
-+
-+		rtl_eth1: ethernet@0,0 {
-+			compatible = "pci10ec,8125";
-+			reg = <0x310000 0 0 0 0>;
-+		};
-+	};
- };
- 
- &pcie30phy {
+  22) $ 2278347 us  |  } /* handle_vmalls12e1is */
+  21) $ 3229689 us  |  } /* handle_vmalls12e1is */
+  13) $ 7244813 us  |  } /* handle_vmalls12e1is */
+   1) $ 2950198 us  |  } /* handle_vmalls12e1is */
+   6) $ 5785126 us  |  } /* handle_vmalls12e1is */
+  25) $ 2484152 us  |  } /* handle_vmalls12e1is */
+   4) $ 2505404 us  |  } /* handle_vmalls12e1is */
+  16) $ 1464441 us  |  } /* handle_vmalls12e1is */
+  28) $ 1935604 us  |  } /* handle_vmalls12e1is */
+  19) $ 9495486 us  |  } /* handle_vmalls12e1is */
+  14) $ 4151658 us  |  } /* handle_vmalls12e1is */
+  18) $ 9223579 us  |  } /* handle_vmalls12e1is */
 
--- 
-2.47.3
+Tooling: the patches were drafted with AI assistance (SiemensGPT).
 
-
+Testing: build-tested on the master branch and
+boot-tested with Linux 6.18.29.
 
