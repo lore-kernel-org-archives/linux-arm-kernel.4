@@ -2,62 +2,61 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9357606EE8D
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD95606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 14:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cjRtuYjb;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Xm7J10wM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vWNlenPM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=c7lXWbXT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=SVWYYLhxeEIhjDuhTBIlUZL/L6SyEXLXw2BhtSeMLfk=; b=cjRtuYjbeu8l5l
-	hb/Ww+YczA9XL6E/BjhUi9RA7RCOIk4kqOnxR17N3q8fGA9Zug7dQDfx9sJ+JaZ1cRAdiwTZ+fdWq
-	wsqsydLfJJ3J2+7qbg3MU0rNRzalk4heP7RMw+HAeTPAdpflVwgBM4TkBtshJ2p1ZrfWJWVFN8JLU
-	365YjWm6+Zw4thLInBsD0fe5X8tlHp6kB6syOxR02qFVAsGtRmnQ9R/Y0791wfqMVuf5bsUn17ZZ0
-	PZqf+R9DLX/GewiMmNTbkwscR/qR5zBuYPPdJeXt2E5ZrIaOa07vLsNsWtTk1vZWaZEzPXDkx+dCR
-	LYzK/p7/cxhUw1666+jA==;
+	List-Owner; bh=cTKHXfqBESP9wt5hJN1sKPgZ/ergstJw0rnMyE87Ff8=; b=vWNlenPMGPi/8v
+	YJiBLsETUqkCWO9XK9PgzwLnkLivlW1kuJzZ+E4Qa8nka2UkYJP9vo1Hm6lMqj+Nhm2+sThs2mYf7
+	rirmM0WRfUp8n+k9rhPGpZuPgAY2HaUVXxymCFV2DwXS9oJ08OG6WuSynDF2KkUt0Km8HYep8SYih
+	o6GcndbP5PDMPxx0Q1ORVD0AjoOYY0kJnhsCjQH/B7hED4tCaruWGuEcaEWOhr/fB7POX0937ve0I
+	6g4rLTf4S0XMD1vdE4T3dl4ri0D8ghkhcjKYo/jIjPIBB3zZPugK5sKDlmGHK+P9bbHSGBd9xH1FO
+	y69F9axOOaYO7HxNb13g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQO5-00000000whY-3csI;
-	Mon, 09 Nov 2026 14:30:21 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQQPx-00000000x2L-0McE;
+	Mon, 09 Nov 2026 14:32:17 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQQO4-00000000wh5-11II
+	id 1xQQPu-00000000x1j-0ZVq
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 14:30:20 +0000
+	Mon, 09 Nov 2026 14:32:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 059AC4352E;
-	Mon,  9 Nov 2026 14:30:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1DEE1F008A5;
-	Mon,  9 Nov 2026 14:30:16 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1D8D3611A6;
+	Mon,  9 Nov 2026 14:32:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B511F0089F;
+	Mon,  9 Nov 2026 14:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794234619;
-	bh=SVWYYLhxeEIhjDuhTBIlUZL/L6SyEXLXw2BhtSeMLfk=;
+	s=k20260515; t=1794234732;
+	bh=cTKHXfqBESP9wt5hJN1sKPgZ/ergstJw0rnMyE87Ff8=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=Xm7J10wMj12w44NK9f7GVywB07zNdzQmqnyvrSOaL3WiwURoulSVND+vccHcMiRvz
-	 0TUtso/FoX3DrzMQiuQ1KQDANXLiQak4DTfzi9hOYavJ8KPP3QgkK/FDt2OLJG4ntw
-	 TX6snFA1fb0kmiK9pL8aDslQFlw5PhfREauamO4BrGXt22GnXXfRXW0M3urVLZqZQu
-	 W6aviJa6KEtprUcsfgNIGyx+lHSJEnLLKEeKYYMWitiocXpT6WzY7YeijWvTL/ei/g
-	 veKsVjNHOSb3x6M8mO8fFDzRY/PEcv89UOpSTBGeIRp9lpv18SDRWwWbk1yzQ1PPOJ
-	 z7dE78pY+6AeA==
+	b=c7lXWbXTc5U2+EEOmtj4LKiqGiciACq9w28CT1dDgv1HGmy4/mXjyOKpvMki+o7FG
+	 IYio5bUPJm33Qktsyua43yE1FsJgV0hIwuGRm3e2a2LsZUoaTS4x7AtDkeUuYIqCbX
+	 TdXY5ExVojnbpTgnb2/PuuigbeUOm8pk3nvtEq7zwqfH4DKpSNpyYC2JwASnB4NIh0
+	 b1GazwKm22QOfb7vYk7bjYaaTTYhowEMRgefasOYRg+tgHVgHHDFLbb9COI1Jt26aL
+	 QHyxPWS84PGsDFBOuE39hffE36sg5w0FpT6lQFDYEbxOH5oOhFH01+Yd7QhiWlywmO
+	 IKz2N3saJVLuQ==
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Stephen Boyd <sboyd@kernel.org>, 
- Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Brian Masney <bmasney@redhat.com>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20261105-clk-subsys-v1-1-993c474e7860@redhat.com>
-References: <20261105-clk-subsys-v1-1-993c474e7860@redhat.com>
-Subject: Re: [PATCH] clk: samsung: exynos3250: convert to
- subsys_platform_driver_probe()
-Message-Id: <179423461620.181759.13684411783134376117.b4-ty@b4>
-Date: Mon, 09 Nov 2026 15:30:16 +0100
+To: Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261104-acpm-tmu-dts-v9-1-e5c53cd8b440@linaro.org>
+References: <20261104-acpm-tmu-dts-v9-1-e5c53cd8b440@linaro.org>
+Subject: Re: [PATCH v9] arm64: dts: exynos: gs101: Add thermal management
+ unit
+Message-Id: <179423472913.182531.10413692943270091407.b4-ty@b4>
+Date: Mon, 09 Nov 2026 15:32:09 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -73,22 +72,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Thu, 05 Nov 2026 20:29:27 -0500, Brian Masney wrote:
-> Reduce boilerplate code in this driver and convert it over to use the
-> macro subsys_platform_driver_probe().
+On Wed, 04 Nov 2026 17:17:58 +0000, Tudor Ambarus wrote:
+> Add the TMU node and thermal zones for the little, mid and big CPU
+> clusters, and make the CPUs cooling devices.
+> 
+> Trips are ordered by temperature rather than by name, as the
+> power_allocator governor relies on the order of the passive trips.
+> 
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] clk: samsung: exynos3250: convert to subsys_platform_driver_probe()
-      (no commit info)
+[1/1] arm64: dts: exynos: gs101: Add thermal management unit
+      https://git.kernel.org/krzk/linux/c/c916d326360966fa41b1d9c3fb659215053387f5
 
 Best regards,
 -- 
