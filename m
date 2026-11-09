@@ -2,72 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D44F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EFC3606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:08:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D98ztPHa;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RfxHncTq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PXQT78zR;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=VQVB+vHH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mb6zscB9xA65zKWgADOGhrqsQ/nGHmGTb9eOGjPV3Qo=; b=D98ztPHac34+pM
-	WZnPHGsiLIOKw/xt43fsc1udIzOyX+G/U28fZh9fjBP3D1aQgy1RB/zuKc+1Zl7G8Hsq74kU1iRi+
-	kV8QDwjgD+jjmEx2xY//pOh5vtD28iD5Bf1N/WwWAU897CMLscubozkyWULtLt77myURiIKlAM8G3
-	eui83jSGx7G9D4589EKwavW4X2xZcH9eUakEH8nALxkRcuGBbqLl1L4vGQMY26jloFbDdkUpxZuEj
-	6Rar7P9jRh3rU4t2QEMyNvnTJhSeFOgetesaAk+M+R5Vcw150IvCzGWVWuPyD0ZmjNWCpHqz+Yc1v
-	XzvLdlFXL+wtmyQAdo5Q==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=q8x7zVGGkfSdWA+EkndmqEqSgl70Bo/p7FSSNehigJg=; b=PXQT78zRE48SKhWGvEh/g4q0Va
+	FRPD4m/6W52Vst76gBNVXDtxN/UNlZA7tGofrtJsGZrm6YFSRS0W/QbL+AwwaHMzkgnFxwE952c6c
+	DZ+9D0xsgYsKNERYEkwb3phq4LHfn+s6163u+emX5d63aLmbE1hGCMmLKpJ7duVVt4HuX21sALgmb
+	Zn/kAj5u5Aqet2HLDhH/qchuFM+Khkov93HbLO/Ruie7+XteRGGKPGnQCCBmKwjoSmBmpYpg4bDl2
+	KTO+54LyRb6H7SaXB0RtheXrgJCeheEH3Q8Y2oZvqromBEt15rqVA7CooJLrr7PRwWDP1Li1CdbOG
+	V66BJMqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQO82-00000000cEc-10zN;
-	Mon, 09 Nov 2026 12:05:38 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQOAh-00000000cyD-0GKE;
+	Mon, 09 Nov 2026 12:08:23 +0000
+Received: from mail-dl1-x1229.google.com ([2607:f8b0:4864:20::1229])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQO80-00000000cDF-3ZEE
+	id 1xQOAd-00000000cwl-2Qpn
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 12:05:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 820BD4588D;
-	Mon,  9 Nov 2026 12:05:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26BA01F008A3;
-	Mon,  9 Nov 2026 12:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794225936;
-	bh=mb6zscB9xA65zKWgADOGhrqsQ/nGHmGTb9eOGjPV3Qo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=RfxHncTqGmZ8TCef+6tWTgry+fmHYOt1r113jnwW6tvWLT75/HuVzVwwM0rnYytjo
-	 YPyJowg1fiHxzT8NeyDJYnOgIvo9zkbN16X/iwJFDxb9lkdl2UXbNfnJw7CsxuLAhO
-	 6itAed9ea0+YQtKEGy/bcDnpws+CE01M/oVcdNG7IW4QzRZeB9b32E30RnzaeAy374
-	 34I+0+Hf4xVLb7QfnBaxFyVBHwynjfKxOpio5H/vyMD4IrX5cBHysT5Oxprv0cPb0G
-	 tFmSopTnbOnb8IkL5sezYF0q18gOBkkkrTFV04DBcvb1lzGRBJEo09Nwql+8wY4Nmt
-	 Ogrx3vqVJ1xhQ==
-From: Jisheng Zhang <jszhang@kernel.org>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Andrey Ryabinin <ryabinin.a.a@gmail.com>,
-	Alexander Potapenko <glider@google.com>,
-	Andrey Konovalov <andreyknvl@gmail.com>,
-	Dmitry Vyukov <dvyukov@google.com>,
-	Vincenzo Frascino <vincenzo.frascino@arm.com>,
-	Tejun Heo <tj@kernel.org>,
-	Dennis Zhou <dennis@kernel.org>,
-	Christoph Lameter <cl@gentwo.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	kasan-dev@googlegroups.com,
-	linux-mm@kvack.org
-Subject: [PATCH v2 6/6] arm64: alternatives: Make branch and ADRP offset helpers noinst
-Date: Mon,  9 Nov 2026 19:44:59 +0800
-Message-ID: <20261109114500.20298-7-jszhang@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261109114500.20298-1-jszhang@kernel.org>
-References: <20261109114500.20298-1-jszhang@kernel.org>
+	Mon, 09 Nov 2026 12:08:21 +0000
+Received: by mail-dl1-x1229.google.com with SMTP id a92af1059eb24-15ea896ddc8so1438099c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 04:08:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1794226098; x=1794830898; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=q8x7zVGGkfSdWA+EkndmqEqSgl70Bo/p7FSSNehigJg=;
+        b=VQVB+vHHRYO/c6ADphSOberJeb/AcxVIhkj7/l237BInDdsert5zos9Qtj0tW6wlEo
+         xRqlwST/rZmzJ5cZRk4a8PdtIh932Y7PGZGjP7UmLNqiyM07GziJUtFC4w/N/AyF2+No
+         eGvdxj3vbigvByXqCHaGqKSEFa22WP3Bk/IxI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794226098; x=1794830898;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=q8x7zVGGkfSdWA+EkndmqEqSgl70Bo/p7FSSNehigJg=;
+        b=01Qsj7toFjc13bK8M9FwvCQcTCrv+JLf3T+KUJl1JG/4lzrA5eJ0v7JrkeysqvI+iw
+         ZjdSg0Jf7TuqeKUJaGeSIwh8epeelRiYsRsDLDp/cvAQZdrg7NxFtTIr5G3MDUrk1yk+
+         RuzokY5wXoubzJ1s0NyaXGGA+4+ffhPQRpCijQgHJNB8OH+rsLwiinUn9BKZeIlg5tQR
+         UGzRnuhGwD7QY8/BJA7YekJ0B6b6Dmv6owADA+BBQb9/hZwh7pT3ocvDtGQ+QUQLI9tt
+         8GZryPdq4SFAIhFCc0nZXaLQ2p4u1eQldlPqgPp+c+DTiQ/j1rkiSF5lTe9HF8dviOgB
+         kvuA==
+X-Forwarded-Encrypted: i=1; AL+hErE3gX3EldBmNMFKTV0gdMR6LYXyq/Kt+7Tid3GQWGmLKw/l3ikoxXh6igDcYTrq+RUOLYOJMouHAp2ca1YEdanM@lists.infradead.org
+X-Gm-Message-State: APuU4Z/U4WquCazGJZxIipU02RxjyBAgqt2b46nD+dKzJmQhLvGpo5Ho
+	5hxU5E1IxV+yBv/Jq/huiunSfLN2f45fcJP29D8wh/Y1Ua+PD3GlMSeossJnWMXOUg==
+X-Gm-Gg: AYBFou2DmespQZqQ1coQ615QyRGeQkEqWSyMVA+cQE0JoOsw0RukJRoUSqvOMgaBgPo
+	k5DTrB9Hw2lsz+9LBbzoEWlSiV/pL5yKjeiAmT2Upxi6pyTk39aEjITY5XLimB3sk66jXIvu8BT
+	Cv0u9xso+ftM4pYzrT1ANA8nkvbvkopjlyqluR97FNGrk0jmXkRSLWNqzIZMmWZjPRzDtCWl2v5
+	Xahtwo0O/EhYAOeKaoTz7KiwuU1OsJbyOB4jpRkTPlnmDs2s+gyF4x81eliuZiky6kFnyQ2nr8Q
+	oR7owm4NaLigEzixMwy9AxpJiUXLIsqAIdZKuvejSmiSw7z5iKtZT2CqG34jqgU4tvsANEzfMfO
+	6tBlbc5GMRYqnx5KoGfVsJz+BiTDGp2qXQxvQ0ouToOH04GtztU5crZdVTacxWBqp7Htf2ouIFF
+	0WH+Y4xNFmqsH7kBlfnX4cYRvg2gDh512VnaUekecVtMtXguocyA5uTjf7Cjd90Z/YEX4DLI2BX
+	Ru0/dm5GgHqPrMKFEmbDAGk6Ae0jXF7q/VjEItWmJI0eAbq6URH/OZKKX08280RORb8ESAgyQua
+	Ipv/GHlUWHCgA4B8I6k7cB+n7ehoilFrtLi7nBbGBdresFYq0LY06MMgKShPxGJLYgzCV7CtypJ
+	l/Wf3RA==
+X-Received: by 2002:a05:701b:270c:b0:14a:8cff:fbb8 with SMTP id a92af1059eb24-1b39fea8a78mr6100575c88.28.1794226098355;
+        Mon, 09 Nov 2026 04:08:18 -0800 (PST)
+Received: from localhost ([2a00:79e0:203d:7:24d0:a2cf:66c5:ef86])
+        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-1b3755e936bsm16025308c88.6.2026.11.09.04.08.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2026 04:08:17 -0800 (PST)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Ryan Brue <ryanbrue.dev@gmail.com>,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] clocksource/drivers/timer-mediatek: Don't override the arch timer sched_clock
+Date: Mon,  9 Nov 2026 20:07:56 +0800
+Message-ID: <20261109120757.847266-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.56.0.455.g6c5a503b38-goog
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_040819_782181_BA8F7BE5 
+X-CRM114-Status: GOOD (  21.88  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,178 +110,99 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-patch_alternative() must avoid instrumented code while alternatives
-are being modified, before cache maintenance completes. However, its
-branch and ADRP offset helpers are instrumentable. A GCC build with
-function tracing enabled emitted ftrace patchable entries for these
-helpers.
+Since the driver was converted to a platform driver, the GPT probes
+late, after the architected timer has registered itself as sched_clock.
+sched_clock_register() only refuses counters with a lower rate, and
+sched_clock has no notion of priority, so the 32-bit GPT counter, which
+runs at the same 13 MHz as the arch timer on MT8173, replaces the 56-bit
+arch timer counter as sched_clock:
 
-Mark the four offset helpers noinstr. Introduce private
-__always_inline immediate encoding and decoding implementations for
-their use, and force inline the immediate mask helper.
+  sched_clock: 56 bits at 13MHz, resolution 76ns, wraps every 4398046511101ns
+  ...
+  sched_clock: 32 bits at 13MHz, resolution 76ns, wraps every 165191050201ns
 
-The offset helpers pass constant encoding types, allowing the compiler
-to eliminate invalid-type diagnostic paths. Keep the public immediate
-helpers as wrappers to preserve diagnostics for other callers.
+Before the conversion, both drivers used TIMER_OF_DECLARE and
+timer-mediatek.o is linked before arm_arch_timer.o, so the arch timer
+registered last and won.
 
-Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-Assisted-by: LLM
+The narrower GPT counter wraps more often and is slower to read over
+MMIO than the arch timer system register. Doing the switch at runtime
+also runs enable_sched_clock_irqtime(), which may sleep, with interrupts
+disabled, causing a splat.
+
+Other drivers worked around the same problem in the same way, see
+
+  commit 37b8b003c483 ("clocksource/drivers/sun4i-timer: Only register a sched_clock on sun4i and sun5i")
+  commit 10720e120e2b ("clocksource/drivers/imx-tpm: Exclude sched clock for ARM64")
+
+Only register the GPT as sched_clock if the ARM architected timer is not
+present. This currently includes MT6572, MT6580, MT6582, and MT6592, as
+seen in their respective .dtsi files. This follows the example of
+sun4i-timer.
+
+The analysis of the boot log and git history, and drafting of this
+change, were done with an AI agent. The agent originally proposed using
+arch_timer_get_rate(), which was replaced by the author.
+
+Manually tested on a MT8173 Hana (Telesu).
+
+Fixes: 7a097aba7255 ("clocksource/drivers/timer-mediatek: Convert to OF probing")
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/lib/insn.c | 57 ++++++++++++++++++++++++++++---------------
- 1 file changed, 37 insertions(+), 20 deletions(-)
 
-diff --git a/arch/arm64/lib/insn.c b/arch/arm64/lib/insn.c
-index e70ac0238515..b98610fcab32 100644
---- a/arch/arm64/lib/insn.c
-+++ b/arch/arm64/lib/insn.c
-@@ -21,7 +21,7 @@
- #define AARCH64_INSN_N_BIT	BIT(22)
- #define AARCH64_INSN_LSL_12	BIT(22)
- 
--static int __kprobes aarch64_get_imm_shift_mask(enum aarch64_insn_imm_type type,
-+static __always_inline int aarch64_get_imm_shift_mask(enum aarch64_insn_imm_type type,
- 						u32 *maskp, int *shiftp)
- {
- 	u32 mask;
-@@ -86,7 +86,12 @@ static int __kprobes aarch64_get_imm_shift_mask(enum aarch64_insn_imm_type type,
- #define ADR_IMM_LOSHIFT		29
- #define ADR_IMM_HISHIFT		5
- 
--u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
-+/*
-+ * Keep the immediate helpers inline so noinstr callers using constant encoding
-+ * types do not call instrumentable code, including the invalid-type diagnostics.
-+ */
-+static __always_inline u64
-+__aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
- {
- 	u32 immlo, immhi, mask;
- 	int shift;
-@@ -101,8 +106,8 @@ u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
- 		break;
- 	default:
- 		if (aarch64_get_imm_shift_mask(type, &mask, &shift) < 0) {
--			pr_err("%s: unknown immediate encoding %d\n", __func__,
--			       type);
-+			pr_err("%s: unknown immediate encoding %d\n",
-+			       "aarch64_insn_decode_immediate", type);
- 			return 0;
- 		}
- 	}
-@@ -110,8 +115,14 @@ u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
- 	return (insn >> shift) & mask;
- }
- 
--u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
--				  u32 insn, u64 imm)
-+u64 aarch64_insn_decode_immediate(enum aarch64_insn_imm_type type, u32 insn)
-+{
-+	return __aarch64_insn_decode_immediate(type, insn);
-+}
+For the ARMv7 SoCs such as the MT2701, MT8127, and MT8135, the firmware
+has to correctly set the arch timer frequency, as their device trees do
+not have the clock-frequency property.
+
+OTOH we could let sched_clock_register() reject replacing the current
+counter if the new one runs at the same rate. But that would be a
+separate discussion: if more drivers are converted to standard platform
+drivers, then the probe order is no longer easily known like before
+by the link order.
+
+The splat is a separate issue that I already reported [1].
+
+[1] https://lore.kernel.org/all/20261109095036.GA722431@google.com/
+---
+ drivers/clocksource/timer-mediatek.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/clocksource/timer-mediatek.c b/drivers/clocksource/timer-mediatek.c
+index 1b2cbcc2795a..ef67cc783635 100644
+--- a/drivers/clocksource/timer-mediatek.c
++++ b/drivers/clocksource/timer-mediatek.c
+@@ -15,6 +15,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/irqreturn.h>
+ #include <linux/module.h>
++#include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+ #include <linux/sched_clock.h>
+@@ -334,8 +335,20 @@ static int mtk_gpt_init(struct platform_device *pdev)
+ 	clocksource_mmio_init(timer_of_base(&to) + GPT_CNT_REG(TIMER_CLK_SRC),
+ 			      node->name, timer_of_rate(&to), 300, 32,
+ 			      clocksource_mmio_readl_up);
+-	gpt_sched_reg = timer_of_base(&to) + GPT_CNT_REG(TIMER_CLK_SRC);
+-	sched_clock_register(mtk_gpt_read_sched_clock, 32, timer_of_rate(&to));
 +
-+static __always_inline u32
-+__aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
-+			      u32 insn, u64 imm)
- {
- 	u32 immlo, immhi, mask;
- 	int shift;
-@@ -131,8 +142,8 @@ u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
- 		break;
- 	default:
- 		if (aarch64_get_imm_shift_mask(type, &mask, &shift) < 0) {
--			pr_err("%s: unknown immediate encoding %d\n", __func__,
--			       type);
-+			pr_err("%s: unknown immediate encoding %d\n",
-+			       "aarch64_insn_encode_immediate", type);
- 			return AARCH64_BREAK_FAULT;
- 		}
- 	}
-@@ -144,6 +155,12 @@ u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
- 	return insn;
- }
++	/*
++	 * sched_clock has no priorities; a counter with the same rate
++	 * replaces the current one. Only these SoCs lack the ARM architected
++	 * timer, which is otherwise the better sched_clock.
++	 */
++	if (of_machine_is_compatible("mediatek,mt6572") ||
++	    of_machine_is_compatible("mediatek,mt6580") ||
++	    of_machine_is_compatible("mediatek,mt6582") ||
++	    of_machine_is_compatible("mediatek,mt6592")) {
++		gpt_sched_reg = timer_of_base(&to) + GPT_CNT_REG(TIMER_CLK_SRC);
++		sched_clock_register(mtk_gpt_read_sched_clock, 32,
++				     timer_of_rate(&to));
++	}
  
-+u32 __kprobes aarch64_insn_encode_immediate(enum aarch64_insn_imm_type type,
-+					  u32 insn, u64 imm)
-+{
-+	return __aarch64_insn_encode_immediate(type, insn, imm);
-+}
-+
- u32 aarch64_insn_decode_register(enum aarch64_insn_register_type type,
- 					u32 insn)
- {
-@@ -1299,23 +1316,23 @@ u32 aarch64_insn_gen_adr(unsigned long pc, unsigned long addr,
-  * signed value (so it can be used when computing a new branch
-  * target).
-  */
--s32 aarch64_get_branch_offset(u32 insn)
-+s32 noinstr aarch64_get_branch_offset(u32 insn)
- {
- 	s32 imm;
- 
- 	if (aarch64_insn_is_b(insn) || aarch64_insn_is_bl(insn)) {
--		imm = aarch64_insn_decode_immediate(AARCH64_INSN_IMM_26, insn);
-+		imm = __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_26, insn);
- 		return (imm << 6) >> 4;
- 	}
- 
- 	if (aarch64_insn_is_cbz(insn) || aarch64_insn_is_cbnz(insn) ||
- 	    aarch64_insn_is_bcond(insn)) {
--		imm = aarch64_insn_decode_immediate(AARCH64_INSN_IMM_19, insn);
-+		imm = __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_19, insn);
- 		return (imm << 13) >> 11;
- 	}
- 
- 	if (aarch64_insn_is_tbz(insn) || aarch64_insn_is_tbnz(insn)) {
--		imm = aarch64_insn_decode_immediate(AARCH64_INSN_IMM_14, insn);
-+		imm = __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_14, insn);
- 		return (imm << 18) >> 16;
- 	}
- 
-@@ -1327,35 +1344,35 @@ s32 aarch64_get_branch_offset(u32 insn)
-  * Encode the displacement of a branch in the imm field and return the
-  * updated instruction.
-  */
--u32 aarch64_set_branch_offset(u32 insn, s32 offset)
-+u32 noinstr aarch64_set_branch_offset(u32 insn, s32 offset)
- {
- 	if (aarch64_insn_is_b(insn) || aarch64_insn_is_bl(insn))
--		return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_26, insn,
-+		return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_26, insn,
- 						     offset >> 2);
- 
- 	if (aarch64_insn_is_cbz(insn) || aarch64_insn_is_cbnz(insn) ||
- 	    aarch64_insn_is_bcond(insn))
--		return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_19, insn,
-+		return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_19, insn,
- 						     offset >> 2);
- 
- 	if (aarch64_insn_is_tbz(insn) || aarch64_insn_is_tbnz(insn))
--		return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_14, insn,
-+		return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_14, insn,
- 						     offset >> 2);
- 
- 	/* Unhandled instruction */
- 	BUG();
- }
- 
--s32 aarch64_insn_adrp_get_offset(u32 insn)
-+s32 noinstr aarch64_insn_adrp_get_offset(u32 insn)
- {
- 	BUG_ON(!aarch64_insn_is_adrp(insn));
--	return aarch64_insn_decode_immediate(AARCH64_INSN_IMM_ADR, insn) << 12;
-+	return __aarch64_insn_decode_immediate(AARCH64_INSN_IMM_ADR, insn) << 12;
- }
- 
--u32 aarch64_insn_adrp_set_offset(u32 insn, s32 offset)
-+u32 noinstr aarch64_insn_adrp_set_offset(u32 insn, s32 offset)
- {
- 	BUG_ON(!aarch64_insn_is_adrp(insn));
--	return aarch64_insn_encode_immediate(AARCH64_INSN_IMM_ADR, insn,
-+	return __aarch64_insn_encode_immediate(AARCH64_INSN_IMM_ADR, insn,
- 						offset >> 12);
- }
- 
+ 	/* Configure clock event */
+ 	mtk_gpt_setup(&to, TIMER_CLK_EVT, GPT_CTRL_OP_REPEAT);
 -- 
-2.55.0
+2.56.0.455.g6c5a503b38-goog
 
 
