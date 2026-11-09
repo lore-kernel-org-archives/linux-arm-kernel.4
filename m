@@ -2,81 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABC2606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 04:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60563606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 04:08:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dgGOBfhD;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=I66cXV08
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r2f4ymnI;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=GhVnSYXR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=k9f/XG0jUHwAWni++59A0P9y1jNPRh2eSZs3+JhDEUA=; b=dgGOBfhDZU+PLb
-	f6NWtekV1E+c8r9DCkWYVnSHn51Wjdo6vNpTxJXFDm5qN0hjHlAVJGGmcb/kl41LjGNLDrfZWkduc
-	FX6kdyixdNN5K+02mlN/hQQnkU609cnz8ac6yQyaUFTIRAi5pw5HzNLc7zso1Y/U5doZlH387az2V
-	MxkmFpmiCJ+KUYhJxS2Jb4v+rQNRzSliev1uMjzjHcWYMT8W0wpSUMJmgY/uQi/7k7pU0X0BX4LXs
-	HVmUZO7CyVkIUQGT9lhhZPlwFTz7Ooglm08KOJUl9Hu8c6gIgNPjNcRzjDbUJLaHQoBP1VAg51o/B
-	pmH6jWlZMrmey57xA1Ew==;
+	List-Owner; bh=VmgZV3Ha8SXRM5atMh4jHdaSdi8ER/Gp97TobHog/vw=; b=r2f4ymnIpyYFre
+	+LvDJTWUKTziAbYyRQHEX6c0w+FS23QKqUm4IHJXrX9Gi+DofMJ7NjWa8Z3UsXM4/cRmRy4A71+JR
+	tuyd85W3gLCV/SN6FO+sFq0qGJI9mCj4dynUwDVOnGRlXYxFJ/0V1uTjSwl0z5TeYa8cgvguBmn2v
+	m1rb4pkDKck9AWEIdgjdYnij3aYvtICJqRMrIG1V9dCqI7nzWTssS3cotkuIAuhveL4FHFKUmwI7l
+	THG46VBRb8TD+GBx4nlHSeZONZvrHi4Onm/oRFWJf3L4MX6wk18HmsMmvs2YtgFPySQRjUnxwIX1j
+	z8mcRSZSN+ZigiqCCm6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQGZ3-0000000HHZI-2Ok0;
-	Mon, 09 Nov 2026 04:01:01 +0000
-Received: from canpmsgout03.his.huawei.com ([113.46.200.218])
+	id 1xQGgF-0000000HHtI-2N1o;
+	Mon, 09 Nov 2026 04:08:27 +0000
+Received: from mail-ed1-x52a.google.com ([2a00:1450:4864:20::52a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQGZ0-0000000HHYT-26M6
+	id 1xQGgC-0000000HHsx-3oBW
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 04:01:00 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=k9f/XG0jUHwAWni++59A0P9y1jNPRh2eSZs3+JhDEUA=;
-	b=I66cXV08SVU8H6Ooa3FqjkUTTAUiz1/OKTMvrnqNYlSvLCl0vIKIQRfIpYhXEH72RyVL1rOoN
-	zjlGZ4UjGr1vF5wFBz8+AMpHxLTSL/AL7J9yXkp7UUKN3HhsNtE5X6a135MzyoHi0tZfZ0y+xK9
-	byBA80NkLXQJaUjBGpYmaow=
-Received: from mail.maildlp.com (unknown [172.19.162.140])
-	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4jNGK05jxkzpSwg;
-	Mon,  9 Nov 2026 12:00:20 +0800 (CST)
-Received: from kwepemr100010.china.huawei.com (unknown [7.202.195.125])
-	by mail.maildlp.com (Postfix) with ESMTPS id 4A91E202E6;
-	Mon,  9 Nov 2026 12:00:54 +0800 (CST)
-Received: from [10.67.120.103] (10.67.120.103) by
- kwepemr100010.china.huawei.com (7.202.195.125) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 9 Nov 2026 12:00:53 +0800
-Message-ID: <d81243e3-d790-4ee8-9b28-36d35591ee77@huawei.com>
-Date: Mon, 9 Nov 2026 12:00:52 +0800
+	Mon, 09 Nov 2026 04:08:26 +0000
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-6b65d69f5c2so620454a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 20:08:23 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794197302; cv=none;
+        d=google.com; s=arc-20260327;
+        b=pB/1OXJ3plvmy3Jd6muU11eh04ExRzGCk6bYXVgb3RpWdY1duUEF9MAc5UA9A8AnqN
+         /oKSM8/GqPLPb10j0+067VrbzoSYr0Gmjux5HsgMSGqjss7OadX6xHrhXeN4MzHB5T8r
+         TPKBQySFM8CJZxzPJ85H8VLXxAaNDA0wJdih3L3HDD6YMiVDvcPlT7UvuXKldei50qlx
+         bE7sf4gl3X76regk61g/PGhamS7c6LBeSLVYMLMl/bhbU2NpkTkpFXGJYCt6u8keNd6d
+         8wKAPbt4qMEgH+TQfyrOpQdarjuQSx54pYEy1l0zoXxTSn5wI0EPhcMbWb+xoNixN2b2
+         us+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=VmgZV3Ha8SXRM5atMh4jHdaSdi8ER/Gp97TobHog/vw=;
+        fh=d0GCToK+KdFTVp/VS0czqNqyBut7HXETN4qdyj7kPwc=;
+        b=jwpcIxYqSJZytagcsqH+ocwH6NTEWJrSlWkEQZvhP++3ZFK/Qningw3wIS64T23/jA
+         G5i1i9enNYm4vsNXYeWmNRfv1C02vwNxtITwMK8kqAbWIGd3FHqvc4oV0ekhE2Zm6cc7
+         i+wOr7XbxRcqWFeI6QH1g0D7hA/PNjWoonjSlKyVyCVoyN+gWUfOfCPDulM2D+oIpClx
+         PKySYhc6QOUb15SnOIDU5WNwjssCuDM3/kvmYlnZhyENCI0AB799tJHoPGrSOqXovVHZ
+         Sz/hvPfIs8TtGlaWy7t5Dj7emEbHzHAxQfb+Iy5snc3AtW3JHIJ2Vjxu/XAZeZQ06K4C
+         ruSA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794197302; x=1794802102; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=VmgZV3Ha8SXRM5atMh4jHdaSdi8ER/Gp97TobHog/vw=;
+        b=GhVnSYXRYpLH0S0WyDNnFFrUcetbZpgkJKkJT/ZWqV8rGL89dNVb1d1EMdg6kdDt4I
+         xRNn7DwTKWOvcbNU2D4apJ8qM7oKSgEwF9U48hC3Sp+3LfAR9oXcUkNmqVyQbMssSpEX
+         g/m8Qa3R05ExQ8+N7K2Gw79GyoHFa/Cycw2xVorCqeMzrN6tFrfJksgwhjApX98qE7Dl
+         o7xDYqzxfo0klQ2vfVnvHSBjl4i7Hai8W7JrSH9SpZH01W2wGjE71KCr1BKYmff197mB
+         ny4KKmuDp73vUHpwkv7A4bw58oiBfkrPXVu/m+Xeiwkq/m8110WG/jx83l7hZGVpM2SQ
+         Fiyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794197302; x=1794802102;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=VmgZV3Ha8SXRM5atMh4jHdaSdi8ER/Gp97TobHog/vw=;
+        b=G6Glx6LG/jc6Q4sefB61madcoPOs6ZJNJvIXn71Zr4RnMJbHZNPQGNOj8e+42rnbwe
+         sYCUPVsqLNoP3ex9FUibsIJsLiH6mrIIOT7Ylxrs8PohMlSLRsGqqNRYFxGnXhwYProp
+         6XS5hsAVUNrMLhUJJpFi8HB39Mx83ubrayezu2n4WLep29TQPVtn8qoGL1yV4rNhujG9
+         9jAxqXckkIALjLTEcFbQM6AEGQ0v+NAKjhgqdm2j8bGP417hgwOW7EGuwnyppHUA5eVT
+         s4Rnlf4+4EHSj1DLeoZjhxbqAeRmqmLnvDQ95jOSUUETV1yrjDa0D6rMXPLAtNvDLhcP
+         6lCQ==
+X-Forwarded-Encrypted: i=1; AL+hErEuSY7vK8bPkdEMY8pfDa3aNPDGgt47SKNs4V7548X2AWNfRFh3qpFRERmg3iLnafaNhFmJxaXLriohM3ml043U@lists.infradead.org
+X-Gm-Message-State: APuU4Z8E6d0aDgQdvWNVzMTbM/zqYhGtkew9LDMvYETrZf+pV4HEhBHP
+	rmsuKdkbZfgtqWekg4iJUN/GR5XTaAWDerfru2GX7bFRPEdjGTZDgGLc3hhze/AyVU7iixanR8f
+	Sm+UVmxvRvz74aRJdaA0oC8XF1xmPRM4=
+X-Gm-Gg: AYBFou0hPuYb/d74FUalhri413Pk7xk85YjFXQperRnr+o3PLACnbwrdquNotXdz6FR
+	ur5GE36bXgBwVJo/CVblibzXBzrDISx7eaGCP1vI1m9gdndUCe3/Rtzjl0G2gCQ51t7Rm/7BIrW
+	AT0u+RgrssZS44kEeXbIlbXmurwfXzHBvVQx+sn969yIBkgPqF9amOWe0MDEjNRZw8sXIHH7ktq
+	clMzdrB0G8GftyWosoSJnHit69yUk2b+7REVJ+Lw344qxU8KUZpWM17bg96yImxBLYmg6lWAUBc
+	dHGEySxWY7rFJnLy8gkqY97RrSq2ACa9XAMo0H99t+0gv1UmD3pl3RUIDZKQybDGmXvbKWLvONk
+	p6T0HfTQdM+bHY2jD2xaC+qLdsfNavQV8TC0vzQEd9QO/X0LoxOpI6Dr0dNvyMzwDb7Q=
+X-Received: by 2002:a05:6402:274d:b0:6b5:76be:62e0 with SMTP id
+ 4fb4d7f45d1cf-6b722480872mr1993578a12.35.1794197302011; Sun, 08 Nov 2026
+ 20:08:22 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/15] KVM: arm64: Reserve dirty ring space for the
- HDBSS buffer
-To: Leonardo Bras <leo.bras@arm.com>
-CC: <maz@kernel.org>, <oupton@kernel.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <corbet@lwn.net>, <pbonzini@redhat.com>,
-	<yuzenghui@huawei.com>, <wangzhou1@hisilicon.com>, <yangjinqian1@huawei.com>,
-	<caijian11@h-partners.com>, <liuyonglong@huawei.com>,
-	<tangchengchang@huawei.com>, <yezhenyu2@huawei.com>, <yubihong@huawei.com>,
-	<linuxarm@huawei.com>, <joey.gouly@arm.com>, <kvmarm@lists.linux.dev>,
-	<kvm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <seiden@linux.ibm.com>,
-	<suzuki.poulose@arm.com>, <fuad.tabba@linux.dev>, <mark.rutland@arm.com>,
-	<seanjc@google.com>, <rdunlap@infradead.org>, <linux-doc@vger.kernel.org>,
-	<linux-kselftest@vger.kernel.org>, <skhan@linuxfoundation.org>
-References: <20260929103655.85107-1-zhengtian10@huawei.com>
- <20260929103655.85107-12-zhengtian10@huawei.com> <auikG0clmr19sAjh@LeoBrasDK>
- <afcbf19b-bd13-4afc-ab56-8bc50c793e50@huawei.com>
- <au30DqzWIFny1tpr@LeoBrasDK>
-From: Tian Zheng <zhengtian10@huawei.com>
-In-Reply-To: <au30DqzWIFny1tpr@LeoBrasDK>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemr100010.china.huawei.com (7.202.195.125)
+References: <20260803135249.2898083-1-wenst@chromium.org>
+In-Reply-To: <20260803135249.2898083-1-wenst@chromium.org>
+From: Inki Dae <daeinki@gmail.com>
+Date: Mon, 9 Nov 2026 13:07:45 +0900
+X-Gm-Features: AclHuK_ZmjCHtFzSMtsaBOPEyrbrKGy7XikpiPUkajiV_K7VOdZCVHHguZRFD24
+Message-ID: <CAAQKjZP+W0_gByaDAv8DrtxFgSDdtw4AMd-=tA_Pr8gL30z1iA@mail.gmail.com>
+Subject: Re: [PATCH] drm/exynos: Set supported modifiers during plane init
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Seung-Woo Kim <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org, 
+	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_200058_884872_DFECA793 
-X-CRM114-Status: GOOD (  33.10  )
+X-CRM114-CacheID: sfid-20261108_200825_005921_A0AA9A56 
+X-CRM114-Status: GOOD (  31.37  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,140 +120,212 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Sorry for late review,
 
+2026=EB=85=84 8=EC=9B=94 3=EC=9D=BC (=EC=9B=94) =EC=98=A4=ED=9B=84 11:22, C=
+hen-Yu Tsai <wenst@chromium.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
+>
+> The exynos driver currently checks the modifier in a helper called by
+> the plane atomic check helper callback. This check only concerns whether
+> the selected plane supports the tiled format or not. This is tied to
+> the plane's hardware capability.
+>
+> Turns out the tiled support was added around the same time modifiers
+> were being plumbed through DRM planes. The latter provided a way to
+> describe per-plane modifier support.
+>
+> Add a field to the hardware plane capability struct to allow adding
+> an optional list of supported modifiers. This is passed to
+> drm_universal_plane_init(). This also allows the core to generate
+> and pass to userspace a list of supported modifiers for each plane.
+>
+> EXYNOS_DRM_PLANE_CAP_TILE and the existing helper are removed, as the
+> check is now down by the DRM atomic check.
+>
+> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> ---
+>  drivers/gpu/drm/exynos/exynos_drm_drv.h   |  2 +-
+>  drivers/gpu/drm/exynos/exynos_drm_plane.c | 30 +----------------------
+>  drivers/gpu/drm/exynos/exynos_mixer.c     |  8 +++++-
+>  3 files changed, 9 insertions(+), 31 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.h b/drivers/gpu/drm/ex=
+ynos/exynos_drm_drv.h
+> index b126cd129944..ab0edb826261 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_drv.h
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_drv.h
+> @@ -92,7 +92,6 @@ struct exynos_drm_plane {
+>  #define EXYNOS_DRM_PLANE_CAP_DOUBLE    (1 << 0)
+>  #define EXYNOS_DRM_PLANE_CAP_SCALE     (1 << 1)
+>  #define EXYNOS_DRM_PLANE_CAP_ZPOS      (1 << 2)
+> -#define EXYNOS_DRM_PLANE_CAP_TILE      (1 << 3)
+>  #define EXYNOS_DRM_PLANE_CAP_PIX_BLEND (1 << 4)
+>  #define EXYNOS_DRM_PLANE_CAP_WIN_BLEND (1 << 5)
+>
+> @@ -112,6 +111,7 @@ struct exynos_drm_plane_config {
+>         const uint32_t *pixel_formats;
+>         unsigned int num_pixel_formats;
+>         unsigned int capabilities;
+> +       const uint64_t *modifiers;
+>  };
+>
+>  /*
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_plane.c b/drivers/gpu/drm/=
+exynos/exynos_drm_plane.c
+> index 5c04ef87e400..31f5f0941154 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_plane.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_plane.c
+> @@ -174,30 +174,6 @@ static struct drm_plane_funcs exynos_plane_funcs =3D=
+ {
+>         .atomic_destroy_state =3D exynos_drm_plane_destroy_state,
+>  };
+>
+> -static int
+> -exynos_drm_plane_check_format(const struct exynos_drm_plane_config *conf=
+ig,
+> -                             struct exynos_drm_plane_state *state)
+> -{
+> -       struct drm_framebuffer *fb =3D state->base.fb;
+> -       struct drm_device *dev =3D fb->dev;
+> -
+> -       switch (fb->modifier) {
+> -       case DRM_FORMAT_MOD_SAMSUNG_64_32_TILE:
+> -               if (!(config->capabilities & EXYNOS_DRM_PLANE_CAP_TILE))
+> -                       return -ENOTSUPP;
+> -               break;
+> -
+> -       case DRM_FORMAT_MOD_LINEAR:
+> -               break;
+> -
+> -       default:
+> -               DRM_DEV_ERROR(dev->dev, "unsupported pixel format modifie=
+r");
+> -               return -ENOTSUPP;
+> -       }
+> -
+> -       return 0;
+> -}
+> -
+>  static int
+>  exynos_drm_plane_check_size(const struct exynos_drm_plane_config *config=
+,
+>                             struct exynos_drm_plane_state *state)
+> @@ -245,10 +221,6 @@ static int exynos_plane_atomic_check(struct drm_plan=
+e *plane,
+>         /* translate state into exynos_state */
+>         exynos_plane_mode_set(exynos_state);
+>
+> -       ret =3D exynos_drm_plane_check_format(exynos_plane->config, exyno=
+s_state);
+> -       if (ret)
+> -               return ret;
+> -
+>         ret =3D exynos_drm_plane_check_size(exynos_plane->config, exynos_=
+state);
+>         return ret;
+>  }
+> @@ -312,7 +284,7 @@ int exynos_plane_init(struct drm_device *dev,
+>                                        &exynos_plane_funcs,
+>                                        config->pixel_formats,
+>                                        config->num_pixel_formats,
+> -                                      NULL, config->type, NULL);
+> +                                      config->modifiers, config->type, N=
+ULL);
+>         if (err) {
+>                 DRM_DEV_ERROR(dev->dev, "failed to initialize plane\n");
+>                 return err;
+> diff --git a/drivers/gpu/drm/exynos/exynos_mixer.c b/drivers/gpu/drm/exyn=
+os/exynos_mixer.c
+> index 69dea5049309..d74e605a452b 100644
+> --- a/drivers/gpu/drm/exynos/exynos_mixer.c
+> +++ b/drivers/gpu/drm/exynos/exynos_mixer.c
+> @@ -93,6 +93,12 @@ static const uint32_t vp_formats[] =3D {
+>         DRM_FORMAT_NV21,
+>  };
+>
+> +static const uint64_t vp_modifiers[] =3D {
+> +       DRM_FORMAT_MOD_LINEAR,
+> +       DRM_FORMAT_MOD_SAMSUNG_64_32_TILE,
+> +       DRM_FORMAT_MOD_INVALID
+> +};
+> +
+>  struct mixer_context {
+>         struct platform_device *pdev;
+>         struct device           *dev;
+> @@ -148,8 +154,8 @@ static const struct exynos_drm_plane_config plane_con=
+figs[MIXER_WIN_NR] =3D {
+>                 .num_pixel_formats =3D ARRAY_SIZE(vp_formats),
+>                 .capabilities =3D EXYNOS_DRM_PLANE_CAP_SCALE |
+>                                 EXYNOS_DRM_PLANE_CAP_ZPOS |
+> -                               EXYNOS_DRM_PLANE_CAP_TILE |
+>                                 EXYNOS_DRM_PLANE_CAP_WIN_BLEND,
+> +               .modifiers =3D vp_modifiers,
 
-On 11/6/2026 11:36 PM, Leonardo Bras wrote:
-> On Fri, Nov 06, 2026 at 06:36:04PM +0800, Tian Zheng wrote:
->>
->>
->> On 11/2/2026 10:54 PM, Leonardo Bras wrote:
->>> On Tue, Sep 29, 2026 at 06:36:51PM +0800, Tian Zheng wrote:
->>>> The dirty ring reserves room for CPU-side dirty buffers via
->>>> kvm_cpu_dirty_log_size(). Report the HDBSS buffer entry count
->>>> through it, so a full buffer flush always fits in the ring.
->>>>
->>>> Pin the HDBSS buffer size to PAGE_SIZE when dirty-ring is enabled,
->>>> via kvm_arch_dirty_ring_size_updated(): a larger buffer only
->>>> shrinks the soft_limit and forces more frequent userspace drains.
->>>>
->>>> Signed-off-by: Tian Zheng <zhengtian10@huawei.com>
->>>> ---
->>>>    arch/arm64/kvm/arm.c | 8 ++++++++
->>>>    arch/arm64/kvm/mmu.c | 8 ++++++++
->>>>    2 files changed, 16 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
->>>> index 9d7bdece149a..5a7046acb62e 100644
->>>> --- a/arch/arm64/kvm/arm.c
->>>> +++ b/arch/arm64/kvm/arm.c
->>>> @@ -215,6 +215,14 @@ static int kvm_arm_default_max_vcpus(void)
->>>>    	return vgic_present ? kvm_vgic_get_max_vcpus() : KVM_MAX_VCPUS;
->>>>    }
->>>>
->>>> +void kvm_arch_dirty_ring_size_updated(struct kvm *kvm)
->>>> +{
->>>> +	if (!system_supports_hdbss())
->>>> +		return;
->>>> +
->>>> +	kvm->arch.hdbss_buffer_size = KVM_ARM_HDBSS_DEFAULT_SIZE;
->>>> +}
->>>> +
->>>
->>> On the same subject as a previous patch:
->>> I don't think this is the best approach, on top of adding a new weak
->>> function to take care.
->>>
->>> Maybe during the dirty-ring allocation, on vcpu creation, we could take
->>> into account the requested dirty-ring size, and just allocate the HDBSS
->>> buffer taking that into account. That would make it simpler, don't you
->>> agree?
->>>
->>> Thanks!
->>> Leo
->>
->> Hi Leo,
->>
->> The "set once" guard we're discussing comes from the patch that adds the
->> ioctl, and it isn't really needed. We discussed this earlier [1]: we can
->> just initialize hdbss_buffer_size to PAGE_SIZE at VM creation and let
->> the ring reservation use it directly. **That also means
->> kvm_arch_dirty_ring_size_updated() can be removed.** Thanks for your
->> suggestion.
-> 
-> :)
-> 
->>
->> As for why PAGE_SIZE is the right value in ring mode: the HDBSS buffer
->> is flushed on every VM exit, so a larger buffer doesn't reduce the flush
->> frequency. It only inflates the ring reservation (64 + size/
->> sizeof(u64)), which shrinks the soft_limit and forces more frequent
->> exits to userspace for the ring to be drained. Draining the dirty ring
->> from QEMU is more expensive than draining the HDBSS buffer from the
->> kernel, so the smallest buffer gives the best performance. In this mode,
->> a larger buffer provides no benefit to users.
-> 
-> Humm, if properly dimensioned larger buffers would be benefitial for
-> memory-intensive workloads, unless they are guest_exiting for other
-> reasons in the meantime.
-> 
+The VP plane advertises the tiled modifier for both NV12 and NV21, but
+framebuffer_check() accepts it only for NV12[1]. Could you add a
+format_mod_supported callback to restrict that combination? For
+example, the callback could check that the modifier is present in
+plane->modifiers, then reject DRM_FORMAT_MOD_SAMSUNG_64_32_TILE when
+the format is not NV12:
+static bool exynos_plane_format_mod_supported(struct drm_plane *plane,
+                                              u32 format, u64 modifier)
+{
+        unsigned int i;
 
-Agreed, and the workload I tested is on the "unless" side. The guest
-exits constantly for other reasons, so the larger buffer never got a
-chance to pay off, and only cost ring capacity.
+        for (i =3D 0; i < plane->modifier_count; i++)
+        if (plane->modifiers[i] =3D=3D modifier)
+                break;
 
->>
->> In my tests, I also saw performance degrade when more space is reserved.
->>
-> 
-> Humm, what kind of workloads did you test?
-> Did you have the chance to monitor what were the reasons for VM exiting?
-> 
+        if (i =3D=3D plane->modifier_count)
+                return false;
 
-For the workload question, it's a Redis server in the guest under redis-
-benchmark (SET-only, 2KB values, 1M keys, 100M requests). The traffic is
-network-driven, so the guest exits constantly to service requests. The
-HDBSS buffer only accumulates entries between two exits and is flushed
-on every exit, so it rarely fills regardless of size. A larger buffer
-only inflated the ring reservation, which shrinks the soft_limit and
-makes the ring-full exit and userspace drain fire more often.
+       return modifier !=3D DRM_FORMAT_MOD_SAMSUNG_64_32_TILE ||
+                 format =3D=3D DRM_FORMAT_NV12;
+}
 
-> I am not saying this is mandatory for the HDBSS implementation, but the
-> whole idea of letting the user choose their own HDBSS buffer size is
-> because different workloads may benefit from different buffer sizes: if a
-> VM writes a lot to new memory, and exits very little for other reasons,
-> then a larger buffer will cause the VM to guest_exit much less often.
-> 
-> Does that make sense?
-> 
-> Thanks!
-> Leo
-
-It does make sense. That's exactly the workload where a larger buffer
-pays off, and the next version no longer gets in its way. The two ioctls
-are no longer mutually exclusive.
-
-The only coupling left is the reservation. hdbss_buffer_size starts at
-SZ_4K at VM creation, so a ring enabled right away reserves for the
-default buffer (64 + 512 entries), and the minimum ring size accepted is
-unchanged from v5. KVM_CAP_ARM_HDBSS_BUFFER_SIZE is the gate. When the
-ring is already enabled, a size is accepted only if its reservation
-still fits in the ring, otherwise -EINVAL. In the other order, ring-
-enable validation rejects a ring too small for the configured size.
-
-So SZ_4K is just the conservative default for guests that exit often.
-Anything larger, within what the ring can reserve, is up to the user.
-
-Does this work for you?
+This can be assigned to exynos_plane_funcs.format_mod_supported.
+Checking the modifier list matters here because DRM delegates that
+validation to the callback when one is present.
 
 Thanks,
-Tian
+Inki Dae
 
+
+[1] in drm_framebuffers.c
+static int framebuffer_check(struct drm_device *dev,
+    const struct drm_format_info *info,
+    const struct drm_mode_fb_cmd2 *r)
+{
+...
+        /* modifier specific checks: */
+        switch (r->modifier[i]) {
+        case DRM_FORMAT_MOD_SAMSUNG_64_32_TILE:
+               /* NOTE: the pitch restriction may be lifted later if it tur=
+ns
+                * out that no hw has this restriction:
+                */
+                if (r->pixel_format !=3D DRM_FORMAT_NV12 ||
+                         width % 128 || height % 32 ||
+                          r->pitches[i] % 128) {
+                       drm_dbg_kms(dev, "bad modifier data for plane %d\n",=
+ i);
+                       return -EINVAL;
+        }
+...
+
+>         },
+>  };
+>
+> --
+> 2.55.0.571.g244d577d93-goog
+>
+>
 
