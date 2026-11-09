@@ -2,118 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084EC606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5FC8606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 11:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UhbAZY9g;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=AO0/yNdR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bFV58l4Q;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=u9A9AbW8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=stBN4IE9nXJUAYZh49JHF6T/bbeBEQPcLqjkFiGNp9U=; b=UhbAZY9grtksA3
-	/ts80K/TX5M1kza20/8BwF+X3VTKHXruvVnM4HLHoQBCYwRXfUrrAVd/XgitBhRnQetmKPFBYYWlX
-	3rgmnpctC4QhW9ARAPwQGzsX1QSSHYPl2gg+N5JTi1GrexADSiwgfHuEshMIWQHBICcWtf9EocruB
-	CPJVkRMWO2N3O2P8ZLXuQzFeAM2iTdCNf/UiV9KxJvKvPc4X04m2lJaVhqMavpHRUEytqeTi4Rc3W
-	/NaslbBZqLGlVM4WelFisFCTcvbNR+lv4gdGOOwLu15nXOEQuObPB/rB9BQWCd9R8TyvkPkFFvnpy
-	ZEi4lYwD8xGGOZKTZwoA==;
+	List-Owner; bh=gruXRLrwC50Q+01zYBAKobujyZnt2WH+acLyGLcBGqA=; b=bFV58l4Qyq+WuR
+	8hhY+9am7df2lsse/tugfhcjuz6Mj8eneYUW9sYvBsRMp7ZMjTGiv9wg70niTlTzr5kaQLkmULRMi
+	LA/6gImVoiODyvIxHmnXfO6RQDN9LlxUSUm1oAPnDkAEBHGpxwKRlZjzAWEfYIuoUzBqC3t6OIbsq
+	URkEcQgibY5NsdNFG9LS87twcEGZBc6DTla6C7BLaF0HLUxXeGCptTiM1YvdDQQ82NF/CgvJMcTmA
+	+xD4qMdKRx3AoUrJSAQoCMO9WGK2P4w1oxr7c7TZQiGMXVQnGV174pC5fZDBWSTXX00ZT0OhroAsW
+	0hXqOr+o0S/lOXBeuXIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQN8S-00000000TpE-3cd8;
-	Mon, 09 Nov 2026 11:02:00 +0000
-Received: from mail-pf1-x434.google.com ([2607:f8b0:4864:20::434])
+	id 1xQNBY-00000000UBK-1cl4;
+	Mon, 09 Nov 2026 11:05:12 +0000
+Received: from mail-wr1-x432.google.com ([2a00:1450:4864:20::432])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQN8Q-00000000To0-0m90
+	id 1xQNBV-00000000UAN-2TCD
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 11:01:59 +0000
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-8b66d1a08ccso636479b3a.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 03:01:57 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794222117; cv=none;
-        d=google.com; s=arc-20260327;
-        b=KxCg/at8ilK1QNbCXQr/OlvjlKOhKUZoHiP3KgKc79xc1+7mvFXWLBOWgXL/LlVQoS
-         VaZPZLA1B0oC/03jtmNsYNHBI+0KJ106YWGhHD0d1QL4W1VPcSiWhFr4gqERJ0R+3AUb
-         Jv2uPfIfL+vGrC0lQLoQE9BKhRFOx3DOIEUaErEr5lmpJVPdplNOSY5m89qhbq5jI9dZ
-         S8z7G1kyfC3BQsM0CcYUkPs/wpBEJPjcwOEN+eOEU5eyUzhJDOfV4eq5/rnA84Iyu0VK
-         9u1EMdRRJkFYsnZ/ajOl/EEgdqfKdsUAu1qEdbiy3WVbwx4vZNgXzXfX/r6ckovEZ/jn
-         JDVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=stBN4IE9nXJUAYZh49JHF6T/bbeBEQPcLqjkFiGNp9U=;
-        fh=twChh+cnz7fNYI4fhN1U4/miYRs5pe2SVC0Rpt9R2wk=;
-        b=GKbyGoF7D+8IZWuXQOAkrWl2sSTJ/mPMhBr5l7biaNL5aK0GvMIkU8PF6H6oGaQCtN
-         6K6xU9BIQUgHW1bfRH59ih0GhsaSxFsGDn9e52Hyjj/fNjIh3v261PgfLzZIvD6U4nhq
-         Ky3wA+tBH79wZF7hj+JuAIuoQVrQIrU2YnjEWDEw37UYxrNRYZZEPTu470Q63hUp45hV
-         udDvmx6MUkxDkFerp+dpfpuAHuU66VlHdgM+fhnJwuN0JukGS1kAKFyXk3esgkYpDwx7
-         qoMM6QbWHK5my10as+YgXeqEOSkBCYJzjRbq9hmS83v70dELtQqHuj6Wmidp3iuwqo2r
-         c9dA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Mon, 09 Nov 2026 11:05:11 +0000
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-490585eddfcso599346f8f.0
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 03:05:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794222117; x=1794826917; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=stBN4IE9nXJUAYZh49JHF6T/bbeBEQPcLqjkFiGNp9U=;
-        b=AO0/yNdRZp10BMVrSSTJt1R/UjORECXKEqX2n5lI1/1NGrq2Xke/jKyABaFF7K0OzW
-         5lMcYiHBh+rLXbV8T0ndngrwEvQPJgNL/M7XB1LauIRZ9c+mp55EtCrEXEVW9JRfgDOx
-         NneH+Wjjm1hA9Omvj0Jfxb6IQBHmOtBwpKIrwVJtTuPQx1em04k/csstCfwT4GEGN8fC
-         qfBMpwSQp3R3WXLLigjpHdN8tADKENCtcHMhUFBJlVqUcSPdNP72gv3VPoRCgquebMkQ
-         JPMLeWS22okpiGaUrZTnGT2zsUgMJjvgBNb06qhh7Vh3mbfF1+8eZrJ2bUhhE3qAtta4
-         wXUQ==
+        d=linaro.org; s=google; t=1794222308; x=1794827108; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=gruXRLrwC50Q+01zYBAKobujyZnt2WH+acLyGLcBGqA=;
+        b=u9A9AbW8akkG93p0k1yVl7Nham68s/S11m6xrkO5FAX3dxMI2RCzDSlrWCRacSFJrI
+         tQq/Mb8kXfyArvgfcD5GT8w3USedAT9TINCHE9pbwByzdWBHBoi5PMrFwE5nf2ZTnA45
+         vxHfmv1eHZzPUsaZJkUC7uJlq0D6Z22b7pHTCEAcMi1IFD3GZUi4FKrWW19xBwQPi94N
+         si4RCVKu8HjUTuI3KlIBGHhzqFcGo7iVnj01tY2Qm+GIc6eSkrWe8GXgdSDYzhzCvaZT
+         FdaBTjcagVRTyAcC7GPDRfcZqXN4wW4mTBrZ32kv7kvnV30q0ulanTcYutwH1hccAwgU
+         Y0ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794222117; x=1794826917;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1794222308; x=1794827108;
+        h=content-transfer-encoding:content-type:mime-version:date:message-id
+         :subject:references:in-reply-to:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=stBN4IE9nXJUAYZh49JHF6T/bbeBEQPcLqjkFiGNp9U=;
-        b=DRAqC/0ejLtdifewOwjo3sq3oGVDesg0Uu7o/j2vZzowpUsYFD0dmVZgcdcqwjFprW
-         q+3/FazJRPZdpppAWZt4PKlvp++hkSrbO+WHYkk/TdBMMMn/h466YBvJbtMhaQYp2U1A
-         ncG8DhurbT4i6pR84B1mAFuxXAaDMhJ/ZbTNyHPPBy8kev/Nr05XA18IFLPau2Ic9zXx
-         7JMShdLBz2VIYEUjngiiwiFA/kyLwxenw6BQ+6YnVL/JIoVX9fkff+smkH6d5sdK1Dq1
-         fRiDu2wkZRwuBui/uev3MCrqqfQ1zhdUqjnhlgSwjVZAWDdNiB3IZFHszavDz2vaDzpG
-         BAPA==
-X-Forwarded-Encrypted: i=1; AL+hErGOfXYWUCzEeshhZ1ujFfHdn8b6hh1WTei5PcmUtOWe9aZQCLl36CKM2QcIkPSSe4NT45bLKKMCE0N9aD9oUXOW@lists.infradead.org
-X-Gm-Message-State: APuU4Z/xA1djBqwwQSYBxlC05Z/lEW9szceLzvgbOEaARtoEU7hFpn86
-	h5XmMwzFKaNR7eXPaawrgDBWdIw8iznOQh8aDwwxxUJ915YMfUPbP7yoQYqC2xhhBSllfmhmGZV
-	PICrg2q2mujqOfZ+sO72oU3ZSdxAt/e4=
-X-Gm-Gg: AYBFou1CfyIaC7nZQZDot9d/2cVuEueH+PoqsM0FdV9c8KkhVfYHz7PZ+08Fv0xTw9e
-	0vP+TOjqDqqPnRKM5ehWCMa9CcqVRvFodjlKcYMHYhH27Nd/vjvoAUlQ8ZsXpad+p1HUG0iG/Xu
-	pq6hXPH5wS/4zCZhXMrEwLw6evJwKLvhReBE4y671XIB6tHx1qQB7MSXsM4LkzcxVlnjwJvLzIp
-	MoidVu1GRLL9r1MobVCvYYPgYjKyKWda+jpM+lJTO5r2F9fRhldTOfjhpGbs1XYlxbQW4I+FOfC
-	D1pHivyTp9F8SSVNusBiipzM/zQFNuiVvhDd24Jf0o95TkE+SETK1RQQ94LDkie0d+GlwWzAEGP
-	6KjNhBN7jphFCNDtjt0Bm3ALu4jHkaD7Pu8g9sQ==
-X-Received: by 2002:a05:6a00:3c8f:b0:882:d8c4:17c9 with SMTP id
- d2e1a72fcca58-8b66e343903mr3314714b3a.23.1794222116824; Mon, 09 Nov 2026
- 03:01:56 -0800 (PST)
+        bh=gruXRLrwC50Q+01zYBAKobujyZnt2WH+acLyGLcBGqA=;
+        b=ZQSuHHBiSoaNsm7zm3+7GVaPkPd7JaIHrzVO14jSfBuVg8rfLKx/DGvuK6r8VDzX0A
+         oeh1CQtuP1yu2Ec7CO7vMW/jSPt2f3/BZ7Vr+vj8S9uTBDonkNHZHmYVvGd2qyMufzlh
+         IRnl1ykzviMT6BXgaNbraoav0docN5oHxfewkC6Cm4jGk2J+++dv7EoOtcR5+EjNHxjG
+         zcRfcDFXGZ8rTnx9VqnV/gEwljuFYymdWvzAE8jFDWaTptkoZfWMO2RQ5tVBIoH4cw4X
+         NsiEOtj3lzu/dNTrvY6gf2blanRNKWcm3aUNo4pKY+xeeBjCIs44zFs8THmtUlxR9FIG
+         kSfA==
+X-Forwarded-Encrypted: i=1; AL+hErFmow/n5cP6wX9DNSbJPKbtyxooRGsBfP3DDtIzoTFEKKEF3Mu0QzWo31xXzm73u/xeDWeCoShGKksA1ahPXTwp@lists.infradead.org
+X-Gm-Message-State: APuU4Z/suqd4uwHWFtglA5FLQ7kuG/suIpaibIVGqrL5ciJFDIzwquYM
+	VjI70jUuazEeIN+tdX75ZyvCcp0LVKWgZkOLV/YEs5Q0qDyojrysH5mk3vXaVQ6iDcM=
+X-Gm-Gg: AYBFou1s2GJF8otSsV8KIevmi1BNrkeEuSyLauCVd9zNbclaawIYCgTLrga3f6u30r/
+	4znn47VgzXOsUuVd+3VwGAdWTIGg7qCyZapF90lPHbTHRei93K2QbuXJWqm6kY52IvOqPe7D89w
+	W6uRFaG/zCLISrDmGvFZAM100dOdkIDttKTTWvY0+aGBrGGPX7cU8CEq9jem0uccz+FLTdU1wZ/
+	zfijYorwU5h8bgCNjE7zDqaV4hwQtXA39DbhVWWAX3GkwMjVp0FMF3NhhqEgY8tkgSXZICzLwom
+	wOEagZyn3CJGZfeHV/S24sUc09dLDUoxDXNknMATEYjABZxrZlwDuq5qjyt+rC2v016voclkJFy
+	QZCxQnBe5dX5gPTL2yXnO6Rixwk2UKcLqmseOwaXdYLdeJwTIXDtD9G1Ty+0iZTf55XRZdlzOvr
+	2/f+dHJpLSJuzAQmAx1k9TEsD4wmu8FCcGDGUHBlPInGSqH6hyqzBdxKkh45uHx1RHlbVJjCc4K
+	lTAc5fAkGaT+r7bIQ8yZnT29xQ2BABux/GjZh4R9k8V9n36ELleDk4+v6TmHi8xI7ccHMKTeY+G
+	mRL38+jMQCowzghiIyNEt7wbd5Tmk9Z81YovF58Vvtw=
+X-Received: by 2002:a05:6000:2501:b0:48d:f460:2c62 with SMTP id ffacd0b85a97d-4958c0beec1mr7604586f8f.33.1794222307486;
+        Mon, 09 Nov 2026 03:05:07 -0800 (PST)
+Received: from arrakeen-2.home ([2a01:e0a:106d:1080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49596f9ab09sm8970489f8f.28.2026.11.09.03.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 03:05:04 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Nicolas Belin <nbelin@baylibre.com>, 
+ Jagan Teki <jagan@amarulasolutions.com>, 
+ Shigeaki Asai <y-asai.0816@docomonet.jp>
+Cc: dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, John Williams <porschemad911@gmail.com>
+In-Reply-To: <20261004-meson-gamma-v1-1-6347558e2bb3@docomonet.jp>
+References: <20261004-meson-gamma-v1-1-6347558e2bb3@docomonet.jp>
+Subject: Re: [PATCH] drm/meson: encoder_dsi: load ENCL gamma table while
+ ENCL is disabled
+Message-Id: <179422230388.1497673.3746542387809770384.b4-ty@b4>
+Date: Mon, 09 Nov 2026 12:05:03 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261105024106.338791-1-shengjiu.wang@oss.nxp.com>
- <20261105024106.338791-2-shengjiu.wang@oss.nxp.com> <20261106-savvy-invaluable-gaur-7af1b6@quoll>
- <CAA+D8AMxrUb-Pj74wrRn=vEyRUFKWWsR4Eq1LZ2ErsX=rRq=rA@mail.gmail.com>
- <80990ab6-5072-43a2-b829-177c956080c6@kernel.org> <CAA+D8AMt-_=XqABMoeUssasrmChJem7m=Oj+sLA6qnNORTZ+dA@mail.gmail.com>
-In-Reply-To: <CAA+D8AMt-_=XqABMoeUssasrmChJem7m=Oj+sLA6qnNORTZ+dA@mail.gmail.com>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Mon, 9 Nov 2026 19:01:45 +0800
-X-Gm-Features: AclHuK-vLDzqpNnq7WjP_EKkxW9CPBRL2HdSB_SqKuNRWnq2UdqsNh8iwWDBhD4
-Message-ID: <CAA+D8APyfdLR8cvq3GMuF9UdQ5yM6LNSwwuvt+7rYaMFPk1Y8Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: dsp: fsl,dsp: document debug reset control
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: shengjiu.wang@oss.nxp.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, shengjiu.wang@nxp.com, daniel.baluta@nxp.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	andersson@kernel.org, mathieu.poirier@linaro.org, Frank.Li@nxp.com, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_030158_236412_B9156363 
-X-CRM114-Status: GOOD (  19.75  )
+X-CRM114-CacheID: sfid-20261109_030509_686890_E8CD8EAD 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,57 +111,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 9, 2026 at 3:40=E2=80=AFPM Shengjiu Wang <shengjiu.wang@gmail.c=
-om> wrote:
->
-> On Mon, Nov 9, 2026 at 3:29=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> >
-> > On 09/11/2026 03:22, Shengjiu Wang wrote:
-> > > On Fri, Nov 6, 2026 at 8:57=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> > >>
-> > >> On Thu, Nov 05, 2026 at 10:41:03AM +0800, shengjiu.wang@oss.nxp.com =
-wrote:
-> > >>> From: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > >>>
-> > >>> The HiFi4 DSP provides a separate reset control for its debug logic=
-.
-> > >>> Keep this reset deasserted so that an external debug agent can acce=
-ss
-> > >>> the DSP and perform debug operations.
-> > >>>
-> > >>> Also require the reset properties for the i.MX8ULP HiFi4 DSP.
-> > >>
-> > >> That's ABI break without explanation.
-> > >>
-> > >
-> > > The i.MX8ULP HiFi4 DSP has not been enabled upstream before. This ser=
-ies
-> > > adds the DSP node for the first time, so there should be no existing =
-upstream
-> > > DT relying on this compatible without the reset properties.
-> >
-> > That does not change the fact that you break ABI, does it?
-> >
->
-> Yes, it changes the binding ABI. However, these reset controls are
-> required for the
->  i.MX8ULP HiFi4 DSP to work correctly, so the existing binding is
-> incomplete without
->  them. I will add this explanation to the commit message.
->
+Hi,
 
-I also think it would be better to split the i.MX8ULP reset requirement
-into a separate patch. Does that make sense to you?
+On Sun, 04 Oct 2026 23:50:17 +0900, Shigeaki Asai wrote:
+> meson_encoder_dsi_atomic_enable() programmed the ENCL gamma LUT right
+> after meson_venc_mipi_dsi_mode_set(), i.e. while the ENCL timing
+> generator was already running (ENCL_VIDEO_EN=1). Writing the LUT
+> during active video stalls the hardware: L_GAMMA_CNTL_PORT
+> WR_RDY/ADR_RDY deassert and the ENCL line counter (ENCL_INFO_READ)
+> freezes, so every remaining write times out (~8s total at boot) and
+> the panel ends up with a corrupted gamma table (wrong colors).
+> 
+> [...]
 
-Best regards
-Shengjiu Wang
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-fixes)
+
+[1/1] drm/meson: encoder_dsi: load ENCL gamma table while ENCL is disabled
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/0cb7f6d9e4b1d0a411b628ccf78695ad41c66570
+
+-- 
+Neil
+
 
