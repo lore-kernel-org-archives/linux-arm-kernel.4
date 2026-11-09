@@ -2,123 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFF0606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:09:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB3E606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 12:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CVCEuiBC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZFYWGk8K;
+	dkim=pass (1024-bit key) header.d=xiaopeng.com header.i=@xiaopeng.com header.a=rsa-sha256 header.s=default header.b=eX0EEoO9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=r4+pWU1nb58F5dsMvOA4RjP527RUqPlN/xdLexEiAcs=; b=CVCEuiBCLX7MPwAs0iu40HY28e
-	DpzAffoVf69rVAt/g05Mnm02z5qaNPG2dT+SMEKndx827VVubdtd+J8kaztra1mvkwe4I2DcDFt7Y
-	nnxhmgojOzAr6DXe/YkLjBQ2uusM0aBal7Un62aJGZ2uQk0EROe78MYz62vKHe/u/miosh0elFLwE
-	rcHcm+uuBjoFtTwQHAZZdqTkpsqXaEtsdElelZ/T/xeX1QNDNJeI87plzfptIUg4yXH/at7SoPH+Z
-	I8HqvafjXF8li0v+a90CsbOEesCn4f+SFMUo2w02Qzr0gSGozTyXCu/AXQwDV4gsZsAW4S6TL92m1
-	+GWqb0Fw==;
+	bh=zueww4+1NwCyF5cy2SwCRp8wZjZi0tJ4fAEc3gDf94o=; b=ZFYWGk8KWfg7dtY1USQuRIHVFi
+	5wkIjeU4lfaqXXgWtmj4+dHUpEfVde3XvaueRDzz2ltHpExF0pvDrRcNNS19ScHeUpIQmrRsIdw0y
+	nsw/NPvL6VaL++3eFUtyQfidzxyOsgHNosLyPhFcR+ZRqChb8n4aRZlQBLGGN03+HpyoKbzap8NJj
+	RUrkz6q3A2DPJL/gWqj3j+ZVa7t8v1bPNY4kz0SWhKeepShRqwl6DnGI+p5Gs89A82Boj86llYTdk
+	k8nBHDyB+OAYKVpU+leyQ244Z2Ifdxkal5DFgXmBktXOyWS/KzC1wQX07E3vcYfCZTOCr6OWUD0hH
+	FuUYTWgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOBg-00000000dDU-2hLz;
-	Mon, 09 Nov 2026 12:09:24 +0000
-Received: from mail-japaneastazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c405::5] helo=TYPPR03CU001.outbound.protection.outlook.com)
+	id 1xQOD0-00000000dcr-1Gse;
+	Mon, 09 Nov 2026 12:10:46 +0000
+Received: from out28-3.mail.aliyun.com ([115.124.28.3])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQOBW-00000000d9B-2Xrh
+	id 1xQOCy-00000000dcR-06ne
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 12:09:17 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pOA0ba/p4Vi9fqbAoIjgwgsR7jraPHhDq1snkSPAkuEVGNpNxqONJcuTqZdj0v8VJtipmXAVCm0u3VWBwj+wsp+0arOdfdbJVYM1WoIPalsRw4JKVE9PNdCjeirLgiipqBf5m3GAdQ7det8fPCJuQoa0XvsvZpJ6ER3O24lDJ0Lui7UcaMLP185DwJQLt51EqFD6vK6rDFXfsSZGVqQVbS/Jz2sNkeeR41Nwi5+aVKHLqYE1xvu8A+3K8oCBajM0gY9KQYxI0Zjqgi9qR2WZgZALJGotk1O5dSizsPG+g0K8iMJYokQCbeLzMfACpDAqSugcw4jaEzZuyiP6KRURpg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=r4+pWU1nb58F5dsMvOA4RjP527RUqPlN/xdLexEiAcs=;
- b=aDwrPEqmRfoyYk2PFM3AvnoSsxZZfZF43jJKCFe7cMmIUmyMieQI/kH64nPkHikBgZ2FpUZxbFpPyLi1216E2E8El2aFTiT04o4Rvy3ncIK8xu8pzc2se0Dy3Cn0KJtJId91HYJ8UNouBsyPlntt010bzE6F3uBK/mMNMx3k2W/LUB0RSsMpicXo41Mg0zcv1xQDCA9DeDuTWj/Jw4I77DiR2PR6bQz74M8zU0VKfaRwNMKymPsAeYfEJp7hNMTSVuBOBKXBakIKOLIt6+9BkqqADDKNmhiPJY7cK5pj77rs/NQ9aALUhtQrDOKX9DSbPllfQSHHANgB6HSOI618RQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SG2PR04CA0216.apcprd04.prod.outlook.com (2603:1096:4:187::18)
- by JH0PR06MB7179.apcprd06.prod.outlook.com (2603:1096:990:9f::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.9; Mon, 9 Nov 2026
- 12:09:04 +0000
-Received: from OSA0EPF000000C6.apcprd02.prod.outlook.com
- (2603:1096:4:187:cafe::34) by SG2PR04CA0216.outlook.office365.com
- (2603:1096:4:187::18) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.13 via Frontend Transport; Mon, 9
- Nov 2026 12:09:04 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000C6.mail.protection.outlook.com (10.167.240.52) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 9 Nov 2026 12:09:03 +0000
-Received: from cix (unknown [172.16.64.42])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 3D1474102E75;
-	Mon,  9 Nov 2026 20:09:02 +0800 (CST)
-From: Cunyuan Liu <cunyuan.liu@cixtech.com>
-To: boris.brezillon@collabora.com,
-	steven.price@arm.com,
-	liviu.dudau@arm.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	gary.yang@cixtech.com,
-	fugang.duan@cixtech.com
-Cc: daniel.almeida@collabora.com,
-	aliceryhl@google.com,
-	p.zabel@pengutronix.de,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
+	Mon, 09 Nov 2026 12:10:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=xiaopeng.com; s=default;
+	t=1794226237; h=From:To:Subject:Date:Message-ID:MIME-Version;
+	bh=zueww4+1NwCyF5cy2SwCRp8wZjZi0tJ4fAEc3gDf94o=;
+	b=eX0EEoO91t/GJMC+Z1PGzRv9jJ6ohf6MPP3JUAEsZErLLpFyd8f8UEdLvsAeJZkh4UUGcqGdre43nV7R97bPH6oA+RYz09rm9rtIoOms22JOwuyt9L88dXqyz6F4IiTTDDeeV5A2jN/Mgv98qyAYzDQHfrumP1OzBljnHfVh28g=
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.04439086|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.02383-0.000494716-0.975675;FP=9592083956290293074|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033037034020;MF=fangxy@xiaopeng.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.k-86pZ7_1794226235;
+Received: from localhost.localdomain(mailfrom:fangxy@xiaopeng.com fp:SMTPD_---.k-86pZ7_1794226235 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Mon, 09 Nov 2026 20:10:36 +0800
+From: Fang Xieyan <fangxy@xiaopeng.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-usb@vger.kernel.org
+Cc: Vladimir Zapolskiy <vz@mleia.com>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	Johan Hovold <johan@kernel.org>,
+	Roland Stigge <stigge@antcom.de>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	robin.wang@cixtech.com,
-	cunyuan.liu@cixtech.com,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 1/3] dt-bindings: gpu: Add CIX Sky1 Mali support
-Date: Mon,  9 Nov 2026 20:08:59 +0800
-Message-ID: <20261109120902.125242-2-cunyuan.liu@cixtech.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261109120902.125242-1-cunyuan.liu@cixtech.com>
-References: <20261109120902.125242-1-cunyuan.liu@cixtech.com>
+	stable@vger.kernel.org,
+	Guanglei Zhu <zhugl3@xiaopeng.com>
+Subject: [PATCH] usb: gadget: lpc32xx_udc: handle interrupts with an empty queue
+Date: Mon,  9 Nov 2026 20:10:35 +0800
+Message-ID: <20261109121035.34561-1-fangxy@xiaopeng.com>
+X-Mailer: git-send-email 2.50.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000C6:EE_|JH0PR06MB7179:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: f6674c06-1f7a-4a55-43af-08df3e5a3f71
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|23010399003|82310400026|36860700016|261021121427099003|261028144727099003|56012099006|261026140227099003|261009223027099003|261022105027099003|261102123227099003|261026121527099003|10067099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: stcez+NTsNBt12hQurTBf7Tf2H2T3cFNarzs50MzE3xeRLWrob1mAoyvy2uQrDWuiiuQ8xic/uEdypTitmWbVu8hcX//uFB7jVkJGVyWxa6vPMI58/nby1GOlKRZq1Wq9HcLTdgNg1fnEa7/3bRiSI7IRyRA0jwLtuzfsN+H6QXh0eOkm0vFCiQdZfwVywPK1OX4MGZWAyfpBaeLinCCSsLwgB/ALlUvWM6E//40+PgFI8J2ZDjsYLg2s/KI+Z/wdPnr/wFQSTdW6/wMtvxP8iK7VMULY+JcYRswGhgMkHNiNiydiYBipuxce2s8kuyzZIGOYTpAxzrBVQVI3jHFSzJWAZ3DfEMxPUgUk4MXMOtr6tqRQMe7WJ8dZQqpzukZfSELnUYh+HULrxLU4Xk41dZeLAVNl4G+Am7XTJB20/fNFrl73UeSuXZPaoXMt3GUy+gshPoxEASAnW3yTA/ROxt/lma4URCZxQjP+MVZcHdP7nt0KgNaosggE9CqPeI8wmlL8lm33tm0SKQcV2zHMVxB5sQjhjgD6G239qZ0Fsz7kvwp8mOBG8eJL1+8F1wnaa2AuennIzgmy/E+S1de4JRuhseNxx64egIfUZrpIHR/qjVyl1UenINBfIZoV6nZ78vBD/StqtKuB8FwqjxEsqvD3IQGtoOUmrBovE899YYC7HCj56KWS0RJH7mpDqFFyGr3JbzONn4kBCUT/yNOeg==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(23010399003)(82310400026)(36860700016)(261021121427099003)(261028144727099003)(56012099006)(261026140227099003)(261009223027099003)(261022105027099003)(261102123227099003)(261026121527099003)(10067099003)(22082099003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: vCmT5b9vuSy4qybGEHMG1Ao1U8cxhAze5QfuQOj52iNAQ71xCvNqJXUKSFlSRn6ejfgfeQAkWf6AeDaObrXTkoeeIn/Qji+N0evvgxFSh/1RFtVhyeuD1UzVItvzpqAhlGn8LJIf7fwJfB8ryy2uisraq54g3H40Hyp4Q030yQ7rg49pi3PCpBjIzWI9XU8hj+yTW4Kq6mARrGJ2QCP4QlnHwK20/uFIvS4Q9qQQdAjS26Dfwf3G+P8Q+9vmcvHUAxJq01EIxm63Irf5ThI6Vn6oRH3Ndzlbl+d1zrUO5O4JdTeNtzo+7N/1Q6QbLtOX62FGSSgI/eNIG/950CWaQwLVtsa1Nir+Tf9VtUqOzRlZTMRhUxo+jYznKVdb5/Oihufhx25vCCvzHz0vJoNpwhy/SxagG7UpdnF+PPvo6qHvkbXfUgm/GRAukf9AUdVt
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 12:09:03.9651
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6674c06-1f7a-4a55-43af-08df3e5a3f71
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000C6.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7179
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_040914_647111_67C48541 
-X-CRM114-Status: UNSURE (   8.53  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261109_041044_253973_D8E31835 
+X-CRM114-Status: GOOD (  14.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -129,106 +70,94 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Describe the Mali CSF GPU on CIX Sky1. It uses core and stacks clocks,
-an external reset and a GPU power domain.
+A request can be dequeued after a DMA transfer has completed and filled
+both endpoint buffers, while the delayed endpoint or DMA interrupt is
+still pending.  lpc32xx_ep_dequeue() removes the request from ep->queue
+and gives it back via done() without clearing the pending endpoint or
+DMA interrupt status.
 
-Add the compatible string, resource requirements and an example.
+When the interrupt handler then runs with an empty queue,
+list_entry(ep->queue.next, ...) derives an invalid request pointer from
+the list head; list_entry() does not return NULL.  Passing that pointer
+to done() in udc_handle_eps(), or dereferencing req->dd_desc_ptr in
+udc_handle_dma_ep(), results in invalid memory accesses and can crash
+the kernel.
 
-Signed-off-by: Cunyuan Liu <cunyuan.liu@cixtech.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Check whether the request queue is empty before touching the request in
+both handlers.  In udc_handle_eps(), do this before sending the deferred
+ZLP and disable the endpoint interrupt when there is nothing to
+complete.  In udc_handle_dma_ep(), still disable the DMA channel and
+clear the pending EOT/NDDRT (and SYSERR) interrupt status so the
+interrupt does not keep firing, without dereferencing the missing
+request.
+
+Fixes: 24a28e428351 ("USB: gadget driver for LPC32xx")
+Cc: stable@vger.kernel.org
+Reviewed-by: Guanglei Zhu <zhugl3@xiaopeng.com>
+Signed-off-by: Fang Xieyan <fangxy@xiaopeng.com>
 ---
- .../bindings/gpu/arm,mali-valhall-csf.yaml    | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
+ drivers/usb/gadget/udc/lpc32xx_udc.c | 25 ++++++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-index 8eccd4338a2b..a93acc6d91ec 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-@@ -18,6 +18,7 @@ properties:
-     oneOf:
-       - items:
-           - enum:
-+              - cix,sky1-mali
-               - mediatek,mt8196-mali
-               - nxp,imx95-mali            # G310
-               - rockchip,rk3588-mali
-@@ -51,6 +52,9 @@ properties:
-           - stacks
-       - const: stacks
+diff --git a/drivers/usb/gadget/udc/lpc32xx_udc.c b/drivers/usb/gadget/udc/lpc32xx_udc.c
+index 044c31869cfb..67b0d6f73e43 100644
+--- a/drivers/usb/gadget/udc/lpc32xx_udc.c
++++ b/drivers/usb/gadget/udc/lpc32xx_udc.c
+@@ -1945,6 +1945,13 @@ static void udc_handle_eps(struct lpc32xx_udc *udc, struct lpc32xx_ep *ep)
+ 	/* Get endpoint status */
+ 	epstatus = udc_clearep_getsts(udc, ep->hwep_num);
  
-+  resets:
-+    maxItems: 1
++	/* If there isn't a request waiting, something went wrong */
++	if (list_empty(&ep->queue)) {
++		ep->req_pending = 0;
++		uda_disable_hwepint(udc, ep->hwep_num);
++		return;
++	}
 +
-   nvmem-cells:
-     items:
-       - description: bitmask of functional shader cores
-@@ -146,6 +150,34 @@ allOf:
-         - nvmem-cells
-         - nvmem-cell-names
-         - power-domains
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: cix,sky1-mali
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+          maxItems: 2
-+        clock-names:
-+          items:
-+            - const: core
-+            - const: stacks
-+        power-domains:
-+          maxItems: 1
-+        power-domain-names: false
-+        mali-supply: false
-+        sram-supply: false
-+        nvmem-cells: false
-+        nvmem-cell-names: false
-+      required:
-+        - clock-names
-+        - resets
-+        - power-domains
-+    else:
-+      properties:
-+        resets: false
+ 	/*
+ 	 * This should never happen, but protect against writing to the
+ 	 * buffer when full.
+@@ -1958,7 +1965,6 @@ static void udc_handle_eps(struct lpc32xx_udc *udc, struct lpc32xx_ep *ep)
+ 	} else
+ 		return;
  
- examples:
-   - |
-@@ -196,4 +228,23 @@ examples:
-         power-domains = <&gpufreq>;
-     };
+-	/* If there isn't a request waiting, something went wrong */
+ 	req = list_entry(ep->queue.next, struct lpc32xx_request, queue);
  
-+  - |
-+    #include <dt-bindings/clock/cix,sky1.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/cix,sky1-s5-system-control.h>
+ 	done(ep, req, 0);
+@@ -1985,6 +1991,23 @@ static void udc_handle_dma_ep(struct lpc32xx_udc *udc, struct lpc32xx_ep *ep)
+ 	ep->totalints++;
+ #endif
+ 
++	if (list_empty(&ep->queue)) {
++		u32 mask = 1U << ep->hwep_num;
 +
-+    gpu@15010000 {
-+        compatible = "cix,sky1-mali", "arm,mali-valhall-csf";
-+        reg = <0x15010000 0x480000>;
-+        interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 238 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "job", "mmu", "gpu";
-+        clocks = <&scmi_clk CLK_TREE_GPU_CLK_CORE>,
-+                 <&scmi_clk CLK_TREE_GPU_CLK_STACKS>;
-+        clock-names = "core", "stacks";
-+        resets = <&s5_syscon SKY1_GPU_RESET_N>;
-+        power-domains = <&smc_devpd 21>;
-+    };
++		ep->req_pending = 0;
++		ep_err(ep, "DMA interrupt on no req!\n");
 +
- ...
++		/* Disable DMA and clear pending interrupts */
++		udc_ep_dma_disable(udc, ep->hwep_num);
++		writel(mask, USBD_EOTINTCLR(udc->udp_baseaddr));
++		writel(mask, USBD_NDDRTINTCLR(udc->udp_baseaddr));
++
++		if (readl(USBD_SYSERRTINTST(udc->udp_baseaddr)) & mask)
++			writel(mask, USBD_SYSERRTINTCLR(udc->udp_baseaddr));
++
++		return;
++	}
++
+ 	req = list_entry(ep->queue.next, struct lpc32xx_request, queue);
+ 	dd = req->dd_desc_ptr;
+ 
 -- 
-2.53.0
+2.50.1
 
 
