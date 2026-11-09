@@ -2,72 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A1F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 01:11:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FA04606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 01:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fuC3CcQk;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=b+Id5PbC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bGhRJIEi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jpvTyjk/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Frm8Ld1QHHVrzUA5GQZVw3rqE7QJ68oePOVoIDDUukc=; b=fuC3CcQkk0aXHZlfESHrJF2wPV
-	c1ogBYu2cCzbJ8RH7Re9CNmLGFLjrJ+jGWMDZk+mlU+rz6grEqERYkuy6ZknOcQcwDbD4jryksAfE
-	0K5jJLBSWMXiSOh43p624MQ3eGZqx9hQzd8w5zHUXp5gqqHwBhVDPFDWn1o/KIYO0tBRlcreG5dBp
-	7MejIbrPbsCeQzG2UOgC30yP2m27RXIpIYanQVn4RwroNL0NIRg7PKezxYAk9la/5MMCnbXQxEMSb
-	TSQEfyCbX6opbeGTixCHgVpejprW0KO/EJXSjLKvh82OhOBww5cxX23c26PX0M4FVw2ToGbXfC3FY
-	wPiGn0Yg==;
+	bh=M4WCF4P9vPVA9cU7Tv+J0UseXV6GQroxb3gEfse06vk=; b=bGhRJIEib+DiR+86LYh6i0cZwO
+	jmQsQE8x42t3w++wdvGTotRok7BAl6r1yBHr17p4ZBF72krVoQ5F1+s8KzlEjFA5svD1bDjJH5It1
+	YOurudLLi4kSdajnSa6AyxG/C9ZXalFn/dW8wc63tg3+RNA4Lklg1efs+tfdZwG+M2idTOxsj9TQK
+	4mJWuL3KhWmbPw/vTPANJ/Y3HB13tFk0LkzIT8/7Zj3q6OqiwDTjaOr0/el/uG6hqgAs5MklRnx5X
+	nV/+eZQJWGgKlxWKE5qxVnVQorCZJmDJV6EGRaQnpWbmELElJZhHrgW3wD1XHa4gKAShn30UJvm/p
+	I0oxlQEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDuw-0000000H0sp-0hhF;
-	Mon, 09 Nov 2026 01:11:26 +0000
-Received: from sender6-op-o11.zoho.com ([165.173.180.11])
+	id 1xQDwe-0000000H11R-2QRj;
+	Mon, 09 Nov 2026 01:13:12 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDut-0000000H0sR-1gFJ;
-	Mon, 09 Nov 2026 01:11:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794186680; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=KP965G8gNTMXnOxdmYqv3VegVDyYxZjTMCfqdCMlwasTJEwk082tTk6NmHHdc9KnNzik3brm/jt9gb9ttHgClIG3pK7Ccq2ZWPRfqtuQMtM0AmTpPB53xvLpZPzWtVb6Sdd+YHDr7wtYpb4qtrdkV4Z97rBsbg3ahTG/pxk33xo=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794186680; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Frm8Ld1QHHVrzUA5GQZVw3rqE7QJ68oePOVoIDDUukc=; 
-	b=KBlG6TI5MZffl2bZP/tJRVMEsmjF2moYAiNOpxXdtvC7uZG4H37fKKljMEoKIK+THaskaVVZ5igeYViASIgvFbxNS9+RBTMhtxB6E5tXqLZPWv5o8+nEEPl3EXXFfJcY6ozSv9cEQSbpf8gvrA/aGrx8o1A90xaaTcrIqceLPEs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=b+Id5PbCX3AVSwyxjoQuhreG3Ca6WHoor5xr6ydh4NCvgX1mXdZzCKuEK52ttJARkqW2zhYXgo9Gd1CG1gXWigvMer+/oxX5eGSzvwi9egn1/B81yQ2J8cyb4k+lIgEsJEk8nW0vCeNjijWfClExtiFNtLlglVf9WVeXU+frkh0=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=Frm8Ld1QHHVrzUA5GQZVw3rqE7QJ68oePOVoIDDUukc=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794186679307914.4749060070615;
-	Sun, 8 Nov 2026 17:11:19 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id D5A5F1808E6; Mon, 09 Nov 2026 02:11:18 +0100 (CET)
-Date: Mon, 9 Nov 2026 02:11:18 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: hyunjungg <hj351016@gmail.com>
-Cc: linux-pm@vger.kernel.org, Chen-Yu Tsai <wens@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] power: supply: fix work-vs-devres teardown
- use-after-free
-Message-ID: <avEdYFDUHIj6mq0Z@venus>
-References: <20261106160057.2754689-1-hj351016@gmail.com>
+	id 1xQDwc-0000000H116-20Ac;
+	Mon, 09 Nov 2026 01:13:10 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9C3776111B;
+	Mon,  9 Nov 2026 01:13:09 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794186789;
+	b=HqkDk+o/mRP/jzqyr8a0kQjiVo2O0bzD3K+K297/YODfcHJ5FQMKWHDOZqpdiRaihCrH
+	 tRCX8JFAQKJxkujgV5UhOeCN4uDBShEHPxLrzv/5DHgiguJr1GEioElfqKSKh3fA2L2DN
+	 tDJf5cTcpYajht/2GJzNS0OQsIPjTU1KqxbpiX5mFOo7sVfD+BLKAQkW4NtpoIntXojFo
+	 UEtMAjHS+tcBWAZmBtC4mDo8GAowqJa99Fwp4Ld30JTzMGnQTR6x9HM+9yBN7nyXhgniN
+	 4OycmrkjfBoEGxJXUDP+4ZcCuppJxgpjTl4pnMMw9p2Ewf3ARVgEd02CxFgmkbCoBhw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794186789;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=M4WCF4P9vPVA9cU7Tv+J0UseXV6GQroxb3gEfse06vk=;
+	b=VQo3GHlgP35LXmM7hBUfgV70W2wEUyNH0MnGolCflW0hlwFnQypfLh9uDHaymwYlOSjF
+	 86Rcr+rfRLDat7/4TZ5eWJMvrQKqWI1jJVK3adaPtH1ohwTC657hHto8hHJmk5gajCyOU
+	 58wnCeAYT6KogkXeWp0o/1pvQ6vfEpf8HG56iS3SxyBJgzM9JMl/IV9qS4C1pFj0+Zp5a
+	 Q+iTaHOGHF+xGo8CVT4xbglaIf3wW1tIKwpopn2zulJCzWl+DlcaEPLbOkeMn74ptPKR5
+	 4qr35BH4AbBWiz7SHa44Tx5KRo8lJcCE7lNwmWcjeOCZBHonA1vPlsiTV79cDntWTKw==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 9D2A21F0089F;
+	Mon,  9 Nov 2026 01:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794186789;
+	bh=M4WCF4P9vPVA9cU7Tv+J0UseXV6GQroxb3gEfse06vk=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=jpvTyjk/fb0I/liZiqB24WRLZW+AxBb1dpFfOqONpXGH+X2CdbOKBf0xtWf9c0aGz
+	 b2K84UT6bzyNB/ktSdNBIKpWpPNyQbz6iqYut730z+C4jLvdRhx7Qi6Kzi9HEqys8q
+	 GrLfFAXOYqStJD3owU6ZPLTLy/906+fHnFffpux3Za1T8RCZwwkTQMKbvvchD+JA3p
+	 IPkhPGeOWCng9JJw57TzSCUMJ5kiw5hTWRA/V9qmR1bvr/zDZTXQc82ZctC4D//WHw
+	 b785I1BBopf5RLI6i+/b5OQYS0mZp5INxPRcE8s6uOUmh4xPXoViy1x0RM5HQQXV8Q
+	 FvyW7af9dezPg==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id E5336481E7;
+	Mon,  9 Nov 2026 01:13:07 +0000 (UTC)
+From: Ricardo Pardini via B4 Relay <devnull+ricardo.pardini.net@kernel.org>
+Date: Mon, 09 Nov 2026 02:12:47 +0100
+Subject: [PATCH] phy: rockchip: naneng-combphy: fix RK3588 SATA pipe_con1
+ register offset
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3sgy7kbr5gvb4f26"
-Content-Disposition: inline
-In-Reply-To: <20261106160057.2754689-1-hj351016@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.182.33
-X-ZohoMailClient: External
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_171123_521305_0EF7239A 
-X-CRM114-Status: GOOD (  14.82  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261109-rk3588-combphy-sata2-6g-v1-1-e9135c91de6a@pardini.net>
+X-B4-Tracking: v=1; b=H4sIAA4e8WoC/yXMQQ6CMBBA0auQWTtJO7WEeBXjoq0jDEYgHTQQw
+ t2tsnyL/zdQzsIKl2qDzB9RGYcCe6ogdWFoGeVeDGSotobOmJ/ONw2m8RWnbkUNcyCsWzQuRme
+ st94TlHrK/JDlf77eDus79pzm3w72/QseLD3mewAAAA==
+X-Change-ID: 20261024-rk3588-combphy-sata2-6g-03bb30151552
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Andrew Powers-Holmes <aholmes@omnom.net>, 
+ Lucas Tanure <lucas.tanure@collabora.com>
+Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, Yifeng Zhao <yifeng.zhao@rock-chips.com>, 
+ Ricardo Pardini <ricardo@pardini.net>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3342;
+ i=ricardo@pardini.net; h=from:subject:message-id;
+ bh=jlST7yEBtCPASzfQnAPw8q1ZkwqNOjqfjEA41xMvY/o=;
+ b=owEBbQGS/pANAwAKATteP+Oex+3pAcsmYgBq8R4jm7OV4UEZAdR8JkXG5eZsGJPwj1sBnGC/K
+ PdtxEN5/k2JATMEAAEKAB0WIQSsGCMM9q/qytxIiJM7Xj/jnsft6QUCavEeIwAKCRA7Xj/jnsft
+ 6WQWCACpnX6vXbIOFFGIjGte8vXc9/ErH0o2XWlf2nqbLvgp3rSw6bTjqbhrhX2OuywVjojnqh/
+ 6khuk8OfiBwqUFDKqwYmRTGWr4BoABoM87ivNn5mXU8R6p1EugVNX5uNqfvYHzXGp1kRDtZWEcG
+ DHJ2gacTWr5D86YdFw3279g8y+yn1/hXblWc/9e8TR36+3deh/cODH5k8diskaURtUdcMgCseDP
+ j4W0w21u2FWlsKGALXGoTfaHR/H0NgGohEW+dYv59PxHSvnCqUOXy/Fso9MjgvVaF/tfwXWeO2k
+ dPzwqX2nK64jpCTrxJDlRrSJJ+FOFvHLR3KobzP7R+bVxTuv
+X-Developer-Key: i=ricardo@pardini.net; a=openpgp;
+ fpr=AC18230CF6AFEACADC4888933B5E3FE39EC7EDE9
+X-Endpoint-Received: by B4 Relay for ricardo@pardini.net/default with
+ auth_id=588
+X-Original-From: Ricardo Pardini <ricardo@pardini.net>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,87 +119,92 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: ricardo@pardini.net
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Ricardo Pardini <ricardo@pardini.net>
 
---3sgy7kbr5gvb4f26
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 0/3] power: supply: fix work-vs-devres teardown
- use-after-free
-MIME-Version: 1.0
+On RK3588, the sata2 PHY speed is selected by sata2_phy_spdmode in
+PHP_GRF_PHP_CON1[1:0] (offset 0x0004), with sata2_phy_rx_err in bit 2.
+rk3588_combphy_grfcfgs has pipe_con1_for_sata at offset 0x0000 though,
+so the value 0x2 (6.0 Gb/s, rx_err cleared) ends up in PHP_GRF_PHP_CON0
+and CON1 is never written.
 
-Hi,
+This leaves sata2 at its 1.5 Gb/s reset value, so the link only trains
+at 1.5 Gb/s, even with a 6 Gb/s capable disk and no SControl speed
+limit. sata0 and sata1 are not affected: their speed fields are in
+PHP_GRF_PHP_CON0 and are set by pipe_con0_for_sata.
 
-On Sat, Nov 07, 2026 at 01:00:54AM +0900, hyunjungg wrote:
-> From: Hyunjung Ko <hj351016@gmail.com>
->=20
-> Three power-supply drivers register a poll/detect/charger-detect work for
-> device-managed cancellation (devm_[delayed_]work_autocancel()) in their p=
-robe
-> *before* they register the power_supply via devm_power_supply_register().=
- devres
-> unwinds in reverse order, so on unbind the power_supply device is release=
-d first
-> and the work is cancelled last. The work handlers call power_supply_chang=
-ed()
-> and dereference the power_supply, so a work instance still pending/runnin=
-g in
-> that window touches the already-freed power_supply device -> use-after-fr=
-ee.
->=20
-> Each patch moves the devm work-cancel registration to *after*
-> devm_power_supply_register() (and before the IRQ/poll that arms the work)=
-, so
-> teardown drains the work before the power_supply is freed. No functional =
-change
-> otherwise. The relocated devm_[delayed_]work_autocancel() still runs its =
-INIT
-> before the work's first queue site, so no queue-before-INIT window is add=
-ed.
->=20
-> This is the same class as the recently-applied cimax2/extcon work-vs-devr=
-es
-> fixes. Found by static analysis / code review; none is reproduced on hard=
-ware
-> (each needs its charger/PMIC/gauge chip and is not QEMU-reproducible) -- =
-treat
-> accordingly.
+The register layout is described in the RK3588 TRM V1.0 Part1, section
+6.17 "PHP_GRF Register Description". Rockchip fixed this in their BSP
+kernel in 2022 by moving pipe_con1_for_sata to offset 0x0004.
 
-Please don not send direct AI output. You need to drop useless
-comments and trim down / rewrite commit messages to a sensible
-length. Instead of huge amount of spam.
+Tested with an mSATA SSD on sata2 (combphy2_psu). Before:
 
-Greetings,
+  ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+  Timing O_DIRECT disk reads: 374 MB in 3.01 seconds = 124.45 MB/sec
 
--- Sebastian
+After:
 
---3sgy7kbr5gvb4f26
-Content-Type: application/pgp-signature; name="signature.asc"
+  ata2: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+  Timing O_DIRECT disk reads: 1266 MB in 3.00 seconds = 421.78 MB/sec
 
------BEGIN PGP SIGNATURE-----
+Fixes: a03c44277253 ("phy: rockchip: Add naneng combo phy support for RK3588")
+Cc: stable@vger.kernel.org
+Link: https://github.com/rockchip-linux/kernel/commit/2f5fe2c0bbd4fa95102aadd60da1100989103aa0
+Cc: Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Signed-off-by: Ricardo Pardini <ricardo@pardini.net>
+---
+This fixes the pipe_con1 GRF offset for SATA in the RK3588 combphy
+table, so sata2 links train at 6 Gb/s instead of being stuck at
+1.5 Gb/s.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmrxHbIACgkQ2O7X88g7
-+poe5g/+ND+IudgGMavaYHWAq7LCDjhvxcm1V3Vn7sBhoNzaT22/LDNlL7a5VbPa
-TX00osbNQCELsH3CwfnCx46PmOAqWvQiLMz1yoTTMBxM5XSi4wRCEnUmvS0QJRP/
-KhDAeGaR+0t7FpgtTjKlM2AJP9NgjVB2NK4F5rlcdlKBUAyfHXGfp5kxVh2hv0ns
-Yo3wFquqlYxzXbHKVGUH9OsE/f3vuiSLhZPZh/UbUFGzzKzn+SmRDx2edMCTXYSP
-zNCDXhwqfclvwErrnEtCXxCYtAY9atPJr6FtSVz9SqYfI72n9Ms1QSGUikvv2fZv
-Iy2qmGFXqEuzIz5GboSvaFZN1+QsDfXXMe1+IlcutSsFOPi92uymSLFfoItLnw0b
-vOfSQWg2WmaPa1RfjwJhIaqS4UuGj9GXL9+GoIUNPw6coaA45Pqv+EDwY/j6mYwl
-0wsb8WUXnsZmcbIAZ4Rau5nsQyHU0FVQKajapECVLELodWIbKpV8nbijUMrUKlHf
-hbFnaJPST8I42E+tD3HG1W0n72viZ5smTUsBwh6P322430iUnGtAFmnI0Y7FJz9f
-CwHxdD0KEmiFJWjcGwUv+rhQVdhisCdv0b6wRS4YGrHHA/cypYsjbNxW9RyQvEQp
-1kvT+ScdETMReV5gctHUFd010wS0NcoLUc3syx1+ZPTYEQvfKH0=
-=yLSK
------END PGP SIGNATURE-----
+I found it when an mSATA SSD on sata2 would only link at 1.5 Gb/s,
+and traced it to Rockchip's BSP kernel, which fixed the same offset in
+2022 in a commit titled "config sata2 rate to 6G for rk3588" (linked
+in the patch). The RK3588 TRM V1.0 Part1 (section 6.17) agrees:
+sata2_phy_spdmode is in PHP_GRF_PHP_CON1, while the sata0/sata1 speed
+fields are in PHP_GRF_PHP_CON0 and already set correctly.
 
---3sgy7kbr5gvb4f26--
+The misplaced write lands in PHP_GRF_PHP_CON0[2:0], which are the PCIe
+link reset grant bits, and turns on the one for pcie3x2 whenever a
+combphy is put in SATA mode. I don't know of any effect from that, but
+this patch stops it too.
+
+Only sata2 was tested. U-Boot has the same table and the same problem;
+a fix is being sent there separately.
+---
+ drivers/phy/rockchip/phy-rockchip-naneng-combphy.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+index 3102a99128f6..c469222dba8b 100644
+--- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
++++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+@@ -1395,7 +1395,7 @@ static const struct rockchip_combphy_grfcfg rk3588_combphy_grfcfgs = {
+ 	.con3_for_sata		= { 0x000c, 15, 0, 0x00, 0x0407 },
+ 	/* pipe-grf */
+ 	.pipe_con0_for_sata	= { 0x0000, 11, 5, 0x00, 0x22 },
+-	.pipe_con1_for_sata	= { 0x0000, 2, 0, 0x00, 0x2 },
++	.pipe_con1_for_sata	= { 0x0004, 2, 0, 0x00, 0x2 },
+ 	.pipe_pcie1l0_sel	= { 0x0100, 0, 0, 0x01, 0x0 },
+ 	.pipe_pcie1l1_sel	= { 0x0100, 1, 1, 0x01, 0x0 },
+ };
+
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261024-rk3588-combphy-sata2-6g-03bb30151552
+
+Best regards,
+--  
+Ricardo Pardini <ricardo@pardini.net>
+
+
 
