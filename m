@@ -2,58 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C743606A332
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9355860A2603
 	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TTjugeiI;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=cRZQM0P3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T1nOxH1N;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=BRYyMCuK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fE34Cqytr+pkxpLaGRSuO+vPLII8SExZnPXqGngbbNM=; b=TTjugeiIik8stp
-	Bk1e/XrbGS9mjZUkVKd4eJ3FUFxFtzr9xy9QSLCwe1IWAq/3EyXCDwPlzr1+s+SD4cT9lDnLj4Uqq
-	BWrOXTVRP+TPj+ZoUh062U2b9omECk4PXmEw6//RrW7nBFQ1KzyQc9bbe5rExgJtZ54fMe2wFoCCo
-	6UGGfbnwp07DGe8abkWFlZfbdPDGGOnjIqlH2zBiEvsrdhtwNmyktpvrocWftCLuvYmZeXv7wAxjp
-	diahvFDwUBerXrc9Qg6/vKahFbmNwV3FC9SrtulPQKBBAc7YmhzYxd56194A5EtsgVskBnkbOiG+k
-	EEzwuStbt4lgG0MtymGA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nUua/tbbWwlMaCeJNjDfhyBL8S5KxCqgx/q4yCyX3M4=; b=T1nOxH1N86d6ID+fDwyEOINACA
+	QsH1nR0aroF30wObTowss8gJmSquOS5Sby0LyYMcagoxidkMh+EfIGLAEP7+ZWWdOgEa2Scys3kbz
+	9bAFnRR24iK5fALsRqlYJM9QbPpO+WMEjuR7vS2VsRff9MomxMd+vJeST+1pUX+9icwQqhq4qbKVX
+	j5DEeFA9CmfgqjOojtJ1xmcAjOYX4g+IrN45bO8ktYSo7oIAkHGMNIdbTL5q+QTT/G32oLPwgE58O
+	j5RT91nlVVeBPvPmpTgPM7rdiXHC8O24R8huonp4T6AKnjbkntsQH7b3RaaD7ZI/2CJdWR4I2hWef
+	ZV4KZQLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWrI-00000001kTF-0noM;
-	Mon, 09 Nov 2026 21:24:56 +0000
-Received: from mail-westus2azlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c005::5] helo=CO1PR03CU002.outbound.protection.outlook.com)
+	id 1xQWrE-00000001kPA-0Dx8;
+	Mon, 09 Nov 2026 21:24:52 +0000
+Received: from mail-westusazon11010069.outbound.protection.outlook.com ([52.101.85.69] helo=BYAPR05CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWrA-00000001kNA-0ZDO
+	id 1xQWr3-00000001kKm-0gYf
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 21:24:51 +0000
+	Mon, 09 Nov 2026 21:24:47 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xemTJEYbuFMpyg+0z4aKSZxpqdu2A9H/2CSpYQggHnjPwMX8ckDWXCiNeg6Wipo4/al5j0K4nwD+aSOboHZgmNU3uSjXqgf4TMCrvElES/fLdtmnsWL9LTnQMwdDOZG6gJ/uIIgIwqDb7/0gZIUc9R2OOq/AX7v/e8PqYWDNG2TtSEZIz/X98+4zTDx0G8DU63DO1waaMASLvmYfu7uSe72+DSLWuGWiyRw+KZ6XOaTSm7EncNhI9XSiYBaCF9ySpcje6Rc8LWXO50w0vb5N24yAmYVVhD6dUACoDbFEPMOAo0KJk9D6Lagbupc1R/+mcIoDjdHrIXN1jfAJMKMOLw==
+ b=GBbUPau+5j5jxdN4I9CXtFBWqGdhAddQrrWd8uusLRTeo40JbXSalZ6nfZzbo2iF0lYsY0VBEm2ZyqgLng9OmWTdF4ysIYimdZbFKPFVxVWgU2yRXP5FcZROuomigfvBzk0eWNmQXxtYZLvJr5AT7hUn147IWbU5XnjiV0+O74xt2qAvztyvAOgt+0ylWCSsUFUiSOR/1eJ75/+JsfGLZ/jIrijJPc1JZ+b66Odv0yW0n9MVkKFy/ljLSfFNxw9CL3UaxGKSJJbNrVI4Lpc3/RhYA4IVZgQuC2TMY9LQkiLEo5N0QlTXB7dXng1eyA1D/ZDUYCy4TYv8W14DrOB7dw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fE34Cqytr+pkxpLaGRSuO+vPLII8SExZnPXqGngbbNM=;
- b=sY29WHUXK8tkfzUlpdlv4qxxVlLNYiqecEPt1FeD3+EFTLYatx7A+aiEksCt7GOdYWt29v6J2uJEcI9jVsDILRLYIEzrb9xtcFdarWpyNm8hHDX2tFKj+jE0qpgvUCTok57HiXTTW4+dyEzvQ0tNvgrB3o76Sr0idx6MwBCnZ3m4eQ7lgtK8+Wmxg/nqKtYhxsD9+uLzJmmJcmlQlcz3rVJf3xwE59gaENkzizdR6xUlBBbDcStS17qXdm26pS9dZ40pwA6d2lrL0IIGTiS8Wim1bASAhU317+lnnePrTtLTJG1PimanrFq13i3gLMoiH5DCcWNJlvrCLmsHK1hQTw==
+ bh=nUua/tbbWwlMaCeJNjDfhyBL8S5KxCqgx/q4yCyX3M4=;
+ b=I394z6kxvn4zc8GgRekXxnsP2QqrqX7k3euq9hJIq+bjtCcxAf+ar3W7RLwY2TQl48SIMozZJ3yaErVMy55PWK2NkUhXptwq6xEYHljlTZXOdXrN0ND+y7yrecwFFOwWTC7/TfvpasyxQ6mewvcyknwsj4zOMq4/w61P/pk1Js7isEaJx4aGYxcqGyebNUUhybPiftllo0aNOXpD5KsvM4Uz9654PiStbEXz45h+Dyj5q7ObjuJ6D78H7/lss9EjtYV3PHTiJR9AOEXG7dQsGa7T9/Ad3Nh4euMe+mID0Ms0XJKJtxIMLvxgJTw7mLGUV3CwYl1lHwGVYtpdLgMxww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fE34Cqytr+pkxpLaGRSuO+vPLII8SExZnPXqGngbbNM=;
- b=cRZQM0P3T8dCoLmDLmrvP4gqBlmXICiQTQHbBXPmNf1vmrwSxQLTDZtL/QjMUgihDllY5YpzA8GjehNf/drgmkgWsTN1Kd4acCHrbHnpmkhCm8uNU7UMDr97At+PEO9hcyuF2hdOTiCmypBMqXs/r8eDnt92Z0CC3SGwLZI4vHYxkwVZ0j8EeEsiXDk9lSwt7z4mra3eOLnIN9dRXmrMr3v6mJ/IoUInUJCRmpxtF2FHbslI1FreepnLxkmx/QmKpwf4GWZ0BpoYKqgerD1uFgeUO+bkxBIFAS6UoHkj1oX7rhsOcrg9oI/8+pnpre56xEanAhXqmrtf8mKwWIheQA==
+ bh=nUua/tbbWwlMaCeJNjDfhyBL8S5KxCqgx/q4yCyX3M4=;
+ b=BRYyMCuKNknopg+JpBbRu3saOIuCz9HOHz4u88XRWVRpwaFWAJ+S4f8WCaD8Y+M/ITWrh85BB1INFeQUX+a8YFsaU1bQqnOgAdf3i/yc3ZJTzF2Ccm7B6Gr+l4nx61FvBntnKX92UwQNyimYl+hV3u1DeCwjuts7WfQ/nkKMipLpU+GeQ7LWZQKb8+x3tp0iPGpvghH5hcLvMrueNbuj/9deTxeL6ABEBJcl5CPmfXhziMUsaeSaXOA5WLkEy6iJ/bCjKzW0606Qobg7FKrPHhLY4aGVXhpXsMbvBY0LyidEJ3KFzP03LyMrW/LHB6vd9ET7M83TY9zhJLYBCtv3yQ==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com (2603:10b6:5:399::11)
- by IA3PR12MB024753.namprd12.prod.outlook.com (2603:10b6:208:53f::13) with
+ by PH8PR12MB7110.namprd12.prod.outlook.com (2603:10b6:510:22e::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Mon, 9 Nov
- 2026 21:24:43 +0000
+ 2026 21:24:34 +0000
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73]) by DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73%4]) with mapi id 15.21.0569.011; Mon, 9 Nov 2026
- 21:24:43 +0000
+ 21:24:33 +0000
 From: Fenghua Yu <fenghuay@nvidia.com>
 To: Reinette Chatre <reinette.chatre@intel.com>,
 	Tony Luck <tony.luck@intel.com>,
@@ -73,72 +74,79 @@ To: Reinette Chatre <reinette.chatre@intel.com>,
 Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Fenghua Yu <fenghuay@nvidia.com>
-Subject: [PATCH RFC v3 08/15] arm_mpam: Include all MSC components during domain setup
-Date: Mon,  9 Nov 2026 13:24:20 -0800
-Message-ID: <20261109212427.1409204-9-fenghuay@nvidia.com>
+Subject: [PATCH RFC v3 00/15] arm,fs/resctrl: ARM MPAM memory-level MSC and CPU-less NUMA nodes
+Date: Mon,  9 Nov 2026 13:24:12 -0800
+Message-ID: <20261109212427.1409204-1-fenghuay@nvidia.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261109212427.1409204-1-fenghuay@nvidia.com>
-References: <20261109212427.1409204-1-fenghuay@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0365.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::10) To DM4PR12MB5230.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0034.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::9) To DM4PR12MB5230.namprd12.prod.outlook.com
  (2603:10b6:5:399::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|IA3PR12MB024753:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f23f60b-15e5-4ff1-2de7-08df3ea7ded0
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|PH8PR12MB7110:EE_
+X-MS-Office365-Filtering-Correlation-Id: f5d01967-b593-4b3b-d3b0-08df3ea7d909
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|23010399003|1800799024|921020|11063799006|5023799004|56012099006|261021121427099003|261021123027099003|261022075727099003|261022105027099003|261009223027099003|261026140227099003|261028144727099003|261102123227099003|261026121527099003|10067099003|22082099003|18002099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: iq8rvEleb3jdag7QGrf3IFOry9N2ddBw8LtV+7VERJtttsO511faSXeOoR5Q0I8GHTqvUCOHT1MUtCzhFsAZ/oz83AXXyU8O+nGwbYmj2TjlrRhbKWmWVuWAAhXhXhFRLdxx8w7L2cWC/1NazctARznIFOJXHy2QP7sm3nHm9+fd1zLToXuLaWtKGYf2GVs+9KWuzJ8xVtHwrD4nN6CyG3KHa96oTKWkwx66MTlZbGYV5XTPhsD+jJLrqeMx9wx2aDMCxOUtfnKxLWMIiNYM6EE2xC2KDbv9ndWxRC16SWBUvB3s9fY+vXvIiARQ+oSMr0tDuJH63clxZktClfq41j31jyYoRYaVkbobPM2gE0ECZwNBiuG4zPntptzeDhrf6jcoF3jItLB2AY4oMMzLOXP0xUEQ9PYMdy6PUmp4/DuNhDJbQg9Aey8+pyVSMKqzMXqmXkN55r7tFtIZdPRBXI1hQKaCJFOGcwmf7P59Sm15vO4zKG5Z5NrAc90I7gTMFe+XyYzAN4VY1M1q9oker8/ate52PDbdXhqzKFQrXzEXDBZhZnTylkptfVNdhl9Om4I/XTYcso5DXFkARk6hakE2w0zDMxS7KdcZWk9u4MvNWUSimfwxpjZBtXej/XcPV0Pg1e6KIq52kWi4DbWt8RHFaDU6RXHlwBARan5FRtE8p3Oln2d2NF+fJiZGMc4f446SWnMnjKrNw6OIX4yt7g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(23010399003)(1800799024)(921020)(11063799006)(5023799004)(56012099006)(261021121427099003)(261021123027099003)(261022075727099003)(261022105027099003)(261009223027099003)(261026140227099003)(261028144727099003)(261102123227099003)(261026121527099003)(10067099003)(22082099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|23010399003|376014|7416014|18002099003|6133799003|10067099003|3023799007|921020|11063799006|56012099006|261028144727099003|261102123227099003|261026121527099003|261022075727099003|261022105027099003|261021123027099003|261021121427099003|261026140227099003|261009223027099003|260925021311599003|260925021911599003|260925022911599003;
+X-Microsoft-Antispam-Message-Info: 7dDoW1oobl1H+ekNi2EgntoYyIkmnlJeqx3g1XZbJzHGZW0LCcM3yhSuCO09XMuFEChbHQqGCvzhyV6eDGRK6NPbJpizboppeMlxUp6wCcGmM4WcMbCP1MfOw6AZX25rxdOGNKKU7f3x66i4Un25TGxtz5rwcabOOolPtel6CHFBa0iY1ncE3nNso8YOpQJWbvM+iN+hIEq9PzyuTZPTUkV9yEnXhvGmtE2e2cmf3/nD7zXkAo3/42lRmbbk1xaMJbsz9md3koSc47PUH4mdGeiDsfWe48HOPjLW2tl8QbXsxBMqQnmz0kqzYzdzqsYl3PNGtvLfPOEjQ2DfGYlCP1SVyTZswNLLS/xhFrh+BUiFFci7svxiKy7oGDcw5Xql/xkO29L7CSxNAZuTuW7yzHiuCWhvrcfWGzyr194awtLBzHxqNWuwuFx7bxerqmAPXVvaJ+JLXX3b/SB4O4hKnYI8NYcpw1qtzBm7e9zWITd+rXC7c+CT/N+DIXDBUijjhvVjLW/830aAV8CugJ6d3O8M3w6V0Wpz78DawaMPCeftOyTpRsXjFll5nJEjU08G0B7s4OUKe/QmxYprKDK8ZcEOOHHr7Ffqx5JVXaSGAjtT5b9z0eYHcB0ix0aNEgAkxQqPByox79pcSnhezFm7blKNdvmzU26XNuyI2p5Oj3XuTIzLWo8A7izrjToaUn/65hrsNOrDHpDe7rMm5UJNfg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(7416014)(18002099003)(6133799003)(10067099003)(3023799007)(921020)(11063799006)(56012099006)(261028144727099003)(261102123227099003)(261026121527099003)(261022075727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261026140227099003)(261009223027099003)(260925021311599003)(260925021911599003)(260925022911599003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QZAGUrLttYjSOsWkvh/lWghTg1w7Li+ponkzmvxubHdiZcCsN2713OIfSJtS?=
- =?us-ascii?Q?4XryTe3Lz8itjgwWQh39zYJZKxA8vexyqzIDjIrnMuIk9G8dvyjEEnjeXMlm?=
- =?us-ascii?Q?MOYQY9Pi6bSVL4U18QSlAxzfRqYahMmzgXeC7btTkWCmeH6MpAPr4zHp1HzR?=
- =?us-ascii?Q?tlNqwYEOj4cJutTOiInQ+vYKXhQNEKPPkN1wlpH+4mcUONQ61svbrTYD+t6M?=
- =?us-ascii?Q?LblG3uwYh0Sd8LpumPl91NtPD9ne80Qm25ssK5j3pAcSWWLVMrulGDcudSXS?=
- =?us-ascii?Q?LZVcSu4Br8hE3zGIVR13O9wqfGGj/5tc44FsGWKzXcAWLhTLp5dkdrZAsy4f?=
- =?us-ascii?Q?RA5p+uvkw0Jsl1JbXH/hdGxWDQ7PpXJm/3uTeONl1WGU07nKANvtDbYUGy3l?=
- =?us-ascii?Q?V/UW3EBAZXOD3NdztfgxBZUUGGr1Br5wnwIzt88S+/fU6ZFTKB/JVPu5ETeB?=
- =?us-ascii?Q?fwzDCqaG8M62ZKpbS1Hd4m1rYLBcNoxaFnFZ6qfw5W9BJ+n+NfGQnLBuINJI?=
- =?us-ascii?Q?c7sMbOYqheyi8UE8g+ox+Mk18SPBq92Pwnvnv7hai1CniIL56RiMUgP0TCkC?=
- =?us-ascii?Q?KTAjlOWpTZUavb8COysrZMpPAnnb41wgLSwqyabCxh6TiXfVVLkxeS3dxrl+?=
- =?us-ascii?Q?piWo+FXp0+u6oJ7CtExnij0vlevkegRXlYPMiffYTjpxnZo16WuimzobkatU?=
- =?us-ascii?Q?PkUnp8BjuVp0AdF+fKIyRrkZ0yLgzbhYNUCX8zcOmMN4kz7XX/os4GRAO+Er?=
- =?us-ascii?Q?fCcE3mIz+EvUsRsfDHVwpVJ1al/bqrFTieF8k3vqrO7WgEZMoXITeeIqVKj6?=
- =?us-ascii?Q?FAASGzstNfEP3HcrIxvCg/kRQxCGS8HuYtYAbChfP3EAVhnkn4oLpVrByNXm?=
- =?us-ascii?Q?+86GCaTE2vd/vZqfK0byabsWnrM/FtWd1BJtcZ4JskcHrHvV5qonJ36Y9pI1?=
- =?us-ascii?Q?wPYsP3sWD59sMMsTh8TsruqiodKQquuNMcdz3ewl9ZU4Rec1zdVE9mX4p3dF?=
- =?us-ascii?Q?z5RtBZaNkP0ls0hpe7ss7dYztE/DExYvdJJzG53CdSjJ0pkYIswNoqu04y+J?=
- =?us-ascii?Q?fV3Nw3cqc/oL+ZJeCwPYCAWRrpAeSmqEjtevW7DnYM1Zgm3WUBiQCxDhvCz4?=
- =?us-ascii?Q?3WL9kvsfOzOPQBT3Qezy4lpBv4a71NE9Jp5y9zoS717FB8MNQmPi++FRUEYn?=
- =?us-ascii?Q?kwJuyiU30OyKmowsVuhM8FYOhbdsYY0NGVlTMMdPgAORcA+7U9o5LbIIEZN4?=
- =?us-ascii?Q?Tfj8KHNYgDZcABPDvreUHRvwjWqfUGZAGu8TVnEcxn9XYWtVkVs4c6ORwxrN?=
- =?us-ascii?Q?mp58ADR4m5/pDTisKDWex0hQxOAjy1Sh0V5EX4Za5381Qtu4gj6mYgc+D8Aj?=
- =?us-ascii?Q?N9wLLioN54D81/5y8NGsH/VGbw9+4g/w3+6Z3LUCe6q2b4lttOafrITedEeM?=
- =?us-ascii?Q?7ZRjdly4bJgPepVyLOgSSoH9X/puXjrsebW76d0oL3wD0y06W8CCVTri4SLD?=
- =?us-ascii?Q?sNv4BAU8Q3VQtOKwZ9e0ALZd2UOqOYT59ANkfms8fmXwSLMHdAEoGclgtaBC?=
- =?us-ascii?Q?/C/Tbo5e8fESDqDM6Rby0OzWZXd++imIcR7P10ZY83LoXm5mrhjPuzcfzxbE?=
- =?us-ascii?Q?iKFr9xURZ6UNusF7ioqfugj9fnFBBMhTylq+X9WgYbrIA4F++JRccVUYRFUn?=
- =?us-ascii?Q?9yDDGlFsX77Tbuhh5+1f0euSXnqxFjgn0rwnNbOUS3/LvyZVFc6Yn9gDm48W?=
- =?us-ascii?Q?HwZu/qYcGA=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SHJYRGRJMnZYUjdYSStqTFRqbmZIc25DVGpzb01EQTVOMnRlRERibTQrVVpH?=
+ =?utf-8?B?WEJQOXRpRTNaODB4b2ZaNUx1QTRQeFFVREVVdEp3ZWFzbWJBaWpsangwT2gy?=
+ =?utf-8?B?WExPdVU4cmxoWEYyRFg2MUx5SHluVkc3VDhhT0I5R0gxT0lmZkpUN1ZBRzRQ?=
+ =?utf-8?B?NzR6T2tnSjVPR0d3SHRnTzRSanVwUmxTbkM4Qnk4UERLNnpJLzE3UVF0dHpZ?=
+ =?utf-8?B?VUtRR2p2Rnp2bS9GL0t4dkllV3MvMGRlMjBzSlZaa1BrK0FnYmlZN2U1R01D?=
+ =?utf-8?B?QUxHbXNFSnFNcGZxdXNnTm1lKzdxQ3V3aDlSNzNQaU42RkpUb01EQTdzRFlV?=
+ =?utf-8?B?anpTd1MyQzlMRHhCQ1FBUVlBa3U5SGZPTjNPVjZLbTYrcmdUNHZuRFdxVStr?=
+ =?utf-8?B?d2R3VFVnTFZPekYrZ3BJQk90djNvamFhalZFQzRVNHBaaWowVTRRVGVZdVBo?=
+ =?utf-8?B?Q0E2aVZHaTIwa1l2T3dmaEVGYmgwanZ3eXIxUDhMYTFBQ203TlNzMURqOWNm?=
+ =?utf-8?B?N082KzdFTnZBVkZ2VmEzNlIwcGtoK3B2d1hJWDZXYndhcjZPd3d0RGFJelZm?=
+ =?utf-8?B?SkJNU3NMUlhrcmhUK1NzbGZTSUZ4TFIyVnBHdnJ5ZHYwdzhWSHRObmVaUjFB?=
+ =?utf-8?B?WXpvZ0xZeDAyMjNsazl3NmwyQlhWRHZGR3ZpdURKMUo4TlcrRWVUVTZvQ251?=
+ =?utf-8?B?bzZ5QThxQ0hNN3pzbjNGZUk5Yjd0Um5kaC9NM1IzUzF1NGdpb3B3Y2RGWVNl?=
+ =?utf-8?B?ZHh5Uzc4S1dXclJyL0oyVXh0SHdDSVhaeHZweGorOE00M1lZczBoSWFhR2Vl?=
+ =?utf-8?B?Y3BTelZiMEpkVlgwaFlDMTBjQjQxVjZEaFZQaG02cXNZb1F2K2RITi8ySDF2?=
+ =?utf-8?B?bThsdmU1SmQvOVgxWVBQc1JCd3J1TzlDMVlvd2ZkeDU5ZkhiTzVzRVpYUmhq?=
+ =?utf-8?B?R2dHUkU5dlkvb05wWDBsUjFzMkJEbFVHdDJ1WkVCbjNHRkhGa0dyNExVUER2?=
+ =?utf-8?B?S2NhSzl1TkNGTkhNMlhsNzB2R0RMa2VVM1k3UnNselFkS01xMlluM3dmSnhX?=
+ =?utf-8?B?RCtVQWovVWFsb0t2WWpiQTRqK0xnRlJhZ0VDR05ZRGVucEZweHo4cXFHUFla?=
+ =?utf-8?B?M0NwaFpoZk5MUDl3WFZGNExZQ1Era1pkc2FQT3l4dTA5Vk9UeVQybi9CcTNI?=
+ =?utf-8?B?aDdocVhPS2MySVhsdjdadVB5dmcwRTg4TmRlZ0gxb2VkZXorSlM1d2Q4U1dD?=
+ =?utf-8?B?MmozWjJPZGdmU2laTW9GREc2ZmZHMkEyNUFzQlRVNHB0WjZLZy94dldwTDNE?=
+ =?utf-8?B?d1BGeVBPcW9WRzduWVZndmt5dFlJY04zWHoya0djU213TVhYQzY5Q3N0OUhV?=
+ =?utf-8?B?SjJaQVIxcmtvT01wS0ZUVnlKbndLc0hhRDcycWhDUjREemtuMmZub3ZBcmZo?=
+ =?utf-8?B?S0VnaXkyRUQzR0xSZlpkMkNwQ1dIMk9MRHlMT0hFNytQNFN1Z0d2OFJSMXNk?=
+ =?utf-8?B?dHp2RFppRU55aWFoc2IrNlRoOUVJZW85cVNYWVkwZ1ZaUlBqM0k1V0ZBUDBp?=
+ =?utf-8?B?M2FucnhjQ01RWHhWK2xMTGk0ZEUyTVRaaTNnMTdJWWFsMkU2TXZQQUtCbDBH?=
+ =?utf-8?B?R2lMd29rdFFyc3RZU0o3MTNuazJpK29YMTdRZFdDQ1l1dS9MdzI5NDlReWND?=
+ =?utf-8?B?RlNsdzNNd0xPayttS2FXQWhBRjhLZDRWQ1ZQbDg2VmRqL1NEY3FEUThSMk9E?=
+ =?utf-8?B?Y0lpSGlPR0FjU3JpN1pLZXFZbUk1eElxMDZCNDhPeHBsZGovdmJiazFkRS93?=
+ =?utf-8?B?SFVlV3hQek9EOE5RWFB5MzRLMXQ2MDhLeWVNRHM5N3lvT0Z5MVk3NUFRcTZw?=
+ =?utf-8?B?d3Q3ODNXSmx3QVdkNURvVHZQZ2hPcldMTnpJTDFhOCtnbnpOcXh4Nzk0TGVK?=
+ =?utf-8?B?ZlFaMnBLSE9iRmpGd2k1MGhRZG1UdTFzcjdvOTlFeTZxblExd1VIVTJnNjJY?=
+ =?utf-8?B?QnB5R3laU2FYUkV5SnVTUXAvZllkeC9IcVBqSzEvYndMQVRpV1Avc2ZERTNE?=
+ =?utf-8?B?S3ZPc0pkZUlLM1JiQ1hpKy9Ea1hvaWxnSEhwTWtpUkQ1YTNRQm1KK2NyS0Mr?=
+ =?utf-8?B?YS83clZoRlA2US9QK0FuSEdGOFdBSVAwZXZ0bUpXVFJmNXVQeUk3bnlGbWRl?=
+ =?utf-8?B?YmdWL0Z0ZUxDYTR4dnZLZnM0RzE5NEhBRDgzWGZTa1ZkQ0FBMVg4dUVpSm1O?=
+ =?utf-8?B?aGExSXBRRzBERHRDaXcxaXhHZlZYWGJUZ0xVc21mNXNJdEVOZTFWT0pjU1gz?=
+ =?utf-8?B?S1NIK2JHZjNIUXpkY1BaQ2dnbVo5WFlxWlZmUXEvckpjU3Y1YW53QT09?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f23f60b-15e5-4ff1-2de7-08df3ea7ded0
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5d01967-b593-4b3b-d3b0-08df3ea7d909
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5230.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:43.0246
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:33.3062
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mwnMYAK1mNnMc8FL8o4fdTyBkWI7n53H3cj6FRnDoBVhJsv5Yi26xXE82MWyikSczRtVTiOwyc1NSahDHXNdVA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR12MB024753
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7x+H6xOi63DqaPc2aqql3HJXV/BxvrBmnQ2QM6S9yo8z12sJJ6aRH2tZdFWdTRl9f6ZulUD2HNZfd3G77xBBKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7110
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_132448_272222_9C612D1D 
-X-CRM114-Status: GOOD (  19.37  )
+X-CRM114-CacheID: sfid-20261109_132441_247715_615F3516 
+X-CRM114-Status: GOOD (  14.68  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -152,418 +160,196 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Iterate all MSC components per CPU when creating and looking up control
-and monitor domains on the controls branch. Key monitor domains by
-component, support MBA mon_capable lookup, and report mon capability
-from any L3 or MBA monitor resource.
+This series extends memory-bandwidth monitoring and control to ARM MPAM
+memory-level MSCs, including CPU-less NUMA nodes, and documents the
+resulting resctrl interfaces.
 
-A memory-class MSC keeps control_mode legacy and names its control NODE,
-so the schemata line is MB_NODE in both legacy and native mode. A cache
-MSC keeps the MB line.
+Background
 
-Signed-off-by: Fenghua Yu <fenghuay@nvidia.com>
----
- drivers/resctrl/mpam_resctrl.c | 209 +++++++++++++++++++--------------
- fs/resctrl/ctrlmondata.c       |   1 +
- include/linux/resctrl.h        |   3 +
- 3 files changed, 127 insertions(+), 86 deletions(-)
+On x86, MBA bandwidth control is typically associated with the L3 cache:
+schemata lines use L3 cache ids and monitor domains appear as mon_L3_XX.
+On some ARM MPAM systems the MBA control and MBWU counters are backed by
+a memory-level MSC rather than the L3 cache MSC.  A memory-level MSC is
+represented as a NUMA node, and that node commonly has no CPUs of its own
+(a memory-only node that still participates in bandwidth control).
 
-diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-index 72302f6021d7..ac0c488abe12 100644
---- a/drivers/resctrl/mpam_resctrl.c
-+++ b/drivers/resctrl/mpam_resctrl.c
-@@ -95,11 +95,27 @@ static bool mpam_class_memory(struct mpam_class *class)
- 
- bool resctrl_arch_mon_capable(void)
- {
--	struct mpam_resctrl_res *res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
--	struct rdt_resource *l3 = &res->resctrl_res;
-+	enum resctrl_event_id eventid;
-+	struct mpam_resctrl_mon *mon;
-+	struct mpam_resctrl_res *res;
-+	struct rdt_resource *r;
-+
-+	for_each_mpam_resctrl_mon(mon, eventid) {
-+		if (!mon->class)
-+			continue;	// dummy resource
-+
-+		if (mpam_class_memory(mon->class))
-+			res = &mpam_resctrl_controls[RDT_RESOURCE_MBA];
-+		else
-+			res = &mpam_resctrl_controls[RDT_RESOURCE_L3];
-+
-+		r = &res->resctrl_res;
-+
-+		if (r->mon_capable)
-+			return true;
-+	}
- 
--	/* All monitors are presented as being on the L3 cache */
--	return l3->mon_capable;
-+	return false;
- }
- 
- bool resctrl_arch_is_evt_configurable(enum resctrl_event_id evt)
-@@ -1293,8 +1309,18 @@ static int mpam_resctrl_control_init(struct mpam_resctrl_res *res)
- 		break;
- 	case RDT_RESOURCE_MBA:
- 		r->ctrl_scope = RESCTRL_L3_CACHE;
-+		/*
-+		 * control_mode stays legacy. emulated_by is left empty so
-+		 * legacy and native mode expose the same schemata line.
-+		 * A memory-class MSC is node-scoped, so that line is
-+		 * MB_NODE. A cache MSC keeps the MB line.
-+		 */
-+		r->ctrl_mode = RESCTRL_CTRL_MODE_LEGACY;
- 		mpam_ctrl->r_ctrl.type = RESCTRL_CTRL_SCALAR;
--		mpam_ctrl->r_ctrl.name = RESCTRL_CTRL_NAME_DEF;
-+		if (mpam_class_memory(class))
-+			mpam_ctrl->r_ctrl.name = RESCTRL_CTRL_NAME_NODE;
-+		else
-+			mpam_ctrl->r_ctrl.name = RESCTRL_CTRL_NAME_DEF;
- 		INIT_LIST_HEAD_RCU(&mpam_ctrl->r_ctrl.domains);
- 		INIT_LIST_HEAD(&mpam_ctrl->r_ctrl.emulated_by);
- 
-@@ -1731,13 +1757,12 @@ static struct mpam_component *find_component(struct mpam_class *class, int cpu)
- 
- static struct mpam_resctrl_dom *
- mpam_resctrl_alloc_ctrl_domain(unsigned int cpu, struct mpam_resctrl_res *res,
--			       struct resctrl_ctrl *ctrl)
-+			       struct resctrl_ctrl *ctrl,
-+			       struct mpam_component *comp)
- {
- 	int err;
- 	struct mpam_resctrl_dom *dom;
- 	struct rdt_ctrl_domain *ctrl_d;
--	struct mpam_class *class = res->class;
--	struct mpam_component *comp_iter, *ctrl_comp;
- 	struct rdt_resource *r = &res->resctrl_res;
- 
- 	lockdep_assert_held(&domain_list_lock);
-@@ -1745,28 +1770,17 @@ mpam_resctrl_alloc_ctrl_domain(unsigned int cpu, struct mpam_resctrl_res *res,
- 	if (!r->alloc_capable)
- 		return ERR_PTR(-EINVAL);
- 
--	ctrl_comp = NULL;
--	guard(srcu)(&mpam_srcu);
--	list_for_each_entry_srcu(comp_iter, &class->components, class_list,
--				 srcu_read_lock_held(&mpam_srcu)) {
--		if (cpumask_test_cpu(cpu, &comp_iter->affinity)) {
--			ctrl_comp = comp_iter;
--			break;
--		}
--	}
--
--	/* class has no component for this CPU */
--	if (WARN_ON_ONCE(!ctrl_comp))
-+	if (WARN_ON_ONCE(!comp))
- 		return ERR_PTR(-EINVAL);
- 
- 	dom = kzalloc_node(sizeof(*dom), GFP_KERNEL, cpu_to_node(cpu));
- 	if (!dom)
- 		return ERR_PTR(-ENOMEM);
- 
--	dom->ctrl_comp = ctrl_comp;
-+	dom->ctrl_comp = comp;
- 
- 	ctrl_d = &dom->resctrl_ctrl_dom;
--	mpam_resctrl_domain_hdr_init(cpu, ctrl_comp, r->rid, &ctrl_d->hdr);
-+	mpam_resctrl_domain_hdr_init(cpu, comp, r->rid, &ctrl_d->hdr);
- 	ctrl_d->hdr.type = RESCTRL_CTRL_DOMAIN;
- 	err = resctrl_online_ctrl_domain(r, ctrl, ctrl_d);
- 	if (err)
-@@ -1784,13 +1798,12 @@ mpam_resctrl_alloc_ctrl_domain(unsigned int cpu, struct mpam_resctrl_res *res,
- }
- 
- static struct mpam_resctrl_dom *
--mpam_resctrl_alloc_mon_domain(unsigned int cpu, struct mpam_resctrl_res *res)
-+mpam_resctrl_alloc_mon_domain(unsigned int cpu, struct mpam_resctrl_res *res,
-+			      struct mpam_component *comp)
- {
- 	int err;
- 	struct mpam_resctrl_dom *dom;
- 	struct rdt_l3_mon_domain *mon_d;
--	struct mpam_class *class = res->class;
--	struct mpam_component *comp_iter, *ctrl_comp;
- 	struct rdt_resource *r = &res->resctrl_res;
- 	struct mpam_component *any_mon_comp = NULL;
- 	struct mpam_resctrl_mon *mon;
-@@ -1801,24 +1814,14 @@ mpam_resctrl_alloc_mon_domain(unsigned int cpu, struct mpam_resctrl_res *res)
- 	if (!r->mon_capable)
- 		return ERR_PTR(-EINVAL);
- 
--	ctrl_comp = NULL;
--	guard(srcu)(&mpam_srcu);
--	list_for_each_entry_srcu(comp_iter, &class->components, class_list,
--				 srcu_read_lock_held(&mpam_srcu)) {
--		if (cpumask_test_cpu(cpu, &comp_iter->affinity)) {
--			ctrl_comp = comp_iter;
--			break;
--		}
--	}
--
--	/* class has no component for this CPU */
--	if (WARN_ON_ONCE(!ctrl_comp))
-+	if (WARN_ON_ONCE(!comp))
- 		return ERR_PTR(-EINVAL);
- 
- 	dom = kzalloc_node(sizeof(*dom), GFP_KERNEL, cpu_to_node(cpu));
- 	if (!dom)
- 		return ERR_PTR(-ENOMEM);
- 
-+	dom->ctrl_comp = comp;
- 
- 	/*
- 	 * Even if the monitor domain is backed by a different
-@@ -1833,7 +1836,7 @@ mpam_resctrl_alloc_mon_domain(unsigned int cpu, struct mpam_resctrl_res *res)
- 		if (!mon->class)
- 			continue;       // dummy resource
- 
--		mon_comp = find_component(mon->class, cpu);
-+		mon_comp = comp ? comp : find_component(mon->class, cpu);
- 		dom->mon_comp[eventid] = mon_comp;
- 		if (mon_comp)
- 			any_mon_comp = mon_comp;
-@@ -1870,25 +1873,32 @@ mpam_resctrl_alloc_mon_domain(unsigned int cpu, struct mpam_resctrl_res *res)
-  * for anything that is not a cache.
-  */
- static struct mpam_resctrl_dom *
--mpam_resctrl_get_mon_domain_from_cpu(int cpu, struct mpam_resctrl_res *res)
-+mpam_resctrl_get_mon_domain_from_cpu(int cpu, struct mpam_resctrl_res *res,
-+				     struct mpam_component *comp)
- {
--	int cache_id;
- 	struct mpam_resctrl_dom *dom;
- 	struct rdt_resource *r = &res->resctrl_res;
-+	int id;
- 
- 	lockdep_assert_cpus_held();
- 
--	if (r->rid != RDT_RESOURCE_L3)
--		return ERR_PTR(-EINVAL);
-+	if (!r->mon_capable || !res->class || !comp)
-+		return NULL;
- 
--	if (!res->class)
--		return ERR_PTR(-EINVAL);
--	cache_id = get_cpu_cacheinfo_id(cpu, 3);
--	if (cache_id < 0)
--		return ERR_PTR(-EINVAL);
-+	if (r->rid == RDT_RESOURCE_L3) {
-+		id = get_cpu_cacheinfo_id(cpu, 3);
-+		if (id < 0)
-+			return NULL;
-+	} else if (r->rid == RDT_RESOURCE_MBA) {
-+		id = comp->comp_id;
-+	} else {
-+		return NULL;
-+	}
- 
--	list_for_each_entry_rcu(dom, &res->resctrl_res.mon_domains, resctrl_mon_dom.hdr.list) {
--		if (dom->resctrl_mon_dom.hdr.id == cache_id)
-+	list_for_each_entry_rcu(dom, &r->mon_domains, resctrl_mon_dom.hdr.list) {
-+		if (dom->ctrl_comp != comp)
-+			continue;
-+		if (dom->resctrl_mon_dom.hdr.id == id)
- 			return dom;
- 	}
- 
-@@ -1896,14 +1906,19 @@ mpam_resctrl_get_mon_domain_from_cpu(int cpu, struct mpam_resctrl_res *res)
- }
- 
- static struct mpam_resctrl_dom *
--mpam_resctrl_get_ctrl_domain_from_cpu(int cpu, struct resctrl_ctrl *ctrl)
-+mpam_resctrl_get_ctrl_domain_from_cpu(int cpu, struct mpam_resctrl_res *res,
-+				      struct resctrl_ctrl *ctrl,
-+				      struct mpam_component *comp)
- {
- 	struct mpam_resctrl_dom *dom;
- 
- 	lockdep_assert_cpus_held();
- 
-+	if (!comp)
-+		return NULL;
-+
- 	list_for_each_entry_rcu(dom, &ctrl->domains, resctrl_ctrl_dom.hdr.list) {
--		if (cpumask_test_cpu(cpu, &dom->ctrl_comp->affinity))
-+		if (dom->ctrl_comp == comp)
- 			return dom;
- 	}
- 
-@@ -1914,6 +1929,7 @@ int mpam_resctrl_online_cpu(unsigned int cpu)
- {
- 	struct mpam_resctrl_res *res;
- 	enum resctrl_res_level rid;
-+	struct mpam_component *comp;
- 
- 	guard(mutex)(&domain_list_lock);
- 	for_each_mpam_resctrl_control(res, rid) {
-@@ -1924,30 +1940,40 @@ int mpam_resctrl_online_cpu(unsigned int cpu)
- 		if (!res->class)
- 			continue;	// dummy_resource;
- 
--		if (r->alloc_capable) {
--			for_each_resource_ctrl(ctrl, r) {
--				dom = mpam_resctrl_get_ctrl_domain_from_cpu(cpu, ctrl);
--				if (!dom) {
--					dom = mpam_resctrl_alloc_ctrl_domain(cpu, res, ctrl);
-+		guard(srcu)(&mpam_srcu);
-+		list_for_each_entry_srcu(comp, &res->class->components, class_list,
-+					 srcu_read_lock_held(&mpam_srcu)) {
-+			if (!cpumask_test_cpu(cpu, &comp->affinity))
-+				continue;
-+
-+			if (r->alloc_capable) {
-+				for_each_resource_ctrl(ctrl, r) {
-+					dom = mpam_resctrl_get_ctrl_domain_from_cpu(cpu, res,
-+										    ctrl, comp);
-+					if (!dom) {
-+						dom = mpam_resctrl_alloc_ctrl_domain(cpu, res,
-+										     ctrl, comp);
-+					} else {
-+						struct rdt_ctrl_domain *ctrl_d =
-+							&dom->resctrl_ctrl_dom;
-+
-+						mpam_resctrl_online_domain_hdr(cpu, &ctrl_d->hdr);
-+					}
- 					if (IS_ERR(dom))
- 						return PTR_ERR(dom);
-+				}
-+			}
-+			if (r->mon_capable) {
-+				dom = mpam_resctrl_get_mon_domain_from_cpu(cpu, res, comp);
-+				if (!dom) {
-+					dom = mpam_resctrl_alloc_mon_domain(cpu, res, comp);
- 				} else {
--					struct rdt_ctrl_domain *ctrl_d = &dom->resctrl_ctrl_dom;
-+					struct rdt_l3_mon_domain *mon_d = &dom->resctrl_mon_dom;
- 
--					mpam_resctrl_online_domain_hdr(cpu, &ctrl_d->hdr);
-+					mpam_resctrl_online_domain_hdr(cpu, &mon_d->hdr);
- 				}
--			}
--		}
--		if (r->mon_capable) {
--			dom = mpam_resctrl_get_mon_domain_from_cpu(cpu, res);
--			if (!dom) {
--				dom = mpam_resctrl_alloc_mon_domain(cpu, res);
- 				if (IS_ERR(dom))
- 					return PTR_ERR(dom);
--			} else {
--				struct rdt_l3_mon_domain *mon_d = &dom->resctrl_mon_dom;
--
--				mpam_resctrl_online_domain_hdr(cpu, &mon_d->hdr);
- 			}
- 		}
- 	}
-@@ -1961,6 +1987,7 @@ void mpam_resctrl_offline_cpu(unsigned int cpu)
- {
- 	struct mpam_resctrl_res *res;
- 	enum resctrl_res_level rid;
-+	struct mpam_component *comp;
- 
- 	resctrl_offline_cpu(cpu);
- 
-@@ -1976,31 +2003,41 @@ void mpam_resctrl_offline_cpu(unsigned int cpu)
- 		if (!res->class)
- 			continue;	// dummy resource
- 
--		if (r->alloc_capable) {
--			for_each_resource_ctrl(ctrl, r) {
--				dom = mpam_resctrl_get_ctrl_domain_from_cpu(cpu, ctrl);
-+		guard(srcu)(&mpam_srcu);
-+		list_for_each_entry_srcu(comp, &res->class->components, class_list,
-+					 srcu_read_lock_held(&mpam_srcu)) {
-+			if (!cpumask_test_cpu(cpu, &comp->affinity))
-+				continue;
-+
-+			if (r->alloc_capable) {
-+				for_each_resource_ctrl(ctrl, r) {
-+					dom = mpam_resctrl_get_ctrl_domain_from_cpu(cpu, res,
-+										    ctrl, comp);
-+					if (WARN_ON_ONCE(!dom))
-+						continue;
-+					ctrl_d = &dom->resctrl_ctrl_dom;
-+					dom_empty = mpam_resctrl_offline_domain_hdr(cpu,
-+										    &ctrl_d->hdr);
-+					if (dom_empty) {
-+						resctrl_offline_ctrl_domain(&res->resctrl_res, ctrl,
-+									    ctrl_d);
-+						kfree(dom);
-+					}
-+				}
-+			}
-+
-+			if (r->mon_capable) {
-+				dom = mpam_resctrl_get_mon_domain_from_cpu(cpu, res, comp);
- 				if (WARN_ON_ONCE(!dom))
- 					continue;
--				ctrl_d = &dom->resctrl_ctrl_dom;
--				dom_empty = mpam_resctrl_offline_domain_hdr(cpu, &ctrl_d->hdr);
-+				mon_d = &dom->resctrl_mon_dom;
-+				dom_empty = mpam_resctrl_offline_domain_hdr(cpu, &mon_d->hdr);
- 				if (dom_empty) {
--					resctrl_offline_ctrl_domain(&res->resctrl_res, ctrl, ctrl_d);
-+					resctrl_offline_mon_domain(&res->resctrl_res, &mon_d->hdr);
- 					kfree(dom);
- 				}
- 			}
- 		}
--
--		if (r->mon_capable) {
--			dom = mpam_resctrl_get_mon_domain_from_cpu(cpu, res);
--			if (WARN_ON_ONCE(!dom))
--				continue;
--			mon_d = &dom->resctrl_mon_dom;
--			dom_empty = mpam_resctrl_offline_domain_hdr(cpu, &mon_d->hdr);
--			if (dom_empty) {
--				resctrl_offline_mon_domain(&res->resctrl_res, &mon_d->hdr);
--				kfree(dom);
--			}
--		}
- 	}
- }
- 
-diff --git a/fs/resctrl/ctrlmondata.c b/fs/resctrl/ctrlmondata.c
-index 4bc7090ad0c7..77a2f2e877a6 100644
---- a/fs/resctrl/ctrlmondata.c
-+++ b/fs/resctrl/ctrlmondata.c
-@@ -359,6 +359,7 @@ static const char * const resctrl_ctrl_name[] = {
- 	[RESCTRL_CTRL_NAME_DEF]		= "",
- 	[RESCTRL_CTRL_NAME_MIN]		= "MIN",
- 	[RESCTRL_CTRL_NAME_MAX]		= "MAX",
-+	[RESCTRL_CTRL_NAME_NODE]	= "NODE",
- 	[RESCTRL_CTRL_NAME_REGION0_MIN]		= "REGION0_MIN",
- 	[RESCTRL_CTRL_NAME_REGION0_MAX]		= "REGION0_MAX",
- };
-diff --git a/include/linux/resctrl.h b/include/linux/resctrl.h
-index 195c0948b26d..3c4675656b51 100644
---- a/include/linux/resctrl.h
-+++ b/include/linux/resctrl.h
-@@ -398,6 +398,8 @@ struct resctrl_mon {
-  *				has the same name as the resource.
-  * @RESCTRL_CTRL_NAME_MIN:	"MIN"
-  * @RESCTRL_CTRL_NAME_MAX:	"MAX"
-+ * @RESCTRL_CTRL_NAME_NODE:	"NODE". With resource name "MB" the schemata
-+ *				line is "MB_NODE".
-  * @RESCTRL_CTRL_NAME_REGION0_MIN:	"REGION0_MIN"
-  * @RESCTRL_CTRL_NAME_REGION0_MAX:	"REGION0_MAX"
-  */
-@@ -405,6 +407,7 @@ enum resctrl_ctrl_name {
- 	RESCTRL_CTRL_NAME_DEF,
- 	RESCTRL_CTRL_NAME_MIN,
- 	RESCTRL_CTRL_NAME_MAX,
-+	RESCTRL_CTRL_NAME_NODE,
- 	RESCTRL_CTRL_NAME_REGION0_MIN,
- 	RESCTRL_CTRL_NAME_REGION0_MAX,
- 	RESCTRL_CTRL_NAME_LAST = RESCTRL_CTRL_NAME_REGION0_MAX
+For that resource the schemata line is MB_NODE and its identifiers are
+NUMA node ids.  Monitor domains are named mon_NODE_XX.  MBM counter
+assignment is exposed as mbm_NODE_assignments.  An L3-cache MSC keeps the
+MB schemata line, mon_L3_XX domains, and mbm_L3_assignments.
+
+info/MB/control_mode stays legacy.  emulated_by is left empty, so legacy
+and native mode expose the same schemata line.  MB is not emulated by
+MB_NODE, and the assignment file name does not follow control_mode.
+
+Because the memory-level MSC lives on a CPU-less NUMA node, the driver
+must handle nodes with no local CPUs.  mpam_ris_get_affinity() derives
+affinity from the component's NUMA node id, so a memory-only node would
+otherwise end up with an empty CPU mask and never be registered.  When
+the derived mask is empty, the driver falls back to cpu_possible_mask
+(masked by MSC accessibility) so the node still gets a resctrl domain.
+The borrowed affinity is kept out of class->affinity: those CPUs already
+contribute through CPU-ful nodes in the class, and subtracting the
+borrowed mask on teardown would remove CPUs that other live nodes still
+depend on.  Domain setup iterates all MSC components per CPU (keyed by
+component), so each component — including these CPU-less memory nodes —
+gets its own control and monitor domain.  A memory hotplug lock and a
+NUMA node notifier bring those domains online and offline.
+
+Examples
+
+** Memory-level MSC (for example a platform with CPU-less nodes).
+   control_mode is legacy by default.  Both legacy and native mode show
+   the same schemata line.  Domain ids are NUMA node ids.
+
+info/MB/control_mode          # [legacy] native
+info/MB/schemata/MB_NODE
+
+schemata:
+MB_NODE:0=100;1=100;2=100;10=100;18=100;26=100;34=100;35=100
+     L3:1=ffff;2=ffff
+
+mon_data/mon_L3_01/llc_occupancy
+mon_data/mon_NODE_01/mbm_total_bytes
+
+CTRL_MON and MON groups expose mbm_NODE_assignments when MBM is backed
+by the NUMA-node MSC.
+
+** L3-cache MSC only (no memory-level MSC).  Both modes show MB:.
+   Domain ids are L3 cache ids.
+
+info/MB/schemata/MB
+
+schemata:
+MB:1=100;2=100
+L3:1=ffff;2=ffff
+
+mon_data/mon_L3_01/llc_occupancy
+mon_data/mon_L3_01/mbm_total_bytes
+
+CTRL_MON and MON groups expose mbm_L3_assignments.
+
+The patches can be compiled but not tested on x86 yet.
+
+The 15 patches are grouped as follows:
+
+1. resctrl monitor infrastructure (patches 1-5)
+
+   Generalise the monitor infrastructure beyond hard-wired L3 paths:
+   de-hardcode L3 monitor plumbing, expose MBA MBM counter assignment as
+   mbm_NODE_assignments, name node-scoped monitor domains mon_NODE_<id>,
+   add a node-scope MBM total event, and make MBM handling resource-aware.
+
+2. ARM MPAM memory-level MSC (patches 6-8)
+
+   Map monitor classes to L3 or MBA, initialise ABMC on the resource that
+   owns the MBWU monitor, refine class selection so a memory class can
+   back MBWU, and iterate all MSC components per CPU when creating
+   domains.  A memory-class MSC names its control NODE, so the schemata
+   line is MB_NODE.  A cache MSC keeps MB.
+
+3. CPU-less NUMA nodes (patches 9-11)
+
+   Take the memory hotplug lock with the CPU hotplug lock, fall back to
+   cpu_possible_mask for a memory MSC with no local CPUs, and add a NUMA
+   node notifier so CPU-less domains come online and offline.
+
+4. Documentation (patches 12-14)
+
+   Document mbm_NODE_assignments, memory-level MB control and NUMA nodes
+   in the arm64 MPAM guide, and MB_NODE schemata lines and mon_NODE_*
+   monitoring in the resctrl documentation.
+
+5. Test (patch 15)
+
+   Add a KUnit test for CPU-less NUMA node affinity handling.
+
+Apply the patches on top of [1].
+
+Testing
+
+  # KUnit (CPU-less affinity)
+  sudo cat /sys/kernel/debug/kunit/mpam_devices_test_suite/results
+
+This series is in https://github.com/fyu1/linux/  cpu_less.rfc.v3/
+which is on top of [1].
+
+Change Log:
+RFC v3:
+- Drop MB control emulation.  MB is no longer emulated by MB_NODE.
+  control_mode stays legacy and emulated_by is empty, so legacy and
+  native mode show the same schemata line.  A memory-level MSC shows
+  "MB_NODE:" and uses NUMA node ids.  An L3-cache MSC shows "MB:" and
+  uses L3 cache ids (Ben).
+- Drop the MB emulation kselftest and the emulation documentation (Ben).
+- Drop mbm_assign_scope_mode.  "mbm_NODE_assignments" is exposed when
+  MBM is backed by a NUMA-node MSC.  "mbm_L3_assignments" is exposed
+  when MBM is backed by an L3-cache MSC.  The file name does not follow
+  control_mode.
+- Series is now 15 patches.
+
+RFC v2:
+- Remove fix patches 1-2 which are implemented in [1]
+- Remove the emulation patches 3-8 which are implemented in [1]
+- Update emulated_by to *emulated_by in patch 11. Ben seems
+  doesn't like to emulate MB by MB_NODE. If that's case, I can
+  remove this patch. But for now, I keep this patch for further
+  discussion.
+- Add patch 13 to implement legacy and native modes to emulate
+  "mbm_L3_assignments" by "mbm_NODE_assignments" in patch 13.
+- Add patch 9 for memory hotplug locking (Ben)
+- Add patch 12 for memory hotplug notifier (Ben)
+RFC v2:
+https://lore.kernel.org/lkml/20260831172245.42253-1-fenghuay@nvidia.com/
+
+RFC v1:
+https://lore.kernel.org/lkml/cover.1784217438.git.fenghuay@nvidia.com/
+
+[1] Reinette's resctrl control branch RFC v2: git://git.kernel.org/pub/scm/linux/kernel/git/reinette/linux.git branch resctrl/controls_rfc_v2.4
+
+Fenghua Yu (13):
+  resctrl: De-hardcode L3 monitor infrastructure
+  resctrl: Expose MBA MBM counter assignment sysfs
+  resctrl: name node-scoped monitor domains mon_NODE_<id>
+  resctrl: Add node-scope MBM total event
+  resctrl: Make MBM paths resource-aware
+  arm_mpam: Support memory-level MSCs and ABMC per class
+  arm_mpam: Refine L3 topology and class selection
+  arm_mpam: Include all MSC components during domain setup
+  arm_mpam: Handle CPU-less numa nodes
+  Documentation: resctrl: document mbm_NODE_assignments
+  Documentation: arm64: mpam: document memory-level MB control and NUMA
+    nodes
+  Documentation: resctrl: document NUMA-node MBA domains and mon_NODE
+    monitoring
+  arm_mpam: Add KUnit test for CPU-less NUMA node affinity
+
+James Morse (2):
+  fs/resctrl: Take memory hotplug lock whenever taking CPU hotplug lock
+  arm_mpam: resctrl: Add NUMA node notifier for domain online/offline
+
+ Documentation/arch/arm64/mpam.rst     |  95 ++--
+ Documentation/filesystems/resctrl.rst |  54 ++-
+ drivers/resctrl/mpam_devices.c        |  59 ++-
+ drivers/resctrl/mpam_internal.h       |   8 +
+ drivers/resctrl/mpam_resctrl.c        | 664 +++++++++++++++++++++-----
+ drivers/resctrl/test_mpam_devices.c   |  67 +++
+ fs/resctrl/ctrlmondata.c              |   6 +-
+ fs/resctrl/internal.h                 |   9 +-
+ fs/resctrl/monitor.c                  | 226 ++++++---
+ fs/resctrl/pseudo_lock.c              |   3 +
+ fs/resctrl/rdtgroup.c                 | 148 ++++--
+ include/linux/memory.h                |   1 +
+ include/linux/resctrl.h               |  31 +-
+ include/linux/resctrl_types.h         |  15 +-
+ 14 files changed, 1079 insertions(+), 307 deletions(-)
+
 -- 
 2.53.0
-
 
