@@ -2,69 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 414A2606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 02:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8255B606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 02:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Lakrt+wQ;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=RSzMaBpz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yR0MiJYc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=We4ESE2til4bSkM1vEMn0soL7vZrg8WY8DZ2Y26nFnk=; b=Lakrt+wQAIHUAz
-	iTuRyCZ9VPfKBTh2GV2hE+3sgOr5QE+f0aIylkMjE/Y6E2pRZzfOnEAJ7UzCysSrtOzs66RVeTud+
-	8BxYL1xjB9zc94KRzWrhDke0wWE0DzVeLQweiy8nzsPovXkv62j0cLFW9P9Dgp/6Hy+a79gey23br
-	cKpmp8ZXCSYLwCSiKLmvXAjepk7crIe6kUFRFaMkgYySk9PikNlZjyb5/EqheDwOeHlCOAyhLepXX
-	Rx4qgvx5My+tRa8dP/tWA1CzJigREm7+ABstOrj0wWxKsotgYgEdwij8KTF7GS3F+cKYQBybgNdiX
-	kLCAFszqJQyTbQ5D8ozw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=get9ljy+UfLeTYxtFfA5K653EnMiLg25/XGdzuB6N6Q=; b=yR0MiJYcqVDB39gsyI1QXzCpvd
+	mOzyXrNx8n6HF6VlzSLa3rGSmR5w7Wr4QlYZl1VUUlO0MYGi6udoiKO14RShZlkcffwoYMc5H5j4Z
+	/nKzsb6iWI5S6EFGeVHdx/KXt5svvoeX6jdxVAeWfuK6BjQNjqbH8MARDvTRgNELQ3mhhFvLIQNHi
+	1mPXMWeql3IuqayMy/n1a9Rr86rwWuba2t5qKn2JAibtDUWMwRyRBQirAdPCWnSXVxVoCgoY6zdDk
+	P+7OxLJmnut5x5vrbXLZgmaKtkpJTabxVuiEJOkGsDX+h+QYH+Z+GU0MwPOmFaMSPGUDpCrKyD4de
+	J9sqD+vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQEmr-0000000H6NO-0Zoj;
-	Mon, 09 Nov 2026 02:07:09 +0000
-Received: from mail-m9352.xmail.ntesmail.com ([103.126.93.52])
+	id 1xQEnu-0000000H6TX-1NKo;
+	Mon, 09 Nov 2026 02:08:14 +0000
+Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQEmo-0000000H6Mv-01r6;
-	Mon, 09 Nov 2026 02:07:08 +0000
-Received: from [172.16.12.48] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 53eeadfd9;
-	Mon, 9 Nov 2026 10:06:57 +0800 (GMT+08:00)
-Message-ID: <60fbb95c-63cc-4d22-9e2b-51332a50054d@rock-chips.com>
-Date: Mon, 9 Nov 2026 10:06:55 +0800
+	id 1xQEnr-0000000H6T0-0Uux
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 02:08:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FVlnhv54xzclJQURjS3peZpYc5+b/aLFECQN/jCp4oISNuKWOPsArB3LzgcD2Amzv23gppSCppNIivb+ur3NS1n8dQvQETvBXLbTu4lPiDfL7g+i/1JVDSlnrHdb8mcXMzxC6TLE/+LAerrmoyCMSgixzqA4xSNtSFCfgL671fgjBvEaOCCoqqTUMdyk0xmxLey7+Uq8z8h872wRu4Z1iswiX8N7iBRZdfcHAmyzn6kyvCz7/Gdp8NE38Bl5kP7IbAxjlPODiwi+r15Iewl/iNwU8yrXwXSjXdZ0vKkQ1/Wr/YA0fuIoBKqIFonU6b1auyjAJQkENknrURaqE2VjaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=get9ljy+UfLeTYxtFfA5K653EnMiLg25/XGdzuB6N6Q=;
+ b=vWbYoVpkCAakQYa/EBRIlj4UQuPb97HQmUidAQFYlVs63myQoJ5swNc8zpKi/AJk2xDFoUQI9LV78oKZXnmoPtleEraZ5c/3I7zIgwKuuTphOEAFoL51spHdgLSEg8+mvbeuFC8a0J0UlyWpF0UeIoMDkybnWcaIeuqd8XSwkVzCkVgzaRKgdHe3mxZwrW70Exw6jNYADsE9q1vaj30OXHRiugczFxWiRJBYVWlvKqbgzaW0qQG6ZcWKivhnZihoczxHRH3zUHKfHwjc/D3ugWN2fGnlcSieS1jvhI6BhIuIXIK18nJeDGOlG5sNf8x1DAl44nuwiH+7vkXWkKyh4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SE2P216CA0153.KORP216.PROD.OUTLOOK.COM (2603:1096:101:2c1::9)
+ by TY0PR06MB5428.apcprd06.prod.outlook.com (2603:1096:400:219::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.6; Mon, 9 Nov 2026
+ 02:08:00 +0000
+Received: from TY2PEPF0000AB8A.apcprd03.prod.outlook.com
+ (2603:1096:101:2c1:cafe::5e) by SE2P216CA0153.outlook.office365.com
+ (2603:1096:101:2c1::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.12 via Frontend Transport; Mon, 9
+ Nov 2026 02:08:00 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB8A.mail.protection.outlook.com (10.167.253.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 9 Nov 2026 02:08:00 +0000
+Received: from gary-System-Product-Name (unknown [172.16.64.55])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 498C74102E61;
+	Mon,  9 Nov 2026 10:07:59 +0800 (CST)
+Date: Mon, 9 Nov 2026 10:07:58 +0800
+From: Gary Yang <gary.yang@cixtech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fugang Duan <fugang.duan@cixtech.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH 4/4] arm64: dts: cix: add RTS5453 PD controllers to Orion
+ O6
+Message-ID: <avEq_ngShxlvFSbS@gary-System-Product-Name>
+References: <20261107011012.3655873-1-gary.yang@cixtech.com>
+ <20261107011012.3655873-5-gary.yang@cixtech.com>
+ <65af581e-caac-430a-88b1-3b7425c5209e@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, =?UTF-8?Q?Enrique_Hern=C3=A1ndez_Bello?=
- <ehbello@gmail.com>, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, bhelgaas@google.com, robh@kernel.org, heiko@sntech.de,
- linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 0/2] PCI: rockchip-host: Retry training and hot-reset
- a JMB585 on RK3399
-To: Igor Velkov <iav@iav.lv>
-References: <20261024-rockchip-pcie-resume-v1-0-58e54a5cf5f1@iav.lv>
- <20261106-rockchip-pcie-ltssm-trace-1@iav.lv>
- <6c9adabe-d632-471e-8fc1-aafe62115167@rock-chips.com>
- <20261109-rockchip-pcie-deskew-result-1@iav.lv>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20261109-rockchip-pcie-deskew-result-1@iav.lv>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1be0f01f703a4kunm84dec09857da6c
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1kYFggdWUFKV1ktWUFJV1kPCRoVCBIfWUFZQ0hKGlZIH01CGUNDTk
-	5MQk9WFRQJFhoXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0
-	tIVUJCSU5LVUpLS1VKQktCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=RSzMaBpzKBX5tqLpuWQ15ZQyFDH114v8q2IeBzHG+Vp+GQV3bxrhL7Kcukqj4D585i+sB7hqCNAmmV5+6/8cW1TRIEKMKs7Cvk18QPkUaOOQk3gusQTpcjDlblAIqw8/pktunXi45CRaK61wjrAV/kL9AvGg/8sY2nt5fnKVZUg=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=We4ESE2til4bSkM1vEMn0soL7vZrg8WY8DZ2Y26nFnk=;
-	h=date:mime-version:subject:message-id:from;
+In-Reply-To: <65af581e-caac-430a-88b1-3b7425c5209e@kernel.org>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB8A:EE_|TY0PR06MB5428:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9bed19be-9232-4f0b-eed6-08df3e0647c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|23010399003|36860700016|1800799024|82310400026|4143699003|56012099006|261021121427099003|261022105027099003|261022075727099003|261009223027099003|261026140227099003|261028144727099003|261026121527099003|261102123227099003|10067099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: aApyjdlYxx+w0NF/Wj269Haomxp6Ah/RuCzIcrQwsgv/zvE3l0EnBNJx1Rsllle2CWYqGQ3DY8yushgQbn7Nh93efV/e4rHbjBcgj+JQCriJmIlDATjba/HRF91fzmMqlJmWh6FJqFlI0auv/RED85AqB51JsJWPPpej9Uec1sNsI7PXQ1Ib1TolXGjSv6pDee6IsqqVgV3x0ZhB5jRuMNeAfb5ZYVPSk40+M5N6VrMs/pM7Rz2emwIFtEJG558ThLp8qAvlKWZDmxIetiEJANmtsEoxFdvNI1cUFzmcr09Z08ymwv9n77S/DaCrPXwafpdaYxX1YdQsCVRA2Dz9W5rTzVS78PD0WFZZRMWQ82eYb5B6Z+3J9jqrsmrPzSkFRFYm+vnGIeE3r2XBxgk6QQpttW7XYEEgGfRVqapX+etloSMKXFYZMJ3GgIsuuE19zkwEYIArIDd/ErKcf+tpNKdpS3khyGZTVVvs3oOQ+Zw8aUCHZJO+bXP9RvAPEcnoyHHYoLOpdu6fTnRdMn8tO1uwl6liB4rvVtcQ7QUKq4CN/DFtMgrtQvZ9iiehmr96UW6WF6Z3YjoNAwmZhSLsd05ytR6QOL1KPUPwmtWrJfFRMDMnW/S8wshTygGgnuQPhSyQ8aaJqryNQ1FXsuDkIMYYuKtxhLhbovRZOKjm2hlh7KpOrvB9LzzMEycaUiJA
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(23010399003)(36860700016)(1800799024)(82310400026)(4143699003)(56012099006)(261021121427099003)(261022105027099003)(261022075727099003)(261009223027099003)(261026140227099003)(261028144727099003)(261026121527099003)(261102123227099003)(10067099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: FAgghdDsfqbUMu6ATlLEBYTh2e/E9bho5XTpx7MNcDwwAufvyZVFA+dIoNFtsnd0KCcVVsdRjhcN5R4BF6geF5PFsX8nrH3EoGufWydgrL6BVLHZHkRaIOKquy7k5vjFa2toicSz2GKm/VTMoAbP1CW7ccFIThk2JplIEe05+uRURdsgEW99G0dvbMvZm1+feaY4OEjzOJ56ddT3/vICUmcRzL9M1h06pErIrkLBT3TsJMjCt0Xzb1t3wfXZy6Ri05hyKpBcO6NtyDmKgaSpUEnV5S76RAk92fXowkzaftpZY0b+3L8MXjuvnrwneR0vD45GQUuIO0A69NoZ5uWIO26AimsBBNqdqct/gZRE5bs2nXaUmmA/rAJc/XGhXI7LXVhAglAO5eVhRf74npJeSvx3CiguFbHTldUcheJ85asM2ZjBYisq3ofJk5eO0Xs2
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 02:08:00.2028
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bed19be-9232-4f0b-eed6-08df3e0647c0
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: TY2PEPF0000AB8A.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR06MB5428
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_180706_615483_3C16E329 
-X-CRM114-Status: GOOD (  15.11  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261108_180811_158479_A2FDD1E5 
+X-CRM114-Status: GOOD (  20.50  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,53 +120,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-在 2026/11/09 星期一 7:05, Igor Velkov 写道:
-> Hi Shawn,
-> 
-> Thanks. Deskew makes no difference. Helios64, x2, bind/unbind, variants
-> alternating every cycle, bad link bring-ups:
-> 
->    defaults 6/104, auto deskew off + trim 0xf: 5/104
->    defaults 6/104, magnitude off: 6/104
-> 
-> Your mail has the magnitude at 0xb, but TRM V1.3 part 2, 17.6.10.1 has
-> TX_TERMINATION_TRIM there and DESKEW_MAGNITUDE at 0xc, so I wrote 0xc.
+hi Krzysztof:
 
-Sorry, my typo.
+Thanks for your comments!
 
-> 
-> DEBUG_DATA_OUT did show something. With Debug Mux Control (0x208) = 5,
-> share of samples with in_dllp0_data_valid set, 100 ms window after hot reset:
-> 
->    good bring-ups 0.16% (99), bad bring-ups 51% (3, range 45-53)
-> 
-> The first training looks the same: 0.15% (97) against 47% (5). mgmt_dllp_error,
-> crc32_error and in_tlp_error stay 0 in all of them. With the mux at 4,
-> start_replay, replay timeout and dl_protocol_error stay 0 too.
-> 
-> So in a bad bring-up the RC receives a constant error-free stream of DLLPs.
-> I read that as the JMB585 repeating flow control init because it does not
-> get what the RC sends, but this bus does not show the DLLP type. It would put
-> the fault in the RC to JMB585 direction, on x2 only.
-> 
-> Is there an RC transmitter setting worth trying for that, such as swing or
-> de-emphasis? If not, I will stop looking for the cause here.
-> 
+On 2026-11-07 11:53, Krzysztof Kozlowski wrote:
 
-Reg 0xa is for swing, it says: "This value should be set to (64-56*0 .9/
-VDD09) depending on actual voltage of VDD09"
-
-But de-emphasis is fixed in each kind of bus speed.
-
-> Igor
+> EXTERNAL EMAIL
+> 
+> On 07/11/2026 02:10, Gary Yang wrote:
+> > Describe the two Realtek RTS5453H port controllers on the Orion O6
+> > I2C1 bus and add the I2C1 pin configuration.
+> >
+> > The controllers route orientation and DisplayPort mode changes
+> > through the USB/DP combo PHY lane switches, but that PHY support is
+> > not upstream yet, so the connector graph endpoints are left out for
+> > now. The Type-C ports are still registered and reported, only the
+> > lane switching is deferred until the PHY nodes are available.
+> >
+> > Both controllers report through the same level-triggered interrupt
+> > line, which the driver handles with a shared interrupt. The I2C bus
+> > runs at 100 kHz because the RTS5453H I2C interface does not support
+> > higher rates.
+> >
+> > Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> > ---
+> >  arch/arm64/boot/dts/cix/sky1-orion-o6.dts | 51 +++++++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> 
+> DTS cannot be combined in this patchset and must be split. Don't mix
+> patches from independent subsystems when you send something explicitly
+> targeting only one subsystem.
+> See also: Documentation/devicetree/bindings/submitting-patches.rst
 > 
 
+Do you mean the driver does not depend on DTS? Previously, it was acceptable
+to put the DTS at the end of a patchset or place the DTS in a separate patchset. 
+That’s why I put the DTS at the end of the patchset. Has the rule changed now?
+
+Best Regards,
+Gary
+> 
+> Best regards,
+> Krzysztof
 
