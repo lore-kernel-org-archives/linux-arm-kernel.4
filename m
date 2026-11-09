@@ -2,185 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1177C60A3837
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 09:29:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D591606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 09:32:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WwLbFzP2;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=nh7xE3Nm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iHOWWlrk;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=nwDDVGgq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=AK236fqNk7tKsGhDQcCG2hLzYXXEM3Pjaykmc74C2Tc=; b=WwLbFzP2yY7WVWH7EgQxj41sDm
-	L5cHGSMgnOCOeczeJZKUoYUpMJSkPJxjPcEw2+eOUmSbBDYuqgPBw1olRV2d8ziancUwc6W7TFoHW
-	QqB+zQffC46CZItSF4Wk10ya/CJcprJg0OxjBadW0urS36JLqLEg3I0i2KqczYXNOFB6+3AGiAnB5
-	Goqk9NjabNcXrCUptq/f8wMHW5iosHbtlsejapzm1S4QGTWmB4LmWdG8/1Syizs6v1lp7Ij0idvSt
-	B1oM179TMU5jXVDYNMXgBJQrgWARvFAITKcGMZk8raTjsvL8ROl6UBDbZ5iCC4UZmdVtPLBNSv1Iu
-	A0BQOdKw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AyIpW8eH61e9AeB9SCGJmhgkbl/82Zp5c93VDtyC5BE=; b=iHOWWlrkRZHBie
+	wg4TRw06tzqLqNdguIMXNpeWHvQf4WSUzgoMJbj46C5nDoxztnfnkWZnq13PpuI8keE2gIh00BAYd
+	FIPAC1LwQFU1g/WNVl8oCdlnImEAyPmobOZv+Qja6IOGMrvEuksyRlky3rrclGk3lZWGCzKsyaKTt
+	jMMOcAvBhQticfD3AuQsHXFLFxXEGEsqFdCJiw01Dp/QxB3gbQb08L+26DeF5XXcg5Cl2T/MmlNOu
+	5ta/8SZkujHifvMirs35Yt//3XBErcNdWA50uq2TzTw1C9gmqCHQ4a54pUfrYfRLHKDLD7auiZwlu
+	XrkhF4pdsXlM5ZFvfKSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLgR-00000000GQV-1AVy;
-	Mon, 09 Nov 2026 09:28:59 +0000
-Received: from mail-eastus2azon11011046.outbound.protection.outlook.com ([52.101.57.46] helo=BN8PR05CU002.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLgN-00000000GPb-0uX6;
-	Mon, 09 Nov 2026 09:28:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Jf5la4ck72Sx/C9IU6Rfiu/sbnyQvIcj+vZG5LYXYAzZ7Ol1PWVv5tdZS2J9xzyNFtTiziOl+HX9yvaNPwcD3/u6DVlpsDgISE5/qR7fsDLhaFgP9aRkWnBOMGb3xWHjexaaLI5r50Zd5iuiu2SPwuu9UC4kTROkepHMJPkGeSPT+oEcVuiaTxv+lCe9X3iVGcI1Zu47+vK+kV3KCUWgmAkbC0YkIdU7QFSkr8Ts4tfixZuIc+D9hjeLLJG0lkeoyZpzwHLJYI89wBalrn2Y6O/KW0+2ASJXO1XSY90zBijEkVzuLk+x6+hp2nWN+8l61IzEBBgUfdLHIdynv3eoKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AK236fqNk7tKsGhDQcCG2hLzYXXEM3Pjaykmc74C2Tc=;
- b=WjDfVreknXndhfdUbZgARUyhuVIzEpwOUv4zP7wdphcEc3NM80Y2Zh/Re1ZYYr8QDE6HHtb5wvsswKFvYg1HbWB7i+rTWlJ0QWuhb5qk6Oo2TmTDZpoHx3gMT3iTQdtCSK3Fdb2co45N1wHYus6sVYp8IC3RHQbpZsiiOv+QRFV83PxbXVy2cux1ZE23shNPSLou2dqX29Fo0L84iGR2YBcDpWI/gPhENQo80ruU91UCUNATTqsNyo82PJF9FLnYhNK/V54WpNyg4NRDE9b14jZsJYzrBGkAiDaPqo5jrUFU2NyO3BkSQMu5+tp8quclT5CUHTr+lXSuEOXNNjstnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AK236fqNk7tKsGhDQcCG2hLzYXXEM3Pjaykmc74C2Tc=;
- b=nh7xE3Nmu9qF73efM/2QZMYpyc9pyhqweORhatyxxjqAW2CymxgsNh3cAQA8GmN0NZsCjnfdp/YRXC0aLaaxBj2P8kjn4Knk6veozQdDNaN0EHMMHmExei5OjrRlglodxUn7Q/ZRgdHDV/dLxD2XQq+x1MHiaLaxVQ9qSgLG1CQ=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from LV5PR12MB9779.namprd12.prod.outlook.com (2603:10b6:408:301::14)
- by IA0PPFAF4999BF6.namprd12.prod.outlook.com (2603:10b6:20f:fc04::be0) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
- 2026 09:28:45 +0000
-Received: from LV5PR12MB9779.namprd12.prod.outlook.com
- ([fe80::8ac8:e862:8ae9:9287]) by LV5PR12MB9779.namprd12.prod.outlook.com
- ([fe80::8ac8:e862:8ae9:9287%5]) with mapi id 15.21.0592.010; Mon, 9 Nov 2026
- 09:28:45 +0000
-Message-ID: <2755837d-a7bd-4220-ab80-5a05289424c0@amd.com>
-Date: Mon, 9 Nov 2026 10:28:40 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mailbox: convert to subsys_platform_driver()
-To: Brian Masney <bmasney@redhat.com>, Jassi Brar <jassisinghbrar@gmail.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20261106-mailbox-subsys-v1-1-a0696237223d@redhat.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <20261106-mailbox-subsys-v1-1-a0696237223d@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR13CA0164.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::19) To LV5PR12MB9779.namprd12.prod.outlook.com
- (2603:10b6:408:301::14)
+	id 1xQLTt-00000000CCf-1gSl;
+	Mon, 09 Nov 2026 09:16:01 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQLTm-00000000C13-2Ieg
+	for linux-arm-kernel@lists.infradead.org;
+	Mon, 09 Nov 2026 09:15:58 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A5B5515A1;
+	Mon,  9 Nov 2026 01:15:50 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C25863FA1F;
+	Mon,  9 Nov 2026 01:15:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794215753; bh=PUSili5RFf7gpMIwxF/gPMYJpl253O16tc2DlysRYs8=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=nwDDVGgqUb2ygijB6ddCtGOlxQ62hbkO8AARFyymSThi33RQoFfDVN4ud16Lc71Qp
+	 YgVoayVu9T5EFztqkmuPcAUZuV060l4f/xq9WWeotta+GQcPemBfk2/7e5BkRKJYuq
+	 vN1diod9CERcJFM1JwUDNqtdGRqqCpAVTJOLQuPU=
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: sudeep.holla@kernel.org,
+	james.quinlan@broadcom.com,
+	f.fainelli@gmail.com,
+	vincent.guittot@linaro.org,
+	etienne.carriere@st.com,
+	peng.fan@oss.nxp.com,
+	michal.simek@amd.com,
+	d-gole@ti.com,
+	jonathan.cameron@oss.qualcomm.com,
+	elif.topuz@arm.com,
+	lukasz.luba@arm.com,
+	philip.radford@arm.com,
+	david@kernel.org,
+	souvik.chakravarty@arm.com,
+	leitao@kernel.org,
+	kas@kernel.org,
+	puranjay@kernel.org,
+	usama.arif@linux.dev,
+	kernel-team@meta.com,
+	Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v15 18/35] firmware: arm_scmi: Add Telemetry DataEvent read capabilities
+Date: Mon,  9 Nov 2026 09:12:04 +0000
+Message-ID: <20261109091221.2532706-19-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20261109091221.2532706-1-cristian.marussi@arm.com>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV5PR12MB9779:EE_|IA0PPFAF4999BF6:EE_
-X-MS-Office365-Filtering-Correlation-Id: 734718bd-c825-4982-c982-08df3e43d9f7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|18002099003|22082099003|10067099003|11063799006|261028144727099003|261022075727099003|261022105027099003|56012099006|261026140227099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: x1E7dtu7TG5V/MgC3AZr5NpJAwuhMkKYDYGmIMg+AtOVPtW2srYOWO0T8zG5YpP8KJSk0ISYasaA6ertaDH7rZPA7S6xfjChiSH8AAaEb55oZpM9JyxXS0DUbFzP2NpU5lXw3lI/FRJeKHucrWH5lo8/+v7UgeDlsyBcADxat2Gi6i5f/27UoN/ZhoTlcveFuWO6tQPWzvsYnoLqulfDlatQpHfaNVmzSBeX62tnEVdImuM5o7qJH26MgU7RB5OjD1nAbOE4eOvh3Yp48gDHx/mCAQnARtGzbupKHMwTe4hbr298kmAELpuXp4GZTf5dgBgOyCXpAa2ULhKp8JQ5RrfPgHNvj/VwVITxBdIbQyafPhi6CY1Nha11kB+LZImAjdEBlu/5oN+ohuRdA6Ni45mfa+mAu86uI2+LcQlDfeHN0TM2a8MhbLWsfBy0ZCN72EMwlCsFJRek3XJQ4CWFTbkvk3rUUWHNVHrIMcspE5aEVxxU7FlRmM2+rT8oloW39IA1kUJO9Rbp1PDo68SsLJvrH9hxrSFoYU2Pq75nXi2ttye9JEDnR/YOZVpZbk97wwuULFp1pX90NhJC/5f9K+YsoaHRuFODLBJwTnAh9SagIpN2GVR6mOj26ggVO+1WVQGlGVIpT/BVabm6tAaauyJoewwMel2RlWPdqu0fH/k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV5PR12MB9779.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(22082099003)(10067099003)(11063799006)(261028144727099003)(261022075727099003)(261022105027099003)(56012099006)(261026140227099003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHQ1bEtVWXlNTFhyTHVLZzNISmpxL3lGOWF4SnJGMXZ4dXJaME93TUxYSHNs?=
- =?utf-8?B?bXJmV2tZMHlCNi9tdXlFQTgvWXVaWHdOTFdZeVk3YVk1QWtxYmtYZXIvVmJC?=
- =?utf-8?B?TExmakRCR1ZqZU5RWjRTbjMzQlFnbGp4bkE5V3p6OGNTZStxL1pmRStjbmdJ?=
- =?utf-8?B?QU1TZjhwWmlJdElrNG01L2ExWG9hVlJ5S0xqVmgzMXY0M0UrSVVBSmVmeW1n?=
- =?utf-8?B?WGtmSXBEdGZHRE1icktGcTlYZktkbXM4b1V0SmZuOEs3N3VhVnpqbXhOMkdU?=
- =?utf-8?B?eTVJN3hUNU5nRXJ2WEJDRXZlMkVSL0tscXBVOHNEYmxFYk1QcCttTHUrRkN5?=
- =?utf-8?B?WDROVld0bHNJd1RacElzUHJid2pucWw2QmNsQjF1eFV6N3RPa0YxT1huaFhK?=
- =?utf-8?B?d01od3kzZS9UcWhtM0p1dlplZnhORWRKbEtQOGdWVzlZQTI4OGNLV0EvNDJY?=
- =?utf-8?B?TWFhMUcrK1lEYko4QUU0dlcwMTJ6YllEUU03WmJvcVVnWjNtUVZHQmdaSGFP?=
- =?utf-8?B?RE5EN2NmUzJURXRVYkErTTBERXdaQzg3MHZuc1dVK0xyVFFxZ21uTFFNYTJG?=
- =?utf-8?B?NHdkRC9xVUlsTzNsN0VoYzBVMXJ4QWZDd0dpSGJUMFM5dzFHUllyYjY5R2p6?=
- =?utf-8?B?V1R2RFFndk9Ra2RsTnJuQ2syMTAwSXAvTysrOVFjRzJxVTBoSURRVXJJSjF3?=
- =?utf-8?B?MmhhdzNCRFg5bllxclB0ZnE5ekcyK3RpNmMyQkJtZmxCOExBUklvU2RUTFJR?=
- =?utf-8?B?ZDVrRFJNTXNIdGw1dmdQa284Q1h6RGJySUE2QmxLeVJKdklSV3BjbGtOTDB1?=
- =?utf-8?B?aUJtWTV6aWI0WUI5NUVib3NvSkpORDU1MmJYOUhUL05ZQlFvRm15aCtlWFgz?=
- =?utf-8?B?SWNKY0t3VS9kdmpIS3VlYll1ZllPQ0t4Uk1lQkpQQ2w3VDREUzQ2YVRDaEpY?=
- =?utf-8?B?TkI3amNUME5kcUU2Tkx6TlFvVW1HUm95NTlJQlNYSHpIZjEvUTFLTlR4a1g1?=
- =?utf-8?B?bnlkcEQ5aGU0bWZEOUdLRm9YaW9ucE96NTgvMkR3TWQrQlBYNWhTU2VSaU02?=
- =?utf-8?B?dGx3OVp0TDF6RUtUK2phY3pZd2c4L0xYTU5Ib1lxSmVJL1k5YnRSVlRpRllr?=
- =?utf-8?B?ajFvN010L3JlZ1ljWEcrNVl6SlY4SWZkekdLOCt2aGpwUWVFdHBFZytHdHUz?=
- =?utf-8?B?WHFMREpUTjdyS0EyUmc2S3NBYzB0eklWSjNnK1Ixc3ZJYUFXYzZwZFppZ0s1?=
- =?utf-8?B?VktwQ040VzVVK2tyMkhIc1ppUHh3OXlxYTUzKzZmNGNYNS9RQ0ZybU5KYlZG?=
- =?utf-8?B?VmxkV2N1di9QZ2l3TFNRTVNzNkt1djRwOEFQckNCeFdEVDFvOVZ3QW45Qkk2?=
- =?utf-8?B?TFljc3crZFQ4VkQzOVZIQmIrS0EwRU9LaGNJOWRibGJNdlFuQlpaQUxlQmho?=
- =?utf-8?B?bW54cVRTUmlFR1FGeTN2bisveFQxZVhqNDR6MFVZeFFTL0JSNnVoWklRYkNs?=
- =?utf-8?B?NndnTnR3WUIxOXJTQUQ2ZElyUlpZZzNxQk55U01sVHpvVGRVd0RIZ3RSZHlP?=
- =?utf-8?B?eGxkK2RTS2hTVHpjWkp2d2kvWFozakw2NkUzK1F3QVZ5SWNic3RQMHlJdnBs?=
- =?utf-8?B?MWcwUmdtWlUwRXg1cGdva1BlelFBVXBlMVpYdy90Z3JyN0FFekw5aWl2TlJX?=
- =?utf-8?B?MGsxUFVOQTc4R1FlNHJaRjcyamFaTUJ0c3BTcWppeHVMMmllRUFtdWE0di9S?=
- =?utf-8?B?RGo5UkJkU2lHRDI4Vit1SUVVaTJvKzBBYmhzdWRQQy9zbGdpRXVFRE5kaVEx?=
- =?utf-8?B?amdSWGdyZjVxOTZrejJhME5xRU83OFUrRkpBTlVURi94TDlqa2t4SHV6UkN5?=
- =?utf-8?B?SWRQQkhTbm5JUjhDa2hpc3dWSXNLNWU1NzJ0Rit5UUhPdFBrTkpIRnM1RTFo?=
- =?utf-8?B?VEtvM1JpMGZ4eVVuY0Z6V2UzYlR3TlZsQVJObHNGQlhreWF2aGNNakJqNkFG?=
- =?utf-8?B?TTlxcnBMazhqNDlNU2g3R2thS3daY3lKUFZIY2RzVU0xVFdOeFdySllyVGVN?=
- =?utf-8?B?ZGJyNnlqSDRvdytrOWQrTVRHR0cxSFlIMDJ1a3ZCdWNXQ3BMVXpsT0JHT1lJ?=
- =?utf-8?B?Q0ZvVlNIMVRpc3NISkd1emQ4Z282ekF0SkJrdkZOKzVCbk9KejBMTWx1ejIy?=
- =?utf-8?B?cjJuL0h0RSs5MkM5dTNHUHY0NDRGcWNVQXFsc0pMd0IrMFNYNnZSazkzME1F?=
- =?utf-8?B?SkxSQXJRTlRYWHJZVFhUamZtYm1rOTRsWDJZeWdmMW1VUUQxOFZ2NDhvL1lM?=
- =?utf-8?B?TFNMa3B2TCtsRHJLOVdlclZ0SlJRSG1UQ3NVa2RTK29VTkZUc2g5QT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 734718bd-c825-4982-c982-08df3e43d9f7
-X-MS-Exchange-CrossTenant-AuthSource: LV5PR12MB9779.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 09:28:45.1823
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RPT34qbEhWMpxjn+CXHEnK0RIWMN+ZOEJEBa5nAjmNnlDCGcNjrQ+qUZ2ocQ7oCn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PPFAF4999BF6
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_012855_264731_73D2E04B 
-X-CRM114-Status: UNSURE (   8.29  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_011554_778914_466000BA 
+X-CRM114-Status: GOOD (  35.10  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -191,29 +88,917 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Add support for Telemetry operations needed to read DataEvent values and
+timestamps as single entities or all together in a single bulk buffer.
+The returned values are effectiely retrieved from the platform only
+when strictly needed, i.e. when no fresh recent cached value was already
+available.
+The DataEvent values are fetched transparently from the platform origins
+using the proper synchronization and consistency primitives, directly from
+the SHMTIs areas or the FastChannels memory depending on the configuration.
 
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+v14 --> v15
+ - use IS_TDE_TS_LINE macro
+ - use NOT IS_DATA_LINE in tdcf_de_payld_get
+ - use better startm/endm initial markers in tdcf_de_payld_get
+ - retry scmi_telemetry_tdcf_de_parse on error too
+ - trigger resource enumeration also on de_data_read
+ - skip unitialized FCs on reads and return -EPROTO
+ - introduce localized single DE snapshot on single DE data read
+ - widen tde->mtx locking in msg_payld_process
+ - use unsigned int samples
+ - better des_sample_get sanity checks
+ - refactor msg_payld_process
+v13 --> v14
+ - report scmi_telemetry_line_data_parse errors
+ - add traces for CACHED_DE_UPDATED
+ - moved some definitions from earlier patches
+ - using a less regular time interval for TDCF scan retries
+ - renamed some fields to more strictly adhere to spec nomenclature
+v12 --> v13
+ - use new RAW macros in line_data_parse and check for line validity
+ - handle PARTIAL_ERROR by logging and carrying on
+ - relocate tde->mtx guards higher up and add lockdep assertions
+ - better tdcf/eplg init within tde->mtx
+ - do not cache tde->base between DE read retries
+ - retry scan on payld sanity errors
+v11 --> v12
+ - using new TDCF_INVALID_MATCH_SEQ macro
+ - reporting transient DATA_INVALID lines as -EINVAL
+ - added cacheable param to msg_payld_process
+v10 --> v11
+ - split out and relocate unrelated code to previous patches
+ - add TDE mutex_lock when getting payload address
+ - check LINE_TYPE while parsing payloads
+ - check overflows and boundary on single sample replies
+v8 -->v9
+ - Fix Sashiko reports for v8
+   - check if TS supported on FC line before using it
+   - check for unexpected shorter reply on sample_get
+   - use non-LE accessors in msg_payld where appropriate
+v7 --> v8
+ - Fixes for some Sashiko issues on v7
+  - added CACHED_DE_READ trace
+  - reworked locking around line handling: blkts/uuid
+v6 -->v7
+ - usse proper le32 accesors, fix sparse warns
+v5 --> v6
+ - fixed some Sashiko review
+ - add new macros parse TDCF-like content on regular ram (non IO)
+ https://sashiko.dev/#/patchset/20260703123601.381275-1-cristian.marussi%40arm.com?part=10
+   - fix retry loop in DE parse to avoid exiting on transient errors
+   - use proper non-IO accessors for msg payld parsing
+   - add msg payld boundary check
+v4 --> v5
+ - removed UAPI structures dependency
+ - cleaned up sample_get logic around groups
+ - fixes sparse warnings
+v3 --> v4
+ - fix typos in comments
+ - extend TDE cache helpers with cache lookup routine and use cumulative
+   scmi_telemetry_de_sample param
+v2 --> v3
+ - split from monolithic Telemetry patch
+ - simplity using a few assignement using ternary ops
+ - remove useless ts param from scanning function
+ - use a compound literal to simplify samples init
+ - add a missing __must_check on telemetry_ops
+ - changed errno on DE read troubles:
+   - ENODEV/ENOENT: DE is UNKNOWN
+   - EINVAL: DE is marked as DATA_INVALID
+   - ENODATA: TLM susbsystem or the specific DE is OFF
+---
+ drivers/firmware/arm_scmi/telemetry.c | 678 ++++++++++++++++++++++++--
+ include/linux/scmi_protocol.h         |  24 +
+ 2 files changed, 666 insertions(+), 36 deletions(-)
 
-On 11/7/26 01:14, Brian Masney wrote:
-> Reduce boilerplate code in these drivers and convert them over to use
-> the macro subsys_platform_driver().
-> 
-> Signed-off-by: Brian Masney <bmasney@redhat.com>
-> ---
->   drivers/mailbox/mailbox-xgene-slimpro.c | 13 +------------
->   drivers/mailbox/mtk-cmdq-mailbox.c      | 13 +------------
->   drivers/mailbox/zynqmp-ipi-mailbox.c    | 12 +-----------
-
-Reviewed-by: Michal Simek <michal.simek@amd.com>
-
-Thanks,
-Michal
+diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
+index 1f6505fff199..bf37faf99865 100644
+--- a/drivers/firmware/arm_scmi/telemetry.c
++++ b/drivers/firmware/arm_scmi/telemetry.c
+@@ -176,6 +176,11 @@ struct scmi_msg_telemetry_config_set {
+ 	__le32 sampling_rate;
+ };
+ 
++struct scmi_msg_resp_telemetry_reading_complete {
++	__le32 num_dwords;
++	__le32 array[] __counted_by_le(num_dwords);
++};
++
+ /* TDCF */
+ 
+ #define _I(__a)		(ioread32((void __iomem *)(__a)))
+@@ -384,6 +389,12 @@ struct tdcf {
+ #define TDCF_END_SIGNATURE(e)	(_I(&((e)->sign_end)))
+ #define	TDCF_BAD_END_SEQ	GENMASK(31, 0)
+ 
++struct telemetry_de_snapshot {
++	u32 magic;
++	struct payload payld;
++	struct payload bts_payld;
++};
++
+ struct telemetry_shmti;
+ 
+ struct shmti_snap {
+@@ -482,6 +493,7 @@ struct telemetry_de {
+ 	enum timestamps ts_type;
+ 	u32 ts_rate;
+ 	bool enumerated;
++	bool cached_msg;
+ 	void __iomem *base;
+ 	struct eplg __iomem *eplg;
+ 	u32 sid;
+@@ -695,8 +707,9 @@ scmi_telemetry_tde_cache_stale(struct telemetry_de *tde, u32 magic)
+ }
+ 
+ static void
+-scmi_telemetry_tde_cache_update(struct telemetry_de *tde, u64 val,
+-				u64 *tstamp, u32 *magic)
++scmi_telemetry_tde_cache_update(struct telemetry_de *tde,
++				struct scmi_telemetry_de_sample *sample,
++				u32 *magic)
+ {
+ 	lockdep_assert_held(&tde->mtx);
+ 
+@@ -708,10 +721,37 @@ scmi_telemetry_tde_cache_update(struct telemetry_de *tde, u64 val,
+ 		return;
+ 
+ 	tde->last_magic = magic ? *magic : TDCF_BAD_END_SEQ;
+-	tde->last_val = val;
+-	tde->last_ts = tstamp && scmi_tde_has_tstamp(tde) ? *tstamp : 0;
+-	if (tstamp)
+-		*tstamp = tde->last_ts;
++	tde->last_val = sample->val;
++	tde->last_ts = scmi_tde_has_tstamp(tde) ? sample->tstamp : 0;
++	/* Update returned value too */
++	sample->tstamp = tde->last_ts;
++
++	trace_scmi_tlm_collect(tde->last_ts, tde->de.info->id,
++			       tde->last_val, "CACHED_DE_UPDATED");
++}
++
++static int
++scmi_telemetry_tde_cache_lookup(struct telemetry_de *tde,
++				struct scmi_telemetry_de_sample *sample,
++				u32 *magic)
++{
++	lockdep_assert_held(&tde->mtx);
++
++	/*
++	 * Bailout without providing any sample when the cache is
++	 * stale, i.e. last_magic < *magic
++	 */
++	if (magic && scmi_telemetry_tde_cache_stale(tde, *magic))
++		return -EAGAIN;
++
++	sample->id = tde->de.info->id;
++	sample->val = tde->last_val;
++	sample->tstamp = tde->last_ts;
++
++	trace_scmi_tlm_collect(sample->tstamp, sample->id,
++			       sample->val, "CACHED_DE_READ");
++
++	return 0;
+ }
+ 
+ struct scmi_tlm_de_priv {
+@@ -2068,45 +2108,45 @@ scmi_telemetry_tde_allocate(struct telemetry_info *ti, u32 de_id,
+ 
+ static inline int
+ scmi_telemetry_line_data_parse(struct telemetry_de *tde, struct shmti_snap *snap,
+-			       u64 *val, u64 *tstamp, struct payload *payld,
+-			       struct payload *bts_payld, u32 magic)
++			       struct scmi_telemetry_de_sample *sample,
++			       struct payload *payld, struct payload *bts_payld,
++			       u32 magic)
+ {
+ 	u32 meta = PAYLD_META_RAW(payld);
+ 
+ 	lockdep_assert_held(&tde->mtx);
+ 
+ 	/* Clear returned values in case of errors */
+-	*val = 0;
+-
+-	if (tstamp) {
+-		*tstamp = 0;
+-		if (USE_BLK_TS_RAW(meta)) {
+-			/* Read out the actual BLK_TS */
+-			*tstamp = scmi_telemetry_blkts_read(magic, tde,
+-							    bts_payld, snap);
+-		} else if (LINE_TS_VALID_RAW(meta)) {
+-			/*
+-			 * Note that LINE_TS_VALID implies HAS_LINE_EXT and that
+-			 * the per DE line_ts_rate is advertised in the DE
+-			 * descriptor, BUT we check anyway against buggy FW.
+-			 */
+-			if (!HAS_LINE_EXT_RAW(meta)) {
+-				trace_scmi_tlm_access(tde->de.info->id,
+-						      "SHMTI_BAD_TS_LINE", 0, 0);
+-				return -EPROTO;
+-			}
+-
+-			*tstamp = LINE_TSTAMP_GET_RAW(&payld->tsl);
++	sample->tstamp = 0;
++	sample->val = 0;
++
++	if (USE_BLK_TS_RAW(meta)) {
++		/* Read out the actual BLK_TS */
++		sample->tstamp = scmi_telemetry_blkts_read(magic, tde,
++							   bts_payld, snap);
++	} else if (LINE_TS_VALID_RAW(meta)) {
++		/*
++		 * Note that LINE_TS_VALID implies HAS_LINE_EXT and that
++		 * the per DE line_ts_rate is advertised in the DE
++		 * descriptor, BUT we check anyway against buggy FW.
++		 */
++		if (!HAS_LINE_EXT_RAW(meta)) {
++			trace_scmi_tlm_access(tde->de.info->id,
++					      "SHMTI_BAD_TS_LINE", 0, 0);
++			return -EPROTO;
+ 		}
++
++		sample->tstamp = LINE_TSTAMP_GET_RAW(&payld->tsl);
+ 	}
+ 
+ 	/* Data is always valid since we are NOT handling BLK TS lines here */
+-	*val = LINE_DATA_GET_RAW(&payld->l);
++	sample->val = LINE_DATA_GET_RAW(&payld->l);
+ 
+-	trace_scmi_tlm_collect(tstamp ? *tstamp : 0, tde->de.info->id,
+-			       *val, "SHMTI_DE_READ");
++	/* Trace originally read tstamp */
++	trace_scmi_tlm_collect(sample->tstamp, tde->de.info->id,
++			       sample->val, "SHMTI_DE_READ");
+ 
+-	scmi_telemetry_tde_cache_update(tde, *val, tstamp, &magic);
++	scmi_telemetry_tde_cache_update(tde, sample, &magic);
+ 
+ 	return 0;
+ }
+@@ -2223,10 +2263,10 @@ static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
+ 					   struct telemetry_uuid *active_uuid)
+ {
+ 	struct telemetry_shmti *shmti = snap->shmti;
++	struct scmi_telemetry_de_sample sample = {};
+ 	u32 meta = PAYLD_META_RAW(payld);
+ 	bool use_blk_ts = USE_BLK_TS_RAW(meta);
+ 	struct telemetry_de *tde;
+-	u64 val, tstamp = 0;
+ 	u32 de_id;
+ 
+ 	de_id = PAYLD_ID_RAW(payld);
+@@ -2314,8 +2354,7 @@ static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
+ 	 * Parse data words ... only for the sake of updating TDE cache,
+ 	 * any error is logged by ignored.
+ 	 */
+-	scmi_telemetry_line_data_parse(tde, snap, &val, &tstamp, payld, NULL,
+-				       snap->magic);
++	scmi_telemetry_line_data_parse(tde, snap, &sample, payld, NULL, snap->magic);
+ }
+ 
+ /**
+@@ -3366,6 +3405,570 @@ scmi_telemetry_collection_configure(const struct scmi_protocol_handle *ph,
+ 	return ret;
+ }
+ 
++static inline int
++scmi_telemetry_de_data_fc_read(struct telemetry_de *tde,
++			       struct scmi_telemetry_de_sample *sample)
++{
++	struct fc_tsline __iomem *fc;
++
++	lockdep_assert_held(&tde->mtx);
++
++	/*
++	 * A FastChannel DE that was discovered as enabled at boot but later
++	 * failed to be enumerated cannot be accessed.
++	 */
++	if (!tde->base)
++		return -EPROTO;
++
++	fc = tde->base + tde->offset;
++	sample->val = LINE_DATA_GET(fc);
++	sample->tstamp = IS_TDE_TS_LINE(tde) ? LINE_TSTAMP_GET(fc) : 0;
++
++	/* Trace originally read tstamp */
++	trace_scmi_tlm_collect(sample->tstamp, tde->de.info->id, sample->val,
++			       "FC_READ");
++
++	/* Cache anyway since TDE caches are on the read path anyway */
++	scmi_telemetry_tde_cache_update(tde, sample, NULL);
++
++	return 0;
++}
++
++static void scmi_telemetry_scan_update(struct telemetry_info *ti)
++{
++	struct telemetry_de *tde;
++
++	/* Scan all SHMTIs ... */
++	for (int id = 0; id < ti->num_shmti; id++) {
++		int ret;
++
++		ret = scmi_telemetry_shmti_scan(ti, id, SCAN_LOOKUP);
++		if (ret)
++			dev_warn(ti->ph->dev,
++				 "Failed update-scan of SHMTI ID:%d - ret:%d\n",
++				 id, ret);
++	}
++
++	if (!ti->info.fc_support)
++		return;
++
++	/* Need to enumerate resources to access fastchannels */
++	ti->res_get(ti);
++	list_for_each_entry(tde, &ti->fcs_des, item) {
++		struct scmi_telemetry_de_sample sample = {};
++
++		guard(mutex)(&tde->mtx);
++		if (!tde->de.enabled)
++			continue;
++
++		/*
++		 * Only for the sake of updating TDE cache.
++		 * Ignoring errors deriving from malformed FCs.
++		 */
++		scmi_telemetry_de_data_fc_read(tde, &sample);
++	}
++}
++
++/*
++ * TDCF and TS Line Management Notes
++ * ---------------------------------
++ *
++ * TDCF Payload Metadata notable bits:
++ *  - Bit[3]: USE BLK Tstamp
++ *  - Bit[2]: Line-Extension Field present (LineTstamp)
++ *  - Bit[1]: Tstamp VALID
++ *  - Bit[0]: Data INVALID
++ *
++ * CASE_1:
++ * -------
++ *	+ A DE is enabled with timestamp disabled, so the TS fields are
++ *	  NOT present
++ *	  -> BIT[3:0] = 0000b
++ *
++ *	  - 1/A LINE_TSTAMP
++ *	  ------------------
++ *	     + that DE is then 're-enabled' with TS: so it was ON, it remains
++ *	       ON but using DE_CONFIGURE I now enabled also TS, so the
++ *	       platform relocates it at the end of the SHMTI and return the
++ *	       new offset
++ *	       -> BIT[3:0] = 0110b
++ *
++ *	  - 1/B BLK_TSTAMP
++ *	  ------------------
++ *	     + that DE is then 're-enabled' with BLK TS: so it was ON, it
++ *	       remains ON but using DE_CONFIGURE, we now also enabled the TS,
++ *	       so the platform will:
++ *	       - IF a preceding BLK_TS line exist (with same clk rate)
++ *	         it relocates the DE at the end of the SHMTI and return the
++ *	         new offset (if there is enough room, if not in another SHMTI)
++ *	       - IF a preceding BLK_TS line DOES NOT exist (with same clk rate)
++ *	         it creates a new BLK_TS line at the end of the SHMTI and then
++ *	         relocates the DE after the new BLK_TS and return the
++ *	         new offset (if there is enough room, if not in another SHMTI)
++ *	       -> BIT[3:1] = 1010b
++ *
++ *	+ the hole left from the relocated DE can be reused by the platform
++ *	to fit another equally sized DE. (i.e. without shuffling around any
++ *	other enabled DE, since that would cause a change of the known offset)
++ *	anyway it will be marked as:
++ *	-> BIT[3:0] = 0101b iff it was a LINE_TSTAMP
++ *	-> BIT[3:0] = 0001b iff it was a BLK_TSTAMP
++ *
++ * CASE_2:
++ * -------
++ *	+ A DE is enabled with LINE timestamp enabled, so the TS_Line is there
++ *	  -> BIT[3:0] = 0110b
++ *	+ that DE has its timestamp disabled: again, you can do this without
++ *	  disabling it fully but just disabling the TS, so now that TS_line
++ *	  fields are still physically there but NOT valid
++ *	  -> BIT[3:0] = 0100b
++ *	+ the hole from the timestamp remain there unused until
++ *		- you enable again the TS so the hole is used again
++ *		  -> BIT[3:0] = 0110b
++ *			OR
++ *		- you disable fully the DE and then re-enable it with the TS
++ *		  -> potentially CASE_1 the DE is relocated on enable
++ *	+ same kind of dynamic applies if the DE had a BLK_TS line
++ */
++static int scmi_telemetry_tdcf_de_payld_check(struct telemetry_de *tde,
++					      struct payload *payld)
++{
++	u32 meta = PAYLD_META_RAW(payld);
++
++	lockdep_assert_held(&tde->mtx);
++
++	if (DATA_INVALID_RAW(meta)) {
++		trace_scmi_tlm_access(PAYLD_ID_RAW(payld), "DE_DATA_INVALID", 0, 0);
++		return -EINVAL;
++	}
++
++	if (!IS_DATA_LINE_RAW(meta)) {
++		trace_scmi_tlm_access(tde->de.info->id, "BAD_DE_LINE_TYPE", 0, 0);
++		return -EPROTO;
++	}
++
++	if (PAYLD_ID_RAW(payld) != tde->de.info->id) {
++		trace_scmi_tlm_access(tde->de.info->id, "DE_ID_MISMATCH", 0, 0);
++		return -ENODEV;
++	}
++
++	/*
++	 * A valid line using BLK_TS should have been initialized with the
++	 * related BLK_TS when enabled, unless is a torn read.
++	 */
++	if ((USE_BLK_TS_RAW(meta) && !tde->bts)) {
++		trace_scmi_tlm_access(tde->de.info->id, "BAD_USE_BLK_TS", 0, 0);
++		return -EPROTO;
++	}
++
++	return 0;
++}
++
++static int scmi_telemetry_de_snapshot(struct tdcf __iomem *tdcf,
++				      struct telemetry_de *tde,
++				      struct telemetry_de_snapshot *snap)
++{
++	int retries = SCMI_TLM_TDCF_MAX_RETRIES;
++	u32 startm, endm;
++	int err = 0;
++
++	lockdep_assert_held(&tde->mtx);
++
++	do {
++		struct payload __iomem *payld, *bts_payld;
++
++		/* A bit of exponential backoff between retries */
++		fsleep((SCMI_TLM_TDCF_MAX_RETRIES - retries) * SCMI_TLM_TDCF_RETRY_GAP_US);
++
++		startm = TDCF_START_SEQ_GET(tdcf);
++		/* Build a default endm certainly different from startm */
++		endm = startm + 1;
++		if (IS_BAD_START_SEQ(startm)) {
++			trace_scmi_tlm_access(tde->de.info->id, "MSEQ_BADSTART",
++					      startm, 0);
++			continue;
++		}
++
++		/*
++		 * In this context any anomaly detected on the payload could
++		 * due to a torn read, and it is worth retrying a snapshot.
++		 *
++		 * Note that TDE base/offset have been sanitized when
++		 * initialized and cannot have changed: accessing them here
++		 * is safe.
++		 */
++		payld = tde->base + tde->offset;
++		memcpy_fromio(&snap->payld, payld, LINE_LENGTH_BYTES(payld));
++		err = scmi_telemetry_tdcf_de_payld_check(tde, &snap->payld);
++		if (err)
++			continue;
++
++		/*
++		 * Here the associated BLK_TS line, if any, has been verified
++		 * as sane when linked/bound: no need of further validation.
++		 */
++		if (tde->bts) {
++			bts_payld = tde->base + tde->bts->line.offset;
++			memcpy_fromio(&snap->bts_payld, bts_payld,
++				      LINE_LENGTH_BYTES(bts_payld));
++		}
++
++		/* Assure the snapshot has been fully taken before checking seqnum */
++		rmb();
++
++		endm = TDCF_END_SEQ_GET(tde->eplg);
++		if (startm != endm)
++			trace_scmi_tlm_access(tde->de.info->id, "MSEQ_MISMATCH",
++					      startm, endm);
++	} while ((startm != endm || err) && --retries);
++
++	if (startm != endm || err) {
++		trace_scmi_tlm_access(tde->de.info->id,
++				      "TDCF_SNAPSHOT_DE_FAIL", startm, endm);
++		return err ?: -EPROTO;
++	}
++
++	/* Ensure any snapshot is visible before updating magic */
++	smp_store_release(&snap->magic, startm);
++
++	trace_scmi_tlm_access(tde->de.info->id, "TDCF_SNAPSHOT_DE_OK",
++			      startm, endm);
++
++	return 0;
++}
++
++static int
++scmi_telemetry_tdcf_de_sample_cached(struct tdcf __iomem *tdcf,
++				     struct telemetry_de *tde,
++				     struct scmi_telemetry_de_sample *sample)
++{
++	lockdep_assert_held(&tde->mtx);
++
++	u32 startm;
++
++	/* If updating cannot be cached */
++	startm = TDCF_START_SEQ_GET(tdcf);
++	if (IS_BAD_START_SEQ(startm))
++		return -EAGAIN;
++
++	return scmi_telemetry_tde_cache_lookup(tde, sample, &startm);
++}
++
++/**
++ * scmi_telemetry_tdcf_de_parse  - Helper to read one SHMTI/DE
++ * @tde: A reference to the DE descriptor to read
++ * @sample: A reference to the sample used as a container for output
++ *
++ * This helper can be used to retrieve the data value of a SHMTI based DE
++ * and any related BLK_TS line: unless the values are found already available
++ * and up to date in the TDE cache, a limited snapshot of the involved lines
++ * is taken at first so that all the subsequent DE parsing and processing can
++ * happen on a stable in RAM copy.
++ *
++ * Taking a limited snapshot does not carry relevant overhead and has the
++ * benefit of allowing the reuse of the same RAM-baased data accessors used
++ * during a full scan and related full snapshot, instead of a set of dedicated
++ * __iomem helpers.
++ *
++ * NOTE that since each TDE has its own cache, which is accessed and updated
++ * both during a single DE read and while performing a bulk read, while
++ * caching consistency assures to provide always the 'freshest' value
++ * retrieved, mixing single and bulk reads can lead to the values produced by
++ * the bulk reads to contain 'fresher' late values derived from concurrent
++ * single DE reads: IOW mixing single and bulk reads can produce a set of bulk
++ * DEs values that are NOT all from the same moment in time.
++ *
++ * Moreover in general, since no assumption can be made about the TDCF sequence
++ * numbers across different SHMTIs and related optional DE timestamps, it is NOT
++ * possible to guarantee anyway that data values retrieved from DEs located in
++ * distinct SHMTIs areas comes from the same platform update cycle at all.
++ */
++static int
++scmi_telemetry_tdcf_de_parse(struct telemetry_de *tde,
++			     struct scmi_telemetry_de_sample *sample)
++{
++	struct telemetry_de_snapshot snap = {};
++	struct tdcf __iomem *tdcf;
++	int ret;
++
++	lockdep_assert_held(&tde->mtx);
++
++	/*
++	 * TDEs can be relocated by platform only during enable phase,
++	 * thing that cannot happen until tde->mtx is released.
++	 */
++	tdcf = tde->base;
++	if (!tdcf)
++		return -ENODEV;
++
++	if (!scmi_telemetry_tdcf_de_sample_cached(tdcf, tde, sample))
++		return 0;
++
++	/* Attempt a localized DE snapshot: DATA_LINE + optionally BLK_TS */
++	ret = scmi_telemetry_de_snapshot(tdcf, tde, &snap);
++	if (ret)
++		return ret;
++
++	/* Now parse the stable line snapshot */
++	return scmi_telemetry_line_data_parse(tde, NULL, sample, &snap.payld,
++					      &snap.bts_payld, snap.magic);
++}
++
++static int scmi_telemetry_de_access(struct telemetry_de *tde,
++				    struct scmi_telemetry_de_sample *sample)
++{
++	lockdep_assert_held(&tde->mtx);
++
++	if (!tde->de.fc_support)
++		return scmi_telemetry_tdcf_de_parse(tde, sample);
++
++	return scmi_telemetry_de_data_fc_read(tde, sample);
++}
++
++static int scmi_telemetry_de_collect(struct telemetry_info *ti,
++				     struct scmi_telemetry_de *de,
++				     struct scmi_telemetry_de_sample *sample)
++{
++	struct telemetry_de *tde = to_tde(de);
++
++	guard(mutex)(&tde->mtx);
++
++	if (!de->enabled)
++		return -ENODATA;
++
++	/*
++	 * DE readings returns cached values when:
++	 *  - DE data value was retrieved via notification/delayed_response
++	 */
++	if (tde->cached_msg)
++		return scmi_telemetry_tde_cache_lookup(tde, sample, NULL);
++
++	return scmi_telemetry_de_access(tde, sample);
++}
++
++static int scmi_telemetry_de_data_read(const struct scmi_protocol_handle *ph,
++				       struct scmi_telemetry_de_sample *sample)
++{
++	struct telemetry_info *ti = ph->get_priv(ph);
++	struct scmi_telemetry_de *de;
++
++	if (!ti->info.enabled || !sample)
++		return -ENODATA;
++
++	ti->res_get(ti);
++	de = xa_load(&ti->xa_des, sample->id);
++	if (!de)
++		return -ENOENT;
++
++	return scmi_telemetry_de_collect(ti, de, sample);
++}
++
++static int
++scmi_telemetry_samples_collect(struct telemetry_info *ti, int grp_id,
++			       unsigned int *num_samples,
++			       struct scmi_telemetry_de_sample *samples)
++{
++	struct scmi_telemetry_res_info *rinfo;
++	unsigned int max_samples;
++
++	max_samples = *num_samples;
++	*num_samples = 0;
++
++	rinfo = ti->res_get(ti);
++	for (int i = 0; i < rinfo->num_des; i++) {
++		struct telemetry_de *tde = to_tde(rinfo->des[i]);
++
++		guard(mutex)(&tde->mtx);
++
++		/* Skip disabled DEs and not belonging to the selected Group */
++		if (!tde->de.enabled ||
++		    (grp_id != SCMI_TLM_GRP_INVALID &&
++		     (!tde->de.grp || tde->de.grp->info->grp_id != grp_id)))
++			continue;
++
++		/* Must be checked here to skip disabled and non selected */
++		if (*num_samples == max_samples)
++			return -ENOSPC;
++
++		/* Note that this cannot fail when passing a NULL magic */
++		scmi_telemetry_tde_cache_lookup(tde, &samples[(*num_samples)++], NULL);
++	}
++
++	return 0;
++}
++
++static int scmi_telemetry_des_bulk_read(const struct scmi_protocol_handle *ph,
++					int grp_id, unsigned int *num_samples,
++					struct scmi_telemetry_de_sample *samples)
++{
++	struct telemetry_info *ti = ph->get_priv(ph);
++
++	if (!ti->info.enabled || !num_samples || !samples)
++		return -EINVAL;
++
++	/* Trigger a full SHMTIs & FCs scan */
++	scmi_telemetry_scan_update(ti);
++
++	/* Collect all last cached values */
++	return scmi_telemetry_samples_collect(ti, grp_id, num_samples, samples);
++}
++
++static void
++scmi_telemetry_msg_payld_process(struct telemetry_info *ti,
++				 unsigned int num_dwords, __le32 *dwords,
++				 size_t payld_bytes, bool cacheable)
++{
++	struct scmi_telemetry_res_info *rinfo;
++	u32 next = 0;
++
++	rinfo = ti->res_get(ti);
++	if (!rinfo->fully_enumerated) {
++		dev_warn_once(ti->ph->dev,
++			      "Cannot process DEs in message payload. Drop.\n");
++		return;
++	}
++
++	while (next < num_dwords) {
++		struct payload *payld = (struct payload *)&dwords[next];
++		struct scmi_telemetry_de_sample sample = {};
++		struct scmi_telemetry_de *de;
++		struct telemetry_de *tde;
++		u32 de_id, meta = le32_to_cpu(payld->meta);
++		unsigned int wlen;
++
++		wlen = LINE_LENGTH_WORDS_RAW(meta);
++		/* Check Boundary and prepare next iteration */
++		if (check_add_overflow(next, wlen, &next) ||
++		    next > payld_bytes / sizeof(u32)) {
++			trace_scmi_tlm_access(0, "MSG_OVERFLOW", 0, 0);
++			return;
++		}
++
++		de_id = le32_to_cpu(payld->id);
++		if (DATA_INVALID_RAW(meta)) {
++			trace_scmi_tlm_access(de_id, "MSG_INVALID", 0, 0);
++			continue;
++		}
++
++		if (LINE_TYPE_RAW(meta) != TDCF_DATA_LINE) {
++			trace_scmi_tlm_access(de_id, "MSG_BAD_TYPE", 0, 0);
++			continue;
++		}
++
++		if (USE_BLK_TS_RAW(meta)) {
++			trace_scmi_tlm_access(de_id, "MSG_BAD_USE_BLKTS", 0, 0);
++			continue;
++		}
++
++		de = xa_load(&ti->xa_des, de_id);
++		if (!de) {
++			trace_scmi_tlm_access(de_id, "MSG_DE_UNKNOWN", 0, 0);
++			continue;
++		}
++
++		tde = to_tde(de);
++		guard(mutex)(&tde->mtx);
++		if (!de->enabled) {
++			trace_scmi_tlm_access(de_id, "MSG_DE_DISABLED", 0, 0);
++			continue;
++		}
++
++		tde->cached_msg = cacheable;
++
++		sample.val = LINE_DATA_GET_RAW(&payld->tsl);
++		sample.tstamp = HAS_LINE_EXT_RAW(meta) &&
++			LINE_TS_VALID_RAW(meta) ? LINE_TSTAMP_GET_RAW(&payld->tsl) : 0;
++
++		/* Update the cache holding the TDE mutex */
++		scmi_telemetry_tde_cache_update(tde, &sample, NULL);
++
++		trace_scmi_tlm_collect(sample.tstamp, de->info->id, sample.val,
++				       "MESSAGE");
++	}
++}
++
++static int scmi_telemetry_des_sample_get(const struct scmi_protocol_handle *ph,
++					 int grp_id, unsigned int *num_samples,
++					 struct scmi_telemetry_de_sample *samples)
++{
++	struct telemetry_info *ti = ph->get_priv(ph);
++	struct scmi_msg_telemetry_config_set *msg;
++	struct scmi_xfer *t;
++	bool is_group;
++	u32 control;
++	int ret;
++
++	if (!ti->info.enabled || !num_samples || !samples ||
++	    !ti->info.single_read_support)
++		return -EINVAL;
++
++	is_group = grp_id != SCMI_TLM_GRP_INVALID;
++	if (is_group && grp_id >= ti->info.base.num_groups)
++		return -EINVAL;
++
++	ret = ph->xops->xfer_get_init(ph, TELEMETRY_CONFIG_SET,
++				      sizeof(*msg), 0, &t);
++	if (ret)
++		return ret;
++
++	msg = t->tx.buf;
++	msg->group_identifier = cpu_to_le32(grp_id);
++	control = TELEMETRY_ENABLE;
++	control |= !is_group ? TELEMETRY_SET_SELECTOR_ALL :
++		TELEMETRY_SET_SELECTOR_GROUP;
++	control |= TELEMETRY_MODE_SINGLE;
++	msg->control = cpu_to_le32(control);
++	msg->sampling_rate = 0;
++
++	ret = ph->xops->do_xfer_with_response(ph, t);
++	/*
++	 * PARTIAL_ERRORs are reported as -EBADMSG and related lines,
++	 * marked as DATA_INVALID, will be properly skipped by
++	 * scmi_telemetry_msg_payld_process.
++	 */
++	if (!ret || ret == -EBADMSG) {
++		struct scmi_msg_resp_telemetry_reading_complete *r = t->rx.buf;
++		u32 num_dwords;
++
++		if (ret == -EBADMSG)
++			trace_scmi_tlm_access(0, "BAD_SAMPLE_PARTIAL_ERROR", 0, 0);
++
++		if (t->rx.len < sizeof(*r))
++			return -EPROTO;
++
++		num_dwords = le32_to_cpu(r->num_dwords);
++		/* Update cached DEs values from payload */
++		if (num_dwords) {
++			size_t payld_sz = 0, dwords_sz;
++
++			if (check_mul_overflow(num_dwords, sizeof(r->array[0]), &dwords_sz) ||
++			    check_add_overflow(sizeof(*r), dwords_sz, &payld_sz) ||
++			    payld_sz > t->rx.len) {
++				dev_err(ph->dev,
++					"Malformed Telemetry delayed response - num_dwords:%u  payld_sz:%zd  rx_len:%zd\n",
++					num_dwords, payld_sz, t->rx.len);
++				ret = -EPROTO;
++				goto out;
++			}
++
++			scmi_telemetry_msg_payld_process(ti, num_dwords, r->array,
++							 payld_sz - sizeof(*r), false);
++		}
++
++		/* Scan and update SMHTIs and FCs */
++		scmi_telemetry_scan_update(ti);
++
++		/* Collect all last cached values, override any PARTIAL_ERROR */
++		ret = scmi_telemetry_samples_collect(ti, grp_id, num_samples,
++						     samples);
++	}
++
++out:
++	ph->xops->xfer_put(ph, t);
++
++	return ret;
++}
++
+ static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
+ 	.info_get = scmi_telemetry_info_get,
+ 	.de_lookup = scmi_telemetry_de_lookup,
+@@ -3373,6 +3976,9 @@ static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
+ 	.state_get = scmi_telemetry_state_get,
+ 	.state_set = scmi_telemetry_state_set,
+ 	.collection_configure = scmi_telemetry_collection_configure,
++	.de_data_read = scmi_telemetry_de_data_read,
++	.des_bulk_read = scmi_telemetry_des_bulk_read,
++	.des_sample_get = scmi_telemetry_des_sample_get,
+ };
+ 
+ /**
+diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
+index ce35734d2249..7177f739f062 100644
+--- a/include/linux/scmi_protocol.h
++++ b/include/linux/scmi_protocol.h
+@@ -994,6 +994,13 @@ struct scmi_telemetry_info {
+ 	enum scmi_telemetry_collection current_mode;
+ };
+ 
++struct scmi_telemetry_de_sample {
++	unsigned int id;
++	unsigned int pad;
++	unsigned long long tstamp;
++	unsigned long long val;
++};
++
+ /**
+  * struct scmi_telemetry_proto_ops - represents the various operations provided
+  *	by SCMI Telemetry Protocol
+@@ -1008,6 +1015,15 @@ struct scmi_telemetry_info {
+  * @collection_configure: choose a sampling rate and enable SHMTI/FC sampling
+  *			  for on demand collection via @de_data_read or async
+  *			  notificatioins for all the enabled DEs.
++ * @de_data_read: on-demand read of a single DE and related optional timestamp:
++ *		  the value will be retrieved at the proper SHMTI offset OR
++ *		  from the dedicated FC area (if supported by that DE).
++ * @des_bulk_read: on-demand read of all the currently enabled DEs, or just
++ *		   the ones belonging to a specific group when provided.
++ * @des_sample_get: on-demand read of all the currently enabled DEs, or just
++ *		    the ones belonging to a specific group when provided.
++ *		    This causes an immediate update platform-side of all the
++ *		    enabled DEs.
+  */
+ struct scmi_telemetry_proto_ops {
+ 	const struct scmi_telemetry_info *(*info_get)
+@@ -1027,6 +1043,14 @@ struct scmi_telemetry_proto_ops {
+ 				    unsigned int res_id, const bool *enable,
+ 				    const unsigned int *update_interval_ms,
+ 				    const enum scmi_telemetry_collection *mode);
++	int __must_check (*de_data_read)(const struct scmi_protocol_handle *ph,
++					 struct scmi_telemetry_de_sample *sample);
++	int __must_check (*des_bulk_read)(const struct scmi_protocol_handle *ph,
++					  int grp_id, unsigned int *num_samples,
++					  struct scmi_telemetry_de_sample *samples);
++	int __must_check (*des_sample_get)(const struct scmi_protocol_handle *ph,
++					   int grp_id, unsigned int *num_samples,
++					   struct scmi_telemetry_de_sample *samples);
+ };
+ 
+ /**
+-- 
+2.54.0
 
 
