@@ -2,48 +2,50 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE27606D807
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC621606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:38:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PuVzuoTY;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Seht+aPC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yiNS0LQ/;
+	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=RTM4X4by
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=WZoDzXkOMT/5cXIMxLO4BLJijoO3XJv8ed+jm9PnUm4=; b=PuVzuoTYedgB4i
-	wboPr+psaXf8xymIDo8IlBTVTxvMy4QDkwzI+5ZwYTnnQfDZdg7oYSO6WXmDcEjCIj/Q+/oLBemiq
-	cxjjvMYvhwPqKY/0DR/qH3WHTxzyDGiWlxAENBmaqcL+P5AskBcgmLPONm89EWhmwpanqGyvYi4z1
-	vL6poFDKX9v09369ipkm9gucw5m87NqIOn61DAPClM4hlCzxRbT+PZvpVdYToyx2DoI4fPc68xxHc
-	n1+o9wTE3w+1/XFky+nJnYruEw6Jzrnpptop9Pnx3cyP6TgQLwPWJKkMGqFoJZfSt/MlqRdGKkv0X
-	eO5XhjTupBRDzGUaEGxg==;
+	List-Owner; bh=WZoDzXkOMT/5cXIMxLO4BLJijoO3XJv8ed+jm9PnUm4=; b=yiNS0LQ/uYX+M7
+	SpIaGJP0vmjeaIsETHsD5J2hyMFqTw0m4awEpEsCoh2+HxzPVJ0f02E8yXnMN94ZFpJT5Vi3k4jvw
+	K2IDOaw6mGzN5mUSBre4mOEG56/npDaD55XBwhJVLlKbqpAPMvDZKg3O6TGsDzA9zZb2ajBnvU3fS
+	nOOanLenmJ68ytgoUI3lJpbfJKoioEhwPnRL3NcTi3s+1DDLcWQWcRVio5H/y3n9wt5t5qe1vNU4E
+	vnh1gUSPf36P4H6yAMV1VBwKzQu6ltDui8ayyfz9KxSKYZ4PAeRclY1U+mSP/11xOD12mjxhL/DuW
+	5Y1NLrcfN4zIPGgNTMkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQKsr-000000005rK-3GNl;
-	Mon, 09 Nov 2026 08:37:45 +0000
-Received: from out-224.mta0.migadu.com ([2001:41d0:1004:224b::e0] helo=mta0.migadu.com)
+	id 1xQKt1-000000005uq-3jst;
+	Mon, 09 Nov 2026 08:37:55 +0000
+Received: from out-228.mta0.migadu.com ([2001:41d0:1004:224b::e4] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQKso-000000005qD-2n8X
+	id 1xQKsr-000000005qV-1aHQ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 08:37:44 +0000
+	Mon, 09 Nov 2026 08:37:46 +0000
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
 DKIM-Signature: a=rsa-sha256; bh=WZoDzXkOMT/5cXIMxLO4BLJijoO3XJv8ed+jm9PnUm4=;
  c=simple/simple; d=linux.dev;
  h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794213460; v=1; x=1794818260;
- b=Seht+aPCpyOK5KXSCO4hctGHBc83Pf1IX6evZliw9wXT2hzR29V45R45VqIyXZvoU9lnx3m9
- FGpE/7CY3NjQY4gNCEjPSt0PIHJjneKfmoxjLnu05U7oPF1VvdOkcgPppVOik3UhpchyIH+Qi8J
- a6fIR97+YZu/Rwi7PALL1ITE=
+ t=1794213463; v=1; x=1794818263;
+ b=RTM4X4byRzy1SXDFaYAmcHV7jWm8HaQpeM88/ip8OYFy8bPCLa/otCN4ysrSWUHz8Z1c36EB
+ Id3oKP9ubd7MAY2ijTybvUegDVlR/wfZ3MsbeNFl530TOyIucEhgrE7d9cGsvrgqeyhH75LdKfI
+ kCOP8xvK30uOr5cMm/vqBHig=
 X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id d92dc173b9474008;
-	Mon, 09 Nov 2026 08:37:40 +0000
-X-Mizu-Trace-ID: d92dc173b9474008
+Received: by smtp.migadu.com with ESMTPS id 5b4a0091992ea107;
+	Mon, 09 Nov 2026 08:37:43 +0000
+X-Mizu-Trace-ID: 5b4a0091992ea107
 X-Migadu-Flow: FLOW_OUT
 From: Fuad Tabba <fuad.tabba@linux.dev>
 To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>
+	Oliver Upton <oupton@kernel.org>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
 Cc: Joey Gouly <joey.gouly@arm.com>,
 	Suzuki K Poulose <suzuki.poulose@arm.com>,
 	Zenghui Yu <yuzenghui@huawei.com>,
@@ -53,23 +55,20 @@ Cc: Joey Gouly <joey.gouly@arm.com>,
 	Mark Rutland <mark.rutland@arm.com>,
 	Vincent Donnefort <vdonnefort@google.com>,
 	Fuad Tabba <tabba@google.com>,
-	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
 	kvm@vger.kernel.org,
-	linux-doc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] KVM: arm64: Add support for self-hosted debug in protected guests
-Date: Mon,  9 Nov 2026 08:37:39 +0000
-Message-ID: <20261109083739.819288-1-fuad.tabba@linux.dev>
+Subject: Re: [PATCH 0/4] KVM: arm64: Support SVE in protected VMs
+Date: Mon,  9 Nov 2026 08:37:43 +0000
+Message-ID: <20261109083743.820111-1-fuad.tabba@linux.dev>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261102093950.2922035-1-fuad.tabba@linux.dev>
-References: <20261102093950.2922035-1-fuad.tabba@linux.dev>
+In-Reply-To: <20261105130456.1617185-1-fuad.tabba@linux.dev>
+References: <20261105130456.1617185-1-fuad.tabba@linux.dev>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_003742_859186_B5CEF549 
-X-CRM114-Status: UNSURE (   6.30  )
+X-CRM114-CacheID: sfid-20261109_003745_569819_3427FA54 
+X-CRM114-Status: UNSURE (   6.09  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
