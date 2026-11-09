@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E97606EEB2
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 05:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E35B606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 05:29:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1BMfB8+f;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wxo1v4Xd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=djaUSMSA;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=JhwQxrIA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=v/+iqzE3D85GzraKFwMggPSN+1bOaRD1qrvalwGxknE=; b=1BMfB8+fZzq2OJPzElDylwWy7U
-	EOgqnDjqJfL2y0SbqwBzauKdC3BS8ho4PFUnZD8lyf6w2sL2pzNPbcI1o1605V+9VWhO3WmZs6mnX
-	lmP+AqnYOGEH5BqP2yBGyWQafhHF0Eve+qzkdVj6gS3OT1ibh8VmjiZXFk+/9TsyhKxgnOIMxvIaQ
-	IEJKjKXPHFja5ejZAkMdiV2IM+Ba1xBvaiD+nMsDT1zajKB8Bb0b8V6pFZmqk2erfxsqQUiLqf/7k
-	3Acvw2ukHCTCOfGAlhifFKpAw8AyMFrHhpAnQO47r0v9gBOpHq6DgfYp+w6YF+BvW0XTSN5DoWncM
-	QgbmMzkw==;
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+2wCtwxXKIDkxHcE0WIbk0DNcnVd4qsfVLWBnePcPdM=; b=djaUSMSAnKWQex
+	lBcMKIgyR+PKmeqEtdDZVHSbSo8uQrpiPa2PDo+F2WYk9LtUC8t+Fj2kBheaVv9Rmg1MIzuMY4sDI
+	MWmKX9fjo1BicLGtUd/RRjszWQpAcuRMSmb0psuWQgqrqYewsdbsgQpOuJuHvb7/AHHqH73TnI2vx
+	et9gr6AsX7KySvElEQiL0O6XC5iOljfljJqghtGcool5jEoFEQWRkH4W5RsZ+HM5Snwx6Qzz++9ld
+	bgM9aA0y9bWbpDF4IPvYIyjm3aQ2vrzhcfIR04/nz3qLw96rhHL8H0Qj8nAZ1nlN/e3FTBMYnaAOu
+	QjkHAMH9OkNCRNrR4mhA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQHwM-0000000HPg8-3BSs;
-	Mon, 09 Nov 2026 05:29:10 +0000
-Received: from mail-pj1-x1033.google.com ([2607:f8b0:4864:20::1033])
+	id 1xQHwP-0000000HPhb-3eI6;
+	Mon, 09 Nov 2026 05:29:13 +0000
+Received: from mail-pf1-x42c.google.com ([2607:f8b0:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQHwJ-0000000HPfL-3BgF
+	id 1xQHwN-0000000HPg7-0GJK
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 05:29:08 +0000
-Received: by mail-pj1-x1033.google.com with SMTP id 98e67ed59e1d1-3b09a83d12aso314890a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 21:29:07 -0800 (PST)
+	Mon, 09 Nov 2026 05:29:12 +0000
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-8a0673d9bd2so257479b3a.3
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 21:29:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794202147; x=1794806947; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=v/+iqzE3D85GzraKFwMggPSN+1bOaRD1qrvalwGxknE=;
-        b=wxo1v4XdA1KAZoL5PDXZuTMgnCUUDNsf5Dv6QnQl3VVKhuEGAkaQDdwOpMyiyN0FJr
-         5oima25lDAjs9bgOI2xyCvhm2A6FAcEi79UoNBfumxn5z+s8b3PblLWZtHpsXh5VLpRZ
-         yOXtm7/ol7uIm4koa+Ky2LMico7fq2kkxRQy0jGcHN1vt6Au7LbgsJLb5aQJ604dwmFf
-         1bGx0A3owmuLz+/ChXr6fooTr5ra5Pv3dQ03SkG1iY/Gv77XIg4ZOpBcYkJws5ITqnAw
-         vzkY/AOkzhT1FJr2QLId6vMP4hS0jXlc98gW5WRAKcAB3+D2HoiIaebdUw8Butcq9xDo
-         J/tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794202147; x=1794806947;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1794202150; x=1794806950; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=v/+iqzE3D85GzraKFwMggPSN+1bOaRD1qrvalwGxknE=;
-        b=QzpwXgmyFTYFHVQkGUxq//qfr+kacWFkl/OJR2xHOBQp49zJx8bZxSssuWGjn7vBjA
-         gr2NfCvUd5bf8ybWzHB0D2y/Wnt1cUFwLBIpUpewYC4SZ7jGP9EwlLs2ESEWublwso4F
-         4U4uVSbiDAk0LDTsK/aENMljyCI09+sn4dFymAt55WuvHLaSQMvfepu4rRohldNQWwZM
-         B5sCuKiTdtiqRVL0BjGaaAz4rsO0ZBu3M2WeBHILTuCPGjPs6Arika3VS8d03kQrDUpj
-         hTMypO18fNXdYufG3d/wk542BZfBWLsuxMtb+QSi4blil7zxDSb1l5nwyxfH4UbidX/t
-         bPgA==
-X-Forwarded-Encrypted: i=1; AL+hErHmgucJcsie5FbC0pqm4g23r1ONftPYWAachX+U7Auf/AT9wUua1JSzXsrIyx1oEjWPBmaINcIZu4KSkIYGABVi@lists.infradead.org
-X-Gm-Message-State: APuU4Z+zg24arZiqFzFLQIJ7J7HoV2S9CNMv/OvIBofVtn3zIp3dD/LU
-	35egVa1xLWDKDz0OkJAczuAp21Q2l7kWptNSDngd/MbgHYbJHdVA+AoI
-X-Gm-Gg: AYBFou2DNFG6nefYgB1Svn77DLUauW89rX+PnwBIEi2Yf0tcddj5zed938NQIHchZqq
-	Oh10h3CT2ZHx8995ytFyghdqsE1lLhxdXadKiyUF3f4IhFPO73OFUq12vzgOURjMKBCQfViHHBh
-	D4QjP5Iio3fwwVT5CkOR/6+b0asMlQ2bApzV+voR3qB7xAD2REDSMMc+1Q1QoCPOXPW+MdsQ6PP
-	2yylCoEVWx3F8pwzQAUaKZGeeDgk8Ogg62tymAPdceZiq6lRCz4DTsgPha8AgN4OgRDIxsUGM+T
-	ynSWDAtnk8l0RQhrsQwGoMzfQ0KhkZgHgKiixwftX7J7ehtHqRyHf1+ihoeVUomF3II+vXCBHUs
-	4Lc7Z7nCYsptJKvbEmMCkjdqBoHO1i6KmToNSsPZ/N2ofN8oxPOSHTarf6+UhW+QPKAu6JfI/In
-	3nFQ3XWefREA3YVEPyLDSIIsjvx6S0V41rJ/BlL0KD+OSeN+vWN/rbKEVDvm0TLIQafy7yOA5WB
-	dExaAQXc8u7veonrRQrofzckithg8i0I9OKxr503ccvtiACSFgFLX+q7FPBzzQ84tG42f6SWLG1
-	0xHvOD5LHLvyHhbTUBekGPHbrEZ1rUctv7sxq4AycLMbGoCQaETiHf7mcfAjQo7pJC72tdUYtog
-	tgcDcWGV9ZyjslBzq6mOGaSUsFfiBk8fHlgEx
-X-Received: by 2002:a17:90b:4c88:b0:39e:6d82:dca with SMTP id 98e67ed59e1d1-3b12d442907mr2821498a91.30.1794202146776;
-        Sun, 08 Nov 2026 21:29:06 -0800 (PST)
+        bh=+2wCtwxXKIDkxHcE0WIbk0DNcnVd4qsfVLWBnePcPdM=;
+        b=JhwQxrIAU13efAhptef3pWHApF9z/YOtxIQigZZM6vModzBb6ssH19VR0btKS7OtMq
+         riECWEos0Kafc5tQ85n8PqffZazHHa3Iu4WJ1VcFtn+6de/lUmnXVa8O/qx18e3GHZp9
+         K4QUlhoHetJg9WoZ/ZrW+w5iSE0sKC9Bj6B8dJXjhV5tOtICzF9p6ssU9Fh1A/N85loq
+         yHrbuAQSeU0+mqThj4FZdDcSr3/nf+edxIHOOFRULhv2LwP5k8PLQ3vyA3FmouEWC1Dx
+         jUq7/2xAtP+/KAwvR0DdlGWvks47A5oDk7DdSwccQO6oOCB/kcUDSKMOzPjLDbLbffd7
+         yiQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794202150; x=1794806950;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=+2wCtwxXKIDkxHcE0WIbk0DNcnVd4qsfVLWBnePcPdM=;
+        b=2kk1HNzICJFAgyB/YOkGz1FwfAgRceAil+ctvYu/oXgSAnX5V7VNoP1koZcKRlUzMd
+         2RkmdGGqTTcw1tnO6tWlSKlBHGANLESDScUin8MZNs43dVxO3D0/VXIcoP0qU8wFrnCr
+         eImtUOVvmpCmus2YTnKMThOhaOU3mY+NBp8m/uW4nclJaDJNPZm04SlVlRgZ0PP4an7m
+         +kJE8CmIfLrtLWkKiHYMUtnJaYMH/MBSys6Oz1GoEU9kGJRFrNlu7ENSKZGq3rRpvzPs
+         piSYprGHKRkE5qIHFtI03dSMch8f420EiJN7wQsqUMgIWyyJkM1t0MQCek6Xh1ys/J5e
+         56dA==
+X-Forwarded-Encrypted: i=1; AL+hErHzzCh4s5wisE3yX3cpyOOQLlpvCciL3bCxskZ9aLPfhOSVu3TY4KlYENy216de/XSRq2KX1Oa52qdYm55+LhWw@lists.infradead.org
+X-Gm-Message-State: APuU4Z95EgTQmJSez405pyj9AL73RnIMshV6VVIyvpntQTRupp811dQJ
+	knQtbEBkKrH0dZJaRXEcJ85pSuzB3GSvNjlYkCrIOpMpP8lLx5oL+mTZ
+X-Gm-Gg: AYBFou0k5LtY2l/3pUG48fEwfx4gAqnSi9s81+umxugK8qfJTgouGWO+Sdn2dNxvoww
+	PtzQYQClDOtrUA1yN987/6oumahKscHauuDHHzWE1IwUDxDBdQjTJ4LQbTHye7iUcazJSpx1cTK
+	g8A0UeIItTBqgBghAnm7UwS5lk682VF9FBmEJK2bGStHgVzpH88a9erDczlT05A6kMHafQ8/UgU
+	NDNN7r1z1c6XCHW+FaCsHfEjfrtZHf8rrul+bwNGEcnqmT170pglQ1hxFNWf4l/ElpK+5c5GwPa
+	g/Qy/d3AWn3QSCNZrldlBmjUYDbsszShveAUnMdQGyUwYQQVUdZ/HdCxSJV59qq1cDR44twalbo
+	eXA5d9SkUGpxvZxiY9mAWo9CB5NI5rYsC5jmSTLq3l6qpISRrlqUcUIsORZK8BJ6HUFvFT8y8pY
+	jCzLjTyCST4gp7HdzPFGwstcBZR1+uhuJ4v+QvBAv5m8TOeUIJu0eDQrRXt1KtorJYzOawstFLn
+	imLodxD+Xk9rMip6Mj4yp0zhCV/S5hRYo0HYjpfkaj9X6yX4jMP0aj9ZWpiuNPtDHZvU/G3ENYf
+	k8dox6MqgtR2BaYxgKdX+4qApKEDn9OYoShWFAEqcvhfmAoWCEfkchA6AteuF39MyOqZuOyhzDo
+	T5gkulZ171jGB8FU=
+X-Received: by 2002:a05:6a20:ef1a:b0:3e5:904c:78d3 with SMTP id adf61e73a8af0-3eed5ce2668mr2545295637.69.1794202149963;
+        Sun, 08 Nov 2026 21:29:09 -0800 (PST)
 Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cdb9681385fsm1180899a12.6.2026.11.08.21.29.03
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-cdb9681385fsm1180899a12.6.2026.11.08.21.29.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2026 21:29:06 -0800 (PST)
+        Sun, 08 Nov 2026 21:29:09 -0800 (PST)
 From: Shan-Chun Hung <shanchun1218@gmail.com>
 To: ychuang3@nuvoton.com,
 	schung@nuvoton.com,
@@ -89,16 +89,18 @@ To: ychuang3@nuvoton.com,
 	linux-kernel@vger.kernel.org,
 	linux-hardening@vger.kernel.org
 Cc: Shan-Chun Hung <shanchun1218@gmail.com>
-Subject: [PATCH v2 0/2] dmaengine: ma35d1-pdma: Add MA35D1 PDMA driver
-Date: Mon,  9 Nov 2026 13:28:58 +0800
-Message-Id: <20261109052900.2960473-1-shanchun1218@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: dma: nuvoton,ma35d1-pdma: Document MA35D1 PDMA controller
+Date: Mon,  9 Nov 2026 13:28:59 +0800
+Message-Id: <20261109052900.2960473-2-shanchun1218@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261109052900.2960473-1-shanchun1218@gmail.com>
+References: <20261109052900.2960473-1-shanchun1218@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_212907_803426_D842733B 
-X-CRM114-Status: GOOD (  12.50  )
+X-CRM114-CacheID: sfid-20261108_212911_103603_833EFB8D 
+X-CRM114-Status: GOOD (  13.07  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,44 +120,91 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds the PDMA controller driver and DT binding for the
-Nuvoton MA35D1 SoC.
-
-The driver supports memory-to-memory, slave scatter-gather and cyclic
-transfers.
-
-Tested on the MA35D1 SOM board with Linux v7.4-rc1:
- - memory-to-memory with dmatest (2000 iterations of 1MB buffers, no failures)
- - slave scatter-gather with a local (not yet submitted) QSPI patch
- - cyclic slave with a local (not yet submitted) I2S patch
-
-Changes in v2:
- - Address issues identified by Sashiko AI review:
-   - Program registers on descriptor start instead of prep.
-   - Fix interrupt completion handling and return IRQ_NONE when idle.
-   - Set PDMA_TBINTDIS on intermediate memcpy chunks.
-   - Validate scatter-gather lengths and bus width alignment.
-   - Fix channel request assignment in of_xlate().
-   - Safe controller teardown order in remove().
-   - Drop peripheral timeout support to simplify driver.
- - binding: describe the hardware in the description, and drop
-   dma-channels and the dt-bindings header.
- - Use a fixed number of 10 channels and trim the includes.
+Add binding for Nuvoton MA35D1 PDMA controller.
 
 Signed-off-by: Shan-Chun Hung <shanchun1218@gmail.com>
-
-Shan-Chun Hung (2):
-  dt-bindings: dma: nuvoton,ma35d1-pdma: Document MA35D1 PDMA controller
-  dmaengine: ma35d1-pdma: Add MA35D1 PDMA driver
-
- .../bindings/dma/nuvoton,ma35d1-pdma.yaml     |  71 ++
- drivers/dma/Kconfig                           |  12 +
- drivers/dma/Makefile                          |   1 +
- drivers/dma/ma35d1-pdma.c                     | 672 ++++++++++++++++++
- 4 files changed, 756 insertions(+)
+---
+ .../bindings/dma/nuvoton,ma35d1-pdma.yaml     | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/dma/nuvoton,ma35d1-pdma.yaml
- create mode 100644 drivers/dma/ma35d1-pdma.c
 
+diff --git a/Documentation/devicetree/bindings/dma/nuvoton,ma35d1-pdma.yaml b/Documentation/devicetree/bindings/dma/nuvoton,ma35d1-pdma.yaml
+new file mode 100644
+index 000000000000..d05971662a5d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/nuvoton,ma35d1-pdma.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/nuvoton,ma35d1-pdma.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton MA35D1 PDMA controller
++
++description:
++  The MA35D1 SoC has four Peripheral DMA (PDMA) controllers. Each controller
++  has 10 channels and performs memory-to-memory, memory-to-peripheral and
++  peripheral-to-memory transfers.
++
++maintainers:
++  - Shan-Chun Hung <shanchun1218@gmail.com>
++
++allOf:
++  - $ref: dma-controller.yaml#
++
++properties:
++  compatible:
++    const: nuvoton,ma35d1-pdma
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  "#dma-cells":
++    const: 2
++    description:
++      The first cell is the PDMA channel number. The second cell is the
++      peripheral request source number, as listed in the reference manual.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
++  - "#dma-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
++    #include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        dma-controller@40080000 {
++            compatible = "nuvoton,ma35d1-pdma";
++            reg = <0x0 0x40080000 0x0 0x2000>;
++            interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
++            clocks = <&clk PDMA0_GATE>;
++            resets = <&sys MA35D1_RESET_PDMA0>;
++            #dma-cells = <2>;
++        };
++    };
++
++...
 -- 
 2.25.1
 
