@@ -2,65 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DE2606EE86
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B60606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UHMtuM3T;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RwYrWyq9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nmUyBdwM;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=hLRqKbg0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pqc2L1WzcvzIZX23ze7NEAQi3S+/FWCxRg0BqVfI6Vg=; b=UHMtuM3Tx+wvnHWy9jaTBPn5N2
-	dd/jy21McBM5db84eQxwzX4Pfw7YazvoJJPmFMjMyPiCTv/+7pnnXfFITP47cp/oLeKTzy2pnnbR6
-	hhv4J8SYat0RtrKqEr6uD1Ylyx+7wQPq7cCY9L+H5d7i9lmXODnNtoYHNfkBCDnF1T1DorknDBkC+
-	XeigbSJUU5sLhFbmQnIy99l1MbS6M6yQnie426ng1iSeHfb3pjpq8NK+tpov1b8sv4Z6IeEsWk0Sr
-	rD4Sqpt61IR0+LUEI521/x85IDyOEulhZh9YG1QNeGQXawlndThnBqNi9fZxGcbqvuiw1sUtSWXv0
-	gxTncUUg==;
+	bh=FpiqRag+t5NMeuB2lpRlUMa7TgFo9C0tjAPeji60Tuw=; b=nmUyBdwMwIlN3DNctulGk8Ah7w
+	fDCYG0t/f0I6+sNo/yzn/eIf4RgN/2xrqarB4ihl/CRYGnewPnYvIJ26X97rJLmNznVGdi3bbbcLn
+	i8dsYBbB8AMe8yCMyCrqxJjgB31JZiQ7W6PgPZonNom0OfFEyvXJyOuu1ncCwIAdubWRbRllqd4+q
+	JIhVmQYCsIRXwBgd/qsgAtDWZNLzXptDeEKST57TcjCxfhj40cgYJHSaVVZx6Nc1E7TavJX5JsSIr
+	+sDFGELZdEizZ2cEVWfXMOK5Yc6g2hjGz9yTjKv00QlJXD8Mn1G+u2Gr3pk0Q0JHRHIaBQWDdPjSW
+	yYOo68Ag==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSTw-00000001Dor-0Evp;
-	Mon, 09 Nov 2026 16:44:32 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQSUf-00000001DwL-15HB;
+	Mon, 09 Nov 2026 16:45:17 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSTv-00000001Dok-1R07
+	id 1xQSUa-00000001Dvo-0tvJ
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:44:31 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 69AC962C5A;
-	Mon,  9 Nov 2026 16:44:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB6DB1F0089F;
-	Mon,  9 Nov 2026 16:44:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794242670;
-	bh=pqc2L1WzcvzIZX23ze7NEAQi3S+/FWCxRg0BqVfI6Vg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=RwYrWyq9onaHDWrzcgUAnNT+SCoruSQGm9pYpLkASnNzt+eJw6UaP/20lLzCx53Tg
-	 Wq/fzGQuKca+BL62LT2ecyreaIjmIcz1jp30nfdV++sUhfKFKT63PaTdjKFfDyafEr
-	 98bjeO0KYM4XsracQeh3hGCrUI4SmuGqKunKrLyeAPTyqW9tfaZxcRwJL5ATMQ9lQa
-	 XMSohEDAX5THIp9B+tYk3akCt1kk3PX4zT3DVK50IjlwwQLynszpFmdpQ9R/SUmz4V
-	 uy8S+96lC7Ed1ISDIhV4df+jGQMzks7Ar7XQ/Qm3powg856/HDIl9f5zyAz6yLg+84
-	 zi8dbhTRQ83cw==
-Date: Mon, 9 Nov 2026 11:44:25 -0500
-From: Nathan Chancellor <nathan@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Nicolas Schier <nsc@kernel.org>
-Cc: Arnd Bergmann <arnd@arndb.de>, Daniel Mack <daniel@zonque.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Sasha Levin <sashal@kernel.org>, linux-input@vger.kernel.org,
-	linux-kbuild@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Input: apm-power - remove driver
-Message-ID: <20261109164425.GB1608140@ax162>
-References: <20261109080944.3802916-1-dmitry.torokhov@gmail.com>
+	Mon, 09 Nov 2026 16:45:16 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a210470b49so8452655e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:45:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794242710; x=1794847510; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=FpiqRag+t5NMeuB2lpRlUMa7TgFo9C0tjAPeji60Tuw=;
+        b=hLRqKbg00lLNbBG/l0DWPg9GEhgPuqhCrHQMOuN5WTIoPd/6YNpUr/t4AdOjnjj6vh
+         p4ZZl3XFnqCFpgGSKgr4AEQ9nTA1eHygED0JccZcrhiQ1sAWKA+hO7EE7nw33eGcK8eP
+         t+4yVXFLiqAcOsJouvTZknV/OiSElZgB6xgQU83slmbaL+D2SSEX9fzHaGo7uByjtlUn
+         94NmV1PNypnIG23hgG0+jfAfkfveO7rbXvV1uiv6QwKIWfl+Df9n4+XHzDIJKPaay9OJ
+         kuFJNUB2T0VYSuVBy0gjYIBok3emo7XV8Lj+0z9jjXfeOEI5fiBqrs+kzNVPX1HUoC5F
+         sHLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794242710; x=1794847510;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=FpiqRag+t5NMeuB2lpRlUMa7TgFo9C0tjAPeji60Tuw=;
+        b=XwJu7Ceu/Mh636vNjZ7RKkiSLLkmoDQtYJFgD87/2Tr5AJhECifMYv9FpFUIKlXGbx
+         DgRynSLd9qRHEnbTlQR7MVJh2pgXIVnTa62iMROtycez+ftG7mJZnbtgj07P+nkwrJXq
+         Nd6SRUXhFiRmpx8t0Z01u7bg4YgjPnXf8I1cW4EA8LCm7rga1Jter3HfxehUv98PAUPE
+         0dg0Ric6HbsBzSiNschfzlmMYzIN1fdPciRY6vvnmwmY40pYbexO6IYFxZjbrLTPQUAb
+         PRa/OhGtupV0g4tU9vY9x/NhcyY60mf2GkHt0ntGvzb04LDr2GFSYp3af59GYR5p3kS1
+         e5pg==
+X-Forwarded-Encrypted: i=1; AL+hErGqn3EcQdI1V3euN9XPALjlhIEmiyy9+oJxjJumYKC/fPG3xMLhetqm38LXvSxOIytcufaCszabEADTWwt4bjZz@lists.infradead.org
+X-Gm-Message-State: APuU4Z/nk4pdPfTmstukDW6BedsIVQxUwhTMV6Nvo4t8Wxkei01KZu2n
+	fG9fHTWPUQnMY7/rI/t53dCCL96vqGl90ea/WUwcOG5nuRvkKzQ5Weu8sWyZouRSlFsH4WumTNf
+	2JOD1dmM=
+X-Gm-Gg: AYBFou2vmWcfMpI7vFTuCz0aFKUP/lH9sl2B88COqA1MbeQZYQItA6E8901HrO+0/Rk
+	R/FYVqHc3GsjAwYr2hf2li1RiKpJq1RTaL0dL7tbg34CCtJlYIbwU/xHNKg/uNdHTlkowCF7R6l
+	eplILqQOV1G38x9pTtc2it/dJpQZvAE3Wz/va7EyFK2BxWh5Xh1iG3Ps94TIDL+3+ICx3NaPUJ2
+	9IzQLP8hsh187Q5Oasx0T/AYgcqXy/buhuJMGCtMwX3GI7LYcDtC+ZOl0KYUdNaJY5mzAz6sfG5
+	H0daIW1qzf1WjqUAUEHzM+ZoCYLI0u/BVDe/JH4gNPgjygwnmJCAVt/t9xgHf7n121lrgRB8++N
+	uHOXaDz1NLilxt+YidDeBHUE7KPUBAdt+Tj+I4ZvDSgEkEoAROXjY26lCVnQOS1x4S/fFXBAqM6
+	aF/M/BstZqmuJ8m0JHaB/06x6piqeVBGwfqisKlifAxNJ8TyMzYSzXjUgBT63zwcCcCtie1MEPJ
+	Eshn8ZSfuyDUk1YfOajLyXszvHpPm9/iubP5qQdCK8f6e5VR+kD5uqvp4di9R452qm4cSPY/tKi
+	5NVAzw1epj5UIO159D+S+TXZDipC5jV3Q4MOj8qkwd+jgMBVDjljWXpVwQCIjca8lQrf+hSGqeW
+	KAWnLxxJIRBvxikM=
+X-Received: by 2002:a05:600c:524e:b0:4a2:a9:ed5a with SMTP id 5b1f17b1804b1-4b960d9bb10mr93175615e9.8.1794242710297;
+        Mon, 09 Nov 2026 08:45:10 -0800 (PST)
+Received: from localhost (p200300f65f19a90407b2ef73b14b6bb2.dip0.t-ipconnect.de. [2003:f6:5f19:a904:7b2:ef73:b14b:6bb2])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4ba01fd4754sm31615e9.14.2026.11.09.08.45.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 08:45:09 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>,
+	linux-crypto@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] crypto: arm64/ghash - Reduce boilerplate
+Date: Mon,  9 Nov 2026 17:45:02 +0100
+Message-ID: <20261109164502.905237-2-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261109080944.3802916-1-dmitry.torokhov@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1360; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=lwNvkM6qvpzuHSc2uxsQlZKF+Oa7f9Zznr3rNlsBfkw=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq8fiOhLsVtaX8XKYIBfS3FUGU/riART+vS/RBv A9nIr0wO2KJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCavH4jgAKCRCPgPtYfRL+ TpTOB/4iYigJ1++vAX+4XjRUWiW7t8/QF1Sf4+OyChwtX9F3aj6GbFEfjaKvJm38H6aHRz2Aa7N Y6ZW6pauYylv9qcXXfvok/8pgyVl+xFLtFO/zTHoWX/YvVJY9/ZsTM5zlY/mMWEXN2+BAG77IW+ LKE6AiHwW7xzZptaXmmoMuXIXiNva/rA3DrBY2Dfg2qWz8ZRqZ/JtfvGsTtOLiMjivFNE2PjvZ8 mAUqistuSWJ8FGFy/G5fXhNbBJVHn75a5KxTwduap49quV9prrXGmfGeJ2dyqB6khpQXynj+vPD KTnm/FZqcM1j5iSX9zvSyyUc20Y+2SU9FFBmoWU4oa2y+Has
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_084514_236036_21A9E6EB 
+X-CRM114-Status: GOOD (  13.21  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,51 +107,51 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 12:09:44AM -0800, Dmitry Torokhov wrote:
-> The apm-power input handler solely listens for EV_PWR KEY_SUSPEND
-> events to queue APM_USER_SUSPEND via legacy APM emulation. The only
-> in-tree platforms generating those events are legacy Sharp Zaurus ARM
-> machines (spitz/borzoi/akita and collie), none of which were converted
-> to Device Tree. Both mach-pxa board files and mach-sa1100 were marked
-> deprecated in v7.3 by commit cc7852314abd ("ARM: PXA: mark remaining
-> board files as deprecated") and commit 7d92e50ceacd ("ARM: mark
-> mach-sa1100 as deprecated"), and are queued for removal in v7.5. None
-> of the remaining ARM platforms or other APM_EMULATION targets
-> (MIPS_ALCHEMY, PMAC_APM_EMU, and SH_HP6XX) emit EV_PWR input events or
-> enable CONFIG_INPUT_APMPOWER, and arch/arm/configs/pxa_defconfig
-> already dropped CONFIG_PXA_SHARPSL at the same time, leaving its
-> CONFIG_INPUT_APMPOWER=m entry inert.
-> 
-> Normalizing dashes and underscores in scripts/modules-check.sh for v7.5
-> exposes a module name collision (apm_power) between
-> drivers/input/apm-power.ko and drivers/power/supply/apm_power.ko.
-> Remove this obsolete input bridge to resolve the collision rather than
-> renaming a module whose last target platforms are going away in the
-> same cycle.
-> 
-> Reported-by: Sasha Levin <sashal@kernel.org>
-> Closes: https://lore.kernel.org/r/20261108225808.1809266-1-sashal@kernel.org
-> Link: https://lore.kernel.org/r/20261109-apm-power-input-rename-v1-1-0609e7b91825@kernel.org
-> Link: https://lore.kernel.org/r/e4da2f9d-d3b9-4267-9b64-b0f2cb43402a@app.fastmail.com
-> Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Make use of module_cpu_feature_match() which expands to nearly the code
+that is typed out.
 
-Thanks a lot for helping with this.
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+---
+ arch/arm64/crypto/ghash-ce-glue.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
 
-Reviewed-by: Nathan Chancellor <nathan@kernel.org>
+diff --git a/arch/arm64/crypto/ghash-ce-glue.c b/arch/arm64/crypto/ghash-ce-glue.c
+index eaf2932ceaf5..0884f812a315 100644
+--- a/arch/arm64/crypto/ghash-ce-glue.c
++++ b/arch/arm64/crypto/ghash-ce-glue.c
+@@ -384,7 +384,8 @@ static struct aead_alg gcm_aes_algs[] = {{
+ 
+ static int __init ghash_ce_mod_init(void)
+ {
+-	if (!cpu_have_named_feature(ASIMD) || !cpu_have_named_feature(PMULL))
++	/* ASIMD is implied by PMULL, but better be safe than sorry */
++	if (!cpu_have_named_feature(ASIMD))
+ 		return -ENODEV;
+ 
+ 	return crypto_register_aeads(gcm_aes_algs, ARRAY_SIZE(gcm_aes_algs));
+@@ -395,10 +396,5 @@ static void __exit ghash_ce_mod_exit(void)
+ 	crypto_unregister_aeads(gcm_aes_algs, ARRAY_SIZE(gcm_aes_algs));
+ }
+ 
+-static const struct cpu_feature __maybe_unused ghash_cpu_feature[] = {
+-	{ cpu_feature(PMULL) }, { }
+-};
+-MODULE_DEVICE_TABLE(cpu, ghash_cpu_feature);
+-
+-module_init(ghash_ce_mod_init);
++module_cpu_feature_match(PMULL, ghash_ce_mod_init);
+ module_exit(ghash_ce_mod_exit);
 
-Nicolas, do you prefer taking this via kbuild-next directly or having
-Dmitry take it via the input tree and giving us an immutable branch? I
-assume the chance of conflicts or follow-ups are low, so we can probably
-just take it directly but I don't want to assume your preference.
-
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 -- 
-Cheers,
-Nathan
+2.56.0.rc1
+
 
