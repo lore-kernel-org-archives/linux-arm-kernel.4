@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54269606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 19:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EC71606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 19:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FV4LhKd3;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FsVMDLq+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jljipFdW;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wbqJePTV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,82 +14,89 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Q4lNPn/UK40kisCgS/o/tQFd2nFoymjIVtaW1cQeiCw=; b=FV4LhKd3Z2ek6nba0hz+AQnbwi
-	dg+MpHu0pRJFV5AP9V3lwW2AfPyoGBZeLwvF7AmNejAeoF2u3dcf4ZCDanz+/9G7n/4HRtfh2tHIb
-	ZovvbV3F4LriDr8xuwhX7zmGvRq87enIT8OHJ3DHtW/sOV/id0S4LhFmryrvzv8qNQVGOtf9/ZoIY
-	9syuDLktyeLmzK2DaE45420r/m0oLmp/lOZCQFLcbLQpz152SefxlAS8uEpibXUWSjLTLOjmH62TF
-	wYN9BzuUi8Qexxm1UAf22/mJCeBxOqrFdsgU+hu5wS7maqlBk+tWWd7NvgmT4CF8TlRx16Y4CqcpU
-	OlrJQNxQ==;
+	bh=LvIr1VbcR88AmSo6q8l/U1RONWTkl4N/HGRhgSELxqo=; b=jljipFdW3MSkzcitFXDGYkevKx
+	TS9v41oUzOtavXGr7OLvc8Hf+LmTUJUb2FuvZusydMTRN4z3ld3ws0Nd6iLexABFA9GS2GyfI1ZwV
+	kWKkv5hCUttHH6spdisUBgvWIhV93VoiuuhX/RnxrrYOb/Xy+KpY8Sn+s/V9sRlm1Wv3+2c55K3wL
+	aoNFWSqoY+1/pL5lJLRk+5SKZCbed7P9IWGK2DmZ93Xjb63Flqo1VDHWh9dyaUEUfFnT2rxvN5Qiz
+	dAzt7sEwrf4pkwLqcTYu/Q+MG/iyQHbKZEp0/LpKTm7TFRWaRSkooZgjhUrg87wiMTkf0GfUib9Fq
+	8manQpCQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQVJD-00000001a7d-0NBO;
-	Mon, 09 Nov 2026 19:45:39 +0000
-Received: from mgamail.intel.com ([198.175.65.17])
+	id 1xQVRP-00000001aZ7-42pp;
+	Mon, 09 Nov 2026 19:54:07 +0000
+Received: from mail-pj1-x102e.google.com ([2607:f8b0:4864:20::102e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQVJB-00000001a7D-0TC0
+	id 1xQVRN-00000001aYG-0md9
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 19:45:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794253537; x=1825789537;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dmur0JcSjI2h2Sn4a6LIR095JVkgSSE5Iw2d6Hhzk9U=;
-  b=FsVMDLq+Mdg+QVKbt+CSMo6Sq+5KSUyoTO4shsrZSlV1LkhqsQs69Prs
-   cCj1NNM6n19THfymMJdgmTegwFmjfjsPcnDya9f6EJaomAjkqXPY+q9EV
-   BMAIccnBzg/Y7aKGkw2ouRKFxdocxLTUdyRv5cKK3WjLn1SJNIh6zDkWh
-   hSO/XSA/x22ZXQeVrD1JcPGMdlRqcarQHMQ+igrVRH+vnO3lIz63pFnsH
-   JjdgptXz6sgtpUw4tnyhqEupeNmkt0fDqutcdKcLtMwZxjqPCinveQcEU
-   q+eTPHcJWpuGKRaste5TFrsdoSfa9GUb37D5D2KQ/VclyaF0cqMO3T1qk
-   A==;
-X-CSE-ConnectionGUID: glJTE+8RRdmT6xKSd9BUJA==
-X-CSE-MsgGUID: ne41P8zyQlKO/HsO6xysVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3015816"
-X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
-   d="scan'208";a="3015816"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2026 11:45:36 -0800
-X-CSE-ConnectionGUID: kViXZNE9R2ico6E4XGQLrA==
-X-CSE-MsgGUID: ymLHrCHYTDuxbi0VO1H2QQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
-   d="scan'208";a="8285756"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.144])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2026 11:45:33 -0800
-Date: Mon, 9 Nov 2026 21:45:30 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"Potthuri, Sai Krishna" <sai.krishna.potthuri@amd.com>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"amitrkcian2002@gmail.com" <amitrkcian2002@gmail.com>
-Subject: Re: [PATCH 2/6] iio: adc: versal-sysmon: validate temperature
- hysteresis
-Message-ID: <avIi2pDCcaKDx3Ro@ashevche-desk.local>
-References: <20261102122112.1723130-1-amit.kumar-mahapatra@amd.com>
- <20261102122112.1723130-3-amit.kumar-mahapatra@amd.com>
- <aumyreagvU6zewKI@ashevche-desk.local>
- <DS7PR12MB9503E787CBD5E9292B5637CEDC762@DS7PR12MB9503.namprd12.prod.outlook.com>
+	Mon, 09 Nov 2026 19:54:06 +0000
+Received: by mail-pj1-x102e.google.com with SMTP id 98e67ed59e1d1-3b0b8b5d28cso75533a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 11:54:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794254044; x=1794858844; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=LvIr1VbcR88AmSo6q8l/U1RONWTkl4N/HGRhgSELxqo=;
+        b=wbqJePTV96bxrZnnkS7kPNgD81BwQj9lVa+sdjtbbrbrYoKjzhox8Q6kFmhyP/drwj
+         Ni2mtD/pBiE5O4bO08P6Xp3DDJXN7EziSvxY7uoC1zq2VcU2JH5K6ZXWIvDqx38bNYMq
+         muE7GIdVtVaUMtIKlP0udIC1zKEv8PBM/7D4RsOgDzAXdmwJFGymBxslxdVzSD3yfbX+
+         D4+C0wFjgGvXZrHDccfs9/i1dgGbFbsW9KeXB7YdRS0p3LzYFyRuTwsn/oZmjDsoxIwB
+         LXa0fM148GBN/h3+jCR45lWW33aO8CsGYLmOHG97gqFjvcr+kYkofjh7YvRGD0RLngPl
+         eoVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794254044; x=1794858844;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=LvIr1VbcR88AmSo6q8l/U1RONWTkl4N/HGRhgSELxqo=;
+        b=OIdYhJcR52WvoncXkgnrt9HcNNRoSUPl1Q/51oOHbLFsr/yO86leuxapOVbQgjnbRk
+         8twGNZ24BURWiOGBa8ysmh8qtoNfIa86jlsc5tx13IYR/VtejmNtZkq/3mYtradWPEal
+         1bOFiamb78iufaJN9zjw3lejAMrABNguHfAUtdZ+6GM1lWqZert+RWGEzywbHQfpfGRP
+         A2Zb9rYoa759H7WgWHdUtQVldOQl9gsP6UjXp81M3pXr97aQ30D339vYEme+zjW2qQyk
+         gb5B2gJWgW4W/Dezn/O3CuUL42O+SN7Q1i3QDD2nqPEPhn1uPg8QRhV92ueoRxgyQj+o
+         jYkw==
+X-Forwarded-Encrypted: i=1; AL+hErGMO1PP/Q4cRmxLbA6rZKXLcrR2ZFxrIAImr/h9TFVWfyIZ+sM2ngLbSUQVwO5gY6tjKoPjQvryNIdmlexlzOSR@lists.infradead.org
+X-Gm-Message-State: APuU4Z+WVOqabYN6KNFrFDRiNUHL0TWecAYmkJhG3Uj9NY5w8wYzHsby
+	RkrsYLBrgt8wiDOz8gm45zlL3x5poUCZljyjJyp8Uh+b8Les4RsP1e4C
+X-Gm-Gg: AYBFou1kOcWZm0nu1GNHBzlF3sBadBYNfr4nUP+Aj3Xcyvqed7ea+ve+qxTpIcXPchq
+	JN6VHN7khAZzuhtrDHCkLYCxDpK9+U12Q+dTfeVsIjgrk2QCz9jP8Fao7xDF1FLRScQNFlm82VT
+	3qWfOgJG+Ne6AqG6eJZ9h4OQRfZIFxMSpjzcK86K/3p/aWhBpVPqoG/D2+fJMeCVV9AjsQElGRc
+	e4RDkGlovrRSryZzi+kMBo7OklXHukNDxDu/ElBRkY5tzUgF8kJnQyASlRDKDGkkZKBLnZJpZ0V
+	xV+P/IOFQ/RWXlYzo4+mJ71ysLYn9ujXIa8hhFll4juneQgGGUI0mgf+IhEfC1nY8si4X4+WoKM
+	hd7YfSWmMSbZpVvE14XTXmQLPMOnBRWromA2jAko75HTB4JzritS/wO+2j9dmAkEQz/rsrThrM3
+	QxYOY3fsQJNdxBeD9nQ+BqrR2jQ3rkg3VgajiOHRmtrzT5xa7GcGA/AV/mWJQxDjTZu/M7bvoWg
+	5RArgRf50/fAroiMc+7F9PE4HWvEpvzKPRqrzlAAChbh5uyMXtdp1my7i2uAPatTARjFxP5Zkc2
+	MxfpX4c/emTo2MVZoJx/2diTB+ZDJbOD8cgx9+zCm0pfEAeyqONrKgr93w==
+X-Received: by 2002:a17:90b:3c09:b0:3ac:73c7:9c07 with SMTP id 98e67ed59e1d1-3b166add45fmr1297126a91.0.1794254043528;
+        Mon, 09 Nov 2026 11:54:03 -0800 (PST)
+Received: from FAIZEL-KB ([2001:569:52f5:4b00:4b92:5a54:3d6f:1e5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1690f4733sm134974a91.3.2026.11.09.11.54.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 11:54:02 -0800 (PST)
+Date: Mon, 9 Nov 2026 12:54:00 -0700
+From: Faizel K B <faizel.kb@gmail.com>
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+Cc: Michael Riesch <michael.riesch@collabora.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, linux-media@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, libcamera-devel@lists.libcamera.org, 
+	Robert Mader <robert.mader@collabora.com>
+Subject: Re: [PATCH 1/2] media: rockchip: rkcif: Filter enumerated formats by
+ media bus code
+Message-ID: <7lkixkkeumy7l32usxweltclro5tqhgiio6xjyiyx45jnsq3lz@dx43ee4u6ffq>
+References: <20261105232310.385463-1-faizel.kb@gmail.com>
+ <20261105232310.385463-2-faizel.kb@gmail.com>
+ <avG782VCMTWTNax0@mdjait-mobl>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <DS7PR12MB9503E787CBD5E9292B5637CEDC762@DS7PR12MB9503.namprd12.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <avG782VCMTWTNax0@mdjait-mobl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_114537_199576_71F46697 
-X-CRM114-Status: GOOD (  16.38  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261109_115405_233405_BBF9DB39 
+X-CRM114-Status: GOOD (  16.58  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,40 +107,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 11:35:00AM +0000, Mahapatra, Amit Kumar wrote:
-> > -----Original Message-----
-> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
-> > Sent: Tuesday, November 3, 2026 3:39 PM
-> > On Mon, Nov 02, 2026 at 05:51:08PM +0530, Amit Kumar Mahapatra wrote:
+Hi Mehdi,
 
-...
+On Mon, Nov 09, 2026 at 01:27:34PM +0100, Mehdi Djait wrote:
 
-> > >     sysmon_q8p7_to_millicelsius(upper_reg, &upper_mc);
-> > >     sysmon_q8p7_to_millicelsius(lower_reg, &lower_mc);
-> > > -   *hysteresis = upper_mc - lower_mc;
-> > > +   *hysteresis = max(upper_mc - lower_mc, 0);
-> >
-> > But you can use abs_diff() and let it make the problem of the supplier.
-> 
-> I went with max() because an inverted pair (lower above upper) doesn't
-> really describe a hysteresis, so treating it as zero seemed the safest
-> reading. With abs_diff(), an inverted 80/90 pair would be read as
-> 10 degrees, and the next threshold write would then set the lower
-> threshold to 70.
+>> --- a/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
+>> +++ b/drivers/media/platform/rockchip/rkcif/rkcif-stream.c
+>> @@ -395,13 +395,20 @@ static int rkcif_stream_enum_formats(struct file *file, void *priv,
+>>  				     struct v4l2_fmtdesc *f)
+>>  {
+>>  	struct rkcif_stream *stream = video_drvdata(file);
+>> +	unsigned int i, n = 0;
+>>
+>> -	if (f->index >= stream->out_fmts_num)
+>> -		return -EINVAL;
+>> +	for (i = 0; i < stream->out_fmts_num; i++) {
+>> +		if (f->mbus_code &&
+>> +		    stream->out_fmts[i].mbus_code != f->mbus_code)
+>
+>what about dvp capture. The dvp_out_fmts[] does not have the mbus_code
+>set.
+>
 
-Bu where did it come from? HW or DT? If the latter, we may just reject
-the wrong values at probe time, no?
+Thanks for the review. Yes, the DVP case is missing. How about only   
+filtering the formats that have a media bus code, so DVP behaves as
+before (see the change).
 
--- 
-With Best Regards,
-Andy Shevchenko
+        const struct rkcif_output_fmt *fmt = &stream->out_fmts[i];
+
+        if (f->mbus_code && fmt->mbus_code &&
+            fmt->mbus_code != f->mbus_code)
+                continue;
+
+I don't have DVP hardware to test with. I can submit a v2 if that's ok.
+
+Regards,
+Faizel
 
 
 
