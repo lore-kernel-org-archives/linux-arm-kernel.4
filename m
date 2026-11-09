@@ -2,85 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61290606D80A
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 00:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB90F606D813
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 00:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2n1hEoHi;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=D7yZtpDr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zr52kZVk;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=EK8o8ut6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ro51FgAwM27DOCsfxJX1DqcXySD2o72+3qO5nSN9dQg=; b=2n1hEoHie9bhSQ
-	lKP/O4P4xEvTse/asMjPut16xHZMUnOwZvVUjD0GqwkPQmZOozV9Vaok9GQlrMnk10R3SOGUzsI1G
-	hm6L2yBQBokNhbIdqYSjg95uNirmjzvmfZvP9hs6hIy+rG84EbzM3V7tAmGlaN83svn7L1xAtW8cU
-	Rqe1+IxWxBrw+95BvKggwFkRJIiaXfma6575FDoNHoPIK9tvFezun62Gd84+sfNne7JnXHHWPhUUL
-	2i6ljVDrKFiOFhUKS6qa+gYOP4UiObR3OzCgaXbshLq3XpuXAYjtHB5ZHwisO0Oaybywyc1+KS9sc
-	FS9toJJCZ49C5PwiqD/A==;
+	List-Owner; bh=3GDSoMHQsxRWl9RceBND7eXD7fNs4JK2UCz+AN9Gniw=; b=zr52kZVkxVHoeT
+	v9hubBcBqKvpMITUP3ISVFiX1F3edB1A09WYAnzK6Ck6gJPuzuJlUqPO6BhlLUb74wzJAbb0vLtgm
+	YrWSW5hwDAmdh0gJ3Fj1c+mPg8K/HWpLq9qrc/j/BIo1YlgtxiuiV4mFAaSPbwxK+LOydSiYu2W8F
+	vgj2r2Ga9ZULCaprFeRf7HN79Fel/qndaA5Ast2DXPX4plqx+0g4bXXGAAV8qtHB2ihG4Ci8g8BN1
+	0qjIXXIO6RZXeM+bYWZ+qGvRjOvz7CK9BDLiITqZuQTqaLFINjYKZfnCgUg3LMHCRYqmLKAHwSuch
+	RFk+6CCiomwNkX7tZf2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDKn-0000000GySY-0uAd;
-	Mon, 09 Nov 2026 00:34:05 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1xQDKu-0000000Gyad-1sie;
+	Mon, 09 Nov 2026 00:34:12 +0000
+Received: from mail-wm1-x32c.google.com ([2a00:1450:4864:20::32c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQDKj-0000000GyN9-1xEc
+	id 1xQDKp-0000000GyU4-2IHr
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 00:34:04 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-4919a880834so164956f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 16:34:00 -0800 (PST)
+	Mon, 09 Nov 2026 00:34:10 +0000
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-4b7252a32c8so2998745e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Sun, 08 Nov 2026 16:34:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794184439; x=1794789239; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794184446; x=1794789246; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ro51FgAwM27DOCsfxJX1DqcXySD2o72+3qO5nSN9dQg=;
-        b=D7yZtpDrR5GEHojZVo+4Ivr17MKWMc5KKwqrUuGiNtmpkD5KOKEaQCbbN/pgTguRAx
-         pGVqa6LAjA7tFQuowE681svetJHs47AsyboYvCR7yayHQx+9tlznRAXqzUoTHCrbVrHr
-         TMd9FeeQXHzEPuqvEzdzdO+y4KWSEZOlRuxmoAk+t6YET1qdwLSqNS7ACsKIj0PCaxvJ
-         qBRxbxBHQZ1kO0juzxfUhup2lFKYn8HcA7zER6m0gCjk2wXpLx7HiH4IO3xaOQFBS/KL
-         2/0njy1C55g1HM+c/tSaykitiVLwMVnhM9Kg+5TF9cRUvzagTX3upBxqTJwleBDD3t5R
-         ZPow==
+        bh=3GDSoMHQsxRWl9RceBND7eXD7fNs4JK2UCz+AN9Gniw=;
+        b=EK8o8ut6kuy+tdFMmpMkJVDrqty/3QTRERYgADDK2YLBGIc+QDi+b8y/Y4vkam3g8c
+         eENYZPfpmCTqSc+Yai2WUUuEN2f1VFupHcJ4D2f0PLqwWqr1rA7UKF3RGJ8mY8d3zJLF
+         QH4fYECC+ignomfZJAKSt3NpZz/kEk4TmESNVdqX2jylF1eERAtq0NujydcmgrUPSGhN
+         aNtHs/Idiepy2v8ZHB6rbqftwUCrQ6A3KUl9gc5wDZNFbn01z9mNyFh6KmUH2EV1xBCE
+         zd73YA6xco6ROg1NPLBFo6iL/fzCle1Xuhi7NWVsnRv5fzvIWulzRFnJby4P7vCSi7X3
+         dAnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794184439; x=1794789239;
+        d=1e100.net; s=20260707; t=1794184446; x=1794789246;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ro51FgAwM27DOCsfxJX1DqcXySD2o72+3qO5nSN9dQg=;
-        b=YrHzYbRFfTXWQgSg6ISqDNBG9XFsppkb+wdKG4c45f+kOYFB25syoP0Zq4Ir7cghmU
-         NtyclVSl8QIKa+Ki8CnTFzx62MD2w5yqZAoshgYq+TdurvZxug1MIHwBD5fLO3rhw2cl
-         9wi+HqjvxW5ruPgJWOnH+H5x2mjpx+biKtuYFVj+LorV/TSRapzExmna9+Efjb54XHz1
-         7eKlxHOINlP/Bs9R4BBA3yScOMjSon9EnFDNuoNcaDTR3qurJwY1QqJOS+plbsGchsmW
-         3sP/KGbQbaIq/z8j81tM7OGSvqCWI79O8IihpNnIKQFCif22xt+QtxV4DWOrJ7kU6vvj
-         zmLg==
-X-Forwarded-Encrypted: i=1; AL+hErHs+jZF+oS+rvK+bUlwtirsQrrEfbYT2ZJcXkti03Nm5skb7gs6CsuZjYDMQuiqpFOM1Nn1hdLcpmWWf58RoMgd@lists.infradead.org
-X-Gm-Message-State: APuU4Z9u9xjvXVxhOEuxic3mn8MR4/UCzAYksmtqu+m/TsjJI7ADX+hp
-	nRTxc3yC0anFnJ/RsSyzvGDgDoqUBDZHy3U8HHZWl/uC5yk856bBTyPoOVc56GLh0e4=
-X-Gm-Gg: AYBFou0e7mW24yOQnKdZBY0HOY311qqZ9hw5iK/UahkXHFQip9eWwVGP49+OQOKJzHa
-	ol2sazND2Exiw+15rRCaa2PWdsZw8fWfYKeo2TPRxtd4iHv/D7u2Ipkzxu8uJDZ/9J3EyDT7/gP
-	rhZM1938Qn9A4zXXPdV64EGh6OHrrP4XBVeKJY1YwE7SzCvy1/23GImxWeV3VBn+ZaFO0k59eqT
-	9BWWKRe+NdQTJQplOE33UTikAVjn6sQewsAKS9KS0y92GNEILq2gM7j8Ye7bSU3qftmQlhAak1B
-	Yj9nSgI5LhOpo449cZO7ymd5ZCHakqXQ/kEyDxzoX9pdKhTz242jUs6DpdDNsbfVrXhcyjkmfBN
-	SK3u2D9OstIr5/FQfVgeWUV/kkAi2ak/YIsfjq+d3+UigJ/nQY/SfP2KcstQ6IjoM34j/YdV0SU
-	l16N0GT/Z5iYQDlBVCXjZb+5f8d6e6v/GvxAO2zi+gIW6F84fNLp89dCk1HKmAAVZG+qHP2Hr2P
-	iaW2Hbwtlxg+tj1x27VKtYwmdb7vACQP3hSqp5rdmGIXAQuENWEuB80bgjA+K8GExPXhKSrOcVI
-	zptR3zUCRQs5HIoE21ctWQ/BX6Cx4Luh3kfvW5RUK8ux6pXTVy3CXfxbsH4BnA==
-X-Received: by 2002:a05:6000:3c5:b0:493:2376:81b7 with SMTP id ffacd0b85a97d-49588ecc152mr4851434f8f.27.1794184439552;
-        Sun, 08 Nov 2026 16:33:59 -0800 (PST)
+        bh=3GDSoMHQsxRWl9RceBND7eXD7fNs4JK2UCz+AN9Gniw=;
+        b=Tg/IbeRMwhSogFYDbB30EZmdq579P1hxJxeL06P64C89oEa7wSVaAk4+mFbKcL/Y3N
+         /53Y+GTeMZQSvEH1aPKCBA6L+Kf4MYNY+tCHdSN/TvsidBeNk316x+zdNSb5/V+84JWG
+         gJuzo/TEpD0g7UxSzar7GkmJx2OtS5nsy+ndtj7UujFoAmsQWYFfXOqM+0YzEdDWLiSc
+         DXQczEOhz+2er9LNeIqT6w819UR4+ID7LP3XocvGF2JDKb7rxSwDrkg5V2+WSl9YXSBk
+         +X0MNU2gibMcSCFG1e9boP6bjP4mrHAVsdEAbEGyd+K8JmoHLRyl+rLuuFsBbFeGE3la
+         MrRw==
+X-Forwarded-Encrypted: i=1; AL+hErHsK0VoiTKL2G5fxJ5TAi6AUA6TYJOBqGK3SRcPSwYqXP2L4XoOxz0X4xF6u0qxHkGk/h3cduncq899TzJqzrEU@lists.infradead.org
+X-Gm-Message-State: APuU4Z8pTRA3400QYgob6z0m3AipvKlxYqgq1m30zGEv/i1IBkbZivd2
+	ei1NpqFBSe6dl11S+Q2WKESDgv7UK9vBxJVyQZnCtz9T/yXbhRaEuesH
+X-Gm-Gg: AYBFou2O3caBZLVFd3XD6Qgr08HfVjHycLpPN8IblMMrsudPiPLa14hy+3AKJ00N7V9
+	UoIDqRQxlwL9d5AcRDPWq99T9YO2bImWqaP3fKreIEZhuXoEpQcWKJ/08L3f4cA8MEkQ7nh9gmy
+	qxFzW4WCySR2buJlZBw6KvU2PoyR9405Q6v31jxS7pqNphsL5CN50Z1IITVibc/6ZhNOPV83+1B
+	SJoZ2YJv89+I0AwfHmTx/j1BExI5eWsTR3hxpARYdJGApOdMKz0p07WDTp0+ft9dk8jM7k7+1yB
+	drnaMfySYRwD8mTkakBnTEBs1s3Vl0p2/Q4A2nu7VsnLycQlMuRqokSaw5LUnrpHigWKMHve0Xf
+	kWdqTE7j0fPy98IjQKpusiY80aQW/8IbcQqNxipEASJn/ITopGZFi+EDKiwWKeDwmcKME0R5kkw
+	/WNmbdD8Sn7fZQvLdIqmUGVLWk1Bs0epdlZfhTw58KTyoryFxMQNqcm7k3QZJ6k5e9b20wtc71b
+	hECvMllYSpf1UmtbacyUu/Ew3yZ82sOcrL8JIDNwl3W8v4qhei5xKSuOM/1rk6r+T+IOm2SCF45
+	2CAKJ7b4hcYyRr1kIQwtqQlPp36FHWFjmT6ns2WH
+X-Received: by 2002:a05:600c:a010:b0:4a1:c5eb:b445 with SMTP id 5b1f17b1804b1-4b963ca3a7cmr51069905e9.35.1794184445733;
+        Sun, 08 Nov 2026 16:34:05 -0800 (PST)
 Received: from [192.168.10.105] ([212.58.121.92])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49592f39c8asm6541675f8f.7.2026.11.08.16.33.54
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49592f39c8asm6541675f8f.7.2026.11.08.16.33.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2026 16:33:59 -0800 (PST)
+        Sun, 08 Nov 2026 16:34:04 -0800 (PST)
 From: Stanislav Aleksandrov <lightofmysoul@gmail.com>
-Date: Mon, 09 Nov 2026 00:33:19 +0000
-Subject: [PATCH 07/17] dt-bindings: usb: qcom,snps-dwc3: Add Halliday
+Date: Mon, 09 Nov 2026 00:33:20 +0000
+Subject: [PATCH 08/17] dt-bindings: phy: qcom,usb-snps-femto-v2: Add
+ Halliday HS PHY
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-halliday-dts-v1-7-289114ab8197@gmail.com>
+Message-Id: <20261109-halliday-dts-v1-8-289114ab8197@gmail.com>
 References: <20261109-halliday-dts-v1-0-289114ab8197@gmail.com>
 In-Reply-To: <20261109-halliday-dts-v1-0-289114ab8197@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -112,16 +113,16 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-scsi@vger.kernel.org, linux-crypto@vger.kernel.org, 
  linux-pm@vger.kernel.org, Stanislav Aleksandrov <lightofmysoul@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794184395; l=1289;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794184395; l=891;
  i=lightofmysoul@gmail.com; s=20261108; h=from:subject:message-id;
- bh=cCyX7eu7E67i1+mb+zFb+/V3MZ2Z8Bvs+BbDvfy8HQI=;
- b=HQwzvS1g9UbQKH8v0/XpwTYPPGyIcJ129Y8yti74NjNwgnbgo8LwZJmaOxKeuHMuvgkZ+EP/2
- IP5h1J7SLhzC0/e/TSquB9CwBZEDq02qBgUbIWpMHDatD8Y+sZaCkxU
+ bh=iomST/Qr961He4Ne7crBcxin7EtHuKLr8auNEsY1c6w=;
+ b=4DxRuDlo3Sv6o3VM377FCKNLzrNNMHf6FsM5TYa93t66FIlBhCp/mgcC4QeOncc3ZgmuRzx3Y
+ hjxDAxOeJv2BA5u50QEvvg0b3XgcZ1hYXm30qFoJ+yx+NwOICn4vuuC
 X-Developer-Key: i=lightofmysoul@gmail.com; a=ed25519;
  pk=jeRUlfmkhE53CJPoeIIXgu7rTE0ybDRH0HQrEwbydzg=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261108_163401_553174_194A6B95 
-X-CRM114-Status: GOOD (  10.30  )
+X-CRM114-CacheID: sfid-20261108_163407_631287_2D7FA434 
+X-CRM114-Status: GOOD (  10.29  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -141,41 +142,26 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Document the DWC3 USB controller on the Qualcomm Halliday SoC.
+Document the Synopsys femto USB high-speed PHY on the Qualcomm Halliday
+SoC.
 
 Signed-off-by: Stanislav Aleksandrov <lightofmysoul@gmail.com>
 ---
- Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-index b77c02c64d45..7a8b72d2929d 100644
---- a/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml
-@@ -27,6 +27,7 @@ properties:
-           - qcom,eliza-dwc3
-           - qcom,glymur-dwc3
-           - qcom,glymur-dwc3-mp
-+          - qcom,halliday-dwc3
-           - qcom,hawi-dwc3
-           - qcom,ipq4019-dwc3
-           - qcom,ipq5018-dwc3
-@@ -209,6 +210,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - qcom,halliday-dwc3
-               - qcom,hawi-dwc3
-               - qcom,ipq5210-dwc3
-               - qcom,ipq5424-dwc3
-@@ -570,6 +572,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,eliza-dwc3
-+              - qcom,halliday-dwc3
-               - qcom,hawi-dwc3
-               - qcom,ipq4019-dwc3
-               - qcom,ipq8064-dwc3
+diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+index 661759b25064..8ff1db4a1d79 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+@@ -22,6 +22,7 @@ properties:
+           - const: qcom,usb-snps-hs-5nm-phy
+       - items:
+           - enum:
++              - qcom,halliday-usb-hs-phy
+               - qcom,qcs8300-usb-hs-phy
+               - qcom,qdu1000-usb-hs-phy
+               - qcom,sc7280-usb-hs-phy
 
 -- 
 2.55.0
