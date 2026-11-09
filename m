@@ -2,60 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54D47606EE83
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED006083608
 	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 09:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VBO1mM1t;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=DTSDGA7Z;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=WGsaCd4o
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xlZWalJz;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=T9g5uoK3;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=PKc/+PjB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PjsDcIwG04TmODXdDk875Fbl6S3uxlA1cenk9DEJCXo=; b=VBO1mM1tGzsEZL
-	5URAlozSa8tvdm2I2yjjNlPcGA9aNsuXtFUYyyMu9/HJ8g9ZJyISH464gqDbsgz5afmfy8QTkQGVD
-	4Ipkf6MF/o10V3qCohketrFHR4p0bjsNwjPi6fGq2VBHkx/uNjASOUR9HS+sydyjByeJkgl3PZRRl
-	mDdescb1vfyN549lVSeHB7zbSdwI1V9lAJ0vGmw0LhqqOMrzm43aE8jjHeT/iDKQVDz3Hd7ABpmOG
-	w8RO+FITR8rPxUq8VsvvEB7TFIdO2lCnwFFzFbsnH1CqDRAA9FKxOJlzAdVE046bzCcfh5tEJd3CK
-	Ac1evOZK+QYMhF+rn7VA==;
+	List-Owner; bh=ZliLoTOyQMZxDeBt88NC1Lduh8AAHkgsG8U0rRDLJlg=; b=xlZWalJz5YVvpv
+	ufYzDU4xJlLf1dtFGubJhCv0I00zeNt/9eiR8o51efQ59I2OSmstEKzJ0pvuAgUpJ1c1Hcwt0Ym+j
+	1+cizaCTt/CckrtyiBH9QT8EFZ5hbs7zGZQWWAY8wPIQHPYTyPQDHdfqmTRdTvbJnMMA4X24I2Wnh
+	wNkuMuUCFQZbZ4+asAvqQgPEy7egLWfPGNMmhitSsfIuiAtJLOPXLTYuk5rNkkXb15LXUy0DXqvRG
+	aVtKciraWYwCXWUBNG6dJ86vT85PVd+Pa2ezhJdAzOxiMThYl8dWW1IZbFAAYCpNFPpfJG1AHnvV/
+	LAKRDp1hKyQWKza0VD9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLUP-00000000Cuv-0OQ3;
-	Mon, 09 Nov 2026 09:16:33 +0000
+	id 1xQLUO-00000000CuI-3V6f;
+	Mon, 09 Nov 2026 09:16:32 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLUN-00000000CrH-2uI5
+	id 1xQLUD-00000000Cfx-3gqA
 	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 09 Nov 2026 09:16:31 +0000
+	Mon, 09 Nov 2026 09:16:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=PjsDcIwG04TmODXdDk875Fbl6S3uxlA1cenk9DEJCXo=; b=DTSDGA7ZfB9tLRT7nkfeHSVIlk
-	GOO7iyOEja5mK1sRc3ZMI6cW49X3GIXcS6sSS+KnrEl4hmz2IaaSuIztegMyrY4krRDH38lV+J3T7
-	tRf8rSjwU3dwuQIXqgCZKYVV0NoLo4mJTrLQrdI7taib2sMz3KKvvdWgC/RIMqJvp3cwq1TrfcA//
-	m5pGYRNRzisKrlRdBKojn4r9h31wcyPKYQ5LNtHqXEoxz2FHKRLvmAVojLpz2SeXqJc1tbPNg6Wbt
-	7auIGUb8GcJqJRbJ86sZdbfADXqhuJavtMEUcnk8Y/8blNTWx9VPF/hiC4kbDUBqOyu2WkDWGUmLa
-	11tTDnfA==;
+	bh=ZliLoTOyQMZxDeBt88NC1Lduh8AAHkgsG8U0rRDLJlg=; b=T9g5uoK3BAuRY9TjCK2GW0lP43
+	pJSMOqy1opMuQ5t61G8bqfhN+Xi8PMxnBDXX+8xwmQoxXypDQhiPw5xRVGxZyZyoq7k7CxCZcBzj1
+	fxob39phtUOZcv9avv3rvQfoXh2ZPifjCtVWoPNJk3/kOMAXeVAC33HXPCN590C3jYUDtpfcQGGHG
+	XhwLtVlmdEH5596YcZzE8jQgpNVMPWIo4uFjyV9vrT2Pa9WEtdgZR5DOYdZKioh5PVu4qoBET1dpk
+	x17JGPmBvcNhTBh5AQEJaQ40ovVChQ9RiK0k05HCJKgk+1Q28KkdLHrwUK3LfRXJhbqvmYWaoo/5p
+	J2LFKw7g==;
 Received: from foss.arm.com ([217.140.110.172])
 	by desiato.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQLUJ-00000006Vo1-3lk8
+	id 1xQLUA-00000006ViR-1wPC
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 09:16:30 +0000
+	Mon, 09 Nov 2026 09:16:20 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7959315A1;
-	Mon,  9 Nov 2026 01:16:23 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 01B1C15A1;
+	Mon,  9 Nov 2026 01:16:14 -0800 (PST)
 Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98D6E3F85F;
-	Mon,  9 Nov 2026 01:16:23 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 214153F85F;
+	Mon,  9 Nov 2026 01:16:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794215786; bh=24aCbuqzFNJvnaf3Y/y65CRhQlCLaPit95os5BSF7Lc=;
+	t=1794215777; bh=EyFuXjh0NpCGpHb+y4On/CW4yO1lMeHSoYYXTpPOeXw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=WGsaCd4ooRqqRmTRsZoMt6nQaIZznMi+W2WaM3T3xI1uIMggRpoLiJRufIQrueYlb
-	 Y9hrUBQxIYAn8BzaNCFC64mfb/HwOMWTebZ9OOnt72Wwx25nwQU3QzUwC6V8t0RlK0
-	 R4s4R1AFtkIu2vCAuxROsBkBHGQFwS4keHVRYI3k=
+	b=PKc/+PjBjTtp1dc5dXBkvKwc/UAocxRUJpa9M4eKl99SG2r680BWKg4eu9EOfSwae
+	 yDOiWcayUFhJrXVfrlU5eS2zabz9c0P+WanjeA782EDOcc8NPeHy03EW55Qa46wEd5
+	 tUiogjzQzngXMVcR/OrOQReWHcMG9aK4D1+9oGuQ=
 From: Cristian Marussi <cristian.marussi@arm.com>
 To: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
@@ -81,9 +81,9 @@ Cc: sudeep.holla@kernel.org,
 	usama.arif@linux.dev,
 	kernel-team@meta.com,
 	Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v15 28/35] firmware: arm_scmi: Add un-managed methods to get/put protocols operations
-Date: Mon,  9 Nov 2026 09:12:14 +0000
-Message-ID: <20261109091221.2532706-29-cristian.marussi@arm.com>
+Subject: [PATCH v15 25/35] firmware: arm_scmi: Add Telemetry debugfs SHMTI dump support
+Date: Mon,  9 Nov 2026 09:12:11 +0000
+Message-ID: <20261109091221.2532706-26-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261109091221.2532706-1-cristian.marussi@arm.com>
 References: <20261109091221.2532706-1-cristian.marussi@arm.com>
@@ -91,8 +91,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_091628_342384_C9773F06 
-X-CRM114-Status: GOOD (  13.84  )
+X-CRM114-CacheID: sfid-20261109_091619_054305_7B7D433C 
+X-CRM114-Status: GOOD (  19.41  )
 X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,108 +112,183 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a couple of simple common methods to be able to manually get and put
-protocol operations to address situation in which devres managed methods
-cannot be used.
+Expose one debugfs entry for each discovered SHMTI that can be used to
+dump the related SHMTI in binary form from TBGN up to TEND markers.
+
+No processing is done kernel side, beside using proper accessors for
+device memory.
 
 Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 ---
-v10 --> v11
- - fixed a few comments typos
+v14 --> v15
+ - cleanup local debugfs subtree with debugfs_remove_recursive on remove
+v12 --> v13
+ - get inode lock on time update
+v11 --> v12
+ - fix debugfs shmti dump file to use the SID as name
+v8 --> v9
+ - use kvzalloc/kfree
+ - use file_update_time to update debugfs file ts
+v5 --> v6
+ - added mutex to protect binary dump buffer during reads (Sashiko)
+ - using debugfs_create_file_size() (Sashiko)
 ---
- drivers/firmware/arm_scmi/driver.c | 39 ++++++++++++++++++++++++++++++
- include/linux/scmi_protocol.h      |  7 ++++++
- 2 files changed, 46 insertions(+)
+ drivers/firmware/arm_scmi/telemetry.c | 103 ++++++++++++++++++++++++++
+ 1 file changed, 103 insertions(+)
 
-diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-index 015dc8473161..c2166a48bc86 100644
---- a/drivers/firmware/arm_scmi/driver.c
-+++ b/drivers/firmware/arm_scmi/driver.c
-@@ -2641,6 +2641,31 @@ scmi_devm_protocol_get(struct scmi_device *sdev, u8 protocol_id,
- 	return pi->proto->ops;
+diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
+index c21700bd1b43..7582fe295a23 100644
+--- a/drivers/firmware/arm_scmi/telemetry.c
++++ b/drivers/firmware/arm_scmi/telemetry.c
+@@ -9,10 +9,12 @@
+ #include <linux/bitfield.h>
+ #include <linux/compiler_types.h>
+ #include <linux/completion.h>
++#include <linux/debugfs.h>
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/err.h>
+ #include <linux/eventfd.h>
++#include <linux/fs.h>
+ #include <linux/hash.h>
+ #include <linux/hashtable.h>
+ #include <linux/jhash.h>
+@@ -463,6 +465,14 @@ struct telemetry_shmti {
+ #define TDCF_OFFS(_b, _p)				\
+ 	((unsigned long)((__force void *)(_p) - (__force void *)(_b)))
+ 
++struct scmi_telemetry_dbg_shmti {
++	struct telemetry_shmti *shmti;
++	size_t buf_sz;
++	void *buf;
++	/* Protect this descriptor from concurrent readers using it */
++	struct mutex mtx;
++};
++
+ #define SHMTI_EPLG(s)						\
+ 	({							\
+ 		struct telemetry_shmti *_s = (s);		\
+@@ -590,6 +600,7 @@ struct telemetry_info {
+ 	unsigned int default_blk_ts_rate;
+ 	const struct scmi_protocol_handle *ph;
+ 	struct telemetry_shmti *shmti;
++	struct dentry *shmti_top;
+ 	struct telemetry_de *tdes;
+ 	struct xarray xa_des;
+ 	struct telemetry_uuid *primary_uuid;
+@@ -1683,6 +1694,91 @@ scmi_telemetry_enumerate_common_intervals(struct telemetry_info *ti)
+ 					ti->info.intervals);
  }
  
-+/**
-+ * scmi_protocol_operations_get  - UnManaged get protocol operations
-+ *
-+ * @handle: A reference to the SCMI platform instance.
-+ * @protocol_id: The protocol being acquired.
-+ * @ph: A pointer reference used to pass back the associated protocol handle.
-+ */
-+static const void __must_check *
-+scmi_protocol_operations_get(const struct scmi_handle *handle, u8 protocol_id,
-+			     struct scmi_protocol_handle **ph)
++static int scmi_telemetry_dbg_shmti_open(struct inode *inode, struct file *filp)
 +{
-+	struct scmi_protocol_instance *pi;
++	struct scmi_telemetry_dbg_shmti *sblob;
++	struct telemetry_shmti *shmti;
 +
-+	if (!ph)
-+		return ERR_PTR(-EINVAL);
++	if (!inode->i_private)
++		return -ENODEV;
 +
-+	pi = scmi_get_protocol_instance(handle, protocol_id);
-+	if (IS_ERR(pi))
-+		return pi;
++	shmti = inode->i_private;
++	sblob = kzalloc_obj(*sblob);
++	if (!sblob)
++		return -ENOMEM;
 +
-+	*ph = &pi->ph;
++	sblob->shmti = shmti;
++	sblob->buf = kvzalloc(shmti->info.len, GFP_KERNEL);
++	if (!sblob->buf) {
++		kfree(sblob);
++		return -ENOMEM;
++	}
 +
-+	return pi->proto->ops;
++	mutex_init(&sblob->mtx);
++
++	filp->private_data = sblob;
++
++	return 0;
 +}
 +
- /**
-  * scmi_devm_protocol_acquire  - Devres managed helper to get hold of a protocol
-  * @sdev: A reference to an scmi_device whose embedded struct device is to
-@@ -2697,6 +2722,18 @@ static void scmi_devm_protocol_put(struct scmi_device *sdev, u8 protocol_id)
- 	WARN_ON(ret);
++static ssize_t scmi_telemetry_dbg_shmti_read(struct file *filp, char __user *buf,
++					     size_t count, loff_t *ppos)
++{
++	struct scmi_telemetry_dbg_shmti *sblob = filp->private_data;
++
++	/* Dump on first read and again after each rewind to start pos */
++	guard(mutex)(&sblob->mtx);
++	if (!sblob->buf_sz || *ppos == 0) {
++		struct inode *ino = file_inode(filp);
++
++		memcpy_fromio(sblob->buf, sblob->shmti->base,
++			      sblob->shmti->info.len);
++		sblob->buf_sz = sblob->shmti->info.len;
++		/* update inode timestamps */
++		inode_lock(ino);
++		file_update_time(filp);
++		inode_unlock(ino);
++	}
++
++	return simple_read_from_buffer(buf, count, ppos, sblob->buf, sblob->buf_sz);
++}
++
++static int scmi_telemetry_dbg_shmti_release(struct inode *inode, struct file *filp)
++{
++	struct scmi_telemetry_dbg_shmti *sblob = filp->private_data;
++
++	kvfree(sblob->buf);
++	kfree(sblob);
++
++	return 0;
++}
++
++static const struct file_operations scmi_telemetry_dbg_shmti_fops = {
++	.open = scmi_telemetry_dbg_shmti_open,
++	.release = scmi_telemetry_dbg_shmti_release,
++	.read = scmi_telemetry_dbg_shmti_read,
++	.llseek = generic_file_llseek,
++	.owner = THIS_MODULE,
++};
++
++static void scmi_telemetry_debugfs_initialize(struct telemetry_info *ti)
++{
++	const struct scmi_protocol_handle *ph = ti->ph;
++	struct dentry *top;
++
++	top = ph->hops->debugfs_proto_dentry_get(ph);
++	ti->shmti_top = debugfs_create_dir("shmtis", top);
++
++	for (unsigned int i = 0; i < ti->num_shmti; i++) {
++		char id[16];
++
++		snprintf(id, 16, "%u", ti->shmti[i].info.sid);
++		debugfs_create_file_size(id, 0444, ti->shmti_top, &ti->shmti[i],
++					 &scmi_telemetry_dbg_shmti_fops,
++					 ti->shmti[i].info.len);
++	}
++}
++
+ static int iter_shmti_update_state(struct scmi_iterator_state *st,
+ 				   const void *response, void *priv)
+ {
+@@ -4717,6 +4813,10 @@ static void scmi_telemetry_resources_free(struct telemetry_info *ti)
+ 	/* Ensure rinfo is no more accessible upfront */
+ 	smp_store_release(&ti->rinfo, NULL);
+ 
++	/* Safe removal of SHMTI debugfs tree before freeing underlying data */
++	if (IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_PROTOCOLS))
++		debugfs_remove_recursive(ti->shmti_top);
++
+ 	kfree(ti->info.shmtis);
+ 	kfree(ti->shmti);
+ 
+@@ -5078,6 +5178,9 @@ static int scmi_telemetry_protocol_init(const struct scmi_protocol_handle *ph)
+ 		}
+ 	}
+ 
++	if (IS_ENABLED(CONFIG_ARM_SCMI_DEBUG_PROTOCOLS))
++		scmi_telemetry_debugfs_initialize(ti);
++
+ 	return 0;
  }
  
-+/**
-+ * scmi_protocol_operations_put  - UnManaged put protocol operations
-+ *
-+ * @handle: A reference to the SCMI platform instance.
-+ * @protocol_id: The protocol being released.
-+ */
-+static void scmi_protocol_operations_put(const struct scmi_handle *handle,
-+					 u8 protocol_id)
-+{
-+	scmi_protocol_release(handle, protocol_id);
-+}
-+
- /**
-  * scmi_is_transport_atomic  - Method to check if underlying transport for an
-  * SCMI instance is configured as atomic.
-@@ -3489,6 +3526,8 @@ static int scmi_probe(struct platform_device *pdev)
- 	handle->devm_protocol_acquire = scmi_devm_protocol_acquire;
- 	handle->devm_protocol_get = scmi_devm_protocol_get;
- 	handle->devm_protocol_put = scmi_devm_protocol_put;
-+	handle->protocol_get = scmi_protocol_operations_get;
-+	handle->protocol_put = scmi_protocol_operations_put;
- 	handle->is_transport_atomic = scmi_is_transport_atomic;
- 
- 	/* Setup all channels described in the fwnode at first */
-diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
-index 4fa32d629e7a..8c143cbddb5f 100644
---- a/include/linux/scmi_protocol.h
-+++ b/include/linux/scmi_protocol.h
-@@ -1145,6 +1145,9 @@ struct scmi_notify_ops {
-  * @devm_protocol_get: devres managed method to acquire a protocol and get specific
-  *		       operations and a dedicated protocol handler
-  * @devm_protocol_put: devres managed method to release a protocol
-+ * @protocol_get: unmanaged method to acquire a protocol and get specific
-+ *		  operations and a dedicated protocol handler
-+ * @protocol_put: unmanaged method to release a protocol
-  * @is_transport_atomic: method to check if the underlying transport for this
-  *			 instance handle is configured to support atomic
-  *			 transactions for commands.
-@@ -1167,6 +1170,10 @@ struct scmi_handle {
- 		(*devm_protocol_get)(struct scmi_device *sdev, u8 proto,
- 				     struct scmi_protocol_handle **ph);
- 	void (*devm_protocol_put)(struct scmi_device *sdev, u8 proto);
-+	const void __must_check *
-+		(*protocol_get)(const struct scmi_handle *handle, u8 proto,
-+				struct scmi_protocol_handle **ph);
-+	void (*protocol_put)(const struct scmi_handle *handle, u8 proto);
- 	bool (*is_transport_atomic)(const struct scmi_handle *handle,
- 				    unsigned int *atomic_threshold);
- 	const struct scmi_notify_ops *notify_ops;
 -- 
 2.54.0
 
