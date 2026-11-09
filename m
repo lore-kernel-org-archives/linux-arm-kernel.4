@@ -2,106 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D51C606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054B5606D82B
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 10:08:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MMbq5YDD;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=GKXgB7yE;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=SRzpxp/N
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lUFsFjXS;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=ppeEQm7r;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=abj9SImj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ee9HFL3sXLWOGy9+2wILhca1yG8CtTePaf5ROxRYkv0=; b=MMbq5YDDvEln81
-	z0U1Tu0GsF5co4m4v7+dq+6ajhr9TY64toQ6IesIo5M9YPOAEEvqhjMUM2BVrywLSmTzhXE9Z6jCs
-	Q0R6ebdCmX39/IFJNZeaqTauwy6sLSEiwZFn3aangmxX1n9ldByQe+oGAOMPMYNtRBd5yFFgvCQIz
-	8fAlmIwC+FKBS1yv2f9JjELZA9CHAXN5YJqCNm+l9TNxP9vz1lBfCfCiyyLSMAWIFknwU8TeM5z7x
-	+PqTwZEq7+0NUdmuY27uGa7m7Bpzxz2XLG4XO+5uVVNa2CakNlswJjVuXso5Jlkx948URh4+FeBJX
-	nomVHrypveU9zPmZnR6w==;
+	List-Owner; bh=fDSOUSQM9GLIrvCsvZZiq5SNqpo1e4NgIoTy9VWeUjg=; b=lUFsFjXSM3RyZ0
+	oDB6FedCX170kD3S54zCqDxF/gd5GIIFokn63O+T1a3lIgFqRKlwfsYWNd45fJLwmXeDlmGVUrx0C
+	rY3YSycVtBnoTOdst3lFbIzcypJvrQB6YiOsAfKSh2kxZymK6kJmyUBie74D3VbOtw4OzF3okDnmP
+	Tafwlm2ZOmeBbXhR4x2dRLz3vQyshrX2YWFs+Ze+PBUMPFDIwK8R/dc+ehQ9+Li0V2qV99scMR51a
+	/WXcefne/iwh2rsLV/ZbyenfYOYdsgSl9D6keG2jwmpvq27gh50dxtPkbNr5DEIzjVUVfUwP3XLHA
+	VN5lkGQyFBdsKjYzqWKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQMIP-00000000MZv-1pDO;
-	Mon, 09 Nov 2026 10:08:13 +0000
+	id 1xQMIU-00000000Mdq-0l2q;
+	Mon, 09 Nov 2026 10:08:18 +0000
 Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQMII-00000000MUw-2IS5
+	id 1xQMIQ-00000000MaA-2nV1
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 10:08:11 +0000
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A99v7TC562030
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 9 Nov 2026 10:08:05 GMT
+	Mon, 09 Nov 2026 10:08:16 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6A99vGAD4108047
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 9 Nov 2026 10:08:13 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ee9HFL3sXLWOGy9+2wILhca1yG8CtTePaf5ROxRYkv0=; b=GKXgB7yE4Mv1oFqh
-	ygUrAW9IFXSMTPxl6YO+3eOOH0fhJAjY2hxHMaWH2FRvPjt8nsMCa84XY9v4WXaZ
-	9EYp/3/XAsDP9/0RVEYAv0+Hs+rcTiM9eOouFGiH+VUUSPGh3prb7aZTwxOWNFd6
-	AlGpj8YGcp2FJ7uEPL3Upt6vwpa0obnzZ0dOISjdmvvAapVDIVn/aRv5UinkfnB/
-	u218ecYj2GtQCrJWBayTNGT/3bri9VotkQE3/hfV8UadgJM9DJMX2HHPSfc98zYw
-	3RoCav7d40LsJJq3L7eXccu/7K2GYC7eaXtq9Snh/n1zKo0Ray9aOwHvUs/o1eF1
-	1Zsv5A==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hsujxdvxb-1
+	fDSOUSQM9GLIrvCsvZZiq5SNqpo1e4NgIoTy9VWeUjg=; b=ppeEQm7rR7p7BPUY
+	Kci1Awb2YtMG6qsDnCfqu96oRFwOLHYtJLPkvgpzGGfzZEUlTV57uHLKpJZuDuoN
+	nuziQeeLPEGNJUcu5wVZ7Ak9UPkqcFjg+4wpgLM1iB5N27yVBhsuTgxs2nAohKvl
+	7vuMoeQ+4Rl4YJ7VCSWIYenx5vzTcLsNTzhFbsalA872sgdGVqbq4QAFeXwAjWkD
+	Y59JLLtaOH3YT8vfM7pNHK11/2dwmskRorfkisn15MO/TEFfS8V4vRVIubQh48aq
+	M64iHku2DIagIPfFSqPTQKytP77EUo4iw/d9r9ntQaaSpbd64FGifcgJw2KrT7Ml
+	BV7B2A==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hssbnx83x-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 10:08:05 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-cc7361c62b9so469831a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 02:08:05 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 10:08:13 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2eced5a4cb9so7407295ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 02:08:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794218884; x=1794823684; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1794218892; x=1794823692; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ee9HFL3sXLWOGy9+2wILhca1yG8CtTePaf5ROxRYkv0=;
-        b=SRzpxp/NwUZC7gv/1/2yCaZW0o28rC18ra0aD8r6g0/2yewPIMOjNHTqCwnatJurfZ
-         ZXrCElYHZ7x3jdnQ+iRFmnigODkfJ3I70LLjvpmeVx9E+Yy3JhordRsoGC2dlRHrgMJT
-         vlAQhXCUz12B6Xb1wZqoyAGa2Gi2Ystl8H61wmKev39he4zZJWMxDO2dtNpatdAvkmCR
-         5Bfrb51qWaoOfHq/M82bQxF2ccJfSkGkRlyF03CYG2eQIpUB0gFbz3BGXKcq9WLy5yTx
-         jllS8gaJDkOKWORGYiz2SSzdyoWKtgQeCxed5cqpXLmbvXz/mfYEfDo/DrEQ/2LiJhyp
-         kuiw==
+        bh=fDSOUSQM9GLIrvCsvZZiq5SNqpo1e4NgIoTy9VWeUjg=;
+        b=abj9SImjo56gvKXbRSRzNBykj2c4M1J/DCOyKEOk7QbqaIXXtT8LJCW16tNnsQBsIS
+         2wYqQ1GMX0ex0mU/KFMKYd/6V/ACQ4q7Y/UKxtT3a7oO+mGwzBiTe7ZOOlzQjJCFAw1i
+         Auy9/Nu2ALBXGxHn3WBY6DLvdrPZw87HHSxgFvNceuu7ZxsIDPNraKrYy9dGbk92czb3
+         XiXBZ19UGzMz0azeAMvc2+IScwZqJMiY5t48NWYhCJEGP+1oIkhE5KGeobq5xzfBr4Nj
+         Fh7XYF2RYUVYSO+COfK0vaCo4hgUzwx4ZSMTLyrchkjBtqpq3FSR+IFsjQk5MsRQpr8r
+         vW5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794218884; x=1794823684;
+        d=1e100.net; s=20260707; t=1794218892; x=1794823692;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ee9HFL3sXLWOGy9+2wILhca1yG8CtTePaf5ROxRYkv0=;
-        b=mbV2c5Ml2ZWiE85WIOp+kkt6eXJBsrZJusLfLxQ27kJi83RTdwYAgvs6qOWc9jBiz+
-         p3bhEAmboOKyvy9hblLVLs1hlITeMM7/VGraHdnb5qIhPdhN+NURh2nNKQJ4trB+JAOm
-         CMCC2meW5BgXjhzp5nic6IJ+yTPDtTLX7f3Jc+eTi0O+4CEk00wPXMZGBfxxvuIBXVLo
-         gZd3VSigS2MSURaqwI9q7Px4mWvIHGpWPa99+yAzmlZqFTMxrNJ7kjUFtGqzUHZTrS6n
-         aDF2YRxnH7N4Y/UIo1FtrZaX5gZnZs6G85bCnT2uEkXMmRhpnIG5qcGvecp7/GLoMxCL
-         R2/g==
-X-Forwarded-Encrypted: i=1; AL+hErGJJhZUiHd8XfjRDj85ZzYvPA6PJuXtz7RAuh+g/2xfDmqAZTxz8SK3Xg72aOXl2SX6xfb8Isq4qPA/RJuH0mvt@lists.infradead.org
-X-Gm-Message-State: APuU4Z9CLqUEKMvCIu1+06PH8nMCbRU093PivPYEkOZGiDXBzwuYKRJO
-	szLVhV3awKJaYXWv7NYELM/yK7XdbNVZoTl9jMU0bATkUL4QaNCSGfE7WtA0hc3nYcGapUN7qxl
-	hBGM3GXBvTa8BTvTfO97roF+bFxks0Zlesw+2EQU8xLbXaKBCRBHGl2A/lpqvAPyiODjXPOi/nk
-	1biw==
-X-Gm-Gg: AYBFou0ZsXB9eZ0cpn2vkyGBV1OLO4ks+AVPC7eEGgwBY2zZ59jOQAUqh702n/rhISs
-	K5A6ME9WhXmzxRTSdtUZkpsS9+eH3Kp1qrxntdLhyH5vXhNSxapVIQOL6RmV96c7p5OtIz+afPY
-	utCoWkQGohs6o2BxvKoLtOfpbD/zY2EAVBqlBVflAkoHGyluVJ3TAQS9+hDh+A7SdD20q/6qAPu
-	s0eFenhraTydknWwBRunQYSnC4dZjYQQTxp9nvurYkKZgQHwvoHEENlF337s8PP81WmSH4t1e3F
-	FulWvvvIgjiiqhoLgctP29Fjm1qd8zgTPhm0sMbWby0INKtCTUhROfI3rzdZCOSW3mkTqYWwBTU
-	puGISkfdVMml5/QRk+5hEKrWSB88caEXNSOfsZrLQqcu+yWTwzPz0eW3h95XCe2MlEidj1x3dOO
-	444SJJ9TxcxBEzIDezYR9EldqoxXeP
-X-Received: by 2002:a17:90b:54ce:b0:3ac:7556:8eed with SMTP id 98e67ed59e1d1-3b12d57c488mr3115057a91.44.1794218884290;
-        Mon, 09 Nov 2026 02:08:04 -0800 (PST)
-X-Received: by 2002:a17:90b:54ce:b0:3ac:7556:8eed with SMTP id 98e67ed59e1d1-3b12d57c488mr3114999a91.44.1794218883733;
-        Mon, 09 Nov 2026 02:08:03 -0800 (PST)
+        bh=fDSOUSQM9GLIrvCsvZZiq5SNqpo1e4NgIoTy9VWeUjg=;
+        b=I2USxsN4npqAeZ7CHwOeFLj6ifR4I2EVhneDiEDSl/7F/8Dsi2f7bTlhpOre2cqAok
+         3ZKxa80LB94+ol6agqLgumeEHI+fqRM0Ao4sbkCJ1flN2aQmmnzgawr6VfH0DWxntwEd
+         cCco0MgLjOdjjkflXoxFPYR24+OVmPvGZ9UobP13rchRNOOFSOKJnCzMIRtnzlqP5FsN
+         EPoBoPOkLczp5bZ2zE6zuCqWi5ughgve3SzeuT/w7LMil+IRjQReUPB8rHtcQJjiWyhB
+         C/ieX8nzssP6cqlQHdk18p0RIZfrx0Yw5FSuxqwnJeUwcbWDrqG9+yedRh1MiIvZCals
+         WRow==
+X-Forwarded-Encrypted: i=1; AL+hErFUrUlmjMusa6ruIdb3DyYlndTRVJFUSXR6PMVHxIFc4w6tTQyXvSY6ufUQ1IDC3r8pPSOtai8NWMjIk67l+y1s@lists.infradead.org
+X-Gm-Message-State: APuU4Z9Z3gobRq0qqdDleT9EAy050t6HGAvpw72MVPpfqgUH8AJt8gSk
+	MgCMUVu1VpJ3gYHm+bVT7XZ23CYvBksgG2lbEmyPQgWtGsw+YhwjXRro41xo4lrpk26LSHhocBR
+	Ier2jgqH9PtUuc2m8lbCWYn1cvqeZIHcDt1509lhlMqd9P13dYqF5MDYSUZqe8hHvAMwJkgYXNC
+	pimA==
+X-Gm-Gg: AYBFou2jDlbvI5P3SJI/0xf79I+qCYkNgG9+Bg008zgg9wKC4ZSLIG6ZZBxUg6XGK0h
+	XWtoiy46kjNAMlqybFGRp3uYdYuYZyY9cYPf4qM8mMOqx2ubtjbmu80KfpFTnBaaOd1n1EfV/Pu
+	BSYmtqAbyKyxjf6KXsX0hC04woTaxcq9jzC0uzLl14Lnv+a1H4V3cyhZ6PNEw2Jm+RsQ1vSj5Ty
+	aIlz/XmzL5dTH2+rbIzotodS6qPBBSCPYk4VoGjnNjXvHpmSWy9N9ifmseSy8Kobn9HmD2v3UOj
+	DjBCDyD4hpOhYELDhBS5iYJ0+3VfoLqk1D7jIjR6axu3vFwxEcHXe5J/vosVuC8yr7v2IyqNUAf
+	RD4A/Uk0+m27asfT+taYEjzBtmxR5AkdCWRqQ7GVp4IdKdMa+SwXHGSEuXZJhtlno1AHjcwbLSa
+	944ya6/7GdimT1s2163Wuj2eXJSh43
+X-Received: by 2002:a17:90b:4b0f:b0:3b0:9984:18c9 with SMTP id 98e67ed59e1d1-3b12d2cba5cmr3185592a91.11.1794218892361;
+        Mon, 09 Nov 2026 02:08:12 -0800 (PST)
+X-Received: by 2002:a17:90b:4b0f:b0:3b0:9984:18c9 with SMTP id 98e67ed59e1d1-3b12d2cba5cmr3185541a91.11.1794218891857;
+        Mon, 09 Nov 2026 02:08:11 -0800 (PST)
 Received: from yli42-gv.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1054a53e4sm10034531a91.0.2026.11.09.02.07.54
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1054a53e4sm10034531a91.0.2026.11.09.02.08.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 02:08:02 -0800 (PST)
+        Mon, 09 Nov 2026 02:08:11 -0800 (PST)
 From: Yin Li <yin.li@oss.qualcomm.com>
-Date: Mon, 09 Nov 2026 18:05:38 +0800
-Subject: [PATCH v5 6/7] arm_mpam: Add support for memory controller MSC on
- DT platforms
+Date: Mon, 09 Nov 2026 18:05:39 +0800
+Subject: [PATCH v5 7/7] arm64: dts: qcom: nord: Add MPAM MSC nodes for the
+ L2 caches
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-mpam-resctrl-dt-knp-support-v5-6-150335a79381@oss.qualcomm.com>
+Message-Id: <20261109-mpam-resctrl-dt-knp-support-v5-7-150335a79381@oss.qualcomm.com>
 References: <20261109-mpam-resctrl-dt-knp-support-v5-0-150335a79381@oss.qualcomm.com>
 In-Reply-To: <20261109-mpam-resctrl-dt-knp-support-v5-0-150335a79381@oss.qualcomm.com>
 To: James Morse <james.morse@arm.com>, Rob Herring <robh@kernel.org>,
@@ -129,43 +129,43 @@ Cc: Yin Li <yin.li@oss.qualcomm.com>, Andre Przywara <andre.przywara@arm.com>,
         linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
         devicetree@vger.kernel.org, Ping Li <leeonion.muyu@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794218819; l=4036;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794218820; l=3176;
  i=yin.li@oss.qualcomm.com; s=20260811; h=from:subject:message-id;
- bh=SVcR+hwi7W8WiyGR/9ZEtnITz44WeNpESQ+Zf8I0XbE=;
- b=JjDWgv0VXlw0PJfE0V93nb8oTc37DPPbjQTjoe3GHNpeRdv9e8sfXmLcZGGjGPiF9B66D54dx
- GKk8AyJt6vPAL351yRRkOtyss73IJPxqfW8q0RujnUA70L6H2N0pH+l
+ bh=ZaVhC2MFnbu/kTiLZ4O2AmrSppiPduQJFEif++uRdyk=;
+ b=u/FERFaskIqPAl5lMELjNtPiriNj3T5fZ59uO++4QSA9Qs5HQiSwNeAUgh2JrMcmT6/6c/Rgg
+ YM83twlxNzsAGhVgsRFiHTCDFOBHKzfQ5hgK+cLg1j86Sd6luy6L9KF
 X-Developer-Key: i=yin.li@oss.qualcomm.com; a=ed25519;
  pk=e/2LM97aSWGBMrxY240URBi9Zi8/kL5hXgB+VHkYvW0=
-X-Proofpoint-GUID: SeOymoEkHFvCA1Kbeb6u5ohwhk_7tvkA
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDA0MCBTYWx0ZWRfX2vqHfRMDcqhJ
- gwDe/5lEXOgUWLHrCKemzU6Jeze36KVl2zgG7NAbW4ScLVfoHb5r/OaN6tQHkr88UlnM0Wed2AW
- qiJ/BtRDz0K+1OQ3fI5yDXcSJqpasFwMuZ3gD3Kdvy1b8UxkvkjB5ZT7KKz1pDaPBr3Q4GDQ+C3
- WDiMh3tv6gqmwJItIB/XGpqngkQjBZRkFtyjFajPApo38yktJOIfOBjK76uDQmHKZJOgrbaNqrP
- iKI9aG5Mqs3ITPW2xj1wGgYEgorjjQEiZx9bkfukt7JrdTZWI0JoQpfZpL7aoDNtZmeby6zVT7y
- dTVi+J+IONhMRj0i+WBRoKX+4bexKSUlUl2BxpxsNvwFkmVfWN+Yoni+aRgJrazZH4w7L8Fi8qZ
- GJpYYafE2iiSgbYaAijGw9x0lEQ52hJ/+bTTmGX+OlOlSW1IdAY1nxmAfIixGB6punB3blR7bWV
- je0HNrbK+gMSlN/TnDg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDA0MCBTYWx0ZWRfX3mu3lH095oIa
- GbIXZPOeHajX/599LzBdngfD5W8BvgXcncjl2uz6w4dHEhBZmWH3P4ngJ4DxD4Xl0wlND/S5bZk
- l8py9yfjKt4GrwdhTRosP1eujkuKoCw=
-X-Authority-Analysis: v=2.4 cv=TeIDJhQh c=1 sm=1 tr=0 ts=6af19b85 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-GUID: B9x6juM5345sYeyYl2EPLV8f4fWSd1La
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTA5MDA0MCBTYWx0ZWRfX5qQdu8/2249g
+ evRqa5mWJP+Sy1Griyxg3BazQmEKonfvARa+L26/l3UragjCNqvIvtee1P7pjtHLgjhT92xzDsq
+ 83pc/BplTryfjQbYbT8XKvq/QRdTeUhTUha2PD8S08C9kjRbiGHgsEsK9mmG5AhUXpSLrB34O1L
+ 8ohCYxzEs2qHUlOAR9mCxPUE2XphcGkMnjQJRhQlPa/A3mCZdQnqxOl3yCKxr0zK9nv9eAoiVOu
+ qv9lTBC3BRNaft14hj9MRccbD4E0oRU/1nwiHlRPzwe5VhCq9X5bnY09Ig7zVUDzbaCa97sqGqj
+ yi2bU6hZp7ck8wtxbDVN/7LXSP7aiG/R7e6+72KmrT7EtZR81sV5CA4lUK+WkFl3bVVlRhzXBkt
+ uSW1co0eMvFbCGr5bcPFSlLJvDh5d0cGHqnnWdRf3M71+n/D/GEuKp2RVRP9LCNrzJi4Tyz/29B
+ YSfDM9dioBTWgv+gHXw==
+X-Proofpoint-ORIG-GUID: B9x6juM5345sYeyYl2EPLV8f4fWSd1La
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTA5MDA0MCBTYWx0ZWRfX5q9gULxVhX5X
+ EhJAZYfgAE6/z6kYdLqODRXvU8Apo+CcStmf/v9IfibFdH3v8pDr73nOSLAxnx0ddW68VanWXcJ
+ EFKK6S3Nm98GwuLB6M845yJerwpxFD8=
+X-Authority-Analysis: v=2.4 cv=JtBkP84C c=1 sm=1 tr=0 ts=6af19b8d cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=Ikd4Dj_1AAAA:8 a=7CQSdrXTAAAA:8 a=EUspDBNiAAAA:8 a=YM9RNYZJZtWq5EK5GGEA:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-ORIG-GUID: SeOymoEkHFvCA1Kbeb6u5ohwhk_7tvkA
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=SOWVPGG40zWAznzFnVgA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-09_04,2026-11-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 phishscore=0 bulkscore=0 adultscore=0
- spamscore=0 priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0
+ malwarescore=0 spamscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ impostorscore=0 phishscore=0 adultscore=0 priorityscore=1501 bulkscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611090040
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_020806_713812_85CF912A 
-X-CRM114-Status: GOOD (  21.14  )
+X-CRM114-CacheID: sfid-20261109_020814_846080_0369F175 
+X-CRM114-Status: GOOD (  14.99  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -185,115 +185,126 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Shanker Donthineni <sdonthineni@nvidia.com>
+Add an MPAM MSC device node for each L2 cache. Each MSC is nested
+directly under its L2 cache node so that the cache node is the MSC's
+parent device and its CPU affinity is derived from that cache.
 
-The MPAM DT path only handles cache MSCs. Memory-controller MSCs
-cannot be probed yet.
+The L2 cache nodes are placed directly under the root node rather than
+under their CPU nodes, to allow the MSC register region to be mapped:
+CPU nodes do not provide an MMIO address space, so an MSC nested under
+a CPU-parented cache node cannot be mapped.
 
-Add support to discover memory-controller MSCs from the device tree:
-derive the component id from the NUMA node and create a 'memory' class
-RIS, and treat a memory parent as accessible from all CPUs.
-
-Signed-off-by: Shanker Donthineni <sdonthineni@nvidia.com>
-[ morse: split out of a bigger patch, added affinity piece ]
-Signed-off-by: James Morse <james.morse@arm.com>
-[ Yin Li: fix context offset conflicts; use u32 instead of unsigned long
-  for component_id and compare against ~0U; remove the unused memory
-  node reference in the arm,mpam-memory-controller-msc path ]
+Co-developed-by: Huang Yiwei <huang.yiwei@oss.qualcomm.com>
+Signed-off-by: Huang Yiwei <huang.yiwei@oss.qualcomm.com>
 Signed-off-by: Yin Li <yin.li@oss.qualcomm.com>
 ---
- drivers/resctrl/mpam_devices.c | 54 ++++++++++++++++++++++++++++++------------
- 1 file changed, 39 insertions(+), 15 deletions(-)
+ arch/arm64/boot/dts/qcom/nord.dtsi | 72 ++++++++++++++++++++++++++++----------
+ 1 file changed, 54 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-index 78caa8ae1349..e0ac6ef83d6e 100644
---- a/drivers/resctrl/mpam_devices.c
-+++ b/drivers/resctrl/mpam_devices.c
-@@ -365,10 +365,12 @@ static int mpam_dt_parse_resource(struct mpam_msc *msc, struct device_node *np,
- 				  u8 ris_idx)
- {
- 	int err = 0;
--	u32 level = 0;
--	u32 cache_id;
-+	u32 class_id = 0;
-+	u32 component_id = 0;
- 	struct device *dev = &msc->pdev->dev;
-+	enum mpam_class_types type = MPAM_CLASS_UNKNOWN;
- 	struct device_node *cache __free(device_node) = NULL;
-+	struct device_node *memory __free(device_node) = NULL;
- 	struct device_node *parent __free(device_node) = of_get_parent(np);
- 
- 	if (of_device_is_compatible(np, "arm,mpam-cache")) {
-@@ -377,27 +379,47 @@ static int mpam_dt_parse_resource(struct mpam_msc *msc, struct device_node *np,
- 			dev_err_once(dev, "Failed to read phandle\n");
- 			return -EINVAL;
- 		}
-+		type = MPAM_CLASS_CACHE;
-+
- 	} else if (of_device_is_compatible(parent, "cache")) {
- 		cache = of_node_get(parent);
-+		type = MPAM_CLASS_CACHE;
-+	} else if (of_device_is_compatible(np, "arm,mpam-memory")) {
-+		memory = of_parse_phandle(np, "arm,mpam-device", 0);
-+		if (!memory) {
-+			dev_err_once(dev, "Failed to read phandle\n");
-+			return -EINVAL;
-+		}
-+		type = MPAM_CLASS_MEMORY;
-+	} else if (of_device_is_compatible(np, "arm,mpam-memory-controller-msc")) {
-+		type = MPAM_CLASS_MEMORY;
- 	} else {
--		/* For now, only caches are supported */
--		cache = NULL;
--		return err;
--	}
+diff --git a/arch/arm64/boot/dts/qcom/nord.dtsi b/arch/arm64/boot/dts/qcom/nord.dtsi
+index fdbe290350dd..285c6a3e5cb7 100644
+--- a/arch/arm64/boot/dts/qcom/nord.dtsi
++++ b/arch/arm64/boot/dts/qcom/nord.dtsi
+@@ -23,12 +23,6 @@ cpu0: cpu@0 {
+ 			power-domain-names = "psci", "perf";
+ 			next-level-cache = <&l2_0>;
+ 			#cooling-cells = <2>;
 -
--	err = of_property_read_u32(cache, "cache-level", &level);
--	if (err) {
--		dev_err_once(dev, "Failed to read cache-level\n");
-+		/*
-+		 * For now, only caches and memory controllers are
-+		 * supported.
-+		 */
- 		return err;
- 	}
+-			l2_0: l2-cache {
+-				compatible = "cache";
+-				cache-level = <2>;
+-				cache-unified;
+-			};
+ 		};
  
--	cache_id = cache_of_calculate_id(cache);
--	if (cache_id == ~0U) {
--		dev_err_once(dev, "Failed to calculate cache-id\n");
--		return -ENOENT;
-+	/* Determine the class and component ids, based on type. */
-+	if (type == MPAM_CLASS_CACHE) {
-+		err = of_property_read_u32(cache, "cache-level", &class_id);
-+		if (err) {
-+			dev_err_once(dev, "Failed to read cache-level\n");
-+			return err;
-+		}
-+		component_id = cache_of_calculate_id(cache);
-+		if (component_id == ~0U) {
-+			dev_err_once(dev, "Failed to calculate cache-id\n");
-+			return -ENOENT;
-+		}
-+	} else if (type == MPAM_CLASS_MEMORY) {
-+		err = of_node_to_nid(np);
-+		component_id = (err == NUMA_NO_NODE) ? 0 : err;
-+		class_id = MPAM_CLASS_ID_DEFAULT;
- 	}
+ 		cpu1: cpu@100 {
+@@ -95,12 +89,6 @@ cpu6: cpu@10000 {
+ 			enable-method = "psci";
+ 			next-level-cache = <&l2_10000>;
+ 			#cooling-cells = <2>;
+-
+-			l2_10000: l2-cache {
+-				compatible = "cache";
+-				cache-level = <2>;
+-				cache-unified;
+-			};
+ 		};
  
--	return mpam_ris_create(msc, ris_idx, MPAM_CLASS_CACHE, level, cache_id);
-+	return mpam_ris_create(msc, ris_idx, type, class_id, component_id);
- }
+ 		cpu7: cpu@10100 {
+@@ -167,12 +155,6 @@ cpu12: cpu@20000 {
+ 			power-domain-names = "psci", "perf";
+ 			next-level-cache = <&l2_20000>;
+ 			#cooling-cells = <2>;
+-
+-			l2_20000: l2-cache {
+-				compatible = "cache";
+-				cache-level = <2>;
+-				cache-unified;
+-			};
+ 		};
  
- static int mpam_dt_parse_resources(struct mpam_msc *msc, void *ignored)
-@@ -2574,6 +2596,8 @@ static void update_msc_accessibility(struct mpam_msc *msc)
- 	} else {
- 		if (of_device_is_compatible(parent, "cache"))
- 			get_cpumask_from_cache(parent, &msc->accessibility);
-+		else if (of_device_is_compatible(parent, "memory"))
-+			cpumask_copy(&msc->accessibility, cpu_possible_mask);
- 		else
- 			dev_err_once(dev, "Cannot determine accessibility of MSC.\n");
- 	}
+ 		cpu13: cpu@20100 {
+@@ -907,6 +889,60 @@ dump_mem: mem-dump-region {
+ 		};
+ 	};
+ 
++	l2_0: cache@19870000 {
++		compatible = "qcom,nord-l2-cache", "cache";
++		cache-level = <2>;
++		cache-unified;
++		cache-size = <0xc00000>;
++		reg = <0x0 0x19870000 0x0 0x2000>;
++		ranges = <0x0 0x0 0x19870000 0x2000>;
++
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		msc@0 {
++			compatible = "arm,mpam-msc";
++			reg = <0x0 0x2000>;
++			arm,not-ready-us = <1>;
++		};
++	};
++
++	l2_10000: cache@1a870000 {
++		compatible = "qcom,nord-l2-cache", "cache";
++		cache-level = <2>;
++		cache-unified;
++		cache-size = <0xc00000>;
++		reg = <0x0 0x1a870000 0x0 0x2000>;
++		ranges = <0x0 0x0 0x1a870000 0x2000>;
++
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		msc@0 {
++			compatible = "arm,mpam-msc";
++			reg = <0x0 0x2000>;
++			arm,not-ready-us = <1>;
++		};
++	};
++
++	l2_20000: cache@1b870000 {
++		compatible = "qcom,nord-l2-cache", "cache";
++		cache-level = <2>;
++		cache-unified;
++		cache-size = <0xc00000>;
++		reg = <0x0 0x1b870000 0x0 0x2000>;
++		ranges = <0x0 0x0 0x1b870000 0x2000>;
++
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		msc@0 {
++			compatible = "arm,mpam-msc";
++			reg = <0x0 0x2000>;
++			arm,not-ready-us = <1>;
++		};
++	};
++
+ 	soc: soc@0 {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
 
 -- 
 2.34.1
