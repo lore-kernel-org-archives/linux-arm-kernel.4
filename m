@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D68606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE34606A33C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FMqBbKak;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QrgoeqzO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4UpJHY//;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=i6au/myG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,55 +14,55 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FoBZPBz0A32H03ZJeXTMKctFSPuuFEY2YbURgnGwEZQ=; b=FMqBbKakNVxqZFOcFndeKpzaIe
-	H+U7n+upC1E+wcUVr9wq+tewtuCPuJSZIxf4YjJAZaY6FefYHD2qu3HeDuz0dr9zxfX3PvIas3Bq4
-	p/1UOzZuW2Vw3YWZ+hq5wJTGu2NmeyY6Arz2Dq5OAtPhqmSTjEVi+wEX0KlKMKuPo786sYITyvhVl
-	V1MU/mt3j368jm/0NbU7IBfnRTBj2xhSJhuL7PUuSR0oLtcaO0hGrSYfS1oksnNCwinJI797VQvbp
-	J5ajhRFdeFVksBJ/8ajDiC8obS1BIWG9x6U+BooZNH2zOov8btjgObLFoP2NgONCM6E7JCviDQ7E5
-	f7It7T7w==;
+	bh=a+uAUjhXKEApJwrL+oxv5vaGLoNsPevTJGtjjvevzRI=; b=4UpJHY//E8CyYlNuSSib09zGBw
+	IkCGZ/ZjI/SHwD31qWfrsIBdz9sRVWVcZHQGIP38PlmYv4XVaFhJNQljaZ73oKguetKFEFgOVdFvF
+	pkjWiO91ait9hKQTK8hMChs8VS0JfNVp15IN+s20VMn/y0saX3+TZI7ZqTwJiJcXLNOwGjyfzl1LT
+	jFacyZfVmw1z9lldlb+rM4V1gGsWt9b5Z5lkthN8yZzY3Kk0BeG0BS4SHH0UWlN06OExvkk8PyDfd
+	MAwDvkE1bp55INHzhdJqk8GOegfi6K12mmt24Eg3ryWuwO0TxDe+rZe33pG3wF0OW0wkMbEBIAEcx
+	mFByFRTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQS0h-00000001AMF-24XX;
-	Mon, 09 Nov 2026 16:14:19 +0000
+	id 1xQS2T-00000001AlI-3ODP;
+	Mon, 09 Nov 2026 16:16:10 +0000
 Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQS0f-00000001ALN-3jBq
+	id 1xQS2R-00000001Akx-1F94
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:14:18 +0000
+	Mon, 09 Nov 2026 16:16:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 587A763435
-	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 16:14:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F5AA1F008A4
-	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 16:14:17 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id BAAFE60D24
+	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 16:16:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C3431F008A7
+	for <linux-arm-kernel@lists.infradead.org>; Mon,  9 Nov 2026 16:16:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794240857;
-	bh=FoBZPBz0A32H03ZJeXTMKctFSPuuFEY2YbURgnGwEZQ=;
+	s=k20260515; t=1794240966;
+	bh=a+uAUjhXKEApJwrL+oxv5vaGLoNsPevTJGtjjvevzRI=;
 	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=QrgoeqzO13po6lKggu39WD60MDVQu+ADwHfSf5jTVoCR5UA/aIko4G6nqRYimQ8mw
-	 LM5MzksIR5DhOiqrfFw4GROP9wBVkz9CdpM7WZ0TPwHXY3IhwqH8muit2yJmAhgNIy
-	 CeC+BFF59IBSy93AIlYJ8TBk14vy0ja1/pPbWQP0Wdy+C4o8585XaIRVOwJTbvhbd0
-	 M4MrRxBxIzjKEQm0dc6E3QT64ruDkJ+65xdH1FBsS+4BPcG7xwrETMFImkbODD/i20
-	 CubIkNx3H00PsxlotV7dYSNoONHn5xAuyL+Hf9jMPmlH7dKZCfIvOXgHeryBnKPH30
-	 pyi+MxWfIDoPw==
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-85ac281604dso594473a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:14:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErE80+p5Cmj5LbslzBR0QXQixdkfY7dfcH3z/W4ZdevvaohjT895fQeReM+f626u2YhTyLIBu4rOfg515kZiGIFg@lists.infradead.org
-X-Gm-Message-State: APuU4Z8T3yqv8UpvoXaej1aqVluqP8yMwkg5NNv0R0mjPIyPEnLuxDy9
-	v5ZH3n9FuCo9w/tKGnXLX/BI1aEcYKCXndGjp6BDbZot8auAKXvIc1BNZ3fJCgI5leXquC7Ahw4
-	gW+qExUc/5Ei1438GIWbEoMog3WDBdrE=
-X-Received: by 2002:a05:6808:1381:b0:564:3fe1:2f95 with SMTP id
- 5614622812f47-5683cdc8174mr51063b6e.56.1794240856276; Mon, 09 Nov 2026
- 08:14:16 -0800 (PST)
+	b=i6au/myG9p4GsOKM3Vi2VV8GPL0M54b1Q0aP+nLEVBGLWzFiIIQL51O1MPCO+TJ4P
+	 dOOlbWjxw1rDvIUfDn3HiHecyjD8xeH7auCSya7gDynZpsG6ifrwDgv2bj7GEdYFIS
+	 6koTwc3GNJ3y4HxS5QqxvXa+YXh6iYr6A8T2PwO6HCn5shYGBESjwyGMR34m80I3S6
+	 RwOdZ0texE0E8hg2AoMGmeS8P3ZBs66cKKylaV0qlfR4zBPdrX44gquG1jpaLHZqWu
+	 iVi83j2JSgA+Ktlq/6aFAKZQLOSxJXn2dcRSQ5YbGFPhVhc6rBxkKvUFpemhYanYHR
+	 PRqMUgFKiJXFQ==
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-53656465d1dso471133b6e.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:16:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErGpRzoLcMx49b1dZeg4PnxQnLMt+5qOUt2ZcKItkbxCyIMvr4YUXzJfHLbq9CRFmbZLqQ9F2zleKPVV/nhhZj8n@lists.infradead.org
+X-Gm-Message-State: APuU4Z/kKSm4LQG79TtNc3KYPZZCuAzR+/36UqbobHqceEqZu00BghqT
+	koTUXhwJObXMLNWn5tcL3e4bY5RixqWfKnWTE+95s6ujjj4mK3NTKt7oI9bPsykQ7EoJSEdzMiA
+	fE1giYYL8NUNAe6fbrd7RABQnOkI6xBo=
+X-Received: by 2002:a05:6808:1209:b0:532:4867:8916 with SMTP id
+ 5614622812f47-5683c9e2ac2mr94540b6e.4.1794240965556; Mon, 09 Nov 2026
+ 08:16:05 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261009-a733-clk-v6-0-ae8178fce7e8@pigmoral.tech> <20261009-a733-clk-v6-4-ae8178fce7e8@pigmoral.tech>
-In-Reply-To: <20261009-a733-clk-v6-4-ae8178fce7e8@pigmoral.tech>
+References: <20260930-a733-clk-v5-0-11175b41cd2d@pigmoral.tech> <20260930-a733-clk-v5-3-11175b41cd2d@pigmoral.tech>
+In-Reply-To: <20260930-a733-clk-v5-3-11175b41cd2d@pigmoral.tech>
 From: Chen-Yu Tsai <wens@kernel.org>
-Date: Tue, 10 Nov 2026 01:14:02 +0900
-X-Gmail-Original-Message-ID: <CAGb2v65=FbB=WeG6UxvO2S7eapFAs6up05H8yKxE9ZV5XHHg7w@mail.gmail.com>
-X-Gm-Features: AclHuK_oriluD6lv7Dh-nyywN-v7TzMrzN3qlz6xuuw7NLsiTt8EPPBIYrFTgRg
-Message-ID: <CAGb2v65=FbB=WeG6UxvO2S7eapFAs6up05H8yKxE9ZV5XHHg7w@mail.gmail.com>
-Subject: Re: [PATCH v6 4/8] clk: sunxi-ng: a733: Add PLL clocks support
+Date: Tue, 10 Nov 2026 01:15:47 +0900
+X-Gmail-Original-Message-ID: <CAGb2v66J=FaqimwrqrbVuBVb5GMuhizp2Hnt6vN7CRMNhiuCFA@mail.gmail.com>
+X-Gm-Features: AclHuK8oi8fLMntRJV56LqbfIWbbWAJenIS4kljcKk7VrVTWKVxckSNOSzGxgTs
+Message-ID: <CAGb2v66J=FaqimwrqrbVuBVb5GMuhizp2Hnt6vN7CRMNhiuCFA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/8] clk: sunxi-ng: a733: Add PRCM CCU
 To: Junhui Liu <junhui.liu@pigmoral.tech>
 Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
 	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
@@ -75,8 +75,7 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
 	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	linux-riscv@lists.infradead.org, netdev@vger.kernel.org, 
 	Jerome Brunet <jbrunet@baylibre.com>, Enzo Adriano <enzo.adriano.code@gmail.com>, 
-	Andre Przywara <andre.przywara@arm.com>, Norman Herms <dockseed@proton.me>, 
-	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+	Andre Przywara <andre.przywara@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -97,27 +96,20 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Oct 10, 2026 at 12:54=E2=80=AFAM Junhui Liu <junhui.liu@pigmoral.te=
-ch> wrote:
+On Wed, Sep 30, 2026 at 2:27=E2=80=AFAM Junhui Liu <junhui.liu@pigmoral.tec=
+h> wrote:
 >
-> Add PLL clock support for the main CCU of the Allwinner A733 SoC. The
-> structure is mostly similar to the sun55i, with the addition of a
-> PLL_REF clock that normalizes the hardware-detected DCXO/hosc frequency
-> (19.2MHz, 24MHz, or 26MHz) into a consistent 24MHz reference for all
-> subsequent PLLs.
+> Add support for the Power Reset Clock Management (PRCM) module found in
+> the Allwinner A733 SoC. This clock controller manages the clock control
+> and reset functions for device modules within the CPUS domain.
 >
-> Model the independently gated outputs of the peripheral, video, and DE
-> PLLs as programmable-divider child clocks, with each output gate modeled
-> separately. Follow the documented hierarchy for the derived peripheral
-> PLL outputs.
->
-> PLL_AUDIO0 uses SDM parameters from the vendor driver to provide a
-> 22.5792MHz * 4 output. PLL_AUDIO1 provides fixed /2 and /5 outputs and
-> does not expose fractional rates, but its SDM controls are modeled so
-> that stale firmware settings can be disabled when an integer rate is
-> programmed.
+> The PRCM module includes the management of three primary buses: r-ahb,
+> r-apb0, and r-apb1. It also provides clocking for several key
+> peripherals, such as R-UART, R-I2C, R-SPI, and the R-RISCV subsystem.
+> Additionally, the reset lines for these modules are integrated.
 >
 > Tested-by: Jerome Brunet <jbrunet@baylibre.com>
+> Reviewed-by: Enzo Adriano <enzo.adriano.code@gmail.com>
 > Signed-off-by: Junhui Liu <junhui.liu@pigmoral.tech>
 
 Reviewed-by: Chen-Yu Tsai <wens@kernel.org>
