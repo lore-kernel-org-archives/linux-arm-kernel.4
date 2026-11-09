@@ -2,94 +2,151 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43FF160735D9
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FA25606EE98
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 08:50:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IGnlxcg9;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=gBVNH3Zz;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=qGQ/gftV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=32OOPNYy;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=dEhe4tjn;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cCocyMKf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RKQQUYkySIuWXQVY7MpCGDxE52luhCcCeJyJckRYrE0=; b=IGnlxcg9WpU7Sg
-	tlliDpC2a1tOKKPmgt1E8B9OfICSZ2j1/wgHEfVW4GtfRqRGWmimYqczOsK+SiSWxCpiGAJ14zpEs
-	1zQCaK9rsPgr1wlsUQ+AJKoxsw/VekiIznyS0ldqIrtBfE5lE4LqUEZJ8OoMfZ3N69Z3rjOVDS4Fl
-	2NAzLtzAbFoo5xKDVl2gEbORRh6RhDhyhLs31n361HgclDOXyXwRv6ThdrhJbr2qV8CqnbmBRD37B
-	PBLoCAsO/UQmbHO5L1ngUerdDpN8+zf7JTVWT9k7aHRkdLcwh7N16oeh8Semfyhy0gR3I4Be1sZKV
-	G1/cw0IIKklb21tn9Q2Q==;
+	List-Owner; bh=Vjj4rdSbpcMkkjnNoByhSOYk/2BEXBPon42q9R20zeY=; b=32OOPNYyftTOcR
+	liGGKInRhp0quGYd0pivlWt3V86aTDYYxctudXsph0yYVBEfOH+tGKV1hqh6Rit/wIPU90n9omJv4
+	+eWwRMHpeTraFRPNfOle9+rZeIIqf78i4pUPY0dAK3T+dr1qwgesNw91PL5S/xAbDbYrCOZihC1m9
+	w+zmvhc7GxkvPsQQuNufIbWlhnXFkHwC6R8y3WcWpE8G9GP3H0BiznwoViXlHgGO0bu5p4Ik8/AVT
+	uJ14TK87IxBjUkhFXkRAaqZulDs5bpw8vERKsmpOXliwj8xBadBO99y/+WaTDdZt6nVoJ78+fVo5D
+	VMAYxcZsXC/g7hURGRHg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4q-0000000086e-25Dx;
-	Mon, 09 Nov 2026 08:50:08 +0000
+	id 1xQL5U-000000008i6-12AL;
+	Mon, 09 Nov 2026 08:50:48 +0000
 Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4j-000000007vw-0vBE
+	id 1xQL5R-000000008gS-1Gag
 	for linux-arm-kernel@bombadil.infradead.org;
-	Mon, 09 Nov 2026 08:50:01 +0000
+	Mon, 09 Nov 2026 08:50:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:MIME-Version
 	:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description;
-	bh=RKQQUYkySIuWXQVY7MpCGDxE52luhCcCeJyJckRYrE0=; b=gBVNH3ZzAgVj0rP1wiG7Ps+cko
-	hqnyL/UG+NFld/DWQqod9UX3hHYgxibJj3W52QrTSha0lhhGrxaLaK6RqYdbc3XELif8FwjZ4z5/A
-	+kTNhpOqSBpwH+YRFqy5/8rvL4jn7SaWlJnYXQc0dbGV8Q9RmkIVSBq4tOZp1QRklAlScqJkmK/X2
-	VNMlN73H4FElVynkWXgccmkT4tZgVl4xPC37TG8ij7XGm12zSmLKCYHpyj/Wr9m0O+HSUPxz+U57e
-	CGzMChyPBqqiJmSzwyc0hJGkNkVeRykV9zgH+xquogQyu4IcK6S61mMljaK/RNDDN2SdDC2P1NqOM
-	SEJCnyxA==;
-Received: from out-82.mta1.migadu.com ([95.215.58.82] helo=mta1.migadu.com)
+	bh=Vjj4rdSbpcMkkjnNoByhSOYk/2BEXBPon42q9R20zeY=; b=dEhe4tjn/RK2dndyOTfPDzLvP+
+	99YFlBo7rSvaqb6ZQFnuUQGL9QVQrajtZipPhOG26xEdDDgDnuQaq94N+3bNwVzm6DXaOkaEyQTvJ
+	uXBwr0FgI8rquWzhukPtx5SIdUqnAYs/0RcA2Y1f2lLvqy9fi29TGXTCSZwuJnQm6nnu3IkRtGjc4
+	FJdEDXEjDkGWJCjKshXjV+hZa0+se4oEl5pKmA60vJ4oDhmBpjB2BpKzZw5wfBpHcukw73PM/G2CX
+	BPGsRDTUtARW+KmxIr71qkL/pfNElVPiYIm8Zo2b2omce6qkE7Jf2rDB2jQqj/FfS13DpzyBWqf+O
+	rSIE4ZXg==;
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQL4g-00000006Tck-0UT4
+	id 1xQL5K-00000006Tl0-1xtb
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 08:49:59 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=pvY9wx5XSdLlCtF08ytiK5bki8t7g1hmkb8W5MfUPHI=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794214196; v=1; x=1794818996;
- b=qGQ/gftVTTbGZfwL+l0GXJMRIfJWWbLu4dDKaOxOwWKqhPjKDITZMN/GCgSvkST5Arbyxm3H
- P1FBQQH4FWbh6uqFtyiGxcqT1P0+ffs/dsSQ83mYrEji940IrrVKgQdFFxhAnPoXevAjufXWgjU
- wN+KWBJqJ3PrwLZIigGQ7BCw=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 72df1d8da48c0203;
-	Mon, 09 Nov 2026 08:49:55 +0000
-X-Mizu-Trace-ID: 72df1d8da48c0203
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>
-Cc: Will Deacon <will@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Paolo Bonzini <pbonzini@redhat.com>,
-	Sean Christopherson <seanjc@google.com>,
-	Shuah Khan <shuah@kernel.org>,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Vincent Donnefort <vdonnefort@google.com>,
-	Quentin Perret <qperret@google.com>,
-	Fuad Tabba <tabba@google.com>,
-	kvmarm@lists.linux.dev,
+	Mon, 09 Nov 2026 08:50:43 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-49d05d51553so3788465e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 00:50:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794214236; x=1794819036; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Vjj4rdSbpcMkkjnNoByhSOYk/2BEXBPon42q9R20zeY=;
+        b=cCocyMKfkVRn/yHfi8425gjU4ogBrwKnJ9yuo8ClRX/e6ZDpm+W7gDXLMJihzZa9h/
+         MeG52DYNSpPBLu93EPJZTDAWouBmmLVq7WR+NkhvSNcNbh2PYVL+KZJP6xgs43nkvr1G
+         WVFD8oazP47nSPVLJ85peM6eDq+lsDXdAWF2gi2N47KKsJAEGwzhnt9tM+0PhuG6zlH9
+         BapbBDf9b36+VXQaTBc5I4IdMhTDed08UcKseWWgGrP88FurJoXfllK9xyUDIs0W8Oa6
+         PZLBlwWE5/7+mAJ2mZlDnczkJIfwdVo5HQ/XLdj34E8EpItr//XmELrIgCiObgUc0J7I
+         MC7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794214236; x=1794819036;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Vjj4rdSbpcMkkjnNoByhSOYk/2BEXBPon42q9R20zeY=;
+        b=e9KVIe7ylSySr8yHGCfocjY0Dqja83j5AfA7KM08ICQOCnYPhCYnNxPTFTiOvKqVAa
+         RvvSgsiqY+twmf3YwsYcCVVRtsIo8T3FRSgXYa7amchAuI27CLQ5qMZZlcXvXUBYed/0
+         ZO8ah4IIfcNNlwVK0aB+kcuGKXV4EAJ9ubveytVRZhooF3R+l1KM4KmZePV84TIH3N82
+         gTjK2fl/U3MOSPcCJ6wSBZx5EY7eBOlOli3NLIbh8iJK4pwG/GA7dKlOVZjM4cGtuj9K
+         xpn1H1L6lxEh78m+cN4kn8kb0wkvsl4oAvkME5jn2p4Y0a+bJU9o7tpqc+gm2bea23h6
+         ZIzg==
+X-Forwarded-Encrypted: i=1; AL+hErE98kKIXvb/iNlrlQWyiv3oP06yCg6mc4+KSsjGBxhiODVk4kqGwPUsr65v4LfGdvfR7uNqltDdmfGckQj2NhlS@lists.infradead.org
+X-Gm-Message-State: APuU4Z9grR7saLk0HVQW58mlPRug9xqUprCHpIk27W/O2IL9l3nag5er
+	rYZOT1CgEwYLVoMA3ABb7OCpmu80LIcRQ5XmV8SG57kPKsbHuPapgBh0
+X-Gm-Gg: AYBFou22VoxO97FeEVmeBAAw07tnlrgXRKT3ESyzNkkKZJryojqvf9sWA/9HZ1LgbS5
+	+mwJUPrPLmcx3Os0H2UfOvntZBDp0JPrUF/dvzy1fD+8OnRPjzQBdrtJFcG2hoM4wFOUwxd/sH8
+	fNnCeSbMnn6mnJ6UOWyHdRQXGG0YdVwPRtYDJYHhH9VsGj+CRMgUL1SpCnSq4mZk5wUd/r75CAc
+	kk4NAMNrsbWzGo6hpfQTuXen348bO/UDoVYE/SJDXH6hKLsk3xnO7qKvDiFZFjiGpuDao2WxPsr
+	kb5udAnzVQocBkifp9xyxiqO83hch3qIQZXAsvNTejH57+AybuKLdpnf+QQla5ZBkQLW+8qjaBF
+	14YDmRwqnmpF1yT+8nEaX7E1OylOx7Lb6fSe7yeiy0P+tOcrBUksOz1HfIo7wi3UqpHF2hoIRyW
+	3kY04DbIPrDiKQGiG+2npw4TiF3ehAfJUF0vqWtC5H5OeLG5FRvt5SjiqrswuKT0O6PdMWqk8Dg
+	ABzRAXIMv3HknhTCVJXKaunk9khGMxzVz0E+oA3HACK0flfHRw8e7ta60CA0Er2J6AEBacyrFxb
+	K8F2fKT6vhYp+AMRufNMKMm809E=
+X-Received: by 2002:a05:600c:3b1a:b0:4a1:cf60:dcc3 with SMTP id 5b1f17b1804b1-4b963c7e496mr65389125e9.29.1794214235848;
+        Mon, 09 Nov 2026 00:50:35 -0800 (PST)
+Received: from flare5 ([212.58.121.92])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4b79502d5b1sm147015055e9.5.2026.11.09.00.50.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 00:50:35 -0800 (PST)
+From: Stanislav Aleksandrov <lightofmysoul@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robert Marko <robimarko@gmail.com>,
+	Guru Das Srinagesh <linux@gurudas.dev>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Radu Rendec <radu@rendec.net>,
+	Lee Jones <lee@kernel.org>,
+	Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Wesley Cheng <wesley.cheng@oss.qualcomm.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Bean Huo <beanhuo@micron.com>,
+	Stanley Jhu <stanleyjhu@google.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Daniel Lezcano <daniel.lezcano@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Georgi Djakov <djakov@kernel.org>,
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mfd@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	kvm@vger.kernel.org,
-	linux-kselftest@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 19/19] KVM: arm64: selftests: Check MOPS, PIE, POE and FPMR in a protected VM
-Date: Mon,  9 Nov 2026 08:48:54 +0000
-Message-ID: <20261109084854.840576-20-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261109084854.840576-1-fuad.tabba@linux.dev>
-References: <20261109084854.840576-1-fuad.tabba@linux.dev>
+	iommu@lists.linux.dev,
+	linux-usb@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	linux-scsi@vger.kernel.org,
+	linux-crypto@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH 16/17] arm64: dts: qcom: Add initial Halliday dtsi
+Date: Mon,  9 Nov 2026 08:50:19 +0000
+Message-ID: <20261109085019.1751534-1-lightofmysoul@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <9dbfc665-089c-45f7-bca2-74caee322885@kernel.org>
+References: <20261109-halliday-dts-v1-0-289114ab8197@gmail.com> <20261109-halliday-dts-v1-16-289114ab8197@gmail.com> <9dbfc665-089c-45f7-bca2-74caee322885@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_084958_312598_71E97CF4 
-X-CRM114-Status: GOOD (  16.36  )
+X-CRM114-CacheID: sfid-20261109_085038_712798_F0887CF4 
+X-CRM114-Status: GOOD (  11.09  )
 X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,134 +158,24 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For each of MOPS, S1PIE, S1POE and FPMR that a protected VM's ID
-registers advertise, EL2 has to set up the HCRX_EL2 enables, the
-fine-grained traps and the context switch to match.
+On 09/11/2026 09:29, Krzysztof Kozlowski wrote:
+> Odd license, suggests you copied it.
+>
+> You should retain original copyrights as well.
 
-Check from the guest that each feature works when its ID field is set
-and UNDEFs when it is clear. Working means the registers read back what
-the guest writes, and a SETP/SETM/SETE fill completes. At v7.4-rc1 pKVM
-advertises none of the four, so only the UNDEF cases run. Also check
-that ID_AA64PFR2_EL1, ID_AA64ISAR3_EL1 and ID_AA64MMFR3_EL1 expose
-nothing beyond the supported features, and that WFxT and the 128-bit
-System register features stay hidden.
+The license is BSD-3-Clause because I used sm8550.dtsi as the template
+for the node layout. The values come from Qualcomm's downstream
+anorak.dtsi, which has no license or copyright header. v2 will add the
+Linaro copyright from sm8550.dtsi. I'll fix the other comments in v2
+too.
 
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
- .../selftests/kvm/arm64/pkvm_id_regs.c        | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
-
-diff --git a/tools/testing/selftests/kvm/arm64/pkvm_id_regs.c b/tools/testing/selftests/kvm/arm64/pkvm_id_regs.c
-index 93ed557a30bc6..7a8367af3e009 100644
---- a/tools/testing/selftests/kvm/arm64/pkvm_id_regs.c
-+++ b/tools/testing/selftests/kvm/arm64/pkvm_id_regs.c
-@@ -33,6 +33,11 @@
- #define DBGBCR_VAL	((0xfUL << 5) | (1UL << 1))
- #define DBGWCR_VAL	((0xffUL << 5) | (3UL << 3) | (1UL << 1))
- 
-+/* Allocated encodings only: a reserved one reads back UNKNOWN. */
-+#define PIR_PATTERN	0xeca87653210eca87UL
-+#define POR_PATTERN	0x76543210UL
-+#define FPMR_PATTERN	0x2a5a55c000UL
-+
- extern unsigned char brk_insn;
- 
- static volatile bool undef_seen;
-@@ -132,6 +137,20 @@ static void assert_id_regs(void)
- 	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64ISAR2_EL1) &
- 			(ID_AA64ISAR2_EL1_APA3_MASK | ID_AA64ISAR2_EL1_GPA3_MASK), 0);
- 
-+	/* WFxT and the 128-bit System register and instruction features are hidden. */
-+	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64ISAR2_EL1) &
-+			(ID_AA64ISAR2_EL1_WFxT_MASK | ID_AA64ISAR2_EL1_SYSREG_128_MASK |
-+			 ID_AA64ISAR2_EL1_SYSINSTR_128_MASK), 0);
-+
-+	/* Of these registers, only the fields of the features pKVM supports can be set. */
-+	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64PFR2_EL1) & ~ID_AA64PFR2_EL1_FPMR_MASK, 0);
-+	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64ISAR3_EL1) &
-+			~(ID_AA64ISAR3_EL1_FPRCVT_MASK | ID_AA64ISAR3_EL1_LSFE_MASK |
-+			  ID_AA64ISAR3_EL1_FAMINMAX_MASK | ID_AA64ISAR3_EL1_LSUI_MASK), 0);
-+	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64MMFR3_EL1) &
-+			~(ID_AA64MMFR3_EL1_TCRX_MASK | ID_AA64MMFR3_EL1_SCTLRX_MASK |
-+			  ID_AA64MMFR3_EL1_S1PIE_MASK | ID_AA64MMFR3_EL1_S1POE_MASK), 0);
-+
- 	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64DFR1_EL1), 0);
- 	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64AFR0_EL1), 0);
- 	GUEST_ASSERT_EQ(read_sysreg_s(SYS_ID_AA64AFR1_EL1), 0);
-@@ -217,6 +236,56 @@ static void assert_undef_regs(void)
- 	GUEST_ASSERT_UNDEF(asm volatile(".arch_extension sve\n rdvl x0, #1" : : : "x0"));
- }
- 
-+/* setp [x0]!, x1!, x2; setm; sete */
-+static void mops_set(void *dst, u64 len, u64 val)
-+{
-+	register void *d asm("x0") = dst;
-+	register u64 n asm("x1") = len;
-+	register u64 v asm("x2") = val;
-+
-+	asm volatile(".inst 0x19c20420\n\t.inst 0x19c24420\n\t.inst 0x19c28420"
-+		     : "+r"(d), "+r"(n) : "r"(v) : "cc", "memory");
-+}
-+
-+/* A feature's registers and instructions work when it's advertised and UNDEF when hidden. */
-+static void assert_feature_access(void)
-+{
-+	u64 mmfr3 = read_sysreg_s(SYS_ID_AA64MMFR3_EL1);
-+	u64 buf[4] = {};
-+	int i;
-+
-+	if (SYS_FIELD_GET(ID_AA64MMFR3_EL1, S1PIE, mmfr3)) {
-+		GUEST_ASSERT_RW(SYS_PIR_EL1, PIR_PATTERN);
-+		GUEST_ASSERT_RW(SYS_PIRE0_EL1, PIR_PATTERN);
-+	} else {
-+		GUEST_ASSERT_UNDEF((void)read_sysreg_s(SYS_PIR_EL1));
-+		GUEST_ASSERT_UNDEF((void)read_sysreg_s(SYS_PIRE0_EL1));
-+	}
-+
-+	if (SYS_FIELD_GET(ID_AA64MMFR3_EL1, S1POE, mmfr3)) {
-+		GUEST_ASSERT_RW(SYS_POR_EL1, POR_PATTERN);
-+		GUEST_ASSERT_RW(SYS_POR_EL0, POR_PATTERN);
-+	} else {
-+		GUEST_ASSERT_UNDEF((void)read_sysreg_s(SYS_POR_EL1));
-+		GUEST_ASSERT_UNDEF((void)read_sysreg_s(SYS_POR_EL0));
-+	}
-+
-+	if (SYS_FIELD_GET(ID_AA64PFR2_EL1, FPMR, read_sysreg_s(SYS_ID_AA64PFR2_EL1)))
-+		GUEST_ASSERT_RW(SYS_FPMR, FPMR_PATTERN);
-+	else
-+		GUEST_ASSERT_UNDEF((void)read_sysreg_s(SYS_FPMR));
-+
-+	if (SYS_FIELD_GET(ID_AA64ISAR2_EL1, MOPS, read_sysreg_s(SYS_ID_AA64ISAR2_EL1))) {
-+		undef_seen = false;
-+		mops_set(buf, sizeof(buf), 0x5a);
-+		GUEST_ASSERT(!undef_seen);
-+		for (i = 0; i < ARRAY_SIZE(buf); i++)
-+			GUEST_ASSERT_EQ(buf[i], 0x5a5a5a5a5a5a5a5aUL);
-+	} else {
-+		GUEST_ASSERT_UNDEF(mops_set(buf, sizeof(buf), 0x5a));
-+	}
-+}
-+
- static void assert_host_handled(void)
- {
- 	/* Host-handled registers reach the guest with no UNDEF. */
-@@ -236,6 +305,7 @@ static void guest_baseline(void)
- 	else
- 		assert_debug_raz_wi();
- 	assert_undef_regs();
-+	assert_feature_access();
- 	assert_host_handled();
- 
- 	asm volatile("brk_insn: brk #0");
--- 
-2.47.3
-
+Stanislav
 
