@@ -2,77 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249D660A5BD4
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23FEA606A7B2
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZLj5R927;
-	dkim=pass (2048-bit key, unprotected) header.d=dolcini.it header.i=@dolcini.it header.a=rsa-sha256 header.s=default header.b=Dvn5a4p5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N6VoyDFh;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=mXI+B7Mg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=W5tIw3pY4xf2AiHrKTA7p2regxxRaERCXmVIzX7a4PI=; b=ZLj5R927YvhQ2w
-	SKZaihoM1JzS21RuE7AxWHXwnJrO5bRojGsoy+4NvZ0mgjQyHhMZotY6oZlKwTlF42LvAGQiveOaf
-	RJlxtE24YZkPQPCYpFh5Jn45lA8iiahSYXgweiWhlBEZuZrbbKX8ZWnwpuEHERY6Wa3KJC+Ke2ncS
-	MqUR8uLf2DgDfoKx+w4aWXh13gYKxl47KqUKmJNwB24mfoyLLNCV6xxwe0TTUM9IZoXKy0U7IU7D/
-	ARm3LVldNEY5gRetmQaHb6g2MXRp9F782k9BsIZnxKroY1spNfJ4T+uyOYLFPRFW31mNCdsTpmM5i
-	AeTKUdUAxTbgUalaotJQ==;
+	List-Owner; bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=; b=N6VoyDFhDXEN3K
+	Ostg/F7AYLDAEMMi+YC8QXfgPaRet6alGqbVZsIcFccC6B6S0veauHx1OmmHvRRb8ZiSx0GiVa4ky
+	gWmX/GtPDkuDyGVSy1CUXcPlVyuWe6zNiTadLbGteoQ5L6ykIvhzbFiA/HS1OffqQKmBdpQb1C/PD
+	wJCKABLCsHWO/TBz8CUU4kPljoKiwrrrCCpwN8/t1u2orCRqzO5LjpZr5gkL9w+tnkpiop/yG6yNp
+	nEFj07siGG2etqCPO/NeumJU0vclFny4PKFZfJXD0k0ic4AYQt+eSuYgfCiP2EIX4DKG7NTUf9d41
+	CegoIio2mn/tQ0nh+Eqw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRl9-0000000166f-0TO0;
-	Mon, 09 Nov 2026 15:58:15 +0000
-Received: from mail11.truemail.it ([217.194.8.81])
+	id 1xQSOq-00000001DLK-2P69;
+	Mon, 09 Nov 2026 16:39:17 +0000
+Received: from mail-qt1-x832.google.com ([2607:f8b0:4864:20::832])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRl5-0000000160w-0UPC
+	id 1xQSOo-00000001DKQ-12Zh
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 15:58:13 +0000
-Received: from francesco-nb.. (xcpe-178-82-167-143.dyn.res.sunrise.net [178.82.167.143])
-	by mail11.truemail.it (Postfix) with ESMTPA id E03FB26675;
-	Mon,  9 Nov 2026 16:58:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1794239885;
-	bh=W5tIw3pY4xf2AiHrKTA7p2regxxRaERCXmVIzX7a4PI=; h=From:To:Subject;
-	b=Dvn5a4p5G0Y5gz+4Je1sH6cDzjkNTkRwnbfNVu23JxKEwye1IMiJ7P6WgkmBopzo8
-	 9Gexv7W3+IiR70KCx/RMw3klqDNTm95LTPb2sYxZhAlol2oJn/dQ81SYyEE2CJpazl
-	 LxC80jDEt9MPQqupAk3dabe+zFYcZimtfudFnlyvgu84SrYNQGMeSjUH6AqNjrikCN
-	 zreeJhFG/Cz7Fxg77HQzlrOfIZbqI/VBlp/lcHCUUdi5JKu0shLSXHKor3I73mOcUb
-	 B9+lXgmdUy9WFRAlXHRGgfnzABthC7ZK2bxl43Kt1y3+xPaUletcY9OvZRhIjeaxEk
-	 SNY13ipwgM/HQ==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Kiryl Shutsemau <kas@kernel.org>,
-	Rick Edgecombe <rick.p.edgecombe@intel.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>
-Cc: devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-bsp@toradex.com,
-	x86@kernel.org,
-	linux-coco@lists.linux.dev,
-	kvm@vger.kernel.org
-Subject: [PATCH v2 8/8] ARM: dts: imx6ull-colibri-emmc: Add VGA overlay
-Date: Mon,  9 Nov 2026 16:57:48 +0100
-Message-ID: <20261109155751.475875-9-francesco@dolcini.it>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261109155751.475875-1-francesco@dolcini.it>
-References: <20261109155751.475875-1-francesco@dolcini.it>
+	Mon, 09 Nov 2026 16:39:15 +0000
+Received: by mail-qt1-x832.google.com with SMTP id d75a77b69052e-5383c97c8cfso300571cf.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 08:39:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794242352; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Cbow0zi0XESjqTiIWHztTXBg5H4TMpMIxUrwLek9Pr1PRtxGIyJNK3hM/tmkt+Xko0
+         gQTtbqxjvEi/RFM15X/yR86rZs0ZHQUFPKJb3++y+M15WRVaVuVDelnMQAw73mn9pXw3
+         ibH0WAeUvuqxUhb2WrlL5QEWY8IM2L6GYlMsiaSPmVWKvUiMM373Hv2SQl38FZ3fcXgz
+         exDGiQaxpllFF8M5uJ477Rs2xmMIDBpCKTr/RvVCCJboBIeEjxKIyh+6uYkPdZiyRrxN
+         YWxXQyfiTsytUhfI6aOT7pfs0KoU5Bx/ald/yrlyyzOtRHTCuui2osUQHt9y9izeunmP
+         d/aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=;
+        fh=hmwSPhGrOth4MNoia/1xu0RZTXtSDmqWR/LSqv5ENn0=;
+        b=LactMIlWMbs2ao0GHRFIT4/DA+ioIw4muS13IvRhK/kue65yNNPuuboLScrRsjDvaJ
+         CVbEtAdb0d42TW8mNHyl3bOLgWejRq/zkTxNRidd2dk6pfKFo4ptms+PyR+YoxBstpZt
+         uWYl72gaRBC9xt9DyRpbF99hcNl/8LMMIGe+lADlrzgOQSy3XyZ4E3VO73KKBvVN+ylv
+         x0uDgVCnntlMvg+8YagBU9DtJ0Bhu0MtuAbf/JzKisXWa8JbWV54Z+Dx6lr3L4K4S9fO
+         TLPNai/hgL1ZBtl1A4lwl8HA0X8xtCHNzHF19D3tT8lY9Nm2+PrIcJvr29qE21rs1OJx
+         LpFg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794242352; x=1794847152; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=;
+        b=mXI+B7Mg45oG6AklCE8rbAW9zaK5ndIL96zZLHbmyPOC40oAE1gY6qijVk7dXIdntY
+         9SuC7i7VqD8jPXZD4xoU4lBY7nsK32lZbC5TQmcUrItNndabMyK5031W8vqlQpni4/Mz
+         7CPqdVH8OPIkwlQEYYNlTQipnolY0lzUoW0eqoHDOE/8ztw7JTNqkx3x2IxSpVZkOyOX
+         3aTYXqYNpaxyuhOsmLFWArcuyK/1k6jsujYRrwBOL31w1Y7MzeeAtt5kX+Yf3MsbztJi
+         iVhMf294scaqhGXWpy6c9hIQZqTajTHqfxTFvC+eBAnkLDkEcDz9pKJNL6C/MRFAtqKZ
+         NRjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794242352; x=1794847152;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=MNALSUguKeNo/Ez0qP/sAmD0UeGu3ljjdxeLtNNj/80=;
+        b=mloh35PHPmQzhVABz4iv4GV4zZjbVlam/78qjuSlHBQ5wBhceXkVU8XpVuNhto4BSF
+         9yc4Jb9vHKC75p7vK/YdXUhTzRIuGwLoW5Ggz6MrAAekAG38e9XDDZiykMeZsSvgExB6
+         /ZSrtFhdYNL3zpyhAlBWXPVRaWTeke9l3H2w/ZDyOAwHRER17ZKRbesyrjyJxy+f0MIM
+         Hv5r8notLifmMCL80X+I23rsr7AaswalTk2rhvGkByX9C/jwdtwHnPUvm3BH8r05btQY
+         4YjU8U36NmViBXVKB5kaEIzjLmhKWHvV+Yd/pNXXnWtQHDfsj6W4QBvr1T32JkIzrJKh
+         DxLQ==
+X-Forwarded-Encrypted: i=1; AL+hErHznG86zqNbePwIfWOGHvAhO7k7bkyy7hzGY1Fk2NtIaYFb4FuZIi/OVVloHqJUI2/d38YTHUr1uPtq/4FMPpnd@lists.infradead.org
+X-Gm-Message-State: APuU4Z+xY87znkRfIam77YHGJz2lVDdmedEfdWqPvW27+fdBZqhIdp0M
+	e8OK6xLbEuWR2ka0+xGqtHgDkdLikEa1C4Af7WRWSL9v92rLmfs+ViTeCxWq8k2QxBfo1UqopSy
+	K62LeV175wyyuGdZnnqdiWCee5WwVus1WoUEvIwT5b9J7BZ2xGfeYELBy
+X-Gm-Gg: AYBFou0sWxQFuCeAyqzC8sb5sKFtXEOvHqU7J9iGEIMOPhuhvDlrEckkN2F+J1xazen
+	OdvdEXheNQwiibNKK+PHKTl2SWeB3atvJyFmrPZ/41hYiiJ3u0DegZLS7yuIJm/kV1ctGSUuGXn
+	KGb49Zxr52R6TtOKpV0miBAEekOAMeEKu6BEo9zPfvN+HVNKbZXzIC8mwYUZ/uOaD9IuKizRe0F
+	nFa/SW7At4V7W5KTOGChH0EPmpXvHIU0q0e4KngD3rY14K0D48Pw6AzkOwWhe4QquDGLzKuWkpu
+	dUUjweSewQBXMPinhTED2xulxfPnIQvSpDaN/dFC5AfsLoYteOqv0KJIhOJNRGZtTn2urSoErV9
+	ZRjKuIcYNbXaV5wUjUM4kEq0w2iUpj0cG0HwNS2+txs4p9AoN+5Z2o6Q992CcIAroyfU=
+X-Received: by 2002:a05:622a:2b4b:b0:532:8423:1e78 with SMTP id
+ d75a77b69052e-55519d553afmr66891cf.10.1794242351337; Mon, 09 Nov 2026
+ 08:39:11 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261109080126.417161-1-irogers@google.com> <20261109080126.417161-2-irogers@google.com>
+ <179423587020.3133545.6594248101575070050.robh@kernel.org>
+In-Reply-To: <179423587020.3133545.6594248101575070050.robh@kernel.org>
+From: Ian Rogers <irogers@google.com>
+Date: Mon, 9 Nov 2026 08:38:59 -0800
+X-Gm-Features: AclHuK8feNx1zDrXSRA0wP-1jAG_C3k6aMQ0LXM4MGvjXYCUb91zzoIWLHYo0TA
+Message-ID: <CAP-5=fVDVds_q7NjAcapJw4pUx2psF2c9AsaKZC7nJbcOHOJ-A@mail.gmail.com>
+Subject: Re: [PATCH v19 1/3] dt-bindings: perf: Add Broadcom Raspberry Pi AXI
+ PMU definition
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org, 
+	bcm-kernel-feedback-list@broadcom.com, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-rpi-kernel@lists.infradead.org, Dom Cobley <popcornmix@gmail.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Mark Rutland <mark.rutland@arm.com>, 
+	Uwe Kleine-Koenig <u.kleine-koenig@baylibre.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Randy Dunlap <rdunlap@infradead.org>, linux-perf-users@vger.kernel.org, 
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Shuah Khan <skhan@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_075811_489613_DF52F707 
-X-CRM114-Status: GOOD (  18.49  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_083914_293151_012F8591 
+X-CRM114-Status: GOOD (  14.54  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,251 +126,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On Mon, Nov 9, 2026 at 6:51=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org> =
+wrote:
+>
+>
+> On Mon, 09 Nov 2026 00:01:24 -0800, Ian Rogers wrote:
+> > Add device tree bindings for the Broadcom Raspberry Pi AXI PMU block
+> > found on BCM2835, BCM2711, and BCM2712 SoCs.
+> >
+> > The hardware exposes two MMIO register blocks: the primary monitor
+> > evaluates the System fabric and the secondary monitor evaluates the
+> > VideoCore VPU fabric.
+> >
+> > Co-developed-by: Dom Cobley <popcornmix@gmail.com>
+> > Signed-off-by: Dom Cobley <popcornmix@gmail.com>
+> > Signed-off-by: Ian Rogers <irogers@google.com>
+> > ---
+> >  .../bindings/perf/brcm,bcm2835-axiperf.yaml   | 44 +++++++++++++++++++
+> >  MAINTAINERS                                   |  7 +++
+> >  2 files changed, 51 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/perf/brcm,bcm2835=
+-axiperf.yaml
+> >
+>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Add a device tree overlay for the VGA output on the Colibri iMX6ULL eMMC
-parallel RGB LCD interface. The VGA output is driven through a
-non-programmable video DAC without VESA DDC I2C signals to a DVI
-connector. The DAC power-save input is driven by the BL_ON signal on
-SODIMM 71, like on the Colibri iMX7.
+Thanks Rob, and I appreciate the testing.
 
-The overlay content is identical to the Colibri iMX7 eMMC one, only the
-GPIO driving the DAC power-save input is SoC specific. To avoid
-duplicating it, rework the Colibri iMX7 eMMC overlay moving the common
-part to a new dtsi shared between the two modules, and include it from
-both overlays.
-
-The overlay is also combined with the Aster, Evaluation Board v3, Iris
-and Iris v2 carrier board device trees to provide ready-to-use DTBs.
-
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
-v2: no changes
----
- arch/arm/boot/dts/nxp/imx/Makefile            | 21 +++++++
- .../dts/nxp/imx/imx6ull-colibri-emmc-vga.dtso | 24 ++++++++
- .../dts/nxp/imx/imx6ull-imx7-colibri-vga.dtsi | 61 +++++++++++++++++++
- .../dts/nxp/imx/imx7d-colibri-emmc-vga.dtso   | 52 ++--------------
- 4 files changed, 112 insertions(+), 46 deletions(-)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-vga.dtso
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-imx7-colibri-vga.dtsi
-
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 060bb01f9396..4fc8fa5e8c79 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -373,6 +373,22 @@ imx6ull-colibri-emmc-eval-v3-tdx-panel-res-touch-7inch-parallel-dtbs := \
- 	imx6ull-colibri-emmc-eval-v3.dtb \
- 	imx6ull-colibri-emmc-tdx-panel-res-touch-7inch-parallel.dtbo
- 
-+imx6ull-colibri-emmc-aster-vga-dtbs := \
-+	imx6ull-colibri-emmc-aster.dtb \
-+	imx6ull-colibri-emmc-vga.dtbo
-+
-+imx6ull-colibri-emmc-eval-v3-vga-dtbs := \
-+	imx6ull-colibri-emmc-eval-v3.dtb \
-+	imx6ull-colibri-emmc-vga.dtbo
-+
-+imx6ull-colibri-emmc-iris-vga-dtbs := \
-+	imx6ull-colibri-emmc-iris.dtb \
-+	imx6ull-colibri-emmc-vga.dtbo
-+
-+imx6ull-colibri-emmc-iris-v2-vga-dtbs := \
-+	imx6ull-colibri-emmc-iris-v2.dtb \
-+	imx6ull-colibri-emmc-vga.dtbo
-+
- dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ul-14x14-evk.dtb \
- 	imx6ul-ccimx6ulsbcexpress.dtb \
-@@ -402,15 +418,20 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-colibri-aster.dtb \
- 	imx6ull-colibri-emmc-aster.dtb \
- 	imx6ull-colibri-emmc-aster-tdx-panel-cap-touch-7inch-parallel.dtb \
-+	imx6ull-colibri-emmc-aster-vga.dtb \
- 	imx6ull-colibri-emmc-eval-v3.dtb \
- 	imx6ull-colibri-emmc-eval-v3-tdx-panel-cap-touch-7inch-parallel-touch-adapter.dtb \
- 	imx6ull-colibri-emmc-eval-v3-tdx-panel-res-touch-7inch-parallel.dtb \
-+	imx6ull-colibri-emmc-eval-v3-vga.dtb \
- 	imx6ull-colibri-emmc-iris.dtb \
-+	imx6ull-colibri-emmc-iris-vga.dtb \
- 	imx6ull-colibri-emmc-iris-v2.dtb \
- 	imx6ull-colibri-emmc-iris-v2-tdx-panel-cap-touch-7inch-parallel.dtb \
-+	imx6ull-colibri-emmc-iris-v2-vga.dtb \
- 	imx6ull-colibri-emmc-tdx-panel-cap-touch-7inch-parallel.dtbo \
- 	imx6ull-colibri-emmc-tdx-panel-cap-touch-7inch-parallel-touch-adapter.dtbo \
- 	imx6ull-colibri-emmc-tdx-panel-res-touch-7inch-parallel.dtbo \
-+	imx6ull-colibri-emmc-vga.dtbo \
- 	imx6ull-colibri-eval-v3.dtb \
- 	imx6ull-colibri-iris.dtb \
- 	imx6ull-colibri-iris-v2.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-vga.dtso b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-vga.dtso
-new file mode 100644
-index 000000000000..4ecf221de27e
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-colibri-emmc-vga.dtso
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * VGA output connected to the Colibri parallel RGB LCD interface through a
-+ * non-programmable video DAC with a DVI connector.
-+ *
-+ * The VGA output is available on multiple carrier boards (including Iris,
-+ * Eval, Aster) without VESA DDC I2C signals.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#include "imx6ull-imx7-colibri-vga.dtsi"
-+
-+&vga_encoder {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio_bl_on>;
-+	/* SODIMM 71 / BL_ON */
-+	enable-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-imx7-colibri-vga.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ull-imx7-colibri-vga.dtsi
-new file mode 100644
-index 000000000000..7e323698f338
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-imx7-colibri-vga.dtsi
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * VGA output connected to the Colibri parallel RGB LCD interface through a
-+ * non-programmable video DAC with a DVI connector, shared by the Colibri
-+ * iMX6ULL eMMC and Colibri iMX7 eMMC overlays.
-+ *
-+ * The VGA output is available on multiple carrier boards (including Iris,
-+ * Eval, Aster) without VESA DDC I2C signals.
-+ *
-+ * The DAC power-save input is driven by the BL_ON signal on SODIMM 71, the
-+ * SoC specific pinctrl and GPIO are described by the overlay including this
-+ * file.
-+ */
-+
-+&{/} {
-+	vga_encoder: vga-encoder {
-+		compatible = "dumb-vga-dac";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				vga_enc_in: endpoint {
-+					remote-endpoint = <&lcdif_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				vga_enc_out: endpoint {
-+					remote-endpoint = <&dvi_connector_in>;
-+				};
-+			};
-+		};
-+	};
-+
-+	dvi-connector {
-+		compatible = "dvi-connector";
-+		analog;
-+
-+		port {
-+			dvi_connector_in: endpoint {
-+				remote-endpoint = <&vga_enc_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&lcdif_out {
-+	remote-endpoint = <&vga_enc_in>;
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-vga.dtso b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-vga.dtso
-index 363c0c2cc43e..ae3d8da02e67 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-vga.dtso
-+++ b/arch/arm/boot/dts/nxp/imx/imx7d-colibri-emmc-vga.dtso
-@@ -14,51 +14,11 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- 
--&{/} {
--	vga-encoder {
--		compatible = "dumb-vga-dac";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_gpio_bl_on>;
--		enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-+#include "imx6ull-imx7-colibri-vga.dtsi"
- 
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--
--				vga_enc_in: endpoint {
--					remote-endpoint = <&lcdif_out>;
--				};
--			};
--
--			port@1 {
--				reg = <1>;
--
--				vga_enc_out: endpoint {
--					remote-endpoint = <&dvi_connector_in>;
--				};
--			};
--		};
--	};
--
--	dvi-connector {
--		compatible = "dvi-connector";
--		analog;
--
--		port {
--			dvi_connector_in: endpoint {
--				remote-endpoint = <&vga_enc_out>;
--			};
--		};
--	};
--};
--
--&lcdif {
--	status = "okay";
--};
--
--&lcdif_out {
--	remote-endpoint = <&vga_enc_in>;
-+&vga_encoder {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio_bl_on>;
-+	/* SODIMM 71 / BL_ON */
-+	enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
- };
--- 
-2.47.3
-
+Ian
 
