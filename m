@@ -2,34 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125D0606EEBD
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9495606EE8C
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fifhRcJv;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Ob1h9qiU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3yk6R3iX;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=I3zxrPXV;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=eSUzICYL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KHZPpXsmlkXJQiyTnz6djJiKsSdReXhtcFHMd210oqM=; b=fifhRcJvTnCV1p
-	T56bL7yCSDkMObfCjgXUIP8L5Pad5SXUi5DJEw/lIIKwaCNuUQGXVFWU33QYnGRiW79wI/68Z9Wkn
-	MoNeH9Zh8yWti1h6FPd/4zx0//2aAKmL9zlLQMjNO+rv65CcVDE6vlPBuqZt6i+NsCQV5lLz3jtnv
-	ik93MrD+cSg1ypr1MtggnxMTLBgnGKpIauNEC05g7l5pQo+6wCIm2DNsHMS70RkXUq+nnJcjJk70O
-	HT5lRhrGstQSAQBT/UVI8TSQTCSsEQqLgiSiWT6Dhv1clWknRWDcpZqPiSky8RXmV7fydz0adE2sX
-	KLJIrGOzTj/L2fOoLVvw==;
+	List-Owner; bh=KWdwoMQXiTShR7rGuGU+FCAUlgJV+S6GbsCQM41btuc=; b=3yk6R3iXserM5U
+	ePaB4UI+MJeflUh9IOki92plzTQDhmqT4eG1eJvJJKGzink1R+7h4d6/QLU4SW/eoq54K6vrphcw+
+	3kDsylU2eSz0iRlJOxyHpfGyci+fnvoBKkRtsDtxDq4MF0ucpDFblOs+5YVA06Ift8ZZc8rJEaIcX
+	qGOGmkmYIAlpW1NPUYF7dg9318LOElI/1CEnK/gY/xhZsl9DOm3a0XCj/rTc+4EF4mgTy7bdj/m3I
+	FE13L7z/VXsNfdgjU+XRax9AKb/AsBXQaiFxHds4hbIyrC07HcD5oJiNS1eOJ/dCLf1k1uvYFh49K
+	/KQ8/gDhrDe1tEkjygOQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSaO-00000001EwB-2wu4;
-	Mon, 09 Nov 2026 16:51:12 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xQSaa-00000001FA9-2Hl5;
+	Mon, 09 Nov 2026 16:51:24 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQSaG-00000001EpF-0Fyu;
+	id 1xQSaM-00000001Et0-2nVa;
+	Mon, 09 Nov 2026 16:51:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=KWdwoMQXiTShR7rGuGU+FCAUlgJV+S6GbsCQM41btuc=; b=I3zxrPXVAByuD4urwHZgPIjPBE
+	RZ3ugJGTilmgEfkd9fFsZ50RmmC4jD19Lr8fmrsLwSbAx/0o4ToaZrckZ69igrQOvUZmIFmxeYROu
+	H4wYNyLQ/gc5D8qaYZ2m97M2Aleyd05msbwAZHUdLbABsCGfYOdFgx//GptemNgP8uhkDADnAzVp3
+	vxX1NxzuCP55HCl6iBNtviJebkLZQLk/VsyJcaCuNDB7XeguwMkhag43ieykbmGY7+lJ9+YUmY6Fl
+	FIsN00vo+8k+YGDMxVjrgp/MOYVsXFxmAKbGEPvmRRnE+lXZrolBywruORuIAh2DhhUku1GIBzTc/
+	0XNYXnVQ==;
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQSaH-00000006y47-3FaS;
 	Mon, 09 Nov 2026 16:51:07 +0000
 Received: from drehscheibe.grey.stw.pengutronix.de (drehscheibe.grey.stw.pengutronix.de [IPv6:2a0a:edc0:0:c01:1d::a2])
 	(Authenticated sender: relay-from-drehscheibe.grey.stw.pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 65749202831;
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 74B0A202929;
 	Mon, 09 Nov 2026 17:50:53 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	s=20260414; t=1794243053;
@@ -37,47 +52,48 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KHZPpXsmlkXJQiyTnz6djJiKsSdReXhtcFHMd210oqM=;
-	b=Ob1h9qiUtTmmSMZofNte3UUeYz6H6zzUJBzoQTiReeZlEB37IB/cKscqJ2imEhzaFsXHyD
-	Vs79SZjjxTnZdWgzAnhxlDbpDoOyWhjDcAJTQjLi6pA4tlZEUs+2mSTh1X4wD3kL19qamV
-	FNj0HFqlkXJyik12z5gGwFv1rk9x2WAX5+7rTdusqtNhFGcQWmCr0UNU8XUOKEqSI18wvv
-	fM5+0am6tlOJwqkkKtYj7Xr8tnFEci7DZyA774m4aZ++E3LnwUfYACBQYWE7T+rNMltFpf
-	5EmsSfJZ7cTMto1o3GpC+MOkSdlLaOguMQ1P1isyPadY2O56EiixexfosqMUNg==
+	bh=KWdwoMQXiTShR7rGuGU+FCAUlgJV+S6GbsCQM41btuc=;
+	b=eSUzICYL5Pjk5juWywMwcLKqW/avcVWTQSGTuZ6byUyEY7lv6LcI+XvH5HriOPkAbNA7LH
+	48IXJYxXNuuXi+5IQQQVzJ4JgXl+gtMl2RQb/a2D1jlN4IWHYTw2i8eTCHfeuTLlyo/dTR
+	jxDUgg8I3/u8rxxS9bZ9bSEIZ+H5SzeX0GZbHUbyFlkdHMdPgDwpKKwPPMoDP1KvNjXkiP
+	50ZzFzkCuqLQDAbeIkT9hLPlXxTr3wq/T2VsKPk2JC926Xifr/1YItvXHXFdgvpt3csDk0
+	T865t82RVb36gp1cl4tHuCTmHClKkq+yvP6uXiwrfDF++Xn7lKWCtttwtvz9GQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
 	s=20260414; t=1794243053;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KHZPpXsmlkXJQiyTnz6djJiKsSdReXhtcFHMd210oqM=;
-	b=N9gDQB498FJn8vKu3eB8dlUHD66HAZxz57f+96QH/Ey67PxAN1K7fxMnbprTyFuPrIIskh
-	6jxkriMW7BjS534Xf3EaJ7kaB4+EqHhjXhWbo6tEhYetL1yu7voXx0g/kEyyzgmlDkhCAd
-	pHbFjm1fq5E5rvJkA0VYr0BfxxVK7OA3GExIeLuOdjJfXWLw//RG6E9mHb4hQcfQr/lxmO
-	4giwcnTYU/OD35Icg/3Fh28KJv0SyERd6jMf7d+41YiFpdmIdQunT6NBdLB2s0HD15hk/O
-	yZt8UPFXm3c5sM+hPDLx5AMmeLVOU9mAof+3EBMlbrmVFPUJe2M8sSj+IXMTRA==
+	bh=KWdwoMQXiTShR7rGuGU+FCAUlgJV+S6GbsCQM41btuc=;
+	b=A4Ide3cnG/8S+uWkzS/DuvatL8yERG8LOJCBFypT+psvy5UFAldNjxBz2VlAzCQb2nfAJD
+	y3LVhE8LxgxzbkZmo0zj++dwRC2siymLsQlAc7GoNbva9o0izxYL1PUcYcsKwvEhrF2KIJ
+	swmmbLu7prAuNsMOuXVXFSz1I44VpL1WhqwFvT+BCdCDAcmnOVvVoJjKEDUBg8tCBZoSlb
+	wEJ4f+QNowlRWOvyM91F3Uoap0PL4Id7ZeXhk6xzbyB8NO8+gw2wZgUP8rUZR8xU6icKnp
+	THXrthwD1c7MMp1itZc1w4G3MDMgqotCGPU1qbqdDGYz+LhlOXel2w7sWemAFA==
 ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794243053; a=rsa-sha256;
 	cv=none;
-	b=L0qLM8QLV2UYduBZeq88qnviowN1FESdDq5veCmIvlETdYXhxiAaA7PN3jmanjbZRQEdn/
-	4Lm5Q2m+uuq7xHbvl5OdcclNE+XETmuwsqvxp3/S72+ZzN/hSodCaL9i+OIyvJfr4FWxVk
-	9oqWEvh4KeoYg+chKnvbmVQLv8uyOgAtPU0+awqbDBKAII568tBRAf9ZsNkl964T014fcf
-	G98MVEpSK0mBo4ZytZ3NjtaSV9x5gZhU45L8Z1tNp/LkzSwsYFDL4AfXMX6JG3w8PM94xf
-	RMeQmcvFKhXyi6Zk6ohLg4vY5lPShy3aAPd0EdW281Hr5DufM4th9BUeL3ucVw==
+	b=cHobY6+Natq80bFXoWs2lwFO/M67RyxEYB91mL4LqjP2LiY+ayfVXvOUnYPGX0br2buHZH
+	jXl/gQxv7kvRA2EWfR7TChYd81m8jEon+LBVN5GErEsLwkNToiUaf3D8YOjFJ0OY8ANWXk
+	FRQ9vVcLuuX/K/fs5j6621sBCRygdNCtBTHPhWWyWbur0EBbL/cbRYvb31d1bDIwr0pmuL
+	Z+sLUSjMK8I7eEpr1PSTkU5AWM2BOrsqVXUoDzjD7FjKpYLgeNfxYSKs5cabIcmxJK8b5O
+	Fek0A7Nm5EE4LkZ+8TNn/Qa5EWJxUwUPZ3tZTXyS8uLgf8vQevPORtFbdplhaA==
 ARC-Authentication-Results: i=1;
 	ORIGINATING;
 	auth=pass smtp.auth=relay-from-drehscheibe.grey.stw.pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1xQSa5-003N3i-15;
+	id 1xQSa5-003N3i-1F;
 	Mon, 09 Nov 2026 17:50:53 +0100
 From: Philipp Zabel <p.zabel@pengutronix.de>
-Date: Mon, 09 Nov 2026 17:50:47 +0100
-Subject: [PATCH v2 5/8] reset: mpfs: Use regmap_test_bits in mpfs_status
+Date: Mon, 09 Nov 2026 17:50:48 +0100
+Subject: [PATCH v2 6/8] reset: rzv2h-usb2phy: Use regmap_test_bits in
+ rzv2h_usbphy_reset_status
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-reset-regmap-test-bits-v2-5-c886689bb85e@pengutronix.de>
+Message-Id: <20261109-reset-regmap-test-bits-v2-6-c886689bb85e@pengutronix.de>
 References: <20261109-reset-regmap-test-bits-v2-0-c886689bb85e@pengutronix.de>
 In-Reply-To: <20261109-reset-regmap-test-bits-v2-0-c886689bb85e@pengutronix.de>
 To: Damien Le Moal <dlemoal@kernel.org>, 
@@ -93,10 +109,10 @@ Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
  Geert Uytterhoeven <geert+renesas@glider.be>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_085106_026541_7C39D287 
-X-CRM114-Status: UNSURE (   9.49  )
+X-CRM114-CacheID: sfid-20261109_165106_012545_0FDAF002 
+X-CRM114-Status: UNSURE (   9.58  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,36 +131,34 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Simplify mpfs_status() by using regmap_test_bits().
-Now returns 1 if asserted for all bits and propagates errors.
+Simplify rzv2h_usbphy_reset_status() by using regmap_test_bits().
+Now propagates errors.
 
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 ---
- drivers/reset/reset-mpfs.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ drivers/reset/reset-rzv2h-usb2phy.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/reset/reset-mpfs.c b/drivers/reset/reset-mpfs.c
-index 8ffcc54ee6f6..ec61b4a1d753 100644
---- a/drivers/reset/reset-mpfs.c
-+++ b/drivers/reset/reset-mpfs.c
-@@ -63,15 +63,8 @@ static int mpfs_deassert(struct reset_controller_dev *rcdev, unsigned long id)
- static int mpfs_status(struct reset_controller_dev *rcdev, unsigned long id)
+diff --git a/drivers/reset/reset-rzv2h-usb2phy.c b/drivers/reset/reset-rzv2h-usb2phy.c
+index d96042e28cd5..e644092cc2f7 100644
+--- a/drivers/reset/reset-rzv2h-usb2phy.c
++++ b/drivers/reset/reset-rzv2h-usb2phy.c
+@@ -68,11 +68,9 @@ static int rzv2h_usbphy_reset_status(struct reset_controller_dev *rcdev,
+ 				     unsigned long id)
  {
- 	struct mpfs_reset *rst = to_mpfs_reset(rcdev);
+ 	struct rzv2h_usb2phy_reset_priv *priv = rzv2h_usbphy_rcdev_to_priv(rcdev);
 -	u32 reg;
  
--	regmap_read(rst->regmap, REG_SUBBLK_RESET_CR, &reg);
+-	regmap_read(priv->regmap, priv->data->reset_reg, &reg);
 -
--	/*
--	 * It is safe to return here as MPFS_NUM_RESETS makes sure the sign bit
--	 * is never hit.
--	 */
--	return (reg & BIT(id));
-+	return regmap_test_bits(rst->regmap, REG_SUBBLK_RESET_CR, BIT(id));
+-	return (reg & priv->data->reset_status_bits) == priv->data->reset_status_bits;
++	return regmap_test_bits(priv->regmap, priv->data->reset_reg,
++				priv->data->reset_status_bits);
  }
  
- static int mpfs_reset(struct reset_controller_dev *rcdev, unsigned long id)
+ static const struct reset_control_ops rzv2h_usbphy_reset_ops = {
 
 -- 
 2.47.3
