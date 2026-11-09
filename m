@@ -2,54 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FDBE606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 22:03:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F0A606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 22:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h+V5nnP4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IAmfgtHb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TtyBMwvH;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=M4XcDj/y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
 	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CidRQbh2gFHizXgn/3nltDcqC87nf+9JADmfwJgFtmU=; b=h+V5nnP4lJutLX
-	g+S+sZqOK2FQlp2ECx8UxkErf57lWeNl6YtA7i7bUZQn5xYVPK5oMqwHXd/Cf7pu5+0Rf32mYLGkD
-	PBWsb8vcsJX8q7PuldnDrqwRMuZv1mpSmiFKwgaqnWcWmwahZ8+GtlC08a/TPsbtYVxw6OFfq6I1Q
-	ne/BFAHL2iqypbu9LzXr6zPAix0dv7xmTNGmSZrUfvx0S/eMBQ3aXtvXx26gfcH8MWZgpnKIJl4Ak
-	Md6LYJqhNkUPs7+mS5MmEqRTyOcWBTzS54iNLS0LulA66yMHzKIWCEDancIpNPXgm9A95HBRimyH7
-	7aj/Wz4wzLIJEnGfLEFw==;
+	List-Owner; bh=5fhIsFIkZ4LdQ5n51OKo+Ec9EiIwq3J+ggnXRosBuV0=; b=TtyBMwvH0+dG0o
+	UvA796mcLznSNtF4G0putKX9bdliE5S9xw5yQzGOKKIgZj/VhHFSlr8EUR0jq3QlLftu0TheRmGJs
+	wPr2g27QlipjCPxZAbCtSma3V/+SdjQe5EVJVDC0ZnYnUDa4whTfnJVfQSXmXJR+37Ze4NzUmU7ye
+	TNadbdU49++JBQBt2WsfEEbuOhh6Xbg9nHLGRoXYyM0PxZ6kbwo7in/K2mgmfxIu/EwIhGkx0Sxqa
+	G5nk1tCWPnQqkzR/UeTPzhXNXKG//W8GDDT0xKwHxACoR0dOi7pTKmgAdUBq49I8Iz7QeblmfjZ3a
+	88Hiz21c0WmcNk8tYKZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQXSM-00000001qCe-00gq;
-	Mon, 09 Nov 2026 22:03:14 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQXSQ-00000001qES-3Kvb;
+	Mon, 09 Nov 2026 22:03:18 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQXSK-00000001qC6-3lhL;
-	Mon, 09 Nov 2026 22:03:12 +0000
+	id 1xQXSL-00000001qCP-2Wkl;
+	Mon, 09 Nov 2026 22:03:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 5A7A4415E8;
+	by tor.source.kernel.org (Postfix) with ESMTP id CF2F962F4C;
 	Mon,  9 Nov 2026 22:03:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC2941F008A1;
-	Mon,  9 Nov 2026 22:03:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC961F0089F;
+	Mon,  9 Nov 2026 22:03:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794261792;
-	bh=CidRQbh2gFHizXgn/3nltDcqC87nf+9JADmfwJgFtmU=;
+	bh=5fhIsFIkZ4LdQ5n51OKo+Ec9EiIwq3J+ggnXRosBuV0=;
 	h=Subject:From:To:Cc:In-Reply-To:References:Date;
-	b=IAmfgtHbahuGzrwt5S2CdtfDct24IdyI/F871t2gLdvbcQ+AEpi7VJeNnr2npNsnz
-	 aa5bmAB0UYBFCgenmJYp7R8/m2M9So96P5oiC77kQ/ismwwhBuNQBNjAx1YE3aQI7R
-	 BMnFCK+ZI/MwfeYcxrHrpQsrYvXgYvHILyE/ZCKiw0VAFE8eluxASb0iQ4t8a+cs4Y
-	 BMnB2wdQYvtW/k9bHw1I4+9LHwxt+dw53BWShkGQR2ncaSoBW3lakC6o5BVnpPHVXv
-	 lueCwILLcFZGlBbgz6qK44f8S0X9TsMZpXMUG66nZq+53aBvWY1FekSyBW5L3fZgye
-	 ZhXC+eK7zvyYA==
+	b=M4XcDj/ySUy93StASaTwfHJCKkLzlAXG3gXwjwZyy8v9Q2+ByiEfj7UTrrSMq6yss
+	 ig73Vs9xRVrorca0tCIh13fQ0SqfMn5ajSZHQ2g9Ajp6PAjxKf2mZGRwr06xTfy+BX
+	 0LNdDN3ccKH8Eftn7HEY3b7WPIOU1RKDAts2Y+OQ6JwayWv2Js2b9Yx4LnBTJqiEUI
+	 twyhFzWSoSKEWliXejADbCeL9n3LrquRDii626pN8ZU+bsawOmJUWIjzFVUiM9U5Ji
+	 6JmnI6iJ5WYUlgb7/IqJ4kJuAAxuCopiqfSmWWELnsH/4rq3d/ijbPIRV2+e6iqHxo
+	 s4Mihtv3dprew==
 Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
-	by traversing.sirena.org.uk (Postfix) with ESMTP id 58F803021CAB;
+	by traversing.sirena.org.uk (Postfix) with ESMTP id 605163021CAC;
 	Mon, 09 Nov 2026 22:03:04 +0000 (GMT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/2] spi: Add infrastructure for atomic sync transfers
+Subject: Re: [PATCH 2/2] spi: rockchip: add an atomic transfer function
 From: Mark Brown <broonie@kernel.org>
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: broonie@kernel.org, linux-spi@vger.kernel.org, 
@@ -57,18 +57,18 @@ Cc: broonie@kernel.org, linux-spi@vger.kernel.org,
  quentin.schulz@cherry.de, Lee Jones <lee@kernel.org>, 
  Sebastian Reichel <sebastian.reichel@collabora.com>, 
  Heiko Stuebner <heiko.stuebner@cherry.de>
-In-Reply-To: <20261106181824.1361235-2-heiko@sntech.de>
+In-Reply-To: <20261106181824.1361235-3-heiko@sntech.de>
 References: <20261106181824.1361235-1-heiko@sntech.de>
- <20261106181824.1361235-2-heiko@sntech.de>
+ <20261106181824.1361235-3-heiko@sntech.de>
 Date: Mon, 09 Nov 2026 22:02:46 +0000
-Message-Id: <179426176654.3711751.13650000545363860741.b4-review@b4>
+Message-Id: <179426176656.3711751.13626253291583121519.b4-review@b4>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1567; i=broonie@kernel.org;
- h=from:subject:message-id; bh=8xKsPk8JaGfgfmUb29t/RDu26Xy0LDupWmUhlaAY30w=;
- b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+ObNvfR+/817uz8PL1hzcrH1cv1/ocbNUVEu6iHWq3
- oqNTRP7O0pZGMS4GGTFFFnisrhf1pe8XsN3cGEbzBxWJpAhDFycAnCTrzH8lXD7pL/kaXrA0U8B
- m6535QdI3HouG9gowKfs6lxWkTFdk5GhtbXsHcPV+J3HV99jKFv/Ji6krsziqWyz0zE3/r8+G30
- 5AQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2042; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=hIdjP33i7ScW9DXNN0xZU7V5Fza7A95kmMy3uYeIb18=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+OUvc4lNbkP3sc6jhaq/Fx8JWX9zW1DyhW/PrN5svN
+ osuaF9K6ShlYRDjYpAVU2SJy+J+WV/yeg3fwYVtMHNYmUCGMHBxCsBE3gowMlzjO79gTU6ohNQG
+ gXstlt9NDnAI33Rf1JmoOvnD/s7Cg/MZGWaEcD7IEPlb/vyUj/eJWd56PWcfGFSIVb6ybvQMYyu
+ Yxw0A
 X-Developer-Key: i=broonie@kernel.org; a=openpgp;
  fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -88,40 +88,64 @@ X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> There are cases where SPI transfers are needed during times without
-> interrupts like shutdown when a PMIC should turn off the system.
+> Rockchip SPI controllers are often used to handle SPI connected PMICs that
+> also handle system power-off events, like the RK806.
 
-> I2C already has atomic transfers for exactly that case, so introduce a
-> similar concept for SPI. Similar to I2C, this is and should stay a
-> corner-case, so is only allowed during the shutdown stages of the kernel,
-> when interrupts are already turned off.
-
-> So add a in-atomic check stolen from I2C and an optional transfer_atomic
-> callback drivers can implement to do immediate uninterrupted transfers
-> and let spi_sync() determine if the state is late enough to use it.
-
-> spi_async() does not require a sleeping context for itself, so while it
-> could in theory also be included, its called waiting for the completion
-> can sleep, so would still cause the splat about it.
-
-> +static int __spi_sync_atomic(struct spi_device *spi, struct spi_message *message)
+> +static int rockchip_spi_transfer_atomic(struct spi_device *spi, struct spi_message *msg)
 > +{
 > +	struct spi_controller *ctlr = spi->controller;
-> +	unsigned long flags;
-> +	int status;
+> +	struct rockchip_spi *rs = spi_controller_get_devdata(ctlr);
+> +	bool cs_en = (spi->mode & SPI_CS_HIGH) ? 1 : 0;
+> +	struct spi_transfer *xfer;
+> +	int ret = 0;
 > +
-> +	if (!ctlr->transfer_atomic) {
+> +	pm_runtime_get_sync(rs->dev);
 
-We do have some existing users that appear to rely on using spi_sync()
-to power off like SC27xx.  I suspect they are tolerating the splats, or
-just don't work, but either way we should try to preserve the current
-behaviour for them.
+The check in spi_in_atomic_sync_mode() is true for SYSTEM_RESTART and
+SYSTEM_SUSPEND which would get rather messy if something ends up with a
+device that tries to do something in there.  Not sure if that's worth
+worrying about or not.
 
-> +	status = spi_maybe_optimize_message(spi, message);
+> +	rockchip_spi_set_cs(spi, cs_en);
 
-Message optimisation may try to do things like allocations that are a
-bad idea in atomic context - it seems safer to just use the message as
-is in this context.
+This won't DTRT with GPIO chip selects, that's normally handled by the
+core.
+
+> +		while (rs->tx_left || rs->rx_left) {
+> +			u32 status = readl_relaxed(rs->regs + ROCKCHIP_SPI_SR);
+> +
+> +			if (rs->tx_left && !(status & SR_TF_FULL))
+> +				rockchip_spi_pio_writer(rs);
+> +
+> +			if (rs->rx_left && !(status & SR_RF_EMPTY))
+> +				rockchip_spi_pio_reader(rs);
+> +		}
+> +
+> +		wait_for_tx_idle(rs, false);
+
+This uses jiffies which don't advance in poweroff, and there's no
+overall timeout here.
+
+> +		if (xfer->cs_change && !list_is_last(&xfer->transfer_list, &msg->transfers)) {
+> +			rockchip_spi_set_cs(spi, !cs_en);
+> +			ndelay(10 * NSEC_PER_USEC);
+
+udelay().
+
+> +static int rockchip_spi_power_off(struct sys_off_data *data)
+> +{
+> +	struct rockchip_spi *rs = data->cb_data;
+> +
+> +	/* enable controller for possible calls from shutdown handlers */
+> +	return pm_runtime_get_sync(rs->dev);
+
+Would it not be safer to just eat the error here rather than refuse
+poweroff?  Also pm_runtime_resume_and_get() is the more modern thing.
+
+> +	ctlr->transfer_atomic = rockchip_spi_transfer_atomic;
+
+The driver supports target mode as well, probably best to only register
+this for host mode.
 
 -- 
 Mark Brown <broonie@kernel.org>
