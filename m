@@ -2,58 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07349606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:26:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387CD606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 21:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H3hCBP65;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=ZX9DZzME
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SFsYnqnP;
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=rf79iAr+;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=NE2fevFM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
 	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=J9ztcQ1vROxjDuzaccw6YtctvOaO5WlXGflXRvMOyAA=; b=H3hCBP657AbKn0
-	9NGd4UHnbIWBSRwutc8Gc9AYQGVIsBHWi35ECygb1zPautYYyCg4zLqUgVyOy5etEBbdC/IgPZ4td
-	grZMb9QP3eNQA9ri9IvBoU0T9DDO6j+f6U/5zqulb1UHTcqVu//kRfMQUJahXmAfvvSGHLKMKJD03
-	rJdujQEpqPzh3dTKFnjQQ1nW+cUYP2XWIqCf14bO7enuY4byXpLIRt2oEaSgfHKmiOAgBnwYCgtmN
-	LZ3xfBoWfkgad350Ifwcw+qQo0rKg51kucEblwAe6ZhM9ZUpdgJX77nMuZ1/vROZcAizU+2nHJVhW
-	DCUnXBHXajqEKVxfGbkw==;
+	List-Owner; bh=9B8mLJKAa78eticVDQeqdgbhsOyYRLPHh3wbiZWj8Qw=; b=SFsYnqnPxBVtQd
+	4xD9MC1zBrCMl+huNm4NpxnvPoK3VjgVTjGx55VhOEIO8baUp/8/30c3IPE4isFO7fPXDCK482Uv3
+	tMw2uuZsjgXwN019j9ZUSsE3vYxB7ac/NWPqfV6GtYf3L7IEDfywE4yERtHaUDgZEqpY2qIVS9OxQ
+	e1X6f+C6QqtbM4og83N0HaaFBPTHtfpV984gN1ZK6TojMtLw3LSGp5o7tPbREbQDL+uP4E9sGT+7s
+	d4cfpq2daQIbujmQ86TLgcWrlMXGNpyTjmahbWFtJ1eOfyUSI/8iSQf1mc1kf/xLd7D/2YcMT1Qke
+	SyEHlhW2Z3msnVD5kohQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWsE-00000001lEj-2Erv;
-	Mon, 09 Nov 2026 21:25:54 +0000
-Received: from mail-eastus2azlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c110::1] helo=BN1PR04CU002.outbound.protection.outlook.com)
+	id 1xQWsn-00000001lYs-2Sau;
+	Mon, 09 Nov 2026 21:26:29 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQWrK-00000001kUT-0Juv
+	id 1xQWsk-00000001lWu-3nMI
+	for linux-arm-kernel@bombadil.infradead.org;
+	Mon, 09 Nov 2026 21:26:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Type:
+	Content-Transfer-Encoding:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=9B8mLJKAa78eticVDQeqdgbhsOyYRLPHh3wbiZWj8Qw=; b=rf79iAr+8ruCqQw9A7lzhpJoaQ
+	Ed663iZfrfpewhxVIjD/GSKlMei5EqJoFj2my9QEUVyQ0h2IytYzEo7+JU2AcfJ83AfawfclDiMnQ
+	FxqLe+WAnKlspJGZAgrW+MqfKvYyItg2K9KhmgaT+CKLExElp6rjZ5yu+Hba3e7QCHs1U1EZ5mNag
+	LyWLkLBz00Bl+Fgh5jG/pEoSbkJ0VWTe9ttEdRijWGDkve3eHPt0KIslRaeMOC0qFRIxOS2c5crv6
+	qNtaDc/iQT/PKIXWsIVl3Ur10g624Do1flxDnubDceUAVO7nMuDTJ3rkAj23xTYXnbI0CuIuTfNZ5
+	XNMhVL6A==;
+Received: from mail-centralusazlp170110009.outbound.protection.outlook.com ([2a01:111:f403:c111::9] helo=DM5PR21CU001.outbound.protection.outlook.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQWsX-00000007DW6-2iAN
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 21:25:02 +0000
+	Mon, 09 Nov 2026 21:26:24 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sWp1G+DbzIu9bTWwoYXYHO/19mOay81KYz3Ukv5q4/ro5f509OHp2T5PYtCzAI4ZVTWSUnB70PrzbwP2vbWyz8VskTSHbXRWNMtergdPyV3wWqJ8dBvQGzXgDVOha8E5RhxAHMfCddI/btFTT1HFRKWBppaLGfF3dn4XaDmbJeKRw4xLmwtEauT5xZcmZy11gKKODdlWe4xUidqbB7Y2sgxT72Dk6iAN4s23ejhKBVz7YuZL05I72dFK9MalEPh+QJE3kx81a98FMJM4E7V4ucyILfCqlYlKJDOIQT7gRF+zs5SMQqqkJE4j1h3mbH+7nORWwSI+u9Cg0nRH3Q/DLA==
+ b=l1qGBui8JDShArC8ewmsXR2/aVLCDIqiWDsD95QnDRYAHKRwRLApxd/bgVDgqc/PnxjF8IwwWa41VY05inaLVA7rmD9ZlhJyP0S97CeeEKVORAaxDvZO1shpUkB2rFEVoYul/aXIDKy++eE9wDkWzU6SLOVAOoZ9049flsKTO2qaPbdI6waAlTsEVB2a7yLd3P/EUzCQMVn5KbkN1TjbgOqIvRKojddLmlcW25Oo6bwcsCFWP1D9xBns7zCpY2tvVmPJURfSk0+FAG4N8CaZFQlB8f+EViAj/as6+QySj/Uk93B6zSnivin72snBYRdSsx95WJTRHsxjOGCM9cB2hQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J9ztcQ1vROxjDuzaccw6YtctvOaO5WlXGflXRvMOyAA=;
- b=ukovOc0/71h/iW8eN3jGlgrZHL3240qHr4HWzWN88VozM1klQOYXwhTzBsptlmIRBQOZ8647sKbXzG87bycTFJuwnG/y+QamGqw7iU3Un1+a7eYMfvSEkRgIZ6mzjpn6qUYgEYIfurx7jUkEMXrkXaULeHqYsZBu5GjL22aK91zBL+0pnhb0eACjayMJedIRVTaUriP2DoiocgFNJAJURw1AfhUJDAGvFcRfvTV4PmJEQ+kyRb0+bjXZJLSg1oRICokFle95yqeRyTvqPDPikeMKjWgLTPfKV0xinlQKLxr4STyRxjIYBwLwQaNO6ID5tk9fr5MBYnaHAO6A31B/hg==
+ bh=9B8mLJKAa78eticVDQeqdgbhsOyYRLPHh3wbiZWj8Qw=;
+ b=YOjNbTB/xfai+5jP6x+Qn/zTqTmc2CJjvXrAjLPAE7hMtirFVLVGMUb8fXcWOSYEqhGRaFiq9GmowREuSp2wEaAzDmtnxzsoTajuTx755BGOQxwwAdjMjptPrdHnLlkSunIODU+f7Ht7iKPyeFQG8iJ0X4kFPvoOG1BeBB5KQMRCrvGJ0lRhUjkNg/QiPl+tT4AML/+bq8QgqI9sCcpB5XXO6J8zzN2vlviMyxWKlxNnC+eVjzEUwtPdhAG3SODXYucLSG6w+EoLDel5Vx1ageQgN28vLRuN6XyhtsD3M2ZswO8tdTKCiU/+lIpOuerLutj06cgA39Izrmj194LOfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J9ztcQ1vROxjDuzaccw6YtctvOaO5WlXGflXRvMOyAA=;
- b=ZX9DZzMEsBodBe20xbhdGQc4Q0R+xAFK2tF6WFPxbR82Cbuo3yneZ05kQxwuHcEMnBj6ou8L9L6+FN3reaym5wRiuDzLeiCcS4zbAGXFtXtVV7Kh/iwdF1uCfHUaGbxAUrjTAq5CkDiZqbRbfBYHupFZgnKyQRGq8obbOYOQTuA78FLLuhzfpXEIGQAlhps5LSupu05NZb///Kxg/0xHUyixhWnyxM9voMMmQb/o395dcqxiL64BfMYXRMcHYEZR9hlWWsOyO0hktdcIX5pqu5rifZlHypwhbgRl/fQyBwSOte4jhtEjN2ugojjWFNrZXrDOI/iAcaRrSBi5R58/ng==
+ bh=9B8mLJKAa78eticVDQeqdgbhsOyYRLPHh3wbiZWj8Qw=;
+ b=NE2fevFM1S+faop21hfBl57Q53Uei0I1IyxmD+gw+fV/6GitQMhEoTNx63LGNHSZX/529LwFDeRcnUpskj+rTQetrWuEysZiNy5ctTQeChjauBaVPx0MqalMBEF2r1V7/BpD+MwMMFFsRfoMBY9EAj5QxK/fA6W4/C/IcCE9oGjjvQGpSaE3+neuKprbulIiWxtCR+8fzZX+pVSO7OhRF8m3Nq2UBYzxMPwWCZ0if4Muu+47nvMDJNS1evflMTdbkzbVtxX2Tt/5p5kGAZB+uXA+fN1PdQMGTYiCDXhFI30N/Dfk5qEpNmReRjGaqXko5bKEERH5PzW0V31UxemUTQ==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com (2603:10b6:5:399::11)
- by PH7PR12MB5975.namprd12.prod.outlook.com (2603:10b6:510:1da::19) with
+ by SA1PR12MB6800.namprd12.prod.outlook.com (2603:10b6:806:25c::9) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
  2026 21:24:51 +0000
 Received: from DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73]) by DM4PR12MB5230.namprd12.prod.outlook.com
  ([fe80::6e87:1bde:1853:3b73%4]) with mapi id 15.21.0569.011; Mon, 9 Nov 2026
- 21:24:50 +0000
+ 21:24:51 +0000
 From: Fenghua Yu <fenghuay@nvidia.com>
 To: Reinette Chatre <reinette.chatre@intel.com>,
 	Tony Luck <tony.luck@intel.com>,
@@ -73,73 +89,73 @@ To: Reinette Chatre <reinette.chatre@intel.com>,
 Cc: linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Fenghua Yu <fenghuay@nvidia.com>
-Subject: [PATCH RFC v3 14/15] Documentation: resctrl: document NUMA-node MBA domains and mon_NODE monitoring
-Date: Mon,  9 Nov 2026 13:24:26 -0800
-Message-ID: <20261109212427.1409204-15-fenghuay@nvidia.com>
+Subject: [PATCH RFC v3 15/15] arm_mpam: Add KUnit test for CPU-less NUMA node affinity
+Date: Mon,  9 Nov 2026 13:24:27 -0800
+Message-ID: <20261109212427.1409204-16-fenghuay@nvidia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261109212427.1409204-1-fenghuay@nvidia.com>
 References: <20261109212427.1409204-1-fenghuay@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BY5PR03CA0013.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::23) To DM4PR12MB5230.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0073.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::18) To DM4PR12MB5230.namprd12.prod.outlook.com
  (2603:10b6:5:399::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|PH7PR12MB5975:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd389426-d0a1-4efe-e215-08df3ea7e315
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5230:EE_|SA1PR12MB6800:EE_
+X-MS-Office365-Filtering-Correlation-Id: f6b3f51e-f1be-405a-b30e-08df3ea7e3b7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|376014|7416014|1800799024|18002099003|22082099003|3023799007|921020|11063799006|56012099006|261026121527099003|261102123227099003|261028144727099003|261021121427099003|261022105027099003|261021123027099003|261026140227099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: ywgpsYSl9UdHrqFQ+E978hxKfXxZo0HDNk5wkLjRvrm3+7t9B3lTYxGOGygNDkF/csB1KwgSVWkQClQD5fSQcPOyt7lJplxcio0YqIg08GUL8N+NUtgTBnUdbrEo3ZbL29ly4p8FOg57LrQylJcMLyCOTfL+nZNdg/FMzx5JooIcV4SMy3mNYhqj/MuOFTJspthIxRT7kBqyWyEydSWV1Q6BGPCK0/oidKm5RsDLLhHZd7PrJFL1KHyLNzK4ScwQq9fBgAR7CeBiK7YSE0iQoaZ+UvklzXrKKEpuzBGv9Z/KIyCl1QPb0C4NQMFxTtB/j5scoCRSCc9VzX6mu6t8+T8ObeOEe83EGtFMsM34/Ltj1yKSPCT1V9zKCPSxQLU6z9N4aR7d17ulxQHRrFfPMjSInxfB6D+8sNQK129My1QpHqSzvBHTXIE7myGE55porjlpZgFtAkygJhtC++ZnpUtgxBM5Z6pw8wY2GM98nnNpItSEuFZqRbFzG0QkNIwPc/ri1po2KmVBnHKApI0YP0FnXlo8STIMvbwIbC0SRIAJqXQV1GGqsVIL2nwntAyXllx+perWrl6+30MnodSLPvxab7Dt/bcVKvn+YomSCPpiiGfxlnEDnkvgmi95DQCEmhZsMyDhdkw+5k72p+bQsEdJnLqCd2VNeQSoBtvDwTHr1xUfdnsm8WsGYlZuEFgu24Yye2zkIh5COODIsdjUYg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(376014)(7416014)(1800799024)(18002099003)(22082099003)(3023799007)(921020)(11063799006)(56012099006)(261026121527099003)(261102123227099003)(261028144727099003)(261021121427099003)(261022105027099003)(261021123027099003)(261026140227099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|366016|1800799024|921020|261009223027099003|11063799006|261021121427099003|261022105027099003|261026140227099003|56012099006|261028144727099003|261102123227099003|10067099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: qiIi7D2hyYkVT+7xu+7DwGcblWuht8v+SsQbua7v5dVTLaYO/DosoXeJB7w536/jYpcx4dxBL8//AOsO+gkJkvsO/alCpNnBFjvA6Xma0qurhqe7x0WSPj5ietlf7jFSrXbHS8L9juMju6jL+qRS6p7MdvU9GctoX10a0c4CwIpLEgZq0/QP/RfsafnYaUm+MBaLad8Ud9WEKMix+7iKGWj75Fu1v5n1tsLQKDpDyEnMYsz6IROSdiSltA8TDiuqycoXpYUE5tPw+HIQw9+Mksqych68EJZcjbXTtwIFDTi6ZvjYbvytlM623KbWBm3Sviz7i/5C0TfMOsah3k3bsqA1bcwx8LxIjNAZ/62m8SRiZZ7SrHxvAZZzjCz5/yFt8WX9zj4j2cvTK2H5mwcCRNdDm8FfAkjFuP7emh43r2e7PgxJddZ4nzOqlTtiTHr9d6FuhDmauywXjpUaCNgtDvkoubFdBy83GKnAvPadOH8qnA6+NTuGROnOf61md3iDoXRD8wevpum462nSnIVt2Iy21CMBqF5OIgMfcMAeQVlYVW5XQNg8DNROf5GSwH8qQzzAreloiHf36/C9ZSjZLVsZU8wfBH5ErltEPNA2mPisngVum2OdpXfs9hQ/DJnlH8YDN7X6FrkKHzBJ/pBP3Y8eCE/oij0egLOko+E6etN5LnedTzeS9a61XvAMdRhXexgeQVLH4AS2DGaPQGvR+w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5230.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(366016)(1800799024)(921020)(261009223027099003)(11063799006)(261021121427099003)(261022105027099003)(261026140227099003)(56012099006)(261028144727099003)(261102123227099003)(10067099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/VLDZbbjKt+mdl1Did1nM1Ol2cxJ4LSs0ENdRMTE66dIzOJsaUT74gDQOheu?=
- =?us-ascii?Q?i/6ywL4TDnk4MS1W02/jEckTQ2E8S9S6JOakFDTgPr+UfW/aS4KBAAoeTinq?=
- =?us-ascii?Q?vZ13r5SRS8i6w36w6lZUBqqjTOPBHBYTxFuAHT9NAd8Na8z6vI+eizVnBxRp?=
- =?us-ascii?Q?nO15aE+DWPT1Sox0P6iUoQWD5Yqs/+QKtwWYNvyVCQI2IlxGTgUIJBA8HXjl?=
- =?us-ascii?Q?NNMTEHtzmgg+53O8GeZlQiSwMYhTqLsZhy5/6aKDusb87A2eaHGomuyRr7TF?=
- =?us-ascii?Q?LTYDJgaYl+VAXzxSTKGiDVFn67u9exGqXjpE9gnt2XPrPjU8jI0NINDf5LKb?=
- =?us-ascii?Q?7cEEghNEiL1IML8vdkAkLPXiQoMU3/84RmOFAX3+W8lNysR1spHjD8heYxaY?=
- =?us-ascii?Q?iZOYbu2dVOEsHeVZKHDKrcLBc9LYVdHux3L6J1b2g8+EKezWhownwUQPRX5c?=
- =?us-ascii?Q?fjLWxCaM//2FUxnBrO2Loigfce2BpRllcc7Fp+0lbtGPpGZfuAH2JyEDjfKP?=
- =?us-ascii?Q?X81EoqXYOtkhoCGi8BX+KZx2QklIIfwT1AS3gBbvZCwBe7QmUex6KgtacexP?=
- =?us-ascii?Q?VXTHIrOuFlOtD9UF4290pXL/qNjPz1f43YAytCuiRmD35iPyQ45NmxLCYnKv?=
- =?us-ascii?Q?IiMz8P0xWd1qf6LhrzWYvz+6LcxyT0twtHdpRCdtmfBx4CJ6SKrc5/XvzNP5?=
- =?us-ascii?Q?goGG8qdS0bCE7UyPi/eVTdJJFVj0qo1QUa+At8Yruy0esfPgG/Ul2mLcRGi3?=
- =?us-ascii?Q?KebBJWJsYlaSvrpZn2xmzKgw2Irm0xxPlbQvS7mMMjv/eQwJ98ORX3Txc7Lg?=
- =?us-ascii?Q?opWizVMhzg74aL0dIBl2HimHoZ+WaleQWL0PrzeQ6Dy0yRrjojRD1Pvh0yFl?=
- =?us-ascii?Q?LXZbAazosivOAqWugksI3k45NF7fDNKW27LjA4yZ8BrpYzCwo8vHuT9PU5EQ?=
- =?us-ascii?Q?0l9FLtfCPJ0WNrq7pNPKshJQgcJhNp5fEd5ta4wY5yWlDyQ0WkJdqYmz0yK7?=
- =?us-ascii?Q?mnfdVuI5AHCyW7wm7PKkCW9NrS8+WjWGyyrdd7/yZLzeZPc4DP0qAzictKtr?=
- =?us-ascii?Q?CowNKNDWbdWLRjSwiQYQN0WXAcRQmQ0EiXwWJlOndZCS/40DKRtXEzISvAUV?=
- =?us-ascii?Q?Lwte4Mjxrb8JuaasbYHsBjws4FlQ0uIXQJ8xj4WpfujO+vBj4hpf3m3Njoa4?=
- =?us-ascii?Q?g5AfAcgvX7uA5LTft+oEArfkoex7sZOatLkEWIQS801neWfQzO+ZTAuc3H6K?=
- =?us-ascii?Q?cjnNztet8IvYpbQUCsTBTVIQeu4TOpD9zvOXaREkorX4j2UXHr5SY4F3eOo7?=
- =?us-ascii?Q?Rh4HhyLij8lss2+zeaSFp5bQrsiBrzYTL4hNSjVJtMfl76oiqJRH7LkOcLpd?=
- =?us-ascii?Q?s/g6oNzOkcmmTg1Vsb7K4mUue5KBc2UpqCPyx1fuFnCXGvD/lPSUOLXGZMu8?=
- =?us-ascii?Q?1UfT5HnnLLaQDa1VnoM9M2fvPJoiImIgB3IrrTQYSo/2IKbJJccSZlbzRkLH?=
- =?us-ascii?Q?01qLw0z711M5YePfQdSMB4lNMs0Aj5lOcN7eBAh0pcgVql6oUYM/GfyluWWQ?=
- =?us-ascii?Q?1+ZhZ999EumV56ul6VJeFkB5pIyJRaKOB/VKtTCJyfCJe1IpUSVl0X9YULHn?=
- =?us-ascii?Q?lpIgmZ5izK0WpZ5exAnIWROU1Dc8NzciTfZ5s6haiH2aI9Mw4ayb0wOMk4bA?=
- =?us-ascii?Q?+mwfKX7Zy98h7tkBySev1svjKOt8X7aiJeFxkIPbnsznKOP1L0wkGPlh+YQe?=
- =?us-ascii?Q?39tiW7S5lw=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ehGhnp1Nqk1aDGzAdK5NrniUy7/c9Xz9weRE7se96xEbZkyzkO0YuGZYuHWQ?=
+ =?us-ascii?Q?UzwhRz0sA96sj6YWH3p18w5XfU7LFxem5P0KYr9NNBqLDaU80UooQzmmwFAo?=
+ =?us-ascii?Q?TLIE4IvtsvwZzIuWly1qTqy+rUDGZU+7xywScG5RZaLCo1hbkMFmgeZ5jAtD?=
+ =?us-ascii?Q?GuTxjPGsz5JMr1swL0+K4evBDuKKBFNKDlf32/14cBW0dKt+W5B7sWs/6lH2?=
+ =?us-ascii?Q?CUElClv/QJC9RPoUkMG3dB6HrS6EQgdvSTB/WtfgdX+copJpNFBdwrrnrmic?=
+ =?us-ascii?Q?QTa/yJSSniObtBa8hIqbuB0Dcl1U86jGfwQ8wnuOp9lBRwC1GzV1WUCByYif?=
+ =?us-ascii?Q?lBJmKUNuSbaYvuYbodyytTfMjRhbTdks9TfqnBzrkvIVmC9UVqUoC8o1/v+Z?=
+ =?us-ascii?Q?PLuOznacL8HY1o9AQbMIddKzXXZ80vb4bbRg/n77kZaCeFYBZkCRlqZNuHiZ?=
+ =?us-ascii?Q?nJ4Zg2ouxZgIoCa2eSJ0iGKUXwHRNvc9DX0YTthoDY62hHqbH1Qk4oT6+79c?=
+ =?us-ascii?Q?io0CKob49WhccZlHY3qEbWJt8clGsr8Rg3zGkVnLW+XLgFoSDP0WBOWuQoLg?=
+ =?us-ascii?Q?4Dt0wVyElCr/mxgw9ynnVWynlcYaO6VLgZ+PrKjYyuE5ynSnxrzPIaNFTmD0?=
+ =?us-ascii?Q?/E3hiFIOhTvJYqZD+IbNfGEx0pS4mQeErtEqanV6F/8zDdO7VEHqYdR4jijO?=
+ =?us-ascii?Q?wbeBVd2thYBECs4jgRSccxyeY1HVse7iKvui/c9gOoL+xZNj2ynNqRfOf+Zl?=
+ =?us-ascii?Q?t67JQmPU8pzWol1dCoQ4z9e/Tw4dg1KuEGcrukahqiiQ30PnWImdaN3pZHOa?=
+ =?us-ascii?Q?DB5ML8Y5gdn7umgUwjHhheeIHjJh1dWpu9jFO4LCW2SkfFsmieZr2hnyariJ?=
+ =?us-ascii?Q?I9JCcneeMvTHPgZIVW/HOUNUqs/QWzo7NXLV0QzfITxPLSYHa5Kj6mNfIUZv?=
+ =?us-ascii?Q?OG9EJjBzI13esJ0n0EvBxZ8h25sZ6HUZuQPCpAcCfn6lL0iTUnhzJdhRsd/V?=
+ =?us-ascii?Q?nuzkKknHynMfmZdqv7I93hWDrRQP8P9rAvaLLMLQipKtmIXlxktrxkklyXUA?=
+ =?us-ascii?Q?MOXdigZgmue7ktD+ijMstQjNqXs+iLSo08+NvdEQmlfBlgEiOk3JpZS6l4XX?=
+ =?us-ascii?Q?LwbJv42SRHqYtlCJn+afE3dvEg9hEY/kt73guCggxkqi/YbCZuzFjH0TYDVV?=
+ =?us-ascii?Q?NWQ+zZZIUYLH5j5YXqcKECwEWVuQMp7poQV6Nd2FQ3eic2ywlYoPp7plSIAR?=
+ =?us-ascii?Q?SjIlWBDyA+2BrwDOO0SmRUc6xXAWepZkgD9o4zXa1o+1g0s+qUeIRtU6ZZdk?=
+ =?us-ascii?Q?I2B5mcYdrXk60wLeltS9XlR1rtDjevtsBmZ2DobpVuY1wLrye7Nq4l2RhwQc?=
+ =?us-ascii?Q?RvgsGNQVR2aazZTN0SMQUOSgmVTsOfx5RCkBFM8efcp0vXsJYk0DDCc5hSV8?=
+ =?us-ascii?Q?7VGsibu7D9X6y3ZpCyNb85aNXL2joQ7yV84HFHpCOCXNJTAgNy2NLS2wrBH3?=
+ =?us-ascii?Q?7AGm5YlVMQLRhbjbaQZheR/FWHTjFmcyWecSFLd1tz37GCUCAzCibNiHwzvt?=
+ =?us-ascii?Q?C7bpWjUcLSZU9TouWjDk+Hqc7Z3gpAFsRFhTiGV99DPL2WkS+E6ppnR1GCu9?=
+ =?us-ascii?Q?zwW/Ro/Y2zSwogRdsg67dBxOCmlRUdiJvBuya+0hlLKlUAP5Ec7KhJezVzKr?=
+ =?us-ascii?Q?wff0jtB1+4+ikL6TjQev7NgKbf0W4rz6iLWNXIfHBUhZN49XcRPlVRk7iKIx?=
+ =?us-ascii?Q?cZOePr+j0A=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd389426-d0a1-4efe-e215-08df3ea7e315
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6b3f51e-f1be-405a-b30e-08df3ea7e3b7
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5230.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:50.1172
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 21:24:51.2645
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AD4wLeXYnyX+Amy+WNkYX8/d8CWukNHmnQnJVL/K93N4yIJu182QwhQ5W21nsWHESJHB+3zGHDNeiQHsgC0nyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5975
+X-MS-Exchange-CrossTenant-UserPrincipalName: BGYRBZzfowfGLJLUHMGmq5eCEjxi7nPCdz6afv9s4TeRxzNbG6ycL5xczteuhL3ClCnzD+kOgOu+uF9Ih6RHRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6800
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_132500_467845_653C5BC0 
-X-CRM114-Status: GOOD (  13.79  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_212614_477365_1EE490E2 
+X-CRM114-Status: GOOD (  13.00  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,91 +174,99 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On ARM MPAM platforms backed by a memory-level MSC, the schemata line is
-MB_NODE and its identifiers are NUMA node ids rather than L3 cache ids.
-Document mon_NODE_XX monitor directories and how to interpret MB and
-MB_NODE lines.
+Memory MPAM MSCs on CPU-less NUMA nodes rely on mpam_ris_get_affinity()
+falling back to cpu_possible_mask so the RIS can participate in MPAM
+and resctrl control. Add a KUnit test that locates a CPU-less node when
+present, exercises the MPAM_CLASS_MEMORY path, checks the reported
+affinity equals cpu_possible_mask intersected with MSC accessibility,
+and verifies cpu_less is set when the borrowed affinity is used.
 
 Signed-off-by: Fenghua Yu <fenghuay@nvidia.com>
 ---
- Documentation/filesystems/resctrl.rst | 41 ++++++++++++++++++++++++---
- 1 file changed, 37 insertions(+), 4 deletions(-)
+ drivers/resctrl/test_mpam_devices.c | 67 +++++++++++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
-index 6ead819a7a2a..b7ffedc02b41 100644
---- a/Documentation/filesystems/resctrl.rst
-+++ b/Documentation/filesystems/resctrl.rst
-@@ -285,6 +285,10 @@ properties. The name of the control is used in the "schemata" where user space
- can view and modify control settings or portions allocated to the control group
- as the control's properties allow.
+diff --git a/drivers/resctrl/test_mpam_devices.c b/drivers/resctrl/test_mpam_devices.c
+index 31871f519729..7054919d4574 100644
+--- a/drivers/resctrl/test_mpam_devices.c
++++ b/drivers/resctrl/test_mpam_devices.c
+@@ -382,9 +382,76 @@ static void test_mpam_reset_msc_bitmap(struct kunit *test)
+ 	mutex_unlock(&fake_msc.part_sel_lock);
+ }
  
-+Numeric identifiers in a control's schemata line are that control's
-+domain ids. The same ids are used by the matching monitor directories
-+under ``mon_data`` (``mon_L3_XX`` or ``mon_NODE_XX``).
++static u32 find_cpuless_numa_node(void)
++{
++	int node;
++	cpumask_var_t tmp;
 +
- For example, below shows MB, MB_MIN, and MB_MAX as controls for the "MB" resource.
- 
- 	 info/
-@@ -816,6 +820,14 @@ When monitoring is enabled all MON groups will also contain:
- 	each instance of an L3 cache. Each directory contains files for the enabled
- 	L3 events (e.g. "llc_occupancy", "mbm_total_bytes", and "mbm_local_bytes").
- 
-+	On platforms where memory bandwidth monitoring is associated with the
-+	MB resource (for example ARM MPAM systems with a memory-level MSC),
-+	there will be a "mon_NODE_XX" directory for each MB monitor domain.
-+	"XX" is the NUMA node id that also appears in the "MB_NODE:" line of
-+	"schemata". Each "mon_NODE_XX"
-+	directory contains the MBM events enabled for that resource (for
-+	example "mbm_total_bytes").
++	if (!alloc_cpumask_var(&tmp, GFP_KERNEL))
++		return UINT_MAX;
 +
- 	If telemetry monitoring is enabled, there will be a "mon_PERF_PKG_YY"
- 	directory for each physical processor package. Each directory contains
- 	files for the enabled telemetry events (e.g. "core_energy". "activity",
-@@ -1152,19 +1164,40 @@ or
- Memory bandwidth Allocation (default mode)
- ------------------------------------------
- 
--Memory b/w domain is L3 cache.
--::
-+On most platforms the memory bandwidth (MBA) domain is the L3 cache and
-+the numeric identifiers in the "MB:" line are L3 cache ids::
- 
- 	MB:<cache_id0>=bandwidth0;<cache_id1>=bandwidth1;...
- 
-+On ARM MPAM platforms backed by a memory-level MSC, the schemata line is
-+"MB_NODE:" in both legacy and native control_mode. info/MB/control_mode
-+is legacy by default. The identifiers are NUMA node ids::
++	for (node = 0; node < nr_node_ids; node++) {
++		cpumask_clear(tmp);
++		get_cpumask_from_node_id(node, tmp);
++		if (cpumask_empty(tmp)) {
++			u32 ret = node;
 +
-+	MB_NODE:<node_id0>=bandwidth0;<node_id1>=bandwidth1;...
++			free_cpumask_var(tmp);
++			return ret;
++		}
++	}
 +
-+Platforms whose MB control is a cache MSC, and which have no CPU-less
-+memory MSC, keep the "MB:" line in both modes.
++	free_cpumask_var(tmp);
++	return UINT_MAX;
++}
 +
-+Example on a system where MB domains are NUMA nodes::
++static void test_mpam_ris_cpuless_numa_affinity(struct kunit *test)
++{
++	cpumask_var_t affinity, expected;
++	bool cpu_less = false;
++	u32 node;
++	int err;
 +
-+	# cat schemata
-+	MB_NODE:0=100;1=100;2=100;10=100
-+	L3:1=ffff;2=ffff
++	node = find_cpuless_numa_node();
++	if (node == UINT_MAX) {
++		kunit_skip(test, "No CPU-less NUMA node on this platform");
++		return;
++	}
 +
-+The same NUMA node ids appear as "mon_NODE_XX" directories under
-+"mon_data".
++	if (!alloc_cpumask_var(&affinity, GFP_KERNEL) ||
++	    !alloc_cpumask_var(&expected, GFP_KERNEL)) {
++		free_cpumask_var(affinity);
++		free_cpumask_var(expected);
++		kunit_skip(test, "Failed to allocate cpumask");
++		return;
++	}
 +
- Memory bandwidth Allocation specified in MiBps
- ----------------------------------------------
- 
--Memory bandwidth domain is L3 cache.
--::
-+When MBA domains are L3 caches::
- 
- 	MB:<cache_id0>=bw_MiBps0;<cache_id1>=bw_MiBps1;...
- 
-+When MB domains are NUMA nodes::
++	memset(&fake_msc1, 0, sizeof(fake_msc1));
++	fake_msc1.pdev = &fake_pdev;
++	cpumask_copy(&fake_msc1.accessibility, cpu_possible_mask);
 +
-+	MB_NODE:<node_id0>=bw_MiBps0;<node_id1>=bw_MiBps1;...
++	fake_class.level = 3;
++	fake_class.type = MPAM_CLASS_MEMORY;
++	fake_comp1.comp_id = node;
 +
- Slow Memory Bandwidth Allocation (SMBA)
- ---------------------------------------
- AMD hardware supports Slow Memory Bandwidth Allocation (SMBA).
++	cpumask_clear(affinity);
++	err = mpam_ris_get_affinity(&fake_msc1, affinity, MPAM_CLASS_MEMORY,
++				    &fake_class, &fake_comp1, &cpu_less);
++	KUNIT_EXPECT_EQ(test, err, 0);
++	KUNIT_EXPECT_TRUE(test, cpu_less);
++
++	cpumask_copy(expected, cpu_possible_mask);
++	cpumask_and(expected, expected, &fake_msc1.accessibility);
++	KUNIT_EXPECT_TRUE(test, cpumask_equal(affinity, expected));
++
++	free_cpumask_var(affinity);
++	free_cpumask_var(expected);
++}
++
+ static struct kunit_case mpam_devices_test_cases[] = {
+ 	KUNIT_CASE(test_mpam_reset_msc_bitmap),
+ 	KUNIT_CASE(test_mpam_enable_merge_features),
++	KUNIT_CASE(test_mpam_ris_cpuless_numa_affinity),
+ 	KUNIT_CASE(test__props_mismatch),
+ 	{}
+ };
 -- 
 2.53.0
 
