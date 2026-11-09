@@ -2,53 +2,52 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EBCE6082BD2
-	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67355607361F
+	for <linux-arm-kernel@archiver.kernel.org>; Mon,  9 Nov 2026 16:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cSt8b9FE;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=lTHZ+qb8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FC/uTTHt;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=OQ0L8REn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=I20sRd/PRulOIZRhd+UEj/sasH6pZnvh1x/HC0d3HPs=; b=cSt8b9FE+vfXOD
-	pjsJgF69+hgTD8CUQHkDWXty1TzxeosR4Hcgmf5dL+NwJ2/4OOvlP2QU76o5p0A8PHJucPdlto5Xe
-	nvlcJ+HCZ5rmQ8Z9nWDF8NpaovmA7z/eUJaQ7dK+ht5RMApYGAVkN69gYwurIJgvjuXlA1Kg30olx
-	7iZRK0YVphB1IIAvUjTh5PuKy4bGf2yT/Fs/uvHAfvIXqV2xIPUsIv20fTWn/zZd2peDU+HJsABrh
-	t2vN8TVkKgkffPuBDwAIdiQyGedkntfLRhfLzYSTie6F0QOwqja7U4dO7Ov4l/ADveLoOIFtQacpb
-	o8eavC4cqd+RLnzaf7Mw==;
+	List-Owner; bh=s+XtcHjlveo6Rt1z/HHzt1Q4WWTxizmEkz/Ti/n8JwQ=; b=FC/uTTHtHUOBeO
+	0Lgu4B+mopu1asVNXGp/IpfbVQw8fu3KsS5m9LTRHtdLAWEryeNDplbce7dSzGz26SaRgoN0LpKnX
+	ICTHaXuW2xgOJ0TiYY6dN08XvD6J5/Le3HU8dJwbeNDthfyX6uoLa2f8jUCJZuz+p/t5xW8kdM7cA
+	4MZTe4eZHz0kUBrGbzzwSQHmM6hB3bYwL4e85z1bP3uESslwADbP1w04elyLNcKqqPznTv7OmuwtC
+	ovuHodV+3uHDZ+OThiUZdaVKq9OKbnBYp9mdmn7nz2suMC5shnq4zmcHM3Xw+z6aXVs4/qJEcExuc
+	R23IpHr9GQRrByw5Hslw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRon-000000018JC-0SKW;
-	Mon, 09 Nov 2026 16:02:01 +0000
+	id 1xQRp0-000000018Y5-1YSp;
+	Mon, 09 Nov 2026 16:02:16 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQRog-000000018Bc-03e7
+	id 1xQRok-000000018GV-49hB
 	for linux-arm-kernel@lists.infradead.org;
-	Mon, 09 Nov 2026 16:01:57 +0000
+	Mon, 09 Nov 2026 16:02:01 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 160072F;
-	Mon,  9 Nov 2026 08:01:50 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 47B902F;
+	Mon,  9 Nov 2026 08:01:55 -0800 (PST)
 Received: from localhost.localdomain (e123572-lin.cambridge.arm.com [10.2.208.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39EAA3F632;
-	Mon,  9 Nov 2026 08:01:48 -0800 (PST)
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6BCE23F632;
+	Mon,  9 Nov 2026 08:01:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794240113; bh=x0fs4aL6amulindDHORyceQYe6RPCjEvCe7RN43wDF8=;
+	t=1794240118; bh=0JuT+uildmhaEgn52zC1lunzUYu7ZIusFUBCe2xiZdw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=lTHZ+qb8Lpb5MdGoi5c6jMxnW2x0nCEFq0oX1jDx8IG7OVlTjwulAINb2xlF9ymah
-	 cOQTnqS9PT61Dl+Oidh19ri+5GXv0wrMFklaMGMHgi2oS6TrL60lyr61AtTCJHAc81
-	 G76uWFAfR8qpm0XbXv4dpBu0AcJao1wvunC2ofCU=
+	b=OQ0L8REnTHidFM5WIxAuRaOX8lI9jHDoPNsgAWQY0L6rdsqvGaNTupVYA9RPVplio
+	 T3F6kLb8WJULkHTF1GMu/FxhXXoINGvTkSTZ0tFdGgL0KBbeGPDN3ADLHM9p06YZbb
+	 uT79RWGna60K/cuVtj0vXs46ya8uuyMv7kHuVp6c=
 From: Kevin Brodsky <kevin.brodsky@arm.com>
-Date: Mon, 09 Nov 2026 15:58:40 +0000
-Subject: [PATCH RFC v10 15/22] arm64: kpkeys: Implement
- arch_supports_kpkeys_early()
+Date: Mon, 09 Nov 2026 15:58:41 +0000
+Subject: [PATCH RFC v10 16/22] arm64: kpkeys: Support KPKEYS_CTX_PGTABLES
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-kpkeys-v10-15-aa6c4d9603bc@arm.com>
+Message-Id: <20261109-kpkeys-v10-16-aa6c4d9603bc@arm.com>
 References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
 In-Reply-To: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
 To: linux-hardening@vger.kernel.org
@@ -76,16 +75,16 @@ Cc: Kevin Brodsky <kevin.brodsky@arm.com>,
  Ira Weiny <iweiny@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>, 
  Thomas Gleixner <tglx@kernel.org>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=1943;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794240029; l=1222;
  i=kevin.brodsky@arm.com; s=20260427; h=from:subject:message-id;
- bh=x0fs4aL6amulindDHORyceQYe6RPCjEvCe7RN43wDF8=;
- b=GI39UyqJq4/O0CdszPupFvOqE4Y/AHbk7Ja0HguyPHLzW9XAa/I3Sv7T0zG456AtmVEcUY1Ez
- gJM++4wBYmHC2L1Cg92cXl5qVHAPKbZNyE9HaVOaJcos0Hph2srQROE
+ bh=0JuT+uildmhaEgn52zC1lunzUYu7ZIusFUBCe2xiZdw=;
+ b=X75PO42OizELIjHMA+pg9ABYfNK2RBjNkvixe0qpHeh6AeI5trotCclhD2ML1Ni/zKshehgvQ
+ erzJBrYq6p6DNE9At7ub+oahLytHUeXMooZPd2GoK489VN1B/az7QpE
 X-Developer-Key: i=kevin.brodsky@arm.com; a=ed25519;
  pk=N2QG+eJKrvkNovwhhwJhnJ4+ScVfsGCHldmqLfcMTFs=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_080155_068950_F6105F9E 
-X-CRM114-Status: GOOD (  13.34  )
+X-CRM114-CacheID: sfid-20261109_080159_298566_51D30930 
+X-CRM114-Status: GOOD (  12.37  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,64 +104,39 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-We need to check if the kpkeys_hardened_pgtables feature is going to
-be enabled very early during boot, to decide how to set up the
-linear map and how to allocate early page tables. This happens even
-before boot CPU features are detected.
-
-Implement the arch_supports_kpkeys_early() helper by directly
-checking if the boot CPU supports POE, if it is called before boot
-CPU features are detected. It may also be called later, in which
-case we simply check the POE feature.
+Enable RW access to KPKEYS_PKEY_PGTABLES (used to map page table
+pages) if switching to KPKEYS_CTX_PGTABLES, otherwise only grant RO
+access.
 
 Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
 Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
 ---
- arch/arm64/include/asm/cpufeature.h | 12 ++++++++++++
- arch/arm64/include/asm/kpkeys.h     |  7 +++++++
- 2 files changed, 19 insertions(+)
+ arch/arm64/include/asm/kpkeys.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/include/asm/cpufeature.h b/arch/arm64/include/asm/cpufeature.h
-index e3c8a1493dc8..062d444da4ea 100644
---- a/arch/arm64/include/asm/cpufeature.h
-+++ b/arch/arm64/include/asm/cpufeature.h
-@@ -1114,6 +1114,18 @@ static inline bool cpu_has_lpa2(void)
- #endif
- }
- 
-+static inline bool cpu_has_poe(void)
-+{
-+	u64 mmfr3;
-+
-+	if (!IS_ENABLED(CONFIG_ARM64_POE))
-+		return false;
-+
-+	mmfr3 = read_sysreg_s(SYS_ID_AA64MMFR3_EL1);
-+	return cpuid_feature_extract_unsigned_field(mmfr3,
-+						    ID_AA64MMFR3_EL1_S1POE_SHIFT);
-+}
-+
- #endif /* __ASSEMBLER__ */
- 
- #endif
 diff --git a/arch/arm64/include/asm/kpkeys.h b/arch/arm64/include/asm/kpkeys.h
-index 4f9bdb369b47..70d85b0d69d6 100644
+index 70d85b0d69d6..6f6022b6cdcc 100644
 --- a/arch/arm64/include/asm/kpkeys.h
 +++ b/arch/arm64/include/asm/kpkeys.h
-@@ -21,6 +21,13 @@ static inline bool arch_supports_kpkeys(void)
- 	return system_supports_poe();
- }
+@@ -12,7 +12,8 @@
+  * Equivalent to por_set_kpkeys_context(0, KPKEYS_CTX_DEFAULT), but can also be
+  * used in assembly.
+  */
+-#define POR_EL1_INIT	POR_ELx_PERM_PREP(0, POE_RWX)
++#define POR_EL1_INIT	(POR_ELx_PERM_PREP(0, POE_RWX) | \
++			 POR_ELx_PERM_PREP(KPKEYS_PKEY_PGTABLES, POE_R))
  
-+static inline bool arch_supports_kpkeys_early(void)
-+{
-+	/* POE is a boot feature */
-+	return boot_capabilities_finalized() ?
-+		system_supports_poe() : cpu_has_poe();
-+}
-+
- #ifdef CONFIG_ARM64_POE
+ #ifndef __ASSEMBLY__
  
+@@ -33,6 +34,8 @@ static inline bool arch_supports_kpkeys_early(void)
  static inline u64 por_set_kpkeys_context(u64 por, enum kpkeys_ctx ctx)
+ {
+ 	por = por_elx_set_pkey_perms(por, 0, POE_RWX);
++	por = por_elx_set_pkey_perms(por, KPKEYS_PKEY_PGTABLES,
++				     ctx == KPKEYS_CTX_PGTABLES ? POE_RW : POE_R);
+ 
+ 	return por;
+ }
 
 -- 
 2.56.0
