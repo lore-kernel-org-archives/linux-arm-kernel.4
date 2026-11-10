@@ -2,106 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD3F606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6A960A381F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XFMh+MEY;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V3fTkIeY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dW/+KnKQ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hg/a3x/M
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Eirx/uCHYo84G24R6PBVAV1asTOmor2BurhkMEaTGv0=; b=XFMh+MEYU6r8uc77Chtmq6uStN
-	pM/FW1bzLiz0psVwjqYVI7Hs1zl6pMyNMoOtqfnDZK1wjVXnj+wrK61hT7JhKODp3NWFSkjoX7PVx
-	j749DNIQYQKVOoSNQ3a0tn+ht8h2GRuiA0+yk6m9WOwIrdl9wxt82MYeutVeHOWM1XbWv9vwxxiXO
-	kIAh1A/KqWH+GJ0lZVYzDhvGmPdbpgJLMmkeO5UH2o6WPwlkCjMJSzIrOSj1c6sM9dA9V3T1wuiqf
-	pw/PkmTL/Xx24YqGC9MuOdmubaK1skO/CZ5rsD3HPMvcDOwAOeXYJSaqZmUxJ95NwvzpApKO+0ttK
-	aTHyyZ7w==;
+	bh=29DACKgqdQGqTbbHLiteISW3oGkID104sqmdAbtVPZg=; b=dW/+KnKQ+vtBe8GnKViJP5ZBLl
+	DPUO5g4LVIGunSsPBcQuI/QzNid3LFp150Zvv30lVRX0sDaE5kS5CSKIIwDJkoqr8RMxkZdWlQmfX
+	URU4zIOZ86XEherOwa7alwYdhBTf82gqlsRk/p0Ey99vmsHZU/uR6kj+j1npN8KsilZx0yzcE+pAJ
+	snDuBl69z2NO6bBnIdiMXHcfaWrnOqNis3+A4KWO6pXLxzHMVNlynsR9+i744No1uOETbUsnm8G0u
+	odcSSPUJKBHY8DaAAJamOc7fo/2U2eoyZ7SGRYh+2cbxdm6RAMchueAW0QomGYt4eYl6ufz1fzhqz
+	l+tbhl5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeV3-00000002XMm-1zBo;
-	Tue, 10 Nov 2026 05:34:29 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQeXT-00000002XeV-3TR4;
+	Tue, 10 Nov 2026 05:36:59 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeV2-00000002XMa-0XzM
+	id 1xQeXS-00000002Xe0-3Bc2
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:34:28 +0000
+	Tue, 10 Nov 2026 05:36:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8DC1545BDD;
-	Tue, 10 Nov 2026 05:34:27 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 4004C45F3A;
+	Tue, 10 Nov 2026 05:36:58 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794288867;
-	b=TC66Sh0RjADDbybA91/229p6uvUJ0BX6BFxnlCKNEVU0FseVvBkaLigyn+kKWitH5pSZ
-	 m/u7iU+TSpma4DAxckPbDELLgF9em5sh15vs32hAu0ApyQWTx0yjW61YNFKcMmvYH3FAt
-	 emV2DLIquxL1SD4lt9vYf7tOhDDRsMt1Vfh8KI1DsBombVVYkyOAvmY0vmMsqwPSxz3M/
-	 dnNEP3A+VKgBPE9pbFXWRBx8xiOLK3wIXgcecPuWcqTU/b0pcjWuilLUxdsTfPXqIQtQd
-	 EXRBAGW6n5Y7shNVNdcyCsH1dE/9enpVZBj416MgwMr4DEn5+AYAZ71H1p3rUy+Sbpw==
+	t=1794289018;
+	b=quTq8YQzNXcniJUmmRQ2qHm5O5sdN7rp2OXedOLTq1MP7TdakmEkBbi+dusjYkBk/zdy
+	 EkY5KLDiQImnjMNBsUvGtPA/3a5GbO3/5Al5x2sggT3dw7mjyTa2Og09e6cvpAuQJ6qv8
+	 WTLdTFgD0dq8C2lTMVQIsR+DriJX5OC+3lusU0yufJ1YZ/i/kQsUOE1xkI1KYXqezoPwq
+	 WcpbnXae5Y+Rp7G3Jw2ZAgHdAo79cr/ikNJUL1rvCNsIBYK7n6GDpr3dDEbL9828647ml
+	 YjWGcZz1+lhN/v25unYFIzvYoqXKq17cb+F/EUh71/vqdQxjuVH1Xtdmj6hAeLrXEyw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794288867;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Eirx/uCHYo84G24R6PBVAV1asTOmor2BurhkMEaTGv0=;
-	b=iMn9CJrdBqSKERbOHjCsxR8/f6EXRFa06+yp3L/1qoKpF45UZEycjaUogWEtAh6EdU92
-	 CjlSO5mQLOHjQWLPjx4f+B1hBXOvceNMHQ9Yqi1cevh8VndT+SZiUAjLweyYLYfl16LPL
-	 L1SSOy3fSDClr+dGfM70z3xBgc/twu/SmTQokaSJS4tdxfggqhdEcdt64gMKUTN8d7Yg2
-	 i0/D6iyIRE0WZlU5HzbYVcK5OqNjs62fGKwdSz5cQfzekwiZz523wCSbYkFk415EeFrBL
-	 ouHq+VPMzPlJp57AS5Zu6fGCDIyZ4rXTBuWQVaP5Kzqdhyphyv+QIEZvkLL8FbBZ8Mw==
+	c=relaxed/relaxed; t=1794289018;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=29DACKgqdQGqTbbHLiteISW3oGkID104sqmdAbtVPZg=;
+	b=jv/aBe4C86cJFKgFW3kUSQqWa8e2FHDzMuxuJ4B9mZzWZYSLOYrSgLRGwMscYTWzDpYf
+	 1hq8+3m41uIblVbk47m/sOyz77lpwmG/UTZZMUk0v5tj4zdTtMnLKztFupZ4FGuJdV7OT
+	 YP4OU6P7Y+vOtfUEstTrjBfTpoFEsnQ6MF82g8G79AzZ54gPEKASIBMUSnj3WzZFueRGk
+	 wWG1dmCUe428L0gQh7gz0ncDt3JH2N7eDvUjLM0fFbBWKs5JH40CI6O5aVaOXfxKn3HrI
+	 Yeam5WRaHaUTTBht1kCBC6KDkRgAdMfMgRghYxeZZHmTsu8wDg12PvKbnm/oKS22irg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E5D011F00904;
-	Tue, 10 Nov 2026 05:34:26 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 0CC9B1F0089F;
+	Tue, 10 Nov 2026 05:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794288867;
-	bh=Eirx/uCHYo84G24R6PBVAV1asTOmor2BurhkMEaTGv0=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=V3fTkIeYU3AO543kr3tFqV9nxgH78M9EbGHwusSTxrhqvPWFAOYrrgqmBUEhgPvwa
-	 2AipVnG1pDKUZCJrTQbdGcyaL6PP8kXBjLXX39XUR9EuOSnAgPDz0DRFcWRaRYB+qv
-	 8rom2PcZ8CZ3zhAEMZcbebhPaoo3npamqDqvAFZXQ+cUzLXoWdAEbmnmAe1h/2JdQw
-	 lrMV94kFOe2NxeOjHxboTcNs+D1x00t5ZnrUab5ulFm6FyubGPti/M9MZT7CDNKtBe
-	 tlcE/gSp/jf/OAnzW84ebpd/hCw8p5mIIHi7qMMSsOpRA4S7zY+8m2g7BcbzdjUI/3
-	 UxIGwL6KdETDQ==
+	s=k20260515; t=1794289018;
+	bh=29DACKgqdQGqTbbHLiteISW3oGkID104sqmdAbtVPZg=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=Hg/a3x/MbAcOT34XF/zYplXEIcInOOuYnu2yw/8GzZ8zMVw9QINDCmh8I5WybDI7I
+	 ZzK4hsSAhMwAos2RorMsvHy+EkQH5zxlhv0snjb1dQEhTGC3EMVN1moJ5Tl6SFjhfg
+	 IjfygELNM62v/qYVMGCJMunRXC0UiZQ/zvnEk4FdLMT29qDo45Bz8yUgA8+DTiYqF8
+	 YbOfu6o+Pi0vKIWLBjIl+IH3D34iLQdW+Raj8MVvSTXewO2lXG6XBT8Kupq8JvgZ6Z
+	 VtQuNUcGp/Wxku7zc8Br8aqLH4KcRDbDE1FUSDVeQR3Dp1R/nHfSVFToSPUgcidRBb
+	 OEiZhy8+MFsFA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 625D54888D;
-	Tue, 10 Nov 2026 05:34:26 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 7C4CB4889F;
+	Tue, 10 Nov 2026 05:36:56 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 05:34:25 +0000
-Subject: [PATCH] spi: sun6i: Add dual read support for the H616
+Subject: [PATCH 0/8] arm64: dts: allwinner: h616: Orange Pi Zero2 fixes,
+ GPU DVFS and GPU cooling
+Date: Tue, 10 Nov 2026 05:36:54 +0000
+Message-Id: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-spi-sun6i-h616-dual-read-v1-1-59bea5a897d4@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQrCMAyA4VcZORto6oziq4iHro0uInU0qwhj7
- 76qx+/w/wuYFBWDc7dAkbeavnID7TqIY8h3QU3N4J1nInJok6LVzIojE2Oq4YlFQsID+1O/H6J
- 36Qgtn4rc9PNbX65/Wx0eEufvD9Z1A3MFpoh8AAAA
-X-Change-ID: 20261110-spi-sun6i-h616-dual-read-562843bc20d7
-To: Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ5AMBBA0avIrE3SaaQLVxGLGoOxQFpEiLsrl
+ m/x/wVRgkqEMrsgyK5R5ymB8gx48FMvqG0yWGMdERkcHDk8JcwW2xU9NwWzsPemg9QsQTo9vl9
+ V/45bMwqv7wTu+wFFE0y1cQAAAA==
+X-Change-ID: 20261110-h616-zero2-dt-acb4ccecaa0f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
  Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794288866; l=2702;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289015; l=3358;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=tZGT7ZjHdId9r6BpMj+RA8BeDisXnRX+tnPmmh0C0Bc=;
- b=JQoe49yHNtyNnSQIFDzWoChjblFpYLtLOMljJsURSgpAJkp/VHvmdUU3GdI2MtVLx950u7Sv5
- CUuT5ewN6PRCOmrX6+9aL9hk09MET/uGHpH3so2UnyRvdoLds2y82kP
+ bh=u9LHr4/rzVM9FYZD+x2eGBKLMGq7N3wvsXaVbUEYayk=;
+ b=pZbSwu/DgRU9u5qYgcYAYrAobT+MeCHW+t7fPQ2K2o4sB4/ZK20rgX4vruqWDB/HvjMAtbPs8
+ YwtM5gHxaQtDpkqdyip56x/UCQKYd9OTWoR1EFR9UrCMgept5j2mcBm
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,73 +116,77 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+This series collects the device tree changes we carry for the Orange
+Pi Zero2 (H616):
 
-The H616 SPI controllers are bound through the "allwinner,sun8i-h3-spi"
-fallback, whose configuration advertises no dual or quad modes. The
-H616 user manual (v1.0, SPI_BCC register at 0x38) documents the same
-dual read (DRM, bit 28) and quad (Quad_EN, bit 29) controls that the
-driver already programs for the R329, while the controller keeps the
-H3-style clock control register (SPI_CCR at 0x24).
+- Patch 1 makes the H616 codec node cover the DAC RAMP register that
+  the driver uses (it currently works only because ioremap() rounds up).
+- Patch 2 fixes intermittent dead-RX boots of the Zero2's Ethernet by
+  letting the RTL8211F add the RX delay ("rgmii-rxid"), as the Zero3
+  already does.
+- Patches 3 and 4 add an H616 GPU OPP table and make the Mali-G31 a
+  cooling device of the GPU thermal zone, with a passive trip point.
+- Patches 5 and 6 enable GPU DVFS on the Zero2. Patch 5 first raises the
+  floor of the GPU supply to 900 mV, because on this board the rail is
+  shared with VDD-SYS and the video engine corrupts decoded frames at
+  810 mV.
+- Patch 7 describes the SPI NOR supply, patch 8 adds i2c aliases so the
+  header buses keep the controller's number.
 
-Add an H616 configuration that combines the H3 clock control with dual
-reads, matched on the existing "allwinner,sun50i-h616-spi" compatible,
-so SPI NOR flashes can use 1-1-2 reads where the board wires both data
-lines. Only dual reads are advertised: dual writes and quad mode use the
-same register bits but have not been tested on the H616.
+Testing, on an Orange Pi Zero2 with a v7.3-based kernel carrying the
+same DT content:
+- RGMII: 10 of 10 cold boots with a working receive path (the problem
+  showed up as intermittent dead-RX boots before); iperf3 853/873 Mbit/s
+  and 86 minutes of traffic without loss.
+- VDD-SYS: with the VE at 600 MHz, only 6 of 13 4K H.265 decodes were
+  bit-exact with the rail at 810 mV; 3 of 3 at 890 mV and 3 of 3 at
+  950 mV. With the 900 mV floor, a 70-minute decode soak (H.265 and VP9)
+  had 42 of 42 runs correct.
+- GPU DVFS: panfrost devfreq scales 306-600 MHz and the vdd-gpu-sys
+  voltage follows the OPPs within [900, 990] mV.
+- GPU cooling: the gpu-thermal zone binds the panfrost devfreq cooling
+  device. The 85 C trip itself was not reached on this board (it peaked
+  at about 70 C).
+- SPI NOR: the "supply vcc not found, using dummy regulator" message is
+  gone; the flash reads back correctly.
+- i2c aliases: TWI3 enabled by an overlay shows up as i2c-3.
+- Codec: analog line-out playback works.
 
-Tested on an Orange Pi Zero2 with its 2 MiB Macronix SPI NOR and
-spi-rx-bus-width = <2> on the flash node: spi-nor reads with 1S-1S-2S
-(opcode 0x3b), reading the whole flash takes 0.30 s instead of 0.52 s,
-and repeated reads return identical data with a valid boot0 header.
+The series is based on sunxi/dt-for-7.5. "make CHECK_DTBS=y W=1" gives
+no new warnings for the H616/H618 boards. The Zero3 shares the GPU
+supply design, but I have no Zero3 to test, so it is left out.
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-This patch was developed with Claude (Anthropic) as a coding assistant:
-it investigated the problem, wrote the code and the commit message. I
-reviewed it, and it was tested on an Orange Pi Zero2 (H616) as described
-above.
----
- drivers/spi/spi-sun6i.c | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/drivers/spi/spi-sun6i.c b/drivers/spi/spi-sun6i.c
-index e9fce8618299..2798b9c198c6 100644
---- a/drivers/spi/spi-sun6i.c
-+++ b/drivers/spi/spi-sun6i.c
-@@ -777,6 +777,12 @@ static const struct sun6i_spi_cfg sun8i_h3_spi_cfg = {
- 	.has_clk_ctl	= true,
- };
- 
-+static const struct sun6i_spi_cfg sun50i_h616_spi_cfg = {
-+	.fifo_depth	= SUN8I_FIFO_DEPTH,
-+	.has_clk_ctl	= true,
-+	.mode_bits	= SPI_RX_DUAL,
-+};
-+
- static const struct sun6i_spi_cfg sun50i_r329_spi_cfg = {
- 	.fifo_depth	= SUN8I_FIFO_DEPTH,
- 	.mode_bits	= SPI_RX_DUAL | SPI_TX_DUAL | SPI_RX_QUAD | SPI_TX_QUAD,
-@@ -785,6 +791,7 @@ static const struct sun6i_spi_cfg sun50i_r329_spi_cfg = {
- static const struct of_device_id sun6i_spi_match[] = {
- 	{ .compatible = "allwinner,sun6i-a31-spi", .data = &sun6i_a31_spi_cfg },
- 	{ .compatible = "allwinner,sun8i-h3-spi",  .data = &sun8i_h3_spi_cfg },
-+	{ .compatible = "allwinner,sun50i-h616-spi", .data = &sun50i_h616_spi_cfg },
- 	{ .compatible = "allwinner,sun50i-r329-spi", .data = &sun50i_r329_spi_cfg },
- 	/*
- 	 * A523's SPI controller has a combined RX buffer + FIFO counter
+These patches were developed with Claude (Anthropic) as a
+coding assistant: it investigated the problem, wrote the code and
+the commit messages. I reviewed them, and they were tested on an
+Orange Pi Zero2 (H616) as described above.
 
 ---
-base-commit: 429c9a10b3811ca2581f88c05a58bb1fd23229a7
-change-id: 20261110-spi-sun6i-h616-dual-read-562843bc20d7
+Arun Iyengar (8):
+      arm64: dts: allwinner: h616: Cover the codec RAMP register
+      arm64: dts: allwinner: orangepi-zero2: Let the PHY add the RX delay
+      arm64: dts: allwinner: h616: Add GPU OPP table
+      arm64: dts: allwinner: h616: Throttle the GPU from the GPU thermal zone
+      arm64: dts: allwinner: orangepi-zero2: Keep VDD-SYS at or above 900 mV
+      arm64: dts: allwinner: orangepi-zero2: Enable GPU DVFS
+      arm64: dts: allwinner: orangepi-zero2: Describe the SPI NOR supply
+      arm64: dts: allwinner: orangepi-zero2: Add i2c aliases
+
+ .../boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi    | 62 ++++++++++++++++++++++
+ .../dts/allwinner/sun50i-h616-orangepi-zero2.dts   | 22 ++++++--
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     | 17 +++++-
+ 3 files changed, 96 insertions(+), 5 deletions(-)
+---
+base-commit: a7f6e476aaedba0d8ec575acaeb3257f900a592f
+change-id: 20261110-h616-zero2-dt-acb4ccecaa0f
 
 Best regards,
 --  
