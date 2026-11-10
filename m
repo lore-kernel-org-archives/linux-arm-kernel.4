@@ -2,74 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3AA60A2622
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 115CF606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=11CHHGTo;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PPFZG21/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vX6AD2ND;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LOn77Q1Q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=eE5rfuFrAE7EyUnvlrVRPnNovvwKuchWNSa6LJLS/nE=; b=11CHHGToPdQfFgEV4J1CI9qwy1
-	QcYVyxDRUJZXKsY9W+RDRqlmjXnJ/0HoHsqQimqKkYK1GRpA2E6BUSxbgm9hSumvS9yx+mV+UxHBh
-	VgSGgOJNIOYum63JbZILZlRwH/dX0roBEU+ZgJqgwXtLUYx0IAzYiEhIMC7xFYJ6LSkE46uZU+yij
-	SK9gvv2IWt527yp53IRxH0gaOgwOXE5t+gn+pQQuhrtDMcOUMlrNVnzxtoYVqCY0nJLcgHvKLySZu
-	mMC2sx7ivTjRi2FeinB964IG7f34Ly4WoEU4RXWjCp5QtTsf1udTsSf2WbVzTdjal/i/+Z5WunNLC
-	f1oE6vrQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=52NDmUlT/C1NnGu+Dq/AZOz+hWzBvu1Wfp+thafpfXc=; b=vX6AD2NDO3zFcQ
+	I8M56IaC1XHpRoK4FgYZMvTzEwuXV6ugs+9w2J0dU3zdr7dYPYi7R1eSiUMBjgW4VMYK4mpCYWjtQ
+	UhgyTL1GfxKgOaIo6alN40KovhwKMX0VJOUIpj2R1oBev59Pm9TA4fnMxGoH4XDgIuBKf/798QxRo
+	wt1s6INWE/s16JjoSaEI8K0umB8Mex0cWM7S03Pm+DJ1uzJOEjo0wxkbA98sgyQbFrcPCRI9GMTA3
+	yX5DOpQtYWmwlJNlSlzetk0HpG+wjnbcxPCX8IslI+3smQwAUIpC9/Gg8I1cSeBLNk6IseSjuhU5b
+	e/wqbj/W6hDh6JjXqD3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqzQ-00000004quf-3tQl;
-	Tue, 10 Nov 2026 18:54:40 +0000
+	id 1xQqzY-00000004qwX-0Lc7;
+	Tue, 10 Nov 2026 18:54:48 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqzP-00000004quL-1jVE
+	id 1xQqzW-00000004qvx-1pp8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 18:54:39 +0000
+	Tue, 10 Nov 2026 18:54:46 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 84D6044E47;
-	Tue, 10 Nov 2026 18:54:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A45A1F0089F;
-	Tue, 10 Nov 2026 18:54:35 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 3586847488
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:54:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AFF01F008A4
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794336878;
-	bh=eE5rfuFrAE7EyUnvlrVRPnNovvwKuchWNSa6LJLS/nE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=PPFZG21/eEZ7TiuF/sGhvkL/Sh0x5mWfvE7iOxERQ8fPE0RhXyOymvrqLfDKk1Bzg
-	 Jt8fbqbDIHqfU2LocrnKqwHnpIMni2Zzn7PiNQf8sU4IrCMBv0tyMGOV2LgcHblTzG
-	 rQqVZpkMQ4rUBuCM01VPpiSNgqoz2PLSN4+9YPnJ3wM4YO+1OW4+Fxy3AvewNowAMv
-	 2w5EDNGJM0s6hfSYZ6QFCep8SounMIQvA86IS7hnWTtL1jJ3HSmHOJ6fuFQnSVnwQl
-	 SVWEvGoaBA/V/ysgN1N7xV3cTZYiTDeEMd+5QbPDBZYG47VIZlQwcY6Vu9qAoteFUX
-	 ih4QehnD971Jw==
-Date: Tue, 10 Nov 2026 18:54:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: arm: stm32: Add clock-controller
- sub-node to STM32MP2 SYSCFG
-Message-ID: <20261110-confidant-bundle-08385b99bd78@spud>
-References: <20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com>
- <20261110-ups_mp25_clk_syscfg-v1-2-667829cd290a@foss.st.com>
+	s=k20260515; t=1794336886;
+	bh=52NDmUlT/C1NnGu+Dq/AZOz+hWzBvu1Wfp+thafpfXc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=LOn77Q1Q4FdQNPQHTCyBLDRVJc2OVxlu3IQSi3abYY96Yq71PSG7F/TEVoy/NyWzb
+	 6ZZ8JMgypJzK/cI+aPJQtG8QxRq27xYLoUexcHQhssamVujEko5pL2j8l9Xk5r1UDF
+	 fg6EMW/hpUVwdlWj7P/7r/PpqnxM7CCUEq2B3KCS3fXmKrU0AeKB0kcNol6YvVtkWD
+	 EFe51t8kzprPyw9dxOkb+SBmRlpAFlmtMn1G2VVZLzW8IioMKG9Lg58zzRg3ECHbNw
+	 U2ea60g7BU9XProPMSBPhJSPrIB34HlnYgmh7yz/2ywg+yhLuIaLkQP2PocVVzj3fq
+	 vxNvvUWxQIgJg==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-3ad5529ae64so19658531fa.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:54:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEX71YG4San+Z2LcoxnNK7+wOziP09eBFO3NGd10/RCvSr+ki5TReRYewTQei0P79E22IM47LOCXtaIkzivypkj@lists.infradead.org
+X-Gm-Message-State: APuU4Z9ATFha+MSvIfgNc4vZq4leek6JJEv5aNK0rg0VdCcps+N9jT/C
+	hmPmwsYGltt8CBgX+c+26KTSmmb3PBqT6AkVGAnP0sVUG7/azPbBJiWQjxCd4vhum2N5Li7rDBt
+	S3kbBGqttUnPxoRmP6e6O3nQC1vzSeLk=
+X-Received: by 2002:a05:651c:1606:b0:3ac:4da3:864f with SMTP id
+ 38308e7fff4ca-3ae0961bddcmr8184521fa.4.1794336884424; Tue, 10 Nov 2026
+ 10:54:44 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HHiI4yu939XMUIIC"
-Content-Disposition: inline
-In-Reply-To: <20261110-ups_mp25_clk_syscfg-v1-2-667829cd290a@foss.st.com>
+References: <20261110135814.621355-1-zhongqiu.han@oss.qualcomm.com>
+In-Reply-To: <20261110135814.621355-1-zhongqiu.han@oss.qualcomm.com>
+From: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
+Date: Tue, 10 Nov 2026 19:54:32 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0hHLdd0X-r7HG24TrALGccHNZ37JUyeu=rHg9-6YAR7gQ@mail.gmail.com>
+X-Gm-Features: AclHuK9AWEuL5vf0QrXIUa41RCa4KBaWPSXD-wUP0068_a0rEgmBvhB9KueRF5I
+Message-ID: <CAJZ5v0hHLdd0X-r7HG24TrALGccHNZ37JUyeu=rHg9-6YAR7gQ@mail.gmail.com>
+Subject: Re: [PATCH] cpufreq: Skip inactive policies in cpufreq_driver_target()
+To: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
+Cc: rafael@kernel.org, viresh.kumar@linaro.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, andrew-sh.cheng@mediatek.com, 
+	rex-bc.chen@mediatek.com, jia-wei.chang@mediatek.com, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Sashiko <sashiko-bot@kernel.org>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,83 +84,84 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---HHiI4yu939XMUIIC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Nov 10, 2026 at 11:42:17AM +0100, Gabriel Fernandez wrote:
-> The LTDC pixel clock multiplexer of the STM32MP23x and STM32MP25x
-> SYSCFG is described by a clock-controller sub-node of the SYSCFG node.
->=20
-> Add this sub-node to the SYSCFG binding. It is required on STM32MP23x
-> and STM32MP25x and not allowed on the other SoCs.
->=20
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-
-Why does this need a child node at all, can't the clock controller
-properties go straight into this syscon node?
-
-Cheers,
-Conor.
-
+On Tue, Nov 10, 2026 at 2:58=E2=80=AFPM Zhongqiu Han
+<zhongqiu.han@oss.qualcomm.com> wrote:
+>
+> A policy obtained with cpufreq_cpu_get() may become inactive before
+> cpufreq_driver_target() acquires its rwsem, which may lead to a NULL
+> pointer dereference:
+>
+>   CPU X                      CPU Y (last CPU in policy)
+>   cpufreq_cpu_get()
+>                              cpufreq_offline()
+>                                __cpufreq_offline()
+>                                  ->exit()  /* frees freq_table */
+>                                  policy->freq_table =3D NULL
+>   cpufreq_driver_target()
+>     __cpufreq_driver_target()
+>       __target_index()
+>         policy->freq_table[index]  /* NULL dereference */
+>
+> Before commit 2372784542cb ("cpufreq: Drop 'freq_table' argument of
+> __target_index()"), __cpufreq_driver_target() returned an error if
+> policy->freq_table was NULL. Since the offline path clears it under the
+> policy rwsem, which cpufreq_driver_target() also holds, that check was
+> sufficient to prevent the crash.
+>
+> The race has been reachable in-tree since commit c210063b40ac
+> ("cpufreq: mediatek: Add opp notification support"), which added the
+> first caller of cpufreq_driver_target() that can run concurrently with
+> CPU offline.
+>
+> Address this by making cpufreq_driver_target() return -EBUSY if the
+> policy is inactive after acquiring its rwsem, in analogy with the checks
+> in cpufreq_get(), refresh_frequency_limits() and the sysfs show() and
+> store() callbacks.
+>
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Closes: https://sashiko.dev/#/patchset/20261104153042.3987338-1-zhongqiu.=
+han%40oss.qualcomm.com
+> Fixes: 2372784542cb ("cpufreq: Drop 'freq_table' argument of __target_ind=
+ex()")
+> Fixes: c210063b40ac ("cpufreq: mediatek: Add opp notification support")
+> Cc: stable@vger.kernel.org # v5.19+
+> Signed-off-by: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml | 6 +++=
-+++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.=
-yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> index a559f8b03b84..38c844e8f19d 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> @@ -45,6 +45,10 @@ properties:
->    "#size-cells":
->      const: 1
-> =20
-> +  clock-controller:
-> +    type: object
-> +    $ref: /schemas/clock/st,stm32mp25-syscfg-clk.yaml#
+> Fix the issue discussed at:
+> https://lore.kernel.org/all/a4b320d9-ade6-4f39-9e9a-e9a82b13152e@oss.qual=
+comm.com/
+>
+>  drivers/cpufreq/cpufreq.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/cpufreq/cpufreq.c b/drivers/cpufreq/cpufreq.c
+> index 54dde8419bdc..352ee4a1f085 100644
+> --- a/drivers/cpufreq/cpufreq.c
+> +++ b/drivers/cpufreq/cpufreq.c
+> @@ -2403,6 +2403,14 @@ int cpufreq_driver_target(struct cpufreq_policy *p=
+olicy,
+>  {
+>         guard(cpufreq_policy_write)(policy);
+>
+> +       /*
+> +        * The last CPU in the policy may have gone offline after the cal=
+ler
+> +        * obtained it, in which case the policy is inactive and must not=
+ be
+> +        * used for changing the frequency.
+> +        */
+> +       if (unlikely(policy_is_inactive(policy)))
+> +               return -EBUSY;
 > +
->  patternProperties:
->    "^phy@2[48]00$":
->      type: object
-> @@ -80,6 +84,7 @@ allOf:
->          - "#address-cells"
->          - "#clock-cells"
->          - "#size-cells"
-> +        - clock-controller
->          - phy@2400
->          - phy@2800
->      else:
-> @@ -87,6 +92,7 @@ allOf:
->          '#address-cells': false
->          '#clock-cells': false
->          '#size-cells': false
-> +        clock-controller: false
->          phy@2400: false
->          phy@2800: false
-> =20
->=20
-> --=20
-> 2.43.0
->=20
+>         return __cpufreq_driver_target(policy, target_freq, relation);
+>  }
+>  EXPORT_SYMBOL_GPL(cpufreq_driver_target);
+> --
 
---HHiI4yu939XMUIIC
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavNoaQAKCRB4tDGHoIJi
-0iZXAP9cnh198rDZ/sUSZ260FfuknKWIsjUf89bqGNDkZUL2sQEA2zKAIIi4Rl1B
-iDzxXQOq8c3ujrIfaJuAzDie/dAXkwI=
-=KdWK
------END PGP SIGNATURE-----
-
---HHiI4yu939XMUIIC--
+Applied as 7.4-rc material, thanks!
 
