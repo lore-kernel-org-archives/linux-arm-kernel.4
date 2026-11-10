@@ -2,106 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D0F606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:53:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F82E60A3822
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:53:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kshnn55N;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VJjp+DdD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ropMyC79;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.a=rsa-sha256 header.s=2022a header.b=RlMcej0s
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OSpKYXI3x3Ecj0mIg6ainswFmOqXcHcy2xxyXft9chA=; b=Kshnn55NTvfVVJcgZeIl73LP5q
-	LGbTWVbdkWyA98Fc1IdEk/lb8LkoZZKodSa5532L+GbgIUvDUakwi7WnA+HHNpN77cFgsMMXkMEFU
-	b/H8fE7GtOj+DqF3dffxb12DO4v27+ZJV+z34ax/pR6gM9WdTN3pqV81E/S6CLK70GeDnzr+AWFiQ
-	RsNGrQfvt9g+zrkY5uug75P34Czk03KkUwSfFpG4HxsGKLni80D8Z4XiREQQCmttFNqwVw6AvXnFa
-	r8U7d2PjFLGKSVDiyWfpDYGvwQZfRplizz1drbtzOBdRzQ8YMMBPmesIF0LxYbtYihnrFcgLMp7HC
-	+2VyIGsw==;
+	bh=YnyI1E/tXADZNI0XTbGcSGGT3VaZrgmrn187FtfBb6I=; b=ropMyC793YTTyPMtAYQdpPMbU8
+	6hCMdoKbiiddT2Vc6XUy56iIkDaiy9J80eTmzwhT7WmoWLLJa+3sbUTj+Dz1kvgNBQ0aFRFZPiZCE
+	3tVoWBluxLQ4bM/PVI7C6t4iDj2lpK6LQAs38W9APR3ncC0TKnBY/MS8JE9upeCHNsCWZ4bD9f1uj
+	fjrwXURoPTnYhUMD8UIi8xEsejr3A2GBsaXCAg/F61GZqVZmywdo3Fex7Zxptn6MRZeFKg65Zm9zu
+	+pUSB6bn5N5S5lyOLiV70BkGSGvf+1WIkl5tgFm4MRSORBrnjIiTWQEvKXCY8o4phni+vr4iJXj++
+	mIVS4zLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeXa-00000002Xi4-15eR;
-	Tue, 10 Nov 2026 05:37:06 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQenG-00000002a5C-3pPa;
+	Tue, 10 Nov 2026 05:53:18 +0000
+Received: from pi.codeconstruct.com.au ([203.29.241.158] helo=codeconstruct.com.au)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeXT-00000002Xe8-2CcI
+	id 1xQenD-00000002a3u-2vxD
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:36:59 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9CD386123A;
-	Tue, 10 Nov 2026 05:36:58 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794289018;
-	b=dt8w4RNUTqN3t9DnCvLVUZ1bRegJye3/A736OfGO5E260Tg+sxyiv3irZyTa4IRlnaMA
-	 /e6O/zT/OoisIaHuUSHpmyXAT84Gs3xQYDWVDD498G/eM/LQyogAHe5Ax3eJsZYqI35/s
-	 4LdivQmnN2HO1ZZ42FIFOfrbEGmUI12LSG7fFPDFHbXZ07fs2ZVM3mtAn+CfgB7EExX2Z
-	 4VMhJg0rtp4mXG4lxpvWMH4j+vUPfZ5m/2vnrCXFlmy4v4ptKdU/HqGolDNOzqeuqBzdQ
-	 SpZGn/QkRJGBHFFjMc57jQ27GRxw/g13gJ928Rz82TxUQ64jGxCltJFXJFEqyqVlK9g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794289018;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=OSpKYXI3x3Ecj0mIg6ainswFmOqXcHcy2xxyXft9chA=;
-	b=zLLF4M7jP6ubtDeEvIZo7Zm9nUJIpHNymhdltwQTRlg/BnOyUQwaJqMhpaT/BcOkXGB8
-	 5zfGxZhlft0uZQkWbriZUpYF8u9RNFSRmsNWxaMcta+Pb9/fQvypaLNy90vErDxm5bxIV
-	 YF2Af90iWCZPU3ZvL/gtlT7kF/p4pwC6kECRrG6/7zyFXnD3J94Q34P28XmE8p2EpXvkB
-	 BEt5ST9eIlYfO1kTF6Bw5nJJFuQrFKAjc95pxCjMEVYHIj0iNgzL8BxNNf4cqHkynmEnz
-	 qInqHRKByu/0ntBEx9P5zIwyg3Axf1lEFU3Fj5bCqQerZnh+f/E7GLoLkwlIgjaPAuQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 367431F008A3;
-	Tue, 10 Nov 2026 05:36:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794289018;
-	bh=OSpKYXI3x3Ecj0mIg6ainswFmOqXcHcy2xxyXft9chA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VJjp+DdDu/Pu6+JPiauzdq1uEksOgP/72B2Ir6+ze7MBnjNa2ozzdlAdw9rLfeven
-	 fCVEq1lcYuZFAVkilirGUEu4SYanAA0hpdOY/FbmF7xdzphmtHLsMfA8qSB3d3GgbP
-	 4r4wH0eqv/qHODS5LC4FyNrV4QBDnnEI5/TybGKC2dRDvwKIsjqC3qry8SPTF4sFBX
-	 uBNYr48Ltnet8mop8cFTBKxmCuqpwbCfscq68YNDVZKyY0X16Tm9r/bPmqbBzmNWg1
-	 +TshdqiUq3w3sVPp87oftmkXuO2iDErqWWco5pA+vN/LU21vbwlEgBkANxVIt5+CQJ
-	 NMZE/CqnkpsZA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B5D9B488A7;
-	Tue, 10 Nov 2026 05:36:56 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 05:36:57 +0000
-Subject: [PATCH 3/8] arm64: dts: allwinner: h616: Add GPU OPP table
+	Tue, 10 Nov 2026 05:53:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1794289987;
+	bh=YnyI1E/tXADZNI0XTbGcSGGT3VaZrgmrn187FtfBb6I=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=RlMcej0sH+YHRrPEV9YJUIDy+wr6QvgUvUSjUzl4ynFK/1A8o78bX9qhhf4hLaJBE
+	 Cgvy6tJbLtFjESxgLDfQ5jUWGX9jCHJ7J99aQUIh2oDdIx9ZD40yjfvfqs584FmjMN
+	 AO5kC+oLKBbDRMRfWNuLN3ER0TVOFagPaKoEAaNG7Gb6060YCs37/NL/sB6jvovceY
+	 St82FWpxTZKZa9eOIBQWuhF5VmbeDPF+ycRnUkJaiyNVqvmK6DUak+/7QGwsJWCiFv
+	 +WKdv8aHB3CcR/0EsGkGqEcxiX+udLc9ycwIKHIGblQlXb0O08pdPPuuWYBKBfM/rc
+	 fIITpQN0q2Vlw==
+Received: from [192.168.68.117] (unknown [180.150.112.139])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id C4AAC64C3C;
+	Tue, 10 Nov 2026 13:53:05 +0800 (AWST)
+Message-ID: <fff90721f7892c0285f4fed7fed460c7c1e183cb.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 2/3] ARM: dts: aspeed: Add Intel AVCRP BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Dawid Glazik <dawid.glazik@linux.intel.com>, Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley	 <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	maciej.lawniczak@intel.com, Andrew Lunn <andrew@lunn.ch>
+Date: Tue, 10 Nov 2026 16:23:05 +1030
+In-Reply-To: <ee6958ba4b93cde4719fbac89c4027964c2236bc.1794242015.git.dawid.glazik@linux.intel.com>
+References: <cover.1794242015.git.dawid.glazik@linux.intel.com>
+	 <ee6958ba4b93cde4719fbac89c4027964c2236bc.1794242015.git.dawid.glazik@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-h616-zero2-dt-v1-3-05506d760f21@gmail.com>
-References: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
-In-Reply-To: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
- Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289015; l=2428;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=23p6G19W/X5hVV956J5zGWaQGs0tQIUlVjJ9HWVYKfQ=;
- b=8apyikkzCyhldeAVIUTaFmRzkEFvnGO4kw+znwYqqhpT0t68S1QDbKycHAhn6MN99cULwYknH
- 13GJTHHPRArCdEYI5rpOElmLJMgxPZzdknOrSbhz7MeuPThdomkxYCV
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_215316_229564_49CCDD88 
+X-CRM114-Status: UNSURE (   9.93  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,105 +74,32 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Mon, 2026-11-09 at 18:41 +0100, Dawid Glazik wrote:
+> AVCRP is an Intel x86 server platform equipped with an ASPEED
+> AST2600 BMC. The BMC is used for out-of-band management, platform
+> monitoring, and system control.
 
-Add the operating points of the H616/H618 Mali-G31, so that boards can
-enable GPU DVFS through panfrost devfreq: 306 to 600 MHz at 810 to
-950 mV. The table is the one of the vendor images (as recovered from a
-KickPi K2B image, also carried by Armbian), and follows the H6 GPU OPP
-table in using <target min max> voltage triplets with a common 990 mV
-maximum, so a board can raise the minimum of the GPU supply without
-losing operating points.
+It's probably my fault to some degree for not providing a better
+explanation of what I was after on v4, and for merging changes from
+others in the past that were pretty lax on the description, but what I
+was hoping for was something more like e.g:
 
-Like sun50i-h616-cpu-opp.dtsi, the table is in a separate file that
-boards include once their GPU supply is described.
+- f28674fab34f ("ARM: dts: aspeed: Add NVIDIA MSX4 HPM"), or
+- bc83b7353d2b ("ARM: dts: aspeed: Add Facebook Anacapa platform")
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- .../boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi    | 62 ++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+Are there more details you can provide? If there are, I'm fine if you
+reply here with them, and if there are no further concerns I can update
+the commit message while applying the patches.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi
-new file mode 100644
-index 000000000000..511174eee271
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi
-@@ -0,0 +1,62 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+// Copyright (C) 2026 Arun Iyengar <aiyengar1990@gmail.com>
-+
-+/ {
-+	gpu_opp_table: opp-table-gpu {
-+		compatible = "operating-points-v2";
-+
-+		opp-306000000 {
-+			opp-hz = /bits/ 64 <306000000>;
-+			opp-microvolt = <810000 810000 990000>;
-+		};
-+
-+		opp-336000000 {
-+			opp-hz = /bits/ 64 <336000000>;
-+			opp-microvolt = <810000 810000 990000>;
-+		};
-+
-+		opp-360000000 {
-+			opp-hz = /bits/ 64 <360000000>;
-+			opp-microvolt = <820000 810000 990000>;
-+		};
-+
-+		opp-384000000 {
-+			opp-hz = /bits/ 64 <384000000>;
-+			opp-microvolt = <830000 810000 990000>;
-+		};
-+
-+		opp-420000000 {
-+			opp-hz = /bits/ 64 <420000000>;
-+			opp-microvolt = <850000 810000 990000>;
-+		};
-+
-+		opp-456000000 {
-+			opp-hz = /bits/ 64 <456000000>;
-+			opp-microvolt = <870000 810000 990000>;
-+		};
-+
-+		opp-504000000 {
-+			opp-hz = /bits/ 64 <504000000>;
-+			opp-microvolt = <890000 810000 990000>;
-+		};
-+
-+		opp-540000000 {
-+			opp-hz = /bits/ 64 <540000000>;
-+			opp-microvolt = <910000 810000 990000>;
-+		};
-+
-+		opp-576000000 {
-+			opp-hz = /bits/ 64 <576000000>;
-+			opp-microvolt = <930000 810000 990000>;
-+		};
-+
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <950000 810000 990000>;
-+		};
-+	};
-+};
-+
-+&gpu {
-+	operating-points-v2 = <&gpu_opp_table>;
-+};
+This also applies to the JNCRP patch that follows.
 
--- 
-2.55.0
-
-
+Andrew
 
