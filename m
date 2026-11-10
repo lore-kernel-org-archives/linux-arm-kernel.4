@@ -2,57 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9113B606A959
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2F4606A526
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MDzFwQ3p;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=k0SFM+Gv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o0am+e7M;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=XcisTUGC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IxhCvfJIBJyaA2ATxGs3fIk1vG0uQA62+MwfTqo1X0M=; b=MDzFwQ3poL4UvS
-	b7PbiBd+N6gjp2uhRWOghx7yViV76tc3TkN9RaatG54BgVjfNrL4w+a6qpL8BLv8XutspaxEek02m
-	ffODeSDoEYvLmfqYYMFaiVMgO+wEF++MEjvkVgDjJtCtpZqcMZRtLoocCKLc2mEPw+I3CDrsHwnTH
-	USFkln71wOlUntwQ+RevrjH9nQbYKdhBkZB9ftJoAR3tf7uLnlXmYVtZxMyMaFulxCtvRH2gkXZlp
-	iCMKK//gOsybnbYHnsYI1VP94myv1eE9C5/MFgdIkHDmokieMlvhMRpR726beJ9ND8aIB4sx1offI
-	4ZfY5WWgyWLQDc/nd7aQ==;
+	List-Owner; bh=vvyshln4Nk2oCzJJycPahgRiRb/8nxOl+ecx6GfDDis=; b=o0am+e7MQSBW7a
+	da0I7N5PLIGUBl1pKiqLBZylN71ZTgDv9Dw3vDc81V4VMEE2PObFT7AvSqkXz455iXh/n+jUGF7iL
+	NJzxmP7vtVvDri+6fwVT7xw+H7RoYTKlpjPTx8ISOV3lXv0IVVUDS5PyKRBoIxpn9xDnebno5DgWt
+	3boDK96UdzqE9n0y/AuEvLK9vkLRulCN8xHjA6Ah7gP1xul6o1Vwrf/1xR8LXqHRDUvvVO1Gz7X+D
+	Mv6uYH/Mujf1vnkeqMRqeE+yB1LCIH0vbWfdN0KY9RHkbLVANlyfQD+VhmL3AGUzzHZ60tWg6vrTH
+	gQ5rqeF3bMZlTGWvW0JQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkew-00000003kmF-0cU0;
-	Tue, 10 Nov 2026 12:09:06 +0000
+	id 1xQkez-00000003ktH-467h;
+	Tue, 10 Nov 2026 12:09:09 +0000
 Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQket-00000003kiz-0fJi;
-	Tue, 10 Nov 2026 12:09:04 +0000
+	id 1xQkeu-00000003kjC-12w6;
+	Tue, 10 Nov 2026 12:09:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794312541;
-	bh=pc0gMmdXl/8SnyaG/cc7eHGzGbww5CJsVOxiPSb3ZG0=;
+	s=mail; t=1794312542;
+	bh=9K9sXXoGwZDaQhqpoKp0M6uimXR3twUbTzzWH0p9FYE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=k0SFM+Gv6dQieIs/4KcXVYUw8f0rvjSKjIpzcYwEgQPIMIPRzmCC/PyaUajFj0zzL
-	 l08NMrI9z7Rec1YtfQ+G41byOpFHX4G7oUjpBudV6lrNKum5eA91B1UFMxVEimRzsB
-	 zFSzDMX/geVAk40K2qekwyqBqhFRrma0DPGu0Nour2SEfQenBMsd+sIY7M8vDyn26Y
-	 ndlwjV1lN1I1elUgpQH2P0EMOhV6MomMKbYOnEU6dw4/h16Uw+GdzqasUj2gFfLDQ0
-	 sLahN35HOQV4rr3TIMXMLNacFji4NmRIZ9PdnEVBT1vWZwy5K0eE7xtROGQQBfYR9/
-	 QPZzt+RuX3bgA==
+	b=XcisTUGCiwZfvbySX3RbHtgOBA2e6Q5tl140a990TYroy+GW9BBZbgvo1AorRG7SU
+	 AZVsIsynfz/VSWpu48oi52R495bArvJb43D/+PmGgE51lfoOPMRwCJrBCEwnx8h4O6
+	 2R+2Be+8g7kO3UXKQpI8CZ5MCKrcEfERF9x9PpiwRZ3jmt4n0JcgMdQxW3phYoEB7p
+	 liZ5BJdc369vhK+wnKIf+NLy74Og0BHVOSsDSv7Bo1IttJ1EDTXnWZpPSc9w3jwIpr
+	 4hogTd+vyLZuk6XAe1c5fIVmc+vEFCPYvqr0Zru9GX8mJMdbRD0UxkKV6BBwyOhzBR
+	 fiGObikkvRMXQ==
 Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 136BD17E09AB;
-	Tue, 10 Nov 2026 13:09:00 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2C8E917E0ABE;
+	Tue, 10 Nov 2026 13:09:01 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 10 Nov 2026 13:08:49 +0100
-Subject: [PATCH net-next v5 02/10] dt-bindings: net: mediatek-dwmac:
- deprecate rx/tx delay vendor properties
+Date: Tue, 10 Nov 2026 13:08:50 +0100
+Subject: [PATCH net-next v5 03/10] dt-bindings: net: mediatek-dwmac: add
+ support for MT8189 SoC
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-dwmac-mediatek-mt8189-v5-2-7d99d6292962@collabora.com>
+Message-Id: <20261110-dwmac-mediatek-mt8189-v5-3-7d99d6292962@collabora.com>
 References: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
 In-Reply-To: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -75,17 +75,16 @@ Cc: kernel@collabora.com, netdev@vger.kernel.org,
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794312537; l=2106;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794312537; l=3310;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=pc0gMmdXl/8SnyaG/cc7eHGzGbww5CJsVOxiPSb3ZG0=;
- b=4pVR8gdOK+gDzLPVy2w47hx8D9Hlwyz0LnuMLtD+uej6gZaiVAqYTOgBkdrU7ssMlVcvL+ds+
- NH4HcA+2lulDnYd+xO9gaCeeZlfRLrUepAXE25crSv20whyZYjl2VHI
+ bh=9K9sXXoGwZDaQhqpoKp0M6uimXR3twUbTzzWH0p9FYE=;
+ b=4N1c6BCRS++s2LzcxVgCISdnD4Bq72bHumH9b7OBWiQ0y12VLXebgXXa9nYo86hBdutJ9Jbs7
+ 8mUESiREWbrBerdrQf8mN4i2XGT/BkPuUQfwd87NsptjRY7IAwEPBmP
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_040903_426235_C891749B 
-X-CRM114-Status: UNSURE (   8.83  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261110_040904_468654_52E33B7F 
+X-CRM114-Status: GOOD (  13.00  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,49 +104,118 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Deprecate 'mediatek,rx-delay-ps' and 'mediatek,tx-delay-ps' vendor
-properties because they duplicate standard properties from generic
-Ethernet controller bindings and have the same unit (picoseconds).
+Add new compatible string and clock definitions for the Ethernet MAC
+IP found in MT8189 SoC.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Regarding the required clocks, the MT8189 datasheets list in the
+paragraph related to this IP clocks the mac main and ptp reference
+clocks as the ones to turn on.
+
+No specific peripheral clock for Ethernet MAC is described in the SoC
+clock list.  But at the same time, the Ethernet MAC block diagram,
+present in the datasheets, shows this IP is interconnected to the rest
+of SoC with AXI and APB interfaces (and in MT8188 datasheet too).
+There is no APB related clock, that is specific to the IP in MT8189,
+contrary to MT8188 or MT8195 that have one. But since it is on an APB
+bus (likely shared between multiple IPs), then there is a bus clock for
+peripheral access. Describing the IP having it makes sense, same thing
+for AXI too, so the clock lists for this compatible are reflecting
+that.
+
+Also, don't allow mediatek,rmii-clk-from-mac property for MT8189
+compatible.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- Documentation/devicetree/bindings/net/mediatek-dwmac.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/net/mediatek-dwmac.yaml    | 42 +++++++++++++++++++---
+ 1 file changed, 37 insertions(+), 5 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index 14f9683f20fe..956240616638 100644
+index 956240616638..0fc2eed06646 100644
 --- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 +++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -80,6 +80,7 @@ properties:
-       interface and timing delay.
+@@ -20,13 +20,11 @@ select:
+         enum:
+           - mediatek,mt2712-gmac
+           - mediatek,mt8188-gmac
++          - mediatek,mt8189-gmac
+           - mediatek,mt8195-gmac
+   required:
+     - compatible
  
-   mediatek,tx-delay-ps:
-+    deprecated: true
-     description:
-       The internal TX clock delay (provided by this driver) in picoseconds.
-       For MT2712 RGMII interface, Allowed value need to be a multiple of 170,
-@@ -88,8 +89,11 @@ properties:
-       or will round down. Range 0~31*550.
-       For MT8188/MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple of 290,
-       or will round down. Range 0~31*290.
-+      Deprecated, this property should not used anymore for RGMII TX internal delays,
-+      the standard tx-internal-delay-ps property should be used instead.
+-allOf:
+-  - $ref: snps,dwmac.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -36,6 +34,7 @@ properties:
+           - const: snps,dwmac-4.20a
+       - items:
+           - enum:
++              - mediatek,mt8189-gmac
+               - mediatek,mt8195-gmac
+           - const: snps,dwmac-5.10a
+       - items:
+@@ -45,7 +44,7 @@ properties:
+           - const: snps,dwmac-5.10a
  
-   mediatek,rx-delay-ps:
-+    deprecated: true
-     description:
-       The internal RX clock delay (provided by this driver) in picoseconds.
-       For MT2712 RGMII interface, Allowed value need to be a multiple of 170,
-@@ -98,6 +102,8 @@ properties:
-       or will round down. Range 0~31*550.
-       For MT8188/MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple
-       of 290, or will round down. Range 0~31*290.
-+      Deprecated, this property should not used anymore for RGMII RX internal delays,
-+      the standard rx-internal-delay-ps property should be used instead.
+   clocks:
+-    minItems: 5
++    minItems: 4
+     items:
+       - description: AXI clock
+       - description: APB clock
+@@ -55,7 +54,7 @@ properties:
+       - description: MAC clock gate
  
-   mediatek,rmii-rxc:
-     type: boolean
+   clock-names:
+-    minItems: 5
++    minItems: 4
+     items:
+       - const: axi
+       - const: apb
+@@ -153,6 +152,39 @@ required:
+   - phy-mode
+   - mediatek,pericfg
+ 
++allOf:
++  - $ref: snps,dwmac.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt2712-gmac
++              - mediatek,mt8188-gmac
++              - mediatek,mt8195-gmac
++    then:
++      properties:
++        clocks:
++          minItems: 5
++
++        clock-names:
++          minItems: 5
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt8189-gmac
++    then:
++      properties:
++        clocks:
++          maxItems: 4
++        clock-names:
++          maxItems: 4
++
++        mediatek,rmii-clk-from-mac: false
++
+ unevaluatedProperties: false
+ 
+ examples:
 
 -- 
 2.56.0
