@@ -2,92 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC124606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 00:42:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0634B606A33C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 00:43:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=chs7eRmU;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=g46Ipwb0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K2jjaqZy;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PHXy1+qA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:MIME-Version:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nb8/3651PQi+wnO5xWDWcO+y3y5ytYQlH20uezfH+ZU=; b=chs7eRmUQogu6mcNBTdDP22MFD
-	rUl65irx/NUYSq8KMl4XmKdJr5NwKfdxd2Dh7cQ9PWfXFKlw6aVIHn9r6xKWbKjiMa2EdnyG+fbXY
-	r1rgqk0rYWROGLKSS9qDmy+9OhPdfT18iewyrYwGVCnO/QXduykNDNUEPInz5hJWRrigMrlWrkspE
-	1x/Evczvz9tApOAagRIXEnn0cNyutTPo05I5Hen9zws/AWCPpf9sbU15QNgrexotoMxz8cwH2chSk
-	yfZlFApo9sxuFAVELDOMRg5g+BWtlCyLXZHLq6sQYa2Yv6+2HurH/qJk+HJHRrXrGW5ImzJAS+jcG
-	Oy1niFFw==;
+	bh=QPGn/2cy7Zi3jVYB5TbulGSrRmUDAng3X7AvBZrHC8w=; b=K2jjaqZycpJJQP7OBMv3FRUlw6
+	C/pZU0GRKeh2ARmxxS/CmFhZZK20pdr/aNd/55rhipqaVGv/9+AIMcw7kZfUF8KC5fuIxbi8aSED0
+	V5LG4CNfTCr4fy+mN2tuHFPLCCuuqfRJ9VM7VOLhHGXTh8VYmsBdNhx9b/q13BcVJeNm5G/j5mdeB
+	GVs8TCW5PIanmR11BP1Z6xYUNvydr6fAt+88Jnx3J3tN71p1xs6e9TXPsBIVx3z+4kfbqQUk1P64w
+	hu91C8vILhJx4FQwBnyiXBpx4MLVHKWHVbv1Y3jlZQ0WYpJvFjw8enjZPR2zcHfucJx2gpRzuCny8
+	5ffoV8aQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQZwQ-000000022Ts-2vH1;
-	Tue, 10 Nov 2026 00:42:26 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xQZwz-000000022Zm-3m5H;
+	Tue, 10 Nov 2026 00:43:01 +0000
+Received: from mail-ed1-x533.google.com ([2a00:1450:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQZwN-000000022TT-26fp;
-	Tue, 10 Nov 2026 00:42:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794271341;
-	bh=jelWMB/DBj38lxtsoeFn4zfXVqb37rYafHvCTADg8do=;
-	h=From:Date:Subject:To:Cc:From;
-	b=g46Ipwb0jR4wdsoxeI1/IuKY3ruRNQ6s2IslOn/OrWU8KUUBc9z3xcC/umjL4slnX
-	 nbh4NDNiOTFTpcSVeChDAzlqmXMKyRaVyUyv05jhhjkACerJ9mr5GFv+agnob7n1WZ
-	 uvIrb2oXUNtIe8odRRyap1Mdb9lQFd5HhhasoDv/CkbWubfYko5BxIr7H4WBh9Nq0T
-	 WGhWaAX9dPWlKqEK0LZdEzDIcbhLkDW6uJvNwjl3S+ss2FHwcfvZx5zGF6dC1FGe12
-	 d/iX24t3xZSaLA1gHv0zWYQa+heMuwOctMGJ1m9Cb3MElupRd7dF/gON9gIYSUwJNj
-	 r3tp3BYq3Pq0A==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F01B117E04E5;
-	Tue, 10 Nov 2026 01:42:20 +0100 (CET)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id B1B6148002C; Tue, 10 Nov 2026 01:42:20 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Tue, 10 Nov 2026 01:41:58 +0100
-Subject: [PATCH] spi: Fix runtime PM imbalance on pump transfer message
- error
+	id 1xQZwx-000000022Z4-0bJz
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 00:43:00 +0000
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-6b70880c0a4so1715544a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 16:42:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794271377; cv=none;
+        d=google.com; s=arc-20260327;
+        b=rvjMioiueJ/RVWmN8n7VBM4UgvfDLBphLpIVM7XfCXvb5Mj8QEdzDRSmvQQqkN1Gm6
+         qQAfoS5P80IvyexhF2kvmYb1axaSmaQ041GIjIE0aTqwInZ1KuwFbf0QKz9PW1QMyNT7
+         dVbZW55TX56OlXbrsCfeSv3mUz7n4Cmu+aN3lyueedNGYz7t7LTqlWVijkdKR+hEJPk7
+         kfPLJxjL2ULfxcjCtenYwMsqeFfWU/yhoJBoVAvEMgz5xw33R3K20JIwNkyTaxZrbUzA
+         sam++qUh0gD6qkUwK5sMc7sy84oqVygFX99ztPZJyGxQuK+UPLCEd5UYkmKPfvHmN7ZG
+         b2Tw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=QPGn/2cy7Zi3jVYB5TbulGSrRmUDAng3X7AvBZrHC8w=;
+        fh=UwFQofFQ71xX3FKozCYykXYV1a/aYMMWqqSgcz1IbVA=;
+        b=QY486iT8cpZdlSvDy3yf/HZNjJOHBIUqWS0Acs/rh8yL1MMh4dOybP4jjauoRJMebc
+         jLlCvlu7wy0tVuI801Cxly047frvmVrgXWdlmUCDHu31qJYoUgvrgg+/IMYxvo39BDAr
+         5kmQ5i+iVk9BjEC/QZYWndB/ns/2/ZRYiShS750Eadm4gu4OQnX7syH5FJyzJm2fcFTg
+         mgxbc+hm6fyU5kq+UM2a6NCSNDL5Chim8DOJXNpmMYRTtLPmOVT2nLXtiKS6zZyarS7Q
+         vSOmYj+VHxLsp5vG+01cqIrWHHO+mf5cA3IiApypLRRrYq83RHrX+0R9jfwDhLqG7Zne
+         gyZA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794271377; x=1794876177; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=QPGn/2cy7Zi3jVYB5TbulGSrRmUDAng3X7AvBZrHC8w=;
+        b=PHXy1+qA7rd44HSsYQOg7XMF5v/KJC5VfZ5AIVDZ5djh152NUq3TcsM4VylD0fwCcK
+         WFw/0EUSy3Fqsgr49dYoSKOpUHM+8W+MWYf0uGYbyMM2IkMlqkbIyBONbBsYtuAocVLm
+         JaffKji+vZa5/6Z+3B5jUKPYRyMdYKztWyDXc4wP/eqaprQUt8sU7k0p3OevEAeE1m9P
+         mO7IZLT3Pi6o8Ag03oDn2t06zZCBf6UHs78frjewb485onHtmxvoLGa2HLHn9hAGyCGR
+         MQ0uS2pwzZfrt+TiZhZWPnk34LB4bsjoFQInGymxZ9n2NcboeninxoBIyoKF6lEthwLa
+         5n7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794271377; x=1794876177;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=QPGn/2cy7Zi3jVYB5TbulGSrRmUDAng3X7AvBZrHC8w=;
+        b=23nWSfaqGw3DGP5JHOL8Mk03YiZq97uFkSIzl/gjvrCeIBkLPZVOBGDiwCvX9CNRuy
+         Ex0M+BQtckTw8bSuMEkjOlMJwy9L3rxsDMbFdEHeZfE33cseZLQhH7Ko06zO4Coe/2JO
+         PlK1j4BC4/uewKGfvnKLUi2NEuKjCAKO/1wV6mq+0DhKHtxno+PWzYuS4Bx8FeCdYuaW
+         Pl+UcqEOXEhQS/tvl4T4dalojDbX8xWhyolg0PfZGVEnhWViQrJCghMzT4hjTckXecIY
+         rmf/ruis28onMIKuVM7kiP6dR0ibKBKPqBqp3rHvBhucO5H4m0Qb5MIL0CvRGulm1HcC
+         mDtw==
+X-Forwarded-Encrypted: i=1; AL+hErGUifzW5yuq0+qjKhHZV0wRHnLCm/s6J3vAugtVvh64YqJjsTjFVxItkwULP5FYHqDP4EHMCUTwVMmCc80w3QTM@lists.infradead.org
+X-Gm-Message-State: APuU4Z/lpbhbWOTsUx7iHVt46EFDNhU60n7z83p0f4256yxTboaWu4eX
+	HNtHTCYNTDDc102b4a7Azel+F6e+h3Xp7tzwaMHkAbnI0m54/oWtV35/4QG5p3z9vu6UU9aAjQP
+	cIMBTONPZwUVe6Vvzkcr8QavFAVZjDw==
+X-Gm-Gg: AYBFou2rbJmkaIH/kKCpXb7GCIPae0nRXPYv6H1e6y2hkuCpaxkGkjvsgM1oyg76w2/
+	21jNQs0yTsaWZpHxzsnYJMEUE9AF/S2baTOilgF/a6ilfu6Fypw3kmCZRVwdeiJhQWSmvquCQCk
+	htFj0erZeB44/T2uIbkC0o0Z5FLaPkP5Dmnu8QmI6pXrrhBm5L0kDowcgTYeIsvZ8khWFAxNKyC
+	Angn56FSry2eSwoRuEYnWsSp+z/6m2qU584F5cwf5HfivhZQ9oJUFMRsrKeyJW8RaUcYvi9XKcU
+	3weS8jBy0/ihclGnCoxROKDIrMSDbT7YxlL0tc/SeKTY5D3WiT/u9HOyEaGlw8H+Zg7vGLH4WxH
+	lD8zvTpoFU70eemM9UqJqT6K5ada+L+E9iheW4BzQhY4W9Kd+S3ERU9/mAPZarJHG8K0osw0sIw
+	fJUssrKLPsPP88y65K37smQpbiKJqM+BtioAePrWOb2tco
+X-Received: by 2002:a17:906:c112:b0:c46:cc9e:a14d with SMTP id
+ a640c23a62f3a-c50496b04demr61764366b.49.1794271376660; Mon, 09 Nov 2026
+ 16:42:56 -0800 (PST)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST;
+ Tue, 10 Nov 2026 00:42:55 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-spi-runtime-pm-fix-v1-1-8601ebb2f6a8@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQqDMBCF4avIrDtgRlLUq4iLGqc6gjFkYimId
- ze2y+/B+w9QjsIKbXFA5I+obD7DPApw88tPjDJmA5X0NMaUqEEw7j7JyhhWfMsXLTUVWUfW1gT
- 5GCLn+Rft+r91HxZ26S7BeV7IM5zedgAAAA==
-X-Change-ID: 20261110-spi-runtime-pm-fix-529325c25582
-To: Mark Brown <broonie@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Mark Hasemeyer <markhas@chromium.org>
-Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- kernel@collabora.com, Alexander Shiyan <eagle.alexander923@gmail.com>, 
- stable@vger.kernel.org, Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2294;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=jelWMB/DBj38lxtsoeFn4zfXVqb37rYafHvCTADg8do=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGryaGhpQIC8Xs2xQCf2WNxWILLEANG2wd/+H
- r6D1fb9Mj2nmokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq8mhoAAoJENju1/PI
- O/qaX14P/3c6UYpoe1cZY32PTKyEzxN4atoVcyQYaq99xgbTUKYYpP6JTNLg54d4ld2haBuxRfj
- o+qDsMYJ4gUWyQ4V2H0pIFq0GX3TEjZS+VRKGSJUGbwoazuuBJylvkTVmTlo3wH1zO7hdBaNF3A
- yW6lHSpKLN9YXXSwao9+pPoy3DjScR7AwviIdzeuv6If/Bts61DbiRe3/YiMgoGvsacqpcWzSKg
- bfhjyaTG7+k722HYMemRegBTfEGK6oWuh+zuG5T2/fkjle51SkVrtuNh2LNWPe/QUwSCOYYQ+IS
- ui05x0irNBtOKAeQ/UD2UWooaaRGGK3PHx5xATJLJkziEerOUk+FUfkcl3F7tKgdvfP2bFOmK5Q
- fY91hRBL+Fb0LGTPl0an8D6UZdUoXoPQk2Gi9Rl3AqoFWo3bLn6xipYTxcD9JlE0lGLcJ+Ugzoi
- 2mPEONJaj0pj7hYabsTHnSmkpx0jatPj5xeucNaz0XTHwAwyP8+6ksNQLGzA8YviYa3YmZ6l3i5
- cwRuPvsOSng6VlFwIz1qvuzzYoJa5n9NTiwHkbeXPXCGV5byHZ4h87IB50VwFvYRFhZP7TzBAZ6
- KHauBdXSwOLBV6AhY/0uruImRt59Wt5nPvD34CnH+w/Y6314OpxcCu+iIRyCdYXdI0LVO3saqXc
- 28Lkv86asTjXrLg60mQguCA==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+From: mhun512@gmail.com
+Date: Tue, 10 Nov 2026 00:42:55 +0000
+X-Gm-Features: AclHuK_Nbr-5sULo1t7fMr0l5xY8-e0EITNYi6BiM4aUVU01eCDOgyeriNaujDc
+Message-ID: <CAGEsz8ENCW++SA9cdh5=2EVmto=2-2axzTwuNhaKv+xW02Vvtg@mail.gmail.com>
+Subject: [PATCH v2 0/2] dmaengine: stm32-dma3: fix provider and clock teardown
+To: amelie.delaunay@foss.st.com, vkoul@kernel.org, dmaengine@vger.kernel.org
+Cc: Frank.Li@kernel.org, mcoquelin.stm32@gmail.com, 
+	alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	ae878000@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_164223_769597_A4B063EC 
-X-CRM114-Status: GOOD (  15.14  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_164259_198339_578E3E69 
+X-CRM114-Status: UNSURE (   4.26  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,74 +118,20 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The current SPI message pumping code may drop the runtime PM twice when
-an SPI message cannot be sent:
+Split OF provider teardown from the managed clock cleanup requested in the
+review of the original patch. Patch 1 unregisters the provider on removal;
+patch 2 returns the active clock reference after managed DMA/IRQ teardown.
 
-spi_master spi2: noqueue transfer failed
-rockchip-spi feb20000.spi: Runtime PM usage count underflow!
+Keep the existing remove-time runtime PM disable barrier. Check initial PM
+activation failure, and let devres handle later probe failures. Remove the
+manual IRQ-free loop from the original submission.
 
-Fix the problem by always keeping the runtime PM count increased when
-exiting __spi_pump_transfer_message(), as the caller handles decreasing
-it.
-
-Note, that the function already keeps the RPM usage counter increased
-for the error paths following after the prepare_transfer_hardware step.
-
-Cc: stable@vger.kernel.org
-Fixes: bef4a48f4ef7 ("spi: Fix null dereference on suspend")
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
-I noticed this with RK3588 system suspend/resume, which uses SPI based
-PMIC and runs into SPI transmission problems when the PM domain driver
-tries to disable regulators required by e.g. NPU or GPU domain. I've not
-yet checked too closely, but suspect Heiko's atomic SPI transmission
-support series might also help with fixing the actual failure.
-
-My patch is not really a v2, but Alexander Shiyan probably ran into the
-same issue before and came up with a way different patch and rationale:
-
-https://lore.kernel.org/linux-rockchip/20260806191854.922530-1-eagle.alexander923@gmail.com/
----
- drivers/spi/spi.c | 4 ----
- 1 file changed, 4 deletions(-)
-
-diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
-index ce257b3ec530..4d9c5d026ff6 100644
---- a/drivers/spi/spi.c
-+++ b/drivers/spi/spi.c
-@@ -1967,7 +1967,6 @@ static int __spi_pump_transfer_message(struct spi_controller *ctlr,
- 	if (!was_busy && ctlr->auto_runtime_pm) {
- 		ret = pm_runtime_get_sync(ctlr->dev.parent);
- 		if (ret < 0) {
--			pm_runtime_put_noidle(ctlr->dev.parent);
- 			dev_err(&ctlr->dev, "Failed to power device: %d\n",
- 				ret);
- 
-@@ -1988,9 +1987,6 @@ static int __spi_pump_transfer_message(struct spi_controller *ctlr,
- 				"failed to prepare transfer hardware: %d\n",
- 				ret);
- 
--			if (ctlr->auto_runtime_pm)
--				pm_runtime_put(ctlr->dev.parent);
--
- 			msg->status = ret;
- 			spi_finalize_current_message(ctlr);
- 
-
----
-base-commit: 059518f775baecc9803fc97787bd0b17558f8047
-change-id: 20261110-spi-runtime-pm-fix-529325c25582
-
-Best regards,
---  
-Sebastian Reichel <sebastian.reichel@collabora.com>
-
+No hardware runtime testing.
 
