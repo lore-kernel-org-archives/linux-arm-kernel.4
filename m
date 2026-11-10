@@ -2,99 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D06606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 20:46:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C0A606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 20:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VE30Ehj2;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=M0ZY+WZi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Sg93wi58;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=F2oreDAr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+RTsY+hReKg5lt2wgpCxfAldMdqWp33FHZKP52N/M7M=; b=VE30Ehj2qy22QPOYw2f4x76icF
-	912IIUd5FXAzmmmk5G63DD+tO4qi4LNXFa/k3UzXpprnV9nuAZ34A6So/k+aDLm7N59nvpf7ehIY4
-	4eEYZsyyZxNMZWdYCvqJI6G4TODpx21IBx0Nu1P423XeLZEgU1egGwUB9itcnXkg3RePS8FTw6e51
-	MMu/u9iLufQA8sxKV/Wzc42NyCix6l6NReQRRR90CTOpxeDJad/8nHasDoy5iidQDaekBftqhH9Hu
-	odcQD0OqsXbye3uG98cIJ9ips7SCTCbTONtEMRmjrjjNRHz/BljnPrigbi6P1Wk2KKD+7xr7eyMip
-	MoSSytrQ==;
+	bh=8vkSRLV03sMiSf6kg11DqKSF3D7mLrc58A9bRe4NGqw=; b=Sg93wi58tuSnGfyYd20ezHoJ/I
+	i0vjTk+giB5RRvsKpmSCZdMnOrVPlhqinv0QUGFlEmOVsRypns+lCi59r/FHocIGZxEfojVyzcUTF
+	UjHVZWUZlSFZSwxRZumLVz+CkXSKhWXgCKPWWqSqP2QWq9zdRsrb9OoZS16HCAQuENhtdmyouZnVs
+	zBiqUGJz7MSIz56Dj/AwlOQdnBNPuteO+YMPRYxFnfvVI5rguO00qW7amug3PAEQjvSK1CwlrRQWw
+	cunhdcmHnMUlcRq0MCgrJlxinvRthzTaHrHQWdf7ew0l9TktA10zQ/SH0nKk5oI85FzkKlzF3P6lz
+	2yPVlltw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsjv-000000050e2-1ArH;
-	Tue, 10 Nov 2026 20:46:47 +0000
-Received: from mail-ej1-x62a.google.com ([2a00:1450:4864:20::62a])
+	id 1xQsu7-000000051PK-3DPE;
+	Tue, 10 Nov 2026 20:57:19 +0000
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsjs-000000050cu-21a9
+	id 1xQsu5-000000051NY-1Tln
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 20:46:45 +0000
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-c45551fa84eso374454966b.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 12:46:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794343601; x=1794948401; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=+RTsY+hReKg5lt2wgpCxfAldMdqWp33FHZKP52N/M7M=;
-        b=M0ZY+WZiN4gSRWsY57lBCcciVXJo4KA2LPbOxNQbWfqATMXhv/aj8xBnwTDwharQnC
-         cvQV+b9fwvf5OrE2aTfKK0F0Jxx5ZPZEMVod3urFx0i4k057Vn+wWlC25qoAY640v74S
-         q10gqAthcFGmx7SK94HtkiMTPfaYgDWh5BGRPT0BSuu0n0iTDEc29nf+IYssrJoXxl6/
-         R2ehRumtgmvGXSaxn/6oBXNMKHSV51WcAMwGf9RZuLlq9SZA4SV3hf3ez+xqYlteYyxa
-         XinSlQUbl5ZEA9OnctWB/fQl76/bM/6khn2smBfVIefdZB01iGbpY1FS797dxtLpbvpS
-         BeKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794343601; x=1794948401;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=+RTsY+hReKg5lt2wgpCxfAldMdqWp33FHZKP52N/M7M=;
-        b=y8nOZgxswb6Q9LGudeKgh7e+iURuWo6Vecnl1yebwA4OUO7FRgeyzPi6FkZM+O7Bnb
-         dYArXx6lXyk2zGeUYhs+0L6ZM9MYEREvzWhqqgUBiokuAR9Uueca8HXFdgubDyQbDqge
-         d2KKRKHMtIpVx85C2pH2IHsZCggJjXuDgUJ9fCvpF6k8QuPVIc0BciaDxRJBnfYOf6Bj
-         5upYpkKIsmjFkG2A/O2h0/Mm1NwnwfwEdJhrv9uJtbyldGwmbn9YP+R+msg+Po0cLdr2
-         vHvLM1qPB7/XCAB00T7lXB9onfHbdoAybXFfRIMbaxBTCeS0KUE6GV/0mBqFpR/5750M
-         LlNw==
-X-Forwarded-Encrypted: i=1; AL+hErEngse2HmgvVcfKqgMjeb4hv0XYsMPLuCrhwFxnei1kzeWbt808zecNWi9X7z4fy6V2V7DRWD+CFwSaGd3KeocL@lists.infradead.org
-X-Gm-Message-State: APuU4Z+lc3CzqLKbYyxoKRYDaWsev+LXyBNd0mOL3gX2Q+CGCP0nh5ZT
-	cqHKbX5n3dJwLFiTeZTGzGQlw09lsJfLL7Lo05nWetNuv5zk7+TaVf5nc0jYXcSG/Q==
-X-Gm-Gg: AYBFou3t23+IGUBFPzSxxFQeMQ+XzY9JaVmThMn7b8n6HKm94KdrfC0MmlmX3Z/9FFy
-	psQLmdWjOrP5T1Yfx8xHWjTosRfZg8xcjC14phuDk6AeDQFTC4AnE3HmHJRgHCiw1jkRL8bxlhY
-	C6jti1Kl7LPpYoWBVIq9lX0waGCbFfvoVL68A13xkHvUFusO3Utpk7z6ltuJ2sVL6kk/cdY4oM7
-	q2lsA105n8dCRUMNKo8stf5J3MRaSdYaZNHhXrHq5RCP60NAkH6tfRjSSNqnpaDTdvvHWWM41zd
-	DIsW4bxjrOLn7M06l2jznQPJfVKWhOG9SPN/CB2A3RsxDDTOD8+y4TYbsqhRZDUT1gopfYFFUOw
-	WCXrtry0a7Yrp0aXiLKuRL2Z0hff4UMT+zQVJ+ijACK76nHMGf+7K4zp7QwkmcDpMPoy+xbLriE
-	BZfOBXPuWo3dAoNsAkhq4Hh7W+0MrGzl3+QMP0iRhvms+OK2F4MV4TM30PlfKy8rqrn2JIcHknA
-	BrY9pRueWhUO6FiwSwJ22UMiEwO9AXmngL/k2NED5lCJoH1iaEMTHb5xH2T1CzxsQzjQWhfuZHA
-	MI6tApCK2Mt1ZZ3yghH0gtF/iGC4gkQpwxNX+5K1ORNPNaFasF8OltlQrQ7TjktQ
-X-Received: by 2002:a17:907:e98a:b0:c50:5e0a:fbad with SMTP id a640c23a62f3a-c5066c9ecefmr20452666b.39.1794343600726;
-        Tue, 10 Nov 2026 12:46:40 -0800 (PST)
-Received: from google.com (202.70.147.34.bc.googleusercontent.com. [34.147.70.202])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6b7579031e0sm1579058a12.29.2026.11.10.12.46.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 12:46:40 -0800 (PST)
-Date: Tue, 10 Nov 2026 21:46:36 +0100
-From: =?utf-8?Q?Pierre-Cl=C3=A9ment?= Tosi <ptosi@google.com>
-To: Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>, 
-	Vincenzo Frascino <vincenzo.frascino@arm.com>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/24] arm64: Check MTE once per fault-handling section
-Message-ID: <avN-XAMZ4bZ72vTO@google.com>
-References: <20261107-mte-kasan-split-v1-0-d84ea5f30f94@google.com>
- <20261107-mte-kasan-split-v1-5-d84ea5f30f94@google.com>
+	Tue, 10 Nov 2026 20:57:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:To:Subject:From:Reply-To:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=8vkSRLV03sMiSf6kg11DqKSF3D7mLrc58A9bRe4NGqw=; t=1794344237; x=1795553837; 
+	b=F2oreDArloXLkxxkQJayFAVgov4G5PeazzSzn99/2WxPVFtf3x+SvpDRemSDghb/T11qe2i55cK
+	qqhetHSsGuZE8rZX8Wvc+m3eh9wsUEnw4J/tmCWP6mxX5kEoe61J37CYE1VcR2LU3hqiYI3AQ5y9T
+	npAZls7xgRT7Wp7vTeZAAftrIY6KbmJ/OFv867AgQcS+v2Rtbam3oPcHiLVbCua5WDjsA3L4bjwaO
+	p5s9awWwd5cttW70bcoe+3AITNTN3z9ajTRK0bcA3WxpdZm/wKUYakX12K3FaqzaFm20nILfUTK/y
+	hmk4YW2bmZF6aA8tdvF+NxlZdDKM6f8MdZaQ==;
+From: Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH v2 0/3] ARM: OMAP2+: Convert OMAP3 I2C to ti-sysc
+Date: Tue, 10 Nov 2026 21:56:02 +0100
+Message-Id: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261107-mte-kasan-split-v1-5-d84ea5f30f94@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOOE82oC/0WNQQ6CMBBFr0Jmbc20ooIr72FYlHaQ0diaDhIJ4
+ e4Cmrh8yfvvjyCUmARO2QiJehaOYQazycC1NlxJsZ8ZDJqD1lgqNk7JIE5ZzIscS+v90cGsPxM
+ 1/F5Tl+rL8qpv5LplvxgtSxfTsH71evF+WY3/bK8VqqLM91RrvysaPN/pEaynLYcmQjVN0wfUk
+ IIxtQAAAA==
+X-Change-ID: 20261109-i2c-sysc-a048409add7c
+To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
+ Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
+ Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ Thomas Richard <thomas.richard@bootlin.com>, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Paul Walmsley <paul@pwsan.com>, Russell King <linux@armlinux.org.uk>
+Cc: Sicelo <absicsz@gmail.com>, linux-omap@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Andreas Kemnade <andreas@kemnade.info>
+X-Mailer: b4 0.17-dev-e5168
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2051; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=HLpL8m8DVWiEtYHCjcrWT5QMR1NV1zGxurHaq3sDY2E=;
+ b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBq84Top3dPTjI90yNGW8S5KhnBqHG17bYixViRu
+ jq+IdCPCjaJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCavOE6AAKCRCEYUX6QCjc
+ 8VLGD/96/ySK5pTY9pr3coUPLe3B9TgfXFp64mgj7w2aVydch65lIy6JGjGxTr4EoCiVRwS88rn
+ 9VVsk5fnu3bd3PojWPFtZQSXXNLNiuX353LFzUv9MtOLWlGb2iu2am+RSiW0fqUsOWwWZX46/OR
+ kEMPfrKzKHKgFthv8x5R5Z2D7PpVJyLp89hShiu9nA1CdmLc9drFjkfAiiF7mOxns16S7LwO58g
+ 4I8x98yAAvd0y/ue62+AMaJAlof/Gqb0TcyZtno82nWmq2QzJlCornnuDSo+jiO/6VY7GRE5/tH
+ Qo2FKmrO8eiq11Wj/1w2NO0JyxZgQyc+UQ8KFiAAPPiqZBLnM1+fxqiYbPX7Y8iCgTg1caYNwMb
+ RXtUrT/gJQUltUiRm78TY0qs3fpExdC63Z12myPrse8XRVuXKCaot3FGEtUxit4M3VccsREWU+/
+ FdjmwH/VSfdfGX3aS9ezmKpZ9XUMCjgWWKENqAqaIDnnl7tcO/bSRGuqBwLYicwrBVcgWY6rHwX
+ rkzvQqtfn/7OmzlpTGu0Wa4zdZa7H6dB3u5HyMk7SyGVoN6k2kERwCpVEQiy9kRKMFf8+FecB/D
+ IGUked0zH4riSTO/tiFkJAlCGPpqj8Qx6Rz7mx4AYmGOBCunlDLOcHJezZdUmouSu02BR/TeaEt
+ G6c+jht5ZFZEzGg==
+X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_124644_603708_23F0975C 
-X-CRM114-Status: GOOD (  32.99  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261110_125717_403987_EDAD74A7 
+X-CRM114-Status: GOOD (  12.68  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,260 +94,60 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Nov 07, 2026 at 04:36:11PM +0100, Pierre-Clément Tosi wrote:
-> Call system_uses_mte_async_or_asymm_mode() only once per section. This
-> improves performance (fewer instructions at runtime and fewer static
-> branches needing to be tracked and patched), correctness (no theoretical
-> race between the execution of the section and the static branch being
-> toggled, which could leave TCO in an unexpected state), and code clarity
-> (no 3-level indirection with redundant checks to flip one PSTATE bit).
-> 
-> Signed-off-by: Pierre-Clément Tosi <ptosi@google.com>
-> ---
->  arch/arm64/include/asm/mte-kasan.h      | 25 -----------
->  arch/arm64/include/asm/uaccess.h        | 80 ++++++++++++++++++++-------------
->  arch/arm64/include/asm/word-at-a-time.h | 22 +++++++--
->  3 files changed, 67 insertions(+), 60 deletions(-)
-> 
-> diff --git a/arch/arm64/include/asm/mte-kasan.h b/arch/arm64/include/asm/mte-kasan.h
-> index 467d1d41a392..b474fca3ea56 100644
-> --- a/arch/arm64/include/asm/mte-kasan.h
-> +++ b/arch/arm64/include/asm/mte-kasan.h
-> @@ -48,23 +48,6 @@ static inline void mte_enable_tco(void)
->  	asm volatile(ALTERNATIVE("nop", SET_PSTATE_TCO(1), ARM64_MTE));
->  }
->  
-> -/*
-> - * These functions disable tag checking only if in MTE async mode
-> - * since the sync mode generates exceptions synchronously and the
-> - * nofault or load_unaligned_zeropad can handle them.
-> - */
-> -static inline void __mte_disable_tco_async(void)
-> -{
-> -	if (system_uses_mte_async_or_asymm_mode())
-> -		mte_disable_tco();
-> -}
-> -
-> -static inline void __mte_enable_tco_async(void)
-> -{
-> -	if (system_uses_mte_async_or_asymm_mode())
-> -		mte_enable_tco();
-> -}
-> -
->  /*
->   * These functions are meant to be only used from KASAN runtime through
->   * the arch_*() interface defined in asm/memory.h.
-> @@ -197,14 +180,6 @@ static inline void mte_enable_tco(void)
->  {
->  }
->  
-> -static inline void __mte_disable_tco_async(void)
-> -{
-> -}
-> -
-> -static inline void __mte_enable_tco_async(void)
-> -{
-> -}
-> -
->  static inline u8 mte_get_ptr_tag(void *ptr)
->  {
->  	return 0xFF;
-> diff --git a/arch/arm64/include/asm/uaccess.h b/arch/arm64/include/asm/uaccess.h
-> index f0924dc0bd64..9e3957ee3642 100644
-> --- a/arch/arm64/include/asm/uaccess.h
-> +++ b/arch/arm64/include/asm/uaccess.h
-> @@ -240,6 +240,24 @@ do {										\
->  	(x) = (__force __typeof__(*(ptr)))__gu_val;				\
->  } while (0)
->  
-> +/*
-> + * We must not call into the scheduler between setting and clearing TCO. As `x`
-> + * and `ptr` may contain blocking functions, we must evaluate these outside of
-> + * the critical section.
-> + */
-> +#define __raw_get_mem_tco(ldr, x, ptr, label, type)			\
-> +do {									\
-> +	__label__ __rgm_err;						\
-> +									\
-> +	asm volatile(SET_PSTATE_TCO(1));				\
-> +	__raw_get_mem(ldr, x, ptr, __rgm_err, type);			\
-> +	asm volatile(SET_PSTATE_TCO(0));				\
-> +	break;								\
-> +__rgm_err:								\
-> +	asm volatile(SET_PSTATE_TCO(0));				\
-> +	goto label;							\
-> +} while (0)
-> +
->  /*
->   * We must not call into the scheduler between uaccess_ttbr0_enable() and
->   * uaccess_ttbr0_disable(). As `x` and `ptr` could contain blocking functions,
-> @@ -286,27 +304,18 @@ do {									\
->  
->  #define get_user	__get_user
->  
-> -/*
-> - * We must not call into the scheduler between __mte_enable_tco_async() and
-> - * __mte_disable_tco_async(). As `dst` and `src` may contain blocking
-> - * functions, we must evaluate these outside of the critical section.
-> - */
-> +/* We handle synchronous exceptions so only use PSTATE.TCO in non-sync MTE. */
->  #define __get_kernel_nofault(dst, src, type, err_label)			\
->  do {									\
->  	__typeof__(dst) __gkn_dst = (dst);				\
->  	__typeof__(src) __gkn_src = (src);				\
-> -	do { 								\
-> -		__label__ __gkn_label;					\
->  									\
-> -		__mte_enable_tco_async();				\
-> +	if (system_uses_mte_async_or_asymm_mode())			\
-> +		__raw_get_mem_tco("ldr", *((type *)(__gkn_dst)),	\
-> +		      (__force type *)(__gkn_src), err_label, K);	\
-> +	else								\
->  		__raw_get_mem("ldr", *((type *)(__gkn_dst)),		\
-> -		      (__force type *)(__gkn_src), __gkn_label, K);	\
-> -		__mte_disable_tco_async();				\
-> -		break;							\
-> -	__gkn_label:							\
-> -		__mte_disable_tco_async();				\
-> -		goto err_label;						\
-> -	} while (0);							\
-> +		      (__force type *)(__gkn_src), err_label, K);	\
->  } while (0)
->  
->  #define __put_mem_asm(store, reg, x, addr, label, type)			\
-> @@ -337,6 +346,24 @@ do {										\
->  	}									\
->  } while (0)
->  
-> +/*
-> + * We must not call into the scheduler between setting and clearing TCO. As `x`
-> + * and `ptr` may contain blocking functions, we must evaluate these outside of
-> + * the critical section.
-> + */
-> +#define __raw_put_mem_tco(str, x, ptr, label, type)			\
-> +do {									\
-> +	__label__ __rpm_err;						\
-> +									\
-> +	asm volatile(SET_PSTATE_TCO(1));				\
-> +	__raw_put_mem(str, x, ptr, __rpm_err, type);			\
-> +	asm volatile(SET_PSTATE_TCO(0));				\
-> +	break;								\
-> +__rpm_err:								\
-> +	asm volatile(SET_PSTATE_TCO(0));				\
-> +	goto label;							\
-> +} while (0)
-> +
->  /*
->   * We must not call into the scheduler between uaccess_ttbr0_enable() and
->   * uaccess_ttbr0_disable(). As `x` and `ptr` could contain blocking functions,
-> @@ -383,28 +410,19 @@ do {									\
->  
->  #define put_user	__put_user
->  
-> -/*
-> - * We must not call into the scheduler between __mte_enable_tco_async() and
-> - * __mte_disable_tco_async(). As `dst` and `src` may contain blocking
-> - * functions, we must evaluate these outside of the critical section.
-> - */
-> +/* We handle synchronous exceptions so only use PSTATE.TCO in non-sync MTE. */
->  #define __put_kernel_nofault(dst, src, type, err_label)			\
->  do {									\
->  	__typeof__(dst) __pkn_dst = (dst);				\
->  	__typeof__(src) __pkn_src = (src);				\
->  									\
-> -	do {								\
-> -		__label__ __pkn_err;					\
-> -		__mte_enable_tco_async();				\
-> +	if (system_uses_mte_async_or_asymm_mode())			\
-> +		__raw_put_mem_tco("str", *((type *)(__pkn_src)),	\
-> +			      (__force type *)(__pkn_dst), err_label, K); \
-> +	else								\
->  		__raw_put_mem("str", *((type *)(__pkn_src)),		\
-> -			      (__force type *)(__pkn_dst), __pkn_err, K);	\
-> -		__mte_disable_tco_async();				\
-> -		break;							\
-> -	__pkn_err:							\
-> -		__mte_disable_tco_async();				\
-> -		goto err_label;						\
-> -	} while (0);							\
-> -} while(0)
-> +			      (__force type *)(__pkn_dst), err_label, K); \
-> +} while (0)
->  
->  extern unsigned long __must_check __arch_copy_from_user(void *to, const void __user *from, unsigned long n);
->  #define raw_copy_from_user(to, from, n)					\
-> diff --git a/arch/arm64/include/asm/word-at-a-time.h b/arch/arm64/include/asm/word-at-a-time.h
-> index d7a3b69dc8c6..ec72126210d1 100644
-> --- a/arch/arm64/include/asm/word-at-a-time.h
-> +++ b/arch/arm64/include/asm/word-at-a-time.h
-> @@ -10,6 +10,9 @@
->  #include <linux/bitops.h>
->  #include <linux/wordpart.h>
->  
-> +#include <asm/mte-kasan.h>
-> +#include <asm/sysreg.h>
-> +
->  struct word_at_a_time {
->  	const unsigned long one_bits, high_bits;
->  };
-> @@ -41,12 +44,10 @@ static inline unsigned long zero_bytemask(unsigned long bits)
->   * and the next page not being mapped, take the exception and
->   * return zeroes in the non-existing part.
->   */
-> -static inline unsigned long load_unaligned_zeropad(const void *addr)
-> +static __always_inline unsigned long __load_unaligned_zeropad(const void *addr)
->  {
->  	unsigned long ret;
->  
-> -	__mte_enable_tco_async();
-> -
->  	/* Load word from unaligned pointer addr */
->  	asm(
->  	"1:	ldr	%0, %2\n"
-> @@ -55,7 +56,20 @@ static inline unsigned long load_unaligned_zeropad(const void *addr)
->  	: "=&r" (ret)
->  	: "r" (addr), "Q" (*(unsigned long *)addr));
->  
-> -	__mte_disable_tco_async();
-> +	return ret;
-> +}
-> +
-> +static inline unsigned long load_unaligned_zeropad(const void *addr)
-> +{
-> +	unsigned long ret;
-> +
-> +	/* We handle synchronous exceptions so only use TCO in non-sync MTE. */
-> +	if (!system_uses_mte_async_or_asymm_mode())
-> +		return __load_unaligned_zeropad(addr);
-> +
-> +	asm volatile(SET_PSTATE_TCO(1));
-> +	ret = __load_unaligned_zeropad(addr);
-> +	asm volatile(SET_PSTATE_TCO(0));
+During suspend on OMAP3, I2C suspend oopses. This is a longer standing issue,
+in the past I mostly tested runtime suspendidle behaviour on that platform
+(including uart autosuspend). A change in the I2C driver fixes some corner
+cases in pm for ti-sysc based systems, but breaks systems using the deprecated
+ti,hwmods property. 
+To avoid that maintainance overhead, convert the i2c definition
+First fix the I2C quirk needed for these older chips. OMAP2 stuff
+is not touched due to its planned removal.
+After OMAP2 is removed, arch/arm/mach-omap2/i2c.c can be removed, too.
+I may try to check again if there is some safe fix in omap_device.c
+but changing things there has a very high chance of unexpected side
+effects.
 
-Note that Sashiko identified that nothing prevents the compiler from re-ordering
-__load_unaligned_zeropad() w.r.t. the SET_PSTATE_TCO() and the presence of the
-exact same expression above is probably inciting it to do so!
+Handling the commits:
+In the past (e.g. around commit
+42a79edd4a3dc1bb8e89fd2849f9e8e1e1c13977 for converting musb to ti-sys)
+these changes were handled through a separate branch to keep them in
+order.
+Here is a hard requirement of the order. Patch 3 can most easily wait
+but having patch 2 after patch 1 is a hard requirement. As the
+affected devices get their devicetree updated with the kernel,
+that should not hurt too much.
 
-I believe that the most robust approach would to use the "memory" clobber in
-set_pstate_tco() so that it always acts as a full compiler barrier. I'll address
-this (and reorder the patches to introduce the macro first) in the next version.
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Changes in v2:
+- fix missing kerneldoc
+- fix typo in dtsi, which surprisingly worked quite well
+- Link to v1: https://patch.msgid.link/20261110-i2c-sysc-v1-0-8945eb1d38f0@kemnade.info
 
->  
->  	return ret;
->  }
-> 
-> -- 
-> 2.56.0.455.g6c5a503b38-goog
-> 
+---
+Andreas Kemnade (3):
+      bus: ti-sysc: fix I2C quirk for OMAP3 variants
+      ARM: dts: ti/omap: describe omap3 i2c via ti-sysc
+      ARM: OMAP2+: remove i2c from OMAP3 hwmods list
 
--- 
-Pierre
+ arch/arm/boot/dts/ti/omap/omap3.dtsi       |  96 ++++++++++++++++++++-----
+ arch/arm/mach-omap2/omap_hwmod_3xxx_data.c | 112 -----------------------------
+ drivers/bus/ti-sysc.c                      |  20 ++++--
+ 3 files changed, 92 insertions(+), 136 deletions(-)
+---
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+change-id: 20261109-i2c-sysc-a048409add7c
+
+Best regards,
+--  
+Andreas Kemnade <andreas@kemnade.info>
+
 
