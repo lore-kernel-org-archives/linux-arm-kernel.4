@@ -2,89 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FF360A260E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC5760A3817
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n/EmcxL9;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Uxr76c0F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dc9DiqvG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LR6/L0Ll
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NHmyoMsCMwSG2/nuYw9a6DHQhzdO61SK7Mg+66RUzM8=; b=n/EmcxL9sZTF+Y+DmRvjYtqo44
-	ZGxTP/XCRb4o8PQea8NJiRvPZnNEibrSm1ZClATPV4kxr1+21jWjWY52V0V5vvd95yJT9pDnhouJl
-	luWwHFrBBvkQgV680zSW0Y7iJaXrnLmEpZr4CBvsG659jJAp1ORgidaKdcYEwdUbDVtLPmx6/CYWl
-	mCA2WrYWNjLMSbXnL2Cv4gvv9sGriMmhoN/o/C14rx2r+6jqGKV6T+h+m/qkBggMcEakQdz64aiRw
-	MyMLNyTVR/xkKz+JnGditNiY5SsScQqj7s/YDDdnxmYTTQIGm8vWZakXI8Q0IcOSbq8Vnn+uq+ZRk
-	eut+9mMg==;
+	bh=u120nBzjSw85Ua4h2iZr2dC7vRzrh960a8a37kW/TOg=; b=dc9DiqvGMpHDUBJ2fXX6jrdqe5
+	oA5U7GnNRo2zG+iXa0kpwEA2aOsZDcYKwUWxrjQY0ka3qWx63JtLaKcIefLfgOcXkswp5lFr1jI/e
+	WP+zuToSP03wja1MdNCXlt/tvI9qB9mhgWV/T/bGMsDH/bqduhZmpYz2cchnFMtS+RRp51hWblM7C
+	9pHDUcQJ6EaQYd/j4Lk7NMbEdWoqZU7FfGIG4ZAhWnKz5ZMAvfrK6LvBZHaYlTw/kCkVBibevjZ4H
+	OnKXeNxzvNfcpULu10zDcatDCKZ+ZcJdgCHBIkQ5AEKq9HNYT2Gj+PmMqI1DgpG6uQWePwbEXowm0
+	mg+hRxpA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjFu-00000003TWM-2sq9;
+	id 1xQjFu-00000003TWe-3V6R;
 	Tue, 10 Nov 2026 10:39:10 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjFq-00000003TUa-2JUM;
+	id 1xQjFq-00000003TUW-2Jdx;
 	Tue, 10 Nov 2026 10:39:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 15C4843942;
-	Tue, 10 Nov 2026 10:39:06 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id AD3EC63873;
+	Tue, 10 Nov 2026 10:39:05 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794307146;
-	b=3ATie1GfSKhRegJXXJMGYzgpDC9ZovxaRSsL/uDWrlQfof62/g5T/r/OjcQy5/seFXpP
-	 /Ol4fDRaj8O3ilz5N6HoHJS29ZqJMdggv0ePWSZXxJA4ThGJqejN1UdZsk5XFPb6wzSGt
-	 7Pc17itxJ+gqUBcGit+7alijWTugxeIaoPxqJVjoR9mM/4DI0K6nofJoElka5MuVR20TI
-	 VEPtZyNssxQrM29nnVdU9cpCJ6qC0wZTqTbbjpEB5cJK3vVsJO5oHFWpQMkddDqX69T7a
-	 kENVId6bJltN6czt56YFo6cqqMZwev5f+7cPbaJRTSP6GUez6rtTMUuvaQpBKWmUx2w==
+	t=1794307145;
+	b=QwjuGWFFLm4q2/Idtsbnv2YOhs5FVfI4FJ7Ytj7Wbn9V6tAwVNFHrDXEjop+2Iv3dclx
+	 /o2BvnJnJEhPdHL9f3+GnNmuxWHYcRNAYK0/QvmvHfP4C5jYMJd496hGChFKuvcW4H/m+
+	 i4LhCpYLeAiMyACBLMCfSjT4fxW9YOLhRU8Cz2/VRjlfpQe54QmCCeLtMIWVCegltULFA
+	 6m1VH0+ECxXfnpbDiKgTLlzOGhd55t2sz6Zy1uh0ic1KuVIXo/Fbgtdovw0dizP6AEZRX
+	 A7qnVorosIUj+VQ5Goz/rl1BKbeztflbtCYJhx/Ut2G7ykfTx+XNvU0eVoLA8EYE2wQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794307146;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=NHmyoMsCMwSG2/nuYw9a6DHQhzdO61SK7Mg+66RUzM8=;
-	b=L5Be5wDU8FN/svyjDfJlff1fur3fht18BHxJ+rJQ/KE62HypyrFVvRvOwerDWcAzIaF6
-	 sDQvhyDXdzo2VpRqXNp+e4dYVdQDEY1NCf/hrdzbMz2GCZbfJ1nX94lti0q4c/wmIkHSe
-	 ByNokswUzpiJlnqClZ0RgPZzpw+3VPHJojVJep2sk8/AabHiP2ZoBO6z2cz8FFejbF/iI
-	 R7EHBH9BFJm1UTnyk95/jCIxILd6GW7XmxMa4WiV5aWf8TzMX5Ws1WUA5d9cC3KwKcWDU
-	 QmbmEigHr+EO7GKpW6HwvhDmYB6pdC9a9glBKoduREuTHgQ+0aqKZY7+sXiOOXx0cLQ==
+	c=relaxed/relaxed; t=1794307145;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=u120nBzjSw85Ua4h2iZr2dC7vRzrh960a8a37kW/TOg=;
+	b=JdWhi2wil+tjQe6TR+7j0MBZ4mmcfSmhz7syvSjt7ZCpTZPgAIvCBqQPRQNj2jPNeYkK
+	 2kuiAjGn+m7ihyAwaUUKZsxJ2OdZbUqm6llMgIOhOXIQq98+C03vIGnkvr50KOYnUgFxI
+	 c2E1ez0ZG5HYUOpio2/4BrVgqIXBSRPTX7Oww+eSd1jaT9KSj8nuifDDCmk2N8AUfB74O
+	 yS4L5DGbqmmJcDBGUfxvqfwfl8LapuB8GmZzW0+incm/Q34mJq+YQUC22w3h+jiFZf/FE
+	 RLESi7X8XP9NfvKAH1d8YsiPBk+geXm21/1/HcMQpzITFPCECmcMNl+zU/9Xjl792Zg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id C53811F008A7;
+	by smtp.kernel.org (Postfix) with ESMTPS id C54981F008AB;
 	Tue, 10 Nov 2026 10:39:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794307145;
-	bh=NHmyoMsCMwSG2/nuYw9a6DHQhzdO61SK7Mg+66RUzM8=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=Uxr76c0FGZe6yCa5hI0SSagc6Van0FKeqctAX1xi+anCBP2y0vzWiXCEHqPNStE73
-	 E/boD53TXhrkVysDbf3rKc2QEciqrjqZyCf1zf15EjYuw44vgIArnJ53TZyAhN4KYc
-	 UW+X84RmDBdgPIUhQ0jZNy3CgcSq+5gdJNbuONeJIMa5IohXVDsAB2tTCNRjxaCO5v
-	 yddUVrGGTSLHXpLG1v8fUpOOrMtY21zKNy5tottvbATSBhhVL+64IUuJRJCaCfciDO
-	 7UBAbqaMPtTLoyTvqEItstQmkYW4W6JnTjBmXUwfv1Jcj/9Kr0CsMjD15VpyqHh7OU
-	 ACQROmCBIeOqw==
+	bh=u120nBzjSw85Ua4h2iZr2dC7vRzrh960a8a37kW/TOg=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=LR6/L0LlSRZ6ct/+XZf7FawaPk4QMss/KOQeuov3Hb5VnXIpGau2DtTAZ6nteQoPo
+	 G2dKGjEi0KGmPXo4dzD0iXxZ0lK3IrnWu9YeAcAAeeoPOradl8Cj+k8Wei4vNdgj5A
+	 tq9NmSi1A2450PQZOdubEVLshicDRMVNwJiwYouYSennhrTfkO/hvY6+oq/hvugJkC
+	 3qdZHZ5TPDzVaHwLb9WGXnkoszsm+CQzEosF4Dwa3HJIMLWTtJ7t/sfQI8BsWfru9k
+	 pfQcUBzPYSm6gEALdISqE5umBQCNVj61AM9N8jGepQ0IEwut8W4SzXSEKiROx0jUeQ
+	 04uDv1QPYfEXg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 25C8748ADF;
+	by lkml.kernel.org (Postfix) with ESMTP id 3E35048AF3;
 	Tue, 10 Nov 2026 10:39:04 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH 0/3] usb: typec: Find a Type-C partner after a warm reboot
- on the Orange Pi 5
-Date: Tue, 10 Nov 2026 10:39:03 +0000
-Message-Id: <20261110-tcpm-attach-reboot-v1-0-7657cc1e2dca@gmail.com>
+Date: Tue, 10 Nov 2026 10:39:04 +0000
+Subject: [PATCH 1/3] usb: typec: tcpm: Don't cut a pending state delay
+ short on a re-queue
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQqDMBBA4avIrDuQmCroVaSL/Iw6Qo0kowji3
- Zu2y2/x3gWZElOGvrog0cGZ41qgHxX42a4TIYdiqFXdaq0Vit/eaEWsnzGRi1EwdCY0o2mfyjg
- o4ZZo5PM3HV5/590t5OV7gvv+AGKCFY12AAAA
-X-Change-ID: 20261110-tcpm-attach-reboot-d93d5f36403b
+Message-Id: <20261110-tcpm-attach-reboot-v1-1-7657cc1e2dca@gmail.com>
+References: <20261110-tcpm-attach-reboot-v1-0-7657cc1e2dca@gmail.com>
+In-Reply-To: <20261110-tcpm-attach-reboot-v1-0-7657cc1e2dca@gmail.com>
 To: Badhri Jagan Sridharan <badhri@google.com>, 
  Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -96,16 +93,17 @@ Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org, Arun Iyengar <aiyengar1990@gmail.com>, 
  stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794307143; l=3436;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794307143; l=2363;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=iGPQ954ODCaz+2pIX0GxmrENRgHVatfGiGCahDtE+GM=;
- b=nGR6DIkFNsf6kRM8uWdYzOdsBCNyoOpAc44KAMwDdS41o8nk4dhn65CoIsEK9OkpUeJHJW0my
- tqQhYt+fWPjB1vnMrS5oq7kcyeSyQOvqVT5cjhkpuc4tdukMhi/hDo6
+ bh=f9cETtbmuMeuYvGKqDaJesYJ7nf3lLCpDNSETJ6OO1Q=;
+ b=pFqVEKwOdwLR7mjXQTBH67eOjWQUk60Y4/7F27il8EHZKBd8oglAEuo/CHYM+JOtKvlZnKWlf
+ 1ULxeKeRqrYBM2mYkZteQjBG3Ebe/QNqKpt1rikjzo7iA/TlROf/XRk
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,70 +123,63 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-After a warm reboot, an Orange Pi 5 (RK3588S, FUSB302) often did not
-see a Genesys Logic based USB-C to DisplayPort cable that stayed
-plugged in: tcpm toggled in SRC_UNATTACHED, the FUSB302 raised no
-interrupt at all, and only a replug at the board brought DisplayPort
-back. Three changes fix it:
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-  1. tcpm: tcpm_init() sets two states back to back with the port lock
-     held, so the state machine work is queued twice, and the second
-     run applies the PORT_RESET -> PORT_RESET_WAIT_OFF transition at
-     once: tErrorRecovery (100 ms) took 6 us. A pending delay is now
-     re-armed for the time left. This is generic, with Fixes: and
-     Cc: stable.
-  2. fusb302: toggle with the default Rp current. The FUSB302 found
-     the cable within seconds when it toggled with the default current
-     (after another device was detached), never while it toggled with
-     Rp 3.0A. tcpm still sets the configured Rp level through set_cc()
-     once the port is attached.
-  3. arm64: dts: rockchip: the Orange Pi 5/5B Type-C port is
-     self-powered (its VBUS comes from vcc5v0_sys, the board runs from
-     a separate power input), so tcpm opens CC during error recovery
-     and the partner sees a real detach at boot. This one is for the
-     Rockchip tree; it does not depend on 1 and 2 to build, but without
-     patch 1 the open-CC period at boot is cut short. It is based on
-     usb-next; on top of my pending "arm64: dts: rockchip: Add USB-C DP
-     AltMode for Orange Pi 5/5B", which adds a node next to the same
-     line, it needs git am -3 (no conflict). I can resend it rebased.
+tcpm_state_machine_work() applies port->delayed_state as soon as it
+runs, assuming it only runs when the state machine timer fired. The
+work can also run because it was queued for another reason while it was
+already running.
 
-Testing, on an Orange Pi 5 with 7.3-based kernels: before, after a
-warm reboot the cable was not detected (0 FUSB302 interrupts since
-boot) until it was replugged at the board. With the three patches it
-was detected on 4/4 boots, the first one starting from that stuck
-state, with DP connected 1-2 s after boot; the three were tested
-together, not one at a time. The patches have been in every kernel I
-have run since; in a later run of 30 reboots with a USB-C DisplayPort
-monitor, the partner was attached on 30/30 boots, and the tcpm log of
-every boot shows CC opened in PORT_RESET and 100-112 ms spent there
-before PORT_RESET_WAIT_OFF. Not tested: other TCPCs (patch 1 is
-generic, patch 2 only changes fusb302), and the Orange Pi 5B (same
-dtsi). W=1 arm64 builds of drivers/usb/typec at every patch,
-CHECK_DTBS for the Orange Pi 5 and 5B and checkpatch --strict are
-clean.
+This happens at every port registration: tcpm_init() runs with the port
+lock held and calls tcpm_set_state() twice with no delay (default state,
+then PORT_RESET). The first call queues the work, which starts and
+blocks on the lock; the second call queues it again. The first run
+handles PORT_RESET and schedules PORT_RESET_WAIT_OFF after
+PD_T_ERROR_RECOVERY; the second run then applies it at once. On an
+Orange Pi 5 (FUSB302) the log shows the 100 ms ErrorRecovery taking
+6 us:
 
-This series was developed with Claude (Anthropic) as a coding
-assistant: it wrote the code and the commit messages, and I reviewed
-and tested every change as described above.
+  pending state change PORT_RESET -> PORT_RESET_WAIT_OFF @ 100 ms
+  state change PORT_RESET -> PORT_RESET_WAIT_OFF [delayed 100 ms]
 
+so the "clean slate" that tcpm_init() asks for never happens.
+
+If the delay has not expired yet, re-arm the timer for the time left
+and return, as tcpm_send_queued_message() already does.
+
+Fixes: 3ed8e1c2ac99 ("usb: typec: tcpm: Migrate workqueue to RT priority for processing events")
+Cc: stable@vger.kernel.org
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-Arun Iyengar (3):
-      usb: typec: tcpm: Don't cut a pending state delay short on a re-queue
-      usb: typec: fusb302: Toggle with the default Rp current
-      arm64: dts: rockchip: Mark the Orange Pi 5/5B Type-C port self-powered
+ drivers/usb/typec/tcpm/tcpm.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
- arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-5b.dtsi |  1 +
- drivers/usb/typec/tcpm/fusb302.c                        | 13 +++++++++++--
- drivers/usb/typec/tcpm/tcpm.c                           | 12 ++++++++++++
- 3 files changed, 24 insertions(+), 2 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261110-tcpm-attach-reboot-d93d5f36403b
+diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+index d721baef5210..0a19b7665555 100644
+--- a/drivers/usb/typec/tcpm/tcpm.c
++++ b/drivers/usb/typec/tcpm/tcpm.c
+@@ -6569,6 +6569,18 @@ static void tcpm_state_machine_work(struct kthread_work *work)
+ 
+ 	/* If we were queued due to a delayed state change, update it now */
+ 	if (port->delayed_state) {
++		/*
++		 * The work may have been queued again for another reason
++		 * while it was running, for instance by tcpm_init() at port
++		 * registration, which sets two states in a row with the
++		 * port lock held. Do not cut a pending delay short; re-arm
++		 * the timer for the time that is left.
++		 */
++		if (ktime_after(port->delayed_runtime, ktime_get())) {
++			hrtimer_start(&port->state_machine_timer,
++				      port->delayed_runtime, HRTIMER_MODE_ABS);
++			goto done;
++		}
+ 		tcpm_log(port, "state change %s -> %s [delayed %ld ms]",
+ 			 tcpm_states[port->state],
+ 			 tcpm_states[port->delayed_state], port->delay_ms);
 
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
+-- 
+2.55.0
 
 
 
