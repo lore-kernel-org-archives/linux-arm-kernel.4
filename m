@@ -2,69 +2,123 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1BD8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:36:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA543606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2F/UNfJz;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RwJ5nb/u
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1oBWZ8Sa;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=GsUgNWgo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=o/9JOxpI2/7CQXqdlvWs/lcxk0emk3kCWaaIB+hKwgY=; b=2F/UNfJzt9UCBcEcizDNmnu9og
-	oe8ETXh7/cVYRCb+iqu4gRWDk7e5GJgYSsu6+K60Wb7B3D7CG0mCcQIijPZwt3s3N7HOHYo1eYYyu
-	J9Oox4KYjTtmAR5lpYeXtZs6P7Uj5hxXtM6F/VOhxnt2Se8dFk0IUbaNV+tDwdsD2VsTxbUaTMAxy
-	+Ve4ej2nIkPFwDUmbDCNJ7FylC7+M4n98X06WxlrzVzdzvNIuU5/qAAddfqkrW1tKXdXqh1LtS0yy
-	VRK+EGJFdap4OqFf6DIooxHjW3oBaa+Ux8/gq1LvnXzDpbBXKUJqbsq98iwHUQWjh0oLcaSo4blEt
-	ujyzMlaA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=JmEY1Uike6JX8cO3a6s3fXhYo6n5w8yRovxQQfIWojQ=; b=1oBWZ8SaylRrfg
+	shgBa6mlsKgSpZm0Ki0HVdFGX/6MjMBoelCtbHo7ME9UvbY/b/8u3Lyr/5uqodl6Knw25vEgBhZ27
+	Q2uZXUnanWSXBP5e+iB/92sI5rOShjWrn3AwvPc2fL9Zy512c7F4P8mN5HWxVoFDuuRny7vCj6UKl
+	xm5dTQbxpXO1VeUQiIZCBFKLxUk2MwmMBRBAqwfd5hwLKmfQJEYPqUcMWnf5j7apZrK5g85eqQ9zp
+	DyL20rSYHt4Vsbm9Mx6FnHd2J0h7Q/HkDNtq3rf4a//fdoYCL5KBDMcqaVJeU4zNQjo9lVTLs97aa
+	u0oFvFVLAp828xF47gjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqhm-00000004oIG-00et;
-	Tue, 10 Nov 2026 18:36:26 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQqkX-00000004obi-2HR0;
+	Tue, 10 Nov 2026 18:39:17 +0000
+Received: from mail-lj1-x236.google.com ([2a00:1450:4864:20::236])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqhj-00000004oHg-2iIY
+	id 1xQqkU-00000004oav-45fH
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 18:36:24 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1FC1440E56;
-	Tue, 10 Nov 2026 18:36:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED9E1F008A3;
-	Tue, 10 Nov 2026 18:36:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794335783;
-	bh=o/9JOxpI2/7CQXqdlvWs/lcxk0emk3kCWaaIB+hKwgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=RwJ5nb/uG5KNkgG2SOgAhOM5Cvz+Z40dsqL0z7aySCK4t1I8/oq9I3B1RPqCKZOU6
-	 cMMPUmvqF94sGROh03MSpfPaDpBnq04YIcBGljeCiD/1rrPB1rh5WlEyh45GVVO4cq
-	 usn8DX7xSRI4/RkFgS4WTXBbYr62/dfTdSIxO64s2Z9K8r2/R0TUzy2XdgvPenLXGr
-	 eVkBb8ybN/luKqoz0dL9cSAPVmL2xszKLpaqoxvcbpxmdierlQrXrpobm6H66IbOPd
-	 LlJBc6HWf8y5hOn/6IzKeL8EIX0+zV7FaJwFY81KP81TL6CsEOa4Ps6C01NiQijS10
-	 CiOQF1FVa5P9Q==
-Date: Tue, 10 Nov 2026 18:36:18 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Feng-Yi Hsueh <fyhsueh4linux@gmail.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-input@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
- controller
-Message-ID: <20261110-dingy-unaligned-377ac75bb5bc@spud>
-References: <20261110111419.89535-1-fyhsueh4linux@gmail.com>
- <20261110111419.89535-2-fyhsueh4linux@gmail.com>
+	Tue, 10 Nov 2026 18:39:16 +0000
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-3acf82fdcdbso22984331fa.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:39:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794335952; cv=none;
+        d=google.com; s=arc-20260327;
+        b=AVo234BwZpxIeebwXyWDZMtT4cIRx/nqtukaTa43YWZCLHAREKO681pGg6YW8touAW
+         mT7RemPIyBClAdRdzNZFhrNryCXqT6uVCcPR8ElY6jUC2yQfThgO1i11Qt1IRxfF7M8i
+         LtFWpSyni+NvB5yRuDImHwcjS0+RDkKwXP5+q6xmupMig9CK8VsDHhKf/g6tdj4Ddmer
+         0DieXZpJL1Y7Gxe+3DVjIoXyktIYdfHc6jQzhJzIWg2GaU22M/zaMOitPl8EKrIHjY2x
+         UW9GcRM4FjT+dqK1RObmB9jY9jAv8XDAPszfKwrPXMeFZqisJc5Tx1Z5yV/LirGdaM4h
+         BhXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=JmEY1Uike6JX8cO3a6s3fXhYo6n5w8yRovxQQfIWojQ=;
+        fh=d1CKL0+dKD/oLUfh+xBi1a0a1snaW9WsEWyaq1j/Ye4=;
+        b=lFke7IbgX1mVMnMwht3IUtOKk9AbNy0RSlDT9PC3ih09RH0hMv084JBo4Frn6zotVb
+         SgVvJbLSKGeJ6Jq1dF1Qo6qxbVwUZyAE8GZqYyHtwElwQ34qgHz5ZemlkdpiN0SXPkPE
+         uPEuGsEPlkrJ3ZIE4yH2uKp/bl63b0Ml/uDOzo3roPf5MIW90o+46fjbiajJsQHKQpSE
+         JnoMEPrxHHyjEaO+x4cSKqqzOI7RkWUA4nbwRbFhcv2Th/PN3MuS9VV91MnNmganAaqY
+         TyHWVgT3G0FAgjKIv2fUJ+dsOrAgw3zui1kYDM8VzG44LIQ9oiNkbPS/r6Psp9F3U4Op
+         AbZA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794335952; x=1794940752; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=JmEY1Uike6JX8cO3a6s3fXhYo6n5w8yRovxQQfIWojQ=;
+        b=GsUgNWgoOxMU4bzoUw3YE9KzuoROtRCgXpqi1ScDfuTSGS1Tv5c1ob5Tb+XNX7BV0B
+         Jc3av6yFrGKqhXaYADpLZI0Bfwo2Eoxsp8/HA3ZDJ8micV0Spwh6q+bW444vegYNrDkL
+         HvCGKoWHQ3seW9FeCdhRWJlkE7x5JOfPadV+OY+PYd88OTOOe+PVsgbsxtcxZXAALKCm
+         AQ/qRuWCJB5zPVSCSTofJyBwyqRakHQQXqW+UiiJjE0t50weKM3Vc9EuSfsOYfaEQO1O
+         B9nM6kqHd9GDyOW65wSmE7+IIr6idyUgES93CPIrnePaQLTJpdlwKCxwbdRXHHNjXTQU
+         l+RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794335952; x=1794940752;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=JmEY1Uike6JX8cO3a6s3fXhYo6n5w8yRovxQQfIWojQ=;
+        b=r3y85W3RcsphoYIk9qe8DpgplqcRnAbV2b2xOkc6oE/vM3MjUSD9lAdzXDDg1+Lrub
+         cRnkvXf8IgOG6BMkDY3/WsDaTDC5iXGevQe35DIILdULDTgUMPKEps7/MKknX6q3N3VD
+         Q5jvkPjz9Gu6LqXBgSIR69VGETNYqxVhtmEd8HM7dR7Ferv/6Hw9wTMzqT0McIJS9DVm
+         Df0Ugvngg9wzAdzuXMb0EdosF9mt12z62Ittm9C308TJbnu61OekX4R8nO1lSG2yyxk6
+         OGf4ypyKEfBF2CGZyoN1QmA7O7BVc2oq9Xw+qc0OMW4hBWVI1RBkbskuI1i4saiK6P/O
+         gr9A==
+X-Forwarded-Encrypted: i=1; AL+hErHTPg0UCflE4xgErU4vGZKEDJPFaAEuJu+kowDGNPrMzN4BgFvAOtxuhWmGjhU6Z3SzgJ9WgXepd5Hr6A4etxi6@lists.infradead.org
+X-Gm-Message-State: APuU4Z+5ABSCPMDdfVBJxnz8kiqONvPBBrrNMtn2Fb8lJ48ba+vQSGN3
+	9jbErl1jksYjKW1QkMVt6ANeSbi2ag3o/EdYnt5wizP3okhyeDqTuj7UY4MCe2aOJlKbuPWm+3W
+	e03AYxqA5tUi++b0wftB9Syqm97Pt6yE=
+X-Gm-Gg: AYBFou2Pd0FFobAColBNm2ULphajABp0X930ogv0W2VEBX7mUTF5ExJmtMZTE4Xx9eL
+	wT6quhxuM8u5Cy9jntgOZ/2Vbyqmbdtacu59wQiY45oycIPFFTPnOfxyxHZtIq220lrhanEeLiy
+	AcLk92sbC0F4XiD+1kHGwWtW9Y9RvMoaMf4KI59pQqMXyhC4KVbJDYmZJm2rHRGqMZfTdWN724s
+	n0SB+g2IOo3V1j7oI7m7pT9a+zZp3v4YdKt/X6t/w468UUWRWuuJGvxWgeHSjfV/Dpo+o8zCMxh
+	TO2B/PCOer2OlK90lbJ7E5jP6SrAmN6M57taNUVP9r7x95q87aF83iWUbBYKHKlYJe7u28BiKVs
+	mRxMZiQrqhLBpnjObYx0IMWLL543d9F2fHP9DOEh+mwCdGuvFp2CIW6ETQXewlnJQiBnd7c+b+G
+	kuYRu6RCKDWzmwRxY6Cd1jmgZ7vTJHJSkkH64A523IvBzq+12T
+X-Received: by 2002:a05:651c:b12:b0:3ad:de02:e9a8 with SMTP id
+ 38308e7fff4ca-3ae0967065cmr7621621fa.18.1794335952183; Tue, 10 Nov 2026
+ 10:39:12 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Qv4BxQDfbEUAvEjd"
-Content-Disposition: inline
-In-Reply-To: <20261110111419.89535-2-fyhsueh4linux@gmail.com>
+References: <cover.1794334398.git.stefano.r@variscite.com> <3cb427c8d5c6244cebeca5310bd03171f5685edf.1794334398.git.stefano.r@variscite.com>
+In-Reply-To: <3cb427c8d5c6244cebeca5310bd03171f5685edf.1794334398.git.stefano.r@variscite.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 10 Nov 2026 15:39:00 -0300
+X-Gm-Features: AclHuK-Z_-LDXVn1T9DAos8gp7iZX9KtLfARNWk7UgbNlE7ndGND8A4QqRcbfD0
+Message-ID: <CAOMZO5AuK9coQ5m3h7s3teW-jrX6a268aLSsgVbt2cbndGVSbA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] arm64: dts: imx8mp-var-smarc: Add support for
+ Variscite Echo board
+To: Stefano Radaelli <stefano.radaelli21@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, pierluigi.p@variscite.com, 
+	Stefano Radaelli <stefano.r@variscite.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Shawn Guo <shawnguo@kernel.org>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	Joseph Guo <qijian.guo@nxp.com>, Josua Mayer <josua@solid-run.com>, 
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, 
+	Maud Spierings <maudspierings@gocontroll.com>, Mehmet Fide <mehmet.fide@screeningeagle.com>, 
+	Markus Niebel <Markus.Niebel@ew.tq-group.com>, Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_103915_034654_8FCA95C5 
+X-CRM114-Status: UNSURE (   8.84  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,133 +129,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---Qv4BxQDfbEUAvEjd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Stefano,
 
-On Tue, Nov 10, 2026 at 07:14:18PM +0800, Feng-Yi Hsueh wrote:
-> Document the Nuvoton MA35D1 hardware matrix keypad controller.
->=20
-> The controller supports up to eight rows and eight columns
-> and generates interrupts for key press and release events.
->=20
-> Signed-off-by: Feng-Yi Hsueh <fyhsueh4linux@gmail.com>
+On Tue, Nov 10, 2026 at 3:21=E2=80=AFPM Stefano Radaelli
+<stefano.radaelli21@gmail.com> wrote:
 
-Most of what the bot says seems valid to implement,
-pw-bot: changes-requested
+> +       ft5x06_ts: touchscreen@38 {
 
-Thanks,
-Conor.
+The ft5x06_ts label is unused. Should it be removed?
 
-> ---
->  .../bindings/input/nuvoton,ma35d1-keypad.yaml | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d=
-1-keypad.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypa=
-d.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-> new file mode 100644
-> index 000000000000..be678d0b38b9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-> @@ -0,0 +1,73 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton MA35D1 Matrix Keypad Controller
-> +
-> +maintainers:
-> +  - Feng-Yi Hsueh <fyhsueh4linux@gmail.com>
-> +
-> +description: |
-> +  The Nuvoton MA35D1 keypad controller scans a matrix of up to eight rows
-> +  and eight columns and reports key press and release interrupts.
-> +
-> +allOf:
-> +  - $ref: /schemas/input/matrix-keymap.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nuvoton,ma35d1-keypad
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  keypad,num-rows:
-> +    minimum: 2
-> +    maximum: 8
-> +
-> +  keypad,num-columns:
-> +    minimum: 1
-> +    maximum: 8
-> +
-> +  autorepeat:
-> +    type: boolean
-> +    description: Enable key autorepeat events.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - keypad,num-rows
-> +  - keypad,num-columns
-> +  - linux,keymap
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/input/input.h>
-> +
-> +    keypad@404a0000 {
-> +        compatible =3D "nuvoton,ma35d1-keypad";
-> +        reg =3D <0x404a0000 0x10000>;
-> +        interrupts =3D <79>;
-> +        clocks =3D <&clk>;
-> +
-> +        keypad,num-rows =3D <4>;
-> +        keypad,num-columns =3D <1>;
-> +        linux,keymap =3D <
-> +            MATRIX_KEY(0, 0, KEY_1)
-> +            MATRIX_KEY(1, 0, KEY_2)
-> +            MATRIX_KEY(2, 0, KEY_3)
-> +            MATRIX_KEY(3, 0, KEY_4)
-> +        >;
-> +    };
-> --=20
-> 2.43.0
->=20
+> +/* Header */
+> +&uart1 {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_uart1>;
 
---Qv4BxQDfbEUAvEjd
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavNkIgAKCRB4tDGHoIJi
-0hSzAQCKMBN2QbVi/h1KHYGGkzgqlIPuWmK2ry8I+T84uCGD1QD+J47KIlwrgiRj
-27vxsEA9CS9u2nAtNbd+piMnxqSdUAg=
-=vTqZ
------END PGP SIGNATURE-----
-
---Qv4BxQDfbEUAvEjd--
+Shouldn't you pass uart-has-rtscts, as both RTS and CTS lines are
+described in pinctrl_uart1?
 
