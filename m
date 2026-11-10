@@ -2,114 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA154606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF403606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:43:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IGElhyok;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=W9Tlh83l
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pb7RtktR;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=S/0Lb/4h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Y4IpnFVFMm5fXSXAtzV8xsgRv9+hQP6OGl0+r2a9VT0=; b=IGElhyokk/3ses47jrexSh63MA
-	PIpXxv/Jj3TLoM8jqNEd+6Dg6r0tEdlJDjdQAfFqgR6ddFVIBt6Iubljgk7nvRNYgwd4NpF/agkBH
-	mPuMM5ShtQxv5CUy6TdD8+gAYs8zS2XGl3EJsVstn1l5LEo53GV7YEIkhwGFCsNSucpnN4/205NIQ
-	MNFK2HDVMtrBxaYjzRlZN24VWE9ryULUCj2bLb6fhIWRHuhhwKJivMa0N5nVB/MDBFRuPBYFeKDuy
-	rksJD4ozDusfy/ihFnuz1/gzL/6q/UGAnnnbyUIvCNxJF7EcNUFOtsY9rfP/dwgOv76O8j4f17E0N
-	sayaUh2A==;
+	bh=Jomqh3EBPc599hlxv7mE3jDDZh0m6vOE0Julqd7EtAs=; b=pb7RtktRnBBnSWbMxaR3V3nlya
+	wCPefHB1v9ksic06nl/kYu+iGpdAvdv0HjQ67YetvZaWuyQl90/r7ntd+PJp1rZ2GhzPmxndFfFkP
+	2UNydqN0KXdeMXbEhrD7rq2jl1CnMkXnm08rShd1TDloIK5aZz5IYFHvdKz9diPcM30EBDbw061GI
+	dub5NG9ocpAIDPYeO+GziC3Dem6VJc9VrbYYBxZJ+FCnRtzXLDprwqTCvb38c3RJMOT4+4OzFNpig
+	lrgDOsXu2Y3BMON9SfvQeFMqFNNCSbgbAAif/UUEOjElX7SMu7/enqiBdnDsLpRPgcYT5AI5Ms/yv
+	ZkDMbt3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeaL-00000002Yzl-1qRU;
-	Tue, 10 Nov 2026 05:39:57 +0000
-Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
+	id 1xQe0E-00000002RxW-2aNj;
+	Tue, 10 Nov 2026 05:02:38 +0000
+Received: from mail-ej1-f69.google.com ([209.85.218.69])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeaJ-00000002YzD-1a7y
+	id 1xQdzx-00000002RQY-09ci
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:39:56 +0000
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-3b12cb3c37bso846027a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:39:54 -0800 (PST)
+	Tue, 10 Nov 2026 05:02:24 +0000
+Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-c40285df2a0so96845066b.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1794289194; x=1794893994; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=Y4IpnFVFMm5fXSXAtzV8xsgRv9+hQP6OGl0+r2a9VT0=;
-        b=W9Tlh83lk+oiyGe4rNcnpeYo7/bR7zfsO8N+81WqrzrIJry6c1/ErDYt1CygjDynNn
-         bISxef4x/SVZqzf2SN7AF2dgWPljpZ/zeg42s8Ob/p2KSh7EiRMAONzCTVhIapj4cPDY
-         GVt6EG+YqUt5hPkdv4or5JO3CBxCd5e+hO6zg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794289194; x=1794893994;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=google.com; s=20260707; t=1794286938; x=1794891738; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Y4IpnFVFMm5fXSXAtzV8xsgRv9+hQP6OGl0+r2a9VT0=;
-        b=EyjahXAt7F9/N7Jj7pkEB3BL6aDf0XZC/LmWGROCbkt8+eTfCvXbAc4XZrUdzjVd61
-         iyhGGZGUVoo76qCVmamEFxG6ocEufv57gnfpy6tWHrXEldRZOKAp5QQtWjjHu0QTVmQL
-         FjxM4h+Pbog2q2Tf85jg7ESUWBfhbhzY004uRyWm+jXK6T/UwZXkUI74vUvSpFiEJ+wv
-         F9836oMVEdTchGHSicJC+cyw0GxYK+8SZeRgwTpFsBDLdJA6+iF4rpLyPJ2t1AbhDrW4
-         fD0WbX0F+9DXpKqnjYdrsX2/eS66Wj4WD+QKBBFSmAKRXWow5Na3XmfYFfP0vlA6684O
-         0/bQ==
-X-Forwarded-Encrypted: i=1; AL+hErFyxT7E8WuA1zjyEQ/fYGgQvXKH8U8QVcMTm4qfodmPc5IwPCgYGcLeKWJikuzv79f516WlLRBNNDMTCITAWo18@lists.infradead.org
-X-Gm-Message-State: APuU4Z+cUbxe2r875ooV3UjdK4JvhnkS4LMvZonLTi/MwjL1iwxwbTa5
-	G0j9mcDybHsRdG2zZOWVHfBGEe+tpcyJx3Oeldf0oMGAEXRc2P8JyzP8P1Svpi7Pxw==
-X-Gm-Gg: AYBFou2DfrqKwZyK7VSiioixdv5+GAg8rIewiax7gt+1ZjuElC0u1/HPINdXZLtCcHY
-	uauv19iyXIpezyjH7MTljKXD0mCiK5Yzt1QR456yeeT1pabIS1yYufLZrh7syQITGccq+vZoQCd
-	MTNzNbOzmw+h020WElYKAjT+l8qatciR/8c6bpgF8XfVr3XoQIt7GgyXQQ+oM6wvqSdmrNe9EmI
-	KJcTrQIREmWAoDZRW/HbOdDTHLEtQCEXJMJR80NVkS4MBz77iniF/m1Rk/yYgTMgKwfz/PGBlWd
-	uFCWLANPcvqqm1tMdrhrSnDyy+I28Jt1UdNwro5wI7uILSYFUW63AvulbTqrH7BDLrGzRxvSf40
-	dgNigBB77hTxqzMxq8lasSWNUqex0rkDomTibjtKyzQaZ8GAGgab4FBgQeQ/c7oEqHWbIjptqDp
-	Lay14TyOHR4birMRnNoIcL63oR8/8tN6D5bRDUHruR/hrXJGzyaynrxXx2ta24Swab1mQiUmHDr
-	IEUj5N/KGMySu4fL8h6gyMsh4EKSX9LQc/thYgjnf3cDhppcflGyLpoHcMuaxZjPX9w0Gsz/cMs
-	jqeMFoQV7YEz45rqvGo0gEYXKzWHllcDYPr3dssGQlJABSDP2KHoZnwpTVkoZqzXhO0qI2IJnAG
-	kM6kvZGehjKCArmo=
-X-Received: by 2002:a17:90b:380f:b0:3ac:9599:a689 with SMTP id 98e67ed59e1d1-3b166d02addmr1882552a91.34.1794289194303;
-        Mon, 09 Nov 2026 21:39:54 -0800 (PST)
-Received: from google.com ([2a00:79e0:2031:6:e137:9384:7cd8:6e40])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b168ff86e7sm1041404a91.2.2026.11.09.21.39.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 21:39:53 -0800 (PST)
-Date: Tue, 10 Nov 2026 14:39:43 +0900
-From: Sergey Senozhatsky <senozhatsky@chromium.org>
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Nathan Chancellor <nathan@kernel.org>, 
-	Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
-	Justin Stitt <justinstitt@google.com>, Russell King <linux@armlinux.org.uk>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	Helge Deller <deller@gmx.de>, Heiko Carstens <hca@linux.ibm.com>, 
-	Vasily Gorbik <gor@linux.ibm.com>, Alexander Gordeev <agordeev@linux.ibm.com>, 
-	Christian Borntraeger <borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, 
-	Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, 
-	Minchan Kim <minchan@kernel.org>, Sergey Senozhatsky <senozhatsky@chromium.org>, 
-	Jens Axboe <axboe@kernel.dk>, Andrew Morton <akpm@linux-foundation.org>, 
-	linux-kernel@vger.kernel.org, llvm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, linux-s390@vger.kernel.org, 
-	linux-block@vger.kernel.org, Yann Collet <yann.collet.73@gmail.com>, 
-	Nick Terrell <terrelln@meta.com>, Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>, 
-	Jaegeuk Kim <jaegeuk@kernel.org>, Eric Biggers <ebiggers@kernel.org>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, David Laight <david.laight.linux@gmail.com>, 
-	Sungguk <sungguk.na@samsung.com>, Jaehoon Chung <jh80.chung@samsung.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org, 
-	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
-Subject: Re: [PATCH v2 13/15] lib/lz4: switch the decompressor to the
- vendored sources
-Message-ID: <avKtyCOOmK3AH0xy@google.com>
-References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
- <CGME20261106144310eucas1p1d60fe5c2e0170c49f38a3142bb1d8f94@eucas1p1.samsung.com>
- <20261106-lz4-vendor-upstream-v2-13-ee04c3f0d7dc@samsung.com>
+        bh=Jomqh3EBPc599hlxv7mE3jDDZh0m6vOE0Julqd7EtAs=;
+        b=S/0Lb/4hoJAQatZ84H7WmmxaG0vjXVeBySIlLVJn9Alp2Fuw3buz77nNeCw0kWpKCI
+         tx3oaDXeeXLfQWMkyxN0c5tFmOC4oik4PpAYX9oElMMrZREbtd7NJpx/WJUVLaZWilv9
+         URiNDC7ZgkSH6w2cNhtONGlSE9EGgPEWACyppmyOoJ+jn+UBPCq5B+eKmxOWAgK37a4o
+         qx9zE1BlWgO+ZXCxevhH5XP6mt2OL2ZlCub02DKcIXpEGMu5KQzMg7K+W0lUMO0nUqJA
+         Px8EexLtDdeVrQlq6O7xHXHL6qRr8UP3WB4lNT1SsK7rWnLNWd0vlnqeB3+R3XkKwTwW
+         KZIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794286938; x=1794891738;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Jomqh3EBPc599hlxv7mE3jDDZh0m6vOE0Julqd7EtAs=;
+        b=le4Jj6kJQ4Py1pwyvp2igtxxxAdRBHNiVg5zAgNcoTbzpdoCFsne4n3M8LoZ+CYVbM
+         ntvjwGqOMYPL02WGAq7LxmBRjFhbgNuWKJoEabmz9O0y0V1EKoe/FgfVAKGfZ66cokpH
+         73yI6HjYby3uvRuHU9dUQOOekDK2+tqINHifmkchcsz9sW25h9+sE+irnm/H7Aqr2H5O
+         sWrfl80DQYryU+GXvbZm4IPqo63smadwAZyhnkVwawfNE92tIFiB68UXmh6siRYVrB2q
+         UMeZvkabJM2gbMTisx2feKd7niC+mpLCABuuh/1zlxFJNUO5C6CY+jkEvqTBfUAOvmII
+         K6pQ==
+X-Forwarded-Encrypted: i=1; AL+hErHm6QGylse4WzDZX1yEK71INzMuQ3K0tCmkEDIPqc9oH7xtEf33afLmjWrlRVbdKR6g/UlsHl+P/9g3gxJMFvbL@lists.infradead.org
+X-Gm-Message-State: APuU4Z80EizJzTfLNVH3eTVPWF7hjblhGIHNBfcPpRf7DqglGG+0wiE5
+	Jfrm/Aw/9KR+bo2nJzqZJfq34nF7a/xqAylGOkXZ35L2VcGxkuZDYm2Z5spg1oDGiF8kmGCcTxA
+	xpb6be76SYyv8HfLWPg==
+X-Received: from edzg2.prod.google.com ([2002:a05:6402:902:b0:6b5:8540:2bf])
+ (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:907:3d8f:b0:c48:a838:c16d with SMTP id a640c23a62f3a-c5049629dbbmr100182566b.30.1794286938072;
+ Mon, 09 Nov 2026 21:02:18 -0800 (PST)
+Date: Tue, 10 Nov 2026 05:01:55 +0000
+In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261106-lz4-vendor-upstream-v2-13-ee04c3f0d7dc@samsung.com>
+Mime-Version: 1.0
+References: <20261110050202.529473-1-tarunsahu@google.com>
+X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
+Message-ID: <20261110050202.529473-13-tarunsahu@google.com>
+Subject: [PATCH v4 12/19] liveupdate: Add feature header to struct luo_file_ser
+From: Tarun Sahu <tarunsahu@google.com>
+To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
+	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
+	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
+	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
+	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
+	gle.com@google.com, pbonzini@redhat.com, 
+	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
+Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
+	linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
+	Tarun Sahu <tarunsahu@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_213955_438991_B12FE2B0 
-X-CRM114-Status: GOOD (  14.17  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261109_210221_100807_D3A8D787 
+X-CRM114-Status: GOOD (  16.05  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,44 +100,134 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On (26/11/06 15:42), Michal Wilczynski wrote:
-[..]
-> diff --git a/drivers/block/zram/backend_lz4.c b/drivers/block/zram/backend_lz4.c
-> index 50265e3ce256490994cb6dae32a45da376e408e0..b9b8a5f678c155442fa3fd2c1984e45182e6fc38 100644
-> --- a/drivers/block/zram/backend_lz4.c
-> +++ b/drivers/block/zram/backend_lz4.c
-> @@ -84,7 +84,7 @@ static int lz4_create(struct zcomp_params *params, struct zcomp_ctx *ctx)
->  		if (!zctx->mem)
->  			goto error;
->  	} else {
-> -		zctx->dstrm = kzalloc_obj(*zctx->dstrm);
-> +		zctx->dstrm = kzalloc(LZ4_MEM_DECOMPRESS, GFP_KERNEL);
->  		if (!zctx->dstrm)
->  			goto error;
->  
-> diff --git a/drivers/block/zram/backend_lz4hc.c b/drivers/block/zram/backend_lz4hc.c
-> index e7ee3740219852f079d1e0866da6b213a3f3a583..1e09c93016264259c149e2913b2819571b56fab6 100644
-> --- a/drivers/block/zram/backend_lz4hc.c
-> +++ b/drivers/block/zram/backend_lz4hc.c
-> @@ -65,7 +65,7 @@ static int lz4hc_create(struct zcomp_params *params, struct zcomp_ctx *ctx)
->  		if (!zctx->mem)
->  			goto error;
->  	} else {
-> -		zctx->dstrm = kzalloc_obj(*zctx->dstrm);
-> +		zctx->dstrm = kzalloc(LZ4_MEM_DECOMPRESS, GFP_KERNEL);
->  		if (!zctx->dstrm)
->  			goto error;
+Precede each serialized file entry in a LUO file set KHO block set with
+struct kho_ser_hdr via DECLARE_KHO_SER so future per-file metadata
+features can append fields to struct luo_file_ser without breaking
+compatibility between adjacent kernels.
 
-Ditto, outdated zram code.
+Initialize file set block sets with kho_ser_size(luo_file_ser), initialize
+each entry feature header in luo_file_freeze(), and validate the incoming
+feature header in luo_file_deserialize_one() before accessing the struct
+luo_file_ser payload.
 
-My ask would be to not squash zram changes with lz4 changes, when (iff)
-possible.
+Signed-off-by: Tarun Sahu <tarunsahu@google.com>
+---
+ include/linux/kho/abi/luo.h  |  6 +++---
+ kernel/liveupdate/luo_file.c | 26 +++++++++++++++++++-------
+ 2 files changed, 22 insertions(+), 10 deletions(-)
+
+diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
+index bd19211c64e1..38b4658183a2 100644
+--- a/include/linux/kho/abi/luo.h
++++ b/include/linux/kho/abi/luo.h
+@@ -92,6 +92,8 @@ DECLARE_KHO_SER(luo_ser, 24, 0, 0);
+  * @compatible:  File handler compatible string.
+  * @data:        Private data
+  * @token:       User provided token for this file
++ *
++ * Preceded by &struct kho_ser_hdr.
+  */
+ struct luo_file_ser {
+ 	char compatible[LIVEUPDATE_HNDL_COMPAT_LENGTH];
+@@ -99,9 +101,7 @@ struct luo_file_ser {
+ 	u64 token;
+ };
+ 
+-static_assert(sizeof(struct luo_file_ser) == 64);
+-static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+-	      __alignof__(struct luo_file_ser) == 8);
++DECLARE_KHO_SER(luo_file_ser, 64, 0, 0);
+ 
+ /**
+  * struct luo_file_set_ser - Represents the serialized metadata for file set
+diff --git a/kernel/liveupdate/luo_file.c b/kernel/liveupdate/luo_file.c
+index 02d09a80d785..2da327f8bdae 100644
+--- a/kernel/liveupdate/luo_file.c
++++ b/kernel/liveupdate/luo_file.c
+@@ -486,10 +486,12 @@ int luo_file_freeze(struct luo_file_set *file_set,
+ 	kho_block_set_it_init(&it, &file_set->block_set);
+ 
+ 	list_for_each_entry(luo_file, &file_set->files_list, list) {
+-		struct luo_file_ser *file_ser = kho_block_set_it_reserve_entry(&it);
++		DECLARE_KHO_SER_HDR(luo_file_ser, *fhdr) =
++			kho_block_set_it_reserve_entry(&it);
++		struct luo_file_ser *file_ser;
+ 
+ 		/* This should not fail normally as blocks were pre-allocated */
+-		if (WARN_ON_ONCE(!file_ser)) {
++		if (WARN_ON_ONCE(!fhdr)) {
+ 			err = -ENOSPC;
+ 			goto err_unfreeze;
+ 		}
+@@ -502,6 +504,8 @@ int luo_file_freeze(struct luo_file_set *file_set,
+ 			goto err_unfreeze;
+ 		}
+ 
++		kho_ser_init(fhdr, luo_file_ser);
++		file_ser = kho_ser_payload(fhdr, luo_file_ser);
+ 		strscpy(file_ser->compatible, luo_file->fh->compatible,
+ 			sizeof(file_ser->compatible));
+ 		file_ser->data = luo_file->serialized_data;
+@@ -742,11 +746,19 @@ int luo_file_finish(struct luo_file_set *file_set)
+ }
+ 
+ static int luo_file_deserialize_one(struct luo_file_set *file_set,
+-				    struct luo_file_ser *ser)
++				    DECLARE_KHO_SER_HDR(luo_file_ser, *fhdr))
+ {
+ 	struct liveupdate_file_handler *fh;
+ 	bool handler_found = false;
++	struct luo_file_ser *ser;
+ 	struct luo_file *luo_file;
++	int err;
++
++	err = kho_ser_validate(fhdr, luo_file_ser);
++	if (err)
++		return err;
++
++	ser = kho_ser_payload(fhdr, luo_file_ser);
+ 
+ 	down_read(&luo_register_rwlock);
+ 	list_private_for_each_entry(fh, &luo_file_handler_list, list) {
+@@ -810,7 +822,7 @@ int luo_file_deserialize(struct luo_file_set *file_set,
+ 			 DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr))
+ {
+ 	struct luo_file_set_ser *file_set_ser;
+-	struct luo_file_ser *file_ser;
++	DECLARE_KHO_SER_HDR(luo_file_ser, *fhdr);
+ 	struct kho_block_set_it it;
+ 	int err;
+ 
+@@ -848,8 +860,8 @@ int luo_file_deserialize(struct luo_file_set *file_set,
+ 	 * reliably reset devices and reclaim memory.
+ 	 */
+ 	kho_block_set_it_init(&it, &file_set->block_set);
+-	while ((file_ser = kho_block_set_it_read_entry(&it))) {
+-		err = luo_file_deserialize_one(file_set, file_ser);
++	while ((fhdr = kho_block_set_it_read_entry(&it))) {
++		err = luo_file_deserialize_one(file_set, fhdr);
+ 		if (err)
+ 			goto err_destroy_blocks;
+ 		file_set->count++;
+@@ -883,7 +895,7 @@ int luo_file_deserialize(struct luo_file_set *file_set,
+ void luo_file_set_init(struct luo_file_set *file_set)
+ {
+ 	INIT_LIST_HEAD(&file_set->files_list);
+-	kho_block_set_init(&file_set->block_set, sizeof(struct luo_file_ser));
++	kho_block_set_init(&file_set->block_set, kho_ser_size(luo_file_ser));
+ }
+ 
+ void luo_file_set_destroy(struct luo_file_set *file_set)
+-- 
+2.56.0.506.g506a7eabc5-goog
+
 
