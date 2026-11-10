@@ -2,106 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C8E60A261D
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10DB360A2607
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mSQ9h/py;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=edt3XDD9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yvjuWoqe;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KKaAoDLQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=g5RQKUG5bh8bp1Y7KkAg3WudRjo1nNv/KFbkLN7VwaE=; b=mSQ9h/pyhuM35vgIIfe7+B054e
-	EyQpChHKBzCbWhoD6sFUBOEQHaWpo3LRpuBhEtsW7OlPi9KJX3xGI9EiaV6BFzzX637aVZtinYB0v
-	J68eTh17xTnlf5zbyuOg9IReDNFyhV40ZEqi3J99bsJF7mmGfdrHKvDhl/eC191ia9C2saq5VbfuN
-	Zn9Gq+639M7TxeG1mP62BuNzm0PsMbNmbWto4rttvlxwAVOk9nuFQqOXYyZWGnM+EjH6AoM669yLT
-	idn348cGKuzrSLKgjuYG0kMm7VncHMr8vMZfKdiAiI/ax4LD9Mq32Za2M7m7wS4uLKFN2Ufx47344
-	s+C6/66A==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=1JSKtyJeBKbXkGGW3NfSoidRzUvmtli6dOhv6QjYw5M=; b=yvjuWoqeKm/KmF
+	KqpNmPmeMRIP/7HX/hf6nn/lUOLaetMxHTXQL64WkTTtrmTYSuZ9gVIlkyZXZ8b7V1i8FVhUOHVMf
+	FuXfhQYEs7wjHzlIwPAJEUHEW9ay6B+LCyrwtVDA2ckVJF2f6xm6QUnrW/lczfx0G5M5KAv2qaR+0
+	5M369JWg77eQpHsKPJvjWFPbnwfox1NQgz+2ckkJJntI7SAMzv8GZ0fzABAepk3lfyKeDmEu0OP3V
+	DEwi1Crr3bixQsI683Ns5twHddtjNydjBE5vxM99Zg+tTEG7svZ8ZAzPf2h1qKVG387nnaXdeIM+9
+	/FjvEhWC3feRQRvSDZRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjFv-00000003TYb-3oA8;
-	Tue, 10 Nov 2026 10:39:11 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQjI9-00000003UFx-33zo;
+	Tue, 10 Nov 2026 10:41:29 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjFr-00000003TUb-0MVF;
-	Tue, 10 Nov 2026 10:39:07 +0000
+	id 1xQjI8-00000003UFo-1lVG;
+	Tue, 10 Nov 2026 10:41:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 26A9A6387C;
-	Tue, 10 Nov 2026 10:39:06 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794307145;
-	b=GoIImfyIRoYg7sTzLx6OdruXOmsi5q1bwxY52A79qC7zq7OHrTSom86lC+T+JdmJ4Rh6
-	 gAQRmbNRhZLaaoQ3sHARqvP31/LjBpzvLYp13SV/3tC+KMQPceHssjmuLJ55I1nHhVqHc
-	 Yk2yqeaSZ2ctYe0YJ5nWO2ovkvZjOIi2TsBpFbhdkLEUahoqUi2oYFg7UXYBH6JZzLuZe
-	 iJNMhO+SMLjdoqeljFYxLz+MNpeiNkfvqNUPeZfqB/IGX3BcGdMk2D/Y/1kECmkHz9tBe
-	 YSVNp9hhpNtO/bRtQMArerPiCGp32e69SWFf6hKesmKtLe9Nqkt4fTk8pp69O0UD35w==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794307145;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=g5RQKUG5bh8bp1Y7KkAg3WudRjo1nNv/KFbkLN7VwaE=;
-	b=vDX8HmLCV8D+wMO7U1WzZKfuoVuYo1ARfbx8POfj5BFSoFzaX14Y3Yi6B0B4c+UmJfGp
-	 izWyFwW5Y7AzKj4WCR4L7ROgIRgaYhgKvQd0NBSqGcd752RMxNO1YYEK9ZSeAxVh+oZnf
-	 58iwH8j1W5Y8OmhQrzcuPXuhIUjrxZ3HOodo6n9i1+UIy3G/v9UQ92Jd7UXW0B+kAIfHZ
-	 iNJcYfCD8Inz6h2JfA2UtfzX+26q4AMj9QMiY7+/8JUfYaJP1XFWQm+RlMO3O9WiPbOR3
-	 Zkbdatz19yEy3bR8Guk1UM/GTcBBhJIVVgCrTeMO40Jb0qiZvNAWvZAMUYC2wB4U9Fg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id D73591F008BC;
-	Tue, 10 Nov 2026 10:39:04 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 301AD40E14;
+	Tue, 10 Nov 2026 10:41:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD61E1F0089F;
+	Tue, 10 Nov 2026 10:41:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794307145;
-	bh=g5RQKUG5bh8bp1Y7KkAg3WudRjo1nNv/KFbkLN7VwaE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=edt3XDD9mNaeibOSvdmf4xo+pLavm+3qXiIiXpqa+5Ihm/vdh83E07bml/KApz+Kh
-	 LxsevU9KwRLea6mzmJrCU9Eq+Gvs5wka/I527E9/QECgvROZ27cPxODEZlqUQmWzSq
-	 EBBWSEbhXE5mLDuAcLbxGK1Bc8egVwkHdKd/pAm0wZWa2OK4c6g7YorfnOEX0b8i0r
-	 bnGdZeCeFyY8hDyF8J2G8/3yXmFK19a8HWsjzX3g4eDJUkgTYLGMfCjOH+G56tRmkY
-	 KzTeYh/EDDRjjrKW0dUadgjuz8mmH/EEhSS+dpbUNN1Uldbt6GOJelaw3J6KNd3ayD
-	 vLDmMb1kaIP/A==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 64B6F48AFA;
-	Tue, 10 Nov 2026 10:39:04 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 10:39:06 +0000
-Subject: [PATCH 3/3] arm64: dts: rockchip: Mark the Orange Pi 5/5B Type-C
- port self-powered
+	s=k20260515; t=1794307288;
+	bh=1JSKtyJeBKbXkGGW3NfSoidRzUvmtli6dOhv6QjYw5M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=KKaAoDLQblsfg/eXiGJP3JUJ9YUD4F8xzGF+0WunmkTv+sjD2MOjUuWEcM0/0A0Mr
+	 5z1erOsZmE1vTY9P4QCJ1bIwii8UFYwT/1mBUONKGPFyctYMlLYczbyC23+2TtmRGW
+	 h92sF1r4sWebrF84u/4K4foJNDcqPbQs+81j+mbDHUhHH+fGmelGrQl7CwgKacBSD0
+	 fYWp9bzrmKmf9QMVkW1MAvHH2Z1HyzYM0ct3EIHF6qSGkPRqE1gZ0wB72raRFz/40G
+	 J6QHn6GqrqbGXTqVgxFzFVGhyzNAXGq66STt1QhUIk661wVHmQmG+r8MHUSTiN30RN
+	 Lh8enkyahzXfw==
+Message-ID: <b1ebdcbe-2f2f-4fcd-8567-13e77fc2311b@kernel.org>
+Date: Tue, 10 Nov 2026 11:41:22 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-tcpm-attach-reboot-v1-3-7657cc1e2dca@gmail.com>
-References: <20261110-tcpm-attach-reboot-v1-0-7657cc1e2dca@gmail.com>
-In-Reply-To: <20261110-tcpm-attach-reboot-v1-0-7657cc1e2dca@gmail.com>
-To: Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794307143; l=1209;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=z+vxGhU01KVE5a3ZqBJ+uJfWrWfvjtfbECzmzBJv814=;
- b=xRGXBDxcq1rtQtvPBSmY6c9nPZGec9E/oqmuDrREyarhSKPghY6jUNc9pw5Z7FO5MVhqW8bgx
- x3+AsXJbZyeCCMfqsaVtE742F0t4NQQBol9+ZKjFUGtI6E1xkkfMeMb
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Describe the USB3 Type-A
+ connector on Orange Pi 5/5B
+To: aiyengar1990@gmail.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Alan Stern <stern@rowland.harvard.edu>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <20261110-usb-port-pairing-v1-0-9307e29d2ed2@gmail.com>
+ <20261110-usb-port-pairing-v1-4-9307e29d2ed2@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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
+In-Reply-To: <20261110-usb-port-pairing-v1-4-9307e29d2ed2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,48 +115,41 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On 10/11/2026 08:20, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> The upper Type-A port of the Orange Pi 5 and 5B has its USB 2.0 lines
+> on USB 2.0 host 1 (EHCI/OHCI) and its SuperSpeed lanes on the
+> SuperSpeed-only USB 3.0 host 2 (xHCI). The lower Type-A port is USB 2.0
+> only, on host 0.
+> 
+> Describe the upper port as a usb-a-connector linked to both
+> controllers, so that the USB core pairs the EHCI root hub port with the
+> xHCI SuperSpeed port. Without that, a USB 3 device plugged in at boot
+> is enumerated by the EHCI before the xHCI is up and stays at high
+> speed.
+> 
+> VBUS of the port is not switched (the vendor DT has it on an always-on
+> 5 V rail), so it is described as coming from vcc5v0_sys.
+> 
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
 
-The board is powered from its separate power-only USB-C input. The
-FUSB302 port's VBUS comes from vcc5v0_sys through a load switch, so the
-board never runs from this port's VBUS.
-
-Without self-powered, tcpm keeps Rp on CC during PORT_RESET (error
-recovery), because opening CC on a port-powered device would remove its
-own supply. With self-powered, the port opens CC for tErrorRecovery
-whenever it resets, including at boot. A partner left in a stale state
-by a warm reboot then sees a real detach.
-
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-5b.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-5b.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-5b.dtsi
-index 6e081bc06cfe..b621fc8638c7 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-5b.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-5b.dtsi
-@@ -117,6 +117,7 @@ usb_con: connector {
- 				<PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
- 			source-pdos =
- 				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			self-powered;
- 			try-power-role = "source";
- 
- 			ports {
-
--- 
-2.55.0
+DTS cannot be combined in this patchset and must be split. Don't mix
+patches from independent subsystems when you send something explicitly
+targeting only one subsystem.
+See also: Documentation/devicetree/bindings/submitting-patches.rst
 
 
+Best regards,
+Krzysztof
 
