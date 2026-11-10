@@ -2,71 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B0A606BAE4
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 02:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6F6606DA92
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 02:55:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WqxikWVS;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Qiit7JZW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mR5Widnz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cUAEMr8b
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
 	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GX6NMgzIRw89DK00cR/AHQm10bN7NFOig+LbXAxw8pE=; b=WqxikWVSbaN//E
-	1pRFl/59tRoislZ4pEqcKsQd+Ms4MWIVSZn6iXnDGod4cIaF0k8k8CPAu1dKsc0AkEj4xdkfpawIL
-	dNc4jOtitQrg/Fxf9bMzabVWUdYPAbZGhgP/8UjpOvDdVchUSa+5ib7SBn+jWQoL42Dm+cGgVEsCX
-	7EEOmIWpAMNnrIEnDmLzhqcAGr0Z3QkDf60Xi3/wMH1bweYjR0wb++7K2OUK45GttbdXS3ptSvwxA
-	sXCJpFIku7k7aBqdcgaokwCnSK+yD3+nmbUY1aSZzqX5Lovetg/AY3oi0si8lvK4yN+ryFGmVwoB5
-	nzV+HCUNjkIzfGf+w3Vw==;
+	List-Owner; bh=9vkjXGj8E1tCNlK6OgtPkP9eLc/ViU7DdLFLKuqN8to=; b=mR5WidnzIulYS+
+	cr2heauL1kOdH+5Prjnbx4HH8n3fSy1O2kvWI/7Qs1h9hUcyl59VPibmKQ/KjLmZ6XIZ6PSs+wkAT
+	gIvn6skDsAt8jstZUL53elk2yjd4N4J+M7vlGwCE/P0YZTw/pKhNHQVXf5FxxZdfQ6N6IaT9SaZK/
+	A8N26vXO4uvI/oOgtep8uASjMKEkn3TYIv6KJ3jNhYsZYZbAsQcxkk2LdDeOoBtyg1JfW3oM83XdD
+	d7kxWZ7ZSNASak8wnaKuP45uL5i9eQQ5Bj5+AmQP1Ban+l2GIWje3yE8+o759BytQV3GweBYh3ptn
+	e77JnOhHoN+8Qgnumgrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQc0v-00000002DEw-0BJg;
-	Tue, 10 Nov 2026 02:55:13 +0000
+	id 1xQc16-00000002DGt-0bod;
+	Tue, 10 Nov 2026 02:55:24 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQc0u-00000002DEq-1Qlc
+	id 1xQc0v-00000002DFG-2Ea7
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 02:55:12 +0000
+	Tue, 10 Nov 2026 02:55:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DB1A94581C;
-	Tue, 10 Nov 2026 02:55:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7CFD1F008A4;
-	Tue, 10 Nov 2026 02:55:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 4CA0D4607D;
+	Tue, 10 Nov 2026 02:55:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BFAF1F008A1;
+	Tue, 10 Nov 2026 02:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794279311;
-	bh=GX6NMgzIRw89DK00cR/AHQm10bN7NFOig+LbXAxw8pE=;
+	s=k20260515; t=1794279313;
+	bh=9vkjXGj8E1tCNlK6OgtPkP9eLc/ViU7DdLFLKuqN8to=;
 	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=Qiit7JZWphnyULcjmDZtQY1+3Ad1ZuI7Nrngu8wNHQfGz6824RHRLxsyvWbSoj1Gd
-	 NRhjRjWRi2aXENblbSiI2QR6Jn6eiVjtbxXnvu+bjYGpo9dIri/Pg+ek4pXJAHk7r4
-	 OUp1h8Ye1xhoeGFnOppGyZvHMvKvcZj/4cTE4wZDp9SCoyI4S9VbK4oLHCOw5ZwKhN
-	 bYUhpkQDPaIpXLehAr3EQrgYReSttWewDFtZwA/ZgQDmC4VVpFyvVeD4IYDgXCZUr4
-	 //asiNGRJjtektg93joQSxSpFpsBQ62rZ1n5xYVMYoI4I59NJxe3OiO1zNZU28TAGZ
-	 YRqSjQo9V4UbA==
+	b=cUAEMr8b64rh70D72PomBwr2MzTeqij9ATCHIUOQjtCMakmsEPqsJM0WwmXG4SyhW
+	 76okAytmrvxTZ5H1/sbDr2i+KgoJyCHoamNjilRivfJt+RbbBvdIS8jff+2e/vF6S0
+	 +BJw2XZavkKKfC6zTcMWq2iUGAbN57m1untgackBKVzNugZQUMhQqUZb9S0ShLF8LX
+	 k88qaIGyJsyj1lYsO0CKNzGFukK8ZV6oEwkysiNx15pnWDCyHAaaKOyu6a8Ns6xpBm
+	 dtFG21iX4HH4rHatekH06i19kwG1/UHR2HqMPpd8xj705XJCGIv3qpjfXyPw8gUX/A
+	 Abj5vR7+p+4KQ==
 Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 9B240391AFCB;
-	Tue, 10 Nov 2026 02:55:11 +0000 (UTC)
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 21110391AFCB;
+	Tue, 10 Nov 2026 02:55:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] net: dma: use dmaengine_desc_set_callback()
+Subject: Re: [PATCH net] net: stmmac: keep est_lock across PTP clock
+ adjustment
 From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179427931017.3612825.1887357709243075778.git-patchwork-notify@kernel.org>
-Date: Tue, 10 Nov 2026 02:55:10 +0000
-References: <20261102191922.4044912-1-Frank.Li@oss.nxp.com>
-In-Reply-To: <20261102191922.4044912-1-Frank.Li@oss.nxp.com>
-To: Frank Li <Frank.Li@oss.nxp.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, wens@kernel.org,
- jernej.skrabec@gmail.com, samuel@sholland.org, radhey.shyam.pandey@amd.com,
- michal.simek@amd.com, stephan@gerhold.net, loic.poulain@oss.qualcomm.com,
- ryazanov.s.a@gmail.com, johannes@sipsolutions.net, Frank.Li@nxp.com,
- andre.przywara@arm.com, liyouhong@kylinos.cn, joe@dama.to, arnd@arndb.de,
- phucduc.bui@gmail.com, yiconghui@gmail.com, horms@kernel.org,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, vkoul@kernel.org
+Message-Id: <179427931167.3612825.9963746260177679514.git-patchwork-notify@kernel.org>
+Date: Tue, 10 Nov 2026 02:55:11 +0000
+References: <20261102-stmmac-ptp-est-lock-v1-1-76fbc0cb230d@oss.qualcomm.com>
+In-Reply-To: <20261102-stmmac-ptp-est-lock-v1-1-76fbc0cb230d@oss.qualcomm.com>
+To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+ richardcochran@gmail.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,21 +85,21 @@ Hello:
 This patch was applied to netdev/net-next.git (main)
 by Jakub Kicinski <kuba@kernel.org>:
 
-On Mon,  2 Nov 2026 14:19:16 -0500 you wrote:
-> From: Frank Li <Frank.Li@nxp.com>
+On Mon, 02 Nov 2026 18:37:56 +0100 you wrote:
+> stmmac_adjust_time() disables EST, drops est_lock to step the PTP clock,
+> and then reacquires the lock to reprogram EST using a base time computed
+> from the new clock value.
 > 
-> Replace open-coded assignments to callback and callback_param fields
-> of struct dma_async_tx_descriptor with calls to the
-> dmaengine_desc_set_callback() helper across net drivers.
-> 
-> No functional change intended. Prepare to make struct
-> dma_async_tx_descriptor private to the DMA engine.
+> That leaves a window where a concurrent tc_taprio_configure() can program
+> EST enabled with a base time derived from the pre-step clock.  The gate
+> schedule then runs across the PTP step with a stale base time until
+> stmmac_adjust_time() reprograms it.
 > 
 > [...]
 
 Here is the summary with links:
-  - net: dma: use dmaengine_desc_set_callback()
-    https://git.kernel.org/netdev/net-next/c/e281e85235cf
+  - [net] net: stmmac: keep est_lock across PTP clock adjustment
+    https://git.kernel.org/netdev/net-next/c/b0816917a4f7
 
 You are awesome, thank you!
 -- 
