@@ -2,83 +2,119 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0E160A261B
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 20:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CFF606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JaC8NJUm;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=mmGND9i6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AqxFdIpy;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=e0evrTXU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wZODk0x3yqzJBCDWpOPES/A5BYp24Qrx21fQgua+nqE=; b=JaC8NJUmlyjUi9
-	xRlHHDV0txBAWNh4uglOH5YSvY/yVRxH0BcDeQM9hllyR26LFC3hS/vipf1aoubKsemyjs1RGrNNQ
-	dHXLk+UwJ0fPVaQp+yJbQMg6SyxizOhzXIWP/T0RIejt3rRsSFtjo0g/7ozLxTzGzy0PWGjRg5/W1
-	Jq9xBatSRyFtyMGfbq7GusvCOTdbsgMlB8zrrdQ4MfSG3kMOlMh+j5K6i7rA0w4eBtVzD/kX/WEPL
-	w/cZn5+GYC3KFVqsk3tj8fx4AaIykruliSx+SXrKy8AGodABWKmQzglsNFsulAMMoZFzY6JqOWGQ7
-	YIb6cDS+X9dMAvaGbZSw==;
+	List-Owner; bh=r0F/G1/cCd6YtCyJox781fOcwZWIec41wc+ColCaqik=; b=AqxFdIpy+UQi75
+	n/PI+s77Uq7zJuJ0YnibagzBOhPWI/qTgBt19TFdYQZ8z2DBMBzFWx1cDsAvfMka/MNHkBfQu9kzs
+	KXCsIp8wPqi4eaVH2EAV0yVgbYU6YgS6DNbkk5pSxpdHP9EuHbcL2vtaFiRXE28VZsKtJFIZ8no4a
+	g4vECT83YL9mUIPRtiM8czxyQUvWCfs2Cp5F04a3S0qJieeciuoC1fv8D2ANhYS0mzzcaiW7xTQDc
+	m9LTHqWTSv92NIPI0JLdJU1FxsOI4meJhR7ZKBQRcfMpsGJPHv4S8YzONAXu1RLFAEudRLXgGPzi5
+	Ef4+OcQGzE4sNlrghkVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsuF-000000051Ri-04PJ;
-	Tue, 10 Nov 2026 20:57:27 +0000
-Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
+	id 1xQt1v-000000051zt-3bUb;
+	Tue, 10 Nov 2026 21:05:23 +0000
+Received: from mail-oo1-xc2a.google.com ([2607:f8b0:4864:20::c2a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsu5-000000051NZ-1TfA
+	id 1xQt1t-000000051zW-0LIO
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 20:57:19 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
-	Reply-To:Content-ID:Content-Description;
-	bh=wZODk0x3yqzJBCDWpOPES/A5BYp24Qrx21fQgua+nqE=; t=1794344237; x=1795553837; 
-	b=mmGND9i6wgr25Rgt7uBrnNMxVxCmVuIfvitRdqe7nFu6RnzryBNkeq10+5nBSNgRTChR6LEsfnl
-	Xd+2AIGyAiipmuufApkfvHfoZJlvqdImGUP5o07sYhvP3/l7CnNI9qjHnkAWVSo5J+jA2emza6pi6
-	m2hYGXL/6YsKHCQndReGK2qCyRGvDtBqkDS6QHoQhWjxFhXZXynGb31tMNRcPciz/Dj071bQV8QVq
-	uSYYWdmKom5OZTohUTVW/cN3CATmaBhgCf+nBZXHMu41t7v8WzqMVQDvkQY/0TJ4+1isvlq6gsBQ9
-	3zSmBXPAJgTlwq9Ieu8h/Ju1G6bhU3MVmXJQ==;
-From: Andreas Kemnade <andreas@kemnade.info>
-Date: Tue, 10 Nov 2026 21:56:05 +0100
-Subject: [PATCH v2 3/3] ARM: OMAP2+: remove i2c from OMAP3 hwmods list
+	Tue, 10 Nov 2026 21:05:22 +0000
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-716ea2598eeso1450831eaf.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:05:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1794344719; x=1794949519; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=r0F/G1/cCd6YtCyJox781fOcwZWIec41wc+ColCaqik=;
+        b=e0evrTXUK7vLs3biKO7Azkou5MgKFpm8DDw7aUzUd025viNwAIHzN8V7kbqZkBa/Qe
+         N46Gdpm3e9XWcGetdtlGHWhMWCodTdJ+yr5vdIWIYzARCEimmJLiKZgu1g2QJWyEMwqh
+         NJ34sVT4smhXyx8FzD6+EUo562UwW6eKaUdX4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794344719; x=1794949519;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=r0F/G1/cCd6YtCyJox781fOcwZWIec41wc+ColCaqik=;
+        b=nhb4xv+DaYfYh0llX/H3+Ugd5Q5LbSbRKLBjkrraJtKQn3aV3V8pCkI7cTOXSXAgpg
+         kHGCw3hVOFC6keVehviGX56M+C4SXuVShxwCDDQ8XKCavLwq8eJU8S6oyVD+PhhHpV5o
+         O5y0+XzxwIDKo7Zdkz589URcC0LzO+Z94rjGelchznqp1SrFFXz+Je3YXX9PMmLGt15d
+         emhTvif7diMn8lZKUaycYX8bbcH30CHWKVNb7oEbBHlqez2wjTun3Em3FFNL3hR+qDtz
+         H/SZHcqvxG6ZdUEx1Eapj7Ut9nrRe3dA6et5pXJYp9yaPiglq6PvZkbSwcNXofhVFx3x
+         1Psg==
+X-Forwarded-Encrypted: i=1; AL+hErF7rlvFaUUF0wDde2pFZ5acocihpC148VGv5pIlH9bJr2w9+jUVqvlS2wHlj7vYA/JxNud+0ouS2sCmwnVNrIfw@lists.infradead.org
+X-Gm-Message-State: APuU4Z9JA+vWXqkbclU5u9SdcaqDEVWA41S8jDCkNOkS/cuay7rA5nNM
+	YnLML+3ceVVgeGVU9CSE7yT12QY44zm3lWM/OXKp3cqpFiReDSD+0kA8AEQhrni61Q==
+X-Gm-Gg: AYBFou0HWYOQecXd0c45ra2/BSbySyocyc86oZ2JI+XVNoHfSlkK3mfv8hpijiJ1zkg
+	lJgnVoXsGVUXx7yXkltxmsL14/H9mjJE97WDomnUBgsfsCfBXBU0+UeyQ7ryuB4lys1c7lb+77v
+	1E85r2HbYma3XTs/rqoZSP5pnpbmD3quS10L+p3w4qx/Ui2EFZBDoWiWvXyZJNHE5YvTyyJRuIF
+	wZxAG+d+kfRbAcmGchUG3IdhF8EANk8Jg7IVniFqTxWXElRvTB+MfIk3bi7eMncIlwFVEn9204Z
+	7ro3enXQxhyJqahFA7H6jmzDa6IEE3H1y/Xz+yTqRG8jOCXf+7EujEdoTZpSz0mGBv6yHX0qRJI
+	1XWgTVL+LC8e7+eHJMwj9/DAXwjkLKs86uOubfLmCw55y0lVI84rTW7h750urmQiRW1pr9rGzmK
+	HEh955cihUstT5vn5eiE7ahSELs5GPeZ9K3JOwWU2hzelyHMdc/Oe6iEGZisLcfTap0sPtPGxCl
+	S24Te1NEPTYYIVWJ8BfxVydYViEh2YvgADBSW/PnV6db2TicfYpG6i1sMH8JNFBPS4ZaQJcbMXU
+	zwbfSxV39CKfGdqYtQyMrJi+6r07h7gA0BTBAUN28oT1TjX6iq/3aj9wgjTqVrc66sy55eeqYJW
+	GFVBiuicT4uqLeMKAgmuqaxhunBeu+xqQG1FLeA==
+X-Received: by 2002:a05:6820:c44a:20b0:6d9:979e:22ad with SMTP id 006d021491bc7-71917934e44mr119108eaf.54.1794344719257;
+        Tue, 10 Nov 2026 13:05:19 -0800 (PST)
+Received: from rrangel.c.googlers.com.com (57.128.170.34.bc.googleusercontent.com. [34.170.128.57])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-860dcb62443sm2856553a34.6.2026.11.10.13.05.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 13:05:17 -0800 (PST)
+From: Raul E Rangel <rrangel@chromium.org>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Raul E Rangel <rrangel@chromium.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	=?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Richard Genoud <richard.genoud@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
+	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Maciej W. Rozycki" <macro@orcam.me.uk>,
+	Timur Tabi <timur@kernel.org>,
+	Peter Ujfalusi <peter.ujfalusi@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v11 7/8] serial: 8250: retire canceled RX DMA before reusing the receive buffer
+Date: Tue, 10 Nov 2026 14:05:14 -0700
+Message-ID: <20261110210514.1091741-1-rrangel@chromium.org>
+X-Mailer: git-send-email 2.56.0.212.g129ede20d9-goog
+In-Reply-To: <20261109-submit-serial-8250-dma-cancel-v1-v11-7-6364edca63d6@gmail.com>
+References: <20261109-submit-serial-8250-dma-cancel-v1-v11-0-6364edca63d6@gmail.com> <20261109-submit-serial-8250-dma-cancel-v1-v11-7-6364edca63d6@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-i2c-sysc-v2-3-490cda69e350@kemnade.info>
-References: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
-In-Reply-To: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
- Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Thomas Richard <thomas.richard@bootlin.com>, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Paul Walmsley <paul@pwsan.com>, Russell King <linux@armlinux.org.uk>
-Cc: Sicelo <absicsz@gmail.com>, linux-omap@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Andreas Kemnade <andreas@kemnade.info>
-X-Mailer: b4 0.17-dev-e5168
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4470; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=dJ7m5yFM4nPU3HLiIjt0TUzuu0qUiJjWRTDLZhcz+GY=;
- b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBq84UIP8HhrdyMxF/4yM8sSKbSZgeAop7ENCA7i
- keQe06z13aJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCavOFCAAKCRCEYUX6QCjc
- 8dLCD/98X/tUcqTuGQJMv0QVoHfI/hFz6Y13KG3eognjaidL3WMJzZU2CPmp8b+b7bN49xJnXce
- pGn01HRM8EJyKX8mbcvulT4ZKfGy5T+tAtC6UeSdiXlcfkzVQCR4nms3m6J/DrDI0R9QVwFrQiB
- jPf1EUmMQEsHzpFNqDNOs8RfXfPrwo31lIJF2nJWhttDjA/k7JHJN7sFTsYryrJc6vlrpT33xte
- j8IkbBQ6zhI6+ZStsFdKe2E2q3QtQuBSW9GMr7w8jKvnmpgyXbbJ6AhucDAYTZmPGH/E232gQoW
- oRHomS9cgvLn0M7MBkZwhhUxs4Cgx4HI991Il7dpLNB10Qnsl+JqbppQLdP6aIp5Hh0eFGkjd9Z
- Wuv5zK4HF4qjwH5Xs67qzLK42m9c2Fs+2YhhaGL8m5ePeHG5SLku5W34hb/UWbnpHsme14byl1J
- Oycg6akZBfF8J7Jilvqiu2g7MBjkCCwRy1pWCIxq52n1AE2MKzQyQGg9gQfBeIFEWd90MKmQNgt
- iCKgoy+z8fUuG8wmu8lvtil8D5jHCrgtkxiIMfxsznK2KeW2Ms3mLA699ZbJlAEFJnTWbJAJhx/
- vUL9kE8Yhu71FhbDJsPsfFrhAeer3Hn4VhJ3RkI57/UpZOAa+wtbZ0tFSOajH57L10IKwYduL88
- JpX2omp9pdbiQPg==
-X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_125717_402462_46A26E80 
-X-CRM114-Status: GOOD (  11.10  )
+X-CRM114-CacheID: sfid-20261110_130521_157393_D6DE421B 
+X-CRM114-Status: GOOD (  11.20  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,174 +126,24 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Not need anymore due to ti-sysc transition, so clean up here.
+On Mon, Nov 09, 2026 at 09:00:22PM -0700, James Hilliard wrote:
+> After one second of unsuccessful pause retries, stop the transfer with
+> dmaengine_terminate_sync() outside the port lock. An indefinite wait could
+> otherwise leave a request/response peer waiting for data that is stuck in
+> a partial DMA buffer. Report that recovery discards the pending payload:
+> without a stable residue it cannot safely be copied. Keep rx_running,
+> rx_pause_pending and rx_terminating set until termination has stopped DMA
+> and drained its callbacks. Then restore receive handling and allow another
+> DMA descriptor, without latching a permanent PIO fallback for a pause
+> timeout. This trades the stalled transfer's data for continued reception.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/mach-omap2/omap_hwmod_3xxx_data.c | 112 -----------------------------
- 1 file changed, 112 deletions(-)
-
-diff --git a/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c b/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
-index 5cbdf58ad59f7..022019ff4a398 100644
---- a/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
-+++ b/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
-@@ -299,18 +299,6 @@ static struct omap_hwmod_class_sysconfig omap3xxx_wd_timer_sysc = {
- 	.sysc_fields    = &omap_hwmod_sysc_type1,
- };
- 
--/* I2C common */
--static struct omap_hwmod_class_sysconfig i2c_sysc = {
--	.rev_offs	= 0x00,
--	.sysc_offs	= 0x20,
--	.syss_offs	= 0x10,
--	.sysc_flags	= (SYSC_HAS_CLOCKACTIVITY | SYSC_HAS_SIDLEMODE |
--			   SYSC_HAS_ENAWAKEUP | SYSC_HAS_SOFTRESET |
--			   SYSC_HAS_AUTOIDLE | SYSS_HAS_RESET_STATUS),
--	.idlemodes	= (SIDLE_FORCE | SIDLE_NO | SIDLE_SMART),
--	.sysc_fields    = &omap_hwmod_sysc_type1,
--};
--
- static struct omap_hwmod_class omap3xxx_wd_timer_hwmod_class = {
- 	.name		= "wd_timer",
- 	.sysc		= &omap3xxx_wd_timer_sysc,
-@@ -431,12 +419,6 @@ static struct omap_hwmod am35xx_uart4_hwmod = {
- 	.class		= &omap2_uart_class,
- };
- 
--static struct omap_hwmod_class i2c_class = {
--	.name	= "i2c",
--	.sysc	= &i2c_sysc,
--	.reset	= &omap_i2c_reset,
--};
--
- /* dss */
- static struct omap_hwmod_opt_clk dss_opt_clks[] = {
- 	/*
-@@ -592,51 +574,6 @@ static struct omap_hwmod omap3xxx_dss_venc_hwmod = {
- 	.flags		= HWMOD_NO_IDLEST,
- };
- 
--/* I2C1 */
--static struct omap_hwmod omap3xxx_i2c1_hwmod = {
--	.name		= "i2c1",
--	.flags		= HWMOD_16BIT_REG | HWMOD_SET_DEFAULT_CLOCKACT,
--	.main_clk	= "i2c1_fck",
--	.prcm		= {
--		.omap2 = {
--			.module_offs = CORE_MOD,
--			.idlest_reg_id = 1,
--			.idlest_idle_bit = OMAP3430_ST_I2C1_SHIFT,
--		},
--	},
--	.class		= &i2c_class,
--};
--
--/* I2C2 */
--static struct omap_hwmod omap3xxx_i2c2_hwmod = {
--	.name		= "i2c2",
--	.flags		= HWMOD_16BIT_REG | HWMOD_SET_DEFAULT_CLOCKACT,
--	.main_clk	= "i2c2_fck",
--	.prcm		= {
--		.omap2 = {
--			.module_offs = CORE_MOD,
--			.idlest_reg_id = 1,
--			.idlest_idle_bit = OMAP3430_ST_I2C2_SHIFT,
--		},
--	},
--	.class		= &i2c_class,
--};
--
--/* I2C3 */
--static struct omap_hwmod omap3xxx_i2c3_hwmod = {
--	.name		= "i2c3",
--	.flags		= HWMOD_16BIT_REG | HWMOD_SET_DEFAULT_CLOCKACT,
--	.main_clk	= "i2c3_fck",
--	.prcm		= {
--		.omap2 = {
--			.module_offs = CORE_MOD,
--			.idlest_reg_id = 1,
--			.idlest_idle_bit = OMAP3430_ST_I2C3_SHIFT,
--		},
--	},
--	.class		= &i2c_class,
--};
--
- /*
-  * 'gpio' class
-  * general purpose io module
-@@ -1605,52 +1542,6 @@ static struct omap_hwmod_ocp_if am35xx_l4_core__uart4 = {
- 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
- };
- 
--/* L4 CORE -> I2C1 interface */
--static struct omap_hwmod_ocp_if omap3_l4_core__i2c1 = {
--	.master		= &omap3xxx_l4_core_hwmod,
--	.slave		= &omap3xxx_i2c1_hwmod,
--	.clk		= "i2c1_ick",
--	.fw = {
--		.omap2 = {
--			.l4_fw_region  = OMAP3_L4_CORE_FW_I2C1_REGION,
--			.l4_prot_group = 7,
--			.flags	= OMAP_FIREWALL_L4,
--		},
--	},
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* L4 CORE -> I2C2 interface */
--static struct omap_hwmod_ocp_if omap3_l4_core__i2c2 = {
--	.master		= &omap3xxx_l4_core_hwmod,
--	.slave		= &omap3xxx_i2c2_hwmod,
--	.clk		= "i2c2_ick",
--	.fw = {
--		.omap2 = {
--			.l4_fw_region  = OMAP3_L4_CORE_FW_I2C2_REGION,
--			.l4_prot_group = 7,
--			.flags = OMAP_FIREWALL_L4,
--		},
--	},
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
--/* L4 CORE -> I2C3 interface */
--
--static struct omap_hwmod_ocp_if omap3_l4_core__i2c3 = {
--	.master		= &omap3xxx_l4_core_hwmod,
--	.slave		= &omap3xxx_i2c3_hwmod,
--	.clk		= "i2c3_ick",
--	.fw = {
--		.omap2 = {
--			.l4_fw_region  = OMAP3_L4_CORE_FW_I2C3_REGION,
--			.l4_prot_group = 7,
--			.flags = OMAP_FIREWALL_L4,
--		},
--	},
--	.user		= OCP_USER_MPU | OCP_USER_SDMA,
--};
--
- /* L4 CORE -> SR1 interface */
- static struct omap_hwmod_ocp_if omap34xx_l4_core__sr1 = {
- 	.master		= &omap3xxx_l4_core_hwmod,
-@@ -2300,9 +2191,6 @@ static struct omap_hwmod_ocp_if *omap3xxx_hwmod_ocp_ifs[] __initdata = {
- 	&omap3_l4_core__uart1,
- 	&omap3_l4_core__uart2,
- 	&omap3_l4_per__uart3,
--	&omap3_l4_core__i2c1,
--	&omap3_l4_core__i2c2,
--	&omap3_l4_core__i2c3,
- 	&omap3xxx_l4_wkup__l4_sec,
- 	&omap3xxx_l4_per__timer3,
- 	&omap3xxx_l4_per__timer4,
-
--- 
-2.47.3
-
+Reviewed-by: Raul E Rangel <rrangel@chromium.org>
 
