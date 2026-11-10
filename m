@@ -2,121 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB5FD606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:50:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BD860A3802
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GG5p8Xyi;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=nCMbyqr4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ou8daOeW;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=FRVm5ei7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=D3u20IW39Ayj138ZJ7povoBycZBaxSeSoBrzGBgSB34=; b=GG5p8Xyin3IAiT
-	tj8qVlAuxPPVtnTyfPt0/O7Miy5GIephO/s9p0Txu3YstUEB42ZLbXMUHWCCaqOXCSGTIFlUXmQVe
-	PK7362u5s3Ru8J6balT8lZN1pmEF0yBQsWmLHqMwpQvBJgQoJj5JBUaUlFP2sgab9RQJM0T74ZVEW
-	kCjjqylexeOYF4Ep63lps7NPkZfl7+ApDmcp9OSB43lZwr6f3RnK74FwzeERkNKjT/K58jfonvp89
-	Zrz7kfQknvZFd5mbp9hZV9WDKLSt8bkxYfVzUQmb8GG1fbafBXNSmevUpPxBXh/ldvMnKnKuKk8aP
-	bDPpKmBTk5ymmXIYll9Q==;
+	List-Owner; bh=7+a66nuJAxZv2NLoN6sl/H/HIeT9eO6TiCDIQQ0skPA=; b=Ou8daOeWQCLNJd
+	Y77MSjJ+GR0HldbyegJ2BkIQbYLcsmOosywRstYo9jHU0wRDAx0XD1uAySux6Wh7A3ZnMJhta+S1h
+	njGCD9dcnGq7KluszvaQdWfPdgLOaFyNfxNzbfTZy1ZHNNDjN4xkx/YVEg5KH1wpkD1ruJfj1hQr1
+	kw2vGfcUA3HIahGV8+nXpnf3RNhB4M1eBrBv1wZnd2YLw9b62UbLma+Aoha65cNF0DzBSfjG1Bhp9
+	1x7zSO60/cPR0Cl2iOVjEn+hTnEZY0wt7JcWDubLJexJ2x+WJ1q+u68wdjDWIT5+9+oP0rDVGPxAa
+	gnH/2b09L9DQxa+t/Mrg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtjq-000000055OQ-1jqn;
-	Tue, 10 Nov 2026 21:50:46 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1xQtop-000000055s1-07OU;
+	Tue, 10 Nov 2026 21:55:55 +0000
+Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtjn-000000055Nx-1KV9
+	id 1xQtoj-000000055oX-1B6U
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 21:50:45 +0000
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c3f04e0e65fso369978766b.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:50:41 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794347440; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Epl6rztarkglZGILqyib6CB5E+IaBO2z8vX1jocUyziLjXu7cz6JA+DhGTpV0hm3ft
-         QF10QL8vHoMUqzpPw3lR8LV+gpz5de6y8lDH3nzPhY/LUN66/Twkp8RXC40YIJHwyv9R
-         xZC/zu9FNcgsSYAZzVynypu3aJzEiBzoUpO8kOPNE3t6sjxm3yRKtzJrG4A3wcxyiiKJ
-         VIM6bY1D/CxfFJc3dy0LBX6Vs7R8lgT41bv6EtGU4dHh1Qt2p2eeqB2annDbuZb+wpyr
-         ZcZ5GteNbZvDR+PcOgm5N+IeODaO8YF6++gY+Znq7CNkB8LofWQU8uk9zhNUdES9mpFn
-         uTXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=D3u20IW39Ayj138ZJ7povoBycZBaxSeSoBrzGBgSB34=;
-        fh=Un3kJv5h3FEzG8kORaVKZ9xHAT8dDHjGya8HvSZ50c8=;
-        b=cQ8ijyqfnv+UoVFCWan9jvTrCcxHIN4jik8WCigYlFWun1GIP5T+bV7+l/hjrlFEv5
-         izqsLGnv3n0wLXWTvU9krXCdm54EhXez9eeRZB0HtfGLaZ/wxr/Ch8jt5ssFCThE524+
-         xkiO9042sN2ftilzHMSfN7V3Xm040SFXyvNe3UJWxq2oQMcUn0lzq4U3aviZB7lTLfLg
-         BtdoBJPWuqzT5YRXxZNHxIwwo8UT3OAD9dsIsl3DhFd1jJpk4R4id0Fh1Xxdj9P7Dlo8
-         WcxsMOmI/a+Z6vZayBnf8MsBJrFt6CK0HT4YyMnYRjMIZZWgYcyRyff9VubXrXKz0AZN
-         N/sw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 10 Nov 2026 21:55:51 +0000
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so1699621f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:55:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794347440; x=1794952240; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+        d=baylibre.com; s=google; t=1794347747; x=1794952547; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=D3u20IW39Ayj138ZJ7povoBycZBaxSeSoBrzGBgSB34=;
-        b=nCMbyqr4zCok2Gvg3AckgSNjUweCmAq0rNJlkVuiFiSAo1pntIu96+nL5V/Rtqb80h
-         Xw+fE2xPYTil2x9pSSx12rtbwnxqHzrOHbgvHDMkFjMx3v4qVyziNkXgM7Hg2Vu2jTge
-         WTnffzE5B4lwEkPzqS0XoNz3Eql32AgsNAPUn5mzHskXWp6Go4sMLUOVVrLQ+V71HTZG
-         MMzBoMKOCr/+6Dy5rhFOqBhuwb1GIZhbPQTulYQX4V9QryYkJ8064yy1t9simqPLqXVg
-         IN2nlpV+u2q810y+wmvst0qPshyLZODyp4AA9cCJbjodfCsMPrrN1GHeGuykivSipEe2
-         ooVA==
+        bh=7+a66nuJAxZv2NLoN6sl/H/HIeT9eO6TiCDIQQ0skPA=;
+        b=FRVm5ei7e6zMWjci3X8t73aayh3+GoVT1YcBpDa8ucn5g/3+QJWRck0uqkmpIMUV+H
+         KPWyn6EnHwCoATDk7PoHslQSuOA6ztWDcnR1UebuhusmKa3MFCYBbwB7057uu4EFDSbQ
+         kTpqbX3QQKKMJCeMYFunP2O4NCWNt/bdH786dGP/j1EGgKB3hgaBit1/dP2fEDHIF+ZZ
+         jfmJkhtUKknMniN9/EIQ42lvCuJhmAhRkgaC8d1zS0C9et/PM0zHNRCT0zwqF8M9vDTM
+         MfFxvSbkpyOBEinAUfl0P1V5R8fcmYXm64n4ON8I+1JG3EmBoGDPTLXOwlo7eeBEj4l/
+         VgsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794347440; x=1794952240;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1794347747; x=1794952547;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=D3u20IW39Ayj138ZJ7povoBycZBaxSeSoBrzGBgSB34=;
-        b=lM7NJxpXq6GRlJXBVKNCGOAtYKSgclknhUZ7lXG8Ox4PF+FhCuFyU7YocZvT0nf7rT
-         NZE6dT4oNm04HLf7UA8h7VZTFWxsv7uLBucb/7JuRgLpRr6zoSpAuBetvpC4UHFUKKrA
-         UYpcyT92yJpWH6nqLzKyORjRp9aerCLHJwYTmR187OaGzdZkjCBQ3xj4ehqRv4gTzGvL
-         9i0l2uGjTHxfno/EJQOkpPqaPM7GyrvmVHlk1Bkum/qHbA/WhfZmHpywNN3mg8KnAWn+
-         BV0zXtm1nePMMJD/nWWMi0Gjit1VLyASFd58fNb+wJKHm5pYadf+losYqEtRIIUWMaKA
-         5z1w==
-X-Forwarded-Encrypted: i=1; AL+hErEV2srmncZET5CsiPd/9hwOiuZA38zFEgmX5r4CdOdMnJOXPlSibKP2fP2m4/SiVmPovJNS2hhy35P1yabyEpfo@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Ywj40DrJ381v5U8+rQupSHBsORaEYU1/mKA8UNkWVKWzU0va8
-	qZWT5ynWI8O9D1iAipe51mQJANIHOeDt6f0+HRlykuz099p+wzvUhCYJ6OzE4vdBRqSk2XyEK6j
-	A3yc9Ia0p4DlVroYWU2bWtWqIOwuCyhupbLyPuIS1
-X-Gm-Gg: AYBFou3MqhSWxfUr21kvN6g5pACMBpU81fk0CP8s62Sb1yRZwaxUlBJMRjp6ph9QZDM
-	xFQrHWk0RRHEEr7E7qpNOeJgZtL2aF9PfqpIoiFK2QTk0IuDD1VvoCpOOk/InRRATDnCGgwe3JS
-	CaP1jIyzRZPNuLI1Yk6/VIOlyq4pgPIBkA3QJYraPzYSuO0H/OGpiE0NvAcsyR77wU6P9UTHrW6
-	2EKRxH8vri+t8dJtJJ7W5IuR/BcZgoZFzKKTAqwOzN++Sw/oL5WokmRe2p3Pzoekiw58W0V/QcY
-	6McH15QntkPx1tlf61OSjI4bDPbkd3+1QrzjXjbh7ijaxhA6izdZgGdfNUobPtxW9klgtYVCWXh
-	VzkKa2HpW+BB4Xk4AJzpCL8Bk+rRDZi2TODwMbqS+YYTMn/oYJDc9p1H/vxnKSlVNAzYGwejcPb
-	OBAoxWjq/n44h4bJWbtoHcwJ6/2je1mfT+xFOp1ph4j5HvLelMYkzP9dpQKDOCPOZ4/Ky5tNfxu
-	qVYEB3nd/KwcJNcfr4/17an108UAA==
-X-Received: by 2002:a17:907:a805:b0:c40:36ca:9d1b with SMTP id
- a640c23a62f3a-c5066d6ae19mr29991866b.40.1794347439526; Tue, 10 Nov 2026
- 13:50:39 -0800 (PST)
+        bh=7+a66nuJAxZv2NLoN6sl/H/HIeT9eO6TiCDIQQ0skPA=;
+        b=yat3zH9UulGeFlo17xqd4V3YobfgvhioVKX7O3dCu0Qgf81fpGKaU48EUxNQX+n8ut
+         KcgT/KCFJVtFFQ2tjZmtdcla43STeflTXbRKRXbsTxbElKdh8LOr7a0FKBcLS3Ew1d7p
+         f/tk5giGvzTfWjTe22Kl77FOaQJEFRu7UNsFDqJoXg+lxn1be8WYXC/HUVFzzjD587Dr
+         V80BQbiA64Gva3oACkUnOgy1aFgGDFwc3EFNDScnxaUmNyunwd4F3l9Y8bBUDZpuQfF6
+         x2WerxUmvPPitJZK69wgiSEgRMvLqeng3rnPbsXTFvFVGcBobehTgfbjg0bV4aLXj4DH
+         CKYQ==
+X-Forwarded-Encrypted: i=1; AL+hErEAVtOwv7IrkObYU8fuTNW7G+F8B3yBLhzP5bVCCX0DhHhmO5b/6k+/ATfjyl9A99DXAsCDZ/Wzfmd5W8jTMQT1@lists.infradead.org
+X-Gm-Message-State: APuU4Z9vSx1x65/3fMoghjWEmKuIgyzmXkSmqMbgviecpxkXi/PINwQi
+	ouxgZEBt1J2diIkzc8HNXSrJvQv7PCAVHG0xBXBRj7UZevTfnY6RvFetUUrK0hNY1SA=
+X-Gm-Gg: AYBFou2hvZntBsnaRImxT/MWPIRsWT68lhYrN5qFXTOwAraYIduR+Kbm9CDAOSmk5UP
+	IbyIV8/6XYZibXm73rTW55sfnunpHjuqzTpwfzMCP1cvLLsWlMixwtNdjy4GYhEoSQp8xFKwOwK
+	hwrAtqRfFzZZAnIstXrUnSb2h3UXUJ2thnAXW9OiHHBAl+xTGsVUj8w7/Psp7vOfqKq1iCPoVYA
+	333JxHcjijUQzFYgXfc2gIB80h0IKz7G8nIF7A9sy1oLHSQsrViJIDGDMBeKNIfAGtnidefoHCb
+	THtURtJyHPYE8xEy+dRC0v/Z12k2y4rHfzPTpoB2ZSgHXaVPrbIqX28SEFVBuMn6/HuF03QwMeX
+	bspJ4KQju8LPt/XxI02gnbjVhGneSpPP/YG4G+iE44mvDd/6+D4SI9KBD8haLzWKjUbx0fsoOb6
+	zdIIYayGXbdxrBcnwSJ5Rt0nhtE3XxQIBO/8Avn04YDxZxJu9lVHNU2b4RpGDQec8noOEA1z7Wi
+	qiy/wtJrrB8vUMgsc/W3vZ60+wNUkoSzBuQ+f7dCmbUWtvSFgqDIwORrkKgfozNELmqsT0uYtKA
+	/vOoDKPQMwWNpcY3DJ/4FrxewNdp2jCRvA==
+X-Received: by 2002:a05:6000:22c4:b0:488:823d:5086 with SMTP id ffacd0b85a97d-499c096bfd5mr530611f8f.0.1794347747383;
+        Tue, 10 Nov 2026 13:55:47 -0800 (PST)
+Received: from localhost ([2a02:8071:56d1:2de0:1d24:d58d:2b65:c291])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-49835d2c05dsm7160201f8f.25.2026.11.10.13.55.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 13:55:46 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>
+To: Lee Jones <lee@kernel.org>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	mfd@lists.linux.dev,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Linus Walleij <linusw@kernel.org>
+Subject: [PATCH v4 01/20] mfd: bcm2835-pm: Remove member of struct bcm2835_pm that is only used locally
+Date: Tue, 10 Nov 2026 22:54:26 +0100
+Message-ID: <6b2500112538be613480d472090e5ff6d86339bd.1794347059.git.u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.56.0.rc1
+In-Reply-To: <cover.1794347059.git.u.kleine-koenig@baylibre.com>
+References: <cover.1794347059.git.u.kleine-koenig@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261003002123.505555-1-jthoughton@google.com>
- <20261003002123.505555-8-jthoughton@google.com> <2122761A-45AD-4AEC-AE88-B51E92E2CA40@linux.dev>
-In-Reply-To: <2122761A-45AD-4AEC-AE88-B51E92E2CA40@linux.dev>
-From: James Houghton <jthoughton@google.com>
-Date: Tue, 10 Nov 2026 13:50:00 -0800
-X-Gm-Features: AclHuK_v1agZ1dKpXc45zZ0c0gP5C_c2fyQg4NGg-Zs5GxvQBSCvkFuzEUTM21I
-Message-ID: <CADrL8HWOPP6PLUVvL+v0-UA6YMG-o4p7dY6UmWif1aDCDgscoA@mail.gmail.com>
-Subject: Re: [PATCH v2 07/20] hugetlb_vmemmap: Disable HVO sysctl if arch
- doesn't support HVO
-To: Muchun Song <muchun.song@linux.dev>
-Cc: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Oscar Salvador <osalvador@suse.de>, Andrew Morton <akpm@linux-foundation.org>, 
-	Nikos Nikoleris <nikos.nikoleris@arm.com>, Linu Cherian <linu.cherian@arm.com>, 
-	Mark Rutland <mark.rutland@arm.com>, David Hildenbrand <david@kernel.org>, 
-	Ryan Roberts <ryan.roberts@arm.com>, Nanyong Sun <sunnanyong@huawei.com>, 
-	Yu Zhao <yuzhao@google.com>, Frank van der Linden <fvdl@google.com>, 
-	David Rientjes <rientjes@google.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2398; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=BVhRr6erYdr3wFkjbzEJs89tzl+sRAbty1vb11mdCc8=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq85KVWt+3x735zZE7d3XsVM+Ir1QvYkRsw/GQV AkuwK9+YrKJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCavOSlQAKCRCPgPtYfRL+ TsCYB/wKlHgDWs9WbgfoPzex63S+2tugmXVK7KqaQrfxk+uogoRgx22NJCTuQEza5JqZNvFsSs0 twOEXeOfgMREGY4+lHrUyYjk7kC0P4zIhVYdO835/BF9lK1Pdc3PMKVkwdnujeRur1xT5BCwfdk mtghQTqpD6Cb0GDwB/4n4QwirZZGZAsccX6I3WrkOuvibweAhGBy96Vf8U0e1WKnNl37Ou2m4/K Zbl5MJiV13Dvajw2inFrhe0wwMSC0kpa4ImetQsXmxRV00fR8NnvYNncgOZxckNxwfu39q7tXB4 pk2tgDKioZu9PFekQy7YjE0QtRZvqBa1SoD/LDTV411HWeNo
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_135043_387338_4EBD69B2 
-X-CRM114-Status: GOOD (  28.98  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261110_135549_354008_7A184E0B 
+X-CRM114-Status: GOOD (  16.51  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,74 +110,91 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 6, 2026 at 11:02=E2=80=AFPM Muchun Song <muchun.song@linux.dev>=
- wrote:
->
->
->
-> > On Oct 3, 2026, at 08:21, James Houghton <jthoughton@google.com> wrote:
-> >
-> > Do not create the vm.hugetlb_optimize_vmemmap sysctl when the
-> > architecture lacks support. This serves only to avoid confusion for
-> > users.
-> >
-> > arm64 support for HVO is conditional on certain hardware features being
-> > enabled for all online CPUs. By the time hugetlb_vmemmap_init() runs,
-> > all secondary CPUs will have started, and the system feature set will
-> > have stabilized, including HVO-through-BBM, which
-> > arch_hugetlb_vmemmap_optimization_supported() checks for.
-> >
-> > Signed-off-by: James Houghton <jthoughton@google.com>
-> > ---
-> > mm/hugetlb_vmemmap.c | 15 +++++++++++++++
-> > 1 file changed, 15 insertions(+)
-> >
-> > diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-> > index 8596a462fee6..817ce39d4cf3 100644
-> > --- a/mm/hugetlb_vmemmap.c
-> > +++ b/mm/hugetlb_vmemmap.c
-> > @@ -763,6 +763,21 @@ static int __init hugetlb_vmemmap_init(void)
-> >       /* HUGETLB_VMEMMAP_RESERVE_SIZE should cover all used struct page=
-s */
-> >       BUILD_BUG_ON(__NR_USED_SUBPAGE > HUGETLB_VMEMMAP_RESERVE_PAGES);
-> >
-> > +     /*
-> > +      * Architectures that need to probe CPU support for HVO have done
-> > +      * such probing now. arch_hugetlb_vmemmap_optimization_supported(=
-)
-> > +      * will return the correct value.
-> > +      */
-> > +     if (!arch_hugetlb_vmemmap_optimization_supported()) {
->
-> I'm wondering if we could put this architectural check into hugetlb_vmemm=
-ap_optimizable(),
->
->
-> > +             if (vmemmap_optimize_enabled)
-> > +                     pr_info("vmemmap optimization not supported by ha=
-rdware\n");
->
-> then, we do not need those code. If the current kernel does not support H=
-VO,
-> then the sysctl does not exist. It's already a common case when the size =
-of
-> struct page is not power of two. If users really want to know whether HVO
-> is enabled, they can check via this sysctl file. Therefore, we don't need=
- to
-> print a log line.
+struct bcm2835_pm::soc is only used in bcm2835_pm_probe() and thus can be
+replaced by a local variable.
 
-Yeah, I can put arch_hugetlb_vmemmap_optimization_supported() into
-hugetlb_vmemmap_optimizable(), that will make the diffs slightly
-smaller. And yeah I can remove the print. I put it there mostly
-because it can be confusing. A command line that gets you HVO on one
-arm64 host might not give you HVO on another arm64 host, and the print
-would give a user a clue as to why.
+With that change enum bcm2835_soc is only used in the mfd core driver and
+so the definition can move there.
+
+Reviewed-by: Linus Walleij <linusw@kernel.org>
+Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
+---
+ drivers/mfd/bcm2835-pm.c       | 11 +++++++++--
+ include/linux/mfd/bcm2835-pm.h |  7 -------
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/mfd/bcm2835-pm.c b/drivers/mfd/bcm2835-pm.c
+index 9e8e3dcf4bce..87de35075419 100644
+--- a/drivers/mfd/bcm2835-pm.c
++++ b/drivers/mfd/bcm2835-pm.c
+@@ -69,10 +69,17 @@ static int bcm2835_pm_get_pdata(struct platform_device *pdev,
+ 	return 0;
+ }
+ 
++enum bcm2835_soc {
++	BCM2835_PM_SOC_BCM2835,
++	BCM2835_PM_SOC_BCM2711,
++	BCM2835_PM_SOC_BCM2712,
++};
++
+ static int bcm2835_pm_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct bcm2835_pm *pm;
++	enum bcm2835_soc soc;
+ 	int ret;
+ 
+ 	pm = devm_kzalloc(dev, sizeof(*pm), GFP_KERNEL);
+@@ -81,7 +88,7 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+ 	platform_set_drvdata(pdev, pm);
+ 
+ 	pm->dev = dev;
+-	pm->soc = (uintptr_t)device_get_match_data(dev);
++	soc = (uintptr_t)device_get_match_data(dev);
+ 
+ 	ret = bcm2835_pm_get_pdata(pdev, pm);
+ 	if (ret)
+@@ -98,7 +105,7 @@ static int bcm2835_pm_probe(struct platform_device *pdev)
+ 	 * bcm2835-pm binding as the key for whether we can reference
+ 	 * the full PM register range and support power domains.
+ 	 */
+-	if (pm->asb || pm->soc == BCM2835_PM_SOC_BCM2712)
++	if (pm->asb || soc == BCM2835_PM_SOC_BCM2712)
+ 		return devm_mfd_add_devices(dev, -1, bcm2835_power_devs,
+ 					    ARRAY_SIZE(bcm2835_power_devs),
+ 					    NULL, 0, NULL);
+diff --git a/include/linux/mfd/bcm2835-pm.h b/include/linux/mfd/bcm2835-pm.h
+index d2e17ab1dbfc..f70a810c55f7 100644
+--- a/include/linux/mfd/bcm2835-pm.h
++++ b/include/linux/mfd/bcm2835-pm.h
+@@ -5,18 +5,11 @@
+ 
+ #include <linux/regmap.h>
+ 
+-enum bcm2835_soc {
+-	BCM2835_PM_SOC_BCM2835,
+-	BCM2835_PM_SOC_BCM2711,
+-	BCM2835_PM_SOC_BCM2712,
+-};
+-
+ struct bcm2835_pm {
+ 	struct device *dev;
+ 	void __iomem *base;
+ 	void __iomem *asb;
+ 	void __iomem *rpivid_asb;
+-	enum bcm2835_soc soc;
+ };
+ 
+ #endif /* BCM2835_MFD_PM_H */
+-- 
+2.56.0.rc1
+
 
