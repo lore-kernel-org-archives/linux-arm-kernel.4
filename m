@@ -2,49 +2,49 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B68C606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0E160A261B
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 20:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NOXn+zPA;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=asOeR1Ge
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JaC8NJUm;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=mmGND9i6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TrYzlfpzSjOTkcFVrqQppineqlRGur5koHqKUH1gLUs=; b=NOXn+zPADA8XJ3
-	6+JnN+lTJISDWeQIx0Nsfr8c4Z9B89rGnJl/+ZZCeWvz/ySQLYULyRMJPOg1G3ko3XC+m0nvkzS6J
-	adQLlSVYzbqJxIsKqH0o7FRxKEUliWSjQtumCwtGpv7QfDRaJyXBI94P++/eL0/Fp7J8o0pTyKs3Y
-	i9UDlfk5+uDVvXN8CGC9EEzpNpx7T22E0wq+PFpZarUg1iu7QpfRKGVZS5n3TkWeciwxJmcOeLN92
-	apEvNAYymtOh1ppmE/5C63FGIhv6y7y4Sm/WwG6wt7wD8cy+EfhJnWI+X/PVh5vlb2AQn0S7Zb4QI
-	yo3dTW+WwcPDfkh3o69A==;
+	List-Owner; bh=wZODk0x3yqzJBCDWpOPES/A5BYp24Qrx21fQgua+nqE=; b=JaC8NJUmlyjUi9
+	xRlHHDV0txBAWNh4uglOH5YSvY/yVRxH0BcDeQM9hllyR26LFC3hS/vipf1aoubKsemyjs1RGrNNQ
+	dHXLk+UwJ0fPVaQp+yJbQMg6SyxizOhzXIWP/T0RIejt3rRsSFtjo0g/7ozLxTzGzy0PWGjRg5/W1
+	Jq9xBatSRyFtyMGfbq7GusvCOTdbsgMlB8zrrdQ4MfSG3kMOlMh+j5K6i7rA0w4eBtVzD/kX/WEPL
+	w/cZn5+GYC3KFVqsk3tj8fx4AaIykruliSx+SXrKy8AGodABWKmQzglsNFsulAMMoZFzY6JqOWGQ7
+	YIb6cDS+X9dMAvaGbZSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsuF-000000051Rv-0RcU;
+	id 1xQsuF-000000051Ri-04PJ;
 	Tue, 10 Nov 2026 20:57:27 +0000
 Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsu5-000000051Nb-1UJW
+	id 1xQsu5-000000051NZ-1TfA
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 20:57:20 +0000
+	Tue, 10 Nov 2026 20:57:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
 	Reply-To:Content-ID:Content-Description;
-	bh=TrYzlfpzSjOTkcFVrqQppineqlRGur5koHqKUH1gLUs=; t=1794344237; x=1795553837; 
-	b=asOeR1GeHWEyZyJIKEy8U4mpaVhv3EqwN6xBs41t1KvjKQm24324MYs0gaSU9RNBGbmYvmPuSbI
-	xJOI5ebs7n3F41gMubuLi0Fu0ADJnQttQvN8rCmsu+ogZsbmtsfsjZsEKcXUmNE1JAx2/VeZjqYGw
-	Yr2sJWhqg2T/UjK07mGrdxIbGT2T6PpIU4yAyDknh1rF8ldlOUU0TpietlZj19g2Wqttw2xpDx5yG
-	gmABiOyUA7/2KiJVJYgVKQQMoXSLKLYw0MSVQnEvKlFXYsgMvUVmKx9zQSe5wFOt1aC5RGB616pj9
-	E2Q9qUjTQM/zXk29yW7pRCOzdcTZ8dyRSmNQ==;
+	bh=wZODk0x3yqzJBCDWpOPES/A5BYp24Qrx21fQgua+nqE=; t=1794344237; x=1795553837; 
+	b=mmGND9i6wgr25Rgt7uBrnNMxVxCmVuIfvitRdqe7nFu6RnzryBNkeq10+5nBSNgRTChR6LEsfnl
+	Xd+2AIGyAiipmuufApkfvHfoZJlvqdImGUP5o07sYhvP3/l7CnNI9qjHnkAWVSo5J+jA2emza6pi6
+	m2hYGXL/6YsKHCQndReGK2qCyRGvDtBqkDS6QHoQhWjxFhXZXynGb31tMNRcPciz/Dj071bQV8QVq
+	uSYYWdmKom5OZTohUTVW/cN3CATmaBhgCf+nBZXHMu41t7v8WzqMVQDvkQY/0TJ4+1isvlq6gsBQ9
+	3zSmBXPAJgTlwq9Ieu8h/Ju1G6bhU3MVmXJQ==;
 From: Andreas Kemnade <andreas@kemnade.info>
-Date: Tue, 10 Nov 2026 21:56:04 +0100
-Subject: [PATCH v2 2/3] ARM: dts: ti/omap: describe omap3 i2c via ti-sysc
+Date: Tue, 10 Nov 2026 21:56:05 +0100
+Subject: [PATCH v2 3/3] ARM: OMAP2+: remove i2c from OMAP3 hwmods list
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-i2c-sysc-v2-2-490cda69e350@kemnade.info>
+Message-Id: <20261110-i2c-sysc-v2-3-490cda69e350@kemnade.info>
 References: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
 In-Reply-To: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
@@ -60,25 +60,25 @@ Cc: Sicelo <absicsz@gmail.com>, linux-omap@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Andreas Kemnade <andreas@kemnade.info>
 X-Mailer: b4 0.17-dev-e5168
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4606; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=WJ3PSTqkXdeNhSq80VIUeTpz6RXvNLLA2KUhBVQ6G3U=;
- b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBq84UFB05YHUBMrOa6Vu+RcsAp0GuyzhclH0zIE
- 5Rc4Zsd+1qJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCavOFBQAKCRCEYUX6QCjc
- 8f0ID/9FH1XVo1MON/mz/J4Zte5DLtgMZomXQps4fDYTb+qNtwhQP+wEmdzBmJkz2VWN1O7bhk/
- nwVOBf9cP5i4MCESc31D1Ms2s456GuqVIjcG2ScRhKmHtIGEVxhZmstr+lQlPmZw5pSgGxi1o9M
- MB3x+oCJo+r3wjipJRfcgUpQSvBBrSlGXpXPbWtexl/jJ/Z6NBZEPKEQes3gj0zT6g+CUEqrnXG
- LPQgE9US359XSmFTLa9Bwb+lTF0YxCQbeg7bmADnk+Wxcy3k2psgYCpq5h22J+cc+C8w6JelRXt
- h3cUKBhOxOMaMCZyK4qAYJYtHJCs6Coo56xUmwpAh7d8H2m+WNewfw4G+MY49LKgU3b1jYzIOn1
- KMdZZyr4z3oPK0/yhrnQQosJZJiha2zBvw8vFKn5I973XqGoe0Pw0plLWNiuHeFEgJU0Duneu+Y
- 5uS/bFcB8fO4P8bL/3U32/FvFMr3xkiSMzgPT3hpvqwmb/5YQPS1NmtM6bDVmaG3CksoDoA7Zo/
- em2rZeCLXddDcFJvbCGHrge0L51gv7oqmrIb48kwx3j+Ex984tj5uFXRLb3KmruDP8nX1yj+dGp
- fIveAa/g+Lj77u6NnWgEotckeFBmMtTv2wLikFmMyahwsiVab+2pu9JGutGnyFlRaXqBhcjRSCi
- 8zXQ2vYz06s3hSA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4470; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=dJ7m5yFM4nPU3HLiIjt0TUzuu0qUiJjWRTDLZhcz+GY=;
+ b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBq84UIP8HhrdyMxF/4yM8sSKbSZgeAop7ENCA7i
+ keQe06z13aJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCavOFCAAKCRCEYUX6QCjc
+ 8dLCD/98X/tUcqTuGQJMv0QVoHfI/hFz6Y13KG3eognjaidL3WMJzZU2CPmp8b+b7bN49xJnXce
+ pGn01HRM8EJyKX8mbcvulT4ZKfGy5T+tAtC6UeSdiXlcfkzVQCR4nms3m6J/DrDI0R9QVwFrQiB
+ jPf1EUmMQEsHzpFNqDNOs8RfXfPrwo31lIJF2nJWhttDjA/k7JHJN7sFTsYryrJc6vlrpT33xte
+ j8IkbBQ6zhI6+ZStsFdKe2E2q3QtQuBSW9GMr7w8jKvnmpgyXbbJ6AhucDAYTZmPGH/E232gQoW
+ oRHomS9cgvLn0M7MBkZwhhUxs4Cgx4HI991Il7dpLNB10Qnsl+JqbppQLdP6aIp5Hh0eFGkjd9Z
+ Wuv5zK4HF4qjwH5Xs67qzLK42m9c2Fs+2YhhaGL8m5ePeHG5SLku5W34hb/UWbnpHsme14byl1J
+ Oycg6akZBfF8J7Jilvqiu2g7MBjkCCwRy1pWCIxq52n1AE2MKzQyQGg9gQfBeIFEWd90MKmQNgt
+ iCKgoy+z8fUuG8wmu8lvtil8D5jHCrgtkxiIMfxsznK2KeW2Ms3mLA699ZbJlAEFJnTWbJAJhx/
+ vUL9kE8Yhu71FhbDJsPsfFrhAeer3Hn4VhJ3RkI57/UpZOAa+wtbZ0tFSOajH57L10IKwYduL88
+ JpX2omp9pdbiQPg==
 X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
  fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_125717_407158_54D0C2DC 
-X-CRM114-Status: GOOD (  13.17  )
+X-CRM114-CacheID: sfid-20261110_125717_402462_46A26E80 
+X-CRM114-Status: GOOD (  11.10  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -98,148 +98,164 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ti,hwmods is deprecated, and the power management there is working a bit
-different than the one in the ti-sysc way. So if something is changed
-with pm incfluence, it has to be tested on both. To reduce that maintenance
-work, convert to ti-sysc. Also fixes an actual crash with OMAP3 and
-suspend.  That was caused by a commit enabling i2c access in later phases
-of suspend until the noirq phase. But that causes some state expectation
-mismatch between omap_device.c code and the i2c code leading to the
-following:
+Not need anymore due to ti-sysc transition, so clean up here.
 
-Unhandled fault: external abort on non-linefetch (0x1028) at 0xfa060004
-[...]
-PC is at omap_i2c_runtime_suspend+0x1c/0xd8
-[...]
-Call trace:
-omap_i2c_runtime_suspend from _od_suspend_noirq+0x44/0xe0
-_od_suspend_noirq from dpm_run_callback+0x4c/0x1f0
-dpm_run_callback from device_suspend_noirq+0x208/0x594
-device_suspend_noirq from dpm_suspend_noirq+0x1c8/0x3a4
-dpm_suspend_noirq from suspend_devices_and_enter+0x10c/0x840
-suspend_devices_and_enter from pm_suspend+0x25c/0x3fc
-pm_suspend from state_store+0x114/0x130
-
-Fixes: 7da7fd7e66ac9 ("i2c: omap: wakeup the controller during suspend() callback")
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- arch/arm/boot/dts/ti/omap/omap3.dtsi | 96 +++++++++++++++++++++++++++++-------
- 1 file changed, 78 insertions(+), 18 deletions(-)
+ arch/arm/mach-omap2/omap_hwmod_3xxx_data.c | 112 -----------------------------
+ 1 file changed, 112 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap3.dtsi b/arch/arm/boot/dts/ti/omap/omap3.dtsi
-index 447736d2e53ca..2ee5fd4888ce5 100644
---- a/arch/arm/boot/dts/ti/omap/omap3.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap3.dtsi
-@@ -396,31 +396,91 @@ uart3: serial@49020000 {
- 			clock-frequency = <48000000>;
- 		};
+diff --git a/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c b/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
+index 5cbdf58ad59f7..022019ff4a398 100644
+--- a/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
++++ b/arch/arm/mach-omap2/omap_hwmod_3xxx_data.c
+@@ -299,18 +299,6 @@ static struct omap_hwmod_class_sysconfig omap3xxx_wd_timer_sysc = {
+ 	.sysc_fields    = &omap_hwmod_sysc_type1,
+ };
  
--		i2c1: i2c@48070000 {
--			compatible = "ti,omap3-i2c";
--			reg = <0x48070000 0x80>;
--			interrupts = <56>;
-+		i2c1_target: target-module@48070000 {
-+			compatible = "ti,sysc-omap2", "ti,sysc";
-+			reg = <0x48070000 0x4>,
-+			      <0x48070020 0x4>,
-+			      <0x48070010 0x4>;
-+			reg-names = "rev", "sysc", "syss";
-+			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
-+					 SYSC_OMAP2_ENAWAKEUP |
-+					 SYSC_OMAP2_SOFTRESET |
-+					 SYSC_OMAP2_AUTOIDLE)>;
-+			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+					<SYSC_IDLE_NO>,
-+					<SYSC_IDLE_SMART>;
-+			ti,syss-mask = <1>;
-+			clocks = <&i2c1_fck>, <&i2c1_ick>;
-+			clock-names = "fck", "ick";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			ti,hwmods = "i2c1";
-+			#size-cells = <1>;
-+			ranges = <0 0x48070000 0x1000>;
-+
-+			i2c1: i2c@0 {
-+				compatible = "ti,omap3-i2c";
-+				reg = <0x0 0x80>;
-+				interrupts = <56>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 		};
+-/* I2C common */
+-static struct omap_hwmod_class_sysconfig i2c_sysc = {
+-	.rev_offs	= 0x00,
+-	.sysc_offs	= 0x20,
+-	.syss_offs	= 0x10,
+-	.sysc_flags	= (SYSC_HAS_CLOCKACTIVITY | SYSC_HAS_SIDLEMODE |
+-			   SYSC_HAS_ENAWAKEUP | SYSC_HAS_SOFTRESET |
+-			   SYSC_HAS_AUTOIDLE | SYSS_HAS_RESET_STATUS),
+-	.idlemodes	= (SIDLE_FORCE | SIDLE_NO | SIDLE_SMART),
+-	.sysc_fields    = &omap_hwmod_sysc_type1,
+-};
+-
+ static struct omap_hwmod_class omap3xxx_wd_timer_hwmod_class = {
+ 	.name		= "wd_timer",
+ 	.sysc		= &omap3xxx_wd_timer_sysc,
+@@ -431,12 +419,6 @@ static struct omap_hwmod am35xx_uart4_hwmod = {
+ 	.class		= &omap2_uart_class,
+ };
  
--		i2c2: i2c@48072000 {
--			compatible = "ti,omap3-i2c";
--			reg = <0x48072000 0x80>;
--			interrupts = <57>;
-+		i2c2_target: target-module@48072000 {
-+			compatible = "ti,sysc-omap2", "ti,sysc";
-+			reg = <0x48072000 0x4>,
-+			      <0x48072020 0x4>,
-+			      <0x48072010 0x4>;
-+			reg-names = "rev", "sysc", "syss";
-+			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
-+					 SYSC_OMAP2_ENAWAKEUP |
-+					 SYSC_OMAP2_SOFTRESET |
-+					 SYSC_OMAP2_AUTOIDLE)>;
-+			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+					<SYSC_IDLE_NO>,
-+					<SYSC_IDLE_SMART>;
-+			ti,syss-mask = <1>;
-+			clocks = <&i2c2_fck>, <&i2c2_ick>;
-+			clock-names = "fck", "ick";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			ti,hwmods = "i2c2";
-+			#size-cells = <1>;
-+			ranges = <0 0x48072000 0x1000>;
-+
-+			i2c2: i2c@0 {
-+				compatible = "ti,omap3-i2c";
-+				reg = <0x0 0x80>;
-+				interrupts = <57>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 		};
+-static struct omap_hwmod_class i2c_class = {
+-	.name	= "i2c",
+-	.sysc	= &i2c_sysc,
+-	.reset	= &omap_i2c_reset,
+-};
+-
+ /* dss */
+ static struct omap_hwmod_opt_clk dss_opt_clks[] = {
+ 	/*
+@@ -592,51 +574,6 @@ static struct omap_hwmod omap3xxx_dss_venc_hwmod = {
+ 	.flags		= HWMOD_NO_IDLEST,
+ };
  
--		i2c3: i2c@48060000 {
--			compatible = "ti,omap3-i2c";
--			reg = <0x48060000 0x80>;
--			interrupts = <61>;
-+		i2c3_target: target-module@48060000 {
-+			compatible = "ti,sysc-omap2", "ti,sysc";
-+			reg = <0x48060000 0x4>,
-+			      <0x48060020 0x4>,
-+			      <0x48060010 0x4>;
-+			reg-names = "rev", "sysc", "syss";
-+			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
-+					 SYSC_OMAP2_ENAWAKEUP |
-+					 SYSC_OMAP2_SOFTRESET |
-+					 SYSC_OMAP2_AUTOIDLE)>;
-+			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-+					<SYSC_IDLE_NO>,
-+					<SYSC_IDLE_SMART>;
-+			ti,syss-mask = <1>;
-+			clocks = <&i2c3_fck>, <&i2c3_ick>;
-+			clock-names = "fck", "ick";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			ti,hwmods = "i2c3";
-+			#size-cells = <1>;
-+			ranges = <0 0x48060000 0x1000>;
-+
-+			i2c3: i2c@0 {
-+				compatible = "ti,omap3-i2c";
-+				reg = <0x0 0x80>;
-+				interrupts = <61>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 		};
+-/* I2C1 */
+-static struct omap_hwmod omap3xxx_i2c1_hwmod = {
+-	.name		= "i2c1",
+-	.flags		= HWMOD_16BIT_REG | HWMOD_SET_DEFAULT_CLOCKACT,
+-	.main_clk	= "i2c1_fck",
+-	.prcm		= {
+-		.omap2 = {
+-			.module_offs = CORE_MOD,
+-			.idlest_reg_id = 1,
+-			.idlest_idle_bit = OMAP3430_ST_I2C1_SHIFT,
+-		},
+-	},
+-	.class		= &i2c_class,
+-};
+-
+-/* I2C2 */
+-static struct omap_hwmod omap3xxx_i2c2_hwmod = {
+-	.name		= "i2c2",
+-	.flags		= HWMOD_16BIT_REG | HWMOD_SET_DEFAULT_CLOCKACT,
+-	.main_clk	= "i2c2_fck",
+-	.prcm		= {
+-		.omap2 = {
+-			.module_offs = CORE_MOD,
+-			.idlest_reg_id = 1,
+-			.idlest_idle_bit = OMAP3430_ST_I2C2_SHIFT,
+-		},
+-	},
+-	.class		= &i2c_class,
+-};
+-
+-/* I2C3 */
+-static struct omap_hwmod omap3xxx_i2c3_hwmod = {
+-	.name		= "i2c3",
+-	.flags		= HWMOD_16BIT_REG | HWMOD_SET_DEFAULT_CLOCKACT,
+-	.main_clk	= "i2c3_fck",
+-	.prcm		= {
+-		.omap2 = {
+-			.module_offs = CORE_MOD,
+-			.idlest_reg_id = 1,
+-			.idlest_idle_bit = OMAP3430_ST_I2C3_SHIFT,
+-		},
+-	},
+-	.class		= &i2c_class,
+-};
+-
+ /*
+  * 'gpio' class
+  * general purpose io module
+@@ -1605,52 +1542,6 @@ static struct omap_hwmod_ocp_if am35xx_l4_core__uart4 = {
+ 	.user		= OCP_USER_MPU | OCP_USER_SDMA,
+ };
  
- 		mailbox: mailbox@48094000 {
+-/* L4 CORE -> I2C1 interface */
+-static struct omap_hwmod_ocp_if omap3_l4_core__i2c1 = {
+-	.master		= &omap3xxx_l4_core_hwmod,
+-	.slave		= &omap3xxx_i2c1_hwmod,
+-	.clk		= "i2c1_ick",
+-	.fw = {
+-		.omap2 = {
+-			.l4_fw_region  = OMAP3_L4_CORE_FW_I2C1_REGION,
+-			.l4_prot_group = 7,
+-			.flags	= OMAP_FIREWALL_L4,
+-		},
+-	},
+-	.user		= OCP_USER_MPU | OCP_USER_SDMA,
+-};
+-
+-/* L4 CORE -> I2C2 interface */
+-static struct omap_hwmod_ocp_if omap3_l4_core__i2c2 = {
+-	.master		= &omap3xxx_l4_core_hwmod,
+-	.slave		= &omap3xxx_i2c2_hwmod,
+-	.clk		= "i2c2_ick",
+-	.fw = {
+-		.omap2 = {
+-			.l4_fw_region  = OMAP3_L4_CORE_FW_I2C2_REGION,
+-			.l4_prot_group = 7,
+-			.flags = OMAP_FIREWALL_L4,
+-		},
+-	},
+-	.user		= OCP_USER_MPU | OCP_USER_SDMA,
+-};
+-
+-/* L4 CORE -> I2C3 interface */
+-
+-static struct omap_hwmod_ocp_if omap3_l4_core__i2c3 = {
+-	.master		= &omap3xxx_l4_core_hwmod,
+-	.slave		= &omap3xxx_i2c3_hwmod,
+-	.clk		= "i2c3_ick",
+-	.fw = {
+-		.omap2 = {
+-			.l4_fw_region  = OMAP3_L4_CORE_FW_I2C3_REGION,
+-			.l4_prot_group = 7,
+-			.flags = OMAP_FIREWALL_L4,
+-		},
+-	},
+-	.user		= OCP_USER_MPU | OCP_USER_SDMA,
+-};
+-
+ /* L4 CORE -> SR1 interface */
+ static struct omap_hwmod_ocp_if omap34xx_l4_core__sr1 = {
+ 	.master		= &omap3xxx_l4_core_hwmod,
+@@ -2300,9 +2191,6 @@ static struct omap_hwmod_ocp_if *omap3xxx_hwmod_ocp_ifs[] __initdata = {
+ 	&omap3_l4_core__uart1,
+ 	&omap3_l4_core__uart2,
+ 	&omap3_l4_per__uart3,
+-	&omap3_l4_core__i2c1,
+-	&omap3_l4_core__i2c2,
+-	&omap3_l4_core__i2c3,
+ 	&omap3xxx_l4_wkup__l4_sec,
+ 	&omap3xxx_l4_per__timer3,
+ 	&omap3xxx_l4_per__timer4,
 
 -- 
 2.47.3
