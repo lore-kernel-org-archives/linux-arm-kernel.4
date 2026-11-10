@@ -2,88 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA66D60A2602
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 04:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2860660A263D
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 04:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y/J0eXbu;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=seeI3EPK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E+dUGHWt;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Gk4OmyjL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AMLfsgd2///WRofDujebt5cSA9Zf11vcK5RD88/TdEI=; b=y/J0eXbue9YOwB
-	yeKRdmndbuMCOQZKPOUkr9yeFNwdA9CfKNXxKWDVWNAsP/2AAg+1wqUnDGfzHgIdgNYPXXMelU44P
-	pmOh3J/akxh5ZhkS+ws2989CsbdNvR/+xJQlXKUd8UN0ZRT8yYZhJQTsDhA7Lf7YKtWhHOI4hRgAG
-	JF1IhnKfmUiXpgjeyqfcAF7EwlI0G9oiJ97fV5xMpgR6AkFrvpW5+dZa1y24Uu23KrvD1bEh7y6ja
-	PLml1O6WmY/86CO48GbARpAs8/eZY8OfZRYQdEjYMxmdQuYw5WbbxF5SoqRkXgy6naH3ibu4ZW0nF
-	A9yDNYH8xJJkPWqdOCGQ==;
+	List-Owner; bh=XUfxuzZXIT5avg6gl1nxcM7YkzRMwGmAk1oGIMF99rQ=; b=E+dUGHWt4tuKra
+	iiPOrnwbeZn880nOm/rfyswBb6fPhJiVY6cifa+gTArGITcaGJF5ejpX41pHjxvei/yGDAx1BxV5s
+	NMIfWH/i9o82f7lFGNytIg22LfRvUGXbCXdyx1d0UZGtSVNs+91nHinAsG+InMViPvK8Es++3D/Al
+	g+Y/4Gm5eAbCimJ1DqW0wjvspqOQYtjHCg8GNPu3L6CCnchoaTgVUegajaQMR10FDfnNxnJATqc+J
+	YcdRBt8KZ6GrIfAdSkI7XiVBbG3tDJ/PDDKiO1aaLsMEbP/hLRbbiuhS4JF33ag0/5I+Gl3u6zSzm
+	St8F3MW/2DSwaKDOuwoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQd2S-00000002L1O-251G;
-	Tue, 10 Nov 2026 04:00:52 +0000
-Received: from mail-ot1-x32c.google.com ([2607:f8b0:4864:20::32c])
+	id 1xQd2R-00000002KzT-3qjx;
+	Tue, 10 Nov 2026 04:00:51 +0000
+Received: from mail-oo1-xc2e.google.com ([2607:f8b0:4864:20::c2e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQd2N-00000002KwV-0C1g
+	id 1xQd2H-00000002Kqx-01Iv
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 04:00:48 +0000
-Received: by mail-ot1-x32c.google.com with SMTP id 46e09a7af769-8479f46ecd8so803364a34.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 20:00:46 -0800 (PST)
+	Tue, 10 Nov 2026 04:00:42 +0000
+Received: by mail-oo1-xc2e.google.com with SMTP id 006d021491bc7-717034b331dso916822eaf.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 20:00:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794283246; x=1794888046; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794283240; x=1794888040; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=AMLfsgd2///WRofDujebt5cSA9Zf11vcK5RD88/TdEI=;
-        b=seeI3EPK+NW2nn1Ma4hBy3K/rvypdh+q9V2uiJWnHzuCWWZX8MYSE4ZHBKc0/z6goY
-         mmg5LseiZR3gR9UzuRODkspLHLzDJW/y8mqewoAZ5FOG8vfphHPLxoxNPX6FF7k9FIWM
-         di2SPdxOKMK+dibLIampUPyEnPExLn3gyWfz8FHvwdvUWAM7vYmvJVKLjdv/J1bCI3qm
-         gHmkyeddlEVAk2uenNAkNfO8UgAS+HtWCPZhsI4+MEieh441hGzFyNIjO0eUjfHYk5mp
-         4y6r0RVuATSrv+QRgdh3FKjuQ0Jp5eyLBmyNun70jShy8HRbj3egUZ97rpoKx6AJQ5rM
-         50NA==
+        bh=XUfxuzZXIT5avg6gl1nxcM7YkzRMwGmAk1oGIMF99rQ=;
+        b=Gk4OmyjLhO6QkmL4rrLHqCpYl+kQlPfDB07jMD56Jm2qzLhxTfUWiGYGipma+FpcOt
+         5mw4kZHfbddGyJReqe3Wl/bud+tQA4b13JIkfMOih4jbwwta4H1hWrtdf3/P4+AvveYL
+         7AX1tXY0XFm/9B5/2ovdskWvQ2JCifkEjUmeNtqKXrSDh9bRpQss5rrk+FbCPCW3hDFb
+         UR5FSmJkG+bwKzjI8E/4g1G0Z49IqBK1r0O9yY9Fcx6hCpgoSlvXqVFsMS3neMqlifsW
+         joAXefXhvQzMV0eVvj6e5x+K1O5KhXQB1xDAfNUawYIBzAI91ILhPCsSq4MP7BWv+NfR
+         pAIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794283246; x=1794888046;
+        d=1e100.net; s=20260707; t=1794283240; x=1794888040;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=AMLfsgd2///WRofDujebt5cSA9Zf11vcK5RD88/TdEI=;
-        b=znWl3crtLU+Io30HWIeL87rGa9tw29vg0Jr780XYKl26ThSNsKTHdA4hzeeiiOdbUt
-         6a523xLbgzMhq//2NoSKbG3+1Ss6ZLvfR0lPEBXHHOQudjSZCDupKC2zWl47HKc5k8n+
-         mzb4X7FWtONXyFSguTCjbfOSGmjQZWhGqF7UWt1OYeGACF1pgZpWExL7krE/MH1VVuzL
-         X1JL0f0ycHJHM6gz3W4xUyZ4qSpU3+ENj8DCNjfYm9v4ldumD+JTgdKpsdZb6mv1Iy4y
-         r9mtr16E4SBLfKpIantfHdtI1d/KGaQpDUfOh31OeS7h+QwWYKSji52GJHVH/669BTx/
-         9pkQ==
-X-Forwarded-Encrypted: i=1; AL+hErFIYsxd+H+8BTl+BmJK1IjdOVb1b6DQtFcSNiQJh9m789lxY08w+++6ncSIZkrJpzVxqsAyoRZEp31pK0anjnjy@lists.infradead.org
-X-Gm-Message-State: APuU4Z/pSgAYkQFVYqIz5J7xa2JzIC1DQkJF7Mfklvko/odm+KezK1/Y
-	lfP1i1EeyWQ53kz3zgThYWT2w7GoazeF3woWyLX6HTQ7zrsJrL/G9jOd
-X-Gm-Gg: AYBFou0sw2FxkSmxuIK9RD7UMtYj9UD28g/RK7MY5S8ZhrBu3MiVmKhz5rjkGWBeOWN
-	qCXwerwl6PS0E3htjETEakipmQz+8Br5kV5Gx5q0FvmhdSMB0L18dQjPurCnPSvmJfwKqg82Wmb
-	gJej4VshObcV3WbClaxDF7GH9nFkrEhAxkVSwYaihJTtSFSqMffG7HwV6GV6uEyGnVNWYJ60D9Q
-	gBEdk86cT6FgSZQtEDdFyJApab2pc/pBY5+9TUaSqMjOmj7nrEVMVSne/6xVkCJdD87NMWrQOk2
-	55om1ym9iDzfHSxisoP4j1sEuhMn2kDn53YDfk466AQcoFdO+H2H2JUzCFqDRhzoIPzIejoTd2k
-	iZMdfOnheACK3eyMDRC0hX50dpffUTb0+3hN6acUXAT4RYStetxKa8WdzorysdWL/hJYTa9wpI/
-	IETmyNge7xXbVkl2JHv6YJBFYU2CR9OZZ7LEJDdXees4AU7NrLi9cR/C4L147nYgGE43j1wGfLz
-	t/j1zo/NAak8F5xk4+JT+U5HNyCAhdf6yn7IFqrGaZ8S2lizd0Tls0U5L9AAbcMuOTwweUu7bvf
-	eCknsh8BeU9XWhTVzS8QC0/WncgMSVLnMQV4FvoD8vhRr/V7JKi8gpxjb/6plvXETBjYp6/HuQO
-	ZLPMWLteqq83HLtYIWQ1raAuwkC8NgYgrUtdwox4SvT0kRaTgAvNcWOrE65nJnxZLve4bVUfK70
-	+0MBoKg1FGt17PUWnkwy4XLQ7LdV8r1C1qEk7dXVfNIRYcYKc4dD3yIMbuZgMueQfIZpNemPLt
-X-Received: by 2002:a05:6830:4aca:b0:7fa:ab72:9e01 with SMTP id 46e09a7af769-860dc8464a2mr1224823a34.25.1794283245936;
-        Mon, 09 Nov 2026 20:00:45 -0800 (PST)
+        bh=XUfxuzZXIT5avg6gl1nxcM7YkzRMwGmAk1oGIMF99rQ=;
+        b=HPWBSC7hpoTMkH2HPGYOPZIXRsK6YNLTi8+3rkpcBJrAgPz37lXCbOM5ovfPgquPcn
+         b5nHl5QLdLYgepYCRwBQL+3l/jjQzzMBDa2uVuVPQjokB1RIMHtbA173Vs7tLlkZuguV
+         +ZEb9cNxMUVPnBWxnX4aEYHJQNJaDacWKoyhZ2Zmqv5imFHa25Ix9B7m6NU7g7TOPBXe
+         gpebe0wqT2b7cznkKWAwIA6jsCX8b8F+jvwcBFGUH3ndJ3Iv3JBfpVK+LrRR6pov4Z6H
+         MgvZ4tkcy6/e0N5O33m5esN+NXq8ST7l7Tc+a2jAsDNyigG26Sw8Amgk+O6xtNYQH96V
+         Tbzg==
+X-Forwarded-Encrypted: i=1; AL+hErFLDKWchPyS9c1vfcowSjUENwsTFzzuuJCCIKNBN8mB1bcJq2HoEqZjLvoRLCNBBfQ6mebs6q4D+dsRhzy08NQs@lists.infradead.org
+X-Gm-Message-State: APuU4Z81kQvR+Tkerktj/LIHGpEKRTLy22eD3WpnaaSBw4VRE2EKxA7U
+	znuvTIkVod8wMjsvEj0CA9S9emoD7UfKWmxwytt+Ks72vsb10AIrrGzW
+X-Gm-Gg: AYBFou0W0XFQrmCngIDQjsqsTMvZ7ZdAxtBk365sibCOzeUJO2nom6odANxzXjCRgqf
+	TjoOGSs5AuSBEkZaHLWu86lIVKFwsdBMUxmLnJExKhBccZ5S5HuHtLwC0TMW90kCrjY5EXZcnBh
+	5s+MhT2UZAELK0vj2i8TUxTDoy4mhjnRBTx+L0l4A/0IeZHMbcFGsyLtSKYLMSZUOnS+feFoCHN
+	NFDlAOsyurmeyzsCmOIIjyK3E9dF+nZUFO/lk2CPIRgy8zNC1K2fe6JRTr+o3DHb8VL7PzIzDib
+	TKslCkXFivU1fSb1a+QZgyviwBh54FGJfXfDMHcD1uly54g7bsE6flv3ZNPSGtMqAgulS6WaZqJ
+	cdnboIH69NoM4Ej6iSIh7c/qjLK3WlDHIB3mQQYJvylpC7fujAG68TDORi9QkT7ou9H5aHMxpXg
+	Loq87zo9MoScjC0200pY4nKlZy/+aJ9dqu9zW7c/0Rg6qDx4x63aXuXRx4SPtvxbOLFhMjuZpcI
+	M77QF8E063z6iTS3FBob4uTJgjJh11MPuVJveBI49D7+XFG9GzpLdpy6I8Kp/c+U6/51LB7cP0A
+	l8Ye+UZac/10LkIFSMFoP82HiKvrA1vhGo3HSZCdNUsVZ07XZPq552iEWF8ZukTYsyBVUHonHLc
+	APgQCVUqnOX6T9NzGZ7ySa+6VYQ6MPboUP8QQGXBWzIVEQcLnEuOEyeklTlupTlPpwJ1hyU61Mm
+	ddKAaPLVfz6dWuO+DCSDDLWrY1yveqfAd/FqFXlXnzKiERn+H4O8BTXjIxwhpWG9CqbukELPho
+X-Received: by 2002:a05:6820:f02a:b0:703:3ff5:ddc4 with SMTP id 006d021491bc7-718a188120cmr678015eaf.11.1794283239825;
+        Mon, 09 Nov 2026 20:00:39 -0800 (PST)
 Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-860dcc1d759sm1028178a34.23.2026.11.09.20.00.44
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-860dcc1d759sm1028178a34.23.2026.11.09.20.00.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 20:00:45 -0800 (PST)
+        Mon, 09 Nov 2026 20:00:39 -0800 (PST)
 From: James Hilliard <james.hilliard1@gmail.com>
-Date: Mon, 09 Nov 2026 21:00:23 -0700
-Subject: [PATCH v11 8/8] serial: 8250: retain DMA resources when
- termination fails
+Date: Mon, 09 Nov 2026 21:00:19 -0700
+Subject: [PATCH v11 4/8] serial: 8250_omap: quiesce DMA IRQ handling before
+ shutdown
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-submit-serial-8250-dma-cancel-v1-v11-8-6364edca63d6@gmail.com>
+Message-Id: <20261109-submit-serial-8250-dma-cancel-v1-v11-4-6364edca63d6@gmail.com>
 References: <20261109-submit-serial-8250-dma-cancel-v1-v11-0-6364edca63d6@gmail.com>
 In-Reply-To: <20261109-submit-serial-8250-dma-cancel-v1-v11-0-6364edca63d6@gmail.com>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
@@ -110,8 +110,8 @@ Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
  linuxppc-dev@lists.ozlabs.org, James Hilliard <james.hilliard1@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_200047_433941_109E13CB 
-X-CRM114-Status: GOOD (  18.35  )
+X-CRM114-CacheID: sfid-20261109_200041_056729_18BBF9A5 
+X-CRM114-Status: GOOD (  14.66  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,122 +127,78 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-serial8250_release_dma() ignores the return from dmaengine_terminate_sync()
-before freeing the coherent RX buffer, unmapping the TX FIFO and releasing
-the channels. If the provider fails to stop a channel, the DMAengine
-wrapper returns the error without synchronizing its callbacks. Hardware
-or a detached callback can then access the released storage and state.
+disable_irq_nosync() masks the UART interrupt without waiting for a
+running handler. That handler can have observed up->dma and continue
+using it while shutdown releases the DMA channels and clears the pointer.
+Synchronizing the IRQ later in serial core does not protect those accesses.
 
-Checking the error and returning early would not preserve their lifetime:
-serial core frees the TX FIFO after the driver's shutdown callback returns,
-and port removal can then release the callback context as well.
+Publish the DMA shutdown gate under the port lock before the final RX
+flush and interrupt masking. Have DMA IRQ handling check the same gate
+under the lock, so a queued interrupt cannot restart receive processing
+after the final flush.
 
-Require successful synchronous termination of both channels before
-releasing any DMA resources. Retry failed channels after a sleep outside
-the port lock, leaving channels that have already stopped and drained
-alone. Keep the shutdown gate and storage reservation in place throughout
-the retries.
+Drain the UART IRQ outside the port lock before releasing DMA state.
+The lock excludes competing RX processing during the flush, while
+disable_irq() also waits for a handler that observed up->dma before
+acquiring the lock.
 
-Start retries with a 1 ms sleep and double it up to one second. This
-makes short-lived failures responsive while bounding sustained retry
-activity; neither delay is a hardware timeout. Report the initial failure
-and ongoing failures with the elapsed time and current RX/TX error codes.
-Track the five-second progress-report interval separately for each
-teardown, so failures on different ports are reported independently.
-Report recovery once both channels have stopped and drained.
-
-A permanently failed DMA engine blocks close or removal. This deliberately
-retains the buffers, mappings, channels and callback context until the
-provider can establish that they are no longer in use.
-
-Fixes: 9ee4b83e51f7 ("serial: 8250: Add support for dmaengine")
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+Fixes: fef4f600319e ("serial: 8250: omap: Fix life cycle issues for interrupt handlers")
 Reviewed-by: Raul E Rangel <rrangel@chromium.org>
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
 ---
- drivers/tty/serial/8250/8250_dma.c | 50 ++++++++++++++++++++++++++++++++++++--
- 1 file changed, 48 insertions(+), 2 deletions(-)
+ drivers/tty/serial/8250/8250_omap.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/tty/serial/8250/8250_dma.c b/drivers/tty/serial/8250/8250_dma.c
-index b1f2998e7735..6efeb16fd994 100644
---- a/drivers/tty/serial/8250/8250_dma.c
-+++ b/drivers/tty/serial/8250/8250_dma.c
-@@ -565,6 +565,53 @@ int serial8250_request_dma(struct uart_8250_port *p)
- }
- EXPORT_SYMBOL_GPL(serial8250_request_dma);
+diff --git a/drivers/tty/serial/8250/8250_omap.c b/drivers/tty/serial/8250/8250_omap.c
+index 5e114dd8f9bf..51013dd2d851 100644
+--- a/drivers/tty/serial/8250/8250_omap.c
++++ b/drivers/tty/serial/8250/8250_omap.c
+@@ -771,10 +771,6 @@ static void omap_8250_shutdown(struct uart_port *port)
+ 	guard(serial8250_rpm)(up);
  
-+static void serial8250_terminate_dma(struct uart_8250_port *p)
-+{
-+	struct uart_8250_dma *dma = p->dma;
-+	unsigned int delay_us = 1 * USEC_PER_MSEC;
-+	ktime_t start, last_report;
-+	int rx_ret, tx_ret;
-+
-+	rx_ret = dmaengine_terminate_sync(dma->rxchan);
-+	tx_ret = dmaengine_terminate_sync(dma->txchan);
-+	if (!rx_ret && !tx_ret)
-+		return;
-+
-+	start = ktime_get();
-+	last_report = start;
-+	dev_err(p->port.dev,
-+		"DMA termination failed: RX %d, TX %d; teardown blocked\n",
-+		rx_ret, tx_ret);
-+
-+	/*
-+	 * Shutdown cannot return while DMA owns storage or callback state:
-+	 * serial core frees the TX FIFO afterwards, and removal frees the port.
-+	 * Retain both channels and retry outside the port lock. A permanently
-+	 * failed DMA engine therefore prevents teardown from completing.
-+	 */
-+	while (rx_ret || tx_ret) {
-+		fsleep(delay_us);
-+		/* Retry promptly at first, then limit sustained retry activity. */
-+		delay_us = min(delay_us * 2, 1 * USEC_PER_SEC);
-+		if (rx_ret)
-+			rx_ret = dmaengine_terminate_sync(dma->rxchan);
-+		if (tx_ret)
-+			tx_ret = dmaengine_terminate_sync(dma->txchan);
-+		if (rx_ret || tx_ret) {
-+			ktime_t now = ktime_get();
-+
-+			if (ktime_ms_delta(now, last_report) < 5 * MSEC_PER_SEC)
-+				continue;
-+			dev_err(p->port.dev,
-+				"DMA termination still failing after %lld ms: RX %d, TX %d\n",
-+				ktime_ms_delta(now, start), rx_ret, tx_ret);
-+			last_report = now;
+ 	flush_work(&priv->qos_work);
+-	if (up->dma) {
+-		guard(uart_port_lock_irq)(port);
+-		omap_8250_rx_dma_flush(up);
+-	}
+ 
+ 	serial_out(up, UART_OMAP_WER, 0);
+ 	if (priv->habit & UART_HAS_EFR2)
+@@ -782,13 +778,16 @@ static void omap_8250_shutdown(struct uart_port *port)
+ 
+ 	/* Synchronize UART_IER access against the console. */
+ 	scoped_guard(uart_port_lock_irq, port) {
+-		if (up->dma)
++		if (up->dma) {
+ 			up->dma->shutting_down = true;
++			omap_8250_rx_dma_flush(up);
 +		}
+ 		up->ier = 0;
+ 		serial_out(up, UART_IER, 0);
+ 	}
+ 
+-	disable_irq_nosync(port->irq);
++	/* An in-flight handler may still be using up->dma. */
++	disable_irq(port->irq);
+ 
+ 	serial8250_release_dma(up);
+ 	up->dma = NULL;
+@@ -1330,6 +1329,11 @@ static int omap_8250_dma_handle_irq(struct uart_port *port)
+ 
+ 	uart_port_lock(port);
+ 
++	if (up->dma->shutting_down) {
++		uart_port_unlock(port);
++		return IRQ_HANDLED;
 +	}
-+	dev_info(p->port.dev, "DMA termination recovered after %lld ms\n",
-+		 ktime_ms_delta(ktime_get(), start));
-+}
 +
- void serial8250_release_dma(struct uart_8250_port *p)
- {
- 	struct uart_8250_dma *dma = p->dma;
-@@ -574,9 +621,9 @@ void serial8250_release_dma(struct uart_8250_port *p)
+ 	status = serial_port_in(port, UART_LSR);
  
- 	cancel_work_sync(&dma->tx_flush_work);
- 	cancel_work_sync(&dma->rx_flush_work);
-+	serial8250_terminate_dma(p);
- 
- 	/* Release RX resources */
--	dmaengine_terminate_sync(dma->rxchan);
- 	scoped_guard(uart_port_lock_irqsave, &p->port) {
- 		dma->rx_running = 0;
- 		dma->rx_terminating = false;
-@@ -588,7 +635,6 @@ void serial8250_release_dma(struct uart_8250_port *p)
- 	dma->rxchan = NULL;
- 
- 	/* Release TX resources */
--	dmaengine_terminate_sync(dma->txchan);
- 	dma_unmap_single(dmaengine_get_dma_device(dma->txchan), dma->tx_addr,
- 			 UART_XMIT_SIZE, DMA_TO_DEVICE);
- 	dma_release_channel(dma->txchan);
+ 	if ((iir & 0x3f) != UART_IIR_THRI) {
 
 -- 
 2.53.0
