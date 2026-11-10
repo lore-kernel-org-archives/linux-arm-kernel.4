@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0768606A332
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA20E60A260D
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v5P/rjsj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PQTNjxpd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nb1QxfDL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TjxjOceq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,92 +14,92 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GSMh+74fPK0ymy278CPAuF9fN6B/X3Bftnl6WSY5S7E=; b=v5P/rjsjNRD6HrQKvo0fJFzEqu
-	bSYAJAEs4/CXe/B/n1QV5Zu6QDL9MYwcJQr6lypnTjMOlxnnjGpChKcP/JnKeOqw6JGCam9RF7eZA
-	GLRSfCoKrRI8eSB1Dl2s1M3e88mNKfQhKRJ/FqSDV3vn7uL2/qOtQDXI5zt6sMRLontvfIwAj4tk8
-	qCh1hEYzT0LQf3cJzsaW3Ll3+S4jlyMcc2kusb++l9A/scRwjFc4Cr3sto/wfBJKW61QQbflJm4XL
-	XQc2tBEJLZoFlVYmRo7qnHzXG4nQ1jDd5GR/JClJNKIfO9/mRfLhyr7wkuJ5W3nKc/JudPn3Sque5
-	Hp+d8gtQ==;
+	bh=T8BMjQzOIvYi6coC6cfEQ/w65JHYug0nfsYJkwPuKxI=; b=nb1QxfDLa1L/jHReup74ORdodm
+	OOi7vogCg/fh8uAzIXZv0BfGyVgrSEBijm7GbrKRZINXMsf+3XeVEATq1BvLkgM2Vd+KW9vPw/Y2N
+	PnccK6lxMYxPb9A+BUlx+4pnrd/Ue1fInwm1K5V92KxqrPRE4AgtXpSziVq5J1z0El51U2TFDsTZd
+	W7sYMpl0Wwai0Ls4AiqCJJHNbTpVD9VA6K5YPsGr9QTXg7jtYK5jFOuzCV9reqFENZCUp8lQqvBI6
+	KJ+xkiF0knFC0PtMDz7CJqJWNIVph0ZIgM6aiJabTz6B6M1PfFvBSBgjmpDdwjXeCratukx1K+SYS
+	2mcGangQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg8D-00000002qRb-1qDp;
-	Tue, 10 Nov 2026 07:19:01 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQg8C-00000002qQE-1vhM;
+	Tue, 10 Nov 2026 07:19:00 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg7i-00000002plD-19EJ;
-	Tue, 10 Nov 2026 07:18:32 +0000
+	id 1xQg7C-00000002pMy-3AuT;
+	Tue, 10 Nov 2026 07:17:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A19AE637B0;
-	Tue, 10 Nov 2026 07:18:29 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 7676D46A38;
+	Tue, 10 Nov 2026 07:17:58 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794295109;
-	b=g/yoGwLfsWfa3IXeFqiholfUNZKt2EGIt/df8K9QKsFqOiWY7cQHAHXXAePJs5Sg+dRO
-	 So9KP2o/WuWftIa1AjBC9tkCEyK59tEK4iJRZKOztNbzq++ocvxzMirB1qXL1TbOpBkZO
-	 ee+5VbTuaQvikg3NHb2+z8RDWmU1HligOPcI7ghmP9cLG1kmoD1J3L2KVOSOA+35+Dcde
-	 qPkdiMS0ghPUISs6Uu0TM2oHn1a2+Xgt1769NWhsGSJ/I7GDSGo4jUQAsiIFzL6PS3is7
-	 tLUMfC5iXOip2FNJjmyQnPdb0JovGdRKMjyPcsQBI43t5vYThjJiWgFI26y8USgiVWw==
+	t=1794295078;
+	b=2S7GFvhX7dFYIgYA0PMhDCpG98TmBRm33nHhAuqyhsMnzuSPOnLW6mhdulWSejYBa/Zn
+	 XgPNg+7KLVkPqlKobKRvzoT+g6JPSsepXUEialxB/OyhyfiJPtas6RPe+8UAMyuzy+j9u
+	 tX6D6j6l+O21jVbP101dx70BVYRTEVGGxZEGZf9LeiVUeFuP5au0xJ5+xOA7O10ZXWchi
+	 AAkPOJGdEs/HHIwAPYV1MglmDCI/CRGNX1j6I5E989FVzSvCMxwg86CpkCHSgbc7yqIec
+	 Meqih73LTMUzSjPD06XMzFL36cqUsUwmh6bSQYWdKO5sf9tux55SooVA8xMzz3wJZdg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794295109;
+	c=relaxed/relaxed; t=1794295078;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=GSMh+74fPK0ymy278CPAuF9fN6B/X3Bftnl6WSY5S7E=;
-	b=TJsFEhYexWoHqgBQpFZWqyINRhXoZWWvR+GHwpHBNGXrJkVxjKFXwyYqZwL7AW5q1dZA
-	 ZGuRTJNPHl83eGh8n+zraBG4QpNGQ+HaGyKXVbWkQGad9BwG70vnrDl2kE0bfJxAjVf3g
-	 l7pFAPzvNLSm2bg6vOYziokkbEUrc8i2p8MshmdPiwxbXEQAdNtxH6r+v/gDA2jglmI5r
-	 XYR655oMk7LXdj8cRDnNOwQK1FAg4mh4WlHAwUn0c31V4Sb6m0fmSg61XHI1beE02D2BZ
-	 i3+6Ged/s2G9I22B4kKFy+79bJMxVHcBz3jMa+cI+7gUMhtVZWDIWhvV8wAoe9u668g==
+	bh=T8BMjQzOIvYi6coC6cfEQ/w65JHYug0nfsYJkwPuKxI=;
+	b=SNtQh/AqOkbef1sLFya+S66mJq6Cc6vzjm/5gCiP0jcsq1f645Sl95BTfREiAx+JoDic
+	 MwMR+BgSNhJ/ukXa+IlzQ9lWTESGWMMzmEvcB8D5pH8edFtt7hJpAVb8BDJ1xX7YpkZhU
+	 JD3norsbE+IXq7v8kZ0M1Cw2PLUzjvCBVSg3Gfg4fAzFjVBF4TJjAcz69dEwnoa/4XxUZ
+	 JDsenFwVTL77ZCUts95wcnRswfzhoq9oT4nDodM2N0zG3LM0h0S0znhkVMyAlOfSj6w9A
+	 ntqqAI5JeU0XyAuCgIDQklT7UD+7T3IrUjThzu913EEFD314sNG/1RgtZuetEEsbydQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 4D86A1F008A4;
-	Tue, 10 Nov 2026 07:18:28 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id BC8741F00902;
+	Tue, 10 Nov 2026 07:17:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794295109;
-	bh=GSMh+74fPK0ymy278CPAuF9fN6B/X3Bftnl6WSY5S7E=;
+	s=k20260515; t=1794295078;
+	bh=T8BMjQzOIvYi6coC6cfEQ/w65JHYug0nfsYJkwPuKxI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=PQTNjxpdmFfyeqRL82uP0aXDLlP010hsPTwQzVvM01tEoRYD86r9NklwFyZpxky+5
-	 qgY0MBCikCRiyObPfSvzEqBHfmwhlvO4K7CA+wuhxYIAW3MDP7CU+Q1DYinGWZQDEt
-	 g93b+t4XIawcotOxUbUhc6VtzK6H+bWuID6Rbu688QR24A+vrkIAdezgebJl39RNhC
-	 yEzk10FGNiIqb6rWpZT4IICJZI4ctMzkmsWHDYP+dB1OfJK62FqWEOoRot742r3CPm
-	 mYmcu/iYvwZM/wPczm2xF4mbEdJN8KPFiQQc6vrMJviZc5IPa7dnzCDNkJyxFSAHzF
-	 SyIZXZiSRNLvA==
+	b=TjxjOceqMKBehH/WOEZMWDJ9zPtXRUgz1CdekNOekeThwasgGoprXaQtK7HJry5rg
+	 sifEDi4LVIwPeLK63b2SODEzWLqycaNIuWbrm6h0I7lxWbles2mcqPbxc0hHQmUcZY
+	 JnaBSZiO/cgfnSSdv0gpKiDGWAC9Bp6pKW9MBqe1+ilOgBhDJDcD/AfrkdMyejQnVp
+	 9h8tSDisdDmnLatVr/UrMopK2coobtLsuX0B+wyq80C3E6sLomk9VTDk8E2/FLEJZV
+	 +9k73xz9tK5iNxly1hyocPZnG0RD31L1oo3mLth8mIvKwvl70MOvxbtnvjmtjrn9A3
+	 SqRgILrqceF5g==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D6B87489A5;
-	Tue, 10 Nov 2026 07:18:27 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 71BF74899C;
+	Tue, 10 Nov 2026 07:17:56 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 07:18:29 +0000
-Subject: [PATCH 3/4] media: verisilicon: Don't offer VP8 above 1080p on the
- Rockchip VDPU2
+Date: Tue, 10 Nov 2026 07:18:01 +0000
+Subject: [PATCH 6/6] media: verisilicon: rockchip: Limit the JPEG encoder
+ to 8176x8176
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-hantro-codec-fixes-v1-3-0fd5372ce831@gmail.com>
-References: <20261110-hantro-codec-fixes-v1-0-0fd5372ce831@gmail.com>
-In-Reply-To: <20261110-hantro-codec-fixes-v1-0-0fd5372ce831@gmail.com>
+Message-Id: <20261110-hantro-jpeg-enc-fixes-v1-6-fc4dc7e985d2@gmail.com>
+References: <20261110-hantro-jpeg-enc-fixes-v1-0-fc4dc7e985d2@gmail.com>
+In-Reply-To: <20261110-hantro-jpeg-enc-fixes-v1-0-fc4dc7e985d2@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
  Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
  Philipp Zabel <p.zabel@pengutronix.de>, 
  Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sebastian Fricke <sebastian.fricke@collabora.com>, 
- Hans Verkuil <hverkuil@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Boris Brezillon <boris.brezillon@collabora.com>, 
- Jonas Karlman <jonas@kwiboo.se>, 
+ Heiko Stuebner <heiko@sntech.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
  Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Jeffy Chen <jeffy.chen@rock-chips.com>, Tomasz Figa <tfiga@chromium.org>
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Boris Brezillon <boris.brezillon@collabora.com>
 Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295107; l=2123;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295075; l=2124;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=EXI8QBEeHs1R1u0NRn+cDDndC1H6YMS5/uVvMAcEFAg=;
- b=m4jnbHaknfIBjsaMF7gll6ze3KeL+9wDGhUJowJvUWrLufyEswgM3m6nX5sHrSaksG/83qNC2
- jyJ2Yoqy9NxCbqgeusDMt43iYdOG9tPyDN2VW7BiVS6wMBmkyprlDYJ
+ bh=YcQepcs/kiqGO0VYJKSScKTM3/q57290AfxfFBFuGJE=;
+ b=1+8p98vHStkEBOrBQLzikJyt9X7HUs6F5Qbcu93cIySUhBBC0ChChkoaPM+/PzBYUA0rxE/4r
+ Yd2zb2U/jfdB1XlESEAqh0u4gswbvk48/dwzF8nON+0hXuT2otryzgS
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -121,59 +121,62 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The VDPU2 decoder format tables (RK3328, RK3568, RK3588 VPU121) and the
-RK3399 one let the VP8 OUTPUT format go up to 3840x2160, but their only
-CAPTURE format, NV12, stops at 1920x1088, and the CAPTURE size is
-clamped to it. A 4K VP8 stream is therefore accepted on OUTPUT and then
-decoded into a 1920x1088 buffer: on RK3588 GStreamer v4l2slvp8dec runs
-into "gst_video_frame_map_id: assertion 'info->width <= meta->width'
-failed" for every frame of a 3840x2160 stream and none of the frames
-match FFmpeg.
+The Rockchip JPEG encoders advertise frame sizes up to 8192x8192, but
+both register layouts take the picture size in 9-bit macroblock counts:
 
-Nothing above 1080p can be decoded with these tables, so don't
-advertise it: limit VP8 to the 1920x1088 of the other codecs and of the
-CAPTURE format. Userspace that checks VIDIOC_ENUM_FRAMESIZES, and the
-S_FMT clamping, then know that a 4K VP8 stream needs another decoder.
+ - VEPU2 (RK3399, RK3568, PX30, RK3588 VEPU121): enc_width is bits 16:8
+   and enc_height bits 28:20 of the encoder start register.
+   rockchip_vpu2_jpeg_enc_run() masks the counts with 0x1ff, so an 8192
+   pixel (512 macroblock) dimension is programmed as 0 macroblocks.
+   Setting the bit above each field on an RK3588 VEPU121 did not give a
+   512 macroblock picture either, so the fields really are 9 bits wide.
+ - H1 (RK3066, RK3288): the height count starts at bit 10 and the width
+   count at bit 19, so a 512 macroblock height runs into the width field.
 
-Fixes: 73fb5bfa53e9 ("media: hantro: Support RK3399 VP8 decoding")
+Limit the shared format table to 511 macroblocks, 8176 pixels, so
+userspace gets the largest size the hardware can encode instead of a
+corrupt or timed out frame.
+
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/media/platform/verisilicon/rockchip_vpu_hw.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/media/platform/verisilicon/rockchip_vpu_hw.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-index 02673be9878e..2b6242c1fb86 100644
+index 02673be9878e..f8079f96c398 100644
 --- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
 +++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-@@ -274,10 +274,10 @@ static const struct hantro_fmt rockchip_vdpu2_dec_fmts[] = {
- 		.max_depth = 2,
+@@ -20,6 +20,13 @@
+ 
+ #define ROCKCHIP_VPU981_MIN_SIZE 64
+ 
++/*
++ * The H1 and VEPU2 JPEG encoders take the picture size in macroblocks in
++ * 9-bit register fields, so 511 macroblocks (8176 pixels) is the largest
++ * width and height they can encode.
++ */
++#define ROCKCHIP_VPU_JPEG_ENC_MAX_SIZE (511 * MB_DIM)
++
+ /*
+  * Supported formats.
+  */
+@@ -52,10 +59,10 @@ static const struct hantro_fmt rockchip_vpu_enc_fmts[] = {
+ 		.header_size = JPEG_HEADER_SIZE,
  		.frmsize = {
- 			.min_width = FMT_MIN_WIDTH,
--			.max_width = FMT_UHD_WIDTH,
-+			.max_width = FMT_FHD_WIDTH,
+ 			.min_width = 96,
+-			.max_width = 8192,
++			.max_width = ROCKCHIP_VPU_JPEG_ENC_MAX_SIZE,
  			.step_width = MB_DIM,
- 			.min_height = FMT_MIN_HEIGHT,
--			.max_height = FMT_UHD_HEIGHT,
-+			.max_height = FMT_FHD_HEIGHT,
- 			.step_height = MB_DIM,
- 		},
- 	},
-@@ -315,10 +315,10 @@ static const struct hantro_fmt rk3399_vpu_dec_fmts[] = {
- 		.max_depth = 2,
- 		.frmsize = {
- 			.min_width = FMT_MIN_WIDTH,
--			.max_width = FMT_UHD_WIDTH,
-+			.max_width = FMT_FHD_WIDTH,
- 			.step_width = MB_DIM,
- 			.min_height = FMT_MIN_HEIGHT,
--			.max_height = FMT_UHD_HEIGHT,
-+			.max_height = FMT_FHD_HEIGHT,
+ 			.min_height = 32,
+-			.max_height = 8192,
++			.max_height = ROCKCHIP_VPU_JPEG_ENC_MAX_SIZE,
  			.step_height = MB_DIM,
  		},
  	},
