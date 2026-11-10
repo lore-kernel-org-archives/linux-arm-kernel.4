@@ -2,92 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFF2606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DBE606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:08:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tQd14Gwt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CPQeaAye;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Aa3tp6HA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BC5Q69ueJVBYfSsdQ2qZHA2Rh61G6UD4sUcf6Ljc8BU=; b=tQd14GwtelDPBEh03bDcEGOHoM
-	fGfv1G9GbWsnwe9VNs6O+zAorgYP8s0uUQ0V6mQilGv3Q26dwXO8RigK9Hhwk5q5xvSChEgCymWSp
-	EjzCl3TV2vicfXlp+DOlmBbdeyofV691bQGOYO3RF1Kn1m1X6Z8vr/fHQ7Uhdn9Tg0q4Cm7WZlaX2
-	xS+F7cMroT7JdDUxX6nSN3x8NtSEljRwBq4ZOoe+ckSrhy7i0N0/Dr98KJvgwkO7Ak6srT0glQFkE
-	blH8K12S10/tnwWIQWYXW0QsUdlQFx+CUOY6dqTh/pTtYEX4+7MyMSBbldULUe3HhTGUw5wK3iVbO
-	XKfQbrqQ==;
+	bh=NnBxvN4xGd6+68RytWbF9FHJipzxf2QGAPi8nPwftyA=; b=CPQeaAyee7Bw2Q+npR/XiWo0Bp
+	0Jny6cex5A24ebEnJKVNP4iEn7srsHCBcGD+VKmfKm8NIi7viaTWFnQyOiVp7D75Lz/8bTFLnl4Uv
+	wtftEqyb8ro/iut+uXGZGJPWDgYaCCdQiA6DGtV5K7KSKQWipQQlCejiI+upa+mXk9m/CLR/VKPyf
+	YhGWPBp9LYABAmAIr5fGuK4Y95roTDp22ld0bCTdN9uyJ+uosDKBq1skT0zHVdya3xqDHmQcqw4NX
+	dXIAG1Gv7hNO892iNbvCaqB/dGZh0f1v9tUER3v5EXYltW7pu+fWavnLPsft/jKeHGqu4MM31bYLN
+	pD+/0B6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe4x-00000002TsJ-3BZk;
-	Tue, 10 Nov 2026 05:07:31 +0000
-Received: from mail-wm1-f47.google.com ([209.85.128.47])
+	id 1xQe6C-00000002U14-4AXL;
+	Tue, 10 Nov 2026 05:08:49 +0000
+Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe4v-00000002Try-0zB6
+	id 1xQe69-00000002U0R-42wM
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:07:30 +0000
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4a60f9474c4so19504035e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:07:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794287247; x=1794892047;
-        h=content-disposition:content-type:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=BC5Q69ueJVBYfSsdQ2qZHA2Rh61G6UD4sUcf6Ljc8BU=;
-        b=MvgUm0T1NDHHP73A1qPWl+l9W8Vtl/IMNKRBhb9aHqj14OQJZU9kEvh7cLiaOp1mJc
-         /+RFj4jIO6xITiUiYQGvir8foHboWrlCjgCGHm1If8Saq20rs+vaEHKk2qUQVka/D6l9
-         Q/kKy0CeztCXuKKFcvQaj2PSUt/4G1sXxXxUjI4UcxrhLQpTbjyis6bBWq/9Tbher2jZ
-         q3gv8ictdgdJMpho7TiljkapI7HLh0lEONqCU2vtDv3q+evhRMrEKBhe6HpvoReRfIFl
-         BO6hFoVvDjoYc+/0Rr5yfnmY2y+kbWDor8ZO84iClPUXtTyMohvuwiDv0Ygq9iVIiwsl
-         I5sQ==
-X-Forwarded-Encrypted: i=1; AL+hErHqCtfvQ1seb3J7elE7kecUMEd09gskmeJanERmI0nF8VerkOQD2PRKDb9SQoFE+lxdL/+X6xHWUUi1oNoT7Ct6@lists.infradead.org
-X-Gm-Message-State: APuU4Z/dmjmZ8hiacVIVls/e9EoG1yfOwA54kwJp+RmKCT9FUP5ySXSu
-	jN7B4pxX/83k6jw1MxhiMCaJ317mvjxH3Ek3IIfuIJoeTVnZl+40o5Zn
-X-Gm-Gg: AYBFou3jGzsLt7LmMUBhu3NlUcUUSHsYpQAikMIQaKEaxjhGBC4JKVqVH1Bb3TDLEg9
-	a//igm0QrTQ/bsrqkXc6SCIwdoEjWO0FclOkSuzaXNnCHoeMFMsRE/o7sXKzNwiqv+0WjLRdZyq
-	KBR3eAJ1A8YbQsQmBj5lOhefhm8+30PuwV0Ip+EFNekb/m5wlS/tIihqw1KU/8bV5Mswaclvf9S
-	F1y+W5tREM1PacJaLdf0gmNKUT8GqlejIV0MJTspoeNilY3+4OwO068g8f80QqD3qHeGF3tF1U5
-	FnWN/awdnhi6b6EcoKf8ms90TNSzS9QfyupUblcjXhhf25sFj8OMGSwZ7ZOBGelza7tuYmOTNBw
-	cdtPSeWUizWswYYyJYq/doAYfxhJad/+hRfpLjKEddeUlsaFGkkLGT/qLBz3YXeMudh5EYGhdcp
-	vKUgcffxoXO1W8pC0EmQbepYfkd0o+GefIwS8b++s5PJ1zVqLbl+MeppdR8ew/kAHr5P/yREzGL
-	JdT/5e8iQ4dd9Oe0gY91rTGHA1taAiVu1KaOY3p5at+m2fK793+HoSCZYbWrXHNZ7c8jWwC3Adg
-	nrPTbixgnZ8un/HtZFTQSiMgHtKNlB4e08s+jWxN6g6kpcD61ZiRiaogUJMYlfmZR5BUto3axrl
-	/TGxuKNDwlZPQvEL7EALmvmfup7nk4OaCicpAwwaD5UqzCTaw+6VP5I8qwWUY6PQl
-X-Received: by 2002:a05:600c:1914:b0:4a3:2f35:38b4 with SMTP id 5b1f17b1804b1-4ba0233797dmr18691015e9.10.1794287246749;
-        Mon, 09 Nov 2026 21:07:26 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba022fe1absm26105625e9.0.2026.11.09.21.07.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 21:07:26 -0800 (PST)
-Date: Tue, 10 Nov 2026 08:07:22 +0300
-From: Dan Carpenter <dan@cryspen.com>
-To: Eric Auger <eric.auger@redhat.com>
-Cc: Marc Zyngier <maz@kernel.org>, Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	Carlos =?iso-8859-1?Q?L=F3pez?= <clopez@suse.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,
-	Jackie Liu <liuyun01@kylinos.cn>,
-	Christoffer Dall <cdall@linaro.org>,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Karthik Bhargavan <karthik@pereq.eu>,
-	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
-Subject: [PATCH] KVM: arm64: vgic-its: Reject ITS_REGS offsets above U32_MAX
-Message-ID: <f4b5c3247f88b9c469758f8e14a386364332f9f4.1794251681.git.dan@cryspen.com>
+	Tue, 10 Nov 2026 05:08:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LO2rDaKtEjGLHhVjJqsoiaLSDqw8XSCOjv5SfVPHDhPV4urM6siOCnzUl0JFV8U06O6NM+EBSHauSpRcdft0SAOceQbVuKBqckr4bm5lwUA4iNkzLwNam5tdHdfVtiPghkH8afrk6ZqyMv5KbQdsu7i10vpHm+gh6vLLEC4e6gEQ7MA4YFp/RqLWxbaLCH3WX+zC2ZVVLBHOlWHN9qyrZNzgObjNT5HxpMpIvXnH/DSl8soDHIV6xElKEdQ7ShD36Y+deoAv1w9YXnXRe/2UzlqZP4Bx/c8byMSfv0KI2/B76dZUYUhxunfFdY99s47Um7OOlkO+0MGUdtoBQl8W4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NnBxvN4xGd6+68RytWbF9FHJipzxf2QGAPi8nPwftyA=;
+ b=D4fOhRS5pgWKytNu5I4YiD+WXCGym0W71f3HqiuenkSe7uIke44l2EnHgPa0vfswkpNk1s1atdiTt12FWQYdw6haWJMDo6TFlUsIc2Kn1bLfh1Xq39k95qK8n4Rdc3fr1l8zdS5f0TP07j52v5Ef9gW5Qt4XqjrDunWdCi3vCuY8IWFYRM4AaP6kIKnwvBBNEz9x256AIeQTUhF221hOm+OuECm/wStggNOyuf/pzDMYTLRNyK8YWIvNEM2dN+UgsjZgAlM1lK/VJ2OfY+27OM9SG1hIljeM704CiT71d7nv/q+wnOgaZa0N/mPXFONIh3z2RVIFC7gOyV0/dVWglQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NnBxvN4xGd6+68RytWbF9FHJipzxf2QGAPi8nPwftyA=;
+ b=Aa3tp6HAOmkuX444TLFr5n9kin6cN1I6KS2qMOFZOcQGSoEINkxwl8Ny5VKJt+hcBe+VDOw5gOkkmnXiwPP49NE0H3qy1M4mjh00mthiXrbT7tWiyFRdOJ/1IZNCC40TLnrNlIk6DwsWmz5IfWDK59fHTN2+NlT9XVogTcGLVRM=
+Received: from SJ0PR03CA0178.namprd03.prod.outlook.com (2603:10b6:a03:338::33)
+ by DS7PR12MB9042.namprd12.prod.outlook.com (2603:10b6:8:ed::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Tue, 10 Nov
+ 2026 05:08:37 +0000
+Received: from BY1PEPF0002695D.namprd05.prod.outlook.com
+ (2603:10b6:a03:338:cafe::1d) by SJ0PR03CA0178.outlook.office365.com
+ (2603:10b6:a03:338::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.569.11 via Frontend Transport; Tue,
+ 10 Nov 2026 05:08:36 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BY1PEPF0002695D.mail.protection.outlook.com (10.167.244.166) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 05:08:36 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
+ 2026 23:08:35 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
+ 2026 23:08:34 -0600
+Received: from xhdappanad40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
+ Transport; Mon, 9 Nov 2026 23:08:31 -0600
+From: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
+	Conall O'Griofa <conall.ogriofa@amd.com>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <git@amd.com>, Dileep Kumar Nagavarapu
+	<dileepkumar.nagavarapu@amd.com>, <stable@vger.kernel.org>
+Subject: [PATCH v5 01/16] iio: adc: xilinx-xadc: Correct write edge in CFG
+Date: Tue, 10 Nov 2026 10:31:46 +0530
+Message-ID: <20261110050201.1850399-2-dileepkumar.nagavarapu@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
+References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0002695D:EE_|DS7PR12MB9042:EE_
+X-MS-Office365-Filtering-Correlation-Id: e7e955b9-9670-48fd-d520-08df3ee8ad29
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|36860700016|23010399003|376014|1800799024|18002099003|22082099003|6133799003|10067099003|56012099006|11063799006|261021121427099003|261102123227099003|261026121527099003|261009223027099003|261021123027099003|261022075727099003;
+X-Microsoft-Antispam-Message-Info: UqpBQvtwmtiJipkImsOaeLgg8EjnS3jO7xxDbIsMRTHn0+NTOEX99Rs5R8Q8atdMIjxfjXy4n5PHlALtQNH4OZQ8EibohzBOXmNrQxaXMTI0ysSFl36GAngrGPrhZj/mm1pcUDqHbb2jk5ZY96OU5lPiw1ueh/0vnOvsLyHvbjBwKZe50uR57WPHmnRk8mTEhNM4wLXnfyaDA60c7k6oOmy0Eddg+TlnwrPq4BVeMPMrxihMhFfNwAT3cXMtE51G8xxIhjLc++PtoBRg/qg30sZcmoBesGA9wPlMfS4tIdP4TShiOhEVg6TLWYYFTArSosL33q2zkSx3H/J/pjTAupuI9XGtbz7uixDSXFu4ntqDLMpLcC96Lcd/war85d9257Hj9NXfV2I8s72gnX4ZJLQA1J3SEMSZHvVJnDW8WINUtih1D200KB9CoBfuiYTufqrAcC3BStRy/BiPDrk4CAH3sJ1dxIiDfrrR/XnDZoB4VEh+QInCVnXGPrt2CY4auqtFVAFYu1NR8x2CW+/Mhp/fVEqByDQr+5QxE6j//YhsTd2LX0TkFkzm9MvBc8EwDkBzDBMKEHKTmZ36bl/ElJDDTeZOjjXPm/KCty49dl9MwrCQ3qAhKGQnhH+URd/rNn6+WAxbvm/35T0cxj/wx6zSQu77hvMmXwLrO0qvzC5X0iC6EWEcbCQiXd9DOu2F
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(23010399003)(376014)(1800799024)(18002099003)(22082099003)(6133799003)(10067099003)(56012099006)(11063799006)(261021121427099003)(261102123227099003)(261026121527099003)(261009223027099003)(261021123027099003)(261022075727099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: PwHit78sO+v4OGhYkvgCyND71SquQpvvb5TYJGn4fr+4xRXT/qCwMvB6cjZ0g4902bHuxMzaEV4SE3rYM0zZUXPMioeEGTOFM1iv0bmD5lHTgNrGfjJ99sEFu0URR+Mf4IoEu925wNPpQD8TxtJ9uAP5RLtJT3ZU2bF8Z+zLAqxV13QKtgSInifL1qjKxmxmHT5q8ApV12UVdGVuvlexcsjWu8RttoVFGvWW2rccuhs4VaZYT5n/3Mhuh3KI4MLCMMish1f/tS7AJb57Eov64Pwjfjmh6HLj19/F29+FfVCu0HsoH5nRHzh8e/koO6elb80gAhdSa0C4quAJcuB6IA0IOLyz8oa8+Q75zg9HKexcW9CjPwmqpNaTYRLNeILmAQud9OICm73dkwh5BQ0jk6ZpxsVVvRVjPZwa6207HeJuUe7t2WjAMZX/YCtRFQQV
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 05:08:36.7432
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7e955b9-9670-48fd-d520-08df3ee8ad29
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0002695D.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9042
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_210729_298528_43953308 
-X-CRM114-Status: GOOD (  14.44  )
-X-Spam-Score: -1.4 (-)
+X-CRM114-CacheID: sfid-20261109_210846_149541_D810A136 
+X-CRM114-Status: GOOD (  11.41  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,57 +128,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The "offset" variable is a u64 that the user controls through the
-KVM_SET_DEVICE_ATTR, KVM_GET_DEVICE_ATTR and KVM_HAS_DEVICE_ATTR
-ioctls.  The problem is vgic_find_mmio_region() truncates the u64 to a
-u32, so it could return a valid region instead of failing.  Then we
-use the original incorrect value of "offset" to calculate "addr".
+UG585 describes the PS-XADC interface configuration steps: REDGE is
+1 and WEDGE is 0. This is consistent with the XADCIF_CFG register
+default value.
 
-	addr = its->vgic_its_base + offset;
+Configure WEDGE to 0 as specified by the TRM. Abnormal
+XADC temperature readings observed on Zynq-7000 are no
+longer reproducible with the documented setting applied.
 
-The impact of this bug is relatively minor.  A user in the kvm group
-could potentially crash the VMM which they can already do without using
-a bug.
-
-Fixes: 8331c23c28e8 ("KVM: arm64: vgic-its: Implement vgic_its_has_attr_regs and attr_regs_access")
+Fixes: bdc8cda1d010 ("iio:adc: Add Xilinx XADC driver")
+Co-developed-by: Conall O'Griofa <conall.ogriofa@amd.com>
+Signed-off-by: Conall O'Griofa <conall.ogriofa@amd.com>
+Signed-off-by: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
 Cc: stable@vger.kernel.org
-Signed-off-by: Dan Carpenter <dan@cryspen.com>
 ---
- arch/arm64/kvm/vgic/vgic-its.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/iio/adc/xilinx-xadc-core.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/arm64/kvm/vgic/vgic-its.c b/arch/arm64/kvm/vgic/vgic-its.c
-index 5ce485485a11..532a82bed24c 100644
---- a/arch/arm64/kvm/vgic/vgic-its.c
-+++ b/arch/arm64/kvm/vgic/vgic-its.c
-@@ -2018,6 +2018,9 @@ static int vgic_its_has_attr_regs(struct kvm_device *dev,
- 	gpa_t offset = attr->attr;
- 	int align;
+diff --git a/drivers/iio/adc/xilinx-xadc-core.c b/drivers/iio/adc/xilinx-xadc-core.c
+index 66202b3a3abb..222571e75cb3 100644
+--- a/drivers/iio/adc/xilinx-xadc-core.c
++++ b/drivers/iio/adc/xilinx-xadc-core.c
+@@ -390,8 +390,7 @@ static int xadc_zynq_setup(struct platform_device *pdev,
+ 	xadc_write_reg(xadc, XADC_ZYNQ_REG_INTSTS, ~0);
+ 	xadc_write_reg(xadc, XADC_ZYNQ_REG_INTMSK, xadc->zynq_intmask);
+ 	xadc_write_reg(xadc, XADC_ZYNQ_REG_CFG, XADC_ZYNQ_CFG_ENABLE |
+-			XADC_ZYNQ_CFG_REDGE | XADC_ZYNQ_CFG_WEDGE |
+-			tck_div | XADC_ZYNQ_CFG_IGAP(igap));
++			XADC_ZYNQ_CFG_REDGE | tck_div | XADC_ZYNQ_CFG_IGAP(igap));
  
-+	if (offset > U32_MAX)
-+		return -ENXIO;
-+
- 	align = (offset < GITS_TYPER) || (offset >= GITS_PIDR4) ? 0x3 : 0x7;
- 
- 	if (offset & align)
-@@ -2045,6 +2048,9 @@ static int vgic_its_attr_regs_access(struct kvm_device *dev,
- 	its = dev->private;
- 	offset = attr->attr;
- 
-+	if (offset > U32_MAX)
-+		return -ENXIO;
-+
- 	/*
- 	 * Although the spec supports upper/lower 32-bit accesses to
- 	 * 64-bit ITS registers, the userspace ABI requires 64-bit
+ 	if (pcap_rate > XADC_ZYNQ_PCAP_RATE_MAX) {
+ 		ret = clk_set_rate(xadc->clk, pcap_rate);
 -- 
-2.53.0
+2.34.1
 
 
