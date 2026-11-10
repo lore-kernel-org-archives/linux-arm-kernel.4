@@ -2,100 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8B7606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFA9606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=24h6zbT1;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=QvvCcZll
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fLVicspo;
+	dkim=pass (2048-bit key, unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.a=rsa-sha256 header.s=key2 header.b=YOpMKtm7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=iV+Waf7jutjSxFSyqvs4NPIRg2kLw+pP00ZuH8Bx1Uw=; b=24h6zbT1BhKjb5fBTZjgBS7aUq
-	Gbf5RrTs1arnRwnFeQOf3ODj5/f73BSLDTba7M1WptlaFTawlZbqEq34Yxc3ZilOfypGfDc2vwSP/
-	XZYqgiymmWCd7foO3tWoR2OU5OzuWxnUTXw/jqe5xCqH8Fg+pms2GjjaKf4VLGVeKUCSRz+1hLzDO
-	S7knsVTSZ/4wAcy4xlIEpNDNQaIkaQGOEkAh/3a32rvOf04+a4mpTDQyPwNLG1Te6G7129hP5sJhK
-	331uvL+udW3NMO+lqkUYByDKOKs/aXkwyARkjrttbUg9Wyxn8fAlDdYEamVeRlEF6z1CpBbVUCWRp
-	C8hheF5Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=P6SoTY/qPxSRsFVfVmHV701Duq3Pn8mi7sps2ssRpo0=; b=fLVicspo/lawNn
+	yT8N78JoP8+ty5bgrrPgRo1JFmpnLDUNrZL3vG1v07j6SQJOqXT5HgtpENrfEYtx/iekcfxuPoPvT
+	He7JCTtOOkmKTgFgmfEHlHhSMzhe9ut9IrtJiJWQq9kSFCJGAbkzJM7Nl56CA8rKzrEUU0uiJ/NcZ
+	A9qrWfjLQLDAuDgVkwB5u288atBnr6bRG76PQOWMxPhT4yoL2A8CvQsLurJmYPxslny8zT8jFndDN
+	+rdGV4xjd9lWE4a4NSkWC/jZNJjv7M3G7w9y6Rg/LWNBToRz3SjuXSmnq8VtRauKjNwCyxc6fEJpV
+	zbB4p0dDzoHpde8kq3nQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhlB-00000003CU4-29AZ;
-	Tue, 10 Nov 2026 09:03:21 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xQhuS-00000003DTt-1D7i;
+	Tue, 10 Nov 2026 09:12:56 +0000
+Received: from relay.yourmailgateway.de ([185.244.194.184])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhl8-00000003CTI-3hrS
+	id 1xQhuO-00000003DRi-2kgP
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:03:20 +0000
-Received: from ratatoskr.trumtrar.info (unknown [IPv6:2a00:1f:f805:2b01:a03:2f4:308a:7b52])
-	(Authenticated sender: str@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id D73142004B4;
-	Tue, 10 Nov 2026 10:03:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794301396;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=iV+Waf7jutjSxFSyqvs4NPIRg2kLw+pP00ZuH8Bx1Uw=;
-	b=QvvCcZll9nfoiX1LGBmwAWaz6C6URPecwdmuRNKhH7Vaxzrks7ds2pGmx0BDm22nRr39nE
-	32fqoNq+aEWysvMQHvRxHgZh+RvwpWPndblh1y9HFDTGdPQs2lZVwzK80yaQ/jGekcBYjr
-	kHNwgUGK+0nIqqWjqOZOrI3SnH1oHRKmq1r+KtIDtIPUD3O9b6/1gnEKlsQ5zwqk9NZRiW
-	Aw2AQ+CHVt/a0njDG3sit1+b3djTP4RguSZgrAgExLN+cvUsbevpmElViK/w1blz/m+fPc
-	qMpb7nRgBjkUqc1uwtKd3FK8Ab4S25xoLRg/Feifkk5UOP3ffVYs02iV5CylVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794301396;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=iV+Waf7jutjSxFSyqvs4NPIRg2kLw+pP00ZuH8Bx1Uw=;
-	b=QnIBYVzDajT2AtGOEnK+v3EQQUuXrCBTbHddGThqt7eXyM8Sw1mktO3/kdQxlq4KGUbeRn
-	1mCHEnV1ezBU4VnEmLDrFUBE9UfKkJ3uYmhNVUZe+9D8gcM826L+wI9+surjnEr1K2/lgx
-	JiGnEMZ2O8Bk6kXJB0mHQZ29KrBV2a1umqA9I0jkbI6nckFiNaUvvXMI0MGpa2wTdbcOjP
-	ybBlW0ppcMZyBS0rYgepNLIVYolZDybTKdg+gOdYUilw6IVo5nSxrf+XbvOE27Fbj7uCsH
-	heCcX8vdNDYnBr4p6vmjLzUw44hvWOuxFTCYOUj5A/CP0AFDOXJ3s9bJj3vHFw==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794301396; a=rsa-sha256;
-	cv=none;
-	b=ADxZs/pwwc0+vefYfA7cO36TgOleG6Nie6SziGqCXfoBX3SR8EY3a0A6gm1RUqMt+AEeyV
-	LuZDpEhwwsytB7bCZeBDz0cIg+lPURnf+Qy89RZvz1UlOD7kZ5nf+RkfifnNnzaPDZuBnK
-	rIEAM3mctVpdfYYTHQrcudSK5/gn9hDXJpYpgdmwOxRGFhvb6NY53D10V/0EUTkXI6yVEe
-	21IdCjiHiaPv8C+xSdipkvLYVa/60BHsgLu3Mwp280DJxB3kAlvajvo6FD3plibQPagwJL
-	rgzTyGsBc24YdnGU/57nGSnDSxNXpALZcldo6aCubZIpsbSKGPxo4KMux2chgw==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=str@pengutronix.de smtp.mailfrom=s.trumtrar@pengutronix.de
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Tue, 10 Nov 2026 10:03:08 +0100
-Subject: [PATCH] arm64: dts: xilinx: drop unused #phy-cells from the
- DP83867 nodes
+	Tue, 10 Nov 2026 09:12:54 +0000
+Received: from relay01-mors.netcup.net (localhost [127.0.0.1])
+	by relay01-mors.netcup.net (Postfix) with ESMTPS id 4jP1B65cV4z9VR8;
+	Tue, 10 Nov 2026 10:11:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
+	s=key2; t=1794301918;
+	bh=Uxfq+9SLLu4IfxwcONSpQNLgnskcylSEYAOSXGskFCU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YOpMKtm7JwzGGfCu+MECFEV5sDtNm1BEiN+bHejH1gjrgt3h9oH5ZSmFAILGWzzJ9
+	 gvPRfPduHW6So2e0/PFgsZpunVb0DOB6Nxp7+bmJpOnoVIlBH2szvnEXV2olYK7iDU
+	 nfde6UVbD/PRqh+BD66cQ3Tar2rjvMXpBcB/dI3JnsNKky1sdLTxr2FI7vYCwCP1I/
+	 xb224RNw4kAXhSd7rPIBA83vLAtHpaagfisnl9hKwTB94f0i1hyEhDCWQ5DLXYA8z/
+	 BcovTzac3iLgylZazUzngZtDl/J1Xk6z1+BZN962esa16W5Iiu6XYu59rhnKOc190r
+	 m5A+ylD9rSs/A==
+Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
+	by relay01-mors.netcup.net (Postfix) with ESMTPS id 4jP1B64vK8z8129;
+	Tue, 10 Nov 2026 10:11:58 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
+X-Spam-Score: -2.901
+X-Spam-Level: 
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
+Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by policy01-mors.netcup.net (Postfix) with ESMTPS id 4jP1B35ZP6z8tgk;
+	Tue, 10 Nov 2026 10:11:55 +0100 (CET)
+Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
+	by mxe9fb.netcup.net (Postfix) with ESMTPSA id 3321B5FA5B;
+	Tue, 10 Nov 2026 10:11:34 +0100 (CET)
+Authentication-Results: mxe9fb;
+        spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f) smtp.mailfrom=regressions@leemhuis.info smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
+Received-SPF: pass (mxe9fb: connection is authenticated)
+Message-ID: <f5ddf27a-9771-4967-a9d0-13c09f588402@leemhuis.info>
+Date: Tue, 10 Nov 2026 10:11:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [REGRESSION] cpuidle: psci: boot stall/hang on i.MX8MP
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ Ulf Hansson <ulfh@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Sudeep Holla <sudeep.holla@kernel.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Christian Loehle <christian.loehle@arm.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>,
+ James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+ Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, linux-pm@vger.kernel.org,
+ coresight@lists.linaro.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ regressions@lists.linux.dev
+References: <20261030171910.2822677-1-dario.binacchi@amarulasolutions.com>
+From: Thorsten Leemhuis <regressions@leemhuis.info>
+Content-Language: de-DE, en-US
+In-Reply-To: <20261030171910.2822677-1-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-v7-4-topic-zynqmp-dp83867-v1-1-04500475a560@pengutronix.de>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ6CMBBA0auQWTtJB7RUr2JcQDvVMbGUFolIu
- LtVl2/x/wqZk3CGU7VC4lmyDKGAdhXYWxeujOKKoVa1JiKFc4t7nIYoFt9LGB8RXTSN0S0qT+S
- 8brqDOULpY2Ivr9/7fPk7P/s72+k7hG37AJwvBo19AAAA
-X-Change-ID: 20261110-v7-4-topic-zynqmp-dp83867-0f11df63a589
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Steffen Trumtrar <s.trumtrar@pengutronix.de>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6985;
- i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
- bh=r7xwrLRGPAQ0iiVHxekSDOtVkGaeiUkp/R9YD1Vpj34=;
- b=owGbwMvMwCUmtVehiCsuTInxtFoSQ9anu5fLC3/3T7r6JP/qdiaFxxqaBu6fku6blCzqW5O7Y
- W9IDNu0jlIWBjEuBlkxRRaVhRV8oh4fPCOniXDBzGFlAhnCwMUpABM5nsPwV9Bz4S6n03X/XA1v
- hul1Lbdk/1+bahVptlI37Xj1lwBtfYY/3Kqh/NLJRk18vO6Vv4/cfXc96t/Z8vik7y7H3RgMYu6
- zAQA=
-X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
- fpr=24A1780E1548F0495996140A1ABD20720A5E5622
+X-PPP-Message-ID: <179430189496.738146.16548204213021020966@mxe9fb.netcup.net>
+X-NC-CID: nXaVOhT/l03j0ELJaOTQF9RW2is43Eqb5I+9yhoMdtaYrpVBfhs=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_010319_428126_2980D1BF 
-X-CRM114-Status: UNSURE (   9.45  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261110_011253_307149_2236A5C9 
+X-CRM114-Status: GOOD (  16.64  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,179 +106,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DP83867 ethernet PHY nodes have a #phy-cells property, but no node
-refers to them with a phys property; the MACs use phy-handle, which
-takes no arguments. #phy-cells belongs to generic PHY providers.
+On 10/30/26 18:19, Dario Binacchi wrote:
+> Hi Ulf,
+> 
+> on an i.MX8M Plus Dual board (Engicam i.Core MX8M Plus), mainline
+> c339f4010dea sometimes stalls for ~0.9 s at boot, or hangs until the
+> watchdog resets the board, right after:
+> 
+>   [    0.806123] ledtrig-cpu: registered to indicate activity on CPUs
+> 
+> On a good boot the next message comes ~11 ms later.
+> 
+> About 1 boot out of 3 stalls or hangs. With cpuidle.off=1, or
+> with commit 65705b18162b ("cpuidle: psci: Move initialization a bit
+> earlier in the boot sequence") reverted, 10 out of 10 boots are fine.
 
-Drop it, so the nodes validate against the ti,dp83867 binding once it
-is applied to them.
+Hmmm, nothing happened here. Might have fallen through the cracks, so
+maybe this mail will get thing rolling. If not, I'd suggest you submit a
+revert.
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Reviewed-by: Michal Simek <michal.simek@amd.com>
----
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso | 2 --
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso | 2 --
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts    | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 1 -
- 10 files changed, 12 deletions(-)
+Or was there progress or even a fix and I just missed it?
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
-index b82a056be2f99..930f0e54fdac5 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
-@@ -254,7 +254,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@4 { /* u81 */
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <4>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-@@ -266,7 +265,6 @@ phy0: ethernet-phy@4 { /* u81 */
- 			reset-gpios = <&slg7xl45106 5 GPIO_ACTIVE_LOW>;
- 		};
- 		phy1: ethernet-phy@8 { /* u36 */
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <8>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
-index 4dcf92a2158fd..e05667f6e946b 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
-@@ -255,7 +255,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@4 { /* u81 */
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <4>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-@@ -267,7 +266,6 @@ phy0: ethernet-phy@4 { /* u81 */
- 			reset-gpios = <&slg7xl45106 5 GPIO_ACTIVE_LOW>;
- 		};
- 		phy1: ethernet-phy@8 { /* u36 */
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <8>;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-index 52954761c9f3d..af897c3cd1680 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
-@@ -200,7 +200,6 @@ mdio: mdio {
- 		#size-cells = <0>;
- 
- 		phy0: ethernet-phy@1 {
--			#phy-cells = <1>;
- 			reg = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-index 49732de5fa4b9..a1f0592e79589 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
-@@ -191,7 +191,6 @@ mdio: mdio {
- 		#size-cells = <0>;
- 
- 		phy0: ethernet-phy@1 {
--			#phy-cells = <1>;
- 			reg = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-index a5bc521ab6797..42030547a32dd 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-@@ -217,7 +217,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@21 {
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <21>;
- 			ti,rx-internal-delay = <0x8>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
-index 3c28130909bc6..bad59d7b1d26d 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
-@@ -19,7 +19,6 @@ &gem3 {
- 	phy-handle = <&phyc>;
- 	mdio: mdio {
- 		phyc: ethernet-phy@c {
--			#phy-cells = <0x1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <0xc>;
- 			ti,rx-internal-delay = <0x8>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
-index 32509083e54f4..898a9000daeaf 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
-@@ -126,7 +126,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@c {
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <0xc>;
- 			ti,rx-internal-delay = <0x8>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-index 96699be8430fa..b0a08cf1d03bb 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-@@ -131,7 +131,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@c {
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <0xc>;
- 			ti,rx-internal-delay = <0x8>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-index 52441e5c87390..58684af4b98c4 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-@@ -217,7 +217,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@c {
--			#phy-cells = <1>;
- 			reg = <0xc>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			ti,rx-internal-delay = <0x8>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-index b34e4c93d249d..30f97f67e8c8d 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-@@ -189,7 +189,6 @@ mdio: mdio {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		phy0: ethernet-phy@c {
--			#phy-cells = <1>;
- 			compatible = "ethernet-phy-id2000.a231";
- 			reg = <0xc>;
- 			ti,rx-internal-delay = <0x8>;
+Ciao, Thorsten
 
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261110-v7-4-topic-zynqmp-dp83867-0f11df63a589
-
-Best regards,
---  
-Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> I haven't dug into it much. The stall seems to be in
+> pl330_driver_init(), so my guess is that it is related to the AMBA bus
+> reading the ID registers of the CoreSight ETMs while a CPU is already
+> in cpu_pd_wait, but I may well be wrong.
+> 
+> Any idea?
+> 
+> #regzbot introduced: 65705b18162b
+> 
+> Thanks,
+> Dario
 
 
