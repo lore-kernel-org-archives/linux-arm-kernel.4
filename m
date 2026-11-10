@@ -2,110 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7747B60A2638
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 19:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21F84606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 19:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FCx3jGAO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SG3DouA8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sE5qZfBz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lQ/+0Nxm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=L4VYNMQJjxkVQtRujzGGBXYJJspdXKkimKgznnscdQY=; b=FCx3jGAOf3sAPJraapy+XQ8UP1
-	cGUHAootqr4IXExrT5dSN1CdtN0ja4W7zL5zQqb6gulq2YrReN+P16/Z5KmLZ7cIRD0nZDX2VC3d/
-	TMF2qflCpRl3csXcrWrYfxbZxjUlLGAA6uyWRvV4s3Ax2PPQZb2f7C3qfkIRq2q+miRPJcF6kDLAo
-	2D6t7yoA/QSAZTtW2wF2vvuqZBOf7wp24BetTz0hfqyjPi7neho89XBtwCyCMvZGzGwFrDt6o39vM
-	64Pb/tKGB5sTGR8YBmVRohYDWugCoej9aKbZj0r5s+JJDEHMA6h/sRTIWQKS48/V0us0CyZuXlHHd
-	MybvGeJg==;
+	bh=2I8vq1te86R5k4Yvi4aSwE2vl91WuDRteqWewLtKBQg=; b=sE5qZfBzbKe2SR6NCtXQUW3zdQ
+	FzzIgK+Gt6MI/TwnOSr/BbTQWdloj4hwT5eXc2xlpzqHI35PpRq6Cj854UxN3mmp+ZxUsQQTla0uJ
+	RuaUX0+gjvBzEQzhvvzdVn5BHW/qqdWWq9lnslgDFuhCXll2zNW9MjWL107YSbSEy204O6G3UpCZ5
+	CJHaA5+P/rxjzygfJg/3fbudL3zkKpXglN2znGuXjBqrjRmgEvlB+ljhMctZuu3nWZRJqLFTtrcbD
+	83PNkUaD1OCrAD1xx1mk0+xwkjVoagOFeDZNYTtiC3nWJlyTyjIlC5YGrJMhImrfYNigqVVlYXlJh
+	PaddDmUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQrQY-00000004tDp-0vPL;
-	Tue, 10 Nov 2026 19:22:42 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQrTp-00000004tv5-4AKL;
+	Tue, 10 Nov 2026 19:26:05 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQrQR-00000004t9n-2o5w;
-	Tue, 10 Nov 2026 19:22:35 +0000
+	id 1xQrTo-00000004tur-2F3l
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 19:26:04 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A14CE636A9;
-	Tue, 10 Nov 2026 19:22:34 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794338554;
-	b=GvbASUcpbhal2m0F75bNv2xG22LAF2DIS48SiabLfAGuPlg0Lw5MAvUxtZoBAigqyFl9
-	 OIAvl303ZQlvWpiqlvvRw0AUbS0ffhPjKZCPqY45J51xxUABUPTVbHxWJdQtopSYCGEud
-	 sm3praV0w6C/Nosx0AytYN1+9io82tvLckvhE87eNdrW3daWrBIfqgRewBTMTEN/o2WNR
-	 2ALzBcFzq7Y5zppmwdv2DIk1+O1+N83sfEZ28ZoHX5MBk9+aABqqHEO2ZB5km1hV4gNdE
-	 8kNWSPH9dpE+x+uPEHBR96xGIV6WWLEp5CGGVRGphGbBnpbkLRWNz1NmLyFl2sDDRXQ==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794338554;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=L4VYNMQJjxkVQtRujzGGBXYJJspdXKkimKgznnscdQY=;
-	b=GBV9Nu3+ytYR7QbDLLU1/F0K0/wgUdmNfhj62f8ruDBQjuYV2tLOBaN765BZvdfxhfqE
-	 74paKxJ0nZD1tgAiP2epOLlselECLxXDtHQrhm8c8HN6cpoB5z3aZeUqk63wtsQCzNv1M
-	 2PddeV/iFLIZ1eayB7kx7TY6AslTsilzm+hDvCZ8by99Fs85775UyNzuMDSdx4dvKlw3/
-	 nvDYngO3TNiFsD6yAnZHlTK0+gLbZj7NqomvXzPDm+qW42HXGO442Jg9vYu+hDPnwj7fD
-	 N8aIrsNMiybzj2X8davS3MlDuQPLvUBf8ioaskFdsz4jde1PIrehVtEK1OJTHAqQgLg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3C4AD1F0089F;
-	Tue, 10 Nov 2026 19:22:33 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3C7A4611B8;
+	Tue, 10 Nov 2026 19:26:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C20101F0089F;
+	Tue, 10 Nov 2026 19:26:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794338554;
-	bh=L4VYNMQJjxkVQtRujzGGBXYJJspdXKkimKgznnscdQY=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=SG3DouA8GglzEjIYZKYfmLZWuXG4xOUiXErBIm+x/oHTkSQFXzzmXBnNxmuBFmwjL
-	 swYNdaWRn1Xe19BQbf/QMzz4iqrR5a3MpxBUGqoje5FRpFQ12gEdIQ5JfizUK1v+6K
-	 RIv/+tPKHHtRqAO0UW9iI3+U5TVTtPkIYTGFQVMvqdW9FyX29vCZKX1ubfnaAZ4nKA
-	 +tQraBSsQoSOhicMjuhDtxpTRz9Zjgh2gJtTcvYO2/ZeoJVVhn7XU2we4kGXbKxhHz
-	 OreLsZlicYXdLyZ8WiyD0843H3W9Vo9kVrynFSfN0g7otzm9qGPD1UMItR7VdyCfUq
-	 rqiB2xFdceWBQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 8FCCC48C59;
-	Tue, 10 Nov 2026 19:22:32 +0000 (UTC)
-From: Roman Vivchar via B4 Relay <devnull+rva333.protonmail.com@kernel.org>
-Subject: [PATCH 0/3] watchdog: mediatek: fix mt6797
-Date: Tue, 10 Nov 2026 21:22:20 +0200
-Message-Id: <20261110-6797-wdt-v1-0-7f07755b6074@protonmail.com>
+	s=k20260515; t=1794338762;
+	bh=2I8vq1te86R5k4Yvi4aSwE2vl91WuDRteqWewLtKBQg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=lQ/+0NxmYvHxSfnSIONTHNAPyURfbEWLrhrOoZJO+2LDWE5xgSmkLnzeiZkASZHeH
+	 5o23T5MNbRpKaR7CRy1zV7x68/7qCQQ/ba36ep08wwkca0Db/mEZn0dpmdrYuJTTGs
+	 /BW48Jh+fw2tDZFQn24sj/fKvnu7a+BdNcDp6ywgfHBDj6zQeA8ERNyjKEyYt0Rluz
+	 +4TvuWD8MGB8c7Ytwr1Wqv8zUMmOKNKcLhNI0NeQ0WGHmeAlMn+6FTZGuK4uyh7Zt/
+	 7tGKSdGa4byuApcbhVslzDwNy3HtdzHh31lywsBQWZeRql+bUmFKnm3sZbEpCeMeXs
+	 lNiwO/1U9ICFw==
+Date: Tue, 10 Nov 2026 13:25:58 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Pablo Mazzini <pmazzini@gmail.com>
+Cc: Andre Przywara <andre.przywara@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: pinctrl: sun55i-a523: one interrupt
+ per implemented bank
+Message-ID: <179433875840.1485523.100233134463965104.robh@kernel.org>
+References: <20261025142412.112216-1-pmazzini@gmail.com>
+ <20261025142412.112216-3-pmazzini@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQ0MDXTNzS3Pd8pQS3dREAxNTCzOzZEtjMyWg8oKi1LTMCrBR0bEQfnF
- pUlZqcglIv1JtLQA5GQiZbAAAAA==
-X-Change-ID: 20261110-6797-wdt-ea045866c936
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Ben Grisdale <bengris32@protonmail.ch>, linux-watchdog@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Roman Vivchar <rva333@protonmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794338551; l=979;
- i=rva333@protonmail.com; s=20260510; h=from:subject:message-id;
- bh=YuCtHZXtAm427+WUFBsF2fwoSMRhW21Cd4n+6tsctgU=;
- b=X9izG8476fidywRoRhvuRH/2/lNsb1YV3dppMtAdUa7unbApAM95ag7j0PgxItcT54aiKLXln
- qDG8auL6RscAMxy95MMQx0tVRM9dMuUrrZQ9x4RfTPdUV61Y30HVmbB
-X-Developer-Key: i=rva333@protonmail.com; a=ed25519;
- pk=zww/nWjBGoQ4POXCG0BV6fx2iuXK6jx77rsKPA5YK5Y=
-X-Endpoint-Received: by B4 Relay for rva333@protonmail.com/20260510 with
- auth_id=777
-X-Original-From: Roman Vivchar <rva333@protonmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261025142412.112216-3-pmazzini@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,40 +75,30 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: rva333@protonmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series fixes improper mt6797 watchdog compatible, since it's
-actually different from the mt6589. It also adds own reset header for
-the SoC and reset table in the driver to mapping IDs to bits.
 
-Signed-off-by: Roman Vivchar <rva333@protonmail.com>
----
-Roman Vivchar (3):
-      dt-bindings: watchdog: mediatek,mtk-wdt: fix mt6797 compatible
-      watchdog: mediatek: add mt6797 support
-      arm64: dts: mediatek: mt6797: fix wdt compatible and add reset-cells
+On Sun, 25 Oct 2026 14:24:11 +0000, Pablo Mazzini wrote:
+> The A523 and A733 have no PA pins, the A523's PA IRQ bank is not
+> implemented, and the driver no longer counts it. Go back to one
+> interrupt, and one debounce period, per implemented bank: 10 for both.
+> 
+> This reverts commit 11f25ac56372 ("dt-bindings: pinctrl: sun55i-a523:
+> increase IRQ banks number").
+> 
+> Signed-off-by: Pablo Mazzini <pmazzini@gmail.com>
+> ---
+>  .../bindings/pinctrl/allwinner,sun55i-a523-pinctrl.yaml   | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
 
- .../bindings/watchdog/mediatek,mtk-wdt.yaml        |  6 ++++-
- arch/arm64/boot/dts/mediatek/mt6797.dtsi           |  3 ++-
- drivers/watchdog/mtk_wdt.c                         | 27 ++++++++++++++++++++++
- include/dt-bindings/reset/mediatek,mt6797-wdt.h    | 25 ++++++++++++++++++++
- 4 files changed, 59 insertions(+), 2 deletions(-)
----
-base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
-change-id: 20261110-6797-wdt-ea045866c936
-
-Best regards,
---  
-Roman Vivchar <rva333@protonmail.com>
-
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
