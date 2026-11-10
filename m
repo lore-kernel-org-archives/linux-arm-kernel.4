@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE60A606B42E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:18:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D5C606B41E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D0KOVHB/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mvUP8+bz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZuYYMDBm;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ennfD2TT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,92 +14,86 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=MER664wp6WH5mI6S02fIEsQchQGjwcXv11YrimOV7Z0=; b=D0KOVHB/1GCXAmxGK7ELO4T+tC
-	btaPNiPQFQx0DadrRidYSnbV9h86kaWSUTgEkzXN0gO4ttsl6NQsZ6AbV0ll55bCEH3mZ41/K0wE9
-	JmrdNdId5kZtTav0ShtSo+NE78++iPHgJu1lBeg+M+DMnNAVO2+xEs+kKxOBW+rsDILRJ9kBnH5dO
-	JYWpcWu1bor4mObqLiCN8kBQmJBaTM/f88nLCfKDLpfzj3GVw9fcsL1Qltt6fJs4wUtSh5b9mGyP7
-	PdnP7UdkBqqKjwB0oImSLer1kPw5Uv2IPpCJ0ZeTM20n99yrWN7fEyKQpO8KOuX2od2wCP8ZJ0h4Q
-	EBVX6VhQ==;
+	bh=CXcWjb7Nzc+RNDNk2ZDTJ59JBkPVPgLcutR3s53+teE=; b=ZuYYMDBmS5ItI3GP03wt/gbX+D
+	dzOR5zTeIzVWeNUGcHvQtg5aQ7O2qM16UoMb4iPCEtOtw66l98CadIEFe7uF4XcgXJZ0X/gEm3hA4
+	Lekw0IYEg9rNDgSQBn48PV6dY6EBP6OhM2vnHiHaI1SXtA6CQVB15HUQQ7mwyGH37rMn66RqqNugx
+	/OmvH5jOsklf2s6n0z+u0euYfkuMbIAE06vX28g6Lrcs8exI1akYpGTxou5M7S+0/JuFZLePWh1WL
+	CIRUUMBw8q7e3zUSCPGEuujP2TfFLq5zbt5Nz2LxlT9hOfDIit/QroCZl4DjyYJosJkjDDoRbeYOJ
+	ief73vYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg7y-00000002q6R-32Hw;
-	Tue, 10 Nov 2026 07:18:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQg8E-00000002qU3-2MxK;
+	Tue, 10 Nov 2026 07:19:02 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg7D-00000002pNP-05IE;
-	Tue, 10 Nov 2026 07:17:59 +0000
+	id 1xQg7j-00000002pla-3K9B;
+	Tue, 10 Nov 2026 07:18:32 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id BF09A46A2F;
-	Tue, 10 Nov 2026 07:17:58 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8D521411CF;
+	Tue, 10 Nov 2026 07:18:31 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794295078;
-	b=YiZbOkc/x01jDrHuOudT618PMVbG6ENYdN0TStJg6cxaWdAzqWPX3LNXkcOg8ZWf9zfO
-	 8HxCD12C2YqHedBEn8aKpw7YVoLYazjfmzMypzfQwhQu/LOOzkxmAXHMLhThsW3/gImWX
-	 Maro2+nY+t63l93E1zHZ8dFbyhxioxC/UX+JYoJvXXOYB/Ai4+pocdG9SZpH5xtaN9HVh
-	 BZwBmicLTKsXeL6lMXV0uTOvud8lUtxke9KBWQzELeR/0UuFStBbBkx43HeDw/nSZgxEg
-	 UPGETVvi7PIiFL6DYfnT00wJPlLt7zzLLIumqtQWIZWKeGMkzOee4Yd/R4wUqzUZDHg==
+	t=1794295111;
+	b=c3bwBFdvJihoE3uK253J/ZgYQHs13MDojSWvLIKs3wQ1VAUMyvapUAag9VN39HJTFsRt
+	 DD15aGd1xvpJCX9nCGuzCtdNFz1qmEH6fGeQXl/f/dof9qMjoFRcVIGuHODJKM1488ft0
+	 FNpD+HkG0qs26U6UsOMOYFbo35lbMVZvK88wwdlntfn/go1ZRa85DdE05TMCBC+o6jU6P
+	 8EaMj15I0hDPGmhk6+Og1f1jID+e2GV+9lFNj/RKhiJcUkswnJh97+u30S+saqnAcFHFj
+	 KR0w/DevEJ8fLfJsendZH1QX2RnYiL+bX9567+FPXhh9FKjo5n8nWtW6aTPXw7HXkZg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794295078;
+	c=relaxed/relaxed; t=1794295111;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=MER664wp6WH5mI6S02fIEsQchQGjwcXv11YrimOV7Z0=;
-	b=ZYRXeC2XwMu2O11yz0wJ+QxfrYu4seBqwLQCAMJterpGpltUulCzdOOrRNShitjq61LJ
-	 0l7xishXUR1a3NeArQENliIOsFU+Z8sIGZ/W8pZSz0VYy78um52Ea8DfEIARV3HfnP/sU
-	 j9h4oogFL7bLWiMXWjETovNSjw7Dvfh8Cn8+gLDAH61/NKeoyggfgttnSe0bFuoEQOAlC
-	 2NpZ6e7BHYfYmV9B/RQDws38tI+LVssQlm27+QiK6dfpFm3FGmv0Dc1hXaupbYAUguqs4
-	 d5ufndrjLTZHryJudSOM0ow+ojeqQSyovJtUDpOxCajlhEVyf1h0R2vDgGnsqz3vsTw==
+	bh=CXcWjb7Nzc+RNDNk2ZDTJ59JBkPVPgLcutR3s53+teE=;
+	b=Fqpm0Wg4NbrFSmmEspeThQfoW62o5veiUdKWS9U3W1LM3mYiAoPfZKM3AbeuhXBEFXB+
+	 ABLKBtxf3/uzK/yqK03ue2fy6I1CUhM/wro1bKjfJC88gkNrVruZhvZ/2kahXMwPlTodL
+	 IRewTYn+6n2aLeuNWz7qWjbfAM0QXXXlP8Qix1fqTX1RQAjk1n5To0k59dN671dYHS2o3
+	 XDEaCekpr4w2yNwdOVButwJIRg7XTcinqG3oL5GZHZgGv1EH5UbGvyswe8BjJLIoloNog
+	 ALQH0l0PDCiGhXyECmj40B1FEGz4KbkZna+yxxut4sff6QjwGZBUFq+cTpv/HDRJYLQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B60C81F008BD;
-	Tue, 10 Nov 2026 07:17:57 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id D55871F00930;
+	Tue, 10 Nov 2026 07:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794295078;
-	bh=MER664wp6WH5mI6S02fIEsQchQGjwcXv11YrimOV7Z0=;
+	s=k20260515; t=1794295111;
+	bh=CXcWjb7Nzc+RNDNk2ZDTJ59JBkPVPgLcutR3s53+teE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mvUP8+bz+hgAdpeOY7mAqf6jOL3jAHShwN3uMzHXuwk9RYY4tD1ba2XuiGwOm09Eq
-	 BJlefvw9lGEAH+Mdxd0KwnYYhfB5BAr5Y31ObBVg23cBXRnbtbp/SvrkUdriTXG1Le
-	 Oy7joazb8O7/qeLU05goXxd1II/MnM9sYYwrcuM+D7j9mTpILn4xZqLHmRRw1tHin2
-	 aT6jiD2ycY/jGoKvspjgrw4SvQOgXzLVAoPOTK6v/0x7WLvu5WCi30VR91vryYSoID
-	 t2X73fI95gWL+bkrL01P7NPpEceE10q1G0ZSfzXAQydvBeGI+wV4xrZaJo/BPCbKCN
-	 MdVtp28gGMfQA==
+	b=ennfD2TTAsOfpeAlqcSaIQwU/x56IET8kytZAIprxiDaX11qufathM7zeLyymBjfx
+	 zPmsDHE0Mzg8ABWqvqPbWqo+g7I2hYsXejl0+8hNMADCMVOGrwBurwJjA2O/aY9CYD
+	 BOmVx2eWxbgVrbpDKKoG5Yiw5rtz573/VYrx1OisTn8+KXqvbS33OiuTuLmub1Ms8F
+	 UelErpSYwZ81kai6J/Xbm3foGQ03QZ/3rDtELDMN9wv7pOAy3F/EZK4EU4vi0C2BJg
+	 Ff+XBB11mlSqlYsdPzNyRXxfJCw4prfzcBxSc4CzStKHrped9MD1L4ChHtcrREHdD8
+	 FXATjt1hTGBQA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 5FAB848998;
-	Tue, 10 Nov 2026 07:17:56 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 69174489AD;
+	Tue, 10 Nov 2026 07:18:30 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 07:18:00 +0000
-Subject: [PATCH 5/6] media: verisilicon: Don't reset the encoder raw format
- while OUTPUT buffers exist
+Date: Tue, 10 Nov 2026 07:18:30 +0000
+Subject: [PATCH 1/2] media: rkvdec: vdpu381: Compress the co-located motion
+ vectors of H.264
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-hantro-jpeg-enc-fixes-v1-5-fc4dc7e985d2@gmail.com>
-References: <20261110-hantro-jpeg-enc-fixes-v1-0-fc4dc7e985d2@gmail.com>
-In-Reply-To: <20261110-hantro-jpeg-enc-fixes-v1-0-fc4dc7e985d2@gmail.com>
-To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+Message-Id: <20261110-rkvdec-colmv-v1-1-012b84ea43f7@gmail.com>
+References: <20261110-rkvdec-colmv-v1-0-012b84ea43f7@gmail.com>
+In-Reply-To: <20261110-rkvdec-colmv-v1-0-012b84ea43f7@gmail.com>
+To: Detlev Casanova <detlev.casanova@collabora.com>, 
  Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Boris Brezillon <boris.brezillon@collabora.com>
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Heiko Stuebner <heiko@sntech.de>
 Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295075; l=4809;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295110; l=4313;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=6ZAkyJS2xXZVjmfyUwqoguzm2MWh0Tv8oryah8QSDZw=;
- b=M/D7QYQlGPBD7LO5ikSRpoRG7kPotoeDdytjtgSMB0/SkiDUjHXbHZEqYumv6nfOPEP6Uxai4
- rJNZ2jysBzNDzDdsrw2X0YxCtZOiQ6HxDtjYdSPalMSb3UWRNnZIptn
+ bh=ybXnDgp5I8D2JJsP+6qloNGqCzU5IJqFRabb2XdAB/Y=;
+ b=HaXOWx//OEJFbzyvP1ryFMhNtoiX9Vl9j4SpdcMcbIXsZVkjTKblV4ft4iZDUIWhKlkZfVL8g
+ r7a8M1zPurnDz3MSOd9OlUMaQ5ZmLQqgXZBtyrM4c2dWQNi5YLlegx/
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -121,126 +115,105 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-For an encoder, hantro_set_fmt_cap() allows S_FMT on the CAPTURE queue
-while the OUTPUT queue has buffers as long as the coded pixel format and
-size don't change, and then unconditionally resets the raw format through
-hantro_reset_raw_fmt(). That helper sets ctx->vpu_src_fmt to the default
-raw format before hantro_set_fmt_out() can refuse the change with -EBUSY
-(the OUTPUT queue is busy), so the ioctl fails but leaves the context
-inconsistent: ctx->src_fmt still describes the negotiated raw format
-(e.g. NM12, two planes) while ctx->vpu_src_fmt describes the default one
-(YM12, three planes).
+The VDPU381 can store the co-located motion vectors of a frame
+compressed (reg012 colmv_compress_en). The vendor code (MPP,
+hal_h264d_vdpu34x.c) enables it for H.264 streams without field
+pictures or MBAFF, and for HEVC. Mainline never does.
 
-The next job then programs the hardware with the wrong input format: on
-the RK3588 VEPU121 JPEG encoder the third plane address is never written,
-the encoder reads the V plane from IOVA 0 and the job ends in an IOMMU
-page fault and a watchdog timeout. v4l2-ctl triggers this on every
---stream-mmap run, because it re-applies the CAPTURE format after the
-OUTPUT queue has been set up:
+B-frames are what limits H.264 decoding at 4K: the core is 99% busy,
+and a B-frame of a 48 Mbit/s 4K stream takes 16 ms of hardware time
+against 10.8 ms for a P-frame and 7.0 ms for an I-frame. Storing the
+motion vectors compressed cuts that memory traffic. Decoding the same
+240 frames to fakevideosink on RK3588 goes from 65.4 to 68.4 fps at
+3840x2160 (+4.7%) and from 214 to 234 fps at 1920x1080 (+9%). The
+decoded frames are identical (same checksum for all 240 frames, and
+bit-exact with FFmpeg).
 
-  rk_iommu fdba0800.iommu: Page fault at 0x0000000000000000 of type read
-  rk_iommu fdba0800.iommu: Page fault at 0x00000000000003c0 of type read
-  ...
-  hantro_watchdog:208: frame processing timed out!
+The compressed layout is made of 64x16-pixel segments, each with a
+header and up to 1 KiB of payload. How much of that is used depends on
+the content and can exceed the uncompressed layout: the hardware wrote
+up to 556128 bytes compressed against 522240 uncompressed for the
+motion vectors of a 4K HEVC stream. So reserve what the vendor code
+reserves for the compressed layout on VDPU381, which is twice the
+current 128 bytes per macroblock: 8.3 MB instead of 4.1 MB per 4K
+CAPTURE buffer.
 
-Skip the raw format reset when OUTPUT buffers exist: the coded format is
-unchanged in that case, so the raw format stays valid, and the S_FMT is
-accepted as the busy check intends. Also restore ctx->vpu_src_fmt in
-hantro_reset_raw_fmt() when hantro_set_fmt_out() fails, so that no other
-caller can leave the two descriptors out of sync.
-
-Fixes: 5980d40276b3 ("media: hantro: Cleanup format negotiation helpers")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/media/platform/verisilicon/hantro_v4l2.c | 33 +++++++++++++++++++-----
- 1 file changed, 26 insertions(+), 7 deletions(-)
+ .../platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c     | 10 ++++++++++
+ drivers/media/platform/rockchip/rkvdec/rkvdec.c        | 18 +++++++++++++++++-
+ 2 files changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
-index 2761d37af7cd..ce01ec6ea33d 100644
---- a/drivers/media/platform/verisilicon/hantro_v4l2.c
-+++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
-@@ -470,7 +470,7 @@ hantro_reset_encoded_fmt(struct hantro_ctx *ctx)
- int
- hantro_reset_raw_fmt(struct hantro_ctx *ctx, int bit_depth, bool need_postproc)
- {
--	const struct hantro_fmt *raw_vpu_fmt;
-+	const struct hantro_fmt *raw_vpu_fmt, *old_vpu_src_fmt = NULL;
- 	struct v4l2_pix_format_mplane raw_fmt, *encoded_fmt;
- 	int ret;
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
+index b961fddc8583..06d83a6ed617 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-h264.c
+@@ -237,6 +237,16 @@ static void config_registers(struct rkvdec_ctx *ctx,
+ 	regs->common.reg011_important_en.dec_timeout_e = 1;
+ 	regs->common.reg011_important_en.pix_range_det_e = 1;
  
-@@ -480,6 +480,7 @@ hantro_reset_raw_fmt(struct hantro_ctx *ctx, int bit_depth, bool need_postproc)
- 
- 	if (ctx->is_encoder) {
- 		encoded_fmt = &ctx->dst_fmt;
-+		old_vpu_src_fmt = ctx->vpu_src_fmt;
- 		ctx->vpu_src_fmt = raw_vpu_fmt;
- 	} else {
- 		encoded_fmt = &ctx->src_fmt;
-@@ -496,6 +497,12 @@ hantro_reset_raw_fmt(struct hantro_ctx *ctx, int bit_depth, bool need_postproc)
- 	if (!ret) {
- 		ctx->bit_depth = bit_depth;
- 		ctx->need_postproc = need_postproc;
-+	} else if (ctx->is_encoder) {
-+		/*
-+		 * hantro_set_fmt_out() refused the new raw format, so the
-+		 * OUTPUT format is unchanged: keep its descriptor in sync.
-+		 */
-+		ctx->vpu_src_fmt = old_vpu_src_fmt;
- 	}
- 
- 	return ret;
-@@ -642,6 +649,7 @@ static int hantro_set_fmt_out(struct hantro_ctx *ctx,
- static int hantro_set_fmt_cap(struct hantro_ctx *ctx,
- 			      struct v4l2_pix_format_mplane *pix_mp)
- {
-+	bool reset_raw_fmt = ctx->is_encoder;
- 	int ret;
- 
- 	if (ctx->is_encoder) {
-@@ -654,11 +662,22 @@ static int hantro_set_fmt_cap(struct hantro_ctx *ctx,
- 		 */
- 		peer_vq = v4l2_m2m_get_vq(ctx->fh.m2m_ctx,
- 					  V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE);
--		if (vb2_is_busy(peer_vq) &&
--		    (pix_mp->pixelformat != ctx->dst_fmt.pixelformat ||
--		     pix_mp->height != ctx->dst_fmt.height ||
--		     pix_mp->width != ctx->dst_fmt.width))
--			return -EBUSY;
-+		if (vb2_is_busy(peer_vq)) {
-+			if (pix_mp->pixelformat != ctx->dst_fmt.pixelformat ||
-+			    pix_mp->height != ctx->dst_fmt.height ||
-+			    pix_mp->width != ctx->dst_fmt.width)
-+				return -EBUSY;
++	/*
++	 * Store the co-located motion vectors compressed, as the vendor code
++	 * does for frame-only streams. This cuts the memory traffic of
++	 * B-frames and the hardware time of 4K streams by about 5%. The
++	 * compressed data fits the space reserved for the uncompressed
++	 * layout. Field and MBAFF streams use the uncompressed layout.
++	 */
++	regs->common.reg012_secondary_en.colmv_compress_en =
++		!!(run->sps->flags & V4L2_H264_SPS_FLAG_FRAME_MBS_ONLY);
 +
-+			/*
-+			 * The coded format is unchanged, so the raw format
-+			 * stays valid. It couldn't be reset anyway while
-+			 * OUTPUT buffers exist (hantro_set_fmt_out() would
-+			 * refuse), and failing here after the coded format
-+			 * has been updated would leave the context
-+			 * inconsistent.
-+			 */
-+			reset_raw_fmt = false;
-+		}
- 	}
+ 	/*
+ 	 * Even though the scan list address can be set in RPS,
+ 	 * with some frames, it will try to use the address set in the register.
+diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+index fbcd0f175ad3..5f7e876da6eb 100644
+--- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
++++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+@@ -20,6 +20,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/pm.h>
+ #include <linux/pm_runtime.h>
++#include <linux/sizes.h>
+ #include <linux/slab.h>
+ #include <linux/videodev2.h>
+ #include <linux/workqueue.h>
+@@ -93,6 +94,21 @@ static u32 rkvdec_colmv_size(u16 width, u16 height)
+ 	return 128 * DIV_ROUND_UP(width, 16) * DIV_ROUND_UP(height, 16);
+ }
  
- 	ret = hantro_try_fmt(ctx, pix_mp, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-@@ -680,7 +699,7 @@ static int hantro_set_fmt_cap(struct hantro_ctx *ctx,
- 	 * Note that hantro_reset_raw_fmt() also propagates size
- 	 * changes to the raw format.
- 	 */
--	if (ctx->is_encoder)
-+	if (reset_raw_fmt)
- 		hantro_reset_raw_fmt(ctx, HANTRO_DEFAULT_BIT_DEPTH, HANTRO_AUTO_POSTPROC);
++/*
++ * The VDPU381 stores co-located motion vectors compressed, in segments of
++ * 64x16 pixels, with a segment header (rows padded to 16 headers)
++ * and up to 1 KiB of payload. That's the bound the vendor code allocates;
++ * how much is used depends on the content, and can be more than the
++ * uncompressed layout of rkvdec_colmv_size() takes.
++ */
++static u32 vdpu381_colmv_size(u16 width, u16 height)
++{
++	u32 seg_w = DIV_ROUND_UP(width, 64);
++	u32 seg_h = DIV_ROUND_UP(height, 16);
++
++	return ALIGN(ALIGN(seg_w, 16) * seg_h + seg_w * seg_h * SZ_1K, 128);
++}
++
+ static u32 vdpu383_colmv_size(u16 width, u16 height)
+ {
+ 	return ALIGN(width, 64) * ALIGN(height, 16);
+@@ -1700,7 +1716,7 @@ static const struct rcb_size_info vdpu381_rcb_sizes[] = {
  
- 	/* Colorimetry information are always propagated. */
+ static const struct rkvdec_variant_ops vdpu381_variant_ops = {
+ 	.irq_handler = vdpu381_irq_handler,
+-	.colmv_size = rkvdec_colmv_size,
++	.colmv_size = vdpu381_colmv_size,
+ 	.flatten_matrices = transpose_and_flatten_matrices,
+ };
+ 
 
 -- 
 2.55.0
