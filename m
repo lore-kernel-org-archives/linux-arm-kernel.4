@@ -2,157 +2,159 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D1560A2638
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A1060A3810
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aZlkNwpT;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=SIq2FKal;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=TQueM0DC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HB0V2ANi;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=d27fe/gl;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=hKNgR+Rp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0zn2h/mfdeJyzmrvYGtYi3WlYP6oFtDlczeBFhJTZ50=; b=aZlkNwpT2WYnrN
-	n4izPbz5qpmx4XMplB0tM8u5z6z5jw1o6QYNvQIzsdAqExnzE7voY/tTkD0630DxkD6Eojnidt6NC
-	x9hRWRSAh/87vJ+6T2I5OtR4s7YuLpX0RTdWKPETCMGKQr3kWxLNgsxSvzTm32eDCNDp6TuILpVtY
-	945PSv6u4ta6/wmDmVHdSYnrbLw9CyFeOkPjt8p72pffhXfFSdBreZFkhv1eACoyNWJXZGlgIPLx3
-	G+0UM6vIaJHk4aXe9J0YxZzV+p1hUzvBd1OyaP9JeMta6T9L8U/XLtXWzhYjFpCrZ5EKjBU2rSZxJ
-	Q2k1hgNVBPTCIfnKIUxQ==;
+	List-Owner; bh=FbM2beT/ufH5KYufSNvf3zwpdmcVzR6lfg5amoABbYM=; b=HB0V2ANiGKLgSy
+	8giJY0RlG9tJW0OyIoHq+cURJocFFLJimXyfDeYDqFvg/H2b4wH1gBKTkHmnjOhM2Nkq7KFeMNE3M
+	e0DqXm+wE7KGtgZJ9DkcTmJSV/1dxn6uvy7fmHBs9dSXzW0gN/qUKg17eJCPHwm03Qrjx8mlv2MZf
+	tarrxAJMlxzN6sX/TtPHsNsaCfH5+m1rFH/Q6di34UnsaMj/J0HCiXM1UNqQABcYkrWwaJ2qXAZE7
+	chf9BBM37Q6yQty8Gyi0idpMu0mF1Ow2doX6/RHKZADxJiJ2Xn6FcbGzqUFS+UZlhgDm9F5CzDjqm
+	GU4jqJ8GNDQeiIy+Onvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjVS-00000003X39-3A8b;
-	Tue, 10 Nov 2026 10:55:14 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xQjVW-00000003X7b-0ePJ;
+	Tue, 10 Nov 2026 10:55:18 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjVL-00000003Wyu-39X9
+	id 1xQjVR-00000003X1Q-000Q
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:55:09 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AA7lDXD2240785
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:55:07 GMT
+	Tue, 10 Nov 2026 10:55:15 +0000
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AA7lDls3392609
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:55:12 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0zn2h/mfdeJyzmrvYGtYi3WlYP6oFtDlczeBFhJTZ50=; b=SIq2FKalNnAEkO2P
-	oIkOZMlWpOUnJ9sGWRZrSd9VTJoz1ggGjeIgAcwU7l+QMtNkT0zVc6JPRXaYU99N
-	LzFJZwYiQjttoE7IbpNIV+HBteYxQr5flBOYSR9G4gADntAZfgCxaW8Crp1DuiLa
-	c47wDPuFdtAOCJu4ueco1U6A7wGwrhQMNbq0ZMQHHTq7FlquqlorT6j4DzV3Posc
-	qe/bHHKmGwQ1P+zR8Ot6kd24HmnhH00i5gbJkRv3alyFe4cwKk2azhHErstl/geT
-	KmZTB7ADiQlKqGB5wim9lEcjL/UGXrg9AMpkaWgK+mv29UUB75zXBJSSdcGiIbwS
-	YhZliQ==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4huucp1mq2-1
+	FbM2beT/ufH5KYufSNvf3zwpdmcVzR6lfg5amoABbYM=; b=d27fe/glQtKvSlKW
+	CAKbr0p3yZ+zq7kpWozN7Of0wddOy+GbY8+15C74oKoRd6X8fM/xNQfXPyA2eF6c
+	70y54o1E5S+YPwH+hVQkiQWDpXyviMaXUXWBWdcGYfZRdhBj2IDPVPvn1f26O9WH
+	RcRE9boj8DQnBC5yoRcDxl435ldSMAPqY4JrLiQ0+7bBQB/8m7qwhQzr3u0BiaVr
+	Jtyle+CtQP0IIxB9fbJbou3IYe/4rSFaev5s43I7bsNNtIUCFPmq2nvcqNcE6C/g
+	YZneFWIHNazWtm00fYAEalEeb7Y2NL+Z4qUb87sEQ6plV6Ev0f8jGcwseKsPdWic
+	ZRqm8A==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4humjg33hn-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:55:07 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2ed08b07232so17203215ad.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:55:07 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794308106; cv=none;
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:55:12 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3b10afdf947so1748581a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:55:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794308111; cv=none;
         d=google.com; s=arc-20260327;
-        b=XOsDjfX48AY305L+DfuU4F7J4jYyLftwmV/qRi0lC/5WeQ5/SJcjlkPREQuNkSWdb8
-         1hV2pBNDxoWKcjMm9kM8IZMJxURg0IbMKejFsCzt7GzJQ9zuvoSHCp49bUNTUJ1cTMKV
-         RIzGXnjAdRWYAPWnNoM/DGbX+26WCc8OXdow2uxzLmU6nX6ZBTb1O3CvVd4QBvLf8L43
-         i3jwdz/JRAY1IwOv9roupFy3UOZ+qyHvuYVU7Oj6WwyGvhvtXYYV3/Sl1bfl0XH37Xfp
-         VMH9fmzqQpE9etmo1J3etyqLCBHKtW1QbGKkewVjpRLHAizEzaWqTPgos2aVvhmATNNy
-         8hFQ==
+        b=i9ToU/IpZjZXr7z+T6skOlYWP4u67YZFOUI1a/S6lzSrVhYh3eliY5FTkRo08Ke5kR
+         npj6X3RqHPsEqXCqKTP4K52F06CNh2h398sJfKDv6EDYBKxA9tPQlhSl5NpVqBRDnuP7
+         VryMbIsXJ2qexsVSLqBFpYtQbRQoj9mZcNJzMqA55hu0hV6/ewAHDxnccYQOJaFthXZR
+         gt2xPQSZgWr6d0v8UuI/nSK5mqSibArEr2d2IGBJMBrvodE8jkbzY38Kc5i+V51oKGm2
+         Lpq25bpGkUnqGIfyGCrh9qYXYbTNuiQc1/FcCSwLj4Sg82TWZjV+HsOdn1sQvxefQjZV
+         7BcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=0zn2h/mfdeJyzmrvYGtYi3WlYP6oFtDlczeBFhJTZ50=;
-        fh=rcXGmMDRgBGeJd6UyId0wTSOn2OE+jiVBrpo1Yvt/R4=;
-        b=kI1zg2954aMPUv99QK87zpq6MLQ/4SC3eJXQpBvX93lPudYr7bSgrNNEvwv7VE1vFT
-         QMXpcpLbgTGX5H4RjdU33bevye1J7pI8whG+9MrQna5HJab7uATcrfttWr+7somwsWuY
-         b4XRJq42HSFAPGrYYPwMylM05P4D+GF+1CD+ftzsFBB9Iyiu/BV9IEB073JFH5pk5M3l
-         ipV6YV9Q6Ty6LbN8EaKFQpzaE/o77qb8cJzmaClvDb6o1XF8XTuWoHIBMHrM2qwzrQki
-         RK0NEBIYcDLUffz61FtctCMIqGoLywDV5dGwjRRM5lBuKFYcuBE2X1/ZBNv4A5z6YORp
-         tx2A==;
+        bh=FbM2beT/ufH5KYufSNvf3zwpdmcVzR6lfg5amoABbYM=;
+        fh=7ymPZjaSCf0IO2nQshz3jycX8vqzTOUmvOznsRBG5uI=;
+        b=K/JeuZ8VD+Fq4IUSkTnH48dX6jd9V22ed9qqlIy/rVoCMbB2yBPjHG8GuHwyOERbQm
+         0ZaDjfDIImF8H6Bsxy5mdT3SEgIPRnG9kTEGoQga1Qeja1nQ6MWjdeYBP/ABPBSc0/in
+         X1fqs7wa95kykx9xAT7hzDmPOZ+oYIV820A1Cdp4te95l3ldlyv4S1AGYhtVgTBzezq7
+         fJeM4CcVfb1r5eCoxgo7ARYHYJ/4JlMUGUsCivkoQNmS2PqVdf1DMZ1mQKCrJlPrkOda
+         4c3JEmin2JZsdYKB60wtRwlNCmBk/qJvyvMOOtGvqu8w2CAlpCnaAsyX1ekL9BVQzL2v
+         W4Wg==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794308106; x=1794912906; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1794308111; x=1794912911; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=0zn2h/mfdeJyzmrvYGtYi3WlYP6oFtDlczeBFhJTZ50=;
-        b=TQueM0DCgC2Y9X4pnmpeY2sAMcDdlcruT8qBxbPIOokjVo0Ui7Tg2VoB/+wDggaD95
-         UdnsOzTUSceZoR4pE1pX1//e5/nc2LmPze5+syV55Q3yZfm7X9ccKcmfAdpBXNJteZ0z
-         Jw8TbUHjTv0uJCdDbyYQ5YO0u/dGlRnRvJ+Y/g9cSwHUNdvtOuJFrkN7uTgjjtdhK/ee
-         CbMfUI19NExFae0p8r2x43imEgQZTak9pN1MP1+i8nL/DmMPHoz8Da4hgI/Hx3C5XRD0
-         rROeqkiC+Arm3j67wQ3DJKX/tPgtC9s84dOfACo7gQwlr8Tj2MXr5ulNtNC4C/s44a7v
-         FG9Q==
+        bh=FbM2beT/ufH5KYufSNvf3zwpdmcVzR6lfg5amoABbYM=;
+        b=hKNgR+Rpcd1pxLbn+/ZvhqgP1RtPtMqG/dZZ3FR95BEH1xn1Kx0X2AKDBlW9W5Myyi
+         AlIT1redIO5WAr1cz0lSBNXrpsJVZODkRbnQvY01TYRQ+Z9biEKXWB+uNTAWeOoHqQWN
+         ujIkrImFI6M41VIqew/Ks33LzqVkuNHFavc9utlIYXL58362hsmCo/nkdcJfQeksclm8
+         Wmgo5/1EXjgvwVal73ztppEHFKJIVUllCiApLT1aLgqCD+J5B578pwxN3zxnueimNwqq
+         W3xyHolrWIEwNCnTJpc5vANc+3dB6MlVnzoKndLWgEHaZ3bNrxaG5dqwtsFNzcGbgqVh
+         m2ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794308106; x=1794912906;
+        d=1e100.net; s=20260707; t=1794308111; x=1794912911;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=0zn2h/mfdeJyzmrvYGtYi3WlYP6oFtDlczeBFhJTZ50=;
-        b=hxIb1WGb5/a0tn2okrecZU1/Cfoy3Yie6v5VSXgPzXNgPr0Cbs/QADqY8TXoUAHMMP
-         GcIV82xTA+SYaRqhrECHTIJkFVHGPWRMCsVUylxFXOq6LsscPABeNAMBBPVWtlsO3KvR
-         2eqQ+91AZcaihewaWkmAQF0w+JvNgCwfOfJAw/qhT4Gn+em/IbOofKqE7go4uL6g7U1C
-         SkN9W87u+0KRzmxdIumw/ftkVCMkEwnMIVTaSx3J7iRuV2BJbbHAblKBmIhqL1cwFwOh
-         CddFKQlgjILLeubbJAUvCfkSNrceOxKusBj+dQ/F/yL/djaOY2iOQnW/ithHG40TUokr
-         OIag==
-X-Forwarded-Encrypted: i=1; AL+hErE40GBiz2mgKff49OCv47OcYbHhqGu2V2rQmmoA2MUHKBpEbyzwAvDRs7AwmkikjDvjs92+sH2VHkeFJyg1dXyu@lists.infradead.org
-X-Gm-Message-State: APuU4Z8luf5MBxpJFGgN+y1G2tMYm2d3SOxac3YN/cJL96hIHa3b+Cq0
-	8myh/mUBCna9STlm/BIFRdH7JK6710pM2qGbO0WiNuKNmbvQuvcwDh3yN0bDREeUXVWbSRwJ+tc
-	B9bRvDOVnUJVZsn2l5LLROshWSW9o8JefM774s0bBmaQqmK/f7xyq51WJ2qGp5mbariEnEzd9NZ
-	TnVJWLjHb+ri774VA+LwjMpSyyYE5EK8zi4pmdEfM8+Zf6Tz6Aeptj
-X-Gm-Gg: AYBFou2px5UP95vsNe3BWoqfOWzigXxuk8M65OZ4fVGo+KzdF7Vcx9MGpbwVDHWCCpX
-	J4zdCozymbP3HHMAwk3ixv/nEFA7Za37trl+G0TO8TQ7BZjM55zLqJw7h7s1wnKVvwYUpu2QFjQ
-	WwXz4yJOs5/GpNxMjrVh0x25Rul+FrnFXOBemmUIDFKfh6qAzq8etswB3odA==
-X-Received: by 2002:a17:903:1a0c:b0:2ed:4ea4:2dba with SMTP id d9443c01a7336-2edb8fb3d86mr20040045ad.5.1794308106403;
-        Tue, 10 Nov 2026 02:55:06 -0800 (PST)
-X-Received: by 2002:a17:903:1a0c:b0:2ed:4ea4:2dba with SMTP id
- d9443c01a7336-2edb8fb3d86mr20039865ad.5.1794308105831; Tue, 10 Nov 2026
- 02:55:05 -0800 (PST)
+        bh=FbM2beT/ufH5KYufSNvf3zwpdmcVzR6lfg5amoABbYM=;
+        b=rDgLyDKdr45IKgRgR1k9bqS1DMvyqWyBiJVJUmG+Zk8fVpLNIKS639zBl48Wngo2HT
+         /yV+tDxPoYDguoJIcALHsXoMFV4Z3NEsc9EF8GYAcC/5+u9HfpgqUf5eIV3HZKXnpTVw
+         uA7b7rWLrL+xw6afsd2l7kQZTuw7dzHOVtA/wfjboYw5rWKx1Wpre2Iep/nkSl8tjDZs
+         sd4qTu54LDX0O8YtLGoOATnhL1Y8Ef7xoCvtzn3WXMvYe6JhHH09/WBl6vMhRRUXDBr5
+         q3cWCy6xTE2+1daF2QNX8gJMcfJmfHyezldw3po0/1VmoBjo1eO32fASMmd9jWbixhxW
+         XqQg==
+X-Forwarded-Encrypted: i=1; AL+hErG9Ka1GEeWSJjNMHvi6P/OTb3BMnzZG1mS1gobIvcoTvHLUwIKpzvY/qVvcdF5GsPCZZrvhr8UocMu6BByWsOsd@lists.infradead.org
+X-Gm-Message-State: APuU4Z9b/uEK0jDvF8qtipJqk4csGpe9mzl/+fvaZblQRhNkYno8ymYm
+	Px61/XPSvUOiq1RZonBiOLyMEhMiJxLX7XTVra1dtTY/+95gUvBBKWoBirn3MHjYfdtD9awnj/R
+	9ZuHvIgJeYXWGUtdJfr9wepwvnILFWhKTuqRYK2vyJrWn+TWLjsVD1yZJWwqCwJbPUy5RqaarAj
+	4dDXPc1TxpQxjX/C6vx2A6D/+aXd6werlVwz78Nbu0kfXKb2CMRar+
+X-Gm-Gg: AYBFou0oE5IBIE47agfDv7Ns1nPEUc94IEA/YFA8zoqFioGyqYSBddLfgHi898uQYIW
+	2yEjAIixIVYIKAgFxwXblQy4Z9fi9uAqF1EDO8O3phPDQ44lppCAMf7avIwmgfuulkUP//QDOkm
+	TYNOCATlkYiAhbjfRODyRGVQ5o3bF1Z84xXHEFoFIjpb8MLwsg3XuyBfklXQ==
+X-Received: by 2002:a17:90b:534c:b0:3b0:a757:e370 with SMTP id 98e67ed59e1d1-3b167a3863bmr1285318a91.42.1794308110737;
+        Tue, 10 Nov 2026 02:55:10 -0800 (PST)
+X-Received: by 2002:a17:90b:534c:b0:3b0:a757:e370 with SMTP id
+ 98e67ed59e1d1-3b167a3863bmr1285304a91.42.1794308110234; Tue, 10 Nov 2026
+ 02:55:10 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20260926-b4-mt7629-scpsys-v1-1-e02d03d2151e@gmail.com>
-In-Reply-To: <20260926-b4-mt7629-scpsys-v1-1-e02d03d2151e@gmail.com>
+References: <20261006025318.503422-1-nils@buechner.me>
+In-Reply-To: <20261006025318.503422-1-nils@buechner.me>
 From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Tue, 10 Nov 2026 11:54:53 +0100
-X-Gm-Features: AclHuK-wCHxxV1sk9ELba0eXodmE19efdczWGBPVlSLOk0ffW72xQC95zfSkjvQ
-Message-ID: <CAPx+jO8r=bBSZiw3SVfyaU6XRWtPGMj-okMT3=NnTY=Su+fwEg@mail.gmail.com>
-Subject: Re: [PATCH] pmdomain: mediatek: scpsys: add MT7629 support
-To: Chuanhong Guo <gch981213@gmail.com>
-Cc: Ulf Hansson <ulfh@kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+Date: Tue, 10 Nov 2026 11:54:58 +0100
+X-Gm-Features: AclHuK-yZm3sakUxzv0BiFEttCIYN0ZmBsfWxz8lFwhcgpjwm5RE5v-I_qmF6-U
+Message-ID: <CAPx+jO-18BxWDeKWrib+GaKNiy_DAjUqtT2-s2d9YgYtObJgXQ@mail.gmail.com>
+Subject: Re: [PATCH] pmdomain: mediatek: Don't power off default-off domains
+ in probe cleanup
+To: =?UTF-8?Q?Nils_B=C3=BCchner?= <nils@buechner.me>
+Cc: Ulf Hansson <ulfh@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
         AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-        linux-pm@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: GNOghzDRlNddlG8CJ14WzRaTpX6KraCq
-X-Authority-Analysis: v=2.4 cv=U4oHnuru c=1 sm=1 tr=0 ts=6af2f80b cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA0MyBTYWx0ZWRfX4fiN7NXzUZCm
+ K/BZlkcTM8qO+9UMyVUWHjvQKwil7xyak9VOQrYc/jvHCNNVZzVxCqzanz5abjOmgC8+Dm9hpox
+ Gsd6kgPDjxLyVknxzCGxOHSzvMsLo/ZiMknSOZowUlgfwinCKzOZD4sAeya1dypzBRJWTgzqavS
+ FT7fFo6moxG/ulhhKgN5faYYo8TYFpjfByfULAY145oW2OqbUQxbxWWKgo5r0v6KJYDD6t5st7u
+ WxS6ZbNMHKAa95SRXxGj29fIg3ewwd3UOQ2PurmRD6Gk0FOGzCe9j8WHQQRreQzYZjf53ETsrAI
+ JVCnZAxUgsd36G7WbeGjwNAxLaJ5Ystx1ZohPe6lR/V9Z67M0rFisi7daWOkVxGTQSqg+dNgLyp
+ giDUgnyzL08G895MCUqwWS8RKaBV3oqQXZjZFSDcy4Z9dTtmnZXQ571+rHyQ8jvbrbYK3lD+2F0
+ WI618ASVgJtZIyx11rg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA0MyBTYWx0ZWRfX3TBFY4o4fwfN
+ 5v9LG1lGsRT8/okc/Auknh5dndyQuMTeMCOYfk+SFqckjGbf23l8c4TbKdCMjv5B+3JUjg2PNCJ
+ ZXd4LOKv0V3TWDNDDMY1KgV1Dr88VzI=
+X-Proofpoint-GUID: sVqUPLr1NUArn6j817L3x6c8m0KnScve
+X-Authority-Analysis: v=2.4 cv=B6gsQ+tM c=1 sm=1 tr=0 ts=6af2f810 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
  a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=_K5XuSEh1TEqbUxoQ0s3:22 a=pGLkceISAAAA:8 a=3fVjQ_tGrbk1vConURoA:9
- a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA0MyBTYWx0ZWRfX1ECJweJC+Kwd
- d4M24K7tcfUzS0ouW8zmsLXLD6YBUhppHTmt2PSJjI1/QmcPxSKIf7iv154JGEgGPU2WYXcGtnL
- bdgrjHrUUcXOVLM2hngTZX4i+JRBzdd1QonjawRO0S5nAVGuB5DwGOYr6PXzMVv8xh/GmG7Ul4t
- xINgA8XubU1g3s6JaWCN8jEhsofCoDGl/SOeYTiB+I8rjOxahgfE64qCkTmq2MprNxQv536FEjQ
- AhsS032U/kkl9UvLA/aWyYqkPXsn7PqYcDNacrq1EdvIr55WkQj4lmCCBbwzO57pC7dgM3ipdHh
- 2goMsbom/esT8lZyv+3IC4sn3N2WgXF4rWtb+bp8doaxpLu6vXDH6Qsx34bnmIbsamcpuujTLTH
- 9hk5/qr5jgqx93G3IaMO36PbxZq2jORX5K+REXUApe4WHURQXkvt6MMsIfvB9s58mkXAJkhNrEI
- 9UuutVfRaCJj/J29W9w==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA0MyBTYWx0ZWRfXxx6ogprzDouL
- MdNV9cU2b0YF7Xw7/64+Pxi/mJTnWCzjky7fQx9yHJod5rN16zSnpNUWlmc1N8vyolViCQc8Wbz
- r5jfGHG/qJZ2TiRFIhFsuBE7BE7U2WI=
-X-Proofpoint-GUID: GNOghzDRlNddlG8CJ14WzRaTpX6KraCq
+ a=_glEPmIy2e8OvE2BGh3C:22 a=t40qi2bwvM8u8KFdrioA:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: sVqUPLr1NUArn6j817L3x6c8m0KnScve
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-10_03,2026-11-06_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 impostorscore=0 clxscore=1015 priorityscore=1501
- malwarescore=0 spamscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611100043
+ clxscore=1015 lowpriorityscore=0 adultscore=0 suspectscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611100043
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_025507_800141_C068D0A0 
-X-CRM114-Status: GOOD (  23.71  )
+X-CRM114-CacheID: sfid-20261110_025513_154791_6DC20FA9 
+X-CRM114-Status: GOOD (  32.30  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -172,71 +174,94 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Sep 26, 2026 at 11:59=E2=80=AFAM Chuanhong Guo <gch981213@gmail.com=
-> wrote:
+On Tue, Oct 6, 2026 at 4:53=E2=80=AFAM Nils B=C3=BCchner <nils@buechner.me>=
+ wrote:
 >
-> MT7629 currently uses the MT7622 domain table through the device tree
-> fallback compatible. Attempting to power on the WB domain triggers a
-> warning during boot, and powering off AUDSYS times out.
+> scpsys_remove_one_domain() runs the power-off sequence for every domain
+> that reads back as on. Domains with MTK_SCPD_KEEP_DEFAULT_OFF are
+> registered with genpd as off and are never powered on by the driver
+> before the provider is added, so their clocks are not enabled. When the
+> bootloader left such a domain on and scpsys_probe() fails (typically
+> -EPROBE_DEFER) after it was added, the cleanup disables those clocks
+> anyway, triggering "already disabled"/"already unprepared" warnings from
+> the clock core.
 >
-> Add an MT7629-specific match entry to register only ETHSYS, HIF0 and
-> HIF1, matching the domains exposed by the vendor driver. These occupy
-> the first three entries in the MT7622 domain table.
+> Seen on MT8183 Juniper once the audio domain is KEEP_DEFAULT_OFF: six
+> clk_core_disable/unprepare WARNs with backtraces on every boot.
 >
-> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
+> Skip the power-off sequence for these domains; only drop the clock
+> references.
+>
+> Runtime-tested on an Acer Chromebook Spin 311 (MT8183, juniper) with a
+> 7.0-based kernel (the hardware is not set up to boot mainline);
+> build-tested on mainline with W=3D1. On the device with the audio
+> domain marked MTK_SCPD_KEEP_DEFAULT_OFF: the six clk core warnings on
+> the deferred first probe are gone and audio still works.
+>
+> The change and this changelog were drafted with an AI coding assistant
+> during a debugging session on the hardware; they were reviewed and
+> tested by the submitter.
+>
+> Fixes: c1f3163d8ff3 ("soc: mediatek: pm-domains: Add default power off fl=
+ag")
+> Assisted-by: Claude Opus 5.5
+> Signed-off-by: Nils B=C3=BCchner <nils@buechner.me>
 
-Applied for next, thanks!
+Applied for fixes and by adding a stable tag, thanks!
 
 Kind regards
 Uffe
 
 
 > ---
->  drivers/pmdomain/mediatek/mtk-scpsys.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
 >
-> diff --git a/drivers/pmdomain/mediatek/mtk-scpsys.c b/drivers/pmdomain/me=
-diatek/mtk-scpsys.c
-> index efc8f276ffce..2b5bd8d61cb5 100644
-> --- a/drivers/pmdomain/mediatek/mtk-scpsys.c
-> +++ b/drivers/pmdomain/mediatek/mtk-scpsys.c
-> @@ -1073,6 +1073,17 @@ static const struct scp_soc_data mt7623a_data =3D =
-{
->         .bus_prot_reg_update =3D true,
->  };
+> This is a follow-up to "pmdomain: mediatek: mt8183: Fix silent audio
+> from premature sync_state" (sent 2026-10-05), which marks the MT8183
+> audio domain MTK_SCPD_KEEP_DEFAULT_OFF. With that applied, the firmware
+> leaves the audio domain on at boot, so a deferred first probe of
+> scpsys runs into this cleanup path on every boot. The fix itself is
+> independent and applies on its own.
 >
-> +static const struct scp_soc_data mt7629_data =3D {
-> +       /* Reuse the MT7622 entries from ETHSYS through HIF1. */
-> +       .domains =3D scp_domain_data_mt7622,
-> +       .num_domains =3D MT7622_POWER_DOMAIN_HIF1 + 1,
-> +       .regs =3D {
-> +               .pwr_sta_offs =3D SPM_PWR_STATUS,
-> +               .pwr_sta2nd_offs =3D SPM_PWR_STATUS_2ND,
-> +       },
-> +       .bus_prot_reg_update =3D true,
-> +};
+>  drivers/pmdomain/mediatek/mtk-pm-domains.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/pmdomain/mediatek/mtk-pm-domains.c b/drivers/pmdomai=
+n/mediatek/mtk-pm-domains.c
+> index f0fa79e01..2b41bb8ed 100644
+> --- a/drivers/pmdomain/mediatek/mtk-pm-domains.c
+> +++ b/drivers/pmdomain/mediatek/mtk-pm-domains.c
+> @@ -1100,6 +1100,16 @@ static void scpsys_remove_one_domain(struct scpsys=
+_domain *pd)
+>                         "failed to remove domain '%s' : %d - state may be=
+ inconsistent\n",
+>                         pd->genpd.name, ret);
+>
+> +       /*
+> +        * Domains with MTK_SCPD_KEEP_DEFAULT_OFF are registered as off a=
+nd were
+> +        * never powered on by this driver (nothing can use them before t=
+he
+> +        * provider is added), so their clocks were never enabled. If the
+> +        * bootloader left one on, running the power-off sequence here wo=
+uld
+> +        * disable clocks that are not enabled.
+> +        */
+> +       if (MTK_SCPD_CAPS(pd, MTK_SCPD_KEEP_DEFAULT_OFF))
+> +               goto put_clocks;
 > +
->  static const struct scp_soc_data mt8173_data =3D {
->         .domains =3D scp_domain_data_mt8173,
->         .num_domains =3D ARRAY_SIZE(scp_domain_data_mt8173),
-> @@ -1105,6 +1116,9 @@ static const struct of_device_id of_scpsys_match_tb=
-l[] =3D {
->         }, {
->                 .compatible =3D "mediatek,mt7623a-scpsys",
->                 .data =3D &mt7623a_data,
-> +       }, {
-> +               .compatible =3D "mediatek,mt7629-scpsys",
-> +               .data =3D &mt7629_data,
->         }, {
->                 .compatible =3D "mediatek,mt8173-scpsys",
->                 .data =3D &mt8173_data,
+>         if (scpsys->soc_data->type =3D=3D SCPSYS_MTCMOS_TYPE_HW_VOTER) {
+>                 if (scpsys_hwv_domain_is_enable_done(pd))
+>                         scpsys_hwv_power_off_internal(pd);
+> @@ -1108,6 +1118,7 @@ static void scpsys_remove_one_domain(struct scpsys_=
+domain *pd)
+>                         scpsys_power_off_internal(pd);
+>         }
 >
-> ---
-> base-commit: f5f84daefcd92d7a630066635ecea1433ed5eac7
-> change-id: 20260926-b4-mt7629-scpsys-88d0cf37c6e2
->
-> Best regards,
+> +put_clocks:
+>         clk_bulk_put(pd->num_clks, pd->clks);
+>         clk_bulk_put(pd->num_subsys_clks, pd->subsys_clks);
+>  }
 > --
-> Chuanhong Guo <gch981213@gmail.com>
+> 2.53.0
 >
 
