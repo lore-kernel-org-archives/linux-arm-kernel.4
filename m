@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31CED60A263D
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:09:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABCC260A3817
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jByfupsL;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=P+xv4AGz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wr7K5vQS;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=btjSFxF1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,46 +14,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1TF/rR/FdKC76jmX2gQsdX4Cpcu8b9XxBpB5UOTMrBY=; b=jByfupsL9Pvp1Sx1J3MxhAlft1
-	sBm3W3hgV+0k0QtNtJhq4k3DI98JbANyM/yTVfEx4ZLnHuSzMaLgphvlUy1zKwh6K0p/Ppq83z/Mx
-	qnZermBMrF1jFe1+dDy7alQYIynSpPsYKJCHzmN+SNiihJ4vhCjYuH7YDBJLxL3iNPVWDaspyPTfK
-	C1p8kcBHhwFLGar376Doytul4ArfVQMNFeVbXc8RCUNLbZFj6rXZEJT9JHAYPgCGGYap8Ct3b65Pf
-	QSnSoPYdRxX5IqJcyx+BqNVxaoxSzGO/Cqbod9TWjCs0+LxGG2+WNbSMJZEaVQQRhEg8xdzvhJ9fd
-	+jwWzbVw==;
+	bh=GUDd04s/MiWOcmk3wrxpuhqgI+JEcaHgX4UXi+sjuy8=; b=wr7K5vQSPRxiLv8irBv/Wv8Vk/
+	y3VsnfC2n0VtZJBK7f3ATDTV3UakCv7ibKQBUI1foRbHfhjXDb/zZ2Hp0Y4aFvM27FcCAIBSWc6w1
+	YpIzZefR3JcjoXJ5iHEnkvX0jJMUkoQTM8qsshoSgbaIBMTORv1YEGmP7iM9lbusdbvNjZvVEQCyf
+	zAMXgitrtf8kTbJ2PLcWLXaHbhWlSAzMDaDA/Rb5QY3/TodJ+0tu4AMmmCMb7PWWtvg1jwmDE+RJB
+	x4EYJrE9ZJXfMPnRaZVTM+CPLSVPyURENfKfbFtBygYINaDUPCF75RhdRIGGJlSkkKPToTcZQSpFl
+	YpiYWH1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe6R-00000002U9Q-3ZvF;
-	Tue, 10 Nov 2026 05:09:03 +0000
-Received: from mail-southcentralusazlp170130001.outbound.protection.outlook.com ([2a01:111:f403:c10c::1] helo=SA9PR02CU001.outbound.protection.outlook.com)
+	id 1xQe6Y-00000002UGY-0sk3;
+	Tue, 10 Nov 2026 05:09:10 +0000
+Received: from mail-westus2azlp170120002.outbound.protection.outlook.com ([2a01:111:f403:c007::2] helo=MW6PR02CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe6O-00000002U5j-1Zu6
+	id 1xQe6R-00000002U89-24bJ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:09:01 +0000
+	Tue, 10 Nov 2026 05:09:05 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mYtH8xH3wZJsTbzZ7n56JugOxffEgPIN5pSKKpPUNJEqy3DpeVupnF4RYjgJlCbmYbLfewzIzDAVaNDqmAqIr2Nn4L2fo5bNJCy/+DZryn1fxcD2ZkDKkL/zSRP7QFFJVraIOLFPpHFwe/qhmKLu+vY/cui/4DjjCVB0A8e0o5grjF2LGTXay4FXjuetLk2De9ALM2OnpCEXk3VUZnUafeZYwsQwQi8NGg5x4088I/0EakP3rELxMpTbPu0Qm01lnTvn78X+hhyTkXfbSbRyQ60jJZUjGeK78tOkoAGeyg620RGuAYMMKo2xlLAuey+moy4EN0UFptdhNxsrqPYirg==
+ b=qpwLT38iQwb6FCy/k9R9VE+/DgKiWjzj0XLeU1OuD2tF/yJJ0kxlJ+9w6rL7PV6uqoUBG+WC0g+h8BFdzLG3QFtYxw1KyEuV/4EP76dNpPwSRrrWyMdRzLiR7SiBPuIJlGmKVfELFPPJe1423pEerbh0Hy5ghG2XNiWcOWr1Rx9UM/YQENKVPdeab5kx0GC9qdRiHeaLVomTF39TCRFkiBJCGrMpLB552O26HfQRAnUdfoV+Z0NQdXddYbh5e9UCgncgXdZw84UvV5BQTRdWZeIxi3L15DWK8QupwlglJljxss8RLCZVFCBgPeZOkWunPAEZQhYs8bcYTBrk7FJpqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1TF/rR/FdKC76jmX2gQsdX4Cpcu8b9XxBpB5UOTMrBY=;
- b=ZNOWStEPsez/wOoc3gDmHUVGmX6I4upc4jaf8lfwWDEcMrw2xVv/mgQWGGptnYelv8iXjZo6YMghxIkHi52xGgArDrvOZCD5UvNnnal6mZyeC64bTcmj8rgnfm2b10cbBFCpptjQWmyHRIU8OF2sycctw6U1Ig183UOrZr4rAGdLC6IQ2XJL2NsHQq41R96giZCfNLJ9HhChNABYDXPME/XGRS2941hN8vxYjdPnvxyXl8rKGs3KmBeq5kzD8AXS8KE/qOLQxdD87tHcN3s55wZR/hVCvLE2x598XZYABrQmBTpo4L8JFCetEn2M2Z+VBas3nonyd5cblcn9GdhNHw==
+ bh=GUDd04s/MiWOcmk3wrxpuhqgI+JEcaHgX4UXi+sjuy8=;
+ b=LSQOfkdDmcpMpDm2gpIn5buEmpUqa3tg9BJxjRhvesyaEf6Qu98ENSYfmVEkd7yL0P9ooMb1w99xaCRgxVbnuG6akjcptBL8tcFK82egsx8GI49yrc4JFop7CqZythaogqNK2rs8AVWDfleMBiec5PixF/ob/aF6KXolWph2NT6md35Kw9uZURcZo+TU6xRV6cVYmbEJLEZtVIztu/bD+c8IFVbE+u6yftTI/NWkSIsjN9+z+FEkFSAISbqifzy+UhrmIjIzjHOTtxqkV2soPzH044qu8fK0DRRGfbu2gpDCCn9Oxl8xXTtUzp2ClseTBFdI1OyAYwDaT65sz/R7PA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1TF/rR/FdKC76jmX2gQsdX4Cpcu8b9XxBpB5UOTMrBY=;
- b=P+xv4AGzyF+/llnwnrzQPms7pPck+XfVzNGt3FIZ4BcWu2b4S0GuaGH1teAi/n7RX+frcGlv0p5OvtO64n+AZih21dfQodYgmWvRY20S4LN8oHPCc/+CPGn62uttYI1LB7V94QOzgDS3GZVy4TMeFe0h4sDPV0Kp+QakW4kQ/j4=
-Received: from MN0P221CA0009.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:52a::27)
- by DS6PR12MB738673.namprd12.prod.outlook.com (2603:10b6:8:417::18) with
+ bh=GUDd04s/MiWOcmk3wrxpuhqgI+JEcaHgX4UXi+sjuy8=;
+ b=btjSFxF1ucYpaxK0yNRsJcztgBASVC0ho6r6kODgLvanJunftmQr6UWQRs7L5vcNp1K/TuNCUnqSUvkehIViZ2Qlkkxb22QIwMjsFCgdnqlvoRH7pxB7STjHOl7OGkUmLf8c7RFd8V/GGSpPnqsCnOb5caavwCJPt2dYkdwzfdg=
+Received: from MN2PR18CA0028.namprd18.prod.outlook.com (2603:10b6:208:23c::33)
+ by CY3PR12MB9578.namprd12.prod.outlook.com (2603:10b6:930:109::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Tue, 10 Nov
- 2026 05:08:54 +0000
-Received: from IA0PEPF00000038.namprd03.prod.outlook.com
- (2603:10b6:208:52a:cafe::6d) by MN0P221CA0009.outlook.office365.com
- (2603:10b6:208:52a::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Tue, 10 Nov
+ 2026 05:08:57 +0000
+Received: from IA0PEPF0000003D.namprd03.prod.outlook.com
+ (2603:10b6:208:23c:cafe::a1) by MN2PR18CA0028.outlook.office365.com
+ (2603:10b6:208:23c::33) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Tue, 10
- Nov 2026 05:08:54 +0000
+ Nov 2026 05:08:57 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -61,16 +61,20 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
 Received: from satlexmb08.amd.com (165.204.84.17) by
- IA0PEPF00000038.mail.protection.outlook.com (10.167.249.69) with Microsoft
+ IA0PEPF0000003D.mail.protection.outlook.com (10.167.249.74) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 05:08:54 +0000
-Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 05:08:57 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
  (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
- 2026 23:08:48 -0600
+ 2026 23:08:56 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
+ 2026 23:08:55 -0600
 Received: from xhdappanad40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
- Transport; Mon, 9 Nov 2026 23:08:45 -0600
+ Transport; Mon, 9 Nov 2026 23:08:52 -0600
 From: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
 To: Jonathan Cameron <jic23@kernel.org>, David Lechner
 	<dlechner@baylibre.com>, =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
@@ -80,9 +84,9 @@ CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <git@amd.com>, Dileep Kumar Nagavarapu
 	<dileepkumar.nagavarapu@amd.com>, Sai Krishna Potthuri
 	<sai.krishna.potthuri@amd.com>
-Subject: [PATCH v5 05/16] iio: adc: xilinx-xadc: Use bitfield helpers and bit macros
-Date: Tue, 10 Nov 2026 10:31:50 +0530
-Message-ID: <20261110050201.1850399-6-dileepkumar.nagavarapu@amd.com>
+Subject: [PATCH v5 07/16] iio: adc: xilinx-xadc: Use guard() for mutex locking
+Date: Tue, 10 Nov 2026 10:31:52 +0530
+Message-ID: <20261110050201.1850399-8-dileepkumar.nagavarapu@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
 References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
@@ -92,28 +96,28 @@ Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PEPF00000038:EE_|DS6PR12MB738673:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a0e9f59-f249-433c-c931-08df3ee8b7c9
+X-MS-TrafficTypeDiagnostic: IA0PEPF0000003D:EE_|CY3PR12MB9578:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f226b3e-fc7b-418c-2bab-08df3ee8b989
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|36860700016|23010399003|376014|22082099003|18002099003|10067099003|11063799006|261102123227099003|261028144727099003|261022105027099003|261009223027099003|261021121427099003|261021123027099003|56012099006|261026140227099003;
-X-Microsoft-Antispam-Message-Info: YnJjaPP2Q42ZHl7mY830hOj3xsqxQj1u+1S2DLdEgSo8ItthEcWia6EYH9o64XYVWnYaxkB0XjoIZsA+fTw5AxYm5PK7TKoDXl39fRGZmw8NpSnicnWm/nA6NrF/AuuGW8ET29tAoKzSK+lRwg2n69WqRlpWKzz+eWOjNy5KHPrQEq4oFrgGaIhj6LUf8/8mU5JwrzHBFMU7+WDfuxF3MYTwt/CoUOfm4ns0791kWgGnb+N+ZGzWBQeTdOMU032XXWjn/jz4iRZkOyPzIX9/Dboe0pZuRGBFXngXvn4ACjhTkDZXKz9NFNagNDx+zEVo/OqY4JUUp3qn4dbnF+5PH/lmuQcDoFljfnMd4DJkKJ5frdIuNKtiU6X4H2ZJFg0ZYfBZJhPqGNXAJQYifs46GE4QX2U+hCg24fLzEcUxjxkDn0SnERZ5qjdyjlKihZSU93TJ94/T3AWh1VKVOJ00mi6/XIa3Hnv2O3KJR5mJGEgWgM3h3XI+F3X6jBug0NrVO7RwFb1Be+Zt3LdznFk6F08uX6hs9Qlgq0+xdNMEgdVIzY6aHHaQYkjD/FZcTtoPf71bZPraqEl8QMTTz40PqEnb1eg38X3VAh7OQ9s1psPYThix53qKQG2fWTnFlzXSWUW0tdlNesseJ7g9Xq+6jV6tvr7Ndlxpd3Ytp0wlzY/gpjyW6a0FsfRQD6JG2gRybI2IlG1x0yOAThe6rApwAQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(23010399003)(376014)(22082099003)(18002099003)(10067099003)(11063799006)(261102123227099003)(261028144727099003)(261022105027099003)(261009223027099003)(261021121427099003)(261021123027099003)(56012099006)(261026140227099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700016|23010399003|11063799006|261009223027099003|261021121427099003|56012099006|261022105027099003|261021123027099003|261026140227099003|261028144727099003|261102123227099003|10067099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: zVZpsZED1C0W31Nrk9hEXrU26WSPpIT7ft0Fjd5yH4bqbkgtYR+vVGCidZvK61mhqmUf1QBKdm+iG7bqGNPdnEFh0PhdJL8+umTHf+CWCK5/E9O7FEnE/kKROlFQG2o9AW1ABeTrOUQtteIcg81mEhOP7IBsftELpBhQOOllCbOnaevh0aB9XU6Wx9V8q/QgHjaAEc7vcW/bFl4j/Ku9i0h8ztAeaiqrQpFe+OFLV3AwRFUcbDrhe0Qb6b7157cchWxHGYlCHiOzJMA0UeJsUSbGBlWDWUNkuDUJlDyWA/m5VSt5aq1xNywfySxYa2aR+HTvjC/49yEJURzds2vdlcXN1jHYPSluENl7SWCnqOsUfdOiS8zkoGid5BEkLdfFKagQQ3gR6jufIYDTY+JrUAOH9cE3fMd503MyDgsKap4p/5r0novqU00QVYUPK8uK94OPlhWa7AkhnUaodXwur4uwCBtKNo08p5XAIzLUTpFFFvi/5uSPtZjCyx8OMvHH3yUmf476M+lu1GK7x//cm3Ds8kc6OIFxJRqb9XufTCwB0rOjm3JGRvkBiNOvTcYt1ifScGb2Q9ObuYd3SLqvqJyM5ITh9Rb6Iv56R8d8V+Z09x1GwP0zjS+ezN3iyeWggmNbbOPwMcH/CSTNJuf7w70lcb249CY3vfdmcxsGVkLnxJHwwicISzmL8mRauMn/UzZhAyD3JSalGo3yheMYkQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700016)(23010399003)(11063799006)(261009223027099003)(261021121427099003)(56012099006)(261022105027099003)(261021123027099003)(261026140227099003)(261028144727099003)(261102123227099003)(10067099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: p+H0Nl1ocszRVN2H6PDN2A3ZBSW/kjy5wJyp7ZyAvoUXvll8OLXZ0G44R9ypfZG+x2XLQayjv70+YscG7dbsbQLLy/fqwsR26UkNYRkAe229Kr8ceINrjZs/No1QRLXVzVV0vku/RDDzRzCi0aMJwYk1dfNvr+8YODR2434MURy2yIFAUADdrdE8AIxst3CEMyx6Vcc4+QJhcCgOmxtJoIa+Tl8RNK3QTijpM9L0jOpb6oFjsZgRMy4oyirrB7wxPjE0SUu0eo/+jCv+FOY2EWffdudvtYmBjYRHkpgTJR1XkFfxQzDOOxSWaxVsavlAQQ+P+TVtoEzSR0UTIyxIn2DStYoYqpTxvKqSTJvXeBfjhgE2Ji6jEng5gI0M3bfTdGelPQ13PIlhKNb+idXHRMk0MgK0RaN+aN8/UrZt7/WRqtxckLw5nn+0QnPC2q6l
+X-MS-Exchange-AntiSpam-MessageData-0: sjG9kLGkOu6Y99zAYjvaSUduZvseJ2EJabqU+7E5AN5CvNAzMMgrNznJB/fDmdI87aSI16CUEFq55sVP+kR+iS1r55I0IixNl79w1Vcdn5NDylmFEu+wv7KstutHbmvfWXlZ32ws0lMk/1qhSIZ3QkxnsmkfBOm5VMmvl5xeTpdsUdyZAByKxV97GLQP+TUFGfr6I88tvBCESx56u5N/cfcueLuFYjIoWuw7zREhetBVMAOVrQGet65F9Nu8BlkYaea11k1d2ZHPAxCGYZKNsgjsIlh6YA5yVCKd1vKwscVSZ4TQrJIg8QzQcumnQ0h7rcx0hZEmT8N1gu1jSO8nBdqglrHm2DxZIrO67HK0i4XxXmTpWHtYDMRno618GFXlsizeF2jeaIuJ1HPDsSkQKwVzXBgUBMlwD1XTf2p4juHR9FBUhqiABVGyVTdXpvU4
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 05:08:54.6357
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 05:08:57.5658
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a0e9f59-f249-433c-c931-08df3ee8b7c9
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f226b3e-fc7b-418c-2bab-08df3ee8b989
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: IA0PEPF00000038.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: IA0PEPF0000003D.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR12MB738673
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9578
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_210900_477847_F026FA83 
-X-CRM114-Status: GOOD (  13.76  )
+X-CRM114-CacheID: sfid-20261109_210903_558954_44BB58D1 
+X-CRM114-Status: GOOD (  15.84  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -133,214 +137,174 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Replace open-coded bit manipulation with FIELD_GET(),
-FIELD_PREP(), BIT(), and GENMASK() helpers.
+Use guard() helper for mutex handling instead of explicit
+mutex_lock()/mutex_unlock() sequences.
 
-Using the kernel bitfield helpers improves readability and
-makes bit operations less error-prone.
+This removes the need for explicit unlocks and the
+error-path labels that only existed to release the mutex,
+simplifying the control flow
 
-No functional changes intended.
+No functional change intended
 
 Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
 Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
 Signed-off-by: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
 ---
- drivers/iio/adc/xilinx-xadc-core.c | 50 ++++++++++++++++++------------
- drivers/iio/adc/xilinx-xadc.h      | 29 +++++++++--------
- 2 files changed, 46 insertions(+), 33 deletions(-)
+ drivers/iio/adc/xilinx-xadc-core.c   | 15 +++++----------
+ drivers/iio/adc/xilinx-xadc-events.c | 23 ++++++++---------------
+ drivers/iio/adc/xilinx-xadc.h        |  6 ++----
+ 3 files changed, 15 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/iio/adc/xilinx-xadc-core.c b/drivers/iio/adc/xilinx-xadc-core.c
-index 66c6f3319ca0..eb63675464bb 100644
+index ea874420b940..093a7172cc06 100644
 --- a/drivers/iio/adc/xilinx-xadc-core.c
 +++ b/drivers/iio/adc/xilinx-xadc-core.c
-@@ -11,6 +11,8 @@
-  *  - AXI XADC interface: Xilinx PG019
-  */
- 
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
- #include <linux/clk.h>
- #include <linux/device.h>
- #include <linux/err.h>
-@@ -47,28 +49,28 @@ static const unsigned int XADC_ZYNQ_UNMASK_TIMEOUT = 500;
- #define XADC_ZYNQ_REG_CTL		0x18
- 
- #define XADC_ZYNQ_CFG_ENABLE		BIT(31)
--#define XADC_ZYNQ_CFG_CFIFOTH_MASK	(0xf << 20)
-+#define XADC_ZYNQ_CFG_CFIFOTH_MASK	GENMASK(23, 20)
- #define XADC_ZYNQ_CFG_CFIFOTH_OFFSET	20
--#define XADC_ZYNQ_CFG_DFIFOTH_MASK	(0xf << 16)
-+#define XADC_ZYNQ_CFG_DFIFOTH_MASK	GENMASK(19, 16)
- #define XADC_ZYNQ_CFG_DFIFOTH_OFFSET	16
- #define XADC_ZYNQ_CFG_WEDGE		BIT(13)
- #define XADC_ZYNQ_CFG_REDGE		BIT(12)
--#define XADC_ZYNQ_CFG_TCKRATE_MASK	(0x3 << 8)
--#define XADC_ZYNQ_CFG_TCKRATE_DIV2	(0x0 << 8)
--#define XADC_ZYNQ_CFG_TCKRATE_DIV4	(0x1 << 8)
--#define XADC_ZYNQ_CFG_TCKRATE_DIV8	(0x2 << 8)
--#define XADC_ZYNQ_CFG_TCKRATE_DIV16	(0x3 << 8)
--#define XADC_ZYNQ_CFG_IGAP_MASK		0x1f
-+#define XADC_ZYNQ_CFG_TCKRATE_MASK	GENMASK(9, 8)
-+#define XADC_ZYNQ_CFG_TCKRATE_DIV2	0
-+#define XADC_ZYNQ_CFG_TCKRATE_DIV4	1
-+#define XADC_ZYNQ_CFG_TCKRATE_DIV8	2
-+#define XADC_ZYNQ_CFG_TCKRATE_DIV16	3
-+#define XADC_ZYNQ_CFG_IGAP_MASK		GENMASK(4, 0)
- #define XADC_ZYNQ_CFG_IGAP(x)		(x)
- 
- #define XADC_ZYNQ_INT_CFIFO_LTH		BIT(9)
- #define XADC_ZYNQ_INT_DFIFO_GTH		BIT(8)
--#define XADC_ZYNQ_INT_ALARM_MASK	0xff
-+#define XADC_ZYNQ_INT_ALARM_MASK	GENMASK(7, 0)
- #define XADC_ZYNQ_INT_ALARM_OFFSET	0
- 
--#define XADC_ZYNQ_STATUS_CFIFO_LVL_MASK	(0xf << 16)
-+#define XADC_ZYNQ_STATUS_CFIFO_LVL_MASK	GENMASK(19, 16)
- #define XADC_ZYNQ_STATUS_CFIFO_LVL_OFFSET	16
--#define XADC_ZYNQ_STATUS_DFIFO_LVL_MASK	(0xf << 12)
-+#define XADC_ZYNQ_STATUS_DFIFO_LVL_MASK	GENMASK(15, 12)
- #define XADC_ZYNQ_STATUS_DFIFO_LVL_OFFSET	12
- #define XADC_ZYNQ_STATUS_CFIFOF		BIT(11)
- #define XADC_ZYNQ_STATUS_CFIFOE		BIT(10)
-@@ -105,7 +107,12 @@ static const unsigned int XADC_ZYNQ_UNMASK_TIMEOUT = 500;
- #define XADC_AXI_GIER_ENABLE		BIT(31)
- 
- #define XADC_AXI_INT_EOS		BIT(4)
--#define XADC_AXI_INT_ALARM_MASK		0x3c0f
-+#define XADC_AXI_INT_ALARM_OT		BIT(0)
-+#define XADC_AXI_INT_ALARM_TEMP_SUPPLY		GENMASK(3, 1)
-+#define XADC_AXI_INT_ALARM_SUPPLY		GENMASK(13, 10)
-+#define XADC_AXI_INT_ALARM_MASK		(XADC_AXI_INT_ALARM_SUPPLY | \
-+					 XADC_AXI_INT_ALARM_TEMP_SUPPLY | \
-+					 XADC_AXI_INT_ALARM_OT)
- 
- #define XADC_FLAGS_BUFFERED BIT(0)
- #define XADC_FLAGS_IRQ_OPTIONAL BIT(1)
-@@ -215,7 +222,7 @@ static int xadc_zynq_read_adc_reg(struct xadc *xadc, unsigned int reg, u16 *val)
- 	xadc_zynq_write_fifo(xadc, cmd, ARRAY_SIZE(cmd));
- 	xadc_read_reg(xadc, XADC_ZYNQ_REG_CFG, &tmp);
- 	tmp &= ~XADC_ZYNQ_CFG_DFIFOTH_MASK;
--	tmp |= 1 << XADC_ZYNQ_CFG_DFIFOTH_OFFSET;
-+	tmp |= FIELD_PREP(XADC_ZYNQ_CFG_DFIFOTH_MASK, 1);
- 	xadc_write_reg(xadc, XADC_ZYNQ_REG_CFG, tmp);
- 
- 	xadc_zynq_update_intmsk(xadc, XADC_ZYNQ_INT_DFIFO_GTH, 0);
-@@ -373,7 +380,8 @@ static int xadc_zynq_setup(struct platform_device *pdev, struct iio_dev *indio_d
- 	xadc_write_reg(xadc, XADC_ZYNQ_REG_INTSTS, ~0);
- 	xadc_write_reg(xadc, XADC_ZYNQ_REG_INTMSK, xadc->zynq_intmask);
- 	xadc_write_reg(xadc, XADC_ZYNQ_REG_CFG, XADC_ZYNQ_CFG_ENABLE |
--		       XADC_ZYNQ_CFG_REDGE | tck_div | XADC_ZYNQ_CFG_IGAP(igap));
-+		       XADC_ZYNQ_CFG_REDGE | FIELD_PREP(XADC_ZYNQ_CFG_TCKRATE_MASK, tck_div) |
-+		       XADC_ZYNQ_CFG_IGAP(igap));
- 
- 	if (pcap_rate > XADC_ZYNQ_PCAP_RATE_MAX) {
- 		ret = clk_set_rate(xadc->clk, pcap_rate);
-@@ -391,7 +399,7 @@ static unsigned long xadc_zynq_get_dclk_rate(struct xadc *xadc)
- 
- 	xadc_read_reg(xadc, XADC_ZYNQ_REG_CFG, &val);
- 
--	switch (val & XADC_ZYNQ_CFG_TCKRATE_MASK) {
-+	switch (FIELD_GET(XADC_ZYNQ_CFG_TCKRATE_MASK, val)) {
- 	case XADC_ZYNQ_CFG_TCKRATE_DIV4:
- 		div = 4;
- 		break;
-@@ -760,7 +768,8 @@ static int xadc_power_adc_b(struct xadc *xadc, unsigned int seq_mode)
- 		break;
- 	}
- 
--	return xadc_update_adc_reg(xadc, XADC_REG_CONF2, XADC_CONF2_PD_MASK, val);
-+	return xadc_update_adc_reg(xadc, XADC_REG_CONF2, XADC_CONF2_PD_MASK,
-+				   FIELD_PREP(XADC_CONF2_PD_MASK, val));
- }
- 
- static int xadc_get_seq_mode(struct xadc *xadc, unsigned long scan_mode)
-@@ -807,7 +816,8 @@ static int xadc_postdisable(struct iio_dev *indio_dev)
- 	if (ret)
- 		return ret;
- 
--	ret = xadc_update_adc_reg(xadc, XADC_REG_CONF1, XADC_CONF1_SEQ_MASK, seq_mode);
-+	ret = xadc_update_adc_reg(xadc, XADC_REG_CONF1, XADC_CONF1_SEQ_MASK,
-+				  FIELD_PREP(XADC_CONF1_SEQ_MASK, seq_mode));
- 	if (ret)
- 		return ret;
- 
-@@ -822,7 +832,7 @@ static int xadc_preenable(struct iio_dev *indio_dev)
+@@ -583,9 +583,8 @@ static int xadc_update_adc_reg(struct xadc *xadc, unsigned int reg, u16 mask, u1
+ {
  	int ret;
  
- 	ret = xadc_update_adc_reg(xadc, XADC_REG_CONF1, XADC_CONF1_SEQ_MASK,
--				  XADC_CONF1_SEQ_DEFAULT);
-+				  FIELD_PREP(XADC_CONF1_SEQ_MASK, XADC_CONF1_SEQ_DEFAULT));
- 	if (ret)
- 		goto err;
+-	mutex_lock(&xadc->mutex);
++	guard(mutex)(&xadc->mutex);
+ 	ret = _xadc_update_adc_reg(xadc, reg, mask, val);
+-	mutex_unlock(&xadc->mutex);
  
-@@ -876,7 +886,7 @@ static int xadc_read_samplerate(struct xadc *xadc)
- 	if (ret)
- 		return ret;
+ 	return ret;
+ }
+@@ -675,13 +674,12 @@ static int xadc_trigger_set_state(struct iio_trigger *trigger, bool state)
+ 	unsigned int val;
+ 	int ret = 0;
  
--	div = (val16 & XADC_CONF2_DIV_MASK) >> XADC_CONF2_DIV_OFFSET;
-+	div = FIELD_GET(XADC_CONF2_DIV_MASK, val16);
- 	if (div < 2)
- 		div = 2;
+-	mutex_lock(&xadc->mutex);
++	guard(mutex)(&xadc->mutex);
  
-@@ -984,7 +994,7 @@ static int xadc_write_samplerate(struct xadc *xadc, int val)
- 		div = 0xff;
+ 	if (state) {
+ 		/* Only one of the two triggers can be active at a time. */
+ 		if (xadc->trigger != NULL) {
+-			ret = -EBUSY;
+-			goto err_out;
++			return -EBUSY;
+ 		} else {
+ 			xadc->trigger = trigger;
+ 			if (trigger == xadc->convst_trigger)
+@@ -691,7 +689,7 @@ static int xadc_trigger_set_state(struct iio_trigger *trigger, bool state)
+ 		}
+ 		ret = _xadc_update_adc_reg(xadc, XADC_REG_CONF1, XADC_CONF0_EC, convst);
+ 		if (ret)
+-			goto err_out;
++			return ret;
+ 	} else {
+ 		xadc->trigger = NULL;
+ 	}
+@@ -706,10 +704,7 @@ static int xadc_trigger_set_state(struct iio_trigger *trigger, bool state)
+ 		xadc_write_reg(xadc, XADC_AXI_REG_IPIER, val);
+ 	}
  
- 	return xadc_update_adc_reg(xadc, XADC_REG_CONF2, XADC_CONF2_DIV_MASK,
--				   div << XADC_CONF2_DIV_OFFSET);
-+				   FIELD_PREP(XADC_CONF2_DIV_MASK, div));
+-err_out:
+-	mutex_unlock(&xadc->mutex);
+-
+-	return ret;
++	return 0;
  }
  
- static int xadc_write_raw(struct iio_dev *indio_dev,
+ static const struct iio_trigger_ops xadc_trigger_ops = {
+diff --git a/drivers/iio/adc/xilinx-xadc-events.c b/drivers/iio/adc/xilinx-xadc-events.c
+index f5b5aad6e313..f20614edd153 100644
+--- a/drivers/iio/adc/xilinx-xadc-events.c
++++ b/drivers/iio/adc/xilinx-xadc-events.c
+@@ -129,7 +129,7 @@ int xadc_write_event_config(struct iio_dev *indio_dev, const struct iio_chan_spe
+ 	u16 cfg, old_cfg;
+ 	int ret;
+ 
+-	mutex_lock(&xadc->mutex);
++	guard(mutex)(&xadc->mutex);
+ 
+ 	if (state)
+ 		xadc->alarm_mask |= alarm;
+@@ -140,7 +140,7 @@ int xadc_write_event_config(struct iio_dev *indio_dev, const struct iio_chan_spe
+ 
+ 	ret = _xadc_read_adc_reg(xadc, XADC_REG_CONF1, &cfg);
+ 	if (ret)
+-		goto err_out;
++		return ret;
+ 
+ 	old_cfg = cfg;
+ 	cfg |= XADC_CONF1_ALARM_MASK;
+@@ -148,12 +148,9 @@ int xadc_write_event_config(struct iio_dev *indio_dev, const struct iio_chan_spe
+ 	cfg &= ~((xadc->alarm_mask & 0x08) >> 3); /* ot */
+ 	cfg &= ~((xadc->alarm_mask & 0x07) << 1); /* temp, vccint, vccaux */
+ 	if (old_cfg != cfg)
+-		ret = _xadc_write_adc_reg(xadc, XADC_REG_CONF1, cfg);
++		return _xadc_write_adc_reg(xadc, XADC_REG_CONF1, cfg);
+ 
+-err_out:
+-	mutex_unlock(&xadc->mutex);
+-
+-	return ret;
++	return 0;
+ }
+ 
+ int xadc_read_event_value(struct iio_dev *indio_dev, const struct iio_chan_spec *chan,
+@@ -194,7 +191,7 @@ int xadc_write_event_value(struct iio_dev *indio_dev, const struct iio_chan_spec
+ 	if (val < 0 || val > 0xffff)
+ 		return -EINVAL;
+ 
+-	mutex_lock(&xadc->mutex);
++	guard(mutex)(&xadc->mutex);
+ 
+ 	switch (info) {
+ 	case IIO_EV_INFO_VALUE:
+@@ -204,7 +201,6 @@ int xadc_write_event_value(struct iio_dev *indio_dev, const struct iio_chan_spec
+ 		xadc->temp_hysteresis = val;
+ 		break;
+ 	default:
+-		mutex_unlock(&xadc->mutex);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -230,14 +226,11 @@ int xadc_write_event_value(struct iio_dev *indio_dev, const struct iio_chan_spec
+ 		ret = _xadc_write_adc_reg(xadc, XADC_REG_THRESHOLD(offset + 4),
+ 					  xadc->threshold[offset + 4]);
+ 		if (ret)
+-			goto out_unlock;
++			return ret;
+ 	}
+ 
+ 	if (info == IIO_EV_INFO_VALUE)
+-		ret = _xadc_write_adc_reg(xadc, XADC_REG_THRESHOLD(offset), val);
++		return _xadc_write_adc_reg(xadc, XADC_REG_THRESHOLD(offset), val);
+ 
+-out_unlock:
+-	mutex_unlock(&xadc->mutex);
+-
+-	return ret;
++	return 0;
+ }
 diff --git a/drivers/iio/adc/xilinx-xadc.h b/drivers/iio/adc/xilinx-xadc.h
-index fb911ed87600..f5bf2d08eedc 100644
+index f5bf2d08eedc..90fa3e77b1a5 100644
 --- a/drivers/iio/adc/xilinx-xadc.h
 +++ b/drivers/iio/adc/xilinx-xadc.h
-@@ -9,6 +9,7 @@
- #ifndef __IIO_XILINX_XADC__
- #define __IIO_XILINX_XADC__
+@@ -101,9 +101,8 @@ static inline int xadc_read_adc_reg(struct xadc *xadc, unsigned int reg, u16 *va
+ {
+ 	int ret;
  
-+#include <linux/bits.h>
- #include <linux/interrupt.h>
- #include <linux/mutex.h>
- #include <linux/spinlock.h>
-@@ -159,22 +160,24 @@ static inline int xadc_write_adc_reg(struct xadc *xadc, unsigned int reg, u16 va
- #define XADC_CONF0_MUX			BIT(11)
- #define XADC_CONF0_CHAN(x)		(x)
+-	mutex_lock(&xadc->mutex);
++	guard(mutex)(&xadc->mutex);
+ 	ret = _xadc_read_adc_reg(xadc, reg, val);
+-	mutex_unlock(&xadc->mutex);
+ 	return ret;
+ }
  
--#define XADC_CONF1_SEQ_MASK		(0xf << 12)
--#define XADC_CONF1_SEQ_DEFAULT		(0 << 12)
--#define XADC_CONF1_SEQ_SINGLE_PASS	(1 << 12)
--#define XADC_CONF1_SEQ_CONTINUOUS	(2 << 12)
--#define XADC_CONF1_SEQ_SINGLE_CHANNEL	(3 << 12)
--#define XADC_CONF1_SEQ_SIMULTANEOUS	(4 << 12)
--#define XADC_CONF1_SEQ_INDEPENDENT	(8 << 12)
--#define XADC_CONF1_ALARM_MASK		0x0f0f
-+#define XADC_CONF1_SEQ_MASK		GENMASK(15, 12)
-+#define XADC_CONF1_SEQ_DEFAULT		0
-+#define XADC_CONF1_SEQ_SINGLE_PASS	1
-+#define XADC_CONF1_SEQ_CONTINUOUS	2
-+#define XADC_CONF1_SEQ_SINGLE_CHANNEL	3
-+#define XADC_CONF1_SEQ_SIMULTANEOUS	4
-+#define XADC_CONF1_SEQ_INDEPENDENT	8
-+#define XADC_CONF1_ALARM_LOW_MASK	GENMASK(3, 0)
-+#define XADC_CONF1_ALARM_HIGH_MASK	GENMASK(11, 8)
-+#define XADC_CONF1_ALARM_MASK		(XADC_CONF1_ALARM_HIGH_MASK | XADC_CONF1_ALARM_LOW_MASK)
+@@ -111,9 +110,8 @@ static inline int xadc_write_adc_reg(struct xadc *xadc, unsigned int reg, u16 va
+ {
+ 	int ret;
  
--#define XADC_CONF2_DIV_MASK	0xff00
-+#define XADC_CONF2_DIV_MASK	GENMASK(15, 8)
- #define XADC_CONF2_DIV_OFFSET	8
+-	mutex_lock(&xadc->mutex);
++	guard(mutex)(&xadc->mutex);
+ 	ret = _xadc_write_adc_reg(xadc, reg, val);
+-	mutex_unlock(&xadc->mutex);
+ 	return ret;
+ }
  
--#define XADC_CONF2_PD_MASK	(0x3 << 4)
--#define XADC_CONF2_PD_NONE	(0x0 << 4)
--#define XADC_CONF2_PD_ADC_B	(0x2 << 4)
--#define XADC_CONF2_PD_BOTH	(0x3 << 4)
-+#define XADC_CONF2_PD_MASK	GENMASK(5, 4)
-+#define XADC_CONF2_PD_NONE	0
-+#define XADC_CONF2_PD_ADC_B	2
-+#define XADC_CONF2_PD_BOTH	3
- 
- #define XADC_ALARM_TEMP_MASK		BIT(0)
- #define XADC_ALARM_VCCINT_MASK		BIT(1)
 -- 
 2.34.1
 
