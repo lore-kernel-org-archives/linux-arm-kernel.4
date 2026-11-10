@@ -2,127 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68AB9606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 14:24:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2D960A2611
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 14:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RzapE50N;
-	dkim=pass (2048-bit key) header.d=soleen.com header.i=@soleen.com header.a=rsa-sha256 header.s=google header.b=gx3BRnD3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=h+Vmg+A/;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CIWH1gDE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
-	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Kh3fWHtVs9ElLDXrVfG1M2iBA/DoCWf9txtZMpxB3YI=; b=RzapE50NL/Wdy5
-	0wEL3WupJAYuh7MDF6mrVYkKbCf+rGLLCCxGKvsg1SshjoVJgyL45V34GYMofxQCr6DYWEpGWC8pU
-	keJ4ZyK4TPOQfVXGRRVnmm6k6D+5JmH17g0qrXoXUTeNH+CxZg6Zl2oJC5QuIqNpoErOLIhmasdrx
-	KsEqzvfdqRP0iONRgkSYzNSmlE+wEzkg4YQvgeEwX/GhsNEbcaGz4LZDl+hHDR6HG7zpZcOjolTf6
-	HRhOjiZz59O0NsNQE2ki5sgabKmkfrVzv80Voy9Y9tJ538mKQpvDGqqKbPfVwwzgaTRnB9qJJ40jj
-	GmSJ3eHrLGrAfcOETbzg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fq7yBG2EXssub3S97JK0z+L/pcM8GEbETAN8w1h7jq8=; b=h+Vmg+A/ABZZ4V1rWAqczCy66r
+	vqKONIlDsNGaRzJbVv0JC2IfyTezlO+pLGquGvNsG/7+ebX+JphP58bC9RwBApoqgGgFrhkSgkt1e
+	h9KbiR0tJIotpKcXx91WRFX1to2yUVE3XgCga070e6i9ddwM8bV1ElLORbI8a3KMPMAe/JlCcOiVC
+	CVM5CuotYEoS3pvE2bF0Wr4DpIUwIIR/bt/4JMgF4T7CsbiWp7s53egdV7TC6WOWzMwy36j6LRyST
+	5YFZkmCpauvTaqcqWwUxSX8LQquejg79u/IytLWVI8c/LJqaAapvMjmNlz6L/uK6LMg0vy9VQP8Rv
+	0WpR88iA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQmlU-00000004BYM-0TLv;
-	Tue, 10 Nov 2026 14:24:00 +0000
-Received: from mail-ua1-x92e.google.com ([2607:f8b0:4864:20::92e])
+	id 1xQmle-00000004BdF-16Vv;
+	Tue, 10 Nov 2026 14:24:10 +0000
+Received: from mgamail.intel.com ([192.198.163.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQmlR-00000004BWf-1ptp
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 14:23:59 +0000
-Received: by mail-ua1-x92e.google.com with SMTP id a1e0cc1a2514c-990a39ba4fbso505889241.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 06:23:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen.com; s=google; t=1794320635; x=1794925435; darn=lists.infradead.org;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Kh3fWHtVs9ElLDXrVfG1M2iBA/DoCWf9txtZMpxB3YI=;
-        b=gx3BRnD3CbWJXVQfiu9fAQK4rjKlfXtbmVC16RjwyzsifNHUWil4tqgI6a9X8cratH
-         bql5yS25dQ4HByATyuTfz5eVVPHFHEMg5iT+m3tzXWkgPcTAI80GUBm4CDIcwwmUlLmX
-         BEd0OfHo40adaIAHOhCle2bHjOC/quNOlRfkcdP4lTgVcSmGdsu1s9gEBp5aZUYRoOSx
-         rEqmSfLFerYvGr6imTuZOS8w/ph4fOp7UGH4NYUVWwIVjy9WYayawwmGFx2Kyb2hcUld
-         W6GP1qgRVgiLsX36Zm+VYveuJFiHONZQjhrGRjdCYXTM3Qh2rFZiYfoWdIeFUqJQjf9R
-         AEjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794320635; x=1794925435;
-        h=message-id:date:references:in-reply-to:cc:to:from:subject
-         :content-transfer-encoding:content-type:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Kh3fWHtVs9ElLDXrVfG1M2iBA/DoCWf9txtZMpxB3YI=;
-        b=HuS2CPlCR9So/hh5ULMRj0OEuGD2RetSOOoK6Vcql1a/lfW9I3jBaBU2mjglZbpI+T
-         NRbKK53pc4jVCc1/mnXlbcX2vGFZdT7y+3IBzAeXRq2fdrJz67PRnMzs7Es8/vU+059X
-         eWtutgcuuYN6peOLqUpdoeyl5IHZ8L8QsTBr9N7F152RyfPyFy5wCR/RXe+E2nCspb3X
-         2o5pmtY5BXeesqdZwBWLYvM4UBSi66Bfnv0dfCoMpM+yFhYlYiEN28ByMevZnAUdyGpo
-         L8Jeoi0ghdPYkFsWDAu0Jz+kHAsO78asjk1OBOe/E6XMSPA78naz++BYr2XW4jVWlYRk
-         EIdA==
-X-Forwarded-Encrypted: i=1; AL+hErH8IE6/Hzk0hiyvGAfGjFImkP4D598wexw7spNtmJHU96GkdER+wUGM/bldJti0p12ZwjVSVagOy3JM2FvlaGAz@lists.infradead.org
-X-Gm-Message-State: APuU4Z/2LltBC5mtcX5/72w82lsnNHUvBFgED4wdEvpE5RtOmoxVoWj7
-	Xr8WUkn4z4PakQFDehQC0oq1QQNhr+S+gY0sCefUAYJJItEZJriGcNuUZ9Dci+8G+Dk=
-X-Gm-Gg: AYBFou3AKAVLRnthiLPUdFkVv9ivopdMpIrIhyhGJCi7yPEBVj/xQ39GVb4+/RF4x86
-	slU++bxXwQOO0wN/sEF4f596ZahlfwdOxJ0YvHKZbe+oNv5ZTGNg2En+IV5DuKtLOFJ5vWPbo39
-	jeZjEU2L9R7qaurUW6D/kvnP9z2SZRO9Qj5jo0OSxHNnEHLumCTehkTnBt8q+A9MyDcXSK6RkgY
-	jMvBPhdyOXKifXxpKc29a5QkidvFCdrBn+TmyhvMpmUC1HQDMsqWf92tO6SPpJcJwle3hEPx50J
-	RekbLtwdJNhqYjYzLV0hkxvjMtQHCYX/vGrwkHq3/0Hoxg7vYx7YDCyPNlDQU/iNX9uWCOuroTp
-	izgP9FDGPb8qO6wJaar5sIeuurq/So/I7q//8t+JCCZsl8FQ678Y+YpGasPxgq8+TjBlShyFA11
-	3gRkd83JhC6RQCGqWQlHmPeYTnK1vv196xdbD2RoyG7K6PwO6CvH3/nle8KiI7/08p+wkDtFqPt
-	skiI+weu+2zjMelWB5nqc4JmwaoU8AQ5089cr4R81+tgNwZxxVL15Gt4v18F6e5gz5zLvzi7ehr
-	tqGMKUmAVT220fbXoYsBWFPK0b5/ma8I2mSGnQjwlPLaF9KJookQLKTqF3YdjVyGf81jndQYITl
-	ArQDTViB/pN8pY/kfhVoxNEO2x+WwWll/dqveVsIDqzewAQY=
-X-Received: by 2002:a05:6102:6050:b0:7cc:2cef:b341 with SMTP id ada2fe7eead31-7d301ac2767mr622566137.4.1794320634935;
-        Tue, 10 Nov 2026 06:23:54 -0800 (PST)
-Received: from soleen.c.googlers.com (64.167.245.35.bc.googleusercontent.com. [35.245.167.64])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99c200838f0sm1837111241.9.2026.11.10.06.23.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 06:23:54 -0800 (PST)
+	id 1xQmlc-00000004Bbl-1JMk;
+	Tue, 10 Nov 2026 14:24:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794320649; x=1825856649;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Dz6xB3nsXb84v6j5VtTKjJDy0mJj1gdNzuH6mAq71Ss=;
+  b=CIWH1gDEOVBTWAgtV9hWb+r3MD5xT6JM/HJYMIqZMwNmTcOuBeShchLx
+   kTGFMSzdKdLDeRX0OYoXRn2eW/9NXh3Uj4doetBG3Nm6wvuMXwdAqOlnh
+   IRPeC13GHQjbd+dvqXsFUNq4ECEtDFuyflQf6jj9LhvljilXAqnbLlMiD
+   pe0XoLes6SzjjF6M/KSjY44/fLSaq/H3h30qRl0bxRMVM4aBoDo2pKFYt
+   rBxwwnhfm843BuToxf2kIrbfEQc30pbWKi6G0XRCVOtxSS3dyqMcRfelt
+   DZ4pbGcx3Y1UHOIdRdHeVEw7D05rGvdL4hZGhqVU/WPWzebcQI1o2u2hq
+   A==;
+X-CSE-ConnectionGUID: Q/ycgDIBQ/u7v4MgEb9fzA==
+X-CSE-MsgGUID: UsRcdw5IQ02QkvzyRrhnKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3065734"
+X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
+   d="scan'208";a="3065734"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 06:24:08 -0800
+X-CSE-ConnectionGUID: 1yUDu6o1R2Co+TQB5tXA8g==
+X-CSE-MsgGUID: HgVuWmi6QhWzn+a9bSH62A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
+   d="scan'208";a="8467520"
+Received: from black.igk.intel.com ([10.91.253.5])
+  by fmviesa009.fm.intel.com with ESMTP; 10 Nov 2026 06:24:04 -0800
+Received: by black.igk.intel.com (Postfix, from userid 1001)
+	id 7D26C99; Tue, 10 Nov 2026 15:24:03 +0100 (CET)
+Date: Tue, 10 Nov 2026 15:24:03 +0100
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Mika Westerberg <westeri@kernel.org>,
+	Andreas Noever <andreas.noever@gmail.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Sven Peter <sven@kernel.org>,
+	Yehezkel Bernat <YehezkelShB@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 2/7] thunderbolt: Move ICM mailbox functions to icm.c
+ and internalize interrupt work
+Message-ID: <20261110142403.GB259790@black.igk.intel.com>
+References: <20261110114925.722014-1-chunfeng.yun@mediatek.com>
+ <20261110114925.722014-3-chunfeng.yun@mediatek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v4 03/19] kho, memfd_luo: Reference struct kho_vmalloc
- via serialized pointer
-From: Pasha Tatashin <pasha.tatashin@soleen.com>
-To: Tarun Sahu <tarunsahu@google.com>
-Cc: Pasha Tatashin <pasha.tatashin@soleen.com>, 
- Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, maz@kernel.org, 
- will@kernel.org, David Matlack <dmatlack@google.com>, 
- Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, 
- loganodell@google.com, arnd@arndb.de, dwmw2@infradead.org, 
- baolu.lu@linux.intel.com, Bjorn Helgaas <bhelgaas@google.com>, 
- oupton@kernel.org, alex@shazbot.org, gle.com@google.com, 
- pbonzini@redhat.com, Andrew Morton <akpm@linux-foundation.org>, 
- kevin.tian@intel.com, joro@8bytes.org, kvmarm@lists.linux.dev, 
- linux-pci@vger.kernel.org, Pratyush Yadav <pratyush@kernel.org>, 
- kexec@lists.infradead.org, kvm@vger.kernel.org, iommu@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, skhawaja@google.com, sagis@google.com, 
- linux-arch@vger.kernel.org, linux-mm@kvack.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20261110050202.529473-4-tarunsahu@google.com>
-References: <20261110050202.529473-1-tarunsahu@google.com>
- <20261110050202.529473-4-tarunsahu@google.com>
-Date: Tue, 10 Nov 2026 09:23:48 -0500
-Message-Id: <179432062803.2329176.7220119921541924936.b4-review@b4>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7477;
- i=pasha.tatashin@soleen.com; h=from:subject:message-id;
- bh=3MeQeXkemHu+Wr0/oMRB7Xn+2Je8r4E7OMIYcRodeqI=;
- b=owEBbQKS/ZANAwAKAbt3KEzbc3reAcsmYgBq8yj5YKX9YmXwBRUiJpQxd2lEuERo2IgfqwM0l
- IVRH3L/L9qJAjMEAAEKAB0WIQRBMaqT7LRvGvB/NmK7dyhM23N63gUCavMo+QAKCRC7dyhM23N6
- 3qK5D/9g7VLq2y8fSOMG0PAMp3BX67/XRkPN7ey3PFRx5aKMUM07RMgQmzWBgUvl2Q6gNiQzkn6
- PzGX64l/U3Obis7LYoXZVjFyU/Y1E3VsLm3pidkNnIIr4W6pd8fWOLQ1uNuf7+Y+ZNq3oJq7nS1
- 4k2nRqLY7pzJAH9m8n6ub9XYCpLh3WeltCRtRINtCyceucFzMTRCUUdV2RUap7fL6Wumu3QX5eS
- 8i1d0l/SPxERlsryDD5cCykkv2QXhHkfilL/BhVrMdy39RdMo4gj/FfTT94+11QgULuudAtccqO
- U5L/QQpjwNg9nTNZkz1PQTXGK0J2aU/renYZpknMh5BplqfPCYnmTetLfrBpsDzfgey8RLF8V/Y
- Eoh+ESh7BADOSLIg69tXGp+wnSKKHwkjEOC7OQCOwY9QDGPzUzCgkpdGdmzDoNKre2SpcvdIZAR
- CcygD2hatCPKtp7iIAcav0qx3mKfHiW2V//Tu09m5IEQ7l7pd0mWhE4svcffc3miVXPGWhYrqmd
- PVunIgq+xYFl+QWB7LvoZyaTxHcY3mbTkzsfJUXKDzZ/cqAhA8jR6w9agPlhIgaeGMrDR2m2MQg
- C6Ovc0HMEbvS0tj7Rg3+WW5boGrxb4k26c6jkEz95OlytA/VPaKEpi+/upamWNVJg+P9KkVBlDM
- /j4Qa87px1Kor9Q==
-X-Developer-Key: i=pasha.tatashin@soleen.com; a=openpgp;
- fpr=CAAAB722DD22A081F0D49F35633A6A993D43B569
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261110114925.722014-3-chunfeng.yun@mediatek.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_062357_494138_2C5C7B1F 
-X-CRM114-Status: GOOD (  26.65  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_062408_368484_ADF1BF82 
+X-CRM114-Status: GOOD (  32.80  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,204 +95,239 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Subsystems preserving vmalloc allocations currently embed struct
-> kho_vmalloc directly by value in their serialized structures or device
-> tree properties. For example, struct memfd_luo_ser embeds struct
-> kho_vmalloc folios, and test_kho writes the structure directly into the
-> folios_info FDT property.
+On Tue, Nov 10, 2026 at 07:48:50PM +0800, Chunfeng Yun wrote:
+> In preparation for modularizing PCIe NHI and ICM support as a separate
+> driver, clean up internal helper functions so that they do not need to
+> be exported:
 > 
-> Embedding struct kho_vmalloc directly couples the containing layout's
-> field offsets and size to struct kho_vmalloc. Any modification to struct
-> kho_vmalloc shifts subsequent fields in the containing structure and
-> breaks the handover ABI across kexec.
+> nhi_mailbox_cmd() and nhi_mailbox_mode() are only used by the Intel
+> firmware Connection Manager (icm.c) to exchange mailbox commands with
+> firmware running on Intel PCIe NHIs. The Thunderbolt core framework,
+> software connection manager, and non-PCIe platform controllers do
+> not use this mailbox interface. Move both functions into icm.c and
+> mark them static.
 > 
-> Convert callers to hold a DECLARE_KHOSER_PTR pointer to struct
-> kho_vmalloc instead of embedding it by value. In memfd_luo, allocate the
-> main structure and struct kho_vmalloc in the same preserved folio, placing
-> struct kho_vmalloc in the remaining 8-byte-aligned space, and bump the
-> compatibility string to memfd-v3. In test_kho, place struct kho_vmalloc
-> in the remaining space of the FDT folio, store the serialized pointer in
-> the folios_info property, and bump the compatibility string to
-> kho-test-v2.
+> nhi_interrupt_work was previously initialized in pci.c within
+> nhi_pci_init_msi(), requiring it to be visible across files. Move
+> INIT_WORK(&nhi->interrupt_work, ...) into tb_nhi_probe() so that
+> the workqueue item is initialized by the NHI core and
+> nhi_interrupt_work() can be marked static in nhi.c.
 > 
-> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
->
-> diff --git a/include/linux/kho/abi/kexec_handover.h b/include/linux/kho/abi/kexec_handover.h
-> index 6f12f5037ea5..bee75a7006e8 100644
-> --- a/include/linux/kho/abi/kexec_handover.h
-> +++ b/include/linux/kho/abi/kexec_handover.h
-> @@ -11,6 +11,8 @@
->  #define _LINUX_KHO_ABI_KEXEC_HANDOVER_H
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> new patch
+> ---
+>  drivers/thunderbolt/icm.c | 59 ++++++++++++++++++++++++++++++++++++
+>  drivers/thunderbolt/nhi.c | 64 ++-------------------------------------
+>  drivers/thunderbolt/nhi.h |  3 --
+>  drivers/thunderbolt/pci.c |  2 --
+>  4 files changed, 62 insertions(+), 66 deletions(-)
+> 
+> diff --git a/drivers/thunderbolt/icm.c b/drivers/thunderbolt/icm.c
+> index a295a5e6cc9c..736f551cd567 100644
+> --- a/drivers/thunderbolt/icm.c
+> +++ b/drivers/thunderbolt/icm.c
+> @@ -45,6 +45,7 @@
+>  #define ICM_RETRIES			3
+>  #define ICM_APPROVE_TIMEOUT		10000	/* ms */
+>  #define ICM_MAX_LINK			4
+> +#define ICM_MAILBOX_TIMEOUT		500 /* ms */
 >  
->  #include <linux/bits.h>
-> +#include <linux/build_bug.h>
-> +#include <linux/kconfig.h>
->  #include <linux/log2.h>
->  #include <linux/math.h>
->  #include <linux/types.h>
-> @@ -177,6 +179,10 @@ struct kho_vmalloc {
->  	unsigned short order;
->  };
->  
-> +static_assert(sizeof(struct kho_vmalloc) == 16);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct kho_vmalloc) == 8);
-> +
->  /**
->   * DOC: KHO persistent memory tracker
->   *
-> diff --git a/include/linux/kho/abi/memfd.h b/include/linux/kho/abi/memfd.h
-> index 376a724a1d8c..7b49dd6d7e2a 100644
-> --- a/include/linux/kho/abi/memfd.h
-> +++ b/include/linux/kho/abi/memfd.h
-> @@ -81,7 +81,7 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
->   *             to directly use them in the ABI.
->   * @flags:     Flags for the file. Unused flag bits must be set to 0.
->   * @nr_folios: Number of folios in the folios array.
-> - * @folios:    KHO vmalloc descriptor pointing to the array of
-> + * @folios:    Pointer to KHO vmalloc descriptor for the array of
->   *             struct memfd_luo_folio_ser.
->   */
->  struct memfd_luo_ser {
-> @@ -90,14 +90,14 @@ struct memfd_luo_ser {
->  	u32 seals;
->  	u32 flags;
->  	u64 nr_folios;
-> -	struct kho_vmalloc folios;
-> +	DECLARE_KHOSER_PTR(folios, struct kho_vmalloc *);
->  };
->  
-> -static_assert(sizeof(struct memfd_luo_ser) == 48);
-> +static_assert(sizeof(struct memfd_luo_ser) == 40);
->  static_assert(!IS_ENABLED(CONFIG_64BIT) ||
->  	      __alignof__(struct memfd_luo_ser) == 8);
->  
->  /* The compatibility string for memfd file handler */
-> -#define MEMFD_LUO_FH_COMPATIBLE	"memfd-v2"
-> +#define MEMFD_LUO_FH_COMPATIBLE	"memfd-v3"
->  
->  #endif /* _LINUX_KHO_ABI_MEMFD_H */
-> diff --git a/lib/test_kho.c b/lib/test_kho.c
-> index aa6a0956bb8b..cd0f183ff68e 100644
-> --- a/lib/test_kho.c
-> +++ b/lib/test_kho.c
-> @@ -25,7 +25,7 @@
->  
->  #define KHO_TEST_MAGIC	0x4b484f21	/* KHO! */
->  #define KHO_TEST_FDT	"kho_test"
-> -#define KHO_TEST_COMPAT "kho-test-v1"
-> +#define KHO_TEST_COMPAT "kho-test-v2"
->  
->  static long max_mem = (PAGE_SIZE << MAX_PAGE_ORDER) * 2;
->  module_param(max_mem, long, 0644);
-> @@ -34,7 +34,7 @@ struct kho_test_state {
->  	unsigned int nr_folios;
->  	struct folio **folios;
->  	phys_addr_t *folios_info;
-> -	struct kho_vmalloc folios_info_phys;
-> +	DECLARE_KHOSER_PTR(folios_info_phys, struct kho_vmalloc *);
->  	int nr_folios_preserved;
->  	struct folio *fdt;
->  	__wsum csum;
-> @@ -47,13 +47,13 @@ static void kho_test_unpreserve_data(struct kho_test_state *state)
->  	for (int i = 0; i < state->nr_folios_preserved; i++)
->  		kho_unpreserve_folio(state->folios[i]);
->  
-> -	kho_unpreserve_vmalloc(&state->folios_info_phys);
-> +	if (KHOSER_LOAD_PTR(state->folios_info_phys))
-> +		kho_unpreserve_vmalloc(KHOSER_LOAD_PTR(state->folios_info_phys));
->  	vfree(state->folios_info);
+>  static bool start_icm;
+>  module_param(start_icm, bool, 0444);
+> @@ -269,6 +270,64 @@ static int pcie2cio_write(struct icm *icm, enum tb_cfg_space cs,
+>  	return pci2cio_wait_completion(icm, 5000);
 >  }
 >  
->  static int kho_test_preserve_data(struct kho_test_state *state)
+> +/**
+> + * nhi_mailbox_cmd() - Send a command through NHI mailbox
+> + * @nhi: Pointer to the NHI structure
+> + * @cmd: Command to send
+> + * @data: Data to be send with the command
+> + *
+> + * Sends mailbox command to the firmware running on NHI.
+> + *
+> + * Return: %0 on success, negative errno otherwise.
+> + */
+> +static int nhi_mailbox_cmd(struct tb_nhi *nhi, enum nhi_mailbox_cmd cmd, u32 data)
+> +{
+> +	ktime_t timeout;
+> +	u32 val;
+> +
+> +	iowrite32(data, nhi->iobase + REG_INMAIL_DATA);
+> +
+> +	val = ioread32(nhi->iobase + REG_INMAIL_CMD);
+> +	val &= ~(REG_INMAIL_CMD_MASK | REG_INMAIL_ERROR);
+> +	val |= REG_INMAIL_OP_REQUEST | cmd;
+> +	iowrite32(val, nhi->iobase + REG_INMAIL_CMD);
+> +
+> +	timeout = ktime_add_ms(ktime_get(), ICM_MAILBOX_TIMEOUT);
+> +	do {
+> +		val = ioread32(nhi->iobase + REG_INMAIL_CMD);
+> +		if (!(val & REG_INMAIL_OP_REQUEST))
+> +			break;
+> +		usleep_range(10, 20);
+> +	} while (ktime_before(ktime_get(), timeout));
+> +
+> +	if (val & REG_INMAIL_OP_REQUEST)
+> +		return -ETIMEDOUT;
+> +	if (val & REG_INMAIL_ERROR)
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * nhi_mailbox_mode() - Return current firmware operation mode
+> + * @nhi: Pointer to the NHI structure
+> + *
+> + * The function reads current firmware operation mode using NHI mailbox
+> + * registers and returns it to the caller.
+> + *
+> + * Return: &enum nhi_fw_mode.
+> + */
+> +static enum nhi_fw_mode nhi_mailbox_mode(struct tb_nhi *nhi)
+> +{
+> +	u32 val;
+> +
+> +	val = ioread32(nhi->iobase + REG_OUTMAIL_CMD);
+> +	val &= REG_OUTMAIL_CMD_OPMODE_MASK;
+> +	val >>= REG_OUTMAIL_CMD_OPMODE_SHIFT;
+> +
+> +	return (enum nhi_fw_mode)val;
+> +}
+> +
+>  static bool icm_match(const struct tb_cfg_request *req,
+>  		      const struct ctl_pkg *pkg)
 >  {
-> -	struct kho_vmalloc folios_info_phys;
->  	phys_addr_t *folios_info;
->  	int err;
+> diff --git a/drivers/thunderbolt/nhi.c b/drivers/thunderbolt/nhi.c
+> index c574c336f25b..1e3a58636d3d 100644
+> --- a/drivers/thunderbolt/nhi.c
+> +++ b/drivers/thunderbolt/nhi.c
+> @@ -35,8 +35,6 @@
+>   */
+>  #define RING_E2E_RESERVED_HOPID	RING_FIRST_USABLE_HOPID
 >  
-> @@ -61,11 +61,10 @@ static int kho_test_preserve_data(struct kho_test_state *state)
->  	if (!folios_info)
+> -#define NHI_MAILBOX_TIMEOUT	500 /* ms */
+> -
+>  static bool host_reset = true;
+>  module_param(host_reset, bool, 0444);
+>  MODULE_PARM_DESC(host_reset, "reset USB4 host router (default: true)");
+> @@ -964,65 +962,7 @@ int tb_ring_throttling(struct tb_ring *ring, unsigned int interval_nsec)
+>  }
+>  EXPORT_SYMBOL_GPL(tb_ring_throttling);
+>  
+> -/**
+> - * nhi_mailbox_cmd() - Send a command through NHI mailbox
+> - * @nhi: Pointer to the NHI structure
+> - * @cmd: Command to send
+> - * @data: Data to be send with the command
+> - *
+> - * Sends mailbox command to the firmware running on NHI.
+> - *
+> - * Return: %0 on success, negative errno otherwise.
+> - */
+> -int nhi_mailbox_cmd(struct tb_nhi *nhi, enum nhi_mailbox_cmd cmd, u32 data)
+> -{
+> -	ktime_t timeout;
+> -	u32 val;
+> -
+> -	iowrite32(data, nhi->iobase + REG_INMAIL_DATA);
+> -
+> -	val = ioread32(nhi->iobase + REG_INMAIL_CMD);
+> -	val &= ~(REG_INMAIL_CMD_MASK | REG_INMAIL_ERROR);
+> -	val |= REG_INMAIL_OP_REQUEST | cmd;
+> -	iowrite32(val, nhi->iobase + REG_INMAIL_CMD);
+> -
+> -	timeout = ktime_add_ms(ktime_get(), NHI_MAILBOX_TIMEOUT);
+> -	do {
+> -		val = ioread32(nhi->iobase + REG_INMAIL_CMD);
+> -		if (!(val & REG_INMAIL_OP_REQUEST))
+> -			break;
+> -		usleep_range(10, 20);
+> -	} while (ktime_before(ktime_get(), timeout));
+> -
+> -	if (val & REG_INMAIL_OP_REQUEST)
+> -		return -ETIMEDOUT;
+> -	if (val & REG_INMAIL_ERROR)
+> -		return -EIO;
+> -
+> -	return 0;
+> -}
+> -
+> -/**
+> - * nhi_mailbox_mode() - Return current firmware operation mode
+> - * @nhi: Pointer to the NHI structure
+> - *
+> - * The function reads current firmware operation mode using NHI mailbox
+> - * registers and returns it to the caller.
+> - *
+> - * Return: &enum nhi_fw_mode.
+> - */
+> -enum nhi_fw_mode nhi_mailbox_mode(struct tb_nhi *nhi)
+> -{
+> -	u32 val;
+> -
+> -	val = ioread32(nhi->iobase + REG_OUTMAIL_CMD);
+> -	val &= REG_OUTMAIL_CMD_OPMODE_MASK;
+> -	val >>= REG_OUTMAIL_CMD_OPMODE_SHIFT;
+> -
+> -	return (enum nhi_fw_mode)val;
+> -}
+> -
+> -void nhi_interrupt_work(struct work_struct *work)
+> +static void nhi_interrupt_work(struct work_struct *work)
+>  {
+>  	struct tb_nhi *nhi = container_of(work, typeof(*nhi), interrupt_work);
+>  	int value = 0; /* Suppress uninitialized usage warning. */
+> @@ -1331,6 +1271,8 @@ int tb_nhi_probe(struct tb_nhi *nhi)
+>  	if (!nhi->tx_rings || !nhi->rx_rings || !nhi->interrupt_mask)
 >  		return -ENOMEM;
 >  
-> -	err = kho_preserve_vmalloc(folios_info, &folios_info_phys);
-> +	err = kho_preserve_vmalloc(folios_info, KHOSER_LOAD_PTR(state->folios_info_phys));
->  	if (err)
->  		goto err_free_info;
->  
-> -	state->folios_info_phys = folios_info_phys;
->  	state->folios_info = folios_info;
->  
->  	for (int i = 0; i < state->nr_folios; i++) {
-> @@ -123,14 +122,19 @@ static int kho_test_prepare_fdt(struct kho_test_state *state, ssize_t fdt_size)
->  
->  static int kho_test_preserve(struct kho_test_state *state)
->  {
-> -	ssize_t fdt_size;
-> +	struct kho_vmalloc *folios_vmalloc;
-> +	ssize_t fdt_size, alloc_size;
->  	int err;
->  
->  	fdt_size = state->nr_folios * sizeof(phys_addr_t) + PAGE_SIZE;
-> -	state->fdt = folio_alloc(GFP_KERNEL, get_order(fdt_size));
-> +	alloc_size = fdt_size + sizeof(struct kho_vmalloc);
-> +	state->fdt = folio_alloc(GFP_KERNEL, get_order(alloc_size));
->  	if (!state->fdt)
->  		return -ENOMEM;
->  
-> +	folios_vmalloc = folio_address(state->fdt) + fdt_size;
-> +	KHOSER_STORE_PTR(state->folios_info_phys, folios_vmalloc);
+> +    INIT_WORK(&nhi->interrupt_work, nhi_interrupt_work);
 > +
->  	err = kho_preserve_folio(state->fdt);
->  	if (err)
->  		goto err_free_fdt;
-> @@ -234,7 +238,8 @@ static int kho_test_save(void)
+
+This has weird indent.
+
+>  	nhi_reset(nhi);
 >  
->  static int kho_test_restore_data(const void *fdt, int node)
->  {
-> -	const struct kho_vmalloc *folios_info_phys;
-> +	const DECLARE_KHOSER_PTR(*folios_info_phys, struct kho_vmalloc *);
-> +	const struct kho_vmalloc *folios_vmalloc;
->  	const unsigned int *nr_folios;
->  	phys_addr_t *folios_info;
->  	const __wsum *old_csum;
-> @@ -255,7 +260,11 @@ static int kho_test_restore_data(const void *fdt, int node)
->  	if (!folios_info_phys || len != sizeof(*folios_info_phys))
->  		return -EINVAL;
+>  	/* In case someone left them on. */
+> diff --git a/drivers/thunderbolt/nhi.h b/drivers/thunderbolt/nhi.h
+> index a36c62c49a5c..3dd6ace6150d 100644
+> --- a/drivers/thunderbolt/nhi.h
+> +++ b/drivers/thunderbolt/nhi.h
+> @@ -27,11 +27,8 @@ enum nhi_mailbox_cmd {
+>  	NHI_MAILBOX_ALLOW_ALL_DEVS = 0x23,
+>  };
 >  
-> -	folios_info = kho_restore_vmalloc(folios_info_phys);
-> +	folios_vmalloc = KHOSER_LOAD_PTR(*folios_info_phys);
-> +	if (!folios_vmalloc)
-> +		return -EINVAL;
-> +
-> +	folios_info = kho_restore_vmalloc(folios_vmalloc);
->  	if (!folios_info)
->  		return -EINVAL;
-
-Why do we need DECLARE_KHOSER_PTR() in test_kho.c at all?
-
-DECLARE_KHOSER_PTR() makes sense in shared ABI structs like struct 
-memfd_luo_ser where both kernels reference the same struct field and get 
-type checking between KHOSER_STORE_PTR() and KHOSER_LOAD_PTR().
-
-Here, struct kho_test_state is purely local to the saving kernel and the 
-handover ABI is just the "folios_info" FDT property carrying a u64 
-physical address. Having two unrelated DECLARE_KHOSER_PTR() declarations 
-doesn't buy any cross-kernel type safety
-
-Can we drop DECLARE_KHOSER_PTR() here, keep a plain pointer in struct 
-kho_test_state, serialize a u64 phys addr into the "folios_info" FDT 
-property, and read it back as const u64 * + phys_to_virt() like the rest 
-of the KHO FDT code?
-
--- 
-Pasha
-
+> -int nhi_mailbox_cmd(struct tb_nhi *nhi, enum nhi_mailbox_cmd cmd, u32 data);
+> -enum nhi_fw_mode nhi_mailbox_mode(struct tb_nhi *nhi);
+>  void nhi_enable_int_throttling(struct tb_nhi *nhi);
+>  void nhi_disable_interrupts(struct tb_nhi *nhi);
+> -void nhi_interrupt_work(struct work_struct *work);
+>  irqreturn_t tb_nhi_isr(int irq, void *data);
+>  irqreturn_t tb_ring_msix(int irq, void *data);
+>  int tb_nhi_probe(struct tb_nhi *nhi);
+> diff --git a/drivers/thunderbolt/pci.c b/drivers/thunderbolt/pci.c
+> index 2f0abf4d27a3..275389903090 100644
+> --- a/drivers/thunderbolt/pci.c
+> +++ b/drivers/thunderbolt/pci.c
+> @@ -206,8 +206,6 @@ static int nhi_pci_init_msi(struct tb_nhi *nhi)
+>  		if (nvec < 0)
+>  			return nvec;
+>  
+> -		INIT_WORK(&nhi->interrupt_work, nhi_interrupt_work);
+> -
+>  		irq = pci_irq_vector(pdev, 0);
+>  		if (irq < 0)
+>  			return irq;
+> -- 
+> 2.45.2
 
