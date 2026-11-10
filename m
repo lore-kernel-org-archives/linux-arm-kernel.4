@@ -2,62 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FCC606D1E1
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34084606A232
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NxowxKJ0;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=E+So8ZNc;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=Ees8fCyG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q34/pBYV;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=m0nY++XB;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=B1oFZRRC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Lr/x5IlnZq4eIBfp/lJaUR2Ue53H914EWTxEd+hd3Uw=; b=NxowxKJ0T5IYBe
-	lDobss25bmVGCPiDJVtILfCULnr3M6vxBpjd8x8iQUaFWk+OIBZkDHTVyECdbXzaQ3rRmQ1pcuE6n
-	1dJyFelQe3Uan0ZA10hR3MoPUlgfpLrNlsgcfGSqKbWA0N/nE9N3d4Nqr2mt0W0fZBpVL2NvQ1/zC
-	+hcYzcoavitR1XZD0GESpN4/S8u8VFRHzMhAhFup+Ksy+fb4FiDNWNefNvX9sAn9stWuMz+lItzmW
-	LlyK/T1Ve7TnWxasF+bH6uvFoQDf1nSOgVd8qlu7JtpVmnjHfzAgzEIw4gTfHkyUksd9jUSRyQJ9o
-	ieGZ4ozrjMFLCaRQd+rw==;
+	List-Owner; bh=FnaiI9Makeyhmcykg0ul9RCJzRdbJabnK5sU0v9rIkw=; b=q34/pBYVGVovfm
+	UdMdW/Kzmt6MB6GvqqIA1mExtoKC8/7rNxk+cIMrCe4zyJmmZNuRdRGhToW1wLeqUkhgAqVeECyK/
+	8gvaFSgN+4GArjkJ3UXG+8MwwR6iXAC8g9g+jtJ5RuoTaaipI+7LjfS7VcXd8w9gBdjDYqDfCudhq
+	ISwPVMQ3/nwYYI1oJ2hwvbrSuRxLyoYI6r2ZPPgrCBAyNe7UqGlw703vsHuUL4/id7WShBEKAwc/f
+	E7H6ApVCE0H17jOG5GfKTr/tN873jbhlafYWGS97KhISFOEuzy8ZmFdu80HIy0R+yLKAz8lNsF1R4
+	/ACSV+zmMxG7/geTIAbA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoni-00000004Y1X-2JBk;
-	Tue, 10 Nov 2026 16:34:26 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1xQonm-00000004Y4R-3yn9;
+	Tue, 10 Nov 2026 16:34:31 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQonU-00000004XrC-2OIG;
+	id 1xQonV-00000004XrD-0x8S;
 	Tue, 10 Nov 2026 16:34:14 +0000
 From: Gregor Herburger <gregor.herburger@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1794328450;
+	s=2020; t=1794328451;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Lr/x5IlnZq4eIBfp/lJaUR2Ue53H914EWTxEd+hd3Uw=;
-	b=E+So8ZNcgf+elvtMsO/0RgAl+eGb/8WXXA2I+3n3yd5DtjpbiWPTiuz3ng3P8G52we+99/
-	V565cNbTYzQ9OUW/Y/Wec/gtrWBCKUtt9KePOb8tsjyNJaC1HLR8ELUH0rMbbqn3BoKxui
-	QnPryiIA+7aVdK/xAyjRRYnbih0T2V9cIvL8wWYcRpKboE5jK4LUEnswIV9Ee7RItY37qd
-	nXGRmw1azJ/LW/crDiu4l6srtvxsuCpnAQwe95pW7yY04BUo+Mn8zbZY07mE0tp9WzA71U
-	DWAPsuA91abt5ANtX5O1qSMJ2JpVmVuCjQSzgLVn8QdzPIpzGTevv5w+oLbqmQ==
+	bh=FnaiI9Makeyhmcykg0ul9RCJzRdbJabnK5sU0v9rIkw=;
+	b=m0nY++XB4AtNDkWqn9DffXfz+DRI0rg25Ntuhmn9MDp5jWB20Hg5EZINoOKDg0o1/RYW3/
+	lIdeW08ZjGT16ZJH0C+ugqGFEGaOnZJsUkVLqbNPM1XiSSQcYgjkmyIFBj0HFxfT34ZzJq
+	kOSUnU6o4R+Uc1PX4FFdKNsBQsytlShKXgO73Ze24Fo0mEuTMGQNCnZGVKRrL6f70yrBA1
+	7m1df5l19AXam6WCQuyq9/QhsluIX3SO7vO9xVua9Gq8d+ySmzdicSt/SpmG3q7mowQUDY
+	UY4vISZj2QRtuIehCaerBdxqo5kTsYDgvm80IX9ONnndq9B5wKk/AsnO3xgQww==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1794328450;
+	s=2020e; t=1794328451;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=Lr/x5IlnZq4eIBfp/lJaUR2Ue53H914EWTxEd+hd3Uw=;
-	b=Ees8fCyGZOIGewaaR+aG3eE1+t225iV9Bwd/7wnATtTLOfrW7qJHznNByddbDi/D8tpUSN
-	JF5uYoycB6Jvw+AQ==
-Date: Tue, 10 Nov 2026 17:34:02 +0100
-Subject: [PATCH v8 03/12] nvmem: core: Enforce stride and alignment checks
- for nvmem_device functions
+	bh=FnaiI9Makeyhmcykg0ul9RCJzRdbJabnK5sU0v9rIkw=;
+	b=B1oFZRRCQe9h4DI6kt4seuMX/v1lCleu7CjhcJ6DNXI0c5NpUYBZNAA+Bn+F+9J1k9aKQQ
+	k8R6cZ+ySxKZ8bBQ==
+Date: Tue, 10 Nov 2026 17:34:03 +0100
+Subject: [PATCH v8 04/12] dt-bindings: raspberrypi,bcm2835-firmware: Add
+ bcm2712-firmware compatible
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20261110-rpi-otp-driver-v8-3-797e0577d414@linutronix.de>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261110-rpi-otp-driver-v8-4-797e0577d414@linutronix.de>
 References: <20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de>
 In-Reply-To: <20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -72,18 +72,18 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Russell King <linux@armlinux.org.uk>
 Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
  Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794328449; l=1407;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794328449; l=1250;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=sGhuitAXl4CJ9+ca/zc+cLRMyNRzuEDqHymnYStad9o=;
- b=aMCAcNsL2pUU94GEr3AtbJY12UrT1onyq+zukWfkCjUdFnPrwNb+1zuTTI5AmHW9gAM+5SPNR
- E46ydHIMtZ0DJOrAtjBuOnNkJqT8Qus6eX9XnWyuqgadSVv0SyA6sZx
+ bh=EPoKq3QiduWfDNRfSZpcKzyFT7JcryXbpPaWX1U5Tl4=;
+ b=70PdLuVNZYk88B+PbUNH2DVqyvxZW7RSg7x48DxD/tcZthuPRK8sW6MPIKFZqfoLKrLcmS0eB
+ QgjxrFrUwAKC8o1d0qwLiwHymN7UnvEs6P6+t8hNCYsQJ8w9Vdqkptg
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_083412_754159_3194BF17 
-X-CRM114-Status: UNSURE (   8.71  )
+X-CRM114-CacheID: sfid-20261110_083413_411375_E1FF61FC 
+X-CRM114-Status: UNSURE (   8.47  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -104,51 +104,38 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The stride and word_size attributes in the nvmem_config struct are
-currently only used when reading/writing through sysfs functions
-bin_attr_nvmem_read/bin_attr_nvmem_write and in the nvmem_cell api.
-Reads and writes with nvmem_device_write/nvmem_device_read still allow
-unaligned access.
+Add a compatible string for the bcm2712 firmware. The bcm2712-firmware
+is compatible with the bcm2835-firmware so allow the bcm2835-firmware as
+fallback.
 
-Add a check to these functions to enforce word_size and stride_length
-aligned reads and writes.
-
-Reviewed-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
 ---
- drivers/nvmem/core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml        | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index d976c0d6603ba..f16c7b7cd2b0f 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -2072,6 +2072,12 @@ int nvmem_device_read(struct nvmem_device *nvmem,
- 	if (!nvmem)
- 		return -EINVAL;
+diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+index dc71fd57834e8..9519157006b65 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+@@ -21,9 +21,14 @@ select:
  
-+	if (!IS_ALIGNED(offset, nvmem->stride))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(bytes, nvmem->word_size))
-+		return -EINVAL;
-+
- 	rc = nvmem_reg_read(nvmem, offset, buf, bytes);
+ properties:
+   compatible:
+-    items:
+-      - const: raspberrypi,bcm2835-firmware
+-      - const: simple-mfd
++    oneOf:
++      - items:
++          - const: raspberrypi,bcm2835-firmware
++          - const: simple-mfd
++      - items:
++          - const: raspberrypi,bcm2712-firmware
++          - const: raspberrypi,bcm2835-firmware
++          - const: simple-mfd
  
- 	if (rc)
-@@ -2100,6 +2106,12 @@ int nvmem_device_write(struct nvmem_device *nvmem,
- 	if (!nvmem)
- 		return -EINVAL;
- 
-+	if (!IS_ALIGNED(offset, nvmem->stride))
-+		return -EINVAL;
-+
-+	if (!IS_ALIGNED(bytes, nvmem->word_size))
-+		return -EINVAL;
-+
- 	rc = nvmem_reg_write(nvmem, offset, buf, bytes);
- 
- 	if (rc)
+   mboxes:
+     maxItems: 1
 
 -- 
 2.47.3
