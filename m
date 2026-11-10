@@ -2,112 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C51606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:13:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613C060A2614
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jtmOv66u;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tf26TdJo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ibRUYAC2;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=TIHnyEb2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rW7wY2dSAmljd85v6jjosIWS8OLneAfUfN99gDJ44Us=; b=jtmOv66uL6OTf7wH7wJujQN+I8
-	ftkt+qDZjiU8rfFLdX3ELi2QgNRaVNlgCdx5sJof1IrkrXYpEECV8fQ8nVZ3CY5our3KJH0+pzWNo
-	qGxKbhMzfJd5RF25vlDRI4U2I94DnqZAepSMGPhTCRyQd5w+3efZjGDZ23tOP6br/olKXusbRn7Lw
-	EfrAumXaMHHxXRG76ZF6Wxn8kRYLFiwVtu4a+WLLiGMDz1Y+imYLhXY6a/VXoDchNLvt/G4FVR98D
-	LriTf/Exaf7tZFWxFSk7gsf0CRn0v6q0NP7PnBI3ZIEjqZwQHDxa0Crn5owXRUVFfjV4DEXiULmUZ
-	HSZvFOZw==;
+	bh=Ca7+Dqd4E/749T+VRqLM/gfMqPGBPdrU7OyQ5kokKWw=; b=ibRUYAC2ZQkloo50VFYVQ6oo9x
+	8HuzcjsJEhEnHs/R42W4l0580QzBf4+GbuK9zpwYqxSQ4WKhbX4ONeG4onqnCeqebZYIrtKTdMGjE
+	vxAEzhaUWGDGgEtiY07LndLpBsFWfCBq6kBbo0HRTFn7DTcoHnwZZge1ZMDNuafLDPPMnLq1Awz9e
+	99jjZHFSXIid95aWZ37H33sYKDuq1Fp/jFQb1dl/M/R1//FYyq7LjoQ1wst62aYrMmDIu4luXSLcu
+	gz3bGKsaIDAPym8oO5+het32C1DJSQBmOSLcx3o4tLG0gQaCd+2FtCFS43S0ivuekQydMhZv2csQS
+	sE3wlLnw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnXM-00000004KZS-1ipS;
-	Tue, 10 Nov 2026 15:13:28 +0000
-Received: from mail-dy2-x08.google.com ([2607:f8b0:4864:36::8])
+	id 1xQnYC-00000004KkI-2k2e;
+	Tue, 10 Nov 2026 15:14:20 +0000
+Received: from sender6-op-o11.zoho.com ([165.173.180.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnXK-00000004KYv-0Rwr
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:13:27 +0000
-Received: by mail-dy2-x08.google.com with SMTP id 5a478bee46e88-3678f64d078so2625583eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:13:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794323605; x=1794928405; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rW7wY2dSAmljd85v6jjosIWS8OLneAfUfN99gDJ44Us=;
-        b=tf26TdJoY8JD8hTu7KtN7yAerHs5xaN5BsvALjoLvqWa6CxugVTANCcNKg3uRXekXc
-         chVEnKjluUGymTcUV5olF9/iAOOeWA8INW9Ejqem6oU40qCgwp7Acku5PTW5ZHgvF3z+
-         jPL6gxE0OcwEhxfq3NE5fzoJqa29GIufyflS+fmKL4+slCOsnaUHNFHmOyfoWcOxAILB
-         KPO2+C0nX30oWNcqKw95jET/EXYYb1HgFfqAysnIXqJQaSdRgS2vptuDlo8Q/yBKiJTr
-         99SXPaF+XtfQaz4mcgR8twZPaE0sHX28wNtmRbEIoUdGYH7m2b1SNz39mL5GH4AxBaog
-         xVvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794323605; x=1794928405;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=rW7wY2dSAmljd85v6jjosIWS8OLneAfUfN99gDJ44Us=;
-        b=x5u3SwTn1M/gcG7OpUKS5hzxD/ukAutrmO9S/R4CTX2QDRSU2I45TwJ1xMN4J979zA
-         ILdrKUOeb63mfSaoTTQMqFxkTIh8kn6ToVTvNzl4y921+5a7NDAuLbO1P1W8SrUnZAXg
-         EmMCnkP0GEwvptHTzQkm2zTagSKKw1kgvSkMQGxdyxSDfzdacXMqz0BBPXjNjBxpwY8m
-         ah8EyeU5IErXLR1HeoEa8nvkMqxXz+K7U1e5D6uJQibS1TVCIYIhGn3sczdTEsY91wPK
-         JS5UHs3GqCMH/u0qJWq0/zLHB3Ua6Jy0ukIh+doDbtvCmceP82j8DilzS6I10+y67wv6
-         p/aA==
-X-Forwarded-Encrypted: i=1; AL+hErGrkszkNyQiEmZjU3kpIHB1rxd+VlzWpuQCgcq1fsfbw2RpCbOq3gB3cXtGJRlpEf7lbhfPDYSjjCckIXfojzoY@lists.infradead.org
-X-Gm-Message-State: APuU4Z9xJlTYJ1ECimlClhp+Hs/anCHmu4dT/Nsyh0vPvcNJUc7cq0qp
-	uZYGF9LAXuDmDN69OGmQ78nwirSUR1npvrf1DUDGoTb5NL8SlhGFXXuFtt0ZrVEE
-X-Gm-Gg: AYBFou0XbDYoF5s4Dmatw4xDZL0owm40817f+fk2KB5U0d/NsPQh8XRuO+sBlM8wnjl
-	p5UEGjXBXBuMk163rVuLiN8H/yXLYFCrvO1cPPD8GdPLkdEHUduykveeJDxebJMTd6WpYmbChIl
-	C++g17VV26rMqaJHA3C1Pd3YAbi3JEvZcCCWBnheh1klZhgJeMr6JzoIFKB5D0EUtPDL1f9KiPN
-	8v0iD+wKwQQArCKuivrdnqFz76bFv74IXLgO/6ctiTr8d8vXMlcCTor0zx9VX/xMp9NdU6Ua0cw
-	+p+m+WuAM2vy/A2w5u7jEI4muHS1lKpNaptQXBaUlccz7w2F3bdHYAYj9Us+V++s51XoPxDXonB
-	9bmzeOk4H/1Sif1nqO5YuWG2efSDUiMs7/8tY8qh93jkR2/9fE87kZJUNP3Vdt6KIzmyOdOkBAt
-	cMKTInUsDeFJSDgWE8pj+/hFPnwhJmwyU+zN/BCf/kFOm0ZFr2ze3GcEj9LQhqn7plF8SoXYlBV
-	G85m3cgwkg5Vtk97lKHREss1s4FMbYy+UWnoJQO1gmUI/jJyMqZFMUxl4FA1syE1wmmMKA8P4cR
-	MIO5TO7rwnWqc0JC9f/uEn4JboWtYqbdBoAFheE/I2N+7C6z0kWaE8VE1cHZdZE=
-X-Received: by 2002:a17:902:f644:b0:2e2:f379:82b9 with SMTP id d9443c01a7336-2edb924c692mr24302405ad.61.1794316877150;
-        Tue, 10 Nov 2026 05:21:17 -0800 (PST)
-Received: from r00799764-ThinkCentre-M920t-N000.. ([139.159.170.67])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d4a31esm8861065ad.22.2026.11.10.05.21.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 05:21:16 -0800 (PST)
-From: Jinjie Ruan <ruanjinjie01@gmail.com>
-To: babu.moger@amd.com,
-	ben.horgan@arm.com,
-	bp@alien8.de,
-	corbet@lwn.net,
-	dave.hansen@linux.intel.com,
-	Dave.Martin@arm.com,
-	fenghuay@nvidia.com,
-	gshan@redhat.com,
-	hpa@zytor.com,
-	james.morse@arm.com,
-	jic23@kernel.org,
-	mingo@redhat.com,
-	rdunlap@infradead.org,
-	reinette.chatre@intel.com,
-	skhan@linuxfoundation.org,
-	tan.shaopeng@fujitsu.com,
-	tglx@kernel.org,
-	tony.luck@intel.com,
-	zengheng4@huawei.com,
-	x86@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: ruanjinjie@huawei.com
-Subject: [PATCH v5 0/7] fs/resctrl: Fix some resctl bugs related to mpam
-Date: Tue, 10 Nov 2026 21:20:47 +0800
-Message-ID: <20261110132054.3702-1-ruanjinjie01@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	id 1xQnY9-00000004KjK-0wx0;
+	Tue, 10 Nov 2026 15:14:19 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794323645; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=lJe5WwfPQsboU9jabFq1Vhi5ZfpWQL282ERr2ptHz//+dM4i6Bc2YFDCXyugFvqgHH3nFHnCmDWnITQ/qh+WtyNmQmuilitgdMuQDOM4CzV++xQuYXlY29dqnp0s9ltOt68wysZMvrO9B8zQuWFalhOg6OoBwyJMo5oc2qYXm+M=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794323645; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=Ca7+Dqd4E/749T+VRqLM/gfMqPGBPdrU7OyQ5kokKWw=; 
+	b=iCeL2J52dTRD0dWv0gR8dcKEIusicoe+++W979gN3D6e0FZCXbfpwNQVDMjprd/vyEUR72npI3rZ532I/kpwbW5uM8XmIuvk9D2pblS6pVoHS4nUD3Lm8lN1hYqZMcsZImciiJ5vveDIqsgeDAu7ZQr43ITNoBWlkkRN/Ncsi1s=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=TIHnyEb23ivDdlDaTZ23hgRBxU6pCSlmo4+pnq+FIf3oLa5YXU+wP+8Ie7Zo+WbWMwIW7RKOejdeUD8YdqSOTFhxEgzsP7NCKIEotA3WzUUkaNdPKf6Qcu/qwaX4cnnnKvKe9+JoxoQpuy+tEDxNibVJi3lPSv60bTpZca+Mftw=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=Ca7+Dqd4E/749T+VRqLM/gfMqPGBPdrU7OyQ5kokKWw=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794323644960444.4158919867489;
+	Tue, 10 Nov 2026 07:14:04 -0800 (PST)
+Received: by venus (Postfix, from userid 1000)
+	id 3EDC5180354; Tue, 10 Nov 2026 16:13:49 +0100 (CET)
+Date: Tue, 10 Nov 2026 16:13:48 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: aiyengar1990@gmail.com
+Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	"Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Niklas Cassel <cassel@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 0/5] iommu/arm-smmu-v3: power domain and clock of the
+ RK3588 PCIe SMMU
+Message-ID: <avMzjsG_Zl8Gh0wJ@venus>
+References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="24vzfqtpamx44f6c"
+Content-Disposition: inline
+In-Reply-To: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.7.7.1.5.4/291.452.71
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_071326_202065_F82990B2 
-X-CRM114-Status: GOOD (  12.17  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261110_071417_514522_AB805A6C 
+X-CRM114-Status: GOOD (  25.69  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,78 +80,102 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Jinjie Ruan <ruanjinjie@huawei.com>
 
-Fix resctrl RMID allocation to report a retryable -EBUSY only when
-the target CLOSID actually has RMIDs in limbo.
+--24vzfqtpamx44f6c
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 0/5] iommu/arm-smmu-v3: power domain and clock of the
+ RK3588 PCIe SMMU
+MIME-Version: 1.0
 
-Split the domain-offline path out so it releases busy RMIDs without
-allocating a monitor context it never uses.
+Hi,
 
-Also unmount resctrl with the CDP state it was mounted with to fix
-another bug with mpam cdp.
+On Tue, Nov 10, 2026 at 07:11:47AM +0000, Arun Iyengar via B4 Relay wrote:
+> The MMU-600 in front of the PCIe controllers of the Rockchip RK3588
+> (mmu600_pcie) is enabled for every RK3588 board, but its node describes
+> neither the power domain it lives in (RK3588_PD_PCIE) nor its clock
+> (ACLK_MMU_PCIE). Both are held by any enabled PCIe controller, which is
+> why nobody noticed: on a board that enables no PCIe controller in that
+> domain (an Orange Pi 5 with its M.2 slot in SATA mode, or any RK3588
+> board without PCIe), genpd powers the domain off and the clock framework
+> gates the clock as unused after boot, while arm-smmu-v3 stays bound.
+> At reboot, arm_smmu_device_shutdown() then writes CR0 and polls CR0ACK on
+> the dead block, the interconnect stalls, "reboot: Restarting system" is
+> never reached and the board only comes back ~90 s later when the
+> watchdog fires.
+>=20
+> Patches 1 and 2 allow power-domains and clocks in the arm,smmu-v3
+> binding (arm,smmu.yaml already allows both for the earlier SMMUs).
+> Patch 3 makes the driver get and enable the clocks of its firmware node
+> before the first register access, for as long as it is bound; nodes
+> without clocks (and ACPI/IORT systems) are unaffected. Patches 4 and 5
+> describe the power domain and the clock in rk3588-base.dtsi. Both DT
+> patches are needed: with the power domain alone the clock is still
+> gated and the shutdown still hangs.
+>=20
+> Related: Pranjal Shrivastava's "iommu/arm-smmu-v3: Add runtime PM
+> support" v11 (2026-09-29, 20260929034510.2023173-1-praan@google.com,
+> not merged) adds pm_domain-based runtime PM and resumes the SMMU around
+> shutdown, but has no clock handling. This series is compatible with it:
+> once it lands, the clocks from patch 3 should move into its runtime
+> suspend/resume callbacks.
+>=20
+> Tested on an Orange Pi 5 (RK3588S) with the M.2 slot in SATA mode and
+> the root filesystem on the SATA SSD, where every reboot used to hang:
+> three consecutive reboots printed "reboot: Restarting system" and the
+> boot loader started 0.6 s later (previously ~89 s, from the watchdog);
+> clk_summary shows aclk_mmu_pcie enabled with iommu@fc900000 as consumer
+> and pm_genpd_summary shows PD_PCIE on; the SMMU probes as before and
+> SATA keeps running at 6.0 Gbps without errors. With patch 4 alone
+> (power domain, clock still gated) the reboot still hung at
+> "arm-smmu-v3 fc900000.iommu: shutdown" on the serial console. Boards
+> with PCIe enabled are already in the state these patches describe.
+>=20
+> This series was developed with Claude (Anthropic) as a coding assistant:
+> it wrote the code and the commit messages, and I reviewed and tested
+> every change as described above.
+>=20
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
 
-And do not allow monitor group move when the RMID index changes.
+While at it, maybe also add the reset line (SRST_A_MMU_PCIE on
+RK3588) to make the hardware description complete? See also the
+MMU-600 TRM, that there is one clock and one reset line:
 
-These fixes are split out of the v10 Narrow-PARTID series below.
-        https://lore.kernel.org/all/20261020134239.3921377-1-ruanjinjie@huawei.com/
+Link: https://support.arm.com/documentation/100310/0202/Signal-descriptions=
+/Clock-and-reset-signals?lang=3Den
 
-Changes in v5:
-- Update and split the patch as Reinette and Ben suggested.
-- Adjust the commit message.
-- Add Reviewed-by.
-- Link to v4:
-  - https://lore.kernel.org/all/20261105070934.2258613-1-ruanjinjie@huawei.com/
-  - https://lore.kernel.org/all/20261105123524.2282090-1-ruanjinjie@huawei.com/
+Greetings,
 
-Changes in v4:
-- Fix the unmount resctrl bug as Reinette suggested.
-- Adjust the commit message.
-- Add Reviewed-bys.
-- Link to v3:
-  - https://lore.kernel.org/all/20261031063634.1678345-1-ruanjinjie@huawei.com/
-  - https://lore.kernel.org/all/20261031094616.1691026-1-ruanjinjie@huawei.com/
+-- Sebastian
 
-Changes in v3:
-- Add Reviewed-by.
-- Local varibles uses reverse Christmas tree style.
-- Update the commit message as Reinette suggested.
-- Link to v2: https://lore.kernel.org/all/20261030092144.1233551-1-ruanjinjie@huawei.com/
+--24vzfqtpamx44f6c
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Changes in v2
-- Update the commit message as Reinette suggested.
-- Link to v1: https://lore.kernel.org/all/20261029081513.924019-1-ruanjinjie@huawei.com/
+-----BEGIN PGP SIGNATURE-----
 
-Jinjie Ruan (6):
-  fs/resctrl: Report a temporary RMID shortage per CLOSID
-  fs/resctrl: Do not allocate a monitor context when releasing limbo
-    RMIDs
-  fs/resctrl: Clear the CDP state after the cleanup
-  fs/resctrl: Stop the limbo handler while resctrl is unmounted
-  fs/resctrl: Release the limbo RMIDs when the CDP state changes
-  fs/resctrl: Add info/moveable_mon_group
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmrzNKwACgkQ2O7X88g7
++prULQ//VEgh6N9Y3WLpzFsig1dhiT2LoeoOtAVe85S1Tbd7/c3fTMzrhVzWhVFq
+W3WBHB+HGc66sORyvrmexq2QVFCcwp10rhrgc78z+K2d84NJilMXrnB2YcjCRWtC
+8m5sCiP0PA64jV41kv/NQ7++CBG2MVSkXZdqJvua7BCSW6jBtxEx0H6hAYsomNkK
+tJb7BKs2XbWg7Evz/zQmSNSAZLCSu938nBIrX+eh1Z3vFrvWx6Z1TK5vn5IDD6LT
+p6Oy1i8suyCXOus6c/LLUy/saeg3QoksFYWMV7TcCZk0mplPGDdyzjjH4W/yihqi
+CvgBkzOxY6AZfTkzhJZ94LzuuhdbKZQemaHaE9sBZQ6Zs6+RCjlWBLnKsOy7Ut55
+ZbncW/uK5OFJTfGgsrG5cNwTN+GJGKXlVdqmgjh6mo7ItQrbK91XoZH3oAC02ZDy
++F75j6CS57Cb/QtObqTakXOiyBlwB393eeVhVmBnHb5xmt7vmmR9h4w4I/sxwokO
+5Vbg7RFZuS38HrbtRXOMkCZAOvDvBJ4zQ8dWGI6rMdrfMffpfLGd7sjIho/vZJo7
+wta4vE2aYvEguH9aoEGrztvW0UgjqMOGfI+txG3u7Mxv6O8ZujV8tR6QOLx8pCAd
+sDav3IQ9EtmrV4NTZnIcVtkZ4Go3kbrhPlVfDSXQtZqBI8rGQAY=
+=DQeM
+-----END PGP SIGNATURE-----
 
-Peter Newman (1):
-  fs/resctrl: Disallow monitor group move when the RMID index changes
-
- Documentation/filesystems/resctrl.rst |  15 ++-
- arch/x86/include/asm/resctrl.h        |   6 +
- drivers/resctrl/mpam_resctrl.c        |   9 ++
- fs/resctrl/internal.h                 |   3 +-
- fs/resctrl/monitor.c                  | 151 ++++++++++++++++++++------
- fs/resctrl/rdtgroup.c                 |  50 ++++++++-
- include/linux/arm_mpam.h              |   1 +
- 7 files changed, 196 insertions(+), 39 deletions(-)
-
--- 
-2.43.0
-
+--24vzfqtpamx44f6c--
 
