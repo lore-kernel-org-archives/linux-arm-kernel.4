@@ -2,106 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01487606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 17:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE662606A229
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 17:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=It/WvWaB;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=EhDhquzJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pvPQA9vB;
+	dkim=pass (1024-bit key, unprotected) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=S5qRHdE1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Jp+oM3z+TGlK20rj9Ru+iQ+Q6Mz3+Gb1zIaLcFJ+NLI=; b=It/WvWaBiQeoXm
-	Ee2wQdJmMoH7wNk17lBw0lwGRTWTcKrO/qFV6HeeQAneoej9kwtpg3BRxm1iiVSXTwMwUoTtnSnvd
-	LE5t9+ujI4zj6ILcCJILSUr1QPftr+WD/oV5ib8PhhqLk1m2DW3GX5WZ4t57wt1OhIeTkCHfP3WA8
-	nyfCVwuWls08Mw38UkkGahK9mUqHRUIZCqY/wekA6RtKIx85R3Yk0qtl3ak5KNK6f9vLqMFFHyMRl
-	7Zqds8UmKbgR78fO5dVWtwVKEZA68uQ+SV22kSutywFHe4OQ62bxaRxePjui7msOo34ndsxyajuut
-	4GjpgCwGtdUSHCXmWAnQ==;
+	List-Owner; bh=ko07PtYbqxmJFL5eE7O+1z90SoFtkrR9tqYTOjJdR/M=; b=pvPQA9vBqFYNpY
+	LjudBhcqiyFIosHTk7md3Q2nOOh0zYZaLKJuiulkabUxk6RbZzpw5oN0TjThkk15BZbwFUxfq+RK3
+	+ku5r6RtRwyxqlTbi9eqDtrBoji0P5CSChs+U+HfNHJYqyvOhITNFWvjhgX9uRP6Rjl9uGEhN54hF
+	pPjiP1+wcw1pYl9q0XVbYslKU+9RSOUgGsGWDV0SnXtxZ52RJsMnpjrLG4QQ6lwmlrzfXevlExr4s
+	oLcUisqhJHOcBoq5F56iu4xJP+9Taly70EnYTGrSjZJGTEPUg6HOrUTOqNMfms8uwwsraK1GmkBRE
+	dVnb51yjnG4IjzriODbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQpw3-00000004iLq-31ZV;
-	Tue, 10 Nov 2026 17:47:07 +0000
-Received: from mail-pg1-x562.google.com ([2607:f8b0:4864:20::562])
+	id 1xQpxk-00000004ibK-0FWf;
+	Tue, 10 Nov 2026 17:48:52 +0000
+Received: from mail-pg1-x561.google.com ([2607:f8b0:4864:20::561])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQpw0-00000004iKz-0hnE
+	id 1xQpxh-00000004ia5-04AB
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 17:47:06 +0000
-Received: by mail-pg1-x562.google.com with SMTP id 41be03b00d2f7-cdab8873d9dso997429a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 09:47:03 -0800 (PST)
+	Tue, 10 Nov 2026 17:48:51 +0000
+Received: by mail-pg1-x561.google.com with SMTP id 41be03b00d2f7-cc4aa0246b7so928082a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 09:48:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794332823; x=1794937623;
+        d=1e100.net; s=20260707; t=1794332928; x=1794937728;
         h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to:content-type;
-        bh=Jp+oM3z+TGlK20rj9Ru+iQ+Q6Mz3+Gb1zIaLcFJ+NLI=;
-        b=rTMTQX0d6T8MAuZtm23BqOxxsiEtff/8Mve0TwrK1w3wScv9FwKYN29pD6FloWVjRW
-         Y1xohqvGyCBt9YrXYD/EVSU1e+z+XSNx56UMjp8w2bGscNf/R8mrAaVljlUrpgAra8Le
-         foZ3BOyJZCLXvuNHmOBMsiuRWlBexhnzPnEDyYQIEtpBkIa9HObghjUcOhoRPNxJkG5w
-         aasH5vyE5RZuYZ7UkjFSFhGQANs5Mz5aBvOCPVI6ESSWkI1uCmPDxb+g53U0Ds+NcU+z
-         OprUgsWi2UYJ+pfeUpShay/EcRUIs2jI9G+vwsH+CUz/PD2+jn8xPCZRREPFfW7qUZ/5
-         7GRA==
-X-Forwarded-Encrypted: i=1; AL+hErE59/hI1KrR9Ggy7GQfUkodKHLb2J7B0o9XxwtciHKFP3qMIarX/9icbFtWs37FJiIMiS99vrpxxhJCufaquRmn@lists.infradead.org
-X-Gm-Message-State: APuU4Z+BCXBL9nIqcBWRW9f0E36rfFdEj5LO/Hy8HecgYX1d4Aa8432F
-	fe0015/P4M4c7R8vufObqqMKcgMA/4I6s6+Rjvz2fiPDx3ucjdOPoVFMPfJfNEHKH+U3J6RrDWG
-	IZidQLZLgQkDQPyNhx+OQDiHNgwUFU43wdF4JyTkxi53hurRw9naw0Og/jjpp7zqrn65c6Khuj2
-	FqGrv8oZW1krD9ScwtUq7ctweCyfiswMeTdXRVbjDUmh3nXjwiWPf2l2hPpPZqY4OYHZqMJm6S9
-	SvCnBKCtGw3UidxoDssmV9Y13WlU9cPNk8=
-X-Gm-Gg: AYBFou0geTi0J1s6iGgL6rsuqCfBbDiuMj7LW6/xZXlxOhEKxcaZmyNn9UFStLdtjoS
-	XfIBOzTdADL0LrdNhz/ORa04p5cQxRfqqQ6QMi42bxnabyDpFHP0btNdfpzSMoiIBEazh5gjQDn
-	fvpNPmgc+xJIxK3XEyVlc2gR1P11W41C/Lx+ufFmpvQKgD91FpJusvojEl1cLsBupi6hLNVoJlb
-	t/lzSMtZh4Z943qohOtjueDZ7/fGleNeo7YdIJQ+hans/jaGgjY2+XOBSiReC+LV3Zp5w8LWb5f
-	NHiAitya1TGmB2wUjSoOa6pBLysGMgny3jNKV83JcSQP1et8lrS84fu644vHKNUIkKmWpgPxsa1
-	T5uKbEMRz/qAyHagAX5xsCS5yupyUKK6y+bjsSrcUtY+qIhyYyyvG14zXOqmDnIDkJraUw9irpM
-	nvSipgyTHa2rAoT2ziRcFlR8azB360sJuv+GCdCu1X
-X-Received: by 2002:a17:90b:4f41:b0:3b0:9941:8d41 with SMTP id 98e67ed59e1d1-3b166caf083mr3434538a91.28.1794332823084;
-        Tue, 10 Nov 2026 09:47:03 -0800 (PST)
+        bh=ko07PtYbqxmJFL5eE7O+1z90SoFtkrR9tqYTOjJdR/M=;
+        b=VTPsE8MB1R3sInvp/86kEQIPeHqUSv20vO5vwaGh12W2CLVh7QYLjZLoZ+0b9TDRGo
+         wcuQz3rRo836a5XVuqlBBdg5pqg1kzNNejoX2JFMpRfFnPT0JGd20BKZlAZAGPhUx8RH
+         1NmzwYJJVm2ye2fPp6YL/pnt1bNIlEva0e5SMISHz0asjy3UrAauAzAATShZHtL7E98J
+         KxhtMcchVPT35gSD3+FQbCYAukLsyBg+qd5jQsp+VdEcHkmuL2olU5eBUC4aVO5qrHLZ
+         XM5VzdeXIx3d9OCjst5Dq/i3aADqa9dtSYyUb8QJaU7hQ4ysj6RRDvVbItrg9ngpkWg4
+         VH3A==
+X-Forwarded-Encrypted: i=1; AL+hErHtBidmotOTBsuB0PJ9zCAU1OUiNMSrmVSFZwJBvthPcxeyAVEcRNu/ac05NPq0Dj5OVI7iXlpkMKenIrWzm3vU@lists.infradead.org
+X-Gm-Message-State: APuU4Z+h+rb2Aj2uAZLKg4ev3445v2+kipd2TGbdt64AwrWNwSp15Lp9
+	Nc0NAFKCzqmTyACn05oWqY3hb6uM0yQd0Yyz2k3q3rl0HvXZvH4PNXdvm6MJQRftmxukqR+ecHA
+	X8qjsYRG7rZSG/YY7ddOQc8+V+rc6M/ZqUAgHpB9uHLIs7DemKRBX7ILLTY4csq34UAVPCX3rA5
+	hUNhyQ1QMuQ0lirmssaH7t9dam37YqO3rHnXFSKQmqSCL7CzN3HC/apEmN/08YNIQw0AFYoziHx
+	dtgoSVrvaO/M9Yq31KPCxc4/Ro6m+Zb2zQ=
+X-Gm-Gg: AYBFou30Fg/S2rlA0B7pg3I9viARlKEvUp9BLzWnQUpSYpKr/Gjz+RhcpLyb3HXCFme
+	TgMKCaWV3u3epE/QGZMyiN8ASSxVr/b3Cwn3BFvjVz0nrpmzbBxMUtQTR4FBqb7Y5jAXRjqGWxT
+	zHGezYmcj7rSpgRqkNB7Zyn37xIMRPsh2nockgYqs0hg8TmiKGvqkBHmWm4guUtg+rNF4ndEuDd
+	yyw1QVCMHErYIMLQbrXw2M1Pty+M6bDpUzAoNQZ00XruqLhJFgzJ5zZqORfrCPS8LxoWYuNcKjT
+	wNg6n5sl3O2WmoI30TwZ8xMN/dNB8g87BfCTKCydfKGbI7+HzP041woJdzXwL8zjyIvUEL4MfTt
+	kEN8cVW5A6k0oUuXF2AcAjHzPSffghW8iwSiezvfJGnMsNkBHNSLdweKswR9UPfRwfAFYfgs0IP
+	ts4cS3b++yGKc6BM1UGJoOYkwa+jJ1fWjdS0hULLgb
+X-Received: by 2002:a17:90a:d44e:b0:3ab:be66:ddb6 with SMTP id 98e67ed59e1d1-3b166cd48a2mr3016716a91.20.1794332927792;
+        Tue, 10 Nov 2026 09:48:47 -0800 (PST)
 Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-22.dlp.protect.broadcom.com. [144.49.247.22])
-        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b181c01fc2sm14091a91.2.2026.11.10.09.47.02
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b17da4b50dsm306000a91.1.2026.11.10.09.48.47
         for <linux-arm-kernel@lists.infradead.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 10 Nov 2026 09:47:03 -0800 (PST)
+        Tue, 10 Nov 2026 09:48:47 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3adeba76cadso1478066a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 09:47:01 -0800 (PST)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3ae6fda7a00so2134016a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 09:48:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1794332821; x=1794937621; darn=lists.infradead.org;
+        d=broadcom.com; s=google; t=1794332926; x=1794937726; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Jp+oM3z+TGlK20rj9Ru+iQ+Q6Mz3+Gb1zIaLcFJ+NLI=;
-        b=EhDhquzJxCBX8TXIg24QInibhaReB7iNiW/y1fdnk6Jtcj8X4ZO4H5Ks0yrrjUC+C5
-         KiHqU7v0gGLdWSTJCV9tedeOqW/zzwEYdHCDYaxyLQv7EW7QKLa0wdJSSLGPid4EuY25
-         oRKfwcskTei3pquHBiv8DcuHsGG+pwFcGqCpc=
-X-Forwarded-Encrypted: i=1; AL+hErFWJV/XrriQd1J024SulwCTlagT29jdaxCkTNGJiMxn01JXfggJHcl1THGMmQsOV/MctlKU9GURUWDjsliFCJSN@lists.infradead.org
-X-Received: by 2002:a17:90b:2ec3:b0:3ac:9d14:feb1 with SMTP id 98e67ed59e1d1-3b166cd1576mr3597626a91.43.1794332820891;
-        Tue, 10 Nov 2026 09:47:00 -0800 (PST)
-X-Received: by 2002:a17:90b:2ec3:b0:3ac:9d14:feb1 with SMTP id 98e67ed59e1d1-3b166cd1576mr3597607a91.43.1794332820425;
-        Tue, 10 Nov 2026 09:47:00 -0800 (PST)
+        bh=ko07PtYbqxmJFL5eE7O+1z90SoFtkrR9tqYTOjJdR/M=;
+        b=S5qRHdE1unHczoALYYu0EtlbTN5DOURWDR3PxYjE0p48hjveDPPWUp4MaBzurhrqhV
+         2nKd7+hGQ5I0XvdNGVKQvNAoJnLVbcq7RvQDp2Htm4+HYGum0WWY0VK1a3cOGcVsFSp8
+         Gvh99lH3nW5clZNWddIiHtg1xSnckQEuJZ7rs=
+X-Forwarded-Encrypted: i=1; AL+hErE5c2pMLMIhWzGt1DMvfFRoNwlbmYJ1Z+VbjKLUxpDjDaW9zLbtXJ1veiCUbqUOrhxm/Qwh8OzvHljm4jUytGi6@lists.infradead.org
+X-Received: by 2002:a17:90b:1fc6:b0:3a4:9dd7:296f with SMTP id 98e67ed59e1d1-3b166d03802mr3219204a91.40.1794332925872;
+        Tue, 10 Nov 2026 09:48:45 -0800 (PST)
+X-Received: by 2002:a17:90b:1fc6:b0:3a4:9dd7:296f with SMTP id 98e67ed59e1d1-3b166d03802mr3219189a91.40.1794332925425;
+        Tue, 10 Nov 2026 09:48:45 -0800 (PST)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17e203f8esm531433a91.14.2026.11.10.09.46.58
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17e0d550dsm566282a91.8.2026.11.10.09.48.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 09:46:59 -0800 (PST)
-Message-ID: <79f827d9-8aec-49b4-bc70-117de314206e@broadcom.com>
-Date: Tue, 10 Nov 2026 09:46:55 -0800
+        Tue, 10 Nov 2026 09:48:44 -0800 (PST)
+Message-ID: <f24e21f1-3bd8-4682-8393-ec6aa6c1b232@broadcom.com>
+Date: Tue, 10 Nov 2026 09:48:43 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] pinctrl: bcm: Fix off-by-one and out-of-bounds access
- in fsel_get()
+Subject: Re: [PATCH 2/3] pinctrl: bcm: Use pinconf_generic_dt_free_map in
+ bcm2835
 To: Wang Xiaolei <wangxiaolei01@kaihong.com>, linusw@kernel.org,
  rjui@broadcom.com, sbranden@broadcom.com,
  bcm-kernel-feedback-list@broadcom.com, daniel@dragonzap.com,
  iivanov@suse.de, andrea.porta@suse.com, phil@raspberrypi.com
 Cc: linux-gpio@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Jonathan Bell <jonathan@raspberrypi.com>
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20261106070628.1428691-1-wangxiaolei01@kaihong.com>
- <20261106070628.1428691-2-wangxiaolei01@kaihong.com>
+ <20261106070628.1428691-3-wangxiaolei01@kaihong.com>
 Content-Language: en-US, fr-FR
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -136,13 +135,13 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20261106070628.1428691-2-wangxiaolei01@kaihong.com>
+In-Reply-To: <20261106070628.1428691-3-wangxiaolei01@kaihong.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_094704_241991_65D3B426 
-X-CRM114-Status: GOOD (  24.01  )
+X-CRM114-CacheID: sfid-20261110_094849_067301_0E4A71D7 
+X-CRM114-Status: GOOD (  10.52  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -163,70 +162,23 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 On 11/5/26 23:06, Wang Xiaolei wrote:
-> brcmstb_pinctrl_fsel_get() takes the value read from the pin's FSEL
-> register and uses it directly as an index into
-> pc->pin_funcs[pin].funcs[]:
+> Replace the hand-written dt_free_map callback with the generic
+> pinconf_generic_dt_free_map() helper, which wraps
+> pinctrl_utils_free_map(). This drops the duplicated free loop and
+> handles both CONFIGS_PIN and CONFIGS_GROUP map types.
 > 
->          fsel = (val >> BIT_TO_SHIFT(bit)) & pc->pin_funcs[pin].func_mask;
->          func = pc->pin_funcs[pin].funcs[fsel];
+> The error path in bcm2835_pctl_dt_node_to_map() uses the same helper.
+> The driver already selects GENERIC_PINCONF, so no Kconfig change is
+> needed.
 > 
-> That is not how the register field is encoded. The setter,
-> brcmstb_pinctrl_fsel_set(), treats 0 as GPIO, 1..n_funcs as
-> funcs[0..n_funcs - 1], rejects n_funcs + 1 and above, and n_funcs is
-> always BRCMSTB_FSEL_COUNT (8). The field is therefore a 1-based function
-> number, while funcs[] is a 0-based array of eight entries.
-> 
-> Every readback is consequently shifted by one slot, and a field value of
-> 8 -- which the setter accepts, being the eighth and last alternate
-> function -- indexes funcs[8], one element past the end of the array.
-> 
-> This is reachable from userspace without supplying any invalid input:
-> 
->          # echo "gpio45 alt8" > .../pinmux-select
->          # cat .../pins
-> 
-> The write is an ordinary mux request that fsel_set() accepts; the read
-> that follows goes through pinctrl_pins_show() ->
-> brcmstb_pctl_pin_dbg_show() -> fsel_get() and triggers KASAN on
-> Raspberry Pi 5:
-> 
->          BUG: KASAN: global-out-of-bounds in brcmstb_pctl_pin_dbg_show
->          Read of size 1 at addr ffffa07c577ab2e8 by task cat/839
->          The buggy address belongs to the variable:
->           __compound_literal.62+0x8/0x40
-> 
-> A field value of 0 has the same root cause in a milder form: it is
-> reported as funcs[0] instead of GPIO. The mux itself is programmed
-> correctly in both cases, so this affects the debugfs readback and KASAN
-> rather than the hardware configuration.
-> 
-> Handle 0 and out-of-range values explicitly, and index funcs[] with
-> fsel - 1, so that the getter uses the same numbering as the setter and
-> the index can no longer go past funcs[n_funcs - 1]. The existing
-> fallback for func__ placeholder entries is kept:
-> 
->          if (!fsel)
->                  return pc->func_gpio;
-> 
->          if (fsel > pc->pin_funcs[pin].n_funcs) {
->                  dev_warn(pc->dev,
-> 			 "invalid fsel %d for pin %u\n", fsel, pin);
->                  return pc->func_gpio;
->          }
-> 
->          func = pc->pin_funcs[pin].funcs[fsel - 1];
-> 
-> Tested on Raspberry Pi 5 with KASAN enabled. Before the fix, writing
-> "gpio45 alt8" to .../pinmux-select and then reading .../pins triggers
-> the splat above. After the fix the same sequence reports
-> "function spi_m" with no warning and no splat, and a register field
-> value of 0 reports "gpio". The register is restored to 0 afterwards.
-> 
-> Fixes: 657cbf9b24ba ("pinctrl: bcm: Add STB family pin controller driver")
-> Cc: Jonathan Bell <jonathan@raspberrypi.com>
-> Cc: Phil Elwell <phil@raspberrypi.com>
 > Signed-off-by: Wang Xiaolei <wangxiaolei01@kaihong.com>
 
+I think this deserves a Fixes: tag because it fixes a memory leak, 
+generic allocation can allocate PIN_MAP_TYPE_CONFIGS_GROUP, but the 
+custom callback does not free that allocation type:
+
+Fixes: 0de704955ee4 ("pinctrl: bcm2835: Add support for generic pinctrl 
+binding")
 Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
 Florian
