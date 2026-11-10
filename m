@@ -2,110 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10DB360A2607
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:41:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E9D606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yvjuWoqe;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KKaAoDLQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Km4Rxyff;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=LUmreOlk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1JSKtyJeBKbXkGGW3NfSoidRzUvmtli6dOhv6QjYw5M=; b=yvjuWoqeKm/KmF
-	KqpNmPmeMRIP/7HX/hf6nn/lUOLaetMxHTXQL64WkTTtrmTYSuZ9gVIlkyZXZ8b7V1i8FVhUOHVMf
-	FuXfhQYEs7wjHzlIwPAJEUHEW9ay6B+LCyrwtVDA2ckVJF2f6xm6QUnrW/lczfx0G5M5KAv2qaR+0
-	5M369JWg77eQpHsKPJvjWFPbnwfox1NQgz+2ckkJJntI7SAMzv8GZ0fzABAepk3lfyKeDmEu0OP3V
-	DEwi1Crr3bixQsI683Ns5twHddtjNydjBE5vxM99Zg+tTEG7svZ8ZAzPf2h1qKVG387nnaXdeIM+9
-	/FjvEhWC3feRQRvSDZRg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=R9ybw6cxS0shDJ4UVVgiEKCnqeSU4VPhRG8DzGKzjow=; b=Km4Rxyff33RRhizuO2nzvHgl50
+	h5w6JmIVXYKULAvL7iUEoe6KtL6ndkljcsfyZmw5gO0UGt18K9yDlX2t9ZsTxQTKdYjzeVfSQAl0K
+	KlO+iiLH+EFshw8hIadCYCnnAHo0NE1X0Jhd1gIn86fZO+UH6XdYDgspsx6Wj4lblgqW1gFA7+hju
+	znGL0/Ew94f5NdmoStah0PhUBNTEOo8rQjhCHxw62E4OGQP0Rx0UnhU7BAu9jpMdUIg4ssVTxdsYw
+	EiQT3z99JQaKyOU2UYKyBGZQc5sMzvMO7RfYd2puJRePeS2Z970GgK54KnXlVMFYIaAr3tg5B3DKR
+	zYNg1KJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjI9-00000003UFx-33zo;
-	Tue, 10 Nov 2026 10:41:29 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQjIJ-00000003UJk-3qry;
+	Tue, 10 Nov 2026 10:41:39 +0000
+Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjI8-00000003UFo-1lVG;
-	Tue, 10 Nov 2026 10:41:28 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 301AD40E14;
-	Tue, 10 Nov 2026 10:41:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD61E1F0089F;
-	Tue, 10 Nov 2026 10:41:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794307288;
-	bh=1JSKtyJeBKbXkGGW3NfSoidRzUvmtli6dOhv6QjYw5M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=KKaAoDLQblsfg/eXiGJP3JUJ9YUD4F8xzGF+0WunmkTv+sjD2MOjUuWEcM0/0A0Mr
-	 5z1erOsZmE1vTY9P4QCJ1bIwii8UFYwT/1mBUONKGPFyctYMlLYczbyC23+2TtmRGW
-	 h92sF1r4sWebrF84u/4K4foJNDcqPbQs+81j+mbDHUhHH+fGmelGrQl7CwgKacBSD0
-	 fYWp9bzrmKmf9QMVkW1MAvHH2Z1HyzYM0ct3EIHF6qSGkPRqE1gZ0wB72raRFz/40G
-	 J6QHn6GqrqbGXTqVgxFzFVGhyzNAXGq66STt1QhUIk661wVHmQmG+r8MHUSTiN30RN
-	 Lh8enkyahzXfw==
-Message-ID: <b1ebdcbe-2f2f-4fcd-8567-13e77fc2311b@kernel.org>
-Date: Tue, 10 Nov 2026 11:41:22 +0100
+	id 1xQjIH-00000003UIP-3LCP
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 10:41:39 +0000
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4b76c15ae36so27485e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:41:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794307296; x=1794912096; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=R9ybw6cxS0shDJ4UVVgiEKCnqeSU4VPhRG8DzGKzjow=;
+        b=LUmreOlkh7JwWffx/v3oKtQeoWbTn9nCv17JKPLoRMM1KUiBwwsooc0Gm8AQ4Dbxc8
+         zBEDFxU9dL4ICTkYRvDqmTotcOZoeNjR3/i9GrHiSCSevxdRQsCCO+JW/+0fYYynPLUs
+         zi+MIfeca5sBHkaMiiG1FgTaa5ylBB0r9Q9uOpUHbidgR/SktEO5oLWlk0r+x+p32oPA
+         QBomaL6StDj+NZm1l3nKv9pKaD7HTLnGCd3QnVz3blYz9cs2PYXGweCr0nRGPSAxUnTf
+         CUsUHuMB4+Q6JGozH/gA4UOiOW0Q5BNZtTikr+83yLGSyi55WDp2wVgLyCtHNarxzoDC
+         KSag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794307296; x=1794912096;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=R9ybw6cxS0shDJ4UVVgiEKCnqeSU4VPhRG8DzGKzjow=;
+        b=VaAHIn4klcZiD1eG6NP9Kkd0bGZgurgF+GnH3otAiZRYePzzMM8T8CdkeZeVscEQ2/
+         aJfDuMPJ+35HHmXedotu5heXv4oVW8TmXY0nuc8/LDlyZeMZj3bzdKkyFk+64vwW/qvq
+         72pgl7kWYCJ/QQYw/QxCjHK/ckrfotwj+0Nvx7BkMnJT91WFW0VgQMTtoC20PlcSmLmb
+         9k430G/Dms5rIZGsXNU3AZYeYfG+fufuLfIk5qcJUFUBacYDUZi/ikaapgZpGJHY/Ie0
+         9rn+4Rsa8I0jsnUi729+JBXcppSDG2Smh0IQGVfemRlFUws8GWpvpEdzGhummb0kH1IK
+         StPA==
+X-Gm-Message-State: APuU4Z8JF/IcQae/8mOFSO+UyPlZvRL5jT0aLahqL06MQT40raJtNws5
+	PtBlAz3fRIlIvv7uH+ghRM100Jx2vXjyxZS6krtZ8sccnCYTnX7P6CSn8bzSCdP0Zg==
+X-Gm-Gg: AYBFou2jkwoVZU6SmpZeEvy6HdeyrF/qDIK6HqvaSlxb4so5ArQJeCfhtAzdkdH5D0d
+	r8wVGse9jacfod7plKEFQgU+KkDkgFR9QgH767ZXfYafCIZnkKqQjLMzrTwVjJktBNy2PDdBaE8
+	ziydtlm6khSoXjhvr2QWVfxFZfx7p1ygGoLEY180xfMzoxZADWBUpeH+WRSTtDhgFoW86v2wN/r
+	0hHtCxLflCj30yrGUxGIpCWs1JsWN8eh7m3GBcNHArIN2ZD/ovQh/MFQsNWqWIYCjK6I2W78kDF
+	PACnE8TddY1ryEH/hPI19HyTzRnRr27vU2lTxZ/XeFngRDVq1r2SXjh6zFOu17jL4N6EO1YuDxo
+	u50ObbPiZb6ezipY9IPs6YwhjdcGIXXdeAW0pOwheL/Z0xIK8zgCJYxCNSqvQwSgD+/vC13L9B2
+	Mn0kH7zfCbHX0nAvE7vkVjAI0rIb2f04C3g1Jyh6etrEM/RQ8gBkZe4HK1w6c31/0pp2kOBiiJq
+	xKS+KYOJjlAaieYliaQaPaR21XvEd9AUk55wuXN3Pc1VkPoA9KDrAx0kS/GHFbRqW4XFpqNTxYY
+	x8JF3qOLEcGFD9wPe6JcpBS3AfNrhQ+Po/UbcjQpto1/spTZ6hO5sZYXhtbM0/5tmSRDyok=
+X-Received: by 2002:a05:600d:640f:20b0:4a1:e368:cbf7 with SMTP id 5b1f17b1804b1-4ba022dacbemr640635e9.0.1794307295364;
+        Tue, 10 Nov 2026 02:41:35 -0800 (PST)
+Received: from google.com (160.193.189.35.bc.googleusercontent.com. [35.189.193.160])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fe63e6sm87694655e9.7.2026.11.10.02.41.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 02:41:34 -0800 (PST)
+Date: Tue, 10 Nov 2026 10:41:27 +0000
+From: Mostafa Saleh <smostafa@google.com>
+To: Nicolin Chen <nicolinc@nvidia.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kvmarm@lists.linux.dev, iommu@lists.linux.dev,
+	catalin.marinas@arm.com, will@kernel.org, maz@kernel.org,
+	oliver.upton@linux.dev, joey.gouly@arm.com, suzuki.poulose@arm.com,
+	yuzenghui@huawei.com, joro@8bytes.org, jgg@ziepe.ca,
+	mark.rutland@arm.com, qperret@google.com, tabba@google.com,
+	vdonnefort@google.com
+Subject: Re: [PATCH v9 11/25] iommu/arm-smmu-v3-kvm: Add the kernel driver
+Message-ID: <avL016l_xASN5paR@google.com>
+References: <20261015200903.2735565-1-smostafa@google.com>
+ <20261015200903.2735565-12-smostafa@google.com>
+ <auzvygiGRTWgJXzF@nvidia.com>
+ <avGk0ilyJh3obmKx@google.com>
+ <avJidXM9yQOX4VBJ@nvidia.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Describe the USB3 Type-A
- connector on Orange Pi 5/5B
-To: aiyengar1990@gmail.com, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Alan Stern <stern@rowland.harvard.edu>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <20261110-usb-port-pairing-v1-0-9307e29d2ed2@gmail.com>
- <20261110-usb-port-pairing-v1-4-9307e29d2ed2@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261110-usb-port-pairing-v1-4-9307e29d2ed2@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avJidXM9yQOX4VBJ@nvidia.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_024137_887558_BA252609 
+X-CRM114-Status: GOOD (  29.86  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,40 +109,63 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/11/2026 08:20, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
+On Mon, Nov 09, 2026 at 04:16:53PM -0800, Nicolin Chen wrote:
+> On Mon, Nov 09, 2026 at 10:47:46AM +0000, Mostafa Saleh wrote:
+> > On Thu, Nov 05, 2026 at 01:06:18PM -0800, Nicolin Chen wrote:
+> > > On Thu, Oct 15, 2026 at 08:08:42PM +0000, Mostafa Saleh wrote:
+> > > > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > > > +#ifdef CONFIG_ARM_SMMU_V3_PKVM
+> > > > +/*
+> > > > + * Two devices are involved: the aux device bound to this driver, and the
+> > > > + * physical platform device bound to the pKVM init driver, which only uses it
+> > > > + * for discovery. This driver keeps using the platform device, as it carries
+> > > > + * the fwnode the IOMMU core and consumers link to, the DMA configuration and
+> > > > + * the IRQs.
+> > > 
+> > > It would be nicer to have a diagram or so to show the co-relationship
+> > > among different devices and drivers.
+> > > 
+> > > I assume the regular arm-smmu-v3 driver is a part of the picture too,
+> > > when the pkvm driver binding fails?
+> > > 
+> > 
+> > I can add some ASCII diagram.
+> > If pKVM driver fails, no aux devices are created and the main driver
+> > probes the platform SMMUv3 devices as usual.
 > 
-> The upper Type-A port of the Orange Pi 5 and 5B has its USB 2.0 lines
-> on USB 2.0 host 1 (EHCI/OHCI) and its SuperSpeed lanes on the
-> SuperSpeed-only USB 3.0 host 2 (xHCI). The lower Type-A port is USB 2.0
-> only, on host 0.
+> I didn't check closely, but would it be safe to do so?
 > 
-> Describe the upper port as a usb-a-connector linked to both
-> controllers, so that the USB core pairs the EHCI root hub port with the
-> xHCI SuperSpeed port. Without that, a USB 3 device plugged in at boot
-> is enumerated by the EHCI before the xHCI is up and stays at high
-> speed.
+> Is pkvm aware of the missing SMMU device and handling it properly?
 > 
-> VBUS of the port is not switched (the vendor DT has it on an always-on
-> 5 V rail), so it is described as coming from vcc5v0_sys.
-> 
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
+> When pkvm is enabled and the SMMU device is supposed to be a pkvm
+> device, should it not fall back to the main driver?
 
-DTS cannot be combined in this patchset and must be split. Don't mix
-patches from independent subsystems when you send something explicitly
-targeting only one subsystem.
-See also: Documentation/devicetree/bindings/submitting-patches.rst
+If pKVM fails to init for any reason (unsupported layout or non-coherent
+HW) the SMMU will be bound to the main driver so the system remains
+functional.
 
+However, pKVM will not be safe in that case regarding DMA isolation
+as the status quo.
+In Android, in that case, pKVM clears the FW (called pvmfw) that loads
+the protected VM and authenticate it so any protected VM knows the
+system is not trusted. This part is not upstream yet. [1]
 
-Best regards,
-Krzysztof
+However, there is not much that pKVM can do and I think it is better to
+keep the system functional in that case than causing a panic or failing
+KVM init for example.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/virt/kvm/arm/pkvm.rst#n106
+Thanks,
+Mostafa
+
+> 
+> Nicolin
 
