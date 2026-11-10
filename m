@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D2B60A2601
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587DF606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xRqx/aPA;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dRDbb0vQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kAB/crXr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oOvO45kq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,37 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=v2xg6hOG8tJYsiUIo+rhQhOmRkcdSZdLofEQMTd+hPQ=; b=xRqx/aPAPvTVbvkib2DLp73gQT
-	+HCkI4bWQcdFu/NfdD1+RdtZelB5kk8RAJuPBddW3vQ3qwcsMfLi2YTNmdV4BQWHWoDrjjg8bEgCw
-	wYj0e9x7OVOrq4ZSgWlBTEGyP1aTiqAh1FQyEabWrXjHMSHveSyclbhnHCvTnauzsX9k/G/aTAVh6
-	vyaxqLhUl0qopLfm3uDMhUukmqAI7rmP1rA3G7y1Ueoi/g9k9IMQ69XRpY4+RAy02OmGTuKBUOzR5
-	WW1CiC438CF0GcgapxrbbOqFAIv7W81gUVzFnxvENJSdVh4RD/7Y/E0qa1ewn31nGVKLWiSnfOfYi
-	MnIVVl+A==;
+	bh=H3tlyIivpEQAfTuEdh9TMux42zaoavdQDwL403yp9Q8=; b=kAB/crXrSR6TmoB+kwXPMHHMyY
+	jFbASxAl44qMJuDhBmdA8QX7WIF7xIRK0u+ia7r0ifeibsPpo9fJZtmGO4zYXOOV6eLWotYFzHg6p
+	Ks/+n1csiIaju6W+RSKpZnVHtpidaJHmySKlvlIRZVk6gG8UAhFFKmLFMeopijZ8+GSeVmtYq8OPz
+	cVzMnGalwgjuFBUqxDC7Azkr9fHCuV8bH0qOisPNnhh0eUWaowPXRkc/aSHJ1eMfpwjxEkUQHqnqW
+	qJ96JnAM6jyGCiTgbwsxYarUfXElGg8Auuv01Npl532fSfP85qVU7n3fbILWTz6ReC4Fph+dz3WcF
+	eOt3vjcA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQj6a-00000003Sak-01b3;
-	Tue, 10 Nov 2026 10:29:32 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQj7P-00000003Si7-0arN;
+	Tue, 10 Nov 2026 10:30:23 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQj6Y-00000003Sad-2q3b
+	id 1xQj7N-00000003Shh-42x2
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:29:30 +0000
+	Tue, 10 Nov 2026 10:30:22 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 194DD437A6;
-	Tue, 10 Nov 2026 10:29:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F74D1F0089F;
-	Tue, 10 Nov 2026 10:29:29 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1D952634FB;
+	Tue, 10 Nov 2026 10:30:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7EA21F008A5;
+	Tue, 10 Nov 2026 10:30:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794306570;
-	bh=v2xg6hOG8tJYsiUIo+rhQhOmRkcdSZdLofEQMTd+hPQ=;
+	s=k20260515; t=1794306620;
+	bh=H3tlyIivpEQAfTuEdh9TMux42zaoavdQDwL403yp9Q8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=dRDbb0vQ8jSYjC/bRQf5405AJBZL/knalNcpL9AkFq7HXcvXtq4nkKhO35Gs4hbY5
-	 3yos0alKhziqWixpucq823yVO0RzTwVZBZGU3jiaQLIiIoOy7j3Tjy2CXrsr4xSP9G
-	 BX1h41irrZGGIYJH1TQl1ttMvIvpkS4OFMf0lVuscQMFR4Y2pQHZxmaEEnxJddMX+3
-	 vxptwezsMREU31A22+c2g22+J00h3AfRub4F7RNuZICQ+k8vSC76EEjvJkRK9BMH8w
-	 I2GjP3kDUPBTYTHzAK1HMqhBBL0M4RgIgZUh+F/iE81fapMH5EmohVwystsgplRTf3
-	 ZaYQGiosXqrug==
-Date: Tue, 10 Nov 2026 11:29:26 +0100
+	b=oOvO45kq67rd3N7RAEDn0rC+QwfiY/USWlX/UZJCTCLnP2Um7V6kANrHdVR+KIwNr
+	 5wU/wTnVdN3rl9/vq9DHVgOkjpgz/24pCLMUXojYIBnczHxC6ValM4n1+RiGuD9Jnz
+	 uyk2i1s8XKF1u/Kh0gLvzRa4NIaczzb7mpHRTeYIVMKcGA4c7rU7AibN/8BNLCPX+F
+	 wVO/nV+kvk5781/R3Q9m+7Ft6Nh76BMkr3mfFbu7zIkQ2+1qPg/vTdalwC5mPMaDNM
+	 Zj6JPxrXao9l+JBA4Gz/EyRlchhEq54f2WAN460YKlU8/AfJ4yWTiq/nsbv2dHmHTN
+	 ohOVYCvzuoBuw==
+Date: Tue, 10 Nov 2026 11:30:17 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -55,16 +55,16 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Russell King <linux@armlinux.org.uk>, Michal Simek <michal.simek@amd.com>, 
 	Eric Dumazet <edumazet@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v3 3/5] dt-bindings: net: dp83867: make
- exclusivity explicit
-Message-ID: <20261110-ecstatic-affable-mackerel-db9cb7@quoll>
+Subject: Re: [PATCH net-next v3 4/5] dt-bindings: net: dp83867: Add
+ ti,output-impedance-ohms
+Message-ID: <20261110-polite-juicy-labradoodle-a939fc@quoll>
 References: <20261106-v7-2-topic-dp83867-v3-0-45e1d3adf1bf@pengutronix.de>
- <20261106-v7-2-topic-dp83867-v3-3-45e1d3adf1bf@pengutronix.de>
+ <20261106-v7-2-topic-dp83867-v3-4-45e1d3adf1bf@pengutronix.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261106-v7-2-topic-dp83867-v3-3-45e1d3adf1bf@pengutronix.de>
+In-Reply-To: <20261106-v7-2-topic-dp83867-v3-4-45e1d3adf1bf@pengutronix.de>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,39 +83,23 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 08:47:27AM +0100, Steffen Trumtrar wrote:
-> The io_impedance_ctrl nvmem cell and the properties
-> ti,{min,max}-output-impedance are mutually exclusive, as noted in the
-> ti,max-output-impedance description.
-
-But it also said it is allowed and one will be chosen over other, if
-both present.
-
+On Fri, Nov 06, 2026 at 08:47:28AM +0100, Steffen Trumtrar wrote:
+> Currently, the output-impedance can only be set to default, minimum or
+> maximum or via a nvmem cell.
+> In cases where there is no backend for a nvmem cell, a value can not be
+> set.
 > 
-> As this is only stated in the description and not made explicit in the
-> schema, the binding checker will not catch if this condition is ignored.
-> 
-> Make it explicit in the schema that only one of them can be used. With
-> that, drop the note, which also described a precedence for device trees
-> that the schema now rejects.
+> Add a DT binding, 'ti,output-impedance-ohms', for specifying the
+> output-impedance in ohms, between 35 and 70. Like the existing
+> properties, it is mutually exclusive with the nvmem cell and with
+> ti,{min,max}-output-impedance.
 > 
 > Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/net/ti,dp83867.yaml | 17 +++++++++--------
->  1 file changed, 9 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.yaml b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-> index 2cd8311ece5e..833540743bdf 100644
-> --- a/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
-> @@ -7,9 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
->  title: TI DP83867 ethernet PHY
->  
-> -allOf:
-> -  - $ref: ethernet-phy.yaml#
+>  Documentation/devicetree/bindings/net/ti,dp83867.yaml | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 
-You just added it, so instead place it at the end in previous patch.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
