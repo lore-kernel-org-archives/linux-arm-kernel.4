@@ -2,84 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7222C606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B20606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZTBDRjD8;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=NCfsGGu5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f7YT1wOq;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=EM3W0uOs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RVA7NkT+pOc7QldUcgD3Ut/OY6lkzgXsVYxQOxndJ94=; b=ZTBDRjD8HMvuHq
-	ZbAnTtEIqw0nHxq45YNMHPPjQuP0qYsSB5+ZtzNQxxkv+frLOHYcg8Ci3YTnLZ9oQVVcqodtfAKlH
-	dzU9TYLQQd6IX9DR6tJcYCZkBTR53wtGAteTr+otiZk/Gz8REMM8u+kadQ9/qgWPwr06W9JA6/mFY
-	39x1UNuQGpi+26bd14WvyWZZGLuUSgiwpZakkmTcN1W6KYrEtME6XUUaetfFxJj18CXMQICNka0Jp
-	z5uN4M4jAfJ8whl1Rgl428rI8xYHtoYC36gpMWbVN93KPYurmcsUqSEFhtAPe0WXSTlKrgS7Bj1TL
-	mJZXdNk+KfxBuHVjOiwA==;
+	List-Owner; bh=XccD1DO1R/ZU+LZB06u2umQt+RgHY9hz8EUttqWNV7k=; b=f7YT1wOqpeAse9
+	kwn2HW7ahrDVq8x8Lti+t8cD2ta7FiJXTi4IuNVwUpGNW71BkiU945K7QVPCixkOkLY3rK54TUWl6
+	7AhCoAXtV5e4+GAIalrrRn1Bb/zqaepnbkGJsqPaonP9loHXjJ71evRZppPiTj7uhcNRpaWf4eBTh
+	1Cxubb0tNswNC1ZkzDGp7dL5j9C5THosxhMmy8pxwm6GvfGWujW95p0EIFOLGjG6PDKVYgrHnYeeU
+	OqDG5KmRoKhgMW+ab3MWEhckQw9tDO0iBTDwknEPSdZtClgKctbgZ78g0Y4bA7oMAxw12i+RrrY9l
+	yeaVvQEtLmGdTKV/mJOw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnpd-00000004OBv-1SNc;
-	Tue, 10 Nov 2026 15:32:21 +0000
-Received: from mail-wr1-x431.google.com ([2a00:1450:4864:20::431])
+	id 1xQnq7-00000004OLA-2Qbz;
+	Tue, 10 Nov 2026 15:32:51 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnpW-00000004O98-0LOd
+	id 1xQnq5-00000004OJj-2BSZ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:32:19 +0000
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-492fcbfaa88so1459159f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:32:13 -0800 (PST)
+	Tue, 10 Nov 2026 15:32:50 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a3517554f7so22808985e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:32:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794324732; x=1794929532; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1794324767; x=1794929567; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=RVA7NkT+pOc7QldUcgD3Ut/OY6lkzgXsVYxQOxndJ94=;
-        b=NCfsGGu5uekykqCs3WVmGeVig2GmpddmLuzZKWz+rAYuQuRw+Q7GeTW+ZRmYJ3c+gm
-         cJ2fAYXLw3yovzjt1eVJ4Pk1MYlS3kTxnL3/vPkfVWS3wc4thIvavpMI7jlVSY3e2MmQ
-         y2Ub3FOtDT8sQFZErjDJKTBlsHnvfv/WO4M/yiLViWpEdb49+s9xeM7Ud/dSKSnVn1JI
-         lRwduzOS3hvDqT0bVSXR4enSh5b3/zkhe/lowq3P/i/0H2dJsaxc0Yb2H/sZWtg4HZPM
-         WCU1tzdVaLxxECs1xwi1aoWgOk6RS5ibJxKYTrol/GHnCXFx3ZuEi6cdxxwJNE+uEc27
-         oyFg==
+        bh=XccD1DO1R/ZU+LZB06u2umQt+RgHY9hz8EUttqWNV7k=;
+        b=EM3W0uOsNX9GJRCWcinemHfrK83QpNbYVXrUgKlhFD/KKJwMvUN1UoPVjSSJSGBLZ3
+         TPh2/g2kktpQUtkh++VfptAGI5GihFFLZaEgaX62BB5B5xj/hajgZHE1diYKkZn+cowG
+         +GiPjNUjMdK/4ZAx4YbYJVHr2rb289/UgZD0zZ49JRm3+r09sRToTkYngtz64l+SoDEt
+         j0OcsQdRY6ZIR29yFJpWv0ksnbU5kC8ebmOweCpxmuo/g8uzLuF+1geQwlRK3RgENOiX
+         SsCyUJ4Pdgt+d7LvWeIyGMeUpRjyh+W3zCCKH75QSGy1u62fGKeE2JtvqRt1BIWCF5Bh
+         W90g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794324732; x=1794929532;
+        d=1e100.net; s=20260707; t=1794324767; x=1794929567;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=RVA7NkT+pOc7QldUcgD3Ut/OY6lkzgXsVYxQOxndJ94=;
-        b=OuGsPUC/nimItLGDoZUXYMzvrnbaP3toL+tI+xIdkN3d89cER/8HNqqYdnoHN7dS/p
-         sdDCZupb3e6Wugqg5bKzVF+o5NxclFFAINnQ9H2hQadV2JTaPsBsn9xxdgm9Bgk/kKZO
-         ILcwiU/wdoc90pOIcpNDIbDfeSJX4Z5rGHDuiU/1aXTqm36h9JHDdK0BremppdK1KgSE
-         njxBHyqy+VMHRV90sDYW5LQCd+YMwiUU9Rac+kTyFkgb/IfT6PPAVFvngRxHoxWPcqCT
-         zQHYp91E2YAqdkuvxLSD1c19Tm2LtVaZ0F9qXyP+gRlTcP4z0P1zYWP/UT5PQhe/hv+5
-         WYRw==
-X-Gm-Message-State: APuU4Z9cmcd1Q4zrHf8yQW+Ocg4p7VEwxmOT/p2mvSyCYH8iQq2ZqbOb
-	wtc3vEp2IBB7Qb6Q4Bm2ocId7JQ/nXtJmB2COoxZA4w6y6Dh6irdMf8+pucEzchTujVLFn/yxu5
-	OuiwcAgU=
-X-Gm-Gg: AYBFou2NBAV7jzCHe5JcOxPhUsgNugBu2LTQjbd6UGJVq7jORGDLCx/wOzaxm9tRutm
-	saC2f2Rr7E1cYYk8+aJBJ25o+FMeX06TaXsCSpnx+jCAQJ5K4VoCeECniywHFffkzBVomk48YLC
-	KpB+vR9dS/brt9ZlVoSGLLbYmlxd6PIqfMcaLyj8aNOrP7/ArunoKIzLN3zgYUZI9rSZAnnjFOH
-	Inma+TKgLcYr/CNBUo6/6pAFdKIGEOmZc+7X3Ru7ODMgVDymkVLUGD+j8uGpGiMo5SgnNlJEMHW
-	TYca9p/r8dwX7XumBcXa03nudqIzuuxVcMxm2vc18dOmfDmcExOLQHTCiswSaOzXUyV080YNXZJ
-	XxXkaWVPhSGZ5AQoiiEP+J0QNvm8Pl9s/fFgdCVp2yAGvmE4zVXUjC9Sgq479U0xMkIFK8NsSXb
-	a2le7W1oGAFLgE3TjyFfNL1qLl49PULocyWmh0zg4CDkqhpf8KoWugUGlKI1FPEItzPH44pORZ3
-	oNrqQPjUdH/l6DVlOZhuYRzT738foIVPvl68xbKqRbGQEFvOaaJQgPARj4ESQ+t4WMRr5sZYxCU
-	Um0hVbJUanlslrlYJ2M/KKLwme78aKlYVA==
-X-Received: by 2002:a05:6000:1862:b0:493:fdf6:14aa with SMTP id ffacd0b85a97d-49831cd1d94mr5937057f8f.56.1794324732002;
-        Tue, 10 Nov 2026 07:32:12 -0800 (PST)
+        bh=XccD1DO1R/ZU+LZB06u2umQt+RgHY9hz8EUttqWNV7k=;
+        b=xAF/o+D6hvXNzcMYKOR5xlSBGj52J9W2eBqdYEGfBtj6IeqmtpSHP214SKwEn+UIjf
+         7A3I1FYoNJwLW4eJFlz5BD2Y3nOk5f8RvY/elAUVRsoFy8av+nTgTIvlse+SuOYOwQ0E
+         pF34e8go+86marW6x94M+rzKSMmc0TA6nDm2u+YpK9pPLWIM6afPL6PESyT1M3LkQFsZ
+         8yCnEqDef288YifHPH4Xr6ZML2JLvO7M3fDSLTKHcwJX2MIWjykOaiebam1kVacipCr9
+         C86ZaDIjTCI+wwuUnr8GWdqUFxFQ5WyIyL4V2ao0AaOhKu8j0GUpp/Xy+iWOajS6B3YI
+         uUtQ==
+X-Gm-Message-State: APuU4Z+dprm+VLcNA+4LHn4OrraubMHqjkJ1KYFHvbvnzMTgNSv15QNT
+	qOZT5CGndaUss3e26nLu1Slt9UOCkCFv0+4BgqFiHvXlnKPfvqwyU05M0WBjQ0mAZGA=
+X-Gm-Gg: AYBFou2U2huhIWYQK0dwopPRQg+YJ/+VnAWjMlKCkJ957ndQmU62htXhash9ImvFBn6
+	4kMqqkHn+DsHzixtyNEQXWUOndNQ71xPSiLJsBi6sBXss2qzGjPUK/xSz1WP5Ese9BVLz9f8YZ+
+	VCv2T2LncTYLOlP82kvFmdJqX15mcpV8wm01cq8GCcub7Xr8+CuQCePuVS0JpqQ2rJlRGCPFjzH
+	4+HgMgweSp5l4fiMMaSO1k7Kq67mFsaEN4yceEigV57uyAzLk7NiHV76IMCyZAReH2mUpEKqppY
+	MgZldfeQJHzWRji1olOyHfy95q9E0/iXZ0stsD4lZn4ODKNBGsebMPUYG/q9eg+NPwjYoO7IhwZ
+	H8BN5BaqPDJM9qej55kP4cl32aQ9z1a8rzVvS7hHG83yOBn8nOenVkggyhSDXIzA5jrfbHctPz8
+	gEYr3CFJkm05aHNlKV055Y9yKB6CFqjHHDSBP6KYxilyKxfXic2e0hzdqrCYltrv8pe2qgbj/AA
+	bI8OFTw6l7akLi4abp6aUCNJ3WjLR2dy2j93f7kIAgB62p4FlqIt80rx9H1+vdgbbAg+uZyetFR
+	nB+AGV5tfsiCuc5YPEVF8RC2YfE9Eo8g1w==
+X-Received: by 2002:a05:600c:3b0e:b0:4b4:262b:88a2 with SMTP id 5b1f17b1804b1-4ba02308316mr48969035e9.1.1794324767136;
+        Tue, 10 Nov 2026 07:32:47 -0800 (PST)
 Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498367b99bcsm5881429f8f.51.2026.11.10.07.32.11
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498363dffa1sm5509777f8f.39.2026.11.10.07.32.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 07:32:11 -0800 (PST)
-Message-ID: <671491ba-388c-4817-bdae-7348d5220cce@linaro.org>
-Date: Tue, 10 Nov 2026 15:32:10 +0000
+        Tue, 10 Nov 2026 07:32:46 -0800 (PST)
+Message-ID: <7a5fe9b1-bad9-4ce0-af92-475f13c5de5d@linaro.org>
+Date: Tue, 10 Nov 2026 15:32:45 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/23] coresight: trbe: Decode TRBSR status codes
+Subject: Re: [PATCH v2 13/23] coresight: trbe: Simplify wrap status handling
 To: Leo Yan <leo.yan@arm.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -89,15 +88,15 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
  Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
 References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-12-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-13-3f57cf3199b1@arm.com>
 Content-Language: en-US
 From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-12-3f57cf3199b1@arm.com>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-13-3f57cf3199b1@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_073214_170008_5CF0A897 
-X-CRM114-Status: GOOD (  26.39  )
+X-CRM114-CacheID: sfid-20261110_073249_584629_A42B53E2 
+X-CRM114-Status: GOOD (  19.80  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,160 +119,51 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 On 16/10/2026 17:55, Leo Yan wrote:
-> trbe_get_fault_act() currently handles only a small set of TRBE stop
-> reasons: external aborts, trigger events and stage 1 and 2 aborts. Other
-> TRBSR_EL1 EC/BSC values are reported as spurious events, which hides
-> useful failure information and makes the status handling hard to extend.
+> After explicitly decoding the TRBSR_EL1 EC/BSC values, unsupported or
+> unexpected stop reasons are handled before the WRAP check. And the
+> erratum and pointer checks is no longer relevant when deciding the
+> buffer wrap.
 > 
-> Decode the EC and BSC fields explicitly. Keep the normal fill-mode
-> handling unchanged, but treat unsupported or unexpected status values as
-> fatal and report them with a ratelimited diagnostic containing TRBSR_EL1,
-> TRBPTR_EL1 and TRBLIMITR_EL1. Use %p for the buffer pointers so the
-> printk diagnostic hashes their address values by default.
-> 
-> Stop using is_trbe_trg(), instead, use TRBSR_EL1_BSC_TRIGGER_EVENT as
-> the unsupported trigger case. This keeps the stop-reason handling in the
-> EC/BSC decode path, the driver can validate the status fields safely.
-> 
-> Move the TRBSR_EL1 BSC definitions to the arm64 sysreg header, and use
-> the common TRBSR_EL1 EC/BSC names in the TRBE driver.
+> Remove the redundant checks and treat any remaining TRBSR_EL1.WRAP
+> status as a wrap event. This also means WRAP with BSC_NOT_STOPPED is
+> reported as an overflow instead of a spurious event, which prepares for
+> for TRBE wrap mode where collection continues and a maintenance
+> interrupt is raised on current write pointer wrap.
 > 
 > Signed-off-by: Leo Yan <leo.yan@arm.com>
 > ---
->   arch/arm64/include/asm/sysreg.h              |  6 +++
->   drivers/hwtracing/coresight/coresight-trbe.c | 57 +++++++++++++++++++++++++---
->   drivers/hwtracing/coresight/coresight-trbe.h |  8 ----
->   3 files changed, 58 insertions(+), 13 deletions(-)
+>   drivers/hwtracing/coresight/coresight-trbe.c | 11 +----------
+>   1 file changed, 1 insertion(+), 10 deletions(-)
 > 
-> diff --git a/arch/arm64/include/asm/sysreg.h b/arch/arm64/include/asm/sysreg.h
-> index 7aa08d59d49448cfa3bb61f5cb42e0a6f1aa8a89..0e602f07625b3c4fe6cd3fd71a658ebae768d8fd 100644
-> --- a/arch/arm64/include/asm/sysreg.h
-> +++ b/arch/arm64/include/asm/sysreg.h
-> @@ -357,6 +357,12 @@
->   #define TRBSR_EL1_BSC_MASK		GENMASK(5, 0)
->   #define TRBSR_EL1_BSC_SHIFT		0
->   
-> +#define TRBSR_EL1_BSC_NOT_STOPPED	UL(0)
-> +#define TRBSR_EL1_BSC_FILLED		UL(1)
-> +#define TRBSR_EL1_BSC_TRIGGER_EVENT	UL(2)
-> +#define TRBSR_EL1_BSC_MANUAL_STOP	UL(3)
-> +#define TRBSR_EL1_BSC_BUF_SIZE		UL(4)
-> +
->   #define SYS_PMINTENSET_EL1		sys_reg(3, 0, 9, 14, 1)
->   #define SYS_PMINTENCLR_EL1		sys_reg(3, 0, 9, 14, 2)
->   
 > diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 1f51c33de83638479436683fd96e31d69c3b860f..a851f09d806a6b6a6386d6f7547b01a17f61b88e 100644
+> index a851f09d806a6b6a6386d6f7547b01a17f61b88e..4aeed1a17c4bf1653fb41731ac15f31feec7ed2e 100644
 > --- a/drivers/hwtracing/coresight/coresight-trbe.c
 > +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -658,29 +658,76 @@ static void trbe_enable_hw(struct trbe_buf *buf)
->   static enum trbe_fault_action trbe_get_fault_act(struct perf_output_handle *handle,
->   						 u64 trbsr)
->   {
-> +	const char *err_str;
+> @@ -661,8 +661,6 @@ static enum trbe_fault_action trbe_get_fault_act(struct perf_output_handle *hand
+>   	const char *err_str;
 >   	int ec = get_trbe_ec(trbsr);
 >   	int bsc = get_trbe_bsc(trbsr);
->   	struct trbe_buf *buf = etm_perf_sink_config(handle);
->   	struct trbe_cpudata *cpudata = buf->cpudata;
+> -	struct trbe_buf *buf = etm_perf_sink_config(handle);
+> -	struct trbe_cpudata *cpudata = buf->cpudata;
 >   
 >   	WARN_ON(is_trbe_running(trbsr));
-> -	if (is_trbe_trg(trbsr) || is_trbe_abort(trbsr))
-> -		return TRBE_FAULT_ACT_FATAL;
 >   
-> -	if ((ec == TRBE_EC_STAGE1_ABORT) || (ec == TRBE_EC_STAGE2_ABORT))
-> -		return TRBE_FAULT_ACT_FATAL;
-> +	if (is_trbe_abort(trbsr)) {
-> +		err_str = "External abort";
-> +		goto out_fatal;
-> +	}
-> +
-> +	switch (ec) {
-> +	case TRBSR_EL1_EC_OTHER:
-> +		break;
-> +	case TRBSR_EL1_EC_IMP_DEF:
-> +		err_str = "Unexpected IMPDEF buffer management event";
-> +		goto out_fatal;
-> +	case TRBSR_EL1_EC_FAULT_GPC:
-> +		err_str = "Granule Protection Check fault";
-> +		goto out_fatal;
-> +	case TRBSR_EL1_EC_FAULT_WRITE_S1:
-> +		err_str = "Stage 1 data abort";
-> +		goto out_fatal;
-> +	case TRBSR_EL1_EC_FAULT_WRITE_S2:
-> +		err_str = "Stage 2 data abort";
-> +		goto out_fatal;
-> +	default:
-> +		err_str = "Unknown error code";
-> +		goto out_fatal;
-> +	}
-> +
-> +	switch (bsc) {
-> +	case TRBSR_EL1_BSC_NOT_STOPPED:
-> +		break;
-> +	case TRBSR_EL1_BSC_FILLED:
-> +		break;
-> +	case TRBSR_EL1_BSC_TRIGGER_EVENT:
-> +		err_str = "Unsupported trigger event";
-> +		goto out_fatal;
-> +	case TRBSR_EL1_BSC_MANUAL_STOP:
-> +		err_str = "Unsupported manual stop";
-> +		goto out_fatal;
-> +	case TRBSR_EL1_BSC_BUF_SIZE:
-> +		err_str = "Buffer size was too large";
-> +		goto out_fatal;
-> +	default:
-> +		err_str = "Unexpected buffer status code";
-> +		goto out_fatal;
-> +	}
+> @@ -710,14 +708,7 @@ static enum trbe_fault_action trbe_get_fault_act(struct perf_output_handle *hand
+>   		goto out_fatal;
+>   	}
 >   
->   	/*
->   	 * If the trbe is affected by TRBE_WORKAROUND_OVERWRITE_FILL_MODE,
->   	 * it might write data after a WRAP event in the fill mode.
->   	 * Thus the check TRBPTR == TRBBASER will not be honored.
->   	 */
-> -	if ((is_trbe_wrap(trbsr) && (ec == TRBE_EC_OTHERS) && (bsc == TRBE_BSC_FILLED)) &&
-> +	if ((is_trbe_wrap(trbsr) && (ec == TRBSR_EL1_EC_OTHER) && (bsc == TRBSR_EL1_BSC_FILLED)) &&
->   	    (trbe_may_overwrite_in_fill_mode(cpudata) ||
->   	     get_trbe_write_pointer() == get_trbe_base_pointer()))
+> -	/*
+> -	 * If the trbe is affected by TRBE_WORKAROUND_OVERWRITE_FILL_MODE,
+> -	 * it might write data after a WRAP event in the fill mode.
+> -	 * Thus the check TRBPTR == TRBBASER will not be honored.
+> -	 */
+> -	if ((is_trbe_wrap(trbsr) && (ec == TRBSR_EL1_EC_OTHER) && (bsc == TRBSR_EL1_BSC_FILLED)) &&
+> -	    (trbe_may_overwrite_in_fill_mode(cpudata) ||
+> -	     get_trbe_write_pointer() == get_trbe_base_pointer()))
+> +	if (is_trbe_wrap(trbsr))
 >   		return TRBE_FAULT_ACT_WRAP;
 >   
 >   	return TRBE_FAULT_ACT_SPURIOUS;
-> +
-> +out_fatal:
-> +	pr_err_ratelimited("%s on CPU %d [TRBSR=0x%016llx, TRBPTR=%p, TRBLIMITR=%p]\n",
-> +			   err_str, smp_processor_id(), trbsr,
-> +			   (void *)read_sysreg_s(SYS_TRBPTR_EL1),
-> +			   (void *)read_sysreg_s(SYS_TRBLIMITR_EL1));
-> +	return TRBE_FAULT_ACT_FATAL;
->   }
->   
->   static unsigned long trbe_get_trace_size(struct perf_output_handle *handle,
-> diff --git a/drivers/hwtracing/coresight/coresight-trbe.h b/drivers/hwtracing/coresight/coresight-trbe.h
-> index 45202c48accec7c86ba56130e2737bc2d1830fae..8ba9ef4056e4dc3968816c6a7cbf2859f2bbed36 100644
-> --- a/drivers/hwtracing/coresight/coresight-trbe.h
-> +++ b/drivers/hwtracing/coresight/coresight-trbe.h
-> @@ -35,19 +35,11 @@ static inline bool is_trbe_enabled(void)
->   	return trblimitr & TRBLIMITR_EL1_E;
->   }
->   
-> -#define TRBE_EC_OTHERS		0
-> -#define TRBE_EC_STAGE1_ABORT	36
-> -#define TRBE_EC_STAGE2_ABORT	37
-> -
->   static inline int get_trbe_ec(u64 trbsr)
->   {
->   	return (trbsr & TRBSR_EL1_EC_MASK) >> TRBSR_EL1_EC_SHIFT;
->   }
->   
-> -#define TRBE_BSC_NOT_STOPPED 0
-> -#define TRBE_BSC_FILLED      1
-> -#define TRBE_BSC_TRIGGERED   2
-> -
->   static inline int get_trbe_bsc(u64 trbsr)
->   {
->   	return (trbsr & TRBSR_EL1_BSC_MASK) >> TRBSR_EL1_BSC_SHIFT;
 > 
-
 Reviewed-by: James Clark <james.clark@linaro.org>
-
 
