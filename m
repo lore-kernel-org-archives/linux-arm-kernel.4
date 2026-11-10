@@ -2,98 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE40606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94369606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:33:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ynmny2rL;
-	dkim=pass (2048-bit key, unprotected) header.d=yahoo.pl header.i=@yahoo.pl header.a=rsa-sha256 header.s=s2048 header.b=d3xwAYVc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G4fT7mK4;
+	dkim=pass (2048-bit key, unprotected) header.d=yahoo.pl header.i=@yahoo.pl header.a=rsa-sha256 header.s=s2048 header.b=ZhxF+7lf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Cc:To:Message-Id:
 	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:List-Unsubscribe-Post:
-	List-Owner; bh=VpcLYgwS/PX1ShnTKnfV2h0X6i5pERvbSlRUrOK6K7k=; b=ynmny2rL/Sd1e/
-	whrCWQB8OV1MalXRRR6P9U/I/IJvm7RI7ak59qJU7O6ZdeccxKFwapUm9BP/G/fTN+QrHJIptr3NF
-	mqZ6byeYNU1IMdSf0PF5igmuH1XYRu96E/bQ3FroflfoUe/KPdZVBU3Z3KX3ZQKibpgxb8cTWxWHU
-	CpIVObNe+TcQr+P2KO3Nu9VUKUvIAylR3T3wr6NepwG9sGcmAtQ7vCH3b+AQ3g0e4kcNh8GhMGSo9
-	XFpbV+HVyJvWXOv0S9DZq4Yd7Kvjaey2VUITv74fqenMg325raqN4OO99YizZy2g7vgMXuZV5xKKo
-	Iz4pGNHycnfhEf7QIohg==;
+	List-Owner; bh=e3sukB2RZuy041Jain3ONjgs0JeDdnXnVzfL3HmKWPQ=; b=G4fT7mK4uy2yLG
+	LmTpmOIA/bYvzjowTJ1DGi5T7lWm27hkpQYM4rhduGOrGD/zSXWuUbvxK2tRNSVIaIFw0JYrIwBB+
+	hphXtih6gD9u+SuFtLSg0NnBoSGIyEFCT2g/apPQUn+CTFbJ08ov13IPnRELJKxm2dXVsAg6a8roU
+	EGlPFcrLAS9YHiiZa7eqyqE342f/+yf8S4MKjGK7QfYD50vJo6N4Q1KKJta+29l4CegiWSLgHb8is
+	ANaSc3UgyQzhZ4COprmb7WAE71YvWwZudf0VJc4P8efk2LsYDhs5HbMPiLQW5MrgUBoCVNb1fNumd
+	k4ESEzK9rkgOLxqOrn4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtFU-000000052kv-3ysp;
-	Tue, 10 Nov 2026 21:19:24 +0000
+	id 1xQtSp-000000053bs-49UU;
+	Tue, 10 Nov 2026 21:33:12 +0000
 Received: from sonic-euwe1-0017.asd.mail.yahoo.com ([34.2.82.16] helo=sonic.asd.mail.yahoo.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtFS-000000052k8-0zxd
+	id 1xQtSm-000000053an-2HHE
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 21:19:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.pl; s=s2048; t=1794345559; bh=VpcLYgwS/PX1ShnTKnfV2h0X6i5pERvbSlRUrOK6K7k=; h=From:Date:Subject:To:Cc:References:From:Subject:Reply-To; b=d3xwAYVcmGYwroBM6k+ZOLiDWxHVQMGSISPynr1Dx2qdAB2rQCvzK9+CxpvIamZuLkWfNUWPXB54kopjVEVkRUUTLUSEavpI8oxM/JulTZ7Bs22DgfT1ryqaDXmn3DPvjTZ9rTejMOZeGLDjn75LEjOxLujH3HXnp717gaDGuk1t+fUK58zMZ+XGiuePmJAl6tS3a71TveRa28Oel9QbpwfwydpfLxapmwe2u+iXSXIGrhCfn8iM/5k4A1Y5fm3+gtG9bcHKsOpCtZBJz0AgbtHKmMa8D4rqaKQ9Xoa7di083EgK1GXUn5Oa37XT+YRadSrk8niXe3jVOtllZBnFaQ==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1794345559; bh=51YrFdxi3Prycdxvw8KMZ7ffDiaFkmmDQ4wwxzWLICE=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=D0axbtHYMyg07kZTJDzipva56JU4Y0levtQbG7ywc5l8gClFNY5R61PucjybUK+O3ubv9DJp1zVcQA4gQ8vRvBF5+r8LsD7NC6Ju2FYajjmZv1Z4xV1j6DpQXG3vajjRO8eed6cY9Mcmq3DiWaTh31OUzK5HDanI4u/sQYMhfHQOE3ZUTEhDFQ0zrGaWTTJJdlwv3Yb8l9Vozvo4ZJrfcr62MrkWjp4/D9VstBy+ZNm9s97DgbvYCCQp0Yq7cJgkn89m5XEnzhz2AcjHAdCR7/EeazfdZTcXIav+S1IH7BxRtk8NBWycIh4xkkWhIJPzFXrm/sqhPzz3hhzhvVz35Q==
-X-YMail-OSG: YdG1UoUVM1mnVFaYCmrrP0wZC6W8NBNJrMC4ac6CLSCefxeUwN8UNIBuoVZCEtg
- TUhKZ9YKzmfOVdDgbQPKPAsRHIWhTH78qiQ6o68XfzzCIhv54xlYS3jClyQ1SxsEo30ZLYV9row_
- iuwfyO4svMI4fVLLRX_QT09eXZfzUB7h51tmrMtLZyk7AA7Vkn.Gv2TH8OYHkqnwW3NXbZUYmwSs
- WlApaOBVNkCaep0N5KOSqti504C.Jf7BO1Vdp63NTzvLMtKAS09FDwLEbryzq_34zR1Fzej9mrYG
- aIOTK8XNvEp.Hzr9L5eFMVV3VM3Sba3VbE4C1kGxffCum8RXSaRsjaLCmMqIqJAIpGelrQmVzbAl
- kZ_MFL_m4DFLw8OBg563bRg4LmvC3G05k20iLXKpjg1sq3dYl7QmTFyFjchWtMZR633I8ekIwxeA
- r5ajDp3wjGDLNgGZuPuP3dR6Ayd7d2O9Smw1mFVCnCj20rsFJ9bhBR7G6CLs.7EJUlS6iW9gD3Hb
- 1Y.uwEWbdPjw4iu_CRiYZ71rxrDtkFO51rvelERoGR7DHZWkqvKqTo71NeY1lkqAP9AmQgOAcg2K
- rDaau31gPvvRg6OUxT1DsNtlP7dQHu5L6lle4CKIjvSufLZv0nnZCsbt81zEHHEaiZ23GWhY4Pbd
- WPukamDzZ7ZYWbPRhgqNno6kamZm9oor8MRtoBAaEgetuPgacfeBkN0dpBUZspokrbGfBOWZQxbW
- TtUjkSrNZCQPZHK.TWjr4ry3VyG15h8TnpKCjrB3MozKYbFKGVSvbGZvZ9cShfCX7_KG39k6OiVT
- irlHwZwzMdM4mBK_CQeLmnteuC7XaFGzPmSXGaGmbxA77RNVNIWQ7sKtpET55rjZ59fIZreLWjDE
- RM3fDGa4FjB.NFGSzg9.L3V82PJK2tKJsNt5TjdMumHl9VgZ2dQSMkNzTg4tg6rePE1lttSVwu6u
- p1ChJxvIalgzQ37PvBq3GlKPbc50mqjnAIC5gieDkAdT00s8uJZgwX8NjO_WuPaDV1qg83pEOARA
- uNZpCI8j34CkyNCkDdd_N_NEuFfzeqJADsWQHfYQYSWUVEzIcLe8RNyMAoC3W6U8zQ1SdFZdbRhm
- BXDZu2nyf2Eygv7rt7MFqE.NKVuwHyWaVHox08pSPSmUV56E25Rruv0OSct0qh9PKBl9D3a5vsSF
- x3SXA.wnZ_bMmYxOZklanMr7QjHYebC8rCNcypNyikU_NDvsVOxO5p.gfLh70DSIEMEDAwFQfLJQ
- HdEyM4moTF0lLNu4XyOl8l3Z6MVsR1x8NYsnsVucvEzwsxDjhUT9ITFPtx7I4kg_QPabvHFK_vfh
- IHs4cZZ5Fa7WWBUDRdtBhxVsEISKLwNKlLFDHjFZsdEVpJBJLoY5OiolqinTCtNP2gnioUQnWXay
- 5mZy0fUrNhoth3Ntpyz7_LokgcrFFnoEHVtC9u_aXhAeSR15AMlF78nz3j92vSYDTPGe6jt5_KyU
- Q4gdzTt22uDMcti5VvmrcYZW1JI0_jXbblTJWWCHXOZDs8pVwTX9VP2Gkyyo7Evc1twpwEzgVkrM
- L26ws.YFvH0yC7lGqfJLNHolPT6Do.2TBbP_Fcu_KFNJ1B_M8Hh9cx9YdsTRF2R94jTUt7O0.g_7
- ZJUPPjIkAYkaWTAVMONCDF1upWQHHAPsQh3HqmUVnrAXZm0yYf_Dvj5meiCQ4VMt1byQhIknIKmW
- 3DZRnj9t_.H4fYtUfyDR2C2CZFgCsRdXBkuGC63JnMvFksyE1O4KhPtrk0_aKXGwj4bCrzv3zkbm
- yOIhKk_V1o9Hb8GebcCDqf.v0ELMNYwoyueSy8QA0zU6DjaMS8fV21h3i5GfbBaENXuYIppju1vx
- gnTRFeZuWpESG6U7mEeng8SMbEqSUJLEZ1jokX_RedDTMw8lvHzH8VZB0.pGaurnXOrce4qeEF07
- qB70kO2gbEWT0Oec2n4ktm6aj7H3hzo4fy5VImufgsNF_lQ9D_aVUzt6FKz_s78DTUKR7mqxTTvf
- MUW6MZYpx9CBu51P433tL5enBkfyN4oIM
+	Tue, 10 Nov 2026 21:33:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.pl; s=s2048; t=1794346386; bh=e3sukB2RZuy041Jain3ONjgs0JeDdnXnVzfL3HmKWPQ=; h=From:Date:Subject:To:Cc:References:From:Subject:Reply-To; b=ZhxF+7lflqlnYWxsyQBtIObkuWTzfRj1tFMHhrKjku/OzJfcd+PUiWvbbQrgIGtWEI+ZGV9bpnxDgnbELdDl/HAWN0+iH+obGuPlyfOz9iD4z9XMOtePsVjQCytyHMn9pzRhKXy10l9Lw40SKIW5YaDMcRS4D1feajX72BjsXJNqHrg2QRT7p2TBPDr+pBidubSZmaBarB2DxdHERSvCwXpphb6epBGKf4a0+9rVs2Rp3vPQ7zzXpxs1NM79+ZpaRVjZfGZa6gsJpDr/eYlJWYzgdDsD5ZgjwxixW67PK9gXEIwTSuiBc48Yq5E+dR8LbSP/zqIYcz+MGUDdunA6uQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1794346386; bh=l21te4vnjdcxm+BrNmCEfh7Dv5mjCuNFx4ER4X+DtJG=; h=X-Sonic-MF:From:Date:Subject:To:From:Subject; b=j5FXDQWfEVmumMHBlYMKvknxBesOIQvwDJTfk/aCx69Z/pZCL2Tz8nTiE/yed9RZFV8lOhcwq04zdzBlTPxBxLc88oWsnsERaijRlUEYWSa7VgZHDiMVx7oNcrpF2KMk5TEECZ6mX11nKpYy5WU/mlsIXI30AIFt9yMbX5wfYcDwOR3jv0jlqnn1liRsnaoKFXl+0AksPsj/vXvmzJoo+fn6B6ET3WabdGYEJw23URVzB4cHd5xeg1OAw3Yn0nxztjZlQQt3OUxKJyZGhpW7UE+6RApnjsBzgF0MgLxyC+7MeNzjNl+CvHUkIfX6gkVc0N8Sl7QEkiJT3OPOc9Y9hA==
+X-YMail-OSG: ums8UF4VM1kpUin84ZgAz3DOu0IaeYMYRFDXRUcNecJIj62RFV7H0fkqiGEeFmV
+ eTkrXqNr7.gegWTq5q9N.PwXu6z1uGCJ1_rsTfJOd1bQZRfIZQYw3tq6yw0eKNURekUp2zvCToEq
+ 6VS_g1zo_pUwKC9f9U3Ow_PJQ1KQKousf8V_AmLTiN7EfZBNB4xXaTbRmH6j47Yo_ArRUd3ZFK6R
+ YPHyqvvxNUe3JJjHr9TeYqffQjH46RgtTAJdZBDs1rrFkFmJMjgZVIpOL7kJ0KKknhhv2gwu09xE
+ _4hUEFNP7oh1UOOghP4r9SpYQx3JlZXD5QvjcvdZiOy9A7wQgjHQK1dVbmbO6IOVQcUKgkvcJbIi
+ _58yjQetX_9izUC4OURj5XWvof5g0FBkDwDUztp0Ii.E9YjwYeoP.l82pJyDBKaDU.G5fvcFzk9H
+ 3EQII_KTmQ3hI6ztIJjaLgyg3wGvuk2Bk1cozenRlXOOqys.Y..UJjmJrR_TtkUSTpw46zoD9Nvn
+ RMNsj_a.WCxMh_ANqwRcSf5.8R_XwjF606cIGhRlO8._wwI5caPWDfXSIpSL5zyk.6ZlQ5UbPITj
+ WqvL4nNOOn_XopGLJQXKmmYtEQj2cwgyPhAzGBjaLNv4ZJHhUs11CjvWyUz20QuTUYL1UPWA.RgK
+ hHtbM9.5pdfOlzjgQEXV9gIv4ayJsWDOVi5v5D6YgtTtQKvsAcyLlYk8bLOJAs7vrRLhSqvTIdOp
+ fDr8yNr.8OFDxL93Um8v95nKiy5dJ9Kegyp4EhY9Bw4OT_0ZiTsh5XNCqqAVB4R3NpWsXREvrp4I
+ 5dwmYYBqY.qd4B5lIYxtDE.WJoEyYHunKwrNqCqqj8HFbFCd4aTj2oSTfWW64m3DPR31cI8BkFwG
+ tS02dFo.rBB2fNpE_dI3v5AelJw4isfT9l_r5f.sVQFndUbp1a2Kw0goV7W_smkGtT3M7BMQQomR
+ P7PEhL.z29G0i1v9EbrpPAqnFolECqe0KDN6IF0jAzIlz3dXtHhsULgzTNbdFT2rdPQ7d6IuosKZ
+ 6C93OXIvqfIIwT_B1AxKA1i_85D5rStgHvP4mPwFuDz.ngzofHseMc5MPmCF0O4Z1BXqijs1yuuq
+ LCSdHB2wL_fa.vTVM4PQys5WGXF_75NUfPOwPN6G85YRimh9QurydgNxyFgFjGqZZzDCd66mlOof
+ iAnNMKEWnp_qyJmDTE3Q0oOzMThonldb4tWAixGi0MZJGh1SSm_g1blqwToV4E.B1f6fCkKLovmd
+ nzLdybp2fBQm2HqYe938oYfML5kuD_OCBkR9srx38mEUjg38dOjShU0MivQFKPMs4lsvdARbWwz3
+ Za7HnYxGyhYHPac3tpQEQQEx4wg.SdmykDNI33VclqGYmjv7LUG4d0KytvtFpU_keymjPmptXq_O
+ IYNFU8jW3ukntshwOWKDIxs45IaBn3FdGNveBDPI9upkfj8r4i1zcrMO2dmirJyfsFrAthahC8nc
+ Lqt_D3kCtjp9s8496IeHMt5VkxA8zuvYcRje6S52UMEBHotNU8QM3mX4TkHiHS1ehw7Czwc5zvps
+ A6S.w4McofXPUWCJJwzF4whp3lO5z7D5_Ga0Kv4W4Cl.MKD4lElYBsKJuHaCJ50gi3ihWsTP7VwC
+ 2.BlaR1m2NB1sx9h7yuCgjBRtDZFnlglTH2RYknjGwbprpdKDTMPPPT6P40In9r8pZYbkU8iz1L3
+ ckx7mMtU9XqQrV.HywkEvlPjkhwYflTW.mDwQM38ZmJbhNJn0o7SrWs3HbbCPYMdpHMjVu5ox0fa
+ hxCBhMl1Qb8ewn3C_5CFiyHfVQIdFF9.eUDcTa7JMW2b7xHcjqL1y7BtP4wb85RgwgkKQB5PKR2S
+ CRjkLySmRtkoR2Bjhd20Cc98iOaOZWFS8VWl0g7fDEILcOcYuot9m0xZq5aiPfZU_eJKTTlL0Jf9
+ d30gJE3HfremZQB8k2E_WPu5YnTHzVArbLhv.kBIsiL6M4Ev3q0eMksRCxi.288gW.CmB6i5fstN
+ _J8.N.Mqa0_FJbqao7bi89he0ghj0C4MKwNo49Wz3QgE-
 X-Sonic-MF: <tomasz.unger@yahoo.pl>
-X-Sonic-ID: d2fa957c-0ead-4eab-81cd-4baf9fd6782c
-Received: from sonic.gate.mail.ne1.yahoo.com by mail-asdoutdeli-p-cin-euwe1-prod-sonicconsumer-svc-103 with HTTP; Tue, 10 Nov 2026 21:19:19 +0000
-Received: from dip25.lsn.ir2.yahoo.com ([87.248.99.34])
-          by hello (SMTP) with SMTP ID 03cef679bc453ba6e1b10609214e8ae7;
-          Tue, 10 Nov 2026 21:19:15 +0000 (UTC)
+X-Sonic-ID: 4d11689c-fb14-48b6-a504-8ae88bbff09d
+Received: from sonic.gate.mail.ne1.yahoo.com by mail-asdoutdeli-p-cin-euwe1-prod-sonicconsumer-svc-104 with HTTP; Tue, 10 Nov 2026 21:33:06 +0000
+Received: from dip46.lsn.ir2.yahoo.com ([87.248.99.55])
+          by hello (SMTP) with SMTP ID 652c0e1457d08e3a6c2674d732e5567c;
+          Tue, 10 Nov 2026 21:33:04 +0000 (UTC)
 From: Tomasz Unger <tomasz.unger@yahoo.pl>
-Date: Tue, 10 Nov 2026 22:19:14 +0100
-Subject: [PATCH] firmware: raspberrypi: Add missing kernel-doc Return
- sections
+Date: Tue, 10 Nov 2026 22:33:02 +0100
+Subject: [PATCH] spi: bcm2835: Add missing kernel-doc Return sections
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-rpi-fw-kdoc-return-v1-1-ea77334d63b5@yahoo.pl>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQqDMBBA0avIrB3IiFT0KuJCk4lOC4lMtC2Id
- 2+sy7f4/4DEKpygKw5QfkuSGDKoLMAuY5gZxWVDZaoHERnUVdB/8OWiReVt14COGppaqn1tR8j
- hquzl+5/2w+20T0+223WC8/wBhlmhfHYAAAA=
-X-Change-ID: 20261110-rpi-fw-kdoc-return-d171b914f4ca
-To: Florian Fainelli <florian.fainelli@broadcom.com>
+Message-Id: <20261110-spi-bcm2835-kdoc-return-v1-1-dffdfcc36233@yahoo.pl>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQrCMAyA4VcZORtoUjbEVxEPto0axW4kmwhj7
+ 27V43f4/xVcTMXh0K1g8lLXsTbQroN8O9eroJZm4MADEQX0STHlJ+9jj48yZjSZF6s49MIlRE4
+ xErR6Mrno+3c+nv72Jd0lz98dbNsH+Ktr7XsAAAA=
+X-Change-ID: 20261110-spi-bcm2835-kdoc-return-65e2d032b331
+To: Mark Brown <broonie@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>
 Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Stefan Wahren <wahrenst@gmx.net>, linux-rpi-kernel@lists.infradead.org, 
+ linux-spi@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Tomasz Unger <tomasz.unger@yahoo.pl>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794345554; l=2837;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794346383; l=2216;
  i=tomasz.unger@yahoo.pl; s=20260311; h=from:subject:message-id;
- bh=RocfDV3azCnjucfftjAZPZe8YGko7H2P/b4rxHKfH8U=;
- b=h2QOzDW24W7rG41ySRcTZCNWEtaG0XaPi1AuLa58B3EP6/wX8AIeb1IxJBnLjJNBZE6H+Ohq7
- PyWe4wKd88HCJuV6Nwd+qBIuFoZe8JOvwJHAz0eR5TA6DBhI0S6Yg9v
+ bh=4NSC/saUCRz8KXKyYCJXbVeWomSvFe+rreCZagXgyQ8=;
+ b=qMXOG/iy83N1K4B/M1Psk1OjG1XoVgzqIqmJlTXqi7/4QHM2uvC/37WX+tt9h9YEhXkZPcir7
+ 10iRLpsXXOkBvYPai6woeUCBJ51cC1LQnqpxiy/Z8lhBuB8T5St/AuZ
 X-Developer-Key: i=tomasz.unger@yahoo.pl; a=ed25519;
  pk=EPPsO91uz/0J2cTQ6ol+dgxYaieEc9dKSXWUb51n46c=
-References: <20261110-rpi-fw-kdoc-return-v1-1-ea77334d63b5.ref@yahoo.pl>
+References: <20261110-spi-bcm2835-kdoc-return-v1-1-dffdfcc36233.ref@yahoo.pl>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_131922_431889_E72E9E30 
-X-CRM114-Status: GOOD (  13.56  )
+X-CRM114-CacheID: sfid-20261110_133308_733092_890A2B25 
+X-CRM114-Status: GOOD (  12.70  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,74 +113,58 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-scripts/kernel-doc -Wall reports four functions in this file with no
+scripts/kernel-doc -Wall reports two functions in this file with no
 description of their return value:
 
-  rpi_firmware_property_list()
-  rpi_firmware_property()
-  rpi_firmware_get()
-  devm_rpi_firmware_get()
+  bcm2835_spi_prepare_sg()
+  bcm2835_spi_transfer_one_dma()
 
-Add a "Return:" section to the first two. The last two already describe
-the return value, but in a free-form "Returns NULL is ..." sentence that
-kernel-doc does not recognize. Convert it to a "Return:" section and fix
-the "is" -> "if" typo while at it. For devm_rpi_firmware_get() also
-mention that NULL is returned when registering the devm release action
-fails.
+bcm2835_spi_prepare_sg() already describes its return value, but in a
+"Return 0 on success ..." sentence that kernel-doc does not recognize.
+Convert it to a "Return:" section.
+
+bcm2835_spi_transfer_one_dma() has no description at all. It returns 1
+once the DMA transfer has been started, which tells the SPI core that
+the transfer is still in progress and will be finalized later by
+spi_finalize_current_transfer() from the DMA completion callbacks, or a
+negative error number. Document that.
 
 No functional change.
 
 Signed-off-by: Tomasz Unger <tomasz.unger@yahoo.pl>
 ---
- drivers/firmware/raspberrypi.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/spi/spi-bcm2835.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
-index 443459c8c90f..61c0e1f7b3e3 100644
---- a/drivers/firmware/raspberrypi.c
-+++ b/drivers/firmware/raspberrypi.c
-@@ -85,6 +85,8 @@ rpi_firmware_transaction(struct rpi_firmware *fw, u32 chan, u32 data)
-  * don't need to be supplied, just the actual tags for your operation.
-  * See struct rpi_firmware_property_tag_header for the per-tag
-  * structure.
+diff --git a/drivers/spi/spi-bcm2835.c b/drivers/spi/spi-bcm2835.c
+index cc5748973281..8d4456bbe572 100644
+--- a/drivers/spi/spi-bcm2835.c
++++ b/drivers/spi/spi-bcm2835.c
+@@ -666,7 +666,8 @@ static void bcm2835_spi_dma_tx_done(void *data)
+  * @is_tx: whether to submit DMA descriptor for TX or RX sglist
+  *
+  * Prepare and submit a DMA descriptor for the TX or RX sglist of @tfr.
+- * Return 0 on success or a negative error number.
 + *
-+ * Return: 0 on success, or a negative error code on failure.
++ * Return: 0 on success or a negative error number.
   */
- int rpi_firmware_property_list(struct rpi_firmware *fw,
- 			       void *data, size_t tag_size)
-@@ -148,6 +150,8 @@ EXPORT_SYMBOL_GPL(rpi_firmware_property_list);
-  * This is a convenience wrapper around
-  * rpi_firmware_property_list() to avoid some of the
-  * boilerplate in property calls.
+ static int bcm2835_spi_prepare_sg(struct spi_controller *ctlr,
+ 				  struct spi_transfer *tfr,
+@@ -766,6 +767,10 @@ static int bcm2835_spi_prepare_sg(struct spi_controller *ctlr,
+  * has finished, the DMA engine zero-fills the TX FIFO until it is half full.
+  * (Tuneable with the DC register.)  So up to 9 gratuitous bus accesses are
+  * performed at the end of an RX-only transfer.
 + *
-+ * Return: 0 on success, or a negative error code on failure.
++ * Return: 1 if the transfer was started and is still in progress, in which
++ * case it is finalized from the DMA completion callbacks, or a negative error
++ * number.
   */
- int rpi_firmware_property(struct rpi_firmware *fw,
- 			  u32 tag, void *tag_data, size_t buf_size)
-@@ -373,7 +377,8 @@ EXPORT_SYMBOL_GPL(rpi_firmware_find_node);
-  *
-  * The reference to rpi_firmware has to be released with rpi_firmware_put().
-  *
-- * Returns NULL is the firmware device is not ready.
-+ * Return: pointer to the rpi_firmware structure, or NULL if the firmware
-+ * device is not ready.
-  */
- struct rpi_firmware *rpi_firmware_get(struct device_node *firmware_node)
- {
-@@ -405,7 +410,8 @@ EXPORT_SYMBOL_GPL(rpi_firmware_get);
-  * @dev:              The firmware device structure
-  * @firmware_node:    Pointer to the firmware Device Tree node.
-  *
-- * Returns NULL is the firmware device is not ready.
-+ * Return: pointer to the rpi_firmware structure, or NULL if the firmware
-+ * device is not ready or the release action could not be registered.
-  */
- struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
- 					   struct device_node *firmware_node)
+ static int bcm2835_spi_transfer_one_dma(struct spi_controller *ctlr,
+ 					struct spi_transfer *tfr,
 
 ---
 base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261110-rpi-fw-kdoc-return-d171b914f4ca
+change-id: 20261110-spi-bcm2835-kdoc-return-65e2d032b331
 
 Best regards,
 --  
