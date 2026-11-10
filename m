@@ -2,94 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF403606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D0F606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:53:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pb7RtktR;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=S/0Lb/4h
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Kshnn55N;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VJjp+DdD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Jomqh3EBPc599hlxv7mE3jDDZh0m6vOE0Julqd7EtAs=; b=pb7RtktRnBBnSWbMxaR3V3nlya
-	wCPefHB1v9ksic06nl/kYu+iGpdAvdv0HjQ67YetvZaWuyQl90/r7ntd+PJp1rZ2GhzPmxndFfFkP
-	2UNydqN0KXdeMXbEhrD7rq2jl1CnMkXnm08rShd1TDloIK5aZz5IYFHvdKz9diPcM30EBDbw061GI
-	dub5NG9ocpAIDPYeO+GziC3Dem6VJc9VrbYYBxZJ+FCnRtzXLDprwqTCvb38c3RJMOT4+4OzFNpig
-	lrgDOsXu2Y3BMON9SfvQeFMqFNNCSbgbAAif/UUEOjElX7SMu7/enqiBdnDsLpRPgcYT5AI5Ms/yv
-	ZkDMbt3Q==;
+	bh=OSpKYXI3x3Ecj0mIg6ainswFmOqXcHcy2xxyXft9chA=; b=Kshnn55NTvfVVJcgZeIl73LP5q
+	LGbTWVbdkWyA98Fc1IdEk/lb8LkoZZKodSa5532L+GbgIUvDUakwi7WnA+HHNpN77cFgsMMXkMEFU
+	b/H8fE7GtOj+DqF3dffxb12DO4v27+ZJV+z34ax/pR6gM9WdTN3pqV81E/S6CLK70GeDnzr+AWFiQ
+	RsNGrQfvt9g+zrkY5uug75P34Czk03KkUwSfFpG4HxsGKLni80D8Z4XiREQQCmttFNqwVw6AvXnFa
+	r8U7d2PjFLGKSVDiyWfpDYGvwQZfRplizz1drbtzOBdRzQ8YMMBPmesIF0LxYbtYihnrFcgLMp7HC
+	+2VyIGsw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe0E-00000002RxW-2aNj;
-	Tue, 10 Nov 2026 05:02:38 +0000
-Received: from mail-ej1-f69.google.com ([209.85.218.69])
+	id 1xQeXa-00000002Xi4-15eR;
+	Tue, 10 Nov 2026 05:37:06 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdzx-00000002RQY-09ci
+	id 1xQeXT-00000002Xe8-2CcI
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:02:24 +0000
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-c40285df2a0so96845066b.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794286938; x=1794891738; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Jomqh3EBPc599hlxv7mE3jDDZh0m6vOE0Julqd7EtAs=;
-        b=S/0Lb/4hoJAQatZ84H7WmmxaG0vjXVeBySIlLVJn9Alp2Fuw3buz77nNeCw0kWpKCI
-         tx3oaDXeeXLfQWMkyxN0c5tFmOC4oik4PpAYX9oElMMrZREbtd7NJpx/WJUVLaZWilv9
-         URiNDC7ZgkSH6w2cNhtONGlSE9EGgPEWACyppmyOoJ+jn+UBPCq5B+eKmxOWAgK37a4o
-         qx9zE1BlWgO+ZXCxevhH5XP6mt2OL2ZlCub02DKcIXpEGMu5KQzMg7K+W0lUMO0nUqJA
-         Px8EexLtDdeVrQlq6O7xHXHL6qRr8UP3WB4lNT1SsK7rWnLNWd0vlnqeB3+R3XkKwTwW
-         KZIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286938; x=1794891738;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Jomqh3EBPc599hlxv7mE3jDDZh0m6vOE0Julqd7EtAs=;
-        b=le4Jj6kJQ4Py1pwyvp2igtxxxAdRBHNiVg5zAgNcoTbzpdoCFsne4n3M8LoZ+CYVbM
-         ntvjwGqOMYPL02WGAq7LxmBRjFhbgNuWKJoEabmz9O0y0V1EKoe/FgfVAKGfZ66cokpH
-         73yI6HjYby3uvRuHU9dUQOOekDK2+tqINHifmkchcsz9sW25h9+sE+irnm/H7Aqr2H5O
-         sWrfl80DQYryU+GXvbZm4IPqo63smadwAZyhnkVwawfNE92tIFiB68UXmh6siRYVrB2q
-         UMeZvkabJM2gbMTisx2feKd7niC+mpLCABuuh/1zlxFJNUO5C6CY+jkEvqTBfUAOvmII
-         K6pQ==
-X-Forwarded-Encrypted: i=1; AL+hErHm6QGylse4WzDZX1yEK71INzMuQ3K0tCmkEDIPqc9oH7xtEf33afLmjWrlRVbdKR6g/UlsHl+P/9g3gxJMFvbL@lists.infradead.org
-X-Gm-Message-State: APuU4Z80EizJzTfLNVH3eTVPWF7hjblhGIHNBfcPpRf7DqglGG+0wiE5
-	Jfrm/Aw/9KR+bo2nJzqZJfq34nF7a/xqAylGOkXZ35L2VcGxkuZDYm2Z5spg1oDGiF8kmGCcTxA
-	xpb6be76SYyv8HfLWPg==
-X-Received: from edzg2.prod.google.com ([2002:a05:6402:902:b0:6b5:8540:2bf])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:3d8f:b0:c48:a838:c16d with SMTP id a640c23a62f3a-c5049629dbbmr100182566b.30.1794286938072;
- Mon, 09 Nov 2026 21:02:18 -0800 (PST)
-Date: Tue, 10 Nov 2026 05:01:55 +0000
-In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
+	Tue, 10 Nov 2026 05:36:59 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9CD386123A;
+	Tue, 10 Nov 2026 05:36:58 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794289018;
+	b=dt8w4RNUTqN3t9DnCvLVUZ1bRegJye3/A736OfGO5E260Tg+sxyiv3irZyTa4IRlnaMA
+	 /e6O/zT/OoisIaHuUSHpmyXAT84Gs3xQYDWVDD498G/eM/LQyogAHe5Ax3eJsZYqI35/s
+	 4LdivQmnN2HO1ZZ42FIFOfrbEGmUI12LSG7fFPDFHbXZ07fs2ZVM3mtAn+CfgB7EExX2Z
+	 4VMhJg0rtp4mXG4lxpvWMH4j+vUPfZ5m/2vnrCXFlmy4v4ptKdU/HqGolDNOzqeuqBzdQ
+	 SpZGn/QkRJGBHFFjMc57jQ27GRxw/g13gJ928Rz82TxUQ64jGxCltJFXJFEqyqVlK9g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794289018;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=OSpKYXI3x3Ecj0mIg6ainswFmOqXcHcy2xxyXft9chA=;
+	b=zLLF4M7jP6ubtDeEvIZo7Zm9nUJIpHNymhdltwQTRlg/BnOyUQwaJqMhpaT/BcOkXGB8
+	 5zfGxZhlft0uZQkWbriZUpYF8u9RNFSRmsNWxaMcta+Pb9/fQvypaLNy90vErDxm5bxIV
+	 YF2Af90iWCZPU3ZvL/gtlT7kF/p4pwC6kECRrG6/7zyFXnD3J94Q34P28XmE8p2EpXvkB
+	 BEt5ST9eIlYfO1kTF6Bw5nJJFuQrFKAjc95pxCjMEVYHIj0iNgzL8BxNNf4cqHkynmEnz
+	 qInqHRKByu/0ntBEx9P5zIwyg3Axf1lEFU3Fj5bCqQerZnh+f/E7GLoLkwlIgjaPAuQ==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 367431F008A3;
+	Tue, 10 Nov 2026 05:36:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794289018;
+	bh=OSpKYXI3x3Ecj0mIg6ainswFmOqXcHcy2xxyXft9chA=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=VJjp+DdDu/Pu6+JPiauzdq1uEksOgP/72B2Ir6+ze7MBnjNa2ozzdlAdw9rLfeven
+	 fCVEq1lcYuZFAVkilirGUEu4SYanAA0hpdOY/FbmF7xdzphmtHLsMfA8qSB3d3GgbP
+	 4r4wH0eqv/qHODS5LC4FyNrV4QBDnnEI5/TybGKC2dRDvwKIsjqC3qry8SPTF4sFBX
+	 uBNYr48Ltnet8mop8cFTBKxmCuqpwbCfscq68YNDVZKyY0X16Tm9r/bPmqbBzmNWg1
+	 +TshdqiUq3w3sVPp87oftmkXuO2iDErqWWco5pA+vN/LU21vbwlEgBkANxVIt5+CQJ
+	 NMZE/CqnkpsZA==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id B5D9B488A7;
+	Tue, 10 Nov 2026 05:36:56 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Tue, 10 Nov 2026 05:36:57 +0000
+Subject: [PATCH 3/8] arm64: dts: allwinner: h616: Add GPU OPP table
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com>
-X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
-Message-ID: <20261110050202.529473-13-tarunsahu@google.com>
-Subject: [PATCH v4 12/19] liveupdate: Add feature header to struct luo_file_ser
-From: Tarun Sahu <tarunsahu@google.com>
-To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
-	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
-	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
-Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
-	Tarun Sahu <tarunsahu@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_210221_100807_D3A8D787 
-X-CRM114-Status: GOOD (  16.05  )
-X-Spam-Score: -9.5 (---------)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261110-h616-zero2-dt-v1-3-05506d760f21@gmail.com>
+References: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
+In-Reply-To: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289015; l=2428;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=23p6G19W/X5hVV956J5zGWaQGs0tQIUlVjJ9HWVYKfQ=;
+ b=8apyikkzCyhldeAVIUTaFmRzkEFvnGO4kw+znwYqqhpT0t68S1QDbKycHAhn6MN99cULwYknH
+ 13GJTHHPRArCdEYI5rpOElmLJMgxPZzdknOrSbhz7MeuPThdomkxYCV
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,135 +111,105 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Precede each serialized file entry in a LUO file set KHO block set with
-struct kho_ser_hdr via DECLARE_KHO_SER so future per-file metadata
-features can append fields to struct luo_file_ser without breaking
-compatibility between adjacent kernels.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Initialize file set block sets with kho_ser_size(luo_file_ser), initialize
-each entry feature header in luo_file_freeze(), and validate the incoming
-feature header in luo_file_deserialize_one() before accessing the struct
-luo_file_ser payload.
+Add the operating points of the H616/H618 Mali-G31, so that boards can
+enable GPU DVFS through panfrost devfreq: 306 to 600 MHz at 810 to
+950 mV. The table is the one of the vendor images (as recovered from a
+KickPi K2B image, also carried by Armbian), and follows the H6 GPU OPP
+table in using <target min max> voltage triplets with a common 990 mV
+maximum, so a board can raise the minimum of the GPU supply without
+losing operating points.
 
-Signed-off-by: Tarun Sahu <tarunsahu@google.com>
+Like sun50i-h616-cpu-opp.dtsi, the table is in a separate file that
+boards include once their GPU supply is described.
+
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- include/linux/kho/abi/luo.h  |  6 +++---
- kernel/liveupdate/luo_file.c | 26 +++++++++++++++++++-------
- 2 files changed, 22 insertions(+), 10 deletions(-)
+ .../boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi    | 62 ++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
-diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
-index bd19211c64e1..38b4658183a2 100644
---- a/include/linux/kho/abi/luo.h
-+++ b/include/linux/kho/abi/luo.h
-@@ -92,6 +92,8 @@ DECLARE_KHO_SER(luo_ser, 24, 0, 0);
-  * @compatible:  File handler compatible string.
-  * @data:        Private data
-  * @token:       User provided token for this file
-+ *
-+ * Preceded by &struct kho_ser_hdr.
-  */
- struct luo_file_ser {
- 	char compatible[LIVEUPDATE_HNDL_COMPAT_LENGTH];
-@@ -99,9 +101,7 @@ struct luo_file_ser {
- 	u64 token;
- };
- 
--static_assert(sizeof(struct luo_file_ser) == 64);
--static_assert(!IS_ENABLED(CONFIG_64BIT) ||
--	      __alignof__(struct luo_file_ser) == 8);
-+DECLARE_KHO_SER(luo_file_ser, 64, 0, 0);
- 
- /**
-  * struct luo_file_set_ser - Represents the serialized metadata for file set
-diff --git a/kernel/liveupdate/luo_file.c b/kernel/liveupdate/luo_file.c
-index 02d09a80d785..2da327f8bdae 100644
---- a/kernel/liveupdate/luo_file.c
-+++ b/kernel/liveupdate/luo_file.c
-@@ -486,10 +486,12 @@ int luo_file_freeze(struct luo_file_set *file_set,
- 	kho_block_set_it_init(&it, &file_set->block_set);
- 
- 	list_for_each_entry(luo_file, &file_set->files_list, list) {
--		struct luo_file_ser *file_ser = kho_block_set_it_reserve_entry(&it);
-+		DECLARE_KHO_SER_HDR(luo_file_ser, *fhdr) =
-+			kho_block_set_it_reserve_entry(&it);
-+		struct luo_file_ser *file_ser;
- 
- 		/* This should not fail normally as blocks were pre-allocated */
--		if (WARN_ON_ONCE(!file_ser)) {
-+		if (WARN_ON_ONCE(!fhdr)) {
- 			err = -ENOSPC;
- 			goto err_unfreeze;
- 		}
-@@ -502,6 +504,8 @@ int luo_file_freeze(struct luo_file_set *file_set,
- 			goto err_unfreeze;
- 		}
- 
-+		kho_ser_init(fhdr, luo_file_ser);
-+		file_ser = kho_ser_payload(fhdr, luo_file_ser);
- 		strscpy(file_ser->compatible, luo_file->fh->compatible,
- 			sizeof(file_ser->compatible));
- 		file_ser->data = luo_file->serialized_data;
-@@ -742,11 +746,19 @@ int luo_file_finish(struct luo_file_set *file_set)
- }
- 
- static int luo_file_deserialize_one(struct luo_file_set *file_set,
--				    struct luo_file_ser *ser)
-+				    DECLARE_KHO_SER_HDR(luo_file_ser, *fhdr))
- {
- 	struct liveupdate_file_handler *fh;
- 	bool handler_found = false;
-+	struct luo_file_ser *ser;
- 	struct luo_file *luo_file;
-+	int err;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi
+new file mode 100644
+index 000000000000..511174eee271
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-gpu-opp.dtsi
+@@ -0,0 +1,62 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++// Copyright (C) 2026 Arun Iyengar <aiyengar1990@gmail.com>
 +
-+	err = kho_ser_validate(fhdr, luo_file_ser);
-+	if (err)
-+		return err;
++/ {
++	gpu_opp_table: opp-table-gpu {
++		compatible = "operating-points-v2";
 +
-+	ser = kho_ser_payload(fhdr, luo_file_ser);
- 
- 	down_read(&luo_register_rwlock);
- 	list_private_for_each_entry(fh, &luo_file_handler_list, list) {
-@@ -810,7 +822,7 @@ int luo_file_deserialize(struct luo_file_set *file_set,
- 			 DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr))
- {
- 	struct luo_file_set_ser *file_set_ser;
--	struct luo_file_ser *file_ser;
-+	DECLARE_KHO_SER_HDR(luo_file_ser, *fhdr);
- 	struct kho_block_set_it it;
- 	int err;
- 
-@@ -848,8 +860,8 @@ int luo_file_deserialize(struct luo_file_set *file_set,
- 	 * reliably reset devices and reclaim memory.
- 	 */
- 	kho_block_set_it_init(&it, &file_set->block_set);
--	while ((file_ser = kho_block_set_it_read_entry(&it))) {
--		err = luo_file_deserialize_one(file_set, file_ser);
-+	while ((fhdr = kho_block_set_it_read_entry(&it))) {
-+		err = luo_file_deserialize_one(file_set, fhdr);
- 		if (err)
- 			goto err_destroy_blocks;
- 		file_set->count++;
-@@ -883,7 +895,7 @@ int luo_file_deserialize(struct luo_file_set *file_set,
- void luo_file_set_init(struct luo_file_set *file_set)
- {
- 	INIT_LIST_HEAD(&file_set->files_list);
--	kho_block_set_init(&file_set->block_set, sizeof(struct luo_file_ser));
-+	kho_block_set_init(&file_set->block_set, kho_ser_size(luo_file_ser));
- }
- 
- void luo_file_set_destroy(struct luo_file_set *file_set)
++		opp-306000000 {
++			opp-hz = /bits/ 64 <306000000>;
++			opp-microvolt = <810000 810000 990000>;
++		};
++
++		opp-336000000 {
++			opp-hz = /bits/ 64 <336000000>;
++			opp-microvolt = <810000 810000 990000>;
++		};
++
++		opp-360000000 {
++			opp-hz = /bits/ 64 <360000000>;
++			opp-microvolt = <820000 810000 990000>;
++		};
++
++		opp-384000000 {
++			opp-hz = /bits/ 64 <384000000>;
++			opp-microvolt = <830000 810000 990000>;
++		};
++
++		opp-420000000 {
++			opp-hz = /bits/ 64 <420000000>;
++			opp-microvolt = <850000 810000 990000>;
++		};
++
++		opp-456000000 {
++			opp-hz = /bits/ 64 <456000000>;
++			opp-microvolt = <870000 810000 990000>;
++		};
++
++		opp-504000000 {
++			opp-hz = /bits/ 64 <504000000>;
++			opp-microvolt = <890000 810000 990000>;
++		};
++
++		opp-540000000 {
++			opp-hz = /bits/ 64 <540000000>;
++			opp-microvolt = <910000 810000 990000>;
++		};
++
++		opp-576000000 {
++			opp-hz = /bits/ 64 <576000000>;
++			opp-microvolt = <930000 810000 990000>;
++		};
++
++		opp-600000000 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <950000 810000 990000>;
++		};
++	};
++};
++
++&gpu {
++	operating-points-v2 = <&gpu_opp_table>;
++};
+
 -- 
-2.56.0.506.g506a7eabc5-goog
+2.55.0
+
 
 
