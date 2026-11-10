@@ -2,143 +2,135 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9A3D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29194606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z2R7jrkw;
-	dkim=pass (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=WMKlusXW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bemZEBhO;
+	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=cgC+Y2WX;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=kE/mRSPY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=AakoS8URjXe4KfYhkU7uhKWXv627gMWYPKeVg6j0H7g=; b=Z2R7jrkwz/4fnknDc/6Qwy0oSe
-	IXRCxxM1vppXWVDutSnT3aGkRkUNbOLKKxJ+6on63YtxACBlAX09G6GVO57aV8E3fnhCfpbWbLZIm
-	AE5D7GFwI2tsFkg3ZuE1WnI3wPx9GGSsaEqOEj6tuX5syXxR4GKNw80rK6XG/BMEu3uIVbQbG5fht
-	kWOJIoz7XQtIW4BB0zAbF8NRNB5LGA+CjSDIrxSeylPzYHg1eK9YZiOXuq89MV/VO0z4v+qEpPCKG
-	jeuqR+Fkle+pqTsbYhWfos6gAVjXj2NZnoUl8pXLmctk0iwQutES86X8API07hmuuyFRypPv7DNI6
-	3Q67Ka4w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=tb236Dm5vjk3jIJHIZtBKJRyeMEkcz2Hz6AmSpXUM38=; b=bemZEBhOW2rXnu
+	kpm209x4rDykGyCQkde2eCYmqmLypOovzUTu7dx0WHC7S6hU+/AQ1sVwJmxgcg/UjC761iqhGMRAy
+	PHP/9LYqFJtgIOK+NjbjVbfXg5q7XL0sBcNbx9dDkHPQCjMSnOyLIEh6q/0laoecFWwXnGgAPc7wS
+	Dtbnsz7taQuNCUDy9Iu4z0Ggv1TaNzcCPebSbUuoOfSh3AOYmKjIM6VXeS6Sn91pLbtxBxypYI3FI
+	4h28O5eHH/sO7VSIklNRut8f+Mj1DkMoHHYy6fv0bsdb7XzmEkgUBKnqvsliwJoJocT9wF7NQdMUW
+	URUEPrXyKI//XajHz1mA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhUx-000000039mX-1i2h;
-	Tue, 10 Nov 2026 08:46:35 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xQhVV-000000039vl-2OQ1;
+	Tue, 10 Nov 2026 08:47:09 +0000
+Received: from fhigh-a5-smtp.messagingengine.com ([103.168.172.156])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhUs-000000039kO-3gbm
+	id 1xQhVS-000000039uE-3Cep
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 08:46:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=g7QtENwmK6mU50nvTRHj+5gepYI7nu2deLB5LCONvt6UNIT4WZJOm46wcYmTVz5n0ochCu0OuTARdi+tb6S3/lq7XhnF0lvqgf6obcOghtvHHXNrhLDWLZP1fHlarZlfpkF/+xeK4uvP3dwJQoEgniMq1AVl93Jh6Ei6c/Vk+fFVhRLAZz+gvKRWAt6ZK7N4aHPeEZN6c21vrzeqRrpqWIGQ6CEbF61j+lFwc7Ok0bMy+BApQ7FeWNLa6KDk6UZW9UmiEmjdLk3aIdxM/elJ7Mxvu/Sa37nrLxYTWxGWSnHU1bntXCQBkDz99HJpCeE8GadFAknpV9uKrerphpabvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AakoS8URjXe4KfYhkU7uhKWXv627gMWYPKeVg6j0H7g=;
- b=NX3AhUm3T+8a+1/b8HDRuRxrNlKy7M7wIPUKAro9ZLHH3vZ2dHGLe6+fgSTwQyYi72j1ovcNxA2es4E+zsmY24i555oW/W6U/DAJDbrSXVj7ASWD+L+fwrlLFHrWJEWg8KTVcDeqAep7No04PVT8hTGr5vxZdnbRkIpet6uvahB+VJK7ozlb79zcQI0qIcLZkMR0YprIby2qCl8ceAZ4yfRI6G2xL8wbhSsqnMk0SDGptivfGkiUaVdSd4L3x8ghASdDKIEy/q4lJzyNqarzRbwEifLm7EeoAbJUy33EjA6XjcjDjM4y5N8ODe0Be8NW4ZnzySbJNJoRALcoCJdNIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AakoS8URjXe4KfYhkU7uhKWXv627gMWYPKeVg6j0H7g=;
- b=WMKlusXWuXdZy0XnYg56h+HwWS42G98lAlYan7Z0p+EbyFoKm31WibED9jkSYc3pkcHn0nR3WNAv7TfS6hKtBO/1yDUPOEDRg8BYfiuK771vMcPtIkGCv9tNwDeJsJ7g/NMnWRYZ3TZoJB5OiZMmX5yj0brEekA4BEbQwUQjAH//yglYHmDQZ2UiC7GmhHekyypcT+JbbXb57VK/pJzqBBJPxtnU9iDFBxyZ8blAdagz7Gn62rVQDs7E0Xo9mP9JJX1iSk3mGLdbSzlHiwl100ceVe0r5hGPWZZwAAhDfdNi50svNYtlVO8qNF68JYaKajtZ2Lk7ELT8iLkyKE6x0Q==
-Received: from AS4PR04MB9338.eurprd04.prod.outlook.com (2603:10a6:20b:4e6::17)
- by AS8PR04MB8851.eurprd04.prod.outlook.com (2603:10a6:20b:42e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Tue, 10 Nov
- 2026 08:46:20 +0000
-Received: from AS4PR04MB9338.eurprd04.prod.outlook.com
- ([fe80::7c4c:9c56:8552:f680]) by AS4PR04MB9338.eurprd04.prod.outlook.com
- ([fe80::7c4c:9c56:8552:f680%7]) with mapi id 15.21.0592.012; Tue, 10 Nov 2026
- 08:46:20 +0000
-From: Wei Fang <wei.fang@nxp.com>
-To: "Wei Fang (OSS)" <wei.fang@oss.nxp.com>, Clark Wang
-	<xiaoning.wang@nxp.com>, "andrew@lunn.ch" <andrew@lunn.ch>,
-	"olteanv@gmail.com" <olteanv@gmail.com>, "andrew+netdev@lunn.ch"
-	<andrew+netdev@lunn.ch>, "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>, "kuba@kernel.org"
-	<kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"horms@kernel.org" <horms@kernel.org>, "richardcochran@gmail.com"
-	<richardcochran@gmail.com>, "linusw@kernel.org" <linusw@kernel.org>
-CC: "imx@lists.linux.dev" <imx@lists.linux.dev>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linuxppc-dev@lists.ozlabs.org"
-	<linuxppc-dev@lists.ozlabs.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v6 net-next 0/9] net: dsa: netc: add PTP support for NETC
- switch
-Thread-Topic: [PATCH v6 net-next 0/9] net: dsa: netc: add PTP support for NETC
- switch
-Thread-Index: AQHdazfZzWTjAGf+JkC6X61TwLJlT7cnCJ4A
-Date: Tue, 10 Nov 2026 08:46:20 +0000
-Message-ID: <AS4PR04MB9338322C1A3ADEDCE79D9F3188722@AS4PR04MB9338.eurprd04.prod.outlook.com>
-References: <20261103021024.3121936-1-wei.fang@oss.nxp.com>
-In-Reply-To: <20261103021024.3121936-1-wei.fang@oss.nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_Enabled=True;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_SiteId=686ea1d3-bc2b-4c6f-a92c-d99c5c301635;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_SetDate=2026-11-10T08:43:15.0000000Z;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_Name=NXP
- Confidential;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_ContentBits=3;MSIP_Label_0d9c909a-577b-4ba2-96de-69ada94b137a_Method=Standard
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS4PR04MB9338:EE_|AS8PR04MB8851:EE_
-x-ms-office365-filtering-correlation-id: d68afd5a-22e6-4c47-618d-08df3f071775
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|19092799006|376014|366016|7416014|23010399003|1800799024|6133799003|10067099003|18002099003|22082099003|38070700021|921020|261021121427099003|56012099006|261022105027099003|261026121527099003|261026140227099003|261028144727099003|261009223027099003|261102130727099003|11063799006|261102123227099003;
-x-microsoft-antispam-message-info: +AAeBiCIofBwdhYirJIyYa6b33qIj5EbmDwmjkdWcjT6Na0wLGAJ7S1xWJ4McYEuLaee56RcfaIAi5Tv50PoL4/sZSM7iWauHc2hGYiKWWBOH1ArUSqiv+s3opGDDXdBE4gkhDQffevvAJNHJsHhRtXyS4FojC9t61N/xOfp4p6QYmWBnLETG9zB5yaRvr7+7OVzREQ5HJmw8hpoAagBevdO89dMGgqZFcha/j8b5DoF5OOnoMgT7/OqeCwk+WZlTlEG7OMEqHxdnXH52aMNNX3Y6COgw90CfHgMJt9Shi+G+AvNDW27GmqOz+8QYzc2bUFTJY4Fer4O2YBULndrjMQQgWhZc3Dgkokx88tQ+KFEzse/K82ApYWlMlXIHU4j5tiopRZy32lEBTYxi7HuqqilmIxCqmYZSZuZBvYzZd4E8xxNNygj+Em7FqBvZTqWYIPn1pACBif871GviZf72mZ++GGWVfuSNypP9fSX9yDiCnxebdF77BZ44O/N2m3ajDskbtRacxTD1uRlIq7sfV/gi9jZH06Ux4ben4cMLciOlt7w8gUUOsUUSvzNBzhFo1Qvp9LpLW0wHxRuctZmpjzfyeQe7hD7NdX0p0Au7lsjRbqeXEtW4jv19SI4qjHEm3vv+GObksZ7kxdQaWo74ieVrD8yMxwcjpvuizMqCWzN8EGNtXbxFxHkrZ7GoYzP
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9338.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(366016)(7416014)(23010399003)(1800799024)(6133799003)(10067099003)(18002099003)(22082099003)(38070700021)(921020)(261021121427099003)(56012099006)(261022105027099003)(261026121527099003)(261026140227099003)(261028144727099003)(261009223027099003)(261102130727099003)(11063799006)(261102123227099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?4bDSI1tALlioVnLzxk4eD0fvnbIB5t7BMMPrptxwOEV2U6susj0nOG5IG/D3?=
- =?us-ascii?Q?ZS+ADcuU7/RHQ6QSPnugxpoixRp6A8U7a0DUEnQ18knKaFHVARRHPBR67WlV?=
- =?us-ascii?Q?nJilwDyewhx8kbf/GaQV6v9txMrIjCmDsH0NHbwTGQ/27C0jltw/QupkJl7Y?=
- =?us-ascii?Q?vZw/O7QdTulRP9pCBIozackzSP6WBkmkqOGDFIPpN6FAHNqG7A9r/6mKchlj?=
- =?us-ascii?Q?hoWuxlFVSexf5WGUo5In8g8Z79EJG8J2pGxrpWaumfGqrA9c3f4erFK/QEyW?=
- =?us-ascii?Q?ROMb+rSMrCyDgn2Nhl6ao5uxnQwMpXK75E/8G5fDmRUhgEqqWttc0AZJvQRx?=
- =?us-ascii?Q?rfChvSOvFDTPfhmRDGUg2gCNbAK6Vmn9p6hn8PfXJTNR/MKkjuiNMVJgjC97?=
- =?us-ascii?Q?QG8RuPcn3iGUcMWVEMrxfzAT+sbJulvN7U2r/vv9e/d8tXkhYch5eKn4W6O7?=
- =?us-ascii?Q?qAzHyyMu/T8+Wvw29RxXZ6M5FIt+6Oq6PZzLXDlLfg/akzy6ZChqwfUILwZL?=
- =?us-ascii?Q?+3mAST0mt9quSMavadrzQ2IcP5qZAqX0sbW18y65qetKlHi+ChIQxe4T9BW9?=
- =?us-ascii?Q?G1/2i+fsKG6GhlIk2pi45HrCNO3f0noz6+TTN2Q4E9rSaUGtzJdbOPn7Rx3B?=
- =?us-ascii?Q?CxEGawtNykX0HrC7t4iY1snkuxkNLSf+WMH4+crmBq1EKBZQwlKUoD0Aig7l?=
- =?us-ascii?Q?w6m8gjvqVKx8isW2EJQMcjH4Wk1AXF2ZEK91jvmnlsbsj7odc4PyUITOMMlE?=
- =?us-ascii?Q?L6UAg+163PztdpaSu8B7XdrdjgGx4ERLlniAhJ49DnoPvfDswybf65hd/1uG?=
- =?us-ascii?Q?+nnRjNX8pmNxsnHVHPquRGrSdCGR6texCUVQA/AUOIecuqBR2V6aofVa/RYv?=
- =?us-ascii?Q?CWdD2BcioiZGxTSTKFeNvGZLWZDIvviHCv0xjjKlj4EZ0Mr5NNPn7IBRTTlE?=
- =?us-ascii?Q?87J54PmPzlv6E7OUcltuROvdY5um5UFXRpJIZ9HnziHR1h+w5NYxJ3/s1ftK?=
- =?us-ascii?Q?SkkUudsaue0ZVOUONIHt4ECyUO5nbzrJRz2qwiZq7Svyvf9389nBfSfHQGZH?=
- =?us-ascii?Q?SbkEVDWbkL1FcIqe5SP8VI1gvFhb1SZrzcd5m28MQBK6ChNhcXbbdREh/9sH?=
- =?us-ascii?Q?2KFTzi+1ypPMmAQiEKkOO37F/2SR1XS5YVCaYdBvNER1HnqwcFgWmz3XTTzR?=
- =?us-ascii?Q?PRrwRT5AtFf5Hh36IeAJvvlTSIFq0nyYPZGjg/CG6NUKRpyn7iyBw6KVJuvs?=
- =?us-ascii?Q?LRg5bIqmXTCkEDeSqF/Z1yMXLEsgO+gc642jl9Lr2/unl/KN8xD6+dngJihz?=
- =?us-ascii?Q?NCq+sg1VCw6L8S7DqMtGE8L9RKwyXpMLrNvtxqmatSawTbpL37KTHlvFFyml?=
- =?us-ascii?Q?XTajP+6tQZYKzbNzkL51JfKLSc7HrmcXbBKpMF+Fa51n+JKX5ddiAbsB3PeW?=
- =?us-ascii?Q?jdNd8joQ8TSpjKVcV8xQHWLHu/5Oa6tiW4pHW7+xeTcbQhc2LW/FRVfMxFSZ?=
- =?us-ascii?Q?d/ScKrZLoTVhyYleZv+B7CZoqGNVJ3GOZLi+KVkwtFzbF09yH4TmBgMipwpY?=
- =?us-ascii?Q?ZwR6NsmlvK8KdugIovCwYNRPe6ByS9v/VL5WBDMxJsucbyPNiUx8TKD14lLU?=
- =?us-ascii?Q?Sug+LFoBvGPqt0qzLBem6dFUaKUISQnscU+Dklla5ohx3D8nsxBzrr3fWP+H?=
- =?us-ascii?Q?KcLAnoxVoG/y+4cby53tFbcxVoW720nvKd1Wp9+Fs/ADSaps?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	Tue, 10 Nov 2026 08:47:08 +0000
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id F153114000C1
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 03:47:04 -0500 (EST)
+Received: from ams-imap-03 ([10.64.2.23])
+  by ams-compute-02.internal (MEProxy); Tue, 10 Nov 2026 03:47:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1794300417;
+	 x=1794386817; bh=tb236Dm5vjk3jIJHIZtBKJRyeMEkcz2Hz6AmSpXUM38=; b=
+	cgC+Y2WXxO/XaImP2Gm48Wap91NQSiNuC5bPDsseRWrORVRfmbbWXNQosdG5qKP/
+	hl7uhyaxlhnj2qvg0FJGGYqsrVfkRvwFhB+uz8/ad2rq3j9nrobXhl4bnUUESCSN
+	T0U5W6qYyKx2vLFLMMhDYcE5TdpGVsbSeLJxM4JmLQizdUdU3NAuP4VboagSHVxS
+	bPWd/LYM0ebOe3n6OZhXv+8KZcVqqCgkO2hNRSoAOmN6nApW8F++nP7OL+Jghd1z
+	pv66YhkWVPXQ1emlHL2qpc3rc/c+PvBBIK+qcapDm2uNmPGNxQyZ3Oyd+m+Iad7s
+	XuxC1IjAIyaFtuGGL4DoQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794300417; x=
+	1794386817; bh=tb236Dm5vjk3jIJHIZtBKJRyeMEkcz2Hz6AmSpXUM38=; b=k
+	E/mRSPYeLWtnTujMQqC+6MeTrE+UKfjRBdR8AX8oroox+S1B0gYbl08nb+pcRFWP
+	dZLPqck94q+klISPxktsroSmqOP7Z/2DLr3haN8K+aTPWurrEXBonJR6JORXcPTS
+	ZPswAFAcZLo5kBsg+5vIHkAJitT6sLiq5hgG/L+dmMQzscTiqI/jmaVRRqx2+XIo
+	Th9MTu2LiBJhHy/Byeqs1Qx9aN86VSkuvuHEjysASJD5QdzXDdXJKGmjP9zS/qjp
+	ijm3wcGvpM95upb80dfIuR9dP7F0hEoCzvypNwmwiRX+k1ig6BlcVu+a0Lb2IdMj
+	sAfV6w58gdUr9wsdji2PQ==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=arndb.de a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1794300417; d=arndb.de;
+	mf=PGFybmRAYXJuZGIuZGU+;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:CV1QzkRU3bdxqJwCwrxsrZtnt6PlClII65zxbV/LIfDRRPk
+	/9rcJcaxx0j2mMT8T31HtYsYKaSAt/VEUVGlAzeGBNgIhpxH3Pkf2mr/5HkhkDUA
+	CPDnA4vQv/ZtxydY66+scIDEvxsrhbxbT13y7EM3nB4kvTLtlQb3SmeVMupcwEQn
+	mtLvDwrnkEBLJxk4ZYhMkg6lnG8PB+GfYR+lmM6Kn/OYLmpMUeX7tYGL52ubfbOa
+	ZbgFtANaj7gznL2q6Pq0hQ3UzdJQwIY9bdaNSGY7zZqWfCAV0+B10/4WN/AkgEM9
+	PFj0fOaMOJJ4Fjtp1bryN03zvLAHCnQRP4ZzHEQ==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:lERdrb9Ixmt/09H167x565OA+x+60OUGjeylKHspBT4=:/J/XjW7Q6CFdj+SNsM8IKlFX81NAeeVIkFwzukOjqaM=;
+X-ME-Sender: <xms:-tnyapZWpF7wmx-xErevIPpESn9od4WYUbneta5UlMF1DyZKOrXa7w>
+    <xme:-tnyarN1mrP318EQ7eZAOCEin2fmQvn7aELTkSzMqyVL64lXEQJ2yMdc0iXja-5Gj
+    d7-nprKmtLa84fScPVNtjUXWSgO9N11d5RbPOPKdjqQ4DN3wewilaxX>
+X-ME-Proxy-Cause: dmFkZTErx1dxoqSf6te9rXHPqp0f1SJG/nfdWjOU7ZalO87A+EP4qML1q0Z0D8gxg/nRWC
+    rvfIBrNbS4wqwUNlWo/9KOxDTwGOhlIXs8DwpTnxQBvdJ3XFf8AYcyH9uv5L2alR1WEZZY
+    YAOY30rhi9AKJC/pO2DdYe1oePMkSIa3oFgFKmZGPqe1XxtwiCj1GPkRLFipZntZWM+KeB
+    //2NuoZILEAf0rhOOLud9ax/noqUHj31GklZ/DeCrl5G8BdmbpNh8Mme3/E7sFzUdMddXc
+    gvZ8RE5e+VmIGYI8lt8iNh/6COeH4R247RPHZyeSvx7zMUO4KASDH+ZWhqu71g/24fjEmI
+    +VlonHM3LwH9lX8bzfkCxMXcl4KHEfqgf7CE05e5nPpb/S5YEQCcptGJyQg6OZ1igs50+Q
+    lcBBM7acbUOoBx+F6ko9cMQJIrV82q7SQ3QikYVWRL2vanSAs5ZHI5ymDoIqZf76vuZG3t
+    /6exr7ZlBOE1DMvqyYM0HB4FryKT1nQ3820ZBtrU0/rpK6SivFbfRI4vB8QLKpOKAG3cOK
+    NJKaspt85Zu4Gv41H3Tjmv+br8SL1kbryf3eyDw3xImDq2XrkWZASsGdjknHNxOpeEAHJ5
+    jWG3cIpSozZ1BvcfbolW73Kdtw2oqERaIbQK3jB9y5sQBDNsFx6WfAGVZXog
+X-ME-Proxy: <xmx:_dnyahLRQ_SqIpxW5ldaasvoRJZw1y8bu-mOJoR4YiYu1EifSHjXGQ>
+    <xmx:_dnyaqWHhl3huLu3H0ff75gGpVGetik4mBPIsIQFydiUv_9glx_SSg>
+    <xmx:_dnyauN3-clC1hcF9Et2ItV1Eo2XlWhsETg2vEftAmFAa-55UjXTxA>
+    <xmx:_dnyaukE-5Vt6vurldhKktgim6GhalK9eXVaAPjAJstnvs7nSAbjqA>
+    <xmx:AdryaksipLQyu4Nqkx8C9EgX_qlE2hcaQ_6UpkzGv2xMfKSJ-gW7ioKC>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id F034E32A0099; Tue, 10 Nov 2026 03:46:49 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9338.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d68afd5a-22e6-4c47-618d-08df3f071775
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Nov 2026 08:46:20.0362
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tqAGki/DtAjMazJQMph0Oj7YZcpVbdCGYTWKWMLilxvzkbVOnahXTmXrtnuDGRO5C2yqbIBaPOFsQuZbLIA0gA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8851
+X-ThreadId: A4QaHkHhrVgc
+Date: Tue, 10 Nov 2026 09:46:29 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>,
+ "Brian Masney" <masneyb@kernel.org>
+Cc: "Long Zhao" <longzhao@ambarella.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>, soc@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Jerome Brunet" <jbrunet@baylibre.com>,
+ linux-clk@vger.kernel.org,
+ "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@oss.qualcomm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ devicetree@vger.kernel.org, "Long Zhao" <zl020895@163.com>,
+ linux-kernel@vger.kernel.org, "Linus Walleij" <linusw@kernel.org>
+Message-Id: <c67939c7-9725-459e-97dd-e104f3b14022@app.fastmail.com>
+In-Reply-To: <bbc16906-45e2-4d81-ae81-ad93e87b13be@kernel.org>
+References: <20261105-cv75-soc-v11-0-aa6ee0b2380d@ambarella.com>
+ <179427375370.1061670.4050288038934218487.b4-review@b4>
+ <20261110-interesting-hilarious-shark-2dbfc0@quoll>
+ <7eeaf54d-2d7d-420c-a34e-eebc6dd0effe@app.fastmail.com>
+ <bbc16906-45e2-4d81-ae81-ad93e87b13be@kernel.org>
+Subject: Re: [PATCH v11 0/5] arm64: add Ambarella CV75 SoC support
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_004631_663507_06BD3EF2 
-X-CRM114-Status: GOOD (  19.12  )
+X-CRM114-CacheID: sfid-20261110_004707_053350_EB3C2AF6 
+X-CRM114-Status: GOOD (  15.54  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -150,52 +142,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> This patch set adds PTP timestamping support to the NETC switch, so that
-> the switch ports can be used for IEEE 1588 PTP synchronization.
+On Tue, Nov 10, 2026, at 09:27, Krzysztof Kozlowski wrote:
+> On 10/11/2026 09:23, Arnd Bergmann wrote:
+>> On Tue, Nov 10, 2026, at 09:02, Krzysztof Kozlowski wrote:
+>>> On Mon, Nov 09, 2026 at 08:22:33PM -0500, Brian Masney wrote:
+>>>>
+>>>> - I create a new shared immutable branch based on v7.4-rc1 and I can put
+>>>>   the first two dt-bindings patches in that. I merge this into clk-pile
+>>>>   (feeds clk-next) with --no-ff. The DTS folks will merge this immutable
+>>>>  branch as well.
+>>>> 
+>>>> - I can then merge patches 3 and 5 into clk-pile.
+>>>>
+>>>> - The DTS folks will take patch 4.
+>> 
+>> If the clk driver is required to boot, I would
+>> suggest having a branch with the two clk patches that
+>> can get merged (not applied) into both the clk tree
+>> and the soc/newsoc branch to put the other patches
+>> on top.
 >
-> The NETC switch has no time registers of its own and instead shares the
-> PTP time of the NETC Timer, which is a separate PCIe function driven by
-> its own driver. The first 3 patches prepare the Timer driver for this
-> role: tidy up its 64-bit register access, drop an ineffective reset, and
-> export netc_timer_get_current_time() so the switch driver can read the
-> current PTP time across the driver boundary in a race-free way.
->
-> The switch redirects PTP frames to the CPU through the ingress port
-> filter table (IPFT). A few patches harden and simplify the existing IPFT
-> and host flood handling first, then enable the ingress port filtering
-> lookup by default so PTP filter rules take effect without extra software
-> tracking.
->
-> On top of that groundwork, the switch driver gains RX timestamping and
-> both flavours of TX timestamping. Timestamps are carried between the
-> hardware and the driver through dedicated switch tags: the ingress and
-> transmit timestamps ride in To_Host tags, and per-frame requests ride in
-> To_Port tags. Two-step TX matches a queued skb clone against the
-> timestamp response echoed back by the hardware. One-step TX defers the
-> Sync frame to a per-port work, where the driver reads a fresh PTP time
-> and writes it into the Sync frame's timestamp field, then programs the
-> single-step register and transmits the frame so the hardware can add the
-> residence time to the correction field on the wire.
->
-> Together these changes let standard user-space PTP stacks drive hardware
-> timestamping on the NETC switch ports.
+> There is a build dependency - DTS needs clock binding
+> header - so it has to be second, unless the dependency
+> is decoupled.
 
-I saw netdev's Sashiko reported some issues [1], and I think some of them
-should be fixed or improved.
+Ok, I see. Let's go with Brian's suggestion then.
 
-[1] https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261103021024.3121=
-936-1-wei.fang%40oss.nxp.com
+For reference, I'd also be fine with the alternatives
+we mentioned. We've done all of those before:
 
---
-pw-bot: cr
+1. Include the actual clk driver in the immutable
+   branch to cover both compile-time and (potential)
+   runtime dependencies.
 
+2. Merge the initial clk driver through the soc tree
+   alone with an Ack from Brian.
 
-NXP Confidential
+3. Decouple the dts from the binding, using only
+   numeric clk IDs for the initial merge in 7.5,
+   start using the binding in 7.6.
+
+4. Merge the clk driver in 7.5 through the clk tree,
+   merge the rest in 7.6 through the soc tree.
+
+      Arnd
 
