@@ -2,73 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C560C606B9C2
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:33:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C25606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uTEugW4N;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=ItYCH+sa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yNHLSjFC;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=B3Wc5x5S
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=xh8F630yN77eRVLFRW+731lWzZ0fRCWqNCGE0dp/ZXc=; b=uTEugW4NWDy3VaHy7hcvuwZqVZ
-	2xjssoXGzJOTPwbJDACcJw21omVBzgo7QWTkvjyIPPk5Orp3fiQtZba7x8vnBGO4UAjIWvjBDmYXG
-	6CA26eK7j/0y2XtyhE8y4USgkrCnBUOwP6Za/8U2tAREYfURVy3YUHJ4y8EUjA81h/AU7yhMl+pKH
-	yKTWKpN3XCWJfH5QY5qK+4UzWN6pbxUwkuUyYt8ONkfhW+cWGUSD5qYwi9CtqyrC4c+5lBHF9hqiP
-	LK/FD0tO9til9JKn9zdx1s4pj0agpLcMSK9BW4lKtP4wgU9xlF6hiODJs9W28bru3Sk1WCqMEbAp6
-	z+wgaD8w==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=vbdtEbm5LIRul3kqOHVd2p7iN83nh9BlOv0Le65cRbo=; b=yNHLSjFCfr/KLJ
+	kEy4ZhKxw0cxuCIJTgX23AUZV7MfnHMf0LlSxZSLEVD1JxZY5lJNGXYrsGxYm1WxzFAPzil6+RSIX
+	bGv6RBmjNofey+w4l7xzMSQ1PloAVZqT0pbXZr/yas6WQ/qnsikyAjDO3c6ak/Cgyhu93f1d4lNBM
+	MKnLHoVAyJSSqwzdDHDbMCj++bA+cjusiqkVBnLc6Yhi2Ayl8Dq3mF9R4IY85tOsbxJ62JiS7ohpw
+	CIZkl4BZT2Az8WK60YcTf7j33sACaYxihUZ0gT+fSKU3FK/0Ttk5/sx5hCLq1JaN3GYcxkJD3gYo9
+	0kiIcUtK57RzKPgCRk3g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhHz-000000038Df-1163;
-	Tue, 10 Nov 2026 08:33:11 +0000
-Received: from cmccmta8.chinamobile.com ([111.22.67.151])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhHv-000000038Cy-1RFp
+	id 1xQhOp-000000038uV-0Wuw;
+	Tue, 10 Nov 2026 08:40:15 +0000
+Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQhOl-000000038u5-37XR
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 08:33:10 +0000
+	Tue, 10 Nov 2026 08:40:13 +0000
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5bccb867d6fso2208171e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 00:40:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794300008; cv=none;
+        d=google.com; s=arc-20260327;
+        b=VITYfk6EkG8kfUjcc+Xtuqb989NEX/7dHm2pYG2q1fpN/1mPq7WY76QKpTQA5UdP6U
+         7TszIZz5iP1bEFXlxhAEG4IpmAJrlFKn6LenkOIZ0vP6E2x3tJtGKDe9oj0RBQliUQSF
+         VkNXFEiL/QUfnctrBz76IcQp/Nnov+6HKVAe6fKx/QBkuHSQlwhdHqZ0rTm+2k4mxBo/
+         lAeNLPiyIjA6TfCn6iXfCDGbT8gHCShMjul8cEgYeWlV9ylDlV7F89UpFACS1d6VHUYE
+         8rCaLDZA6so1emEFF8UYr5TIV3iMBbxEz9vjg2JNJ+cVdQSghHd8tBB01Gq/OwQFJzXC
+         S6Sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=vbdtEbm5LIRul3kqOHVd2p7iN83nh9BlOv0Le65cRbo=;
+        fh=h+OInqfPQLTvIfr5Q8fG+8pRNkpY7VCzf8zQy/+IctM=;
+        b=itwgepldZ4fugSoWHix+wHu03toXVP3crudlFXMTYXdRaihiMevq0OaqIf+xMPedPj
+         iZcsD0s6asURUz8qjxMuQ24v8V1vDiS54aOCzBnQ4+dHrS7JfNvW6EB6AbqvEjz+PcFt
+         uM310Z1wjNkQOAL/WI5Xy8rZ/CAFkh7A3+vT/Bbuqf8057tA/NXFuSB0Bib/Q2c1ld3J
+         Izf5gceSu1lS+ssqQHPrR5yBZm5sKSPNTwEqoVnrxwUEcr9Di8Hz+Sxmqofw1MTMpXBt
+         eJcgaWDOYzeRifV8zQffb/+oDaho/a5WIEZGOvUUL9enjG3BsEPfhRzgbx+EKnT7iVYz
+         cPCw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=ItYCH+sas3HlcRu2sLhhlP5SXir0JwIAk4K2qif0N60G2LLd13VUdHoBXVkn8YFW9VNnh48Hgb6Su
-	 au7Pm9dN61xf5+hZecirANgBN87z3DYyaVvrHq5ABY+ieT5qv+7keswx5XmN1ZeW0JwLsiFVE2jn38
-	 XEcG386r1dbxm8p8=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app02-12002 (RichMail) with SMTP id 2ee26af2d6b52a6-0907e;
-	Tue, 10 Nov 2026 16:32:55 +0800 (CST)
-X-RM-TRANSID: 2ee26af2d6b52a6-0907e
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.98])
-	by rmsmtp-syy-appsvr04-12004 (RichMail) with SMTP id 2ee46af2d6b551b-ae357;
-	Tue, 10 Nov 2026 16:32:54 +0800 (CST)
-X-RM-TRANSID: 2ee46af2d6b551b-ae357
-From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-To: antonio.borneo@foss.st.com,
-	linusw@kernel.org
-Cc: mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com,
-	linux-gpio@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-Subject: [PATCH v2] pinctrl: stm32: Fix reset control leak in stm32_pctl_probe() error paths
-Date: Tue, 10 Nov 2026 16:32:52 +0800
-Message-ID: <20261110083253.1525-1-laixiangwu@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.50.1.windows.1
+        d=gmail.com; s=20260707; t=1794300008; x=1794904808; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=vbdtEbm5LIRul3kqOHVd2p7iN83nh9BlOv0Le65cRbo=;
+        b=B3Wc5x5SHBmUjPz2RAjATxy39V/XGuvlqFzX0Eu2DYJBtPrfonR6yn0ACLUpomcBxZ
+         /0lboD+ka5SHIlz2s5rMb+hItcxzai+9HLfqt27+GPLqbMaHBaQI/Y9sobgvFoUkFWMB
+         qeCCxvdtwlulaVZ8lvWFQ267JnQXCfLXk30mQn5YRh5wzzoat46+Iug4ESI7AK3bN6uc
+         X3FPrOh2SDSgssrq4l03DQa7k7UmJdcxazRAuzJOmrrQKFrFR+ZnKuXvF5zFuTVVPWjt
+         EvSUDt/ZHVxrVVm0wmm62RSKLXhzFPM4N1QO9fvbhh/W/X/qm3hUwhx8TPm6WUIihmwG
+         DEow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794300008; x=1794904808;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vbdtEbm5LIRul3kqOHVd2p7iN83nh9BlOv0Le65cRbo=;
+        b=CJxnCj7/jDeou4OliNWTdZNA8rQW4KnrJaiRWM5A7ftEg8ugOyGarADcpWrSkYwj0N
+         cc/lMGsnX6puiIVNzixJGK3Uh1tBXECZtRXDnfDNFw7rvUhlbFnrmbp4+cjce1NOQoqM
+         kRtMAW1uGmYCwZvP7QTuvRDD/dY9FJFqo+5g/qSQDGShNquP4Qe1SDQZHAM7iSTSNIuo
+         t/mBZI384nSeRVO1cS/JIGEdaZPowDCEfMS/JOSvzJEgSPc88BqcqquNV6R07KS35AGC
+         R0+e/vmn4YGGdeFDNfe0zPgXrwBWImLituPVwoK7c9xh/cDpvpEkFMry3p9wFlvj1ZcG
+         ek4Q==
+X-Forwarded-Encrypted: i=1; AL+hErHNdqTQ2e9M8y/YqZsjTU1j/sCjNAjs2c/VSzRV8Eg7Fe4GJ7tbI0HmVhABGAXI59bbvs2T3h4anYsu8SozZ4xe@lists.infradead.org
+X-Gm-Message-State: APuU4Z+4cUvwALURfsnjvfG7e6WQE0KlYO3UK6kTkvQmul3Fw5IxJCzX
+	xgl+O0i+DtUu93Cde6mSqOg0XWWu43CPPhWJKyXR7TeUmiEvxhkPrzA+/rV3sEWLdBS0z9F5ZIP
+	Me9tw5KicLIrP8emhusvpYyJprVoyvXw=
+X-Gm-Gg: AYBFou0924ht3glpKRC7hBhFMoTabsnlBYqxKcmrkuhcbwCj1Is8iYqoJVshNPOSWUR
+	c/UxrJCv4tmop0kCFGOEy+irB3BFmjqnwC3Kl3F4OTERARG+3vQs/TdYjjueZ1glXza22zHkwFp
+	Ok+3PV1PsHrhondIBtoOV2/8jH6Q0k5cCJ9BqgMuAj4R1BtGz675j7xLbZiCe5tYUzM9zaKDhpR
+	T1DwPM+fFG/Nw3vg/0FQUgfvnCbTcO50ZY44ZYWisdJ7tZmDBIYSalLtpDADL9VbIJ3zdcQ/1Jh
+	qBDesYmKyeFNVXcK6IDZs+ewXbQGHQblRjLD+8irLj1rUoqAoyjZUVufe3iNgWTkF48+Of0f393
+	q8bHGf/rGve/l+W7DkI2NMdeFfUCzL1vbcKhPRDA=
+X-Received: by 2002:a05:6512:1090:b0:5bf:c5e8:7451 with SMTP id
+ 2adb3069b0e04-5c156ef6a9amr561697e87.65.1794300008049; Tue, 10 Nov 2026
+ 00:40:08 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261106-ventura2-dts-update-v1-0-b085ece9bf57@gmail.com> <245d0e9d4043c0957716a6a32985b6ea5a8cb9ef.camel@codeconstruct.com.au>
+In-Reply-To: <245d0e9d4043c0957716a6a32985b6ea5a8cb9ef.camel@codeconstruct.com.au>
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Date: Tue, 10 Nov 2026 16:44:35 +0800
+X-Gm-Features: AclHuK_YmaCFjS3fljYs9klvoSNNKJV2oWD2Es6eIsNEQSomFv3bnXQjY-fu8gk
+Message-ID: <CAF7HswPYb3hOWA7P-d1zASvd1XzaVeuBkoqz5nXHuDeEAXDhrA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] ARM: dts: aspeed: ventura2: Add LTC2305 ADCs and GPIO
+ line names
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Ryan Chen <ryan_chen@aspeedtech.com>, Billy Tsai <billy_tsai@aspeedtech.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_003307_938680_81D2C068 
-X-CRM114-Status: GOOD (  13.08  )
-X-Spam-Score: -2.4 (--)
+X-CRM114-CacheID: sfid-20261110_004011_820644_A95BC622 
+X-CRM114-Status: GOOD (  16.31  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,98 +121,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-stm32_pctl_probe() acquires an exclusive reset control for every GPIO
-bank with of_reset_control_get_exclusive(), but none of the error
-paths release them again: the bank loop returns directly on
--EPROBE_DEFER and on a failed clock lookup, and the
-clk_bulk_prepare_enable() failure and the err_register path also
-leave the already acquired reset controls behind.
+On Mon, Nov 9, 2026 at 10:41=E2=80=AFAM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+> On Fri, 2026-11-06 at 11:08 +0800, Kyle Hsieh wrote:
+> > The LTC2305 ADCs use their internal 4.096V reference, so no vref-supply
+> > is described. Patch 1 therefore depends on "dt-bindings: iio: adc:
+> > ltc2497: Make vref-supply optional for LTC2305/LTC2309"; without it,
+> > dtbs_check reports a missing vref-supply for the LTC2305 nodes.
+>
+> Can you provide a link to this patch? I am yet to find it on lore.
 
-On success the reset controls are kept for the lifetime of the device
-and are never released either (the driver has no .remove), but that
-is harmless.  On a failed probe, and in particular when the probe is
-retried after -EPROBE_DEFER, every attempt leaks another set of
-reset control references.
+Sorry, I should have sent it before this series. It is now posted at:
+https://lore.kernel.org/linux-iio/20261110-ltc2497-vref-optional-v1-1-35c96=
+57f3c0f@gmail.com/
 
-Release the acquired reset controls on all error paths.
+> In my opinion what you write here should identify broad patterns across
+> the patch series (perhaps how you've grouped the patches and why, if
+> necessary) and not rehash the commit messages.
 
-Also release the clocks of the already processed banks on the
--EPROBE_DEFER path, which was missed by the earlier clock leak fix
-dfd8259507c5 ("pinctrl: stm32: Fix clock reference leak in
-stm32_pctl_probe()").
+Understood, thanks. I'll rework the cover letter in v2 to describe the
+series as a whole instead of repeating the commit messages.
 
-Fixes: 2254e77665d5 ("pinctrl: stm32: defer probe if reset resource is not yet ready")
-Signed-off-by: laixiangwu <laixiangwu@cmss.chinamobile.com>
----
-Changes in v2:
-
-- Point the Fixes tag at 2254e77665d5, which introduced the reset
-  control acquisition in the stm32_pctl_probe() bank loop and the
-  -EPROBE_DEFER return path; bb949ed9b16b only replaced the child
-  node iteration helper (suggested by Sashiko AI review).
-- Also release the clocks of the already processed banks on the
-  -EPROBE_DEFER path, which was missed by dfd8259507c5.
-
-Link: https://lore.kernel.org/all/20261110065722.1340-1-laixiangwu@cmss.chinamobile.com
- drivers/pinctrl/stm32/pinctrl-stm32.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/pinctrl/stm32/pinctrl-stm32.c b/drivers/pinctrl/stm32/pinctrl-stm32.c
-index 98cf9c6f4..2a54a0176 100644
---- a/drivers/pinctrl/stm32/pinctrl-stm32.c
-+++ b/drivers/pinctrl/stm32/pinctrl-stm32.c
-@@ -1966,15 +1966,18 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 		bank->rstc = of_reset_control_get_exclusive(np, NULL);
- 		if (PTR_ERR(bank->rstc) == -EPROBE_DEFER) {
- 			fwnode_handle_put(child);
--			return -EPROBE_DEFER;
-+			clk_bulk_put(i, pctl->clks);
-+			ret = -EPROBE_DEFER;
-+			goto err_put_rstcs;
- 		}
- 
- 		pctl->clks[i].clk = of_clk_get_by_name(np, NULL);
- 		if (IS_ERR(pctl->clks[i].clk)) {
- 			fwnode_handle_put(child);
- 			clk_bulk_put(i, pctl->clks);
--			return dev_err_probe(dev, PTR_ERR(pctl->clks[i].clk),
--					     "failed to get clk\n");
-+			ret = dev_err_probe(dev, PTR_ERR(pctl->clks[i].clk),
-+					    "failed to get clk\n");
-+			goto err_put_rstcs;
- 		}
- 		pctl->clks[i].id = "pctl";
- 		i++;
-@@ -1984,7 +1987,7 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 	if (ret) {
- 		dev_err(dev, "failed to prepare_enable clk (%d)\n", ret);
- 		clk_bulk_put(banks, pctl->clks);
--		return ret;
-+		goto err_put_rstcs;
- 	}
- 
- 	for_each_gpiochip_node(dev, child) {
-@@ -2009,6 +2012,10 @@ int stm32_pctl_probe(struct platform_device *pdev)
- 
- 	clk_bulk_disable_unprepare(banks, pctl->clks);
- 	clk_bulk_put(banks, pctl->clks);
-+err_put_rstcs:
-+	for (i = 0; i < banks; i++)
-+		if (!IS_ERR_OR_NULL(pctl->banks[i].rstc))
-+			reset_control_put(pctl->banks[i].rstc);
- 	return ret;
- }
- EXPORT_SYMBOL(stm32_pctl_probe);
--- 
-2.50.1.windows.1
-
-
-
+Kyle Hsieh
 
