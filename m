@@ -2,84 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4278606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E2360A380B
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nSh6r68e;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=B7prtjzk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bwsZoowd;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=UX1zLdbt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NJnOdF4olvZ0uC00aRDDzPjTyhqTiEVqBOnUPYxJ54A=; b=nSh6r68e5/b8Xp
-	DPqgy4SOoY2v/CZ05ar+4NsH7Tcem4oSPX0SfVb5evo/IGKy8hpTLBmU743llzEbbAWIZ0MfuTXU3
-	tQX9a0u7xIyPc/t2zRJmX+tbQVyMEy+sFpozNKh3w1Z/OttMFltTJczAngVKZu0LY6Ex4x+fvutq7
-	4i0vqxhN6Ktnnoa6Br9iep7B1r/25RlNUylr9wHZMdG9v1X03tK3paTu0CVFRvdet7dAzSD0baYFQ
-	bDwBQEiXPG2pnZVOqnnUoVPK8TUvld5eHqJTglh6hA0G25/rtLVHC26wq3nKcAAsrWSj7YbvdweHk
-	BLBHmU+csHn/JkLgGEKw==;
+	List-Owner; bh=f1LNHAFVlJ4bgCx5jvWZ9/1xooFZxhmenlQGy0ip0GE=; b=bwsZoowdMx2m9X
+	jRBpZPpVHQ/DZcW1wX0z0bRAVn3HnQgVMEPJE2czW8Gm9lJTErNv3eDIE9IYGKh6nl5C+BINP+IOr
+	vYktIV5ok6S0Bq0aXYWBJwldRKP+vlhXb//AZRoeF9NyUu+bA5LJ7AjUOyduG/DjFdUNVTowhxDTJ
+	auDB8D50i96Mw25sdQ9A47fe7LV/eZ9jIrQblRMPXzbZ5Esw4OQpORa6igTpevpepejcJFuA/HdtC
+	8nibbt3FrgDBkoBN/2I54RujFPuup4W54oFVf8ixB500UGicyvPst+HmG6yGMCz+tcraIFc1VEV0m
+	91qbVc3AEFWQaM6WP+fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnrq-00000004P1t-3GSN;
-	Tue, 10 Nov 2026 15:34:38 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1xQnsA-00000004P8s-3tPQ;
+	Tue, 10 Nov 2026 15:34:58 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnro-00000004P0Y-3ebv
+	id 1xQns8-00000004P7U-2tVB
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:34:38 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a140e7405dso18002195e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:34:36 -0800 (PST)
+	Tue, 10 Nov 2026 15:34:57 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso16895945e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:34:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794324875; x=1794929675; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1794324895; x=1794929695; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=NJnOdF4olvZ0uC00aRDDzPjTyhqTiEVqBOnUPYxJ54A=;
-        b=B7prtjzkScbNi0+lxpiKnHySm5jpSkeXAfSwlUIp/N6Bm5L1ePfI9qGZ8YfMKcWgKU
-         RBZQYYvISB8AnjZG3iM/b7VdCxdH7bpvJ2hnTXT6D4mCFbOpyvtHYDXZnZebDSX+ULFi
-         lLeXiConnE4/E6kum5Uk/deME/lu59Rkzkyjhmifk0ypPZiBLmdkwXTqfx1v+J32O9yX
-         h81+JWmdZo6GyWTOX8QsrsDLDvX+wS6UNea8HH3IIH2u+YgQBmGYkVCrQe05gRLJgMRf
-         AqaZWOGtjfERQPT+YS1LCKi9bCqgFS/NGYklQ9lTTp59B9PzcwGFSn2xW2mvqGSfW8Z3
-         jODQ==
+        bh=f1LNHAFVlJ4bgCx5jvWZ9/1xooFZxhmenlQGy0ip0GE=;
+        b=UX1zLdbtSEsto8v6N7pUUgCKD0M4Q217etSb+2k/mPPs4ji95So6mIEinUf2gX2p34
+         PWA6zHXJvn5RZVatqPD5GaHqlhQ1OpnbIcHw5RQTd46WQNbC6BlbbVNGfa2CxdtJrkET
+         DfD3dPlNdrCehoagCmNllBLlzfldfbkkc/7aGfdnEIkUj6u/YQEYLIncTJa6J5k8+4T5
+         yl9l/l9KK4jxiqj2Vjx+t5eqy4ZcUeWctNNNEvOYZZq0+/V0uuNYszxTOQ5LHjKAxKFW
+         zOEih03j2EfdAyxD2s1/RbHmCr8Y7ie+yI8fVYfsublQkXRFyuqOUnvBzO1ENq8NFBuB
+         V51A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794324875; x=1794929675;
+        d=1e100.net; s=20260707; t=1794324895; x=1794929695;
         h=content-transfer-encoding:content-type:in-reply-to:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=NJnOdF4olvZ0uC00aRDDzPjTyhqTiEVqBOnUPYxJ54A=;
-        b=CQbUKnOvuUlBIGFyhl+XA6P0B3QoZRw7rEawuXIemfJklFeJWo0/Pd2zIF0vlpjgBD
-         624Bn4hre1rITE7Muvfi+5zcLp8kyIUjhRgSLnEQX+LjoxntO0JElhusSNB2Wiz8tO1+
-         IS/tkuyLHmfeaVBY89m5W5uItvcfNUHnr3+utzesDJniTWPHx7jIpK+r53oTO7C+s9fN
-         EO3ZKYsRbJv1i9yFgAuLpwRYtlzweFIVx1RQ59+FVWi3LQvmlvJfabp8QYO6LjCyZtRB
-         RWKhrYn0V6wvkN9OA5k0rtH6xOALVIElUrkD+c8DBT8Gb5HO5Ct/c7/JURKgJOsg7Eut
-         6vWw==
-X-Gm-Message-State: APuU4Z9zkctZp9bIrkt94x/WjHISPvgeTzFZ4PX075oC6bLUvAQIICkr
-	oRi5vOP8iRiQ5pL4sFBfIU9gL+aSp37jhKfVv8MJAPGZfqdXuvWx8VrNYpfegjh69Qg=
-X-Gm-Gg: AYBFou2PUMUqQGlTVaVzbr7h+oAVkRvSsWYpveJwClkA5nxbamgE088NQzfImtdGDsw
-	XWxHloHglGS+yGChbjGEy/rccHZNj0VoCJyrsUNwORXcJjtw0LVLADKEBKR3m0t1sqiQPCg1aLq
-	XQnV/GkoI7PoNIIavf1pijpNuuJNACWmVRhoMR1Y6K2akgi2Jsj+9iUZicBvYZpV6UQcwKrd05L
-	apQr7jJMWSYLtAbk6mkZLXS420i9ghte8XYho4ASAQjkMpCyg0MhgS7s+Ndzck/d1E/Txm1ZAfO
-	ExruGnxP8MTug8ITF2CZlYb0Av8WQ8yUAlaieU/9cj9fPlC5vwpzPtpMFBtFwQB5v15LwQXe/o6
-	T/PqHb+pBQZpldQYLcqEC95xSw5rzQlyBXako654jerXHLTgaVerpxVNt0eVKuJO7j9Rgr81bSK
-	zypCXP8rNg6TnUuwpcbFRdywOZzfA9kGlwwn8xAmTvrUt6nHJp6XeL8ssyxacgvVHT0w9snIil3
-	Yr/G7qGt6KmhxHxFyG/t+ZNOCvrhefq0hw+jzoZ7DIn4y4WGJQ6/3Vj8nUHKnFxJKjQUno/biUR
-	zoRUJLgpSOfGaihFhLD5JBX6yi92atNWAQ==
-X-Received: by 2002:a05:600c:3d05:b0:4a3:598e:e7a8 with SMTP id 5b1f17b1804b1-4ba0230519amr54309275e9.4.1794324874844;
-        Tue, 10 Nov 2026 07:34:34 -0800 (PST)
+        bh=f1LNHAFVlJ4bgCx5jvWZ9/1xooFZxhmenlQGy0ip0GE=;
+        b=ZG6dQOMTw3V7eLmmY0f2oVEqi2hIk4BAyw8Hk40ClRdDOfyewmch9upAa3z48iarB3
+         JlztxMZS4c1tXTb7sYuzQKyH3+dXgK5OguTFFCOH1l3mxnMtETFUg2jQ8UZOlZjmmtPg
+         yOpBcKpCNGtkgdijplqbf7tHXD7Ny5G5/bUOvnXv5eK59ljIYGqzCCA8VXK73Bkh3ktU
+         US7OsgmNX1El3lDGrV/SjXz8+qwRabLcVCAwhWDkyDBclJEgrag3m6IDbj/xQgmWMdCm
+         S8sjNvcmOJhkBg9l195099c2N5A8XapICQHDiOxqf7dqQqxnAsb67fIrhgYDh3agxqYH
+         /49w==
+X-Gm-Message-State: APuU4Z82+z5CSkAHeQ/cqtY9WqNO5lHygFwcyaXXDxABe4TSBoodwgeD
+	M3Ko/AK0fPjU+R/XUCZCx775VCT/YxFR8GCM/smEq9uXkl5+8F+x9PuBWUOW+AReAR4=
+X-Gm-Gg: AYBFou0/XeRFQ5M2Baa4V5GXkTZbJf1sk3yYorEjLIPmLjJTy0S9y13uhSD9dYiXyeo
+	9tpOU3uqcetXt7ZxR3ENDCw4IqI6XVM/tbYHEYiLHGk1LrggAVPLsZde74fXDeV5xG/TLRGcvY/
+	8ttUBpSWtR/IS2CCZyeGRWV1wK7pe2uH+y8PqXbBrfwLGhUi5Bet/NsXTvVOzMogKUs5v8KPcnC
+	4c6f6jx/zPpEpO4z1o2nd+mIxTUTUnoDT2Zocv7YEhInp2KiOHVF5ah/0e2nlCCTuy9My6lGKpn
+	EfMwE3+bz1n1xoAjzOQ6BrbrliF7gkBGkAf9RJXZbuJy9TDcbnOEppgPJcKmf2A6Q436+OoJqDw
+	4MRsm/bAQT8/e8z5/mudlE9lPiLvVTk0H83TqOfCKYGJNMRrNDFZRb/v1PneRLLzGnLPO8/MryL
+	FdAgr6Z+OIh9HwdtfWeKSDsLo1BUBmQLd0It1nq52XOuiCOQF6h4EbgQJiQhgBYi5SnT7TqG5UN
+	TnDCj0Xq+vWREyuesIDN60wg0mtPnlUrZUorhlV9pFXjGqPP3ebhK+j1/nk6YGdZFm3OuO83LM+
+	KMxu131/8hzb9khdoRKiW+Fi6Z31PEq6ag==
+X-Received: by 2002:a05:600c:34c7:b0:4a4:f48e:78fa with SMTP id 5b1f17b1804b1-4ba02344f3fmr47924145e9.12.1794324894569;
+        Tue, 10 Nov 2026 07:34:54 -0800 (PST)
 Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49835e20f91sm6187825f8f.27.2026.11.10.07.34.33
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0234a5dcsm72076655e9.2.2026.11.10.07.34.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 07:34:34 -0800 (PST)
-Message-ID: <38e4f4dc-e2ea-4b7f-82d1-e7b298e88002@linaro.org>
-Date: Tue, 10 Nov 2026 15:34:33 +0000
+        Tue, 10 Nov 2026 07:34:54 -0800 (PST)
+Message-ID: <9c366f17-8fb7-43b5-99ac-092f14d4b4a7@linaro.org>
+Date: Tue, 10 Nov 2026 15:34:53 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 18/23] coresight: trbe: Keep the perf handle in per-CPU
- data
+Subject: Re: [PATCH v2 20/23] coresight: trbe: Add fault action argument to
+ trbe_handle_overflow()
 To: Leo Yan <leo.yan@arm.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -89,15 +89,15 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
  Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
 References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-18-3f57cf3199b1@arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-20-3f57cf3199b1@arm.com>
 Content-Language: en-US
 From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-18-3f57cf3199b1@arm.com>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-20-3f57cf3199b1@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_073436_966580_EAA34123 
-X-CRM114-Status: GOOD (  27.60  )
+X-CRM114-CacheID: sfid-20261110_073456_781826_1DF735E0 
+X-CRM114-Status: GOOD (  17.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,176 +120,48 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 On 16/10/2026 17:55, Leo Yan wrote:
-> Arm SPE owns a per-CPU perf output handle for the PMU lifetime. TRBE
-> instead receives a handle from CoreSight when enabling its sink.
+> Add a new argument to trbe_handle_overflow() for the fault action, which
+> is used to compare the wrap event for trace size calculation.
 > 
-> Store that session handle in trbe_cpudata instead of a separate per-CPU
-> pointer array, and pass the CPU data as the per-CPU IRQ context. Use this
-> context directly for overflow and spurious interrupt handling so local
-> hardware control does not depend on the current AUX buffer configuration.
-> 
-> Allocate the CPU data before registering the IRQ and free it after
-> releasing the IRQ, keeping the IRQ context valid throughout registration.
+> No functional change intended; this is preparation for a later update.
 > 
 > Signed-off-by: Leo Yan <leo.yan@arm.com>
 > ---
->   drivers/hwtracing/coresight/coresight-trbe.c | 44 ++++++++++++----------------
->   1 file changed, 19 insertions(+), 25 deletions(-)
+>   drivers/hwtracing/coresight/coresight-trbe.c | 7 ++++---
+>   1 file changed, 4 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 9a469c8009ce8a8a8b804c2b63a68e741f1dceaa..2328aab0a084a0ac123e950f846f404d120ec2c0 100644
+> index f1f102df6c387f53feaa12b89d3df89f734afcdb..c83c440d4ac13c346bc2a7f9093951c186c90157 100644
 > --- a/drivers/hwtracing/coresight/coresight-trbe.c
 > +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -139,6 +139,7 @@ struct trbe_save_state {
->    * @cpu			- CPU this TRBE belongs to.
->    * @mode		- Mode of current operation. (perf/disabled)
->    * @buf			- Buffer configuration retained for the enabled session.
-> + * @handle		- Perf output handle from successful enable until disable.
->    * @drvdata		- TRBE specific drvdata
->    * @errata		- Bit map for the errata on this TRBE.
->    */
-> @@ -149,6 +150,7 @@ struct trbe_cpudata {
->   	int cpu;
->   	enum cs_mode mode;
->   	struct trbe_buf *buf;
-> +	struct perf_output_handle *handle;
->   	struct trbe_drvdata *drvdata;
->   	struct trbe_save_state save_state;
->   	DECLARE_BITMAP(errata, TRBE_ERRATA_MAX);
-> @@ -156,7 +158,6 @@ struct trbe_cpudata {
+> @@ -1132,7 +1132,8 @@ static void trbe_handle_spurious(struct trbe_cpudata *cpudata)
+>   	set_trbe_enabled(cpudata, trblimitr);
+>   }
 >   
->   struct trbe_drvdata {
->   	struct trbe_cpudata __percpu *cpudata;
-> -	struct perf_output_handle * __percpu *handle;
->   	struct hlist_node hotplug_node;
->   	int irq;
->   	cpumask_t supported_cpus;
-> @@ -1091,7 +1092,7 @@ static int arm_trbe_enable(struct coresight_device *csdev, enum cs_mode mode,
->   		return ret;
->   	}
->   
-> -	*this_cpu_ptr(drvdata->handle) = handle;
-> +	cpudata->handle = handle;
->   	cpudata->buf = buf;
->   	cpudata->mode = mode;
->   	return 0;
-> @@ -1112,16 +1113,15 @@ static int arm_trbe_disable(struct coresight_device *csdev)
->   	trbe_drain_and_disable_local(cpudata);
+> -static int trbe_handle_overflow(struct trbe_cpudata *cpudata)
+> +static int trbe_handle_overflow(struct trbe_cpudata *cpudata,
+> +				enum trbe_fault_action act)
+>   {
+>   	struct perf_output_handle *handle = cpudata->handle;
+>   	struct perf_event *event = handle->event;
+> @@ -1147,7 +1148,7 @@ static int trbe_handle_overflow(struct trbe_cpudata *cpudata)
+>   	 */
 >   	clr_trbe_status();
 >   
-> -	*this_cpu_ptr(drvdata->handle) = NULL;
->   	buf->cpudata = NULL;
-> +	cpudata->handle = NULL;
->   	cpudata->buf = NULL;
->   	cpudata->mode = CS_MODE_DISABLED;
->   	return 0;
->   }
+> -	size = trbe_get_trace_size(handle, buf, true);
+> +	size = trbe_get_trace_size(handle, buf, act == TRBE_FAULT_ACT_WRAP);
+>   	if (buf->snapshot)
+>   		handle->head += size;
 >   
-> -static void trbe_handle_spurious(struct perf_output_handle *handle)
-> +static void trbe_handle_spurious(struct trbe_cpudata *cpudata)
->   {
-> -	struct trbe_buf *buf = etm_perf_sink_config(handle);
->   	u64 trblimitr = read_sysreg_s(SYS_TRBLIMITR_EL1);
->   
->   	/*
-> @@ -1129,11 +1129,12 @@ static void trbe_handle_spurious(struct perf_output_handle *handle)
->   	 * back without modifying the buffer parameters to
->   	 * retain the trace collected so far.
->   	 */
-> -	set_trbe_enabled(buf->cpudata, trblimitr);
-> +	set_trbe_enabled(cpudata, trblimitr);
->   }
->   
-> -static int trbe_handle_overflow(struct perf_output_handle *handle)
-> +static int trbe_handle_overflow(struct trbe_cpudata *cpudata)
->   {
-> +	struct perf_output_handle *handle = cpudata->handle;
->   	struct perf_event *event = handle->event;
->   	struct trbe_buf *buf = etm_perf_sink_config(handle);
->   	unsigned long size;
-> @@ -1203,9 +1204,8 @@ static u64 cpu_prohibit_trace(void)
->   
->   static irqreturn_t arm_trbe_irq_handler(int irq, void *dev)
->   {
-> -	struct perf_output_handle **handle_ptr = dev;
-> -	struct perf_output_handle *handle = *handle_ptr;
-> -	struct trbe_buf *buf;
-> +	struct trbe_cpudata *cpudata = dev;
-> +	struct perf_output_handle *handle = cpudata->handle;
->   	enum trbe_fault_action act;
->   	u64 status;
->   	bool truncated = false;
-> @@ -1232,18 +1232,17 @@ static irqreturn_t arm_trbe_irq_handler(int irq, void *dev)
->   	 * Ensure the trace is visible to the CPUs and
->   	 * any external aborts have been resolved.
->   	 */
-> -	buf = etm_perf_sink_config(handle);
-> -	trbe_drain_and_disable_local(buf->cpudata);
-> +	trbe_drain_and_disable_local(cpudata);
->   	clr_trbe_irq();
->   	isb();
->   
+> @@ -1253,7 +1254,7 @@ static irqreturn_t arm_trbe_irq_handler(int irq, void *dev)
 >   	act = trbe_get_fault_act(handle, status);
 >   	switch (act) {
 >   	case TRBE_FAULT_ACT_WRAP:
-> -		truncated = !!trbe_handle_overflow(handle);
-> +		truncated = !!trbe_handle_overflow(cpudata);
+> -		truncated = !!trbe_handle_overflow(cpudata);
+> +		truncated = !!trbe_handle_overflow(cpudata, act);
 >   		break;
 >   	case TRBE_FAULT_ACT_SPURIOUS:
-> -		trbe_handle_spurious(handle);
-> +		trbe_handle_spurious(cpudata);
->   		break;
->   	case TRBE_FAULT_ACT_FATAL:
->   		trbe_truncate_event(handle);
-> @@ -1507,10 +1506,6 @@ static int arm_trbe_probe_coresight(struct trbe_drvdata *drvdata)
->   {
->   	int cpu;
->   
-> -	drvdata->cpudata = alloc_percpu(typeof(*drvdata->cpudata));
-> -	if (!drvdata->cpudata)
-> -		return -ENOMEM;
-> -
->   	for_each_cpu(cpu, &drvdata->supported_cpus) {
->   		/* If we fail to probe the CPU, let us defer it to hotplug callbacks */
->   		if (smp_call_function_single(cpu, arm_trbe_probe_cpu, drvdata, 1))
-> @@ -1531,7 +1526,6 @@ static int arm_trbe_remove_coresight(struct trbe_drvdata *drvdata)
->   		smp_call_function_single(cpu, arm_trbe_disable_cpu, drvdata, 1);
->   		arm_trbe_remove_coresight_cpu(drvdata, cpu);
->   	}
-> -	free_percpu(drvdata->cpudata);
->   	return 0;
->   }
->   
-> @@ -1618,14 +1612,14 @@ static int arm_trbe_probe_irq(struct platform_device *pdev,
->   
->   	cpumask_copy(&drvdata->supported_cpus, affinity);
->   
-> -	drvdata->handle = alloc_percpu(struct perf_output_handle *);
-> -	if (!drvdata->handle)
-> +	drvdata->cpudata = alloc_percpu(typeof(*drvdata->cpudata));
-> +	if (!drvdata->cpudata)
->   		return -ENOMEM;
->   
->   	ret = request_percpu_irq_affinity(drvdata->irq, arm_trbe_irq_handler, DRVNAME,
-> -					  affinity, drvdata->handle);
-> +					  affinity, drvdata->cpudata);
->   	if (ret) {
-> -		free_percpu(drvdata->handle);
-> +		free_percpu(drvdata->cpudata);
->   		return ret;
->   	}
->   	return 0;
-> @@ -1633,8 +1627,8 @@ static int arm_trbe_probe_irq(struct platform_device *pdev,
->   
->   static void arm_trbe_remove_irq(struct trbe_drvdata *drvdata)
->   {
-> -	free_percpu_irq(drvdata->irq, drvdata->handle);
-> -	free_percpu(drvdata->handle);
-> +	free_percpu_irq(drvdata->irq, drvdata->cpudata);
-> +	free_percpu(drvdata->cpudata);
->   }
->   
->   static int arm_trbe_device_probe(struct platform_device *pdev)
+>   		trbe_handle_spurious(cpudata);
 > 
 Reviewed-by: James Clark <james.clark@linaro.org>
 
