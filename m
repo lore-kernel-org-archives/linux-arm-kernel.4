@@ -2,74 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6DB606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C830606E45B
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p7qboz/4;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=OZH8i92z
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I88pSvG2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Vuu3b3LC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=q+tN4z7NXWlR4na9D2C+xhqXnnvW2XxnASuccDLlZx0=; b=p7qboz/4Ude5aQ
-	B1Gq0qP2Lg2rHyOnuia/Q1ldRtSvsul9kpE4csw/Ej37HzOM9TWIol4EWfNBOhgTmizfDHez3xVFK
-	3NjGeP6fzwCZkC+k4I8C6karXMtVeCHBNL4dabFiJGsZ+ZsyambSnIjn4qqAKTunNiRgCRBiEaNPI
-	fgGxu4dbUaxutcKjFeeWufyjAVfNIwvs1C6EArCNjEdtajTeHhNOYihwxxDrFVR7UFRL8nNEzf0EZ
-	vyH1rstMDNDgKyewzpjfcGHoqlKolo0z2uA4JkAsCbW4TbAnzMl0i+l0OYWaGSxpJqUnu7FYtEOMR
-	Cw2FqwWs8uFfGvpowtfg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=MBoMybViYwhw6nSYk7WOZTfocy/4HWn5nwGt1dyl8yY=; b=I88pSvG295MKHrOAy6n0wYWMA+
+	91dg1WQIZbbR0QwCqRhZftc/bExZ00nrTXVTauxLqukZLR527mmYPllenRllAGVfQwYmO8rJsmKhR
+	5OjnRb+mX/H1K9eywgZbbIHrG/TQbhqYfu/h1otCJjNn1jqhAVgO9Yr7gFt8cgKF6CfwW8hsSLotr
+	k1olphL5XbMbPJTwu1OGr19AR6J7f8hEcsgKw7M+S24h7OSeUQPai7q6aILOcriWzXqF9W2TxFxXi
+	KzYNwUQ3gYzlbWjXAYlbpaD29TTO8m5qtKuVaXriV6JIa8j3x9pRtkG3qY1e4gBmx5WELV2vPmVBS
+	CM6xseJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlUt-00000003xT7-0Oki;
-	Tue, 10 Nov 2026 13:02:47 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xQlXK-00000003y00-3bJP;
+	Tue, 10 Nov 2026 13:05:18 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlUr-00000003xSG-1FpS;
-	Tue, 10 Nov 2026 13:02:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794315761;
-	bh=lsfLnnAeFFIiJN/3WLIx+aewZN2Xynq+gqwio4jBfKc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OZH8i92z3ufcDkzTosplCkdMNnC+QCeCEK2E8+YRBIhCmlJ6mDQ8uQPi45sSieKKh
-	 PuTfJWd00xBldkkvI+AxCRFhvxT52lQE2k2OmlNd+lbr8nzO/psQp4kops4Th1khiI
-	 pP6oOlTN/3r2TcMerXASVrCDjX+4wavoedpXhbgZv6S2Nmnnrx0iGcUl+sbB6YGmih
-	 ik4J3X+zsL3wdywi0fmMnEDCf0ioaw7SUJSY4FXn3LIkHambhnYO7KjKCvi8HoucMy
-	 VyS6k0DoN5YF0KMlmVEg7khjH2RXPFvaJcemQVdDgnd2rB8JivgbZLlCW3qUX51t4w
-	 wN6idlspv3yiw==
-Received: from fedora1.home (unknown [100.64.0.11])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CBB5B17E031D;
-	Tue, 10 Nov 2026 14:02:40 +0100 (CET)
-Date: Tue, 10 Nov 2026 14:02:32 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Cc: aiyengar1990@gmail.com, Steven Price <steven.price@arm.com>, Liviu Dudau
- <liviu.dudau@arm.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Heiko Stuebner <heiko@sntech.de>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Jonas Karlman <jonas@kwiboo.se>
-Subject: Re: [PATCH] drm/panthor: Do not change the GPU clock rate while
- suspended
-Message-ID: <20261110140232.061d6844@fedora1.home>
-In-Reply-To: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
-References: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
+	id 1xQlXJ-00000003xzt-3Ro9
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 13:05:17 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id C47FE6391D;
+	Tue, 10 Nov 2026 13:05:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 027DF1F0089F;
+	Tue, 10 Nov 2026 13:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794315916;
+	bh=MBoMybViYwhw6nSYk7WOZTfocy/4HWn5nwGt1dyl8yY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Vuu3b3LCWUv0/eF3lz7jUcEZVs9jqVhBsDLONVZGlavb/6XHlC5bjur5b5gMphmuf
+	 KEBt/T3I7FmSCjgryFiCneLA3aeYVdBQqaDTcSTgJZ+7lIqqSW732cn3+1jK7wZagT
+	 x/QC/ajdeZ7tQsAN9MVf3ZFvTcAIbk/+GKpCx2qeSZWJWAeCOr10meax0f7ucCrwih
+	 /C30xxGahUS1/4rq9SCtlIX1qXGSxgr6g08yb2SKm0pTDLYXKQ2ev+z5jnHcTVmjTU
+	 vFQm/jRWPHmKJDvxnWldoWZpmKNOu+hV8L9BzRzUm/DCoWmwKcUv+CdOyS2zGZK48d
+	 KCOTiaXJyioCw==
+Date: Tue, 10 Nov 2026 14:05:13 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Javier Martinez Canillas <javierm@redhat.com>
+Cc: Devarsh Thakkar <devarsht@ti.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, LiangCheng Wang <zaq14760@gmail.com>
+Subject: Re: [PATCH v3 00/14] Add DRM driver for Solomon SSD16xx e-paper
+ display controllers
+Message-ID: <avMWcdpHuf8CX41p@houat>
+References: <20261019213726.4145532-1-devarsht@ti.com>
+ <xlv1o6bweu88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_050245_504989_8F78A2FC 
-X-CRM114-Status: GOOD (  49.89  )
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="klwijyhaeml73kht"
+Content-Disposition: inline
+In-Reply-To: <xlv1o6bweu88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,184 +75,67 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 10 Nov 2026 07:15:00 +0000
-Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-wrote:
 
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> From the start of panthor_device_suspend() until panthor_device_resume()
-> has enabled the clocks again, the GPU clocks are off or about to be, and
-> the GPU power domain may be down. devfreq can still call ->target() in
-> that window: a write to min_freq or max_freq in sysfs, a thermal cooling
-> state change or a PM QoS request all end up in update_devfreq() whatever
-> the device state.
-> 
-> With the RK3588 GPU core clock switched to the firmware-managed
-> SCMI_CLK_GPU (needed to reach the PVTPLL rates of the upper OPPs), such
-> a call is fatal. To set a PVTPLL rate TF-A programs registers in the GPU
-> GRF, which sit in the GPU power domain, and with the domain off that
-> access ends in an asynchronous SError and a kernel panic, for example
-> after
-> 
->   echo 1000000000 > /sys/class/devfreq/fb000000.gpu/min_freq
-> 
-> while the GPU is runtime suspended.
-> 
-> Only apply a rate to the hardware while the device is resuming or
-> active, plus the suspend frequency that devfreq_suspend_device() applies
-> from the suspend path while the GPU is still powered. Other requests are
-> still accepted and recorded by devfreq, which applies them on resume or
-> at the next governor update.
-> 
-> The RFC this is based on (Jonas Karlman's panthor SCMI clock change,
-> carried in Armbian's linux-rockchip pull request 380) checked the
-> runtime PM status instead. That
-> status is still RPM_SUSPENDING after panthor_devfreq_suspend() has run,
-> which leaves a window where the rate can be raised again right before
-> the power domain goes down. The devfreq suspend count cannot be used
-> either: panthor's first runtime resume calls devfreq_resume_device()
-> without a matching suspend, so the count is -1 while the GPU is active
-> and 0 while it is suspended.
-> 
-> Suggested-by: Jonas Karlman <jonas@kwiboo.se>
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
-> Tested on an Orange Pi 5 (RK3588S) with the GPU core clock switched to
-> SCMI_CLK_GPU and a 200 MHz opp-suspend (the configuration from the RFC,
-> not yet in mainline): writing min_freq while the GPU was runtime
-> suspended no longer ends in an SError, the request takes effect at the
-> next job (1 GHz measured), max_freq likewise; 200 suspend/resume cycles
-> with short GPU jobs and a 3 minute sustained load ran without faults.
-> With the mainline device tree (CRU clock, no suspend OPP) the SError is
-> not reachable and the guard only skips rate changes while the GPU is
-> powered down.
-> 
-> This patch was developed with Claude (Anthropic) as a coding assistant:
-> it wrote the code and the commit message, and I reviewed and tested it
-> as described above.
-> ---
->  drivers/gpu/drm/panthor/panthor_devfreq.c | 42 ++++++++++++++++++++++++++++---
->  1 file changed, 39 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
-> index 2249b41ca4af..cab86e9c9d46 100644
-> --- a/drivers/gpu/drm/panthor/panthor_devfreq.c
-> +++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
-> @@ -60,20 +60,56 @@ static void panthor_devfreq_update_utilization(struct panthor_devfreq *pdevfreq)
->  	pdevfreq->time_last_update = now;
->  }
->  
-> +/*
-> + * Whether a new rate can be applied to the hardware now.
-> + *
-> + * From the start of panthor_device_suspend() until panthor_device_resume()
-> + * has enabled the clocks again, the GPU clocks are about to be disabled
-> + * or are off, and the GPU power domain may be down. devfreq can still
-> + * call ->target() in that window: sysfs
-> + * min_freq/max_freq writes, thermal cooling and PM QoS requests all end
-> + * up in update_devfreq() whatever the device state.
-> + *
-> + * Changing the rate then is pointless, and harmful where the core clock
-> + * is managed by firmware: on RK3588, setting SCMI_CLK_GPU to a PVTPLL
-> + * rate with the GPU power domain off makes TF-A access the powered-down
-> + * GPU GRF, which ends in an asynchronous SError. So while the device is
-> + * suspending only the suspend frequency, applied by
-> + * devfreq_suspend_device(), reaches the hardware, and nothing does
-> + * while it is suspended. devfreq records the other requests: they are
-> + * applied on resume or at the next governor update.
-> + */
-> +static bool panthor_devfreq_can_set_rate(struct panthor_device *ptdev,
-> +					 unsigned long freq)
-> +{
-> +	struct devfreq *devfreq = ptdev->devfreq ? ptdev->devfreq->devfreq : NULL;
+--klwijyhaeml73kht
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 00/14] Add DRM driver for Solomon SSD16xx e-paper
+ display controllers
+MIME-Version: 1.0
 
-I'd rather use devfreq::suspend_count to detect if the devfreq
-component is suspended, since it gives us a better granularity than
-panthor_device::pm::state.
+On Tue, Nov 10, 2026 at 01:39:19PM +0100, Javier Martinez Canillas wrote:
+> Devarsh Thakkar <devarsht@ti.com> writes:
+>=20
+> Hello Devarsh,
+>=20
+> > This series adds a DRM driver for the Solomon Systech SSD16xx family of
+> > e-paper display controllers (SSD1673, SSD1680, SSD1681, SSD1683), start=
+ing
+> > with support for the Gooddisplay GDEY042T81, a 4.2" 400=D7300 black-and=
+-white
+> > e-paper panel driven by the SSD1683 controller.
+> >
+> > The driver is designed and architected keeping the bi-stable nature
+> > and low-power requirements of epaper display based systems in mind
+> > along with having adequate flexibility to support varying use-case
+> > requirements for the e-paper display use-cases.
+> >
+>=20
+> [...]
+>=20
+> >   drm/solomon: ssd16xx: Expose refresh mode as plane property
+> >   drm/solomon: ssd16xx: Expose color mode as plane property
+> >   drm/solomon: ssd16xx: Expose session management as plane properties
+>=20
+> There is a fundmental issue with these 3 patches. They are adding custom
+> device-specific plane properties, but the KMS/DRM subsystem requires all
+> KMS properties to be generic and standardized:
+>=20
+> https://docs.kernel.org/gpu/drm-kms.html#requirements
 
-> +
-> +	switch (atomic_read(&ptdev->pm.state)) {
-> +	case PANTHOR_DEVICE_PM_STATE_SUSPENDED:
-> +		return false;
-> +	case PANTHOR_DEVICE_PM_STATE_SUSPENDING:
-> +		return devfreq && devfreq->suspend_freq &&
-> +		       freq == devfreq->suspend_freq;
-> +	default:
+And with an established open-source project using it.
 
-When PANTHOR_DEVICE_PM_STATE_SUSPENDING is set, not all HW
-components have been clocked/put out of reset. It's probably okay
-for power domains, because those deps are described through device
-links, and the dependencies are resumed by PM core before the
-panthor PM hooks are called, but this is fragile, and that's another
-reason I think we shouldn't rely on panthor_device::pm::state for that,
-but on devfreq::suspend_count (or any other internal panthor_devfreq
-state that tracks the panthor_devfreq component status).
+Maxime
 
-> +		return true;
-> +	}
-> +}
-> +
->  static int panthor_devfreq_target(struct device *dev, unsigned long *freq,
->  				  u32 flags)
->  {
-> +	struct panthor_device *ptdev = dev_get_drvdata(dev);
->  	struct dev_pm_opp *opp;
-> -	int err;
->  
->  	opp = devfreq_recommended_opp(dev, freq, flags);
->  	if (IS_ERR(opp))
->  		return PTR_ERR(opp);
->  	dev_pm_opp_put(opp);
->  
-> -	err = dev_pm_opp_set_rate(dev, *freq);
-> +	if (!panthor_devfreq_can_set_rate(ptdev, *freq))
-> +		return 0;
+--klwijyhaeml73kht
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you return zero here, the new frequency is assumed to be applied,
-and it messes up with the devfreq state (::previous_freq for instance)
-that was set on devfreq_suspend_device(). If we assume that rate
-changes should be rejected while we're suspended, this should probably
-return an error.
+-----BEGIN PGP SIGNATURE-----
 
->  
-> -	return err;
-> +	return dev_pm_opp_set_rate(dev, *freq);
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCavMWiAAKCRAnX84Zoj2+
+dkIwAYC0DtJkAVBm+J23hxDPYN3LOErIFEidODLDtg7h0aQi3Z2BFQwO+PCQIoXo
+gjP2Z0UBgJVG3tdXOtdyDLFW8PcuEpwqiWW8o07FpgWwqLlSGNUwqc4yhb5dSKLk
+/nOenbrRCg==
+=ZC+S
+-----END PGP SIGNATURE-----
 
-There's another race between devfreq_suspend_device(), which will
-restore the ::resume_freq, and a concurrent devfreq_update_target() call
-that's here to set a new rate. Using devfreq::suspend_count won't help,
-because this atomic is decremented before the resume_freq is applied,
-and the devfreq lock is only taken around the devfreq_set_target() call.
-
-Honestly, it feels like we're trying to address the problem at the wrong
-level. I would expect governors to stop calling devfreq_update_target()
-between the DEVFREQ_GOV_SUSPEND and DEVFREQ_GOV_RESUME events (which
-should probably be sent before suspend_count is incremented and the
-suspend freq is applied). And I'd also expect some kind of
-locking/synchronization to prevent races between
-devfreq_update_target() and devfreq_{suspend,resume}_device().
-
->  }
->  
->  static void panthor_devfreq_reset(struct panthor_devfreq *pdevfreq)
-> 
-> ---
-> base-commit: 8deaade4a5a4ff635df91e246e42139ab2b33f6d
-> change-id: 20261110-panthor-suspend-clk-11d5604fe5be
-> 
-> Best regards,
-> --  
-> Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> 
-
+--klwijyhaeml73kht--
 
