@@ -2,119 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6021606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271AF606D002
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LbsdB+dw;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZZmFI8GN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2S3Efpjn;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=KssVo+Za
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=z+n7GkR0pifD4/2RXbWX1AgFi3gIudpbZojDZ36ABEI=; b=LbsdB+dw0X/zHc
-	CJyjHiaDszxJPZsbsnRA2M5l/U77+vyUzK53LRLhjiCPRmhXTOLVGuGoaGQPV/Dxeu7EJ7hcS3nJj
-	zNN2v+K2xXyQcaoCmqh+bkm9DH4RSFKDXwLYzhEut64ednXWkbpRx3216I5MxGN0avAhbs9ZdrXfE
-	zyWJr/CyZYwA8RdmW9PmUbg42bO9PuAjT4E5iJGr+v+mSKkGDfGM+aHHdSqeQM+9A26p2pQev2Y9N
-	Jnwy4A1opwxtLcA8bDHYT4IGiaHr6+Y07zGUtdxJ6Do3Fga8gcJlvsVkad64bEQwFsmvXrlstVpqp
-	VzlA/N7azc+N3wyBN6fA==;
+	List-Owner; bh=PI2PKfoJt0rvenbJLW+04PG2yF6v5rLbE6RaSFwnr3Y=; b=2S3EfpjnFIUdtA
+	9quJ8S9sjSuqtTDmTJDqFqwVpNqF1v/HEiezhLh5rxubNu5w6GfRfZA1SGEYvh3EkV5/Z58x2YQlR
+	1IMgaFBGVFrq3gywED+jFGyGgPbeXvnM92KMolecPkj8pMvb+HSR8aH08hq/FYLMvlRQLywmrdnVZ
+	IoaDzqDLzFIW6I3ld7VTouQeAuM2eEnuVklAxvLeOq+ksoQbJqWieCogUVPvUtwwJ+13F5K7m/JwP
+	MWiWTZTj9xynB782dwJPVqyOMoKMD4guIIhj1YoQLIb49f3uWScfdq+4aysMs+7kMvwo/QIsXXoJZ
+	Q0YXicLLHTKrylvvBQWA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhCk-000000037Oc-3T8U;
-	Tue, 10 Nov 2026 08:27:46 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQhG3-000000037wB-3XGm;
+	Tue, 10 Nov 2026 08:31:11 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhCj-000000037Nm-1Cco
+	id 1xQhG0-000000037uc-0Wus
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 08:27:45 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8FE7061E91;
-	Tue, 10 Nov 2026 08:27:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34A511F0089F;
-	Tue, 10 Nov 2026 08:27:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794299263;
-	bh=z+n7GkR0pifD4/2RXbWX1AgFi3gIudpbZojDZ36ABEI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=ZZmFI8GNnAwgGco9NL4ZOKCriB1Tr+v9Rt7NPAbeQDLDiFDI+Dh2vLJEGXT7lqvOH
-	 HAZxaN+LTljukkAVoByTl4oLxcaSSK0WV7kGd6p5veY0hoH2pHSG45Mkw+QybHKM1+
-	 FwKwv3YhebrGYlRCiqUFpit5EHNkFc1hKTWYHcfIaIPPnFIm8IzuicAi6Vf5GkS5Vq
-	 RsYDb0eqWHV6ByFO8dLr44IBNYFdThXlNqHOMXaA4nm+lVN44gY/n0FSUT3ZOJ5qqY
-	 4FrWnY8t99X54Kj7g5O/a5wP7DlZck7U+EbSwvYwj5qgCK5a6f+9+ANNO7tNmK7fac
-	 NQbFDjJSnAD5g==
-Message-ID: <bbc16906-45e2-4d81-ae81-ad93e87b13be@kernel.org>
-Date: Tue, 10 Nov 2026 09:27:34 +0100
+	Tue, 10 Nov 2026 08:31:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1794299464;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PI2PKfoJt0rvenbJLW+04PG2yF6v5rLbE6RaSFwnr3Y=;
+	b=KssVo+ZaJ7rLj0MPnEMu3Fbeaq2N1FMfjXGHBOvvG0TKDI/D9eWAg6Xsn4rOqMk5m96MJ4
+	abyHI0N1t9nSae4nALFn1oRLWJgCTI0Gn5H0WpxtLk/LZeQJtp3a4cRXHQfSE28ZstiCos
+	8147xRtqW01MUTxiMHtTSMZERTCCBUQ=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-322-3IKks4JvNqCVjx5Owj_yCA-1; Tue, 10 Nov 2026 03:31:02 -0500
+X-MC-Unique: 3IKks4JvNqCVjx5Owj_yCA-1
+X-Mimecast-MFC-AGG-ID: 3IKks4JvNqCVjx5Owj_yCA_1794299461
+Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-4b764ffc014so16274315e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 00:31:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794299461; x=1794904261;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=PI2PKfoJt0rvenbJLW+04PG2yF6v5rLbE6RaSFwnr3Y=;
+        b=LqGg5VuL2MiKWAMuZtPJmG5O+7gH4IsVaLdHQ1IlJ5wfdnX7n6Ko1vtN4rWFGLyVtX
+         iDqaG581DDsQva5OOZdLWMQ+BUHNFTJuRgrA1SAcSVjb4EvQ0fXHcaek50xA575P8Hy/
+         mPhtNngLoHYV7EqX2ZlkmA3awoMiO2QK6cmYz+IM56+bi5Kg4HE4KvCL2wvWWdZH3vpA
+         b54RjBidvViP3u1WU1ckJVLBCUaQd67zpjhyBeZ8svJBU10G2y8tTAinScJrRe+3VN7t
+         UEaJVnH6wuqOsfAT7uYvzfKe9QLlJLBYG3zFvgAvpDfZM2NPPPHl/MeBF84gihjBkAaY
+         nR/w==
+X-Forwarded-Encrypted: i=1; AL+hErF5PYjGVBsmGXD80i4YlxBGvNT0Su6haBsjBQRNJAPBDr8ujDfMBYG5KOKpn/bljNyf+9SJfxJWg+/wHBkale+z@lists.infradead.org
+X-Gm-Message-State: APuU4Z/3Ql2GGwC2E7YOTM3GY7Ov8EAPhQB4Wxk1jNPuHD3G+ujx93gj
+	xd2A0/3EaIAr6Iq3hnjTtWbKUMVDbxP4RXpifRnwK+05BD5tyUUj7Ri8M0+UlKBT8eE2yLgp3Rk
+	tWAUBzuYa3bWQ8V1XFRim4kw5U18L4B7g/bmKnb9fAPwA87tdnUphRRlG5ZMcd9wXTGdWt3loLY
+	d7
+X-Gm-Gg: AYBFou15/Oj3zjmbjIeKEt2E2lOkVKt6Ckvv5UveANdP3HcIP/YED/yx3BW6Qa9s3xl
+	dXF0ooVs28iXfvfIiwI7Yg+WQ65LPGKX24tL0bWQRw2siE/RPAFMrkPhpy3+1096Hp+V/oTClXS
+	ziev5RrYR0eUuYlgghlaW1MWJ+1FT1UGwQQkdot1bdxqaZnqQXy6CnU1v/OZxSI5+B3S6knRty2
+	J7Avof6OEO+fgPODtC1ZtspHeXEpQovpVuc8NDpTf1Gzg4cPJS1v1I53xJ0SpE+G/uW0FrRuatx
+	fxtc1IEkXOposT9OyAZV9V9TDqYLUtPPrcWoDZT/zt0WrgL/sB+4xgKcUqrmuzPwsUqG5JiXJbq
+	4N+zntojsAdH4SEwYueQRE5bFMQ066H+bLJh1ELF1/Fan7+TQrJ5rpC7UE2vOq3sd/Dlaw63ryc
+	K1ryOlkCPx9WDCAEOQVlsOCvpTxxPAmHWK517TJ3gfG6+3
+X-Received: by 2002:a05:600c:4f4b:b0:4b1:32c8:27db with SMTP id 5b1f17b1804b1-4ba0234bd12mr37428075e9.22.1794299461241;
+        Tue, 10 Nov 2026 00:31:01 -0800 (PST)
+X-Received: by 2002:a05:600c:4f4b:b0:4b1:32c8:27db with SMTP id 5b1f17b1804b1-4ba0234bd12mr37427425e9.22.1794299460813;
+        Tue, 10 Nov 2026 00:31:00 -0800 (PST)
+Received: from [192.168.88.30] (ip231-128-192-82.pool-bba.aruba.it. [82.192.128.231])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0204e22csm44017445e9.12.2026.11.10.00.30.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2026 00:31:00 -0800 (PST)
+Message-ID: <817d2bd1-64fa-4a6f-bec6-5a4dd4d3a76f@redhat.com>
+Date: Tue, 10 Nov 2026 09:30:58 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 0/5] arm64: add Ambarella CV75 SoC support
-To: Arnd Bergmann <arnd@arndb.de>, Brian Masney <masneyb@kernel.org>
-Cc: Long Zhao <longzhao@ambarella.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>, soc@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
- linux-clk@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- devicetree@vger.kernel.org, Long Zhao <zl020895@163.com>,
- linux-kernel@vger.kernel.org, Linus Walleij <linusw@kernel.org>
-References: <20261105-cv75-soc-v11-0-aa6ee0b2380d@ambarella.com>
- <179427375370.1061670.4050288038934218487.b4-review@b4>
- <20261110-interesting-hilarious-shark-2dbfc0@quoll>
- <7eeaf54d-2d7d-420c-a34e-eebc6dd0effe@app.fastmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net v2] net: stmmac: Clear DMA errors for multi-channel
+ interrupts
+To: Magnus Leatti <magnusleatti@kernelriot.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
+ Simon Horman <horms@kernel.org>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>, Russell King <linux@armlinux.org.uk>,
+ Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+ Nicolai Buchwitz <nb@tipi-net.de>, thomas.petazzoni@bootlin.com,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261103125430.962715-1-maxime.chevallier@bootlin.com>
+ <179379704484.488856.2140619507341432623@kernel.org>
+ <20261107100140.8279-1-magnusleatti@kernelriot.com>
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20261107100140.8279-1-magnusleatti@kernelriot.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 6fE7Mu-PNCaAzNTfNfUxQkW6U6MDAjGHwbjDN5annT8_1794299461
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <7eeaf54d-2d7d-420c-a34e-eebc6dd0effe@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_003108_243761_E896C9BF 
+X-CRM114-Status: GOOD (  13.11  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -133,44 +131,31 @@ X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/11/2026 09:23, Arnd Bergmann wrote:
-> On Tue, Nov 10, 2026, at 09:02, Krzysztof Kozlowski wrote:
->> On Mon, Nov 09, 2026 at 08:22:33PM -0500, Brian Masney wrote:
+On 11/7/26 11:01, Magnus Leatti wrote:
+>> Should the Fixes: tag point at 1b9707e6f1a9 instead, or also include it?
+>> As written, stable may backport this to 5.13+ trees that cannot hit these
+>> storms.
 > 
->>> - I can then merge patches 3 and 5 into clk-pile.
->>
->> You will have code depending on non-exisitng ARCH_AMBARELLA symbol, but
->> if that's fine for you then sure.
->>
->>>
->>> - The DTS folks will take patch 4.
->>
->> The entire platform is for SoC tree. This sounds ok for
->> me, but I am not sure if Arnd was merging pulls with
->> dependencies. If not, then worse case the arm64 bits will
->> wait a cycle. Anyway, I guess you can take clock bits.
+> A data point for the RBU case from the YT6801, same 64-byte UDP RX
+> flood, all on the same 7.0.13 kernel:
 > 
-> The way I usually handle new SoC families is to have
-> a separate branch for those beside the usual dt/driver/defconfig
-> updates, possibly for multiple new SoC families, and
-> possibly including required drivers. The idea is that
-> whatever we merge here has at least a chance to boot
-> into an initramfs with a console.
+>    stmmac from 7.0.13 (has 6ccf12ae111e, not 1b9707e6f1a9):
+>      no storm; the MAC interrupt never fires (4 streams for 10 s,
+>      and 8 streams plus TX for 30 s)
+>    stmmac from 7.2.11, built for 7.0.13:
+>      storm, the machine hangs
+>    the same, with only 1b9707e6f1a9 reverted:
+>      no storm
 > 
-> If it can boot without the clk driver, the easiest way
-> would be to just keep the clk and arch/arm64 bits
-> separate. If the clk driver is required to boot, I would
-> suggest having a branch with the two clk patches that
-> can get merged (not applied) into both the clk tree
-> and the soc/newsoc branch to put the other patches
-> on top. This would make sure we only have each commit
-> once, but still have a clean history that includes the
-> driver in both sides.
+> So on this hardware the RBU storm needs 1b9707e6f1a9. I did not test
+> the RPS case.
 > 
+>> Since RBU and RPS were enabled only for statistics, was masking them in
+>> multi-MSI mode considered as an alternative?
 
-There is a build dependency - DTS needs clock binding header - so it has
-to be second, unless the dependency is decoupled.
+AFAICS 'statistics' here means accounting of some corner cases errors. I
+guess this could be a preferable route.
 
-Best regards,
-Krzysztof
+/P
+
 
