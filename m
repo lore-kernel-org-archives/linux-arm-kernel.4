@@ -2,148 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0E1606A7EE
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:21:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CD23606A7EF
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:21:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gHa5Kah5;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=XYkrWJgp;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=PWsFJgyz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZOcSp1lg;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=RivH9rYl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wedbrXh177mbzmYM+3txzr4ofpzd2UDd+z7ICvagmsM=; b=gHa5Kah5ypQut6MvpkXcW41dAF
-	jx6IlClAeDAa3XSLNJWaQQFNyM+m9YlRLuZY03YQBAp9H+9gMhrBi55eMc9iT/zPh3WD3sP79Tq/X
-	oPeooTJ5U8f+YdmZGp5/k3j+uIe0+NLJ0ZKjEc7w2i0jeA3GE6Ev3mkn2Z7xG20OVbJ11c3Yx+BLD
-	VieFdcyIVcGRNbGNSoyn2nTQBTZt3CZjPIfRu/K8GolkN+UZbRXv/Z3kDobcUz+WaQ+mkq1lxZF1N
-	ks9pxDriM93+wJOfBNO5HVObGJYS7diWuz/yi1L9p7CKzE5XwjImdbIcI14Ntpy94aR2L/EcLeIrG
-	EF8ZAeHA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=NxwBGzcXaXgnefRAG/4qRjMQWaL6ukmbK7qp5Voj4t0=; b=ZOcSp1lgGv3ZBU
+	G286cQxeOKHo4P4noEwmJ1eo5vgRubv68r4vjpwkl3lEYcx4vLOhDWfJqZH3K2yfwCK5pqUfBnOGd
+	ZwpVLz2sr8q3K8AUdkdH2OvwUBbTZyoezz9jPymMWwCdYxPXJtMFZd7/+hAvSEOYWGbplA1a+q5TP
+	YZ/mNG15L48TriB1kdi4UV2DhxjOqFfYb4+BFkMt2HXTo9IoOGPxuWLV9zoZ0bSYbWo7/A2vEEaQw
+	itNMZYJDdml1b/qzdwdqrj0RkbOzmenlWercEdXYkwon/dXehDhX7QLZQNUHyU1R7N9uNguMoWOBa
+	0Dyi9tc/fdGXJk2D6a4Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlmt-000000041jg-3EfG;
-	Tue, 10 Nov 2026 13:21:23 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xQlmz-000000041nF-0HlH;
+	Tue, 10 Nov 2026 13:21:29 +0000
+Received: from mail-pl1-x632.google.com ([2607:f8b0:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlmq-000000041io-2v1j
+	id 1xQlmw-000000041lM-1gsi
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 13:21:22 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AABAOBU1599664
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:21:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=wedbrXh177mbzmYM+3txzr
-	4ofpzd2UDd+z7ICvagmsM=; b=XYkrWJgpRa06p1t340wdOzXmWXTRgyqCfNJFBl
-	eWdpDzKL/23EU2D72H96WXxiMPbR2PHzscSUYks5STxiYudNtOMp1evTvt1/N2Sc
-	QfCHV6+CbxCVV8/6JzHiHm95OHA/Yx5tUFNwxjTdJErtrLMqICsUPXQXonzPh8X2
-	LaJPqNoT7kYM6eRXzREoL1nTa2At/FW6ar5UrUMvHa+q6lXJNr42URX47wMMUhUR
-	qs4n04Vrw5VKURJIQCUqjokEjpjdcTE+MZfBvLpLXBbiPl1er6z/ixbREzrYi3m0
-	Q1tuCmFQX7rZRfi9YXD/EoknlrYXpAXsK5jyaReIy/v3DJiQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hutv4a7ds-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:21:19 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-93f2373e9b4so235331185a.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:21:19 -0800 (PST)
+	Tue, 10 Nov 2026 13:21:27 +0000
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-2ea7987517aso11249575ad.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:21:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794316879; x=1794921679; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:subject:from:cc:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=wedbrXh177mbzmYM+3txzr4ofpzd2UDd+z7ICvagmsM=;
-        b=PWsFJgyzz+q3yOSuA5V1g/PdK0xOEmEEAWeHcLchqlNZ3kFFpCFtbCzBn2isJDuMo8
-         g3hJ/E2arQkEFjsGghVSaC0s+utGQewkt04cNa2C/FVSrYqxF5el6mBGC58wdHGKBDTk
-         bM4iLNPDNnPKCSfjG7FxTFOzvIhQUVQm5cUnFPOxReIn6EedYiDKiLSE83QmEsdc2w3w
-         tUQ5nGQXcm8VmVjqgz6V7LcTaADzIhZC9E/mq6MBExjbRlRXca8Da2ZdM759xRt4zK/g
-         BCJLU0Dm+9XTAtAwlnAgTZwLhFkdLhOk23BsIFONgsbjWiTjOTX45m8tPEfICVsJ5/0T
-         71CQ==
+        d=gmail.com; s=20260707; t=1794316885; x=1794921685; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=NxwBGzcXaXgnefRAG/4qRjMQWaL6ukmbK7qp5Voj4t0=;
+        b=RivH9rYl79n8no5cF+UC0NZQFbkc6orDZe4qejEQJ8e7j8pPXSQU2fanPQTYXHIriR
+         H3bAPsMMmGVn6ZCtRo80DH1/+AavUQOTmm9Mb7oE6anNwRbqHrST0TGm9D9o+K2lp2ZJ
+         3MhJnbGz9J1pOmHbQEo8RlBGYBX7+6HTiNgWDdFPx/l8MPghB7BsELsjeayzy0P0qVtu
+         hissoy2cJ5JKVDHrFpw35PR6WiP+tkq0S9nezVxlvBR//LM5FSyLAZoDSJQKOB/GfgHy
+         hbkl+KsNPxDHRLUJDdbcpMU6QHDpoG1bimr5OCTHiyOe1ZdpgIMLTD3v3NjWJa4hFpla
+         qpoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794316879; x=1794921679;
-        h=content-transfer-encoding:content-type:subject:from:cc:to
-         :content-language:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=wedbrXh177mbzmYM+3txzr4ofpzd2UDd+z7ICvagmsM=;
-        b=h/2uqAVlWcuttxvCaVurhvitJQc/pl6s2xBzcCqjm/ej7H83qcXbpaVyxfc8LlX7In
-         NWnHaAec9RYd7/aSJg9O3AdYIk8cg45Ug0sgkJZaejyhxwaJjbNqvZ6fpp4RAJvcMDSP
-         vL56i9MVFC4i9rzoBzU3r5WqBgvxkc4+ELBToKDQhDsnHVgA6Tz6N/VmJYA7EtqMlcOc
-         MZaX84p3KIYSKtf1WnH3/0VMqWdTahPtntabtQ86tJjLO1h9vYorUNID7/5soehJcTej
-         BjOOKfzeNYpDnIO+dkHZOm84sp3JBxislk+H7ZjPnUSSwXkGRG6fi5oF5AGcZ0PDR4CA
-         iAfg==
-X-Forwarded-Encrypted: i=1; AL+hErHvkUujYEo06lE1C4/fKgQ2rBlcgw/osjSXIoKcj4HaayG3jy4uaLYyf9kC+CxY60dJDcz5ZUvAPWP3YAt6jyG3@lists.infradead.org
-X-Gm-Message-State: APuU4Z/RCW1x1T0ik4aMHpr4B39ZYuqSLOkCmvqNl93jm00Pg0/zl/2x
-	RZNlkx8uVTZFUDKSarMnDXAAs3QQSYfwS3JClNApUjv1hX61171Bt47dmvNy/a4YhRpWlgh3MXF
-	VTLX3NMRm3M4jNE7ynC8W10PjEifiQAq+FfZMLl1UTgMH9EEI8sbShPlrEnQfWdCLmfVCXtyP77
-	WrgqUQ1VLIcw==
-X-Gm-Gg: AYBFou2aIKleflNJiYAx3xmFvFIRCpRmfbfDO/FRq+hvK64uLC90cYCXCe/k5DnOISj
-	1qxIuG8EzND/JtmcrY2YuYtfIlCRVGpfaG+AMc1ikwbKf/yI6BRHHRxFoZSgQA8E9pN3QCv11e/
-	JZ1ufYJgj4tAZLxUHHPiZk5Hl9DoAWtsWGvN6C2uY58tKw3rlzYcrKvekfpxh3rTkc98C3/SCpx
-	xjLIuIB2jpyQprbSJn+SB6mdf0b4/q3N6MRfnB56JkBGUjX2IJJedWPHUp448A+yIZHAcmHbhJK
-	xKAROr5jr/MoZrmJiCSfLwhHG4g1XE2sE/3cz2gj6qLTNTCHaJMhttSCTiwYroc7jut8ZF0l0DB
-	ZoYYDdezDc77bYn4FUGx48+b0bvo0aQE6E2ppR2x1IC/71N90rD/hqhqt3jTKfLLnpxhO2JpXWu
-	9aDdHgrzrK0u9yXErlYYGF9ljmy4ZApDGeNJE=
-X-Received: by 2002:a05:620a:4413:b0:93f:a63:15f8 with SMTP id af79cd13be357-9479f1d71c1mr399920285a.8.1794316878693;
-        Tue, 10 Nov 2026 05:21:18 -0800 (PST)
-X-Received: by 2002:a05:620a:4413:b0:93f:a63:15f8 with SMTP id af79cd13be357-9479f1d71c1mr399913585a.8.1794316878017;
-        Tue, 10 Nov 2026 05:21:18 -0800 (PST)
-Received: from ?IPV6:2a05:6e02:1041:c10:496c:dcb4:4deb:25e8? ([2a05:6e02:1041:c10:496c:dcb4:4deb:25e8])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4983585c4fdsm5047635f8f.10.2026.11.10.05.21.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 05:21:17 -0800 (PST)
-Message-ID: <b9ff4d03-61f7-4e17-b048-3cecee70f3ca@oss.qualcomm.com>
-Date: Tue, 10 Nov 2026 14:21:16 +0100
+        d=1e100.net; s=20260707; t=1794316885; x=1794921685;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=NxwBGzcXaXgnefRAG/4qRjMQWaL6ukmbK7qp5Voj4t0=;
+        b=pJR3EyQyoyc45J9eFR+sI+lNSFJYe+DTcm+CmPIWwHT4Hjj4ulmecfRTENWGoPtHt3
+         rWSl3K9NneZUvNo0/91e5UgUFXszImQHu5OvmNgVv6/JehzFn2t+DcDhpkaXaW8ypKLE
+         ILUQPrQfu4hu9y2eeHoo7rS4GWVs2crb01S5DHDC3Bd1MohLvKsMx8YZ/UYW7q7882cy
+         vh9Aw5LIC+tJ+Q8+roaHar2nuUPtqCTbuDIV+5cZImM+dnR2dyu5Qq4mt/rXQQ+UUoiv
+         +SleJ0OavZgFhLB3AX1GZ60b3Qyf702HiMRluofKxnxw8QImoidiRRvipve1S2Kp/G5m
+         AJ+w==
+X-Forwarded-Encrypted: i=1; AL+hErGh0mC0pPVtnkz1yCdxIlxgoDsd6oYZTACJL6ZJZeolgE32qmi+Cca9JBCivYIk0EvQ5C8zMxNT64vQPLgvUWjI@lists.infradead.org
+X-Gm-Message-State: APuU4Z+xraPQdF7vKy+Xo5YF6ySDCkVgxm80SJeufbVDfWSmcf/wXkwI
+	5YY0SXu/yWVBMVuZDkELlUK4ojsrGGKNsNEW00+eJoIJC+kb3lmUsNev
+X-Gm-Gg: AYBFou2+XunbuP7ZywZAwrzdvA+AyAOcaBePIhbChzHdY8gUlYQUSIbQmmDNPU/A3Di
+	rBuxmOzfqGQ+X3aAo5HQBOaiz7JHg7fIjpkLRQ7SO6vwo2s+cpgt7x0uo9fIzVa85olN0hvTVcB
+	b1yci012d3pm1V/I9EXG95kXUPVnaZ5nBi3XzYvg4XYuVo8GxP31ZZsDVQfyC1/jCGWVa2LZiag
+	T9j/bugvlJ+loEPLDd30j80Btyger3KXHUHX2+gsVupXfcmjsbTmJSGDTtSkfYVKkuMXYBisD4b
+	Y6meN1zYFTXlSZfwmDHNGLScXcCkG/k2fZZhQMZIEuQUwzq6Pl1JBwZ+LExBWKBWt/UXOq28/DM
+	k6zXk30lFTRaAZyqA/esSdacuUQl/7ai5/Hl1mm6mJnA8xu60ZlmF8Qnx/AphVkK/gY5RZxFEvQ
+	eypsxggiinXvJYymhtvvwPblf8Zm6AysVf+FAiP91xJSVJKyqvzeFHAfg+x2Vugcqdy8/TqOaa5
+	zqNzniHVwtafsT6lSE6Ect1oeCqCTjssNneHs42G5aDqPgaXWKlptlfynn8i29FXy1vBwrlZnP3
+	zlrNABgqLTS2xUlTPYSehNrZrak2Jo3uSPYmZbQhGj3V7Hy2iIqXTETiRZoecJM=
+X-Received: by 2002:a17:903:943:b0:2e2:cc25:b232 with SMTP id d9443c01a7336-2edb92cf2b5mr25368335ad.42.1794316884965;
+        Tue, 10 Nov 2026 05:21:24 -0800 (PST)
+Received: from r00799764-ThinkCentre-M920t-N000.. ([139.159.170.67])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d4a31esm8861065ad.22.2026.11.10.05.21.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 05:21:24 -0800 (PST)
+From: Jinjie Ruan <ruanjinjie01@gmail.com>
+To: babu.moger@amd.com,
+	ben.horgan@arm.com,
+	bp@alien8.de,
+	corbet@lwn.net,
+	dave.hansen@linux.intel.com,
+	Dave.Martin@arm.com,
+	fenghuay@nvidia.com,
+	gshan@redhat.com,
+	hpa@zytor.com,
+	james.morse@arm.com,
+	jic23@kernel.org,
+	mingo@redhat.com,
+	rdunlap@infradead.org,
+	reinette.chatre@intel.com,
+	skhan@linuxfoundation.org,
+	tan.shaopeng@fujitsu.com,
+	tglx@kernel.org,
+	tony.luck@intel.com,
+	zengheng4@huawei.com,
+	x86@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: ruanjinjie@huawei.com
+Subject: [PATCH v5 1/7] fs/resctrl: Report a temporary RMID shortage per CLOSID
+Date: Tue, 10 Nov 2026 21:20:48 +0800
+Message-ID: <20261110132054.3702-2-ruanjinjie01@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261110132054.3702-1-ruanjinjie01@gmail.com>
+References: <20261110132054.3702-1-ruanjinjie01@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Heiko St??bner <heiko@sntech.de>, Shuah Khan <shuah@kernel.org>,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>,
-        Lukasz Luba <Lukasz.Luba@arm.com>,
-        Linux PM mailing list <linux-pm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kselftest@vger.kernel.org
-From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
-Subject: [GIT PULL] powercap: Add generic hierarchy support and convert DTPM
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA1MyBTYWx0ZWRfX7JPIzRDWcCLX
- lCc8G0bIzGwoezB9GP5is4A9qFTaJGS9hNb2iYBQ+uI/Si9dTg6cM/YCei5krpmjgFmMpLyymFl
- BvhISxZ1wyrabZSnSA2lS8I6txNPbD0=
-X-Proofpoint-ORIG-GUID: NaCxPHQJkJh46AeHliP4V2Obc1djQiYu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA1MyBTYWx0ZWRfX67Ylf9+Z5UBH
- 55wBDLeR7sEWhZwWJoaAGr16M5eH8ChDbbh2bzu/P8dJSMZK7iPaU5gr6M7w/kzCYMTQwApaWUj
- 1MYKZ+/lu//R5KVp2cRglSDDF7i4emwFV4LitXFUWVzxJ4hT4t+0Q1eTbj2TcBW69vaT7enTAbn
- g/6cUxaUq7k4PVV2TiwK54CECRtYalbHUZujw6NDs4hl0yGNHtrKNFUDKpd/Lujb9W8WS+U0n3v
- nLUeO0ZZ82bKBFuOmgfoR5YcagbQga5A4EsdweqLNrHTEsrDvlnq5ALeAze7MbpFiIiPPIQG6q2
- mqmc6J8mGA4A1AC3j/f7Lm5aK0vTMarm+tclRkOmEWXbo+++u+26+6Qk2M4BgXq652ihQlNz3yA
- gq3B9jweXAEmvoH064nYNLmY7d7D57wD0NmAykNvX+RXRF9BhlpL0WQ9GJIzxvBGcbnpDQPSnaz
- CEUZfh0g42Qw5gibEjQ==
-X-Authority-Analysis: v=2.4 cv=B54sQ+tM c=1 sm=1 tr=0 ts=6af31a4f cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=GgbJc354ad6G5sA-JgAA:9 a=QEXdDO2ut3YA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-GUID: NaCxPHQJkJh46AeHliP4V2Obc1djQiYu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-10_04,2026-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 impostorscore=0 phishscore=0 bulkscore=0
- malwarescore=0 adultscore=0 suspectscore=0 clxscore=1015 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611100053
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_052120_757095_A1E09CAF 
-X-CRM114-Status: GOOD (  17.95  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261110_052126_478191_38AFE1BA 
+X-CRM114-Status: GOOD (  18.24  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -154,104 +120,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Jinjie Ruan <ruanjinjie@huawei.com>
 
-Hi Rafael,
+An RMID that is freed is held in limbo until its cache occupancy drops
+below the threshold, after which it returns to the free list. A request
+that fails because of limbo is thus temporary and worth retrying, which
+resctrl reports to userspace as -EBUSY. A request that fails because
+every RMID is in use is permanent and reported as -ENOSPC.
 
-as requested please consider the following changes since commit 
-6628e7d4c6b25c8d18f1345e3a20d21829aae7e4:
+Where an RMID is only meaningful together with a CLOSID, a request can
+only be satisfied by an RMID belonging to the requested CLOSID, so the
+distinction has to be drawn per CLOSID. Instead it is drawn system wide.
+-ENOSPC is reported when the free list holds no RMID for the requested
+CLOSID, even when that CLOSID has RMIDs in limbo. -EBUSY is reported
+when the free list is empty and another CLOSID has an RMID in limbo,
+even when the requested CLOSID has none. Userspace is thus told to give
+up on a shortage that may clear on its own, and to retry one that cannot
+clear until it removes a group itself.
 
-   Linux 7.4-rc1 (2026-11-01 13:26:31 -0800)
+Architectures where the RMID is independent of the CLOSID always match
+the first entry on the free list, so neither case arises there and only
+MPAM systems are affected.
 
-are available in the Git repository at:
+Draw the distinction from the number of RMIDs the requested CLOSID has
+in limbo where the RMID depends on the CLOSID, and from the system wide
+count otherwise. Drop the separate test for an empty free list, which
+the search handles on its own.
 
-   git://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git 
-tags/powercap-hierarchy
+Fixes: c4c0376eefe1 ("x86/resctrl: Allow RMID allocation to be scoped by CLOSID")
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Reviewed-by: Reinette Chatre <reinette.chatre@intel.com>
+Reviewed-by: Ben Horgan <ben.horgan@arm.com>
+Cc: James Morse <james.morse@arm.com>
+Cc: Reinette Chatre <reinette.chatre@intel.com>
+Cc: Babu Moger <babu.moger@amd.com>
+Cc: <stable@vger.kernel.org> # 7.1.x
+---
+ fs/resctrl/monitor.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-for you to fetch changes up to 6ba41a1519ff1f91f96d90a6bf4f70131a8f7c73:
+diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
+index 04e4ea612b7c..b8f4e1ff4083 100644
+--- a/fs/resctrl/monitor.c
++++ b/fs/resctrl/monitor.c
+@@ -207,9 +207,6 @@ static struct rmid_entry *resctrl_find_free_rmid(u32 closid)
+ 	struct rmid_entry *itr;
+ 	u32 itr_idx, cmp_idx;
+ 
+-	if (list_empty(&rmid_free_lru))
+-		return rmid_limbo_count ? ERR_PTR(-EBUSY) : ERR_PTR(-ENOSPC);
+-
+ 	list_for_each_entry(itr, &rmid_free_lru, list) {
+ 		/*
+ 		 * Get the index of this free RMID, and the index it would need
+@@ -225,7 +222,17 @@ static struct rmid_entry *resctrl_find_free_rmid(u32 closid)
+ 			return itr;
+ 	}
+ 
+-	return ERR_PTR(-ENOSPC);
++	/*
++	 * No free RMID matched. If this CLOSID has RMIDs in limbo, return
++	 * -EBUSY so userspace can retry. Otherwise, the CLOSID is genuinely
++	 * out of RMIDs. When RMIDs are not per-CLOSID, any RMID in limbo
++	 * delays the allocation.
++	 */
++	if (IS_ENABLED(CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID))
++		return closid_num_dirty_rmid[closid] ? ERR_PTR(-EBUSY) :
++						       ERR_PTR(-ENOSPC);
++
++	return rmid_limbo_count ? ERR_PTR(-EBUSY) : ERR_PTR(-ENOSPC);
+ }
+ 
+ /**
+-- 
+2.43.0
 
-   powercap: dtpm: Add RK3588 hierarchy (2026-11-09 17:33:40 +0100)
-
-----------------------------------------------------------------
-Powercap controllers may expose trees of power zones, such as packages,
-clusters and CPUs. This series adds generic helpers to duplicate a static
-hierarchy description, create its zones through backend callbacks, and
-destroy them in reverse order. Parents must precede their children in the
-node array; the helpers validate that ordering rather than sorting nodes.
-
-Drivers supporting multiple platforms can place each platform's hierarchy
-description and node array in initdata. powercap_hierarchy_dup() creates a
-working copy of the selected hierarchy and rebases its parent pointers.
-All original descriptions, including those for unused platforms, can then
-be reclaimed automatically with init memory. Names and backend-private
-data are not duplicated and must remain valid for the working hierarchy.
-
-The controller supplies creation and destruction callbacks to connect the
-generic hierarchy traversal to its backend. The creation callback receives
-the control type, node name, private data and parent zone, registers the
-zone with its operations and constraints, and returns it to the helper.
-The destruction callback unregisters it during rollback or teardown.
-
-The API supports both fatal creation errors, which roll back previously
-created zones, and optional nodes: a NULL callback result skips a node and
-its descendants while allowing independent branches to be created.
-
-The helpers were motivated by the SPEL work and also let DTPM share the
-same hierarchy infrastructure:
-https://lore.kernel.org/lkml/20260702-qcom_spel_driver_upstream-v3-0-434d50f0c5b0@oss.qualcomm.com/
-
-A kselftest exercises static and duplicated hierarchies, skipped branches,
-reuse after partial destruction, and rejection of repeated creation. Its
-userspace script checks the 16 exported zones and selected attribute
-values, then removes the module with a sysfs attribute descriptor open.
-
-DTPM is converted to the generic helpers while preserving best-effort
-creation when individual backends are unavailable. The CPU backend finds
-an online sibling when a hierarchy's representative CPU is offline.
-Entirely offline policies remain unavailable during initialization.
-
-The RK3399 description is reduced to one CPU entry per cpufreq policy.
-The old backend already suppressed duplicate registration; the extra
-entries were redundant descriptions, not additional registered zones.
-Finally, a shared Rockchip virtual descriptor and an RK3588 CPU hierarchy
-are added. RK3588's three frequency domains are represented by cpu@0,
-cpu@400 and cpu@600 below a virtual package node; no GPU zone is added
-for RK3588 in this series.
-
-----------------------------------------------------------------
-Daniel Lezcano (6):
-       powercap: Add generic zone hierarchy creation helpers
-       selftests/powercap: Add powercap hierarchy creation API tests
-       powercap: dtpm: Remove duplicate RK3399 CPU hierarchy nodes
-       powercap: dtpm: Use generic powercap hierarchy helpers
-       powercap: dtpm: Rename Rockchip virtual node descriptor
-       powercap: dtpm: Add RK3588 hierarchy
-
-  drivers/powercap/dtpm.c                            | 180 ++++++------
-  drivers/powercap/dtpm_cpu.c                        |  62 +++-
-  drivers/powercap/dtpm_devfreq.c                    |  22 +-
-  drivers/powercap/powercap_sys.c                    | 204 +++++++++++++
-  drivers/soc/rockchip/dtpm.c                        | 129 +++++++--
-  include/linux/dtpm.h                               |   6 +-
-  include/linux/powercap.h                           | 205 ++++++++++++++
-  tools/testing/selftests/Makefile                   |   1 +
-  tools/testing/selftests/powercap/Kbuild            |   5 +
-  tools/testing/selftests/powercap/Makefile          |  46 +++
-  tools/testing/selftests/powercap/config            |   3 +
-  .../selftests/powercap/powercap_hierarchy.c        | 314 
-+++++++++++++++++++++
-  .../selftests/powercap/powercap_hierarchy.sh       | 128 +++++++++
-  13 files changed, 1153 insertions(+), 152 deletions(-)
-  create mode 100644 tools/testing/selftests/powercap/Kbuild
-  create mode 100644 tools/testing/selftests/powercap/Makefile
-  create mode 100644 tools/testing/selftests/powercap/config
-  create mode 100644 tools/testing/selftests/powercap/powercap_hierarchy.c
-  create mode 100755 tools/testing/selftests/powercap/powercap_hierarchy.sh
 
