@@ -2,89 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAE5606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 19:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F414E606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 19:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=odVloOrY;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=Bphlk1eH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lioQaZrU;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=IuBjkmzJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3pk5DW/V6VeFLnQOE3OY9sAFDQ/PzjxAc+hYqzj2LB8=; b=odVloOrYkPNvR2
-	/GiRB82/GjVcrkPFW4wan3nU4kZoPrNba4xLdiMg+O8Cm34mqMS+Th/mFrMamii2touYU5JiskRkP
-	oODiiyhVZZ+toXRv1+SAmzOe4ZMAuFVPO7OOFr1d3MTFeJRhpibK0b9z2PZMO7nYuTES3b/LZrvAX
-	4APJL+NtCqNrUp8KA5ZZwfWb9kGNIpW6/bcj9Wb1FB9wYvk29XdgylG806MBAd15R+ALlkRhbdAxM
-	NCPpimcdWIc1OaZaUjlZkJu40wE73nsHSL6hTr7GSyaIw2xIIJqUzCNXqZcn6Cw/dRP1ygtbhlLLy
-	zc/T/shSBhYCm2qxbClw==;
+	List-Owner; bh=pa6VwfvBf/lmyVIlZAJGW65vNYl8kWvkzCZbBuLoYbU=; b=lioQaZrUPsFRgP
+	eIA6w5GDs9DU9yjNL2SNBByH0LT4tzs+MMcw2Q9u7fLhp5ve8MUy7tMfTzyC1un8qZBOdGbIi93vR
+	kDmHABblg0S8C/birElYvPNMUdkSnce8PTg8ynJbpmzSssPWpdA+Y8ZTExXFWpBfydCivM0LgjCj5
+	vTDGAFHzKW5lg1pfbiFz8vhh3tTCuIOkCLj+nbaaWvnyvSJ1v0rRnffmckKY/OXYEVkrq4E0aOxRq
+	PV6SHGGZWoFG7e9gcbztMzhWAkshw9cDL9Bzreiu+OgzIsg2ycGXtsP+jxLZCxi/8kK1NBJd9akp4
+	MxvPGQD3tM2tvR5ShR7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQrBe-00000004sBD-3A3h;
-	Tue, 10 Nov 2026 19:07:18 +0000
-Received: from mail-pj1-x1062.google.com ([2607:f8b0:4864:20::1062])
+	id 1xQrBq-00000004sDf-3l0C;
+	Tue, 10 Nov 2026 19:07:30 +0000
+Received: from mail-pg1-x562.google.com ([2607:f8b0:4864:20::562])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQrBa-00000004sAp-1r4Z
+	id 1xQrBo-00000004sDA-3Sk3
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 19:07:17 +0000
-Received: by mail-pj1-x1062.google.com with SMTP id 98e67ed59e1d1-3b0bbdeae06so1503862a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 11:07:13 -0800 (PST)
+	Tue, 10 Nov 2026 19:07:30 +0000
+Received: by mail-pg1-x562.google.com with SMTP id 41be03b00d2f7-cdd89d84521so644279a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 11:07:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794337633; x=1794942433;
+        d=1e100.net; s=20260707; t=1794337648; x=1794942448;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=3pk5DW/V6VeFLnQOE3OY9sAFDQ/PzjxAc+hYqzj2LB8=;
-        b=ZNh+TKDIIDVUfNM1KMZK7H/wqjZcq4ph1xhYZPFgUHG2JhaFJwkXqvuP9qoJ36+wud
-         qKb0NwROx/RXTMd05P6DUPN5oLyp735u64GsoLgCTdmFS/RD1kRmR08gouVLSeUd4e0N
-         +qE1D1t1510AxmfKUilndMgpXfvNcLzI73lFve5eSFs9wZjRT/xds0mX5LxOL50sVhNP
-         FReos8ZcB7PyB4vfaxMbPq/UNq4pfd4pGechx/hRyBBlJAWhSWzTZ9Ybcze0iwdEOiDd
-         fovmKQZ1WwPJyH4R326IARpPeqVbZg9N44bxQ5BTFAe13USWjIj/v+/+ejIul6SrhjI1
-         iXmQ==
-X-Forwarded-Encrypted: i=1; AL+hErEtYy6TdGbJx0g7gnXeCe0gFTHFmjC7GgAygW0CazWJj4ZK18rFACHY/k5AluvghvbiDWfDiOc0p4FNCJzTW3h6@lists.infradead.org
-X-Gm-Message-State: APuU4Z9cL5F+WSvJHBZVCby7GHs/4oLPHSxAam1i1dq6rLr6CkCOiP9+
-	ivfE0GvCn5jYLnupOVz0vP//yqwmQrDMCNx3q0eYttuR9K0UUaHEcbHM5XD/NdcXLemo0dmNNzh
-	2GeO5d3PZ/MmpakugDhLkqWd5AFpkKaja+jQ+cNpuLEYipq4iDs4XaVSCEYZQjaqjuKTYBOD8P2
-	FcRA6cWPeoTP+251a0FLw8ifvxuZOhNp+cYbeWJpn6KRicIab/6YB5p/edxt0nTz8WVQG+Skrk+
-	mvacl0vbQLVFobt+TpIf94d4qAVEdMChpA=
-X-Gm-Gg: AYBFou08aPNcaic4D+xGZbe3vT0IzY3hwAnW6alIrh1dYhqCfXhtsZ7dFSla/ASb0HB
-	gedzpEBUeA4/MLfbpubo550l97vLq806jbL6yWY7/Bz7+mSiR1J1e5l/txagKY88xzIDeFbUshV
-	DdTI2MflKsBe+6FR6aaHNY3r/IKM485ntzAaOVBGLqzgSVDvb+h2wUfv0tqP03sFPviZYyIsN7x
-	GEWZM2K1I/Zs0/JboVqFWY4bk+SdedpLapeCr57n/TyIFXzNoORxeXBAO1jFeruhCPIcFD9JF/k
-	z4/o0eHV4pnvkcZLHGin4yci0oaq6oyDdeHQxU4LdkYMtWvWmUGR3yS+ODKXXD/pbfIThUsRMM+
-	3XX55BB3vXzmTCwI5gbn1QgfYljFNXI3ZQGhkZp/3FDUavxxMeOa292fQyS5kEvhJHZJAfu1aoO
-	MJnhf1tjnyrzuGiQS//RGVAyKr5vUfhI11krEeKDT1
-X-Received: by 2002:a17:90b:2707:b0:3b0:9e2c:9b61 with SMTP id 98e67ed59e1d1-3b166cf6979mr3672302a91.35.1794337632731;
-        Tue, 10 Nov 2026 11:07:12 -0800 (PST)
+        bh=pa6VwfvBf/lmyVIlZAJGW65vNYl8kWvkzCZbBuLoYbU=;
+        b=LxU3Rd7o+mRmCWLiUzsTCf5wNwK1LFSU32we2iRjHE1/slDpwtIqFmRW8wrp3PTJCJ
+         W0FsfCmxsTlxslavxa21xH84xDbgvd/1wucks8+0m28vIxvYvJclcrkVrl3ey3d14Qfy
+         ickLYdTXr0dzHF4Mw7a148sn/l5PUCATLZGgcdQexVlvgAz7p+ArEH/PBkNjrSOo8F51
+         VvWXHzS6ommsivQ9Jg6Y54Zjd8oClbXp11U3gW/79Y0oHnbexrdV3MPX+OwY7wvlcpHj
+         Xq1a5yF+fL6DPTKjzCkPmG+AOfI5MXviWcuO19NgIsyuaIgb2T2KDTqO48m4t0yF1K+n
+         hILQ==
+X-Forwarded-Encrypted: i=1; AL+hErESNV5dFMJDBpEv+VjHXLsVDnoi02gA+tx+Giq3Z79TXtYEg2+rWbmTZonYxhXlLfh/ZmlDHdjerH9F9JtdDgBP@lists.infradead.org
+X-Gm-Message-State: APuU4Z9R9L99lutIcXBtamDARfeSXp7RkpTvLW9Wd3H/A8fzelG9Rkrm
+	+lFXrzvYoIIFqWcS/GKivEDApcMv9mtdRdSoiuGXKGiCnoTS0C2DEd7DNv0B0HwT8IFV8Ya0q0N
+	0h13r+Im1sb+95knI4ys1ALcnY42iqSDKUhnQ0zBJ/89VAEpXnv+kHdINSe7kxBPr5WqDOYjxkY
+	YGxmzL002ExxC/G4mj3oyUHsBjBXey5m2OwUuiQMZKrjNncbqnbjbigqN7TlKxn1ShuqSXSIrLl
+	AqlMI5neuxtkDpTu3UuYhJ5F2v+4xNgDcc=
+X-Gm-Gg: AYBFou2Cwn66cjh6h4s4z1en/tkpvepZ3DclIkWpvRsF6fGLB+fnAyvhN+JP6+Sy9lE
+	k0sdQQb+61gDI5ZdVuOFvLB63ZXLGhRlkRIhSNj6fRPJjeUvDSx3TScdt6nDhFIlPxHsISFlrtG
+	qyFNZDM6KISoKCRCyVKoDRVawnyevdOX4I12jMOURAsMW+5vuok6soPhgPl9p7Ioamb0X3z5iRv
+	vHfR39nphai2rXPBrBhluL8piBLwfu7OFAR+YMzYU+qo/sf20NBuOM1lsWIPC/30zv2WuLN7ml8
+	pNSx9GeG0TdhpZnv1hGuiQGEOMgJmkPoiSaDPYAVidMwJ/l4DH9V2YI7XiDukVkPn7W14TVUckU
+	3+ijsjYsdJNyHKhFlQefEnCEIitEkgnmfGhp0Bf90e90uQdIHArP+4uUNUmVm4GUZMm0+7N0qrC
+	a5uFukmbngQhPPJN48S6PbJrXLjgYagoJvqIo2OT/P
+X-Received: by 2002:a17:90b:548c:b0:3b0:a1c6:95ae with SMTP id 98e67ed59e1d1-3b1679e96e8mr2140959a91.31.1794337647762;
+        Tue, 10 Nov 2026 11:07:27 -0800 (PST)
 Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-22.dlp.protect.broadcom.com. [144.49.247.22])
-        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b17db57cdcsm406197a91.5.2026.11.10.11.07.12
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b17db3a05csm442533a91.4.2026.11.10.11.07.27
         for <linux-arm-kernel@lists.infradead.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 10 Nov 2026 11:07:12 -0800 (PST)
+        Tue, 10 Nov 2026 11:07:27 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3ad704d4760so2746991a91.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 11:07:11 -0800 (PST)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-91eb3a63064so50696386d6.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 11:07:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1794337631; x=1794942431; darn=lists.infradead.org;
+        d=broadcom.com; s=google; t=1794337646; x=1794942446; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=3pk5DW/V6VeFLnQOE3OY9sAFDQ/PzjxAc+hYqzj2LB8=;
-        b=Bphlk1eHgYl509TbK2mjAs+B2rwp4++CaljdvbK/KsWNas2F6yh16MWf/UR5HEODKo
-         eJzT1cZxfaOHvTgxhvWqfCxRrAeKEXMYX7b0MtT6ZyWqhfo1TlPII0PKNfXHnfo6rtTk
-         syUq2O8JLpbSWYCvxTIRdYwx9gA9uFiwIjt7o=
-X-Forwarded-Encrypted: i=1; AL+hErHtartRdVQGK+AIEt4xKoJSKenwjeu8UfsiDmY+p4Xb8ITUeLp2XODVJTFpHgeJyG4HCvZqrEKSerExzISZ3eXP@lists.infradead.org
-X-Received: by 2002:a17:90b:3902:b0:3a4:967c:6947 with SMTP id 98e67ed59e1d1-3b166cc1512mr3321462a91.21.1794337631054;
-        Tue, 10 Nov 2026 11:07:11 -0800 (PST)
-X-Received: by 2002:a17:90b:3902:b0:3a4:967c:6947 with SMTP id 98e67ed59e1d1-3b166cc1512mr3321420a91.21.1794337630434;
-        Tue, 10 Nov 2026 11:07:10 -0800 (PST)
+        bh=pa6VwfvBf/lmyVIlZAJGW65vNYl8kWvkzCZbBuLoYbU=;
+        b=IuBjkmzJef7jG/0n3QQpHKw4lm5cFhXJeV2KtWGiN9bYScr8ZkWN+DXFMBfWniQNDK
+         QtI15+zD5Le9P//IqPGPtoKUY/4Aaumdacn7DdBRrtg9eNs6qezygvHS5z2IO5RFcTf7
+         MiV0VXkrgl/lpltV+OrmiCRxagmhce1EBjEFc=
+X-Forwarded-Encrypted: i=1; AL+hErFekVgIa//srG2TmBQHclbX2ZBLLHSUoqZSr/Yp8EUq1FaONQeEJDTN3CD8jZztvo3qEb8yqaJ8D81PSRxAPURg@lists.infradead.org
+X-Received: by 2002:a05:6214:e87:b0:91e:b7fd:8ce7 with SMTP id 6a1803df08f44-91f04122ec1mr3192256d6.28.1794337646221;
+        Tue, 10 Nov 2026 11:07:26 -0800 (PST)
+X-Received: by 2002:a05:6214:e87:b0:91e:b7fd:8ce7 with SMTP id 6a1803df08f44-91f04122ec1mr3191796d6.28.1794337645698;
+        Tue, 10 Nov 2026 11:07:25 -0800 (PST)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17db7df7csm862880a91.11.2026.11.10.11.07.06
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91f046e42a7sm448086d6.31.2026.11.10.11.07.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 11:07:08 -0800 (PST)
+        Tue, 10 Nov 2026 11:07:24 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	Linus Walleij <linusw@kernel.org>,
@@ -101,19 +101,19 @@ To: bcm-kernel-feedback-list@broadcom.com,
 Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: arm: cpus: Add brcm,bca-smp enable method
-Date: Tue, 10 Nov 2026 11:07:05 -0800
-Message-ID: <20261110190705.2345733-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v5 2/3] ARM: bcm: Add CFE SMP support for BCMBCA
+Date: Tue, 10 Nov 2026 11:07:22 -0800
+Message-ID: <20261110190722.2345878-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261105-genexis-xg6846-smp-v7-3-rc1-v5-1-4103df2588d3@kernel.org>
-References: <20261105-genexis-xg6846-smp-v7-3-rc1-v5-0-4103df2588d3@kernel.org> <20261105-genexis-xg6846-smp-v7-3-rc1-v5-1-4103df2588d3@kernel.org>
+In-Reply-To: <20261105-genexis-xg6846-smp-v7-3-rc1-v5-2-4103df2588d3@kernel.org>
+References: <20261105-genexis-xg6846-smp-v7-3-rc1-v5-0-4103df2588d3@kernel.org> <20261105-genexis-xg6846-smp-v7-3-rc1-v5-2-4103df2588d3@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_110714_538478_F2244661 
-X-CRM114-Status: GOOD (  12.07  )
+X-CRM114-CacheID: sfid-20261110_110728_881382_6864C56F 
+X-CRM114-Status: GOOD (  15.33  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,15 +135,25 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Thu, 05 Nov 2026 14:24:46 +0100, Linus Walleij <linusw@kernel.org> wrote:
-> BCMBCA systems booted through CFE can release a secondary CPU by
-> writing its ARM-state entry address to a 32-bit MMIO mailbox and
-> sending a wakeup interrupt.
+On Thu, 05 Nov 2026 14:24:47 +0100, Linus Walleij <linusw@kernel.org> wrote:
+> The XG6846B CFE bootloader powers up CPU1 and leaves it in a holding pen
+> waiting for an interrupt. After waking, the stub reads the GPIO
+> GeneralPurpose register at 0xff800568 and branches to the stored address
+> in ARM state. The vendor kernel uses this mailbox and a wakeup IPI.
 > 
-> Document brcm,bca-smp and its single-cell cpu-release-addr property.
-> Require the mailbox address on CPU1, which CFE leaves in a holding pen.
-> CPU0 is already running and does not need a release address. Add a
-> Cortex-A7 example with the mailbox address only on CPU1.
+> Implement the brcm,bca-smp CPU enable-method for BCMBCA systems
+> booted through CFE.
+> Read the mailbox address from the secondary CPU's cpu-release-addr
+> property. Map it as device memory, write secondary_startup_arm and
+> complete the write before sending the wakeup IPI. CPU1 is already
+> running, so no power or reset sequence is needed. Using the ARM entry
+> also supports kernels built in Thumb-2 mode. Clear any Thumb function
+> pointer tag before programming this ARM entry address.
+> 
+> Register the operations with CPU_METHOD_OF_DECLARE() so the CPU
+> nodes select CFE bring-up explicitly. Build the BCMBCA machine
+> description independently of DEBUG_BCMBCA, keeping the debug UART
+> mapping conditional. The generic ARM startup code retains PSCI priority.
 > 
 > Suggested-by: William Zhang <william.zhang@broadcom.com>
 > Reviewed-by: William Zhang <william.zhang@broadcom.com>
