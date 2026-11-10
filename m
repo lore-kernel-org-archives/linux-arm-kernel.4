@@ -2,66 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660C0606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF34606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jVtMptwE;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=Yvuj86XM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ng0uEgYK;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kSgH+nQG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:In-Reply-To:Subject:CC:To:From:Date:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:References:List-Unsubscribe-Post:
-	List-Owner; bh=W5VFT6r2Y6eLDidBiMP68rdRUtzolvh9ZqNnQTEK/Ro=; b=jVtMptwEMgYvKj
-	9XeehvPZIDSQfrrUiNEFR5OAp+EdZdT7NszE/dRsgGo9Gas2axyDAJtT9ztFylULJix+DUZB+joMq
-	+rFqgcLl7ovKjHdNwx/vto+r/+BOn0DSB0nqkxr3sQMChDc758VrPUflds4PgqoiGuGP6pwZAnFxv
-	yUJsWfkNXaPncXr3sto1rbb0kN7MSICN35LdI5Hwe09fIs5a6ehYObEEp1ngbp60LxuI3qc93E/Lq
-	c8zJx6EnT5b3LNsTjucaxjt/xR1vA2u5HDKx+K/F1mjF1hk83dHnQe/oWBYJat/LLDDKol/tM3rUD
-	oR8RKxA3KvOWL7QIjVDQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=4qaBcoJhuip85HNRKTiRsc6cXmbUnKal0wM/bMhZ1/4=; b=Ng0uEgYKPbm4u3mly1eLo4rwuF
+	vC/i1aqVM+fUInLjHThZS1ArKSoWEnxuOGhO9Gh6GKdR4En9gHIV2F8RLAA/tiFNGaohrMFgHsFwN
+	kdckvrxuTHLzPiYG9b4/MhilyFlOJO6U0W07rndE4xtkHvNIzoPFQvd9H/+q0vYcTU5032T9R/k2h
+	OZC9sKpFH5Ve99h5UyRao4Njy/N6D53lHcCI8cBORNA4XpUTpghAv7bOnlwfF11dFWq8B8cAsZ9fj
+	nIoMMIkkL1N1vtDaNLOwwdY7nky/jfZdZGJjII+z245tueRb81+ezBoNpBajEW7772e8a0s71WRoj
+	bo7BBurw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQo74-00000004Rjk-0eto;
-	Tue, 10 Nov 2026 15:50:22 +0000
-Received: from out-107.mta1.migadu.com ([95.215.58.107] helo=mta1.migadu.com)
+	id 1xQoAJ-00000004S8H-2UZB;
+	Tue, 10 Nov 2026 15:53:43 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQo70-00000004RiL-28d3
+	id 1xQoAH-00000004S81-2lNM
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:50:20 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=2Mtu3r90e3i3e1eCCswxBpmz1VV1JltP8voYP2HAqiQ=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794325810; v=1; x=1794930610;
- b=Yvuj86XM4drbUIFGP4Q2B1W3g5wNf8x679LN2JNfXicCXrV5NKDOy3yi269faPr2h7JR/i3F
- P6LpXaDSqLjczimyO2Fmet7mZnTLwvu+D+yynjCGOpjPx++HvzOQokj7pSxgsJgJOSAP6BI3j4V
- F4AWxbDVuDAstxy9o4NrYph8=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 66c915b9da646c84;
-	Tue, 10 Nov 2026 15:50:09 +0000
-X-Mizu-Trace-ID: 66c915b9da646c84
-X-Migadu-Flow: FLOW_OUT
-Date: Tue, 10 Nov 2026 15:50:04 +0000
-From: Bradley Morgan <bradley.morgan@linux.dev>
-To: leitao@debian.org
-CC: angelogioacchino.delregno@collabora.com, ebiederm@xmission.com,
- kernel-team@meta.com, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- matthias.bgg@gmail.com, npiggin@gmail.com, oleg@redhat.com,
- peterz@infradead.org, stable@vger.kernel.org,
- syzbot+8fdf0d8e10bdde1c2e88@syzkaller.appspotmail.com
-Subject: Re: [PATCH] reboot: halt when power off fails
-In-Reply-To: <20261110-reboot-make-task-dead-v1-1-af88a3f37bf7@debian.org>
-Message-ID: <1DE3FCD9-C973-4B83-AD64-CB6130CDF39D@linux.dev>
+	Tue, 10 Nov 2026 15:53:41 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8FFC8605D1;
+	Tue, 10 Nov 2026 15:53:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B92A1F008A3;
+	Tue, 10 Nov 2026 15:53:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794326020;
+	bh=4qaBcoJhuip85HNRKTiRsc6cXmbUnKal0wM/bMhZ1/4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=kSgH+nQGYPhpecDT9RjX6A/Px+LoAnOuAhiSotnuroSbtWAmzKYW4psaCtAgm3HTu
+	 Ud6V+EHkVE3/ElaMQwFldGXubSt6xnnZ/H3lgzIXO1EM8FVi1btcbv6Q58NdTqn5kX
+	 VSwm6LEMTkaplsK5V9TVhOGb77Pc7h/AvO0sKyFHmtojeCKTH7meWA2i2lB3xJQORv
+	 LLCXQjH6SckaZOufXYpZi4+dMGxI7LRSKGENk099kRFe/hVqBoPU2XdsQ5DcgYensD
+	 /N1jMWwlSmjxHjQj70tuBOg1mUKeFDv3uHaSqSd+3wj7rolN0iCh/5JK3PXXFiZxS4
+	 +LKdNCB+uEhVw==
+Date: Tue, 10 Nov 2026 15:53:30 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kevin Brodsky <kevin.brodsky@arm.com>
+Cc: linux-hardening@vger.kernel.org,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Ard Biesheuvel <ardb+git@google.com>,
+	Andy Lutomirski <luto@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"David Hildenbrand (Arm)" <david@kernel.org>,
+	Jann Horn <jannh@google.com>, Jeff Xu <jeffxu@chromium.org>,
+	Joey Gouly <joey.gouly@arm.com>, Kees Cook <kees@kernel.org>,
+	Linu Cherian <linu.cherian@arm.com>,
+	Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Matthew Wilcox <willy@infradead.org>,
+	Maxwell Bland <mbland@motorola.com>,
+	"Mike Rapoport (IBM)" <rppt@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pierre Langlois <pierre.langlois@arm.com>,
+	=?iso-8859-1?Q?Pierre-Cl=E9ment?= Tosi <ptosi@google.com>,
+	Quentin Perret <qperret@google.com>,
+	Rick Edgecombe <rick.p.edgecombe@intel.com>,
+	Ryan Roberts <ryan.roberts@arm.com>,
+	Vlastimil Babka <vbabka@kernel.org>, Will Deacon <will@kernel.org>,
+	Yang Shi <yang@os.amperecomputing.com>,
+	Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
+	x86@kernel.org, Ira Weiny <iweiny@kernel.org>,
+	Lorenzo Stoakes <ljs@kernel.org>, Thomas Gleixner <tglx@kernel.org>
+Subject: Re: [PATCH RFC v10 07/22] arm64: Initialize POR_EL1 register on
+ cpu_resume()
+Message-ID: <be361be8-c5ad-4ff7-a6db-7b0815bfe1d0@sirena.org.uk>
+References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
+ <20261109-kpkeys-v10-7-aa6c4d9603bc@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_075018_809199_4CAC6E46 
-X-CRM114-Status: GOOD (  14.39  )
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="y6i2pjiKjCxCKcN0"
+Content-Disposition: inline
+In-Reply-To: <20261109-kpkeys-v10-7-aa6c4d9603bc@arm.com>
+X-Cookie: You can't take damsel here now.
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,116 +95,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10 November 2026 15:24:34 GMT, Breno Leitao <leitao@debian.org> wrote:
->The reboot syscall calls do_exit(0) when kernel_power_off() returns.
->That happens when no power off handler takes the machine down, since
->machine_power_off() returns to its caller on x86, arm, arm64 and sh.
->
->For example, an x86 kernel built with CONFIG_ACPI_REDUCED_HARDWARE_ONLY
->cannot power off QEMU's pc and q35 machines. Their FADT is not
->hardware-reduced, so acpi_power_off() is still registered. But the
->legacy sleep code is compiled out and the FADT has no sleep control
->register, so acpi_enter_sleep_state() returns AE_NOT_EXIST.
->
->On x86, arm and arm64, interrupts are disabled by then, and do_exit()
->warns. syzbot hit this on a GCE VM:
->
->  ACPI: PM: Preparing to enter system sleep state S5
->  kvm: exiting hardware virtualization
->  reboot: Power down
->  ------------[ cut here ]------------
->  irqs_disabled()
->  WARNING: kernel/exit.c:930 at do_exit+0x1cf7/0x2ae0 kernel/exit.c:930, CPU#0: init/6193
->  CPU: 0 UID: 0 PID: 6193 Comm: init Tainted: G             L      syzkaller #0 PREEMPT(full)
->  Call Trace:
->   <TASK>
->   __do_sys_reboot+0x36e/0x400 kernel/reboot.c:784
->   do_syscall_64+0x115/0x840 arch/x86/entry/syscall_64.c:94
->   entry_SYSCALL_64_after_hwframe+0x77/0x7f
->   </TASK>
->
->If the caller is init, do_exit() then panics. Exiting does not help
->the other callers either: the devices are already shut down, and the
->task still holds system_transition_mutex.
->
->Halt instead, as the syscall already does when no power off handler is
->registered, and as most other architectures do in machine_power_off().
->
->Use machine_halt() rather than kernel_halt(). kernel_power_off() has
->already run the shutdown sequence, and kernel_halt() would call the
->reboot notifiers again with interrupts disabled.
->
->Keep the fallback in the syscall. hw_failure_emergency_action_func()
->relies on kernel_power_off() returning, so that it can try an
->emergency restart.
->
->Fixes: 001c28e57187 ("exit: Detect and fix irq disabled state in oops")
->Reported-by: syzbot+8fdf0d8e10bdde1c2e88@syzkaller.appspotmail.com
->Closes: https://syzkaller.appspot.com/bug?extid=8fdf0d8e10bdde1c2e88
->Suggested-by: Oleg Nesterov <oleg@redhat.com>
->Link: https://lore.kernel.org/all/20250404152006.GF3720@redhat.com/
->Link: https://lore.kernel.org/all/20260713062332.21131-1-include@grrlz.net/
->Cc: stable@vger.kernel.org
->Signed-off-by: Breno Leitao <leitao@debian.org>
->---
->This is my second attempt at fixing this. The first one silenced the
->warning in do_exit() pre LLMs:
->https://lore.kernel.org/all/20250403-exit-v1-1-8e9266bfc4b7@debian.org/
->
->Bradley Morgan tried twice, first enabling interrupts before do_exit(),
->then calling make_task_dead():
->https://lore.kernel.org/all/20260712125300.31501-1-include@grrlz.net/
->https://lore.kernel.org/all/20260713062332.21131-1-include@grrlz.net/
->
->Tze-nan Wu hit a related init panic during power off:
->https://lore.kernel.org/all/20250410143937.1829272-1-Tze-nan.Wu@mediatek.com/
->
->All of these still let the task exit. In those threads Oleg and
->Christian said init should not exit on power off at all, so this
->version halts instead.
->---
-> kernel/reboot.c | 3 +++
-> 1 file changed, 3 insertions(+)
->
->diff --git a/kernel/reboot.c b/kernel/reboot.c
->index 9a84401adde5a0..bc71183d4ad870 100644
->--- a/kernel/reboot.c
->+++ b/kernel/reboot.c
->@@ -791,6 +791,9 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
-> 
-> 	case LINUX_REBOOT_CMD_POWER_OFF:
-> 		kernel_power_off();
->+		pr_emerg("Power off failed: System halted instead\n");
->+		/* kernel_power_off() already ran the shutdown, only halt. */
->+		machine_halt();
 
-Reviewed-by: Bradley Morgan <bradley.morgan@linux.dev>
+--y6i2pjiKjCxCKcN0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Id reckon this would fix it, go test syzbot if you'd wanna be confident :)
+On Mon, Nov 09, 2026 at 03:58:32PM +0000, Kevin Brodsky wrote:
+> From: Yeoreum Yun <yeoreum.yun@arm.com>
+>=20
+> The POR_EL1 register is reset to an unknown value after cpu_suspend().
+> Since POR_EL1 always holds POR_EL1_INIT when entering cpu_suspend(),
+> initialize POR_EL1 with POR_EL1_INIT before cpu_do_resume().
 
-> 		do_exit(0);
-> 		break;
-> 
->
->---
->base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
->base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
->change-id: 20261110-reboot-make-task-dead-8702e9b29130
->
->Best regards,
->--  
->Breno Leitao <leitao@debian.org>
->
->
->
+> +#ifdef CONFIG_ARM64_POE
+> +alternative_if_not ARM64_HAS_S1POE
+> +	b	.Lskip_por_set
+> +alternative_else_nop_endif
+> +	mov_q	x2, POR_EL1_INIT
+> +	msr_s	SYS_POR_EL1, x2
+> +	/* isb can be skipped since cpu_do_resume() will do it. */
+> +.Lskip_por_set:
+> +#endif /* CONFIG_ARM64_POE */
 
---- Thanks!
+cpu_do_resume() will update TCR2_EL1 to enable POE again, a sufficiently
+unhelpful implementation could potentially decide to do that before this
+POR_EL1 value takes effect AFAICT given that there's no barriers.
+
+--y6i2pjiKjCxCKcN0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmrzPfoACgkQJNaLcl1U
+h9CfMQf+KE7tK9rhq506LXhS8qhdHDevtfZx2qtai6oaI8ROe6CSxZZ/PYZX/AxQ
+RB6TsZs/ebSJ8cn//ARFNZTWaspOHI13wG87Laj48QjwPVZuyBAE0MV4dlqlxM8S
+SUaN2cQ+xL/+x75htSgmDnA6NBZi/NXn8Ln2hpoiO8FO2oPSFY4l4xT9lMCvlol/
+4g9degQsFMatI+eteIErPUBMjUrTr+jpSK6zC65gIHerzlhXvpQmwro7KV4njpMZ
+zD2uA/+8YKidz8WAbiX8M9XETgaqWCGaTex5RrzWMqls1c0DvV4mFFlewowBTtEl
+CC0tUcjeb2jQhyVBZSQ3m48X0DCWPw==
+=ZUNG
+-----END PGP SIGNATURE-----
+
+--y6i2pjiKjCxCKcN0--
 
