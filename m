@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0522860A2618
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6987606C6D5
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:30:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XwPQW/55;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=aUEhOHj2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XXvRzzhd;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AK1NTSo0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,49 +14,49 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EeDJ3iXHw1eTGr3jYLp8sNAP6zgbBAsImYmgoG9HH1E=; b=XwPQW/55PtItWFtfYWUWuBauEX
-	SE2ojrlqxVElLzxf2MNxXw/2m5tPyG5RFtM604xlrLy58s9peebSEkoeNk7pZVh8NFli30JFf6kOs
-	T2UjKC6u5YJIot7/ViettNxH4GBiDbsBNLvnS6qJpueMrVk/C3gagKam+UFzlryiH73Uj51Ockgpd
-	2wphhSw+afaT853OO3P4/P6HFlYqnrMVKrb8GkoyH99wpgpXIJJaHbnVAfIXSytw59CIPZVO7s2BJ
-	hrCm6OXffK6K+nJBHgWb/1qG5kJizjv1KNRdDX7LZmn5kT3uHdeNotsExFK5UcbWiiLzyPoupnrvg
-	umSxLlqQ==;
+	bh=eSliAbjh7RZqlvKIXCr1lf7kB+SLn3Ee8ByU0n0PH90=; b=XXvRzzhd0TsZENC7yu+nDc8QNZ
+	eEziYagEb4qYpas6+9SrDS2UY325cD9v9PzvixGjigWhBHTw3b8enugZhqR3/6I6vL31XeFGxgCIK
+	+rGK/gQlPCCQIW+oIsnbN6tinRKQYu+Ys69ToM/tpIKco2F+fayk6EAGl17KSrK1ih5yxyMPQaNe6
+	k8llT2cnbH4Iwmhr9PVMK9jRsAJFRLoUh6rxs0yjA0q3+Ve1WM8DFQuqP/9tVuFa8pTqRjSEtMFe3
+	xD1abz1X0yN8ejQtFl0YHb0X8gFgtQYyAeN6PPjkJdBBJk+Zag+Xm0AiqTIkzyjvzwHcTTZ9BJtE4
+	TodTt7WA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoev-00000004WcM-3oz9;
-	Tue, 10 Nov 2026 16:25:21 +0000
-Received: from mgamail.intel.com ([192.198.163.17])
+	id 1xQojC-00000004XWR-2ZVL;
+	Tue, 10 Nov 2026 16:29:46 +0000
+Received: from mgamail.intel.com ([198.175.65.10])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoes-00000004WYu-1nph
+	id 1xQojA-00000004XVx-09lx
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 16:25:20 +0000
+	Tue, 10 Nov 2026 16:29:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794327919; x=1825863919;
+  t=1794328184; x=1825864184;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=lyuz2D4EmFcet2JRZyG53EVIYy8D1CxnxYUn7KkldQw=;
-  b=aUEhOHj2SvaeWr/fGfZlqJfy4skYaQjqfwpJr1+wwLgOGQl1zEQ6CnEi
-   Y/cWWZBkCTkKI+mM+Saj4L57FSvSyU1EDYrFm6AvjHMHwNXdiNa9HjzwU
-   COrgSVal1qbDTrgcpPblyoTlQmD8u3BNdK9vppL1E1fZgblqqJWWo5bxL
-   PSUrI4zE+mTtIhYCqNXEdLfh5bBLTP4pbt5vYu32CuatYTx9DCxuMIXX1
-   HwFmmLCdp7V3+AFnYehR0Lz6PVHqc8XjZFVpjpeGmdGMOith/UcTd6kN4
-   r7b0xEOntyTf6sVsGntaHqT67G0Mlhgt5VKcXzmSe4XyL3+WUSdD2vL8x
-   w==;
-X-CSE-ConnectionGUID: TcY/PVmGTs6lZL2+pe2fxA==
-X-CSE-MsgGUID: pX50GdVsSlGrGzzOQrkLwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3082523"
+  bh=fJlR0bo8pnYc/LIMgKmawcndi2oTRuM9VysMmlsls1I=;
+  b=AK1NTSo083hFeswOq486gmTF1dK70KMHsNz517tqPf5VPXgTKt+VkbFa
+   8oM9L4fFAkXxDvhZiYisL1dIX+kLZ2y8xVvI23GlMWNTWjgudDDRAuhP5
+   J5tELECfLXBKNKjuMxaMVU8mHCdf3WN79K0CZ24SHjjveiKtAycPc4Ui6
+   0XLstDL9Dqx7r1A0B45x5QqbFh2554tcCoZkAvHQn3T+PcOD8VM7is0cY
+   jAs9nXrsrHthcCLXOHC1ZsgUr/YPbP4ngbAsfYyqgncHSBIKaFimBuMlJ
+   t79cMNMMAcvhmNg/8NUC4FyfURUwiJeq9vVwu/vKDs/oz+/rUrQnaHRcf
+   A==;
+X-CSE-ConnectionGUID: ObHZ9icpQb+1W73Ihs6sjg==
+X-CSE-MsgGUID: a25q9upXS5+EON5FxSFbQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="2986940"
 X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
-   d="scan'208";a="3082523"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 08:25:18 -0800
-X-CSE-ConnectionGUID: rpPa5ikRQqOeounq2lJdXA==
-X-CSE-MsgGUID: GpEMo1VERpSvxmHTl/EiMw==
+   d="scan'208";a="2986940"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 08:29:43 -0800
+X-CSE-ConnectionGUID: MiXN/1QDQnqyJU4w66cS4Q==
+X-CSE-MsgGUID: P3r/DpS6R9WNXmCnTfY5LA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
-   d="scan'208";a="8784099"
+   d="scan'208";a="8063104"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.78])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 08:25:14 -0800
-Date: Tue, 10 Nov 2026 18:25:12 +0200
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 08:29:40 -0800
+Date: Tue, 10 Nov 2026 18:29:38 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
 To: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
 Cc: Jonathan Cameron <jic23@kernel.org>,
@@ -67,21 +67,21 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
 	Conall O'Griofa <conall.ogriofa@amd.com>, linux-iio@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	git@amd.com, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
-Subject: Re: [PATCH v5 13/16] iio: adc: xilinx-xadc: Add helper functions for
- the device setup
-Message-ID: <avNFaNki0m47M80d@ashevche-desk.local>
+Subject: Re: [PATCH v5 14/16] iio: adc: xilinx-xadc: Split driver into core
+ and platform files
+Message-ID: <avNGcpcemoeE3J7O@ashevche-desk.local>
 References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
- <20261110050201.1850399-14-dileepkumar.nagavarapu@amd.com>
+ <20261110050201.1850399-15-dileepkumar.nagavarapu@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261110050201.1850399-14-dileepkumar.nagavarapu@amd.com>
+In-Reply-To: <20261110050201.1850399-15-dileepkumar.nagavarapu@amd.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_082518_485338_F17DDEF4 
-X-CRM114-Status: GOOD (  18.29  )
+X-CRM114-CacheID: sfid-20261110_082944_120303_C29E5A88 
+X-CRM114-Status: GOOD (  14.54  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -93,68 +93,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 10:31:58AM +0530, Dileep Kumar Nagavarapu wrote:
-> Refactor the platform driver probe function by extracting device
-> setup and configuration logic into reusable helper functions:
-> xadc_device_setup(): handles IIO device allocation and basic setup
-> xadc_device_configure(): handles device tree parsing and bipolar mask
-> configuration
+On Tue, Nov 10, 2026 at 10:31:59AM +0530, Dileep Kumar Nagavarapu wrote:
+> Split the xilinx-xadc-core.c into separate core and platform specific
+> files to prepare for I2C interface support.
 > 
-> Move the bipolar channel mask calculation immediately after
-> xadc_parse_dt(), as the channel information used to build
-> the mask is populated there and remains unchanged before it is consumed.
+> xilinx-xadc-core.c is reorganized as follows:
+> xilinx-xadc-core.c:
+>   - Platform-independent IIO/ADC operations
+>   - Channel definitions and management
+>   - Buffer and trigger management
+>   - Device tree parsing
 > 
-> This refactoring reduces code duplication and prepares for sharing the
-> common setup logic between platform and I2C drivers.
+> xilinx-xadc-platform.c:
+>   - ZYNQ platform (FIFO-based) register access and interrupt handling
+>   - AXI platform (memory-mapped) register access and interrupt handling
+>   - Platform-specific setup and configuration
+>   - Platform device probe function
+> 
+> Update Kconfig to introduce XILINX_XADC_CORE as a helper module selected
+> by XILINX_XADC and update Makefile to build the split modules:
+>   - xilinx-xadc-common.o (core + events)
+>   - xilinx-xadc-platform.o (platform-specific)
+> 
+> Reorganize the code with no behavioral changes.
+> 
+> Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+> Signed-off-by: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
+> ---
+>  drivers/iio/adc/Kconfig                       |   8 +-
+>  drivers/iio/adc/Makefile                      |   5 +-
+>  drivers/iio/adc/xilinx-xadc-core.c            | 690 +--------------
+>  drivers/iio/adc/xilinx-xadc-events.c          |   1 +
+>  ...inx-xadc-core.c => xilinx-xadc-platform.c} | 818 +-----------------
+>  drivers/iio/adc/xilinx-xadc.h                 |  27 +
+>  6 files changed, 72 insertions(+), 1477 deletions(-)
 
-...
-
-> +	if (irq <= 0)
-> +		return 0;
-
-When == 0 is true?
-
-...
-
-> +static int xadc_device_configure(struct iio_dev *indio_dev, int irq,
-> +				 unsigned int *conf0, unsigned int *bipolar_mask)
-> +{
-> +	int ret;
-> +
-> +	ret = xadc_parse_dt(indio_dev, conf0, irq);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*bipolar_mask = 0;
-> +	for (unsigned int i = 0; i < indio_dev->num_channels; i++) {
-> +		if (indio_dev->channels[i].scan_type.sign == 's')
-
-Wasn't that changed to format?
-
-> +			*bipolar_mask |= BIT(indio_dev->channels[i].scan_index);
-> +	}
-> +
-> +	return 0;
-
-Don't we have a specific for_each type of macro to iterate over all channels?
-
-> +}
-
-...
-
->  	irq = platform_get_irq_optional(pdev, 0);
->  	if (irq < 0 && (irq != -ENXIO || !(ops->flags & XADC_FLAGS_IRQ_OPTIONAL)))
-
-Side note, this conditional is wrong. It doesn't handle properly deferred probe.
-
->  		return irq;
+This is weird statistics... I think it's a bug in Git. What it did, it copies
+-core.c twice and uses statistics on each file after that without duplicating
+the *original* amount of lines.
 
 -- 
 With Best Regards,
