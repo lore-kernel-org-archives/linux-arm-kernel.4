@@ -2,71 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891E0606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 22:04:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07414606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 22:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VAglpoS2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Q7OkKIJZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LlX4Yn5f;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=cpzZu8fJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=FE9OFEAREbObkeiG8+NcXSlXqb0BjD28xvU3A8qsv8w=; b=VAglpoS2yrlZjA
-	Eds/p4RURIEqzlq+RlrJr/k6YNAaF5N7/BqkqrEysYm78djWOvt6IjTtlBmyK4hArU54T1IEE5JAq
-	iCs0cRdeMy7rBOV//MtI0He2OVuul94I042gkr/o1FJzXobymagOhbJRBNR6uQhgnTlgvz64sh7L9
-	3nGIDh+KHGiE925IVkjzFlDtM/F5A4VvUF+9W7bBSXPZmwLIiOAVNf84m/1COIjCjsIo857BXxWTG
-	AoKVHLS/hodqCVyouxcOvAWJj8wBehFQYzDLVjh516WC3T5OA1jGxHXOrl2CYzuR8rElFtN1XN2yk
-	FGZkbJ+so9tFZnhfktSQ==;
+	List-Owner; bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=; b=LlX4Yn5frHowrd
+	ywGBe4hgG9+L9kddPBQgtGzKtBx0/mVyRMqPAL9OVGSMukOFR+pWsxodNNWQAiHthAn+8BUYP4mnZ
+	kK9FroTCrEVZDg2dc7GGs7zGaoB8e2EYQt/VbKq8CLdxjuEF1Ho+rZz3PGjQnxkuLoSgMXDc9Ccvr
+	3uJQFA3UOXfzmGMSIR1YV5alZAfG14APusJz0+jT2oRNPAKobgVMBoQEVV9IOyq09myksdxqIVBQT
+	nu4mFoP/pQ+pIoO+HaRx9cZc8l7VYywhnD6cH1mxCiBlpRBDV2Olk3eaHJ1Hc9CJQoeunkdIrAJn9
+	B+Sd5c//HPDEueVHJcEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtxS-000000057VT-1EZy;
-	Tue, 10 Nov 2026 22:04:50 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQtyy-0000000583V-2hNl;
+	Tue, 10 Nov 2026 22:06:24 +0000
+Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtxP-000000057TT-1CIX
+	id 1xQtyw-00000005834-0BTm
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 22:04:47 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7DEF4630F8;
-	Tue, 10 Nov 2026 22:04:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C457B1F008A7;
-	Tue, 10 Nov 2026 22:04:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794348286;
-	bh=FE9OFEAREbObkeiG8+NcXSlXqb0BjD28xvU3A8qsv8w=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=Q7OkKIJZoB32e/DO+QRShttvfvaNb+H2rcUAD/ccdTvRX5NHXVrJcSmTvnATuQfB9
-	 u4QbYhHg0D36RaOrI8t64THeRsBUpb1U4/LEdfvPrkJb3t3hC0Wv7p5SRWVVoRI4dI
-	 lvxi4nZX5Q8mOEbNJl9oOTjJGGytFafMO9vUyfTTEiDCpKcu575ZmC7gHXJ9ESDaM5
-	 4dYYjzdsCwIVgbMrWWGgvwRnSBYsg9lKSKaDATFCAtfDc8lnD+yE1FFg9L6tKH13wX
-	 eZEOF2PQD3GrO0fQTiXS94qDX02YkoreO5Jo2czxFn3KFSaERiVMNQRBhhqfeHD+7s
-	 g3JpGLsQ6Lyzw==
-From: Jakub Kicinski <kuba@kernel.org>
-To: daniel.machon@microchip.com
-Cc: Jakub Kicinski <kuba@kernel.org>,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@kernel.org,
-	pabeni@redhat.com,
-	Steen.Hegelund@microchip.com,
-	UNGLinuxDriver@microchip.com,
-	richardcochran@gmail.com,
-	linux@armlinux.org.uk,
-	netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	robert.marko@sartura.hr
-Subject: Re: [PATCH net-next 9/9] net: sparx5/lan969x: add support for changing the MTU
-Date: Tue, 10 Nov 2026 14:04:45 -0800
-Message-ID: <20261110220445.2337277-1-kuba@kernel.org>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261105-sparx5-mtu-change-v1-9-f27bab580463@microchip.com>
-References: <20261105-sparx5-mtu-change-v1-9-f27bab580463@microchip.com>
+	Tue, 10 Nov 2026 22:06:23 +0000
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c49c32650adso197695366b.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 14:06:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794348380; cv=none;
+        d=google.com; s=arc-20260327;
+        b=U4BSHPiPqMM6oAldBURjlDInOK8SmRK5eJ3jVwIjTAj3MfVzuXGpaNOZ6Mwa6QMRII
+         H/WrXPn+s0V7AjxmxXmrrKTjVuB46lmhNhR/7328ESDJKsABU4aOZyhLgllgEC9UyP7j
+         kX140fxEYp0vputvkUTMnZa0QmRR9b7r/QNN0g4PlX31547ft4wPDbw9vnx1PBWtRxGp
+         49LH77gvFwW81rcGxIivHoPC10eXF6FqPqEq1/l7Ae9r/raAdwhCAcOXsNl4YorTNUFW
+         LoR0JAK/KEnbpp77CKbwRFevbOIZiPrn8p60HneASaQWxhrTmPHYuosZ7VZkyulCQ8xT
+         zx3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=;
+        fh=LBwPfDiQiUwzmwkb+5we0kESzzH4pJaW4xK9+3a3UaM=;
+        b=Iqr1hzj9N0Mi1K4JIN6vt0uJilX7bGdAk1ONyXUE5wnvZ0j6Wu25ekxaycOacOyehN
+         qkEiVPHrLmfneWRCo2I0XFR7meaRVXANHg90VnlPYP0IkSIZ3jx38/bimQY4K9+KWJws
+         R0tS9xbHMJ3jY4OK0fJptrvo34zn+yEwCbMBr84nTQsvjdEditNtzu7rxfaeFj5mVdj6
+         W0vz7sWlnyTflo9JHw0S9sfTkPVaj67D0+XUBK0wUPK5QdtnD4Fcew39jphygaYtHins
+         EPIlVpUAmACHFZ05lKM3uHMJMHhUVQpkfOSe8gOlSxzck5+ScmpXW0/egR+u0YAyztvQ
+         9d3w==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794348380; x=1794953180; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=;
+        b=cpzZu8fJ4yvVKGKu27JES+LmWlOzr3qs71YthnKsX/Mh6sNHpXYUiActDM0iE9l5H8
+         iJh+HFP026zlOripmvmkMtNgrgvZKH132tc1Jkiv7zQBszR7SoNSg8EYygUcPbNz+HDQ
+         OHdPqKzsbh1hpBYGHwsgqdEwbDmS4U0ns7chxNXTbFQiZDe7YJ952MbkZ3Np/ueg4sRn
+         iRIIoUF9mpYrdU3Q5fMO5jyFlGYYImuRaZno+kAsj67gt3r3H13hwYbOyj/hblzRQCQ4
+         xwvrfOzurMkdWEsA3ZFQeFQHFYFPOn0/NPIGn8rfceiym7Ocz5/xbiJc1yyvHBJXij/H
+         pCSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794348380; x=1794953180;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=;
+        b=ebrkAOfLT3CJ1tGR2gmz9PYypmdrniFfEJCyFPsxHWxw1Y9/U98gz/Tchgla2LZf2H
+         7rkDVgIkoLCIa1yUl0MBHSEoLogu3QufqyhzBdCVa3htuK1Deyu1sk6HZgYrGZHIRw36
+         73xYuc0K8puI78AbK47HyV1iKxISx+BKa3P9cdMHNfPD09Nl19+aar2YaqKBhYCmnPIp
+         ZCYg2WliggvswRPNo/u1qbzp8G9u5ZBHpiq2mOvVOd+ci3e9hJNM7lxktwl0hVNVPgOI
+         ab9LXJxkaqAw2wIDlws9b1zzH2emyGnNOWcEjaA9ytkMWT3tE3iz08MWRmXy3gKkwQ/Z
+         v1+w==
+X-Forwarded-Encrypted: i=1; AL+hErHePCY3vKMQFJ7rRO+xbKod3PHgDqJ4Z9ZZAJTkZHNaAy/yeZgHhbCmlE5seshe5+jkRh/f8gCwoinMnvcwPOtn@lists.infradead.org
+X-Gm-Message-State: APuU4Z//fHMYosn9CCaksUIo5b9vf90idXQUhJSdmkDCMU1WRtrNK4UR
+	vrHS2xTV1VRS7MeP+G7FR3O2kwEeyIPobmcoiQNfdxiWhdTnajtABDy335TWNq4AYa1sy7I8S9d
+	T/HJvWCBOf1Ea9Kbs8KnDL7GFmMsM7zPlJgpEDQ5W
+X-Gm-Gg: AYBFou06p/8W88TaTpxDdUZ+Or6o7phhGpehd9W5VV+XqEOhQrcPgnr09mEvnyAz+JB
+	bS8NiyKEkpTtbe/W1QUzsrVsLWqYkVBPNBwhosrV4WwmJCYwSH8beXVMzGu3OTEolP/WgKKmZiF
+	1pgy/Shd0XS5QFmBizG5OsXmoJW1ePVGlBK12Wvqh8yV0Uf40kJDlO/VrSDjYvhWr4Pbtr55WFB
+	LPw5uF+hwtJRnE+sYZoarmO+YnqY1LVs42DKweDj9BkcT4ahzpIx31DX0S1n25+x1jP/rHS7fmg
+	c1oGTQFUeqncHAokMt8i13NA2ASU1cagJ83LlG/TPBR5WgXJGWeS3NeK43yiBnlE5BVtvok2J4k
+	X8YcyxLOPUVK4Z8NnpfimAHrJ6Eek52QUQPuAjkVmFZHFYQUWQCHWrIrPvlo0kT4EA9h/5jXeRU
+	UnFt6uLYU11yXX+0KBM1M3N4/J2MsYQLIehpiISqJAH8mqrzyAQbjV1t/OKj4YCF551NUI+wA53
+	q3rSTrZ
+X-Received: by 2002:a17:906:794c:b0:c42:82ac:b6a9 with SMTP id
+ a640c23a62f3a-c5066b6baa7mr35192566b.29.1794348379456; Tue, 10 Nov 2026
+ 14:06:19 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261003002123.505555-1-jthoughton@google.com>
+ <20261003002123.505555-7-jthoughton@google.com> <8814E4B3-5A5A-4874-863A-71FC6E4F3B34@linux.dev>
+In-Reply-To: <8814E4B3-5A5A-4874-863A-71FC6E4F3B34@linux.dev>
+From: James Houghton <jthoughton@google.com>
+Date: Tue, 10 Nov 2026 14:05:42 -0800
+X-Gm-Features: AclHuK9DP4E2SNlLaTNdiTkQr6q6QZ9Qonb4QaVlevADmVOep5O3eB7CHyRgUcM
+Message-ID: <CADrL8HWepp70MNhsBgAhJsLbOW=ZqEWbKSuc9CUA7oLEpPT5sA@mail.gmail.com>
+Subject: Re: [PATCH v2 06/20] hugetlb_vmemmap: Allow architectures to
+ dynamically disallow HVO
+To: Muchun Song <muchun.song@linux.dev>
+Cc: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Oscar Salvador <osalvador@suse.de>, Andrew Morton <akpm@linux-foundation.org>, 
+	Nikos Nikoleris <nikos.nikoleris@arm.com>, Linu Cherian <linu.cherian@arm.com>, 
+	Mark Rutland <mark.rutland@arm.com>, David Hildenbrand <david@kernel.org>, 
+	Ryan Roberts <ryan.roberts@arm.com>, Nanyong Sun <sunnanyong@huawei.com>, 
+	Yu Zhao <yuzhao@google.com>, Frank van der Linden <fvdl@google.com>, 
+	David Rientjes <rientjes@google.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_140622_134019_519DF347 
+X-CRM114-Status: GOOD (  27.62  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,297 +127,105 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This is an AI-generated review of your patch. The human sending this
-email has considered the AI review valid, or at least plausible.
----
-net: sparx5/lan969x: add support for changing the MTU
+On Fri, Nov 6, 2026 at 10:44=E2=80=AFPM Muchun Song <muchun.song@linux.dev>=
+ wrote:
+>
+>
+>
+> > On Oct 3, 2026, at 08:21, James Houghton <jthoughton@google.com> wrote:
+> >
+> > For arm64, only some platforms support HVO. Add an arch hook to prevent
+> > HVO from taking affect if the architecture lacks support.
+> >
+> > It may be the case that arch_supports_hugetlb_vmemmap_optimization()
+> > returns false at first but eventually returns true. This is the case on
+> > arm64. When this happens, bootmem hugepages won't be immediately HVOed,
+> > but they will be optimized in prep_and_add_bootmem_folios().
+> >
+> > Signed-off-by: James Houghton <jthoughton@google.com>
+> > ---
+> > include/asm-generic/hugetlb.h |  7 +++++++
+> > mm/hugetlb_vmemmap.c          | 12 ++++++++++++
+> > 2 files changed, 19 insertions(+)
+> >
+> > diff --git a/include/asm-generic/hugetlb.h b/include/asm-generic/hugetl=
+b.h
+> > index 635c41cc3479..8d24075d53d4 100644
+> > --- a/include/asm-generic/hugetlb.h
+> > +++ b/include/asm-generic/hugetlb.h
+> > @@ -128,4 +128,11 @@ static inline bool gigantic_page_runtime_supported=
+(void)
+> > }
+> > #endif /* __HAVE_ARCH_GIGANTIC_PAGE_RUNTIME_SUPPORTED */
+> >
+> > +#ifndef __HAVE_ARCH_HVO_SUPPORTED
+> > +static inline bool arch_hugetlb_vmemmap_optimization_supported(void)
+>
+> I suggest using arch_support_vmemmap_remap (see [1]), which can also be
+> applied to FS-DAX.
+>
+> [1] https://lore.kernel.org/all/20260903122128.12264-2-songmuchun@bytedan=
+ce.com/
+>
+> > +{
+> > +     return IS_ENABLED(CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP);
+> > +}
+> > +#endif /* __HAVE_ARCH_HVO_SUPPORTED */
+> > +
+> > #endif /* _ASM_GENERIC_HUGETLB_H */
+> > diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
+> > index 3fdb1e4ce1a1..8596a462fee6 100644
+> > --- a/mm/hugetlb_vmemmap.c
+> > +++ b/mm/hugetlb_vmemmap.c
+> > @@ -16,6 +16,7 @@
+> > #include <linux/pagewalk.h>
+> > #include <linux/pgalloc.h>
+> > #include <linux/vmemmap-optimization.h>
+> > +#include <linux/hugetlb.h>
+> >
+> > #include <asm/tlbflush.h>
+> > #include "hugetlb_vmemmap.h"
+> > @@ -529,6 +530,9 @@ static bool vmemmap_should_optimize_folio(const str=
+uct hstate *h, struct folio *
+> >       if (!READ_ONCE(vmemmap_optimize_enabled))
+> >               return false;
+> >
+> > +     if (!arch_hugetlb_vmemmap_optimization_supported())
+> > +             return false;
+> > +
+> >       if (!hugetlb_vmemmap_optimizable(h))
+> >               return false;
+> >
+> > @@ -731,6 +735,14 @@ void __init hugetlb_vmemmap_optimize_bootmem_page(=
+unsigned long pfn, unsigned in
+> >       if (!READ_ONCE(vmemmap_optimize_enabled))
+> >               return;
+> >
+> > +     /*
+> > +      * Architectures may return false here but true by the time
+> > +      * hugetlb_init() is called. In this case, although the folios wi=
+ll
+> > +      * not be pre-HVOed, they will be optimized in hugetlb_init().
+> > +      */
+> > +     if (!arch_hugetlb_vmemmap_optimization_supported())
+> > +             return;
+>
+> I plan to add a new helper, section_vmemmap_optimization_disable() [2],
+> intended to disable vmemmap optimization in the architectural vmemmap
+> population path. Since arm64 does not support section-based vmemmap
+> optimization, section_vmemmap_optimization_disable() should be used there=
+.
+>
+> [2] https://lore.kernel.org/all/20261107043122.25650-3-songmuchun@bytedan=
+ce.com/
 
-This commit adds an ndo_change_mtu callback for sparx5 and lan969x ports.
-It programs the MAC maximum frame length, resizes the shared FDMA buffers,
-and updates the queue watermarks and the TAS guard band. MTU changes are
-only allowed when the FDMA is used, and max_mtu is raised to 13982 in that
-case.
-
-> The MTU of a port is currently fixed to 1500, as the MAC maximum frame
-> length, the FDMA buffers, the queue watermarks and the TAS guard band
-> are all sized for a 1518 byte frame.
-
-[Severity: Low]
-Is "fixed to 1500" accurate? Before this patch, sparx5_netdev.c had no
-ndo_change_mtu. The netdevs come from devm_alloc_etherdev_mqs(), so
-ether_setup() gives min_mtu 68 and max_mtu 1500, and __netif_set_mtu()
-just does:
-
-net/core/dev.c:__netif_set_mtu() {
-    ...
-	if (ops->ndo_change_mtu)
-		return ops->ndo_change_mtu(dev, new_mtu);
-
-	/* Pairs with all the lockless reads of dev->mtu in the stack */
-	WRITE_ONCE(dev->mtu, new_mtu);
-    ...
-}
-
-So every board accepted any MTU from 68 to 1500.
-
-With the new sparx5_port_change_mtu(), every system using register based
-extraction now gets -EOPNOTSUPP for every MTU change. That includes
-decreases such as "ip link set ethX mtu 1400", which used to work. These
-systems are:
-
-  - Sparx5 rev 0, because sparx5_frame_io_init() only requests the FDMA
-    IRQ when GCB_CHIP_ID_REV_ID_GET(chip_id) > 0 || !is_sparx5()
-  - boards without an fdma IRQ
-  - boards where FDMA init failed
-
-Could the commit message describe this as a removed capability, and give
-the actual reason for it (see the sparx5_xtr_grp() comment below)?
-
-> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c b/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c
-> index b3725cf2dd44c..095925752f5f6 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c
-> @@ -250,6 +250,44 @@ static int sparx5_port_hwtstamp_set(struct net_device *dev,
->  	return sparx5_ptp_hwtstamp_set(sparx5_port, cfg, extack);
->  }
->  
-> +static int sparx5_port_change_mtu(struct net_device *dev, int new_mtu)
-> +{
-> +	struct sparx5_port *port = netdev_priv(dev);
-> +	struct sparx5 *sparx5 = port->sparx5;
-> +	bool resize = new_mtu > dev->mtu;
-> +	int err;
-> +
-> +	/* Register based extraction sizes its skbs from the MTU at the time
-> +	 * a frame is read, so it cannot handle frames queued before an MTU
-> +	 * decrease.
-> +	 */
-> +	if (sparx5->fdma_irq <= 0)
-> +		return -EOPNOTSUPP;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but this check also quietly
-closes a heap overflow in register based extraction. That overflow is
-still present in current and stable kernels.
-
-sparx5_xtr_grp() in sparx5_packet.c sizes the skb from the current MTU. It
-then copies extraction words until EOF without checking tailroom:
-
-drivers/net/ethernet/microchip/sparx5/sparx5_packet.c:sparx5_xtr_grp() {
-    ...
-	skb = netdev_alloc_skb(netdev, netdev->mtu + ETH_HLEN);
-    ...
-		default:
-			*rxbuf = val;
-			byte_cnt += 4;
-			rxbuf++;
-    ...
-	skb_put(skb, byte_cnt - ETH_FCS_LEN);
-    ...
-}
-
-Without this patch, sparx5_port_init() programs MAC_MAXLEN_CFG with the
-fixed ETH_MAXLEN (1518), whatever dev->mtu is set to. There is also no
-ndo_change_mtu, so "ip link set ethX mtu 68" succeeds.
-
-After that, a normal 1518 byte frame to the CPU (larger with VLAN tags)
-would be copied into an skb with only about 256 bytes of tailroom. Wouldn't
-that overrun skb_shared_info and the neighbouring slab objects before
-skb_put() reaches skb_over_panic() and BUG() in the xtr IRQ handler?
-
-The commit message presents this check as a feature limit ("frames queued
-before an MTU decrease would not fit"). There is no Fixes: tag, so stable
-kernels remain exposed.
-
-Would a separate net fix with a Fixes: tag make sense, for example
-bounding the copy loop in sparx5_xtr_grp() against the skb tailroom? The
-loop itself is unchanged here, so it is still only safe while the MAC
-maxlen fits within the slack of an skb sized from dev->mtu.
-
-> +
-> +	/* Never let the MAC accept frames larger than the RX buffers */
-> +	if (!resize)
-> +		sparx5_port_max_len_set(sparx5, port, SPX5_HW_MTU(new_mtu));
-> +
-> +	err = sparx5->data->ops->fdma_resize(sparx5, port, new_mtu);
-
-[Severity: Medium]
-Can an MTU change leak the two-step PTP state on lan969x?
-
-When sparx5_port_change_mtu() resizes the buffers,
-lan969x_fdma_resize() pauses and resets the FDMA. Then
-lan969x_fdma_tx_reset() walks the TX descriptors that are still marked
-used after lan969x_fdma_tx_clear_buf(). Those frames were never
-injected, but for a two-step PTP frame the loop only does:
-
-	if (!db->ptp)
-		dev_kfree_skb_any(db->skb);
-
-	db->used = false;
-
-The skb was queued on port->tx_skbs by sparx5_ptp_txtstamp_request(),
-which also incremented sparx5->ptp_skbs. As the frame never reached the
-rewriter, sparx5_ptp_irq_handler() will never get a timestamp for it,
-so nothing releases that state.
-
-The skb itself is eventually freed by
-sparx5_ptp_txtstamp_old_release() once SPARX5_PTP_TIMEOUT has passed
-and another two-step frame is sent. That function does not decrement
-sparx5->ptp_skbs, though. So every MTU change under two-step PTP load
-can leak slots. Once ptp_skbs reaches SPARX5_MAX_PTP_ID, every further
-two-step timestamp request fails with -EBUSY until the driver is
-reloaded.
-
-sparx5_ptp_txtstamp_release() fixes up ptp_skbs and unlinks the skb,
-but it also decrements port->ts_id. That is only correct for the most
-recently requested skb. How should the dropped PTP descriptors be
-released here? Would it work to unlink them from port->tx_skbs,
-decrement ptp_skbs under ptp_ts_id_lock and then free them? Freeing
-them without the unlink would leave a dangling skb on port->tx_skbs.
-
-[Severity: High]
-Can the resize path double free an RX page on lan969x?
-
-With ndo_change_mtu, lan969x_fdma_resize() can now run at any time,
-and it goes through lan969x_fdma_rx_free() and
-lan969x_fdma_free_pages(). That function returns every non-NULL
-rx->page[i][j] to rx->page_pool with page_pool_put_full_page().
-
-To make that safe, lan969x_fdma_rx_get_frame() clears
-rx->page[fdma->dcb_index][fdma->db_index] before it returns the skb.
-The free_page error path does not:
-
-	free_page:
-		page_pool_recycle_direct(rx->page_pool, page);
-
-		return NULL;
-
-That path is taken when build_skb() fails under memory pressure, or
-when the IFH carries an invalid source port. The page goes back to the
-pool, but the slot still points to it. lan969x_fdma_napi_poll() then
-breaks out of its loop without advancing fdma->dcb_index, so the DB is
-not refilled and the stale pointer stays in place.
-
-A later MTU change on any port, or lan969x_fdma_deinit() on teardown,
-would then call page_pool_put_full_page() on a page the pool may
-already have handed out again, to another DB or to an skb that is still
-in flight in the stack. Wouldn't that corrupt the page_pool and lead to
-a use-after-free?
-
-Simply clearing the slot in the free_page path doesn't look sufficient
-either. If I read lan969x_fdma_napi_poll() correctly, the next poll
-calls lan969x_fdma_rx_get_frame() on the same DB again. It would then
-pass a NULL page to page_address(). As the code stands, it re-reads the
-page that was just recycled. Should the error path drop the frame,
-advance past the DB and let the refill loop replace the page? That way
-each slot is always either owned by the ring or NULL.
-
-[Severity: Medium]
-Can this resize allocate the whole RX ring with GFP_ATOMIC from sleepable
-context?
-
-sparx5_port_change_mtu() runs under RTNL. On Sparx5 the call chain is:
-
-sparx5_port_change_mtu()
-  sparx5_fdma_resize()
-    sparx5_fdma_rx_alloc(rx_new)
-      fdma_dcbs_init()
-        sparx5_fdma_rx_dataptr_cb()
-
-For each of the 64 x 15 = 960 buffers, sparx5_fdma_rx_dataptr_cb() does:
-
-	skb = __netdev_alloc_skb(rx->ndev, fdma->db_size, GFP_ATOMIC);
-
-With the new max_mtu of 13982, db_size becomes 14080 bytes. Each skb head
-is then an order-2 kmalloc allocation, so the ring needs roughly 15 MB of
-GFP_ATOMIC memory in total, and the old ring is still allocated while this
-happens.
-
-Without __GFP_DIRECT_RECLAIM this can neither reclaim nor compact. It could
-drain the atomic reserves that NAPI refills rely on. It could also fail
-with -ENOMEM on fragmented memory where GFP_KERNEL would have succeeded.
-
-Could the RX allocation used for resize take a gfp argument, so that
-GFP_KERNEL is used here?
-
-The TX ring in the same path comes from fdma_alloc_phys(), which does a
-kzalloc(GFP_KERNEL) of about 900 KB (order-8) without __GFP_NOWARN. A
-failure there would also print an allocation failure warning.
-
-> +	if (err) {
-> +		if (resize)
-> +			return err;
-> +
-> +		/* The current, larger, buffers still fit all frames */
-> +		netdev_warn(dev, "Failed to resize FDMA buffers: %d\n", err);
-> +	}
-
-[ ... ]
-
-> @@ -306,7 +345,14 @@ int sparx5_register_netdevs(struct sparx5 *sparx5)
->  
->  	for (portno = 0; portno < sparx5->data->consts->n_ports; portno++)
->  		if (sparx5->ports[portno]) {
-> -			err = register_netdev(sparx5->ports[portno]->ndev);
-> +			struct net_device *ndev = sparx5->ports[portno]->ndev;
-> +
-> +			/* The MTU can only be changed when FDMA is used */
-> +			if (sparx5->fdma_irq > 0)
-> +				ndev->max_mtu = SPX5_MAX_FRAME_LEN - ETH_HLEN -
-> +						ETH_FCS_LEN;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but raising max_mtu here makes
-an existing RX refill problem much more likely to trigger.
-
-sparx5_fdma_napi_callback() ignores the return value of fdma_dcb_add():
-
-	fdma_dcb_add(fdma, fdma->dcb_index,
-		     FDMA_DCB_INFO_DATAL(fdma->db_size),
-		     FDMA_DCB_STATUS_INTR);
-	fdma_db_reset(fdma);
-	fdma_dcb_advance(fdma);
-
-lan969x_fdma_napi_poll() does the same in its refill loop.
-
-If the dataptr callback fails for any DB, __fdma_dcb_add() returns early:
-
-	for (i = 0; i < fdma->n_dbs; i++) {
-		err = __fdma_db_add(fdma, dcb_idx, i, status, db_cb);
-		if (unlikely(err))
-			return err;
-	}
-
-At that point the DB's status has already been reset (DONE cleared), but
-the DCB has not been linked after fdma->last_dcb. The next successful
-fdma_dcb_add() then links DCB k-1 directly to DCB k+1, so the hardware
-never visits DCB k again.
-
-Once the software dcb_index wraps back to k, wouldn't
-sparx5_fdma_rx_get_frame() (or fdma_has_frames() on lan969x) keep
-returning false? That would stop CPU RX on the shared FDMA for all ports
-until another resize or a driver reload.
-
-Before this series, a Sparx5 refill was roughly a 4 KB request and a
-lan969x refill was order-0. With max_mtu at 13982, each Sparx5 refill
-becomes an order-2 GFP_ATOMIC allocation, and lan969x page_pool pages
-become order-2. Those allocations can realistically fail in NAPI context
-on a fragmented system.
-
-Should refill failures be handled, for example by retrying the refill
-later, before jumbo MTUs are allowed?
-
-> +
-> +			err = register_netdev(ndev);
->  			if (err) {
->  				dev_err(sparx5->dev,
->  					"port: %02u: netdev registration failed\n",
+Thanks! I'll integrate both of these into v3.
 
