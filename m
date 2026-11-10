@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 398FC606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1FB606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1BvYwSJU;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZoEF7GAp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DqbP2NrJ;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ZS64S/4J
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,62 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Gy+owdWhI9aq49SvOXumwy6C5wawdvH/TU7Zgbh6cFQ=; b=1BvYwSJU7xlmJo8P20919JDUHU
-	l78fbUvUyaY1sTkrJEjsX3856ET/Q2zZzlp4Fdt2tmEr9GRAUCh1VsGHhhA3IcjmQbAZoKlCF2seY
-	DeVuRXWWslCmjgJX6RqXyLik4rX0D7SemzVlloes91Fz+xiXgJMVB1kZV3BOa2gmK4K/z/NE2AQ+v
-	fauVRwVKMGs1qYi//JRm1GJmVTerfozy9APLI7zh+qN7yqktcUCqt7RhoMd0gn/g3A1p8AeKLDxrc
-	7Ow92y9tgcgS0NSMKK+qb2xxSVh2YbxSC2NE4IWhf1k86hlrfrfmw8gvCAo0eOlR42Js1+7EEWh+D
-	Q5d4BaQw==;
+	bh=s3QC/0gK2OClsDHJrI+qx7+T7UXE2mSOvFr6ntlSSRU=; b=DqbP2NrJzccPwOnNoYwnEHoQKd
+	c/OHpt8VOrEHezYCyEX7vPb5ogyWXMY7ZQtjexcBEiDZNXfIFEgK/ZEmk/xg6D3YLm7W3MN1u1yod
+	QG2R7C617aX89QkMuJy7F6yl5rSBXnBFilestfu7pmo8sILO159veLq02PfiGiKC1hSbpSP5TxQLe
+	//da1qy6QSr7EPqFWFk1BrBYVai638dkNkPQnFCUoQqm1l+6kvQz/3B+A2aneocg8Eoprzy8tiFi6
+	IJBVrfB6ErJHfSXoeCf2QQGr9dYk6vLU054LIlgD+7srx6iNUuBvnLQABELKRR4Coe202nxjwkEJH
+	rr4OHucw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQknU-00000003n8M-0KpU;
-	Tue, 10 Nov 2026 12:17:56 +0000
+	id 1xQknc-00000003nHI-3AYI;
+	Tue, 10 Nov 2026 12:18:04 +0000
 Received: from mail-wr1-x446.google.com ([2a00:1450:4864:20::446])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQknI-00000003mvP-2wa4
+	id 1xQknL-00000003mww-0KqC
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 12:17:46 +0000
-Received: by mail-wr1-x446.google.com with SMTP id ffacd0b85a97d-490ab0a20ebso1546122f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:17:43 -0800 (PST)
+	Tue, 10 Nov 2026 12:17:48 +0000
+Received: by mail-wr1-x446.google.com with SMTP id ffacd0b85a97d-4916d47eeb5so1611022f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:17:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794313062; x=1794917862; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794313065; x=1794917865; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=Gy+owdWhI9aq49SvOXumwy6C5wawdvH/TU7Zgbh6cFQ=;
-        b=ZoEF7GApyFNrkkrVD5sQvSnLYC+ExxuFctL4QY6knuYEM7Pev96eK/c4+Te7cEd5ch
-         IX9nqXVTYvzRQnPnXlNatp5LC3IPrxDrjLYW4R+sBALAZwSqzwruSmVwCH6bgW+n7d4t
-         v7XIn+SjQLZWR2a4kIwmmORwenv35IXqxy2t0TUszb0MyUDBjO4haA1gxu7kYol+keys
-         5oyHJHU1Pmnq/Q/sqZpi95TOMN0Y7GJ2L99oNkkmrWMuCfVRprl8isvO8nSDHCpblT4P
-         KEvCyKd5hjxvusbJda2ydBLIMFFIp259IRX+FvzgIDIwJ1lNBBq55/YhmPhH/buInVa5
-         oIdw==
+        bh=s3QC/0gK2OClsDHJrI+qx7+T7UXE2mSOvFr6ntlSSRU=;
+        b=ZS64S/4J/YC3XYAe18cQRSOcnkwjlcrhJQPFygbScwq/v0grBfBoeZhE28nwU2TFuf
+         4RLOa6FAxC0xQbFdrOLlqbhS11lhgRnWPSqeyrK4NZyfYwnHhmyW4/majYdCyuVBvnGR
+         hs24NCecF5tfHe1pTNr3gUpycLLEr9KA/qvluG8GD7xKDzyHccF3LPWvr6aEmKWd7zIc
+         gq4RGnnztFqAfBofLFUXdYZ0V0Hj15BWGMjUCMc+K1hhAb9TZGRjBhGfshBmXRUnRvXx
+         Q+rXQMWG/tMoC4S3tSLTBA2/kRVbp7s29fM5nIL81Vi0gpQWu6saH4BxUtTLNBjAnOu+
+         w1Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794313062; x=1794917862;
+        d=1e100.net; s=20260707; t=1794313065; x=1794917865;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Gy+owdWhI9aq49SvOXumwy6C5wawdvH/TU7Zgbh6cFQ=;
-        b=MHaR6+yROCJJGmV4wPanhduVqadxpO8AwCyhiLTF4WCXG7xknCQKQclohOX595HHRZ
-         6ELJNqFKLcmNESBZpnLmaLAOHrJRzijFCLc0YFWT6RxJH90aWxGEXFIlx0m6QLpelxNt
-         2A18Y5lSqEOi+cyFJapLE6A+eClh0wCf6g+2dpbVO2oXaj0iUcjr32OW6jJ9VxJSAw2E
-         nmKhIHTs4+BhkZ4Zjv7ITOAPFOCfS8bTxztGfruIg0sfUrJapav9K1Lr16ZJ8NDL/cq6
-         VuSAezOQ3760mu9X2ifBo38Px3wtts37vlrU3XNwj8i6TcQplRm2Qn/v5741BS5YvL9I
-         p5AQ==
-X-Gm-Message-State: APuU4Z/t76h3G/3ipktOqhAfFt/d72wrIwZTxzQ+TgbzH8Ylp7J9n+Cq
-	19IO4wOyah6s0em34G9pEC9FHzFSuS6InaJtu6HSx0yn8XG9kJ2tDt51uiw0/KHTTXuU/RPrHA=
+        bh=s3QC/0gK2OClsDHJrI+qx7+T7UXE2mSOvFr6ntlSSRU=;
+        b=HgzLLuouXm0r1bNvMqGKcgi2HYHuiqN+eLtcl25/T+JVFoFp7pPcoRys2eerQFBLLs
+         SIlXaSXtGTtAWSchzMabybUzvGFySvVCy7zGLlByhrkGCIiupEtyl1YZ1jXX605cv9QS
+         uSHX3yIyN7Q2KsYIO+kHCCbp8/olWXYfVGRWqnKHCVLzXk33waqcslnVv0Zb/NFIudr6
+         DQO9nJH4tClRUGxdssar3sdvoN3qfNsuA/cmqZSHcnxYqCAJ8AFiDFh1kacfV0RgX2la
+         H8UKYcDhnxUdAnStSvqKQQV7p7lXCFMNQioKqahrkCe3mdUR+3jFa8fOD3p8B3MvHEZZ
+         nGCg==
+X-Gm-Message-State: APuU4Z8uCg4PIzcShEJrWgtXe/GjNvzq2wQ2bqAkXk8VqnKXyvnnyvQE
+	0MdDcuadQTg7B8hYo+r6iVzGf1AMQruNYXybG0uRKIZNOT7MDu/03kRZyMX9QH/Qe5YH5AE7mg=
 	=
-X-Received: from wrxp4.prod.google.com ([2002:a05:6000:184:b0:495:feb9:bf43])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6000:298d:20b0:48e:202:6718
- with SMTP id ffacd0b85a97d-4982ecf6701mr3321662f8f.25.1794313062387; Tue, 10
- Nov 2026 04:17:42 -0800 (PST)
-Date: Tue, 10 Nov 2026 13:17:35 +0100
+X-Received: from wrod4.prod.google.com ([2002:adf:ef84:0:b0:48d:f014:9e3c])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6000:268a:b0:48e:c84:5be6
+ with SMTP id ffacd0b85a97d-4982ecf61e2mr4261257f8f.14.1794313064491; Tue, 10
+ Nov 2026 04:17:44 -0800 (PST)
+Date: Tue, 10 Nov 2026 13:17:37 +0100
 In-Reply-To: <20261110121731.2728824-12-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261110121731.2728824-12-ardb+git@google.com>
 X-Mailer: git-send-email 2.56.0.542.g3ef89b7020-goog
-Message-ID: <20261110121731.2728824-15-ardb+git@google.com>
-Subject: [PATCH v2 03/10] efi/libstub: Avoid _end section marker in library code
+Message-ID: <20261110121731.2728824-17-ardb+git@google.com>
+Subject: [PATCH v2 05/10] efi/libstub: arm64: Use struct efi_image_info to
+ access image properties
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-efi@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>, 
@@ -78,8 +79,8 @@ Cc: linux-arm-kernel@lists.infradead.org, Ard Biesheuvel <ardb@kernel.org>,
 	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_041744_887304_40092DC3 
-X-CRM114-Status: GOOD (  15.05  )
+X-CRM114-CacheID: sfid-20261110_041747_157586_1C74FF46 
+X-CRM114-Status: GOOD (  15.27  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,31 +102,96 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-The _end marker could point to the end of the kernel image being loaded,
-or to the _end of the zboot decompressor image, and so it should only be
-used in code that is obviously only intended for the former case.
+Instead of exposing individual symbols to the EFI stub explicitly via
+the linker script, use the generic struct efi_image_info, which accesses
+the original symbols via PC-relative references from the stub itself.
 
-So instead, use kernel_memsize and the image address to obtain the same
-quantity.
+This improves code reuse across architectures, and makes it easier to
+add new references in a generic manner.
 
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- drivers/firmware/efi/libstub/kaslr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/kernel/image-vars.h            |  6 ------
+ drivers/firmware/efi/libstub/arm64-stub.c | 20 ++++++++++----------
+ 2 files changed, 10 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/firmware/efi/libstub/kaslr.c b/drivers/firmware/efi/libstub/kaslr.c
-index 8f8dc335b3b3..b34e4599f0f6 100644
---- a/drivers/firmware/efi/libstub/kaslr.c
-+++ b/drivers/firmware/efi/libstub/kaslr.c
-@@ -125,7 +125,7 @@ efi_status_t efi_kaslr_relocate_kernel(unsigned long *image_addr,
- 		if (!check_image_region(*image_addr, kernel_memsize)) {
- 			efi_err("FIRMWARE BUG: Image BSS overlaps adjacent EFI memory region\n");
- 		} else if (IS_ALIGNED(*image_addr, min_kimg_align) &&
--			   (unsigned long)_end < EFI_ALLOC_LIMIT) {
-+			   (*image_addr + kernel_memsize) < EFI_ALLOC_LIMIT) {
- 			/*
- 			 * Just execute from wherever we were loaded by the
- 			 * UEFI PE/COFF loader if the placement is suitable.
+diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
+index 19d602e45523..9ab71d103f64 100644
+--- a/arch/arm64/kernel/image-vars.h
++++ b/arch/arm64/kernel/image-vars.h
+@@ -20,8 +20,6 @@
+ 	PROVIDE(pisym = sym);		\
+ 	ASSERT((sym - KIMAGE_VADDR) < (__bss_start - KIMAGE_VADDR), #msg)
+ 
+-PROVIDE(__efistub_primary_entry		= primary_entry);
+-
+ /*
+  * The EFI stub has its own symbol namespace prefixed by __efistub_, to
+  * isolate it from the kernel proper. The following symbols are legally
+@@ -33,10 +31,6 @@ PROVIDE(__efistub_primary_entry		= primary_entry);
+  */
+ PROVIDE(__efistub_caches_clean_inval_pou = __pi_caches_clean_inval_pou);
+ 
+-PROVIDE(__efistub__text			= _text);
+-PROVIDE(__efistub__end			= _end);
+-PROVIDE(__efistub___inittext_end       	= __inittext_end);
+-PROVIDE(__efistub__edata		= _edata);
+ #if defined(CONFIG_EFI_EARLYCON) || defined(CONFIG_SYSFB)
+ PROVIDE(__efistub_sysfb_primary_display	= sysfb_primary_display);
+ #endif
+diff --git a/drivers/firmware/efi/libstub/arm64-stub.c b/drivers/firmware/efi/libstub/arm64-stub.c
+index 2c3869356147..8184b345af69 100644
+--- a/drivers/firmware/efi/libstub/arm64-stub.c
++++ b/drivers/firmware/efi/libstub/arm64-stub.c
+@@ -10,7 +10,6 @@
+ #include <linux/efi.h>
+ #include <asm/efi.h>
+ #include <asm/memory.h>
+-#include <asm/sections.h>
+ 
+ #include "efistub.h"
+ 
+@@ -21,22 +20,23 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
+ 				 efi_loaded_image_t *image,
+ 				 efi_handle_t image_handle)
+ {
+-	unsigned long kernel_size, kernel_codesize, kernel_memsize;
++	auto image_info			= efistub_get_image_info();
++	unsigned long kernel_base	= efistub_kernel_base(image_info);
++	unsigned long kernel_size	= efistub_kernel_size(image_info);
++	unsigned long kernel_codesize	= efistub_kernel_codesize(image_info);
++	unsigned long kernel_memsize	= efistub_kernel_memsize(image_info);
+ 
+-	if (image->image_base != _text) {
++	if (image->image_base != (void *)kernel_base) {
+ 		efi_err("FIRMWARE BUG: efi_loaded_image_t::image_base has bogus value\n");
+-		image->image_base = _text;
++		image->image_base = (void *)kernel_base;
+ 	}
+ 
+-	if (!IS_ALIGNED((u64)_text, SEGMENT_ALIGN))
++	if (!IS_ALIGNED(kernel_base, SEGMENT_ALIGN))
+ 		efi_err("FIRMWARE BUG: kernel image not aligned on %dk boundary\n",
+ 			SEGMENT_ALIGN >> 10);
+ 
+-	kernel_size = _edata - _text;
+-	kernel_codesize = __inittext_end - _text;
+-	kernel_memsize = kernel_size + (_end - _edata);
+ 	*reserve_size = kernel_memsize;
+-	*image_addr = (unsigned long)_text;
++	*image_addr = kernel_base;
+ 
+ 	return efi_kaslr_relocate_kernel(image_addr, reserve_addr, reserve_size,
+ 					 kernel_size, kernel_codesize, kernel_memsize,
+@@ -54,7 +54,7 @@ unsigned long primary_entry_offset(void)
+ 	 * of the file representation. So instead, we need to jump to the
+ 	 * actual entrypoint in the .text region of the image.
+ 	 */
+-	return (char *)primary_entry - _text;
++	return efistub_kernel_entry_offset(efistub_get_image_info());
+ }
+ 
+ void efi_icache_sync(unsigned long start, unsigned long end)
 -- 
 2.56.0.542.g3ef89b7020-goog
 
