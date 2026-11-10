@@ -2,64 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55F19606A7C0
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:00:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD738606A7C1
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oR+0l61d;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=rfNxH6kJ;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=0I0wkFkZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N5zM8av4;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=TybdMyS+;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=eiIRDV+n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=p6UbBy761wweiUYQTU+IpjGwUVBHJzkK1GkVOhJL9cI=; b=oR+0l61dIwCinC
-	/AqGHmiXpniDz2UHEhIzRxAqYL61h7QV5P3uikOcaxloGE34TLGkDcwoaIi1pcDL0mig4fwLI7vIS
-	3ilqqtYBS3BvMPjmcqshb1DAMFmi3+1w2Iixw43xUaeLH6MVvyhB+CJ/JSVvx0eu7vbgZKHtHuzkk
-	87tSLu7ms6gy0Pmza7lpFjgkvBpFPcETa1Xd73HKf6q+b2mrulIS9Fj/uC+r2dbz3tN44eL7Hx5he
-	y13YGU9UogWV1daQlhaJN1ZKpdyNzzQevzc4iW6XbGQeM6Eucff9XgWR0XKhe16QSQ9VDZTmFaJj4
-	hCyQ3625rZA4fWthtgJQ==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=zgFy5CRU+XIEddtxlRjTVtKMgKJt4RlY9Vj0+4wHiFw=; b=N5zM8av4wu3Z49x2CsILKBtW0B
+	mJBjdpyNopQOwjjid+NyMiiWpqIW5bDF3h4z/vEfqiG2taw7OHsmsRvLl/C3H/ey+OaN1mTI1e+aw
+	hXOGFthuREGHDrV7yyR9mUuQ0S349LB55e27kpJH9KS1hTIQYxr+qfrcvWBLSsxJ+sX0GbxB5gOvF
+	lu0uJtSQQYQaHarYM2FHdgBPldknUBaHMG41HFZDCKxh9yEKCcrbXJidUejsCptiF+haz6PeIKgYo
+	k/9tUGUz5j7z0TrmfTwu9a6XQFXKWaQpp2VO+tHBzMLfUQVDn4TBtIGtve7mz1G1ZsjtyUVt+FUyL
+	PNIGs4Ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlSw-00000003wln-3VQm;
-	Tue, 10 Nov 2026 13:00:46 +0000
+	id 1xQlT0-00000003wo8-1lAD;
+	Tue, 10 Nov 2026 13:00:50 +0000
 Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlSj-00000003wfA-1Gs0;
+	id 1xQlSi-00000003wev-2q7N;
 	Tue, 10 Nov 2026 13:00:35 +0000
 From: Gregor Herburger <gregor.herburger@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1794315629;
+	s=2020; t=1794315627;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=p6UbBy761wweiUYQTU+IpjGwUVBHJzkK1GkVOhJL9cI=;
-	b=rfNxH6kJkBbvr2WS9T157PE/oXjsLBf/DCbzT/TSRVo5z+MAR9Y76R10oJGSCxep4gGZT8
-	KrYYPs3XqMwPi9r1OKc+PB9RnFN22/ZtQYgJ4rpS4Y26WzC6bkZRXGYcHATM0l0PjsyMKk
-	bRRMg7JVXMYPcNCCytoqIiPyTyXmXeZNOIkZ5fEwLBqqac8YOQMlKUgAl2Q8u2yK8nEVJc
-	qftJxzntxRMu0G2pCLHY7rG2KDH1d/Ttt/SrrCZ/rvmZe6P6poU715efCunzNuuf79vFqd
-	Ii2G0g3v/pK1Tln6+L/ryNlUqSvCJskZg8QojDEzOnMGraV0DRyuyCG9yNUsKQ==
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=zgFy5CRU+XIEddtxlRjTVtKMgKJt4RlY9Vj0+4wHiFw=;
+	b=TybdMyS+dGCtkhFrs2Zd47nnOifCjECWnjdfDq0JHrwrC1a81Y4OMzcQcz+wbFpKKK0Rts
+	delxSHrLjYCowMCO0QJ9uFoMxB4Nj44TtEyhmIZwLEKejSkgUxfNXqC61W3295Cx5pslVk
+	71MKlH6Wv1k6znQVEPeYqpNK9IIMTK39ZgQITGZiY2+4Db5BEBBUFxP5+w2Q+h5uYCsEBJ
+	IAh7/5cC6C0RPQiSTn1asc2lIWI4YnKopX7A//I+HkWIAAyvyzRGKQRQb99NX0D3bzMeig
+	2GAWkMlX+ZH3FfUfxC4e0ehk6o9E85rEtaNPs0MXEpt37trrVx1RbzzFe/bA1g==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1794315629;
+	s=2020e; t=1794315627;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=p6UbBy761wweiUYQTU+IpjGwUVBHJzkK1GkVOhJL9cI=;
-	b=0I0wkFkZoqzebhrJkmx1nSMT8DBLee4HijR1s/ABK7yZ0MwlkyeCcILWgkqrhm1IAF5rSB
-	WnD9MZgxEM7OpUBQ==
-Date: Tue, 10 Nov 2026 14:00:14 +0100
-Subject: [PATCH v6 4/5] arm64: dts: broadcom: bcm2712: Add reboot modes to
- firmware node
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=zgFy5CRU+XIEddtxlRjTVtKMgKJt4RlY9Vj0+4wHiFw=;
+	b=eiIRDV+noTXYxAKPCBb5NG0tGgSUMz5FcdAPiLRfQ/J2+jUE+mnuJ7cEgqrzlJ2JOpNieO
+	gWvqQPcgFp03YuDQ==
+Subject: [PATCH v6 0/5] firmware: raspberrypi: Add support for the tryboot
+ mode
+Date: Tue, 10 Nov 2026 14:00:10 +0100
+Message-Id: <20261110-rpi-tryboot-v6-0-56f680ef4734@linutronix.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-rpi-tryboot-v6-4-56f680ef4734@linutronix.de>
-References: <20261110-rpi-tryboot-v6-0-56f680ef4734@linutronix.de>
-In-Reply-To: <20261110-rpi-tryboot-v6-0-56f680ef4734@linutronix.de>
+X-B4-Tracking: v=1; b=H4sIAFsV82oC/23NQW7DIBCF4atErEs1DBhMVr1H1YUNQ0NV2REmV
+ qLIdy+4alNXXj5pvn/ubKIUaWLHw50lmuMUx6EM/XRg7tQN78SjL5shoAaNkqdz5Dnd+nHMXKF
+ FZ7EHg4YVcU4U4nWtvb597+nSf5DLNVEvTnHKY7qt72ZR737KelOeBQeuLPTCKaesgZfPOFxyG
+ od4ffbEan3GP17C1mPxQbcevdNdh2bPy4c3YLZeVu+7FgMZ8kbvefXwFtTWq9UTtb1rZAi7/5t
+ fLwBw65viNVrlhBTUtPK/X5blC78SsVC8AQAA
+X-Change-ID: 20260623-rpi-tryboot-4292c92b0727
 To: Florian Fainelli <florian.fainelli@broadcom.com>, 
  Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
  Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
@@ -69,17 +72,18 @@ To: Florian Fainelli <florian.fainelli@broadcom.com>,
 Cc: linux-rpi-kernel@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, 
- Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794315627; l=866;
+ Gregor Herburger <gregor.herburger@linutronix.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794315627; l=2394;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=7it9CxaaYRxnG5e8FXqsp8qolf2qXEVZ57PjmKQ7nCY=;
- b=Ih7q07Nzug8gnjy5R3ydeB0lsBjPIHqkGeBSwzaJjpdbAB6P+TXjBAdW/apIE5srewlYEg7us
- Wk3t4xnFUONBxghOJ+S2bX03VNRcUh+5jYE3FjOLrRSUt5sVtcJzQpe
+ bh=+wl3d1TUuvEjVn7H52ib0UWFJ+5y1XGeyNy6URPLGGU=;
+ b=mvz2dPsl54Dm9gIsFUMbKM/p47nd//BlAN/wQbmKYxuHpzsj3g0qWh8GY30eeLdoxL6mzZJ0z
+ TSoV0vkTQffAl54NeMBezslJRBdakAfR2oqdq6C2+uAFQHEztNqFu1Z
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_050033_487586_D8EE3961 
-X-CRM114-Status: UNSURE (   8.96  )
+X-CRM114-CacheID: sfid-20261110_050032_871772_36B900C4 
+X-CRM114-Status: UNSURE (   7.65  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -94,35 +98,67 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Raspberry Pi firmware driver allows the tryboot reboot mode. Add
-this mode and normal boot mode to the node.
+This adds support for the tryboot mode on Raspberry Pis. As there is no
+documentation other than the downstream implementation [0] the
+implementation is based on this.
 
-Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
+Tested on Raspberry Pi 4 and Raspberry Pi 5.
+
+[0] https://github.com/raspberrypi/linux/commit/eb56da0c1925c07e8929ce4c9fe8aeafa7cb8c7b
+
 ---
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v6:
+- Rebase onto v7.4-rc2
+- Link to v5: https://patch.msgid.link/20261002-rpi-tryboot-v5-0-6294c131e583@linutronix.de
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-index e5030da60f9e7..d81498fd57dbd 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
-@@ -50,6 +50,8 @@ firmware: rpi-firmware {
- 			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
- 
- 			mboxes = <&mailbox>;
-+			mode-normal = <0>;
-+			mode-tryboot = <1>;
- 
- 			firmware_clocks: clocks {
- 				compatible = "raspberrypi,firmware-clocks";
+Changes in v5:
+- Added patch to add reboot mode to Raspberry Pi 1-4 devicetrees.
+- Rebase onto v7.3-rc5
+- Link to v4: https://patch.msgid.link/20260904-rpi-tryboot-v4-0-fdee8bc53ff7@linutronix.de
 
--- 
-2.47.3
+Changes in v4:
+- fix use-after-free error by moving devm_add_action_or_reset before devm_add_action_or_reset 
+- Rebase onto v7.3-rc1
+- Link to v3: https://patch.msgid.link/20260707-rpi-tryboot-v3-0-fda82fe7ed76@linutronix.de
+
+Changes in v3:
+- fix use-after-free error by using devm_add_action_or_reset
+- ensure endianness of magic byte
+- refactor reboot mode registration into separate function
+- Link to v2: https://patch.msgid.link/20260630-rpi-tryboot-v2-0-f68d2dc6aa27@linutronix.de
+
+Changes in v2:
+- Remove unnecessary reboot_mode_unregister().
+- dt-binding: restrict to mode-{normal,tryboot} and only allow 32bit value.
+- Link to v1: https://patch.msgid.link/20260626-rpi-tryboot-v1-0-490b1c4c4970@linutronix.de
+
+---
+Gregor Herburger (5):
+      firmware: raspberrypi: reorder rpi_firmware_property_tag enum
+      dt-bindings: raspberrypi,bcm2835-firmware: Include 'reboot-mode.yaml'
+      firmware: raspberrypi: Add reboot mode support
+      arm64: dts: broadcom: bcm2712: Add reboot modes to firmware node
+      arm: dts: broadcom: bcm2835: Add reboot modes to firmware node
+
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml      |  9 +++++
+ arch/arm/boot/dts/broadcom/bcm2835-rpi.dtsi        |  2 ++
+ .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |  2 ++
+ drivers/firmware/Kconfig                           |  2 ++
+ drivers/firmware/raspberrypi.c                     | 40 +++++++++++++++++++---
+ include/soc/bcm2835/raspberrypi-firmware.h         | 22 ++++++------
+ 6 files changed, 62 insertions(+), 15 deletions(-)
+---
+base-commit: b3dfbde62cf1981c4638939c159dfd087b7a72e9
+change-id: 20260623-rpi-tryboot-4292c92b0727
+
+Best regards,
+--  
+Gregor Herburger <gregor.herburger@linutronix.de>
 
 
