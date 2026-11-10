@@ -2,106 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0514606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 04:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC9D96070333
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WttaGCme;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=HYyW2V2S
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=U/C5NMGk;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=cK3xNInm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=33/y7FEbAJRMpWgPc6HOmiquLc0W6X+Eem8um5Z3JJ4=; b=WttaGCmeFkecJC
-	TTCw0BpRCMTE00EI/kd3gVwpmh5eQZ8mx/xYiJQMDEjasWP60hvbfNVzY0zbEQuDZXQyKRzcqVVRe
-	O3cOZLftIcqgkRGfTBMJZXPE9/HMLgIHVoXtHFp7wPveJ9ESf9dFw7G+52Y3q08ToknkFBY/5/bAT
-	AklfgrKKXFqQqlnAkYV1jlnTjw1w1rR1Q1SuRoJBS+VCyaZCJkz+KWplt+xKT+b2nG83v4B26MapX
-	M6kSFq9yb7FStMymgy98jqNe/ovRXmuXSnC0O14p4OzlKYElb3xX2XfZ7yn5SKABotM4wsWCwa0XZ
-	542ibBDp8XEbbkJFOKEA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3vxLVeArTOU555NjIGXbAokcuidpkXwhlCffjRLrr3o=; b=U/C5NMGkgtogIzml4BfDDQGS/Y
+	c/ETOnN9kGNZ0yAKkBUUOzMafx1hsafR2kUaL2Cu4bYtGtf6xHr0DXrINRK7gJfChTEG+5uItU3s7
+	5nHyUuj610zCvDFO/KooY6/fvfo3xUuCcYFjD8ueu2sw94CN4dojGcn/fpbGsystjPBq8xS6tEbu9
+	8rFu9g6dN6BzoDwqq8gFsuBN8vXCHS0ewujvj+eR5rQrNK+vXUW3+ugPuT5eXlx4wx9GDnmtGCGJv
+	gdD0lCXdEdPHdRMa2vPmK4UBMQoN14EUalhcFnepOjD0H+c/sr1uNusNOytW+W3jVOe+qS4cAtj+y
+	Hs8UsiOg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdw2-00000002QpJ-2re6;
-	Tue, 10 Nov 2026 04:58:18 +0000
-Received: from mail-qk1-x729.google.com ([2607:f8b0:4864:20::729])
+	id 1xQdzo-00000002RH7-1jcS;
+	Tue, 10 Nov 2026 05:02:12 +0000
+Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdvz-00000002QnX-3PBy
+	id 1xQdzk-00000002RCl-3PjY
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 04:58:16 +0000
-Received: by mail-qk1-x729.google.com with SMTP id af79cd13be357-93f269e335eso184831185a.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 20:58:15 -0800 (PST)
+	Tue, 10 Nov 2026 05:02:10 +0000
+Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c429d9d05f0so165128966b.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794286695; x=1794891495; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=33/y7FEbAJRMpWgPc6HOmiquLc0W6X+Eem8um5Z3JJ4=;
-        b=HYyW2V2SOCe+x+N67kwn6zCeX5oKyInSOOuY9i8mxQKAxvb3sTRli+Y1+tNx+zZFnx
-         G35ufcX339O98VgenYT0lTnLL1tBxdAvSlpENx0X99SUE9IHlwa4ND8L16Flr6BStVJZ
-         nTFlDD8wiSEcqVBqkd0fSfWEU8QrE9taZxwhMZq6xM/UMAsiwCPZ4SdVyvmbfKYLPgZq
-         rEkavNPH38rGcfbgR+lEXp1H2WC4/ViGXmCz5SyL/G/vB/nmdnoPDDjPBL/FhLQTgQgX
-         hH4JVTnGV2ovc20/MWxGw9gyKtUUfd2eEM2cv9kr4rA7jeTfoys0q5vYOcicLmQUqGc0
-         R1SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286695; x=1794891495;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=google.com; s=20260707; t=1794286926; x=1794891726; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=33/y7FEbAJRMpWgPc6HOmiquLc0W6X+Eem8um5Z3JJ4=;
-        b=vSAWLvnAMVYpDfAjhwWCFQ6stNXOhYdTublT9CA04mrr2lUBR6swIhMf4xo8ru0NMG
-         BiEMMzuasijQGHhHnWyCYvqS3NF2niFTW4YUWPMH9Wfpr71PFHINPxD2+j8IQQhwEB+f
-         qZzARer3HHXteCR3HitQkojIv6TscIxO+Lkprumaz1k/5KkBEKq5sS9k8qEaY3Dmypx2
-         58+M7RwEV7WTwynKoUP3vjNYqFrJ0uPT0KjIoKB94Bf+4JYvLBJiZOMzLOdr2EgUEM+r
-         sf+9rPmryh94FaPiIyFWrsD2oQXFtm3Wk2VCTG33s6mUZXl76b6vobFAjAGFNQTKeWgC
-         RgvQ==
-X-Forwarded-Encrypted: i=1; AL+hErGl/pY9FbMBwNC4nxwdMbBljiB2hetHrBAnaIdNVEjSGLWkjYgtWAsAnSh0q4JNnpDEtL1jqy0n7Vo440wi89D8@lists.infradead.org
-X-Gm-Message-State: APuU4Z+UF5bedAeAfMFBnZBrQa9DukrMsdXyG6dMusMjSpu7j6gsTlJe
-	kbaEN1TQUQk0NRoqKQEJ2802eX9LOFnaBw/GgAYuPEFAmZtgh4juFmo=
-X-Gm-Gg: AYBFou3uz/D3Z9xatoadwFt9zIrGFMqc4+Z0KPDt/RnEKS/5LIOiSeRQyseuXBD3Ytv
-	bT7vBWcrbaIfi2oGHlNHbFZZ3GAnOGNMiNEfnimb9ltYEI0KoKi33/ZTsXfifMH4mmoinfGbB/7
-	M/kyqjk2q6gS8NTOxldoMdHeu+c7XwVjzTsA5Ebox63uaweJ4FGQE77DEzSOvEL0kYqhNCDS1I1
-	9M6x4PdYl31NSt7uAb48StqW4HmiwYLVtX+uRVbgE74xFaMYVzK5BtaiuLTPhfd8IL5eb5fukLr
-	JoCEpByOongnfo9wTWuSxGQlFWLbqopB6b1nVANYD2yb07jmZl3pObydhBStLfZM6gNAzrnebau
-	Y5LtikQ0z6gBS7PnZAqxKlL24QLL2JF6OMe0CuY5cnLonxHy0e3aJyKwQvjX8o5BoZrhPqghj5f
-	bpwWzr9O1XbVnxLygKpXfpqCUL74ptp9KHyFDNjtSittJeSEoTgubswlt4GPNXGstnME3CqDMQJ
-	CHKQe+TZHmTb6urs7QrVAHwGKvAIghzCvHPxw4GkSR6ak4spaoTsmQwNkEg/Ft6NS7CTrxQEyxj
-	8QTKvdn/QCDir7hYLcIXZ/tS0YoIUtnZZZzYOG9Y48NG989kdwO90hWZt+EjMKzh4fQ73YpDvy4
-	ysYAh9nknMd+ZgsM+S/ophANHXWLyUIMdSWQxGZfAwfnLwLdcJNl8LjDI3DyUajL1S5z32Q6VtY
-	aGQ+E9Xgf2+w==
-X-Received: by 2002:a05:620a:2614:b0:947:8018:978e with SMTP id af79cd13be357-9479f22d879mr260742685a.6.1794286694660;
-        Mon, 09 Nov 2026 20:58:14 -0800 (PST)
-Received: from localhost.localdomain ([104.39.152.7])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ef04f89c1sm12462836d6.23.2026.11.09.20.58.12
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 09 Nov 2026 20:58:13 -0800 (PST)
-From: Myeonghun Pak <mhun512@gmail.com>
-To: Eddie James <eajames@linux.ibm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Jammy Huang <jammy_huang@aspeedtech.com>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Ryan Chen <ryan_chen@aspeedtech.com>,
-	Billy Tsai <billy_tsai@aspeedtech.com>,
-	linux-media@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	Ijae Kim <ae878000@gmail.com>
-Subject: [PATCH v2 2/2] media: aspeed: drain IRQ work before stopping the engine
-Date: Mon,  9 Nov 2026 23:58:09 -0500
-Message-ID: <20261109235731-aspeed-v2-2-mhun512@gmail.com>
-In-Reply-To: <20261109235731-aspeed-v2-0-mhun512@gmail.com>
-References: <20261109235731-aspeed-v2-0-mhun512@gmail.com>
+        bh=3vxLVeArTOU555NjIGXbAokcuidpkXwhlCffjRLrr3o=;
+        b=cK3xNInmHhITNw9Oz210E6B3jgo8bBzBPqI2xDdeaOgXRbBv0Vur8FSjouxAVN3Q0a
+         FFGGhfgmYIy1PaBJycNysLV7FuBbuJVyIl6Jf37oy+UmVAJEysMGQIv/P+RCWWIkmKDR
+         2ehROSF1LT+VKNkmjDKcDYguM0PlYKXmgDY5+yTMlcUE76CSY2/S0M89zH+jzSkyIkdK
+         EWRcA9cobPZrmP9h9odvncOpBKZhCPr3cxMQlgcZE6osQAPOyvRbrNDwUiTan4BQ5pSt
+         JgteM9bvae0wDso0kB7YvUtAU4y89DE6DypktFF2rfKmT3O5/MSdtiDnD0AvoSmt/mXz
+         pS3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794286926; x=1794891726;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=3vxLVeArTOU555NjIGXbAokcuidpkXwhlCffjRLrr3o=;
+        b=Y+u0W5miDfKuG++FKQl2VeIFwjEZf0XRNWwjjDZjhn6RCLTbCApD0XYSVWu4lNqbvI
+         YjAgdlf2OPnHN467TPvW0bJmf/xgVYqSB4k/4jUDHjdHouQxFMsMiPyXs5dxoIJnqpWl
+         1RbOdufcLni9ZGiFhRxAGY+V7tHVRfa8cW/tBD6N16/lX2cpoJTePRopIudNt9Kzq4v/
+         ZCDUnHTLIdsd4KWk31fAG9RZZhWBdBf8+a4O0nqypBB8zTnxM7B8s1Uln9ps3Nv6HZ3k
+         xOtdq5PL14eREfJPHGYbjvmZMpME5GoPXiuDNm+z5utwUJv8I4EpB6kmI4clknveAIhB
+         mYDQ==
+X-Forwarded-Encrypted: i=1; AL+hErGZvB6JmIAHs3fkUpOFvCBYrma5mj06jskIzu1gEbjTuwd/QKqr2bxJo6OV2JZfJ9JURuzr0Fi4WXk8Cqj7SyeZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ZEdbI1CQ4FbrZjxvnZ5s2Zbw9PCuWt2lws7jzGNZLaVW9LKGy
+	EGvTr3oPNpzQ5LXi36U4VzXeLf6f68lMUbbTqowhvKYJLDV0x7Wedvrlp8US0VvhQCVBaAxqZAL
+	siMtIc89b1fSCTw/lqA==
+X-Received: from ejcuu11-n1.prod.google.com ([2002:a17:907:c60b:10b0:c3f:fb8f:67f3])
+ (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:907:9694:b0:c31:fb29:a137 with SMTP id a640c23a62f3a-c5049525569mr113201966b.21.1794286926296;
+ Mon, 09 Nov 2026 21:02:06 -0800 (PST)
+Date: Tue, 10 Nov 2026 05:01:44 +0000
+In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+References: <20261110050202.529473-1-tarunsahu@google.com>
+X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
+Message-ID: <20261110050202.529473-2-tarunsahu@google.com>
+Subject: [PATCH v4 01/19] liveupdate, kho: Remove __packed from KHO, LUO and
+ memfd ABI structures
+From: Tarun Sahu <tarunsahu@google.com>
+To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
+	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
+	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
+	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
+	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
+	gle.com@google.com, pbonzini@redhat.com, 
+	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
+Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
+	linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
+	Tarun Sahu <tarunsahu@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_205815_858437_FC27C509 
-X-CRM114-Status: GOOD (  14.19  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261109_210208_891180_2A87A94D 
+X-CRM114-Status: GOOD (  18.62  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,89 +101,207 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Last close cancels resolution work while its IRQ producer is still live.
-A handler can queue work after cancellation and buffer cleanup. The worker
-can then turn clocks back on after stop has cleared VIDEO_STOPPED.
+All structures in include/linux/kho/abi/block.h (struct
+kho_block_header_ser), include/linux/kho/abi/luo.h (struct luo_ser,
+struct luo_file_ser, struct luo_file_set_ser, struct luo_session_ser,
+struct luo_flb_header_ser, struct luo_flb_ser) and
+include/linux/kho/abi/memfd.h (struct memfd_luo_folio_ser, struct
+memfd_luo_ser) have naturally aligned fields on 64-bit architectures,
+with no padding holes between fields or tail padding. Assert both the
+structure size and 8-byte alignment under CONFIG_64BIT at compile time.
+Any future unaligned field addition should come with reserved field to
+keep the structure aligned.
 
-Release the VB2 queue before shutting down the engine, since streamoff
-can need capture and mode-detect interrupts. Disable and join the IRQ,
-drain work, stop the engine and free its buffers before re-enabling the
-IRQ. Check VIDEO_STOPPED before enabling clocks in the worker.
-
-Fixes: d2b4387f3bdf ("media: platform: Add Aspeed Video Engine driver")
-Co-developed-by: Ijae Kim <ae878000@gmail.com>
-Signed-off-by: Ijae Kim <ae878000@gmail.com>
-Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
+Signed-off-by: Tarun Sahu <tarunsahu@google.com>
 ---
-No hardware testing.
+ include/linux/kho/abi/block.h | 10 +++++++--
+ include/linux/kho/abi/luo.h   | 38 +++++++++++++++++++++++++++++------
+ include/linux/kho/abi/memfd.h | 16 ++++++++++++---
+ 3 files changed, 53 insertions(+), 11 deletions(-)
 
-Changes in v2:
-- Split normal last-close ordering into a separate patch.
-- Balance IRQ disable/enable within stop; add no reopen state.
-
- drivers/media/platform/aspeed/aspeed-video.c | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/media/platform/aspeed/aspeed-video.c b/drivers/media/platform/aspeed/aspeed-video.c
---- a/drivers/media/platform/aspeed/aspeed-video.c
-+++ b/drivers/media/platform/aspeed/aspeed-video.c
-@@ -1423,6 +1423,7 @@
- static void aspeed_video_stop(struct aspeed_video *video)
- {
- 	set_bit(VIDEO_STOPPED, &video->flags);
-+	disable_irq(video->irq);
- 	cancel_delayed_work_sync(&video->res_work);
+diff --git a/include/linux/kho/abi/block.h b/include/linux/kho/abi/block.h
+index d06d64b963be..36bdbaf9b3b8 100644
+--- a/include/linux/kho/abi/block.h
++++ b/include/linux/kho/abi/block.h
+@@ -12,7 +12,7 @@
+  * pre-update kernel to a post-update kernel.
+  *
+  * This interface is a contract. Any modification to the structure fields,
+- * compatible strings, or the layout of the `__packed` serialization
++ * compatible strings, or the layout of the serialization
+  * structures defined here constitutes a breaking change. Such changes require
+  * incrementing the version number in the `KHO_FDT_COMPATIBLE` string to
+  * prevent a new kernel from misinterpreting data from an old kernel.
+@@ -26,6 +26,8 @@
+ #define _LINUX_KHO_ABI_BLOCK_H
  
- 	aspeed_video_off(video);
-@@ -1438,6 +1439,7 @@
+ #include <asm/page.h>
++#include <linux/build_bug.h>
++#include <linux/kconfig.h>
+ #include <linux/types.h>
  
- 	video->v4l2_input_status = V4L2_IN_ST_NO_SIGNAL;
- 	video->flags = 0;
-+	enable_irq(video->irq);
- }
- 
- static int aspeed_video_querycap(struct file *file, void *fh,
-@@ -1847,11 +1849,11 @@
- 	struct aspeed_video *video = container_of(dwork, struct aspeed_video,
- 						  res_work);
- 
--	aspeed_video_on(video);
--
- 	/* Exit early in case no clients remain */
- 	if (test_bit(VIDEO_STOPPED, &video->flags))
- 		goto done;
+ /**
+@@ -49,6 +51,10 @@
+ struct kho_block_header_ser {
+ 	u64 next;
+ 	u64 count;
+-} __packed;
++};
 +
-+	aspeed_video_on(video);
++static_assert(sizeof(struct kho_block_header_ser) == 16);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct kho_block_header_ser) == 8);
  
- 	aspeed_video_init_regs(video);
+ #endif /* _LINUX_KHO_ABI_BLOCK_H */
+diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
+index 288076de6d4a..721949374fa1 100644
+--- a/include/linux/kho/abi/luo.h
++++ b/include/linux/kho/abi/luo.h
+@@ -58,6 +58,8 @@
+ #define _LINUX_KHO_ABI_LUO_H
  
-@@ -1901,15 +1903,17 @@
+ #include <linux/align.h>
++#include <linux/build_bug.h>
++#include <linux/kconfig.h>
+ #include <linux/kho/abi/block.h>
+ #include <uapi/linux/liveupdate.h>
  
- static int aspeed_video_release(struct file *file)
- {
-+	bool last;
- 	int rc;
- 	struct aspeed_video *video = video_drvdata(file);
- 
- 	mutex_lock(&video->video_lock);
- 
--	if (v4l2_fh_is_singular_file(file))
-+	last = v4l2_fh_is_singular_file(file);
-+	rc = _vb2_fop_release(file, NULL);
+@@ -82,7 +84,11 @@ struct luo_ser {
+ 	u64 liveupdate_num;
+ 	u64 sessions_pa;
+ 	u64 flbs_pa;
+-} __packed;
++};
 +
-+	if (last)
- 		aspeed_video_stop(video);
--
--	rc = _vb2_fop_release(file, NULL);
++static_assert(sizeof(struct luo_ser) == 32);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct luo_ser) == 8);
  
- 	mutex_unlock(&video->video_lock);
+ #define LIVEUPDATE_HNDL_COMPAT_LENGTH	48
  
+@@ -98,7 +104,11 @@ struct luo_file_ser {
+ 	char compatible[LIVEUPDATE_HNDL_COMPAT_LENGTH];
+ 	u64 data;
+ 	u64 token;
+-} __packed;
++};
++
++static_assert(sizeof(struct luo_file_ser) == 64);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct luo_file_ser) == 8);
+ 
+ /**
+  * struct luo_file_set_ser - Represents the serialized metadata for file set
+@@ -113,7 +123,11 @@ struct luo_file_ser {
+ struct luo_file_set_ser {
+ 	u64 files;
+ 	u64 count;
+-} __packed;
++};
++
++static_assert(sizeof(struct luo_file_set_ser) == 16);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct luo_file_set_ser) == 8);
+ 
+ /**
+  * struct luo_session_ser - Represents the serialized metadata for a LUO session.
+@@ -131,7 +145,11 @@ struct luo_file_set_ser {
+ struct luo_session_ser {
+ 	char name[LIVEUPDATE_SESSION_NAME_LENGTH];
+ 	struct luo_file_set_ser file_set_ser;
+-} __packed;
++};
++
++static_assert(sizeof(struct luo_session_ser) == 80);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct luo_session_ser) == 8);
+ 
+ /* The max size is set so it can be reliably used during in serialization */
+ #define LIVEUPDATE_FLB_COMPAT_LENGTH	48
+@@ -152,7 +170,11 @@ struct luo_session_ser {
+ struct luo_flb_header_ser {
+ 	u64 pgcnt;
+ 	u64 count;
+-} __packed;
++};
++
++static_assert(sizeof(struct luo_flb_header_ser) == 16);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct luo_flb_header_ser) == 8);
+ 
+ /**
+  * struct luo_flb_ser - Represents the serialized state of a single FLB object.
+@@ -175,7 +197,11 @@ struct luo_flb_ser {
+ 	char name[LIVEUPDATE_FLB_COMPAT_LENGTH];
+ 	u64 data;
+ 	u64 count;
+-} __packed;
++};
++
++static_assert(sizeof(struct luo_flb_ser) == 64);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct luo_flb_ser) == 8);
+ 
+ /* Kernel Live Update Test ABI */
+ #ifdef CONFIG_LIVEUPDATE_TEST
+diff --git a/include/linux/kho/abi/memfd.h b/include/linux/kho/abi/memfd.h
+index 08b10fea2afc..376a724a1d8c 100644
+--- a/include/linux/kho/abi/memfd.h
++++ b/include/linux/kho/abi/memfd.h
+@@ -11,6 +11,8 @@
+ #ifndef _LINUX_KHO_ABI_MEMFD_H
+ #define _LINUX_KHO_ABI_MEMFD_H
+ 
++#include <linux/build_bug.h>
++#include <linux/kconfig.h>
+ #include <linux/types.h>
+ #include <linux/kho/abi/kexec_handover.h>
+ 
+@@ -20,7 +22,7 @@
+  * memfd uses the ABI defined below for preserving its state across a kexec
+  * reboot using the LUO.
+  *
+- * The state is serialized into a packed structure `struct memfd_luo_ser`
++ * The state is serialized into `struct memfd_luo_ser`
+  * which is handed over to the next kernel via the KHO mechanism.
+  *
+  * This interface is a contract. Any modification to the structure layout
+@@ -54,7 +56,11 @@ struct memfd_luo_folio_ser {
+ 	u64 pfn:52;
+ 	u64 flags:12;
+ 	u64 index;
+-} __packed;
++};
++
++static_assert(sizeof(struct memfd_luo_folio_ser) == 16);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct memfd_luo_folio_ser) == 8);
+ 
+ /*
+  * The set of seals this version supports preserving. If support for any new
+@@ -85,7 +91,11 @@ struct memfd_luo_ser {
+ 	u32 flags;
+ 	u64 nr_folios;
+ 	struct kho_vmalloc folios;
+-} __packed;
++};
++
++static_assert(sizeof(struct memfd_luo_ser) == 48);
++static_assert(!IS_ENABLED(CONFIG_64BIT) ||
++	      __alignof__(struct memfd_luo_ser) == 8);
+ 
+ /* The compatibility string for memfd file handler */
+ #define MEMFD_LUO_FH_COMPATIBLE	"memfd-v2"
+-- 
+2.56.0.506.g506a7eabc5-goog
+
 
