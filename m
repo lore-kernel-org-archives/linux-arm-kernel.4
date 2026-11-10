@@ -2,108 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DDE606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 06:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7DA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 06:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hHSz4iP1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kifDjBR8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oNO8Q5yW;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=AmiHZ/Ea
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=qVa7im9JyNQecrk3rUYJg0fizwf9uJh68ADezBOAxBo=; b=hHSz4iP1Kk/dZpi3D1SXGFttz3
-	1Di2a7O4WCNCP/8tejH0E5sp1UtNgdjQKWnGeLQTLNWh60Kd7izGDWInFpr0aoy0QxRTQ2Nf5PapS
-	DlFWcMsP0bNX3CfYFk1S0saBUxV97/XTSi31sbHanVaOVe5xXWnIM7qNg8o0twAj5Sp6Jg4g4PAqO
-	sFjsZe09Z2UoptTxmqLBVeDFGMyARcLvhuaPUuUC7gii4+BtQDuHElaVb5Z4q380rhMS3qK3730nu
-	xYfoLmCAqgKnn8fRN2mgxxKHqFnbSOdk2FcacRwF4sfY9LCV4IEIotBAluI+1ZR2mENX+rv+XxJQi
-	3feDF1yQ==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=pJFFAlvHvpv/DNb0ovxFiTKs4dBdzL3exBW92NJume8=; b=oNO8Q5yWWTHB9J
+	NtIe/JfktkOoCsJtk/CxLOQ2HdXQLp+fsxe7fjob5Fkw8BkzdUNcLpxNzwvHuZEIEqfXtioWBuqkB
+	avQ2ZXVN6XXUr90jSN5GevRv+nKkC9H/kQ6MTeiDhbcrFZNFV6kmYrgz3L4kIni/+ETVMdihj8tD1
+	FP8nRgEs7ftpffEwM7+8+Asxk15qg1ZmA9XaEI8VTBPu0gpnjf9iceFLlCBDc+eODTObCKHAKn8iA
+	empIIxRWES2LXkZb/8tls17QXVReFVBIFCtN95oS+Lob9jDoXL87BgaGqF5LV2F+E9jyttUHHOKZw
+	fYkkQ3AGZFViIzC9Yf7w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQfI9-00000002dkU-0B6v;
-	Tue, 10 Nov 2026 06:25:13 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQfOL-00000002ekq-3P6p;
+	Tue, 10 Nov 2026 06:31:37 +0000
+Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQfI5-00000002djV-0Rm1
+	id 1xQfOJ-00000002ek1-0RkA
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 06:25:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2CEDA63401;
-	Tue, 10 Nov 2026 06:25:08 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794291907;
-	b=UtUq8U+S225whiMCdxuz6b3ADzNz3FOxwu0klBb0YTPosu/0xw0X+YL8PBJu8npmMLfn
-	 9MFNCWaUoIR3wQJCzcO4+x0NezEIvi9hAR1CL3hvexC6gWavq0wxa8csZ0BJmalaQiMrP
-	 VZiVF2V+NdVfWTMJy+OWeYR/GZ5yZDJJvMFTBWWjL9e+h376vl4wO3oJb2caZ9M7JLbPn
-	 KHBy0evfsUmH0pZdAKtdN7qZO3mU3ybEDynjGXWXtJ7r2IxlH0W1BN6/dB7DLiA2bTdVO
-	 XcUTr0tIrXVLsEl30T+2rPePXF4CwKAR4ndlH6zLA10FFjR0CBE/Q0jIAPTkGct+GRA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794291907;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=qVa7im9JyNQecrk3rUYJg0fizwf9uJh68ADezBOAxBo=;
-	b=UsHuU0pZ4d9mwGQ4vpg7KZVMij2Cm9ZA/GevlYeAD9DgXZswXf/wBBgTUK89n1wGHISY
-	 ONlrXAuYRD4rm7mbsilOL8ssy+OW1uOTwgxOtFGnCvT5XbSOVS3ey4MxH5HLYmCPkYOkx
-	 3AL71V6dAhPJdLWjQzraYz8+B6pfCcRXT+mr/wdZeCrnCZFpRENLOCqiEDgOVBODbVpgz
-	 9XhicHavf+ooDrk/sNyvBVj8Q324HY9CXmYD9bgNlQpMgYzoCCxjB9m18I/iWixkrxbHc
-	 afmiy5cHEeI4KRjLIvVb1d3T0q59WHp5tEu4Rv7wAoPHnOlza9PcTrMbciRewo9utUw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 642571F008A1;
-	Tue, 10 Nov 2026 06:25:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794291907;
-	bh=qVa7im9JyNQecrk3rUYJg0fizwf9uJh68ADezBOAxBo=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=kifDjBR8lxEDTBqgYx4AFYPitH8iDRtPUujwcdyxlNCwsTd49L+Ms7pRoyFeFVbV4
-	 LaMgH8HViY25YM1ruyawnyWDbNbzicsw1Tv1L769Lpyq6Bf2siVpYlH4rgM27WUfDy
-	 JLv7erGZ8QtTGAGn2JMSDfbwVYwtd5kq6fyu/t47Cxq6ZQBMcnSrJO+IaUW9kuV9Kk
-	 v8gsEMTZGSJsrr8yClb9Zts2Q1Wp4oPEtgBkZSriQunITG3lX/+8/g64WybPqSKZ8G
-	 DhEMGX7ijbwu1HFFtuueLrm30roMfdh0p9k/cpiDJwx7bGOJ3T2ZKktH6/yk8I4x3a
-	 kYnMtIqcMkE1w==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B4CF548906;
-	Tue, 10 Nov 2026 06:25:05 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 06:25:05 +0000
-Subject: [PATCH v2] crypto: sun8i-ce - Add AES-XTS for the H616
+	Tue, 10 Nov 2026 06:31:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description;
+	bh=pJFFAlvHvpv/DNb0ovxFiTKs4dBdzL3exBW92NJume8=; t=1794292295; x=1795501895; 
+	b=AmiHZ/EajHUOVhXbdOoI1i9OScRz/aNoRa3dONKCzClsiuqJqICZttwG1xM+bV1R88qQDrbgshC
+	hS7A9Elk5iw48nnD5Z8b1FYdgD7aUGhOuMlN1nXa6le0zbCIz1oomUiQq+X0ltLcuVFKdr9uwNQG3
+	txusvXTl/q40PNuWSuvUZEwA2S6Gz3yS/ZYXk+Sp46kVis7W4WeXiLUwXGGnjOVcPKat+/CgOu3EH
+	3Rop7MywSO7u0/ecsIK/vle7m+Knbc6XFGD9oF5iDZKvEuLFHGguJ11SIkmDazGL0Rvjv/K5GvqaD
+	/8QV1DzrZzJcDR/Cg89MPp+E8cl9mTYy02iQ==;
+Date: Tue, 10 Nov 2026 07:31:26 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Ettore Chimenti <ettore.chimenti@linaro.org>
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman
+ <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Christopher
+ Obbard <chris.obbard@oss.qualcomm.com>, Andrew Goodbody
+ <andrew.goodbody@linaro.org>, Paul Walmsley <paul@pwsan.com>, Russell King
+ <linux@armlinux.org.uk>, Rouven Czerwinski <rouven.czerwinski@linaro.org>,
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 6/9] ARM: dts: omap: dm816x: Update USB node
+Message-ID: <20261110073126.5c434695@kemnade.info>
+In-Reply-To: <20261102-patch-ektor5-dm8168-dts-v3-6-9bd6d1d128f2@linaro.org>
+References: <20261102-patch-ektor5-dm8168-dts-v3-0-9bd6d1d128f2@linaro.org>
+	<20261102-patch-ektor5-dm8168-dts-v3-6-9bd6d1d128f2@linaro.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-sun8i-ce-h616-xts-v2-1-0b99efabc1d8@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NQQ6CMBBFr0Jm7Zi2xEJceQ/DgtYpjBEwnUIwh
- LsLuHf5kvffX0AoMglcswUiTSw89BuYUwa+rfuGkB8bg1HGaq0VytiXjJ6wtdrinARLuhjncl+
- 43MK2e0cKPB/Ne/VjGd2TfNpDu9GypCF+jtNJ796//qRRowkh5ORUqYr61nQ1v85+6KBa1/ULF
- de5BcQAAAA=
-X-Change-ID: 20261110-sun8i-ce-h616-xts-8e52bb3c7b36
-To: Corentin Labbe <clabbe.montjoie@gmail.com>, 
- Herbert Xu <herbert@gondor.apana.org.au>, 
- "David S. Miller" <davem@davemloft.net>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: linux-crypto@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794291905; l=17220;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=2nQWpNUcBW76Dz7uIz3wV2AA9flhPGO+JjUz//TRszY=;
- b=7XtX2fH6fEJvY5KBEabHfZvwnq0+KzVN2CKQFw1SCd7uulfPPzJToEoPfzDQ9yAl4mSsCkghC
- hOHrsMiL/EwBwy5f8GY2Y2Hs0WvlhNmTniDS6FuhhwJZmOcFOFc0pL1
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_223135_151163_98A3620C 
+X-CRM114-Status: GOOD (  17.58  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,471 +72,105 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Mon, 02 Nov 2026 20:52:52 +0100
+Ettore Chimenti <ettore.chimenti@linaro.org> wrote:
 
-The H616 crypto engine has a separate RAES unit (algorithm type 0x30)
-that does AES-ECB, AES-CBC and AES-XTS. Its XTS mode (symmetric mode
-0b1001) takes the two keys back to back at the key address, the tweak
-at the IV address, and an xts_first/xts_last pair of flags that mark the
-first and the last block of a data unit. The key size field gives the
-size of one of the two keys: 128 or 256 bits, there is no 192-bit XTS.
+> From: Andrew Goodbody <andrew.goodbody@linaro.org>
+> 
+> USB node was not working correctly with DMA enabled as the supporting
+> code had been updated without updating this SoC's device tree. Bring the
+> device tree more up to date so that it works with DMA enabled.
+> Removing deprecated usb_otg_hs `ti,hwmods` property in DT node in favour
+> of ti-sysc implementation.
+> 
+> Signed-off-by: Andrew Goodbody <andrew.goodbody@linaro.org>
+> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
 
-Register xts(aes) for the H616: each request is one data unit, so both
-flags are set and the request IV is the tweak of its first block. XTS
-returns no IV, so the CBC write-back of the last block is skipped.
-Ciphertext stealing (lengths that are not a multiple of the block size)
-and two 192-bit keys go to the fallback, as do the requests that the
-existing checks already send there.
-
-The engine is much slower at XTS than the CPU's ARMv8 AES instructions:
-4 times slower for 64 KiB requests (213 against 861 MB/s), 8 times for
-4 KiB and 17 times for 512 bytes. Register it below every CPU
-implementation of xts(aes) (priority 90), so that the CPU stays the
-default, for dm-crypt too, and the engine is only used when it is
-asked for by driver name.
-
-The other variants get CE_ID_NOTSUPP for the new mode, so nothing
-changes for them.
-
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-The H616 crypto engine can do AES-XTS in its separate RAES unit. This
-patch registers xts(aes) for the H616, below the CPU implementations
-because the engine is slower than the ARMv8 Crypto Extensions; it stays
-available by driver name (xts-aes-sun8i-ce) for users who want to
-offload the CPU.
-
-Testing on an Orange Pi Zero2 (H616), v7.3-based kernel with this
-patch (sun8i-ce is unchanged between v7.3 and cryptodev-2.6):
-- the boot-time self-test of xts-aes-sun8i-ce passes, and the testmgr
-  vectors run on the engine (debugfs request counters);
-- 21 known-answer vectors (IEEE 1619 and generated, including
-  ciphertext stealing lengths, which go to the fallback) pass, and 3000
-  random requests (10% with misaligned buffers) give the same result as
-  xts-aes-ce;
-- dm-crypt with capi:xts-aes-sun8i-ce-plain64, 512 and 4096-byte
-  sectors: 48 MiB written and read back with matching sha256, and the
-  raw sectors decrypt with xts-aes-ce; with this priority, xts(aes)
-  and plain aes-xts-plain64 resolve to the CPU's xts-aes-ce;
-- the existing ECB/CBC ciphers, hashes and the TRNG still match their
-  software implementations.
-Throughput, engine against xts-aes-ce: 20/352 MB/s for 512-byte
-requests, 98/759 MB/s for 4 KiB, 213/861 MB/s for 64 KiB.
-
-This patch was developed with Claude (Anthropic) as a
-coding assistant: it investigated the problem, wrote the code and
-the commit messages. I reviewed it, and it was tested on an
-Orange Pi Zero2 (H616) as described above.
----
-Changes in v2:
-- Select CRYPTO_XTS: the xts(aes) transform allocates an xts(aes)
-  fallback in sun8i_ce_cipher_init(), which fails without it (found by
-  the Sashiko AI review).
-- Link to v1: https://patch.msgid.link/20261110-sun8i-ce-h616-xts-v1-1-2fff3eb0807a@gmail.com
-
-To: Corentin Labbe <clabbe.montjoie@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-To: "David S. Miller" <davem@davemloft.net>
-To: Chen-Yu Tsai <wens@kernel.org>
-To: Jernej Skrabec <jernej.skrabec@gmail.com>
-To: Samuel Holland <samuel@sholland.org>
-Cc: linux-crypto@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-sunxi@lists.linux.dev
-Cc: linux-kernel@vger.kernel.org
----
- drivers/crypto/allwinner/Kconfig                   |   1 +
- .../crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c    | 102 +++++++++++++++++----
- drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c  |  44 +++++++--
- drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h       |  21 ++++-
- 4 files changed, 142 insertions(+), 26 deletions(-)
-
-diff --git a/drivers/crypto/allwinner/Kconfig b/drivers/crypto/allwinner/Kconfig
-index d86ae005fbe2..c07212ea2fba 100644
---- a/drivers/crypto/allwinner/Kconfig
-+++ b/drivers/crypto/allwinner/Kconfig
-@@ -39,6 +39,7 @@ config CRYPTO_DEV_SUN8I_CE
- 	select CRYPTO_ENGINE
- 	select CRYPTO_ECB
- 	select CRYPTO_CBC
-+	select CRYPTO_XTS
- 	select CRYPTO_AES
- 	select CRYPTO_DES
- 	depends on CRYPTO_DEV_ALLWINNER
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-index 021614b65e39..b87be3123b12 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-cipher.c
-@@ -6,7 +6,7 @@
-  * Copyright (C) 2016-2019 Corentin LABBE <clabbe.montjoie@gmail.com>
-  *
-  * This file add support for AES cipher with 128,192,256 bits keysize in
-- * CBC and ECB mode.
-+ * CBC and ECB mode, and for AES-XTS with 256 and 512 bits keysize.
-  *
-  * You could find a link for the datasheet in Documentation/arch/arm/sunxi.rst
-  */
-@@ -19,18 +19,34 @@
- #include <crypto/scatterwalk.h>
- #include <crypto/internal/des.h>
- #include <crypto/internal/skcipher.h>
-+#include <crypto/xts.h>
- #include "sun8i-ce.h"
- 
-+/*
-+ * XTS uses the request IV as the tweak of its first block and returns no IV,
-+ * CBC returns the last ciphertext block as the IV of the next request.
-+ */
-+static bool sun8i_ce_cipher_iv_out(struct sun8i_ce_alg_template *algt)
-+{
-+	return algt->ce_blockmode != CE_ID_OP_XTS;
-+}
-+
- static int sun8i_ce_cipher_need_fallback(struct skcipher_request *areq)
- {
- 	struct crypto_skcipher *tfm = crypto_skcipher_reqtfm(areq);
- 	struct scatterlist *sg;
-+	struct sun8i_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
- 	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
- 	struct sun8i_ce_alg_template *algt;
- 	unsigned int todo, len;
- 
- 	algt = container_of(alg, struct sun8i_ce_alg_template, alg.skcipher.base);
- 
-+	/* The XTS unit takes two 128-bit or two 256-bit keys only */
-+	if (algt->ce_blockmode == CE_ID_OP_XTS &&
-+	    op->keylen == 2 * AES_KEYSIZE_192)
-+		return true;
-+
- 	if (sg_nents_for_len(areq->src, areq->cryptlen) > MAX_SG ||
- 	    sg_nents_for_len(areq->dst, areq->cryptlen) > MAX_SG) {
- 		if (IS_ENABLED(CONFIG_CRYPTO_DEV_SUN8I_CE_DEBUG))
-@@ -164,7 +180,10 @@ static int sun8i_ce_cipher_prepare(struct skcipher_request *areq,
- 	memset(cet, 0, sizeof(struct ce_task));
- 
- 	cet->t_id = cpu_to_le32(rctx->flow);
--	common = ce->variant->alg_cipher[algt->ce_algo_id];
-+	if (algt->ce_blockmode == CE_ID_OP_XTS)
-+		common = CE_ALG_RAES;
-+	else
-+		common = ce->variant->alg_cipher[algt->ce_algo_id];
- 	common |= rctx->op_dir | CE_COMM_INT;
- 	cet->t_common_ctl = cpu_to_le32(common);
- 	/* CTS and recent CE (H6) need length in bytes, in word otherwise */
-@@ -175,6 +194,15 @@ static int sun8i_ce_cipher_prepare(struct skcipher_request *areq,
- 
- 	sym = ce->variant->op_mode[algt->ce_blockmode];
- 	len = op->keylen;
-+	if (algt->ce_blockmode == CE_ID_OP_XTS) {
-+		/*
-+		 * One request is one data unit: its first block uses the
-+		 * tweak from the IV, its last block ends the data unit. The
-+		 * key size field gives the size of each of the two keys.
-+		 */
-+		sym |= CE_SYM_XTS_FIRST | CE_SYM_XTS_LAST;
-+		len /= 2;
-+	}
- 	switch (len) {
- 	case 128 / 8:
- 		sym |= CE_AES_128BITS;
-@@ -200,7 +228,8 @@ static int sun8i_ce_cipher_prepare(struct skcipher_request *areq,
- 
- 	ivsize = crypto_skcipher_ivsize(tfm);
- 	if (areq->iv && ivsize > 0) {
--		if (rctx->op_dir & CE_DECRYPTION) {
-+		if (sun8i_ce_cipher_iv_out(algt) &&
-+		    (rctx->op_dir & CE_DECRYPTION)) {
- 			offset = areq->cryptlen - ivsize;
- 			scatterwalk_map_and_copy(rctx->backup_iv, areq->src,
- 						 offset, ivsize, 0);
-@@ -290,13 +319,15 @@ static int sun8i_ce_cipher_prepare(struct skcipher_request *areq,
- 			dma_unmap_single(ce->dev, rctx->addr_iv, ivsize,
- 					 DMA_TO_DEVICE);
- 
--		offset = areq->cryptlen - ivsize;
--		if (rctx->op_dir & CE_DECRYPTION) {
--			memcpy(areq->iv, rctx->backup_iv, ivsize);
--			memzero_explicit(rctx->backup_iv, ivsize);
--		} else {
--			scatterwalk_map_and_copy(areq->iv, areq->dst, offset,
--						 ivsize, 0);
-+		if (sun8i_ce_cipher_iv_out(algt)) {
-+			offset = areq->cryptlen - ivsize;
-+			if (rctx->op_dir & CE_DECRYPTION) {
-+				memcpy(areq->iv, rctx->backup_iv, ivsize);
-+				memzero_explicit(rctx->backup_iv, ivsize);
-+			} else {
-+				scatterwalk_map_and_copy(areq->iv, areq->dst,
-+							 offset, ivsize, 0);
-+			}
- 		}
- 		memzero_explicit(rctx->bounce_iv, ivsize);
- 	}
-@@ -314,10 +345,13 @@ static void sun8i_ce_cipher_unprepare(struct skcipher_request *areq,
- 	struct sun8i_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
- 	struct sun8i_ce_dev *ce = op->ce;
- 	struct sun8i_cipher_req_ctx *rctx = skcipher_request_ctx(areq);
-+	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
-+	struct sun8i_ce_alg_template *algt;
- 	unsigned int ivsize, offset;
- 	int nr_sgs = rctx->nr_sgs;
- 	int nr_sgd = rctx->nr_sgd;
- 
-+	algt = container_of(alg, struct sun8i_ce_alg_template, alg.skcipher.base);
- 	ivsize = crypto_skcipher_ivsize(tfm);
- 
- 	if (areq->src == areq->dst) {
-@@ -332,13 +366,15 @@ static void sun8i_ce_cipher_unprepare(struct skcipher_request *areq,
- 		if (cet->t_iv)
- 			dma_unmap_single(ce->dev, rctx->addr_iv, ivsize,
- 					 DMA_TO_DEVICE);
--		offset = areq->cryptlen - ivsize;
--		if (rctx->op_dir & CE_DECRYPTION) {
--			memcpy(areq->iv, rctx->backup_iv, ivsize);
--			memzero_explicit(rctx->backup_iv, ivsize);
--		} else {
--			scatterwalk_map_and_copy(areq->iv, areq->dst, offset,
--						 ivsize, 0);
-+		if (sun8i_ce_cipher_iv_out(algt)) {
-+			offset = areq->cryptlen - ivsize;
-+			if (rctx->op_dir & CE_DECRYPTION) {
-+				memcpy(areq->iv, rctx->backup_iv, ivsize);
-+				memzero_explicit(rctx->backup_iv, ivsize);
-+			} else {
-+				scatterwalk_map_and_copy(areq->iv, areq->dst,
-+							 offset, ivsize, 0);
-+			}
- 		}
- 		memzero_explicit(rctx->bounce_iv, ivsize);
- 	}
-@@ -489,6 +525,38 @@ int sun8i_ce_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
- }
- 
-+int sun8i_ce_xts_setkey(struct crypto_skcipher *tfm, const u8 *key,
-+			unsigned int keylen)
-+{
-+	struct sun8i_cipher_tfm_ctx *op = crypto_skcipher_ctx(tfm);
-+	struct sun8i_ce_dev *ce = op->ce;
-+	int err;
-+
-+	err = xts_verify_key(tfm, key, keylen);
-+	if (err)
-+		return err;
-+
-+	switch (keylen) {
-+	case 2 * AES_KEYSIZE_128:
-+	case 2 * AES_KEYSIZE_192:
-+	case 2 * AES_KEYSIZE_256:
-+		break;
-+	default:
-+		dev_dbg(ce->dev, "ERROR: Invalid keylen %u\n", keylen);
-+		return -EINVAL;
-+	}
-+	kfree_sensitive(op->key);
-+	op->keylen = keylen;
-+	op->key = kmemdup(key, keylen, GFP_KERNEL | GFP_DMA);
-+	if (!op->key)
-+		return -ENOMEM;
-+
-+	crypto_skcipher_clear_flags(op->fallback_tfm, CRYPTO_TFM_REQ_MASK);
-+	crypto_skcipher_set_flags(op->fallback_tfm, tfm->base.crt_flags & CRYPTO_TFM_REQ_MASK);
-+
-+	return crypto_skcipher_setkey(op->fallback_tfm, key, keylen);
-+}
-+
- int sun8i_ce_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 			 unsigned int keylen)
- {
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-index 21762bd408e5..a7d771927b7a 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-@@ -41,7 +41,7 @@ static const struct ce_variant ce_h3_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ALG_SHA384, CE_ALG_SHA512
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_ID_NOTSUPP
- 	},
- 	.ce_clks = {
- 		{ "bus", 0, 200000000 },
-@@ -57,7 +57,7 @@ static const struct ce_variant ce_h5_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ID_NOTSUPP, CE_ID_NOTSUPP
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_ID_NOTSUPP
- 	},
- 	.ce_clks = {
- 		{ "bus", 0, 200000000 },
-@@ -73,7 +73,7 @@ static const struct ce_variant ce_h6_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ALG_SHA384, CE_ALG_SHA512
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_ID_NOTSUPP
- 	},
- 	.cipher_t_dlen_in_bytes = true,
- 	.hash_t_dlen_in_bits = true,
-@@ -93,7 +93,7 @@ static const struct ce_variant ce_h616_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ALG_SHA384, CE_ALG_SHA512
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_OP_XTS
- 	},
- 	.cipher_t_dlen_in_bytes = true,
- 	.hash_t_dlen_in_bits = true,
-@@ -115,7 +115,7 @@ static const struct ce_variant ce_a64_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ID_NOTSUPP, CE_ID_NOTSUPP
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_ID_NOTSUPP
- 	},
- 	.ce_clks = {
- 		{ "bus", 0, 200000000 },
-@@ -131,7 +131,7 @@ static const struct ce_variant ce_d1_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ALG_SHA384, CE_ALG_SHA512
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_ID_NOTSUPP
- 	},
- 	.ce_clks = {
- 		{ "bus", 0, 200000000 },
-@@ -149,7 +149,7 @@ static const struct ce_variant ce_r40_variant = {
- 	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
- 		CE_ID_NOTSUPP, CE_ID_NOTSUPP
- 	},
--	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC, CE_ID_NOTSUPP
- 	},
- 	.ce_clks = {
- 		{ "bus", 0, 200000000 },
-@@ -350,6 +350,36 @@ static struct sun8i_ce_alg_template ce_algs[] = {
- 		.do_one_request = sun8i_ce_cipher_do_one,
- 	},
- },
-+{
-+	.type = CRYPTO_ALG_TYPE_SKCIPHER,
-+	.ce_algo_id = CE_ID_CIPHER_AES,
-+	.ce_blockmode = CE_ID_OP_XTS,
-+	.alg.skcipher.base = {
-+		.base = {
-+			.cra_name = "xts(aes)",
-+			.cra_driver_name = "xts-aes-sun8i-ce",
-+			.cra_priority = CE_PRIO_BELOW_CPU,
-+			.cra_blocksize = AES_BLOCK_SIZE,
-+			.cra_flags = CRYPTO_ALG_TYPE_SKCIPHER |
-+				CRYPTO_ALG_ASYNC |
-+				CRYPTO_ALG_NEED_FALLBACK,
-+			.cra_ctxsize = sizeof(struct sun8i_cipher_tfm_ctx),
-+			.cra_module = THIS_MODULE,
-+			.cra_alignmask = 0xf,
-+			.cra_init = sun8i_ce_cipher_init,
-+			.cra_exit = sun8i_ce_cipher_exit,
-+		},
-+		.min_keysize	= 2 * AES_MIN_KEY_SIZE,
-+		.max_keysize	= 2 * AES_MAX_KEY_SIZE,
-+		.ivsize		= AES_BLOCK_SIZE,
-+		.setkey		= sun8i_ce_xts_setkey,
-+		.encrypt	= sun8i_ce_skencrypt,
-+		.decrypt	= sun8i_ce_skdecrypt,
-+	},
-+	.alg.skcipher.op = {
-+		.do_one_request = sun8i_ce_cipher_do_one,
-+	},
-+},
- {
- 	.type = CRYPTO_ALG_TYPE_SKCIPHER,
- 	.ce_algo_id = CE_ID_CIPHER_DES3,
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-index 468d99bf5bf6..89689e54e5fd 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-@@ -46,6 +46,10 @@
- 
- #define CE_OP_ECB	0
- #define CE_OP_CBC	(1 << 8)
-+#define CE_OP_XTS	(9 << 8)
-+
-+#define CE_SYM_XTS_FIRST	BIT(12)
-+#define CE_SYM_XTS_LAST		BIT(13)
- 
- #define CE_ALG_AES		0
- #define CE_ALG_DES		1
-@@ -58,6 +62,7 @@
- #define CE_ALG_SHA512           21
- #define CE_ALG_TRNG		48
- #define CE_ALG_TRNG_V2		0x1c
-+#define CE_ALG_RAES		0x30
- 
- /* Used in ce_variant */
- #define CE_ID_NOTSUPP		0xFF
-@@ -77,7 +82,8 @@
- 
- #define CE_ID_OP_ECB	0
- #define CE_ID_OP_CBC	1
--#define CE_ID_OP_MAX	2
-+#define CE_ID_OP_XTS	2
-+#define CE_ID_OP_MAX	3
- 
- /* Used in CE registers */
- #define CE_ERR_ALGO_NOTSUP	BIT(0)
-@@ -98,6 +104,14 @@
- 
- #define MAX_SG 8
- 
-+/*
-+ * Priority of the modes that the CPU's own AES instructions run faster than
-+ * the engine: below every CPU implementation of them (arm64 CE 300, NEON 250
-+ * and 200, AES library 110, generic templates 100), so the CPU stays the
-+ * default and the engine is used when it is asked for by driver name.
-+ */
-+#define CE_PRIO_BELOW_CPU	90
-+
- #define CE_MAX_CLOCKS 4
- #define CE_DMA_TIMEOUT_MS	3000
- 
-@@ -124,7 +138,8 @@ struct ce_clock {
-  *              coresponding CE_ALG_XXX value
-  * @alg_hash:	list of supported hashes. for each CE_ID_ this will give the
-  *              corresponding CE_ALG_XXX value
-- * @op_mode:	list of supported block modes
-+ * @op_mode:	list of supported block modes, CE_ID_NOTSUPP if not supported.
-+ *		XTS runs on the RAES unit (algorithm CE_ALG_RAES)
-  * @cipher_t_dlen_in_bytes:	Does the request size for cipher is in
-  *				bytes or words
-  * @hash_t_dlen_in_bytes:	Does the request size for hash is in
-@@ -352,6 +367,8 @@ struct sun8i_ce_alg_template {
- 
- int sun8i_ce_aes_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 			unsigned int keylen);
-+int sun8i_ce_xts_setkey(struct crypto_skcipher *tfm, const u8 *key,
-+			unsigned int keylen);
- int sun8i_ce_des3_setkey(struct crypto_skcipher *tfm, const u8 *key,
- 			 unsigned int keylen);
- int sun8i_ce_cipher_init(struct crypto_tfm *tfm);
-
----
-base-commit: 82e91fe19fb838f235f7c8829afc1eb389c93bdf
-change-id: 20261110-sun8i-ce-h616-xts-8e52bb3c7b36
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
+Reviewed-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  arch/arm/boot/dts/ti/omap/dm816x.dtsi | 40 +++++++++++++++++++++--------------
+>  1 file changed, 24 insertions(+), 16 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/ti/omap/dm816x.dtsi b/arch/arm/boot/dts/ti/omap/dm816x.dtsi
+> index 1e8d225dfb2c..314e5e580c8b 100644
+> --- a/arch/arm/boot/dts/ti/omap/dm816x.dtsi
+> +++ b/arch/arm/boot/dts/ti/omap/dm816x.dtsi
+> @@ -573,18 +573,26 @@ uart3: serial@48024000 {
+>  		};
+>  
+>  		/* NOTE: USB needs a transceiver driver for phys to work */
+> -		usb: usb_otg_hs@47401000 {
+> -			compatible = "ti,am33xx-usb";
+> -			reg = <0x47401000 0x400000>;
+> -			ranges;
+> +		usb: target-module@47400000 {
+> +			compatible = "ti,sysc-omap4", "ti,sysc";
+> +			reg = <0x47400000 0x4>,
+> +			      <0x47400010 0x4>;
+> +			reg-names = "rev", "sysc";
+> +			ti,sysc-mask = <SYSC_OMAP4_SOFTRESET>;
+> +			ti,sysc-midle = <SYSC_IDLE_FORCE>,
+> +					<SYSC_IDLE_SMART>;
+> +			ti,sysc-sidle = <SYSC_IDLE_SMART>;
+> +			ti,sysc-delay-us = <2>;
+> +			clocks = <&default_clkctrl DM816_USB_OTG_HS_CLKCTRL 0>;
+> +			clock-names = "fck";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> -			ti,hwmods = "usb_otg_hs";
+> +			ranges = <0x0 0x47400000 0x8000>;
+>  
+> -			usb0: usb@47401000 {
+> +			usb0: usb@1400 {
+>  				compatible = "ti,musb-dm816";
+> -				reg = <0x47401400 0x400
+> -				       0x47401000 0x200>;
+> +				reg = <0x1400 0x400>,
+> +				      <0x1000 0x200>;
+>  				reg-names = "mc", "control";
+>  				interrupts = <18>;
+>  				interrupt-names = "mc";
+> @@ -621,10 +629,10 @@ &cppi41dma 11 1 &cppi41dma 12 1
+>  					"tx14", "tx15";
+>  			};
+>  
+> -			usb1: usb@47401800 {
+> +			usb1: usb@1c00 {
+>  				compatible = "ti,musb-dm816";
+> -				reg = <0x47401c00 0x400
+> -				       0x47401800 0x200>;
+> +				reg = <0x1c00 0x400>,
+> +				      <0x1800 0x200>;
+>  				reg-names = "mc", "control";
+>  				interrupts = <19>;
+>  				interrupt-names = "mc";
+> @@ -661,12 +669,12 @@ &cppi41dma 26 1 &cppi41dma 27 1
+>  					"tx14", "tx15";
+>  			};
+>  
+> -			cppi41dma: dma-controller@47402000 {
+> +			cppi41dma: dma-controller@2000 {
+>  				compatible = "ti,am3359-cppi41";
+> -				reg = <0x47400000 0x1000>,
+> -				      <0x47402000 0x1000>,
+> -				      <0x47403000 0x1000>,
+> -				      <0x47404000 0x4000>;
+> +				reg =  <0x0000 0x1000>,
+> +				       <0x2000 0x1000>,
+> +				       <0x3000 0x1000>,
+> +				       <0x4000 0x4000>;
+>  				reg-names = "glue", "controller", "scheduler", "queuemgr";
+>  				interrupts = <17>;
+>  				interrupt-names = "glue";
+> 
 
 
