@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D78360A2607
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9621A606A874
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zWNbJtPf;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AX6ZaeWz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aR5lgaAL;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=L+etW16e
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Caes/IaS6xY2+2QRAXya3WAfplODfp8FQAxnRRumC70=; b=zWNbJtPfBvFEaSDy91fnyWiAn3
-	Te2FEey6GWTLy2gbi4E7KtUN50KM2zqJUJrt3z/8EYT7TMbAsaNOTmPt1G9z27FxlKbwxgJ05GdYC
-	tZMdu+PGPjmehYQLlyi4V9f+/pSM0nLNdNFUPfU4QVlbOOav5jo/aYbANdEgVmJHo1vLo90FSK3rV
-	vhOOOeze6Hhm1uoUIvddjzrfawg85qy5lJw6W5LYnIOFEJMZegl3YqcGg5VbCrTxIylzuUsFT4AJn
-	EzN0tjUyXmhEzlTFrRBUlTmLiDptDeEGeD0QhLOVjxEDnCZBtEN4wIpyiiQYSavOpKTl9ylSj5Mda
-	dfYB3f7A==;
+	bh=Syq/VG6u0EUV0TyeNdEvx71To3HzGWr4DnR5Dla39eE=; b=aR5lgaALrWhmyvyQcVomZvxnwk
+	5gMB49GfE0c2k7kWg2J3PaL8CFup/dzEvbNAV/NQRy2EyzTZsl9peC0zjX75qQIzSfVN0fxzRIJ+L
+	UxJKow63LRNT6ubGoEPhdXw/pN2btDYDVD0ThOLl1m8UF9+vu69z69g44c7eiPoTpVrr/ilSsNU3a
+	w3RO8Hvs0BvhDpLzsPDT+sXPsLeQvjZ7J6IaCfRFVSSomIGdHV3UZ++NhqLmfXL7qPLGxzXeko+/d
+	IrSFEynd93uoXY4gWNdNnnfL5dQHiNeZsaKqW6Hi0LFYulLR7sM9SXAc8KVJ7TyiIPuptHQWMZPPZ
+	tvI+1B+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg7a-00000002pep-3YEV;
-	Tue, 10 Nov 2026 07:18:22 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQg7d-00000002phb-1rtl;
+	Tue, 10 Nov 2026 07:18:25 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg7C-00000002pMF-1HvY;
+	id 1xQg7C-00000002pMK-26UT;
 	Tue, 10 Nov 2026 07:17:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0558946A19;
-	Tue, 10 Nov 2026 07:17:58 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E7214637BA;
+	Tue, 10 Nov 2026 07:17:57 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794295077;
-	b=N4MoWoKVqi6Tv1uPSqy/crhi8l3Usz2gQhjoeUyR6ZsKfqK7fWxGIcF7pmsEn+8sXIcL
-	 vjABkaF6bGm7GoD3YYC2feZPhJkwE7KczM1aRzk17CO0i2rodRHcFMczjrYxRjN84hxd2
-	 lwRmk8c/0Vt5I2Gtlw5jg9//4XSOwKbg3J5cppBgCMhXjf4QOGkdhLvzpayYgwyo1oqwU
-	 xRig26eGGV2DQO66lJc0FLJlwWSv3i1O8MJmW6dbjprlIR289Jx54vbyQypyPUF+Td8M6
-	 rhCBr6v69GcPRCmNRG3g9t7spptUdcFeM9FHZxqApNEw8xQ2unWW3Xn9dUuAnI/RRYA==
+	b=IC1ji7fHoUXbVCY4IjbAL2wwW7ENHWWQ0L7IbKRfN4d8mr0Iid0PCij0lFqVSQdVSFZj
+	 LrqSSGhtmezOYIBMs+oXN+GwOqEcgk1fS7n0MKto+9WA75IkOjXVE7y06wCKalkQa/DYm
+	 oojBPyo5VkbM4ovnwz2LS70yWp2cOCEd3zUUl9rPfr6+o/fvyyMsNJ2kuu9Ar6i+DarQu
+	 ZTcIDvD0A2RkfB6Bxiv46KpntPr2ccp/KCjtUBVm46eRX/nYzVOQEHglgi2ckFTo9t5Li
+	 z9Yei5AdIy3K989o3Ev6tyPcUnCa/Cwkd8VpUSeu9MC4VcZ8ltJv064ghc0lZl3HAsA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794295077;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=Caes/IaS6xY2+2QRAXya3WAfplODfp8FQAxnRRumC70=;
-	b=bU+Mjwo9A4WWVkQUPQG113IMUTq3q8ToSmaPO/F698BCTRHOBkGY6vp/SfE6In4uZVRX
-	 +RIc0cNvywU8HLyZKuf/5laKD6L1NwA8CJzQw3dRxirzfyHfgGpPADZSfJ1KWl1M9Djc7
-	 hzAOa0nwMq4Kz6BzblUG7PsJ0jbpU2Agvelsv93qht2Yrje5rYlSOWgIW6dRfx1N46r+v
-	 6QmIPbnjDV7l0GzczGaPZB8rCGCzxxM2aOhxBDOpaUPKwp071xg3OLJNflcwWoZlrKxQh
-	 0el6C88DdA/tULCCNnBhPgb1KNALR415Msh3cWAu0dxkEYYqahmGK5ZG8FYyqXIZVfQ==
+	bh=Syq/VG6u0EUV0TyeNdEvx71To3HzGWr4DnR5Dla39eE=;
+	b=CKjcBWY4w8STpSFmJUwsbZ4uiymQG8ikP430WgqI7SFkcEFqIgF+TVqx+Qxs4Fnh5v/S
+	 rvvn1Xn+74pufZbf+Nr3EEDE9wlP0/W6FBoICs5wZP6aoqcf+7ZWEP1C69/mfHf6SMHsv
+	 wKGXbaoUw2n4jUPoEgQL2n/vdqf5LLNeoEolw+3HR3+VZ1GYBgC7UBKqNyw645H9w58OE
+	 ydNl7684nf7QTLWtTsFJCf7lS/xOpmkJs8J/bSp00Y5eDwOZpGCv1nkyxbW5SqzVKFmjb
+	 80r49xnh/5BqzQXsT+iIfHdO9s9TNa4wEABOLGbIguzXu59KvB6djn0mblRStlVqv1g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B89C81F008A7;
+	by smtp.kernel.org (Postfix) with ESMTPS id 849A41F00900;
 	Tue, 10 Nov 2026 07:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794295077;
-	bh=Caes/IaS6xY2+2QRAXya3WAfplODfp8FQAxnRRumC70=;
+	bh=Syq/VG6u0EUV0TyeNdEvx71To3HzGWr4DnR5Dla39eE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=AX6ZaeWztKQGLZyIOFGBbh3rGISdPoCMi8bFI9RidkN+oMjdD8w5gRbjAOwdWo2zn
-	 rYGIG8qHWyP+w+GO54e8ju2Dbe6hIxlWfI9MV3gyfjQ3kOuNmCy93E+Uq86GiwEvOC
-	 DU00434ag3NR1lgXW7FHqx26A4HPgVfThXCqSiwCLKw4yqv67nAsOp0WpItCsPDxfu
-	 ED5IgxnZA66NCiH+E3P3KOT5KvLVy3NVN1nGLqf2nI+eOEM8SWoOTQNPlCKrQMvNNx
-	 rUlkj5CwzEfQdBYfMUt858PsEVSN4sVwspxvMT2S8ThBR4wgA4ljlLGOfr2LhxSE0z
-	 zJnd8SCMRcWRg==
+	b=L+etW16eG4+4VkLtKAey3K9Il+00A7ulPzRiUHYK0zwbWY4qW6Sl7Gyeej4PupoPU
+	 Rrzkj9+4z1pCd8k2OvmqHWg9r7yVM0P7l+uK8ZuCznl14Zuuh6dcz55uZcqGnUSZr5
+	 UveUqqpmNjrYtj84skD1UYsPk+KXa4Rhp4lcJQ2dSSM+4ZokNM/djEubGYY5HS0OWf
+	 zX1dwhAbRBR97VhFTtRMaoa8B7ctvDyU6hxkKdV1kJGkUScc9xJHrZaht1/VYddITS
+	 qX4wqN2NQFQ5VdUW4Msu7+pkbwr4Olyw7g8+79PXoBD68Kj8Zb379QG/KdkQnnUiie
+	 mtRraqe5AV9fA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4D8DC48994;
+	by lkml.kernel.org (Postfix) with ESMTP id 17F4C48986;
 	Tue, 10 Nov 2026 07:17:56 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 07:17:59 +0000
-Subject: [PATCH 4/6] media: verisilicon: Report fixed JPEG colorimetry on
- the encoder
+Date: Tue, 10 Nov 2026 07:17:56 +0000
+Subject: [PATCH 1/6] media: verisilicon: Enforce a minimum CAPTURE
+ sizeimage for the encoder
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-hantro-jpeg-enc-fixes-v1-4-fc4dc7e985d2@gmail.com>
+Message-Id: <20261110-hantro-jpeg-enc-fixes-v1-1-fc4dc7e985d2@gmail.com>
 References: <20261110-hantro-jpeg-enc-fixes-v1-0-fc4dc7e985d2@gmail.com>
 In-Reply-To: <20261110-hantro-jpeg-enc-fixes-v1-0-fc4dc7e985d2@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
@@ -95,11 +95,11 @@ Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  linux-mediatek@lists.infradead.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295075; l=2043;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295075; l=2359;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=Njpmt3ct0L9aPXSUlHIS0gp4XYUJhvc8SGbGxzWUYQo=;
- b=lmJZgJ7veqW9JDTDkJxb2RV+aFAksjw2y5DsqpJeTLf7LCxwNkX/+d6Z0mG2DpTnT2qNtU5BH
- 0vkSeFaWXySClTXRgfWxaO6tKABqzcRSaD68e5XqweuPVSZT28paxks
+ bh=JZp96kO/mnNire/RWZRp8mhzguO6gPrOB+RSbq8LmyE=;
+ b=GbglH2henZdZbatiRF3yY1AIw0wsgD91zd+CE6dFqdxAa6CQ9mIlW7YOuHV06xHuLDEKep/PX
+ H5R85Dp/SW4AAeNQy0bqYU91qBlwXMq8eUa2JVAEJ57N9wj7NLD/zsz
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -121,60 +121,66 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The driver reports V4L2_COLORSPACE_JPEG with default encoding,
-quantization and transfer function on both queues, and lets the
-application set any colorimetry, which is then copied to the other
-queue. For the JPEG encoder this is wrong on the raw side:
-V4L2_COLORSPACE_JPEG is only a shorthand for the colorimetry of the
-JPEG data, and the raw frames should describe the actual samples. It
-also makes v4l2-compliance fail on the encoder:
+For coded formats hantro_try_fmt() only computes sizeimage when the
+application passes 0, and otherwise accepts any value. On the encoder
+that lets the CAPTURE buffers be far too small for the selected
+resolution.
 
-  fail: v4l2-test-formats.cpp(892): fmt_raw.g_colorspace() != V4L2_COLORSPACE_SRGB
-  test VIDIOC_S_FMT: FAIL
+This is easy to hit: "v4l2-ctl --set-fmt-video=width=1920,height=1080,
+pixelformat=JPEG" does G_FMT, modifies the size and calls S_FMT, so it
+passes back the 6768 byte sizeimage of the 96x32 default format. The
+driver accepts it for 1920x1088, the hardware runs out of stream buffer
+on every frame and the encoder only produces empty buffers.
 
-The colorimetry of JPEG is fixed and the hardware doesn't convert the
-samples. When the coded format is JPEG, report sRGB primaries and
-transfer function with full range BT.601 Y'CbCr on both queues, as the
-mediatek and imx JPEG encoders do, and ignore what the application
-asks for. Other coded formats keep propagating the colorimetry set by
-the application, which they signal in the bitstream.
+The stateful encoder specification lets the encoder adjust sizeimage to
+match hardware requirements. For the encoder, clamp the requested
+sizeimage up to the worst-case frame size already used as the default,
+while still allowing applications to ask for larger buffers. The
+decoder behaviour is unchanged.
 
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/media/platform/verisilicon/hantro_v4l2.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/media/platform/verisilicon/hantro_v4l2.c | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/media/platform/verisilicon/hantro_v4l2.c b/drivers/media/platform/verisilicon/hantro_v4l2.c
-index 731182cde643..2761d37af7cd 100644
+index 83af9fa1ce94..c022b978f72b 100644
 --- a/drivers/media/platform/verisilicon/hantro_v4l2.c
 +++ b/drivers/media/platform/verisilicon/hantro_v4l2.c
-@@ -406,6 +406,19 @@ static int hantro_try_fmt(const struct hantro_ctx *ctx,
- 			*sizeimage = max_size;
+@@ -386,14 +386,24 @@ static int hantro_try_fmt(const struct hantro_ctx *ctx,
+ 			pix_mp->plane_fmt[0].sizeimage +=
+ 				hantro_av1_mv_size(pix_mp->width,
+ 						   pix_mp->height);
+-	} else if (!pix_mp->plane_fmt[0].sizeimage) {
++	} else {
++		u32 max_size = fmt->header_size +
++			pix_mp->width * pix_mp->height * fmt->max_depth;
++		u32 *sizeimage = &pix_mp->plane_fmt[0].sizeimage;
++
+ 		/*
+ 		 * For coded formats the application can specify
+ 		 * sizeimage. If the application passes a zero sizeimage,
+ 		 * let's default to the maximum frame size.
++		 *
++		 * The encoder must also be able to fit the worst-case
++		 * frame for the current resolution, so never let the
++		 * application go below it. Larger values are kept.
+ 		 */
+-		pix_mp->plane_fmt[0].sizeimage = fmt->header_size +
+-			pix_mp->width * pix_mp->height * fmt->max_depth;
++		if (ctx->is_encoder)
++			*sizeimage = max(*sizeimage, max_size);
++		else if (!*sizeimage)
++			*sizeimage = max_size;
  	}
  
-+	if (ctx->is_encoder && vpu_fmt->codec_mode == HANTRO_MODE_JPEG_ENC) {
-+		/*
-+		 * The colorimetry of JPEG is fixed: full range BT.601
-+		 * Y'CbCr with sRGB primaries and transfer function. The
-+		 * hardware doesn't convert the samples, so the raw frames
-+		 * must use it too.
-+		 */
-+		pix_mp->colorspace = V4L2_COLORSPACE_SRGB;
-+		pix_mp->ycbcr_enc = V4L2_YCBCR_ENC_601;
-+		pix_mp->xfer_func = V4L2_XFER_FUNC_SRGB;
-+		pix_mp->quantization = V4L2_QUANTIZATION_FULL_RANGE;
-+	}
-+
  	return 0;
- }
- 
 
 -- 
 2.55.0
