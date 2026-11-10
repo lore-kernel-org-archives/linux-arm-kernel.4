@@ -2,71 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3F09606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284D3606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:49:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MFn0XQk4;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=jBkSM0dF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=I+4DiyZd;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=KZ7GbPpj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=gdWtCqOrHd/hpqiy5fnAanl9VNsFsqG9lG1bU+R/JFU=; b=MFn0XQk4AABsWrd9ydMycQNFcO
-	g74W1sWlte0axC0T54rFsGIZmTvpaTK3vmDunRe7mxUnuCBgTh5pitOnr5bP0xH0sVyejXKNhamW3
-	cP+xjf7B5RNqbACLcY9jhygs0AYx+xgkd3U08zSSN9mrKLcEGXRbJeuNuT1+8Qs9dyzw4grOy4hKm
-	gdRrEWvf+1ACLEYIrotUlQ5qLQRbtPnZvGsLP/KBQdigQU53oJvTv6U2ORODv0eV2aQUBoXz8Sq0e
-	7qFxl0FCMj2UistXajF4LVzHgqS4nMFa6LL8ucaSyMwjx9NEA8kdZbG7c+1LnnYSTM8ay76eoG27L
-	MK4Hd2iw==;
+	bh=aHn8KcgHhLcXL95P9INTAmVAeZpvAJPCq7Suu5pEHwk=; b=I+4DiyZd9G1A/GwL7wetZbrx8G
+	TM5qfSsnpMyD75K4MtCzTPVh3ZPeJ4jkYd4sfL3ZqZMe0nOlTflgZTRruAnJkxHUc61bIbd6EPFZd
+	n/FV2t0iGoA9UaY4uAFe36I665JBPc2Y+WM/Jbp8lPssKFki/WwAk6VojdLZXmgLXdJ7euEBglx8r
+	9miZg361SdXm98IPP4Oe3QKZ5oKdvNNhFn/Y7JiNcmOvQbfuQR1/HvuXOFcifdMdH3nrGgVtIvsA+
+	pfHB7pZn0U5Kj067Bx3Y94luSDlXDiEZwpwGPhQPBnPc4xd9GghJDXbDqD1H7y+SoRIkUPwsyVywK
+	jw3nymZQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhWT-00000003AHV-1QUg;
-	Tue, 10 Nov 2026 08:48:09 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhWR-00000003AGf-2JUY
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 08:48:08 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B4E0E1516;
-	Tue, 10 Nov 2026 00:48:03 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5451F3F85F;
-	Tue, 10 Nov 2026 00:48:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794300486; bh=D6cpUVH7ysCqLH5BEhpKUszzrMl4AwrMKiUXrthyWfA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jBkSM0dFRGyhVC5aY24nwEDz041CoShYhuFpHaOy8BQgFV4TR3I+JGFH7gUorBGnl
-	 IyQhDj6NMKfailh30sFCTRZ7tUJhDQ3fsi0A8/wWulVqhmMZJytmNOOIOfI8+oNHP7
-	 E3q0Zo8f7Knm9CkrDCZce6DWTj3SNYNWOBVi865M=
-Date: Tue, 10 Nov 2026 08:48:04 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc: Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Tamas Petz <tamas.petz@arm.com>,
-	Tamas Zsoldos <tamas.zsoldos@arm.com>,
-	Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	coresight@lists.linaro.org
-Subject: Re: [PATCH v2 09/23] coresight: trbe: Clear TRBSR status at stop
- sites
-Message-ID: <20261110084804.GZ9176@e132581.arm.com>
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
- <a79a52db-2361-4303-9d43-87837f349f48@arm.com>
+	id 1xQhXw-00000003Af1-2dvG;
+	Tue, 10 Nov 2026 08:49:40 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQhXu-00000003AeI-1n8p;
+	Tue, 10 Nov 2026 08:49:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=aHn8KcgHhLcXL95P9INTAmVAeZpvAJPCq7Suu5pEHwk=; b=KZ7GbPpjr8rhjj9TeCSN3isJMo
+	4d122GgaAflfPr6ZO4ozp74l8SzqGjVsu5H6TFM2vMhzmL0KHht4wMTwld3FIKNZ8RCqHqHs4jcgV
+	v83dvQpMXC0J35H4CocMuWLe3GQWQip4RgxB9bd28fy1oU+bREnQbTP6s89Rxpecyd3teH+M5USVw
+	ZhnyQ/EhBeB8TNton7OX7iwnUvu+OQeTaHKe12xysLOnzjUoTwOovZI5eCPjfEW3Tjn10GDXQjiUk
+	sMmsr7Jx78SnG58k0FIX2G0gYSMFPfijeXJxkR4cFyERpEqF35KcnYXRp1JFGQaq61Ii8HYqvm/vU
+	7OtWoU3A==;
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: aiyengar1990@gmail.com, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, "Joerg Roedel (AMD)" <joro@8bytes.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>
+Cc: shawn.lin@rock-chips.com, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Simon Xue <xxm@rock-chips.com>, "finley.xiao" <finley.xiao@rock-chips.com>
+Subject: Re: [PATCH 0/5] iommu/arm-smmu-v3: power domain and clock of the RK3588 PCIe
+ SMMU
+Date: Tue, 10 Nov 2026 09:49:29 +0100
+Message-ID: <10924894.NyiUUSuA9g@diego>
+In-Reply-To: <7e053777-31ee-4127-af53-0820e852d375@rock-chips.com>
+References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
+ <7e053777-31ee-4127-af53-0820e852d375@rock-chips.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a79a52db-2361-4303-9d43-87837f349f48@arm.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_004807_663042_E79B5769 
-X-CRM114-Status: GOOD (  19.39  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261110_004938_491668_E73A44C2 
+X-CRM114-Status: GOOD (  15.69  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,49 +72,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 10:51:30PM +0000, Suzuki K Poulose wrote:
-> On 16/10/2026 17:55, Leo Yan wrote:
-> > TRBSR_EL1 records the status of the buffer that just stopped. Clearing
-> > it in trbe_enable_hw() postpones cleanup until another run starts. If
-> > AUX output cannot restart, for example when AUX space is exhausted,
-> > that clear never executes. Clear the status in arm_trbe_disable()
-> > after disabling TRBE instead.
-> > 
-> > trbe_handle_overflow() can start the next run without calling
-> > arm_trbe_disable(). Clear the stopped buffer's syndrome and status bits
-> > while TRBE is disabled, before attempting the AUX restart. This also
-> > leaves the status clean when the restart fails.
-> > 
-> > Signed-off-by: Leo Yan <leo.yan@arm.com>
-> > ---
-> >   drivers/hwtracing/coresight/coresight-trbe.c | 10 +++++++++-
-> >   1 file changed, 9 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> > index 26e7554d6bdd31f8a55a8bc3a7b6d4c49b984b9b..dd9c9330bb0c739795f300dafc6ce34e72fbf280 100644
-> > --- a/drivers/hwtracing/coresight/coresight-trbe.c
-> > +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> > @@ -655,7 +655,6 @@ static void trbe_enable_hw(struct trbe_buf *buf)
-> >   	WARN_ON(buf->trbe_hw_base < buf->trbe_base);
-> >   	WARN_ON(buf->trbe_write < buf->trbe_hw_base);
-> >   	WARN_ON(buf->trbe_write >= buf->trbe_limit);
-> > -	clr_trbe_status();
-> 
-> TRBSR_ELx is UNKNOWN at reset and if we don't clear it at probe time, we
-> endup running the first session with unknown values. It is safer to
-> clear this at enable_hw.
+Am Dienstag, 10. November 2026, 09:40:44 Mitteleurop=C3=A4ische Normalzeit =
+schrieb Shawn Lin:
+> Cc: Simon and Finley
+>=20
+> =E5=9C=A8 2026/11/10 =E6=98=9F=E6=9C=9F=E4=BA=8C 15:11, Arun Iyengar via =
+B4 Relay =E5=86=99=E9=81=93:
+> > The MMU-600 in front of the PCIe controllers of the Rockchip RK3588
+> > (mmu600_pcie) is enabled for every RK3588 board, but its node describes
+> > neither the power domain it lives in (RK3588_PD_PCIE) nor its clock
+> > (ACLK_MMU_PCIE). Both are held by any enabled PCIe controller, which is
+> > why nobody noticed: on a board that enables no PCIe controller in that
+> > domain (an Orange Pi 5 with its M.2 slot in SATA mode, or any RK3588
+> > board without PCIe), genpd powers the domain off and the clock framework
+> > gates the clock as unused after boot, while arm-smmu-v3 stays bound.
+> > At reboot, arm_smmu_device_shutdown() then writes CR0 and polls CR0ACK =
+on
+> > the dead block, the interconnect stalls, "reboot: Restarting system" is
+> > never reached and the board only comes back ~90 s later when the
+> > watchdog fires.
 
-This is incorrect. trbe_reset_local() is called locally on each CPU to
-clear TRBSR_ELx, it has been guaranteed when the first session starts.
+We have a work-around for that in some boards, manually disabling the
+smmu until now. As the SMMU is part of the SoC and always present
+the general DT practice is to have it always enabled, as it does not
+depend on the actual board design.
 
-Thanks,
-Leo
+Hence we end up in the situation described above.
+
+So this series fixes the actual underlying problem, making these
+workarounds unnecessary in the future :-)
+
+
+So definitly thanks a lot
+Heiko
+
+
 
