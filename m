@@ -2,106 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC043606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 03:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3C6606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 03:42:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vCvlITDd;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=s1XkSSy5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pbY0OpIE;
+	dkim=pass (1024-bit key, unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=Ns/2mPV9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=RD1jkN1QvH2Z5B6Q5iIjFx4HZtCXt5GvWjpjCwZzO7s=; b=vCvlITDdgh/ee6
-	vaOAh4DgTJDfNHjRjws6QFy+NI9UVdUM68sI+t3/4LvKtQCVvSQy5/G1PdanFhr2BubFI4zWEtSO2
-	2HBh422V8oFCzq8EO4sNm/bUEH4j2zx/Qkk99qcOztrfhkuicUyhjtWq8yekFQ4H5GHK1fqKhHWmV
-	Rh60fzgQdKsWthJeXKorjE/H5MEoa8PDnKbRhwTelpWxG78n55774nRIRHmSoOTUdGYqgFWcyA3gU
-	/ro1XLJy450Qz+zITDm/W4IWa9E6qvEv+1F9H98sMATtxcJmMLcXfn+QeaORIlmgn1/Ktac2LE9eM
-	RMAfCdCuMRteRcqTBdkQ==;
+	List-Owner; bh=1pznVwkEZpAe1hyxNb7ShpTi+47BEMmqvSU22FSDZfs=; b=pbY0OpIE9H2pDO
+	vNtMQ4L6/mJclDNSngfIIRvWG6zXv+dNXnuL6ymDYau44lBTtHk17Ng3wXDot2mORg7d3Al8UVOJA
+	JKyAitbuDFYdhAroURf325+qfkCFZ7gsplrT/Q9F0bV/FmKwYerfJjpK+qPK9k58kRS8whLFvnKjR
+	KRh0E+pok//Th05cQMfmSJ+G4sX0C7sbsyoyYNiQzhpHy4V29fE5VAsrZ5Y8G6RW6CAM1O/hUodtl
+	w1SQC+TQZpIYumwW5eiT3+IA76brX1U2nyIj3buY6ZHu0gFvBfjR3gKLwWC+JVCWnkYTNyUTYdvNZ
+	TU+mvaZh5UA7HjP6Fbdw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQcIc-00000002Eqn-0ylO;
-	Tue, 10 Nov 2026 03:13:30 +0000
-Received: from mail-oi1-x22c.google.com ([2607:f8b0:4864:20::22c])
+	id 1xQbyX-00000002CwQ-1bz6;
+	Tue, 10 Nov 2026 02:52:45 +0000
+Received: from mail-m1024.netease.com ([154.81.10.24])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQcIY-00000002Ell-03ig
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 03:13:27 +0000
-Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-4f699fe49b3so1065771b6e.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 19:13:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794280405; x=1794885205; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=RD1jkN1QvH2Z5B6Q5iIjFx4HZtCXt5GvWjpjCwZzO7s=;
-        b=s1XkSSy5d8aUmI96EknkuKId6K04ZzscL01629QqJR3vmgX7Xoc9nE+sn+1yi23Hlv
-         AdVR87k6kQkM4XH9Z85tC3Nlox1iHDH2IDqZoa6f7kOWWBrLtmSrZP49doUN0p1+pkwe
-         xSskMlAwXVDtESBVJ0jOs8pCOi1HzrVcoLq6S+Q6MbNmabpDXCun9y7bIOYAs2KvX/pR
-         wmLKfP+w9LgpdNnQXjtBfoGRBbbHR2MMdYLbdTNoAaj4xc0j8I3UoOS6il1ou+PpJoA0
-         6CIDX0w24Gpw7Qwx/gDvLGAMLG9uSD29z9bJj8TI1IpkEbW0U7Dh8/yyNgEE6WeU3GuT
-         ICHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794280405; x=1794885205;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=RD1jkN1QvH2Z5B6Q5iIjFx4HZtCXt5GvWjpjCwZzO7s=;
-        b=ERHFXPnXhCnGSX9UGO1lfQs5W6EoWaT3GN3ipWmNDDQ95u9LNCRafSXdnzg2BSB1Bw
-         oNTAWAnimboGX3Av9V41PHPPiQsPPBMcME/+C/NbcNukq2yQKFVbdl06LM6Xq7FupJzC
-         go46EQVWW9BLTy5vMJTdSLg5ftJe3s6f2B3AUsKKUUGPB97E4Zcy0thuosWOPiW2Yx1x
-         YWsJO0gUcqXk/1p0ZwyBk7RIU2BzxgnBrLRe6GZXF+5dgX/OsBmvAm2Mg9nuaVotIjd8
-         sNcy+wpRjdYgv9OIiHEaJ7shOrDlBwHZhx4K5vqMlPGZXkvmwd1d56WsnjqlMQv85ax8
-         DATw==
-X-Forwarded-Encrypted: i=1; AL+hErEr8Jp4XqUrXT0lVm0ns5DUiZSx7pqUTwFOGuKhvn5Kw0piuVTXyNIZCjFsHaKoOIDpRaakEI573+mKANrDSjNz@lists.infradead.org
-X-Gm-Message-State: APuU4Z+tgVSFc3fdK3QDbLY63DggIGabOeo4GNscTwz2Ohp97F/wQc0x
-	Ki6NWrZ/KD7o6svyyL4P/FlW1Goz/lAygIxBEG/9ADpl5czf9HgZPxrfXjsR3MsC
-X-Gm-Gg: AYBFou2jLBdod1x/lhgKkvLpWPPXks12U+Yiz32u10JbeQsMFYVmpcD37ItVqTajNF8
-	DmdBRO3lljklqdA7qhTe1dG6VYvRPdjG2WK/erlQuuAavCDIfrmk3rC3GL0+EIo4p/qr7Uf17fD
-	28N5wx6Yc8pTxXc1cXzqLFlIMIA8MYCnjGjMdXeC4vg6jc1hK52KSn++AGqbAXIWGkjvbmCGV8Y
-	xZ7vzEcx+je3KkKUaWm6GaKW2mXmufbxB80Rut5rtzc0ZOsWb6NZx2QliCwrNBVeuuM+mj1Uorj
-	FgIjO0kTBOdVxedihvmnlvw3ZaRtiOJuuCWwdNRxxoGiuQzt6ouuW34JevB1alMDiNtHKs7mzJ8
-	zBQUKXC102/wTsvIjn2XponWp2sy6wgWEfmev06Rrxi4FJ70oxh6Qqn6fG2a+5tyvYPobcT853I
-	KN6VfBd1UKwFXO/o4L43fyAXF2ogs9WXKLFMlHWDU6M3aTsoTYjYb1sW/fItBMDu/56ppVfRbYc
-	2CYhhm7HIl0/CfqWr6aVdKjsiDlH3GFBsB10+w9hdDtri7CtadVGURnWNvJp7744l9rnDzSe5WF
-	JkUGIRIPlP9jXrIpR2nmBilp4Sv2ZvKarYKMnMLte09xnOAUl+XV/LENY2UrbLkeQ3Nq83ufbqU
-	kiYyFnwU8knn0DzlzjN1bswHeJsGt+5yQpRA7ummBDi4DFVMAomkCDjZvaAlJgqzAB/23Wp7nxh
-	JlygE0aj2ivUdSKaIQVZSiYcA4v1DIuAvmbyB6HSKD8uVM4ufR11Fq
-X-Received: by 2002:a05:6808:508e:b0:4d6:90f4:48ab with SMTP id 5614622812f47-5683cd1b07bmr1294602b6e.45.1794280405078;
-        Mon, 09 Nov 2026 19:13:25 -0800 (PST)
-Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-56905736b92sm1019236b6e.8.2026.11.09.19.13.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2026 19:13:24 -0800 (PST)
-From: James Hilliard <james.hilliard1@gmail.com>
-Date: Mon, 09 Nov 2026 20:12:59 -0700
-Subject: [PATCH v9 10/11] serial: 8250_dw: discover Allwinner A523 FIFO
- depths through FCC
+	id 1xQbyT-00000002CuL-2jNF;
+	Tue, 10 Nov 2026 02:52:44 +0000
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 541744873;
+	Tue, 10 Nov 2026 10:52:32 +0800 (GMT+08:00)
+Message-ID: <ab5694a1-2f10-4888-ad27-20715d3f98a6@rock-chips.com>
+Date: Tue, 10 Nov 2026 10:52:31 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/6] dt-bindings: phy: Add rockchip,rk3568-edp-phy
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Dave Jones <s.dave.jones@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20261030064905.2248999-1-damon.ding@rock-chips.com>
+ <20261030064905.2248999-3-damon.ding@rock-chips.com>
+ <20261103-lemon-guillemot-of-economy-eefbbd@quoll>
+ <fd180b9c-de60-4718-b17f-319bf4339e13@rock-chips.com>
+ <20261106152915.GA3406543-robh@kernel.org>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20261106152915.GA3406543-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261109-submit-h616-uart-fifo-v1-v9-10-3f03961dae8a@gmail.com>
-References: <20261109-submit-h616-uart-fifo-v1-v9-0-3f03961dae8a@gmail.com>
-In-Reply-To: <20261109-submit-h616-uart-fifo-v1-v9-0-3f03961dae8a@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, James Hilliard <james.hilliard1@gmail.com>
-X-Mailer: b4 0.15.2
+X-HM-Tid: 0aa1c35f1cad03a8kunm4f8fb2772be325
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHh1CVh1NGh1CTUxNTh4ZQ1YVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUJCSU
+	5KVUpLS1VKQktCWQY+
+DKIM-Signature: a=rsa-sha256;
+	b=Ns/2mPV9pH9bVvzBBCDzik0xz9kGzB25NEhWCgaJIvkA3av+MymfxdL510FRETs5vrsiCdISksI3CW1wh0tet9VEr08fX0Gv7MFLrFvI8AT3q6u9sMAphY8Oao2Ra1viV41VNtT+Z+VO25d7jt6OQBQja6J3O3lp6ZQ84Bc7Lus=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=1pznVwkEZpAe1hyxNb7ShpTi+47BEMmqvSU22FSDZfs=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_191326_066798_79F3ED5B 
-X-CRM114-Status: GOOD (  17.92  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261109_185242_277044_B104011A 
+X-CRM114-Status: GOOD (  14.94  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,104 +89,123 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The A523 UART integration, also used by A527 and T527, has 64-byte FIFOs
-on UART0 and 128-byte FIFOs on UART1 through UART7. Each controller reports
-its TX/RX FIFO depth in bits 31:8 of the FIFO Clock Control register at
-offset 0xf0. The field holds a byte count, not a logarithmic encoding.
+Hi Rob,
 
-Read this field in the sunxi setup callback when platform data does not
-provide a fixed FIFO size. A fixed size takes precedence, so H616 retains
-its 256-byte configuration without accessing FCC. The probe has already
-enabled the clocks and deasserted reset before invoking the callback.
-Leave the FIFO clock-control bits untouched.
+On 11/6/2026 11:29 PM, Rob Herring wrote:
+> On Wed, Nov 04, 2026 at 04:59:58PM +0800, Damon Ding wrote:
+>> Hi Krzysztof,
+>>
+>> On 11/3/2026 7:20 PM, Krzysztof Kozlowski wrote:
+>>> On Fri, Oct 30, 2026 at 02:49:01PM +0800, Damon Ding wrote:
+>>>> Document the eDP transmitter PHY with NaNeng IP block found on the
+>>>> RK3568 SoC.  The PHY has its own register window inside the eDP PHY
+>>>> GRF, so its node is modeled as a child of the eDP PHY GRF syscon with
+>>>> a reg property describing that window.  Also add the
+>>>> "rockchip,rk3568-edp-phy-grf" compatible and the phy node reference to
+>>>> the Rockchip GRF schema.
+>>>>
+>>>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>>>
+>>>> ---
+>>>>
+>>>> Changes in v4:
+>>>> - Add the reg entry for the PHY node and the ranges/#address-cells/
+>>>>     #size-cells for the parent syscon node.
+>>>> ---
+>>>>    .../bindings/phy/rockchip,rk3568-edp-phy.yaml | 68 +++++++++++++++++++
+>>>>    .../devicetree/bindings/soc/rockchip/grf.yaml | 20 ++++++
+>>>>    2 files changed, 88 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3568-edp-phy.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3568-edp-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3568-edp-phy.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..b78da00ffefd
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3568-edp-phy.yaml
+>>>> @@ -0,0 +1,68 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/phy/rockchip,rk3568-edp-phy.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Rockchip eDP Transmitter PHY with NaNeng IP block
+>>>> +
+>>>> +maintainers:
+>>>> +  - Damon Ding <damon.ding@rock-chips.com>
+>>>> +  - Heiko Stuebner <heiko@sntech.de>
+>>>> +
+>>>> +description:
+>>>> +  On the RK3568 SoC the eDP PHY is controlled through the eDP PHY GRF
+>>>> +  registers, therefore the PHY node is expected to be a child of the
+>>>> +  eDP PHY GRF syscon node.
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: rockchip,rk3568-edp-phy
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +    description: PHY registers within the eDP PHY GRF.
+>>>> +
+>>>> +  clocks:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clock-names:
+>>>> +    const: refclk
+>>>
+>>> Just "ref"
+>>
+>> Will fix in v5.
+>>
+>>>
+>>>> +
+>>>> +  "#phy-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - clocks
+>>>> +  - clock-names
+>>>> +  - "#phy-cells"
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/clock/rk3568-cru.h>
+>>>> +
+>>>> +    soc {
+>>>> +      #address-cells = <2>;
+>>>> +      #size-cells = <2>;
+>>>> +
+>>>> +      edp_phy_grf: syscon@fdcb0000 {
+>>>> +        compatible = "rockchip,rk3568-edp-phy-grf", "syscon", "simple-mfd";
+>>>
+>>> This is beyond the scope of this binding. Drop entire node.
+>>
+>> Will Drop in v5. The example should only show the PHY node itself.
+> 
+> Actually, drop the whole thing and put in GRF binding if you want an
+> example. MFD examples should be complete, not piecemeal with each
+> sub-device.
+> 
+> 
 
-Use the shared DesignWare trigger setup to validate the depth and build
-the FIFO-relative threshold table. Invalid depths fail probe before
-registration instead of producing zero or truncated thresholds. The 8250
-core derives the transmit load from the discovered depth.
+Understood. For incoming v5, the example will be dropped from the PHY 
+binding schema entirely, and the complete MFD example will live only in 
+the GRF binding schema.
 
-Select this setup for the A523 compatible. Like H616, this integration
-has Allwinner-specific debug-divisor and RS485 registers overlapping the
-generic DesignWare feature probes. Use the common sunxi PIO setup,
-BUSY-safe integer divisor programming and software RS485 handling. Keep
-the APB clock gate enabled during termios updates with SKIP_SET_RATE.
-
-Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
----
- drivers/tty/serial/8250/8250_dw.c | 22 +++++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index a55f60330a51..257baab5a3ed 100644
---- a/drivers/tty/serial/8250/8250_dw.c
-+++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -44,6 +44,10 @@
- #define RZN1_UART_xDMACR_8_WORD_BURST	(2 << 1)
- #define RZN1_UART_xDMACR_BLK_SZ(x)	((x) << 3)
- 
-+/* Allwinner FIFO Clock Control register */
-+#define SUNXI_UART_FCC			0xf0
-+#define SUNXI_UART_FCC_FIFO_DEPTH		GENMASK(31, 8)
-+
- /* Quirks */
- #define DW_UART_QUIRK_OCTEON		BIT(0)
- #define DW_UART_QUIRK_ARMADA_38X	BIT(1)
-@@ -63,6 +67,7 @@
- struct dw8250_platform_data {
- 	u8 usr_reg;
- 	u32 cpr_value;
-+	/* Fixed FIFO depth; zero selects discovery during setup */
- 	unsigned int fifo_size;
- 	unsigned int quirks;
- 	int (*setup)(struct uart_port *p);
-@@ -666,7 +671,15 @@ static int dw8250_sunxi_setup(struct uart_port *p)
- 
- 	p->type = PORT_16550A;
- 	p->flags |= UPF_FIXED_TYPE;
--	p->fifosize = data->pdata->fifo_size;
-+
-+	/* Apply given FIFO size or try to autodetect it */
-+	if (data->pdata->fifo_size) {
-+		p->fifosize = data->pdata->fifo_size;
-+	} else {
-+		u32 fcc = dw8250_readl_ext(p, SUNXI_UART_FCC);
-+
-+		p->fifosize = FIELD_GET(SUNXI_UART_FCC_FIFO_DEPTH, fcc);
-+	}
- 
- 	up->capabilities = UART_CAP_FIFO | UART_CAP_NOTEMT | UART_CAP_AFE;
- 
-@@ -913,6 +926,12 @@ static const struct dw8250_platform_data dw8250_h616_data = {
- 	.setup = dw8250_sunxi_setup,
- };
- 
-+static const struct dw8250_platform_data dw8250_a523_data = {
-+	.usr_reg = DW_UART_USR,
-+	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
-+	.setup = dw8250_sunxi_setup,
-+};
-+
- static const struct dw8250_platform_data dw8250_octeon_3860_data = {
- 	.usr_reg = OCTEON_UART_USR,
- 	.quirks = DW_UART_QUIRK_OCTEON,
-@@ -965,6 +984,7 @@ static const struct dw8250_platform_data dw8250_tda54 = {
- static const struct of_device_id dw8250_of_match[] = {
- 	{ .compatible = "snps,dw-apb-uart", .data = &dw8250_dw_apb },
- 	{ .compatible = "allwinner,sun50i-h616-uart", .data = &dw8250_h616_data },
-+	{ .compatible = "allwinner,sun55i-a523-uart", .data = &dw8250_a523_data },
- 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
- 	{ .compatible = "marvell,armada-38x-uart", .data = &dw8250_armada_38x_data },
- 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
-
--- 
-2.53.0
+Best regards,
+Damon
 
 
