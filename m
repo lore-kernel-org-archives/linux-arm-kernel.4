@@ -2,76 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6789606B15B
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:52:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE337606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VwoRDInV;
-	dkim=pass (2048-bit key) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=IIflIg2E
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fUgtTgLC;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=dxG7dKRj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=n0D0+tx7FbyqEL0k4/TajM7uZjJ5rllM2A/2eggVTKc=; b=VwoRDInV/6f+ts
-	5xMN/Yo+R5NerfDYdkNgfFHo3TLYDD85B2SQRGbnmuOusCbov7WanLTMp8poMsDHvV00AfpEMmyWc
-	4Pj+MJyCEMXAKxBGCeVwFJ22p8VQ5hVsr/6Y0+JwmEroouxVfswwoxplJoOGiZRizmZONg3y1brTd
-	A78Upzxf3XjLbxNW563GFB7WthAWeX3jQ4mGUdDYtrQ98SZs8Wnf/QlZkhMjgmmoJAsYS6ng+91nI
-	ygLXnYizBvauCpDjKHpUb3BEbPE3FYW28q9y1Gr7/ENxNXnZJcAtnmuPLOwYRbfDvnVfKuDIOxN0N
-	pHHipRtQwfTBRSarezog==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+1i1sVyMH9ad9wsU8jFlrzIKrGOD1X4RL8nm+PYmu6A=; b=fUgtTgLCi/XuYo
+	xYYeyw1/83QwfVMdALAVAwpXecP18E2gOUnlTAmrBQ4s7nk9jupzuqTH+7Dm1VmbjZRlI0yiTPEtI
+	Ll6MyTvTdpfe+4QmxUp5yROADS55iOs//l0JMq6Tn/u9bPdWJ6PM1+CItgbI9aSl/pCW55FiY3QQ/
+	VWPhFgqckTEELUJ5Hy4zvy//zFucz3oGEatdxNB9IIpoImpWFk2FB/lCCScw0FTd532EpBplpxBI8
+	2BHUKuk1E0r3VdDZ31dJFg8SksTpRDuSngbUzmJxIbGS8l+z/8oV1v9HFViRkSuSulgqVEIZYQ6IO
+	wzqydLKgPQj0Eg3X6Lig==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiWu-00000003MRq-1O1j;
-	Tue, 10 Nov 2026 09:52:40 +0000
-Received: from mail.kernelriot.com ([74.208.142.49])
+	id 1xQiYf-00000003MmG-2Ojk;
+	Tue, 10 Nov 2026 09:54:29 +0000
+Received: from canpmsgout06.his.huawei.com ([113.46.200.221])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiWs-00000003MQk-066J
+	id 1xQiYb-00000003Ml6-1VpO
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:52:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
-	s=kr2026; t=1794304357;
-	bh=OmSerbMpq8gn3IS3GN6ckwDmRq4C2MPhAgkxcbG8rmA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:From;
-	b=IIflIg2EfwUPjp+E9jfJgmJyWG5mRTMPmDy/lrl2OeraBoKAvAo4jC360znMbuDNy
-	 v+qsloPdkEaIdJBwwfLnuNRQLvvO2AMF+D9yMzPhzQ6zvjArQqmtmgdDk4HDhRucL7
-	 0a4tDEdI1gQd31MAAl8FEczSjOzSRFgHl1L1W25Yk6yEJ9usOBC3DckCT/1KFesMvB
-	 wU5c2x+3uRiwrvLZwaxtood52WGXUjvKrZAsau/MittT5xXsiEhtMuv9a2sBFGQwwm
-	 oSnNRoxqgtLyQ7IM2jeX2SftUooSlFygvoVY1hqXrMi15eFnfDmv20Gx4oriJTCB84
-	 zgTht6z0VKkXw==
-Received: by mail.kernelriot.com (Postfix, from userid 995)
-	id 40D4F81428; Tue, 10 Nov 2026 09:52:37 +0000 (UTC)
-From: Magnus Leatti <magnusleatti@kernelriot.com>
-To: Paolo Abeni <pabeni@redhat.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@google.com>,
-	Simon Horman <horms@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
-	Nicolai Buchwitz <nb@tipi-net.de>,
-	thomas.petazzoni@bootlin.com,
-	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net v2] net: stmmac: Clear DMA errors for multi-channel interrupts
-Date: Tue, 10 Nov 2026 06:52:11 -0300
-Message-ID: <20261110095211.16184-1-magnusleatti@kernelriot.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <817d2bd1-64fa-4a6f-bec6-5a4dd4d3a76f@redhat.com>
-References: <20261103125430.962715-1-maxime.chevallier@bootlin.com> <179379704484.488856.2140619507341432623@kernel.org> <20261107100140.8279-1-magnusleatti@kernelriot.com> <817d2bd1-64fa-4a6f-bec6-5a4dd4d3a76f@redhat.com>
+	Tue, 10 Nov 2026 09:54:27 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=+1i1sVyMH9ad9wsU8jFlrzIKrGOD1X4RL8nm+PYmu6A=;
+	b=dxG7dKRjQbGQ7VRuW2iwYcZFB00Gynna4dL9BbZdnTflV/D1Wg/cpTkNn9dAnZ2hKAz8J4QjI
+	KPKEz1S6B3O3KKTsJLIY/ciq/IYEqpjZZCDDkY03eaKBWPYRrV39a++e65rCmS5GV/CWyDb0P7N
+	yv54i+EUDCR4VE0ISK3e4iA=
+Received: from mail.maildlp.com (unknown [172.19.162.223])
+	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4jP26n00cczRhT3;
+	Tue, 10 Nov 2026 17:54:08 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id CA43C40561;
+	Tue, 10 Nov 2026 17:54:18 +0800 (CST)
+Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 10 Nov
+ 2026 17:54:17 +0800
+Message-ID: <46e25aa5-4db5-4322-961c-95ac8a2c40d4@huawei.com>
+Date: Tue, 10 Nov 2026 17:54:16 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 00/6] resctrl: Support mba_MBps on MPAM
+To: Ben Horgan <ben.horgan@arm.com>, Jinjie Ruan <ruanjinjie01@gmail.com>,
+	<babu.moger@amd.com>, <bp@alien8.de>, <corbet@lwn.net>,
+	<Dave.Martin@arm.com>, <fenghuay@nvidia.com>, <james.morse@arm.com>,
+	<rdunlap@infradead.org>, <reinette.chatre@intel.com>,
+	<skhan@linuxfoundation.org>, <tony.luck@intel.com>, <x86@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+References: <20261109132621.3862497-1-ruanjinjie01@gmail.com_quarantine>
+ <dc1398f4-b81c-4ad8-b706-df89a1622e6c@arm.com>
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+In-Reply-To: <dc1398f4-b81c-4ad8-b706-df89a1622e6c@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_015238_118836_33ED131D 
-X-CRM114-Status: UNSURE (   8.54  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261110_015426_065611_D16E6BC7 
+X-CRM114-Status: GOOD (  32.39  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -83,51 +80,140 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/10/26 09:30, Paolo Abeni wrote:
-> AFAICS 'statistics' here means accounting of some corner cases errors. I
-> guess this could be a preferable route.
 
-Hi Paolo,
 
-Went and measured it, since my numbers from this morning only had RBU
-masked. YT6801@7.3.3, this time with RBU and RPS both out of
-the dwmac4 abnormal mask.
+在 2026/11/10 1:50, Ben Horgan 写道:
+> Hi Jinjie,
 
-Floods first (4x 64B UDP, 3 runs): 0 MAC irqs and ~3.2M of 9.6M frames
-delivered, in line with v2 and with RBU-only. Still 0 with 8x UDP +
-TCP TX on top.
+Hi Ben,
 
-Then RPS: each XDP attach/detach restarts RX and raises it once.
-MAC irqs per attach/detach, 3 cycles, idle link:
+> 
+> On 09/11/2026 13:26, Jinjie Ruan wrote:
+>> From: Jinjie Ruan <ruanjinjie@huawei.com>
+>>
+>> Resctrl offers two ways to describe an MBA policy:
+>> - The percentage interface writes a fraction of the maximum bandwidth
+>>   into the hardware control register
+>> - The MBA software controller (mounted with -o mba_MBps) takes
+>>   an absolute target in MiB/s and adjusts that percentage based on
+>>   the MBM counters sampled once per second.
+>>
+>> The problem is that a percentage alone isn't enough. How much bandwidth
+>> a percentage actually corresponds to depends on the memory frequency,
+>> the channel count, how many threads are generating traffic, the access
+>> pattern, and the traffic of other groups. Neither MPAM nor x86 resctrl
+>> reports the maximum bandwidth in MiB/s. So an administrator who wants
+>> to enforce an absolute budget (a tenant SLA, a noisy-neighbour limit)
+>> has to measure and re-tune the percentage on every machine. x86 resctrl
+>> has had this software controller since 2018; MPAM has never been able
+>> to use it. This series makes it work on MPAM.
+> 
+> I see that you are enabling the software controller at the same time as
+> assignable mbm counters. This means that if you enable the software
+> controller and create too many monitor groups then the software
+> controller will stop working. Any user applications already using the
 
-  both masked:   0
-  v2:            2
-  RBU-only:      1.5k - 25k
-  stock:         0.9k - 32k
+Thanks for the review.
 
-The fun part: I expected RPS to take the board down the way RBU does,
-and it didn't. On stock and RBU-only it's a burst that goes quiet by
-itself, and the box stays reachable the whole time. My guess is the RX
-handler acks it on the next frame. I did not try an XDP attach in the
-middle of a flood...
+You are right, once the mbm counter pool is empty a new monitor group
+has no counter, the software controller cannot see it, and it can then
+raise the control above the user's target. The warn was not a fix for that.
 
-So both masked is the only one that sits at exactly 0 everywhere I
-looked. The price is rx_buf_unav_irq and rx_process_stopped_irq, which
-stay at 0.
+> software controller would be broken.
+> 
+> Would instead teaching MPAM about the mbm_default fixed allocation of
+> counters be better? If a platform has sufficient bandwidth counters then
+> we can ensure there is a counter for every monitor group. If necessary,
 
-Scope: I masked them for everyone, like d3265c19b35d did for xgmac2.
-Masking only under multi-MSI would give the same result here and would
-keep the counters on single-irq platforms.
+Right, if the MBM assignable counter is assigned at the time of group
+creation, the MBps mechanism can be prevented from failing due to a lack
+of counters.
 
-Usual caveats: one board, and it's a 5.2 core so only the 4.10 mask
-ran.
+> we can also reduce the number of CLOSID/RMID the driver reports so that
+> there is one per monitor group.
 
-Magnus
+I tried this method, and it works fine on QEMU.
+
+> 
+> Thanks,
+> 
+> Ben
+> 
+>>
+>> What this series does
+>> =====================
+>>
+>> MPAM refuses mba_MBps in two places:
+>> - Its MBM counters are assignable, and supports_mba_mbps() refuses
+>>   the option when they are.
+>> - Its maximum bandwidth control is a soft limit by default, which
+>>   can't hold a single requester down to the target.
+>>   MPAMF_MBW_IDR.MAX_LIM reports whether the hard limit exists.
+>>
+>> MPAM also makes two generic defects reachable:
+>> - Writing the control register sleeps (smp_call_on_cpu()), while
+>>   the worker runs under the RCU read lock
+>> - A 16-bit fraction lets the minimum control value reach zero, which
+>>   divides by zero in the estimator
+>>
+>> The patches:
+>>
+>> - Patches 1 and 2 fix the two generic defects.
+>> - Patches 3 and 4 make the loop runnable on MPAM: the worker takes the
+>>   CPU hotplug lock around the sleeping control update, and assignable
+>>   counters are accepted with a fixed assignment mode.
+>> - Patches 5 and 6 handle the maximum: the driver sets HARDLIM and
+>>   records the MAX_LIM behaviours, and mba_MBps is refused where only
+>>   the soft limit exists.
+>>
+>> x86 has no assignable counters in the mode where the controller is
+>> allowed, and does not set the soft-limit flag, so its behaviour is
+>> unchanged.
+>>
+>> Testing
+>> =======
+>>
+>> With the MPAM MSC model in QEMU:
+>>
+>> - From a 9606 MiB/s baseline, a 7000 MiB/s target converges to
+>>   6888 MiB/s and a 9000 MiB/s target to 8766 MiB/s.
+>> - The memory-side MSC register shows MBW_MAX.HARDLIM set.
+>> - A modelled MSC that implements only the soft limit refuses the
+>>   mba_MBps mount, while a plain mount succeeds.
+>> - With mbm_assign_on_mkdir forced on while the controller is in use,
+>>   a write of 0 is refused, and the user's value is restored after
+>>   unmount.
+>> - The KUnit tests for the MPAM driver pass.
+>>
+>> Jinjie Ruan (6):
+>>   fs/resctrl: Avoid division by zero in the MBA software controller
+>>   fs/resctrl: Do not update bandwidth from a failed counter read
+>>   fs/resctrl: Take the CPU hotplug lock for software controller updates
+>>   fs/resctrl: Allow mba_MBps with assignable MBM counters
+>>   fs/resctrl: Reject mba_MBps when the maximum is only a soft limit
+>>   arm_mpam: Program the hard limit for the software controller
+>>
+>>  Documentation/filesystems/resctrl.rst | 13 +++-
+>>  drivers/resctrl/mpam_devices.c        | 55 +++++++++++++----
+>>  drivers/resctrl/mpam_internal.h       |  4 ++
+>>  drivers/resctrl/mpam_resctrl.c        |  9 +++
+>>  fs/resctrl/monitor.c                  | 86 +++++++++++++++++++++------
+>>  fs/resctrl/rdtgroup.c                 | 48 ++++++++++++---
+>>  include/linux/resctrl.h               |  5 ++
+>>  7 files changed, 179 insertions(+), 41 deletions(-)
+>>
+> 
+
+-- 
+Best regards,
+Jinjie
+
 
