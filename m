@@ -2,85 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5407E60A2622
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8B7606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=F2T/xBCf;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=mlXxr88Y
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=24h6zbT1;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=QvvCcZll
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=N5RMWLcP7isxBVM2qsk29DjsEb+SK3rhdns3s69Yvq8=; b=F2T/xBCffxfpDA
-	Jsmtu/aU7rm6pt/rI4th2yAoDXO4aIgkEUpVF/9Yw5weOfFIWOIqekrQUf0kOaLUD+GcKoEp4Qrx6
-	G9vObLq/TmODf80xpcPOtsayxqOHMQ5Wme7JU3MHfrCsk30bAFcwQXFH+6YOSjnuApEhL2s/xYwrc
-	q7HKtisIHJi3MHtQDcIbxLNrD1SAluoqi+4kMxXbGkrM9W3Y9nuySOiGN7WTxKeQzoyGi12v5y4tZ
-	R3xRnPMHq9XFpIAft6WuDVhhEbbbXNLcqBU3pCUKG6Hpe5Y04ELuJfV1CnM0PipZi2qiO85MxSASk
-	3Ah/t1V8C3UfNq16YEzw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=iV+Waf7jutjSxFSyqvs4NPIRg2kLw+pP00ZuH8Bx1Uw=; b=24h6zbT1BhKjb5fBTZjgBS7aUq
+	Gbf5RrTs1arnRwnFeQOf3ODj5/f73BSLDTba7M1WptlaFTawlZbqEq34Yxc3ZilOfypGfDc2vwSP/
+	XZYqgiymmWCd7foO3tWoR2OU5OzuWxnUTXw/jqe5xCqH8Fg+pms2GjjaKf4VLGVeKUCSRz+1hLzDO
+	S7knsVTSZ/4wAcy4xlIEpNDNQaIkaQGOEkAh/3a32rvOf04+a4mpTDQyPwNLG1Te6G7129hP5sJhK
+	331uvL+udW3NMO+lqkUYByDKOKs/aXkwyARkjrttbUg9Wyxn8fAlDdYEamVeRlEF6z1CpBbVUCWRp
+	C8hheF5Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhjh-00000003CCM-0rCj;
-	Tue, 10 Nov 2026 09:01:49 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhjf-00000003CBw-35jg
+	id 1xQhlB-00000003CU4-29AZ;
+	Tue, 10 Nov 2026 09:03:21 +0000
+Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQhl8-00000003CTI-3hrS
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:01:48 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 665221516;
-	Tue, 10 Nov 2026 01:01:43 -0800 (PST)
-Received: from [10.57.60.120] (unknown [10.57.60.120])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A60013F85F;
-	Tue, 10 Nov 2026 01:01:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794301306; bh=9CU41Se9la/KtdDwMQULrIKfytvMpdfr7XLUHb+OkJk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mlXxr88YJEAGdd0L2wAgQsnosP8cErHqpjtUnIFgrZRlpeDVMedSkCWzs5XJQabcP
-	 AYoasvJ/eG3DdRL64rFmaMFN2uhjRLcP6I3ZkVQpszUmeizzIzpLY6LqjYw9gK2PiX
-	 Tw4LA2EMpYvVCFN3nkVI0GLFrsqAWZf0DZ7bW+m8=
-Message-ID: <9e59fd71-97e7-422c-a7dd-bc23c6e6a852@arm.com>
-Date: Tue, 10 Nov 2026 10:01:36 +0100
+	Tue, 10 Nov 2026 09:03:20 +0000
+Received: from ratatoskr.trumtrar.info (unknown [IPv6:2a00:1f:f805:2b01:a03:2f4:308a:7b52])
+	(Authenticated sender: str@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id D73142004B4;
+	Tue, 10 Nov 2026 10:03:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794301396;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iV+Waf7jutjSxFSyqvs4NPIRg2kLw+pP00ZuH8Bx1Uw=;
+	b=QvvCcZll9nfoiX1LGBmwAWaz6C6URPecwdmuRNKhH7Vaxzrks7ds2pGmx0BDm22nRr39nE
+	32fqoNq+aEWysvMQHvRxHgZh+RvwpWPndblh1y9HFDTGdPQs2lZVwzK80yaQ/jGekcBYjr
+	kHNwgUGK+0nIqqWjqOZOrI3SnH1oHRKmq1r+KtIDtIPUD3O9b6/1gnEKlsQ5zwqk9NZRiW
+	Aw2AQ+CHVt/a0njDG3sit1+b3djTP4RguSZgrAgExLN+cvUsbevpmElViK/w1blz/m+fPc
+	qMpb7nRgBjkUqc1uwtKd3FK8Ab4S25xoLRg/Feifkk5UOP3ffVYs02iV5CylVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794301396;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iV+Waf7jutjSxFSyqvs4NPIRg2kLw+pP00ZuH8Bx1Uw=;
+	b=QnIBYVzDajT2AtGOEnK+v3EQQUuXrCBTbHddGThqt7eXyM8Sw1mktO3/kdQxlq4KGUbeRn
+	1mCHEnV1ezBU4VnEmLDrFUBE9UfKkJ3uYmhNVUZe+9D8gcM826L+wI9+surjnEr1K2/lgx
+	JiGnEMZ2O8Bk6kXJB0mHQZ29KrBV2a1umqA9I0jkbI6nckFiNaUvvXMI0MGpa2wTdbcOjP
+	ybBlW0ppcMZyBS0rYgepNLIVYolZDybTKdg+gOdYUilw6IVo5nSxrf+XbvOE27Fbj7uCsH
+	heCcX8vdNDYnBr4p6vmjLzUw44hvWOuxFTCYOUj5A/CP0AFDOXJ3s9bJj3vHFw==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794301396; a=rsa-sha256;
+	cv=none;
+	b=ADxZs/pwwc0+vefYfA7cO36TgOleG6Nie6SziGqCXfoBX3SR8EY3a0A6gm1RUqMt+AEeyV
+	LuZDpEhwwsytB7bCZeBDz0cIg+lPURnf+Qy89RZvz1UlOD7kZ5nf+RkfifnNnzaPDZuBnK
+	rIEAM3mctVpdfYYTHQrcudSK5/gn9hDXJpYpgdmwOxRGFhvb6NY53D10V/0EUTkXI6yVEe
+	21IdCjiHiaPv8C+xSdipkvLYVa/60BHsgLu3Mwp280DJxB3kAlvajvo6FD3plibQPagwJL
+	rgzTyGsBc24YdnGU/57nGSnDSxNXpALZcldo6aCubZIpsbSKGPxo4KMux2chgw==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=str@pengutronix.de smtp.mailfrom=s.trumtrar@pengutronix.de
+From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Date: Tue, 10 Nov 2026 10:03:08 +0100
+Subject: [PATCH] arm64: dts: xilinx: drop unused #phy-cells from the
+ DP83867 nodes
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v10 22/22] mm: Add basic tests for
- kpkeys_hardened_pgtables
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-hardening@vger.kernel.org, Andrew Morton
- <akpm@linux-foundation.org>, Ard Biesheuvel <ardb+git@google.com>,
- Andy Lutomirski <luto@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Dave Hansen <dave.hansen@linux.intel.com>,
- "David Hildenbrand (Arm)" <david@kernel.org>, Jann Horn <jannh@google.com>,
- Jeff Xu <jeffxu@chromium.org>, Joey Gouly <joey.gouly@arm.com>,
- Kees Cook <kees@kernel.org>, Linu Cherian <linu.cherian@arm.com>,
- Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, Maxwell Bland <mbland@motorola.com>,
- "Mike Rapoport (IBM)" <rppt@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Pierre Langlois <pierre.langlois@arm.com>,
- =?UTF-8?Q?Pierre-Cl=C3=A9ment_Tosi?= <ptosi@google.com>,
- Quentin Perret <qperret@google.com>,
- Rick Edgecombe <rick.p.edgecombe@intel.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Vlastimil Babka <vbabka@kernel.org>,
- Will Deacon <will@kernel.org>, Yang Shi <yang@os.amperecomputing.com>,
- Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org, x86@kernel.org,
- Ira Weiny <iweiny@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- Thomas Gleixner <tglx@kernel.org>
-References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
- <20261109-kpkeys-v10-22-aa6c4d9603bc@arm.com>
- <2d13fbb7-b5b4-446e-8709-5b43349ff19a@sirena.org.uk>
-From: Kevin Brodsky <kevin.brodsky@arm.com>
-Content-Language: en-GB
-In-Reply-To: <2d13fbb7-b5b4-446e-8709-5b43349ff19a@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20261110-v7-4-topic-zynqmp-dp83867-v1-1-04500475a560@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ6CMBBA0auQWTtJB7RUr2JcQDvVMbGUFolIu
+ LtVl2/x/wqZk3CGU7VC4lmyDKGAdhXYWxeujOKKoVa1JiKFc4t7nIYoFt9LGB8RXTSN0S0qT+S
+ 8brqDOULpY2Ivr9/7fPk7P/s72+k7hG37AJwvBo19AAAA
+X-Change-ID: 20261110-v7-4-topic-zynqmp-dp83867-0f11df63a589
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Steffen Trumtrar <s.trumtrar@pengutronix.de>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6985;
+ i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
+ bh=r7xwrLRGPAQ0iiVHxekSDOtVkGaeiUkp/R9YD1Vpj34=;
+ b=owGbwMvMwCUmtVehiCsuTInxtFoSQ9anu5fLC3/3T7r6JP/qdiaFxxqaBu6fku6blCzqW5O7Y
+ W9IDNu0jlIWBjEuBlkxRRaVhRV8oh4fPCOniXDBzGFlAhnCwMUpABM5nsPwV9Bz4S6n03X/XA1v
+ hul1Lbdk/1+bahVptlI37Xj1lwBtfYY/3Kqh/NLJRk18vO6Vv4/cfXc96t/Z8vik7y7H3RgMYu6
+ zAQA=
+X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
+ fpr=24A1780E1548F0495996140A1ABD20720A5E5622
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_010147_819414_594EE046 
-X-CRM114-Status: GOOD (  13.64  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261110_010319_428126_2980D1BF 
+X-CRM114-Status: UNSURE (   9.45  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,35 +107,179 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 09/11/2026 20:28, Mark Brown wrote:
-> On Mon, Nov 09, 2026 at 03:58:47PM +0000, Kevin Brodsky wrote:
->
->> ---
->>  mm/Makefile                               |   1 +
->>  mm/tests/kpkeys_hardened_pgtables_kunit.c | 200 ++++++++++++++++++++++++++++++
->>  security/Kconfig.hardening                |  12 ++
->>  3 files changed, 213 insertions(+)
->> +config KPKEYS_HARDENED_PGTABLES_KUNIT_TEST
->> +	bool "KUnit tests for kpkeys_hardened_pgtables" if !KUNIT_ALL_TESTS
->> +	depends on KPKEYS_HARDENED_PGTABLES
->> +	depends on KUNIT=y
->> +	default KUNIT_ALL_TESTS
-> I'd also expect to see this added to one of the KUnit config fragments
-> somewhere so it gets run as standard, though that's a little awkward
-> given that KPKEYS_HARDENED_PGTABLES isn't universally available.
+The DP83867 ethernet PHY nodes have a #phy-cells property, but no node
+refers to them with a phys property; the MACs use phy-handle, which
+takes no arguments. #phy-cells belongs to generic PHY providers.
 
-Do you mean adding the dependency KPKEYS_HARDENED_PGTABLES=y to
-tools/testing/kunit/configs/all_tests.config? Indeed that would only be
-meaningful on arm64 (for now). That said it wouldn't hurt other
-architectures, so happy to add it there if you think that's worth it.
+Drop it, so the nodes validate against the ti,dp83867 binding once it
+is applied to them.
 
-- Kevin
+Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Reviewed-by: Michal Simek <michal.simek@amd.com>
+---
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso | 2 --
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso | 2 --
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts    | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 1 -
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 1 -
+ 10 files changed, 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
+index b82a056be2f99..930f0e54fdac5 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
+@@ -254,7 +254,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@4 { /* u81 */
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <4>;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+@@ -266,7 +265,6 @@ phy0: ethernet-phy@4 { /* u81 */
+ 			reset-gpios = <&slg7xl45106 5 GPIO_ACTIVE_LOW>;
+ 		};
+ 		phy1: ethernet-phy@8 { /* u36 */
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <8>;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
+index 4dcf92a2158fd..e05667f6e946b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
+@@ -255,7 +255,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@4 { /* u81 */
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <4>;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+@@ -267,7 +266,6 @@ phy0: ethernet-phy@4 { /* u81 */
+ 			reset-gpios = <&slg7xl45106 5 GPIO_ACTIVE_LOW>;
+ 		};
+ 		phy1: ethernet-phy@8 { /* u36 */
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <8>;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index 52954761c9f3d..af897c3cd1680 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -200,7 +200,6 @@ mdio: mdio {
+ 		#size-cells = <0>;
+ 
+ 		phy0: ethernet-phy@1 {
+-			#phy-cells = <1>;
+ 			reg = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index 49732de5fa4b9..a1f0592e79589 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -191,7 +191,6 @@ mdio: mdio {
+ 		#size-cells = <0>;
+ 
+ 		phy0: ethernet-phy@1 {
+-			#phy-cells = <1>;
+ 			reg = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index a5bc521ab6797..42030547a32dd 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -217,7 +217,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@21 {
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <21>;
+ 			ti,rx-internal-delay = <0x8>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
+index 3c28130909bc6..bad59d7b1d26d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dts
+@@ -19,7 +19,6 @@ &gem3 {
+ 	phy-handle = <&phyc>;
+ 	mdio: mdio {
+ 		phyc: ethernet-phy@c {
+-			#phy-cells = <0x1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <0xc>;
+ 			ti,rx-internal-delay = <0x8>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index 32509083e54f4..898a9000daeaf 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -126,7 +126,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@c {
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <0xc>;
+ 			ti,rx-internal-delay = <0x8>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index 96699be8430fa..b0a08cf1d03bb 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -131,7 +131,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@c {
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <0xc>;
+ 			ti,rx-internal-delay = <0x8>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 52441e5c87390..58684af4b98c4 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -217,7 +217,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@c {
+-			#phy-cells = <1>;
+ 			reg = <0xc>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			ti,rx-internal-delay = <0x8>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index b34e4c93d249d..30f97f67e8c8d 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -189,7 +189,6 @@ mdio: mdio {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		phy0: ethernet-phy@c {
+-			#phy-cells = <1>;
+ 			compatible = "ethernet-phy-id2000.a231";
+ 			reg = <0xc>;
+ 			ti,rx-internal-delay = <0x8>;
+
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261110-v7-4-topic-zynqmp-dp83867-0f11df63a589
+
+Best regards,
+--  
+Steffen Trumtrar <s.trumtrar@pengutronix.de>
+
 
