@@ -2,109 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE06606E449
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A907606ED53
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vHmgeWKR;
-	dkim=pass (2048-bit key) header.d=soleen.com header.i=@soleen.com header.a=rsa-sha256 header.s=google header.b=e2Gf0Ur/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Vp7GUCRw;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=nJNwXkHK;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=CEGzPwk2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=K4NCnFvaGrDIOTRc5HujFwwUmTQ2N/bdVeWHbEi7j9U=; b=vHmgeWKROrKqkU
-	DnMO6vNIoFky9uplX7UK2I8CtYUc9A+7hOKd6ZebEjx6zCkAm8yBU0ZQHdcbKfJF0kqi0MHT0d2KB
-	37xVyvO9n+iL2CSuPGN29QTsJPi2+dP2pH9yocJUWUN60dA77gDbhAHW7OFil22I6RZltSzMrlXmf
-	ckNr6PvmM6ixOxEFmIRsC/bYt3dvpWBgmxwaOS6ZbfPbGHKt7HzeREXOCV4VMRgDFo2EC7W8aMnBp
-	laJ5jZJmAoM/TE7o4JgXZ0G4eX2ai4uvElbGtYfF0xqO7njOE5d/+1vWfsgmlYQqKpmQs0n+myZe+
-	mTl3bqOiDOJ3f0zfAUDw==;
+	List-Owner; bh=3zMv941SOr8xekXo6fTcnzy/BHJH3qWqyAFRtIyz84M=; b=Vp7GUCRw/5bW1s
+	tNUQ/9Sqyg2FuxQAaojHLpaZgNszCCs0nPn2lisdwqg7jJTes2miG3sXfskDl3bdsgkBi3qymDBAg
+	EBx+oDRxQ9GgeviXDt3JyZGKTe74mIu7IgLOkq+i+wjz2R+yQfFP/GdSK6AsI8cqYJ1vA9GX90VWA
+	ZYiCiPTL9XyHVwJ868saBdVJ/oxKOI1XPt1/wIGZX5k3XCN6r54roDdsPBm1lVed4fX/bWhDmGhHA
+	QgnfouclC01YcNytOlcP5YAfd8QN62lmbPS0m1A8FYYToSDemyR/ZBwoRZTlNEGYNThdHjUwfvuRs
+	ksZGc8Uw5hn6pYaGTtYA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlP6-00000003w41-1QGg;
-	Tue, 10 Nov 2026 12:56:48 +0000
-Received: from mail-vk1-xa2e.google.com ([2607:f8b0:4864:20::a2e])
+	id 1xQlSl-00000003wgo-1KtD;
+	Tue, 10 Nov 2026 13:00:35 +0000
+Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlP2-00000003w2G-3b7e
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 12:56:47 +0000
-Received: by mail-vk1-xa2e.google.com with SMTP id 71dfb90a1353d-5ec690faf85so641850e0c.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:56:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen.com; s=google; t=1794315404; x=1794920204; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=K4NCnFvaGrDIOTRc5HujFwwUmTQ2N/bdVeWHbEi7j9U=;
-        b=e2Gf0Ur/SxVLYwMknMMVsWuWzPgNiSkVUp+CDDApz2oFWFqaNXNkq19hz+SPExw07G
-         9sQuazZVhYofcLLjY6y0MYIbOkCacvgK5olSLnnNkn4Q+YOqhnaFenWxkL5KX/GjkC9c
-         CrwsIPYm7qofSv6HfXbxrWfhjZr2vg3H0fqHzLXrxppOrW1O9MKZ0YdD5UHg7cjmLgLH
-         V0OzH8iaiqDNuTbvXJk8J6UeV5DnrVZkvL91sFN/qqMFp3R3EWEmuOlfli/0qddUzdic
-         gzq6Jvec+rSXryeRMLrsObWjtpT04e3pvGrbUj0DKJ/9B/yuqZh9R1lqx5YAJCQ3t2jn
-         1iEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794315404; x=1794920204;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=K4NCnFvaGrDIOTRc5HujFwwUmTQ2N/bdVeWHbEi7j9U=;
-        b=sb0RrIbOCKQIQzfbRJjB2Mnya+aRU9Q1OXx/mEDBUUk5LevNyRTBukqeGRVFuipBu5
-         Ezqi3ZCgRO6uzCf8by3AHZFeketdnXOJzQTPPUDQ+SpEV+YQtaeh6RdPK4Rl6hAx1xbz
-         MCnnlWXzSH69Owmi9d81TVe2QmSVY3iV8biumZdtxgO7gCcOOhIu4NYweYFuk2UGC+Fl
-         MmQ2Gun64t0vJSHCSEX6PRSYeijgfkJwMduSMabaPdAtzVDur8IEh817/klbavUr+gpm
-         iVH+Qtpqs+wJQZxUPvyFklNHalt5w8YskT3GOB0aEafnGYiKdJqSxwLatGefU+1BAXZu
-         X4eQ==
-X-Forwarded-Encrypted: i=1; AL+hErFkckqFB8jRbhqQN2gy/zWqpBD74YdOKCjvb/YBEhS6AerkdJY70MHHWOZ45mxK2pd3vExtBThx8acxSXwLLhGf@lists.infradead.org
-X-Gm-Message-State: APuU4Z+aYf+Q54RsotAm2IGS8Z83cCnTegnup7QlG4b4XsTubSO6rRqD
-	aSc2DFNvSL3X6qePZ6vyIihY1WizHU7DWHk8a0t6RateJrs56EZO4ofVzixhceHbf2I=
-X-Gm-Gg: AYBFou1hOeOWXuawhqIfg0n5L1cWbFXEuQuxKieqloZ1M9tdnI2bUG/xhwGtBCJpnk/
-	h2s9Rl1aXMNc2L7/8efoHxdwMVWz3a51pCcOowp6pdui32NOnpfuhqgtyvh+csVmZYzPV3ySgpm
-	o8QMr3Is5MS4x1AeFc8SvWLQxg4ZcHCq0KQ+BdqJBSRhKGgZ8AG+p37EHNsxVzfm73Qk+7fbQxA
-	l1xRmy9xPzRUgrCYGIeFQgpOuHEUuyk2PAyxzvkwh0+LuJewAI8eXdzIXi/dgDy0meKDr4cNucA
-	7JoIxS/vdoI5qqMrx1xZ5Ns2YvNhzM6QF5SmDTNhXxKGDeDrAf0jyPZzMebA84kujmXQ8pR+VF4
-	/M60q/DHKW5da3Ky5hcxdeytOGNtTEq15dOrlFhAJ/AxG9+McJ4zxBnsOZdt+zzJM5VDMFJbZms
-	n6tHMOwWH9LKXXUpGiGElFUFBIHtwJPox6498adXprWGUdUlce5foCMnExVZwYuCzn5WA/fnxu1
-	119XY84ceiXellYFPil/9gsu4ObejnfSYPzr3JIPnhJ/GlT9YJvmvbWTqJ7h9o767uJ5JCuDagL
-	cNdNAZ58PgVhWO/0l1t8F+82Oy17oOQxbyfCrlTHmCBpm8X10zJAueYFuigjDMvINy0rJZ3NlIX
-	s85WzX43u70N08vzi8gn8FxWb35ILYxxPHcSD2RdnLS0mwsqb39YA
-X-Received: by 2002:a05:6122:3407:b0:5ec:3e18:a8da with SMTP id 71dfb90a1353d-5ee0d14a2e5mr823009e0c.17.1794315403552;
-        Tue, 10 Nov 2026 04:56:43 -0800 (PST)
-Received: from localhost (64.167.245.35.bc.googleusercontent.com. [35.245.167.64])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5ee0c5b2233sm1547234e0c.10.2026.11.10.04.56.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 04:56:42 -0800 (PST)
+	id 1xQlSi-00000003wex-2m0h;
+	Tue, 10 Nov 2026 13:00:34 +0000
+From: Gregor Herburger <gregor.herburger@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1794315628;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3zMv941SOr8xekXo6fTcnzy/BHJH3qWqyAFRtIyz84M=;
+	b=nJNwXkHK6aWAwG7hNMuZSOaJeEtc+8K6/+FZ1DxeWWqYE8Fi6QiCjmBPByckwJBfBmOodD
+	bDTnHloxmiAWvzBqLWeYwwxdidU2KM0kgHoyB9KQHLbPS+U1xOFxko7HHixeRRSX7RAav0
+	xg/sfIVxMYBBHNFQ8gp3gfy0+OMIgUC5FWyy5Ar7t1D/82I8faeh1O8minBwt/lncS2IIv
+	/l+YH7Q6YaB68RCAM6eW5GAmLDURAQClQkPdYAYjrFktf6qOBpvVTNY6u1+uTDRqAXGFAW
+	Ii96NZ0DV+qwgBa6afsl38wGpyNAldDX56Lfy+0PvbPWLeLlMJ1rxAJawhNbmw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1794315628;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3zMv941SOr8xekXo6fTcnzy/BHJH3qWqyAFRtIyz84M=;
+	b=CEGzPwk2UaIVaZNE6AcGJFmczjwegJpf2M+tZxRblw/zmk7d4D1Ct7jP3ZtYFgXLgcowHw
+	va+g/T9ZWRrNFJBQ==
+Date: Tue, 10 Nov 2026 14:00:12 +0100
+Subject: [PATCH v6 2/5] dt-bindings: raspberrypi,bcm2835-firmware: Include
+ 'reboot-mode.yaml'
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Nov 2026 07:56:41 -0500
-Message-Id: <DMRJQ42LR1D3.1GZKU9EX48KZU@soleen.com>
-Cc: <kvmarm@lists.linux.dev>, <linux-pci@vger.kernel.org>, "Pratyush Yadav"
- <pratyush@kernel.org>, <kexec@lists.infradead.org>, <kvm@vger.kernel.org>,
- <iommu@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
- <skhawaja@google.com>, <sagis@google.com>, <linux-arch@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 01/19] liveupdate, kho: Remove __packed from KHO, LUO
- and memfd ABI structures
-From: "Pasha Tatashin" <pasha.tatashin@soleen.com>
-To: "Tarun Sahu" <tarunsahu@google.com>, "Pasha Tatashin"
- <pasha.tatashin@soleen.com>, "Mike Rapoport" <rppt@kernel.org>,
- <robin.murphy@arm.com>, <maz@kernel.org>, <will@kernel.org>, "David
- Matlack" <dmatlack@google.com>, "Alexander Graf" <graf@amazon.com>,
- <seanjc@google.com>, <jgg@nvidia.com>, <loganodell@google.com>,
- <arnd@arndb.de>, <dwmw2@infradead.org>, <baolu.lu@linux.intel.com>, "Bjorn
- Helgaas" <bhelgaas@google.com>, <oupton@kernel.org>, <alex@shazbot.org>,
- <gle.com@google.com>, <pbonzini@redhat.com>, "Andrew Morton"
- <akpm@linux-foundation.org>, <kevin.tian@intel.com>, <joro@8bytes.org>
-X-Mailer: aerc 0.22.0-39-g5d7784875be2
-References: <20261110050202.529473-1-tarunsahu@google.com>
- <20261110050202.529473-2-tarunsahu@google.com>
-In-Reply-To: <20261110050202.529473-2-tarunsahu@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261110-rpi-tryboot-v6-2-56f680ef4734@linutronix.de>
+References: <20261110-rpi-tryboot-v6-0-56f680ef4734@linutronix.de>
+In-Reply-To: <20261110-rpi-tryboot-v6-0-56f680ef4734@linutronix.de>
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Eric Anholt <eric@anholt.net>, 
+ Stefan Wahren <wahrenst@gmx.net>
+Cc: linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Gregor Herburger <gregor.herburger@linutronix.de>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794315627; l=1242;
+ i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
+ bh=fhRlwoURNhKjUwmc6zTXWmbtPey+wbDhPSnSGbef0Xs=;
+ b=tcMQeOD7veSQStS4/H8FZmfv5MNZ0e7/VDgB43Ot6i6HFD/MfHP1oMrZnYsJIzJiYzQ3bS1aJ
+ u6zPc9T34ONAn2F7e0PEOsyw0Z5zaOTocvZszTgnbziqfeKajoU/ouN
+X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
+ pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_045644_917303_249101A5 
-X-CRM114-Status: GOOD (  27.19  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_050032_860777_7BA5CACB 
+X-CRM114-Status: UNSURE (   8.07  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,231 +96,45 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue Nov 10, 2026 at 12:01 AM EST, Tarun Sahu wrote:
-> All structures in include/linux/kho/abi/block.h (struct
-> kho_block_header_ser), include/linux/kho/abi/luo.h (struct luo_ser,
-> struct luo_file_ser, struct luo_file_set_ser, struct luo_session_ser,
-> struct luo_flb_header_ser, struct luo_flb_ser) and
-> include/linux/kho/abi/memfd.h (struct memfd_luo_folio_ser, struct
-> memfd_luo_ser) have naturally aligned fields on 64-bit architectures,
-> with no padding holes between fields or tail padding. Assert both the
-> structure size and 8-byte alignment under CONFIG_64BIT at compile time.
-> Any future unaligned field addition should come with reserved field to
-> keep the structure aligned.
+The Raspberry Pi firmware allows to set a reboot mode called tryboot
+that allows to try booting from a different partition to allow updating
+of the boot partition. Allow reboot mode properties by referencing the
+reboot-mode schema. The firmware allows a 32bit value to be sent as
+reboot flag so restrict the maxItems to 1.
 
-Just state:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
+---
+ .../bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml           | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Remove __packed, as it may break natural alignment. Instead, ensure that=20
-all padding holes are explicitly covered by reserved or similar fields,=20
-as is already done for KHO/LUO serialized data, so no functional changes=20
-are intended by this change.
+diff --git a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+index dc71fd57834e8..d07e327dd8065 100644
+--- a/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
++++ b/Documentation/devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml
+@@ -138,6 +138,15 @@ properties:
+     minimum: 1300
+     maximum: 5000
+ 
++  mode-normal:
++    maxItems: 1
++
++  mode-tryboot:
++    maxItems: 1
++
++allOf:
++  - $ref: /schemas/power/reset/reboot-mode.yaml#
++
+ required:
+   - compatible
+   - mboxes
 
->
-> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
-> ---
->  include/linux/kho/abi/block.h | 10 +++++++--
->  include/linux/kho/abi/luo.h   | 38 +++++++++++++++++++++++++++++------
->  include/linux/kho/abi/memfd.h | 16 ++++++++++++---
->  3 files changed, 53 insertions(+), 11 deletions(-)
->
-> diff --git a/include/linux/kho/abi/block.h b/include/linux/kho/abi/block.=
-h
-> index d06d64b963be..36bdbaf9b3b8 100644
-> --- a/include/linux/kho/abi/block.h
-> +++ b/include/linux/kho/abi/block.h
-> @@ -12,7 +12,7 @@
->   * pre-update kernel to a post-update kernel.
->   *
->   * This interface is a contract. Any modification to the structure field=
-s,
-> - * compatible strings, or the layout of the `__packed` serialization
-> + * compatible strings, or the layout of the serialization
->   * structures defined here constitutes a breaking change. Such changes r=
-equire
->   * incrementing the version number in the `KHO_FDT_COMPATIBLE` string to
->   * prevent a new kernel from misinterpreting data from an old kernel.
-> @@ -26,6 +26,8 @@
->  #define _LINUX_KHO_ABI_BLOCK_H
-> =20
->  #include <asm/page.h>
-> +#include <linux/build_bug.h>
-> +#include <linux/kconfig.h>
->  #include <linux/types.h>
-> =20
->  /**
-> @@ -49,6 +51,10 @@
->  struct kho_block_header_ser {
->  	u64 next;
->  	u64 count;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct kho_block_header_ser) =3D=3D 16);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct kho_block_header_ser) =3D=3D 8);
-> =20
->  #endif /* _LINUX_KHO_ABI_BLOCK_H */
-> diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
-> index 288076de6d4a..721949374fa1 100644
-> --- a/include/linux/kho/abi/luo.h
-> +++ b/include/linux/kho/abi/luo.h
-> @@ -58,6 +58,8 @@
->  #define _LINUX_KHO_ABI_LUO_H
-> =20
->  #include <linux/align.h>
-> +#include <linux/build_bug.h>
-> +#include <linux/kconfig.h>
->  #include <linux/kho/abi/block.h>
->  #include <uapi/linux/liveupdate.h>
-> =20
-> @@ -82,7 +84,11 @@ struct luo_ser {
->  	u64 liveupdate_num;
->  	u64 sessions_pa;
->  	u64 flbs_pa;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct luo_ser) =3D=3D 32);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct luo_ser) =3D=3D 8);
-
-Please remove the two assertions above throughout this patch, as they=20
-are replaced later in the series. In general, introducing add -> remove=20
--> add churn across a patch series is discouraged, as it indicates a=20
-lack of planning.
-
-> =20
->  #define LIVEUPDATE_HNDL_COMPAT_LENGTH	48
-> =20
-> @@ -98,7 +104,11 @@ struct luo_file_ser {
->  	char compatible[LIVEUPDATE_HNDL_COMPAT_LENGTH];
->  	u64 data;
->  	u64 token;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct luo_file_ser) =3D=3D 64);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct luo_file_ser) =3D=3D 8);
-> =20
->  /**
->   * struct luo_file_set_ser - Represents the serialized metadata for file=
- set
-> @@ -113,7 +123,11 @@ struct luo_file_ser {
->  struct luo_file_set_ser {
->  	u64 files;
->  	u64 count;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct luo_file_set_ser) =3D=3D 16);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct luo_file_set_ser) =3D=3D 8);
-> =20
->  /**
->   * struct luo_session_ser - Represents the serialized metadata for a LUO=
- session.
-> @@ -131,7 +145,11 @@ struct luo_file_set_ser {
->  struct luo_session_ser {
->  	char name[LIVEUPDATE_SESSION_NAME_LENGTH];
->  	struct luo_file_set_ser file_set_ser;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct luo_session_ser) =3D=3D 80);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct luo_session_ser) =3D=3D 8);
-> =20
->  /* The max size is set so it can be reliably used during in serializatio=
-n */
->  #define LIVEUPDATE_FLB_COMPAT_LENGTH	48
-> @@ -152,7 +170,11 @@ struct luo_session_ser {
->  struct luo_flb_header_ser {
->  	u64 pgcnt;
->  	u64 count;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct luo_flb_header_ser) =3D=3D 16);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct luo_flb_header_ser) =3D=3D 8);
-> =20
->  /**
->   * struct luo_flb_ser - Represents the serialized state of a single FLB =
-object.
-> @@ -175,7 +197,11 @@ struct luo_flb_ser {
->  	char name[LIVEUPDATE_FLB_COMPAT_LENGTH];
->  	u64 data;
->  	u64 count;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct luo_flb_ser) =3D=3D 64);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct luo_flb_ser) =3D=3D 8);
-> =20
->  /* Kernel Live Update Test ABI */
->  #ifdef CONFIG_LIVEUPDATE_TEST
-> diff --git a/include/linux/kho/abi/memfd.h b/include/linux/kho/abi/memfd.=
-h
-> index 08b10fea2afc..376a724a1d8c 100644
-> --- a/include/linux/kho/abi/memfd.h
-> +++ b/include/linux/kho/abi/memfd.h
-> @@ -11,6 +11,8 @@
->  #ifndef _LINUX_KHO_ABI_MEMFD_H
->  #define _LINUX_KHO_ABI_MEMFD_H
-> =20
-> +#include <linux/build_bug.h>
-> +#include <linux/kconfig.h>
->  #include <linux/types.h>
->  #include <linux/kho/abi/kexec_handover.h>
-> =20
-> @@ -20,7 +22,7 @@
->   * memfd uses the ABI defined below for preserving its state across a ke=
-xec
->   * reboot using the LUO.
->   *
-> - * The state is serialized into a packed structure `struct memfd_luo_ser=
-`
-> + * The state is serialized into `struct memfd_luo_ser`
->   * which is handed over to the next kernel via the KHO mechanism.
->   *
->   * This interface is a contract. Any modification to the structure layou=
-t
-> @@ -54,7 +56,11 @@ struct memfd_luo_folio_ser {
->  	u64 pfn:52;
->  	u64 flags:12;
->  	u64 index;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct memfd_luo_folio_ser) =3D=3D 16);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct memfd_luo_folio_ser) =3D=3D 8);
-> =20
->  /*
->   * The set of seals this version supports preserving. If support for any=
- new
-> @@ -85,7 +91,11 @@ struct memfd_luo_ser {
->  	u32 flags;
->  	u64 nr_folios;
->  	struct kho_vmalloc folios;
-> -} __packed;
-> +};
-> +
-> +static_assert(sizeof(struct memfd_luo_ser) =3D=3D 48);
-> +static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-> +	      __alignof__(struct memfd_luo_ser) =3D=3D 8);
-> =20
->  /* The compatibility string for memfd file handler */
->  #define MEMFD_LUO_FH_COMPATIBLE	"memfd-v2"
-
---=20
-Pasha
+-- 
+2.47.3
 
 
