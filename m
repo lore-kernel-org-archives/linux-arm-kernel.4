@@ -2,137 +2,128 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE79D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03296606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZRPkKKWZ;
-	dkim=pass (2048-bit key, unprotected) header.d=axiado.com header.i=@axiado.com header.a=rsa-sha256 header.s=selector1 header.b=iVe+7I4x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XjXfxJRs;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=crU2b8lv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:To:From:Subject
-	:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=egeh9wioXVuyykVZxva0ZCEgPB6rpUyW2X2GvvYCQbM=; b=ZRPkKKWZC12HB6PPxcEidthkdt
-	00xcDf1kVjhv2QFayOYLNHuGMkoACVfiP8nKMyIDis55XnFP3VEVjwhaN/adshh1ev1qaQW+fn4Xb
-	zadmuvE0k70sh8toS4pvZhb8eoo546ZWvHri9kXCnBKf4nukvTy2R/4H/xuDhszWMT7CzD5hmvrWi
-	tbfk5EX+qsn4sLoQrRq2BvlUpdqL5MaU5B2czusadSTg0u6Sa36VgfElU+y2urrFvT8/AZpiIhhaA
-	i0zP0kMQTlPeVbtLCbhMaQhBWkJhjP3JiJhCR14H8bhTQdN6POn9kaR3nHgfA/xnxR7oK6kdBFLMt
-	7s9WCxiA==;
+	bh=1SGAWMv2ieK2/7euegJpE1Q4w/hUrKGOv7EraMv1AjE=; b=XjXfxJRsWF/3lMn6gh/KOKfJkn
+	DDWIh3H/efM1S9arYDMtvkWI4izm8RbpvQMAoAolNhWn1rAGQlE/YgHmB1IVH4MHET6lYVuzoR/j5
+	i+Ka4bkYYveg8T/sHJFwcHKCLrIll72vSrDVm/qAz5z4FdJ4yesHaiCppxNjX8U/4Q4l+wK3m7HvH
+	R2gkI92X/5jmdKWeYIdxtZ4LdiWvETNvs390Pa6bRchRogFoPvJYsyZkJO/oXvBoyYucEHVyaF3bd
+	+vh7bUkHQw9r19GjJ4iyF0fCr5yDFrRrSgzvxFUzqyE6xJu8zB9xV5B0pJPHxmgDb32jzGfZ9crwy
+	g6yRDm1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqWS-00000004mco-2Uln;
-	Tue, 10 Nov 2026 18:24:44 +0000
-Received: from mail-westusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c001::5] helo=BYAPR05CU005.outbound.protection.outlook.com)
+	id 1xQqXM-00000004mjc-3Vyr;
+	Tue, 10 Nov 2026 18:25:40 +0000
+Received: from mail-eastusazlp17011000f.outbound.protection.outlook.com ([2a01:111:f403:c100::f] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqWP-00000004mcB-3LZW
+	id 1xQqXK-00000004mj2-1kIS
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 18:24:43 +0000
+	Tue, 10 Nov 2026 18:25:39 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fcfZOqXbvsxBTZXXnYaDV6ei0k3AvLgXzPZCNvYlRWwy0KRuPyc+IAFHepQtTaGgFVfjrjF+qKlvT773gXDcZe5P+0sq7TMPMnJAQxF07BensgFmlRoZiEt2d8lsm11JPAk+JPVFfWR5xTu6t4w4S0LqQXvVMU/XPZlfEVRR1nOWrK3oiOBkXQV0/Yt2bZ19f8eH7ahVFYXPo9qQ2TEYhupqZwj0ApFfRYZ2YS0vK5zyksXtfIlSrrdh+xwlCAELyk+WQTVxz/MVdwIdhWiQrg5CLqvA6n4HxMYhyymnP5YWYqagBL2g3OEe/Z7bJ6JUeUfyLuzCSDLuOWP6JsOkew==
+ b=s2ta4w1ywSy+w79Vj1D3/0V8khtZPr4ZTPwmhIoejxoYAyoIKfuGa+QCegIcaG438rjaHU5qsZ0cpGJjKUSZeT+Ewru31jmT5CttG1ydqkfbXHZzp5C8HspnEr9nuD43XZ83Tfv2trMKKL7P5E3Iz9HGL/81sK73Oj2Z4c35c3Eeob/VSV8IjwgyK7HhLAMmMq1EAsIXLzj9CEeGHH7zo3cN216YHxnpJ+65WdnweAxDG4gjNkS0YquqosgPAcNwaJxvkS/Ngqy2lGxTRTlzPWnIX6zu7zHZcHzAqKGpDsFxAhQ57PlM4Uf77D4LGV8gzI5cGk3LUpwYIK2sC4mbXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=egeh9wioXVuyykVZxva0ZCEgPB6rpUyW2X2GvvYCQbM=;
- b=X0LBhSVuRgDFP/ZsI5xYANMwqJMRmqN1ieusseOf/UPtLLvt27hlAC43ZJzBorcNMV3R7iBh4fIX4DrVH+PMegyxMj2z9BfWpli2syFVO6s2VttTRsoCUgjPTLrCARBuFH6wVOMt/d3l6Q/d+Qq4TR1XI9PfBOPA5XiuVCUYipwokOev7PRRKmlCNLJrpK4WlDyejgeQmFtjmWZb40Fqe8MiRGSU8qSehbQh6xbAUxC1Hk4ZWbrRHrzhR+B3Gt2HclpNKtojAl+qamlN8AFWRrSKty7OUhs9fNy1a1h1WDtjbGh1BxXcIjjCFEc6iEr369cYLepf/6JLVKAiaxxi3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axiado.com; dmarc=pass action=none header.from=axiado.com;
- dkim=pass header.d=axiado.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
+ bh=1SGAWMv2ieK2/7euegJpE1Q4w/hUrKGOv7EraMv1AjE=;
+ b=BQXSVP1p3CrpJUWOIbLp+pCw6ruCemi3aiBF5m7p+T4YfPEXQryHbn+Jwl7JNf5Ww7kGK5Gv4v/E2Fliqf5L07m/AopZZaU5ULLwJvCqFkrwPkjmHkUdTkIhRk5/8cdsB2g4S1okpSKsbgLlTRphUWrEu0CfD8sbnDcNeZUSlIlsTVYADOMcW3MFYguln5EnkqJDqQ3y4r139gxuQTqDJpnPHLNBg0w40f0+QqKmZatAX1Qw2XpXVIpjmHFClOFiuLgsTfSmYxpfjOgyfdhCoujoNT9zCpO4JGOB3RiDahDYkIa6DKnIA57MR4CROrMxzP/s29wL9Xj0IGL6MNR0CQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=egeh9wioXVuyykVZxva0ZCEgPB6rpUyW2X2GvvYCQbM=;
- b=iVe+7I4x7x4AyvRqob1j8M/HAdLp006+fUnR9xrNEjsUwAJTcZziDGP9pQRD6MJsTRlXd9ECEsOkG3egzlDI0TSW/d3pm9rz2FIen3DjPD50+R4reuCcV0tJeRSeYDfzJsbKrO9hCOZhsKpXj7ycDpv2ziV/yKTC63cwZHM2wT5Gqg3SXn6M6wMmVVG69gcKkaWL1+SJb1LMRZns1psOPMn/2I9qk8xNmVB7o3po4i2FRhyq/hNMwyG0ZxwDtfxBV1ESw8t5uULG0xSCRkcrggj1x3637O/afoDxnpi32HMK/6jo2bh5MLNrCiC478gZqqTWZpkhS//XmYvRPmk8/A==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received: from DS2PR18MB474501.namprd18.prod.outlook.com (2603:10b6:8:408::15)
- by BL1PR18MB4166.namprd18.prod.outlook.com (2603:10b6:208:313::14) with
+ bh=1SGAWMv2ieK2/7euegJpE1Q4w/hUrKGOv7EraMv1AjE=;
+ b=crU2b8lvsjlMbpsHx8sCwblDTd22gBZXMidIbg+/vXKVMxutGTH/8v93A3UTxDPT5RPCV6YahE9JnKGz+uMaAM+D3ylDl+PCFb6QYI0KWuaCMuq5QCRvELaXP/N9rwYTrrDZe1BL7yRCOb1ZjF0PAi+i3FUCwHtPCbVB3koDab7pJacbV51H4HWx0DLXSCex+UWPsnccap0ee1qjenJxkiaEkWaHzKkg1n1qHI3fKUg7RqXK9jZCQCoWMmqJqzrM3wNOx2PWRy0dAjyLbb2XVyI+WGdxOY2vwlQWyyd46ZYmlYVRX0qaCh63OVeSOMBlYXNLP/i6gYxFBEA9k0dmKA==
+Received: from DS1P220CA0024.NAMP220.PROD.OUTLOOK.COM (2603:10b6:8:44c::19) by
+ LV1PR12MB399762.namprd12.prod.outlook.com (2603:10b6:408:50f::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Tue, 10 Nov
- 2026 18:24:35 +0000
-Received: from DS2PR18MB474501.namprd18.prod.outlook.com
- ([fe80::a782:2e12:c00:3b1d]) by DS2PR18MB474501.namprd18.prod.outlook.com
- ([fe80::a782:2e12:c00:3b1d%4]) with mapi id 15.21.0615.007; Tue, 10 Nov 2026
- 18:24:31 +0000
-Message-ID: <2b550966-0185-47bd-80bb-ebab6f717e2c@axiado.com>
-Date: Tue, 10 Nov 2026 10:24:29 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [GIT PULL] Axiado DT updates for v7.4
-From: Tzu-Hao Wei <twei@axiado.com>
-To: soc@kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20261028193648.73841-1-twei@axiado.com>
-Content-Language: en-US
-In-Reply-To: <20261028193648.73841-1-twei@axiado.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ2P220CA0002.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5da::10) To DS2PR18MB474501.namprd18.prod.outlook.com
- (2603:10b6:8:408::15)
+ 2026 18:25:30 +0000
+Received: from BN5PEPF00046987.namprd02.prod.outlook.com
+ (2603:10b6:8:44c:cafe::ad) by DS1P220CA0024.outlook.office365.com
+ (2603:10b6:8:44c::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Tue, 10
+ Nov 2026 18:25:30 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 216.228.117.160) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BN5PEPF00046987.mail.protection.outlook.com (10.167.245.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 18:25:30 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 10 Nov
+ 2026 10:25:03 -0800
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 10 Nov
+ 2026 10:25:03 -0800
+Received: from nvidia.com (10.127.8.13) by mail.nvidia.com (10.129.68.8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56 via Frontend
+ Transport; Tue, 10 Nov 2026 10:25:01 -0800
+Date: Tue, 10 Nov 2026 10:24:58 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Mostafa Saleh <smostafa@google.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kvmarm@lists.linux.dev>, <iommu@lists.linux.dev>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <maz@kernel.org>, <oliver.upton@linux.dev>,
+	<joey.gouly@arm.com>, <suzuki.poulose@arm.com>, <yuzenghui@huawei.com>,
+	<joro@8bytes.org>, <jgg@ziepe.ca>, <mark.rutland@arm.com>,
+	<qperret@google.com>, <tabba@google.com>, <vdonnefort@google.com>
+Subject: Re: [PATCH v9 11/25] iommu/arm-smmu-v3-kvm: Add the kernel driver
+Message-ID: <avNhekBYqiiZ9IM2@nvidia.com>
+References: <20261015200903.2735565-1-smostafa@google.com>
+ <20261015200903.2735565-12-smostafa@google.com>
+ <auzvygiGRTWgJXzF@nvidia.com>
+ <avGk0ilyJh3obmKx@google.com>
+ <avJidXM9yQOX4VBJ@nvidia.com>
+ <avL016l_xASN5paR@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <avL016l_xASN5paR@google.com>
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PR18MB474501:EE_|BL1PR18MB4166:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd96e86a-6167-4d84-76c0-08df3f57dcf8
+X-MS-TrafficTypeDiagnostic: BN5PEPF00046987:EE_|LV1PR12MB399762:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca06cb32-3698-40b9-50e6-08df3f58005f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|42112799006|23010399003|56012099006|261021123027099003|261021121427099003|261022105027099003|261026121527099003|261028144727099003|10067099003|261102123227099003|261026140227099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: GFLqTRlxQ7EKK38JO/Qe1N5wGw5r6tqJAQDMLVDO+mZI3ZvSb03u6Y/AwMY0qAVRBKj4wnOReO4gL4JDKBAcNSUKfE8XW5VzRTS0sLOoXAmqf8O8JtFkkGwD8Ny8IM47aa2rpj0m7Azzu/EG9+ADTMoQdpjT2DlpTCgc0sz/E9QIQU2MKbYL7BbqTDBzQggj/2s7/vxVVyNG/TFbplZP4oCp2YJXSomlBZ5pCmQmoXsYeRkr0VzmQ0zKbbEFrZchhBCYBsTqVag1+Bn8ZB2VSbNglCyDAIr+jVNdBJs3FzHbJhwoBmNG/cvHPBSixLGpZsBlBRnMZmOLu7MUQV2RPwJ3w2o0RKAkM03LEfQ6fFbcu0Cqph+eUNBB0mSy477ZQ8nYtcw2nrTu4BSGnsrtyx5gpJh3MccCFFDZd+X3f8Z1fz32v9B+/mXD1TnsQFsVmIRUi4jKNHsJNqCKm/NJH/erMlFRW0cb1k/TE6KpCMArI6ztAN+q20nmpC2beNoZLmgGDLWw8NOp37ClVaJsONlDABV19GjomhP2nwDx9R/Wrf4SAnjsvdj3qWVCiTUFEEtif74IaLZf/lRGRMcV1hF1dLrWGdnrL0dSOw66DHhzMoWgfmH74hVEHWkya/3z7x4u/iMMLMTUxHwvv4Y93oYZKQlJ8BlrJtT/ZaDAU9s=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR18MB474501.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(42112799006)(23010399003)(56012099006)(261021123027099003)(261021121427099003)(261022105027099003)(261026121527099003)(261028144727099003)(10067099003)(261102123227099003)(261026140227099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700016|23010399003|4143699003|11063799006|56012099006|261021135927099003|261021121427099003|261022105027099003|261022075727099003|10067099003|261026121527099003|261028144727099003|261009223027099003|261102123227099003|261026140227099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: 6S6QdI1Lq8ryb3ctJ4/D8Sx0+kYFLo0cV1gE4MgQ1VCSZfRHa5ZoLHmDZHie9QnEy3WcC8hhUOoyrJK3mJUeCVZKxTEXtpXrEaWxmv0e3HQ7COUJQaTz8sKsATU4WTWVOGYk+hOzl/EN7+XGRcSxgkTqbhOsnfop6IoUW6/KPXxjcaYVOsZTkKOjJJfy/CR3H9g5JaL3ceVG+riYF0Rem9oHgFsxT11ZzXjOryK0F/Q1hhDa4migqSIxXcGdOBG1T444QFphz90JCtb2Kj6Txp6gLpE1oQFwEvMJ0DpHY1VemCtHdvcgJXJGV8lIFCuh/GxgPZu4gv8wAVLsSqx57Yvj6N2OCSGTGU/A19c2m8pmfwcDP9dijpN1myXAZOwFTgfisiWz5aQnKemGREtPx8zTs7ceYOOGJhJoXGDN4vlvmGgw3QPajz/vOcYs/CzTEE9HX3xabzq5bT5E6p5kp9/D+TU04fYqu6+5XGV9s6r5HgIq4QOdOZDA5KbSW+QNvaKr4aMXFlqUB/DtFZw0GUaDXTlqW1jtjSifoRAPKXCbk3FHb0e4Eq1BMS+GuyKZy6FVL+GGSxvdzScYCGxoFaj6QpUtMoo0tIvG0LljuBCOEiV64+yXIWVPia9fNFsBlzzxWnJXlmt2Eb3V8hhR8vVq/pRo49hRUuND3bhb/xnlkWM6YMxJ2QB/hH8Vi+ertP9HSfe2Xk3iwgpXrV9y8w==
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700016)(23010399003)(4143699003)(11063799006)(56012099006)(261021135927099003)(261021121427099003)(261022105027099003)(261022075727099003)(10067099003)(261026121527099003)(261028144727099003)(261009223027099003)(261102123227099003)(261026140227099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OWlLcVhvdmVYUkhtSjZGMTVkS0Y2TUpoTDVtbjRENFZXWksvVnlNVXMvWjVD?=
- =?utf-8?B?alRzbUpFeVhLUjhrOWtUOHN0dXM5TkFjUVpSTERpVFdrcGM1UmlKVzd1S29U?=
- =?utf-8?B?VDlLc1RnTnFZRzYwZC80WktFa01leDB5S09CeGVLVXVFalVsSDVmMGFwaFg3?=
- =?utf-8?B?VGVDV0V5akE2czJkN3VYNzloSzVMTWpoazlCUncxM2VyUHhGMnU0amNDa2Jy?=
- =?utf-8?B?RzJiNG9vSERac0pOU0RNV3J4czF3ZGtUd2Fabml4UDVodWlkc3JiWW84MzVM?=
- =?utf-8?B?Z1JFT3N2eUlBajZEdGhKVVVlOERBWEJBWEJ2bFBrL3Q5SHh2RTZtdGdnSWlX?=
- =?utf-8?B?UDhFbkI5NFZCd3ZaZVRqZE8rN2hBbnUxUzFMcGphM3NYQjBJUUxjY2FRakNK?=
- =?utf-8?B?bzFDNzJseVMyNEUwd1dPYTEvQ21TMTBrMzVwT3U3MlQvQ1kyN1RtYjJjeWkz?=
- =?utf-8?B?UmlCazFtNVpoZmRpTjdqVmo4N2RVMm9RMmh1UGd0WngyekxPNnZZcFlUczBP?=
- =?utf-8?B?UHRlOHVXN3NUd3RBcmwrK1cvL3ZNM2xKMkZRdW93a0l5WmJYK3FrZGJ2SHhh?=
- =?utf-8?B?dmZwQ1paK0c5Q3pWUEdEbjhDZEM5K2x1RXJwQ2RsQmpFMk1FVkhrV04yczQr?=
- =?utf-8?B?anR2N2NSVjlaWHBUUjBTcVJmaFozbXpQeXBaV2xXN1QrMHRSWWtySjVrSVE0?=
- =?utf-8?B?dmVxUXcyRzQ5VDBDaUx6RUFMMWxKRS96N0toUWZ2dFhDQmhvOFZqUVoyTTJN?=
- =?utf-8?B?TWt3eDJFNXM1ampwVzE4a215d21jY1FwVkt5OExCTmxhd1FLTm1hajE3TnJw?=
- =?utf-8?B?SlF2UVRqTk0ySW5aQU9BakVqZjZQemxhRjZjbzc2d0Fld0dDSmJiRXJQT2RZ?=
- =?utf-8?B?cmRKdHhkK0dpQmU3TFBTNzlXOXgyU2hsYW4yMlFmc3c2ZGtnS2R0aDRQK2E3?=
- =?utf-8?B?dTNYNVg1WFdOdTlBSEdlUnNrNkVHWU9lM095bnUrTHVUeEsxRVhQYytOOWRE?=
- =?utf-8?B?N3lYK09PbmZsNFpQWDh1QnowRFlvczlVS3JMaXhRRUpjUktBcEo5cnptUXFs?=
- =?utf-8?B?YktkTEtJQVNKcFhxcFVweW9abVlIZFNaaXhjZ09XSnkrU01vUnJRZ3JYejZI?=
- =?utf-8?B?Z3lFbzh5cEVRcG52R2hxUzBqUXppd3JxWEFldHZ2OGRvTFdWZjZyS0J3amd4?=
- =?utf-8?B?dWdZNE5XVTB2VXBRbkN2YWRYaEduck16U002ZUFqNEVsOUdncnBZeWFWUnZP?=
- =?utf-8?B?UlhFRmg1emF0Nm40bXFxZWZnYzZ0QnNtRjBJNEQwS3J5NUp3ZVNhZFFRVFZx?=
- =?utf-8?B?YzgrYkFyTjFrNVQrUlRzZzhoNzZWcGZEY0o4VHZZSFlSWURTS3JjdjRob1Q3?=
- =?utf-8?B?MDdXU1RMYW1yaGVQdWxzQUp0SWQvYTd1aC9DR09aV21lMkdxRXN6T252NVcz?=
- =?utf-8?B?Ny9PWWVoRWp2QmFWcUt5RjliYXN4S2xvNDNVQ2JDUythajdOUGlSZHM3Z2dC?=
- =?utf-8?B?UFFwNlZLelJNR3RiQTdRNm1JMzZpVjhabnF4Ni8zV1plNksvNUNuaGo1T0Ra?=
- =?utf-8?B?TVh3VzJCcDVhOE1QS0tldFBKZTBFZGgwUklDZ1VZMTUxb1p3bzRWZ3pUN2R4?=
- =?utf-8?B?c2o3Sm9VMTE2M0FKeFlnR1VYSks4dFYxOVZ2Ung4WWxtKzBMZkFRWkw0Mk5o?=
- =?utf-8?B?YVdRVE1yUEwzMkxqWlFaSjFSdGVwWk9JcFVxSHdscGt4VjNHMGUvbytidWRx?=
- =?utf-8?B?ZWlYVTNVdC9qMEJSbGtaQmRXMi9FNkhObjg3ODQ1dTB2ZnA5cC9JNE9vSW10?=
- =?utf-8?B?RkFUTjVWeHpHb2lvdkFJaDFyRU1tOVlBRy9QblVicG1TQ2p5ZTcxUjBuU3FY?=
- =?utf-8?B?M3NOSlRrSC81WnAwSGJQazJIVXJINythUERjQ3N2TjgxdStaYTczUGpKUTVi?=
- =?utf-8?B?bThjWHp5YVBYcjJjb0xuVkNBQTF2czQrYTAvQXFIUXNSbUxvNWZscmczLzU4?=
- =?utf-8?B?OGhEQzF1TzY4M2haZUc4S0ZqeFJuRVdsU3NjTWVnSlFQY0tNRnNRTzlvak1H?=
- =?utf-8?B?cDRZa1NOSjZxUzAyUU9OdU9xa2ZPRXVRcStmV0dENmdISC9hNFJaZzY5NGRn?=
- =?utf-8?B?VkFqSy9XRHhuRmVGc0R3aHN5TWlJSTFheHNLcElhYWFFYWVjQVlNY0w4YmFY?=
- =?utf-8?B?OU8zQjdMTVZ1MjFoUDc5eGpkYUg2TExwb0FmRW1UUGZRbkl1VUhVemtvdSsr?=
- =?utf-8?B?VnBxa01RNjNxYWN0cGd4UnY5Wko1Q3dsRG9vNmZXVXovcWdRSlRFdmtpbUFR?=
- =?utf-8?B?d0dRUE9kc01lOVB2Ty9Zbm5pdG9EQWpmeC94bXVnZVZRaC85MDZtUT09?=
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd96e86a-6167-4d84-76c0-08df3f57dcf8
-X-MS-Exchange-CrossTenant-AuthSource: DS2PR18MB474501.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 18:24:31.3388
+X-MS-Exchange-AntiSpam-MessageData-0: V9xa4ytZMB7MaVuIbrpPJNHNDDilADb08ROUavpEVlCMEhSqto16sJRjO69o6vlong3IrUtT4rd2u7OsEdYYnxm5xw4J9Ok4ecmorGDTZISNqbhK/XhTLfCwLCBDRntB01cSHpgPn9q8HBzr/wa9i4Oc4JiseFw4wO6fB7EUyHVMYip37B2T/9xwDAuC+LxxEPcWlAJ0dVLAlzNkwgbaLF2ZNM67DE9JXpyMzbx2F4cxgpGFznGIm5XfTBUBX/Fna+u41M+6CLomSyUrY4J/ouqYYcjVh2OJgNT4zHsEKa8uVx34ikM1vtYFezFpTU20TCTCGfu3kMFUhML4hlm8pY8+tMEAClTQpFdgWBfwXApWLyhek0E7h89hLqaja3NZpRW0SlCIOhIpNbMQJSKFe0sJfegf/4fobBN2ptbGFmVY0/eWHrrOj58ZkyrSuSrd
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 18:25:30.4057
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mmVqhTbsHql/AD2MenVYdawtfllEW9U6X5BZy9modA3uH+bUCis92PWMCz6LFdgn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR18MB4166
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca06cb32-3698-40b9-50e6-08df3f58005f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN5PEPF00046987.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR12MB399762
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_102441_880215_25DC3E90 
-X-CRM114-Status: GOOD (  18.65  )
+X-CRM114-CacheID: sfid-20261110_102538_457961_75045D5D 
+X-CRM114-Status: GOOD (  29.36  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -144,67 +135,62 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-22.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/29/2026 3:36 AM, Tzu-Hao Wei wrote:
-> CAUTION: This email originated from outside of the organization. Do not click links or open attachments unless you recognize the sender and know the content is safe.
+On Tue, Nov 10, 2026 at 10:41:27AM +0000, Mostafa Saleh wrote:
+> On Mon, Nov 09, 2026 at 04:16:53PM -0800, Nicolin Chen wrote:
+> > On Mon, Nov 09, 2026 at 10:47:46AM +0000, Mostafa Saleh wrote:
+> > > On Thu, Nov 05, 2026 at 01:06:18PM -0800, Nicolin Chen wrote:
+> > > > On Thu, Oct 15, 2026 at 08:08:42PM +0000, Mostafa Saleh wrote:
+> > > > > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > > > > +#ifdef CONFIG_ARM_SMMU_V3_PKVM
+> > > > > +/*
+> > > > > + * Two devices are involved: the aux device bound to this driver, and the
+> > > > > + * physical platform device bound to the pKVM init driver, which only uses it
+> > > > > + * for discovery. This driver keeps using the platform device, as it carries
+> > > > > + * the fwnode the IOMMU core and consumers link to, the DMA configuration and
+> > > > > + * the IRQs.
+> > > > 
+> > > > It would be nicer to have a diagram or so to show the co-relationship
+> > > > among different devices and drivers.
+> > > > 
+> > > > I assume the regular arm-smmu-v3 driver is a part of the picture too,
+> > > > when the pkvm driver binding fails?
+> > > > 
+> > > 
+> > > I can add some ASCII diagram.
+> > > If pKVM driver fails, no aux devices are created and the main driver
+> > > probes the platform SMMUv3 devices as usual.
+> > 
+> > I didn't check closely, but would it be safe to do so?
+> > 
+> > Is pkvm aware of the missing SMMU device and handling it properly?
+> > 
+> > When pkvm is enabled and the SMMU device is supposed to be a pkvm
+> > device, should it not fall back to the main driver?
 > 
+> If pKVM fails to init for any reason (unsupported layout or non-coherent
+> HW) the SMMU will be bound to the main driver so the system remains
+> functional.
 > 
-> Hi SoC maintainers,
-> 
-> Please pull the following Axiado Devicetree updates for v7.4.
-> 
-> This pull request includes:
->    Initial Devicetree support for the AX3005 SoC and evaluation board.
->    AX3005 EVK compatible string in the Axiado board binding.
->    Minor hexadecimal formatting cleanup in the AX3000 Devicetree.
-> 
-> Best regards,
-> TH
-> 
-> The following changes since commit cee9395acd8043be0644b25c34bfa86623f2b935:
-> 
->    Linux 7.3-rc1 (2026-08-30 13:34:40 -0700)
-> 
-> are available in the Git repository at:
-> 
->    https://github.com/axiado/linux-axiado-dev tags/axiado-soc-for-7.4
-> 
-> for you to fetch changes up to e728a5b8d68e4b567ea9420667450456121136d0:
-> 
->    arm64: dts: axiado: Add initial support for AX3005 SoC and eval board (2026-10-27 12:25:28 -0700)
-> 
-> ----------------------------------------------------------------
-> Krzysztof Kozlowski (1):
->        arm64: dts: axiado: Use lowercase hex
-> 
-> Swark Yang (2):
->        dt-bindings: arm: axiado: add AX3005 EVK
->        arm64: dts: axiado: Add initial support for AX3005 SoC and eval board
-> 
->   Documentation/devicetree/bindings/arm/axiado.yaml |   6 +
->   arch/arm64/boot/dts/axiado/Makefile               |   1 +
->   arch/arm64/boot/dts/axiado/ax3000.dtsi            |   2 +-
->   arch/arm64/boot/dts/axiado/ax3005-evk.dts         | 327 +++++++++
->   arch/arm64/boot/dts/axiado/ax3005.dtsi            | 844 ++++++++++++++++++++++
->   5 files changed, 1179 insertions(+), 1 deletion(-)
->   create mode 100644 arch/arm64/boot/dts/axiado/ax3005-evk.dts
->   create mode 100644 arch/arm64/boot/dts/axiado/ax3005.dtsi
+> However, pKVM will not be safe in that case regarding DMA isolation
+> as the status quo.
+> In Android, in that case, pKVM clears the FW (called pvmfw) that loads
+> the protected VM and authenticate it so any protected VM knows the
+> system is not trusted. This part is not upstream yet. [1]
 
+You might want to double check a dual-SMMU case, where one gets
+accepted by pkvm driver and the other fails and so bound to the
+main driver.
 
-Hi SoC maintainers,
+It seems the pkvm driver would still pkvm_iommu_register_driver
+and carry on with an untrusted SMMU. Would it also clear the FW
+and mark the system as not trusted?
 
-Just following up on the Axiado DT pull request.
-
-Could you please let me know if there are any concerns with the pull
-request, or if these changes should be deferred to the next merge window?
-
-Best regards,
-TH
+Nicolin
 
