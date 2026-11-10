@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E300606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA2C606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:15:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zQaiOo1Z;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BXckI2Sy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i7+Km5Y3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XGN5Ez40
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,92 +14,91 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XM3iyYGns51wHTuIfoJe4NYI7OiUdPja2Tnl8gWGEoQ=; b=zQaiOo1Z2o8CdEZ3Qyxqa2CxVS
-	FZOEpfW2TK25atvNEAsuxYYbjU/EJCY/kJVlkE1QO6xFN/YnMtAZ2GwlTzKMh9Dv8VBqvQRcD9UCu
-	jEl0NRMU2sExGKfoL9X3Wz46UTbpBmn2nZFvfVY4NJTcL8jK2Nm9JY8m7jk41Bpyu4Fkg+Y/b/J0M
-	NkbYyKyZvc+grKnqhXPtMd1SOJjThc1X9lpq+4MSjIiPEPTupZJSF61J6w7rFypdhIGgU6+BBFqia
-	DqmzNhhBW1EvA2rYIhD/ao1Njq3xkm7C2WYbun+sW/4wkIUqNRLJKpZHhwXl0ThFetfyySHCABYRh
-	XospJhUw==;
+	bh=ae4pe3RUGygwlUhXax0I830rKA/M8Wy+tBPNgk2/UPg=; b=i7+Km5Y3NcU3g9sOgDkaEtUWsp
+	tsEOqItYq0qo9QuTP5sMDW6gJFTTVMut7GxaVBvIInU7GsgR5y3DAKrTRGGGreKS0IQFikTv6ud+i
+	TqtHh209CriAmOOPvswC5OL1HgvfcLk57G2gmwN6a8IeMI4yr2dHDvqIsG2bMxiDiTXIPLXbcPwRX
+	VhlUEWYU6DvU3Z4iAecadAv/rgvL1vQ25Ow99YdQuGC/kQBwTsHBss8QZZYc8ZugCsY9IZq5pD57N
+	rElAu7Q5Dwh5ErBAyxw4vV7s+yjjOeCdcrPWYKYCYvc3zWkIQbCm7BQd4t0qkJf3Jb3ncsxfu/yx0
+	40G40TOA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg3J-00000002no6-1zqU;
-	Tue, 10 Nov 2026 07:13:57 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQg4M-00000002o4B-3VcX;
+	Tue, 10 Nov 2026 07:15:02 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg3I-00000002nnN-2cKz;
-	Tue, 10 Nov 2026 07:13:56 +0000
+	id 1xQg4L-00000002o3x-2dbY;
+	Tue, 10 Nov 2026 07:15:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6167741658;
-	Tue, 10 Nov 2026 07:13:56 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 31DCC40301;
+	Tue, 10 Nov 2026 07:15:01 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794294836;
-	b=wDl+jtID3YoGa9o0sIOGcttFHx7Rhdwu3pZVw/RgPNuf8NyqkqeOUi+FevFm2xwFGjrw
-	 cMYtIIbGDO+AczECyJ4LLnOOcCycRC4MyMGeu+WpcSWU+ePaZNL45dasqc3NfPBnuAI6Q
-	 tAMccOFJ0OJxaMcNLd85sPAj4x275o1oAWY2QPUSS38D69Eup25vxbwNiOz1A+P+xfoKi
-	 JiTt35s9JtW6aMwcIzSF18UlFy66tYX8jXMZ+pjdTYb1z/jPqBAodEAgM+U1U96L3iuzj
-	 m/lsy/Fuz9nQgj9Qvcnu0FsfrEDMO1wKzrygjxtGGWh6YP7U6y4dm0Vg2ZvLgoshVOw==
+	t=1794294901;
+	b=TQVmsnRG1gj56u1dNa9ELY9ePTVIXh3H6qoAVlg16OD2uLnli2PUauF6NzwBQyBHNlPC
+	 8VPt4NPujVFPnTKFJlVOLZ5HEgHKv5TVSk67biLfrjQ+tCgOQAj7nW2oLqQA3jxf7L051
+	 gEwb79FAfXBTCp0DyQJf/CfmYpkd+ubFkNEPCiOZQxmL6ef2U4HPzmQVHI1vmGHowt/gO
+	 1RbJRor58Q8x4o9xOljxyDQ9rJy2QWblt/bN8jTl2UwpZ4n3Jtx4Hth1zDxX3/lRwN33s
+	 JbrLw3DS0h2PeGYBp9llhZYJp/aZ//IuLCPTe1jew7iDhBe3hgDxnRDRWd1LSVwVRQg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794294836;
+	c=relaxed/relaxed; t=1794294901;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=XM3iyYGns51wHTuIfoJe4NYI7OiUdPja2Tnl8gWGEoQ=;
-	b=jrDnAmlVz8W5UzpFBMfgtk4GiQtbUei9d4rU9Mo5kfpFBNgb8x8aYHLFzgdZAEIyzSbQ
-	 oJoKxU7JJFiLY4/XdeQHZJtCXISajbgYqD3UGYICrT8CDxH0fUDnIUSYhkmyicsw40ide
-	 4s4+631XxhysTyrUmWNsa/dYwdAWLtXMqZg+TuPPKAo+GchHCN0Qw+jT2+IsJBzzfJXFK
-	 9QBcTHY0qmA2y1w2jEKlmzyL6Xm8iJrG+0uA0NMVn6DOhmI/RXms2DfTRHUvnRIib/Qj7
-	 2c33L9KtgioWohpfxjK93ZcSzqHcBdzXdbPZb+lBegMPdwVIbw13CLqSMzxaMka82PA==
+	bh=ae4pe3RUGygwlUhXax0I830rKA/M8Wy+tBPNgk2/UPg=;
+	b=oXY5P3iFg5HpaYNu9v9jBwwGs+m8cDVJmhyUw/Uboslf+7sqFu22w7d0fEsW9+Ek5sfH
+	 wtSjNXIlSvhICN0ABIaWpU2+tAGB+/fHgBBzG7QXIS3LEUzE/bDaHfOYaBYvuAoXuNmO7
+	 ht1FkqBc4Fy2GhPXeSD9pjvuaYnV78Sq4tqFkpSdvbRXTm0R4OBaxM4xPfxL72ojNWSJR
+	 2/u12hdlqF+JXmzQP4MWTYgeoaQmz0us4CJrdhYTHtztaiYobigT7yYlQvD9rKTJJMU1f
+	 nLhy864oqLdfdh//FpJMTZkJEyGVsDTaba40qzzbeyAH2HES0oopAd/Z6JnbXggCRKQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id A737F1F0089F;
-	Tue, 10 Nov 2026 07:13:55 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5C8701F0089F;
+	Tue, 10 Nov 2026 07:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794294836;
-	bh=XM3iyYGns51wHTuIfoJe4NYI7OiUdPja2Tnl8gWGEoQ=;
+	s=k20260515; t=1794294901;
+	bh=ae4pe3RUGygwlUhXax0I830rKA/M8Wy+tBPNgk2/UPg=;
 	h=From:Date:Subject:To:Cc:Reply-To;
-	b=BXckI2SyNPopOUTmH8eoNMzb5dE3gxSZCg2zel/DQT1akoxVddVcElmstirAh6u3y
-	 f0NGmJ7MT2Ig4UhkGLJGwYOGEoXL7hy2YIPPgHhprZAoHqB276FrddLxQP7VNCVzWd
-	 jwvvBZF3oq/AaujuuOxolpO/8e7uTL3qTbrUEHQ62INpI1ki3xBM31cXldQxK57E/G
-	 984UWc/8MTKhosh//M1EY2b+X8AkZqy1AkQnekSl8wFOL8QAEdU9/7x6zKSJkCMYNv
-	 fqI44YZH9F7avO1RNkOi7EBUhmG8owTBnjK8qWuQMaeRWzFf0sH9DVJrEkZJSx4TYY
-	 WnCaOk69waXoQ==
+	b=XGN5Ez40NfwkOD1+4OcbvyRmxrQRyys3RMZUhsE1y/MAu9UYLLAua0GLJ5AaO9QZK
+	 3ax0zShK7tOo3FXCJ0XWefFeFO4Drv9A1A1YAt6q4IcOFnJIHK1C/q/lzve0sn+6gm
+	 iAvFPrbmoaHd7D2DMogSlrpfO9+PqBvzcIfevbnA3sP3MIUj4W+dq9uHfT6q6i3BPF
+	 LTW0G/GIPUj0ybbMokMNA7puIR2E588VzZAJJ5Hxo7vgcSxEH1Is79IUbdrPNWaJvB
+	 gwntZh7y1gpa0iU17WsokybzvignlDGZdD/64l1Wz0oVD4yWMIYp9fPuE5xjdixNy9
+	 0FBobJaC403tw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3AE1A4891E;
-	Tue, 10 Nov 2026 07:13:55 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id E1A47488E6;
+	Tue, 10 Nov 2026 07:14:59 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 07:13:55 +0000
-Subject: [PATCH net-next] net: stmmac: dwmac-rk: only read the delays the
- MAC applies
+Date: Tue, 10 Nov 2026 07:15:00 +0000
+Subject: [PATCH] drm/panthor: Do not change the GPU clock rate while
+ suspended
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-stmmac-dwmac-rk-delays-v1-1-87abb6592921@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWMSw7CMAwFr1J5jaU4VOVzFcQiJC4YaEBxoK2q3
- r0pbJ40epqZQDkJKxyrCRJ/ReUVC9CmAn9z8coooTBYYxsiMqi565zH0K+bHhj46UbFmpzZ7ne
- Nrf0BivxO3MrwC58gcsbIQ4bz/9HP5c4+r12Y5wWXMDVLhAAAAA==
-X-Change-ID: 20261110-stmmac-dwmac-rk-delays-41a0387624c9
-To: Heiko Stuebner <heiko@sntech.de>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, netdev@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, linux-kernel@vger.kernel.org
+Message-Id: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMQQ6CMBBG4auQWTtJhwgLr2JcQPsjo6Y0HSAmh
+ LtTdPkt3tvIkBVGt2qjjFVNp1ggl4r82MUnWEMx1a5uRcRx6uI8TpltsYQY2H/eLBKa1l0HND2
+ olClj0O/ven/8bUv/gp/PFe37AdSOyWx3AAAA
+X-Change-ID: 20261110-panthor-suspend-clk-11d5604fe5be
+To: Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Heiko Stuebner <heiko@sntech.de>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ Jonas Karlman <jonas@kwiboo.se>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794294835; l=4046;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794294899; l=5357;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=QQNrpXBNV3rRDNQu9MSMqZkKJ0F2a8WJAor/zaH4Dzs=;
- b=/C7vRZ019UGX9xEoKZox6IV8k6tffQB9VzApV8qqosMVT1iLXR/1PDjegWS5Hdu7X7RjjaWaU
- YUuaeZtNgpXD+xcNDzz7bUfPLAHBcBOQ1lGwJhWyMw7CR3dHdeNQqcn
+ bh=5go781LIcqxZXcS2fgUKEcRmZbGKWGhE55YnHaY3k5E=;
+ b=sWRK/xNMMI8xbnZDMbozJG0VgEE8K+dtXH8cCcg14tTn5zwqv8mxRZjPzpKtbbHeqenDlJfM8
+ gr0hTA/AC6NBSGHJyQncQxQBZNCzvdDvdueMUOmBbsYasltnVlaC1mH
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -127,106 +126,128 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The tx_delay and rx_delay properties are only used for the directions in
-which the MAC inserts the RGMII clock delay itself: both for "rgmii",
-TX for "rgmii-rxid" and RX for "rgmii-txid". For "rgmii-id" (the PHY
-adds both delays, the recommended setup) and for RMII they are ignored
-by rk_gmac_powerup().
+From the start of panthor_device_suspend() until panthor_device_resume()
+has enabled the clocks again, the GPU clocks are off or about to be, and
+the GPU power domain may be down. devfreq can still call ->target() in
+that window: a write to min_freq or max_freq in sysfs, a thermal cooling
+state change or a PM QoS request all end up in update_devfreq() whatever
+the device state.
 
-The driver nevertheless parses both properties unconditionally and logs
-an error, plus the default it picks, for each one that is missing. A
-correct device tree using "rgmii-rxid" therefore gets
+With the RK3588 GPU core clock switched to the firmware-managed
+SCMI_CLK_GPU (needed to reach the PVTPLL rates of the upper OPPs), such
+a call is fatal. To set a PVTPLL rate TF-A programs registers in the GPU
+GRF, which sit in the GPU power domain, and with the domain off that
+access ends in an asynchronous SError and a kernel panic, for example
+after
 
-  Can not read property: rx_delay.
-  set rx_delay to 0x10
+  echo 1000000000 > /sys/class/devfreq/fb000000.gpu/min_freq
 
-and one using "rgmii-id" gets the same pair for tx_delay as well, for a
-value that is never programmed.
+while the GPU is runtime suspended.
 
-Only parse the delay values that will actually be used, so the error is
-reserved for device trees that really lack a required delay. Behaviour
-for "rgmii", "rgmii-rxid" and "rgmii-txid" is unchanged.
+Only apply a rate to the hardware while the device is resuming or
+active, plus the suspend frequency that devfreq_suspend_device() applies
+from the suspend path while the GPU is still powered. Other requests are
+still accepted and recorded by devfreq, which applies them on resume or
+at the next governor update.
 
+The RFC this is based on (Jonas Karlman's panthor SCMI clock change,
+carried in Armbian's linux-rockchip pull request 380) checked the
+runtime PM status instead. That
+status is still RPM_SUSPENDING after panthor_devfreq_suspend() has run,
+which leaves a window where the rate can be raised again right before
+the power domain goes down. The devfreq suspend count cannot be used
+either: panthor's first runtime resume calls devfreq_resume_device()
+without a matching suspend, so the count is -1 while the GPU is active
+and 0 while it is suspended.
+
+Suggested-by: Jonas Karlman <jonas@kwiboo.se>
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-Tested on an Orange Pi 5 (RK3588S, Motorcomm YT8531C on gmac1) with its
-device tree using "rgmii-id": the probe log has "init for RGMII_ID" and
-no "Can not read property" lines any more, the link comes up at
-1000/Full and transfers run at line rate (940 Mbit/s receive, 0 errors).
-The "rgmii", "rgmii-rxid" and "rgmii-txid" paths are unchanged and were
-not re-tested.
+Tested on an Orange Pi 5 (RK3588S) with the GPU core clock switched to
+SCMI_CLK_GPU and a 200 MHz opp-suspend (the configuration from the RFC,
+not yet in mainline): writing min_freq while the GPU was runtime
+suspended no longer ends in an SError, the request takes effect at the
+next job (1 GHz measured), max_freq likewise; 200 suspend/resume cycles
+with short GPU jobs and a 3 minute sustained load ran without faults.
+With the mainline device tree (CRU clock, no suspend OPP) the SError is
+not reachable and the guard only skips rate changes while the GPU is
+powered down.
 
 This patch was developed with Claude (Anthropic) as a coding assistant:
 it wrote the code and the commit message, and I reviewed and tested it
 as described above.
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c | 47 ++++++++++++++++----------
- 1 file changed, 29 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/panthor/panthor_devfreq.c | 42 ++++++++++++++++++++++++++++---
+ 1 file changed, 39 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-index c4db919ec164..f06428ce3cfc 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-rk.c
-@@ -1331,26 +1331,37 @@ static struct rk_priv_data *rk_gmac_setup(struct platform_device *pdev,
- 			bsp_priv->clock_input = false;
- 	}
+diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
+index 2249b41ca4af..cab86e9c9d46 100644
+--- a/drivers/gpu/drm/panthor/panthor_devfreq.c
++++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
+@@ -60,20 +60,56 @@ static void panthor_devfreq_update_utilization(struct panthor_devfreq *pdevfreq)
+ 	pdevfreq->time_last_update = now;
+ }
  
--	ret = of_property_read_u32(dev->of_node, "tx_delay", &value);
--	if (ret) {
--		bsp_priv->tx_delay = 0x30;
--		dev_err(dev, "Can not read property: tx_delay.");
--		dev_err(dev, "set tx_delay to 0x%x\n",
--			bsp_priv->tx_delay);
--	} else {
--		dev_info(dev, "TX delay(0x%x).\n", value);
--		bsp_priv->tx_delay = value;
-+	/*
-+	 * The MAC only inserts the delays which neither the PCB nor the PHY
-+	 * provide (see rk_gmac_powerup()), so only the delay values for
-+	 * those directions are needed.
-+	 */
-+	if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII ||
-+	    bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII_RXID) {
-+		ret = of_property_read_u32(dev->of_node, "tx_delay", &value);
-+		if (ret) {
-+			bsp_priv->tx_delay = 0x30;
-+			dev_err(dev, "Can not read property: tx_delay.");
-+			dev_err(dev, "set tx_delay to 0x%x\n",
-+				bsp_priv->tx_delay);
-+		} else {
-+			dev_info(dev, "TX delay(0x%x).\n", value);
-+			bsp_priv->tx_delay = value;
-+		}
- 	}
++/*
++ * Whether a new rate can be applied to the hardware now.
++ *
++ * From the start of panthor_device_suspend() until panthor_device_resume()
++ * has enabled the clocks again, the GPU clocks are about to be disabled
++ * or are off, and the GPU power domain may be down. devfreq can still
++ * call ->target() in that window: sysfs
++ * min_freq/max_freq writes, thermal cooling and PM QoS requests all end
++ * up in update_devfreq() whatever the device state.
++ *
++ * Changing the rate then is pointless, and harmful where the core clock
++ * is managed by firmware: on RK3588, setting SCMI_CLK_GPU to a PVTPLL
++ * rate with the GPU power domain off makes TF-A access the powered-down
++ * GPU GRF, which ends in an asynchronous SError. So while the device is
++ * suspending only the suspend frequency, applied by
++ * devfreq_suspend_device(), reaches the hardware, and nothing does
++ * while it is suspended. devfreq records the other requests: they are
++ * applied on resume or at the next governor update.
++ */
++static bool panthor_devfreq_can_set_rate(struct panthor_device *ptdev,
++					 unsigned long freq)
++{
++	struct devfreq *devfreq = ptdev->devfreq ? ptdev->devfreq->devfreq : NULL;
++
++	switch (atomic_read(&ptdev->pm.state)) {
++	case PANTHOR_DEVICE_PM_STATE_SUSPENDED:
++		return false;
++	case PANTHOR_DEVICE_PM_STATE_SUSPENDING:
++		return devfreq && devfreq->suspend_freq &&
++		       freq == devfreq->suspend_freq;
++	default:
++		return true;
++	}
++}
++
+ static int panthor_devfreq_target(struct device *dev, unsigned long *freq,
+ 				  u32 flags)
+ {
++	struct panthor_device *ptdev = dev_get_drvdata(dev);
+ 	struct dev_pm_opp *opp;
+-	int err;
  
--	ret = of_property_read_u32(dev->of_node, "rx_delay", &value);
--	if (ret) {
--		bsp_priv->rx_delay = 0x10;
--		dev_err(dev, "Can not read property: rx_delay.");
--		dev_err(dev, "set rx_delay to 0x%x\n",
--			bsp_priv->rx_delay);
--	} else {
--		dev_info(dev, "RX delay(0x%x).\n", value);
--		bsp_priv->rx_delay = value;
-+	if (bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII ||
-+	    bsp_priv->phy_iface == PHY_INTERFACE_MODE_RGMII_TXID) {
-+		ret = of_property_read_u32(dev->of_node, "rx_delay", &value);
-+		if (ret) {
-+			bsp_priv->rx_delay = 0x10;
-+			dev_err(dev, "Can not read property: rx_delay.");
-+			dev_err(dev, "set rx_delay to 0x%x\n",
-+				bsp_priv->rx_delay);
-+		} else {
-+			dev_info(dev, "RX delay(0x%x).\n", value);
-+			bsp_priv->rx_delay = value;
-+		}
- 	}
+ 	opp = devfreq_recommended_opp(dev, freq, flags);
+ 	if (IS_ERR(opp))
+ 		return PTR_ERR(opp);
+ 	dev_pm_opp_put(opp);
  
- 	bsp_priv->grf = syscon_regmap_lookup_by_phandle(dev->of_node,
+-	err = dev_pm_opp_set_rate(dev, *freq);
++	if (!panthor_devfreq_can_set_rate(ptdev, *freq))
++		return 0;
+ 
+-	return err;
++	return dev_pm_opp_set_rate(dev, *freq);
+ }
+ 
+ static void panthor_devfreq_reset(struct panthor_devfreq *pdevfreq)
 
 ---
-base-commit: d26955e57475434b59d43ba372b2a50d33d5e0ed
-change-id: 20261110-stmmac-dwmac-rk-delays-41a0387624c9
+base-commit: 8deaade4a5a4ff635df91e246e42139ab2b33f6d
+change-id: 20261110-panthor-suspend-clk-11d5604fe5be
 
 Best regards,
 --  
