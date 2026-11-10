@@ -2,85 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6F3606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91EF9606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nNBB0oaq;
-	dkim=pass (1024-bit key, unprotected) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=nLBzMlSx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QWDTCMmW;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zBEyXVWb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=NktuKJ+HdZZmK3ij5cZrSbeOH6QdZRjDKwfZol2aA0I=; b=nNBB0oaqRLX95/PuSRCN7MpS3C
-	0v+X/cQ1j+YSXTHphANFglBu7dBy1fpt9PPcvuP/4OUyo67mIdkRAsV3g6LOJmgdxasW1c1erAKw7
-	PCuoXke0Ueqdmbk6aDg697AW0GK2mU2fpedJhwoFiilOb9Rjivq3GfM7mGo53nIVmb7AHSEr9/9U2
-	jlbQzK/nojbYEb3KcH1oRejyPpCSiHBaGUUFgoWJNyZdfLqlx48WIZP7pcH07w+uQLYMc86H/4OBw
-	D3B01n/tz1bgXVryjPJSXI94WY0QH5Wr6JIRKfNofG/U2ltr4TohiCedkFuiRlnL4pDP65VUOvcXM
-	3G0aPplg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=0ZP0QwuWmQ0O/IufxQaXKe+ECU5VmX2aM2/ckpY7r/g=; b=QWDTCMmWpiSuPp
+	NpUDKTZji2omRq+t43YQ2cZCsDt7HxJY6+sk2JhxK2CZurOE5r0MOVLIyCcEC4/3uVzTpWdBF64k0
+	oM2Axo/ICpIson/LA49tZHN+1BZ5JacexWHWufd0WEWSEmlLPEz0BHjIyuHmp/1sWlIJMdsicx3zk
+	LB5BrVnKFca9mT4OSsPJumUiXv6ZClU1+yXqOQmDwBgW0Gd5Dzzp6uut1Ekuzf7SEzFiNEKUadu9R
+	OSRZ0b0DC7N2rBs2stGQUOLSbcj4E6HcXcCYY2tZ+sw5OOuVICnVFXE9v8q48KjjeNYcDbCrWjJpT
+	ccV6HQHVaJOT+8qHG5TQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkMO-00000003ghF-1spa;
-	Tue, 10 Nov 2026 11:49:56 +0000
-Received: from mailgw02.mediatek.com ([216.200.240.185])
+	id 1xQkYy-00000003jOa-0JqZ;
+	Tue, 10 Nov 2026 12:02:56 +0000
+Received: from mail-dy1-x132a.google.com ([2607:f8b0:4864:20::132a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkMI-00000003gbR-0k3e;
-	Tue, 10 Nov 2026 11:49:52 +0000
-X-UUID: d1ed729cdcfc11f1acbe4559397dec65-20261110
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=NktuKJ+HdZZmK3ij5cZrSbeOH6QdZRjDKwfZol2aA0I=;
-	b=nLBzMlSx/j8y8TzH+fGW/DePFjhN2bCfb++YrLPIFToImnQUbYqr44jsWFMxh06qwOyHFRakvKfdSCZARPjuw7mmGiDkeE+OE0xpTkLJqQu6PdPkAaNQKkLfNz/EvPsZspzwYR/nJUhfirA75IJYB3Xx1KASuxUV4LBNzmZUVms=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.21,REQID:5ff55efb-480c-4eba-8d9b-44d4ba115c76,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:b0318ac,CLOUDID:8fb91457-a87d-42b7-8ffd-9e23ca174329,B
-	ulkID:nil,BulkQuantity:0,SF:81|82|102|836|865|888|898,TC:-5,Content:0|15|5
-	0|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
-	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: d1ed729cdcfc11f1acbe4559397dec65-20261110
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-	(envelope-from <chunfeng.yun@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1832912157; Tue, 10 Nov 2026 04:49:43 -0700
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 10 Nov 2026 19:49:41 +0800
-Received: from gcnsap21.gcn.mediatek.inc (10.17.81.22) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Tue, 10 Nov 2026 19:49:40 +0800
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Mika Westerberg <westeri@kernel.org>
-CC: Andreas Noever <andreas.noever@gmail.com>, Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>, Sven Peter <sven@kernel.org>, Yehezkel
- Bernat <YehezkelShB@gmail.com>, Matthias Brugger <matthias.bgg@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <linux-kernel@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Chunfeng Yun
-	<chunfeng.yun@mediatek.com>
-Subject: [PATCH v2 1/7] thunderbolt: Prefix NHI core functions with tb_ and tb_ring_
-Date: Tue, 10 Nov 2026 19:48:49 +0800
-Message-ID: <20261110114925.722014-2-chunfeng.yun@mediatek.com>
+	id 1xQkYv-00000003jNt-2q3p
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 12:02:54 +0000
+Received: by mail-dy1-x132a.google.com with SMTP id 5a478bee46e88-372bdb942dbso2575120eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:02:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794312173; x=1794916973; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=0ZP0QwuWmQ0O/IufxQaXKe+ECU5VmX2aM2/ckpY7r/g=;
+        b=zBEyXVWb8KLzQTGHDgxTywooWlBJlAI7P5tZ1+K5DcuFn3dZXj3eB0cdrYh91hh23a
+         WV864YiM7sw0X/SYHaQc185pTK9ihJ+7wL/h0et3m+xTjEvFzruhYPEGHGtC+cRbQARU
+         1sUnvlx+HIDNV0lznLxZgmRvh18J6C/vto9ezmCq96HC4ETk3yAh/pYhQMMQnLmjVBqY
+         5QfNuTxMMWUJuw/tU3axP2b5PqPxrbgnoNbWhFOiAh68KIEDsB/okla5M3n5Os3E8FaY
+         poJ9KVf78jqXGh7yzuASHJ/ZgGcT12hYHNjqzSpWufzlPJOm9u/yWrrFocqMbiD2nfFQ
+         4MUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794312173; x=1794916973;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=0ZP0QwuWmQ0O/IufxQaXKe+ECU5VmX2aM2/ckpY7r/g=;
+        b=WPw7HpfhTJSGC0OssQjX8mdkQTGlxPkbW5aTNerLI9/yYT3VrDc0fLQJCKmyGvQsxa
+         jYl44QNrlMc6mimkJXUjtzr5+gGsJGrJ4kubBQIc9YTFtOGlU5fZ+WNFU01MDmx7cN0D
+         p1n22rOKmvkHhM1w7+grfXxDjCZEaYY1lW8mYWeVMFe+0Dl7xAilOqCJYk4V2uZbeNaV
+         j72ihKxsBijNpuGsrwdCFtK/DnsdwbXRatnCxFGs0B5ZRiNVx7B9W+WOfJLrYlHBuOOw
+         aWatTz0ECq+zC5mufsD0XQUfXUAGosRq/gtgItN8hwOiGyrHXYnze0B2LbvN97HLJR+A
+         Q/rA==
+X-Forwarded-Encrypted: i=1; AL+hErEVD/4f5DwA4VPwqf9UGkaw9SqhLgNyrC4FsjOTBwfKDVWmT1v/w0ICEv9WLDbn5GwJPcL0iLTO3x9eRKniRzyW@lists.infradead.org
+X-Gm-Message-State: APuU4Z/1rYo3g38yCacPVcZJk0GE9Kntj5z+RbjH4AVk4PmWGNUzXYd9
+	/NmbimhEuY8MxavGMtLszPXMTD+4hukXD6rzqGzeQd4vgH0Znukjuw9s
+X-Gm-Gg: AYBFou1VEN0uD9uJFUayCvyhYD6awHLGQaFr4kdnacLeMqJVrdSltRCfLMT0Tg/3jW4
+	plAZJJ65geyrS8QdcWZzncr3CnOub+9q4qJ6VTwQFLH01bw0n0lF03obO1Dvxp56wC8EqRVwTze
+	jNwFo631fpRXBDmv75mOSfqwUkKRs0OHf3MrJ5rn/GwKYWFKEryQI6Vf7fX/Wrxbwxe/WGc39jJ
+	KmCdoyDhDKF/IhRRh0MalNetV8+XvXdxctmt0TR2kQikA8usy5/TPxkAZBIcg5BWaBCITNDRd5N
+	RhDpX/jR2e8hRP2hJ6wlSoFIc4lC5wUroEqTKNoUqcjtT3PCevFHaQ4Lg9M07PMsUq1P4JSQdZw
+	ggMROLRttNFJdvK4Fsb3d2vGwwIt1mscBMV+VZAY6WXfw3aM86o4Hgawk7qieik4+dhrfR4OFyD
+	oE8Elz+46ju2CFIb3LWKDFV9cenDpwOxIbcsuSAdnWt/x1ZOC70pQjBAqIEs1K+1ml9s6ksLmLK
+	XBIuWw1JT4Wc1YkRlMzjIyyjlGZ8zARyIUicDH21dxNumQG/BE1pQmS4+9dR1Zol6nsk48zr6p3
+	6HfKf1tglXj5DFrZfgSRbHMqhvU3AUdoTCZAfCRCfN6WNo5O
+X-Received: by 2002:a05:7301:fd03:b0:36f:f3b7:6dee with SMTP id 5a478bee46e88-3751ee7c2c9mr2880533eec.7.1794312172706;
+        Tue, 10 Nov 2026 04:02:52 -0800 (PST)
+Received: from hj.. ([163.239.22.29])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3751ad6f11csm5931001eec.0.2026.11.10.04.02.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 04:02:52 -0800 (PST)
+From: Hyunjung Ko <hj351016@gmail.com>
+To: Neill Kapron <nkapron@google.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Vladimir Zapolskiy <vz@mleia.com>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>
+Cc: Roland Stigge <stigge@antcom.de>,
+	Arnd Bergmann <arnd@arndb.de>,
+	linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	Hyunjung Ko <hj351016@gmail.com>
+Subject: [PATCH v2] usb: gadget: lpc32xx_udc: drain the pullup work on removal
+Date: Tue, 10 Nov 2026 21:02:43 +0900
+Message-ID: <20261110120243.2540098-1-hj351016@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261110114925.722014-1-chunfeng.yun@mediatek.com>
-References: <20261110114925.722014-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20261110114351.2524921-1-hj351016@gmail.com>
+References: <20261110114351.2524921-1-hj351016@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_034950_234859_B6F4EBA7 
-X-CRM114-Status: GOOD (  19.12  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_040253_718991_0804531E 
+X-CRM114-Status: GOOD (  11.84  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -91,188 +107,62 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In preparation for modularizing PCIe NHI support and allowing PCIe
-and platform NHI drivers to be built as separate modules atop the
-Thunderbolt core framework, several NHI functions and structures will
-need to be exported.
+isp1301_pullup_enable() schedules udc->pullup_job to perform the slow
+isp1301 i2c pull-up access from process context. The work handler
+(pullup_work) dereferences udc and touches the isp1301 i2c client.
 
-Currently, several of these functions lack standard subsystem prefixes,
-risking namespace pollution or collisions across the flat kernel symbol
-namespace:
+udc is allocated with devm_kmemdup(), so devres frees it after
+lpc32xx_udc_remove() returns. remove() calls pullup(udc, 0) -- which
+queues pullup_job to clear the D+ pull-up -- but never drains it, so the
+work can run after udc has been freed (and the isp1301 client put),
+dereferencing freed memory -- a use-after-free.
 
-- ring_msix() lacks any subsystem prefix and diverges from all other
-  exported ring functions in the driver, which use the "tb_ring_" prefix.
-- nhi_probe(), nhi_shutdown(), and nhi_pm_ops lack the standard "tb_"
-  prefix used across the Thunderbolt public interface (such as struct
-  tb_nhi and struct tb_nhi_ops).
-- nhi_msi() is named after PCI MSI, even though the ISR simply schedules
-  the interrupt work and can serve as a generic ISR for non-PCIe platform
-  controllers as well.
+Flush pullup_job in lpc32xx_udc_remove() after the final pullup(udc, 0).
+flush_work() (rather than cancel_work_sync()) lets the queued pull-up
+disable actually complete before the udc and its isp1301 client are
+released, so the transceiver is left with D+ deasserted.
 
-Rename these functions and symbols to conform to Thunderbolt subsystem
-naming conventions before exporting them:
+Found by static analysis; not runtime-reproduced (needs LPC32xx USB
+gadget hardware with the isp1301 transceiver).
 
-- ring_msix       -> tb_ring_msix
-- nhi_msi         -> tb_nhi_isr
-- nhi_probe       -> tb_nhi_probe
-- nhi_shutdown    -> tb_nhi_shutdown
-- nhi_pm_ops      -> tb_nhi_pm_ops
-
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Fixes: 24a28e428351 ("USB: gadget driver for LPC32xx")
+Cc: stable@vger.kernel.org
+Signed-off-by: Hyunjung Ko <hj351016@gmail.com>
 ---
-new patch
----
- drivers/thunderbolt/nhi.c | 14 +++++++-------
- drivers/thunderbolt/nhi.h | 10 +++++-----
- drivers/thunderbolt/pci.c | 10 +++++-----
- 3 files changed, 17 insertions(+), 17 deletions(-)
+v2: flush_work() instead of cancel_work_sync(), so the pull-up disable
+    queued by pullup(udc, 0) completes rather than being dropped
+    (OTG1_DP_PULLUP would otherwise stay asserted after unbind) -- per
+    Sashiko review of v1.
 
-diff --git a/drivers/thunderbolt/nhi.c b/drivers/thunderbolt/nhi.c
-index e99a3fcc4a29..c574c336f25b 100644
---- a/drivers/thunderbolt/nhi.c
-+++ b/drivers/thunderbolt/nhi.c
-@@ -535,7 +535,7 @@ static void ring_clear_msix(const struct tb_ring *ring)
- 			  4 * (ring->nhi->hop_count / 32));
- }
- 
--irqreturn_t ring_msix(int irq, void *data)
-+irqreturn_t tb_ring_msix(int irq, void *data)
- {
- 	struct tb_ring *ring = data;
- 
-@@ -935,7 +935,7 @@ void tb_ring_free(struct tb_ring *ring)
- 
- 	/*
- 	 * ring->work can no longer be scheduled (it is scheduled only
--	 * by nhi_interrupt_work, ring_stop and ring_msix). Wait for it
-+	 * by nhi_interrupt_work, ring_stop and tb_ring_msix). Wait for it
- 	 * to finish before freeing the ring.
- 	 */
- 	flush_work(&ring->work);
-@@ -1072,7 +1072,7 @@ void nhi_interrupt_work(struct work_struct *work)
- 	spin_unlock_irq(&nhi->lock);
- }
- 
--irqreturn_t nhi_msi(int irq, void *data)
-+irqreturn_t tb_nhi_isr(int irq, void *data)
- {
- 	struct tb_nhi *nhi = data;
- 	schedule_work(&nhi->interrupt_work);
-@@ -1216,7 +1216,7 @@ static int nhi_runtime_resume(struct device *dev)
- 	return tb_domain_runtime_resume(tb);
- }
- 
--void nhi_shutdown(struct tb_nhi *nhi)
-+void tb_nhi_shutdown(struct tb_nhi *nhi)
- {
- 	int i;
- 
-@@ -1306,7 +1306,7 @@ static struct tb *nhi_select_cm(struct tb_nhi *nhi)
- 	return tb;
- }
- 
--int nhi_probe(struct tb_nhi *nhi)
-+int tb_nhi_probe(struct tb_nhi *nhi)
- {
- 	struct device *dev = nhi->dev;
- 	struct tb *tb;
-@@ -1371,7 +1371,7 @@ int nhi_probe(struct tb_nhi *nhi)
- 		 */
- 		tb_domain_put(tb);
- 		wait_for_completion(&nhi->domain_released);
--		nhi_shutdown(nhi);
-+		tb_nhi_shutdown(nhi);
- 		return dev_err_probe(dev, res, "failed to add domain\n");
- 	}
- 	dev_set_drvdata(dev, tb);
-@@ -1391,7 +1391,7 @@ int nhi_probe(struct tb_nhi *nhi)
-  * the tunnels asap. A corresponding pci quirk blocks the downstream bridges
-  * resume_noirq until we are done.
-  */
--const struct dev_pm_ops nhi_pm_ops = {
-+const struct dev_pm_ops tb_nhi_pm_ops = {
- 	.suspend_noirq = nhi_suspend_noirq,
- 	.resume_noirq = nhi_resume_noirq,
- 	.freeze_noirq = nhi_freeze_noirq,  /*
-diff --git a/drivers/thunderbolt/nhi.h b/drivers/thunderbolt/nhi.h
-index 88af9ab9fde7..a36c62c49a5c 100644
---- a/drivers/thunderbolt/nhi.h
-+++ b/drivers/thunderbolt/nhi.h
-@@ -32,11 +32,11 @@ enum nhi_fw_mode nhi_mailbox_mode(struct tb_nhi *nhi);
- void nhi_enable_int_throttling(struct tb_nhi *nhi);
- void nhi_disable_interrupts(struct tb_nhi *nhi);
- void nhi_interrupt_work(struct work_struct *work);
--irqreturn_t nhi_msi(int irq, void *data);
--irqreturn_t ring_msix(int irq, void *data);
--int nhi_probe(struct tb_nhi *nhi);
--void nhi_shutdown(struct tb_nhi *nhi);
--extern const struct dev_pm_ops nhi_pm_ops;
-+irqreturn_t tb_nhi_isr(int irq, void *data);
-+irqreturn_t tb_ring_msix(int irq, void *data);
-+int tb_nhi_probe(struct tb_nhi *nhi);
-+void tb_nhi_shutdown(struct tb_nhi *nhi);
-+extern const struct dev_pm_ops tb_nhi_pm_ops;
- 
- /**
-  * struct tb_nhi_ops - NHI specific optional operations
-diff --git a/drivers/thunderbolt/pci.c b/drivers/thunderbolt/pci.c
-index 4408229d8ac7..2f0abf4d27a3 100644
---- a/drivers/thunderbolt/pci.c
-+++ b/drivers/thunderbolt/pci.c
-@@ -212,7 +212,7 @@ static int nhi_pci_init_msi(struct tb_nhi *nhi)
- 		if (irq < 0)
- 			return irq;
- 
--		res = devm_request_irq(&pdev->dev, irq, nhi_msi,
-+		res = devm_request_irq(&pdev->dev, irq, tb_nhi_isr,
- 				       IRQF_NO_SUSPEND, "thunderbolt", nhi);
- 		if (res)
- 			return res;
-@@ -281,7 +281,7 @@ static int nhi_pci_ring_request_msix(struct tb_ring *ring, bool no_suspend)
- 	ring->irq = ret;
- 
- 	irqflags = no_suspend ? IRQF_NO_SUSPEND : 0;
--	ret = request_irq(ring->irq, ring_msix, irqflags, "thunderbolt", ring);
-+	ret = request_irq(ring->irq, tb_ring_msix, irqflags, "thunderbolt", ring);
- 	if (ret)
- 		goto err_ida_remove;
- 
-@@ -588,7 +588,7 @@ static int nhi_pci_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- 
- 	pci_set_master(pdev);
- 
--	return nhi_probe(&nhi_pci->nhi);
-+	return tb_nhi_probe(&nhi_pci->nhi);
- }
- 
- static void nhi_pci_do_remove(struct pci_dev *pdev, bool reset)
-@@ -610,7 +610,7 @@ static void nhi_pci_do_remove(struct pci_dev *pdev, bool reset)
- 
- 	tb_domain_remove(tb);
- 	wait_for_completion(&nhi->domain_released);
--	nhi_shutdown(nhi);
-+	tb_nhi_shutdown(nhi);
- }
- 
- static void nhi_pci_remove(struct pci_dev *pdev)
-@@ -724,7 +724,7 @@ static struct pci_driver nhi_driver = {
- 	.probe = nhi_pci_probe,
- 	.remove = nhi_pci_remove,
- 	.shutdown = nhi_pci_shutdown,
--	.driver.pm = &nhi_pm_ops,
-+	.driver.pm = &tb_nhi_pm_ops,
- };
- 
- static int __init nhi_init(void)
--- 
-2.45.2
+ drivers/usb/gadget/udc/lpc32xx_udc.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
+diff --git a/drivers/usb/gadget/udc/lpc32xx_udc.c b/drivers/usb/gadget/udc/lpc32xx_udc.c
+index 94355d3d930f..b98faf5b71e5 100644
+--- a/drivers/usb/gadget/udc/lpc32xx_udc.c
++++ b/drivers/usb/gadget/udc/lpc32xx_udc.c
+@@ -3187,6 +3187,13 @@ static void lpc32xx_udc_remove(struct platform_device *pdev)
+ 	udc_disable(udc);
+ 	pullup(udc, 0);
+
++	/*
++	 * pullup(udc, 0) queues pullup_job to clear the D+ pull-up over i2c;
++	 * flush it so that disable completes and no work can run after the
++	 * devm-allocated udc (and its isp1301 i2c client) are released.
++	 */
++	flush_work(&udc->pullup_job);
++
+ 	device_init_wakeup(&pdev->dev, 0);
+ 	remove_debug_file(udc);
+
+--
+2.43.0
 
