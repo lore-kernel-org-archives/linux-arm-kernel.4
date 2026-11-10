@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57772607BCDE
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C98C5606B2C6
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:22:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qSeYafPt;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=FGI+keYl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4hV9zreS;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WyfWbmE2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fTSRhI7N/2ri6MBbUf6jFRoiVt7qnFhqogVJCSQOksE=; b=qSeYafPteMZrLi
-	XkBVgRGS8Af+CP3obWEMi4qiEKhs9tDvdRui32AbFj8Dq6L+9pRJ5wvwz+JIV7HX3wSoWCCI7lFh+
-	zWS9/WpqPpmvmCkubqfchg7KC+yQ7PxptmB1BMoaIFYfjHjnzwdn5/CLTX/giS3VraKiNBFm0Hhvs
-	3uTxvZdzASPwVai2382wl61zfY5gjJ3RTH61AmQPBq1f1gxLAZ2YKKFl6URM0bbrhFh5GX9rawM4D
-	c1AdNS3UomrMtqSGVzhna+s56XCTcF0JdYI/0LKm0FtpntNwTBMq0XiS5p/I2NlkDNYDePcCDs1FA
-	/tkBF3yHgmG5zUfMeoeQ==;
+	List-Owner; bh=OTx52hVUF9lB6fufKA+RTnJSg0CR3TeUfaD+GwbgFjg=; b=4hV9zreSJNPA3f
+	nVHfIqRtFKHk1Hw+o6hA1eT8FZ+QbH1BuCM9cZRI5y6hAFhlr3cQ+Z+7+aGh8jI5T4et7q+HMJouo
+	WWfWB8tQ2NDah6izmhfNpOKRnyDxfG2/0EcrfvN4jnAxvz+tY9P8iQtCxL41GteuNK6pg88hm1hb4
+	xlJs5dMwzrp6zPsYqlaxQW+NiLfHDQtzUOTAWY3VpMdnUC6mIVhkajG2fsLCZdv4eAnRQ/ltr04uo
+	vv3cbGYjJibCbFHFMtVVnXW4k4z6dNsJU7bTE+O2qlFvPXlu9A6GdpBySH5rZx5ZPaDUJg0PvEsf0
+	Bl1RRmpF9IPVMoor9XLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlnH-000000041vj-0pha;
-	Tue, 10 Nov 2026 13:21:47 +0000
-Received: from mail-pl1-x62c.google.com ([2607:f8b0:4864:20::62c])
+	id 1xQlnN-000000041zT-1mjy;
+	Tue, 10 Nov 2026 13:21:53 +0000
+Received: from mail-pl1-x633.google.com ([2607:f8b0:4864:20::633])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlnD-000000041uR-4Bfh
+	id 1xQlnK-000000041xg-49zZ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 13:21:46 +0000
-Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-2e8f2c3ad6bso12679685ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:21:43 -0800 (PST)
+	Tue, 10 Nov 2026 13:21:52 +0000
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-2e942864693so10410755ad.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:21:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794316903; x=1794921703; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794316910; x=1794921710; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=fTSRhI7N/2ri6MBbUf6jFRoiVt7qnFhqogVJCSQOksE=;
-        b=FGI+keYlpOENdDuIJK7so7gBl9YMjR2wkoHIT6/EuheOMYIxqIhn2vJDxDqHYUX0Ay
-         xr3bR/KCdWAyWnZ4eugVpA6MvkD5MUjuZmD/I+quyTH5fqtAuG8XmFZO8hUMx0BHe8A6
-         bK8w84MeuTe0OzLpckO3JMG1g0wybbu78BN4D63CFywZMAaF09GBBA8MPj48//D1bcgI
-         VTcrFeD/0/tGKjaoYGhAfBTD3EgwjZ207aFzJAoUYg5BDeIPaJD4MjhTlRXzZsDCtz19
-         isBQZZW72qJh8a5+QqznPRGLimszYUGteSLuAFQs9VEYytsRSaK0E/dy2oHRtQCr2mwh
-         dy3Q==
+        bh=OTx52hVUF9lB6fufKA+RTnJSg0CR3TeUfaD+GwbgFjg=;
+        b=WyfWbmE2D1OxX6F1cUrwgUo09tnPs7hxA173DhOtcOM/hebvd10H+ACMA35GHdNtva
+         y6uVsFVYrM6M+spy4ALeENcuqxiLsVz34tPylh5BZzI4pvK8y+8NKq4ZOXU3wvqow38W
+         jQ3BsmPdy+mWFSCZ3/uW4ArS1FYUTbLBcf6zF7iimhFM2Lz7dhILUX4gwtq7+7tJRNgf
+         yPB14p517FOG72NAqX4ctTm196e/KqhkGCjlpAW2FvKqaNwQ/0SBpBRlYtI+7RQDZj6L
+         FMO2t5SndsTHzkWzBkuriQeHAAyO9EOB25Oh0j38xp5A1Zs/BFTnpwQl89Dd7/6unhsH
+         j4AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794316903; x=1794921703;
+        d=1e100.net; s=20260707; t=1794316910; x=1794921710;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=fTSRhI7N/2ri6MBbUf6jFRoiVt7qnFhqogVJCSQOksE=;
-        b=Bba4lPfv1vy9IMoySUHZulpw41xkRHQOQTpNMDP5NtS0xuOh5x9jO5wJR6ghLKkb8O
-         +goQQmxtkfF0wK4OMvSZEJrCpvwFnU8JpsHWJoDDmwuCp3CAnwmQ2Lwa5EbqKma/fMKI
-         c0vUHNJ9ew09PkUFrJg8qN+AN5JsdV9l+JcgO8pQ0gemC9/7tQyzUhnblmopGImsI4VF
-         bytZvLhT3mCNAb0xW/4dzRo3EXJ/8FhqRfARxA4e3ntAoCN4NCR9C5EPBYW/019pHDiC
-         Gq3H8AL3gs6+vbHi0/gAT5ececFwTZd0y2Pc3FOQn39F6FHgarRam0/OGtcnYkzAPOsY
-         WCrA==
-X-Forwarded-Encrypted: i=1; AL+hErHRMxGozIyH86TwA5G7IGD65LeqyDtkIQUEcusr9K4ctMWBgpEhpV2SzMdmrGdgq+4wcm97s3gt3BlWhMuRAxCn@lists.infradead.org
-X-Gm-Message-State: APuU4Z/3XCFU9LSkxNsOWrbMDbnBR0fLxHLCi4G9a+eYVUF9OMfq6DsO
-	6X/y0OdGaljfRQkYJgJOS0UCGOskbGDJXKLobWPPKlI+Ggja2p380PX+
-X-Gm-Gg: AYBFou0+a6nGCzTjjmXS7oK6HCMFxtVvamjIPp0KNBOY967s0S1fcDiEANSXqSinS16
-	NZwp9QIfTEwAIhXDYeT2IMSaq989i0/be1LsPcqqeANAfpFZXsw3xSyrS0Q6iC28cMQbGz46kQY
-	XEn8mI3SKi8b8hnv4ukrf3QqFVYuEOD2SHk3UkF1Ayth42QKSTcOfUvlE5MvYFb6j55VVb/VT7e
-	z8Jo3IVORuhO92gGYmVZq3vqsX1pLyVmynYAo+U1fpouax1UZvzCd1UJCGsyOE43tEe0NoRgrI5
-	UAUN6I4u+HC85gYtr4JpuRaCnBBl7YGxHX8/mFtCg+KxWNme4KLl6UpiixQK082nch48PwpXw4F
-	dMQYQHj08xro7Gh2X/mUGspc6S5aNtJHVXP+s8E937SaK1bzyccfBfonSebPYtpi5wkjmsBsQeC
-	5SpShEflDCRt9pk5ujjKsj/IJmWNQ6xfUHxFAdbLQuEw9DR1iYw0xPSNS0MT8L7ZP9lL/whdHU2
-	0uSzdfpyksn2zd2dIjLqI0nCoTohDV8bjXo1d/xzv1rf0JsFfUvr1VXph2JQt07Q7mlhX9S08E5
-	8+uYXQNFzbZmKhxGE34RFWyP2eRRpyHa40QAElIlRODAcCBYkV0qIZN1BBpdTZQ=
-X-Received: by 2002:a17:902:f70f:b0:2ed:21fb:e75f with SMTP id d9443c01a7336-2edb91acef3mr23181235ad.48.1794316902956;
-        Tue, 10 Nov 2026 05:21:42 -0800 (PST)
+        bh=OTx52hVUF9lB6fufKA+RTnJSg0CR3TeUfaD+GwbgFjg=;
+        b=E2RvrL6s9/i+rDWfcldqken5AzbFaYEAzQaPjK+d1lExmP/3Pcq3Ga71pp0xkwKOY4
+         fql6NkG8XfE5YYm/lQnzEBagRPoDh91qo4h6SP7PLvwnQGLmeVL2laLBcFSNwDLvSYFj
+         fDs8GOiE4G1Ltgh+XdVhgaAldQLxMUrZBJCD84iiXhc9Aw0tdLOuaGVTpDoJ43YvRrZn
+         u5P+OqtpVVRHc+Sea+LXXudIKR9deyHFxlKN4UrWwbI6Bt6XZA601CwDWnDZ+DVMLONn
+         uvzvCP+rcEVefU1A01EmXRBPb8SI+6l/4eo0Fhr7K3OBFeevPC8S+k5uDxsoAtUTqmkD
+         6yPA==
+X-Forwarded-Encrypted: i=1; AL+hErHHAFWOHDcpylChYKKJO4p3mG5GoBftwXPoKVkZr3xlYH4Xv4Jjak5spZVa8TkBxxJHxKZ8R0PdfvQ234OzjTYP@lists.infradead.org
+X-Gm-Message-State: APuU4Z//tEsDu7rQgu11wFE7DueQfk2q/pyRpzQd4MwYviYRdGotU8O0
+	UdRzqG0JrWDgRaIu3Dx/jhoUCMdsrFNg77uSqoFfZbnvsoVEegiYheF2
+X-Gm-Gg: AYBFou0s30NMR+qWoOHA57rWLt7LAfByyNJdJx5GsuJ9OcXVSodOOdqkVHdmFgYcs+K
+	rVKneNNaM6fq7THtw9xwOEf6sMMZd3XPtTevSZav9d7uLoCDYItjWeUXA3xuS8ajTSlbNTYb90P
+	4gnr6I/VhN35UuXeKnOHhGd+ScGKGv5/p6WMhZGQz7msetwhYonzj7G0R1aec5iXIMH8Gs4IT67
+	eOT1vcEP3oz94vTc5+IvUaBRGpkSuw7Hzfr7tO8IV2IHvwwmSR3tdg5sBKU+ovlNnlcq0tPR7df
+	40QGGSeIjxIdwc9DDehuA3C+mh85GhOQwBPYdXcmkPSW+5DY08CF785HDwFEJrFr9Fxgw1uWkOp
+	yeOG/5DDKLAj+0oTmiWWSWHvCFnfT0zLDnCtr9pugXb5N5vDCl4OMPd3TH072Uhx2WtBFKx70IS
+	i/Yo3zgeOnLOjic+gokpdzLpboh1s0M8+ExjLsZJsDT7JGnmyjuC/+ARDspJDjwQp4FKD/CxAnS
+	7TlTv1taPg/SyeT9rmAKddg53o6XQj2cSFFaGIF0jH8CiuVFu3AS0RseVH3d8jHYZ3hKFF4lFFN
+	WYX8+6gONZHI7AEvTYUyk/I1wHLWA9qpS1f9wwa0xAfcH4ZZDAp0HXF8b29lkdE=
+X-Received: by 2002:a17:903:1a0c:b0:2ed:ebc:460f with SMTP id d9443c01a7336-2edb91fc398mr24141765ad.33.1794316909936;
+        Tue, 10 Nov 2026 05:21:49 -0800 (PST)
 Received: from r00799764-ThinkCentre-M920t-N000.. ([139.159.170.67])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d4a31esm8861065ad.22.2026.11.10.05.21.33
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d4a31esm8861065ad.22.2026.11.10.05.21.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 05:21:41 -0800 (PST)
+        Tue, 10 Nov 2026 05:21:49 -0800 (PST)
 From: Jinjie Ruan <ruanjinjie01@gmail.com>
 To: babu.moger@amd.com,
 	ben.horgan@arm.com,
@@ -97,9 +97,9 @@ To: babu.moger@amd.com,
 	linux-doc@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
 Cc: ruanjinjie@huawei.com
-Subject: [PATCH v5 3/7] fs/resctrl: Clear the CDP state after the cleanup
-Date: Tue, 10 Nov 2026 21:20:50 +0800
-Message-ID: <20261110132054.3702-4-ruanjinjie01@gmail.com>
+Subject: [PATCH v5 4/7] fs/resctrl: Stop the limbo handler while resctrl is unmounted
+Date: Tue, 10 Nov 2026 21:20:51 +0800
+Message-ID: <20261110132054.3702-5-ruanjinjie01@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261110132054.3702-1-ruanjinjie01@gmail.com>
 References: <20261110132054.3702-1-ruanjinjie01@gmail.com>
@@ -107,8 +107,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_052144_040835_A7713A37 
-X-CRM114-Status: GOOD (  17.02  )
+X-CRM114-CacheID: sfid-20261110_052151_039946_2F0B3AF4 
+X-CRM114-Status: GOOD (  24.43  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -130,63 +130,132 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 
-On MPAM a CLOSID is translated into the PARTIDs that the hardware
-configuration uses. Without CDP, CLOSID c is PARTID c; with CDP it is
-PARTIDs 2c and 2c+1. resctrl_unmount() clears the CDP state with
-rdt_disable_ctx() before resctrl_fs_teardown() removes the groups, so
-the teardown translates the CLOSIDs differently from when the groups
-were set up.
+A group's RMID is not returned to the free list when the group is
+removed. It stays in limbo until the cache lines tagged with it are
+evicted, and the limbo handler reads its occupancy counter in the
+meantime. The limbo handler keeps running after resctrl is unmounted,
+while the MBM overflow handler stops once resctrl_mounted is cleared.
 
-For example, rdtgroup_unassign_cntrs() unassigns and resets the MBM
-counters of each group through resctrl_arch_config_cntr(). On MPAM that
-helper maps a counter to a monitor with the index
-resctrl_get_config_index() returns for the CDP state. A counter assigned
-while CDP was enabled is mapped to the monitor for PARTIDs 2c and 2c+1.
-With CDP cleared, MPAM removes the mapping of PARTID c and resets the
-monitor for PARTID c instead, so the mappings of PARTIDs 2c and 2c+1 are
-left behind. The helper had an empty body on MPAM until the ABMC support
-implemented it, which is when the teardown started to program the
-mapping with the cleared state.
+Reading the RMIDs in limbo while resctrl is unmounted is not safe on
+every architecture. On MPAM the counter of an RMID is selected by the
+PARTIDs of the CLOSID that owned it, and the CLOSID to PARTID mapping
+depends on the CDP state. The unmount clears the CDP state, so the
+handler that keeps running reads the RMIDs freed under CDP through the
+PARTIDs of the cleared state.
 
-Clear the CDP state after resctrl_fs_teardown(), so the teardown runs
-with the CDP state the configuration was created under.
+Stop the limbo handler while resctrl is unmounted, as the overflow
+handler does, and restart it after a mount on every domain that still
+has RMIDs in limbo. The worker can stay queued across the unmount, so
+cancel it before queuing it again. This keeps the limbo handler
+lifetime the same on every architecture.
 
-x86 is not affected as its RMIDs and counters do not depend on the
-CLOSID.
+On x86 the RMIDs in limbo are no longer drained while resctrl is
+unmounted. Nothing needs them until the mount that follows the
+unmount, after which the handler frees them as before.
 
-Fixes: 6e0e538a75ce ("arm_mpam: resctrl: Add resctrl_arch_config_cntr() for ABMC use")
+Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
+Suggested-by: Reinette Chatre <reinette.chatre@intel.com>
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-Cc: <stable@vger.kernel.org> # 7.3+
+Cc: <stable@vger.kernel.org> # 7.1+
 ---
- fs/resctrl/rdtgroup.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ fs/resctrl/internal.h |  1 +
+ fs/resctrl/monitor.c  | 43 +++++++++++++++++++++++++++++++++++++++++--
+ fs/resctrl/rdtgroup.c |  2 ++
+ 3 files changed, 44 insertions(+), 2 deletions(-)
 
-diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
-index 5d0351453c2f..3312637fb514 100644
---- a/fs/resctrl/rdtgroup.c
-+++ b/fs/resctrl/rdtgroup.c
-@@ -3150,13 +3150,19 @@ static void resctrl_unmount(void)
- 	cpus_read_lock();
+diff --git a/fs/resctrl/internal.h b/fs/resctrl/internal.h
+index 1c85e06f09bf..c95fa6ce62e6 100644
+--- a/fs/resctrl/internal.h
++++ b/fs/resctrl/internal.h
+@@ -373,6 +373,7 @@ void closid_free(int closid);
+ int setup_rmid_lru_list(void);
+ 
+ void free_rmid_lru_list(void);
++void resctrl_limbo_resume(void);
+ 
+ int alloc_rmid(u32 closid);
+ 
+diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
+index ae9ddd380515..f56d0e32fd06 100644
+--- a/fs/resctrl/monitor.c
++++ b/fs/resctrl/monitor.c
+@@ -852,6 +852,13 @@ void cqm_handle_limbo(struct work_struct *work)
+ 	 */
  	mutex_lock(&rdtgroup_mutex);
  
--	rdt_disable_ctx();
--
- 	/* Put everything back to default values. */
- 	for_each_alloc_capable_rdt_resource(r)
- 		resctrl_arch_reset_all_ctrls(r);
- 
- 	resctrl_fs_teardown();
-+
 +	/*
-+	 * Clear the CDP state after the cleanup. The CDP state decides
-+	 * which hardware configuration a CLOSID refers to, so the teardown
-+	 * must run with the state the configuration was created under.
++	 * If the filesystem has been unmounted this work no longer needs to
++	 * run. resctrl_limbo_resume() restarts it on the next mount.
 +	 */
-+	rdt_disable_ctx();
++	if (!resctrl_mounted)
++		goto out_unlock;
 +
- 	if (resctrl_arch_alloc_capable())
- 		resctrl_arch_disable_alloc();
- 	if (resctrl_arch_mon_capable())
+ 	/*
+ 	 * Ensure the worker is dedicated to a CPU as intended and not
+ 	 * relocated by workqueue subsystem as part of CPU going offline.
+@@ -1001,8 +1008,8 @@ int setup_rmid_lru_list(void)
+ 	/*
+ 	 * Called on every mount, but the number of RMIDs cannot change
+ 	 * after the first mount, so keep using the same set of rmid_ptrs[]
+-	 * until resctrl_exit(). Note that the limbo handler continues to
+-	 * access rmid_ptrs[] after resctrl is unmounted.
++	 * until resctrl_exit(). Note that the RMIDs in limbo stay in limbo
++	 * across an unmount and are checked again after the next mount.
+ 	 */
+ 	if (rmid_ptrs)
+ 		return 0;
+@@ -1033,6 +1040,38 @@ int setup_rmid_lru_list(void)
+ 	return 0;
+ }
+ 
++/**
++ * resctrl_limbo_resume() - Restart the limbo handler after a mount.
++ *
++ * The limbo handler stops while resctrl is unmounted. Restart it on every
++ * domain that still has RMIDs in limbo.
++ */
++void resctrl_limbo_resume(void)
++{
++	struct rdt_l3_mon_domain *d;
++	struct rdt_resource *r;
++
++	lockdep_assert_cpus_held();
++	lockdep_assert_held(&rdtgroup_mutex);
++
++	if (!resctrl_is_mon_event_enabled(QOS_L3_OCCUP_EVENT_ID))
++		return;
++
++	r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
++	list_for_each_entry_rcu(d, &r->mon_domains, hdr.list,
++				lockdep_is_cpus_held()) {
++		if (!has_busy_rmid(d))
++			continue;
++
++		/*
++		 * The unmount may have left the worker queued. Cancel it so
++		 * it is queued again on a CPU picked now.
++		 */
++		cancel_delayed_work(&d->cqm_limbo);
++		cqm_setup_limbo_handler(d, 0, RESCTRL_PICK_ANY_CPU);
++	}
++}
++
+ void free_rmid_lru_list(void)
+ {
+ 	if (!resctrl_arch_mon_capable())
+diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
+index 3312637fb514..b702fe6dbbec 100644
+--- a/fs/resctrl/rdtgroup.c
++++ b/fs/resctrl/rdtgroup.c
+@@ -3267,6 +3267,8 @@ static int rdt_get_tree(struct fs_context *fc)
+ 						   RESCTRL_PICK_ANY_CPU);
+ 	}
+ 
++	resctrl_limbo_resume();
++
+ 	/*
+ 	 * Ensure root remains accessible after mutex is unlocked so that
+ 	 * kernfs_kill_sb() can run safely if called by kernfs_get_tree()'s
 -- 
 2.43.0
 
