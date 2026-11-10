@@ -2,106 +2,123 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6AC260A5BCD
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6740D606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z1LuMcXj;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HlsumMSR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0KOYAZ2t;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=QXO0G7F8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5eh6B0MLrnUtM1Hc34WhByD1VEsYF+myuR17nVrgwTI=; b=z1LuMcXj1sTZPn02ucMBEsQrFU
-	3GZ6vzaWiFVVXrOKi3MJiA15WTBv1CaaiqZlzDpvKj5xpY6j/9QJDUjekQ67la1dfVunCxHTnHBIi
-	GgHFvbxdtz7DhmZhxxpQaciEa/4SsWVD4I23N1cyTqcXCrWUUxLTIWhpj7nefg/lDUUjij+VX+7Cf
-	bk6DWAzEV1tP/HmsVJ4bLM993s4wDS3tRIjN4a/JrmlKXQNzLvKsC+zxebtsDvb6DyFNUnX2AK3T/
-	QzvLbzINqW15SlGS13mwK+75NxmQlw2O97DO9cxhtapmn3eiPjlbMBoW63r7J4HOzH/cjH3nSLuL2
-	5yK8GMpA==;
+	bh=WxvYXL+Mrspvq0GNbEulw2iy0Ot2VurCNkfL5b1LRDs=; b=0KOYAZ2taOtFbzNwTj1hIbP6fm
+	M8rnuY8W1KXOdoJkzrk6JgbpcKwWDxq5DlLi8A2ZjvgjfY6cDkhrRt+vDPdU1BR+wS5SGABXGLFpA
+	frLl7rouX++7b1K6Q05qiIAjtNQJnKparmfrPmdYWpXgym0B3NOdoa6+egd6s38xJ0D0oZJYiTg4p
+	QAShZICW3tDTBgqT8Bm6L7fqEXTah3+LW1Y1WuUpWzQEPgko01Y9ks/qn3J7q1C1o//NHoozxLHJo
+	d5Tf4sCL60pPZZPzahL/ze5w01ODgRuDaPE9KMvJd/PDgf2Ufe7RqPwJHXbyDqihP6LU5FwBgaQM+
+	4dz/cZQA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe6j-00000002USa-378X;
+	id 1xQe6j-00000002URL-0Y4B;
 	Tue, 10 Nov 2026 05:09:21 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from mail-eastusazlp170120007.outbound.protection.outlook.com ([2a01:111:f403:c101::7] helo=BL0PR03CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe6g-00000002UNK-40QE;
-	Tue, 10 Nov 2026 05:09:20 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 06AE1636E0;
-	Tue, 10 Nov 2026 05:09:18 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794287357;
-	b=yumHOzCRMs8sHBEz52MhzjBCbwtwhWf3OZ4lrjS6MtCiG7xRiN+9iJn9JavSPDVJzG5r
-	 5x1xPp6njAEtbP+NVHlqrCs0VBXQ7cR2aIVZehff309GMDTsW0G3UH/Dv1ls3CrzAhOEv
-	 rrLkWbA7PxydFz/TQO/b6jaBTqmbyirFJPJb9GVqf0/2Gc7RIytSOTpOaZ0QxfShwYtSI
-	 GSXnEn3TzkPgwVIcC6tUQpOHmYKPlsneK4xB6By2s8NQtmumUazOgo3n6nd25EXtSfaPV
-	 408UUchlkB25Y/GHz0gnFoLSm8OH165XH/hTl/1+R1q5l4Mp6GIJyVpxke8TJC/lL0A==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794287357;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=5eh6B0MLrnUtM1Hc34WhByD1VEsYF+myuR17nVrgwTI=;
-	b=naQDEH1GEbAUy8dNvQNV9pZBSOuE0tKkZOKU4YiQw0jmfhwbi8Fceut0Q5RUHtVSQvtB
-	 XMxqjGJ6fhVpHqa38CLoDKUkRcRWxoNVx0izerlOGN3pVVfkPpEV8GtGI5ZiQcddqJSRW
-	 DAEvaZ/CTWYCnjsSdLGdWRz6w6get8nPCOsIW3260p3LYANRKfl2FQFs2izA1o4RUNXBK
-	 aVbBE5fnMBNjDpTGi0NzBo+esBsqZb3ZUAns9a/1TvJ2QgmeGlRNfae2+YxXuGrDIUyyk
-	 iTbnKZsrQzyX5xhrk/+ph2pz5XXZi7Txo+ZvTlES84owhOLSaGkxF/urACzZANtyXfg==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 232881F008BC;
-	Tue, 10 Nov 2026 05:09:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794287357;
-	bh=5eh6B0MLrnUtM1Hc34WhByD1VEsYF+myuR17nVrgwTI=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=HlsumMSRzOd8b/Ndw43VWODGK/zVLZFF7zluYWED7TqTzsgAkz3yGwarBtq1CQzc0
-	 fedChpXXszO4rHuTRQj01v5R9CGmecR16dOFrXr2g2U+X6hGQNVC6Kb5P1+V/HUy0e
-	 Ab/rjxxEXhclfIcIqVG7geQ36NF5HeWKPsBmKG0s0iL15aVT7wUd03XlD8d+RA2358
-	 8N9JFrQ98b4h6xzHbowkuWtY8sAz28lb6QR9q5Bhn/uo3+8THyEppL+jn4DPGwlQx/
-	 2KJ1/J/WP2coQ9g0BQ5XHLOshmRpssTx07i5VRCw+Esyrjx8+14j6QjEz1oTTdq64+
-	 6C0oh2YHRozIg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7954848871;
-	Tue, 10 Nov 2026 05:09:16 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 10 Nov 2026 05:09:12 +0000
-Subject: [PATCH v2] pinctrl: amlogic: a4: Allow functions without groups
+	id 1xQe6Z-00000002UHc-3sPL
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 05:09:13 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ri0c0koBaT4v1Rsnjh4eF64grguUzCSNOv/+IUe/0pop9SC5J9+bm/xWfxBRHp6r2UZXwTRkaDQqlWSCmD7X1HMVJIYoQUdPzE8/v/wSMvI/aPevVuolIu83duM5N/paACF5vTQxjBvv969FiE5RbhsNAJ7iKg74bHJ59Ze4EKyQHNMhNZYVP57jTl453r5VDbpjBxQGiPyZ0nXdVmb2lyfMc9Gvb43iQsprr+pxyS5I/ifZwcdFu7P28f5R4s8AdyXYGaIbCGv7+d1QqiFA6EvQIFNR2SmxAv45gdupZguisu8xw/SzjrZWRlty+AJpUYuDnllVOxrH0hvU3X+kzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WxvYXL+Mrspvq0GNbEulw2iy0Ot2VurCNkfL5b1LRDs=;
+ b=SkDNn4Py6hyc/QeEv6Ces2g4v6f0pJ1DlGrLt3fFFM5wGyeDdokCKKS3GtSWvHydKMYj5dE6Evcp4cdore1uZprEopv51aOD5WBI6z7gAg+zQK3PSgRHDzXu9KVGHbxtuycnp04GzzAXHuhTstvfB2DRvM6lC5vGiaYeSUyrWl9riqwYRoO2k6m7SrnMwHkxNw0Z0whF4v4rrOXiSXx8v6LLx8Y+j9Uy8MsAKSim4kx0UrgKHNBdN+GavTNj7OsFOmlkx+GCcfrFavPMAxdbmTrL0IAvtKG0gWj90UYO3+QbTQUx9GFL9Di/bWaCnrdysxriq44ZTktpxV7QIb8PTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WxvYXL+Mrspvq0GNbEulw2iy0Ot2VurCNkfL5b1LRDs=;
+ b=QXO0G7F80alILRkqhYQY72C71W+ZHSkvmH4rYbd6kS7qAqTjAu8xDRQgrBW8ik96WBIvm2cBSoven2uhm7y/V+Zr8AX6zC34Etm149NFzPskrNmF+QD3tfTZsXuTh4OGMw4P8kVlJyUlI0+hMXbVIciwZcI2twqIQKjpOnQTnls=
+Received: from PH8PR22CA0010.namprd22.prod.outlook.com (2603:10b6:510:2d1::14)
+ by PH7PR12MB7818.namprd12.prod.outlook.com (2603:10b6:510:269::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Tue, 10 Nov
+ 2026 05:09:03 +0000
+Received: from BY1PEPF0002695B.namprd05.prod.outlook.com
+ (2603:10b6:510:2d1:cafe::17) by PH8PR22CA0010.outlook.office365.com
+ (2603:10b6:510:2d1::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Tue, 10
+ Nov 2026 05:09:03 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BY1PEPF0002695B.mail.protection.outlook.com (10.167.244.169) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 05:09:03 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
+ 2026 23:09:00 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
+ 2026 23:08:59 -0600
+Received: from xhdappanad40.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
+ Transport; Mon, 9 Nov 2026 23:08:56 -0600
+From: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
+To: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Michal Simek <michal.simek@amd.com>,
+	Conall O'Griofa <conall.ogriofa@amd.com>
+CC: <linux-iio@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <git@amd.com>, Dileep Kumar Nagavarapu
+	<dileepkumar.nagavarapu@amd.com>, Sai Krishna Potthuri
+	<sai.krishna.potthuri@amd.com>
+Subject: [PATCH v5 08/16] iio: adc: xilinx-xadc: Simplify common coding patterns
+Date: Tue, 10 Nov 2026 10:31:53 +0530
+Message-ID: <20261110050201.1850399-9-dileepkumar.nagavarapu@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
+References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-debug-info-v2-1-73ad7aa0874b@amlogic.com>
-X-B4-Tracking: v=1; b=H4sIAPim8moC/22MQQ6CMBAAv0L27Bq22hI9+Q/DgZYtbCKUtEo0p
- H+3cvY4k8xskDgKJ7hWG0ReJUmYC6hDBW7s5oFR+sKgamWIaoM929eAMvuA1uri+GQaaqAES2Q
- v7312bwuPkp4hfvb3Sj/7d7MSEtamcdppffYXunXTIwziji5M0Oacv4gh8L2mAAAA
-X-Change-ID: 20261106-debug-info-bb5611e36717
-To: Linus Walleij <linusw@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-amlogic@lists.infradead.org, linux-gpio@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794287355; l=2644;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=sWD7zbg1mSXOEg9K8sOVvNf5EChgrS2CCVGEpGmu0uo=;
- b=Bn+UorY0bcUbavYtuQe7WCJiVKPEGNSMK8QgR2s6loKCX7ROkp3eRi8Rgestk9kEQdi97vDnV
- gPVKPwqjHjMCFU6ZIImK8Ma4yH99sq5pnmF1eeZVaotV47oXxU4ZJuA
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0002695B:EE_|PH7PR12MB7818:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22462210-bb31-4b39-f9e4-08df3ee8bd07
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|1800799024|376014|23010399003|82310400026|56012099006|11063799006|261021123027099003|261021121427099003|261022075727099003|261022105027099003|261009223027099003|261026140227099003|261028144727099003|261102123227099003|10067099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: I8knyj+uHvh24sAfngrvp/nolv7Z/lnbziP11eC7l6gA35e15ADC7viCw3PC1QBUgJvNp/niBJBY6WPuWp0AVj+5gzvMDnkZRNq2fc8HVAFbY+zixStcq8c71SUxnIQGmK7XYC3V0Qpfmx3Se28LGSySrxgL0cXW87OZzcXYinFawmuLnqj+VeH371vd1keiXJGFshrMZhGmUGQB+c2EFIaTt1xncY85Dy/Itc9mkdvzJPfg6alh0dNf8ZWYmc4XtNRjN8wGyv1iBfKvz2tNA4273Q78m82d6urYYtXj038TCskXYPOBaXNLkUdqbdJipN+y8xajRAn4BuxuWn4bHf4oW5zcbBgKxVenWxfBX8b1mlww0ZATtkY0TJDqLuCusynUJawpdMk+vY29HZAh7KR/uo0PERzTO7JFISINwYxw4VqsJdxZQ60ylUjHy7Zuil0z/+uprbHwI5WrZpRiCBJjQiIGpILKSdxl7U9QJy6eD3Szejp6wS1AdEbHKuA/xSQt46PEGdYaVPlS4j3+JOZO306lpfQO/ODCu6TaIYnAZKEzOaJlNojxMiEOaz5cr/3525w9kXhDAbuWwfHYfyxrXGMR3wjf3Jo9jqf6cUK3GJBaK4lg1SPcS14bRAljxvo/ILKtFV1y1sn3xdZvYBWEppTtSEvCBuXuc1SR49b+IOsjvC1iSrXFXHBCGdKgl1+6G3l5wvgQB6YfAh557w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(376014)(23010399003)(82310400026)(56012099006)(11063799006)(261021123027099003)(261021121427099003)(261022075727099003)(261022105027099003)(261009223027099003)(261026140227099003)(261028144727099003)(261102123227099003)(10067099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: j6KWzOSsqNTyoVBtF/PVpZirswHhCfod6pyc0qAd36Wele8JlS+zy+pkIj9VZ0CjnQhojzthnK0705JTA0G53Ahjbi5Y7IcPJp8gRAas7xbeWxGewhmyL8IgHyGWyGzGBSLYCygCS1HAxuwJJGyHrcHebSlnMgK4QtKeFoYnCcQ6AEdo89kog5u2yAyButDGFRHCzyBrzHvWL9/OzuegeOfzJo1fnfIfbHBOXSM1eHSbpBgDLucV7KOrDNI6B0taJyZj65226GbG8ONSSUJ0zasyvKgis8j+jkkgjD3433BmBpN5zwXZ4L6Sot+e+UXKwUbKrjatFNx/+t0zWnFa94HS1qfshWiC8ENZSbUG8a4sMtM42uMEXjqrKM5iT7JYo+73O+IXZl1AYlB8Ea+asHiuASl7RmXxYCEgM0gcO8qXzwGo4npf34QKyoox+xIo
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 05:09:03.3603
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22462210-bb31-4b39-f9e4-08df3ee8bd07
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0002695B.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7818
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261109_210912_012867_71AB97F8 
+X-CRM114-Status: GOOD (  16.28  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,7 +128,6 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: xianwei.zhao@amlogic.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -121,85 +137,67 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+- Use pointers directly instead of comparing them against NULL.
+- Declare loop counters within the scope of the for() loops.
+- Replace the interrupt mask update expression with a
+  simpler form that updates only the bits selected by the mask.
 
-Allow function nodes without child groups during device tree
-parsing instead of returning an error.
+The last two items were bundled per Andy Shevchenko's suggestion
+during upstream review.
 
-Only count and parse nodes with the "func-" prefix as pinctrl
-functions, ignoring other non-GPIO child nodes.
+No functional change intended.
 
-This allows the driver to support function nodes without
-groups and avoid treating unrelated device tree nodes as
-pinctrl functions.
-
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Co-developed-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Signed-off-by: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
 ---
-Add debugging information for error dts and Error pinctrl config not affect normal pin work.
----
-Changes in v2:
-- Reserve banks nfunctions and ngroups no-zero judgement and update commit message simultaneously.
-- Link to v1: https://lore.kernel.org/r/20261106-debug-info-v1-1-067c5c554f91@amlogic.com
----
- drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 23 +++++++++++++++--------
- 1 file changed, 15 insertions(+), 8 deletions(-)
+ drivers/iio/adc/xilinx-xadc-core.c | 11 ++++-------
+ 1 file changed, 4 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-index 39eb8cc7fc0d..bd12f6fa3d4d 100644
---- a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-+++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-@@ -821,8 +821,10 @@ static int aml_pctl_parse_functions(struct device_node *np,
- 	func = &info->functions[index];
- 	func->name = np->name;
- 	func->ngroups = of_get_child_count(np);
--	if (func->ngroups == 0)
--		return dev_err_probe(dev, -EINVAL, "No groups defined\n");
-+	if (func->ngroups == 0) {
-+		dev_dbg(dev, "func %s No groups defined\n", func->name);
-+		return  0;
-+	}
- 
- 	func->groups = devm_kcalloc(dev, func->ngroups, sizeof(*func->groups), GFP_KERNEL);
- 	if (!func->groups)
-@@ -899,8 +901,12 @@ static void aml_pctl_dt_child_count(struct aml_pinctrl *info,
- 		if (of_property_read_bool(child, "gpio-controller")) {
- 			info->nbanks++;
- 		} else {
--			info->nfunctions++;
--			info->ngroups += of_get_child_count(child);
-+			if (!strncmp(child->name, "func-", 5)) {
-+				info->nfunctions++;
-+				info->ngroups += of_get_child_count(child);
-+			} else {
-+				dev_dbg(info->dev, "func node defined err %s\n", child->name);
-+			}
- 		}
- 	}
+diff --git a/drivers/iio/adc/xilinx-xadc-core.c b/drivers/iio/adc/xilinx-xadc-core.c
+index 093a7172cc06..7dc43a3bf3c3 100644
+--- a/drivers/iio/adc/xilinx-xadc-core.c
++++ b/drivers/iio/adc/xilinx-xadc-core.c
+@@ -149,9 +149,7 @@ static void xadc_read_reg(struct xadc *xadc, unsigned int reg, u32 *val)
+  */
+ static void xadc_zynq_write_fifo(struct xadc *xadc, u32 *cmd, unsigned int n)
+ {
+-	unsigned int i;
+-
+-	for (i = 0; i < n; i++)
++	for (unsigned int i = 0; i < n; i++)
+ 		xadc_write_reg(xadc, XADC_ZYNQ_REG_CFIFO, cmd[i]);
  }
-@@ -1166,10 +1172,11 @@ static int aml_pctl_probe_dt(struct platform_device *pdev,
- 			}
- 			bank++;
- 		} else {
--			ret = aml_pctl_parse_functions(child, info,
--						       i++, &grp_index);
--			if (ret)
--				return ret;
-+			if (!strncmp(child->name, "func-", 5)) {
-+				ret = aml_pctl_parse_functions(child, info, i++, &grp_index);
-+				if (ret)
-+					return ret;
-+			}
- 		}
- 	}
  
-
----
-base-commit: 89edcad9f23925f5706b7555b02165d1990444d5
-change-id: 20261106-debug-info-bb5611e36717
-
-Best regards,
+@@ -169,8 +167,7 @@ static void xadc_zynq_drain_fifo(struct xadc *xadc)
+ 
+ static void xadc_zynq_update_intmsk(struct xadc *xadc, unsigned int mask, unsigned int val)
+ {
+-	xadc->zynq_intmask &= ~mask;
+-	xadc->zynq_intmask |= val;
++	xadc->zynq_intmask = (xadc->zynq_intmask & ~mask) | (val & mask);
+ 
+ 	xadc_write_reg(xadc, XADC_ZYNQ_REG_INTMSK, xadc->zynq_intmask | xadc->zynq_masked_alarm);
+ }
+@@ -678,7 +675,7 @@ static int xadc_trigger_set_state(struct iio_trigger *trigger, bool state)
+ 
+ 	if (state) {
+ 		/* Only one of the two triggers can be active at a time. */
+-		if (xadc->trigger != NULL) {
++		if (xadc->trigger) {
+ 			return -EBUSY;
+ 		} else {
+ 			xadc->trigger = trigger;
+@@ -719,7 +716,7 @@ static struct iio_trigger *xadc_alloc_trigger(struct iio_dev *indio_dev, const c
+ 
+ 	trig = devm_iio_trigger_alloc(dev, "%s%d-%s", indio_dev->name,
+ 				      iio_device_id(indio_dev), name);
+-	if (trig == NULL)
++	if (!trig)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	trig->ops = &xadc_trigger_ops;
 -- 
-Xianwei Zhao <xianwei.zhao@amlogic.com>
-
+2.34.1
 
 
