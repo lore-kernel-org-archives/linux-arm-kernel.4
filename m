@@ -2,101 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3807F606BFDD
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:02:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6DB606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MrMYynFB;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MnLRvZP7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p7qboz/4;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=OZH8i92z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=SG1KLhu9vbPJolKGXXaQV+o4pMWgdOPqb2txYeFOXq4=; b=MrMYynFBP9mQyiMpwgHfjQ0uG1
-	RyqTf0MnTotWuPFSiTHmN/iWc1wr5WDGe7iqGNyIe9As6iiilMl7grvLfoWPJL5/mhUW1v7kTHgF/
-	7DvdeNlYw3Zu781dRLekWEnWz+qDEpsWyPOEDJGKo5LT9W/aFliaHzzOk7vE35NLv+evqaO8boWMJ
-	hLaz+Hv8YVDk2pJxQCcUYfBDDuAHArHDJ6D2ELHHSsGw1oKLCTRGmqvBeooL+CXw6vLchkQeVVzuw
-	jYEgpbSbK3KiBk+nGkWfNuKV/unkYGjhfu6SCRgQ0sog0T3xftRgDF8uFIoXlDiC6v1+l+2sM/d3M
-	nJorqlsA==;
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=q+tN4z7NXWlR4na9D2C+xhqXnnvW2XxnASuccDLlZx0=; b=p7qboz/4Ude5aQ
+	B1Gq0qP2Lg2rHyOnuia/Q1ldRtSvsul9kpE4csw/Ej37HzOM9TWIol4EWfNBOhgTmizfDHez3xVFK
+	3NjGeP6fzwCZkC+k4I8C6karXMtVeCHBNL4dabFiJGsZ+ZsyambSnIjn4qqAKTunNiRgCRBiEaNPI
+	fgGxu4dbUaxutcKjFeeWufyjAVfNIwvs1C6EArCNjEdtajTeHhNOYihwxxDrFVR7UFRL8nNEzf0EZ
+	vyH1rstMDNDgKyewzpjfcGHoqlKolo0z2uA4JkAsCbW4TbAnzMl0i+l0OYWaGSxpJqUnu7FYtEOMR
+	Cw2FqwWs8uFfGvpowtfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlUZ-00000003xPC-49Tz;
-	Tue, 10 Nov 2026 13:02:27 +0000
-Received: from mail-ua1-x935.google.com ([2607:f8b0:4864:20::935])
+	id 1xQlUt-00000003xT7-0Oki;
+	Tue, 10 Nov 2026 13:02:47 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlUW-00000003xOb-1LvB
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 13:02:26 +0000
-Received: by mail-ua1-x935.google.com with SMTP id a1e0cc1a2514c-992f6d8cb51so412178241.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:02:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794315742; x=1794920542; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=SG1KLhu9vbPJolKGXXaQV+o4pMWgdOPqb2txYeFOXq4=;
-        b=MnLRvZP7a8bHpWMWJ/wGWlXHXBkrogqzVe3jJ3PwmvJX5waHm0KShrh35/UGeICp4u
-         h1txjGwk7AhEWOPfRbA86hho2Vb2y4gnWyR++HnoWGr/QYZPRjWx/wRK5w7j3ZqaJxW1
-         tUWOTuwteEhDqjf/rIVOqE/E6P5LPs7EBNvtf8peHldZgmywjKyQNOj2r0A7lmczwqDW
-         eZ4TQeo/pUyBZborVsvrRFoMzdhYVZvVkk2TLmhYWgvGtvMAvM+8LsM1rsmv4vbIltG7
-         uNjLnKlIbUPc3BpdipcKKhB74xxII8Qafh9KQwigPuOZtg06nY5Z7Oyo/OYr+gR8bzro
-         LWzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794315742; x=1794920542;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=SG1KLhu9vbPJolKGXXaQV+o4pMWgdOPqb2txYeFOXq4=;
-        b=N/j3RpFBes5M5CBnf5ZHskHZSOP6vsVx4E0X50vx5WzFGQzMkROrBlM4LyKtMh2BzV
-         NzrE49vU7emGED3YdShasI2vfnNHJKOYxMhYTDF6AD6Z/BesTVA2trTCc07oILX6tUbv
-         E6eqVSZUHiS98NojWKO5zMUkPwJsXCAhNa6fHWPO/gavt8uEOffREBHpPgZunG25OoLP
-         LkIM5a9vny7d2BFVZubX4+OwXuGwLer8/ZOVhU7xbvxwgciM9WnyG5weflI0Jl/5plWr
-         K2FFmnN0t3DRvfaZ+wb9R9BMgb7vMWrJUgPvTgTOEB0xWrMPbgXnbRWqTaGZIXGC9psp
-         +g8Q==
-X-Forwarded-Encrypted: i=1; AL+hErHt9U0bX4h0nHaezY2+lBpLreh0MvIAKl0aFAypR54At5ezIu4dCFyZpp9o42+EPAJgip8AhbYU6rx6SDra6JDQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z8kanx8yXL7vxZJBoXouN9M8MLb5ncKBgkVPA+92ud+g/eMG0KP
-	fX7N4/pgHrkfEGufDy4CzoZIHUALefInieEZpvEM0XsEuSUT7oc/Xgr8
-X-Gm-Gg: AYBFou2ku2jXEXds8TOUElCxDH/dOU/TdXA6AO+UAQbWI+109gNVaGNCmTGXLipSFS3
-	FVdraY5Zl6W/931dUTbIikY09HVKOyC4Usabs1821/x7umLiTZ2r0lo+KiHRkhVw1GSjvsUUuSF
-	fxH3068ZZua1RTHGDDANzxmjk/DhN019IMZEdxQhHstgTFReKr6EqkcpaOK4FFDuDxRtY/TyMM0
-	n/osgCNU5K0sjTCaGjzfVgSrA6SBoWqEZgixK3vmhewgEYow++j0XFaNNE1WZ3YeSHv5mkzL0vA
-	/X+gsYhGPKWp4Rjfg9UBMWw8HP5kF+g0RCEiPEWyS9RwzoN/MybPh4HuUTQOCI/HSidRwNh5rv+
-	y3OoD1CeULOsze5rHrRorsPbSVN9GxftePtrkbXxazGMWMWhTLytnAwPRAX1iSh/GW4mTKW081Y
-	cm/7LlQOR7izzq81bY8tZRcol0s1AKCVH0uhbsPYi5fQ+Z5wkCfRzYyk/KxY2KZXh5VLHKxqcoR
-	iix/wfoF7rROATKOVZ3ByKvMcz9Rr2kiat5+2xV0feG8QdN5GNCtR4EHKTczLKf2fqwdFKdpAt9
-	CgJ4K8yFoVbKpOFpfxxCN4v9cl5dU8pp/vae9dV8oUGc9VQFD7YJiP7WRHHn9b6tkNHOvf40or0
-	NkAP53Zd3CORe1c+/l8rfosd+nncqimzqHi14/gMUT+6z64365bNCZparbEvwAO1Dla5nSUxjWj
-	o=
-X-Received: by 2002:a05:6122:1d01:b0:5ec:c3ed:7d99 with SMTP id 71dfb90a1353d-5ee0d0a5264mr742890e0c.6.1794315734491;
-        Tue, 10 Nov 2026 05:02:14 -0800 (PST)
-Received: from MaquinaLab.. (189.27.147.77.dynamic.adsl.gvt.net.br. [189.27.147.77])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5ee0c5fd00esm1573509e0c.16.2026.11.10.05.02.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 05:02:12 -0800 (PST)
-From: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
-To: Linus Walleij <linusw@kernel.org>,
-	linux-gpio@vger.kernel.org
-Cc: Andre Przywara <andre.przywara@arm.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Enzo Adriano <enzo.adriano.code@gmail.com>,
-	Pablo Mazzini <pmazzini@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] pinctrl: sunxi: a733: do not switch the mux to read IRQ lines
-Date: Tue, 10 Nov 2026 10:01:57 -0300
-Message-ID: <20261110130157.112155-1-vinicius.eduardo.pedrosa@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	id 1xQlUr-00000003xSG-1FpS;
+	Tue, 10 Nov 2026 13:02:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794315761;
+	bh=lsfLnnAeFFIiJN/3WLIx+aewZN2Xynq+gqwio4jBfKc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=OZH8i92z3ufcDkzTosplCkdMNnC+QCeCEK2E8+YRBIhCmlJ6mDQ8uQPi45sSieKKh
+	 PuTfJWd00xBldkkvI+AxCRFhvxT52lQE2k2OmlNd+lbr8nzO/psQp4kops4Th1khiI
+	 pP6oOlTN/3r2TcMerXASVrCDjX+4wavoedpXhbgZv6S2Nmnnrx0iGcUl+sbB6YGmih
+	 ik4J3X+zsL3wdywi0fmMnEDCf0ioaw7SUJSY4FXn3LIkHambhnYO7KjKCvi8HoucMy
+	 VyS6k0DoN5YF0KMlmVEg7khjH2RXPFvaJcemQVdDgnd2rB8JivgbZLlCW3qUX51t4w
+	 wN6idlspv3yiw==
+Received: from fedora1.home (unknown [100.64.0.11])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CBB5B17E031D;
+	Tue, 10 Nov 2026 14:02:40 +0100 (CET)
+Date: Tue, 10 Nov 2026 14:02:32 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Cc: aiyengar1990@gmail.com, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Heiko Stuebner <heiko@sntech.de>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH] drm/panthor: Do not change the GPU clock rate while
+ suspended
+Message-ID: <20261110140232.061d6844@fedora1.home>
+In-Reply-To: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
+References: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_050224_370000_B0E9F1D7 
-X-CRM114-Status: GOOD (  15.05  )
+X-CRM114-CacheID: sfid-20261110_050245_504989_8F78A2FC 
+X-CRM114-Status: GOOD (  49.89  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,52 +80,184 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The A733 description sets irq_read_needs_mux. When a GPIO used as an
-interrupt is read, sunxi_pinctrl_gpio_get() then switches the pin to
-input and back to SUN4I_FUNC_IRQ, which is function 6. The A733
-interrupt function is 14, so after the first read the pin is left on
-function 6 and its interrupt no longer fires.
+On Tue, 10 Nov 2026 07:15:00 +0000
+Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+wrote:
 
-On my board this breaks microSD card detection: the PF6
-card-detect line is read at probe, and after that neither removal nor
-insertion of the card is noticed.
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> From the start of panthor_device_suspend() until panthor_device_resume()
+> has enabled the clocks again, the GPU clocks are off or about to be, and
+> the GPU power domain may be down. devfreq can still call ->target() in
+> that window: a write to min_freq or max_freq in sysfs, a thermal cooling
+> state change or a PM QoS request all end up in update_devfreq() whatever
+> the device state.
+> 
+> With the RK3588 GPU core clock switched to the firmware-managed
+> SCMI_CLK_GPU (needed to reach the PVTPLL rates of the upper OPPs), such
+> a call is fatal. To set a PVTPLL rate TF-A programs registers in the GPU
+> GRF, which sit in the GPU power domain, and with the domain off that
+> access ends in an asynchronous SError and a kernel panic, for example
+> after
+> 
+>   echo 1000000000 > /sys/class/devfreq/fb000000.gpu/min_freq
+> 
+> while the GPU is runtime suspended.
+> 
+> Only apply a rate to the hardware while the device is resuming or
+> active, plus the suspend frequency that devfreq_suspend_device() applies
+> from the suspend path while the GPU is still powered. Other requests are
+> still accepted and recorded by devfreq, which applies them on resume or
+> at the next governor update.
+> 
+> The RFC this is based on (Jonas Karlman's panthor SCMI clock change,
+> carried in Armbian's linux-rockchip pull request 380) checked the
+> runtime PM status instead. That
+> status is still RPM_SUSPENDING after panthor_devfreq_suspend() has run,
+> which leaves a window where the rate can be raised again right before
+> the power domain goes down. The devfreq suspend count cannot be used
+> either: panthor's first runtime resume calls devfreq_resume_device()
+> without a matching suspend, so the count is -1 while the GPU is active
+> and 0 while it is suspended.
+> 
+> Suggested-by: Jonas Karlman <jonas@kwiboo.se>
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+> Tested on an Orange Pi 5 (RK3588S) with the GPU core clock switched to
+> SCMI_CLK_GPU and a 200 MHz opp-suspend (the configuration from the RFC,
+> not yet in mainline): writing min_freq while the GPU was runtime
+> suspended no longer ends in an SError, the request takes effect at the
+> next job (1 GHz measured), max_freq likewise; 200 suspend/resume cycles
+> with short GPU jobs and a 3 minute sustained load ran without faults.
+> With the mainline device tree (CRU clock, no suspend OPP) the SError is
+> not reachable and the guard only skips rate changes while the GPU is
+> powered down.
+> 
+> This patch was developed with Claude (Anthropic) as a coding assistant:
+> it wrote the code and the commit message, and I reviewed and tested it
+> as described above.
+> ---
+>  drivers/gpu/drm/panthor/panthor_devfreq.c | 42 ++++++++++++++++++++++++++++---
+>  1 file changed, 39 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
+> index 2249b41ca4af..cab86e9c9d46 100644
+> --- a/drivers/gpu/drm/panthor/panthor_devfreq.c
+> +++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
+> @@ -60,20 +60,56 @@ static void panthor_devfreq_update_utilization(struct panthor_devfreq *pdevfreq)
+>  	pdevfreq->time_last_update = now;
+>  }
+>  
+> +/*
+> + * Whether a new rate can be applied to the hardware now.
+> + *
+> + * From the start of panthor_device_suspend() until panthor_device_resume()
+> + * has enabled the clocks again, the GPU clocks are about to be disabled
+> + * or are off, and the GPU power domain may be down. devfreq can still
+> + * call ->target() in that window: sysfs
+> + * min_freq/max_freq writes, thermal cooling and PM QoS requests all end
+> + * up in update_devfreq() whatever the device state.
+> + *
+> + * Changing the rate then is pointless, and harmful where the core clock
+> + * is managed by firmware: on RK3588, setting SCMI_CLK_GPU to a PVTPLL
+> + * rate with the GPU power domain off makes TF-A access the powered-down
+> + * GPU GRF, which ends in an asynchronous SError. So while the device is
+> + * suspending only the suspend frequency, applied by
+> + * devfreq_suspend_device(), reaches the hardware, and nothing does
+> + * while it is suspended. devfreq records the other requests: they are
+> + * applied on resume or at the next governor update.
+> + */
+> +static bool panthor_devfreq_can_set_rate(struct panthor_device *ptdev,
+> +					 unsigned long freq)
+> +{
+> +	struct devfreq *devfreq = ptdev->devfreq ? ptdev->devfreq->devfreq : NULL;
 
-The A733 data register reports the pin level while the pin is muxed
-to the interrupt function, so the switch is not needed. The A523 and
-D1 descriptions do not set this flag either. Drop it.
+I'd rather use devfreq::suspend_count to detect if the devfreq
+component is suspended, since it gives us a better granularity than
+panthor_device::pm::state.
 
-Fixes: 0535bfbfa97b ("pinctrl: sunxi: add support for the Allwinner A733")
-Signed-off-by: Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
----
-Tested on a Cubie A7Z with the pending A733 clock, PMIC and DT series
-applied: before this change PF6 read back function 6 and card removal
-and insertion were not seen; with it PF6 stays on function 14 and one
-removal/insertion cycle was detected.
+> +
+> +	switch (atomic_read(&ptdev->pm.state)) {
+> +	case PANTHOR_DEVICE_PM_STATE_SUSPENDED:
+> +		return false;
+> +	case PANTHOR_DEVICE_PM_STATE_SUSPENDING:
+> +		return devfreq && devfreq->suspend_freq &&
+> +		       freq == devfreq->suspend_freq;
+> +	default:
 
- drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c | 1 -
- 1 file changed, 1 deletion(-)
+When PANTHOR_DEVICE_PM_STATE_SUSPENDING is set, not all HW
+components have been clocked/put out of reset. It's probably okay
+for power domains, because those deps are described through device
+links, and the dependencies are resumed by PM core before the
+panthor PM hooks are called, but this is fragile, and that's another
+reason I think we shouldn't rely on panthor_device::pm::state for that,
+but on devfreq::suspend_count (or any other internal panthor_devfreq
+state that tracks the panthor_devfreq component status).
 
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-index ca82f08a3a65..456d9170c2a2 100644
---- a/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun60i-a733.c
-@@ -23,7 +23,6 @@ static const u8 a733_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
- 
- static struct sunxi_pinctrl_desc a733_pinctrl_data = {
- 	.irq_banks = 10,
--	.irq_read_needs_mux = true,
- 	.io_bias_cfg_variant = BIAS_VOLTAGE_PIO_POW_MODE_SEL,
- };
- 
--- 
-2.43.0
+> +		return true;
+> +	}
+> +}
+> +
+>  static int panthor_devfreq_target(struct device *dev, unsigned long *freq,
+>  				  u32 flags)
+>  {
+> +	struct panthor_device *ptdev = dev_get_drvdata(dev);
+>  	struct dev_pm_opp *opp;
+> -	int err;
+>  
+>  	opp = devfreq_recommended_opp(dev, freq, flags);
+>  	if (IS_ERR(opp))
+>  		return PTR_ERR(opp);
+>  	dev_pm_opp_put(opp);
+>  
+> -	err = dev_pm_opp_set_rate(dev, *freq);
+> +	if (!panthor_devfreq_can_set_rate(ptdev, *freq))
+> +		return 0;
+
+If you return zero here, the new frequency is assumed to be applied,
+and it messes up with the devfreq state (::previous_freq for instance)
+that was set on devfreq_suspend_device(). If we assume that rate
+changes should be rejected while we're suspended, this should probably
+return an error.
+
+>  
+> -	return err;
+> +	return dev_pm_opp_set_rate(dev, *freq);
+
+There's another race between devfreq_suspend_device(), which will
+restore the ::resume_freq, and a concurrent devfreq_update_target() call
+that's here to set a new rate. Using devfreq::suspend_count won't help,
+because this atomic is decremented before the resume_freq is applied,
+and the devfreq lock is only taken around the devfreq_set_target() call.
+
+Honestly, it feels like we're trying to address the problem at the wrong
+level. I would expect governors to stop calling devfreq_update_target()
+between the DEVFREQ_GOV_SUSPEND and DEVFREQ_GOV_RESUME events (which
+should probably be sent before suspend_count is incremented and the
+suspend freq is applied). And I'd also expect some kind of
+locking/synchronization to prevent races between
+devfreq_update_target() and devfreq_{suspend,resume}_device().
+
+>  }
+>  
+>  static void panthor_devfreq_reset(struct panthor_devfreq *pdevfreq)
+> 
+> ---
+> base-commit: 8deaade4a5a4ff635df91e246e42139ab2b33f6d
+> change-id: 20261110-panthor-suspend-clk-11d5604fe5be
+> 
+> Best regards,
+> --  
+> Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> 
 
 
