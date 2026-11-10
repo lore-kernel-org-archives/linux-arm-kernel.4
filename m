@@ -2,55 +2,51 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C0A606A338
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B68C606A321
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 20:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Sg93wi58;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=F2oreDAr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NOXn+zPA;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.a=rsa-sha256 header.s=20220719 header.b=asOeR1Ge
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8vkSRLV03sMiSf6kg11DqKSF3D7mLrc58A9bRe4NGqw=; b=Sg93wi58tuSnGfyYd20ezHoJ/I
-	i0vjTk+giB5RRvsKpmSCZdMnOrVPlhqinv0QUGFlEmOVsRypns+lCi59r/FHocIGZxEfojVyzcUTF
-	UjHVZWUZlSFZSwxRZumLVz+CkXSKhWXgCKPWWqSqP2QWq9zdRsrb9OoZS16HCAQuENhtdmyouZnVs
-	zBiqUGJz7MSIz56Dj/AwlOQdnBNPuteO+YMPRYxFnfvVI5rguO00qW7amug3PAEQjvSK1CwlrRQWw
-	cunhdcmHnMUlcRq0MCgrJlxinvRthzTaHrHQWdf7ew0l9TktA10zQ/SH0nKk5oI85FzkKlzF3P6lz
-	2yPVlltw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=TrYzlfpzSjOTkcFVrqQppineqlRGur5koHqKUH1gLUs=; b=NOXn+zPADA8XJ3
+	6+JnN+lTJISDWeQIx0Nsfr8c4Z9B89rGnJl/+ZZCeWvz/ySQLYULyRMJPOg1G3ko3XC+m0nvkzS6J
+	adQLlSVYzbqJxIsKqH0o7FRxKEUliWSjQtumCwtGpv7QfDRaJyXBI94P++/eL0/Fp7J8o0pTyKs3Y
+	i9UDlfk5+uDVvXN8CGC9EEzpNpx7T22E0wq+PFpZarUg1iu7QpfRKGVZS5n3TkWeciwxJmcOeLN92
+	apEvNAYymtOh1ppmE/5C63FGIhv6y7y4Sm/WwG6wt7wD8cy+EfhJnWI+X/PVh5vlb2AQn0S7Zb4QI
+	yo3dTW+WwcPDfkh3o69A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsu7-000000051PK-3DPE;
-	Tue, 10 Nov 2026 20:57:19 +0000
+	id 1xQsuF-000000051Rv-0RcU;
+	Tue, 10 Nov 2026 20:57:27 +0000
 Received: from mail.andi.de1.cc ([2a02:c205:3004:2154::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQsu5-000000051NY-1Tln
+	id 1xQsu5-000000051Nb-1UJW
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 20:57:18 +0000
+	Tue, 10 Nov 2026 20:57:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=Cc:To:Subject:From:Reply-To:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=8vkSRLV03sMiSf6kg11DqKSF3D7mLrc58A9bRe4NGqw=; t=1794344237; x=1795553837; 
-	b=F2oreDArloXLkxxkQJayFAVgov4G5PeazzSzn99/2WxPVFtf3x+SvpDRemSDghb/T11qe2i55cK
-	qqhetHSsGuZE8rZX8Wvc+m3eh9wsUEnw4J/tmCWP6mxX5kEoe61J37CYE1VcR2LU3hqiYI3AQ5y9T
-	npAZls7xgRT7Wp7vTeZAAftrIY6KbmJ/OFv867AgQcS+v2Rtbam3oPcHiLVbCua5WDjsA3L4bjwaO
-	p5s9awWwd5cttW70bcoe+3AITNTN3z9ajTRK0bcA3WxpdZm/wKUYakX12K3FaqzaFm20nILfUTK/y
-	hmk4YW2bmZF6aA8tdvF+NxlZdDKM6f8MdZaQ==;
+	d=kemnade.info; s=20220719; h=Cc:To:In-Reply-To:References:Subject:From:
+	Reply-To:Content-ID:Content-Description;
+	bh=TrYzlfpzSjOTkcFVrqQppineqlRGur5koHqKUH1gLUs=; t=1794344237; x=1795553837; 
+	b=asOeR1GeHWEyZyJIKEy8U4mpaVhv3EqwN6xBs41t1KvjKQm24324MYs0gaSU9RNBGbmYvmPuSbI
+	xJOI5ebs7n3F41gMubuLi0Fu0ADJnQttQvN8rCmsu+ogZsbmtsfsjZsEKcXUmNE1JAx2/VeZjqYGw
+	Yr2sJWhqg2T/UjK07mGrdxIbGT2T6PpIU4yAyDknh1rF8ldlOUU0TpietlZj19g2Wqttw2xpDx5yG
+	gmABiOyUA7/2KiJVJYgVKQQMoXSLKLYw0MSVQnEvKlFXYsgMvUVmKx9zQSe5wFOt1aC5RGB616pj9
+	E2Q9qUjTQM/zXk29yW7pRCOzdcTZ8dyRSmNQ==;
 From: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v2 0/3] ARM: OMAP2+: Convert OMAP3 I2C to ti-sysc
-Date: Tue, 10 Nov 2026 21:56:02 +0100
-Message-Id: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
+Date: Tue, 10 Nov 2026 21:56:04 +0100
+Subject: [PATCH v2 2/3] ARM: dts: ti/omap: describe omap3 i2c via ti-sysc
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOOE82oC/0WNQQ6CMBBFr0Jmbc20ooIr72FYlHaQ0diaDhIJ4
- e4Cmrh8yfvvjyCUmARO2QiJehaOYQazycC1NlxJsZ8ZDJqD1lgqNk7JIE5ZzIscS+v90cGsPxM
- 1/F5Tl+rL8qpv5LplvxgtSxfTsH71evF+WY3/bK8VqqLM91RrvysaPN/pEaynLYcmQjVN0wfUk
- IIxtQAAAA==
-X-Change-ID: 20261109-i2c-sysc-a048409add7c
+Message-Id: <20261110-i2c-sysc-v2-2-490cda69e350@kemnade.info>
+References: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
+In-Reply-To: <20261110-i2c-sysc-v2-0-490cda69e350@kemnade.info>
 To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
  Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
  Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
@@ -64,25 +60,25 @@ Cc: Sicelo <absicsz@gmail.com>, linux-omap@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, 
  Andreas Kemnade <andreas@kemnade.info>
 X-Mailer: b4 0.17-dev-e5168
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2051; i=andreas@kemnade.info;
- h=from:subject:message-id; bh=HLpL8m8DVWiEtYHCjcrWT5QMR1NV1zGxurHaq3sDY2E=;
- b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBq84Top3dPTjI90yNGW8S5KhnBqHG17bYixViRu
- jq+IdCPCjaJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCavOE6AAKCRCEYUX6QCjc
- 8VLGD/96/ySK5pTY9pr3coUPLe3B9TgfXFp64mgj7w2aVydch65lIy6JGjGxTr4EoCiVRwS88rn
- 9VVsk5fnu3bd3PojWPFtZQSXXNLNiuX353LFzUv9MtOLWlGb2iu2am+RSiW0fqUsOWwWZX46/OR
- kEMPfrKzKHKgFthv8x5R5Z2D7PpVJyLp89hShiu9nA1CdmLc9drFjkfAiiF7mOxns16S7LwO58g
- 4I8x98yAAvd0y/ue62+AMaJAlof/Gqb0TcyZtno82nWmq2QzJlCornnuDSo+jiO/6VY7GRE5/tH
- Qo2FKmrO8eiq11Wj/1w2NO0JyxZgQyc+UQ8KFiAAPPiqZBLnM1+fxqiYbPX7Y8iCgTg1caYNwMb
- RXtUrT/gJQUltUiRm78TY0qs3fpExdC63Z12myPrse8XRVuXKCaot3FGEtUxit4M3VccsREWU+/
- FdjmwH/VSfdfGX3aS9ezmKpZ9XUMCjgWWKENqAqaIDnnl7tcO/bSRGuqBwLYicwrBVcgWY6rHwX
- rkzvQqtfn/7OmzlpTGu0Wa4zdZa7H6dB3u5HyMk7SyGVoN6k2kERwCpVEQiy9kRKMFf8+FecB/D
- IGUked0zH4riSTO/tiFkJAlCGPpqj8Qx6Rz7mx4AYmGOBCunlDLOcHJezZdUmouSu02BR/TeaEt
- G6c+jht5ZFZEzGg==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4606; i=andreas@kemnade.info;
+ h=from:subject:message-id; bh=WJ3PSTqkXdeNhSq80VIUeTpz6RXvNLLA2KUhBVQ6G3U=;
+ b=owEBbQKS/ZANAwAKAYRhRfpAKNzxAcsmYgBq84UFB05YHUBMrOa6Vu+RcsAp0GuyzhclH0zIE
+ 5Rc4Zsd+1qJAjMEAAEKAB0WIQTY6xCZL0TEE1XHfFiEYUX6QCjc8QUCavOFBQAKCRCEYUX6QCjc
+ 8f0ID/9FH1XVo1MON/mz/J4Zte5DLtgMZomXQps4fDYTb+qNtwhQP+wEmdzBmJkz2VWN1O7bhk/
+ nwVOBf9cP5i4MCESc31D1Ms2s456GuqVIjcG2ScRhKmHtIGEVxhZmstr+lQlPmZw5pSgGxi1o9M
+ MB3x+oCJo+r3wjipJRfcgUpQSvBBrSlGXpXPbWtexl/jJ/Z6NBZEPKEQes3gj0zT6g+CUEqrnXG
+ LPQgE9US359XSmFTLa9Bwb+lTF0YxCQbeg7bmADnk+Wxcy3k2psgYCpq5h22J+cc+C8w6JelRXt
+ h3cUKBhOxOMaMCZyK4qAYJYtHJCs6Coo56xUmwpAh7d8H2m+WNewfw4G+MY49LKgU3b1jYzIOn1
+ KMdZZyr4z3oPK0/yhrnQQosJZJiha2zBvw8vFKn5I973XqGoe0Pw0plLWNiuHeFEgJU0Duneu+Y
+ 5uS/bFcB8fO4P8bL/3U32/FvFMr3xkiSMzgPT3hpvqwmb/5YQPS1NmtM6bDVmaG3CksoDoA7Zo/
+ em2rZeCLXddDcFJvbCGHrge0L51gv7oqmrIb48kwx3j+Ex984tj5uFXRLb3KmruDP8nX1yj+dGp
+ fIveAa/g+Lj77u6NnWgEotckeFBmMtTv2wLikFmMyahwsiVab+2pu9JGutGnyFlRaXqBhcjRSCi
+ 8zXQ2vYz06s3hSA==
 X-Developer-Key: i=andreas@kemnade.info; a=openpgp;
  fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_125717_403987_EDAD74A7 
-X-CRM114-Status: GOOD (  12.68  )
+X-CRM114-CacheID: sfid-20261110_125717_407158_54D0C2DC 
+X-CRM114-Status: GOOD (  13.17  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -102,52 +98,150 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-During suspend on OMAP3, I2C suspend oopses. This is a longer standing issue,
-in the past I mostly tested runtime suspendidle behaviour on that platform
-(including uart autosuspend). A change in the I2C driver fixes some corner
-cases in pm for ti-sysc based systems, but breaks systems using the deprecated
-ti,hwmods property. 
-To avoid that maintainance overhead, convert the i2c definition
-First fix the I2C quirk needed for these older chips. OMAP2 stuff
-is not touched due to its planned removal.
-After OMAP2 is removed, arch/arm/mach-omap2/i2c.c can be removed, too.
-I may try to check again if there is some safe fix in omap_device.c
-but changing things there has a very high chance of unexpected side
-effects.
+ti,hwmods is deprecated, and the power management there is working a bit
+different than the one in the ti-sysc way. So if something is changed
+with pm incfluence, it has to be tested on both. To reduce that maintenance
+work, convert to ti-sysc. Also fixes an actual crash with OMAP3 and
+suspend.  That was caused by a commit enabling i2c access in later phases
+of suspend until the noirq phase. But that causes some state expectation
+mismatch between omap_device.c code and the i2c code leading to the
+following:
 
-Handling the commits:
-In the past (e.g. around commit
-42a79edd4a3dc1bb8e89fd2849f9e8e1e1c13977 for converting musb to ti-sys)
-these changes were handled through a separate branch to keep them in
-order.
-Here is a hard requirement of the order. Patch 3 can most easily wait
-but having patch 2 after patch 1 is a hard requirement. As the
-affected devices get their devicetree updated with the kernel,
-that should not hurt too much.
+Unhandled fault: external abort on non-linefetch (0x1028) at 0xfa060004
+[...]
+PC is at omap_i2c_runtime_suspend+0x1c/0xd8
+[...]
+Call trace:
+omap_i2c_runtime_suspend from _od_suspend_noirq+0x44/0xe0
+_od_suspend_noirq from dpm_run_callback+0x4c/0x1f0
+dpm_run_callback from device_suspend_noirq+0x208/0x594
+device_suspend_noirq from dpm_suspend_noirq+0x1c8/0x3a4
+dpm_suspend_noirq from suspend_devices_and_enter+0x10c/0x840
+suspend_devices_and_enter from pm_suspend+0x25c/0x3fc
+pm_suspend from state_store+0x114/0x130
 
+Fixes: 7da7fd7e66ac9 ("i2c: omap: wakeup the controller during suspend() callback")
 Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
-Changes in v2:
-- fix missing kerneldoc
-- fix typo in dtsi, which surprisingly worked quite well
-- Link to v1: https://patch.msgid.link/20261110-i2c-sysc-v1-0-8945eb1d38f0@kemnade.info
+ arch/arm/boot/dts/ti/omap/omap3.dtsi | 96 +++++++++++++++++++++++++++++-------
+ 1 file changed, 78 insertions(+), 18 deletions(-)
 
----
-Andreas Kemnade (3):
-      bus: ti-sysc: fix I2C quirk for OMAP3 variants
-      ARM: dts: ti/omap: describe omap3 i2c via ti-sysc
-      ARM: OMAP2+: remove i2c from OMAP3 hwmods list
+diff --git a/arch/arm/boot/dts/ti/omap/omap3.dtsi b/arch/arm/boot/dts/ti/omap/omap3.dtsi
+index 447736d2e53ca..2ee5fd4888ce5 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3.dtsi
+@@ -396,31 +396,91 @@ uart3: serial@49020000 {
+ 			clock-frequency = <48000000>;
+ 		};
+ 
+-		i2c1: i2c@48070000 {
+-			compatible = "ti,omap3-i2c";
+-			reg = <0x48070000 0x80>;
+-			interrupts = <56>;
++		i2c1_target: target-module@48070000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
++			reg = <0x48070000 0x4>,
++			      <0x48070020 0x4>,
++			      <0x48070010 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
++					 SYSC_OMAP2_ENAWAKEUP |
++					 SYSC_OMAP2_SOFTRESET |
++					 SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&i2c1_fck>, <&i2c1_ick>;
++			clock-names = "fck", "ick";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			ti,hwmods = "i2c1";
++			#size-cells = <1>;
++			ranges = <0 0x48070000 0x1000>;
++
++			i2c1: i2c@0 {
++				compatible = "ti,omap3-i2c";
++				reg = <0x0 0x80>;
++				interrupts = <56>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
+ 		};
+ 
+-		i2c2: i2c@48072000 {
+-			compatible = "ti,omap3-i2c";
+-			reg = <0x48072000 0x80>;
+-			interrupts = <57>;
++		i2c2_target: target-module@48072000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
++			reg = <0x48072000 0x4>,
++			      <0x48072020 0x4>,
++			      <0x48072010 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
++					 SYSC_OMAP2_ENAWAKEUP |
++					 SYSC_OMAP2_SOFTRESET |
++					 SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&i2c2_fck>, <&i2c2_ick>;
++			clock-names = "fck", "ick";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			ti,hwmods = "i2c2";
++			#size-cells = <1>;
++			ranges = <0 0x48072000 0x1000>;
++
++			i2c2: i2c@0 {
++				compatible = "ti,omap3-i2c";
++				reg = <0x0 0x80>;
++				interrupts = <57>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
+ 		};
+ 
+-		i2c3: i2c@48060000 {
+-			compatible = "ti,omap3-i2c";
+-			reg = <0x48060000 0x80>;
+-			interrupts = <61>;
++		i2c3_target: target-module@48060000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
++			reg = <0x48060000 0x4>,
++			      <0x48060020 0x4>,
++			      <0x48060010 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
++					 SYSC_OMAP2_ENAWAKEUP |
++					 SYSC_OMAP2_SOFTRESET |
++					 SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&i2c3_fck>, <&i2c3_ick>;
++			clock-names = "fck", "ick";
+ 			#address-cells = <1>;
+-			#size-cells = <0>;
+-			ti,hwmods = "i2c3";
++			#size-cells = <1>;
++			ranges = <0 0x48060000 0x1000>;
++
++			i2c3: i2c@0 {
++				compatible = "ti,omap3-i2c";
++				reg = <0x0 0x80>;
++				interrupts = <61>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
+ 		};
+ 
+ 		mailbox: mailbox@48094000 {
 
- arch/arm/boot/dts/ti/omap/omap3.dtsi       |  96 ++++++++++++++++++++-----
- arch/arm/mach-omap2/omap_hwmod_3xxx_data.c | 112 -----------------------------
- drivers/bus/ti-sysc.c                      |  20 ++++--
- 3 files changed, 92 insertions(+), 136 deletions(-)
----
-base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
-change-id: 20261109-i2c-sysc-a048409add7c
-
-Best regards,
---  
-Andreas Kemnade <andreas@kemnade.info>
+-- 
+2.47.3
 
 
