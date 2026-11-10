@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DF6F60A2611
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2E9606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tVGy0Hhq;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F/jRM855
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fJJs3ehU;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=THUXTWWt
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GkBybTkwE49kIc06+RCvE13RGhar/sx9sHchhnfXl5Y=; b=tVGy0HhqqhmW6o9pRvuKVgL1qq
-	ckoXm+DiKDhtR7NdGd5ef2Umx7LJ8NlFDx9Iegya6r3wnVoWHqCG1x3FWy+Xr1Ve72r8qwMb28d7w
-	9AN06062bdNYtqlRiMTQ1R81tVGcXmF1VHn16qM4+rp3jiOnkMIZ/EvbK+LfFK0doYTNZgGywPRso
-	PxcvkvLX5aUmAjDn9quMx9wpcJLNLwipuKeQwjBJ1YhHJ7Ai3JB/NVC0/+a5lwkW7JOyxjnA7HPKY
-	A1VV3NIQLcrwa2nOOjCkqS3n5Vg4PKeBwOnb1tURViuYXu+3qC+KHZ09MLYH/qQ+zdbLsekxDsQXR
-	9p8vMuXQ==;
+	bh=x3ztbNUFuuQCzB/tqQ7N8CqDzjsIOlgjuxNyu7v0y2Q=; b=fJJs3ehU9bcTS8N+XbFk3ZvSI8
+	zl2sTQIDvf0+fLVC47UtDzyov4wYLLL7N+tPEdmP0Mmqu12fEIc+bM9U4mjnH4Yz1+gBVkz/5yQAO
+	5hp7Kx+PzCm3/wFm3aO7+7jZ300Za8RNuTsspSlOMVb8++g1wHPPgvOlLfl92lsVk70ZqFsfjmxO5
+	5hu5cFoY6lVTYhFIgmWOZcSgjSHNvvEJAvTUFGH6M/M2kSSidxDUj/GE4WMVyjBdTBKU4V53jXPTo
+	TwLXVqzoKiI/kQPONVapFf6tMKqiZsxy/2FNSLYvxpVNIAo++pOe2y9hUhk+wapMy8A+pJUvoxuS9
+	Jr0ikrLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg1N-00000002mGH-390f;
+	id 1xQg1N-00000002mFL-189i;
 	Tue, 10 Nov 2026 07:11:57 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg1H-00000002m72-15RK;
+	id 1xQg1H-00000002m6w-0QrA;
 	Tue, 10 Nov 2026 07:11:51 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 9714563789;
+	by tor.source.kernel.org (Postfix) with ESMTP id 8296A6376E;
 	Tue, 10 Nov 2026 07:11:50 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794294710;
-	b=Dg2CRgTjbinFmI1uK9T4OwgDt8yn5aZDNJZHjbOf/j7MvkmUVPJ/k2GbfbSa7dEsSqsH
-	 JUdZDb58JqxrstemicQ4gM0CGCG3cOqrnUISIzUUMhYGRN7Sv2a8UT/grcdWprK1V2zfs
-	 +UtYxLiZFaMw7a7mpXKL/A5ppfGI2J6xILAaXhQdopAoiTwMCDt9heGfVRvSkSJUX30uk
-	 458J++jnXGjZ80B5X+SobeT18TIeqyU1jpy92I4igR2sXJNjrb3wBmvEokO9Et+NwH/p8
-	 iMPRYMyXWSfDCfkBwaTH7U3I8s8sq0ONt3AqRCpa7uC5ecZRuPOfl6ksh2Sjz5tEaUg==
+	b=oqtyaTwiyo0Be38kd0G3ra0wjJ1UCXD96DI8lzXifu7mlmWnNmni9CblbtGahCQBi3Lr
+	 UK9Z47yYccEYVc12rtm+YAuV0h3h+GaQF6zgvUu/VxQBbNZAR5feyBg1HOnlia3/mNEVQ
+	 y9IXo6dPW1SKPkK+W7SRQwXwEHNab5V+E3z4wsD3R2Ld2jJYTw+64WzfTvhTgQNl+S5Ux
+	 Zom4LBkTKbpYGjZwsECH3sCaGe/3luDK7r1ZVLb77VLY2wcFmPxYmbwGj4n07hsTdAFcw
+	 xuhYMw//qTWtoI1R9zYQzfn0LH896cnwXByAlmsUpXLniycDTbwpgW/8urImlDqDUOw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794294710;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=GkBybTkwE49kIc06+RCvE13RGhar/sx9sHchhnfXl5Y=;
-	b=kmNB7ylJoLS43Wk54DYB4IwPY7R4b9pIC+2T2tWlnuhJALyX5dPj0ipw1R/3+wRjeddC
-	 KI7iHnM44rXAPh+JrGcENfdVCZqaMazxthJYk+M+2dEOCXduJOFlhZmt1IWNeOZezKBoB
-	 SJQkr4KSYc39VXGh3GGRqsaTZl9mQEl+uDwXI/MBpZcRHLu8hZqf5iuau2K76EowWD/gk
-	 J+Muz4ULzulqmCnZ/5laANgU0vvixlHB7IfHT2cecX7wyjxIC9RBZg7ObCllAH9bTP4jd
-	 scDIQBkDD0n6WJjhrtN3djGKv5eNw1ocJD0U2GDIOnlBE2QAIXuiwA3cl8zviQsLN7w==
+	bh=x3ztbNUFuuQCzB/tqQ7N8CqDzjsIOlgjuxNyu7v0y2Q=;
+	b=KgvkPUa/TQ0rlwpSWgx359MwFTy1zPwCOhCUO1nJbyu42Ju4MBlatx4ffmIpuqiuMr/2
+	 kKa9+PdkAKtiBKooTIoERAD8Dmj9JLn/hNkVNfflCy6N0Mtre6y2o03VOQBTDdCRL5jNJ
+	 NxPAv7bY6bgHzXTtI1UebniEqTlEStcwJgYR0dQ1B7Z0VDLB5siyHc+gtrrvZ+Rj7+C3L
+	 PY/c8xfTOQXh6h+/be6AbU+XqVC0/GTNDgckPLIbGHSKXGWvhB+UzSq5Ur9r9NB9rsBaO
+	 Uwb3pwavtdP2nFD46LZXiSiwdjWmoC17uNeTKYlj4pSGYUH14EyMtZRGj7yK2IBcV9A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 60ED61F008BD;
+	by smtp.kernel.org (Postfix) with ESMTPS id 3DA041F008AB;
 	Tue, 10 Nov 2026 07:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794294710;
-	bh=GkBybTkwE49kIc06+RCvE13RGhar/sx9sHchhnfXl5Y=;
+	bh=x3ztbNUFuuQCzB/tqQ7N8CqDzjsIOlgjuxNyu7v0y2Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=F/jRM855uprZIIFgV7t9VH7WNEZSaAI6GD7zm/dgo9q1WSi4zX3kr+x8EgT6KFvGg
-	 mlvZrSohMJtkXDs/WYhEWUYgwEtTM1/xIr1aocoF7EtbDpZD6sSZHsh+Dz5DeCGibh
-	 o3uJEzqdnzQCbkm0nwGauvVwNnuPQxuTNPPSwbGG4u5NGxPINZmdO6KKN38eefHLOu
-	 KUZu3n7VZuIqGrLeDM38PWh57bVPOFldrDdpOtMJvW5AblkHj0m1TbKDIKVphsuBDG
-	 o+sJACVdxd7cs2Or+2IOfi/Y9FWqchEfwkKyA5VYNgZDMR1AD+4eUB89CvvaUEg9gu
-	 Vm+PrLUACSHHg==
+	b=THUXTWWt28JCcNgo+Vi8lSOVeSVQu4HvpXjETa+h/wVaR2p5aqFrmPpEqp+pZTVBr
+	 hwzvuAPIiDQ5HhSR50oStvfVSpYTJOSkKJw1kVviBU88Yb3BWD9hfumtwXghco7kvz
+	 sWtQSMXw3pNDQtXgYcYXoo22ANrDhb0bPOxdkd7buQHzZvTuwthWu5ex5UujMPHJNC
+	 w7w5c59BmVyVWIoQbFjMjOKixkYnpn5p8NtQMhIDPKnTJurV54enAy6GYMLkwPAaJT
+	 9RFl3C6GOimcTEZCxlfBi6bLCV6xGwkrKorzsC6wFcLDVKRFw3IkB1X/lZBgpj1CbX
+	 wPsXWX4u6f62A==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id E84DD4894F;
+	by lkml.kernel.org (Postfix) with ESMTP id C59E548943;
 	Tue, 10 Nov 2026 07:11:48 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 07:11:51 +0000
-Subject: [PATCH 4/5] arm64: dts: rockchip: add the PCIe power domain to the
- RK3588 PCIe SMMU
+Date: Tue, 10 Nov 2026 07:11:49 +0000
+Subject: [PATCH 2/5] dt-bindings: iommu: arm,smmu-v3: allow clocks
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-smmu-v3-pcie-pd-v1-4-628819ca44b9@gmail.com>
+Message-Id: <20261110-smmu-v3-pcie-pd-v1-2-628819ca44b9@gmail.com>
 References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
 In-Reply-To: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
 To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
@@ -91,11 +90,11 @@ Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-rockchip@lists.infradead.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794294708; l=1589;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794294708; l=1190;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=XjCTjW7WX2P6Yil1lroIFdMhtw3N6JLNEl/nbTe3Rtc=;
- b=KT3JAHOImp1NNVgBlK1O+84HkPyq2khzDT/ZgpgGMhXk6Q8ZUnIvjXRkQhFMFSDOZHumy00Z7
- ROfIwWwGlmIC+fICCGyWRiAcj/Z0XCId4AlPvl96YptG5dDrNNRRMd9
+ bh=e3I86t0a2cKOracDfZB99pIl0HZ6AOgZkYX+gUkTyuk=;
+ b=tBT8b/4LYX8rdPkNdY6YZ3Uugf78rotGYU+jpwCP66IokWm6Ao3oFELzJCwqsK6jWIT6zWrVg
+ dmmp2igf4A2AJylfNxi90PXlJSKrdARCH+fF/ti/lPJg2lEF2QR0zEj
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -123,40 +122,38 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The MMU-600 for the PCIe controllers (mmu600_pcie) is enabled for every
-RK3588 board, but its node does not describe that it lives in
-RK3588_PD_PCIE. It only works today because TF-A leaves the domain on at
-boot and, on most boards, an enabled PCIe controller holds it on later.
+Some SoCs feed the SMMUv3 from a clock that the OS controls. On the
+Rockchip RK3588 the MMU-600 for PCIe runs from ACLK_MMU_PCIE, whose only
+other consumers are the PCIe controllers. When no PCIe controller is
+enabled, the clock framework gates it as unused, and the SMMU can no
+longer be accessed.
 
-On a board that disables all PCIe controllers using that domain (the
-Orange Pi 5 with its M.2 slot in SATA mode is one), genpd powers
-PD_PCIE off as unused after boot while arm-smmu-v3 is still bound. Then
-at reboot arm_smmu_device_shutdown() writes CR0 and polls CR0ACK on the
-unpowered block, which stalls the bus: the kernel never reaches
-"reboot: Restarting system" and the board only comes back once the
-watchdog fires.
+Allow up to four clocks, so that such a clock can be described and held
+by the SMMU driver.
 
-Describe the power domain, so genpd keeps it on for as long as the SMMU
-is bound.
-
-Fixes: da92d3dfc871 ("arm64: dts: rockchip: enable the mmu600_pcie IOMMU on the rk3588 SoC")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index aa69fd3793fd..bcd342c025c9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -560,6 +560,7 @@ mmu600_pcie: iommu@fc900000 {
- 			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
- 		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
- 		#iommu-cells = <1>;
-+		power-domains = <&power RK3588_PD_PCIE>;
- 	};
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+index c8f22dfdb1db..f8a74730667c 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+@@ -63,6 +63,13 @@ properties:
  
- 	mmu600_php: iommu@fcb00000 {
+   msi-parent: true
+ 
++  clocks:
++    minItems: 1
++    maxItems: 4
++    description:
++      Clocks needed to access the SMMU registers and to keep its translation
++      units running, if they are not managed by firmware.
++
+   power-domains:
+     maxItems: 1
+ 
 
 -- 
 2.55.0
