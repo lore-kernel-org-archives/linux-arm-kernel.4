@@ -2,108 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDF0606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46450606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bob/nDXz;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=u8E7M7Ll
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tZN76714;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=FUPAm8N1
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XoornKh9z5jpJH7j8+EuQEpUcX1Rogb6YE7C2nngtQ0=; b=bob/nDXzT08qFf
-	hoAZc1mu2DmSMMLUpyd61Q8Gk7sERSDf7p8lZJgWygHQdE7LUjO01AE/NuwWZ6wRxmjQaZsCDhG4Y
-	xNXLYfoBCfZLA7VZroIm8q8YLKZxAdU44HutnYN+fkD3T5cjmUsTcRKBQht910Cq8OZACUkrIIagL
-	gPjkdSR9fGs8tAfZxuPjl5UMAXt0ECOfKIaFkX1qyeKE7Td0nh1yUCcimnXCuavUCzqWTvVVhqml5
-	qyNUM2NiLJkzaQ/W4GN5dVQxLeZg2IGkWNkTvTUiV9v2hZNPTJQ0V3/begNK3kYfcFlYPJziM8gH1
-	Z9WJPAV1uQ63KIASXLnQ==;
+	List-Owner; bh=XDw9TAxp8+PVmYmAoppiNo2R12oIkwagkMS4XyFHbSY=; b=tZN76714Y2naJG
+	dogrN5Xx9mTYlgzQyxRHPx8fDVHuMsgWsTmkv8joK6HQ6Mu2kLITGmvvCSMYS6/Trjf2KggSRO/dh
+	cBX4t57COs5h+GsTcf3VJWiPdFYSMXUm6Oq6aIDbSqVYNH2ISWWQ2prbANIWIcBGvRQ1QbJVk3cIu
+	KGNXt8z3+teJzmLbnjLG3F/0kHxTGieGP26w/L+W7YXf/aZK1nlNqXve0RWneLvTKXAN8GGbn4pn7
+	Ur6ymlKaveEzFl+3Gt+CdL2NqworFrb/OYWaBsncoO52JX/8Q/TcV78TRe0nubKE8viJXLSsjYbvV
+	B8TL/f5DtjIBUiTWeeNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiYv-00000003MuN-2wms;
-	Tue, 10 Nov 2026 09:54:45 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xQib9-00000003NAE-1XoZ;
+	Tue, 10 Nov 2026 09:57:03 +0000
+Received: from mail-m81219.xmail.ntesmail.com ([156.224.81.219])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiYs-00000003Mt3-2qku
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:54:43 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so6738475e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 01:54:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794304481; x=1794909281; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=XoornKh9z5jpJH7j8+EuQEpUcX1Rogb6YE7C2nngtQ0=;
-        b=u8E7M7Ll7r5ZT5p/3FvK6Ux/xO9bb9X2QQpWTEs89YNy4B39E5vrnXf2A3WmQdV8jh
-         Bon7VAzZNMchWPqqHHrKLDSvGsjq+Q7xi82cbXrHP65nKabyN4G4oFAJw4D/Hgp9TUSa
-         zThxSaxLdp0nW49JdxzDv72yFrDagslRIC0Xbc/ZSmphESmkYXCLjSElWGNr3Jcc6fHF
-         9nenSPhD89tieJThv4KquxZtVVxDbvHKmebEfbiMTwVDQUCycfKjtu/lJHfJxphSAJ4I
-         0m29xa7PErOU3AyPG0vO9/OTFZPAIVxs7m3rl2405JGaB0aqhIkKt5ZhwHaW3oRKc0DT
-         GxUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794304481; x=1794909281;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=XoornKh9z5jpJH7j8+EuQEpUcX1Rogb6YE7C2nngtQ0=;
-        b=RTkRmD2a56Rzk4bnUTQidbEcwKyYPOd9NymnHTWNSIKTFmaHJhJwS6IcODqBmSTH91
-         Czs8x/qiV8bAxNiW8uo5BmW20t3PXINbLU5cyz6jZj75KPl3h4xEOT2OGhEL3UHOEa4+
-         TE285lXHLLRlpdWGwp6xdM0NaWhdhtwq0R9WpE34HFZ6a55LZ/GD6VD+op5zD7pxw2jC
-         BUv7SPTlW1SdJyzLEgQnOxvZZ7qvgzy/aFuC+hdYKotoAJYH+nOaVeJRWlPqYbXm8dYN
-         JxVou5WZwAkv7/PMDz/z1JFMGjwTB0osGG2vLmN20wGyeEhqP32Y3YOXKbFjmpSd7PY3
-         tNGA==
-X-Forwarded-Encrypted: i=1; AL+hErFs3R+G2sjgYp9uDOkML5JTPenbZNncOLcEwAes3CpWe6ypvwqOyozO3EzwkwkTJArWQXxAhEMKmpBqNLgQA5xU@lists.infradead.org
-X-Gm-Message-State: APuU4Z+WWxWuAguNKWumG1TFvwdyGpy+rDkC0krfj392HFR07tkClbSa
-	jl+oGTeN/rzBj7igUiIOuD6ehsfehyBRcnJfoNQcWMRIKnysiuhBGwr5
-X-Gm-Gg: AYBFou3TYEmGyEnEvbbzCFX6gwgJ/IuakPRddHyuNLp95Al130rziFC1gvYXj8toV5z
-	U5R2W8JngnChyYgukFZghEWMGEG2CiZMrf6UDQxU7qO7chhwfFYQZclMDN0t6cO5NhtRBSxlmSF
-	swbaMy2QfFQz6ZwuziDpnGjhUPifGg8E3igp+bra6TRzTDjX/7TNyJMIKDGobKqlPD3ao5Tedd5
-	9rJuT0CXXsnruMoiHmqGLtP3UBdL5yujiDW6DFxUY0v1C9Q+pxjjWHcJu2B3JWCLIShFCuBLwOo
-	hcYUKBjhAB823xKiRw7jdRQdlUYtCibM3QcxI86GDOfOXRbXcBGRyOAAq1z0Buyx1/ONXsB01t7
-	zheCbATUrScQPrrx6nkethm5w//Ugc79D7fIHCZK25asueH3k+Z7LcBP1NSwpkquHcmFPfMVA3U
-	egnxaC4E9hSVIplutTwd3DljyuOeMFmiAKuyC2vKmLLP+YavMf3SyvB3+U4M/g5Xr2yjgSbJdkW
-	wjyHF484hgDmW6QWqCUpxu7/752GcrnElhe5ZrdVDOvmm+Oa1ff7Xn0kW0M4wRmGP46Isu54X93
-	jLlMdJXhsBsbRWBZ5c7AA5JhOYzQIrkg502YCg9w88m7LEZYgUZGE7vWlUnCshon+VeClG9ZSJQ
-	YQwqYBw==
-X-Received: by 2002:a05:600c:4f4b:b0:4b1:32c8:27db with SMTP id 5b1f17b1804b1-4ba0234bd12mr43740995e9.22.1794304480565;
-        Tue, 10 Nov 2026 01:54:40 -0800 (PST)
-Received: from ?IPV6:2a02:e98:40:8091:e8d5:38f4:f7b3:6dbc? ([2a02:e98:40:8091:e8d5:38f4:f7b3:6dbc])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0204e22csm48483805e9.12.2026.11.10.01.54.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 01:54:40 -0800 (PST)
-Message-ID: <873c22a2-fd3f-4927-a06f-16a73c30de86@gmail.com>
-Date: Tue, 10 Nov 2026 10:54:40 +0100
+	id 1xQib5-00000003N9M-0kBQ;
+	Tue, 10 Nov 2026 09:57:01 +0000
+Received: from [172.16.12.90] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 542714690;
+	Tue, 10 Nov 2026 17:56:54 +0800 (GMT+08:00)
+Message-ID: <d1e3a4a9-7cb2-4345-86d9-f8d1c0156b42@rock-chips.com>
+Date: Tue, 10 Nov 2026 17:56:50 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/11] serial: 8250_dw: share RX trigger setup and
- describe Allwinner UARTs
-To: James Hilliard <james.hilliard1@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20261105-submit-h616-uart-fifo-v1-v8-0-14024d2b184b@gmail.com>
-Content-Language: cs, en-US
-From: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
-In-Reply-To: <20261105-submit-h616-uart-fifo-v1-v8-0-14024d2b184b@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 6/8] drm/rockchip: vop2: Find the first mixer of a video
+ port with Esmart3 too
+To: aiyengar1990@gmail.com
+Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sascha Hauer <s.hauer@pengutronix.de>, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261110-vop2-fixes-v1-0-d336e9dd90d3@gmail.com>
+ <20261110-vop2-fixes-v1-6-d336e9dd90d3@gmail.com>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <20261110-vop2-fixes-v1-6-d336e9dd90d3@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0aa1c4e3a1d603a7kunm6c01c8eb715da2
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCGR0fVkJOSE5LHhpPTBhDTlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=FUPAm8N1nOe1ZJvKxUl85v9FSy633IoHhaFi9+BagYYZlyk5Vkd1HjGqcf0KxVFMf6Gm+4uR17d1NKADyKNA1BHrHw+5P7lp4tmMVhQSo/JRnDHzmo/jDhCFTg1aWOd6RCwJr7GyfyQs+6TzIFou49nk5CaHU7+4nXwdYxtciqc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=XDw9TAxp8+PVmYmAoppiNo2R12oIkwagkMS4XyFHbSY=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_015442_762154_E69D29B2 
-X-CRM114-Status: GOOD (  11.05  )
+X-CRM114-CacheID: sfid-20261110_015659_809406_143F4696 
+X-CRM114-Status: GOOD (  16.19  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,38 +77,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Based on tty-next at 6628e7d4c6b2 with the posted RX trigger callback-lifetime
-> fix [0] and DW BUSY-safe divisor fix v4 [1]. Platform setup runs before
-> installing the BUSY-safe divisor setter.
+Hi Arun,
+
+On 11/10/2026 3:18 PM, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> [0] https://lore.kernel.org/r/20261024-submit-serial-8250-rxtrig-lifetime-v1-v1-1-731b78d5003d@gmail.com
-> [1] https://lore.kernel.org/r/20261027-submit-serial-8250-dw-divisor-v1-v4-1-41714a75e15a@gmail.com
-Hello,
-thanks for the work, I wanted to upstream my changes [0], but got 
-redirected here instead. This fixes the issues I have had in a better way.
-I have tested the whole series, so I reply to the cover letter, didn't 
-make sense to me to reply to all messages with tested by, but I am not 
-sure if that is the right way.
+> vop2_find_start_mixer_id_for_vp() looks for the first layer that holds a
+> window of the video port, but for_each_set_bit() takes the number of bits
+> to search, and ROCKCHIP_VOP2_ESMART3 is the highest window id, so Esmart3
+> is never found. A video port whose bottom layer shows Esmart3 then starts
+> its alpha setup at the mixer of a higher layer, or, if Esmart3 is its
+> only window, past all layers, and programs mixers of other video ports.
+> 
+> Search all window ids.
+> 
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> index 83203d18865b..2843bfb36341 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> @@ -1889,7 +1889,7 @@ static int vop2_find_start_mixer_id_for_vp(struct vop2_video_port *vp)
+>  
+>  	for (i = 0; i < 31; i += 4) {
+>  		match = false;
+> -		for_each_set_bit(phys_id, &win_mask, ROCKCHIP_VOP2_ESMART3) {
+> +		for_each_set_bit(phys_id, &win_mask, ROCKCHIP_VOP2_ESMART3 + 1) {
 
-Tested on Unipi G110 controllers (Rockchip RK3328, CPR-described
-64-byte FIFOs, ttyS1 and ttyS2) on top of tty-next 6628e7d4c6b2 with
-the two prerequisites. rx_trig_bytes now reports 32 instead of 8 by
-default, and 1/16/32/62 select the matching hardware levels, checked by
-chunk sizes in internal loopback and over a real RS-485 bus between the
-two ports at 9600 and 115200 baud. Changing the level mid-transfer
-kept all data, and the level survives termios changes and is kept when
-set while the port is closed.
+It would be better to add `ROCKCHIP_VOP_MAX_LAYER_ID` after ROCKCHIP_VOP2_ESMART3.
 
-Tested-by: Kryštof Černý <cleverline1mc@gmail.com> # RK3328
+>  			win = vop2_find_win_by_phys_id(vop2, phys_id);
+>  			if (win->data->layer_sel_id[vp->id] == ((layer_sel >> i) & 0xf)) {
+>  				match = true;
+> 
 
-[0] 
-https://lore.kernel.org/all/20261109-8250-select-u6-64bit-v1-0-04bc8332fa34@gmail.com/
+-- 
+Best, 
+Chaoyi
+
 
