@@ -2,79 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D28E60A380F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E71B606C661
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3MATX7mY;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=V0JuNsqt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=07or55hK;
+	dkim=pass (2048-bit key) header.d=kernelriot.com header.i=@kernelriot.com header.a=rsa-sha256 header.s=kr2026 header.b=GXKfaXPR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BvvMubdD0ab9qXTzvi78Wzx6n/mu2aOjNES6c6xFfUo=; b=3MATX7mYBh6jgY
-	8z4bKMTkvzlVC0bjgL1aPCKxBr23iHTHxOHak+E6fWpa769OVXEwrQ+/tYbYBAEF+Lf2D0Rc98k1P
-	GeAOp4k0bODopTUoVRJQDgaPVjN3xOoq9Dghg03nOZ0xcWEzbFAjIvTJfFp2CyeCyFL8EH4FD06YQ
-	SNuNaCTiZIYAElf3B87DoFSQd59lc5Kf0SyVHrScgnGPYivL8GaDV6nBX1VA+rLwehYy46LNZLrxd
-	YHkCJdGYO4aCATHxEtD9nUTHGp9MOPnhX7xPq6XQSJvPhnWOlkIuwD2gy6fDOy75jl/FtFOzPwFu5
-	I+5/502bn0a1o+4kEncw==;
+	List-Owner; bh=RqKb78p7qpWJlKAs1Itlkd98Zkf/qvmrWv/pFqO1J5I=; b=07or55hKdYQFVb
+	kId+RIkv5MGgBw2zrfMHVz+FZ2N82NF650I0m+RWpDJjj+iw79PQBrwtPtnMsC1rNobF4/hVvgM41
+	Qgs1ojgCdt54YZutn+O7C/zwFkr5CGQgWcOtyAzTvSVmcKxwhfbPe75WjJvfFnLF2M37rpD6eukPD
+	V0GXzQzzpG8VTCqBAxoKImwIxp3r2A5in00FhGzZwDZsa/MqLfrSDIN3kOHOw7+QTjiU0ZG+ymjvY
+	11B9RxW5LMR0HyVqx6yOnJMtgKT5lAHzuRCyjlZwTK4bV7EnfbtnKrhgCWqE+THjnB2JOWidGtA7Z
+	2lmIRdArnXxeQwAbK8TQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhyG-00000003E91-2MMm;
-	Tue, 10 Nov 2026 09:16:52 +0000
-Received: from canpmsgout10.his.huawei.com ([113.46.200.225])
+	id 1xQi0n-00000003Eis-0Z2r;
+	Tue, 10 Nov 2026 09:19:29 +0000
+Received: from mail.kernelriot.com ([74.208.142.49])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhyD-00000003E6q-07Qd
+	id 1xQi0k-00000003Ehz-3lsX
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:16:51 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=BvvMubdD0ab9qXTzvi78Wzx6n/mu2aOjNES6c6xFfUo=;
-	b=V0JuNsqtcvHvWZar8RQGhcZaYErUdAWqJ1nV312WRgaycNnJ1zsFEq4gL5SRY2frvA0hfpC1l
-	+o01tk/z0saf3sDH7onJDGrLuaaZUu7YfpRbV38fFrR23kuY4Ztb4i1hCOOJLP9hHD2sNLbaSku
-	cALfpikEjxvECDHlXpMIiVM=
-Received: from mail.maildlp.com (unknown [172.19.163.127])
-	by canpmsgout10.his.huawei.com (SkyGuard) with ESMTPS id 4jP1HL05wvz1K96b;
-	Tue, 10 Nov 2026 17:16:30 +0800 (CST)
-Received: from kwepemk300003.china.huawei.com (unknown [7.202.195.93])
-	by mail.maildlp.com (Postfix) with ESMTPS id A668140561;
-	Tue, 10 Nov 2026 17:16:38 +0800 (CST)
-Received: from [10.174.177.243] (10.174.177.243) by
- kwepemk300003.china.huawei.com (7.202.195.93) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Tue, 10 Nov 2026 17:16:37 +0800
-Message-ID: <3a66ba8f-96dd-4215-8c4d-0cc3c286375a@huawei.com>
-Date: Tue, 10 Nov 2026 17:16:36 +0800
+	Tue, 10 Nov 2026 09:19:28 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernelriot.com;
+	s=kr2026; t=1794302365;
+	bh=kQBTjdYh2JWmkBfDmSwwc/2rdQED1OQpth8b7MZf1hQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Transfer-Encoding:From;
+	b=GXKfaXPRHbJgZTRCX20dK30P3/GvXQmtvZc5FWdvRQYvseCs/iN8D2DltZjpckMND
+	 plrKIspEqStfKqIIwcFNS+L57fFJJp7Jp7msEezv965i8O9VHmFJGXa3ZJ/UqREdDF
+	 8ur0jpgCMdGqXZZFAFQoFe8QuuKWT2g9YlOd9uDMAD2bO35/gpCm893tOKykrkqX5Z
+	 Jy+qwEQskvlv9wV/VytJzBIdi3t8oZS8kZ+D3IlMJXWky0S3fl3/88FHl0/4TWymBT
+	 Fj75cIZkA6javPnvgswqBP4SeSP2FuxgkIIq1Ni+RaDTG0m4gNhIRbbbVOMlk8BGK9
+	 fTKTKh6jisY2w==
+Received: by mail.kernelriot.com (Postfix, from userid 995)
+	id 515E781428; Tue, 10 Nov 2026 09:19:25 +0000 (UTC)
+From: Magnus Leatti <magnusleatti@kernelriot.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@google.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+	Nicolai Buchwitz <nb@tipi-net.de>,
+	thomas.petazzoni@bootlin.com,
+	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net v2] net: stmmac: Clear DMA errors for multi-channel interrupts
+Date: Tue, 10 Nov 2026 06:19:01 -0300
+Message-ID: <20261110091901.7080-1-magnusleatti@kernelriot.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <179379704484.488856.2140619507341432623@kernel.org>
+References: <20261103125430.962715-1-maxime.chevallier@bootlin.com> <179379704484.488856.2140619507341432623@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/20] arm64: Support hugetlb vmemmap optimization
-To: Muchun Song <muchun.song@linux.dev>, James Houghton
-	<jthoughton@google.com>
-CC: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
-	Oscar Salvador <osalvador@suse.de>, Andrew Morton
-	<akpm@linux-foundation.org>, Nikos Nikoleris <nikos.nikoleris@arm.com>, Linu
- Cherian <linu.cherian@arm.com>, Mark Rutland <mark.rutland@arm.com>, David
- Hildenbrand <david@kernel.org>, Ryan Roberts <ryan.roberts@arm.com>, Nanyong
- Sun <sunnanyong@huawei.com>, Yu Zhao <yuzhao@google.com>, Frank van der
- Linden <fvdl@google.com>, David Rientjes <rientjes@google.com>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mm@kvack.org>
-References: <20261003002123.505555-1-jthoughton@google.com>
- <20261003002123.505555-14-jthoughton@google.com>
- <CAF9824D-CDC5-48E6-A1F6-840CB299EADB@linux.dev>
-Content-Language: en-US
-From: Kefeng Wang <wangkefeng.wang@huawei.com>
-In-Reply-To: <CAF9824D-CDC5-48E6-A1F6-840CB299EADB@linux.dev>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemk300003.china.huawei.com (7.202.195.93)
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_011649_417115_D77269C9 
-X-CRM114-Status: GOOD (  15.35  )
+X-CRM114-CacheID: sfid-20261110_011927_011417_C4CEDB7B 
+X-CRM114-Status: UNSURE (   6.94  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,88 +83,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+> Since RBU and RPS were enabled only for statistics, was masking them in
+> multi-MSI mode considered as an alternative?
 
+Hi Maxime,
 
-On 11/7/2026 2:45 PM, Muchun Song wrote:
-> 
-> 
->> On Oct 3, 2026, at 08:21, James Houghton <jthoughton@google.com> wrote:
->>
->> Support HVO if HW AF and BBML3 are supported. These are the required
->> features for the vmemmap to be modified in place.
->>
->> On arm64 systems that do not have the required hardware features to
->> support HVO, the HVO sysctl will not appear, and any attempts to enable
->> HVO (either via the command line or via
->> CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_DEFAULT_ON=y) will have no effect.
->>
->> Signed-off-by: James Houghton <jthoughton@google.com>
->> ---
->> arch/arm64/Kconfig               | 2 ++
->> arch/arm64/include/asm/hugetlb.h | 7 +++++++
->> mm/hugetlb_vmemmap.c             | 4 ++++
->> 3 files changed, 13 insertions(+)
->>
->> diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
->> index b51d23a62c92..e4c87487bc7f 100644
->> --- a/arch/arm64/Kconfig
->> +++ b/arch/arm64/Kconfig
->> @@ -92,7 +92,9 @@ config ARM64
->> 	select ARCH_WANT_DEFAULT_TOPDOWN_MMAP_LAYOUT
->> 	select ARCH_WANT_FRAME_POINTERS
->> 	select ARCH_WANT_HUGE_PMD_SHARE if ARM64_4K_PAGES || (ARM64_16K_PAGES && !ARM64_VA_BITS_36)
->> +	select ARCH_WANT_HUGETLB_VMEMMAP_RO_AFTER_INIT
->> 	select ARCH_WANT_LD_ORPHAN_WARN
->> +	select ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP if ARM64_HW_AFDBM
-> 
-> Because vmemmap optimization depends on compound_info_has_mask(), before
-> enabling HVO on arm64, its vmemmap start address needs to be aligned to
-> MAX_FOLIO_VMEMMAP_ALIGN. Therefore, a prerequisite patch is required.
-> 
+Tested that route on dwmac4 (YT6801, 7.3.3) next to v2.
 
-Agreed, we tried to enable ARCH_WANT_OPTIMIZE_DAX_VMEMMAP[1] on ARM64.
-If the alignment is not performed, a warning will be triggered with
-DEBUG_VM, see sparse_init(). The same issue applies to 
-ARCH_WANT_OPTIMIZE_HUGETLB_VMEMMAP.
+Stock 7.3.3 dies in 4s under a 4x 64B UDP flood (122k irq/s storm).
+Both v2 and dropping RBU from the abnormal mask survive with the same
+~3M RX frames within noise (3 runs each, alternating), but:
 
+                 v2 (A)        no RBU irq (B)
+  MAC irqs:      18k - 43k     0
+  rx_buf_unav:   9k - 21k      0
+  %irq CPU:      3.9 - 7.1     1.1 - 1.5
+  RX frames:     2.5M - 3.0M   2.8M - 3.2M
 
-[1] enable ARCH_WANT_OPTIMIZE_DAX_VMEMMAP
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1075bc661833..649244e55c4b 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -94,6 +94,7 @@ config ARM64
-         select ARCH_WANT_FRAME_POINTERS
-         select ARCH_WANT_HUGE_PMD_SHARE if ARM64_4K_PAGES || 
-(ARM64_16K_PAGES && !ARM64_VA_BITS_36)
-         select ARCH_WANT_LD_ORPHAN_WARN
-+       select ARCH_WANT_OPTIMIZE_DAX_VMEMMAP
-         select ARCH_WANTS_EXECMEM_LATE
-         select ARCH_WANTS_NO_INSTR
-         select ARCH_WANTS_THP_SWAP if ARM64_4K_PAGES
-diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-index 4e7682dfe366..6808529873a9 100644
---- a/arch/arm64/mm/init.c
-+++ b/arch/arm64/mm/init.c
-@@ -91,11 +91,9 @@ phys_addr_t __ro_after_init arm64_dma_phys_limit;
-   * has a direct correspondence, and needs to appear sufficiently aligned
-   * in the virtual address space.
-   */
--#if ARM64_MEMSTART_SHIFT < SECTION_SIZE_BITS
--#define ARM64_MEMSTART_ALIGN   (1UL << SECTION_SIZE_BITS)
--#else
--#define ARM64_MEMSTART_ALIGN   (1UL << ARM64_MEMSTART_SHIFT)
--#endif
-+#define ARM64_MEMSTART_ALIGN                                          \
-+       max_t(u64, 1UL << max(SECTION_SIZE_BITS, ARM64_MEMSTART_SHIFT),	\
-+               PFN_PHYS(MAX_FOLIO_VMEMMAP_ALIGN / sizeof(struct page)))
+Same on 8x UDP + TCP TX (30s): both stay up, A takes up to 33k MAC
+irqs, B takes 0.
 
+Caveats for B:
+- Core is a 5.2, so only the 4.10 mask was exercised.
+- RPS never fired, so this doesn't test the RPS storm fix from v2.
+- rx_buf_unav_irq stays at 0 (pre-1b9707e6f1a9).
+
+Want RBU dropped from the dwmac4 mask too? Can send a patch or you can
+fold it into v3.
+
+Magnus
 
