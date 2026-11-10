@@ -2,81 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E86606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961EA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m5RB275k;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=ZEKGhX1A
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2VsVDhLu;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZiZH7EZC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=n7wwb0uzmhfZxhSJHZrgJrb4K/zWUbcQx/RDNUytUQA=; b=m5RB275k3wIIPL
-	0JNpdq9RpK9zOHWRHdNvbG7RBGHkEOx2YVi9Uq5Wggk+etCGqVKc0uzdIXmBQ63/U2e4x2u2JmOKH
-	1uYc+Y8ejj7bim/Thqr3p5SU3lj7850Sx3GSWvtzTH+tNudZU1GP5iXf9SxW1giLSAaWuM7plRMx4
-	CpC5ZQyP/VCS3GO/pfHqb5/+8MPk9BpW7BriAbUQ/yzGY+zHQ1tjaAaulXRKiiqEMesw2HAmGeY9d
-	cAonh0ByyaAeqRpxuaQi8/gpFn3QXARjSoDjLS4BqLNT4+Nh2vxqeGBB+u5+u0+Ahavcv0PsP52X7
-	YX99y5KxwoijqoRcMx7Q==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=vk6XQFsmHi5+fYj5Z5LO4ofgSzJKdKgu6NS/sbE7SU4=; b=2VsVDhLu/+dp+DXeKbVBrn1PMN
+	x5sIfJhV+AEaiyYSYt+I1sSyICuOcFiUFY+1BHDy47p1hue9zMYF1SkH7vInD2Z5jcAGA3ydFQC71
+	07TGechY7fBqxA+hLZvp3LvBy5rvbpDP806RQ0b3sI1sXOxF6hqUqClAocCn4uXC/jndyowMsqWif
+	G4dv6nIfqxkCQlWKD/raKB4Nr4MvOj+Vk7NN1n/YemGuLtCSFRSKWVM6pQXjMklF5IvYdth2bUm8f
+	OplvJtF7WYa++sSfx/RPk4MfbIvQkGcPMMxOPbPZKTJwlsadTDg4T7aCsnUpwn6DXAYWpwnbDyLpS
+	7txJTeIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQgKd-00000002umK-2Px7;
-	Tue, 10 Nov 2026 07:31:51 +0000
-Received: from cmccmta6.chinamobile.com ([111.22.67.139])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQgKZ-00000002uln-3khs
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 07:31:50 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=ZEKGhX1Avnq50VfJEKCf1mOb+GdCs5V1+zERw14z0wP9wjbMo79dnJKcLbdpAwX3+SkCrc03X05Op
-	 HYPoWKIQceTWA+iCKDpHYf1Fs/I0+wkeRl2IAV/3bQGN7cbwPZvxj9mif9kt7S5nM6i2svQjH+5BAw
-	 dhmsV4nzjc/nBs88=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app05-12005 (RichMail) with SMTP id 2ee56af2c85d6a8-c9c19;
-	Tue, 10 Nov 2026 15:31:43 +0800 (CST)
-X-RM-TRANSID: 2ee56af2c85d6a8-c9c19
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from DESKTOP-3K8GUTQ (unknown[223.108.79.98])
-	by rmsmtp-syy-appsvr02-12002 (RichMail) with SMTP id 2ee26af2c85c276-ac084;
-	Tue, 10 Nov 2026 15:31:42 +0800 (CST)
-X-RM-TRANSID: 2ee26af2c85c276-ac084
-From: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>
-To: netdev-bot+sinfo@kernel.org
-Cc: Xiangwu Lai <laixiangwu@cmss.chinamobile.com>,
-	netdev@vger.kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@kernel.org,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	danishanwar@ti.com,
-	rogerq@kernel.org,
-	jan.kiszka@siemens.com,
-	diogo.ivo@siemens.com,
-	haokexin@gmail.com,
-	horms@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 net 0/4] net: ti: icssg: Fix device_node handling in prueth_probe()
-Date: Tue, 10 Nov 2026 15:31:38 +0800
-Message-ID: <20261110150500.3142-laixiangwu@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.50.1.windows.1
-In-Reply-To: <179429318364.488859.2256720144223130993@kernel.org>
-References: <179429318364.488859.2256720144223130993@kernel.org>
+	id 1xQg1M-00000002mEV-3vOo;
+	Tue, 10 Nov 2026 07:11:56 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQg1H-00000002m6p-00l2;
+	Tue, 10 Nov 2026 07:11:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6B8BC6377F;
+	Tue, 10 Nov 2026 07:11:50 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794294710;
+	b=27Icb4Dj0siM0BU2jQ7vyFEutfDe/kRKOnxH1Zp9251m5YyucXY5MklNz54szuVxQ6+a
+	 srgw1veH/Gulp3ptk8joqsT818kjW8lCqKlOHiylEceLFadtkw4q0Ua83o8vb0wvk1xwy
+	 c9pmeO+/7tJc4BR5/o73Ocqj83Uf4FnOQmEl7b+kTVcGLUyLk54jF1bwo9t6JOgCA6gmA
+	 DpLw8qEJJs5vmyz+77r1LcZoeqDDtjb2xArT4IjETfQ9oT5SSfpmwH33wva2WoLRl1zXz
+	 /yr+osjwQvtQdD8FM5m/ePQ8aUkdKyu08FYIiThMAjRimOBGlQwwQmC7ewn4b+SqYuQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794294710;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=vk6XQFsmHi5+fYj5Z5LO4ofgSzJKdKgu6NS/sbE7SU4=;
+	b=t46bD62wX7vguKSOCJA4tAaEyEt7/lQG7BnpVHDzLkAkKAF8SRJAXKkthiTxQG5R6bdr
+	 DxPFTt6Z0kgvfrctHvSQoC60hJDCQ3lil59llyz445gP50rg5/boHWiYB/kTLiP1BVBzt
+	 lGv6h1bvyO8QpgI+Br05or56AYAdWSk4aYledfV4wRssRg7vQWHr9KzS+ZnHTtmAQpPJk
+	 NjuaS4+rglTY7LAurSi1H6hjEKi0EtKLTMYTTp0nZ7luvyOUVJZowCASqdq9SUzs58x1m
+	 6UG1DStq0DF4R4UqkRzXD1dEbH9+GKgnGj/R8IrymB550+0tgcxn2lgok/Sa8u91WsA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2E4CB1F008A5;
+	Tue, 10 Nov 2026 07:11:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794294710;
+	bh=vk6XQFsmHi5+fYj5Z5LO4ofgSzJKdKgu6NS/sbE7SU4=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=ZiZH7EZCNfqurcBkR36FmPkPQwjes/U7r9QgqB3HO6On8983eXxzZNLi2EWNMB8QZ
+	 u5fL/Dol/1wuuL6+dZKMXPClzSolht7yhYEi++Bo4/u1R2WcErNOD95OQ5XrMNqjVc
+	 ZjO2JO8khpzFJr8ynUw26ax68KIaa0t9pnvoWKyYwqKhaJ7Afa1QEtrOujLxyHS7Zr
+	 x5PT7B6octMLyYEZxd3CJ1tH1vd/SCaEAyu3DNXIXeFhXg6i4Ehcpqb2mQBaPzwdk0
+	 4N6cScCzzSGnfsJpUxP176MwOnQU5pU2amVFcQ3xY4kFEtoenk8hP5eaJTUkvKVxXP
+	 F8TbztpEBZocw==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id B44AB48947;
+	Tue, 10 Nov 2026 07:11:48 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Tue, 10 Nov 2026 07:11:48 +0000
+Subject: [PATCH 1/5] dt-bindings: iommu: arm,smmu-v3: allow a power domain
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_233148_624144_27EC282C 
-X-CRM114-Status: GOOD (  11.52  )
-X-Spam-Score: -2.4 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261110-smmu-v3-pcie-pd-v1-1-628819ca44b9@gmail.com>
+References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
+In-Reply-To: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
+To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ "Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Niklas Cassel <cassel@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-rockchip@lists.infradead.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794294708; l=1167;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=TdWoGoQsKnyrm8b9EIEgWSxDN/b5wPqWn8RNCU7PWLE=;
+ b=x3WlakvjrJB7bBweyNuurbxFx6ml1Crbe9R1B+W78YkdTZqbMT4BjFaIlFUU2Yq28U85BBqQ7
+ QAh2R2KDz6TCenOiDzdDdC3EJcC6NonWmsjPmdZ8tgjZohMcMJXI9Pl
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,56 +110,50 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Please find below the additional information requested for this
-series. The same information was provided for the v1 postings of
-patches 1 and 2 here:
+An SMMUv3 instance can sit in a switchable power domain of the SoC, for
+example the MMU-600 in front of the PCIe controllers on the Rockchip
+RK3588, which is part of the PCIe power domain. If the domain is not
+described, nothing keeps it powered while the SMMU is bound, and any
+register access after it has been turned off as unused stalls the
+interconnect.
 
-https://lore.kernel.org/netdev/20261109093000.54321-laixiangwu@cmss.chinamobile.com/
-https://lore.kernel.org/netdev/20261109093500.54322-laixiangwu@cmss.chinamobile.com/
+Allow a single power-domains entry, as arm,smmu.yaml already does for
+the earlier SMMU architectures.
 
-How the issues were discovered: manual code inspection of the error
-paths in prueth_probe() while auditing both ICSSG drivers for
-probe-time resource leaks. The port scan issues addressed by
-patches 3 and 4 were found in the same audit; the use of the
-uninitialized reg value was also raised during the review of v1.
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+ Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Whether the issues were actually triggered: no, they are purely
-theoretical, all of them require a malformed device tree:
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+index 3c044e4f03d4..c8f22dfdb1db 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+@@ -63,6 +63,9 @@ properties:
+ 
+   msi-parent: true
+ 
++  power-domains:
++    maxItems: 1
++
+   nvidia,cmdqv:
+     description: |
+       A phandle to its pairing CMDQV extension for an implementation on NVIDIA
 
-- Patches 1 and 2: the leak triggers only when the "ti,mii-g-rt" or
-  "ti,mii-rt" syscon regmap lookup fails, which does not happen on
-  a valid DT. probe() then fails with -ENODEV and the references
-  taken on eth0_node/eth1_node are leaked silently; there is no
-  stack trace or error message pointing at the leak itself.
-
-- Patches 3 and 4: the uninitialized reg value is only used when a
-  port node has no reg property, and a reference is only leaked for
-  port nodes with a reg value outside 0/1 or with a duplicate reg
-  value. On a valid DT (one port with reg 0 and one with reg 1) the
-  loop behaves as before, with identical reference accounting for
-  the accepted ports.
-
-Hardware the change was tested on: none, the series was not tested
-on real hardware. Patches 1 and 2 only re-route two error branches
-to the existing put_cores label, which is already exercised by the
-other failure paths in the same function (e.g. prueth_get_cores()
-failures). Patches 3 and 4 move of_node_get() from an unconditional
-call on every port child to the assignment points, so for ports
-that are accepted the reference accounting is unchanged, and the
-new error path only releases references it has just taken.
-
-Best regards,
-Xiangwu Lai
+-- 
+2.55.0
 
 
 
