@@ -2,98 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A33606A33C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 14:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91AD60A2612
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 14:58:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vcOGuFe/;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=p58dnF06
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TeeMBkGi;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=yWV1F7Me
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ilFrMbP1l4Dqble5vGUZCzOuHvz/JIBo8vMR2z18T1Y=; b=vcOGuFe/GOpdG25ReP20apF65s
-	AfEhA4in/mS48QvSzKBOc36GsjSlKRPbGCiug/T+/La8Sh8CeKTFrAB/4DfKQAPlEfO6MWUHg4gaO
-	DQB07rMwFEN8alkWMtpYAaGOW7qC/Bc/7ht9VBi7BdC3jSjQNgifjDr1BFGjY1S9fPqvfzkuYysfF
-	3QvCdVBaByUzUqFvir8CMktIMshKYAFug8A5Mr9TvSHKc4QIG83M7esUnV9cgf35Fh/j6OT7DNXFH
-	/uDvL73URI6f7XvUzSPgU90/2H8H7mqgRqIYDY4yf1uykbj1v1WQoLmKNBZd46Xye2b9p/Orld+bV
-	ItGrZfPg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=60siS61lJQVsPLSNWq9Yx9eryDhQch+eqG8LRWnJFnM=; b=TeeMBkGiCrOY5U
+	vjmdo+PtzPGLs6octVQM+PCkS+5YFE2y8yz6dThjdV0qRyuy7+k/Jdtf5kvZx9ByddFTNDPJKLHwk
+	SLZbjrqM6mZa+S1w1BXh0hcCHVLAeWNEq+5YIBuL7uJx2OnRaLUf7BtBJXz0DFY3aYbhVcKicWuCM
+	Z29BV6/cn9tOBUh/yU8VrPZlNDQaYsaLXJcz6021pzQdZ//KKqVp53BEXpMjxSeCMMYdMgKzitgM4
+	ZGCatc2StFS0vTKSzWTgVDVYGADf4GpUmZ/Y5F9o32X3ATEkk8N1ZX09h+nWCtRmp4Kt7XfNDfW4Z
+	YtR4gitW1AGyZgeWV8xw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnIw-00000004IK1-0hCu;
-	Tue, 10 Nov 2026 14:58:34 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1xQnJ9-00000004IOK-1d04;
+	Tue, 10 Nov 2026 14:58:47 +0000
+Received: from mail-oi2-x0a.google.com ([2607:f8b0:4864:32::a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnIs-00000004IJ1-0r5L
+	id 1xQnJ6-00000004INW-43it
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 14:58:33 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a018493d57so44925e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 06:58:28 -0800 (PST)
+	Tue, 10 Nov 2026 14:58:46 +0000
+Received: by mail-oi2-x0a.google.com with SMTP id 5614622812f47-4c3bb46aaf0so869166b6e.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 06:58:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794322707; x=1794927507; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ilFrMbP1l4Dqble5vGUZCzOuHvz/JIBo8vMR2z18T1Y=;
-        b=p58dnF06+HJ8zeDL0regfn0dwUpy6gI3mMXNBtNFWA7nw9E8bo8uSlWQD0+Kanhjn8
-         EDzgvdPMtyrrJZA0AUpSAQrOtuvMDX2q64QJ+mQkruLxF4QFuEa+6iRtlHLj6HHBz1f2
-         tm6RctxLmMBEiAxfY4p8Y7K6KBMJUR4+N3ZLoL6vuhvDJVcreJxp0HP5pBCJZERf5hTp
-         NiBxhqxaf7hNeECggfnM6hPYuvd85IXPx/cxa4DjTc+XAZ9h75gTNZnmwMUYrCHw+Pa7
-         YycqZasiv430lKEFfRxJNaNR8zO/xVjGk1ynwnpS2mGFL+kKKEaAHC6e21cB/JTpQlg/
-         l+nA==
+        d=gmail.com; s=20260707; t=1794322724; x=1794927524; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=60siS61lJQVsPLSNWq9Yx9eryDhQch+eqG8LRWnJFnM=;
+        b=yWV1F7MeFkxYsjHmHC95mHq/APG+/NBvFV1jEHYVBzIFMYeb2Dx//cwIaRvieYp74b
+         oQKzhlGG9AqFp5L6QKdQMflrHLyqXS98bejUBmk3WJkWXiIZPMVr+WxAuvfSvNZSBVYk
+         8dY/4H2ZzE72DMKcmp9m43JDrk5X3WCUuRSYInoY6ptvLIpl37PhBRL/3l2M2C0DCZD0
+         i93lETQeFXKlSdjvaR2CCCS1zlI3DGNBdFMRRkxqeP0hBdnARrGBCMOAJttgvmUMIWJH
+         5MJZB3FOwab+46Hk1KnDORlGbzdcO8hilEHymZ7rzJ8LpuGjy0EBKdURMXeEPg5voZkY
+         hZGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794322707; x=1794927507;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ilFrMbP1l4Dqble5vGUZCzOuHvz/JIBo8vMR2z18T1Y=;
-        b=OSkTPO79iHJnlS1Hf+p/XOF9yh8jXfdC9jQyeAe3Digo+w64WOfSVQtzRk21lkIkXr
-         GHHQeHSnprOVowwUj3PSoBSZl2ByxXyLSFdE8LlmmT6f8cK/vJLfnWYx0wnuz/4c4+30
-         NeIZJD2wqLFWKwpsZ/3NXFClQICZ2iydjoC/nxnU95NRDLAWQSYq7b/WnTCrsxi7UPIB
-         N2dR8Dg8SbXdQII0Wrj/IZs3ixmHBILo8mYPrRYdoE7gI/UwHN1RWdezk2guZbvkE3za
-         m1ly+aBF0SGlrVkXMYvtgn0ThL26+TMBfJ6upkvDiuoquHK1krSwBFuRwBj/4iBhtNgM
-         ncjw==
-X-Forwarded-Encrypted: i=1; AL+hErGIDFRQ14ELQaTNnE2IUjnaG9+oQLr+StCkNFSQMTwuGfHNG6i5VASb2unUF7bxdk3WKd+WElO4/Z0EmxC9OpYj@lists.infradead.org
-X-Gm-Message-State: APuU4Z+O1q9MM22spJyPNOdwfInsJ7fjFJpT3FKL5kbCPW/JJ16/cvIl
-	y7mcGyEokr6RdJ4eGx2ZExOqWG62QZHXhr5iDWcExG1vjuuPnLEmZYHFMdbA+tI0Ag==
-X-Gm-Gg: AYBFou2mn9665Io5VE6R7NFn5RmdKwqeUphZtIbrqHnd6dImnvyBhkOvLVB0je3PJ3X
-	RHdS2Rq0bAPA9G/JgQGSA9uAyE7ZvOA8owda/aWsML3wCL8ML8KXM+1h2AmtHMfGdVse8ps7cfP
-	Ri7YpHWGWV7q5qkkkgMqV2DvtMSzAMesdUn+mYy9xfjzvvLQeL64kxKqsme3FP1CeUVxJsxNez0
-	L4EAC9RcBEzWF0mHjiYOU+EsmZtQWeBJF8ieDk5+BL9B0N/sv3YwkS+mu3m+MiXGTeqAtx+bmOC
-	94YuPy3HIr2vT0oIgWCnNxm6bVeRapEQdvBQPUq8EEzrs3eattywn03BVGN9gp7gUcnC9cGYKT4
-	VvKiAFew1Mi7d5iAq3Wiap6EfODPVWxgYypKxu4zGrgfaYVm4wp/KEp/e4xUr9/y6e2gWwlKHrX
-	uUSJjNHaih9ib88mJgzc7boYRtKelbkDQiTBl09sZb1ttNgVT0oAcqt+tJVMPcUXsmwtF6LCbuy
-	jCtnTq/vPPdGq3NT7tx64O0/EkbUnlHFTi34bmqmxv0R2RvrjlNxR43APg4rzA4gmBn4X93bsad
-	wQLEgK6slOawVmctO8ne/ymRHtOd0HhU0jvjO3my7nmrQDgR6KicOSn4kPiQw2XWYzUqrHY=
-X-Received: by 2002:a05:600c:4301:b0:4b6:24ca:8848 with SMTP id 5b1f17b1804b1-4ba02bdf97bmr587755e9.11.1794322705998;
-        Tue, 10 Nov 2026 06:58:25 -0800 (PST)
-Received: from google.com (250.192.189.35.bc.googleusercontent.com. [35.189.192.250])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0223c41csm70632855e9.14.2026.11.10.06.58.25
+        d=1e100.net; s=20260707; t=1794322724; x=1794927524;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=60siS61lJQVsPLSNWq9Yx9eryDhQch+eqG8LRWnJFnM=;
+        b=C5KkAK41zPO27RJyK/drsWM5cc16JtDL23NYO49snC/RxZ/9lKEkM++YM0VkYTRqjl
+         uzzTgRlZ/yPXmgZsYt+bnD079hmrvKF9hKXXk+ihmwUd1EGoxy8bz/VQbfK9Z4OLjDYA
+         yeQj9zFOBNIQhsz1LwMbwE2hCR8lH4tZp4MGd9d447OU+uujP5Ir9Ij8ddCRGqp6xS9E
+         YYSb56Ol9HwkMKyTxXYo6EWoArG27AaTou+vV2vsleHJwfoCqO/r07i3kUNetBhADph6
+         W06Kq8Ewxu8FCTeehdOUYDONWdqJnghdYrPERThNLTqnu77OzPNDNNclC8UcYiMCixcM
+         XflQ==
+X-Forwarded-Encrypted: i=1; AL+hErHWv0aBbVHZBtWnVEiD9g1aYUmIof+C9jVWt1gqupFVaH/0209QUHm+zPrC7a+uKPy/58bXfuIAWUxMzF+HYXJZ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+tJs9NAPo2fveJ2GJv15bWX1YhQXcu59hgsmVnIw4mRdYzh4qz
+	Xxv2tnbBKz1daS7jsDM+MIjDCHaKS2qdboK6PBQ1SWC1MS8JvStxmWljM8tuTD2z
+X-Gm-Gg: AYBFou0nqUpbPhR4T5EndhzhWP40GL9n4zR76JaDXZy8oU2RZgwhYFPoIYkoQyCO/io
+	UFnZkFrBrZhpnhtbwwKkjEjD60eh5oWtoHNuhZHLWSmLv4nMyYIeUeCLbFDvbnb3VbFbQ+2xeDF
+	jgOH1LJzK/HosIfC+CSYogi+GiGz4LjXE418fTY4r4gwXZweundtKHZWgO1NVeG0tsuMaBZmGky
+	Z8hTNgDOd1/GeZ5zZruV/BAMq1fwS6UgzDAd1g+FTpp9ZR4afTgFIq+CgGuPh8sMJBYtjm2ifHX
+	9dLNoaZthsXM6q+Fsj80bN2q8p1sdYVGMUwv2WwzP/vQG12TeaWY4iEW++8cECeh43a4EiMXteg
+	gqH/lIhweriIwMnGlSFv+ZElaG8sFsGNXYisr2iZ6ZKmnxloc30tPKCvGq2xU3//M7LCBO6XSQu
+	Zhki0q6lDeB9LKw34Uq3pn7TR4UybXU/deg9vIxHf9zkQaHl0KgdHDkFWl3uvcQ6Fv5FrFCCqVD
+	kXsZ6MOrOObHx7MUTOXbY+TwEsBe0cgExhwcSf8oDkwn5xbD6iWc/PoaN4OvWRaTAK/v0U/DWAZ
+	/Eg4OjPV1LUw9rSU6zkmfXt/s0HhtNf2Ciqa7+WhNEsUdYqnqpvornzydL0Ajws=
+X-Received: by 2002:a17:902:f64f:b0:2e9:9bac:2e84 with SMTP id d9443c01a7336-2edb92bb80bmr24201345ad.66.1794316918385;
+        Tue, 10 Nov 2026 05:21:58 -0800 (PST)
+Received: from r00799764-ThinkCentre-M920t-N000.. ([139.159.170.67])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d4a31esm8861065ad.22.2026.11.10.05.21.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 06:58:25 -0800 (PST)
-Date: Tue, 10 Nov 2026 14:58:21 +0000
-From: Mostafa Saleh <smostafa@google.com>
-To: xuheng@cs.columbia.edu
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>
-Subject: Re: [PATCH] iommu/arm-smmu-v3: Invalidate a new level-1 stream table
- descriptor
-Message-ID: <avMxDbv6JE0dg93E@google.com>
-References: <20261109-smmu-l1std-cfgi-v1-1-65e5203a6516@cs.columbia.edu>
+        Tue, 10 Nov 2026 05:21:58 -0800 (PST)
+From: Jinjie Ruan <ruanjinjie01@gmail.com>
+To: babu.moger@amd.com,
+	ben.horgan@arm.com,
+	bp@alien8.de,
+	corbet@lwn.net,
+	dave.hansen@linux.intel.com,
+	Dave.Martin@arm.com,
+	fenghuay@nvidia.com,
+	gshan@redhat.com,
+	hpa@zytor.com,
+	james.morse@arm.com,
+	jic23@kernel.org,
+	mingo@redhat.com,
+	rdunlap@infradead.org,
+	reinette.chatre@intel.com,
+	skhan@linuxfoundation.org,
+	tan.shaopeng@fujitsu.com,
+	tglx@kernel.org,
+	tony.luck@intel.com,
+	zengheng4@huawei.com,
+	x86@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: ruanjinjie@huawei.com
+Subject: [PATCH v5 5/7] fs/resctrl: Release the limbo RMIDs when the CDP state changes
+Date: Tue, 10 Nov 2026 21:20:52 +0800
+Message-ID: <20261110132054.3702-6-ruanjinjie01@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261110132054.3702-1-ruanjinjie01@gmail.com>
+References: <20261110132054.3702-1-ruanjinjie01@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261109-smmu-l1std-cfgi-v1-1-65e5203a6516@cs.columbia.edu>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_065830_301008_36EA312F 
-X-CRM114-Status: GOOD (  31.56  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261110_065845_042649_7518F844 
+X-CRM114-Status: GOOD (  29.50  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,141 +120,204 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 09:36:54PM +0000, Xuheng Li via B4 Relay wrote:
-> From: Xuheng Li <xuheng@cs.columbia.edu>
-> 
-> arm_smmu_init_l2_strtab() allocates a level-2 stream table when the first
-> master in its range is added, and makes the level-1 descriptor valid. It
-> issues no invalidation, and the attach that follows sends only the leaf
-> form of CMD_CFGI_STE.
-> 
-> IHI 0070 5.1.1 requires the non-leaf form of CMD_CFGI_STE when an L1STD
-> changes, including when an inactive descriptor with Span == 0 becomes
-> active. An SMMU that cached the inactive descriptor can keep terminating
-> the master's transactions as if its StreamID were invalid.
-> 
+From: Jinjie Ruan <ruanjinjie@huawei.com>
 
-Looking at the spec it says:
-	An STE or L1STD that is successfully fetched might be cached by the
-	SMMU in any state, therefore any modification, commissioning or
-	decommissioning of an STE must be followed by a CMD_CFGI_STE command.
+On MPAM the counter of an RMID is selected by the PARTIDs of the CLOSID
+that owned it. Without CDP, CLOSID c is PARTID c; with CDP it is
+PARTIDs 2c and 2c+1. An RMID that stays in limbo across an unmount and
+a mount that changes the CDP state is read through the PARTIDs of the
+new state, which are not the PARTIDs its cache lines are tagged with.
 
-Which checks out. However, I am curious why this was not seen for
-over 10 years with the current behaviour as I doubt any existing
-implementation will do negative caching. Is that something that was
-observed or found by inspection?
+With 5 PARTIDs:
 
-Interestingly, that is not the case for L1CD:
-	/* An invalid L1CD can be cached */
-	arm_smmu_sync_cd(master, ssid, false);
+  mount                  CDP off, CLOSID c -> PARTID c
+  mkdir g1..g4           CLOSIDs 1..4
+  umount                 RMIDs enter limbo with CLOSIDs 1..4
+  mount -o cdp           CDP on, CLOSID c -> PARTIDs 2c, 2c+1
+  limbo handler          reads CLOSID 2 as PARTID 5 > PARTID_MAX 4
+                         MSC error interrupt, mpam_disable()
 
-> Issue a non-leaf CMD_CFGI_STE after writing the descriptor. The RMR path
-> runs before the stream table is programmed into the SMMU, and
-> arm_smmu_device_reset() then issues CMD_CFGI_ALL, so it needs none.
-> 
-> Fixes: 48ec83bcbcf5 ("iommu/arm-smmu: Add initial driver support for ARM SMMUv3 devices")
+The other direction is worse because nothing reports it. If resctrl is
+mounted with CDP and mounted again without it, CLOSID c is read as
+PARTID c, which is in range, so the limbo handler silently tests the
+occupancy of the PARTID of a different CLOSID and frees or keeps the
+RMIDs based on it.
 
-With the few nits below:
-Reviewed-by: Mostafa Saleh <smostafa@google.com>
+When a mount changes the CDP state, release the RMIDs in limbo without
+reading them instead of restarting the limbo handler. Cache lines that
+still carry those RMIDs are accounted to the next user of each RMID.
 
-Thanks,
-Mostafa
+The CDP state that matters is the one that changes the PARTIDs used by
+the monitors, which is not necessarily the CDP state of the L3
+resource. MPAM gives every CLOSID two PARTIDs in all MSCs while CDP is
+enabled on any resource, so enabling CDP on L2 alone also changes the
+PARTIDs the L3 monitors use. Add resctrl_arch_mon_cdp_enabled() to let
+the architecture report this. Only MPAM can be affected, so the RMIDs
+are only released where the RMID depends on the CLOSID. On x86 the
+RMID does not depend on the CLOSID, and resctrl_arch_mon_cdp_enabled()
+returns false.
 
-> Signed-off-by: Xuheng Li <xuheng@cs.columbia.edu>
-> ---
->  drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 21 ++++++++++++++++-----
->  1 file changed, 16 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> index 6d4520c47..f61cc6d86 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -2030,7 +2030,8 @@ static void arm_smmu_init_initial_stes(struct arm_smmu_ste *strtab,
->  	}
->  }
->  
-> -static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
-> +static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid,
-> +				   bool live)
->  {
->  	dma_addr_t l2ptr_dma;
->  	struct arm_smmu_strtab_cfg *cfg = &smmu->strtab_cfg;
-> @@ -2053,6 +2054,14 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
->  				   ARRAY_SIZE((*l2table)->stes));
->  	arm_smmu_write_strtab_l1_desc(&cfg->l2.l1tab[arm_smmu_strtab_l1_idx(sid)],
->  				      l2ptr_dma);
-> +
-> +	/*
-> +	 * The SMMU may have cached the old, invalid L1 descriptor. Making it
-> +	 * valid needs the non-leaf form of CMD_CFGI_STE (IHI 0070 5.1.1).
-> +	 */
+Reproduced on QEMU with the sequence above:
 
-A similar comment to the CD case is enough.
+  mpam:__mpam_irq_handler: error irq from msc:1 'MSMONCFG_ID_RANGE', partid:5, pmg: 0, ris: 0
+  mpam:mpam_disable: MPAM disabled due to hardware error interrupt
 
-> +	if (live)
-> +		arm_smmu_cmdq_issue_cmd_with_sync(smmu,
-> +						  arm_smmu_make_cmd_cfgi_ste(sid, false));
->  	return 0;
->  }
->  
-> @@ -4261,7 +4270,8 @@ static bool arm_smmu_sid_in_range(struct arm_smmu_device *smmu, u32 sid)
->  	return sid < smmu->strtab_cfg.linear.num_ents;
->  }
->  
-> -static int arm_smmu_init_sid_strtab(struct arm_smmu_device *smmu, u32 sid)
-> +static int arm_smmu_init_sid_strtab(struct arm_smmu_device *smmu, u32 sid,
-> +				    bool live)
->  {
->  	/* Check the SIDs are in range of the SMMU and our stream table */
->  	if (!arm_smmu_sid_in_range(smmu, sid))
-> @@ -4269,7 +4279,7 @@ static int arm_smmu_init_sid_strtab(struct arm_smmu_device *smmu, u32 sid)
->  
->  	/* Ensure l2 strtab is initialised */
->  	if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB)
-> -		return arm_smmu_init_l2_strtab(smmu, sid);
-> +		return arm_smmu_init_l2_strtab(smmu, sid, live);
->  
->  	return 0;
->  }
-> @@ -4333,7 +4343,7 @@ static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
->  		struct rb_node *existing;
->  		u32 sid = new_stream->id;
->  
-> -		ret = arm_smmu_init_sid_strtab(smmu, sid);
-> +		ret = arm_smmu_init_sid_strtab(smmu, sid, true);
->  		if (ret)
->  			break;
->  
-> @@ -5713,7 +5723,8 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
->  
->  		rmr = container_of(e, struct iommu_iort_rmr_data, rr);
->  		for (i = 0; i < rmr->num_sids; i++) {
-> -			ret = arm_smmu_init_sid_strtab(smmu, rmr->sids[i]);
-> +			/* The stream table is not programmed into the SMMU yet */
+With the change the sequence completes without an error.
 
-I don't think this comment is adding anything, there is another one a
-couple of line below.
+Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
+Suggested-by: Ben Horgan <ben.horgan@arm.com>
+Suggested-by: Reinette Chatre <reinette.chatre@intel.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+Cc: <stable@vger.kernel.org> # 7.1+
+---
+v5:
+- Split the change of the limbo handler lifetime into the previous
+  patch. The limbo handler now stops while resctrl is unmounted on every
+  architecture, and only the release of the RMIDs depends on
+  CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID.
+- Drop the cqm_work_cpu changes. resctrl_limbo_resume() cancels the
+  worker before it queues it again or releases the RMIDs.
+- Move the rdt_disable_ctx() reordering to a separate patch.
+- Add resctrl_arch_mon_cdp_enabled() instead of comparing the CDP state
+  of L2 in the file system.
+- Rename limbo_cdp to limbo_cdp_enabled and document that it is only set
+  with CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID.
+- Check QOS_L3_OCCUP_EVENT_ID first and drop the rmid_busy_llc check.
+- Use lockdep_assert_cpus_held() at the start of resctrl_limbo_resume().
+- Describe the reverse sequence, from CDP on to CDP off.
+- Link to v4: https://lore.kernel.org/all/20261105070934.2258613-4-ruanjinjie@huawei.com/
+v4:
+- Use resctrl_mounted instead of a separate limbo_paused flag.
+- Record the CDP state once when resctrl is mounted.
+- Add resctrl_limbo_resume(), called once resctrl_mounted is set.
+- Previous Link: https://lore.kernel.org/all/20261031094616.1691026-1-ruanjinjie@huawei.com/
+---
+ arch/x86/include/asm/resctrl.h |  6 ++++++
+ drivers/resctrl/mpam_resctrl.c |  9 +++++++++
+ fs/resctrl/monitor.c           | 25 +++++++++++++++++++++++--
+ include/linux/arm_mpam.h       |  1 +
+ 4 files changed, 39 insertions(+), 2 deletions(-)
 
-> +			ret = arm_smmu_init_sid_strtab(smmu, rmr->sids[i], false);
->  			if (ret) {
->  				dev_err(smmu->dev, "RMR SID(0x%x) bypass failed\n",
->  					rmr->sids[i]);
-> 
-> ---
-> base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
-> change-id: 20261109-smmu-l1std-cfgi-c194b2aafea4
-> 
-> Best regards,
-> -- 
-> Xuheng Li <xuheng@cs.columbia.edu>
-> 
-> 
+diff --git a/arch/x86/include/asm/resctrl.h b/arch/x86/include/asm/resctrl.h
+index 8f6edcdcfd87..d88a09a45d7b 100644
+--- a/arch/x86/include/asm/resctrl.h
++++ b/arch/x86/include/asm/resctrl.h
+@@ -181,6 +181,12 @@ static inline u32 resctrl_arch_rmid_idx_encode(u32 ignored, u32 rmid)
+ 	return rmid;
+ }
+ 
++/* The RMID does not depend on the CLOSID, so neither does CDP change it */
++static inline bool resctrl_arch_mon_cdp_enabled(void)
++{
++	return false;
++}
++
+ /* x86 can always read an rmid, nothing needs allocating */
+ struct rdt_resource;
+ static inline void *resctrl_arch_mon_ctx_alloc(struct rdt_resource *r,
+diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+index 5468367776e2..563ca99a581d 100644
+--- a/drivers/resctrl/mpam_resctrl.c
++++ b/drivers/resctrl/mpam_resctrl.c
+@@ -148,6 +148,15 @@ bool resctrl_arch_get_cdp_enabled(enum resctrl_res_level rid)
+ 	return mpam_resctrl_controls[rid].cdp_enabled;
+ }
+ 
++/*
++ * CDP emulation gives every CLOSID two PARTIDs in all MSCs, so CDP enabled
++ * on any resource changes the PARTIDs the monitors use for a CLOSID.
++ */
++bool resctrl_arch_mon_cdp_enabled(void)
++{
++	return cdp_enabled;
++}
++
+ u32 resctrl_arch_preconvert_bw(const struct rdt_resource *r, u32 val)
+ {
+ 	return val;
+diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
+index f56d0e32fd06..87d744a168fb 100644
+--- a/fs/resctrl/monitor.c
++++ b/fs/resctrl/monitor.c
+@@ -70,6 +70,14 @@ static u32 *closid_num_dirty_rmid;
+  */
+ static unsigned int rmid_limbo_count;
+ 
++/*
++ * @limbo_cdp_enabled - Whether CDP changed the hardware IDs the monitors
++ *			used for a CLOSID when the RMIDs in limbo were freed.
++ *			Only set when CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID
++ *			is enabled.
++ */
++static bool limbo_cdp_enabled;
++
+ /*
+  * @rmid_entry - The entry in the limbo and free lists.
+  */
+@@ -1044,12 +1052,15 @@ int setup_rmid_lru_list(void)
+  * resctrl_limbo_resume() - Restart the limbo handler after a mount.
+  *
+  * The limbo handler stops while resctrl is unmounted. Restart it on every
+- * domain that still has RMIDs in limbo.
++ * domain that still has RMIDs in limbo. Where the RMID depends on the
++ * CLOSID and the mount changed the hardware IDs a CLOSID is monitored
++ * with, the RMIDs in limbo can no longer be read: release them instead.
+  */
+ void resctrl_limbo_resume(void)
+ {
+ 	struct rdt_l3_mon_domain *d;
+ 	struct rdt_resource *r;
++	bool release = false;
+ 
+ 	lockdep_assert_cpus_held();
+ 	lockdep_assert_held(&rdtgroup_mutex);
+@@ -1057,6 +1068,13 @@ void resctrl_limbo_resume(void)
+ 	if (!resctrl_is_mon_event_enabled(QOS_L3_OCCUP_EVENT_ID))
+ 		return;
+ 
++	if (IS_ENABLED(CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID)) {
++		bool cdp_enabled = resctrl_arch_mon_cdp_enabled();
++
++		release = cdp_enabled != limbo_cdp_enabled;
++		limbo_cdp_enabled = cdp_enabled;
++	}
++
+ 	r = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+ 	list_for_each_entry_rcu(d, &r->mon_domains, hdr.list,
+ 				lockdep_is_cpus_held()) {
+@@ -1068,7 +1086,10 @@ void resctrl_limbo_resume(void)
+ 		 * it is queued again on a CPU picked now.
+ 		 */
+ 		cancel_delayed_work(&d->cqm_limbo);
+-		cqm_setup_limbo_handler(d, 0, RESCTRL_PICK_ANY_CPU);
++		if (release)
++			release_limbo_rmids(d);
++		else
++			cqm_setup_limbo_handler(d, 0, RESCTRL_PICK_ANY_CPU);
+ 	}
+ }
+ 
+diff --git a/include/linux/arm_mpam.h b/include/linux/arm_mpam.h
+index 002f56e15362..ff1e1d6420fa 100644
+--- a/include/linux/arm_mpam.h
++++ b/include/linux/arm_mpam.h
+@@ -62,6 +62,7 @@ bool resctrl_arch_match_rmid(struct task_struct *tsk, u32 closid, u32 rmid);
+ u32 resctrl_arch_rmid_idx_encode(u32 closid, u32 rmid);
+ void resctrl_arch_rmid_idx_decode(u32 idx, u32 *closid, u32 *rmid);
+ u32 resctrl_arch_system_num_rmid_idx(void);
++bool resctrl_arch_mon_cdp_enabled(void);
+ 
+ struct rdt_resource;
+ void *resctrl_arch_mon_ctx_alloc(struct rdt_resource *r, enum resctrl_event_id evtid);
+-- 
+2.43.0
+
 
