@@ -2,74 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC48606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB759606AA79
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tBEXUoBA;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=gDpkEvFJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vPnhYrKt;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=COrSHNtD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Xb1y+ovOhvBI3PPY14V/QFdhBDvdbmq7VXJJdsVP7cU=; b=tBEXUoBA+9+K3/of+cTUgdn5dw
-	NZg3CUwx8FX1GFJvYjq80T8CsYD3Ddhx/KqwwSjdhtLhy4AJZgYE07bjD8gvcmM7ltZLRI/y4EqOv
-	mcCutzos1CuzepTX0b8/gM+5RpQJCERO1wUSE42gbe6b1QBGuyElgking0C0KduCm60pJOnzwCjn/
-	+Cm/sPKUJe40BoDHP4IK28lfcBolBButJ6fMboXkwDeov2O4bj4kTsL0ggIQ5oOCQl4FH6JqZ5adO
-	ugN1ijB70yj16+Mp5wlkK4s+mJ6A8vm175blexmJRczVIiYZIq/ngOSNEWpFTXV0tD7A/ty5XAyho
-	cIlBELZg==;
+	bh=iSIwcETXaOk9HvPYheDqqxRnUPDv9J3s1eNW0KSF/d8=; b=vPnhYrKt9XArwX0//3m+9T+KEc
+	AcNbuu3f/zZGGu3SSvJl4ZcN3+FLIWdzdd/kYxOt2nVoDCLdd37YiBa3yT4s/q0zrkRTbHqa0scAW
+	zT0hW8YiDAct+2Y4dJrrUYY3cWs9jXNyh7CI6nvW0INd8czHQXIv0GsJizG4y/vj/PMX9wsV5blfU
+	ZzEO63WJdrkqYoBVVhRXMF/m82AGT2Yf9EcmvQma7bnNRDhIEbQQe5hnrShzCU5WEmyIL/fNBUH19
+	Mn6AKm0s2ahS1Ypxv1BF1BPdFMvrrtgTPykeiit/pV2a92ynnWyofzArSpi3nx+thBZWztxZKhgv3
+	ioAxMU9g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnKx-00000004Imh-0p0u;
-	Tue, 10 Nov 2026 15:00:39 +0000
-Received: from sender6-op-o11.zoho.com ([165.173.180.11])
+	id 1xQnQL-00000004JVn-39Y3;
+	Tue, 10 Nov 2026 15:06:13 +0000
+Received: from mx.nabladev.com ([178.251.229.89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnKv-00000004Im4-24RM;
-	Tue, 10 Nov 2026 15:00:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794322829; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Eb0p/omXtaq1k5nxNfO+ujP/HRbgPhXxnjYl+jPdYc33Yc4CrkysC7ePkukgW8NK5IKc5RY+vhGMiAznLn97L7pksj0kVP0VZ1zSIMSmmfMe1WNC4FF183uIUlrKrPSETt5Z75rc6eSv7KOMulct6Wto+FSqVTG4EzDTjhT+YMM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794322829; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Xb1y+ovOhvBI3PPY14V/QFdhBDvdbmq7VXJJdsVP7cU=; 
-	b=G9ld2mFn+L16/WrbrJefoNJzbBywfBEPAo+iqStgHa6C6TF5jHufoDYvw2tnQhDwUgHu4Zl7LC2qACeUO5z0i0bWjSMDNeEZG7n6jsKYHlAgvNB7ThslS4sN+7ErElweraMVKzr0KRYQGd5GilNe5cFtg3BEkanr62mXWRAWPpM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=gDpkEvFJvIQrrlLE8Kbk9F2ORW97VzC+pAoFvwtWAdavuP8rXp7dDxdBG0pvOYEzPRLWJag0ME6Wb/fcmYkLCkagSxHhVF32qTeT1los1whzDp4eLXfbMyslEUXbKBlIA+InyXnlx12Js13nHIYPDnzuc94GNosGA4yZb2G+fVc=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=Xb1y+ovOhvBI3PPY14V/QFdhBDvdbmq7VXJJdsVP7cU=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794322827521487.8316939248318;
-	Tue, 10 Nov 2026 07:00:27 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id D82A2180354; Tue, 10 Nov 2026 16:00:17 +0100 (CET)
-Date: Tue, 10 Nov 2026 16:00:17 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: aiyengar1990@gmail.com
-Cc: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	"Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Niklas Cassel <cassel@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: add the PCIe power domain to
- the RK3588 PCIe SMMU
-Message-ID: <avMwk16cTHMQIwmC@venus>
-References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
- <20261110-smmu-v3-pcie-pd-v1-4-628819ca44b9@gmail.com>
+	id 1xQnQI-00000004JU4-1wMv
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 15:06:12 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EEB7310DBB8;
+	Tue, 10 Nov 2026 16:05:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1794323159; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=iSIwcETXaOk9HvPYheDqqxRnUPDv9J3s1eNW0KSF/d8=;
+	b=COrSHNtDuQZeydl2lSdOlQdbCfmGVHmKZqw0iSK0htY5DHM9EapY8dTL3jK01nNvTGIoYh
+	RDIS+iiA6XJXLrNF6Ne3GQnHpCMZqZ8bnRo3PkwHQYlzwKnCoZmy5S6hexK8msnPWSqLS8
+	+ysA9evteRk25vbtKiYVZTc7Ig8Ao0pkONr84DhhDRhU/L8/7q+1Djb5FCBhA9h87lY8is
+	AppysDCoDR2y+EytjnRlzxGe6j/435deZQVWeD/Sg+o27fWW1A+WUhmDo26xlpKlhaNszr
+	QXbtIMVxxfl7ALbVwhKjmBZAN2fjLVQY3taq3Z5Uv+kiS1+xu64lB4NzBwpZzw==
+From: Lukasz Majewski <lukma@nabladev.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Lukasz Majewski <lukma@nabladev.com>
+Subject: [PATCH] arm64: dts: freescale: Add device tree definition for Cloos CBASE with i.MX8MM
+Date: Tue, 10 Nov 2026 16:05:46 +0100
+Message-ID: <20261110150546.1535950-1-lukma@nabladev.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yvnwakyswhfsguxx"
-Content-Disposition: inline
-In-Reply-To: <20261110-smmu-v3-pcie-pd-v1-4-628819ca44b9@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.310.16
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_070037_784422_045D5080 
-X-CRM114-Status: GOOD (  22.63  )
+X-CRM114-CacheID: sfid-20261110_070610_870514_CA1A59DA 
+X-CRM114-Status: GOOD (  13.20  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -81,101 +74,607 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+This commit adds support for CBASE board, which incorporates the TQMa8MQML
+module.
 
---yvnwakyswhfsguxx
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 4/5] arm64: dts: rockchip: add the PCIe power domain to
- the RK3588 PCIe SMMU
-MIME-Version: 1.0
+Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
+---
+ .../arm64/boot/dts/freescale/imx8mm-cbase.dts | 577 ++++++++++++++++++
+ 1 file changed, 577 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
 
-Hi,
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+new file mode 100644
+index 000000000000..0bbd724f3aab
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-cbase.dts
+@@ -0,0 +1,577 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2022 Fabio Estevam <festevam@denx.de>
++ * Copyright 2026 Lukasz Majewski <lukma@nabladev.com>
++ */
++
++/dts-v1/;
++
++#include "imx8mm-tqma8mqml.dtsi"
++
++/ {
++	model = "Cloos i.MX8MM CBASE board";
++	compatible = "cloos,imx8mm-cbase", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
++
++	aliases {
++		mmc0 = &usdhc3;
++		mmc1 = &usdhc2;
++	};
++
++	chosen {
++		stdout-path = &uart2;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_led>;
++
++		led-0 {
++			label = "status1";
++			gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-1 {
++			label = "status2";
++			gpios = <&gpio2 6 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-2 {
++			label = "status3";
++			gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-3 {
++			label = "status4";
++			gpios = <&gpio2 4 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-4 {
++			label = "error";
++			gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
++		};
++
++		led-5 {
++			label = "run";
++			gpios = <&gpio2 0 GPIO_ACTIVE_HIGH>;
++		};
++	};
++
++	reg_usb_otg_vbus: regulator-usb-otg-vbus {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_otg_vbus_ctrl>;
++		regulator-name = "usb_otg_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio2 2 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++	reg_usdhc2_vmmc: regulator-vmmc {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
++		regulator-name = "VSD_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		startup-delay-us = <100>;
++		off-on-delay-us = <12000>;
++	};
++
++	clk_xtal40: clk-xtal40 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <40000000>;
++	};
++
++	sfp_bot: sfp-bot {
++		compatible = "sff,sfp";
++		i2c-bus = <&i2c_sfp_bot>;
++		tx-fault-gpios = <&sfp_gpio 4 GPIO_ACTIVE_HIGH>;
++		tx-disable-gpios = <&sfp_gpio 5 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpios = <&sfp_gpio 6 GPIO_ACTIVE_LOW>;
++		los-gpios = <&sfp_gpio 7 GPIO_ACTIVE_HIGH>;
++		maximum-power-milliwatt = <1000>;
++	};
++
++	sfp_top: sfp-top {
++		compatible = "sff,sfp";
++		i2c-bus = <&i2c_sfp_top>;
++		tx-fault-gpios = <&sfp_gpio 0 GPIO_ACTIVE_HIGH>;
++		tx-disable-gpios = <&sfp_gpio 1 GPIO_ACTIVE_HIGH>;
++		mod-def0-gpios = <&sfp_gpio 2 GPIO_ACTIVE_LOW>;
++		los-gpios = <&sfp_gpio 3 GPIO_ACTIVE_HIGH>;
++		maximum-power-milliwatt = <1000>;
++	};
++};
++
++&ddrc {
++	operating-points-v2 = <&ddrc_opp_table>;
++
++	ddrc_opp_table: opp-table {
++		compatible = "operating-points-v2";
++
++		opp-25000000 {
++			opp-hz = /bits/ 64 <25000000>;
++		};
++
++		opp-100000000 {
++			opp-hz = /bits/ 64 <100000000>;
++		};
++
++		opp-750000000 {
++			opp-hz = /bits/ 64 <750000000>;
++		};
++	};
++};
++
++&ecspi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_ecspi1>;
++	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>,
++		   <&gpio1 1 GPIO_ACTIVE_LOW>,
++		   <&gpio1 12 GPIO_ACTIVE_LOW>,
++		   <&gpio1 13 GPIO_ACTIVE_LOW>;
++	status = "okay";
++
++	can@0 {
++		compatible = "microchip,mcp2518fd";
++		reg = <0>;
++		clocks = <&clk_xtal40>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
++		spi-max-frequency = <4000000>;
++	};
++
++	can@1 {
++		compatible = "microchip,mcp2518fd";
++		reg = <1>;
++		clocks = <&clk_xtal40>;
++		interrupt-parent = <&gpio4>;
++		interrupts = <20 IRQ_TYPE_EDGE_FALLING>;
++		spi-max-frequency = <4000000>;
++	};
++};
++
++&ecspi2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_ecspi2>;
++	cs-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec1>;
++	fsl,magic-packet;
++	phy-mode = "rgmii-id";
++	status = "okay";
++
++	fixed-link {
++		full-duplex;
++		pause;
++		speed = <1000>;
++	};
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		managed_switch: switch@0  {
++			compatible = "marvell,mv88e6190";
++			#interrupt-cells = <2>;
++			interrupt-controller;
++			interrupt-parent = <&gpio1>;
++			interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++			pinctrl-0 = <&pinctrl_switch_interrupt>;
++			pinctrl-names = "default";
++			reg = <0>;
++			status = "okay";
++
++			mdio {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				switch0phy1: ethernet-phy@1 {
++					reg = <0x1>;
++				};
++
++				switch0phy2: ethernet-phy@2 {
++					reg = <0x2>;
++				};
++
++				switch0phy3: ethernet-phy@3 {
++					reg = <0x3>;
++				};
++
++				switch0phy4: ethernet-phy@4 {
++					reg = <0x4>;
++				};
++
++				switch0phy5: ethernet-phy@5 {
++					reg = <0x5>;
++				};
++
++				switch0phy6: ethernet-phy@6 {
++					reg = <0x6>;
++				};
++
++				switch0phy7: ethernet-phy@7 {
++					reg = <0x7>;
++				};
++
++				switch0phy8: ethernet-phy@8 {
++					reg = <0x8>;
++				};
++			};
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					ethernet = <&fec1>;
++					phy-mode = "rgmii-id";
++					reg = <0>;
++
++					fixed-link {
++						full-duplex;
++						pause;
++						speed = <1000>;
++					};
++				};
++
++				port@1 {
++					label = "lan1";
++					phy-handle = <&switch0phy1>;
++					phy-mode = "internal";
++					reg = <1>;
++				};
++
++				port@2 {
++					label = "lan2";
++					phy-handle = <&switch0phy2>;
++					phy-mode = "internal";
++					reg = <2>;
++				};
++
++				port@3 {
++					label = "lan3";
++					phy-handle = <&switch0phy3>;
++					phy-mode = "internal";
++					reg = <3>;
++				};
++
++				port@4 {
++					label = "lan4";
++					phy-handle = <&switch0phy4>;
++					phy-mode = "internal";
++					reg = <4>;
++				};
++
++				port@5 {
++					label = "lan5";
++					phy-handle = <&switch0phy5>;
++					phy-mode = "internal";
++					reg = <5>;
++				};
++
++				port@6 {
++					label = "lan6";
++					phy-handle = <&switch0phy6>;
++					phy-mode = "internal";
++					reg = <6>;
++				};
++
++				port@7 {
++					label = "lan7";
++					phy-handle = <&switch0phy7>;
++					phy-mode = "internal";
++					reg = <7>;
++				};
++
++				port@8 {
++					label = "lan8";
++					phy-handle = <&switch0phy8>;
++					phy-mode = "internal";
++					reg = <8>;
++				};
++
++				port@9 {
++					reg = <9>;
++					label = "lan-sfp1";
++					phy-mode = "sgmii";
++					sfp = <&sfp_top>;
++					managed = "in-band-status";
++				};
++
++				port@10 {
++					reg = <10>;
++					label = "lan-sfp2";
++					phy-mode = "sgmii";
++					sfp = <&sfp_bot>;
++					managed = "in-band-status";
++				};
++			};
++		};
++	};
++};
++
++&i2c2 {
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c2>;
++	status = "okay";
++
++	onewire@18 {
++		compatible = "maxim,ds2484";
++		reg = <0x18>;
++	};
++
++	temp@49 {
++		compatible = "national,lm77";
++		reg = <0x49>;
++	};
++};
++
++&i2c3 {
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	status = "okay";
++
++	i2c-mux@70 {
++		compatible = "nxp,pca9543";
++		reg = <0x70>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		i2c_sfp_top: i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++		};
++		i2c_sfp_bot: i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++		};
++	};
++
++	sfp_gpio: gpio@38 {
++		compatible = "nxp,pca9554";
++		reg = <0x38>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-line-names = "SFP_TXFI_T", "SFP_TXDIS_T",
++				  "SFP_MODPRES_T", "SFP_LOS_T",
++				  "SFP_TXFI_L", "SFP_TXDIS_L",
++				  "SFP_MODPRES_L", "SFP_LOS_L";
++	};
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	status = "okay";
++};
++
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart3>;
++	status = "okay";
++};
++
++&usbotg1 {
++	dr_mode = "host";
++	vbus-supply = <&reg_usb_otg_vbus>;
++	status = "okay";
++};
++
++&usbotg2 {
++	dr_mode = "host";
++	status = "okay";
++};
++
++&usbphynop1 {
++	power-domains = <&pgc_otg1>;
++};
++
++&usbphynop2 {
++	power-domains = <&pgc_otg2>;
++};
++
++&usdhc2 {
++	assigned-clocks = <&clk IMX8MM_CLK_USDHC2>;
++	assigned-clock-rates = <400000000>;
++	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_400M>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
++	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
++	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
++	bus-width = <4>;
++	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
++	disable-wp;
++	no-mmc;
++	no-sdio;
++	sd-uhs-sdr104;
++	sd-uhs-ddr50;
++	vmmc-supply = <&reg_usdhc2_vmmc>;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_ecspi1: ecspi1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO		0x82
++			MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI		0x82
++			MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x82
++			MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x19
++			MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1		0x19
++			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x19
++			MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12		0x19
++			MX8MM_IOMUXC_GPIO1_IO13_GPIO1_IO13		0x19
++			MX8MM_IOMUXC_SAI1_MCLK_GPIO4_IO20		0x19
++		>;
++	};
++
++	pinctrl_ecspi2: ecspi2grp {
++		fsl,pins = <MX8MM_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK	0x00000006>,
++			   <MX8MM_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI	0x00000006>,
++			   <MX8MM_IOMUXC_ECSPI2_MISO_ECSPI2_MISO	0x00000006>,
++			   <MX8MM_IOMUXC_ECSPI2_SS0_GPIO5_IO13		0x00000006>;
++	};
++
++	pinctrl_fec1: fec1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_ENET_MDC_ENET1_MDC		0x40000002
++			MX8MM_IOMUXC_ENET_MDIO_ENET1_MDIO		0x40000002
++			MX8MM_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x14
++			MX8MM_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x14
++			MX8MM_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x14
++			MX8MM_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x14
++			MX8MM_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x90
++			MX8MM_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x90
++			MX8MM_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x90
++			MX8MM_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x90
++			MX8MM_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x14
++			MX8MM_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x90
++			MX8MM_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x90
++			MX8MM_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x14
++			MX8MM_IOMUXC_SAI2_RXC_GPIO4_IO22		0x10
++		>;
++	};
++
++	pinctrl_gpio_led: gpioledgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD1_CLK_GPIO2_IO0			0x19
++			MX8MM_IOMUXC_SD1_CMD_GPIO2_IO1			0x19
++			MX8MM_IOMUXC_SD1_DATA1_GPIO2_IO3		0x19
++			MX8MM_IOMUXC_SD1_DATA2_GPIO2_IO4		0x19
++			MX8MM_IOMUXC_SD1_DATA3_GPIO2_IO5		0x19
++			MX8MM_IOMUXC_SD1_DATA4_GPIO2_IO6		0x19
++		>;
++	};
++
++	pinctrl_i2c2: i2c2grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
++			MX8MM_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
++		>;
++	};
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
++			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
++		>;
++	};
++
++	pinctrl_otg_vbus_ctrl: otgvbusctrlgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD1_DATA0_GPIO2_IO2		0x119
++		>;
++	};
++
++	pinctrl_switch_interrupt: switchinterruptgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x19
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_UART1_RXD_UART1_DCE_RX		0x140
++			MX8MM_IOMUXC_UART1_TXD_UART1_DCE_TX		0x140
++		>;
++	};
++
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX		0x140
++			MX8MM_IOMUXC_UART2_TXD_UART2_DCE_TX		0x140
++		>;
++	};
++
++	pinctrl_uart3: uart3grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX		0x140
++			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX		0x140
++		>;
++	};
++
++	pinctrl_usdhc2_gpio: usdhc2grpgpiogrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x1c4
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
++			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
++			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
++			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
++			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
++			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
++		>;
++	};
++
++	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
++			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
++			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4
++			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
++			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
++			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
++		>;
++	};
++
++	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
++			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
++			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6
++			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
++			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
++			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
++		>;
++	};
++};
++
++/* SPI-NOR memory is not mounted on the used SoM */
++/delete-node/ &flash0;
+-- 
+2.39.5
 
-On Tue, Nov 10, 2026 at 07:11:51AM +0000, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->=20
-> The MMU-600 for the PCIe controllers (mmu600_pcie) is enabled for every
-> RK3588 board, but its node does not describe that it lives in
-> RK3588_PD_PCIE. It only works today because TF-A leaves the domain on at
-> boot and, on most boards, an enabled PCIe controller holds it on later.
->=20
-> On a board that disables all PCIe controllers using that domain (the
-> Orange Pi 5 with its M.2 slot in SATA mode is one), genpd powers
-> PD_PCIE off as unused after boot while arm-smmu-v3 is still bound. Then
-> at reboot arm_smmu_device_shutdown() writes CR0 and polls CR0ACK on the
-> unpowered block, which stalls the bus: the kernel never reaches
-> "reboot: Restarting system" and the board only comes back once the
-> watchdog fires.
->=20
-> Describe the power domain, so genpd keeps it on for as long as the SMMU
-> is bound.
->=20
-> Fixes: da92d3dfc871 ("arm64: dts: rockchip: enable the mmu600_pcie IOMMU =
-on the rk3588 SoC")
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/b=
-oot/dts/rockchip/rk3588-base.dtsi
-> index aa69fd3793fd..bcd342c025c9 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> @@ -560,6 +560,7 @@ mmu600_pcie: iommu@fc900000 {
->  			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
->  		interrupt-names =3D "eventq", "gerror", "priq", "cmdq-sync";
->  		#iommu-cells =3D <1>;
-> +		power-domains =3D <&power RK3588_PD_PCIE>;
-
-The TRM says the power domain of MMU600_PCIE is PD_PHP, not PD_PCIE.
-See Table 7-1 RK3588 Voltage Domain and Power Domain Summary around
-page 1096 (depending on specific TRM version).
-
-Note, that PD_PCIE is a child of PD_PHP, so it makes sense that
-PD_PCIE also works.
-
-Greetings,
-
--- Sebastian
-
->  	};
-> =20
->  	mmu600_php: iommu@fcb00000 {
->=20
-> --=20
-> 2.55.0
->=20
->=20
->=20
-
---yvnwakyswhfsguxx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmrzMYEACgkQ2O7X88g7
-+prfPw/9H7V6CFJtfI0s9f5zQ1tXpHmng97aGYhRQAxloE/LcvZHpFI8zHFOAL+3
-/BQfGKhYVHxw0VEO4VSVrIbaLWag1mtFtYfjINdR5/uT6937ctWfyskTfMuKf/35
-O3nOwz8Uihhq3ZbA+AFJ+DLbUiRs7+Ka7rn4IxvDE/YEZrVPFJIRmU/iJ5NZTiDs
-u8AVATgGiVEmYXFkrqUr3siaEB5QiITUOkv8F4y5i9xYcrqnRr+9LrwjXVsjVpn+
-cySgWnAySJ13eX55L4XktWLXiqd26EaK7dRTcWsNm6mACod8BP1sGtDJkS310fFv
-Utzx30B9Qh7ThWXF2HwdmeqSGfzWFc54k8IHtmx7PcpKkxmOFXG5+e7gOw1IMCE0
-Ro9SQxIwJ44twPtPyuQyA/nzqvui8ZmzFhZ9TmuKjyuR1tOLmg1546WVLJroN3+B
-ceLNYAhT94Xopbf4C1WAA8WWOSEuhU7ILyyDB+LqVQEG8YtaP6d9wFq0vRDxKbXj
-WITuytLrKkMWWjwXtq2qWko1HLDCHv1SV/1lmw7Vxye2Gx8mLIjnrRXgRVfhcmZA
-TC7g/FJ3/oEvKSbf9OrE5LglaqBWGgwbzN+e/g7UCoQnfHKOwHB9phFeOj7nUTvW
-/zzCKbC+DQ+HjRbMKlP9bEw/GgJebMSK+fDAM7d68zim0FCJ5Jo=
-=Q6ux
------END PGP SIGNATURE-----
-
---yvnwakyswhfsguxx--
 
