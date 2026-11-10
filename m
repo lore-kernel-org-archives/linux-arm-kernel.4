@@ -2,112 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F698606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72E5606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:05:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QqEZXUhH;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=VL3b0wxF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fsKqRKOp;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KgWoyy9O
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uiVkPzXXhehza/0pEB5oyMtowr2B+LSOPOFND1rZ2/4=; b=QqEZXUhHWTs2Ej
-	2ub1hn3qzL4NzZz1Kfc1qFxheC1m8SvNmK2ZWjhkTBCAhE8LpYphexVeMW2I2FDcQTkEK74BGGt/0
-	zkOko2ZLqSAfte7QBuHE2VjFhtZu/rbNC4BOIIwy33rkWuAPjPpbASFUzBP1S/pI6Z5wF4IFUozk/
-	VKgFETFmNi1nfCMQN0CN1goZt60zqyP7juMFpJHCGCnAL243zJLLnb8IYBKV+mwzL7l5QeExmTXrJ
-	5WPARs9R2s3okEaa9AYc9dCas4KkYh9hMaICOinJSU2dSFej1LUMYMSyLUYqwCXA12Ui2aMuf8diT
-	5M13miJP+S0UuU4mL4dQ==;
+	List-Owner; bh=I5T5peH0PUnCrtzemSjuLVp2+YwXJuyEpiqwvId8VNA=; b=fsKqRKOpSkEDLg
+	k6Wp+YVMjw6/sqIcK/imkriGbPwVWnIcw+zZmfHMeeNUZlsM43AdpguClakz2kLCPd8skdj+rxjm0
+	uK+12vrQWWvi4dDKibkLM78X/jaB+orX+xxcQmDT41hUwML3YtQMZ1fyaOv0l1eFHiyElFYaplG+x
+	QE9xi431j9lUVyhxoDE2DK2EkdqXcfHgXxCfvySUpo/oKQuK3ToEODswjX3E3Rl/uFtHHp8RV4g3T
+	Ars5AO0FCCDxCkjlQh1BnAOc1BVAllX7Ojg5KNXuXPQ05lFw8y5mQ1g2C5V8EaMOuKvPy2CsYJ0K/
+	jQw77rpa5WPW2sDQz2gQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkZE-00000003jTV-0qkl;
-	Tue, 10 Nov 2026 12:03:12 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xQkbV-00000003jpE-2dPH;
+	Tue, 10 Nov 2026 12:05:33 +0000
+Received: from mail-lf1-x135.google.com ([2a00:1450:4864:20::135])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkZB-00000003jSQ-03ZJ
+	id 1xQkbR-00000003jnl-0LR8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 12:03:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794312187;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=uiVkPzXXhehza/0pEB5oyMtowr2B+LSOPOFND1rZ2/4=;
-	b=VL3b0wxFFdoziK2evowOmxRJ/Ohx+sR9Ex6UbHHNjz3khG36qa1syarwPtA9gaC+BNm1hN
-	AkzxzLPE+oP39OL2Myh+YiXL3+WY9XKkgbfRbnrrwZyUt8wgPy1fZL113Km/gltmi0t1Nl
-	aQP7XxikkFaNuuwAt6i0uOWR/WrnjWA=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-134-GjwgHyiBPUiO1qQMyLALow-1; Tue, 10 Nov 2026 07:01:46 -0500
-X-MC-Unique: GjwgHyiBPUiO1qQMyLALow-1
-X-Mimecast-MFC-AGG-ID: GjwgHyiBPUiO1qQMyLALow_1794312105
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-4ba078f26f4so1285745e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:01:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794312105; x=1794916905;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+	Tue, 10 Nov 2026 12:05:32 +0000
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5be416e603cso1389641e87.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:05:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794312326; x=1794917126; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=y2mCs42PJIUuMEiD6YfY8qAsrfrGeMWTNLTXg/MCmkY=;
-        b=ZY/S40Pwam81HVUjDvUl2tUFaCzrW80aasKY3I6/sRzdvpqgn3T7DDvtkmr5rtQL/R
-         UFJQV/UPcb9d0feawZZL7vD5vVkWi6zQtrQafb68IE/bYyC+mH/rCTOW7kzM9f2XHQ1W
-         DheT7ncnYNY7tx4ZJiQJPJYanlqCWFxe3fDmYGIrL/Ir/dDDb8wPdR2UWyC0Vej/JqrO
-         rG8mCJq6HeKZ/t0MS/cSFSegYlKRCH0MR6eOjxEQk6C3q+Lgdwjjnt/50Y09j3xDHHsL
-         65GFEVFRWxQzV1353JWZBsjd2V50WNUXRewMid/HD1VG3djyXML4DwWvGvNTSoQ0ktn9
-         Rf4w==
-X-Forwarded-Encrypted: i=1; AL+hErEE6PhRHVqlGGoaZl96nJ3D4F5gcn4B7t2nDDkefzf0ShpaUo3IKQ8bkiP15pYFvngxibCA9YCo5hjUkO5RpgJR@lists.infradead.org
-X-Gm-Message-State: APuU4Z8qu28Cx2VGxIZymvVrO6UALVqSOASLVR6FDYVP9wFpO0/RBvHv
-	wguZ+YGopeGhP6xWro+JQv2PjAum6twVoN/7OKX/lszV9c2LhijBDYtWNFuUXy7hBoyV9cbe+80
-	8Z/8mjgCpPcu58fugq0P2NRM7MYogyXlhfdeI0tP/Gxn5I7i6QSi8WvHr75L7aIuM7IQT9bxc+x
-	c2
-X-Gm-Gg: AYBFou3g5qLcsCsRoKBfar2tl2+MbITEBHSpK436k83aYN0XQW5oDc+kobO9ZhfH/C6
-	pM82B2bWIQh0uaPEsg4kxDczCqAWkCRIWug/AkvqIm5Xn3w1zI7qzQEpY6ajG6nvtuPGbtYpWMB
-	DaXzpBUtNM474Kc4PwlIt+isX6NDozB6oKzuEsQ4StITjYSWHZjL5Oivdp8KMWbj84zLRMYcUBo
-	mhyAZy8eDLv6pEq/0LwXZIlpoKAh52+KIa7uItrmYXYG/KQpSzX+hSdA5SKlIZbk7mmgeXiWqnp
-	yrSK3J0bTf8P7XkXUhQd6Aq0oHFYuc7A9/MuVXjaIY1mvhJcimsExhhvfMTwL1I7Vnm8+TlioYB
-	feUrIFgeE96kJwk7me6XeHcIDnBZzCyMrKbIRePYgQiBRGiUbBbTVFCSXGRiLT/DFejYOL5g1me
-	J4BGre3HUkBSTm6pJ5lF92Baf6yCVfu6SZmujgPxo=
-X-Received: by 2002:a05:600c:8b21:b0:4a1:dfaf:f465 with SMTP id 5b1f17b1804b1-4ba023064e9mr38263515e9.4.1794312105075;
-        Tue, 10 Nov 2026 04:01:45 -0800 (PST)
-X-Received: by 2002:a05:600c:8b21:b0:4a1:dfaf:f465 with SMTP id 5b1f17b1804b1-4ba023064e9mr38262495e9.4.1794312104242;
-        Tue, 10 Nov 2026 04:01:44 -0800 (PST)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4983600bc9asm4366200f8f.29.2026.11.10.04.01.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 04:01:42 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Devarsh Thakkar <devarsht@ti.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devarsht@ti.com, LiangCheng Wang <zaq14760@gmail.com>
-Subject: Re: [PATCH v3 04/14] drm/solomon: Add DRM driver for Solomon
- SSD16xx e-paper display controllers
-In-Reply-To: <20261019213726.4145532-5-devarsht@ti.com>
-References: <20261019213726.4145532-1-devarsht@ti.com>
- <20261019213726.4145532-5-devarsht@ti.com>
-Date: Tue, 10 Nov 2026 13:01:41 +0100
-Message-ID: <xlv1qzgsevyy.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+        bh=I5T5peH0PUnCrtzemSjuLVp2+YwXJuyEpiqwvId8VNA=;
+        b=KgWoyy9OjGaT8+X3ebUQZnvARgqvCosSsWSCwpkbVTrpXE9vI8ayCNNhzJo1b5XWcq
+         COGNlWthcBcJ2HGGQAG3a08WY9MzDR/ke40P4yWIW+U5cYmTN2DnkC9hDczUOhIBHdCW
+         BAEZ/ygLz4BWMAIIZQZuNxVYN0mV9mRU7MvxEAgDKGmemz04TaHV9iUIfhWWCybjqscr
+         1Et4AruiljfGJi21YUjRJYPJfMHwA/I/pzA0v96cCe/LSQH31ORW2DKECdUxjzMFbulw
+         trp8rV+Qme17/HCKt48dXxLknhwDrlwJT14Q78vusjm1gjZrXBfQRCmMs2L8N05MxOmo
+         t2Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794312326; x=1794917126;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=I5T5peH0PUnCrtzemSjuLVp2+YwXJuyEpiqwvId8VNA=;
+        b=xI7ux0AJf1egToS+KtRC2lMCRcmSaYAdaDhnvKgQx5EwlQy1SPpzKsb2Hw1Hku4fWB
+         nV7EP9ZKqETCynl8Z2rbt1d5Y/KRhTuVv21MKJ3iwdkbJsK3WOX447qXU/kMhX01Z5IM
+         gdlhC5AJGaRdtSWX4m1ZQOomlt/yz/vXKL/JH/V0zv1o9cR1HTpsziMvbYBKdPGRoPjN
+         5RsBoBIyXDS8NM2N86wlWM4Lxwue/XKZZZkldEW1WOLw0+5EBty2ZL1EdPOIHjmno4ZX
+         mnJRPm8opsBT8fZFodZSjjNDmvIfWn7JY3OvUgVWuhx/fIDpraZAib1+xBqNxR6fseeM
+         FdqA==
+X-Forwarded-Encrypted: i=1; AL+hErHtRtuOKXdCWHB/KomlN1jHcAtkTOtbf+3ex98CHTRWxHNzrc8lwPCUJmj3GhHMrYnpk0MWZ7FFRh948w49Ealo@lists.infradead.org
+X-Gm-Message-State: APuU4Z++GMctHJy0PTHjacC1yj9OAPHmh8RHtJADk35T6Zpl7ZgOcuGN
+	zyME+53pMdi02bc73RFobcj4N95RoyNVo9fxPHeBUBBt/gMkVZyHX61O
+X-Gm-Gg: AYBFou0igr6J4PiU3GSBBLt3KjPRW9lmFWd9e3mYPzSUSAUT86cQ35LPpmvl5R9Pfzg
+	TxjeFcD8UDM8F5Nj1N38K4i2UXGzVRdhOinNVUMmxKV0+hSGgkGv05IG+OfqpILNOdCg8Plm63g
+	TjNbjG1SO3rCC7+j9LhXJqWrL4g6Eb9FqeLPaOMV3jyeHd+FYsxADwh8lU04/LQSRzB/4eUcx7Q
+	+bwInTUTzSPFJu7mHSzQ0J10mbB0VS8g2/7LUSvgPet+zl6B5ubmrDOAaxxHi5lAuSMx5VIObOv
+	BcLf/mQvxpriK+QvU5liDei/XDzgQHAeaW4HAkV51fsCvRGJwZc1E80W/jNw87Skhe/5nf+G9wA
+	RVCOSJFJLb+lltqZmZoYyD2Uzf4jvKMau9LpUb7gJxQB80CTIfmqjWLV7qRhmuhNswwIVv+7Pi7
+	EpSWqKEN8lyu1z0oPgFcUSx/DjAgpn3Xtc5MCBUWRPh4MF88rDX1Ndg9wyTdEwQJagU4tTtacpM
+	P8ibttXf56t+iH7BT/3XBbxt6fmokMVYC13QYe0bWweZd5cJ3nhMbYIZ7NJLmDpuE1YltU9Vc1h
+	Q815t5knQMfsRp4mIOoCK6C8U37q6FAW7K1BZ6t9vZYbfCr//Wp4Nus=
+X-Received: by 2002:a05:6512:1302:b0:5c0:4e3:a416 with SMTP id 2adb3069b0e04-5c156e375a3mr617826e87.1.1794312326336;
+        Tue, 10 Nov 2026 04:05:26 -0800 (PST)
+Received: from [10.127.122.226] ([5.195.0.150])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c159702ae0sm240512e87.20.2026.11.10.04.05.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2026 04:05:25 -0800 (PST)
+Message-ID: <91a4fdf2-638c-442b-be29-59e05c8ba396@gmail.com>
+Date: Tue, 10 Nov 2026 16:05:22 +0400
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Nm8cXzuCzg8mr7rOl22YAcEGjLhaZalTRD03t4IagS0_1794312105
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] phy: exynos5-usbdrd: fix HS phy init count imbalance on
+ Exynos2200
+To: Soheyb <soheyb_boulaa@proton.me>, Vinod Koul <vkoul@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20261109221522.2796426-1-soheyb_boulaa@proton.me>
+Content-Language: en-US
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20261109221522.2796426-1-soheyb_boulaa@proton.me>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_040309_199824_22CF300E 
-X-CRM114-Status: GOOD (  34.62  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261110_040529_153818_4B1BE37E 
+X-CRM114-Status: GOOD (  22.52  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,425 +109,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-Hello Devarsh,
-
-Devarsh Thakkar <devarsht@ti.com> writes:
-
-> Add a DRM driver for the Solomon Systech SSD16xx family of e-paper displa=
-y
-> controllers (SSD1680 [4], SSD1673 [3], SSD1681 [5], SSD1683 [1]) based
-> e-paper display panels, starting with support for the Gooddisplay
-> GDEY042T81 which is 4.2", 400x300 resolution black/white e-paper display
-> using SSD1683 controller.
+On 11/10/26 02:15, Soheyb wrote:
+> exynos2200_usbdrd_utmi_init() calls phy_init() on the high-speed phy,
+> but exynos2200_usbdrd_phy_exit() never calls phy_exit() on it. The init
+> count of the high-speed phy therefore never drops back to zero: after
+> the first init, every later phy_init() of it returns early, and its
+> clocks and supplies stay enabled across an exit of the UTMI phy.
 >
+> When the high-speed phy loses power while the controller is suspended,
+> it is thus not set up again on resume, and the DWC3 core soft reset
+> times out:
+>
+>    dwc3 11210000.usb: DWC3 controller soft reset failed
+>
+> Exit the high-speed phy when the UTMI phy exits, first, in the reverse
+> order of the init.
+>
+> Fixes: cc52a697f87e ("phy: exynos5-usbdrd: support Exynos USBDRD 3.2 4nm controller")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Soheyb <soheyb_boulaa@proton.me>
+> ---
+> Tested on a Google Pixel 9 (Tensor G4) with an out-of-tree port that
+> uses the Exynos2200 phy ops and powers the USB block off in system
+> sleep: without this change the soft reset failed on the first resume;
+> with it, USB came back after each of two system sleeps. Not tested on
+> Exynos2200 hardware.
+>
+>   drivers/phy/samsung/phy-exynos5-usbdrd.c | 7 +++++++
+>   1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> index 087d552..0bee928 100644
+> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+> @@ -1486,6 +1486,13 @@ static int exynos2200_usbdrd_phy_exit(struct phy *phy)
+>   	u32 reg;
+>   	int ret;
+>   
+> +	/*
+> +	 * The UTMI init initializes the high-speed phy; exit it in turn, so
+> +	 * that the next init sets it up again after it lost power.
+> +	 */
 
-[...]
+I think the function is pretty self-explanatory, so could drop the
+comment. Otherwise looks good to me, nice catch!
 
-> new file mode 100644
-> index 000000000000..ca6550b5dd5b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/solomon/ssd16xx.c
-> @@ -0,0 +1,1801 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * DRM driver for e-paper display panels using Solomon SSD16xx family co=
-ntrollers
-> + *
-> + * Copyright (C) 2026 Texas Instruments Incorporated - https://www.ti.co=
-m/
-> + *
-> + * Author: Devarsh Thakkar <devarsht@ti.com>
-> + *
-> + * References: https://github.com/Lesords/epaper
-> + */
+Acked-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
 
-What is this reference about? I would just remove it.
-
-[...]
-
-> +#include <drm/drm_fb_helper.h>
-
-This header does not exist anymore, check commit 6ccc5b5fc1d3 ("drm/fbdev:
-Move fbdev helpers into client library"). But I think you can just drop it
-no symbols from clients/drm_fbdev_helper.h are used as far as I can tell.
-
-Also, please make sure to use the drm-misc/drm-misc-next branch as a base.
-
-[...]
-
-> +struct ssd16xx_device {
-> +=09struct drm_device drm;
-> +
-> +=09struct drm_plane primary_plane;
-> +=09struct drm_crtc crtc;
-> +=09struct drm_encoder encoder;
-> +=09struct drm_connector connector;
-> +
-> +=09struct spi_device *spi;
-> +=09struct gpio_desc *reset;
-> +=09struct gpio_desc *busy;
-> +=09struct gpio_desc *dc;
-> +
-> +=09enum ssd16xx_model model;
-> +=09enum ssd16xx_controller controller;
-> +=09const struct ssd16xx_controller_config *controller_cfg;
-> +=09const struct ssd16xx_device_config *device_cfg;
-> +=09struct drm_display_mode *mode;
-> +=09u32 width;
-> +=09u32 height;
-> +
-> +=09bool initialized;
-> +=09bool init_refresh_pending; /* First frame after refresh_mode_init ena=
-ble */
-> +
-> +=09int orientation; /* Display orientation in degrees: 0/90/180/270 */
-> +=09enum ssd16xx_refresh_mode refresh_mode; /* Active refresh mode */
-> +=09enum ssd16xx_color_mode color_mode;     /* Active color mode (BW or 3=
--color) */
-> +=09bool fast_lut_pending; /* LUT pre-load needed before next fast refres=
-h */
-> +
-> +=09/* Border waveform (as enum indices) */
-> +=09int border_waveform_init_idx;   /* Border waveform during clear/init =
-*/
-> +=09int border_waveform_update_idx; /* Border waveform during display upd=
-ates */
-> +=09bool border_refresh_on_every_update; /* Re-send border cmd each displ=
-ay update */
-> +=09bool border_waveform_pending;   /* One-shot: send border cmd on next =
-update */
-> +
-> +=09/* Display control */
-> +=09int refresh_mode_init; /* -1=3Ddisabled, else use this mode for the f=
-irst frame */
-> +
-> +=09u8  *tx_buf;     /* 1bpp frame buffer (mono + white) */
-> +=09u8  *tx_red_buf; /* 1bpp red-channel buffer (3-color panels only) */
-> +=09u16 *tx_buf9;    /* 9-bit SPI expansion buffer (3-wire mode only) */
-> +=09u8  spi_buf[64] ____cacheline_aligned; /* DMA-safe buffer for SPI tra=
-nsfers */
-
-Another option would be to dynamically allocate them using kzalloc(),
-which already provides naturally cache-line-aligned buffers.
-
-[...]
-
-> +static void ssd16xx_send_cmd(struct ssd16xx_device *device, u8 cmd,
-> +=09=09=09     int *err)
-> +{
-> +=09struct spi_transfer xfer =3D {};
-> +=09struct spi_message msg;
-> +
-> +=09if (*err)
-> +=09=09return;
-> +
-> +=09spi_message_init(&msg);
-> +=09spi_message_add_tail(&xfer, &msg);
-> +
-> +=09if (device->dc) {
-> +=09=09/* 4-wire SPI: D/C# GPIO low selects command mode */
-> +=09=09device->spi_buf[0] =3D cmd;
-> +=09=09xfer.tx_buf =3D device->spi_buf;
-> +=09=09xfer.len =3D 1;
-> +=09=09gpiod_set_value_cansleep(device->dc, 0);
-> +=09} else {
-> +=09=09/*
-> +=09=09 * 3-wire SPI (9-bit): bit 8 is the D/C# bit.
-> +=09=09 * D/C# =3D 0 means the following 8 bits are a command.
-> +=09=09 */
-> +=09=09u16 *word =3D (u16 *)device->spi_buf;
-> +
-> +=09=09*word =3D cmd; /* bit 8 =3D 0 for command */
-> +=09=09xfer.tx_buf =3D device->spi_buf;
-> +=09=09xfer.len =3D sizeof(u16);
-> +=09=09xfer.bits_per_word =3D 9;
-> +=09}
-> +
-> +=09ssd16xx_spi_sync(device->spi, &msg, err);
-> +}
-> +
-> +static void ssd16xx_send_data(struct ssd16xx_device *device, u8 data,
-> +=09=09=09      int *err)
-> +{
-> +=09struct spi_transfer xfer =3D {};
-> +=09struct spi_message msg;
-> +
-> +=09if (*err)
-> +=09=09return;
-> +
-> +=09spi_message_init(&msg);
-> +=09spi_message_add_tail(&xfer, &msg);
-> +
-> +=09if (device->dc) {
-> +=09=09/* 4-wire SPI: D/C# GPIO high selects data mode */
-> +=09=09device->spi_buf[0] =3D data;
-> +=09=09xfer.tx_buf =3D device->spi_buf;
-> +=09=09xfer.len =3D 1;
-> +=09=09gpiod_set_value_cansleep(device->dc, 1);
-> +=09} else {
-> +=09=09/*
-> +=09=09 * 3-wire SPI (9-bit): bit 8 is the D/C# bit.
-> +=09=09 * D/C# =3D 1 means the following 8 bits are data.
-> +=09=09 */
-> +=09=09u16 *word =3D (u16 *)device->spi_buf;
-> +
-> +=09=09*word =3D 0x100 | data;
-> +=09=09xfer.tx_buf =3D device->spi_buf;
-> +=09=09xfer.len =3D sizeof(u16);
-> +=09=09xfer.bits_per_word =3D 9;
-> +=09}
-> +
-> +=09ssd16xx_spi_sync(device->spi, &msg, err);
-> +}
-> +
-
-As mentioned in a previous version, this logic is already partially
-covered by the ssd130x_spi_write() function (for 4-wire SPI mode),
-but that helper lacks the 3-wire SPI mode.
-
-Once your driver lands, it would be great to have a single transfer
-helper that could be shared by both drivers. And maybe even other
-KMS drivers could benefit from it.
-
-> +static void ssd16xx_send_x_param(struct ssd16xx_device *device, u16 x,
-> +=09=09=09=09 int *err)
-> +{
-> +=09if (*err)
-> +=09=09return;
-> +
-> +=09if (device->controller_cfg->ram_x_address_bits =3D=3D 8) {
-> +=09=09ssd16xx_send_data(device, (u8)x, err);
-> +=09} else {
-> +=09=09ssd16xx_send_data(device, x & 0xFF, err);
-> +=09=09ssd16xx_send_data(device, (x >> 8) & 0xFF, err);
-> +=09}
-> +}
-> +
-> +static void ssd16xx_send_y_param(struct ssd16xx_device *device, u16 y,
-> +=09=09=09=09 int *err)
-> +{
-> +=09if (*err)
-> +=09=09return;
-> +
-> +=09if (device->controller_cfg->ram_y_address_bits =3D=3D 8) {
-> +=09=09ssd16xx_send_data(device, (u8)y, err);
-> +=09} else {
-> +=09=09ssd16xx_send_data(device, y & 0xFF, err);
-> +=09=09ssd16xx_send_data(device, (y >> 8) & 0xFF, err);
-> +=09}
-> +}
-> +
-
-Maybe these two helpers can be consolidated in one? Callers can just
-pass the ram_{x,y}_address_bits as another parameter.
-
-> +static void ssd16xx_send_data_bulk(struct ssd16xx_device *device,
-> +=09=09=09=09   const u8 *data, size_t len,
-> +=09=09=09=09   int *err)
-> +{
-> +=09struct spi_transfer xfer =3D {};
-> +=09struct spi_message msg;
-> +
-> +=09if (*err)
-> +=09=09return;
-> +
-> +=09if (!data || !len)
-> +=09=09return;
-> +
-> +=09spi_message_init(&msg);
-> +=09spi_message_add_tail(&xfer, &msg);
-> +
-> +=09if (device->dc) {
-> +=09=09/* 4-wire SPI: D/C# GPIO high selects data mode */
-> +=09=09if (len <=3D sizeof(device->spi_buf)) {
-> +=09=09=09memcpy(device->spi_buf, data, len);
-> +=09=09=09xfer.tx_buf =3D device->spi_buf;
-> +=09=09} else {
-> +=09=09=09xfer.tx_buf =3D data;
-> +=09=09}
-> +=09=09xfer.len =3D len;
-> +=09=09gpiod_set_value_cansleep(device->dc, 1);
-> +=09=09ssd16xx_spi_sync(device->spi, &msg, err);
-> +=09} else {
-> +=09=09/* 3-wire (9-bit): expand u8 =E2=86=92 u16 with D/C#=3D1 in bit 8.=
- */
-> +=09=09size_t i;
-> +=09=09u16 *buf =3D device->tx_buf9;
-> +
-> +=09=09for (i =3D 0; i < len; i++)
-> +=09=09=09buf[i] =3D 0x100 | data[i];
-> +
-> +=09=09xfer.tx_buf =3D buf;
-> +=09=09xfer.len =3D len * sizeof(u16);
-> +=09=09xfer.bits_per_word =3D 9;
-> +=09=09ssd16xx_spi_sync(device->spi, &msg, err);
-> +=09}
-> +}
-> +
-
-Is the ssd16xx_send_data() helper needed or could just this be used with
-len =3D=3D 1 ? In general I feel there is a lot of code duplication on thes=
-e
-transfer helpers, and maybe you could simplify it a little bit.
-
-
-> +static void ssd16xx_hw_reset(struct ssd16xx_device *device)
-> +{
-> +=09gpiod_set_value_cansleep(device->reset, 1);
-> +=09usleep_range(10000, 11000);
-> +=09gpiod_set_value_cansleep(device->reset, 0);
-> +=09usleep_range(10000, 11000);
-> +}
-> +
-
-This again is quite similar to ssd130x_reset(), not for now but these are
-the kind of things that I wonder if could be moved to a solomon-common.c
-library or something like that.
-
-[...]
-
-> +/*
-> + * Convert framebuffer to 1-bit monochrome for e-paper display.
-> + *
-> + * Supports XRGB8888 (thresholded via ITU-R BT.601 luma at 127) and R1
-> + * (native 1bpp, zero-copy fast path for aligned landscape frames).
-> + *
-> + * Output layout:
-> + *   0=C2=B0/180=C2=B0  landscape: row-major, left-to-right, top-to-bott=
-om
-> + *   90=C2=B0/270=C2=B0 CW portrait: column-major, rightmost column firs=
-t
-> + */
-> +static void ssd16xx_convert_fb_to_1bpp(u8 *dst, struct iosys_map *src,
-> +=09=09=09=09       struct drm_framebuffer *fb,
-> +=09=09=09=09       struct drm_rect *rect,
-> +=09=09=09=09       unsigned int orientation)
-> +{
-
-Maybe you can split this function in two, one that does the XRGB8888 -> R1
-and another one that does the transposition. There is already a helper to
-do drm_fb_xrgb8888_to_mono(), but that assumes LSB while you want MSB. So
-an option is to add a bit-order parameter to that helper.
-
-[...]
-
-> +/* ---------------------------------------------------------------------=
---------
-> + * Plane Functions
-> + */
-> +
-> +static void ssd16xx_plane_destroy(struct drm_plane *plane)
-> +{
-> +=09drm_plane_cleanup(plane);
-> +}
-> +
-> +static const struct drm_plane_funcs ssd16xx_plane_funcs =3D {
-> +=09.update_plane =3D drm_atomic_helper_update_plane,
-> +=09.disable_plane =3D drm_atomic_helper_disable_plane,
-> +=09.destroy =3D ssd16xx_plane_destroy,
-
-why the level of indirection? You can just set to drm_plane_cleanup()
-and delete ssd16xx_plane_destroy().
-
-> +static void ssd16xx_plane_atomic_update(struct drm_plane *plane,
-> +=09=09=09=09=09struct drm_atomic_commit *state)
-> +{
-> +=09struct drm_plane_state *old_state =3D drm_atomic_get_old_plane_state(=
-state, plane);
-> +=09struct drm_plane_state *new_state =3D drm_atomic_get_new_plane_state(=
-state, plane);
-> +=09struct drm_shadow_plane_state *shadow_state =3D to_drm_shadow_plane_s=
-tate(new_state);
-> +=09struct ssd16xx_device *device =3D plane_to_ssd16xx_device(plane);
-> +=09enum ssd16xx_refresh_mode saved_mode;
-> +=09u8 saved_border_waveform_idx;
-> +=09struct drm_framebuffer *fb =3D new_state->fb;
-> +=09struct drm_rect rect;
-> +=09int ret, idx;
-> +
-> +=09if (!drm_dev_enter(&device->drm, &idx))
-> +=09=09return;
-> +
-> +=09drm_dbg(&device->drm, "plane_atomic_update: fb=3D%p\n", fb);
-> +
-> +=09if (!fb || !device->initialized)
-> +=09=09goto out_exit;
-> +
-> +=09if (!drm_atomic_helper_damage_merged(old_state, new_state, &rect))
-> +=09=09goto out_exit;
-> +
-
-Do you think that creating a big merged damage rectangle is better than
-iterating over the damaged areas and calling drm_rect_intersect() for each?
-
-The optimal approach varies per device and maybe merging a big rectangle is
-the correct thing to do for e-paper displays, but I thought that was worth
-to mention that other drivers do it differently.
-
-> +=09drm_dbg(&device->drm, "plane_atomic_update: calling fb_dirty rect=3D(=
-%d,%d)-(%d,%d)\n",
-> +=09=09rect.x1, rect.y1, rect.x2, rect.y2);
-> +=09/*
-> +=09 * When refresh_mode_init was set, use the specified mode for this fi=
-rst
-> +=09 * frame only, then restore the user-configured refresh_mode so
-> +=09 * subsequent updates continue with the configured mode.
-> +=09 */
-> +=09saved_mode =3D device->refresh_mode;
-> +=09saved_border_waveform_idx =3D device->border_waveform_update_idx;
-> +=09if (device->init_refresh_pending) {
-> +=09=09device->refresh_mode =3D device->refresh_mode_init;
-> +=09=09device->border_waveform_update_idx =3D device->border_waveform_ini=
-t_idx;
-> +=09}
-> +
-> +=09/*
-> +=09 * Fast refresh (0xC7) omits LOAD_LUT on every update cycle and relie=
-s
-> +=09 * on the LUT being pre-loaded upfront.  The property setter arms
-> +=09 * fast_lut_pending whenever the user switches into fast mode.  Consu=
-me
-> +=09 * the flag here (once) before the first fast-refresh frame so the
-> +=09 * controller's LUT is in the correct state.
-> +=09 */
-> +=09if (device->fast_lut_pending) {
-> +=09=09ret =3D ssd16xx_preload_fast_lut(device);
-> +=09=09if (ret) {
-> +=09=09=09drm_err(&device->drm,
-> +=09=09=09=09"plane_atomic_update: fast LUT preload failed: %d\n", ret);
-> +=09=09}
-> +
-> +=09=09device->fast_lut_pending =3D false;
-> +=09}
-> +
-> +=09ret =3D drm_gem_fb_begin_cpu_access(fb, DMA_FROM_DEVICE);
-
-I *think* that you need to do this earlier, before the damage checks.
-
-[...]
-
-> +static const struct drm_connector_funcs ssd16xx_connector_funcs =3D {
-> +=09.reset =3D drm_atomic_helper_connector_reset,
-
-This hook has been removed since commit ("27cae3ef0574 drm/connector:
-Remove reset"), instead you need to do the following:
-
-        .atomic_create_state =3D drm_atomic_helper_connector_create_state,
-
---=20
 Best regards,
+Ivaylo
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+> +	if (inst->phy_cfg->id == EXYNOS5_DRDPHY_UTMI)
+> +		phy_exit(phy_drd->hs_phy);
+> +
+>   	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
+>   	if (ret)
+>   		return ret;
 
 
