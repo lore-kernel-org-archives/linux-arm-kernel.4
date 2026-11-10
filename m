@@ -2,73 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE337606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:54:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDF0606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fUgtTgLC;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=dxG7dKRj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bob/nDXz;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=u8E7M7Ll
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+1i1sVyMH9ad9wsU8jFlrzIKrGOD1X4RL8nm+PYmu6A=; b=fUgtTgLCi/XuYo
-	xYYeyw1/83QwfVMdALAVAwpXecP18E2gOUnlTAmrBQ4s7nk9jupzuqTH+7Dm1VmbjZRlI0yiTPEtI
-	Ll6MyTvTdpfe+4QmxUp5yROADS55iOs//l0JMq6Tn/u9bPdWJ6PM1+CItgbI9aSl/pCW55FiY3QQ/
-	VWPhFgqckTEELUJ5Hy4zvy//zFucz3oGEatdxNB9IIpoImpWFk2FB/lCCScw0FTd532EpBplpxBI8
-	2BHUKuk1E0r3VdDZ31dJFg8SksTpRDuSngbUzmJxIbGS8l+z/8oV1v9HFViRkSuSulgqVEIZYQ6IO
-	wzqydLKgPQj0Eg3X6Lig==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=XoornKh9z5jpJH7j8+EuQEpUcX1Rogb6YE7C2nngtQ0=; b=bob/nDXzT08qFf
+	hoAZc1mu2DmSMMLUpyd61Q8Gk7sERSDf7p8lZJgWygHQdE7LUjO01AE/NuwWZ6wRxmjQaZsCDhG4Y
+	xNXLYfoBCfZLA7VZroIm8q8YLKZxAdU44HutnYN+fkD3T5cjmUsTcRKBQht910Cq8OZACUkrIIagL
+	gPjkdSR9fGs8tAfZxuPjl5UMAXt0ECOfKIaFkX1qyeKE7Td0nh1yUCcimnXCuavUCzqWTvVVhqml5
+	qyNUM2NiLJkzaQ/W4GN5dVQxLeZg2IGkWNkTvTUiV9v2hZNPTJQ0V3/begNK3kYfcFlYPJziM8gH1
+	Z9WJPAV1uQ63KIASXLnQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiYf-00000003MmG-2Ojk;
-	Tue, 10 Nov 2026 09:54:29 +0000
-Received: from canpmsgout06.his.huawei.com ([113.46.200.221])
+	id 1xQiYv-00000003MuN-2wms;
+	Tue, 10 Nov 2026 09:54:45 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiYb-00000003Ml6-1VpO
+	id 1xQiYs-00000003Mt3-2qku
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:54:27 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=+1i1sVyMH9ad9wsU8jFlrzIKrGOD1X4RL8nm+PYmu6A=;
-	b=dxG7dKRjQbGQ7VRuW2iwYcZFB00Gynna4dL9BbZdnTflV/D1Wg/cpTkNn9dAnZ2hKAz8J4QjI
-	KPKEz1S6B3O3KKTsJLIY/ciq/IYEqpjZZCDDkY03eaKBWPYRrV39a++e65rCmS5GV/CWyDb0P7N
-	yv54i+EUDCR4VE0ISK3e4iA=
-Received: from mail.maildlp.com (unknown [172.19.162.223])
-	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4jP26n00cczRhT3;
-	Tue, 10 Nov 2026 17:54:08 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id CA43C40561;
-	Tue, 10 Nov 2026 17:54:18 +0800 (CST)
-Received: from [10.67.110.68] (10.67.110.68) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Tue, 10 Nov
- 2026 17:54:17 +0800
-Message-ID: <46e25aa5-4db5-4322-961c-95ac8a2c40d4@huawei.com>
-Date: Tue, 10 Nov 2026 17:54:16 +0800
+	Tue, 10 Nov 2026 09:54:43 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so6738475e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 01:54:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794304481; x=1794909281; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=XoornKh9z5jpJH7j8+EuQEpUcX1Rogb6YE7C2nngtQ0=;
+        b=u8E7M7Ll7r5ZT5p/3FvK6Ux/xO9bb9X2QQpWTEs89YNy4B39E5vrnXf2A3WmQdV8jh
+         Bon7VAzZNMchWPqqHHrKLDSvGsjq+Q7xi82cbXrHP65nKabyN4G4oFAJw4D/Hgp9TUSa
+         zThxSaxLdp0nW49JdxzDv72yFrDagslRIC0Xbc/ZSmphESmkYXCLjSElWGNr3Jcc6fHF
+         9nenSPhD89tieJThv4KquxZtVVxDbvHKmebEfbiMTwVDQUCycfKjtu/lJHfJxphSAJ4I
+         0m29xa7PErOU3AyPG0vO9/OTFZPAIVxs7m3rl2405JGaB0aqhIkKt5ZhwHaW3oRKc0DT
+         GxUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794304481; x=1794909281;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=XoornKh9z5jpJH7j8+EuQEpUcX1Rogb6YE7C2nngtQ0=;
+        b=RTkRmD2a56Rzk4bnUTQidbEcwKyYPOd9NymnHTWNSIKTFmaHJhJwS6IcODqBmSTH91
+         Czs8x/qiV8bAxNiW8uo5BmW20t3PXINbLU5cyz6jZj75KPl3h4xEOT2OGhEL3UHOEa4+
+         TE285lXHLLRlpdWGwp6xdM0NaWhdhtwq0R9WpE34HFZ6a55LZ/GD6VD+op5zD7pxw2jC
+         BUv7SPTlW1SdJyzLEgQnOxvZZ7qvgzy/aFuC+hdYKotoAJYH+nOaVeJRWlPqYbXm8dYN
+         JxVou5WZwAkv7/PMDz/z1JFMGjwTB0osGG2vLmN20wGyeEhqP32Y3YOXKbFjmpSd7PY3
+         tNGA==
+X-Forwarded-Encrypted: i=1; AL+hErFs3R+G2sjgYp9uDOkML5JTPenbZNncOLcEwAes3CpWe6ypvwqOyozO3EzwkwkTJArWQXxAhEMKmpBqNLgQA5xU@lists.infradead.org
+X-Gm-Message-State: APuU4Z+WWxWuAguNKWumG1TFvwdyGpy+rDkC0krfj392HFR07tkClbSa
+	jl+oGTeN/rzBj7igUiIOuD6ehsfehyBRcnJfoNQcWMRIKnysiuhBGwr5
+X-Gm-Gg: AYBFou3TYEmGyEnEvbbzCFX6gwgJ/IuakPRddHyuNLp95Al130rziFC1gvYXj8toV5z
+	U5R2W8JngnChyYgukFZghEWMGEG2CiZMrf6UDQxU7qO7chhwfFYQZclMDN0t6cO5NhtRBSxlmSF
+	swbaMy2QfFQz6ZwuziDpnGjhUPifGg8E3igp+bra6TRzTDjX/7TNyJMIKDGobKqlPD3ao5Tedd5
+	9rJuT0CXXsnruMoiHmqGLtP3UBdL5yujiDW6DFxUY0v1C9Q+pxjjWHcJu2B3JWCLIShFCuBLwOo
+	hcYUKBjhAB823xKiRw7jdRQdlUYtCibM3QcxI86GDOfOXRbXcBGRyOAAq1z0Buyx1/ONXsB01t7
+	zheCbATUrScQPrrx6nkethm5w//Ugc79D7fIHCZK25asueH3k+Z7LcBP1NSwpkquHcmFPfMVA3U
+	egnxaC4E9hSVIplutTwd3DljyuOeMFmiAKuyC2vKmLLP+YavMf3SyvB3+U4M/g5Xr2yjgSbJdkW
+	wjyHF484hgDmW6QWqCUpxu7/752GcrnElhe5ZrdVDOvmm+Oa1ff7Xn0kW0M4wRmGP46Isu54X93
+	jLlMdJXhsBsbRWBZ5c7AA5JhOYzQIrkg502YCg9w88m7LEZYgUZGE7vWlUnCshon+VeClG9ZSJQ
+	YQwqYBw==
+X-Received: by 2002:a05:600c:4f4b:b0:4b1:32c8:27db with SMTP id 5b1f17b1804b1-4ba0234bd12mr43740995e9.22.1794304480565;
+        Tue, 10 Nov 2026 01:54:40 -0800 (PST)
+Received: from ?IPV6:2a02:e98:40:8091:e8d5:38f4:f7b3:6dbc? ([2a02:e98:40:8091:e8d5:38f4:f7b3:6dbc])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0204e22csm48483805e9.12.2026.11.10.01.54.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2026 01:54:40 -0800 (PST)
+Message-ID: <873c22a2-fd3f-4927-a06f-16a73c30de86@gmail.com>
+Date: Tue, 10 Nov 2026 10:54:40 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 00/6] resctrl: Support mba_MBps on MPAM
-To: Ben Horgan <ben.horgan@arm.com>, Jinjie Ruan <ruanjinjie01@gmail.com>,
-	<babu.moger@amd.com>, <bp@alien8.de>, <corbet@lwn.net>,
-	<Dave.Martin@arm.com>, <fenghuay@nvidia.com>, <james.morse@arm.com>,
-	<rdunlap@infradead.org>, <reinette.chatre@intel.com>,
-	<skhan@linuxfoundation.org>, <tony.luck@intel.com>, <x86@kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-References: <20261109132621.3862497-1-ruanjinjie01@gmail.com_quarantine>
- <dc1398f4-b81c-4ad8-b706-df89a1622e6c@arm.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <dc1398f4-b81c-4ad8-b706-df89a1622e6c@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v8 00/11] serial: 8250_dw: share RX trigger setup and
+ describe Allwinner UARTs
+To: James Hilliard <james.hilliard1@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20261105-submit-h616-uart-fifo-v1-v8-0-14024d2b184b@gmail.com>
+Content-Language: cs, en-US
+From: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
+In-Reply-To: <20261105-submit-h616-uart-fifo-v1-v8-0-14024d2b184b@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_015426_065611_D16E6BC7 
-X-CRM114-Status: GOOD (  32.39  )
+X-CRM114-CacheID: sfid-20261110_015442_762154_E69D29B2 
+X-CRM114-Status: GOOD (  11.05  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,140 +115,38 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-在 2026/11/10 1:50, Ben Horgan 写道:
-> Hi Jinjie,
-
-Hi Ben,
-
+> Based on tty-next at 6628e7d4c6b2 with the posted RX trigger callback-lifetime
+> fix [0] and DW BUSY-safe divisor fix v4 [1]. Platform setup runs before
+> installing the BUSY-safe divisor setter.
 > 
-> On 09/11/2026 13:26, Jinjie Ruan wrote:
->> From: Jinjie Ruan <ruanjinjie@huawei.com>
->>
->> Resctrl offers two ways to describe an MBA policy:
->> - The percentage interface writes a fraction of the maximum bandwidth
->>   into the hardware control register
->> - The MBA software controller (mounted with -o mba_MBps) takes
->>   an absolute target in MiB/s and adjusts that percentage based on
->>   the MBM counters sampled once per second.
->>
->> The problem is that a percentage alone isn't enough. How much bandwidth
->> a percentage actually corresponds to depends on the memory frequency,
->> the channel count, how many threads are generating traffic, the access
->> pattern, and the traffic of other groups. Neither MPAM nor x86 resctrl
->> reports the maximum bandwidth in MiB/s. So an administrator who wants
->> to enforce an absolute budget (a tenant SLA, a noisy-neighbour limit)
->> has to measure and re-tune the percentage on every machine. x86 resctrl
->> has had this software controller since 2018; MPAM has never been able
->> to use it. This series makes it work on MPAM.
-> 
-> I see that you are enabling the software controller at the same time as
-> assignable mbm counters. This means that if you enable the software
-> controller and create too many monitor groups then the software
-> controller will stop working. Any user applications already using the
+> [0] https://lore.kernel.org/r/20261024-submit-serial-8250-rxtrig-lifetime-v1-v1-1-731b78d5003d@gmail.com
+> [1] https://lore.kernel.org/r/20261027-submit-serial-8250-dw-divisor-v1-v4-1-41714a75e15a@gmail.com
+Hello,
+thanks for the work, I wanted to upstream my changes [0], but got 
+redirected here instead. This fixes the issues I have had in a better way.
+I have tested the whole series, so I reply to the cover letter, didn't 
+make sense to me to reply to all messages with tested by, but I am not 
+sure if that is the right way.
 
-Thanks for the review.
+Tested on Unipi G110 controllers (Rockchip RK3328, CPR-described
+64-byte FIFOs, ttyS1 and ttyS2) on top of tty-next 6628e7d4c6b2 with
+the two prerequisites. rx_trig_bytes now reports 32 instead of 8 by
+default, and 1/16/32/62 select the matching hardware levels, checked by
+chunk sizes in internal loopback and over a real RS-485 bus between the
+two ports at 9600 and 115200 baud. Changing the level mid-transfer
+kept all data, and the level survives termios changes and is kept when
+set while the port is closed.
 
-You are right, once the mbm counter pool is empty a new monitor group
-has no counter, the software controller cannot see it, and it can then
-raise the control above the user's target. The warn was not a fix for that.
+Tested-by: Kryštof Černý <cleverline1mc@gmail.com> # RK3328
 
-> software controller would be broken.
-> 
-> Would instead teaching MPAM about the mbm_default fixed allocation of
-> counters be better? If a platform has sufficient bandwidth counters then
-> we can ensure there is a counter for every monitor group. If necessary,
-
-Right, if the MBM assignable counter is assigned at the time of group
-creation, the MBps mechanism can be prevented from failing due to a lack
-of counters.
-
-> we can also reduce the number of CLOSID/RMID the driver reports so that
-> there is one per monitor group.
-
-I tried this method, and it works fine on QEMU.
-
-> 
-> Thanks,
-> 
-> Ben
-> 
->>
->> What this series does
->> =====================
->>
->> MPAM refuses mba_MBps in two places:
->> - Its MBM counters are assignable, and supports_mba_mbps() refuses
->>   the option when they are.
->> - Its maximum bandwidth control is a soft limit by default, which
->>   can't hold a single requester down to the target.
->>   MPAMF_MBW_IDR.MAX_LIM reports whether the hard limit exists.
->>
->> MPAM also makes two generic defects reachable:
->> - Writing the control register sleeps (smp_call_on_cpu()), while
->>   the worker runs under the RCU read lock
->> - A 16-bit fraction lets the minimum control value reach zero, which
->>   divides by zero in the estimator
->>
->> The patches:
->>
->> - Patches 1 and 2 fix the two generic defects.
->> - Patches 3 and 4 make the loop runnable on MPAM: the worker takes the
->>   CPU hotplug lock around the sleeping control update, and assignable
->>   counters are accepted with a fixed assignment mode.
->> - Patches 5 and 6 handle the maximum: the driver sets HARDLIM and
->>   records the MAX_LIM behaviours, and mba_MBps is refused where only
->>   the soft limit exists.
->>
->> x86 has no assignable counters in the mode where the controller is
->> allowed, and does not set the soft-limit flag, so its behaviour is
->> unchanged.
->>
->> Testing
->> =======
->>
->> With the MPAM MSC model in QEMU:
->>
->> - From a 9606 MiB/s baseline, a 7000 MiB/s target converges to
->>   6888 MiB/s and a 9000 MiB/s target to 8766 MiB/s.
->> - The memory-side MSC register shows MBW_MAX.HARDLIM set.
->> - A modelled MSC that implements only the soft limit refuses the
->>   mba_MBps mount, while a plain mount succeeds.
->> - With mbm_assign_on_mkdir forced on while the controller is in use,
->>   a write of 0 is refused, and the user's value is restored after
->>   unmount.
->> - The KUnit tests for the MPAM driver pass.
->>
->> Jinjie Ruan (6):
->>   fs/resctrl: Avoid division by zero in the MBA software controller
->>   fs/resctrl: Do not update bandwidth from a failed counter read
->>   fs/resctrl: Take the CPU hotplug lock for software controller updates
->>   fs/resctrl: Allow mba_MBps with assignable MBM counters
->>   fs/resctrl: Reject mba_MBps when the maximum is only a soft limit
->>   arm_mpam: Program the hard limit for the software controller
->>
->>  Documentation/filesystems/resctrl.rst | 13 +++-
->>  drivers/resctrl/mpam_devices.c        | 55 +++++++++++++----
->>  drivers/resctrl/mpam_internal.h       |  4 ++
->>  drivers/resctrl/mpam_resctrl.c        |  9 +++
->>  fs/resctrl/monitor.c                  | 86 +++++++++++++++++++++------
->>  fs/resctrl/rdtgroup.c                 | 48 ++++++++++++---
->>  include/linux/resctrl.h               |  5 ++
->>  7 files changed, 179 insertions(+), 41 deletions(-)
->>
-> 
-
--- 
-Best regards,
-Jinjie
-
+[0] 
+https://lore.kernel.org/all/20261109-8250-select-u6-64bit-v1-0-04bc8332fa34@gmail.com/
 
