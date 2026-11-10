@@ -2,94 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAC1606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689F5606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 18:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X82ZwNTC;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=d0UkuIJt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2S6gw8kP;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=cCO1F9pm;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=IqtyJAry
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=pvY3QYyj10AiTA7LMYL5ggn+X+GHJohr24sJvDkqpD4=; b=X82ZwNTCMjBBtWHeFy0h0ZmyD8
-	q6jSVFM1+OP8ezx30vtfp0sKjr+8fV06fMHrwe/GBR+v/nseeC99IarjP922maaG6NK0H49Yheewg
-	pK4tha/MjgtX9RSyddxLpblCnwRBZXPl4KDJYl8WcutIxozo8jRpBoDlMlY4NNbWCzp7vAIr6ilKI
-	JuYHMFuVqk0CjZ02KLFfbH8YUTbkQHlhF3fxraA00x26GKPPub5HCgCnKRq8BBEvzmUZicDT17Neb
-	D/fNLLXz6OQq5F66IP3wH1MVwevkohbUg3DHt884Q+Dfws7On2aBnlf6AIceer2LYpcdfIQTBdSJr
-	74waj49w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=VO93PVJK8N20kSJ8Y8aLKtAdeQuFzyl/QHyYJLrhnZE=; b=2S6gw8kP/EiTtp
+	bX5pzwgkwisglWzY5ZA5qBw0JYkYWCep2SFhiMDuzQD4e25S2EFO0Svl6lM9BfM6rKWADxAci0cUP
+	yYNl8bTixA3FW2hvY+Q07XoLNfRccRH9+WL4EZqcun8Bdc1TMDhgiJwUL4nxWucXVsmovRRCbYnwC
+	fDQ+42JgE4Cjjcu6ai1M49JHtEyUHn36Px6DeVmCg+Ci7WbyrfiXOAbBYUwS0xb8HnpZuhhzz4n5+
+	HZISH9Fsevs4K+pcS7fgxKT1XmpnjnyWLh1GNP4lu5VnqaqvDyQh/LQkDoaRis4/kS/DVSm4xVCgY
+	fh0KH0PHISzZcDFGS0IQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqLq-00000004lY9-1T8p;
-	Tue, 10 Nov 2026 18:13:46 +0000
-Received: from mail-ej1-x645.google.com ([2a00:1450:4864:20::645])
+	id 1xQqOU-00000004lnT-3vdg;
+	Tue, 10 Nov 2026 18:16:30 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQqLo-00000004lX0-0v0q
+	id 1xQqOR-00000004lmv-2siD
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 18:13:45 +0000
-Received: by mail-ej1-x645.google.com with SMTP id a640c23a62f3a-c50547b4992so81370666b.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:13:42 -0800 (PST)
+	Tue, 10 Nov 2026 18:16:29 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AAF0H8O151624
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:16:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VO93PVJK8N20kSJ8Y8aLKtAdeQuFzyl/QHyYJLrhnZE=; b=cCO1F9pmNXglHVyo
+	m0dKMF0RWd9HYZdwi7eny+dckLXwbKyXlsDNPnPk3dAChOf43YSU0wVjVmmHwnok
+	hPW7KfRpdYjTUpd2tc7vjmul/73NM8tExNnSJ4dEy4kYTxri+TQABVqRWmFo8tLS
+	ZfxwgUE96RjJxLXB6kghyAIux5jwFJGvZQVSYziB2dBX3T+fGpGQBwuN+srY+JIB
+	EYvTGKnO1RFYGL5a/q7tqnv0AjEsFSBHaCZsrZrqjjPp/gg5GEiL+KblbuKguxMk
+	blNpYnJvUS2KoID0cz5tWMqcKYhdB/mskAEDxUNfji/Asv7HpPZdcW9yBdc3jIbK
+	etxX8Q==
+Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hv4pv93bu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:16:26 +0000 (GMT)
+Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-1af203073e0so2960267c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 10:16:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794334421; x=1794939221; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=pvY3QYyj10AiTA7LMYL5ggn+X+GHJohr24sJvDkqpD4=;
-        b=d0UkuIJtFg+POGpij4UXlZZZyrSSDkEqpx9+wNgX1QeTHEXfjQhcaRCoGUoyrE6ypH
-         Q9Ozu1eTw5PRUVDMqqXn83YbXxOPKzzLROuFLiSone2GL4sNsqxJ/yiPMoVXxn27iUsJ
-         ur9kX15YXur0zPMOX3YzJ6Olp8MgSfGMZrz2eE3Uchsx+WCdWUvRD7pBHkdDVi6Jjcv3
-         lHMfM2+EZLAUrnNI62nIRjWWxuGaHJuBQfWRJKMiVOvALnrzrWlM/xFNSVe42rdWGIq1
-         XlyquyQMudrn4V85+yyQ4g2V52ubjaJzLcCQCJ35P8iHZb4lWI5kPVxsHjgfwA2rGUEM
-         a3GA==
+        d=oss.qualcomm.com; s=google; t=1794334585; x=1794939385; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=VO93PVJK8N20kSJ8Y8aLKtAdeQuFzyl/QHyYJLrhnZE=;
+        b=IqtyJAryykBxCmt4Fd+aBzV0hywGwieV6062BvDmW50ixIsNpOe82HlEjfgjroRm4r
+         lRgNORvev6FOtWfaDguvXcgwm6KN+4CYK6Iq/cEWSuS5IqrG6J7RhMgLf46sUU9aGK8R
+         ApNvKQZVskZW7zQc6HWnljMcw1iflkKEo1M5zFHMIzNzKNwdvfE71fwGNuAeRqvH8PSG
+         Cfru7TXbP1w2J01f4pfVwHzf3VsCkCdZZqVwCLXLInJCf6HAdBq98GQIL4UOrIsifvoU
+         +K3AvDwB2g8meIPQe5B2xSuZ9maqjEaKCMZAscaUhULxh6saptTn3EqF/7Uoinf/9tu/
+         HVvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794334421; x=1794939221;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=pvY3QYyj10AiTA7LMYL5ggn+X+GHJohr24sJvDkqpD4=;
-        b=a1LC/yLbnbKZ+qeZhH8wqwH6DessGuTkJrY968ZXWaX4q3QMvCosEMp0+hq/Nl2Znq
-         4cMhYF8O422TeRAnNF3kRA+pcpJCmBHclVgg9TgQV/V0kGB/RVhtCXlW7iOpKb0oHzeg
-         9iZbW8dSTeYX9/hBO7LEXOYSiD7gkVyg2mrYWlWEYy/MVAIElV4WyB7IiETgJeVvCQiy
-         bivXjrU343kyE1UfWt9L7OGpSRmopPyIudSV6rtkMSNBNIIvE+incJe+BOvcSju1Z43q
-         Qui3ohzCBxKjqE3leAoBI1yMOUterlpjJ6AVs+5bl8s5wSX177w2/CyYi6kaYRXJ0wV2
-         5+xw==
-X-Forwarded-Encrypted: i=1; AL+hErEyxOBpsP/W1cumTKdAZ9ZlFEsxFOfZbBJtSHm8HvJpYbqMfH3q+FquYotHHUbnfEDX5OjjED5kG/X1IvqRIg7+@lists.infradead.org
-X-Gm-Message-State: APuU4Z87kd6La+fLc0NzcJ2QrgoQmioYKiixP4Oi7XhciDuWCzci15Ng
-	Y9sBtyw+UOQ4gfPebx07aO1VvnPNDC2EfGY0TPx9kJmgT1p+a7ZrY/fsTcwW/IMVK8hoh5WdTok
-	771wTHh/HpHxG+ihgqQ==
-X-Received: from ejbfi14.prod.google.com ([2002:a17:906:da0e:b0:c50:4ab9:995a])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:da16:b0:c3f:dce3:20c5 with SMTP id a640c23a62f3a-c50495d5a60mr286796366b.44.1794334421346;
- Tue, 10 Nov 2026 10:13:41 -0800 (PST)
-Date: Tue, 10 Nov 2026 18:13:40 +0000
-In-Reply-To: <179432205559.2329176.3035981527541971699.b4-review@b4>
+        d=1e100.net; s=20260707; t=1794334585; x=1794939385;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=VO93PVJK8N20kSJ8Y8aLKtAdeQuFzyl/QHyYJLrhnZE=;
+        b=dsbHpm0ND844+U9vHofw9PIb/8jDdlfKJrWYMx+ihzgcIbjWO5JjpTp72JnKmE0T1Q
+         fINwOfUOF3YBSEIm7LHUnWWPU7FAq35wO/0IRuiFuc4+K79BtStNMvGuM7ANh+sX/PK5
+         rY9or2C3NdDWFNozv4SzgFryOurrR4NTTNwnAFhVXuje7FcFRObCFHHilZUGSXxejU4A
+         gRmef9vZwKp4QcvUMMjP+3cRUXCKoNFW2s/bw8IOfwbm2fav1D9oNjaYiFrtEf61mzZa
+         qzhsou5Xnsz0Ro4jKajFoEM8U8trRwPA4C09SWaIvOkVTvkS5/9no8qOkJ6UIiPcscDj
+         RVYg==
+X-Forwarded-Encrypted: i=1; AL+hErEVn49xiyh5Mcdm4wV3dHFbYopIqVr7sP8mtU+MNk6ky7nAumNeGZyvLdUKqDVWC2m9p4wqn9RmiMPxFAu2JFpm@lists.infradead.org
+X-Gm-Message-State: APuU4Z9rRTajAaCEFNuYjSMTkTkWlgjb6acdLNTzRfONYTgshIAjCnNc
+	ouYix9SV6XPtvZaKbOlf3BmhlLnXQQXKqPHhl1tJP5Hv7FyZ5Nl2JQX887RN+6GbFiMWS2zCdoO
+	ix1+kcJSaODpu6vwXGTakIgVcQhokMWUNfhLGuXC8pwlH7moeaqbzWhQruabCfGf1m18ayefzFu
+	u83g==
+X-Gm-Gg: AYBFou32ksFaJmL842sdFxJtpjhIGbcJC8Ro8HyykkgaghQmN4gu5RpqTPLunwqjZEv
+	Aum6XxzjoMZvPmDL41YSsouXll+c5W4jpQLXjmZqKoLt5vk4qL6HQRfTnYbO3PFugb1/OAE+gXq
+	jqvXo/TTp55esRskOcmMGwQXiN/ca5LTTs+UnvQ2uRXS4gDzo+ze+K9/v2RCVEmO8W4XCtYpj2y
+	YzHZH5/a2eZ/YJtQW90MRzVOvSPlC74MfE/GwUPVHzZOQaqoxB4s7FTWZpHK4S66eINNcBC726q
+	K5p+kFTLNgFJ4Yk36JXG896VMUwqrxx28Ml/VyZj/Fdclu/LCUT5D3xSZ/DRXo+9lEQ8yDp53YK
+	nB9eHGtYZklQLxe2jJwCesJ3ZrR5dEaiS9eOlxBZqZ9bE13wHxzUTzfwd0t1IstJ4rfi6YsrSfU
+	ZLG1bzgeQnCg3GHRbUcK0JDQplPEPf
+X-Received: by 2002:a05:701b:4511:10b0:18d:5ef2:1644 with SMTP id a92af1059eb24-1b3ba7b2e07mr2079037c88.30.1794334584910;
+        Tue, 10 Nov 2026 10:16:24 -0800 (PST)
+X-Received: by 2002:a05:701b:4511:10b0:18d:5ef2:1644 with SMTP id a92af1059eb24-1b3ba7b2e07mr2078975c88.30.1794334583856;
+        Tue, 10 Nov 2026 10:16:23 -0800 (PST)
+Received: from localhost (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5b20c55sm7416264c88.8.2026.11.10.10.16.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 10:16:21 -0800 (PST)
+Date: Tue, 10 Nov 2026 10:15:52 -0800
+From: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+        sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+        f.fainelli@gmail.com, vincent.guittot@linaro.org,
+        etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+        d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+        philip.radford@arm.com, david@kernel.org, souvik.chakravarty@arm.com,
+        leitao@kernel.org, kas@kernel.org, puranjay@kernel.org,
+        usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 14/35] firmware: arm_scmi: Add Telemetry TDCF areas
+ parsing support
+Message-ID: <20261110101552.0000711e@oss.qualcomm.com>
+In-Reply-To: <20261109091221.2532706-15-cristian.marussi@arm.com>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+	<20261109091221.2532706-15-cristian.marussi@arm.com>
+Organization: Qualcomm
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-6-tarunsahu@google.com>
- <179432205559.2329176.3035981527541971699.b4-review@b4>
-Message-ID: <9huz8q30tuzv.fsf@tarunix.c.googlers.com>
-Subject: Re: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI compatibility
-From: tarunsahu@google.com
-To: Pasha Tatashin <pasha.tatashin@soleen.com>
-Cc: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
-	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
-	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org, 
-	kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=XqZvqlF9 c=1 sm=1 tr=0 ts=6af35f7a cx=c_pps
+ a=JYo30EpNSr/tUYqK9jHPoA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=7CQSdrXTAAAA:8 a=xkoatq2HAAAA:8 a=zGxvY66N2CaWy6YS1qoA:9 a=CjuIK1q_8ugA:10
+ a=Fk4IpSoW4aLDllm1B1p-:22 a=a-qgeE7W1pNrGK8U0ZQC:22 a=CuNAHyPTimGbZf_9KV2F:22
+X-Proofpoint-ORIG-GUID: N8ceIEt0e0DV9sSVsHKljCgc-s_6ajh4
+X-Proofpoint-GUID: N8ceIEt0e0DV9sSVsHKljCgc-s_6ajh4
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA3MiBTYWx0ZWRfX89w1s0/upRIH
+ 9QoUfTvHmEXkl2Ys4nRsUMnB6j3v2PY6+PU6+NZxqlu/C06tynCTPDvoVO5iMNIDoGcGyaVTqX9
+ suUwe8jHSBkp2XU8uOLLJtd/hhjhhwk=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA3MiBTYWx0ZWRfXyhO7UYQ/z6pw
+ Yfne+LZeXVgtXRAAsAIv97uxsBt5lyfq63MINnSaly+v3ivVatDs6v9LMShuxkC8hOXCLs9wCPs
+ kX28olSfpG9oYYjynZqotWMeB8QjttOt5U1ChjycIpzo/SOCLBCAccdzaY1qGdq1GZVDWrCgnLZ
+ rUlRPiTNOHuknQsLr3wrfaaUK17MNTU2lgOcBGxO4OXaw7iNnwyUz34J6Q+57h5YesIXk8hrxUy
+ XEJ/dJTKsudC8j9t5+tnTgSx0vk0CXVbIXC9evxm/apqCoAbIrR/K7L/ghrWVnrsduoqCFz3cOP
+ AX3Q0ANQK5C93wK1RXsL4CGxWLIurn/tKBIRhzqd1XAM8VZtVKi1JW0K+zZunigYucBa3cxsKis
+ X9lkmdYKrUhYFEPoOg0BrloQdz8yAjeE5ueWFIFXcWNAi+k/WW76c9d9i2e+eVAxENgnWv+i4Iu
+ wnyy9VoWyF3Y4LkyN4w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-10_05,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 clxscore=1015 priorityscore=1501
+ malwarescore=0 bulkscore=0 lowpriorityscore=0 adultscore=0 spamscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611100072
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_101344_424045_85B6D8B0 
-X-CRM114-Status: GOOD (  37.60  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261110_101627_919806_A0F6290C 
+X-CRM114-Status: GOOD (  44.95  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,545 +159,658 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Pasha Tatashin <pasha.tatashin@soleen.com> writes:
+On Mon,  9 Nov 2026 09:12:00 +0000
+Cristian Marussi <cristian.marussi@arm.com> wrote:
 
->> Serialized structures in KHO and Live Update Orchestrator currently rely
->> on whole-structure compatibility strings or monolithic version fields to
->> validate handed-over state across kexec. Any change to a serialized
->> structure, even an optional additive field, requires bumping the
->> compatibility string or version number and breaks live update between
->> adjacent kernels.
->> 
->> Introduce a generic feature header (struct kho_ser_hdr) for serialized
->> binary structures in include/linux/kho/abi/feature.h. Each subsystem
->> groups the fields of its serialized structure under feature indices,
->> starting with index 0 for base fields. When a subsystem adds a new
->> capability, it appends new fields to the end of its payload structure
->> under a new feature index. Retired fields are kept in place so existing
->> field offsets never shift; if the type or format of a field needs to
->> change, the existing field and feature are kept intact until retired and
->> a new feature index with an appended field of the new type is added.
->> Only when a change requires a complete break in the serialized layout or
->> semantics that feature flags cannot handle, a new handler or format can
->> be introduced with an incremented version number.
->> 
->> Each feature belongs to either a required feature space or an optional
->> feature space. Both spaces are numbered independently starting from 0.
->> In the serialized header, required features occupy the first nr_required
->> bits, followed immediately by nr_optional bits for optional features:
->> 
->>   struct kho_ser_hdr {
->>           __u32 size;
->>           __u16 nr_required;
->>           __u16 nr_optional;
->>           __aligned_u64 flags[];
->>   };
->> 
->> A set bit indicates that the feature is present in the payload. The
->> truth table for deserialization:
->> 
->>   Source bit       Target            Action
->>   Not set          -                 Accept: feature absent
->>   Optional set     unknown or known  Accept: ignore or use the data
->>   Required set     known             Accept: use the feature data
->>   Required set     unknown           Reject: -EOPNOTSUPP
->> 
->> During deserialization, the target kernel only validates required
->> features: if the source set any required feature bit at or beyond the
->> known required feature count of the target kernel, validation fails with
->> -EOPNOTSUPP. Optional features are never rejected; the target kernel
->> simply checks whether known optional features are present before reading
->> their data.
->> 
->> No subsystem defines feature flags yet. Every converted structure is
->> registered with 0 required and 0 optional features, producing a compact
->> 8-byte header with no flags entries. Feature enums can be added later as
->> needed, once the first additive feature is introduced for a particular
->> serialized structure. With nr_required set to 0, kho_ser_validate()
->> rejects any incoming required feature bit while ignoring optional bits,
->> allowing future kernels with additive features to evolve smoothly in
->> both directions.
->> 
->> Each subsystem registers its serialized structure with:
->> 
->>         DECLARE_KHO_SER(name, payload_size, nr_required, nr_optional)
->> 
->> This establishes compile-time assertions and provides type-checked
->> helpers: kho_ser_size() for total allocation size, kho_ser_init() to
->> initialize the header, kho_ser_payload() to access the typed payload at
->> its dynamic offset, and kho_ser_validate() to validate required features
->> during restoration. DECLARE_KHO_SER_HDR(name, *fhdr) declares a struct
->> kho_ser_hdr pointer while verifying at compile time that name was
->> registered with DECLARE_KHO_SER(), allowing callers to document which
->> structure a feature header pointer represents.
->> 
->> An example demonstrating how a hypothetical structure defines its
->> features:
->> 
->>   enum foo_ser_required {
->>           FOO_SER_REQ_BAR,
->>           __FOO_SER_NR_REQUIRED,
->>   };
->> 
->>   enum foo_ser_optional {
->>           FOO_SER_OPT_BAZ,
->>           __FOO_SER_NR_OPTIONAL,
->>   };
->> 
->>   struct foo_ser {
->>           __u64 base;     /* base fields, always present */
->>           __u64 bar;      /* FOO_SER_REQ_BAR */
->>           __u64 baz;      /* FOO_SER_OPT_BAZ */
->>   };
->> 
->>   DECLARE_KHO_SER(foo_ser, 24,
->>                   __FOO_SER_NR_REQUIRED, __FOO_SER_NR_OPTIONAL);
->> 
->>   /* Serialize */
->>   kho_ser_init(fhdr, foo_ser);
->>   ser = kho_ser_payload(fhdr, foo_ser);
->>   ser->bar = ...;
->>   kho_ser_set_required(fhdr, FOO_SER_REQ_BAR);
->>   ser->baz = ...;
->>   kho_ser_set_optional(fhdr, FOO_SER_OPT_BAZ);
->> 
->>   /* Restore */
->>   err = kho_ser_validate(fhdr, foo_ser);
->>   ser = kho_ser_payload(fhdr, foo_ser);
->>   if (kho_ser_has_required(fhdr, FOO_SER_REQ_BAR))
->>           use ser->bar;
->>   if (kho_ser_has_optional(fhdr, FOO_SER_OPT_BAZ))
->>           use ser->baz;
->> 
->> Required and optional features each have their own enum, numbered
->> independently from 0. New features are only appended at the end of their
->> enum, never reordered or reused. The last entry of each enum (e.g.
->> __FOO_SER_NR_REQUIRED) is the feature count passed to DECLARE_KHO_SER and
->> stays last. The fields of a new feature are appended at the end of the
->> payload. A reader accesses the fields of a feature only when its bit is set
->> in the incoming header (kho_ser_has_required() or kho_ser_has_optional()),
->> because an older source kernel does not serialize them. Use required for
->> data the target must understand to restore correctly, and optional for
->> data it can safely ignore. Variable length data that follows the payload,
->> such as an array of entries, starts at fhdr->size, the size recorded by the
->> source kernel, so it stays correct when a later feature appends fields to
->> the payload. Document that serialization helpers describe this kernel's
->> layout while deserialization helpers follow the incoming header.
->> 
->> Suggested-by: David Matlack <dmatlack@google.com>
->> Suggested-by: Pasha Tatashin <pasha.tatashin@soleen.com>
->> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
->>
->> diff --git a/include/linux/kho/abi/feature.h b/include/linux/kho/abi/feature.h
->> new file mode 100644
->> index 000000000000..55ff1b9e9b73
->> --- /dev/null
->> +++ b/include/linux/kho/abi/feature.h
->> @@ -0,0 +1,372 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +
->> +/**
->> + * DOC: KHO Serialization Feature Header ABI
->> + *
->> + * Generic feature header for serialized binary data structures preserved
->> + * across kexec via KHO or Live Update Orchestrator (LUO).
+> Add logic to scan the SHMTI areas, parsing the TDCF descriptors and collect
+> DataEvent contained in TDCF DATA lines. Ignore TDCF BLK_TS and UUID lines.
+> 
+Main comment on this one is various unused definitions at the top.
+I'd push those to where they get used so that reviewers can see all the
+relevant material in one patch.
+
+May involve a couple of forwards declarations that get replaced in a future
+patch but I think that tiny bit of churn is worth it.
+
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+
+> ---
+>  drivers/firmware/arm_scmi/telemetry.c | 799 +++++++++++++++++++++++++-
+>  1 file changed, 798 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
+> index d9f1a3e3468e..810195889484 100644
+> --- a/drivers/firmware/arm_scmi/telemetry.c
+> +++ b/drivers/firmware/arm_scmi/telemetry.c
+> @@ -14,21 +14,29 @@
+>  #include <linux/err.h>
+>  #include <linux/io.h>
+>  #include <linux/limits.h>
+> +#include <linux/minmax.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> +#include <linux/refcount.h>
+>  #include <linux/sizes.h>
+>  #include <linux/slab.h>
+>  #include <linux/sprintf.h>
+>  #include <linux/string.h>
+> +#include <linux/time.h>
+>  #include <linux/uuid.h>
+>  #include <linux/xarray.h>
+>  
+>  #include "protocols.h"
+>  #include "notify.h"
+>  
+> +#include <trace/events/scmi.h>
+> +
+>  /* Updated only after ALL the mandatory features for that version are merged */
+>  #define SCMI_PROTOCOL_SUPPORTED_VERSION		0x10000
+>  
+> +#define SCMI_TLM_TDCF_MAX_RETRIES	15
+
+Add a comment on why this particular number.  Even if that's 'it seems to work' :)
+
+
+> +#define SCMI_TLM_TDCF_RETRY_GAP_US	1234
+> +
+>  #define SCMI_TLM_DE_IMPL_NUM_DWORDS	4
+>  
+>  /* An enum listing the protocol specific commands definitions */
+> @@ -125,6 +133,158 @@ struct scmi_msg_resp_telemetry_update_intervals {
+>  
+>  #define _I(__a)		(ioread32((void __iomem *)(__a)))
+>  
+> +/*
+> + * Define the behaviour of a SHMTI scan defining what information will
+> + * be gathered and which Telemetry items can be updated.
+> + */
+> +enum scan_mode {
+> +	SCAN_LOOKUP,	/* Update only value/tstamp */
+> +	SCAN_UPDATE,	/* Update also location offset */
+> +	SCAN_DISCOVERY  /* Update xa_des: allows for new DEs to be discovered */
+> +};
+> +
+> +struct fc_line {
+> +	__le32 data_low;
+> +	__le32 data_high;
+> +};
+> +
+> +struct fc_tsline {
+> +	__le32 data_low;
+> +	__le32 data_high;
+> +	__le32 ts_low;
+> +	__le32 ts_high;
+> +};
+
+Some of these defs can wait for the patch that needs them.  Then we can
+sanity check them against the spec with the parsing code etc.
+
+> +
+> +struct line {
+> +	__le32 data_low;
+> +	__le32 data_high;
+> +};
+> +
+> +struct tsline {
+> +	__le32 data_low;
+> +	__le32 data_high;
+> +	__le32 ts_low;
+> +	__le32 ts_high;
+> +};
+
+> +
+> +struct telemetry_info;
+> +
+> +struct telemetry_line {
+> +	enum tdcf_line_types type;
+> +	u32 last_magic;
+> +	unsigned long offset;
+> +	refcount_t users;
+> +	struct telemetry_shmti *shmti;
+> +	/* Protect line accesses  */
+> +	struct mutex mtx;
+> +};
+Follows from below, I'd keep this for where it is used.
+> +
+> +struct telemetry_block_ts {
+> +	u64 last_ts;
+> +	u32 last_rate;
+> +	struct telemetry_line line;
+> +};
+> +
+> +#define to_blkts(l)	container_of(l, struct telemetry_block_ts, line)
+
+I'd do similar for this to uuid.  Effectively put a placeholder def
+in so that you can introduce this stuff with the code that uses
+it.
+
+> +
+> +struct telemetry_uuid {
+> +	u32 key;
+> +	struct hlist_node node_ht;
+> +	struct hlist_node node_lst;
+> +	uuid_t uuid;
+> +};
+> +
+> +#define to_uuid_from_uuid_t(u)	container_of(u, struct telemetry_uuid, uuid)
+No uuid usage in here yet... Push to patch where it comes in.
+I'd be tempted to use a forwards def for the struct for now and replace
+it in the patch where it becomes meaningful.  In this patch it's just
+passed around as a cookie that is never set.
+
+> +
+>  #define IS_TDE_TSTAMP_TYPE(__t, __ttype)	((__t)->ts_type == (__ttype))
+>  #define IS_TDE_TS_NONE(_t)	(IS_TDE_TSTAMP_TYPE((_t), TSTAMP_NONE))
+>  #define IS_TDE_TS_LINE(_t)	(IS_TDE_TSTAMP_TYPE((_t), TSTAMP_LINE))
+> @@ -220,7 +433,14 @@ struct telemetry_de {
+>  	u32 offset;
+>  	/* NOTE THAT DE data_sz is registered in scmi_telemetry_de */
+>  	u32 fc_size;
+> +	u64 last_val;
+> +	u64 last_ts;
+> +	u32 last_magic;
+>  	struct list_head item;
+> +	struct telemetry_block_ts *bts;
+> +#define BLK_TS_CHANGED(t, s, o)			\
+> +	(!((t)->bts) || (t)->bts->line.shmti != (s) || (t)->bts->line.offset != (o))
+> +	struct telemetry_uuid *uuid;
+>  	struct scmi_telemetry_de de;
+>  	/* Protect last_val/ts/magic accesses - MUST BE KEPT LAST */
+>  	struct mutex mtx;
+> @@ -228,10 +448,24 @@ struct telemetry_de {
+>  
+>  #define to_tde(d)	container_of(d, struct telemetry_de, de)
+>  
+> +static inline bool scmi_tde_has_tstamp(struct telemetry_de *t)
+> +{
+> +	return t->de.tstamp_support && t->de.tstamp_enabled;
+> +}
+> +
+> +enum de_state {
+> +	ENA_STATE,
+
+See below for comments on this being confusing naming at best.
+
+> +	ENA_TSTAMP,
+> +	ENA_MAX
+> +};
+> +
+>  struct telemetry_info {
+>  	bool streaming_mode;
+>  	unsigned int num_shmti;
+>  	unsigned int num_des_tstamp;
+> +	/* Mutex to protect des_enabled_mtx */
+> +	struct mutex des_enabled_mtx;
+> +	atomic_t des_enabled[ENA_MAX];
+>  	unsigned int default_blk_ts_rate;
+>  	const struct scmi_protocol_handle *ph;
+>  	struct telemetry_shmti *shmti;
+> @@ -251,6 +485,27 @@ struct telemetry_info {
+>  static struct scmi_telemetry_res_info *
+>  __scmi_telemetry_resources_get(struct telemetry_info *ti);
+>  
+> +static inline struct tdcf *snap_tdcf(struct shmti_snap *s);
+> +
+> +static int scmi_telemetry_shmti_scan(struct telemetry_info *ti,
+> +				     unsigned int shmti_id, enum scan_mode mode);
+> +
+> +static inline void
+> +scmi_telemetry_de_state_update(struct telemetry_info *ti, enum de_state state,
+> +			       bool *current_state, const bool next_state)
+
+State is a bit vague for naming.  Lots of state in here that isn't enabled/disabled
+Maybe can come up with something more specific?  Also two states, one of which
+is called STATE and one of which is called something other than STATE is really confusing!
+
+> +{
+> +	guard(mutex)(&ti->des_enabled_mtx);
+> +	if (!current_state || *current_state != next_state)
+> +		atomic_add(next_state ? 1 : -1, &ti->des_enabled[state]);
+> +
+> +	if (current_state)
+> +		*current_state = next_state;
+
+I struggle a bit with understanding this function.  Why do we pass in current state given
+it should always match ti->des_enabled[state];  If it differs and this
+is doing some subtle form of refcounting then I think we need more documentation.
+
+> +
+> +	dev_dbg(ti->ph->dev, "Telemetry des_enabled[%s]:%u\n",
+> +		state == ENA_STATE ? "STATE" : "TSTAMP",
+> +		atomic_read(&ti->des_enabled[state]));
+> +}
+
+> +static void
+> +scmi_telemetry_tde_cache_update(struct telemetry_de *tde, u64 val,
+> +				u64 *tstamp, u32 *magic)
+
+To me, passing magic by pointer indicates that this function will
+update it.  Whereas the use here is to indicate whether to ignore
+it or not.   You could mark it const, or break it into a parameter
+to say if magic is ignored + magic by value.
+
+Either way this got me a bit confused as I didn't understand why we
+went to effort passing in magic at the callsite below then doing nothing
+with the value.
+
+Anyhow, just a small thing so ignore if you like.  I may just need
+more coffee.
+
+> +{
+> +	lockdep_assert_held(&tde->mtx);
+> +
+> +	/*
+> +	 * Update the cache only if stale compared to the current
+> +	 * sample, so bail-out when last_magic >= *magic
+> +	 */
+> +	if (magic && !scmi_telemetry_tde_cache_stale(tde, *magic))
+> +		return;
+> +
+> +	tde->last_magic = magic ? *magic : TDCF_BAD_END_SEQ;
+> +	tde->last_val = val;
+> +	tde->last_ts = tstamp && scmi_tde_has_tstamp(tde) ? *tstamp : 0;
+> +	if (tstamp)
+> +		*tstamp = tde->last_ts;
+> +}
+> +
+>  struct scmi_tlm_de_priv {
+>  	struct telemetry_info *ti;
+>  	void *next;
+> @@ -1196,6 +1480,510 @@ scmi_telemetry_de_lookup(const struct scmi_protocol_handle *ph, u32 id)
+>  	return xa_load(&ti->xa_des, id);
+>  }
+>  
+> +static inline struct payload __iomem *
+> +scmi_telemetry_payld_offset_safe_calc(struct telemetry_shmti *shmti, u32 offs)
+> +{
+> +	struct payload __iomem *payld;
+> +	unsigned long p;
+> +	u32 end;
+> +
+> +	/* Check if accessing payld->meta is safe. */
+> +	if (check_add_overflow(offs, sizeof(u32), &end) ||
+> +	    end > shmti->info.len)
+> +		return IOMEM_ERR_PTR(-EPROTO);
+> +
+> +	if (check_add_overflow((__force unsigned long)shmti->base, offs, &p))
+> +		return IOMEM_ERR_PTR(-EPROTO);
+> +
+> +	payld = shmti->base + offs;
+
+Use p rather than computing it again.  Sure it needs casting and __force but none
+the less using a cast of p will make it clear the value is the one that
+was just checked for overflow.
+
+
+> +	/* Check line boundary */
+> +	if (check_add_overflow(offs, LINE_LENGTH_BYTES(payld), &end) ||
+> +	    end > shmti->info.len)
+> +		return IOMEM_ERR_PTR(-EPROTO);
+> +
+> +	return payld;
+> +}
+> +
+> +static u64
+> +scmi_telemetry_blkts_read(u32 magic, struct telemetry_de *tde)
+
+See below, I'd bring full signature in here even though the actual
+implementation isn't until the next patch.
+
+> +{
+> +	lockdep_assert_held(&tde->mtx);
+> +
+> +	return 0;
+> +}
+
+> +static inline int
+> +scmi_telemetry_line_data_parse(struct telemetry_de *tde, struct shmti_snap *snap,
+> +			       u64 *val, u64 *tstamp, struct payload *payld,
+> +			       struct payload *bts_payld, u32 magic)
+> +{
+> +	u32 meta = PAYLD_META_RAW(payld);
+> +
+> +	lockdep_assert_held(&tde->mtx);
+> +
+> +	/* Clear returned values in case of errors */
+> +	*val = 0;
+> +
+> +	if (tstamp) {
+> +		*tstamp = 0;
+> +		if (USE_BLK_TS_RAW(meta)) {
+> +			/* Read out the actual BLK_TS */
+> +			*tstamp = scmi_telemetry_blkts_read(magic, tde);
+
+The signature of this changes in the next patch. Given it doesn't do anything
+with the current parameters, it could not do anything with bts_payld and snap
+as well and therefore reduce churn a tiny bit.
+
+> +		} else if (LINE_TS_VALID_RAW(meta)) {
+> +			/*
+> +			 * Note that LINE_TS_VALID implies HAS_LINE_EXT and that
+> +			 * the per DE line_ts_rate is advertised in the DE
+> +			 * descriptor, BUT we check anyway against buggy FW.
+> +			 */
+> +			if (!HAS_LINE_EXT_RAW(meta)) {
+> +				trace_scmi_tlm_access(tde->de.info->id,
+> +						      "SHMTI_BAD_TS_LINE", 0, 0);
+> +				return -EPROTO;
+> +			}
+> +
+> +			*tstamp = LINE_TSTAMP_GET_RAW(&payld->tsl);
+> +		}
+> +	}
+> +
+> +	/* Data is always valid since we are NOT handling BLK TS lines here */
+> +	*val = LINE_DATA_GET_RAW(&payld->l);
+> +
+> +	trace_scmi_tlm_collect(tstamp ? *tstamp : 0, tde->de.info->id,
+> +			       *val, "SHMTI_DE_READ");
+> +
+> +	scmi_telemetry_tde_cache_update(tde, *val, tstamp, &magic);
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * scmi_telemetry_tdcf_data_parse  - TDCF DataLine parsing
+> + * @ti: A reference to the telemetry info descriptor
+> + * @payld: Line payload to parse
+> + * @snap: A reference to the working SHMTI snapshot that will be processed
+> + * @mode: A flag to determine the behaviour of the scan
+> + * @active_bts: A pointer to keep track and report any found BLK timestamp line
+> + * @active_uuid: A pointer to keep track and report any found UUID line
+> + *
+> + * This routine takes care to:
+> + *  - verify line consistency in relation to the used flags and the current
+> + *    context: e.g. is there an active preceding BLK_TS line if the DataLine
+> + *    sports a USE_BLKTS flag ?
+> + *  - verify the related Data Event ID exists OR create a brand new DE
+> + *    (depending on the @mode of operation)
+> + *  - links any active BLK_TS or UUID line to the current DE
+> + *  - read and save value/tstamp for the DE ONLY if anything has changed (by
+> + *    tracking the last TDCF magic) and update related magic: this allows to
+> + *    minimize future needs of single-DE reads
+> + *
+> + *    Modes of operation.
+> + *
+> + *    The scan behaviour depends on the chosen @mode:
+> + *    - SCAN_LOOKUP: the basic scan which aims to update value associated to
+> + *		     existing DEs. Any discovered DataLine that could NOT be
+> + *		     matched to an existing, previously discovered, DE is
+> + *		     discarded. This is the normal scan behaviour.
+> + *    - SCAN_UPDATE: a more advanced scan which provides all the SCAN_LOOKUP
+> + *		     features plus takes care to update the DEs location
+> + *		     coordinates inside the SHMTI: note that the related DEs are
+> + *		     still supposed to have been previously discovered when
+> + *		     this scan runs. This is used to update location
+> + *		     coordinates for DEs contained in a Group when such group
+> + *		     is enabled.
+> + *    - SCAN_DISCOVERY: the most advanced scan available which provides all
+> + *			the SCAN_LOOKUP features plus discovery capabilities:
+> + *			any DataLine referring to a previously unknown DE leads
+> + *			to the allocation of a new DE descriptor.
+> + *			This mode is used on the first scan at init time, ONLY
+> + *			if Telemetry was found to be already enabled at boot on
+> + *			the platform side: this helps to maximize gathered
+> + *			information when dealing with out of spec firmwares.
+> + *			Any usage of this discovery mode other than in a boot-on
+> + *			enabled scenario is discouraged since it can easily
+> + *			lead to spurious DE discoveries.
+> + */
+> +static void scmi_telemetry_tdcf_data_parse(struct telemetry_info *ti,
+> +					   struct payload *payld,
+> +					   struct shmti_snap *snap,
+> +					   enum scan_mode mode,
+> +					   struct telemetry_block_ts *active_bts,
+> +					   struct telemetry_uuid *active_uuid)
+> +{
+> +	struct telemetry_shmti *shmti = snap->shmti;
+> +	struct telemetry_de *tde;
+> +	u64 val, tstamp = 0;
+> +	u32 de_id;
+> +
+> +	de_id = PAYLD_ID_RAW(payld);
+> +	/* Is this DE ID known ? */
+> +	tde = scmi_telemetry_tde_lookup(ti, de_id);
+> +	if (!tde) {
+> +		if (mode != SCAN_DISCOVERY) {
+> +			trace_scmi_tlm_access(de_id, "DE_INVALID", 0, 0);
+> +			return;
+> +		}
+> +
+> +		/* In SCAN_DISCOVERY mode we allocate new DEs for unknown IDs */
+> +		tde = scmi_telemetry_tde_allocate(ti, de_id, payld);
+> +		if (!tde) {
+> +			dev_err(ti->ph->dev,
+> +				"Cannot allocate TDE for ID:0x%08X\n", de_id);
+> +			return;
+> +		}
+> +	}
+> +
+> +	guard(mutex)(&tde->mtx);
+> +	/*
+> +	 * Update DE location refs if requested: normally done only on group
+> +	 * enable.
+> +	 * Note that all the DE location information is relative to the
+> +	 * original SHMTI device-memory area, NOT to the snapshot we are parsing.
+> +	 */
+> +	if (mode >= SCAN_UPDATE) {
+> +		u32 de_offs;
+> +		void __iomem *p;
+> +
+> +		/* Offest is the same in the SHMTI and in the snapshot indeed */
+
+Offset
+
+Also, drop the word indeed as adds nothing useful
+
+
+> +		de_offs = (void __iomem *)payld - (void __iomem *)snap->base;
+> +		/* Validate location before update */
+> +		p = scmi_telemetry_payld_offset_safe_calc(shmti, de_offs);
+> +		if (IS_ERR(p)) {
+> +			dev_err(ti->ph->dev,
+> +				"TDE 0x%08X updated location invalid - shmti:%u offs:%u\n",
+> +				de_id, shmti->info.sid, de_offs);
+> +			trace_scmi_tlm_access(de_id, "DE_LOCATION_INVALID", 0, 0);
+> +			return;
+> +		}
+> +
+> +		tde->sid = shmti->info.sid;
+> +		tde->base = shmti->base;
+> +		tde->eplg = SHMTI_EPLG(shmti);
+> +		tde->offset = de_offs;
+> +
+> +		trace_scmi_tlm_access(de_id, "DE_LOCATION_UPDATED", 0, 0);
+> +
+> +		dev_dbg(ti->ph->dev,
+> +			"TDCF-updated DE_ID:0x%08X - shmti:%pK  offset:%u\n",
+> +			tde->de.info->id, tde->base, tde->offset);
+> +	}
+> +
+> +	/*
+> +	 * Has any value/tstamp really changed ?
+> +	 * Note that, if the magic currently associated with this TDE has
+> +	 * NOT changed compared to the current SHMTI magic, nothing could have
+> +	 * been changed across the whole TDCF, including any relation to
+> +	 * BLK_TS or UUID lines.
+> +	 */
+> +	if (!scmi_telemetry_tde_cache_stale(tde, snap->magic))
+> +		return;
+> +
+> +	/*
+> +	 * Parse data words ... only for the sake of updating TDE cache,
+> +	 * any error is logged by ignored.
+> +	 */
+> +	scmi_telemetry_line_data_parse(tde, snap, &val, &tstamp, payld, NULL,
+> +				       snap->magic);
+> +}
+> +
+> +/**
+> + * scmi_telemetry_tdcf_line_parse  - Line parser
+> + * @ti: A reference to the Telemetry instance
+> + * @payld: A reference to the payload representing the line to parse
+> + * @snap: A reference to the working SHMTI snapshot that will be processed
+> + * @mode: Specification of the scanning mode
+> + * @active_bts: A reference used to track the last BLK_TS line found
+> + * @active_uuid: A reference used to track the last UUID line found
+> + *
+> + * Note that @active_bts and @active_uuid references are propagated back and
+> + * forth from the line parsers to keep track of the nearest active BLK_TS or
+> + * UUID line found in the SHMTI areas and, while doing that, such descriptors
+> + * are refcounted and tracked in the xa_lines XArray indexed by @payld.
+> + * BLK_TS and UUID descriptors are dropped when no more linked to any DATA line,
+> + * during the normal system operation OR later on when the protocol is
+> + * de-initialized following a driver removal.
+
+Is this description premature given nothing writes active_bts or active_uuid
+yet.
+
+> + *
+> + * Return: Number of QWORDS consumed from @payld by this line parsing; note
+> + *	   that buggy firmware could return bad, out of range values, so this
+> + *	   value MUST be carefully checked for SHMTI boundary overflows by the
+> + *	   caller.
+> + */
+> +static int scmi_telemetry_tdcf_line_parse(struct telemetry_info *ti,
+> +					  struct payload *payld,
+> +					  struct shmti_snap *snap,
+> +					  enum scan_mode mode,
+> +					  struct telemetry_block_ts **active_bts,
+> +					  struct telemetry_uuid **active_uuid)
+> +{
+> +	u32 meta = le32_to_cpu(payld->meta);
+> +	int used_qwords;
+> +
+> +	used_qwords = LINE_LENGTH_QWORDS_RAW(meta);
+> +	/* Invalid lines are not an error, could simply be disabled DEs */
+> +	if (DATA_INVALID_RAW(meta)) {
+> +		trace_scmi_tlm_access(le32_to_cpu(payld->id), "TDCF_INVALID", 0, 0);
+> +		return used_qwords;
+> +	}
+> +
+> +	/*
+> +	 * Problematic lines are ignored, their information discarded, and such
+> +	 * issues are logged, but the scan process continues.
+> +	 */
+> +	switch (LINE_TYPE_RAW(meta)) {
+> +	case TDCF_DATA_LINE:
+> +		scmi_telemetry_tdcf_data_parse(ti, payld, snap, mode,
+> +					       *active_bts, *active_uuid);
+
+I'm going to assume that *active_bts and *active_uuid become non null as a result of some
+future change and the odd current state of code here is just a result of patch break up.
+At the a copy of the pointer value which is NULL is simply passed in here I think,
+so no updates possible.
+
+> +		break;
+> +	default:
+> +		trace_scmi_tlm_access(PAYLD_ID_RAW(payld), "TDCF_LINE_UNKNOWN", 0, 0);
+> +		break;
+> +	}
+> +
+> +	return used_qwords;
+> +}
+
+
+
+> +
+> +/**
+> + * scmi_telemetry_shmti_scan  - Full SHMTI scan
+> + * @ti: A reference to the telemetry info descriptor
+> + * @shmti_id: ID of the SHMTI area that has to be scanned
+> + * @mode: A flag to determine the behaviour of the scan
+> + *
+> + * Return: 0 on Success
+> + */
+> +static int scmi_telemetry_shmti_scan(struct telemetry_info *ti,
+> +				     unsigned int shmti_id, enum scan_mode mode)
+> +{
+> +	struct telemetry_shmti *shmti = &ti->shmti[shmti_id];
+> +	struct telemetry_block_ts *active_bts = NULL;
+> +	struct telemetry_uuid *active_uuid = NULL;
+> +	unsigned int qwords;
+> +	struct shmti_snap *snap;
+> +	struct tdcf *tdcf;
+> +	int idx, ret = 0;
+> +	void *next;
+> +
+> +	if (!shmti->base)
+> +		return -ENODEV;
+> +
+> +	idx = srcu_read_lock(&shmti->srcu);
+> +	snap = srcu_dereference(shmti->cur, &shmti->srcu);
+> +	if (!snap || !scmi_telemetry_shmti_unchanged(shmti, snap->magic)) {
+> +		/* MUST drop the read lock: refresh calls synchronize_srcu() */
+> +		srcu_read_unlock(&shmti->srcu, idx);
+> +		snap = scmi_telemetry_shmti_refresh(shmti, &idx);
+> +		if (IS_ERR(snap))
+> +			return PTR_ERR(snap);
+> +	}
+> +
+> +	tdcf = snap_tdcf(snap);
+> +	next = tdcf->payld;
+> +	qwords = QWORDS_RAW(tdcf);
+> +	while (qwords) {
+> +		int used_qwords;
+> +
+> +		/*
+> +		 * Bailout on any error since we are processing a supposedly
+> +		 * stable snapshot at this point, so any further error is on
+> +		 * firmware-side and NOT recoverable: this would mean having to
+> +		 * drop the remaining part of the scan results after having
+> +		 * cached the initial good snapshot: log this down below.
+> +		 */
+> +		if (scmi_telemetry_snap_overflow(snap, next)) {
+> +			trace_scmi_tlm_access(0, "SHMTI_OVERFLOW", snap->magic, 0);
+> +			ret = -EPROTO;
+> +			break;
+> +		}
+> +
+> +		used_qwords = scmi_telemetry_tdcf_line_parse(ti, next, snap, mode,
+> +							     &active_bts, &active_uuid);
+> +		if (used_qwords <= 0 || qwords < used_qwords) {
+
+If you hit the second condition here didn't you just overflow in the line parser?
+Should that be prevented inside the parser? I think the only way this can happen is
+qwords is short. If that is the case I think all bets are off and bale out
+with no idea if the line was safe or not - ideally detect that in the
+overflow check before parsing?  Maybe I'm missing some other reason that that can't
+happen an in practice that second condition doesn't happen.
+
+> +			/*
+> +			 * Stop scanning when qwords inconsistent; if the last
+> +			 * line processed was sane in itself, though, keep it
+> +			 * since we anyway previously checked for overflow.
+> +			 */
+> +			trace_scmi_tlm_access(PAYLD_ID_RAW(next), "BAD_QWORDS",
+> +					      snap->magic, 0);
+> +			ret = -EPROTO;
+> +			break;
+> +		}
+> +
+> +		next += used_qwords * 8;
+
+Is next always aligned?  If so could use a u64 * instead of void * as it is always
+manipulated in qwords.
+
+> +		qwords -= used_qwords;
+> +	}
+> +
+> +	srcu_read_unlock(&shmti->srcu, idx);
+> +
+> +	if (ret)
+> +		dev_err(ti->ph->dev, FW_BUG "Inconsistent TDCF. Scan aborted.\n");
+> +
+> +	return ret;
+> +}
 >
-> via KHO or LUO.
->
-
-Oops! it is wrong. It should only be via KHO.
-
->> + *
->> + * Serialized structures start with an 8-byte base header (struct kho_ser_hdr)
->> + * containing the total structure size (size, including header, flags, and
->> + * payload) in bytes, the number of required features (nr_required), and the
->> + * number of optional features (nr_optional). Following the header is a
->> + * flexible array of 64-bit flags entries (flags[]) containing one bit per
->> + * feature.
->> + *
->> + * Feature bits:
->> + *   - Required feature N is at bit N of flags[].
->> + *   - Optional feature N is at bit (nr_required + N) of flags[].
->> + *   - The number of __u64 entries in flags[] is
->> + *     DIV_ROUND_UP(nr_required + nr_optional, 64).
->> + *   - When nr_required == 0 and nr_optional == 0, flags[] has zero entries
->> + *     and the header is exactly 8 bytes.
->
-> The above is not needed in the documentation.
-
-Sure, I will update all of the above (feature.h) with:
-
-"A feature header precedes each serialized structure that outgoing
-kernel store along with ser data and incoming kernel use to understand
-and decode the preserved data."
-
-A feature header holds the details about required and optional feature
-in the serialized data stored as a bit for each features.
->
->> + *
->> + * A set bit indicates that the feature is present in the payload.
->> + *
->> + * Deserialization truth table:
->> + *
->> + *   Source bit       Target            Action
->> + *   ----------       ------            ------
->> + *   Not set          -                 Accept: feature absent
->> + *   Optional set     unknown or known  Accept: ignore or use the data
->> + *   Required set     known             Accept: use the feature data
->> + *   Required set     unknown           Reject: -EOPNOTSUPP
->> + *
->> + * Validation trusts the incoming header: only set required feature bits at or
->> + * beyond the target's known required feature count are rejected (-EOPNOTSUPP).
->> + * Optional feature bits are never validated.
->> + *
->
-> We can shorten the comment below (and commit message as well); there is 
-> no need to include sample code showing how the header is implemented in 
-> the doc comment. Too much stuff that is not really useful to the reader.
->
-
-Okay, I will remove about function related details below.
-
-About feature flags, I added this because at this point none of the
-serialized structure use the feature flags, I intended to explain how they can
-define new feature and use them.
-
-I have updated the below, let me know if that looks good.
-
->> + * Defining features:
->> + *
->> + * A serialized structure defines its features using enums and registers with
->> + * DECLARE_KHO_SER():: AN Example to introduce a new feature:
->> + *
->> + *   enum foo_ser_required {
->> + *           FOO_SER_REQ_BAR,
->> + *           __FOO_SER_NR_REQUIRED,
->> + *   };
->> + *
->> + *   enum foo_ser_optional {
->> + *           FOO_SER_OPT_BAZ,
->> + *           __FOO_SER_NR_OPTIONAL,
->> + *   };
->> + *
->> + *   struct foo_ser {
->> + *           __u64 base;     // base fields, always present
->> + *           __u64 bar;      // FOO_SER_REQ_BAR
->> + *           __u64 baz;      // FOO_SER_OPT_BAZ
->> + *   };
->> + *
->> + *   DECLARE_KHO_SER(foo_ser, 24,
->> + *                   __FOO_SER_NR_REQUIRED, __FOO_SER_NR_OPTIONAL);
->> + *
->> + *
->> + * Rules:
->> + *   - The fields of a new feature are appended at the end of the
->> +       serialized structure to keep the offset of older fields same.
->> + *   - Use required for data the target must understand to restore
->> + *     correctly, and optional for data it can safely ignore.
->> + *
->> + */
->> +
-
-=======END OF DOC=================
-
->> +#ifndef _LINUX_KHO_ABI_FEATURE_H
->> +#define _LINUX_KHO_ABI_FEATURE_H
->> +
->> +#include <linux/build_bug.h>
->> +#include <linux/err.h>
->> +#include <linux/errno.h>
->> +#include <linux/math.h>
->> +#include <linux/string.h>
->> +#include <linux/types.h>
->> +
->> +/**
->> + * struct kho_ser_hdr - Header for serialized data structures in KHO.
->> + * @size:        Total size in bytes (header + flags + payload).
->> + * @nr_required: Number of required features known to the source kernel.
->> + * @nr_optional: Number of optional features known to the source kernel.
->> + * @flags:       Bitmask of present features (required, then optional).
->> + */
->
-> Let's avoid tab-aligning the new doc comment. Apparently, that is not 
-> ideal because it makes future maintenance harder; each line must be 
-> re-aligned whenever longer fields are added.
->
-
-Got it. I will update it.
-
->> +struct kho_ser_hdr {
->> +	__u32 size;
->> +	__u16 nr_required;
->> +	__u16 nr_optional;
->> +	__aligned_u64 flags[];
->> +};
->> +
->
-> Please use u32/u16/u64, this is not uapi.
->
-Got it. I will update it.
-
->> +static_assert(sizeof(struct kho_ser_hdr) == 8);
->> +static_assert(__alignof__(struct kho_ser_hdr) == 8);
->> +
->> +#define KHO_SER_NR_FLAGS(nr_required, nr_optional) \
->> +	DIV_ROUND_UP((__u32)(nr_required) + (__u32)(nr_optional), 64)
->> +
->> +/**
->> + * kho_ser_hdr_size - Calculate header size in bytes including flags.
->> + * @fhdr: Pointer to the serialization header.
->> + *
->> + * Return: Size of the header and flags array in bytes.
->> + */
->> +static inline size_t kho_ser_hdr_size(const struct kho_ser_hdr *fhdr)
->> +{
->> +	return sizeof(*fhdr) + sizeof(__u64) *
->> +		KHO_SER_NR_FLAGS(fhdr->nr_required, fhdr->nr_optional);
->> +}
->> +
->> +/**
->> + * kho_ser_set_required - Mark a required feature present in the payload.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @feat: Required feature index to set.
->> + */
->> +static inline void kho_ser_set_required(struct kho_ser_hdr *fhdr, unsigned int feat)
->> +{
->> +	if (feat < fhdr->nr_required)
->> +		fhdr->flags[feat / 64] |= 1ULL << (feat % 64);
->> +}
->> +
->> +/**
->> + * kho_ser_clear_required - Clear a required feature in the payload.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @feat: Required feature index to clear.
->> + */
->> +static inline void kho_ser_clear_required(struct kho_ser_hdr *fhdr, unsigned int feat)
->> +{
->> +	if (feat < fhdr->nr_required)
->> +		fhdr->flags[feat / 64] &= ~(1ULL << (feat % 64));
->> +}
->> +
->> +/**
->> + * kho_ser_set_optional - Mark an optional feature present in the payload.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @feat: Optional feature index to set.
->> + */
->> +static inline void kho_ser_set_optional(struct kho_ser_hdr *fhdr, unsigned int feat)
->> +{
->> +	if (feat < fhdr->nr_optional) {
->> +		unsigned int bit = (unsigned int)fhdr->nr_required + feat;
->> +
->> +		fhdr->flags[bit / 64] |= 1ULL << (bit % 64);
->> +	}
->> +}
->> +
->> +/**
->> + * kho_ser_clear_optional - Clear an optional feature in the payload.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @feat: Optional feature index to clear.
->> + */
->> +static inline void kho_ser_clear_optional(struct kho_ser_hdr *fhdr, unsigned int feat)
->> +{
->> +	if (feat < fhdr->nr_optional) {
->> +		unsigned int bit = (unsigned int)fhdr->nr_required + feat;
->> +
->> +		fhdr->flags[bit / 64] &= ~(1ULL << (bit % 64));
->> +	}
->> +}
->> +
->> +/**
->> + * kho_ser_has_required - Check if a required feature is present in the payload.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @feat: Required feature index to check.
->> + *
->> + * Return: True if the feature is present, false otherwise or if the index
->> + *         exceeds the header's known required feature count.
->> + */
->> +static inline bool kho_ser_has_required(const struct kho_ser_hdr *fhdr,
->> +					unsigned int feat)
->> +{
->> +	if (feat >= fhdr->nr_required)
->> +		return false;
->> +	return !!(fhdr->flags[feat / 64] & (1ULL << (feat % 64)));
->> +}
->> +
->> +/**
->> + * kho_ser_has_optional - Check if an optional feature is present in the payload.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @feat: Optional feature index to check.
->> + *
->> + * Return: True if the feature is present, false otherwise or if the index
->> + *         exceeds the header's known optional feature count.
->> + */
->> +static inline bool kho_ser_has_optional(const struct kho_ser_hdr *fhdr,
->> +					unsigned int feat)
->> +{
->> +	unsigned int bit;
->> +
->> +	if (feat >= fhdr->nr_optional)
->> +		return false;
->> +	bit = (unsigned int)fhdr->nr_required + feat;
->> +	return !!(fhdr->flags[bit / 64] & (1ULL << (bit % 64)));
->> +}
->> +
->> +/**
->> + * __kho_ser_init - Initialize a serialization header and flags.
->> + * @fhdr:          Pointer to the memory for the serialization header.
->> + * @payload_size: Size of the payload structure in bytes.
->> + * @nr_required:  Number of required features known by the caller.
->> + * @nr_optional:  Number of optional features known by the caller.
->> + */
->> +static inline void __kho_ser_init(struct kho_ser_hdr *fhdr, __u32 payload_size,
->> +				  __u16 nr_required, __u16 nr_optional)
->> +{
->> +	__u32 nr_flags = KHO_SER_NR_FLAGS(nr_required, nr_optional);
->> +
->> +	fhdr->size = sizeof(*fhdr) + sizeof(__u64) * nr_flags + payload_size;
->> +	fhdr->nr_required = nr_required;
->> +	fhdr->nr_optional = nr_optional;
->> +	memset(fhdr->flags, 0, sizeof(__u64) * nr_flags);
->> +}
->> +
->> +/**
->> + * __kho_ser_payload - Return pointer to the payload following the header.
->> + * @fhdr: Pointer to the serialization header.
->> + *
->> + * Return: Pointer to payload memory immediately after the flags array.
->> + */
->> +static inline void *__kho_ser_payload(const struct kho_ser_hdr *fhdr)
->> +{
->> +	return (void *)((const char *)fhdr + kho_ser_hdr_size(fhdr));
->> +}
->> +
->> +/**
->> + * __kho_ser_validate - Validate an incoming header against target capabilities.
->> + * @fhdr:                Pointer to the serialization header.
->> + * @target_nr_required: Number of required features supported by the target.
->> + *
->> + * Checks that the source did not set any required feature bits that the target
->> + * kernel does not support (index >= @target_nr_required).
->> + *
->> + * Return: 0 if all required features are supported, or -EOPNOTSUPP on failure.
->> + */
->> +static inline int __kho_ser_validate(const struct kho_ser_hdr *fhdr,
->> +				     __u16 target_nr_required)
->> +{
->> +	unsigned int i;
->> +
->> +	for (i = target_nr_required; i < fhdr->nr_required; i++) {
->> +		if (fhdr->flags[i / 64] & (1ULL << (i % 64)))
->> +			return -EOPNOTSUPP;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +/**
->> + * DECLARE_KHO_SER - Register a serialized payload structure with KHO.
->> + * @name:         Structure tag name (e.g. luo_ser).
->> + * @payload_size: Compile-time expected size of struct @name in bytes.
->> + * @nr_required:  Total number of defined required features.
->> + * @nr_optional:  Total number of defined optional features.
->> + *
->> + * Size and 8-byte alignment are asserted under CONFIG_64BIT: KHO and LUO are
->> + * 64-bit only, while !CONFIG_KEXEC_HANDOVER stubs pull ABI headers into
->> + * 32-bit builds where u64 has 4-byte or 2-byte alignment.
->> + */
->> +#define DECLARE_KHO_SER(name, payload_size, nr_required, nr_optional)	\
->> +	static_assert(!IS_ENABLED(CONFIG_64BIT) ||			\
->> +		      sizeof(struct name) == (payload_size),		\
->> +		      "struct " #name " size mismatch");		\
->> +	static_assert(!IS_ENABLED(CONFIG_64BIT) ||			\
->> +		      __alignof__(struct name) == 8,			\
->> +		      "struct " #name " must be 8-byte aligned");	\
->> +	extern struct kho_ser_hdr __kho_ser_hdr_##name;			\
->> +	enum {								\
->> +		__KHO_SER_SIZE_##name = (payload_size),			\
->> +		__KHO_SER_NR_REQUIRED_##name = (nr_required),		\
->> +		__KHO_SER_NR_OPTIONAL_##name = (nr_optional),		\
->> +	}
->> +
->> +/**
->> + * DECLARE_KHO_SER_HDR - Declare a feature header variable, field, or parameter.
->> + * @name: Structure tag name registered with DECLARE_KHO_SER().
->> + * @decl: Declarator (e.g. *fhdr, **out_fhdr, or * inside DECLARE_KHOSER_PTR).
->> + *
->> + * Declares @decl with type struct kho_ser_hdr while checking at compile time
->> + * that @name was registered with DECLARE_KHO_SER(), documenting which
->> + * serialized payload structure a feature header pointer belongs to.
->> + */
->> +#define DECLARE_KHO_SER_HDR(name, decl)	typeof(__kho_ser_hdr_##name) decl
->> +
->> +/**
->> + * kho_ser_size - Total size of header, flags, and payload for a structure.
->> + * @name: Structure tag name registered with DECLARE_KHO_SER().
->> + */
->> +#define kho_ser_size(name)						\
->> +	(sizeof(struct kho_ser_hdr) +					\
->> +	 sizeof(__u64) * KHO_SER_NR_FLAGS(__KHO_SER_NR_REQUIRED_##name,	\
->> +					  __KHO_SER_NR_OPTIONAL_##name) +\
->> +	 __KHO_SER_SIZE_##name)
->> +
->> +/**
->> + * kho_ser_init - Initialize a serialization header for a registered structure.
->> + * @fhdr:  Pointer to allocated memory.
->> + * @name: Structure tag name registered with DECLARE_KHO_SER().
->> + */
->> +#define kho_ser_init(fhdr, name)						\
->> +	__kho_ser_init((fhdr), __KHO_SER_SIZE_##name,			\
->> +		       __KHO_SER_NR_REQUIRED_##name,			\
->> +		       __KHO_SER_NR_OPTIONAL_##name)
->> +
->> +/**
->> + * kho_ser_payload - Return typed pointer to payload following the header.
->> + * @fhdr:  Pointer to the serialization header.
->> + * @name: Structure tag name registered with DECLARE_KHO_SER().
->> + *
->> + * The first operand only fails the build when DECLARE_KHO_SER(name) is
->> + * missing.
->> + */
->> +#define kho_ser_payload(fhdr, name)					\
->> +	((void)__KHO_SER_SIZE_##name,					\
->> +	 (struct name *)__kho_ser_payload(fhdr))
->> +
->> +/**
->> + * kho_ser_validate - Validate incoming required features for a structure.
->> + * @fhdr:  Pointer to the incoming serialization header.
->> + * @name: Structure tag name registered with DECLARE_KHO_SER().
->> + */
->> +#define kho_ser_validate(fhdr, name)					\
->> +	__kho_ser_validate((fhdr), __KHO_SER_NR_REQUIRED_##name)
->> +
->> +#endif /* _LINUX_KHO_ABI_FEATURE_H */
->
-> Headers under include/linux/kho/abi/ are meant to describe the ABI 
-> layout only, so include/linux/kho/abi/feature.h should only contain the 
-> struct and declaration macros actually used by kho/abi/*.h headers:
->
-> - struct kho_ser_hdr (and its static_asserts)
-> - DECLARE_KHO_SER()
-> - DECLARE_KHO_SER_HDR()
->
-> Everything else here (KHO_SER_NR_FLAGS(), kho_ser_hdr_size(), 
-> kho_ser_size(), kho_ser_init(), kho_ser_payload(), kho_ser_validate(), 
-> kho_ser_{set,clear,has}_{required,optional}(), and the __kho_ser_*() 
-> helpers) is kernel runtime helper code and should be moved to 
-> include/linux/kexec_handover.h (which also avoids pulling string.h, 
-> math.h, err.h, and errno.h into the ABI header).
-
-
-Okay will update it.
-~Tarun
-
->
-> -- 
-> Pasha
 
