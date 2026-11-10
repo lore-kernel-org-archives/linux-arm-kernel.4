@@ -2,66 +2,59 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E6D606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 22:51:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA864606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 22:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AOn8Ozpx;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.a=rsa-sha256 header.s=2022a header.b=E+qpiYl1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zHcgdoui;
+	dkim=pass (2048-bit key) header.d=protonmail.ch header.i=@protonmail.ch header.a=rsa-sha256 header.s=protonmail3 header.b=j3ilvKbE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=eh/GkHmVLemeAYxVqb0jIsD7IgzOXsSMzWc10IqxN3I=; b=AOn8OzpxdgqOoF
-	17e6/3kHRuHRH3axEq5QELbWIxuGtuVkllkHL5YDiyrB2UTU4NQmfDtQy5dqMXjIfm1I8ILGG01p8
-	dLp2MdwYchTd8/NSzDDqOSo1xSVc9oFJWwvxLNVGcidMsC82Z9qnj/hurHyNz617K2TFOtnccIyrw
-	ukLKUh+MW0v8nRRPlUwnwDSydq10s4+OETumDjtBqjkXHQoVDbHAe565fB8bW0b01BKVwaXfx1SpZ
-	onE0U5XVkRK/+KcZV1al3kI/2fdvsng1GIn6J5pxVUjd/Xkyo+1TB9tIqpqwXDYjELQ0vdu+s8UC+
-	1lKn2ejGH4qt5YB5HlDA==;
+	Content-Type:MIME-Version:Message-ID:Subject:Cc:From:Date:Reply-To:To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=eM62stGlO9Wse+nXJb2nhJ+ESqdO/DZ9KfICfYRljao=; b=zHcgdouiF1L7Jfdpru9LhgrDXs
+	ZWCyYqGyys+1LJKefUq8Y921yHhAZcMllt6WK49ycOhElseTl29lsJjoRQlNUWPBJQJVgg6x0KOdM
+	D3JH8aIHIqMYyltysm4v6/DtdaQZx6Y/FlcHzyBRuVDjnJGQ463/KoTjdmdaneNLFpwD4XGozCRw0
+	5wgRw/vUELDXW2bIbHqIdaBx43IJH+2isa6Q7RGCJ6asX0b+JzP4HeM3EajIhtail5WZfu3cLFJJT
+	VnMyDwnFY+YxFu51yBhJAc8IJ0ANhiEbHvyQuLDsyM9e84axnLSOCmUWlHQtpDBE5KQzG9M833Jq7
+	2ZfOyqfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQug9-00000005C4J-49HF;
-	Tue, 10 Nov 2026 22:51:02 +0000
-Received: from pi.codeconstruct.com.au ([203.29.241.158] helo=codeconstruct.com.au)
+	id 1xQugR-00000005CB0-39k6;
+	Tue, 10 Nov 2026 22:51:19 +0000
+Received: from mail-10628.protonmail.ch ([79.135.106.28])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQug7-00000005C31-3ciR
+	id 1xQugO-00000005C8g-0N0q
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 22:51:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1794351052;
-	bh=eh/GkHmVLemeAYxVqb0jIsD7IgzOXsSMzWc10IqxN3I=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=E+qpiYl1HOD2n9wrp4FO84c+BjljBtMQb7NsJBaKScfSXcm2erLdY9zpRR6YavS3n
-	 x9kIFzMpd1rTmVNGTYH2TqyRBrr2YjgbM6keWHhJIUKMnyigds97WQ6132sUCPBOqM
-	 0wvIkEA1Dvver+LehqYg8TfnwY5hn3KpeellgANrWVOzW2rLbwg0hDKlIsQa0aloXM
-	 B5FYwyy8Ut+iTpcSHEARU8Xvx68/Jk1wO0XV0PCtfdTgM+Mny3pgIhE0Yv4y0ql3Gd
-	 GvMGTbvpoBaGmhZCMlgGF9c1hGx63RTRPBe42OUK9hEVcVv9IYTgQ63OHGeP0S80mE
-	 1agYmbUOrLgbg==
-Received: from [127.0.1.1] (unknown [180.150.112.139])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D4F6D70885;
-	Wed, 11 Nov 2026 06:50:50 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Zev Weiss <zev@bewilderbeest.net>, Tan Siewert <tan@siewert.io>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260816-ts-x470d4u-v4-0-cd08e78287ec@siewert.io>
-References: <20260816-ts-x470d4u-v4-0-cd08e78287ec@siewert.io>
-Subject: Re: [PATCH v4 0/2] ARM: dts: aspeed: ASRock Rack X470D4U BMC
- support
-Message-Id: <179435104820.1995370.12519686770871849197.b4-ty@b4>
-Date: Wed, 11 Nov 2026 09:20:48 +1030
+	Tue, 10 Nov 2026 22:51:17 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
+	s=protonmail3; t=1794351072; x=1794610272;
+	bh=eM62stGlO9Wse+nXJb2nhJ+ESqdO/DZ9KfICfYRljao=;
+	h=Date:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=j3ilvKbE2p1jKmPfpCdK0zEPr3YJ3hayhKXluJHGBtP5M3UKofViNrz9AbcvmWSRz
+	 cZaL52hH2CCbe6bgtttj6bMcLoW4d9e1CCA0SWsm0U6laeaadKb1UzfR2TWLcoa9Z7
+	 qWdlOirI1vxzj9rwWd7WOqMSlaWHiyx0mReowbWG1KTwKn4HpP+cdRehBdmPT1oo+T
+	 cXTfK048v8RTJRae8tL4B1CJSCPaSuipXI6KmrOTuuoKrQ9s8fk0ImTd7lQsvWdNHG
+	 qh4oVCIeKind0iWdshxvQs08PlpjQizcZ8MmOSbF4BctmC6DzhDBlU+jnCvCuBdJy0
+	 O4VAORjL/Btww==
+Date: Tue, 10 Nov 2026 22:51:07 +0000
+From: Ben Grisdale <bengris32@protonmail.ch>
+Cc: mfd@lists.linux.dev, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, Ben Grisdale <bengris32@protonmail.ch>
+Subject: [PATCH v2] mfd: mt6397: Use PMIC specific interrupt count for domain creation
+Message-ID: <20261110-mt6397-irq-num-fix-v2-1-9d5853a00437@protonmail.ch>
+Feedback-ID: 27291966:user:proton
+X-Pm-Message-ID: b6e27d1989934072699f0422e290035781386c66
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_145100_102913_73CA98B4 
-X-CRM114-Status: GOOD (  10.25  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_145116_298750_9655AD26 
+X-CRM114-Status: GOOD (  11.28  )
+X-Spam-Score: -1.5 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,28 +65,114 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MISSING_HEADERS,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 16 Aug 2026 13:05:48 +0200, Tan Siewert wrote:
-> This series adds support for the BMC of the ASRock Rack X470D4U mainboard,
-> which uses an ASPEED AST2500.
-> 
-> The mainboard exists in three known flavors, the "normal" X470D4U, the
-> X470D4U2-2T (with 2x10G RJ45) and the X470D4U2/1N1 (an ODM version with
-> 2x1G RJ45 that is now available in retail). The 1N1 version also has a 64MB
-> BMC SPI by default, but they are all swappable.
-> 
-> [...]
+mt6397_irq_init() currently creates its IRQ domain with a fixed number
+of interrupts (MT6397_IRQ_NR). However, not every PMIC supported by this
+driver has the same number of interrupts as the MT6397. The MT6328 has
+47 interrupts, so its interrupts above MT6397_IRQ_NR (32) are currently
+unusable.
 
-Thanks, I've applied this to the BMC tree.
+Correct this by passing the PMIC's actual interrupt count to
+irq_domain_create_linear() based on the chip ID. Define the missing
+interrupt count for MT6328, as the other supported PMICs already have
+it defined.
 
--- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
+Fixes: 6e31bb8d3a63 ("mfd: mt6397: Add initial support for MT6328")
+Signed-off-by: Ben Grisdale <bengris32@protonmail.ch>
+---
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://patch.msgid.link/20261110-mt6397-irq-num-fix-v1-1-81d=
+17454194e@protonmail.ch
+---
+ drivers/mfd/mt6397-irq.c        | 7 ++++++-
+ include/linux/mfd/mt6328/core.h | 1 +
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/mfd/mt6397-irq.c b/drivers/mfd/mt6397-irq.c
+index 5d2e5459f744..783be9f5c9c3 100644
+--- a/drivers/mfd/mt6397-irq.c
++++ b/drivers/mfd/mt6397-irq.c
+@@ -171,6 +171,7 @@ static int mt6397_irq_pm_notifier(struct notifier_block=
+ *notifier,
+=20
+ int mt6397_irq_init(struct mt6397_chip *chip)
+ {
++=09unsigned int irq_num;
+ =09int ret;
+=20
+ =09mutex_init(&chip->irqlock);
+@@ -181,6 +182,7 @@ int mt6397_irq_init(struct mt6397_chip *chip)
+ =09=09chip->int_con[1] =3D MT6323_INT_CON1;
+ =09=09chip->int_status[0] =3D MT6323_INT_STATUS0;
+ =09=09chip->int_status[1] =3D MT6323_INT_STATUS1;
++=09=09irq_num =3D MT6323_IRQ_STATUS_NR;
+ =09=09break;
+ =09case MT6328_CHIP_ID:
+ =09=09chip->int_con[0] =3D MT6328_INT_CON0;
+@@ -189,12 +191,14 @@ int mt6397_irq_init(struct mt6397_chip *chip)
+ =09=09chip->int_status[0] =3D MT6328_INT_STATUS0;
+ =09=09chip->int_status[1] =3D MT6328_INT_STATUS1;
+ =09=09chip->int_status[2] =3D MT6328_INT_STATUS2;
++=09=09irq_num =3D MT6328_IRQ_STATUS_NR;
+ =09=09break;
+ =09case MT6331_CHIP_ID:
+ =09=09chip->int_con[0] =3D MT6331_INT_CON0;
+ =09=09chip->int_con[1] =3D MT6331_INT_CON1;
+ =09=09chip->int_status[0] =3D MT6331_INT_STATUS_CON0;
+ =09=09chip->int_status[1] =3D MT6331_INT_STATUS_CON1;
++=09=09irq_num =3D MT6331_IRQ_STATUS_NR;
+ =09=09break;
+ =09case MT6391_CHIP_ID:
+ =09case MT6397_CHIP_ID:
+@@ -202,6 +206,7 @@ int mt6397_irq_init(struct mt6397_chip *chip)
+ =09=09chip->int_con[1] =3D MT6397_INT_CON1;
+ =09=09chip->int_status[0] =3D MT6397_INT_STATUS0;
+ =09=09chip->int_status[1] =3D MT6397_INT_STATUS1;
++=09=09irq_num =3D MT6397_IRQ_NR;
+ =09=09break;
+=20
+ =09default:
+@@ -216,7 +221,7 @@ int mt6397_irq_init(struct mt6397_chip *chip)
+ =09=09regmap_write(chip->regmap, chip->int_con[2], 0x0);
+=20
+ =09chip->pm_nb.notifier_call =3D mt6397_irq_pm_notifier;
+-=09chip->irq_domain =3D irq_domain_create_linear(dev_fwnode(chip->dev), MT=
+6397_IRQ_NR,
++=09chip->irq_domain =3D irq_domain_create_linear(dev_fwnode(chip->dev), ir=
+q_num,
+ =09=09=09=09=09=09    &mt6397_irq_domain_ops, chip);
+ =09if (!chip->irq_domain) {
+ =09=09dev_err(chip->dev, "could not create irq domain\n");
+diff --git a/include/linux/mfd/mt6328/core.h b/include/linux/mfd/mt6328/cor=
+e.h
+index 9a08aed72b9f..18e000cf5d29 100644
+--- a/include/linux/mfd/mt6328/core.h
++++ b/include/linux/mfd/mt6328/core.h
+@@ -48,6 +48,7 @@ enum mt6328_irq_status_numbers {
+ =09MT6328_IRQ_STATUS_FG_ZCV,
+ =09MT6328_IRQ_STATUS_SPKL_D,
+ =09MT6328_IRQ_STATUS_SPKL_AB,
++=09MT6328_IRQ_STATUS_NR,
+ };
+=20
+ #endif /* __MFD_MT6323_CORE_H__ */
+
+---
+base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
+change-id: 20261110-mt6397-irq-num-fix-2de78da5695e
+
+Best regards,
+-- =20
+Ben Grisdale <bengris32@protonmail.ch>
+
 
 
