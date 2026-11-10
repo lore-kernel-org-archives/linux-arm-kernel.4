@@ -2,82 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A760D606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B6560A6F47
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S2Ym4jNv;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=C+/uVY1F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S7r7A6Ys;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LblR3Mll
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ZRAi0FDh12qnpfYeLj6iY5LoEiQS1o5jjozIS5Vb968=; b=S2Ym4jNvRV0jp0DplkbdsAopT4
-	mWbo5SH6OsKw5yeEpfFWCPPUWJK8xTfgmT90CMdvAzm+ugudeiGcLruLTaVLD915juiBgIRXvMZ2U
-	44HjouySvogb/P9KHmA4yXVGnXhT7vVthk9QriC8bAfrs3jSk4+cCyIPeNza1vmSGhGlNs2vgGm9D
-	SA4cS/z2tW0Usw2oAIC97JrHCJjgLwF5e3zbkIx6uBtkuW6LXUyerNEBWIhIviR/DLzFuFhojItRP
-	82zNU1VsroWJs8QaTcBRTMiwZUyTKaIEffqG7KHy6zPZxdN9yP7RD++zSm+vQAVAXP2QtV4q4UROQ
-	VDQZnG0Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=mr+oYs8/abSZSj4lJ4PMIllB4JnBFwVNz1SRvIolKDk=; b=S7r7A6Ys3hYoPV
+	iHN5Vb8PcH2maCsvqS1Ritxn6DSxCf/AAc18XhOmW1yL75w6+pkfPdqlV+P986U5iKFgDRIerG6DN
+	lDPuN7PO8W985Jv9pzbgmTH8bZIgAK57sX3IRiprHUhqDwus+I9I41eHNdnp/JYwRBgcdR+8TLkRn
+	9L/RqpgpjpemeA6zsXfu89y9KmRTPx5ZbKVqwBmQNJZM2VN2tdNByC/T2D1yNb0XSQwXfszW/E48Z
+	EoQ7M5LQZkoTHlPVedvMGdxykKNmcdpssWHJj8BUwCkym/QAC8Iw4xKfsT0/g18+0SNyKLE9cUtLD
+	mT4py+CIzlOt8s2vDv8Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjZs-00000003YTK-1cSj;
-	Tue, 10 Nov 2026 10:59:48 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjZq-00000003YRa-38B6
+	id 1xQjah-00000003YrC-3Y78;
+	Tue, 10 Nov 2026 11:00:39 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQjac-00000003Ypq-1boZ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:59:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CCB23637EA;
-	Tue, 10 Nov 2026 10:59:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 819E91F008A1;
-	Tue, 10 Nov 2026 10:59:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794308385;
-	bh=ZRAi0FDh12qnpfYeLj6iY5LoEiQS1o5jjozIS5Vb968=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=C+/uVY1FCOgYsFoFwCEx5osZbgdLma+t0+9g5me4CrJMuL+HLP/7Z7OsESx/10pdW
-	 DzJCwsL5eD8t6XOYzYMwGhuTHZj+ljTG5gKDCC4kzmQjFL7ZhubrEqKkq8P/i0u6Ui
-	 z863mwPRMCtjTuqD6pf04KzhMxy8aCPEbxdRNSLHJCjlxF8gj/CXgBTuhU8/lEz1s3
-	 9TO7+/YexWZENcDST0DCx54bj75AUU68pVNL3zowaLe39c/FgMEaWixVqeuVY44QhC
-	 SKwzRIycA2bTZIn7yyKouFkduj7xgYk1n0qN4EfgmqaHVAMxwNKlzfgx4abK8EMrM7
-	 QEgAYnOl4Q2LQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xQjZn-0000000DiSU-0wAO;
-	Tue, 10 Nov 2026 10:59:43 +0000
-Date: Tue, 10 Nov 2026 10:59:42 +0000
-Message-ID: <86wlql0x5t.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Dan Carpenter <dan@cryspen.com>
-Cc: Eric Auger <eric.auger@redhat.com>,	Oliver Upton <oupton@kernel.org>,
-	Fuad Tabba <fuad.tabba@linux.dev>,	Joey Gouly <joey.gouly@arm.com>,	Steffen
- Eiden <seiden@linux.ibm.com>,	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,	Catalin Marinas
- <catalin.marinas@arm.com>,	Will Deacon <will@kernel.org>,	Mark Rutland
- <mark.rutland@arm.com>,	Carlos =?UTF-8?B?TMOzcGV6?= <clopez@suse.de>,
-	Sascha Bischoff <sascha.bischoff@arm.com>,	Jackie Liu
- <liuyun01@kylinos.cn>,	Christoffer Dall <cdall@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org,	Karthik Bhargavan <karthik@pereq.eu>,
-	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>
-Subject: Re: [PATCH] KVM: arm64: vgic-its: Reject ITS_REGS offsets above U32_MAX
-In-Reply-To: <f4b5c3247f88b9c469758f8e14a386364332f9f4.1794251681.git.dan@cryspen.com>
-References: <f4b5c3247f88b9c469758f8e14a386364332f9f4.1794251681.git.dan@cryspen.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Tue, 10 Nov 2026 11:00:38 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 71D571BC0;
+	Tue, 10 Nov 2026 03:00:30 -0800 (PST)
+Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 886443F85F;
+	Tue, 10 Nov 2026 03:00:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794308433; bh=4ck62cy1mlRNr4GFH/FwZpJqZdKAc0N4+tB/W3NHdFY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LblR3MllBiBoWbbp/bPau9MCduLwG1ZSwBtHEe+oMYAEMj36I3Mv+8I48Y6V1S/A3
+	 4DiT3rjIj15YNhjEKrgjKDo60yfQpeEqhmRGrJ3k4Cstjh62Bh3F8++Y84qbc+0NJx
+	 APrqPZZAwLmaPhwOrBjKvSsYJiMT9fe2+K6HTZ0o=
+Message-ID: <00a1bcb7-2884-4075-8d51-b8a465e37492@arm.com>
+Date: Tue, 10 Nov 2026 11:00:30 +0000
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: dan@cryspen.com, eric.auger@redhat.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, clopez@suse.de, sascha.bischoff@arm.com, liuyun01@kylinos.cn, cdall@linaro.org, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, karthik@pereq.eu, clement@cryspen.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/8] arm_mpam: resctrl: Separate MPAM domains
+To: Reinette Chatre <reinette.chatre@intel.com>, james.morse@arm.com,
+ Dave.Martin@arm.com, fenghuay@nvidia.com, ruanjinjie@huawei.com
+Cc: tony.luck@intel.com, yu.c.chen@intel.com, babu.moger@amd.com,
+ fustini@kernel.org, tan.shaopeng@fujitsu.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ patches@lists.linux.dev
+References: <cover.1794283825.git.reinette.chatre@intel.com>
+Content-Language: en-US
+From: Ben Horgan <ben.horgan@arm.com>
+In-Reply-To: <cover.1794283825.git.reinette.chatre@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_030034_727109_BFC44862 
+X-CRM114-Status: GOOD (  16.96  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,121 +72,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 10 Nov 2026 05:07:22 +0000,
-Dan Carpenter <dan@cryspen.com> wrote:
-> 
-> The "offset" variable is a u64 that the user controls through the
-> KVM_SET_DEVICE_ATTR, KVM_GET_DEVICE_ATTR and KVM_HAS_DEVICE_ATTR
-> ioctls.  The problem is vgic_find_mmio_region() truncates the u64 to a
-> u32, so it could return a valid region instead of failing.  Then we
-> use the original incorrect value of "offset" to calculate "addr".
-> 
-> 	addr = its->vgic_its_base + offset;
-> 
-> The impact of this bug is relatively minor.  A user in the kvm group
-> could potentially crash the VMM which they can already do without using
-> a bug.
-> 
-> Fixes: 8331c23c28e8 ("KVM: arm64: vgic-its: Implement vgic_its_has_attr_regs and attr_regs_access")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dan Carpenter <dan@cryspen.com>
-> ---
->  arch/arm64/kvm/vgic/vgic-its.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/kvm/vgic/vgic-its.c b/arch/arm64/kvm/vgic/vgic-its.c
-> index 5ce485485a11..532a82bed24c 100644
-> --- a/arch/arm64/kvm/vgic/vgic-its.c
-> +++ b/arch/arm64/kvm/vgic/vgic-its.c
-> @@ -2018,6 +2018,9 @@ static int vgic_its_has_attr_regs(struct kvm_device *dev,
->  	gpa_t offset = attr->attr;
->  	int align;
->  
-> +	if (offset > U32_MAX)
-> +		return -ENXIO;
-> +
->  	align = (offset < GITS_TYPER) || (offset >= GITS_PIDR4) ? 0x3 : 0x7;
->  
->  	if (offset & align)
-> @@ -2045,6 +2048,9 @@ static int vgic_its_attr_regs_access(struct kvm_device *dev,
->  	its = dev->private;
->  	offset = attr->attr;
->  
-> +	if (offset > U32_MAX)
-> +		return -ENXIO;
-> +
->  	/*
->  	 * Although the spec supports upper/lower 32-bit accesses to
->  	 * 64-bit ITS registers, the userspace ABI requires 64-bit
+Hi Reinette,
 
-I think this is going in the wrong direction. Instead of capping the
-offset at an arbitrary value, the infrastructure should be able to
-deal with arbitrary offsets.
+On 10/11/2026 04:19, Reinette Chatre wrote:
+> Thank you very much to Ben, Jinjie, and Shaopeng for reviewing and testing RFC v2.
+> 
+> Changes since RFC v2:
+>   - RFC v2: https://lore.kernel.org/lkml/cover.1792443633.git.reinette.chatre@intel.com/
+>   - Patch 1 is new. It adds find_mbwu_mon_comp() to replace the duplicate
+>     code found in resctrl_arch_cntr_read() and resctrl_arch_reset_cntr(),
+>     as suggested by Jinjie.
+>   - WARN when domain allocation fails. (Ben)
+>   - Squash three patches into the patches they build on. (Ben)
+>   - Move "Require a component for each monitoring event" ahead of the
+>     structure split so the check it adds precedes its first user.
+>   - Fix the mpam_resctrl_get_mon_domain_from_cpu() function comment that
+>     still referred to the control component.
+>   - Add tags from Jinjie and Ben.
+>   - Please see the individual patches for their detailed changelogs.
+> 
+> Changes since RFC v1:
+>   - RFC v1: https://lore.kernel.org/lkml/85ca29e89eacf12cfa7071249419e7cadb8f0691.1788220029.git.reinette.chatre@intel.com/
+>   - Give each type of domain its own structure instead of duplicating the
+>     shared one, set up each domain independently instead of undoing one
+>     domain when setting up the other fails, add additional verification
+>     checks.
+> 
+> The MPAM driver represents a resctrl domain with a single structure,
+> struct mpam_resctrl_dom, that holds both a control domain and a
+> monitoring domain. On a system that supports both allocation and
+> monitoring, one instance is created for each domain and its two
+> domains are added to the resource's control and monitoring domain
+> lists.
 
-Could you try the following (untested) hack?
+Thank you for this respin.
 
-I also don't think this is worth a Cc stable (the worse case is that
-the VMM accesses an emulated register and sets something nonsensical),
-which it can always do.
+To avoid any confusion for others I mention here that the 'MPAM domains' mentioned here are the MPAM
+driver representations of resctrl domains and *not* related to the MPAM feature
+FEAT_MPAM_MSC_DOMAINS. There is currently no support for FEAT_MPAM_MSC_DOMAINS in the MPAM driver.
 
 Thanks,
 
-	M.
+Ben
 
-diff --git a/arch/arm64/kvm/vgic/vgic-mmio.c b/arch/arm64/kvm/vgic/vgic-mmio.c
-index fddb9da0403d5..8f9ebe241e9e4 100644
---- a/arch/arm64/kvm/vgic/vgic-mmio.c
-+++ b/arch/arm64/kvm/vgic/vgic-mmio.c
-@@ -820,13 +820,13 @@ void vgic_write_irq_line_level_info(struct kvm_vcpu *vcpu, u32 intid,
- 
- static int match_region(const void *key, const void *elt)
- {
--	const unsigned int offset = (unsigned long)key;
-+	const u64 offset = (unsigned long)key;
- 	const struct vgic_register_region *region = elt;
- 
--	if (offset < region->reg_offset)
-+	if (offset < (u64)region->reg_offset)
- 		return -1;
- 
--	if (offset >= region->reg_offset + region->len)
-+	if (offset >= (u64)region->reg_offset + region->len)
- 		return 1;
- 
- 	return 0;
-@@ -834,9 +834,9 @@ static int match_region(const void *key, const void *elt)
- 
- const struct vgic_register_region *
- vgic_find_mmio_region(const struct vgic_register_region *regions,
--		      int nr_regions, unsigned int offset)
-+		      int nr_regions, u64 offset)
- {
--	return bsearch((void *)(uintptr_t)offset, regions, nr_regions,
-+	return bsearch((void *)offset, regions, nr_regions,
- 		       sizeof(regions[0]), match_region);
- }
- 
-diff --git a/arch/arm64/kvm/vgic/vgic-mmio.h b/arch/arm64/kvm/vgic/vgic-mmio.h
-index 38ed730d68ac3..6c3c4de6883ef 100644
---- a/arch/arm64/kvm/vgic/vgic-mmio.h
-+++ b/arch/arm64/kvm/vgic/vgic-mmio.h
-@@ -228,6 +228,6 @@ u64 vgic_sanitise_field(u64 reg, u64 field_mask, int field_shift,
- /* Find the proper register handler entry given a certain address offset */
- const struct vgic_register_region *
- vgic_find_mmio_region(const struct vgic_register_region *regions,
--		      int nr_regions, unsigned int offset);
-+		      int nr_regions, u64 offset);
- 
- #endif
-
--- 
-Without deviation from the norm, progress is not possible.
 
