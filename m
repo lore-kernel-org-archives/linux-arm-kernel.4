@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CDF60A380A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E0F60A5BD3
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FRTt8HLU;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IReWKkhQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zj1+n2UK;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XWz6yvhc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cccUMx05jPVtgncaoOCw86iG1kz4fwGOT9LlfXUuuVA=; b=FRTt8HLUdxUplrrkelIoNfdY5V
-	UcNXIaQ1GR4blbbzzsnvp4lMy/+8aTf3MmKudStMRe7vAcgoNNtLMqjVN5rOtuiizvnizDH77CASi
-	WueEgm4XB5PNX7kyg62P5o1fktDzxu4S7Yvk46pRWN1IkMeC/FGeHN5D37pz0rB6vva5xhlLrUajw
-	LMnnM9Qi0bL57cy0cr/l5rGnRLDkhRjk8a+3YEi/sCM0JFuBXSNJPJZag67Ai51hRIqlrYKGCLRMK
-	3PpV9HjE6EA2cmqnduBdvXRGCFOqUNQIlU1Pr9ssZ+x83fLHr0dfzwbTrc0waKAFE6ZPSnCFiyiNe
-	rifqZnqQ==;
+	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=; b=zj1+n2UKAgITJ0ZcmuM2X6agIQ
+	txEIhykxfm+ErDLDvM/Io58yJcE81TP25dMz8zs1f2GBV1SGngK5yFGVJRz/KdaSasWa0L8jGP5aw
+	1I8sJEB7GepFami20xu7SmPXQkqF+3leHTV6u47RNjXS0LoafXlk25h1GdMgIjQ84ADOSYrpA62Bt
+	w/pisb3DB3QVht936aDt3XlPx2ZkTVFmuV66eTpYSmWQdEERra7zqjRrNciBdrw6ECosQvtvp4LI7
+	Tin32zHfiCRHMwuEWrCOP4yZbZYyHC9GcuGxFLQpLgESEuQjLGmRi5Ygx50m0VOQ/vyxjUVe0zlPs
+	5bd6Mivg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeXa-00000002Xii-1yoA;
+	id 1xQeXa-00000002XiQ-1VBZ;
 	Tue, 10 Nov 2026 05:37:06 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeXT-00000002XeK-2kke
+	id 1xQeXT-00000002Xe4-2NQ4
 	for linux-arm-kernel@lists.infradead.org;
 	Tue, 10 Nov 2026 05:36:59 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 20E5A636B3;
-	Tue, 10 Nov 2026 05:36:59 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 88232609F6;
+	Tue, 10 Nov 2026 05:36:58 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794289018;
-	b=Na2wMfpKXhzrFGK74WPaAKTpe+xcg7gBdDVmoCbt2tDGxZV1qMJjV8ERYypi26IjtTq9
-	 3wPOkMJSjjngAf2oI4vfOLfM9cTQAX5zBc9nGqchEAbVbEabvZ6wes9CtRFqQPtXQkoWB
-	 GuJPIPXqHNihwLMgLkZeZMYHUzuuEgQl3qfphAG2dyTr+uSc/b5SYRRKgC+pPdNWVLfX3
-	 fWRMegq42uUVmDXhwT1vUhplkmXIYiA39rXD8IstCPtBwMii96ydeMzVhmBGFkVllsPVX
-	 aAOSR1L8UrL3CeVnnz/YxfXMJMW7zeE0Rrti/lwcOmQI4lM2GRig4ZUfFm4Rl0K6oCw==
+	b=UydpI176BEuwjy53HWkVx48lUKN3/8BZM2/2Sxxto0VI4xydFWiaZ4Usvj7BXI2nQxRe
+	 gDOI9xz3jK45Unrludt/3HIlLQ+6Ph2fyGrQZyXswtaUOWCV6TwVXiomiQmM3kL2KqnNE
+	 bsWDBQkjRUWEFHjYUirLUg776s/vDKyYaaBTSny0QIvrwe19ai8L3sRP+w+Lrd1eJ1l2e
+	 Bgpcq5PK1l7mFu4/IYRioUqtbR0kyauur2jg9WRihSg5VkoGVWcyxkzhHiab5TtfQSe4b
+	 jcHWozxHr2ffxWJZGY3dPXq6zxGvw6kI22b8bJfb8YYIac8bjUTuFI6Pm9mtfWH3UDQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794289018;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=cccUMx05jPVtgncaoOCw86iG1kz4fwGOT9LlfXUuuVA=;
-	b=d9FR42Vx9cGQuZuDxa6hP+gpnkdjLquTgcJT7vnDTt4/j3DBWj93/riGW+0TJ7KXQ1q0
-	 ZSpLzThs8HpmSF/eeVBw30VYSZVacxPfQ6QNtiTt5MsVqIUlz1FjjYgM2b3amSbjjH+Vf
-	 ZBnv7hePY4dXY3QgHPFvRD3m9QnNtvbN5vwZ1hWKoAas2xEhUE5dZhewp4p1BNc6M2HaH
-	 +KUAU91gewELszaeGzlR2Kp6yIfDVx3TbLUL5YywKAOeGAAUF0u55yUttq5H2ose2akKI
-	 LUNh7qk0vTL7Tptj5OXbVmdOGKmi6VlIrGXX6lkroXmpr9BsLvsVNjiZ4Fb1xWpXckw==
+	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=;
+	b=oKK1jUvpzVRVrOVUfRoJdi43mF3ZkqVbXO4EdLiX/lSAehu1KXZzSKBVfyB+WLsw0Tug
+	 2RTzZn0yG3BNZh1dbjsqzPj6aC1D/7UkxWk70n+avnUjYKfjmYH99UKyGr0yyGDVTrg10
+	 jxkUJB1CJvWWq6s3SLFH1MNuPfTjhyK6VnIVVEp1OQYa2wQBeDFyClhFozYIxw784M3cB
+	 sEWXq5ZczKRiXrKvwQkMkgZWYM0IFWZdFqpWTI7+WjaMIzukCwPvkPXLplstnKhtaizaY
+	 2yJ5+iLZICAWrqNJgSFpsjtviDszRU2h7Iv3VScjB//cekLPtmw05xYqaDxu5g2t+FA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 458C01F008A4;
+	by smtp.kernel.org (Postfix) with ESMTPS id 268751F008A2;
 	Tue, 10 Nov 2026 05:36:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794289018;
-	bh=cccUMx05jPVtgncaoOCw86iG1kz4fwGOT9LlfXUuuVA=;
+	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=IReWKkhQKF6NSu7COjWiNE5qqRwZa//FZ5wN9Spk+81YpPWq5Ij5tzVy/q0xjNyld
-	 R7xQcS6AINJwX6jrdO5l6Gy49X02oEOSpIyk9fcKQ/7MjgeZP1rzYld0R8wnQYbrG/
-	 5hEI+dNmgjJR9XcW1J6h2IypitTDdWh1/lbk9D7sW6BeNwZZW6i2ydn14f+VYZjWzE
-	 84YU1Y/vneIebR40rFX6KMFG/iCPx2TjVGonb9vNJ3wNYCqTBwbBytuUUN0UnSf/5a
-	 RuO9psNIfUXEScKlFbwKCLShcpyjlOInaM2qCDMpAMavjyvbLU+qaAaz6v3WSLddeQ
-	 lTDeNyO+sOAog==
+	b=XWz6yvhcRB1KhBJJzH0dW0hof+vzQG1mMkBiHCGS35uBsr61j29rhetSr/qYEUZro
+	 OdFEyfpRGMwe5OoZy1eyHKsl8ZimlYLRMqGBeApMlEFJ9KS83ax/TZ3GBqWKhH6sgh
+	 6O5SBKQbAINs2/uJgKiXaysuEwcEvmXoFPRTKxE1r/i8JNaM+qbVgZrb8JVRH7/+Zw
+	 sqy1Z3neUIdOT+sDrLMOH6teELiFbHni56kd1MpYXOlDy7IAQrL8N+hdPCjjKg+8Gy
+	 TrAyzDH++lmOVotjDettjkLLZBLhqQFM8Bh+5gMlTGG+qRItuVI7limOX2kI0U0Hmd
+	 v1lH8jlpPXq5g==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C64FC488AB;
+	by lkml.kernel.org (Postfix) with ESMTP id A48B1488A3;
 	Tue, 10 Nov 2026 05:36:56 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 05:36:58 +0000
-Subject: [PATCH 4/8] arm64: dts: allwinner: h616: Throttle the GPU from the
- GPU thermal zone
+Date: Tue, 10 Nov 2026 05:36:56 +0000
+Subject: [PATCH 2/8] arm64: dts: allwinner: orangepi-zero2: Let the PHY add
+ the RX delay
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-h616-zero2-dt-v1-4-05506d760f21@gmail.com>
+Message-Id: <20261110-h616-zero2-dt-v1-2-05506d760f21@gmail.com>
 References: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
 In-Reply-To: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,11 +92,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289015; l=1929;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289015; l=1923;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=teKOTEf4Ehrd6NI/Dk5AeKkHXxd5JXaOLzoyVTpHUvU=;
- b=+C62sstufF9DUcspTyYWdroKBtE0YbldKzOadENtR0M9QPURkJPdKa5dDR8JEWNjIBFmbSYpf
- znoWxcN6w7lAFZhzlaAu+zyYgU6/yLlfr3tVr/jBbGQqT1aprfFClur
+ bh=hgTnawt6aimtaYNRLXqSLgWoRIBtKR4Hz80cKcd5MZQ=;
+ b=8iTkh1En9vvXHawv7Uw7jL6daF1+oTzNlIVXcn7sATdE79v+2H7vAN6ntZaXx7g6Iua0tox1D
+ yTLbsbAw8zPDsTNNW57X/v93BE+MX1E0cXO5wpVySkJvcBJFG/Lst9g
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -124,63 +124,47 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The gpu-thermal zone only has the 110 C critical trip point, and the
-GPU node is not a cooling device. Once a board describes GPU operating
-points (panfrost devfreq), the only reaction to a hot Mali-G31 is
-therefore a shutdown.
+The Orange Pi Zero2 describes its RTL8211F link as "rgmii", with the
+whole RX clock delay (3100 ps, the maximum the H616 EMAC syscon can
+add) inserted by the MAC. With "rgmii" the Realtek PHY driver also
+clears the PHY's own RX delay bit, so RX sampling relies on the MAC
+delay alone and sits at the edge of the window.
 
-Make the GPU a cooling device and add a passive trip point at 85 C
-(2 C hysteresis) that lets the thermal core lower the GPU OPP. 85 C is
-the CPU alert level mainline uses on the H6 (same thermal sensor
-generation), and is below the 90 C at which the vendor BSP for the
-H616 throttles the GPU (it maps the GPU to its CPU "target" trip).
+On the board this shows up as intermittent boots with a dead receive
+path, after cold and warm resets alike: the link comes up at
+1000/full and frames are transmitted and seen by the peer, but nothing
+is ever received and the EMAC raises no RX interrupt. All EMAC clock,
+pinmux, drive strength and syscon registers are the same on good and
+bad boots. On a bad boot, setting the PHY RX delay bit and clearing
+the syscon RX delay restores reception at once, without a link reset.
 
-Boards without a GPU OPP table are not affected: panfrost then
-registers no devfreq cooling device and the map stays unbound.
+Use "rgmii-rxid" (RX delay in the PHY, none in the MAC), as the Orange
+Pi Zero3 with the same PHY already does, and as the vendor BSP does.
+The 700 ps MAC TX delay is kept. With this change 10 of 10 cold boots
+had a working receive path.
 
+Fixes: 5a378f9f2b15 ("arm64: dts: allwinner: h616: Add OrangePi Zero 2 board support")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index 68bd6137c316..93c3b8279241 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -162,6 +162,7 @@ gpu: gpu@1800000 {
- 			clock-names = "core", "bus";
- 			power-domains = <&prcm_ppu 2>;
- 			resets = <&ccu RST_BUS_GPU>;
-+			#cooling-cells = <2>;
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+index f2e3300e078a..1fdf2d3c1a87 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+@@ -18,9 +18,9 @@ &cpu0 {
+ };
  
-@@ -1124,12 +1125,24 @@ gpu-thermal {
- 			sustainable-power = <1100>;
+ &emac0 {
+-	allwinner,rx-delay-ps = <3100>;
+ 	allwinner,tx-delay-ps = <700>;
+-	phy-mode = "rgmii";
++	/* RX delay is added by the PHY, TX delay by the EMAC */
++	phy-mode = "rgmii-rxid";
+ 	phy-supply = <&reg_dcdce>;
+ };
  
- 			trips {
--				gpu_temp_critical: gpu-trip-0 {
-+				gpu_alert: gpu-trip-0 {
-+					temperature = <85000>;
-+					type = "passive";
-+					hysteresis = <2000>;
-+				};
-+				gpu_temp_critical: gpu-trip-1 {
- 					temperature = <110000>;
- 					type = "critical";
- 					hysteresis = <0>;
- 				};
- 			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&gpu_alert>;
-+					cooling-device = <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
- 		};
- 
- 		ve-thermal {
 
 -- 
 2.55.0
