@@ -2,89 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41B0606D63F
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730DA60A381A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EKR7cQ1/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Hymn3Cxg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CGrfeOCM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UGNbK/tx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=crOJU4pdEXVtB/xKliMoCnEF/sNVuIBkiEtqGXLglJY=; b=EKR7cQ1//gtJFNg0NjBpMhj+bn
-	zNTDnw2U37eQV7CakEyGbWBjMRA/Rpw25t0ua9shZDJhmkQ5Om8fKMd5W0ppf/idd4Tk+ekImkrBH
-	0yXSZe8sCh4vvReQzGqqnRv2o2hkv9q9sRO2MrJo5rHToRTo4jvPLNsg5lLQluZhfFhlncU/IrymY
-	JJO5OVir2xzuMCjSdrL/i++YhFxRgkSMvR2h7a8SSL7HV7ftG1DmVgAo0dtFGRotawliEz6KGvwJ1
-	aUDuHBLl4JTAnzC8461iP/tQikIrfJmfVyEA4g/UYyt/XBRBA30TJToN+P/3m/0GoxNDq3IEVjiK5
-	NOyShh4w==;
+	bh=s1Qj21qpcNfOQIR9sV5LF1bI2tlwUQfLEP8RYtsxPDs=; b=CGrfeOCMmEou3RP/3J0bqYe7Va
+	+iwp3LMZgChAta5uMWgqYDW7IpUql+Y4nHaV86ORORrPAeXnFhmKmEgZvIA6v4SFw1TWzNFhhL7aN
+	Jpxc14NIXu6IT03V+tkn7lQq1erxCr5lowQwsr5TkurB7uXTPUZAq0zyzrrc+vbV2YpbJ+7TMDM6C
+	32NLsnbMhtq7bKcY7D2u0hOxEMFcuIzfzXUH2YpZDSqnsgxaH/tMwmVLKrtGPVJ8je38Fl5pr25jq
+	kWzT0sWXyyw3ivdTS9ylY+M8ioxp6hNEZ6zy+yqfl23DQFTO6m3b2wmLk8pwRqXy0FEIw1vvU0fYb
+	8lfcKluw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg8a-00000002r6p-22AB;
-	Tue, 10 Nov 2026 07:19:24 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xQg8k-00000002rLR-31SK;
+	Tue, 10 Nov 2026 07:19:34 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg83-00000002qCL-16Fm;
-	Tue, 10 Nov 2026 07:18:51 +0000
+	id 1xQg83-00000002qE7-3zKz;
+	Tue, 10 Nov 2026 07:18:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id D657240254;
-	Tue, 10 Nov 2026 07:18:50 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id AAE5F40D3F;
+	Tue, 10 Nov 2026 07:18:51 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794295130;
-	b=v0oEZ35RpOv97k9P285puHgtCS82qPyh1mOdPrQ/OVq+IKoVgWrDM4XohkzN3RnS1sbU
-	 Lg0JKycLOj1XmMsWPDJPsrgWOQccyKAnNLaX1dGuSGesAan9HDpbg0uQwuwxvS1LZG6rS
-	 24VrAOsFaIr/qnLvLj3xVLdHgLsLlK0EPMs7NKoV2vshXbVA2DH4U4iodmfVr9TKDEbWD
-	 wfYJ22+5FYJD3F5weoH6omL2xaC0GGLEY6XykZzOTGjcDprOA/wtCKL4il0t+cOpVUQZ7
-	 sAM8tqOHeXBUmOEy+XZdX02YbmNNfEeUDVUwchPIdBMMubBM0HDS7BUIbk7zwj5rnWA==
+	t=1794295131;
+	b=UPf/O/mkvy/p1Kd/66N+4cpHujxHyh6uh1OkAqheW9RJ0H8k+7/6vLKR5H/7NJcKzgWA
+	 K2tjP+hZFd0yC191EzhcGKE8v+xG42MTkT1oSe8sT+mQZ1YKXqtdk4ANxofwk5LyxGisH
+	 EufH32IfymM07PRL3w+u7UYPeGodYvCSpg8yz+u2jmcbrxgGN0IRM+/QNpSehLszQczm1
+	 IPBjoTqwKnF4G72O1BJKP6Cfq9ZDNhxu33HroSFp24Ps2rEr8GeXPPER+8LGQ/cmZQXdD
+	 G8iCMtwfrtF9xhnsg/LzcJlgdhFN/0KFBzFRLWIkPrIoTdwJG3VT8tFc6dPdWmiToug==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794295130;
-	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
-	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
-	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=crOJU4pdEXVtB/xKliMoCnEF/sNVuIBkiEtqGXLglJY=;
-	b=nsEEasZwzh90FPeahS9DZqAN0keOnCOI0m9FrdhUEOoPBTkGIntnBr33tKx4HG27E4g8
-	 Ws3TyYP3z9uHeddSFSbJaplZDqpgK3OljiFAx6jPoOfXzSnEiESeDTKHttOFilvQhU+BG
-	 iqBm+/cC1SrgR1IOS/C4cq9UWq9hb8tIhdkELH98J1R07by94uxjKuKcCLRmO1XGRLzHX
-	 B9XbTINQpmLU5m5JpDzKv0bvQXYadSnGCDrE67F7NFampQnQUXcvO7L5mhanPlNlVNzDj
-	 giA1JsoHLptgWW7qKETsnCtkWU2O1V9d+AHMa3Off9Cm6T+SMQ6bSC2GG4QZ18gHt7A==
+	c=relaxed/relaxed; t=1794295131;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=s1Qj21qpcNfOQIR9sV5LF1bI2tlwUQfLEP8RYtsxPDs=;
+	b=V6lWrytmgxxxqJ3AG39f3EfEDkZo6Tl38jTkJlU2uFQY739HK1QeYxqP08MiBO2M1kyr
+	 R56rtk2sWvK0SxgK4ooFNx0kPK0kdZxwkaP5xbdwauAenu3TBJiXJT+p4VHe3Np4acNj7
+	 I1GIbYVX4AV1wjmQWW97y3vErOX13ltZim7MaM+5lNZpF2k2+MfhWwordm2yy/BD51+Et
+	 pH1oe1pIXjZ7c8EAMowlg14mo2lRIGPic2ao6I9mkrYVmj5IEBTWYDHcj7suhPLk4PQDR
+	 1SaUC6pffb2BcUcmN5eG/v3stcmki65Syn3ooBd3hfypOW5sGit8FX6uY8ehPcMa3BQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 195E21F008A1;
+	by smtp.kernel.org (Postfix) with ESMTPS id 3CF741F008BD;
 	Tue, 10 Nov 2026 07:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794295130;
-	bh=crOJU4pdEXVtB/xKliMoCnEF/sNVuIBkiEtqGXLglJY=;
-	h=From:Subject:Date:To:Cc:Reply-To;
-	b=Hymn3CxglOh+soxIByL21vjqRw27KsQQfL1W6OC+cCup9nBUcYOMD+mPCLVQCiY1G
-	 WQywsHM/QLfCtSP4qIWCO1XOOdMByGA2IHEKdxhsR0ELm7lWD2d5lE2oA+HQjHv5c2
-	 tSbcL6L97Gicz2ZouzwiDO64NF5PG8wIOfw6jc106rXXQ6cZDEzgHIis2o8+iCus5R
-	 k4r/Gq/sDgLLobSI5O7tX1Khhu8KWv89JnXREo0ZPKtovd8G1/u4Z+3MeetlbxsxZ6
-	 cbtHvcKbw10wv1VaDk3+ytPo2Y/cau5VzOueQEPiSMVY9VmsIezj3n7foO5rOKxYtB
-	 +xezEoHKhGdEQ==
+	s=k20260515; t=1794295131;
+	bh=s1Qj21qpcNfOQIR9sV5LF1bI2tlwUQfLEP8RYtsxPDs=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=UGNbK/txuqVf6E1Mv/kZl5sGy+RvaUn8GR+u7bMds9gRg38xEoshXywzIXdmHYG12
+	 qxY6ZsAtN1uzoiY4uAVQUg9bJ89dI9v/uj5wSCkQMhJqyZihIRXk9dHpA0KNe4TxAI
+	 JeA90Kve/aboBTWRPqIW1vn45Ro9D7aaczPw6DZWCj55+mG+lkS6bj7tMvhafSJDN7
+	 6clkwDJacmWRPMHBFGQaFGWtuLafMxpifGyDxJpJPO0I8UuROiTE615e9v19qcfIFa
+	 aDctrn1TZbACBjrMooLummV4KsQlV8HuBGOzI1GGlZxrXcVXNXJuzI04i5pI89PIQR
+	 2ZzVyVuXXmVCw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A189F4896C;
+	by lkml.kernel.org (Postfix) with ESMTP id C622D489B9;
 	Tue, 10 Nov 2026 07:18:49 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Subject: [PATCH 0/8] drm/rockchip: vop2: RK3588 clocking, sync polarity,
- AXI port and window fixes
-Date: Tue, 10 Nov 2026 07:18:48 +0000
-Message-Id: <20261110-vop2-fixes-v1-0-d336e9dd90d3@gmail.com>
+Date: Tue, 10 Nov 2026 07:18:50 +0000
+Subject: [PATCH 2/8] drm/rockchip: vop2: Fix the HDMI sync polarity on
+ RK3588
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMSw5AMBAG4KvIrDUxjUe4ilhQU8YC6dBIGndXL
- L/8jwBCjkmgSQI48iy8rRGYJmDmfp1I8RgNOtMlImbKb7tWli8SZfu8wFxXdW0Q4mB39AWx33a
- /5RwWMsf7APf9AJQbo+1uAAAA
-X-Change-ID: 20261110-vop2-fixes-fa45142799c1
+Message-Id: <20261110-vop2-fixes-v1-2-d336e9dd90d3@gmail.com>
+References: <20261110-vop2-fixes-v1-0-d336e9dd90d3@gmail.com>
+In-Reply-To: <20261110-vop2-fixes-v1-0-d336e9dd90d3@gmail.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
  =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
  Andy Yan <andyshrk@163.com>, 
@@ -95,16 +92,17 @@ To: Sandy Huang <hjc@rock-chips.com>,
 Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295129; l=4031;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295129; l=1785;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=fo7rQJTAOXCeB/21ZdTRGQqHaTQfZ2L5wF/0HI3nMtM=;
- b=r9LUei76hUrXdgmi2KacbwxDOIS0mEAd6hhWFCzVEP8Kf+EaRuAqe+KnA0v7jAtuB075BZ9b/
- cS5y2FN73XiBanfNEpqhxB3lgYYK8/uGBsuHj824b0xFBnb7nvKN9/Y
+ bh=/jrSLrVkUlalHW0TPexjIwQp3BO194HjqfgHRaS4qLM=;
+ b=HnWtJTR8ePkQiIPst0zqwNylcoBjEN4hJ2NMs1vb6p/D3dePg6kgqqaeDFKfjYqV5fqLL4PTw
+ M0pNS36M2UzBZFvNVCTyoEy3Qc/sfBBXs8yb23ZIESbzqYckL4pb84j
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,81 +122,54 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series collects fixes for the RK3588 VOP2 found while bringing up
-HDMI and DisplayPort output on an Orange Pi 5 (RK3588S).
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Patches 1 and 2 fix the RK3588 interface setup: rk3588_calc_cru_cfg()
-leaves dividers it does not use uninitialised and the garbage ends up in
-VP_CLK_CTRL, and rk3588_get_hdmi_pol() decodes the POLFLAG bits it is
-handed as DRM mode flags, so the GRF sync polarity bits are wrong for
-most modes.
+rk3588_set_intf_mux() passes the POLFLAG bits of the mode to
+rk3588_get_hdmi_pol(), which decodes them as DRM mode flags: the
+VSYNC_POSITIVE bit is taken for DRM_MODE_FLAG_NHSYNC and POLFLAG_DCLK_INV
+for DRM_MODE_FLAG_NVSYNC. As a result GRF_VO1_CON0 marks the HSYNC of
+every +HSync/+VSync mode (e.g. all 1080p, 2160p CTA modes) as negative
+and both syncs of -HSync/-VSync modes (e.g. 720x480, 640x480) as
+positive.
 
-Patch 3 stops the RK3588 Cluster windows from advertising AFBC with the
-lossless colour transform (YTR) for RGB565/BGR565, which the decoder
-cannot display (black picture plus POST_BUF_EMPTY).
+The bits in GRF_VO1_CON0 are set for a negative sync; that is how the
+vendor kernel programs them (vop2_get_hdmi_pol(), called with the mode
+flags, sets them for DRM_MODE_FLAG_NHSYNC/NVSYNC on RK3588). Decode the
+POLFLAG bits accordingly.
 
-Patches 4 and 5 deal with POST_BUF_EMPTY underflows. The VOP2 fetches
-through two AXI read ports but the port of each window is fixed in the
-window table, so the usual primary plane plus overlay configuration of
-a video port puts both layers on one port while the other sits idle.
-One port cannot sustain two full screen 4K@120Hz layers (measured: the
-fetch rate collapses from ~6 GB/s to ~3 GB/s and about half of all
-lines underflow). Patch 4 assigns the port when a window starts
-fetching, balancing the estimated load; patch 5 rate-limits the
-POST_BUF_EMPTY interrupt to once per frame, since an underflowing port
-otherwise keeps the CPU in the interrupt handler 50000 to 300000 times
-per second.
-
-Patches 6 to 8 are smaller fixes: the start mixer search skipped
-Esmart3 (for_each_set_bit() was given the highest window id as the bit
-count), a gamma LUT update cleared the other fields of LUT_PORT_SEL
-(the VP0/VP2 dclk source selection and the VP0/VP1 merge enable), and
-the AFBC tile count and transform offset were wrong for a source that
-starts inside a 16 pixel superblock.
-
-Tested on an Orange Pi 5 (RK3588S) with an HDMI 2.1 TV and a
-DisplayPort monitor, pictures judged with a camera. Patches 1 and 2:
-VP0_CLK_CTRL reads back without the garbage dclk_out divider, the sync
-polarities seen by the HDMI controller (VIDEO_INTERFACE_STATUS0) match
-the mode flags for +/+ (1080p, 2160p) and -/- (720x480, 640x480) modes,
-and the picture is correct over TMDS and FRL modes from 27 to
-1188 MHz. Patch 3: RGB565 is offered on the Cluster windows only
-without YTR, and those planes scan out correctly on three Cluster
-windows. Patches 4 and 5: 3840x2160@120 with a full screen overlay
-(previously ~120000 POST_BUF_EMPTY per second and a scrambled picture)
-and a dual-display session (HDMI 4K@60 plus DP 4K@30, two video players,
-ten minutes) run with zero underflows. Patches 6 to 8 were found while
-driving Esmart3 and partial AFBC overlays: an AFBC overlay placed at
-x=1001 shows correctly. All eight have been in the board's kernel for
-the display test runs since.
-
-This series was developed with Claude (Anthropic) as a coding assistant:
-it wrote the code and the commit messages, and I reviewed and tested
-every change as described above.
-
+Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-Arun Iyengar (8):
-      drm/rockchip: vop2: Don't use uninitialised dividers on RK3588
-      drm/rockchip: vop2: Fix the HDMI sync polarity on RK3588
-      drm/rockchip: vop2: Don't accept AFBC YTR for RGB565 on RK3588
-      drm/rockchip: vop2: Balance window fetches across both AXI ports on RK3588
-      drm/rockchip: vop2: Report POST_BUF_EMPTY at most once per frame
-      drm/rockchip: vop2: Find the first mixer of a video port with Esmart3 too
-      drm/rockchip: vop2: Keep the other LUT_PORT_SEL fields on gamma LUT updates
-      drm/rockchip: vop2: Fix the AFBC offsets of a source that starts inside a superblock
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 186 +++++++++++++++++++++++++--
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  24 ++++
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c |  27 +++-
- 3 files changed, 223 insertions(+), 14 deletions(-)
----
-base-commit: 8deaade4a5a4ff635df91e246e42139ab2b33f6d
-change-id: 20261110-vop2-fixes-fa45142799c1
+diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+index 659fd0a3ab63..7c48b440cb29 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
++++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+@@ -1687,12 +1687,16 @@ static u32 rk3588_get_mipi_port_mux(int vp_id)
+ 		return 0;
+ }
+ 
+-static u32 rk3588_get_hdmi_pol(u32 flags)
++/*
++ * The HDMI sync polarity bits in GRF_VO1_CON0 are set for an active low
++ * (negative) sync.
++ */
++static u32 rk3588_get_hdmi_pol(u32 polflags)
+ {
+ 	u32 val;
+ 
+-	val = (flags & DRM_MODE_FLAG_NHSYNC) ? BIT(HSYNC_POSITIVE) : 0;
+-	val |= (flags & DRM_MODE_FLAG_NVSYNC) ? BIT(VSYNC_POSITIVE) : 0;
++	val = (polflags & BIT(HSYNC_POSITIVE)) ? 0 : BIT(HSYNC_POSITIVE);
++	val |= (polflags & BIT(VSYNC_POSITIVE)) ? 0 : BIT(VSYNC_POSITIVE);
+ 
+ 	return val;
+ }
 
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
+-- 
+2.55.0
 
 
 
