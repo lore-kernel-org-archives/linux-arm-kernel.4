@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730DA60A381A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34B260A263D
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CGrfeOCM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UGNbK/tx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f2nEQFWe;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LXCdf5Oh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=s1Qj21qpcNfOQIR9sV5LF1bI2tlwUQfLEP8RYtsxPDs=; b=CGrfeOCMmEou3RP/3J0bqYe7Va
-	+iwp3LMZgChAta5uMWgqYDW7IpUql+Y4nHaV86ORORrPAeXnFhmKmEgZvIA6v4SFw1TWzNFhhL7aN
-	Jpxc14NIXu6IT03V+tkn7lQq1erxCr5lowQwsr5TkurB7uXTPUZAq0zyzrrc+vbV2YpbJ+7TMDM6C
-	32NLsnbMhtq7bKcY7D2u0hOxEMFcuIzfzXUH2YpZDSqnsgxaH/tMwmVLKrtGPVJ8je38Fl5pr25jq
-	kWzT0sWXyyw3ivdTS9ylY+M8ioxp6hNEZ6zy+yqfl23DQFTO6m3b2wmLk8pwRqXy0FEIw1vvU0fYb
-	8lfcKluw==;
+	bh=xf9jjECCHCJTLAEiaGfeK99eKdy6RyIXv+cYpPJ4C2s=; b=f2nEQFWeghjhNLOW8DN0A0TVTC
+	sB67/6PA80gNgFZIOFJVjInjQs9Yg7LTAnX+qn7cgEVtVxtOrcbPPA3BLkduwxYMociXLtLcPqGay
+	Ak96e2IIUbn/GPlFzBlsSfQXuC7AcIGV1EpxnfTZpGt+TMquCQwkPo2326GTvHtKgvuUgGoRjqVJI
+	anNu4xmoo0B8m6G2tJ5pZ/XT4bggEVT13IaFaaNMyXd+T4N7g7a3jkozyu6ltsTGbCawaxNGPOvIA
+	gNpr1MsiaMQj3A2CqndyTV7TYbtCUgFvmefNQzbloUoku1+mq8bWbQC+7Mj7NAgGUzxfCy5HsUR9I
+	rFjUDVug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg8k-00000002rLR-31SK;
-	Tue, 10 Nov 2026 07:19:34 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQg8h-00000002rFY-1ckW;
+	Tue, 10 Nov 2026 07:19:31 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQg83-00000002qE7-3zKz;
+	id 1xQg83-00000002qDp-46TK;
 	Tue, 10 Nov 2026 07:18:52 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AAE5F40D3F;
+	by tor.source.kernel.org (Postfix) with ESMTP id 6A0AB637C1;
 	Tue, 10 Nov 2026 07:18:51 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794295131;
-	b=UPf/O/mkvy/p1Kd/66N+4cpHujxHyh6uh1OkAqheW9RJ0H8k+7/6vLKR5H/7NJcKzgWA
-	 K2tjP+hZFd0yC191EzhcGKE8v+xG42MTkT1oSe8sT+mQZ1YKXqtdk4ANxofwk5LyxGisH
-	 EufH32IfymM07PRL3w+u7UYPeGodYvCSpg8yz+u2jmcbrxgGN0IRM+/QNpSehLszQczm1
-	 IPBjoTqwKnF4G72O1BJKP6Cfq9ZDNhxu33HroSFp24Ps2rEr8GeXPPER+8LGQ/cmZQXdD
-	 G8iCMtwfrtF9xhnsg/LzcJlgdhFN/0KFBzFRLWIkPrIoTdwJG3VT8tFc6dPdWmiToug==
+	b=0LCTCimwYOuMsdudMrR/ZAsyxWartm9GN8T+0glBjNV9J0bgXN6cclQ19t0Ks96WWDrH
+	 NKJwdsm064BGzjEy2OJoLAyO8qNksFy35izdy1GX9gQSNUmyQNVLs0nBCVXcCq5uWgKkB
+	 cii5oOc272gO8eG850ApS5BihOomcbZ/N3RBuS86BLUpb6QK1YowoSgjFMYL8/hwCDieX
+	 HBa4Uq9Jalf3O7R5sF8Xdyod6w5863hhEIxNBNKymDywr9UStbAB0uzGjMyRIZmeRZusc
+	 LjiLAjHw2cFfgV6dm5QmdWW4UX8fcZJj4HtAd0ECxiHfuKCOFbrMj7Yabrck62YBDmg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794295131;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=s1Qj21qpcNfOQIR9sV5LF1bI2tlwUQfLEP8RYtsxPDs=;
-	b=V6lWrytmgxxxqJ3AG39f3EfEDkZo6Tl38jTkJlU2uFQY739HK1QeYxqP08MiBO2M1kyr
-	 R56rtk2sWvK0SxgK4ooFNx0kPK0kdZxwkaP5xbdwauAenu3TBJiXJT+p4VHe3Np4acNj7
-	 I1GIbYVX4AV1wjmQWW97y3vErOX13ltZim7MaM+5lNZpF2k2+MfhWwordm2yy/BD51+Et
-	 pH1oe1pIXjZ7c8EAMowlg14mo2lRIGPic2ao6I9mkrYVmj5IEBTWYDHcj7suhPLk4PQDR
-	 1SaUC6pffb2BcUcmN5eG/v3stcmki65Syn3ooBd3hfypOW5sGit8FX6uY8ehPcMa3BQ==
+	bh=xf9jjECCHCJTLAEiaGfeK99eKdy6RyIXv+cYpPJ4C2s=;
+	b=SgPa0D72IGrh28kE1wJYMhLIahJoIqS2GhS3A14Ay1woB691KxkLJkhqBJemPMfBhOM0
+	 YoOUOr5CkhGRnHtqrsw0TtHRBZ7QMGyDsUBSekPeG6e+j2caSrSU62VIzML6QfRwbpMjr
+	 AV0PYJejr+QNjWPptJEOG6jZDCIEIEnLmlV0Uh1764FMTMTUgBt11OGP9CWt9k0HrJpla
+	 q9m80RLKp8V0P911Cq7BO3pZjkrZQzfOlltdIlMf31BZcAyzHuYbZ+LXTKZ2OKaXmrMot
+	 SmpH9yoW5mhMOXKwLfIj4K4QpR3v5QuRgmX2rnrD2FL1qdvm4EFSKgPT+ZEB9Gi+quA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 3CF741F008BD;
+	by smtp.kernel.org (Postfix) with ESMTPS id 2B0771F008A6;
 	Tue, 10 Nov 2026 07:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794295131;
-	bh=s1Qj21qpcNfOQIR9sV5LF1bI2tlwUQfLEP8RYtsxPDs=;
+	bh=xf9jjECCHCJTLAEiaGfeK99eKdy6RyIXv+cYpPJ4C2s=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=UGNbK/txuqVf6E1Mv/kZl5sGy+RvaUn8GR+u7bMds9gRg38xEoshXywzIXdmHYG12
-	 qxY6ZsAtN1uzoiY4uAVQUg9bJ89dI9v/uj5wSCkQMhJqyZihIRXk9dHpA0KNe4TxAI
-	 JeA90Kve/aboBTWRPqIW1vn45Ro9D7aaczPw6DZWCj55+mG+lkS6bj7tMvhafSJDN7
-	 6clkwDJacmWRPMHBFGQaFGWtuLafMxpifGyDxJpJPO0I8UuROiTE615e9v19qcfIFa
-	 aDctrn1TZbACBjrMooLummV4KsQlV8HuBGOzI1GGlZxrXcVXNXJuzI04i5pI89PIQR
-	 2ZzVyVuXXmVCw==
+	b=LXCdf5OhoTAyo43LI6ESJV/6YH2EQlk10j6+fXkgX80i1vn6mwRVfDWSC1DwUQqIG
+	 ysqs1DPMYc7Ly0uGAo1gYhfMlrTPxKZ0tAQV+KkZn3BljTD30/2v9zHxXaSD2zV9AN
+	 MqOsiff4NNvmsL2mH58n/+rslk6D30aD9FVhdh5VO8GDnKEKePkOVR6xBj+J29AFnH
+	 kwM7pr/7XpR9vYJMwN839T6lKbwGXzY35J9+dlnqZVJFwJL4mVG7ydOV0ORTkUxTrL
+	 vdwsGDrltwn3CQZ7clUcZOE+qsSa2vNi7k1a2HX0JUcgs4QoPTVEFMsne4IgSLy7jJ
+	 K71ox7665UOBg==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C622D489B9;
+	by lkml.kernel.org (Postfix) with ESMTP id B4686489B8;
 	Tue, 10 Nov 2026 07:18:49 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 07:18:50 +0000
-Subject: [PATCH 2/8] drm/rockchip: vop2: Fix the HDMI sync polarity on
- RK3588
+Date: Tue, 10 Nov 2026 07:18:49 +0000
+Subject: [PATCH 1/8] drm/rockchip: vop2: Don't use uninitialised dividers
+ on RK3588
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-vop2-fixes-v1-2-d336e9dd90d3@gmail.com>
+Message-Id: <20261110-vop2-fixes-v1-1-d336e9dd90d3@gmail.com>
 References: <20261110-vop2-fixes-v1-0-d336e9dd90d3@gmail.com>
 In-Reply-To: <20261110-vop2-fixes-v1-0-d336e9dd90d3@gmail.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -92,11 +92,11 @@ To: Sandy Huang <hjc@rock-chips.com>,
 Cc: dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295129; l=1785;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794295129; l=2150;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=/jrSLrVkUlalHW0TPexjIwQp3BO194HjqfgHRaS4qLM=;
- b=HnWtJTR8ePkQiIPst0zqwNylcoBjEN4hJ2NMs1vb6p/D3dePg6kgqqaeDFKfjYqV5fqLL4PTw
- M0pNS36M2UzBZFvNVCTyoEy3Qc/sfBBXs8yb23ZIESbzqYckL4pb84j
+ bh=+pfuSp1M99YrjvoyOVjakpSrJdneJ0OxzWPX/oIDiA8=;
+ b=Ijs7lPZRCA6KdrR800EY6IwB81foe4E/RT1X3/IF8fwrzC3MnaeOGjcesbSuRis4oavX3TfY1
+ ArfuXNwoZzbBKfToIyuwcVmpEGLigdMXgYvf1tYYxONrIeTigZJTUNV
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -124,49 +124,54 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-rk3588_set_intf_mux() passes the POLFLAG bits of the mode to
-rk3588_get_hdmi_pol(), which decodes them as DRM mode flags: the
-VSYNC_POSITIVE bit is taken for DRM_MODE_FLAG_NHSYNC and POLFLAG_DCLK_INV
-for DRM_MODE_FLAG_NVSYNC. As a result GRF_VO1_CON0 marks the HSYNC of
-every +HSync/+VSync mode (e.g. all 1080p, 2160p CTA modes) as negative
-and both syncs of -HSync/-VSync modes (e.g. 720x480, 640x480) as
-positive.
+rk3588_calc_cru_cfg() converts all four dividers to their register
+encoding with ilog2(), but only sets the ones the interface uses:
+dclk_out_div is left uninitialised for HDMI, eDP and DPI, and
+if_pixclk_div/if_dclk_div for DP and DPI. The garbage is then written to
+RK3588_VP_CLK_CTRL; on an Orange Pi 5 the dclk_out divider of the HDMI
+video port reads back as 3 (/8) in every mode.
 
-The bits in GRF_VO1_CON0 are set for a negative sync; that is how the
-vendor kernel programs them (vop2_get_hdmi_pol(), called with the mode
-flags, sets them for DRM_MODE_FLAG_NHSYNC/NVSYNC on RK3588). Decode the
-POLFLAG bits accordingly.
+Start all dividers at 1. dclk_out only feeds DP and MIPI (and HDMI with
+DSC, which is not supported), so for the other interfaces keep it at the
+dclk_core rate, as the vendor kernel does for HDMI with DSC, instead of
+letting it run at the full DCLK rate.
 
 Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-index 659fd0a3ab63..7c48b440cb29 100644
+index c44648e1bc0d..659fd0a3ab63 100644
 --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
 +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-@@ -1687,12 +1687,16 @@ static u32 rk3588_get_mipi_port_mux(int vp_id)
- 		return 0;
- }
+@@ -1579,6 +1579,15 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+ 	unsigned long if_pixclk_rate;
+ 	int K = 1;
  
--static u32 rk3588_get_hdmi_pol(u32 flags)
-+/*
-+ * The HDMI sync polarity bits in GRF_VO1_CON0 are set for an active low
-+ * (negative) sync.
-+ */
-+static u32 rk3588_get_hdmi_pol(u32 polflags)
- {
- 	u32 val;
++	/*
++	 * Not every interface uses every divider: dclk_out only feeds DP and
++	 * MIPI, the interface dividers are unused for DP. Start from 1 so that
++	 * no divider is left uninitialised when its value is converted below.
++	 */
++	*dclk_out_div = 1;
++	*if_pixclk_div = 1;
++	*if_dclk_div = 1;
++
+ 	if (vop2_output_if_is_hdmi(id)) {
+ 		/*
+ 		 * K = 2: dclk_core = if_pixclk_rate > if_dclk_rate
+@@ -1648,6 +1657,9 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+ 	}
  
--	val = (flags & DRM_MODE_FLAG_NHSYNC) ? BIT(HSYNC_POSITIVE) : 0;
--	val |= (flags & DRM_MODE_FLAG_NVSYNC) ? BIT(VSYNC_POSITIVE) : 0;
-+	val = (polflags & BIT(HSYNC_POSITIVE)) ? 0 : BIT(HSYNC_POSITIVE);
-+	val |= (polflags & BIT(VSYNC_POSITIVE)) ? 0 : BIT(VSYNC_POSITIVE);
- 
- 	return val;
- }
+ 	*dclk_core_div = dclk_rate / dclk_core_rate;
++	/* An unused dclk_out must not run faster than dclk_core */
++	if (!vop2_output_if_is_dp(id) && !vop2_output_if_is_mipi(id))
++		*dclk_out_div = *dclk_core_div;
+ 	*if_pixclk_div = ilog2(*if_pixclk_div);
+ 	*if_dclk_div = ilog2(*if_dclk_div);
+ 	*dclk_core_div = ilog2(*dclk_core_div);
 
 -- 
 2.55.0
