@@ -2,94 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6477B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 06:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC9AA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 06:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=T5Bcb5bQ;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=hHv2ryKU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zn+txvRF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RuePcgnq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cb7nq1igl8hjGZd6Q7sjhu2jG9fgOV2JfLPhKUQGV+M=; b=T5Bcb5bQcJeezq8YWkcI8JpnrX
-	RWAk/YkHov/vt0pVyUy7YmjWI5VXrfhlbwHlQk9flwb0f0CHwaNoNt3HmhbZRTRN2NWVdRbwGz5uI
-	L21jFCUMeUpFgdrjHqqkmKZ4XolTXBv23l0Zfist4dN+LXqlJxL3fwcqyqDkTA5Ufn9e0iWUcfeSN
-	mx6tIJJPs8SVRHTLKUeuK2A9Jayhy3TWcowPLVw/8NDcVpSu+KWvHbqaYxINOS47cCm+HSGOodPPt
-	4CaMK8DAZ7HJVLZ264rsczNuNFFySLL97PLAedxqOfJneRTVentBO80444P5JSkDEc0Zve22WmBb4
-	IV8jBoXQ==;
+	bh=4uDag57MGMHKoDnL2fBg4X/AmVbZNFgXOIQxpE7QZXU=; b=zn+txvRFzdrnKsL+ug+fgtAYWu
+	BtiMmTfuyS1ZxZ1C5QjMIXpzUaC6F7Q87nsn+LsnuhORclRYLdtGX30ZMYEIhJ4KO7xTR73frz4xZ
+	5Llx3SL0LOft4Ga9Ygc80NsLFJbd/SohfjvqLyW5RjhghZm3MOwiFVUxuxvf96yU7ScGasf9TLQys
+	uTvzur2bmnpYGZTJa641cWkS8rWqk2F6cnPM3CW4mL2B2SIGQJwR9MlCloYW9HKlAQOSAzXyId0ZY
+	a1w7rOZ7SPnFdZQcujGyCXyBQ0q3W+uJT1o3mPlsmiCp09TBu24OERJo2829kK6f4EMxxYChWhvcK
+	2n8MbDBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe05-00000002Ris-35KP;
-	Tue, 10 Nov 2026 05:02:29 +0000
-Received: from mail-ed1-x545.google.com ([2a00:1450:4864:20::545])
+	id 1xQewh-00000002abc-2yQS;
+	Tue, 10 Nov 2026 06:03:03 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdzs-00000002RL9-2pmp
+	id 1xQewg-00000002abN-2q7D
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:02:21 +0000
-Received: by mail-ed1-x545.google.com with SMTP id 4fb4d7f45d1cf-6a99c6e4d78so994352a12.0
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794286934; x=1794891734; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=cb7nq1igl8hjGZd6Q7sjhu2jG9fgOV2JfLPhKUQGV+M=;
-        b=hHv2ryKUNkKjqPj23cmnW3iX8mUHw4Nc2qwY7OHDFZERwt7uT1KhxfufgBV6luwY5+
-         k1Z0RusSrSASA8Ym2FbKcAgvO/OkrYZLcs2ViGx6IAkVIVgthaD1yAQQapXpoLTx1X6w
-         GRRYMDTZB9yno2SMRR8mZ58RldrMvxP4sA2cy9PbBFg5JktFeSjOftFBOaOqzE3qYZXJ
-         garzaaQbP+5olA2/kRJ/3g3rHQOr7ppzYELJSZwbXa6h/OB5oiDBV99jWz9C6U85D86h
-         rA/JsNIMs6sBJV1Puj8pBJSnU9nE3FAQjR+YF7vS/BcividZ9eNxbjEE0GI+0DDgYWCz
-         qjcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286934; x=1794891734;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=cb7nq1igl8hjGZd6Q7sjhu2jG9fgOV2JfLPhKUQGV+M=;
-        b=vXKcG6NWvyNx48Y2nGrezZV2TePEALl8zJ6o+z3woKWUptW8GSYmGm6N6bQIe0SKFM
-         wd+rE+pVeB5FyaaB2VDZs4+kDJVtbP0CfYCHz9tV2g+ee8G2RBnwZRdpvAdU1RfLmIwB
-         yGfttJlMHt0B+7LXzfjbK2wvYHmiFyvlu5uCB+WNMwrTRV9miz74Qav6GsQ5M3xYbrWj
-         CdqA58TqmRwOnGKWEem2m0GbjdZks5PaW/eo8CxsxIvaSy7zrEuAvribCNLYwofruM82
-         R3qTW/K6Ok38ApdnnQKXpNrvD2FMLTBPqGiOMb05ERLBLsYjj4s/1YduvvnwaBqLha4q
-         liTQ==
-X-Forwarded-Encrypted: i=1; AL+hErHJKst01xBPgHtrYe8Bht8WcM+neetqZLrSyJr58lvSUg+qqhbON1d5b32Wahh4IwNXrdLUqoselCP5PZmHrH7u@lists.infradead.org
-X-Gm-Message-State: APuU4Z8KHYj39AkxJgbnK2rmkDQnvc2k5c3IYcQz+gyI6epY8z6dzNp5
-	v4nqnztuOHKxPHPrEDRsoslLH2gJ6EWuflpWjkWFaxWRNxjU5nRzAENA4aKnaPr5YfzwRs+3egc
-	DJEWPLihuHGp21K9R2w==
-X-Received: from edt12.prod.google.com ([2002:a05:6402:454c:b0:6b5:6cd3:e463])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:aa7:c6d5:0:b0:6a9:8863:ada4 with SMTP id 4fb4d7f45d1cf-6b7571c10acmr763572a12.3.1794286934091;
- Mon, 09 Nov 2026 21:02:14 -0800 (PST)
-Date: Tue, 10 Nov 2026 05:01:51 +0000
-In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
+	Tue, 10 Nov 2026 06:03:02 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1B3C54066D;
+	Tue, 10 Nov 2026 06:03:02 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794290582;
+	b=VkOfEApsPgkSs/h68MlhU1wQ54tmRPHzEoAWFJcBYauK7DWob+5fd385Jn6EaGI9Nu+H
+	 PpiXfBWOspFsqnBqnMurprrN07u6jNwnMH0Bbd6LqxyRAXQIAK7PZkHJ7RyZKFQ452pIa
+	 6nd9t7O9Mt2vuw3hxAY7BLEcPfKDmzzB7vw8nvs3fyCL+qLme98eN/jsBg7FHT7rdFzTI
+	 FLahTzQjY9vWDjHzUkRvCwYnl5NByErZuOo6tiPZeJUgvmVUUF4Ta2Ixiilvcjq46JbHV
+	 R/j8XxmHKCQkz0xzUqW81Gzt+VrPPQYTPru++g76gVxjaUPZnG/LO5oTc7vtV6IkDdQ==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794290582;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=4uDag57MGMHKoDnL2fBg4X/AmVbZNFgXOIQxpE7QZXU=;
+	b=HMAfjdBtJsMKp5p6ueEP8rJArB+r8PsRzZTgFKWjPFJWYefzn+bmqbGfAfEM8vHB0Axn
+	 H7HQWl/rpbICNBcx14EXcFEjr7NJplQxxVaKLzhNUDRK2exa6ldulhosb73E4SJAE/hem
+	 ss0cZy85leuoptBzWOwTAoRqFMOzRDpwUVKy3l4dWHZRYkjJbeOjeGpaIxzr2yPrJenIx
+	 Q9BS5CB9qOb/AVToBkw8IlwRBo2PY7pSx3jMHLdJ1ziEvUWpObbbexrKPMiduZDi1Ng2w
+	 uFYX6a9FtS9YmTW+v8m7bU20EOKD7eAD9izHKXm98mG45+1JeXVX+KkPQmjS8X41tXg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3C3E81F0089F;
+	Tue, 10 Nov 2026 06:03:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794290581;
+	bh=4uDag57MGMHKoDnL2fBg4X/AmVbZNFgXOIQxpE7QZXU=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=RuePcgnqyfte1XHsFrVtjrcwYEeEMlrvEc5kHWsePiYiugAi4LVUrxeO3OTnt78gD
+	 lUNH10G/Ry6sIBtDsI19jyuodatX6x2tEv0eOxXvmlGhYxxQ0n4y3Xaiuwto05L3zQ
+	 2+lwcr5kcJ5eh7UJUk8B16BqQvYnqknzZ1kBABGH1NCziF6MgwoAL39chsPjFRVaOY
+	 G14AZJPYKmT0FaWn+2RuPYVi5uTReweH4enmmhJFsox8698BK+rUOSb7rga4uGnafR
+	 3uI2GJAnagTWcuqp0+2tJ68zpnOYVT83HIw631MRfinQQX0e+dTuxUJskZh74zgByg
+	 Yyi1Waj2/8V6Q==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 8CC5D488AF;
+	Tue, 10 Nov 2026 06:03:00 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Subject: [PATCH 0/2] clk: sunxi-ng: h616: Fix the EMAC 25 MHz and S/PDIF
+ clocks
+Date: Tue, 10 Nov 2026 06:02:59 +0000
+Message-Id: <20261110-h616-clk-emac-spdif-v1-0-e5e36e8963e4@gmail.com>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com>
-X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
-Message-ID: <20261110050202.529473-9-tarunsahu@google.com>
-Subject: [PATCH v4 08/19] kho: block: Add the feature header to blocks
-From: Tarun Sahu <tarunsahu@google.com>
-To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
-	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
-	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
-Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org, 
-	Tarun Sahu <tarunsahu@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_210216_915851_F3C1FC8B 
-X-CRM114-Status: GOOD (  34.80  )
-X-Spam-Score: -9.5 (---------)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQqDMAyA4VeRnBcwRQr6KrKDpumMOifNNgbFd
+ 7fbjt/h/zOYJBWDrsqQ5K2mj62ALhXwNGw3QQ3F4GrniajGyZNHXheU+8Boe9CIDRG3PsQxiIN
+ S7kmifn7X/vq3vcZZ+PldwXGc14sRa3cAAAA=
+X-Change-ID: 20261110-h616-clk-emac-spdif-411c96dfbde2
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794290580; l=1811;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=IFyI7JJ8fJLP5Ef3+9F0FXrHqe21a7ZPZU1S9cQpPE0=;
+ b=7owWMhF0E+ULMOrWbnsnk0mKjC9hdboYHaGDF3wJNwiCdTE7p9ICpEEDXmeEk4EgPmnUT4xre
+ P2q6cD2d5QxDg5AHxmameUabWmzoFT/46s8Ummp7LZinICao/MP2pvL
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,440 +114,58 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Subsystems using the KHO Serialization Blocks framework currently rely
-on whole-structure compatibility strings to validate serialized block
-sets across kexec. Any modification to the block structure layout
-constitutes a breaking change and breaks compatibility between adjacent
-kernels.
+Two small fixes for the H616 CCU, found while checking the clock tree of
+an Orange Pi Zero2 against the H616 user manual.
 
-Precede struct kho_block_header_ser with struct kho_ser_hdr using
-DECLARE_KHO_SER. Each block in a block set starts with struct
-kho_ser_hdr followed by struct kho_block_header_ser. Serialized entries
-start immediately after the header payload at offset fhdr->size.
-Block capacity is computed as (KHO_BLOCK_SIZE - fhdr->size) /
-bs->entry_size. Subsystems can append future block-level metadata under
-new feature indices without altering existing offsets.
+Patch 1 models the EPHY 25 MHz clock as PLL_PERI0 / 24, as the manual
+describes it. Only the parent and the reported rate change; the register
+writes are the same.
 
-On restore, the location of the first entry and the block capacity no
-longer depend on the caller. They are derived from the header size and
-entry size the source kernel serialized with, even if the target kernel
-structures have a different size. Fields that the source kernel did not
-serialize are absent: a subsystem must not access them unless the
-corresponding feature is present in the incoming header, as doing so
-reads memory outside the serialized data.
+Patch 2 lets the S/PDIF clock change the audio PLL rate, so the 44.1 kHz
+and 48 kHz families both get the right module clock. It is the H616
+counterpart of the H6 patch that was just applied [1].
 
-During restoration, blocks whose header does not fit the block are
-rejected, and the chain walk stops at such a block. Validate each block
-header and reject unknown required features.
+Tested on an Orange Pi Zero2 (H616) with a 7.3 kernel carrying both
+patches:
+- clk_summary shows emac-25m at 25000000 with pll-periph0 (600 MHz) as
+  its parent (200000000 below ahb3 before). The Zero2 uses an external
+  RGMII PHY on EMAC0, so nothing on this board consumes the clock; only
+  the clock tree was checked.
+- With the S/PDIF output enabled, the spdif clock is 24576000 Hz under
+  aplay at 48 kHz and 22579200 Hz at 44.1 kHz. I have no S/PDIF receiver,
+  so the output itself was not checked on the wire.
 
-Signed-off-by: Tarun Sahu <tarunsahu@google.com>
+These patches were developed with Claude (Anthropic) as a coding
+assistant. It investigated the problem and wrote the code and the commit
+messages; I reviewed them, and they were tested on an Orange Pi Zero2
+(H616) as described above.
+
+[1] https://lore.kernel.org/all/20261104185027.883011-1-jernej.skrabec@gmail.com/
+
 ---
- include/linux/kho/abi/block.h |  15 ++--
- include/linux/kho_block.h     |   8 +-
- kernel/liveupdate/kho_block.c | 144 ++++++++++++++++++++++++----------
- 3 files changed, 113 insertions(+), 54 deletions(-)
+Arun Iyengar (2):
+      clk: sunxi-ng: h616: Fix the EMAC 25 MHz clock parent and divider
+      clk: sunxi-ng: h616: Let the S/PDIF clock set the audio PLL rate
 
-diff --git a/include/linux/kho/abi/block.h b/include/linux/kho/abi/block.h
-index a40b0906c821..5f26c23506e9 100644
---- a/include/linux/kho/abi/block.h
-+++ b/include/linux/kho/abi/block.h
-@@ -28,6 +28,7 @@
- #include <asm/page.h>
- #include <linux/build_bug.h>
- #include <linux/kconfig.h>
-+#include <linux/kho/abi/feature.h>
- #include <linux/types.h>
- 
- /**
-@@ -40,14 +41,12 @@
- 
- /**
-  * struct kho_block_header_ser - Header for the serialized data block.
-- * @next:       Physical address of the next struct kho_block_header_ser.
-- * @count:      The number of entries that immediately follow this header in the
-- *              memory block.
-+ * @next:       Physical address of the next block.
-+ * @count:      The number of entries that follow the header in the memory block.
-  * @entry_size: The size in bytes of each serialized entry in the block.
-  *
-- * This structure is located at the beginning of a block of physical memory
-- * preserved across a kexec. It provides the necessary metadata to interpret
-- * the array of entries that follow.
-+ * This structure is located at the beginning of each block of physical memory
-+ * preserved across a kexec, preceded by &struct kho_ser_hdr.
-  */
- struct kho_block_header_ser {
- 	u64 next;
-@@ -55,8 +54,6 @@ struct kho_block_header_ser {
- 	u64 entry_size;
- };
- 
--static_assert(sizeof(struct kho_block_header_ser) == 24);
--static_assert(!IS_ENABLED(CONFIG_64BIT) ||
--	      __alignof__(struct kho_block_header_ser) == 8);
-+DECLARE_KHO_SER(kho_block_header_ser, 24, 0, 0);
- 
- #endif /* _LINUX_KHO_ABI_BLOCK_H */
-diff --git a/include/linux/kho_block.h b/include/linux/kho_block.h
-index 93a7cc2be5f5..776b57ae83bd 100644
---- a/include/linux/kho_block.h
-+++ b/include/linux/kho_block.h
-@@ -13,12 +13,12 @@
- 
- /**
-  * struct kho_block - Internal representation of a serialization block.
-- * @list: List head for linking blocks in memory.
-- * @ser:  Pointer to the serialized header in preserved memory.
-+ * @list:     List head for linking blocks in memory.
-+ * @fhdr:     Pointer to the serialized feature header in preserved memory.
-  */
- struct kho_block {
- 	struct list_head list;
--	struct kho_block_header_ser *ser;
-+	DECLARE_KHO_SER_HDR(kho_block_header_ser, *fhdr);
- };
- 
- /**
-@@ -63,7 +63,7 @@ struct kho_block_set_it {
- 	.blocks = LIST_HEAD_INIT((_name).blocks),			\
- 	.entry_size = _entry_size,					\
- 	.count_per_block = (KHO_BLOCK_SIZE -				\
--			    sizeof(struct kho_block_header_ser)) /	\
-+			    kho_ser_size(kho_block_header_ser)) /	\
- 			   (_entry_size),				\
- }
- 
-diff --git a/kernel/liveupdate/kho_block.c b/kernel/liveupdate/kho_block.c
-index 9b148009085e..20e85ce7fd5f 100644
---- a/kernel/liveupdate/kho_block.c
-+++ b/kernel/liveupdate/kho_block.c
-@@ -21,7 +21,9 @@
-  * append fields to an entry, so the kernel that writes a block and the kernel
-  * that reads it can use different entry sizes. The reader steps through the
-  * entries with the recorded size, so every entry is found, and it does not read
-- * beyond the recorded size of an entry.
-+ * beyond the recorded size of an entry. Fields appended to an entry are read
-+ * only when the feature header of the structure that owns the block set shows
-+ * them present.
-  */
- 
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-@@ -54,10 +56,13 @@ void kho_block_set_init(struct kho_block_set *bs, size_t entry_size)
- 	WARN_ON_ONCE(!bs->count_per_block);
- }
- 
--/* Serialized entries start immediately after the block header */
-+/*
-+ * The entries start at the size recorded in the block header, so this works
-+ * for blocks this kernel wrote and for blocks handed over by another kernel.
-+ */
- static void *kho_block_entries(struct kho_block *block)
- {
--	return (void *)(block->ser + 1);
-+	return (void *)block->fhdr + block->fhdr->size;
- }
- 
- /* Get the address of the serialized entry at the specified index */
-@@ -68,22 +73,23 @@ static void *kho_block_entry(struct kho_block_set_it *it, u64 index)
- 
- /* Free serialized data */
- static void kho_block_free_ser(struct kho_block_set *bs,
--			       struct kho_block_header_ser *ser)
-+			       DECLARE_KHO_SER_HDR(kho_block_header_ser, *fhdr))
- {
- 	if (bs->incoming)
--		kho_restore_free(ser);
-+		kho_restore_free(fhdr);
- 	else
--		kho_unpreserve_free(ser);
-+		kho_unpreserve_free(fhdr);
- }
- 
--static struct kho_block_header_ser *kho_block_alloc_ser(struct kho_block_set *bs)
-+static DECLARE_KHO_SER_HDR(kho_block_header_ser,
-+			   *kho_block_alloc_ser(struct kho_block_set *bs))
- {
- 	WARN_ON_ONCE(bs->incoming);
- 	return kho_alloc_preserve(KHO_BLOCK_SIZE);
- }
- 
- static int kho_block_add(struct kho_block_set *bs,
--			 struct kho_block_header_ser *ser)
-+			 DECLARE_KHO_SER_HDR(kho_block_header_ser, *fhdr))
- {
- 	struct kho_block *block, *last;
- 
-@@ -94,33 +100,38 @@ static int kho_block_add(struct kho_block_set *bs,
- 	if (!block)
- 		return -ENOMEM;
- 
--	block->ser = ser;
-+	block->fhdr = fhdr;
- 	last = list_last_entry_or_null(&bs->blocks, struct kho_block, list);
- 	list_add_tail(&block->list, &bs->blocks);
- 	bs->nblocks++;
- 
--	if (last)
--		last->ser->next = virt_to_phys(ser);
--	else
--		bs->head_pa = virt_to_phys(ser);
-+	if (last) {
-+		kho_ser_payload(last->fhdr, kho_block_header_ser)->next =
-+			virt_to_phys(fhdr);
-+	} else {
-+		bs->head_pa = virt_to_phys(fhdr);
-+	}
- 
- 	return 0;
- }
- 
- static int kho_block_set_grow_one(struct kho_block_set *bs)
- {
-+	DECLARE_KHO_SER_HDR(kho_block_header_ser, *fhdr);
- 	struct kho_block_header_ser *ser;
- 	int err;
- 
--	ser = kho_block_alloc_ser(bs);
--	if (IS_ERR(ser))
--		return PTR_ERR(ser);
-+	fhdr = kho_block_alloc_ser(bs);
-+	if (IS_ERR(fhdr))
-+		return PTR_ERR(fhdr);
- 
-+	kho_ser_init(fhdr, kho_block_header_ser);
-+	ser = kho_ser_payload(fhdr, kho_block_header_ser);
- 	ser->entry_size = bs->entry_size;
- 
--	err = kho_block_add(bs, ser);
-+	err = kho_block_add(bs, fhdr);
- 	if (err) {
--		kho_block_free_ser(bs, ser);
-+		kho_block_free_ser(bs, fhdr);
- 		return err;
- 	}
- 
-@@ -137,12 +148,12 @@ static void kho_block_set_shrink_one(struct kho_block_set *bs)
- 	last = list_last_entry(&bs->blocks, struct kho_block, list);
- 	list_del(&last->list);
- 	bs->nblocks--;
--	kho_block_free_ser(bs, last->ser);
-+	kho_block_free_ser(bs, last->fhdr);
- 	kfree(last);
- 
- 	new_last = list_last_entry_or_null(&bs->blocks, struct kho_block, list);
- 	if (new_last)
--		new_last->ser->next = 0;
-+		kho_ser_payload(new_last->fhdr, kho_block_header_ser)->next = 0;
- 	else
- 		bs->head_pa = 0;
- }
-@@ -203,6 +214,23 @@ void kho_block_set_shrink(struct kho_block_set *bs, u64 count)
- 		kho_block_set_shrink_one(bs);
- }
- 
-+/*
-+ * Payload of a block, or NULL if its feature header does not fit the
-+ * block. Used on handed-over blocks (restore, cycle check and cleanup)
-+ * to bound fhdr->size before the payload is used.
-+ */
-+static struct kho_block_header_ser *
-+kho_block_get_header_ser(const DECLARE_KHO_SER_HDR(kho_block_header_ser, *fhdr))
-+{
-+	if (fhdr->size < kho_ser_hdr_size(fhdr) +
-+	    offsetofend(struct kho_block_header_ser, entry_size) ||
-+	    fhdr->size >= KHO_BLOCK_SIZE ||
-+	    !IS_ALIGNED(fhdr->size, sizeof(u64)))
-+		return NULL;
-+
-+	return kho_ser_payload(fhdr, kho_block_header_ser);
-+}
-+
- /*
-  * kho_block_set_is_cyclic - Check for cycles in a linked list of blocks.
-  * Uses Floyd's cycle-finding algorithm to ensure sanity of the incoming list.
-@@ -211,28 +239,35 @@ void kho_block_set_shrink(struct kho_block_set *bs, u64 count)
-  */
- static bool kho_block_set_is_cyclic(struct kho_block_set *bs)
- {
--	struct kho_block_header_ser *fast;
--	struct kho_block_header_ser *slow;
-+	const DECLARE_KHO_SER_HDR(kho_block_header_ser, *fast);
-+	const DECLARE_KHO_SER_HDR(kho_block_header_ser, *slow);
-+	struct kho_block_header_ser *fast_ser;
-+	struct kho_block_header_ser *slow_ser;
- 	int count = 0;
- 
- 	fast = phys_to_virt(bs->head_pa);
- 	slow = fast;
- 
- 	while (fast) {
--		if (count++ >= KHO_MAX_BLOCKS) {
--			pr_err("Block set is corrupted\n");
-+		if (++count > KHO_MAX_BLOCKS) {
-+			pr_err("Block set exceeds max blocks: %d\n", count);
- 			return true;
- 		}
- 
--		if (!fast->next)
-+		fast_ser = kho_block_get_header_ser(fast);
-+		if (!fast_ser || !fast_ser->next)
- 			break;
- 
--		fast = phys_to_virt(fast->next);
--		if (!fast->next)
-+		fast = phys_to_virt(fast_ser->next);
-+		fast_ser = kho_block_get_header_ser(fast);
-+		if (!fast_ser || !fast_ser->next)
- 			break;
- 
--		fast = phys_to_virt(fast->next);
--		slow = phys_to_virt(slow->next);
-+		fast = phys_to_virt(fast_ser->next);
-+		slow_ser = kho_block_get_header_ser(slow);
-+		if (!slow_ser)
-+			break;
-+		slow = phys_to_virt(slow_ser->next);
- 
- 		if (slow == fast) {
- 			pr_err("Block set is corrupted\n");
-@@ -257,7 +292,7 @@ static bool kho_block_set_is_cyclic(struct kho_block_set *bs)
-  */
- int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
- {
--	struct kho_block_header_ser *ser;
-+	DECLARE_KHO_SER_HDR(kho_block_header_ser, *fhdr);
- 	u64 next_pa = head_pa;
- 	u64 entry_size = 0;
- 	int err;
-@@ -274,9 +309,25 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
- 	}
- 
- 	while (next_pa) {
-+		struct kho_block_header_ser *ser;
- 		u64 capacity;
- 
--		ser = phys_to_virt(next_pa);
-+		fhdr = phys_to_virt(next_pa);
-+		ser = kho_block_get_header_ser(fhdr);
-+		if (!ser) {
-+			pr_warn("Block has an invalid header size: %u\n",
-+				fhdr->size);
-+			err = -EINVAL;
-+			goto err_destroy;
-+		}
-+
-+		err = kho_ser_validate(fhdr, kho_block_header_ser);
-+		if (err) {
-+			pr_warn("Block header feature validation failed: %pe\n",
-+				ERR_PTR(err));
-+			goto err_destroy;
-+		}
-+
- 		if (!ser->entry_size || (entry_size && ser->entry_size != entry_size)) {
- 			pr_warn("Block contains invalid entry size: %llu\n",
- 				ser->entry_size);
-@@ -285,7 +336,7 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
- 		}
- 		entry_size = ser->entry_size;
- 		bs->entry_size = entry_size;
--		capacity = (KHO_BLOCK_SIZE - sizeof(*ser)) / bs->entry_size;
-+		capacity = (KHO_BLOCK_SIZE - fhdr->size) / bs->entry_size;
- 		bs->count_per_block = capacity;
- 
- 		if (!ser->count || ser->count > capacity) {
-@@ -294,7 +345,7 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
- 			err = -EINVAL;
- 			goto err_destroy;
- 		}
--		err = kho_block_add(bs, ser);
-+		err = kho_block_add(bs, fhdr);
- 		if (err)
- 			goto err_destroy;
- 		next_pa = ser->next;
-@@ -307,10 +358,12 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
- 
- 	/* Free the remaining un-restored blocks in the physical chain */
- 	while (next_pa) {
--		struct kho_block_header_ser *next_ser = phys_to_virt(next_pa);
-+		struct kho_block_header_ser *next_ser;
- 
--		next_pa = next_ser->next;
--		kho_block_free_ser(bs, next_ser);
-+		fhdr = phys_to_virt(next_pa);
-+		next_ser = kho_block_get_header_ser(fhdr);
-+		next_pa = next_ser ? next_ser->next : 0;
-+		kho_block_free_ser(bs, fhdr);
- 	}
- 	return err;
- }
-@@ -325,7 +378,7 @@ void kho_block_set_destroy(struct kho_block_set *bs)
- 
- 	list_for_each_entry_safe(block, tmp, &bs->blocks, list) {
- 		list_del(&block->list);
--		kho_block_free_ser(bs, block->ser);
-+		kho_block_free_ser(bs, block->fhdr);
- 		kfree(block);
- 	}
- 	bs->nblocks = 0;
-@@ -341,8 +394,12 @@ void kho_block_set_clear(struct kho_block_set *bs)
- 	struct kho_block *block;
- 
- 	list_for_each_entry(block, &bs->blocks, list) {
--		block->ser->count = 0;
--		memset(block->ser + 1, 0, KHO_BLOCK_SIZE - sizeof(*block->ser));
-+		struct kho_block_header_ser *ser =
-+			kho_ser_payload(block->fhdr, kho_block_header_ser);
-+
-+		ser->count = 0;
-+		memset(kho_block_entries(block), 0,
-+		       KHO_BLOCK_SIZE - block->fhdr->size);
- 	}
- }
- 
-@@ -371,6 +428,7 @@ void kho_block_set_it_init(struct kho_block_set_it *it, struct kho_block_set *bs
-  */
- void *kho_block_set_it_reserve_entry(struct kho_block_set_it *it)
- {
-+	struct kho_block_header_ser *ser;
- 	void *entry;
- 
- 	if (!it->block)
-@@ -384,7 +442,8 @@ void *kho_block_set_it_reserve_entry(struct kho_block_set_it *it)
- 	}
- 
- 	entry = kho_block_entry(it, it->i++);
--	it->block->ser->count = it->i;
-+	ser = kho_ser_payload(it->block->fhdr, kho_block_header_ser);
-+	ser->count = it->i;
- 	return entry;
- }
- 
-@@ -403,10 +462,13 @@ void *kho_block_set_it_reserve_entry(struct kho_block_set_it *it)
-  */
- void *kho_block_set_it_read_entry(struct kho_block_set_it *it)
- {
-+	struct kho_block_header_ser *ser;
-+
- 	if (!it->block)
- 		return NULL;
- 
--	if (it->i == it->block->ser->count) {
-+	ser = kho_ser_payload(it->block->fhdr, kho_block_header_ser);
-+	if (it->i == ser->count) {
- 		if (list_is_last(&it->block->list, &it->bs->blocks))
- 			return NULL;
- 		it->block = list_next_entry(it->block, list);
--- 
-2.56.0.506.g506a7eabc5-goog
+ drivers/clk/sunxi-ng/ccu-sun50i-h616.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+---
+base-commit: 280af24c860569000b375edda6436ba8e3ee4b3a
+change-id: 20261110-h616-clk-emac-spdif-411c96dfbde2
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
 
 
