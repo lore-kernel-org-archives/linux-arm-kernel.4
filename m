@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734BB60A3809
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5FD606BFE2
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FjtZPHYD;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MJTvVAlz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RAuFTw3M;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YXaKsWMV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0P8WydTp3FMq5jOmu5TOWCdQW00c3EBUBRA4Y9UXlr0=; b=FjtZPHYDNlNRaC
-	WBGJf5ml9RivuPX/moqPJ84DHEDy5q61vAQNuoVdct+bMPT4Ywo+jQAmLc5InUrOkUEn3yLQLTwkx
-	FPLyLeUZm87yljPxY9yY4+gk+w3crEWz3mRRL5PTB2d22nTa7cYa4+Eb+nWzXgmN3dlcp1qWKe4zx
-	nN1l/MYi/h1wJqt/Tm474JZc3BlMVtPrrUk9TjE3ijNdlD53vLmajM3l0fC21+cAVcXK7469riGJW
-	cVTs8o9haGp6MWhyDyR4SI7N3Lrnqvzrnpdt6F05C4d4ule4hxxG6ub+CSGCTtlivavpgJskU2wkG
-	mLv9uvux4xB1+KI4uu2Q==;
+	List-Owner; bh=x5xprZt5NhCzwKafxuBKE8lrYdP4CbowwmixO5skWSc=; b=RAuFTw3MU7/BSS
+	EtUNOffRH48824Q/f/8f8eYPCuavE9kcd9KNR6zRkJ5u69QJxJaTBRXxPN4JeLg7mS+rmjbaV3KM5
+	+rUCuKcb9mjkcOB9z+3IEUjY9LmKfJGOqYwbT2H2smV+XnFTNYhcDdV+CPp5CuubhDcugB5ko+bQ/
+	w2BE9zw2ZknYE9A9SNsZ+r3FOzNOHMLhg+vxtoKFjzfycubL7isnfKkYzLk8UR1BpbB2R9gFh3N7L
+	VXzbJ9AvPCpV3ZQQ2lvltQbySm1xCe0vH/tKjuTSU6ArE/++hBc2MuntgFojPR2hE2jHG/x2J1FuN
+	QmXIXawhFKqZVSak3vcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlhd-000000040Fv-0ZUQ;
-	Tue, 10 Nov 2026 13:15:57 +0000
-Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
+	id 1xQlhl-000000040JO-1sqK;
+	Tue, 10 Nov 2026 13:16:05 +0000
+Received: from mail-pj1-x1036.google.com ([2607:f8b0:4864:20::1036])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlhX-000000040De-229K
+	id 1xQlhj-000000040IN-2mSZ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 13:15:52 +0000
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-3b08cf16decso1290469a91.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:15:51 -0800 (PST)
+	Tue, 10 Nov 2026 13:16:04 +0000
+Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-3b09a83d12aso1360097a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:16:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794316551; x=1794921351; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794316563; x=1794921363; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=0P8WydTp3FMq5jOmu5TOWCdQW00c3EBUBRA4Y9UXlr0=;
-        b=MJTvVAlz7bI6ehmjDvFFJqStv15FMl2n7KldDHpK4lElSLk8UQ/oPmrsCKX3xVO9s2
-         24JPA9cCck9cIxbwYqgAPrql2kHxSu4m8uMFjF/+NJXpGIAi/jwgv5Ml1rRg7g8olwnF
-         6PNf44/MovR8h0If48Hqf4EHgJg+4+kPxctra3A6R81uD0WW/Kzo8w3Kx9pMF0ZH+Sx6
-         3ZDyVafS+agBzuF3caogtYcstmYV9HOkj0Csonk/YOYpZE9gSqWXlqekaEHxrRZkxtE4
-         URqCUoBN6JTPLUO7xmshsZkBaHR+IiINV9nNMa7v/oyMSwExuGQteUG7jZbQXLpoQq0L
-         6PkQ==
+        bh=x5xprZt5NhCzwKafxuBKE8lrYdP4CbowwmixO5skWSc=;
+        b=YXaKsWMVNHvJ7deRe6P+CaLLKeUVYd0BaabCVMy1IY7vC7MW7+4mQ8to0incGFrfnJ
+         BUyAfrpdKHv4f/sMFUcLKVYx+GX+p/8OLu7Fmm8OVaVH8D2TgyzyiGgDHSuUw7dmkznz
+         Qsa7DAJcOFb6z2IR+PeLVkxE6YvHYBkfeim3omeRnGTSk+SIrVDW0k047bI7p4uDO9LQ
+         DZajwnTHaWnquSa5jhafDwmzEzqPFD6sjJzGgUWyTX8mSv0L2NdYu/AKwigLojXSPJJs
+         VQi4L6pt7E7CbxlalA2yAQkIxtXZv68a03vDtSDXEn7+DtawUWJtWJDWo65AlAAe0rv6
+         x/tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794316551; x=1794921351;
+        d=1e100.net; s=20260707; t=1794316563; x=1794921363;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=0P8WydTp3FMq5jOmu5TOWCdQW00c3EBUBRA4Y9UXlr0=;
-        b=A2UEnEoZJ3qKDUn3A+vUoWbkmPmGaoYLMKBB1F2zwLRSS6yTojWnVGhCMpxjr8AsKX
-         0D/RB1KMJUiYf/s5kR6FRaPTVtsZmRUG+/5T4BmWRhDpKrgVMEMPmy4juODAYOHcI9r5
-         YZGC29PmQj/N2X2xFjJLBuC8FyvVIm+Zys6MB4FH3tU8WyfvSvka5hYJRFnQ1PAWUnap
-         /ACOGF72CXhEiKdkklkcrDRpC8jX5VJRJy3+bGwWqxxNMYEnfB/P62mIZ1jp/ljJ5NP+
-         JPhM43xpEawvhq9gBWtI6M1Qnoa2yAMTMGY0aodF5ox4/i9Q7MSQFDBvHn2PMFDy9wRk
-         7vqQ==
-X-Forwarded-Encrypted: i=1; AL+hErF0Lu1wtv+HvS5RJNjNXaUmbddTjvbBMAKrgOp25/qn1Be2A/TRJ6s69WtgRUKBeEzOETBAbqm0Thq7GbiiDraB@lists.infradead.org
-X-Gm-Message-State: APuU4Z/cNyfc3FRR5U6L0fgtAoo6rgUkpfeXPHnMlHaPQo7IU36ZTBaG
-	w15OT8efaEzVgoksEdcQlBkITZFlupPUQi4ksHWT4iPKFs3Y1p/lKhjM1dx8zg==
-X-Gm-Gg: AYBFou2fLCpxu8cTLovizTJzY5Hy4k9VAk7b2zDuVx6gJn7bxdyJqwr+FfKmfsMwarL
-	FNP/vuJ6hTem9gM7ko5aOFLi2GNNRtx4zeqVk82stQ87upAC5NzGHhT+zGob0IPRNDdFrtZuSVB
-	/ejBlr9tdxalptgVZQffbBpFKzclGp1SucWRm33VxyLpGCBmAJKMl8wze34uxPrD6TAPk6JXsPH
-	CwRcYJaQeQCVmHaae793Qydr3qRcdwERDhZ5EVTsuJuuv0k8JfSMz6qm8/7QPkfLqdZA7thRsHU
-	S7uQ8G/5uL8c2UZpQsmjv1eUFFxz3qlJgk0h1Lh65WXGMF+3ygrBqJZZwZ40bxLOYBubX2xDrJq
-	meKaFq+5l0fnxwYzWz7UI9ClwSBd7+E9FNcshjPIuNC98pDwrl3d8EnK/P67Y2Gcc+Cm2XDIfnm
-	4TG4zwA5VkEaTMa0Fgpf8ei1Gwn5JnAG+VJy6QG9Uy4i1+OZpqsf9mN5weR+juS6cyPPostVFzp
-	sKYDQXGXdwy1uzYVxNaxdmGkrptMJNNWukE/om6r3no9GyiLt+zF+LsASh7H8FJc8EuYQ+SoK8B
-	iIqaY5WsWvrrpcUgA+2R9ixd4g8iC1M=
-X-Received: by 2002:a17:90b:578f:b0:3b0:91ce:672e with SMTP id 98e67ed59e1d1-3b166c92430mr2883561a91.17.1794316550818;
-        Tue, 10 Nov 2026 05:15:50 -0800 (PST)
+        bh=x5xprZt5NhCzwKafxuBKE8lrYdP4CbowwmixO5skWSc=;
+        b=PyDec8yLsXKIc9OkY4EmYqgndJ/N1+7inlYDaMZVIKN/1wV6QYfzX/pJk1ZK9zE+nu
+         Qx/QQ2y91CyM9+BxMwN7tjCa249y3r6OrlRFBDhuikeWNClKbtjOGztpEkcuFENqSEeM
+         KVl4n/tRzg4UgUTrj6clKd5RU3hFmCFA5W8MqoE3Ot2j8usBSiqOtU+vtxalFiIrD52a
+         mguUR7XETTSuIe4nyRXrMGEkgdSqJB7E5/igLPiULCr4TGPBb2WXO6xbQyhHEaxTypQZ
+         0bL2GdIMX4MosPm1HFM8vrKThn1LJAm4ZqKLmu9RIO7B2dArd38re8ovNPqJlczAAivn
+         L9Xw==
+X-Forwarded-Encrypted: i=1; AL+hErE0ycUxEzYSLP3eJlcUWLgQtgn3FhKx2SlTkZIM9qibg3n3CtzV1Sez67L6zSm4/0O5BCBZuzHRriH7fVcunTaS@lists.infradead.org
+X-Gm-Message-State: APuU4Z9h3AWU+Sp+ZlgG9v+fZ3j02/oeSK6NVNuTK6ytdBJc7X1DGyf4
+	iL1hGZgbSgZN0t/sVlrLv3Sp/bOG8nKggnmLSCgFoLPWJbcfO10nFmDY
+X-Gm-Gg: AYBFou1ZOLN/dNSxmlq6IFDtnW+bvdxY3sz70klJ0GMilTy/dLZAuePN8sBjqx/0v2V
+	UD31ZkKG4Xm7P+Rn/pSnLyjbvj/UXyLSGxSq8xDhRLJlj4o6XlB/01No4fvpQEpQzm2IrJpECVo
+	Ita9DqZIkG1wfQ735ucB+Q/pZ9+KxO3pI3AE4/v8W8SUsaK0hzL3Ib8kLHaG62h2XdwQ2KIwHJe
+	WnddbGylNgjsOiCz4V17GcKrVut8FmKD86PgPVwVdFy7wTrUGmofOhU2FIVUhQdKLeqWB03pecI
+	nnnFh0W8TDToUuGfe7zd/lQJzwUJI5dFlG+odrxWltNFbKWUB0rHisR+J65Od0qL0rHHoTnoHic
+	5MWRnBbqvadq/ZcV3njHltsGpDSvX2f0Q33MqAnddxXNzrDEptvjFUPDCVjj+W5KjrnI2Xp24Ne
+	IO+MRavOdyHAU6X1V05458QoPdQPVVXrPFbX9rkuH1rpZtIyqZz9uHgbFL82wEeyJznk1RKds5c
+	1L3J5KV9/0xFbsvRlMeclCLzru39b5KhpzYUUZNf0FFm5HYxfSUUuNZpSCgg1nC2xS0msYeAMHR
+	QU8lgG1BcZoWY+HFvhTSf5ABElojE5mO
+X-Received: by 2002:a17:90b:4a87:b0:3a8:c0cd:57fb with SMTP id 98e67ed59e1d1-3b166cbd030mr2853475a91.42.1794316562378;
+        Tue, 10 Nov 2026 05:16:02 -0800 (PST)
 Received: from cryptic.lan ([2001:569:7077:be00:8191:2bfc:aa6d:704b])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b16769b589sm3806975a91.5.2026.11.10.05.15.50
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b16769b589sm3806975a91.5.2026.11.10.05.16.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 05:15:50 -0800 (PST)
+        Tue, 10 Nov 2026 05:16:01 -0800 (PST)
 From: Allen Pais <allen.lkml@gmail.com>
 To: Vinod Koul <vkoul@kernel.org>
 Cc: Allen Pais <allen.lkml@gmail.com>,
@@ -79,12 +79,15 @@ Cc: Allen Pais <allen.lkml@gmail.com>,
 	Arnd Bergmann <arnd@arndb.de>,
 	dmaengine@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Ludovic Desroches <ludovic.desroches@microchip.com>,
 	Frank Li <Frank.Li@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 04/33] dmaengine: at_xdmac: move irq bottom half to dmaengine BH
-Date: Tue, 10 Nov 2026 05:13:04 -0800
-Message-ID: <373d4fa23c4c5b9898a02ad7a0568ce1d828081d.1794315350.git.allen.lkml@gmail.com>
+Subject: [PATCH v4 08/33] dmaengine: imx-dma: flip per-chan tasklet to dmaengine BH
+Date: Tue, 10 Nov 2026 05:13:08 -0800
+Message-ID: <bb9ba66250d97a83048c5bcce45b20a1ea6ca6af.1794315350.git.allen.lkml@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1794315350.git.allen.lkml@gmail.com>
 References: <cover.1794315350.git.allen.lkml@gmail.com>
@@ -92,8 +95,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_051551_530306_65EA0845 
-X-CRM114-Status: GOOD (  15.89  )
+X-CRM114-CacheID: sfid-20261110_051603_715258_CCEA8B5D 
+X-CRM114-Status: GOOD (  14.84  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -120,69 +123,96 @@ the common scheduling and teardown mechanism.
 Signed-off-by: Allen Pais <allen.lkml@gmail.com>
 Reviewed-by: Frank Li <Frank.Li@nxp.com>
 ---
- drivers/dma/at_xdmac.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+ drivers/dma/imx-dma.c | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/dma/at_xdmac.c b/drivers/dma/at_xdmac.c
-index ef0dfe9d37ba..ae2ff7c0bd56 100644
---- a/drivers/dma/at_xdmac.c
-+++ b/drivers/dma/at_xdmac.c
-@@ -228,7 +228,6 @@ struct at_xdmac_chan {
- 	u32				save_cndc;
- 	u32				irq_status;
- 	unsigned long			status;
--	struct tasklet_struct		tasklet;
- 	struct dma_slave_config		sconfig;
+diff --git a/drivers/dma/imx-dma.c b/drivers/dma/imx-dma.c
+index ca1d08e90a06..a9d05b2e2205 100644
+--- a/drivers/dma/imx-dma.c
++++ b/drivers/dma/imx-dma.c
+@@ -145,7 +145,6 @@ struct imxdma_channel {
+ 	struct imxdma_engine		*imxdma;
+ 	unsigned int			channel;
  
- 	spinlock_t			lock;
-@@ -1754,9 +1753,9 @@ static void at_xdmac_handle_error(struct at_xdmac_chan *atchan)
- 	/* Then continue with usual descriptor management */
+-	struct tasklet_struct		dma_tasklet;
+ 	struct list_head		ld_free;
+ 	struct list_head		ld_queue;
+ 	struct list_head		ld_active;
+@@ -344,8 +343,8 @@ static void imxdma_watchdog(struct timer_list *t)
+ 
+ 	imx_dmav1_writel(imxdma, 0, DMA_CCR(channel));
+ 
+-	/* Tasklet watchdog error handler */
+-	tasklet_schedule(&imxdmac->dma_tasklet);
++	/* BH watchdog error handler */
++	dmaengine_schedule_bh(&imxdmac->chan);
+ 	dev_dbg(imxdma->dev, "channel %d: watchdog timeout!\n",
+ 		imxdmac->channel);
  }
- 
--static void at_xdmac_tasklet(struct tasklet_struct *t)
-+static void at_xdmac_tasklet(struct dma_chan *chan)
- {
--	struct at_xdmac_chan	*atchan = from_tasklet(atchan, t, tasklet);
-+	struct at_xdmac_chan	*atchan = to_at_xdmac_chan(chan);
- 	struct at_xdmac		*atxdmac = to_at_xdmac(atchan->chan.device);
- 	struct at_xdmac_desc	*desc;
- 	struct dma_async_tx_descriptor *txd;
-@@ -1860,7 +1859,7 @@ static irqreturn_t at_xdmac_interrupt(int irq, void *dev_id)
- 			if (atchan->irq_status & (AT_XDMAC_CIS_RBEIS | AT_XDMAC_CIS_WBEIS))
- 				at_xdmac_write(atxdmac, AT_XDMAC_GD, atchan->mask);
- 
--			tasklet_schedule(&atchan->tasklet);
-+			dmaengine_schedule_bh(&atchan->chan);
- 			ret = IRQ_HANDLED;
+@@ -390,8 +389,8 @@ static irqreturn_t imxdma_err_handler(int irq, void *dev_id)
+ 			imx_dmav1_writel(imxdma, 1 << i, DMA_DBOSR);
+ 			errcode |= IMX_DMA_ERR_BUFFER;
  		}
+-		/* Tasklet error handler */
+-		tasklet_schedule(&imxdma->channel[i].dma_tasklet);
++		/* BH error handler */
++		dmaengine_schedule_bh(&imxdma->channel[i].chan);
  
-@@ -2310,7 +2309,7 @@ static int at_xdmac_probe(struct platform_device *pdev)
- 		return PTR_ERR(atxdmac->clk);
- 	}
+ 		dev_warn(imxdma->dev,
+ 			 "DMA timeout on channel %d -%s%s%s%s\n", i,
+@@ -448,8 +447,8 @@ static void dma_irq_handle_channel(struct imxdma_channel *imxdmac)
+ 			imx_dmav1_writel(imxdma, tmp, DMA_CCR(chno));
  
--	/* Do not use dev res to prevent races with tasklet */
-+	/* Do not use devm resources to prevent races with the BH worker */
- 	ret = request_irq(atxdmac->irq, at_xdmac_interrupt, 0, "at_xdmac", atxdmac);
- 	if (ret) {
- 		dev_err(&pdev->dev, "can't request irq\n");
-@@ -2390,7 +2389,7 @@ static int at_xdmac_probe(struct platform_device *pdev)
- 		spin_lock_init(&atchan->lock);
- 		INIT_LIST_HEAD(&atchan->xfers_list);
- 		INIT_LIST_HEAD(&atchan->free_descs_list);
--		tasklet_setup(&atchan->tasklet, at_xdmac_tasklet);
-+		dmaengine_init_bh(&atchan->chan, at_xdmac_tasklet);
+ 			if (imxdma_chan_is_doing_cyclic(imxdmac))
+-				/* Tasklet progression */
+-				tasklet_schedule(&imxdmac->dma_tasklet);
++				/* BH progression */
++				dmaengine_schedule_bh(&imxdmac->chan);
  
- 		/* Clear pending interrupts. */
- 		while (at_xdmac_chan_read(atchan, AT_XDMAC_CIS))
-@@ -2451,7 +2450,7 @@ static void at_xdmac_remove(struct platform_device *pdev)
- 	for (i = 0; i < atxdmac->dma.chancnt; i++) {
- 		struct at_xdmac_chan *atchan = &atxdmac->chan[i];
+ 			return;
+ 		}
+@@ -462,8 +461,8 @@ static void dma_irq_handle_channel(struct imxdma_channel *imxdmac)
  
--		tasklet_kill(&atchan->tasklet);
-+		dmaengine_kill_bh(&atchan->chan);
- 		at_xdmac_free_chan_resources(&atchan->chan);
+ out:
+ 	imx_dmav1_writel(imxdma, 0, DMA_CCR(chno));
+-	/* Tasklet irq */
+-	tasklet_schedule(&imxdmac->dma_tasklet);
++	/* Schedule the IRQ BH */
++	dmaengine_schedule_bh(&imxdmac->chan);
+ }
+ 
+ static irqreturn_t dma_irq_handler(int irq, void *dev_id)
+@@ -592,9 +591,10 @@ static int imxdma_xfer_desc(struct imxdma_desc *d)
+ 	return 0;
+ }
+ 
+-static void imxdma_tasklet(struct tasklet_struct *t)
++static void imxdma_tasklet(struct dma_chan *chan)
+ {
+-	struct imxdma_channel *imxdmac = from_tasklet(imxdmac, t, dma_tasklet);
++	struct imxdma_channel *imxdmac = container_of(chan, struct imxdma_channel,
++						      chan);
+ 	struct imxdma_engine *imxdma = imxdmac->imxdma;
+ 	struct imxdma_desc *desc, *next_desc;
+ 	unsigned long flags;
+@@ -1142,7 +1142,7 @@ static int __init imxdma_probe(struct platform_device *pdev)
+ 		INIT_LIST_HEAD(&imxdmac->ld_free);
+ 		INIT_LIST_HEAD(&imxdmac->ld_active);
+ 
+-		tasklet_setup(&imxdmac->dma_tasklet, imxdma_tasklet);
++		dmaengine_init_bh(&imxdmac->chan, imxdma_tasklet);
+ 		imxdmac->chan.device = &imxdma->dma_device;
+ 		dma_cookie_init(&imxdmac->chan);
+ 		imxdmac->channel = i;
+@@ -1211,7 +1211,7 @@ static void imxdma_free_irq(struct platform_device *pdev, struct imxdma_engine *
+ 		if (!is_imx1_dma(imxdma))
+ 			disable_irq(imxdmac->irq);
+ 
+-		tasklet_kill(&imxdmac->dma_tasklet);
++		dmaengine_kill_bh(&imxdmac->chan);
  	}
  }
+ 
 -- 
 2.43.0
 
