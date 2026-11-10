@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D148606DE1D
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A378606B993
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cFnlu3WE;
-	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=Xc1z0BjF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jzKgq+hy;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=TNCFRS9K
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,35 +14,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=132X4kEugYv0DZ68KeYi71Q6KKe1Gy7rUBXRX5SCGWo=; b=cFnlu3WE1m6fUU0plx5miRiMy5
-	XVempdjZF0tUhxiEkRMvwsE47ym+Ec/8egBbbRgLOKUwG28tiKBPPe0TGTl93v4ufl/KsqoTWJwtc
-	ImnL2gjiLLsQleqQIA7HtE/oo4cxCJFwyIVd0asNdKJlwPG531zlPspfWP8ynPU8ZjcUjGWrRjavE
-	PD/bKYBdT9WxTSuzMLGKNdnp3eU+VQpD4e2kvE6wPzIS4ahunpXDmV+R62DND43U2L1XTwgAZ3+i5
-	CLo+ARkXqFdv15T7g8Sw6oIBU4bMiB/DGiRcRQnjJUT4mPaUgQBvpwtVDN4A8QTXzEuMwRw76yRr2
-	jvyJKCUg==;
+	bh=EhDjNoe3/JC0Wvq34jTb4Txp8C72674LsLZBKo4ri38=; b=jzKgq+hyC2PwNq2Npm76Pd8/xF
+	/l8pw6qnIx2hbfXR4FRaChHzUq1yBM3tZQl7vB/VfuEs/Mv+CLQ+VSe2nCXr9rtE7zAqH9BjWcUql
+	rA9T36+i0t7UczZqo34UEkvXojm81W510+ZWCLuoAToQ1h45A7TkMqXvzCWR0yL6u4yvjorBhrSPN
+	0W+j1CBs9Je/DZ28A2ud9vyhCqDlfacZehoDaqVqAUTVpUibx+4wNbDIBc0m6MpsO9bkW4yS7dJgg
+	+iVx180EGY7meUiTj4a8ClSBgmy7Hx3xcB6WEOX/GYzH3TFAiIyw462rMjvk51E4NEtK+o4GgMEBn
+	nhZK6QFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQj1y-00000003S3X-3s0h;
-	Tue, 10 Nov 2026 10:24:46 +0000
+	id 1xQj29-00000003S6l-0xGk;
+	Tue, 10 Nov 2026 10:24:57 +0000
 Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQj1p-00000003RxY-3mY5
+	id 1xQj1y-00000003S2f-2qih
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:24:39 +0000
+	Tue, 10 Nov 2026 10:24:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=132X
-	4kEugYv0DZ68KeYi71Q6KKe1Gy7rUBXRX5SCGWo=; b=Xc1z0BjFQqgkvGOLnR9+
-	OyhAU8VyWf7eyOFIGj24cvVLNQ5vmQv8+TXX1n8Ap2kUrVdmmYXmwMfah+ryYnuc
-	+ekewvukinYw3GkscbrpWqCCTe6N/GbrNg2o4DwoUdGhFHFr83C4wRo+9xawVXrI
-	BB/xRHXCHfBjwCuw/bUmUAMUQnZSs8nzEXDKUCIWBMoacmTMYS17z7jbJALehaeo
-	I/Ysu2pq2oWOaxDfYIJHrE+Gj9X0XrmjQsr+uUA44BG7zgDNpv4OlvZu+9+zIbKz
-	6N96RuRjCc51wBADleWnmTkT/i1wulxc+V7Tt5ClfKKyQL30Emu9u7Rx9Lo0y9bt
-	uQ==
-Received: (qmail 187945 invoked from network); 10 Nov 2026 11:24:35 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Nov 2026 11:24:35 +0100
-X-UD-Smtp-Session: l3s3148p1@xMwtfOlffIIujnsO
-Date: Tue, 10 Nov 2026 11:24:35 +0100
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=EhDj
+	Noe3/JC0Wvq34jTb4Txp8C72674LsLZBKo4ri38=; b=TNCFRS9K+hFp4Rdn4i0u
+	ltnPkaWkMoaqydg2WtduSpQ34JwM3o5hAunPza0rJ0+Me/aJc+YUUUTteWx5vBbd
+	xJ/MXF2iC+/sZixjVWv8RYDMNNAv/M9bF1H/w9KGgdPI9cCGt6jEp5h/HXhbLMn4
+	kuAzNSsaSyurbxWzChy+HzOiG6uPrhsqvhsq2UbLqLqiNlgpxie/aVPduwzN2PJ5
+	+jMwd8HXrVynOZ3V2fPayIXM6jiTno2QTKRGI9+fDqJn4Q7/Z5ZlP/hSmPxUcllT
+	NMb8ibdtlIDHaEz3yXy5ucxgIRJvcOWi2Lygae3YKRB6MZNzQAJImk56YbPuo3uF
+	1A==
+Received: (qmail 188051 invoked from network); 10 Nov 2026 11:24:44 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Nov 2026 11:24:44 +0100
+X-UD-Smtp-Session: l3s3148p1@tqO2fOlf8JsujnsO
+Date: Tue, 10 Nov 2026 11:24:44 +0100
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: Chen-Yu Tsai <wenst@chromium.org>
 Cc: Mark Brown <broonie@kernel.org>,
@@ -56,19 +56,19 @@ Cc: Mark Brown <broonie@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	chrome-platform@lists.linux.dev, linux-input@vger.kernel.org,
 	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 5/8] i2c: of-prober: Let cleanup op know if a device
- was found
-Message-ID: <avLw4zVtmr9WEQLR@shikoro>
+Subject: Re: [PATCH v7 6/8] i2c: of-prober: Defer regulator_disable() on
+ successful probe in simple helper
+Message-ID: <avLw7DllX_VM7wex@shikoro>
 References: <20261103043734.2179858-1-wenst@chromium.org>
- <20261103043734.2179858-6-wenst@chromium.org>
+ <20261103043734.2179858-7-wenst@chromium.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261103043734.2179858-6-wenst@chromium.org>
+In-Reply-To: <20261103043734.2179858-7-wenst@chromium.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_022438_237010_3F786299 
-X-CRM114-Status: GOOD (  11.91  )
+X-CRM114-CacheID: sfid-20261110_022447_021492_3D3FF2BF 
+X-CRM114-Status: GOOD (  21.28  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -88,14 +88,32 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 03, 2026 at 12:37:29PM +0800, Chen-Yu Tsai wrote:
-> The prober's cleanup op may want to do things differently if a device
-> was found, such as wait for the actual device driver to pick up
-> resources.
+On Tue, Nov 03, 2026 at 12:37:30PM +0800, Chen-Yu Tsai wrote:
+> When a I2C component is found, its device node is immediately enabled.
+> This triggers device creation and driver binding. The prober will hold
+> the regulator enable reference across this part. If the driver probes
+> synchronously, then it happens within this window. On the other hand,
+> if the driver probes asynchronously, there is a high chance that it
+> happens after the prober's cleanup function was called, in which case
+> the regulator would have been disabled when the driver's probe function
+> is called. This would then require the driver to wait 100 ms for the
+> hardware to reinitialize, even if the probe function was just a split
+> second late and the regulator was disabled a few milliseconds ago.
 > 
-> Add a parameter to the cleanup op to pass this information in.
+> Recently, some of the drivers for the components that are targeted by the
+> I2C OF component prober gained the ability to skip waiting for hardware
+> initialization if the regulator was left enabled. This happens when the
+> PMIC has them on by default, or if the component prober left them on
+> after probing the component.
 > 
-> Also fix up an incorrect reference in i2c_of_probe_ops's kernel-doc.
+> Tests on the Hana Chromebook showed that if the prober and trackpad
+> drivers are both builtin, then the time between the prober enabling the
+> device node and the trackpad driver asynchronously probing is between
+> 5 ms and 30 ms, though sometimes there are outliers exceeding 100 ms.
+> 
+> Wait 100 ms before dropping the enable refcount on our end so that the
+> actual driver has the opportunity to catch and increase the refcount on
+> their end.
 > 
 > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 
