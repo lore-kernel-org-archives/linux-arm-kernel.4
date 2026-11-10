@@ -2,68 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F61D606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCAF60A2602
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pAz9j5VX;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XwFeguy7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FbQ6C4n4;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=La2A6gWF;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Km80HaDa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=C5jgHy1nXhTFAfsOl+lfPzRSNERj7WQscjo2eO2ih+g=; b=pAz9j5VXRZsY+w/16BSiw5eNca
-	nEEXTXTQTpP2JNIPEKFarNc6QudbrGjvneu1mOdHzxrHqicessdnYOqDUrQOg8pHZwAX+saxikJhE
-	hSyr2u+RT0ruH3zEZo9WijpJ/UdZyfetwAOrJjh7vJyHdOwKA9JDGcHB61WK+TurPS8y3LEycZrrC
-	tbawppBDyaO/Zq1miLH7AaWI/T9FtA9tJ2vHrICk02NiOHDHhPAuxUJUdE7pKimw4BkqCvCOCrccN
-	raSedfMrQxxjOYvee6ol/3bcbAo4vbQm4ooAGprhAaHS/DKdCDjVRMFGbKDNmSF2CKBHfLEzGjkJW
-	Axrp4GRg==;
+	bh=G1amRx89cS3ZlVbqVl1dHUbx8H+yk0rGJ3ceJbcLO00=; b=FbQ6C4n4t86GiU9LQH69tpnpdH
+	oS+fxL3uGhJpzNxb5XHlcpfNKOP12U+Yxe4K02ViEQHSfdJZEuXS48dQCpqK7+TFIGUmMDGoT4Ap0
+	33LiK8p4xuuc4WUZXWbULe27XGJyjDfhfKHS5Gxz34V5dLZV4mCKPcm/nLX943JCOLRUov1y2VRaM
+	OkozamER9JHbZuvVJtm9rj2MGiZDpsp2HFNBXj+fl8UQrgDlD2bwmHYzz8CnEGX1TGyQMXlAcS6fW
+	Kby51C/9hI4YYmsRVJLltHAkkxHOjHFtnzKVmq1rZ7ZoGkdVfSsR53upgXbNh1gHb5+uer+4R87QO
+	2/Ep3XtA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQmIy-0000000484o-3nau;
-	Tue, 10 Nov 2026 13:54:32 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xQmMi-000000048du-3FwO;
+	Tue, 10 Nov 2026 13:58:24 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQmIw-0000000484c-39XA
+	id 1xQmMg-000000048ck-26U5
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 13:54:30 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CD5B66377C;
-	Tue, 10 Nov 2026 13:54:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 844621F0089F;
-	Tue, 10 Nov 2026 13:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794318869;
-	bh=C5jgHy1nXhTFAfsOl+lfPzRSNERj7WQscjo2eO2ih+g=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=XwFeguy7OAl2B0xbZEZf+YNpbRPun6Uxy12IDapJUugAkfnMkJMQWrACI3LnYamvS
-	 sZ7QpagwdZSe2JBSLE/lYuBRyfQnngmWmP6ZH3stPJyDv6Rg7qptN27/8L8uX1Fvf+
-	 zT2GiHGpAI8WdjU0Nx1Pyc+3Guh5HO2o5ewC8vA7wigAewUpzEcQIjSnGCAzyvJQ/v
-	 sVSxam0PSbINufDpdJBaTDu2mBq7kmD513kzL7LTM/dwxDYrdBxnLv7AHU6cqE86PR
-	 Sn4WjxxefUuJelWxydwRIVb6dHLsocUJGeARSLJdiZZ3duTvqAkZIZjq0ZH3306O78
-	 roJsnXIWaMIAw==
-Subject: Re: [PATCH net-next v9] net: stmmac: rework stmmac_rx to support XDP
- rx multi-buff
-From: netdev-bot+sashiko@kernel.org
-To: lorenzo.bianconi@oss.qualcomm.com
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, ast@kernel.org,
- daniel@iogearbox.net, hawk@kernel.org, john.fastabend@gmail.com,
- sdf@fomichev.me, Jose.Abreu@synopsys.com, boon.leong.ong@intel.com,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- bpf@vger.kernel.org, nb@tipi-net.de
-Date: Tue, 10 Nov 2026 13:54:28 +0000
-Message-ID: <179431886808.994134.6784700644892681429@kernel.org>
-In-Reply-To: <20261106-stmmac-rx-mb-v9-1-c099c923664b@oss.qualcomm.com>
-References: <20261106-stmmac-rx-mb-v9-1-c099c923664b@oss.qualcomm.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	Tue, 10 Nov 2026 13:58:23 +0000
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AABA8Nv2124815
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:58:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=G1amRx89cS3ZlVbqVl1dHUbx8H+yk0rGJ3c
+	eJbcLO00=; b=La2A6gWFhdCuJohKUxu+KrmPeXacK9C/vRy52ddkzfQArdz3LkV
+	MlP1tC3xCNUYgT0Quw84SY0o7eLeh8bemfL6wHXeAZpUaWQleiMGFU1pZvgkjjr6
+	Sq4OrmyZsd9lhdxXCbuUh4XIQaeI13M7Fz7GtMOApmWStgnKvP36D47x2Idgfr9E
+	o5TGRkq6Nv4ln3KY+9rn43RNZVbir11dQuqk9wkW0t1lC83LxKYV4UgVCYeCyPCN
+	t2gjCXnsDFeP1TSMVcVajpPxBzD20eoUMBKbPJVF08qaCbV1n/mgDDwXxh/r7N3i
+	vAUmWqzG+ISQ2ouVPFusHlm+Zt0H7yHIZ0A==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hunwkkdb4-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:58:21 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2ed276af91dso34174045ad.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:58:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794319100; x=1794923900; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=G1amRx89cS3ZlVbqVl1dHUbx8H+yk0rGJ3ceJbcLO00=;
+        b=Km80HaDaxrj53kTgMfZJmFQnCdDqE9vU89moWPXzd/HcARhR9/chSMUwmyndvNQUcj
+         vNhuetZlvDGi3RpDLcgSiA1EEG6xE2ePYXCoF25xifEvF/XYVlVuyZRY9KqjdGoEcpfv
+         tN7wEHGxSmSNDUX0nbP3AcLDMNneoebRE4TGKsu3ROWhrrmimQRiAGVXe+4pK8GfXcb3
+         oQ1v7knFPt6/6qQ1wX9+0ot2kv54+9ND4Y1PfWyZJfu6nW5EgQQzsKadBGR0s1c1VyeD
+         iZ3vkckkFrhgJxwIiLG/n6k0G0N6zgt95x96NHbCxOBnmMlk2xDQUjRM8wM7ynkAI+EW
+         BA+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794319100; x=1794923900;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=G1amRx89cS3ZlVbqVl1dHUbx8H+yk0rGJ3ceJbcLO00=;
+        b=PIYTZwn8iwwZsse3+wP5yRGJfkoutdUaGdizxWbm+WzlgWqV7xiHroSt0TlPY+vk31
+         l4kQLV2j3TqDLlNp9PpwsSRWEmuBeFbfRxJRVaN6JC3Dwb8B73f5nUnTiazfKBE2ebRH
+         wBznR7TPSWHTBlJCS94FCq888No42WEUtPhamCAY0M8Ory9L+2xZvQylUoo1YdCB8HTL
+         7PbL8QjQbjUf7h6cuAxUsewFYnXqy/I8OGYaaTFyo5243JXjm8l+uNxyVrnLjPnfLlRs
+         MfljY9XPInXgzVKPbw7vhprJUWOLhvEegrxb7paUdY+VFZwF2l61WBfiuDG8+eq/CT+m
+         2C2Q==
+X-Forwarded-Encrypted: i=1; AL+hErHQdV0A1Q6Fr6upHUVXh3ANgCiwkySHIChIcduG4vJsuiwK51x0Hjq6TyWXlHIgO6rka3Cskp2psQcCCQA6HDFV@lists.infradead.org
+X-Gm-Message-State: APuU4Z8aEl/AoX43PlbRIL56uc8VfEwLeJZyEhDUZWqJnyQu/fCUB38k
+	0itsp7vQwce2rfrfrkyssOXtCk3zL/gBQIp1IOOsAP0KudsmL2MMvj9GHOViPr+tLB0+JrCUMM2
+	GR1wFto1M46F6eSAl3Jrhso532FM1t9q4Dhzdl4Pz5dEj42t5D4K8nPsdWBf6t9sihtv5t6wZwI
+	b2iw==
+X-Gm-Gg: AYBFou3FsViH2+nJK42lW1iUEzAQC4NtkuXcnBdrdEFWMtCozcyu4OHplbZGSvbF41o
+	pQEgbBUiurdpGwGLsmhQnJPXL4wBvaNZVCG3Mu8s5VhN5H756nE5yoVBjfMLyWn7wAg6C9vPdtY
+	83m0/xelCzvhEQsDoMRfyh9zDYOQmPwnWZntqBpswehEC73wDjNiDalK7QNXLKalsIEsdCCoUtI
+	H86sKsWPVSQYiAf5fcLYyCHbwXzonkgqhgk3xmMK3OPAChjpX4dVQxLKerKgzUrOzOVDRjGqUGN
+	tqo4rtVSEqeUv5TXkohkFvPDey6pnabxJicBd57DMki+G2LD8Lk1jVHuVgMKgIQ2TLFUAmv0Z+b
+	98n2SmLjb/PtxkOzxGCwk48EmP7wKu3GNIhrXZ9n34sMAuOMFmyPvaRp1vVmqB2AmKD9upVjbEw
+	/g/wp8FxiBvmjUuwXXwO0915j2dGKdmMvPthebgg4=
+X-Received: by 2002:a17:90b:3ec5:b0:3a0:9c9d:eb18 with SMTP id 98e67ed59e1d1-3b166fd294emr2603108a91.54.1794319099631;
+        Tue, 10 Nov 2026 05:58:19 -0800 (PST)
+X-Received: by 2002:a17:90b:3ec5:b0:3a0:9c9d:eb18 with SMTP id 98e67ed59e1d1-3b166fd294emr2603098a91.54.1794319099224;
+        Tue, 10 Nov 2026 05:58:19 -0800 (PST)
+Received: from zhonhan-gv.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17da5c970sm36744a91.2.2026.11.10.05.58.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 05:58:18 -0800 (PST)
+From: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
+To: rafael@kernel.org, viresh.kumar@linaro.org
+Cc: matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+        andrew-sh.cheng@mediatek.com, rex-bc.chen@mediatek.com,
+        jia-wei.chang@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, zhongqiu.han@oss.qualcomm.com,
+        Sashiko <sashiko-bot@kernel.org>, stable@vger.kernel.org
+Subject: [PATCH] cpufreq: Skip inactive policies in cpufreq_driver_target()
+Date: Tue, 10 Nov 2026 21:58:14 +0800
+Message-ID: <20261110135814.621355-1-zhongqiu.han@oss.qualcomm.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: sSL6JQ1Xa4xjN_iFSTm_8rsbvPu_lS7Y
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA1NSBTYWx0ZWRfX+RS14HAQC2gR
+ B1Htqj3T9FogpzjtPAvT24xJ8iHCY356wN5BqVOKSZ5ZaW3mOLzp7XzoW2mtzhZNFntOvnQYnJe
+ uPEMvIu8cvVF7DF78A0ovIZ51NlN4Io=
+X-Authority-Analysis: v=2.4 cv=TOrQ2Fla c=1 sm=1 tr=0 ts=6af322fd cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=c92rfblmAAAA:8
+ a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=NN3j_4cKtzw3BXDvlvQA:9
+ a=GvdueXVYPmCkWapjIL-Q:22 a=GvGzcOZaWPEFPQC_NcjD:22
+X-Proofpoint-ORIG-GUID: sSL6JQ1Xa4xjN_iFSTm_8rsbvPu_lS7Y
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA1NSBTYWx0ZWRfXwDEciUuhHC5q
+ AQmjqm/v8OBSnKXxGXU/PNeW9+2jWPkjdxP+Yjhde+yIoXpE7gtZ176AncIzjiOO04SBhacg7dI
+ /19cZZjBqX5wH/HJWb2IXtzM6BicUC0S1SyPMpILyDZVtQproUbEKsWpkC09JY0OVZqarjFq1UB
+ m1tWhHlCHr0d/6aPthZvNoIdOnKFnChMZsme1JYJsz6yl4IyB37i8VIq/Da7i3xej1e02ja6SMX
+ 2lSXy5O6eKn+clTz69+cwt3AiG82DJs4uBdwIW+GODDS4OqRSqIdflRVEjUtqWQ9CvnoOFjHW08
+ 9CPVi05KPPY0aHFMLq8URCGO5GKCzH0BVFL5I1EEDmMNtWWH2o4Sw+B9Pa0LJvaD2QSXYggfXe3
+ pjWEBW67EwGG52PkDZObXUs6KNYfs4SKvD9JNxl0xmn7i+mSqbhIovqv/fcWe+h/Y4Z8NaRk795
+ heFXpihUOoDL5xWy56A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-10_04,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 adultscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
+ phishscore=0 clxscore=1015 spamscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611100055
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_055822_661696_E91E74D3 
+X-CRM114-Status: GOOD (  16.26  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,180 +147,78 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issue(s) to consider.
+A policy obtained with cpufreq_cpu_get() may become inactive before
+cpufreq_driver_target() acquires its rwsem, which may lead to a NULL
+pointer dereference:
 
-Critical: 0 · High: 0 (1) · Medium: 1 · Low: 1
+  CPU X                      CPU Y (last CPU in policy)
+  cpufreq_cpu_get()
+                             cpufreq_offline()
+                               __cpufreq_offline()
+                                 ->exit()  /* frees freq_table */
+                                 policy->freq_table = NULL
+  cpufreq_driver_target()
+    __cpufreq_driver_target()
+      __target_index()
+        policy->freq_table[index]  /* NULL dereference */
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+Before commit 2372784542cb ("cpufreq: Drop 'freq_table' argument of
+__target_index()"), __cpufreq_driver_target() returned an error if
+policy->freq_table was NULL. Since the offline path clears it under the
+policy rwsem, which cpufreq_driver_target() also holds, that check was
+sufficient to prevent the crash.
 
-- [Medium] The skb head truesize grows on every received frame, including
-  with no XDP program loaded, and the commit message does not say so.
-- [Low] The commit message overstates one change.
+The race has been reachable in-tree since commit c210063b40ac
+("cpufreq: mediatek: Add opp notification support"), which added the
+first caller of cpufreq_driver_target() that can run concurrently with
+CPU offline.
 
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but the patch
-  makes it wider.
+Address this by making cpufreq_driver_target() return -EBUSY if the
+policy is inactive after acquiring its rwsem, in analogy with the checks
+in cpufreq_get(), refresh_frequency_limits() and the sysfs show() and
+store() callbacks.
 
---
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://sashiko.dev/#/patchset/20261104153042.3987338-1-zhongqiu.han%40oss.qualcomm.com
+Fixes: 2372784542cb ("cpufreq: Drop 'freq_table' argument of __target_index()")
+Fixes: c210063b40ac ("cpufreq: mediatek: Add opp notification support")
+Cc: stable@vger.kernel.org # v5.19+
+Signed-off-by: Zhongqiu Han <zhongqiu.han@oss.qualcomm.com>
+---
+Fix the issue discussed at:
+https://lore.kernel.org/all/a4b320d9-ade6-4f39-9e9a-e9a82b13152e@oss.qualcomm.com/
 
-net: stmmac: rework stmmac_rx to support XDP rx multi-buff
+ drivers/cpufreq/cpufreq.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-This reworks stmmac_rx() to collect all the descriptors of a frame into an
-xdp_buff, so programs with frags support see the whole packet. On XDP_PASS
-the skb is built from the xdp_buff head and its fragments. The patch also
-saves the in-progress xdp_buff in rx_q->state across NAPI polls, advertises
-NETDEV_XDP_ACT_RX_SG, and strips the FCS with a driver-local tail shrink.
-
-> - carry the XDP metadata written with bpf_xdp_adjust_meta() into the skb
->   via skb_metadata_set(), so it is no longer dropped and TC/BPF programs
->   can read it through data_meta;
-
-[Severity: Low]
-Is this item accurate? The XDP_PASS path in stmmac_rx() already did this
-before the patch. The patch removes these lines from stmmac_rx():
-
--			metasize = ctx.xdp.data - ctx.xdp.data_meta;
--			if (metasize)
--				skb_metadata_set(skb, metasize);
-
-The same logic now lives in stmmac_build_skb().
-
-Metadata on linear frames was not being dropped before. The only frames
-that never got metadata were multi-descriptor or buf2 frames, and XDP mode
-dropped those outright. The commit message already covers that elsewhere.
-
-Could this item be reworded so it does not read as a fix for a metadata
-loss bug?
-
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index a2177777727ef..c215cc70caa19 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-
-[ ... ]
-
-> @@ -2290,10 +2294,6 @@ static int __alloc_dma_rx_desc_resources(struct stmmac_priv *priv,
->  			 SKB_DATA_ALIGN(sizeof(struct skb_shared_info));
->  	num_pages = DIV_ROUND_UP(dma_buf_sz_pad, PAGE_SIZE);
->  
-> -	rx_q->queue_index = queue;
-> -	rx_q->priv_data = priv;
-> -	rx_q->napi_skb_frag_size = num_pages * PAGE_SIZE;
-> -
->  	pp_params.flags = PP_FLAG_DMA_MAP | PP_FLAG_DMA_SYNC_DEV;
->  	pp_params.pool_size = dma_conf->dma_rx_size;
->  	pp_params.order = order_base_2(num_pages);
-> @@ -2321,6 +2321,10 @@ static int __alloc_dma_rx_desc_resources(struct stmmac_priv *priv,
->  	if (!addr)
->  		return -ENOMEM;
->  
-> +	rx_q->queue_index = queue;
-> +	rx_q->priv_data = priv;
-> +	rx_q->napi_skb_frag_size = PAGE_SIZE << pp_params.order;
-> +
-
-[Severity: Medium]
-Does this change the skb head truesize for every received frame, even when
-no XDP program is attached?
-
-Before the patch the head size was num_pages * PAGE_SIZE. Now it is rounded
-up to the page_pool allocation order, and skb->truesize is derived from it
-here:
-
-stmmac_rx()
-	bufsz = rx_q->napi_skb_frag_size;
-	...
-	xdp_init_buff(&ctx.xdp, bufsz, &rx_q->xdp_rxq);
-
-stmmac_build_skb()
-	skb = napi_build_skb(xdp->data_hard_start, xdp->frame_sz);
-
-On 4K pages, a dma_buf_sz of 8188 (BUF_SIZE_8KiB) gives num_pages = 3, so
-the head grows from 12K to 16K. A dma_buf_sz of 16368 (BUF_SIZE_16KiB)
-gives num_pages = 5, so the head grows from 20K to 32K.
-
-That shrinks the effective socket receive buffer for jumbo MTU users who
-never load XDP. The commit message calls out the fragment truesize change
-as a behavior change, but not this one. Should this be mentioned too?
-
-[ ... ]
-
-> @@ -5962,120 +6073,79 @@ static int stmmac_rx(struct stmmac_priv *priv, int limit, u32 queue)
-
-[ ... ]
-
-> +		skb = stmmac_xdp_run_prog(priv, &ctx.xdp);
-> +		/* For Not XDP_PASS verdict */
-> +		if (IS_ERR(skb)) {
-> +			unsigned int xdp_res = -PTR_ERR(skb);
-> +
-> +			if (xdp_res & STMMAC_XDP_CONSUMED) {
-> +				stmmac_xdp_put_buff(rx_q, &ctx.xdp, true);
-> +				rx_dropped++;
-> +			} else if (xdp_res & (STMMAC_XDP_TX |
-> +					      STMMAC_XDP_REDIRECT)) {
-> +				xdp_status |= xdp_res;
-> +			}
-> +			goto next;
-> +		}
-
-[Severity: High]
-This isn't a bug introduced by this patch, but multi-buffer frames can now
-reach XDP_TX, which makes it worse. Does XDP_TX completion recycle pages
-into this RX queue's page_pool direct cache from the wrong NAPI context?
-
-stmmac_xdp_xmit_back() picks the TX queue by CPU, not by RX queue:
-
-stmmac_xdp_get_tx_queue()
-	while (index >= priv->plat->tx_queues_to_use)
-		index -= priv->plat->tx_queues_to_use;
-
-Completion then runs in that channel's tx_napi:
-
-stmmac_napi_poll_tx()
-  stmmac_tx_clean()
-    xdp_return_frame_rx_napi(xdpf)
-      __xdp_return(..., napi_direct=true)    /* head and every frag */
-        page_pool_put_unrefed_netmem(..., allow_direct=true)
-          page_pool_recycle_in_cache()
-
-stmmac_tx_clean() {
-	...
-		if (xdpf &&
-		    tx_q->tx_skbuff_dma[entry].buf_type == STMMAC_TXBUF_T_XDP_TX) {
-			xdp_return_frame_rx_napi(xdpf);
-	...
-}
-
-When allow_direct is already true, page_pool_put_unrefed_netmem() skips the
-page_pool_napi_local() check. That means pool->alloc.cache and
-pool->alloc.count are updated without a lock.
-
-The tx_napi is a separate NAPI instance from the rx_napi that owns the
-pool. Meanwhile the owning rx_napi can be on another CPU running
-stmmac_rx_refill() or the allow_direct=true puts in stmmac_xdp_put_buff(),
-stmmac_build_xdp_frags() and stmmac_xdp_shrink_tail().
-
-Can this corrupt the alloc cache? If so, the same page could be handed to
-two RX descriptors, or recycled while an skb still holds it.
-
-The race dates back to XDP_TX support. With this patch, though, each
-XDP_TX frame can push the head plus several fragment pages down this path.
-Would returning XDP_TX frames with xdp_return_frame() in stmmac_tx_clean()
-avoid this?
-
+diff --git a/drivers/cpufreq/cpufreq.c b/drivers/cpufreq/cpufreq.c
+index 54dde8419bdc..352ee4a1f085 100644
+--- a/drivers/cpufreq/cpufreq.c
++++ b/drivers/cpufreq/cpufreq.c
+@@ -2403,6 +2403,14 @@ int cpufreq_driver_target(struct cpufreq_policy *policy,
+ {
+ 	guard(cpufreq_policy_write)(policy);
+ 
++	/*
++	 * The last CPU in the policy may have gone offline after the caller
++	 * obtained it, in which case the policy is inactive and must not be
++	 * used for changing the frequency.
++	 */
++	if (unlikely(policy_is_inactive(policy)))
++		return -EBUSY;
++
+ 	return __cpufreq_driver_target(policy, target_freq, relation);
+ }
+ EXPORT_SYMBOL_GPL(cpufreq_driver_target);
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261106-stmmac-rx-mb-v9-1-c099c923664b%40oss.qualcomm.com
+2.43.0
+
 
