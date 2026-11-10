@@ -2,71 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3940606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:02:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE50606A325
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ma+n7eMT;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=FKqPN9Vg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zsL24N/3;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QbZk5ay6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=eSLFMl2R3lB8+9pIKfTRq+QhKw80CpshDdlYvBLLhiE=; b=Ma+n7eMT8pIJezwGla3sG0FezB
-	zQus1PsOr0Lk6s+7FbECyQ9dv0+kMEe06L5hrdd3RWIYPAIhAHQ7UJTlUhZjrSeaS9OyVzCBn+o1T
-	WmQy9Zre2p7WjvYlc37o13Ovnkjm2/b+vtdY/OiGjXLxNaICVMuyovW34uwhyeh0BGxjWj7/8Hvm6
-	y47ex6A+85bOi5f6cFj1vSaL6/g/LLGCf8HCSPssKNXNZsshc0/leZsBExYc/o769C0qZmIA/F3Jg
-	8nJAP1TVbUHEy7XnkOvZYRjAkEFBDxFDAYCwonCAhpHqJlRyD36lF/B9EcP/f6yYfKDbcqre+loi2
-	WZIh1GvA==;
+	bh=QNzDDU0a6i2LEAcjYqhv6FOLU8rHbK1ng1Hzgb9fTtQ=; b=zsL24N/3LxtK79LRyvCdtnUEF2
+	wcpikj5Ldj6TVFkgWuTcF0kE76fBjltDhlFKWhyVoGAmalY2Ae2ntaMKAEAed4/f+GRNeOE3nYo90
+	So/4//vS5A2QAzNRk6v8WRPq15UFYu3UVk19QyaDwDUYAYYNRRG4+v2fmoE2uVp8lrb4NKbutHxRC
+	RV4/JcUSqlji8RrCj7d60OXxIB8LIVnYQUcKAkPjYiOhm4NzgxIrmzP545gN/QWDObuZup8bCppDt
+	FWgsN8qW7JWs31gARHGfE3yHRgWBNlIIzT8zEurRJoS+4SWiyPz8lDVVnNkwuzx6z4FV6yxiIOz0E
+	yZe6Nx4g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjcL-00000003Z4T-0Q5J;
-	Tue, 10 Nov 2026 11:02:21 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjby-00000003Z1J-2eKI
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 11:02:11 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 347101BC0;
-	Tue, 10 Nov 2026 03:01:54 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 407D63F85F;
-	Tue, 10 Nov 2026 03:01:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794308517; bh=QlNntSieLC8S0YvRLd6Wfbbt18c4nXb06umZDP6TNas=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FKqPN9Vg0UBCyIbmOsaTZulIJOB3aI1y35vAsOHgGOHwrXPB5Vb0mWHldy5uSiAea
-	 /rtVJRwnHK11B55hGPiy1hFaXYryF7/WHJ3KdNjJ/InOVLq88ffwfxbSGvPA0y161y
-	 pTwsUdcVncKo2fkyz2aj3wWvKP/SCFMfM5TxsMuU=
-Date: Tue, 10 Nov 2026 11:01:52 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: =?iso-8859-1?Q?Cl=E9ment?= Le Goffic <clegoffic@baylibre.com>
-Cc: Sudeep Holla <sudeep.holla@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	Linus Walleij <linusw@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Andy Shevchenko <andy@kernel.org>, Dhruva Gole <d-gole@ti.com>,
-	Bartosz Golaszewski <brgl@kernel.org>, arm-scmi@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/11] pinctrl: scmi: send the drive strength in
- microamperes
-Message-ID: <avL5oKJtdiKrzLlg@pluto>
-References: <20261030-clegoffic-pinctrl-scmi-gpio-v1-0-52d92843ad97@baylibre.com>
- <20261030-clegoffic-pinctrl-scmi-gpio-v1-1-52d92843ad97@baylibre.com>
+	id 1xQjdv-00000003ZF6-2oH5;
+	Tue, 10 Nov 2026 11:03:59 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQjdq-00000003ZEC-1LnG;
+	Tue, 10 Nov 2026 11:03:54 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A525242355;
+	Tue, 10 Nov 2026 11:03:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 465EA1F008A1;
+	Tue, 10 Nov 2026 11:03:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794308633;
+	bh=QNzDDU0a6i2LEAcjYqhv6FOLU8rHbK1ng1Hzgb9fTtQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=QbZk5ay6twrd8p0CDlxAK1Z8Zqud9jDaFsgVHp8H/+m5PBCqy6NH7uj8QVQDttyta
+	 YttuwgxWuRxME2Vv+hZpqNCUEsvBhVy683lqf25Fw9KZT8FfE7I24nhCdQH8TG1pCj
+	 hiYnb7W/JFHh5WYVRAKuOh/0mC7zhN7ub4kxF1jGyiWf2aEeSIypk+SZb10wp3SDLv
+	 k0+qpZDQD67W2isy3kqmGO7r5ONveF9NwAb0zM7rn8sBccNsv8jR5Fu6IgDeledqzt
+	 HugCki5GjW4bH7xAshvg9a67algPeGfPyk22ELSRVZGKLxrBiAADj68SV+KlPAi0mi
+	 ncYuUbqnokvng==
+Subject: Re: [PATCH v11 1/6] net: wwan: t9xx: Add PCIe core
+From: netdev-bot+sashiko@kernel.org
+To: jackbb_wu@compal.com
+Cc: loic.poulain@oss.qualcomm.com, ryazanov.s.a@gmail.com,
+ johannes@sipsolutions.net, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ wen-zhi.huang@mediatek.com, shi-wei.yeh@mediatek.com,
+ Minano.tseng@mediatek.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, horms@kernel.org, corbet@lwn.net,
+ skhan@linuxfoundation.org, robert_yu@compal.com, Jeff_Chang@compal.com,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-doc@vger.kernel.org
+Date: Tue, 10 Nov 2026 11:03:51 +0000
+Message-ID: <179430863179.994134.3831157543887487578@kernel.org>
+In-Reply-To: <20261105-t9xx_driver_v1-v11-1-2084aa512864@compal.com>
+References: <20261105-t9xx_driver_v1-v11-1-2084aa512864@compal.com>
+X-sashiko-severity: Medium
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261030-clegoffic-pinctrl-scmi-gpio-v1-1-52d92843ad97@baylibre.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_030159_966251_B7F931C0 
-X-CRM114-Status: GOOD (  10.26  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -77,31 +75,307 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 30, 2026 at 04:58:32PM +0100, Cl�ment Le Goffic wrote:
-> SCMI gives the drive strength in microamperes, but
-> PIN_CONFIG_DRIVE_STRENGTH is in milliamperes and was sent unchanged.
-> Convert it on set and on get. It is the only unit that differs: the
-> debounce is in microseconds and the pull resistances in ohms on both
-> sides, and every other value is a flag or implementation defined.
-> 
-> Fixes: eb524cb651b7 ("pinctrl: Implementation of the generic scmi-pinctrl driver")
-> Signed-off-by: Cl�ment Le Goffic <clegoffic@baylibre.com>
-> ---
->  drivers/pinctrl/pinctrl-scmi.c | 29 +++++++++++++++++++++++------
->  1 file changed, 23 insertions(+), 6 deletions(-)
+Thank you for your contribution! Sashiko AI review found 6 potential
+issue(s) to consider.
 
-LGTM.
+Critical: 0 · High: 0 · Medium: 4 · Low: 2
 
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
 
-Thanks,
-Cristian
+- [Medium] The modem is reset only on the way down, in mtk_pci_remove()
+  and in mtk_pci_shutdown() (which calls mtk_pci_remove()).
+- [Medium] In mtk_pci_remove(), which every shutdown also reaches through
+  mtk_pci_shutdown(), the MHCCIF doorbell fallback runs when…
+- [Medium] mtk_pci_bar_init() maps BAR0/1 and BAR2/3 with
+  pcim_iomap_region(), which maps exactly the BAR length the device…
+- [Medium] mtk_pci_request_irq() allocates exactly 32 MSI-X vectors.
+- [Low] mtk_pci_bar_init() passes mdev->dev_str as the @name argument to
+  both pcim_iomap_region() calls.
+- [Low] mtk_pci_remove() writes U32_MAX to
+  REG_IMASK_HOST_MSIX_CLR_GRP0_0, then calls mtk_pci_free_irq(), and…
+
+--
+
+net: wwan: t9xx: Add PCIe core
+
+This adds the PCIe core of the MediaTek T9xx 5G WWAN modem driver. It
+covers probe and remove, MSI-X setup, the MHCCIF event interface and the
+register access helpers. Remove and shutdown reset the modem through the
+ACPI MRST._RST method, with an MHCCIF reset doorbell as the fallback.
+
+> diff --git a/drivers/net/wwan/t9xx/pcie/mtk_pci.c b/drivers/net/wwan/t9xx/pcie/mtk_pci.c
+> new file mode 100644
+> index 0000000000000..902bcbe1512e9
+> --- /dev/null
+> +++ b/drivers/net/wwan/t9xx/pcie/mtk_pci.c
+> @@ -0,0 +1,1044 @@
+
+[ ... ]
+
+> +static int mtk_pci_bar_init(struct mtk_md_dev *mdev)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(mdev->dev);
+> +	struct mtk_pci_priv *priv = mdev->hw_priv;
+> +
+> +	/* Fixed offsets used on these mappings (MSI-X registers up to
+> +	 * 0x3103 on BAR0/1, the ATR-biased MHCCIF window on BAR2/3) are
+> +	 * guaranteed by the only two devices this driver binds (0x0900,
+> +	 * 0x01CA), whose BAR sizes are fixed by hardware.  A device that
+> +	 * misreports them is out of scope rather than impossible, so no
+> +	 * pci_resource_len() checks.
+> +	 */
+> +	priv->mac_reg_base = pcim_iomap_region(pdev, MTK_BAR_0_1_IDX,
+> +					       mdev->dev_str);
+
+[Severity: Medium]
+pcim_iomap_region() maps exactly the BAR length the device reports. Binding
+only needs a vendor/device/class match. So what happens with a device that
+spoofs 14c3:0900 or 03f0:01ca and reports small BARs, for example a
+hot-plugged Thunderbolt/USB4 device? It would get these fixed-offset
+accesses:
+
+  mtk_pci_probe() writes U32_MAX at BAR0 + 0x3080
+  mtk_pci_irq_msix() reads BAR0 + 0x0F00 and BAR0 + 0x3100
+  mtk_mhccif_init() writes U32_MAX at bar23_addr + 0xA030 (via ext_reg_base)
+
+The comment treats such a device as out of scope. Still, can these writes
+land past the ioremap area and its guard page, in neighbouring ioremap or
+vmalloc mappings?
+
+Two pci_resource_len() checks (BAR0 >= 0x3104, BAR2 >= 0xA044) look like
+enough to rule this out.
+
+> +	if (IS_ERR(priv->mac_reg_base)) {
+> +		dev_err(mdev->dev, "Failed to map BAR0/1\n");
+> +		return PTR_ERR(priv->mac_reg_base);
+> +	}
+> +
+> +	priv->bar23_addr = pcim_iomap_region(pdev, MTK_BAR_2_3_IDX,
+> +					     mdev->dev_str);
+
+[Severity: Low]
+Is mdev->dev_str the intended name argument for both pcim_iomap_region()
+calls? The kernel-doc in drivers/pci/devres.c describes @name as "Name of
+the driver requesting the resource". It becomes the resource name in
+/proc/iomem and in resource conflict messages.
+
+dev_str is a copy of pci_name(pdev), so the BARs get labelled with the PCI
+address (e.g. 0000:01:00.0) instead of mtk_t9xx. t7xx passes DRIVER_NAME
+to the same API. Would KBUILD_MODNAME work here?
+
+[ ... ]
+
+> +static int mtk_pci_request_irq(struct mtk_md_dev *mdev)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(mdev->dev);
+> +	int ret;
+> +
+> +	ret = pci_alloc_irq_vectors(pdev, MTK_IRQ_CNT_MAX,
+> +				    MTK_IRQ_CNT_MAX, PCI_IRQ_MSIX);
+> +	if (ret < 0) {
+> +		dev_err(mdev->dev,
+> +			"Unable to alloc %d MSI-X vectors: ret=%d\n",
+> +			MTK_IRQ_CNT_MAX, ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = mtk_pci_request_irq_msix(mdev);
+> +	if (ret)
+> +		pci_free_irq_vectors(pdev);
+> +
+> +	return ret;
+> +}
+
+[Severity: Medium]
+Should the device's MSI-X vector configuration be programmed here? The
+handler only takes status bit i on vector i:
+
+mtk_pci_irq_msix() {
+    ...
+	irq_state &= irq_desc->msix_bits; /* scope to this vector */
+	if (unlikely(!irq_state))
+		return IRQ_NONE;
+    ...
+}
+
+Nothing writes the MAC register that tells the device how many host
+vectors exist.
+
+The register map matches t7xx: ISTATUS at 0x0F00, IMASK SET/CLR at
+0x3000/0x3080, and the status dummy register at 0x0D1C. t7xx writes
+T7XX_PCIE_CFG_MSIX (0x03ec) with ffs(irq_count) * 2 - 1 after allocating
+its vectors:
+
+t7xx_setup_msix()
+  t7xx_pcie_set_mac_msix_cfg(t7xx_dev, EXT_INT_NUM)
+
+It writes it again in t7xx_pcie_interrupt_reinit().
+
+Here the 1:1 layout depends on the register's reset or leftover value. If
+that value merges sources onto fewer vectors, would the MHCCIF source
+(bit 28) land on a vector whose handler drops it and returns IRQ_NONE?
+
+That would leave the boot handshake unserviced. The spurious IRQ detector
+could also end up disabling the line.
+
+[ ... ]
+
+> +static void mtk_pci_remove(struct pci_dev *pdev)
+> +{
+> +	struct mtk_md_dev *mdev = pci_get_drvdata(pdev);
+> +	struct mtk_pci_priv *priv = mdev->hw_priv;
+> +	struct device *dev = &pdev->dev;
+> +	int i, ret;
+> +
+> +	/* Silence every source before tearing anything down. */
+> +	mtk_pci_mac_write32(priv, REG_IMASK_HOST_MSIX_CLR_GRP0_0, U32_MAX);
+> +
+> +	/* Free the vectors first: once no handler can run, the unmask at the
+> +	 * tail of mtk_mhccif_isr_work() cannot re-open the source behind
+> +	 * mtk_mhccif_exit()'s back.
+> +	 */
+> +	mtk_pci_free_irq(mdev);
+> +	mtk_mhccif_exit(mdev);
+
+[Severity: Low]
+Does this ordering give the guarantee the comment describes?
+cancel_work_sync() only runs later, inside mtk_mhccif_exit(). So a
+mhccif_work queued before the mask-all write can still run after
+mtk_pci_free_irq(), and it ends with:
+
+mtk_mhccif_isr_work() {
+    ...
+	mtk_pci_unmask_irq(mdev, priv->mhccif_irq_id);
+}
+
+This writes BIT(28) to REG_IMASK_HOST_MSIX_SET_GRP0_0. By then
+pci_free_irq_vectors()->pci_msix_shutdown() has cleared
+PCI_MSIX_FLAGS_ENABLE and called pci_intx_for_msi(dev, 1). The source is
+unmasked with INTx enabled until mtk_mhccif_exit() masks it again.
+
+There is a second window between the mask-all write and
+mtk_pci_free_irq(). A pending work can unmask the source there, take a new
+MSI-X interrupt and requeue itself.
+
+The end state is masked. Would calling mtk_mhccif_exit() before
+mtk_pci_free_irq() close both windows? While the vectors still exist,
+mtk_pci_unregister_irq() gets a valid virq for synchronize_irq(), and
+cancel_work_sync() plus the final mask finish before the vectors are
+freed.
+
+> +	pci_clear_master(pdev);
+> +	pci_disable_device(pdev);
+> +
+> +	/* Reset last: the endpoint comes back at power-on defaults, so no MMIO
+> +	 * and no MSI-X teardown may follow it.
+> +	 */
+> +	ret = mtk_pci_pldr(mdev);
+> +	if (!ret) {
+> +		/* MRST._RST may return before the link has retrained, and a
+> +		 * config write the device does not take is simply lost.
+> +		 */
+> +		for (i = 0; i < MTK_PLDR_READY_POLLS && !mtk_pci_link_check(mdev); i++)
+> +			msleep(MTK_PLDR_READY_POLL_MS);
+> +		if (!mtk_pci_link_check(mdev))
+> +			dev_warn(dev, "device not back %d ms after reset, its config space may not be restored\n",
+> +				 MTK_PLDR_READY_POLLS * MTK_PLDR_READY_POLL_MS);
+> +	} else if (!mtk_pci_link_check(mdev)) {
+> +		dev_warn(dev, "PLDR failed (%d) and link is down, modem not reset\n", ret);
+> +	} else {
+> +		dev_warn(dev, "PLDR failed (%d), trying MHCCIF reset\n", ret);
+> +		if (mtk_pci_send_ext_evt(mdev, DEV_EVT_H2D_DEVICE_RESET)) {
+> +			dev_err(dev, "MHCCIF reset failed\n");
+> +		} else {
+> +			/* Unlike MRST._RST the doorbell returns before the device
+> +			 * has reset, so let it settle before the restore below.
+> +			 */
+> +			msleep(MTK_MHCCIF_RESET_DELAY_MS);
+> +		}
+> +	}
+
+[Severity: Medium]
+The PLDR branch polls mtk_pci_link_check() because "a config write the
+device does not take is simply lost", and it warns if the device has not
+come back. The doorbell branch only sleeps a fixed 2000 ms and then goes
+on to the restore.
+
+If the doorbell reset takes the endpoint off the link and it has not
+retrained within 2 s, are the pci_restore_state() writes below silently
+dropped?
+
+pci_load_and_free_saved_state() has already freed priv->saved_state and
+set it to NULL, and pci_restore_state() clears dev->state_saved. Nothing
+is left to retry with. Would the next bind then see BARs the device does
+not decode, with nothing in the log?
+
+Probe allows platforms without MRST._RST, and there every remove and
+shutdown takes this branch. Could it use the same link poll and warning
+as the PLDR branch?
+
+> +
+> +	/* Without this a runtime-PM suspend after unbind would snapshot the
+> +	 * reset state over our copy, and whoever binds next finds BARs the
+> +	 * device does not decode.
+> +	 */
+> +	pci_load_and_free_saved_state(pdev, &priv->saved_state);
+> +	pci_restore_state(pdev);
+> +}
+> +
+> +/* A kexec reboot neither resets nor powers down the slot, and the boot
+> + * notification the next kernel waits for is one-shot, so reset the modem
+> + * on the way down the same way remove() does.
+> + */
+> +static void mtk_pci_shutdown(struct pci_dev *pdev)
+> +{
+> +	mtk_pci_remove(pdev);
+> +}
+
+[Severity: Medium]
+The commit message says the shutdown reset is needed because "a kexec
+reboot gets no platform reset and the next kernel would otherwise find
+that firmware still running". Is crash kexec (kdump, kexec -p) covered?
+That path is:
+
+__crash_kexec()
+  machine_crash_shutdown()
+  machine_kexec()
+
+It never calls device_shutdown(), so mtk_pci_shutdown() does not run. The
+capture kernel then probes a modem whose firmware is still running.
+
+By then the crashed kernel's mtk_mhccif_isr_work() has already acked
+BOOT_FLOW_SYNC, and the comment in mtk_mhccif_init() says:
+
+	 * Do NOT ack here: EP2RC status bits are latched one-shot
+	 * notifications (e.g. BOOT_FLOW_SYNC raised before the driver
+	 * loads) that the device never re-sends.
+
+mtk_pci_probe() neither resets the modem nor checks whether firmware is
+already running. Would the boot flow wait for a BOOT_FLOW_SYNC that never
+comes? Later in the series, mtk_fsm_dev_add_act() moves to FSM_STATE_ON,
+unmasks BOOT_FLOW_SYNC and waits.
+
+The same state also seems reachable after mtk_pci_remove() if the reset
+does not take effect. That covers a down link, or no MRST._RST combined
+with firmware that ignores the doorbell. The commit message says the
+doorbell "cannot recover firmware that has stopped responding - the case
+the reset exists for".
+
+Resetting the modem, or detecting running firmware, in probe would cover
+these cases. It would also remove the 1-2 s wait that every reboot and
+power-off now has, which still does not help kdump.
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261105-t9xx_driver_v1-v11-0-2084aa512864%40compal.com
 
