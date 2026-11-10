@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEACD606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAFE606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V6hqwbVh;
-	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=i02rXB+p
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rpvTdGG6;
+	dkim=pass (2048-bit key, unprotected) header.d=sang-engineering.com header.i=@sang-engineering.com header.a=rsa-sha256 header.s=k1 header.b=QYXnx+aS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,35 +14,35 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=URNm3AaV7OhkF+44lQ7GzK8Lve00n5qQDwL4NE/x4Rs=; b=V6hqwbVhd/nCJRTt/uP37vx9TA
-	H9sCNRlj7VpJ7m08DM/lpd66UOL+j+Al2LCaHv3bTG1JdHLyI4yN+rPwBxnx6DlvKicv+sofEsZF7
-	EY39Oml0uJRlJvc8xzdahu5Ytwq8Q57TSMg1Ct4ROPIoYSZ3kforWuKNiT054t9JYjkYWq9GlYgv/
-	ix0D15Y6U6NmGUtR6z0v6umdHzR3jOngedyIkgVbQcncp3T0lNUt77jPz6hpfRXUbFgXwAkCBBLev
-	MK7PuFIVzRISrQW9ZPa9fMH/P79IZOjKLEvWy9p/6FEbWl4VlcNohAiEimNQn1BkngXMI+lEgjoVN
-	JOcbjZGw==;
+	bh=KwOMqReEGh0Ih1HTKwwC8fhh61cTvDF88ZgrH8p/zw0=; b=rpvTdGG691+4CudPStbjb7PYVp
+	DRAxwVvGxmo5iENJcCTrzh5454D+gtzmukQhgeFS026P56L3FdyJ6Y25ur5xLf8oivi5wdQHGa1K0
+	jXK+N6kFq1b7EZVYKjfWNOSYyk7jRsWfKEAiAVc8WOTIrtJHGNCitqY4g8CmdDy480KbxUQ6x6cvk
+	TKI20Mlk3VP49J7YuAaaeCdKJ9s+344VwuSj+GJTAnIAYIYuVWMp0fklqD3+3NAH0g5bM0YyknWm6
+	oX/yKRgy2rH3BHJ7mLaZK3xbfUJ0QGvp2R4TH/Xy1i1nibRN92eXube/4BZ4siDn1uEzsBUnrq0Ud
+	yer74L7A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjlQ-00000003aaq-2INE;
-	Tue, 10 Nov 2026 11:11:44 +0000
+	id 1xQjlf-00000003afg-350w;
+	Tue, 10 Nov 2026 11:11:59 +0000
 Received: from zeus03.de ([194.117.254.33] helo=mail.zeus03.de)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjlO-00000003aZk-1P51
+	id 1xQjlc-00000003ae1-29lf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 11:11:43 +0000
+	Tue, 10 Nov 2026 11:11:58 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=URNm
-	3AaV7OhkF+44lQ7GzK8Lve00n5qQDwL4NE/x4Rs=; b=i02rXB+p+ezyY+T9IzNM
-	Qg2/TbI2j1IeV/mdj4IIhfjWhMyv16kR7h8KHBe7WvPbbRwzqIAO6kKL5kZt7SZu
-	l8RDOCA24sMzfes2GshnBEOLdXameStP3o59qX/+Fe3mhbk1zso39dc/Sz8KGEof
-	d6Tmlb+fvXpfodwK581vA53aIjzj/iPeIiTOeeDAWbIVodLaK6Z50EozW3xTO8Yv
-	6vH01sByRlmBMYbHfbO9bvonGnvVwVkUCFwaKQ4DH5v6bDS7JWuys49PF+PFul4g
-	zt2GzSbpMy7NGESJRKYoTmp0GnbAX9IreOiLjSNgpHp4jU1Wr2ZC+7GibPjFCJ7g
-	RA==
-Received: (qmail 205301 invoked from network); 10 Nov 2026 12:11:40 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Nov 2026 12:11:40 +0100
-X-UD-Smtp-Session: l3s3148p1@FtiBJOpfzIQujnsO
-Date: Tue, 10 Nov 2026 12:11:39 +0100
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=KwOM
+	qReEGh0Ih1HTKwwC8fhh61cTvDF88ZgrH8p/zw0=; b=QYXnx+aSkafOzcSvfg84
+	+n0fhAQDf3znURYRalx2f6M7bcGzQ1rO+qluar0Ep4W2h6OFl8gOwAewJx0+Pan3
+	dPMe1MxRPZ7GptCOkWB1qxv3al+97t/CtWcAQd2rwNK4SN31coneVoF7c4Adg3Yt
+	gjPiWxmJyiCiFCkRcntx1RMZz0fGxk07DTTb4IAKaA7cT1NrtdjpMpnEl3n9yj75
+	TXCQEDCNmNc4ZChAPy/JbPan56r3xGYqrQEs4/6b+bgCYhCzmpY7L5AvzDCfczxV
+	v/NUt5zgVO5JIccXDh7wM/ajsOEbKxNgEWYNGFRUPkrAGbfokTDlSZfJf19fcT6O
+	Zg==
+Received: (qmail 205390 invoked from network); 10 Nov 2026 12:11:54 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Nov 2026 12:11:54 +0100
+X-UD-Smtp-Session: l3s3148p1@u8pgJepf4p8ujnsO
+Date: Tue, 10 Nov 2026 12:11:54 +0100
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
 To: Christian Marangi <ansuelsmth@gmail.com>
 Cc: Stefan Roese <sr@denx.de>, Andi Shyti <andi.shyti@kernel.org>,
@@ -54,19 +54,19 @@ Cc: Stefan Roese <sr@denx.de>, Andi Shyti <andi.shyti@kernel.org>,
 	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: mt7621: Document an7581
- compatible
-Message-ID: <avL76_zF5NizIRMK@shikoro>
+Subject: Re: [PATCH v3 2/2] i2c: mt7621: limit SCL_STRETCH only to Mediatek
+ SoC
+Message-ID: <avL7-gfNNvO0s_gw@shikoro>
 References: <20261103210542.15965-1-ansuelsmth@gmail.com>
+ <20261103210542.15965-2-ansuelsmth@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261103210542.15965-1-ansuelsmth@gmail.com>
+In-Reply-To: <20261103210542.15965-2-ansuelsmth@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_031142_698631_89971C1A 
-X-CRM114-Status: UNSURE (   9.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261110_031157_107162_D04FBD66 
+X-CRM114-Status: GOOD (  10.57  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,15 +86,14 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 03, 2026 at 10:05:40PM +0100, Christian Marangi wrote:
-> Airoha SoC implement the same Mediatek logic for I2C bus with the only
-> difference of not having SCL_STRETCH bit.
+On Tue, Nov 03, 2026 at 10:05:41PM +0100, Christian Marangi wrote:
+> The same I2C driver is also used for Airoha SoC with the only difference
+> that the i2c_reset should not enable SCL_STRETCH for Airoha SoC.
 > 
-> Add a dedicated compatible for the Airoha AN7581 SoC to account for this
-> minor bit variant.
+> Introduce a new compatible for Airoha and limit the SCL_STRETCH only to
+> Mediatek SoC.
 > 
 > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
