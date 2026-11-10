@@ -2,111 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C30F606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31989606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xr8uQoNV;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=ih23mt5/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dDxHwnqB;
+	dkim=pass (1024-bit key, unprotected) header.d=163.com header.i=@163.com header.a=rsa-sha256 header.s=s110527 header.b=eZa/Gow/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:References:In-Reply-To:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=YUu0h9arLHi+h5Yn+kYOg06kGKRl9ThCJwlOdeMMI08=; b=xr8uQoNVggLsP/
-	Ey2pMUH9ZCdMsLLNF6rtSQrvMd46VeriPJE67nQcao24WYQyxCuGzlnaWcV6RiBqJtbojGGraGVhs
-	NPwOs3YIvsmYDTjUG4Ahhl5HNqjF0EPyWmv57JI+hWvuEDOe5GiIc3B/m5lMhOfdcfHtmd+3vQQtz
-	Axqli1AGMAZ0hzRLFrSTuYgEQTxWyZJNLEx4aUCM8mOzG+nJGvJm5FASNm7YlRxRLjzGZ//xJDvXQ
-	R1EziETtVV70KWRtY13btpqX1D6yXkJcMJgOVFqbtYe2XUxsLMMumMb4nfCuIFRFupasMEkEUIDrp
-	L/FVafCHg6sbV9/YXhnQ==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=2pKjOnB7thorowgyXI58dtDZeDUgnklgN0ioGos6ajU=; b=dDxHwnqBJwNNu+oviA4LWrEzS8
+	C1S84bH3Nt9VXcMfa/iad0lrMAMwgOAzBgL2YErXVBFGyanL58D1ojjHFMt3lqtDz7vJskU91cchu
+	zJwsjw9ccFzC5H2x0ERn2WuJGx6mXp3XvaWhDDYz9unDv83cJnjGx1unvyCBmSw1F5DmDYp9S931y
+	ndNl1OWCuEqr9FlDZt1vO6uFpS71cqUe9/FD2SQnKX9C+0YiD9cvn+liB/3C16eLUoRB2o3ETXTcw
+	QqkIjrQwHHb8CY1mvVUW08PS0RpkO+QWbWurq+VFt/yrLSx+lvVAyF71qRkLXeW3T6XMjlasDXfHM
+	qSD1fbJQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQl8M-00000003sRl-06Uu;
-	Tue, 10 Nov 2026 12:39:30 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1xQl8f-00000003sY8-0q1x;
+	Tue, 10 Nov 2026 12:39:49 +0000
+Received: from m16.mail.163.com ([220.197.31.5])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQl8I-00000003sQv-09Hm
+	id 1xQl8b-00000003sW7-2OLd
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 12:39:28 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794314365;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YUu0h9arLHi+h5Yn+kYOg06kGKRl9ThCJwlOdeMMI08=;
-	b=ih23mt5/mkDp5+ZpAh+H1dl/mORgP+E21Y3hGGD0hdOeGGlDc/9YHQ6PXkpr4aWqTmLnjB
-	QOuzS1IiAN6HtLscXiQX9yOAvxDjXha4fsDbcJ5/47Ps11f0EgxCbMdvxk0k9yYmrzci4y
-	+dUWL6XtOTdc1IMEWSHJ3W4s79Hj1x0=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-509-pcCWKRqxOtCCcbT6dQdZZg-1; Tue, 10 Nov 2026 07:39:23 -0500
-X-MC-Unique: pcCWKRqxOtCCcbT6dQdZZg-1
-X-Mimecast-MFC-AGG-ID: pcCWKRqxOtCCcbT6dQdZZg_1794314362
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-48e4d1e29f3so1887200f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 04:39:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794314362; x=1794919162;
-        h=content-transfer-encoding:content-type:mime-version:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=pwtPeU2sWzznNclKxCvFDxDPXTNBdV+ezO5+7hunkSs=;
-        b=VtMeT0iM/YlAi8xciCCavMmeisVdEN5fiJyzAy9JUCbiNBpT7d38kuLSZZk9sUWq/o
-         b5yjwCET4479vfGp0Ej3zGv7EUPLD7Y0QZNdqzmcoSKjw1CAyR/21hteN1uvQCM+wCKC
-         VCUUrO9SzmYIWKtM6rUrS/ok64wvn6jBDrnEPVpyYKyCoiSRM+Iy/E40C0AiQiX8gGsk
-         yZCyjKB45Kof1wXv7yRItpSzdnWIEQE/vt9ifo5wxdggaxJDPyuU2lq8BqPl45330lqQ
-         G4Cv+hAEXrfd95t5wU+pnVDzBT6xjPymm+404XnlXAW87x5I6PxWPihXgUe2tKKU7o89
-         +VEA==
-X-Forwarded-Encrypted: i=1; AL+hErH6t1JYn8Wc9NEhASCvPTRqTRF4KdWx1V1W5q5N2lRD2XzT24m2h1i4OX6sYj/mIhaJjdQIuA8WsFLp+VXROWTn@lists.infradead.org
-X-Gm-Message-State: APuU4Z8O9MoRZWIp3Xq/cz0+rCh//0QD2YK1tGFYRWOwejN4BC0cxSAd
-	bilWCIGrz64HjB5+YxJCQoLM4zplTFw63qv/qncuflzxW9UUaB9ZPBUE5qJMSVl4PH6B1e5smsm
-	EwFEOeSVN/jzQcfwXsuY4rh8us0PDJLS/A0OAC1WTwDOJju4qSsxgsYUGW8rOK0+ESLjoopCHvG
-	h3
-X-Gm-Gg: AYBFou0dFlEKDDlyiNhhD81GxG854i8FHw25cHMAtYAdkhpJSFKw/wAyYj9yB7/bB2V
-	0Ztedw+V1bhB4f/iNVY6e3kCSZr7DhPuhRmQEjrAH/1Rx8y0kD58c1qRsNT1KGppEW0XrIh1gVA
-	gAP8P+1CjptrZNNKiug0PI7utH8bpGPtd8jQBBpeIFTRPjJAc4YOJ1aQg/g9ac6HTFGPs60/E1z
-	PBFq/VNyFFuBJ9fA6LB1/S6fgfzPUvSN7M/zJWVkC7CiFnbjRnhq+2v+6SzYIs7QB59xqRn/tAz
-	dg8udKXZ+xonzcRbmIeuAEK9MOjNdKzoNqIBRIAQTZnKA13DiK57SeFsFzrF34TiH1E6aZCRkV2
-	stwygV+ow8BMNmYe+zrCjTY/k+0MC2LdomPulH8Q7ybpW2Q2sbzGeZhjPBHAcK03W1PzWkh+oFV
-	o3dwlHej7FoLAe6x6oO83+j+wlg9+CVgUTFfESV8w=
-X-Received: by 2002:a05:600c:818d:b0:4a1:c5eb:b445 with SMTP id 5b1f17b1804b1-4ba023584f5mr45491505e9.35.1794314362120;
-        Tue, 10 Nov 2026 04:39:22 -0800 (PST)
-X-Received: by 2002:a05:600c:818d:b0:4a1:c5eb:b445 with SMTP id 5b1f17b1804b1-4ba023584f5mr45490665e9.35.1794314361627;
-        Tue, 10 Nov 2026 04:39:21 -0800 (PST)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0204342asm71937455e9.6.2026.11.10.04.39.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 04:39:21 -0800 (PST)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Devarsh Thakkar <devarsht@ti.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
- Kristo <kristo@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- devarsht@ti.com, LiangCheng Wang <zaq14760@gmail.com>
-Subject: Re: [PATCH v3 00/14] Add DRM driver for Solomon SSD16xx e-paper
- display controllers
-In-Reply-To: <20261019213726.4145532-1-devarsht@ti.com>
-References: <20261019213726.4145532-1-devarsht@ti.com>
-Date: Tue, 10 Nov 2026 13:39:19 +0100
-Message-ID: <xlv1o6bweu88.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+	Tue, 10 Nov 2026 12:39:47 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id:MIME-Version; bh=2p
+	KjOnB7thorowgyXI58dtDZeDUgnklgN0ioGos6ajU=; b=eZa/Gow/VLJcjcx3V8
+	ds2ts8qL4APY0xIP7xfxVbMvHiOqtuO8rprxUBeZBllnTbhBpK1d8CHNa1hoQlvT
+	kDa+d8SjUNhXQe7EBBLopyntAylUxheakO1i8eVnUjSCMpS37kvLnMpvUm1AAm1B
+	vw40mGMI4g+H0JpVy86J4xf+U=
+Received: from 4CV529F122.company.local (unknown [])
+	by gzsmtp1 (Coremail) with SMTP id PCgvCgD3X4hjEPNqevk+Eg--.59821S2;
+	Tue, 10 Nov 2026 20:39:07 +0800 (CST)
+From: Ding Hui <dinghui1111@163.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	netdev@vger.kernel.org (open list:STMMAC ETHERNET DRIVER),
+	linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Cc: dinghui@lixiang.com,
+	xiasanbo@lixiang.com,
+	yangchen11@lixiang.com,
+	liuxuanjun@lixiang.com
+Subject: [PATCH net v6 0/4] net: stmmac: fix RX descriptors and XSK TX on resume
+Date: Tue, 10 Nov 2026 20:38:51 +0800
+Message-Id: <cover.1794311618.git.dinghui@lixiang.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 70x0SUDPGYn2g2DN91xieL2DkddxpCBUWWgeryl5yVE_1794314362
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: PCgvCgD3X4hjEPNqevk+Eg--.59821S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuFWfGw4xJry7Cw4kJry5Jwb_yoWxGrWkpr
+	Z5Kan0yw1kGr18Aws5uw4xXFyrKa1rAr43WrW5X3yF9FW5Wr1aqr4akF4Yqa4DCrs7G3W2
+	yr4UuwsrCF15Zr7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07j289NUUUUU=
+X-CM-SenderInfo: pglqwx1xlriiqr6rljoofrz/xtbC9A224mrzEG159QAA3F
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_043926_148351_4CA17887 
-X-CRM114-Status: GOOD (  12.69  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261110_043946_059091_1E30154F 
+X-CRM114-Status: GOOD (  15.17  )
+X-Spam-Score: -1.7 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,47 +82,136 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Devarsh Thakkar <devarsht@ti.com> writes:
+From: Ding Hui <dinghui@lixiang.com>
 
-Hello Devarsh,
+This series restores RX descriptor addresses overwritten by hardware
+writeback between disabling NAPI and stopping RX DMA during suspend. It
+also fixes an AF_XDP TX-only resume stall found while testing the series.
 
-> This series adds a DRM driver for the Solomon Systech SSD16xx family of
-> e-paper display controllers (SSD1673, SSD1680, SSD1681, SSD1683), startin=
-g
-> with support for the Gooddisplay GDEY042T81, a 4.2" 400=C3=97300 black-an=
-d-white
-> e-paper panel driven by the SSD1683 controller.
->
-> The driver is designed and architected keeping the bi-stable nature
-> and low-power requirements of epaper display based systems in mind
-> along with having adequate flexibility to support varying use-case
-> requirements for the e-paper display use-cases.
->
+Patch 1 honors RX allocation flags. Patch 2 keeps unfilled XSK slots
+CPU-owned and tracks pending refills explicitly, including an empty ring
+and short refills. Patch 3 restores RX addresses from retained buffers,
+rebuilds chain pointers and initializes descriptor control fields. It
+publishes a contiguous XSK prefix and recomputes the tail and pending
+region. Patch 4 restores the bound XSK TX pool after TX buffer cleanup;
+otherwise zero-copy transmission can stop after resume.
 
-[...]
+The earlier commit 9c63faaa931e ("net: stmmac: re-init rx buffers when mac
+resume back") was reverted by 00423969d806 after a Jetson TX2 suspend/resume
+regression. This series retains existing buffers and DMA mappings instead
+of recycling and reallocating every buffer. Jetson TX2 has not been tested.
 
->   drm/solomon: ssd16xx: Expose refresh mode as plane property
->   drm/solomon: ssd16xx: Expose color mode as plane property
->   drm/solomon: ssd16xx: Expose session management as plane properties
+Hardware validation used backports on our XGMAC platform with a vendor
+kernel based on Linux 6.12.41, not these upstream commits as-is:
+- Receiving iperf traffic from a PC while suspending and resuming caused a
+  fatal bus error after resume in almost every run without the RX fix.
+  The same test no longer showed that failure with the fix.
+- Native XDP/AF_XDP zero-copy RX continued after two suspend/resume cycles
+  with the receive socket kept open.
+- Zero-copy TX-only, with no RX fill buffers, is tested ok after one suspend/resume
+  cycle, with no fatal bus error.
+- Pausing the receive application with SIGSTOP and resuming it with SIGCONT
+  recovered RX without recreating the socket.
+- xdpsock is used for native XDP testing.
 
-There is a fundmental issue with these 3 patches. They are adding custom
-device-specific plane properties, but the KMS/DRM subsystem requires all
-KMS properties to be generic and standardized:
+Additional testing would be welcome for RX sockets initially supplied with
+0/1/8/15 fill buffers, replenishment in batches below 16, and those states
+across suspend/resume. These differ from TX-only with no RX fill buffers.
+Legacy descriptor cores, GMAC4, chain mode, timestamp-specific descriptor
+paths, multiple XSK queues and long suspend/resume runs remain untested.
 
-https://docs.kernel.org/gpu/drm-kms.html#requirements
+Missing page_pool buffers are still allocated during resume. Allocation
+failure returns -ENOMEM without restarting DMA and leaves the device
+detached. This adds a trigger for existing resume error-recovery problems;
+full close/open recovery, including NAPI and platform power handling, is
+separate work. The Medium-severity AI review on failure recovery is not
+fully resolved by this revision.
 
---=20
-Best regards,
+Changes in v6:
+- Add a separate fix to restore the bound XSK TX pool after resume cleanup,
+  addressing TX-only stalls found during XGMAC validation.
+- Factor resume descriptor work into one TX queue loop and one RX loop,
+  following Thomas's review, and use common error cleanup.
+- Restore addresses and chain pointers before initializing RX control fields,
+  preserving legacy fields and RIWT/IOC policy without a separate OWN loop.
+- Add format-specific RX ownership clearing for unfilled XSK descriptors.
+- Track pending XSK refills independently of circular index equality; retry
+  short refills and prevent consumption of unfilled descriptors.
+- Restore a populated XSK prefix and retain later attached buffers for refill;
+  recompute the allocation count, initial tail and pending region.
+- Select XSK buffer size independently of the initial allocation count.
+- Discard any partially assembled RX frame before resetting the RX ring after resume.
 
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+Link to v5:
+https://lore.kernel.org/netdev/20261025100636.613670-1-dinghui1111@163.com/
+
+Changes in v5:
+- Target net and add Fixes tags to both patches.
+- Split the allocation-flags fix into a separate patch, with a Fixes tag
+  identifying the page_pool conversion that stopped honoring the flags.
+- Share page_pool and XSK buffer preparation with the RX refill paths.
+- Allocate missing secondary pages even when the primary page exists,
+  using the current baseline's buffer2 capability check.
+- Condense the reinitialization kernel-doc to two paragraphs.
+- Restore descriptor addresses before the final dma_wmb()/OWN pass.
+- Clarify that unavailable XSK slots remain CPU-owned and may stop DMA
+  with RBU, rather than claiming that hardware skips them.
+- Power down legacy SerDes if RX descriptor restoration fails.
+
+Link to v4:
+https://lore.kernel.org/netdev/20260627122533.1165324-1-dinghui1111@163.com/
+
+Changes in v4:
+- Document the return value of stmmac_reinit_rx_descriptors().
+
+Link to v3:
+https://lore.kernel.org/netdev/20260604144557.3175399-1-dinghui1111@163.com/
+
+Changes in v3:
+- Allocate missing page_pool buffers with GFP_KERNEL and abort resume
+  on allocation failure.
+- Try to allocate missing XSK buffers and clear descriptors when the
+  fill ring cannot supply a buffer.
+- Restore OWN after programming addresses and rebuilding chain pointers.
+- Honor the flags argument of stmmac_init_rx_buffers().
+- Restore RX descriptors after stmmac_clear_descriptors().
+
+Link to v2:
+https://lore.kernel.org/netdev/20260526022620.501229-1-dinghui1111@163.com/
+
+Changes in v2:
+- Introduce a helper to restore addresses from existing RX buffers.
+- Update the commit message.
+
+Link to v1:
+https://lore.kernel.org/netdev/20260515053856.2310369-1-dinghui1111@163.com/
+
+Ding Hui (4):
+  net: stmmac: honor allocation flags when initializing RX buffers
+  net: stmmac: track unfilled XSK RX descriptors explicitly
+  net: stmmac: restore RX descriptor buffer addresses on resume
+  net: stmmac: restore the XSK TX pool on resume
+
+ .../ethernet/stmicro/stmmac/dwmac4_descs.c    |   6 +
+ .../ethernet/stmicro/stmmac/dwxgmac2_descs.c  |   6 +
+ .../net/ethernet/stmicro/stmmac/enh_desc.c    |   6 +
+ drivers/net/ethernet/stmicro/stmmac/hwif.h    |   3 +
+ .../net/ethernet/stmicro/stmmac/norm_desc.c   |   6 +
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h  |   2 +
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c | 277 +++++++++++++-----
+ 7 files changed, 228 insertions(+), 78 deletions(-)
+
+
+base-commit: 7076f684d5132e6a6145e1da2fa74771ecd052e5
+-- 
+2.34.1
 
 
