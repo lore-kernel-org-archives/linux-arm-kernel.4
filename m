@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3DE60A262C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:14:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE214606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BHBB/D8a;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cc341CzK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IteNm/F7;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=fsxeVPOQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,59 +14,75 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=VTwH4AZAnTqvqVIKDfDqEJbISyn1E7hgr1jsha5Pows=; b=BHBB/D8acodC8JQlqQ4MvQST3Q
-	5sYKusIu7IthqpcH2jioXdIDqGQISMij4diq1bOwYx3bpgY9JmT/F4dH3301+CMCOkDkVz6nM9jvu
-	kQ6qCkq+rrZ0QgzgOp001h73VqsOlwG+WwaYjdlZd0L3Sm3mqlcAiOtOk0vluyk2wlacNMOpePEmU
-	zxjWNOxMNMkNsKbLOJk9H6Q79TFObdO6qvZb4uQLx5TSehgSEbcWNSxFmYPNQ+v/TFG4dzEBAYsNR
-	jyhHixqAOpZQmnFF6QHCFrvZyvHhzpaePSlLsWmtxz7ljUa7LVqKabMVzJLvhhvd8CrGAOsbKPQSV
-	s/sHgFTg==;
+	bh=yYskAYVnH6XbVjZCWrX9MMKwY8O7EPYghGutgzkZiEk=; b=IteNm/F7dLseYSPEzj+DBgLyjC
+	AAylp4oxlBrsbE5GgHQ+VKkaqjO7hw292jbWzAMfgcCY9cgkW+/eMpFEXWjXfw1JqEzYdj/VSbz1G
+	3vWpnsc02vDH6ukYbr8Xn6IVztBlNTLoVX7JcLJ/uYdLG1xNCn3vXJYK4tr+m0f3V/pMnVa2/ClLi
+	afX76iKixBFXWTq3K9f5dbAGOo/KC899VSRpNwjqwcQcH0Gpf2qQHkA8d9lGR7SSdSk3x5gF7G8TU
+	1jf9CrU//e0OQ4/ht94vlACpOqI33sezhymfiahdUp3BRVA9iRnhBCQpUKoC1GFtdU8244906hDUS
+	0IjPUdKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoUQ-00000004UuH-0ywL;
-	Tue, 10 Nov 2026 16:14:30 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQoYk-00000004VEU-3S1D;
+	Tue, 10 Nov 2026 16:18:58 +0000
+Received: from mgamail.intel.com ([192.198.163.12])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoUO-00000004Uu8-3ZpV;
-	Tue, 10 Nov 2026 16:14:28 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E78C8636B5;
-	Tue, 10 Nov 2026 16:14:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A69301F0089F;
-	Tue, 10 Nov 2026 16:14:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794327267;
-	bh=VTwH4AZAnTqvqVIKDfDqEJbISyn1E7hgr1jsha5Pows=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cc341CzKf3+9oxvcpT7QttZs9OydXOP4Mod0tAIw/DHQljIirxUE+rTD2YpumnkaM
-	 jJMGxPixCGODU590DVjqvZ72dFaySeRIVaZ3Micaj2z64YeRIWBkcZdu39xzcJA0QA
-	 VVsLfZGsDZt8Ieey7XfftMD0YygqNkWuDNSCIhGC4XRWIPLu3LbQuQTR5XXL/pbIHS
-	 qsp0s3OXm/yMxiBMzrTo/vUCbbWJiUFXcnARzEK5HuyVP1fO6rNEfrSI5FYhqRB0kU
-	 pYx0vZY0o/K5k8H18HmVh1d+8IEA2KOe91IKoYba3GJ6FecaF6KU1RS4WT9+Dg422w
-	 gPa/Xvea5ayJg==
-Date: Tue, 10 Nov 2026 16:14:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: shao.mingyin@zte.com.cn
-Cc: linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, pjw@kernel.org,
-	samuel.holland@sifive.com, william.zhang@broadcom.com,
-	kursad.oney@broadcom.com, jonas.gorski@gmail.com,
-	bcm-kernel-feedback-list@broadcom.com, anand.gore@broadcom.com,
-	florian.fainelli@broadcom.com, rafal@milecki.pl,
-	linux-arm-kernel@lists.infradead.org, sven@kernel.org, j@jannau.net,
-	neal@gompa.dev, asahi@lists.linux.dev, ryan.wanner@microchip.com,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev
-Subject: Re: [PATCH v2 0/5] spi: fix division by zero with a zero transfer
- speed
-Message-ID: <b8b3dd8e-7d66-4d8f-87f8-c88148334ebf@sirena.org.uk>
-References: <20261110233450305Smji446Uhvoxa7r8SHEgl@zte.com.cn>
+	id 1xQoYj-00000004VE8-0oRp
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 16:18:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794327537; x=1825863537;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XLgFMvrq3yUqIfrDH4auZGnz7OE5EcbDwFNADMKNHJ0=;
+  b=fsxeVPOQii9m1JAsbbCsy2rwRi9H1dQxwy8u/nYR95aM/AkAsCgSJqlq
+   q5VhFMk9I4THSXMhz70Zyl9ZPPb4WhKvbN5iLCgrSGIjepRqOjsdNC3Eu
+   HqWAe7PtXD7asvPLgqm71IY2jVgOAUVbYxsQ1YDA/ICwEox/LCULFpAVk
+   e/k8tF6wfAntsA6fmZhw3yTGFpAdgS0FtY5m366PUuY84BfCOdKpPAj2W
+   78X82VcvgB9FocWq7L3CaMbPoCBv1ykWv46p8fkVI2Zwmbd/diH02ZSpk
+   ptLvfnvQhXqlKLStmbEEXDBUn8jUNKM64F1ysAN4uPs5Mi7GhxQf0AUZ6
+   A==;
+X-CSE-ConnectionGUID: J3RFKTTlQhq7sGkgTnoJEg==
+X-CSE-MsgGUID: cQZV764xSd6Z7exmuw1GLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="2979649"
+X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
+   d="scan'208";a="2979649"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 08:18:56 -0800
+X-CSE-ConnectionGUID: MneuRwbwRX2t1Z8hvWZwaw==
+X-CSE-MsgGUID: P73odN+YSh+sOAsPzzVs0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
+   d="scan'208";a="9967128"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.245.78])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 08:18:54 -0800
+Date: Tue, 10 Nov 2026 18:18:51 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Dileep Kumar Nagavarapu <dileepkumar.nagavarapu@amd.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Conall O'Griofa <conall.ogriofa@amd.com>, linux-iio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	git@amd.com, Sai Krishna Potthuri <sai.krishna.potthuri@amd.com>
+Subject: Re: [PATCH v5 09/16] iio: adc: xilinx-xadc: Add unit suffixes to
+ macro names
+Message-ID: <avND64ZLHcSPFUkX@ashevche-desk.local>
+References: <20261110050201.1850399-1-dileepkumar.nagavarapu@amd.com>
+ <20261110050201.1850399-10-dileepkumar.nagavarapu@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xGHggE/6XmtG49YC"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261110233450305Smji446Uhvoxa7r8SHEgl@zte.com.cn>
-X-Cookie: You can't take damsel here now.
+In-Reply-To: <20261110050201.1850399-10-dileepkumar.nagavarapu@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_081857_277991_847EA290 
+X-CRM114-Status: GOOD (  11.23  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,36 +100,50 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Tue, Nov 10, 2026 at 10:31:54AM +0530, Dileep Kumar Nagavarapu wrote:
+> Append the unit to the relevant macro names (_HZ, _MS, _CYCLES, _SPS)
+> so that the expected unit of each value is clear at the point of use
+> and to avoid ambiguity.
+> 
+> No functional change intended
 
---xGHggE/6XmtG49YC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+...
 
-On Tue, Nov 10, 2026 at 11:34:50PM +0800, shao.mingyin@zte.com.cn wrote:
+> -#define XADC_MAX_SAMPLERATE 150000
+> +#define XADC_MAX_SAMPLERATE_SPS 150000
 
->   1/5 spi: sifive: clamp the clock divider to the register range
->   2/5 spi: bcm63xx-hsspi: fix division by zero for devices without a max speed
->   3/5 spi: bcmbca-hsspi: fix division by zero for devices without a max speed
->   4/5 spi: apple: fix division by zero in clock divisor calculation
->   5/5 spi: atmel: use the maximum divider for an unspecified speed
+Not sure if _SPS makes it anyhow better, but you may use (150 * KILO)
 
-Oh, I see you also sent those v2 patches as part of the series as
-normal.
+...
 
---xGHggE/6XmtG49YC
-Content-Type: application/pgp-signature; name="signature.asc"
+> -#define XADC_ZYNQ_TCK_RATE_MAX 50000000
+> -#define XADC_ZYNQ_IGAP_DEFAULT 20
+> -#define XADC_ZYNQ_PCAP_RATE_MAX 200000000
+> +#define XADC_ZYNQ_TCK_RATE_MAX_HZ	50000000
+> +#define XADC_ZYNQ_IGAP_DEFAULT_CYCLES	20
+> +#define XADC_ZYNQ_PCAP_RATE_MAX_HZ	200000000
 
------BEGIN PGP SIGNATURE-----
+We have units.h full of useful multipliers, use them.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmrzQtwACgkQJNaLcl1U
-h9DXEwf+Lv/vVmV6mzd36B8u7tH7Xnl2z3sklZVzt/pyPr3Z0ZfatrEJTwsQ7C2P
-t+VNfEkdZCLOKALR84LZ0k+GmDZp99DRg4mrpiml1GgGZnpPL9czK5e8o7gacKOW
-CTr4UVWZWB6P+C+LmAqpSRXYBzkFpJ1lMLJhTR4SLS6/xVybvmpjgoIJgrW2uSpp
-5WRciPMlEsQx0QeFcwgjifHCLt+6S0NC4WZUYxZDTA4xDU5kP3LFGse2J9smh0eo
-7tRfwP4T85kQcB48kihqz4Ujpawh0a5tX7tkESJyokEItNuEHoZ08eiMR8RiFx+5
-lsljqDlb64q8lH7sAy6dJdBh1e5OIw==
-=xMYN
------END PGP SIGNATURE-----
+_HZ --> _Hz
 
---xGHggE/6XmtG49YC--
+...
+
+>  	div = clk_rate / val;
+> -	if (clk_rate / div / 26 > XADC_MAX_SAMPLERATE)
+> +	if (clk_rate / div / 26 > XADC_MAX_SAMPLERATE_SPS)
+>  		div++;
+
+Side note, you can get rid of one division.
+
+	if (clk_rate / div > 26 * XADC_MAX_SAMPLERATE_SPS)
+
+>  	if (div < 2)
+>  		div = 2;
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
