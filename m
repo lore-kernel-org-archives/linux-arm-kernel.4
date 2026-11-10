@@ -2,105 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37B3960A2624
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:20:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5771606B98F
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sgWnQYXz;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=a/3diZie
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DNu4FAzP;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=tpzxhh+Y
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=rz1/qhkmcsmA9m5Z10+lUebSsmx3tzNdOvRmL/aiPFk=; b=sgWnQYXzX9R77R
-	f38zU5/8enuwk8+ys495ntKaAsNZh6K3gZrNnGdH61bA6JyEBuxwnIVtjIvTP+ZGPL7yLY+WjKl3Y
-	wkfaNeZyD540Ckpbarr/J8WSH/td0Aqkv3S/JC5UfN7OW2H5ZmQ0YF4Zt7ZAJLIkmb1IZFdIT87pH
-	KWv4dUhbvWAENhew4CN9aiwlHNX9hs0nonrlMTT6IxlHh8RsubJIRML0bK0vpRR2icUW4nS25AlgD
-	n4lYG4ohIP2JkC2L6kFWc4pOs8VWZCJgaQb/9R8FV+O5wkJXCdgKtO374KgvPpQS9RfYWVow90qBx
-	d44nCduMs4rclB8CLaJA==;
+	List-Owner; bh=q9Ko14fZ0oB2r+3VQCFyGunfijRF7UqfgRXvYxJLn8Q=; b=DNu4FAzPEjCZpa
+	YZtH5SZuXeX7KM//pX3FK5Eq/A/uWvOtafEUvomAPdDbiUfhnQ35jm5ZUy8YP+xiZYxaWs5WocXUH
+	F+SXMEdJc9av73QvAm8xU20lQl1u0SwfJ10M/HoAlF4Td/RRBRMOM7+IcvE2Jnpotp5eM024XF5tM
+	kPxnlOWFUsrzFCSDwNIsC9eguoOkUrcS88K7Rmn2MovflmYSBERuIn4dqMpDANbXG6uYUqtUBLozk
+	ad0PRbYZhe+k1eYTB26txEi2HGXpKy3FgFIfVqMSnV8O1nVgOiGgjw4iKVgZKP4xm91ZyeS9XxXCA
+	BTXPw5KG4ZiEGxBavy8g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQixg-00000003R43-3E78;
-	Tue, 10 Nov 2026 10:20:20 +0000
-Received: from mx1.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::107])
+	id 1xQiyk-00000003RSd-1A0E;
+	Tue, 10 Nov 2026 10:21:26 +0000
+Received: from mout.gmx.net ([212.227.17.22])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQixZ-00000003QzG-2jQN
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:20:16 +0000
-Received: from ratatoskr.trumtrar.info (unknown [IPv6:2a00:1f:f805:2b01:a03:2f4:308a:7b52])
-	(Authenticated sender: str@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id D7C0B202824;
-	Tue, 10 Nov 2026 11:20:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794306010;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rz1/qhkmcsmA9m5Z10+lUebSsmx3tzNdOvRmL/aiPFk=;
-	b=a/3diZies+L7OwjjsfsbE8LX3ng1OFVyPADGuXGI3rFhRkLEElGZzpVpovhLlhadoLUgV5
-	rxM3AqQ6D5Gi8QLLb/9R/ozdZXeHuJNyz56TJtRKGbTobJ+Jn7UAS0hNirXLFb8qXM8f0B
-	5amSRP6OImcz4xh20ne6hkiIioo1S/iS8XyT+AIFHK+5kR5ph01wnPHn+mOqFCjR9zZ08d
-	BSgruJLwQT2QBUlaGzwT19XyBjmzK/W1SJPFtkCgUDi3e6wsgIrT1M9r6Eu5kKeltuBbMK
-	B5K+lpKMDk33+3EbVM3LKcgOBWoCcVgSvzDukcZbQyMYUwpXyvYzlu4pjXI71A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794306010;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rz1/qhkmcsmA9m5Z10+lUebSsmx3tzNdOvRmL/aiPFk=;
-	b=IjJwOPMZbuVL5tlri60tzqV5WeNSWr3BeCIdYSZVYiCXa7DCs9ftTmd4Y/OkA8HPLHlgjZ
-	rmf3oZkHUM59Q9k4xd8dHHOGMMoZNGrezbbWIT/aSHAn+iJ9OMojOMTV5FSwjYQsPFlBIx
-	1ebVTmGPoINKbsK6Rxi0wn4QeeMbv7ofgylBNOxgHPn5QqUosBc54ssPlASgoLEvXmnNHP
-	9StW/t+jettyH6kQaPCtgVL1nyTpsiPAR9i3fpOwEQwEkVsM+piLpblrEm50qilUGjU2Wx
-	JKMncPYNPsxLpnZE0IISc53gSlvT2ubPfOBzQLsLcvexyBudRnY/0WNPLGXBpQ==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794306010; a=rsa-sha256;
-	cv=none;
-	b=ECBOLePp4BK6wswvmqBp+3O3Q7PicbfGnSaEg6jo+YtQx8crdCIvqjQFrT2xrQBo6t8fgG
-	uHvFIc2qnXGjLXESapEqT43RHHhGe/UbOCOyeWuxVJEzggHnz9jYWSzA0PYvAtr/sMWF2b
-	0oOgm74VMQxUUPYHId9MJcSOoZOBgwX0jzfZ4hrGrh9oyv2qAyLTpaqnSVM8KzbE8qZbvr
-	uMWoFn4okAGJeySKv8GB1thC0SE4RHPhd3nmJovrpuOyU0DWgV7XcEgVxFTLsTZhrnq3kw
-	zWCYhI174h08aswan8Etjpg39A4Sc3LStKGYWseiT7c5WQ7nDfDU4mzLuN1jlg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=str@pengutronix.de smtp.mailfrom=s.trumtrar@pengutronix.de
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Tue, 10 Nov 2026 11:20:08 +0100
-Subject: [PATCH net-next v4 4/4] net: phy: dp83867: support setting
- output-impedance
+	id 1xQiye-00000003RPQ-32dv;
+	Tue, 10 Nov 2026 10:21:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1794306070; x=1794910870; i=wahrenst@gmx.net;
+	bh=q9Ko14fZ0oB2r+3VQCFyGunfijRF7UqfgRXvYxJLn8Q=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=tpzxhh+Yml6eUX4hqcH7aTaLAF2b2BXgkzbIEIiGrUgNVEIb7cQudkjFMtQnHNQr
+	 EyK/THzzw0i7wnmWJiJ7nC3p3xZ/LcZTSvNQ+MPELgUaMi579aS6WXPVyJhZ6L2tN
+	 Caluy0hZtvz4rxMf2DbslQcm4MTv06uKGBxhRrQ/qIf27atM7FqSAwJE8TsyGMziu
+	 KZLs5ozp349ai8DTyhWTNHTY6hHutkzyLSFtQHix29hsvYByEdz02LmMcRl8/DRkH
+	 MQWHGk3s62i6UXgPRzQiGf73UqwCu72aWES1HxtbTkLnMUeR12TeaeEwPNkYjzd2q
+	 yQaJTRnAOCnU1QcAsQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MHXFx-1xDkYB0edV-00CixX; Tue, 10
+ Nov 2026 11:21:10 +0100
+Message-ID: <cb7fdfc5-1690-4d41-b599-5381727c5f11@gmx.net>
+Date: Tue, 10 Nov 2026 11:21:08 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-v7-2-topic-dp83867-v4-4-a268f83b1ec1@pengutronix.de>
-References: <20261110-v7-2-topic-dp83867-v4-0-a268f83b1ec1@pengutronix.de>
-In-Reply-To: <20261110-v7-2-topic-dp83867-v4-0-a268f83b1ec1@pengutronix.de>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, Michal Simek <michal.simek@amd.com>, 
- Eric Dumazet <edumazet@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Steffen Trumtrar <s.trumtrar@pengutronix.de>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3665;
- i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
- bh=Yz7CSZ8fq/VGSX0cp9pV2oHueA0A3/PfruOLUVGTgyA=;
- b=owGbwMvMwCUmtVehiCsuTInxtFoSQ9an9zfmp61fteqexrfyT3K3bk84IN1UeIH38p9tLAJiM
- Q+9DC+e6ihlYRDjYpAVU2RRWVjBJ+rxwTNymggXzBxWJpAhDFycAjCR7cEMf/i5Uj4t1I/JStx+
- rkA/cPMaQ9Hzxy890FtiVlfadbV9ZTPDX4nzly+bBmu//dicFMYtVq+oZKKsZiHs3OuzsvFYgdl
- 3FgA=
-X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
- fpr=24A1780E1548F0495996140A1ABD20720A5E5622
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/6] firmware: raspberrypi: Store child devices in
+ struct rpi_firmware
+To: Sander Speetjens <sander.speetjens@gmail.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
+ Stephen Boyd <sboyd@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261107-fix-raspberrypi-firmware-v2-0-5bfe605a5cc5@gmail.com>
+ <20261107-fix-raspberrypi-firmware-v2-6-5bfe605a5cc5@gmail.com>
+ <63ecdac3-f8b3-4d44-9b0a-37346568d326@gmx.net>
+ <17b8daee-c5df-4b03-a839-38b5ef3edf3e@gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <17b8daee-c5df-4b03-a839-38b5ef3edf3e@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:fx+R12LIAi3FfJm32MyQo1+Z8ga8UVeSXJAHniptDk7GsFasa7g
+ LhOG/vds5pU0rasZr4MDseNZulxJ+wKPUDqgHXW8iBYU4Xed2OecJUU7wQPo5VizApLnLA+
+ NhSoQliWUK7UBRtmwEVbtxD7gew4msZmP8wfmGREqWh+JzbG6IrDBzabaxs0BXsb+fBr/7c
+ lF3PfPv0vSlM2Wq7nZL7g==
+UI-OutboundReport: notjunk:1;M01:P0:pbsSd/YX8u8=;cx0vgWawM4I6YOMn7mbg2TQbnue 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 jVsmLiMaOECxwW6Q6V3rLc=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_022013_882562_26F5F1B2 
-X-CRM114-Status: GOOD (  19.35  )
+X-CRM114-CacheID: sfid-20261110_022121_140013_82F73426 
+X-CRM114-Status: GOOD (  15.64  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -112,99 +88,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently the dp83867 supports setting the io impedance to minimum,
-maximum, default or a value from a nvmem cell. In situations where there
-is no backend for a nvmem cell, the value can not be set to anything but
-minimum, maximum or default.
+Hi,
 
-Add support for the ti,output-impedance-ohms binding, allowing to
-specify the impedance in ohms via the devicetree. The PHY has 32
-settings between 35 and 70 ohms. The datasheet does not specify the
-impedance of each setting, so the value is mapped linearly to the
-nearest one.
+Am 09.11.26 um 06:55 schrieb Sander Speetjens:
+> Hi Stefan,
+>
+> On 11/8/26 22:06, Stefan Wahren wrote:
+>> Hi Sander,
+>>
+>> Am 07.11.26 um 19:21 schrieb Sander Speetjens:
+>>> The hwmon and clock platform devices were kept in global variables.
+>>> Move them into struct rpi_firmware so each instance owns its own
+>>> children and their lifetimes are correctly paired with the parent.
+>>>
+>>> Also check the return value of platform_device_register_data() so that
+>>> an error pointer is never stored.=C2=A0 The child devices are optional=
+; do
+>>> not propagate registration failures so the main firmware interface
+>>> remains available.
+>>>
+>>> Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
+>>
+>> the first version of this patch contained fixes tags, but they were=20
+>> dropped without mention it in the cover letter.=20
+>
+> I was not 100% sure if the commit needed them. If you say that it is=20
+> needed, I will add it again.
 
-With this mapping, 50 ohms results in 0x12. For non-OF devices, the
-driver sets 0x0f (IO_IMPEDANCE_MIN / 2) as the 50 ohm default "per
-datasheet", which would be 53 ohms with the linear mapping. As the
-datasheet only gives the range, neither value can be checked against it.
+imo the problem with the commit message is that it's not clear this=20
+change is a bugfix or a improvement. Please try to focus on the why and=20
+not what is changed.
 
-The binding does not allow combining the new property with the nvmem
-cell or the boolean properties. The driver still reads the nvmem cell
-first, then ti,max-output-impedance, ti,min-output-impedance and
-ti,output-impedance-ohms.
+In case this change fixes a real bug than it needs fixes tag.
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
- drivers/net/phy/dp83867.c | 29 +++++++++++++++++++++++++----
- 1 file changed, 25 insertions(+), 4 deletions(-)
+Best regards
 
-diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
-index a3cd5cb11ea0a..ca668e75f0c99 100644
---- a/drivers/net/phy/dp83867.c
-+++ b/drivers/net/phy/dp83867.c
-@@ -119,6 +119,9 @@
- #define DP83867_IO_MUX_CFG_IO_IMPEDANCE_MASK	0x1f
- #define DP83867_IO_MUX_CFG_IO_IMPEDANCE_MAX	0x0
- #define DP83867_IO_MUX_CFG_IO_IMPEDANCE_MIN	0x1f
-+/* Output impedance at IO_IMPEDANCE_MIN and IO_IMPEDANCE_MAX (datasheet) */
-+#define DP83867_IO_IMPEDANCE_MIN_OHMS		35
-+#define DP83867_IO_IMPEDANCE_MAX_OHMS		70
- #define DP83867_IO_MUX_CFG_CLK_O_DISABLE	BIT(6)
- #define DP83867_IO_MUX_CFG_CLK_O_SEL_MASK	(0x1f << 8)
- #define DP83867_IO_MUX_CFG_CLK_O_SEL_SHIFT	8
-@@ -542,7 +545,8 @@ static int dp83867_of_init_io_impedance(struct phy_device *phydev)
- 	struct device *dev = &phydev->mdio.dev;
- 	struct device_node *of_node = dev->of_node;
- 	struct nvmem_cell *cell;
--	u8 *buf, val;
-+	u8 *buf;
-+	u32 val;
- 	int ret;
- 
- 	cell = of_nvmem_cell_get(of_node, "io_impedance_ctrl");
-@@ -553,12 +557,29 @@ static int dp83867_of_init_io_impedance(struct phy_device *phydev)
- 						"failed to get nvmem cell io_impedance_ctrl\n");
- 
- 		/* If no nvmem cell, check for the boolean properties. */
--		if (of_property_read_bool(of_node, "ti,max-output-impedance"))
-+		if (of_property_read_bool(of_node, "ti,max-output-impedance")) {
- 			dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MAX;
--		else if (of_property_read_bool(of_node, "ti,min-output-impedance"))
-+		} else if (of_property_read_bool(of_node, "ti,min-output-impedance")) {
- 			dp83867->io_impedance = DP83867_IO_MUX_CFG_IO_IMPEDANCE_MIN;
--		else
-+		} else if (of_property_read_u32(of_node, "ti,output-impedance-ohms", &val) == 0) {
-+			if (val < DP83867_IO_IMPEDANCE_MIN_OHMS ||
-+			    val > DP83867_IO_IMPEDANCE_MAX_OHMS) {
-+				phydev_err(phydev, "'ti,output-impedance-ohms' contents out of range\n");
-+				return -ERANGE;
-+			}
-+			/*
-+			 * 0x00 = 70 ohms ... 0x1f = 35 ohms. The datasheet
-+			 * does not specify the settings in between, map the
-+			 * range linearly to the nearest one.
-+			 */
-+			dp83867->io_impedance =
-+				DIV_ROUND_CLOSEST((DP83867_IO_IMPEDANCE_MAX_OHMS - val) *
-+						  DP83867_IO_MUX_CFG_IO_IMPEDANCE_MASK,
-+						  DP83867_IO_IMPEDANCE_MAX_OHMS -
-+						  DP83867_IO_IMPEDANCE_MIN_OHMS);
-+		} else {
- 			dp83867->io_impedance = -1; /* leave at default */
-+		}
- 
- 		return 0;
- 	}
-
--- 
-2.56.0
-
+>
+> Kind regards
+> Sander Speetjens
 
