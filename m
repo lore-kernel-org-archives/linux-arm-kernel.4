@@ -2,57 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32183606A969
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9113B606A959
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5EOhbQfB;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=c3GHa2+1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MDzFwQ3p;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=k0SFM+Gv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fOFRdn7z24nh5HHdH+lcQ22pYuvFi8+a4KYRKJ+WMTc=; b=5EOhbQfB7VvdA0
-	f/zxPQrhPMGlA7qqBTzpMJJnxOR5OjZpGzDWtHqH+RdLg9sSMPtrf1kX8bCv3e6RTwfNm44yTJZP5
-	vo9sMD7QVdAGIj3bWZsXc6vqcoc0PRHnV5zmUxMOc+AefLx+SRjWkljPmG3W81doxGg0d/Iu5ojqW
-	vqfSUBJVxK9+PkLgko3yGYtiOpomnmLtvHPpEgsyW+xDkJVwS+/2rypz5dcw49DhO5yWILPuqSGSE
-	DI7dZ3TbwuH+TuVFWfNpnFmrqVqcE1056u/4LEkUQOJ8WP+PN05LG+ADQ+opeLwzl0vKxn0u67T5C
-	XBqUZxSOVSRDehQabhTQ==;
+	List-Owner; bh=IxhCvfJIBJyaA2ATxGs3fIk1vG0uQA62+MwfTqo1X0M=; b=MDzFwQ3poL4UvS
+	b7PbiBd+N6gjp2uhRWOghx7yViV76tc3TkN9RaatG54BgVjfNrL4w+a6qpL8BLv8XutspaxEek02m
+	ffODeSDoEYvLmfqYYMFaiVMgO+wEF++MEjvkVgDjJtCtpZqcMZRtLoocCKLc2mEPw+I3CDrsHwnTH
+	USFkln71wOlUntwQ+RevrjH9nQbYKdhBkZB9ftJoAR3tf7uLnlXmYVtZxMyMaFulxCtvRH2gkXZlp
+	iCMKK//gOsybnbYHnsYI1VP94myv1eE9C5/MFgdIkHDmokieMlvhMRpR726beJ9ND8aIB4sx1offI
+	4ZfY5WWgyWLQDc/nd7aQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkew-00000003knS-2gt9;
+	id 1xQkew-00000003kmF-0cU0;
 	Tue, 10 Nov 2026 12:09:06 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQket-00000003kix-19xn;
+	id 1xQket-00000003kiz-0fJi;
 	Tue, 10 Nov 2026 12:09:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794312539;
-	bh=tYsCCetG8oTk0mstJCHvbXche/Jiq/UwGP0ULa31RX4=;
+	s=mail; t=1794312541;
+	bh=pc0gMmdXl/8SnyaG/cc7eHGzGbww5CJsVOxiPSb3ZG0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=c3GHa2+11BmBBOuQ8GIVVV2EdY5LFRNpPEqG+Sd65bh7Vg1dChqzr5bSb+JMBr6Ue
-	 DtOgje6DIBkf5gM6Y04AfbSWcGVZ3Mb2/ixb2YI2GmR4Jf28j4Z2Zx1Ob4E92Uvx0V
-	 NclsUIp3C4YtCWC+Gou+TLc5uhxmtbOmpoKK1x9w+MiozgZZgFGX9pRAFPO4dxz5Q5
-	 qXF2dqfnyYaJ9Ygzlm0+EudAztmq0FHEDl1CUoTcT/q/H86aoQgX3jcCIwfyD8uLfu
-	 8o6uHAUMtUbAWxI1iSTL3tRW9W2NvIjD6b2yHeettBNFK3cdTZfYsEE8QrnVKjuo/P
-	 K/OFAM9k0PZQA==
+	b=k0SFM+Gv6dQieIs/4KcXVYUw8f0rvjSKjIpzcYwEgQPIMIPRzmCC/PyaUajFj0zzL
+	 l08NMrI9z7Rec1YtfQ+G41byOpFHX4G7oUjpBudV6lrNKum5eA91B1UFMxVEimRzsB
+	 zFSzDMX/geVAk40K2qekwyqBqhFRrma0DPGu0Nour2SEfQenBMsd+sIY7M8vDyn26Y
+	 ndlwjV1lN1I1elUgpQH2P0EMOhV6MomMKbYOnEU6dw4/h16Uw+GdzqasUj2gFfLDQ0
+	 sLahN35HOQV4rr3TIMXMLNacFji4NmRIZ9PdnEVBT1vWZwy5K0eE7xtROGQQBfYR9/
+	 QPZzt+RuX3bgA==
 Received: from yukiji.home (unknown [100.64.0.131])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E3AAC17E0311;
-	Tue, 10 Nov 2026 13:08:58 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 136BD17E09AB;
+	Tue, 10 Nov 2026 13:09:00 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 10 Nov 2026 13:08:48 +0100
-Subject: [PATCH net-next v5 01/10] dt-bindings: net: mediatek-dwmac: fix
- unit in rx/tx delay property description
+Date: Tue, 10 Nov 2026 13:08:49 +0100
+Subject: [PATCH net-next v5 02/10] dt-bindings: net: mediatek-dwmac:
+ deprecate rx/tx delay vendor properties
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-dwmac-mediatek-mt8189-v5-1-7d99d6292962@collabora.com>
+Message-Id: <20261110-dwmac-mediatek-mt8189-v5-2-7d99d6292962@collabora.com>
 References: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
 In-Reply-To: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
 To: Andrew Lunn <andrew+netdev@lunn.ch>, 
@@ -73,19 +73,19 @@ Cc: kernel@collabora.com, netdev@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  linux-stm32@st-md-mailman.stormreply.com, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Andrew Lunn <andrew@lunn.ch>, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794312537; l=1905;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794312537; l=2106;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=tYsCCetG8oTk0mstJCHvbXche/Jiq/UwGP0ULa31RX4=;
- b=Vmf531z+jzieeklTIFtqbhu4kmoYXsK84c/9JuEtdGQVrM1zGWCQ6XAL0knA0b0OABWB/cwf3
- 3JYdsIkkwVnClRdjZTJrlFUrQHDMp3bdXm8xxNU1BRAiBLZgeQioYwN
+ bh=pc0gMmdXl/8SnyaG/cc7eHGzGbww5CJsVOxiPSb3ZG0=;
+ b=4pVR8gdOK+gDzLPVy2w47hx8D9Hlwyz0LnuMLtD+uej6gZaiVAqYTOgBkdrU7ssMlVcvL+ds+
+ NH4HcA+2lulDnYd+xO9gaCeeZlfRLrUepAXE25crSv20whyZYjl2VHI
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_040903_490120_76BC4F73 
-X-CRM114-Status: GOOD (  11.66  )
+X-CRM114-CacheID: sfid-20261110_040903_426235_C891749B 
+X-CRM114-Status: UNSURE (   8.83  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,42 +105,49 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The "mediatek,rx-delay-ps" and "mediatek,tx-delay-ps" descriptions say
-their values are in nanoseconds but their names with the "ps" suffix
-suggest it is picoseconds.
-They are in fact used in both driver and devicetree as picosecond.
-So, modify the two properties unit description to fix their unit.
+Deprecate 'mediatek,rx-delay-ps' and 'mediatek,tx-delay-ps' vendor
+properties because they duplicate standard properties from generic
+Ethernet controller bindings and have the same unit (picoseconds).
 
-Fixes: 150b6adda6b1 ("net: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema")
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- Documentation/devicetree/bindings/net/mediatek-dwmac.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/net/mediatek-dwmac.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-index 3aab21b8e8de..14f9683f20fe 100644
+index 14f9683f20fe..956240616638 100644
 --- a/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 +++ b/Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-@@ -81,7 +81,7 @@ properties:
+@@ -80,6 +80,7 @@ properties:
+       interface and timing delay.
  
    mediatek,tx-delay-ps:
++    deprecated: true
      description:
--      The internal TX clock delay (provided by this driver) in nanoseconds.
-+      The internal TX clock delay (provided by this driver) in picoseconds.
+       The internal TX clock delay (provided by this driver) in picoseconds.
        For MT2712 RGMII interface, Allowed value need to be a multiple of 170,
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
-@@ -91,7 +91,7 @@ properties:
+@@ -88,8 +89,11 @@ properties:
+       or will round down. Range 0~31*550.
+       For MT8188/MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple of 290,
+       or will round down. Range 0~31*290.
++      Deprecated, this property should not used anymore for RGMII TX internal delays,
++      the standard tx-internal-delay-ps property should be used instead.
  
    mediatek,rx-delay-ps:
++    deprecated: true
      description:
--      The internal RX clock delay (provided by this driver) in nanoseconds.
-+      The internal RX clock delay (provided by this driver) in picoseconds.
+       The internal RX clock delay (provided by this driver) in picoseconds.
        For MT2712 RGMII interface, Allowed value need to be a multiple of 170,
-       or will round down. Range 0~31*170.
-       For MT2712 RMII/MII interface, Allowed value need to be a multiple of 550,
+@@ -98,6 +102,8 @@ properties:
+       or will round down. Range 0~31*550.
+       For MT8188/MT8195 RGMII/RMII/MII interface, Allowed value need to be a multiple
+       of 290, or will round down. Range 0~31*290.
++      Deprecated, this property should not used anymore for RGMII RX internal delays,
++      the standard rx-internal-delay-ps property should be used instead.
+ 
+   mediatek,rmii-rxc:
+     type: boolean
 
 -- 
 2.56.0
