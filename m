@@ -2,128 +2,157 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 272FB606B2E4
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC52606B9D2
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 09:44:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eidGFThc;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=rOIk1gEA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jqp0DffB;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=pjd+j2qw;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=NjAc1UB6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/STSAsKApnUqwh9qjDB+bZluSJUxcFNCda7tshnzAkY=; b=eidGFThcY+qXHmt+kD3XSoSqLl
-	k/MzisaIjPUECLNRtQrBJu/dNh6nFt/I53fpAkpK1hqp5be1HmzpNrZBFJT1Dt00hMxsUlOIyIr2P
-	HAqtOw8uilBh+5IKDPNwXkwZ03kuRMFK00obwBmQwQP/DKJmUE7z0SRRxAcn8cyAbqsT409OkZCDy
-	SilieCamamrL+s5GnFLREq4x0yt6hNA/w29gVO8TgsMBgOALHjT1jru3ekJ8LCg8v0kTWzBW5qKG/
-	sQ2tYqJwHEMMav+RNjCCiP3v7ZRfmYyOZquXKYak8MOnltqKw+RRPCFOCRwJmViZkPHgD343TLuas
-	3IVHyeuA==;
+	bh=vdE+aUoRB/9Y/tI/sh5Vrl8DHxfhl/imM7gAR4Jqcas=; b=jqp0DffBBGaECRiu5S2VxN4ixV
+	W9k9MO8eFVHUDFJ59vJYsiMdemHIQJMbRqRk47a8qdI6vHFXErYzXFutPr9NZrO9L+al6w23Y7q+G
+	08bThM7dXj28TAxjSWi14u+rFwvkPXGqVWKhwb2p3xxQhLl7fkYVoU/W9hG6/kUftjV8iqJZ3RJ/r
+	y2W37H6lPqOzFpqGOrH7r56jl0iv9sedfomsz1sXB1qw80Gg7T6ifxdw2yBSS7CyAHyYjtV+guS1p
+	0jY/kg35+QtdOWQVKF6VFWqOsBlzbdrutDBzhOlcFz5MP+WzMh1ETzZu0jy80ic319BKnlRWAbZnY
+	OaKxkc0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiNn-00000003Jhu-3HGa;
-	Tue, 10 Nov 2026 09:43:15 +0000
-Received: from mail-eastusazlp170120007.outbound.protection.outlook.com ([2a01:111:f403:c101::7] helo=BL0PR03CU003.outbound.protection.outlook.com)
+	id 1xQiOp-00000003KKS-0k6K;
+	Tue, 10 Nov 2026 09:44:19 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQiNl-00000003Jgt-0C05
+	id 1xQiOn-00000003KHz-1W9u
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 09:43:15 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I9IPi1MP4iuetC+LfB9msZBeMfklMmGE5Sxpog0UogC3tlZHTShjb2Jl1e9jLMr3dG6pHTCK/hElRGdPcQ0JAWh8NlQXbvvz3U3P+ZXrDlXOn2mhITG+/TpHSOm91eBvNYlpCtvXjc528G9MLQzEbCtLMK00kebeEmPjVg1/xDZHfKTBtRZPC9EBj2YwOK0d3r8r7LHeYJXNnLZx4Hxio+WPvUJRfbcNxz89EMPJPGEOQoBC5yyM1pRz98WSMhbZsfwo4G9WKfRow4pocDEXh/2yjw9Ky5tEOGi2NHb9MYzIocKC0THGqQ/NbYwOECKtcc0RKw0sV+J0BxsTpFUcmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/STSAsKApnUqwh9qjDB+bZluSJUxcFNCda7tshnzAkY=;
- b=jF/csgJJfZMY/zN2a7USsJJhA1Uj7yzmhuL8UuuaSei514oOY5isvxB7BiAkpROJvsjaFUO6icPFLa2EEZcNsBVVhp9qQwVl07zvJmAsxKYkLjFuCesF2dYMrUmhafN3IiM3R05FO7+3V3QQtxQPqqeQjiQ+4pVQc5TuRV/Tc/Dbv8Om64/EOhON8yF1dnBgTXIy4JjH/Lzu5MXxc9CDR6A7VPLSdaoPo+K4782fXThsYgOQaO9BcwIM8mPoOZwNBJFN54vr578Fq5FXG5cEq7oIIpIXzxFSkE+Pdo4ZkfMY9eF9NxFTAI8LU8u0xZnX2JIFWiscjQfj8DGNuWgegQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.ozlabs.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/STSAsKApnUqwh9qjDB+bZluSJUxcFNCda7tshnzAkY=;
- b=rOIk1gEAYQ69mRqZ5DpS0xnCF0UgQKCR6Xoi58a9EiKLtPFxaQG79FbvAzPyYxFzSOIikZV+oopjEdVgf5aiZmVIgPGw//Jv4z5AEto/tgVehvk8tt4HuzBoGjOqyOr08Wli1rJzeNTwGpN5g80/Jhp9tSZMIJ9tm2q5DWWL+OY=
-Received: from CH0PR07CA0026.namprd07.prod.outlook.com (2603:10b6:610:32::31)
- by SA1PR12MB7174.namprd12.prod.outlook.com (2603:10b6:806:2b1::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Tue, 10 Nov
- 2026 09:43:04 +0000
-Received: from CH2PEPF000166BE.namprd04.prod.outlook.com
- (2603:10b6:610:32:cafe::a4) by CH0PR07CA0026.outlook.office365.com
- (2603:10b6:610:32::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Tue, 10
- Nov 2026 09:43:04 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- CH2PEPF000166BE.mail.protection.outlook.com (10.167.252.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 09:43:03 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Tue, 10 Nov
- 2026 03:43:02 -0600
-Received: from [127.0.1.1] (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
- Transport; Tue, 10 Nov 2026 03:42:59 -0600
-From: Carl Lee <carl.lee@amd.com>
-Date: Tue, 10 Nov 2026 17:44:50 +0800
-Subject: [PATCH] ARM: dts: aspeed: anacapa: remove unused EEPROM
+	Tue, 10 Nov 2026 09:44:18 +0000
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AA8W6e62833675
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 09:44:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=vdE+aUoRB/9Y/tI/sh5Vrl8D
+	Hxfhl/imM7gAR4Jqcas=; b=pjd+j2qwJdJcrbj9o5ABpubS50+2iHpAbx3QsZq8
+	1d2q2RlRBJEalsu7/HxcengRpag67otltjJSK22LY8SMKYNSUjyauL2DwFqfQ/VR
+	JHUD1XggUxctF9Ue66MR5KmKJZYek+E0FT8E2mzeo6hymyiVb2vgWrkxfVN9dwOD
+	kfSoj68eSxlq4q03h8UC435RyP5nL9F3Z5mZ2f+KBIszvhuqd+rF+Ngn7ifcZwie
+	b5HiGZIsiHW/K055LFDaYdYJx3D7MgG2T39wyMvnhas2Y/hIZi3HXEdbwG8t26Xh
+	VNqKEGK2deI+3jDHFAFXGVGYdja/mEvAbbSmH++F2jnwPQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4huyufr989-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 09:44:15 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-93f5844cb60so363215585a.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 01:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794303855; x=1794908655; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=vdE+aUoRB/9Y/tI/sh5Vrl8DHxfhl/imM7gAR4Jqcas=;
+        b=NjAc1UB6gZDrKDZciSOd+ogRAlY3NMJQH7GnTnoREXWZb6lr2ZBNZ1QmtUGHjm837J
+         IYma4KK80tj12lkhthl0QJNP9CE9I+sZALrbZmg8/A03Uz9awFZAG14gRyztabAZSJd0
+         fK4+Ek7Tl8w7dF0VT7tPYXppiRyekYT7zchh+uozxV8e/ARKkENUOsRE3s8kyPLdaS7X
+         8lT85/Imy3C5FMOVVQuxD1+BpI/19EdEisp+IbS9NnQBg47sy5x9JBaO7X/dMCVdKIgb
+         3a5zMDKTCsC8trSw2ykHGMtFrSrINcPIroZGAqu4sFwoIsL1/bw8giVFYLj3pywCCuhE
+         Qz3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794303855; x=1794908655;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=vdE+aUoRB/9Y/tI/sh5Vrl8DHxfhl/imM7gAR4Jqcas=;
+        b=rsyaUgjg+C9o2NjaTLv4MucxfmPysfh/0XzVQW/GngAQ94HjzvJh2EcdhxDEic1EOC
+         SFUfY0uWeS7wIWSDhtW78aFnFwJJk6pYaC26GLlAkoAZHjExX3n94oDPfMeblcs1APtB
+         UpX/1TADaKxa2MOcUNfx001EV2gszh9LYUvSnsXOFLln5OXVfDC6bqT6oZv1rtptsT9r
+         taUjQ2wymfswsjRQRrte7H+yFDpVwoLnzwRq2LO2iD18YlU9ZxYIOpECAyc6UOQhbYVR
+         jIR8ruayYvYlc/YB8nJzElWrskO/9Awy7bB5jWB4PoLZlUczVHb4KveP3UYscPoRhEL4
+         66og==
+X-Forwarded-Encrypted: i=1; AL+hErGvLlOfqlxVljYS16LAd7adZUP5smBS9iMee00Bkn8KHneuv7pa3aHc3s3hmpBLq3O6k7+9GFieVTOmOzjSvUuW@lists.infradead.org
+X-Gm-Message-State: APuU4Z/jT1WiOz7TIhVuxrkMuOiqeXpqvtNUmhnK21EGmKfJoCxus2Yn
+	4H2iI+LEI6W2DTwPxPgXra/P2dWq8S3/FN/IXom3JabQbthKFBLepNQBxkBrusTCpVMQ6TlnxMd
+	nu1yMS2d7tWDrJIZLfH3AOYy4sbiQD4zUSa6veFuM/Wfh6Z01Wawa5ZPlX2DHOeailS0psrYX2t
+	rN7w==
+X-Gm-Gg: AYBFou0ybMu1dppZHMkY6KwHw+4dNi8FLyuSP3fkJZByBdx0mJjfmu0hfU0hDFhGvUv
+	3MR6FPgEOfJNUOgJFT81XvRp3gdP/4mDdHTw6875DvDh241t+bjTuDPnfGF6cW3PN2WdTGNsC0/
+	F9r87yeWrJJjEgkKQ1FszSc99NTKZSGrXf9EdbmKeVnJSE57M6fIowEUCV9hbxtL7vbnFZxcn13
+	AvWFy4EnlWn8n5lOOYaeUtoIPBVLsGtUTC1ssL81/vIJpmdVmme2Fd4jBCOfDN9tBvQ3dve+Jo5
+	i+6wVVflZuXW4484mukdmrdE9OyWXpcnkLcPlNeC/Z19ylOFIBDL/nLFFt82GxR07auqwlSuvt9
+	N4FXC/tePvi4fdul3qyW+tUgxh5LxmTSs4XDmjpaNqRvSReAYnKJlh5bQ95FYWqMa
+X-Received: by 2002:a05:620a:31a9:b0:944:6ad:1b7f with SMTP id af79cd13be357-9479f22a764mr306205585a.32.1794303854750;
+        Tue, 10 Nov 2026 01:44:14 -0800 (PST)
+X-Received: by 2002:a05:620a:31a9:b0:944:6ad:1b7f with SMTP id af79cd13be357-9479f22a764mr306202385a.32.1794303854177;
+        Tue, 10 Nov 2026 01:44:14 -0800 (PST)
+Received: from oss.qualcomm.com ([188.27.161.77])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0204342asm60996725e9.6.2026.11.10.01.44.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 01:44:13 -0800 (PST)
+Date: Tue, 10 Nov 2026 11:44:11 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach <mike.leach@arm.com>,
+        James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: glymur: use Aggregator TNOC
+ compatible
+Message-ID: <3drlpt2ox56togk6tf3bkejsmznfujgutkpzd7t7zimhvgiu7v@g7gddlszxciy>
+References: <20261110-fix-trace-noc-probe-issue-v7-0-2f06905c77fe@oss.qualcomm.com>
+ <20261110-fix-trace-noc-probe-issue-v7-5-2f06905c77fe@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261110-arm-dts-aspeed-anacapa-remove-unused-eeprom-v1-1-e3b5d9cc1a03@amd.com>
-X-B4-Tracking: v=1; b=H4sIAJHn8moC/x2NOw6DMBAFr4K2zkoYAUWuEqXY2A9w4Y92A0JC3
- D1Wypli5iKDRhg9u4sUR7RYcgP36MhvkldwDI1p6IfZOdezaOLwNRarQGDJ4qUKK1I5wHverVm
- gakk8usnLGMI0Lx9qxapY4vm/vd73/QPfzzLQfQAAAA==
-X-Change-ID: 20261110-arm-dts-aspeed-anacapa-remove-unused-eeprom-415ca4dd56fb
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
- Jeffery" <andrew@codeconstruct.com.au>, Ryan Chen <ryan_chen@aspeedtech.com>,
-	Billy Tsai <billy_tsai@aspeedtech.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-	<carl.lee@amd.com>, <colin.huang2@amd.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794303904; l=1070;
- i=carl.lee@amd.com; s=20260203; h=from:subject:message-id;
- bh=KuqCqTn6qEaQVN++wIzRcgfygQpkPnvrXYdt7F+hVQU=;
- b=zSQtksEijXNXCK3cDWPPHjQ1xaeYS2ziuEy1FOokwfZDvuqgb5I0Jo8EPuX3/N39BGiZPMHRO
- Kt2rIOGX6OXDEruQCRZaNwjB16tDRRGXXRG1s+lOLDCVfcWJMVIG67G
-X-Developer-Key: i=carl.lee@amd.com; a=ed25519;
- pk=pyq7QaQvoxMg806KVkRwpCbiah+7ncWr4MBpK1AEyjA=
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF000166BE:EE_|SA1PR12MB7174:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93f77399-ecd7-4640-62c8-08df3f0f0424
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|23010399003|36860700016|82310400026|11063799006|56012099006|261021121427099003|261021123027099003|261009223027099003|261102123227099003|10067099003|18002099003;
-X-Microsoft-Antispam-Message-Info: zLXBmk+k6vxUKNV3/3zeDTGQHolGpP503+dJDtadoiXXlP/MGxsibEgl4M1YIfKM+wd+NnA/pah+FmRXYctILOgSJ/5RhmERePjAECxLo8KbetHceFyuAKSK7VFSlBaa4OAZ6fjtfcoHy7+z2XQRpp53eSXFPPunFYKMSTPyKuhbqFYAU7wfNwmCiJUotXKv9RJOLTnOcPthoem6EcqAALB3++o8w2ubT8izoYjZ4tgTgYA4llfLt+et5MoP6BahzjOBXO/MSSPw8U2kngEomuB1JAN4XGBuY1lJYSzySBZlqz+I3l2RDqbHc6w+3DfBF3/VzOQlGvQkzgdFR7WXW+Drw3mgmsoisYJljoBQHbpQm0k5J68ISCXvnP3VOsFbpmcJiOCC0WOi4aL+/w2VbkWfAeV5GSjT4G418lYQOqNZ4/MemFmjjZHF0lZDttiql5QXrYr9IypAGQOGeVdlrdz7VWxyxmc7S/l3mK/yfL0e7FR8a6+Ye14wKeNsu3sXzPP2ZlEB2PPttOM9cAMid5S3KrWUzHUaYWtYhpDEl3x44EBrbfqpHjhJXxMISDzFKsgFnJ7zhnWC6jkSPXE1YiN38F7NG47dggnNgUjMxlZo3gzT/6SDc1HskS7wjdwcuJxDFE8sg0xs/vM2tFF8fIN2z026W0y+IyMUfcR3hWslA8kpvA23u7CB2M50saZHTN0Ou3Iks2UhBeCTQVh//g==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(23010399003)(36860700016)(82310400026)(11063799006)(56012099006)(261021121427099003)(261021123027099003)(261009223027099003)(261102123227099003)(10067099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: uacHEv1jiD7VC6gIUIfnabnKMFt8N3mBgHheVXzpbSnRpGRH9MwSjstvUXdqT95BmkHX1VHJnm7ydTN13knInIGtlKJmbaszFkaR1jLJP3EsYoiKBadCP+65sf1fUSxpE/4ckpAt8qFOuRmGc7x8wBL5l1armdIibTaNf9PWP/3x4WorHXJlX1bRzvlfzjiFUDL8JMaQlEAlRGETEuNrE9VklPYPdOvSU2yYdimavpXf6BUP7RQjcWI0nBr/3YJ4fxC2VxwV9c55mHB9pObRCtAHokRPUuCkZKid0WLjX+Mjw/DXMa3bk48N0dBmbLC+B4JI0WTklBKzkEEXgH4dMuz4CEzHw45noLC4Ey19ENdJzk+BKKQ2rQlrhLmTBB+zyOKJfk+ZZDdOK0bORdUKmLxS3btpuW+ZhrNtdpJ5uB6L5iLBRQaaF2pgin0yvUXo
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 09:43:03.6128
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93f77399-ecd7-4640-62c8-08df3f0f0424
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF000166BE.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7174
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261110-fix-trace-noc-probe-issue-v7-5-2f06905c77fe@oss.qualcomm.com>
+X-Proofpoint-GUID: xqgEKu6Iy9-go5bbFDWUH9o_rxk0ijye
+X-Authority-Analysis: v=2.4 cv=S6lMU4sP c=1 sm=1 tr=0 ts=6af2e76f cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=asF+/XNaGoxFafzDDLC1GQ==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=p7_fsQVHwOYSS4OMyj8A:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-ORIG-GUID: xqgEKu6Iy9-go5bbFDWUH9o_rxk0ijye
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDAzOCBTYWx0ZWRfX7uS45/rSGUVt
+ 5LVt34p04N1KiLb3+EukwO7gKvh3ybzpFKDznF+a8fgmCSBk0C/pVb4falNZcZepk6YUbgi4ZOJ
+ bUzdYH9tUXdW1iBJFNoLEJ9nzty2jII=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDAzOCBTYWx0ZWRfX6da89gqV0TkO
+ 9tz9uT6ZxK5mRjnr8r82WmOYLvGZakbtdIQ5+m1aZ076DINTVqm6iorgWUoewDOogQ3RA1UUf8c
+ PGyHvViGSB97KJPmoFDeEsbINnb+AtBUZdMv9GVzV+4vDPZBo6K7svO3Qp8W8+nw4CMHTJdLzop
+ Wd7HyHQU7kD3lE43XQP3J46uhY9+O6eF3yfgJz9cEj1ngmJ+uDyCwQyoX56/w8TapLRGlOHzn2v
+ QAeIVJluY/OwZVdU8mHQbepClxnGN2X4dVOdBJ84cBsk5cfkQZ9KcWMNWN+vZN4/XRTYRcb+9q3
+ w4ZQ/KoHn9x0lmzUp4sPRaxF0YSPH07AO1kh/GymoGIPXHi/3dF+R0LuJchIPJRnfGuBcj8mBkH
+ DoHMDvU01+6NjLPX0KbHL/xRvfxUNA+wWhQR3OeTY+Vl1hZUXbaDvardtSbp6bX0jnwoR9ssCEL
+ +nXNc5XJsCN+FFDbSdw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-10_03,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
+ spamscore=0 clxscore=1015 malwarescore=0 bulkscore=0 adultscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611100038
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_014313_143149_34B25E0F 
-X-CRM114-Status: UNSURE (   9.40  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_014417_416912_90D36EFD 
+X-CRM114-Status: GOOD (  16.40  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,48 +163,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Remove the unused HPM board ID FRU EEPROM (0x51) from
-the I2C mux channel 4 device tree node.
+On 26-11-10 09:21:18, Jie Gan wrote:
+> The traceNoC node is the system-level Aggregator TNOC, so it must own a
+> valid ATID that tags the whole aggregation path. It was marked compatible
+> with "qcom,coresight-itnoc", an Interconnect TNOC, which is never assigned
+> an ATID. As a result the aggregator had no trace ID and could not tag the
+> merged trace.
+> 
+> An Interconnect TNOC is a subsystem-level aggregator: it merges trace from
+> the ATB sources within its subsystem (TPDMs and other ATB masters) and
+> forwards the combined stream to the system-level Aggregator TNOC. It
+> carries no ATID of its own, because the Aggregator TNOC downstream in the
+> path already owns the ATID.
+> 
+> Switch the node to "qcom,coresight-tnoc" so it is described as the
+> Aggregator TNOC it is and is assigned a system trace ID. Rename the node
+> to "tn" and use the "apb_pclk" clock name as required by the Aggregator
+> TNOC binding.
+> 
+> Fixes: 1f7d0c42a08d ("arm64: dts: qcom: glymur: add coresight nodes")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 
-The EEPROM is no longer needed in the Anacapa device tree.
-
-Signed-off-by: Carl Lee <carl.lee@amd.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 6 ------
- 1 file changed, 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-index 1fddf3a5d138..1b05b006b3ac 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
-@@ -805,12 +805,6 @@ i2c13mux0ch4: i2c@4 {
- 			reg = <4>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--
--			// HPM BRD ID FRU
--			eeprom@51 {
--				compatible = "atmel,24c256";
--				reg = <0x51>;
--			};
- 		};
- 		i2c13mux0ch5: i2c@5 {
- 			reg = <5>;
-
----
-base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
-change-id: 20261110-arm-dts-aspeed-anacapa-remove-unused-eeprom-415ca4dd56fb
-
-Best regards,
--- 
-Carl Lee <carl.lee@amd.com>
-
+Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 
