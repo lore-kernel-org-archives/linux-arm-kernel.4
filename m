@@ -2,99 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5389D606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 06:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7193B606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 06:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=radSV2kU;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XQbbbDeG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cudUp+Na;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QsG2EvCk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=isj8QmDoAv2l5fg1HSQfo6B6XERKWEnEINwxmN+yGVQ=; b=radSV2kU+7sez6wv/8t3vSUznJ
-	mfiN6/NIWJwHQZm46aCOEkcpsvTgiPzzyf1vPF33xpblG3Wmx6z76SPeJd59Q/JH9xpDQAsRaJYN1
-	/29Rs4jnF5RGRl7Lj/LBRO/dMY81BO5GytoauuNta52wzfuM4dVMQgrhQsCmluhaRdSe+xF+9bagj
-	+L6tF/AaU5daYYoEe5CexXueC0FaQ70M/6r3Jp9TqdwfMJlevYUOm7/1u50h8OW+wICh+PnQJmvkD
-	1NeTA2tCXwFLs49AKp8sS2Ms0j+hZSYc7AhFntnM/VWMguwuDPlIxDbUW+KxyokUExCuGVgNd8BMR
-	TUJQOsAw==;
+	bh=BTymXE5L5Js89oaWDphghi1DfhAjrm1CDfc/pBp0mQw=; b=cudUp+NamM8CKjubQy4equT8u1
+	haiz9Eefrx03MHJc8/iG/qSjkSS86EEx8KHVOrVk3pCEiNn8E4uadjXoXrRvZAKfHAK3sZ7KgoqWc
+	ZOKQ4mpjFQy0hJ34UqCDQlAkqXyWxC2J2kLnSbWXNP25CiFG3VKwqPLhKc8uS/Qa4IJCtW+GxOe7D
+	szVLNyQ1su0+WyS+egJB1lo3gGSRnJ2SXwzBx4WSKN40NNwsZ0Qt7PdtZc8teaCY8gJxmNzbhkCIp
+	vMPbZ3+TNO6TlYw5MnWzKtcwLzhRpNVfrTWfSGZsFX162PENHLnyga83KCmOgmq8/zvBL+Wh48kkC
+	UxorX4PQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQez5-00000002bMF-0rWb;
-	Tue, 10 Nov 2026 06:05:31 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQf0a-00000002bii-2647;
+	Tue, 10 Nov 2026 06:07:04 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeyt-00000002bGj-1fr2
+	id 1xQf0Z-00000002bia-3xDf
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 06:05:19 +0000
+	Tue, 10 Nov 2026 06:07:04 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id D703763760;
-	Tue, 10 Nov 2026 06:05:18 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 4A54060E01;
+	Tue, 10 Nov 2026 06:07:03 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794290718;
-	b=FpJsAeTy7CbyxhwjhEXAGXDL3NuNl8Xfk5v+RDmFob9wV3mIrrPlQ4R8pSOEWZ+YeuTP
-	 aqtHqObpYPNmWdLDySlen0qHmjwGNURK0WP1CK16Zyqn96oUP8B6fVYKbpLf/MzipFQ2k
-	 Xj94ptofHUMxzzQNTuKyYfHIx4OE0YeY6zuyVjNEq+rEuWd6YQSSSMA2FEv4EPmGMW00U
-	 aipHfFXOUdHYw0sUvMAW1689/yoJuV8xK0w3ZePG1SfOcaWb1rKzi7CEFVDYJhrVxUXif
-	 mpHOqR/bpCeJF4Iv/KDWa+MDifaBPy05eGm7Ae2hu7jxSOXhq5P2C/YcpnRq7S7nTgw==
+	t=1794290823;
+	b=AeAici4+Tl55zcfo3W8HfO6BjQvMx3Vetzc80NjmOErzKpqEzDWe8DcHJCOzCOhBjmtc
+	 eFddUUl3ZYulu15OGS8+LeL5NlB2oUs70M9PgpkWUl6CVIOJgiYeYm0ZRDMl4aeq1wVGu
+	 8OzKRe+GvcgQxvMX29RCfXhIsfZLs42eJoRgvI+fD22EBEy/fr6Zz6zkDx+FBy7N+H9bU
+	 jTL6FqLmGBXzaDAg2yN9sjIwM1YtarT9isQL1B989pPcS7AaTFPczt0FrgwJQkw0qxHn6
+	 lGdBiQXwZT0OURoTV4g7tjkGEzu2jFmGRPytFJ6iIMqcamVFKydiuHqkCwUGE5jMJ2w==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794290718;
+	c=relaxed/relaxed; t=1794290823;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=isj8QmDoAv2l5fg1HSQfo6B6XERKWEnEINwxmN+yGVQ=;
-	b=uuMGALfJxD8G9dsjPPGHhOCtfSfaZNr9JgB2m1vcxdgU/umikHSWGXvXDqEV3BXS7fmI
-	 mdrmbYTxgI22zJK4ehrOaubOeqLnc4Jvt/MnPPXFtuKIxHUuYEqCxk/WUuCXEJNISvJyF
-	 Zy1fKl+94sTViqcXg1PHODK0Dh8ZsWDG+CLVqhehKf9OVdJwZNHsTJweDYZhVLZ2+dTEF
-	 efKu5qlOaalUebmwCRpr3fqGof95fpRKQTMIhF0mx2FB3nA4S1uvxRhNC7xSQveUMWIFg
-	 dIY1/Fodc/HOBTftXUB6BQjjiTEdaX9zSS1kodjOJrEox4xgBuhT6M3MjuFBpzUFDaA==
+	bh=BTymXE5L5Js89oaWDphghi1DfhAjrm1CDfc/pBp0mQw=;
+	b=kAoiIjsSoPm6cibM+JgoxsCi060ZSHm4hnPOB83ajF+WWQGAIYCe9QN2i06jVSo2DhKb
+	 h2lJ2Gb3QcaolQez9YBl6cgBQJgSOdt3YHVZf9y2ExTohUAhS+q84/mcRrUQiuelfUIpd
+	 xqCgNjv8IZBmX56QK5yKFzqK5ojBiZsQINfvpFcW1A2sq8O+ZcjURavTAM6+J9krSEAdE
+	 IJrnIUM0O7XVp5NxXhhP76v67GFijZtsU/Y9lNYTdeKQrkNbvImDbBfC6EYdvblMLwQaC
+	 PKx3K5RDM3p5WCv+pfbM2fRUDCLSJABr9h59+DnpRyYIi3RFuZeXcbcvhochBSKs3ig==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id ED1F31F008A1;
-	Tue, 10 Nov 2026 06:05:17 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 535EF1F0089F;
+	Tue, 10 Nov 2026 06:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794290718;
-	bh=isj8QmDoAv2l5fg1HSQfo6B6XERKWEnEINwxmN+yGVQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=XQbbbDeGJPEkijR+PANK2i0N+5nZw9uZO7emzRSVW86HN4it8UxEvwKwDp9i7izg4
-	 GnV4efxY6Hx9ia9HU9St4ueVIy6cos/wJkSN2Gyjdye/07jYsSP2M6kPACANtIYq99
-	 sN6NFeqgflbWTrsOlwMdGFZfl0wljwcPtES1dfHDIhpEwxvSrt3gZAlQwpP1Fgrfcl
-	 fXiWlzobOnMJlV/Z5Mu6KbsP/Bie3s51KDHq7OrUdilwka1Cd8z7hfSYXljOlUIby/
-	 +eMykFG9YyUl4u09Qs0hTqgJqso2gU8+63bJMg7jBm9iShVVL8IXRudZ9P/CujuKDR
-	 kupzcOUfBM9EQ==
+	s=k20260515; t=1794290823;
+	bh=BTymXE5L5Js89oaWDphghi1DfhAjrm1CDfc/pBp0mQw=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=QsG2EvCkR0MjvhcBgNUlwQsTAK+5q8xAbwrVqc0U/BWaSz7WYiJ73t8n6iVlU/F3z
+	 2lAho56yGt5xuk1uTfQrg+sfq/1GRAbFlzGI7RKd1xpCiMAlWxyib8ZAmylyk5JWxd
+	 66RXhZU+biLFH3Q2hvlkJqCIahMRv6fMpm02vLBcXP/mCSkV0DrQVLXJlXgjRStsiU
+	 u/ly/R5LIpDhTV80MbIZGN+iZdlXE1W2wstNCCvytedppxmx+nreQN/QQLAc1oKE5E
+	 XndCWC4VkO4mEYbMHp6p0ACiiwHJpQTo2U1WRhmJVqQOrevZlGNV5fAS/rrLtLpxZF
+	 siHW6+IaFdDjA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 71183488DF;
-	Tue, 10 Nov 2026 06:05:17 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id C21B0488AF;
+	Tue, 10 Nov 2026 06:07:01 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 06:05:17 +0000
-Subject: [PATCH 1/2] iommu/sun50i: Don't report TLB prefetches of unmapped
- pages as faults
+Date: Tue, 10 Nov 2026 06:07:02 +0000
+Subject: [PATCH] clocksource/drivers/sun5i: Allow enabling the driver on
+ 64-bit sunxi
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-sun50i-iommu-prefetch-v1-1-43428e792ef6@gmail.com>
-References: <20261110-sun50i-iommu-prefetch-v1-0-43428e792ef6@gmail.com>
-In-Reply-To: <20261110-sun50i-iommu-prefetch-v1-0-43428e792ef6@gmail.com>
-To: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, Chen-Yu Tsai <wens@kernel.org>, 
+Message-Id: <20261110-sun5i-hstimer-arch-sunxi-v1-1-9016f63e186f@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QqDMAyF4VeRXC9gCir4KmMXbc1shHUjURHEd
+ 7fOy+/A+XcwVmGDvtpBeRWTby6gRwUx+TwyylAMrnYtEdVoS24Ek83yYUWvMV3TJkhtx95xiGH
+ ooNx/ym/Z/unn67YtYeI4Xz04jhMsPfcIfAAAAA==
+X-Change-ID: 20261110-sun5i-hstimer-arch-sunxi-167ea2ebcbd7
+To: Daniel Lezcano <daniel.lezcano@kernel.org>, 
+ Thomas Gleixner <tglx@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@kernel.org>, 
  Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>
-Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+ Samuel Holland <samuel@sholland.org>, 
+ Michal Piekos <michal.piekos@mmpsystems.pl>, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794290717; l=3445;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794290821; l=2552;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=yLoe2znns7P0Nlmxz+qhOed7bJSPIV/igjF81whNh8k=;
- b=7OZXIY/FUo+0ssrRcC5PVK4pgBVfPVCGENntFR4oujOO4H4aYnqjXuNlSiLoiimQAbHlN1eXl
- lGGYmF9UU/zDufC7H+GTKls3rXhjGA1bAxCCLdmCvb20Mn2ibWiwLtH
+ bh=JuIHgoMW4UEdB04flY1z4eCSsxuIeVm+zZ4kA091Ln8=;
+ b=qT9bZuPBCA4Hv8LzVHeLlQ9t6bZS2UTSiDBMfA2GoO3ow4Zi8c5uqjz0rwUkGwKsLY4zchDjQ
+ uZVIryz/vz7Buw5w8euq7lOs32V14cdbWJEkLjIeTxYh5nSCXywOtA8
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -122,84 +125,69 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-With a display scanning out, the driver reports
+The high-speed timer driver binds "allwinner,sun20i-d1-hstimer", which
+the H616 device tree uses as the fallback compatible of its
+"allwinner,sun50i-h616-hstimer" node and the D1/T113 device tree uses
+directly. SUN5I_HSTIMER, however, only has a prompt under COMPILE_TEST
+and is selected by the 32-bit sunxi machine Kconfig alone, so arm64 and
+RISC-V sunxi kernels cannot enable it and these nodes never probe.
 
-  sun50i-iommu 30f0000.iommu: Page fault for 0x00000000fff00000 (master -1, dir rd)
+Make the prompt visible on ARCH_SUNXI. The driver registers its
+clocksource and clockevent at rating 340: below the architected timer's
+clocksource (400) and below the sun4i timer (350), which ARCH_SUNXI
+already selects on arm64 and RISC-V. Enabling it therefore adds a
+second hardware time base without changing which one the kernel uses.
 
-on an H616 once when fbcon takes over the framebuffer (the first
-scanout frame), and again, vsync-spaced, after TLB flushes while a video
-decoder frees its buffers (every unmap flushes the whole TLB and PTW
-cache in this driver). No device accesses that address: with the IOVA
-allocator handing out addresses from the top down and size-aligned, the
-3 MiB fbcon framebuffer of a 1024x768 mode is the first allocation and
-lands at 0xffc00000-0xffefffff, and the top 1 MiB of the IOVA space
-above it is never mapped. 0xfff00000 is the page after the end of the
-framebuffer.
-
-The walk that fails is the TLB prefetcher's, for the page after the one
-the master is reading. The H616 user manual (3.12.6.50, 3.12.6.51) gives
-the L1/L2 page table interrupt registers a bit 31 next to the per-master
-bits for walks that no master started, and Allwinner's sunxi-iommu
-driver treats a page table interrupt with bit 31 set as a prefetch of an
-unmapped page ("It's OK to prefetch an invalid pagetable") and does not
-report it. This driver masks the register to the master bits, gets no
-bit, and reports ilog2(0) = -1 as the master.
-
-Return early for a page table interrupt with the prefetch bit set and no
-master bit: no master read anything and nothing is stalled, so there is
-nothing to report, reset or zap. Print such walks with dev_dbg so they
-can still be counted.
-
-Fixes: 4100b8c229b3 ("iommu: Add Allwinner H6 IOMMU driver")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/iommu/sun50i-iommu.c | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+The H616 and D1/T113 hstimer nodes and the D1 driver support were merged
+for 7.2, but the driver still cannot be enabled outside COMPILE_TEST on
+arm64 and RISC-V.
 
-diff --git a/drivers/iommu/sun50i-iommu.c b/drivers/iommu/sun50i-iommu.c
-index be3f1ce696ba..1b7a7f0d9b62 100644
---- a/drivers/iommu/sun50i-iommu.c
-+++ b/drivers/iommu/sun50i-iommu.c
-@@ -73,6 +73,15 @@
- #define IOMMU_INT_ERR_DATA_REG(i)	(0x150 + (i) * 4)
- #define IOMMU_L1PG_INT_REG		0x0180
- #define IOMMU_L2PG_INT_REG		0x0184
-+/*
-+ * Besides one bit per master, the L1/L2 page table interrupt registers
-+ * have a bit for a page table walk that no master started: the TLB
-+ * prefetcher's walk for the page after the one being accessed (H616 user
-+ * manual 3.12.6.50 and 3.12.6.51, bit 31, "debug mode"; the vendor's
-+ * sunxi-iommu treats a page table fault with this bit as a prefetch of an
-+ * unmapped page and does not report it).
-+ */
-+#define IOMMU_PG_INT_PREFETCH			BIT(31)
- 
- #define IOMMU_INT_INVALID_L2PG			BIT(17)
- #define IOMMU_INT_INVALID_L1PG			BIT(16)
-@@ -891,6 +900,20 @@ static phys_addr_t sun50i_iommu_handle_pt_irq(struct sun50i_iommu *iommu,
- 
- 	iova = iommu_read(iommu, addr_reg);
- 	blame = iommu_read(iommu, blame_reg);
-+
-+	/*
-+	 * A walk the TLB prefetcher started for the page after the one a
-+	 * master is reading fails whenever that next page is not mapped,
-+	 * e.g. for the display engine scanning out a framebuffer that ends
-+	 * at an unmapped IOVA. No master accessed the page and nothing is
-+	 * stalled or cached, so there is nothing to report, reset or zap.
-+	 */
-+	if ((blame & IOMMU_PG_INT_PREFETCH) && !(blame & IOMMU_INT_MASTER_MASK)) {
-+		dev_dbg_ratelimited(iommu->dev, "page table prefetch of unmapped %pad\n",
-+				    &iova);
-+		return iova;
-+	}
-+
- 	master = ilog2(blame & IOMMU_INT_MASTER_MASK);
- 
- 	/*
+Tested on an Orange Pi Zero2 (H616) with a 7.3 kernel carrying this
+patch and CONFIG_SUN5I_HSTIMER=y: the hstimer node at 0x3005000
+probes and available_clocksource lists "arch_sys_counter timer
+hstimer".
 
--- 
-2.55.0
+This patch was developed with Claude (Anthropic) as a coding
+assistant. It investigated the problem and wrote the code and the commit
+message; I reviewed it, and it was tested on an Orange Pi Zero2 (H616)
+as described above.
+---
+ drivers/clocksource/Kconfig | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+index da83483296d5..971491d2e584 100644
+--- a/drivers/clocksource/Kconfig
++++ b/drivers/clocksource/Kconfig
+@@ -172,12 +172,17 @@ config SUN4I_TIMER
+ 	  Enables support for the Sun4i timer.
+ 
+ config SUN5I_HSTIMER
+-	bool "Sun5i timer driver" if COMPILE_TEST
++	bool "Sun5i timer driver" if COMPILE_TEST || ARCH_SUNXI
+ 	select CLKSRC_MMIO
+ 	depends on COMMON_CLK
+ 	help
+ 	  Enables support the Sun5i timer.
+ 
++	  The 32-bit sunxi platforms that have this timer select it. On
++	  64-bit (ARM64, RISC-V) sunxi SoCs such as the H616 and D1 it
++	  registers an additional clocksource and clockevent device, rated
++	  below the ones the kernel already uses there.
++
+ config TEGRA_TIMER
+ 	bool "Tegra timer driver" if COMPILE_TEST
+ 	select CLKSRC_MMIO
+
+---
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+change-id: 20261110-sun5i-hstimer-arch-sunxi-167ea2ebcbd7
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
