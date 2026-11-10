@@ -2,83 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67320606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4095606A33C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 11:38:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dRa9xs2N;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.a=rsa-sha256 header.s=s31663417 header.b=on755yiy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=msnOzDS2;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=birImCg0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BrQDFJiFpCVebk8ZCd0YutKlhOj46ZDSdePy9SVQvMI=; b=dRa9xs2NQ6yM48
-	tVB7OIGSV0bF9/ou/OtbQFWoPESj77vmVFMeCrhdqgcZ+rdls1o282doT6fXFjgPWfAOVXSqISF6G
-	M0tCGLTaa1EWh5Rf48vsYLRiBm/ceFbbFIMTJ8zmSfzp6cuJOlMMKcJHQlMRTi3TDEFqKsY6v0aiz
-	R805IMRAj9CcYH76TjemnL1owToRMytf/qooRjie/ZcWoihH7jI1aECDfBtH1mKqzPy0VJrYLugzQ
-	0F4erqH0c3UWCWuBN54PALENiKRNWq34/am3qchT170es2INXhJd9uzuJoJ4QQpc4FA9iZPlcOsbU
-	qfWfukyGBzCrqT0E178w==;
+	List-Owner; bh=T2P/GAEk2otkWq/GcV9uWXOrUgzcWGATJfy8p7qWBJg=; b=msnOzDS26oymgG
+	1i4ysTK4QboGmaFX6RRF8v9JuaoeJvbYrtibmnXxMFf0as3NgTdY/lqmIh/7kKQyACjwTOwulhwfb
+	+dFi3lmca0cYASK9GzujgfXjW61vIqgdzJmAvuNTSPBhu6DpF6QUdGNqlrIZKXzf1uYVx6soVmPZ/
+	niOw8GmBOA3fjEWrbIzcBef63Oh//+TlpFzVZ76ICqIGB3ztWYy2lMnEvPwe5g1BB4Xz0Kx+OSBOd
+	mzUIh0KM3WEezEejGGd6z8AmvLTIKu7BeFEfAnOurvTVtacznukzZ6ZrWHiIgkuRhUuTSVOfC49TA
+	QNq796g9aJplD471sj6g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQk68-00000003e85-3wP0;
-	Tue, 10 Nov 2026 11:33:08 +0000
-Received: from mout.gmx.net ([212.227.17.20])
+	id 1xQkB2-00000003es6-1iYy;
+	Tue, 10 Nov 2026 11:38:12 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQk66-00000003e7W-1wbs
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 11:33:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1794310376; x=1794915176; i=wahrenst@gmx.net;
-	bh=BrQDFJiFpCVebk8ZCd0YutKlhOj46ZDSdePy9SVQvMI=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=on755yiyaANPYwQhK1P0BeElUHoE2tqHXRcjMO3wEkpxsSNK40MouyX3MtlwFpVW
-	 ki0SQeoJ7PTQkBl9KbeL3zEIPufbHis+OFPMOcA5vOa7pFqjRI6LvlKJzGMtlk/07
-	 UfW2MIagWTTbms2ZBxvEjgXgS64rN0TfMWC/ZCKrqViW8G/mpINOajCgi5uMd5Yji
-	 uW2uDoTWum/8JnE07EImWmSlkkxJXy5H2mPQf4KA9+BQ8uU4FSCZMJPlC2tXcAsDj
-	 GuNELF7X55Eo9YhWHAg8xb5icqmYyfZMPA+CkZvaq+plgu7ewh4czqP5O+BZ7CY3B
-	 JvsCzCnOD5I2EhfXCA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M4s51-1xR1bk3H7f-006ist; Tue, 10
- Nov 2026 12:32:55 +0100
-Message-ID: <1b80fa9b-5af4-4ab8-b0fd-eb53eddd35a7@gmx.net>
-Date: Tue, 10 Nov 2026 12:32:52 +0100
+	id 1xQkB1-00000003erh-1e1A;
+	Tue, 10 Nov 2026 11:38:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 171E8470E4;
+	Tue, 10 Nov 2026 11:38:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D351F008A1;
+	Tue, 10 Nov 2026 11:38:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794310691;
+	bh=T2P/GAEk2otkWq/GcV9uWXOrUgzcWGATJfy8p7qWBJg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=birImCg0ikfZlgymBPG1EQOVl8T4PvzPBJE3IkYSwyCAjX6vQwI65u9dOTVAFVIVt
+	 Jr4PKTv7nmKwXrj12EPxjnX54EDhza++N11jzeedzWLJV9phNHoC61SgwtI5RgdSk4
+	 IfpcIAJO3N+NPz4LziHzOcsznefoB07i+3jUEPXTN5G4V1f9MsFSrznT9QDgUE7DuQ
+	 3V+rvquAaKTbafZOKdinMDkCmmpo8zf65hLVbPMJFgHEVANzwn2/5aCC29En6T6hn7
+	 CMdn/xwxsklmImZWNlFx/SHbbnF8177DN3zJaSqolLxcAVpcgCeE2wzIZnqICN9XBt
+	 tR3aHyt/+QvvQ==
+Received: from traversing.sirena.org.uk (localhost [IPv6:::1])
+	by traversing.sirena.org.uk (Postfix) with ESMTP id 8F31C310B6B7;
+	Tue, 10 Nov 2026 11:38:08 +0000 (GMT)
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Cyril Chao <Cyril.Chao@mediatek.com>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ llvm@lists.linux.dev, Cyril Chao <cyril.chao@mediatek.com>, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+In-Reply-To: <20261109032424.625004-1-Cyril.Chao@mediatek.com>
+References: <20261109032424.625004-1-Cyril.Chao@mediatek.com>
+Subject: Re: [PATCH v1 0/1] ASoC: mediatek: mt8189: Use AVOUT for DP and
+ HDMI jacks
+Message-Id: <179427281919.3711751.4669554819271995706.b4-ty@b4>
+Date: Tue, 10 Nov 2026 01:06:59 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] ARM: dts: imx6ull-tarragon-common: Fix Ethernet
- regression
-To: Frank Li <Frank.li@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- Manuel Traut <manuel.traut@mt.com>, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20261004140123.46461-1-wahrenst@gmx.net>
- <20261004140123.46461-2-wahrenst@gmx.net>
- <atpvdWuwnYeQ03Rm@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <atpvdWuwnYeQ03Rm@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:bM+Q6nOjOcAIn2CFN5rsSIriN0zYh7gcWUBAanjP2/zWPQ221mw
- JAY+0ZzcDZT8QPpSn0eObq5Vt/SNCbX4LKXc+xr5t6Wn6cw0c/IZaIz1rXTo4wLuEiNAurV
- UMVo2c/qlGir/CSOvk6dNE0LOoe87cK9L4GpN3xFnRPOmk+UrkUfnCRD39qiVI1qKkDPgfk
- 7fHsh8JPkNFKonjFEKz0w==
-UI-OutboundReport: notjunk:1;M01:P0:ERy4PKCR4LA=;kv2/qEoBOR/kOLfWRFZjw4HfRlH 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 r5Mib4OXTLQAQ8jMJXof3hc
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_033306_807191_B42AFB49 
-X-CRM114-Status: UNSURE (   9.72  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1493; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=xSnEnBaKwOzWyBQ2Svyhe7l3mZBvUNDHRGh0ZFk7WrQ=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLI+Mym8lqtfYThp6fRXYmfMzI33fDycuu0Jk+H0d9lhQ
+ XmlDznWd5SyMIhxMciKKbLEZXG/rC95vYbv4MI2mDmsTCBDGLg4BWAiJY0M/2sPbpk47aLHqofX
+ W4U25uY2l8zgm/+B5dSUBZefJKR5/xNg+KddJX8xILc3a89Rkedl/yJ3G1wVVzfiML2b9s9fYdN
+ CEX4A
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,28 +86,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-4.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=no
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Frank,
+On Mon, 09 Nov 2026 11:24:08 +0800, Cyril Chao wrote:
+> ASoC: mediatek: mt8189: Use AVOUT for DP and HDMI jacks
+> 
+> This single-patch series declares the MT8189 DP and HDMI jacks as AV
+> outputs, matching the status reported by the HDMI codec and exposing
+> the video-output input switch when jack input devices are enabled.
+> 
+> It is based on ASoC for-next at:
+>   c937f492dd40a8398d955cf0f4f9e11d7268bcb5
+> No additional patch dependencies are required.
+> 
+> [...]
 
-Am 22.10.26 um 22:17 schrieb Frank Li:
-> On Sun, Oct 04, 2026 at 04:01:19PM +0200, Stefan Wahren wrote:
->> The commit e2ba87c745ca ("ARM: dts: imx6ul: Set macaddress location in ocotp")
->> introduced a OTP to MAC address mapping on DT level. But the Tarragon
->> platform relies on a different MAC address mapping, which is provided by
->> U-Boot.
-> Is it possible update uboot to adapter OTP possition?
+Applied to
 
-I cannot speak for the U-Boot maintainer, but we will try.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-7.5
 
-Best regards
+Thanks!
 
->
-> Frank
+[1/1] ASoC: mediatek: mt8189: Use AVOUT for DP and HDMI jacks
+      https://git.kernel.org/broonie/sound/c/1ab0585e7609
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
