@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E10606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CC2606A325
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vk7HXo6x;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=lPam8Dk4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xoUm3EK1;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=RqY1cnou;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=RMg6X2mQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +15,78 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KlBTWBMpEbDIIvafpldBklRCZ2ctie9uKxzA73glXH4=; b=vk7HXo6x/X7hJpdT60Ht/fRCZ6
-	nC1F6QKcSff82eEXrdVJClySw8Q2zx1dHuVRy71PAeORQnbYKhjHWsog38nOLpW7BojeiELrbVOjt
-	7fY2kcnvJdBq7yFPVHpcMnckIJZi+IWBOn/3w/KqGXNdwr/JuMUX0XeU6u4VAG480Fw4sNNCvgB/3
-	tCnHrmBQD6LNZR0VszOY7Kfu7OLcx/mYjmlAxJG/rXzpmrcscxeKuv2kweV+r1fhTOwOa5+9JPGqc
-	R+93B4QZgfNWzF4EkVnmaIbedFWv4Eegbiq+gZuMFBSJL0L02HWt8qX29XYPUqJr6X2a5nNl8fqWh
-	UgQACQ+g==;
+	bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=; b=xoUm3EK1+Q9hPgxy+G9XFqzv8n
+	lLiyd4vHX1mm1b8PmDFfoayBxmAb7se9TmhQ01nrF9egnIxDo/Tdgl0twVkWTIpVSSVCRAFH6xcK7
+	8TcLHEg1n42Drqi+gs3UJ9Q9t9exv0Tmgmayos1uRObVufSjILQyIwl/ubT5BBQdBqwKdABfXoEON
+	tRFwIQsSTe/Vrn5jkJaFjizlUrHywOo4T4dv1wyq9PGcXyndEZFF35+b5cXefG5cY8Md2o457RBFQ
+	2PRWHpZg8HevZ8FBN4xeyQNznELE/hc4l5DK1fHGQZ4TlXi/A21Xi8DI5KSU1oz2L56BbkJUG4kA5
+	s1/sz8fQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe04-00000002RhX-3lsw;
-	Tue, 10 Nov 2026 05:02:28 +0000
-Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
+	id 1xQe0a-00000002SiC-2Fju;
+	Tue, 10 Nov 2026 05:03:00 +0000
+Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdzt-00000002RMW-1ZlL
+	id 1xQe09-00000002Rn0-2Lyb
+	for linux-arm-kernel@bombadil.infradead.org;
+	Tue, 10 Nov 2026 05:02:35 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
+	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=; b=RqY1cnouAZ3WJofqJwudr6um/b
+	szqUlXpZpLfgfnytB45lHnxBOeZgnH6b+rCNA0DQ3MOQrKjXChmv+ZqlECyYmeEMm/yPU4VNO2jW5
+	d5OU5Qmozm0pQySg67Ecg0PzqqRPmeE7hfrIR8tpn4kh9DWHpyB3wHtNod4kg4b6yHbFA3M9PeeS8
+	1tS+oyLXzyrAKUzVR7DPl0QGlw3nCl+zlmHrLS7zF1NkFrCTm+1TuFdVTVxQsysKhFwVLiy3twOKb
+	9wGPWRHiF5M09Uj1yw8TdrCVdW4Yv3NGJquswtGIcmYZhNKNazKfp3T/5zppHUyQI5IeoOe17d+l9
+	/1sbg4ZQ==;
+Received: from mail-ed1-x547.google.com ([2a00:1450:4864:20::547])
+	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQe04-000000077pi-3Pmp
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:02:20 +0000
-Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c49b95262a5so126321666b.3
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:16 -0800 (PST)
+	Tue, 10 Nov 2026 05:02:32 +0000
+Received: by mail-ed1-x547.google.com with SMTP id 4fb4d7f45d1cf-6b597374a17so1549739a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794286935; x=1794891735; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794286946; x=1794891746; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=KlBTWBMpEbDIIvafpldBklRCZ2ctie9uKxzA73glXH4=;
-        b=lPam8Dk4SBoWQr1V8saXqjHZ5ahFXYYtrYNMxe9ArJv+dRbQkQsei5rV5jyUqfdKeh
-         +rTaW3+xr4KslP6ln6IRjHUmxlmREz5QmMIw2CAC+Sgl6oqfRA8IJv874cKahr2JHNBS
-         fnJo3F7j56NK4/UxLNvVNcwCfQ+Jfge4qLlyNizCKPVrVNfUEynLUcZd1dmXy6nq8E/k
-         lNnrYJGNh3kRqSZsLMRzihcBRCJdMDozXJ5odbcDZMtlbztBSirVmUNdBirIIADhyiTQ
-         VAGYP/OBRq7pCYXaTupPLN7Qqo3FL7mBCd+IK6uyYV2JqBAEcQv49ilGD+klGsh6VK/Y
-         hR7A==
+        bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=;
+        b=RMg6X2mQa6HwFLOfK0o1+p1pXBV6skbbheLRPD52evWfeHf3Z62fT3GUr6ebrLwi1m
+         dw6Ld0jvFZwuu9sAeKfQQSZOMrLbYshS4H68rAK0ypgPYv0/VgCwHiKdiU7tazhvS0lG
+         MFSnCm0cIEjbUsg9oiMIR4iYwVP2qynfBapi7zDXdgXXzZGu2k5pFH8sqeD41/ClyHiE
+         2YIIHkOvA6/pvDv1YLCFYFrH3s+hxfYaBQYpBRk7L/SPad1MAJoE8ArLesy26OgaI1DP
+         16cNJOvQNLXPaBJ3i3prU8l7zgRAvJnw79GTh4X+/IfB1ZFIxgM7rxBQNse95p6CWM5/
+         NVsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286935; x=1794891735;
+        d=1e100.net; s=20260707; t=1794286946; x=1794891746;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=KlBTWBMpEbDIIvafpldBklRCZ2ctie9uKxzA73glXH4=;
-        b=CGzIPqo0h6WUScO/DuwvbZAJNIGLiwdwTNg6TAjLXHGEz/nMTXrVXfD5Nwb6+I9xpU
-         hfksanaMtkVwY/naORAN42SghOmmUMG0pZlKZXrJfFvtl8Mshus/wdNRhhjD8lUOGyWa
-         Zqi9qJ7GDik82xF21VxJSekChYNHzJn/inzjB6ksDfcKvVyMZz8kjnY75s3QNlFXgoqf
-         ahnCYHkkdA56fFAzfJWgfRsvskEE1Zbz3PTXJWoEVG/qzg1FrSs833DEnMxCm4LQi/PI
-         8iowWya/V85xVk6LdJDA75qU8KH//7g7t3Djlhyb1gRCBbelSOpKVrOZ2dV5VhlhfzgZ
-         YW5g==
-X-Forwarded-Encrypted: i=1; AL+hErG77c5Yme2Qjanq05hP8b1S9rfvjNTWX0MFJ5r8HF+IY1L3MtM2d51opBxYPxr6tWgG2kkA30I3EQfTn8jgmtCT@lists.infradead.org
-X-Gm-Message-State: APuU4Z8R+USux7P+8dEYnmUDcK2aMXdxckxKzHim7Wj4vWgO02Ep+f/U
-	rR3PZ/oswMZQsFsYx7FTbgd7kToyKa2Xe0GfjhaqtPm5aheU7/A1RT9GMehHnc6MUjXdWnH5kvG
-	3c2fIJ+OTkV/z5Wtuvg==
-X-Received: from ejpg24.prod.google.com ([2002:a17:906:7c58:b0:c3f:eea3:d5e9])
+        bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=;
+        b=bssANpYFcj9Pm7EDwS8tjxpK7IQZno7EQ2qiYG/AhMd6L/weF9PxM+cYzvdRpfEUnE
+         tb9f/ZK5XVKHQ+cupABIyZ8utvUGXsDZ/vbthsDeZVnI3JbDBOwnGzIER9Ql4GPE8MNw
+         MNEXI0IFwizxIOi7CeSVhrx3m1hN6zh9JnGyfOMIkn3PekYX+5+qceZcY9cOMgcIvbQZ
+         lXPqJJTxC3q1PdJmz/yJzLyRz/UlL60irOI1qOeb6WeFvG+vrNBNPjxjsLZ/BICCyLR8
+         MnA8cNX5HNgq4MyhFKi9PLF6TfqWimemB2qyWO9ogn26j+GkjUvV8J9iUWhTm5XaZ7PH
+         0rTg==
+X-Forwarded-Encrypted: i=1; AL+hErH5IGBFR2kjWtBGtlH9T3qHBK6yMsznI7sZSGZwlPGv8r8ND8MlYHuFOXHKFMdmsVVxK/SEhdDt/Kpk8hr6mAes@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Hvr5OVgy1rSTatebZnmAQig1Mxm0p1Q9n3YWn5m8cYQwODnIo
+	yDrA57CHsh3IW0eezjpnGwvmrdi8d/TWpDDBZD3xuzH8iRCgcab5Md2daHAR+SgbVHwKqKVik5Z
+	J26f0mWIvV1CBvg+xlg==
+X-Received: from ejpc8.prod.google.com ([2002:a17:906:54c8:b0:c3f:c35a:7704])
  (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:3d8f:b0:c44:9a32:b27 with SMTP id a640c23a62f3a-c5049623935mr98305266b.25.1794286935134;
- Mon, 09 Nov 2026 21:02:15 -0800 (PST)
-Date: Tue, 10 Nov 2026 05:01:52 +0000
+ 2002:a17:907:3d0d:b0:c49:a571:c4f9 with SMTP id a640c23a62f3a-c50494b4c4fmr100815566b.13.1794286946299;
+ Mon, 09 Nov 2026 21:02:26 -0800 (PST)
+Date: Tue, 10 Nov 2026 05:02:02 +0000
 In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261110050202.529473-1-tarunsahu@google.com>
 X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
-Message-ID: <20261110050202.529473-10-tarunsahu@google.com>
-Subject: [PATCH v4 09/19] liveupdate: Add feature header to struct luo_ser
+Message-ID: <20261110050202.529473-20-tarunsahu@google.com>
+Subject: [PATCH v4 19/19] kho: Add KUnit test for the feature header helpers
 From: Tarun Sahu <tarunsahu@google.com>
 To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
 	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
@@ -87,8 +103,8 @@ Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org,
 	Tarun Sahu <tarunsahu@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_210217_552239_F08EBA85 
-X-CRM114-Status: GOOD (  30.10  )
+X-CRM114-CacheID: sfid-20261110_050229_040458_7B7AB1F7 
+X-CRM114-Status: GOOD (  18.40  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,279 +125,267 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-LUO and its file handlers currently rely solely on coarse-grained
-compatibility strings (such as luo-v6 and memfd-v3) to validate
-handed-over state across kexec. Because compatibility is checked only
-at the whole-structure level, any change to a serialized structure,
-even an optional additive field, requires bumping the compatibility
-string and breaks live update between adjacent kernels.
+Add a KUnit test suite in lib/tests/kho_feature_kunit.c covering
+the Kexec HandOver feature header declared in
+include/linux/kho/abi/feature.h.
 
-Precede the centralized struct luo_ser with struct kho_ser_hdr using
-DECLARE_KHO_SER. Subsystems can now evolve their serialized state at
-per-feature granularity. Each subsystem groups the fields of its
-serialized structure under feature indices, starting with index 0 for the
-base fields. When a subsystem adds a new capability, it appends any new
-fields to the end of its payload structure under a new feature index.
-Retired fields are kept in place so existing field offsets never shift;
-if the type or format of a field needs to change, the existing field and
-feature are kept intact until retired and a new feature index with an
-appended field of the new type is added. Only when a change requires a
-complete break in the serialized layout or semantics that feature flags
-cannot handle, a new handler can be introduced with an incremented version
-number in its compatibility string.
+The suite contains three focused test cases:
+- kho_ser_hdr_zero_flags_test: verifies zero-feature header
+  initialization, payload sizing, and empty feature queries.
+- kho_ser_hdr_set_get_test: verifies DECLARE_KHO_SER structure sizing,
+  header initialization, payload pointer resolution, and 1-bit
+  feature flag setting and retrieval across flags entry boundaries,
+  including out-of-range queries.
+- kho_ser_hdr_validate_test: verifies __kho_ser_validate rejecting
+  unsupported required feature flags while ignoring optional flags.
 
-Signed-off-by: Logan Odell <loganodell@google.com>
 Signed-off-by: Tarun Sahu <tarunsahu@google.com>
 ---
- include/linux/kho/abi/luo.h  | 64 +++++++++++++++---------------------
- kernel/liveupdate/luo_core.c | 39 +++++++++++++---------
- 2 files changed, 50 insertions(+), 53 deletions(-)
+ MAINTAINERS                   |   1 +
+ lib/Kconfig.debug             |  13 +++
+ lib/tests/Makefile            |   1 +
+ lib/tests/kho_feature_kunit.c | 184 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 199 insertions(+)
+ create mode 100644 lib/tests/kho_feature_kunit.c
 
-diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
-index f1152470f71a..dfa7ea434d0d 100644
---- a/include/linux/kho/abi/luo.h
-+++ b/include/linux/kho/abi/luo.h
-@@ -9,29 +9,26 @@
-  * DOC: Live Update Orchestrator ABI
-  *
-  * Live Update Orchestrator uses the stable Application Binary Interface
-- * defined below to pass state from a pre-update kernel to a post-update
-- * kernel. The ABI is built upon the Kexec HandOver framework and registers
-- * the central `struct luo_ser` via the KHO raw subtree API.
-+ * defined below to pass state from a source kernel to a target kernel.
-+ * The ABI is built upon the Kexec HandOver framework and registers the
-+ * central `struct luo_ser` via the KHO raw subtree API.
-  *
-- * This interface is a contract. Any modification to the structure fields,
-- * compatible strings, or the layout of the `__packed` serialization
-- * structures defined here constitutes a breaking change. Such changes require
-- * incrementing the version number in the relevant `_COMPATIBLE` string to
-- * prevent a new kernel from misinterpreting data from an old kernel.
-- *
-- * Changes are allowed provided the compatibility version is incremented;
-- * however, backward/forward compatibility is only guaranteed for kernels
-- * supporting the same ABI version.
-+ * This interface is a contract. `struct luo_ser`, and the serialized state
-+ * of each file handler that uses it, are preceded by `struct kho_ser_hdr`.
-+ * See the KHO Serialization Feature Header ABI documentation in
-+ * include/linux/kho/abi/feature.h for the header layout, the feature rules
-+ * and validation.
-  *
-  * KHO Structure Overview:
-  *   The entire LUO state is encapsulated within a single KHO entry named "LUO".
-- *   This entry contains the `struct luo_ser` structure.
-+ *   This entry contains a `struct kho_ser_hdr` followed by the
-+ *   `struct luo_ser` payload.
-  *
-  * Serialization Structures:
-  *   - struct luo_ser:
-- *     The central ABI structure that contains the overall state of the LUO.
-- *     It includes the compatibility string, the liveupdate-number, and pointers
-- *     to sessions and FLBs.
-+ *     The central ABI payload structure that contains the overall state of
-+ *     the LUO (the liveupdate-number and physical pointers to sessions and
-+ *     FLBs), preceded by `struct kho_ser_hdr`.
-  *
-  *   - struct luo_session_ser:
-  *     Metadata for a single session, including its name and a physical pointer
-@@ -40,7 +37,7 @@
-  *
-  *   - struct luo_file_ser:
-  *     Metadata for a single preserved file. Contains the `compatible` string to
-- *     find the correct handler in the new kernel, a user-provided `token` for
-+ *     find the correct handler in the target kernel, a user-provided `token` for
-  *     identification, and an opaque `data` handle for the handler to use.
-  *
-  *   - struct luo_flb_header_ser:
-@@ -57,39 +54,36 @@
- #ifndef _LINUX_KHO_ABI_LUO_H
- #define _LINUX_KHO_ABI_LUO_H
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1572f6c905aa..0b50de45140f 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14786,6 +14786,7 @@ F:	include/linux/kho/
+ F:	include/linux/kho_block.h
+ F:	kernel/liveupdate/kexec_handover*
+ F:	lib/test_kho.c
++F:	lib/tests/kho_feature_kunit.c
+ F:	tools/testing/selftests/kho/
  
--#include <linux/align.h>
- #include <linux/build_bug.h>
- #include <linux/kconfig.h>
- #include <linux/kho/abi/block.h>
+ KEYS-ENCRYPTED
+diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+index 2d22638ec13a..3d74d32b181d 100644
+--- a/lib/Kconfig.debug
++++ b/lib/Kconfig.debug
+@@ -2967,6 +2967,19 @@ config DIMLIB_KUNIT_TEST
+ 	  For more information on KUnit and unit tests in general please refer
+ 	  to the KUnit documentation in Documentation/dev-tools/kunit/.
+ 
++config KHO_FEATURE_KUNIT_TEST
++	tristate "KUnit test for the Kexec HandOver feature header helpers" if !KUNIT_ALL_TESTS
++	depends on KUNIT
++	default KUNIT_ALL_TESTS
++	help
++	  This option enables the KUnit test suite for the Kexec HandOver
++	  feature header helpers defined in include/linux/kho/abi/feature.h.
++	  It checks the feature flag encoding, the flags array sizing, the
++	  feature bit helpers, and header validation rules.
++
++	  The helpers are self-contained, so the test does not depend on
++	  CONFIG_KEXEC_HANDOVER and can also run under UML.
++
+ 	  If unsure, say N.
+ 
+ config CMDLINE_KUNIT_TEST
+diff --git a/lib/tests/Makefile b/lib/tests/Makefile
+index df0537e1b91f..f22a4552f755 100644
+--- a/lib/tests/Makefile
++++ b/lib/tests/Makefile
+@@ -35,6 +35,7 @@ obj-$(CONFIG_KFIFO_KUNIT_TEST) += kfifo_kunit.o
+ obj-$(CONFIG_TEST_LIST_SORT) += test_list_sort.o
+ obj-$(CONFIG_LINEAR_RANGES_TEST) += test_linear_ranges.o
+ obj-$(CONFIG_LIVEUPDATE_TEST) += liveupdate.o
++obj-$(CONFIG_KHO_FEATURE_KUNIT_TEST) += kho_feature_kunit.o
+ 
+ CFLAGS_longest_symbol_kunit.o += $(call cc-disable-warning, missing-prototypes)
+ obj-$(CONFIG_LONGEST_SYM_KUNIT_TEST) += longest_symbol_kunit.o
+diff --git a/lib/tests/kho_feature_kunit.c b/lib/tests/kho_feature_kunit.c
+new file mode 100644
+index 000000000000..db36895d53f5
+--- /dev/null
++++ b/lib/tests/kho_feature_kunit.c
+@@ -0,0 +1,184 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * KUnit tests for the Kexec HandOver feature header helpers
++ * in include/linux/kho/abi/feature.h.
++ *
++ * Copyright (c) 2026, Google LLC.
++ * Tarun Sahu <tarunsahu@google.com>
++ */
++
++#include <kunit/test.h>
 +#include <linux/kho/abi/feature.h>
- #include <linux/kho/abi/kexec_handover.h>
-+#include <linux/types.h>
- #include <uapi/linux/liveupdate.h>
- 
- /*
-  * The LUO state is registered under this KHO entry name.
-  */
- #define LUO_KHO_ENTRY_NAME	"LUO"
--#define LUO_ABI_COMPATIBLE	"luo-v6"
--#define LUO_ABI_COMPAT_LEN	ALIGN(sizeof(LUO_ABI_COMPATIBLE), 8)
- 
- /**
-- * struct luo_ser - Centralized LUO ABI header.
-- * @compatible:     Compatibility string identifying the LUO ABI version.
-+ * struct luo_ser - Centralized LUO ABI payload.
-  * @liveupdate_num: A counter tracking the number of successful live updates.
-  * @sessions_pa:    Physical address of the first session block header.
-  * @flbs_pa:        Physical address of the FLB header.
-  *
-- * This structure is the root of all preserved LUO state.
-+ * This structure is the root payload of all preserved LUO state, preceded by
-+ * &struct kho_ser_hdr.
-  */
- struct luo_ser {
--	char compatible[LUO_ABI_COMPAT_LEN];
- 	u64 liveupdate_num;
- 	u64 sessions_pa;
- 	u64 flbs_pa;
- };
- 
--static_assert(sizeof(struct luo_ser) == 32);
--static_assert(!IS_ENABLED(CONFIG_64BIT) ||
--	      __alignof__(struct luo_ser) == 8);
-+/* Register luo_ser with KHO serialization accessors */
-+DECLARE_KHO_SER(luo_ser, 24, 0, 0);
- 
- #define LIVEUPDATE_HNDL_COMPAT_LENGTH	48
- 
-@@ -98,8 +92,6 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-  * @compatible:  File handler compatible string.
-  * @data:        Private data
-  * @token:       User provided token for this file
-- *
-- * If this structure is modified, `LUO_ABI_COMPATIBLE` must be updated.
-  */
- struct luo_file_ser {
- 	char compatible[LIVEUPDATE_HNDL_COMPAT_LENGTH];
-@@ -138,10 +130,8 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
-  *
-  * This structure is used to package session-specific metadata for transfer
-  * between kernels via Kexec Handover. An array of these structures (one per
-- * session) is created and passed to the new kernel, allowing it to reconstruct
-- * the session context.
-- *
-- * If this structure is modified, `LUO_ABI_COMPATIBLE` must be updated.
-+ * session) is created and passed to the target kernel, allowing it to
-+ * reconstruct the session context.
-  */
- struct luo_session_ser {
- 	char name[LIVEUPDATE_SESSION_NAME_LENGTH];
-@@ -180,13 +170,13 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
- /**
-  * struct luo_flb_ser - Represents the serialized state of a single FLB object.
-  * @name:    The unique compatibility string of the FLB object, used to find the
-- *           corresponding &struct liveupdate_flb handler in the new kernel.
-+ *           corresponding &struct liveupdate_flb in the target kernel.
-  * @data:    The opaque u64 handle returned by the FLB's .preserve() operation
-- *           in the old kernel. This handle encapsulates the entire state needed
-- *           for restoration.
-+ *           in the source kernel. This handle encapsulates the entire state
-+ *           needed for restoration.
-  * @count:   The reference count at the time of serialization; i.e., the number
-  *           of preserved files that depended on this FLB. This is used by the
-- *           new kernel to correctly manage the FLB's lifecycle.
-+ *           target kernel to correctly manage the FLB's lifecycle.
-  *
-  * An array of these structures is created in a preserved memory region and
-  * passed to the new kernel. Each entry allows the LUO core to restore one
-diff --git a/kernel/liveupdate/luo_core.c b/kernel/liveupdate/luo_core.c
-index 1b2bda22902d..d0f72f27001d 100644
---- a/kernel/liveupdate/luo_core.c
-+++ b/kernel/liveupdate/luo_core.c
-@@ -66,7 +66,7 @@
- 
- static struct {
- 	bool enabled;
--	struct luo_ser *luo_ser_out;
-+	DECLARE_KHO_SER_HDR(luo_ser, *luo_ser_out);
- 	u64 liveupdate_num;
- } luo_global;
- 
-@@ -83,6 +83,7 @@ early_param("liveupdate", early_liveupdate_param);
- 
- static int __init luo_early_startup(void)
- {
-+	DECLARE_KHO_SER_HDR(luo_ser, *fhdr);
- 	phys_addr_t luo_ser_phys;
- 	struct luo_ser *luo_ser;
- 	size_t len;
-@@ -107,17 +108,21 @@ static int __init luo_early_startup(void)
- 		return 0;
- 	}
- 
--	if (len < sizeof(*luo_ser)) {
--		pr_err("LUO state is too small (%zu < %zu)\n", len, sizeof(*luo_ser));
--		return -EINVAL;
-+	fhdr = phys_to_virt(luo_ser_phys);
-+	if (len < sizeof(*fhdr) || fhdr->size > len) {
-+		pr_err("LUO state size invalid (source kernel header size=%u, KHO len=%zu)\n",
-+		       len >= sizeof(*fhdr) ? fhdr->size : 0, len);
-+		err = -EINVAL;
-+		goto out_free_ser;
- 	}
- 
--	luo_ser = phys_to_virt(luo_ser_phys);
--	if (strncmp(luo_ser->compatible, LUO_ABI_COMPATIBLE, LUO_ABI_COMPAT_LEN)) {
--		pr_err("LUO state is incompatible with '%s'\n", LUO_ABI_COMPATIBLE);
--		return -EINVAL;
-+	err = kho_ser_validate(fhdr, luo_ser);
-+	if (err) {
-+		pr_err("LUO state feature validation failed: %pe\n", ERR_PTR(err));
-+		goto out_free_ser;
- 	}
- 
-+	luo_ser = kho_ser_payload(fhdr, luo_ser);
- 	luo_global.liveupdate_num = luo_ser->liveupdate_num;
- 	pr_info("Retrieved live update data, liveupdate number: %lld\n",
- 		luo_global.liveupdate_num);
-@@ -131,7 +136,7 @@ static int __init luo_early_startup(void)
- 	err = 0;
- 
- out_free_ser:
--	kho_restore_free(luo_ser);
-+	kho_restore_free(fhdr);
- 	return err;
- }
- 
-@@ -153,16 +158,18 @@ early_initcall(liveupdate_early_init);
- /* Called during boot to create outgoing LUO state */
- static int __init luo_state_setup(void)
- {
-+	DECLARE_KHO_SER_HDR(luo_ser, *fhdr);
- 	struct luo_ser *luo_ser;
- 	int err;
- 
--	luo_ser = kho_alloc_preserve(sizeof(*luo_ser));
--	if (IS_ERR(luo_ser)) {
-+	fhdr = kho_alloc_preserve(kho_ser_size(luo_ser));
-+	if (IS_ERR(fhdr)) {
- 		pr_err("failed to allocate/preserve LUO state memory\n");
--		return PTR_ERR(luo_ser);
-+		return PTR_ERR(fhdr);
- 	}
-+	kho_ser_init(fhdr, luo_ser);
- 
--	strscpy(luo_ser->compatible, LUO_ABI_COMPATIBLE, sizeof(luo_ser->compatible));
-+	luo_ser = kho_ser_payload(fhdr, luo_ser);
- 	luo_ser->liveupdate_num = luo_global.liveupdate_num + 1;
- 
- 	luo_session_setup_outgoing(&luo_ser->sessions_pa);
-@@ -171,16 +178,16 @@ static int __init luo_state_setup(void)
- 	if (err)
- 		goto exit_free_luo_ser;
- 
--	err = kho_add_subtree(LUO_KHO_ENTRY_NAME, luo_ser, sizeof(*luo_ser));
-+	err = kho_add_subtree(LUO_KHO_ENTRY_NAME, fhdr, fhdr->size);
- 	if (err)
- 		goto exit_free_luo_ser;
- 
--	luo_global.luo_ser_out = luo_ser;
-+	luo_global.luo_ser_out = fhdr;
- 
- 	return 0;
- 
- exit_free_luo_ser:
--	kho_unpreserve_free(luo_ser);
-+	kho_unpreserve_free(fhdr);
- 	pr_err("failed to prepare LUO state: %d\n", err);
- 
- 	return err;
++#include <linux/module.h>
++
++struct test_kho_payload {
++	u64 val;
++};
++
++enum test_kho_req_feat {
++	TEST_KHO_REQ_0 = 0,
++	TEST_KHO_REQ_63 = 63,
++	TEST_KHO_REQ_64 = 64,
++	TEST_KHO_REQ_69 = 69,
++	TEST_KHO_NR_REQUIRED = 70,
++};
++
++enum test_kho_opt_feat {
++	TEST_KHO_OPT_0 = 0,
++	TEST_KHO_OPT_63 = 63,
++	TEST_KHO_OPT_64 = 64,
++	TEST_KHO_OPT_69 = 69,
++	TEST_KHO_NR_OPTIONAL = 70,
++};
++
++DECLARE_KHO_SER(test_kho_payload, 8, TEST_KHO_NR_REQUIRED, TEST_KHO_NR_OPTIONAL);
++
++struct test_kho_zero {
++	u64 val;
++};
++
++DECLARE_KHO_SER(test_kho_zero, 8, 0, 0);
++
++static void kho_ser_hdr_zero_flags_test(struct kunit *test)
++{
++	DECLARE_KHO_SER_HDR(test_kho_zero, *fhdr);
++	const DECLARE_KHO_SER_HDR(test_kho_zero, *const_fhdr);
++	u8 buf[kho_ser_size(test_kho_zero)] __aligned(8);
++	struct test_kho_zero *p;
++
++	KUNIT_EXPECT_EQ(test, sizeof(struct kho_ser_hdr), 8UL);
++	KUNIT_EXPECT_EQ(test, sizeof(*fhdr), sizeof(struct kho_ser_hdr));
++	KUNIT_EXPECT_EQ(test, kho_ser_size(test_kho_zero), 16UL);
++
++	fhdr = (void *)buf;
++	kho_ser_init(fhdr, test_kho_zero);
++	KUNIT_EXPECT_EQ(test, fhdr->size, 16U);
++	KUNIT_EXPECT_EQ(test, fhdr->nr_required, 0U);
++	KUNIT_EXPECT_EQ(test, fhdr->nr_optional, 0U);
++	KUNIT_EXPECT_EQ(test, kho_ser_hdr_size(fhdr), 8UL);
++
++	const_fhdr = fhdr;
++	KUNIT_EXPECT_EQ(test, const_fhdr->size, 16U);
++
++	p = kho_ser_payload(fhdr, test_kho_zero);
++	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 8));
++
++	p = kho_ser_payload(const_fhdr, test_kho_zero);
++	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 8));
++
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 0));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 0));
++	KUNIT_EXPECT_EQ(test, kho_ser_validate(fhdr, test_kho_zero), 0);
++	KUNIT_EXPECT_EQ(test, kho_ser_validate(const_fhdr, test_kho_zero), 0);
++}
++
++static void kho_ser_hdr_set_get_test(struct kunit *test)
++{
++	DECLARE_KHO_SER_HDR(test_kho_payload, *fhdr);
++	const DECLARE_KHO_SER_HDR(test_kho_payload, *const_fhdr);
++	u8 buf[kho_ser_size(test_kho_payload)] __aligned(8);
++	struct test_kho_payload *p;
++
++	KUNIT_EXPECT_EQ(test, kho_ser_size(test_kho_payload), 40UL);
++
++	fhdr = (void *)buf;
++	kho_ser_init(fhdr, test_kho_payload);
++	KUNIT_EXPECT_EQ(test, fhdr->size, 40U);
++	KUNIT_EXPECT_EQ(test, fhdr->nr_required, 70U);
++	KUNIT_EXPECT_EQ(test, fhdr->nr_optional, 70U);
++	KUNIT_EXPECT_EQ(test, kho_ser_hdr_size(fhdr), 32UL);
++
++	const_fhdr = fhdr;
++	KUNIT_EXPECT_EQ(test, const_fhdr->size, 40U);
++	KUNIT_EXPECT_EQ(test, const_fhdr->nr_required, 70U);
++	KUNIT_EXPECT_EQ(test, const_fhdr->nr_optional, 70U);
++
++	p = kho_ser_payload(fhdr, test_kho_payload);
++	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 32));
++
++	p = kho_ser_payload(const_fhdr, test_kho_payload);
++	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 32));
++
++	kho_ser_set_required(fhdr, TEST_KHO_REQ_0);
++	kho_ser_set_required(fhdr, TEST_KHO_REQ_63);
++	kho_ser_set_required(fhdr, TEST_KHO_REQ_64);
++	kho_ser_set_required(fhdr, TEST_KHO_REQ_69);
++
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_0));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 1));
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_63));
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_64));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 65));
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_69));
++
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[0] & (1ULL << 0)));
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[0] & (1ULL << 63)));
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[1] & (1ULL << 0)));
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[1] & (1ULL << 5)));
++
++	kho_ser_set_optional(fhdr, TEST_KHO_OPT_0);
++	kho_ser_set_optional(fhdr, TEST_KHO_OPT_63);
++	kho_ser_set_optional(fhdr, TEST_KHO_OPT_64);
++	kho_ser_set_optional(fhdr, TEST_KHO_OPT_69);
++
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_0));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 1));
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_63));
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_64));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 65));
++	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_69));
++
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[1] & (1ULL << 6)));
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[2] & (1ULL << 5)));
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[2] & (1ULL << 6)));
++	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[2] & (1ULL << 11)));
++
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 70));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 100));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 70));
++	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 100));
++}
++
++static void kho_ser_hdr_validate_test(struct kunit *test)
++{
++	u8 buf[sizeof(struct kho_ser_hdr) + sizeof(u64) * 2] __aligned(8);
++	struct kho_ser_hdr *fhdr = (void *)buf;
++
++	__kho_ser_init(fhdr, 0, 4, 10);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 4), 0);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
++
++	kho_ser_set_optional(fhdr, 0);
++	kho_ser_set_optional(fhdr, 9);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
++
++	kho_ser_set_required(fhdr, 0);
++	kho_ser_set_required(fhdr, 1);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
++
++	kho_ser_set_required(fhdr, 2);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), -EOPNOTSUPP);
++
++	kho_ser_clear_required(fhdr, 2);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
++
++	kho_ser_set_required(fhdr, 3);
++	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), -EOPNOTSUPP);
++}
++
++static struct kunit_case kho_feature_test_cases[] = {
++	KUNIT_CASE(kho_ser_hdr_zero_flags_test),
++	KUNIT_CASE(kho_ser_hdr_set_get_test),
++	KUNIT_CASE(kho_ser_hdr_validate_test),
++	{}
++};
++
++static struct kunit_suite kho_feature_test_suite = {
++	.name = "kho_feature",
++	.test_cases = kho_feature_test_cases,
++};
++
++kunit_test_suite(kho_feature_test_suite);
++
++MODULE_DESCRIPTION("KUnit tests for the Kexec HandOver feature header helpers");
++MODULE_LICENSE("GPL");
 -- 
 2.56.0.506.g506a7eabc5-goog
 
