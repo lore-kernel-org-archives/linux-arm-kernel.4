@@ -2,96 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A136D606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 00:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E284A606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 00:17:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pKpT8Lhr;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=WuC4kPho
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NBknjyrP;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=Tu3dGBVQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:CC:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FEXJR2cFvMoPYSyvAdd0ZT9BkGkfe5w1c1yh6i8rz+o=; b=pKpT8Lhr4lIzgHvqgS+Rf4c/My
-	dyZHNKoXWW55grd8EX8K+D37LJS0n2DmF7YbdrQ0zV1f9jPgpXYu3QRyYzYG91Yk0zGAc5pgW3Ugq
-	TCgeGT9bY06cuFF4klj7kbZHWFlLwuEc3OF0gar4CLKJaHxtKC3b49G6G3U+wljsgl9wks6kihpfw
-	MFb/p5LqJJdQutMSv0sddd4kkhI1trCQuR1LiEa97/R6fJb3rJdDPNRmAE/CjU5AHe4Kgcfpr8vkT
-	k6QHLkHqOGdLwRT3Jsm3OfGvNe5oyuKGBDAvRogAqfXLTocnAth+NvJuFhSwbDRWAZfGM1sRdJSv4
-	iWISNYJw==;
+	bh=RJ36JhmwCAUCGImNmtkvC2/pUrrSeH9vb42BEBLFWFU=; b=NBknjyrPBESuQCa1kxxYbgDUOz
+	JIGnGBG/qFfeK3LIo9HdFZeGdYv+qzorCoTqhM4vf9/bVDJw5G+q/Lgoke0XseBBf6T/gvPOQQoGA
+	ZcD5oBZ74kCPuwQNIetyNnBnXTD0Ekp2U6b+lhrHjUmiZC5n2fQxn+Wl7scdt6Wb/8SDixcIiSAzi
+	mJa5pIEQ34StENMTQkm5TYx61GwRoXdfoRxhs94sR7ug0L0mmNKnoksaE3PRrcMbESioLZOwmofhO
+	3OHfFIzrfa6+ZyTS6P5OKULOvdfuZUISU0vXcmeleHDLeNoM+JktKINUBE5nTarwgqP9TH6hGihxj
+	NirHY1aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQZKT-00000001yqP-1ULk;
-	Tue, 10 Nov 2026 00:03:13 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xQZYE-000000020Dx-0GMJ;
+	Tue, 10 Nov 2026 00:17:26 +0000
+Received: from mail-westus2azlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c005::5] helo=CO1PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQZK7-00000001yX7-34V1;
-	Tue, 10 Nov 2026 00:02:55 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794268968;
-	bh=K8NTwOd2VMhqShdXjAXjDbndtPFnEs+PaHrTnRAXxNo=;
-	h=From:Subject:Date:To:Cc:From;
-	b=WuC4kPhobmZ2j/o0+Oj5sS5KbwLns0xJi0oyxbhPmIAGXjtGxFZft63JwP9yfF6Uy
-	 QC+NlY5VOz23ukiIsLfYMWi9GlShZhvcQYxGwz4NTMQJaMlc1YX5LmYGQSTN6zgBiv
-	 M+xLEQWLW8PTue/dhB25DZB4DOs+pQ+5StsWx8KEiT2qEhw9HzNLuhW/gQjRibhIJA
-	 PVVmbCOe80o47/2oRMc6g8SI2ws+72MqRYxL7l0DlXxQ6h/MNIJt3EFMaZSjwctR8C
-	 YmrVQ8O6Yzzs5lb18b+Wd8V7/LH/rrG8942uxYOopmJQSHmchoI22pG7IV7JXlwbQV
-	 l4lbFmFtX94uQ==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 66E9417E07E5;
-	Tue, 10 Nov 2026 01:02:48 +0100 (CET)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 210D148002C; Tue, 10 Nov 2026 01:02:48 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: [PATCH v4 0/5] phy: rockchip: inno-usb2: ensure PHY is running
- when clock is requested
-Date: Tue, 10 Nov 2026 01:02:45 +0100
-Message-Id: <20261110-phy-rockchip-inno-usb2-clock-fix-v4-0-51acc071634f@collabora.com>
+	id 1xQZYB-000000020DE-37qB
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 00:17:25 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=roxaZgc9k47bExUmqxsSAGoe9/iYNAoi7milX1hCi6wBkEV5LofY5XXQKtVs3Y4ENDqNmy3Se2XYXf6JsgaMJp/a6ilywJYpsP9KtxhPbf4aqBcykvbzwB4PhV0AL/3Z/yPJp4HTU82iEdtYuX03KTRsfZ7vUbKuL98/g3M2tEzyd0uWeivOyuwUVe0o2Skvqx2+14/dEzwa2WONPpo6HY+XExaKMDAOHJAowsANrlM7SPBWLAW0IF+Yg1J3C1CxPBicJkZTQkriNYSIPSVPjJLpFj0g10K7+oa1+EinwXo1Y4/c5Q1kBuYXIdCCabnaX0OKXe+zl/cSbyFQmmRhHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RJ36JhmwCAUCGImNmtkvC2/pUrrSeH9vb42BEBLFWFU=;
+ b=vFAJTSRX7Wn6B5iOId8vVKafysZxJ9u7BRNI6EUCo8zgfZnB9TTsHvVNa0jH7VgM5Qhf2nNB30T6VKl8CY2UgwhrD8x73nYAVR+JC5Bqx7ioNvbepc7CRic1q1XBc2zaL/DPoUCJ3t0QUD8y1MfezlnuvbZ5FV1wLl9Q3xrYOZ6XXdTplVpmYy6faRhQ+XkTPmG7abddi9eSUogNNsJKLe3vvclxxArNN5WvdjucEfQ618T3f+7Tg8VDPlZEXl2csx7b3Mi91sW9o2llOtz+N0cy+tOJffaSy3xnqCMVLz/lb0eiLpTLwXXO8Qe+TxyV2smkqEVe+T91oBYKDafwLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RJ36JhmwCAUCGImNmtkvC2/pUrrSeH9vb42BEBLFWFU=;
+ b=Tu3dGBVQ21tYrLHRxi5n3RqISNEp80umU7v3U5OwPd3bCK67uz/zVdDYl35GnT35WoQ03PhBKF4yq5BlwWJnXyVOoENUAczHtRClZu0OxtLrf7ENGBq1RuxgVLT5RJ0Xfjp8eHsn8G4QzEvEwFok92CXVVCnZCLU6IERomTeueqO1tqpV9VOfkItAGJ4LHykV3KCyjte7Sl5VUMcR1alF06w6VDAFzsRL6oL4Qv/pNZwNTFxdqw4BaVe9YVMgd38WCDS7CSOE/VCXZSGYusjOp/3Fy1yOI2+BfAwhVKOAjtcBaS9xFZPa8Jbx1w/q2Tckg0ALGG9kDi3wXNAhqxp9g==
+Received: from BN1PR14CA0010.namprd14.prod.outlook.com (2603:10b6:408:e3::15)
+ by MN0PR12MB6344.namprd12.prod.outlook.com (2603:10b6:208:3d3::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Tue, 10 Nov
+ 2026 00:17:14 +0000
+Received: from BN2PEPF0000A894.namprd04.prod.outlook.com
+ (2603:10b6:408:e3:cafe::45) by BN1PR14CA0010.outlook.office365.com
+ (2603:10b6:408:e3::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.12 via Frontend Transport; Tue,
+ 10 Nov 2026 00:17:14 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 216.228.117.161) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BN2PEPF0000A894.mail.protection.outlook.com (10.167.248.186) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 00:17:14 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 9 Nov
+ 2026 16:16:58 -0800
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Mon, 9 Nov
+ 2026 16:16:57 -0800
+Received: from nvidia.com (10.127.8.9) by mail.nvidia.com (10.129.68.7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56 via Frontend
+ Transport; Mon, 9 Nov 2026 16:16:55 -0800
+Date: Mon, 9 Nov 2026 16:16:53 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Mostafa Saleh <smostafa@google.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<kvmarm@lists.linux.dev>, <iommu@lists.linux.dev>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <maz@kernel.org>, <oliver.upton@linux.dev>,
+	<joey.gouly@arm.com>, <suzuki.poulose@arm.com>, <yuzenghui@huawei.com>,
+	<joro@8bytes.org>, <jgg@ziepe.ca>, <mark.rutland@arm.com>,
+	<qperret@google.com>, <tabba@google.com>, <vdonnefort@google.com>
+Subject: Re: [PATCH v9 11/25] iommu/arm-smmu-v3-kvm: Add the kernel driver
+Message-ID: <avJidXM9yQOX4VBJ@nvidia.com>
+References: <20261015200903.2735565-1-smostafa@google.com>
+ <20261015200903.2735565-12-smostafa@google.com>
+ <auzvygiGRTWgJXzF@nvidia.com>
+ <avGk0ilyJh3obmKx@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5XOwW7CMAwG4FdBOc/ISZuScNp7TBwa16VhpakSq
- ECo707KpE2aOMDxt+zv900kjp6T2K5uIvLkkw9DDuXHSlBXD3sG3+QsFKoKLRoYuyvEQN/U+RH
- 8MAQ4J6eA+jyD1l+Am6bSTm9aY0qRmTFyHj8qvnY/OZ3dgem0uMtG59MpxOvjh0kue2/UTRIkt
- JtGWyqkyyefFPq+diHWawpHsVRO6heViPIFVAECo3StRltoy8/Q4g+VqF9Ai4w6hRUaQuNs+R+
- d5/kOlObW5JABAAA=
-X-Change-ID: 20260908-phy-rockchip-inno-usb2-clock-fix-edd65b57f884
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- William Wu <william.wu@rock-chips.com>
-Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Igor Paunovic <royalnet026@gmail.com>, kernel@collabora.com, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3652;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=K8NTwOd2VMhqShdXjAXjDbndtPFnEs+PaHrTnRAXxNo=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGryXydV8ts/JAA6l2huXHuKDiEh/q8l+hYQ9
- kpF7WMQxjdW04kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq8l8nAAoJENju1/PI
- O/qarsUQAKVaPYfSwtKgIMe22dnuXp9/584PSYhTE4IMswI8LQlFxI6sREkq7n9DDNd0jkqCLFl
- KkTiCbuDOULfuuemQrlw2G3dKdkeMds0Mgf9Z0rhVTXK38sQ/LgRW39y+wdja3+vXhfFWJkNCqb
- Neljhx+ybAfDiygkvKdpfGWLT36GkVIoV3ScB/JAybUCSFJN+azzw/ZD6Amcu90HWwGQgw4oPaW
- rIMKoIHZkenLONJUOfzP9+cuzVwBP8Vjjtai8zF9XPNpUHbVcHWQriy8xSLmWRDRGCoNZMuKISY
- iAR5rTPOaCUm0e4haFZHrknDpK2RCAzli8pxfkek9l/8cJTTe4FTmdo68aA7RexUVDzDyLo82Kv
- yPpLPmInBaaPF989+EcrJl53tpr9aD+HfrNhtgpCt8JSXRsRXdmrIoUMYM2OBKx0OymfWQ1y/3B
- NnAz0BP/bNmxS30sOTfAeSzTnh8Uxv41gvSXDflhuKC1uirI3fUSFKOWLlwRiegiD7XRO9oJUsn
- WvR/b7pf293VmbWPi9t3gxChuMvemcUlcvGKFmDsScO+YgNYSemdMu9GHGyfsq9NdfZ29HKMiTc
- AQPketku9jEoslesY0pNBmAJr3XX4JSdJXp3OZk5oqiUWPVZGytDiIvFOeTh0S38xsuEc6Q1SWh
- lRex9Rxx6twST4KHqB+owcA==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <avGk0ilyJh3obmKx@google.com>
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF0000A894:EE_|MN0PR12MB6344:EE_
+X-MS-Office365-Filtering-Correlation-Id: 052168f3-9c1b-47cf-e8bc-08df3ebff909
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|23010399003|36860700016|261028144727099003|10067099003|11063799006|4143699003|56012099006|261021121427099003|261022075727099003|261022105027099003|261021135927099003|261009223027099003|261026140227099003|261102123227099003|261026121527099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: 3Q4cIg2JIJ84/HScjow2VXcMI1uuyQ543+nYiY9qwwBDx/7gKhWFTfdYEcWEi3YhGLcmfMEmT6ZyJaj3zW1CZPfjHm16XaJj6RZlFOujV8fxPO7oTGwmpYOmMV6hZj1ueUi1+k9WDQvvAQKqc2KSMUfRiTlyTBZ+Cu5PdA2mPouf83JQPf3Ep9LZaZloJTItylVnTWVNFNxDpwkRpJ0h1C8aBKvEhIS4M8WrkqTe09JUnYV2gE0dx0zTSoUkqyuc20jnJEajZkWn4jFX/Eo+GODIqJi5nr/KG2D+DPUNayEdTEvZBZsvTxbil1IwGWqW2OE+TdcUtyc9JcWIBkz6r8p5VSZCt17THz52H+5/sv8a7HmXtwkLT8AqPC39s1lMVQqHcApSnIMFqTvYsYofrQtt0gws68HbJl4Yt8IpsTWvfvTMi22PM7kXy65CDhSFd6b8EM7tarA0uE2wlz2Jqx7GecbjwsFy/Z+02Ep/HsxsOaqBf9HBdqEU6lCOv/jpu4o2wXGtW+gfajNF+jfaoyRcIzOAC+fE0curF8Z6kNHnBp+RTdImd2Vuh6I5ZsZjyVoHf/vz/fnQViE6sP4T7dElhWVDYrAx47l5S0cV7z2r+AWEn3MqkcdCD6xChggZkuDecPyYhMDxBPCeJ6gl2aiEUIm05KAyWsZOjqI42z/0C6r6g2/3CZmhcmgnAx4sntqeBm8fRhT+esL9tBSM4Q==
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(23010399003)(36860700016)(261028144727099003)(10067099003)(11063799006)(4143699003)(56012099006)(261021121427099003)(261022075727099003)(261022105027099003)(261021135927099003)(261009223027099003)(261026140227099003)(261102123227099003)(261026121527099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: ZCTX0zLr47gHJcPHYTwZqvSZ0cSODxq0DwoEbbyvD2bctkLclvoFCmT5QzhtujTz/vMetUFJGHaD02jHzdA/sg9fAsTq45eLyWU7RKbtBfBM0+DjFNXRwEVk8KQU0krwKglVHE0UzToxZQ0MGY1glUVCKGktpOcf2EmnC/YcHhaMpatxg5bY8KT9K2KUDmZGDj5sJU9z0w8uR1zDdhW/d+pPWTqet+ugCN7oOt/3JDFGDO5L4EDQg9jyaadWwN36sjXVqifw26BAi4lkdiD1DtEhSjbUEcFuAkRx3NHDEF2L6zNiFDH+1ZaJPUlL5TuKuWcwW5bw8537vn3nivN/i6eXiZabc2bTXqEWIrqbtCotKZX5ZQrrg/oPiUMihDxgqUkZrVY0ZRUyyDekix9E7UEfPgbU1Rm0GAOvR6HueyX6Wcgl9dstC45jIJbzPu7m
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 00:17:14.5815
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 052168f3-9c1b-47cf-e8bc-08df3ebff909
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN2PEPF0000A894.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6344
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_160251_958782_461EC1EF 
-X-CRM114-Status: GOOD (  17.43  )
+X-CRM114-CacheID: sfid-20261109_161723_806114_86EDAD8E 
+X-CRM114-Status: GOOD (  22.08  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,89 +133,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This was noticed on RK3588 EVB1 when resuming from system suspend. This
-is technically a fix, but its unclear when the bug was introduced and
-system suspend is broken on RK3588 for quite a while and not just due
-to this problem. So I think this fix can be merged the normal way via
-linux-next.
+On Mon, Nov 09, 2026 at 10:47:46AM +0000, Mostafa Saleh wrote:
+> On Thu, Nov 05, 2026 at 01:06:18PM -0800, Nicolin Chen wrote:
+> > On Thu, Oct 15, 2026 at 08:08:42PM +0000, Mostafa Saleh wrote:
+> > > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > > +#ifdef CONFIG_ARM_SMMU_V3_PKVM
+> > > +/*
+> > > + * Two devices are involved: the aux device bound to this driver, and the
+> > > + * physical platform device bound to the pKVM init driver, which only uses it
+> > > + * for discovery. This driver keeps using the platform device, as it carries
+> > > + * the fwnode the IOMMU core and consumers link to, the DMA configuration and
+> > > + * the IRQs.
+> > 
+> > It would be nicer to have a diagram or so to show the co-relationship
+> > among different devices and drivers.
+> > 
+> > I assume the regular arm-smmu-v3 driver is a part of the picture too,
+> > when the pkvm driver binding fails?
+> > 
+> 
+> I can add some ASCII diagram.
+> If pKVM driver fails, no aux devices are created and the main driver
+> probes the platform SMMUv3 devices as usual.
 
-Changes in v4:
-- Link to v3: https://patch.msgid.link/20261105-phy-rockchip-inno-usb2-clock-fix-v3-0-b20608c08b94@collabora.com
-- Drop patch avoiding rport->suspended in rockchip_usb2phy_sm_work; it
-  was meant as a simple cleanup and Sashiko suggested it is more tricky
-- Add new patch removing error handling for regmap_write and
-  regmap_write_bits
-- Add new patch removing error handling for reset controller
-  assert/deassert
-- Simplify final two patches due to the dropped error handling
-- In the final patch move the 480M clock registration after the
-  port_cfg population to properly fix the race condition instead
-  of relying on -EAGAIN and the NULL check
-- In the final patch create a new helper function deciding between
-  handling the PHY suspend in the clock (un)prepare functions; we
-  keep the NULL check for port_cfg as this properly handles the
-  case of the port sub-node being disabled in DT. From functional
-  point of view this setup doesn't make sense (no need to enable
-  the PHY if all ports are disabled), but one extra NULL check is
-  cheap, so it's better to handle this gracefully.
+I didn't check closely, but would it be safe to do so?
 
-Changes in v3:
-- Link to v2: https://patch.msgid.link/20261001-phy-rockchip-inno-usb2-clock-fix-v2-0-e01bf509359e@collabora.com
-- Fix do_suspend negation resulting in SError on RK3576 (Sashiko, CI testing)
-- Ensure PHY ports array is initialized in clock enable path (Sashiko)
-- Cleanup properly in clock enable error path (Sashiko)
+Is pkvm aware of the missing SMMU device and handling it properly?
 
-Changes in v2:
-- Link to v1: https://patch.msgid.link/20260908-phy-rockchip-inno-usb2-clock-fix-v1-1-f7d59c31b908@collabora.com
-- Move suspend exit code from rockchip_usb2phy_power_on into a
-  separate patch and reuse it in the clock prepare function;
-  move is done in a separate patch
-- Updated commit messages with proper rationale
-- Added one more patch dropping useless assignment
-  of rport->suspended directly after calling
-  rockchip_usb2phy_power_on/off
-- Add one more patch unifying and simplifying the debug
-  messages for phy init/power_on/power_off/exit
+When pkvm is enabled and the SMMU device is supposed to be a pkvm
+device, should it not fall back to the main driver?
 
----
-To: Vinod Koul <vkoul@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Manivannan Sadhasivam <mani@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-To: William Wu <william.wu@rock-chips.com>
-Cc: linux-phy@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-rockchip@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Cc: Igor Paunovic <royalnet026@gmail.com>
-Cc: kernel@collabora.com
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
----
-Sebastian Reichel (5):
-      phy: rockchip: inno-usb2: simplify and unify PHY op debug messages
-      phy: rockchip: inno-usb2: ignore regmap_write return codes
-      phy: rockchip: inno-usb2: ignore reset_control return codes
-      phy: rockchip: inno-usb2: move suspend handling into new function
-      phy: rockchip: inno-usb2: move suspend handling into clock prepare/unprepare for RK3588/RK3576
-
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 257 ++++++++++----------------
- 1 file changed, 96 insertions(+), 161 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20260908-phy-rockchip-inno-usb2-clock-fix-edd65b57f884
-
-Best regards,
---  
-Sebastian Reichel <sebastian.reichel@collabora.com>
-
+Nicolin
 
