@@ -2,72 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2C6606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5EFF606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:28:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gHdYxxqO;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=NBgLUCYw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rr3S4FuC;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=DoAuZ4d7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ZxHsaK8/Nc8cB5gd1xWnchJme5sokD+PiLu0QduYwF0=; b=gHdYxxqOaEI/3p
-	fUABl/lq7vJ5OJCQnUk+tYIFU5cj0Ow7tKlU7IRk2ncIPtHmPslQyuA7jm1wST9uJBpsY+kpNlAWS
-	VWRHtfegT3WXTgvhPQN3Bq54BIB3f1oQfIlZNuSJLEebVyZ25+Z351Nj8dDsetpRnSW/2n05aQPkq
-	I3p4/gzX51QUmRohaJB+1irxx0IvrWpm7LQ5uLRCpQfTS9raVHxRj94VENj+4dUOfl3buhLe+BlLq
-	mjwf1HWdib+ZmLgTQj5ya8SanU63wTPf1ZQrRgh9VpjGG2bVNK5zsBxmmtDNTwp/e4k0tYGqvZ1T7
-	7ExsnxDUTKLCcttHbgbA==;
+	List-Owner; bh=sRyt7J57B8/qpsnQyP3hNPb+3Du63I5pPZg0XUFrV5o=; b=rr3S4FuCEkf4Cd
+	ySRA06yBFyKGFiAqMfP+4jzn5mlFaJeL6J0HkaMgCLS4HlyQEBnj0iAGjeQu1E2ehwH1Brc8T3F8A
+	39GlrOKi/qQ98punTYHXxAgqrOk8WSfQULNljW0FjFbah34/0Vdsrk+vsgItumYZenc4ErnV+S90F
+	8gF2ntWUNpq4vIs3uDlg1i2jcAubMJCYXdv8mrqGdc8iEzlapI8EBB6dG6b8jdNZTPJVAlUG+hqiT
+	izGsDqdrScjtpaT4RmTjQvlxHzQV0Lr1yzR07+D4nq7TJQlAsKO8l4vslljnnSr4bWRA+Wqju2XJz
+	pRoV3SeeZF2bf8JVvQTw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnij-00000004MI2-0CZG;
-	Tue, 10 Nov 2026 15:25:13 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnif-00000004MGy-2PcQ
+	id 1xQnls-00000004MkQ-2I7n;
+	Tue, 10 Nov 2026 15:28:28 +0000
+Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQnlq-00000004Mjj-0sDe
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:25:10 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 514F01477;
-	Tue, 10 Nov 2026 07:25:05 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9EB393F85F;
-	Tue, 10 Nov 2026 07:25:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794324308; bh=KyJGfKTqMKWcdpGq28AE4r7i+T5cmpj/njBVE62d1bE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NBgLUCYwVxUQk7+f5b/WN0ZoVuVFBcBpq3nkb/N8ILa0LarygzCPSmM+SmsZ+QfLY
-	 P9ODmXUjwKufv2M6yQernOgA9xob4TypGD4z0do69DKUlNNZCfmA1lLDP8htII36Ba
-	 MyO7xPuLNSymRfurSDCJhAFBi3R/JT2U0iGe7rZc=
-Message-ID: <83fe9c8a-c2d1-4859-b17c-9c350609d1ec@arm.com>
-Date: Tue, 10 Nov 2026 15:25:04 +0000
+	Tue, 10 Nov 2026 15:28:27 +0000
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-492f563d1c6so817352f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:28:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1794324504; x=1794929304; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=sRyt7J57B8/qpsnQyP3hNPb+3Du63I5pPZg0XUFrV5o=;
+        b=DoAuZ4d7e81+MgyeqXG3bRGCGdK8NMX/ryqp6f/WSWNdZDBXGKrm6Mj+14LoEfHC4y
+         W2UzVu57ImMGLmmAkQpiOWrjBN/S9WIitmr5u65ha0Eltga9qcAUf/Z26d5SmNjnBwe3
+         xnXT2VGwQIoeRZm7FyWpGmK3fe+D82QLOO3tvHGDl6zTurO5NaOcl4fFr0Z7TnU8nDrT
+         FbmB4WZC5uCEsmgBS/uPlnAbqHYITpfC7np/Cjolpr0xJBMVxXcnykv4aQC+qadNebIf
+         VNiqbrRazdZP84KSSlK8CnrviVKXiDTlVADki1yPVAb2J4OYbJdlwyukTkzBgEbvICi4
+         gYUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794324504; x=1794929304;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=sRyt7J57B8/qpsnQyP3hNPb+3Du63I5pPZg0XUFrV5o=;
+        b=loc1E+28xuqx33Elq7XCDL58UvkzWeukjnlIF44h7NAWtmhk9mB6Jvaj5I4O3fBw/c
+         zkGo67umC0Y73MxyrwidJplX6w9TIhXEz8L/WA3zYBBq0+UNeMu33cBbGGJ9FIgkqnEH
+         EfDucAKYy0V9PZ+jcVUt9kkF1yGwFPDvMfNq8A1YGlMmWM0znur85v3Kme9lJJm9qGXb
+         At8K/4E+L1EN4+oDKFcCM35gibJw+9Sel5k2bFUmIg40bzYBU4WGNtWy++AFnrt7Yq9r
+         T2soh9fCeBE5c0/swbHxaSqk6FM87UBPrHKvkcgTAeZ/kfLOmVFuMijgb/JQyRwEEm2o
+         rbQg==
+X-Gm-Message-State: APuU4Z++GwjDVuW0g+6zlkWR4Uk3NeBVkDNOCqMgUTnGfCmpr/945hht
+	YwPUWoDQzTFeBBSLRGkHBjBXGn3aSZsUKpfmlfAlFKpaFqnaPXUwuU10CBXiJFKp2lc=
+X-Gm-Gg: AYBFou2ne2UBpMeZF60oWLkWsvKxR7tSSpby5Z+FbTtrSbTNuaFKiYzM4WtwwDETvOl
+	nHIN96Y/D5ck9P+L//+0Lkpah5pBty4MMrd0E1R1OgJGKbDyQ6OdxXRs4323lmnUrC1HNC7SHBm
+	hwH+aQ771jnU4/69VxbFqYbXlHCKn2VwJwtwEoyIyUa0GBphZtIWfmbpX0pG7RCn0/N/m2BQnXC
+	qSPPgh/D5uXUteAbzGMtA0KENbPF8uPvLhI+LOQVT8lpm9aup/BMe5K5JyWqFwMNRq+otGdaaUI
+	xM9KOdl3XXu766z4wNqLFMT6k158IrgJl5merv9ZeEI/c3SD9J4Y/Hdxr/VQvKmytrJmTlmY56r
+	+Z5HB75BnKjJbRXlMM0d+IHW6uaX0G++esQXjFYkQC5EfAnze4uEOK0W4HrYXW2Tvn6TVI6JHzB
+	oihVsI/mv3wXVeAVpccA1wkrtNhvTbUUXRjgMW4ck/mAnqT4lqfrAqeiIysT/1DvQK8NfUPdq+Y
+	37CFahTjww9wzxUxtwlVKX9BPFAAns2lhUBEV2a3bABQoEnYqxFTijJS2zFJSdmHE2YG2bGKhuV
+	btzNgeqxcQf6+jGLcgOZ9MzVw2ETpG/ZSw==
+X-Received: by 2002:adf:e001:0:20b0:48b:1296:52ec with SMTP id ffacd0b85a97d-4982ecf642cmr4316594f8f.18.1794324504256;
+        Tue, 10 Nov 2026 07:28:24 -0800 (PST)
+Received: from [192.168.1.3] ([37.18.141.193])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49835c37bdfsm5786450f8f.22.2026.11.10.07.28.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2026 07:28:23 -0800 (PST)
+Message-ID: <4371d707-dbe3-4ea4-be1d-c69c38b4012e@linaro.org>
+Date: Tue, 10 Nov 2026 15:28:22 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/23] coresight: trbe: Clear TRBSR status at stop
- sites
+Subject: Re: [PATCH v2 01/23] arm64/sysreg: Define TRBSR_EL1.EC event classes
 To: Leo Yan <leo.yan@arm.com>
-Cc: Mike Leach <mike.leach@arm.com>, James Clark <james.clark@linaro.org>,
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@arm.com>,
  Alexander Shishkin <alexander.shishkin@linux.intel.com>,
  Anshuman Khandual <anshuman.khandual@arm.com>,
  Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
- Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- coresight@lists.linaro.org
+ Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
 References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-9-3f57cf3199b1@arm.com>
- <a79a52db-2361-4303-9d43-87837f349f48@arm.com>
- <20261110084804.GZ9176@e132581.arm.com>
+ <20261016-trbe_enable_disable_irq_handle_refactor-v2-1-3f57cf3199b1@arm.com>
 Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20261110084804.GZ9176@e132581.arm.com>
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-1-3f57cf3199b1@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_072509_705636_1A04E402 
-X-CRM114-Status: GOOD (  15.00  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261110_072826_274543_0836A225 
+X-CRM114-Status: GOOD (  14.54  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,49 +116,43 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/11/2026 08:48, Leo Yan wrote:
-> On Mon, Nov 09, 2026 at 10:51:30PM +0000, Suzuki K Poulose wrote:
->> On 16/10/2026 17:55, Leo Yan wrote:
->>> TRBSR_EL1 records the status of the buffer that just stopped. Clearing
->>> it in trbe_enable_hw() postpones cleanup until another run starts. If
->>> AUX output cannot restart, for example when AUX space is exhausted,
->>> that clear never executes. Clear the status in arm_trbe_disable()
->>> after disabling TRBE instead.
->>>
->>> trbe_handle_overflow() can start the next run without calling
->>> arm_trbe_disable(). Clear the stopped buffer's syndrome and status bits
->>> while TRBE is disabled, before attempting the AUX restart. This also
->>> leaves the status clean when the restart fails.
->>>
->>> Signed-off-by: Leo Yan <leo.yan@arm.com>
->>> ---
->>>    drivers/hwtracing/coresight/coresight-trbe.c | 10 +++++++++-
->>>    1 file changed, 9 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
->>> index 26e7554d6bdd31f8a55a8bc3a7b6d4c49b984b9b..dd9c9330bb0c739795f300dafc6ce34e72fbf280 100644
->>> --- a/drivers/hwtracing/coresight/coresight-trbe.c
->>> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
->>> @@ -655,7 +655,6 @@ static void trbe_enable_hw(struct trbe_buf *buf)
->>>    	WARN_ON(buf->trbe_hw_base < buf->trbe_base);
->>>    	WARN_ON(buf->trbe_write < buf->trbe_hw_base);
->>>    	WARN_ON(buf->trbe_write >= buf->trbe_limit);
->>> -	clr_trbe_status();
->>
->> TRBSR_ELx is UNKNOWN at reset and if we don't clear it at probe time, we
->> endup running the first session with unknown values. It is safer to
->> clear this at enable_hw.
+
+
+On 16/10/2026 17:54, Leo Yan wrote:
+> TRBSR_EL1.EC identifies the cause of a trace buffer management event,
+> but the sysreg description does not name its architected values. Define
+> the five encodings as an unsigned enum so TRBE status handling can
+> refer to each cause by name.
 > 
-> This is incorrect. trbe_reset_local() is called locally on each CPU to
-> clear TRBSR_ELx, it has been guaranteed when the first session starts.
+> The values cover other events, Granule Protection Check faults,
+> implementation-defined events, and stage 1 and stage 2 Data Aborts on
+> writes to the trace buffer, as specified by Arm ARM (ARM DDI 0487 M.c).
 > 
-
-Ah, you're right. Ignore the noise
-
-Cheers
-Suzuki
-
-> Thanks,
-> Leo
+> Signed-off-by: Leo Yan <leo.yan@arm.com>
+> ---
+>   arch/arm64/tools/sysreg | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/tools/sysreg b/arch/arm64/tools/sysreg
+> index 94bf065c8ac71f20f482c91a5147cb6e001dfba2..f68c23dd4e83ee4d00610e097d9188d3a2c9ed15 100644
+> --- a/arch/arm64/tools/sysreg
+> +++ b/arch/arm64/tools/sysreg
+> @@ -5834,7 +5834,13 @@ EndSysreg
+>   Sysreg	TRBSR_EL1	3	0	9	11	3
+>   Res0	63:56
+>   Field	55:32	MSS2
+> -Field	31:26	EC
+> +UnsignedEnum	31:26	EC
+> +	0b000000	OTHER
+> +	0b011110	FAULT_GPC
+> +	0b011111	IMP_DEF
+> +	0b100100	FAULT_WRITE_S1
+> +	0b100101	FAULT_WRITE_S2
+> +EndEnum
+>   Res0	25:24
+>   Field	23	DAT
+>   Field	22	IRQ
+> 
+Reviewed-by: James Clark <james.clark@linaro.org>
 
 
