@@ -2,77 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED1F606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 03:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC043606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 03:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ho5sBcRP;
-	dkim=pass (1024-bit key, unprotected) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=fZUfxXVy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vCvlITDd;
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=s1XkSSy5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
-	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
-	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=q9XOYK7wX+00B6FBPgLD2vBKMAkmDiR49f/zui5qQz0=; b=Ho5sBcRP0LyeSZ
-	B690a3NbTtEXp0vCfOH53J+HvN61QxjNHmkDyDKu08hxWH2eroTJkClmxLG2podbkgaP7u1HBy2EB
-	IvY2fER4wtQZHJwlSutvcMXu4HP/rSdY69w+Z4/7rIMPoavGJ0oMollAPdhLwhP2NcoFd0h2sJVvR
-	KsVPxhqIaes2mHja5uqXTCWOVe7394rQCgo50m3bYC9jL2swO3m1W4gSw+QwjsKCdPsZfdk/Gh88W
-	4GYBrU8JU54+D3hxrM20x7+/DqL6DpIx8rTAG63tiLoAun9T9u+t46+VA+N1jM3QOofHLgKbkJ7kV
-	0BxKRaUc7y2UpsVTgt8w==;
+	List-Owner; bh=RD1jkN1QvH2Z5B6Q5iIjFx4HZtCXt5GvWjpjCwZzO7s=; b=vCvlITDdgh/ee6
+	vaOAh4DgTJDfNHjRjws6QFy+NI9UVdUM68sI+t3/4LvKtQCVvSQy5/G1PdanFhr2BubFI4zWEtSO2
+	2HBh422V8oFCzq8EO4sNm/bUEH4j2zx/Qkk99qcOztrfhkuicUyhjtWq8yekFQ4H5GHK1fqKhHWmV
+	Rh60fzgQdKsWthJeXKorjE/H5MEoa8PDnKbRhwTelpWxG78n55774nRIRHmSoOTUdGYqgFWcyA3gU
+	/ro1XLJy450Qz+zITDm/W4IWa9E6qvEv+1F9H98sMATtxcJmMLcXfn+QeaORIlmgn1/Ktac2LE9eM
+	RMAfCdCuMRteRcqTBdkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQcB9-00000002Dwt-1UvQ;
-	Tue, 10 Nov 2026 03:05:47 +0000
-Received: from out203-205-221-239.mail.qq.com ([203.205.221.239])
+	id 1xQcIc-00000002Eqn-0ylO;
+	Tue, 10 Nov 2026 03:13:30 +0000
+Received: from mail-oi1-x22c.google.com ([2607:f8b0:4864:20::22c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQcB6-00000002DwF-0vZL;
-	Tue, 10 Nov 2026 03:05:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1794279939; bh=q9XOYK7wX+00B6FBPgLD2vBKMAkmDiR49f/zui5qQz0=;
-	h=From:To:Cc:Subject:Date:References:In-Reply-To;
-	b=fZUfxXVyc6DAD15Sv5X4swqN9j/GmjL8dRnoagW1DhD+O/L6QRUMlsggANFnRQ0Bj
-	 D5veAtp3I1xww6mVMV1Tr+z5flqP62yg5Y/LzHau/FXDztMX9+63fkAMDnicnryiiA
-	 RfwgTnlQNClTOqf3FGIO1LhVf7JathlzAxx97xHI=
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
-X-QQ-XMAILINFO: MzHbHz6ky8ylxXRwvpD01xe5vfDxiM5d4sy1mzo5PARKG0efZTjt8CVhuRmRZB
-	 X916dvvbNf6mSP72RiWNcNkqCoNPOcxgBWOr5TCZcXnrUl9jCXlBL7sN0QJ4T5Y3UdWVhkCbnXnpG
-	 vdp9c5eNmkQygDx70y3v0fP7PLOER3IGW5zxJhXPUmUgyxGfqZwX2rtwe3Jtn8xzOde1dGcyuBCqu
-	 B3CmRyVm7R4LWQcm8jyBLfeacUa7dugB4ZvW+mqQuK17Ml+y8ub7YPpJctk25Nys2Mvv769EMSsdn
-	 gyFpV4NtYY5QzHMlFVwUMf61TfKrDif+QvN+eKFykf8fTRr4P6tUAMX8EjrmxtXe08M0wJY2zcUsV
-	 ZCbbeAv7i2dpy57uuj5FAmeBEfOhOs1aeSEH0H8cMnzrL5dxPYAS/1QrmLQ0Tnz/MFmRldWYiA+AG
-	 caiEA5CJiQ34zO8hIgYLPotpS0901vK+WlSahYTacdWKy7Xxs8wr9JFeu4ioN5jSZWUXuuGtEd6Cl
-	 CCMNpacI0piTaP6oj8dLwYr0Q9s2ZbZuL8q0lDeZOUh53rJLmlKt00fsxUCrOkTvd3utbbRA09EXR
-	 q22YlOFFUVDNvtHFy0LzEi6f3c9jZsOK34FYUDLWr2avoGfnlcSFvpxriZBvxtK3CsV2toP3ohc8y
-	 NMr0xO1FEC1hRQsL77+9TGn1IKzFmrjJJbkuQS4DIcFfsC5fXcYtBCnC/y355xwQqk95Ic+wvYhYN
-	 as5k0cJeG2my4Jt7nJ6eEx/rYbxpgRw5gK4DODp4ef2+JhCC1cgOW3at0NnbaX0f450vYnOJHZEBU
-	 HRoPJhcnehr04GJlF3dwm1u3UCTrR3iDsI5b57xBHS3Aw+ZocdVTg9dcE/M2hyvEV8Hc9ZGCS1eXg
-	 onxDMmUiVaEXvBtajFT5QG0P+nx0d2HHMnE7cURCbigcGOWiCt1GLo+jsbEua2PJZlr7qnaVKSEbf
-	 1i9qJJwVhsoLAP1jhHQzWj1nNX9WYsvWLk6T5wFS+mI9dsL6xI77tQvxdJFZ1pPERKAYtrirzDYJO
-	 fpiPE+5B/T4uxxl4WF2yiIWequDXJkDxKHdZr
-From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
-To: "=?utf-8?B?SmFrdWIgS2ljaW5za2k=?=" <kuba@kernel.org>
-Cc: "=?utf-8?B?TWFyYyBLbGVpbmUtQnVkZGU=?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?VmluY2VudCBNYWlsaG9s?=" <mailhol@kernel.org>, "=?utf-8?B?SGVpa28gU3R1ZWJuZXI=?=" <heiko@sntech.de>, "=?utf-8?B?T2xpdmVyIEhhcnRrb3Bw?=" <socketcan@hartkopp.net>, "=?utf-8?B?RGF2aWQgUy4gTWlsbGVy?=" <davem@davemloft.net>, "=?utf-8?B?RXJpYyBEdW1hemV0?=" <edumazet@kernel.org>, "=?utf-8?B?UGFvbG8gQWJlbmk=?=" <pabeni@redhat.com>, "=?utf-8?B?U2ltb24gSG9ybWFu?=" <horms@kernel.org>, "=?utf-8?B?Sm9uYXRoYW4gQ29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?U2h1YWggS2hhbg==?=" <skhan@linuxfoundation.org>, "=?utf-8?B?UmFuZHkgRHVubGFw?=" <rdunlap@infradead.org>, "=?utf-8?B?V29sZmdhbmcgR3JhbmRlZ2dlcg==?=" <wg@grandegger.com>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, 
-	"=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, "=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bmV0ZGV2?=" <netdev@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
-Subject: Re: [PATCH net v8 00/10] can: fix Rockchip TX stalls and bus-off restart/close races
+	id 1xQcIY-00000002Ell-03ig
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 03:13:27 +0000
+Received: by mail-oi1-x22c.google.com with SMTP id 5614622812f47-4f699fe49b3so1065771b6e.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 19:13:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794280405; x=1794885205; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=RD1jkN1QvH2Z5B6Q5iIjFx4HZtCXt5GvWjpjCwZzO7s=;
+        b=s1XkSSy5d8aUmI96EknkuKId6K04ZzscL01629QqJR3vmgX7Xoc9nE+sn+1yi23Hlv
+         AdVR87k6kQkM4XH9Z85tC3Nlox1iHDH2IDqZoa6f7kOWWBrLtmSrZP49doUN0p1+pkwe
+         xSskMlAwXVDtESBVJ0jOs8pCOi1HzrVcoLq6S+Q6MbNmabpDXCun9y7bIOYAs2KvX/pR
+         wmLKfP+w9LgpdNnQXjtBfoGRBbbHR2MMdYLbdTNoAaj4xc0j8I3UoOS6il1ou+PpJoA0
+         6CIDX0w24Gpw7Qwx/gDvLGAMLG9uSD29z9bJj8TI1IpkEbW0U7Dh8/yyNgEE6WeU3GuT
+         ICHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794280405; x=1794885205;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=RD1jkN1QvH2Z5B6Q5iIjFx4HZtCXt5GvWjpjCwZzO7s=;
+        b=ERHFXPnXhCnGSX9UGO1lfQs5W6EoWaT3GN3ipWmNDDQ95u9LNCRafSXdnzg2BSB1Bw
+         oNTAWAnimboGX3Av9V41PHPPiQsPPBMcME/+C/NbcNukq2yQKFVbdl06LM6Xq7FupJzC
+         go46EQVWW9BLTy5vMJTdSLg5ftJe3s6f2B3AUsKKUUGPB97E4Zcy0thuosWOPiW2Yx1x
+         YWsJO0gUcqXk/1p0ZwyBk7RIU2BzxgnBrLRe6GZXF+5dgX/OsBmvAm2Mg9nuaVotIjd8
+         sNcy+wpRjdYgv9OIiHEaJ7shOrDlBwHZhx4K5vqMlPGZXkvmwd1d56WsnjqlMQv85ax8
+         DATw==
+X-Forwarded-Encrypted: i=1; AL+hErEr8Jp4XqUrXT0lVm0ns5DUiZSx7pqUTwFOGuKhvn5Kw0piuVTXyNIZCjFsHaKoOIDpRaakEI573+mKANrDSjNz@lists.infradead.org
+X-Gm-Message-State: APuU4Z+tgVSFc3fdK3QDbLY63DggIGabOeo4GNscTwz2Ohp97F/wQc0x
+	Ki6NWrZ/KD7o6svyyL4P/FlW1Goz/lAygIxBEG/9ADpl5czf9HgZPxrfXjsR3MsC
+X-Gm-Gg: AYBFou2jLBdod1x/lhgKkvLpWPPXks12U+Yiz32u10JbeQsMFYVmpcD37ItVqTajNF8
+	DmdBRO3lljklqdA7qhTe1dG6VYvRPdjG2WK/erlQuuAavCDIfrmk3rC3GL0+EIo4p/qr7Uf17fD
+	28N5wx6Yc8pTxXc1cXzqLFlIMIA8MYCnjGjMdXeC4vg6jc1hK52KSn++AGqbAXIWGkjvbmCGV8Y
+	xZ7vzEcx+je3KkKUaWm6GaKW2mXmufbxB80Rut5rtzc0ZOsWb6NZx2QliCwrNBVeuuM+mj1Uorj
+	FgIjO0kTBOdVxedihvmnlvw3ZaRtiOJuuCWwdNRxxoGiuQzt6ouuW34JevB1alMDiNtHKs7mzJ8
+	zBQUKXC102/wTsvIjn2XponWp2sy6wgWEfmev06Rrxi4FJ70oxh6Qqn6fG2a+5tyvYPobcT853I
+	KN6VfBd1UKwFXO/o4L43fyAXF2ogs9WXKLFMlHWDU6M3aTsoTYjYb1sW/fItBMDu/56ppVfRbYc
+	2CYhhm7HIl0/CfqWr6aVdKjsiDlH3GFBsB10+w9hdDtri7CtadVGURnWNvJp7744l9rnDzSe5WF
+	JkUGIRIPlP9jXrIpR2nmBilp4Sv2ZvKarYKMnMLte09xnOAUl+XV/LENY2UrbLkeQ3Nq83ufbqU
+	kiYyFnwU8knn0DzlzjN1bswHeJsGt+5yQpRA7ummBDi4DFVMAomkCDjZvaAlJgqzAB/23Wp7nxh
+	JlygE0aj2ivUdSKaIQVZSiYcA4v1DIuAvmbyB6HSKD8uVM4ufR11Fq
+X-Received: by 2002:a05:6808:508e:b0:4d6:90f4:48ab with SMTP id 5614622812f47-5683cd1b07bmr1294602b6e.45.1794280405078;
+        Mon, 09 Nov 2026 19:13:25 -0800 (PST)
+Received: from [127.0.1.1] (174-29-1-49.hlrn.qwest.net. [174.29.1.49])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-56905736b92sm1019236b6e.8.2026.11.09.19.13.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2026 19:13:24 -0800 (PST)
+From: James Hilliard <james.hilliard1@gmail.com>
+Date: Mon, 09 Nov 2026 20:12:59 -0700
+Subject: [PATCH v9 10/11] serial: 8250_dw: discover Allwinner A523 FIFO
+ depths through FCC
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Tue, 10 Nov 2026 11:05:37 +0800
-X-Priority: 3
-Message-ID: <tencent_F59D327809C523BE014488357EEF4D163408@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <20261108-rockchip-canfd-restart-close-v8-0-3e7a23fd9eae@qq.com>
-	<20261109112402.283c16a3@kernel.org>
-In-Reply-To: <20261109112402.283c16a3@kernel.org>
-X-QQ-mid: xmsezb41-0t1794279937tom1cqfol
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261109-submit-h616-uart-fifo-v1-v9-10-3f03961dae8a@gmail.com>
+References: <20261109-submit-h616-uart-fifo-v1-v9-0-3f03961dae8a@gmail.com>
+In-Reply-To: <20261109-submit-h616-uart-fifo-v1-v9-0-3f03961dae8a@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, James Hilliard <james.hilliard1@gmail.com>
+X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_190544_578032_1EEEA530 
-X-CRM114-Status: UNSURE (   8.38  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261109_191326_066798_79F3ED5B 
+X-CRM114-Status: GOOD (  17.92  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,24 +112,104 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-SGksCgo+ID7CoFN1YmplY3Q6wqBbUEFUQ0jCoG5ldMKgdjjCoDAwLzEwXcKgY2FuOsKgZml4
-wqBSb2NrY2hpcMKgVFjCoHN0YWxsc8KgYW5kwqBidXMtb2ZmwqByZXN0YXJ0L2Nsb3NlwqBy
-YWNlcwo+Cj4gcGxlYXNlwqB1c2XCoGdldF9tYWludGFpbmVyLnBsLMKgZG/CoG5vdMKgQ0PC
-oG5ldGRldsKgb27CoENBTsKgcGF0Y2hlc8KgZGlyZWN0bHkuCgpJIHVzZWQgYjQgcHJlcCAt
-LWF1dG8tdG8tY2MsIHdoaWNoIGludm9rZXMgZ2V0X21haW50YWluZXIucGwuClRoZSBzZXJp
-ZXMgbW9kaWZpZXMgRG9jdW1lbnRhdGlvbi9uZXR3b3JraW5nL2Nhbi5yc3QsIHdoaWNoIG1h
-dGNoZXMKRG9jdW1lbnRhdGlvbi9uZXR3b3JraW5nLyB1bmRlciBORVRXT1JLSU5HIFtHRU5F
-UkFMXSBhbmQgaXMgbm90CmV4Y2x1ZGVkIHRoZXJlLCBzbyBuZXRkZXZAdmdlci5rZXJuZWwu
-b3JnIHdhcyBhZGRlZCBhdXRvbWF0aWNhbGx5LgoKSSB3aWxsIG1hbnVhbGx5IHJlbW92ZSBu
-ZXRkZXZAdmdlci5rZXJuZWwub3JnIGZyb20gQ2MgZm9yIHRoZSBuZXh0CnJldmlzaW9uLgoK
-QmVzdCByZWdhcmRzLApDdW5oYW8gTHUK
+The A523 UART integration, also used by A527 and T527, has 64-byte FIFOs
+on UART0 and 128-byte FIFOs on UART1 through UART7. Each controller reports
+its TX/RX FIFO depth in bits 31:8 of the FIFO Clock Control register at
+offset 0xf0. The field holds a byte count, not a logarithmic encoding.
+
+Read this field in the sunxi setup callback when platform data does not
+provide a fixed FIFO size. A fixed size takes precedence, so H616 retains
+its 256-byte configuration without accessing FCC. The probe has already
+enabled the clocks and deasserted reset before invoking the callback.
+Leave the FIFO clock-control bits untouched.
+
+Use the shared DesignWare trigger setup to validate the depth and build
+the FIFO-relative threshold table. Invalid depths fail probe before
+registration instead of producing zero or truncated thresholds. The 8250
+core derives the transmit load from the discovered depth.
+
+Select this setup for the A523 compatible. Like H616, this integration
+has Allwinner-specific debug-divisor and RS485 registers overlapping the
+generic DesignWare feature probes. Use the common sunxi PIO setup,
+BUSY-safe integer divisor programming and software RS485 handling. Keep
+the APB clock gate enabled during termios updates with SKIP_SET_RATE.
+
+Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+---
+ drivers/tty/serial/8250/8250_dw.c | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
+index a55f60330a51..257baab5a3ed 100644
+--- a/drivers/tty/serial/8250/8250_dw.c
++++ b/drivers/tty/serial/8250/8250_dw.c
+@@ -44,6 +44,10 @@
+ #define RZN1_UART_xDMACR_8_WORD_BURST	(2 << 1)
+ #define RZN1_UART_xDMACR_BLK_SZ(x)	((x) << 3)
+ 
++/* Allwinner FIFO Clock Control register */
++#define SUNXI_UART_FCC			0xf0
++#define SUNXI_UART_FCC_FIFO_DEPTH		GENMASK(31, 8)
++
+ /* Quirks */
+ #define DW_UART_QUIRK_OCTEON		BIT(0)
+ #define DW_UART_QUIRK_ARMADA_38X	BIT(1)
+@@ -63,6 +67,7 @@
+ struct dw8250_platform_data {
+ 	u8 usr_reg;
+ 	u32 cpr_value;
++	/* Fixed FIFO depth; zero selects discovery during setup */
+ 	unsigned int fifo_size;
+ 	unsigned int quirks;
+ 	int (*setup)(struct uart_port *p);
+@@ -666,7 +671,15 @@ static int dw8250_sunxi_setup(struct uart_port *p)
+ 
+ 	p->type = PORT_16550A;
+ 	p->flags |= UPF_FIXED_TYPE;
+-	p->fifosize = data->pdata->fifo_size;
++
++	/* Apply given FIFO size or try to autodetect it */
++	if (data->pdata->fifo_size) {
++		p->fifosize = data->pdata->fifo_size;
++	} else {
++		u32 fcc = dw8250_readl_ext(p, SUNXI_UART_FCC);
++
++		p->fifosize = FIELD_GET(SUNXI_UART_FCC_FIFO_DEPTH, fcc);
++	}
+ 
+ 	up->capabilities = UART_CAP_FIFO | UART_CAP_NOTEMT | UART_CAP_AFE;
+ 
+@@ -913,6 +926,12 @@ static const struct dw8250_platform_data dw8250_h616_data = {
+ 	.setup = dw8250_sunxi_setup,
+ };
+ 
++static const struct dw8250_platform_data dw8250_a523_data = {
++	.usr_reg = DW_UART_USR,
++	.quirks = DW_UART_QUIRK_SKIP_SET_RATE,
++	.setup = dw8250_sunxi_setup,
++};
++
+ static const struct dw8250_platform_data dw8250_octeon_3860_data = {
+ 	.usr_reg = OCTEON_UART_USR,
+ 	.quirks = DW_UART_QUIRK_OCTEON,
+@@ -965,6 +984,7 @@ static const struct dw8250_platform_data dw8250_tda54 = {
+ static const struct of_device_id dw8250_of_match[] = {
+ 	{ .compatible = "snps,dw-apb-uart", .data = &dw8250_dw_apb },
+ 	{ .compatible = "allwinner,sun50i-h616-uart", .data = &dw8250_h616_data },
++	{ .compatible = "allwinner,sun55i-a523-uart", .data = &dw8250_a523_data },
+ 	{ .compatible = "cavium,octeon-3860-uart", .data = &dw8250_octeon_3860_data },
+ 	{ .compatible = "marvell,armada-38x-uart", .data = &dw8250_armada_38x_data },
+ 	{ .compatible = "renesas,rzn1-uart", .data = &dw8250_renesas_rzn1_data },
+
+-- 
+2.53.0
 
 
