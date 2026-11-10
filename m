@@ -2,94 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78806606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 19:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96A24606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 19:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yQ68qigX;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pdn67SHK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pESMNP1X;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=GyCzHvBW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=q5qW6t9RZikzPsIz5xM6Y9f/cfbt15VH92CdwgczBFw=; b=yQ68qigXfOlUZO
-	qW2ldCsTJ9bGqHPiQvf0xJL/Y0Gc2cAY7yxKmVH7kxYRh7u9K39mUG5yXBcrK1DdSzskLDoDmncZY
-	g7qdXNn1HEClZ7RvxkFz2BZ39X0iHOMNM+OYwMQGAOtRm2pCBuOZLWMQKQnhAa2Y7FDes1agvZn2R
-	zyJReTPu9mloCubiZWczM4mNKHKJOZMTU1LKEYdd/PRA13AaXXLDvt3sZUf1iJvcVWP5KRybkBWG0
-	WOaMXx4Pi1IMrQQKURLmk92WhZVX52tEjUcvD9A+ZmUl0t2ZQuqAjcgZgBmDAVmX9C3+w+WswXmUf
-	CkpIXRDjNI7OtcY6llIg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=FZwsc4vEEFoPSZcA9FrAm9Zjfu5lDJ7Cw08Uku6ESbo=; b=pESMNP1X9eo0WmtQTcKDZVj2FF
+	5YGzJm9fFoCS4OdiXeLWV2AIiGmvVbu+2I/vrNYiRMlQKENoJLmgdFx4H8cdowdos54Dz5xTFmn1F
+	RNg4peWwulCZlEDmtJfWTuTBaVfdWjBiMwvUfBiBqIAnWyCi1V6djEOZmljYkxph5FCEtcGQfE7E7
+	qcsEIJ08AlPLEErWp3I6bcV8IlsMNruuBGkdzkM0OYMTsTLQHklNbx4cJXPGo9ihf0mZqpgoBcZfR
+	r71cCysPb4UGav0FDc8jZLxQpjCmYkCfz1PRqTkSGfnYfErtvgxFvCgJqVKrcEqs784LtUcnZGtc0
+	SI+gOc/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQrjP-00000004vyw-3QQY;
-	Tue, 10 Nov 2026 19:42:11 +0000
-Received: from mail-dy1-x1334.google.com ([2607:f8b0:4864:20::1334])
+	id 1xQrpt-00000004wJI-1oeT;
+	Tue, 10 Nov 2026 19:48:53 +0000
+Received: from mail-pj1-x1034.google.com ([2607:f8b0:4864:20::1034])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQrjN-00000004vyZ-15q2
+	id 1xQrpq-00000004wIv-1qsk
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 19:42:10 +0000
-Received: by mail-dy1-x1334.google.com with SMTP id 5a478bee46e88-36fc0a3fe93so4796720eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 11:42:08 -0800 (PST)
+	Tue, 10 Nov 2026 19:48:52 +0000
+Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-3b0bbdeae06so1526401a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 11:48:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794339728; x=1794944528; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=q5qW6t9RZikzPsIz5xM6Y9f/cfbt15VH92CdwgczBFw=;
-        b=pdn67SHKWy2xcALraxbMrPydu5rFfEIwfSObHFKAT4BXDQlxVqm1FRDBtnBeN7zIpl
-         4RVkOnKRjJcUN79ICauUe9wnT4Bj1QvTr93SHuC6oPcYl7oKrj602YtJWj88efyWF6q8
-         5s0SMN9tUVfIkywFxT+2DnWpOo+FDMW44s/8iVZZj1JvwEiHhWIWU2UvXtilaLxnm08j
-         oJ6O6dH672Q8tpqajhkgWp073EY01dHtDVm6kCCwcV1VeC3vHWWsrSARFiRK/cla2ZNn
-         iShDlx70GabkI5yv+EUrHRSXV5XH0zGGW3kEdnEmzylZ0aTeemEltOKFguz0n7a5JgqP
-         lIUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794339728; x=1794944528;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=baylibre.com; s=google; t=1794340129; x=1794944929; darn=lists.infradead.org;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=q5qW6t9RZikzPsIz5xM6Y9f/cfbt15VH92CdwgczBFw=;
-        b=fJmUdEsACHNRS5e2Of5Rl2WpUy0lwyxcZLnIiRD2vBzW1x92sCzj1nj/MEga3H9j9W
-         +Se/0rkw3wZCmCDHx7TP9vJQXVkXCeL0TlqVYyTPf89XK8WeEL9+7OTAg7dxvskk4Wsw
-         DZoWofMonYGwbUJ+7nPyP9Mvvxw6NblF1P2Y/7wLQWGGctzPWur9XOWL4uFGBIIzI6WW
-         KNiL2zQicrJcR76La2DXFPFXy1sh07wchgQqzGOOCihLhk5vVU6mr8XGvoubZ9rFDQEt
-         a6/qIXTq6A6jokM0X1stiXMYSd0mVRi0Z810To4KSkbjmZLpaQUSLlU7n/X7b5591Ijh
-         tHtA==
-X-Forwarded-Encrypted: i=1; AL+hErELb+8eenrIJGsdGIoNCn2uiRqffr50QYoe0JtAB9crsarTUVpJU3JYsOy9oGx4gRAsoIL7qz2tiBka2gsZPqpj@lists.infradead.org
-X-Gm-Message-State: APuU4Z8SzwVmam8wsVBxBKrvbMLszAYtSdKRNtODVxJKzn3IichkHpcn
-	5Vksj7revruP5u19crN8kM2Txh5lRUGK5QDSBUVDQmioEIm3yvqf6mPc
-X-Gm-Gg: AYBFou06lbbBNW4XkrMTwY0VcpUcmXkFkRq8lPx33I1LGUPNglxwVwuOZkQk3XgdjBe
-	NSp32zjFAq5AU+g7XFwsKgL7jBB6HPeBN1hFJxka4eOx1yiumsXpzlMW+cO6gzOsUMBRDuewbI6
-	XN5JTw3v6zeq81LFa7Yz3cwGoZY46ybn9d6Yj294mkyAb7060OVqcVWAsj8QE9GOEw8/WyFoQm2
-	+9X9YNyHRrnHs+73JosURYluOVi1OGXsYd9acqUX+uk/+GxYrm3mLeQWDPeq8irxmarlt7m9wXW
-	ZM9/qMaDmyrmCB4AA7CDyjfU63T/+g/t1nukif3YlzZmd+sf7kTFXWyvAC5aacjg3v4SbLTgjIA
-	cOVvkJDPEKFptaV61wOafIa0lDx21FbRqigDN+7CA400IqaxaqbBQ+jHLlkFo+ldXITqwSUmH9n
-	2O+AwI9SPAZvz+F0LUvUcOjhk+wpnlw5+oMD3PGWwslsJi4NmSH5pVFSDWGbKp09ncFxUU5OhH3
-	YDWmm2kMcxMeptcBjS6bPsfJ+rQIjvASaezXWYM6clt0R2/rGDiiyTmAs8C2JMozzr7L4HLWmIP
-	Cb6+NBaXkCBnfTcA8fW5atgDyw==
-X-Received: by 2002:a05:693c:62d0:b0:36e:535c:60b4 with SMTP id 5a478bee46e88-37685c7a5a3mr308597eec.13.1794339727953;
-        Tue, 10 Nov 2026 11:42:07 -0800 (PST)
-Received: from [127.0.1.1] ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3751fe3261csm7825076eec.4.2026.11.10.11.42.06
+        bh=FZwsc4vEEFoPSZcA9FrAm9Zjfu5lDJ7Cw08Uku6ESbo=;
+        b=GyCzHvBW/0mz23TclU+i6ZwtMl3U+UHOvzFt4gqZxj1CCayt9zzqg0P17BDY99/zBE
+         g9o/QAXz0zt35/8VW+sDsETkwjwS+Y4lQegHADX55EhfmTLA+TKH8p8Y2uR9Zo1wrQNu
+         xUhiOl9h4PmevVcPS9bQyBKg1/MnCGpqLWtuNP9naBX+Rljsq916HhWzO+1fyF3dRpZg
+         xYDvqOLQl3KpBwzvHxmjWCWN/0XLQDV7BiK+TgUnpC6cEWIjsoaRtkNBGpGSK8sA8i5I
+         EnVWqCaDbQTVAw/PL+zbLmFF4w/MA1ZlTzXl6WgoU4XaypMD//EMKe3Ehs4Fc1Q4qC19
+         0/oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794340129; x=1794944929;
+        h=content-type:mime-version:message-id:date:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=FZwsc4vEEFoPSZcA9FrAm9Zjfu5lDJ7Cw08Uku6ESbo=;
+        b=v+mydCJJ0gUAMDJLzx9Ogwtho/EkoqTrH0IPPwGK5+F0imCn05Gw35d57E19lXX9pg
+         FIGeuMAUjzcD0+c/aAN1CzSW0QLqkU75ROy5+7ECQzOfVJ7Pyj2hsD++eIPXnmRU3k9O
+         GyuaAMTtf1O/fiB2s+CM3ZGZtLBuJn9Y0KzVIEImUxzes2fOPAMNSkVkO3+EtpV/VNCv
+         K1E4BoMpwks8MI9+Zj8zQPyLV4pykMK7qTv+2iG2Bn2bb4RbIL6G1ihjWU0Apuj/FqXS
+         OL6HYJ01lqvJrnq+QwPoAUp5cYFXbxpmt08C2MPJEGbmUGjdhQopXhS/N2fMiWW3lJUn
+         kfXQ==
+X-Forwarded-Encrypted: i=1; AL+hErGSpLRPfgsRe36Jy/BvLryPSZ4A4Vy0qy7fkqR/rOpHsyEi+u6ZPBcl7IFP4tJbYSJcE/0V4LmWkWkMNmIaj+Y8@lists.infradead.org
+X-Gm-Message-State: APuU4Z9FwqnCa0B0rEU68wGGUkGnLRi7W8KBrzAi7wkdi3MtJVSuLNal
+	Cw11VsAah3MtS97brt9BnRgfMZo0Z6Bix+xhVLkD+YypRgzXfZcNuhKtktEq7Ot+RRU=
+X-Gm-Gg: AYBFou0xWyd98eGoxXIKs6KltzkXwmKAlhAfmZybs9sGkmcvY+6Gi8QHA0uqHI6BCOA
+	KJh9l8f9lC/eF2UTYV3HXNd7zKJdHv6n2H46PdQTXa9l2I3DR2ToqeaXmiRwssE1UrQnywlFXeL
+	t7P1H5HqCfvpTF97X4Z8XKQKm1anTx2vt3RiNfW7WktZ35O0WDhUmmUePc8fUemtdJhU5EWP4AY
+	/IgbLPWIFGrl4AhXq3t3Znwe2tFOsUEAtdeHeA/3xi2VjUwmas5qbK+xn+jyBevXgz3I/igZBRp
+	2jHjIlQV1xaUG342jT0hXdZV6yHTJ8ROx0LveP0FbxBXDb72/XwqlB/Ijkm2LyonLlA3q+kbFmf
+	qFArgQPT+gxaweLYg2XH3B52oq+Akbbk1e72qKKy9c+rPqwd2NbF4DRlHNQ/DseXyulQOLLQ04C
+	mvqcsB4ATf88q1fqlE9d72Vln6KIF+T4h59e4wMFkUSgMXUakeYpATVjqygI1RSlgFQaiPw3duP
+	wBJoOWWH6yD22HpGJE0rFhePulcuOYmELvuHKCxV/rJpbt9bTncJPVHrh5YQ7opa5x7Nbg5n+4y
+	GMbtyNr7MA==
+X-Received: by 2002:a17:90b:33c6:b0:3b0:9e2c:9b61 with SMTP id 98e67ed59e1d1-3b182ee21e0mr8597a91.35.1794340129433;
+        Tue, 10 Nov 2026 11:48:49 -0800 (PST)
+Received: from localhost ([97.126.173.69])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3b17dfb9827sm995022a91.1.2026.11.10.11.48.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 11:42:07 -0800 (PST)
-From: TAKANO Mitsuhiro <takano32@gmail.com>
-To: James Clark <james.clark@linaro.org>
-Cc: linux-perf-users@vger.kernel.org, Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>, John Garry <john.garry@linux.dev>, Ilkka Koskinen <ilkka@os.amperecomputing.com>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] perf vendor events arm64 AmpereOneX: Fix misspelled PublicDescription keys
-Date: Tue, 10 Nov 2026 19:42:05 +0000
-Message-ID: <179433972506.1746408.6665119010100304383@gmail.com>
-In-Reply-To: <bf6925f6-613f-4e20-8491-2a99183f34fb@linaro.org>
-References: <20261108183846.3804875-1-takano32@gmail.com> <bf6925f6-613f-4e20-8491-2a99183f34fb@linaro.org>
+        Tue, 10 Nov 2026 11:48:48 -0800 (PST)
+From: Kevin Hilman <khilman@baylibre.com>
+To: Andreas Kemnade <andreas@kemnade.info>, Aaro Koskinen
+ <aaro.koskinen@iki.fi>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
+ <tony@atomide.com>, Russell King <linux@armlinux.org.uk>
+Cc: linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, absicsz@gmail.com
+Subject: Re: [PATCH 1/2] ARM: omap: cpuidle34xx: balance cpu_pm_enter/exit()
+In-Reply-To: <20261028212302.75ec622e@kemnade.info>
+References: <20261028-susp2-v1-0-174b52857d89@kemnade.info>
+ <20261028-susp2-v1-1-174b52857d89@kemnade.info>
+ <20261028212302.75ec622e@kemnade.info>
+Date: Tue, 10 Nov 2026 11:48:47 -0800
+Message-ID: <7ha4ngv55s.fsf@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: kpatch-send.py
+Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_114209_305765_D308595F 
-X-CRM114-Status: GOOD (  25.55  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261110_114850_513280_53396C81 
+X-CRM114-Status: GOOD (  19.91  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,80 +103,97 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-09 10:24, James Clark wrote:
+Andreas Kemnade <andreas@kemnade.info> writes:
 
-> Shouldn't jevents enforce some kind of schema? This seems like a bug in
-> the generator that it's allowed. And we have all the json files in one
-> repo, so we can fix everything when adding strict validation.
+> On Wed, 28 Oct 2026 20:15:11 +0100
+> Andreas Kemnade <andreas@kemnade.info> wrote:
+>
+>> These calls are usually done in a balanced way, so allow notifiers to
+>> assume that these calls are balanced under all circumstances.
+>> Seen some spurios vfp issues probably connected to this.
+>> 
+>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>
+> Looked again at some discussions with Sicelo testing such things:
+> He had observed a NEON off count 1 but MPU 0 in /sys/kernel/debug/pm_debug/count.
+> Probably more involved, but lets not freak out things here.
+> So that is definitively a real problem fixed by this. vfp_pm_resume()
+> would not be called to restore the state without a patch like this.
+>
+> So this is
+>
+> Fixes: 1cd96478cf150 ("ARM: OMAP3xxx: CPUIdle: optimize __omap3_enter_idle()")
 
-You are right, and there is a patch for it now:
+Even with this fix, I found on OMAP3 (beagle and beagle-xm) that there
+are still intermittent failures, and the NEON vs. MPU count mismatch was
+a good indicator to dig a little deeper.
 
-https://lore.kernel.org/linux-perf-users/20261110193239.1741014-1-takano32@gmail.com/
+I think the fix here is to add the neon_clkdm -> mpu_clkdm wakeup
+dependency before the clockdomains are allowed to idle.  Otherwise NEON
+could idle immediately.
 
-It is not a schema, and I don't think it should be one yet.  It checks
-nothing about types, required fields or value ranges.  It reports the keys
-that jevents.py never asks for, when the spelling is a near miss for a
-name it does ask for.  The failure here is that "PublicDescrition" was
-never read, so the field was dead in 16 objects and nothing in the build or
-in the tables said so.  What makes it cost something is the AMD tables:
-"BriefDescript6ion" is the only description those three objects have, so
-the generated table carries an empty text field for ls_inef_sw_pref.all on
-Zen 4, Zen 5 and Zen 6.  In your table the output is unchanged, because the
-value repeats BriefDescription and jevents.py drops the long description
-when the two are equal - which is exactly why the typo could sit there
-unnoticed.
+With the patch below, I don't see any intermittent VFP crashes anymore
+with early testing.
 
-I did not go the schema route because a table may legitimately carry a
-field for another reader: the Intel tables carry Counter, CountersNumFixed,
-CountersNumGeneric and Experimental, none of which jevents.py reads, and
-Experimental is read by metric.py.  A schema, or an allow list inside
-jevents.py, would mean asking every vendor that adds such a field to edit
-perf's Python first.  So the set of names jevents.py reads is the only
-list, and a key below the similarity cutoff is left alone.  It will not
-catch everything -- a key that is a word of its own, or a misspelling that
-lands on another existing key, gets through -- which is why I would rather
-not present it as validation.
+I'm still doing a few more tests, but will sent a proper patch with
+changelog after some more testing.
 
-It reads the whole tree, not just the architecture being built: the typo is
-cheapest to fix by whoever reads that table next, and that person may be
-building something else -- this arm64 one shows up in a run over the whole
-tree from an x86 box.  The exit status is 0 for a clean tree, 1 when
-something was reported and 2 when a table could not be read.  make turns
-both failures into its own status, so a script that has to tell them apart
-should run pmu-events/jevents.py directly; for a person it is
+Kevin
 
-  make -C tools/perf jevents-check
 
-which reads the whole tree, and JEVENTS_CHECK_ARCH=x86 reads x86 plus the
-common and test tables every build reads.  I kept it out of `make check`,
-which is the sparse run over the C sources and needs a configured tree and a
-C parser, and out of perf test as well: tests/pmu-events.c compares what it
-generates from testarch/testcpu against a fixed list, and a key jevents.py
-never read leaves no trace in the generated C, so a runtime test has
-nothing to assert on.
+diff --git a/arch/arm/mach-omap2/pm34xx.c b/arch/arm/mach-omap2/pm34xx.c
+index 9992549c7336..d11967c2f4bf 100644
+--- a/arch/arm/mach-omap2/pm34xx.c
++++ b/arch/arm/mach-omap2/pm34xx.c
+@@ -510,6 +510,20 @@ int __init omap3_pm_init(void)
+ 		goto err3;
+ 	}
+ 
++	neon_clkdm = clkdm_lookup("neon_clkdm");
++	mpu_clkdm = clkdm_lookup("mpu_clkdm");
++	per_clkdm = clkdm_lookup("per_clkdm");
++	wkup_clkdm = clkdm_lookup("wkup_clkdm");
++
++	/*
++	 * Add the NEON wakeup dependency on the MPU before the clockdomains
++	 * are allowed to idle: once pwrdms_setup() has programmed NEON's next
++	 * state to OFF/RET, an idle NEON clockdomain otherwise lets NEON power
++	 * down while the MPU keeps running, and VFP instructions then trap as
++	 * undefined until NEON is woken.
++	 */
++	clkdm_add_wkdep(neon_clkdm, mpu_clkdm);
++
+ 	(void) clkdm_for_each(omap_pm_clkdms_setup, NULL);
+ 
+ 	mpu_pwrdm = pwrdm_lookup("mpu_pwrdm");
+@@ -523,11 +537,6 @@ int __init omap3_pm_init(void)
+ 	per_pwrdm = pwrdm_lookup("per_pwrdm");
+ 	core_pwrdm = pwrdm_lookup("core_pwrdm");
+ 
+-	neon_clkdm = clkdm_lookup("neon_clkdm");
+-	mpu_clkdm = clkdm_lookup("mpu_clkdm");
+-	per_clkdm = clkdm_lookup("per_clkdm");
+-	wkup_clkdm = clkdm_lookup("wkup_clkdm");
+-
+ 	omap_common_suspend_init(omap3_pm_suspend);
+ 
+ 	arm_pm_idle = omap3_pm_idle;
+@@ -562,7 +571,6 @@ int __init omap3_pm_init(void)
+ 	if (IS_PM34XX_ERRATUM(PM_PER_MEMORIES_ERRATUM_i582))
+ 		clkdm_add_wkdep(per_clkdm, wkup_clkdm);
+ 
+-	clkdm_add_wkdep(neon_clkdm, mpu_clkdm);
+ 	if (omap_type() != OMAP2_DEVICE_TYPE_GP) {
+ 		omap3_secure_ram_storage =
+ 			kmalloc(OMAP3_SAVE_SECURE_RAM_SZ, GFP_KERNEL);
 
-It is not wired into the build: I had a version that ran it from
-pmu-events/Build on every build and dropped it, because a report about a
-table this build does not use would fail the build for everyone.  It costs
-nothing when it does not run, since the tracking that makes a report
-possible is switched off unless the check asked for it.
-
-The two misspellings it finds were posted separately: the arm64 one is
-this thread, the AMD one is
-
-https://lore.kernel.org/linux-perf-users/20261108184600.3810059-1-takano32@gmail.com/
-
-The generated tables are byte for byte the same as before on x86, arm64 and
-the whole tree.
-
-Written with Hermes Agent, an LLM assistant; the author reviewed it and ran
-the checks it describes.
 
 
