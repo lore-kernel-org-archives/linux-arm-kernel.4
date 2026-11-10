@@ -2,76 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49C8606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:51:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45FCC606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:53:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bHca7b6N;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=CqVUt/EA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o/eFgwux;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h5fXhKox
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KKnJ9j2I4wwMNUFVM40Ukd6sfFrm3+y8FEhOVW263CY=; b=bHca7b6N3xDvET
-	NnASG6Nq0+uHcHWouysORcrI1+zH2dj2njHeVn5eXzbTbZNb0lK15iHZ8bdx+NUpgPQvfaef6/j52
-	3tOwiwFAOb5PPRZf4yW8f+K9lfv/W5TVeJNPnCuYTEcX9L1dXaDCJeaLlg1ayfVuIgWJDbFj9/YUo
-	kM1ttUupskB1Fl5LqsD0AjAm6QIGrXvIrYTwXXzGfCjrIvX1LymFMPH/sATnb7QkkfubGowEgzye7
-	PSPulP6uZfDEEZZcAXyZogWXbbB9QPhBEzUlUhSWYB6ETUk6SvkGdq81kaU+R354qwbgGxOjAQp5g
-	EfN0Rb2o5W27GU3DEFaA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=y24OJW4EoMO7yGiciR1HwijWYO6KOqn+1jLKGBtMcXQ=; b=o/eFgwuxawGyjYsXlr4J6kjtoS
+	XNCMc3exOJ5LD1f8+6rch9tSi+ZQ19bWAecN4HWGUXHc+rNAUJqrPlnBiTjS3YjKJKsKIrgqUFeLj
+	VI9NHWZo/nYvstMj9q5TSDBoMp6Z7+raaxGD8ctGxgWlGAHtXoRFU6pb0ExCVh6XyYOvfzKPw5aiD
+	3UbDIgdv4ATZ5Wy2ppqRijdFmMoWajMDXY6HkQedUTl9CbfiF3/1QG69tTmwPTW0fk0OEDLp/Phpq
+	UcHpu4wY4+9AtBPDsDXK7MHpRox0iKomKdVgdpuKuDAChMnVc6PdoAK1qs1jVBNmmy37xevlkMer3
+	Tddye1WQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQgd1-000000031Qt-2HAw;
-	Tue, 10 Nov 2026 07:50:51 +0000
-Received: from mail-m12739.qiye.163.com ([115.236.127.39])
+	id 1xQgfe-000000031hA-3giL;
+	Tue, 10 Nov 2026 07:53:37 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQgcz-000000031PY-04IG;
-	Tue, 10 Nov 2026 07:50:50 +0000
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 542170afb;
-	Tue, 10 Nov 2026 15:45:41 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dave Jones <s.dave.jones@gmail.com>,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v5 3/3] arm64: dts: rockchip: rk356x: Add eDP controller and phy nodes
-Date: Tue, 10 Nov 2026 15:45:33 +0800
-Message-Id: <20261110074533.4052196-4-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261110074533.4052196-1-damon.ding@rock-chips.com>
-References: <20261110074533.4052196-1-damon.ding@rock-chips.com>
+	id 1xQgfd-000000031h2-1P0u
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 07:53:33 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id EEBDF61C72;
+	Tue, 10 Nov 2026 07:53:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86CC31F0089F;
+	Tue, 10 Nov 2026 07:53:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794297211;
+	bh=y24OJW4EoMO7yGiciR1HwijWYO6KOqn+1jLKGBtMcXQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=h5fXhKox52kfKh8xPKdROW1J41XfVM6s1edNgF+4g9jUIHHejuA1wc7aPjybnWEWf
+	 PrwPMGqSl+OQFWqmKSI5FaZWEUQGujSZ3KYdL9Y+WV8UFfgivQQiqxOtIS0IWEKWGb
+	 AV4gOAZsauMm3OEkp0bzbmI4ItKDnGXoVuEvXITWxCVPlGFfGVnkCoEbuyyCQdfoq2
+	 Bxjt6zXEQi8G3j5hfn+pUze/ILV8X/dHQEoZyPYHmoWTU4YaVBzMltqKU7VCVnekKd
+	 mGimdAz+4InpAXtD56kjGHZSJNEn9/au87Sm7bKWHAUT7jkfwsA0kjZwA54pv6vFxU
+	 jjeGTILQU7aEA==
+Date: Tue, 10 Nov 2026 07:53:26 +0000
+From: Sudeep Holla <sudeep.holla@kernel.org>
+To: Gavin Shan <gshan@redhat.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-arm-kernel@lists.infradead.org,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Yeoreum Yun <yeoreum.yun@arm.com>, Arnd Bergmann <arnd@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>
+Subject: Re: [PATCH v2] firmware: arm: Group interface drivers under arm/
+Message-ID: <20261110-elite-shrewd-jacamar-d6c7e1@sudeepholla>
+References: <20261106115046.62344-1-sudeep.holla@kernel.org>
+ <c5af474b-a475-491e-a45b-5c026a5645ad@redhat.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1c46b7ef103a8kunm3f9229952eb2ef
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZSEkYVkwYT0IfHUtKTUNMH1YVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	JDQ0xVSktLVUtZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=CqVUt/EAklDkxLi1y7T45Zklx7jb2xZHZPAsF9ek4ovXHNZFUS/v38TnVmDLMOpkZgu2bQa+uPregpeLvrAsFzLi0LQC/9VzgdtQkurHa5ixb1xx7RAQPbg5BEiLZafyQ5nk7HjUaOzm9RI6Q+QzJ9Ag3BFAf2v2JdXHbqOdJXo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=KKnJ9j2I4wwMNUFVM40Ukd6sfFrm3+y8FEhOVW263CY=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_235049_334794_490CBAC9 
-X-CRM114-Status: UNSURE (   8.98  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c5af474b-a475-491e-a45b-5c026a5645ad@redhat.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,97 +76,121 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the eDP PHY GRF (with the eDP PHY child node mapped by its own
-register window) and the eDP controller nodes for the RK3568/RK3566
-SoCs.
+On Tue, Nov 10, 2026 at 01:27:24PM +1000, Gavin Shan wrote:
+> Hi Sudeep,
+> 
+> On 11/6/26 9:50 PM, Sudeep Holla wrote:
+> > Arm firmware interface drivers currently live directly under
+> > drivers/firmware/. Some use an arm_ prefix while others use generic
+> > names. More Arm firmware interface drivers, such as:
+> > 
+> > 1. Live Firmware Activation (LFA) [1]
+> > 2. Firmware Interfaces for Realm Management Extension (FIRME) [2]
+> > 
+> > expected soon, which would further crowd the top-level directory.
+> > 
+> > There are couple of other possible arm specific firmware interfaces
+> > that may need to reside there.
+> > 
+> > Create drivers/firmware/arm/ as the common home for Arm firmware
+> > interface drivers. Move FF-A, PSCI, RMM, SCMI, SCPI, SDEI, and SMCCC
+> > under it, drop the redundant arm_ prefix from the some directory/file
+> > names. Update the Kconfig, Kbuild, maintainer and documentation paths.
+> > 
+> > The resulting hierarchy provides room for upcoming interfaces without
+> > continuing to add Arm-specific directories at the firmware root.
+> > 
+> > [1] https://lore.kernel.org/all/20261102165421.3651202-1-andre.przywara@arm.com/
+> > [2] https://lore.kernel.org/all/20261019-firme_interface-v1-0-27895c9cebaa@arm.com/
+> > 
+> > Signed-off-by: Sudeep Holla <sudeep.holla@kernel.org>
+> > ---
+> > 
+> > v1[1]->v2:
+> >   - Rebased on v7.4-rc1
+> >   - Fixed missing rmm folder movement in Kconfig and Makefile
+> > 
+> >   [1] https://lore.kernel.org/all/20261022090003.3083557-1-sudeep.holla@kernel.org/
+> > 
 
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+[...]
 
+> > rename from drivers/firmware/arm_sdei.c
+> > rename to drivers/firmware/arm/sdei.c
+> > diff --git a/drivers/firmware/arm_sdei_nmi.c b/drivers/firmware/arm/sdei_nmi.c
+> > similarity index 100%
+> > rename from drivers/firmware/arm_sdei_nmi.c
+> > rename to drivers/firmware/arm/sdei_nmi.c
+> 
+> There are other two source files where updates are needed to reflect the
+> renaming (drivers/firmware/arm_sdei_nmi.c -> drivers/firmware/arm/sdei_nmi.c).
+> 
+> gshan@gshan-thinkpadx1nanogen2:~/sandbox/l$ git grep arm_sdei_nmi\.c
+> arch/arm64/include/asm/nmi.h: * drivers/firmware/arm_sdei_nmi.c implements them when active; a future
+> arch/arm64/kernel/smp.c: *   - the SDEI cross-CPU NMI handler (drivers/firmware/arm_sdei_nmi.c),
+> 
+
+Indeed, I have a patch that I plan to send as a fix once this lands in
+the upstream to avoid unnecessary dependency/conflicts across tree for
+such silly thing.
+
+Regards,
+Sudeep
+
+-->8
+From 60c25986d81c86b0e966159715cf982d63308422 Mon Sep 17 00:00:00 2001
+From: Sudeep Holla <sudeep.holla@kernel.org>
+Date: Fri, 6 Nov 2026 13:49:13 +0000
+Subject: [PATCH] arm64: Update stale path references to sdei_nmi.c
+
+Commit ceb90a70d571 ("firmware: arm: Group interface drivers under
+arm/") moved drivers/firmware/arm_sdei_nmi.c to
+drivers/firmware/arm/sdei_nmi.c but left two comment references
+pointing to the old path.
+
+Update the comments in nmi.h and smp.c to reflect the new location.
+
+Signed-off-by: Sudeep Holla <sudeep.holla@kernel.org>
 ---
+ arch/arm64/include/asm/nmi.h | 2 +-
+ arch/arm64/kernel/smp.c      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-Changes in v4:
-- Model the PHY node with a reg property under the parent syscon.
-
-Changes in v5:
-- Move the APB clock (PCLK_EDPPHY_GRF) from the parent syscon node to
-  the PHY node, matching the updated binding and driver. (Sashiko)
-- Rename the PHY reference clock to "ref", matching the binding.
----
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index 1a4562df20ee..e3f370cad5d5 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -402,6 +402,24 @@ usb2phy1_grf: syscon@fdca8000 {
- 		reg = <0x0 0xfdca8000 0x0 0x8000>;
- 	};
- 
-+	edp_phy_grf: syscon@fdcb0000 {
-+		compatible = "rockchip,rk3568-edp-phy-grf", "syscon", "simple-mfd";
-+		reg = <0x0 0xfdcb0000 0x0 0x8000>;
-+		clocks = <&cru PCLK_EDPPHY_GRF>;
-+		ranges = <0x0 0x0 0xfdcb0000 0x100>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		edp_phy: phy@0 {
-+			compatible = "rockchip,rk3568-edp-phy";
-+			reg = <0x0 0x100>;
-+			clocks = <&pmucru XIN_OSC0_EDPPHY_G>, <&cru PCLK_EDPPHY_GRF>;
-+			clock-names = "ref", "apb";
-+			#phy-cells = <0>;
-+			status = "disabled";
-+		};
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -878,6 +896,33 @@ hdmi_out: port@1 {
- 		};
- 	};
- 
-+	edp: edp@fe0c0000 {
-+		compatible = "rockchip,rk3568-edp";
-+		reg = <0x0 0xfe0c0000 0x0 0x10000>;
-+		clocks = <&pmucru XIN_OSC0_EDPPHY_G>, <&cru PCLK_EDP_CTRL>, <&cru HCLK_VO>;
-+		clock-names = "dp", "pclk", "hclk";
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&edp_phy>;
-+		phy-names = "dp";
-+		power-domains = <&power RK3568_PD_VO>;
-+		resets = <&cru SRST_EDP_24M>, <&cru SRST_P_EDP_CTRL>;
-+		reset-names = "dp", "apb";
-+		status = "disabled";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			edp_in: port@0 {
-+				reg = <0>;
-+			};
-+
-+			edp_out: port@1 {
-+				reg = <1>;
-+			};
-+		};
-+	};
-+
- 	qos_gpu: qos@fe128000 {
- 		compatible = "rockchip,rk3568-qos", "syscon";
- 		reg = <0x0 0xfe128000 0x0 0x20>;
--- 
-2.34.1
+diff --git a/arch/arm64/include/asm/nmi.h b/arch/arm64/include/asm/nmi.h
+index 2e8974ff8d63..e2956b24b627 100644
+--- a/arch/arm64/include/asm/nmi.h
++++ b/arch/arm64/include/asm/nmi.h
+@@ -9,7 +9,7 @@ struct pt_regs;
+ /*
+  * Cross-CPU NMI provider hooks, consulted by the arm64 arch code before
+  * its regular-IRQ / pseudo-NMI IPI paths. The SDEI provider in
+- * drivers/firmware/arm_sdei_nmi.c implements them when active; a future
++ * drivers/firmware/arm/sdei_nmi.c implements them when active; a future
+  * FEAT_NMI provider could slot in here too. The stubs let callers stay
+  * unconditional when ARM_SDEI_NMI is off.
+  *
+diff --git a/arch/arm64/kernel/smp.c b/arch/arm64/kernel/smp.c
+index 014b163ce658..18e117fea1fc 100644
+--- a/arch/arm64/kernel/smp.c
++++ b/arch/arm64/kernel/smp.c
+@@ -881,7 +881,7 @@ void arch_irq_work_raise(void)
+  *
+  *   - the regular IPI_CPU_STOP and pseudo-NMI IPI_CPU_STOP_NMI handlers;
+  *   - panic_smp_self_stop(), a CPU parking itself on a parallel panic();
+- *   - the SDEI cross-CPU NMI handler (drivers/firmware/arm_sdei_nmi.c),
++ *   - the SDEI cross-CPU NMI handler (drivers/firmware/arm/sdei_nmi.c),
+  *     which reaches CPUs the stop IPIs could not.
+  *
+  * The IPI stop handlers pass @die_on_crash true. The SDEI handler and
+--
+2.43.0
 
 
