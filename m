@@ -2,65 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B10D60A2603
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD39B606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uF1Tapwf;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=0HwuzVzr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QLrPU+J6;
+	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=LBBHAHTj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=uRXUy8URMFJL42UsUUDEQakhlpG+sH9T+5dJoqYfuRs=; b=uF1Tapwf5bMLLBxndeJdffZ8KG
-	lpNWc5yshPZri3ktOKop55AIb945BhLo7ZdwjR+PWnrBrS3oKd9dydFOIvmY06N6c9jfIbGBuRCm/
-	ZvbhNo8aG7IcPLTKoBdDxjRYUajDZDDpqNv2aZSY0RpgUJYB1wqc0sKkDT1/NWJTpZdyLA2EFOCi/
-	TmuGoEkcjoSRTppNtCcZ522wlg7sQ3tJHzgrURTRK6/DxLNzoFAN2poWQ5Qi39QHFh0c9RTMaOOHC
-	Z0PqwE39r3dAXTR7N2ZTV7wfe42PxcwszFQM/zj8/ajBGbDygaWJQeifWEhX8xw1b4TN4sAiz999n
-	1kCmqJmw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=v170zuzkWK5E8JogMW92ptltcMWFO5dDHSPC4KhWfJI=; b=QLrPU+J6tYKMWk
+	13R8j4Fm7RPMP51i378wlcOt/lkGsUsdZHt/wi8kWiowRSJT2enL8EorslfDsOzJlSMAOJRL83Bsk
+	OfCSMlWqbpUKp2Jp3TJHf6Xunc3WnTdPpyLpOcV3DeOLTWEP7jvkj4Na7OGxmgyDYwFk1yZ832UaB
+	iaphziDU4Jp02/5HrEndB2j1REZtn1XOgqvk08x05XcgP33BQASD0rEVJC3aA0xFdyOHTqPXoUEtS
+	T9oDso5sdR5FVdh3GBJsJReEga7kq/Bk5wDolzj90vKY6ZZzUo6K+USGb4BLJoWqS+FDxuB6EpNze
+	+YuZW/6NKGw/7QlN8UVA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQitq-00000003Qla-2xUX;
-	Tue, 10 Nov 2026 10:16:22 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1xQixg-00000003R3G-213u;
+	Tue, 10 Nov 2026 10:20:20 +0000
+Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQite-00000003Qkj-0g8f;
-	Tue, 10 Nov 2026 10:16:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:In-Reply-To:References;
-	bh=uRXUy8URMFJL42UsUUDEQakhlpG+sH9T+5dJoqYfuRs=; b=0HwuzVzrFlw4rhUtVs2kpNQEsL
-	Qz2R91yxGkmikYXIzlq3/uDopppNQzO+ovydO0aqepYs4IW+TGhaydKscis69hg8WLyV+qVBtXZpv
-	KOYsA+PqeciKzq1fseWzrPVaKgcvp27hTGOxsJ/8cddN/zzBSRvTc+dWvYv+Jz8qK2kZe6DjTq5u4
-	PwyeJ0lntyDwDtC+V+bHoh+CCfS5h3cV/nJ88rr4sZUIDnL2Gs2AjMpde+0WoKzcReDCEmiZ083SA
-	FtjMV5Edg9WVcxxXFh3EcBK7dGHzOyHkEUySfdv7bnoJjbxZrXkH2n8mjbwq+fy7t4719lX7rGEYA
-	+LrG2LeQ==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	hjc@rock-chips.com,
-	andyshrk@163.com,
-	chaoyi.chen@rock-chips.com,
-	damon.ding@rock-chips.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de
-Subject: [PATCH] MAINTAINERS: Add two reviewers to the Rockchip DRM entry
-Date: Tue, 10 Nov 2026 11:15:53 +0100
-Message-ID: <20261110101554.1809467-1-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.3
+	id 1xQixY-00000003QzF-3ygU
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 10:20:15 +0000
+Received: from ratatoskr.trumtrar.info (unknown [IPv6:2a00:1f:f805:2b01:a03:2f4:308a:7b52])
+	(Authenticated sender: str@pengutronix.de)
+	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 7D23A202334;
+	Tue, 10 Nov 2026 11:20:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794306009;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=v170zuzkWK5E8JogMW92ptltcMWFO5dDHSPC4KhWfJI=;
+	b=LBBHAHTjxSBG5vWXjBTxzNQDmVlT/3z8SV+EjnvrJFvZA/orPWjlatDRm/8lGMNJKRB3vR
+	oWWYK0uiNEHxSMJCUrWrR3xumpf+kviq2itccmWgodfq2aCcchqIMwFxhsUl7rnMQKWfpE
+	HekRWc4mk5JR4xoOMSG+jsb8y2chigYpcfdixAAbF3H5YkHnYKhhdN1tvp9RdFQPgYZFXD
+	O3pyQDzo3G2bbRzvi3ansey5waGyV206/qMbZ75fOSqDmtc7SEo1py9hunARFv0xsMiAqt
+	4fJjVbqBjMRbd49W3D7xh+c0HTy3mMFiKp5uxA6hJTWD60Df/ohx0g3Bpp0rsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
+	s=20260414; t=1794306009;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=v170zuzkWK5E8JogMW92ptltcMWFO5dDHSPC4KhWfJI=;
+	b=dlCR3GGuEvv2Tvokka6cNsfW1ooDI2swQ1LrMCEwVuHyQmED/dWHMoJyfg/HSLjIgr3XlD
+	ls2XDA51iZChcY8x7aPSPG7sHclaj4P+uwULBAS0HJZIdS89JonG6l0rlqXsH9c9mcjpBU
+	qkA78wWEbAPvbotJn2okqqzPe7lveA5/5TFa9xIq8L1+LQXSqixW6oVj4tSLWzuv9pGpUD
+	nXnEVUC1l26DO78RRJZJrv4/eDmV4L1RR0wYTtEiHYAB0dY4Z8MLP88HHTG+RS0HCCRqMt
+	tkeTvrTIsyy5lhErqsdFUqGOsNjoJXdbjip2Yli1oQcKRqGa3zCvUykTNKf6ww==
+ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794306009; a=rsa-sha256;
+	cv=none;
+	b=B6wXaZdnlCqtzJ28tfhpEk3L+rL44BdHguN/+XaK0g/xQl+hRvruOFGgtvGSF/brUfMtEY
+	9UlhGGMDz4RwJNQA/5ObMh6xUBVfUc7YnZsV9J2Y+CrINtdyL0Vk9Cv6k6edO7x+U8LbsX
+	bIs/IjNNmyV6mnIXDYHIzVIen0IcdgkCp75AAF9MJgqxQHwzDiYZcrQivFVdLISOBzcxfI
+	pwGEAjuqzfA8adQEyAHyKm+gce7byqjtOGku2VwRPnCrkwK7t72qtrsrgd38CvHYYo+C9B
+	UGpCIPrzjV3QUx5QU507aPOEB+IuuhlBpnu82ut+eicS3WoDwtGGVZ/WOhHLcA==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=str@pengutronix.de smtp.mailfrom=s.trumtrar@pengutronix.de
+From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Date: Tue, 10 Nov 2026 11:20:07 +0100
+Subject: [PATCH net-next v4 3/4] dt-bindings: net: dp83867: Add
+ ti,output-impedance-ohms
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261110-v7-2-topic-dp83867-v4-3-a268f83b1ec1@pengutronix.de>
+References: <20261110-v7-2-topic-dp83867-v4-0-a268f83b1ec1@pengutronix.de>
+In-Reply-To: <20261110-v7-2-topic-dp83867-v4-0-a268f83b1ec1@pengutronix.de>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, Michal Simek <michal.simek@amd.com>, 
+ Eric Dumazet <edumazet@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Steffen Trumtrar <s.trumtrar@pengutronix.de>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1906;
+ i=s.trumtrar@pengutronix.de; h=from:subject:message-id;
+ bh=DCzVebg+SU/ONPpSp5yog7UKs35KdC0TeKWiCOdSZP4=;
+ b=owGbwMvMwCUmtVehiCsuTInxtFoSQ9an99f/3fJXn7dwnfrOKd1z06c83Lf0zxre8pK9mhfVz
+ 6VMD83m7yhlYRDjYpAVU2RRWVjBJ+rxwTNymggXzBxWJpAhDFycAjAR9uWMDLMT10xaG8GQKKc5
+ 9d482blKOTwLuR2efvfI2cP2Zfqcui+MDH8OzPcWvLvv5mpXRYYp/x0lzWXnJMiacBWsluXbvjb
+ rEAcA
+X-Developer-Key: i=s.trumtrar@pengutronix.de; a=openpgp;
+ fpr=24A1780E1548F0495996140A1ABD20720A5E5622
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_021610_219902_F0E0B61C 
-X-CRM114-Status: UNSURE (   9.74  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261110_022013_151237_839E1CE7 
+X-CRM114-Status: GOOD (  11.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,28 +120,57 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Chaoyi Chen and Damon Ding volunteered to become reviewers for the
-Rockchip DRM drivers, so add them to the MAINTAINERS entry.
+Currently, the output-impedance can only be set to default, minimum or
+maximum or via a nvmem cell.
+In cases where there is no backend for a nvmem cell, a value can not be
+set.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Add a DT binding, 'ti,output-impedance-ohms', for specifying the
+output-impedance in ohms, between 35 and 70. Like the existing
+properties, it is mutually exclusive with the nvmem cell and with
+ti,{min,max}-output-impedance.
+
+Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 ---
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/net/ti,dp83867.yaml | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93abbb315065..99142a911350 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9139,6 +9139,8 @@ DRM DRIVERS FOR ROCKCHIP
- M:	Sandy Huang <hjc@rock-chips.com>
- M:	Heiko Stübner <heiko@sntech.de>
- M:	Andy Yan <andyshrk@163.com>
-+R:	Chaoyi Chen <chaoyi.chen@rock-chips.com>
-+R:	Damon Ding <damon.ding@rock-chips.com>
- L:	dri-devel@lists.freedesktop.org
- L:	linux-rockchip@lists.infradead.org
- S:	Maintained
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.yaml b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+index 833540743bdf6..557d2517a72ed 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83867.yaml
++++ b/Documentation/devicetree/bindings/net/ti,dp83867.yaml
+@@ -53,6 +53,16 @@ properties:
+     items:
+       - const: io_impedance_ctrl
+ 
++  ti,output-impedance-ohms:
++    description: |
++      MAC Interface Impedance control to set the programmable output impedance
++      to a value between minimum (35 ohms) and maximum (70 ohms). The PHY
++      has 32 settings in this range; the datasheet does not specify the
++      impedance of each setting, so the value is mapped linearly to the
++      nearest one.
++    minimum: 35
++    maximum: 70
++
+   ti,min-output-impedance:
+     type: boolean
+     description: |
+@@ -133,6 +143,12 @@ allOf:
+       required: [nvmem-cells, "ti,max-output-impedance"]
+   - not:
+       required: ["ti,min-output-impedance", "ti,max-output-impedance"]
++  - not:
++      required: [nvmem-cells, "ti,output-impedance-ohms"]
++  - not:
++      required: ["ti,output-impedance-ohms", "ti,min-output-impedance"]
++  - not:
++      required: ["ti,output-impedance-ohms", "ti,max-output-impedance"]
+ 
+ required:
+   - reg
+
 -- 
-2.47.3
+2.56.0
 
 
