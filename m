@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CC2606A325
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49083606A32E
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xoUm3EK1;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=RqY1cnou;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=RMg6X2mQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iT0991Qz;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Ovxxizkz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -15,78 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=; b=xoUm3EK1+Q9hPgxy+G9XFqzv8n
-	lLiyd4vHX1mm1b8PmDFfoayBxmAb7se9TmhQ01nrF9egnIxDo/Tdgl0twVkWTIpVSSVCRAFH6xcK7
-	8TcLHEg1n42Drqi+gs3UJ9Q9t9exv0Tmgmayos1uRObVufSjILQyIwl/ubT5BBQdBqwKdABfXoEON
-	tRFwIQsSTe/Vrn5jkJaFjizlUrHywOo4T4dv1wyq9PGcXyndEZFF35+b5cXefG5cY8Md2o457RBFQ
-	2PRWHpZg8HevZ8FBN4xeyQNznELE/hc4l5DK1fHGQZ4TlXi/A21Xi8DI5KSU1oz2L56BbkJUG4kA5
-	s1/sz8fQ==;
+	bh=bPe/n/7OHPWH7BQXApvZomY3AKt9T7o7Wopgeakkuns=; b=iT0991QzjPZi3T1IwVJNt1fEjm
+	bhUenZFXHl8Hj6BEkKR5YR5kRAcq+GWHaXCUnhT9RuSC1m3AkcSpKJ+LiLXgHRwFTKmCOEuEDrnpe
+	2NOnhhC/3MifARTWn+0UCh/bUs77trBdl9/4Fld3hVBr+pu4S1nrf0HJopi4FW32WbtLoOpLykJbC
+	DPz1rhT6Z0XXTLCo2395ZJACIlbo1hudUgnnnT3oUTxDrencDu6P7Y0q6M0Ih4pVOCluBRQzUe1EW
+	DInwgHRLzmToB7bZJz9MOmNEwzVEjsSjMc0pJgpbkLvPY3/7MtcrOPgyFuJPnxsUuKdKFVqypSRzV
+	Ak1+EB2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe0a-00000002SiC-2Fju;
-	Tue, 10 Nov 2026 05:03:00 +0000
-Received: from casper.infradead.org ([2001:8b0:10b:1236::1])
+	id 1xQe0C-00000002RsO-0uTG;
+	Tue, 10 Nov 2026 05:02:36 +0000
+Received: from mail-ed1-x548.google.com ([2a00:1450:4864:20::548])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe09-00000002Rn0-2Lyb
-	for linux-arm-kernel@bombadil.infradead.org;
-	Tue, 10 Nov 2026 05:02:35 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=Content-Type:Cc:To:From:Subject:
-	Message-ID:References:Mime-Version:In-Reply-To:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=; b=RqY1cnouAZ3WJofqJwudr6um/b
-	szqUlXpZpLfgfnytB45lHnxBOeZgnH6b+rCNA0DQ3MOQrKjXChmv+ZqlECyYmeEMm/yPU4VNO2jW5
-	d5OU5Qmozm0pQySg67Ecg0PzqqRPmeE7hfrIR8tpn4kh9DWHpyB3wHtNod4kg4b6yHbFA3M9PeeS8
-	1tS+oyLXzyrAKUzVR7DPl0QGlw3nCl+zlmHrLS7zF1NkFrCTm+1TuFdVTVxQsysKhFwVLiy3twOKb
-	9wGPWRHiF5M09Uj1yw8TdrCVdW4Yv3NGJquswtGIcmYZhNKNazKfp3T/5zppHUyQI5IeoOe17d+l9
-	/1sbg4ZQ==;
-Received: from mail-ed1-x547.google.com ([2a00:1450:4864:20::547])
-	by casper.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe04-000000077pi-3Pmp
+	id 1xQdzv-00000002RPA-0qge
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:02:32 +0000
-Received: by mail-ed1-x547.google.com with SMTP id 4fb4d7f45d1cf-6b597374a17so1549739a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:28 -0800 (PST)
+	Tue, 10 Nov 2026 05:02:22 +0000
+Received: by mail-ed1-x548.google.com with SMTP id 4fb4d7f45d1cf-6b56221d367so1515343a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794286946; x=1794891746; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794286937; x=1794891737; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=;
-        b=RMg6X2mQa6HwFLOfK0o1+p1pXBV6skbbheLRPD52evWfeHf3Z62fT3GUr6ebrLwi1m
-         dw6Ld0jvFZwuu9sAeKfQQSZOMrLbYshS4H68rAK0ypgPYv0/VgCwHiKdiU7tazhvS0lG
-         MFSnCm0cIEjbUsg9oiMIR4iYwVP2qynfBapi7zDXdgXXzZGu2k5pFH8sqeD41/ClyHiE
-         2YIIHkOvA6/pvDv1YLCFYFrH3s+hxfYaBQYpBRk7L/SPad1MAJoE8ArLesy26OgaI1DP
-         16cNJOvQNLXPaBJ3i3prU8l7zgRAvJnw79GTh4X+/IfB1ZFIxgM7rxBQNse95p6CWM5/
-         NVsA==
+        bh=bPe/n/7OHPWH7BQXApvZomY3AKt9T7o7Wopgeakkuns=;
+        b=OvxxizkzgbdqwLapaSKCdh6LsjQELo/gbQseaCKOawZ3Rl5hlpTCPIkqO/Hmnc4ILN
+         new0a1L0imAhPfItyoZd31tcl0NndHSNDAl0N/xejRXLCpKqfY5mdToaXNl10g1wnZNk
+         y7yPgXGbZUdj77MbIYgIG43xhjUpjcoRXwCuHLxeGRtyVbeLIq69nB6cWKFkJ2oUCycF
+         jEyVnb4dWdwVLBTl4cB5/SNYeRTif9wmuxdekRnRHkhEPGhBEZV0X90By9lagIaF2Xnh
+         HJG1G9D7HY2lEdfXok25c2L08FiETx7lyGTKmjMfQd/sFgciiHaUVAE5H0/rARBrQPNo
+         Pbew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286946; x=1794891746;
+        d=1e100.net; s=20260707; t=1794286937; x=1794891737;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=uCmKHaalBs1Mwi3hIIcbxr5U+8imaxCzGUPXqbL7HOI=;
-        b=bssANpYFcj9Pm7EDwS8tjxpK7IQZno7EQ2qiYG/AhMd6L/weF9PxM+cYzvdRpfEUnE
-         tb9f/ZK5XVKHQ+cupABIyZ8utvUGXsDZ/vbthsDeZVnI3JbDBOwnGzIER9Ql4GPE8MNw
-         MNEXI0IFwizxIOi7CeSVhrx3m1hN6zh9JnGyfOMIkn3PekYX+5+qceZcY9cOMgcIvbQZ
-         lXPqJJTxC3q1PdJmz/yJzLyRz/UlL60irOI1qOeb6WeFvG+vrNBNPjxjsLZ/BICCyLR8
-         MnA8cNX5HNgq4MyhFKi9PLF6TfqWimemB2qyWO9ogn26j+GkjUvV8J9iUWhTm5XaZ7PH
-         0rTg==
-X-Forwarded-Encrypted: i=1; AL+hErH5IGBFR2kjWtBGtlH9T3qHBK6yMsznI7sZSGZwlPGv8r8ND8MlYHuFOXHKFMdmsVVxK/SEhdDt/Kpk8hr6mAes@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Hvr5OVgy1rSTatebZnmAQig1Mxm0p1Q9n3YWn5m8cYQwODnIo
-	yDrA57CHsh3IW0eezjpnGwvmrdi8d/TWpDDBZD3xuzH8iRCgcab5Md2daHAR+SgbVHwKqKVik5Z
-	J26f0mWIvV1CBvg+xlg==
-X-Received: from ejpc8.prod.google.com ([2002:a17:906:54c8:b0:c3f:c35a:7704])
+        bh=bPe/n/7OHPWH7BQXApvZomY3AKt9T7o7Wopgeakkuns=;
+        b=McZx5Zd9jlIFekvEj7r8J4PmzBf2Me19Vm3fzs66fhUDBwKTYaMnddwbIx+Mv27v9Y
+         nzo57sdFfmzC8RNfQxoBcMIN8JhoiFQELgzxwTXUCH3J3bZSWfW+GVIBO5VIoirIFxRb
+         ixjwS4QtZGsMwlFIK/TUGx3YlrqA30roU8Qn1PhyK0EWRvLTarKvwS/y5LaEYh71W1uQ
+         CiCmE+KAhn84Ah/2+8dYYp/eusbUETZ4jR+ehgUYeRfoSjQ8HioUE1RhlENHf+P5FLDW
+         XIaBs9QmnYrmOghWH7SQyVIAhiYiXNDyrTRTJo8+JwTqRkoGzl6fp3KTpE+rgj6Cpw6y
+         xdXw==
+X-Forwarded-Encrypted: i=1; AL+hErEAuqzRTEQufzZIbCYk7QXq8a+05wGKnSUqtf/+tdNEPVq2yQ2vA1srZPxLlswC4CyCjuALa/JAlhGxZAj+tN31@lists.infradead.org
+X-Gm-Message-State: APuU4Z8/k7SOi+8Y5LuTlDHsApasLTQcjiY/EQL5jE0VuquG6+JwHHH6
+	k4DcW7MWInDGpUrlP+aUaurBAS/mUNrvXQML1pjhI2d+tJIsNAfu3+R9jQsMywhkYOqoWbYp40E
+	O5vZT0SHxxGdaNw4i5A==
+X-Received: from edcp5.prod.google.com ([2002:a05:6402:43c5:b0:6b5:8717:e943])
  (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:3d0d:b0:c49:a571:c4f9 with SMTP id a640c23a62f3a-c50494b4c4fmr100815566b.13.1794286946299;
- Mon, 09 Nov 2026 21:02:26 -0800 (PST)
-Date: Tue, 10 Nov 2026 05:02:02 +0000
+ 2002:a05:6402:3907:b0:6b5:5fca:3d5 with SMTP id 4fb4d7f45d1cf-6b756ad6f48mr1260878a12.19.1794286937148;
+ Mon, 09 Nov 2026 21:02:17 -0800 (PST)
+Date: Tue, 10 Nov 2026 05:01:54 +0000
 In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261110050202.529473-1-tarunsahu@google.com>
 X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
-Message-ID: <20261110050202.529473-20-tarunsahu@google.com>
-Subject: [PATCH v4 19/19] kho: Add KUnit test for the feature header helpers
+Message-ID: <20261110050202.529473-12-tarunsahu@google.com>
+Subject: [PATCH v4 11/19] liveupdate: Add feature header to struct luo_file_set_ser
 From: Tarun Sahu <tarunsahu@google.com>
 To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
 	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
@@ -103,8 +87,8 @@ Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org,
 	Tarun Sahu <tarunsahu@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_050229_040458_7B7AB1F7 
-X-CRM114-Status: GOOD (  18.40  )
+X-CRM114-CacheID: sfid-20261109_210219_350530_D01D0EE3 
+X-CRM114-Status: GOOD (  22.25  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,267 +109,254 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a KUnit test suite in lib/tests/kho_feature_kunit.c covering
-the Kexec HandOver feature header declared in
-include/linux/kho/abi/feature.h.
+Precede struct luo_file_set_ser with struct kho_ser_hdr via
+DECLARE_KHO_SER so future file-set metadata features can append fields
+to struct luo_file_set_ser without breaking compatibility between
+adjacent kernels.
 
-The suite contains three focused test cases:
-- kho_ser_hdr_zero_flags_test: verifies zero-feature header
-  initialization, payload sizing, and empty feature queries.
-- kho_ser_hdr_set_get_test: verifies DECLARE_KHO_SER structure sizing,
-  header initialization, payload pointer resolution, and 1-bit
-  feature flag setting and retrieval across flags entry boundaries,
-  including out-of-range queries.
-- kho_ser_hdr_validate_test: verifies __kho_ser_validate rejecting
-  unsupported required feature flags while ignoring optional flags.
+Reserve space for both the session feature header and the file-set
+feature header in each session block-set entry, initialize the file-set
+feature header in luo_file_freeze(), and validate incoming required
+features in luo_file_deserialize() before accessing payload fields.
 
 Signed-off-by: Tarun Sahu <tarunsahu@google.com>
 ---
- MAINTAINERS                   |   1 +
- lib/Kconfig.debug             |  13 +++
- lib/tests/Makefile            |   1 +
- lib/tests/kho_feature_kunit.c | 184 ++++++++++++++++++++++++++++++++++
- 4 files changed, 199 insertions(+)
- create mode 100644 lib/tests/kho_feature_kunit.c
+ include/linux/kho/abi/luo.h      | 15 ++++++++-------
+ kernel/liveupdate/luo_file.c     | 32 ++++++++++++++++++++++----------
+ kernel/liveupdate/luo_internal.h |  7 ++++---
+ kernel/liveupdate/luo_session.c  | 14 +++++++-------
+ 4 files changed, 41 insertions(+), 27 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1572f6c905aa..0b50de45140f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14786,6 +14786,7 @@ F:	include/linux/kho/
- F:	include/linux/kho_block.h
- F:	kernel/liveupdate/kexec_handover*
- F:	lib/test_kho.c
-+F:	lib/tests/kho_feature_kunit.c
- F:	tools/testing/selftests/kho/
- 
- KEYS-ENCRYPTED
-diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index 2d22638ec13a..3d74d32b181d 100644
---- a/lib/Kconfig.debug
-+++ b/lib/Kconfig.debug
-@@ -2967,6 +2967,19 @@ config DIMLIB_KUNIT_TEST
- 	  For more information on KUnit and unit tests in general please refer
- 	  to the KUnit documentation in Documentation/dev-tools/kunit/.
- 
-+config KHO_FEATURE_KUNIT_TEST
-+	tristate "KUnit test for the Kexec HandOver feature header helpers" if !KUNIT_ALL_TESTS
-+	depends on KUNIT
-+	default KUNIT_ALL_TESTS
-+	help
-+	  This option enables the KUnit test suite for the Kexec HandOver
-+	  feature header helpers defined in include/linux/kho/abi/feature.h.
-+	  It checks the feature flag encoding, the flags array sizing, the
-+	  feature bit helpers, and header validation rules.
-+
-+	  The helpers are self-contained, so the test does not depend on
-+	  CONFIG_KEXEC_HANDOVER and can also run under UML.
-+
- 	  If unsure, say N.
- 
- config CMDLINE_KUNIT_TEST
-diff --git a/lib/tests/Makefile b/lib/tests/Makefile
-index df0537e1b91f..f22a4552f755 100644
---- a/lib/tests/Makefile
-+++ b/lib/tests/Makefile
-@@ -35,6 +35,7 @@ obj-$(CONFIG_KFIFO_KUNIT_TEST) += kfifo_kunit.o
- obj-$(CONFIG_TEST_LIST_SORT) += test_list_sort.o
- obj-$(CONFIG_LINEAR_RANGES_TEST) += test_linear_ranges.o
- obj-$(CONFIG_LIVEUPDATE_TEST) += liveupdate.o
-+obj-$(CONFIG_KHO_FEATURE_KUNIT_TEST) += kho_feature_kunit.o
- 
- CFLAGS_longest_symbol_kunit.o += $(call cc-disable-warning, missing-prototypes)
- obj-$(CONFIG_LONGEST_SYM_KUNIT_TEST) += longest_symbol_kunit.o
-diff --git a/lib/tests/kho_feature_kunit.c b/lib/tests/kho_feature_kunit.c
-new file mode 100644
-index 000000000000..db36895d53f5
---- /dev/null
-+++ b/lib/tests/kho_feature_kunit.c
-@@ -0,0 +1,184 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * KUnit tests for the Kexec HandOver feature header helpers
-+ * in include/linux/kho/abi/feature.h.
+diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
+index 425c52c494f1..bd19211c64e1 100644
+--- a/include/linux/kho/abi/luo.h
++++ b/include/linux/kho/abi/luo.h
+@@ -112,21 +112,21 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+  * @count:   The total number of files that were part of this session during
+  *           serialization. Used for iteration and validation during
+  *           restoration.
 + *
-+ * Copyright (c) 2026, Google LLC.
-+ * Tarun Sahu <tarunsahu@google.com>
-+ */
++ * Preceded by &struct kho_ser_hdr.
+  */
+ struct luo_file_set_ser {
+ 	u64 files;
+ 	u64 count;
+ };
+ 
+-static_assert(sizeof(struct luo_file_set_ser) == 16);
+-static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+-	      __alignof__(struct luo_file_set_ser) == 8);
++DECLARE_KHO_SER(luo_file_set_ser, 16, 0, 0);
+ 
+ /**
+  * struct luo_session_ser - Represents the serialized metadata for a LUO session.
+- * @name:         The unique name of the session, provided by the userspace at
+- *                the time of session creation.
+- * @file_set_ser: Serialized pointer to the files belonging to this session.
++ * @name:          The unique name of the session, provided by the userspace at
++ *                 the time of session creation.
++ * @file_set_fhdr: Serialized pointer to the files belonging to this session.
+  *
+  * This structure is used to package session-specific metadata for transfer
+  * between kernels via Kexec Handover. An array of these structures (one per
+@@ -137,7 +137,8 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+  */
+ struct luo_session_ser {
+ 	char name[LIVEUPDATE_SESSION_NAME_LENGTH];
+-	DECLARE_KHOSER_PTR(file_set_ser, struct luo_file_set_ser *);
++	DECLARE_KHOSER_PTR(file_set_fhdr,
++			   DECLARE_KHO_SER_HDR(luo_file_set_ser, *));
+ };
+ 
+ DECLARE_KHO_SER(luo_session_ser, 72, 0, 0);
+diff --git a/kernel/liveupdate/luo_file.c b/kernel/liveupdate/luo_file.c
+index a39992da504f..02d09a80d785 100644
+--- a/kernel/liveupdate/luo_file.c
++++ b/kernel/liveupdate/luo_file.c
+@@ -440,8 +440,8 @@ static void __luo_file_unfreeze(struct luo_file_set *file_set,
+ 
+ /**
+  * luo_file_freeze - Freezes all preserved files and serializes their metadata.
+- * @file_set:     The file_set whose files are to be frozen.
+- * @file_set_ser: Where to put the serialized file_set.
++ * @file_set:      The file_set whose files are to be frozen.
++ * @file_set_fhdr: Where to put the serialized file_set.
+  *
+  * This function is called from the reboot() syscall path, just before the
+  * kernel transitions to the new image via kexec. Its purpose is to perform the
+@@ -472,12 +472,14 @@ static void __luo_file_unfreeze(struct luo_file_set *file_set,
+  * Return: 0 on success, or a negative errno on failure.
+  */
+ int luo_file_freeze(struct luo_file_set *file_set,
+-		    struct luo_file_set_ser *file_set_ser)
++		    DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr))
+ {
++	struct luo_file_set_ser *file_set_ser;
+ 	struct luo_file *luo_file;
+ 	struct kho_block_set_it it;
+ 	int err;
+ 
++	kho_ser_init(file_set_fhdr, luo_file_set_ser);
+ 	if (!file_set->count)
+ 		return 0;
+ 
+@@ -506,6 +508,7 @@ int luo_file_freeze(struct luo_file_set *file_set,
+ 		file_ser->token = luo_file->token;
+ 	}
+ 
++	file_set_ser = kho_ser_payload(file_set_fhdr, luo_file_set_ser);
+ 	file_set_ser->count = file_set->count;
+ 	file_set_ser->files = kho_block_set_head_pa(&file_set->block_set);
+ 
+@@ -519,8 +522,8 @@ int luo_file_freeze(struct luo_file_set *file_set,
+ 
+ /**
+  * luo_file_unfreeze - Unfreezes all files in a file_set and clear serialization
+- * @file_set:     The file_set whose files are to be unfrozen.
+- * @file_set_ser: Serialized file_set.
++ * @file_set:      The file_set whose files are to be unfrozen.
++ * @file_set_fhdr: Serialized file_set.
+  *
+  * This function rolls back the state of all files in a file_set after the
+  * freeze phase has begun but must be aborted. It is the counterpart to
+@@ -534,13 +537,13 @@ int luo_file_freeze(struct luo_file_set *file_set,
+  *          the reboot() syscall, after luo_file_freeze() has been called.
+  */
+ void luo_file_unfreeze(struct luo_file_set *file_set,
+-		       struct luo_file_set_ser *file_set_ser)
++		       DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr))
+ {
+ 	if (!file_set->count)
+ 		return;
+ 
+ 	__luo_file_unfreeze(file_set, NULL);
+-	memset(file_set_ser, 0, sizeof(*file_set_ser));
++	memset(file_set_fhdr, 0, kho_ser_size(luo_file_set_ser));
+ }
+ 
+ /**
+@@ -780,8 +783,8 @@ static int luo_file_deserialize_one(struct luo_file_set *file_set,
+ 
+ /**
+  * luo_file_deserialize - Reconstructs the list of preserved files in the new kernel.
+- * @file_set:     The incoming file_set to fill with deserialized data.
+- * @file_set_ser: Serialized KHO file_set data from the previous kernel.
++ * @file_set:      The incoming file_set to fill with deserialized data.
++ * @file_set_fhdr: Serialized KHO file_set data from the previous kernel.
+  *
+  * This function is called during the early boot process of the new kernel. It
+  * takes the raw, contiguous memory block of 'struct luo_file_ser' entries,
+@@ -804,12 +807,21 @@ static int luo_file_deserialize_one(struct luo_file_set *file_set,
+  * Context: Called from session deserialization.
+  */
+ int luo_file_deserialize(struct luo_file_set *file_set,
+-			 struct luo_file_set_ser *file_set_ser)
++			 DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr))
+ {
++	struct luo_file_set_ser *file_set_ser;
+ 	struct luo_file_ser *file_ser;
+ 	struct kho_block_set_it it;
+ 	int err;
+ 
++	if (!file_set_fhdr)
++		return -EINVAL;
 +
-+#include <kunit/test.h>
-+#include <linux/kho/abi/feature.h>
-+#include <linux/module.h>
++	err = kho_ser_validate(file_set_fhdr, luo_file_set_ser);
++	if (err)
++		return err;
 +
-+struct test_kho_payload {
-+	u64 val;
-+};
-+
-+enum test_kho_req_feat {
-+	TEST_KHO_REQ_0 = 0,
-+	TEST_KHO_REQ_63 = 63,
-+	TEST_KHO_REQ_64 = 64,
-+	TEST_KHO_REQ_69 = 69,
-+	TEST_KHO_NR_REQUIRED = 70,
-+};
-+
-+enum test_kho_opt_feat {
-+	TEST_KHO_OPT_0 = 0,
-+	TEST_KHO_OPT_63 = 63,
-+	TEST_KHO_OPT_64 = 64,
-+	TEST_KHO_OPT_69 = 69,
-+	TEST_KHO_NR_OPTIONAL = 70,
-+};
-+
-+DECLARE_KHO_SER(test_kho_payload, 8, TEST_KHO_NR_REQUIRED, TEST_KHO_NR_OPTIONAL);
-+
-+struct test_kho_zero {
-+	u64 val;
-+};
-+
-+DECLARE_KHO_SER(test_kho_zero, 8, 0, 0);
-+
-+static void kho_ser_hdr_zero_flags_test(struct kunit *test)
-+{
-+	DECLARE_KHO_SER_HDR(test_kho_zero, *fhdr);
-+	const DECLARE_KHO_SER_HDR(test_kho_zero, *const_fhdr);
-+	u8 buf[kho_ser_size(test_kho_zero)] __aligned(8);
-+	struct test_kho_zero *p;
-+
-+	KUNIT_EXPECT_EQ(test, sizeof(struct kho_ser_hdr), 8UL);
-+	KUNIT_EXPECT_EQ(test, sizeof(*fhdr), sizeof(struct kho_ser_hdr));
-+	KUNIT_EXPECT_EQ(test, kho_ser_size(test_kho_zero), 16UL);
-+
-+	fhdr = (void *)buf;
-+	kho_ser_init(fhdr, test_kho_zero);
-+	KUNIT_EXPECT_EQ(test, fhdr->size, 16U);
-+	KUNIT_EXPECT_EQ(test, fhdr->nr_required, 0U);
-+	KUNIT_EXPECT_EQ(test, fhdr->nr_optional, 0U);
-+	KUNIT_EXPECT_EQ(test, kho_ser_hdr_size(fhdr), 8UL);
-+
-+	const_fhdr = fhdr;
-+	KUNIT_EXPECT_EQ(test, const_fhdr->size, 16U);
-+
-+	p = kho_ser_payload(fhdr, test_kho_zero);
-+	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 8));
-+
-+	p = kho_ser_payload(const_fhdr, test_kho_zero);
-+	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 8));
-+
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 0));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 0));
-+	KUNIT_EXPECT_EQ(test, kho_ser_validate(fhdr, test_kho_zero), 0);
-+	KUNIT_EXPECT_EQ(test, kho_ser_validate(const_fhdr, test_kho_zero), 0);
-+}
-+
-+static void kho_ser_hdr_set_get_test(struct kunit *test)
-+{
-+	DECLARE_KHO_SER_HDR(test_kho_payload, *fhdr);
-+	const DECLARE_KHO_SER_HDR(test_kho_payload, *const_fhdr);
-+	u8 buf[kho_ser_size(test_kho_payload)] __aligned(8);
-+	struct test_kho_payload *p;
-+
-+	KUNIT_EXPECT_EQ(test, kho_ser_size(test_kho_payload), 40UL);
-+
-+	fhdr = (void *)buf;
-+	kho_ser_init(fhdr, test_kho_payload);
-+	KUNIT_EXPECT_EQ(test, fhdr->size, 40U);
-+	KUNIT_EXPECT_EQ(test, fhdr->nr_required, 70U);
-+	KUNIT_EXPECT_EQ(test, fhdr->nr_optional, 70U);
-+	KUNIT_EXPECT_EQ(test, kho_ser_hdr_size(fhdr), 32UL);
-+
-+	const_fhdr = fhdr;
-+	KUNIT_EXPECT_EQ(test, const_fhdr->size, 40U);
-+	KUNIT_EXPECT_EQ(test, const_fhdr->nr_required, 70U);
-+	KUNIT_EXPECT_EQ(test, const_fhdr->nr_optional, 70U);
-+
-+	p = kho_ser_payload(fhdr, test_kho_payload);
-+	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 32));
-+
-+	p = kho_ser_payload(const_fhdr, test_kho_payload);
-+	KUNIT_EXPECT_PTR_EQ(test, p, (void *)(buf + 32));
-+
-+	kho_ser_set_required(fhdr, TEST_KHO_REQ_0);
-+	kho_ser_set_required(fhdr, TEST_KHO_REQ_63);
-+	kho_ser_set_required(fhdr, TEST_KHO_REQ_64);
-+	kho_ser_set_required(fhdr, TEST_KHO_REQ_69);
-+
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_0));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 1));
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_63));
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_64));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 65));
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_required(fhdr, TEST_KHO_REQ_69));
-+
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[0] & (1ULL << 0)));
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[0] & (1ULL << 63)));
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[1] & (1ULL << 0)));
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[1] & (1ULL << 5)));
-+
-+	kho_ser_set_optional(fhdr, TEST_KHO_OPT_0);
-+	kho_ser_set_optional(fhdr, TEST_KHO_OPT_63);
-+	kho_ser_set_optional(fhdr, TEST_KHO_OPT_64);
-+	kho_ser_set_optional(fhdr, TEST_KHO_OPT_69);
-+
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_0));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 1));
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_63));
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_64));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 65));
-+	KUNIT_EXPECT_TRUE(test, kho_ser_has_optional(fhdr, TEST_KHO_OPT_69));
-+
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[1] & (1ULL << 6)));
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[2] & (1ULL << 5)));
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[2] & (1ULL << 6)));
-+	KUNIT_EXPECT_TRUE(test, !!(fhdr->flags[2] & (1ULL << 11)));
-+
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 70));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_required(fhdr, 100));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 70));
-+	KUNIT_EXPECT_FALSE(test, kho_ser_has_optional(fhdr, 100));
-+}
-+
-+static void kho_ser_hdr_validate_test(struct kunit *test)
-+{
-+	u8 buf[sizeof(struct kho_ser_hdr) + sizeof(u64) * 2] __aligned(8);
-+	struct kho_ser_hdr *fhdr = (void *)buf;
-+
-+	__kho_ser_init(fhdr, 0, 4, 10);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 4), 0);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
-+
-+	kho_ser_set_optional(fhdr, 0);
-+	kho_ser_set_optional(fhdr, 9);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
-+
-+	kho_ser_set_required(fhdr, 0);
-+	kho_ser_set_required(fhdr, 1);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
-+
-+	kho_ser_set_required(fhdr, 2);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), -EOPNOTSUPP);
-+
-+	kho_ser_clear_required(fhdr, 2);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), 0);
-+
-+	kho_ser_set_required(fhdr, 3);
-+	KUNIT_EXPECT_EQ(test, __kho_ser_validate(fhdr, 2), -EOPNOTSUPP);
-+}
-+
-+static struct kunit_case kho_feature_test_cases[] = {
-+	KUNIT_CASE(kho_ser_hdr_zero_flags_test),
-+	KUNIT_CASE(kho_ser_hdr_set_get_test),
-+	KUNIT_CASE(kho_ser_hdr_validate_test),
-+	{}
-+};
-+
-+static struct kunit_suite kho_feature_test_suite = {
-+	.name = "kho_feature",
-+	.test_cases = kho_feature_test_cases,
-+};
-+
-+kunit_test_suite(kho_feature_test_suite);
-+
-+MODULE_DESCRIPTION("KUnit tests for the Kexec HandOver feature header helpers");
-+MODULE_LICENSE("GPL");
++	file_set_ser = kho_ser_payload(file_set_fhdr, luo_file_set_ser);
+ 	if (!file_set_ser->files) {
+ 		WARN_ON(file_set_ser->count);
+ 		return 0;
+diff --git a/kernel/liveupdate/luo_internal.h b/kernel/liveupdate/luo_internal.h
+index dac6644bfb18..e22a8cf39d91 100644
+--- a/kernel/liveupdate/luo_internal.h
++++ b/kernel/liveupdate/luo_internal.h
+@@ -8,6 +8,7 @@
+ #ifndef _LINUX_LUO_INTERNAL_H
+ #define _LINUX_LUO_INTERNAL_H
+ 
++#include <linux/kho/abi/luo.h>
+ #include <linux/liveupdate.h>
+ #include <linux/uaccess.h>
+ #include <linux/kho_block.h>
+@@ -104,14 +105,14 @@ int luo_session_deserialize(void);
+ int luo_preserve_file(struct luo_file_set *file_set, u64 token, int fd);
+ void luo_file_unpreserve_files(struct luo_file_set *file_set);
+ int luo_file_freeze(struct luo_file_set *file_set,
+-		    struct luo_file_set_ser *file_set_ser);
++		    DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr));
+ void luo_file_unfreeze(struct luo_file_set *file_set,
+-		       struct luo_file_set_ser *file_set_ser);
++		       DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr));
+ int luo_retrieve_file(struct luo_file_set *file_set, u64 token,
+ 		      struct file **filep);
+ int luo_file_finish(struct luo_file_set *file_set);
+ int luo_file_deserialize(struct luo_file_set *file_set,
+-			 struct luo_file_set_ser *file_set_ser);
++			 DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr));
+ void luo_file_set_init(struct luo_file_set *file_set);
+ void luo_file_set_destroy(struct luo_file_set *file_set);
+ 
+diff --git a/kernel/liveupdate/luo_session.c b/kernel/liveupdate/luo_session.c
+index 641bd67ce76e..6513fde3ecfe 100644
+--- a/kernel/liveupdate/luo_session.c
++++ b/kernel/liveupdate/luo_session.c
+@@ -132,7 +132,7 @@ struct luo_session_global {
+ };
+ 
+ #define LUO_SESSION_SER_SIZE (kho_ser_size(luo_session_ser) + \
+-			      sizeof(struct luo_file_set_ser))
++			      kho_ser_size(luo_file_set_ser))
+ 
+ static struct luo_session_global luo_session_global = {
+ 	.incoming = {
+@@ -227,7 +227,7 @@ static void luo_session_unfreeze_one(struct luo_session *session,
+ {
+ 	guard(mutex)(&session->mutex);
+ 	luo_file_unfreeze(&session->file_set,
+-			  KHOSER_LOAD_PTR(ser->file_set_ser));
++			  KHOSER_LOAD_PTR(ser->file_set_fhdr));
+ }
+ 
+ static int luo_session_freeze_one(struct luo_session *session,
+@@ -235,7 +235,7 @@ static int luo_session_freeze_one(struct luo_session *session,
+ {
+ 	guard(mutex)(&session->mutex);
+ 	return luo_file_freeze(&session->file_set,
+-			       KHOSER_LOAD_PTR(ser->file_set_ser));
++			       KHOSER_LOAD_PTR(ser->file_set_fhdr));
+ }
+ 
+ static int luo_session_release(struct inode *inodep, struct file *filep)
+@@ -560,14 +560,14 @@ int __init luo_session_setup_incoming(u64 sessions_pa)
+ static struct luo_session_ser *
+ luo_session_ser_init(DECLARE_KHO_SER_HDR(luo_session_ser, *fhdr))
+ {
+-	struct luo_file_set_ser *file_set_ser;
++	DECLARE_KHO_SER_HDR(luo_file_set_ser, *file_set_fhdr);
+ 	struct luo_session_ser *ser;
+ 
+ 	kho_ser_init(fhdr, luo_session_ser);
+-	file_set_ser = (void *)fhdr + kho_ser_size(luo_session_ser);
++	file_set_fhdr = (void *)fhdr + kho_ser_size(luo_session_ser);
+ 
+ 	ser = kho_ser_payload(fhdr, luo_session_ser);
+-	KHOSER_STORE_PTR(ser->file_set_ser, file_set_ser);
++	KHOSER_STORE_PTR(ser->file_set_fhdr, file_set_fhdr);
+ 
+ 	return ser;
+ }
+@@ -601,7 +601,7 @@ static int luo_session_deserialize_one(struct luo_session_header *sh,
+ 
+ 	scoped_guard(mutex, &session->mutex) {
+ 		err = luo_file_deserialize(&session->file_set,
+-					   KHOSER_LOAD_PTR(ser->file_set_ser));
++					   KHOSER_LOAD_PTR(ser->file_set_fhdr));
+ 	}
+ 	if (err) {
+ 		pr_warn("Failed to deserialize files for session [%s] %pe\n",
 -- 
 2.56.0.506.g506a7eabc5-goog
 
