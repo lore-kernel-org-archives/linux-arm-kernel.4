@@ -2,62 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 514FE606A8B4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E9FB606A20A
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x3yD6NLV;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=dPQZ/jOl;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=P/l20lKr
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HkBwiorF;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=0IJbFl1d;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=zvScGAfr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=S3e2DLc/EFtAmhQSbf1IYEBcV1UrLcWSeCvbdOXz2tM=; b=x3yD6NLVwq1zQJ
-	TT1rvw1J2x9Ba3T1E8eyp6Lj/as5z6xTEkJt2dRYWHN1bXL6WLhf4MqlguE9c4qwOn4gtFKy5yrEg
-	rE2f7hZCn7cWwWdqXnZMF9krP+/FRoXZ/5TAekQTDNp+i9zx8dshObBwIGq/RPn5dvoXD9ry38lGs
-	iXihyFalYHHFdsj683fOYy0i1i4pB5hsUUrhXCyWX9aBRa2WKKcirkmWDlzLQLfXcIO6hwlBXusFk
-	v0DFgaPlDwzvXfQXJAXnu97ICAghqlxuldLjiGcf+lURRcKC/jSZd7xsV03QWXb5NTdhz88rPKqob
-	f0N5JsL/gWBgHIAKT+6A==;
+	List-Owner; bh=0PcNzrAm+ZHWxKmhopZRMwa8hvJoI4qZ7QndHfl8spQ=; b=HkBwiorFd5QER/
+	y5xRSWt008L7Uc/9IoIDh+biQUadGBvRlgkqLOh9oggLmX0t/QsvNrXPdjmUlbtuK32lh0dmWQ7Lp
+	yOoUZHEr2KUUU/XO4u4FogmqfeXcAFJPh6bkLVsX+sqzi3EHM3ARNn/rlUkj5D8IdwelSLbe7o0He
+	l9jMzkurobBKzBJ3h7TsS8PVyU5X8bHvw5WS4avofrvYaF52m118WIduYgb5TMpgtAxSWg4bVeJ4i
+	3hBqXIV9aINi3QhMBzD63jWBGpnwm7rDwsfZUQ3m6bnkmvWd8VVmmj/UTq8PT4Er9qd6ORF2ZzztQ
+	O5+a3xTwCZi68HvnN1VA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQonz-00000004YFR-0kVP;
+	id 1xQonz-00000004YFB-02w4;
 	Tue, 10 Nov 2026 16:34:43 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQonY-00000004XtV-1FwL;
+	id 1xQonX-00000004Xse-23kd;
 	Tue, 10 Nov 2026 16:34:18 +0000
 From: Gregor Herburger <gregor.herburger@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1794328454;
+	s=2020; t=1794328453;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=S3e2DLc/EFtAmhQSbf1IYEBcV1UrLcWSeCvbdOXz2tM=;
-	b=dPQZ/jOlDJW3uiWmm/UVeaX0pGXpTCsuP76T/M/TBDJDnNXpMTSonLbluNeHTNVaATUKtM
-	r6ShX7IrVZzTB1T971aAmWYVaeMS1LLNMHMZ4ahTV8mFtmol+3NNj1oXuNpJJlSqI1adsH
-	wswK4AXz79kv64KBv8Te5DBzTk3CMmkJVyZCx04cuoZ7T1SJjHB5yfv386EQ3tB/shmU3c
-	VDaz6BKgi+/WmZASLlP+6q43Y2XtqYZ/7izH89RTmfZeTHWajLhG0UuDNakPcZqiOJHjN/
-	B+Sn2rLvZSLJB7bUICSXKlwsqOcTMeWaYy4m5FRAeiqsp2lm0P8KYJACe1Is/Q==
+	bh=0PcNzrAm+ZHWxKmhopZRMwa8hvJoI4qZ7QndHfl8spQ=;
+	b=0IJbFl1dy8X4gSNDocamKYi4XU1btGt8bPidCaDlnNa07zJXzWlikLuXx2hk16wpl+PZbH
+	xpblKoEkUk5JX6iJEkMwW0xsZekYIRIUkeZ2IRJfWZ++oWoewtqn60tZVr0GemOQNCTBQ6
+	S5+7uAabRc0ZLvykOoahFNGm4UuJaShHSFZP9vSWM3haaXEXWOC+NDh9bckzU+ZPmSYBUt
+	kaUL63ld7fnWAUG5GHAkIbeW9x05MFhupI68H5RH0+g+dWMyQqK2EfHKAZld1B+/+y/iI5
+	AqyWk8frn3V4Z9qn+AzkcNlO/BQl6TsETiMTIrJVygfdBERtf7Ymdw0jVEmWFg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1794328454;
+	s=2020e; t=1794328453;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=S3e2DLc/EFtAmhQSbf1IYEBcV1UrLcWSeCvbdOXz2tM=;
-	b=P/l20lKrtQLnvxFFN1y20agVA9zPwrpdFzVeWmoa3JQMFsITSKmv+tQ0ncxaGv9HcOqRqu
-	rb42cc2KenjkvfAg==
-Date: Tue, 10 Nov 2026 17:34:08 +0100
-Subject: [PATCH v8 09/12] arm64: defconfig: Enable the raspberrypi otp
- driver as module
+	bh=0PcNzrAm+ZHWxKmhopZRMwa8hvJoI4qZ7QndHfl8spQ=;
+	b=zvScGAfrm9dnIxn2Pw3vTX+RHJ/du3IgZIPMAoUck5v1eWfyX8dk+d1g7wbvlQDjR0ocyA
+	Jw61rW8r85aOSODg==
+Date: Tue, 10 Nov 2026 17:34:06 +0100
+Subject: [PATCH v8 07/12] arm64: dts: broadcom: bcm2712: add
+ raspberrypi,bcm2712-firmware compatible
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-rpi-otp-driver-v8-9-797e0577d414@linutronix.de>
+Message-Id: <20261110-rpi-otp-driver-v8-7-797e0577d414@linutronix.de>
 References: <20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de>
 In-Reply-To: <20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -74,16 +74,16 @@ Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-hardening@vger.kernel.org, 
  Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794328449; l=987;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794328449; l=1201;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=6YL5o+FkfRNe3jisn0G42FaZ58Ui5doUPUkjSlQYsNY=;
- b=u9JLUg2o0uL0aebjjbMEF3vtqfLcdiYqHl2mlCpO1lxK3oEbV5tseq8NZ/poVFJVmXgqW76Lu
- dzycJzw29RnAf9NL+iadVJIJt65b3HnQJ49U9UH82p3qYrOyieARHva
+ bh=QzShj9jr69aONGxWIoiSXIgjOLO6bK2pyRL4MJ0roYc=;
+ b=FDUtlquYhrthrWBpnwVJ22VMVQeCCXG2K0WzsWregE7e7EP3a3RUuRdSxS4JplkQkHCGKaDXQ
+ E6+0PLBBv7fCSfSv8rHmww3GhWsaUnLwp6/83txX1imZaiS/LowyUg/
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_083416_915799_F2B255DC 
-X-CRM114-Status: UNSURE (   8.80  )
+X-CRM114-CacheID: sfid-20261110_083416_868854_3EEF0A1C 
+X-CRM114-Status: UNSURE (   9.54  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -104,32 +104,35 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable the newly added Raspberry Pi OTP driver as module to allow access
-to the otp registers. This driver provides access to the OTP registers
-present on all Raspberry Pi boards and the private OTP registers present
-on the Raspberry Pi 5.
+The Raspberry Pi 5 (BCM2712) firmware exposes additional features such
+as the additional OTP register region called 'private OTP'.
 
-Enabling this in the generic arm64 defconfig allows standard upstream
-kernels to use these registers on Raspberry Pi 3, 4 and 5 out of the
-box.
+Add the raspberrypi,bcm2712-firmware compatible to allow drivers to
+distinguish this hardware variant while keeping
+raspberrypi,bcm2835-firmware as a fallback for backward compatibility
+with existing drivers.
 
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 7b4985b29b21c..023def2297331 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1740,6 +1740,7 @@ CONFIG_NVMEM_SPMI_SDAM=m
- CONFIG_NVMEM_SUNXI_SID=y
- CONFIG_NVMEM_UNIPHIER_EFUSE=y
- CONFIG_NVMEM_ZYNQMP=m
-+CONFIG_NVMEM_RASPBERRYPI_OTP=m
- CONFIG_FPGA=y
- CONFIG_FPGA_MGR_ALTERA_CVP=m
- CONFIG_FPGA_MGR_STRATIX10_SOC=m
+diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
+index e5030da60f9e7..4d578e15190a2 100644
+--- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
++++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi
+@@ -47,7 +47,9 @@ power_button: power-button {
+ 
+ 	firmware {
+ 		firmware: rpi-firmware {
+-			compatible = "raspberrypi,bcm2835-firmware", "simple-mfd";
++			compatible = "raspberrypi,bcm2712-firmware",
++				     "raspberrypi,bcm2835-firmware",
++				     "simple-mfd";
+ 
+ 			mboxes = <&mailbox>;
+ 
 
 -- 
 2.47.3
