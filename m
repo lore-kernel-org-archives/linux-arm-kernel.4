@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E0F60A5BD3
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63768606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zj1+n2UK;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XWz6yvhc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WLoO+EfV;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CPyXR7kK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=; b=zj1+n2UKAgITJ0ZcmuM2X6agIQ
-	txEIhykxfm+ErDLDvM/Io58yJcE81TP25dMz8zs1f2GBV1SGngK5yFGVJRz/KdaSasWa0L8jGP5aw
-	1I8sJEB7GepFami20xu7SmPXQkqF+3leHTV6u47RNjXS0LoafXlk25h1GdMgIjQ84ADOSYrpA62Bt
-	w/pisb3DB3QVht936aDt3XlPx2ZkTVFmuV66eTpYSmWQdEERra7zqjRrNciBdrw6ECosQvtvp4LI7
-	Tin32zHfiCRHMwuEWrCOP4yZbZYyHC9GcuGxFLQpLgESEuQjLGmRi5Ygx50m0VOQ/vyxjUVe0zlPs
-	5bd6Mivg==;
+	bh=htP2+aPrpKFt+HsykgI0WJWWWQvaF3s5InUokxPNh5Y=; b=WLoO+EfVUOC0/uU6q951tYEUg2
+	5QfdIWu47CsybdCwq2eGda3PvkxaSg7Wf5RPtqTO1kQjDJHd9UIWFDEwhoxBF1jOMljFi0x/dOsrE
+	kofcS6YvS1AOGcMO4afUquyv+l7YWn2tIRCRq6/nNzAKOG5FpsqJQTEWPnGrifWg1n6437fVd1sSw
+	BV5rElt9/AWQBRzaKIaExz2rIFhnnb2f2Dijy8X4dVQcWsp2cp+lBmbBIv+rqjX5h6FpI0K35Z87Q
+	KT0TaTzwnnj0MEuHi0TpcGQaRCQ2kOtYrNeNf5kHjKVZiJWna4aM5ucHy5y1xhBAsqGJTnxAn3qFB
+	D/MYZEIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeXa-00000002XiQ-1VBZ;
-	Tue, 10 Nov 2026 05:37:06 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xQeXb-00000002XkW-0E8n;
+	Tue, 10 Nov 2026 05:37:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQeXT-00000002Xe4-2NQ4
+	id 1xQeXU-00000002Xed-0HcK
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:36:59 +0000
+	Tue, 10 Nov 2026 05:37:00 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 88232609F6;
-	Tue, 10 Nov 2026 05:36:58 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id B7A7A46969;
+	Tue, 10 Nov 2026 05:36:59 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794289018;
-	b=UydpI176BEuwjy53HWkVx48lUKN3/8BZM2/2Sxxto0VI4xydFWiaZ4Usvj7BXI2nQxRe
-	 gDOI9xz3jK45Unrludt/3HIlLQ+6Ph2fyGrQZyXswtaUOWCV6TwVXiomiQmM3kL2KqnNE
-	 bsWDBQkjRUWEFHjYUirLUg776s/vDKyYaaBTSny0QIvrwe19ai8L3sRP+w+Lrd1eJ1l2e
-	 Bgpcq5PK1l7mFu4/IYRioUqtbR0kyauur2jg9WRihSg5VkoGVWcyxkzhHiab5TtfQSe4b
-	 jcHWozxHr2ffxWJZGY3dPXq6zxGvw6kI22b8bJfb8YYIac8bjUTuFI6Pm9mtfWH3UDQ==
+	t=1794289019;
+	b=Hh4w205b6jYz+bBMIBtQU9878LicMSgWCrml0xjhzPl+zbOkZB7xoFEz1w0QjGXdFs3f
+	 NfezjxPqSHpvwY3jf31iaVINx6pIY86qkrDQRyEiXOUpg531ZvFOsxCpzGEL1tqAdcgGE
+	 a4oe3MntW4FeROeUfVJGa7j0gxYuoIGbFkO7G6EPOuxXKTk4RLB7PqxNONCec5wSS2Xy6
+	 GEogxigNJinSiLHD/MupzHgTbzMq2ObaodKAEcXxkhu4imp5c5ocjRn9d/yBA063all3U
+	 L3iz1h9cn5SU0DR5rBWBBkDbGJsqiV0K74QsilxW/s+B6owIzJk2OT/AaN3C36X4I9Q==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794289018;
+	c=relaxed/relaxed; t=1794289019;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=;
-	b=oKK1jUvpzVRVrOVUfRoJdi43mF3ZkqVbXO4EdLiX/lSAehu1KXZzSKBVfyB+WLsw0Tug
-	 2RTzZn0yG3BNZh1dbjsqzPj6aC1D/7UkxWk70n+avnUjYKfjmYH99UKyGr0yyGDVTrg10
-	 jxkUJB1CJvWWq6s3SLFH1MNuPfTjhyK6VnIVVEp1OQYa2wQBeDFyClhFozYIxw784M3cB
-	 sEWXq5ZczKRiXrKvwQkMkgZWYM0IFWZdFqpWTI7+WjaMIzukCwPvkPXLplstnKhtaizaY
-	 2yJ5+iLZICAWrqNJgSFpsjtviDszRU2h7Iv3VScjB//cekLPtmw05xYqaDxu5g2t+FA==
+	bh=htP2+aPrpKFt+HsykgI0WJWWWQvaF3s5InUokxPNh5Y=;
+	b=ufBx2tP1MBRxuSi3Izd0kKYJq9Wf/0fV30eQ1V557laVTGBsjrEinMOu1CdssmypEPra
+	 q4y98HzpogLz3gHUBdf6UQsKoVPoGIFCkK394MQGmUzJLsU5/gtJqAXDXFw6sDB5sRLqD
+	 fDuUi1s1b5KrojheUpMJX8MN7RVwU6BgEiRgekFNd4YanXxwGcoC0PRsfHiUNt0hYYvvY
+	 +ha4hRUDhYmlzSNphuHFNLUguK9z0/BD6YAO4RDJbhmTFs4xYRp7WcYUJjz0IjTgzlF7m
+	 qSprrUUHAT0bzRPFvWo+md779TUpn+HcF5V/d0M6/cdzFzr5Vf2QtsXx4WTgqUZt3CQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 268751F008A2;
-	Tue, 10 Nov 2026 05:36:57 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id B489C1F008A7;
+	Tue, 10 Nov 2026 05:36:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794289018;
-	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=;
+	s=k20260515; t=1794289019;
+	bh=htP2+aPrpKFt+HsykgI0WJWWWQvaF3s5InUokxPNh5Y=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=XWz6yvhcRB1KhBJJzH0dW0hof+vzQG1mMkBiHCGS35uBsr61j29rhetSr/qYEUZro
-	 OdFEyfpRGMwe5OoZy1eyHKsl8ZimlYLRMqGBeApMlEFJ9KS83ax/TZ3GBqWKhH6sgh
-	 6O5SBKQbAINs2/uJgKiXaysuEwcEvmXoFPRTKxE1r/i8JNaM+qbVgZrb8JVRH7/+Zw
-	 sqy1Z3neUIdOT+sDrLMOH6teELiFbHni56kd1MpYXOlDy7IAQrL8N+hdPCjjKg+8Gy
-	 TrAyzDH++lmOVotjDettjkLLZBLhqQFM8Bh+5gMlTGG+qRItuVI7limOX2kI0U0Hmd
-	 v1lH8jlpPXq5g==
+	b=CPyXR7kKKps35e8yi5LiPwrlyPpZzEyViRBdGkCPa1LdzPqaybWSWDPk1UNNy3nv+
+	 Hy8Y1R/EyjRItK5U7mkW5Bv8Po7fJ26PluYwieGfM5Za/AHS5sfl1JlocSJRuGyg58
+	 1zrLSWttkGWjjad0tQwuEDfGBOXa7DMe6fIVY09X1RtZQARwJ6FIE8kYj/3M/WwVMA
+	 b9hdDEHMMBNlkbFCWZ1i4fsTmbxrZ9ZurxAUGZA8ePpmLghX2cp9ub29lB5kNnAg4m
+	 vEul32BIOCRdBJU+4T4c/IJpkHt9L06396sWcjry3aYJIkE9+aedyUqQ6k/QFzqknq
+	 8qPyFLDDYSP0w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A48B1488A3;
-	Tue, 10 Nov 2026 05:36:56 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 17F15488BB;
+	Tue, 10 Nov 2026 05:36:57 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Tue, 10 Nov 2026 05:36:56 +0000
-Subject: [PATCH 2/8] arm64: dts: allwinner: orangepi-zero2: Let the PHY add
- the RX delay
+Date: Tue, 10 Nov 2026 05:37:02 +0000
+Subject: [PATCH 8/8] arm64: dts: allwinner: orangepi-zero2: Add i2c aliases
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-h616-zero2-dt-v1-2-05506d760f21@gmail.com>
+Message-Id: <20261110-h616-zero2-dt-v1-8-05506d760f21@gmail.com>
 References: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
 In-Reply-To: <20261110-h616-zero2-dt-v1-0-05506d760f21@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,11 +91,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289015; l=1923;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794289016; l=1421;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=hgTnawt6aimtaYNRLXqSLgWoRIBtKR4Hz80cKcd5MZQ=;
- b=8iTkh1En9vvXHawv7Uw7jL6daF1+oTzNlIVXcn7sATdE79v+2H7vAN6ntZaXx7g6Iua0tox1D
- yTLbsbAw8zPDsTNNW57X/v93BE+MX1E0cXO5wpVySkJvcBJFG/Lst9g
+ bh=Iab2h5Ns40ufO6oTUc6or65fgVwB87DFnCvwebhE2a0=;
+ b=7jmDunNjfJz90BQbeqlz1pB1bvz0rEa1eMYESssOimvG9Ewiozn+umcp8upBV0cteiUv/r4EW
+ e2trVdap+hdDQLMp7XIFDen3FzeqDFYYAsFvsxlLxQu0kJ67Q45BO3d
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -124,47 +123,43 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The Orange Pi Zero2 describes its RTL8211F link as "rgmii", with the
-whole RX clock delay (3100 ps, the maximum the H616 EMAC syscon can
-add) inserted by the MAC. With "rgmii" the Realtek PHY driver also
-clears the PHY's own RX delay bit, so RX sampling relies on the MAC
-delay alone and sits at the edge of the window.
+The I2C core numbers adapters after the "i2cN" aliases and hands out
+dynamic numbers, in probe order, to adapters without one. The Orange Pi
+Zero2 DT has no i2c aliases, so a TWI controller enabled by an overlay
+for the header pins gets whatever number is free when it probes: TWI3
+on header pins 3 and 5 does not show up as /dev/i2c-3, and the number
+changes with the set of enabled buses. The vendor manual and the
+vendor BSP name the buses after the controller.
 
-On the board this shows up as intermittent boots with a dead receive
-path, after cold and warm resets alike: the link comes up at
-1000/full and frames are transmitted and seen by the peer, but nothing
-is ever received and the EMAC raises no RX interrupt. All EMAC clock,
-pinmux, drive strength and syscon registers are the same on good and
-bad boots. On a bad boot, setting the PHY RX delay bit and clearing
-the syscon RX delay restores reception at once, without a link reset.
+Pin the numbering as the vendor BSP does: i2c0 to i2c4 are TWI0 to
+TWI4, i2c5 is R_TWI. Disabled controllers get no adapter, so nothing
+changes for buses that stay off.
 
-Use "rgmii-rxid" (RX delay in the PHY, none in the MAC), as the Orange
-Pi Zero3 with the same PHY already does, and as the vendor BSP does.
-The 700 ps MAC TX delay is kept. With this change 10 of 10 cold boots
-had a working receive path.
-
-Fixes: 5a378f9f2b15 ("arm64: dts: allwinner: h616: Add OrangePi Zero 2 board support")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-index f2e3300e078a..1fdf2d3c1a87 100644
+index d5d39bac5915..98fc83291dc8 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -18,9 +18,9 @@ &cpu0 {
+@@ -12,6 +12,15 @@
+ / {
+ 	model = "OrangePi Zero2";
+ 	compatible = "xunlong,orangepi-zero2", "allwinner,sun50i-h616";
++
++	aliases {
++		i2c0 = &i2c0;
++		i2c1 = &i2c1;
++		i2c2 = &i2c2;
++		i2c3 = &i2c3;
++		i2c4 = &i2c4;
++		i2c5 = &r_i2c;
++	};
  };
  
- &emac0 {
--	allwinner,rx-delay-ps = <3100>;
- 	allwinner,tx-delay-ps = <700>;
--	phy-mode = "rgmii";
-+	/* RX delay is added by the PHY, TX delay by the EMAC */
-+	phy-mode = "rgmii-rxid";
- 	phy-supply = <&reg_dcdce>;
- };
- 
+ &cpu0 {
 
 -- 
 2.55.0
