@@ -2,108 +2,132 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46D26606A7E5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E958606A7E4
 	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 13:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UMNKJCHw;
-	dkim=pass (2048-bit key) header.d=soleen.com header.i=@soleen.com header.a=rsa-sha256 header.s=google header.b=JTawrn+r
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Pl5yPVmt;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=JQcJM2BF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:
-	Subject:Cc:To:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XQDfTOBLyQYKItk/7IbkqTdv3CPMUC9LzGhAb3DHHto=; b=UMNKJCHwAJmcB8
-	DPIU5+xI0hqCiVm7JMVMVjLDDL6xkanEPVRldUVIqkcamECg3EBHmC6rTzPBwacel8PrIvf7xC7tM
-	aimBr8l9+H5JuRLD2ePUk3eKjL+tcmiPFI0pqW+nsNIx7dyZA1AsFJLppVGY9wpTE9aydLfUNDoW6
-	WRrk3orYfo8Me+yJD4eQ5RR9s9bmYhO66ydWiavHPtQT68DFRv8jLMdi8bG85KALQxg7IJMO/Qklm
-	CY5S2fmWYPaijVo6P2ODve2C3D/Z07PPD1AeO6VR+UnOf8hlYFcFP0Q6bn3XrUneu6/Hv5PSHsjwj
-	16ypoG0sjEac7EkqeQpQ==;
+	List-Owner; bh=zTYAkvEmLyeerTI7MVTbkhwC64035xp5K6FKPBICv5Q=; b=Pl5yPVmtG2mT1J
+	On+jsuljpwv77p7iDsXggf+wojZX1qa0kaLRdP1sKoagsvtpxSvDfjdVd+9G2lVPVoWij10v5fjFF
+	5jPM56TiFZVBjIKdRm6KtMz3+k7DreAShXdjsxx1aAhOHDL2IIF4alyMUqc1AVMrmcPRO35a7ls22
+	eEPznFWjfcdkTC5999MHnc1xnZo93oJSa56FrT7wbQZyZtgTNV72LNImW/XOxkrhT74hL8wb0ZdP/
+	e9afx7yEvCZLSLzeUgemCl/+BOux8qQy8oGH1cAAwVafIyrLLB6ROwfPKln82T/rcdFG1Sip9Osfk
+	XwlcnV4wMRWmiBu3qn1g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlcZ-00000003z8g-3VNS;
-	Tue, 10 Nov 2026 13:10:43 +0000
-Received: from mail-vk1-xa2b.google.com ([2607:f8b0:4864:20::a2b])
+	id 1xQlca-00000003z98-03zf;
+	Tue, 10 Nov 2026 13:10:44 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQlcS-00000003z1h-0r4o
+	id 1xQlcU-00000003z3A-3qM8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 13:10:37 +0000
-Received: by mail-vk1-xa2b.google.com with SMTP id 71dfb90a1353d-5ee029fd76aso559617e0c.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 05:10:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soleen.com; s=google; t=1794316235; x=1794921035; darn=lists.infradead.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-type:content-transfer-encoding:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=XQDfTOBLyQYKItk/7IbkqTdv3CPMUC9LzGhAb3DHHto=;
-        b=JTawrn+rV5K3g8n7kPinScEgKrVbl1Gs9N9IOZO0TL65ajFQuSEH+aTdsIsZbaonq7
-         CfwrpMBJ2El2PEtB/mVF0wyX5o+YuvXSKDd1WKpM94M8FgMB5B2QHNn8MELJEXJmWNAa
-         nNUYxeOW8hF+3Bkq2ezn1di32spViDyt7BikhF6HmyZBLY4yIpJ7qO5KcD/xnrwuZs9u
-         nnZufSPlOo4gYsDyILAiyQkmHxuR4kXT0aD3rJ/2eRHRZNqPuSFzGMVflFHAwwK+e2kW
-         3nuZWgSwKHR8VBRJrWgD2tpfcfbQsqQL8Jo+74iJMBoirPqgNanUxn6Plfaf/OxaxnzX
-         qfxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794316235; x=1794921035;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-type:content-transfer-encoding:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=XQDfTOBLyQYKItk/7IbkqTdv3CPMUC9LzGhAb3DHHto=;
-        b=pNe5J25mp40ehP1AAmHMVCJb41VNoUD34xlXial5ed4dNZ8K4bU8vgS0BTKPx5iNgM
-         h6ELvyA8e97ejwU1k9QqARCdurlZGe2xa0F1yYCgcaWqqAvhbK6s6Ij7hWnKYho/uUBE
-         +nKYXLAJwEm/rghLw0x3KR5sTNmfwBUF9wm51dQzcZVat+m6Iy6JkOF5bDc3Keg7xzwD
-         zSa0ZoDVulO0rny6tC8by4+tUM1laUiI6t9xbmYahdbTDwgDYmWZlrMAJNOvhm/7g/Kc
-         wfBOFvNGHSyEFJXdlAhRhe//IUW9yaRgI6L7e32opeSA+OYrZruGKybVWitxK9Of1d72
-         zAgQ==
-X-Forwarded-Encrypted: i=1; AL+hErFgZYQy+IyuJme4jlFEFikPKkaKjiEByh6Z8jQtgTbCBzumXiJRyqQelTHawGrPyJO8RHpCuMKJGDJP3sPFF2qW@lists.infradead.org
-X-Gm-Message-State: APuU4Z9+/5ndyd3OjV1tHK9dFwfZlA88EyBMdK9hfNcNLUE+rvd1B5Ao
-	yP9Dc4rJ0fKg0/LS19kyQIBXzd2FqypC1rWfEB5aMYKhZhij4m42HfHNNWLrCA8PA5Q=
-X-Gm-Gg: AYBFou2hp1KXKk6JDOyFvFwRmVC+0+k0GQ969O3VfHsRKw+P5Rv1c0kB+XYNZwPyOOv
-	mMUwGTVFFmKrE+FqpwQT2u+ckqrFXK8bNIx/lTStDZKa63Lgf/WbYH4jv13Xq48S1XuZoOB30NK
-	Hlgrl0C/LvGVzuHaZywEL0ldGVeX7Id78ycEpZgyDL3HC6xZmmWKHKOHT7RBPjXI8Rc0HIBwjMP
-	qezCsMEZo5Lq0ePweIm7FA4LZ16yAFwjSsSju0K5AszKoQIKMX6SnMdV+JA1pEQIVu0ZGISKYBB
-	x8rTazVzxIRdpPnlIbwjYt4Rf9+kQda6lENmGJfqEMz3qptOz31cw0s2j+vHGY6O42oUBVFDvce
-	BueNhk4D5xZJCYamRc35JpOj3tInaUvp5NKkB70SfYka/YaRNjRFjRi7HpvKYfl1ptMab0Qv805
-	ScECFaUYe/zf0yDewmV2ReWPJcmv7L516qgI+Vkej4phV86nhN4XRJlEUKQOnT/i2VBgevutbkz
-	7aILD2ZRst0pdpAO1H4aROaIap0dhR0P/P5VjAF3rymsHvAKIn2tPN653ukAwyPKkFjm8NAmwcj
-	BI4KJLltS+XavdTe5juU+xUJRn8jOZhwXnixq5AeCMVIuZF3b1oe6EUbo6f+5QAO+Q24BCpB81y
-	RP3101mpDyP6p9luhYsROOs+MDTbK7PM=
-X-Received: by 2002:a05:6122:222a:b0:5c7:fbb5:6ea0 with SMTP id 71dfb90a1353d-5ee0d068066mr932090e0c.4.1794316234604;
-        Tue, 10 Nov 2026 05:10:34 -0800 (PST)
-Received: from localhost (64.167.245.35.bc.googleusercontent.com. [35.245.167.64])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99c20081409sm1695863241.8.2026.11.10.05.10.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 05:10:33 -0800 (PST)
+	Tue, 10 Nov 2026 13:10:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mkRc94e1BjGh+zrjLiXrf4c6/XT4CzBrFrp254CPwQhDtsVhwsuW+TiH/FplKk2r3mk9E5mi6DGuJ3lboP+lcpdt9c3GfTxaUZS6DU3OqvuknifSjowT26jDLHoMaecOF7WPIgWHDkykqLa2M+hHMDdwwfCIf9m+/AGXSlhTFtUMaPaVtMiYqoMS36D7gbEkAfVfwlVOZg5+hjM3nEG5o2cUiXf8J2L6UH1fcvPP68r0nH9sCqI1e86cUKeiCBJOHO80yznBv9XexBjdQu6fghRT2unI3RPjR49keFVznQBvF17EcCGnZYj8dQBS72AtDHm6AmOTV7yrRwcJkKkWUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zTYAkvEmLyeerTI7MVTbkhwC64035xp5K6FKPBICv5Q=;
+ b=TzbqmO0kdzpgWIPmmgoPZkZNG7JfmuxKH3IQARE1hxwsjGD1xaMAB0Ldnp6c/y5X3xxFW/xR21Rv17LTPf9hnSDsmnwqQw3MaNdlw1h07LAoD2oHNeng6LPXQLES5+9lcF0omjFBnoCP8KZSgw8i2VrPm32tCeQbUyVdGKI8JN6VMda3nnhKTOmTcF1tsK6gpEOWZyZuH88eulU+93EbSMpJOq1EYFYN6vUmc7xXhYDYTwDi7/4NJl2GH02QoQ+66ytpQ0vvLTP9tH9+mFNGpYKlISEr/hTWqamO0glzl7PP/sCDKMGm2zhiFZzqJwlGA3ByZf9dkPjuB5iQ2G0lYg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=st-md-mailman.stormreply.com
+ smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zTYAkvEmLyeerTI7MVTbkhwC64035xp5K6FKPBICv5Q=;
+ b=JQcJM2BFOUAGx8bPuZjyHZztSeEpVi7Pad48Eb3zh9ldZ/0sulCkGyouyMBhhkbkWBjk+leAO47/wG+dDW5Z6Y6kPG5p1iO/3mgcO9+q/e4JVoYb79IG4AesAcjyBHODgY3deoU4gAfSeVE+7Y0OgHNHfMdhF83hDYwIIfsYLuPDlGV/8oN2O9xTglV4qlzk843JLnGZX8p0zff/ZAoPR2mve/5wqSfwCNxC+/uuOPSrPyF4rAZvVvqDUTR5bL6TEGxDuu9P2clSD5cL77/vFChqLCb7TjJujFmvvt9bw4t1X4AhTp7JAn0qRJDsJSO2hrROLZjPx7ewoAvT7grVkA==
+Received: from DUZPR01CA0319.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4ba::18) by AS2PR10MB6427.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:546::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Tue, 10 Nov
+ 2026 13:10:30 +0000
+Received: from DU2PEPF00028D0E.eurprd03.prod.outlook.com
+ (2603:10a6:10:4ba:cafe::5d) by DUZPR01CA0319.outlook.office365.com
+ (2603:10a6:10:4ba::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Tue, 10
+ Nov 2026 13:10:26 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DU2PEPF00028D0E.mail.protection.outlook.com (10.167.242.22) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 13:10:25 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 10 Nov
+ 2026 14:11:06 +0100
+Received: from localhost (10.48.87.14) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 10 Nov
+ 2026 14:10:25 +0100
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Date: Tue, 10 Nov 2026 14:10:25 +0100
+Subject: [PATCH v2 5/5] arm64: dts: st: add LTDC pixel clock controller on
+ stm32mp25
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Nov 2026 08:10:32 -0500
-Message-Id: <DMRK0PU0VCN3.15F59WLOQ05P4@soleen.com>
-To: "Tarun Sahu" <tarunsahu@google.com>, "Pasha Tatashin"
- <pasha.tatashin@soleen.com>, "Mike Rapoport" <rppt@kernel.org>,
- <robin.murphy@arm.com>, <maz@kernel.org>, <will@kernel.org>, "David
- Matlack" <dmatlack@google.com>, "Alexander Graf" <graf@amazon.com>,
- <seanjc@google.com>, <jgg@nvidia.com>, <loganodell@google.com>,
- <arnd@arndb.de>, <dwmw2@infradead.org>, <baolu.lu@linux.intel.com>, "Bjorn
- Helgaas" <bhelgaas@google.com>, <oupton@kernel.org>, <alex@shazbot.org>,
- <gle.com@google.com>, <pbonzini@redhat.com>, "Andrew Morton"
- <akpm@linux-foundation.org>, <kevin.tian@intel.com>, <joro@8bytes.org>
-Cc: <kvmarm@lists.linux.dev>, <linux-pci@vger.kernel.org>, "Pratyush Yadav"
- <pratyush@kernel.org>, <kexec@lists.infradead.org>, <kvm@vger.kernel.org>,
- <iommu@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
- <skhawaja@google.com>, <sagis@google.com>, <linux-arch@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 02/19] kho: block: Record the entry size in the block
- header
-From: "Pasha Tatashin" <pasha.tatashin@soleen.com>
-X-Mailer: aerc 0.22.0-39-g5d7784875be2
-References: <20261110050202.529473-1-tarunsahu@google.com>
- <20261110050202.529473-3-tarunsahu@google.com>
-In-Reply-To: <20261110050202.529473-3-tarunsahu@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261110-ups_mp25_clk_syscfg-v2-5-624559bb8ec7@foss.st.com>
+References: <20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com>
+In-Reply-To: <20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com>
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794316221; l=2481;
+ i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
+ bh=Tzb5sNPI0J+nQs51D07/6E51im5s63BGs9nZS7k8hCc=;
+ b=8JfDsR8PHNeYGDvs2QhFInKo0UWJA9GY9aCGNTL/qjcVdBAGNzXl66m1qzkoIvq1/ivui6/pQ
+ FmD2U/Ng+tRArA+Ej4AoITj5f3uLpnzNgpYLGaeVcdMd1TDXhxcCcUg
+X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
+ pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D0E:EE_|AS2PR10MB6427:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ef597dd-e26f-43b5-c823-08df3f2bfc61
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|23010399003|7416014|376014|1800799024|36860700016|11063799006|56012099006|10067099003|261022105027099003|261021121427099003|261021123027099003|261021135927099003|261028144727099003|261102123227099003|261009223027099003|261026140227099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 68NtCNIZPbuhuET0oezet+U7uVFKee6Y89Dcmnkek39NlTN7BTw7XE+rgoX/ktyvMrPMbrJ4FUQ8bSxkeM24oyrULcxZWJMpl4wsCa6yRxwTYET67nra1I3a1mux8b5S9WSKbpHW3pATlbjA1N5Q9oAomy4p2kN310Btg+CdVvDITGWZQvIAf9FrL8eaZWkoHe50pX9EWKf2Mz+He6cO9UkvH1w7RAg3pphVOMr76ytN7LQmKZHG+mE1JD6/8/xqmwBGznLPtCHQB7soqzKtV2vJ3s2HiHsvg3WoAc8vYNxr3IhMNi2bvyxN06OTpxqXrgk/9HEnTGvFtRJi1Qfwr4IidUO7x3qhImmOpy0YhgC3RC+RwzI2sTclFdNj2FG+r6+FRRnTiLO/wtsS0AqOEaD4ltma8CXWP91pD5umDieNsuU6ZYKSDfWojDedFAiGe37f8pmVPXM3IefGSWv+JNoVQXLG2lxrjlkcxHC0BWO2JfIe2J+B8txRiA0E8H2JmLd8Xkmg8o3hbpZnx08mWQxIkGG9uTugPHNRpBx8S1PRSWLBAVD84w3lFnqeb/gZD64b/s+Cfyn0gg4kW409nWnWDg/lvLcjcSr0hPH1FRb9gm1TWSjTgfJVkwQeuA5XIYn2ZWGbyed8vvp7ahVRGccl27d/voIbqY88UgxsbhhTbM/5HRr97mALkGL2fThlmWrhePF6vEb+UuUP2gwoPQ==
+X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(23010399003)(7416014)(376014)(1800799024)(36860700016)(11063799006)(56012099006)(10067099003)(261022105027099003)(261021121427099003)(261021123027099003)(261021135927099003)(261028144727099003)(261102123227099003)(261009223027099003)(261026140227099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: FxIE5GQeVVDkh//TKsaSOsZUROUQBnLqvvCueLUNOaIDlR5VIP1JkrSbtOCVz5Wr7/J6FAe5wbaCBpXcFFBVa1+eDj9+jUN+F6KOlTTDXJtVbvmz2BL3/Vxszxv32xAvDR2JH5XAxuN2M7SnZX9t/vpiq9+X+irBjlwb8HPreWoVkJ1BPgQFXNBr2GqJvvcNhgztTgeXdfLBMUAWHGhO0+AW4YSCK6KUfWMjnBtcsz+Mz+tOoJErhVwaaKPYGA2xulorYQxHDgNqgmxes6LjSWb1rDnNSm7y361wnTtdkaln6ZOiu/JbpHy4k35QCO66ANJmizQkixphcyI3ZQyjXcWe4Cb9KpuTkjnR146tmIYhd5NrsTaAVHf0AeZlyAHDypAdcMTSiZeWKEpyXgKIfUTirFTePzxIvFRgbUs7eqx+g+Es8wlphwuBwHE1O50z
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 13:10:25.9186
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ef597dd-e26f-43b5-c823-08df3f2bfc61
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028D0E.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR10MB6427
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_051036_327790_83CF29B8 
-X-CRM114-Status: GOOD (  41.84  )
+X-CRM114-CacheID: sfid-20261110_051038_973250_72E11FAF 
+X-CRM114-Status: GOOD (  11.88  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,232 +139,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue Nov 10, 2026 at 12:01 AM EST, Tarun Sahu wrote:
-> Subsystems using the KHO Serialization Blocks framework currently do
-> not record the serialized entry size in the block header. The entry size
-> is only known to individual callers, which must track and store it in an
-> owning serialized data structure. If a newer source kernel adds fields
-> to an entry, the changed entry size breaks the stride when an older
-> target kernel iterates over blocks.
->
-> Add an entry_size field to struct kho_block_header_ser. On the outgoing
-> side, record bs->entry_size into every block header during allocation.
-> During restoration, derive the entry stride directly from the block
-> header instead of relying on caller-supplied dimensions. The
-> kho_block_set_init() interface remains unchanged. A zero entry size,
-> or one that differs between blocks of a set, is rejected during
-> restoration.
->
-> This change modifies the serialized layout of struct kho_block_header_ser
-> and shifts the offset of serialized entries within preserved blocks.
-> Bump KHO_FDT_COMPATIBLE from kho-v4 to kho-v5 so that pre-v5 and post-v5
-> kernels cleanly reject mismatched handover state during boot. Also
-> update the stale compatible string example in the documentation.
->
-> Suggested-by: Pratyush Yadav <pratyush@kernel.org>
-> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
-> ---
->  include/linux/kho/abi/block.h          | 10 ++++----
->  include/linux/kho/abi/kexec_handover.h |  6 ++---
->  kernel/liveupdate/kho_block.c          | 32 +++++++++++++++++++++++---
->  3 files changed, 38 insertions(+), 10 deletions(-)
->
-> diff --git a/include/linux/kho/abi/block.h b/include/linux/kho/abi/block.=
-h
-> index 36bdbaf9b3b8..a40b0906c821 100644
-> --- a/include/linux/kho/abi/block.h
-> +++ b/include/linux/kho/abi/block.h
-> @@ -40,9 +40,10 @@
-> =20
->  /**
->   * struct kho_block_header_ser - Header for the serialized data block.
-> - * @next:  Physical address of the next struct kho_block_header_ser.
-> - * @count: The number of entries that immediately follow this header in =
-the
-> - *         memory block.
-> + * @next:       Physical address of the next struct kho_block_header_ser=
-.
-> + * @count:      The number of entries that immediately follow this heade=
-r in the
-> + *              memory block.
-> + * @entry_size: The size in bytes of each serialized entry in the block.
->   *
->   * This structure is located at the beginning of a block of physical mem=
-ory
->   * preserved across a kexec. It provides the necessary metadata to inter=
-pret
-> @@ -51,9 +52,10 @@
->  struct kho_block_header_ser {
->  	u64 next;
->  	u64 count;
-> +	u64 entry_size;
->  };
-> =20
-> -static_assert(sizeof(struct kho_block_header_ser) =3D=3D 16);
-> +static_assert(sizeof(struct kho_block_header_ser) =3D=3D 24);
->  static_assert(!IS_ENABLED(CONFIG_64BIT) ||
->  	      __alignof__(struct kho_block_header_ser) =3D=3D 8);
+Describe the LTDC pixel clock multiplexer of the SYSCFG as a
+clock-controller sub-node and use it as the LTDC "ref" clock instead of
+the SYSCFG node itself, whose deprecated "#clock-cells" property is
+removed.
 
-The above change goes away once my comment on the previous patch=20
-is addressed.
+Only the LTDC kernel clock is available as parent on STM32MP251; the
+LVDS and DSI clocks are added on STM32MP255.
 
-> =20
-> diff --git a/include/linux/kho/abi/kexec_handover.h b/include/linux/kho/a=
-bi/kexec_handover.h
-> index 2f4fb9c63942..6f12f5037ea5 100644
-> --- a/include/linux/kho/abi/kexec_handover.h
-> +++ b/include/linux/kho/abi/kexec_handover.h
-> @@ -41,7 +41,7 @@
->   *   restore the preserved data.::
->   *
->   *     / {
-> - *         compatible =3D "kho-v3";
-> + *         compatible =3D "kho-v5";
->   *
->   *         preserved-memory-map =3D <0x...>;
->   *
-> @@ -62,7 +62,7 @@
->   *     };
->   *
->   *   Root KHO Node (/):
-> - *     - compatible: "kho-v3"
-> + *     - compatible: "kho-v5"
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 9 ++++++++-
+ arch/arm64/boot/dts/st/stm32mp255.dtsi | 8 +++++++-
+ 2 files changed, 15 insertions(+), 2 deletions(-)
 
-These are just examples, don't update them.
+diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+index dac3d2d23ff0..8d644153dbcb 100644
+--- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+@@ -4,6 +4,7 @@
+  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+  */
+ #include <dt-bindings/clock/st,stm32mp25-rcc.h>
++#include <dt-bindings/clock/st,stm32mp25-syscfg-clk.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+ #include <dt-bindings/regulator/st,stm32mp25-regulator.h>
+@@ -2076,10 +2077,16 @@ exti1: interrupt-controller@44220000 {
+ 		syscfg: syscon@44230000 {
+ 			compatible = "st,stm32mp25-syscfg", "syscon";
+ 			reg = <0x44230000 0x10000>;
+-			#clock-cells = <0>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 
++			syscfg_clk: clock-controller {
++				compatible = "st,stm32mp25-syscfg-clk";
++				#clock-cells = <1>;
++				clocks = <&rcc CK_KER_LTDC>;
++				clock-names = "ltdc";
++			};
++
+ 			usb2_phy1: phy@2400 {
+ 				compatible = "st,stm32mp25-usb2phy1";
+ 				reg = <0x2400 0x24>;
+diff --git a/arch/arm64/boot/dts/st/stm32mp255.dtsi b/arch/arm64/boot/dts/st/stm32mp255.dtsi
+index 7a598f53a2a0..08cbc383af20 100644
+--- a/arch/arm64/boot/dts/st/stm32mp255.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp255.dtsi
+@@ -7,10 +7,16 @@
+ 
+ &ltdc {
+ 	compatible = "st,stm32mp255-ltdc";
+-	clocks = <&clk_flexgen_27_fixed>, <&rcc CK_BUS_LTDC>, <&syscfg>, <&lvds>;
++	clocks = <&clk_flexgen_27_fixed>, <&rcc CK_BUS_LTDC>,
++		 <&syscfg_clk CK_SYSCFG_PIX_LTDC>, <&lvds>;
+ 	clock-names = "lcd", "bus", "ref", "lvds";
+ };
+ 
++&syscfg_clk {
++	clocks = <&rcc CK_KER_LTDC>, <&lvds>, <&clk_dsi_txbyte>;
++	clock-names = "ltdc", "lvds", "dsi";
++};
++
+ &rifsc {
+ 	lvds: lvds@48060000 {
+ 		compatible = "st,stm32mp255-lvds", "st,stm32mp25-lvds";
 
->   *
->   *       Identifies the overall KHO ABI version.
->   *
-> @@ -90,7 +90,7 @@
->   */
-> =20
->  /* The compatible string for the KHO FDT root node. */
-> -#define KHO_FDT_COMPATIBLE "kho-v4"
-> +#define KHO_FDT_COMPATIBLE "kho-v5"
-> =20
->  /* The FDT property for the preserved memory map. */
->  #define KHO_FDT_MEMORY_MAP_PROP_NAME "preserved-memory-map"
-> diff --git a/kernel/liveupdate/kho_block.c b/kernel/liveupdate/kho_block.=
-c
-> index 0d2a342ef422..9b148009085e 100644
-> --- a/kernel/liveupdate/kho_block.c
-> +++ b/kernel/liveupdate/kho_block.c
-> @@ -16,6 +16,12 @@
->   * array of serialized entries. Multiple blocks are linked together via =
-a
->   * physical pointer in the header, forming a linked list that can be eas=
-ily
->   * traversed in both the current and the next kernel.
-> + *
-> + * Each block header also records the size of its entries. A newer kerne=
-l may
-
-"newer kernel" does not make sense in the documentation comment, as any=20
-kernel can do that. I would suggest "outgoing kernel." By the way, in=20
-this series you use the terms "source" and "destination" kernel, whereas=20
-traditionally we have used "outgoing" and "incoming." While both=20
-conventions work, it would be preferable to maintain consistency.
-
-> + * append fields to an entry, so the kernel that writes a block and the =
-kernel
-> + * that reads it can use different entry sizes. The reader steps through=
- the
-> + * entries with the recorded size, so every entry is found, and it does =
-not read
-> + * beyond the recorded size of an entry.
->   */
-> =20
->  #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-> @@ -110,6 +116,8 @@ static int kho_block_set_grow_one(struct kho_block_se=
-t *bs)
->  	if (IS_ERR(ser))
->  		return PTR_ERR(ser);
-> =20
-> +	ser->entry_size =3D bs->entry_size;
-> +
->  	err =3D kho_block_add(bs, ser);
->  	if (err) {
->  		kho_block_free_ser(bs, ser);
-> @@ -242,7 +250,8 @@ static bool kho_block_set_is_cyclic(struct kho_block_=
-set *bs)
->   *
->   * Restores a serialized block set from a given physical address. The ca=
-ller is
->   * responsible for ensuring that the block set @bs has been allocated an=
-d
-> - * initialized prior to calling this function.
-> + * initialized prior to calling this function. The entry size and the nu=
-mber
-> + * of entries per block are taken from the restored block headers.
->   *
->   * Return: 0 on success, or a negative errno on failure.
->   */
-> @@ -250,6 +259,7 @@ int kho_block_set_restore(struct kho_block_set *bs, u=
-64 head_pa)
->  {
->  	struct kho_block_header_ser *ser;
->  	u64 next_pa =3D head_pa;
-> +	u64 entry_size =3D 0;
->  	int err;
-> =20
->  	/* Restored block sets use size from the previous kernel */
-> @@ -264,8 +274,21 @@ int kho_block_set_restore(struct kho_block_set *bs, =
-u64 head_pa)
->  	}
-> =20
->  	while (next_pa) {
-> +		u64 capacity;
-> +
->  		ser =3D phys_to_virt(next_pa);
-> -		if (!ser->count || ser->count > bs->count_per_block) {
-> +		if (!ser->entry_size || (entry_size && ser->entry_size !=3D entry_size=
-)) {
-> +			pr_warn("Block contains invalid entry size: %llu\n",
-> +				ser->entry_size);
-> +			err =3D -EINVAL;
-> +			goto err_destroy;
-> +		}
-> +		entry_size =3D ser->entry_size;
-> +		bs->entry_size =3D entry_size;
-> +		capacity =3D (KHO_BLOCK_SIZE - sizeof(*ser)) / bs->entry_size;
-> +		bs->count_per_block =3D capacity;
-> +
-> +		if (!ser->count || ser->count > capacity) {
->  			pr_warn("Block contains invalid entry count: %llu\n",
->  				ser->count);
->  			err =3D -EINVAL;
-> @@ -370,7 +393,10 @@ void *kho_block_set_it_reserve_entry(struct kho_bloc=
-k_set_it *it)
->   * @it: The block iterator.
->   *
->   * Iterates through previously written entries during state deserializat=
-ion,
-> - * respecting the actual count stored in each block's header.
-> + * respecting the actual count stored in each block's header. Entries ar=
-e
-> + * spaced by the entry size recorded by the kernel that wrote them, whic=
-h can
-> + * be smaller or larger than the caller's structure. Fields beyond that =
-size
-> + * are not present in the entry.
->   *
->   * Return: A pointer to the next serialized entry, or NULL if all serial=
-ized
->   * entries have been read.
-
-
-
-
-
---=20
-Pasha
+-- 
+2.43.0
 
 
