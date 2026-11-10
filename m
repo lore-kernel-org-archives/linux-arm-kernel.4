@@ -2,111 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A27C7606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A760D606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K/ViB7cL;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=iU/f6eXO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=S2Ym4jNv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=C+/uVY1F
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yGHrtx5n1eB8ok7Jt62o7lZ8pEvwW6QKVgKkvamRcyA=; b=K/ViB7cLciyWVV
-	iIZ2SnZ0JCNGH2BVt2VsL51hn+hP1onK8O9ePntx4KrJohWwOQvfkl7Z7iz6YNhY9QuPw/57lV1Qd
-	6RIo548JaQJLWs99oKvezvCHwn+kT2CJyC5qx/rY5/K6s9No4NA0Yp6saT46l/skBhJLeI1YVhUUe
-	q/HQBw0flvbbK6q7A6bAUUUHI798XIF31kwMrGIXEnnzb/VL8PFNvs0topwPcq72XZv6cyIhQCSGo
-	2KG9G9SDMjQPjU4woH4DbSuNqWZFa9r5aoWtbAl3gFf1jxIS9tyMM4nNtTVWq1Bg6utrsyw7nmdAy
-	YfiTGv4gtqj+BfSspNFQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ZRAi0FDh12qnpfYeLj6iY5LoEiQS1o5jjozIS5Vb968=; b=S2Ym4jNvRV0jp0DplkbdsAopT4
+	mWbo5SH6OsKw5yeEpfFWCPPUWJK8xTfgmT90CMdvAzm+ugudeiGcLruLTaVLD915juiBgIRXvMZ2U
+	44HjouySvogb/P9KHmA4yXVGnXhT7vVthk9QriC8bAfrs3jSk4+cCyIPeNza1vmSGhGlNs2vgGm9D
+	SA4cS/z2tW0Usw2oAIC97JrHCJjgLwF5e3zbkIx6uBtkuW6LXUyerNEBWIhIviR/DLzFuFhojItRP
+	82zNU1VsroWJs8QaTcBRTMiwZUyTKaIEffqG7KHy6zPZxdN9yP7RD++zSm+vQAVAXP2QtV4q4UROQ
+	VDQZnG0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjZY-00000003YBc-2G6o;
-	Tue, 10 Nov 2026 10:59:28 +0000
-Received: from mail-wr1-x42d.google.com ([2a00:1450:4864:20::42d])
+	id 1xQjZs-00000003YTK-1cSj;
+	Tue, 10 Nov 2026 10:59:48 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjZQ-00000003Y6q-2oAF
+	id 1xQjZq-00000003YRa-38B6
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:59:22 +0000
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-48e46e449e8so1245578f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:59:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794308359; x=1794913159; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=yGHrtx5n1eB8ok7Jt62o7lZ8pEvwW6QKVgKkvamRcyA=;
-        b=iU/f6eXOG8zhYoTTrGnE/jVpesiH0oYvvJlrklHfZ1hp/8hKwQ8G7sUXpcCDgHfwsT
-         CmpQcM1Nn+dGqnkyzPZRo9ngIQYM1Qs0sUbSIQ937ak97keH089fHdkoyyJxGB7S9Y/+
-         sij6m1Mx2eZFXWS/oyZQ3tffTwDG//v4RtC7qdqxCnPSElkJmexcJi76SwUfNy13qNpO
-         NT9moN5fxj47YZD1cIHUMkYe20rkK0a4i/GXbw4QLFVnzj/UA0RGqbFGU9fAIds48emm
-         Ooj5CNpts3ta4gU0mwelLUzpiXxu+VIbZaZ7opND1iT4Yyc0fx6IOBbX+EBMf8FG+hNT
-         IghA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794308359; x=1794913159;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=yGHrtx5n1eB8ok7Jt62o7lZ8pEvwW6QKVgKkvamRcyA=;
-        b=KaaXSckx8zsuirRlTnNqKy8F3kh08xwPr+7pKokjmT6ig/T+Ke0xXrZQVnut5yW6YV
-         5ETKKdHI7nHtxFHEaTrWo4dSAMuFEIpq1rCI+/ErfJ82hwM2tb2zM4XP344gkASECwJg
-         k2/kwTb/IexZcJ7ya8unxmFNAzqRgmJn+rzNWmdFs34epgF1OXQ4DO0galZIqL5ZRRlH
-         4zK1ioRCqlAUkaaKNv8dOnSIuyCFFApvUhC7bukEcFKjZZYAUV/O/RsfZTbIsgO1/4tZ
-         2fXuBfyLeiCzJdKR4mmhGboxbUCs0xctiVZGyE74UgsuHRUSOaoYTINKgFnHED92Vi7c
-         yaIg==
-X-Forwarded-Encrypted: i=1; AL+hErHpWeLEQLmwGpYkdFSSTxt+Py/m+ylM+h3N2qG4YCpakpH9/rlZSyT9voHE1J8RpJkuz4zH0ZmEwRcKer3WCeCs@lists.infradead.org
-X-Gm-Message-State: APuU4Z/4htBY0KivuiiwsR+u5ofb2mmwG8jak6wN8BuwkcJGTWtGU1TW
-	ekYCYWNBn033XowBzO9Iim6V/xUbhCGACH0pX8KeNpVdiRwLWVKj6D54
-X-Gm-Gg: AYBFou3abJHaMkOwR7bme/V+ef1zG4E+ZX/Z4Pk0SnLD3cMq0TFAZBNi8laww3Kpvtm
-	Nuio9iY+//1oOXbiEKvj5vSjf2//0x1dAyMoz98KWammf4zU1lBCm6gDyVzcO/4zlwKO8R5f4Dw
-	n/VMoK+W2zj/VX2sJNS9LjMK8QzdmAdrrhOo+jzxTtmLB0Ogs7meGitbrPXz6+a6equvlFtTR3+
-	GrrfTN/qWJ0HqhuPbQuNGxFGCjmPGxGHVsOT/ZAR+kAOVDLukZXUGa9Sy+Pv7DHCW2wRaoPe5GS
-	eWfCtHrfsV6pY/ZZeif2REwjiANhpAg7spmFZfDmRD33uKuoi7lIh59Lxh+zlh27Igg+3QMLGSV
-	LBVc7cZM17dz3X824UwoemnzTjGSnGQpGBEygjfqLHZdcClocqmKq+ajAD3WC8QwNXzMf/PYg7G
-	2UMR3EgCCOFjKrurxlYodRUbp63l7bNt/5c7M7ja9xMW7r7oAwyXrhO0ETPz1g6f8v4QLM8mPKc
-	DiooMH6b8v+dMQwFDgvM+j8SV1kZqJkDcGmZ3n52jSbFjrCgvDYAjy1BYNGgMW/qdiuyYoBiACR
-	X5D5vzdR3K2yr61UTniZbggYHaNxsIJzsbGw5g5tORME3dxNcL0GofyrKxYuLN3IqYEGariBM5d
-	Alu7PlLUhVRrnuIDiIkZ4z6c5Hup+QZGqXxM5Z59d4j6BKQ8J6+Q=
-X-Received: by 2002:a05:6000:25f1:b0:491:9fc1:e6c2 with SMTP id ffacd0b85a97d-498318067demr3878592f8f.51.1794308358680;
-        Tue, 10 Nov 2026 02:59:18 -0800 (PST)
-Received: from [10.0.1.33] (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4988bdef64dsm2933551f8f.20.2026.11.10.02.59.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 02:59:18 -0800 (PST)
-From: Antoine Gouby <antoine.gouby@gmail.com>
-Date: Tue, 10 Nov 2026 11:59:14 +0100
-Subject: [PATCH v2 2/6] ARM: dts: imx6dl-colibri: Add HDMI DTBs
+	Tue, 10 Nov 2026 10:59:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id CCB23637EA;
+	Tue, 10 Nov 2026 10:59:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 819E91F008A1;
+	Tue, 10 Nov 2026 10:59:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794308385;
+	bh=ZRAi0FDh12qnpfYeLj6iY5LoEiQS1o5jjozIS5Vb968=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=C+/uVY1FCOgYsFoFwCEx5osZbgdLma+t0+9g5me4CrJMuL+HLP/7Z7OsESx/10pdW
+	 DzJCwsL5eD8t6XOYzYMwGhuTHZj+ljTG5gKDCC4kzmQjFL7ZhubrEqKkq8P/i0u6Ui
+	 z863mwPRMCtjTuqD6pf04KzhMxy8aCPEbxdRNSLHJCjlxF8gj/CXgBTuhU8/lEz1s3
+	 9TO7+/YexWZENcDST0DCx54bj75AUU68pVNL3zowaLe39c/FgMEaWixVqeuVY44QhC
+	 SKwzRIycA2bTZIn7yyKouFkduj7xgYk1n0qN4EfgmqaHVAMxwNKlzfgx4abK8EMrM7
+	 QEgAYnOl4Q2LQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xQjZn-0000000DiSU-0wAO;
+	Tue, 10 Nov 2026 10:59:43 +0000
+Date: Tue, 10 Nov 2026 10:59:42 +0000
+Message-ID: <86wlql0x5t.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dan Carpenter <dan@cryspen.com>
+Cc: Eric Auger <eric.auger@redhat.com>,	Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>,	Joey Gouly <joey.gouly@arm.com>,	Steffen
+ Eiden <seiden@linux.ibm.com>,	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,	Catalin Marinas
+ <catalin.marinas@arm.com>,	Will Deacon <will@kernel.org>,	Mark Rutland
+ <mark.rutland@arm.com>,	Carlos =?UTF-8?B?TMOzcGV6?= <clopez@suse.de>,
+	Sascha Bischoff <sascha.bischoff@arm.com>,	Jackie Liu
+ <liuyun01@kylinos.cn>,	Christoffer Dall <cdall@linaro.org>,
+	linux-arm-kernel@lists.infradead.org,	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org,	Karthik Bhargavan <karthik@pereq.eu>,
+	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>
+Subject: Re: [PATCH] KVM: arm64: vgic-its: Reject ITS_REGS offsets above U32_MAX
+In-Reply-To: <f4b5c3247f88b9c469758f8e14a386364332f9f4.1794251681.git.dan@cryspen.com>
+References: <f4b5c3247f88b9c469758f8e14a386364332f9f4.1794251681.git.dan@cryspen.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-colibri-imx6-overlays-v2-2-9776c186d953@toradex.com>
-References: <20261110-colibri-imx6-overlays-v2-0-9776c186d953@toradex.com>
-In-Reply-To: <20261110-colibri-imx6-overlays-v2-0-9776c186d953@toradex.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Antoine Gouby <antoine.gouby@toradex.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3399;
- i=antoine.gouby@toradex.com; h=from:subject:message-id;
- bh=GHGYqwad2/GX2e2ukD9rodYOQ4ugyd56E1reFr0Fgm8=;
- b=owGbwMvMwCWm0rPo7MxLN2YynlZLYsj69JM57YwY/5OWw3N9bT5oSubGevhsdjy4tI1LkOPaQ
- wvJBUxiHaUsDGJcDLJiiiwZT1QF+RRCZD04mpNh5rAygQxh4OIUgIl8bGH4X+f75cqef15Gzrnf
- na48MY9zdskKWCCp+D3lskzszPRvvAx/Re6HWVxjT55rznBBo/CW/kR2pdtzg98nG09brFqn9aq
- ZBwA=
-X-Developer-Key: i=antoine.gouby@toradex.com; a=openpgp;
- fpr=68E425110E20541D48088363248CA2CD99D2D899
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_025920_744739_24225AA9 
-X-CRM114-Status: GOOD (  11.29  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dan@cryspen.com, eric.auger@redhat.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, clopez@suse.de, sascha.bischoff@arm.com, liuyun01@kylinos.cn, cdall@linaro.org, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, karthik@pereq.eu, clement@cryspen.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,108 +88,121 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Antoine Gouby <antoine.gouby@toradex.com>
+On Tue, 10 Nov 2026 05:07:22 +0000,
+Dan Carpenter <dan@cryspen.com> wrote:
+> 
+> The "offset" variable is a u64 that the user controls through the
+> KVM_SET_DEVICE_ATTR, KVM_GET_DEVICE_ATTR and KVM_HAS_DEVICE_ATTR
+> ioctls.  The problem is vgic_find_mmio_region() truncates the u64 to a
+> u32, so it could return a valid region instead of failing.  Then we
+> use the original incorrect value of "offset" to calculate "addr".
+> 
+> 	addr = its->vgic_its_base + offset;
+> 
+> The impact of this bug is relatively minor.  A user in the kvm group
+> could potentially crash the VMM which they can already do without using
+> a bug.
+> 
+> Fixes: 8331c23c28e8 ("KVM: arm64: vgic-its: Implement vgic_its_has_attr_regs and attr_regs_access")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Dan Carpenter <dan@cryspen.com>
+> ---
+>  arch/arm64/kvm/vgic/vgic-its.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/kvm/vgic/vgic-its.c b/arch/arm64/kvm/vgic/vgic-its.c
+> index 5ce485485a11..532a82bed24c 100644
+> --- a/arch/arm64/kvm/vgic/vgic-its.c
+> +++ b/arch/arm64/kvm/vgic/vgic-its.c
+> @@ -2018,6 +2018,9 @@ static int vgic_its_has_attr_regs(struct kvm_device *dev,
+>  	gpa_t offset = attr->attr;
+>  	int align;
+>  
+> +	if (offset > U32_MAX)
+> +		return -ENXIO;
+> +
+>  	align = (offset < GITS_TYPER) || (offset >= GITS_PIDR4) ? 0x3 : 0x7;
+>  
+>  	if (offset & align)
+> @@ -2045,6 +2048,9 @@ static int vgic_its_attr_regs_access(struct kvm_device *dev,
+>  	its = dev->private;
+>  	offset = attr->attr;
+>  
+> +	if (offset > U32_MAX)
+> +		return -ENXIO;
+> +
+>  	/*
+>  	 * Although the spec supports upper/lower 32-bit accesses to
+>  	 * 64-bit ITS registers, the userspace ABI requires 64-bit
 
-Combine the generic i.MX HDMI overlay with the Colibri iMX6 carrier
-board device trees to provide ready-to-use DTBs with the HDMI output
-enabled.
+I think this is going in the wrong direction. Instead of capping the
+offset at an arbitrary value, the infrastructure should be able to
+deal with arbitrary offsets.
 
-The HDMI interface is not available on the Colibri SODIMM connector, it
-is exposed through a dedicated 24-pin FFC connector on the module. The
-FFC cable connects either directly to the Colibri Evaluation Board and
-Iris carrier boards, which provide their own display output connectors,
-or to the Colibri HDMI Adapter, which provides an HDMI connector and can
-also be used with carrier boards without a dedicated display FFC
-connector, such as Aster.
+Could you try the following (untested) hack?
 
-The DTBs are provided for the various versions of the Aster, Evaluation
-Board v3, Iris and Iris v2 carrier boards, including the Colibri iMX6
-V1.2 variants.
+I also don't think this is worth a Cc stable (the worse case is that
+the VMM accesses an emulated register and sets something nonsensical),
+which it can always do.
 
-Link: https://developer.toradex.com/hardware/colibri-som-family/modules/colibri-imx6/
-Link: https://developer.toradex.com/hardware/colibri-som-family/add-ons/colibri-hdmi-adapter/
-Link: https://developer.toradex.com/hardware/colibri-som-family/carrier-boards/colibri-evaluation-board/
-Link: https://developer.toradex.com/hardware/colibri-som-family/carrier-boards/iris-carrier-board/
-Signed-off-by: Antoine Gouby <antoine.gouby@toradex.com>
----
- arch/arm/boot/dts/nxp/imx/Makefile | 40 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+Thanks,
 
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index d03a8d2845e9..c72920658609 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -60,6 +60,38 @@ dtb-$(CONFIG_SOC_IMX53) += \
- imx53-qsb-hdmi-dtbs := imx53-qsb.dtb imx53-qsb-hdmi.dtbo
- imx53-qsrb-hdmi-dtbs := imx53-qsrb.dtb imx53-qsb-hdmi.dtbo
+	M.
+
+diff --git a/arch/arm64/kvm/vgic/vgic-mmio.c b/arch/arm64/kvm/vgic/vgic-mmio.c
+index fddb9da0403d5..8f9ebe241e9e4 100644
+--- a/arch/arm64/kvm/vgic/vgic-mmio.c
++++ b/arch/arm64/kvm/vgic/vgic-mmio.c
+@@ -820,13 +820,13 @@ void vgic_write_irq_line_level_info(struct kvm_vcpu *vcpu, u32 intid,
  
-+imx6dl-colibri-aster-hdmi-dtbs := \
-+	imx6dl-colibri-aster.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-eval-v3-hdmi-dtbs := \
-+	imx6dl-colibri-eval-v3.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-iris-hdmi-dtbs := \
-+	imx6dl-colibri-iris.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-iris-v2-hdmi-dtbs := \
-+	imx6dl-colibri-iris-v2.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-v1.2-aster-hdmi-dtbs := \
-+	imx6dl-colibri-v1.2-aster.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-v1.2-eval-v3-hdmi-dtbs := \
-+	imx6dl-colibri-v1.2-eval-v3.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-v1.2-iris-hdmi-dtbs := \
-+	imx6dl-colibri-v1.2-iris.dtb \
-+	imx-hdmi.dtbo
-+
-+imx6dl-colibri-v1.2-iris-v2-hdmi-dtbs := \
-+	imx6dl-colibri-v1.2-iris-v2.dtb \
-+	imx-hdmi.dtbo
-+
- imx6qdl-dhcom-pdk2-overlay-497-200-x12-dtbs := \
- 	imx6q-dhcom-pdk2.dtb \
- 	imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtbo
-@@ -93,13 +125,21 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-aristainetos2_4.dtb \
- 	imx6dl-aristainetos2_7.dtb \
- 	imx6dl-colibri-aster.dtb \
-+	imx6dl-colibri-aster-hdmi.dtb \
- 	imx6dl-colibri-eval-v3.dtb \
-+	imx6dl-colibri-eval-v3-hdmi.dtb \
- 	imx6dl-colibri-iris.dtb \
-+	imx6dl-colibri-iris-hdmi.dtb \
- 	imx6dl-colibri-iris-v2.dtb \
-+	imx6dl-colibri-iris-v2-hdmi.dtb \
- 	imx6dl-colibri-v1.2-aster.dtb \
-+	imx6dl-colibri-v1.2-aster-hdmi.dtb \
- 	imx6dl-colibri-v1.2-eval-v3.dtb \
-+	imx6dl-colibri-v1.2-eval-v3-hdmi.dtb \
- 	imx6dl-colibri-v1.2-iris.dtb \
-+	imx6dl-colibri-v1.2-iris-hdmi.dtb \
- 	imx6dl-colibri-v1.2-iris-v2.dtb \
-+	imx6dl-colibri-v1.2-iris-v2-hdmi.dtb \
- 	imx6dl-cubox-i.dtb \
- 	imx6dl-cubox-i-emmc-som-v15.dtb \
- 	imx6dl-cubox-i-som-v15.dtb \
+ static int match_region(const void *key, const void *elt)
+ {
+-	const unsigned int offset = (unsigned long)key;
++	const u64 offset = (unsigned long)key;
+ 	const struct vgic_register_region *region = elt;
+ 
+-	if (offset < region->reg_offset)
++	if (offset < (u64)region->reg_offset)
+ 		return -1;
+ 
+-	if (offset >= region->reg_offset + region->len)
++	if (offset >= (u64)region->reg_offset + region->len)
+ 		return 1;
+ 
+ 	return 0;
+@@ -834,9 +834,9 @@ static int match_region(const void *key, const void *elt)
+ 
+ const struct vgic_register_region *
+ vgic_find_mmio_region(const struct vgic_register_region *regions,
+-		      int nr_regions, unsigned int offset)
++		      int nr_regions, u64 offset)
+ {
+-	return bsearch((void *)(uintptr_t)offset, regions, nr_regions,
++	return bsearch((void *)offset, regions, nr_regions,
+ 		       sizeof(regions[0]), match_region);
+ }
+ 
+diff --git a/arch/arm64/kvm/vgic/vgic-mmio.h b/arch/arm64/kvm/vgic/vgic-mmio.h
+index 38ed730d68ac3..6c3c4de6883ef 100644
+--- a/arch/arm64/kvm/vgic/vgic-mmio.h
++++ b/arch/arm64/kvm/vgic/vgic-mmio.h
+@@ -228,6 +228,6 @@ u64 vgic_sanitise_field(u64 reg, u64 field_mask, int field_shift,
+ /* Find the proper register handler entry given a certain address offset */
+ const struct vgic_register_region *
+ vgic_find_mmio_region(const struct vgic_register_region *regions,
+-		      int nr_regions, unsigned int offset);
++		      int nr_regions, u64 offset);
+ 
+ #endif
 
 -- 
-2.55.0
-
+Without deviation from the norm, progress is not possible.
 
