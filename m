@@ -2,103 +2,133 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22E9D606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:41:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1133C60A260D
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:42:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Km4Rxyff;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=LUmreOlk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XXCCuQpF;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=BldW+qqo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=R9ybw6cxS0shDJ4UVVgiEKCnqeSU4VPhRG8DzGKzjow=; b=Km4Rxyff33RRhizuO2nzvHgl50
-	h5w6JmIVXYKULAvL7iUEoe6KtL6ndkljcsfyZmw5gO0UGt18K9yDlX2t9ZsTxQTKdYjzeVfSQAl0K
-	KlO+iiLH+EFshw8hIadCYCnnAHo0NE1X0Jhd1gIn86fZO+UH6XdYDgspsx6Wj4lblgqW1gFA7+hju
-	znGL0/Ew94f5NdmoStah0PhUBNTEOo8rQjhCHxw62E4OGQP0Rx0UnhU7BAu9jpMdUIg4ssVTxdsYw
-	EiQT3z99JQaKyOU2UYKyBGZQc5sMzvMO7RfYd2puJRePeS2Z970GgK54KnXlVMFYIaAr3tg5B3DKR
-	zYNg1KJA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=L0bGkbGeIvuxUX70mF5SlyXEQjWBuBOwtdHm5KZpMgE=; b=XXCCuQpFWA6twX
+	uFi/foqU7usKTwQDCo7VWDFy158PCAkpkyfupwQWrDIflIJClmK+ChGZpCK2qFTvspxjhYrHYQBOK
+	uhcUWoyXqu6A97a6nXWS2I5IQXOtxRSluRtoIja5GQ6G+H3541k/G1se8nDlTURTIvKP2A24ULFH/
+	sskeba0GhJVmbKnQeGwFoEFKEVpYVhONYHXjItPvtp0nVb9tHddY13nFl/vBBOrdQIMxCkZusenee
+	A4lCDdIbGKOZ79Xb6Vp+9dvdJfJ5gqrtCyHkOsUJrXkA2Cn1e2H4TgOF3/DeB6+b+Flz8dlTyiC7n
+	FHhkITbNSWelpWtZa3Kw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjIJ-00000003UJk-3qry;
-	Tue, 10 Nov 2026 10:41:39 +0000
-Received: from mail-wm1-x32e.google.com ([2a00:1450:4864:20::32e])
+	id 1xQjJB-00000003UoW-2LiL;
+	Tue, 10 Nov 2026 10:42:33 +0000
+Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQjIH-00000003UIP-3LCP
+	id 1xQjJ7-00000003UmF-2gBC
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:41:39 +0000
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-4b76c15ae36so27485e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:41:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794307296; x=1794912096; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=R9ybw6cxS0shDJ4UVVgiEKCnqeSU4VPhRG8DzGKzjow=;
-        b=LUmreOlkh7JwWffx/v3oKtQeoWbTn9nCv17JKPLoRMM1KUiBwwsooc0Gm8AQ4Dbxc8
-         zBEDFxU9dL4ICTkYRvDqmTotcOZoeNjR3/i9GrHiSCSevxdRQsCCO+JW/+0fYYynPLUs
-         zi+MIfeca5sBHkaMiiG1FgTaa5ylBB0r9Q9uOpUHbidgR/SktEO5oLWlk0r+x+p32oPA
-         QBomaL6StDj+NZm1l3nKv9pKaD7HTLnGCd3QnVz3blYz9cs2PYXGweCr0nRGPSAxUnTf
-         CUsUHuMB4+Q6JGozH/gA4UOiOW0Q5BNZtTikr+83yLGSyi55WDp2wVgLyCtHNarxzoDC
-         KSag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794307296; x=1794912096;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=R9ybw6cxS0shDJ4UVVgiEKCnqeSU4VPhRG8DzGKzjow=;
-        b=VaAHIn4klcZiD1eG6NP9Kkd0bGZgurgF+GnH3otAiZRYePzzMM8T8CdkeZeVscEQ2/
-         aJfDuMPJ+35HHmXedotu5heXv4oVW8TmXY0nuc8/LDlyZeMZj3bzdKkyFk+64vwW/qvq
-         72pgl7kWYCJ/QQYw/QxCjHK/ckrfotwj+0Nvx7BkMnJT91WFW0VgQMTtoC20PlcSmLmb
-         9k430G/Dms5rIZGsXNU3AZYeYfG+fufuLfIk5qcJUFUBacYDUZi/ikaapgZpGJHY/Ie0
-         9rn+4Rsa8I0jsnUi729+JBXcppSDG2Smh0IQGVfemRlFUws8GWpvpEdzGhummb0kH1IK
-         StPA==
-X-Gm-Message-State: APuU4Z8JF/IcQae/8mOFSO+UyPlZvRL5jT0aLahqL06MQT40raJtNws5
-	PtBlAz3fRIlIvv7uH+ghRM100Jx2vXjyxZS6krtZ8sccnCYTnX7P6CSn8bzSCdP0Zg==
-X-Gm-Gg: AYBFou2jkwoVZU6SmpZeEvy6HdeyrF/qDIK6HqvaSlxb4so5ArQJeCfhtAzdkdH5D0d
-	r8wVGse9jacfod7plKEFQgU+KkDkgFR9QgH767ZXfYafCIZnkKqQjLMzrTwVjJktBNy2PDdBaE8
-	ziydtlm6khSoXjhvr2QWVfxFZfx7p1ygGoLEY180xfMzoxZADWBUpeH+WRSTtDhgFoW86v2wN/r
-	0hHtCxLflCj30yrGUxGIpCWs1JsWN8eh7m3GBcNHArIN2ZD/ovQh/MFQsNWqWIYCjK6I2W78kDF
-	PACnE8TddY1ryEH/hPI19HyTzRnRr27vU2lTxZ/XeFngRDVq1r2SXjh6zFOu17jL4N6EO1YuDxo
-	u50ObbPiZb6ezipY9IPs6YwhjdcGIXXdeAW0pOwheL/Z0xIK8zgCJYxCNSqvQwSgD+/vC13L9B2
-	Mn0kH7zfCbHX0nAvE7vkVjAI0rIb2f04C3g1Jyh6etrEM/RQ8gBkZe4HK1w6c31/0pp2kOBiiJq
-	xKS+KYOJjlAaieYliaQaPaR21XvEd9AUk55wuXN3Pc1VkPoA9KDrAx0kS/GHFbRqW4XFpqNTxYY
-	x8JF3qOLEcGFD9wPe6JcpBS3AfNrhQ+Po/UbcjQpto1/spTZ6hO5sZYXhtbM0/5tmSRDyok=
-X-Received: by 2002:a05:600d:640f:20b0:4a1:e368:cbf7 with SMTP id 5b1f17b1804b1-4ba022dacbemr640635e9.0.1794307295364;
-        Tue, 10 Nov 2026 02:41:35 -0800 (PST)
-Received: from google.com (160.193.189.35.bc.googleusercontent.com. [35.189.193.160])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fe63e6sm87694655e9.7.2026.11.10.02.41.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 02:41:34 -0800 (PST)
-Date: Tue, 10 Nov 2026 10:41:27 +0000
-From: Mostafa Saleh <smostafa@google.com>
-To: Nicolin Chen <nicolinc@nvidia.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	kvmarm@lists.linux.dev, iommu@lists.linux.dev,
-	catalin.marinas@arm.com, will@kernel.org, maz@kernel.org,
-	oliver.upton@linux.dev, joey.gouly@arm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, joro@8bytes.org, jgg@ziepe.ca,
-	mark.rutland@arm.com, qperret@google.com, tabba@google.com,
-	vdonnefort@google.com
-Subject: Re: [PATCH v9 11/25] iommu/arm-smmu-v3-kvm: Add the kernel driver
-Message-ID: <avL016l_xASN5paR@google.com>
-References: <20261015200903.2735565-1-smostafa@google.com>
- <20261015200903.2735565-12-smostafa@google.com>
- <auzvygiGRTWgJXzF@nvidia.com>
- <avGk0ilyJh3obmKx@google.com>
- <avJidXM9yQOX4VBJ@nvidia.com>
+	Tue, 10 Nov 2026 10:42:31 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SVoUgW4JVcq6Mih5e3y4I2jsJrZ4KFEYM4oKaUV48+2cGyL5D+byeYjZO8EiTGs2sj3kbcBm7nmLrFwge56pZkoFQGWY1h4IsHq9vfZa9Db8Nm/rCodm8ta7zK2VUMM39NOELtpRsFW19aAoZIIT5RYshVAwLd4RpT3N3MEmVbQqt+5t3b/q7PMTrtv5V7Uk06dCLmkyWjWJFy+bXTEe9QQdea0VU1y3wCOGZEAEZ15tUgMR2/gIF+NE+cuZxQrEZUK6wBBtrcq1g80D8PO3c8C5dzPWkZo8zcavlLpRGLLTewlnlwrz0r0jXykkxQn0e0DaAYIr2OWC4x63bwzrXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L0bGkbGeIvuxUX70mF5SlyXEQjWBuBOwtdHm5KZpMgE=;
+ b=I6MgerRe1I/9OxiAzMx/PacOf5kXtUPFdo8H1glY0t9WW1HkoXwRKYfWpxA43S9AoPtVvO0yHMkHm+vd3y9rf+b/o6TTESK3NKfs8fxJ4QHvuLz+35AU7tJbpaJ5H4SHllH6LTMUZvF2VSH95RC0VCW+VG18L/8msnWIN/fxFPOrm36NI02NulfCJxWa7e89HGCRe8sDHXjLVMEjKvh+yUavW113uzE1WuL5YkxqmzNhBsRmzOHsbfV76MtzIWurxdvlDoFAYeasCCIIDwmZSQCbPzHE1HwKmstoqygrfqfFCn70rsZcYUdX5S6tPRnI2ryLvUFNrfGNixZvQrdL2w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L0bGkbGeIvuxUX70mF5SlyXEQjWBuBOwtdHm5KZpMgE=;
+ b=BldW+qqoDPk+F+EfdIs0cUcTYNN8vVXGxbIs0VIkmAPSe1t1UoHDr/mWOL8Jl9/ObyeeuPRPlM09wl6gMLdganmfGgXctI2tkOPFmHtet1a5fP+K1BZwmajR3lYQ1vixq6SsEb7AOLr5YKNQQp4yvwQg8rNbGGc42CgrTcyUKR93ZyAR5f+ycSItWRQjKXcGJPZ/pjwLJu/tCxCDFwXFWgPAdwQku1TPrHQHeo4btgCYvmiR0XzatrahddIqVNkCc9ZGs9Izey1xxLlSiGy6Q2A0U6Ip1qHgFH/RCRR8rRXVHguSR2NMZORuTepvcgECBWTRDVeSDQj66AJ9O2XVVQ==
+Received: from DU2PR04CA0308.eurprd04.prod.outlook.com (2603:10a6:10:2b5::13)
+ by DU4PR10MB8832.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:560::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Tue, 10 Nov
+ 2026 10:42:24 +0000
+Received: from DU2PEPF00028D10.eurprd03.prod.outlook.com
+ (2603:10a6:10:2b5:cafe::89) by DU2PR04CA0308.outlook.office365.com
+ (2603:10a6:10:2b5::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.13 via Frontend Transport; Tue,
+ 10 Nov 2026 10:42:24 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DU2PEPF00028D10.mail.protection.outlook.com (10.167.242.24) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Tue, 10 Nov 2026 10:42:24 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Tue, 10 Nov
+ 2026 11:43:20 +0100
+Received: from localhost (10.48.87.14) by STKDAG1NODE2.st.com (10.75.128.133)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 10 Nov
+ 2026 11:42:23 +0100
+From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Date: Tue, 10 Nov 2026 11:42:19 +0100
+Subject: [PATCH 4/5] arm64: dts: st: add LTDC pixel clock controller on
+ stm32mp23
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avJidXM9yQOX4VBJ@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261110-ups_mp25_clk_syscfg-v1-4-667829cd290a@foss.st.com>
+References: <20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com>
+In-Reply-To: <20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com>
+To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+	<alexandre.torgue@foss.st.com>, Christophe Roullier
+	<christophe.roullier@foss.st.com>
+CC: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794307340; l=2272;
+ i=gabriel.fernandez@foss.st.com; s=20261013; h=from:subject:message-id;
+ bh=6OFWiWSYZKy5BEsuoWQKkDZVLDFdfknKWkI7Fl3zvMA=;
+ b=aBqjGI37Egg8dIUl/WgxOfNCkSdnA7I15KP9dJkGIIckMLvHxBmaHUFFCyHxk5SF1ZMuOQ99W
+ ldb1aVc/7kZDx7F+uwkBnAVKbAJcAOShsTWGCys3hEGMpHgCTmVSchn
+X-Developer-Key: i=gabriel.fernandez@foss.st.com; a=ed25519;
+ pk=BVZE1QjIfcrviw9RyyOGQGGsg9CNbaxyjYn9pAlkNyQ=
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D10:EE_|DU4PR10MB8832:EE_
+X-MS-Office365-Filtering-Correlation-Id: db88d393-4bd2-4e79-d45f-08df3f174e7c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|36860700016|82310400026|376014|23010399003|22082099003|18002099003|10067099003|261009223027099003|261021123027099003|11063799006|56012099006|261102123227099003|261028144727099003|261022105027099003|261021135927099003|261021121427099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: NpFJ33qFdBjLORJTl4YUsmDKFYtzU35iKBFL5Dd0IaWnuHRGossS/ZBG5vlbaNdzuTqXWW/rG27YERbqCcEbo1gEHNsFqByE19buNoGWW3Wxd3+6V4qNX7d3VriY0+SIY7kwKIlnUiR5IN9cVteuTp0JELYZ8peA5+VAfBns4IT390AvdorrtqiY8soccMPOXJmtf1lVPkwQfEipFighLKpmkSmWRXMjAlgGJTHvT5HRofxYFd7vWXJg2F94dAXF74QYq6vEgbqR0HWxZwaurVtTomE6enWiJPvLF1czT7fkWk6Fq9aV0pBniERbwSKnPDZaXbMsTZy/1RSeaN4GUa9J0+7XYtuKiEN33JEPWBDaHpm4gfiFyMawrtZlC/Pl3OYYJLd9WU3LqXW2ffRxOIansaLICxArC3+wrxgCS+VDEJvsZ7lG6+SXI/d6KkeJ9EZy9CrkzjllxJ94PHe7hIjU2dVAVUO6gfDyrUXcsQejP2WqGhjUy2Jov5GAKJJRK6+hFVjUhvRGpFphwwcftS01CvPpsxx2IJMAq28C4R8xW1SnuczcjaUFf2BMEiNCL6N5nZua+afzWPVijVGDduje3Aibf80Nr9fC11EEYwOMtKucLwvmdjlaBSpkJUT+M5xcuuGtCIyCaEkOFsaZztmEQ4DF45Oe3t07Q6gv+nreHyxI6cw7Hbl+JiZf8oRhHynqhuan3fDeRlwviP+Oxg==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(36860700016)(82310400026)(376014)(23010399003)(22082099003)(18002099003)(10067099003)(261009223027099003)(261021123027099003)(11063799006)(56012099006)(261102123227099003)(261028144727099003)(261022105027099003)(261021135927099003)(261021121427099003)(261026140227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 4J/rVf8efV9M9z22ID8QZ7t2gTTBIB3MEw7/8qx+EbAacWkzNAGzRIVCa6YWDmZ9doU+4kxp+bl1vzeEIl0vEo8FQeX+qkXI5GjKQzE3ZmEJg0XQbGUmtZoyJi48I4ENMwVLrb0k9ZyoHkYXMZ6vBdvzlQF+E53kMznrHn1XcDEEOmT86iPiLfeMrTgh14Nwv/FfJzLjFIISYLvRpw2e1HWB0iZ/Dy1kWniyz12hzLHathhb8Qon0g/JGCzKEYKLHybQitvp9U77UdbH8Y3ADyh49zZCnH86mCa7ZhZpYkms7Qg6WsZXtT/q0llPnF2GzBy7vZt2J8m5nuEG38ukukpG2VyYy+5hryaOCrGvJDbJXPlfdbW8jLeWPRNubxWe8BDESfMn686lQA42YuGq8SvXC7Pi81vPQmMzdsQskbVdIFxJbpFGe9CbMvCRJMvZ
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 10:42:24.2339
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: db88d393-4bd2-4e79-d45f-08df3f174e7c
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: DU2PEPF00028D10.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR10MB8832
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_024137_887558_BA252609 
-X-CRM114-Status: GOOD (  29.86  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261110_024229_746829_2E53FCC1 
+X-CRM114-Status: GOOD (  12.43  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,63 +139,77 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 04:16:53PM -0800, Nicolin Chen wrote:
-> On Mon, Nov 09, 2026 at 10:47:46AM +0000, Mostafa Saleh wrote:
-> > On Thu, Nov 05, 2026 at 01:06:18PM -0800, Nicolin Chen wrote:
-> > > On Thu, Oct 15, 2026 at 08:08:42PM +0000, Mostafa Saleh wrote:
-> > > > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> > > > +#ifdef CONFIG_ARM_SMMU_V3_PKVM
-> > > > +/*
-> > > > + * Two devices are involved: the aux device bound to this driver, and the
-> > > > + * physical platform device bound to the pKVM init driver, which only uses it
-> > > > + * for discovery. This driver keeps using the platform device, as it carries
-> > > > + * the fwnode the IOMMU core and consumers link to, the DMA configuration and
-> > > > + * the IRQs.
-> > > 
-> > > It would be nicer to have a diagram or so to show the co-relationship
-> > > among different devices and drivers.
-> > > 
-> > > I assume the regular arm-smmu-v3 driver is a part of the picture too,
-> > > when the pkvm driver binding fails?
-> > > 
-> > 
-> > I can add some ASCII diagram.
-> > If pKVM driver fails, no aux devices are created and the main driver
-> > probes the platform SMMUv3 devices as usual.
-> 
-> I didn't check closely, but would it be safe to do so?
-> 
-> Is pkvm aware of the missing SMMU device and handling it properly?
-> 
-> When pkvm is enabled and the SMMU device is supposed to be a pkvm
-> device, should it not fall back to the main driver?
+Describe the LTDC pixel clock multiplexer of the SYSCFG as a
+clock-controller sub-node and use it as the LTDC "ref" clock instead of
+the SYSCFG node itself.
 
-If pKVM fails to init for any reason (unsupported layout or non-coherent
-HW) the SMMU will be bound to the main driver so the system remains
-functional.
+Only the LTDC kernel clock is available as parent on STM32MP231; the
+LVDS and DSI clocks are added on STM32MP235.
 
-However, pKVM will not be safe in that case regarding DMA isolation
-as the status quo.
-In Android, in that case, pKVM clears the FW (called pvmfw) that loads
-the protected VM and authenticate it so any protected VM knows the
-system is not trusted. This part is not upstream yet. [1]
+Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+---
+ arch/arm64/boot/dts/st/stm32mp231.dtsi | 8 ++++++++
+ arch/arm64/boot/dts/st/stm32mp235.dtsi | 8 +++++++-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
-However, there is not much that pKVM can do and I think it is better to
-keep the system functional in that case than causing a panic or failing
-KVM init for example.
+diff --git a/arch/arm64/boot/dts/st/stm32mp231.dtsi b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+index fefbf6f4f153..6b6b4aa2bb5d 100644
+--- a/arch/arm64/boot/dts/st/stm32mp231.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+@@ -4,6 +4,7 @@
+  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+  */
+ #include <dt-bindings/clock/st,stm32mp25-rcc.h>
++#include <dt-bindings/clock/st,stm32mp25-syscfg-clk.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/regulator/st,stm32mp25-regulator.h>
+ #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+@@ -1125,6 +1126,13 @@ syscfg: syscon@44230000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 
++			syscfg_clk: clock-controller {
++				compatible = "st,stm32mp25-syscfg-clk";
++				#clock-cells = <1>;
++				clocks = <&rcc CK_KER_LTDC>;
++				clock-names = "ltdc";
++			};
++
+ 			usb2_phy1: phy@2400 {
+ 				compatible = "st,stm32mp25-usb2phy1";
+ 				reg = <0x2400 0x24>;
+diff --git a/arch/arm64/boot/dts/st/stm32mp235.dtsi b/arch/arm64/boot/dts/st/stm32mp235.dtsi
+index 7a87c344a4fe..0ef5f2cdd18e 100644
+--- a/arch/arm64/boot/dts/st/stm32mp235.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp235.dtsi
+@@ -7,10 +7,16 @@
+ 
+ &ltdc {
+ 	compatible = "st,stm32mp255-ltdc";
+-	clocks = <&clk_flexgen_27_fixed>, <&rcc CK_BUS_LTDC>, <&syscfg>, <&lvds>;
++	clocks = <&clk_flexgen_27_fixed>, <&rcc CK_BUS_LTDC>,
++		 <&syscfg_clk CK_SYSCFG_PIX_LTDC>, <&lvds>;
+ 	clock-names = "lcd", "bus", "ref", "lvds";
+ };
+ 
++&syscfg_clk {
++	clocks = <&rcc CK_KER_LTDC>, <&lvds>, <&clk_dsi_txbyte>;
++	clock-names = "ltdc", "lvds", "dsi";
++};
++
+ &rifsc {
+ 	lvds: lvds@48060000 {
+ 		compatible = "st,stm32mp255-lvds", "st,stm32mp25-lvds";
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/virt/kvm/arm/pkvm.rst#n106
-Thanks,
-Mostafa
+-- 
+2.43.0
 
-> 
-> Nicolin
 
