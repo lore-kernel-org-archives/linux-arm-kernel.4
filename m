@@ -2,126 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D7DE606B564
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:56:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9351B60A2615
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 21:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gPbpjHzK;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=gi0AWpRe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nMga0WI+;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=nglNWzqG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=2HeqbfToAC0i0d88W6WZZyboVueM5s6ZzgR++8N8Ryg=; b=gPbpjHzK5HGczb
-	T0RASWg4pW2pTx96zxwV9wsGx+HC9gwiTqy+P9xSEb5gVh4SqZ/6vDYblAOTqpj8f0xu/G+xUxV5N
-	Wgs+NpnwsvTLQsFzNLjhM7jcmB75r0cJERTUsTOB0Ij47DPXt70dtntgG51ednbBdB+XxZqljn/YX
-	IYPOGGCFtGIZ9UiRqQ2346zz94e3I13CGimsML4dCpHxbEXQvwiw1pFS4MgXQEMB8V0ZmbF/gW2AC
-	m8sgQEgCc7NIbXxa37ec8rhMe7Voh1rII39jDfmX6tZDL0866b094/Alwi1CO3vbdnCrUMOyhECgg
-	hh2DXc2HKt+8WusRkZuw==;
+	List-Owner; bh=3yHxwmGIP00UkCKgkChB+u5krh4ioA+qIXr0cmR6Xmc=; b=nMga0WI+M6bQFI
+	TflAJBHsSF9TAx1LF+HApbXu80L2yo+WpelS/P1VHA+JaX3HqiF5jbPIuLgDLZaQyPpQObEoMikU2
+	DRY9gbCynIekf39mgXTGvxf+YZQGBue/ayWchKFryzx2ZuiQDMfPMJkgsiv2nAX4b2SSCQ33/3p5N
+	Hx2OTEMEosElnTqOk7AGEaSx6dFJRXxq6l3ZzCiXqYBsFrlhQgonjd0rJwIo6GF1oSum2W/AgGGjk
+	1uY7auw8rVmcSw2BOpG/ingWgV7pxBxeSMASz9SlQQLSF93Fw+fUqWG6I0Lv8lw3KX/XYf5Gyv4zN
+	f2FtNU08+aiNGLMGXJbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtpN-000000056D6-0PBW;
-	Tue, 10 Nov 2026 21:56:29 +0000
+	id 1xQtpS-000000056Hs-24tL;
+	Tue, 10 Nov 2026 21:56:34 +0000
 Received: from mail-wm1-x32f.google.com ([2a00:1450:4864:20::32f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtpF-00000005691-2J1O
+	id 1xQtpN-000000056Cc-13UJ
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 21:56:27 +0000
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so21378955e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:56:21 -0800 (PST)
+	Tue, 10 Nov 2026 21:56:31 +0000
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-4a20a37703bso18820445e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 13:56:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794347779; x=1794952579; darn=lists.infradead.org;
+        d=baylibre.com; s=google; t=1794347787; x=1794952587; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=2HeqbfToAC0i0d88W6WZZyboVueM5s6ZzgR++8N8Ryg=;
-        b=gi0AWpReY17wC+iNVkYCmpcmnmzO5q81OJLWGbUivd/5Sue/BMAH1vpgRUxJXmVR51
-         Jc8uwa95b+xtq7yCC+mX3eDIVYQKmPSDxY2e/OE+bMV0q+G1eHEeCpQi86WQj2OB1zqb
-         0PIF3yP2ZivH/WY2WnzZXtEFuCCbbTti4I5JxtgjwFtmbJ6ae7uqJ8nEW7sLOWtHX/6w
-         PE7cuaJNTwA8QDJPz+kR0H2b2zZCEtKqC4mYKSpqmB1B48SMuocNCfLVYTStHoK/XJ18
-         yRzjI7b6evo78+zmcgWJahbWVmOvQRFM2OYYyTlRTpSKJVeoLj+LKoeJshnYs1LXhtzS
-         UcfA==
+        bh=3yHxwmGIP00UkCKgkChB+u5krh4ioA+qIXr0cmR6Xmc=;
+        b=nglNWzqGhApMVX+PtofXp3+wfHGV5dWZ7lAtKF+jeVuHwU156EkLAWTyvXuncsVUE9
+         254X7SIskNqukVQH1LF75qdxghjKvnAKSmXmiBbxSmWYHLicXgfoB/5+PP4+d/r/7nm0
+         iy8kvHmbcDBlHl0IyV00+yK52KyRYKXZ89DHw0/ZYV3VSLqh3LQafC+gR92IlZUlvM2I
+         xoo+J49CSPcfLaXZWvIZAonNLtlK4jCNlzsjaQraaHOfG2XHz3Llz8odJSx1DLqqT7kG
+         veFpDl0KrBlkh+3+4gcstK4btCpBnLQFIGKvPvwLV5PAJkkUtiffsKnIscFZ1rkPj0J2
+         LbkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794347779; x=1794952579;
+        d=1e100.net; s=20260707; t=1794347787; x=1794952587;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=2HeqbfToAC0i0d88W6WZZyboVueM5s6ZzgR++8N8Ryg=;
-        b=UNqqfF8Wnts5vbEGRlHtqSoL5uuSuf/AVF8j7Nb2cF39I2Yi8QsALSeEH8H5nt0cOJ
-         OGJmBjAXX3Js8KTqNXp4KXeXTqv+29Iu5FZ1cn0S64ru+5J9loSmKAODsFZ0E2eIu9AN
-         wsk2KmI93++ytoMnHjvrFdBDYGAqjs2PnQAbFidbj4acLNYkQ0SlmfsFpxpVlIm8qLsd
-         uaUP4b3rRh01Mfj9SgDEFX6CtCceFoDZZwsSjjT81VEWFzF16SLp0H7ge73gWznKomjt
-         jVKw/3Xi3TYq+qW0NtrIuikWaikXJ9+bsJoQrqEINbLaE8YvgrpTHtMlauCxdidRXVLt
-         1ohQ==
-X-Forwarded-Encrypted: i=1; AL+hErGaMSWhuXxJzaq5P/5w8ngA8p6paP1W49zCOihf1BadR4H123vsYCfea4qg1WqgPo1XMpf0sasZ3gvoUYeHOpDn@lists.infradead.org
-X-Gm-Message-State: APuU4Z+aYugGoXV9xNrjZH77jc1/1tA7+Cz1AQD34Sco92ata4q3LOOp
-	zo2Zc1TGvI5Eq/swiWbZgiS8m2fQsgazxSbv3bR3B0HbPi9Vylknofz873wb3L0hxc0=
-X-Gm-Gg: AYBFou2zAqSIGfQYps39NLgGoBaPwjbOx4dwTe7xwVVyGUVLocdCucguaqe37WFEXQf
-	48axM2kA80PmgMswsRkr1haJT+rHViUOIthJLm6eaud9H6X4Dj/8EjtfHpn/ZjmVd1G7o7GgN22
-	GkY6O5vi7hJJDCQ/QRBJQvpri4LqmUIp4GBCOAwGfhQ5kkPwJx36zzsrMCgi7GrEgU9dP6aY39S
-	aimBywPuySR3voJfIHg1/3f7f9KiY9cIONQjlYZbmVOBwoJrVtLZcKKst8VcXAdm8w1n04W5yOL
-	VT8yPLiS7mK4mvdLAZsBJG3ZY124bVQZm8S8OLfbQw0cMGp0bnOnbvb7l582YGjLvrtPaBXA0YN
-	l7uOCF1B04aLSPuTj8Ax+l3hA5TZiyfRfnk/eJq6fbZuShED9pdUWy8yNVqfTzSXqhyzxiSWCu0
-	W2TzwkAzJYlcrQXf9J7pJwEWv0CAEiOAQuzYdqG9CTR6fwJ5sfzF46/ubQp99wgi4LKmWDziG9s
-	raCDKSMWkDLHqpxS+4TOzycmwSHakqMVgAjbe2Du/9thk2AuleKaMZSCAMQT3qB0haVfI0vEjGz
-	a8lnB+M2CH3os1HsdfyhsNrP5HTLUBcZm68=
-X-Received: by 2002:a05:600c:1986:b0:4a1:f7f4:7ced with SMTP id 5b1f17b1804b1-4ba0937a886mr7017155e9.17.1794347779081;
-        Tue, 10 Nov 2026 13:56:19 -0800 (PST)
+        bh=3yHxwmGIP00UkCKgkChB+u5krh4ioA+qIXr0cmR6Xmc=;
+        b=svVQkplZvedfpuxOhJFZHzf2xIW64gYbEH4CPlCVUgIiUPFfTZciRmlWF1qKZjLfX8
+         p1EnMkrZOPGbseEZMN+4f0etCW3CkD1EEs88hjDvzHwcIuI8kGfNUATvGpN3+oE9WJo6
+         G2wDZRl4VfhJFxQ+Cb3/6GK2vuOnq/vVV3RMmAtWyig8UxBTbLAY9Xvcznwf8ceofTeg
+         zug9mjK+VC2wZB1cUXZ4vl94qDWmdOpYEDmk8A1FBkNZvNMo8gf/cVMg03mo98D6EcN3
+         kSfhT8fNtyX0kAgM4F/bw0Qii3wlg56FqtlLkcwjbQlviTXWpKxmtqOShpXMe/zXIabe
+         PV0Q==
+X-Forwarded-Encrypted: i=1; AL+hErHgkMNLO3K9JFGQ6mdh9qxV9sTrNROYAQ2j1/kzBW57jxFX7OIR0oVl6yWnPuO0jqZ3Hc3Y9K521XbBKoaCFkAS@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Qpk/T43wx8Lq2Mv2x5I0ZhVg2ukMzEmrAmWlwWBNOEwDsEbt3
+	Ww41rBg8gCQDU4tTpr2QT3HS7wIuJs0MgCz066EyK1Jj6U5ttERZpePv/JLBeq3+Aeg=
+X-Gm-Gg: AYBFou0GVUNZGXWRHLtfBSthgCGmwvVDaEfeSCdM1i0P3LfAP5ZJLoAL48wTcqlL3hz
+	7a46bls5j1WBbR8gb8jKR4pFcK7cPIgB8aavusXieHDAnoAWKQh2OvHHj+/UMLWgqYDApbhWbGB
+	a13GbbvGwN03CqKenvIx48lhooDU2OPk7MCH/6zJkes5nxVEluj5U4X+AoNp64qbPs9kiZH8D1m
+	Uz8sX/g/n4c878W0bfee4uwC20Tw3Ng2fLITTT2R5dKlDK5GBikIGL9RPwtuNCxcwJyYnHoG1+f
+	YgP3QuXx3Afo4UsiLfAlaboVd56SwIQabPG1hD80DAqvC2JKMFSI28tIPhYOcmg5NlTO7AF6gfd
+	393lL5fFKqpPryyu1CfzoTAo1hXp6Q7n/+N4b0DZRMaDIJEWtuXKrgeJ/WJYR38e4VzJl/wGs4Y
+	asE7b6a9Z04gQx8TKHVNhGAZ/g/IdPmLaZfIrTHV1G8WH2WM/ftcsnZ1oSTBG0YEwgkXeCyhrXi
+	2ZXx6tsEueds1pK5/k2vRfqDYwZCcof2vOgHIAgsS+D6CIF2jgBY88dt/FC7Iak71oJePKrfeyM
+	9Q4LvVlLlfu+JSEg7X1VKICqMeAHGgMIEA==
+X-Received: by 2002:a05:600c:83cf:b0:4a2:191f:7cbd with SMTP id 5b1f17b1804b1-4ba0935cc7fmr6834225e9.11.1794347787385;
+        Tue, 10 Nov 2026 13:56:27 -0800 (PST)
 Received: from localhost ([2a02:8071:56d1:2de0:1d24:d58d:2b65:c291])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4ba0204e22csm84500885e9.12.2026.11.10.13.56.17
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4ba01fe9357sm104638115e9.9.2026.11.10.13.56.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 13:56:17 -0800 (PST)
+        Tue, 10 Nov 2026 13:56:26 -0800 (PST)
 From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig=20=28The=20Capable=20Hub=29?= <u.kleine-koenig@baylibre.com>
 To: Lee Jones <lee@kernel.org>
-Cc: Michael Hennerich <michael.hennerich@analog.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@gmail.com>,
-	James Ogletree <jogletre@opensource.cirrus.com>,
-	Fred Treven <fred.treven@cirrus.com>,
-	Ben Bright <ben.bright@cirrus.com>,
-	Support Opensource <support.opensource@diasemi.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	=?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Andreas Werner <andreas.werner@men.de>,
-	Samuel Kayode <samkay014@gmail.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+Cc: Linus Walleij <linusw@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
 	mfd@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
-	patches@opensource.cirrus.com,
-	linux-renesas-soc@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linusw@kernel.org>
-Subject: [PATCH v4 12/20] mfd: Use named initializers for arrays of i2c_device_id
-Date: Tue, 10 Nov 2026 22:54:37 +0100
-Message-ID: <db421752980323be4dfb4733b6379db7da24bc11.1794347059.git.u.kleine-koenig@baylibre.com>
+	chrome-platform@lists.linux.dev,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v4 15/20] mfd: Use named initializers for platform_device_id array
+Date: Tue, 10 Nov 2026 22:54:40 +0100
+Message-ID: <19b9b030217016ca7f4b0d9d9fc9ab915a8963f2.1794347059.git.u.kleine-koenig@baylibre.com>
 X-Mailer: git-send-email 2.56.0.rc1
 In-Reply-To: <cover.1794347059.git.u.kleine-koenig@baylibre.com>
 References: <cover.1794347059.git.u.kleine-koenig@baylibre.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=39683; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=BycQBRzf14elgdvkb2kqd77aJdqCLYb63cVkWeKJdXI=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq85K+sIF5epL3zSwHo77OmuBw60xGyMp9k2cjm Uo2/7B7hiCJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCavOSvgAKCRCPgPtYfRL+ TmfCCACQHCAnpHTFJTj0O0Q16gyx5Y+f+xni0jIpeVxFq5nyouNJ9L73ABlPV4ZMxjs0xDNl/Zt Uw9B4t2ibVj47Q9dFRXEYStMZD2DDyOWxJxrhrC3xMHensD+Cr97RrACXT3xknAPA0Yd5imTSVF a9y/KARjrcET/sGAI7llr9aWREPFfdh1gxbJhvDhEVE5ZJM9JXmLyZLlLrUQbqE9IabKW3c9Ezo Un9CcBE/DC1yR00OeYerduzIxZWM1mNL+gDdI6f13bqZDFA6c79/x63Gq66GPEEwnLdie1qVpzi Cw+Wg24BM8EW+enlXt2kJoEQ9W9oToBfiquU+5+qnTE5Dx1u
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2610; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=GtAPN5RJoz25rnsaMIkCchglusimHC6pNuburCmgGRg=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq85LIi8QM3sjZgogwtug7vcVX0SJ3+X0vaVym+ L1HdZB2sE+JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCavOSyAAKCRCPgPtYfRL+ TmYhCACII9zsLdrs/XbNbp5plwyC1+ueOodgi90o8Ine575DtEGWJWFKxuOyV3MjOikDIUogOsG MzJmZ24/rTI7I4xwYZlkYEAqHwAGYW8EMjWiQpKt5XO8wsAFYIxFSL8LTY71t74mgHbWDhNI+8w 2TxE30D1nc84pn3rOgSAECQGKJdmFQ2ypL3quSOgUzff6KmjPytCYfR+0y/C9BOwmXcw28lKsDc mkicJ29/gVaaf9mRn6Qtjl2QU/WU4d3KO3rTHSnwNDd0A7kyku+SPqvzMsCcRe+ONI4Alw7KzMt c3E3M48lKlrj231S7RpIbK24VOHABh3tP5EwFKaeE7IzoPbd
 X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_135622_414730_A240AD16 
-X-CRM114-Status: GOOD (  19.59  )
+X-CRM114-CacheID: sfid-20261110_135629_358091_9B3B75A8 
+X-CRM114-Status: GOOD (  18.60  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -136,8 +114,8 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
@@ -147,1122 +125,69 @@ to lookup the declaration of the struct. And it's also more robust
 against changes to the struct definition.
 
 The mentioned robustness is relevant for a planned change to struct
-i2c_device_id that replaces .driver_data by an anonymous union.
+platform_device_id that replaces .driver_data by an anonymous union.
 
 This patch doesn't modify the compiled arrays, only their representation
 in source form benefits.
 
-Reviewed-by: André Draszik <andre.draszik@linaro.org> # for Maxim MAX77759
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Also drop a tailing comma after a list terminator to match the common
+style for these device-id arrays.
+
 Reviewed-by: Linus Walleij <linusw@kernel.org>
 Signed-off-by: Uwe Kleine-König (The Capable Hub) <u.kleine-koenig@baylibre.com>
 ---
- drivers/mfd/88pm800.c            |  2 +-
- drivers/mfd/88pm805.c            |  2 +-
- drivers/mfd/88pm860x-core.c      |  2 +-
- drivers/mfd/aat2870-core.c       |  2 +-
- drivers/mfd/act8945a.c           |  2 +-
- drivers/mfd/adp5520.c            |  4 ++--
- drivers/mfd/arizona-i2c.c        | 12 ++++++------
- drivers/mfd/as3722.c             |  2 +-
- drivers/mfd/axp20x-i2c.c         | 22 +++++++++++-----------
- drivers/mfd/bcm590xx.c           |  4 ++--
- drivers/mfd/bd9571mwv.c          |  2 +-
- drivers/mfd/bq257xx.c            |  4 ++--
- drivers/mfd/cs40l50-i2c.c        |  2 +-
- drivers/mfd/da903x.c             |  4 ++--
- drivers/mfd/da9052-i2c.c         | 10 +++++-----
- drivers/mfd/da9055-i2c.c         |  2 +-
- drivers/mfd/da9062-core.c        |  4 ++--
- drivers/mfd/da9063-i2c.c         |  4 ++--
- drivers/mfd/da9150-core.c        |  2 +-
- drivers/mfd/intel_soc_pmic_crc.c |  2 +-
- drivers/mfd/lm3533-core.c        |  2 +-
- drivers/mfd/lp3943.c             |  2 +-
- drivers/mfd/lp873x.c             |  2 +-
- drivers/mfd/lp87565.c            |  2 +-
- drivers/mfd/lp8788.c             |  2 +-
- drivers/mfd/madera-i2c.c         | 18 +++++++++---------
- drivers/mfd/max14577.c           |  4 ++--
- drivers/mfd/max77541.c           |  4 ++--
- drivers/mfd/max77620.c           |  6 +++---
- drivers/mfd/max77693.c           |  2 +-
- drivers/mfd/max77759.c           |  2 +-
- drivers/mfd/max77843.c           |  2 +-
- drivers/mfd/max8907.c            |  2 +-
- drivers/mfd/max8925-i2c.c        |  2 +-
- drivers/mfd/max8997.c            |  4 ++--
- drivers/mfd/max8998.c            |  4 ++--
- drivers/mfd/menelaus.c           |  2 +-
- drivers/mfd/menf21bmc.c          |  2 +-
- drivers/mfd/palmas.c             |  8 ++++----
- drivers/mfd/pf1550.c             |  2 +-
- drivers/mfd/retu-mfd.c           |  4 ++--
- drivers/mfd/rsmu_i2c.c           | 14 +++++++-------
- drivers/mfd/rt5033.c             |  2 +-
- drivers/mfd/si476x-i2c.c         |  6 +++---
- drivers/mfd/sky81452.c           |  2 +-
- drivers/mfd/stmpe-i2c.c          | 16 ++++++++--------
- drivers/mfd/stw481x.c            |  2 +-
- drivers/mfd/tc3589x.c            | 14 +++++++-------
- drivers/mfd/ti-lmu.c             | 10 +++++-----
- drivers/mfd/tps6105x.c           |  4 ++--
- drivers/mfd/tps65010.c           | 10 +++++-----
- drivers/mfd/tps6507x.c           |  2 +-
- drivers/mfd/tps65086.c           |  2 +-
- drivers/mfd/tps65090.c           |  2 +-
- drivers/mfd/tps65217.c           |  2 +-
- drivers/mfd/tps65218.c           |  4 ++--
- drivers/mfd/tps6586x.c           |  2 +-
- drivers/mfd/tps65910.c           |  4 ++--
- drivers/mfd/tps65912-i2c.c       |  2 +-
- drivers/mfd/twl-core.c           | 22 +++++++++++-----------
- drivers/mfd/twl6040.c            |  4 ++--
- drivers/mfd/wm831x-i2c.c         | 14 +++++++-------
- drivers/mfd/wm8350-i2c.c         |  6 +++---
- drivers/mfd/wm8400-core.c        |  2 +-
- drivers/mfd/wm8994-core.c        |  8 ++++----
- 65 files changed, 162 insertions(+), 162 deletions(-)
+ drivers/mfd/ab8500-core.c | 8 ++++----
+ drivers/mfd/cros_ec_dev.c | 2 +-
+ drivers/mfd/mt6397-core.c | 4 ++--
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/mfd/88pm800.c b/drivers/mfd/88pm800.c
-index 7f3e312b8f73..0e5c6b20943f 100644
---- a/drivers/mfd/88pm800.c
-+++ b/drivers/mfd/88pm800.c
-@@ -116,7 +116,7 @@ enum {
- #define PM800_CHIP_GEN_ID_NUM	0x3
- 
- static const struct i2c_device_id pm80x_id_table[] = {
--	{ "88PM800" },
-+	{ .name = "88PM800" },
- 	{} /* NULL terminated */
- };
- MODULE_DEVICE_TABLE(i2c, pm80x_id_table);
-diff --git a/drivers/mfd/88pm805.c b/drivers/mfd/88pm805.c
-index f5d6663172ee..2eb3380a5207 100644
---- a/drivers/mfd/88pm805.c
-+++ b/drivers/mfd/88pm805.c
-@@ -30,7 +30,7 @@
- #include <linux/delay.h>
- 
- static const struct i2c_device_id pm80x_id_table[] = {
--	{ "88PM805" },
-+	{ .name = "88PM805" },
- 	{} /* NULL terminated */
- };
- MODULE_DEVICE_TABLE(i2c, pm80x_id_table);
-diff --git a/drivers/mfd/88pm860x-core.c b/drivers/mfd/88pm860x-core.c
-index 77230fbe07be..1b201ad129c2 100644
---- a/drivers/mfd/88pm860x-core.c
-+++ b/drivers/mfd/88pm860x-core.c
-@@ -1232,7 +1232,7 @@ static int pm860x_resume(struct device *dev)
- static DEFINE_SIMPLE_DEV_PM_OPS(pm860x_pm_ops, pm860x_suspend, pm860x_resume);
- 
- static const struct i2c_device_id pm860x_id_table[] = {
--	{ "88PM860x" },
-+	{ .name = "88PM860x" },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, pm860x_id_table);
-diff --git a/drivers/mfd/aat2870-core.c b/drivers/mfd/aat2870-core.c
-index 0d56cd6fbc6a..c172b40f64c3 100644
---- a/drivers/mfd/aat2870-core.c
-+++ b/drivers/mfd/aat2870-core.c
-@@ -437,7 +437,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(aat2870_pm_ops, aat2870_i2c_suspend,
- 				aat2870_i2c_resume);
- 
- static const struct i2c_device_id aat2870_i2c_id_table[] = {
--	{ "aat2870" },
-+	{ .name = "aat2870" },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/act8945a.c b/drivers/mfd/act8945a.c
-index cafefb4451cb..bb1b4e4fb288 100644
---- a/drivers/mfd/act8945a.c
-+++ b/drivers/mfd/act8945a.c
-@@ -54,7 +54,7 @@ static int act8945a_i2c_probe(struct i2c_client *i2c)
+diff --git a/drivers/mfd/ab8500-core.c b/drivers/mfd/ab8500-core.c
+index d5602b2f4a0e..8638fc8472f7 100644
+--- a/drivers/mfd/ab8500-core.c
++++ b/drivers/mfd/ab8500-core.c
+@@ -1252,10 +1252,10 @@ static int ab8500_probe(struct platform_device *pdev)
  }
  
- static const struct i2c_device_id act8945a_i2c_id[] = {
--	{ "act8945a" },
-+	{ .name = "act8945a" },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, act8945a_i2c_id);
-diff --git a/drivers/mfd/adp5520.c b/drivers/mfd/adp5520.c
-index bd6f4965ebc8..a4b58f431f92 100644
---- a/drivers/mfd/adp5520.c
-+++ b/drivers/mfd/adp5520.c
-@@ -329,8 +329,8 @@ static int adp5520_resume(struct device *dev)
- static DEFINE_SIMPLE_DEV_PM_OPS(adp5520_pm, adp5520_suspend, adp5520_resume);
- 
- static const struct i2c_device_id adp5520_id[] = {
--	{ "pmic-adp5520", ID_ADP5520 },
--	{ "pmic-adp5501", ID_ADP5501 },
-+	{ .name = "pmic-adp5520", .driver_data = ID_ADP5520 },
-+	{ .name = "pmic-adp5501", .driver_data = ID_ADP5501 },
+ static const struct platform_device_id ab8500_id[] = {
+-	{ "ab8500-core", AB8500_VERSION_AB8500 },
+-	{ "ab8505-core", AB8500_VERSION_AB8505 },
+-	{ "ab9540-i2c", AB8500_VERSION_AB9540 },
+-	{ "ab8540-i2c", AB8500_VERSION_AB8540 },
++	{ .name = "ab8500-core", .driver_data = AB8500_VERSION_AB8500 },
++	{ .name = "ab8505-core", .driver_data = AB8500_VERSION_AB8505 },
++	{ .name = "ab9540-i2c", .driver_data = AB8500_VERSION_AB9540 },
++	{ .name = "ab8540-i2c", .driver_data = AB8500_VERSION_AB8540 },
  	{ }
  };
  
-diff --git a/drivers/mfd/arizona-i2c.c b/drivers/mfd/arizona-i2c.c
-index 10e76fc8f12e..1ea8a59948b6 100644
---- a/drivers/mfd/arizona-i2c.c
-+++ b/drivers/mfd/arizona-i2c.c
-@@ -85,12 +85,12 @@ static void arizona_i2c_remove(struct i2c_client *i2c)
+diff --git a/drivers/mfd/cros_ec_dev.c b/drivers/mfd/cros_ec_dev.c
+index 96aac158fd8b..3c7e7f1efd0f 100644
+--- a/drivers/mfd/cros_ec_dev.c
++++ b/drivers/mfd/cros_ec_dev.c
+@@ -379,7 +379,7 @@ static void ec_device_remove(struct platform_device *pdev)
  }
  
- static const struct i2c_device_id arizona_i2c_id[] = {
--	{ "wm5102", WM5102 },
--	{ "wm5110", WM5110 },
--	{ "wm8280", WM8280 },
--	{ "wm8997", WM8997 },
--	{ "wm8998", WM8998 },
--	{ "wm1814", WM1814 },
-+	{ .name = "wm5102", .driver_data = WM5102 },
-+	{ .name = "wm5110", .driver_data = WM5110 },
-+	{ .name = "wm8280", .driver_data = WM8280 },
-+	{ .name = "wm8997", .driver_data = WM8997 },
-+	{ .name = "wm8998", .driver_data = WM8998 },
-+	{ .name = "wm1814", .driver_data = WM1814 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, arizona_i2c_id);
-diff --git a/drivers/mfd/as3722.c b/drivers/mfd/as3722.c
-index 7ab6fcc9c27c..2f58709ffd9a 100644
---- a/drivers/mfd/as3722.c
-+++ b/drivers/mfd/as3722.c
-@@ -432,7 +432,7 @@ static const struct of_device_id as3722_of_match[] = {
- MODULE_DEVICE_TABLE(of, as3722_of_match);
- 
- static const struct i2c_device_id as3722_i2c_id[] = {
--	{ "as3722" },
-+	{ .name = "as3722" },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, as3722_i2c_id);
-diff --git a/drivers/mfd/axp20x-i2c.c b/drivers/mfd/axp20x-i2c.c
-index 5c93136f977e..2f595e2b883c 100644
---- a/drivers/mfd/axp20x-i2c.c
-+++ b/drivers/mfd/axp20x-i2c.c
-@@ -76,17 +76,17 @@ MODULE_DEVICE_TABLE(of, axp20x_i2c_of_match);
- #endif
- 
- static const struct i2c_device_id axp20x_i2c_id[] = {
--	{ "axp152" },
--	{ "axp192" },
--	{ "axp202" },
--	{ "axp209" },
--	{ "axp221" },
--	{ "axp223" },
--	{ "axp313a" },
--	{ "axp717" },
--	{ "axp803" },
--	{ "axp806" },
--	{ "axp15060" },
-+	{ .name = "axp152" },
-+	{ .name = "axp192" },
-+	{ .name = "axp202" },
-+	{ .name = "axp209" },
-+	{ .name = "axp221" },
-+	{ .name = "axp223" },
-+	{ .name = "axp313a" },
-+	{ .name = "axp717" },
-+	{ .name = "axp803" },
-+	{ .name = "axp806" },
-+	{ .name = "axp15060" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, axp20x_i2c_id);
-diff --git a/drivers/mfd/bcm590xx.c b/drivers/mfd/bcm590xx.c
-index 5a8456bbd63f..85a906b54541 100644
---- a/drivers/mfd/bcm590xx.c
-+++ b/drivers/mfd/bcm590xx.c
-@@ -160,8 +160,8 @@ static const struct of_device_id bcm590xx_of_match[] = {
- MODULE_DEVICE_TABLE(of, bcm590xx_of_match);
- 
- static const struct i2c_device_id bcm590xx_i2c_id[] = {
--	{ "bcm59054" },
--	{ "bcm59056" },
-+	{ .name = "bcm59054" },
-+	{ .name = "bcm59056" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, bcm590xx_i2c_id);
-diff --git a/drivers/mfd/bd9571mwv.c b/drivers/mfd/bd9571mwv.c
-index db8c2963fb48..2b6fe6fd9806 100644
---- a/drivers/mfd/bd9571mwv.c
-+++ b/drivers/mfd/bd9571mwv.c
-@@ -268,7 +268,7 @@ static const struct of_device_id bd9571mwv_of_match_table[] = {
- MODULE_DEVICE_TABLE(of, bd9571mwv_of_match_table);
- 
- static const struct i2c_device_id bd9571mwv_id_table[] = {
--	{ "bd9571mwv" },
-+	{ .name = "bd9571mwv" },
+ static const struct platform_device_id cros_ec_id[] = {
+-	{ DRV_NAME },
++	{ .name = DRV_NAME },
  	{ /* sentinel */ }
  };
- MODULE_DEVICE_TABLE(i2c, bd9571mwv_id_table);
-diff --git a/drivers/mfd/bq257xx.c b/drivers/mfd/bq257xx.c
-index 01f5fc97f538..5310337fe9d4 100644
---- a/drivers/mfd/bq257xx.c
-+++ b/drivers/mfd/bq257xx.c
-@@ -129,8 +129,8 @@ static int bq257xx_probe(struct i2c_client *client)
- }
+ MODULE_DEVICE_TABLE(platform, cros_ec_id);
+diff --git a/drivers/mfd/mt6397-core.c b/drivers/mfd/mt6397-core.c
+index e74936ac206f..385121867da5 100644
+--- a/drivers/mfd/mt6397-core.c
++++ b/drivers/mfd/mt6397-core.c
+@@ -435,8 +435,8 @@ static const struct of_device_id mt6397_of_match[] = {
+ MODULE_DEVICE_TABLE(of, mt6397_of_match);
  
- static const struct i2c_device_id bq257xx_i2c_ids[] = {
--	{ "bq25703a", BQ25703A },
--	{ "bq25792", BQ25792 },
-+	{ .name = "bq25703a", .driver_data = BQ25703A },
-+	{ .name = "bq25792", .driver_data = BQ25792 },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, bq257xx_i2c_ids);
-diff --git a/drivers/mfd/cs40l50-i2c.c b/drivers/mfd/cs40l50-i2c.c
-index 639be743d956..6043eb6639b5 100644
---- a/drivers/mfd/cs40l50-i2c.c
-+++ b/drivers/mfd/cs40l50-i2c.c
-@@ -40,7 +40,7 @@ static void cs40l50_i2c_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id cs40l50_id_i2c[] = {
--	{ "cs40l50" },
-+	{ .name = "cs40l50" },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, cs40l50_id_i2c);
-diff --git a/drivers/mfd/da903x.c b/drivers/mfd/da903x.c
-index e4ad48e1f139..64c7ea0b5d2b 100644
---- a/drivers/mfd/da903x.c
-+++ b/drivers/mfd/da903x.c
-@@ -447,8 +447,8 @@ static const struct da903x_chip_ops da903x_ops[] = {
- };
- 
- static const struct i2c_device_id da903x_id_table[] = {
--	{ "da9030", 0 },
--	{ "da9034", 1 },
-+	{ .name = "da9030", .driver_data = 0 },
-+	{ .name = "da9034", .driver_data = 1 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(i2c, da903x_id_table);
-diff --git a/drivers/mfd/da9052-i2c.c b/drivers/mfd/da9052-i2c.c
-index fd000a21bcba..b75cfe805d5e 100644
---- a/drivers/mfd/da9052-i2c.c
-+++ b/drivers/mfd/da9052-i2c.c
-@@ -103,11 +103,11 @@ static int da9052_i2c_disable_multiwrite(struct da9052 *da9052)
- }
- 
- static const struct i2c_device_id da9052_i2c_id[] = {
--	{"da9052", DA9052},
--	{"da9053-aa", DA9053_AA},
--	{"da9053-ba", DA9053_BA},
--	{"da9053-bb", DA9053_BB},
--	{"da9053-bc", DA9053_BC},
-+	{ .name = "da9052", .driver_data = DA9052 },
-+	{ .name = "da9053-aa", .driver_data = DA9053_AA },
-+	{ .name = "da9053-ba", .driver_data = DA9053_BA },
-+	{ .name = "da9053-bb", .driver_data = DA9053_BB },
-+	{ .name = "da9053-bc", .driver_data = DA9053_BC },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, da9052_i2c_id);
-diff --git a/drivers/mfd/da9055-i2c.c b/drivers/mfd/da9055-i2c.c
-index 6c1981832aaf..e85db66f79a1 100644
---- a/drivers/mfd/da9055-i2c.c
-+++ b/drivers/mfd/da9055-i2c.c
-@@ -54,7 +54,7 @@ static void da9055_i2c_remove(struct i2c_client *i2c)
-  * and CODEC, which must be different to operate together.
-  */
- static const struct i2c_device_id da9055_i2c_id[] = {
--	{ "da9055-pmic" },
-+	{ .name = "da9055-pmic" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, da9055_i2c_id);
-diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
-index ad198183aff7..a825b0c42e4c 100644
---- a/drivers/mfd/da9062-core.c
-+++ b/drivers/mfd/da9062-core.c
-@@ -711,8 +711,8 @@ static const struct of_device_id da9062_dt_ids[] = {
- MODULE_DEVICE_TABLE(of, da9062_dt_ids);
- 
- static const struct i2c_device_id da9062_i2c_id[] = {
--	{ "da9061", COMPAT_TYPE_DA9061 },
--	{ "da9062", COMPAT_TYPE_DA9062 },
-+	{ .name = "da9061", .driver_data = COMPAT_TYPE_DA9061 },
-+	{ .name = "da9062", .driver_data = COMPAT_TYPE_DA9062 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, da9062_i2c_id);
-diff --git a/drivers/mfd/da9063-i2c.c b/drivers/mfd/da9063-i2c.c
-index a803b7440f09..b57a6ee90aa9 100644
---- a/drivers/mfd/da9063-i2c.c
-+++ b/drivers/mfd/da9063-i2c.c
-@@ -476,8 +476,8 @@ static int da9063_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id da9063_i2c_id[] = {
--	{ "da9063", PMIC_TYPE_DA9063 },
--	{ "da9063l", PMIC_TYPE_DA9063L },
-+	{ .name = "da9063", .driver_data = PMIC_TYPE_DA9063 },
-+	{ .name = "da9063l", .driver_data = PMIC_TYPE_DA9063L },
- 	{},
- };
- MODULE_DEVICE_TABLE(i2c, da9063_i2c_id);
-diff --git a/drivers/mfd/da9150-core.c b/drivers/mfd/da9150-core.c
-index 19325d72a27e..74ae7638c211 100644
---- a/drivers/mfd/da9150-core.c
-+++ b/drivers/mfd/da9150-core.c
-@@ -498,7 +498,7 @@ static void da9150_shutdown(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id da9150_i2c_id[] = {
--	{ "da9150", },
-+	{ .name = "da9150" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, da9150_i2c_id);
-diff --git a/drivers/mfd/intel_soc_pmic_crc.c b/drivers/mfd/intel_soc_pmic_crc.c
-index d3db727c08de..c1c02700ef08 100644
---- a/drivers/mfd/intel_soc_pmic_crc.c
-+++ b/drivers/mfd/intel_soc_pmic_crc.c
-@@ -258,7 +258,7 @@ static const struct acpi_device_id crystal_cove_acpi_match[] = {
- MODULE_DEVICE_TABLE(acpi, crystal_cove_acpi_match);
- 
- static const struct i2c_device_id crystal_cove_i2c_match[] = {
--	{ "intel_soc_pmic_crc" },
-+	{ .name = "intel_soc_pmic_crc" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, crystal_cove_i2c_match);
-diff --git a/drivers/mfd/lm3533-core.c b/drivers/mfd/lm3533-core.c
-index 9233da7ce099..4b94e30100f7 100644
---- a/drivers/mfd/lm3533-core.c
-+++ b/drivers/mfd/lm3533-core.c
-@@ -502,7 +502,7 @@ static const struct of_device_id lm3533_match_table[] = {
- MODULE_DEVICE_TABLE(of, lm3533_match_table);
- 
- static const struct i2c_device_id lm3533_i2c_ids[] = {
--	{ "lm3533" },
-+	{ .name = "lm3533" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, lm3533_i2c_ids);
-diff --git a/drivers/mfd/lp3943.c b/drivers/mfd/lp3943.c
-index 1918b5c7a5e7..c6465bbf41fa 100644
---- a/drivers/mfd/lp3943.c
-+++ b/drivers/mfd/lp3943.c
-@@ -126,7 +126,7 @@ static int lp3943_probe(struct i2c_client *cl)
- }
- 
- static const struct i2c_device_id lp3943_ids[] = {
--	{ "lp3943" },
-+	{ .name = "lp3943" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, lp3943_ids);
-diff --git a/drivers/mfd/lp873x.c b/drivers/mfd/lp873x.c
-index d2c90302bf59..46444696f2f4 100644
---- a/drivers/mfd/lp873x.c
-+++ b/drivers/mfd/lp873x.c
-@@ -67,7 +67,7 @@ static const struct of_device_id of_lp873x_match_table[] = {
- MODULE_DEVICE_TABLE(of, of_lp873x_match_table);
- 
- static const struct i2c_device_id lp873x_id_table[] = {
--	{ "lp873x" },
-+	{ .name = "lp873x" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, lp873x_id_table);
-diff --git a/drivers/mfd/lp87565.c b/drivers/mfd/lp87565.c
-index efea1ba82811..14e80588efac 100644
---- a/drivers/mfd/lp87565.c
-+++ b/drivers/mfd/lp87565.c
-@@ -108,7 +108,7 @@ static void lp87565_shutdown(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id lp87565_id_table[] = {
--	{ "lp87565-q1" },
-+	{ .name = "lp87565-q1" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, lp87565_id_table);
-diff --git a/drivers/mfd/lp8788.c b/drivers/mfd/lp8788.c
-index 32f255378f5a..48fe99a2b982 100644
---- a/drivers/mfd/lp8788.c
-+++ b/drivers/mfd/lp8788.c
-@@ -216,7 +216,7 @@ static void lp8788_remove(struct i2c_client *cl)
- }
- 
- static const struct i2c_device_id lp8788_ids[] = {
--	{ "lp8788" },
-+	{ .name = "lp8788" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, lp8788_ids);
-diff --git a/drivers/mfd/madera-i2c.c b/drivers/mfd/madera-i2c.c
-index 0986e4a99f4a..762f668ed20c 100644
---- a/drivers/mfd/madera-i2c.c
-+++ b/drivers/mfd/madera-i2c.c
-@@ -112,15 +112,15 @@ static void madera_i2c_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id madera_i2c_id[] = {
--	{ "cs47l15", CS47L15 },
--	{ "cs47l35", CS47L35 },
--	{ "cs47l85", CS47L85 },
--	{ "cs47l90", CS47L90 },
--	{ "cs47l91", CS47L91 },
--	{ "cs42l92", CS42L92 },
--	{ "cs47l92", CS47L92 },
--	{ "cs47l93", CS47L93 },
--	{ "wm1840", WM1840 },
-+	{ .name = "cs47l15", .driver_data = CS47L15 },
-+	{ .name = "cs47l35", .driver_data = CS47L35 },
-+	{ .name = "cs47l85", .driver_data = CS47L85 },
-+	{ .name = "cs47l90", .driver_data = CS47L90 },
-+	{ .name = "cs47l91", .driver_data = CS47L91 },
-+	{ .name = "cs42l92", .driver_data = CS42L92 },
-+	{ .name = "cs47l92", .driver_data = CS47L92 },
-+	{ .name = "cs47l93", .driver_data = CS47L93 },
-+	{ .name = "wm1840", .driver_data = WM1840 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, madera_i2c_id);
-diff --git a/drivers/mfd/max14577.c b/drivers/mfd/max14577.c
-index da275a04a1ef..f3325d015ec6 100644
---- a/drivers/mfd/max14577.c
-+++ b/drivers/mfd/max14577.c
-@@ -463,8 +463,8 @@ static void max14577_i2c_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id max14577_i2c_id[] = {
--	{ "max14577", MAXIM_DEVICE_TYPE_MAX14577, },
--	{ "max77836", MAXIM_DEVICE_TYPE_MAX77836, },
-+	{ .name = "max14577", .driver_data = MAXIM_DEVICE_TYPE_MAX14577 },
-+	{ .name = "max77836", .driver_data = MAXIM_DEVICE_TYPE_MAX77836 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, max14577_i2c_id);
-diff --git a/drivers/mfd/max77541.c b/drivers/mfd/max77541.c
-index f91b4f5373ce..5f5b2ff181d3 100644
---- a/drivers/mfd/max77541.c
-+++ b/drivers/mfd/max77541.c
-@@ -199,8 +199,8 @@ static const struct of_device_id max77541_of_id[] = {
- MODULE_DEVICE_TABLE(of, max77541_of_id);
- 
- static const struct i2c_device_id max77541_id[] = {
--	{ "max77540", MAX77540 },
--	{ "max77541", MAX77541 },
-+	{ .name = "max77540", .driver_data = MAX77540 },
-+	{ .name = "max77541", .driver_data = MAX77541 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, max77541_id);
-diff --git a/drivers/mfd/max77620.c b/drivers/mfd/max77620.c
-index c4f89a9681f3..a66ca73997f5 100644
---- a/drivers/mfd/max77620.c
-+++ b/drivers/mfd/max77620.c
-@@ -694,9 +694,9 @@ static int max77620_i2c_resume(struct device *dev)
- }
- 
- static const struct i2c_device_id max77620_id[] = {
--	{"max77620", MAX77620},
--	{"max20024", MAX20024},
--	{"max77663", MAX77663},
-+	{ .name = "max77620", .driver_data = MAX77620 },
-+	{ .name = "max20024", .driver_data = MAX20024 },
-+	{ .name = "max77663", .driver_data = MAX77663 },
- 	{},
- };
- 
-diff --git a/drivers/mfd/max77693.c b/drivers/mfd/max77693.c
-index 1c485a4c3dcf..411011afde37 100644
---- a/drivers/mfd/max77693.c
-+++ b/drivers/mfd/max77693.c
-@@ -306,7 +306,7 @@ static void max77693_i2c_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id max77693_i2c_id[] = {
--	{ "max77693", TYPE_MAX77693 },
-+	{ .name = "max77693", .driver_data = TYPE_MAX77693 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, max77693_i2c_id);
-diff --git a/drivers/mfd/max77759.c b/drivers/mfd/max77759.c
-index 72b608a1ab3f..2347eb0b014b 100644
---- a/drivers/mfd/max77759.c
-+++ b/drivers/mfd/max77759.c
-@@ -712,7 +712,7 @@ static int max77759_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id max77759_i2c_id[] = {
--	{ "max77759" },
-+	{ .name = "max77759" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, max77759_i2c_id);
-diff --git a/drivers/mfd/max77843.c b/drivers/mfd/max77843.c
-index 9ae6715642ae..d3224cf5e3f6 100644
---- a/drivers/mfd/max77843.c
-+++ b/drivers/mfd/max77843.c
-@@ -169,7 +169,7 @@ static const struct of_device_id max77843_dt_match[] = {
- };
- 
- static const struct i2c_device_id max77843_id[] = {
--	{ "max77843", TYPE_MAX77843, },
-+	{ .name = "max77843", .driver_data = TYPE_MAX77843 },
- 	{ },
- };
- 
-diff --git a/drivers/mfd/max8907.c b/drivers/mfd/max8907.c
-index 7bac1d651771..70ffc08a96d1 100644
---- a/drivers/mfd/max8907.c
-+++ b/drivers/mfd/max8907.c
-@@ -300,7 +300,7 @@ MODULE_DEVICE_TABLE(of, max8907_of_match);
- #endif
- 
- static const struct i2c_device_id max8907_i2c_id[] = {
--	{ "max8907" },
-+	{ .name = "max8907" },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, max8907_i2c_id);
-diff --git a/drivers/mfd/max8925-i2c.c b/drivers/mfd/max8925-i2c.c
-index ab19ff0c7867..25390d0eabd4 100644
---- a/drivers/mfd/max8925-i2c.c
-+++ b/drivers/mfd/max8925-i2c.c
-@@ -127,7 +127,7 @@ EXPORT_SYMBOL(max8925_set_bits);
- 
- 
- static const struct i2c_device_id max8925_id_table[] = {
--	{ "max8925" },
-+	{ .name = "max8925" },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/max8997.c b/drivers/mfd/max8997.c
-index 7ba8ed1dfde3..6edc18e0eebb 100644
---- a/drivers/mfd/max8997.c
-+++ b/drivers/mfd/max8997.c
-@@ -229,8 +229,8 @@ static int max8997_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id max8997_i2c_id[] = {
--	{ "max8997", TYPE_MAX8997 },
--	{ "max8966", TYPE_MAX8966 },
-+	{ .name = "max8997", .driver_data = TYPE_MAX8997 },
-+	{ .name = "max8966", .driver_data = TYPE_MAX8966 },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/max8998.c b/drivers/mfd/max8998.c
-index 5032eab05bb4..c5d03c74227d 100644
---- a/drivers/mfd/max8998.c
-+++ b/drivers/mfd/max8998.c
-@@ -223,8 +223,8 @@ static int max8998_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id max8998_i2c_id[] = {
--	{ "max8998", TYPE_MAX8998 },
--	{ "lp3974", TYPE_LP3974},
-+	{ .name = "max8998", .driver_data = TYPE_MAX8998 },
-+	{ .name = "lp3974", .driver_data = TYPE_LP3974 },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/menelaus.c b/drivers/mfd/menelaus.c
-index a125d40fa121..22da12dbab8b 100644
---- a/drivers/mfd/menelaus.c
-+++ b/drivers/mfd/menelaus.c
-@@ -1230,7 +1230,7 @@ static void menelaus_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id menelaus_id[] = {
--	{ "menelaus" },
-+	{ .name = "menelaus" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, menelaus_id);
-diff --git a/drivers/mfd/menf21bmc.c b/drivers/mfd/menf21bmc.c
-index 0f24de516d72..b2577f9e1e04 100644
---- a/drivers/mfd/menf21bmc.c
-+++ b/drivers/mfd/menf21bmc.c
-@@ -101,7 +101,7 @@ menf21bmc_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id menf21bmc_id_table[] = {
--	{ "menf21bmc" },
-+	{ .name = "menf21bmc" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, menf21bmc_id_table);
-diff --git a/drivers/mfd/palmas.c b/drivers/mfd/palmas.c
-index 7fc886f4f80e..26faecab1af3 100644
---- a/drivers/mfd/palmas.c
-+++ b/drivers/mfd/palmas.c
-@@ -699,10 +699,10 @@ static const struct of_device_id of_palmas_match_tbl[] = {
- MODULE_DEVICE_TABLE(of, of_palmas_match_tbl);
- 
- static const struct i2c_device_id palmas_i2c_id[] = {
--	{ "palmas", (kernel_ulong_t)&palmas_data },
--	{ "twl6035", (kernel_ulong_t)&palmas_data },
--	{ "twl6037", (kernel_ulong_t)&palmas_data },
--	{ "tps65913", (kernel_ulong_t)&palmas_data },
-+	{ .name = "palmas", .driver_data = (kernel_ulong_t)&palmas_data },
-+	{ .name = "twl6035", .driver_data = (kernel_ulong_t)&palmas_data },
-+	{ .name = "twl6037", .driver_data = (kernel_ulong_t)&palmas_data },
-+	{ .name = "tps65913", .driver_data = (kernel_ulong_t)&palmas_data },
- 	{ /* end */ }
- };
- MODULE_DEVICE_TABLE(i2c, palmas_i2c_id);
-diff --git a/drivers/mfd/pf1550.c b/drivers/mfd/pf1550.c
-index c4f567c05564..7c3348ad59dc 100644
---- a/drivers/mfd/pf1550.c
-+++ b/drivers/mfd/pf1550.c
-@@ -340,7 +340,7 @@ static int pf1550_resume(struct device *dev)
- static DEFINE_SIMPLE_DEV_PM_OPS(pf1550_pm, pf1550_suspend, pf1550_resume);
- 
- static const struct i2c_device_id pf1550_i2c_id[] = {
--	{ "pf1550" },
-+	{ .name = "pf1550" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(i2c, pf1550_i2c_id);
-diff --git a/drivers/mfd/retu-mfd.c b/drivers/mfd/retu-mfd.c
-index 1d43458b4938..330366224e80 100644
---- a/drivers/mfd/retu-mfd.c
-+++ b/drivers/mfd/retu-mfd.c
-@@ -300,8 +300,8 @@ static void retu_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id retu_id[] = {
--	{ "retu" },
--	{ "tahvo" },
-+	{ .name = "retu" },
-+	{ .name = "tahvo" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, retu_id);
-diff --git a/drivers/mfd/rsmu_i2c.c b/drivers/mfd/rsmu_i2c.c
-index c57795ed20f4..d05aaf576a86 100644
---- a/drivers/mfd/rsmu_i2c.c
-+++ b/drivers/mfd/rsmu_i2c.c
-@@ -328,13 +328,13 @@ static void rsmu_i2c_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id rsmu_i2c_id[] = {
--	{ "8a34000",  RSMU_CM },
--	{ "8a34001",  RSMU_CM },
--	{ "8a34002",  RSMU_CM },
--	{ "82p33810", RSMU_SABRE },
--	{ "82p33811", RSMU_SABRE },
--	{ "8v19n850", RSMU_SL },
--	{ "8v19n851", RSMU_SL },
-+	{ .name = "8a34000",  .driver_data = RSMU_CM },
-+	{ .name = "8a34001",  .driver_data = RSMU_CM },
-+	{ .name = "8a34002",  .driver_data = RSMU_CM },
-+	{ .name = "82p33810", .driver_data = RSMU_SABRE },
-+	{ .name = "82p33811", .driver_data = RSMU_SABRE },
-+	{ .name = "8v19n850", .driver_data = RSMU_SL },
-+	{ .name = "8v19n851", .driver_data = RSMU_SL },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, rsmu_i2c_id);
-diff --git a/drivers/mfd/rt5033.c b/drivers/mfd/rt5033.c
-index 072fd4447245..799661fb1c72 100644
---- a/drivers/mfd/rt5033.c
-+++ b/drivers/mfd/rt5033.c
-@@ -107,7 +107,7 @@ static int rt5033_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id rt5033_i2c_id[] = {
--	{ "rt5033", },
-+	{ .name = "rt5033" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, rt5033_i2c_id);
-diff --git a/drivers/mfd/si476x-i2c.c b/drivers/mfd/si476x-i2c.c
-index 6351aef2d3bb..549f64255eef 100644
---- a/drivers/mfd/si476x-i2c.c
-+++ b/drivers/mfd/si476x-i2c.c
-@@ -838,9 +838,9 @@ static void si476x_core_remove(struct i2c_client *client)
- 
- 
- static const struct i2c_device_id si476x_id[] = {
--	{ "si4761", SI476X_CHIP_SI4761 },
--	{ "si4764", SI476X_CHIP_SI4764 },
--	{ "si4768", SI476X_CHIP_SI4768 },
-+	{ .name = "si4761", .driver_data = SI476X_CHIP_SI4761 },
-+	{ .name = "si4764", .driver_data = SI476X_CHIP_SI4764 },
-+	{ .name = "si4768", .driver_data = SI476X_CHIP_SI4768 },
- 	{ },
- };
- MODULE_DEVICE_TABLE(i2c, si476x_id);
-diff --git a/drivers/mfd/sky81452.c b/drivers/mfd/sky81452.c
-index 771b62a5c70f..8a213176b7cd 100644
---- a/drivers/mfd/sky81452.c
-+++ b/drivers/mfd/sky81452.c
-@@ -59,7 +59,7 @@ static int sky81452_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id sky81452_ids[] = {
--	{ "sky81452" },
-+	{ .name = "sky81452" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, sky81452_ids);
-diff --git a/drivers/mfd/stmpe-i2c.c b/drivers/mfd/stmpe-i2c.c
-index 943fa363efc3..8eee780afa16 100644
---- a/drivers/mfd/stmpe-i2c.c
-+++ b/drivers/mfd/stmpe-i2c.c
-@@ -100,14 +100,14 @@ static void stmpe_i2c_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id stmpe_i2c_id[] = {
--	{ "stmpe610", STMPE610 },
--	{ "stmpe801", STMPE801 },
--	{ "stmpe811", STMPE811 },
--	{ "stmpe1600", STMPE1600 },
--	{ "stmpe1601", STMPE1601 },
--	{ "stmpe1801", STMPE1801 },
--	{ "stmpe2401", STMPE2401 },
--	{ "stmpe2403", STMPE2403 },
-+	{ .name = "stmpe610", .driver_data = STMPE610 },
-+	{ .name = "stmpe801", .driver_data = STMPE801 },
-+	{ .name = "stmpe811", .driver_data = STMPE811 },
-+	{ .name = "stmpe1600", .driver_data = STMPE1600 },
-+	{ .name = "stmpe1601", .driver_data = STMPE1601 },
-+	{ .name = "stmpe1801", .driver_data = STMPE1801 },
-+	{ .name = "stmpe2401", .driver_data = STMPE2401 },
-+	{ .name = "stmpe2403", .driver_data = STMPE2403 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, stmpe_i2c_id);
-diff --git a/drivers/mfd/stw481x.c b/drivers/mfd/stw481x.c
-index 5ed64d53c23d..da1e293d36e9 100644
---- a/drivers/mfd/stw481x.c
-+++ b/drivers/mfd/stw481x.c
-@@ -222,7 +222,7 @@ static int stw481x_probe(struct i2c_client *client)
-  * the structure of the I2C core.
-  */
- static const struct i2c_device_id stw481x_id[] = {
--	{ "stw481x" },
-+	{ .name = "stw481x" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, stw481x_id);
-diff --git a/drivers/mfd/tc3589x.c b/drivers/mfd/tc3589x.c
-index 2d4eb771e230..f812e7551f09 100644
---- a/drivers/mfd/tc3589x.c
-+++ b/drivers/mfd/tc3589x.c
-@@ -466,13 +466,13 @@ static DEFINE_SIMPLE_DEV_PM_OPS(tc3589x_dev_pm_ops,
- 				tc3589x_suspend, tc3589x_resume);
- 
- static const struct i2c_device_id tc3589x_id[] = {
--	{ "tc35890", TC3589X_TC35890 },
--	{ "tc35892", TC3589X_TC35892 },
--	{ "tc35893", TC3589X_TC35893 },
--	{ "tc35894", TC3589X_TC35894 },
--	{ "tc35895", TC3589X_TC35895 },
--	{ "tc35896", TC3589X_TC35896 },
--	{ "tc3589x", TC3589X_UNKNOWN },
-+	{ .name = "tc35890", .driver_data = TC3589X_TC35890 },
-+	{ .name = "tc35892", .driver_data = TC3589X_TC35892 },
-+	{ .name = "tc35893", .driver_data = TC3589X_TC35893 },
-+	{ .name = "tc35894", .driver_data = TC3589X_TC35894 },
-+	{ .name = "tc35895", .driver_data = TC3589X_TC35895 },
-+	{ .name = "tc35896", .driver_data = TC3589X_TC35896 },
-+	{ .name = "tc3589x", .driver_data = TC3589X_UNKNOWN },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, tc3589x_id);
-diff --git a/drivers/mfd/ti-lmu.c b/drivers/mfd/ti-lmu.c
-index cfc9f88b9842..5d22830b010f 100644
---- a/drivers/mfd/ti-lmu.c
-+++ b/drivers/mfd/ti-lmu.c
-@@ -206,11 +206,11 @@ static const struct of_device_id ti_lmu_of_match[] = {
- MODULE_DEVICE_TABLE(of, ti_lmu_of_match);
- 
- static const struct i2c_device_id ti_lmu_ids[] = {
--	{ "lm3631", LM3631 },
--	{ "lm3632", LM3632 },
--	{ "lm3633", LM3633 },
--	{ "lm3695", LM3695 },
--	{ "lm36274", LM36274 },
-+	{ .name = "lm3631", .driver_data = LM3631 },
-+	{ .name = "lm3632", .driver_data = LM3632 },
-+	{ .name = "lm3633", .driver_data = LM3633 },
-+	{ .name = "lm3695", .driver_data = LM3695 },
-+	{ .name = "lm36274", .driver_data = LM36274 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, ti_lmu_ids);
-diff --git a/drivers/mfd/tps6105x.c b/drivers/mfd/tps6105x.c
-index b11cd2c03311..032ac8ad026a 100644
---- a/drivers/mfd/tps6105x.c
-+++ b/drivers/mfd/tps6105x.c
-@@ -191,8 +191,8 @@ static void tps6105x_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id tps6105x_id[] = {
--	{ "tps61050" },
--	{ "tps61052" },
-+	{ .name = "tps61050" },
-+	{ .name = "tps61052" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, tps6105x_id);
-diff --git a/drivers/mfd/tps65010.c b/drivers/mfd/tps65010.c
-index 8a144ec52201..4d428b82def9 100644
---- a/drivers/mfd/tps65010.c
-+++ b/drivers/mfd/tps65010.c
-@@ -649,11 +649,11 @@ static int tps65010_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id tps65010_id[] = {
--	{ "tps65010", TPS65010 },
--	{ "tps65011", TPS65011 },
--	{ "tps65012", TPS65012 },
--	{ "tps65013", TPS65013 },
--	{ "tps65014", TPS65011 },	/* tps65011 charging at 6.5V max */
-+	{ .name = "tps65010", .driver_data = TPS65010 },
-+	{ .name = "tps65011", .driver_data = TPS65011 },
-+	{ .name = "tps65012", .driver_data = TPS65012 },
-+	{ .name = "tps65013", .driver_data = TPS65013 },
-+	{ .name = "tps65014", .driver_data = TPS65011 },	/* tps65011 charging at 6.5V max */
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, tps65010_id);
-diff --git a/drivers/mfd/tps6507x.c b/drivers/mfd/tps6507x.c
-index 9865512dc7cc..ed806754d89f 100644
---- a/drivers/mfd/tps6507x.c
-+++ b/drivers/mfd/tps6507x.c
-@@ -103,7 +103,7 @@ static int tps6507x_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id tps6507x_i2c_id[] = {
--	{ "tps6507x" },
-+	{ .name = "tps6507x" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, tps6507x_i2c_id);
-diff --git a/drivers/mfd/tps65086.c b/drivers/mfd/tps65086.c
-index 54832e9321b9..a73e0b5c0982 100644
---- a/drivers/mfd/tps65086.c
-+++ b/drivers/mfd/tps65086.c
-@@ -127,7 +127,7 @@ static void tps65086_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id tps65086_id_table[] = {
--	{ "tps65086" },
-+	{ .name = "tps65086" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(i2c, tps65086_id_table);
-diff --git a/drivers/mfd/tps65090.c b/drivers/mfd/tps65090.c
-index 24f42175a9b4..ae845be3a8ea 100644
---- a/drivers/mfd/tps65090.c
-+++ b/drivers/mfd/tps65090.c
-@@ -225,7 +225,7 @@ static int tps65090_i2c_probe(struct i2c_client *client)
- 
- 
- static const struct i2c_device_id tps65090_id_table[] = {
--	{ "tps65090" },
-+	{ .name = "tps65090" },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/tps65217.c b/drivers/mfd/tps65217.c
-index 569c28c8b20f..e9560a5445b9 100644
---- a/drivers/mfd/tps65217.c
-+++ b/drivers/mfd/tps65217.c
-@@ -418,7 +418,7 @@ static int tps65217_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id tps65217_id_table[] = {
--	{"tps65217", TPS65217},
-+	{ .name = "tps65217", .driver_data = TPS65217 },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(i2c, tps65217_id_table);
-diff --git a/drivers/mfd/tps65218.c b/drivers/mfd/tps65218.c
-index 4f3e632f726f..d2d39bd7eddd 100644
---- a/drivers/mfd/tps65218.c
-+++ b/drivers/mfd/tps65218.c
-@@ -336,8 +336,8 @@ static int tps65218_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id tps65218_id_table[] = {
--	{ "tps65218", TPS65218 },
+ static const struct platform_device_id mt6397_id[] = {
+-	{ "mt6397" },
 -	{ },
-+	{ .name = "tps65218", .driver_data = TPS65218 },
++	{ .name = "mt6397" },
 +	{ }
  };
- MODULE_DEVICE_TABLE(i2c, tps65218_id_table);
+ MODULE_DEVICE_TABLE(platform, mt6397_id);
  
-diff --git a/drivers/mfd/tps6586x.c b/drivers/mfd/tps6586x.c
-index 600186b1e8cb..e58a50d601dd 100644
---- a/drivers/mfd/tps6586x.c
-+++ b/drivers/mfd/tps6586x.c
-@@ -642,7 +642,7 @@ static DEFINE_SIMPLE_DEV_PM_OPS(tps6586x_pm_ops, tps6586x_i2c_suspend,
- 			 tps6586x_i2c_resume);
- 
- static const struct i2c_device_id tps6586x_id_table[] = {
--	{ "tps6586x" },
-+	{ .name = "tps6586x" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, tps6586x_id_table);
-diff --git a/drivers/mfd/tps65910.c b/drivers/mfd/tps65910.c
-index 6243b66b1b6f..b0dbee3e6ea2 100644
---- a/drivers/mfd/tps65910.c
-+++ b/drivers/mfd/tps65910.c
-@@ -532,8 +532,8 @@ static int tps65910_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id tps65910_i2c_id[] = {
--       { "tps65910", TPS65910 },
--       { "tps65911", TPS65911 },
-+       { .name = "tps65910", .driver_data = TPS65910 },
-+       { .name = "tps65911", .driver_data = TPS65911 },
-        { }
- };
- 
-diff --git a/drivers/mfd/tps65912-i2c.c b/drivers/mfd/tps65912-i2c.c
-index 138e50497b51..3eca8880532e 100644
---- a/drivers/mfd/tps65912-i2c.c
-+++ b/drivers/mfd/tps65912-i2c.c
-@@ -43,7 +43,7 @@ static int tps65912_i2c_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id tps65912_i2c_id_table[] = {
--	{ "tps65912" },
-+	{ .name = "tps65912" },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(i2c, tps65912_i2c_id_table);
-diff --git a/drivers/mfd/twl-core.c b/drivers/mfd/twl-core.c
-index 7fbce76efd30..fac44a0059f5 100644
---- a/drivers/mfd/twl-core.c
-+++ b/drivers/mfd/twl-core.c
-@@ -933,17 +933,17 @@ static int twl_resume(struct device *dev)
- static DEFINE_SIMPLE_DEV_PM_OPS(twl_dev_pm_ops, twl_suspend, twl_resume);
- 
- static const struct i2c_device_id twl_ids[] = {
--	{ "twl4030", TWL4030_VAUX2 },	/* "Triton 2" */
--	{ "twl5030", 0 },		/* T2 updated */
--	{ "twl5031", TWL5031 },		/* TWL5030 updated */
--	{ "tps65950", 0 },		/* catalog version of twl5030 */
--	{ "tps65930", TPS_SUBSET },	/* fewer LDOs and DACs; no charger */
--	{ "tps65920", TPS_SUBSET },	/* fewer LDOs; no codec or charger */
--	{ "tps65921", TPS_SUBSET },	/* fewer LDOs; no codec, no LED
--					   and vibrator. Charger in USB module*/
--	{ "twl6030", TWL6030_CLASS },	/* "Phoenix power chip" */
--	{ "twl6032", TWL6030_CLASS | TWL6032_SUBCLASS }, /* "Phoenix lite" */
--	{ /* end of list */ },
-+	{ .name = "twl4030", .driver_data = TWL4030_VAUX2 },	/* "Triton 2" */
-+	{ .name = "twl5030", .driver_data = 0 },		/* T2 updated */
-+	{ .name = "twl5031", .driver_data = TWL5031 },		/* TWL5030 updated */
-+	{ .name = "tps65950", .driver_data = 0 },		/* catalog version of twl5030 */
-+	{ .name = "tps65930", .driver_data = TPS_SUBSET },	/* fewer LDOs and DACs; no charger */
-+	{ .name = "tps65920", .driver_data = TPS_SUBSET },	/* fewer LDOs; no codec or charger */
-+	{ .name = "tps65921", .driver_data = TPS_SUBSET },	/* fewer LDOs; no codec, no LED
-+						   and vibrator. Charger in USB module*/
-+	{ .name = "twl6030", .driver_data = TWL6030_CLASS },	/* "Phoenix power chip" */
-+	{ .name = "twl6032", .driver_data = TWL6030_CLASS | TWL6032_SUBCLASS }, /* "Phoenix lite" */
-+	{ /* end of list */ }
- };
- 
- /* One Client Driver , 4 Clients */
-diff --git a/drivers/mfd/twl6040.c b/drivers/mfd/twl6040.c
-index 562a0f939f6e..ed2a2cca8cb9 100644
---- a/drivers/mfd/twl6040.c
-+++ b/drivers/mfd/twl6040.c
-@@ -817,8 +817,8 @@ static void twl6040_remove(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id twl6040_i2c_id[] = {
--	{ "twl6040" },
--	{ "twl6041" },
-+	{ .name = "twl6040" },
-+	{ .name = "twl6041" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, twl6040_i2c_id);
-diff --git a/drivers/mfd/wm831x-i2c.c b/drivers/mfd/wm831x-i2c.c
-index 9bee007f9c99..5a093086021a 100644
---- a/drivers/mfd/wm831x-i2c.c
-+++ b/drivers/mfd/wm831x-i2c.c
-@@ -72,13 +72,13 @@ static int wm831x_i2c_poweroff(struct device *dev)
- }
- 
- static const struct i2c_device_id wm831x_i2c_id[] = {
--	{ "wm8310", WM8310 },
--	{ "wm8311", WM8311 },
--	{ "wm8312", WM8312 },
--	{ "wm8320", WM8320 },
--	{ "wm8321", WM8321 },
--	{ "wm8325", WM8325 },
--	{ "wm8326", WM8326 },
-+	{ .name = "wm8310", .driver_data = WM8310 },
-+	{ .name = "wm8311", .driver_data = WM8311 },
-+	{ .name = "wm8312", .driver_data = WM8312 },
-+	{ .name = "wm8320", .driver_data = WM8320 },
-+	{ .name = "wm8321", .driver_data = WM8321 },
-+	{ .name = "wm8325", .driver_data = WM8325 },
-+	{ .name = "wm8326", .driver_data = WM8326 },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/wm8350-i2c.c b/drivers/mfd/wm8350-i2c.c
-index 767c176b12a7..b20761a88b05 100644
---- a/drivers/mfd/wm8350-i2c.c
-+++ b/drivers/mfd/wm8350-i2c.c
-@@ -41,9 +41,9 @@ static int wm8350_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id wm8350_i2c_id[] = {
--	{ "wm8350" },
--	{ "wm8351" },
--	{ "wm8352" },
-+	{ .name = "wm8350" },
-+	{ .name = "wm8351" },
-+	{ .name = "wm8352" },
- 	{ }
- };
- 
-diff --git a/drivers/mfd/wm8400-core.c b/drivers/mfd/wm8400-core.c
-index 8ecfe878a5ba..1c0ba450ef9b 100644
---- a/drivers/mfd/wm8400-core.c
-+++ b/drivers/mfd/wm8400-core.c
-@@ -135,7 +135,7 @@ static int wm8400_i2c_probe(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id wm8400_i2c_id[] = {
--       { "wm8400" },
-+       { .name = "wm8400" },
-        { }
- };
- 
-diff --git a/drivers/mfd/wm8994-core.c b/drivers/mfd/wm8994-core.c
-index 094c0b3dbd97..903d7070dbe5 100644
---- a/drivers/mfd/wm8994-core.c
-+++ b/drivers/mfd/wm8994-core.c
-@@ -643,10 +643,10 @@ static void wm8994_i2c_remove(struct i2c_client *i2c)
- }
- 
- static const struct i2c_device_id wm8994_i2c_id[] = {
--	{ "wm1811", WM1811 },
--	{ "wm1811a", WM1811 },
--	{ "wm8994", WM8994 },
--	{ "wm8958", WM8958 },
-+	{ .name = "wm1811", .driver_data = WM1811 },
-+	{ .name = "wm1811a", .driver_data = WM1811 },
-+	{ .name = "wm8994", .driver_data = WM8994 },
-+	{ .name = "wm8958", .driver_data = WM8958 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, wm8994_i2c_id);
 -- 
 2.56.0.rc1
 
