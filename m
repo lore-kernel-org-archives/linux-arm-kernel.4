@@ -2,108 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88417606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30FF460A2613
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tHy0P4Im;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Wa4HDAI5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DS8owWMy;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=EENM8nu1;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=qZvIy9Hq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Mw9iOCkEBWkvxdLSgoJVCB6jT3T4ThA8jIPRTFH0lnY=; b=tHy0P4ImF1f1/+
-	AivCVRhZb50i4161eQI3LqlpKWyXRPwYFpaLGn5ocaQiqCpcJDzIBzYDdGip9lLLFDULbwWSwILLg
-	bQ1ASf4GrNwV5KoWpcCmp6Y3TOPmHI34Gb31H/mBT1x23B5eX2lini0lTW+ZvmvSbPXiC9TKA0NJm
-	i4wn1v/U7vuZoTEZ9kOBXERSqE4aAJT4ZkTMVWyf/aCvsUS95eTZ9ojsV32qio1F2IeNTjRs2T66K
-	a2nFif3Jh8kkMR/0K6SzPwC1Mx7OJm6/CchAUMLeAARHl6jzzGGBl+0WwAjjlldoxmwspADLXKeF2
-	OFJVaE6RKiuJrRJGbbrg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=VMVsIg9meqQ62t0+CY5CMduv42wKWJXNSJQ6i89MUtU=; b=DS8owWMy1K3Y27PArbQSrYFvXO
+	d86vWCO4PoEcpZr0XutwTVmj31YOv2e+fIkgD3jem5fbGd7kuKgGJ2x0bgi7PhlDz3IkPZYCoQ4IT
+	Q5tlxs7aMxbK/W/uQAhtZxPvBtksbk4Bon8faqBW91YxVySJHPZvKfU0wPVflAM8uMFrxnjvSKFD0
+	JuO327hmWRrUrsUkPQ8kxuE/yLSoCrVMwgiTWGodIyh1NMA5te0Wx6xW33kTaLTJCbj0DjOInr2tz
+	aXTzGbO823DpHifAmKLobSSZTKzaj0IqFMUWF2eLgNNYPu09eEEhHL24SFCkJtEqTXk6Vs6u6bamF
+	DlBgxKyQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQodc-00000004VeM-2mWo;
-	Tue, 10 Nov 2026 16:24:00 +0000
-Received: from mail-pl1-x62d.google.com ([2607:f8b0:4864:20::62d])
+	id 1xQody-00000004Vnz-409R;
+	Tue, 10 Nov 2026 16:24:22 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQodZ-00000004Vcl-1JTV
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 16:23:58 +0000
-Received: by mail-pl1-x62d.google.com with SMTP id d9443c01a7336-2ed1e9ae5a8so7656775ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 08:23:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794327835; x=1794932635; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Mw9iOCkEBWkvxdLSgoJVCB6jT3T4ThA8jIPRTFH0lnY=;
-        b=Wa4HDAI5a8JZX1jkFBmDL3IOm984ooueuf5MYWN01KvWChiygdRkOi7VWp8vAPmHBj
-         ABuRZWhboj3K43Pr51fp88PyoYIWkq0b8gj3bW93rBVB+Hij72fJa8FyB1ADGr6ZyzkV
-         MjkJSzsZI7UwX5rqmF2pIkD4Cs+Hda6oCn0rzRR5WY2Qcn5i4t61JsHbbkK6/rZYBM9m
-         5/2yYKlE7Owk23rQZzYvO1QNwG5Bx5Ri/3Ixi4t6qhs1NCHyguyXvmtLqAIKOwNhfisS
-         mMHMot4s5ovRTraDPXGaWniYAKEcGEvPnG2NyU2AN1MnGbhgmDZiRaNr2NZCDDG5jZdE
-         DlKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794327835; x=1794932635;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Mw9iOCkEBWkvxdLSgoJVCB6jT3T4ThA8jIPRTFH0lnY=;
-        b=yDoMCnXt2D4KvFctioI87kvaH40kBsM/ybmlXKq/VDNNkrPjx3pj8+rPUrR/aQEFP9
-         p9Fb8MzIIZ+z5o6cKjGUrH84crc4qppCM1KxvoQxagXq0xKeNTBWsPrZkMmS3kdbd81+
-         eG1BKRDwa4C5l0qXSqss4aWacV0diddWQHbcF88fAaos12P1wEbv7Bi8fZi3bsgGg9Sf
-         cC+Fsgd0cVlNTfRGMIFAkUa0Se5FhMkcXGPyfjC/auwt6lyd1BM3wodG/ezFR8Ayv+ju
-         PiZlfzHp8PTqlD4LT19NQt4pCa0wJe7qWQYe8vZeWd1h9GFqYm5sVyQ0Y1BsVhmtNB44
-         HWuQ==
-X-Forwarded-Encrypted: i=1; AL+hErGZfFXp1csxf6h1FEYpfK/C9bWdBiTckSeWF9qN1zAk6THSDBa8S9W6hfCANzq7jgWnzOnhhAru9i0fTSwCY1NZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+vAMEfMW1Iw89psoqJUk2UVYXpxKsh9ME64q2XxqRfqkf5HlWg
-	1IPyiHBYPWKbo2c99EKRyijQ14cZSDcibppAlKhHqxlEYYJzom3d7wY4uRSDRXHQlw==
-X-Gm-Gg: AYBFou1EGDdsHnmC4D3SlKs3e9UnDHez1eYdZqwkJ6gkJlGcjRtnlTfynuPhgxknbdv
-	llwAaQgMMtuQUq9qFiO8ClgSw9SzQ6TQVH8xKBeJADba8AHTILgU2ozy/PZwMMVEKCz9ZsycA3C
-	Wxa4EMHhZ3cxkuKFoNDO/iiRRdT0EBQ/RWF8+kXnRmuNdHnE/cenjItsGyYDGMpFKxO6njWetRK
-	lHvZDGWumdyR3irB5s3h0cuEIO5uxVziAxmBpVhW1RjKuGC0TW0pqtCvrIYX4hjuohMexS/Lg9g
-	w/HB93i//KHmkI51G0o3cLXTI5ULZwEwGF6yZSIvNGz5DxAbp1vn8sxHyUC2/NL4es3N0aBLslY
-	ml2GcUmr3pFKk5Ej1ylIJbdquRYBSJ+qgxti28htYs0gkXG4B2mw7ClypebXE/vFrpvH+3LKfbn
-	O/6uhKYbWNzn3GSIAWm7ER6u9wJBm+Vp7F3t7UMMpZ8mfir0gY+EY8cMPB7NyqmthRFy+OuEL+4
-	z84GhVmr1+3oKYCKxUt/6h67mBSIEzjEC/VnJimzJsECHp0pKkTfs5m1cKKkmfx+KEzkVVoodtP
-	SrJBdVvbGx4jKU8+kjAf6LcYyiIVUnQle2U8OR6ssMlMatIhMiB3tLMtpYbaGiL2
-X-Received: by 2002:a17:902:d4cc:b0:2e8:18ca:5f46 with SMTP id d9443c01a7336-2edb9146ba8mr28990585ad.14.1794327834955;
-        Tue, 10 Nov 2026 08:23:54 -0800 (PST)
-Received: from localhost (33.79.127.34.bc.googleusercontent.com. [34.127.79.33])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d7d964sm11306915ad.32.2026.11.10.08.23.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 08:23:54 -0800 (PST)
+	id 1xQodv-00000004VlA-31cP;
+	Tue, 10 Nov 2026 16:24:21 +0000
+From: Gregor Herburger <gregor.herburger@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1794327857;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VMVsIg9meqQ62t0+CY5CMduv42wKWJXNSJQ6i89MUtU=;
+	b=EENM8nu1gPjUplzI0LyqYGDYDX8ydEIilY2kjl2L4RJM3e8Zgf0G7mP7B96tI6B+vMgdaT
+	2u5+ES4kgbgdRK3MmNArmOuQe1pvBz+jr/6bhDcm0b/zJoB9OAFoE7dWT7dcvYUYBTKRZK
+	3Wc67DDXgJ8/LnYUc8jFGzbgUcibwaVigomk992mb2zK6xJsXCkfh1qXr7Y2safpN8ss0I
+	L6LuAO6s9CIB9Y3gpn5PLm6IwwMiPrSeAqtmZjVAlOH7Ioi3Y45BwQazlZlrdhBvfp7Bcv
+	4uUYy4y3GeeaYj0cl+FLvrKZmRNgZ+HisihcwVby16knSiQaoef2uu1dHOtd/g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1794327857;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VMVsIg9meqQ62t0+CY5CMduv42wKWJXNSJQ6i89MUtU=;
+	b=qZvIy9HqzdP4cmxki1IfCUc3zcjfH8nAuG9BO2d3g8Ig0zYDMXzkTbk/y6I3uP/mop1xVg
+	yMwKWeViyNHeTECg==
+Subject: [PATCH v7 00/11] nvmem: Add Raspberry Pi OTP nvmem driver
+Date: Tue, 10 Nov 2026 17:24:01 +0100
+Message-Id: <20261110-rpi-otp-driver-v7-0-2345d0ee65f0@linutronix.de>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Nov 2026 16:23:53 +0000
-Message-Id: <DMRO4QXXB8H4.127C1CPT3RZ18@google.com>
-Cc: <kvmarm@lists.linux.dev>, <linux-pci@vger.kernel.org>, "Pratyush Yadav"
- <pratyush@kernel.org>, <kexec@lists.infradead.org>, <kvm@vger.kernel.org>,
- <iommu@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
- <skhawaja@google.com>, <sagis@google.com>, <linux-arch@vger.kernel.org>,
- <linux-mm@kvack.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 16/19] PCI: liveupdate: Add feature header to struct
- pci_dev_ser
-From: "David Matlack" <dmatlack@google.com>
-To: "Tarun Sahu" <tarunsahu@google.com>, "Pasha Tatashin"
- <pasha.tatashin@soleen.com>, "Mike Rapoport" <rppt@kernel.org>,
- <robin.murphy@arm.com>, <maz@kernel.org>, <will@kernel.org>, "David
- Matlack" <dmatlack@google.com>, "Alexander Graf" <graf@amazon.com>,
- <seanjc@google.com>, <jgg@nvidia.com>, <loganodell@google.com>,
- <arnd@arndb.de>, <dwmw2@infradead.org>, <baolu.lu@linux.intel.com>, "Bjorn
- Helgaas" <bhelgaas@google.com>, <oupton@kernel.org>, <alex@shazbot.org>,
- <gle.com@google.com>, <pbonzini@redhat.com>, "Andrew Morton"
- <akpm@linux-foundation.org>, <kevin.tian@intel.com>, <joro@8bytes.org>
-X-Mailer: aerc 0.21.0
-References: <20261110050202.529473-1-tarunsahu@google.com>
- <20261110050202.529473-17-tarunsahu@google.com>
-In-Reply-To: <20261110050202.529473-17-tarunsahu@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACFF82oC/3XQzU7DMAwH8FeZcibIcZsvTrwH4rAmDgtCbZV01
+ dDUdycZByqlHP+y/bPsO8uUImX2crqzRGvMcRpL0E8n5i7n8YN49CUzBFTQg+FpjnxaZu5TXCl
+ xLYMj4V0I2rMyNCcK8fYA395/c74On+SWqtSOS8zLlL4fG1dR+/7FV8GBE6AXfiAFYF6/4nhd0
+ jTG27MnVhes+EdIkA2BlbBCK3IaTaePiG5PqIboCoG2V6WuOmXlEdHvifaQvhAuGK9RemNQHBF
+ yRyA0hCzEgIqkBUN0dkeE2hPYEKoSUGat9qLH5p3btv0ATWr5tRECAAA=
+X-Change-ID: 20260408-rpi-otp-driver-75fce1dcff7d
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
+ Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, 
+ Gregor Herburger <gregor.herburger@linutronix.de>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794327856; l=3710;
+ i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
+ bh=nOC1D+FzrtqhciV4vMD0rRrY6gGMlplEHYuBvs/KV+4=;
+ b=HjfrNLCGJwvmuPU54O2NOIyR8TehJe80KJDwMAsf2C1JBqXCQ8+9TTtwi3JjD6c02kW6BzKlV
+ EtDgHACOrCdB4WVB1kNI5jmu28zsggtdIhsVZJMaF7ckweXexiMi7OU
+X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
+ pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_082357_362485_378CE14C 
-X-CRM114-Status: GOOD (  17.67  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261110_082419_924564_F9348AD8 
+X-CRM114-Status: GOOD (  13.12  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,73 +98,97 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue Nov 10, 2026 at 5:01 AM UTC, Tarun Sahu wrote:
-> Precede each serialized PCI device entry in the PCI Live Update KHO block
-> set with struct kho_ser_hdr via DECLARE_KHO_SER so future per-device PCI
-> Live Update features can append fields to struct pci_dev_ser without
-> breaking compatibility between adjacent kernels.
+Hi,
 
-Elements of a collection should not have their own feature headers. This
-applies to patches 10, 12, 14, 16 and 18. I raised this during the v2
-discussion [1][2], but I don't think it was addressed.
+This series adds support for the Raspberry Pis OTP registers. The
+Raspberry Pi has one or more OTP regions. These registers are accessible
+through the firmware. Add a driver for it and add updates the devicetree
+for the Raspberry Pi 5.
 
-All entries in a KHO block set are written by the same kernel using the
-same struct, and the block set has a single entry_size, so every entry
-header is necessarily identical. They don't convey anything that the
-header of the struct that owns the collection can't. In this case,
-struct pci_ser's header can define features that describe fields in
-struct pci_dev_ser, and the PCI core checks them once before iterating.
-If a feature only applies to some devices, the field's value in each
-entry says whether that device uses it.
+---
+Changes in v7:
+- Rebase to v7.4-rc2
+- Added Patch to register rtc driver by soc enum from drvdata
+- Link to v6: https://patch.msgid.link/20260522-rpi-otp-driver-v6-0-b0eac97d1428@linutronix.de
 
-Per-entry headers also cost a lot for small entries. struct pci_dev_ser
-goes from 8 to 16 bytes, and to 24 bytes once the first feature is
-added. Patch 18 does the same for every preserved memfd folio, which for
-a large guest backed by 4K pages adds gigabytes of preserved metadata.
+Changes in v6:
+- Use %pe in dev_err
+- Include <linux/slab.h> to fix build on arm
+- Add arm defconfigs: multi_v7_defconfig and bcm2835_defconfig
+- Reword commit messages
+- Link to v5: https://patch.msgid.link/20260520-rpi-otp-driver-v5-0-b26e5908eeac@linutronix.de
 
-They also add new ways to read out of bounds. kho_ser_payload() trusts
-nr_required/nr_optional in each entry, and nothing checks that the entry
-header plus payload fit within entry_size. In patches 14 and 18 the walk
-uses each entry's fhdr->size to find the next entry, so one bad header
-throws off every entry after it.
+Changes in v5:
+- Move alignment check to nvmem core
+- Use IS_REACHABLE to simplify Kconfig
+- use root_only for private driver
+- Add driver as module to arch64 defconfig
+- Use MODULE_DEVICE_TABLE
+- Remove some unused attributes, fix typos, minor fixups
+- Link to v4: https://patch.msgid.link/20260508-rpi-otp-driver-v4-0-cf8d725d8821@linutronix.de
 
-Instead I would keep struct pci_dev_ser as a plain struct, take the
-entry size from the KHO block header (patch 2), and in pci_flb_retrieve()
-check once that the entry size covers the base fields, plus the fields
-of any features set in struct pci_ser's header, e.g.:
+Changes in v4:
+- Additional patch to drop unnecessary select schema
+- fix dt-bindings
+- use __counted_by_le
+- additional alignment check in read/write callbacks
+- Link to v3: https://patch.msgid.link/20260506-rpi-otp-driver-v3-0-294602663695@linutronix.de
 
-	entry_size =3D kho_block_set_entry_size(&incoming->block_set);
-	if (entry_size < offsetofend(struct pci_dev_ser, refcount))
-		panic(...);
+Changes in v3:
+- dts: add "raspberrypi,bcm2835-firmware" as fallback and fix dt-bindings
+- Fix Kconfig depends
+- Changed firmware data fields to __le32
+- Add MODULE_ALIAS
+- Link to v2: https://patch.msgid.link/20260505-rpi-otp-driver-v2-0-e9176ec72837@linutronix.de
 
-That also restores the minimum entry size check that the v10 PCI series
-had with PCI_DEV_SER_MIN_SIZE, which this version drops.
+Changes in v2:
+- register nvmem driver from firmware driver and drop firmware sub nodes
+- Use struct_size and __counted_by for dynamic array
+- Drop unneeded comment in Kconfig
+- Use NVMEM_DEVID_NONE
+- Use kzalloc
+- Update module description
+- Link to v1: https://patch.msgid.link/20260408-rpi-otp-driver-v1-0-e02d1dbe6008@linutronix.de
 
-[...]
+---
+Gregor Herburger (11):
+      soc: bcm2835: Use IS_REACHABLE for function declaration
+      nvmem: core: Enforce stride and alignment checks for nvmem_device functions
+      dt-bindings: raspberrypi,bcm2835-firmware: Add bcm2712-firmware compatible
+      nvmem: Add the Raspberry Pi OTP driver
+      firmware: raspberrypi: register nvmem driver
+      arm64: dts: broadcom: bcm2712: add raspberrypi,bcm2712-firmware compatible
+      dt-bindings: raspberrypi,bcm2835-firmware: Drop unnecessary select
+      arm64: defconfig: Enable the raspberrypi otp driver as module
+      ARM: bcm2835_defconfig: Enable the raspberrypi otp driver as module
+      ARM: multi_v7_defconfig: Enable the raspberrypi otp driver as module
+      firmware: raspberrypi: use drvdata to register rtc driver
 
-> -	kho_block_set_init(&incoming->block_set, sizeof(struct pci_dev_ser));
-> +	kho_block_set_init(&incoming->block_set, kho_ser_size(pci_dev_ser));
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml      |  20 ++--
+ arch/arm/configs/bcm2835_defconfig                 |   2 +
+ arch/arm/configs/multi_v7_defconfig                |   1 +
+ .../boot/dts/broadcom/bcm2712-rpi-5-b-base.dtsi    |   4 +-
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/firmware/raspberrypi.c                     |  62 +++++++++-
+ drivers/nvmem/Kconfig                              |  11 ++
+ drivers/nvmem/Makefile                             |   1 +
+ drivers/nvmem/core.c                               |  12 ++
+ drivers/nvmem/raspberrypi-otp.c                    | 131 +++++++++++++++++++++
+ include/soc/bcm2835/raspberrypi-firmware.h         |  17 ++-
+ 11 files changed, 246 insertions(+), 16 deletions(-)
+---
+base-commit: c9ea4adf1af3e26c64c45ab8005295c420a5703b
+change-id: 20260408-rpi-otp-driver-75fce1dcff7d
 
-This size is never used. kho_block_set_restore() overwrites it with the
-entry size recorded by the previous kernel. Passing this kernel's size
-here is misleading: pci_flb_retrieve() (and the LUO session/file restore
-paths) read as if they iterate incoming entries with the outgoing entry
-size, which would be a bug.
-
-Incoming block sets should not take an entry size at all.
-kho_block_set_restore() should initialize the block set itself from the
-incoming block headers, and the incoming paths should drop the
-kho_block_set_init() call.
-
-[1] https://lore.kernel.org/kexec/atl6K2Juy6Bh29lh@google.com/
-[2] https://lore.kernel.org/kexec/at-8vkVpN2SF3XgB@google.com/
+Best regards,
+--  
+Gregor Herburger <gregor.herburger@linutronix.de>
 
 
