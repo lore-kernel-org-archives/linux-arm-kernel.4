@@ -2,117 +2,131 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE5D60A2612
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086A3606A83D
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UyL+5x8h;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KaW9kQc/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xZKt3bF5;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.a=rsa-sha256 header.s=default header.b=tmPbMymg;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=valla.it header.i=@valla.it header.a=rsa-sha256 header.s=default header.b=qrob+Jmo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Subject:References:In-Reply-To:Message-ID:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Vl1rYhAfjK13R83ED6coEGC+SsdHD84fHmnG4iiIzF0=; b=UyL+5x8hDsmnPR
-	/94gO6PN5pGjhnKlxtdmzoHa/TVHEE9UC4yTLxtk0oPQ25J2XpLIGARTJ1XWnRNOVEEyTLNs054Ac
-	xZGdEk5BBuD4hzr4w46+xrIZ18vFuZUJM26HUq0DuK+NROjI0HXm5zRmhccQ49Z6ZeEwOyleNil54
-	mBRo42NQAyE0qj8DAZyjKFTlB5/ZhP3scgE6K1hDQzvqafYuQF2qpRa8lQLh5kXWuLqjzCo5dj73z
-	wnQZJLBUO8t3Hq9rFWTPkckNI/1bRKRZePnQSneKEfd3UT8DCnCxaIhV7LfoLXClx9NPWeXBwspVP
-	IHG+Nri83/DPZZWywjRQ==;
+	List-Owner; bh=6a36y4SRwgMeQN1J7eFZmKIcS5P354+mS0JMqXH3AcM=; b=xZKt3bF5rYVugP
+	cvwMqAbQkjmdLpbAIre6JLrxzPghPi51N2XOVqnWkXDqVjM1hh/gkrs+URqoLcyATkx4ERX9IA8qj
+	pqutWNfQbHqUI8V4PmQtlkhAIfmLwvIh3znguuQeXN4fK7hkmheB6CcyHJRNNB2vj8wgzHcgPuhLs
+	1V7Tsa4q2285pfAO7C9IjOQs8hVZz28V6K1kYohie2WtAwlXEzpQl4QaHH9iBC+BXpYEFAYlb7bkE
+	PcwRZi7uSuXLYOvHpSmPni4JsohCnC5b8xkjFN01HGMB598bgCXR6tgWeyxPnvgaOi8uxZtm9NTAX
+	r7va0dZ19GATnI0jlhYg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQp1G-00000004avl-2zZ9;
-	Tue, 10 Nov 2026 16:48:26 +0000
-Received: from mail-wm1-x334.google.com ([2a00:1450:4864:20::334])
+	id 1xQpBd-00000004c3x-3qyD;
+	Tue, 10 Nov 2026 16:59:09 +0000
+Received: from delivery.antispam.mailspamprotection.com ([185.56.87.10])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQp0w-00000004aj9-0I2P
+	id 1xQpBb-00000004c2z-0Rho
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 16:48:09 +0000
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-4a549cd7fd2so20953095e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 08:48:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794329284; x=1794934084; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Vl1rYhAfjK13R83ED6coEGC+SsdHD84fHmnG4iiIzF0=;
-        b=KaW9kQc/q2CZU8k/4TReEsGSvFQnmyKpN42QULtxVrfwOj3WYhY1GNJSFv39zLa68s
-         7TbA4gkilBz3SUVbUbKxV/cziNCUFbFbuVOsVxN13DqPdDNHCro6sJvL0ZSVofffVsGj
-         0Z4r73hGfL6nuLwhYuAVHsZ+92/aLHViTZH5GpxtQzQBhEnwLo2Vxa/iHcvJx81m2vpw
-         n9zE0cnFrWl41w5uOLfdZaI5nMxJpPDWp06pnTAC2eAgoYzBS6NSuvPjAuFzrAx/KeSe
-         XSdhLyNmWnHO+ZK4YL0KJBBartiJKh8PUtH7Ke8iu3yXdfM1iIjyUMaRqAfmgJTIkyud
-         cSvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794329284; x=1794934084;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Vl1rYhAfjK13R83ED6coEGC+SsdHD84fHmnG4iiIzF0=;
-        b=E42TLCzGhkykG7dvoy5MCEYqn9JJBmG4VDGImR7ECCW9FR80+YJYDTA2eFs6ZdYwV9
-         hxGhAs59xS5vI8q1t8e4i22K56etyyGMkwRNvFRH1rWwinjpC7Ne/XSDjF5CjKjl10HN
-         YKDl2nnsQkfzahNrIeFsWfx0xujBm16jn3NLuRY8Ii3fo6nWPLKgULEuPehPtOstIy0d
-         KoKZHO3PJOipZoBOmFxXedMzDpzWlS32zqj9noI5mU9gFxvgghMk76lyHZQWhNBQX87j
-         HBcWMe8hh33t1CehmFew99BVxxL0dyuIq/Do1G8nKYup6DKLJvC1FnG9I5nLovTVbEXo
-         LlRA==
-X-Forwarded-Encrypted: i=1; AL+hErGjZmgKX5mnQgDblwAb0dgoV+03HGeerUiBT8YzZUNTQNdTQrZWqi+KlvJgkTiB/YkLE4/LlB5b5Lsw4BIL/+06@lists.infradead.org
-X-Gm-Message-State: APuU4Z/PSzTH02urYnImLmXkGudIdOyCrGRVottXmtRaK22UnH9LpvDd
-	qzVly5nAZtpN1k6UjfFOiR9My3d4IoiE9S6gc6gcQydn1zWDoGrdAdqY
-X-Gm-Gg: AYBFou3MzomphHt33PYOlNQ4ppSn1jZbIK32Z0NpMGtfrgvW+X2VyQBAGQguBM+2cVu
-	ABUjs/GRbUyINLlgvODAswVTGf698hXt5oftapOi7HrXllJ3PVHrcyfO8k93xclaRxGPooZ0Nb1
-	Jh3Zz0idc0LjAc9l8WrQJ6MSVkBsDmhgPCzOwR4y3oMeJ9amhlg/myh4kbzNqwyhI6PSJBTcNSa
-	MxExSDTl675yY2/1hZGDk2klFXTd3EadOMYAPAtZqHOaeiPKtO+vjcpYt0n/Mz06j7IICuhDDXT
-	Iy0ONBt5OHs4XeyMbzWesezpXjkLCuuO29dIoME0M7jg9zzNccu1v4YJrUBsDZZHJpkNp8gvxlH
-	heXLlrTiycBhcVAceBigHJMulkOIPqeJSVYykr4deHaVtjb9rfJeBHqx/styAeWEkZw3L0B9YxR
-	fIb8ypfgn+PukIn0f1bQ5efnYOR8Eqznn00nTDJwKh4aH3LFVubvbsYwlYPTdHU+mfBg/Q+cXCT
-	eSDrk5LDp12EAwkdjSXtMjW5r+NyhNBgx2ahcK2Q274X87FgSs93uMcDf5Z381BqRi3Q4jc943F
-	jAjnFBXQBy4hBr/KRRLLmk4nqfPtZr2Ro/ZadwZqxTePPP9sep5fhO6g0d3rzzsOJD2J+/RF/Te
-	G18GKNqwddFskLfE=
-X-Received: by 2002:a05:600c:8b2a:b0:4a0:20b4:ba93 with SMTP id 5b1f17b1804b1-4ba02351468mr52396945e9.16.1794329284254;
-        Tue, 10 Nov 2026 08:48:04 -0800 (PST)
-Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0233e5d7sm58289665e9.1.2026.11.10.08.48.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 08:48:03 -0800 (PST)
-From: Sander Speetjens <sander.speetjens@gmail.com>
-Date: Tue, 10 Nov 2026 17:47:49 +0100
-Subject: [PATCH v3 3/5] firmware: raspberrypi: Add blank line after
- declaration in probe error path
+	Tue, 10 Nov 2026 16:59:08 +0000
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-ssp3.prod.antispam.mailspamprotection.com; s=arckey; t=1794329947;
+	 b=V0IYtoHgt9DbM9nPn57PtHnkWzDMFECjG1xxyhrCovvN0pDxVGuFgvsrYELFkfWxtteNSCzCd/
+	  AGI7tv3wQki4590zijtnAWSxDV2Y7CB0qMZJNmhAPgFjYwAOb9ft+FRbJQC8uwiaH3A/qBq2VD
+	  d/lbR1Rv78KWokKNLjBp2PTT/8XX7TiARQITN2Uqf9F6bYn1Zd7NIMuqwtWse1/ib3vodnfx97
+	  yldcBcRAyTtzrGPyuNKA4WrVSFH+3ZNTcphowHTT2iij5YWRHy/YiaPzVF9Y82+0i5GYaBvmdS
+	  Q4WF8o4Tf+mb/6VEO8nKOcx0QISKu3cfZXa2OuUfEtwkNA==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-ssp3.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-ssp3.prod.antispam.mailspamprotection.com; s=arckey; t=1794329947;
+	bh=6a36y4SRwgMeQN1J7eFZmKIcS5P354+mS0JMqXH3AcM=;
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:References:
+	  In-Reply-To:Message-ID:Cc:To:From:Date:DKIM-Signature:DKIM-Signature;
+	b=iTU8Uu3OuzSWFyLebCLMmoLpepXmOF/4AcapS2fw68CdgzzuIuTDG5qBG0+lB+2hBp3PNfehK5
+	  g2DM97xztq6CEB2zSeTv4ZEmJf0AmmBq/PfHlhtotUDltpb8eZ3R/ynRM6SSbHU0C7XqGjWTz+
+	  FDLWmNNjPGLJxOGec22odRX25lvulcOecJ7uXAxeVaQAPTFIXHABM6LpO/sIpO35tG/ob6l3nk
+	  IXnBtFR/SWIq5JHa700VM+nTOFlWW6jzJwFvOvMjzCYAqXn0Bsodf8nk+0Gi8R2VxGbAz0EtU1
+	  kf1MbLv0IDuVHg13KE9rjrUhPYggTHilmI/yU9e606Tgmw==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Message-ID:Cc:To
+	:From:Date:Reply-To:List-Unsubscribe;
+	bh=6a36y4SRwgMeQN1J7eFZmKIcS5P354+mS0JMqXH3AcM=; b=tmPbMymgrY3NG2cjy7Jem1ehN1
+	3JwrpMI1i8UwA8LQfmqDAIWN8SACuBWSYb+UAxbfRxvgsPziqTRXNicffrhGHJxS3WxSsL9wV2yFB
+	AhsFdsRTG89x+u/WgdlpA8PYMx/QjSIvOkDeOXpjPMeIVa2lsy8QqHOtsxK7uOAcC4S8=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-ssp3.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.100.1)
+	(envelope-from <francesco@valla.it>)
+	id 1xQpBU-0000000BuHB-26E9
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 16:59:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=6a36y4SRwgMeQN1J7eFZmKIcS5P354+mS0JMqXH3AcM=; b=qrob+JmocH4xrMNATvmA7uR9iO
+	PFT1HYk++mL+WoYIIKR/e1076P3KQDF0HyphTZqavIj/MZiTDl7fLT4v5NYbph2DKjeLtI9AVWch+
+	GWsJlSro+N+mTPVWO2CP27m63QfdVhPy9xUI1HQPEKESYGlj/IUo+7h4mZNOJ20saiKA=;
+Received: from [109.54.113.250] (port=16151 helo=dummy.faircode.eu)
+	by esm19.siteground.biz with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
+	(Exim 4.100.1)
+	(envelope-from <francesco@valla.it>)
+	id 1xQpB8-000000007rc-1PpM;
+	Tue, 10 Nov 2026 16:58:38 +0000
+Date: Tue, 10 Nov 2026 17:58:35 +0100
+From: Francesco Valla <francesco@valla.it>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Randy Dunlap <rdunlap@infradead.org>, Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Message-ID: <cea97670-facd-48b0-97c3-651ca9d71c75@valla.it>
+In-Reply-To: <avM8OYHxB4nAKCnb@p14s>
+References: <20261102-remoteproc_virtio_map-v2-0-26b300e01c62@valla.it> <20261102-remoteproc_virtio_map-v2-4-26b300e01c62@valla.it> <avM8OYHxB4nAKCnb@p14s>
+Subject: Re: [PATCH RFC v2 04/11] remoteproc: report VIRTIO_F_VERSION_1 for
+ non-rproc-specific vdevs
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-fix-raspberrypi-firmware-v3-3-e001feb542dd@gmail.com>
-References: <20261110-fix-raspberrypi-firmware-v3-0-e001feb542dd@gmail.com>
-In-Reply-To: <20261110-fix-raspberrypi-firmware-v3-0-e001feb542dd@gmail.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
- Stephen Boyd <sboyd@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc: linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- sander.speetjens@gmail.com, Manuel Ebner <manuelebnerli@mailbox.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=759;
- i=sander.speetjens@gmail.com; h=from:subject:message-id;
- bh=oATCWeVNja5PpD9R+W2V7XOTEMrBChRYypl1NtcmQ5o=;
- b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBq80rAIRFFQXasrIwqGTrwSpqg3wa5LcMTP4/9P
- Xz7kuhtWDmJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCavNKwAAKCRB4zXhFDAXI
- Z4bVD/9FjhVpXzZfrbS0bLJE0dn5UsBGcQyplnPX00c8QKHXHi9uYRS1E5E1yBhUnGHNX0/7mEu
- NkO7ZbXhdzVYxO+klLVGZWXaEy91QGigTWq6d/1ZrnVUEtvkzXveNO2owghVYfF15tmXHfl91Yx
- hCishgAVMlL9V0b5BC/Yy89y0F6aMJ6oQsKi+Xv8YH0ppjg35NiRT4Kk6UWlLgDFixRcyMW+6fF
- IzYX9Bpb3vRYenPvt/Y+s5CuPaPF08kjk2/JFima+Xh2Ma8kCMnZfiAQvA/6nnrlG0j9XrMiKet
- xrKgYlUNBpUYAaX76s5L8Z2kJohBUwJN/uuIHpwwO4qBYzlkZHd+0PFDZEJL030udF7iPIFWNjv
- XXnytqCdEaCQhNzOC/hz89Zh4A5jJXooYPGnDz1DRij+IgfUKPnHQV4zH06iGTAokTRqcCembdJ
- WUCFNN/tDxIFNXhzFg9KTszfPd2zBUNrdAR+QHnVdXekr87nsfR9Xe2/gkJoPxwvL545FvO/4jK
- yHO8Xi7MuJNVL6i3llJ+Oq01293Yj4CHOY9ym3jHwuZavGc7jFeFfr39VBDl9fwUk2MYSkFHZrm
- xugHWzfsei+tYtxPtCqKoPpm6baf1rdvSilo8uBXbMqKcA5ULIBLRs2Ijg9q5ww61g+YJOx1DPl
- 0US1McX57zjl8hA==
-X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
- fpr=56524A8B001A11C3EEC9510178CD78450C05C867
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Correlation-ID: <cea97670-facd-48b0-97c3-651ca9d71c75@valla.it>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - lists.infradead.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: 59a9232175175cbd16efd587f3e56faa
+X-AntiAbuse: ID - 59a9232175175cbd16efd587f3e56faa
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1xQpBU-0000000BuHB-26E9-feedback@antispam.mailspamprotection.com
+Authentication-Results: outgoing.instance-europe-west4-ssp3.prod.antispam.mailspamprotection.com;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_084806_219262_45450A54 
-X-CRM114-Status: GOOD (  11.13  )
+X-CRM114-CacheID: sfid-20261110_085907_313999_A0ECDB30 
+X-CRM114-Status: GOOD (  18.27  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,36 +138,148 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the conventional blank line after the local variable declaration.
+Hi Mathieu,
 
-Reviewed-by: Manuel Ebner <manuelebnerli@mailbox.org>
-Signed-off-by: Sander Speetjens <sander.speetjens@gmail.com>
----
- drivers/firmware/raspberrypi.c | 1 +
- 1 file changed, 1 insertion(+)
+10 Nov 2026 16:46:09 Mathieu Poirier <mathieu.poirier@linaro.org>:
 
-diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
-index e0c91719b4d0..04163c3f385d 100644
---- a/drivers/firmware/raspberrypi.c
-+++ b/drivers/firmware/raspberrypi.c
-@@ -315,6 +315,7 @@ static int rpi_firmware_probe(struct platform_device *pdev)
- 	fw->chan = mbox_request_channel(&fw->cl, 0);
- 	if (IS_ERR(fw->chan)) {
- 		int ret = PTR_ERR(fw->chan);
-+
- 		kfree(fw);
- 		return dev_err_probe(dev, ret, "Failed to get mbox channel\n");
- 	}
+> Hi,
+>
+> I started reviewing this set, making it to this patch.=C2=A0 I will conti=
+nue tomorrow
+> but due to the KVM forum later this week, I may not finish before next we=
+ek.
 
--- 
-2.56.0
+Take your time, I'm in no rush to have this merged.
+
+> That said, I applied the first 2 patches so no need to include them in th=
+e next
+> revision.
+
+Ok!
+
+>
+> Thanks,
+> Mathieu
+>
+
+Thank you!
+
+Regards,
+Francesco
+
+> On Mon, Nov 02, 2026 at 12:26:41AM +0100, Francesco Valla wrote:
+>> There is currently no way to report the VIRTIO_F_VERSION_1 using the
+>> resource table alone, as the per-vdev feature array is limited to 32
+>> bits.
+>>
+>> Considering that the VIRTIO 1.0 specification is now ~10 years old,
+>> always report the VIRTIO_F_VERSION_1 feature for virtio devices that
+>> are not specific for remoteproc usage. These latter, which as of today
+>> are rpmsg and rproc-serial, are excluded to avoid impacting the existing
+>> usecases, since VIRTIO_F_VERSION_1 changes the semantics of the
+>> communication (e.g., the configuration space is assumed to be
+>> little-endian rather than follow the device's endianness).
+>>
+>> While at it, replace BUG_ON() with WARN_ON() and return an appropriate
+>> error in case of features that would overflow the 32 bits limit.
+>>
+>> Signed-off-by: Francesco Valla <francesco@valla.it>
+>> ---
+>> drivers/remoteproc/remoteproc_virtio.c | 28 +++++++++++++++++++++++++---
+>> 1 file changed, 25 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/remoteproc/remoteproc_virtio.c b/drivers/remoteproc=
+/remoteproc_virtio.c
+>> index c56d3330adfe..f1b362158a9c 100644
+>> --- a/drivers/remoteproc/remoteproc_virtio.c
+>> +++ b/drivers/remoteproc/remoteproc_virtio.c
+>> @@ -16,6 +16,7 @@
+>> #include <linux/of_reserved_mem.h>
+>> #include <linux/platform_device.h>
+>> #include <linux/remoteproc.h>
+>> +#include <linux/rsc_table.h>
+>> #include <linux/virtio.h>
+>> #include <linux/virtio_config.h>
+>> #include <linux/virtio_ids.h>
+>> @@ -27,6 +28,11 @@
+>>
+>> #include "remoteproc_internal.h"
+>>
+>> +static bool rproc_virtio_rsc_vdev_rproc_specific(struct fw_rsc_vdev *rs=
+c)
+>> +{
+>> +=C2=A0=C2=A0 return (rsc->id =3D=3D VIRTIO_ID_RPMSG || rsc->id =3D=3D V=
+IRTIO_ID_RPROC_SERIAL);
+>> +}
+>> +
+>> static int copy_dma_range_map(struct device *to, struct device *from)
+>> {
+>> =C2=A0=C2=A0=C2=A0 const struct bus_dma_region *map =3D from->dma_range_=
+map, *new_map, *r;
+>> @@ -268,8 +274,17 @@ static void rproc_virtio_synchronize_cbs(struct vir=
+tio_device *vdev)
+>> static u64 rproc_virtio_get_features(struct virtio_device *vdev)
+>> {
+>> =C2=A0=C2=A0=C2=A0 struct fw_rsc_vdev *rsc =3D vdev_to_rsc(vdev);
+>> +=C2=A0=C2=A0 u64 features =3D (u64)rsc->dfeatures;
+>>
+>> -=C2=A0=C2=A0 return rsc->dfeatures;
+>> +=C2=A0=C2=A0 /*
+>> +=C2=A0=C2=A0=C2=A0 * All non-remoteproc-specific virtio devices are ass=
+umed to be
+>> +=C2=A0=C2=A0=C2=A0 * compliant with virtio specifications 1.x; there is=
+ no other method
+>> +=C2=A0=C2=A0=C2=A0 * to transmit this capability from the remote proces=
+sor to the host.
+>> +=C2=A0=C2=A0=C2=A0 */
+>> +=C2=A0=C2=A0 if (!rproc_virtio_rsc_vdev_rproc_specific(rsc))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 features |=3D (1ULL << VIRTIO_F_VE=
+RSION_1);
+>> +
+>> +=C2=A0=C2=A0 return features;
+>> }
+>>
+>> static void rproc_transport_features(struct virtio_device *vdev)
+>> @@ -285,6 +300,7 @@ static void rproc_transport_features(struct virtio_d=
+evice *vdev)
+>> static int rproc_virtio_finalize_features(struct virtio_device *vdev)
+>> {
+>> =C2=A0=C2=A0=C2=A0 struct fw_rsc_vdev *rsc =3D vdev_to_rsc(vdev);
+>> +=C2=A0=C2=A0 u64 features;
+>>
+>> =C2=A0=C2=A0=C2=A0 /* Give virtio_ring a chance to accept features */
+>> =C2=A0=C2=A0=C2=A0 vring_transport_features(vdev);
+>> @@ -292,8 +308,14 @@ static int rproc_virtio_finalize_features(struct vi=
+rtio_device *vdev)
+>> =C2=A0=C2=A0=C2=A0 /* Give virtio_rproc a chance to accept features. */
+>> =C2=A0=C2=A0=C2=A0 rproc_transport_features(vdev);
+>>
+>> -=C2=A0=C2=A0 /* Make sure we don't have any features > 32 bits! */
+>> -=C2=A0=C2=A0 BUG_ON((u32)vdev->features !=3D vdev->features);
+>> +=C2=A0=C2=A0 /* Make sure we don't have any features > 32 bits except t=
+he expected ones. */
+>> +=C2=A0=C2=A0 features =3D vdev->features;
+>> +
+>> +=C2=A0=C2=A0 if (!rproc_virtio_rsc_vdev_rproc_specific(rsc))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 features &=3D ~(1ULL << VIRTIO_F_V=
+ERSION_1);
+>> +
+>> +=C2=A0=C2=A0 if (WARN_ON((u32)vdev->features !=3D features))
+>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
+>>
+>> =C2=A0=C2=A0=C2=A0 /*
+>> =C2=A0=C2=A0=C2=A0=C2=A0 * Remember the finalized features of our vdev, =
+and provide it
+>>
+>> --
+>> 2.56.0
+>>
 
 
