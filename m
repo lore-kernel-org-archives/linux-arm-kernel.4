@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEE5606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E10606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 05:03:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VvAnj0cg;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=iR4Xslnb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vk7HXo6x;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=lPam8Dk4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ktkwbxS31+AJAEtLgON1FC5vgxwtOH8mMNa0BnHkPzQ=; b=VvAnj0cgTdl7fwYoyX1He2NcUW
-	7vTCVVyArpQycQlyqWtFhoslQdgylGOPzwEtFgxUvk8BJ2TCimoz86T4ZvnLheiwUMwzqLDHRvYPZ
-	GcXSOuFKO1jeZuSkkB87l8xFjVoyQQmWVrdQyCsTC6VV/0VodwY9edPsGX0y/VhUmvGLWGHp4HpMV
-	qYBKao95YgaV3cOTBBwomlfLHU8ovXMQMrfosLQOWvq1el6sRMHeVzv7gnSHP32bL7DNyKiFJ+AlF
-	nxPVsWJYx0KPw2/d5QzxZpFEpYybbncPFM0rxlOKHMm7nQS4brmrHRnXtbtKeBdnF+ShFpaCs7nym
-	tW9uGJvQ==;
+	bh=KlBTWBMpEbDIIvafpldBklRCZ2ctie9uKxzA73glXH4=; b=vk7HXo6x/X7hJpdT60Ht/fRCZ6
+	nC1F6QKcSff82eEXrdVJClySw8Q2zx1dHuVRy71PAeORQnbYKhjHWsog38nOLpW7BojeiELrbVOjt
+	7fY2kcnvJdBq7yFPVHpcMnckIJZi+IWBOn/3w/KqGXNdwr/JuMUX0XeU6u4VAG480Fw4sNNCvgB/3
+	tCnHrmBQD6LNZR0VszOY7Kfu7OLcx/mYjmlAxJG/rXzpmrcscxeKuv2kweV+r1fhTOwOa5+9JPGqc
+	R+93B4QZgfNWzF4EkVnmaIbedFWv4Eegbiq+gZuMFBSJL0L02HWt8qX29XYPUqJr6X2a5nNl8fqWh
+	UgQACQ+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQe03-00000002RdI-1S7d;
-	Tue, 10 Nov 2026 05:02:27 +0000
-Received: from mail-ed1-x545.google.com ([2a00:1450:4864:20::545])
+	id 1xQe04-00000002RhX-3lsw;
+	Tue, 10 Nov 2026 05:02:28 +0000
+Received: from mail-ej1-x647.google.com ([2a00:1450:4864:20::647])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdzp-00000002RFb-0Th6
+	id 1xQdzt-00000002RMW-1ZlL
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 05:02:17 +0000
-Received: by mail-ed1-x545.google.com with SMTP id 4fb4d7f45d1cf-6b586d1266dso1491646a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:12 -0800 (PST)
+	Tue, 10 Nov 2026 05:02:20 +0000
+Received: by mail-ej1-x647.google.com with SMTP id a640c23a62f3a-c49b95262a5so126321666b.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 21:02:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794286931; x=1794891731; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794286935; x=1794891735; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ktkwbxS31+AJAEtLgON1FC5vgxwtOH8mMNa0BnHkPzQ=;
-        b=iR4Xslnb3jdcvIY0+OstNr5iq6Vd+iDzMSfwnMYLzXcJpOCwWv3coFaI2LFeowS+k0
-         0jeCp2uasM8R7v8TTc4PwL90xhi8bGuB59Gb8lMsdyKk/SrgKPDZ/oavUXVJdOGJD650
-         Y7hWX+yKm9px2yvFQ9SGmMQJVtU7YP+F/YnkJu/0s7ZVZ1YzwFPwssk0fh76gOrHoQvM
-         6VZR1/N3wGG7+Rbmo/EDLi7pOnoxkZKLxDkEcnytnBTCru1MtM2Cd20leeobqu7AipBs
-         jYxkFrbgNOaJmGypO9SJEf8NHZZJ2To5G6PhtVEvvv7jCbpOwtzSQb5n2cBVT7B46PIl
-         zUfQ==
+        bh=KlBTWBMpEbDIIvafpldBklRCZ2ctie9uKxzA73glXH4=;
+        b=lPam8Dk4SBoWQr1V8saXqjHZ5ahFXYYtrYNMxe9ArJv+dRbQkQsei5rV5jyUqfdKeh
+         +rTaW3+xr4KslP6ln6IRjHUmxlmREz5QmMIw2CAC+Sgl6oqfRA8IJv874cKahr2JHNBS
+         fnJo3F7j56NK4/UxLNvVNcwCfQ+Jfge4qLlyNizCKPVrVNfUEynLUcZd1dmXy6nq8E/k
+         lNnrYJGNh3kRqSZsLMRzihcBRCJdMDozXJ5odbcDZMtlbztBSirVmUNdBirIIADhyiTQ
+         VAGYP/OBRq7pCYXaTupPLN7Qqo3FL7mBCd+IK6uyYV2JqBAEcQv49ilGD+klGsh6VK/Y
+         hR7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286931; x=1794891731;
+        d=1e100.net; s=20260707; t=1794286935; x=1794891735;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ktkwbxS31+AJAEtLgON1FC5vgxwtOH8mMNa0BnHkPzQ=;
-        b=U2DXVpcAJKwnIH2BLf7l3rKftMXz5Ec1k7Q/EUAIq6ZGeNXyvS6Mch5lFer4kJVx8i
-         B82iFlWOqvkcYlkxjJf7x3uATlZtrIsuGUuer/8aEvJlSXA3twnBKvCPXa3tEVNGFGAM
-         GcwAK4peAsofBCWbkNdIC2tr9tNgilnd3diN7USTr2GgVrr0hX5ZGM5y5+Iyhmlr0rWy
-         1QyL2NjzRYy326VXG4suWgJUvi+LqAgqdDT83bcnA6rWytwZ9c2XUhtLV2Cc0MaUhANA
-         FgBabOWmMEgqhcnJ2G+iKmvF1ycMF5ncsTAbGl7sslcGyLuaZzFtarvGqEpALZXOJTVL
-         TX6A==
-X-Forwarded-Encrypted: i=1; AL+hErEDJ+PRMY/gevAMcB2I8ZzdqgvsEj2figzpsqJ1XkMB0mRunI9JWJgTqP2reuXYJJTybj5VrigwdQ/GMZQ9+q/g@lists.infradead.org
-X-Gm-Message-State: APuU4Z8ppQYaqJ05vzASM1vJ0nZ8IMMgds35bqimqFG7W8jyOH9of854
-	b/kkfpnvLivqhQQwcBqqPZv8VE0kI52wPyy/+yFaV3//eZANL8mJRN7QHBje2nJB1A0c9kUjW61
-	KQ/4fTJeCDHiYF04rHQ==
-X-Received: from edra14.prod.google.com ([2002:aa7:d90e:0:b0:6b1:af33:7d07])
+        bh=KlBTWBMpEbDIIvafpldBklRCZ2ctie9uKxzA73glXH4=;
+        b=CGzIPqo0h6WUScO/DuwvbZAJNIGLiwdwTNg6TAjLXHGEz/nMTXrVXfD5Nwb6+I9xpU
+         hfksanaMtkVwY/naORAN42SghOmmUMG0pZlKZXrJfFvtl8Mshus/wdNRhhjD8lUOGyWa
+         Zqi9qJ7GDik82xF21VxJSekChYNHzJn/inzjB6ksDfcKvVyMZz8kjnY75s3QNlFXgoqf
+         ahnCYHkkdA56fFAzfJWgfRsvskEE1Zbz3PTXJWoEVG/qzg1FrSs833DEnMxCm4LQi/PI
+         8iowWya/V85xVk6LdJDA75qU8KH//7g7t3Djlhyb1gRCBbelSOpKVrOZ2dV5VhlhfzgZ
+         YW5g==
+X-Forwarded-Encrypted: i=1; AL+hErG77c5Yme2Qjanq05hP8b1S9rfvjNTWX0MFJ5r8HF+IY1L3MtM2d51opBxYPxr6tWgG2kkA30I3EQfTn8jgmtCT@lists.infradead.org
+X-Gm-Message-State: APuU4Z8R+USux7P+8dEYnmUDcK2aMXdxckxKzHim7Wj4vWgO02Ep+f/U
+	rR3PZ/oswMZQsFsYx7FTbgd7kToyKa2Xe0GfjhaqtPm5aheU7/A1RT9GMehHnc6MUjXdWnH5kvG
+	3c2fIJ+OTkV/z5Wtuvg==
+X-Received: from ejpg24.prod.google.com ([2002:a17:906:7c58:b0:c3f:eea3:d5e9])
  (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6402:947:b0:6b1:b97b:750 with SMTP id 4fb4d7f45d1cf-6b7564fbe2fmr835079a12.16.1794286930545;
- Mon, 09 Nov 2026 21:02:10 -0800 (PST)
-Date: Tue, 10 Nov 2026 05:01:48 +0000
+ 2002:a17:907:3d8f:b0:c44:9a32:b27 with SMTP id a640c23a62f3a-c5049623935mr98305266b.25.1794286935134;
+ Mon, 09 Nov 2026 21:02:15 -0800 (PST)
+Date: Tue, 10 Nov 2026 05:01:52 +0000
 In-Reply-To: <20261110050202.529473-1-tarunsahu@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261110050202.529473-1-tarunsahu@google.com>
 X-Mailer: git-send-email 2.56.0.506.g506a7eabc5-goog
-Message-ID: <20261110050202.529473-6-tarunsahu@google.com>
-Subject: [PATCH v4 05/19] kho: Add feature header for fine-grained ABI compatibility
+Message-ID: <20261110050202.529473-10-tarunsahu@google.com>
+Subject: [PATCH v4 09/19] liveupdate: Add feature header to struct luo_ser
 From: Tarun Sahu <tarunsahu@google.com>
 To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
 	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
@@ -87,8 +87,8 @@ Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org,
 	Tarun Sahu <tarunsahu@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_210213_384577_DCA80AD0 
-X-CRM114-Status: GOOD (  28.40  )
+X-CRM114-CacheID: sfid-20261109_210217_552239_F08EBA85 
+X-CRM114-Status: GOOD (  30.10  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,515 +109,279 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Serialized structures in KHO and Live Update Orchestrator currently rely
-on whole-structure compatibility strings or monolithic version fields to
-validate handed-over state across kexec. Any change to a serialized
-structure, even an optional additive field, requires bumping the
-compatibility string or version number and breaks live update between
-adjacent kernels.
+LUO and its file handlers currently rely solely on coarse-grained
+compatibility strings (such as luo-v6 and memfd-v3) to validate
+handed-over state across kexec. Because compatibility is checked only
+at the whole-structure level, any change to a serialized structure,
+even an optional additive field, requires bumping the compatibility
+string and breaks live update between adjacent kernels.
 
-Introduce a generic feature header (struct kho_ser_hdr) for serialized
-binary structures in include/linux/kho/abi/feature.h. Each subsystem
-groups the fields of its serialized structure under feature indices,
-starting with index 0 for base fields. When a subsystem adds a new
-capability, it appends new fields to the end of its payload structure
-under a new feature index. Retired fields are kept in place so existing
-field offsets never shift; if the type or format of a field needs to
-change, the existing field and feature are kept intact until retired and
-a new feature index with an appended field of the new type is added.
-Only when a change requires a complete break in the serialized layout or
-semantics that feature flags cannot handle, a new handler or format can
-be introduced with an incremented version number.
+Precede the centralized struct luo_ser with struct kho_ser_hdr using
+DECLARE_KHO_SER. Subsystems can now evolve their serialized state at
+per-feature granularity. Each subsystem groups the fields of its
+serialized structure under feature indices, starting with index 0 for the
+base fields. When a subsystem adds a new capability, it appends any new
+fields to the end of its payload structure under a new feature index.
+Retired fields are kept in place so existing field offsets never shift;
+if the type or format of a field needs to change, the existing field and
+feature are kept intact until retired and a new feature index with an
+appended field of the new type is added. Only when a change requires a
+complete break in the serialized layout or semantics that feature flags
+cannot handle, a new handler can be introduced with an incremented version
+number in its compatibility string.
 
-Each feature belongs to either a required feature space or an optional
-feature space. Both spaces are numbered independently starting from 0.
-In the serialized header, required features occupy the first nr_required
-bits, followed immediately by nr_optional bits for optional features:
-
-  struct kho_ser_hdr {
-          __u32 size;
-          __u16 nr_required;
-          __u16 nr_optional;
-          __aligned_u64 flags[];
-  };
-
-A set bit indicates that the feature is present in the payload. The
-truth table for deserialization:
-
-  Source bit       Target            Action
-  Not set          -                 Accept: feature absent
-  Optional set     unknown or known  Accept: ignore or use the data
-  Required set     known             Accept: use the feature data
-  Required set     unknown           Reject: -EOPNOTSUPP
-
-During deserialization, the target kernel only validates required
-features: if the source set any required feature bit at or beyond the
-known required feature count of the target kernel, validation fails with
--EOPNOTSUPP. Optional features are never rejected; the target kernel
-simply checks whether known optional features are present before reading
-their data.
-
-No subsystem defines feature flags yet. Every converted structure is
-registered with 0 required and 0 optional features, producing a compact
-8-byte header with no flags entries. Feature enums can be added later as
-needed, once the first additive feature is introduced for a particular
-serialized structure. With nr_required set to 0, kho_ser_validate()
-rejects any incoming required feature bit while ignoring optional bits,
-allowing future kernels with additive features to evolve smoothly in
-both directions.
-
-Each subsystem registers its serialized structure with:
-
-        DECLARE_KHO_SER(name, payload_size, nr_required, nr_optional)
-
-This establishes compile-time assertions and provides type-checked
-helpers: kho_ser_size() for total allocation size, kho_ser_init() to
-initialize the header, kho_ser_payload() to access the typed payload at
-its dynamic offset, and kho_ser_validate() to validate required features
-during restoration. DECLARE_KHO_SER_HDR(name, *fhdr) declares a struct
-kho_ser_hdr pointer while verifying at compile time that name was
-registered with DECLARE_KHO_SER(), allowing callers to document which
-structure a feature header pointer represents.
-
-An example demonstrating how a hypothetical structure defines its
-features:
-
-  enum foo_ser_required {
-          FOO_SER_REQ_BAR,
-          __FOO_SER_NR_REQUIRED,
-  };
-
-  enum foo_ser_optional {
-          FOO_SER_OPT_BAZ,
-          __FOO_SER_NR_OPTIONAL,
-  };
-
-  struct foo_ser {
-          __u64 base;     /* base fields, always present */
-          __u64 bar;      /* FOO_SER_REQ_BAR */
-          __u64 baz;      /* FOO_SER_OPT_BAZ */
-  };
-
-  DECLARE_KHO_SER(foo_ser, 24,
-                  __FOO_SER_NR_REQUIRED, __FOO_SER_NR_OPTIONAL);
-
-  /* Serialize */
-  kho_ser_init(fhdr, foo_ser);
-  ser = kho_ser_payload(fhdr, foo_ser);
-  ser->bar = ...;
-  kho_ser_set_required(fhdr, FOO_SER_REQ_BAR);
-  ser->baz = ...;
-  kho_ser_set_optional(fhdr, FOO_SER_OPT_BAZ);
-
-  /* Restore */
-  err = kho_ser_validate(fhdr, foo_ser);
-  ser = kho_ser_payload(fhdr, foo_ser);
-  if (kho_ser_has_required(fhdr, FOO_SER_REQ_BAR))
-          use ser->bar;
-  if (kho_ser_has_optional(fhdr, FOO_SER_OPT_BAZ))
-          use ser->baz;
-
-Required and optional features each have their own enum, numbered
-independently from 0. New features are only appended at the end of their
-enum, never reordered or reused. The last entry of each enum (e.g.
-__FOO_SER_NR_REQUIRED) is the feature count passed to DECLARE_KHO_SER and
-stays last. The fields of a new feature are appended at the end of the
-payload. A reader accesses the fields of a feature only when its bit is set
-in the incoming header (kho_ser_has_required() or kho_ser_has_optional()),
-because an older source kernel does not serialize them. Use required for
-data the target must understand to restore correctly, and optional for
-data it can safely ignore. Variable length data that follows the payload,
-such as an array of entries, starts at fhdr->size, the size recorded by the
-source kernel, so it stays correct when a later feature appends fields to
-the payload. Document that serialization helpers describe this kernel's
-layout while deserialization helpers follow the incoming header.
-
-Suggested-by: David Matlack <dmatlack@google.com>
-Suggested-by: Pasha Tatashin <pasha.tatashin@soleen.com>
+Signed-off-by: Logan Odell <loganodell@google.com>
 Signed-off-by: Tarun Sahu <tarunsahu@google.com>
 ---
- include/linux/kho/abi/feature.h | 372 ++++++++++++++++++++++++++++++++
- 1 file changed, 372 insertions(+)
- create mode 100644 include/linux/kho/abi/feature.h
+ include/linux/kho/abi/luo.h  | 64 +++++++++++++++---------------------
+ kernel/liveupdate/luo_core.c | 39 +++++++++++++---------
+ 2 files changed, 50 insertions(+), 53 deletions(-)
 
-diff --git a/include/linux/kho/abi/feature.h b/include/linux/kho/abi/feature.h
-new file mode 100644
-index 000000000000..55ff1b9e9b73
---- /dev/null
-+++ b/include/linux/kho/abi/feature.h
-@@ -0,0 +1,372 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+/**
-+ * DOC: KHO Serialization Feature Header ABI
-+ *
-+ * Generic feature header for serialized binary data structures preserved
-+ * across kexec via KHO or Live Update Orchestrator (LUO).
-+ *
-+ * Serialized structures start with an 8-byte base header (struct kho_ser_hdr)
-+ * containing the total structure size (size, including header, flags, and
-+ * payload) in bytes, the number of required features (nr_required), and the
-+ * number of optional features (nr_optional). Following the header is a
-+ * flexible array of 64-bit flags entries (flags[]) containing one bit per
-+ * feature.
-+ *
-+ * Feature bits:
-+ *   - Required feature N is at bit N of flags[].
-+ *   - Optional feature N is at bit (nr_required + N) of flags[].
-+ *   - The number of __u64 entries in flags[] is
-+ *     DIV_ROUND_UP(nr_required + nr_optional, 64).
-+ *   - When nr_required == 0 and nr_optional == 0, flags[] has zero entries
-+ *     and the header is exactly 8 bytes.
-+ *
-+ * A set bit indicates that the feature is present in the payload.
-+ *
-+ * Deserialization truth table:
-+ *
-+ *   Source bit       Target            Action
-+ *   ----------       ------            ------
-+ *   Not set          -                 Accept: feature absent
-+ *   Optional set     unknown or known  Accept: ignore or use the data
-+ *   Required set     known             Accept: use the feature data
-+ *   Required set     unknown           Reject: -EOPNOTSUPP
-+ *
-+ * Validation trusts the incoming header: only set required feature bits at or
-+ * beyond the target's known required feature count are rejected (-EOPNOTSUPP).
-+ * Optional feature bits are never validated.
-+ *
-+ * Defining features:
-+ *
-+ * A serialized structure defines its features using enums and registers with
-+ * DECLARE_KHO_SER()::
-+ *
-+ *   enum foo_ser_required {
-+ *           FOO_SER_REQ_BAR,
-+ *           __FOO_SER_NR_REQUIRED,
-+ *   };
-+ *
-+ *   enum foo_ser_optional {
-+ *           FOO_SER_OPT_BAZ,
-+ *           __FOO_SER_NR_OPTIONAL,
-+ *   };
-+ *
-+ *   struct foo_ser {
-+ *           __u64 base;     // base fields, always present
-+ *           __u64 bar;      // FOO_SER_REQ_BAR
-+ *           __u64 baz;      // FOO_SER_OPT_BAZ
-+ *   };
-+ *
-+ *   DECLARE_KHO_SER(foo_ser, 24,
-+ *                   __FOO_SER_NR_REQUIRED, __FOO_SER_NR_OPTIONAL);
-+ *
-+ *   // Serialize
-+ *   kho_ser_init(fhdr, foo_ser);
-+ *   ser = kho_ser_payload(fhdr, foo_ser);
-+ *   ser->bar = ...;
-+ *   kho_ser_set_required(fhdr, FOO_SER_REQ_BAR);
-+ *   ser->baz = ...;
-+ *   kho_ser_set_optional(fhdr, FOO_SER_OPT_BAZ);
-+ *
-+ *   // Restore
-+ *   err = kho_ser_validate(fhdr, foo_ser);
-+ *   ser = kho_ser_payload(fhdr, foo_ser);
-+ *   if (kho_ser_has_required(fhdr, FOO_SER_REQ_BAR))
-+ *           use ser->bar;
-+ *   if (kho_ser_has_optional(fhdr, FOO_SER_OPT_BAZ))
-+ *           use ser->baz;
-+ *
-+ * Rules:
-+ *   - Required and optional features each have their own enum, numbered
-+ *     independently from 0.
-+ *   - New features are only appended at the end of their enum, never
-+ *     reordered or reused.
-+ *   - The last entry of each enum (e.g. __FOO_SER_NR_REQUIRED) is the
-+ *     feature count passed to DECLARE_KHO_SER and stays last.
-+ *   - The fields of a new feature are appended at the end of the payload.
-+ *   - A reader accesses the fields of a feature only when its bit is set in
-+ *     the incoming header (kho_ser_has_required() or
-+ *     kho_ser_has_optional()), because an older source kernel does not
-+ *     serialize them.
-+ *   - Use required for data the target must understand to restore
-+ *     correctly, and optional for data it can safely ignore.
-+ *   - Variable length data that follows the payload, such as an array of
-+ *     entries, starts at fhdr->size, the size recorded by the source kernel,
-+ *     so it stays correct when a later feature appends fields to the
-+ *     payload.
-+ *
-+ * Writing and reading:
-+ *
-+ * kho_ser_size(), kho_ser_init(), kho_ser_set_required() and
-+ * kho_ser_set_optional() (and the clear variants) use the values this
-+ * kernel registered with DECLARE_KHO_SER(), so they describe this
-+ * kernel's layout and are used when serializing.
-+ *
-+ * A reader of handed-over data uses only the incoming header:
-+ * kho_ser_validate(), kho_ser_hdr_size(), kho_ser_payload(),
-+ * kho_ser_has_required(), kho_ser_has_optional() and fhdr->size, so
-+ * it follows the layout of the kernel that wrote the data. On data
-+ * this kernel serialized, these give the same result.
-+ *
-+ * Use DECLARE_KHO_SER_HDR(name, *fhdr) (or const
-+ * DECLARE_KHO_SER_HDR(name, *fhdr)) to document which registered
-+ * structure a feature header pointer belongs to while verifying at
-+ * compile time that the structure is registered with DECLARE_KHO_SER().
-+ */
-+
-+#ifndef _LINUX_KHO_ABI_FEATURE_H
-+#define _LINUX_KHO_ABI_FEATURE_H
-+
-+#include <linux/build_bug.h>
-+#include <linux/err.h>
-+#include <linux/errno.h>
-+#include <linux/math.h>
-+#include <linux/string.h>
+diff --git a/include/linux/kho/abi/luo.h b/include/linux/kho/abi/luo.h
+index f1152470f71a..dfa7ea434d0d 100644
+--- a/include/linux/kho/abi/luo.h
++++ b/include/linux/kho/abi/luo.h
+@@ -9,29 +9,26 @@
+  * DOC: Live Update Orchestrator ABI
+  *
+  * Live Update Orchestrator uses the stable Application Binary Interface
+- * defined below to pass state from a pre-update kernel to a post-update
+- * kernel. The ABI is built upon the Kexec HandOver framework and registers
+- * the central `struct luo_ser` via the KHO raw subtree API.
++ * defined below to pass state from a source kernel to a target kernel.
++ * The ABI is built upon the Kexec HandOver framework and registers the
++ * central `struct luo_ser` via the KHO raw subtree API.
+  *
+- * This interface is a contract. Any modification to the structure fields,
+- * compatible strings, or the layout of the `__packed` serialization
+- * structures defined here constitutes a breaking change. Such changes require
+- * incrementing the version number in the relevant `_COMPATIBLE` string to
+- * prevent a new kernel from misinterpreting data from an old kernel.
+- *
+- * Changes are allowed provided the compatibility version is incremented;
+- * however, backward/forward compatibility is only guaranteed for kernels
+- * supporting the same ABI version.
++ * This interface is a contract. `struct luo_ser`, and the serialized state
++ * of each file handler that uses it, are preceded by `struct kho_ser_hdr`.
++ * See the KHO Serialization Feature Header ABI documentation in
++ * include/linux/kho/abi/feature.h for the header layout, the feature rules
++ * and validation.
+  *
+  * KHO Structure Overview:
+  *   The entire LUO state is encapsulated within a single KHO entry named "LUO".
+- *   This entry contains the `struct luo_ser` structure.
++ *   This entry contains a `struct kho_ser_hdr` followed by the
++ *   `struct luo_ser` payload.
+  *
+  * Serialization Structures:
+  *   - struct luo_ser:
+- *     The central ABI structure that contains the overall state of the LUO.
+- *     It includes the compatibility string, the liveupdate-number, and pointers
+- *     to sessions and FLBs.
++ *     The central ABI payload structure that contains the overall state of
++ *     the LUO (the liveupdate-number and physical pointers to sessions and
++ *     FLBs), preceded by `struct kho_ser_hdr`.
+  *
+  *   - struct luo_session_ser:
+  *     Metadata for a single session, including its name and a physical pointer
+@@ -40,7 +37,7 @@
+  *
+  *   - struct luo_file_ser:
+  *     Metadata for a single preserved file. Contains the `compatible` string to
+- *     find the correct handler in the new kernel, a user-provided `token` for
++ *     find the correct handler in the target kernel, a user-provided `token` for
+  *     identification, and an opaque `data` handle for the handler to use.
+  *
+  *   - struct luo_flb_header_ser:
+@@ -57,39 +54,36 @@
+ #ifndef _LINUX_KHO_ABI_LUO_H
+ #define _LINUX_KHO_ABI_LUO_H
+ 
+-#include <linux/align.h>
+ #include <linux/build_bug.h>
+ #include <linux/kconfig.h>
+ #include <linux/kho/abi/block.h>
++#include <linux/kho/abi/feature.h>
+ #include <linux/kho/abi/kexec_handover.h>
 +#include <linux/types.h>
-+
-+/**
-+ * struct kho_ser_hdr - Header for serialized data structures in KHO.
-+ * @size:        Total size in bytes (header + flags + payload).
-+ * @nr_required: Number of required features known to the source kernel.
-+ * @nr_optional: Number of optional features known to the source kernel.
-+ * @flags:       Bitmask of present features (required, then optional).
-+ */
-+struct kho_ser_hdr {
-+	__u32 size;
-+	__u16 nr_required;
-+	__u16 nr_optional;
-+	__aligned_u64 flags[];
-+};
-+
-+static_assert(sizeof(struct kho_ser_hdr) == 8);
-+static_assert(__alignof__(struct kho_ser_hdr) == 8);
-+
-+#define KHO_SER_NR_FLAGS(nr_required, nr_optional) \
-+	DIV_ROUND_UP((__u32)(nr_required) + (__u32)(nr_optional), 64)
-+
-+/**
-+ * kho_ser_hdr_size - Calculate header size in bytes including flags.
-+ * @fhdr: Pointer to the serialization header.
-+ *
-+ * Return: Size of the header and flags array in bytes.
-+ */
-+static inline size_t kho_ser_hdr_size(const struct kho_ser_hdr *fhdr)
-+{
-+	return sizeof(*fhdr) + sizeof(__u64) *
-+		KHO_SER_NR_FLAGS(fhdr->nr_required, fhdr->nr_optional);
-+}
-+
-+/**
-+ * kho_ser_set_required - Mark a required feature present in the payload.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @feat: Required feature index to set.
-+ */
-+static inline void kho_ser_set_required(struct kho_ser_hdr *fhdr, unsigned int feat)
-+{
-+	if (feat < fhdr->nr_required)
-+		fhdr->flags[feat / 64] |= 1ULL << (feat % 64);
-+}
-+
-+/**
-+ * kho_ser_clear_required - Clear a required feature in the payload.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @feat: Required feature index to clear.
-+ */
-+static inline void kho_ser_clear_required(struct kho_ser_hdr *fhdr, unsigned int feat)
-+{
-+	if (feat < fhdr->nr_required)
-+		fhdr->flags[feat / 64] &= ~(1ULL << (feat % 64));
-+}
-+
-+/**
-+ * kho_ser_set_optional - Mark an optional feature present in the payload.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @feat: Optional feature index to set.
-+ */
-+static inline void kho_ser_set_optional(struct kho_ser_hdr *fhdr, unsigned int feat)
-+{
-+	if (feat < fhdr->nr_optional) {
-+		unsigned int bit = (unsigned int)fhdr->nr_required + feat;
-+
-+		fhdr->flags[bit / 64] |= 1ULL << (bit % 64);
-+	}
-+}
-+
-+/**
-+ * kho_ser_clear_optional - Clear an optional feature in the payload.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @feat: Optional feature index to clear.
-+ */
-+static inline void kho_ser_clear_optional(struct kho_ser_hdr *fhdr, unsigned int feat)
-+{
-+	if (feat < fhdr->nr_optional) {
-+		unsigned int bit = (unsigned int)fhdr->nr_required + feat;
-+
-+		fhdr->flags[bit / 64] &= ~(1ULL << (bit % 64));
-+	}
-+}
-+
-+/**
-+ * kho_ser_has_required - Check if a required feature is present in the payload.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @feat: Required feature index to check.
-+ *
-+ * Return: True if the feature is present, false otherwise or if the index
-+ *         exceeds the header's known required feature count.
-+ */
-+static inline bool kho_ser_has_required(const struct kho_ser_hdr *fhdr,
-+					unsigned int feat)
-+{
-+	if (feat >= fhdr->nr_required)
-+		return false;
-+	return !!(fhdr->flags[feat / 64] & (1ULL << (feat % 64)));
-+}
-+
-+/**
-+ * kho_ser_has_optional - Check if an optional feature is present in the payload.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @feat: Optional feature index to check.
-+ *
-+ * Return: True if the feature is present, false otherwise or if the index
-+ *         exceeds the header's known optional feature count.
-+ */
-+static inline bool kho_ser_has_optional(const struct kho_ser_hdr *fhdr,
-+					unsigned int feat)
-+{
-+	unsigned int bit;
-+
-+	if (feat >= fhdr->nr_optional)
-+		return false;
-+	bit = (unsigned int)fhdr->nr_required + feat;
-+	return !!(fhdr->flags[bit / 64] & (1ULL << (bit % 64)));
-+}
-+
-+/**
-+ * __kho_ser_init - Initialize a serialization header and flags.
-+ * @fhdr:          Pointer to the memory for the serialization header.
-+ * @payload_size: Size of the payload structure in bytes.
-+ * @nr_required:  Number of required features known by the caller.
-+ * @nr_optional:  Number of optional features known by the caller.
-+ */
-+static inline void __kho_ser_init(struct kho_ser_hdr *fhdr, __u32 payload_size,
-+				  __u16 nr_required, __u16 nr_optional)
-+{
-+	__u32 nr_flags = KHO_SER_NR_FLAGS(nr_required, nr_optional);
-+
-+	fhdr->size = sizeof(*fhdr) + sizeof(__u64) * nr_flags + payload_size;
-+	fhdr->nr_required = nr_required;
-+	fhdr->nr_optional = nr_optional;
-+	memset(fhdr->flags, 0, sizeof(__u64) * nr_flags);
-+}
-+
-+/**
-+ * __kho_ser_payload - Return pointer to the payload following the header.
-+ * @fhdr: Pointer to the serialization header.
-+ *
-+ * Return: Pointer to payload memory immediately after the flags array.
-+ */
-+static inline void *__kho_ser_payload(const struct kho_ser_hdr *fhdr)
-+{
-+	return (void *)((const char *)fhdr + kho_ser_hdr_size(fhdr));
-+}
-+
-+/**
-+ * __kho_ser_validate - Validate an incoming header against target capabilities.
-+ * @fhdr:                Pointer to the serialization header.
-+ * @target_nr_required: Number of required features supported by the target.
-+ *
-+ * Checks that the source did not set any required feature bits that the target
-+ * kernel does not support (index >= @target_nr_required).
-+ *
-+ * Return: 0 if all required features are supported, or -EOPNOTSUPP on failure.
-+ */
-+static inline int __kho_ser_validate(const struct kho_ser_hdr *fhdr,
-+				     __u16 target_nr_required)
-+{
-+	unsigned int i;
-+
-+	for (i = target_nr_required; i < fhdr->nr_required; i++) {
-+		if (fhdr->flags[i / 64] & (1ULL << (i % 64)))
-+			return -EOPNOTSUPP;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * DECLARE_KHO_SER - Register a serialized payload structure with KHO.
-+ * @name:         Structure tag name (e.g. luo_ser).
-+ * @payload_size: Compile-time expected size of struct @name in bytes.
-+ * @nr_required:  Total number of defined required features.
-+ * @nr_optional:  Total number of defined optional features.
-+ *
-+ * Size and 8-byte alignment are asserted under CONFIG_64BIT: KHO and LUO are
-+ * 64-bit only, while !CONFIG_KEXEC_HANDOVER stubs pull ABI headers into
-+ * 32-bit builds where u64 has 4-byte or 2-byte alignment.
-+ */
-+#define DECLARE_KHO_SER(name, payload_size, nr_required, nr_optional)	\
-+	static_assert(!IS_ENABLED(CONFIG_64BIT) ||			\
-+		      sizeof(struct name) == (payload_size),		\
-+		      "struct " #name " size mismatch");		\
-+	static_assert(!IS_ENABLED(CONFIG_64BIT) ||			\
-+		      __alignof__(struct name) == 8,			\
-+		      "struct " #name " must be 8-byte aligned");	\
-+	extern struct kho_ser_hdr __kho_ser_hdr_##name;			\
-+	enum {								\
-+		__KHO_SER_SIZE_##name = (payload_size),			\
-+		__KHO_SER_NR_REQUIRED_##name = (nr_required),		\
-+		__KHO_SER_NR_OPTIONAL_##name = (nr_optional),		\
-+	}
-+
-+/**
-+ * DECLARE_KHO_SER_HDR - Declare a feature header variable, field, or parameter.
-+ * @name: Structure tag name registered with DECLARE_KHO_SER().
-+ * @decl: Declarator (e.g. *fhdr, **out_fhdr, or * inside DECLARE_KHOSER_PTR).
-+ *
-+ * Declares @decl with type struct kho_ser_hdr while checking at compile time
-+ * that @name was registered with DECLARE_KHO_SER(), documenting which
-+ * serialized payload structure a feature header pointer belongs to.
-+ */
-+#define DECLARE_KHO_SER_HDR(name, decl)	typeof(__kho_ser_hdr_##name) decl
-+
-+/**
-+ * kho_ser_size - Total size of header, flags, and payload for a structure.
-+ * @name: Structure tag name registered with DECLARE_KHO_SER().
-+ */
-+#define kho_ser_size(name)						\
-+	(sizeof(struct kho_ser_hdr) +					\
-+	 sizeof(__u64) * KHO_SER_NR_FLAGS(__KHO_SER_NR_REQUIRED_##name,	\
-+					  __KHO_SER_NR_OPTIONAL_##name) +\
-+	 __KHO_SER_SIZE_##name)
-+
-+/**
-+ * kho_ser_init - Initialize a serialization header for a registered structure.
-+ * @fhdr:  Pointer to allocated memory.
-+ * @name: Structure tag name registered with DECLARE_KHO_SER().
-+ */
-+#define kho_ser_init(fhdr, name)						\
-+	__kho_ser_init((fhdr), __KHO_SER_SIZE_##name,			\
-+		       __KHO_SER_NR_REQUIRED_##name,			\
-+		       __KHO_SER_NR_OPTIONAL_##name)
-+
-+/**
-+ * kho_ser_payload - Return typed pointer to payload following the header.
-+ * @fhdr:  Pointer to the serialization header.
-+ * @name: Structure tag name registered with DECLARE_KHO_SER().
-+ *
-+ * The first operand only fails the build when DECLARE_KHO_SER(name) is
-+ * missing.
-+ */
-+#define kho_ser_payload(fhdr, name)					\
-+	((void)__KHO_SER_SIZE_##name,					\
-+	 (struct name *)__kho_ser_payload(fhdr))
-+
-+/**
-+ * kho_ser_validate - Validate incoming required features for a structure.
-+ * @fhdr:  Pointer to the incoming serialization header.
-+ * @name: Structure tag name registered with DECLARE_KHO_SER().
-+ */
-+#define kho_ser_validate(fhdr, name)					\
-+	__kho_ser_validate((fhdr), __KHO_SER_NR_REQUIRED_##name)
-+
-+#endif /* _LINUX_KHO_ABI_FEATURE_H */
+ #include <uapi/linux/liveupdate.h>
+ 
+ /*
+  * The LUO state is registered under this KHO entry name.
+  */
+ #define LUO_KHO_ENTRY_NAME	"LUO"
+-#define LUO_ABI_COMPATIBLE	"luo-v6"
+-#define LUO_ABI_COMPAT_LEN	ALIGN(sizeof(LUO_ABI_COMPATIBLE), 8)
+ 
+ /**
+- * struct luo_ser - Centralized LUO ABI header.
+- * @compatible:     Compatibility string identifying the LUO ABI version.
++ * struct luo_ser - Centralized LUO ABI payload.
+  * @liveupdate_num: A counter tracking the number of successful live updates.
+  * @sessions_pa:    Physical address of the first session block header.
+  * @flbs_pa:        Physical address of the FLB header.
+  *
+- * This structure is the root of all preserved LUO state.
++ * This structure is the root payload of all preserved LUO state, preceded by
++ * &struct kho_ser_hdr.
+  */
+ struct luo_ser {
+-	char compatible[LUO_ABI_COMPAT_LEN];
+ 	u64 liveupdate_num;
+ 	u64 sessions_pa;
+ 	u64 flbs_pa;
+ };
+ 
+-static_assert(sizeof(struct luo_ser) == 32);
+-static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+-	      __alignof__(struct luo_ser) == 8);
++/* Register luo_ser with KHO serialization accessors */
++DECLARE_KHO_SER(luo_ser, 24, 0, 0);
+ 
+ #define LIVEUPDATE_HNDL_COMPAT_LENGTH	48
+ 
+@@ -98,8 +92,6 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+  * @compatible:  File handler compatible string.
+  * @data:        Private data
+  * @token:       User provided token for this file
+- *
+- * If this structure is modified, `LUO_ABI_COMPATIBLE` must be updated.
+  */
+ struct luo_file_ser {
+ 	char compatible[LIVEUPDATE_HNDL_COMPAT_LENGTH];
+@@ -138,10 +130,8 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+  *
+  * This structure is used to package session-specific metadata for transfer
+  * between kernels via Kexec Handover. An array of these structures (one per
+- * session) is created and passed to the new kernel, allowing it to reconstruct
+- * the session context.
+- *
+- * If this structure is modified, `LUO_ABI_COMPATIBLE` must be updated.
++ * session) is created and passed to the target kernel, allowing it to
++ * reconstruct the session context.
+  */
+ struct luo_session_ser {
+ 	char name[LIVEUPDATE_SESSION_NAME_LENGTH];
+@@ -180,13 +170,13 @@ static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+ /**
+  * struct luo_flb_ser - Represents the serialized state of a single FLB object.
+  * @name:    The unique compatibility string of the FLB object, used to find the
+- *           corresponding &struct liveupdate_flb handler in the new kernel.
++ *           corresponding &struct liveupdate_flb in the target kernel.
+  * @data:    The opaque u64 handle returned by the FLB's .preserve() operation
+- *           in the old kernel. This handle encapsulates the entire state needed
+- *           for restoration.
++ *           in the source kernel. This handle encapsulates the entire state
++ *           needed for restoration.
+  * @count:   The reference count at the time of serialization; i.e., the number
+  *           of preserved files that depended on this FLB. This is used by the
+- *           new kernel to correctly manage the FLB's lifecycle.
++ *           target kernel to correctly manage the FLB's lifecycle.
+  *
+  * An array of these structures is created in a preserved memory region and
+  * passed to the new kernel. Each entry allows the LUO core to restore one
+diff --git a/kernel/liveupdate/luo_core.c b/kernel/liveupdate/luo_core.c
+index 1b2bda22902d..d0f72f27001d 100644
+--- a/kernel/liveupdate/luo_core.c
++++ b/kernel/liveupdate/luo_core.c
+@@ -66,7 +66,7 @@
+ 
+ static struct {
+ 	bool enabled;
+-	struct luo_ser *luo_ser_out;
++	DECLARE_KHO_SER_HDR(luo_ser, *luo_ser_out);
+ 	u64 liveupdate_num;
+ } luo_global;
+ 
+@@ -83,6 +83,7 @@ early_param("liveupdate", early_liveupdate_param);
+ 
+ static int __init luo_early_startup(void)
+ {
++	DECLARE_KHO_SER_HDR(luo_ser, *fhdr);
+ 	phys_addr_t luo_ser_phys;
+ 	struct luo_ser *luo_ser;
+ 	size_t len;
+@@ -107,17 +108,21 @@ static int __init luo_early_startup(void)
+ 		return 0;
+ 	}
+ 
+-	if (len < sizeof(*luo_ser)) {
+-		pr_err("LUO state is too small (%zu < %zu)\n", len, sizeof(*luo_ser));
+-		return -EINVAL;
++	fhdr = phys_to_virt(luo_ser_phys);
++	if (len < sizeof(*fhdr) || fhdr->size > len) {
++		pr_err("LUO state size invalid (source kernel header size=%u, KHO len=%zu)\n",
++		       len >= sizeof(*fhdr) ? fhdr->size : 0, len);
++		err = -EINVAL;
++		goto out_free_ser;
+ 	}
+ 
+-	luo_ser = phys_to_virt(luo_ser_phys);
+-	if (strncmp(luo_ser->compatible, LUO_ABI_COMPATIBLE, LUO_ABI_COMPAT_LEN)) {
+-		pr_err("LUO state is incompatible with '%s'\n", LUO_ABI_COMPATIBLE);
+-		return -EINVAL;
++	err = kho_ser_validate(fhdr, luo_ser);
++	if (err) {
++		pr_err("LUO state feature validation failed: %pe\n", ERR_PTR(err));
++		goto out_free_ser;
+ 	}
+ 
++	luo_ser = kho_ser_payload(fhdr, luo_ser);
+ 	luo_global.liveupdate_num = luo_ser->liveupdate_num;
+ 	pr_info("Retrieved live update data, liveupdate number: %lld\n",
+ 		luo_global.liveupdate_num);
+@@ -131,7 +136,7 @@ static int __init luo_early_startup(void)
+ 	err = 0;
+ 
+ out_free_ser:
+-	kho_restore_free(luo_ser);
++	kho_restore_free(fhdr);
+ 	return err;
+ }
+ 
+@@ -153,16 +158,18 @@ early_initcall(liveupdate_early_init);
+ /* Called during boot to create outgoing LUO state */
+ static int __init luo_state_setup(void)
+ {
++	DECLARE_KHO_SER_HDR(luo_ser, *fhdr);
+ 	struct luo_ser *luo_ser;
+ 	int err;
+ 
+-	luo_ser = kho_alloc_preserve(sizeof(*luo_ser));
+-	if (IS_ERR(luo_ser)) {
++	fhdr = kho_alloc_preserve(kho_ser_size(luo_ser));
++	if (IS_ERR(fhdr)) {
+ 		pr_err("failed to allocate/preserve LUO state memory\n");
+-		return PTR_ERR(luo_ser);
++		return PTR_ERR(fhdr);
+ 	}
++	kho_ser_init(fhdr, luo_ser);
+ 
+-	strscpy(luo_ser->compatible, LUO_ABI_COMPATIBLE, sizeof(luo_ser->compatible));
++	luo_ser = kho_ser_payload(fhdr, luo_ser);
+ 	luo_ser->liveupdate_num = luo_global.liveupdate_num + 1;
+ 
+ 	luo_session_setup_outgoing(&luo_ser->sessions_pa);
+@@ -171,16 +178,16 @@ static int __init luo_state_setup(void)
+ 	if (err)
+ 		goto exit_free_luo_ser;
+ 
+-	err = kho_add_subtree(LUO_KHO_ENTRY_NAME, luo_ser, sizeof(*luo_ser));
++	err = kho_add_subtree(LUO_KHO_ENTRY_NAME, fhdr, fhdr->size);
+ 	if (err)
+ 		goto exit_free_luo_ser;
+ 
+-	luo_global.luo_ser_out = luo_ser;
++	luo_global.luo_ser_out = fhdr;
+ 
+ 	return 0;
+ 
+ exit_free_luo_ser:
+-	kho_unpreserve_free(luo_ser);
++	kho_unpreserve_free(fhdr);
+ 	pr_err("failed to prepare LUO state: %d\n", err);
+ 
+ 	return err;
 -- 
 2.56.0.506.g506a7eabc5-goog
 
