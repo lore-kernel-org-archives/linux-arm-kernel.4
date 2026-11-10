@@ -2,104 +2,160 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015DF606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92C3360A2608
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:20:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ita3o7Od;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=bXwehEW3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CbbVqBs2;
+	dkim=pass (1024-bit key, unprotected) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=TntSIihj;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=selector1 header.b=TntSIihj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=O2sQ0ppPahwiNKXBETtZDPbw3npwpVnR3zhVdoKxb8A=; b=ita3o7OdY6u8YcnDPqyf8Nyduz
-	ogv8gu9WmWSyI2QioLv9vAi2cNajmAZE9K8zmAfr1OLEtbAi34HlCOVolLKnxLS7tT8f2HDCC0Cxq
-	tM0R5BvPErHm2p/WR6RHPoSif5OteWL0vfxnwBNP725YfHSfuIF3bIdPlPu2qX9vdPpzIfnN48Nc0
-	4D5U/HZI9Kq1HHFNZ1A6yfa7fTtKyHsNZwEglppFmRbyHwGDybGIhTfvH7wc/9s04GCOekWIrgBCd
-	c8yo7/6t+UQ+IRZUlJTbmh+rY8//7/zkjOil6V8wbleTpFqxLgfDEacyJqD3fYXSG9j6nTy4wvCIh
-	uG48iLGw==;
+	bh=v3ZCYNB1BYYntcDZMjSJ81YC0eLaDtZZuq3jKWT6fWs=; b=CbbVqBs2JR2jtJc/wwqwLM52uX
+	Ol0iQgeSC3b3rnxl1YjJQj0pLnJ7UGeSWUCIzsMyyjABBfz9x2aB2tBCFHfHDPM3bRcB9OFKv86a8
+	ZEvKFClVvKNwHuqMgzoL6d4M8dBiPzWBW6gQdB34PJo3mIwNuYyxcqGYAazjFLq9BLxW7dOxECf+d
+	YdNcItvjrHxqcp/EzEOLPSqLPT7kn6yE4WB4SGcJO+c733JKsccyOpLfAPaE98ZnzUGQzKCwY+NMv
+	9NNfu9Olt97OUs4Q3kuKnZ52Apl8yJUzxmY307yX7XKVEv4eIAGiTUl2hIHr6a3K+2FMKuXfrqwZ/
+	djuaOemw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQncd-00000004LTS-3kaW;
-	Tue, 10 Nov 2026 15:18:55 +0000
-Received: from mail-qt1-x830.google.com ([2607:f8b0:4864:20::830])
+	id 1xQne0-00000004Lfm-0L1l;
+	Tue, 10 Nov 2026 15:20:20 +0000
+Received: from mail-northeuropeazon11011040.outbound.protection.outlook.com ([52.101.65.40] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQncc-00000004LT0-06g8
+	id 1xQndw-00000004Lf5-1rdx
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:18:55 +0000
-Received: by mail-qt1-x830.google.com with SMTP id d75a77b69052e-5366463571cso25191711cf.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:18:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1794323933; x=1794928733; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=O2sQ0ppPahwiNKXBETtZDPbw3npwpVnR3zhVdoKxb8A=;
-        b=bXwehEW34HLXDN3L6i47t47LmGojEmEDCJ0k9r1/U45KjOpeBuRkVXZK4lEr9su7Kp
-         kiI4KafgZ4OR2xoCp0Wo5/GrCxSlQMtY6cTGCbxcnZCCWrM2UJkNKAHeysWmg13LMQVb
-         5TEX5knE7VHuLNg+bto1azWRlqbA/Bu9se4uMxsJRverRYxjc3mpKxMYhDIxLAXI0Lju
-         SqjKhSxVE9cC8SldIWr6B9Xq511o9kwXOoGBxCHPhRrepdoHTYPBAhOcuCIqiJhmn9f6
-         ySFdiDsolOg2Sbuo2EzZ4+cQlvEZKiukAvi9OcfnqTUMcL4MN3t13OQUEd6MfebIQsvz
-         NlsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794323933; x=1794928733;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=O2sQ0ppPahwiNKXBETtZDPbw3npwpVnR3zhVdoKxb8A=;
-        b=eQW0bP2pguJkJ4jRGolmDg/ipGKZA6NBmGSJj1AzISv2nojiF0KgzO7XAEPca1qH5z
-         nHsRtltf5Qg8/PRaIvSN+5Gt/d/PeUM8oHoStU1sVm15+igHetlaLDi1F9H6Mv4jUJux
-         BStFNt5+idGs9zYlNKkELmsuYkr/V37tiPKxhYaqTwCoddlKCy7DaCnKYiCJU44CL4mA
-         r0pTzC59uWZWImjEl38Ely2+tLI8IWHJp0oZcJ5WAiJaVeHudu4EL2Bj6iNWE+1la4Y/
-         MHDjvm8wbBQGhCaAvWC6tcNCCpeRc5mzDR9VEz5ZlYNJykICrRa2qE7BnJpPeNVmoCim
-         xzGA==
-X-Forwarded-Encrypted: i=1; AL+hErHjPG6qfhKHyFTOjcd/Gk8sVob+M2dVS6jCE0VWWpsvCinHpnBC4aIjiqC/SrkaRhWKTsQYm39U/O46x/zgUcbv@lists.infradead.org
-X-Gm-Message-State: APuU4Z/cxj3BwgI1vQSm9M3Se930dc+zRTF8v5cEO6JUWDhH5qBl3MTV
-	COvvr+Br+QKo5a7HoL58AfPypbKoymrja/bijBA8yk1NkFx7naJ20HFwBWPzw0Fosnc=
-X-Gm-Gg: AYBFou0lW4K3vI5+KCvdSHIpRrgENswnZ+ci2np0/8N1tJVKnCgwQB4jWh+zbUPClU/
-	56sVuDo7ySdxW6pvP3DILlorNNZEOHeT1yTtuCD4tDEZleFv+xYN1qG5wuIGiwdGPCR5B4Y1A35
-	h1itcpDNHTTniIEF6xY5jKWIGEB7Dus01YHv8lnALMpK5XjoZke+DNnTm0bUthOYc0GbJRNo1l4
-	rampe2hP0Ca8jlZ/rDCXOk5lkLrdyUpoBDRmr2Ve0xyu+6OcIyH07nDwlQq+4nDdRAQX5CE49Sq
-	ljICJiwZX4S0lld0toXmiiyyfTklEv1RHqLF0wvx+KGH9w5J34gpxfIByJ/F2EKZTAQDgE/xLIC
-	1jWl2nMykHrUPkw3jZpSXQbwD9Il8CPLiX+ovLqFOZur/PSQ1JyPaGiX8SlDetmjxHlJ95fVdT2
-	f2ec55AVmbunvl6GX2hO5UUiiiMaHVVJLFA/Mai45cI4xmatnga5ENI8R0nU8HZnJyaRSjmZcVG
-	GuRiyMZ3KjfTN6zkM4OC9oLeNfAyuOCud3qFsh80IY92ZXjlGvcVm4soByF7OpFsuDJ+LaxLgdc
-	P8ecndovADJEWjZxX0d3QtVxadMtTA+m5jqg8EcPkVUm/DNy/DuaAEUJsCcTac1tbzQvcpXkuZm
-	pDK2JI01x2bQ=
-X-Received: by 2002:a05:620a:461f:b0:946:6:1298 with SMTP id af79cd13be357-9479f323170mr465893185a.52.1794323932611;
-        Tue, 10 Nov 2026 07:18:52 -0800 (PST)
-Received: from ziepe.ca (hlfxns010zw-159-2-239-150.pppoe-dynamic.high-speed.ns.bellaliant.net. [159.2.239.150])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ef04f89c1sm22998676d6.23.2026.11.10.07.18.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 07:18:50 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1xQncX-000000063UD-2Q7t;
-	Tue, 10 Nov 2026 11:18:49 -0400
-Date: Tue, 10 Nov 2026 11:18:49 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Mostafa Saleh <smostafa@google.com>
-Cc: xuheng@cs.columbia.edu, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] iommu/arm-smmu-v3: Invalidate a new level-1 stream table
- descriptor
-Message-ID: <20261110151849.GZ663069@ziepe.ca>
-References: <20261109-smmu-l1std-cfgi-v1-1-65e5203a6516@cs.columbia.edu>
- <avMxDbv6JE0dg93E@google.com>
+	Tue, 10 Nov 2026 15:20:18 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
+ b=NZ7QWUZe97FGghLOvlMu44n6MBzXwk4eqcUyTtSkUcmUAzboG1dTvu0q9NHnc4BYvKbu4lIZisFqIRXneamFKYS4tzzCVFyxiKFg+++1Bm09AqsnGISjh80FLvCAniCXIPAg6l8DlR8byjaFWThwrKw98Wip1TjYRQVfzDs7NhYyJgRraCiii0ReWywbE9dxVM1WPqgHUo1M+xCisK8PtG60UpeuOqU1aR9QkciXd+RQOeNcb56EEURFtkMRE8tYXK7uE0Hf4gnLSscUjgAZNu/VnS/HFtn1K1n3unX2CF4KaNZxHv8ia48Rcn4h3AhW95isyEDAU3I4fCILksVCrg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v3ZCYNB1BYYntcDZMjSJ81YC0eLaDtZZuq3jKWT6fWs=;
+ b=mqGHT5FLycnrtqS2pPwiAVi0vkNCaf2lNW7zTHIYNDbytlCYsbunVGMMSmh9W7TIGLvPx75ZKZ0aPuiTfF5bFpm13VTv4fVRmGbTMGqeGogVcenDTHoGmpTcLFDrhqXjbSd2a2cWO+1Q5yDTb5Hf7tdW/EiSw39kdtbVjm4MIcBa8twhyzk2oGYO1Ivc6ldIdiRj/UZF3ooBss/LAgzeowTAqWOto1HSMZ2hohRtF0OO6GzzWII2eICLEac5a1mCUJM2Z/yO0nygskY5TGCnj0QdLfYBeMshgmOVb2nKJW/obWlf0bLmLLCjW7vEMaTv3aqxfebcLmv+Dk8bd1yMNg==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 4.158.2.129) smtp.rcpttodomain=fb.com smtp.mailfrom=arm.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
+ (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
+ spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
+ dmarc=[1,1,header.from=arm.com])
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v3ZCYNB1BYYntcDZMjSJ81YC0eLaDtZZuq3jKWT6fWs=;
+ b=TntSIihjJJfghZ6d1wlk//Zi5Ory4Ml8D3XgcUXbB+DACy53k2t3898Whv2WZ1tH0OKdCxH+idd7QkVUhIYa2M7yzZ2GerOy5J6ZVz7Uu1relgkLcitWmPKwwOklxA7OWei2iTLAa11zk6kVZ1WyRYQJpz1dnUgzVwl0xN4Rs9g=
+Received: from DUZPR01CA0142.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bd::22) by DU4PR08MB11770.eurprd08.prod.outlook.com
+ (2603:10a6:10:643::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Tue, 10 Nov
+ 2026 15:20:09 +0000
+Received: from DB3PEPF0000885A.eurprd02.prod.outlook.com
+ (2603:10a6:10:4bd:cafe::53) by DUZPR01CA0142.outlook.office365.com
+ (2603:10a6:10:4bd::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Tue, 10
+ Nov 2026 15:20:09 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=arm.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
+ client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
+Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
+ DB3PEPF0000885A.mail.protection.outlook.com (10.167.242.5) with Microsoft
+ SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.4
+ via Frontend Transport; Tue, 10 Nov 2026 15:20:08 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WWGOenbgMwIqhwJfJUeEpF8lR5e9jqTQVs5MC2uZSVeIedG25nT9V9rjDioTHOglkODXYRFbSC0lCnkWUwrEGqtoKtB+LyeAegz2dRgAR/1BbAHQsgp3wrB+e1GQ2qGrFOjIUbdPzdqyZzEGWwfNIjWf/5SQhdq4tC38fCF1o469LYd4r72yeRYqN1noTU9Eg2meqPv9liz2FD2eAwwKdtLygqMmsZOzQpg8oerXsxnoBeCH/vPhi2MLjuu8BPJv75UghGcQ2cWJ+KAPlYyD+oenK6hEhj+jvxH5MwvWD0EKN2NNzF4x9lp1VDyqk7ZCadbDb+w+G5hW1mVbK/e4+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v3ZCYNB1BYYntcDZMjSJ81YC0eLaDtZZuq3jKWT6fWs=;
+ b=jwyiXU052ozToT93W617YCHxbebmGKqV7EHE04Gr2AzTOfvPYFlL6Bq45f/tm0YdlBqZkNN7OlECwBOgXI1ZTTws5lgkzqw93xykFAEJl1nIXCLcv+x4mHQvabm2Kp5iS+A9ERh7w+ovCwvC9mV3zRzwV+GjmS63V+KDahSbCZRLczdI6hBZYTET3TMlqLfET5NzQ2vt8m16Oif3Tpv7jVQzyxdkTmeH5SmvG0qcaX0I0rysvhqp0G5pcet57h5QwSWsRepXg6t7aq1JoXG9endktyeBskrz3k08XcOLKFVsekHSgPZcyI1QKOjG1lAB6SLOcH/HXicZ2gUAXZBhnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v3ZCYNB1BYYntcDZMjSJ81YC0eLaDtZZuq3jKWT6fWs=;
+ b=TntSIihjJJfghZ6d1wlk//Zi5Ory4Ml8D3XgcUXbB+DACy53k2t3898Whv2WZ1tH0OKdCxH+idd7QkVUhIYa2M7yzZ2GerOy5J6ZVz7Uu1relgkLcitWmPKwwOklxA7OWei2iTLAa11zk6kVZ1WyRYQJpz1dnUgzVwl0xN4Rs9g=
+Received: from DB9PR08MB6475.eurprd08.prod.outlook.com (2603:10a6:10:253::21)
+ by AS4PR08MB7831.eurprd08.prod.outlook.com (2603:10a6:20b:51b::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Tue, 10 Nov
+ 2026 15:19:31 +0000
+Received: from DB9PR08MB6475.eurprd08.prod.outlook.com
+ ([fe80::3f72:27f3:535c:6663]) by DB9PR08MB6475.eurprd08.prod.outlook.com
+ ([fe80::3f72:27f3:535c:6663%7]) with mapi id 15.21.0615.007; Tue, 10 Nov 2026
+ 15:19:31 +0000
+From: Mike Leach <Mike.Leach@arm.com>
+To: Amir Ayupov <aaupov@fb.com>, James Clark <james.clark@linaro.org>, Leo Yan
+	<Leo.Yan@arm.com>, Suzuki Poulose <Suzuki.Poulose@arm.com>, Alexander
+ Shishkin <alexander.shishkin@linux.intel.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jonathan Corbet
+	<corbet@lwn.net>, Mathieu Poirier <mathieu.poirier@linaro.org>, Randy Dunlap
+	<rdunlap@infradead.org>, Shuah Khan <skhan@linuxfoundation.org>,
+	"coresight@lists.linaro.org" <coresight@lists.linaro.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-doc@vger.kernel.org"
+	<linux-doc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, nd <nd@arm.com>
+Subject: RE: [PATCH v2 1/4] coresight: syscfg: Fail to enable a configuration
+ not loaded on the device
+Thread-Topic: [PATCH v2 1/4] coresight: syscfg: Fail to enable a configuration
+ not loaded on the device
+Thread-Index: AQHdWp449MGAqzO66UK7n+y4d7YYl7cnRx7g
+Date: Tue, 10 Nov 2026 15:19:31 +0000
+Message-ID: <DB9PR08MB64756F200065042673030C848C722@DB9PR08MB6475.eurprd08.prod.outlook.com>
+References: <20261012230527.750567-1-aaupov@fb.com>
+ <20261012230527.750567-2-aaupov@fb.com>
+In-Reply-To: <20261012230527.750567-2-aaupov@fb.com>
+Accept-Language: en-US, en-GB
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
+ signed) header.d=none;dmarc=none action=none header.from=arm.com;
+x-ms-traffictypediagnostic: DB9PR08MB6475:EE_|AS4PR08MB7831:EE_|DB3PEPF0000885A:EE_|DU4PR08MB11770:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4306b10e-2953-46c9-be69-08df3f3e1b14
+X-LD-Processed: f34e5979-57d9-4aaa-ad4d-b122a662184d,ExtAddr,ExtAddr
+x-checkrecipientrouted: true
+nodisclaimer: true
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|7416014|366016|376014|10070799003|23010399003|1800799024|261028144727099003|261022075727099003|261022105027099003|261021121427099003|261102130727099003|261026140227099003|261102123227099003|261021123027099003|10067099003|261026121527099003|11063799006|5023799004|261009223027099003|3023799007|6133799003|18002099003|22082099003|4143699003|56012099006|38070700021;
+X-Microsoft-Antispam-Message-Info-Original: /zs/7/u/yvywQiNm6R27bFE6sgcBKaZ6QFNHmlZA12UwgrpdHZLL5HjTUznSlo/1PzIbxvB9yo6nNjdUA/J0LSIQ73ew1/T5/cZKC5Jo7h0mJV4CqauvhdeZWMRQSSd7dRrtnR0Sp+4Vj3n1jE2r9WRRpgOoyfK/KwvNh5g1rAmf4z/inkWld+O5EcYEH3+uc+bebkmaeMOpuFDNTUOH5r0bfFzM5GydlzzAQhwZZcTEtBxnpvb7FiFmNvLQzVHAxXEbuYey8FtQFcOD8Mx1SQ2zB4zaUK5RbwvLoz0EUMZH3JmizthmGuXUwutzuYO3yVqlNnPltvGp8kF/Bc9Np8HZ18E5U+WNZo9B8r/XQNfcXzEESEWZIhez12P8BlnguvgD5gyX0JROj+3vaxWeUtO8RAl1mXi5/DekxVFEWQv5tjRoDTP66cxoxvP+k277s+tPXOLPAe3bnwG1HeCKnu8HS/Lmc2KuThUNISrHsRff4HUHSSP5e393FlxSIvjblPpDUu9RsvlL4qbCQmpBWsDrLThQ/6tQS0il+KfB+E81tzOu8KU+1ghgZ9dQKEbTml+sZXexpKtAJBjC4necRrlf1PVn7BIVwjCIIfH9c6cPpzTKUGOmi+FDt5c8iVV6eQbMReT2NPOylf7xGr8VC62ZztYeCrNh+1YZAIdfB7g6/3m9IbU0bsFhU9frNr603kxHJugyJWa7GFjubrYUKdG8ekX0WFAU/JJPvTCiU4g=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR08MB6475.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(10070799003)(23010399003)(1800799024)(261028144727099003)(261022075727099003)(261022105027099003)(261021121427099003)(261102130727099003)(261026140227099003)(261102123227099003)(261021123027099003)(10067099003)(261026121527099003)(11063799006)(5023799004)(261009223027099003)(3023799007)(6133799003)(18002099003)(22082099003)(4143699003)(56012099006)(38070700021);DIR:OUT;SFP:1101;
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avMxDbv6JE0dg93E@google.com>
+X-Exchange-RoutingPolicyChecked: vE16BWx07jZRiy/wmKbXyn4w50ZEPosYQDrBnXzwOVHC+QflLlPF6gXT20hc/jvW/l6rOMAD2X59jkYti4YhJ0RKW6Xsb9GQu+yVTk3KvkEj8UE6F0+llXQ94baSK1GWmy+V/UpdPZAPQ0r6R2kG/yIB4GwVcm2q89RKffbwHvNinjbI2L9ioTO0TSi1NA251SjkPJl6aP/bQJYmypr6dKNw/SniMde/ZM9URnsluFW+KA3ORV+Eb9lHXI4DbhfMe5vAE4QaQMzLfVJdKur84TEkeTlu1yya8JMN60YB12s+nymRLOK1gzHjbMO/d8Ff8cOcdRULSLGlc+oC8yVmBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR08MB7831
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB3PEPF0000885A.eurprd02.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 0271a54e-73ea-4b23-3e48-08df3f3e0543
+X-Microsoft-Antispam: BCL:0;ARA:13230040|14060799003|1800799024|35042699022|7416014|376014|82310400026|36860700016|23010399003|261102130727099003|261102123227099003|5023799004|11063799006|261021123027099003|261021121427099003|261009223027099003|261022075727099003|261022105027099003|261026140227099003|56012099006|261026121527099003|4143699003|261028144727099003|18002099003|22082099003|6133799003|10067099003|3023799007;
+X-Microsoft-Antispam-Message-Info: 4pVl9BbsDS94osZfhU+HAbdoMjAmGJkh0NnNy+ptg6MZXPtZu02aWk0j33rqHD7OLssl3pii9gMiw+qGqpHj10/zhQFc9jJ5chVtBXijFWeXz9xY2LjXwCGjIeBuw9bpxndo44cbdVui6H98fr+nIpW4czPCyKIOQ08+ncFysomd49kmEqnd0fuWiOs2ouRHvhwxsyW6Hj71B1wREXl5gBVVDo1I1r5V4S9dTOa2Sr9m44G7s91wIxhVS4MS8CM5XJzTJMPDvSXztwtMzPsBLeosHxu35CTAh+R9qEcSpXOMEO6mNRe0JBGaM1hMvA4dibEuCtlGeog1x/FoXMzFcnjd7Bf0pIuzQhXwkrxDuWIYsICnhONRPUhTnULLP3Mv7wJRyqBTBhJ7GnqkH3xSdKhkaiQjKd5UnZuskwnCDCP5Pdmw963nLuckBZEnAmUlHfCglghXo7C8zbXIbFI2T2YUtqgPxAugirkdJuohV1QJLgcoKun6qy433pYbEikkwzpeHokWe9o47ULLM4CCBvLcppa0OPXg2TXD7gJaEcobSKROoglc/MHdsb8IoEyNf5HE5PdqYbbYbuD6dO8lz5mpHeVNyjKqdZcqLQGNu5sFsohQcufzalP/bwdr0XRVCm/z95f2lhwrRVZ+avTUGvcOW8+C0YtnOYv6FqMWUyIqavtoPPwWYPy9N3v/hdYY0jvo096kI94IMklIghP8DQ==
+X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(14060799003)(1800799024)(35042699022)(7416014)(376014)(82310400026)(36860700016)(23010399003)(261102130727099003)(261102123227099003)(5023799004)(11063799006)(261021123027099003)(261021121427099003)(261009223027099003)(261022075727099003)(261022105027099003)(261026140227099003)(56012099006)(261026121527099003)(4143699003)(261028144727099003)(18002099003)(22082099003)(6133799003)(10067099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 7+ag+yWfTSbG4JzJttZDiHrhbSvO7+RLDywkvlAmwYwK/bfL1V6fggaVi2Q/qt42TvMGjWVN7dpE8Vq5L6u365Zkn2yo3zyQYjEOdck517m7bWzRvQJn5pm4fy+xAlUvo4CBsSquwKJnByP/Vne0wKjqiGjO+PIOkg3XcZjxD08JQkZZz+w+5oQpfynsgRjxFqNB0KNo/7sbi3Ymdl03c773pamsmrAaPGbLwPD8JIwLBe/LaODrZgBhswC6VOXSv26X8U8NJTWnSddsZ0Fnl8VGJkzdsVcg+l7hoKpfMTdNHTTzdXTDyvXQ/kQAqQkN8xpFnthuGa5iq0UwiZlPHpgmw2coSmRR0t7oD0ZxghwqYTcQzrGPQZboiS9KM7cTAZHN0KerPfDRa1QC+hwl4+QhAbHhFgMhAe8FLhXzAmL9Gth6x2zWBPpsGD80BjdV
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 15:20:08.3597
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4306b10e-2953-46c9-be69-08df3f3e1b14
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB3PEPF0000885A.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR08MB11770
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_071854_073633_F34C7A76 
-X-CRM114-Status: GOOD (  23.59  )
+X-CRM114-CacheID: sfid-20261110_072016_622251_1C17C539 
+X-CRM114-Status: GOOD (  23.81  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,56 +175,141 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 02:58:21PM +0000, Mostafa Saleh wrote:
-> On Mon, Nov 09, 2026 at 09:36:54PM +0000, Xuheng Li via B4 Relay wrote:
-> > From: Xuheng Li <xuheng@cs.columbia.edu>
-> > 
-> > arm_smmu_init_l2_strtab() allocates a level-2 stream table when the first
-> > master in its range is added, and makes the level-1 descriptor valid. It
-> > issues no invalidation, and the attach that follows sends only the leaf
-> > form of CMD_CFGI_STE.
-> > 
-> > IHI 0070 5.1.1 requires the non-leaf form of CMD_CFGI_STE when an L1STD
-> > changes, including when an inactive descriptor with Span == 0 becomes
-> > active. An SMMU that cached the inactive descriptor can keep terminating
-> > the master's transactions as if its StreamID were invalid.
-> > 
-> 
-> Looking at the spec it says:
-> 	An STE or L1STD that is successfully fetched might be cached by the
-> 	SMMU in any state, therefore any modification, commissioning or
-> 	decommissioning of an STE must be followed by a CMD_CFGI_STE command.
+Hi,
 
-I think the patch is pointing at this:
+> -----Original Message-----
+> From: Amir Ayupov <aaupov@fb.com>
+> Sent: Tuesday, October 13, 2026 12:05 AM
+> To: James Clark <james.clark@linaro.org>; Leo Yan <Leo.Yan@arm.com>;
+> Suzuki Poulose <Suzuki.Poulose@arm.com>; Mike Leach
+> <Mike.Leach@arm.com>; Alexander Shishkin
+> <alexander.shishkin@linux.intel.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Jonathan Corbet
+> <corbet@lwn.net>; Mathieu Poirier <mathieu.poirier@linaro.org>; Randy
+> Dunlap <rdunlap@infradead.org>; Shuah Khan <skhan@linuxfoundation.org>;
+> coresight@lists.linaro.org; linux-arm-kernel@lists.infradead.org; linux-
+> doc@vger.kernel.org; linux-kernel@vger.kernel.org
+> Subject: [PATCH v2 1/4] coresight: syscfg: Fail to enable a configuration=
+ not
+> loaded on the device
+>=20
+> cscfg_csdev_enable_active_config() looks up the selected configuration in
+> the device's loaded configurations, and returns success when it is not
+> there. A configuration is only loaded on devices that match at least one
+> of its features, so a perf session or sysfs enable that selects it on any
+> other device runs without the configuration, with no error.
+>=20
+> Return -EINVAL instead, so enabling the source fails on that device. The
+> function is only called with a non-zero configuration hash, so sources
+> enabled without a configuration are unaffected.
+>=20
 
-* Changing an inactive L1STD with Span == 0 to a non-zero active Span
-  (introducing a new section of level-2 Stream table) requires an
-  invalidation of the L1STD only. As no STEs were reachable for
-  StreamIDs within the span, none require invalidation.
+If you look at the original comments - the idea of this function is to enab=
+le a configuration on a device if it is present on that device.
+Not enabling a configuration is _not_ an error. This is a generic function =
+that can cover multiple classes of coresight device.
 
-Which is really explicit what to do..
+Moving forwards matching configurations to devices can omit certain devices=
+ from the configuration.=20
 
-> Which checks out. However, I am curious why this was not seen for
-> over 10 years with the current behaviour as I doubt any existing
-> implementation will do negative caching. Is that something that was
-> observed or found by inspection?
+For example, a system will have many CTIs, but we may only want to use a sp=
+ecific one or two - possibly to connect etm external outputs to trigger a P=
+E interrupt.
+Thus the remaining CTIs would not be active in this configuration.
 
-Honestly I don't think there is much value in negatively caching table
-structure. Negatively caching the resulting leaf is good enough.
+This conflicts with your purpose which I assume is to prevent perf from usi=
+ng ETM sources that cannot load the required configuration.
 
-> > @@ -2053,6 +2054,14 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
-> >  				   ARRAY_SIZE((*l2table)->stes));
-> >  	arm_smmu_write_strtab_l1_desc(&cfg->l2.l1tab[arm_smmu_strtab_l1_idx(sid)],
-> >  				      l2ptr_dma);
-> > +
-> > +	/*
-> > +	 * The SMMU may have cached the old, invalid L1 descriptor. Making it
-> > +	 * valid needs the non-leaf form of CMD_CFGI_STE (IHI 0070 5.1.1).
-> > +	 */
+I think what is actually needed is a "can_activate" function to be run on t=
+he ETM/ETE sources at etm_setup_aux time so that none compliant devices can=
+ be filtered out of the active cpu mask at that point.
 
-All the versions are 0070, you should specify rev H.a if citing the spec
+Regards
 
-Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
+Mike
 
-Jason
+> Fixes: f8cce2ff3c04 ("coresight: syscfg: Add API to activate and enable
+> configurations")
+> Assisted-by: Devmate:Opus-5.5
+> Signed-off-by: Amir Ayupov <aaupov@fb.com>
+> ---
+>  .../hwtracing/coresight/coresight-syscfg.c    | 53 ++++++++++---------
+>  1 file changed, 28 insertions(+), 25 deletions(-)
+>=20
+> diff --git a/drivers/hwtracing/coresight/coresight-syscfg.c
+> b/drivers/hwtracing/coresight/coresight-syscfg.c
+> index 2bfdd7b45e49c..a816c22c87bc8 100644
+> --- a/drivers/hwtracing/coresight/coresight-syscfg.c
+> +++ b/drivers/hwtracing/coresight/coresight-syscfg.c
+> @@ -1088,36 +1088,39 @@ int cscfg_csdev_enable_active_config(struct
+> coresight_device *csdev,
+>  	raw_spin_unlock_irqrestore(&csdev->cscfg_csdev_lock, flags);
+>=20
+>  	/*
+> -	 * If found, attempt to enable
+> +	 * The configuration is active but not loaded on this device, because
+> +	 * none of its features match the device. Fail rather than trace
+> +	 * without it.
+>  	 */
+> -	if (config_csdev_active) {
+> +	if (!config_csdev_active)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Call the generic routine that will program up the internal
+> +	 * driver structures prior to programming up the hardware.
+> +	 * This routine takes the driver spinlock saved in the configs.
+> +	 */
+> +	err =3D cscfg_csdev_enable_config(config_csdev_active, preset);
+> +	if (!err) {
+>  		/*
+> -		 * Call the generic routine that will program up the internal
+> -		 * driver structures prior to programming up the hardware.
+> -		 * This routine takes the driver spinlock saved in the configs.
+> +		 * Successful programming. Check the active_cscfg_ctxt
+> +		 * pointer to ensure no pre-emption disabled it via
+> +		 * cscfg_csdev_disable_active_config() before
+> +		 * we could start.
+> +		 *
+> +		 * Set enabled if OK, err if not.
+>  		 */
+> -		err =3D cscfg_csdev_enable_config(config_csdev_active, preset);
+> -		if (!err) {
+> -			/*
+> -			 * Successful programming. Check the
+> active_cscfg_ctxt
+> -			 * pointer to ensure no pre-emption disabled it via
+> -			 * cscfg_csdev_disable_active_config() before
+> -			 * we could start.
+> -			 *
+> -			 * Set enabled if OK, err if not.
+> -			 */
+> -			raw_spin_lock_irqsave(&csdev->cscfg_csdev_lock,
+> flags);
+> -			if (csdev->active_cscfg_ctxt)
+> -				config_csdev_active->enabled =3D true;
+> -			else
+> -				err =3D -EBUSY;
+> -			raw_spin_unlock_irqrestore(&csdev-
+> >cscfg_csdev_lock, flags);
+> -		}
+> -
+> -		if (err)
+> -			cscfg_config_desc_put(config_desc);
+> +		raw_spin_lock_irqsave(&csdev->cscfg_csdev_lock, flags);
+> +		if (csdev->active_cscfg_ctxt)
+> +			config_csdev_active->enabled =3D true;
+> +		else
+> +			err =3D -EBUSY;
+> +		raw_spin_unlock_irqrestore(&csdev->cscfg_csdev_lock, flags);
+>  	}
+>=20
+> +	if (err)
+> +		cscfg_config_desc_put(config_desc);
+> +
+>  	return err;
+>  }
+>  EXPORT_SYMBOL_GPL(cscfg_csdev_enable_active_config);
+> --
+> 2.52.0
 
