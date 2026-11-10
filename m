@@ -2,108 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA89606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:16:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015DF606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YsJ7TQ6f;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oOgycG4R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ita3o7Od;
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.a=rsa-sha256 header.s=google header.b=bXwehEW3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=xvBl9sRZyc0ZM+YkhN+XeMSl4+2u4RMdz2hWt5xJPNQ=; b=YsJ7TQ6fRULLzGOb/Pvf3pYo3e
-	HMlCoBzD+NjX9MEJ5aPvyszPvMFPwt1g9iu4yBo3GFcCvEJD8RmR/tsEvGVsFBjyjdf7WSNMB6lyF
-	xYcNNW18k9w73OhzQtVQ0wZNC70tu3mjiIpHMUcUS+o/64JzUzGxg8ToMPaJcc+DqQx7+t7kVNRTt
-	BYyKcWmvTrfB8lC/atq67b8cooWUnxKXeWX0aqiY847kksUETGZR5Yh5AskChEHPme7hqxlYdMmOj
-	A5V2wjZxyrvbry8osNKNd1YSX1O1WOU18yjEh2fAZbM/uGv0YASofKToKeXNWX5S8s6zxe9VzCpRc
-	7wnMvU7A==;
+	bh=O2sQ0ppPahwiNKXBETtZDPbw3npwpVnR3zhVdoKxb8A=; b=ita3o7OdY6u8YcnDPqyf8Nyduz
+	ogv8gu9WmWSyI2QioLv9vAi2cNajmAZE9K8zmAfr1OLEtbAi34HlCOVolLKnxLS7tT8f2HDCC0Cxq
+	tM0R5BvPErHm2p/WR6RHPoSif5OteWL0vfxnwBNP725YfHSfuIF3bIdPlPu2qX9vdPpzIfnN48Nc0
+	4D5U/HZI9Kq1HHFNZ1A6yfa7fTtKyHsNZwEglppFmRbyHwGDybGIhTfvH7wc/9s04GCOekWIrgBCd
+	c8yo7/6t+UQ+IRZUlJTbmh+rY8//7/zkjOil6V8wbleTpFqxLgfDEacyJqD3fYXSG9j6nTy4wvCIh
+	uG48iLGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQna9-00000004LGF-2LwO;
-	Tue, 10 Nov 2026 15:16:21 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xQncd-00000004LTS-3kaW;
+	Tue, 10 Nov 2026 15:18:55 +0000
+Received: from mail-qt1-x830.google.com ([2607:f8b0:4864:20::830])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQna8-00000004LG6-358i
+	id 1xQncc-00000004LT0-06g8
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:16:20 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7D79341FE6;
-	Tue, 10 Nov 2026 15:16:20 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794323780;
-	b=XF1ENQUfJCg9NC2cDxoF4aMLH5P022rkvmeWLP1NphptgzEVWWHzNM3ryxFls81xHrpF
-	 elkI0E1WCvcuJvYHTmTZcAdII4wUZmYobOqB34vgMGHUxJyaQtPZTWQcDnaEal/B8r3pJ
-	 B4rp+PqjAWFHtG9XDKKwaxvUvC79jXw541o65iTGu9+8VhLmDjyqaNXJy9nZHr1MAG8Nl
-	 zqjZiH7xgIV4iE7hI6hZE5e9vrOcf4KIWzTTDsi9p8SUi7jvg0JrXKSTlQDAzF1u7Yfsc
-	 Cn0mQMPB95odw9UcshlwEwufeeMjku0KH1xpwS0apwEaR1evy1VApUWzK7IWQTGkBnA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794323780;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=xvBl9sRZyc0ZM+YkhN+XeMSl4+2u4RMdz2hWt5xJPNQ=;
-	b=CGrH91PIoi5AAZxSsTSldnvwxIFaTtlHS+kNlHlERLWXHxLBfCnCYiJiR6ZL6mX4krDN
-	 mWzga+VM/EZyRHgUnfOqAL1XkTeqP4T/WjT+M42j6KlYVfhZwENM8Rly7UDx4Ba8Rkd8Y
-	 Qsnc1ZEFFauESnDkNGDUEw2t/lZWSriOq0WR7FPPim42xfXLwjZlI+bj8EEo0052u0xBP
-	 MYdPqMOIaLSLHohTz5Vya9IMeLjk6CaUUZ0zav2rskJsR5ZHY9QVgG1HmOE/+meJwJggJ
-	 nTLP7AYPgdOG3TTmwYU7rb2SlmFb2P+gP5QsF1NtASYYB6Pj9wcdKo02xW9w/b1clvw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B310E1F0089F;
-	Tue, 10 Nov 2026 15:16:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794323780;
-	bh=xvBl9sRZyc0ZM+YkhN+XeMSl4+2u4RMdz2hWt5xJPNQ=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=oOgycG4RvEfKBPAYn8+vHOaH0fjPS+egnHrhAvcEpP6yN9meo+EkAhonYBWDhuhpp
-	 pVOG1JHSmUi31hxXvx0yfy4YnKr2sHh64s7+nPvFu/wXRAfwmWy/1AoN3IB4wRUyWV
-	 g3osCANbDxMCpS64JslYpgG9y5Nhx15GtVTb3+u0qvAV0CNbeeOTpa42yOt/u6XYd0
-	 oyEg39gS9L9zNntPAGopZbozX2YY9NlwCwWlhYlZgb8br/g7vkZTC16Tc+cnXHBl2+
-	 NhRMBu+eFdN7wMCyBp+J0Sv7vhj7Zp7fGKQrxvnZkyLi1aSRJM3DVl/M/BLD7DRgfe
-	 rCToqcNNVs/SQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 13C7348BAB;
-	Tue, 10 Nov 2026 15:16:19 +0000 (UTC)
-From: Xuheng Li via B4 Relay <devnull+xuheng.cs.columbia.edu@kernel.org>
-Date: Tue, 10 Nov 2026 15:16:19 +0000
-Subject: [PATCH v2] iommu/arm-smmu-v3: Invalidate a new level-1 stream
- table descriptor
+	Tue, 10 Nov 2026 15:18:55 +0000
+Received: by mail-qt1-x830.google.com with SMTP id d75a77b69052e-5366463571cso25191711cf.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:18:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ziepe.ca; s=google; t=1794323933; x=1794928733; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=O2sQ0ppPahwiNKXBETtZDPbw3npwpVnR3zhVdoKxb8A=;
+        b=bXwehEW34HLXDN3L6i47t47LmGojEmEDCJ0k9r1/U45KjOpeBuRkVXZK4lEr9su7Kp
+         kiI4KafgZ4OR2xoCp0Wo5/GrCxSlQMtY6cTGCbxcnZCCWrM2UJkNKAHeysWmg13LMQVb
+         5TEX5knE7VHuLNg+bto1azWRlqbA/Bu9se4uMxsJRverRYxjc3mpKxMYhDIxLAXI0Lju
+         SqjKhSxVE9cC8SldIWr6B9Xq511o9kwXOoGBxCHPhRrepdoHTYPBAhOcuCIqiJhmn9f6
+         ySFdiDsolOg2Sbuo2EzZ4+cQlvEZKiukAvi9OcfnqTUMcL4MN3t13OQUEd6MfebIQsvz
+         NlsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794323933; x=1794928733;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=O2sQ0ppPahwiNKXBETtZDPbw3npwpVnR3zhVdoKxb8A=;
+        b=eQW0bP2pguJkJ4jRGolmDg/ipGKZA6NBmGSJj1AzISv2nojiF0KgzO7XAEPca1qH5z
+         nHsRtltf5Qg8/PRaIvSN+5Gt/d/PeUM8oHoStU1sVm15+igHetlaLDi1F9H6Mv4jUJux
+         BStFNt5+idGs9zYlNKkELmsuYkr/V37tiPKxhYaqTwCoddlKCy7DaCnKYiCJU44CL4mA
+         r0pTzC59uWZWImjEl38Ely2+tLI8IWHJp0oZcJ5WAiJaVeHudu4EL2Bj6iNWE+1la4Y/
+         MHDjvm8wbBQGhCaAvWC6tcNCCpeRc5mzDR9VEz5ZlYNJykICrRa2qE7BnJpPeNVmoCim
+         xzGA==
+X-Forwarded-Encrypted: i=1; AL+hErHjPG6qfhKHyFTOjcd/Gk8sVob+M2dVS6jCE0VWWpsvCinHpnBC4aIjiqC/SrkaRhWKTsQYm39U/O46x/zgUcbv@lists.infradead.org
+X-Gm-Message-State: APuU4Z/cxj3BwgI1vQSm9M3Se930dc+zRTF8v5cEO6JUWDhH5qBl3MTV
+	COvvr+Br+QKo5a7HoL58AfPypbKoymrja/bijBA8yk1NkFx7naJ20HFwBWPzw0Fosnc=
+X-Gm-Gg: AYBFou0lW4K3vI5+KCvdSHIpRrgENswnZ+ci2np0/8N1tJVKnCgwQB4jWh+zbUPClU/
+	56sVuDo7ySdxW6pvP3DILlorNNZEOHeT1yTtuCD4tDEZleFv+xYN1qG5wuIGiwdGPCR5B4Y1A35
+	h1itcpDNHTTniIEF6xY5jKWIGEB7Dus01YHv8lnALMpK5XjoZke+DNnTm0bUthOYc0GbJRNo1l4
+	rampe2hP0Ca8jlZ/rDCXOk5lkLrdyUpoBDRmr2Ve0xyu+6OcIyH07nDwlQq+4nDdRAQX5CE49Sq
+	ljICJiwZX4S0lld0toXmiiyyfTklEv1RHqLF0wvx+KGH9w5J34gpxfIByJ/F2EKZTAQDgE/xLIC
+	1jWl2nMykHrUPkw3jZpSXQbwD9Il8CPLiX+ovLqFOZur/PSQ1JyPaGiX8SlDetmjxHlJ95fVdT2
+	f2ec55AVmbunvl6GX2hO5UUiiiMaHVVJLFA/Mai45cI4xmatnga5ENI8R0nU8HZnJyaRSjmZcVG
+	GuRiyMZ3KjfTN6zkM4OC9oLeNfAyuOCud3qFsh80IY92ZXjlGvcVm4soByF7OpFsuDJ+LaxLgdc
+	P8ecndovADJEWjZxX0d3QtVxadMtTA+m5jqg8EcPkVUm/DNy/DuaAEUJsCcTac1tbzQvcpXkuZm
+	pDK2JI01x2bQ=
+X-Received: by 2002:a05:620a:461f:b0:946:6:1298 with SMTP id af79cd13be357-9479f323170mr465893185a.52.1794323932611;
+        Tue, 10 Nov 2026 07:18:52 -0800 (PST)
+Received: from ziepe.ca (hlfxns010zw-159-2-239-150.pppoe-dynamic.high-speed.ns.bellaliant.net. [159.2.239.150])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ef04f89c1sm22998676d6.23.2026.11.10.07.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 07:18:50 -0800 (PST)
+Received: from jgg by wakko with local (Exim 4.97)
+	(envelope-from <jgg@ziepe.ca>)
+	id 1xQncX-000000063UD-2Q7t;
+	Tue, 10 Nov 2026 11:18:49 -0400
+Date: Tue, 10 Nov 2026 11:18:49 -0400
+From: Jason Gunthorpe <jgg@ziepe.ca>
+To: Mostafa Saleh <smostafa@google.com>
+Cc: xuheng@cs.columbia.edu, Will Deacon <will@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] iommu/arm-smmu-v3: Invalidate a new level-1 stream table
+ descriptor
+Message-ID: <20261110151849.GZ663069@ziepe.ca>
+References: <20261109-smmu-l1std-cfgi-v1-1-65e5203a6516@cs.columbia.edu>
+ <avMxDbv6JE0dg93E@google.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261110-smmu-l1std-cfgi-v2-1-dabcae9a593c@cs.columbia.edu>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNSwqDQBAFryK9Tos90QGzyj3ExTi22uAnTKski
- HfPxH2WVfDqHaAchBUeyQGBd1FZ5gjmloAf3NwzShsZTGYsUVaiTtOGI+naou96QU9l3hjnOnY
- 5xNUrcCfvq1jVkQfRdQmf62Cnn/3f2gkJbcGFye7OFmSfXlO/jNvUiEu53aA+z/ML38AmzrQAA
- AA=
-X-Change-ID: 20261109-smmu-l1std-cfgi-c194b2aafea4
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- "Joerg Roedel (AMD)" <joro@8bytes.org>
-Cc: Mostafa Saleh <smostafa@google.com>, 
- linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>, 
- Xuheng Li <xuheng@cs.columbia.edu>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794323778; l=3915;
- i=xuheng@cs.columbia.edu; s=20261028; h=from:subject:message-id;
- bh=vrw2x4/NF30qA+HPgtOkavd6zjgXcD+1Xy7g1vNZRQw=;
- b=BhRfG6l6tXiOPUeBYvIBMfVP3wkb5KWA40Amo32/l2sUqL0Q8C3urNZOfxbCrgjmXtle8/qfq
- D2GfVoSPczaCXuMaMxYnYtFLdx4zTB4ldgFN1G7rgpAiCiuipLJoghk
-X-Developer-Key: i=xuheng@cs.columbia.edu; a=ed25519;
- pk=L1HVV+goqxYmEMO/OXakL6uf9isSpgk2QrLlFqyZ2Qs=
-X-Endpoint-Received: by B4 Relay for xuheng@cs.columbia.edu/20261028 with
- auth_id=1349
-X-Original-From: Xuheng Li <xuheng@cs.columbia.edu>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avMxDbv6JE0dg93E@google.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_071854_073633_F34C7A76 
+X-CRM114-Status: GOOD (  23.59  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,115 +110,65 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: xuheng@cs.columbia.edu
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Xuheng Li <xuheng@cs.columbia.edu>
+On Tue, Nov 10, 2026 at 02:58:21PM +0000, Mostafa Saleh wrote:
+> On Mon, Nov 09, 2026 at 09:36:54PM +0000, Xuheng Li via B4 Relay wrote:
+> > From: Xuheng Li <xuheng@cs.columbia.edu>
+> > 
+> > arm_smmu_init_l2_strtab() allocates a level-2 stream table when the first
+> > master in its range is added, and makes the level-1 descriptor valid. It
+> > issues no invalidation, and the attach that follows sends only the leaf
+> > form of CMD_CFGI_STE.
+> > 
+> > IHI 0070 5.1.1 requires the non-leaf form of CMD_CFGI_STE when an L1STD
+> > changes, including when an inactive descriptor with Span == 0 becomes
+> > active. An SMMU that cached the inactive descriptor can keep terminating
+> > the master's transactions as if its StreamID were invalid.
+> > 
+> 
+> Looking at the spec it says:
+> 	An STE or L1STD that is successfully fetched might be cached by the
+> 	SMMU in any state, therefore any modification, commissioning or
+> 	decommissioning of an STE must be followed by a CMD_CFGI_STE command.
 
-arm_smmu_init_l2_strtab() allocates a level-2 stream table when the first
-master in its range is added, and makes the level-1 descriptor valid. It
-issues no invalidation, and the attach that follows sends only the leaf
-form of CMD_CFGI_STE.
+I think the patch is pointing at this:
 
-IHI 0070 5.1.1 requires the non-leaf form of CMD_CFGI_STE when an L1STD
-changes, including when an inactive descriptor with Span == 0 becomes
-active. An SMMU that cached the inactive descriptor can keep terminating
-the master's transactions as if its StreamID were invalid.
+* Changing an inactive L1STD with Span == 0 to a non-zero active Span
+  (introducing a new section of level-2 Stream table) requires an
+  invalidation of the L1STD only. As no STEs were reachable for
+  StreamIDs within the span, none require invalidation.
 
-Issue a non-leaf CMD_CFGI_STE after writing the descriptor. The RMR path
-runs before the stream table is programmed into the SMMU, and
-arm_smmu_device_reset() then issues CMD_CFGI_ALL, so it needs none.
+Which is really explicit what to do..
 
-Fixes: 48ec83bcbcf5 ("iommu/arm-smmu: Add initial driver support for ARM SMMUv3 devices")
-Reviewed-by: Mostafa Saleh <smostafa@google.com>
-Signed-off-by: Xuheng Li <xuheng@cs.columbia.edu>
----
-Changes in v2:
-- Shorten the new comment and drop the one at the RMR call site (Mostafa)
-- Add Mostafa's Reviewed-by
-- Link to v1: https://lore.kernel.org/r/20261109-smmu-l1std-cfgi-v1-1-65e5203a6516@cs.columbia.edu
----
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+> Which checks out. However, I am curious why this was not seen for
+> over 10 years with the current behaviour as I doubt any existing
+> implementation will do negative caching. Is that something that was
+> observed or found by inspection?
 
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 6d4520c47..e5c09aaff 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -2030,7 +2030,8 @@ static void arm_smmu_init_initial_stes(struct arm_smmu_ste *strtab,
- 	}
- }
- 
--static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
-+static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid,
-+				   bool live)
- {
- 	dma_addr_t l2ptr_dma;
- 	struct arm_smmu_strtab_cfg *cfg = &smmu->strtab_cfg;
-@@ -2053,6 +2054,11 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
- 				   ARRAY_SIZE((*l2table)->stes));
- 	arm_smmu_write_strtab_l1_desc(&cfg->l2.l1tab[arm_smmu_strtab_l1_idx(sid)],
- 				      l2ptr_dma);
-+
-+	/* An invalid L1STD can be cached */
-+	if (live)
-+		arm_smmu_cmdq_issue_cmd_with_sync(smmu,
-+						  arm_smmu_make_cmd_cfgi_ste(sid, false));
- 	return 0;
- }
- 
-@@ -4261,7 +4267,8 @@ static bool arm_smmu_sid_in_range(struct arm_smmu_device *smmu, u32 sid)
- 	return sid < smmu->strtab_cfg.linear.num_ents;
- }
- 
--static int arm_smmu_init_sid_strtab(struct arm_smmu_device *smmu, u32 sid)
-+static int arm_smmu_init_sid_strtab(struct arm_smmu_device *smmu, u32 sid,
-+				    bool live)
- {
- 	/* Check the SIDs are in range of the SMMU and our stream table */
- 	if (!arm_smmu_sid_in_range(smmu, sid))
-@@ -4269,7 +4276,7 @@ static int arm_smmu_init_sid_strtab(struct arm_smmu_device *smmu, u32 sid)
- 
- 	/* Ensure l2 strtab is initialised */
- 	if (smmu->features & ARM_SMMU_FEAT_2_LVL_STRTAB)
--		return arm_smmu_init_l2_strtab(smmu, sid);
-+		return arm_smmu_init_l2_strtab(smmu, sid, live);
- 
- 	return 0;
- }
-@@ -4333,7 +4340,7 @@ static int arm_smmu_insert_master(struct arm_smmu_device *smmu,
- 		struct rb_node *existing;
- 		u32 sid = new_stream->id;
- 
--		ret = arm_smmu_init_sid_strtab(smmu, sid);
-+		ret = arm_smmu_init_sid_strtab(smmu, sid, true);
- 		if (ret)
- 			break;
- 
-@@ -5713,7 +5720,7 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
- 
- 		rmr = container_of(e, struct iommu_iort_rmr_data, rr);
- 		for (i = 0; i < rmr->num_sids; i++) {
--			ret = arm_smmu_init_sid_strtab(smmu, rmr->sids[i]);
-+			ret = arm_smmu_init_sid_strtab(smmu, rmr->sids[i], false);
- 			if (ret) {
- 				dev_err(smmu->dev, "RMR SID(0x%x) bypass failed\n",
- 					rmr->sids[i]);
+Honestly I don't think there is much value in negatively caching table
+structure. Negatively caching the resulting leaf is good enough.
 
----
-base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
-change-id: 20261109-smmu-l1std-cfgi-c194b2aafea4
+> > @@ -2053,6 +2054,14 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
+> >  				   ARRAY_SIZE((*l2table)->stes));
+> >  	arm_smmu_write_strtab_l1_desc(&cfg->l2.l1tab[arm_smmu_strtab_l1_idx(sid)],
+> >  				      l2ptr_dma);
+> > +
+> > +	/*
+> > +	 * The SMMU may have cached the old, invalid L1 descriptor. Making it
+> > +	 * valid needs the non-leaf form of CMD_CFGI_STE (IHI 0070 5.1.1).
+> > +	 */
 
-Best regards,
--- 
-Xuheng Li <xuheng@cs.columbia.edu>
+All the versions are 0070, you should specify rev H.a if citing the spec
 
+Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
+Jason
 
