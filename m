@@ -2,121 +2,152 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07414606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 22:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B487606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 22:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LlX4Yn5f;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=cpzZu8fJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TtVwtLUh;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=c86qyAqV;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=U+KXZGiL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=; b=LlX4Yn5frHowrd
-	ywGBe4hgG9+L9kddPBQgtGzKtBx0/mVyRMqPAL9OVGSMukOFR+pWsxodNNWQAiHthAn+8BUYP4mnZ
-	kK9FroTCrEVZDg2dc7GGs7zGaoB8e2EYQt/VbKq8CLdxjuEF1Ho+rZz3PGjQnxkuLoSgMXDc9Ccvr
-	3uJQFA3UOXfzmGMSIR1YV5alZAfG14APusJz0+jT2oRNPAKobgVMBoQEVV9IOyq09myksdxqIVBQT
-	nu4mFoP/pQ+pIoO+HaRx9cZc8l7VYywhnD6cH1mxCiBlpRBDV2Olk3eaHJ1Hc9CJQoeunkdIrAJn9
-	B+Sd5c//HPDEueVHJcEw==;
+	List-Owner; bh=wFJ1R7uPrqqY5P5JMzwjD2OI5yMoWBhA9w+CZfdg8y8=; b=TtVwtLUh5yR8Yj
+	j0OEVPaESvTnLodGQaccxqgrKBM0MWS89dylSpQkex8uHBTA0Qa6wseE3GNdHdlnI5BTQMub2PHIq
+	5DrZdifLDLBkAvVsTQKMek0MhzJICwaD2QvwEeZIuST3OkZC/xx0W5RXVsOj6zdVRvEIzN2R+azXH
+	FrQ3MCDmooaJHeboc+uohAzP5hPGMMPaf+w7Mw4Kfwck/JwXOU+OqWY2pC8htPRAWTZaAFCZEmv98
+	+9p9i+xYOAO6wyYgwcZYH0/Whi7HHORS77i7Eq7JhTgKddCRa5m+x/Dj4h5v5W7S9O8Gk/C59ysaU
+	qGgYo6QC8bLClxSRZ7Pw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtyy-0000000583V-2hNl;
-	Tue, 10 Nov 2026 22:06:24 +0000
-Received: from mail-ej1-x633.google.com ([2a00:1450:4864:20::633])
+	id 1xQu0Z-000000058Es-3asR;
+	Tue, 10 Nov 2026 22:08:03 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQtyw-00000005834-0BTm
+	id 1xQu0X-000000058EW-3AY0
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 22:06:23 +0000
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-c49c32650adso197695366b.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 14:06:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794348380; cv=none;
-        d=google.com; s=arc-20260327;
-        b=U4BSHPiPqMM6oAldBURjlDInOK8SmRK5eJ3jVwIjTAj3MfVzuXGpaNOZ6Mwa6QMRII
-         H/WrXPn+s0V7AjxmxXmrrKTjVuB46lmhNhR/7328ESDJKsABU4aOZyhLgllgEC9UyP7j
-         kX140fxEYp0vputvkUTMnZa0QmRR9b7r/QNN0g4PlX31547ft4wPDbw9vnx1PBWtRxGp
-         49LH77gvFwW81rcGxIivHoPC10eXF6FqPqEq1/l7Ae9r/raAdwhCAcOXsNl4YorTNUFW
-         LoR0JAK/KEnbpp77CKbwRFevbOIZiPrn8p60HneASaQWxhrTmPHYuosZ7VZkyulCQ8xT
-         zx3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=;
-        fh=LBwPfDiQiUwzmwkb+5we0kESzzH4pJaW4xK9+3a3UaM=;
-        b=Iqr1hzj9N0Mi1K4JIN6vt0uJilX7bGdAk1ONyXUE5wnvZ0j6Wu25ekxaycOacOyehN
-         qkEiVPHrLmfneWRCo2I0XFR7meaRVXANHg90VnlPYP0IkSIZ3jx38/bimQY4K9+KWJws
-         R0tS9xbHMJ3jY4OK0fJptrvo34zn+yEwCbMBr84nTQsvjdEditNtzu7rxfaeFj5mVdj6
-         W0vz7sWlnyTflo9JHw0S9sfTkPVaj67D0+XUBK0wUPK5QdtnD4Fcew39jphygaYtHins
-         EPIlVpUAmACHFZ05lKM3uHMJMHhUVQpkfOSe8gOlSxzck5+ScmpXW0/egR+u0YAyztvQ
-         9d3w==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 10 Nov 2026 22:08:03 +0000
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AAIoq9M015182
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:08:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wFJ1R7uPrqqY5P5JMzwjD2OI5yMoWBhA9w+CZfdg8y8=; b=c86qyAqVEQjKRFe5
+	Er8KYOzZEgLoic6DIf0SBwpxaNoz94s9EcCc1yjf4dBrtW8TSccPKpcC1gPh4D9j
+	k4Su05jYX00KVsMK0jN5Ls0pJvk76SDxOQsx2Ifnqi72HfXTJj4z0L2UM8r7buUa
+	34Zsg7bZOzgePJMUK2BEtXIL6mxVahb0YbU3huvR4L8iWrbjZZ4ysH8VR4oKkYLf
+	GAQn7SdP5iL+PwtMZR8KhY07k6yTjF3I80Y5w7qPLbjGxgOgSe13wC43l3zvT7ye
+	6dly1MOnE9JFQhlpHOruTcaixz6BzWAc2LLekoZW+Z7VOACVqEoYVCFlmVTEd4hR
+	gCBYnA==
+Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hv03cu3hw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:08:00 +0000 (GMT)
+Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-36de26cb4b3so3367358eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 14:08:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794348380; x=1794953180; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=;
-        b=cpzZu8fJ4yvVKGKu27JES+LmWlOzr3qs71YthnKsX/Mh6sNHpXYUiActDM0iE9l5H8
-         iJh+HFP026zlOripmvmkMtNgrgvZKH132tc1Jkiv7zQBszR7SoNSg8EYygUcPbNz+HDQ
-         OHdPqKzsbh1hpBYGHwsgqdEwbDmS4U0ns7chxNXTbFQiZDe7YJ952MbkZ3Np/ueg4sRn
-         iRIIoUF9mpYrdU3Q5fMO5jyFlGYYImuRaZno+kAsj67gt3r3H13hwYbOyj/hblzRQCQ4
-         xwvrfOzurMkdWEsA3ZFQeFQHFYFPOn0/NPIGn8rfceiym7Ocz5/xbiJc1yyvHBJXij/H
-         pCSg==
+        d=oss.qualcomm.com; s=google; t=1794348480; x=1794953280; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=wFJ1R7uPrqqY5P5JMzwjD2OI5yMoWBhA9w+CZfdg8y8=;
+        b=U+KXZGiLE6HNGzwxqbKlmPq9pccvY7H9xmvT3mrgVqXbuHspv0SwA+dQgUYdMLP0Bd
+         qLeUNOzpqJP7mTuFgvDuzrDrXnZSCfduOUMZjH5kuZqk0ZCxqGEK25JQHh0GFoDR5MWa
+         huoL7EiVZF0m0Jp0DJDU1WPd4vtjjEaorsg2DH3WoA+V9acPkp0R/5hB0yG+T4DwruAs
+         FjcewULqKPMHM6ag9zWduhnY3Ixb1fzLStXCbuIOrwPXaS0yGNuW4y6l6n4SdJaflLwF
+         i1l4abRw35TF2qb4VYXz2vZxQaTaAAhIxFkNS7j9BG92n8stmnkCx+mgOr1ZhQ3LTvXy
+         MSwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794348380; x=1794953180;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1794348480; x=1794953280;
+        h=content-transfer-encoding:content-type:mime-version:organization
+         :references:in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=S0D/VShkRW4WtVgs6Ji1jkMhYLatw++pmKPgAANQ3tA=;
-        b=ebrkAOfLT3CJ1tGR2gmz9PYypmdrniFfEJCyFPsxHWxw1Y9/U98gz/Tchgla2LZf2H
-         7rkDVgIkoLCIa1yUl0MBHSEoLogu3QufqyhzBdCVa3htuK1Deyu1sk6HZgYrGZHIRw36
-         73xYuc0K8puI78AbK47HyV1iKxISx+BKa3P9cdMHNfPD09Nl19+aar2YaqKBhYCmnPIp
-         ZCYg2WliggvswRPNo/u1qbzp8G9u5ZBHpiq2mOvVOd+ci3e9hJNM7lxktwl0hVNVPgOI
-         ab9LXJxkaqAw2wIDlws9b1zzH2emyGnNOWcEjaA9ytkMWT3tE3iz08MWRmXy3gKkwQ/Z
-         v1+w==
-X-Forwarded-Encrypted: i=1; AL+hErHePCY3vKMQFJ7rRO+xbKod3PHgDqJ4Z9ZZAJTkZHNaAy/yeZgHhbCmlE5seshe5+jkRh/f8gCwoinMnvcwPOtn@lists.infradead.org
-X-Gm-Message-State: APuU4Z//fHMYosn9CCaksUIo5b9vf90idXQUhJSdmkDCMU1WRtrNK4UR
-	vrHS2xTV1VRS7MeP+G7FR3O2kwEeyIPobmcoiQNfdxiWhdTnajtABDy335TWNq4AYa1sy7I8S9d
-	T/HJvWCBOf1Ea9Kbs8KnDL7GFmMsM7zPlJgpEDQ5W
-X-Gm-Gg: AYBFou06p/8W88TaTpxDdUZ+Or6o7phhGpehd9W5VV+XqEOhQrcPgnr09mEvnyAz+JB
-	bS8NiyKEkpTtbe/W1QUzsrVsLWqYkVBPNBwhosrV4WwmJCYwSH8beXVMzGu3OTEolP/WgKKmZiF
-	1pgy/Shd0XS5QFmBizG5OsXmoJW1ePVGlBK12Wvqh8yV0Uf40kJDlO/VrSDjYvhWr4Pbtr55WFB
-	LPw5uF+hwtJRnE+sYZoarmO+YnqY1LVs42DKweDj9BkcT4ahzpIx31DX0S1n25+x1jP/rHS7fmg
-	c1oGTQFUeqncHAokMt8i13NA2ASU1cagJ83LlG/TPBR5WgXJGWeS3NeK43yiBnlE5BVtvok2J4k
-	X8YcyxLOPUVK4Z8NnpfimAHrJ6Eek52QUQPuAjkVmFZHFYQUWQCHWrIrPvlo0kT4EA9h/5jXeRU
-	UnFt6uLYU11yXX+0KBM1M3N4/J2MsYQLIehpiISqJAH8mqrzyAQbjV1t/OKj4YCF551NUI+wA53
-	q3rSTrZ
-X-Received: by 2002:a17:906:794c:b0:c42:82ac:b6a9 with SMTP id
- a640c23a62f3a-c5066b6baa7mr35192566b.29.1794348379456; Tue, 10 Nov 2026
- 14:06:19 -0800 (PST)
+        bh=wFJ1R7uPrqqY5P5JMzwjD2OI5yMoWBhA9w+CZfdg8y8=;
+        b=NZfM/PO+b0VlqySIg30ILOlTXdvZhlhCDV22WIdCFI7jUvDIXdxw5Ha7Xq+R8mTbZ3
+         gsuYoZjnP5zoQU6ea9eWyFpz0D0u3yU+3icFF0ZN0RC95ri+7x8aGLLm04RmOs/8Kjh/
+         h8PGKfYa5D4XdSz6r2R3c0Ou0C19yNjEIqVu8pSB+plhG2SNlniYSQlcoJVC9PW4EVkt
+         PB+nyC+JIOy5jmV95gzPqbmChN+TzobaRV4JbXjIO7gjWmHJVFMBpyA28ivn8ZDdAGZq
+         +TYE+vRK3emzeCl1Cy7d0L34QLsKhlBD0iuGHV16jZwmjgc4cwbEM04DnwxrAQU4FMrF
+         +ZjA==
+X-Forwarded-Encrypted: i=1; AL+hErEEc0lDwEOo1m6M5GeY0T10kTCugVVAEvvkTvzdVMuVqk8iAWAKu0thISbFyEZHY9yfAh4+aCvxg0BTWAeF0E7e@lists.infradead.org
+X-Gm-Message-State: APuU4Z8sI8ikO2IlsXlUVA8DAgDfrkmTqLOB/t8bW3L3jN2TcwlK08RU
+	c4750m3EwE0Ef9tFCTgrlTf3q+3vo2tQlxp9K60VSf13Jgg7dKRtfMDUH5ZYBUEL23FxkGhB/um
+	3YVGshs6xKgpupi8J9pJRShyaxMHxJf9gwMpzKE5p/wrqAyREIzGgwaFeA+yeW47euoh8TSLNSC
+	3ikw==
+X-Gm-Gg: AYBFou21urTUldNUxzuY3ketOjYVW4Lu4mdQ9c0M8050wFDxQyIWhuKu5qvkEm4aQ0N
+	SAY7fkx233P2ZApUTlAFOMhRL7Sd/t2D6fIUE8C/jbEoxZSKhVNK5fENcv9ktkTZ0KlbmOUeRw+
+	BTzFD4o7DJfKBsZMJbbWFMWO0fkwBEdqrOrpzgkRAvN8VQ5y/P3Lttaz3EcyYa+xurCSEXvpgAW
+	05N/2TevbP0I6DD0WorcvhwBMJFvpU3YcXjlXH3iUE9t5w2z+jnm6+KtELKLRF4ZOqUKe5H0/9S
+	n+D6t8hJMXUYiwjv6ZtIiGd6KKzj0PtElH6V5Cy9rMHcAwlxlwck0QB7bgmttesM6pIkeOmRRjB
+	+3dnvY+5Opc+yDSYhOZh5vjun6o6on+HPanTTvVadE5fEe9bZikG2SPAshRHcrLYi3+532WgzQ3
+	DOMxFsnunJ0Mrp45GLxoIOhRzCVDEp
+X-Received: by 2002:a05:7300:ea0d:b0:36d:e4c8:8f04 with SMTP id 5a478bee46e88-37686174a2bmr904343eec.17.1794348479585;
+        Tue, 10 Nov 2026 14:07:59 -0800 (PST)
+X-Received: by 2002:a05:7300:ea0d:b0:36d:e4c8:8f04 with SMTP id 5a478bee46e88-37686174a2bmr904303eec.17.1794348478722;
+        Tue, 10 Nov 2026 14:07:58 -0800 (PST)
+Received: from localhost (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-375215d8889sm10250365eec.27.2026.11.10.14.07.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 14:07:58 -0800 (PST)
+Date: Tue, 10 Nov 2026 14:07:39 -0800
+From: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+        sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+        f.fainelli@gmail.com, vincent.guittot@linaro.org,
+        etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+        d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+        philip.radford@arm.com, david@kernel.org, souvik.chakravarty@arm.com,
+        leitao@kernel.org, kas@kernel.org, puranjay@kernel.org,
+        usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 19/35] firmware: arm_scmi: Add Telemetry reset logic
+Message-ID: <20261110140739.000026c1@oss.qualcomm.com>
+In-Reply-To: <20261109091221.2532706-20-cristian.marussi@arm.com>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+	<20261109091221.2532706-20-cristian.marussi@arm.com>
+Organization: Qualcomm
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261003002123.505555-1-jthoughton@google.com>
- <20261003002123.505555-7-jthoughton@google.com> <8814E4B3-5A5A-4874-863A-71FC6E4F3B34@linux.dev>
-In-Reply-To: <8814E4B3-5A5A-4874-863A-71FC6E4F3B34@linux.dev>
-From: James Houghton <jthoughton@google.com>
-Date: Tue, 10 Nov 2026 14:05:42 -0800
-X-Gm-Features: AclHuK9DP4E2SNlLaTNdiTkQr6q6QZ9Qonb4QaVlevADmVOep5O3eB7CHyRgUcM
-Message-ID: <CADrL8HWepp70MNhsBgAhJsLbOW=ZqEWbKSuc9CUA7oLEpPT5sA@mail.gmail.com>
-Subject: Re: [PATCH v2 06/20] hugetlb_vmemmap: Allow architectures to
- dynamically disallow HVO
-To: Muchun Song <muchun.song@linux.dev>
-Cc: Will Deacon <will@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Oscar Salvador <osalvador@suse.de>, Andrew Morton <akpm@linux-foundation.org>, 
-	Nikos Nikoleris <nikos.nikoleris@arm.com>, Linu Cherian <linu.cherian@arm.com>, 
-	Mark Rutland <mark.rutland@arm.com>, David Hildenbrand <david@kernel.org>, 
-	Ryan Roberts <ryan.roberts@arm.com>, Nanyong Sun <sunnanyong@huawei.com>, 
-	Yu Zhao <yuzhao@google.com>, Frank van der Linden <fvdl@google.com>, 
-	David Rientjes <rientjes@google.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: SxyuclTWT0jpZTBA8PwSBDZ9cb_1LMnK
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA4OCBTYWx0ZWRfX9rY+if7qnpJb
+ gSNrvHlg6aOC56rXYmSno04vVbC7VQNVvmJdJcFwiPSYYagN8uklavbfChw+mWXSaKrFKtlUTDC
+ OB/615IBiGw4KDtcHMMCYdbKf74hZdU=
+X-Authority-Analysis: v=2.4 cv=FuiQbGrq c=1 sm=1 tr=0 ts=6af395c0 cx=c_pps
+ a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=7CQSdrXTAAAA:8 a=ejotlmTCnjgNnXibSUUA:9 a=CjuIK1q_8ugA:10
+ a=6Ab_bkdmUrQuMsNx7PHu:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-GUID: SxyuclTWT0jpZTBA8PwSBDZ9cb_1LMnK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA4OCBTYWx0ZWRfXwydfsbFjc5Oi
+ Y7PKKWo8M7piYAyFDwupbtT0jWo1arqP3YBRd7E1A/B5o9bGYmyhDF3OUa/AEBGr636N74f4q2a
+ nV2bwBU+w23N/CKJnqOUS2J1tkWowbs/U5iGn2P682xu8oOvtORGf6F8IanMpE9OVuSd/ypiSoY
+ fw/Qw5WSz5dPSXI6jSW58GST8kmlqIodngCv/xvZiHV6wYmfU6ArZzkUQCBA6I4n81trz0wBkVs
+ n1UE+EnKJoRmBFO9SC9k2VBITZgqmfceqV9TFqEdmzFrvg4xHijei/UTc5mmppG5NB44OxcyNRw
+ 0b5Jc61fwMm5U8pkHTCxO5VtdeaJPv0Ojt/TgmbCzkpEMKap4X3pjuKhJgLsSl8z0OA08aPKRu7
+ Wz50hpKh0jVpWJG5Lwpyb5axBGmXuJqqpbDfx1qfUYIcQxWUqAT46bjgh/EUNG9s6ZK2u+4pzTP
+ jCxyWvvA+aRhfdcBc3w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-10_06,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 bulkscore=0 adultscore=0 malwarescore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 phishscore=0 suspectscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611100088
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_140622_134019_519DF347 
-X-CRM114-Status: GOOD (  27.62  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261110_140801_956152_B9DF6C73 
+X-CRM114-Status: GOOD (  31.03  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,105 +158,153 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 6, 2026 at 10:44=E2=80=AFPM Muchun Song <muchun.song@linux.dev>=
- wrote:
->
->
->
-> > On Oct 3, 2026, at 08:21, James Houghton <jthoughton@google.com> wrote:
-> >
-> > For arm64, only some platforms support HVO. Add an arch hook to prevent
-> > HVO from taking affect if the architecture lacks support.
-> >
-> > It may be the case that arch_supports_hugetlb_vmemmap_optimization()
-> > returns false at first but eventually returns true. This is the case on
-> > arm64. When this happens, bootmem hugepages won't be immediately HVOed,
-> > but they will be optimized in prep_and_add_bootmem_folios().
-> >
-> > Signed-off-by: James Houghton <jthoughton@google.com>
-> > ---
-> > include/asm-generic/hugetlb.h |  7 +++++++
-> > mm/hugetlb_vmemmap.c          | 12 ++++++++++++
-> > 2 files changed, 19 insertions(+)
-> >
-> > diff --git a/include/asm-generic/hugetlb.h b/include/asm-generic/hugetl=
-b.h
-> > index 635c41cc3479..8d24075d53d4 100644
-> > --- a/include/asm-generic/hugetlb.h
-> > +++ b/include/asm-generic/hugetlb.h
-> > @@ -128,4 +128,11 @@ static inline bool gigantic_page_runtime_supported=
-(void)
-> > }
-> > #endif /* __HAVE_ARCH_GIGANTIC_PAGE_RUNTIME_SUPPORTED */
-> >
-> > +#ifndef __HAVE_ARCH_HVO_SUPPORTED
-> > +static inline bool arch_hugetlb_vmemmap_optimization_supported(void)
->
-> I suggest using arch_support_vmemmap_remap (see [1]), which can also be
-> applied to FS-DAX.
->
-> [1] https://lore.kernel.org/all/20260903122128.12264-2-songmuchun@bytedan=
-ce.com/
->
-> > +{
-> > +     return IS_ENABLED(CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP);
-> > +}
-> > +#endif /* __HAVE_ARCH_HVO_SUPPORTED */
-> > +
-> > #endif /* _ASM_GENERIC_HUGETLB_H */
-> > diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
-> > index 3fdb1e4ce1a1..8596a462fee6 100644
-> > --- a/mm/hugetlb_vmemmap.c
-> > +++ b/mm/hugetlb_vmemmap.c
-> > @@ -16,6 +16,7 @@
-> > #include <linux/pagewalk.h>
-> > #include <linux/pgalloc.h>
-> > #include <linux/vmemmap-optimization.h>
-> > +#include <linux/hugetlb.h>
-> >
-> > #include <asm/tlbflush.h>
-> > #include "hugetlb_vmemmap.h"
-> > @@ -529,6 +530,9 @@ static bool vmemmap_should_optimize_folio(const str=
-uct hstate *h, struct folio *
-> >       if (!READ_ONCE(vmemmap_optimize_enabled))
-> >               return false;
-> >
-> > +     if (!arch_hugetlb_vmemmap_optimization_supported())
-> > +             return false;
-> > +
-> >       if (!hugetlb_vmemmap_optimizable(h))
-> >               return false;
-> >
-> > @@ -731,6 +735,14 @@ void __init hugetlb_vmemmap_optimize_bootmem_page(=
-unsigned long pfn, unsigned in
-> >       if (!READ_ONCE(vmemmap_optimize_enabled))
-> >               return;
-> >
-> > +     /*
-> > +      * Architectures may return false here but true by the time
-> > +      * hugetlb_init() is called. In this case, although the folios wi=
-ll
-> > +      * not be pre-HVOed, they will be optimized in hugetlb_init().
-> > +      */
-> > +     if (!arch_hugetlb_vmemmap_optimization_supported())
-> > +             return;
->
-> I plan to add a new helper, section_vmemmap_optimization_disable() [2],
-> intended to disable vmemmap optimization in the architectural vmemmap
-> population path. Since arm64 does not support section-based vmemmap
-> optimization, section_vmemmap_optimization_disable() should be used there=
-.
->
-> [2] https://lore.kernel.org/all/20261107043122.25650-3-songmuchun@bytedan=
-ce.com/
+On Mon,  9 Nov 2026 09:12:05 +0000
+Cristian Marussi <cristian.marussi@arm.com> wrote:
 
-Thanks! I'll integrate both of these into v3.
+> Add support for Telemetry operations needed to request platform to
+> reset telemetry current configuration and data events values.
+> 
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+
+Just one trivial thing that might be wrong anyway.
+> ---
+>  drivers/firmware/arm_scmi/telemetry.c | 81 +++++++++++++++++++++++++++
+>  include/linux/scmi_protocol.h         |  2 +
+>  2 files changed, 83 insertions(+)
+> 
+> diff --git a/drivers/firmware/arm_scmi/telemetry.c b/drivers/firmware/arm_scmi/telemetry.c
+> index bf37faf99865..ebad4ec2afda 100644
+> --- a/drivers/firmware/arm_scmi/telemetry.c
+> +++ b/drivers/firmware/arm_scmi/telemetry.c
+> @@ -3969,6 +3969,86 @@ static int scmi_telemetry_des_sample_get(const struct scmi_protocol_handle *ph,
+>  	return ret;
+>  }
+>  
+> +static void scmi_telemetry_local_resources_reset(struct telemetry_info *ti)
+> +{
+> +	struct scmi_telemetry_res_info *rinfo;
+> +	unsigned int num_des;
+> +
+> +	ti->info.enabled = false;
+> +	ti->info.current_mode = SCMI_TLM_ONDEMAND;
+> +	ti->streaming_mode = false;
+> +	ti->info.active_update_interval = 0;
+> +
+> +	/* Get rinfo without triggering an enumeration, cannot be NULL anyway */
+> +	rinfo = __scmi_telemetry_resources_get(ti);
+> +	/* Make sure to see the latest num_des */
+> +	num_des = smp_load_acquire(&rinfo->num_des);
+> +	/* Clear all local state...*/
+> +	for (int i = 0; i < num_des; i++) {
+> +		struct telemetry_de *tde = to_tde(rinfo->des[i]);
+> +
+> +		scoped_guard(mutex, &tde->mtx) {
+
+Unless this gets more complex later,
+		guard(mutex)(&tde->mtx);
+and resulting drop in indent.
+
+If it does get more complex ignore this.
+
+> +			tde->last_ts = 0;
+> +			tde->last_val = 0;
+> +			tde->last_magic = 0;
+> +			tde->cached_msg = false;
+> +			if (!tde->de.fc_support) {
+> +				tde->sid = SHMTI_ID_INVALID;
+> +				tde->base = NULL;
+> +				tde->offset = 0;
+> +				tde->eplg = NULL;
+> +			}
+> +
+> +			scmi_telemetry_de_state_update(ti, ENA_STATE,
+> +						       &tde->de.enabled, false);
+> +
+> +			if (tde->de.tstamp_support)
+> +				scmi_telemetry_de_state_update(ti, ENA_TSTAMP,
+> +							       &tde->de.tstamp_enabled,
+> +							       false);
+> +
+> +			/*
+> +			 * Unlinking ONLY BLK_TS lines since, per the SCMI spec,
+> +			 * the UUID/DE associations are permanent within the same
+> +			 * session boot: after a reset has cleared the server-side
+> +			 * configuration the next time SHMTIs will be re-populated,
+> +			 * these same UUID/DE associations will be re-instated.
+> +			 */
+> +			scmi_telemetry_blkts_unlink(tde);
+> +		}
+> +	}
+> +
+> +	for (int i = 0; i < rinfo->num_groups; i++) {
+> +		rinfo->grps[i].enabled = false;
+> +		rinfo->grps[i].tstamp_enabled = false;
+> +		rinfo->grps[i].current_mode = SCMI_TLM_ONDEMAND;
+> +		rinfo->grps[i].active_update_interval = 0;
+> +	}
+> +}
+> +
+> +static int scmi_telemetry_reset(const struct scmi_protocol_handle *ph)
+> +{
+> +	struct telemetry_info *ti = ph->get_priv(ph);
+> +	struct scmi_xfer *t;
+> +	int ret;
+> +
+> +	/* Stall concurrent configuration request */
+> +	guard(mutex)(&ti->config_mtx);
+> +
+> +	ret = ph->xops->xfer_get_init(ph, TELEMETRY_RESET, sizeof(u32), 0, &t);
+> +	if (ret)
+> +		return ret;
+> +
+> +	put_unaligned_le32(0, t->tx.buf);
+> +	ret = ph->xops->do_xfer(ph, t);
+> +	if (!ret)
+> +		scmi_telemetry_local_resources_reset(ti);
+> +
+> +	ph->xops->xfer_put(ph, t);
+> +
+> +	return ret;
+> +}
+> +
+>  static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
+>  	.info_get = scmi_telemetry_info_get,
+>  	.de_lookup = scmi_telemetry_de_lookup,
+> @@ -3979,6 +4059,7 @@ static const struct scmi_telemetry_proto_ops tlm_proto_ops = {
+>  	.de_data_read = scmi_telemetry_de_data_read,
+>  	.des_bulk_read = scmi_telemetry_des_bulk_read,
+>  	.des_sample_get = scmi_telemetry_des_sample_get,
+> +	.reset = scmi_telemetry_reset,
+>  };
+>  
+>  /**
+> diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
+> index 7177f739f062..012894e1d9be 100644
+> --- a/include/linux/scmi_protocol.h
+> +++ b/include/linux/scmi_protocol.h
+> @@ -1024,6 +1024,7 @@ struct scmi_telemetry_de_sample {
+>   *		    the ones belonging to a specific group when provided.
+>   *		    This causes an immediate update platform-side of all the
+>   *		    enabled DEs.
+> + * @reset: reset configuration and telemetry data.
+>   */
+>  struct scmi_telemetry_proto_ops {
+>  	const struct scmi_telemetry_info *(*info_get)
+> @@ -1051,6 +1052,7 @@ struct scmi_telemetry_proto_ops {
+>  	int __must_check (*des_sample_get)(const struct scmi_protocol_handle *ph,
+>  					   int grp_id, unsigned int *num_samples,
+>  					   struct scmi_telemetry_de_sample *samples);
+> +	int (*reset)(const struct scmi_protocol_handle *ph);
+>  };
+>  
+>  /**
+
 
