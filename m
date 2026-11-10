@@ -2,73 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B17606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11C660A2611
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 07:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f4LHxAxP;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=HA9dhkoB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZtsJKg6Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WXKgqdVE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vNcdGNMR9h25+07+FbJJL+KnzsQKob8YFMXFVv6Av4k=; b=f4LHxAxPVYe8wj
-	ZsVUiR8RgPuTb+zq5WCDTI+LDlaPlF/G1khdlk5rpwJR5l/prhCTcdSykU6wsEJ7D0fQHlexswpGe
-	m2P0Reo8K2z9MVFjyxx68H4F52y709pTeL4pnlvZAkkh66pw8c3LizSSx0mBHgLPve4K8ftHKuONv
-	Ij4UUtF81cSwVcIpxcQ8HoLPhpaq/sVArkvfCmtthOtzSMZAZApbiaUCWi5Y+mtrtXAVg1ZuJaVaA
-	Jxei/sY78XY4ozBytgG0TSgZNQNdDKTVKxwNOyp5syLmQYQxxYoBwmKmXSZ3U3ZkrQQS2s3xCek+t
-	+mxjsRt/knmvQfSgwtrA==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xQ4jMpFd0ALOYGpQB9FG46MLH0S7oU+ejuWtGKhW7Jk=; b=ZtsJKg6ZeJ8Aq4RYSV0IV2Vb+u
+	LDCqQaWweBJ3ecZ2mTbOugPhv4D7rkIuLuXHZ5r3kCmwimp4V0cq5pCN0DzfYSmK+DDXQ5B9Iyod6
+	CQRDtevSh8QMBmjsvz49Poe388wEC1r/8qxwRwnXZ4WcKY+9oVi4S8Kfv0nm/RIm7M33FjsKLeIHw
+	WOtzbAp0RFZ9uIE0nWcU9Ry7AiRp3dO9ELB9c2mmhzNy5dYHrnoUHvFd6ci1UpY551d2ZDZ6aT6pO
+	ZhjbdOSBf9ugX5SDKvQt/F42bkq/xmgtj5tHzHMZCVI7YqMdSgaNPNHB/xXW9IyDoyGnf6vQnAlfV
+	3o5Z+PbQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQfzS-00000002kpH-0XAs;
-	Tue, 10 Nov 2026 07:09:58 +0000
-Received: from cmccmta4.chinamobile.com ([111.22.67.137])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQfzJ-00000002kk0-17Pu
-	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 07:09:51 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=cmss.chinamobile.com; s=default; l=0;
-	h=from:subject:message-id:to:cc:mime-version;
-	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=HA9dhkoBJKbS0iKzQznDKoSyLDHDueiXA7XxNyxzWR8esJtud3hzxOUMrIWES27eudWtDcDIm3vYS
-	 JP0/v44LmCajab5PrVWF7MvQ9IlVGN9DK5wY3eR3Jg90A1ZD8ECV4Cwmv3MEqo6dsR4bF68RroTPEV
-	 9C0WfYNfNu2orUqo=
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app08-12008 (RichMail) with SMTP id 2ee86af2c33ad05-6bdfc;
-	Tue, 10 Nov 2026 15:09:47 +0800 (CST)
-X-RM-TRANSID: 2ee86af2c33ad05-6bdfc
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM-FLAG: 00000000
-Received: from  (unknown[10.55.1.71])
-	by rmsmtp-syy-appsvr09-12009 (RichMail) with SMTP id 2ee96af2c3377a6-ab663;
-	Tue, 10 Nov 2026 15:09:47 +0800 (CST)
-X-RM-TRANSID: 2ee96af2c3377a6-ab663
-From: zhaofeng2 <zhaofeng2@cmss.chinamobile.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Zhao Feng <zhaofeng2@cmss.chinamobile.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	linux-omap@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] PCI: j721e: Fix OF node reference leak in j721e_enable_acspcie_refclk()
-Date: Tue, 10 Nov 2026 15:09:43 +0800
-Message-ID: <20261110070944.996-3-zhaofeng2@cmss.chinamobile.com>
-X-Mailer: git-send-email 2.55.0.windows.5
-In-Reply-To: <20261110070944.996-1-zhaofeng2@cmss.chinamobile.com>
-References: <20261110070944.996-1-zhaofeng2@cmss.chinamobile.com>
+	id 1xQg0X-00000002l6K-1LDB;
+	Tue, 10 Nov 2026 07:11:05 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQg0W-00000002l5f-17KH;
+	Tue, 10 Nov 2026 07:11:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0C805403B7;
+	Tue, 10 Nov 2026 07:11:04 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794294663;
+	b=SX6INuHZBHNSpwJJ+VfaG2KvZIHxyqnmknY8ldwvTW1DiJDBQIR7Sr3pXL5FMkAy52kQ
+	 aUm6KIvQ4rYGM20LJ1Z8/LcupCS/pLnyZFS9n8suT4eBnLL0yFiRBS2rzobr5xQbQI1x0
+	 X4ByuUOfz9jLk9NOcZ5jXaGQ7faKhpn6UcqFWys+O2s8NYnRJjLaPtIQC1XdMQVAtzwFr
+	 2npBeHJ0jqkoJhAK3o7bI9A7+Frys4AVUXY0D6u0VeCUO4wNGlfKjYqCy0PkJ7mo2eRrO
+	 SFlLzLPJdl5lFA9XUEH9S+wjLzT9kPOmdMRlDX0aj82HeTixP8iHFeR6SUQxxiPd6qw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794294663;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=xQ4jMpFd0ALOYGpQB9FG46MLH0S7oU+ejuWtGKhW7Jk=;
+	b=thkeD0VVL8jPE84hjmEEqj07ZmvxGQ+OY0qWPNBsmZ1pMxOEKAg7JLtmU7FE/OXblkOk
+	 Hxfx075kk2aZ3s9G+Ev/DYr2uq32a4VH/tRsTMDBsY3JSaRdNWy2qZUHvlHoDAM/Y7jdN
+	 WoXpqTK/e5RR9pgQCME9l4YwrDECITBPKkU0EecNICRzia2udign573dagGVDU4QdMR68
+	 l1Eh3BA51N42qV7cNrycQuOYqtvVhYEyeNTj9TVCDYCCgIZ+/tpBcEXpFUL5dzf/43vxo
+	 bTD0reJpCQzh9gdhoAJ5tu9Nl/YnELwI02Gm0k8vFQscjPXdP8fUnY5CA2WDxlIQBCg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id CA3061F0089F;
+	Tue, 10 Nov 2026 07:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794294663;
+	bh=xQ4jMpFd0ALOYGpQB9FG46MLH0S7oU+ejuWtGKhW7Jk=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=WXKgqdVEkC65IBksa+cC+H9ZtfNbYQE2nFyPRzEPZRe79GJJGUV3i64XhS+xb09XN
+	 GbnoSW2Gr/QW4Xwiis/sDh96ZNkfDej9D5ea6MzG1j8g6XKBf3rw+KN1DDLODvXxzh
+	 8dine03TaaP3zcVC2DqPBdUxH7lNJCWHBl7/NX1lT5PvrRoc/h4A69O5jMGlcXJ3su
+	 AqUAKCjYaAejbvz6AnDv++VYfs0TEh60XkcbD2Z33K4qy2YagU/0b+CFOk3ax4aHQe
+	 Kkr8HI/bxfou1c0Q+joos7ZxB4xrqluPy48tCoKmjT+FuYGvCkvwlXSrG/wp0qheDq
+	 kIztTn+iom8pQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 510B548926;
+	Tue, 10 Nov 2026 07:11:02 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Tue, 10 Nov 2026 07:11:02 +0000
+Subject: [PATCH 1/5] iommu/rockchip: Don't walk a page table that a reset
+ took away
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_230949_922709_AD5F0C8E 
-X-CRM114-Status: UNSURE (   8.41  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.4 (--)
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261110-iommu-rockchip-faults-v1-1-b1dda574dbb8@gmail.com>
+References: <20261110-iommu-rockchip-faults-v1-0-b1dda574dbb8@gmail.com>
+In-Reply-To: <20261110-iommu-rockchip-faults-v1-0-b1dda574dbb8@gmail.com>
+To: "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Heiko Stuebner <heiko@sntech.de>, 
+ Jeffy Chen <jeffy.chen@rock-chips.com>, Tomasz Figa <tfiga@chromium.org>
+Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794294661; l=2142;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=ToGf1ObH2yGo1OMq0C57Okydv2han7Kmp00MrNYUTIY=;
+ b=vqEYjTZrW9gc7C8emgS8qlnnnYJOcO/kFRASz5eG+NVNvNmDn9iyaZcTnYLO1wAW6NxEhyFRS
+ 44usyRyEK44ADSHnskRvuD6Y5MDdVSpbvtbO18Lq7pWquTbkZBnC2+D
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,44 +108,67 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Zhao Feng <zhaofeng2@cmss.chinamobile.com>
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-j721e_enable_acspcie_refclk() resolves the "ti,syscon-acspcie-proxy-ctrl"
-phandle with of_parse_phandle_with_fixed_args(), which takes a
-reference on the resolved device node, but the reference is never
-dropped, so the device node is leaked.  This is called from
-j721e_pcie_ctrl_init(), which j721e_pcie_resume_noirq() re-invokes
-on every resume, so the leak repeats on every suspend/resume cycle
-as well.
+When a page fault is reported, log_iova() reads the directory address
+back from the MMU_DTE_ADDR register of the IOMMU and dereferences it
+through phys_to_virt() to log the page table entries of the faulting
+IOVA. The IOMMU of an RK3588 video decoder core is reset with the core:
+by the core's own soft reset, which the hardware also does by itself
+when a job times out, and by the core's AXI reset line. A fault taken
+just before such a reset is handled with MMU_DTE_ADDR reading 0, and
+log_iova() dereferences the physical address 4 * dte_index:
 
-Drop the reference with of_node_put() once the mask argument has been
-consumed.
+rk_iommu fdc38700.iommu: Page fault at 0x0000000013400200 of type read
+Unable to handle kernel paging request at virtual address ffff600000000026
+KASAN: probably wild-memory-access in range [...0130-...0137]
+...
+rk_iommu_irq+0x490/0x758
 
-Fixes: 82c4be4168e2 ("PCI: j721e: Enable ACSPCIE Refclk if "ti,syscon-acspcie-proxy-ctrl" exists")
-Signed-off-by: Zhao Feng <zhaofeng2@cmss.chinamobile.com>
+Only walk the directory if the register holds the address of memory, and
+say that the page table was lost to a reset otherwise. The fault is
+still acknowledged (zap, PAGE_FAULT_DONE, INT_CLEAR) as before.
+
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/pci/controller/cadence/pci-j721e.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/iommu/rockchip-iommu.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/pci/controller/cadence/pci-j721e.c b/drivers/pci/controller/cadence/pci-j721e.c
---- a/drivers/pci/controller/cadence/pci-j721e.c
-+++ b/drivers/pci/controller/cadence/pci-j721e.c
-@@ -247,6 +247,7 @@
+diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+index 21af2f621c76..d40e2a26b7be 100644
+--- a/drivers/iommu/rockchip-iommu.c
++++ b/drivers/iommu/rockchip-iommu.c
+@@ -564,6 +564,17 @@ static void log_iova(struct rk_iommu *iommu, int index, dma_addr_t iova)
+ 	mmu_dte_addr = rk_iommu_read(base, RK_MMU_DTE_ADDR);
+ 	mmu_dte_addr_phys = iommu->rk_ops->pt_address(mmu_dte_addr);
  
- 	/* Clear PAD IO disable bits to enable refclk output */
- 	val = ~(args.args[0]);
-+	of_node_put(args.np);
- 	ret = regmap_update_bits(syscon, 0, mask, val);
- 	if (ret) {
- 		dev_err(dev, "failed to enable ACSPCIE refclk: %d\n", ret);
++	/*
++	 * A reset of the master can reset its IOMMU too, between the fault and
++	 * this handler: DTE_ADDR then reads 0. Don't walk a directory that
++	 * isn't in memory; the caller still acknowledges the fault.
++	 */
++	if (!mmu_dte_addr || !pfn_valid(PHYS_PFN(mmu_dte_addr_phys))) {
++		dev_err(iommu->dev, "iova = %pad: fault while page table lost to reset (MMU_DTE_ADDR %#08x)\n",
++			&iova, mmu_dte_addr);
++		return;
++	}
++
+ 	dte_addr_phys = mmu_dte_addr_phys + (4 * dte_index);
+ 	dte_addr = phys_to_virt(dte_addr_phys);
+ 	dte = *dte_addr;
+
+-- 
+2.55.0
 
 
 
