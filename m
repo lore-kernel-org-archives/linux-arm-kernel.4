@@ -2,61 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55092606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 17:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B421606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 17:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SlCD+xny;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=mAYKqsm9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c/taOii3;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=HOlW6/Cj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vLFtwTlQiX1kBL79qQ7wRkTkfPyk318x5Lu6zEB3kgA=; b=SlCD+xnyyuqlyr
-	72f2mj6th74zQ16x6xcj35sBMLkV3BzPK9U/B4QsczmXHaraeiuVJYpt8qIJlgDkVw07LJbwSN2w6
-	0FRmwS6swfFd4kMfRsJCPwW61ZbT3M4UKzUmZFx0ks9Rfad4FfkntkwkH+MDH3fl9a7oRzROHxgHu
-	/AZlmPOAupaVGAZ9nVlSZrzJEgzRiZv5dm8I2hC8E5wAuozfaMgA8M35ryAVwvN+tjoNYDaTSTNpL
-	N7p/hELy3m/ucAr735gNTEMBmZCrKDtPuBSSy6B0y42bhvrmDltlWpVxWZq4ChDZWoK+4LikeIxcb
-	UhR+6OpZ0eRb77NU7Yfw==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=eniu4D6K6YKvNE/gDkqzAbCGGrcDWnEmgR3F4VwagUI=; b=c/taOii3SogNsb7KstdjsVKdki
+	V7TJd2JaDKczZlY7DUl3GNPuloJlNEXsl0jY5YBnbCYdy5CDV8+2+16BmyrHmcjkp4r95cZMJ5WOj
+	7xDS3TiMPLUFfpEc/q6+KMhtnF10PIjJISKP0sVhXYW+0fcsmryCNt9kC4gcVynGCGBTA/RWYKALo
+	o9gC5MiEnPG641S2azO80usGFDF4H0vBz733TYP6mv6lwOzmVbh1EDSqsPHr05Jtom26cH3f4/Xeu
+	BUUTae6hbLNIx9aHiVx4+YG6Z6AYdeZpqWk1tyrGgTUKR2PE4bY5Zd4YQvtVFEFISbXINCbkKTHdL
+	urldnaiQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQpVY-00000004eDn-2rmx;
-	Tue, 10 Nov 2026 17:19:44 +0000
+	id 1xQpVk-00000004eRQ-17NW;
+	Tue, 10 Nov 2026 17:19:56 +0000
 Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQpVW-00000004eBi-0F60;
-	Tue, 10 Nov 2026 17:19:43 +0000
+	id 1xQpVW-00000004eBf-0F5H;
+	Tue, 10 Nov 2026 17:19:45 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
 	s=mail; t=1794331179;
-	bh=cEdOypZJGYYFaGv+bcDJnJcN+5GsC8u8XziW0E9RE2s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=mAYKqsm9ZOnzXlda1nPeTj2Ncisqjvl1U+P9t6ev7BkqUgqVqMP4DEG6xwc47tQwT
-	 IMLJWyZesRDqzoTdM3aD42GPQskf3bGy5KxyrFZgzNtHNe6SDXfEZbjChbJlh+fint
-	 nXPN88xEwsidV9G6u50EFeuxvpusnZw3y1wKbXyYrk3OjMSUn4IFYe7eENY1cTR/Cq
-	 hz23vehC89Jkq59apl5ebU4vyJkqdQmp/iYOY6B2rhWhJjbJ1bLkgmugvfC1xrv0pC
-	 LlUh2MEqxDTZ0A6rIsef0+HqzFOK9cwI96QJPE4txkfJaQnsYJBIWjPUlWC7KFrdZu
-	 W5AqpIXPgWljA==
+	bh=PSYSBnjHJTGSOsFMN80hFo0M6LiB3h7DxQOb+h1dEFI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=HOlW6/Cj7qGg7vmOIKMFsCqLrybu59yyLcduV+G9N7XIMYUMo4YKlBHPAJCMxUQsC
+	 RMYnqTFdJODx7SBnbYeAUJZZIm3BH1h2AA1OA6V9QMXLAvPhUkLSdpQ3Unn7LBLSI9
+	 3KpZLaFCD6zkpQYN0baNIsTcyQhDX8YO/iHsmUUVeJVOpfIERaMHGX3MXKqPippIG0
+	 6sAP+glG740OhRQG5+8EikJo7CDfrFx1V801bOzmvZAb7FBxQLrb/mOc/cj/VWzhq1
+	 ri7DDbkV2tmgUzAEguZvHcrY5Dj8NgCmoM+cKGTSH9QQZQmrv+nsBa+WkgttQ+M9Bc
+	 tv1F6sFVW5qug==
 Received: from jupiter.universe (unknown [100.64.1.62])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 56CE117E0F7F;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 559C617E0A6C;
 	Tue, 10 Nov 2026 18:19:39 +0100 (CET)
 Received: by jupiter.universe (Postfix, from userid 1000)
-	id 0E4CC480031; Tue, 10 Nov 2026 18:19:39 +0100 (CET)
+	id 09FEC48002C; Tue, 10 Nov 2026 18:19:39 +0100 (CET)
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Tue, 10 Nov 2026 18:19:16 +0100
-Subject: [PATCH v5 3/6] phy: rockchip: inno-usb2: ignore reset_control
- return codes
+Subject: [PATCH v5 0/6] phy: rockchip: inno-usb2: ensure PHY is running
+ when clock is requested
+Date: Tue, 10 Nov 2026 18:19:13 +0100
+Message-Id: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-3-d2e24582ab22@collabora.com>
-References: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
-In-Reply-To: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/5XOy07EMAwF0F8ZZY2RnUcfrPgPxKJxExooTZXMV
+ IxG/XfSQQKEZlGW17LP9UVkl4LL4uFwEcktIYc4lWDuDoKHbnpxEPqShURZYYsNzMMZUuQ3HsI
+ MYZoinLKVwGOZgQ8f4Pq+MtbUvmm0KMycXBlfK56ev3I+2VfHx83dNoaQjzGdrz8stO39o24hI
+ PB1b1pWZMvJI8dx7GxM3T3Hd7FVLvIbJUTagUpAcEjWG2yVad0tVP2ghGYHqgpqJVbYMDa21bd
+ Q/Qsl3IHqghrqmLGmSmn/F13X9RMcFKbj5QEAAA==
+X-Change-ID: 20260908-phy-rockchip-inno-usb2-clock-fix-edd65b57f884
 To: Vinod Koul <vkoul@kernel.org>, 
  Neil Armstrong <neil.armstrong@linaro.org>, 
  Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
@@ -67,26 +72,26 @@ Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  Igor Paunovic <royalnet026@gmail.com>, kernel@collabora.com, 
  Sebastian Reichel <sebastian.reichel@collabora.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2877;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4465;
  i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=cEdOypZJGYYFaGv+bcDJnJcN+5GsC8u8XziW0E9RE2s=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGrzUioU83y55RoTcW5M4EslBdwW6sK1ipqKr
- dtG6ZQTX3KkjokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq81IqAAoJENju1/PI
- O/qapDoP/i8/CpMikDpZoqzjI0sxHyT9WjX7mRUHxuokQDn0KhQ5GF0zcPJUmmR+FCVtLVyy5t+
- mxuypXYJrmu1A2DQejqdpgKpjWy6KBTRRI+lXBI33uW0wMWafP+ZFhg63RUn16zRI+GR6XswxL3
- uclKwZRgy3+iEcsGlQ5M1nTnUyjXnMTpwZhNsyF57JYKEpFFey7minYTVXjtRBMXVeG8KV4V/Gs
- YtJ8inxOR8tyeYJZeFlrkqy9Aqpk7gMmobflFktUZJp5uncL2UaUPShU7xzFm3oNa6AZH/Hd4sp
- 3SoDSyDs9RfIaqHhTENfkyCJeiASxe1PCd3Oha7hAK1Rr0yOaDMaF/BLRq3gm24vEFGlRZDbAxu
- pP4wMqZZCd4JudlNUgCUufPigJBvkhSWvWM8WellnAXLnO2Rc5d9umtDMGKRQHkea9tyaCRNkF2
- noqAVuQY+nbtpbBXLiONqOEAqw6o0jiBNZsMksD2HRXzuFECUbih4fBG816iL9YV/U+Ytd+jB9W
- mQjjYHtIZ19rMtDkKxoXQdPjfZbMFbmu4ib+/tznc0uIhWGk2EQmvwEwt0ZKxjdFQpeQm0X0yP2
- 5cumy1AbUAa6OTprXTWd5LQjLsLmj2YkPLgY4wgLnmzIIzaUPXjkMie4ccA03IUW4uGFEUd2LpH
- dslJEkUf96da5jTH+tz8c0A==
+ bh=PSYSBnjHJTGSOsFMN80hFo0M6LiB3h7DxQOb+h1dEFI=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGrzUiaAsRwffl1O/xPPm9cFSja+Xnq626vWE
+ iNRZgVNTaZKcIkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq81ImAAoJENju1/PI
+ O/qa56IP/3Sx3iJkPehsFus43aCVR94carRvjsg5BdyzY9o9/xYgEkgRfQckWXnzXpwLchi1vnr
+ aYupt8ZhMCrdXDdT/sT2DummRb29CztDqNZ3gPEAGSOJnd5K/p1gtWiDvP2ESVO9ftoecoMy2pp
+ AADCLvegSfRhL4h1yGSeGjUM5DbjRC8t5yGlUUP8TsLpiOfLT7jsOvlR6LNR+Bw5bzFq0OBp9H3
+ bPrIZjwyTRye8FgH7UY1uugUgwKNkMylLAdvj4ZSLqN0kx86EqySOLkJVggqZ921oo/oGkaL58r
+ fAcDshPsgkNyn9p/aHvEIZKs0g9+oBAc6ZcVMMXfYdiBSm62ImLTzL1WvfR7i8+AcezrDYgfpMr
+ FIgrEbKGO2HvXB1UNBmX847/aXjwRgq3YHgmnPz5b+AgPtxHzAJsZ/bB0UACuHYL/OqeHacH388
+ 2W0ENMkj5RM65bar/JHlNDyDiQzjzrcFodGQaTbqGQTVDtSpLgOCa5qitnbIJSwiv8PJQcbtdYL
+ BtvE+TPG+AHy3YmIZFlhJs/fD30xObju2RyF7QgsF8koA7hYwOhPALN+lXmQVUEFnBJ7hIRKGYy
+ KGvjRX789ggekoOmw8kHHJmtqSheUNuDNS22tK43hxAHigCU0O1hthO9oziN6wNTuzY0A4/UF4g
+ 3crYvo4WNcbCJzvlPqUwhjA==
 X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
  fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_091942_266655_EB0279C6 
-X-CRM114-Status: GOOD (  11.83  )
+X-CRM114-CacheID: sfid-20261110_091942_288271_19D5EA71 
+X-CRM114-Status: GOOD (  19.03  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,96 +111,94 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Asserting or deasserting reset lines for the Rockchip MMIO based reset
-controller never fails. Drop error handling for it from the driver to
-simplify the logic.
+This was noticed on RK3588 EVB1 when resuming from system suspend. This
+is technically a fix, but its unclear when the bug was introduced and
+system suspend is broken on RK3588 for quite a while and not just due
+to this problem. So I think this fix can be merged the normal way via
+linux-next.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Changes in v5:
+- Link to v4: https://patch.msgid.link/20261110-phy-rockchip-inno-usb2-clock-fix-v4-0-51acc071634f@collabora.com
+- Add new patch converting 480MHz clock registration to device maanged
+  clk_hw helpers instead of using legacy clock framework functions with
+  open coded device managed release handlers. This is a cleanup, which
+  also allows easy implementation of the next point.
+- Restore clock registration back to the original place, so that internal
+  users can access it early. The clock provider registration is kept at
+  the new place (after initializing the ports) to ensure the clock can
+  only be requested when either more than two ports are available or the
+  port already being initialized. (Sashiko)
+
+Changes in v4:
+- Link to v3: https://patch.msgid.link/20261105-phy-rockchip-inno-usb2-clock-fix-v3-0-b20608c08b94@collabora.com
+- Drop patch avoiding rport->suspended in rockchip_usb2phy_sm_work; it
+  was meant as a simple cleanup and Sashiko suggested it is more tricky
+- Add new patch removing error handling for regmap_write and
+  regmap_write_bits
+- Add new patch removing error handling for reset controller
+  assert/deassert
+- Simplify final two patches due to the dropped error handling
+- In the final patch move the 480M clock registration after the
+  port_cfg population to properly fix the race condition instead
+  of relying on -EAGAIN and the NULL check
+- In the final patch create a new helper function deciding between
+  handling the PHY suspend in the clock (un)prepare functions; we
+  keep the NULL check for port_cfg as this properly handles the
+  case of the port sub-node being disabled in DT. From functional
+  point of view this setup doesn't make sense (no need to enable
+  the PHY if all ports are disabled), but one extra NULL check is
+  cheap, so it's better to handle this gracefully.
+
+Changes in v3:
+- Link to v2: https://patch.msgid.link/20261001-phy-rockchip-inno-usb2-clock-fix-v2-0-e01bf509359e@collabora.com
+- Fix do_suspend negation resulting in SError on RK3576 (Sashiko, CI testing)
+- Ensure PHY ports array is initialized in clock enable path (Sashiko)
+- Cleanup properly in clock enable error path (Sashiko)
+
+Changes in v2:
+- Link to v1: https://patch.msgid.link/20260908-phy-rockchip-inno-usb2-clock-fix-v1-1-f7d59c31b908@collabora.com
+- Move suspend exit code from rockchip_usb2phy_power_on into a
+  separate patch and reuse it in the clock prepare function;
+  move is done in a separate patch
+- Updated commit messages with proper rationale
+- Added one more patch dropping useless assignment
+  of rport->suspended directly after calling
+  rockchip_usb2phy_power_on/off
+- Add one more patch unifying and simplifying the debug
+  messages for phy init/power_on/power_off/exit
+
 ---
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 31 ++++++---------------------
- 1 file changed, 6 insertions(+), 25 deletions(-)
+To: Vinod Koul <vkoul@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+To: William Wu <william.wu@rock-chips.com>
+Cc: linux-phy@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Igor Paunovic <royalnet026@gmail.com>
+Cc: kernel@collabora.com
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index a705c4b18bd4..6b3104901695 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -290,23 +290,12 @@ static inline bool property_enabled(struct regmap *base,
- 	return tmp != reg->disable;
- }
- 
--static int rockchip_usb2phy_reset(struct rockchip_usb2phy *rphy)
-+static void rockchip_usb2phy_reset(struct rockchip_usb2phy *rphy)
- {
--	int ret;
--
--	ret = reset_control_assert(rphy->phy_reset);
--	if (ret)
--		return ret;
--
-+	reset_control_assert(rphy->phy_reset);
- 	udelay(10);
--
--	ret = reset_control_deassert(rphy->phy_reset);
--	if (ret)
--		return ret;
--
-+	reset_control_deassert(rphy->phy_reset);
- 	usleep_range(100, 200);
--
--	return 0;
- }
- 
- static void rockchip_usb2phy_clk_bulk_disable(void *data)
-@@ -559,9 +548,7 @@ static int rockchip_usb2phy_power_on(struct phy *phy)
- 	 * please keep the common_on_n 1'b0 to set these blocks
- 	 * remain powered.
- 	 */
--	ret = rockchip_usb2phy_reset(rphy);
--	if (ret)
--		return ret;
-+	rockchip_usb2phy_reset(rphy);
- 
- 	/* waiting for the utmi_clk to become stable */
- 	usleep_range(1500, 2000);
-@@ -1479,16 +1466,13 @@ static int rk3528_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- 
- static int rk3576_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- {
--	int ret;
- 	u32 reg = rphy->phy_cfg->reg;
- 
- 	/* Deassert SIDDQ to power on analog block */
- 	regmap_write(rphy->grf, reg + 0x0010, GENMASK(29, 29) | 0x0000);
- 
- 	/* Do reset after exit IDDQ mode */
--	ret = rockchip_usb2phy_reset(rphy);
--	if (ret)
--		return ret;
-+	rockchip_usb2phy_reset(rphy);
- 
- 	/* HS DC Voltage Level Adjustment 4'b1001 : +5.89% */
- 	regmap_write(rphy->grf, reg + 0x000c, GENMASK(27, 24) | 0x0900);
-@@ -1501,7 +1485,6 @@ static int rk3576_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- 
- static int rk3588_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- {
--	int ret;
- 	bool usb3otg = false;
- 	/*
- 	 * utmi_termselect = 1'b1 (en FS terminations)
-@@ -1524,9 +1507,7 @@ static int rk3588_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- 	regmap_write(rphy->grf, 0x0008, GENMASK(29, 29) | 0x0000);
- 
- 	/* Do reset after exit IDDQ mode */
--	ret = rockchip_usb2phy_reset(rphy);
--	if (ret)
--		return ret;
-+	rockchip_usb2phy_reset(rphy);
- 
- 	/* suspend configuration */
- 	regmap_write(rphy->grf, 0x000c, GENMASK(20, 16) | suspend_cfg);
+---
+Sebastian Reichel (6):
+      phy: rockchip: inno-usb2: simplify and unify PHY op debug messages
+      phy: rockchip: inno-usb2: ignore regmap_write return codes
+      phy: rockchip: inno-usb2: ignore reset_control return codes
+      phy: rockchip: inno-usb2: use devm for 480m clock registration
+      phy: rockchip: inno-usb2: move suspend handling into new function
+      phy: rockchip: inno-usb2: move suspend handling into clock prepare/unprepare for RK3588/RK3576
 
--- 
-2.53.0
+ drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 284 ++++++++++----------------
+ 1 file changed, 103 insertions(+), 181 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20260908-phy-rockchip-inno-usb2-clock-fix-edd65b57f884
+
+Best regards,
+--  
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
