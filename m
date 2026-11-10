@@ -2,90 +2,92 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868C7606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 17:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55092606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 17:19:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oOH6EmXp;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=KHpP8DHe;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=jkA+VZti
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SlCD+xny;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=mAYKqsm9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=L5OI5FX7JL+kgNYLtItHyl+SG6enyYh3fOM8vlFTvoY=; b=oOH6EmXpF0HmO0
-	sVgf24VG7liPgI3uig2xpZ6yz55yyra9KYx2Mv+KuE5zdNFNL9KddVtRrd67qnATjUoePnTzbR3cf
-	qi88Ixuo8Tinhy+cDyQKsiZjHOHZisYwEyr54KMsUgFNbPt5tL+mDXJlqH+msRCqGf/fYr5dFZ3Gs
-	OJJshc931vMESWGnc7xFR+2IspXR4D+GbHLP6Dpa7zstddewwEVZbXxdK/kYMKFKnmGgn//wqRT4Q
-	Jo/dRYJduvicWWy5tBEeYysWqasamWLENN1PmrtYNaA/z665QArgxsTwp/0e2/ikEYsIywygYyAYK
-	8pBAedYYSTC7V+Fujk1g==;
+	List-Owner; bh=vLFtwTlQiX1kBL79qQ7wRkTkfPyk318x5Lu6zEB3kgA=; b=SlCD+xnyyuqlyr
+	72f2mj6th74zQ16x6xcj35sBMLkV3BzPK9U/B4QsczmXHaraeiuVJYpt8qIJlgDkVw07LJbwSN2w6
+	0FRmwS6swfFd4kMfRsJCPwW61ZbT3M4UKzUmZFx0ks9Rfad4FfkntkwkH+MDH3fl9a7oRzROHxgHu
+	/AZlmPOAupaVGAZ9nVlSZrzJEgzRiZv5dm8I2hC8E5wAuozfaMgA8M35ryAVwvN+tjoNYDaTSTNpL
+	N7p/hELy3m/ucAr735gNTEMBmZCrKDtPuBSSy6B0y42bhvrmDltlWpVxWZq4ChDZWoK+4LikeIxcb
+	UhR+6OpZ0eRb77NU7Yfw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoeZ-00000004WHK-2BsV;
-	Tue, 10 Nov 2026 16:24:59 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+	id 1xQpVY-00000004eDn-2rmx;
+	Tue, 10 Nov 2026 17:19:44 +0000
+Received: from bali.collaboradmins.com ([148.251.105.195])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQoe0-00000004Vo2-24vN;
-	Tue, 10 Nov 2026 16:24:28 +0000
-From: Gregor Herburger <gregor.herburger@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1794327862;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L5OI5FX7JL+kgNYLtItHyl+SG6enyYh3fOM8vlFTvoY=;
-	b=KHpP8DHeopJHj7O759XJK3pON+iriUEGTQY+FzK6ZL/noENXuvpuHNCnZmU05ZO/zursf6
-	dG+uiJd0AcrkteKJ8fdtUSP8jfThwPzzU90HS0pagbolhExWxDuN7JLtvYyVQuwzarh7TT
-	PYwN9Luup9EZ40yoxqxrOvVFCkQwWu9ZHdgmAqJl8AqNj5RqNUHMZcEkXNVY6rjoZJ/9j+
-	oYICUO8FfGaikCGSw7jbZuQFYct+PFHEA5Fw45jcmUO87cEboie9sTzw0Nv73WOMEUbhSi
-	tdEhthB9o2GN77GTgTVWrxN7bzcYj9APBQvdIprzEwivY4AK9DreFNJMklO0Uw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1794327862;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L5OI5FX7JL+kgNYLtItHyl+SG6enyYh3fOM8vlFTvoY=;
-	b=jkA+VZtiqigfA9a9i5e4q6U5h/84IpTcuoGSvibKZJE/KkGXCEDBTr+VHApGdR09/l44l0
-	VoHozMX0+20Q+tDA==
-Date: Tue, 10 Nov 2026 17:24:11 +0100
-Subject: [PATCH v7 10/11] ARM: multi_v7_defconfig: Enable the raspberrypi
- otp driver as module
+	id 1xQpVW-00000004eBi-0F60;
+	Tue, 10 Nov 2026 17:19:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794331179;
+	bh=cEdOypZJGYYFaGv+bcDJnJcN+5GsC8u8XziW0E9RE2s=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
+	b=mAYKqsm9ZOnzXlda1nPeTj2Ncisqjvl1U+P9t6ev7BkqUgqVqMP4DEG6xwc47tQwT
+	 IMLJWyZesRDqzoTdM3aD42GPQskf3bGy5KxyrFZgzNtHNe6SDXfEZbjChbJlh+fint
+	 nXPN88xEwsidV9G6u50EFeuxvpusnZw3y1wKbXyYrk3OjMSUn4IFYe7eENY1cTR/Cq
+	 hz23vehC89Jkq59apl5ebU4vyJkqdQmp/iYOY6B2rhWhJjbJ1bLkgmugvfC1xrv0pC
+	 LlUh2MEqxDTZ0A6rIsef0+HqzFOK9cwI96QJPE4txkfJaQnsYJBIWjPUlWC7KFrdZu
+	 W5AqpIXPgWljA==
+Received: from jupiter.universe (unknown [100.64.1.62])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 56CE117E0F7F;
+	Tue, 10 Nov 2026 18:19:39 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 0E4CC480031; Tue, 10 Nov 2026 18:19:39 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+Date: Tue, 10 Nov 2026 18:19:16 +0100
+Subject: [PATCH v5 3/6] phy: rockchip: inno-usb2: ignore reset_control
+ return codes
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-rpi-otp-driver-v7-10-2345d0ee65f0@linutronix.de>
-References: <20261110-rpi-otp-driver-v7-0-2345d0ee65f0@linutronix.de>
-In-Reply-To: <20261110-rpi-otp-driver-v7-0-2345d0ee65f0@linutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
- Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
- =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
- Russell King <linux@armlinux.org.uk>
-Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, 
- Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794327856; l=921;
- i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=nV4q/fY0ggdL9jLjY9jN7SpLOC/gVRnDvW9cn+372lk=;
- b=3F2MbsTICU8Lz8DiwsGt8VTFvgzJbL5T2/krO8ShGWZrbpj0u1ExlVnqaYnQ1ifdPyT1+osPp
- QI6GZo2DMl4C0DA53KOTf1RsOt4JSXbJsX/AWo3CLT3zcQBJ3UXDaDy
-X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
- pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
+Message-Id: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-3-d2e24582ab22@collabora.com>
+References: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
+In-Reply-To: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
+To: Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ William Wu <william.wu@rock-chips.com>
+Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Igor Paunovic <royalnet026@gmail.com>, kernel@collabora.com, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2877;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=cEdOypZJGYYFaGv+bcDJnJcN+5GsC8u8XziW0E9RE2s=;
+ b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGrzUioU83y55RoTcW5M4EslBdwW6sK1ipqKr
+ dtG6ZQTX3KkjokCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq81IqAAoJENju1/PI
+ O/qapDoP/i8/CpMikDpZoqzjI0sxHyT9WjX7mRUHxuokQDn0KhQ5GF0zcPJUmmR+FCVtLVyy5t+
+ mxuypXYJrmu1A2DQejqdpgKpjWy6KBTRRI+lXBI33uW0wMWafP+ZFhg63RUn16zRI+GR6XswxL3
+ uclKwZRgy3+iEcsGlQ5M1nTnUyjXnMTpwZhNsyF57JYKEpFFey7minYTVXjtRBMXVeG8KV4V/Gs
+ YtJ8inxOR8tyeYJZeFlrkqy9Aqpk7gMmobflFktUZJp5uncL2UaUPShU7xzFm3oNa6AZH/Hd4sp
+ 3SoDSyDs9RfIaqHhTENfkyCJeiASxe1PCd3Oha7hAK1Rr0yOaDMaF/BLRq3gm24vEFGlRZDbAxu
+ pP4wMqZZCd4JudlNUgCUufPigJBvkhSWvWM8WellnAXLnO2Rc5d9umtDMGKRQHkea9tyaCRNkF2
+ noqAVuQY+nbtpbBXLiONqOEAqw6o0jiBNZsMksD2HRXzuFECUbih4fBG816iL9YV/U+Ytd+jB9W
+ mQjjYHtIZ19rMtDkKxoXQdPjfZbMFbmu4ib+/tznc0uIhWGk2EQmvwEwt0ZKxjdFQpeQm0X0yP2
+ 5cumy1AbUAa6OTprXTWd5LQjLsLmj2YkPLgY4wgLnmzIIzaUPXjkMie4ccA03IUW4uGFEUd2LpH
+ dslJEkUf96da5jTH+tz8c0A==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_082425_350935_E5386988 
-X-CRM114-Status: UNSURE (   9.02  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261110_091942_266655_EB0279C6 
+X-CRM114-Status: GOOD (  11.83  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -96,40 +98,104 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable the newly added Raspberry Pi OTP driver as module to allow access
-to the otp registers. This driver provides access to the OTP registers
-present on all Raspberry Pi boards.
+Asserting or deasserting reset lines for the Rockchip MMIO based reset
+controller never fails. Drop error handling for it from the driver to
+simplify the logic.
 
-Enabling this in the multi_v7_defconfg allows standard upstream kernels
-to use these registers out of the box.
-
-Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
+Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 ---
- arch/arm/configs/multi_v7_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 31 ++++++---------------------
+ 1 file changed, 6 insertions(+), 25 deletions(-)
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 069d5a49f01cb..e9720a22a7c44 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -1262,6 +1262,7 @@ CONFIG_NVMEM_ROCKCHIP_EFUSE=m
- CONFIG_NVMEM_STM32_ROMEM=m
- CONFIG_NVMEM_SUNXI_SID=y
- CONFIG_NVMEM_VF610_OCOTP=y
-+CONFIG_NVMEM_RASPBERRYPI_OTP=m
- CONFIG_FSI=m
- CONFIG_FSI_MASTER_GPIO=m
- CONFIG_FSI_MASTER_HUB=m
+diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+index a705c4b18bd4..6b3104901695 100644
+--- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
++++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+@@ -290,23 +290,12 @@ static inline bool property_enabled(struct regmap *base,
+ 	return tmp != reg->disable;
+ }
+ 
+-static int rockchip_usb2phy_reset(struct rockchip_usb2phy *rphy)
++static void rockchip_usb2phy_reset(struct rockchip_usb2phy *rphy)
+ {
+-	int ret;
+-
+-	ret = reset_control_assert(rphy->phy_reset);
+-	if (ret)
+-		return ret;
+-
++	reset_control_assert(rphy->phy_reset);
+ 	udelay(10);
+-
+-	ret = reset_control_deassert(rphy->phy_reset);
+-	if (ret)
+-		return ret;
+-
++	reset_control_deassert(rphy->phy_reset);
+ 	usleep_range(100, 200);
+-
+-	return 0;
+ }
+ 
+ static void rockchip_usb2phy_clk_bulk_disable(void *data)
+@@ -559,9 +548,7 @@ static int rockchip_usb2phy_power_on(struct phy *phy)
+ 	 * please keep the common_on_n 1'b0 to set these blocks
+ 	 * remain powered.
+ 	 */
+-	ret = rockchip_usb2phy_reset(rphy);
+-	if (ret)
+-		return ret;
++	rockchip_usb2phy_reset(rphy);
+ 
+ 	/* waiting for the utmi_clk to become stable */
+ 	usleep_range(1500, 2000);
+@@ -1479,16 +1466,13 @@ static int rk3528_usb2phy_tuning(struct rockchip_usb2phy *rphy)
+ 
+ static int rk3576_usb2phy_tuning(struct rockchip_usb2phy *rphy)
+ {
+-	int ret;
+ 	u32 reg = rphy->phy_cfg->reg;
+ 
+ 	/* Deassert SIDDQ to power on analog block */
+ 	regmap_write(rphy->grf, reg + 0x0010, GENMASK(29, 29) | 0x0000);
+ 
+ 	/* Do reset after exit IDDQ mode */
+-	ret = rockchip_usb2phy_reset(rphy);
+-	if (ret)
+-		return ret;
++	rockchip_usb2phy_reset(rphy);
+ 
+ 	/* HS DC Voltage Level Adjustment 4'b1001 : +5.89% */
+ 	regmap_write(rphy->grf, reg + 0x000c, GENMASK(27, 24) | 0x0900);
+@@ -1501,7 +1485,6 @@ static int rk3576_usb2phy_tuning(struct rockchip_usb2phy *rphy)
+ 
+ static int rk3588_usb2phy_tuning(struct rockchip_usb2phy *rphy)
+ {
+-	int ret;
+ 	bool usb3otg = false;
+ 	/*
+ 	 * utmi_termselect = 1'b1 (en FS terminations)
+@@ -1524,9 +1507,7 @@ static int rk3588_usb2phy_tuning(struct rockchip_usb2phy *rphy)
+ 	regmap_write(rphy->grf, 0x0008, GENMASK(29, 29) | 0x0000);
+ 
+ 	/* Do reset after exit IDDQ mode */
+-	ret = rockchip_usb2phy_reset(rphy);
+-	if (ret)
+-		return ret;
++	rockchip_usb2phy_reset(rphy);
+ 
+ 	/* suspend configuration */
+ 	regmap_write(rphy->grf, 0x000c, GENMASK(20, 16) | suspend_cfg);
 
 -- 
-2.47.3
+2.53.0
 
 
