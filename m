@@ -2,102 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EC61606A325
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C2A60A383E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KOy0u+Yc;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=Ge6NNMfd
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O4WX5L8U;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TSJs0Dw0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=PXJAvmxQXstxSOL+heMZGmv93yC12Dwzkd4AWXEIrR8=; b=KOy0u+Yc9W6+81
-	bV970pBTPFNneb6RyE6VnFaR2mIR6T4KFB3sOULB5G6GjJQhLiRw6T79RZRNTTpG76uO36GaE6Kfv
-	UE+1BAI3CaEk3+mvOMyDpqgG2nzxJhT7LboBnKI0wMyGjDhS2spxPR6IyHpiKIdnPMnW3c8LN8Wj3
-	9QqwmaN4qk9mlf3iM8RJ9dBtKwE0AHbO9557qWDVGym5DcBsIRiTSs320Ah3vESpzN/utbPi6yPje
-	vtHEdTutJ04DONxA1VcIWyfqZ//HKzKDVvcoleANLJp4QSdgTamQC5UnWxq9yU+FdwXkQR7F7IdHM
-	kP3NZqszW9bsqQS+rPSg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Bt4p16M4Hn7px1KF+H5JB36BxwFxJbfBsjU1XaPYy7I=; b=O4WX5L8UddH8ZvjHVcH0hMxCnL
+	6PHv09UHaYfbuzjqkCXV3EBde2W0DmyHPQjaSd6UZk2ld8QxNIaWi0/fOY3Qc2BP/tDjmj9pqFPVo
+	E5VcsUodsUidT99/GMh+tyBNkZvduCIaiDT6LPRFI2QmM7PzEnkhBHSeiEympOtBS0kq0O1i46tno
+	Zd9XLgQmJ9W5hT/WWIoeTzXZ7w5O/8sBhdRULZfNEmzZrY9WYgQ0mHffJF/srypPvQwd0kt5FfK67
+	i8fg+mA8bp7abQNYe24MO3gaVCAyx6aiKfYEfdlKnKkIddad+WbuM5NbvofEHs/4COoyxRLYGWMYP
+	IMMJPoDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnma-00000004N0C-02Xn;
-	Tue, 10 Nov 2026 15:29:12 +0000
-Received: from mail-wr1-x42f.google.com ([2a00:1450:4864:20::42f])
+	id 1xQnmk-00000004N4e-0Rlx;
+	Tue, 10 Nov 2026 15:29:22 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnmX-00000004Mz0-2nDO
+	id 1xQnmi-00000004N4F-3ug1
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:29:10 +0000
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-490d59c3f0aso1156503f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:29:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794324548; x=1794929348; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=PXJAvmxQXstxSOL+heMZGmv93yC12Dwzkd4AWXEIrR8=;
-        b=Ge6NNMfdJVTgf+MFv2+2BGLMBHFDpfghsY793ppJye9Ftaz4BbWqOvEVlwyE/qmWS4
-         nS0Kxr/9l4l6C/RvBuTF0YZ/G1nCqsE4RPy42F7Wlxjqv2Cuff/kUwfDb4yI9Dv1zHgv
-         y+DGzsgvAPxafE6q5WnUFKj5IZu9ndiLHgb3DCMJ/aUQdj7eVCk6IdyCKF1Pnz0MIySz
-         unTfIJUBhbUxZDCBJX+CQLWACGEJDnoCNjiq7FqbDFj0wyBqWxe223K+cDWDeqhv0OPN
-         xVO+ciCfJjKy/tF5Wck+iz39m9O6hjdWukRYhqGd0k8xxS0m/JtYR0y/lCGPzop6EBc2
-         D+lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794324548; x=1794929348;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=PXJAvmxQXstxSOL+heMZGmv93yC12Dwzkd4AWXEIrR8=;
-        b=I1M+SpwRIv+Q6qhdOB4qjlo5lZ3f02P3RIRG41B/0nrWY7o3xAzklYGc2Gh3NCdGQL
-         s3LPpseGBipZ2A8ueiagvGzVhG+UcvZRy5MPoayLOD26/uHuln46IXobOS/G53LzowuE
-         Zff0ZBKEJEQrjbroGLIdDlGe97v8q6BenqfnHKr0bepaIvcLCx4W40GvoFME7RDIEYlM
-         n2cTqSEfW1ALWgSLnb+pAf5wBADnjHTZAmQtevh6Wx6fx0d/Jf/zlwm/mVB3NbEBg/pC
-         hVTcL6GFITbbDCEdk0se3GBzlBlVcv2t1on7fO+PslE7Z1fM9t3eg2qhAap7VuS7mtw+
-         krVA==
-X-Gm-Message-State: APuU4Z+Klz9ksEfVrYJokgCwaXYdO73Vk04NUBsfPx5WJNnMyRzPGYz/
-	7Peb+2rd+F7+MM06CU9QPhYBzymyeii1JHXG8PYmOb75ZVyLWvXr5akSyStqFaXtf0c=
-X-Gm-Gg: AYBFou2mrtcgzGwOuRJVheIH4eFBfLX7iWOfs8hkJ31TQnk1Q2sBcD5iabYLVU7Ryv1
-	fiICPZCVrYnjTA/P2X8bBkmxbeEg0LO572rF7NB+XNtevqTxzJf1ofXD1Vq+gScP42+whsga7CX
-	bM/ZjuKmnTW+j3tFh3SJKBQyrH2zmbJb0GKh7nqhSCC4V+ya/YkyrpqRMFknx8RMUi+2GfCcdux
-	KdT22xZevPDgsvJS9DafYN6G1ZEw7SHNTak+Y8AQIsUM7IEE73gpyjV0h/EgRQjaSKRLvKcvA+s
-	hIMTiz6OCOv2zRTvufw+w0ZWBjFsX4PbbVv8HdFAzFUuIJJ0o6SBVSYJktI5SADoqF8bL4a8lh6
-	weX2DQcTWRTGhi6g2/3kKhDdK9tzqR5mFz1XNHnpubD1cGosCfIsRj2FIJdrEP7TG4XojDQHh2x
-	iICi/YJtbQYp2eDkJGaouiAa8SCXNznNcjvhWfbUNHfgcrVG21PjDuK2V01jTJZabTeuzXEJzg5
-	yMgM6m4qZfXv+7VpqqF7OQBj25yp+OlyTcde8CVusf1ychPGLsdWBtOU1KHnbfUdaG1gxDOq9dy
-	bihJM9nCf5SO5CwR790rqbN4lN0VFdLnVA==
-X-Received: by 2002:a05:6000:2387:b0:48f:bcbf:26fc with SMTP id ffacd0b85a97d-49831ae8014mr5302993f8f.53.1794324547642;
-        Tue, 10 Nov 2026 07:29:07 -0800 (PST)
-Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498365ccbccsm5576095f8f.44.2026.11.10.07.29.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 07:29:07 -0800 (PST)
-Message-ID: <ae1300fa-29c7-4ec2-811a-1c7ffd507983@linaro.org>
-Date: Tue, 10 Nov 2026 15:29:06 +0000
+	Tue, 10 Nov 2026 15:29:20 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6013443BD7;
+	Tue, 10 Nov 2026 15:29:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18F8D1F00900;
+	Tue, 10 Nov 2026 15:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794324560;
+	bh=Bt4p16M4Hn7px1KF+H5JB36BxwFxJbfBsjU1XaPYy7I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=TSJs0Dw0xyOaRnZl088l0F3yIjGw4rU/H2At2c8xdDHdp8SerI4hF6PCuWS3HEruj
+	 fQCx/eJIQmjee38K0kl88oaP09m8oPFuWfb0SN2hdJzERKh8HBENPPbNq39MNh2UPZ
+	 6LUEoOgWA4i1YTnY9oJO82udks6VcVjN25+VrrtAMglfx6zUadZkKlzvwnivvOYNaB
+	 65uMmDKxwsnbXEjB0BONIyAxG3GTaI7iSmzK/z4wlqJSwCXkSd0psBWDyBjr1GYhQD
+	 0+xb/kDbfockIG1X6kXknznczMF7Drsf/dASORnmaQY6SbL3ZRlz28lUCakAsVrTFc
+	 ordjZse33Ca5g==
+Date: Tue, 10 Nov 2026 15:29:10 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kevin Brodsky <kevin.brodsky@arm.com>
+Cc: linux-hardening@vger.kernel.org,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Ard Biesheuvel <ardb+git@google.com>,
+	Andy Lutomirski <luto@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"David Hildenbrand (Arm)" <david@kernel.org>,
+	Jann Horn <jannh@google.com>, Jeff Xu <jeffxu@chromium.org>,
+	Joey Gouly <joey.gouly@arm.com>, Kees Cook <kees@kernel.org>,
+	Linu Cherian <linu.cherian@arm.com>,
+	Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	Matthew Wilcox <willy@infradead.org>,
+	Maxwell Bland <mbland@motorola.com>,
+	"Mike Rapoport (IBM)" <rppt@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Pierre Langlois <pierre.langlois@arm.com>,
+	=?iso-8859-1?Q?Pierre-Cl=E9ment?= Tosi <ptosi@google.com>,
+	Quentin Perret <qperret@google.com>,
+	Rick Edgecombe <rick.p.edgecombe@intel.com>,
+	Ryan Roberts <ryan.roberts@arm.com>,
+	Vlastimil Babka <vbabka@kernel.org>, Will Deacon <will@kernel.org>,
+	Yang Shi <yang@os.amperecomputing.com>,
+	Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
+	x86@kernel.org, Ira Weiny <iweiny@kernel.org>,
+	Lorenzo Stoakes <ljs@kernel.org>, Thomas Gleixner <tglx@kernel.org>
+Subject: Re: [PATCH RFC v10 06/22] arm64: Disable EL2 trapping of POR_EL1
+Message-ID: <3500936b-4177-4ba0-a9df-7eb9d9d75b0a@sirena.org.uk>
+References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
+ <20261109-kpkeys-v10-6-aa6c4d9603bc@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/23] coresight: trbe: Use helpers for checking errata
-To: Leo Yan <leo.yan@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Mike Leach <mike.leach@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
- Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-3-3f57cf3199b1@arm.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-3-3f57cf3199b1@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_072909_731962_CD6B0000 
-X-CRM114-Status: GOOD (  19.01  )
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nrZdJCOCfevRaauL"
+Content-Disposition: inline
+In-Reply-To: <20261109-kpkeys-v10-6-aa6c4d9603bc@arm.com>
+X-Cookie: You can't take damsel here now.
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,59 +94,40 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
+--nrZdJCOCfevRaauL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 16/10/2026 17:55, Leo Yan wrote:
-> Use the existing helpers for checking errata instead of open coded
-> equivalent.
-> 
-> Reviewed-by: Anshuman Khandual <anshuman.khandual@arm.com>
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-trbe.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 02d12445763a86d58c79bdf5143f761827456bc3..8ec0b4c4987f25d10ee0b2f80c27e10f76357387 100644
-> --- a/drivers/hwtracing/coresight/coresight-trbe.c
-> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -738,7 +738,7 @@ static unsigned long trbe_get_trace_size(struct perf_output_handle *handle,
->   	 * the space we skipped with IGNORE packets. And we are always
->   	 * guaranteed to have at least a PAGE_SIZE space in the buffer.
->   	 */
-> -	if (trbe_has_erratum(buf->cpudata, TRBE_WORKAROUND_OVERWRITE_FILL_MODE) &&
-> +	if (trbe_may_overwrite_in_fill_mode(buf->cpudata) &&
->   	    !WARN_ON(size < overwrite_skip))
->   		__trbe_pad_buf(buf, start_off, overwrite_skip);
->   
-> @@ -961,7 +961,7 @@ static int trbe_apply_work_around_before_enable(struct trbe_buf *buf)
->   	 *  - At trace collection:
->   	 *     - Pad the 256bytes skipped above again with IGNORE packets.
->   	 */
-> -	if (trbe_has_erratum(buf->cpudata, TRBE_WORKAROUND_OVERWRITE_FILL_MODE)) {
-> +	if (trbe_may_overwrite_in_fill_mode(buf->cpudata)) {
->   		if (WARN_ON(!IS_ALIGNED(buf->trbe_write, PAGE_SIZE)))
->   			return -EINVAL;
->   		buf->trbe_hw_base = buf->trbe_write;
-> @@ -985,7 +985,7 @@ static int trbe_apply_work_around_before_enable(struct trbe_buf *buf)
->   	 *     - Adjust the TRBLIMITR.LIMIT to leave the extra PAGE outside
->   	 *       the TRBE's range (i.e [TRBBASER, TRBLIMITR.LIMI] ).
->   	 */
-> -	if (trbe_has_erratum(buf->cpudata, TRBE_WORKAROUND_WRITE_OUT_OF_RANGE)) {
-> +	if (trbe_may_write_out_of_range(buf->cpudata)) {
->   		s64 space = buf->trbe_limit - buf->trbe_write;
->   		/*
->   		 * We must have more than a PAGE_SIZE worth space in the proposed
-> 
+On Mon, Nov 09, 2026 at 03:58:31PM +0000, Kevin Brodsky wrote:
 
-Reviewed-by: James Clark <james.clark@linaro.org>
+> Make sure EL2 doesn't trap kernel accesses to POR_EL1 by setting the
+> nPOR_EL1 bit in HFGRT{R,W}_EL2.
 
+This wants a matching update in booting.rst as well for when the kernel
+is booted at EL1.
+
+--nrZdJCOCfevRaauL
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmrzOEUACgkQJNaLcl1U
+h9Ag0gf/f9f5XP+mPu/qkq9MsiAddVfTPO5cBvZan8qUxzXzuilhA54mF0WCZWl8
++Fmzl+Q0J4gwxCKcr+yCLoOyMvLGiUCFQVnPcJT7wMBqrZ5DA5f/OW6YWx6uMZyT
+ExUsefodnzmOczU+s41SARPFGFuRuJsT756diQQYF/IlO8wq0GJ8mWoBGKf6H3OR
+BKFwnc4Cda3sUrlQ5UU1Y5DRXoHpQJe2+dz013uXt14vDmtxE8P0840PIRU+Y/F2
+zhXRtj08uReTLuyfCpkD2RuiPx2DKigEDjHND7yPRfuiA/qskHTAtBBtxtRcXoNc
+7EjgnbeiJeosuSBYcCi5CS+h/Sh4Jw==
+=osnL
+-----END PGP SIGNATURE-----
+
+--nrZdJCOCfevRaauL--
 
