@@ -2,69 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 587DF606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:30:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4B81606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 10:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kAB/crXr;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oOvO45kq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rwKpMlfy;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=LumyohM5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=H3tlyIivpEQAfTuEdh9TMux42zaoavdQDwL403yp9Q8=; b=kAB/crXrSR6TmoB+kwXPMHHMyY
-	jFbASxAl44qMJuDhBmdA8QX7WIF7xIRK0u+ia7r0ifeibsPpo9fJZtmGO4zYXOOV6eLWotYFzHg6p
-	Ks/+n1csiIaju6W+RSKpZnVHtpidaJHmySKlvlIRZVk6gG8UAhFFKmLFMeopijZ8+GSeVmtYq8OPz
-	cVzMnGalwgjuFBUqxDC7Azkr9fHCuV8bH0qOisPNnhh0eUWaowPXRkc/aSHJ1eMfpwjxEkUQHqnqW
-	qJ96JnAM6jyGCiTgbwsxYarUfXElGg8Auuv01Npl532fSfP85qVU7n3fbILWTz6ReC4Fph+dz3WcF
-	eOt3vjcA==;
+	bh=aYP6ZGB7srZlQ6US5JH2zaerS+sLxrc3zmnJGtbY/3E=; b=rwKpMlfyvXHM8Q35N69J0ZcKm+
+	+ShqJFaWABeEpYKo2VDHsCACuivZS8tkZGUyXWxYHUBm0lH/8VVSTqZWgxfDYeRS6xRlNPfqTMUjy
+	hxHlrLdqxrDyqmAIIUmSAUXWtR9TyvaLwzwWDgOPveVe2XF61P7k6aU+izz4hZT2bv3Mhu4rWycky
+	O1MYbgcYzygzBGuCZOTPOqz7jbiFuipsqIqikEENVxYH9TWBBcSpHB2YONy87j4vETyWsDEKGchgU
+	ETQWTRtXOSlZULHJZEm2PNWi0qVelkN/usX5su4gUVFa29DKJkAHap4H0DHZHxgSNcZaP0YjFv7+k
+	MfMSwm6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQj7P-00000003Si7-0arN;
-	Tue, 10 Nov 2026 10:30:23 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQj7N-00000003Shh-42x2
+	id 1xQjDo-00000003TIn-0jyt;
+	Tue, 10 Nov 2026 10:37:00 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQjDm-00000003TI6-0l1W
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 10:30:22 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1D952634FB;
-	Tue, 10 Nov 2026 10:30:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7EA21F008A5;
-	Tue, 10 Nov 2026 10:30:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794306620;
-	bh=H3tlyIivpEQAfTuEdh9TMux42zaoavdQDwL403yp9Q8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=oOvO45kq67rd3N7RAEDn0rC+QwfiY/USWlX/UZJCTCLnP2Um7V6kANrHdVR+KIwNr
-	 5wU/wTnVdN3rl9/vq9DHVgOkjpgz/24pCLMUXojYIBnczHxC6ValM4n1+RiGuD9Jnz
-	 uyk2i1s8XKF1u/Kh0gLvzRa4NIaczzb7mpHRTeYIVMKcGA4c7rU7AibN/8BNLCPX+F
-	 wVO/nV+kvk5781/R3Q9m+7Ft6Nh76BMkr3mfFbu7zIkQ2+1qPg/vTdalwC5mPMaDNM
-	 Zj6JPxrXao9l+JBA4Gz/EyRlchhEq54f2WAN460YKlU8/AfJ4yWTiq/nsbv2dHmHTN
-	 ohOVYCvzuoBuw==
-Date: Tue, 10 Nov 2026 11:30:17 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
-	Russell King <linux@armlinux.org.uk>, Michal Simek <michal.simek@amd.com>, 
-	Eric Dumazet <edumazet@kernel.org>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v3 4/5] dt-bindings: net: dp83867: Add
- ti,output-impedance-ohms
-Message-ID: <20261110-polite-juicy-labradoodle-a939fc@quoll>
-References: <20261106-v7-2-topic-dp83867-v3-0-45e1d3adf1bf@pengutronix.de>
- <20261106-v7-2-topic-dp83867-v3-4-45e1d3adf1bf@pengutronix.de>
+	Tue, 10 Nov 2026 10:36:59 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BDD6F1F02
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:36:53 -0800 (PST)
+Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 92F673F85F
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 02:36:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794307016; bh=AqF58HrT3bhON+KbWlWZ11YZ8tIs9dlGm5SmVttprrQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LumyohM5jNIceDmOxh70PJxDtwtOaONasBxjld/7GCh6dqr+JSBttx6aMeCpFVYNl
+	 G1hyqaxu+TVNmxMhhEqCEIkL+wnFzawjLhTWO5yFle66ocg3C5Sfe88DwnBgjZxPbe
+	 7sPp2ii2tKZM7HSXeyb08PuDZTC1EhE41bTZSMM0=
+Date: Tue, 10 Nov 2026 10:36:43 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: aiyengar1990@gmail.com
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+	Steven Price <steven.price@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Heiko Stuebner <heiko@sntech.de>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH] drm/panthor: Do not change the GPU clock rate while
+ suspended
+Message-ID: <avLzu40gKwgJJiNK@e142607>
+References: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261106-v7-2-topic-dp83867-v3-4-45e1d3adf1bf@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_023658_325368_B31DA3E7 
+X-CRM114-Status: GOOD (  45.52  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,25 +85,158 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 08:47:28AM +0100, Steffen Trumtrar wrote:
-> Currently, the output-impedance can only be set to default, minimum or
-> maximum or via a nvmem cell.
-> In cases where there is no backend for a nvmem cell, a value can not be
-> set.
+On Tue, Nov 10, 2026 at 07:15:00AM +0000, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> Add a DT binding, 'ti,output-impedance-ohms', for specifying the
-> output-impedance in ohms, between 35 and 70. Like the existing
-> properties, it is mutually exclusive with the nvmem cell and with
-> ti,{min,max}-output-impedance.
+> From the start of panthor_device_suspend() until panthor_device_resume()
+> has enabled the clocks again, the GPU clocks are off or about to be, and
+> the GPU power domain may be down. devfreq can still call ->target() in
+> that window: a write to min_freq or max_freq in sysfs, a thermal cooling
+> state change or a PM QoS request all end up in update_devfreq() whatever
+> the device state.
 > 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/net/ti,dp83867.yaml | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> With the RK3588 GPU core clock switched to the firmware-managed
+> SCMI_CLK_GPU (needed to reach the PVTPLL rates of the upper OPPs), such
+> a call is fatal. To set a PVTPLL rate TF-A programs registers in the GPU
+> GRF, which sit in the GPU power domain, and with the domain off that
+> access ends in an asynchronous SError and a kernel panic, for example
+> after
+> 
+>   echo 1000000000 > /sys/class/devfreq/fb000000.gpu/min_freq
+> 
+> while the GPU is runtime suspended.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Maybe what needs to be done is to disable the clock when the power domain
+goes down.
+
+> 
+> Only apply a rate to the hardware while the device is resuming or
+> active, plus the suspend frequency that devfreq_suspend_device() applies
+> from the suspend path while the GPU is still powered. Other requests are
+> still accepted and recorded by devfreq, which applies them on resume or
+> at the next governor update.
+> 
+> The RFC this is based on (Jonas Karlman's panthor SCMI clock change,
+> carried in Armbian's linux-rockchip pull request 380) checked the
+> runtime PM status instead. That
+> status is still RPM_SUSPENDING after panthor_devfreq_suspend() has run,
+> which leaves a window where the rate can be raised again right before
+> the power domain goes down. The devfreq suspend count cannot be used
+> either: panthor's first runtime resume calls devfreq_resume_device()
+> without a matching suspend, so the count is -1 while the GPU is active
+> and 0 while it is suspended.
+> 
+> Suggested-by: Jonas Karlman <jonas@kwiboo.se>
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+> Tested on an Orange Pi 5 (RK3588S) with the GPU core clock switched to
+> SCMI_CLK_GPU and a 200 MHz opp-suspend (the configuration from the RFC,
+> not yet in mainline): writing min_freq while the GPU was runtime
+> suspended no longer ends in an SError, the request takes effect at the
+> next job (1 GHz measured), max_freq likewise; 200 suspend/resume cycles
+> with short GPU jobs and a 3 minute sustained load ran without faults.
+> With the mainline device tree (CRU clock, no suspend OPP) the SError is
+> not reachable and the guard only skips rate changes while the GPU is
+> powered down.
+> 
+> This patch was developed with Claude (Anthropic) as a coding assistant:
+> it wrote the code and the commit message, and I reviewed and tested it
+> as described above.
+> ---
+>  drivers/gpu/drm/panthor/panthor_devfreq.c | 42 ++++++++++++++++++++++++++++---
+>  1 file changed, 39 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
+> index 2249b41ca4af..cab86e9c9d46 100644
+> --- a/drivers/gpu/drm/panthor/panthor_devfreq.c
+> +++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
+> @@ -60,20 +60,56 @@ static void panthor_devfreq_update_utilization(struct panthor_devfreq *pdevfreq)
+>  	pdevfreq->time_last_update = now;
+>  }
+>  
+> +/*
+> + * Whether a new rate can be applied to the hardware now.
+> + *
+> + * From the start of panthor_device_suspend() until panthor_device_resume()
+> + * has enabled the clocks again, the GPU clocks are about to be disabled
+> + * or are off, and the GPU power domain may be down. devfreq can still
+> + * call ->target() in that window: sysfs
+> + * min_freq/max_freq writes, thermal cooling and PM QoS requests all end
+> + * up in update_devfreq() whatever the device state.
+> + *
+> + * Changing the rate then is pointless, and harmful where the core clock
+> + * is managed by firmware: on RK3588, setting SCMI_CLK_GPU to a PVTPLL
+> + * rate with the GPU power domain off makes TF-A access the powered-down
+> + * GPU GRF, which ends in an asynchronous SError. So while the device is
+> + * suspending only the suspend frequency, applied by
+> + * devfreq_suspend_device(), reaches the hardware, and nothing does
+> + * while it is suspended. devfreq records the other requests: they are
+> + * applied on resume or at the next governor update.
+
+Can this comment be rewritten to be less verbose?
+
+> + */
+> +static bool panthor_devfreq_can_set_rate(struct panthor_device *ptdev,
+> +					 unsigned long freq)
+> +{
+> +	struct devfreq *devfreq = ptdev->devfreq ? ptdev->devfreq->devfreq : NULL;
+> +
+> +	switch (atomic_read(&ptdev->pm.state)) {
+> +	case PANTHOR_DEVICE_PM_STATE_SUSPENDED:
+> +		return false;
+> +	case PANTHOR_DEVICE_PM_STATE_SUSPENDING:
+> +		return devfreq && devfreq->suspend_freq &&
+> +		       freq == devfreq->suspend_freq;
+> +	default:
+> +		return true;
+> +	}
+> +}
+> +
+>  static int panthor_devfreq_target(struct device *dev, unsigned long *freq,
+>  				  u32 flags)
+>  {
+> +	struct panthor_device *ptdev = dev_get_drvdata(dev);
+>  	struct dev_pm_opp *opp;
+> -	int err;
+>  
+>  	opp = devfreq_recommended_opp(dev, freq, flags);
+>  	if (IS_ERR(opp))
+>  		return PTR_ERR(opp);
+>  	dev_pm_opp_put(opp);
+>  
+> -	err = dev_pm_opp_set_rate(dev, *freq);
+> +	if (!panthor_devfreq_can_set_rate(ptdev, *freq))
+> +		return 0;
+
+Hmm, why not return an error here? -EINVAL?
+
+>  
+> -	return err;
+> +	return dev_pm_opp_set_rate(dev, *freq);
+>  }
+>  
+>  static void panthor_devfreq_reset(struct panthor_devfreq *pdevfreq)
+> 
+> ---
+> base-commit: 8deaade4a5a4ff635df91e246e42139ab2b33f6d
+> change-id: 20261110-panthor-suspend-clk-11d5604fe5be
+> 
+> Best regards,
+> --  
+> Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> 
 
 Best regards,
-Krzysztof
+Liviu
 
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
 
