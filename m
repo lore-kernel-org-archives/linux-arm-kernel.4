@@ -2,119 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB4E606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 04:49:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D03E606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 04:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TqAs1HmI;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nv+OR/0d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GavYvobJ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QmBhsy9I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ToRZM5Foy++C1k59kSDpzw5FEF6siS+FDf6LC+WQ3Lg=; b=TqAs1HmIc7k1rhWUQTrptGJ6vP
-	saii7hEl7qHjb3ddrmSx48z0XfzcJilU4dGsR/+y448ICK2T14j9x/1C7BLsncx/nRtj2OxILTfXO
-	YLa55j5l7rSEU1/0b5jjOOtvW7kyDGmocZDcQmddBZKD/3O2faFk4BsN8/hOS9LW853Wj6fTaCINS
-	qCrsJPGLmxp2GPZ4pyDlrqsvShKhBWFaSW7VBqHZ4BNvy0oH3R3Gx7+owZkicaNfGBeYCD2wS6db9
-	EruuyCr2nvXvSVZPj1BdA09dCtaYkSCUeQ29ts1T7/+5lMMryHTcgyl9+ce/4V5HiZjTJEXWZJqSZ
-	riD854Dg==;
+	bh=LQH6/FLfD+l3EuP607p4MXIkH0GyDF3Widek8GlB+OA=; b=GavYvobJd5mpuEAq/cNBpsHK/G
+	lQz3jXMr26wwRM/yhviSdoThWmxIsUpsgUALi/wQH2kQJT+/s9UfCieFKA4d5bPO23YYwEFlzCEco
+	48s8NVk0toU9DmkbyGR7QNunGm+pE5HwEJtMev3txo1Yrct4uVYewqyekXkM8ys05clcY3ulgxXT6
+	MkSIhriRiF6qxnFrtysmpw+WHPGbG6j2BPFj76i63OuCJimcojqhzC7cz4VMeu2gYDDzItdkMMuem
+	k8N4+7gjbtALN5wp9/XgbD63+KY8Fg4KiEYRrrpmfhHZrZ4jbax/uAqG2OixsC6XWGVaVPI3E2GEK
+	29JtK+5A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdnW-00000002QVO-1eWz;
-	Tue, 10 Nov 2026 04:49:30 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1xQdvz-00000002QnY-13dE;
+	Tue, 10 Nov 2026 04:58:15 +0000
+Received: from mail-qv1-xf31.google.com ([2607:f8b0:4864:20::f31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQdnT-00000002QV5-0eyp
+	id 1xQdvw-00000002Qn0-2t39
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 04:49:29 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-c434376dbebso302190666b.1
-        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 20:49:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794286165; cv=none;
-        d=google.com; s=arc-20260327;
-        b=n0FLwUz4SZFN627vCtNrID4QVrbLASyL54eNN0lBfaVFVUOM53Y6D3ECRMr6OloxsK
-         YuaORpzJCkmLZYXkS2kvd2ZyyEIacbD3y5z3mvB/3Em4YWePZ1CTj2EhPMCZr2Me/bdA
-         rxKeHpk0jA0GT6JGnbFUu+9etmHomMSeql+SoN8ALf9Y9WePqnPgphSEdet3rcBDe6V3
-         wZt/XJ6QcKk7JHquFbfVZd0p/cOJ8pBcL/domtLa5+vy3kdmVViSay5AWZfzY4YwyxW6
-         aZWV2ZzJU5pGcTdirNPNcHSnvncjZbJYhfOanEos0eUCJly+A7s2OvAqhGrtsUgE9m7F
-         MXEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=ToRZM5Foy++C1k59kSDpzw5FEF6siS+FDf6LC+WQ3Lg=;
-        fh=bl5sH66QvESih7VBjAS1EtE8ZTjPAxsJZ4Y9GVc4vl0=;
-        b=o10DmJ3lTrGGgbcevvfwR/tJQU9eEjQxBsRdW0aIgci4FwgSWRb4BthfokvwfHihop
-         biIL5b38VMFppQYPazNKCmubTWKygqeHJ/5Kya5s/Daflwf2vmcpc8swxT9ldxHg3UHo
-         BKyOMTsL8wgdy8AjIMMcj4vyxPn/uOICTCTG7wvbTbvJ512zvK3TuDgAyvl/g9eKqF+j
-         9g1W9TwKws+X0B7emvGcqQ3bHeugas0b1s1xLnpbpiFfFhEq4YHpIMDwZOdhJ1bVl0gc
-         aOFaM+rWEgRMVECw4ajgUYlWEwLiml1G9aEAQPPbIGeToEq2bXSScwspmiKeZ74aebD1
-         070w==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Tue, 10 Nov 2026 04:58:13 +0000
+Received: by mail-qv1-xf31.google.com with SMTP id 6a1803df08f44-91e8938fd01so18174326d6.3
+        for <linux-arm-kernel@lists.infradead.org>; Mon, 09 Nov 2026 20:58:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794286165; x=1794890965; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+        d=gmail.com; s=20260707; t=1794286691; x=1794891491; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ToRZM5Foy++C1k59kSDpzw5FEF6siS+FDf6LC+WQ3Lg=;
-        b=nv+OR/0d9PGqjquQ+bGxg289KYxPSf6LrY19wJbkCWYGzu9nRwqQNzmhaNfk4hnM1n
-         aIbY5Y1AeKQTVVuBQsBv1n8bowLQMRCHKJ1PTuObJWCDKHvXnknZjJp27XbqDcdHdSXg
-         FZn4uFmnvxk/rBTWDDjbi0Q9w+u86AMX79b6mmmlKuYyp0WerHAbSZpX66iu4VWVCInV
-         fj6QDjmzBRGmtJMpAby6jiy/NMstZ2DzfQbrnwix9bwn8z3ClIKrZcWy2v7JAw9gOlFl
-         K/un7Vk0nCiw6xfIw3lSpX8zkLr3UUA6IlD0AscCm84vvOAg+EOImaiIJ+e+FGM8KPAB
-         1yoA==
+        bh=LQH6/FLfD+l3EuP607p4MXIkH0GyDF3Widek8GlB+OA=;
+        b=QmBhsy9ICRM/SoM28SLcwrmjy+0kviPlkSDcdL7wMeNYSkkoIoTsW1FE5cOq1f0ahc
+         Tv35wtCK1p1mVc+8s2vkkLTsfdE7Qh3JTygWumW2bYwBcWAO5w30PtKUdh5OTye8W6aJ
+         BVgHWC04loOhbvh/l/L1EtJPr1Sb0luRmLKpU2eymuQP7zrHQ1LlIwfshU3j/gIrSF3z
+         RtwX8krufbYgB89+BYXdKHi4EkORSYOgZQqVhF+oHheU2faS4GcqSA+gpahbjSz4Xgxl
+         6JX7Y5s2BQ/eX4lotS5HhXJ1PHGKA1BFhR6A3ALhjuSuI/s2rolH0M3T2vIe6xqtLcDv
+         uShg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794286165; x=1794890965;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=ToRZM5Foy++C1k59kSDpzw5FEF6siS+FDf6LC+WQ3Lg=;
-        b=H/K1GqWEchFfRBuzvmDOChbdgQgZ+8dwJmk57q8y8Xch9BVHW+pBak5ZPOCNl8aLdn
-         gzCHvlR43JNKgUBqpTGcfqLVtfmmPUZOQ7Fi7FZ4wk/iwnBExIo9/8wa/XYpLMOlp/Yp
-         zVmBjtTd8M0ptj3dYLCVCNMPO0SYIU+Ow6ASUJKpP1+Xt1nhD0vw35hH9C/WgueUb5qO
-         UVv50JGdx3pe7gAcKbMMJ7jP7Eb+NccMfzYF1mzZsPHVlNbFIai9WSmoGPH1lOlg1w37
-         a45MdGhosyym6lUlSMfLfmQHSJMEXcndoTb1dwm11CSr5xS+xYKAH5EX6aDdhLOl4YTZ
-         pb6A==
-X-Forwarded-Encrypted: i=1; AL+hErFQfaE7TDbv1VqdkcR2qSJquZeaf2CfZ8NPiblx3nFRMbSVmPwz0BPVeFGM88tgHuNhIrtTNNUxI3mfA8rOsTnK@lists.infradead.org
-X-Gm-Message-State: APuU4Z830RsdrVQouUgvqiyjLMUggQQ+Djj/rUXoABUPOand79UG8LMW
-	SLhTXFIHpHZLgZ/zvA2+XbX96+LOyFFMWIhUpX8vOy39cU4d+MZsPi4C7GFUUu6yiKH8FSbF/qh
-	VETAqhUKn0cOUBltvW6ei/AthL0wW4A==
-X-Gm-Gg: AYBFou24fq3AoBLwshM1jK1FmEsVkYH9cgEgtgJuvuEiBW9FrbXjY0/MzxcaL4Dtyph
-	g4QyZbttSyq0PF4gLPzsjELvKSmayzLiHO6M4Th43RWY1EBRVWu9yB1i/4iu9VPfFl+iJ/C2VgH
-	/cnaQ29RGn+GFnuz3tOwF2CMnUlXYgNMJgiKutQrATIxiCM4AECz1nX5pWyxwQ2SHHBQlf8uRrF
-	1aCdQH/GR86/8KiOH2lBkLQFbraQWtHTN5zotdGw2tIeUrBn+tRPN/yKpja4fHQBFFtdejH1uWU
-	kAbqx/8KjPw+skTbK309BNFzfiT+oTt2nUN7/DOto6FDDLlWnqivAmST3TIpOde5Y3wbzAHTrdH
-	OU8QF0ej9TG3mnSlTJdK+DRkkzt1Ksasp4KXlXmE6stLuj57qjrB01Xq5P4YJSioX2cJqg9JUIL
-	gs5EON28Ty/2nVDF2rREX2uf8ZTRdQCpxzBWFhHbk4zoe2TOk=
-X-Received: by 2002:a17:906:240f:b0:c41:4512:560d with SMTP id
- a640c23a62f3a-c5049699729mr80819466b.16.1794286164826; Mon, 09 Nov 2026
- 20:49:24 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794286691; x=1794891491;
+        h=content-transfer-encoding:content-type:mime-version:message-id:date
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=LQH6/FLfD+l3EuP607p4MXIkH0GyDF3Widek8GlB+OA=;
+        b=vqrsXxbEgAdfo6jIEI2AgUOQfdL0cPFpGhTRNUeQuQo9zZhxGHxelMeSflIWLDIytH
+         0gGB7ZwmyKgqqOTymdGZdwdeaANK3Z2FXLQcCX3qaCnivvI27pJEW0FhQUDOB5AhgQoL
+         4MU8B419xqdgp4kxB2oVcO9HQr6MqARd0MywKPilxw3S5nY/+v8jVSvzwWe9Hzm/Iv1U
+         KrbjsLY97Cl9k3AAuNnKzaBBmJQSHLzDr0gWZNkvq3h7ZvdDQpHi2hrBpW9l/M0z4tGf
+         7bdm/oGGpDw6J0RH600rqVEEWd9seQDTDTDlmEEzFQNtzpirbNPGqr41ZUNpq9hC/17T
+         tkRg==
+X-Forwarded-Encrypted: i=1; AL+hErFMFBsp0bxeZ4ftdKlf4gJ/KQ3gyDPt+ldBVnVDvhIc/kk6atR8ISWr3Y6kd7hpuYtlstFkSa6j/AcTbf7M86BP@lists.infradead.org
+X-Gm-Message-State: APuU4Z+JSMxAghvpp7CvubCO+NYbwipPsnGzi2QP+U//Ik5kOWjFAt73
+	UfYBvtfjhdYpf+2XTUGb63Svj8hHHN+ssFfxD7mAO/KMWR/RPSPnWn8=
+X-Gm-Gg: AYBFou3kpFz4XxsNuZk41ZiXEaQcsQ1/OlJdwMD+Wgs66vFlOFsTjZ4dujkRGjpTDKa
+	4ARdPsUajssISFA4256yaAW3c/oWpHz7z3wpwCuWuQ4Wav8ML4Dkhh4N7+TVUblfkkvTlj5m+r1
+	59smFPo0iZE6CbiJzHsx1icCF/if9vcLXAFyqm4Xzi+Ihq0EMorH7HRBYuWRBBm+f325LmtiwfB
+	u+xDjPt1upYE/rA2Hwh7LnFNrQpHiiauf0yo6akVCHyeCsZsclTPHxc8vs04oQoJLOhxBu4kWXU
+	KQF2ZCrQmAwdSnkaeYpdhulCTVHFrUOEoxfRBb1Yxg04tcsrXvjWr+YUjDEcLK9/6B8SdEG0bqm
+	3Lmb96aFBZ4ibUbEVKdeT4TAQHI+cDhkcRkYbs/DqMMCRXpaqyRnlhpcwglpmgKYXobGMAhZ0qK
+	9Dh6ev4w1wH7yiAK6tio3LpyXZANFuLZk8LPqsSjSmZCNtXgBuPstV4bh0VX3rs0M36RfEw7Q3z
+	hgtSSwnDn2WebCtN5ccMN9ZNjqWGi9F3siPINi65/h8eC/bjMs5zM/sbCMSVlq5K5W4kdDseDlo
+	KSMx940cUDyDJNWBFkJ1x3vruwARSetTdrBNgBO+Gbdrh2x6Vwwsz9qTdSOKawZKCZrf46NTugz
+	9ZTs0EwuNzpGiBoavfNhq1C7L5ZyaEBE9IUIGUtYQyUXKRVgyukiX7a+sxE5Cm+k1
+X-Received: by 2002:a0c:e018:0:b0:91e:c6ec:1d9f with SMTP id 6a1803df08f44-91eef9a214emr27070326d6.52.1794286691211;
+        Mon, 09 Nov 2026 20:58:11 -0800 (PST)
+Received: from localhost.localdomain ([104.39.152.7])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-91ef04f89c1sm12462836d6.23.2026.11.09.20.58.09
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 09 Nov 2026 20:58:10 -0800 (PST)
+From: Myeonghun Pak <mhun512@gmail.com>
+To: Eddie James <eajames@linux.ibm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Jammy Huang <jammy_huang@aspeedtech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Ryan Chen <ryan_chen@aspeedtech.com>,
+	Billy Tsai <billy_tsai@aspeedtech.com>,
+	linux-media@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	Ijae Kim <ae878000@gmail.com>
+Subject: [PATCH v2 0/2] media: aspeed: order probe cleanup and last close
+Date: Mon,  9 Nov 2026 23:58:07 -0500
+Message-ID: <20261109235731-aspeed-v2-0-mhun512@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <gm-top10-20261015191529-g65-295aa0ac5211@mhun512.gmail.com> <KL1PR06MB694295F7F33B8FEDA284C65DF1602@KL1PR06MB6942.apcprd06.prod.outlook.com>
-In-Reply-To: <KL1PR06MB694295F7F33B8FEDA284C65DF1602@KL1PR06MB6942.apcprd06.prod.outlook.com>
-From: Myeonghun Pak <mhun512@gmail.com>
-Date: Mon, 9 Nov 2026 23:49:13 -0500
-X-Gm-Features: AclHuK9dEbOFpKZBzF18DRp2ysCfTdn-dJEdIFaJ5Bm7I0rvJVmVsW64xtISAdQ
-Message-ID: <CAGEsz8F3XkYkLOzrncnLVNHSgfC3tZ_zYdVrTR4xavq+h9anhw@mail.gmail.com>
-Subject: Re: [PATCH] media: aspeed: acquire IRQ after reset and clock resources
-To: Jammy Huang <jammy_huang@aspeedtech.com>
-Cc: "eajames@linux.ibm.com" <eajames@linux.ibm.com>, "mchehab@kernel.org" <mchehab@kernel.org>, 
-	"joel@jms.id.au" <joel@jms.id.au>, 
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, Ryan Chen <ryan_chen@aspeedtech.com>, 
-	Billy Tsai <billy_tsai@aspeedtech.com>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261109_204927_214582_12A83AB9 
-X-CRM114-Status: UNSURE (   6.14  )
+X-CRM114-CacheID: sfid-20261109_205812_756686_44AD6292 
+X-CRM114-Status: UNSURE (   8.64  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,17 +110,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jammy,
+This revision requests the IRQ after its dependencies and synchronizes
+IRQ/work before manual probe cleanup. The second patch fixes last-close
+ordering and keeps the engine available until VB2 release completes.
 
-Thanks for the review. I will address your comments and send v2.
+Compile-tested on ARM64 with LLVM, W=1.
+No hardware testing.
 
-Thanks,
-Myeonghun
+Changes in v2:
+- Rebase onto managed reserved-memory initialization.
+- Remove the research sentence and Assisted-by tag.
+- Join the IRQ and delayed work before manual probe-failure cleanup.
+- Keep VB2 release before normal last-close hardware shutdown.
+- Drain the IRQ producer before cancelling resolution work.
+- Balance IRQ disable/enable within stop and check STOPPED before power-on.
+
+Myeonghun Pak (2):
+  media: aspeed: join IRQ and work before probe cleanup
+  media: aspeed: drain IRQ work before stopping the engine
+
+ drivers/media/platform/aspeed/aspeed-video.c | 38 +++++++++++++++++++++++++-------------
+ 1 file changed, 25 insertions(+), 13 deletions(-)
 
