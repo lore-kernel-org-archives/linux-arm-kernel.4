@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3089760A380D
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFF9606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 08:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yBgeRFMR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Vy3sNs4B
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gi+1JGS9;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=YZGqvnmh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,58 +14,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=KGB9UbUuUIBLuGWbVi5rtXFYasd5PhFrkHNVfvzg7ao=; b=yBgeRFMREpaaKe5qUu9Y9EBGj7
-	Ku0lXRvGgcyhhI63oh3JN1v+bV/evGAPASuR1oppANharJTXxd89iErnvzwlryAcl4PEMhk9w5Yj7
-	EnHPNXGjqu11CouldrRRncq/kslU6/F4usoUHgfr7en+9+iC3j9V9CBSzc4erz0VxJkE+6qnWGt+r
-	+OXui/mk+R4rC4JXIE4kp+Q0MBLNbY4u12tR7N/hAAoPYbgKy2CUR4b30f3SmmCDUYxkpeF+1flcO
-	XM/kTOMbCKwVRxp1YXsOBwWjnDPIcZQurpltvRK5v9IAqrFQPmpYBvzOTTNgeNyJOAaMKufsDAywt
-	wbAKnlmw==;
+	bh=smElB+v5YZUprs+9gXaadARMhHFqAhYG7NdRwP6D9JM=; b=gi+1JGS9kfTHe8Gsul8KBB60nX
+	k64+Yiie9rgmqVwtVWGW04o/2DVQvByXmgQkbdABNM3YI7sduF8/9XupIA7IPOiwmXn8KaJxuml4K
+	yUEKOwgkLP/xagTbQouzJMMRIaK5JYQMYJrBCj2MzY4A8/rM/hkKkJMObkNx05As9MKdt3SUVk73f
+	5h1BzJxh7GLk0mlc9+7tdt9od5CQeiSKqvi+Sk0Wuc3Xvbrd7TwkvPorfSpIkX9GtfP8V7OXiv+y7
+	DLWWdI3GrkPcL4tP2iO3Iaine4FUlOtbHyq13VT3PP94CGzCjMZ1jRa0ndfCWFsdaChMIYktydM0x
+	6xs8wOtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhBG-00000003758-0nJo;
-	Tue, 10 Nov 2026 08:26:14 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQhBC-0000000373u-35M5;
-	Tue, 10 Nov 2026 08:26:12 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 11A5E42155;
-	Tue, 10 Nov 2026 08:26:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBF9C1F008A1;
-	Tue, 10 Nov 2026 08:26:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794299169;
-	bh=KGB9UbUuUIBLuGWbVi5rtXFYasd5PhFrkHNVfvzg7ao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Vy3sNs4Bee6tkGrdkKtqDQq1tpYCsigpN8wMAJ8/mw3580gNYKQAY2vsi1qmA8RHq
-	 05sC8wY6Vq7zO51quYwNuXtIQ6q6jQcXMNsmT3APEwmoiJBIfMmlU2A6GTy4OnbKoW
-	 j0jZIJyRYCsN8Un8fK9m79sq8Cy8rGBhCVDjwfTL3fSkzhWTKTiQOT+CijysuikkC4
-	 oi2vd0TVyOyU046uHp3JQ2TWzKHKPZ4KlnqKBmZigAJeYING07/ANcJAB15HoMwK3U
-	 EWzhImAkrWenIWitw+rx7362zlnGga9dbpmm3fE2I3oVGXyaR8cJ3EF4TH82noWw13
-	 5MSNiFgIGh5pw==
-Date: Tue, 10 Nov 2026 09:26:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jiebing Chen <jiebing.chen@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org, jian.xu@amlogic.com, 
-	shuai.li@amlogic.com, zhe.wang@amlogic.com
-Subject: Re: [PATCH v8 1/5] dt-bindings: clock: meson: Add audio power domain
- for S4 soc
-Message-ID: <20261110-puzzling-holistic-firefly-acea4a@quoll>
-References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
- <20261110-audio_drvier-v8-1-1489241e4c83@amlogic.com>
+	id 1xQhCR-000000037Ie-2Wbi;
+	Tue, 10 Nov 2026 08:27:27 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQhCP-000000037I8-33Z9
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 08:27:26 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 654211516;
+	Tue, 10 Nov 2026 00:27:21 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 02C0D3F85F;
+	Tue, 10 Nov 2026 00:27:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794299244; bh=OiH4/fPjG8Ry4ZmCXdz4mAOVD/Wuev+W0DjPiniPLjQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YZGqvnmhoFCwQhy0c9nOmLxhT29f6xcSqYFGrcvUvJ+aNNy0Wc5Uapq9jKkKI2kBv
+	 Z1GAkY0rVUvArwXYlOJqYTLZIjNRqOhssYXnylCVcT+UWkeuPJxfjnhBr/ow80O8A0
+	 zY7cd96ZltCtjHRj6sxN8POR22ktrv1YfLdhvB9Y=
+Date: Tue, 10 Nov 2026 08:27:18 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+	sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+	f.fainelli@gmail.com, vincent.guittot@linaro.org,
+	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+	d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+	philip.radford@arm.com, david@kernel.org,
+	souvik.chakravarty@arm.com, leitao@kernel.org, kas@kernel.org,
+	puranjay@kernel.org, usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 04/35] firmware: arm_scmi: Allow registration of
+ unknown-size events/reports
+Message-ID: <avLVZg-jqC5jXgY2@pluto>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+ <20261109091221.2532706-5-cristian.marussi@arm.com>
+ <20261109140736.00007915@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261110-audio_drvier-v8-1-1489241e4c83@amlogic.com>
+In-Reply-To: <20261109140736.00007915@oss.qualcomm.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_002725_854986_13ABD6DA 
+X-CRM114-Status: GOOD (  25.77  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,18 +87,73 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 10:28:24AM +0800, Jiebing Chen wrote:
-> The audio power domain has been found on S4 device.
-> It must be enabled prior to audio operations.
+On Mon, Nov 09, 2026 at 02:07:36PM -0800, Jonathan Cameron wrote:
+> On Mon,  9 Nov 2026 09:11:50 +0000
+> Cristian Marussi <cristian.marussi@arm.com> wrote:
 > 
-> Signed-off-by: Jiebing Chen <jiebing.chen@amlogic.com>
-> ---
->  .../bindings/clock/amlogic,axg-audio-clkc.yaml          | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+> > Allow protocols to register events with build-time unknown sizes: such
+> > events can be declared zero-sized and let the core SCMI stack perform the
+> > needed safe-net boundary checks based on the configured transport size.
+> > 
+> > Reviewed-by: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+> > Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> > ---
+> > v14 --> v15
+> >  - better commenting
+> 
+> A few bits of feedback on the comments.
+> 
+> > v12 --> v13
+> >  - improve variable naming
+> > v10 --> v11
+> >  - account for ktime_t field when checking boundary
+> > v2 --> v3
+> >  - split out of previous patch on protocol notifier
+> >  - use max() instead of max_t()
+> > ---
+> >  drivers/firmware/arm_scmi/notify.c | 28 +++++++++++++++++++++++-----
+> >  drivers/firmware/arm_scmi/notify.h |  8 ++++++--
+> >  2 files changed, 29 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/drivers/firmware/arm_scmi/notify.c b/drivers/firmware/arm_scmi/notify.c
+> > index bc046f2f83a6..a30589c9b377 100644
+> > --- a/drivers/firmware/arm_scmi/notify.c
+> > +++ b/drivers/firmware/arm_scmi/notify.c
+> > @@ -595,7 +595,16 @@ int scmi_notify(const struct scmi_handle *handle, u8 proto_id, u8 evt_id,
+> >  	if (!r_evt)
+> >  		return -EINVAL;
+> >  
+> > -	if (len > r_evt->evt->max_payld_sz) {
+> > +	/*
+> > +	 * Events with a zero max_payld_sz are sized to be of the maximum
+> > +	 * size allowed by the transport: no need to be size-checked here
+> > +	 * since the transport layer would have already dropped such
+> > +	 * over-sized messages.
+> 
+> 'such' here to me refers to the first bit. That is, those that are "
+> sized to be the maxim size allowed by the transport.
+> 
+> I'd just drop 'such' and have
+> 	 * since the transport layer would have already dropped over-sized
+> 	 * messages.
+> 
+> as that avoids this potential confusion.
+> 
+> > +	 * Note that, though, while this protects from buffer overruns, it is
+> 
+> Drop 'though'. Doesn't add anything and leads to odd flow to the sentence
+> 
+> > +	 * no more possible at this layer of the stack to detect zero-sized
+> 
+> 'not possible at this layer ..'
+> 
+> The 'no more' refers to code that isn't here if someone reads this code
+> once the patch is merged.  So if you want to refer to what changed, keep
+> it in the patch description not a comment.
+> 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Thanks...it seems like the more I try to write clear and meaningful
+sentences in English the more I mess up :D
 
-Best regards,
-Krzysztof
-
+Cristian
 
