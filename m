@@ -2,89 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF70C606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:09:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E64606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 12:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x72dDsk9;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=fiBcD4RE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IZx2npIH;
+	dkim=pass (2048-bit key) header.d=fujitsu.com header.i=@fujitsu.com header.a=rsa-sha256 header.s=fj2 header.b=RvrERWya
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Hyn6yw9zH4JaEWeeBt3E84RddFmv8NGvbZl0QTfTCp0=; b=x72dDsk9zWZOoB
-	kpajCAB6cNeQhrMDA52I6gJbenK9K1oNlTC+pF2zVK+uzUjtb2eAb/fqpCNrf3/KrZ8rI/mXz78lE
-	+DPc3e+zXFjNdBDnss+BCp9J+tPVqCK3OLUlaZ0myldOKOP1adwNhSN8gdr70e/vGlqezs1H+GBRS
-	irSnZ9ZyMujclORwQd9wxQgkmIMJQtHFmbXPrhEZoYgrF4w80b69TK3RAXKOX285MlG5xQ9/B1cTy
-	yyDmIYHylufYKr9wHXtYxF4XIDLUDB5lfUBh2MjYzou63DV7L4WkQWMQUZtQ0FDUX/ssEHVDFem/W
-	9Ahw7SEX7GuN+j+Sln/w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=xPi/3K5EgSO8uxLuJimni9tpMpXLjb9QZkfq/GsXYRI=; b=IZx2npIHiHy7gSj5WepoPACckB
+	Os9/WHzwKpLx+Rv16AzR+7l+Gy94An53Q7sZKHW/CuFJw6+c0gQXrvtHIf9FYUnmqCQfKLNjssAzf
+	x5OaPEaClzgeWwZDdV8wb3/yJ+L5YJNfvmEwaeeFLhw6mz3Akck1lh9Fki79DFKsBFhgTQg0yO3y3
+	SnX1t0UCR8Hs/8tCm06+AVeXgkubIi8WraHyDT3+LNCPUb33jK/x/juBTtUiSBi6TvFqmGUMlW+iY
+	GeuueDhmQm+AcS5YowEOBc2xPIE0feLUoAZjEccA7AA6OxlHUZGk/7ZHv0SIBBRHk7Hq+Grlz9oSQ
+	FZxbBKjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkfS-00000003lNi-2ul2;
-	Tue, 10 Nov 2026 12:09:38 +0000
-Received: from bali.collaboradmins.com ([148.251.105.195])
+	id 1xQkhf-00000003mGg-3ntP;
+	Tue, 10 Nov 2026 12:11:55 +0000
+Received: from esa3.hc1455-7.c3s2.iphmx.com ([207.54.90.49])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQkf1-00000003ktG-1ysw;
-	Tue, 10 Nov 2026 12:09:13 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794312549;
-	bh=EpwACAMOccIeV+3AajABeF3S4pStQqfYZy2MXRRy7zw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=fiBcD4REDR2aqkHpd/AtYR2Cn/abEoQl9FMTdQBLVSMT9y0EsSxc5wLUNSW3+irmi
-	 MeavSWV4VTe95Dp+GUHb4pwo7ManapuBN4FWd4gClbGtB80o6d3R+9xk76LnSB+E2w
-	 bKoJ89ko2uXBpwWIQwwsneAS1T4LcQXriwlBFlmOUqINV3Tg0QGVCmQUfAfoWrfj9F
-	 OqoANYS0vFkhX2hT0A8pgU3Lbg0G7SpUP1oMiCJlp6MlDC68NZ7qUfMj2eflLU/hJS
-	 +rCR9E1dDWqUkiiNZe74QODAhI8YF7tu/G9kslQ4WWw+/rwbAdBi9BTITtsdCaNUbS
-	 roR/xNBabq5XQ==
-Received: from yukiji.home (unknown [100.64.0.131])
+	id 1xQkhc-00000003mGB-1dG4
+	for linux-arm-kernel@lists.infradead.org;
+	Tue, 10 Nov 2026 12:11:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
+  t=1794312712; x=1825848712;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2Eio9nYqq1HUIYESAuWhCyeK9Re+Weog6uesd4h1oSo=;
+  b=RvrERWyaQTAcZGZxZJ1MYJfRYHIyqRa9GU0mBfujm15cdjNKstBWKq7H
+   0qkG0DgmhaUoC0VKXVMnVYDB6O0OhFy0zwRCaH0Xh5hyT/348MdpFAQ/2
+   iNrWeG0nr3eejG/yzyEmrjhmzUP/DEEvt/XJEAG3kQ0eNoqTW6LDI3+PK
+   LGfYleajRYUXF2H4e+9ccbxhyDgcyiIo/cYy4Ob1F1InQ/RU8JF/9lnF1
+   wyBQiTvQ3OsLwyYbeblPVvZhm/hjTxckteKkqGvtpTkO6B/6W9RgIM7Wn
+   nzxXXqVrMgz6dN4JchA3Ry3VXgfgRtAXghFA4KXaAIKeLSL/bcA73HMrg
+   w==;
+X-CSE-ConnectionGUID: YSQgYwo8THKJ6FollIJuKw==
+X-CSE-MsgGUID: AZiORv+3TVOYyztERT1uSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="261201955"
+X-IronPort-AV: E=Sophos;i="6.27,205,1786978800"; 
+   d="scan'208";a="261201955"
+Received: from gmgwnl01.global.fujitsu.com ([52.143.17.124])
+  by esa3.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2026 21:11:50 +0900
+Received: from az2nlsmgm2.o.css.fujitsu.com (unknown [10.150.26.202])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id AB0B517E0A6C;
-	Tue, 10 Nov 2026 13:09:08 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 10 Nov 2026 13:08:57 +0100
-Subject: [PATCH net-next v5 10/10] net: stmmac: mediatek: add support for
- MT8189 SoC
+	by gmgwnl01.global.fujitsu.com (Postfix) with ESMTPS id EB5CE42A30D
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 12:11:49 +0000 (UTC)
+Received: from az2uksmom1.o.css.fujitsu.com (unknown [10.151.22.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by az2nlsmgm2.o.css.fujitsu.com (Postfix) with ESMTPS id 9A0C11C00133
+	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 12:11:49 +0000 (UTC)
+Received: from FCCLS0092175.localdomain (unknown [10.9.61.34])
+	by az2uksmom1.o.css.fujitsu.com (Postfix) with SMTP id E5AFE1800A47;
+	Tue, 10 Nov 2026 12:11:40 +0000 (UTC)
+Date: Tue, 10 Nov 2026 21:11:39 +0900
+From: Kohei Enju <enju.kohei@fujitsu.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org, 
+	kvmarm@lists.linux.dev, Catalin Marinas <catalin.marinas@arm.com>, 
+	Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>, 
+	Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>, 
+	Alexandru Elisei <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>, 
+	Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev, 
+	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
+	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
+	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
+	Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com, Lorenzo Pieralisi <lpieralisi@kernel.org>
+Subject: Re: [PATCH 00/11] KVM: arm64: CCA: Prepare Realm memory management
+Message-ID: <avMI__K5XBf3z7wv@FCCLS0092175.localdomain>
+References: <20261102141304.126883-1-steven.price@arm.com>
+ <avLgdqlfUPMAI-r9@FCCLS0092175.localdomain>
+ <e9bc3885-4e29-44a0-a186-463337f57d9e@arm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261110-dwmac-mediatek-mt8189-v5-10-7d99d6292962@collabora.com>
-References: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
-In-Reply-To: <20261110-dwmac-mediatek-mt8189-v5-0-7d99d6292962@collabora.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Biao Huang <biao.huang@mediatek.com>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Eric Dumazet <edumazet@kernel.org>, Eric Dumazet <edumazet@kernel.org>
-Cc: kernel@collabora.com, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794312537; l=3068;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=EpwACAMOccIeV+3AajABeF3S4pStQqfYZy2MXRRy7zw=;
- b=9M/vPqjjzuqT4acDAxHr/YQw+fxbDqX6SFYhC5AmFqroFAf+8d45FtEpI5RFSa1kUNCxk9sZQ
- 6FHLuqvWszUAwApu/T4Go0WAojJinW5zZjDMm/Hwu0hJ6y3HX3qtdAs
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <e9bc3885-4e29-44a0-a186-463337f57d9e@arm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_040912_447401_E4BC4049 
-X-CRM114-Status: GOOD (  15.38  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_041152_731198_405B9E69 
+X-CRM114-Status: GOOD (  21.76  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,92 +102,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Like MT8195 SoC, MT8189 SoC uses the Ethernet control registers from
-the peripheral configuration (pericfg) but at a different offset.
-It also has different RX and TX internal delay stage dividers (290ps
-for MT8195, 180ps for MT8189), and by consequence a reduced value range
-for these delays. It finally needs additional feature such as the
-TX clock output enable one.
+On 11/10 11:54, Suzuki K Poulose wrote:
+> Hi Kohei
+> 
+> On 10/11/2026 09:24, Kohei Enju wrote:
+> > On 11/02 14:12, Steven Price wrote:
+> > > This series adds the memory plumbing for CCA building on the basic
+> > > plumbing[1] that has just been merged.
+> > > 
+> > > These patches add the internal realm VM state and RMM feature checks,
+> > > prepare realm stage-2 setup and teardown, and provide RTT mapping and
+> > > invalidation helpers. Realm memslots are now contrained to the lower
+> > > half of the IPA space, because faults treat the protected and shared
+> > > halves as aliasing. The final patch then connects these helpers to the
+> > > KVM stage-2 MMU operations.
+> > > 
+> > > There's also an integration branch[2] that builds on this series and
+> > > includes the realm descriptor creation, REC entry/exit, activation and
+> > > the new uAPI. This series by itself is also available as a git
+> > > branch[3]. However the new code isn't generally active without the full
+> > > integration branch.
+> > > 
+> > > [1] https://lore.kernel.org/all/20261007073537.2454351-1-suzuki.poulose@arm.com/
+> > > [2] https://gitlab.arm.com/linux-arm/linux-cca
+> > >      branch: cca-host-mm/v1/integration
+> > 
+> > Hi Steve, thanks for your work on CCA upstreaming.
+> > 
+> > For testing purposes, could you clarify which TF-RMM revision (or commit
+> > hash) you tested with? Although this MM series itself doesn't seem to be
+> > particularly sensitive to changes in TF-RMM, testing the integration
+> > branch could be affected by subtle changes in the RMM.
+> 
+> Tip of both the repositories should work (tf-a and tf-rmm).
 
-Thus, add compatible, clock definitions and specific platform data to
-support the MT8189 SoC.
+Hi Suzuki,
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- .../net/ethernet/stmicro/stmmac/dwmac-mediatek.c   | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Thanks for the clarification.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-index 1a0ab95dfbf0..ce232313014d 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
-@@ -42,8 +42,15 @@
- #define MT2712_RGMII_DELAY_MAX		5440 /* 32 x 170ps */
- 
- /* Peri Configuration register for mt8189 */
-+#define MT8189_PERI_ETH_CTRL_OFFSET	0x270
-+
- #define MT8189_CTRL0_TXC_OUT_OP_EN	BIT(20)
- 
-+#define MT8189_MII_DLY_STAGE_DIV	180  /* 180ps per stage */
-+#define MT8189_MII_DELAY_MAX		5760 /* 32 x 180ps */
-+#define MT8189_RGMII_DLY_STAGE_DIV	180  /* 180ps per stage */
-+#define MT8189_RGMII_DELAY_MAX		5760 /* 32 x 180ps */
-+
- /* Peri Configuration register for mt8195 */
- #define MT8195_PERI_ETH_CTRL_OFFSET	0xFD0
- 
-@@ -124,6 +131,10 @@ static const char * const mt2712_dwmac_clk_l[] = {
- 	"axi", "apb", "mac_main", "ptp_ref"
- };
- 
-+static const char * const mt8189_dwmac_clk_l[] = {
-+	"axi", "apb", "mac_main", "ptp_ref"
-+};
-+
- static const char * const mt8195_dwmac_clk_l[] = {
- 	"axi", "apb", "mac_cg", "mac_main", "ptp_ref"
- };
-@@ -440,6 +451,20 @@ static int mt8195_set_delay(struct mediatek_dwmac_plat_data *plat)
- 	return 0;
- }
- 
-+static const struct mediatek_dwmac_variant mt8189_gmac_variant = {
-+	.dwmac_set_phy_interface = mt8195_set_interface,
-+	.dwmac_set_delay = mt8195_set_delay,
-+	.clk_list = mt8189_dwmac_clk_l,
-+	.num_clks = ARRAY_SIZE(mt8189_dwmac_clk_l),
-+	.dma_bit_mask = 35,
-+	.mii_delay_max = MT8189_MII_DELAY_MAX,
-+	.rgmii_delay_max = MT8189_RGMII_DELAY_MAX,
-+	.mii_delay_stage_div = MT8189_MII_DLY_STAGE_DIV,
-+	.rgmii_delay_stage_div = MT8189_RGMII_DLY_STAGE_DIV,
-+	.peri_eth_ctrl_offset = MT8189_PERI_ETH_CTRL_OFFSET,
-+	.mac_txclk_out_en = true,
-+};
-+
- static const struct mediatek_dwmac_variant mt8195_gmac_variant = {
- 	.dwmac_set_phy_interface = mt8195_set_interface,
- 	.dwmac_set_delay = mt8195_set_delay,
-@@ -729,6 +754,8 @@ static void mediatek_dwmac_remove(struct platform_device *pdev)
- static const struct of_device_id mediatek_dwmac_match[] = {
- 	{ .compatible = "mediatek,mt2712-gmac",
- 	  .data = &mt2712_gmac_variant },
-+	{ .compatible = "mediatek,mt8189-gmac",
-+	  .data = &mt8189_gmac_variant },
- 	{ .compatible = "mediatek,mt8195-gmac",
- 	  .data = &mt8195_gmac_variant },
- 	{ }
+Then, unless otherwise specified in the cover letter or elsewhere, I'll
+assume that the latest revisions of both repositories are expected to
+work together going forward.
 
--- 
-2.56.0
-
+Thanks,
+Kohei
 
