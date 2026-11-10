@@ -2,107 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAA6606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B98606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 16:48:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v/Gh9D4s;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wHv0ZVVL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=44PEiFaj;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=M94WyPkW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=dCfP6OhX1xgWnjMEw/Fwz/hUIMTroe2e1vks4lC1ucM=; b=v/Gh9D4sKS8wPE
-	mVu8HNYe25rTLm/aZCiahg3yRHTfyqi/FdUf4C2arIdDoEg2HbvDwLzQZN8Ay8OBvTPy0z3Bv/0Pm
-	lQfBCyswEpjdKNtwPjrVjfKbqvbthLzXMpyC/G61UoIMdTctL6Rpw2uaen742mzJGdWpejpy8mQGr
-	E5nK26UT1XAT/2yfRNsAf1ic7ruDEOnkUgPzWPVaDrCxnjM7BAk+BZ6itCh4Gm42h8fWgMHdNtmxh
-	ciPdh9/4aRnxooZcsf7pMCEL9TrPogeB1yUBb6yvcyoDilWFM6zgWylv+FOznGixtzbqn3pxyiZw9
-	VJAbI48L/tTOwRCKO8Dg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=4UCgQ7nO6Eimv1yLPkGHYS65lqVgFv6VK2LWqH/eDLA=; b=44PEiFajfsM9zfbZVDqjiX54hO
+	6lNetz1kgEmYaCcV7B4wXOFspxD9J8UuSraZFx7g+15+D1HmdNEynKTNOt86eXHhPodmZlNaPnFx6
+	43Et+0OZcCbG0AyPsvwXd+utaKzsnnvlCGVXXxHbtlUm4vQFJaUhgQbUQW0nfjSg9O3S5SiLG+Ubf
+	w31vqyMccbCdImpzJd3PBwCRk0nKuZlZ76h+icarCpOgDDnQ5Kh/PzJCXcSDnedlsyYFWQqffCKQr
+	8EUasfz3MCjZ1F6DqTX5AX3UyVOzaAzytaLB1rJ/HO9pa+0C1tiCWFHDH0DmUKB19BKcXE7gtMlZd
+	77+CRutg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQp0H-00000004aYB-41lC;
-	Tue, 10 Nov 2026 16:47:25 +0000
-Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	id 1xQp10-00000004amo-04K3;
+	Tue, 10 Nov 2026 16:48:10 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQp0C-00000004aVn-2JGb
+	id 1xQp0u-00000004aiY-3aKj
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 16:47:22 +0000
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4a4d7ae1ae9so20495765e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 08:47:20 -0800 (PST)
+	Tue, 10 Nov 2026 16:48:08 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4a5087a5348so19579845e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 08:48:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794329239; x=1794934039; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=dCfP6OhX1xgWnjMEw/Fwz/hUIMTroe2e1vks4lC1ucM=;
-        b=wHv0ZVVLTJH3lHRzUDzwEzc8dLmECZy67pzIsGsEMqGuYsYdhVYknldPOEUfy4IJb7
-         GkL+SnvhFBstaeOl+XSAwD8ky+kWfRHzq3jWOllJipM6xbXB6PDVbiQ9EjssK1qw3jL6
-         cckegOuVFCK7VWAdHJHPApvOciEAtiYe8Sk6AzX0SDOwZKp5I7tu7uMz7KwieU2WMNu9
-         paGWz5NdjGfHnCGXeBSa7jwVWjTsAwuej/qW4vf7frgKaRglHcTFobm3Dde6jcsBVkWV
-         w6Lt6sfLGj30AYVvZsOe/jn6Xqs1O3zJnYVVU2UHJM12Q5qLGJ6UnjU+CXLDo63Qb68b
-         Tz4w==
+        d=gmail.com; s=20260707; t=1794329283; x=1794934083; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=4UCgQ7nO6Eimv1yLPkGHYS65lqVgFv6VK2LWqH/eDLA=;
+        b=M94WyPkW10PSuQ76Kn8JhLT45rwdiw7HJZssu542irtYTvzYYDKLpjjS656wBWW44T
+         6cQAxSaLwtR2nkF965BWa7gcLzmCv7luBfVeDrmfBGI2lcyvTkVQfy4r+6NsS9fh7KXO
+         WKc7zNZSeQilM0VPJgMIJEVmmw5cUSMfiim/2eDwyOIc2QV+SBKIK6LDnc3bATiuDOqp
+         OGsCsCL+ktnkxbdB2MhJQBQ8GnAJ4PNwtp57cuaIBPlyiAycGDq6wj3MVxOA34OEIIKL
+         nzXzLfntLQddFJQzIUO5AhS9b/ysjOdPpt2PIVuTAHf8HaNCsHzu5CB62p8ZXEdtyWg0
+         uqXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794329239; x=1794934039;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=dCfP6OhX1xgWnjMEw/Fwz/hUIMTroe2e1vks4lC1ucM=;
-        b=pQoL61h5muF8IXY8cS2S1NffsQCcaHIti919jUJwZGhClbDYSNrBxyHpDbusbAFkbN
-         vb+UiUeA8OsduiGNEjkMpLL8MZRYXJwmTda+8ef3jyk4x+CYGqkc2urvKFQ1mzYrMKW1
-         Rx09nUWfOclBKQukIm0ot3nS5dKmUIg8PxV+aZMv2AASwD8ABAJ0ipwYMk3rlRasBPx8
-         ymFAN9TSA0uD8D2z2kabT1fQHuir0bJ9uVHW+x3kDeHUcnI4AnC+WL44eFpDmiTBvwbe
-         A5aUK4WoRbI9hs8txgWGHuXSp+kFBcQ/xI+/JIHZWyhdHc3QuAWQh0r1a8wFi1Mdl1B+
-         SSDQ==
-X-Forwarded-Encrypted: i=1; AL+hErHjb3Pxk0VTkdK/eSMiseKHhHrnsTnYffa9JTDivOFbZqy6rlrSPRHXy+Xm7oL363VLTY8GM0Xm0CDugCqFtK3m@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Y5WmrvfidnkZdj5Nnn7jSXTUiULX2YvC+w5aBWpfPb/uPN8sP
-	Cq+htq+V9Gri81QRwnOUoYanBOgnD1UFqzO/ElmBtrYMFL0aw7b/sK1i
-X-Gm-Gg: AYBFou2qbRw+PcZiQyGM+zgQcYxIN7hNkG6zwnN2ZTkPmJNqsmbPwZ2X91C74YUxIYb
-	S4zAv9LNbjp+IcepKfBuTAX6eFJAUGBdMVsSSDY6L8d7fvvoxW67Csrv790ljF9yR2HWQ8HLiBM
-	gK++VxyGOI0uzuV0h73VXPxBH8Hh112pN+6vtqvqIPj9eIAh/OZtp9FfchEA/+SbMiPidJZXfie
-	wVAeC8BZjLUUowfLQxRIR13q33Cxs7pO3MDY+0rL2IR2SZTgg6BpB+CyKl3+Fy8fOubcZ2tVcn3
-	Ka9hlQWAnPlWzN+B2jVI1oWh7bZRtZEutjSLPg5FFFWMJE86CrL4ce04a8qpVCPuTc/hMKBjN4c
-	ouFNq4Flh+GkkOMVR/T82kERtB4reWWOJpz+crIPrKKJGC/lrF0kOEPEZ2kR423IC6V5XOTbE5m
-	oa/wo39reih1yf5UeASx+mtjDv5zFrQ/100rVmof4UjyJ14oVWoKJMFxWgew83GwAJM3i3S1KIt
-	udyYl7NalHaJjsVaHTTsaVTtsE901L6pVOIT3pOQQUpTln5DjTeqap8HXb/JHGR0VXOC9YqaonZ
-	ouc9v/q6F94Y8pKboauCeUMz6KLIki+oyW5ss4JPY8oHNVmolg0vy4JBoWorirEZYYr4xHTtF+p
-	aShvwlmSkqZ56ILCv1hGXhrDN
-X-Received: by 2002:a05:600c:8b21:b0:4a7:a5db:a93e with SMTP id 5b1f17b1804b1-4ba023085c6mr53018695e9.4.1794329238548;
-        Tue, 10 Nov 2026 08:47:18 -0800 (PST)
-Received: from PKL-HASEEBA-LT.. ([39.36.65.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fe9357sm84905075e9.9.2026.11.10.08.47.14
+        d=1e100.net; s=20260707; t=1794329283; x=1794934083;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=4UCgQ7nO6Eimv1yLPkGHYS65lqVgFv6VK2LWqH/eDLA=;
+        b=eBMHkF0JXtD/St42qrr4pgwtCBn+RSa6p6V9GWAwRyEEOi5tNVcyPeij8uxjv7f1Za
+         2AvQ3HTUy9oCBwUT6FVdaeN6sQC1glBErx3jlvpK/7Bt3MFMSZxV7S6eVKBg6BOjpICL
+         cg5LCOLaOm3FLT5k6zYWepN8dRoOFG0acyr1KLiuqRDToTG+cHABi7bmqcwKdnFcJOcE
+         EoyGO879Q1UfTFWps2muxevTRXZT5ioxUthGNNeKcGSniDfKv5WhBs15iOl6Ni+esSo7
+         uuHCcJzm693ZOo3nXJc82AhZb3U59ekKjmgWaRhO7resVyQ2bB/b5U6RyrqWoDyZJvBJ
+         WAwA==
+X-Forwarded-Encrypted: i=1; AL+hErHiZotSkXFsnIDmdn57/1xj+EmmG+z0ymPE/GcUBgI3Kn49PsitzDE4MTr17LbQmpUjWxHi4f9ROHUsKZW0zVp6@lists.infradead.org
+X-Gm-Message-State: APuU4Z9ZO9rEW+P5SbdAUnVyw9l6+iUxxCKijTH38l19AGcvajSlXwt5
+	y/JLH0+NKp+6q42YQaSky3gq2PwUr7gcD1TSiyNZ17qVwA7SSyCG0Suv
+X-Gm-Gg: AYBFou0BedyKj0tUQrQp8cN8l1LFr5E2DiHFg81twuYgoFbKHe0Y5VQ1YNeX2fqfh0P
+	0qs0mb3fGAIFEJf3qILzsU6V28aK8RVMP+agn8sIL5zkHirg5YKwZuwnFyPaMe4uVe8itTPxLCB
+	6u8MoWFXi8tyvGkXkqowso52dRJw9PzfqmPh9ERA6L5vi6aohLx+8wisPXsQeLiN+3cCzcueWjS
+	O0EPbOffXJ6Pgg2CkFAPXiRbhliNjBBLpdAr64uzuwgvs/JsuSnyN3HZwwG8mlonKs2PXVVZWx8
+	Sdy/OcjXn6FV4F6717chvelEDNPPaTAekaQf03NlZXr9pQk3KbiVwdBSy9sSFekMmDbGc5aLY/A
+	/au4O2U49aoefmyuBLnQvcjlwMM+zzKtmjpHSMARHF4i2zQUe556m5oZ7zZvBcDNawm/4Wj4GOG
+	dDGFvnDlrOeiPaModkBYQA/Ku89+chb72ss7XVt2EqBsh9O0bIr7iq7fpsnXpQPAuL6QUy26YmE
+	khYrxj+Gc8+zkGOVUBAEtctQgHdBzA6BDvXhflM8KUBNLxXGQ6sM2TVFkLx9QrUaZrSmxZjg70m
+	LsFPZTfsoICoUM5y8RXFsjSwto2LE08O+IAmWc5s9nmHM8rcjRjb6xs+d0X/8C9tJVdujdEUmRo
+	pZnBOoXcgBGNY4cU=
+X-Received: by 2002:a05:600c:19c9:b0:4a7:c366:d791 with SMTP id 5b1f17b1804b1-4ba02308537mr55624685e9.1.1794329282372;
+        Tue, 10 Nov 2026 08:48:02 -0800 (PST)
+Received: from zeus.unificl3slsbnxe8mz.com (212.71.14.70.adsl.dyn.edpnet.net. [212.71.14.70])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba0233e5d7sm58289665e9.1.2026.11.10.08.48.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 08:47:17 -0800 (PST)
-From: Haseeb Ashraf <haseebashraf091@gmail.com>
-To: maz@kernel.org,
-	Oliver Upton <oupton@kernel.org>
-Cc: Haseeb Ashraf <haseeb.ashraf@siemens.com>,
-	Fuad Tabba <fuad.tabba@linux.dev>,
-	Wei-Lin Chang <weilin.chang@arm.com>,
-	Joey Gouly <joey.gouly@arm.com>,
-	fahad.arslan@siemens.com,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] KVM: arm64: Resume stage-2 unmap where the walk stopped
-Date: Tue, 10 Nov 2026 21:47:06 +0500
-Message-ID: <20261110164706.582879-2-haseebashraf091@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261110164706.582879-1-haseebashraf091@gmail.com>
-References: <20261110164706.582879-1-haseebashraf091@gmail.com>
+        Tue, 10 Nov 2026 08:48:00 -0800 (PST)
+From: Sander Speetjens <sander.speetjens@gmail.com>
+Subject: [PATCH v3 0/5] firmware: raspberrypi: Style cleanups and fix child
+ device lifetime
+Date: Tue, 10 Nov 2026 17:47:46 +0100
+Message-Id: <20261110-fix-raspberrypi-firmware-v3-0-e001feb542dd@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/43NsQ6CMBCA4VdpbuZMW9I2MvkexqGUAy8RIVeDE
+ MK7G5gcWf/h+1fIJEwZKrWC0MSZhzdUqiwUpGd8d4TcQKXAauuN0QFbnlFiHmsSWUbGlqX/RiG
+ s6Zq8to0PzkGhYBRqeT7o+6NQ8OT8GWQ5TpPZ6wl0Mqgx6FB6m4LRqbl1feTXJQ097Ohkz0IWN
+ bq6Ja9ddCm5f2jbth+b+czmCQEAAA==
+X-Change-ID: 20261107-fix-raspberrypi-firmware-be9c602d6755
+To: Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
+ Stephen Boyd <sboyd@kernel.org>, Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc: linux-rpi-kernel@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ sander.speetjens@gmail.com, Manuel Ebner <manuelebnerli@mailbox.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1883;
+ i=sander.speetjens@gmail.com; h=from:subject:message-id;
+ bh=1sX+VjlacyXvU1AJ92+S1CM+u/53cA8H5C56y3oas8s=;
+ b=owEBbQKS/ZANAwAKAXjNeEUMBchnAcsmYgBq80q/J0bxEEftjI5WOvseJ8n8Q0hB4Z6sfzVaN
+ PAU821BhPmJAjMEAAEKAB0WIQRWUkqLABoRw+7JUQF4zXhFDAXIZwUCavNKvwAKCRB4zXhFDAXI
+ Z6P0D/4uSDa4m0EZZHbNneYA1Ef4CNP51jJKIzjQnUJFajfKPKEt5mM8+PiPXHET/ZvgTidg+1a
+ AhW+1KfPUtM2Rwgqq9iVFisWFTScAbLaG6lp0+7DOprxzqqR9KVFea+YB3BNJN1Bn/AnlTleaPK
+ wgEKahgWSp0o1G4DP4EtJ5H64nKbiJ1C96rrDZRJxd29MPcOzhfvebEjwvE0iu06ChKQxzBPjCh
+ Y5GsPcTTWWuYghBd8QIZOQLkpr0yOj6uNsAhjUnRV3Az9r1DwSeuPe/W6MSIvnWhGQafJrrXHb1
+ jsDU/HyJ1wbu78hHMcORuHZiMXRPp35eFdJRsc61EqxMCZ9+FzGbVSfDshUelVndbJCTQLG1PsZ
+ IUlwBeXV6Y4nuseczwUmpRyXfrxRs+7SeA89GIvNm5mEFO1P9Who3SZtMvHvDFQoB1US+SB9eov
+ a+0vxtsLKZSaq7wI7GeHczW7qZfPVcloGpdlhY28sGw8UhRQMhkysogP2ERnpMN1R3NBYBial94
+ i8phuG4yqdroSaoTr8K5KzrWBZB7Wppbe6/1Plaw3WZ0zvMDrUgReay4EVAskwmckiQU9Gyqzgh
+ AA+Ug6HQSfpIs/DCc5eIbzgR42DvY01uMmFXhkm1JoMUjfguJXyL4k27EKEw3llevaJYLtj+jmp
+ P1ZaqmP18/3J+Bg==
+X-Developer-Key: i=sander.speetjens@gmail.com; a=openpgp;
+ fpr=56524A8B001A11C3EEC9510178CD78450C05C867
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_084721_549697_F46D9855 
-X-CRM114-Status: GOOD (  22.94  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261110_084804_910110_4555BF59 
+X-CRM114-Status: GOOD (  11.79  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,225 +127,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Haseeb Ashraf <haseeb.ashraf@siemens.com>
+This series does minor style cleanups in the Raspberry Pi firmware
+driver and fixes the lifetime handling of the hwmon, clock and rtc child
+devices.
 
-kvm_vm_stage2_unmap_range() unmaps a range one block-sized chunk at a
-time. The walker steps over an invalid entry in one go, but the next
-walk starts at the following chunk, so an invalid entry larger than a
-chunk is visited once for every chunk it covers. Unmapping the whole
-IPA space of a shadow stage-2, as emulating TLBI VMALLS12E1IS and TLBI
-ALLE1IS does, takes 2^18 walks with 4K pages and a 48-bit IPA space,
-however little it maps. Each walk also ends with a range TLBI when
-FEAT_TLBIRANGE and FWB are available.
+The first five patches address checkpatch warnings (missing blank lines
+after declarations, incorrect indentation, unnecessary braces, and
+undocumented memory barriers).
 
-On an AmpereOne A192-32X (192 CPUs, Xen on KVM, 4K pages, 48-bit IPA),
-a full-range unmap of one shadow stage-2 took 0.82-0.94 s (mean 0.91 s
-over 192 unmaps) on 6.18.29. With this change and the mainline commits
-it builds on backported, it took 2.1-27.8 ms (mean 3.8 ms over 128
-unmaps), with 512 to 1024 walks instead of 262144. A TLBI VMALLS12E1IS
-trap that unmapped two shadow stage-2s took up to 1.85 s before.
+The final patch moves the hwmon, clock and rtc platform device pointers from
+globals into struct rpi_firmware. This pairs their lifetime with the
+parent device and prevents leaks or incorrect unregistration if the
+driver is probed more than once. It also checks the return value of
+platform_device_register_data() so that an error pointer is never
+stored. Registration failures are not propagated because the child
+devices are optional.
 
-Add kvm_pgtable_stage2_unmap_range(), which returns the address its
-walk reached, and have the unmap loop resume from there.
-kvm_pgtable_stage2_unmap() still returns 0 or an error, for its
-callers at EL2. The walk handles every entry it steps over, including
-invalid entries that carry state, so nothing has to be looked up
-beforehand.
-
-The unmap of a shadow stage-2 also drops the guest stage-2 records of
-the whole span the walk covered: nothing is mapped in the part it
-stepped over, so any record there is stale. Each walk that remains
-ends with the same deferred TLB invalidation as before. The spans that
-were skipped have no valid entry, so there is nothing to invalidate.
-
-Suggested-by: Oliver Upton <oupton@kernel.org>
-Signed-off-by: Haseeb Ashraf <haseeb.ashraf@siemens.com>
 ---
- arch/arm64/include/asm/kvm_pgtable.h | 18 ++++++++
- arch/arm64/kvm/hyp/pgtable.c         | 22 ++++++++--
- arch/arm64/kvm/mmu.c                 | 63 +++++++++++++++++++++++-----
- 3 files changed, 90 insertions(+), 13 deletions(-)
+Changes in v3:
+- Update cover letter
+- Remove braces fix
+- Update commit message 6
+- Link to v2: https://lore.kernel.org/r/20261107-fix-raspberrypi-firmware-v2-0-5bfe605a5cc5@gmail.com
 
-diff --git a/arch/arm64/include/asm/kvm_pgtable.h b/arch/arm64/include/asm/kvm_pgtable.h
-index 1c9c57c..4ed096f 100644
---- a/arch/arm64/include/asm/kvm_pgtable.h
-+++ b/arch/arm64/include/asm/kvm_pgtable.h
-@@ -725,6 +725,24 @@ int kvm_pgtable_stage2_annotate(struct kvm_pgtable *pgt, u64 addr, u64 size,
-  */
- int kvm_pgtable_stage2_unmap(struct kvm_pgtable *pgt, u64 addr, u64 size);
- 
-+/**
-+ * kvm_pgtable_stage2_unmap_range() - Remove a mapping from a guest stage-2
-+ *                                    page-table, and report where the walk
-+ *                                    stopped.
-+ * @pgt:	Page-table structure initialised by kvm_pgtable_stage2_init*().
-+ * @addr:	Intermediate physical address from which to remove the mapping.
-+ * @size:	Size of the mapping.
-+ *
-+ * Same as kvm_pgtable_stage2_unmap(), but the walk can end past @addr + @size
-+ * when it steps over an invalid entry that extends beyond the range. Nothing
-+ * is mapped up to the address that is returned, so a caller that unmaps a
-+ * larger range in chunks can resume from it.
-+ *
-+ * Return: the address the walk reached, which can be past @addr + @size, or a
-+ * negative error code on failure.
-+ */
-+s64 kvm_pgtable_stage2_unmap_range(struct kvm_pgtable *pgt, u64 addr, u64 size);
-+
- /**
-  * kvm_pgtable_stage2_wrprotect() - Write-protect guest stage-2 address range
-  *                                  without TLB invalidation.
-diff --git a/arch/arm64/kvm/hyp/pgtable.c b/arch/arm64/kvm/hyp/pgtable.c
-index 9c83837..b02f548 100644
---- a/arch/arm64/kvm/hyp/pgtable.c
-+++ b/arch/arm64/kvm/hyp/pgtable.c
-@@ -1197,7 +1197,7 @@ static int stage2_unmap_walker(const struct kvm_pgtable_visit_ctx *ctx,
- 	return 0;
- }
- 
--int kvm_pgtable_stage2_unmap(struct kvm_pgtable *pgt, u64 addr, u64 size)
-+s64 kvm_pgtable_stage2_unmap_range(struct kvm_pgtable *pgt, u64 addr, u64 size)
- {
- 	int ret;
- 	struct kvm_pgtable_walker walker = {
-@@ -1205,13 +1205,29 @@ int kvm_pgtable_stage2_unmap(struct kvm_pgtable *pgt, u64 addr, u64 size)
- 		.arg	= pgt,
- 		.flags	= KVM_PGTABLE_WALK_LEAF | KVM_PGTABLE_WALK_TABLE_POST,
- 	};
-+	struct kvm_pgtable_walk_data data = {
-+		.walker	= &walker,
-+		.start	= ALIGN_DOWN(addr, PAGE_SIZE),
-+		.addr	= ALIGN_DOWN(addr, PAGE_SIZE),
-+		.end	= PAGE_ALIGN(data.addr + size),
-+	};
- 
--	ret = kvm_pgtable_walk(pgt, addr, size, &walker);
-+	ret = _kvm_pgtable_walk(pgt, &data);
- 	if (stage2_unmap_defer_tlb_flush(pgt))
- 		/* Perform the deferred TLB invalidations */
- 		kvm_tlb_flush_vmid_range(pgt->mmu, addr, size);
- 
--	return ret;
-+	if (ret)
-+		return ret;
-+
-+	return data.addr;
-+}
-+
-+int kvm_pgtable_stage2_unmap(struct kvm_pgtable *pgt, u64 addr, u64 size)
-+{
-+	s64 ret = kvm_pgtable_stage2_unmap_range(pgt, addr, size);
-+
-+	return ret < 0 ? ret : 0;
- }
- 
- struct stage2_attr_data {
-diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
-index 1db10d8..55a3cb5 100644
---- a/arch/arm64/kvm/mmu.c
-+++ b/arch/arm64/kvm/mmu.c
-@@ -319,22 +319,64 @@ static void invalidate_icache_guest_page(void *va, size_t size)
- 	__invalidate_icache_guest_page(va, size);
- }
- 
--static int kvm_pgtable_stage2_unmap_tracked(struct kvm_pgtable *pgt,
-+static s64 kvm_pgtable_stage2_unmap_tracked(struct kvm_pgtable *pgt,
- 					    u64 addr, u64 size);
- 
-+/*
-+ * Unmap [start, end) one chunk at a time, resuming from the address that each
-+ * walk reached. An invalid entry that is larger than a chunk is then stepped
-+ * over once, rather than once for every chunk that it covers.
-+ */
-+static int stage2_apply_unmap_range(struct kvm_s2_mmu *mmu, phys_addr_t start,
-+				    phys_addr_t end,
-+				    s64 (*fn)(struct kvm_pgtable *, u64, u64),
-+				    bool resched)
-+{
-+	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
-+	bool lock_dropped = false;
-+	phys_addr_t addr = start;
-+	u64 next;
-+	s64 ret;
-+
-+	do {
-+		struct kvm_pgtable *pgt = mmu->pgt;
-+
-+		/*
-+		 * We may be raced on PGT teardown when we release the
-+		 * kvm->mmu_lock. That's fine as the PGT is legitimately no
-+		 * longer present.
-+		 */
-+		if (!pgt)
-+			return lock_dropped ? 0 : -EINVAL;
-+
-+		next = stage2_range_addr_end(addr, end);
-+		ret = fn(pgt, addr, next - addr);
-+		if (ret < 0)
-+			return ret;
-+
-+		next = min_t(u64, ret, end);
-+		if (resched && next != end) {
-+			cond_resched_rwlock_write(&kvm->mmu_lock);
-+			lock_dropped = true;
-+		}
-+	} while (addr = next, addr != end);
-+
-+	return 0;
-+}
-+
- static void kvm_vm_stage2_unmap_range(struct kvm_s2_mmu *mmu,
- 				      phys_addr_t start,
- 				      u64 size, bool may_block)
- {
- 	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
--	int (*fn)(struct kvm_pgtable *, u64, u64);
-+	s64 (*fn)(struct kvm_pgtable *pgt, u64 addr, u64 size);
- 
- 	if (kvm_is_nested_s2_mmu(kvm, mmu))
- 		fn = kvm_pgtable_stage2_unmap_tracked;
- 	else
--		fn = kvm_pgtable_stage2_unmap;
-+		fn = kvm_pgtable_stage2_unmap_range;
- 
--	WARN_ON(stage2_apply_range(mmu, start, start + size, fn, may_block));
-+	WARN_ON(stage2_apply_unmap_range(mmu, start, start + size, fn, may_block));
- }
- 
- static void pkvm_stage2_unmap_range(struct kvm_s2_mmu *mmu,
-@@ -375,16 +417,17 @@ static void no_stage2_unmap_range(struct kvm_s2_mmu *mmu,
-  * does.
-  */
- 
--static int kvm_pgtable_stage2_unmap_tracked(struct kvm_pgtable *pgt, u64 addr, u64 size)
-+static s64 kvm_pgtable_stage2_unmap_tracked(struct kvm_pgtable *pgt, u64 addr, u64 size)
- {
--	int ret;
-+	s64 ret;
- 
--	ret = kvm_pgtable_stage2_unmap(pgt, addr, size);
--	if (ret)
-+	ret = kvm_pgtable_stage2_unmap_range(pgt, addr, size);
-+	if (ret < 0)
- 		return ret;
- 
--	kvm_remove_guest_s2_mappings(pgt->mmu, addr, size);
--	return 0;
-+	/* The walk may have stepped over invalid entries: any record there is stale. */
-+	kvm_remove_guest_s2_mappings(pgt->mmu, addr, ret - addr);
-+	return ret;
- }
- 
- /**
+Changes in v2:
+- Move platform device pointers to rpi firmware struct
+- Link to v1: https://lore.kernel.org/r/20261107-fix-raspberrypi-firmware-v1-0-707362c710cd@gmail.com
+
+---
+Sander Speetjens (5):
+      firmware: raspberrypi: Add blank line after declaration in response_callback
+      firmware: raspberrypi: Fix indentation of return statement
+      firmware: raspberrypi: Add blank line after declaration in probe error path
+      firmware: raspberrypi: Document memory barriers in property list path
+      firmware: raspberrypi: Store child devices in struct rpi_firmware
+
+ drivers/firmware/raspberrypi.c | 56 +++++++++++++++++++++++++++---------------
+ 1 file changed, 36 insertions(+), 20 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261107-fix-raspberrypi-firmware-be9c602d6755
+
+Best regards,
 -- 
-2.43.0
+Sander Speetjens <sander.speetjens@gmail.com>
 
 
