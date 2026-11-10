@@ -2,103 +2,214 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3729A606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14DD6606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 15:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KQC0prwM;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=UXJ3h6Jn
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G/JwYGEt;
+	dkim=pass (2048-bit key) header.d=vtelectron.com header.i=@vtelectron.com header.a=rsa-sha256 header.s=DKIM header.b=OQVSB9Gh;
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.a=rsa-sha256 header.s=DKIM header.b=QDWlZPPv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:References:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+Sc8+E7NzYjXnp+JW1pX3E6P5CdKsFyTsU2jebgSnJ8=; b=KQC0prwMSduRTw
-	/RPwnczrxokx1FNxzo+rX2Wy4XphYsvX1x6KGTyiil7PfozlG/IVQIoec4jR1hZ1u6sFw/2q5JHkG
-	LT84feENUmKB3ASj99Kb6qXcT/3SkYhMS4j9Ul0WpBsRu1vcZoFWFpN/3XkVydu8T8phOhG4/7bSS
-	FYCcTCAI74OFos1TLk/J4GBUaYdV0oK2HyI+31URg+RwUU1oLsyJS+qWug3vUc9FhOFJatjm3IZ9k
-	vsZpN4CRFe+66LnwbtNv1L28senqV+c1u58S7p2cPzBlJ8n+EuPo8sIs3mhTpfEs29YEW5SnWMguV
-	8Zv8N+aluzGjLyc8OVgQ==;
+	List-Owner; bh=NKYT9g5PeHo9rz1Xs7oNrSVftCpyKqKw0cqdvwF/aHM=; b=G/JwYGEtsL+UhF
+	JFs5b3doRBjgz3ZE26uEO6G04+dL1wkpz0facTdIMXqflTvSulFye6pjLSGEe8dj8FK4OQKsWTNql
+	YOkud13O45O+zx9eyLE6OA5ih65UTOQTprduv9AUHD/DlS0fjgERvnBQSjESJw9kany6uVoISTglJ
+	MtIV9ze8/a4Qe4zmo+oKa+IUPLPyRAfL434/oHcqReY96hs935QTGOzmSMVhkb8naUusrLSzl4FC5
+	ezgY6RDkokgGwuzJefLKe0iQVqzt51beEEqdX6tWqKX2ENsaP4L663oamAtY6lSuPCN/1fjntzQV6
+	fzZodAp9SU6jU2TZdHwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnsp-00000004PfI-45Al;
-	Tue, 10 Nov 2026 15:35:39 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1xQnvT-00000004QMM-2Auh;
+	Tue, 10 Nov 2026 15:38:23 +0000
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQnsn-00000004Pbr-0aTM
+	id 1xQnvR-00000004QLR-0QTl
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 15:35:38 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a214c5c4c0so21503905e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 07:35:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794324935; x=1794929735; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=+Sc8+E7NzYjXnp+JW1pX3E6P5CdKsFyTsU2jebgSnJ8=;
-        b=UXJ3h6JnuO7DFRzwJZMO5ZyZINAlsEcLCuGdxmIB0AfMEBnIcMya1dAGivcHBeFggu
-         ZA7tUr8/+Lx1x2Txz3GtW9M9B6707rUxQBJR5Gi2dGy64XzYTYz3Jdwx1tZQwX1rEJoI
-         4e6pAwtOY5tAIftkLPg9OrdLC4icDW3C3KwVGCApdJ8zjCXBGoJXnSfo+k2h72xaD5E+
-         4QPOoGtVKb+Z+nnC26O+3rPb8/uyV4oDs9utvO+1OV5nsZkQkLo/zhMDjc/j7m8A/Byq
-         o29Y01mpSlgQOBEH+WfKZm3i5CsrAwbUccLe5M4rhsNRXeWcLIHqON0ZLSz/4JRfOZ5E
-         /S6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794324935; x=1794929735;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=+Sc8+E7NzYjXnp+JW1pX3E6P5CdKsFyTsU2jebgSnJ8=;
-        b=X92q3zvxheziLpRdDLyKq1Ejn0AuWj6p/nl06RLpRni1F5ZKoZ33+pk5+ARAM2UDQw
-         0Xpb9aThQT6yFxa0tcrYOaE+fh9rxCLAors0cl566quFypVUtdcb6dC1Ic259fafU4YI
-         qs/h+FCEzDYSRwqRugLMHtDFJeQWpPgr9/UKLKuJQwE6Z7SyTb0l5Gn/Qgm8NOUxBqrR
-         Ai9L7OLP/F6I1e8bnfLle8MpmK93FFjBkiiClCFKZAXMGadYdhHH//U/oL5hYlx95Lil
-         4QDtvM47l/R7b8oF1xMait4pMJCVxsAgzEAUX1IfVUTESeAxEgZAd0beb/sO8jh5idbN
-         LKYA==
-X-Gm-Message-State: APuU4Z/ZYvDS3pTWRb+8TuDtbIogdKGGizYWXnDc0CrkiJDZA1pkbgcP
-	SND0L68OyF88+NigpJH3UVCMI3PFnlgbJQ27FJTd7F00HOoLMvSPqsk+F2iPdaQ8NhQ=
-X-Gm-Gg: AYBFou0Ax73OxLRXEGt8+bQV8HZDaFCgsCX/jbjAMv31TsYCmXaFskAyYO60baJHK8O
-	lx9F5ThZ5kHJuW3J+3vbBwcPZojLttwKrYldOyBwKZqVhaWGqwLzCjPNctvWBtgaiEeaggF/fEW
-	Gtyio3NlMq6QweKbefmwKEP6RtIm9J0/AFY6f8BDkqYCHQ+UFPoNsr19yr3xsS9+VojYZ7/MSPN
-	obqxAvRuHRVVneZ69ynSXGaQG63kBOUOKkMulZ3dBnp7mA8kp5lACKzNA3LqSUFrTv/K3eGQwFo
-	VNLxqxzHvq7h9Wl2iEZGTSEU85We1DntJUYlboJUHvenJRKqfOY0haQFQhDGO431IERXUt67Llt
-	6SrIBaupJ+6Yg0FHm4Fp4ysF6nSXMoONQjkb/VS7bZkB2UtqJ51S9FXUgYMbYsOQf06iXEGbK1I
-	8Dpv4d04UaXEkXvxWZq3iS1FFq+NOU9lw3aBPHscYmd5ZHh00IOgKlCdVyjs/tKuaifjLV8pVbT
-	qIqiecour791RCaV2R0fDL61Wf4fMQsBazIMK36u/19+LuRpGHE+A5K7ZRpC5pTdD6FCTIKkyuq
-	4oz5slTwFmn5TDB63ffK4zjJX2nfG+PJVbU=
-X-Received: by 2002:a05:600c:3544:b0:4a2:a3b:7aa8 with SMTP id 5b1f17b1804b1-4ba023053d6mr59691535e9.3.1794324935300;
-        Tue, 10 Nov 2026 07:35:35 -0800 (PST)
-Received: from [192.168.1.3] ([37.18.141.193])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498363dffa1sm5521925f8f.39.2026.11.10.07.35.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 07:35:34 -0800 (PST)
-Message-ID: <85fb9774-c61e-4811-a023-b3171a289e21@linaro.org>
-Date: Tue, 10 Nov 2026 15:35:33 +0000
+	Tue, 10 Nov 2026 15:38:22 +0000
+Received: from pps.filterd (m0516787.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AAFBALJ4188857;
+	Tue, 10 Nov 2026 10:38:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vtelectron.com;
+	 h=cc:content-transfer-encoding:content-type:date:from
+	:in-reply-to:message-id:mime-version:references:subject:to; s=
+	DKIM; bh=NKYT9g5PeHo9rz1Xs7oNrSVftCpyKqKw0cqdvwF/aHM=; b=OQVSB9G
+	hW55mimjtsBJnYSwTyX0+38NthMKQBRTo3jyz/NZ41Zk4bFBPrzV0bApMQQLBE1l
+	Vb6BzMB1WUuWsQM3cRxOVpln2fyTkyeRdoyntaV39cv+xVtZuyM0OwtWaukTJU9c
+	iRI1QpoeqFiOKjtoTpqhLB3sOf6BrLCL1cagh5IAaywUAqqm09JCsz/+TNXXmO6+
+	fv07AT+gtI/QjdIZrqbVzw+Ablqa35nXM0LELKWnTC6To0pRIlNTjIC1hrCp42BJ
+	Y6J3PyZHFWaztWkpd05rmypyPfzKGbI7qgrV9zLcQEV3oq/BJAPbc9npL6WVYIyp
+	jnhs9bEUcjNWV0w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=NKYT9
+	g5PeHo9rz1Xs7oNrSVftCpyKqKw0cqdvwF/aHM=; b=QDWlZPPvfcOTa1AqqdFS9
+	02kPpHJoRdmoOhlgqjTY92woEQVfyoeMXCJm1te4gN9Kum1NUB+Qp9c1bM5b3otc
+	13iWVqiYaw9pklZDDpUVBuI0kn7atPZ+nfUgLZ3H0rZ+L+gyuYkwMu+b0mSeckwA
+	GSQOMgRl5tkSKiMso5zMxmPy7EdqT2Yv5x4QC3XwqMygeu6/o9A+VCcuAZ/NRS+5
+	KiXTiQdydXCqkZzNkz19DFQoBcI1WWDwIBLzKOHizLXSZcvQiQQdJkvnblA7/sWh
+	qwT/mfH82aGxaRL1f9A5F+Jz/Zrz/rKCW7rP0INpNeExoQplcq9GpjRieeQwOygJ
+	w==
+Received: from sa9pr02cu001.outbound.protection.outlook.com (mail-southcentralusazon11013014.outbound.protection.outlook.com [40.93.196.14])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4hv5pdr6rk-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 10 Nov 2026 10:38:01 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NonMVmbxe8RNspZkfxL0t+i63k5Q4iPNq0X7QmsKoezGKIzq72QPFS8gI2ChFhWZ8njvGblPP7hTexO/g8zxw+AOL+4jwhKv1p6I+q1UKK3VqpBAfpyQ09COJYe5RDKDaXQAPuqd7XAVubXz4HtA1lTGsh26g2QdsbngCJIrGe75Gkj4KlRGkYSfP1ZMICY/tNmnUmyhgJP71zHwKzTn1FmYbWoRV6rDWMXzKSdHMcexJ6o0XD2HS3g9B1dYC1NcoJGqecBJ87q+4Slm+J62MMNOIxSVN/xskHgUubdqRezEAkBOw4H5oUfe5bjcB7G82YsOeq6s29bPAohVO5McKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NKYT9g5PeHo9rz1Xs7oNrSVftCpyKqKw0cqdvwF/aHM=;
+ b=rjcDdK6vng8EdPq89KIXo0gmbqwnLRaX4UnH3HRgZSlGft8u/xY3Bmh4jww6B9gw3xrKqp9B6QyqnuuFHys+nSuv3XZgy6dsz02VUfaHcF9sdM9gZuLsY7BZweOUkTF+nbfOKdCRA/BkChYVWjS/x6s+kDItr58efZkdW5FiAY43xgoiNOe3YjkXI8rzdMFlJ2Z/BfPxcl8q2oFnVz+Fa2WPoPsZRc56Qu5VKatcR5JpPkTwYthnW+gU1ZiopM9k1qi1nTImGhf1N6nknGrjWVJY1kq8LKOaRRkQ7L1R3krxnM8l5eGgqNB8Kjsg92ZZ3Ty5aiCCsa4FdiSvXW/uEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=analog.com;
+Received: from SJ0PR03MB5469.namprd03.prod.outlook.com (2603:10b6:a03:28a::17)
+ by CH5PR03MB7862.namprd03.prod.outlook.com (2603:10b6:610:216::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Tue, 10 Nov
+ 2026 15:37:54 +0000
+Received: from SJ0PR03MB5469.namprd03.prod.outlook.com
+ ([fe80::2a19:76b2:e731:8c5a]) by SJ0PR03MB5469.namprd03.prod.outlook.com
+ ([fe80::2a19:76b2:e731:8c5a%6]) with mapi id 15.21.0592.012; Tue, 10 Nov 2026
+ 15:37:53 +0000
+Date: Tue, 10 Nov 2026 15:39:12 +0000
+From: Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Svyatoslav Ryhel <clamor95@gmail.com>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Bartosz Golaszewski <brgl@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Thompson <danielt@kernel.org>, Helge Deller <deller@gmx.de>,
+        devicetree@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        dri-devel@lists.freedesktop.org, Jingoo Han <jingoohan1@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Linus Walleij <linusw@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-fbdev@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-sound@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>, linuxppc-dev@lists.ozlabs.org,
+        llvm@lists.linux.dev, Mauro Carvalho Chehab <mchehab@kernel.org>,
+        mfd@lists.linux.dev, Michael Hennerich <michael.hennerich@analog.com>,
+        patches@opensource.cirrus.com, Pavel Machek <pavel@kernel.org>,
+        Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>
+Subject: Re: [PATCH 08/14] mfd: remove unused aat2870 driver
+Message-ID: <avM5EnC9yujUZcCO@nsa>
+References: <CAPVz0n0ryOns2sCJE_jFana9MVzwEj1QZuPEa8FNhGbHXnMB+A@mail.gmail.com>
+ <11652e5e-053e-45b0-98a0-0c1cb2aeedc4@app.fastmail.com>
+ <20260912232047.19c4cb10@jic23-hlaptop>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260912232047.19c4cb10@jic23-hlaptop>
+X-ClientProxiedBy: MA3P292CA0069.ESPP292.PROD.OUTLOOK.COM
+ (2603:10a6:250:49::9) To SJ0PR03MB5469.namprd03.prod.outlook.com
+ (2603:10b6:a03:28a::17)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 23/23] coresight: trbe: Report trace gaps with PARTIAL
- instead of COLLISION
-To: Leo Yan <leo.yan@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- coresight@lists.linaro.org, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Mike Leach <mike.leach@arm.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Tamas Petz <tamas.petz@arm.com>, Tamas Zsoldos <tamas.zsoldos@arm.com>,
- Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-23-3f57cf3199b1@arm.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <20261016-trbe_enable_disable_irq_handle_refactor-v2-23-3f57cf3199b1@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR03MB5469:EE_|CH5PR03MB7862:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44c1e083-4b3b-45a2-3c13-08df3f409584
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|23010399003|376014|7416014|18002099003|22082099003|10067099003|11063799006|261021135927099003|261028144727099003|261026121527099003|261009223027099003|261022075727099003|261022105027099003|261026140227099003|56012099006|261009221227099003|4143699003;
+X-Microsoft-Antispam-Message-Info: r4iYqk8EHHH+i/qgK9yrK95M6PAOmp2cwmEY2M8D/7Tkj3vz75/Y+CUeY2I0RNhZNltTDfbsPLz3HvFd02ePt8rInHyMSvjQZ/KQ1Ored1Za4tGaJSCPCgAy52OC9JfRAhp3k7J9bRd8YWpXetCpGvBqofsp04YkOB7cDMtvD269OZYKA75g3kGuo2unSg27ZqKHwzqSKLZmsEnTShOux+3o/J8cnlzVN0gnkKS8nmKWYwKuequdVi+4d5g6foMugkmocOayYO0Ax3bqTeiPPfy8Z7+oi1UCZK+buvIp7am5Q40BxdK9rLDXnawlaUd5mFGn2OhISsPKiU3rveCVWpmAlvofcKUKd11L1BUx/dSKI/ir7vV3tal3MKADfg4sJeFMT1iKH7h+qIdoztNnRWYII9ZGec9eAzHliRZV7NKCmcv4IVpQ3pvDzN5n0Lt2Ole71quqeAnpJ9nn7nsrS7W1NjEGWDkEIX++ZwRruHLpdRts2yCrl5qYQJLqtKrtZogkL3oM7Ab8OyzNR/0Dm2F+ukXoO3eHcH5E/IHrODaFQ10ydnVni3tewcSL/4yvIuwiyIOs12S71RuwlPw7T1Z5H7hnH0KHZ8xzCzLF3UfO0td9rs4fPxgeXpSJ34Ek
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR03MB5469.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(7416014)(18002099003)(22082099003)(10067099003)(11063799006)(261021135927099003)(261028144727099003)(261026121527099003)(261009223027099003)(261022075727099003)(261022105027099003)(261026140227099003)(56012099006)(261009221227099003)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkJuTGZWZDhzdnoyb3BSeUd6Q2xTbnBGeTBUQ1l6THdoNjVWTXpwblVMK1h6?=
+ =?utf-8?B?eWJXbkh2WHZvSENJRjNZRWFjVzRzTTh5OWJZNGthM0lydFVSenFuT0UrNUlx?=
+ =?utf-8?B?Y1ZqQ1JjNWJIWFIrT3BQMHgzc1lHNkRKRnRKVHpxVkxQNk5zZDhqVW5lS0JZ?=
+ =?utf-8?B?TXRFbmowSlA4emlpZG9PMjVSRkxHM1l1SWFhaFRRa0Z3MHMwRUFNZWZrQ1JZ?=
+ =?utf-8?B?YzNNWFlTeW5wNE9BUzhnNWpOY2lWWERzeEZEMEFjbFNINEpyZkhGbE9HZ3g5?=
+ =?utf-8?B?YXhlaThBTkd0TzFHdDFKMk9GOGs1YXczNUdZRFQvc0Vwb1JBTDZwd0U1TDVG?=
+ =?utf-8?B?ckZmcjV3dlc2WDFMWCtoMlhQZGNtalZWZlpqcFlNTEtHb09MNGVPelA2dzEy?=
+ =?utf-8?B?K1c1TFNPem53aThEaUJRZEVYZTNId2prRW9GOHFLb1dpcXgwcWVCZWF3TG4v?=
+ =?utf-8?B?L1BUTTFZUk5rZUNFMS81eUt5ZnJ1Qjdpa0lIT0ZnSUNialI1NVgrZW9pTW1i?=
+ =?utf-8?B?eGRENEEyM2F5dFMwQU12VEZIRHJ5SHdOcFBGMzhuS245OW5YUUR0VFNLL3o3?=
+ =?utf-8?B?T25JRTRSeXlLRmx1aXErVzRZY29QRy8vNXJ1bFdNYU4zS25DYXlIV1daenRK?=
+ =?utf-8?B?Q1dYUHFFeUtVRUlwUmR5bTJRdHcrYTBZcTFmaGJXc1Y5M3BWTTgrdUJyUERt?=
+ =?utf-8?B?OVdmYjI3T0xOREdOQUtXcmZPazdOd3lEVmhwU20rTlNtMFNtOE92VHhvdUJV?=
+ =?utf-8?B?dk1Dc1NRSzcrdDZTYWYyQSs5VDFldVRWTG56VXVEY0NoSG9Bb0ZMcGlLelp2?=
+ =?utf-8?B?N0pzYkRGWXQ5NGZJNFZlSGI4Y0xGRjNqT01Cc0FqSDl5N0tBb2Q0RjY0WnBX?=
+ =?utf-8?B?SDlwODNNY1NjRHJSVDJ0cGNodUtvWndiNzQ1cm5aSFh6eTk4RHVPQi9KR3Fz?=
+ =?utf-8?B?YmNGVkRkRWlpUDU5TEYxdERNdTc1V2ZQV2xZdUxvSXBIK21SNGkwSnphOHVE?=
+ =?utf-8?B?WE1wV1NTcU5NOWZkR1VNUGdLOFFYWXlQdkxxTHlhekFUbW5wSTc2bDVYZk5N?=
+ =?utf-8?B?dE1MR3FyUDFWYjBxZkJXbXAwZXRheHFnM1Q2RXU4VHg1ZGZpWHdpaGtIaTAr?=
+ =?utf-8?B?TmZQZ1hoajhhbnNBN0ZpTWlEY3dMNWQ1ZjVuMWw5NEQwVHZTZ01YN1JjYmNF?=
+ =?utf-8?B?SU1yZmwra3UybWw0TXRCMXM4cDhmMUlZWHBLSWVzM1ZMU0xLWTk4SWxsSWxm?=
+ =?utf-8?B?MUZXZkRFcytXTS9vR1QxTjRsQTcwN0thMFJIYmFibjA2clVPOWQyOW1mZ0s4?=
+ =?utf-8?B?NDR4M2ZSczFWZWttaEVqcnMwTUVWZFFtRWNUZnlsM3cwSFc3dzJqNFNUR0xS?=
+ =?utf-8?B?VDZVM01sQk5ZS1lZcTZCUjdlVkxZRFc3VDB2ZjlFRDIrZW9YcWhpOE1SY2tw?=
+ =?utf-8?B?b2kxWUhiZ2paZjdsTXhoSkFNYkl1Wm42MmgycHp1d0JGNVI3VHk4SGVxSHJF?=
+ =?utf-8?B?Y0dQdXIvZkVzb0t3MENRbmVzZldMd3p2UDViTGtKdkpDeE4yWUFoTDRoZUF2?=
+ =?utf-8?B?ZTZsK296N0xaSVdWb0VWbkNyL3pHL2lBdFNhaWNoS2IydnFxRW0vQ01DcEI5?=
+ =?utf-8?B?YXpIYjVtWDNDZmZraWR0RlJ1cmFNekIxQVRDM3RXWDEwMjRWOUN3VzYwU2tq?=
+ =?utf-8?B?OVByeEpOcmJ3cTlpVlVXQXZWZnhKaU1yejhUWHh0YzY3c0wxSmdISjVEQ1cy?=
+ =?utf-8?B?c1dDY3F6QnluQVJvbndWeDNyemhSZWsvQ2greFBpZFIxNkUvRWg4RHVHMldI?=
+ =?utf-8?B?K0NkUWMzRy9zMGNtYU1CeElKcXUzZllNSWdiQ3ZjQldPM1FhdWdPSFBwOXo3?=
+ =?utf-8?B?ZGRDMENzTTc0ZlBtL0N4bEJJS2FWem1ldFpTKzZtNnRWV1N5ZnpXRk0reUx1?=
+ =?utf-8?B?cjJlTnpJRVgzZHZZRk43ZC9CTjdONnlLL09CVzBuQjduUjg5WjllazJOMW9t?=
+ =?utf-8?B?cVlEVnBmSFZDQmlXa0lteWFOUGRtZ2ZrRmljTXZLZkhDVDV5VGJZQzU1S21T?=
+ =?utf-8?B?cjNyMWNmOW1SeWV4cGt1THZRUU1yQkFoUUl1VGtMRUYzYWFLd29lQjJHVDF5?=
+ =?utf-8?B?dkU1MjgzQ1dCTjMwL1BoWDRpTHM3YmRyQXNwZTV0ZEptTVdneTNUNWZ3akNz?=
+ =?utf-8?B?dkJyeFdqaHVwR1BhUWE2VUlHRFlMVE96Q2JnK2ZxQVVDN21IQ0U2dHdMTFdJ?=
+ =?utf-8?B?SlJacFV2NHNZNU4rNEM3a3g4Qko3NmRGNTNZejhtcFJnVkk4d0x0S0RIT1U1?=
+ =?utf-8?B?ZlhLSlVlWExhT1dtMTkrVkVNRld6a3N5UTUwdXZTUG9FY1EwYzl2dz09?=
+X-Exchange-RoutingPolicyChecked: Fg+4odflvOVg/qC3P0jcHuVvFP05frllrULlxzqWiA0rjJRtOCB7laUbrOKmNBlsobPk6qqFYc5dNMGNPTIMv3D9n/qaajEBGPKmXvJhW5QXfY1uVHj1qtBfl3RiZdF4/mKbbi3VPSkVjvVM23s8jn8TDewGkCV/2ocCz+x35DA4TP4SxxKHQkU/MvWGyy4cRDgd0NV01hdpyaZIqcd9cC2YEM0w7X1HD2CTlrLzahoEM9lGAhYtTbhjq94SILROlt98EzbW0Y7es9uujk7YF8jjl8RdFFsJrKbN7yKiJDjoNlnYOa0ZAEHbMrRNNio/Kvsn+rmDPPeKCUoAbq8cvw==
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44c1e083-4b3b-45a2-3c13-08df3f409584
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR03MB5469.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 15:37:53.1789
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 40YI0i0n9DrLFb8UnBhArvkQDq0TmY2CwSLUQ8JKLyyb0aZ0I5O5Jh5q9aRWmNPNDh68oDSdthtG2UlYbXpZcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH5PR03MB7862
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA2MiBTYWx0ZWRfX8Buy1TM7wQUd
+ xaUZRKo88Fv4gDL1P/kcE4ud+LRnchUcG1Zf3RHHLpTdUrWKTqqierVfwn3Iz2HoN8EbmHptBAY
+ QnDzbghGPHXTXD01aZp5SO7vqUGC28ic+Cl7MUd8le7PQqzk09xw
+X-Authority-Analysis: v=2.4 cv=W/qtxhWk c=1 sm=1 tr=0 ts=6af33a59 cx=c_pps
+ a=hwAR686YzpmZ7aH69gEPcA==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M51BFTxLslgA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22 a=OmVn7CZJonkx5R5zMQLL:22
+ a=VwQbUJbxAAAA:8 a=bolBC-KKTCpxfz2DwocA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA2MiBTYWx0ZWRfXw6vgjpF5SlYK
+ hHALji/BXTTq3OrYRC7QNQpd0MF3ibX/2RoazbDeK1k4NOtrAkvyDwr6CRK/yDegrLSMMCNKnps
+ kkb4VfGCuCn6k9PkFcgkMVLhW6B2babWEodJYRdUQ61t0f/3VXdqQKuhPeLwzcHIl+vry61AZCt
+ DjZLqDn187P8b6rAKCrNHWtvjl8Ycl+hewFd4soUdJfIkvRzU5GRu125hmGKTDnUlZQcbsZKhl7
+ FC2JOEx8JiIA6KikLDXaSHb5vjle9Hys4GkGUWcQrlt6E+MViszgVcG3YWO4CvU0Jn6+QfhKEAu
+ p4cUh/b0F4i+YCK9dwSFSiFXPnYJB0a+mob2xIeHQW9zIB73ZdZRBiD96RKCzqy+7iNAe/4rmAd
+ s6XsK0X9NU/+pxAhluumGHJ4kfPiGTGcPWeSQSw5HorW/quUKOXVwjC5YjVDTKVeh5LH/+d51iV
+ i6bZBurNd/goH3iiS2g==
+X-Proofpoint-GUID: xguw2edFALpIk2drdCtE7HoauRhX0SQQ
+X-Proofpoint-ORIG-GUID: xguw2edFALpIk2drdCtE7HoauRhX0SQQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-10_05,2026-11-06_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501
+ spamscore=0 lowpriorityscore=0 phishscore=0 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611100062
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_073537_217004_4B2EB0EF 
-X-CRM114-Status: GOOD (  27.98  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_073821_147077_FDBD69A8 
+X-CRM114-Status: GOOD (  32.19  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,92 +220,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Sat, Sep 12, 2026 at 11:20:47PM +0100, Jonathan Cameron wrote:
+> On Thu, 10 Sep 2026 20:14:15 +0200
+> "Arnd Bergmann" <arnd@arndb.de> wrote:
+> 
+> > On Thu, Sep 10, 2026, at 18:40, Svyatoslav Ryhel wrote:
+> > > __ 
+> > > Hello Arnd! May you please spare AAT2870 from being removed? I have a 
+> > > device which uses aat2870 (LG Optimus 2X P990 Tegra 2, not upstreamed 
+> > > yet, but in process as well) and atm I am working on converting this 
+> > > driver to use OF. Thank you!  
+> > 
+> > Sure, I have removed this patch from my series now.
+> > 
+> > > P. S. If you are planning to remove more old drivers, please CC me in 
+> > > since I may be interested in some additional driver upgrades for 
+> > > devices I own.  
+> > 
+> > Please have a look at
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/log/?h=board-remove-7.3
+> > 
+> > I tried to be careful about figuring out exactly which drivers are
+> > unused, but I'm sure there are still a few false positive and false
+> > negative ones in there. I've added the current list of driver files below,
+> > let me know if you see something that shouldn't be there.
+> Hi Arnd
+> 
 
+...
 
-On 16/10/2026 17:55, Leo Yan wrote:
-> When a fill-mode wrap stops TRBE, the trace source can continue running
-> until software handles the stop. Trace generated during this interval
-> may be lost.
 > 
-> The overflow path now stops and restarts the trace source around buffer
-> reprogramming. This emits ASYNC packets so the decoder can synchronize
-> with the next trace segment. Use PERF_AUX_FLAG_PARTIAL to report the
-> possible gap instead of PERF_AUX_FLAG_COLLISION.
+> > drivers/iio/adc/ad7793.c
+> Maybe. Analog devices ack needed.
 > 
-> Set PARTIAL in both the overflow handler and the buffer update callback.
-> This also preserves the gap indication when event shutdown handles a
-> pending wrap, even if no further trace segment follows. Limit the flag
-> to stopped buffers.
+> Production part but this one indeed fails to probe.  Analog
+> folk, do you want to fix this one up?
+
+Given it's production we should fix. Looking at platdata seems to nicely
+fir in DT. Issue is that I don't have HW with me to test. So I'll maybe
+just remove platdata and assume some defaults.
+
 > 
-> Signed-off-by: Leo Yan <leo.yan@arm.com>
-> ---
->   drivers/hwtracing/coresight/coresight-trbe.c | 29 +++++++---------------------
->   1 file changed, 7 insertions(+), 22 deletions(-)
+> > drivers/iio/adc/ad7887.c
+> No to dropping this.
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-trbe.c b/drivers/hwtracing/coresight/coresight-trbe.c
-> index 6bc82d5b55539795059da37039d2929b4ea504e3..29a1882b1f3c2eb7166f71eeef37badece67039c 100644
-> --- a/drivers/hwtracing/coresight/coresight-trbe.c
-> +++ b/drivers/hwtracing/coresight/coresight-trbe.c
-> @@ -285,25 +285,6 @@ static void trbe_reset_local(struct trbe_cpudata *cpudata)
->   	write_sysreg_s(0, SYS_TRBSR_EL1);
->   }
->   
-> -static void trbe_report_wrap_event(struct perf_output_handle *handle)
-> -{
-> -	/*
-> -	 * Mark the buffer to indicate that there was a WRAP event by
-> -	 * setting the COLLISION flag. This indicates to the user that
-> -	 * the TRBE trace collection was stopped without stopping the
-> -	 * ETE and thus there might be some amount of trace that was
-> -	 * lost between the time the WRAP was detected and the IRQ
-> -	 * was consumed by the CPU.
-> -	 *
-> -	 * Setting the TRUNCATED flag would move the event to STOPPED
-> -	 * state unnecessarily, even when there is space left in the
-> -	 * ring buffer. Using the COLLISION flag doesn't have this side
-> -	 * effect. We only set TRUNCATED flag when there is no space
-> -	 * left in the ring buffer.
-> -	 */
-> -	perf_aux_output_flag(handle, PERF_AUX_FLAG_COLLISION);
-> -}
-> -
->   static void trbe_truncate_event(struct perf_output_handle *handle)
->   {
->   	perf_aux_output_flag(handle, PERF_AUX_FLAG_TRUNCATED);
-> @@ -917,10 +898,12 @@ static unsigned long arm_trbe_update_buffer(struct coresight_device *csdev,
->   		perf_aux_output_flag(handle, PERF_AUX_FLAG_TRUNCATED);
->   		size = 0;
->   		goto done;
-> -	} else if (act == TRBE_FAULT_ACT_WRAP) {
-> -		trbe_report_wrap_event(handle);
->   	}
->   
-> +	/* Trace may have been lost before the source was stopped. */
-> +	if (act == TRBE_FAULT_ACT_WRAP && !is_trbe_running(status))
-> +		perf_aux_output_flag(handle, PERF_AUX_FLAG_PARTIAL);
-> +
->   	size = trbe_get_trace_size(handle, buf, act == TRBE_FAULT_ACT_WRAP);
->   
->   done:
-> @@ -1246,7 +1229,9 @@ static int trbe_handle_overflow(struct trbe_cpudata *cpudata,
->   	if (buf->snapshot)
->   		handle->head += size;
->   
-> -	trbe_report_wrap_event(handle);
-> +	if (is_buffer_stopped)
-> +		perf_aux_output_flag(handle, PERF_AUX_FLAG_PARTIAL);
-> +
->   	perf_aux_output_end(handle, size);
->   	event_data = perf_aux_output_begin(handle, event);
->   	/*
+> Production part - should work fine with defaults in driver.
+> Could like the others drop the platform data handling.
 > 
-Reviewed-by: James Clark <james.clark@linaro.org>
+> > drivers/iio/adc/lp8788_adc.c
+> Probably
+> 
+> Sub driver of an MFD.  I'm fine with that going if we know
+> the mfd is no longer in use.
+> 
+> > drivers/iio/adc/lpc18xx_adc.c
+> > drivers/iio/dac/lpc18xx_dac.c
+> Probably
+> 
+> Likewise these two.
+> 
+> > drivers/iio/frequency/ad9523.c
+> Maybe. Analog Devices ack needed.
+> 
+
+Hmm we definitely use this one and we have OF support out of tree with
+likely some DT abuse of what can be in DT or not. Not sure if I have
+some HW around but we'll need to fix it.
+
+In general for ADI parts, I think we can drop the ones that are not
+recommended for new designs. All the others I tempted to say we should
+keep. Naturally we need to fix all the drivers that do not compile
+without platdata. And for the ones with defaults we can also just remove
+platdata and use the plain defaults.
+
+- Nuno Sá
+
 
