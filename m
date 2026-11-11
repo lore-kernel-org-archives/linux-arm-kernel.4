@@ -2,79 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5502D606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECFD6606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 20:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hSVneQCt;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iCHAVtIZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LNiDtKO6;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=JIXngPCc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:In-Reply-To:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=TEA8Apju+c2xFXRAkFgrvx3sun6rF0Eje/7sHrYH2Vo=; b=hSVneQCtQISm32qhPd0cvhPJWQ
-	MaOW5ZQMcwXK8DTWBphObCqSKbWyf+gBoUvp2BgKF1BCZuV05nfKRnCmwAr8ymM4Izz4zEKR6r2DU
-	Y4PuuDrSX2sV1LyaMA5OMk8xIGVFhttcZhUM/HJX2PD2sFi/fWnNjlvggWodpmBjK2Fqb4R3miHM3
-	yNKn6Uq5KV88r+H+z/040UllwehcEP56hV2t8xNsp1dMO/3JJ6jRarLLCp0Ncy3t/YoqR3WKgTwWq
-	cbfFpCFezIF21dCsdEbmC0kRLYUg9YLyAe559MLMhbtf+6634dSGfCZn2Uc4N+6DJhGMdxCvryD/H
-	DrFk21Gg==;
+	bh=e6r/HJ4fnxt+Ympvhnm3lqzuKNTZyC1RsNKqAM3ic5c=; b=LNiDtKO6L7K3NMHypERxrL8A/k
+	4cp9JdlezH+nE9t/tgtwdsiT6U0aiMsxY7+PN89Q/rRRTxGweQDig7h2dWPa9621wBU+hKiUgbO8I
+	uqahgdNGuJYyRkZhtMNei5qOFi+O/Cljj5BwoQPY96K6eAHjEC4py9pbzeW9dzb/5F8XKPivDDfI4
+	sPI7QJg2X7ibz2m/21MRBBdYNztf+K+wqLQju+H61F6AMWFSM7zNsSd86KbEluV8Jgtj3i2x/0kwS
+	Z7b4rZ3wVKKEy+T0JwRDGozaLDiPuKE2XwuSw2RpeW+k3Puy5qM9SMLA7I7Svv0bkwwadIL6Mk9gS
+	YVMyaRyA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREHa-00000007Z09-44FV;
-	Wed, 11 Nov 2026 19:46:58 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xREXC-00000007anQ-13yt;
+	Wed, 11 Nov 2026 20:03:06 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREHZ-00000007Z01-0hAH
+	id 1xREX9-00000007amZ-33ch
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 19:46:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 61079605E7;
-	Wed, 11 Nov 2026 19:46:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 147C61F00A05;
-	Wed, 11 Nov 2026 19:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794426416;
-	bh=TEA8Apju+c2xFXRAkFgrvx3sun6rF0Eje/7sHrYH2Vo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=iCHAVtIZhmXIEkCi9XEq5ZvLA0vhBX9/VL11RcUGWxznfbZwW6tuCL26tfzeSXJO1
-	 Qf979tWcOSyzU9sMCyiiCrv3tVOLGIzCBslYE92/Oap7tz4772n7PdhXYAlJnFvaGt
-	 7YXMYq3A2oRDAd4ff+HKEBH/4AjfOmrVlLV31UlYRCNQYfQhZZYEXTkeMVstTsOVvR
-	 ZBkxjipDEEpO6IjZk1+AsUXq17W73ZhUfM7RHWH4acrHdJ6oCW1iRoI9jEyPJXoYYe
-	 qRXwIQSeO4fpeD33h/lULr3mUSeF+eB+zPPBQ75SjPVCYz82iIlh5gRkgYOUabLxem
-	 PcaHUhNHFj16g==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xREHV-0000000ESvo-3uKv;
-	Wed, 11 Nov 2026 19:46:54 +0000
-Date: Wed, 11 Nov 2026 19:46:53 +0000
-Message-ID: <86ld6z1782.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Dan Carpenter <dan@cryspen.com>
-Cc: Oliver Upton <oupton@kernel.org>,	Fuad Tabba <fuad.tabba@linux.dev>,
-	Joey Gouly <joey.gouly@arm.com>,	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,	Zenghui Yu
- <yuzenghui@huawei.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
- Deacon <will@kernel.org>,	Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org,	kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org,	Karthik Bhargavan <karthik@pereq.eu>,
-	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>
-Subject: Re: [PATCH] KVM: arm64: nv: Initialize hw_mmu to NULL for nested vCPUs
-In-Reply-To: <d3571fb535e1832d2a067649f294b83d824d4350.1794395321.git.dan@cryspen.com>
-References: <d3571fb535e1832d2a067649f294b83d824d4350.1794395321.git.dan@cryspen.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Wed, 11 Nov 2026 20:03:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1794427381;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=e6r/HJ4fnxt+Ympvhnm3lqzuKNTZyC1RsNKqAM3ic5c=;
+	b=JIXngPCchcdeLowV2YkelDEti6DqmGFF31mEYTYAIb8IpgdXanLtQrfIK0PCL0WENVRJRb
+	uE3/Bi83EWIKs8NN2ckCGcc/SHjZYl11d3zZafM+ZEdopxY1lqeaugHaviGheeHjDhKTyU
+	QgrYfw5+s8ErrJcCkarZwJbAgmMHcP8=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-459-AM8UFLq6MNq3UAZpDWmj8w-1; Wed,
+ 11 Nov 2026 15:02:57 -0500
+X-MC-Unique: AM8UFLq6MNq3UAZpDWmj8w-1
+X-Mimecast-MFC-AGG-ID: AM8UFLq6MNq3UAZpDWmj8w_1794427375
+Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 0F6E219C960E;
+	Wed, 11 Nov 2026 20:02:44 +0000 (UTC)
+Received: from onestero-thinkpadp1gen7.tpbc.csb (headnet04.pony-001.prod.iad2.dc.redhat.com [10.2.32.116])
+	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with SMTP id C57E3344;
+	Wed, 11 Nov 2026 20:02:39 +0000 (UTC)
+Received: by onestero-thinkpadp1gen7.tpbc.csb (nbSMTP-1.00) for uid 13628
+	oleg@redhat.com; Wed, 11 Nov 2026 21:02:43 +0100 (CET)
+Date: Wed, 11 Nov 2026 21:02:38 +0100
+From: Oleg Nesterov <oleg@redhat.com>
+To: Breno Leitao <leitao@debian.org>
+Cc: "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	"Eric W. Biederman" <ebiederm@xmission.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel-team@meta.com,
+	syzbot+8fdf0d8e10bdde1c2e88@syzkaller.appspotmail.com,
+	stable@vger.kernel.org
+Subject: Re: [PATCH] reboot: halt when power off fails
+Message-ID: <avTJ3o-n0UZS0YUj@redhat.com>
+References: <20261110-reboot-make-task-dead-v1-1-af88a3f37bf7@debian.org>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: dan@cryspen.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, karthik@pereq.eu, clement@cryspen.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+In-Reply-To: <20261110-reboot-make-task-dead-v1-1-af88a3f37bf7@debian.org>
+X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
+X-Mimecast-MFC-PROC-ID: aaUeUt8ENs7r2AQIPPHya4AuCvIaHLA3bzfgUPwNkrk_1794427375
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_120303_841382_4F68B985 
+X-CRM114-Status: UNSURE (   9.55  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,88 +97,25 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Dan,
-
-On Wed, 11 Nov 2026 11:11:19 +0000,
-Dan Carpenter <dan@cryspen.com> wrote:
-> 
-> Before commit 6ded46b5a4fd ("KVM: arm64: nv: Keep reference on stage-2
-> MMU when scheduled out"), kvm_vcpu_load_hw_mmu() would set ->hw_mmu on
-> every load.  Now it only sets it when it is set to NULL.
-> 
-> In kvm_vcpu_init_nested() the vcpu->arch.hw_mmu points to &kvm->arch.mmu
-> from when it was set in kvm_arch_vcpu_create().
-> 
-> Normally what happens next is a two step process.  KVM_ARM_VCPU_INIT
-> calls kvm_reset_vcpu_core() and that sets the vcpu into hyp context
-> (vEL2).  Then KVM_RUN calls kvm_vcpu_load_hw_mmu() which doesn't do
-> anything.  But that is fine because we are in hyp context and the
-> ->hw_mmu already is pointing to the correct place.
-> 
-> However if, for example, we are restoring a vcpu that was saved in L2
-> context, then the VMM uses KVM_SET_ONE_REG to overwrite the vEL2 state
-> that kvm_reset_vcpu_core() set up, and the vCPU is in L2 context when
-> KVM_RUN loads it for the first time.  Ideally, kvm_vcpu_load_hw_mmu()
-> would set the hw_mm to point to L2's page tables but, since is non-NULL,
-> it leaves it as is.  At this point L2 can access L1's memory.
-
-Ah, nice one. You can tell how much testing has gone into
-save/restore...
-
+On 11/10, Breno Leitao wrote:
 >
-> Fix this bug but setting ->hw_mmu to NULL in kvm_vcpu_init_nested() so
+> --- a/kernel/reboot.c
+> +++ b/kernel/reboot.c
+> @@ -791,6 +791,9 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
+>
+>  	case LINUX_REBOOT_CMD_POWER_OFF:
+>  		kernel_power_off();
+> +		pr_emerg("Power off failed: System halted instead\n");
+> +		/* kernel_power_off() already ran the shutdown, only halt. */
+> +		machine_halt();
 
-nit: s/but/by/
+Agreed. Even if I don't think my ack has any value in this area:
 
-> that kvm_vcpu_load_hw_mmu() always sets it correctly on the first load.
-> 
-> Fixes: 6ded46b5a4fd ("KVM: arm64: nv: Keep reference on stage-2 MMU when scheduled out")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dan Carpenter <dan@cryspen.com>
-> ---
->  arch/arm64/kvm/nested.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-> index 78fa433774c6..60bccb66e52c 100644
-> --- a/arch/arm64/kvm/nested.c
-> +++ b/arch/arm64/kvm/nested.c
-> @@ -140,6 +140,8 @@ int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
->  		kvm->arch.nested_mmus_size += S2_MMU_PER_VCPU;
->  	}
->  
-> +	vcpu->arch.hw_mmu = NULL;
-> +
+Acked-by: Oleg Nesterov <oleg@redhat.com>
 
-I think this really needs a comment to explain why we repaint hw_mmu
-to NULL, because the next idiot who looks at this (likely me) will
-probably remove this line...
-
-The other thing is that this means that nothing can evaluate
-vcpu->arch.hw_mmu anywhere outside of the loaded path, as it can be
-NULL. I *think* this is OK, but I need to really convince myself...
-
-I'd like to add something like:
-
-	/*
-	 * We can't rely on the S2 MMU being the canonical one,
-	 * as userspace can restore a nested context. Nuke the
-	 * hw_mmu early to ensure that we pick the correct one
-	 * load time. It also means that we can't rely on hw_mmu
-	 * being set to anything useful if the vcpu isn't loaded.
-	 */
-
-If that works for you, I'll squash that in.
-
-Thanks,
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
 
