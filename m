@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2142760A2604
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A1960A2633
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:10:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LbJanpKe;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=etAfbUs8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iVZhtBu/;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=m47d9TLw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cL6Lm2cBZjv9q+hFge8UMv8VlPsyusharMMb4O8VvGE=; b=LbJanpKe6+sK9s
-	R+VBkOJEJonGx7op/89pxrRKtKiiz5b8IicQas3Hk0QwvJSTlMpXsU/P2PNUs38A0uQdhKKUWvoZM
-	vuV5p2QraornBb7nOxU1JVxR2jSQ3VWfla+K/J9rX6uOORb3yGfVg5lSyWjMMlSVsmjjz5IAietAD
-	AZ6fCNAlyM34mDSm9wKzEw8iyC4rFybFdEM44px5/HhqEPMXCbgPHjFJyxWzVLHow0hZaOPKSlG0K
-	Wg3Gonz8jcf2zuFabwW5bJgLclyRUwQi5xfTNk3Dj+FIPuwKnyDVzAEqf8ZVQ/QYkG3HnApwqFw8o
-	euXL9TjaCaa/ReFCOLbw==;
+	List-Owner; bh=zOej3OSGWxWCJ3XeVUCQdSFsxuuEIjtPwatxLCH1n94=; b=iVZhtBu/9apNFi
+	60VnyEreBoc+zrVxQjg+9kO48qU/jIaCn9ZjUST3t37hzngLJLNJRKWEn2XmTS0UhLVlhECDr9doM
+	BIHvmH1p9qQ3iusa3G+sAOKXVXYveGNrnlQJPFvMLYRPF5vNxQkNemfZ0/f4lr41CAu67HhOM5Xkq
+	lbtwTfqYHU1z7ciGrp3oDzXI6sjxtHo6CH/S8hD71HfnqE0qVdlpCvt97BrQ204x19lIlCqK4GVdM
+	WkzE6cC7TXBy8LpxtnwTMSvuQs7YjO09tCK0i+JCQ0Fkgj0TRr/+HUnX+Kn89uq5frMhJ+lDv/VO1
+	ZQlj0IxmKzHCxwJeGU6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1Xm-00000005iAH-01Gi;
-	Wed, 11 Nov 2026 06:10:50 +0000
-Received: from mail-pg1-x52f.google.com ([2607:f8b0:4864:20::52f])
+	id 1xR1Xp-00000005iBt-0SmQ;
+	Wed, 11 Nov 2026 06:10:53 +0000
+Received: from mail-pj1-x102d.google.com ([2607:f8b0:4864:20::102d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1Xi-00000005i8h-0L5v
+	id 1xR1Xl-00000005i9q-0VHw
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 06:10:47 +0000
-Received: by mail-pg1-x52f.google.com with SMTP id 41be03b00d2f7-cc4aa0246b7so1126864a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:10:45 -0800 (PST)
+	Wed, 11 Nov 2026 06:10:50 +0000
+Received: by mail-pj1-x102d.google.com with SMTP id 98e67ed59e1d1-3b0bbdeae06so1762755a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:10:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794377445; x=1794982245; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794377448; x=1794982248; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=cL6Lm2cBZjv9q+hFge8UMv8VlPsyusharMMb4O8VvGE=;
-        b=etAfbUs8X+muDJrcJtC8dPzpzqGthSMOxss3gKYMg+MhIHCNyLPAeZ0jQmVVpvXP9f
-         HD03RBJypR1rk8zqP1dkpFMgAUAwOSyqAwMC/pkTr5FtHpNWJSkxt0dpJTY+b4VmLNJ9
-         oHo92kilzCn8sknRXlQ2H9RYrlIsEIXOepj6dTt/r2RpA9AwINgKmP3VOj/t/1DbSF4m
-         maatTgvLSixg2YvDsJ2dNhRwEJrGb+bQ+3z56HfhYjJBYP8EskTXFYSIFMPVBfZ5+r7T
-         Tcv/5eqa0fz68BCmhcGVsnQ+YQG31YeBG0R5tJ5TRu1LQSQ/xevDViG5shKhZbZi2h9N
-         9iMA==
+        bh=zOej3OSGWxWCJ3XeVUCQdSFsxuuEIjtPwatxLCH1n94=;
+        b=m47d9TLwAOKbcebBhC/UdqCE2griKLXg0fybTDrC8nipC5cyDvWKHQjLFngS1ANTZn
+         oWoxvxZug+UPNYPZ7RePRWpNMinAvlcrvI79J+epo9xJrJDcPRS7w1jJiE1awpRN9pK3
+         nogcUkqhF2DaUvTidxTxAwFp3E9dhn9xtzDulM+ZjHEq+u64Icy/FA5bhSI5kBSlmwSQ
+         5vygVKSzwpUxwJuX7pwWQpwlY5qXvcBMPzlp3zvhWaVPEd1K2VWUvJ8/eWVDrBn0zyNA
+         mH7bWFzgrrCJrT8pQCXWQbUEj2L1h+Zx/s+sHNKrP+4qnqU0c2H4vkU+cWMxcX3pz2eh
+         UfiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794377445; x=1794982245;
+        d=1e100.net; s=20260707; t=1794377448; x=1794982248;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=cL6Lm2cBZjv9q+hFge8UMv8VlPsyusharMMb4O8VvGE=;
-        b=JPlmQ7vw5XklWAZBEP9Ee36kIQUfBMSTfKOFnQC6YbMAuNJYFz6i46Lil8V24tyQvM
-         e2M/RfIeM+ko2uShxUXqcHIQJuuzXVMbh1YmZUFmATUTqjF0PtSnyjkSSkvkfwQkUl3Z
-         Tq8iQyOvbAS3aEc3Rri58C+cgMFr7y2T6drgF3RWirKsC+BI05xTyd0bKmHSdpic6zqY
-         Qrwnpo0O3zY0UD9xoEsQq9n+A/CLhZwSSFgKDLXs96piVYI2uo7S7aXoS31sUJpfS6CN
-         LjvQ2u3EzgKP4hgZYYNVxcTxq15MHRtjVSAJnu04HGySR5/aXDYTCucid/S1cVmJ0qh2
-         HKFw==
-X-Forwarded-Encrypted: i=1; AL+hErGKKaKAT/GS9zZ5xHbTWdyF2upvFpdseIYJq4SB6Qj6tlJvl/Vn+327H3gFf80bR7GYUJlFNyJMeCBabQrKAi4z@lists.infradead.org
-X-Gm-Message-State: APuU4Z8Ny6n6YfsJjGBQEsIgEit0ERb8WjSSzR7Ksb7DRXnLYIZXVH3s
-	KXX60ZxcTZHCtbUppnafx3ihFu0ExvgPkoozXTI+6g1l540uQcGDJ9de
-X-Gm-Gg: AYBFou33yblamSZc938phWpXBF4q3cRzgG3FvXGuQO0NPoWBkNhcmFQ7xXrw+OijRid
-	EEjhTVf5w1ZK+xAPelm238MrY2ADoNlTzia5IyRLvSCLcZBYKi6gmQxC0pbGR77pSaJ/GqLzBAp
-	/CGNfXU/Q9XBS6ob8b6+Ux5N0LNgFvd95mpTu8i59juyIY/rLUctEz7c4QErrymq1ZqwXgL+fO6
-	ABhT+KELlRotiktoc03ehL/Hrzk4E2reyNUIGOxQR17WJphwxliPLb4lx9KosVwbFV7sM5peTfu
-	14Qp4wdNltR7iQPIaAVUOTTlaAMpiAedr6/grLb6VCk8qJnJbc0umaBTHyya3qaOR0jFbbP4h2N
-	7NioWO+FyeeZch+Shnn4x+bLjofpVMhVZLAnS1cS56Z8RxIKBkOG8EzyVnU+jja/1Z2FFH8oZnV
-	4zSXkDmQRAcOZWMtpaulEJOsy1Z6T3mSkswki59it6rO2mGvmG1CKONnAuPFnK6lnQ8iY1/WnSA
-	Y2Kh1bYJMJTDaiMF2fbXYRTOqJKxFeiXMqUgx9ejBVEBTdPrhaSzx+GL1ARERZsmDgxhUAXTpRr
-	0nKOokLgX09HK+a8r9clkdQm3dZXjggl2USlcgQ945B9fys6iM/C5wHHgAiKfcv4Ik5K
-X-Received: by 2002:a17:90b:4c86:b0:3a8:1a1a:7895 with SMTP id 98e67ed59e1d1-3b182eec306mr1365020a91.18.1794377445217;
-        Tue, 10 Nov 2026 22:10:45 -0800 (PST)
+        bh=zOej3OSGWxWCJ3XeVUCQdSFsxuuEIjtPwatxLCH1n94=;
+        b=PVQk3eoOknzPnJKB8Jbfn/AlVBWzEM97nBHRYJv+42m0vpZJR1/guYDfDagdjOiCul
+         VZwYCkNJimIiT5Bycj6QxnlR8U7WIALsidjNqbGY8e7GvbojU6Z7dImk2UUhek/OKlnC
+         Ayzgx9+hCtelSXlYlVWZBi6ePT0A5nsYgryKEbN6cNmrkHdSE1/sqwgNPFzUWMox7oZ4
+         WfGofndyE+HuNbNl/0mZbBSQluHRONLijw4Wx4ldqAmjNvMqgsaLg6Eh3Bv21PUBIQAc
+         /Tba0CCqbkkEqbTPq6lZmJqlFKzcGoU+fUxb74ZTu20XiHhLBJ2oh2HBwgc04xbcqXke
+         HZgA==
+X-Forwarded-Encrypted: i=1; AL+hErGnRhAoM8Jsrk52WUhHUEugAE8ahAe4oJFkFbK74awhPlI/VSWHh3huEEzrM9NfHiolNtxuP233rl3spt2FhbXe@lists.infradead.org
+X-Gm-Message-State: APuU4Z/I7r87lD25wpZCReBPlG+elsy9V16MQQzo8ALL5fOCOAjADaQz
+	+rgUlZj8OucQADC8RpiQJLmkxuaefz2xjKlUKsIUsggzCP5iD7ZsVZuy
+X-Gm-Gg: AYBFou0KBuvHCllMXoRu8GQWrGpWMfFUhofiVtuMAxB/rfXSsTu3hgP4pRRLmE/rhf7
+	dvBkV+U2IMrzApH62eQvR42yhewHO3GhxQJSJhEn2tMuxACM2cMxCGDk4UXML6gw+izFrwgd4Mi
+	LoiLAPbSR4eJbt7b7WHJXyRFjP6jNJN4WaWFYTV1s5MSVF8AQPNRqdMkKu9ENjwqojEqEPiEim2
+	kXVKX88yB4CJm3OK5DvDWlp7nXbWaWJaSRK40WftEX7vUzLmvmPhjkVALCzcOuMbuTYTX6rN3dr
+	jdyF99c0IhwBfHnchHHV9Zp3zJIeWoXoBDerTaujmm/6Pf3t/vmY2CR0/OMm+/ao8EOXK4Yg3qM
+	fLH4fkR52DmDn3JNG/yNnsRI507MFqDboXlc5pf13VMIsxzzDKGkon5mem80HFyVpjS6MrpSSwQ
+	lYoGQJI6mGLmjIwSeEAtTc0z6KXquvCuaU9Y5b/+uCCq6LGoquJHoll5N7BDhjUFLaKVE3hflO8
+	0I2u2ZXF5Rq+OW0PL9sG+JXr146MT+bob4pKOIRg/S2JArNTPHTFBrHEPV/ye3JhQp78O5f3XDr
+	Erh4x0UD3WAVODrjy8jnsdNki1ywgw04jSRzQgEHzucZQK+K0WSD1l7CKv1rM8AI/gJF
+X-Received: by 2002:a17:90b:1f87:b0:3ac:8897:7b9f with SMTP id 98e67ed59e1d1-3b182f0d1e4mr1310292a91.43.1794377448229;
+        Tue, 10 Nov 2026 22:10:48 -0800 (PST)
 Received: from [127.0.1.1] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17db7e8b1sm2978557a91.12.2026.11.10.22.10.42
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17db7e8b1sm2978557a91.12.2026.11.10.22.10.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 22:10:44 -0800 (PST)
+        Tue, 10 Nov 2026 22:10:47 -0800 (PST)
 From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Date: Wed, 11 Nov 2026 14:14:42 +0800
-Subject: [PATCH v2 1/5] ARM: dts: aspeed: ventura2: Add LTC2305 ADCs
+Date: Wed, 11 Nov 2026 14:14:43 +0800
+Subject: [PATCH v2 2/5] ARM: dts: aspeed: ventura2: Add ADS1015 ADC
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-ventura2-dts-update-v2-1-bce5b5dafc1f@gmail.com>
+Message-Id: <20261111-ventura2-dts-update-v2-2-bce5b5dafc1f@gmail.com>
 References: <20261111-ventura2-dts-update-v2-0-bce5b5dafc1f@gmail.com>
 In-Reply-To: <20261111-ventura2-dts-update-v2-0-bce5b5dafc1f@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,21 +92,21 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
  Kyle Hsieh <kylehsieh1995@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1757;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=907;
  i=kylehsieh1995@gmail.com; h=from:subject:message-id;
- bh=s3+YaNI0kXS1WHGDFc6jVaitSFXgSkUDG8m8Ajnq+tw=;
- b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBq9Af0ExsDKf8CzltHQES6RXvy0dPDeU8+5oV26
- lfnR1gJmmmJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCavQH9AAKCRClg0K3CVbE
- gX0hB/9kK2OVIxktjiccv5Qt+4sOvnD+74ZO2VgbmyXsfBFOqFRZnegmkamGZX8PQLnnR2zXCt7
- 9legz4pUNFwgTdQAbuzSYYU3ACZhEfDbRixgiSPS7789/S8NXF9D4zsBTCi0bdTidgZ2hpYxdmk
- PJNAxo8ln23bwohai178LtE6cpDKMpZhQ+rCLsmEFwultsfybdutBrZyTx/h4WWRqrw9Fxbzyf2
- IBzozq+mFgPINyD7bU7gQ4dIecIDT+jmWP6Vc954uAhiD6H4dCuBAPyMwcaSaA+oKFepdVvty4k
- TwpozOspNnjpkbU8EMfhdjnlJ6ySp3iowSD1WSUKc1rEfCGj
+ bh=xPQqV3YI1Vbg3zoEBrsSwuLJ278Wah93Qbu60OSxVxs=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBq9Af1GDj92rCYara8OWnsCKcFq76imAFe5qamq
+ 9/KCtbUobSJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCavQH9QAKCRClg0K3CVbE
+ gVo7B/0ZynYot9Je1040D/lbTGvzkWrbY4vtT8cQRJTXAHiAE6QNwPWG2ALgj+BrhuQRGEc0xVb
+ 6kw1vL3VB7rbF6TWstqa0zhqev/6glQe4IzGMqn5+HHEHAcVy3SrLRFt8V5YSHpu4ONibR/N3mZ
+ U+n44kXd6Djn08M+YX/uIYdFa7gGUZhxd7xVVU5+qa7CxxQnqxPS4NcEvTL93/z0qgVuY0ZjCmq
+ 0/p93zt3zAiWvPAfAcG0XYdYqraRVFFb0f/XvEBtrRWihLAUR8Vz9tiK8tSrkKEcWx2kFO4aNHj
+ LorR0ty1dA80hB0TVYarsdspFdZ7wYGtqSUpIMPimhCkZXUu
 X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
  fpr=C91EC68D64E758F931C6A897A58342B70956C481
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_221046_133878_D60BB2E1 
-X-CRM114-Status: GOOD (  11.78  )
+X-CRM114-CacheID: sfid-20261110_221049_170198_4848B42A 
+X-CRM114-Status: GOOD (  10.38  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,67 +126,34 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Ventura2 has three LTC2305 2-channel 12-bit ADCs: one behind channel 2
-of the PCA9548 mux on I2C bus 0, and two on I2C bus 3 at addresses
-0x08 and 0x09. The bus 3 ADCs read the valve voltages.
+Ventura2 has a TI ADS1015 4-channel 12-bit ADC at address 0x48 on I2C
+bus 10.
 
-Describe the ADCs and expose the bus 3 channels through iio-hwmon so
-the voltages are reported as hwmon sensors.
-
-The ADCs use their internal 4.096V reference, so no vref-supply is
-described.
+Describe the ADC so it is instantiated by the ti-ads1015 driver.
 
 Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
 ---
- .../dts/aspeed/aspeed-bmc-facebook-ventura2.dts     | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
-index f3dbdece3076..50e652cc37a1 100644
+index 50e652cc37a1..21c40dd4bb84 100644
 --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
 +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
-@@ -190,7 +190,8 @@ iio-hwmon {
- 		io-channels =
- 			<&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
- 			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
--			<&adc1 2>;
-+			<&adc1 2>,
-+			<&adc_op_fb1 0>, <&adc_op_fb1 1>, <&adc_op_fb2 0>;
+@@ -2405,6 +2405,13 @@ power-monitor@44 {
+ 		shunt-resistor-micro-ohms = <500>;
  	};
  
- 	leds {
-@@ -392,6 +393,12 @@ i2c0mux0ch2: i2c@2 {
- 			reg = <2>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+
-+			adc@8 {
-+				compatible = "lltc,ltc2305";
-+				reg = <0x08>;
-+				#io-channel-cells = <1>;
-+			};
- 		};
- 
- 		i2c0mux0ch3: i2c@3 {
-@@ -583,6 +590,18 @@ &i2c3 {
- 
- 	status = "okay";
- 
-+	adc_op_fb1: adc@8 {
-+		compatible = "lltc,ltc2305";
-+		reg = <0x08>;
-+		#io-channel-cells = <1>;
++	adc@48 {
++		compatible = "ti,ads1015";
++		reg = <0x48>;
++		#address-cells = <1>;
++		#size-cells = <0>;
 +	};
 +
-+	adc_op_fb2: adc@9 {
-+		compatible = "lltc,ltc2305";
-+		reg = <0x09>;
-+		#io-channel-cells = <1>;
-+	};
-+
- 	dac@c {
- 		compatible = "adi,ad5612";
- 		reg = <0x0c>;
+ 	gpio@64 {
+ 		compatible = "nxp,pca9555";
+ 		reg = <0x64>;
 
 -- 
 2.34.1
