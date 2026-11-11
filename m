@@ -2,99 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3092D606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E1E606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Tw6/dPbk;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VAGhl3nj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E2oVYu6e;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=L5b5U28A
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bABV6fQnxTbYBuOpfvxRsB4J5GPWk4qJ30CGSqwapjk=; b=Tw6/dPbkY7IGWp
-	nNBYmQ8VJtFrpHwe0vpOAGYFxIEswGqs4VTu/qkUxuThgz7kNXw9T8zx7qEvlb+fkNcH5vh0cqegJ
-	hpVYJuGcji5TWQwWLa0l739kKUvLlqhnnXjcc8vIhoNUt/gjXQfh0A26Zpn+nviiMQVjmJEim9Qe7
-	jZ+puT6z6Foef8vRzJ0w2xdaLN6IAZXRdCkKVTDnjOK5/GGLdG11KJmwN6SVh7+oGnWbl2MdxYY6F
-	hZ63d6X3qYf/h7e9+aPNOdfygKFMscDS9Iz9LC6MFHJGCk0sqQvjyDWAzKR1jVyqh15gKASOc8B8B
-	PzcvwA86uy0bhN/GownQ==;
+	List-Owner; bh=a6hsDgNTzykSL2abXXUyNJ0Ke8prVJlKInMZl5L7jgY=; b=E2oVYu6eq1ZjM0
+	kofzfimKQONhuG1d1D45JZKAJ7c5mheMvwfueMu1o4DnKe9HkRBGw4Oya1W9gVqWj++pOmzsGvTEM
+	bPPvSo1NVAkiez1m1QKj2WFExxvG8SpfKk4uy3MJnafeeWe7Ty1sROjc6u5oXjWMqnqJORjDsxkHq
+	SiG97l+NfOa7i1wSkBRhd+uwm6bStTPwp8Qkfmc1qRFayebH7VlOBfzH1mDTbjarX8TOAL890TegF
+	nsOJQPj/eEpKVBaM1X4GH3l9kL3wowBhn8EMRXKmhZnJz5LT6Ftkxy87wHqD9tG3o+g9BVZ2RVBTK
+	qg7PijjF35mvY8jLq6YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR80m-00000006lrY-05Sp;
-	Wed, 11 Nov 2026 13:05:12 +0000
-Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
+	id 1xR819-00000006lxW-0mat;
+	Wed, 11 Nov 2026 13:05:35 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR80j-00000006lqp-2rFe
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:05:10 +0000
-Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-cddac941ed1so63476a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:05:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794402309; x=1795007109; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=bABV6fQnxTbYBuOpfvxRsB4J5GPWk4qJ30CGSqwapjk=;
-        b=VAGhl3nj0isb/1diJtHEIn0ikkjXNvo7aT7PpKRsW6VoBptHRFjTuQd4z0oefNJItS
-         jXob1of6uGSQ1wIRGQrGBMqemC/0dNmOgBSJurNgM1jN/eMXr2MEEv1ffn2q9J4aUmfK
-         Avym5PQGJ12/+gfsReO05pM+jgeXukPvu69nHy0/8eyfEK2dlZiagOGL+qg5GsWRr0Na
-         7A8DchH74NVrQmhHh1PkDEyffIFr7qqls4Bjsir9Bycf+n+f2Jwvwx/h8PDYjtNG26ns
-         5DK+HIFqB0bdgrZfeV5tTGr4RoCn4v/PGWKnUVnPnPew5LCTV3T8oPXO/nZgy+4f6VPF
-         PtoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794402309; x=1795007109;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=bABV6fQnxTbYBuOpfvxRsB4J5GPWk4qJ30CGSqwapjk=;
-        b=Mwf2J3cOjyy3/XPhwrn0toMI+41xD1P/xgy084PZLJJXV/WDJcGc2ZfUK1clCYDEUZ
-         EsHumm/ZeuM8+dnP6re9F3WE6dfaDNG9ggskomMUzafs5ZwVBFu1PGkdPhAutxgMW6k0
-         94oTrgZh3I546/Ti1ipiYNremRwuuEY/OG74N68N0Af/fzsp1DMW/O4++hGmA9XGNkBq
-         nsWRTYarhxSL7c2fON0jEFPfi7pKcpUes0u6FyhEDPvtXLKq/cQ885W9W6kIrxn/nxJ9
-         pC/6lOFfvz7YDdvIS4vKmT9WTDy6h3PK/DIExqPBJ3vGq7wV7UnmpjgwWLZiKbzVSb2s
-         6PNw==
-X-Forwarded-Encrypted: i=1; AL+hErGcxEy0saVNbbcwmQYQtMqzCL56rtYeJ089UYMJQ6YJs8MQ76GgATZxsdgyts8AwRPqTiWaJ2xkN70L8evcfe8m@lists.infradead.org
-X-Gm-Message-State: APuU4Z/VKJu7p5y5hsVo0mRrlss5nRdcvoPuobuzW/pXizNPeZdhKiJ5
-	nxuvJvuVXlNqXvU6KqAe9+sdnBRHy+Ztk/+XtyN93vc/W77L2ufJPlx4
-X-Gm-Gg: AYBFou2WVnNetcpTbJpW965JXwJd1YCOGjOGIQzxbFR7Md1fUbbl3YP3nLPfDe/3aCi
-	d342YH+IJ0R56X0zeUVEE/Jz0KJHaeF1shS7ohnc1H0e/FCzFoSk1hHs3tMJK+5CYV/KnqARzOw
-	lsh3EybkptwgscbqdAqMwgdEcXwRvuRJ2Jo5GZ6DCEfUteMo0W/Fslf3g+8HwLy3eWujZe6V5nw
-	Q69RS5Jak/bcVtvovGVG6z1pyp5yM28Xycyk6MtSlkv/wOCfZCoCxfLnJJ2oDn5IFIVhDwaXdlB
-	b2EqVS3TaX91RplmUlhp5kdfGbE02B+oyzrKitI18rV+dA9D52N0RoX2kc+/9oZclvxR+qzxH4m
-	EeFPPGrnY+ZDf3AwDhqacLCMhmEA0OayXTgFXvLj6buAMfFkf2YBk3dVHNgjMSrQw1J5zmuB+o7
-	sQYkkzrEvcJwtG2iXFSl6Mtcp03/RFuzqtmUMreni7vTOFdFIPdG3dPRHD6J+X2OjOQVO9iAEE4
-	1BmbJM8bklb5zk9ajg/fFtHz/EhuVErcPkkNf4xx2RohId06zPY8In9y0gzO6EVRddqQ/5QQatj
-	V99R/t6gjpdFoAqWdo39WpieTKhrS993RmNhn6T0at0ntAKiKxaPYnE=
-X-Received: by 2002:a17:90b:1c02:b0:3a8:13d6:f740 with SMTP id 98e67ed59e1d1-3b182eabbd9mr2501115a91.22.1794402308782;
-        Wed, 11 Nov 2026 05:05:08 -0800 (PST)
-Received: from server225.. ([39.170.101.209])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17db7fc2dsm4448216a91.13.2026.11.11.05.05.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 05:05:07 -0800 (PST)
-From: Ping Li <leeonion.muyu@gmail.com>
-To: yin.li@oss.qualcomm.com
-Cc: sdonthineni@nvidia.com,
-	james.morse@arm.com,
-	robh@kernel.org,
-	ben.horgan@arm.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Ping Li <leeonion.muyu@gmail.com>
-Subject: Re: [PATCH v5 6/7] arm_mpam: Add support for memory controller MSC on DT platforms
-Date: Wed, 11 Nov 2026 21:04:57 +0800
-Message-Id: <20261111130457.4143667-1-leeonion.muyu@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <f8911f68-ee78-4eb2-b7e5-1e879224091d@oss.qualcomm.com>
-References: <20261109-mpam-resctrl-dt-knp-support-v5-6-150335a79381@oss.qualcomm.com> <f8911f68-ee78-4eb2-b7e5-1e879224091d@oss.qualcomm.com>
+	id 1xR814-00000006lvk-0BSd;
+	Wed, 11 Nov 2026 13:05:33 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794402324; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=jdjmGwIHKro4sEJif9BOEN84OIIJnIpTUfWL4IgyG3hNZ9ynPIxp+PLHYNTd+eUvTiHpLU9jBXZJJYHBPskKp+LIErnN4QLikWo1e2HfTLerMdtdq6F/7HoHmxU7IkoL1/HmYUrJP3Syy0754XuDkkj9yV1VDk1dxTWTOh+T4YE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794402324; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=a6hsDgNTzykSL2abXXUyNJ0Ke8prVJlKInMZl5L7jgY=; 
+	b=avmH6+Mwod4rZA5f1Erj0TgAqFETT2e+UE9vz4F364NrRB7zmR1/Tk5rNF2wWsy0Bxgj1tdK+ZDlWjxLujjBeXUfEitdwgBxZglJ54M8LJtn3V7/DNVz4/s0zGgx2iwSauOuv8uOdrFQQQu5j5BaKt9lOp4VXoZROHQvlQcvvFE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
+	dmarc=pass header.from=<michael.riesch@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=L5b5U28A4NnyzChU9vvcpDypOIl+HM5LVyHk00mWLK9GuK87Y+At9JjkgTd3+MSW9tE7QYSzcT6zrxDPeYUTT2WWzo4UDKwOxbv00R9RZYpSAqHBErqJbIXaLpaYwg06W1o30gksPepsiPLK6SARaTy6UdvNJEIaynl74O7nC6o=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=a6hsDgNTzykSL2abXXUyNJ0Ke8prVJlKInMZl5L7jgY=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794402322616938.5574111886522;
+	Wed, 11 Nov 2026 05:05:22 -0800 (PST)
+Message-ID: <9e8aaf6f-6899-4d60-a2f1-be11d3923dc7@collabora.com>
+Date: Wed, 11 Nov 2026 14:05:16 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/9] phy: rockchip-samsung-dcphy: Always write the
+ rate-dependent registers
+To: Jason Yang <jason98166@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Guochun Huang <hero.huang@rock-chips.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261110-dcphy-rx-v1-v6-0-d681ba20b36a@gmail.com>
+ <20261110-dcphy-rx-v1-v6-4-d681ba20b36a@gmail.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20261110-dcphy-rx-v1-v6-4-d681ba20b36a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_050509_721048_E7251CB9 
-X-CRM114-Status: UNSURE (   6.95  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261111_050530_116026_F01ECA19 
+X-CRM114-Status: GOOD (  17.67  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,64 +82,93 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Yin,
+Hi Jason,
 
-Happy to share more details.
+Thanks for the patch!
 
-1. Our SoC is an automotive-grade platform with an MPAM 1.1
-compliant MSC on the DDR egress path for system-wide
-bandwidth QoS.
+On 11/10/26 09:18, Jason Yang wrote:
+> The lane timing init functions write DPHY_MC_ANA_CON1, the four data
+> lane ANA_CON1 registers and DPHY_MC_DESKEW_CON0 only above a data
+> rate threshold, and the registers have to be zero below it [1].
+> 
+> Today the APB reset at the start of every power_on provides the zero.
+> 
+> A later change moves that reset to runtime resume, so a power_on at a
+> lower rate after a higher one would keep the old values.
+> 
+> Write the registers on every power_on, with zero below the threshold.
+> 
+> [1] RK3588 TRM: sections 22.4.2 (reset values) and 22.4.3
+>     (DPHY_MC_ANA_CON1, DPHY_MC_DESKEW_CON0)
+> 
+> Signed-off-by: Jason Yang <jason98166@gmail.com>
 
-2. The typical scenario is preventing memory-bandwidth-sensitive
-workloads from saturating DDR: isolating bandwidth between
-infotainment and ADAS domains, and preventing background
-services from starving latency-critical workloads.
+Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
 
-3. We verified on v5 (with the top-level memory controller MSC
-node as a direct child of the root):
-   - MSC probe from DT (dmesg: MPAM enabled)
-   - resctrl mount with L3/MB/L3_MON resources
-   - MB allocation through schemata writes
-   - Dynamic throttle change while traffic is running
-   - MBWU monitoring (mbm_total_bytes)
-   - Monitor assignment across multiple groups
+Best regards,
+Michael
 
-Usage log showing the memory controller MSC working through
-resctrl on our board:
+> ---
+>  drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c | 24 +++++++++++++++--------
+>  1 file changed, 16 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c b/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> index ce1bc62497c5..7a009d87a665 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> @@ -1228,7 +1228,10 @@ samsung_mipi_dphy_clk_lane_timing_init(struct samsung_mipi_dcphy *samsung)
+>  	regmap_write(samsung->regmap, DPHY_MC_ANA_CON0, val);
+>  
+>  	if (lane_hs_rate >= 4500)
+> -		regmap_write(samsung->regmap, DPHY_MC_ANA_CON1, 0x0001);
+> +		val = 0x0001;
+> +	else
+> +		val = 0;
+> +	regmap_write(samsung->regmap, DPHY_MC_ANA_CON1, val);
+>  
+>  	val = 0;
+>  	/*
+> @@ -1259,7 +1262,10 @@ samsung_mipi_dphy_clk_lane_timing_init(struct samsung_mipi_dcphy *samsung)
+>  	 * under 1.5Gbps or equal to 1.5Gbps.
+>  	 */
+>  	if (lane_hs_rate > 1500)
+> -		regmap_write(samsung->regmap, DPHY_MC_DESKEW_CON0, 0x9cb1);
+> +		val = 0x9cb1;
+> +	else
+> +		val = 0;
+> +	regmap_write(samsung->regmap, DPHY_MC_DESKEW_CON0, val);
+>  }
+>  
+>  static void
+> @@ -1284,12 +1290,14 @@ samsung_mipi_dphy_data_lane_timing_init(struct samsung_mipi_dcphy *samsung)
+>  	regmap_write(samsung->regmap, COMBO_MD2_ANA_CON0, val);
+>  	regmap_write(samsung->regmap, DPHY_MD3_ANA_CON0, val);
+>  
+> -	if (lane_hs_rate >= 4500) {
+> -		regmap_write(samsung->regmap, COMBO_MD0_ANA_CON1, 0x0001);
+> -		regmap_write(samsung->regmap, COMBO_MD1_ANA_CON1, 0x0001);
+> -		regmap_write(samsung->regmap, COMBO_MD2_ANA_CON1, 0x0001);
+> -		regmap_write(samsung->regmap, DPHY_MD3_ANA_CON1, 0x0001);
+> -	}
+> +	if (lane_hs_rate >= 4500)
+> +		val = 0x0001;
+> +	else
+> +		val = 0;
+> +	regmap_write(samsung->regmap, COMBO_MD0_ANA_CON1, val);
+> +	regmap_write(samsung->regmap, COMBO_MD1_ANA_CON1, val);
+> +	regmap_write(samsung->regmap, COMBO_MD2_ANA_CON1, val);
+> +	regmap_write(samsung->regmap, DPHY_MD3_ANA_CON1, val);
+>  
+>  	val = 0;
+>  	/*
+> 
 
-    root@hobot:~# mkdir /sys/fs/resctrl/group1
-    root@hobot:~# echo "MB:0=50" > /sys/fs/resctrl/group1/schemata
-    root@hobot:~# cat /sys/fs/resctrl/group1/schemata
-        MB:0=50
-        L3:0=ff
-
-    root@hobot:~# my_app &
-    root@hobot:~# echo $! > /sys/fs/resctrl/group1/tasks
-    root@hobot:~# cat /sys/fs/resctrl/group1/mon_data/mon_L3_00/mbm_total_bytes
-    1314
-
-    # Dynamic throttle change while workload is running:
-    root@hobot:~# cat /sys/fs/resctrl/schemata
-        MB:0=100
-        L3:0=ff
-    root@hobot:~# echo "MB:0=20" > /sys/fs/resctrl/schemata
-    root@hobot:~# echo "MB:0=100" > /sys/fs/resctrl/schemata
-    root@hobot:~# cat /sys/fs/resctrl/schemata
-        MB:0=100
-        L3:0=ff
-
-The bandwidth throttling takes effect immediately on schemata
-writes - verified by observing the DDR bandwidth counter drop
-and recover in sync with the throttle level changes.
-
-Thanks,
-Ping
 
