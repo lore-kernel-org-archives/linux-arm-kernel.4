@@ -2,137 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37727606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 09:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2F360A2603
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 09:04:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z3UnMykQ;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=IX401tPg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LSAiIZQ7;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HIi63Rsc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6T25cNEpUI51OzMFxywpfZVo2NNKpifhl6FBUy5C3mM=; b=z3UnMykQV5zHNJF3HZ+A4LiNtE
-	xOscKf7bZI7hEalpsHNj4jPFtnF+Ge9UDAEP8aK3czR56tE8rtpRC6/fwlhyS1ixpD6X0PeaL+0/2
-	MAIz0PUV3NJRtMZMTBNCmWI4HCr6cLPmw3LyY+zOuJ8VKKZnF8XxQWOWbtDE6cOFsMIfXRuNSuNhi
-	qHzGwp98YfFEVGpz6aVHcjCPKAIrRXTcc1wDqaX/sidghXOWPXxfsqeqU18IljZc25ksKsgXS1TSd
-	BwPoVMx03KW7GZfGw0mffWDpTIbRqR3aoBP1zFgozKDWbDk/LIvsQ3U5qR4rY1y9PGCosDjVknqyb
-	Q+bUt+0Q==;
+	bh=Uu+9KGMrpHo8NgeySjI/tnMOPCgQH/37jz3abKrEz2o=; b=LSAiIZQ7DCoVct5uABx2MLBxfG
+	FlcMi13qSpe/v+c0WjxRhMBQg9SHwiUvK/6Gv1YFImUhYLdY9XX8oOhKxTBDW7cn4ecGP90evpV1z
+	jyGAZiBwL2DarxafdsTlNk4aG81Lw0Tj7J62SYZNeZV0UowOuea8zgRSOs2mOaxDnigvOA9w7fUWt
+	/OIl2pjvDMZjLlakZUb5uZgQO8Rl442n77gArhr9JZqUan+Dhg4UGCT8TYazuNQkrRSdIJMxbChhM
+	1ppH0nI4dPURffuvFZlBkYtbUGwUNw5jS0S6Wz0NBdOBJ8fxx7ff1vbnd3StoA0ypvGVY5LLCAf9I
+	X9mZ9JaA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR4Bq-000000067AP-3J99;
-	Wed, 11 Nov 2026 09:00:22 +0000
-Received: from mail-westus2azlp170120002.outbound.protection.outlook.com ([2a01:111:f403:c007::2] helo=MW6PR02CU001.outbound.protection.outlook.com)
+	id 1xR4Fn-000000067Yk-4AAa;
+	Wed, 11 Nov 2026 09:04:27 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR4BB-0000000677Q-35A0
+	id 1xR4Fm-000000067Ye-2c1e
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 09:00:20 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lgt9b//xl2hipxsYszdh/9XKMTnM6A/6ajpPI48BqkAMUQeP6zVm5YZOjMPIwDAEF1bk7ruIUZ39ZaZi/aiE6nSkHpDUfpxOohPDASZnUuncfxat4Ty9lnZxxM0UNDuFwCARzJtrshIr5jtuVoV5AKpN/k/iaMubdHJJGWESgXAzxmz0myToqtMGyGqBarrr7OkPpNkM4kA/ktgtbafJahWQ3t/XEP7AmQ2u/NxiKWrp/4HEsoqQu09+yr7sbq3LrotXhID4Sxn+3Jy1Of7EUe/6t7FDhJ4YwhiuYvkRELFTPSuGPtv8FaK2kAtc6OuBiHsZU+rHdwMkWbPHx82MqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6T25cNEpUI51OzMFxywpfZVo2NNKpifhl6FBUy5C3mM=;
- b=ogVdqB06Pcdp/3vt6fB3ssrulg6UUwUukMrW0aMZCb7smjn+DzcR3MON7oXkMMHoajKyXdaurrFfy0eIyFcP+NpIxyvfUq4EWP5bAkBfO2Mty8jgCLUsX1rY/01Y8VlHyoSKffItiDD2w8+zXd1cc2dRXfEZOJzR63KRMVYYzbM1VsiGdaWNjTYvHN//m38NiibXdltW+r6mHHY1qiA0Nh+TFxcZJYkFnp8c/OSwxheg9RNsm81N9k5gqJ/TlINg7aDTv5dnN0WCp4Bc/tH6//YeQBoaVmLFFuXI1/dFmuPzMm4bzYAwypolo5W+ZQ4P5FhkM/UWGTLQONe19xrNjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6T25cNEpUI51OzMFxywpfZVo2NNKpifhl6FBUy5C3mM=;
- b=IX401tPgIaWtpdiDVH0/OQ1p07EM849ikQQkvkkWsPWEKm2zm0x735WrxbA9a+UUmHkIrPlGrA1Vv+Scsdp3NCZ345rPqyeK3N0qe7c19J9h2bJz1BlixqSfhGb/+rmsI9OBx4Q3/5WzXI07/yUlU0mYDuA1y5XZ6aXGmqV4p1UM7QuLRTGFeMDPssUHUeOaXJdYJOpDXq1ljtH9sz+T2f3oE0+Vyx7ewmd0Awfl6IpXDJJmAJF/EJeb+g2LweK/aNVdaSmYh/M787MFPeVmvfvAN+kKqvJBn4zoy2fi91857AeUCcQXpyaYyevRMA7TVy3y7SzwoH84RONaCBPo6g==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BL0PR12MB2370.namprd12.prod.outlook.com (2603:10b6:207:47::27)
- by SN7PR12MB6669.namprd12.prod.outlook.com (2603:10b6:806:26f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
- 2026 08:59:35 +0000
-Received: from BL0PR12MB2370.namprd12.prod.outlook.com
- ([fe80::86cf:c3ec:2cf5:74c8]) by BL0PR12MB2370.namprd12.prod.outlook.com
- ([fe80::86cf:c3ec:2cf5:74c8%5]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
- 08:59:34 +0000
-Date: Wed, 11 Nov 2026 16:59:28 +0800
-From: Richard Cheng <icheng@nvidia.com>
-To: Fenghua Yu <fenghuay@nvidia.com>
-Cc: Reinette Chatre <reinette.chatre@intel.com>, 
-	Tony Luck <tony.luck@intel.com>, Ben Horgan <ben.horgan@arm.com>, 
-	James Morse <james.morse@arm.com>, Will Deacon <will@kernel.org>, Dave Martin <Dave.Martin@arm.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Shaopeng Tan <tan.shaopeng@fujitsu.com>, 
-	Chen Yu <yu.c.chen@intel.com>, Babu Moger <babu.moger@amd.com>, 
-	Drew Fustini <fustini@kernel.org>, Vikram Sethi <vsethi@nvidia.com>, 
-	Shanker Donthineni <sdonthineni@nvidia.com>, Newton Liu <newtonl@nvidia.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC v1 2/6] arm_mpam: resctrl: probe MPAMF_MBW_IDR
- MAX_LIM and hardlim_rw
-Message-ID: <avQmqLUWT6VoYmnq@MWDK4CY14F>
-References: <20261109212937.1409570-1-fenghuay@nvidia.com>
- <20261109212937.1409570-3-fenghuay@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261109212937.1409570-3-fenghuay@nvidia.com>
-X-ClientProxiedBy: JH0PR04CA0007.apcprd04.prod.outlook.com
- (2603:1096:990:4::7) To BL0PR12MB2370.namprd12.prod.outlook.com
- (2603:10b6:207:47::27)
+	Wed, 11 Nov 2026 09:04:26 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D4E7763BB0;
+	Wed, 11 Nov 2026 09:04:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53ADA1F00A05;
+	Wed, 11 Nov 2026 09:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794387865;
+	bh=Uu+9KGMrpHo8NgeySjI/tnMOPCgQH/37jz3abKrEz2o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=HIi63Rsc072fcV3Tl1WAPHmCUz8w3a5jTfXsiegMUGVvyuq0PblXB+u68/3bRBoJO
+	 T1P0Y3HXdzA2glvFOEAULVTxX+f30mY5CzVeX37aHt4sn3Yq80qpmSNWLSpwA+QF5L
+	 +OWMh0pe3Wf/fuBagRsb2AAxmPmnH8HLa430rxxnafK5LaZUUdRqGILc0uzwMDQoS7
+	 APpykF1PkmpRzUSEJIa6FImTQdljxta8iwjlHX+H7UxhNeqBY85ZZHGXyejxM+DtJm
+	 iFt4yxKv7HQ9sSl7td/sWSWxe9ov/nIWJbuwpsmeuFh2WB5KaNQWfbiChgOXpq5Q0q
+	 4mRWIekkXy4BA==
+Date: Wed, 11 Nov 2026 10:04:19 +0100
+From: "Oscar Salvador (SUSE)" <osalvador@kernel.org>
+To: Chris Down <chris@chrisdown.name>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+	kernel-team@meta.com, Mark Rutland <mark.rutland@arm.com>,
+	Huang Ying <ying.huang@linux.alibaba.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Muchun Song <muchun.song@linux.dev>,
+	Oscar Salvador <osalvador@suse.de>,
+	David Hildenbrand <david@kernel.org>,
+	Mike Kravetz <mike.kravetz@oracle.com>,
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Subject: Re: [PATCH] arm64: hugetlb: Prevent write fault livelocks on stale
+ TLB entries
+Message-ID: <avQvk0oxEHTLFacU@localhost.localdomain>
+References: <avPxZjjdBIlM_8_g@chrisdown.name>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2370:EE_|SN7PR12MB6669:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9905e6ab-5dcc-4ce2-587e-08df3fd21b50
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|7416014|376014|1800799024|22082099003|18002099003|6133799003|11063799006|4143699003|56012099006|261028144727099003|261009223027099003|261026140227099003|261102123227099003|261022105027099003|261021121427099003|261022075727099003|261021123027099003|261026121527099003|10067099003;
-X-Microsoft-Antispam-Message-Info: Vt1NhN48eLeR5q+ckkS97/ljow9VBOh8B6mDUaaj/grllllqc0ZE7eCNi60xC4Wy3TajChe+y7I4qItq9NoWW2nyIPc9+7FBGFytiYIiAB3AAMM7DfrI/fBoi699mfPCDSMGy/iuH4hgRlGUp+bm6c8AhlWJEDZFgUFk+fvS5c2O1SR0I8pE/f38qbu9nOe1BjumN7m5hkBSN4T6ToQIM1Gc8p6oEaQfa/2Dd1H1U8xaQgwox2+hdmTCEEU1AtERmNcWz5wUdTUsjyi4m8q6fWOgDkbIikMOB4gWiFJ4y6Fl4vl5SGTNMiobQrhNPD6ngzVCUGBZDnsoHcIGiG7ErYVxzQkfipPpEtZxohxl9p7ONaAPONSfk3gsZEEhvpZLn7k55NTZJi86P3ygmUPogHY0IfNzRJbXtInYCS4O8gYBTaslGZV29dif1JVqaXTcoM5xlhf1HpFliKQMe9USi5GlwVqzgvtDjm8rb8QSdyS7uujhnrt2jXZvsNFJ8IYiaEqGO3hq8Je8UO/L/DeMJWBdxpqHMC1nvX7gW+oMPJmEqsLQhFmlzv25QTlVq6KdOm1c4s6QTmaHYl/ifTnTkk2yX/n272eA8Je/sj+Zow7z4xldMc6JxgyNFKzY3mFXELLKJO3Dotj0C5chaWU82TKvj/78Vmc/8+nr5qJi2ys=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2370.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(7416014)(376014)(1800799024)(22082099003)(18002099003)(6133799003)(11063799006)(4143699003)(56012099006)(261028144727099003)(261009223027099003)(261026140227099003)(261102123227099003)(261022105027099003)(261021121427099003)(261022075727099003)(261021123027099003)(261026121527099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AJvC92FuTcZXgcmv7GRG0d/ZOW+gXA+ZPOvPCrjZifbH2LzoGKDx/4IPzJ4X?=
- =?us-ascii?Q?0NmEujb08CyLQ6kZ5CtNJlJ69IXC6w4WKrWJEHb8P5edGR4V6v1Xfu0+GRw8?=
- =?us-ascii?Q?zCDW0W52Ak9EVrdhOX90EhmUMYkp0nte6p7IlETKlE+WxKgNnDzYkKp6w3qY?=
- =?us-ascii?Q?diyvkk5X2nRKRRwnX+UDkiUF8BVp1css49VThyfpHhrYba9itp+vyqkHiGij?=
- =?us-ascii?Q?1xdllzRIKVVvJDUo54NXln4Vl+IhuthJRq9qmXNaItntN5yWFpadEfzSTjOS?=
- =?us-ascii?Q?KidP6qbps9xD896yVKjD7XtCvoc6wgbrDJvPLhIbEcO5xoz0Odo7UEfFLkSi?=
- =?us-ascii?Q?stIV31yyHgP923MsVm/AZ51iDda+f2MZPbzzibVN4EgGm76oBP5/IQup+fEu?=
- =?us-ascii?Q?h8fsmdEHD28GKnPkJx3rkiw4SohLCv9BSSf83I4cyqnlGHivKTedyHD3Gj82?=
- =?us-ascii?Q?lAkzac/1/fdO0ZERPSUYArPZEjN9mNni3SgNoc2T/h7aLphB7bNv3jav2ktb?=
- =?us-ascii?Q?25vZCO/nM+5hBwqKgMaDPjUVyHVuu3vKpkKlYRG55/ZxZShCFyUXwubiJgz/?=
- =?us-ascii?Q?0A0ImsxPn9Y6A24lPClfgHJyPZQSb9lpI0NJTD2ct3BAJ73tofNCEd+fRJzk?=
- =?us-ascii?Q?vzKOvbJ+0hmR2e+hfTpIZKdHbbO0+8IPKGEwZJgwAXP8XCIn5gAb/7uudM1x?=
- =?us-ascii?Q?FfrOIrvjfcLwVAPe6TB50PDD8RKt0MX+oftvXYKNp9o0RQszw6YsQlwAaOjy?=
- =?us-ascii?Q?Ck2twS9xyqJT8sCPcLfBvmV7zYCoskF567xHDZEPseiYopE64xeUcJ8wh5DZ?=
- =?us-ascii?Q?hzlXzsLB3dvZGbtV+Muabj4e1LzPE2ygWK/ipbVrO08l4CJ5db3F8VZm7v7l?=
- =?us-ascii?Q?CtblFhnuLcccvUaAXTee9AcxSmj9SSVyIguj4anU+wNVd53t225V5ANbrPBC?=
- =?us-ascii?Q?4xVRMffiPBzAh0gctBysCxsJhyp+7W6i1nurk73p0iW157QbNS9U34+yWakK?=
- =?us-ascii?Q?mWNH/pLPAddBuvsV8crETRkOFF0GrUIm/N2SNOjsM66HZ7SmTYaBJ1EnOJ4u?=
- =?us-ascii?Q?lJXALCAnsRlymOY96EVo1uLkMLDTXJZLx9ZGGnwh1pIqnDAyKiwHojVIBanL?=
- =?us-ascii?Q?2O3Sd9a8wVScQX33AVKeJl/QbSUH1cwqQWloRfLfAvcxWjjgtPlz+GuJoWPT?=
- =?us-ascii?Q?SnhoSzIs2w+KFToBJL3P4Cav/M5v7HQvU7bx8soQNyBS+RSCWxeb/VhDU9/L?=
- =?us-ascii?Q?73Rg/lkQmWKjt4QLVWC2VKGp0KsStxCxsRr/vf9TePfX2DrlHDg6eZ9XCPsB?=
- =?us-ascii?Q?lYyP4z1ah5UeW9fyLMqDecUUJ5O8h0IWwPzB1+ekC6HmvX4jTxF7KvRwpWD8?=
- =?us-ascii?Q?r/xgdCXebKR3yyRxy4iqYGhno99o+hxm8tfpaukPk7LX1XmhA+/FsMpnLkDq?=
- =?us-ascii?Q?hpuEZ4Pe14Xa2zrEBuVGiGQTTqvjPX63GDYtbKahC+qVmx+IdTOeC7FD3jLa?=
- =?us-ascii?Q?Fa0gxrciYNXru7m23UgCy3YnrmQJ6qup69luUDORcU4WxdnH7uPwCQ1AVAM9?=
- =?us-ascii?Q?R/FuMsi8Tqpj8AXQuoUcni6eqOgesvvENMsMTxOt4wPXyXiTuAfJsO9nQAOp?=
- =?us-ascii?Q?dkYtudsec5u40cg5N5IjGcyZrAjIItlhNKeYcOkBDS7mHp0uVC9/7dcykhR8?=
- =?us-ascii?Q?L57tpXNRtOrjVPpHR2XfVfw8Q6xBmdgzhxGKomvzPidLNlMRMqelbq9WqEkT?=
- =?us-ascii?Q?UXhU72z4pw=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9905e6ab-5dcc-4ce2-587e-08df3fd21b50
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2370.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 08:59:34.7915
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pg8boKifozyYlLiZMUf7rqMYGk25lGNNoj5Wa57db6vfEjCzg96lxdrpRAk93+2pFhFCRtrB5DhrhkYzoSaQlg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6669
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_005941_833288_DECA02E5 
-X-CRM114-Status: GOOD (  28.16  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avPxZjjdBIlM_8_g@chrisdown.name>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,171 +79,97 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 01:29:33PM +0800, Fenghua Yu wrote:
-> Before resctrl can expose MB_MAXHLM, the driver must discover
-> whether the platform supports HARDLIM read/write and what
-> MPAMF_MBW_IDR.MAX_LIM reports. MSCs on the same system may differ;
-> inconsistent merge would expose controls on hardware that cannot honour
-> them.
+On Tue, Nov 10, 2026 at 08:39:02PM -0800, Chris Down wrote:
+> In Meta production, we have had tasks get stuck in a fault loop while
+> using hugetlb on arm64. During my investigations I found that affected
+> tasks share a private hugetlb page.
 > 
-> Read mbw_max_lim from MPAMF_MBW_IDR when MBW_MAX is present, derive
-> mpam_feat_mbw_max_hardlim_rw when soft and hard limiting are both
-> supported, merge capability across MSCs, and keep the merged view in
-> sync via mpam_props_sync_mbw_max_hardlim_rw().
+> Looking at the stuck task states, I found the following ordering:
 > 
-> Signed-off-by: Fenghua Yu <fenghuay@nvidia.com>
+>   CPU0                                 CPU1
+>   ----                                 ----
+>   read page
+>   [read only entry cached in TLB]
+>                                        write page
+>                                        hugetlb_fault()
+>                                          hugetlb_wp()
+>                                          [reuse folio]
+>                                          set_huge_ptep_maybe_writable()
+>                                            set_huge_ptep_writable()
+>                                          [flush local TLB only]
+> 
+>   write page using stale entry
+>   hugetlb_fault()
+>     huge_ptep_set_access_flags()
+>     [entry already writable, no flush]
+>   retry write using stale entry
+>   [fault indefinitely. well, that's not ideal!]
+> 
+> The reason is that when a write fault makes a non-contiguous hugetlb
+> entry writable, it only invalidates the local TLB. However, another CPU
+> can keep the old read-only entry, so its write will fault even though
+> the page table already permits it. hugetlb_fault() then finds nothing to
+> change and leaves the stale entry in place, so the same write keeps
+> going round in circles.
+> 
+> This is particularly bad because, if the kernel is copying to user
+> memory, the retry stays inside the kernel and the task can't act on the
+> pending signal.
+> 
+> It can even remain unkillable while holding locks across the copy,
+> resulting in further failures. For example, a read into a hugetlb
+> buffer can hold the pipe mutex and block other users of the pipe until
+> the loop ends, causing cascading lockups across the machine.
+> 
+> To fix this, when a write fault finds nothing to change in a
+> non-contiguous hugetlb entry, let's invalidate the local entry.
+> 
+> Fixes: cb1fa2e99955 ("arm64, tlbflush: don't TLBI broadcast if page reused in write fault")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Chris Down <chris@chrisdown.name>
+
+This makes sense to me, and I see that commit cb1fa2e99955 ("arm64, tlbflush:
+don't TLBI broadcast if page reused in write fault") only invalidated local tlb
+for cont-hugetlb.
+Reading the changelog, I guess that was an oversight because I could not find
+the reason behind.
+
 > ---
->  drivers/resctrl/mpam_devices.c  | 40 ++++++++++++++++++++++++++++++++-
->  drivers/resctrl/mpam_internal.h |  7 ++++++
->  2 files changed, 46 insertions(+), 1 deletion(-)
+>  arch/arm64/mm/hugetlbpage.c | 21 ++++++++++++++++++---
+>  1 file changed, 18 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index cb6096e9d2cf..1e56e8f3858e 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -830,6 +830,19 @@ static bool mpam_ris_hw_probe_csu_nrdy(struct mpam_msc_ris *ris)
->  	return (!can_set || !can_clear);
->  }
+> diff --git a/arch/arm64/mm/hugetlbpage.c b/arch/arm64/mm/hugetlbpage.c
+> index 8e799c1fe0aa..ff1f53e435e1 100644
+> --- a/arch/arm64/mm/hugetlbpage.c
+> +++ b/arch/arm64/mm/hugetlbpage.c
+> @@ -429,9 +429,24 @@ int huge_ptep_set_access_flags(struct vm_area_struct *vma,
+>  	VM_WARN_ON(!pte_present(pte));
+>  	ncontig = num_contig_ptes(huge_page_size(hstate_vma(vma)), &pgsize);
 >  
-> +/* Align mpam_feat_mbw_max_hardlim_rw with MPAMF_MBW_IDR.MAX_LIM and mbw_max. */
-> +static void mpam_props_sync_mbw_max_hardlim_rw(struct mpam_props *props)
-> +{
-> +	if (!mpam_has_feature(mpam_feat_mbw_max, props)) {
-> +		mpam_clear_feature(mpam_feat_mbw_max_hardlim_rw, props);
-> +		return;
-> +	}
-> +	if (props->mbw_max_lim == 0)
-> +		mpam_set_feature(mpam_feat_mbw_max_hardlim_rw, props);
-> +	else
-> +		mpam_clear_feature(mpam_feat_mbw_max_hardlim_rw, props);
-> +}
+> -	if (!pte_cont(pte))
+> -		return __ptep_set_access_flags_anysz(vma, addr, ptep, pte,
+> -						     dirty, pgsize);
+> +	if (!pte_cont(pte)) {
+> +		if (__ptep_set_access_flags_anysz(vma, addr, ptep, pte,
+> +						  dirty, pgsize))
+> +			return 1;
 > +
->  static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
->  {
->  	int err;
-> @@ -877,6 +890,8 @@ static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
->  	if (FIELD_GET(MPAMF_IDR_HAS_MBW_PART, ris->idr)) {
->  		u32 mbw_features = mpam_read_partsel_reg(msc, MBW_IDR);
->  
-> +		props->mbw_max_lim = 0;
-> +
->  		/* portion bitmap resolution */
->  		props->mbw_pbm_bits = FIELD_GET(MPAMF_MBW_IDR_BWPBM_WD, mbw_features);
->  		if (props->mbw_pbm_bits &&
-> @@ -891,14 +906,18 @@ static void mpam_ris_hw_probe(struct mpam_msc_ris *ris)
->  		 */
->  		props->bwa_wd = min(props->bwa_wd, 16);
->  
-> -		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MAX, mbw_features))
-> +		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MAX, mbw_features)) {
->  			mpam_set_feature(mpam_feat_mbw_max, props);
-> +			props->mbw_max_lim = FIELD_GET(MPAMF_MBW_IDR_MAX_LIM, mbw_features);
-> +		}
->  
->  		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MIN, mbw_features))
->  			mpam_set_feature(mpam_feat_mbw_min, props);
->  
->  		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_PROP, mbw_features))
->  			mpam_set_feature(mpam_feat_mbw_prop, props);
-> +
-> +		mpam_props_sync_mbw_max_hardlim_rw(props);
->  	}
->  
->  	/* Priority partitioning */
-> @@ -2252,12 +2271,31 @@ static void __props_mismatch(struct mpam_props *parent,
->  	if (alias && !mpam_has_bwa_wd_feature(parent) &&
->  	    mpam_has_bwa_wd_feature(child)) {
->  		parent->bwa_wd = child->bwa_wd;
-> +		parent->mbw_max_lim = child->mbw_max_lim;
-> +		if (mpam_has_feature(mpam_feat_mbw_max_hardlim_rw, child))
-> +			mpam_set_feature(mpam_feat_mbw_max_hardlim_rw, parent);
-> +		else
-> +			mpam_clear_feature(mpam_feat_mbw_max_hardlim_rw, parent);
->  	} else if (MISMATCHED_HELPER(parent, child, mpam_has_bwa_wd_feature,
->  				     bwa_wd, alias)) {
->  		pr_debug("took the min bwa_wd\n");
->  		parent->bwa_wd = min(parent->bwa_wd, child->bwa_wd);
->  	}
->  
-> +	if (CAN_MERGE_FEAT(parent, child, mpam_feat_mbw_max, alias)) {
-> +		parent->mbw_max_lim = child->mbw_max_lim;
-> +		if (mpam_has_feature(mpam_feat_mbw_max_hardlim_rw, child))
-> +			mpam_set_feature(mpam_feat_mbw_max_hardlim_rw, parent);
-> +		else
-> +			mpam_clear_feature(mpam_feat_mbw_max_hardlim_rw, parent);
-> +	} else if (MISMATCHED_FEAT(parent, child, mpam_feat_mbw_max,
-> +				   mbw_max_lim, alias)) {
-> +		pr_debug("%s mbw_max_lim mismatch, clearing mbw_max\n", __func__);
-> +		mpam_clear_feature(mpam_feat_mbw_max, parent);
-> +		parent->mbw_max_lim = 0;
-> +		mpam_props_sync_mbw_max_hardlim_rw(parent);
+> +		/*
+> +		 * Another CPU may have made the entry writable without
+> +		 * invalidating our stale read-only TLB entry. To avoid
+> +		 * indefinitely faulting on this entry, flush it.
+> +		 */
 
-Hi Fenghua,
+Maybe put that we already do that for cont-pte? 
 
-For alias=True, the existing bitmap_or() at the end of __props_mismatch() appears
-to undo this rejection by copying the child's feature bits back into parent.
+ 
 
-With both inputs advertising MBW_MAX and having matching bwa_wd, a small harness
-using the actual merge functions produced:
-
-  parent.MAX_LIM  child.MAX_LIM  resulting mbw_max  hardlim_rw
-         0              1                1             0
-         1              0                1             1
-
-The resulting mbw_max_lim is 0 in both cases, thus the same pair of capabilities produces
-different writable-HARDLIM support depending on merge order, and MBW_MAX remains enabled
-despite the mismatch.
-
-Rerunning mpam_props_sync_mbw_max_hardlim_rw() after the OR would not preserve the
-rejection, mbw_max has been restored and mbw_max_lim was reset to 0, which means soft+hard
-support.
-
-Best regards,
-Richard Cheng.
-
-> +	}
-> +
->  	if (alias && !mpam_has_cmax_wd_feature(parent) && mpam_has_cmax_wd_feature(child)) {
->  		parent->cmax_wd = child->cmax_wd;
->  	} else if (MISMATCHED_HELPER(parent, child, mpam_has_cmax_wd_feature,
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index 1c9e0e8b78a9..6be32b2cb0ab 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -172,6 +172,7 @@ enum mpam_device_features {
->  	mpam_feat_mbw_part,
->  	mpam_feat_mbw_min,
->  	mpam_feat_mbw_max,
-> +	mpam_feat_mbw_max_hardlim_rw,
->  	mpam_feat_mbw_prop,
->  	mpam_feat_intpri_part,
->  	mpam_feat_intpri_part_0_low,
-> @@ -203,6 +204,11 @@ struct mpam_props {
->  	u16			dspri_wd;
->  	u16			num_csu_mon;
->  	u16			num_mbwu_mon;
-> +	/*
-> +	 * MPAMF_MBW_IDR.MAX_LIM [1:0] when mpam_feat_mbw_max; else 0.
-> +	 * 0 = soft+hard, 1 = soft only, 2 = hard only, 3 = reserved.
-> +	 */
-> +	u8			mbw_max_lim;
->  
->  /*
->   * Kunit tests use memset() to set up feature combinations that should be
-> @@ -585,6 +591,7 @@ static inline void mpam_resctrl_teardown_class(struct mpam_class *class) { }
->  
->  /* MPAMF_MBW_IDR - MPAM features memory bandwidth partitioning ID register */
->  #define MPAMF_MBW_IDR_BWA_WD		GENMASK(5, 0)
-> +#define MPAMF_MBW_IDR_MAX_LIM		GENMASK(9, 8)
->  #define MPAMF_MBW_IDR_HAS_MIN		BIT(10)
->  #define MPAMF_MBW_IDR_HAS_MAX		BIT(11)
->  #define MPAMF_MBW_IDR_HAS_PBM		BIT(12)
-> -- 
-> 2.53.0
-> 
+-- 
+Oscar Salvador
+SUSE Labs
 
