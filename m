@@ -2,68 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D72AF606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED579606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:36:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Omry+k9z;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=YV0jBzAA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xiGycJcB;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UvdnVImc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GQKJXNTQW9v+01dsyTFFERDStZLJXqLVmjUwVOCY3Dw=; b=Omry+k9zT8Gj5V
-	gXO12ua3c+o5XDlfEiLfmMW1QeS6+J1nnKKgQBlWinKcgDHy5QobXin960cMrB+YEQAkzlevZOrOG
-	QDdi1tIUo9N6mxPvy93pmsRZdyITvOMsw0IjQHwqw1W1dNTOjH4eODb271RlfAf4qMpoMr2/Z8RyO
-	+nP5MZPbVHGrL55bGxUJyiMoPqGyhIlFRlmt9gWb3lS2qGf9vV0O/pjCWuAfc30+UNiwSXf6cLigG
-	SAgOS9ZdjPBS5uQrRWI0sthJQgNbIy0n/A8qe/nHkQFJ3aWItoG0d3nZXrv8ylK9c8bx/+I66Xw2h
-	3QhKm42WKJ4QFOw1Jp+Q==;
+	List-Owner; bh=4wr+TVHDubo7QkZWmXYb7l0IP18SbqIz/pFvG9rCN0M=; b=xiGycJcB8VDMlM
+	Ld97u++3Uc916GdDX8rphn79iSuZgfR5G8v8TsypLEHLLapVoEzAKMKBVHpBZasqLOIhqfYmcGfTp
+	8cg+tVIUNBnMMz2V14ymgVwoaLZS7siZo46MrwNJhxZISCQu43CZ++Y6Jb7Zi04nYzBAmhYM//Srg
+	nYN5VBr0lZLXqL6L/h8U+5wb05e2hJyBGrTvCXaE5GwKZ5Kd/s4RQrNC3e+u7vPGag6DM6tVgXm+k
+	zX+e3EPBPtbG9qnTuYVCdR7f8kseGP8/BjpahaDa/Zu4jBunwtruByxYvHL7S53LtRD+M5SDQ0v//
+	RmZo20qtLL4jRWFXG2YA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8SI-00000006pDn-2Jiy;
-	Wed, 11 Nov 2026 13:33:38 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8SE-00000006pDH-1Hb4
+	id 1xR8UY-00000006pYM-3U5Y;
+	Wed, 11 Nov 2026 13:35:58 +0000
+Received: from mail-dy1-x1332.google.com ([2607:f8b0:4864:20::1332])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR8UU-00000006pXj-3261
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:33:35 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 72D591576;
-	Wed, 11 Nov 2026 05:33:28 -0800 (PST)
-Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D2BA83F673;
-	Wed, 11 Nov 2026 05:33:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794404011; bh=o3tyiYm4DJAr6V2NiisE1PtJ+Fj0j7GWcQIp093iIn0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YV0jBzAAJbiQ8M0NjHzMqF97YbOZ3nYwy8vmXccgy0CldPbNLNEaY73UEUCDryope
-	 rPRlrP0y8fD6ryfLpFYfFnS9/OeVK2Ws8ikjIalXF75XRMgVfaJzeKdH6ZXPc2fxPw
-	 R6gHqC2gvutG1voSrqleT0of6OOEw2YW2T41ardY=
-Message-ID: <3479391a-ec0f-46a8-9384-ec084017d344@arm.com>
-Date: Wed, 11 Nov 2026 13:33:27 +0000
+	Wed, 11 Nov 2026 13:35:57 +0000
+Received: by mail-dy1-x1332.google.com with SMTP id 5a478bee46e88-36f8cdd30beso5514382eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:35:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794404154; x=1795008954; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=4wr+TVHDubo7QkZWmXYb7l0IP18SbqIz/pFvG9rCN0M=;
+        b=UvdnVImcFY807q8npIAX4fPK2QKOWqMnRhsyT1x1srV0Cf6UuHQ9sz2CxAxkYywK1P
+         qzu0EVjw9TSswOxj85t0KMnr4n57OOUDXX+nGf16iJQ20VgmIjN/38jFuQsx1xkzxx/V
+         aVT/Egloo28qQJO3hvnXH52UQ0MAByc6ppEacsYQ2cvpUBPvq0pUQ2YgZP2Mjp/qokDu
+         zQQGe7S0mWct4KWG7G5vMxBUKiCJB4wcOpCQoq7rS26os1kkbk8t0rZ/CNK5Zc9MghZh
+         OkgkyLtT3xZ/pB+VkZK5b+pzwy0Eq3ld/TUibNXG/HUTdazW6ZU5kBTeaShZG5nLvXcb
+         dn/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794404154; x=1795008954;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=4wr+TVHDubo7QkZWmXYb7l0IP18SbqIz/pFvG9rCN0M=;
+        b=ZqE8CQgIjjnjCOg6Pn2lAkDF8j+4Xovd5NLs1r9/PW2U797Kk3y2h9kklrDP/+lw4v
+         0GUtUmZOGxnU/m4O3fmROFZL8unang4w2aRAKS6nn6BWmwP/vS3Y1VjpBdYiXf5ylqP9
+         Lkbya1005BzvDh/rimXFTAMB6QVszBoFp36PSemdoorZxjok77CHtxMP5LKXpm9X/nHA
+         t+PyweWCxa3tCpyqYPYD02k6baamlRbLcgpYGYO5Dy+EoZibDSqhZ2dQ7o1JzQ/jMA9G
+         OqeWHJY30rEK5rCQoIFdgF7yvC8MNOski97b6jgsVHDw/WMz0gXErzm+S4n8tF0/Dj1L
+         x1Cw==
+X-Forwarded-Encrypted: i=1; AL+hErG/4WzURwAOTvKBCa8gxKqqs4CxdbcNFdalr5+Wz3K2wsHjssV/DH3QKJwVtDIMRcMsoeipk+ikpOV0VKTEaiGE@lists.infradead.org
+X-Gm-Message-State: APuU4Z+ieq1Nwuleokp5q3SPRgxL4gaf9bogKXIqKrVq2AyVIbFIGfKT
+	mlbnaj7UAylScNvqu4rUVW61yaVEHPeYjmElerWmWjP3DeaEN5iRghmf
+X-Gm-Gg: AYBFou3vdaiEEeyf+5yr42kcX4gNSQqASl+vpxKAyAYMzjIVspCh/elu/zqlyTVhb41
+	6A2EelgEC/LNYaVegdHotO69IjtTNVonveSuOKihE3+KoJfWzmJUAjWxKyuoL7wEzRPkmYqPu5N
+	Tb2VKfh+YcFLjoKSBHiS+52dmEDDX9Px/DCS7rLNgYlQGFF3vzHHiTQZZoQNN0SFq7ZTEf3kWJk
+	vxX5Zoyhz/o3l+ex5CwdIu1i4WAp5yd0B6VUEMuqdPZ6VQquxtF0hXlENg8WFv6/o1OvhLdPHtu
+	u00vgx8f7LD/PLdWckD9qumJRLKXgQy8UOJ5yBmx1wEavMMN4InQY5QnVrtnK9tb1uGv9I29+NB
+	E+H5Q3NrPNMs13OSQQGrHJpUZ6pNe1o1pUDlCZsqyRn/yHp2UVpkl+PG6dLGiM/wYPh+FEj7Nx6
+	JT9NDG7NYV8Dxjl7Zu3QL9j/S0BtszD6I+FwIW90FE+AubgdGS0toqwFOK6z/GP7ArzSZO4B/M+
+	EYBbK5DVvOo47n2EDRm7l3UDlH8WZmhxHfh4rg12hbxLst/L8Ue+58STIpwzVOgjM9WOEj7okOz
+	2R+Akc2QweC8lckMX9Ek2SQi81M=
+X-Received: by 2002:a05:7301:db15:b0:375:b560:a323 with SMTP id 5a478bee46e88-3768366a43cmr3063455eec.1.1794404153449;
+        Wed, 11 Nov 2026 05:35:53 -0800 (PST)
+Received: from [127.0.1.1] ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-375212e9d78sm17768172eec.25.2026.11.11.05.35.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 05:35:51 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: James Clark <james.clark@linaro.org>
+Cc: linux-perf-users@vger.kernel.org, Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>, John Garry <john.garry@linux.dev>, Ilkka Koskinen <ilkka@os.amperecomputing.com>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] perf vendor events arm64 AmpereOneX: Fix misspelled PublicDescription keys
+Date: Wed, 11 Nov 2026 13:35:48 +0000
+Message-ID: <179440414898.2353714.11591904089911934138@gmail.com>
+In-Reply-To: <39ac224f-2903-496e-9a08-b4c5a33dc87f@linaro.org>
+References: <20261108183846.3804875-1-takano32@gmail.com> <bf6925f6-613f-4e20-8491-2a99183f34fb@linaro.org> <39ac224f-2903-496e-9a08-b4c5a33dc87f@linaro.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: suspend: Save POR_EL0 over suspend
-To: Mark Brown <broonie@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Joey Gouly <joey.gouly@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20261105-arm64-fix-sysreg-suspend-v1-0-f4d9a99fec46@kernel.org>
- <20261105-arm64-fix-sysreg-suspend-v1-1-f4d9a99fec46@kernel.org>
-Content-Language: en-GB
-From: Vladimir Murzin <vladimir.murzin@arm.com>
-In-Reply-To: <20261105-arm64-fix-sysreg-suspend-v1-1-f4d9a99fec46@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: kpatch-send.py
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_053334_417834_3E7ED105 
-X-CRM114-Status: GOOD (  18.06  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261111_053554_761876_942778BB 
+X-CRM114-Status: GOOD (  15.38  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,77 +100,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/5/26 16:05, Mark Brown wrote:
-> POR_EL0 is a live EL0 register on systems with S1POE but it is not saved
-> and restored by cpu_do_suspend()/cpu_do_resume(). This means that the task
-> that initiated suspend can return to userspace with an UNKNOWN value. Fix
-> this by saving and restoring the value over suspend.
-> 
-> This increases the size of struct cpu_suspend_ctx.
+On 2026-11-11 10:16, James Clark wrote:
 
-This seems to be implied since we need storage to keep register value, no?
+> IMO I would rather have something that's incredibly strict and simple,
+> or nothing at all. Having to work around edge cases and report near
+> misses doesn't sound great.
 
-> 
-> Fixes: bf83dae90fbc ("arm64: enable the Permission Overlay Extension for EL0")
-> Signed-off-by: Mark Brown <broonie@kernel.org>
-> Cc: stable@vger.kernel.org
-> ---
->  arch/arm64/include/asm/suspend.h | 2 +-
->  arch/arm64/mm/proc.S             | 8 ++++++++
->  2 files changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/include/asm/suspend.h b/arch/arm64/include/asm/suspend.h
-> index a5abf0615594..eb9ce315f146 100644
-> --- a/arch/arm64/include/asm/suspend.h
-> +++ b/arch/arm64/include/asm/suspend.h
-> @@ -2,7 +2,7 @@
->  #ifndef __ASM_SUSPEND_H
->  #define __ASM_SUSPEND_H
->  
-> -#define NR_CTX_REGS 15
-> +#define NR_CTX_REGS 16
->  #define NR_CALLEE_SAVED_REGS 12
->  
->  /*
-> diff --git a/arch/arm64/mm/proc.S b/arch/arm64/mm/proc.S
-> index b1516630904d..664ea9e3b9ad 100644
-> --- a/arch/arm64/mm/proc.S
-> +++ b/arch/arm64/mm/proc.S
-> @@ -117,6 +117,10 @@ alternative_else_nop_endif
->  alternative_if ARM64_SME
->  	mrs_s	x2, SYS_TPIDR2_EL0
->  	str	x2, [x0, #112]
-> +alternative_else_nop_endif
-> +alternative_if ARM64_HAS_S1POE
-> +	mrs	x2, REG_POR_EL0
-> +	str	x2, [x0, #120]
->  alternative_else_nop_endif
->  	ret
->  SYM_FUNC_END(cpu_do_suspend)
-> @@ -160,6 +164,10 @@ alternative_if ARM64_SME
->  	ldr	x2, [x0, #112]
->  	msr_s	SYS_TPIDR2_EL0, x2
->  alternative_else_nop_endif
-> +alternative_if ARM64_HAS_S1POE
-> +	ldr	x2, [x0, #120]
-> +	msr	REG_POR_EL0, x2
-> +alternative_else_nop_endif
->  
->  	msr	sctlr_el1, x12
->  	set_this_cpu_offset x13
-> 
-> -- 2.47.3
-> 
+Agreed, and the near-miss report is gone.  The series is posted again:
 
-FWIW,
+https://lore.kernel.org/linux-perf-users/20261111132622.2349165-1-takano32@gmail.com/
 
-Reviewed-by: Vladimir Murzin <vladimir.murzin@arm.com>
+The check is now a fixed list of the 51 keys a json object under arch/ may
+carry: 47 of them jevents.py reads, one more metric.py reads, and three are
+read by nothing although the tables hold them (Counter, CountersNumFixed,
+CountersNumGeneric).  A key outside that list is reported with the object
+that carries it.  There is no cut-off, no similarity and nothing that
+depends on what a run of the generator happened to read, so there is no
+edge case left to work around.
+
+It still runs as "make check-jevents" and as a perf test rather than as part
+of the build, and on the tree today it reports exactly the two misspellings
+we have, the 16 in this file and 3 in the AMD tables, so it wants those
+fixes in front of it or together with it.
+
+The one thing I did not do is put the list in a json schema file, because
+perf's build would then require jsonschema, which it does not use today and
+which is not in every builder's python.  The list holds the same names that
+a schema with "additionalProperties": false would say.  If you would rather
+have the schema file and take the dependency, it is a small change from
+here.
+
 
