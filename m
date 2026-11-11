@@ -2,94 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E28606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563E3606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gIqv1RO4;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=c+YCPPzB;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=J8dFTzKN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BxTKncxX;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=m6QWUogq
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=O2yy4V/+eRWwmPhN0rKWvJ8TBXDXhmiokVDl73YABGI=; b=gIqv1RO4HnfoAR
-	DqkzvGv9JarSpisGyoh/6kt7PZJpg2xwPR6je3iqmZabb7+wnfeTwxE16z5zMlDmhwvYwQaTK3P92
-	Lk7t08qGogZd88Ip+okVxcBgCZG/pnqxKrtHsUgV4bVDN0yg29gFWtcANJ9jGrG0wyXqrauJiJr+N
-	vkBYcUicEIi3Us5Fdx8Y3vJrq/JZ99dZdDw4cXcVi6+T2E6lVbMEd3cR5F7SI5K0eiWITTK9dU4b8
-	dil/KDWwXg2uHuK2/4t0Ay1vSzLbelZtZT15lvevPiA8Km2Nex2NPn+wkTLCqL4e+yHLyRGm7nHKa
-	pLy58FmjkbNq71zUvzWw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rK3zf3WORu1ZXVGJG2PmksRY90fhsQibZT0nyfHuenc=; b=BxTKncxXLwzRLHV3hUS4LP0TZt
+	RNpkGpbwfOzLfJY7Egd7lwnQ0Zv6e+R7vxSJUYWIZnNvtBDotqaJPvmPzhQ+pRUjYKp+FZQeHN2d6
+	pTR78YHztunVrYpOjSkO2yW3SIGhjC7kq422jRWQ1vT198u/udUBsbVGxUIdlaESN80QKLe5UqeBo
+	rLNj2K75WnTkMfxMmMO/8NAQUJxcbpwtqC3zOPfHBCS9Q2IY5aKSXJLmYrU1L0VuOjB+5K62J96F7
+	oTW7LgBbn9T2kcFHsBEqsGkUaYTxs7uUrpbcw83AyRsOACGmQAgy1b9wGBML+WBut6b4c5w5jVC5P
+	x1XjMnMA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5Ld-00000006Jz6-0vVI;
-	Wed, 11 Nov 2026 10:14:33 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5Lb-00000006Jyj-16o7
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 11 Nov 2026 10:14:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=O2yy4V/+eRWwmPhN0rKWvJ8TBXDXhmiokVDl73YABGI=; b=c+YCPPzBhIMBG7Ca8irCJGZ2lp
-	KCMp6WvpvsrwCKMaMYCf9FsZIxd+JfhDLrh85VpI3CXJkQMyOMvlT6gGSzVKSi20gFhaJRDhjtM0u
-	TOUqReOeeCVQHcf3PZa6eT4azXSh0hpSuWYTwY74HpKQ6WkgUERZkqYkKa5xHG2ccZq0PKPHd//AF
-	KeRppho33b0fFBilyg3lC3YZxJai2+QFri/VRJbrIATWxqGN2hLlZatVTsK6AtOazJcz7Ratm1dA8
-	sIj9Ubsx+cwqX4p04muNsU6d7uqJ3P8LD6vJcJLiamTPKdyLmfjeuiAJDF3lOawbFLJLwu2kg/5Gn
-	liAEuONg==;
+	id 1xR5MY-00000006K7L-25qc;
+	Wed, 11 Nov 2026 10:15:30 +0000
 Received: from foss.arm.com ([217.140.110.172])
-	by desiato.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5LY-000000090p7-0hVt
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR5MV-00000006K6q-3Kyx
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 10:14:30 +0000
+	Wed, 11 Nov 2026 10:15:29 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D4CE71576;
-	Wed, 11 Nov 2026 02:14:22 -0800 (PST)
-Received: from [10.2.197.99] (ewhatever.cambridge.arm.com [10.2.197.99])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 646E23F632;
-	Wed, 11 Nov 2026 02:14:22 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B40C1576;
+	Wed, 11 Nov 2026 02:15:23 -0800 (PST)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 05E4D3F632;
+	Wed, 11 Nov 2026 02:15:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794392065; bh=ld6QCXuiYeyxffuOuDY+SDVXlqPyqjix1+nuLDfWSFA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J8dFTzKNyF6kYm9CzUq26UxXEEBaqYaG302JjseermLJdecPfaeRRszp2cyBjAtcb
-	 jEPWLxXKFHHrCm3Q8OObBwGJbopqGSy24pJXyJddmL5QqxkMPgSwcW+pANCDyWtFN7
-	 wAfiCXWRzNkIs7TW59Dpa18wRpMlmvps2Tojh/rE=
-Message-ID: <bc0a6290-ddca-4005-9d22-b74833f435b9@arm.com>
-Date: Wed, 11 Nov 2026 10:14:20 +0000
+	t=1794392126; bh=0HlfkY9hnP7PkFvX7q+xnImD2I72F3eSwZqnjsju5x8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m6QWUogqmrU+D+IusNfo+7RENCrkzi092lTtwXoEamRlM3gUAzdE8G1Qn8+BaU0YB
+	 Y7+7Vtlp8e4gNTg95tt1c+SdkaATlzyXhf3KwPqDtoCW8dFAWhW/xZ64dHQSE1Vnvw
+	 B7eSrwp1R6DsvMI8m//gQ58HEZkuUvxuazb5VwNQ=
+Date: Wed, 11 Nov 2026 10:15:16 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
+	sudeep.holla@kernel.org, james.quinlan@broadcom.com,
+	f.fainelli@gmail.com, vincent.guittot@linaro.org,
+	etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
+	d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
+	philip.radford@arm.com, david@kernel.org,
+	souvik.chakravarty@arm.com, leitao@kernel.org, kas@kernel.org,
+	puranjay@kernel.org, usama.arif@linux.dev, kernel-team@meta.com
+Subject: Re: [PATCH v15 00/35] Introduce SCMI Telemetry support
+Message-ID: <avRANKPwp-r-QSR4@pluto>
+References: <20261109091221.2532706-1-cristian.marussi@arm.com>
+ <20261110163809.000070d6@oss.qualcomm.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/11] KVM: arm64: CCA: Introduce Realms
-To: Steven Price <steven.price@arm.com>, Kohei Enju <enju.kohei@fujitsu.com>
-Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
- Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>
-References: <20261102141304.126883-1-steven.price@arm.com>
- <20261102141304.126883-3-steven.price@arm.com>
- <avL9kNR2mGmqmcA9@FCCLS0092175.localdomain>
- <45104e19-4197-4584-895a-0486c0782c9c@arm.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <45104e19-4197-4584-895a-0486c0782c9c@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261110163809.000070d6@oss.qualcomm.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_101428_621219_8B2A5405 
-X-CRM114-Status: GOOD (  33.13  )
-X-Spam-Score: -2.5 (--)
+X-CRM114-CacheID: sfid-20261111_021527_972738_6C4B67F0 
+X-CRM114-Status: GOOD (  36.23  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,267 +77,96 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 10:11, Steven Price wrote:
-> On 10/11/2026 11:42, Kohei Enju wrote:
->> Hi Steve,
+On Tue, Nov 10, 2026 at 04:38:09PM -0800, Jonathan Cameron wrote:
+> > The upcoming SCMI v4.0 specification [0] introduces a new SCMI protocol
+> > dedicated to System Telemetry.
+> > 
 > 
-> Hi Kohei,
+> Hi Cristian,
+
+Hi Jonathan,
+
+thanks for your time...I sincerely hope you're travelling abroad on some
+remote timezone given the time these reviews came in :D
+
 > 
->> On 11/02 14:12, Steven Price wrote:
->>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>
->>> Add foundational work for supporting Realms.
->>>   - Add a new VM flavor.
->>>   - At KVM init, check if the KVM can support Realms (though not functional
->>>     yet) and will be advertised by static key kvm_rmi_is_available. This
->>>     will be turned on in a later patch, once we have all the bits and
->>>     pieces ready. For now check if we are blessed with KVM_MODE_RMM.
->>>   - Add realm specific tracking in kvm_arch. Since Realm and protected pKVM
->>>     states are mutually exclusive, move them into a union.
->>>   - Also adjust the memslot preparation checks to reflect the changes.
->>>
->>> Please note that we cannot create Realm VMs yet. This requires further
->>> changes to the UABI and core RMI driver support, which will come later.
->>>
->>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>> Signed-off-by: Steven Price <steven.price@arm.com>
->>> ---
->>>   arch/arm64/include/asm/kvm_emulate.h   | 16 +++++++
->>>   arch/arm64/include/asm/kvm_host.h      | 57 +++++++++++++++++-------
->>>   arch/arm64/include/asm/kvm_rmi.h       | 61 ++++++++++++++++++++++++++
->>>   arch/arm64/include/asm/virt.h          |  1 +
->>>   arch/arm64/kvm/Makefile                |  2 +-
->>>   arch/arm64/kvm/arm.c                   | 24 ++++++++--
->>>   arch/arm64/kvm/hyp/include/nvhe/pkvm.h |  2 +-
->>>   arch/arm64/kvm/hyp/nvhe/switch.c       |  4 +-
->>>   arch/arm64/kvm/hyp/nvhe/timer-sr.c     |  2 +-
->>>   arch/arm64/kvm/mmu.c                   | 13 +++---
->>>   arch/arm64/kvm/rmi.c                   | 18 ++++++++
->>>   11 files changed, 169 insertions(+), 31 deletions(-)
->>>   create mode 100644 arch/arm64/include/asm/kvm_rmi.h
->>>   create mode 100644 arch/arm64/kvm/rmi.c
->>>
->>> diff --git a/arch/arm64/include/asm/kvm_emulate.h b/arch/arm64/include/asm/kvm_emulate.h
->>> index 334211b8b2ee..32021bdf2610 100644
->>> --- a/arch/arm64/include/asm/kvm_emulate.h
->>> +++ b/arch/arm64/include/asm/kvm_emulate.h
->>> @@ -831,4 +831,20 @@ static inline void kvm_reset_vcpu_psci(struct kvm_vcpu *vcpu,
->>>   	vcpu_set_reg(vcpu, 0, reset_state->r0);
->>>   }
->>>   
->>> +static inline enum realm_state kvm_realm_state(struct kvm *kvm)
->>> +{
->>> +	return READ_ONCE(kvm->arch.realm.state);
->>> +}
->>> +
->>> +static inline void kvm_set_realm_state(struct kvm *kvm,
->>> +				       enum realm_state new_state)
->>> +{
->>> +	WRITE_ONCE(kvm->arch.realm.state, new_state);
->>> +}
->>> +
->>> +static inline bool kvm_realm_is_created(struct kvm *kvm)
->>> +{
->>> +	return kvm_vm_is_realm(kvm) && kvm_realm_state(kvm) != REALM_STATE_NONE;
->>> +}
->>> +
->>>   #endif /* __ARM64_KVM_EMULATE_H__ */
->>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
->>> index ccd2dc8f73c3..7d0222047ca1 100644
->>> --- a/arch/arm64/include/asm/kvm_host.h
->>> +++ b/arch/arm64/include/asm/kvm_host.h
->>> @@ -29,6 +29,7 @@
->>>   #include <asm/kvm.h>
->>>   #include <asm/kvm_asm.h>
->>>   #include <asm/kvm_hcall.h>
->>> +#include <asm/kvm_rmi.h>
->>>   #include <asm/vncr_mapping.h>
->>>   
->>>   #define __KVM_HAVE_ARCH_INTC_INITIALIZED
->>> @@ -48,6 +49,13 @@
->>>   #define KVM_VCPU_MAX_FEATURES 10
->>>   #define KVM_VCPU_VALID_FEATURES	(BIT(KVM_VCPU_MAX_FEATURES) - 1)
->>>   
->>> +#define KVM_REALM_VCPU_VALID_FEATURES			\
->>> +	(BIT(KVM_ARM_VCPU_POWER_OFF)		|	\
->>> +	 BIT(KVM_ARM_VCPU_PSCI_0_2)		|	\
->>> +	 BIT(KVM_ARM_VCPU_PTRAUTH_ADDRESS)	|	\
->>> +	 BIT(KVM_ARM_VCPU_SVE)			|	\
->>> +	 BIT(KVM_ARM_VCPU_PTRAUTH_GENERIC))
->>> +
->>>   #define KVM_REQ_SLEEP \
->>>   	KVM_ARCH_REQ_FLAGS(0, KVM_REQUEST_WAIT | KVM_REQUEST_NO_WAKEUP)
->>>   #define KVM_REQ_IRQ_PENDING		KVM_ARCH_REQ(1)
->>> @@ -409,6 +417,7 @@ enum kvm_arm_vm_flavor {
->>>   	VM_PKVM,		/* Normal guests on pKVM */
->>>   	MARKER(__VM_PROTECTED),
->>>   	VM_PROTECTED_PKVM,	/* Protected VM */
->>> +	VM_REALM,		/* CCA */
->>>   	VM_FLAVOR_MAX
->>>   };
->>>   
->>> @@ -502,11 +511,14 @@ struct kvm_arch {
->>>   	/* Count the number of VNCR_EL2 TLBs */
->>>   	atomic_t vncr_tlb_count;
->>>   
->>> -	/*
->>> -	 * For an untrusted host VM, 'pkvm.handle' is used to lookup
->>> -	 * the associated pKVM instance in the hypervisor.
->>> -	 */
->>> -	struct kvm_protected_vm pkvm;
->>> +	union {
->>> +		/*
->>> +		 * For an untrusted host VM, 'pkvm.handle' is used to lookup
->>> +		 * the associated pKVM instance in the hypervisor.
->>> +		 */
->>> +		struct kvm_protected_vm pkvm;
->>> +		struct realm realm;
->>> +	};
->>>   
->>>   #ifdef CONFIG_PTDUMP_STAGE2_DEBUGFS
->>>   	/* Nested virtualization info */
->>> @@ -1572,30 +1584,43 @@ struct kvm *kvm_arch_alloc_vm(void);
->>>   
->>>   #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
->>>   
->>> -#ifdef __KVM_NVHE_HYPERVISOR__
->>> +#define kvm_vm_is_protected(kvm)	((kvm)->arch.vm_flavor >= __VM_PROTECTED)
->>>   
->>> -#define kvm_vm_is_protected(kvm)			\
->>> -	(is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
->>> +#ifdef __KVM_NVHE_HYPERVISOR__
->>>   /*
->>>    * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to convert the
->>>    * pointer to the hyp VA. With pKVM, the nVHE code runs with the hyp_vcpu,
->>> - * which is populated correctly and is gated on is_protected_kvm_enabled().
->>> + * which is populated correctly. Always vcpu_is_protected_pkvm(), which is
->>> + * gated on is_protected_kvm_enabled().
->>> + */
->>> +#define vcpu_is_protected(vcpu)		BUILD_BUG_ON(1)
->>> +#else
->>> +#define vcpu_is_protected(vcpu)		kvm_vm_is_protected((vcpu)->kvm)
->>> +#endif
->>> +
->>> +#define kvm_vm_is_protected_pkvm(kvm)					\
->>> +	(is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor == VM_PROTECTED_PKVM))
->>> +
->>> +/*
->>> + * Rely on is_protected_kvm_enabled() check in kvm_vm_is_protected_pkvm() to
->>> + * make sure the vcpu->kvm is always valid VA in the context
->>>    */
->>> -#define vcpu_is_protected(vcpu)						\
->>> +#define vcpu_is_protected_pkvm(vcpu)					\
->>>   	({								\
->>>   		struct kvm *__kvm = READ_ONCE((vcpu)->kvm);		\
->>>   									\
->>> -		(__kvm && kvm_vm_is_protected(__kvm));			\
->>> +		(__kvm && kvm_vm_is_protected_pkvm(__kvm));		\
->>>   	})
->>
->> I've tested the integration branch and found that the secondary CPU
->> bring-up fails:
->>      [    1.426502] smp: Bringing up secondary CPUs ...
->>      [    9.194442] CPU1: failed to come online
->>      [    9.194558] CPU1: failed in unknown state : 0x0
->>      [    9.197714] smp: Brought up 1 node, 1 CPU
->>      [    9.197775] SMP: Total of 1 processors activated.
->>
->> It seems that this patch missed replacing a use of
->> vcpu_is_protected() introduced by the following commit:
->>
->>      25d726dddc23 ("KVM: arm64: Reject host power-on of a vCPU that EL2 holds powered off")
->>
->> The following diff fixes the issue for me. Also, though not included in
->> the diff, I think vcpu_is_protected() in __pkvm_create_hyp_vcpu() should
->> be replaced with vcpu_is_protected_pkvm() as well.
+> So, the main issue here is pretty much summarized by:
 > 
-> Thanks for the patch - I'll include that in v2.
+>  28 files changed, 12801 insertions(+), 99 deletions(-)
+> (obviously there are tests etc, but it's still > 10k lines)
+>
 
-Please could we make it something like this :
+Usually I try to implement the complete set of features of a new protocol
+but indeed this new Telemetry thing is huge by itself so it became quickly
+overwhelming to review...imagine to code and test it.
 
-diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-index 4edcaf1090f9..2108c1bf5481 100644
---- a/arch/arm64/kvm/arm.c
-+++ b/arch/arm64/kvm/arm.c
-@@ -989,7 +989,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu 
-*vcpu)
-  /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
-  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
-  {
--       return READ_ONCE(vcpu->arch.mp_state.mp_state) == 
-KVM_MP_STATE_UNINITIALIZED;
-+       return vcpu_is_protected_pkvm(vcpu) &&
-+               READ_ONCE(vcpu->arch.mp_state.mp_state) == 
-KVM_MP_STATE_UNINITIALIZED;
-  }
-
-  int kvm_arch_vcpu_ioctl_get_mpstate(struct kvm_vcpu *vcpu,
-diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
-index b01f8d44033f..b7606c3542f8 100644
---- a/arch/arm64/kvm/psci.c
-+++ b/arch/arm64/kvm/psci.c
-@@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct kvm_vcpu 
-*source_vcpu)
-          * STOPPED before that is the VMM's pause.
-          */
-         if (!kvm_arm_vcpu_stopped(vcpu) ||
--           (vcpu_is_protected(vcpu) && 
-!kvm_pkvm_vcpu_is_powered_off(vcpu))) {
-+           !kvm_pkvm_vcpu_is_powered_off(vcpu)) {
-                 if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
-                         ret = PSCI_RET_ALREADY_ON;
-                 else
-
-
-i.e, check for pkvm vcpu as it should have been in the first case, 
-rather than spilling the check for protected vcpu and an explicit
-check to see if that is powered off ?
-
-
-Suzuki>
-> Thanks,
-> Steve
+> There are relatively few reviewers who would even consider taking that on.
+> I foolishly thought it wouldn't be too bad (and I review a lot of code).
+> By about 3/4 of the way though, probably much earlier, I know the quality
+> of review went down considerably. Honestly it was probably a waste of
+> time continuing but I'm stubborn like that.
 > 
->> Thanks,
->> Kohei
->>
->> ---8<---
->> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
->> index 522a837637fe..be676c13e219 100644
->> --- a/arch/arm64/kvm/arm.c
->> +++ b/arch/arm64/kvm/arm.c
->> @@ -960,7 +960,8 @@ static void __kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu, u32 mp_state)
->>   /* The guest's own CPU_OFF: EL2 has already powered the vCPU off. */
->>   void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu)
->>   {
->> -       u32 mp_state = vcpu_is_protected(vcpu) ? KVM_MP_STATE_UNINITIALIZED : KVM_MP_STATE_STOPPED;
->> +       u32 mp_state = vcpu_is_protected_pkvm(vcpu) ?
->> +                      KVM_MP_STATE_UNINITIALIZED : KVM_MP_STATE_STOPPED;
->>
->>          spin_lock(&vcpu->arch.mp_state_lock);
->>          __kvm_arm_vcpu_power_off(vcpu, mp_state);
->> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
->> index b01f8d44033f..6674e8d6ff4c 100644
->> --- a/arch/arm64/kvm/psci.c
->> +++ b/arch/arm64/kvm/psci.c
->> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct kvm_vcpu *source_vcpu)
->>           * STOPPED before that is the VMM's pause.
->>           */
->>          if (!kvm_arm_vcpu_stopped(vcpu) ||
->> -           (vcpu_is_protected(vcpu) && !kvm_pkvm_vcpu_is_powered_off(vcpu))) {
->> +           (vcpu_is_protected_pkvm(vcpu) && !kvm_pkvm_vcpu_is_powered_off(vcpu))) {
->>                  if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
->>                          ret = PSCI_RET_ALREADY_ON;
->>                  else
->>
+> So, unless you have a path to bribing or sweet talking various folk to
+> deal with reviewing this with each having to set aside multiple days
+> to do it, likely repeating for a couple of versions yet, I think you've
+> got to figure out out how to make the first patch set more manageable.
+> Probably don't split it up as much as the mpam or CCA folk have had to,
+> but you have a lot of colleagues who are experiencing the same problem
+> at the moment. They may be able to advise.
+> 
+> So it would be nice if what was in that first patch set was 'functional'
+> but I don't think it needs to function on every systems or support more
+> than an absolutely minimal feature set.  Just fail to probe when you see
+> something that isn't supported by that minimal set if that means
+> the thing won't be functional.
+> 
+> Once that's in place, over a couple of additional patch sets you can
+> get to everything you have here.
+> 
+> So what if you choose one data path (shmti perhaps), no notifications,
+> events, maybe even simplify to one of the readback paths.
+> Maybe even drop event groups initially. 
+
+Based on our real world initial customer of this I can certainly drop a
+few features that are not supported anyway by the real FW and move it to
+a later patchset, stuff like groups, notifications and single sample
+reads, but all of the rest is hardly removable while keeping the system
+functional and usable.
+
+> Possibly even drop timestamps.  Definitely drop things like boot-on
+> support and debugfs (unless you are using that as a cheeky 'functional'
+> test ahead of the main userspace interface.
+
+Not sure what you mean by drop timestamps, definitelly cannot drop
+boot-on (it is how systems are configured indeed) neither debugfs used
+for bring-up and FW debug.
+
+> 
+> How much would that slim things down?  It doesn't even have to be
+> useful, just testable.  Realistically I think the hope of getting
+> enough review doubles if you can halve the size of what you are asking
+> people to look at.
+
+I am not sure how many lines I can shed with the above features drops but
+I'll give it a go anyway at slimming down the series after I have gone
+through this round of Sashiko pains.
+
+> 
+> Anyhow, gut feeling only but the code felt like it was in a much
+> better state than some of the versions I've looked at in the past,
+> so I think the game is now how to get it over the line!
 > 
 
+From the testing/functional/performance standpoints the series has
+definitely improved especially, but still some road to go.
+
+Thanks,
+Cristian
 
