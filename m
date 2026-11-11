@@ -2,69 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C9E606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 09:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0F4606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 09:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vGa4SMJD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y1cppoa+;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=PZO5l/Ej
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=abWzQtHrt+TjxHKzP0zeTEI+lW/THVkeGvJ2EFubgB8=; b=vGa4SMJDhfWhtmq9R7ewaEeFIB
-	lb86LaCOohgvhXbXK6A4jCO+zaNuNP7+OZsygBwHHkfdGpwfD4Z7CABAon6X4v7Z15NRuOF1PEMsc
-	SJXXj2Dhkldors+hkyfJDHj70adafBpwSt26E8FCwZIiE3tCzxBuUnMP4Apx598D/8Zpa6Fv6BYc/
-	qa3cJFLAn1JMHb6V40+QuuCT4O92AA0zgcYyb/dz/a3ekPSQ6sLg09z/nYZ26dqATWSWQSueqXKq0
-	q421S1/uPHCoKpTRer/3bIm5UPTwNH63b98VptagHPvhh49hcCair5lHSz6VCJ/mRP2cTjZdB64Yo
-	17AVoGeQ==;
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=AJNq4w3TU0VFD4olqsLsflJVpWxxDEOeHHbKdNjc6vg=; b=y1cppoa+FGuK6I
+	4t+jgKtm/8g6bsNk5czwxknlb/Jtl/1NdTKM7svalLuhXj5UkBaTnlQZL9dCymJMKiTySpZhvX8lX
+	91oy4miODj1nSHlUHyHNZwQbSvU45R35Y+UMkYKuojiXrKYfzeZmW3Pjo3G9W1i02MjpKaJxnrFJq
+	DEZ5uzLAGyEgK4QQlRG1DzKRAr3/nniVBrSlzPvsNDkbGFFtI6fjVU7ovqWJWYXCJG3qZeyOfubzP
+	maldRwq7GlJVqVrWWPlyJmtT8Z5szCxt3BUxx0bJxy2Lo7VpZt6gVa2hisyBcVbLesd5qI1h8VIsF
+	wpn6AX/iYK3lWK+3nRDA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR4oI-00000006Day-0DXq;
-	Wed, 11 Nov 2026 09:40:06 +0000
-Received: from nbd.name ([46.4.11.11])
+	id 1xR4pt-00000006Duv-1gcQ;
+	Wed, 11 Nov 2026 09:41:45 +0000
+Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR4o8-00000006DUw-0oxV;
-	Wed, 11 Nov 2026 09:39:57 +0000
-Received: from [2a04:4540:1401:33fc:b262:f9a8:847e:6650] (helo=bertha10..)
-	by ds12 with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <john@phrozen.org>)
-	id 1xR4ny-001U9u-2v;
-	Wed, 11 Nov 2026 10:39:46 +0100
-From: John Crispin <john@phrozen.org>
-To: Stefan Roese <sr@denx.de>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Christian Marangi <ansuelsmth@gmail.com>,
-	devicetree@vger.kernel.org,
-	lei.dong@airoha.com,
-	Linqi.zhang@airoha.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-i2c@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	Rajeev.kumar@airoha.com,
-	upstream@airoha.com,
-	Weifeng.xu@airoha.com,
-	zhengping.zhang@airoha.com
-Subject: [PATCH 0/2] i2c: mt7621: add Airoha AN7589 support
-Date: Wed, 11 Nov 2026 10:39:39 +0100
-Message-Id: <20261111093941.691801-1-john@phrozen.org>
-X-Mailer: git-send-email 2.34.1
+	id 1xR4pr-00000006DuR-1BJd;
+	Wed, 11 Nov 2026 09:41:44 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1794390100;
+	bh=7bKfGK/qfrm5C2JrxSXmO8PZzjTGFJi/TFX3XJ6m2pw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PZO5l/Ejq89WXSLT0iNZzGbyMuSbknvtJVfebh0uGdhvmGRJVnrNAECtWICrY9xE8
+	 fswm8tEuSBwZju0QcuZ1vJuzu6I6rzFDi/lG4sEYEqyAjJC89tZiOt2it9ip0R4k/y
+	 K8WVytv8j7VTBgf3x6SDMRZ+MRIBYMoShLvcx/YbCsXtbzXjtMVs3JhYGjKWbN1ALc
+	 Ddu6DWUFA1l8L4eCL54xMipncsJx8E/2rk9OTFh6g2TW/rXBGwNP0WiaV+7UExvcUT
+	 t8pIgFRko+26XxFrq9UZiE9vBZRUcCjYDGWZp77jTgMyy+m1SoJGtrx9CKKPeA19Uu
+	 7q6xKwXCc8ZfA==
+Received: from [100.64.0.241] (unknown [100.64.0.241])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3F74017E05D6;
+	Wed, 11 Nov 2026 10:41:40 +0100 (CET)
+Message-ID: <7f4c2132-bb73-4698-ab68-902fada398b6@collabora.com>
+Date: Wed, 11 Nov 2026 11:41:39 +0200
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/7] drm/rockchip: dw_hdmi_qp: Set the VOP2 color space
+ from the connector
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>,
+ =?UTF-8?Q?Jan_Clau=C3=9Fen?= <jan.claussen10@web.de>
+Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261018143135.5745-1-jan.claussen10@web.de>
+ <20261018143135.5745-7-jan.claussen10@web.de>
+ <cd6ff4c0-cd5d-4c42-8f52-5f3893aec015@collabora.com>
+ <704571ba-af39-441f-9eb9-09d4a2c9feb3@rock-chips.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <704571ba-af39-441f-9eb9-09d4a2c9feb3@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_013956_235110_48764632 
-X-CRM114-Status: UNSURE (   6.39  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_014143_502207_8F1E1D13 
+X-CRM114-Status: GOOD (  19.00  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,33 +83,83 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Airoha AN7589 carries the MT7621 I2C controller with a second
-control register that holds a 16 bit clock divider, and it runs without
-SCL stretching.
+Hi Chaoyi,
 
-Patch 1 adds the compatible. Patch 2 describes the variants as match
-data.
+On 11/11/26 8:19 AM, Chaoyi Chen wrote:
+> Hi Cristian and Jan,
+> 
+> On 11/11/2026 3:05 AM, Cristian Ciocaltea wrote:
+>> Hi Jan,
+>>
+>> On 10/18/26 5:31 PM, Jan Claußen wrote:
+>>> VOP2 converts RGB to YCbCr using the matrix selected by the CRTC
+>>> state's color_space, but the HDMI encoder never sets it, so VOP2
+>>> always converts with BT.709. Once the colorspace property can
+>>> signal BT.2020 colorimetry to the sink, a YCbCr output would be
+>>> encoded with BT.709 and decoded with BT.2020.
+>>>
+>>> Derive color_space from the connector colorspace before the early
+>>> return, so that a colorspace change alone is applied.
+>>>
+>>> Signed-off-by: Jan Claußen <jan.claussen10@web.de>
+>>> ---
+>>>  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 16 ++++++++++++++++
+>>>  1 file changed, 16 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>> index 9c4cf68d79d5..10c5b6d6406e 100644
+>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>> @@ -17,6 +17,7 @@
+>>>  #include <linux/phy/phy.h>
+>>>  #include <linux/phy/phy-hdmi.h>
+>>>  #include <linux/regmap.h>
+>>> +#include <linux/videodev2.h>
+>>>  #include <linux/workqueue.h>
+>>>  
+>>>  #include <drm/bridge/dw_hdmi_qp.h>
+>>> @@ -187,6 +188,19 @@ static int dw_hdmi_qp_rockchip_get_vop_format(struct drm_encoder *encoder,
+>>>  	return bstate->output_bus_cfg.format;
+>>>  }
+>>>  
+>>> +static u32
+>>> +dw_hdmi_qp_rockchip_color_space(const struct drm_connector_state *conn_state)
+>>> +{
+>>> +	switch (conn_state->colorspace) {
+>>> +	case DRM_MODE_COLORIMETRY_BT2020_RGB:
+>>> +	case DRM_MODE_COLORIMETRY_BT2020_YCC:
+>>> +	case DRM_MODE_COLORIMETRY_BT2020_CYCC:
+>>> +		return V4L2_COLORSPACE_BT2020;
+>>> +	default:
+>>> +		return V4L2_COLORSPACE_DEFAULT;
+>>> +	}
+>>> +}
+>>
+>> My main concern is introducing V4L2_COLORSPACE_* logic into a DRM bridge driver,
+>> which should rather rely on enum drm_colorspace / DRM_MODE_COLORIMETRY_*.
+>> Translating the DRM colorimetry into V4L2 values only for VOP2 to map them back
+>> to a CSC matrix doesn't seem fully justified.
+>>
+>> The root problem is rather on the VOP2 side: the color_space field in struct
+>> rockchip_crtc_state and its V4L2-based handling in the CSC selection look like
+>> leftovers inherited from the vendor kernel, and I think this is a good time to
+>> clean that up instead of building on it.
+>>
+> 
+> Yep. And if you look at the latest vendor kernel code, we have also
+> removed the V4L2_COLORSPACE_* related content and switched to DRM.
 
-The series applies to next-20261105 and has no dependencies.
+Thanks for the heads-up; I haven't checked the recent vendor kernel changes.
 
-John Crispin (2):
-  dt-bindings: i2c: mt7621: add Airoha AN7589
-  i2c: mt7621: add support for Airoha AN7589
-
- .../bindings/i2c/mediatek,mt7621-i2c.yaml     |  8 ++-
- drivers/i2c/busses/i2c-mt7621.c               | 58 ++++++++++++++++---
- 2 files changed, 57 insertions(+), 9 deletions(-)
-
-
-base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
--- 
-2.34.1
+Regards,
+Cristian
 
 
