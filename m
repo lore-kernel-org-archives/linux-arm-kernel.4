@@ -2,102 +2,184 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2225606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 02:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE04606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 03:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n0mYSzhe;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=uw1ah7hR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=l4jpPPeP;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.a=rsa-sha256 header.s=dk header.b=JVV9Q0YP;
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.a=rsa-sha256 header.s=selector2-mediateko365-onmicrosoft-com header.b=Wd3kC0kx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:To:
-	From:Subject:Cc:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
-	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=k1id8qJVFHopuTMeaIwtQ19aoeuUpNkaOWeyel0rJUA=; b=n0mYSzheOHbs8r
-	SZdrKigSlZc2MD/4Vj04+FPYl9C3cwWyAN+smBSZN8p55c+7KQTnTw65Rqjg+AoHvl/YRHX+OJdOI
-	XIJTwRYQJQB23gk7yZpx09egZ8Cow7Ro7EtN4BKjiIqZeVXPNFsNTZmNaW0M5iqMBQkh5ft0hBGCA
-	68cJFeZlKdHipmsaHyD0YoswUKi7T2IFP+h2JKGrOUbx4Hi+vd5NEs4hdP0ckrs007FrlgKGPogq+
-	LiEP7Q1PLjLqk25g/v+ddDs+V3gBrX5g9wrYcdZ6wwRBeSwBZnlRnB1zaC+o8+7MKfxldS+MFnC4B
-	eUTyfHYkfS9/BI7RnPQw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:
+	Message-ID:Date:Subject:CC:To:From:Reply-To:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=hRcWzUGJSUPojWrz+zCwuVFdb28Qz76tpXzDUkH+H5A=; b=l4jpPPePTk3h2PvET2T5ZiySA1
+	YIrK5ftD9MYv/125QvdObdMXLMtYXbrpjvOpC/8AGPA8NbI6il/LIscIk2vekUPB6UVToYLrMFSrb
+	76JL0RwvwP3w/B1esH9o1HgPvy/FckUHFtWDTcWbs8Y1+2+xw4+vZVyY5x7sJ1/31oAailDItaK7t
+	231crPODbfLa/kxFElc+1vmThaL5qnQTNC6qAJ1r+5jJeRzOH4dG20n0Z1UbzhUcxg9qst+dvCcbx
+	KTm+ysLG/BlqNdEWFjHfjMyDCQlaXL/ZLw3JgdYFpLZyE0EwpMEZYwPzDkQXgcSVBVLxjMVuSb8fV
+	KTUmtyCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQyNa-00000005U3M-1Llv;
-	Wed, 11 Nov 2026 02:48:06 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xQyZC-00000005UQo-0U51;
+	Wed, 11 Nov 2026 03:00:06 +0000
+Received: from mailgw01.mediatek.com ([216.200.240.184])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQyNX-00000005U32-1XUF
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 02:48:05 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a59100fa83so23603415e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:48:02 -0800 (PST)
+	id 1xQyZ7-00000005UQ0-2X7E;
+	Wed, 11 Nov 2026 03:00:03 +0000
+X-UUID: fa1b2ed8dd7b11f1afed4741b24580c9-20261110
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=hRcWzUGJSUPojWrz+zCwuVFdb28Qz76tpXzDUkH+H5A=;
+	b=JVV9Q0YPh+VatAWKJO6lDQ1BCYpP6UxYAoyXq9YTxAd2sDzHsQBGeK+cr3cg4U4SKBGrdKKehEyE49fm4Occ7zV4+GSuUX1aPRy3xX/oZ6IkXJ7lZYRnxO1emyYoBTHHKae4iIsXHVaeRNMzxNAyNcriQa5CtNlbzveqW088wek=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.21,REQID:f3a4562f-2cd2-4852-80ed-a31895741c95,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:b0318ac,CLOUDID:c1932066-4b51-4c95-bb1b-80ac6aad9c96,B
+	ulkID:nil,BulkQuantity:0,SF:80|81|82|83|102|110|111|836|865|888|898,TC:-5,
+	Content:0|15|50|99,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:n
+	il,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: fa1b2ed8dd7b11f1afed4741b24580c9-20261110
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 834924954; Tue, 10 Nov 2026 19:59:57 -0700
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Wed, 11 Nov 2026 10:59:54 +0800
+Received: from SG2PR04CU009.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Wed, 11 Nov 2026 10:59:54 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JyLOp/oCRRDq4WPBFC24Badwz2eLQeNcbJOrzuQGQ3YsZejXGTCNedDzOYEnwJfjDHYmSAGZT3ui4Tybu/qSqr3Q4GqOYffL/vaY7sr17H6jFeb8H5J+6eXwgwMFK4wXykwfF3Gh2sflqpSeLiO0nzUGW/y9qanOSK0vGJatpkyCTfIlA5NoFsA5CqkmpmQe0W7i/LSiK4bFhd804Y9BkDFW+MRcyQg4QNIFSh1AYY8bUpMdcueuDZFJPxkdvvT+TRwEcnDMB9O+RQjxxDZ/F2iv9NPgRGYzBkM5rI8qRxHq47qp7L8aAX2KfvkyWzVYFa8tCFY8c5tDIDW59VBDlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hRcWzUGJSUPojWrz+zCwuVFdb28Qz76tpXzDUkH+H5A=;
+ b=n9FAcddAxSWJb0jfR+3iRefdPKl90PGlbQqxwkhs79rsmlfDoamZ+5trx1ndrvouqL7wuslAzzDsMguh6iNYVOea1di6rijGozMSool/yE2ENLQfxsOW2dqtQdMZOkU9XZVDYJramcLtaVTtMQ3gzi1Bw/K5cWEB7V2K/fafwhPV3eADqSAR8rWlq5pvCzAWmN3xGqLJWCZISBVfvN2CKbFMtZSZQEgPqGTQCyGspspgCOFaQ0nyRnY17r/0k5kvX3klosm4Fyng9b8d9GDEeME6o1jb66SzeaT6g3dA88ultq3ygCXFsa4fGEtc9OSD5/NOXNdwthm0KJxB19nT2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794365281; x=1794970081; darn=lists.infradead.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=k1id8qJVFHopuTMeaIwtQ19aoeuUpNkaOWeyel0rJUA=;
-        b=uw1ah7hRxBDHPsDZkNSEiDrXii4IKHFOmFC8+zdVby5hdQBrEYBWoWJXv6k5eaVJiJ
-         jkdgdb85mcROIoAf+Tf6PlQmYyTm1mO2Gz2i0fMQmFU16vHGCrxTv38WPfgkcSqBcEOj
-         WPc8ANfXk+IUvolR3TwCNvVtX0YBKhoDLKT/P2ei38X6N0R8ZI7PpOeWqaC/3tbKlVfx
-         7ga8YnFBpkjHAFwPVyKcXlNrbEgc+6PN17gxZvvTI7XmJIBCXbLo9dYO+E7772lM6di9
-         HzunRBVet9l9agTWwT3U9SwR+QWiBDQjUwcaMlkwekYAkLJaTySV9kQLOFU9D8BgbULX
-         L2XA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794365281; x=1794970081;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-type:content-transfer-encoding:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=k1id8qJVFHopuTMeaIwtQ19aoeuUpNkaOWeyel0rJUA=;
-        b=wzQKZDAr1Dyh9eftx9kvHsCE/Q7WPlCtct8Qydqo99qXo0Jna9CZIXxLoDTw6/JcIh
-         rhGC1AhZsj3Tn86yDOTRozE8T6m8pSEYdWBZWs6CIWt2H8Us/cHuPXfZG/+GZokZ/lpX
-         R3JgXGE9gIcFCMZCxnepPnMpHbWSaGuZODLYQ2FBEJg/wp49+USvi4JA2o1H00XphdBy
-         kPQOCdtRliNLrpv3a3IDHcHPFNTomIPeiq8OvBCZxybMgr3oukkTvQNTbIHm5LSPVGkS
-         v3bqbmC8FIxn5y1/BQk0/ozGonb14NXSXhyNe5BfQNll5enXdhlQmZhmsKKpOgJd66A9
-         02MQ==
-X-Forwarded-Encrypted: i=1; AL+hErGM/l9WUSIuE93Y3TpT8QsmNz60zVBEvE0nSlCUQ5b0kzvNST2/Qrlk/TkyhyfNxgeVIgnSrDojcUiGgsD+mpOX@lists.infradead.org
-X-Gm-Message-State: APuU4Z/Z1OFsI9KRKjjZVJ7nx0DbwrRUQ0m+c8YMe9HX72vFl32gXySn
-	tmm87by4VW58QZF8uOdhLOxX6XHHJ7nF6rtqgFZSEmusUi1dxoq1PFWiTZJMsuVDsnM=
-X-Gm-Gg: AYBFou1OwBIZSU8hAnRAki+5DVjPsFjbOXYti2Ma2RYlQU59QogiifC37Tpn/1E+7FD
-	BCbdTwjrO69Mq8w/QuhqDczn7n7l/Lp7xpfK1fmc9oY4jee0alfXlbfGURgVfpPI4wnFAk0ULAt
-	hlIiJDohPHrSPRoQdu1419GH8BCTBWspiAmk/DnfAoPZdg1Pu62yJI5w+abfvfwUFkFGBUzcbG4
-	/ns/7JcHdKr6gPmgcZtqXHj8st6NGXwaZsp7fdU7sjZh/micMTB/1Wj6tKuk2PpCpJHq0qBc+c1
-	ky+1as/pSeZ6pkC71k2sS6l40NoOg37yECd5xGDhPG5+q5fmdjT62k6I7EbKihTWjT9gr8CRIr1
-	BPRFEjWAm3Nx7NaBPOGisNMLgPx45gsvEvkbzMczeXoa3XnOgj/jo2zxh5n/VmezE9uKZiO85Fv
-	RWCqfnSPB4DAEfXHxEdc1pXgrf/vtyv+xTr6R7SO61E1CzbjAwL09IiMchm3w7i/ntvKUvdwVl1
-	wl2yK/mXbipaB8Fx2qcFLzVn6s/y8XyaEc6fCIsH+q9GA4gCZ/V20oFBmS+fnuO80tvW0rBw8gF
-	bPPjtQf/y0Q2uZxODTlnkCklGug75ZsJu0kKw4cGU3mpwEyiLKFH8aBT9lItmStup2BaUMxa1Gi
-	rLW9OK/FWFcQFEA==
-X-Received: by 2002:a05:600c:1389:b0:4a1:f8cb:7d70 with SMTP id 5b1f17b1804b1-4ba09388518mr13400485e9.24.1794365280959;
-        Tue, 10 Nov 2026 18:48:00 -0800 (PST)
-Received: from localhost ([94.4.85.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fe64bcsm99261205e9.8.2026.11.10.18.47.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2026 18:48:00 -0800 (PST)
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hRcWzUGJSUPojWrz+zCwuVFdb28Qz76tpXzDUkH+H5A=;
+ b=Wd3kC0kxcQ8Or3kpXi+5EoTOijOmrqAjBNd3P7q/NUHlLnjIpxkOGs+W60k/3oeT51+5i6WLlsqvSkfXAaZs1raChGkZ9fC22fEHlAdnNAz/tXqLtNfui/h/uOyQ4UFUSM2vV7RAz+ObAOqC6hyXLiv8UODIfvj7AMSj5WJBZfI=
+Received: from KUYPR03MB9902.apcprd03.prod.outlook.com (2603:1096:d10:91::20)
+ by KL1PR03MB7972.apcprd03.prod.outlook.com (2603:1096:820:f9::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Wed, 11 Nov
+ 2026 02:59:51 +0000
+Received: from KUYPR03MB9902.apcprd03.prod.outlook.com
+ ([fe80::9598:2e59:20dd:960b]) by KUYPR03MB9902.apcprd03.prod.outlook.com
+ ([fe80::9598:2e59:20dd:960b%5]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
+ 02:59:51 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, =?utf-8?B?U2hhb21pbmcgQ2hlbiAo6ZmI57uN5piOKQ==?=
+	<shaoming.chen@mediatek.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, "airlied@gmail.com"
+	<airlied@gmail.com>, "bengris32@protonmail.ch" <bengris32@protonmail.ch>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"stable@vger.kernel.org" <stable@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH RESEND] drm/mediatek: dsi: Fix handling of long packet
+ reads
+Thread-Topic: [PATCH RESEND] drm/mediatek: dsi: Fix handling of long packet
+ reads
+Thread-Index: AQHdbTL7YTCXG1KxM0Ok117KYC2WHrcoNwqA
+Date: Wed, 11 Nov 2026 02:59:51 +0000
+Message-ID: <7bd197e91dd3998272d2c9de2edb38a885cab9c5.camel@mediatek.com>
+References: <20261105-mtk-dsi-long-read-v1-1-0b6d9b67c011@protonmail.ch>
+In-Reply-To: <20261105-mtk-dsi-long-read-v1-1-0b6d9b67c011@protonmail.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.52.3-0ubuntu1.1 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: KUYPR03MB9902:EE_|KL1PR03MB7972:EE_
+x-ms-office365-filtering-correlation-id: e3982f4b-1221-4632-12f3-08df3f9fdae7
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|23010399003|42112799006|38070700021|10067099003|56012099006|11063799006|261022113327099003|261021121427099003|261102123227099003|22082099003|18002099003|6133799003;
+x-microsoft-antispam-message-info: 4Iv2wnPfA9LPNbX2UqPvV4nceCoIrcULyKTYgMzqitevOYvQRd36JaVICV8x2H1Vp8iWGsXLbr00sie9lf3mfFEUJ7oQez7JSMks/WItmFW3nQSiC4L5DAw+ymKtrsBsDBxGpnB0cJNHjn1XFzgwk7V6Cw/nwP6oqRugf/w0lbBk0t+R8GmsiLIqtQ+s8+GWq2+ss28qP6YEmOPanBjzOSmlRnzBDP+g+S6HcL2RInTTCLabaQ19wXS2SFENqO6fNUu1zTAMSLxNDTOMembUuBoilTc0L9knC/A4wqKe/O+jv5rVnIwwiYk1VlRTdvJd8QVoVzZjZ+NmQKbwCbhqCeDB9k5XxaUpE0pVEshNhDJDY1JR+BjpMsqK6vH0MRI37KHQR/J7AfvqPr3NGNkzUVNV5GAHtXYuLsbqYgeRnEbPf3xlI+7x/g57on3kAMXVuepq3rFm4ycJd8GolmOgj0Y6HDhdmLhKkIuqsjgNMZtRHFSzVlkqtgOYC2YNBn9hESv4E4WlRFZ3rgB0WPynp8KtO13B4vNGPTO7INhChe/Z/5G17aq6tZoADvYYlVtyyAyoMtrN36v7zozYyHViZZCrrYzL+KQQXZDg4iCjJ/ievauCPk9xIs44WGFejgPVFUAUCtbDCa1bbicbTS+nZpmnYbdoYF/rEqwg3G4lxuyihZJP6Sfommk8Wiu7CH02A2yEP1vVcSkksHmp4qiksA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KUYPR03MB9902.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(23010399003)(42112799006)(38070700021)(10067099003)(56012099006)(11063799006)(261022113327099003)(261021121427099003)(261102123227099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z0s0NE1mbmJHRVYyZnNlMGhFVHltSHU1cm8yTmxNeHdVc2ZaNjB2YjZDUFYy?=
+ =?utf-8?B?L1NsV3pPbE9nMURxYnpjeGloSEQ4QnBPb1VONmlzNVdaRDJhdDJjSVMrczRI?=
+ =?utf-8?B?NytKUWNudVgxS0lTM2NITjFIaU1GUGtTNDBZbndvUGhEODlzM25wQWV4Rk5n?=
+ =?utf-8?B?Z0RPeUY5UDZIaXQ4elBNTU8rdjkrcmtVVFVKTTErM2swbUs3NytlRFQyWSsr?=
+ =?utf-8?B?dUYwY1hBNXFpQXJjWGthbXBwTkFrbTNndVMyU0VBbjdHRWpBa3krYStPRFRk?=
+ =?utf-8?B?UEVvYjRNUHZKTU9zRjdzSXBjWXUwaFJoT0xTVXFaREZsUy8wUEhyb2ROQlZk?=
+ =?utf-8?B?UlpydG82bXdsM1FUam1lTCsyRk1JVTMvc2EzNEczZVEvNjJXSGFXdDRUaUtI?=
+ =?utf-8?B?ditrUHA0OHZieXZJYXU0dThIUFVPelUwZFdSQkhMYldwZytwU2Y1M2tTTitX?=
+ =?utf-8?B?UUV4THBzWitsV1FJbUl2VGdNZjBDQW9wbkVFdHVpVjllT1B2KzBRdk1GaGZS?=
+ =?utf-8?B?RzFvTnE5U2xKZ0p5YmtnNStUcGFPOE1obmxLZUE1TTRqSG5TdWJwMFR6dDRR?=
+ =?utf-8?B?S0xUOUloc0ZyS3cvbGs2SVMxLzBxN2h4M2VuWVN6V3RVanF5cjBLVHhwM3pI?=
+ =?utf-8?B?L05oNHhqTlJoR2I1TWc1MWlsTXR4Wm5sVkprZTMxZTA3aTg3RmN6QzlCdjVS?=
+ =?utf-8?B?NzhHOG1ScEp1OExNbWtpeUcvVmpHSGh1OWJoTWwwdCtBT3QwVnZ3L05UeHRQ?=
+ =?utf-8?B?aFNoVVZDK0FmK0p3dVVnajhNMHg1KytTS2dZeDFiRjN0U1N6MHBnMk5sMHo2?=
+ =?utf-8?B?OXdidjFRVG9iR0svcUpSMTErQ2I0UWVTYkZQc0ZZYmgwMnNYOUFkTFkrV0Qx?=
+ =?utf-8?B?ZHNCZjBVVXVGQlI5V2h6Q0l6SDZURmkyTFhiT1R0dERpd2p3dkQ2N2VYQ3Fj?=
+ =?utf-8?B?Qmxld2N6enhvc3lOcnUzNmZTNVpDeGtFWnBKOGJNVldIcmV5dVNMMmZtOGVw?=
+ =?utf-8?B?YkUwL00yYnBUcURIRElUWVkxQnRBd0poL1BLUm1ranBrZ1BjeDdrWi9oMlRM?=
+ =?utf-8?B?eERDY2Z5OXBRY3BJUEdmZURzSEE5MFNlckhwRk9DZkRHdnhuNnduNHdhMnRO?=
+ =?utf-8?B?OGxGaE5rQUMzSUo4dzM1WndHWCtvajQ0RTJrRzMvS1NTd1F6bUpNUzdLczE2?=
+ =?utf-8?B?REYrQUxGeWdtaEJwaCtEcFVSdWk0eVE1bEkyRkR6T1lXRnhGbFljcVNJamJp?=
+ =?utf-8?B?NW9GNDF1bGJqRGdoNVZnb2JmK281QU1IdEc4c0REdzA4L1B0V3FUMWVKYkZE?=
+ =?utf-8?B?bGZrQk5sZm9ZMzN5TlBwazhaRGtNakJYTkRZb3BlZVJBcmxLZ3A5MGNDK0dj?=
+ =?utf-8?B?NzViYVFiMEZCVDM4UGt0ZlZORnAwV05idlBRNlQ2Q0hmTmI0MDlFRDBRamk4?=
+ =?utf-8?B?OXJNVVZub0RqRk5MYTJybGZTR1hueDhPM1h5ZVFlb0s0QXdOY1F3dzIrUTZD?=
+ =?utf-8?B?aE9YNDJMWXBUMG5VMXdXWitnVlZJcGtxLzdwOEMydFMzb0tXK1dBT3pKUnhQ?=
+ =?utf-8?B?UmVLT1I2UUk4UVdhUVpBVUU2cG54VVlXd05tRWhrdWFTN1cwNWdMMUF2cmhu?=
+ =?utf-8?B?NW4xUEU0MnlaV0Uwa0dBWGhFaXpvZWE4YVdFYU5pZlBpa0lWcUs3Tk1PRkFn?=
+ =?utf-8?B?ZklyOHJ1dXgwY25rd05OV1kyeUFFcGo1WXVXQ1IyYVViNVlXeElnTWE3RjVp?=
+ =?utf-8?B?VWN5dlg2ZHFrTnQ4VHRZQU5KRldhYTMxU3EyVFNyWFlmVk13UTRyaS9ycmpB?=
+ =?utf-8?B?VEdDZU91Zzd0bnhrMHdzZE5oQ0ZhaXpOWUJCSFlzbStNTC8xWkZwb25uZE5i?=
+ =?utf-8?B?dUxwLzNEV0xndVlabFE0WEJhNjdlSmVkakRCckR4Rld3aVlKZDlZYjZSSGcw?=
+ =?utf-8?B?YXdJMG8zWkdZbGcwMEJGOWVxaEk1WGR1VzlSNWYrRUhnVVZ0ZTFnZE9iaUxO?=
+ =?utf-8?B?Z1RtdVlIY1hGbzFVaXp6TVhQWHJTVDhyL2FoQ2NreDF1ZUpwWHRZcUZvZkRL?=
+ =?utf-8?B?RlBCMHhDN3pVaXJyTWlhMkZSZEw1bHBYMmU4ZnBRWTZiRUtCTURnSVdxaFYy?=
+ =?utf-8?B?NmswNXVGMDJBUkM3ZDdRVHZ4Zm5zOHN6bmdjL3lMMyt1dEZESmVETm5oWTdK?=
+ =?utf-8?B?WEdydlpGTkw3K1EybG1jbGt5Mmx6dWZDSzdDMVFSZnlSSGtjVjJXeXZ6OHdW?=
+ =?utf-8?B?TytBWDF6c0dlZGFMTjV5WG42TVFCRlNiajZUaGZJYmNWeS9leVJqQ05EVitk?=
+ =?utf-8?B?RXlEL3RtNkdoNVpqSkwyaG5YRDdwTTJ0aDRRUXJGNUh0bzJNcThhdz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DEB83C42A735ED4F8BFF33FA468B2170@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Nov 2026 02:47:59 +0000
-Message-Id: <DMS1ELJMVBTB.2I2J926XE5V3S@linaro.org>
-Cc: "Thomas Turner" <tturner@lineageos.org>,
- <linux-samsung-soc@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Juan Yescas" <jyescas@google.com>,
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Subject: Re: [PATCH 1/2] arm64: dts: exynos850: Add ACPM firmware node
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Tudor Ambarus" <tudor.ambarus@linaro.org>, "Sam Protsenko"
- <semen.protsenko@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Peter Griffin" <peter.griffin@linaro.org>, "Alim Akhtar"
- <alim.akhtar@samsung.com>
-X-Mailer: aerc 0.21.0
-References: <20260929-exynos850-acpm-node-cpufreq-v1-0-5a86c1d404b8@linaro.org> <20260929-exynos850-acpm-node-cpufreq-v1-1-5a86c1d404b8@linaro.org> <7b5dded4-c475-40dd-b5c4-5086bab4162e@linaro.org> <DLSMQGCHNINR.ZPYVN1SR0GM2@linaro.org> <8e305a3a-c30d-4862-9da4-8c763b9f88a0@linaro.org>
-In-Reply-To: <8e305a3a-c30d-4862-9da4-8c763b9f88a0@linaro.org>
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: EId8Yv0OhCGx/8C163/azNimszQA3tLKOXbTu/ZWtTLGDYJfopj94guruCqmEDXaYkAXgNORFRdNtc5MhAXVMP/BnYMv2F4kFagZ2DPKxSEL4fvlPP1tps1aoYw/yarnqhbvPyHDs9DPxN0xYlk8Ijfk8/SJgjhn95gOQc6OlgsfEbFE2IVMtMt2Cl09QCQNZPwANlA8G8lQ+kY+6vS5qjNyHa6f61UXcpjXKFCge9KKQRhN8qijJypCUf31nN+66vG9E5SG52HnQy59lcL16MTRkhJzRWyFXfZo1Wo0phR+6ALTHWsIEi2opoTwxB08ZYvuwgrVLjEmgLszHOGBiA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: KUYPR03MB9902.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3982f4b-1221-4632-12f3-08df3f9fdae7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2026 02:59:51.4447
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0ONhTve74wmatYT6YZX98jlZvLHvj91ShQCv5nqGFYj0N8VSdzdAAiXhFPFgfG1h39Rr49pJ5uTfW3Ftqkpn0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7972
+X-MTK: N
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_184803_457546_4C070E08 
-X-CRM114-Status: GOOD (  30.59  )
+X-CRM114-CacheID: sfid-20261110_190001_706941_0488BC71 
+X-CRM114-Status: GOOD (  12.79  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,152 +191,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	UNPARSEABLE_RELAY autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-On Thu Oct 1, 2026 at 2:27 PM BST, Tudor Ambarus wrote:
->
-> On 9/30/26 2:54 PM, Alexey Klimov wrote:
->> Hi Tudor,
->>=20
->> On Tue Sep 29, 2026 at 10:02 AM BST, Tudor Ambarus wrote:
->>> Hi, Alexey,
->>> On 9/29/26 6:10 AM, Alexey Klimov wrote:
->>>> Add the ACPM firmware node with cpucl0 and cpucl1 clocks. ACPM firmwar=
-e
->>>> protocol provides interface for all client drivers to actually use
->>>> features exposed by the APM co-processor.
->>>>
->>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>>> ---
->>>>  arch/arm64/boot/dts/exynos/exynos850.dtsi | 13 +++++++++++++
->>>>  1 file changed, 13 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/bo=
-ot/dts/exynos/exynos850.dtsi
->>>> index 8a4771899a8e..91c6cee8f483 100644
->>>> --- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
->>>> +++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
->>>> @@ -11,6 +11,7 @@
->>>>   */
->>>> =20
->>>>  #include <dt-bindings/clock/exynos850.h>
->>>> +#include <dt-bindings/clock/samsung,exynos850-acpm.h>
->>>>  #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>  #include <dt-bindings/soc/samsung,exynos-usi.h>
->>>> =20
->>>> @@ -170,6 +171,18 @@ timer: timer {
->>>>  		     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
->>>>  	};
->>>> =20
->>>> +	firmware {
->>>> +		acpm_ipc: power-management {
->>>> +			compatible =3D "samsung,exynos850-acpm-ipc";
->>>> +			mboxes =3D <&ap2apm_mailbox>;
->>>> +			shmem =3D <&apm_sram>;
->>>> +			clocks =3D <&cmu_cpucl0 CLK_FOUT_CPUCL0_PLL>,
->>>> +				 <&cmu_cpucl1 CLK_FOUT_CPUCL1_PLL>;
->>>
->>> Why do you describe these clocks?
->>=20
->>>> +			clock-names =3D "cpucl0", "cpucl1";
->>=20
->> To link these clocks with ACPM clocks from this list:
->> (file drivers/clk/samsung/clk-acpm.c)
->>=20
->> static const struct acpm_clk_variant exynos850_acpm_clks[] =3D {
->> 	ACPM_CLK("mif"),
->> 	ACPM_CLK("int"),
->> 	ACPM_CLK("cpucl0"),
->> 	ACPM_CLK("cpucl1"),
->> 	ACPM_CLK("g3d"),
->> 	ACPM_CLK("aud"),
->> 	ACPM_CLK("cam"),
->> 	ACPM_CLK("disp"),
->> 	ACPM_CLK("cp"),
->> };
->>=20
->> Eventually to have some sensible/working ->recalc_rate() for ACPM
->> cpucl{0,1} clocks.
->>=20
->> Which is needed, for instance, for cpufreq_dt because it registers with:
->>=20
->> static struct cpufreq_driver dt_cpufreq_driver =3D {
->>         .flags =3D CPUFREQ_NEED_INITIAL_FREQ_CHECK |
->>                  CPUFREQ_IS_COOLING_DEV,
->>=20
->> Don't know if it answers the question (if I understood it correctly)?
->>=20
->
-> Thanks, Alexey. I see now that clk-acpm.c uses pdata.fw_name on the
-> parent (acpm_ipc) DT node to link the ACPM clocks to the CMU PLLs for
-> ->recalc_rate(). Could you please clarify a few things in the commit
-> message (and below):
-
-Thanks for the good questions. You hit the exact pain points we have been
-debugging on hardware with cpufreq-dt and Panfrost devfreq.
-
-> 1. Physically, CLK_FOUT_CPUCL{0,1}_PLL are not input clocks feeding the
->    APM hardware, they are the PLLs that ACPM reconfigures behind the
->    scenes. Meanwhile, acpm_clk_register() sets num_parents =3D 1 and
->    pdata.fw_name =3D name for all 9 clocks in exynos850_acpm_clks[].
->    Since the DT node only lists "cpucl0" and "cpucl1", won't the other
->    7 ACPM clocks (mif, int, g3d, aud, cam, disp, cp) remain permanently
->    orphaned in CCF with rate =3D 0?
-
-Correct. Is it a problem now since there are no "clients" or consumers or
-users of these clocks?
-
-Or do you suggest to link them all to parents clocks to have a sensible
-rate?
-
-> 2. Does bypass_acpm_exynos850_get_rate() actually return the updated rate
->    after clk_set_rate()? When ACPM changes the PLL frequency via IPC,
->    CCF is unaware that the parent clock (fout_cpucl0_pll) changed in
->    hardware. Even with CLK_GET_RATE_NOCACHE on the ACPM clock,
->    __clk_recalc_rates() only reads the cached core->parent->rate without
->    calling ->recalc_rate() on the parent itself. Won't parent_rate remain
->    stuck at the initial boot frequency?
-
-This was already asked and seems there are no answers. The problem with
-stale rate is present.
-https://lore.kernel.org/linux-samsung-soc/DLAZXSNZK6QC.1VFAX37XCXBOV@linaro=
-.org/
-
-Any suggestions? It does seem to be a real problem since we discussed this
-again off the list and cpufreq may stuck because of this.
-
-We can cache the ACPM clock set_rate if the call succeeded for instance
-(option 2 in the URL above).
-I have such patch somewhere locally and Thomas also cooked a version
-with caching. Will it be an acceptable approach?
-
-The other thing is that we may need an initial rate set if reading of
-a rate happens before first ACPM set rate call.
-Is it fine to return parent's clock rate in such case? For this approach
-we actually need linking to parent clocks.
-Or should we hardcode some boot values in the driver for instance?
-We can also potentially hardcode PLL clocks to get one-time boot
-(initial values) for ACPM clocks and avoid using parent's clocks
-toplogy.
-
-
-> 3. In drivers/clk/samsung/clk-exynos850.c, cpucl0_cmu_info and
->    cpucl1_cmu_info still set `.manual_plls =3D true`.
->    Does that conflict with ACPM firmware managing the CPU PLLs?
-
-I don't know yet what to do with that. I didn't encounter any problems
-yet because of this. Is it related to early initialisation only?
-I thought that exynos CMU driver doesn't touch PLL clocks after init.
-
-Thanks,
-Alexey
-
-
+T24gVGh1LCAyMDI2LTExLTA1IGF0IDE0OjM1ICswMDAwLCBCZW4gR3Jpc2RhbGUgdmlhIEI0IFJl
+bGF5IHdyb3RlOg0KPiBGcm9tOiBCZW4gR3Jpc2RhbGUgPGJlbmdyaXMzMkBwcm90b25tYWlsLmNo
+Pg0KPiANCj4gbXRrX2RzaV9ob3N0X3RyYW5zZmVyKCkgZGVjaWRlcyB3aGVyZSB0aGUgcGF5bG9h
+ZCBzdGFydHMgaW4gdGhlDQo+IHJlY2VpdmVkIGRhdGEgYmFzZWQgb24gdGhlIGJ5dGUgY291bnQg
+cmV0dXJuZWQgYnkgbXRrX2RzaV9yZWN2X2NudCgpLA0KPiB0cmVhdGluZyBhbnl0aGluZyBsb25n
+ZXIgdGhhbiAyIGJ5dGVzIGFzIGEgbG9uZyBwYWNrZXQuDQo+IA0KPiBUaGlzIGJyZWFrcyBsb25n
+IHJlYWQgcmVzcG9uc2VzIHdpdGggYSAxIG9yIDIgYnl0ZSBwYXlsb2FkOiB0aGV5IGFyZQ0KPiB0
+cmVhdGVkIGFzIHNob3J0IHBhY2tldHMsIHNvIHRoZSB3b3JkIGNvdW50IGZyb20gdGhlIHBhY2tl
+dCBoZWFkZXIgaXMNCj4gY29waWVkIGludG8gcnhfYnVmIGluc3RlYWQgb2YgdGhlIHBheWxvYWQu
+DQo+IA0KPiBGaXggdGhpcyBieSBjaGVja2luZyB0aGUgcGFja2V0J3MgZGF0YSB0eXBlIGluc3Rl
+YWQgb2YgaW5mZXJyaW5nIGl0DQo+IGZyb20gdGhlIGxlbmd0aC4NCg0KUmV2aWV3ZWQtYnk6IENL
+IEh1IDxjay5odUBtZWRpYXRlay5jb20+DQoNCj4gDQo+IEZpeGVzOiAyMTg5ODgxNjgzMWYgKCJk
+cm0vbWVkaWF0ZWs6IGFkZCBkc2kgdHJhbnNmZXIgZnVuY3Rpb24iKQ0KPiBDYzogc3RhYmxlQHZn
+ZXIua2VybmVsLm9yZw0KPiBTaWduZWQtb2ZmLWJ5OiBCZW4gR3Jpc2RhbGUgPGJlbmdyaXMzMkBw
+cm90b25tYWlsLmNoPg0KPiAtLS0NCg0K
 
