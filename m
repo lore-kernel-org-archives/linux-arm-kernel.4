@@ -2,75 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C34F606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1888B60A380E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NVsoYErz;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LFKtYIRm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Aru9fB1A;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=fXBRorJ2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:Subject:
+	From:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/Q64Ix2X/kmoKMESKFF7GfIJozkR1NEfXs5+MGDyEJw=; b=NVsoYErzal1Xqk3CPWO9uNHnj3
-	RhuEXGpidktrYKjFZtDohKbH7P6L36gkqRywC0Eyxh1pgIGimf1vdpN3yS4yqf4Fz7kI4Q7wiP76H
-	73x1kOV5F5tGCcR+Zzxupll4vzLSsQqAW8xD2uxCyEue3ITKhSpR/QUC127NZMcOPRsQU2TAmTpf7
-	SK4ZWfuQGgN+8djv87JDocEe4UQCd+fmk6L74jWclviAASj0N3Z5NFqfmNdMp/+j4F7ur7D2A+KS/
-	wt/oUUU83LBvP22+omGzCJsMicMZ+jYSdUooVTNEKJIaMaLr/Kh5kvImMOatyPux70fKjgLqxgRdU
-	seI8Tj/w==;
+	bh=HEKeLwUiKtpUmctKwhHsgfh3m2eDCG6S3opIYdSvmuQ=; b=Aru9fB1AthC1ptjLrpGGbrGEB3
+	pHE/ZZS5mdeCa2umoipA0MQjMY1N/1DBQYgVhD+jXYQuLyfrqo3dMAR5qnIGfHZrFkJTsBg106cqX
+	lf1rJ2TIsmQe7MPyL6hSepN/oDLYWFbowKazV+LnZVMW7J8CVna/6FmuPJ6+tUXlzv7IsBra31AcV
+	qz6MOkK8YfmUeqEKbAyy6ls7ENkrsa3hVW/X0YjFQwj4E8stXAitzC6j/Sh64dsyLQBXu7Gr1mWaP
+	3xxVONbONB3gBwQQonYNR7X5yFjor89jpfNdN9MucZp5slqQIdq3u00Tf/2jht2Nqmp9p106HnUJb
+	HV6Jgh8A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2pL-00000005vAs-2ELD;
-	Wed, 11 Nov 2026 07:33:03 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xR2pm-00000005vII-3Mze;
+	Wed, 11 Nov 2026 07:33:30 +0000
+Received: from mail-westus3azlp170100009.outbound.protection.outlook.com ([2a01:111:f403:c107::9] helo=PH7PR06CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2pK-00000005vAN-1J50
+	id 1xR2pj-00000005vHU-2Ypa
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 07:33:02 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id AD74147460
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 07:33:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 919191F00A09
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 07:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794382381;
-	bh=/Q64Ix2X/kmoKMESKFF7GfIJozkR1NEfXs5+MGDyEJw=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=LFKtYIRmdJLTkkClRaSCyq6qSvGBQLlGy2IT3YvJc6GpmYyNGMEHXvrqGlOiGQgMt
-	 F22FwBQSP3RwONjGFhRF+iu8NQPa7ZXdnEgW4IrzBcYEfpVDAdfX4BuQI5OIwK542z
-	 yMvQ93hyDm7oPYY1NSMHj91ORrujekYl1h9TkgyyLzppLFqiFmGnmSGcWfxLwvDnmH
-	 oNT0DUvaPTQGkYwP/bXcJNlkfbCgNB+n3OVWa+PwWbQtfcwtgV2E/BRdGNQD4fTA2/
-	 kS3FX4oPW6rUWw2oNquPnXG9pTKgVlikVwabONyMRFAkzVHaV7GUBouGLknay0pK4m
-	 qV7aGDlxnavRw==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3adff684a52so24741821fa.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 23:33:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHoi93bXqyj04ciS3LoLgPiHzzaOheKAxZZp/QxbPHR20/SZLqeahpECRJzTevIGD9kGIfQaBYWrASRDMIDr2gZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z/rdPvUZMg3/Anf+im1TfOaM5UMBRj6lVTb2M//ttiCIORh38P9
-	pVV3qMvqhjqzEXQmaEk2EshVKo2XFCXBVxxqdT6S96T4gjZ/AOoRdbfJMRPjyvHl2aIB96Ufhrc
-	v99iM08NgAuKxIswm26slfcRR5glMPJg=
-X-Received: by 2002:a05:651c:19a6:b0:3ac:4b79:573b with SMTP id
- 38308e7fff4ca-3ae126dfeb2mr2383681fa.13.1794382379903; Tue, 10 Nov 2026
- 23:32:59 -0800 (PST)
+	Wed, 11 Nov 2026 07:33:29 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=weKcZaNlErnf8pY2wREDEWQLKQpP4+2HbPY47qwnJCXMNhKWd1dGQIuyyQv58+nOo+99u9sceTX/dLBFazhQC8FwhAKyTVVu03iwKzOvk6LBEpby2So9Qi3nZDJMt+NEcEuoguu0K9cZLoojrmSGu4Cn1kaxuY/ZE8qZ+t4zo0FRjceEkvk/HqruFT1wNc9affEuxAOT7DFqoszJ2G01fXbxdJvPNwZfYWoSThDWp4KeQy1bUGhNPSInkuZ+sQ1h2dHs4hu66CW+sTi4L0AWRlQ3QPD9drZGR+bGKEWHgpEzpDkPNzzACoWUW7oT+ro/HaLtM87El4JToa3bfW9PEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HEKeLwUiKtpUmctKwhHsgfh3m2eDCG6S3opIYdSvmuQ=;
+ b=hyPgGnkg37BVh9JmZbrp+0F5otKuzhDg1JCgZkaftYQNp5Oz3yXyu6SJgJDuquwrfXd5xzM+dWl9R14DgK0hjwuJHWtJehgUocCrJ9jZKxFNNqPfxDnHOQ2wrPLKNx3DzrwKeaBCqzU2PloomspJMg404mKk0fqHVuWVbXyX5eRaMAQLnMInB8pS4qb3Lz2tJCSMNIlvgZ22VgxqEXGY+uDcuHYfmb1Wls9me21s61IHNyJJu2mKzVi56lkqxzB3zfj2jn2H7q/LSCUq0NOhlbMbmK7Twe+c5qFks9+Y0/Fjg6pXTwZzpWSpMsKSmxm4RqRLmzVVcOxgAglBuhsGUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HEKeLwUiKtpUmctKwhHsgfh3m2eDCG6S3opIYdSvmuQ=;
+ b=fXBRorJ2S2Lblmm42WVekYNzU1vuDqrCjcOApuvuPQC/yoGWmwAMD5g7BvrqfUDZs3wQBw4ppDval6zf1Eu66lJqDl5G9pTj17laN0xntX7nrQ4zC5G2RcAGdN3WMEiMr84jsS5mCYtUwrtIsuUnscW1d0ZFtbRj+C4fQiaEQLs=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SN7PR12MB8147.namprd12.prod.outlook.com (2603:10b6:806:32e::5)
+ by CH1PR12MB9621.namprd12.prod.outlook.com (2603:10b6:610:2b2::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Wed, 11 Nov
+ 2026 07:33:20 +0000
+Received: from SN7PR12MB8147.namprd12.prod.outlook.com
+ ([fe80::3923:c1a4:778b:56f2]) by SN7PR12MB8147.namprd12.prod.outlook.com
+ ([fe80::3923:c1a4:778b:56f2%3]) with mapi id 15.21.0615.008; Wed, 11 Nov 2026
+ 07:33:20 +0000
+Message-ID: <fdf30c76-f78d-430b-9ca0-8377990a6b22@amd.com>
+Date: Wed, 11 Nov 2026 13:03:09 +0530
+User-Agent: Mozilla Thunderbird
+From: "Neeli, Srinivas" <srneeli@amd.com>
+Subject: Re: [PATCH net-next v3 8/8] net: xilinx: tsn: deliver endpoint RX
+ frames to DSA user ports
+To: netdev-bot+sashiko@kernel.org, srinivas.neeli@amd.com
+Cc: nagadheeraj.rottela@amd.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, richardcochran@gmail.com, michal.simek@amd.com,
+ bigeasy@linutronix.de, clrkwllms@kernel.org, rostedt@goodmis.org,
+ edumazet@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rt-devel@lists.linux.dev, neelisrinivas18@gmail.com, git@amd.com
+References: <20261016-patches_v2_external-v3-8-e33d3960ca1e@amd.com>
+ <179249750444.3135.1692275587478159303@kernel.org>
+Content-Language: en-US
+In-Reply-To: <179249750444.3135.1692275587478159303@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0206.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ab::7) To SN7PR12MB8147.namprd12.prod.outlook.com
+ (2603:10b6:806:32e::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261110-sun5i-hstimer-arch-sunxi-v1-1-9016f63e186f@gmail.com>
-In-Reply-To: <20261110-sun5i-hstimer-arch-sunxi-v1-1-9016f63e186f@gmail.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Wed, 11 Nov 2026 16:32:47 +0900
-X-Gmail-Original-Message-ID: <CAGb2v66=UbyC0jaW6tjeux5VruUAXN_64bAs3+LyS=CRG1qm9Q@mail.gmail.com>
-X-Gm-Features: AclHuK-OY7M3itmCA0XTlJzxAvWYSOF7vEwzX0YxEQKq8s6HmV426ktA_3YHpdA
-Message-ID: <CAGb2v66=UbyC0jaW6tjeux5VruUAXN_64bAs3+LyS=CRG1qm9Q@mail.gmail.com>
-Subject: Re: [PATCH] clocksource/drivers/sun5i: Allow enabling the driver on
- 64-bit sunxi
-To: aiyengar1990@gmail.com
-Cc: Daniel Lezcano <daniel.lezcano@kernel.org>, Thomas Gleixner <tglx@kernel.org>, 
-	linux-kernel@vger.kernel.org, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Michal Piekos <michal.piekos@mmpsystems.pl>, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8147:EE_|CH1PR12MB9621:EE_
+X-MS-Office365-Filtering-Correlation-Id: 76523de0-0460-4a06-1a81-08df3fc60f04
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|1800799024|23010399003|376014|261021123027099003|11063799006|4143699003|261022105027099003|261022075727099003|56012099006|261026140227099003|261021121427099003|261028144727099003|261009223027099003|5023799004|18002099003|22082099003|261102123227099003|10067099003|3023799007;
+X-Microsoft-Antispam-Message-Info: fcxUj4bQqF+JqH/n206NbBvjjTMFOA+a1rRKouzrrrBVHATtafd3bmzmr9hXw///lpck5RzKyktVDoR84Di81Kq+gTxnOphzwIloWQ7R054sr7ZQhZWbwZR2brn8ByZr3C5iMelw4xFnmW5cfAHfc8Xy2kdrUCNXs0SVK1V5tjT8bzdDzRmDxiBAxfz/0TeRVbuihAzg2eQ57vr0VdUedX411Q4dWFAswl408SaPhfYaufFj6/JoAIFhqzCV9KJbg3s2WSExzHm28KWxbKTpRcGv8ox2ieuuter8D1ZzN2rwA9+x4hApgBkatsBgzmckCBdbqHJzvMZuYA8HPUZmPGX+q2l4rSxN0qkUTsc4j1yzCgLNKeaDxdp6NtFvtbVmrgj74KdkTr/QO7ugUn+DXdC5q1jBBSToMQO4c1R1J/h0rUL8FJGDhEuU+kRqKN2BhtOki9q05yRCzb+sPVmfmVI6a6tcTunquRxJktx5ntwYRNjtAVpOwUQsd7WVlVN0p2ZzIdzEO6zyZF2S3cmfEMz6QyhGw4Y00/7OgfDe6VWTM3MKC+J3x95+K73S0P6hqt3RAuz7gBn/JHmLO+il6bGc7IBsYU5hOjpKO58k21TjelSy4vH73zTVxgcG8YOaIgTrG8NAzz4Sjvh8MMZIMjDUTzBHYJcsPZv69kTfnLs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB8147.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(23010399003)(376014)(261021123027099003)(11063799006)(4143699003)(261022105027099003)(261022075727099003)(56012099006)(261026140227099003)(261021121427099003)(261028144727099003)(261009223027099003)(5023799004)(18002099003)(22082099003)(261102123227099003)(10067099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NDVWT3pRaFZQZXI5ZGtOaERoNzZReXRRMWZybVdLeUYzb09JeTJRWUc4bFls?=
+ =?utf-8?B?S01CR291ZTVlUERyZmZpU2c3SHc5dUhneUlKV1FrZklkZjJxUEpwS2ZaVFdH?=
+ =?utf-8?B?TVpreVJPcGJtbDNzRXlWV1cvclFJQ1VtU0tPeVhDeUZWenp5WEl2L3llOVNV?=
+ =?utf-8?B?cldOcHZDU1kxL3U1bG8ybmtmVCtHYnlpRUNscDlyVWorZU1MSFR0NUNma3Yv?=
+ =?utf-8?B?WTdxT3ZYRG96S1RhNUZZNGJwS1MxeFpNbnFmaDJaemludE1DTFJWU1Ryc1lX?=
+ =?utf-8?B?QVFLRmtWZXkvUWRKdW96WVI4d2xieVZlakRXQkMvNnR3YWlzV1laVW9YWjBk?=
+ =?utf-8?B?M2tocGxHNGp0ZFdRRGt2eFZFUm8vOHVYSnVOUlFVQ1ErU09SWUtZc3lkYU1j?=
+ =?utf-8?B?OC85RExYVlU0dUJUb05XZ3ZYYXNuekFZUDZycHM0YUxCQU1ER2JrN3lkQ3lC?=
+ =?utf-8?B?cHhoY05qMFl3eWVWOVdRYjkyOUowTFRka2J3YU5uY25KK3dFM1Qvd3QxZm5H?=
+ =?utf-8?B?cWN0QUJQYXMyNnBSdFNHZW5QWDN1Y0Z2ek5IKzQwa0llQ2NIcFhRS0Y4UDg3?=
+ =?utf-8?B?MVMwSE9OSkV4b0JyaVJJSmFacUpFV3RQdnA0RFJJQW5tY0k2MTlxNnMrQ2hE?=
+ =?utf-8?B?N3J6WXE2SFNIOWVkczNqaWMrV2hMbmlFMkFpMGxWQzJBdWFoa0xlQUdZMzIr?=
+ =?utf-8?B?aXg1d0pieDlNYWtqLy9lWjh5QjdENndwclNyZzlGVDVhNTY3dVpCdWw3Nzln?=
+ =?utf-8?B?aUpQQVQ5VlN6dHZNTUFkaGlnbGpYY0NRdUVKd3Q3aitzUk12K3p5ZmRMc0My?=
+ =?utf-8?B?RnpNeE5aZ0UxODF2SDhGZHZIS1pJZmhXZVpkMkJxa3FwU1ZmQXR1MmsxUzhV?=
+ =?utf-8?B?Q2JkaU5DTW1NYmxiYVF1ZjNjWjdyS2kzQjB4SEpTYWZCVXZEOEZuSUZDNjkr?=
+ =?utf-8?B?ZDJkc0J4MHZIT2ovdDZSck52R2ZURzY3SVo2RXVaNlUxM0xWR1RCLzhQa2dL?=
+ =?utf-8?B?QkY1OTUyYXJ0cXNRSnFkejUzZGZQYjhmT0gzdjBMeGxBdnNzZGQxdU1nUFVi?=
+ =?utf-8?B?VlFRZjdNOWxjSDBnbFk5bUZQWTdkMGJ6N3BCZGwvUFA4Wng3bjg4UjEyYXRX?=
+ =?utf-8?B?WGpKQUI1dXZhQmNLTDVISGcxd21PZld0Q2hjY3VJTDJ0alQ4Yi81Q0E5Z0Uy?=
+ =?utf-8?B?VkxJVzVrRUUvR1ZJT1QzVVNkZEswQ08xblp5djR4OUR6VTBqMTV1YVdIZ1Zh?=
+ =?utf-8?B?Y0t1b3BHbWc2OTh4SFhray9XRUpBQWVudVMvOG9JSGFkV1N1Q2lhUER0Zm1u?=
+ =?utf-8?B?Zy80VmRna1NSYWIvK1NsK0Z3dzljWVdwMThwc2k0T0sxalVqOTQ4M3czNVFW?=
+ =?utf-8?B?a3JJSWV0dTJ3bGlSZkJqV0NHK2NOL2tJbkVVWGtsUnBrYjZlQkNiWTVGaEFu?=
+ =?utf-8?B?ZXVoSnNHUnFQZmxzWmZ2VVFJYVNOVkUvRmV1V3ByNWhpVE55Z01OMUJCbjRy?=
+ =?utf-8?B?Ylc3L2V6QW1aTXBVWDJkSW44dGYwdnVBRDI4QXd2RWY2L2pLZ3N5eW83bEw0?=
+ =?utf-8?B?OFBYZ2YrdGR4emhXcXdJMUhpaXRaWmlTUEpiTkQ2Zld1REU5dVFFSTBZN0tq?=
+ =?utf-8?B?R0Z0TmhqYnM1Rkh0S0IxZ1JyMUVNcnlPNk5oa1MvZDlYN1p4cGZaYUZ6S0to?=
+ =?utf-8?B?NmdQbFhDaDJocHhvZ3lHMlg4OEtJalZpRFBRMkl0UW1FZ1N2R3pFaWU4dWRm?=
+ =?utf-8?B?Zk8rQ0hzUWRMS3c3cHhSMUJ2RUV3TW1oSmZ1cVpkU29GUVhqdGpLeWl1MjFM?=
+ =?utf-8?B?QkFDYUs4ajR5ODNVaStHQlJzRFpzZkVDS2VGOVdLM25PbjhZaXJuSDB1MWFG?=
+ =?utf-8?B?SUt1S2MxWWp5cGZzQVAwQ2ptcEVVWmMyMkFnUXFDblhyeC9FYTVJVlZKVmcx?=
+ =?utf-8?B?TUNZWGlMd21UOStqaWVaSjNFd25saTlXSERlZ2NwWWlGeEhLd0JldDZFaUFG?=
+ =?utf-8?B?ZnhoemhOZVFoOUZVZlBWTDliTWkweEV4d2tRR3hoejZ0dnRocklpRWtsRmVy?=
+ =?utf-8?B?MW5lL2FDUDVuMGVYRWt3NFpXbjd5RGh3UFA3dTE1d2FBUzdGb2JacEZ4dnkv?=
+ =?utf-8?B?YVltNWQydHNyTXdoZDg1YXg3bEtqMzBscUZGRkR5TVkyUit5WjkrdnhpWDNw?=
+ =?utf-8?B?NUdlei8vWTRlV2hVeW1OTXEvMXYvL1AxMjI3a2I5L3pTdSt1emRQQlUyK3Ba?=
+ =?utf-8?B?cWZYOXltYjluWE5VOXJ6V1NyZlZJVmdXM2JaZE5BWmh0bnJwSm15ZkRybEJ0?=
+ =?utf-8?Q?o06rCxnEMVqhNBbHOM?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 76523de0-0460-4a06-1a81-08df3fc60f04
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8147.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 07:33:19.9173
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8TVSFCJKoewjVWFSBlilIGuLeHI7ubeyHU/kAE5nL8lt1VexUGV5rkMWjrHvvKfO
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9621
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261110_233327_658665_10B955D7 
+X-CRM114-Status: GOOD (  30.46  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,106 +152,106 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 3:07=E2=80=AFPM Arun Iyengar via B4 Relay
-<devnull+aiyengar1990.gmail.com@kernel.org> wrote:
->
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->
-> The high-speed timer driver binds "allwinner,sun20i-d1-hstimer", which
-> the H616 device tree uses as the fallback compatible of its
-> "allwinner,sun50i-h616-hstimer" node and the D1/T113 device tree uses
-> directly. SUN5I_HSTIMER, however, only has a prompt under COMPILE_TEST
-> and is selected by the 32-bit sunxi machine Kconfig alone, so arm64 and
-> RISC-V sunxi kernels cannot enable it and these nodes never probe.
+Hi,
 
-This could be simplified: the high speed timer is available on many
-newer platforms, but it is only selected by the few original platforms,
-and not visible to the user.
-
-> Make the prompt visible on ARCH_SUNXI. The driver registers its
-> clocksource and clockevent at rating 340: below the architected timer's
-> clocksource (400) and below the sun4i timer (350), which ARCH_SUNXI
-> already selects on arm64 and RISC-V. Enabling it therefore adds a
-> second hardware time base without changing which one the kernel uses.
+On 10/20/2026 5:28 PM, netdev-bot+sashiko@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found more severe
+> issue(s) in other patches of this series. This mail is only an FYI, in case
+> you want to address the nit picks below when you respin.
 >
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
-> The H616 and D1/T113 hstimer nodes and the D1 driver support were merged
-> for 7.2, but the driver still cannot be enabled outside COMPILE_TEST on
-> arm64 and RISC-V.
+> Low priority / nit picks for your consideration:
 >
-> Tested on an Orange Pi Zero2 (H616) with a 7.3 kernel carrying this
-> patch and CONFIG_SUN5I_HSTIMER=3Dy: the hstimer node at 0x3005000
-> probes and available_clocksource lists "arch_sys_counter timer
-> hstimer".
+> - [Low] The new RX demux in ep_dma_rx_cb()
+>    (drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c) relies on a DSA…
 >
-> This patch was developed with Claude (Anthropic) as a coding
-> assistant. It investigated the problem and wrote the code and the commit
-> message; I reviewed it, and it was tested on an Orange Pi Zero2 (H616)
-> as described above.
-> ---
->  drivers/clocksource/Kconfig | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-> index da83483296d5..971491d2e584 100644
-> --- a/drivers/clocksource/Kconfig
-> +++ b/drivers/clocksource/Kconfig
-> @@ -172,12 +172,17 @@ config SUN4I_TIMER
->           Enables support for the Sun4i timer.
->
->  config SUN5I_HSTIMER
-> -       bool "Sun5i timer driver" if COMPILE_TEST
-> +       bool "Sun5i timer driver" if COMPILE_TEST || ARCH_SUNXI
-
-Nit: I would probably write "if ARCH_SUNXI || COMPILE_TEST" just to match
-the other instances.
-
->         select CLKSRC_MMIO
->         depends on COMMON_CLK
->         help
->           Enables support the Sun5i timer.
->
-> +         The 32-bit sunxi platforms that have this timer select it. On
-
-"selected"? BTW I think we can drop the "selects" from those platforms
-if the option is now visible to the user.
-
-> +         64-bit (ARM64, RISC-V) sunxi SoCs such as the H616 and D1 it
-> +         registers an additional clocksource and clockevent device, rate=
-d
-> +         below the ones the kernel already uses there.
-> +
-
-This doesn't really say _why_ a user might want to enable it though.
-The only reason to do so is to get a higher resolution timer, but
-the rating for sun5i-timer is lower than sun4i-timer for both clocksource
-and clockevents. Realistically speaking this is never going to get used.
-
-
-ChenYu
-
->  config TEGRA_TIMER
->         bool "Tegra timer driver" if COMPILE_TEST
->         select CLKSRC_MMIO
->
-> ---
-> base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
-> change-id: 20261110-sun5i-hstimer-arch-sunxi-167ea2ebcbd7
->
-> Best regards,
 > --
-> Arun Iyengar <aiyengar1990@gmail.com>
 >
+> net: xilinx: tsn: deliver endpoint RX frames to DSA user ports
 >
+> At probe time this commit allocates one METADATA_HW_PORT_MUX metadata dst
+> for each of the two MAC ports. In ep_dma_rx_cb() it then attaches the
+> matching dst to each RX frame based on its TUSER port_id, gated on
+> netdev_uses_dsa(), so DSA can deliver the frame to its swpN user port.
+>
+>> diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
+>> index bd8cd504cefb4..5103a3b4b018a 100644
+>> --- a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
+>> +++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
+> [ ... ]
+>
+>> @@ -302,6 +311,10 @@ static void ep_dma_rx_cb(void *data, const struct dmaengine_result *result)
+>>   	}
+>>   
+>>   	skb_put(skb, rx_len);
+>> +	if (netdev_uses_dsa(ndev)) {
+>> +		dst_hold(&ep->port_md[port_id]->dst);
+>> +		skb_dst_set(skb, &ep->port_md[port_id]->dst);
+>> +	}
+> [Severity: Low]
+> Can this branch be reached at all with the tree as submitted?
+>
+> As far as I can tell, nothing under drivers/net/dsa/ binds
+> "xlnx,tsn-switch", and net/dsa/ has no TSN tagger. The only references
+> are the binding in xlnx,tsn-endpoint-ethernet-mac.yaml and this Kconfig
+> help text:
+>
+>      The three-port switch is supported by the companion DSA driver.
+>
+> Without that driver, nothing sets dsa_ptr on this netdev, so
+> netdev_uses_dsa() is always false here. That leaves three pieces of dead
+> code for now: this branch, the port_md[] allocation in
+> xlnx_tsn_ep_probe(), and ep_free_port_md(). It also means RX delivery to
+> swp1/swp2 can't be tested from this tree.
+>
+> Will the companion DSA driver be posted along with this series?
+>
+> The commit message also says:
+>
+>      guarded by netdev_uses_dsa() so it runs only while a switch is bound
+>      as the conduit.
+>
+> netdev_uses_dsa() checks a bit more than that:
+>
+> include/net/dsa.h:netdev_uses_dsa() {
+>      ...
+> 	return dev->dsa_ptr && dev->dsa_ptr->rcv;
+>      ...
+> }
+>
+> dsa_port_set_tag_protocol() copies cpu_dp->rcv directly from the
+> tagger's ops.
+>
+> Every frame accepted here carries a METADATA_HW_PORT_MUX dst, so
+> dsa_switch_rcv() always takes the md_dst branch and never calls
+> cpu_dp->rcv. The tagger still has to provide a non-NULL .rcv, though,
+> or this code never runs.
+>
+> With a tagger that has no .rcv, such as none_ops in net/dsa/tag_none.c,
+> every frame would quietly stay on the conduit eth%d. tag_none.c warns
+> against using it for new switches, so this mainly applies to whatever
+> tagger the companion driver adds.
+>
+> Could the commit message, or a comment here, say that the tagger must
+> provide an .rcv callback, even though it won't be called for these
+> frames?
+>
+
+The v1 posting carried both the endpoint and the DSA switch driver.
+Following the v1 review, we split them into two independent series.
+This series adds only the endpoint, as the conduit driver, and the DSA
+switch driver and its tag protocol will follow as a separate series,
+as noted in the cover letter.
+
+Thanks,
+Srinivas Neeli
+
 
