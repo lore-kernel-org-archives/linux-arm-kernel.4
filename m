@@ -2,88 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DEF606A89F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8936F606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:15:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5AeOSYW8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VZTqnHTR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J4crJRAW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ml3p/AxADI1kPwVB1ta2/1LkU6QgLRbPMaZJLAyCaWY=; b=5AeOSYW85hVrBHt6EzzragrEf/
-	2tnXHAWowElceoFN6x8zRqL04hKqzrbi0vNu3QRekNf3KhnsSdDvDLBhuNqrCjnKnu0pORSpIpbiO
-	A8aVrU561LtvrjgL+UiAq8wgLncQvBEuS7VoctWDmHu8j/2nlXS6k9w1GcKFOoueCagMrBZe/jj5l
-	DPtpXPjZihjpMZIT5BNpCOzztEhP4aAYIgyTOI/BY9aIAY8pKi5TgRfV8yy0MtHgK2J+Acj1bMt7k
-	ZMGrkeiZq+GHHNA+uD3S7ztQM3qfdLeZtW8SQOWOBf2a0uyt52yOwmWU23v4NR8VeK6KLBD2KyhuO
-	EvqfRxpQ==;
+	bh=Ee5/U40Wmc87ctgtQ5qWbKs42KkK5ylSG9FBEDvI45s=; b=VZTqnHTR21STgG+I3Rm7wC35gB
+	eIY4Zchhbn+NNor/9tdIGw1gxIrVLxz82emSFtggSCDngUiSvjofaThvNa7OuYvpN7e658IcCCzLZ
+	pLeLe42pAuAZGEEr1c8yFUCHVC2hVGFNuGL3jKiRGI898lxi/rkKa6nZj86LFBIpO1HCgpC6J6eeQ
+	BFR2CIP5pP7nYZAbQfihnicTBb+SQWF2KzUK/RtnqTeWJT+pLG4rEEJQDGmg65TsNqiQDthn2Ajln
+	JDEPbysbxiYXw3OdOQnJD0EWIG5OAr0bSLXnyLxcofPxK3xWAH0m/VqhvJg4CIX2mvnky1b4/4xFV
+	nbIRe+YQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6Ej-00000006Rvf-3jnf;
-	Wed, 11 Nov 2026 11:11:29 +0000
-Received: from mail-wm1-f47.google.com ([209.85.128.47])
+	id 1xR6ID-00000006SBW-1mFn;
+	Wed, 11 Nov 2026 11:15:05 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6Eh-00000006Rv3-1suW
+	id 1xR6IC-00000006SBA-0ZCK
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:11:28 +0000
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4afe2d546f9so38625875e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:11:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794395485; x=1795000285;
-        h=content-disposition:content-type:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=ml3p/AxADI1kPwVB1ta2/1LkU6QgLRbPMaZJLAyCaWY=;
-        b=B5Qu9++FzrnrozUfW3hpUdc3x7u6OFUS2zfy2P1bD+gbOwkqNaC5N+MKVz1YDT8HIj
-         sU8xqONF1Az0U+ux1riGyCFDHabl3IDYNH/CDCJ90kiBn8b24p0uf1BN0+E/hJ3ZwdRS
-         SY/wQRsy0yoJj97D8ZTjTXJt6mrdczK3uwk3hpbUHK3e126ZXzR3fstYRhIIdlhtoA8A
-         XQhIZIaATZIzmxGfZO3/fH5INe8norvSjlMBadsh74KgOt9GSBH0goq42CLpK+RWGvuT
-         HclZb4Ln++GCc1RBvpG3Skf2fPKaZeUSRINkyj/RUsa/oDwFMQCi4yfmoxFJJYpV6VYD
-         s+2g==
-X-Forwarded-Encrypted: i=1; AL+hErGPCYS5VmgZ4ffOK6DVxto8Q1O+T6D8qowPNR58uIehUW7vxnEBVToY4HN4LczBewEFw7xPSiIWrWeljHg98+53@lists.infradead.org
-X-Gm-Message-State: APuU4Z/hAv4XZ/kUt0Brnpfxt1yK7QsigSEHMXpP5Ie6lPpvdnKlS7jO
-	fp/ORoW5qgitpIauuvA6Gj9mVcm2+Q28tDCuKbQmVk0Ge+nA/+1MIt6rj2wVtlv4GwfKjLv1
-X-Gm-Gg: AYBFou21TCOZvAC7J4dNeJR1X0IWCqIe9ypPFO0lju+c/jEXyQLTfXklxkvuSlkrKEj
-	n6xBHSrQ8vqzQHKjZzUVfmay2frmXufAiUmaX/NNpTjAeObD6xJLdoU9WFY9IRSUBHrJYv7j0Xd
-	WscNkoGQgfOZdEh50V19EP39w9+nj8gepc4dvnSDa4SFqeYKL/nhqqiSk3QH6DPmZ7XxzcGvVaW
-	EKdrFIUnCXxpJ4l1ZSZ17T6vAsiFEIJanvYL5HLSsHwCTAiZC+GHAhCbZCcxKdcERyus2gKi0jK
-	9zGser4BvGdEEEjyavvq2xQGuNLbF6qzkq6gdUMisq6pu/hgyJsSXzciTxJM3W5P38s7fwWvwFQ
-	9OX4ymGLwWeljzpX40jq5Zls3eE2Yo/iT3gKuEgSoPWzMKfAoYrZ7gd1YMLGtHQO6wNAc9RMkfO
-	ylFdGx1mE0SVnHDEA03FudH3b5V/htUwdxn/EUq7m5xZ1O73RPJ5vvPX3O8MEptOaz6lGUDKqWB
-	W36PjIu0i0xcPxAZ/GkkfYBo600A0ya4UPnpEKYDB4Wj86nSbZTD9U8CcawljYnlWIlME0j/6x3
-	uOm0bWAGxc9811Zg4lw82OkzMnBU/aXW+n/MQEHOzANHCBUaZItH7wgtbRDBvmkKHuRJSbGTkIW
-	Lj2OLYqKmerTcwbZsBEZfJyCoPbI3uCOIer8v1aeXw/nPUPesdMaFUbJR2Cxn+8s4
-X-Received: by 2002:a05:600c:a0c:b0:4b8:4af2:88b3 with SMTP id 5b1f17b1804b1-4ba0938b7f3mr40085265e9.22.1794395485364;
-        Wed, 11 Nov 2026 03:11:25 -0800 (PST)
-Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba02043149sm125436565e9.8.2026.11.11.03.11.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 03:11:23 -0800 (PST)
-Date: Wed, 11 Nov 2026 14:11:19 +0300
-From: Dan Carpenter <dan@cryspen.com>
-To: Oliver Upton <oupton@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
+	Wed, 11 Nov 2026 11:15:04 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id CFAA541B5B;
+	Wed, 11 Nov 2026 11:15:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F401F00A07;
+	Wed, 11 Nov 2026 11:15:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794395701;
+	bh=Ee5/U40Wmc87ctgtQ5qWbKs42KkK5ylSG9FBEDvI45s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=J4crJRAWVbfvpdEzzoxakFYHfrQBJgWnHpCMW2Kdomb2jIV3qrQHMed342gp/F/mX
+	 kMsU/wWTaTrJ6WuKKxWc5SdZXQBP1m5RyX4tD33uZ65HkxsaWzycCvcbLQYmpXkOhi
+	 hXqFRlwDzuPTHJ069Evgl8jbqESxbodTIp/51sSn/Y1uZu/uvez/sFJdZwFPdCDmoh
+	 wHteVqLRMxG6LUS46ETgj+PtY6wmrNjznaLBqL2TM3eaYo8LvgYwN5L/iKG/iEJTwg
+	 xNzZJneP4bM3aQChDRAUYW4FwKsSNLpLi4lX/HSQCyigtaju02uLntFoesibkJok8c
+	 GHw24TtYWW67Q==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xR6I7-0000000EG77-2con;
+	Wed, 11 Nov 2026 11:14:59 +0000
+Date: Wed, 11 Nov 2026 11:14:59 +0000
+Message-ID: <86mrrf1ux8.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Fuad Tabba <fuad.tabba@linux.dev>
+Cc: Oliver Upton <oupton@kernel.org>,
+	kvmarm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
 	Joey Gouly <joey.gouly@arm.com>,
 	Steffen Eiden <seiden@linux.ibm.com>,
 	Suzuki K Poulose <suzuki.poulose@arm.com>,
 	Zenghui Yu <yuzenghui@huawei.com>,
 	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Karthik Bhargavan <karthik@pereq.eu>,
-	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
-Subject: [PATCH] KVM: arm64: nv: Initialize hw_mmu to NULL for nested vCPUs
-Message-ID: <d3571fb535e1832d2a067649f294b83d824d4350.1794395321.git.dan@cryspen.com>
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Vincent Donnefort <vdonnefort@google.com>,
+	Fuad Tabba <tabba@google.com>
+Subject: Re: [PATCH] KVM: arm64: Sync SCTLR_EL1 before a pVM's CPU_ON reads its endianness
+In-Reply-To: <20261111082746.1064567-1-fuad.tabba@linux.dev>
+References: <20261111082746.1064567-1-fuad.tabba@linux.dev>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_031127_494736_EFA6ECCA 
-X-CRM114-Status: GOOD (  15.90  )
-X-Spam-Score: -1.4 (-)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: fuad.tabba@linux.dev, oupton@kernel.org, kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, vdonnefort@google.com, tabba@google.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,57 +90,115 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Before commit 6ded46b5a4fd ("KVM: arm64: nv: Keep reference on stage-2
-MMU when scheduled out"), kvm_vcpu_load_hw_mmu() would set ->hw_mmu on
-every load.  Now it only sets it when it is set to NULL.
+On Wed, 11 Nov 2026 08:27:46 +0000,
+Fuad Tabba <fuad.tabba@linux.dev> wrote:
+> 
+> pKVM handles a protected guest's PSCI CPU_ON at EL2 before the guest's
+> EL1 sysregs are saved, so kvm_vcpu_is_be() reads a stale SCTLR_EL1. A
+> guest that changes SCTLR_EL1.EE and calls CPU_ON before its next exit
+> to the host starts the target vCPU with the old endianness.
+> 
+> Sync SCTLR_EL1 before the read, as inject_sync64() does.
+> 
+> Fixes: 9d4ec80be2eb4 ("KVM: arm64: Handle PSCI calls for protected VMs at EL2")
+> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
+> ---
+> 
+> Notes:
+>     inject_sync64() is the only other reader on a protected guest's exit
+>     path of a guest-writable EL1 sysreg's copy, and it syncs that register
+>     first. Saving SCTLR_EL1 before the in-loop exit handlers instead would
+>     put the save on every protected exit for two readers. A non-protected
+>     guest's CPU_ON is handled by the host, after the sysregs are saved.
+> 
+>  arch/arm64/kvm/hyp/nvhe/pkvm.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+> index fc0475f0877d1..e421f45383e0d 100644
+> --- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
+> +++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+> @@ -1321,6 +1321,9 @@ static bool pvm_psci_vcpu_on(struct pkvm_hyp_vcpu *hyp_vcpu)
+>  		goto error;
+>  	}
+>  
+> +	/* Sync SCTLR_EL1 for kvm_vcpu_is_be(), as HVCs are handled before sysregs are resync'ed. */
+> +	__vcpu_assign_sys_reg(&hyp_vcpu->vcpu, SCTLR_EL1, read_sysreg_el1(SYS_SCTLR));
+> +
+>  	reset_state = &target->vcpu.arch.reset_state;
+>  	WRITE_ONCE(reset_state->pc, smccc_get_arg2(&hyp_vcpu->vcpu));
+>  	WRITE_ONCE(reset_state->r0, smccc_get_arg3(&hyp_vcpu->vcpu));
+> 
 
-In kvm_vcpu_init_nested() the vcpu->arch.hw_mmu points to &kvm->arch.mmu
-from when it was set in kvm_arch_vcpu_create().
+I think it'd make more sense to have a global primitive that pKVM
+calls to synchronise whatever affects the control flow of a vcpu (yes,
+control flow for PSCI_ON is a bit abusive, but hey...). It's a bit
+more invasive, but at least we have a single spot to deal with this
+stuff, and it doesn't affect the hot path.
 
-Normally what happens next is a two step process.  KVM_ARM_VCPU_INIT
-calls kvm_reset_vcpu_core() and that sets the vcpu into hyp context
-(vEL2).  Then KVM_RUN calls kvm_vcpu_load_hw_mmu() which doesn't do
-anything.  But that is fine because we are in hyp context and the
-->hw_mmu already is pointing to the correct place.
+Something like the hack below.
 
-However if, for example, we are restoring a vcpu that was saved in L2
-context, then the VMM uses KVM_SET_ONE_REG to overwrite the vEL2 state
-that kvm_reset_vcpu_core() set up, and the vCPU is in L2 context when
-KVM_RUN loads it for the first time.  Ideally, kvm_vcpu_load_hw_mmu()
-would set the hw_mm to point to L2's page tables but, since is non-NULL,
-it leaves it as is.  At this point L2 can access L1's memory.
+	M.
 
-Fix this bug but setting ->hw_mmu to NULL in kvm_vcpu_init_nested() so
-that kvm_vcpu_load_hw_mmu() always sets it correctly on the first load.
-
-Fixes: 6ded46b5a4fd ("KVM: arm64: nv: Keep reference on stage-2 MMU when scheduled out")
-Cc: stable@vger.kernel.org
-Signed-off-by: Dan Carpenter <dan@cryspen.com>
----
- arch/arm64/kvm/nested.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
-index 78fa433774c6..60bccb66e52c 100644
---- a/arch/arm64/kvm/nested.c
-+++ b/arch/arm64/kvm/nested.c
-@@ -140,6 +140,8 @@ int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
- 		kvm->arch.nested_mmus_size += S2_MMU_PER_VCPU;
+diff --git a/arch/arm64/kvm/hyp/include/nvhe/pkvm.h b/arch/arm64/kvm/hyp/include/nvhe/pkvm.h
+index 0261b2bc681f7..ef05265626b7c 100644
+--- a/arch/arm64/kvm/hyp/include/nvhe/pkvm.h
++++ b/arch/arm64/kvm/hyp/include/nvhe/pkvm.h
+@@ -134,6 +134,7 @@ void kvm_init_pvm_id_regs(struct kvm_vcpu *vcpu);
+ void kvm_reset_pvm_sys_regs(struct kvm_vcpu *vcpu);
+ int kvm_check_pvm_sysreg_table(void);
+ 
++void pkvm_sync_before_exception(struct kvm_vcpu *vcpu);
+ int pkvm_reset_vcpu(struct pkvm_hyp_vcpu *hyp_vcpu);
+ struct pkvm_hyp_vcpu *pkvm_mpidr_to_hyp_vcpu(struct pkvm_hyp_vm *vm, unsigned long mpidr);
+ #endif /* __ARM64_KVM_NVHE_PKVM_H__ */
+diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+index fc0475f0877d1..85da570ae1032 100644
+--- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
++++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
+@@ -1321,6 +1321,8 @@ static bool pvm_psci_vcpu_on(struct pkvm_hyp_vcpu *hyp_vcpu)
+ 		goto error;
  	}
  
-+	vcpu->arch.hw_mmu = NULL;
++	pkvm_sync_before_exception(&hyp_vcpu->vcpu);
 +
- 	return 0;
+ 	reset_state = &target->vcpu.arch.reset_state;
+ 	WRITE_ONCE(reset_state->pc, smccc_get_arg2(&hyp_vcpu->vcpu));
+ 	WRITE_ONCE(reset_state->r0, smccc_get_arg3(&hyp_vcpu->vcpu));
+diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
+index 32e82653ebf7e..f28a96d0e50de 100644
+--- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
++++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
+@@ -254,7 +254,7 @@ static u64 pvm_calc_id_reg(const struct kvm_vcpu *vcpu, u32 id)
+ 	}
  }
  
--- 
-2.53.0
+-static void inject_sync64(struct kvm_vcpu *vcpu, u64 esr)
++void pkvm_sync_before_exception(struct kvm_vcpu *vcpu)
+ {
+ 	*vcpu_pc(vcpu) = read_sysreg_el2(SYS_ELR);
+ 	*vcpu_cpsr(vcpu) = read_sysreg_el2(SYS_SPSR);
+@@ -265,6 +265,11 @@ static void inject_sync64(struct kvm_vcpu *vcpu, u64 esr)
+ 	 */
+ 	__vcpu_assign_sys_reg(vcpu, VBAR_EL1, read_sysreg_el1(SYS_VBAR));
+ 	__vcpu_assign_sys_reg(vcpu, SCTLR_EL1, read_sysreg_el1(SYS_SCTLR));
++}
++
++static void inject_sync64(struct kvm_vcpu *vcpu, u64 esr)
++{
++	pkvm_sync_before_exception(vcpu);
+ 
+ 	kvm_pend_exception(vcpu, EXCEPT_AA64_EL1_SYNC);
+ 
 
+-- 
+Without deviation from the norm, progress is not possible.
 
