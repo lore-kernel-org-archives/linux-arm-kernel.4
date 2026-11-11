@@ -2,146 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239BF606A8AC
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8C7606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XMFkNLn/;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=V731rRDQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xAjP/a+t;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=W0p2DOEH
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=03mMARXF/20tAUZEo6HisWHoJiJeJy9dIxh8he9h454=; b=XMFkNLn/OUsdNJ8rMN235MX1I7
-	CYo5BCHNkveE3qhZ5aruYgT0jDh3BzvbHRH6X2xRWZYOxXT81CRc62HrCuRZlpKRL/wKZ9qyj043T
-	sMEzAwTve+L76U5zEKpuG+PU9jdNcN6MtcyHeLj1UVlpwOyih5uIJdbAu5AvMxboQEF29gCJ+yXIV
-	ltVznwv/XyJR482uSNpwcWioebOzrRxH5/Z6XSYCLDIh5/mx0x8AC5IuNIYtfcSZf57/2O0+5lJfF
-	/qFduwRW5VxPEco5QgRjM6WL3docrTpA0KLaB8XtCrBc7cAN3V2MPbgOtcv/wg0LXRRoQulrdi1Zs
-	HanckFcQ==;
+	bh=VZ6QtUIYoRtgth2mB5V2nOYQdbdPArbDj3uel9p2Yes=; b=xAjP/a+tijVAe7wBBJhW34z9mT
+	/4NWhYfcMT2BN5fM9z2cr03CNc80XAo2tln0ctx6AmEkEu47IrD/6fTZDr9OVprCj7Cxg7LiUT/h2
+	BYOZrKE9VARKUP4wl2vwELtP6O4wnT3MraLToMln84gamgF6LybcM4e6RTosJn2/EXQF3O+y2D1O3
+	g4PmNtPlFJ3vMvWzF+ORTe/9mF7Q7Jo91lUeaY+fTBnR3GXAiSnAPQzDdLp8yxWKzJrDrX5Vis2TX
+	oBp3CCcrqZHWMGHi4qCDaSbMfWCqK9ZOYUY854BryGylicu6J3JxZgi9rEYRTk1GeQl/N+S/bR84l
+	TAe6OHEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRC6w-00000007IhJ-3w1v;
-	Wed, 11 Nov 2026 17:27:50 +0000
-Received: from mail-northeuropeazon11012031.outbound.protection.outlook.com ([52.101.66.31] helo=DUZPR83CU001.outbound.protection.outlook.com)
+	id 1xRC8l-00000007Iwh-0g6a;
+	Wed, 11 Nov 2026 17:29:43 +0000
+Received: from vps0.lunn.ch ([156.67.10.101])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRC6t-00000007Ig1-2Zw9
+	id 1xRC8f-00000007Ivr-1NiG
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 17:27:48 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EbvCmEssOfd7xTDf1kFiQ2LeCFT7RK1DHbohSbIpuX4+/cYZOT/Zv67dzNNFOd+OLplmoBcVzTdIILICLG+ZwGkHtJSMUZUGMxaYpzN8+Hrq/j2+vpfobzT1VemNJF599L37T/sDhE0v0N6ruquNc3fhmoh8hiScHsfyNSZA5bG1cJ0Aa1gKCMtLamN1E947MYMHTZMvPPZ9rzo22XyDAoEngwMUNHHzlMWz+39izLQEZnwkWB/ppeP087+HGfOJgeiMHlBqvYhaSyRcLLMFghVo0HHurGE5oSD3k2yqlSOs8hTFYd6i85Kr8nT2lgGilJJ7UEkNHckE65hU3VIGrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=03mMARXF/20tAUZEo6HisWHoJiJeJy9dIxh8he9h454=;
- b=uSe5u9JNEGucIenXLZcsqZV04OmSe+P1j1gBC/xT0Qfq0vIJT5jpVfkruskMetS5h0RldY01Vi5FtKVj3S2acjahzYtr6HVkz/ajtbuvcB/Jw1RGYadWde/TTil0H1C5iwtgpR9ALhnqWgovGfe0hkw7KE1gOUpftvELsEeSgUOmiyFU+uEf4OMlR8CQKUHqxxfCJkowTwFeh5n6Tsxk1mVUnaqoLP7e8k9X3eXVrKg1b5UgX/clsqbfPCiDbcsj7OSFL+PKiOY5wYN8A0cWxQAaP+1wRDe8TecXV+UfuRjCNq4TbeYKn+j/RNC7fACKuUkk5YvTElyjL0meC1R8jA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=03mMARXF/20tAUZEo6HisWHoJiJeJy9dIxh8he9h454=;
- b=V731rRDQVcqalewnDhrZlZZHgGHSrfZpYOQOjdeBtwXZfmyh1Stikt5IjPfeavNf7F48o2jslx2et8xxRaKcsyhGopIeDi4x7SiHaR+B06T0JMJsAh34TG/GWeV1kYVNmzagUhcXvI54KipCcxjrlhjuXy+OyZCu6ofXCDvlLUlJUqV9Bgz+CYFqx7ft1ApvSuM9ewFIj4121ikuBKIwmrkO2NaMXmqPY3dI9M/f+hn8Ptyx4aKMi0ybBNX8/s1E14ZrwECg0bmXn/ufeXN9Hl9igMaiwD1BpCN9pPpek3cYtNSUXSOvZvjprUlxLiOLX4cZB9UhkaNhajLbA21doA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by DBBPR04MB7882.eurprd04.prod.outlook.com (2603:10a6:10:1e7::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
- 2026 17:27:43 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
- 17:27:43 +0000
-Date: Wed, 11 Nov 2026 11:27:31 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	Wed, 11 Nov 2026 17:29:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=VZ6QtUIYoRtgth2mB5V2nOYQdbdPArbDj3uel9p2Yes=; b=W0p2DOEHXZmrx6mBaqiAGEKYwt
+	JWElRtiVhq/HVCISr9tADAXkzuuCVaRI03yu0fBLWdzJ4LZopPSHyp2qJ7iM3Er3ugHBhrn0mkvGp
+	cFIHF2IXdpvPlunNcwsw/jVpkKAYfZFSUat6ghbrOrOPSP7F8YLiExPGoBigGCceaq/k=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1xRC8a-00Fnhp-2s; Wed, 11 Nov 2026 18:29:32 +0100
+Date: Wed, 11 Nov 2026 18:29:32 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Pufan Jin <cyan2254650260@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
-	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+	Michal Simek <michal.simek@amd.com>, Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v5 1/7] dmaengine: fsl-edma: unregister channels before
- vchan cleanup
-Message-ID: <avSlg1SXLBBF9bzZ@SMW015318>
-References: <20261111-edma-iommu-v3-v5-0-2537cebe6ca2@nxp.com>
- <20261111-edma-iommu-v3-v5-1-2537cebe6ca2@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261111-edma-iommu-v3-v5-1-2537cebe6ca2@nxp.com>
-X-ClientProxiedBy: DS7PR03CA0065.namprd03.prod.outlook.com
- (2603:10b6:5:3bb::10) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: zynq: Add ALINX AX7Z020B development
+ board
+Message-ID: <6be8f6fa-501d-4e0d-8808-ece49e8eb7de@lunn.ch>
+References: <20261111162917.97532-1-cyan2254650260@gmail.com>
+ <20261111162917.97532-3-cyan2254650260@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DBBPR04MB7882:EE_
-X-MS-Office365-Filtering-Correlation-Id: beb61bb0-e235-4ae6-9ba8-08df40191847
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|7416014|376014|366016|23010399003|1800799024|22082099003|18002099003|261009223027099003|56012099006|4143699003|11063799006|261028144727099003|261102123227099003|261021121427099003|261026140227099003|261021123027099003|261022105027099003|260925021911599003|260925022911599003|260925021311599003|10067099003;
-X-Microsoft-Antispam-Message-Info: sOpQEEdxo0PvzrM5XxyjM7gGNehxDGXg9csWpc+/jCxGCcbwzVHG2jLf8EMJTTSTHLFpAakPgEstwKLKsh2wz9qICSUETR4dA0TMscsLpps9EyNRttLkNXhD5cfaLAYA1j3VD6IfwOEZ4/lr85aBXIiNOkAL4NlV5anPN+S49h0lyjdeM/z0lZ7rWFG+U/pSS5TILYkGJiLkYbDU3RJuG5iSvPAL3Z5z1Y/kWu1WNhB7NowOnEX4C3m97ODvQIe49lk5+td+yfXuv/0XUrEjCJS52kndesGhw2OCo0zhpuTws5zijrcOiD8+HUKiC9kVn4LyJCdeAMyahpfLenClW+czs/fioFC6H8i0rqRPvNUEa7Rq3ZmTfmq8MRJ6IaStkhxz6r9t77Jlhl2ZQXnhL7RtnfnZtxiVeWptE6FDKzrUxRcR2ysT+JcGrhcjIzUBxmxezH0l1Qk7xe+pWThxj2XSNOGFoOOFk5MUigFYiY8WML1zcHcyphfAq7m/HHKqWEBRnNTN0OHfxqSllA14JTz+o7X7t9619p76yxpOlsJkxnrvF6h+fFMHue4x/AzaZ1CGbjp09l+jXT29KiHB5dRvWKfmt0QjWRspeeiEc+rTbWcG7Rs3WS+11YU8mpJyUyTXnviF0V4OB5FS0zRJ9D6h9U7RESabdFlFTeNDy8c=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(366016)(23010399003)(1800799024)(22082099003)(18002099003)(261009223027099003)(56012099006)(4143699003)(11063799006)(261028144727099003)(261102123227099003)(261021121427099003)(261026140227099003)(261021123027099003)(261022105027099003)(260925021911599003)(260925022911599003)(260925021311599003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?A/OhqhAC7byzWTHV9UadXb44hcvUmorkneMhj3ACJUnX+dgx2czRfP1zV+55?=
- =?us-ascii?Q?ItUpn5lEX1zIH2eYA7eSmcHHyX4RF2tky6m1D7oNe2SmY8QZBCN+1PTUkvEe?=
- =?us-ascii?Q?AuaIbQOK7NQpaJEpCMvmcSeYlRJmtRfVJ/YTN29k6cNsPCUXafR2FH/lmSyG?=
- =?us-ascii?Q?3WWmEUvyT33IEAskSRDKtKQwe2w5EnWUx4eMboItqeEVCFv49kdbcttplTfx?=
- =?us-ascii?Q?/fsnw5GipTkf10atIuRI39S8d8qKNcl4rEI90fmoI0AI8FJ4zq/5hnHDAahl?=
- =?us-ascii?Q?aK0I8KFytHzvVPD6mYsCBTTSypuQrkgZsXc+K+kipnguxu7BVd+5NG7U0X9k?=
- =?us-ascii?Q?Plcr/ArQaM4R3tFxNIxtbUJiC5tRwTuwjIrJ1N8gfA1kvgciXKc7CF4Mr9BH?=
- =?us-ascii?Q?UVGikGrFGFyvlE+qNvbnx2vkOp57tIG4pXQXRuQ0ma2e8IVyDv+mazgzsX8T?=
- =?us-ascii?Q?SZrtYkjcEMnRxns1PiDfYjClgKi7aW+fZ6w95iiG/LrDVPxqQJQPINdV2Rnb?=
- =?us-ascii?Q?MBAvRo/49TV1+e5KDNSy4RZ577akZ8U9fdaU0kMw+lUAqHOtwLDgH+EJNE06?=
- =?us-ascii?Q?5IKki5NhM15pA6xynXDQD5IXv+A0rpE+beGU/ATzLvbj9kpzFlxQJRtGKAS3?=
- =?us-ascii?Q?dRPgICG3oR0wDUOLnRK1iSpiuuXiIlvomvKfBbQAjmdOt7vdbdbAnobamF4I?=
- =?us-ascii?Q?GYGJSapn5lvLjJb9Z6KdwvkfQukNkG38oKvm5icfZXLBNlkini/BDWKLc5ig?=
- =?us-ascii?Q?Af9n03QUEPx12v2GsYybmHGXpDWUvst/X0p2ZYMCYDi7sU081p6GoG838Rva?=
- =?us-ascii?Q?70iVA3CbdXNYzyym/guq1/29jgzQStHoM7KheK91aagED3A5/dmiNLmP650U?=
- =?us-ascii?Q?/wJTaMhK5qQ7GP5YYYyCDK98y6BpHerz5V/odCntpTO310CY8sLpC8Rfibx6?=
- =?us-ascii?Q?oH3DzH1r9Vy27XFkcvvdxvnqGdVEW5VI1cdNRKJko93tGWou43Y3Q+RJOMRM?=
- =?us-ascii?Q?anzuoi8dxaVBN/5AEyyTzILdwH03bEfPLlu18A5axhvfeBhALs9r/qi4km39?=
- =?us-ascii?Q?YA8FMCn85pM6U7SFcAapB0oizqUq5dcqB8RMdH+ISqJK8BuPWRELi825Mr2C?=
- =?us-ascii?Q?4fZCHVhxOX7EVyqiyRAnwnPvyFH3nmu4aeDQCJ/4yrTqRL7SA/t/rmmaFLlb?=
- =?us-ascii?Q?Z7RnZ8ActdrKfy6y3XA+gK6R1XgLwvPbNSHUOio3NTSy1D6eDfcZYd8Tchtf?=
- =?us-ascii?Q?CnlcYglmpow3QAbm8MSH9PYhVfeo7OItgRuked+2Hj/LNhZNDs9WCjM8/P23?=
- =?us-ascii?Q?6Wry1p8LEjPVGJXdn7Ld0j4X9kfcWACMRl+VaU0mRIA8U8fTBS+Qu5NxmUpP?=
- =?us-ascii?Q?eQwtcBdS3yBm1KKTcVQMqMhAK/SvbUVzlkSySQeDYalxfB4BVTQeuzdqNT1U?=
- =?us-ascii?Q?qoxyWQ4Km5PtyixJ7fBeWYngIrrnHSFx3MoWWzW9xEkOkRSJJ+qEuqKH4+dI?=
- =?us-ascii?Q?BsJBCxJ+lCgVMrAV/5ODIYAY8jJXOlCjGZ4yjBw4M2U+WwH3MfpBCptMIfZO?=
- =?us-ascii?Q?KJsFaBNz+jcdEqODxI7Bcnlg+0zlvEnwkhpqpYv1IhbURGaylRIAswlcoc2B?=
- =?us-ascii?Q?UrEYqv645iWWuFlTOKMfB2Q9QpjCrkr21/fTeAKgqIRuRxsmolGUpKL2H4Hs?=
- =?us-ascii?Q?x0K0q/7EJctYQlLKhDqWqYQAPd2X0jb0y3v9FgN1jNGXaYbA1AITTONVq1z4?=
- =?us-ascii?Q?WuGfFTXj4RN2IhjVkV832ALBmRWu9wD9ihjwD9KIEY954kkGyVoy?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: beb61bb0-e235-4ae6-9ba8-08df40191847
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 17:27:43.7510
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3B3MtJdU/IVibSPpC3EYisEGEKgLAhgP2NjNKn4IGWW5ptd1t6JM+WWXQLUDciGxF5EcQ0eexpzoCGsjjarwHOeK98pP54X4C42RO+KlbXqlU+XVp/2l4gcZJJ73VRuK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7882
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261111162917.97532-3-cyan2254650260@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_092747_661106_3AD1DEA7 
-X-CRM114-Status: GOOD (  22.80  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_092937_384675_410B779E 
+X-CRM114-Status: UNSURE (   8.06  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,78 +73,50 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 09:47:29PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Since commit 4035726a6b72 ("dmaengine: fsl-edma: Use managed API
-> dmaenginem_async_device_register()"), dma_async_device_unregister() runs
-> as a devres action after fsl_edma_remove(). However, fsl_edma_remove()
-> still calls fsl_edma_cleanup_vchan() first, which removes every channel
-> from dma_dev.channels.  When the devres action later runs,
-> dma_async_device_unregister() sees an empty channel list and never
-> unregisters the channel devices. They remain visible in /sys/class/dma.
->
-> Keep the vchan cleanup, but register it as a devres action before
-> dmaenginem_async_device_register(). Devres actions run in reverse
-> order, so the DMA channels are unregistered first and the vchan list is
-> cleaned up afterwards. Remove the premature cleanup call from
-> fsl_edma_remove().
->
-> Fixes: 4035726a6b72 ("dmaengine: fsl-edma: Use managed API dmaenginem_async_device_register()")
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
-
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
->  drivers/dma/fsl-edma-main.c | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/dma/fsl-edma-main.c b/drivers/dma/fsl-edma-main.c
-> index da5139911488..7f82dcb7831d 100644
-> --- a/drivers/dma/fsl-edma-main.c
-> +++ b/drivers/dma/fsl-edma-main.c
-> @@ -31,6 +31,11 @@ static void fsl_edma_synchronize(struct dma_chan *chan)
->  	vchan_synchronize(&fsl_chan->vchan);
->  }
->
-> +static void fsl_edma_cleanup_vchan_action(void *data)
-> +{
-> +	fsl_edma_cleanup_vchan(data);
-> +}
+> +&gem0 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethernet_phy>;
 > +
->  static irqreturn_t fsl_edma_tx_handler(int irq, void *dev_id)
->  {
->  	struct fsl_edma_engine *fsl_edma = dev_id;
-> @@ -881,6 +886,12 @@ static int fsl_edma_probe(struct platform_device *pdev)
->
->  	platform_set_drvdata(pdev, fsl_edma);
->
-> +	ret = devm_add_action_or_reset(&pdev->dev,
-> +				       fsl_edma_cleanup_vchan_action,
-> +				       &fsl_edma->dma_dev);
-> +	if (ret)
-> +		return ret;
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 > +
->  	ret = dmaenginem_async_device_register(&fsl_edma->dma_dev);
->  	if (ret)
->  		return dev_err_probe(&pdev->dev, ret,
-> @@ -905,7 +916,6 @@ static void fsl_edma_remove(struct platform_device *pdev)
->  	struct fsl_edma_engine *fsl_edma = platform_get_drvdata(pdev);
->
->  	fsl_edma_irq_exit(pdev, fsl_edma);
-> -	fsl_edma_cleanup_vchan(&fsl_edma->dma_dev);
->  }
->
->  static int fsl_edma_suspend_late(struct device *dev)
->
-> --
-> 2.34.1
->
+> +		ethernet_phy: ethernet-phy@1 {
+> +			reg = <1>;
+> +
+> +			leds {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				led@0 {
+> +					reg = <0>;
+> +					color = <LED_COLOR_ID_GREEN>;
+> +					function = LED_FUNCTION_LAN;
+> +					default-state = "keep";
+> +				};
+> +
+> +				led@1 {
+> +					reg = <1>;
+> +					color = <LED_COLOR_ID_YELLOW>;
+> +					function = LED_FUNCTION_ACTIVITY;
+> +					default-state = "keep";
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+
+For this part only:
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
