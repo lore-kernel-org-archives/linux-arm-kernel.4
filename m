@@ -2,75 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 259C8606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 12:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86D9606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 12:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x3roxNOM;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=MyoCTRFh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nlQCnuEe;
+	dkim=pass (1024-bit key, unprotected) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=RQzlaW2h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9zO+640/KHWsaMaqBoO79/jSoXhkI8QCCTxXofbivUQ=; b=x3roxNOM+YbSeG
-	zw1kpeDUC0CBFivHf/kNLPj1aH7DEOHWuF+h4j87Eje+eN1JzbeT7QB9/XBWLrgBVaVxp0JsSEdng
-	X/o5EJE6DGml1eOl4QsBWXX/q2v2e7nY/8EFEl1yndegHitSPWHCddjquC3PbUUeegqDMNMGSs1ir
-	euYc3YxDIfJv6D7OPRmnaoMWELccw1kJPPS8pZzayXYC618NgySGe9ZhWXPlzMtMdrliMQQ4f4f4b
-	BkF6hrr69mVOTr3oSIzdzi5kfqDd7CMsGkx2RUpXC38awBQcQndSBQF7bGxoAuwWQBmdMOdXLk+su
-	eHAJr5f1gq6Usvn89YUA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Xj8fMjIKXX9i2bKCDMf6EtuAPDwrGhq+CYl2rUVihFw=; b=nlQCnuEeB6LVE7hSJxIfV+kpml
+	pOE8QHuzFVg/wAlymnPoFFT4psqZ1zQp9yX3aCgjYNX0X4v4SV3cCv1d9C+91kRsApgXsHxhT3hLb
+	t/ID+rSp9OnqKtXmn+D8tMe1wi0lU7PekfqqEvgOTSY3K9TYU/CWniVkgFPpmrO2xVyoYTkxQYF+z
+	1bOTFFxJKDzxW9ov98RlpcmYyr9yo3Fi2FfrTv/3Q8ia90/DiYqC4YTEFtufie72HY8/laZXQFNrT
+	MjdshRDMAluRqE/rSBVcd8JXwSfa3TscuHu6lSOAQgfzI94SeqdihNqg7uI4fnBWWIQYBxhOyeXW1
+	A0Kc9DIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR7Ve-00000006gUU-0Yav;
-	Wed, 11 Nov 2026 12:33:02 +0000
-Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	id 1xR6jF-00000006VYa-2tX4;
+	Wed, 11 Nov 2026 11:43:01 +0000
+Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR7Vb-00000006gTs-3OZx;
-	Wed, 11 Nov 2026 12:33:01 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794400367; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Q+/kXTvFvW8+6LUt5EGKXvW9TPMsc6/DJmfXPJOXdwOr+AJk4S4cdMzVu/2ngkfl47CYQ8gsSqEqMQyXVJ6Kl7+x4/xIRhFQzaMSk1NuiJ6wbOq0iqNKrVLYdfigDib0sY8aybqfAg57c1euVFEhRMaxkpQrOXcgimzhsh28PYA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794400367; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=9zO+640/KHWsaMaqBoO79/jSoXhkI8QCCTxXofbivUQ=; 
-	b=XloUxi06PsdEqOPrOlQR7VPh1f5atSlAimk44HiMMAkjm5loG7u85cLUz0YGa7tKj+thHZFJspLPV0PUhwuC+kTx4MkLt+0vnHXm7j4h59ralZ0We0qyvWJqwxhWVzzLqa3cyp2FsJvbQwzmeb3VKiiLovb3xTQfbbExJvj0ynU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
-	dmarc=pass header.from=<michael.riesch@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=MyoCTRFhTyf8w/NUxmE8FnZuSjD2lwiy0FGPrX4bUQk92LBPvq/L72qvVISZoCVbjvKl4AJaMsqVWgREXSsYBRlp7upzTZ5VeeE3cdk7yNvSo9SkuHJ05hSBY0BCy3+/ySPK44w013FGJ3aXCxzvlej4rwZG/oOfdWWtvCAWEjc=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=9zO+640/KHWsaMaqBoO79/jSoXhkI8QCCTxXofbivUQ=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794400365749801.6617129785609;
-	Wed, 11 Nov 2026 04:32:45 -0800 (PST)
-Message-ID: <cb2a2451-149f-44d5-aea3-e050673422e4@collabora.com>
-Date: Wed, 11 Nov 2026 13:32:40 +0100
+	id 1xR6jC-00000006VW9-2GBD
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 11:43:00 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=Xj8fMjIKXX9i2bKCDMf6EtuAPDwrGhq+CYl2rUVihFw=;
+	b=RQzlaW2hQLtJ2ZaZBg5Y3HVhBFgurlIwjp+UDZjzbeMzvFOk/xoYw/ZrMJ1P3+0Ivgpv4NoIw
+	TfruNSdzB+Zj606wYKpKkwa5xqR8VCxmCxXEHloPXSLhRJSKzJmUp/ebLHdIk/XOxPSXJ1gslxF
+	G5GSkJSALbeg2EPg6Gbdrms=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jPhTr6NdHz12LFg;
+	Wed, 11 Nov 2026 19:42:56 +0800 (CST)
+Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
+	by mail.maildlp.com (Postfix) with ESMTPS id EB6F9202E6;
+	Wed, 11 Nov 2026 19:42:51 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
+ (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 11 Nov
+ 2026 19:42:51 +0800
+From: Jinjie Ruan <ruanjinjie@huawei.com>
+To: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
+	<oleg@redhat.com>, <shuah@kernel.org>, <kees@kernel.org>,
+	<luto@amacapital.net>, <wad@chromium.org>, <peterz@infradead.org>,
+	<ada.coupriediaz@arm.com>, <linusw@kernel.org>, <kevin.brodsky@arm.com>,
+	<anshuman.khandual@arm.com>, <thuth@redhat.com>, <james.morse@arm.com>,
+	<yeoreum.yun@arm.com>, <vladimir.murzin@arm.com>, <broonie@kernel.org>,
+	<ryan.roberts@arm.com>, <liqiang01@kylinos.cn>,
+	<mathieu.desnoyers@efficios.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
+CC: <ruanjinjie@huawei.com>
+Subject: [PATCH v21 01/15] arm64: ptrace: Fix spurious pseudo-single-step for PTRACE_SYSEMU_SINGLESTEP
+Date: Wed, 11 Nov 2026 19:42:11 +0800
+Message-ID: <20261111114225.3977243-2-ruanjinjie@huawei.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261111114225.3977243-1-ruanjinjie@huawei.com>
+References: <20261111114225.3977243-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 9/9] arm64: dts: rockchip: add the dcphy mipi csi-2
- receiver nodes to rk3588
-To: Jason Yang <jason98166@gmail.com>, Vinod Koul <vkoul@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Guochun Huang <hero.huang@rock-chips.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20261110-dcphy-rx-v1-v6-0-d681ba20b36a@gmail.com>
- <20261110-dcphy-rx-v1-v6-9-d681ba20b36a@gmail.com>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <20261110-dcphy-rx-v1-v6-9-d681ba20b36a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
+ kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_043259_888868_B461F7FF 
-X-CRM114-Status: GOOD (  24.28  )
+X-CRM114-CacheID: sfid-20261111_034258_908342_DEDA276D 
+X-CRM114-Status: GOOD (  15.12  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,154 +83,97 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jason,
+PTRACE_SYSEMU_SINGLESTEP sets both _TIF_SYSCALL_EMU and _TIF_SINGLESTEP.
+Since commit ac2081cdc4d99 ("arm64: ptrace: Consistently use
+pseudo-singlestep exceptions"), syscall_trace_exit() injects a
+pseudo-single-step SIGTRAP (si_code SI_USER) whenever _TIF_SINGLESTEP is
+set, including for an emulated system call.
 
-On 11/10/26 09:18, Jason Yang wrote:
-> The MIPI0 and MIPI1 receiver units are connected to MIPI DCPHY0 and
-> MIPI DCPHY1, whose receiver side is now supported. Add the two nodes and
-> wire them to the VICAP ports.
-> 
-> The dsi nodes keep <&mipidcphy0 PHY_TYPE_DPHY>, the only value the
-> binding had before the PHY receiver was added. PHY_TYPE_DPHY still
-> selects the PHY transmitter in D-PHY mode. The csi nodes use the new
-> PHY_DIRECTION_RX from the dt-bindings header. Neither phy node needs
-> phy-type: the DSI host and the CSI-2 host both run the block in D-PHY
-> mode, the default.
-> 
-> There is an ABI break if the dsi and csi nodes use the new cell values:
-> an older kernel ignores phy-type and takes any cell value as the mode of
-> the block. A DSI node with PHY_DIRECTION_TX then gets no display, and a
-> CSI-2 node with PHY_DIRECTION_RX gets no camera.
-> 
-> To keep the ABI break small, the dsi nodes keep PHY_TYPE_DPHY, which
-> older and newer kernels both accept. With the csi nodes disabled, the
-> display therefore keeps working on either kernel.
-> 
-> The csi nodes have no older value to keep and have to use
-> PHY_DIRECTION_RX. Enabling csi0 or csi1 therefore needs a PHY driver
-> with receiver support. Since v7.0, a CSI-2 host driver probes the csi
-> nodes. An older PHY driver then gives the CSI-2 host the PHY transmitter
-> that drives the display. The camera gets no frames, and the display can
-> stop working as well.
+That pseudo-step was added for PTRACE_SINGLESTEP: the system call runs,
+and the tracer must get a stop at the return address to inspect the
+result. An emulated system call does not run, and its syscall-enter-stop
+already reports the SVC, as the x86 implementation and generic entry
+(report_single_step()) both say. The extra stop is wrong:
 
-I think you can restrict the patch description to what the patch
-actually does.
+1) Stepping armed before the SVC (the normal case). The SVC exception
+   leaves the step pending (SPSR_EL1.SS is 0, Arm ARM D2.11.5.1), so the
+   hardware step is taken at the return address anyway, and the tracer
+   now stops there twice without the tracee executing anything:
 
-This patch modifies the device tree in a perfectly valid way as set out
-in the DT bindings. Any breakage or disadvantage of the approach therein
-should be discussed there.
+	syscall-enter-stop  pc=L
+	pseudo-step         pc=L    si_code=SI_USER  <- added by that commit
+	hardware step       pc=L    si_code=TRAP_TRACE
+	hardware step       pc=L+4
 
-> Signed-off-by: Jason Yang <jason98166@gmail.com>
+2) Stepping armed after the SVC, e.g. a tracer resuming a
+   PTRACE_EVENT_SECCOMP stop with PTRACE_SYSEMU_SINGLESTEP. The first
+   stop is the pseudo-step at L, so the instruction at L is not
+   executed before the step is reported. Before that commit, and on
+   x86, the first stop follows the instruction at L.
 
-But apart from that this LGTM!
+Skip the pseudo-step when _TIF_SYSCALL_EMU is set, as generic entry
+does. The behaviour of PTRACE_SYSEMU_SINGLESTEP goes back to what it was
+before that commit. PTRACE_SINGLESTEP is unaffected and still gets the
+pseudo-step, so both problems fixed by that commit stay fixed.
 
-Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
+Only tracers using PTRACE_SYSEMU_SINGLESTEP see the difference. Measured
+in QEMU, L is the instruction after the SVC:
 
-Best regards,
-Michael
+  case          before that commit   v7.4-rc1      this patch
+  normal        L, L+4               L, L, L+4     L, L+4
+  after seccomp L+4                  L             L+4
 
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 68 +++++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> index aa69fd3793fd..c7174c2f15c3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-> @@ -1516,10 +1516,18 @@ vicap_dvp: port@0 {
->  
->  			vicap_mipi0: port@1 {
->  				reg = <0x1>;
-> +
-> +				vicap_mipi0_input: endpoint {
-> +					remote-endpoint = <&csi0_output>;
-> +				};
->  			};
->  
->  			vicap_mipi1: port@2 {
->  				reg = <0x2>;
-> +
-> +				vicap_mipi1_input: endpoint {
-> +					remote-endpoint = <&csi1_output>;
-> +				};
->  			};
->  
->  			vicap_mipi2: port@3 {
-> @@ -1568,6 +1576,66 @@ vicap_mmu: iommu@fdce0800 {
->  		status = "disabled";
->  	};
->  
-> +	csi0: csi@fdd10000 {
-> +		compatible = "rockchip,rk3588-mipi-csi2", "rockchip,rk3568-mipi-csi2";
-> +		reg = <0x0 0xfdd10000 0x0 0x10000>;
-> +		interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names = "err1", "err2";
-> +		clocks = <&cru PCLK_CSI_HOST_0>;
-> +		phys = <&mipidcphy0 PHY_DIRECTION_RX>;
-> +		power-domains = <&power RK3588_PD_VI>;
-> +		resets = <&cru SRST_P_CSI_HOST_0>;
-> +		status = "disabled";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			csi0_in: port@0 {
-> +				reg = <0>;
-> +			};
-> +
-> +			csi0_out: port@1 {
-> +				reg = <1>;
-> +
-> +				csi0_output: endpoint {
-> +					remote-endpoint = <&vicap_mipi0_input>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	csi1: csi@fdd20000 {
-> +		compatible = "rockchip,rk3588-mipi-csi2", "rockchip,rk3568-mipi-csi2";
-> +		reg = <0x0 0xfdd20000 0x0 0x10000>;
-> +		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH 0>,
-> +			     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		interrupt-names = "err1", "err2";
-> +		clocks = <&cru PCLK_CSI_HOST_1>;
-> +		phys = <&mipidcphy1 PHY_DIRECTION_RX>;
-> +		power-domains = <&power RK3588_PD_VI>;
-> +		resets = <&cru SRST_P_CSI_HOST_1>;
-> +		status = "disabled";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			csi1_in: port@0 {
-> +				reg = <0>;
-> +			};
-> +
-> +			csi1_out: port@1 {
-> +				reg = <1>;
-> +
-> +				csi1_output: endpoint {
-> +					remote-endpoint = <&vicap_mipi1_input>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	csi2: csi@fdd30000 {
->  		compatible = "rockchip,rk3588-mipi-csi2", "rockchip,rk3568-mipi-csi2";
->  		reg = <0x0 0xfdd30000 0x0 0x10000>;
-> 
+Fixes: ac2081cdc4d99 ("arm64: ptrace: Consistently use pseudo-singlestep exceptions")
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Oleg Nesterov <oleg@redhat.com>
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+---
+ arch/arm64/kernel/ptrace.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/kernel/ptrace.c b/arch/arm64/kernel/ptrace.c
+index 7405c76724bf..4baf04f20e67 100644
+--- a/arch/arm64/kernel/ptrace.c
++++ b/arch/arm64/kernel/ptrace.c
+@@ -2482,16 +2482,26 @@ int syscall_trace_enter(struct pt_regs *regs)
+ 	return regs->syscallno;
+ }
+ 
++static inline bool report_single_step(unsigned long flags)
++{
++	if (flags & _TIF_SYSCALL_EMU)
++		return false;
++
++	return flags & _TIF_SINGLESTEP;
++}
++
+ void syscall_trace_exit(struct pt_regs *regs)
+ {
+ 	unsigned long flags = read_thread_flags();
++	bool step;
+ 
+ 	audit_syscall_exit(regs);
+ 
+ 	if (flags & _TIF_SYSCALL_TRACEPOINT)
+ 		trace_sys_exit(regs, syscall_get_return_value(current, regs));
+ 
+-	if (flags & (_TIF_SYSCALL_TRACE | _TIF_SINGLESTEP))
++	step = report_single_step(flags);
++	if (step || flags & _TIF_SYSCALL_TRACE)
+ 		report_syscall_exit(regs);
+ 
+ 	rseq_syscall(regs);
+-- 
+2.34.1
 
 
