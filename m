@@ -2,77 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3301606A896
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 14:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A694606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 14:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=juIYVpp1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=COU7FLQv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s1KRtGHh;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VuwuVl9I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9Q/hXxN4rvNs3UDQ3MT+UG0UyPwYQt/ekw3a+w3cLnQ=; b=juIYVpp16QfCfp
-	UyPM72+ZGXRC+az0zJnpVZXxZbGvMIcO/8BoDO2jcytPDw/8+AFnXGRNNzpxCdCHQesT+XjFAdSeX
-	i8Y9astsnUEax52Ol8I/npxsXske27hwIXWgeB/g514hsLpdgj8RyEBFf2JcyZ6sY8W9p0bj5lhVJ
-	TLYxMbC9aLEUqHHjt2Z5lUQP8qkKLps+86zNUtIXRUjPCJB+ncJ20FVQMAo3TEsXIkp41RCBr7yvF
-	WHMvsNivXMjsNOCRDJXTQXY6/dfEPtdGsmUCdhhaT6Tb/GQunr35Z6StBtMJ2YGirHYH3gzJyDb6q
-	gbxN4u2B+qejm+8asyCg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=80POjU5WP6ctS0DqN7hA/63JAQ8Agh1hTny2C1kJcvk=; b=s1KRtGHhsXx3Mdsv7m22vVX3J+
+	Fmyc785rDpnKDVPKmpkKd9SOa/YzSmnsOPJHNtr0Q2SpAf+fcJWzi7buywBJUqGWtofIxTwqaCSnX
+	Une00PvTdVYLZMj4/sObvH19Np8BxnPiSn8zft0laSu5lizplfiprQOEMBltbB5UZS/UAnfhBnCIl
+	jBCYLPQXc16wIZfaYa4OAKPuVPbqWj2g56RGogiYkIjjKE+ERGcWoUUvc9EucqfQPnsnR9+4fzHN6
+	m9WLazG2oY/H1EEiCbOW3RswxLcB0BGbh7wJbJ5mmcwaFoZj9GySCcrdpjD9SiVDEXSCGUbfXE8uf
+	iT2JuUoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR9Q1-00000006yhp-2UZR;
-	Wed, 11 Nov 2026 14:35:21 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xR9Rk-00000006z0P-1nuw;
+	Wed, 11 Nov 2026 14:37:08 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR9Q0-00000006yhf-0JlQ
+	id 1xR9Ri-00000006z00-2r8E
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 14:35:20 +0000
+	Wed, 11 Nov 2026 14:37:06 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 411B763DEE
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 14:35:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C86B11F00A11
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 14:35:18 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 2DC6941376;
+	Wed, 11 Nov 2026 14:37:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53F411F00A05;
+	Wed, 11 Nov 2026 14:37:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794407718;
-	bh=9Q/hXxN4rvNs3UDQ3MT+UG0UyPwYQt/ekw3a+w3cLnQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=COU7FLQvxdhk4C8nYc21n25kqj3ApGY8GCwZq6s0xJauuPIzvmEZsSTUNbby9RBjS
-	 737QUOwawy0JypJGpH74Qt3ejgp9WnqFFCwg3JbLZ8R6dEj0z+iu9AqtvONsPWBuQa
-	 t+nxCMaD1bgwJM9ojt9FMcCURu5e5wEAXSlrVNBOCt/2Ilwevm+70BQ3MB25B6p9a2
-	 5G0PpDNjfsT0XXGNnc3A522PGjAAAvb64pVKhImXDLvRMWG9ArFTt9q4HrN6qpGCUl
-	 SohRAco0dyT2TpTdA2qaUTg5qkLs/v+ioCb3elCF5yprZtyYDUwW0y1ekXkEiwSOBf
-	 7+niM+gSCO13w==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6b7221c0f2cso2771993a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 06:35:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErF6C3kBOUl7NIeKpuFyBeXanaDciWs6CLP2i8Gg0JGbxvue+A3XhZjOKPW+SRz6N5Lfe+ChFRxQoQ/4Alqz5cIk@lists.infradead.org
-X-Gm-Message-State: APuU4Z9VR1IiyUD6m4fnm57d7F+hE5qXYBwdC2XafNQzb3ereD+C2PJO
-	McPnXkFO9Dc8HHM8g1/MB7D0EMmv1CstBRKWL0fih3Wzhq7ASrFXjtHiZmxEDXyQxRqPtZV62Yh
-	D0Hn5NTOdXy3bvZU9/elOqxDzq1TlXw==
-X-Received: by 2002:a05:6402:1d4e:b0:6b7:78e5:3fe2 with SMTP id
- 4fb4d7f45d1cf-6b778e5412fmr1833663a12.8.1794407717277; Wed, 11 Nov 2026
- 06:35:17 -0800 (PST)
+	s=k20260515; t=1794407826;
+	bh=80POjU5WP6ctS0DqN7hA/63JAQ8Agh1hTny2C1kJcvk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=VuwuVl9Ir+pxEDxIzsWkrE++elA9ahbE9R+qJ75k5x7aiIK0bv1S3pcsBxp5ba0kR
+	 Uq24B0RN7/EyAXa33/t7V+NMnOIEkyIQ3DTWs9xsCZjh3Ch13q4yWDgDgRVPCX4P4k
+	 JaTKxwTNp1Ep1Na8PExWLs4xH3UN5ZHy0udVFHYHwn7ulEGpAlmD7Q1ctYk9Evp+VV
+	 Wp/+7xQoyL1DVoBsP0W4yn0OR4JbjiHkweh8OcUhsIvPxeJ8PXsAY4HFHRYTw0Y1KS
+	 iENVs1/D+oxCw2PjIZcsj75ft1nEQAuK0+Q3/5A3/hbkoyp17/3l0uQeferNXtfucf
+	 csVP7LrRZs9Cw==
+From: netdev-bot+sinfo@kernel.org
+To: Zxyan Zhu <zxyan0222@gmail.com>
+Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ netdev@vger.kernel.org, mcoquelin.stm32@gmail.com,
+ alexandre.torgue@foss.st.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ rmk+kernel@armlinux.org.uk, Jose.Abreu@synopsys.com
+Subject: Re: [PATCH] net: stmmac: program the FSM timeout timer
+Date: Wed, 11 Nov 2026 14:37:04 +0000
+Message-ID: <179440782487.2168702.18094491275794664305@kernel.org>
+In-Reply-To: <20261111143322.2234321-1-zxyan0222@gmail.com>
+References: <20261111143322.2234321-1-zxyan0222@gmail.com>
+Auto-Submitted: auto-generated
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261105-gpio-vf610-fixes-v3-0-504e19de5ad5@nxp.com> <20261105-gpio-vf610-fixes-v3-1-504e19de5ad5@nxp.com>
-In-Reply-To: <20261105-gpio-vf610-fixes-v3-1-504e19de5ad5@nxp.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 11 Nov 2026 08:35:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJYx1TJA7aWUi=XR20Bn7ZqFZWG6jVT2b0+ZLe9RWoZMQ@mail.gmail.com>
-X-Gm-Features: AclHuK97dhZ8RDnOSi6eJDa7cXf78Q2-j_uGZ4_1m7mWgziIuwSZeAEy4jr55Z4
-Message-ID: <CAL_JsqJYx1TJA7aWUi=XR20Bn7ZqFZWG6jVT2b0+ZLe9RWoZMQ@mail.gmail.com>
-Subject: Re: [PATCH v3 01/11] dt-bindings: gpio: vf610: fix clock requirements
- per SoC
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stefan Agner <stefan@agner.ch>, 
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>, Frank Li <Frank.Li@nxp.com>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,129 +72,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 4, 2026 at 9:56=E2=80=AFPM Peng Fan (OSS) <peng.fan@oss.nxp.com=
-> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> The i.MX7ULP GPIO controller needs both the GPIO and PORT clocks,
-> while the i.MX8ULP and its derivatives (i.MX93/94/95/952) only have
-> a single "gpio" clock. The VF610 controller has no gateable clocks,
-> so force clocks and clock-names false.
->
-> Fixes: c61d8b5791ab ("dt-bindings: gpio: gpio-vf610: Add imx8ulp compatib=
-le string")
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/gpio/gpio-vf610.yaml       | 41 ++++++++++++++++=
-++++++
->  1 file changed, 41 insertions(+)
+Hi!
 
-Now a bunch of warnings in linux-next. Breaking binding changes like
-this need to be applied with the .dts changes.
+This is an automated message. This series looks like a fix, but its
+commit messages seem to be missing some information:
 
-arch/arm64/boot/dts/freescale:952:50
-   Schema warnings:50
-     60 gpio@47400000 (fsl,imx93-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     60 gpio@43830000 (fsl,imx93-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     60 gpio@43820000 (fsl,imx93-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     60 gpio@43810000 (fsl,imx93-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     41 gpio@47400000 (fsl,imx93-gpio): clocks: [[6,116],[6,116]] has
-more than 1 item
-     41 gpio@43830000 (fsl,imx93-gpio): clocks: [[6,119],[6,119]] has
-more than 1 item
-     41 gpio@43820000 (fsl,imx93-gpio): clocks: [[6,118],[6,118]] has
-more than 1 item
-     41 gpio@43810000 (fsl,imx93-gpio): clocks: [[6,117],[6,117]] has
-more than 1 item
-     40 gpio@47400000 (fsl,imx95-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     40 gpio@43850000 (fsl,imx95-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     40 gpio@43840000 (fsl,imx95-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     40 gpio@43820000 (fsl,imx95-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     40 gpio@43810000 (fsl,imx95-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-     34 gpio@47400000 (fsl,imx95-gpio): clocks: [[24,54],[24,54]] has
-more than 1 item
-     34 gpio@43850000 (fsl,imx95-gpio): clocks: [[24,119],[24,119]]
-has more than 1 item
-     34 gpio@43840000 (fsl,imx95-gpio): clocks: [[24,119],[24,119]]
-has more than 1 item
-     34 gpio@43820000 (fsl,imx95-gpio): clocks: [[24,119],[24,119]]
-has more than 1 item
-     34 gpio@43810000 (fsl,imx95-gpio): clocks: [[24,119],[24,119]]
-has more than 1 item
-     19 gpio@47400000 (fsl,imx93-gpio): clocks: [[3,116],[3,116]] has
-more than 1 item
-     19 gpio@43830000 (fsl,imx93-gpio): clocks: [[3,119],[3,119]] has
-more than 1 item
-     19 gpio@43820000 (fsl,imx93-gpio): clocks: [[3,118],[3,118]] has
-more than 1 item
-     19 gpio@43810000 (fsl,imx93-gpio): clocks: [[3,117],[3,117]] has
-more than 1 item
-      5 gpio@43870000 (fsl,imx94-gpio): "clocks" is a required property
-      5 gpio@43870000 (fsl,imx94-gpio): "clock-names" is a required propert=
-y
-      5 gpio@43860000 (fsl,imx94-gpio): "clocks" is a required property
-      5 gpio@43860000 (fsl,imx94-gpio): "clock-names" is a required propert=
-y
-      5 gpio@43850000 (fsl,imx94-gpio): "clocks" is a required property
-      5 gpio@43850000 (fsl,imx94-gpio): "clock-names" is a required propert=
-y
-      5 gpio@43840000 (fsl,imx94-gpio): "clocks" is a required property
-      5 gpio@43840000 (fsl,imx94-gpio): "clock-names" is a required propert=
-y
-      5 gpio@43820000 (fsl,imx94-gpio): "clocks" is a required property
-      5 gpio@43820000 (fsl,imx94-gpio): "clock-names" is a required propert=
-y
-      5 gpio@43810000 (fsl,imx94-gpio): "clocks" is a required property
-      5 gpio@43810000 (fsl,imx94-gpio): "clock-names" is a required propert=
-y
-      3 gpio@47400000 (fsl,imx95-gpio): clocks: [[25,54],[25,54]] has
-more than 1 item
-      3 gpio@47400000 (fsl,imx95-gpio): clocks: [[2,54],[2,54]] has
-more than 1 item
-      3 gpio@43850000 (fsl,imx95-gpio): clocks: [[25,119],[25,119]]
-has more than 1 item
-      3 gpio@43850000 (fsl,imx95-gpio): clocks: [[2,119],[2,119]] has
-more than 1 item
-      3 gpio@43840000 (fsl,imx95-gpio): clocks: [[25,119],[25,119]]
-has more than 1 item
-      3 gpio@43840000 (fsl,imx95-gpio): clocks: [[2,119],[2,119]] has
-more than 1 item
-      3 gpio@43820000 (fsl,imx95-gpio): clocks: [[25,119],[25,119]]
-has more than 1 item
-      3 gpio@43820000 (fsl,imx95-gpio): clocks: [[2,119],[2,119]] has
-more than 1 item
-      3 gpio@43810000 (fsl,imx95-gpio): clocks: [[25,119],[25,119]]
-has more than 1 item
-      3 gpio@43810000 (fsl,imx95-gpio): clocks: [[2,119],[2,119]] has
-more than 1 item
-      2 gpio@2e200000 (fsl,imx8ulp-gpio): clocks: [[41,18],[41,18]]
-has more than 1 item
-      2 gpio@2e200000 (fsl,imx8ulp-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-      2 gpio@2d010000 (fsl,imx8ulp-gpio): clocks: [[19,22],[19,10]]
-has more than 1 item
-      2 gpio@2d010000 (fsl,imx8ulp-gpio): clock-names: ["gpio","port"]
-has more than 1 item
-      2 gpio@2d000000 (fsl,imx8ulp-gpio): clocks: [[19,21],[19,9]] has
-more than 1 item
-      2 gpio@2d000000 (fsl,imx8ulp-gpio): clock-names: ["gpio","port"]
-has more than 1 item
+ - What hardware the change was tested on. For driver fixes please
+   mention the device (and if relevant firmware version) used for
+   testing, or say that the change was not tested on real hardware.
+
+Please do not repost the series just to address the above. Instead,
+reply to this email with the missing information, so that reviewers
+can take it into account. If the series needs another revision for
+other reasons, please include the information in the commit messages
+then.
+
+The evaluation is done by an LLM so it may be wrong, if you think
+that is the case please reply and explain.
 
