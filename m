@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567E7606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F9AB606A8A7
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1LClRCo4;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=tk+WtAnf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=K3ZpqyqE;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=Wz6XAmWk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=DvHKY3cYSus7pHAxRYcjnamtRx26ijW7dyhFooUIFS4=; b=1LClRCo47I0mdWfnAzg0zcPLm+
-	075jk4Tr3P4ypH15T1s/XEYQGmrTO2YtA2oukUbWGQU0r5Xq4Rr/B4FPHLtGgNx6rM6yM16Wc5dvj
-	uBXJgvMHZQKbO05IlI8YDt4MRlzcg40cJPpCoLCGSRYdaUoAav3JNlqYT1mEbge4TsimoSqlEpOe/
-	DGIXWByFCLLCjc/BUx9UxcuqHz0shKR3FsPmCMJTwAonYSkx1CsIPQMwzI+aI8SBfxAAcn3S/POb/
-	NntSuVUBc9pyupiBkDe6GFiUW9mnwoz+ZM+FBW7AEjlkPNbb9m1pv03MTXTT8+RJapcuP44eALuc7
-	6GdyhQiw==;
+	bh=hapHJX5CBE0NDRN9ZLEstnet2nYwtvfy5mzxbnNdOv8=; b=K3ZpqyqEGl62aKxLHf51FJwHSH
+	/CRqgHFdeN8mQV3XaFV0h/A3AjqdCv4G08t5KOsHvSjWJZzfuBBv9WWUOmn8QQSL3U1WDV6VrmUPl
+	U/vKNZ46RR/U3JGyen+Es4v7iCdjnLVP9JGCdprn8UbFbyGdYywML9lQPyRAF3XlYjU4XT/yaFLxU
+	+h+jN52gbx1LDeA7BHdlI0fXXwC3Fnp77VtGltBtfvnCJrac+AqbkoeHdr0FvfrfUfmTIALv0pjV6
+	V3MNFcRL55nhBMBFo3Z8OlsL9XHBqUfJpCkxk6UGIQNSWa+ErtCNdM1cW1+mFTihHrsT4BKUyCSkW
+	kkGMSYvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6jQ-00000006VhR-3yma;
+	id 1xR6jQ-00000006Vfo-1EG9;
 	Wed, 11 Nov 2026 11:43:12 +0000
-Received: from canpmsgout03.his.huawei.com ([113.46.200.218])
+Received: from canpmsgout07.his.huawei.com ([113.46.200.222])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6jN-00000006VWL-0fiD
+	id 1xR6jF-00000006VXl-2Vho
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:43:10 +0000
+	Wed, 11 Nov 2026 11:43:03 +0000
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=DvHKY3cYSus7pHAxRYcjnamtRx26ijW7dyhFooUIFS4=;
-	b=tk+WtAnfL3EXR6bdWC04NRutNXaNCjkTEvHif9ALQAwcy4SXilgysliGlMr+RwJrGnm9LoYvO
-	SuA5oYKEwqkKu2gSKc+RdKt50DYF6GQgWATX8TT6RxaJuAUhq6tBtFOkW8n/l4RareC12wic2dt
-	IvroOtdNoDSmbKQFlEiNxRo=
-Received: from mail.maildlp.com (unknown [172.19.163.104])
-	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4jPhT30jrqzpSvH;
-	Wed, 11 Nov 2026 19:42:15 +0800 (CST)
+	bh=hapHJX5CBE0NDRN9ZLEstnet2nYwtvfy5mzxbnNdOv8=;
+	b=Wz6XAmWk7oFSJGEEUVKr9opU5RIMYAQlGT1v/zo0ytAa5WpqhDgPQXSN2Kw3OUTFGsCmA7WoC
+	5Ghlc/u5SZaqRNRjW4/BBFKpx+cwWWCmzr2o1QYrrbuE+OGDA3fl4QfEnoakNykn3XM9+UIUyVh
+	ZH3MOJpYkibgFRklj4aBigM=
+Received: from mail.maildlp.com (unknown [172.19.163.163])
+	by canpmsgout07.his.huawei.com (SkyGuard) with ESMTPS id 4jPhTb5th4zLlVY;
+	Wed, 11 Nov 2026 19:42:43 +0800 (CST)
 Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id B5CF94057F;
-	Wed, 11 Nov 2026 19:42:52 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id 186484048B;
+	Wed, 11 Nov 2026 19:42:59 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
  (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 11 Nov
- 2026 19:42:51 +0800
+ 2026 19:42:58 +0800
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 To: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
 	<oleg@redhat.com>, <shuah@kernel.org>, <kees@kernel.org>,
@@ -57,9 +57,9 @@ To: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
 	<mathieu.desnoyers@efficios.com>, <linux-arm-kernel@lists.infradead.org>,
 	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [PATCH v21 02/15] arm64: ptrace: Check rseq critical section before reporting syscall exit
-Date: Wed, 11 Nov 2026 19:42:12 +0800
-Message-ID: <20261111114225.3977243-3-ruanjinjie@huawei.com>
+Subject: [PATCH v21 11/15] arm64: syscall: Simplify el0_svc_common() syscall exit path
+Date: Wed, 11 Nov 2026 19:42:21 +0800
+Message-ID: <20261111114225.3977243-12-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261111114225.3977243-1-ruanjinjie@huawei.com>
 References: <20261111114225.3977243-1-ruanjinjie@huawei.com>
@@ -70,8 +70,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
  kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_034309_628858_EFB36B9F 
-X-CRM114-Status: GOOD (  13.88  )
+X-CRM114-CacheID: sfid-20261111_034302_021936_C28267E6 
+X-CRM114-Status: GOOD (  15.23  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,69 +91,89 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With CONFIG_DEBUG_RSEQ=y, rseq_syscall() kills the task with SIGSEGV if
-the system call was issued from inside an rseq critical section. It
-decides this from regs->pc.
+The fast exit path of el0_svc_common() is only taken when no syscall
+work was pending on entry and CONFIG_DEBUG_RSEQ is disabled:
 
-arm64 calls rseq_syscall() after report_syscall_exit(), so a tracer
-stopped at the syscall-exit-stop can change regs->pc with
-PTRACE_SETREGSET before the check runs. The check then looks at the PC
-written by the tracer, not the PC the system call was issued from:
+	if (!(flags & _TIF_SYSCALL_WORK) && !IS_ENABLED(CONFIG_DEBUG_RSEQ)) {
+		flags = read_thread_flags();
+		if (unlikely(flags & _TIF_SYSCALL_EXIT_WORK) || flags & _TIF_SINGLESTEP)
+			arm64_syscall_exit_to_user_mode_work(regs);
+		return;
+	}
+	trace_exit:
+		arm64_syscall_exit_to_user_mode_work(regs);
 
-- a system call issued inside a critical section is not detected if
-  the tracer moves the PC out of it;
+arm64_syscall_exit_to_user_mode_work() already re-reads the thread
+flags and checks the same flags itself. The only other thing it does is
+rseq_syscall(), which is an empty stub when CONFIG_DEBUG_RSEQ is
+disabled, i.e. whenever the fast path is taken. So both paths end up
+doing exactly the same thing, and the fast path can be dropped:
 
-- a system call issued outside a critical section kills the task with
-  SIGSEGV if the tracer moves the PC into it.
+	trace_exit:
+		arm64_syscall_exit_to_user_mode_work(regs);
 
-Call rseq_syscall() first, before audit, tracepoints and ptrace, as
-generic entry (rseq_debug_syscall_return()), x86 before it moved to
-generic entry, and arm32 already do.
+With CONFIG_DEBUG_RSEQ enabled the fast path was never taken, so
+nothing changes there either.
 
-Only kernels with CONFIG_DEBUG_RSEQ=y are affected. The option depends
-on EXPERT and DEBUG_KERNEL, is off by default, and is otherwise a no-op
-stub. Measured in QEMU with a traced task that issues getppid():
+has_syscall_work() then has a single user left, so open-code it.
 
-  case                                  before    after
-  inside the CS, PC moved out           not killed SIGSEGV
-  outside the CS, PC moved into the CS  SIGSEGV    exits normally
+No functional changes intended.
 
-Fixes: 409d5db49867 ("arm64: rseq: Implement backend rseq calls and select HAVE_RSEQ")
 Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Thomas Gleixner <tglx@kernel.org>
 Cc: Will Deacon <will@kernel.org>
 Cc: Catalin Marinas <catalin.marinas@arm.com>
-Reviewed-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
+Cc: Ada Couprie Diaz <ada.coupriediaz@arm.com>
 Reviewed-by: Linus Walleij <linusw@kernel.org>
-Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
-Reviewed-by: Kevin Brodsky <kevin.brodsky@arm.com>
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- arch/arm64/kernel/ptrace.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/kernel/syscall.c | 20 +-------------------
+ 1 file changed, 1 insertion(+), 19 deletions(-)
 
-diff --git a/arch/arm64/kernel/ptrace.c b/arch/arm64/kernel/ptrace.c
-index 4baf04f20e67..a34d4893f4bf 100644
---- a/arch/arm64/kernel/ptrace.c
-+++ b/arch/arm64/kernel/ptrace.c
-@@ -2495,6 +2495,8 @@ void syscall_trace_exit(struct pt_regs *regs)
- 	unsigned long flags = read_thread_flags();
- 	bool step;
- 
-+	rseq_syscall(regs);
-+
- 	audit_syscall_exit(regs);
- 
- 	if (flags & _TIF_SYSCALL_TRACEPOINT)
-@@ -2503,8 +2505,6 @@ void syscall_trace_exit(struct pt_regs *regs)
- 	step = report_single_step(flags);
- 	if (step || flags & _TIF_SYSCALL_TRACE)
- 		report_syscall_exit(regs);
--
--	rseq_syscall(regs);
+diff --git a/arch/arm64/kernel/syscall.c b/arch/arm64/kernel/syscall.c
+index f1f0b6f3e32b..3488afd45d20 100644
+--- a/arch/arm64/kernel/syscall.c
++++ b/arch/arm64/kernel/syscall.c
+@@ -54,11 +54,6 @@ static void invoke_syscall(struct pt_regs *regs, unsigned int scno,
+ 	syscall_set_return_value(current, regs, 0, ret);
  }
  
- /*
+-static inline bool has_syscall_work(unsigned long flags)
+-{
+-	return unlikely(flags & _TIF_SYSCALL_WORK);
+-}
+-
+ static void el0_svc_common(struct pt_regs *regs, int scno, int sc_nr,
+ 			   const syscall_fn_t syscall_table[])
+ {
+@@ -95,7 +90,7 @@ static void el0_svc_common(struct pt_regs *regs, int scno, int sc_nr,
+ 		return;
+ 	}
+ 
+-	if (has_syscall_work(flags)) {
++	if (unlikely(flags & _TIF_SYSCALL_WORK)) {
+ 		/*
+ 		 * The de-facto standard way to skip a system call using ptrace
+ 		 * is to set the system call to -1 (NO_SYSCALL) and set x0 to a
+@@ -119,19 +114,6 @@ static void el0_svc_common(struct pt_regs *regs, int scno, int sc_nr,
+ 	}
+ 
+ 	invoke_syscall(regs, scno, sc_nr, syscall_table);
+-
+-	/*
+-	 * The tracing status may have changed under our feet, so we have to
+-	 * check again. However, if we were tracing entry, then we always trace
+-	 * exit regardless, as the old entry assembly did.
+-	 */
+-	if (!has_syscall_work(flags) && !IS_ENABLED(CONFIG_DEBUG_RSEQ)) {
+-		flags = read_thread_flags();
+-		if (unlikely(flags & _TIF_SYSCALL_EXIT_WORK) || flags & _TIF_SINGLESTEP)
+-			arm64_syscall_exit_to_user_mode_work(regs);
+-		return;
+-	}
+-
+ trace_exit:
+ 	arm64_syscall_exit_to_user_mode_work(regs);
+ }
 -- 
 2.34.1
 
