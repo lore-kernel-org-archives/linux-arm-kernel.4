@@ -2,63 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707BE606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:54:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ECC9606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 08:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LC9G0FBm;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Y7VvQopT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GFfuKSqi;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DSdZDK2J
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Wx44Jqgp9Clr6iznTe8eWUnZX1Xya+lT304p4BistjI=; b=LC9G0FBmZaF8ek
-	E+YlU+5FubmrehBQCuvOzizez7A99TYkTuxHg5zNnBvasTDktG+YM+e5z/EbT59Lyfm6YQRZb4t84
-	jfyT/z042gpb75efFKFU5p2kiOWQH6mGV10+4mN3my/SIgv1n02S4wFKY8ohKb3iQeSU7lRvAh9K/
-	e9hdTsqlNqiEVp7bH9yzEUOVsObwiGSlZermtg7583UuXElKYQT/k9pHrRIYxNtuYCICfe9MaQwoh
-	W9Rnp2QuopCo+Be/QkaX38p+vrnRUU+E80v3SQns2+I8k3zdbyiD6PD8Hgm2r4hqYJr18mFvX3siE
-	VcRTpiNYkKnpb/T+I1fw==;
+	List-Owner; bh=KYc/oY1hQtGmoqwq1FX28vMF0+Bj0oPqvN266waUe4M=; b=GFfuKSqiL5Lte1
+	9RA92njDwSswUzZhLrUG96jRsKdhafSw9JgwxzXpK1juauVjVLvCd2WzqnuLjqocCiQ/zuvxuBe1Z
+	HZnI2sZBCog0ftd3F+XFAjo1rxKLfOxJPZd7q0TsRFAFPKQ9mtS8DWXC/E+qyFCLPZaDh3HvMFh5T
+	nsvG88fUMjUQwx7G6MUlsCocUonBRtRRg4Ny/k1GIEksWR8wY5lx5jdrx6Kbwbl5MRg2U6igKYe+I
+	lf4oz/dYGWuIKkExOnJQckKsJfgymBZ4hPDCG23N2EqUt4WleXATkWgkb9SewMCY7mKTo3HvVRper
+	PGX4rAyLeTJatUW6NwBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR39c-00000005yCz-13kU;
-	Wed, 11 Nov 2026 07:54:00 +0000
+	id 1xR3Hp-00000005ymV-3DtA;
+	Wed, 11 Nov 2026 08:02:29 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR39b-00000005yC2-0jk1;
-	Wed, 11 Nov 2026 07:53:59 +0000
+	id 1xR3Ho-00000005ymA-26ok;
+	Wed, 11 Nov 2026 08:02:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B8015418F1;
-	Wed, 11 Nov 2026 07:53:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E488D1F00A07;
-	Wed, 11 Nov 2026 07:53:54 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id EA18A43B9B;
+	Wed, 11 Nov 2026 08:02:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78B301F00A05;
+	Wed, 11 Nov 2026 08:02:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794383638;
-	bh=Wx44Jqgp9Clr6iznTe8eWUnZX1Xya+lT304p4BistjI=;
+	s=k20260515; t=1794384147;
+	bh=KYc/oY1hQtGmoqwq1FX28vMF0+Bj0oPqvN266waUe4M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=Y7VvQopTyiYLsfhNqmwj+Q0kimGb5POR2v14SGLQsD72WJyDcwJRcfUR3sqJ5Kmue
-	 NvA9OnXRvf7pqNQlDmTkavzjMzSYd4Pc6OcscROatd2gmxTFwxf8ZWFobDDQTb9vfI
-	 h4sJIc/sn1H2H/KuLO40piUNQvaqMnF9f0wsuCAnIKIWFvrqqsTHsKUR+DuVvY6asB
-	 Z9/b7+lM3qtIOzNfbdcfDuIByE/aOR9g6g+gBALZ3dmHhdtWwVp0ksL4Z8Xu6SNDg7
-	 x/EEjATAZCa8epM4RiadiuigzQpXOa7c+UwrkUBqNTHDljfviKzETFtmctSr+2qBBM
-	 6CC1F9ESuBHog==
-Message-ID: <5fcaf2c0-d38b-42c7-96fe-52dccbe87f14@kernel.org>
-Date: Wed, 11 Nov 2026 08:53:52 +0100
+	b=DSdZDK2JFEa3tTt8AbLn6y20JmKFWS4J1D2KPMxI3T1KeDDtaDQvw6Eue3x9XvAjL
+	 V9ePIUp4XlPmiC65EPHZhMTu9/FTze1spJ94L8UrZRdx1PaCLXuqCCWeeAFDQcecZY
+	 p94wlTDzaW+D3faFl02WOW9G6YrODIBvg3dTa4r/rAq+4iEOkl3VJrafB/RrUQuozy
+	 i6nHgxZT0+ijmy8UY2zqvA9ByPNpn3qiPtC9iSqCnaFvSvONkiwRc6XqyISpyHQEHP
+	 UCMEA/7V2LdjhQfGmqAwhH/digpzBHxhmnAT6SgFrq8HWm/+ED475XPRvx4xvGkQ6C
+	 8dIqAfC843xCg==
+Message-ID: <66bf8629-225d-4f65-84dd-67f02aa4cab6@kernel.org>
+Date: Wed, 11 Nov 2026 09:02:19 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/2] dt-bindings: phy: Add CIX Sky1 USB3 PHY
-To: Hongliang Yang <hongliang.yang@cixtech.com>, Vinod Koul
- <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Gary Yang <Gary.Yang@cixtech.com>, Fugang Duan <fugang.duan@cixtech.com>
-Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- cix-kernel-upstream@cixtech.com
-References: <20261111030937.2954646-1-hongliang.yang@cixtech.com>
- <20261111030937.2954646-2-hongliang.yang@cixtech.com>
+Subject: Re: [PATCH v9 00/12] nvmem: Add Raspberry Pi OTP nvmem driver
+To: Gregor Herburger <gregor.herburger@linutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui
+ <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
+ Stefan Wahren <wahrenst@gmx.net>, Srinivas Kandagatla <srini@kernel.org>,
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>,
+ Russell King <linux@armlinux.org.uk>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <20261111-rpi-otp-driver-v9-0-0a7292a7a5b4@linutronix.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,7 +108,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  K9bCVaboTA2T77QYkRcRJYSsO1alGX0ome/hMLD1daXlkrNUp1HWa3K4iytLRXjCSIorWiGs
  n+q3krnpXu3TFkA8qtOFZMdnIiFuiq1yLT8hptsV5xh1TA2nsVvSYiaCr3q4s4BKjS/KrLDb
  qoxzw8ISjdUp4pA85vb6YLCmb39NgidD+7PmAr65lBNveIFynTgsja1rRQ4=
-In-Reply-To: <20261111030937.2954646-2-hongliang.yang@cixtech.com>
+In-Reply-To: <20261111-rpi-otp-driver-v9-0-0a7292a7a5b4@linutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -117,38 +121,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 04:09, Hongliang Yang wrote:
-> Add device tree binding for the CIX Sky1 USB3 PHY, the SuperSpeedPlus
-> PHY of the two USB3 Type-A ports of the SoC.
+On 11/11/2026 08:23, Gregor Herburger wrote:
+> Hi,
 > 
-> The two lanes are not separate devices: they live in one register
-> block, share the same clocks and resets, and are brought up by the
-> same initialization sequence. The node is therefore a single PHY
-> provider with #phy-cells = <0>, referenced by both controllers, and the
-> driver reference counts phy_init() and phy_exit() so that the block is
-> set up once for all of them.
+> This series adds support for the Raspberry Pis OTP registers. The
+> Raspberry Pi has one or more OTP regions. These registers are accessible
+> through the firmware. Add a driver for it and add updates the devicetree
+> for the Raspberry Pi 5.
 > 
-> Signed-off-by: Hongliang Yang <hongliang.yang@cixtech.com>
 > ---
-> Changes in v7:
-> - Describe the PHY as one provider of both lanes and say why. v5 had
->   one child node per lane, v6 dropped them, and nothing in the binding
->   or the changelog said where the second lane went.
-> - Reword the description so that it describes the provider instead of
->   the register programming of the block.
+> Changes in v9:
+> - Fix sashiko comment and use fwbuf->count instead of bytes in memcpy
+> - Link to v8: https://patch.msgid.link/20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de
 > 
 
-You gave me exactly 0 minutes to reply to your answer on v6. Nice
-process - bury existing comments it with new version, hoping people will
-move on. Dropping from DT patchwork as previous issues are not answered.
+Big series sent three times within last 24 h. Please slow down and give
+people chance to review your work.
 
 Best regards,
 Krzysztof
