@@ -2,72 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A457606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0C3606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XbDIV/xI;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=NlIsZpPS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s5uITw9E;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=aMVAeHnr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XS5mBLwVG/2WkI+k9TR/yW0nuz+R1AOPXfUeB4VXSF8=; b=XbDIV/xIomEl/a
-	/i/f7G0SHxMt94HCXCZGf0v4DA08JZujo2j87piXS6jn9PbL+MFpq/mLkjcHBoxQPZnT9qdlobyPB
-	8QnoSS2xfP6aSAkrZBNGXnwgFRHh3YjAFqfwt+k4nAeuX6LU01naiXDjQpw/5kaPcSwX0G6wpIpqx
-	tffte/XW0FVSEBEln7ubxeMSD86Oh4styBKjYkZK4xrO78CEb0zfyI6QtMzaxgeIINdHw2ngzwaQx
-	vFJyfWh4fzEUUaZHQQ84cOLZUKFraC5VIPEYGum5O6oMaggd0gCBpTsAc8+Sq1547kzRIF+O3cr69
-	uiTkiy8fYYZVLHw0+cNA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=N2mgW6LEnNu8wNmnoa3+p3F6g8tYE7yJEu2kZeiGcR0=; b=s5uITw9Er7UN47gyU3wdqferkY
+	AigG7AeKaNkiBIIifuz02hBiTB69EvZxp7arf6kQJxZR7g0h74BNgayjZ0wvgxUgwdRUzTp8APbzF
+	qKVWNbooBC2DHZ7Cf4jBhlLQVRZEd6DX91dywDkTebNELml4Urej/r33LppCA20afC48XrpGSrYJ/
+	6W5A2VJalPaRb+FeLNseRYqeqvqFgELivXPs4+owT/ltu91Kcj+2yP1LwGxO1lz2ZkyEGTX4SFIYc
+	36Swji87Z8IHnRMPSzdxgf+1FF1GWEX/f2+wtcHW8YTZEZ7q8Ot6Nsti/y4bnZysiI7T+Bsk48GPq
+	rAhtsG/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1lC-00000005mRd-1lzc;
-	Wed, 11 Nov 2026 06:24:42 +0000
-Received: from mail-m19731101.qiye.163.com ([220.197.31.101])
+	id 1xR1tz-00000005nMo-3fn5;
+	Wed, 11 Nov 2026 06:33:47 +0000
+Received: from mail-ed1-x547.google.com ([2a00:1450:4864:20::547])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1l9-00000005mPH-3h5I;
-	Wed, 11 Nov 2026 06:24:41 +0000
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5443da424;
-	Wed, 11 Nov 2026 14:19:30 +0800 (GMT+08:00)
-Message-ID: <704571ba-af39-441f-9eb9-09d4a2c9feb3@rock-chips.com>
-Date: Wed, 11 Nov 2026 14:19:24 +0800
+	id 1xR1ty-00000005nLy-0tMK
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 06:33:47 +0000
+Received: by mail-ed1-x547.google.com with SMTP id 4fb4d7f45d1cf-6b6ed7a9ffaso2899769a12.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:33:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794378824; x=1794983624; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=N2mgW6LEnNu8wNmnoa3+p3F6g8tYE7yJEu2kZeiGcR0=;
+        b=aMVAeHnrx+sspRJmEUn6cmk6O5u16bSIdPty5SQcjZ/jVmgBrI6QHGqx0fbeS3A4JL
+         N+KMoAYKUPG5cGR1cGKJu14dMhrGaw4cRc0vhqMXALOQyTqR3abtZzmdPY1CqcxaN/2G
+         cr/Tshd4KuYIQzFL1FhYMYP0n3g7qO2KfSUqMov47bN6yCgNUwHGNNr9tjCVq/BK3UZQ
+         JrcSliFDZnO+OIrmsucEAZoimC1YjBam0T/xuMw7LVNWI3uxVhximr8ck7fTFKG02Cbr
+         iV1hR0kXpQxXfCM6byDRiYf3DshpHJGAPnmbgrmt7vHySYko+1M28VXf9ihCFqhYDira
+         8GRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794378824; x=1794983624;
+        h=content-type:cc:to:from:subject:message-id:references:mime-version
+         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=N2mgW6LEnNu8wNmnoa3+p3F6g8tYE7yJEu2kZeiGcR0=;
+        b=C6aKE+orQZJszs6CGyNJHgP1y8wJWAznWVlCX0xQTk9xs/SBVXeBgoKP2ESv7/bcHr
+         Do9zkWtN++DxOjxOvKlBuf4T1uAye32yp7qNNBWp7gkkobaIrkYdnJ6Xp1oLLb94rO/m
+         UB19279DDVUQSaK2jnJ6gxFVlYfhXF3KxQd6lUDkekT2MAOrvikhgsKAmWtBwZdGM5c9
+         CGgsjIAwwwv6JSrEOztCQCIjwLqcRwAQrbyo0BL5HcFqowix2JH1D4bFqTyfNVfuCebw
+         8A4lnyqoBE/xXqm/wKd5iWd/5OewJP/2y61/AVAtimD4jCAl4JrTrCAd7z0uzP+PQBBI
+         l7mw==
+X-Forwarded-Encrypted: i=1; AL+hErHAK+nIdPmUCynk9cg1ZPLhbgy//2D6/OiVyn9cY76bUtQuKWyq0YvCsbkoioL6dHf0g+In//nizThk8sIFS8IJ@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+Z2oB8gK3C9voUp6SKYWfCBgpLX8K0nI1uMs9JlGY+x8n67yI
+	iOkHpj6Upv+WjzAyjxEfFNju6tBcRROWI0/cDXuaHKRXhMLSK6FGBBwB5rBvMvxazO5W1PlJQJ5
+	vT2kKepcnVstGeKxWOA==
+X-Received: from edgi9-n1.prod.google.com ([2002:a05:6402:a589:10b0:6b7:8226:b2f0])
+ (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6402:613:b0:6b1:ce0f:eb6b with SMTP id 4fb4d7f45d1cf-6b777700516mr806340a12.31.1794378823419;
+ Tue, 10 Nov 2026 22:33:43 -0800 (PST)
+Date: Wed, 11 Nov 2026 06:33:42 +0000
+In-Reply-To: <179432329215.2329176.14453669404153142360.b4-review@b4>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/7] drm/rockchip: dw_hdmi_qp: Set the VOP2 color space
- from the connector
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- =?UTF-8?Q?Jan_Clau=C3=9Fen?= <jan.claussen10@web.de>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261018143135.5745-1-jan.claussen10@web.de>
- <20261018143135.5745-7-jan.claussen10@web.de>
- <cd6ff4c0-cd5d-4c42-8f52-5f3893aec015@collabora.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <cd6ff4c0-cd5d-4c42-8f52-5f3893aec015@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1c942f20b03a7kunmef3b884a81d8c9
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDQktPVk1PTE1JTR9CHhgaSFYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
-	9PT0hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=NlIsZpPS+ZAgSnMCOJyZ/fhpuRI6ICncfbRAEYIDCGzmKhhHkjrPZUwly1aNVM2tLOM+CozijxecNUuQP1FmSvpAvviyK2jnpcm+Exwdf80ojPZnAg2ay8vUMcLN6QrckT7XLVHk8hkiv+PvBvU1iF2v6nFTo0nvxrQ0B2obmnY=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=XS5mBLwVG/2WkI+k9TR/yW0nuz+R1AOPXfUeB4VXSF8=;
-	h=date:mime-version:subject:message-id:from;
+Mime-Version: 1.0
+References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-7-tarunsahu@google.com>
+ <179432329215.2329176.14453669404153142360.b4-review@b4>
+Message-ID: <9huzv763q3ll.fsf@tarunix.c.googlers.com>
+Subject: Re: [PATCH v4 06/19] kho: kexec_metadata: Add the feature header
+From: tarunsahu@google.com
+To: Pasha Tatashin <pasha.tatashin@soleen.com>
+Cc: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
+	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
+	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
+	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
+	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
+	gle.com@google.com, pbonzini@redhat.com, 
+	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org, 
+	kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
+	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
+	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
+	linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_222440_109334_39FB80FB 
-X-CRM114-Status: GOOD (  18.70  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_223346_265945_CF4CE4F3 
+X-CRM114-Status: GOOD (  22.43  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,78 +100,106 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Cristian and Jan,
+Pasha Tatashin <pasha.tatashin@soleen.com> writes:
 
-On 11/11/2026 3:05 AM, Cristian Ciocaltea wrote:
-> Hi Jan,
-> 
-> On 10/18/26 5:31 PM, Jan Claußen wrote:
->> VOP2 converts RGB to YCbCr using the matrix selected by the CRTC
->> state's color_space, but the HDMI encoder never sets it, so VOP2
->> always converts with BT.709. Once the colorspace property can
->> signal BT.2020 colorimetry to the sink, a YCbCr output would be
->> encoded with BT.709 and decoded with BT.2020.
+>> The kexec metadata subtree currently uses a monolithic u32 version field
+>> to identify the metadata structure layout. Any change to the structure,
+>> even an optional additive field, requires incrementing the version and
+>> breaks compatibility between adjacent kernels.
+>> 
+>> Replace the u32 version field in struct kho_kexec_metadata with
+>> struct kho_ser_hdr using DECLARE_KHO_SER. Later fields can be appended
+>> under new feature indices without breaking compatibility across kexec.
+>> Also make the 3-byte padding hole between previous_release and kexec_count
+>> explicit as reserved[3].
+>> 
+>> During deserialization, validate the blob size against the header size
+>> and reject unknown required features. A legacy v1 metadata blob is
+>> ignored with a warning.
+>> 
+>> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
 >>
->> Derive color_space from the connector colorspace before the early
->> return, so that a colorspace change alone is applied.
->>
->> Signed-off-by: Jan Claußen <jan.claussen10@web.de>
->> ---
->>  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 16 ++++++++++++++++
->>  1 file changed, 16 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->> index 9c4cf68d79d5..10c5b6d6406e 100644
->> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->> @@ -17,6 +17,7 @@
->>  #include <linux/phy/phy.h>
->>  #include <linux/phy/phy-hdmi.h>
->>  #include <linux/regmap.h>
->> +#include <linux/videodev2.h>
->>  #include <linux/workqueue.h>
+>> diff --git a/include/linux/kho/abi/kexec_metadata.h b/include/linux/kho/abi/kexec_metadata.h
+>> index e9e3f7e38a7c..316b3e5ad01b 100644
+>> --- a/include/linux/kho/abi/kexec_metadata.h
+>> +++ b/include/linux/kho/abi/kexec_metadata.h
+>> @@ -18,28 +18,31 @@
+>>  #ifndef _LINUX_KHO_ABI_KEXEC_METADATA_H
+>>  #define _LINUX_KHO_ABI_KEXEC_METADATA_H
 >>  
->>  #include <drm/bridge/dw_hdmi_qp.h>
->> @@ -187,6 +188,19 @@ static int dw_hdmi_qp_rockchip_get_vop_format(struct drm_encoder *encoder,
->>  	return bstate->output_bus_cfg.format;
->>  }
+>> +#include <linux/build_bug.h>
+>> +#include <linux/kho/abi/feature.h>
+>>  #include <linux/types.h>
+>>  #include <linux/utsname.h>
 >>  
->> +static u32
->> +dw_hdmi_qp_rockchip_color_space(const struct drm_connector_state *conn_state)
->> +{
->> +	switch (conn_state->colorspace) {
->> +	case DRM_MODE_COLORIMETRY_BT2020_RGB:
->> +	case DRM_MODE_COLORIMETRY_BT2020_YCC:
->> +	case DRM_MODE_COLORIMETRY_BT2020_CYCC:
->> +		return V4L2_COLORSPACE_BT2020;
->> +	default:
->> +		return V4L2_COLORSPACE_DEFAULT;
->> +	}
->> +}
-> 
-> My main concern is introducing V4L2_COLORSPACE_* logic into a DRM bridge driver,
-> which should rather rely on enum drm_colorspace / DRM_MODE_COLORIMETRY_*.
-> Translating the DRM colorimetry into V4L2 values only for VOP2 to map them back
-> to a CSC matrix doesn't seem fully justified.
-> 
-> The root problem is rather on the VOP2 side: the color_space field in struct
-> rockchip_crtc_state and its V4L2-based handling in the CSC selection look like
-> leftovers inherited from the vendor kernel, and I think this is a good time to
-> clean that up instead of building on it.
-> 
+>> -#define KHO_KEXEC_METADATA_VERSION 1
+>> -
+>>  /**
+>>   * struct kho_kexec_metadata - Kexec metadata passed between kernels
+>> - * @version: ABI version of this struct (must be first field)
+>>   * @previous_release: Kernel version string that initiated the kexec
+>> + * @reserved: Reserved for structure alignment; must be zero
+>>   * @kexec_count: Number of kexec boots since last cold boot
+>>   *
+>> - * This structure is preserved across kexec and allows the new kernel to
+>> + * This structure is preserved across kexec and allows the target kernel to
+>>   * identify which kernel it was booted from and how many kexec reboots
+>> - * have occurred.
+>> + * have occurred. Preceded by &struct kho_ser_hdr.
+>>   *
+>>   * __NEW_UTS_LEN is part of uABI, so it safe to use it in here.
+>>   */
+>>  struct kho_kexec_metadata {
+>> -	u32 version;
+>>  	char previous_release[__NEW_UTS_LEN + 1];
+>> +	u8 reserved[3];
+>>  	u32 kexec_count;
+>> -} __packed;
+>> +} __aligned(8);
+>
+> Why __packed was not removed in the first commit? __aligned(8) should 
+> not be needed, given that it must follow DECLARE_KHO_SER which is 8-byte 
+> aligned.
 
-Yep. And if you look at the latest vendor kernel code, we have also
-removed the V4L2_COLORSPACE_* related content and switched to DRM.
+because this structure is not naturally aligned and we have o add
+reserved[3] to make it aligned. So it will be ABI breakage. Adding
+the KHO_SER_HDR is also ABI breakage, So I kept both changes in the same patch.
 
--- 
-Best, 
-Chaoyi
+For the __aligned(8) part, yes we can remove it, I will update it.
+
+>
+>> +
+>> +/* Register kho_kexec_metadata with KHO serialization accessors */
+> here and in all other places, please remove this comment.
+>
+Got it.
+
+~Tarun
+
+>> +DECLARE_KHO_SER(kho_kexec_metadata, 72, 0, 0);
+>>  
+>>  #define KHO_METADATA_NODE_NAME "kexec-metadata"
+>>  
+>> diff --git a/kernel/liveupdate/kexec_handover.c b/kernel/liveupdate/kexec_handover.c
+>> index 6f1f55fe3181..2edd772bb6d3 100644
+>> --- a/kernel/liveupdate/kexec_handover.c
+>> +++ b/kernel/liveupdate/kexec_handover.c
+>> @@ -1740,6 +1740,7 @@ static __init int kho_out_fdt_setup(void)
+>>  
+>>  static void __init kho_in_kexec_metadata(void)
+>>  {
+>> +	DECLARE_KHO_SER_HDR(kho_kexec_metadata, *fhdr);
+>
+> Please don't do this, use kho_ser_hdr directly.
+>
+> -- 
+> Pasha
 
