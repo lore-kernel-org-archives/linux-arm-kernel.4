@@ -2,63 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2DE2606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EACE606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OvskDgwe;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.a=rsa-sha256 header.s=2212171451 header.b=E6W1UrtA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Svg8MDJk;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=ZXmX7RJK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Mime-Version:Date:Subject:
-	Content-Transfer-Encoding:Message-Id:From:References:In-Reply-To:Content-Type
-	:Cc:To:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:To:Subject:Cc:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=WWvXwf/HB1PDEXpuXx9F2cLGqVaTcytjyLMkY2k569Y=; b=OvskDgweJ/dOS1
-	l4N5x/OLsIoZyJuBKNVud9V07ODT35MB9NDml7I+ou/5bxI6bxrslOKDVJUt5C7/DVti8nY4Onc/E
-	JEP0x67dOkg6rUhv5PwjnCnKtp5oR2bNcjwo6BTTOkQkrrWcHiYmZrekvsfCFArtv0YkWlQVB9SXI
-	G2m2DOAMZOSpN6n+QNy5hiPK5ONoCaAVQ/AkrCbmOu70//7snI7wUq5upBYjJVhXOVU1iUs2zowFz
-	T8Pi/Lxd4ZZGnm7t076FjBHU3dAi1j038x6+ittDwfK1/YXKElL1vG5VHkbiIDJQBFA3sY6FFl5Rf
-	0I8CSjdWmwXwPwOITPDw==;
+	List-Owner; bh=GkcCvQ0Cm1Qyej4YW35+cOV6C99poT4s5onAksaynHE=; b=Svg8MDJk3Ogrq6
+	BcVmLHOBtmNRiqDdbiI2gKyvo+a+gPTgWLeU9ArhkBc3JUdoyXmp9wpzWLe9oD8H5XLT7eGx/XXea
+	5Br1CjHxIo61xzyrJThCmw1BaNovGJxZYhCz43w43FLfUIzNcG5AZh5nVmDrkie6b1wBBMADSxt+1
+	AuT5H2dvv3fBgcxq+9DiPbk/nwwOftaCzr2ACb/dMWRfleoMBIeMkXn5LCgBuYYy3Zuz/WT++uaSV
+	Nu04jKbRQDjxW8SQjZGmaYyqVycCvO9k52YGbXpFSbdiozVC97gKbuQa0Cn5iCImfGf08WhqY26RO
+	WrdoTXd6G6V54gpbwJxg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2Ck-00000005pL6-2oxk;
-	Wed, 11 Nov 2026 06:53:10 +0000
-Received: from va-1-115.ptr.blmpb.com ([209.127.230.115])
+	id 1xR2Db-00000005pSJ-3vet;
+	Wed, 11 Nov 2026 06:54:03 +0000
+Received: from mail-m6050.netease.com ([210.79.60.50])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2Ci-00000005pKW-2FvW
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 06:53:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=2212171451; d=bytedance.com; t=1794379982; h=from:subject:
- mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
- mime-version:in-reply-to:message-id;
- bh=WWvXwf/HB1PDEXpuXx9F2cLGqVaTcytjyLMkY2k569Y=;
- b=E6W1UrtA69SYn1W9a9oorBiMtgz06JLW2RILWngLuFkAhHst94f8FrlGbzl+jW+LfjS+K9
- uEXThHvux72CdXGLDCCu30W6QsBuw+yBzhVM6fBf3UV9nLm4Asd3F0W7CeaMrt+qTm0WZN
- cfNXrOJPQJyKi4KpQid6UrK5lEwTlnnISjsvrGOYlcZ/Vq9Ol57bNyjyfsaoOpFIE3qXry
- Jo6amyaN6aJ4A2eUd/aqxzsOxFrPjnWtssjze08Z8BIgXrHGpBaaINTw/zwS4Hg5EaXp/z
- 5PlUohLyKwuMfJ+1wta8+3uFwp1yqykDd83oFj4EG0aEoVxvD0ms0HK53ajMJQ==
-To: "Catalin Marinas" <catalin.marinas@arm.com>
-Cc: <will@kernel.org>, <mark.rutland@arm.com>, <ardb@kernel.org>, 
-	<song@kernel.org>, <dylanbhatch@google.com>, 
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, 
-	<stable@vger.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-In-Reply-To: <atEGBsR3eI3cXKay@arm.com>
-References: <20261010084721.2197683-1-qirui.001@bytedance.com> <20261010085055.2200241-1-qirui.001@bytedance.com> <atEGBsR3eI3cXKay@arm.com>
-From: "Rui Qi" <qirui.001@bytedance.com>
-Message-Id: <3b540bc9-69b3-42a8-8431-75dd6079bf4f@bytedance.com>
-X-Original-From: Rui Qi <qirui.001@bytedance.com>
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 2/3] arm64: patching: Fix instruction byte order in aarch64_insn_set()
-Date: Wed, 11 Nov 2026 14:52:44 +0800
+	id 1xR2DY-00000005pQl-2xDj;
+	Wed, 11 Nov 2026 06:54:02 +0000
+Received: from [172.16.12.48] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 544548e9e;
+	Wed, 11 Nov 2026 14:53:54 +0800 (GMT+08:00)
+Message-ID: <21a44f7b-e33c-4feb-a6ba-6d08bc796606@rock-chips.com>
+Date: Wed, 11 Nov 2026 14:53:52 +0800
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-X-Lms-Return-Path: <lba+26af410cc+f68250+lists.infradead.org+qirui.001@bytedance.com>
+Cc: shawn.lin@rock-chips.com, linux-arm-kernel@lists.infradead.org,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ "finley.xiao" <finley.xiao@rock-chips.com>
+Subject: Re: [PATCH 4/5] arm64: dts: rockchip: add the PCIe power domain to
+ the RK3588 PCIe SMMU
+To: aiyengar1990@gmail.com, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, "Joerg Roedel (AMD)" <joro@8bytes.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Niklas Cassel <cassel@kernel.org>
+References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
+ <20261110-smmu-v3-pcie-pd-v1-4-628819ca44b9@gmail.com>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <20261110-smmu-v3-pcie-pd-v1-4-628819ca44b9@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0aa1c962725603a4kunmb3379dd7965f5
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCT0pJVh0aGUJMSE5CQk5OHlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=ZXmX7RJKYwKpIGWxpcLGSdUNUfljyXvYiUtUbnsd6Phb8U97ZPSlESLvBbJzV8hWLtqOLLINOhn9P6waG42+wYWblD1kQZXqhbC50WlpggnfPocO8Xuj/NTbo3b2d0qqYsy7f9rFLq9MUTPEl7lBAdF+V7UrJIHQskw2aZytPko=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=GkcCvQ0Cm1Qyej4YW35+cOV6C99poT4s5onAksaynHE=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_225308_667020_EF19FD4B 
-X-CRM114-Status: GOOD (  12.04  )
+X-CRM114-CacheID: sfid-20261110_225401_371683_A5171BA5 
+X-CRM114-Status: GOOD (  17.29  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -70,49 +76,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/16/26 12:57 AM, Catalin Marinas wrote:
-> On Sat, Oct 10, 2026 at 04:50:54PM +0800, Rui Qi wrote:
->> aarch64_insn_set() passes the host-endian u32 instruction straight to
->> text_poke_memset(), which memset32()'s it into memory in host byte order.
->> AArch64 instructions must be little-endian in memory, so on a big-endian
->> kernel the written bytes are reversed and the CPU takes an UNDEFINED
->> instruction exception when fetching them.  The sibling aarch64_insn_write()
->> already converts with cpu_to_le32(); aarch64_insn_set() does not.
->>
->> This is reachable in-tree: bpf_arch_text_invalidate() fills freed JIT
->> regions with AARCH64_BREAK_FAULT through aarch64_insn_set(), and arm64
->> selects HAVE_EBPF_JIT without a big-endian guard, so the path is taken on
->> BE kernels with BPF JIT.  The direct-fill loop in the same file already
->> cpu_to_le32()'s the constant, confirming the expected byte order.
->>
->> Convert the instruction to little-endian before the memset, mirroring
->> aarch64_insn_write().  On LE the conversion is a no-op, so behaviour is
->> unchanged.
+Hi Arun
+
+在 2026/11/10 星期二 15:11, Arun Iyengar via B4 Relay 写道:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> We are just about to remove big-endian support (in 7.4).
+> The MMU-600 for the PCIe controllers (mmu600_pcie) is enabled for every
+> RK3588 board, but its node does not describe that it lives in
+> RK3588_PD_PCIE. It only works today because TF-A leaves the domain on at
+> boot and, on most boards, an enabled PCIe controller holds it on later.
+> 
+> On a board that disables all PCIe controllers using that domain (the
+> Orange Pi 5 with its M.2 slot in SATA mode is one), genpd powers
+> PD_PCIE off as unused after boot while arm-smmu-v3 is still bound. Then
+> at reboot arm_smmu_device_shutdown() writes CR0 and polls CR0ACK on the
+> unpowered block, which stalls the bus: the kernel never reaches
+> "reboot: Restarting system" and the board only comes back once the
+> watchdog fires.
+> 
+> Describe the power domain, so genpd keeps it on for as long as the SMMU
+> is bound.
+> 
+> Fixes: da92d3dfc871 ("arm64: dts: rockchip: enable the mmu600_pcie IOMMU on the rk3588 SoC")
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> index aa69fd3793fd..bcd342c025c9 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+> @@ -560,6 +560,7 @@ mmu600_pcie: iommu@fc900000 {
+>   			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
+>   		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
+>   		#iommu-cells = <1>;
+> +		power-domains = <&power RK3588_PD_PCIE>;
+
+As RK3588 TRM Table 7.1 desribes, both of mmu600_pcie and
+mmu600_php live under PD_PHP.
+
+>   	};
+>   
+>   	mmu600_php: iommu@fcb00000 {
 > 
 
-Understood.  In -next arm64 no longer has a config CPU_BIG_ENDIAN and
-nothing selects it, so 1/3 and 2/3 are fixing a configuration that no
-longer exists.  I'll drop both.
-
-3/3 ("arm64: module: Use text-poke for late PLT/veneer emission") is
-independent of the byte-order work: it routes
-module_emit_plt_entry() / module_emit_veneer_for_adrp() through
-aarch64_insn_copy() so a late livepatch relocation that falls back to
-PLT emission does not write into the ROX .plt and Data Abort.  That
-path is reachable on LE today (klp_write_section_relocs() on a
-MODULE_STATE_LIVE patch module), so it is not BE-specific; it carries
-Fixes: 91b89a634487 and Cc: stable.
-
-I'll resend 3/3 as a standalone patch in a new thread.  Happy to route
-it a particular way if you'd prefer.
 
