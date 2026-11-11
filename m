@@ -2,104 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD03606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB5E606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m8ozf94/;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PObLrwPy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VFW7j0bR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V2AKnn9t
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3fdl99wflmpgOQFz3rP4SGWHHNVvKJz4CW8AnVydfWM=; b=m8ozf94/E/K9OL
-	C2ngiAfOanA4gwgSxUUGmdpp1fYs40+WVUpAyRl2BY4bD8BWll3KqToAuCiUKGzUmc/WWfgeR4RnR
-	GA87CuIlb2RMUZnoGvCHnlDf9BIRtXupDWNTwnATEHQ7qEX97nDabbjpBleGIyBhODETlYsbdMbti
-	tnOb12n0wyg1voqGxl94FPPUEcIP/n4rGHMO6H4YxgEP++wy2ahFM+D5INoA0r29gTf6w2z5bFV5X
-	ZJhoJo5JKilAfIAlSztIOqGJFIJUeU+0I0P+nvWt3m8yErwZFkarOZXm4uOKjU6EqaOUCOvbuXEZN
-	K6IewNWH5A3trnDnI59w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=H3Ry/FbjG7A2sh6BAhOs+YbZP+AAuJe7onGIRnzyJ68=; b=VFW7j0bR1kjZ4fXqqVqi3nz5yU
+	cXwrUAGv0sy8mUQrhgpBUlwkV3UNHh5dPCMHR0+5OjAF7a7TNPjwYeFyK7sUVO88gkAuWD4dzkFcO
+	qHd8jnnCMZZhOIB0V8RhRot9j3PH1cWD3MEB1JDeWhDiUQgn8LxFDWlx2rZLBTHgmJl2hDdZp/x+n
+	xNqYf01GOzZu+gfN4HBnYG4fD4tGFFj4Bb1OGYCBlEqO4UhiNC9Q/9dmGoUFDe6g+XNS5LjWJa03l
+	lAGZfmJzvFYgOD6m+Vy5vHPlnRfQRTqJNDc9vnvTijMoSDJz4udDlgwwFDgycHDcCSkRZFAA6GwGs
+	ZvKVJzRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5EB-00000006ISR-068F;
-	Wed, 11 Nov 2026 10:06:51 +0000
-Received: from mail-dy1-x1333.google.com ([2607:f8b0:4864:20::1333])
+	id 1xR5G6-00000006Iit-2bt7;
+	Wed, 11 Nov 2026 10:08:50 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5E8-00000006IRI-1Snf
+	id 1xR5G6-00000006Iin-0GeN
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 10:06:49 +0000
-Received: by mail-dy1-x1333.google.com with SMTP id 5a478bee46e88-3645f0f3fcdso6184272eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 02:06:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794391607; x=1794996407; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=3fdl99wflmpgOQFz3rP4SGWHHNVvKJz4CW8AnVydfWM=;
-        b=PObLrwPy8wp3g9yLHB5ydIqXLbrMTbuHRS++PGLIreooY+U2JPrFRXXtv0sCZONMQH
-         aaTR5Q5zWjDjXd+IXnJvqH5FVSaS7fU6tkzYB2GRzS0dQ0PgKo9xrsn/EmZsdkgoIMZ3
-         i/7FJxbWdse6+fCYJE/jb9itGazB1fxWF4Dh85Kyorlc7R1MY0SJN5MCp6wkAtRLMFxs
-         cqcRIpbCoOHLi3l8S1xpQUF25HovH6ILH85xEPTyWPTxXQISGIj+BBC9W86llBqm/3w2
-         KTUnqTxGFgucVMYn7t2XFuFomSUYyR0aNM6LpvemcyRvNLHoi1TAOaogL6YjvI3XIXXk
-         QGjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794391607; x=1794996407;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=3fdl99wflmpgOQFz3rP4SGWHHNVvKJz4CW8AnVydfWM=;
-        b=0slbGmByPTzxAuesN670JuQ2Ais3J2Lgs37njRlzKS/kIMUE2W7Hau4T3BH9EjRzBa
-         Se6tzC+yw6ij4UnesQK+VTFhEIjgurjhkp7sQjSm4NMHgyjpyHs6wKPkEqeAloM42k6K
-         E29pktDPiXKc86j011oVgVTxL+vjsQEaACSxDqE7IVnSb9vfJx6TpCZRIgPWN1SvFb5s
-         HzhcF/WZkBnfFwXAEbiky5ucT/fvTLYwxqFxlzzf1Y4ycJPSsYJOjXyqeHQsIzdu0SD6
-         Nk536VddR8D5zx/LFx5aYXztNgZK8g4ISnBuSK7H2Wvznm3Dj4ZAdOfDuyJWY7kMzYNv
-         AVQg==
-X-Forwarded-Encrypted: i=1; AL+hErGqUu+ScI3UwAw5IiaPkCO3k/YN42Rxu6PZ+eYUPpH5xAD4uKYYW9uT+oj97f03D0dSLuWEdvTWy8q8ZXIqEaPF@lists.infradead.org
-X-Gm-Message-State: APuU4Z/fwibpImQHMjauh2on88CSsAIGrA5HmHMmTSktRXjDJ9n3utl7
-	G1KLfzJtXkffw8CF2sFDZYaAI062sIlZMRTWodWnmwnNdTm68+aR3jsk
-X-Gm-Gg: AYBFou2c9O2NDOfoH30mWkvUzCuxkilwOD9P6vmJ9MOA6GPw5rkiHW7tLNAzeqWeG7F
-	nY0NUNorapk9YVAhGIS8OBThLSGYiWKbimUVvVmi35k9WRUf/AtCdKBPPToQ+z1nt6VinqAnon4
-	wygaudoxMAsNc2uZQpvqTRbmvDnZYh7QN9wmHwsAVrr14/8js0HIL3o2sK6ylA/wqg9gY/9wgcU
-	fyxQG/PKxLXIzVXCLPtlNHZcci8sVL1k+VOw1WbMLaW+zKW7m1N2yZVBr+79q3l6YCZJyg0Pq1t
-	UdCGZZOEHq71ahVe8tlYQRsYfU0ahPjiXPK5MiavswGRsHD45HQsLIHjmrFrEuvmVE1GaJX5AQx
-	KtJxfyK4B/h/Vdo1UA12KZ3mnlLiO4bcHwfKRHq5BHHSL+lxUHSOLa9T2GInFiPB/kN6L2KwXoO
-	a+2nR4yCte0dPieME84/vhS0K0SRH1nffstjpmLzRCdmWeoERgnSNYgWAk+S8tTSxYIjCFUZK9n
-	5erzGc7y5Cl7LRlpq04el7yCy/kHb/ajWxqpn9TUdfZVj9e0cGu+nqZsfk15BJ7SGPv7G20Fw6n
-	LrrX0ojcmVcyQobC3FQZanmI3+ovRvlgwqKPp+MmuHAj33qpWdT+79KL/8cyjZNcDhYy8/h7jV1
-	hTMY1yHylXbk9LWwoBriaNGjO0fo67O6sp/YBIIpyoY4t
-X-Received: by 2002:a05:701b:4301:b0:1a9:cad6:5b58 with SMTP id a92af1059eb24-1b3c0362b3cmr1960965c88.39.1794391607537;
-        Wed, 11 Nov 2026 02:06:47 -0800 (PST)
-Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5890584sm15778025c88.3.2026.11.11.02.06.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 02:06:47 -0800 (PST)
-From: phucduc.bui@gmail.com
-To: Mark Brown <broonie@kernel.org>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Andrei Simion <andrei.simion@microchip.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-	linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH v2 2/2] ASoC: atmel-i2s: Fix I2SC_WS slot width configuration
-Date: Wed, 11 Nov 2026 17:06:16 +0700
-Message-ID: <20261111100616.31211-3-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261111100616.31211-1-phucduc.bui@gmail.com>
-References: <20261111100616.31211-1-phucduc.bui@gmail.com>
+	Wed, 11 Nov 2026 10:08:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 6907063C19;
+	Wed, 11 Nov 2026 10:08:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E1DF1F00A0A;
+	Wed, 11 Nov 2026 10:08:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794391729;
+	bh=H3Ry/FbjG7A2sh6BAhOs+YbZP+AAuJe7onGIRnzyJ68=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=V2AKnn9tdnAn6jL8kfwG0cy9iE7vD5xijchVzwwAzjfWIprSbpC5q/oixuEl75VkU
+	 gv4mbcMkx5GsmkAw0MnFXj3iYWlOuG3+QcDYWV/XVgIPIK7AKvhcPz14eqUhoIYWGq
+	 GMp2pLARv4UVz8ORVuNB99e3DzRZsgP4zg30nFERye8GPA8B4e84ApmUkO6nWoV0+j
+	 7jO2eIL78EpTsQBNT4D9gokF5ekFo1ZKDiYb4BLKtQHyCQ8pN0RuW7NoEiEqMe1Le6
+	 Q5gEWu1c4wchLYe3renNhpnDiGf5ku0AwEKEkF9x5ElZ3r44yxAFEWA2ipnv7gq/tx
+	 btV6vc7y+cysQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <maz@kernel.org>)
+	id 1xR5G3-0000000EEJx-0wjw;
+	Wed, 11 Nov 2026 10:08:47 +0000
+Date: Wed, 11 Nov 2026 10:08:46 +0000
+Message-ID: <86o6bv1xzl.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Dan Carpenter <dan@cryspen.com>
+Cc: Oliver Upton <oupton@kernel.org>,	Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,	Zenghui Yu
+ <yuzenghui@huawei.com>,	Catalin Marinas <catalin.marinas@arm.com>,	Will
+ Deacon <will@kernel.org>,	Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org,	kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org,	Karthik Bhargavan <karthik@pereq.eu>,
+	=?UTF-8?B?Q2zDqW1lbnQ=?= Blaudeau <clement@cryspen.com>
+Subject: Re: [PATCH] KVM: arm64: nv: Invalidate whole L1 blocks on TLBI RIPAS2E1
+In-Reply-To: <6817d113e5f0a9cafe0ce5bc0847276b7f14aacc.1794210561.git.dan@cryspen.com>
+References: <6817d113e5f0a9cafe0ce5bc0847276b7f14aacc.1794210561.git.dan@cryspen.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_020648_401250_EB1B78DC 
-X-CRM114-Status: GOOD (  12.63  )
-X-Spam-Score: -2.1 (--)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: dan@cryspen.com, oupton@kernel.org, fuad.tabba@linux.dev, joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, catalin.marinas@arm.com, will@kernel.org, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org, karthik@pereq.eu, clement@cryspen.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,48 +85,115 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: bui duc phuc <phucduc.bui@gmail.com>
+Hi Dan,
 
-The atmel_i2s_hw_params() function configures the PCM formats
-S18_3LE, S20_3LE and S24_3LE, which require a 24-bit I2SC_WS
-slot width.
+Thanks for this patch.
 
-However, ATMEL_I2SC_MR_IWS is missing from the mask passed to
-regmap_update_bits() when updating ATMEL_I2SC_MR. As a result,
-the IWS bit is never updated, potentially leaving the slot width
-at 32 bits.
+On Tue, 10 Nov 2026 06:14:20 +0000,
+Dan Carpenter <dan@cryspen.com> wrote:
+> 
+> The shadow stage-2 can map one of the L1's stage-2 blocks with several
+> smaller leaves.  This happens when the host backs the memory with
+> smaller pages, when the memslot is dirty logging, or when the L1 block
+> size falls between two host block sizes.
+> 
+> When the L1 invalidates part of such a block, handle_ripas2e1is() only
+> unmaps the requested range, so the shadow leaves for the rest of the
+> block stay valid.  A TLBI must remove every TLB entry for a block it
+> touches, including the parts outside the range.  The L1 does not need
+> to issue another TLBI before reusing the rest of the block, so the L2
+> can still reach those pages through the stale shadow entries.
+> 
+> Use compute_tlb_inval_range() in s2_mmu_unmap_range() to find the L1
+> block size, the same as the IPAS2E1 path does, and widen the range to
+> whole L1 blocks.  The other caller, handle_vmalls12e1is(), unmaps the
+> whole IPA space, so the widening does not change anything there.
+> 
+> This only affects nested virtualization: the host must be booted with
+> kvm-arm.mode=nested and the VM must be given a virtual EL2.  In such a
+> VM it breaks the isolation that the L1 hypervisor provides.  An L2 can
+> keep reading and writing pages that the L1 has taken back and reused,
+> either for itself or for another L2.  The host, other VMs and VMs
+> without nested virtualization are not affected, because the shadow
+> stage-2 only maps the L1 VM's own memory.
+> 
+> Fixes: 5d476ca57d7d ("KVM: arm64: nv: Add handling of range-based TLBI operations")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Dan Carpenter <dan@cryspen.com>
+> ---
+> This is part of our formal analysis work at Pereq.  I'm not super
+> familiar with this code.  Claude wrote a self test that I used to
+> test, but it's crap and not worth preserving.
 
-Add ATMEL_I2SC_MR_IWS to the mask to ensure the slot width is
-configured correctly.
+Is there any chance you could get Claude to decrapify the self-test?
+This is the sort of things that would be very valuable to have in our
+toolbox.
 
-Fixes: 3b7961a326f8 ("ASoC: atmel-i2s: Fix usage of capture and playback at the same time")
-Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
----
- sound/soc/atmel/atmel-i2s.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> I also considered widening the range in handle_ripas2e1is().  We would
+> need to use the largest block size in that scenario and it seemed like
+> it might hurt performance.
 
-diff --git a/sound/soc/atmel/atmel-i2s.c b/sound/soc/atmel/atmel-i2s.c
-index 60e885980f4c..d23ac43590d8 100644
---- a/sound/soc/atmel/atmel-i2s.c
-+++ b/sound/soc/atmel/atmel-i2s.c
-@@ -329,7 +329,7 @@ static int atmel_i2s_hw_params(struct snd_pcm_substream *substream,
- 	int ret;
- 
- 	mr_mask = ATMEL_I2SC_MR_FORMAT_MASK | ATMEL_I2SC_MR_MODE_MASK |
--		ATMEL_I2SC_MR_DATALENGTH_MASK;
-+		  ATMEL_I2SC_MR_DATALENGTH_MASK | ATMEL_I2SC_MR_IWS;
- 	if (is_playback)
- 		mr_mask |= ATMEL_I2SC_MR_TXMONO;
- 	else
+It would probably result in over-invalidation, and only benefit guests
+that play terrible games (multiple S2s tagged with the same VMID).
+We're better off just computing the correct range for the given MMU
+context as you are doing here.
+
+> 
+>  arch/arm64/kvm/sys_regs.c | 13 ++++++++++++++--
+>  1 file changed, 12 insertions(+), 1 deletions(-)
+> 
+> diff --git a/arch/arm64/kvm/sys_regs.c b/arch/arm64/kvm/sys_regs.c
+> index 3d3f4eb82fbd..e1a687dfeea7 100644
+> --- a/arch/arm64/kvm/sys_regs.c
+> +++ b/arch/arm64/kvm/sys_regs.c
+> @@ -4116,6 +4116,17 @@ union tlbi_info {
+>  static void s2_mmu_unmap_range(struct kvm_s2_mmu *mmu,
+>  			       const union tlbi_info *info)
+>  {
+> +	u64 start = info->range.start;
+> +	u64 end = start + info->range.size;
+> +
+> +	/*
+> +	 * An L1 stage-2 block may be held in the shadow S2 as several smaller
+> +	 * leaves, and R_TVTYQ requires the TLBI to invalidate all of them, so
+> +	 * widen each end of the range to the L1 block containing it.
+> +	 */
+> +	start = ALIGN_DOWN(start, compute_tlb_inval_range(mmu, start >> 12));
+> +	end = ALIGN(end, compute_tlb_inval_range(mmu, (end - 1) >> 12));
+> +
+>  	/*
+>  	 * The unmap operation is allowed to drop the MMU lock and block, which
+>  	 * means that @mmu could be used for a different context than the one
+> @@ -4139,7 +4150,7 @@ static void s2_mmu_unmap_range(struct kvm_s2_mmu *mmu,
+>  	 * the L1 needs to put its stage-2 in a consistent state before doing
+>  	 * the TLBI.
+>  	 */
+> -	kvm_stage2_unmap_range(mmu, info->range.start, info->range.size, true);
+> +	kvm_stage2_unmap_range(mmu, start, end - start, true);
+>  }
+>  
+>  static bool handle_vmalls12e1is(struct kvm_vcpu *vcpu, struct sys_reg_params *p,
+
+The only snag here is that we end-up with two extra walks for the
+(pretty common) TLBI VMALLS12E1* case (which by definition covers the
+whole IPA space). I don't think I'll lose any sleep over it, but it
+may come back to bite us at a later point.
+
+In any case, I'll queue this.
+
+Thanks,
+
+	M.
+
 -- 
-2.43.0
-
+Without deviation from the norm, progress is not possible.
 
