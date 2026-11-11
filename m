@@ -2,55 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE92A6070084
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CD76070091
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:40:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b3iOcyNW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eqKj3Ioi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vo22qnTw;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=boxGcIGU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xfIMJABMJNp7QfwugcM4fcD/xpFndn0xBvRbdTIn/Sc=; b=b3iOcyNWA0m3Pp
-	6UtIhGbTHOHasQNJe/c95Q4iiodIJ+EftnTquEAkT6NxTN5bAW7gGyEdW5LjXIHQyrIX/At38FvdY
-	BGqcxDBIF24MRKGBnDvG5Z+4tPiMfXNV64chaG0zebFGrYfMMKrZNJcmkPMaYC3jzXpP1ZiLPTegT
-	4/vIWh3x+SZWBSzayNc6Vwe1GzEunubACmiZ4GZ60I7nlqIRo08ASdx5Nps43VCM6oUfTyHCTrxR+
-	z1zDr78Qn7vNEr5xSVrW9S6vuqbhXCdbH0tgzn8v1Q5rwGqG3LUNo5cLwm6J7v7zkm4hhiO8o8DjN
-	K+oM7X9H95nzlGXvpPoQ==;
+	List-Owner; bh=Gg8Z3g5whr4qOTZSmsNEegQVriNO3ujPVFMlRk++Be4=; b=vo22qnTwg3+hQj
+	QJL9dpzZrrU0PHnuYmumEFimKqsLl+vR3xN4uZqYO0WsEo8oI1bDzM4UuAEiiBAm8w0InHGniS6Mu
+	YJM84lBMKNZapvzccbAy3d0hxCR76SCQeL4/eYgdfJV3nmZPy4Ac00aHFcWrM9PkJLQNEt0y47iAO
+	++ZEiXTj2oBXqM6TwPLg/BGmldkQgDHEG9UyC2pg4b2GzJTGHACezdsak7PFMkc+IzzqmZHW0IR5n
+	sRmrUCiF8x6Q0tLJxxdP78qjDG99lP5yZgXiHKeV2QBOPAaHdadbtbU57YztAgR1NOiO0rTxPciIT
+	uC9C4LQ4rLjA2444FaWw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBN-00000007XWz-1mg7;
+	id 1xREBN-00000007XWX-1GHP;
 	Wed, 11 Nov 2026 19:40:33 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBL-00000007XVn-2wk6
+	id 1xREBL-00000007XVb-0wgo
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 11 Nov 2026 19:40:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6865C407C2;
-	Wed, 11 Nov 2026 19:40:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1062B1F00A10;
+	by tor.source.kernel.org (Postfix) with ESMTP id 6B07865515;
 	Wed, 11 Nov 2026 19:40:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44581F00A09;
+	Wed, 11 Nov 2026 19:40:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794426031;
-	bh=xfIMJABMJNp7QfwugcM4fcD/xpFndn0xBvRbdTIn/Sc=;
+	s=k20260515; t=1794426030;
+	bh=Gg8Z3g5whr4qOTZSmsNEegQVriNO3ujPVFMlRk++Be4=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=eqKj3IoihIJtj+pHl6B8puHU40wNPYe2V2gaPVH3AOkaOMoeTzbdkSeUT6encYtG0
-	 wiH/FgZU5F+65y/CYibJDFk07vfQJQu4/AcxJP1YjJFR55Fdt70JVgpIUmNm74xV8H
-	 QaUaJOG58G7MZEqxd+7Slv4Dn+/GvJQevPD+UPxoaK+9gnS47bormzdOPbSEeCnjUA
-	 NMsZi2MF1KjfiC3qCxj9jH5D/Q9H/BrCq8ey89ko8aZ0ww42h6uWYqbi60xF8JhxXP
-	 oF1+9qJF1Bp6VGyCnZoCNSeDt1IyAuuSbJZHBAfyTwOatY5gJ//LfRO8IvktPd4Xy0
-	 pG5tpebrYJASQ==
+	b=boxGcIGUIxsxUMoseU1zCR37pL1tKnYZIr9z2mFRKP/yDB58+klYq9Leqk5mw3whx
+	 j2/6f31VFgGLAk55mWala/nHSvr7cjg085glh8tRjndGcXLfbT7DzfDODeEg/270Rz
+	 q+PqvxuZAX5CAT9cXQURWxmIMQQqABN1235df8vLtmLN1MlnzcvuwOq+JTmU6FYIs5
+	 N3m0JId1q8S8DHh54z+GqtT6ifGDEN2lpokE6Jtn4Vb+yCaeK28UOAcJFXTzaGQ2H/
+	 nEMeglx93zjXHbqsO8OnF/e6t4d6Nd9N5nYA4jnOsEMR+RQfgowsFknqQJ/qe/cGT6
+	 /FsKIiDH4aslQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 13:40:14 -0600
-Subject: [PATCH 04/12] arm64: dts: hisilicon: Describe ADV7533 supplies
+Date: Wed, 11 Nov 2026 13:40:13 -0600
+Subject: [PATCH 03/12] arm64: dts: hisilicon: Add specific syscon
+ compatibles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-hisi-v1-4-6c9f5f80716c@kernel.org>
+Message-Id: <20261111-dtbs-hisi-v1-3-6c9f5f80716c@kernel.org>
 References: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 In-Reply-To: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -77,66 +78,94 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the ADV7533 power supply phandles for HiKey and HiKey960. Both
-boards have a dedicated HDMI 1.8-V supply. HiKey has a 1.2-V PMIC rail,
-while the ADV7533 on HiKey960 uses its HDMI 1.8-V supply for V1P2.
-Describe the respective 3.3-V rails as well.
+Add specific compatibles for HiSilicon syscon nodes HiKey reboot mode,
+Hi6220 media NOC ADE, HIP06/HIP07 SerDes, and DSA CPLD syscon.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts | 14 ++++++++++++++
- arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts    |  6 ++++++
- 2 files changed, 20 insertions(+)
+ arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts | 3 ++-
+ arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts    | 3 ++-
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi         | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip06.dtsi          | 2 +-
+ arch/arm64/boot/dts/hisilicon/hip07.dtsi          | 4 ++--
+ 5 files changed, 8 insertions(+), 6 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-index acecd2dfeeba..1b0ba3dd2cde 100644
+index 27fb08d348c9..acecd2dfeeba 100644
 --- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
 +++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-@@ -192,6 +192,14 @@ wlan_en: wlan-en-1-8v {
- 		enable-active-high;
+@@ -56,7 +56,8 @@ ramoops@32000000 {
  	};
  
-+	fixed_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
- 	firmware {
- 		optee {
- 			compatible = "linaro,optee-tz";
-@@ -571,6 +579,12 @@ adv7533: adv7533@39 {
- 		status = "okay";
- 		compatible = "adi,adv7533";
- 		reg = <0x39>;
-+		avdd-supply = <&ldo3>;
-+		dvdd-supply = <&ldo3>;
-+		pvdd-supply = <&ldo3>;
-+		a2vdd-supply = <&ldo3>;
-+		v3p3-supply = <&fixed_3v3>;
-+		v1p2-supply = <&ldo3>;
- 		adi,dsi-lanes = <4>;
- 		ports {
- 			#address-cells = <1>;
+ 	reboot-mode-syscon@32100000 {
+-		compatible = "syscon", "simple-mfd";
++		compatible = "hisilicon,hi3660-reboot-mode",
++			     "syscon", "simple-mfd";
+ 		reg = <0x0 0x32100000 0x0 0x00001000>;
+ 
+ 		reboot-mode {
 diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-index 229116477f1d..5f31569cf494 100644
+index 2d304efe081d..229116477f1d 100644
 --- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
 +++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-@@ -505,6 +505,12 @@ &i2c2 {
- 	adv7533: adv7533@39 {
- 		compatible = "adi,adv7533";
- 		reg = <0x39>;
-+		avdd-supply = <&ldo15>;
-+		dvdd-supply = <&ldo15>;
-+		pvdd-supply = <&ldo15>;
-+		a2vdd-supply = <&ldo15>;
-+		v3p3-supply = <&reg_vdd_3v3>;
-+		v1p2-supply = <&ldo22>;
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <1 2>;
- 		pd-gpios = <&gpio0 4 0>;
+@@ -69,7 +69,8 @@ linux,cma {
+ 	};
+ 
+ 	reboot-mode-syscon@5f01000 {
+-		compatible = "syscon", "simple-mfd";
++		compatible = "hisilicon,hi6220-reboot-mode",
++			     "syscon", "simple-mfd";
+ 		reg = <0x0 0x05f01000 0x0 0x00001000>;
+ 
+ 		reboot-mode {
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+index 61eaa7f8c1c9..21eb268b5731 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+@@ -294,7 +294,7 @@ acpu_sctrl: acpu_sctrl@f6504000 {
+ 		};
+ 
+ 		medianoc_ade: medianoc_ade@f4520000 {
+-			compatible = "syscon";
++			compatible = "hisilicon,hi6220-medianoc-ade", "syscon";
+ 			reg = <0x0 0xf4520000 0x0 0x4000>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
+index 3d7285e6700e..823cd314dd32 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
+@@ -450,7 +450,7 @@ pcie_subctl: pcie_subctl@a0000000 {
+ 		};
+ 
+ 		serdes_ctrl: sds_ctrl@c2200000 {
+-			compatible = "syscon";
++			compatible = "hisilicon,hip06-serdes-ctrl", "syscon";
+ 			reg = <0 0xc2200000 0x0 0x80000>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
+index d175e242ee96..b815c1fff6ea 100644
+--- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
+@@ -1229,7 +1229,7 @@ dsa_subctrl: dsa_subctrl@c0000000 {
+ 		};
+ 
+ 		dsa_cpld: dsa_cpld@78000010 {
+-			compatible = "syscon";
++			compatible = "hisilicon,hip07-dsa-cpld", "syscon";
+ 			reg = <0x0 0x78000010 0x0 0x100>;
+ 			reg-io-width = <2>;
+ 		};
+@@ -1240,7 +1240,7 @@ pcie_subctl: pcie_subctl@a0000000 {
+ 		};
+ 
+ 		serdes_ctrl: sds_ctrl@c2200000 {
+-			compatible = "syscon";
++			compatible = "hisilicon,hip07-serdes-ctrl", "syscon";
+ 			reg = <0 0xc2200000 0x0 0x80000>;
+ 		};
+ 
 
 -- 
 2.53.0
