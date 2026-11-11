@@ -2,105 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77550606B369
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29CD606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:07:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VnSJQJ0b;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jQcHEY4+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uPDjCsXJ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=FeVRmTir
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=sPfQCcrAfCjRkFz6L9qyGHzK9Ch2pW+l+JfxC7qRxyM=; b=VnSJQJ0bn08g5lftiZOHJQ77wR
-	ArFiHM/pPVG/4udliPWd92d9aGDsKLWOei74/ikMsQE+VoaIaPF6mMd4F6LAP6Cx3fY64SSFRZJyv
-	MKQ12sGcWwK1jx+zzQvbfNvBxxglT2XRajCFXod613Uwdv1v0rohZwjK6NUFVVPgDKGABvQRMHO4x
-	BhDEByQgqPPH93v9NvgZSoIjHM2WiYy4EbL9gxqIhJy3Rpthid+tNu5bKbw8nqoHTyKJJGZ+n/Jfk
-	ui2EYlVKVDjGk7L40XHQUWm6x8XToZT1P0YQd5pHY7iorntX4VQDLrMj05fkUTYc4PiktNIofpr5k
-	iBev0f8Q==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+dsS8/OU0wby4BZ79znZbA9Ny2A1+vlGylVbT5sKa+g=; b=uPDjCsXJPBajBI
+	7G8TW5WSDApR6ErdZK2pK7IaBbm+9N60uBUX4tmka1eZvM+ecmVM/sxwhdP/liiZujY/q8HpvbY25
+	cYmaoi0Og6ogdVA+oiD0lJmt1rBvJl/zcbPhHZjqya0CElWeQRf/ejRR6EwpptnhszlymfAFpaNHd
+	uW1m/J8b9Jil2BUZyY/VTl+KqxikK5lnqsqDFCUZV9rjHEXXve1Hqk0rgwE3TjiE70ZJUO/WdrMQz
+	JnwhWN/VXREGwvSHs0/GXOgfkOW1x5h/mnB57cWdfI+L17in1KcVBVpxRlkSsNngsA0mnAxp0+Udj
+	zyLBfWOrS5lIMwpshNfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGPh-00000007tUa-1xez;
-	Wed, 11 Nov 2026 22:03:29 +0000
-Received: from mail-ot1-x32d.google.com ([2607:f8b0:4864:20::32d])
+	id 1xRGTV-00000007txw-0jCp;
+	Wed, 11 Nov 2026 22:07:25 +0000
+Received: from mail-dl1-x1235.google.com ([2607:f8b0:4864:20::1235])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGPf-00000007tTf-0mNp
+	id 1xRGTS-00000007txV-1nRV
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:03:28 +0000
-Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-7f84a55cc06so2176384a34.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 14:03:26 -0800 (PST)
+	Wed, 11 Nov 2026 22:07:24 +0000
+Received: by mail-dl1-x1235.google.com with SMTP id a92af1059eb24-170135e43c7so1715294c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 14:07:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794434606; x=1795039406; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=sPfQCcrAfCjRkFz6L9qyGHzK9Ch2pW+l+JfxC7qRxyM=;
-        b=jQcHEY4+bLrjvcr5LeOYeWy+/WMPwJt5De7tix3TXz3s3YbGztXUalWt0EPlQTAyOh
-         SW7hEsudAI1AVaAtsEnrTg/3pVsAqaJqHrQQSa3Y1nFBv47Ebl0uPKrc6bezxnTnqR0P
-         ySjVtvQ7EdH9nObQIyQ414/JIoOm5e1pYfRv9EUV73uzbu2E5Ft0laT1+gzDWQFtAI7r
-         WqRHzbp423LsyvQim6JNhBlvrUZM6mDr+ozLyRukzw9v86eUtPZbd6JFoxIFxybGQPVm
-         /wucM3c+icb8t1iCOoRmHpjmDlevzV1rPntmJ/kqhIYmuo7wFzyxj2QbONtLmWxN/QAu
-         UQEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794434606; x=1795039406;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1794434841; x=1795039641; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=sPfQCcrAfCjRkFz6L9qyGHzK9Ch2pW+l+JfxC7qRxyM=;
-        b=BWc8xBkkU8YqVm/Soq4Dcy76hiS8y9RFLk5oCY1ACo1xoHvBh6ws8bFlWOep1U9hll
-         Tyi2dR2mEg0ux6OIFzJdRzc9tOV+jmeQxe9q05OBXVZM6xNMho6Tkbfg4nFJ5FqAhIxA
-         1SS1fWAWNNhlmrFCrAp7luUL40sTq7m0JlwZuHusUDSWyR4hfRlKKG7leKfMjhY5cvQ1
-         oAIIPwH2iq/eiF8s6jqFkuZfa6hjsUwqLfd95q747szhQBGDFcHXPc3OrhM98j5BhQDZ
-         26kwFH58ltlHsFiEiy5NWiKWpqMeoH8VXCPr0M4ty8R99YEMS5V7gv9C5gqbJwWqdI8O
-         ZoMw==
-X-Forwarded-Encrypted: i=1; AL+hErHNYwfzJCRk2b7b682xk9N5BTnapcSit8pCRABZ1f5Qus9v3Sd5hDYerFg5+GDdi1qgrgK9qWY8tKVfCcuLVCLm@lists.infradead.org
-X-Gm-Message-State: APuU4Z+ghhKB2b6CjrH3fC8GIUYIaVVOPOng1bVGvnfgcoJ6FTPBmiM/
-	HUOjjAkrzHhhIBxfoxCzgINkfVwMN/f5onoQZDlas1FpnstclsxH8Vmv
-X-Gm-Gg: AYBFou3E6SRs/tIFjbEj0cx3Az3Ang5b2sdD3tcXt6hMKdXnpNEp9jfIj6Ovock6UUY
-	GuGpsdaRV/++bD4mfsZNsaB5QXCkBdLSKbdBYRVFDCFtnzdXTGVRUp/h+rMv3a71NtFOePkZ8vV
-	RCX6UY1U00Z0F9z9b5gpuQ/9RHIB603k5CpVDDvmZ1wiCI1OA2eLvnFyu/wj+4yvf1j4WIvL8Rd
-	3pGXkJEksNeplAuWuY9qs1DwOKA/zGZzwex1vqYV1A3gQAYwmP/xxHCR9eX5/9NqDdBIi5RhKMV
-	bXY74Q/tVtfQRZXVdnQNKZVw7ZOEUxOSwQvzjKG6qn7cDT3JxoHi1s1AyrwlYjqiPTUenY6fOhq
-	ByDMl+3LT4lHihLfrRvFiGVZeUMhyU3ZCJDSxuu5HzijGUdtEnveC6zvVTS1EVblH+AIeL42oRn
-	0RByv4jY5VJXb3019GLujOaZSJzyAjgptRlEoSt1JuDjXzrPhbdoV6LY48K85DzI2pvtgowI21e
-	OS57TC71z6HaaHajmDAC/25G0xhug46Pd3/Xv7o9/MW15jsrM8eSnxb93blIRwLt/A1G02EJ/wJ
-	Rb1GH3kmv2w0H2/SxnIbMmCMAr0V3D93HFZUX9W2puH+B2N/1UMGID5+4mSJGnWMvCY+5xvbTs6
-	4ftlsGZbV+FnGOQ2vA7Efr/WrgvtQgBIyVQa43/bWLHdgq3rPUbQ1Oa2tlEsEer1/Vt5NFfFGch
-	K/
-X-Received: by 2002:a05:6830:270b:b0:822:b35a:a2c3 with SMTP id 46e09a7af769-860f25eafa0mr3652101a34.3.1794434605465;
-        Wed, 11 Nov 2026 14:03:25 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-8615518d641sm236715a34.21.2026.11.11.14.03.23
+        bh=+dsS8/OU0wby4BZ79znZbA9Ny2A1+vlGylVbT5sKa+g=;
+        b=FeVRmTirFZKF//H5cX4gMeMoRfLtIcQfkzwcwge49mw5Yk810GDlC1jN8bHvY99lvE
+         N+REIVS7/JfNTABB/KGdQxWyHeyAee9qPgofQsdiy3gSdgSkKbAc3RfHlF5xNa6B06uv
+         ujOT1me4gJeJvqlUcml88TJB+0Pq96C2rAOjsjouy3Gp+KqPJLLmZmEOY50J8Tv9iPfT
+         sHNGyP9AAsiwpZGkm5SCT6j10SBw8pXMC4vRsqxXzJ6q/Y+IJQdvwUhMJMdFxNMqe+VX
+         lY7/rxTh7kytsJh7uHvl9dohJNGJ/W1TILUEMnf/yeXrxccuI/Bj/ymtvjxC532S+m81
+         LrEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794434841; x=1795039641;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=+dsS8/OU0wby4BZ79znZbA9Ny2A1+vlGylVbT5sKa+g=;
+        b=ftrTM7lhamQecnh3moTX7ApbRE6MGjdIu8TXpvXy9DSccpusK7wC9NWEDjZ88W6pIQ
+         mFqXxmiTX21Oj2DpKBNeItRWBDhl8OR9EN4VuASgfcKoroiuK6uSHdrHMfd+gR4VAtS7
+         kncT+qubbgKXeJhGTN1pI69pzzrjVFQWZTjOGkpiKF/wk6elsWaynO2sGp1JEByt1jhw
+         qanQ/5M7NcAGNMe+KU7r7xMZFoLOezmYV8n62KdWPF6aPpPzfZ6fB/8KHMxY1rBgm3dJ
+         FwV0BnniljJKsL2Xq3mGZdurnjz8bhjdYBNSrCiHS1RISX+jwTTpgT6skGqiJ40EbiS3
+         fHcA==
+X-Forwarded-Encrypted: i=1; AL+hErH2E6yLcVDMvf5/QkK+wP6NKAOvVElra/1JXo1tnRXIuJr5+3u5gyPY1zkg7by1pbb1jc1XU7xi/R2rGkN8jUV5@lists.infradead.org
+X-Gm-Message-State: APuU4Z9T5PFDzVusxZwjUvFT7wcDIDB5ZEWqZh1+EOB2iKHaxpz8ZjGF
+	LzABYUGpgwRDfPBTHgNuoCZRezZF4nenKJRoxat5l6GW+4GuSy+dz9KJ
+X-Gm-Gg: AYBFou2api2zpiQN0Dt02EkbVJqA9hsT+ukl3S8UfBOoQ8e/p9xQgjif+62yG/QFQns
+	Gmzaau8NWF5wVG/4uFY3vzL4YbTaEvHdrEElDMfojt2+ttAHp9raD09LtwOGLFpRnU3+1h9EOOQ
+	rS457cEwSrdYWiUQdmNLFT115q1EmLwHCmN0/655I/se9s6yXqEyd3ktDdE4gIfrDRjZHI04OJY
+	bYCiGXoCqfFXO0Dg7JE0T4MUVAil8tgSLn83KK/QfzCMuWtJcmWqKc6v+Bhm7LqOpkMDyMSOsrf
+	Lj8iAV5cLiwcvb91HJ6bySV/9zvH3Kh6ZXHN9R75Wbe9qa9xVJhabPDXy6kNo+xBEiGe6Oy1NiA
+	amXyyANEDYSHpV6u1oQgodUtzBAE039V20S+aP2+MRST4tSU6EnGxZHMM8MEnvGMbcs8DkCXaSK
+	eeq9Os+tRMS2bVj16xW5ht1UzRio2pNjXjgVMXQv9sA0rSTmRSwpedSq5omcIHc8M/dNLRptfyk
+	xOQKPWa8dG1DAWQBDVhH7TBJW42oA4WeBZ8z4CcXYMXAFPm8PyS1LaF8xnyH9SNTc8MYs00+8yY
+	w6vnAIMKIRmlymdAQUTy
+X-Received: by 2002:a05:7022:296:10b0:190:d0d9:3110 with SMTP id a92af1059eb24-1b3c0365599mr3096674c88.45.1794434841284;
+        Wed, 11 Nov 2026 14:07:21 -0800 (PST)
+Received: from a1-free ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5890584sm20571438c88.3.2026.11.11.14.07.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 14:03:24 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: Inki Dae <inki.dae@samsung.com>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
+        Wed, 11 Nov 2026 14:07:20 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: soc@lists.linux.dev
+Cc: Arnd Bergmann <arnd@arndb.de>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Kees Cook <kees@kernel.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	dri-devel@lists.freedesktop.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: [PATCH v2] drm/exynos: gsc: allocate formats as a flexible array member
-Date: Wed, 11 Nov 2026 14:03:08 -0800
-Message-ID: <20261111220308.12684-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.56.1
+	Mikko Rapeli <mikko.rapeli@linaro.org>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	TAKANO Mitsuhiro <takano32@gmail.com>
+Subject: [PATCH v2] arm64: defconfig: drop four symbols that no longer exist
+Date: Wed, 11 Nov 2026 22:07:18 +0000
+Message-ID: <20261111220718.2586239-1-takano32@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261111202914.2558187-1-takano32@gmail.com>
+References: <20261111202914.2558187-1-takano32@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_140327_253860_D253E6BC 
-X-CRM114-Status: GOOD (  14.68  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_140722_470840_B6B80A9F 
+X-CRM114-Status: GOOD (  15.09  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,77 +112,91 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The formats array is allocated separately with devm_kcalloc() and only
-referenced through the gsc_context. Make it a flexible array member at
-the end of the context and allocate both in one go.
+None of these symbols exists any more; the lines are left over from the
+removal of the options they name:
 
-Annotate it with __counted_by(num_formats) so the array accesses can be
-bounds checked with FORTIFY_SOURCE and UBSAN_BOUNDS.
+  NFS_V4_1                  folded into NFS_V4 (7537db24806f)
+  SLIM_QCOM_CTRL            driver removed     (7cbba32a2d62)
+  NET_VENDOR_PACKET_ENGINES vendor removed     (aec3202247b4)
+  SCHED_DEBUG               option removed     (b52173065e0a)
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
+The Ethernet line was added by commit 32379ad4060b ("arm64: defconfig:
+Drop unused Ethernet vendors") a week after the packetengines vendor
+directory had been removed, so it was stale from the start.
+
+The built configuration does not change.
+
+Link: https://lore.kernel.org/all/20251223134807.3543642-1-mikko.rapeli@linaro.org/
+Link: https://lore.kernel.org/all/20260317-arm_defconf_cleanup-v1-3-8eecb7fdd24d@kernel.org/
+Link: https://lore.kernel.org/all/20260317-arm_defconf_cleanup-v1-9-8eecb7fdd24d@kernel.org/
+Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
 ---
- v2: use devm_kzalloc_flex()
- drivers/gpu/drm/exynos/exynos_drm_gsc.c | 17 ++++++-----------
- 1 file changed, 6 insertions(+), 11 deletions(-)
+v2: the commit message now carries only the change itself.  The test
+    record, the earlier submissions and the AI disclosure moved below
+    this line, as Krzysztof asked.
 
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_gsc.c b/drivers/gpu/drm/exynos/exynos_drm_gsc.c
-index 4a07deeb382b..303e94df632a 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_gsc.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_gsc.c
-@@ -99,7 +99,6 @@ struct gsc_context {
- 	void		*dma_priv;
- 	struct device	*dev;
- 	struct exynos_drm_ipp_task	*task;
--	struct exynos_drm_ipp_formats	*formats;
- 	unsigned int			num_formats;
- 
- 	void __iomem	*regs;
-@@ -110,6 +109,7 @@ struct gsc_context {
- 	int	id;
- 	int	irq;
- 	bool	rotation;
-+	struct exynos_drm_ipp_formats	formats[] __counted_by(num_formats);
- };
- 
- /**
-@@ -1222,21 +1222,19 @@ static int gsc_probe(struct platform_device *pdev)
- 	struct gsc_context *ctx;
- 	int num_formats, ret, i, j;
- 
--	ctx = devm_kzalloc_obj(dev, *ctx);
-+	num_formats = ARRAY_SIZE(gsc_formats) + ARRAY_SIZE(gsc_tiled_formats);
-+	ctx = devm_kzalloc_flex(dev, *ctx, formats, num_formats);
- 	if (!ctx)
- 		return -ENOMEM;
- 
-+	ctx->num_formats = num_formats;
-+	formats = ctx->formats;
-+
- 	driver_data = device_get_match_data(dev);
- 	ctx->dev = dev;
- 	ctx->num_clocks = driver_data->num_clocks;
- 	ctx->clk_names = driver_data->clk_names;
- 
--	/* construct formats/limits array */
--	num_formats = ARRAY_SIZE(gsc_formats) + ARRAY_SIZE(gsc_tiled_formats);
--	formats = devm_kzalloc_objs(dev, *formats, num_formats);
--	if (!formats)
--		return -ENOMEM;
--
- 	/* linear formats */
- 	for (i = 0; i < ARRAY_SIZE(gsc_formats); i++) {
- 		formats[i].fourcc = gsc_formats[i];
-@@ -1256,9 +1254,6 @@ static int gsc_probe(struct platform_device *pdev)
- 		formats[j].num_limits = driver_data->num_limits;
- 	}
- 
--	ctx->formats = formats;
--	ctx->num_formats = num_formats;
--
- 	/* clock control */
- 	for (i = 0; i < ctx->num_clocks; i++) {
- 		ctx->clocks[i] = devm_clk_get(dev, ctx->clk_names[i]);
+Tested as configuration text only: "make ARCH=arm64 defconfig" on
+v7.4-rc2 with and without this change gives a byte-identical .config,
+and "make savedefconfig" emits none of the four lines.  No kernel was
+built or booted from this change.
+
+Scanning every Kconfig definition in the tree leaves no other stale
+line in this file; similar leftovers remain in other architectures'
+defconfigs and are left for separate patches.
+
+Mikko Rapeli sent a patch for the SLIM_QCOM_CTRL line in December
+2025, and Vincent Mailhol's "configs: cleanup obsolete or incorrect
+assignments" series carried the NFS_V4_1 and SLIM_QCOM_CTRL lines in
+March 2026; both are still unmerged.  I am happy to drop the
+corresponding hunk if either author would rather keep their own.
+
+The change and the changelog text were produced with an AI coding
+assistant (Hermes Agent, model deepseek-v4.1-flash) working from the
+tree and the git history.  I reviewed the diff and the reasoning, and
+I am responsible for the submission.
+
+ arch/arm64/configs/defconfig | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 7b4985b29b21..513f8d6be073 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -424,7 +424,6 @@ CONFIG_MLX5_CORE_EN=y
+ # CONFIG_NET_VENDOR_NETRONOME is not set
+ # CONFIG_NET_VENDOR_NVIDIA is not set
+ # CONFIG_NET_VENDOR_OKI is not set
+-# CONFIG_NET_VENDOR_PACKET_ENGINES is not set
+ # CONFIG_NET_VENDOR_QLOGIC is not set
+ # CONFIG_NET_VENDOR_BROCADE is not set
+ CONFIG_QCOM_EMAC=m
+@@ -1756,7 +1755,6 @@ CONFIG_QCOMTEE=m
+ CONFIG_MUX_GPIO=m
+ CONFIG_MUX_MMIO=y
+ CONFIG_SLIMBUS=m
+-CONFIG_SLIM_QCOM_CTRL=m
+ CONFIG_SLIM_QCOM_NGD_CTRL=m
+ CONFIG_INTERCONNECT=y
+ CONFIG_INTERCONNECT_IMX=y
+@@ -1824,7 +1822,6 @@ CONFIG_SQUASHFS=y
+ CONFIG_PSTORE_RAM=m
+ CONFIG_NFS_FS=y
+ CONFIG_NFS_V4=y
+-CONFIG_NFS_V4_1=y
+ CONFIG_NFS_V4_2=y
+ CONFIG_ROOT_NFS=y
+ CONFIG_9P_FS=m
+@@ -1861,7 +1858,6 @@ CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
+ CONFIG_DEBUG_INFO_REDUCED=y
+ CONFIG_MAGIC_SYSRQ=y
+ CONFIG_DEBUG_FS=y
+-# CONFIG_SCHED_DEBUG is not set
+ # CONFIG_DEBUG_PREEMPT is not set
+ # CONFIG_FTRACE is not set
+ CONFIG_CORESIGHT=m
+
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
 -- 
-2.56.1
+2.53.0
 
 
