@@ -2,121 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F23B606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1832360A3809
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y3JidIT0;
-	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=L6KxIxNR;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=z3G7NLTa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pq3qJxCc;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KSRmCMSP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NVcjCF7rhlArp5otZJmKV4IJZw6ysmYorRuSaEeq39g=; b=Y3JidIT0QLjQH/
-	2IU0+uRGOPda6TGSuQJWhSrMGmAP0mpS+ZRu7KPg+g+mGlnsgwdJ6Mua5TSB51PxBgW00y9oKnWt9
-	k9ytd00dpnbvXVW1HiNq+m7oLG88HM2BI0kYTNe+iAsadH5v6F09t+g26o8+GOoVQguS2FJybHOcS
-	zHkVnTR1dnbM4WXmf3gutFjBcaZx9WipsSPFgPEKhQcSyxDW3Rc0AvLmzX4HeblNs+CMycnLcALdq
-	RmNW7i3lAR/8vSu1lipowa5fsg0rs30+kBLzIn7V/ZiiR+naScRmD4+uthiOICIGWRBPJqJLdX/mq
-	gn/+2Cevn/rP7A4gnKiQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8NGJF2GluLUXT5n0TBAtOAqoo1zFr6A4uWG8k4Arcrg=; b=pq3qJxCcB3QirJKQ67LZAcCv0f
+	42WjPz5VPK3IoA5nPrID1UMbvyfj5W/74ai3vXdnL9uH8YxlUcZzIHRdYPkSHDaaH1NEt6ckQRsqU
+	Rhjdg+lLY4/getpNt9v9zy9CgfIMdpVQY+/uLyK3UZTvsZBxmZeZQH/cfKW6oH5VpxqlIosF9uxa3
+	/zxRvEMdvcHVxMGXqvZejF2RvIVEQdltWBK4nxCnnaUcA5H4akJ4Gq4QiQnY0eOTuJITIQWRGVdlJ
+	huWLel+Blf2Y/cK5On6XGVBS59iSmiV474MHX7tCz7HooimwYcnJng5b2c4cstRzjakwuwXbIFj83
+	DXvcOGcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2hq-00000005tqe-0Htb;
-	Wed, 11 Nov 2026 07:25:18 +0000
-Received: from fhigh-a2-smtp.messagingengine.com ([103.168.172.153])
+	id 1xR2o8-00000005uaY-1dED;
+	Wed, 11 Nov 2026 07:31:48 +0000
+Received: from mail-dy1-x1335.google.com ([2607:f8b0:4864:20::1335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2hl-00000005tnd-0O7k
+	id 1xR2o5-00000005uZv-0w1l
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 07:25:17 +0000
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 6DCDE14000DB
-	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 02:25:11 -0500 (EST)
-Received: from ams-imap-03 ([10.64.2.23])
-  by ams-compute-02.internal (MEProxy); Wed, 11 Nov 2026 02:25:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1794381908;
-	 x=1794468308; bh=NVcjCF7rhlArp5otZJmKV4IJZw6ysmYorRuSaEeq39g=; b=
-	L6KxIxNRMIcT1yT8IYRVjrM1dMK0OHipnX7SBWFUu71YQOzhbqw8kD32AMagYsxM
-	/7q9FfW+vjnU2GeG47XwS8Cj+1W9W3BFw81X7owPMUTKvd0avsi6g8cSmSWUdasV
-	yRDoGtF4tDgp+Yj5fcC1bPxc8D3Tmy+zo2EcAEvjj5Ljoe/gCiVRQ6aCPFtgkhfz
-	Omu0cVoMvngHHLJdx909PloYIcGENdAcvuHiM69SsCEy3lpcsBqn3wWKht+p6DwY
-	XjyQYMDyvg1ubEI3cjmCFJdqYsyARcfKMc550mnu5eCnXRUO7uUlvo3WfLtDJP+2
-	H8JKN1TGRG3Qm5JkB4xRwQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794381908; x=
-	1794468308; bh=NVcjCF7rhlArp5otZJmKV4IJZw6ysmYorRuSaEeq39g=; b=z
-	3G7NLTaXAr257e6nfrvQiJ5KtR0mo50tUYXwPqZxFPIJA2+Fzxmq6CzX9KR8kY9V
-	J2nipRlboQBEde/WLECAOPHSV1TJJa+WVzzj0YUXZ0ihlFCS9YLxmjIlFcOzeAX3
-	Zkz46DdVhXa2qIslJxh3RaQL850oJ66nD5VUX5O+6ua/iPxPo27m8WG+igO0ldwn
-	ImTYGbAm+P6FF9RwLmZeYt9RVzK44EBznOvz5EV3saKweGJsRaK+FlCmnpMLzDH7
-	Khs26XQk8DP/D6gdlwCCgBUsoABuUpaJU92y3O5hjNR/dwCx0Jpc9fKxEqEWScVY
-	aWVHebOUAUoIVWVZGsKDg==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=arndb.de a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794381908; d=arndb.de;
-	mf=PGFybmRAYXJuZGIuZGU+;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:mj9CjtLnV90zQUTg8/l6H9Jn0qI/ToiRv6c9mLf5/rmHfkg
-	lBtVVZw17bqnKaxJyntb0ad9gLtqdbbFmNYj8qn4RHh6h1LFUXlAiwszS1cjlVQZ
-	u46rvVTRGTLFO2Lzr7OtL8mz+d11LM32QhoNL5Yci1ZYu4n3MaDU+tdo/RsuTB6r
-	7CcaVJ5eDBnzoG+O6A3Lb/EZhtB6D7XvaTU+I2tQNO4VmLIJNzygaTQYJSI0E5MP
-	WhhlaTWKfpb7Sr9wTvdjIx61EYCNWQbYeiFvMEu3qW0bII9tQ0iv0ymKWOj6C7G0
-	nAfJfV245yIC/OrEMbNMQKDXIpeqB4fDWbgXzuw==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=12;
-	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
-	from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:aOfYtNPU96Z48LF9ydAMuDHYASQYrZPzhjyCB5ZCr1c=:2yjuHutRCW9OHoxGJi/02rI6GR6G1quC71CFLlLGLq4=;
-X-ME-Sender: <xms:URj0atABPQVf9F9exXwZzYSqEnJ9f-pxWVMiy9pfQdvjEQIRgk5Q8A>
-    <xme:URj0amV56fGn6DWP25wI5vi7z2YWvQXZHL1-cML8p1OF0BDTdUVfBTExwA25iC1sm
-    Z8Te1SgtuaUoH0NXiq4SSLLxgeaN47thJEyuRd_VbURXx_E7NHMTsE>
-X-ME-Proxy-Cause: dmFkZTF7R6okZh2Um8O2WFtGaPAzaWVyclW81RVuzBi6m9cZ7TmARRe/JEnJbrNlQQQItw
-    loi6AILktE/emObVpnQOoJts39kbNO1tE9lDjVx7eBlNPDZcfgBtPhHI3gUzBX1klyBSPO
-    m6wo3qyh4zLIjDtKLWuqShj+TyOAqZ1v7Q59pZa+MRJi70q1m10xXXOnjOuHBwh8BdGtZX
-    wBfT3GIm3IRhkBPNEN08cAsscmQrJAEEGmmw4+yOHAVXTj+TMYx50JKq2fPV2177t7u1Vf
-    WVqJ3r+WUsPyWckx9pQux4tjABMOv7+kiwRfFGlX/GNxjIHpQDzrrLJGKc6LFG6ajvAPJ5
-    Md6xNFl92qKVOA0xTnzKgygItofKMsYM55O/5UyjPG9pyCTktHg3Sc50fWnr6IoKR6x9B8
-    wjlc7OohIm/BnEx5XUudMFUoGMRiZE7UtKpzd7/9ZYz2ri81eE1Vy0GNSjhXEtFtaHOJRX
-    qYsSTjFUjq4o1UUV/VjotQu+YrIYkBUzWp4ve48LTdJlOQvcod01SGgrVol8ayMykdGm09
-    AcHZ0cz0NGrBkOYDmG2Yjmk93K+Vp4/479OATgyw29KkniRs5I7Y5pBfveunfckfp4BQMO
-    x+4Blg8R1FLPw6Sz5a7EhCLM99FFHZWnDeo4IlFjHjoMFdpNPw2IAnZ/sqUg
-X-ME-Proxy: <xmx:Uhj0avU8SAPt3d4gASF4NFBLkMm8amAYgIXuNDXK8So34t3xOeb-Gg>
-    <xmx:Uhj0ahkwS2kIQ_Q6ALLD1IiQ3TrGc19mEahy2EkZxQe5hYbgnzGALQ>
-    <xmx:Uhj0aiB_hI8ws9ayA3Xhf7y-QnRgJq-z1b53kgAshEejKAm5CPBgRA>
-    <xmx:Uhj0aoje2PeJLHbkBCrJ7dsGlL4Us62S-Sqmz8hdwrKPt4drqbPq2w>
-    <xmx:VBj0ajZRqbiMqgfKsse5I8mHR6L9OtNHjFFh_fe-bgeC5_H-4UVFpH2q>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id 27A2332A0097; Wed, 11 Nov 2026 02:25:05 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	Wed, 11 Nov 2026 07:31:46 +0000
+Received: by mail-dy1-x1335.google.com with SMTP id 5a478bee46e88-37071c0f42aso5025158eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 23:31:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794382304; x=1794987104; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=8NGJF2GluLUXT5n0TBAtOAqoo1zFr6A4uWG8k4Arcrg=;
+        b=KSRmCMSP+pG18wW+G8/GUPN5A1+iFAjctbf8LrOcHXgUFkPK93R6tBSO2BX+LQpiL9
+         QYB6D9YocqWfphLw8keiDDh2oktjpg2RrN33Q3XlaHb66lAEaKlvCXHNBsveYlehxvaB
+         IzyzdiDjpNOWiIum9yA0bD8yfud1TfofuLQ3SiWo1h6mF2t+II0bkS8DvSpShu6pQs4d
+         +r+VBUwjhXFJm/DdVctMG6S8WaqpExxblJfWKdDlvCZ/tkQc9L3E7FIiOpDbMZptYQaS
+         o80O3vLdpoJwZwYStWbodfVj2gXvBBFDkwPHfQ4OAz18YermDr0QEl38wa9AL52jeN1L
+         NR1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794382304; x=1794987104;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=8NGJF2GluLUXT5n0TBAtOAqoo1zFr6A4uWG8k4Arcrg=;
+        b=DNJInEDb7CFqeRDECAccqcdPjSIebT/ZEo65ijLMw6eTm9w6XNjKYJ4iLVVWA70TYk
+         hEMXh94lR2ywEukFiOSoPVb9eyIJikgMi0MQKBTVo9uvzA0nR+COvastT2WxmgpAFN1i
+         yNCdyrGm6nKRJRmuMefR6Qtw7sIh0FwFTJjK46ud4tWhpwgXgBifuADgrvDf7TwFQugl
+         xSpJalpJZVtbIJf2RSi0UwQqlK73IkvcCDmv6IeuO+nCVgXC+oimuvKK/laAizAUVKD1
+         qln0B/puaynIvgdGruxYEVmUrGuKubxH9pfI8wCyrtHrm/rF7uVV6LtgU7xAwX75bMgd
+         kUVw==
+X-Forwarded-Encrypted: i=1; AL+hErHgMp+Spe43ppwYp5QqdjZtErsNDm+vHO8TP4XDIvUCHTT7bxF7Zfx27wafuKKJn0zApgYGIboh0M4nrjaikGpX@lists.infradead.org
+X-Gm-Message-State: APuU4Z9dIMMCnAboAYtdhLUcqIcoV3ceKzvSpSPREYzebXjD4EmsWcAf
+	8rSP3HxfqPFOLoQURvZpIn9OR9oSpXz0sgSNX+Z7WHzYZw/wOJUdVVFasLqoEg==
+X-Gm-Gg: AYBFou1ACbQ9e6pe3v5ObVfoOQkKYeD4QVYtaWKwNAQ3eHcQWgj7cRVnNioQ1wTvGd2
+	srDTulJxl40hNP3IkewdP0pKhGT/wmoIyJYsleq+XiW8nIADqiBl85BR2wAJhZ8my/fz+3rLG7Y
+	kbJt6SHCfaKp/UNy5bN8lUZvXTwqNHRjZ7GDRAqJiyqaolWo2II7uynzV7GHRwvazi5hJEpkfT1
+	i8KCDKkOjmkvwtVd64d+ujN3th/zPQ1LhJlyWNl+0vALq37MoQl+B8Zw/iDvl9FOtTklgUnFowC
+	fWYb6pjg6KvnkX0hXTGI1FgdBPwUJT0noP2Wc28ilLi/EEffg+s9au4kBIOZhtJ3THHnJmXiRP7
+	3AyW8SMfkLEY6FgKfRsGeBtK1LJAJnXG1hLzGY8Q5wGjJIs6cVty0/YWWFErik+mamntrg/gDfu
+	ZN6hwrQmOa/cOdGy3zT8ZUjXrtvzhBrAMjjm8MwQxpGGY+60hIe2iM0iwvD1KK/VVE6//JDsCdM
+	KUXXDq468dNrrbd44kWfnra7UtrRswaOthuGaKJaWmmRH/U7RLLqHoEZWImvdtAAoWoCIEIxtR/
+	xngTF2k+DEEbjyZbWXR/kdearGuALpIlPLiWKtPGEkBIzUrvtIYaoBTjK5aT1FNhSctcM+ZZMj3
+	YSKY90DCQcJE4440V5A==
+X-Received: by 2002:a05:693c:42d3:b0:366:9f06:3c4c with SMTP id 5a478bee46e88-3768694ff22mr1816814eec.32.1794382303560;
+        Tue, 10 Nov 2026 23:31:43 -0800 (PST)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3751fe32276sm12640655eec.8.2026.11.10.23.31.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 23:31:42 -0800 (PST)
+From: Joey Lu <a0987203069@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
+	Hui-Ping Chen <hpchen0nvt@gmail.com>,
+	Joey Lu <yclu4@nuvoton.com>,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH v9 0/4] phy: nuvoton: extend MA35D1 USB2 PHY driver for dual-port OTG support
+Date: Wed, 11 Nov 2026 15:31:33 +0800
+Message-ID: <20261111073137.381966-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A3PuoE8hdPmN
-Date: Wed, 11 Nov 2026 08:24:44 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Nathan Chancellor" <nathan@kernel.org>,
- "Russell King" <linux@armlinux.org.uk>, "Nicolas Schier" <nsc@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kbuild@vger.kernel.org,
- linux-kernel@vger.kernel.org, "Sasha Levin" <sashal@kernel.org>
-Message-Id: <09d5963c-4255-4da0-8c36-5624696ab633@app.fastmail.com>
-In-Reply-To: <20261109-arm-test-kprobes-rename-v1-1-663cdbbb90c7@kernel.org>
-References: <20261109-arm-test-kprobes-rename-v1-1-663cdbbb90c7@kernel.org>
-Subject: Re: [PATCH] ARM: kprobes: Rename test-kprobes.ko to test-kprobes-arm.ko
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_232513_572174_A093165C 
-X-CRM114-Status: GOOD (  11.81  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_233145_269614_95D8CAB3 
+X-CRM114-Status: GOOD (  17.92  )
+X-Spam-Score: -1.8 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,37 +112,99 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,FROM_LOCAL_HEX,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 9, 2026, at 07:46, Nathan Chancellor wrote:
-> When scripts/modules-check.sh is fixed to normalize the module's name
-> like name-fix-token does in scripts/Makefile.lib before checking that it
-> is unique [1], there is an error due to lib/tests/test_kprobes.ko and
-> arch/arm/probes/kprobes/test-kprobes.ko having the same module name.
->
->   error: the following would cause module name conflict:
->     arch/arm/probes/kprobes/test-kprobes.ko
->     lib/tests/test_kprobes.ko
->
->   $ modinfo arch/arm/probes/kprobes/test-kprobes.ko 
-> lib/tests/test_kprobes.ko | grep name:
->   filename:       arch/arm/probes/kprobes/test-kprobes.ko
->   name:           test_kprobes
->   filename:       lib/tests/test_kprobes.ko
->   name:           test_kprobes
->
-> Rename arch/arm/probes/kprobes/test-kprobes.ko to test-kprobes-arm.ko to
-> make its module name unique and clear up the error.
->
-> Reported-by: Sasha Levin <sashal@kernel.org>
-> Closes: https://lore.kernel.org/20261108225808.1809266-1-sashal@kernel.org/
-> Link: https://lore.kernel.org/20261103110411.11698-1-info@daylightlinux.ch/ [1]
-> Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+The MA35D1 SoC has two USB PHY ports managed by a shared hardware block:
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+  - PHY0 (USB0): OTG port shared between the DWC2 gadget controller and
+    the EHCI0/OHCI0 host controllers.  A hardware mux automatically routes
+    USB0 signals to the correct controller based on the USB ID pin state.
+
+  - PHY1 (USB1): dedicated host-only port for EHCI1/OHCI1.
+
+This series extends the existing phy-ma35d1-usb2.c driver and its binding
+to cover both ports and add OTG role-switch support, while keeping full
+backward compatibility with existing device trees.
+
+Changes since v8:
+
+  - dts: set the DWC2 (USB0) register window to 0x40000
+    (0x4020_0000-0x4024_0000, per the MA35D1 spec) instead of 0x1000, so
+    that it covers the per-endpoint FIFO region at 0x1000 + n * 0x1000.
+    The EHCI/OHCI windows were checked against the spec and are
+    unchanged.
+
+  - phy: select MFD_SYSCON in PHY_MA35_USB, as the driver depends on
+    syscon_regmap_lookup_by_phandle().
+
+  - Patches 1 and 3 are unchanged.
+
+Changes since v7:
+
+  - phy: add "depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH" to
+    PHY_MA35_USB, so a built-in PHY driver cannot be combined with a
+    modular role switch core (link failure on usb_role_switch_register()).
+
+  - phy: restore the PHY reset fallback.  If the PHY is already in
+    operation mode but its clocks do not become stable, reset it and poll
+    again instead of failing immediately.  The reset is still skipped when
+    the already-running PHY reports stable clocks.
+
+  - phy: gate the HUSBH0_GATE clock dynamically again.  The clock is no
+    longer enabled for the whole lifetime of the driver (devm_clk_get()
+    instead of devm_clk_get_enabled()); .power_on/.power_off enable and
+    disable it, and .init enables it around its register accesses.  The
+    gate can therefore close when neither port is powered.
+
+  - phy: nuvoton,oc-active-high: keep writing the polarity bit
+    unconditionally, so that an absent property means active-low as
+    documented in the binding, regardless of what the bootloader left in
+    MISCFCR0.  The bit only affects the EHCI/OHCI host ports' VBUS
+    switch and is irrelevant to the gadget use of PHY0.  This is a new
+    property in this series, and no mainline DT depends on a
+    bootloader-programmed polarity.
+
+  - Patches 1-3 are unchanged.
+
+Changes since v6:
+
+  - phy: update the copyright notice in the rewritten driver header to
+    "2024-2026" instead of "2026", preserving the original 2024 date
+    rather than dropping it.
+
+  - phy: split the unused linux/io.h removal out of patch 4 into its
+    own patch (3/4), since it's unrelated cleanup that predates this
+    series (the driver has never done direct MMIO access; all register
+    access goes through regmap via syscon_regmap_lookup_by_phandle()).
+    Placed immediately before patch 4 since that is the first patch in
+    the series to touch this file.
+
+
+Joey Lu (4):
+  dt-bindings: phy: nuvoton,ma35d1-usb2-phy: extend for dual-port and
+    OTG
+  arm64: dts: nuvoton: ma35d1: add USB controllers and dual-port PHY
+    node
+  phy: nuvoton: phy-ma35d1-usb2: remove unused linux/io.h include
+  phy: nuvoton: phy-ma35d1-usb2: extend to dual-port with OTG support
+
+ .../bindings/phy/nuvoton,ma35d1-usb2-phy.yaml |  44 ++-
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  36 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  36 ++
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  65 ++++
+ drivers/phy/nuvoton/Kconfig                   |   2 +
+ drivers/phy/nuvoton/phy-ma35d1-usb2.c         | 313 +++++++++++++-----
+ 6 files changed, 420 insertions(+), 76 deletions(-)
+
+
+base-commit: cee9395acd8043be0644b25c34bfa86623f2b935
+-- 
+2.43.0
+
 
