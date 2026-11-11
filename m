@@ -2,67 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C86606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80D0606AED5
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:43:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OCL0rqUN;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VIVfpXmh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zRFgyCzU;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bZGMYYR6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=TEZpFpmffuQgsA7wHSJ9KvqILxRMLO1TQcfZqtrUdh4=; b=OCL0rqUN6E47hC
-	tXipz6d5a4okXdhwV1ecexcNdIb+JBN4H9IdfajZNMhsCGnJXTIIzmMfoV+g7tk4zkfMe/YUOCYWF
-	YIO5wdCu9w4tjaDEkm7dj7GTjW/qqNLUtu+TwbaXSnn4YxTBDCyq6q1TLTf69gxepopWFbAWO2qEU
-	WXDKePCqyf5itEBl0+d4uWSntBd/NmGy1YoQxCPZ2lcV7OBAgeQ90qqY/N2zDoQ1J3TlL40pta55S
-	7fSjRsYiGR30yXMLiWqFl2CAwyy2ZLgxWPRc60O9izhqjHrCbc9c1G3L7QAVOu94O+lAVj4+WpvyL
-	CWgQBR6uVvKYKIR4pmeA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=jSZ/tjih5hHmj7xJU8RhvBRDAwsZICp5Fjl1qfyATP8=; b=zRFgyCzUskRMmtEKRNOgVBq5DM
+	U2sQDRLxSWMbkvphyeRO6NcgjlujVENzLERa0MUjqSgdIiSOJJ00i+ycxnoGzEgrm7Lb2lvQn5IMq
+	CoIzpedsNUMJHWlNnN3PGDlv3D1Q6GVL8dRhlVU0fErMh+1/Mqlh8gJ5OujPpLrchMvWTpSkaz8og
+	DKnQwyg+q34w7AB8SV/BRrJen0VgkQg5kXezxTZq6zz9+0/Vnqc2iyvsMh4XZEWubpN7v4W+uzE3o
+	RpwJ+wEFElxF5VruLR1VRyJwDRljR/GGWOLEinE/rWH6CyCXDeDAwRa3UpzkuhvQkFEmlbDknojq8
+	8hpgWOPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGzC-00000007zcO-2wxi;
-	Wed, 11 Nov 2026 22:40:10 +0000
+	id 1xRH2B-000000080Dj-13E4;
+	Wed, 11 Nov 2026 22:43:15 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGzB-00000007zcD-2BTQ
+	id 1xRH2A-000000080DZ-1Ujo
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:40:09 +0000
+	Wed, 11 Nov 2026 22:43:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0E21B404B8;
-	Wed, 11 Nov 2026 22:40:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2C641F00A05;
-	Wed, 11 Nov 2026 22:40:08 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 15E4C45B1E;
+	Wed, 11 Nov 2026 22:43:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC2171F00A0B;
+	Wed, 11 Nov 2026 22:43:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794436808;
-	bh=TEZpFpmffuQgsA7wHSJ9KvqILxRMLO1TQcfZqtrUdh4=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=VIVfpXmhJUD7IubH5EEoQ8qr/rmNnAzCk8A6zI51ixsYfPkrXvpaj6m29W7c5jiGD
-	 a0rEC8u8SNRb3D6X+POh5EcgmzUfq/k04uNd5lArAuY9/odZtW6kuLtiQEC6Af04Va
-	 fQ+/njH4QOccgDyvlwoYrRBASdIB8QddWoG6BE/yVWytxSKp4InpcZpx+IttPSWLFB
-	 KC/ZqZjwBFI4CfjqRgK6QDmjDOlFuWLyXZaKBySjva34fCszKNi/HZU/cEyNeN2eVk
-	 PN8kTUOMuN45nj7O1XXOEv2eGZcuCBH5zleaqJX8R8Mi3rhe/igM72TTMTnG4oz118
-	 og1BMVfihdU+w==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id D81C4391AFAA;
-	Wed, 11 Nov 2026 22:40:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1794436994;
+	bh=jSZ/tjih5hHmj7xJU8RhvBRDAwsZICp5Fjl1qfyATP8=;
+	h=From:Subject:Date:To:Cc;
+	b=bZGMYYR6ICYIXG4sVGzvCmAJ5cf5CEYiNJmVWUbh4xI8+btF/uN9c9JhFnthl2C4V
+	 3UqQ3Wu+mqH75H9MYds+ChKVCtS3cjq7sZZJFQXU5rRSGXXyNVi8MBMvuKmlX35A+k
+	 CZ+F6CSdrYI8oD4nt2qpq0cF85XF+MhhMVC6bUecncyDqnxlpaSMszUCrIBWi9V8k1
+	 RbAlGYR5sNs93EFpeQ7KQ8e9pRGlsk8oawIAEWxDanjEHKmxyuS6Ex/bzBzakRPuSM
+	 8R/XOCXy8d4iidubanz56TNblhz+JkH1okxRHjPwPdElBsaFlEVlWg7o8LsppRomk2
+	 iTckEI2ouBJeg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/9] arm64: dts: marvell: DT warning fixes
+Date: Wed, 11 Nov 2026 16:42:57 -0600
+Message-Id: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/5] net: sparx5: add tc matchall port policer
- offload
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179443680768.1682529.11013685548418051653.git-patchwork-notify@kernel.org>
-Date: Wed, 11 Nov 2026 22:40:07 +0000
-References: <20261105-b4-lan966x-pci-fdma-sparx5-lan969x-port-policers-v3-0-b45a3a26bed5@microchip.com>
-In-Reply-To: <20261105-b4-lan966x-pci-fdma-sparx5-lan969x-port-policers-v3-0-b45a3a26bed5@microchip.com>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, Steen.Hegelund@microchip.com,
- UNGLinuxDriver@microchip.com, robert.marko@sartura.hr,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMyw5AMBCF4VeRWWuiJYhXEYtqByNu6ZRIxLsrz
+ u5bnP8CRkfIUEUXODyIaV0CZByBGfTSoyAbDCpRuQwT1rcsZu0OnCaRalTSlNpkhYVw2Rx2dH6
+ 5uvnNezui8W8D7vsBwqAgHHAAAAA=
+X-Change-ID: 20261111-dtbs-marvell-3ae21c8ac47d
+To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+Cc: mfd@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-Mailer: b4 0.16-dev
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,46 +73,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+Another batch of DT schema warning fixes for Marvell platforms. This
+fixes most of the remaining warnings on Marvell platforms.
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+It's best if the whole series is taken together.
 
-On Thu, 5 Nov 2026 14:19:34 +0100 you wrote:
-> This series adds offload of tc matchall filters with a police action to
-> the ingress port policers of Sparx5 and lan969x, which are both served
-> by the sparx5 driver.
-> 
-> In hardware, each ingress port has four single-rate leaky bucket
-> policers. A policer drops the frames that exceed its rate and burst.
-> The four policers of a port share the pass and drop statistics counters
-> of the port.
-> 
-> [...]
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Rob Herring (Arm) (9):
+      dt-bindings: mfd: Add Marvell AP806/CP110 system controller schema
+      arm64: dts: marvell: Add AP806/CP110 syscon compatibles
+      arm64: dts: marvell: Drop unused USB connector PHY supplies
+      arm64: dts: marvell: Drop SPI max frequency
+      arm64: dts: marvell: Fix node names
+      arm64: dts: marvell: Fix w25q32 compatible strings
+      arm64: dts: marvell: Drop unused USB 'phy-names'
+      arm64: dts: marvell: cn9131-cf-solidwan: Drop st,m41t80 reset-gpios
+      arm64: dts: marvell: armada-3720-gl-mv1000: Add switch fixed-link
 
-Here is the summary with links:
-  - [net-next,v3,1/5] net: sparx5: Drop redundant POL_ prefix from POL_UPD_INT_CFG
-    https://git.kernel.org/netdev/net-next/c/de6c6d0fe1a2
-  - [net-next,v3,2/5] net: sparx5: Add registers used by the port policer
-    https://git.kernel.org/netdev/net-next/c/08543a66f15a
-  - [net-next,v3,3/5] net: sparx5: Track shared tc blocks and per-port policer state
-    https://git.kernel.org/netdev/net-next/c/54d7dad1a3bb
-  - [net-next,v3,4/5] net: sparx5: Add hardware programming for the port policer
-    https://git.kernel.org/netdev/net-next/c/b18f7b93e0f7
-  - [net-next,v3,5/5] net: sparx5: Offload tc port policers via matchall
-    https://git.kernel.org/netdev/net-next/c/a53151fbbcd6
+ .../mfd/marvell,ap806-cp110-system-controller.yaml | 59 ++++++++++++++++++++++
+ arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi      |  2 +-
+ .../boot/dts/marvell/armada-3720-gl-mv1000.dts     |  6 +++
+ .../boot/dts/marvell/armada-3720-turris-mox.dts    |  1 -
+ arch/arm64/boot/dts/marvell/armada-7040-db.dts     |  2 -
+ .../dts/marvell/armada-8040-clearfog-gt-8k.dts     |  5 +-
+ arch/arm64/boot/dts/marvell/armada-8040-db.dts     |  1 -
+ arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi |  3 +-
+ .../boot/dts/marvell/armada-8040-puzzle-m801.dts   | 11 ++--
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi      |  6 ++-
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi      |  6 ++-
+ arch/arm64/boot/dts/marvell/cn9130-crb-A.dts       |  2 -
+ arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi     |  2 -
+ arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts |  1 -
+ .../boot/dts/marvell/cn9131-db-comexpress.dtsi     |  4 +-
+ 15 files changed, 84 insertions(+), 27 deletions(-)
+---
+base-commit: aaa2f954c21b205a0bcd0961e5b2be4e82e58455
+change-id: 20261111-dtbs-marvell-3ae21c8ac47d
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Best regards,
+--  
+Rob Herring (Arm) <robh@kernel.org>
 
 
