@@ -2,71 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495ED606A8BD
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 23:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BDB7606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 23:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rs2NoEiL;
-	dkim=pass (2048-bit key, unprotected) header.d=cressey.dev header.i=@cressey.dev header.a=rsa-sha256 header.s=key1 header.b=MOdWtvWo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G7xK7TIF;
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.a=rsa-sha256 header.s=2022a header.b=KD+N4m3F
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Cc:To:Subject:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=t9kO9XGAegdg1V2vmzxAZZmN+Wm2FOyrI5Nk2f8kXVM=; b=rs2NoEiLQ6YN4xVjQA5XQ/0XRb
-	VukHT0SA8UodC8/+peA/NqJXw+6iFEV047mxORGmyseM+P0HA+a/GhgcYbOEfGtb5VmtxWd0yNYrL
-	X3HHQAEN+BCI4A2o6tdXTB+qE+COdi8qjc9I9vmL6HCB1LhJC9v5NI1pvbO7WTKV6Dk9yNz46Kczt
-	bqCs3XeQS3cTPrKuJwtsg8kvOKQ7wNzZomQoL9B8Ux5sW4HcXxkMI/2AzvmzOdGVNNAi1Xz6O8P80
-	HDoK4Xdi+ZLLeQFmA+cnIgcYBRwujkFEjKkDe1QPPuS4ZLKnUWuaB5hweK1uRcNtYwxhmUei2qRNA
-	IKmIomqA==;
+	bh=4jTQv18d6f1WQDZPy8KbBDvAw2VyV9v3NRrsYhICvJ8=; b=G7xK7TIF2+ujiNvcsluF1+xNXk
+	YrApVBlRNwmcf0l3fd+wwkwVVMWZNffdXYz4DyE7dN+iVqK+AFDSmtv5CPjO+rwcXzT5dcM8fLYUh
+	sMvCQGRYV5LAh8jwEoReeGIAQANQERT7z7ELrtO4C9kL5aotdAAr7G6mrFcopAA27UEjMe0kRGdcp
+	eYfdbZ9w0E1kznwletZNQjJRW4JvQ5i5wjoEXykPg0hEUHlJ1vnYRwBdSEr+0qyQkiQ3a5g95CpPq
+	uSArzL/xhpIlNqcFrRPwWAtsss/h/UXo8loB5wW/JY6mcsQXp8atOp54igWgHCHq4X8asNPDmHdkB
+	+9HOi3Aw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRHi9-00000008896-1cZh;
-	Wed, 11 Nov 2026 23:26:37 +0000
-Received: from out-165.mta0.migadu.com ([2001:41d0:1004:224b::a5] helo=mta0.migadu.com)
+	id 1xRHlb-000000088un-0Epq;
+	Wed, 11 Nov 2026 23:30:11 +0000
+Received: from pi.codeconstruct.com.au ([203.29.241.158] helo=codeconstruct.com.au)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRHi1-0000000884q-2MBW
+	id 1xRHlX-000000088uL-2Stp
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 23:26:32 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=b/8lLMDlwRa4+gznMkDz96CHWdfImhJ5sxzvM1VsIDw=;
- c=simple/simple; d=cressey.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794439585; v=1; x=1795044385;
- b=MOdWtvWoXkBNJaA4bOpDVYlDcwCRHMWccYHPEbF14qgfh4c/hoMYub9Ykk3C6TU4x5jiOuyo
- QtwZI1Kpx1hB0E/VWP32Df9LYBv63Id4NtJP7W12/dsZQpEW+zd454PRyEn3fj8rVm+xecFZfeU
- 6dAsxcEO2SH7Khx3jWWXoWRUcTJv5tXsaJh4AmNCdLog3tU4ljPqfph6wDa39AF8U8NJivVZ1Dl
- LNXOzq7NGhUfzDtRWXclH4mNedpphhvNyidaudP1JiBEiwA1SfAW+muNTi6OdEoNZHGkvXzM2A2
- mzGDMFy5U1DxpaBp1CvBkOyOrkM8b2bLy3GCU7W7rWXcg==
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 4893caac69ce6e85;
-	Wed, 11 Nov 2026 23:26:25 +0000
-X-Mizu-Trace-ID: 4893caac69ce6e85
-X-Migadu-Flow: FLOW_OUT
-From: Ben Cressey <ben@cressey.dev>
-Subject: [PATCH v2 0/2] arm64: use typed entries into copied code for kCFI
-X-Change-ID: 20260924-arm64-kexec-nocfi-496e643578ce
-To: Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
- Pasha Tatashin <pasha.tatashin@soleen.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Pavel Machek <pavel@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, Kees Cook <kees@kernel.org>, 
- Sami Tolvanen <samitolvanen@google.com>, kexec@lists.infradead.org, 
- llvm@lists.linux.dev, Nathan Chancellor <nathan@kernel.org>, 
- Zhaoyang Huang <zhaoyang.huang@unisoc.com>, 
- Jeson Gao <jeson.gao@unisoc.com>, stable@vger.kernel.org
-X-Mailer: b4 0.15.2
+	Wed, 11 Nov 2026 23:30:09 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1794439799;
+	bh=4jTQv18d6f1WQDZPy8KbBDvAw2VyV9v3NRrsYhICvJ8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=KD+N4m3FafpulELFLuXVw9qA2sr62kqjZns89QS9ygPOv1uZ3Vt23iID59FR9yobW
+	 mXLcnCqeJXqjnuwkx3u5k5yfMVCSahFMzu7cjYe1WBBMdryWAlcIhe6EmViHIozTov
+	 jFZ1X7gUWke2ocIFRWQtMBBZChLgvJhg8cqNOLz26uy3ticSXZk2LNWiyavGR2YNg0
+	 jXKd4bklxKqKdmWlik5SxLDO5xidJ4pupeTmBrqs+fKBCJkPAo5Kjzb0XNbmkHKr6k
+	 Vdb476ZIPgAULgRS/7Jwt1Bzj/sTUfZc3fJUV+LeO2fTr06UqmsMUh1FKQ8nS899if
+	 H5eUI0c0Xz1jA==
+Received: from [192.168.68.117] (unknown [180.150.112.139])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9EE65704C1;
+	Thu, 12 Nov 2026 07:29:57 +0800 (AWST)
+Message-ID: <42bb0b817905637239c16b94a562254cd0e6a644.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: Add NVIDIA MGX Vera C2 BMC
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Jacky Huang <jackyhuang@nvidia.com>
+Cc: joel@jms.id.au, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, 	ryan_chen@aspeedtech.com, billy_tsai@aspeedtech.com,
+ devicetree@vger.kernel.org, 	linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, 	linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org
+Date: Thu, 12 Nov 2026 09:59:56 +1030
+In-Reply-To: <179438627442.2016371.12057101111349178921@nvidia.com>
+References: <91edc3ed1d65a6765530895c6574714bfd76b8d0.camel@codeconstruct.com.au>
+	 <179438627442.2016371.12057101111349178921@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Date: Wed, 11 Nov 2026 15:26:03 -0800
-Message-Id: <20261111-arm64-kexec-nocfi-v2-0-ddf0c4aa326f@cressey.dev>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_152629_897422_36E84D7D 
-X-CRM114-Status: GOOD (  12.31  )
+X-CRM114-CacheID: sfid-20261111_153007_831420_35FCBE89 
+X-CRM114-Status: GOOD (  11.27  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,68 +74,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-An arm64 kernel built with CONFIG_CFI=y oopses after "Bye!" on every
-kexec that relocates the image. v1 [1] marked machine_kexec() __nocfi.
-This version types the copied relocation code instead, as Kees Cook
-suggested [2], and does the same for hibernate, as Mark Rutland asked
-[3], so that swsusp_arch_resume() loses its __nocfi. Only kexec faults
-today, and its fix does not depend on the hibernate patch. x86 follows
-as a separate patch.
+On Wed, 2026-11-11 at 17:32 +0800, Jacky Huang wrote:
+> Hi Andrew,
+>=20
+> Thanks for taking the time to review this.
+>=20
+> > Can you please expand the description of the platform? Why was it
+> > designed and built? What's its purpose?
+>=20
+> The NVIDIA MGX Vera C2 is a Vera CPU-based server platform. I will
+> expand the description in v3 to clarify its purpose.
 
-Kees, the kexec patch is your diff with two comments and the ASSERT
-message reworded. It had no sign-off, so it carries Suggested-by. Send
-one if you would rather be co-developer or author.
+Thanks. Just to make sure we're on the same page, I feel stating that
+'NVIDIA MGX Vera C2' is 'Vera-based' doesn't add any new information as
+it's already in the name. Describing the purpose would give better
+insight.
 
-An LLM diagnosed the oops, did that rewording, wrote the hibernate
-patch, and drafted the changelogs and this letter.
+I'm after a helpful description in the commit message for the purpose
+of summarising the content of the branch when I do a pull-request. 'Add
+support for more platforms' doesn't really cut it there.
 
-Tested on v7.4-rc1 with clang. Under QEMU TCG, so functional only,
-kexec_file_load(2), kexec_load(2), crash kexec and hibernate/resume pass
-with CFI at EL1 and booted at EL2, and with CFI off at EL1. In KVM
-guests at EL1 on Graviton4 the three kexec cases pass, where v7.4-rc1
-alone oopses under the two load calls, and hibernate/resume passed one
-commit before v7.4-rc1. The KHO selftest passes under TCG, and oopses
-at v7.4-rc1. Bare metal, BTI at the typed entries on hardware, GCC's
-kCFI and LTO are untested.
+If the platform is described on the web by e.g. marketing material,
+please include the link.
 
-Changes in v2:
-- Type arm64_relocate_new_kernel() and enter its copy at the symbol's
-  offset, instead of marking machine_kexec() __nocfi (Kees Cook, Mark
-  Rutland).
-- Take back v1's statement that arm64_relocate_new_kernel "cannot be
-  given a type hash".
-- Add the hibernate patch (Mark Rutland).
-- Rebase onto v7.4-rc1.
-- Drop the Assisted-by tag. The cover letter now says how tools were
-  used.
 
-[1] https://lore.kernel.org/20260924-arm64-kexec-nocfi-v1-1-bbae2e2eadc8@cressey.dev
-[2] https://lore.kernel.org/202609241804.BB23BF10@keescook
-[3] https://lore.kernel.org/arZSe8hNnRPM5FqY@J2N7QTR9R3.cambridge.arm.com
-
----
-Ben Cressey (2):
-      arm64: kexec: use a typed entry to fix kCFI oops
-      arm64: hibernate: use a typed entry to drop __nocfi
-
- arch/arm64/include/asm/kexec.h      |  2 ++
- arch/arm64/include/asm/suspend.h    |  5 +++++
- arch/arm64/kernel/hibernate-asm.S   |  7 +++++--
- arch/arm64/kernel/hibernate.c       | 14 +++++++++-----
- arch/arm64/kernel/machine_kexec.c   |  7 +++++--
- arch/arm64/kernel/relocate_kernel.S | 11 +++++++----
- arch/arm64/kernel/vmlinux.lds.S     | 10 ++++++----
- 7 files changed, 39 insertions(+), 17 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20260924-arm64-kexec-nocfi-496e643578ce
-
+Andrew
 
