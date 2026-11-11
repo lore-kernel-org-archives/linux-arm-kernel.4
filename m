@@ -2,73 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D444606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 04:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC75606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 04:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zo8XoRRX;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=jBG5EcGP
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NmywYgfQ;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=JxPsOZ/v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5LxM/zW32Rd01ubKGpE8Na9mT8q2E7+7oK0A4eJKMjo=; b=zo8XoRRXpmL6M1
-	9chmrylXeIbI/GGFjlqeMNWLL6ODe8LsZZto7Pxo2Un9Z+oJF+lfYM3nJmauxbY5bl/DPmM5VTANg
-	2jH2zFPINvNzcZlizLpoYwI3JTc4nIEf1BGKTLB0FRFinlwN5A5cbsUJlx0mRGdkBF8ALRRZ1eNCu
-	UHLyxjj5ELGVdKDwGim+r5Tn6K1ohkelZs+ezgydmvAdG5z7JfH8GkcP5SJthGWId1IavBbVgUQpn
-	VGSNH0k/NO1MKHj/vHn2FXhGR4lB+oAaQCkb9rlCW0Y7UbEnZy88QN7g/uMSEQ4ggf7L5yEi8sJvQ
-	r380WWCzrWnsl1jePegA==;
+	List-Owner; bh=3fOO/5TS5MC3uku0IcFyxhEk9H8U26fc9bugwI8TDqQ=; b=NmywYgfQu/GfXj
+	Fv8PAITOIiL+ERBCbvcL0CZ+/c+kSw2QkhR1mSBADaGyrYb24GcrVo6IX0QiOrDRMmcI0QPcmvEtp
+	j04KALI/FKDXQDU/jOuIxA1cFSuABjP63Mdo+vWzZR5vx2s0T3pYvm1M1q+By/DhP3f6gXetRsiLM
+	H5jHrkImG0oP/c1YJ9L0Wy+p5UHg/JpFZks9YZ2pCu5TO6LbA4y6ZZr1JkZ832sOd3FTqysLxE5pg
+	eQec3cG2h1CgEHb+gTn6tvkMJGVBPeM1Qy9tN0BpNosqDd61AuvQbEVZY5LfqDUXQkyc9cEiHVbvq
+	o0g7npVetH9QLF9bXxog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQzjD-00000005ars-2UdG;
-	Wed, 11 Nov 2026 04:14:31 +0000
-Received: from mx.nabladev.com ([178.251.229.89])
+	id 1xQzjK-00000005ass-31vM;
+	Wed, 11 Nov 2026 04:14:38 +0000
+Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQzjA-00000005arX-16sO
+	id 1xQzjH-00000005asE-2jis
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 04:14:30 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D1EB710DCE8;
-	Wed, 11 Nov 2026 05:14:16 +0100 (CET)
+	Wed, 11 Nov 2026 04:14:37 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0BE9410DD7E;
+	Wed, 11 Nov 2026 05:14:27 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1794370460;
+	s=dkim; t=1794370469;
 	h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=5LxM/zW32Rd01ubKGpE8Na9mT8q2E7+7oK0A4eJKMjo=;
-	b=jBG5EcGPj0USytRC6I/igvoroGRuYoLBX87GgPWn1WWLEuqCxdpNV1dQcgXaz6EI6VezNI
-	+Xdwsbx3mvxUat0M1o3GZquUuPcHsTI8tMSBX3ZOdW4TR6vIbcJvXDq79M8J0zVf3y04Ox
-	rkx6jDo2yPfgUas0yemQuiFq4j00ys5J6++dVnDRVuwrnfP5fIpDFgBsLEcTRGXzYzUTzC
-	o/OjJ1MlWP0I6VQYpCR8L+PIKF7lE0j4yKGhbh/IQln8a9Dib/aMr2LCus8Vh2WHlyP1IO
-	/ap7ToQ2aImYknUFIPFs4f15heXThefab97+6SpdVno6nTDYqsWxxTy3/vJrlQ==
-Message-ID: <0865fe86-3ea1-4ebd-8ded-642eff159b97@nabladev.com>
-Date: Tue, 10 Nov 2026 14:59:51 +0100
+	bh=3fOO/5TS5MC3uku0IcFyxhEk9H8U26fc9bugwI8TDqQ=;
+	b=JxPsOZ/vQsc9ChQPwqoKSIBD5HFyAEFCENBUwOk0ggInk+3gfzcC9vvOaMPE6YGYgeaNi8
+	qAzCD82Y2LHRuWypQRfr4IoYSxM3zI908pBCG2iTvbwaL8nxnzjWaXmh/QZ1q3eQnm1JAM
+	kPMbtrxwzVAc0kA8MJInhvoD0tKuKsbxKKbBae1Icb2vDUrCDwOP7U9eYlNEYqEpK3ZSUL
+	PoUw+ypedIEBIMBR/hpjGnhfKSyvy6BaC2usJRXmbYwI3lzdYJH6dVIMtoYFkpH9s5mtvh
+	vJ7OU2mhN+HjUKz/BGgMwcY8TXaSrMkc+61x8+ap2s7qzbmckUjahVvIXoTcDg==
+Message-ID: <51207e63-ec60-4805-bf6a-b10647ee3866@nabladev.com>
+Date: Wed, 11 Nov 2026 03:27:24 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6563
-To: Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Aswath Govindraju <a-govindraju@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Marc Kleine-Budde <mkl@pengutronix.de>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev, linux-can@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260930214729.809649-1-marex@nabladev.com>
- <d8c3ca76-3d93-4abc-8a78-d23e0f018975@nabladev.com>
- <auGdT2kdxwfbB_ol@parshuram>
+Subject: Re: [PATCH] mmc: mmci: stm32: handle mmc power up
+To: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
+Cc: linux-mmc@vger.kernel.org,
+ Christophe Kerello <christophe.kerello@foss.st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Ulf Hansson <ulfh@kernel.org>,
+ kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20261030215427.488298-1-marex@nabladev.com>
+ <CAPx+jO8sc8gbxNQTjK2tx+1UPLqwwEof3E9vknHNc4kmbeB7oA@mail.gmail.com>
 Content-Language: en-US
 From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <auGdT2kdxwfbB_ol@parshuram>
+In-Reply-To: <CAPx+jO8sc8gbxNQTjK2tx+1UPLqwwEof3E9vknHNc4kmbeB7oA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_201428_556055_80250185 
-X-CRM114-Status: GOOD (  11.44  )
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261110_201436_160077_3791F1D0 
+X-CRM114-Status: GOOD (  13.78  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,64 +75,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
 	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/28/26 7:59 AM, Vinod Koul wrote:
-> On 27-10-26, 18:18, Marek Vasut wrote:
->> On 9/30/26 11:46 PM, Marek Vasut wrote:
->>> Microchip ATA6563 is High-Speed CAN Transceiver with Standby Mode.
->>> It is pin-compatible with TI TCAN1042 and has a compatible programming
->>> model, therefore use ti,tcan1042 as fallback compatible.
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>> Signed-off-by: Marek Vasut <marex@nabladev.com>
->>> ---
->>> Cc: Aswath Govindraju <a-govindraju@ti.com>
->>> Cc: Conor Dooley <conor+dt@kernel.org>
->>> Cc: Fabio Estevam <festevam@gmail.com>
->>> Cc: Frank Li <Frank.Li@nxp.com>
->>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->>> Cc: Marc Kleine-Budde <mkl@pengutronix.de>
->>> Cc: Rob Herring <robh@kernel.org>
->>> Cc: devicetree@vger.kernel.org
->>> Cc: imx@lists.linux.dev
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: linux-can@vger.kernel.org
->>> Cc: linux-kernel@vger.kernel.org
->>> ---
->>> V2: No change
->>> V3: No change
->>> V4: No change
->>> V5: Add RB from Krzysztof
->>> V6: No change
->>> ---
->>>    Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 1 +
->>>    1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->>> index 0cf5fa21106b6..e97b1bc0a2e45 100644
->>> --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
->>> @@ -18,6 +18,7 @@ properties:
->>>          - items:
->>>              - enum:
->>>                  - microchip,ata6561
->>> +              - microchip,ata6563
->>>                  - ti,tcan1051
->>>              - const: ti,tcan1042
->>>          - items:
+On 11/10/26 2:32 PM, Ulf Hansson wrote:
+> On Fri, Oct 30, 2026 at 10:54 PM Marek Vasut <marex@nabladev.com> wrote:
 >>
->> +CC Vinod, is this patch OK with you ?
+>> From: Christophe Kerello <christophe.kerello@foss.st.com>
+>>
+>> Manage MMC POWER UP state like MMC POWER OFF state. In case of low
+>> power use cases, it will avoid random initialization timeout. This
+>> fixes a failure to switch DDR52 eMMC to 8 bit mode due to -EILSEQ
+>> returned from mmc_get_ext_csd() in mmc_compare_ext_csds() called
+>> from mmc_select_bus_width() after Standby1 suspend/resume cycle.
+>>
+>> Fixes: 46b723dd867d ("mmc: mmci: add stm32 sdmmc variant")
+>> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
+>> Signed-off-by: Marek Vasut <marex@nabladev.com>
+>> ---
+>> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
+>> Cc: Christophe Kerello <christophe.kerello@foss.st.com>
+>> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+>> Cc: Ulf Hansson <ulfh@kernel.org>
+>> Cc: kernel@dh-electronics.com
+>> Cc: linux-arm-kernel@lists.infradead.org
+>> Cc: linux-kernel@vger.kernel.org
+>> Cc: linux-mmc@vger.kernel.org
+>> Cc: linux-stm32@st-md-mailman.stormreply.com
+>> ---
+>> Marek: Update commit message
+>> ---
+>>   drivers/mmc/host/mmci_stm32_sdmmc.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/mmc/host/mmci_stm32_sdmmc.c b/drivers/mmc/host/mmci_stm32_sdmmc.c
+>> index 9dc51859c2e51..659a5040729e9 100644
+>> --- a/drivers/mmc/host/mmci_stm32_sdmmc.c
+>> +++ b/drivers/mmc/host/mmci_stm32_sdmmc.c
+>> @@ -368,7 +368,8 @@ static void mmci_sdmmc_set_pwrreg(struct mmci_host *host, unsigned int pwr)
+>>          if (dlyb && dlyb->ops->set_input_ck)
+>>                  dlyb->ops->set_input_ck(dlyb);
+>>
+>> -       if (ios.power_mode == MMC_POWER_OFF) {
+>> +       if (ios.power_mode == MMC_POWER_OFF ||
+>> +           ios.power_mode == MMC_POWER_UP) {
+>>                  /* Only a reset could power-off sdmmc */
+>>                  reset_control_assert(host->rst);
+>>                  udelay(2);
 > 
-> Looks good to me, I will pick this after rc1 (monday)
-I would like to do a brief reminder here, so this won't get lost, since 
-rc1 is now out and I don't see this in dmaengine.git.
-
-Thank you for your help!
+> What exactly will this reset?
+The controller.
 
