@@ -2,56 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F19606A8B6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB10606B012
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y538IBi/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=buUpJwfg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xJo941sF;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R/+5yJmE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cX/Tp5audNOVGhUTi+88u7YfX7Lqy3DYIOIRzLRbeyY=; b=Y538IBi/42YXtO
-	xMC/qjGavu8RH6/ssg+TmHxSgGN8+MMm62JZqDd0L1uUm+XnWG89jzyN2tD7To7fKgW3eLNKfkMx/
-	CwuT56T7GbxwKNNvPsKoF+6itC6inessIuc0m9BetCDmRNHBUDKGMpaFRGFSL5Zy214xvrIHLsqnb
-	D5Wd3OwZ+5GrFxflcBifxj5Cirj4c7JPoAD0J0HLbzUMp9TAPPQCzenwhZrgdSebD70xe5OzClsoD
-	g/69spqxSFbI6EG2v1+nXGYGm7aU6kcVf6ywW2QYf1mF/bCzDMj1UH9uSnYVujlZL6LnjQzB64wxO
-	d0xWFpwWGjKwRM7fkcQw==;
+	List-Owner; bh=9/5/8dOyDqQ1xEhv/96Eczu20G83ALlhjhXbEVyTE3A=; b=xJo941sF4Z6gPD
+	2P9rhnmihjcFGZtyZXvQtFl12PiK5IfspADygyHfOJLi0hZCZ/6jtfUX58IB4kZazsiI4RrgKYu9o
+	87lV2oEIXN++3JW74cWtLZoWAjphqUWdKYIdgB6X55i4cJ5wwdb7oNZdiT950D/lCEBxQbwpc5Z4N
+	H1fAMV1otVN+LcFCHEnM3BZ7rIJdKGV53yXlinLfZsHqA2yl6sA99fvB+GBwWFuliFcUWGY8bdOdj
+	A9FnDVdYjXgmQ7jIySOqjUno0yT+K/cv6sJzIUz2AJ43SNrBwWKDVptZoE7jQrRglZl59tzJkyrwU
+	LkUT/mDNi/En7x6rI9Kg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2W-000000080Pj-0UV6;
+	id 1xRH2W-000000080Q3-0vxi;
 	Wed, 11 Nov 2026 22:43:36 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2M-000000080Ip-1HOm
+	id 1xRH2I-000000080IV-05P2
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 11 Nov 2026 22:43:26 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id BE65063B34;
-	Wed, 11 Nov 2026 22:43:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D25E1F00A06;
-	Wed, 11 Nov 2026 22:43:25 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BA71642AC6;
+	Wed, 11 Nov 2026 22:43:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 620681F00A10;
+	Wed, 11 Nov 2026 22:43:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794437005;
-	bh=cX/Tp5audNOVGhUTi+88u7YfX7Lqy3DYIOIRzLRbeyY=;
+	s=k20260515; t=1794437001;
+	bh=9/5/8dOyDqQ1xEhv/96Eczu20G83ALlhjhXbEVyTE3A=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=buUpJwfgTYkO2rE+o86IT2/I+go5KxcIEK5OFkI5mIqdAWhG0kDrMe8TzKEWNWQAQ
-	 Sb9qv+WZH0H9h1N0aGnNZMYa/pXxFL00OWoytbDOe9uieJr1wXS5Dmoyi1l399+KJf
-	 XTfzvvmuoLASW+nOPknvvpTg/l0fTb8nHEBji1tRn+//ZPoiddA7aWEjtO3CjHvPOW
-	 jMDY8xvAXX8Ub3WvMZXdAvaOv05kHT/Mkea61tHwBDpTt7S4DkHdVWa9xpTdSEOmW0
-	 Uus4porQjBSWgoZoM5ODpN2S1WHLKIr3OH4eGoGcHX7JE/6WNNNWVL7m1rHEfr+pcu
-	 4cfBdWCQooe5Q==
+	b=R/+5yJmE4KaBsF1aXUf+XjI8G0njxOL9DRSS62soWh5qV6EpsGweYh8SvvT1Q4NWN
+	 oD0dpqtE/SV288KczymCJqk30dbZ76d+km6r/bKOEsMUyd2DrXENWzQmFjHDQstVqW
+	 03ES3pIeuqIgqo5D7JTbdvxDQOiZ4SNGD+a7pMb1kPyZuFQg4TtTXEiF0NSGJSv1Zo
+	 Z7B/eWHQjkS1KXl3TZC3rJuUSnULofoSguyVmMqjFhZsCV4QWiaHNgReP88kyqxENr
+	 jguGv4fjm2xOasjdfw1W/64ue9IkLwxb+bA4Wc9ba0rynirBhPm70ZL1sOLDQ+ALzf
+	 RwSBeZHDc33mA==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 16:43:05 -0600
-Subject: [PATCH 8/9] arm64: dts: marvell: cn9131-cf-solidwan: Drop
- st,m41t80 reset-gpios
+Date: Wed, 11 Nov 2026 16:43:02 -0600
+Subject: [PATCH 5/9] arm64: dts: marvell: Fix node names
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-marvell-v1-8-938788aff3ae@kernel.org>
+Message-Id: <20261111-dtbs-marvell-v1-5-938788aff3ae@kernel.org>
 References: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 In-Reply-To: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -79,26 +78,78 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The part has no reset line nor does the Linux driver handle the property,
-so drop it.
+Fix various node names to use standard names.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi              |  2 +-
+ arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts |  2 +-
+ arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts    | 10 +++++-----
+ 3 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-index b6aeba7d0a61..0b079e1428bf 100644
---- a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-+++ b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
-@@ -252,7 +252,6 @@ carrier_rtc: rtc@68 {
- 		pinctrl-names = "default";
- 		interrupt-parent = <&cp1_gpio1>;
- 		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
--		reset-gpios = <&cp1_gpio1 13 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+index 4878773883c9..814b8a2e8ea9 100644
+--- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
++++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
+@@ -231,7 +231,7 @@ sdhci: mmc@805c0000 {
+ 		 * Dedicated section for devices behind 32bit controllers so we
+ 		 * can configure specific DMA mapping for them
+ 		 */
+-		behind-32bit-controller@7f000000 {
++		dma-bus@0 {
+ 			compatible = "simple-bus";
+ 			#address-cells = <0x2>;
+ 			#size-cells = <0x2>;
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+index 4efa2a1dbda7..101d1518e28f 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+@@ -324,7 +324,7 @@ cp0_led1_pins: led1-pins {
+ 		marvell,function = "gpio";
  	};
- };
  
+-	cp0_copper_eth_phy_reset: copper-eth-phy-reset {
++	cp0_copper_eth_phy_reset: copper-eth-phy-reset-pins {
+ 		marvell,pins = "mpp43";
+ 		marvell,function = "gpio";
+ 	};
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts b/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+index 06a861f83ad8..68c8489e0a6f 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+@@ -165,7 +165,7 @@ cpu_active: cpu-active {
+ 		};
+ 	};
+ 	cooling-maps {
+-		fan-map {
++		map-fan {
+ 			trip = <&cpu_active>;
+ 			cooling-device = <&chassis_fan_group0 64 THERMAL_NO_LIMIT>,
+ 					<&chassis_fan_group1 64 THERMAL_NO_LIMIT>;
+@@ -191,19 +191,19 @@ flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0x0>;
+ 		spi-max-frequency = <20000000>;
+-		partition@u-boot {
++		partition@0 {
+ 			label = "u-boot";
+ 			reg = <0x00000000 0x001f0000>;
+ 		};
+-		partition@u-boot-env {
++		partition@1f0000 {
+ 			label = "u-boot-env";
+ 			reg = <0x001f0000 0x00010000>;
+ 		};
+-		partition@ubi1 {
++		partition@200000 {
+ 			label = "ubi1";
+ 			reg = <0x00200000 0x03f00000>;
+ 		};
+-		partition@ubi2 {
++		partition@4100000 {
+ 			label = "ubi2";
+ 			reg = <0x04100000 0x03f00000>;
+ 		};
 
 -- 
 2.53.0
