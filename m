@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7D260A381D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320DF606A33C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uwcYErrG;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mz64vY5J
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nGjL/iQ1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CpMtYLk0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6mbZCUTv70VlpZsgPw+uhGGcoEUvKC9H4qZpsqc1/Xw=; b=uwcYErrG+5gn73FyCq2iiL+WNf
-	gxHTN2HJBsVxBlJ4piKl0CXzl3sskpqODeNBvRNo5BM0PrnGOEoZ3RmQBQLTfpFO4EGA6g/Oeb5f2
-	6hsFm7xl+tYaGMjPUbIN66d7DRjPCEQuzBCujVULvvHMCwm3iIOq2XtflrHpuq1AHxwgx/D2QMx/O
-	bVr3LOotjQvEQsNAghpqkEyC20v7XMaKPGNJgvJY1ycErRzRqC4wMg47008AMu9cIsU/quvGRbYug
-	stmvmo99yaxg7lITR6V2O9tIU/Qw0muUBJ1L0SkYQlrsCmAkpwwnxBljR4ft+pLkCEMf142OU70Tu
-	d8Yq0JSA==;
+	bh=FKWK2tfwOubwz0NYfMnsGtzNrT9KfhXRngDWEiE1I+k=; b=nGjL/iQ1ir7q6U29Gv3rVtynVy
+	rSSYYqIczC8HNOgVmULRK20vsOy01wAK2iFHg2sTGKpIstOBxaB4kORjE9vK954ou4AB+mangt+Yf
+	JBRC5C4JCRQ4Tfgj1xCqn6vUgyQqeSNiIOIXf03WZ1/ppBvTM9V5XT2MbYXpddWk308L76mDh71dc
+	CLSV18IHQ79MvsMuqpd5c+Q+YDqruaJrV+65X53ujMXysbjCkq0RSMzMVPAkGQVJKBJPhSznn/I/6
+	alN++BXyyp/hflzyAFxTGuukhEtWtz/slcNYDfwOoLTgkS47Gb0X3nFnKLV6HfJqmNbwTLNCt58RP
+	DH/CN1Zg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1Nf-00000005gtr-3OGA;
+	id 1xR1Nf-00000005guK-44Li;
 	Wed, 11 Nov 2026 06:00:23 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1NV-00000005gqM-0iWZ
+	id 1xR1NV-00000005gqX-1qTL
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 11 Nov 2026 06:00:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E618545BFA;
-	Wed, 11 Nov 2026 06:00:12 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 356DC46ACE;
+	Wed, 11 Nov 2026 06:00:13 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794376812;
-	b=fkMhi4tLveRcxN0I5V3micrydD47uYEKqoHRlpKP5ZfnVuSAY/fBNB0WgcxDY9R98XK9
-	 YHslNYQ+gUnfHjrzIWFxpsRcQlPxqoOaN8pZbpfXFuX424OQKZUZiHXGbtO42kZEbJc6V
-	 yi89y5DhXuczyIBq28v/lPzgiMEn1wNeA3eO2+t65OIUY/Q45TutA6HbdR40GyYp88HP2
-	 XnmjJS31rCbNczmaxw5xA9FhnAcD8Nxy81z2Tl5qtVF7BsqAXv7tYL32R6kos7hYmZTGx
-	 aU0RemovuzTP3BeQ5IrnLWfOX5bFDKJfRs6qPlUkMjUgsP4IuriHBDHMa3VYdzDao6Q==
+	t=1794376813;
+	b=tGluTC7Q4yGRDyL1UX8mXkQrJsOH687bQi1Ug9Auz57rXBJB34pNVnujEGVNbAvNlTN7
+	 +NkMAkGGtFeBclLCbFZaSrY8TBWyMTw2Q38MTvDYVzNLkpEd3Jxvv6+axnVnsBhNefwSd
+	 Lf43UMoZQaRO7TS/rqhWCwd+KJ4RMjjMNopbX0H91oykvkQsI1UNTFIj4XGNm3KNemKWH
+	 AyD0nqzOI19OB0T6+WkgMeNosFRZRCFXHOJqToxyBGLF2M+etZOQbsUBoYjlE/R99h5Ce
+	 r8nuXe3ifGjnsVp2VjlGzFnBlOo4a/GRYX8ZxXwaXnX89l8cgp8lvznKZo6NqZYTebg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794376812;
+	c=relaxed/relaxed; t=1794376813;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=6mbZCUTv70VlpZsgPw+uhGGcoEUvKC9H4qZpsqc1/Xw=;
-	b=sWkbMXHBqOKersZwLNUbWhTHYXReaxxCW+QTIzaMs5rluIO8MeE1GyT/9dOUifjTrftL
-	 wgtyi7WJCTFJPnc/XC91fqjvRXpI899IfxayU9ckZL2MHnZE46+wMK1CLR+g9AZdJeo2q
-	 gR5xyyV4MKaq27ZxTwOBqqTiBfueH5CXXhMAX25XAl5Ixmr6PT4MtXCQ3l28LRh0H+AqF
-	 UBzMPzMbkBoGyvr4LGRKdy06V66F4cS6CeylPgW65bzuBsvUrW3Zv/QPviFFl09Gl/545
-	 T7yp0GkD07RzZcAYzwbvh8574nX2JRYlF8AC5yrcp38v7DR5YP2p0a39IRZTEJrMH5A==
+	bh=FKWK2tfwOubwz0NYfMnsGtzNrT9KfhXRngDWEiE1I+k=;
+	b=hcLR2NzQ8e9hr5FEhmZr7iujlp3A7dBwRMesUWQrlGNFV5dI3fQbyoV/oWTJODUjzaka
+	 DaWPPqOiSs3Ev4pEkWIIP0lbwToKAkevzVmTRzKAdD2VzRzuWYK+CT80Yu6XUo4hO+nO5
+	 s+vR959QxlnxdGjN3X4crVGncXhQ3sXYHlzkFrbqwSFcfGWkbedMBmmP5MdJGotkjkSbd
+	 iwGnueOK3O0WaCxlyaLVa1NFlrr4u3G9JDSeZNqDLn/spzpPjjSZZExmT5YPsjSRP9IqU
+	 6h33iCtwEOxUy9Ia5gq8FnI920CqPegSlIbewFlDJkmi0Mi3vB0l4rFcVot9J/ycXaQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 226201F00A07;
+	by smtp.kernel.org (Postfix) with ESMTPS id 287031F00A0D;
 	Wed, 11 Nov 2026 06:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794376812;
-	bh=6mbZCUTv70VlpZsgPw+uhGGcoEUvKC9H4qZpsqc1/Xw=;
+	s=k20260515; t=1794376813;
+	bh=FKWK2tfwOubwz0NYfMnsGtzNrT9KfhXRngDWEiE1I+k=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mz64vY5JhtCAR/RK436dF/IhAVCtM+1emI8/WeTT5cbjy25HPr71bbWkAzy3cnZ7t
-	 BAC8RgUpYrZbDSSk3h4pljNLuN7C6nLgkDF2QwS3SV4GVyh5iVa2onnWnz/O40ILjH
-	 iM0VxWMc+plkUXqm8Lh8O06eQZCNiV2ZFFJobekVmiiVmFMeCScfH+J/tlEqavMSjy
-	 4hQupwNJVhK7IPaNHuWF+v9iGSPJQKRIh7lrzN0HPa4SyG8Gcn+UIlh7KnXQ+BbkV8
-	 1oK1uLc6QxqqjEXUdZp1QnKRhciJqgXQJ7frYDNejDcCogRkI8Wc00mLaUJL+pjeDx
-	 ziLsH9JeNVjvg==
+	b=CpMtYLk0SZ9JMGD0MaKWfupCmjfTL4UZxIu+tJNYjfHMMtk8iDthD+U+K10DX9FKB
+	 S39sybRTWFsQJzmA8JKiwZJWGlRiWgqCpr1IOJJz8lI69D1nydoAvn0u5vBjYy+0/P
+	 KFFDD0f9A3X91vD0rxDc6PaZrSoGzchxmAcwQYeVni+Tz6lCXcQve0ZJvCZd0ni7xb
+	 +3dZqvjXVz4xsak8Vz639JCroDbt3IBdCQk4m1L9Cye4NHVYG+fDz1gy2J4qHR8U10
+	 ayitwyv1G6hamtiGlLB1ZWYO3pB7UfrumYqLFZMrLF0P65oe6mvtZs6PLlgr7n9WeY
+	 8+w9MIp4TujIw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 2165348DEE;
+	by lkml.kernel.org (Postfix) with ESMTP id 323DD48DF2;
 	Wed, 11 Nov 2026 06:00:08 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Wed, 11 Nov 2026 06:00:12 +0000
-Subject: [PATCH v2 6/8] arm64: dts: allwinner: orangepi-zero2: Enable GPU
- DVFS
+Date: Wed, 11 Nov 2026 06:00:13 +0000
+Subject: [PATCH v2 7/8] arm64: dts: allwinner: orangepi-zero2: Describe the
+ SPI NOR supply
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261111-h616-zero2-dt-v2-6-88d8030fc975@gmail.com>
+Message-Id: <20261111-h616-zero2-dt-v2-7-88d8030fc975@gmail.com>
 References: <20261111-h616-zero2-dt-v2-0-88d8030fc975@gmail.com>
 In-Reply-To: <20261111-h616-zero2-dt-v2-0-88d8030fc975@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,11 +92,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794376807; l=990;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794376807; l=1094;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=5MPJQC1S+CHiR8Bt9vkp2Zk5ZwEghmC4r8Nx+9ugUME=;
- b=87DXPy99NnGEeLVD0wtNkkEfGbzg7aHpEpdfOqHgzEVS3BS5k5Ps5iDC7Mr9PY0dpH9SFYz7H
- lWW2d9+2J7qDZ/kHX0wHgWiLG6xJ3+HHXqfdQmkVsCYT0/SFBjjg74X
+ bh=koI5LGgxBRvtt44PpABti87vN3ELbNOlU9mgjrDscGI=;
+ b=2CQ6LDVGiv2EC0iUm+5zPuEgt3Jsm8LTq/f7YbI63awhqKxYsof4T27Fn2j6wOGkMLVOM7DPJ
+ eMOEMt+5bvXDriM7m6KvXhv2+ATUMLPbg+hEE+04XgcFP6fPzmtx84C
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -124,29 +124,35 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The Mali-G31 on the Orange Pi Zero2 runs at a fixed clock. Include the
-H616 GPU OPP table so that panfrost registers a devfreq device and
-scales the GPU between 306 and 600 MHz with load. The voltage window
-of every operating point overlaps the 900 to 990 mV range of the GPU
-supply (AXP305 DCDCC, mali-supply).
+The SPI NOR core requests a "vcc" supply for the flash. It is not
+described for the Orange Pi Zero2, so the core falls back to a dummy
+regulator and logs at boot:
+
+  spi-nor spi0.0: supply vcc not found, using dummy regulator
+
+Per the Orange Pi Zero2 v1.3 schematic, the 2 MiB SPI NOR flash on SPI0
+(port PC) is powered from the 3.3 V VCC-IO rail generated by ALDO1,
+which already supplies port PC here. Describe it.
 
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-index 719d6dadf7bf..ca78d094c431 100644
+index ca78d094c431..d5d39bac5915 100644
 --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
 +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
-@@ -7,6 +7,7 @@
- 
- #include "sun50i-h616-orangepi-zero.dtsi"
- #include "sun50i-h616-cpu-opp.dtsi"
-+#include "sun50i-h616-gpu-opp.dtsi"
- 
- / {
- 	model = "OrangePi Zero2";
+@@ -148,3 +148,9 @@ &pio {
+ 	vcc-ph-supply = <&reg_aldo1>;
+ 	vcc-pi-supply = <&reg_aldo1>;
+ };
++
++&spi0 {
++	flash@0 {
++		vcc-supply = <&reg_aldo1>;
++	};
++};
 
 -- 
 2.55.0
