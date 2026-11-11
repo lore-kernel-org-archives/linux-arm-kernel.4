@@ -2,84 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A0F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 12:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D301606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 12:28:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UuvsOvqo;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bRlg66S4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=po+Uwdi0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m1SjANHJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=STCS3l/zlpLuADxUotZrhurI2/8ti5xPCPFt7Px/rs8=; b=UuvsOvqoQc0d6Vm/pbJn01TGFm
-	5mO91AcUOKgzotiSFQ0AO6rsgR709Lt7Y/pW4LwDOqSHy/jQrq7XOixF73O51pChbsOFfh009rvfC
-	QPdPiM+OZM1re+cQ7JZswqJMp5nCYU5Ufu4G8MU2PTIM9n/bAT4NA8+Fkc3KfsQH720S2vazlszTx
-	rhKoO+3j/3NXSJUw+OCiSbecCmJLAh0+AoPMUq/sBskE+GI7NcTcNfTgMN0Jouq3w6Ea/ZZRT2E32
-	doMANwqqePG633vhYo7KoG5ugufK9KYXaXY8CLY9jBToXp8ObXrX/nXrZBji4k3Gb+8WyI8pur8Q8
-	lEL5T9cg==;
+	bh=47lVK3cOyaNIyjPMt8H8DbVBV5H9SqcaWOsJ4QNlPsY=; b=po+Uwdi00mw8XjuOz3cxAEbTmZ
+	galZZelrzDkJ/wsI0Sj/Ki/of8esHcUmD9Q5NeCaYqUkQRtY6tpJ0zGI2WoQ3/0qcU4krMRCHG3iA
+	mOHPHjM+ZwGh6faEEuECOPC459pON6W+smLdvb6i0/t0uB+7+bcZ3dvsjLMwkmnAqCG3TEWThPPII
+	XYWnfS1CqeRsBKiQyaa1PyoSqBFr6oPFvpmwjtXkTVj4Fl0baZBDhS48TZWH16Fw/LH5velhVbrTD
+	e4UWv6quXAKgI/u1AKkcFG83OKS0eRiWINJfP3yqZYatJGVHH8aYDxHW6gTT57DvbORUIW6lWU4fZ
+	opcRn2Rg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR7O5-00000006fPx-0AFj;
-	Wed, 11 Nov 2026 12:25:13 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xR7Qp-00000006fnZ-2Dx1;
+	Wed, 11 Nov 2026 12:28:03 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR7O3-00000006fPg-2OGS
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 12:25:11 +0000
+	id 1xR7Qn-00000006fmx-3PPH;
+	Wed, 11 Nov 2026 12:28:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 202444034B;
-	Wed, 11 Nov 2026 12:25:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8CB71F00A09;
-	Wed, 11 Nov 2026 12:25:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id ED3DC60DA1;
+	Wed, 11 Nov 2026 12:28:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA3CC1F00A05;
+	Wed, 11 Nov 2026 12:27:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794399911;
-	bh=STCS3l/zlpLuADxUotZrhurI2/8ti5xPCPFt7Px/rs8=;
+	s=k20260515; t=1794400080;
+	bh=47lVK3cOyaNIyjPMt8H8DbVBV5H9SqcaWOsJ4QNlPsY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=bRlg66S4iIXJo+2HWV2SwS8uM9Xye5xipVQWhkWwFlH8LK5W360qY/YEz4j1PAG0a
-	 6pgX9vYTQitWSDG8/WUlT++MR65jDJbJ8q9q5qVwY2yIC+zh2NN5ueGCa6lFY7s72T
-	 wl3tWtwv7F9TwZ8Bptv4fkyoRFoFuZCbuUTmaT1jKA6BmlVaNbkrPp1BuHmY+kmQwj
-	 wZFRKBOl1YYp8pjiRSD6gZgj2BF8l0JWMBnFiNm66yfHeO2p409KwZ1oerndynr9lo
-	 SqnUtJK05DmeOadb7yWC7Ia3oe7BpPHi/AZFDoSWrkPM8sKIWzOhxyFbXE3ZAZSaRR
-	 MSaKoYNYVrtgw==
-Date: Wed, 11 Nov 2026 07:25:07 -0500
-From: Brian Masney <masneyb@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Long Zhao <longzhao@ambarella.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	soc@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	Long Zhao <zl020895@163.com>, linux-kernel@vger.kernel.org,
-	Linus Walleij <linusw@kernel.org>
-Subject: Re: [PATCH v11 0/5] arm64: add Ambarella CV75 SoC support
-Message-ID: <avReozTC_GEmfIxG@x1g10>
-References: <20261105-cv75-soc-v11-0-aa6ee0b2380d@ambarella.com>
- <179427375370.1061670.4050288038934218487.b4-review@b4>
- <20261110-interesting-hilarious-shark-2dbfc0@quoll>
- <7eeaf54d-2d7d-420c-a34e-eebc6dd0effe@app.fastmail.com>
- <bbc16906-45e2-4d81-ae81-ad93e87b13be@kernel.org>
- <c67939c7-9725-459e-97dd-e104f3b14022@app.fastmail.com>
- <avMM8z-LYncKS8ip@x1g10>
- <avMmKJpczepWTRdc@ashevche-desk.local>
+	b=m1SjANHJ+Mi0oTsBGnxlg+2Ju1lu+wi4uIGVlaj1AE6czkPKkPgH0Qw8GWoTSmK5/
+	 EJ24qp/39mVkPX2kxa/5u0xlDAWUZ4teFxX/BhT5Y67VvkTjwUQ5MBzLMUdNXoQHty
+	 yjLB9lMTLQpqvBiK22zy8FuBoRhl+Efkbfrl5KYqaYUf/mp3e9i3QHjm/b2sgBfAef
+	 2lybkqHwVj34L9dRmib3HUbxkThkoH2lyeq1IFfZ4REjUcFp+HcSFBKNBA0A668db0
+	 gxh80Fw7BcAo/lLMJVXwVPCY2ohzXlW6dCbay/xl13qWd6Cz/C7TSltq6XnAf+6zDX
+	 ZBrwmTtoihG8g==
+Date: Wed, 11 Nov 2026 13:27:56 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: christian.koever-draxl@student.uibk.ac.at
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, neil.armstrong@linaro.org, khilman@baylibre.com, 
+	jbrunet@baylibre.com, martin.blumenstingl@googlemail.com, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Christian Stefan =?utf-8?B?S8O2dsOpci1EcmF4bA==?= <ckoever@outlook.de>
+Subject: Re: [PATCH] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add S4
+ support
+Message-ID: <20261111-beryl-fossa-of-excitement-eff7eb@quoll>
+References: <20261106104632.54161-1-christian.koever-draxl@student.uibk.ac.at>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <avMmKJpczepWTRdc@ashevche-desk.local>
-User-Agent: Mutt/2.4.2 (2026-08-30)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20261106104632.54161-1-christian.koever-draxl@student.uibk.ac.at>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,60 +72,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Arnd / krzk,
+On Fri, Nov 06, 2026 at 11:46:32AM +0100, christian.koever-draxl@student.ui=
+bk.ac.at wrote:
+> From: Christian Stefan K=C3=B6v=C3=A9r-Draxl <ckoever@outlook.de>
+>=20
+> The S4 USB glue is the G12A one, but it fronts an xHCI host controller
+> instead of a DWC3 core, with two USB2 PHYs and no USB3 PHY. Add an S4
+> compatible with the G12A one as fallback, and allow a generic xHCI
+> child node.
+>=20
+> Signed-off-by: Christian Stefan K=C3=B6v=C3=A9r-Draxl <ckoever@outlook.de>
+> ---
 
-On Tue, Nov 10, 2026 at 04:11:52PM +0200, Andy Shevchenko wrote:
-> On Tue, Nov 10, 2026 at 07:24:19AM -0500, Brian Masney wrote:
-> > On Tue, Nov 10, 2026 at 09:46:29AM +0100, Arnd Bergmann wrote:
-> > > On Tue, Nov 10, 2026, at 09:27, Krzysztof Kozlowski wrote:
-> > > > On 10/11/2026 09:23, Arnd Bergmann wrote:
-> 
-> ...
-> 
-> > > > There is a build dependency - DTS needs clock binding
-> > > > header - so it has to be second, unless the dependency
-> > > > is decoupled.
-> > > 
-> > > Ok, I see. Let's go with Brian's suggestion then.
-> > 
-> > I see that the pinctrl driver was merged into v7.4-rc1 and also
-> > lists ARCH_AMBARELLA. It doesn't cause any build warnings or issues, so
-> > I'm fine with this too just as long as ARCH_AMBARELLA is going to appear
-> > in the tree.
-> 
-> We have a bug about dangling / orphaned symbols in Kconfig. It's discouraged to
-> have them. I dunno if we get the checker patch being applied (it was some
-> activity a few months ago).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-OK that makes sense.
+Best regards,
+Krzysztof
 
-So how about this:
-
-- Have Long post a new version that splits out the creation of the new
-  Kconfig symbol ARCH_AMBARELLA into it's own patch. I assume Arnd could
-  provide an ACK on this?
-
-- I create an immutable branch that contains that the two dt-binding
-  patches, plus the ARCH_AMBARELLA Kconfig patch.
-
-- Then I can merge the clk driver cleanly. The DTS folks can take the
-  DTS changes.
-
-If the DTS folks didn't want the ARCH_AMBARELLA in the immutable branch,
-then we could do two immutable branches:
-one for ARCH_AMBARELLA from SoC folks, and one from me for the
-dt-bindings.
-
-Alternatively, I could just provide an Acked-by for the clk driver, and
-this could just go through the SoC tree.
-
-Brian
 
