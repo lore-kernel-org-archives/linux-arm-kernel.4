@@ -2,82 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99B8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 08:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295AE606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 08:22:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WTkGU9Qu;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=ACknxjPd;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=X4/X251s
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yaYtiZnY;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Du1c83Xm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wmJ1b9tTWjRzHKg6nN8Y+a7QMFiCp98+UkeR3JuH5bc=; b=WTkGU9Quhkb67oQukfo5RkgEn1
-	B+ugMMGaPkXpWq/qMS88I8+SvxHN7UUFlRXP1dyA8l0MHoJxLxHDpc09NUWx+IcJv0LGVTLC3AAtY
-	XZ8+t07xq3znYPl0WnbEUnKdsnTNOvfTgC18W+tQP2PAyfZ+0S+NQxDOp0LPXvawgr9SRW8jrDyTw
-	Og1SxFgQd6pOBFVyeo7YVT+AHU2aj/nhjld7mE50zwMF3BAsCPnEPO/EDR1TzqH4uJZsHRU9bp1cv
-	NJjAkWtFEeU65t0FSqguODs3/p5F/OP/LF7fohRo43Vb8IILuKUhrC55CL07lo5g7405hUKXfmcRc
-	HvBC6H/Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=v1FQrKsL5f19EKemgEuMcNZOXhqO95k4RyWWOAZDF0E=; b=yaYtiZnYmthQgG
+	0S6c3LgJbiimMfGIc6n19Inn8ELm9nLk6znx1jNOUz2I8fgbCogSkPGgXFf1RZBVxIWyDd/1akoAg
+	mSekOmskeR/fDqNNWWpRCpAWalx2xU46eI/iOb3+HZBiq6sJS0/7JMkvqIG3d2GkPynHUZqme10cT
+	vgPf0r/yUWy0iqrwORMgzLKY3uA7/FswDRCjWCAjzDjIAp3DeVr4Uwfb1IKSyBash4UYG9UGTRPtW
+	h2U6FRB7fBOpKN96eNuPrmj5pUv5OnM1oqkQUFi18IxtOcOCDgNAn0+pQ0VOY3clUeLVAyf2tZy1E
+	AuKCYAocEilj1u5ZGvGQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR3Ta-000000061Rc-33nX;
-	Wed, 11 Nov 2026 08:14:38 +0000
-Received: from galois.linutronix.de ([193.142.43.55])
+	id 1xR3bR-000000061tz-31Yx;
+	Wed, 11 Nov 2026 08:22:46 +0000
+Received: from smtpout-03.galae.net ([185.246.85.4])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR3TY-000000061QK-0DsZ;
-	Wed, 11 Nov 2026 08:14:37 +0000
-Date: Wed, 11 Nov 2026 09:14:32 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1794384873;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wmJ1b9tTWjRzHKg6nN8Y+a7QMFiCp98+UkeR3JuH5bc=;
-	b=ACknxjPdebw24cai+wRztA8YbfoiKGH3lQps7QtppIkCXFbDZttO0oQ+Fq8N2YUBZqPW9G
-	Y4aubWBAQWvDF1wFF92KqdWYYr/2ApOPKWwgwXV/tODBz6VYc4ttmhXo3aX9gIIZ7lSduP
-	1A9NfjHHwda+nlZFatWBY9BYEOLfaAzUy0Duu8C/AF9MRzfcFDIr2wp1QXwuuRmb89PnN9
-	PR4viPPL+Z2kcAiUW+mEGxbNGjTVSiFV5WYCtlcUBX3y7LolQYNhdgT2KDWUhNq3YJl8JM
-	dxv9A7pLPrSClMBbFHhJRk4NdMODVuLqL6pdVQ3Kzcc3pfgFa3ZAOkqMiOgfgQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1794384873;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wmJ1b9tTWjRzHKg6nN8Y+a7QMFiCp98+UkeR3JuH5bc=;
-	b=X4/X251s/ZiAX1MjcpLjNyXXGutSoNKv4fi+XLSCARWmJ0XzxrdyH8IPU7sWh1u5YZ4/gN
-	p9DApfiwFN5dagDQ==
-From: Gregor Herburger <gregor.herburger@linutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>, 
-	Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>, 
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>, 
-	Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org, 
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v9 00/12] nvmem: Add Raspberry Pi OTP nvmem driver
-Message-ID: <y2ocj374gtrwf3ozptwgmqhsy5k26y45uwlbgtyvvmlxkftc2k@gjs3jsbxbm4w>
-References: <20261111-rpi-otp-driver-v9-0-0a7292a7a5b4@linutronix.de>
- <66bf8629-225d-4f65-84dd-67f02aa4cab6@kernel.org>
+	id 1xR3bN-000000061tK-31xq
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 08:22:43 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 2691A4E4156B;
+	Wed, 11 Nov 2026 08:22:37 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D65FA6017E;
+	Wed, 11 Nov 2026 08:22:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 363D511BC1818;
+	Wed, 11 Nov 2026 09:22:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794385355; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=v1FQrKsL5f19EKemgEuMcNZOXhqO95k4RyWWOAZDF0E=;
+	b=Du1c83XmXW4RTimL6RazFjOTZSXCRppgWXP+IdIvbn/X2D4IBE0iiaUsR3hh8xqLynNr9O
+	lJN+MWtFrgRQ2HbY5V85hhJrn4QiBS63udBRm9KPD/dzTEf07yMMw3MlIbrYpufi0UQKR0
+	5VkOJ+BbsNdT8upae4Ljl5ggK6neDz0ThfitQpvaQSnePUULFr9rp23f0Mz/fUN+Tq02Wo
+	awcfcNdE0WGdpQ0yWSFbTZuJB3VAbIi5+E0NBYPc050nLuxflJnLQbqSjIPTXtzbRokQI7
+	K6f7lgqYji2FffX9R/G0xRUPexgvQziDmVplapkl3keH32raQu2JRy3CJvDRMw==
+Message-ID: <d3ba44a2-1692-4c18-a297-b04bf82c18d0@bootlin.com>
+Date: Wed, 11 Nov 2026 09:22:17 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <66bf8629-225d-4f65-84dd-67f02aa4cab6@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net v2] net: stmmac: Clear DMA errors for multi-channel
+ interrupts
+To: Magnus Leatti <magnusleatti@kernelriot.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ davem@davemloft.net, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>,
+ Nicolai Buchwitz <nb@tipi-net.de>, thomas.petazzoni@bootlin.com,
+ =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261103125430.962715-1-maxime.chevallier@bootlin.com>
+ <179379704484.488856.2140619507341432623@kernel.org>
+ <20261110091901.7080-1-magnusleatti@kernelriot.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20261110091901.7080-1-magnusleatti@kernelriot.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_001436_243115_4080E4EE 
-X-CRM114-Status: GOOD (  17.32  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261111_002241_912551_5E7E7E8C 
+X-CRM114-Status: UNSURE (   9.14  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,51 +88,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 09:02:19AM +0100, Krzysztof Kozlowski wrote:
-> On 11/11/2026 08:23, Gregor Herburger wrote:
-> > Hi,
-> > 
-> > This series adds support for the Raspberry Pis OTP registers. The
-> > Raspberry Pi has one or more OTP regions. These registers are accessible
-> > through the firmware. Add a driver for it and add updates the devicetree
-> > for the Raspberry Pi 5.
-> > 
-> > ---
-> > Changes in v9:
-> > - Fix sashiko comment and use fwbuf->count instead of bytes in memcpy
-> > - Link to v8: https://patch.msgid.link/20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de
-> > 
+Hi,
+
+On 11/10/26 10:19, Magnus Leatti wrote:
+>> Since RBU and RPS were enabled only for statistics, was masking them in
+>> multi-MSI mode considered as an alternative?
 > 
-> Big series sent three times within last 24 h. Please slow down and give
-> people chance to review your work.
-I sent v7 with a missing commit and based on an wrong commit so Sashiko could
-not apply the series. Sashiko found an issue in v8 so I tried to fix it in v9.
-
-I have the impression people are not reviewing stuff as long as sashiko has
-issues. So I wanted to fix those things quick.
-
-Anyway I will wait a bit with the next revision.
+> Hi Maxime,
 > 
-> Best regards,
-> Krzysztof
+> Tested that route on dwmac4 (YT6801, 7.3.3) next to v2.
 
--- 
-Gregor Herburger
-Linutronix GmbH | Bahnhofstrasse 3 | D-88690 Uhldingen-Mühlhofen
-Phone: +49 7556 25 999 35; Fax.: +49 7556 25 999 99
+Sorry I was away for the past days.
 
-Hinweise zum Datenschutz finden Sie hier (Informations on data privacy 
-can be found here): https://linutronix.de/legal/data-protection.php
+Thanks for testing,
 
-Linutronix GmbH | Firmensitz (Registered Office): Uhldingen-Mühlhofen | 
-Registergericht (Registration Court): Amtsgericht Freiburg i.Br., HRB700 
-806 | Geschäftsführer (Managing Directors): Dr. Wilfried Wessner, 
-Katharina Kopp, Alexander Gieringer
+RBU exposes the problem, but it's still lurking even if we mask it, it's only
+a matter of another interrupt being enabled and we hit that again...
+
+Let's deal with RBU separately, I'm still not clear wether re-masking it is
+the right call, now that the counter works, people may want to use that :(
+
+I'll send a V3 shortly
+
+Maxime
 
