@@ -2,107 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5436B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 15:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA293606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 15:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hf+ipjq8;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pc/VzGma
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=s+J7IvWC;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=jUANGkg+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=rdw2NKGEuK2ni3E8kXFnfQTK+FHixFrqZyMHbZczHI4=; b=Hf+ipjq8SKFLLR
-	0n4/31Scdonwuz87o+aJXBd8vgqU2MNr/qanXwJdY6wqdsTJR2QANDN7Gt04IQA1Ol9GUGQFttcAi
-	ircOmCRCTq9ux28z8T6EED+szHm/1xMsTNdB6/1yBY8APchUE7NI82Z3Vku3k/CTsmRynza0aStI6
-	iO/VZiRZsle95il+zPuHM0jW0n3TRUIS9/y+duZeXttDX/Vp+3t8DijGvgEiwSOUGxn5p1Fbzq2Wp
-	sRcOUTnwNPKdgppF4wtq982ic53fiLh0tIGUaS59y2cKozN+ZirL4uRWmCpA3fEiDAzuJvBQs4uEA
-	Eo4/vZEjsStPXJRRfJeQ==;
+	List-Owner; bh=kSUROwpO/ILBpmR/pHPLqsMr9h48VwvRxeErIiRA99U=; b=s+J7IvWChBCBD2
+	JB1sISEQvx5rGPF2mMRWA0kbRvRf9YMdyRLjXncZLHh7xZapplxq5Fs9N5U4E/ccYs8dVa2xguKIc
+	xWTfY78ICXVvKExJfdAgOgA4jv5UACjD3Ves4OwAUZY8E3x1Ona2g7jbkcupIsP04dIfgsv4CPcxX
+	TUa87LRHmnnbQNtXLTK2NdOOvFXPojdNoSxDPlYvJrgL5uKQEtW7GmhhWxhZiDQ5ZzH619LNj7xbk
+	PpdaV9RBrgZpqQ8TDM/AIHetlf0IA1W1sbbUFytAkAIlKGGm3s9tSZ2WvFVWVza1DnezDZPCeGmCh
+	uWvw4iv8PbEcDQopiF4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR9Z6-000000070Hq-0RHF;
-	Wed, 11 Nov 2026 14:44:44 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xR9MX-00000006xHX-1uY9;
+	Wed, 11 Nov 2026 14:31:45 +0000
+Received: from esa.microchip.iphmx.com ([68.232.154.123])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR9Z0-000000070Dm-2Utl
+	id 1xR9MT-00000006xES-1JtP
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 14:44:42 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4b4571ff080so36488215e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 06:44:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794408277; x=1795013077; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=rdw2NKGEuK2ni3E8kXFnfQTK+FHixFrqZyMHbZczHI4=;
-        b=pc/VzGma8WoFf8GCawBXVAoLrWvOPOieggOlHfx/zGsjq9Ap9OwUIgTOLORShipHdH
-         7pqPi5h+l+786V52A4lJy0MAVK9XzeL4gr+2ibD4zIeco5Ue9hjK7w9tyOkeHgui0PFA
-         btGogP8DXsuKv+KaSMzKsDxruYI+8rL6KmqB1GflVCDhi7Hdk8zy7JocNe8AouSyP95u
-         UTJkJl3IOIe7tf8BosO6mZbJy/wtFM27AjGtUtX/L/vZt8xm44LsrTojtzoTfB0tw0r8
-         9EunJAVrfSNezOgnQ0yxY1xri7UzQNfOeVOJI6kQU74f6TUu19niPSGu3UdjXLpJprdW
-         opCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794408277; x=1795013077;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=rdw2NKGEuK2ni3E8kXFnfQTK+FHixFrqZyMHbZczHI4=;
-        b=G5VTSea/XEqqbTC1tE0XQ0RQsxvH9Ax6PyJXH9fubr3ZN3BlBuDHXEPycE5eEu8Pcv
-         VrOB5zzBuP/OHOkSohoRy+FJlUfVVdQU6bRI3B/6H+j/C573+UI1EBnt2BnWY6/Zs/30
-         PX3K+IwJx4UiIk+3fNmNWKGHPniNQMJMfo1RBBmhAdBsrXkAtT8LStPO1TjHDJzqegS2
-         blcXzl8V+Dy93R4UXKzz87s/S0KeDnH9Dhwx12UqIbXKaVyDnxwQSdWdKwz/CntPsyub
-         j41ywijOVV+eK+KcYKoRzI9xyPa6uR9/L01ismszCORHIwXVIoAeHLBIi0xZtJZUP5ez
-         QN+w==
-X-Forwarded-Encrypted: i=1; AL+hErHCfMalSE1jOimLiI7vYvRLAGMB9O/OUUHCERDNzlrd2oC5Vk+taTSBB19ziTm6ORDSAn/GVr7/7X4iNFf/rKYj@lists.infradead.org
-X-Gm-Message-State: APuU4Z+EVYKEmNYkz7BrRbkrCnz9GLVsSHoj1NcccZuYrhEcZ1XF8ERa
-	+7nSWWo+NJkqMp3PyrnpomuQOLD+F3EMB4gDt5BDzPuFRhNVrmj4OGFH
-X-Gm-Gg: AYBFou1qlTsmiijjqixYKjX95Pa1cdWBxurI9gxtW4uLej1IO+p6E4+32PGwOZJHQ3L
-	FYA13KAAqvOCUeSY4SIfJdn1PP2/qO3I0H0MJhLBZXbwuphF8wU05PMIVNTTyYbNrUZFNBhFzAf
-	E6zx+q0seCrRnNfgt87lOYrSxDQReLmpy8xAtBNItpkxocRDgJk0kauZsIP/RBvjWkGKSSt0ZHK
-	zlvDlh2r/RM8zcwhm8XVMwef9WMJUVaWPOXMeb4/smRqb30eCl6L/1+FFwSuEfqvIP1IPnZjE1U
-	7JkpPgSpkEpSc2xU1GUUFF7e/Phbnx/3Xtbkjj/cg5LVzoinWuqoCpyFTyCTeKVfG0T3URoUC1A
-	MUpOb3Hbnh3oSERoTtI+VzGOFkSA71pQViy3fMExYjVWkKqb9DvB1Sy96bcyqEWvNoXvHZ8OKFN
-	wXMHyLtDwLZCr+d7LNrbbMnXw2cGr0obcQSV8gY5t0woVOyszJdGeJGptK8x3ZDNBGDDDwN8iaS
-	iZbp65yLWt40KVvTKMvivdn93eTM6q2FXe1IoZSWlTkP3QRlQHLu5Rwt2HlPGgeiH2DMexEXWsi
-	Q0uIS73iZ1avMht5d3Qctu2NJkNzURecXvQ78iZSKgcOLgd4Ovi2afK27A==
-X-Received: by 2002:a05:600c:8b34:b0:4a9:2a92:231f with SMTP id 5b1f17b1804b1-4ba093775a9mr48741465e9.7.1794408276368;
-        Wed, 11 Nov 2026 06:44:36 -0800 (PST)
-Received: from dev.Default ([86.127.229.203])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba08de826asm46656495e9.0.2026.11.11.06.44.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 06:44:35 -0800 (PST)
-From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
-To: Navid Ghahremani <ghahramani.navid@gmail.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: "David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Junyang Han <han.junyang@zte.com.cn>,
-	=?UTF-8?q?Stefan=20D=C3=B6singer?= <stefandoesinger@gmail.com>,
-	Felix Fietkau <nbd@nbd.name>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH net-next 3/5] net: ethernet: zte: zx279128s: WLAN DMA ring and logical ports
-Date: Wed, 11 Nov 2026 15:44:24 +0100
-Message-Id: <20261111144426.1321237-4-isasmendi.agus@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20261111144426.1321237-1-isasmendi.agus@gmail.com>
-References: <20261111144426.1321237-1-isasmendi.agus@gmail.com>
+	Wed, 11 Nov 2026 14:31:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1794407507; x=1825943507;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:references:in-reply-to:to:cc;
+  bh=3bqY4tgvqC+BAAd6eacYnbTfETfgiouFbG1wGZeMXGE=;
+  b=jUANGkg+g4sqABbqV67eC9xUFQ0znRQGQY0Mfd8DjvrBmMOWU9pgX1kU
+   Oxd4ovr1mQe62qn2YAUEmTS7yf2c7d0DCVFGlBVLV650qWa7Y8Os9acnh
+   NX5KGSRRzns81rE5gMuxVSGJLJoebZgJbdBiYb9VCWE61usWlIkV+QQCV
+   nXM9r75wAzjSnATeoXur5/Rh1ahk1DPW7MRkQehxCHFRg92dw5afIZ8dG
+   JAWSeZDG+NBvcfIWqMIrgbtR8Rc6m6XXxDgz29snk2F/7RYrQVRFs3GEh
+   mE0Lv7M3P2Oy/d6+quFO4qQNFlqeB7Tkmv7MPFLqhd1y7RBN4UilPN1HP
+   Q==;
+X-CSE-ConnectionGUID: JNrjTuQyR2+1N3l4d4fITQ==
+X-CSE-MsgGUID: q4dmzBIyRq2qO5h3tS6lcw==
+X-IronPort-AV: E=Sophos;i="6.27,208,1787036400"; 
+   d="scan'208";a="233412663"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Nov 2026 07:31:47 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Wed, 11 Nov 2026 07:31:40 -0700
+Received: from DEN-DL-M70577.microsemi.net (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Wed, 11 Nov 2026 07:31:37 -0700
+From: Daniel Machon <daniel.machon@microchip.com>
+Date: Wed, 11 Nov 2026 15:31:15 +0100
+Subject: [PATCH net-next v2 5/9] net: sparx5/lan969x: size the FDMA buffers
+ from the port MTUs
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261111-sparx5-mtu-change-v2-5-59c91357e8f6@microchip.com>
+References: <20261111-sparx5-mtu-change-v2-0-59c91357e8f6@microchip.com>
+In-Reply-To: <20261111-sparx5-mtu-change-v2-0-59c91357e8f6@microchip.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+	<davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski
+	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Steen Hegelund
+	<Steen.Hegelund@microchip.com>, <UNGLinuxDriver@microchip.com>, "Richard
+ Cochran" <richardcochran@gmail.com>, Russell King <linux@armlinux.org.uk>
+CC: <netdev@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Robert Marko <robert.marko@sartura.hr>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	=?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.14.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_064438_880852_1CA3DA14 
-X-CRM114-Status: GOOD (  32.40  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_063141_393608_F403BE44 
+X-CRM114-Status: GOOD (  25.38  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,1158 +91,204 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The switch fabric has a second DMA engine ("IDM" in the vendor code):
-one RX and one TX ring of 8-byte descriptors.  A frame written to the
-TX ring enters the fabric on port 6 or 7 (descriptor bit 31) as if sent
-by the station the 3-bit "ssid" field names, and a classifier entry
-whose egress is such a WLAN logical port (0x10 | port << 3 | ssid) makes
-the fabric write the rewritten frame to the RX ring with that ssid.
-The vendor firmware uses this to forward WLAN traffic without the CPU.
+The FDMA buffers must hold the largest frame that can be received by the
+CPU, including the IFH, and on Sparx5 also the largest frame that is
+transmitted, as Sparx5 copies the frames into its TX buffers. On Sparx5,
+the RX buffers are skbs, and the TX buffers are a contiguous area. On
+lan969x, the RX buffers are page_pool pages, which are turned into skbs
+with build_skb(), and TX frames are mapped directly from the skbs. The
+buffers are currently fixed to a single page, which is not large enough
+to hold jumbo frames.
 
-Add the ring (coherent descriptor area, buffer pool, NAPI, the vendor's
-register sequence) behind the optional "wlan" interrupt, and the 16
-logical ports as slots a mac80211 AP interface can be bound to:
+Instead, size the buffers from the largest MTU of the ports, plus the
+Ethernet header, FCS, IFH and two VLAN tags. On Sparx5, use this length,
+rounded up to the 128 byte granularity required by the FDMA, as the RX
+and TX buffer size. As the TX buffers can now be smaller than a page,
+make sparx5_fdma_xmit() drop frames that do not fit. On lan969x, use the
+page order needed to hold the frame and the skb_shared_info, as lan966x
+does, and limit the RX buffer size so that the FDMA never writes into
+the skb_shared_info at the end of the page.
 
-- frames the fabric forwards to a bound port are handed to the
-  interface for transmission through its ordinary queueing path, after
-  the IPv4 header checksum is recomputed (the packet modifier
-  decrements the TTL, and only the MAC egress pipeline repairs the
-  checksum, which this path does not pass);
-- a netfilter ingress hook on the bound interface injects the frames of
-  flows the fabric holds for that port into the TX ring, re-segmenting
-  mac80211's GRO superframes to wire size first; SYN, FIN and RST stay
-  on the CPU so that conntrack sees connections open and close;
-- an injected frame the classifier does not forward comes back on the
-  switch RX ring with the WLAN port as ingress (0x10-0x1f instead of a
-  switch port); it is delivered as received by the interface, marked so
-  that the hook lets it pass.
+With the default MTU of 1500, the Sparx5 buffers become smaller, and the
+lan969x pages are unchanged.
 
-Nothing binds a port yet: the flow offload code does that in the next
-change.  The WLAN drivers are not involved, only the interfaces' normal
-transmit and receive paths, so any mac80211 driver works.  Without the
-"wlan" interrupt in the device tree the driver behaves as before.
-
-Register sequence and descriptor layout reverse engineered from the
-vendor's pon_npp_idm_init() / idm_net_tx() / idm_net_poll() and verified
-on a ZTE ZXHN H3600 (two MT7915 radios on PCIe).
-
-Assisted-by: LLM
-Signed-off-by: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
 ---
- drivers/net/ethernet/zte/Kconfig          |   5 +-
- drivers/net/ethernet/zte/Makefile         |   3 +-
- drivers/net/ethernet/zte/zx279128s-eth.h  | 123 +++-
- drivers/net/ethernet/zte/zx279128s-main.c |  18 +-
- drivers/net/ethernet/zte/zx279128s-wlan.c | 837 ++++++++++++++++++++++
- 5 files changed, 982 insertions(+), 4 deletions(-)
- create mode 100644 drivers/net/ethernet/zte/zx279128s-wlan.c
+ .../microchip/sparx5/lan969x/lan969x_fdma.c        | 22 ++++++++++----
+ .../net/ethernet/microchip/sparx5/sparx5_fdma.c    | 35 ++++++++++++++++++++--
+ .../net/ethernet/microchip/sparx5/sparx5_main.h    |  2 ++
+ 3 files changed, 52 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/net/ethernet/zte/Kconfig b/drivers/net/ethernet/zte/Kconfig
-index 20df75486f81..b9a4a8520fc7 100644
---- a/drivers/net/ethernet/zte/Kconfig
-+++ b/drivers/net/ethernet/zte/Kconfig
-@@ -22,12 +22,15 @@ config ZX279128S_ETH
- 	depends on ARCH_ZTE || COMPILE_TEST
- 	depends on OF
- 	depends on BRIDGE=y || BRIDGE=n
-+	depends on NETFILTER
- 	select NET_SWITCHDEV
- 	select PHYLINK
- 	help
- 	  This driver supports the five-port gigabit switch of the ZTE
- 	  zx279128s SoC and the DMA engine that connects it to the CPU.
- 	  Each switch port becomes its own network interface, such as the
--	  four LAN ports and the WAN port of the ZTE ZXHN H3600.
-+	  four LAN ports and the WAN port of the ZTE ZXHN H3600.  Flows
-+	  to and from the AP interfaces of the SoC's PCIe WLAN cards can
-+	  be offloaded through the switch's WLAN DMA ring.
+diff --git a/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c b/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
+index d435c4df5effa..40cdb0323eb49 100644
+--- a/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
++++ b/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
+@@ -131,7 +131,7 @@ static struct sk_buff *lan969x_fdma_rx_get_frame(struct sparx5 *sparx5,
+ 	if (WARN_ON(!port))
+ 		goto free_page;
  
- endif # NET_VENDOR_ZTE
-diff --git a/drivers/net/ethernet/zte/Makefile b/drivers/net/ethernet/zte/Makefile
-index 09b4f6558d2f..88eddc43ae18 100644
---- a/drivers/net/ethernet/zte/Makefile
-+++ b/drivers/net/ethernet/zte/Makefile
-@@ -6,4 +6,5 @@
- obj-$(CONFIG_DINGHAI) += dinghai/
+-	skb = build_skb(page_address(page), fdma->db_size);
++	skb = build_skb(page_address(page), PAGE_SIZE << rx->page_order);
+ 	if (unlikely(!skb))
+ 		goto free_page;
  
- obj-$(CONFIG_ZX279128S_ETH) += zx279128s-eth.o
--zx279128s-eth-y := zx279128s-main.o zx279128s-ppe.o zx279128s-switch.o
-+zx279128s-eth-y := zx279128s-main.o zx279128s-ppe.o zx279128s-switch.o \
-+		   zx279128s-wlan.o
-diff --git a/drivers/net/ethernet/zte/zx279128s-eth.h b/drivers/net/ethernet/zte/zx279128s-eth.h
-index 6c6e187cce93..b5a547eade35 100644
---- a/drivers/net/ethernet/zte/zx279128s-eth.h
-+++ b/drivers/net/ethernet/zte/zx279128s-eth.h
-@@ -13,6 +13,7 @@
- #include <linux/if_ether.h>
- #include <linux/mutex.h>
- #include <linux/netdevice.h>
-+#include <linux/netfilter.h>
- #include <linux/notifier.h>
- #include <linux/phylink.h>
- #include <linux/rhashtable.h>
-@@ -144,6 +145,58 @@
- #define ZX_DMA_TX_START		(ZX_DMA_BASE + 0x64)
- #define ZX_DMA_RX_QUEUE_CNT(q)	(ZX_DMA_BASE + 0x100 + ((q) * 4))
- 
-+/*
-+ * WLAN DMA engine ("IDM" in the vendor code): one RX and one TX ring of
-+ * 8-byte descriptors between the switch fabric and the CPU.  Bit 31 of a
-+ * descriptor selects one of two fabric ports (6 and 7), and the 3-bit
-+ * "ssid" one of eight stations behind each, so the fabric sees 16 WLAN
-+ * logical ports (ZX_WLAN_PORT()) that the classifier can send flows to.
-+ */
-+#define ZX_WLAN_BASE		0x1c8000
-+#define ZX_WLAN_CTRL		(ZX_WLAN_BASE + 0x00)
-+#define  ZX_WLAN_CTRL_EN	GENMASK(19, 16)
-+#define  ZX_WLAN_CTRL_MODE	GENMASK(27, 20)
-+#define  ZX_WLAN_CTRL_MODE_VAL	0x20		/* vendor value */
-+#define ZX_WLAN_TX_RING		(ZX_WLAN_BASE + 0x04)
-+#define ZX_WLAN_RX_RING		(ZX_WLAN_BASE + 0x08)
-+#define ZX_WLAN_RX_EN		(ZX_WLAN_BASE + 0x0c)
-+#define  ZX_WLAN_RX_EN_VAL	0x04000800	/* vendor value */
-+#define ZX_WLAN_REG10		(ZX_WLAN_BASE + 0x10)	/* vendor value 0x40 */
-+#define ZX_WLAN_REG18		(ZX_WLAN_BASE + 0x18)	/* vendor value 0x40 */
-+#define ZX_WLAN_TIMEOUT		(ZX_WLAN_BASE + 0x1c)	/* vendor value 5000 */
-+#define ZX_WLAN_INT_STATUS	(ZX_WLAN_BASE + 0x20)
-+#define ZX_WLAN_INT_MASK	(ZX_WLAN_BASE + 0x24)	/* 1: masked */
-+#define  ZX_WLAN_INT_RX		BIT(2)
-+#define  ZX_WLAN_INT_TX		BIT(4)
-+#define  ZX_WLAN_INT_ALL	GENMASK(4, 0)
-+#define ZX_WLAN_TX_KICK		(ZX_WLAN_BASE + 0x40)
-+#define  ZX_WLAN_KICK_NEW	GENMASK(31, 16)	/* descriptors added */
-+#define  ZX_WLAN_KICK_DONE	GENMASK(15, 0)	/* descriptors consumed */
-+#define ZX_WLAN_TX_DONE		(ZX_WLAN_BASE + 0x44)	/* sent, not acked */
-+#define ZX_WLAN_RX_KICK		(ZX_WLAN_BASE + 0x48)
-+#define ZX_WLAN_RX_PENDING	(ZX_WLAN_BASE + 0x4c)
-+#define ZX_WLAN_REGC0		(ZX_WLAN_BASE + 0xc0)
-+
-+#define ZX_WLAN_RX_DESC		2048
-+#define ZX_WLAN_TX_DESC		1024
-+#define ZX_WLAN_RX_BUF		1732	/* vendor buffer size */
-+#define ZX_WLAN_RX_HEADROOM	32
-+#define ZX_WLAN_TX_LIMIT	512
-+#define ZX_WLAN_TX_RECLAIM	256	/* per reclaim, as the vendor code */
-+/* Descriptor word 1 */
-+#define ZX_WLAN_RX_LEN		GENMASK(13, 0)
-+#define ZX_WLAN_RX_SSID		GENMASK(18, 16)
-+#define ZX_WLAN_RX_SSID_VALID	BIT(19)
-+#define ZX_WLAN_TX_LEN		GENMASK(20, 0)
-+#define ZX_WLAN_TX_SSID		GENMASK(30, 28)
-+#define ZX_WLAN_DESC_PORT	BIT(31)		/* fabric port 7, else 6 */
-+
-+#define ZX_WLAN_PORTS		16
-+/* The WLAN logical port of slot @i as the classifier and the fabric know it */
-+#define ZX_WLAN_PORT(i)		(0x10 | (i))
-+#define ZX_WLAN_PORT_IDM(i)	((i) >> 3)
-+#define ZX_WLAN_PORT_SSID(i)	((i) & 7)
-+
- /* Packet processor */
- #define ZX_PP_RESET		0x380000
- 
-@@ -203,7 +256,7 @@
- /* Word 0 of a classifier hash entry */
- #define ZX_CLA_W0_FLOW		GENMASK(31, 25)	/* packet modifier rewrite index */
- #define ZX_CLA_W0_FWD		BIT(24)		/* forward to the egress port */
--#define ZX_CLA_W0_EGRESS	GENMASK(15, 12)	/* bridge port, ZX_BRPORT() */
-+#define ZX_CLA_W0_EGRESS	GENMASK(23, 12)	/* ZX_BRPORT() or ZX_WLAN_PORT() */
- #define ZX_CLA_W0_BITS		0x44		/* as in every stock entry */
- 
- /* Bridge ports: 0 is the PON side, 1-5 are the switch ports 0-4 */
-@@ -245,6 +298,8 @@
- #define ZX_RX_QUEUES		8
- #define ZX_DMA_TX_DONE		(ZX_DMA_BASE + 0x68)
- 
-+struct dentry;
-+struct platform_device;
- struct zx_eth_adapter;
- 
- /* One net_device per switch port: ports 0-3 LAN, port 4 WAN */
-@@ -281,11 +336,62 @@ struct zx_eth_priv {
- 	u32			mib_last[ZX_MIB_NUM];	/* last register values */
- };
- 
-+/* A WLAN logical port: a mac80211 AP interface bound to one of the 16 slots */
-+struct zx_wlan_port {
-+	struct zx_wlan		*wlan;
-+	u8			slot;
-+	struct net_device	*vif;		/* held while bound */
-+	struct nf_hook_ops	hook;		/* ingress hook injecting UP frames */
-+	bool			hooked;
-+	u32			tx_injected;
-+	u32			rx_delivered;
-+	u32			trap_delivered;
-+};
-+
-+/* The WLAN DMA engine and the logical ports (zx279128s-wlan.c) */
-+struct zx_wlan {
-+	struct zx_eth_adapter	*adapter;
-+	int			irq;
-+	struct napi_struct	napi;
-+	struct notifier_block	netdev_nb;
-+
-+	void			*desc;		/* RX ring, then TX ring */
-+	dma_addr_t		desc_dma;
-+	struct sk_buff		*rx_skb[ZX_WLAN_RX_DESC];
-+	struct sk_buff		*tx_skb[ZX_WLAN_TX_DESC];
-+	u32			rx_idx;
-+	/* TX ring producer/consumer state and tx_skb[] */
-+	spinlock_t		tx_lock;
-+	u32			tx_idx;
-+	u32			tx_done;
-+	u32			tx_pending;
-+
-+	struct zx_wlan_port	ports[ZX_WLAN_PORTS];
-+	/* pre-NAT flow keys the ingress hooks inject (index = PPE flow) */
-+	u32			flow_key[ZX_PPE_FLOWS];
-+	u8			flow_port[ZX_PPE_FLOWS];
-+	u32			flow_count;
-+	bool			inject_all;	/* debug: inject every frame */
-+
-+	u32			rx_count;
-+	u32			rx_nossid;	/* no station id: dropped */
-+	u32			rx_nobind;	/* no interface bound: dropped */
-+	u32			rx_bad;
-+	u32			tx_busy;
-+	u32			tx_count;
-+	u32			trap_count;
-+	u32			trap_nobind;
-+	u32			trap_noparse;
-+	u32			inj_gso;
-+	u32			inj_gso_fail;
-+};
-+
- struct zx_eth_adapter {
- 	struct device		*dev;
- 	void __iomem		*base;
- 	struct napi_struct	napi;
- 	struct hrtimer		tx_timer;
-+	struct zx_wlan		*wlan;		/* NULL without the WLAN interrupt */
- 
- 	struct net_device	*ports[ZX_NUM_PORTS];
- 	int			open_count;
-@@ -383,4 +489,19 @@ void zx_sw_fini(struct zx_eth_adapter *adapter);
- void zx_sw_work(struct work_struct *work);
- void zx_sw_port_down(struct zx_eth_adapter *adapter, int port);
- 
-+/* zx279128s-wlan.c */
-+int zx_wlan_init(struct zx_eth_adapter *adapter, struct platform_device *pdev);
-+void zx_wlan_fini(struct zx_eth_adapter *adapter);
-+void zx_wlan_trap_rx(struct zx_eth_adapter *adapter, int slot, const u8 *buf,
-+		     unsigned int len);
-+int zx_wlan_port_of_egress(struct zx_eth_adapter *adapter,
-+			   struct net_device *dev, const u8 *dmac);
-+int zx_wlan_port_of_ingress(struct zx_eth_adapter *adapter, int ifindex,
-+			    __be32 saddr);
-+u32 zx_wlan_flow_key(u8 proto, __be32 saddr, __be32 daddr, __be16 sport,
-+		     __be16 dport);
-+void zx_wlan_flow_set(struct zx_eth_adapter *adapter, int flow, u32 key,
-+		      int slot);
-+void zx_wlan_debugfs_init(struct zx_eth_adapter *adapter, struct dentry *dir);
-+
- #endif
-diff --git a/drivers/net/ethernet/zte/zx279128s-main.c b/drivers/net/ethernet/zte/zx279128s-main.c
-index 45a0dc13639e..a0dcb4d7011a 100644
---- a/drivers/net/ethernet/zte/zx279128s-main.c
-+++ b/drivers/net/ethernet/zte/zx279128s-main.c
-@@ -804,7 +804,17 @@ static int zx_eth_rx(struct zx_eth_adapter *adapter, int budget)
- 			/* Deliver to the netdev of the ingress port */
- 			dest_dev = port < ZX_NUM_PORTS ? adapter->ports[port] : NULL;
- 
--			skb = napi_alloc_skb(&adapter->napi, len);
-+			/* A frame injected for a WLAN logical port (ingress
-+			 * 0x10-0x1f) that the classifier did not forward.
-+			 */
-+			if (port >= 15) {
-+				zx_wlan_trap_rx(adapter, port - 15,
-+						adapter->buffer_pool +
-+						bp * ZX_BUF_SIZE + 16, len);
-+				skb = NULL;
-+			} else {
-+				skb = napi_alloc_skb(&adapter->napi, len);
-+			}
- 			if (skb && dest_dev && (dest_dev->flags & IFF_UP)) {
- 				dma_rmb();
- 				memcpy(skb_put(skb, len), adapter->buffer_pool +
-@@ -1197,6 +1207,7 @@ static void zx_eth_debugfs_init(struct zx_eth_adapter *adapter)
- 
- 	debugfs_create_devm_seqfile(adapter->dev, "dma_state", dir,
- 				    zx_eth_dma_state_show);
-+	zx_wlan_debugfs_init(adapter, dir);
+@@ -161,21 +161,27 @@ static struct sk_buff *lan969x_fdma_rx_get_frame(struct sparx5 *sparx5,
+ 	return NULL;
  }
  
- static int zx_eth_probe(struct platform_device *pdev)
-@@ -1419,6 +1430,10 @@ static int zx_eth_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, adapter);
- 
-+	ret = zx_wlan_init(adapter, pdev);
-+	if (ret)
-+		dev_warn(dev, "no WLAN offload: %d\n", ret);
++/* Get the page order needed for a page to hold the largest frame */
++static u8 lan969x_fdma_get_page_order(struct sparx5 *sparx5)
++{
++	return get_order(ALIGN(sparx5_fdma_get_max_frame(sparx5), 128) +
++			 SKB_DATA_ALIGN(sizeof(struct skb_shared_info)));
++}
 +
- 	zx_sw_init(adapter);
- 	schedule_delayed_work(&adapter->mib_work, ZX_MIB_INTERVAL);
+ static int lan969x_fdma_rx_alloc(struct sparx5 *sparx5, struct sparx5_rx *rx)
+ {
+ 	struct fdma *fdma = &rx->fdma;
+ 	int err;
  
-@@ -1465,6 +1480,7 @@ static void zx_eth_shutdown(struct platform_device *pdev)
- 		return;
+ 	struct page_pool_params pp_params = {
+-		.order = 0,
++		.order = rx->page_order,
+ 		.flags = PP_FLAG_DMA_MAP | PP_FLAG_DMA_SYNC_DEV,
+ 		.pool_size = fdma->n_dcbs * fdma->n_dbs,
+ 		.nid = NUMA_NO_NODE,
+ 		.dev = sparx5->dev,
+ 		.dma_dir = DMA_FROM_DEVICE,
+ 		.offset = 0,
+-		.max_len = fdma->db_size -
+-			   SKB_DATA_ALIGN(sizeof(struct skb_shared_info)),
++		.max_len = fdma->db_size,
+ 	};
  
- 	zx_sw_fini(adapter);
-+	zx_wlan_fini(adapter);
+ 	rx->page_pool = page_pool_create(&pp_params);
+@@ -268,7 +274,12 @@ static void lan969x_fdma_rx_init(struct sparx5 *sparx5, struct sparx5_rx *rx)
+ 	fdma->n_dbs = 1;
+ 	fdma->priv = sparx5;
+ 	fdma->size = fdma_get_size(fdma);
+-	fdma->db_size = PAGE_SIZE;
++	/* Keep the FDMA from writing into the skb_shared_info at the end of
++	 * the page. The DB size must be a multiple of 128 bytes.
++	 */
++	fdma->db_size = ALIGN_DOWN((PAGE_SIZE << rx->page_order) -
++				   SKB_DATA_ALIGN(sizeof(struct skb_shared_info)),
++				   128);
+ 	fdma->ops.dataptr_cb = &lan969x_fdma_rx_dataptr_cb;
+ 	fdma->ops.nextptr_cb = &fdma_nextptr_cb;
  
- 	rtnl_lock();
- 	for (i = 0; i < ZX_NUM_PORTS; i++) {
-diff --git a/drivers/net/ethernet/zte/zx279128s-wlan.c b/drivers/net/ethernet/zte/zx279128s-wlan.c
-new file mode 100644
-index 000000000000..17ba32bd993a
---- /dev/null
-+++ b/drivers/net/ethernet/zte/zx279128s-wlan.c
-@@ -0,0 +1,837 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ZTE zx279128s Ethernet switch: WLAN DMA ring and logical ports
-+ *
-+ * Copyright (C) 2026 Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+@@ -414,6 +425,7 @@ int lan969x_fdma_init(struct sparx5 *sparx5)
+ 	struct sparx5_rx *rx = &sparx5->rx;
+ 	int err;
+ 
++	rx->page_order = lan969x_fdma_get_page_order(sparx5);
+ 	lan969x_fdma_rx_init(sparx5, rx);
+ 	lan969x_fdma_tx_init(sparx5);
+ 	sparx5_fdma_injection_mode(sparx5);
+diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+index 7ac5887abe6ee..3a74a305d55d4 100644
+--- a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
++++ b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+@@ -18,7 +18,6 @@
+ #include "sparx5_main.h"
+ #include "sparx5_port.h"
+ 
+-#define FDMA_XTR_BUFFER_SIZE		2048
+ #define FDMA_WEIGHT			4
+ #define SPX5_FDMA_STOP_SLEEP_US		500
+ #define SPX5_FDMA_STOP_TIMEOUT_US	10000
+@@ -218,6 +217,10 @@ int sparx5_fdma_xmit(struct sparx5 *sparx5, u32 *ifh, struct sk_buff *skb,
+ 	struct fdma *fdma = &tx->fdma;
+ 	void *virt_addr;
+ 
++	/* Drop frames that do not fit in the TX buffers */
++	if (unlikely(IFH_LEN * 4 + skb->len + ETH_FCS_LEN > fdma->db_size))
++		return -EMSGSIZE;
++
+ 	if (!fdma_db_is_done(fdma_db_get(fdma, fdma->dcb_index, 0)))
+ 		return -EINVAL;
+ 
+@@ -289,6 +292,33 @@ static int sparx5_fdma_tx_alloc(struct sparx5_tx *tx)
+ 	return 0;
+ }
+ 
++/* Get the size of the largest frame, including IFH and VLAN tags, that can be
++ * received on any of the ports.
 + */
-+
-+#include <linux/bitfield.h>
-+#include <linux/debugfs.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/etherdevice.h>
-+#include <linux/if_bridge.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/ip.h>
-+#include <linux/jhash.h>
-+#include <linux/netfilter.h>
-+#include <linux/platform_device.h>
-+#include <linux/seq_file.h>
-+#include <linux/tcp.h>
-+#include <linux/udp.h>
-+#include <net/arp.h>
-+#include <net/cfg80211.h>
-+#include <net/checksum.h>
-+#include <net/gso.h>
-+#include <net/ip.h>
-+#include <net/neighbour.h>
-+#include <net/netfilter/nf_flow_table.h>
-+
-+#include "zx279128s-eth.h"
-+
-+/*
-+ * The switch fabric has a second DMA engine besides the one that serves the
-+ * switch ports: a ring pair the vendor firmware uses for its WLAN drivers.
-+ * A frame written to its TX ring enters the fabric on port 6 or 7 (bit 31
-+ * of the descriptor) as if it came from the station the 3-bit "ssid" names,
-+ * and a classifier entry whose egress is such a WLAN logical port makes the
-+ * fabric write the frame, rewritten, to the RX ring with that ssid.
-+ *
-+ * This file uses it to offload flows to and from mac80211 AP interfaces of
-+ * the PCIe WLAN cards:
-+ * - a logical port is bound to an AP interface the first time a flow to or
-+ *   from it is offloaded (zx279128s-ppe.c), and released when the interface
-+ *   goes away;
-+ * - frames the fabric forwards to a WLAN port (RX ring) are handed to the
-+ *   bound interface for transmission;
-+ * - frames received by a bound interface are taken off its ingress path and
-+ *   injected into the TX ring when they belong to an offloaded flow, so the
-+ *   fabric rewrites and forwards them without the CPU.  A frame the
-+ *   classifier does not know comes back to the CPU on the switch RX ring
-+ *   with the WLAN port as ingress, and is delivered as received by the
-+ *   interface (zx_wlan_trap_rx()).
-+ * The WLAN drivers are not involved: the interfaces' ordinary transmit and
-+ * receive paths are used, so this works with any mac80211 driver.
-+ */
-+
-+/* Mark an skb the driver injects or delivers, so the ingress hook can tell
-+ * its own frames from new ones (the cb of a received skb is unused until the
-+ * bridge or the protocol handler takes it).
-+ */
-+struct zx_wlan_cb {
-+	u8	magic;
-+	u8	slot;
-+};
-+
-+#define ZX_WLAN_CB(skb)		((struct zx_wlan_cb *)&(skb)->cb[40])
-+#define ZX_WLAN_CB_DELIVERED	0xa5	/* came back from the fabric */
-+
-+/* ---- descriptor rings ---------------------------------------------- */
-+
-+static __le32 *zx_wlan_rx_desc(struct zx_wlan *w, u32 idx)
++u32 sparx5_fdma_get_max_frame(struct sparx5 *sparx5)
 +{
-+	return (__le32 *)w->desc + idx * 2;
-+}
++	u32 max_mtu = 0;
 +
-+static __le32 *zx_wlan_tx_desc(struct zx_wlan *w, u32 idx)
-+{
-+	return (__le32 *)(w->desc + ZX_WLAN_RX_DESC * 8) + idx * 2;
-+}
++	for (int i = 0; i < sparx5->data->consts->n_ports; i++) {
++		struct sparx5_port *port = sparx5->ports[i];
 +
-+static dma_addr_t zx_wlan_map_rx(struct zx_wlan *w, struct sk_buff *skb)
-+{
-+	return dma_map_single(w->adapter->dev, skb->data,
-+			      ZX_WLAN_RX_BUF - ZX_WLAN_RX_HEADROOM,
-+			      DMA_FROM_DEVICE);
-+}
-+
-+static struct sk_buff *zx_wlan_alloc_rx(struct zx_wlan *w, dma_addr_t *dma,
-+					gfp_t gfp)
-+{
-+	struct sk_buff *skb;
-+
-+	skb = __netdev_alloc_skb(w->napi.dev, ZX_WLAN_RX_BUF, gfp);
-+	if (!skb)
-+		return NULL;
-+	skb_reserve(skb, ZX_WLAN_RX_HEADROOM);
-+	*dma = zx_wlan_map_rx(w, skb);
-+	if (dma_mapping_error(w->adapter->dev, *dma)) {
-+		dev_kfree_skb(skb);
-+		return NULL;
-+	}
-+	return skb;
-+}
-+
-+static void zx_wlan_free_rx(struct zx_wlan *w)
-+{
-+	int i;
-+
-+	for (i = 0; i < ZX_WLAN_RX_DESC; i++) {
-+		__le32 *d = zx_wlan_rx_desc(w, i);
-+
-+		if (!w->rx_skb[i])
++		if (!port)
 +			continue;
-+		dma_unmap_single(w->adapter->dev, le32_to_cpu(d[0]),
-+				 ZX_WLAN_RX_BUF - ZX_WLAN_RX_HEADROOM,
-+				 DMA_FROM_DEVICE);
-+		dev_kfree_skb(w->rx_skb[i]);
-+		w->rx_skb[i] = NULL;
++
++		max_mtu = max(max_mtu, READ_ONCE(port->ndev->mtu));
 +	}
++
++	return SPX5_HW_MTU(max_mtu) + IFH_LEN * sizeof(u32) + VLAN_HLEN * 2;
 +}
 +
-+static void zx_wlan_free_tx(struct zx_wlan *w)
-+{
-+	int i;
-+
-+	for (i = 0; i < ZX_WLAN_TX_DESC; i++) {
-+		__le32 *d = zx_wlan_tx_desc(w, i);
-+
-+		if (!w->tx_skb[i])
-+			continue;
-+		dma_unmap_single(w->adapter->dev, le32_to_cpu(d[0]),
-+				 w->tx_skb[i]->len, DMA_TO_DEVICE);
-+		dev_kfree_skb(w->tx_skb[i]);
-+		w->tx_skb[i] = NULL;
-+	}
-+}
-+
-+/* The register sequence of the vendor driver's WLAN DMA initialisation */
-+static int zx_wlan_hw_init(struct zx_wlan *w)
-+{
-+	void __iomem *base = w->adapter->base;
-+	dma_addr_t dma;
-+	u32 val;
-+	int i;
-+
-+	writel(ZX_WLAN_INT_ALL, base + ZX_WLAN_INT_MASK);
-+	writel(0x40, base + ZX_WLAN_REG18);
-+	writel(5000, base + ZX_WLAN_TIMEOUT);
-+	writel(0x40, base + ZX_WLAN_REG10);
-+	val = readl(base + ZX_WLAN_CTRL) | ZX_WLAN_CTRL_EN;
-+	writel(val, base + ZX_WLAN_CTRL);
-+	val &= ~ZX_WLAN_CTRL_MODE;
-+	val |= FIELD_PREP(ZX_WLAN_CTRL_MODE, ZX_WLAN_CTRL_MODE_VAL);
-+	writel(val, base + ZX_WLAN_CTRL);
-+	writel(0, base + ZX_WLAN_REGC0);
-+	writel(w->desc_dma + ZX_WLAN_RX_DESC * 8, base + ZX_WLAN_TX_RING);
-+	writel(w->desc_dma, base + ZX_WLAN_RX_RING);
-+
-+	for (i = 0; i < ZX_WLAN_RX_DESC; i++) {
-+		__le32 *d = zx_wlan_rx_desc(w, i);
-+
-+		w->rx_skb[i] = zx_wlan_alloc_rx(w, &dma, GFP_KERNEL);
-+		if (!w->rx_skb[i])
-+			return -ENOMEM;
-+		d[0] = cpu_to_le32(dma);
-+		d[1] = 0;
-+	}
-+	dma_wmb();
-+	/* one refill per slot, as the vendor driver */
-+	for (i = 0; i < ZX_WLAN_RX_DESC; i++)
-+		writel(FIELD_PREP(ZX_WLAN_KICK_NEW, 1), base + ZX_WLAN_RX_KICK);
-+	writel(ZX_WLAN_RX_EN_VAL, base + ZX_WLAN_RX_EN);
-+	return 0;
-+}
-+
-+static void zx_wlan_hw_stop(struct zx_wlan *w)
-+{
-+	void __iomem *base = w->adapter->base;
-+
-+	writel(ZX_WLAN_INT_ALL, base + ZX_WLAN_INT_MASK);
-+	writel(0, base + ZX_WLAN_RX_EN);
-+	writel(readl(base + ZX_WLAN_CTRL) & ~ZX_WLAN_CTRL_EN, base + ZX_WLAN_CTRL);
-+}
-+
-+/* ---- TX: inject a frame into the fabric ---------------------------- */
-+
-+static void zx_wlan_tx_reclaim(struct zx_wlan *w)
-+{
-+	void __iomem *base = w->adapter->base;
-+	u32 done, i;
-+
-+	spin_lock_bh(&w->tx_lock);
-+	done = FIELD_GET(ZX_WLAN_KICK_DONE, readl(base + ZX_WLAN_TX_DONE));
-+	done = min3(done, w->tx_pending, (u32)ZX_WLAN_TX_RECLAIM);
-+	for (i = 0; i < done; i++) {
-+		u32 idx = w->tx_done;
-+		struct sk_buff *skb = w->tx_skb[idx];
-+
-+		w->tx_done = (idx + 1) % ZX_WLAN_TX_DESC;
-+		w->tx_skb[idx] = NULL;
-+		if (!skb)
-+			continue;
-+		dma_unmap_single(w->adapter->dev,
-+				 le32_to_cpu(zx_wlan_tx_desc(w, idx)[0]),
-+				 skb->len, DMA_TO_DEVICE);
-+		dev_consume_skb_any(skb);
-+	}
-+	w->tx_pending -= done;
-+	if (done)
-+		writel(FIELD_PREP(ZX_WLAN_KICK_DONE, done), base + ZX_WLAN_TX_KICK);
-+	spin_unlock_bh(&w->tx_lock);
-+}
-+
-+/*
-+ * Inject one linear, wire-sized frame (Ethernet header first) as if the
-+ * station of @slot had sent it.  Takes ownership of the skb.
++/* Get the DB size needed to hold the largest frame. The DB size must be a
++ * multiple of 128 bytes.
 + */
-+static void zx_wlan_xmit(struct zx_wlan *w, int slot, struct sk_buff *skb)
++static u32 sparx5_fdma_get_db_size(struct sparx5 *sparx5)
 +{
-+	void __iomem *base = w->adapter->base;
-+	dma_addr_t dma;
-+	__le32 *d;
-+	u32 idx;
-+
-+	/* the fabric wants at least 64 bytes, and reads skb->data verbatim */
-+	if (skb_put_padto(skb, ETH_ZLEN + ETH_FCS_LEN))
-+		return;
-+	if (skb_is_nonlinear(skb) && skb_linearize(skb))
-+		goto drop;
-+
-+	if (READ_ONCE(w->tx_pending) >= ZX_WLAN_TX_LIMIT) {
-+		zx_wlan_tx_reclaim(w);
-+		if (READ_ONCE(w->tx_pending) >= ZX_WLAN_TX_LIMIT) {
-+			w->tx_busy++;
-+			goto drop;
-+		}
-+	}
-+	dma = dma_map_single(w->adapter->dev, skb->data, skb->len, DMA_TO_DEVICE);
-+	if (dma_mapping_error(w->adapter->dev, dma))
-+		goto drop;
-+
-+	spin_lock_bh(&w->tx_lock);
-+	idx = w->tx_idx;
-+	w->tx_idx = (idx + 1) % ZX_WLAN_TX_DESC;
-+	d = zx_wlan_tx_desc(w, idx);
-+	d[0] = cpu_to_le32(dma);
-+	d[1] = cpu_to_le32(FIELD_PREP(ZX_WLAN_TX_LEN, skb->len) |
-+			   FIELD_PREP(ZX_WLAN_TX_SSID, ZX_WLAN_PORT_SSID(slot)) |
-+			   (ZX_WLAN_PORT_IDM(slot) ? ZX_WLAN_DESC_PORT : 0));
-+	w->tx_skb[idx] = skb;
-+	w->tx_pending++;
-+	w->tx_count++;
-+	w->ports[slot].tx_injected++;
-+	dma_wmb();
-+	writel(FIELD_PREP(ZX_WLAN_KICK_NEW, 1), base + ZX_WLAN_TX_KICK);
-+	spin_unlock_bh(&w->tx_lock);
-+	return;
-+
-+drop:
-+	kfree_skb(skb);
++	return ALIGN(sparx5_fdma_get_max_frame(sparx5), 128);
 +}
 +
-+/* ---- RX: frames the fabric forwarded to a WLAN port ---------------- */
-+
-+/*
-+ * Hand a frame the fabric forwarded to the interface of its WLAN port.  The
-+ * packet modifier decremented the TTL but the IPv4 header checksum is not
-+ * repaired on this path (the MAC egress pipeline does that for the switch
-+ * ports), so recompute it.  The frame is transmitted through the ordinary
-+ * queueing path of the interface; mac80211 needs the network header to
-+ * classify it into a traffic class, or the flow is spread over all of them.
-+ */
-+static void zx_wlan_rx_deliver(struct zx_wlan *w, int slot, struct sk_buff *skb)
-+{
-+	struct net_device *vif = READ_ONCE(w->ports[slot].vif);
-+	struct ethhdr *eth = (struct ethhdr *)skb->data;
-+
-+	if (!vif || !netif_running(vif) || !netif_carrier_ok(vif)) {
-+		w->rx_nobind++;
-+		kfree_skb(skb);
-+		return;
-+	}
-+	if (eth->h_proto == htons(ETH_P_IP) &&
-+	    skb->len >= ETH_HLEN + sizeof(struct iphdr)) {
-+		struct iphdr *iph = (struct iphdr *)(skb->data + ETH_HLEN);
-+
-+		iph->check = 0;
-+		iph->check = ip_fast_csum(iph, iph->ihl);
-+	}
-+	skb->dev = vif;
-+	skb_reset_mac_header(skb);
-+	skb_set_network_header(skb, ETH_HLEN);
-+	skb->protocol = eth_header_parse_protocol(skb);
-+	w->ports[slot].rx_delivered++;
-+	dev_queue_xmit(skb);
-+}
-+
-+static int zx_wlan_rx(struct zx_wlan *w, int budget)
-+{
-+	void __iomem *base = w->adapter->base;
-+	int done = 0;
-+
-+	while (done < budget) {
-+		u32 pending = readl(base + ZX_WLAN_RX_PENDING) & 0xffff;
-+		u32 n, take;
-+
-+		if (!pending)
-+			break;
-+		take = min_t(u32, pending, budget - done);
-+		for (n = 0; n < take; n++) {
-+			u32 idx = w->rx_idx;
-+			__le32 *d = zx_wlan_rx_desc(w, idx);
-+			struct sk_buff *skb = w->rx_skb[idx], *new_skb;
-+			u32 word1 = le32_to_cpu(d[1]);
-+			u32 len = FIELD_GET(ZX_WLAN_RX_LEN, word1);
-+			dma_addr_t new_dma;
-+			int slot;
-+
-+			w->rx_count++;
-+			if (!len || len > ZX_WLAN_RX_BUF - ZX_WLAN_RX_HEADROOM) {
-+				w->rx_bad++;
-+				d[1] = 0;
-+				goto next;
-+			}
-+			new_skb = zx_wlan_alloc_rx(w, &new_dma, GFP_ATOMIC);
-+			if (!new_skb) {
-+				w->rx_bad++;
-+				d[1] = 0;
-+				goto next;
-+			}
-+			dma_unmap_single(w->adapter->dev, le32_to_cpu(d[0]),
-+					 ZX_WLAN_RX_BUF - ZX_WLAN_RX_HEADROOM,
-+					 DMA_FROM_DEVICE);
-+			d[0] = cpu_to_le32(new_dma);
-+			d[1] = 0;
-+			w->rx_skb[idx] = new_skb;
-+			skb_put(skb, len);
-+
-+			if (!(word1 & ZX_WLAN_RX_SSID_VALID)) {
-+				/* flooded by the bridge, not for a station */
-+				w->rx_nossid++;
-+				kfree_skb(skb);
-+				goto next;
-+			}
-+			slot = FIELD_GET(ZX_WLAN_RX_SSID, word1);
-+			if (word1 & ZX_WLAN_DESC_PORT)
-+				slot |= 8;
-+			zx_wlan_rx_deliver(w, slot, skb);
-+next:
-+			w->rx_idx = (idx + 1) % ZX_WLAN_RX_DESC;
-+			done++;
-+		}
-+		/* consumed and refilled: the same count */
-+		writel(FIELD_PREP(ZX_WLAN_KICK_NEW, n) | FIELD_PREP(ZX_WLAN_KICK_DONE, n),
-+		       base + ZX_WLAN_RX_KICK);
-+	}
-+	return done;
-+}
-+
-+static int zx_wlan_poll(struct napi_struct *napi, int budget)
-+{
-+	struct zx_wlan *w = container_of(napi, struct zx_wlan, napi);
-+	int done;
-+
-+	zx_wlan_tx_reclaim(w);
-+	done = zx_wlan_rx(w, budget);
-+	if (done < budget && napi_complete_done(napi, done))
-+		writel(readl(w->adapter->base + ZX_WLAN_INT_MASK) &
-+		       ~(ZX_WLAN_INT_RX | ZX_WLAN_INT_TX),
-+		       w->adapter->base + ZX_WLAN_INT_MASK);
-+	return done;
-+}
-+
-+static irqreturn_t zx_wlan_isr(int irq, void *dev_id)
-+{
-+	struct zx_wlan *w = dev_id;
-+	void __iomem *base = w->adapter->base;
-+
-+	if (!readl(base + ZX_WLAN_INT_STATUS))
-+		return IRQ_NONE;
-+	writel(readl(base + ZX_WLAN_INT_MASK) | ZX_WLAN_INT_RX | ZX_WLAN_INT_TX,
-+	       base + ZX_WLAN_INT_MASK);
-+	napi_schedule(&w->napi);
-+	return IRQ_HANDLED;
-+}
-+
-+/* ---- frames that missed the classifier --------------------------- */
-+
-+/*
-+ * A frame injected for a WLAN port that the classifier did not forward
-+ * comes back on the switch RX ring with the WLAN port as ingress.  It is
-+ * delivered to the bound interface's receive path, as if the interface had
-+ * just received it, and marked so that the ingress hook lets it pass.
-+ * The frame usually starts at the same offset as a switch port's frame;
-+ * the two other layouts seen on this path are probed by their ethertype.
-+ */
-+void zx_wlan_trap_rx(struct zx_eth_adapter *adapter, int slot, const u8 *buf,
-+		     unsigned int len)
-+{
-+	static const u8 offsets[] = { 0, 2 };
-+	struct zx_wlan *w = adapter->wlan;
-+	struct net_device *vif;
-+	struct sk_buff *skb;
-+	unsigned int i, off = 0;
-+	bool found = false;
-+
-+	if (!w || slot >= ZX_WLAN_PORTS)
-+		return;
-+	w->trap_count++;
-+	vif = READ_ONCE(w->ports[slot].vif);
-+	if (!vif || !netif_running(vif)) {
-+		w->trap_nobind++;
-+		return;
-+	}
-+	for (i = 0; i < ARRAY_SIZE(offsets) && !found; i++) {
-+		__be16 proto;
-+
-+		off = offsets[i];
-+		if (len < off + ETH_HLEN)
-+			break;
-+		proto = *(const __be16 *)(buf + off + 2 * ETH_ALEN);
-+		found = eth_proto_is_802_3(proto);
-+	}
-+	if (!found) {
-+		w->trap_noparse++;
-+		return;
-+	}
-+	skb = netdev_alloc_skb(vif, len - off);
-+	if (!skb)
-+		return;
-+	memcpy(skb_put(skb, len - off), buf + off, len - off);
-+	ZX_WLAN_CB(skb)->magic = ZX_WLAN_CB_DELIVERED;
-+	ZX_WLAN_CB(skb)->slot = slot;
-+	skb->protocol = eth_type_trans(skb, vif);
-+	w->ports[slot].trap_delivered++;
-+	netif_rx(skb);
-+}
-+
-+/* ---- ingress hook: inject the frames of offloaded flows ------------ */
-+
-+u32 zx_wlan_flow_key(u8 proto, __be32 saddr, __be32 daddr, __be16 sport,
-+		     __be16 dport)
-+{
-+	return jhash_3words((__force u32)saddr, (__force u32)daddr,
-+			    (__force u32)sport << 16 | (__force u32)dport,
-+			    proto) ?: 1;
-+}
-+
-+/* Remember (or forget, @key 0) the pre-NAT key of a flow the fabric holds
-+ * for a WLAN ingress port; called with ppe_lock held.
-+ */
-+void zx_wlan_flow_set(struct zx_eth_adapter *adapter, int flow, u32 key,
-+		      int slot)
-+{
-+	struct zx_wlan *w = adapter->wlan;
-+
-+	if (!w || flow < 0 || flow >= ZX_PPE_FLOWS)
-+		return;
-+	if (!!w->flow_key[flow] != !!key)
-+		w->flow_count += key ? 1 : -1;
-+	WRITE_ONCE(w->flow_key[flow], key);
-+	w->flow_port[flow] = slot;
-+}
-+
-+static bool zx_wlan_flow_held(struct zx_wlan *w, u32 key)
-+{
-+	int i;
-+
-+	for (i = 1; i < ZX_PPE_FLOWS; i++)
-+		if (READ_ONCE(w->flow_key[i]) == key)
-+			return true;
-+	return false;
-+}
-+
-+/*
-+ * Runs on every frame a bound AP interface receives, after tc and before
-+ * the bridge's rx_handler.  Frames of a flow the fabric holds for this port
-+ * are injected into the fabric; everything else (control plane, bridged
-+ * traffic, SYN/FIN/RST, flows on the software path) goes on to the stack.
-+ * mac80211's GRO hands over superframes, which the fabric would drop as too
-+ * long, so they are segmented to wire size first.
-+ */
-+static unsigned int zx_wlan_ingress_hook(void *priv, struct sk_buff *skb,
-+					 const struct nf_hook_state *state)
-+{
-+	struct zx_wlan_port *port = priv;
-+	struct zx_wlan *w = port->wlan;
-+	int slot = port->slot;
-+	const struct iphdr *iph;
-+	__be16 sport, dport;
-+	unsigned int thoff;
-+
-+	if (ZX_WLAN_CB(skb)->magic == ZX_WLAN_CB_DELIVERED)
-+		return NF_ACCEPT;
-+	if (!READ_ONCE(w->flow_count) && !READ_ONCE(w->inject_all))
-+		return NF_ACCEPT;
-+	if (skb->protocol != htons(ETH_P_IP) || !pskb_may_pull(skb, sizeof(*iph)))
-+		return NF_ACCEPT;
-+	iph = ip_hdr(skb);
-+	if (iph->ihl < 5 || ip_is_fragment(iph) ||
-+	    (iph->protocol != IPPROTO_TCP && iph->protocol != IPPROTO_UDP))
-+		return NF_ACCEPT;
-+	thoff = iph->ihl * 4;
-+	if (iph->protocol == IPPROTO_TCP) {
-+		const struct tcphdr *th;
-+
-+		if (!pskb_may_pull(skb, thoff + sizeof(*th)))
-+			return NF_ACCEPT;
-+		iph = ip_hdr(skb);
-+		th = (const struct tcphdr *)((const u8 *)iph + thoff);
-+		/* conntrack must see the connection open and close */
-+		if (th->syn || th->fin || th->rst)
-+			return NF_ACCEPT;
-+		sport = th->source;
-+		dport = th->dest;
-+	} else {
-+		const struct udphdr *uh;
-+
-+		if (!pskb_may_pull(skb, thoff + sizeof(*uh)))
-+			return NF_ACCEPT;
-+		iph = ip_hdr(skb);
-+		uh = (const struct udphdr *)((const u8 *)iph + thoff);
-+		sport = uh->source;
-+		dport = uh->dest;
-+	}
-+	if (!READ_ONCE(w->inject_all) &&
-+	    !zx_wlan_flow_held(w, zx_wlan_flow_key(iph->protocol, iph->saddr,
-+						   iph->daddr, sport, dport)))
-+		return NF_ACCEPT;
-+
-+	/* the fabric wants the frame from its Ethernet header */
-+	if (!skb_mac_header_was_set(skb) ||
-+	    skb_mac_header(skb) != skb->data - ETH_HLEN)
-+		return NF_ACCEPT;
-+	skb_push(skb, ETH_HLEN);
-+
-+	if (skb_is_gso(skb)) {
-+		struct sk_buff *segs, *seg, *next;
-+
-+		w->inj_gso++;
-+		skb->mac_len = ETH_HLEN;
-+		segs = skb_gso_segment(skb, 0);
-+		if (IS_ERR_OR_NULL(segs)) {
-+			w->inj_gso_fail++;
-+			skb_pull(skb, ETH_HLEN);
-+			return NF_ACCEPT;
-+		}
-+		consume_skb(skb);
-+		skb_list_walk_safe(segs, seg, next) {
-+			skb_mark_not_on_list(seg);
-+			zx_wlan_xmit(w, slot, seg);
-+		}
-+		return NF_STOLEN;
-+	}
-+	zx_wlan_xmit(w, slot, skb);
-+	return NF_STOLEN;
-+}
-+
-+/* ---- logical ports ------------------------------------------------- */
-+
-+static bool zx_wlan_is_ap(const struct net_device *dev)
-+{
-+	return dev && dev->ieee80211_ptr &&
-+	       dev->ieee80211_ptr->iftype == NL80211_IFTYPE_AP;
-+}
-+
-+/* Bind @vif to a free slot, or find its slot.  Called with ppe_lock held. */
-+static int zx_wlan_port_get(struct zx_wlan *w, struct net_device *vif)
-+{
-+	struct zx_wlan_port *port;
-+	int i, free = -1;
-+
-+	for (i = 0; i < ZX_WLAN_PORTS; i++) {
-+		if (w->ports[i].vif == vif)
-+			return i;
-+		if (!w->ports[i].vif && free < 0)
-+			free = i;
-+	}
-+	if (free < 0)
-+		return -ENOSPC;
-+	port = &w->ports[free];
-+	memset(port, 0, sizeof(*port));
-+	port->wlan = w;
-+	port->slot = free;
-+	port->hook.hook = zx_wlan_ingress_hook;
-+	port->hook.priv = port;
-+	port->hook.pf = NFPROTO_NETDEV;
-+	port->hook.hooknum = NF_NETDEV_INGRESS;
-+	port->hook.priority = INT_MIN + 1;	/* before the flowtable's */
-+	port->hook.dev = vif;
-+	port->hooked = !nf_register_net_hook(dev_net(vif), &port->hook);
-+	if (!port->hooked)
-+		netdev_warn(vif, "no ingress hook: flows from this interface stay in software\n");
-+	dev_hold(vif);
-+	WRITE_ONCE(port->vif, vif);
-+	dev_dbg(w->adapter->dev, "%s bound to WLAN port %#x\n", vif->name,
-+		ZX_WLAN_PORT(free));
-+	return free;
-+}
-+
-+static void zx_wlan_port_put(struct zx_wlan *w, int slot)
-+{
-+	struct zx_wlan_port *port = &w->ports[slot];
-+	struct net_device *vif = port->vif;
-+	int i;
-+
-+	if (!vif)
-+		return;
-+	WRITE_ONCE(port->vif, NULL);
-+	for (i = 1; i < ZX_PPE_FLOWS; i++)
-+		if (w->flow_key[i] && w->flow_port[i] == slot)
-+			zx_wlan_flow_set(w->adapter, i, 0, 0);
-+	if (port->hooked)
-+		nf_unregister_net_hook(dev_net(vif), &port->hook);
-+	/* no RX dispatch or hook still uses the interface */
-+	synchronize_net();
-+	port->hooked = false;
-+	dev_put(vif);
-+}
-+
-+/* The AP interface behind a bridge's forwarding path for @dmac, or @dev */
-+static struct net_device *zx_wlan_bridge_port(struct net_device *dev,
-+					      const u8 *dmac)
-+{
-+	struct net_device_path_ctx ctx = { .dev = dev };
-+	struct net_device_path path = {};
-+
-+	if (!netif_is_bridge_master(dev) ||
-+	    !dev->netdev_ops->ndo_fill_forward_path)
-+		return dev;
-+	memcpy(ctx.daddr, dmac, ETH_ALEN);
-+	if (dev->netdev_ops->ndo_fill_forward_path(&ctx, &path) || !ctx.dev)
-+		return dev;
-+	/* a port of the bridge, which the caller only reads under RCU */
-+	return (struct net_device *)ctx.dev;
-+}
-+
-+/*
-+ * The WLAN port of a flow's egress: @dev is the AP interface, or a bridge
-+ * the flowtable stopped at because mac80211 fills no forwarding path, in
-+ * which case the port the next hop MAC was learned on is the interface.
-+ * Returns the slot, or -ENODEV when the egress is not an AP interface.
-+ */
-+int zx_wlan_port_of_egress(struct zx_eth_adapter *adapter,
-+			   struct net_device *dev, const u8 *dmac)
-+{
-+	struct net_device *vif;
-+
-+	if (!adapter->wlan || !dev)
-+		return -ENODEV;
-+	rcu_read_lock();
-+	vif = zx_wlan_bridge_port(dev, dmac);
-+	if (!zx_wlan_is_ap(vif))
-+		vif = NULL;
-+	rcu_read_unlock();
-+	if (!vif)
-+		return -ENODEV;
-+	return zx_wlan_port_get(adapter->wlan, vif);
-+}
-+
-+/*
-+ * The WLAN port of a flow's ingress: @ifindex is the AP interface, or the
-+ * bridge it is a port of; then the station's address (@saddr, the flow's
-+ * pre-NAT source) leads through the bridge's neighbour entry and forwarding
-+ * database to the interface.
-+ */
-+int zx_wlan_port_of_ingress(struct zx_eth_adapter *adapter, int ifindex,
-+			    __be32 saddr)
-+{
-+	struct net_device *dev, *vif = NULL;
-+
-+	if (!adapter->wlan || !ifindex)
-+		return -ENODEV;
-+	rcu_read_lock();
-+	dev = dev_get_by_index_rcu(dev_net(adapter->wlan->napi.dev), ifindex);
-+	if (dev && netif_is_bridge_master(dev) && saddr) {
-+		struct neighbour *n = neigh_lookup(arp_table(dev_net(dev)),
-+						   &saddr, dev);
-+
-+		if (n) {
-+			if (READ_ONCE(n->nud_state) & NUD_VALID) {
-+				u8 mac[ETH_ALEN];
-+
-+				neigh_ha_snapshot(mac, n, dev);
-+				vif = zx_wlan_bridge_port(dev, mac);
-+			}
-+			neigh_release(n);
-+		}
-+	} else {
-+		vif = dev;
-+	}
-+	if (!zx_wlan_is_ap(vif))
-+		vif = NULL;
-+	rcu_read_unlock();
-+	if (!vif)
-+		return -ENODEV;
-+	return zx_wlan_port_get(adapter->wlan, vif);
-+}
-+
-+static int zx_wlan_netdev_event(struct notifier_block *nb, unsigned long event,
-+				void *ptr)
-+{
-+	struct zx_wlan *w = container_of(nb, struct zx_wlan, netdev_nb);
-+	struct net_device *dev = netdev_notifier_info_to_dev(ptr);
-+	int i;
-+
-+	if (event != NETDEV_UNREGISTER || !zx_wlan_is_ap(dev))
-+		return NOTIFY_DONE;
-+	mutex_lock(&w->adapter->ppe_lock);
-+	for (i = 0; i < ZX_WLAN_PORTS; i++)
-+		if (w->ports[i].vif == dev)
-+			zx_wlan_port_put(w, i);
-+	mutex_unlock(&w->adapter->ppe_lock);
-+	return NOTIFY_DONE;
-+}
-+
-+/* ---- debugfs ------------------------------------------------------- */
-+
-+static int zx_wlan_state_show(struct seq_file *s, void *data)
-+{
-+	struct zx_eth_adapter *adapter = dev_get_drvdata(s->private);
-+	struct zx_wlan *w = adapter->wlan;
-+	int i;
-+
-+	if (!w)
-+		return 0;
-+	seq_printf(s, "rx=%u rx_nossid=%u rx_nobind=%u rx_bad=%u tx=%u tx_busy=%u tx_pending=%u\n",
-+		   w->rx_count, w->rx_nossid, w->rx_nobind, w->rx_bad,
-+		   w->tx_count, w->tx_busy, w->tx_pending);
-+	seq_printf(s, "trap=%u trap_nobind=%u trap_noparse=%u gso=%u gso_fail=%u flows=%u inject_all=%u\n",
-+		   w->trap_count, w->trap_nobind, w->trap_noparse, w->inj_gso,
-+		   w->inj_gso_fail, w->flow_count, w->inject_all);
-+	seq_printf(s, "ctrl=%08x int_status=%08x int_mask=%08x rx_pending=%08x\n",
-+		   readl(adapter->base + ZX_WLAN_CTRL),
-+		   readl(adapter->base + ZX_WLAN_INT_STATUS),
-+		   readl(adapter->base + ZX_WLAN_INT_MASK),
-+		   readl(adapter->base + ZX_WLAN_RX_PENDING));
-+	for (i = 0; i < ZX_WLAN_PORTS; i++) {
-+		struct net_device *vif = READ_ONCE(w->ports[i].vif);
-+
-+		if (!vif)
-+			continue;
-+		seq_printf(s, "port %#x %s hook=%u injected=%u delivered=%u trapped=%u\n",
-+			   ZX_WLAN_PORT(i), vif->name, w->ports[i].hooked,
-+			   w->ports[i].tx_injected, w->ports[i].rx_delivered,
-+			   w->ports[i].trap_delivered);
-+	}
-+	return 0;
-+}
-+
-+void zx_wlan_debugfs_init(struct zx_eth_adapter *adapter, struct dentry *dir)
-+{
-+	if (!adapter->wlan)
-+		return;
-+	debugfs_create_devm_seqfile(adapter->dev, "wlan_state", dir,
-+				    zx_wlan_state_show);
-+	debugfs_create_bool("wlan_inject_all", 0600, dir,
-+			    &adapter->wlan->inject_all);
-+}
-+
-+/* ---- init / fini --------------------------------------------------- */
-+
-+/* Called at the end of probe, with the port netdevs registered */
-+int zx_wlan_init(struct zx_eth_adapter *adapter, struct platform_device *pdev)
-+{
-+	struct device *dev = adapter->dev;
-+	struct zx_wlan *w;
-+	int i, irq, ret;
-+
-+	irq = platform_get_irq_byname_optional(pdev, "wlan");
-+	if (irq < 0)
-+		return irq == -ENXIO ? 0 : irq;
-+	for (i = 0; i < ZX_NUM_PORTS && !adapter->ports[i]; i++)
-+		;
-+	if (i == ZX_NUM_PORTS)
-+		return -ENODEV;
-+
-+	w = devm_kzalloc(dev, sizeof(*w), GFP_KERNEL);
-+	if (!w)
-+		return -ENOMEM;
-+	w->adapter = adapter;
-+	w->irq = irq;
-+	spin_lock_init(&w->tx_lock);
-+	w->desc = dmam_alloc_coherent(dev, (ZX_WLAN_RX_DESC + ZX_WLAN_TX_DESC) * 8,
-+				      &w->desc_dma, GFP_KERNEL);
-+	if (!w->desc)
-+		return -ENOMEM;
-+
-+	netif_napi_add(adapter->ports[i], &w->napi, zx_wlan_poll);
-+	ret = zx_wlan_hw_init(w);
-+	if (ret)
-+		goto err_rx;
-+	ret = devm_request_irq(dev, irq, zx_wlan_isr, 0, "zx279128s-wlan", w);
-+	if (ret)
-+		goto err_rx;
-+	w->netdev_nb.notifier_call = zx_wlan_netdev_event;
-+	ret = register_netdevice_notifier(&w->netdev_nb);
-+	if (ret)
-+		goto err_rx;
-+
-+	adapter->wlan = w;
-+	/* the ring runs from now on: offloaded flows do not wait for a port */
-+	napi_enable(&w->napi);
-+	writel(readl(adapter->base + ZX_WLAN_INT_MASK) &
-+	       ~(ZX_WLAN_INT_RX | ZX_WLAN_INT_TX),
-+	       adapter->base + ZX_WLAN_INT_MASK);
-+	dev_info(dev, "WLAN offload ring on IRQ %d\n", irq);
-+	return 0;
-+
-+err_rx:
-+	zx_wlan_hw_stop(w);
-+	zx_wlan_free_rx(w);
-+	netif_napi_del(&w->napi);
-+	return ret;
-+}
-+
-+void zx_wlan_fini(struct zx_eth_adapter *adapter)
-+{
-+	struct zx_wlan *w = adapter->wlan;
-+	int i;
-+
-+	if (!w)
-+		return;
-+	unregister_netdevice_notifier(&w->netdev_nb);
-+	mutex_lock(&adapter->ppe_lock);
-+	for (i = 0; i < ZX_WLAN_PORTS; i++)
-+		zx_wlan_port_put(w, i);
-+	mutex_unlock(&adapter->ppe_lock);
-+	zx_wlan_hw_stop(w);
-+	synchronize_irq(w->irq);
-+	napi_disable(&w->napi);
-+	zx_wlan_hw_stop(w);
-+	netif_napi_del(&w->napi);
-+	zx_wlan_free_tx(w);
-+	zx_wlan_free_rx(w);
-+	adapter->wlan = NULL;
-+}
+ static void sparx5_fdma_rx_init(struct sparx5 *sparx5,
+ 				struct sparx5_rx *rx, int channel, u32 db_size)
+ {
+@@ -418,7 +448,7 @@ void sparx5_fdma_injection_mode(struct sparx5 *sparx5)
+ 
+ int sparx5_fdma_init(struct sparx5 *sparx5)
+ {
+-	u32 db_size = ALIGN(FDMA_XTR_BUFFER_SIZE, PAGE_SIZE);
++	u32 db_size;
+ 	int err;
+ 
+ 	/* Reset FDMA state */
+@@ -435,6 +465,7 @@ int sparx5_fdma_init(struct sparx5 *sparx5)
+ 		 sparx5, CPU_PROC_CTRL);
+ 
+ 	sparx5_fdma_injection_mode(sparx5);
++	db_size = sparx5_fdma_get_db_size(sparx5);
+ 	sparx5_fdma_rx_init(sparx5, &sparx5->rx, FDMA_XTR_CHANNEL, db_size);
+ 	sparx5_fdma_tx_init(sparx5, &sparx5->tx, FDMA_INJ_CHANNEL, db_size);
+ 	err = sparx5_fdma_rx_alloc(&sparx5->rx);
+diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+index e08b1635cfcd9..1ff096b65f1b4 100644
+--- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
++++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.h
+@@ -109,6 +109,7 @@ enum sparx5_feature {
+ #define SPX5_BUFFER_CELL_SZ    184   /* Cell size  */
+ #define SPX5_BUFFER_MEMORY     4194280 /* 22795 words * 184 bytes */
+ #define SPX5_TAS_ENTRIES_PER_PORT 2 /* TAS lists per port */
++#define SPX5_HW_MTU(mtu)       ((mtu) + ETH_HLEN + ETH_FCS_LEN)
+ 
+ #define XTR_QUEUE     0
+ #define INJ_QUEUE     0
+@@ -480,6 +481,7 @@ int sparx5_fdma_xmit(struct sparx5 *sparx5, u32 *ifh, struct sk_buff *skb,
+ irqreturn_t sparx5_fdma_handler(int irq, void *args);
+ void sparx5_fdma_reload(struct sparx5 *sparx5, struct fdma *fdma);
+ void sparx5_fdma_injection_mode(struct sparx5 *sparx5);
++u32 sparx5_fdma_get_max_frame(struct sparx5 *sparx5);
+ 
+ /* sparx5_mactable.c */
+ int sparx5_mact_learn(struct sparx5 *sparx5, int port,
+
 -- 
-2.30.2
+2.34.1
 
 
