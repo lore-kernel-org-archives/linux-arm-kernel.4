@@ -2,68 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FAE606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82B2606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:46:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ow3KoUot;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=XMZDjw8K
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WxLVnsyj;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jQXRs9sh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=C/nooMgmJG/3mp0rQ1JdOcq7TiihZwhR9+Lq4gd1ZqA=; b=ow3KoUot/CeeKV
-	Eru+5Qc858/MsPuYtNdBysrTiRnoHq/UE7gR7QCQEi7AaOKK78mKzn6Nua82fW/H3V2fh4wnhTLX8
-	xgUw1ZAitPvO2aZFSW6lpZh/YsFBEhqHJ9VvuLSJBAdFCAOgX0Lobc3VxtSugtbH+BYVVq5mY7hqI
-	/GtAXKoDreKmAJizG7RSkV2ligUVG8zyuJCDxh2m4kHI2J9rXMSMIyohHmbDW15pldZumW+Fpj9hZ
-	e4hFfj5Q+x7Qws1Kz9lo/dRZOZigT1nfIjwom2uAvDO720SIOI/py+RfgtTx/O0cSzBDfGsOKH0pA
-	eRm/iX0NYH8bo+dP8ElA==;
+	List-Owner; bh=GndbZrwUbfBqaKKVhV2AQQy9aDOWXMWk0oUaJ06WoJI=; b=WxLVnsyjTswWmL
+	Do1sQMnTZfLHxWFC7aWmRnzFSUY5ibv0D97maJ6InTEdk7UvJkNkLK9jVAZg+T6y5jQBJRlKDEW94
+	gulSXSUPagxPnBnXe/HPOfbFncnZNazJY9VxqRU+ARCq1MSglyYivihrdLyoJTBhT+IMz7N6a7sEp
+	ImYiJrMApa9oAtUnjUNqLmFqrFc/sAMvQgapnFLk+E7fN5GzGiovvV1fSEOFtgxHGqtdxVSCWrTS0
+	VAAamNOYWDzWbg8se7+doq9edX3Z21r97gom1yTppxid5jCf/4EdUbw9c/zpvuqajxORJTTq80XvH
+	PFvalj210rVDnXllGKUg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8d7-00000006rbF-27wl;
-	Wed, 11 Nov 2026 13:44:49 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8d4-00000006raW-3isT
+	id 1xR8ef-00000006rnI-3V7W;
+	Wed, 11 Nov 2026 13:46:25 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR8ed-00000006rn2-34k5
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:44:47 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 841C31576;
-	Wed, 11 Nov 2026 05:44:41 -0800 (PST)
-Received: from [10.0.154.42] (e121487-lin.cambridge.arm.com [10.0.154.42])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CC9EA3F673;
-	Wed, 11 Nov 2026 05:44:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794404684; bh=w2VNZqXDGorpHrLLSd9Lolnep92uG7Tj6Jtn26G8qZc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XMZDjw8KwZgkZXf/BmInpGUc/Nu/+rD12k7JhOUze6J6Xxre4SfOdq5WVwxjfiWTa
-	 9/eDyVHQTNWpHi+d18HTtRra8Hh3YqU0K4XAOeQV5OSptnSeNSVquJujUod3s+tLxQ
-	 jSMziHEiA/pMBzLCDPi5kiv7vPRnqrAFnAB9u5XQ=
-Message-ID: <282608f5-a13b-4695-aa17-f834bf5d8272@arm.com>
-Date: Wed, 11 Nov 2026 13:44:40 +0000
+	Wed, 11 Nov 2026 13:46:23 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 65D4045947;
+	Wed, 11 Nov 2026 13:46:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8302C1F00A05;
+	Wed, 11 Nov 2026 13:46:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794404783;
+	bh=GndbZrwUbfBqaKKVhV2AQQy9aDOWXMWk0oUaJ06WoJI=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject;
+	b=jQXRs9shxUR7ARMscLRzhEIL2Dtiazu1tqGnW76tG76EOQIcS0Y7Ia/5wL3ShtC03
+	 s6Id7orwVG5sj3M4c8+hHioBPGnpM65Fj7++VEMl4yjFZ/1u3eJE5E6yYUM0Hj0STa
+	 qLV8/4xvq78KhMqeFVXgTSKmAMx2gWP8/BZOGkk+zvF+jpSivvFW3jK65CCNQEVo5p
+	 6p2RbYgglU1VGdZXoNs2RucP9vfetVkGSX53FJmOLISsf13VOlKCpQmFYWyEDhQzbs
+	 5kMySj+3Vh/RbkP9jadK1zpc0CbhhrSBKA/89600x4a+BxR31DqVEjroP3Aspo8glp
+	 TgG9rQ7T3bRRw==
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfauth.ams.internal (Postfix) with ESMTP id D19DA198003A;
+	Wed, 11 Nov 2026 08:46:20 -0500 (EST)
+Received: from ams-imap-11 ([10.64.2.31])
+  by ams-compute-02.internal (MEProxy); Wed, 11 Nov 2026 08:46:20 -0500
+X-ME-Sender: <xms:q3H0ahjpwr9W3uh0p7vIGgsEefncwLr1j4xNjQcqEe-OOFv-tADO6Q>
+    <xme:q3H0ag2jF1EcLIS5H2vpPZsJRcbELUhJsBZhcV6SILlbtwwnz3NlQpsAxxo1TMRB_
+    BO59-Mn1bItgrNzamhmH9q1ouZfKyZtKWp9FewZmXFS76sAw13URvY>
+X-ME-Proxy-Cause: dmFkZTGXUnhNKAxQHRMfdjsVivKYFsnQSiOm5Ei1hWmU9E+QjqN6HqgWQ6pU/i4yfMANbF
+    2hWvuoja3vCdMHzUGEwHaY0cB2IXw+XfJlUU2apbFHoN5QJWN0SlEPIvlwGN74Pk5cUcDu
+    g9xC99eWhq6AbfaxwOb9D+aL7ahRU3XZXLDDeHcBb4nVoB411umga+fU/yQyQAjRttL54K
+    RxXcozSHV6tAKuKMERvB5cW/uzPLQj60J+HumErHAt/fPdB7XvwJoOsOb81WcHSqlxdK3f
+    E2DWGBNQ4p4kq6AmzB7X6O8ieBYDmiem327cbmt2P2kk1DZI1UCLIddmoyXMh+EEuLjmpb
+    RimM+ccQmmupukQjuiCTQSRKAbdRYmh6qP9pZhkErlZhNnm430O3WJZOSDdF+qEHP60FVN
+    3rZ4u+GS6ydvFOzbp3FI3lF9v38g/z1w18NG5PmU9+5hFm6Sj0nLvE6azl3cXqZZ9KPMQ1
+    +TwjsWe4LBdidE/pA1BgPO8PM3+NNJHMJiAay2ICauUht/DCCS7nv5cy2t8oi2fLMb+yYm
+    SMSeV4Lv8ZKqneUHvfMoYDKnB/4DDivKrnM3Kr9JQWUblPnh4NGyfy0qp2BdzFoyFghDFH
+    g7u5ys3NGLgNhw3z0dEH0j+15QvGPGo3t2tU2N7664glGOtUsJJ7GwhcY0Pw
+X-ME-Proxy: <xmx:rHH0asQuFs41qzfMBZ_FNtiDTeXxQrSe5e_3onmYTyi46NK8V33IXg>
+    <xmx:rHH0asXh2fT9Y-xZazi5d0eL3RayXyYBfMCKROb719SGa844cddw2w>
+    <xmx:rHH0atfzVYDJCFP__ISm2ZP-0JShdiuyyZYVSGEMn-INPMuMQSgMlQ>
+    <xmx:rHH0agKybCf0aOx0qKjB19Z6Hf0TSbvVGbeW_Sneo9HHZxx1HBAw4g>
+    <xmx:rHH0aqzGjcii_GqOT4VpJkNR8qz9RpXPf6ij_slu9s_g8s9m0Zem8G2D>
+Feedback-ID: ice86485a:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id E1090F8008E; Wed, 11 Nov 2026 08:46:18 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: suspend: Save GCS state over suspend
-To: Mark Brown <broonie@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>,
- Anshuman Khandual <anshuman.khandual@arm.com>,
- Joey Gouly <joey.gouly@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-References: <20261105-arm64-fix-sysreg-suspend-v1-0-f4d9a99fec46@kernel.org>
- <20261105-arm64-fix-sysreg-suspend-v1-2-f4d9a99fec46@kernel.org>
-Content-Language: en-GB
-From: Vladimir Murzin <vladimir.murzin@arm.com>
-In-Reply-To: <20261105-arm64-fix-sysreg-suspend-v1-2-f4d9a99fec46@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Date: Wed, 11 Nov 2026 14:45:58 +0100
+From: "Ard Biesheuvel" <ardb@kernel.org>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>,
+ "Ard Biesheuvel" <ardb+git@google.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+ "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Abel Vesa" <abelvesa@kernel.org>,
+ "Dmitry Baryshkov" <lumag@kernel.org>, linux-arm-msm@vger.kernel.org
+Message-Id: <27227279-dcec-4e46-916c-5d65ad8ca086@app.fastmail.com>
+In-Reply-To: <71d569ee-a939-4c41-b32f-985d7db4040f@app.fastmail.com>
+References: <20261111115303.3749380-9-ardb+git@google.com>
+ <20261111115303.3749380-11-ardb+git@google.com>
+ <t6qm3ktezem4fjeqbo3r3z3ptzjvwlgjuz6kn2sl6z4aj4rkzp@v6mfpglfzixt>
+ <71d569ee-a939-4c41-b32f-985d7db4040f@app.fastmail.com>
+Subject: Re: [PATCH 2/7] arm64: dts: qcom: c630: Use LN_BB_CLK2 as the eDP bridge
+ reference clock
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_054446_976123_86E4FCEA 
-X-CRM114-Status: GOOD (  17.69  )
-X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,80 +100,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/5/26 16:05, Mark Brown wrote:
-> GCSCRE0_EL1 and GCSPR_EL0 are live registers for EL0 on systems with GCS
-> but are not saved and restored by cpu_do_suspend()/cpu_do_resume(). This
-> means that the task that initiated suspend can return to userspace with
-> UNKNOWN or incorrect values for GCSPR_EL0 and GCSCRE0_EL1 (many fields
-> in GCSCRE0_EL1 reset to 0).  This will in turn lead to ongoing
-> corruption, including not restoring mode until a task with a different
-> GCS mode is run.  Fix this by saving and restoring the values over
-> suspend.
-> 
-> This increases the size of struct cpu_suspend_ctx by 16 bytes.
-> 
-> Fixes: 5d8b172e7005 ("arm64: Add Kconfig for Guarded Control Stack (GCS)")
-> Signed-off-by: Mark Brown <broonie@kernel.org>
-> Cc: stable@vger.kernel.org
-> ---
->  arch/arm64/include/asm/suspend.h |  2 +-
->  arch/arm64/mm/proc.S             | 12 ++++++++++++
->  2 files changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/include/asm/suspend.h b/arch/arm64/include/asm/suspend.h
-> index eb9ce315f146..8e9c97aab15a 100644
-> --- a/arch/arm64/include/asm/suspend.h
-> +++ b/arch/arm64/include/asm/suspend.h
-> @@ -2,7 +2,7 @@
->  #ifndef __ASM_SUSPEND_H
->  #define __ASM_SUSPEND_H
->  
-> -#define NR_CTX_REGS 16
-> +#define NR_CTX_REGS 18
->  #define NR_CALLEE_SAVED_REGS 12
->  
->  /*
-> diff --git a/arch/arm64/mm/proc.S b/arch/arm64/mm/proc.S
-> index 664ea9e3b9ad..99aacf03367d 100644
-> --- a/arch/arm64/mm/proc.S
-> +++ b/arch/arm64/mm/proc.S
-> @@ -121,6 +121,12 @@ alternative_else_nop_endif
->  alternative_if ARM64_HAS_S1POE
->  	mrs	x2, REG_POR_EL0
->  	str	x2, [x0, #120]
-> +alternative_else_nop_endif
-> +alternative_if ARM64_HAS_GCS
-> +	mrs	x2, REG_GCSPR_EL0
-> +	str	x2, [x0, #128]
-> +	mrs	x2, REG_GCSCRE0_EL1
-> +	str	x2, [x0, #136]
-
-Have you considered using stp?
-
->  alternative_else_nop_endif
->  	ret
->  SYM_FUNC_END(cpu_do_suspend)
-> @@ -168,6 +174,12 @@ alternative_if ARM64_HAS_S1POE
->  	ldr	x2, [x0, #120]
->  	msr	REG_POR_EL0, x2
->  alternative_else_nop_endif
-> +alternative_if ARM64_HAS_GCS
-> +	ldr	x2, [x0, #128]
-> +	msr	REG_GCSPR_EL0, x2
-> +	ldr	x2, [x0, #136]
-> +	msr	REG_GCSCRE0_EL1, x2
-
-Have you considered using ldp?
 
 
-Cheers
-Vladimir
+On Wed, 11 Nov 2026, at 14:15, Ard Biesheuvel wrote:
+> On Wed, 11 Nov 2026, at 13:43, Dmitry Baryshkov wrote:
+>> On Wed, Nov 11, 2026 at 12:53:06PM +0100, Ard Biesheuvel wrote:
+>>> From: Ard Biesheuvel <ardb@kernel.org>
+>>> 
+>>> The SN65DSI86 eDP bridge on the Yoga C630 is described as being clocked by
+>>> an always-on fixed 19.2 MHz reference clock. However, as on the SDM845
+>>> reference design (Cheza), its REFCLK appears to be fed by the LN_BB_CLK2
+>>> output of the PMIC, which also serves as the master clock of the WCD9340
+>>> audio codec.
+>>> 
+>>> As nothing tells Linux that the bridge depends on LN_BB_CLK2, the clock
+>>> only runs when the codec happens to have it enabled, and the WCD934x
+>>> driver only enables it on demand. If the bridge is brought up while
+>>> LN_BB_CLK2 is off or being toggled, e.g., when the display stack probes
+>>> before the codec, or while the codec is being initialized, all AUX
+>>> transfers fail and the DP PLL does not lock, leaving the panel dark:
+>>> 
+>>>   ti_sn65dsi86 10-002c: Can't read lane count (-110); assuming 4
+>>>   ti_sn65dsi86 10-002c: Can't read eDP rev (-110), assuming 1.1
+>>>   ti_sn65dsi86 10-002c: Can't read max rate (-110); assuming 5.4 GHz
+>>>   ti_sn65dsi86 10-002c: DP_PLL_LOCK polling failed (-110)
+>>> 
+>>> So describe the actual clock instead, so that the bridge driver keeps it
+>>> enabled for as long as the bridge is powered up.
+>>
+>> According to the schematics the actual clock is a divider clock coming
+>> from the GPIO16 of the PMIC.
+>>
+>
+> Which is always powered, I suppose?
+>
+> So I suppose that means just the arbitrary stall resulting from the
+> clock enable is sufficient to make this issue go away? Any clue what
+> else it might be waiting for?
+
+I've just double checked with the old DT: the system comes up with the
+panel dark, but as soon as I do
+
+echo 1 | sudo tee /sys/kernel/debug/clk/ln_bb_clk2/clk_prepare_enable
+
+[on a writable clocks kernel], the panel lights up fine after I blank
+and unblank it.
+
+Could it be an error in the schematic?
+
 
