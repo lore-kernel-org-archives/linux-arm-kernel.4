@@ -2,66 +2,97 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C355D606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 15:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21CE9606A326
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 15:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m+lOAeEG;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=uVG91/NU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M7wMbkvM;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fDIFlsTF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Pprxhn7SNkfKNPiAEW5wNbJlXAXRZEVWDfUn3Qm3Prk=; b=m+lOAeEGFRu31Q
-	1FTplTxteL5210r2uH1sqzikOG8ifwiAp/GEp47I2KCNctF1bZ/WqL117SDFxyioxlvCUKE7qtT+h
-	CTahXwTuy5eHBHee5moZF4Ut+eUGgIvuH9jlQLCxs2zmk2/iEt00BT40x0czpYCDdopv8rDlj2zLg
-	lkaoSjitYqUholDwnYDAlzOQYpn7EMKXz85C1DX0NkiVakBNzVCyHa46qmipaRymLy3U4vVFk0viy
-	muxKyxMhIddCmfaa2T9m2XEsoI7tfsbwZkmzOTNC+eXxMKRvybSVRh9uiAn5VNOgLRwGH1XvDvO4Y
-	x7qp9ge+KMSA1SV4g59A==;
+	List-Owner; bh=lV8e6DuZQ+gcSvtMbjrorr5ZEnQbK8gl52vAPo45Rbw=; b=M7wMbkvMhU6W5f
+	aibzdvqdbJamw2Ljf/BNnnliAJ1RpcIjL+n/mBaAwYlWYp+ouz/7mReiEwPsHb8GJIwbISEh3gxZp
+	Pi/DEbPy/cVyfyQ+h40TP6FAUYOg6mHow1ZM8/3nCVra1x/C3C2OrOB2uQD6rDxAQ+kz/4Aeim3pL
+	ZXAkmLqDqQPXj98rV6hnLp/EQl62NjfEr4UaBoLo3ORCsHBKdCq87Uao4v9Zb6nG0KZZVLstml9aQ
+	dd6I3bfKOwB9REfXseBa5uixCpNNvilljv+7ahGfX08zZcBugJeca6fV+M4Lz4NHxuSh/+iDpkQGH
+	1t/vYZsh+3+sUB51IA4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRA3J-0000000740Y-16cV;
-	Wed, 11 Nov 2026 15:15:57 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRA3G-000000073zz-0JwE
+	id 1xRA4X-0000000749R-1n47;
+	Wed, 11 Nov 2026 15:17:13 +0000
+Received: from mail-wm1-x32b.google.com ([2a00:1450:4864:20::32b])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRA4V-0000000748u-0mdF
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 15:15:55 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 418731576;
-	Wed, 11 Nov 2026 07:15:50 -0800 (PST)
-Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 41D813FA7A;
-	Wed, 11 Nov 2026 07:15:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794410153; bh=d19WkltXV0i6LVlVs/qFDgMqx7ypd2YCR4Ad5YUEAxc=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=uVG91/NU0Kjn7NcqJHLIcabrXwl3/B3yxmrjWkpLbk2jOoIYiDlCae3MZS4r54V3d
-	 MC0ZYbCrNLdiuxN1qJyddD7Zkmy0KRAUcQTckpsijCgnkmn3LOpjYW3bhcUFtx5fyM
-	 i2kWXF/gyrCUAF4NhYpSlNmyDEnAYohb/ly0EaR8=
-Message-ID: <aa7fc5d7-de81-4e40-9b2e-5253f0c7bb02@arm.com>
-Date: Wed, 11 Nov 2026 15:15:50 +0000
+	Wed, 11 Nov 2026 15:17:12 +0000
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so20098975e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 07:17:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794410229; x=1795015029; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=lV8e6DuZQ+gcSvtMbjrorr5ZEnQbK8gl52vAPo45Rbw=;
+        b=fDIFlsTFTJaWwhdN6V2t+PEbpZtcWnatjaZ3z1KIxVAuLFLyzo6z96fMuKuteTBHo7
+         oJ9TX8vTgcNoSvJTyra+6Qa5xfTCfVj1S6f0plyH5jH905Ezn74rVHSlAop/UOVYPuwC
+         Wq0hMXFgYCEItpaNTCtVnxQYAtJstD6RUtgoOBdns6+e/dAjW+FROnWaXRb+ZVXdytsB
+         YotlK8BNhRFNCnLIvqx3tk4sLnSkmHTd+RQNLZVixCKqIhRGGhl7eP7C+DFYVFpPZXUy
+         QLgEc/nnQQJzyLgKIsBE5plRQaX+ZJW6J0oUxe6xvYYyc+tCsiWmbAC5su8HrX1TsE9O
+         7+ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794410229; x=1795015029;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=lV8e6DuZQ+gcSvtMbjrorr5ZEnQbK8gl52vAPo45Rbw=;
+        b=opEOaxeQhdXXZkdb+iSSjgeo8qlFv4ZU4fiqSZcHPN2JriHdUdUkd756XN6/FNvs64
+         dzoLdOH7pXKaVFIWwKYaBg/Wop+tUPtQy8gWYg0QS/lTFRmH718a8XuhuynO89pj1s8x
+         xH/RNF3ENzv6S93+NbJ96Z/1BPGgVob7/tUQmh0B8Mk7b68IbaV/f0E41tcNf7wbwW4+
+         c6Gx323TtOUmM+6nzdqOJTDwa7+9AFdVtmWsHMoDn3snSj8RCWR3WHV0OEVrDIV9rqTg
+         4x3b3q2Cs6mNyajhP5Ut7fxD6iSu/CD2GHQ3YGJbDRTlhQOHfWBUwSls4nkQ4tViZWfL
+         2gAA==
+X-Forwarded-Encrypted: i=1; AL+hErFDfGlFjHo6040TQ09BG5FaTS/zT9R8VJlbzlrpsent1coyg0ovHr/591jtNYGo3WpgQFCM/oAz4e9yldqf0M2U@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+Oq/NMYdllj9Y7dM+Lu0ofZWUq3MsBT45ByYGb0gTxdQ0C82r
+	ys5Fk+cQHZnQVejgqOGtA5SwVj+aA4vsh+OUBIle3MN/Q6J8GZ6+h1UR
+X-Gm-Gg: AYBFou3CHAbb5XfwQ2BNng3X+lBGTd4cRB1vKP3P/DcyW5Wy6khjLu0/7Jiz0hnKmum
+	vsbjibHrnsNtvf95grKmI4Y2r4ovSfnqis9o32e5aPoAeRG2wD9wN5GQPJClnU+YbAhU0rmyBiU
+	8wTuokac9ohzGscBCQqH7HJAWjY4XE2XC7ON9kNRYK2oWFAzv5JU3cTzWsAoRKuaeIh455QombO
+	Pw5oK5T/7t56amIAgZQCM5gtWM1FjydjyVU+51TVfeDqSBLl7m7JxH1ICTMrEhAb/dVZJjXnyyw
+	prxe6+DiYW3dHU/irdbUg52Hw9Y/p4CSL75ZfhFWaVyMx3O0Lcvgv3PSpNdC3o90yvfIhzEgAG8
+	k2q+yaLdPQGF4BIa+KVkZ+uVmJgAQEgP2tqPmLS8XV9cih5BWPFSRxeHh0jr8sv/OBhyZQYODNN
+	H7XgcVNH7Oxa4GM/2aNbcDHJIJc5L4+1aCHq4Tw5d1Y4+fuHLE/U/EOKUPWyoH7K/AOYMFIAUdI
+	AjsqjRLpd7P3aOhv5QYBHIRmxzmw6WGnmx8GC+Xy+mrd/yWS1b+FsymRbAVgHzoW3YohTnqPBsv
+	RWlT0cqWOLj3dCwKtn97Yv4tSPTSUSMWsBVNGDh6mWhrUhJt0sH8kE6N
+X-Received: by 2002:a05:6000:250b:b0:48d:f99d:a0d3 with SMTP id ffacd0b85a97d-499c7b1bb2amr4471623f8f.46.1794410229162;
+        Wed, 11 Nov 2026 07:17:09 -0800 (PST)
+Received: from dev.Default ([86.127.229.203])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4988bdef64dsm10149677f8f.20.2026.11.11.07.17.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 07:17:08 -0800 (PST)
+From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Stefan=20D=C3=B6singer?= <stefandoesinger@gmail.com>,
+	Navid Ghahremani <ghahramani.navid@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 2/2] ARM: l2c: honour status = "disabled" on the L2 cache node
+Date: Wed, 11 Nov 2026 16:17:07 +0100
+Message-Id: <20261111151707.2253768-1-isasmendi.agus@gmail.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <49846243-34ae-4643-9b39-1537947fbd96@app.fastmail.com>
+References: <20261111133930.3665251-1-isasmendi.agus@gmail.com> <20261111133930.3665251-3-isasmendi.agus@gmail.com> <49846243-34ae-4643-9b39-1537947fbd96@app.fastmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm_mpam: Account for a MBWU overflow before reading the
- counter value
-From: Ben Horgan <ben.horgan@arm.com>
-To: Ping Li <leeonion.muyu@gmail.com>, james.morse@arm.com
-Cc: reinette.chatre@intel.com, fenghuay@nvidia.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <d45dd5d2-15d2-41fc-adef-b8e9af9eb1a9@arm.com>
- <20261111125601.4120592-1-leeonion.muyu@gmail.com>
- <a97b8d1c-7fe6-40c4-a145-82f63bd0f6e5@arm.com>
-Content-Language: en-US
-In-Reply-To: <a97b8d1c-7fe6-40c4-a145-82f63bd0f6e5@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_071554_204853_A6F28C14 
-X-CRM114-Status: GOOD (  31.32  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261111_071711_389210_3F0012B2 
+X-CRM114-Status: GOOD (  18.44  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,90 +103,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Ping,
+On Wed, Nov 11, 2026 at 14:56, Arnd Bergmann wrote:
+> It is a little strange to use the MMIO registers of a status="disabled"
+> device to turn it off, and it would be nice if we could require
+> the firmware to leave it in a consistent state instead, but I assume
+> you can't do that for the one device you are interested in because
+> you don't have the firmware sources, right?
 
-On 11/11/2026 15:00, Ben Horgan wrote:
-> Hi Ping,
-> 
-> On 11/11/2026 12:56, Ping Li wrote:
->> From: leeonion.muyu@gmail.com
->>
->> Hi Ben,
->>
->> Thanks for taking a look.
->>
->>> Is the a theoretical fix or has this been observed in practice?
->>
->> Not observed in practice. My hardware team was reviewing the software
->> overflow and NRDY checking logic with me, and we found this while
->> walking through the code together.
->>
->>> Based on this, for MBWU you should only see NRDY set in the
->>> MAX_NRDY_USEC after a change of monitor settings. At such a reset
->>> the VALUE is reset to 0. Are you seeing or potentially seeing an
->>> overflow in this window of time?
->>
->> I agree. Our starting assumption was IHI0099B.d 6.2.1 RGKWNB - that on
->> a settings update the monitor VALUE field keeps counting using the new
->> criteria without automatically resetting to 0. But as you point out,
->> looking at the reconfiguration path in write_msmon_ctl_flt_vals(),
->> the driver deliberately writes VALUE to 0 as part of the IDGYLF
->> sequence, so the accumulated count is discarded there and even a
->> 31-bit monitor cannot overflow within the NRDY window after a
->> reconfiguration. The overflow and NRDY cannot collide.
->>
->> My apologies - there was a second trigger in my original analysis
->> that the commit message failed to mention: any error reading the
->> counter value after the status bit has been cleared loses the
->> accounting the same way, and mpam_msmon_read() does not retry
->> non-EBUSY errors. For a MPAM_F capable MSC, mpam_msc_read_mbwu_l()
->> and mpam_read_monsel_reg() go through the PCC mailbox and can return
->> -ETIMEDOUT or -EIO on transport errors. So I believe the patch still
->> provides protection against this failure path - it moves the
->> accounting to the point where the status bit has been read but not
->> yet cleared, and it is a no-op in the normal path.
-> 
-> I see. This is a side effect of the recent addition of support for MPAM-Fb (which uses  the PCC
-> mailbox). Any error relating to MPAM-Fb is considered as an indication of MPAM being broken and mpam
-> is disabled using mpam_fb_disable_mpam(). After this point normal driver behaviour cannot be
-> expected. So, if we do hit one of the MPAM-Fb failures then we've already triggered a tear down of
-> the driver. Hence, your patch isn't fixing anything that effects the normal operation of the driver.
-> 
-> Having said that, it is not pretty to rely on the MPAM-Fb failures being catastrophic and makes the
-> driver more fragile and difficult to reason about. Jin Jie has a patch [1] which addresses a problem
-> related to when control configuration fails due to an MPAM-Fb error. I don't currently intend to
-> merge either of these patches as I still think there is likely to be more of the same lurking in the
-> driver and I don't want to do this piecemeal. I may take them later though, after I've audited for
-> any similar problems; a couple of small changes are worth it for making the driver easier to reason
-> about.
+On the H3600 the firmware leaves it off (control register 0 at kernel
+entry, cold and warm; the bootloader never touches the controller), so
+this board only needs the early return.  To be honest I also prefer
+the firmware to be responsible for leaving the cache off when the
+device tree disables it; I went the conservative way for a firmware I
+do not control.
 
-Just to clarify, it is still necessary that on any MPAM-Fb failure the error is passed up to resctrl
-and then the user when they triggered the request. I will shortly post a small series that fixes
-some problems in that area.
+If you agree, v2 drops the disable path and patch 1, keeps just the
+early return, and adds a line to the binding saying so.  Otherwise I
+keep the check and add the comment.
 
-Thanks,
-
-Ben
-
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20261104101541.563113-1-ruanjinjie@huawei.com/
-> 
-> Thanks,
-> 
-> Ben
-> 
-> 
->>
->> Thanks,
->> Ping
-> 
-
+Agustin
 
