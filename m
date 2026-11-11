@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 959D7606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D753D606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rZaw0O5q;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UlySDR5+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hUTWEGDe;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ifr+QHeI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tf9jlObbsd4CIoq6s2RKk4rWo7jBbta2pgzbHELu6Xk=; b=rZaw0O5qp+wqC7
-	b0WzOoKZHdmgrViC2t+Nmi4E05AJFHdqFsYQF93UZvqJnTIFoSkBJLM0KvMbwfiLp/rjn7xI77Q7p
-	0FfDQtbYjtFzgdzqb/LZx7cLBbtTBJnp77RxKoDkBJw3G+I2n/c6Q5xwOHTk/1BjX3pHh+SzwH1u3
-	DlQB0CdFhb0FY8QJHdPE44NAhfQ8lZ8c7CEqI00dwDlreidfsg/YLaRdvrXxrhRjay/nJ5/1W4sgI
-	aR5ycpirH0AvGSSc2DFXy5XR/bIbLJuLIBT5VV39kxF3JNhQisXw3lZOSCwM1lz3rxWXGDxUmcseG
-	tFrrE1lUKUwTng2Ux7pg==;
+	List-Owner; bh=fK4euQL/sXyPal5+J+hrdUFIpsb4ZufsR9tCvoLGNPE=; b=hUTWEGDe4jbp2n
+	+cWEcpXE1fE1KLn1ek3DWdafvyM+1Y6U3olzHjuj7BiH2iMV3nE8zVvH/NtieFr1qfyCYkCJkJJue
+	x7JfoUod2yJN/XoiOTSFe3qk4X9IGNUlcSIYNXvtHCfSeeBJD/sm42CUNDIL7YZV7CkR/14K8bc5X
+	qJogy30JRMgLJvoKoU4t/0eJ0OVxJ3QIdIrPYFWlVBQQs0liV5GWHYOGk0JitxbOBkoBKFkKkQux4
+	wFi5E2dZzEMM7WRXc2mnhZ8BIPl+1JOVWuZUYp9B+frcckYha9EGHN6uGF6P1+HP8DFkx6Sq6ua2y
+	w6v54v8yPal6tBXmd0Ug==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1Xu-00000005iF5-1D6N;
-	Wed, 11 Nov 2026 06:10:58 +0000
-Received: from mail-pl1-x629.google.com ([2607:f8b0:4864:20::629])
+	id 1xR1Y2-00000005iMr-2zwt;
+	Wed, 11 Nov 2026 06:11:06 +0000
+Received: from mail-pj1-x102f.google.com ([2607:f8b0:4864:20::102f])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1Xo-00000005iBZ-1tV3
+	id 1xR1Xu-00000005iEn-1Rt3
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 06:10:53 +0000
-Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-2e987b4a710so13231595ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:10:52 -0800 (PST)
+	Wed, 11 Nov 2026 06:10:59 +0000
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-3b179528d56so486596a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 22:10:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794377451; x=1794982251; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794377457; x=1794982257; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=tf9jlObbsd4CIoq6s2RKk4rWo7jBbta2pgzbHELu6Xk=;
-        b=UlySDR5+iJ1/d+xq2szroZ0t4ogexMhMI0CWd/3EMLK+vdpFujNiZrGCIKINrR2PJ1
-         0WnW0zyJIABC1zNvfveqpWwFCDxbXhatintn3z/D6thfuz/e+mFp99kP3ihhBqMMrOBt
-         K+bYT6RZLrzqFfMjaNaccSo0z4blUL3g9EuHuJvYbnVoa8KkbpEwUkrUpJlegNVKuone
-         HCOdL2A6o2+EfNy00arRt0zONrTSjT0elmMiINut4Kf+ujctcaZSb3pVszEKbIkvLDRj
-         ecdGx8k8mwnAeovpgf8EN1xrZ0DN9hss4Meq1DGEfwaOv/AOxiucs5QbLdJS1gw+Ry6Z
-         UbIg==
+        bh=fK4euQL/sXyPal5+J+hrdUFIpsb4ZufsR9tCvoLGNPE=;
+        b=Ifr+QHeI4ZQVX6uQg9Voahwudi5ma+QxvjUl2bSnFz1ewSKbm/8sy3WJ1hZyBe1p05
+         vJAbtyx78hP9txNztu/ojQEp7a9Y/LrzHZ/g0A7Q4aY+ic6lagFwtbHMq+4MJFKOEawr
+         d7tr6aO7CrnTnUNRWAxvmvElRyXnaU7MFJX/zx3Cz/ZrBKxxbVdB+sffuRe2s32mGWzS
+         emAmZlAbj01Gl5ypa5cEJReAou8ZiisazvSyHu42G0rTAwvtXSkTUfa52eaxIVMM3gHR
+         5MuciMEQO2gYoztfrVlxUL52VhG0R4C+TkcAkck4qdbO5RooZqdck7swyBlpsAgdD8lU
+         9FGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794377451; x=1794982251;
+        d=1e100.net; s=20260707; t=1794377457; x=1794982257;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=tf9jlObbsd4CIoq6s2RKk4rWo7jBbta2pgzbHELu6Xk=;
-        b=rRWZt3neU9AdKbjEQ+z4JPir1EAf2oPNmA3ab3mbQzNAdqdgZX8r6Md8CJki7VTvO7
-         ocW/sAodcjd/pJ6T2YrU4LAOPDcJv26UBMevoYuWCtm/LxXE6IKxnB5antNRZpy6ClhJ
-         0xMaCFWTfxt4ZaIk+A3q1wSFJc/1wq7zCahBK2mMLF+K/2dD7fizkxWz5V6JUUPjgqPr
-         K5vzPpj4hpb1r51f9CMiMtkhgaMilE7zNZO4AO4hamBc1dZvCYgEwixIcQGVjorrCCJN
-         A2uKjne4WaMaZ2/b3w1DZsOGDG8lUgpAJOL06RFroeOkQNeGbz5RwWiegMW06uBi+r9/
-         vudw==
-X-Forwarded-Encrypted: i=1; AL+hErHTAmJeDYLiVJzGWLnL1KPlRocmaXDzJeoXPxg1a2NQMzKnNJjWTWq+jpEvvEk6YBJ58qxM+ev1vy/51Iv6q35E@lists.infradead.org
-X-Gm-Message-State: APuU4Z+P5lKMI0fNkBhpnEliUTRvfn61ymiGu9FIoORcMoxcQJV8bJZA
-	UX2HPjsYdkA/7dIMTwP96LBDHCergegTmQNATtJ7HfoDATr9b4CpC43m5SYmVg==
-X-Gm-Gg: AYBFou08FDdN7O1Xa6ZcpRvVvb3mwLi8cCRJCOKmtXRZr4cCcz3Fh8SN2j8fd16f10M
-	Bv5cCP+HTwjtR7VvCRYeoHH5/uKKqmUkRxsmzXTJHyB9DGOtfKz31HC4ouM2ZSdpUN0c2bcxQq7
-	k83Ebanoi9VVtf32o+2lGOAYZa/p/6JPLY2NHfGSmh5Vx8YScMz0he834c42lpqlf8Mg8a8W5fP
-	qmh73k9yiW48uvSxlY5I8K2EuSe8vQnK74MU4hJjtGRYp7qmDSNpXh1jIXJhA5PxTd9ZrXMwJ9+
-	RXLq4gMibvyXYrE7aI7X/q7l2Oj9c9ytzYtV3u7o/TOtampg1HG1Q7N5bq5EV7q/r7eV1GMR/ff
-	68oWqhyyVwrs0Xa5RnsHdGqxGuCEdCkvFRjPnfT7cLagaJRQMF4+5uoZNKHSX5c2+xI27oPon27
-	hPos9pu/Kk0yJTYVpx/uxBz4DLLQ3ryqr6cl6adX6MjbpC/SpqMeLkinc2sQcZ9MVNHKz4kATvU
-	pfwd0LN54Ld1CpCAHIzysNCAPxm0S7vFfmlK4F6usBWGB3lfslnBnZ1MO0UEptLGIAG0T45Ic+H
-	qT+vaKzwORqQCXVCFs3mOXOmawQUd2NGh6DHCvtdH0YL2pvxJ++JmqCCb/LHx/YBjqqJ
-X-Received: by 2002:a17:90b:3e85:b0:3a8:786a:cfed with SMTP id 98e67ed59e1d1-3b182f91c63mr1169003a91.37.1794377451297;
-        Tue, 10 Nov 2026 22:10:51 -0800 (PST)
+        bh=fK4euQL/sXyPal5+J+hrdUFIpsb4ZufsR9tCvoLGNPE=;
+        b=KzPdXQR8aaCZ4M9dRGr4+z6tu8Uc2lEveQFjAOwsdhJxtu+sz2e8+GqWIDnjD+ndhy
+         PEi4WFJtFtwS3/u33X45UEwF8ToClam9ccQCF+hrgt4Vht28yC/hy9ijUKA6k7r5das4
+         3hWp0KCobnXNeh7NuET8hUQg+dRABcRlfl6qCqBRH6PSCEZqGTbD8VmFKl0MseYPkI0U
+         uLgp+mVpAEcNEA5Lg3bL9I9Cbyp2ZgdEwwggeMc+zXHKm+AK83CPrs6BIkxkFs1V3xDC
+         uidMuqEtfsqPEolZhGhE3X8Hj2k7imrK3I4vM99HY3ESgN8U5oLUfKbQ69WngWbqzbe4
+         KWpA==
+X-Forwarded-Encrypted: i=1; AL+hErE7OKYLRf1bAQoKXSfjlZn2yI0Rc6IroisczF7zIZQ2LZvBzj1CUro2FO+eaBogMz5uDwHUqUJeIXoe0lCaJ+9b@lists.infradead.org
+X-Gm-Message-State: APuU4Z/V6GSd3S+PtvySUxzJ7kz3uWkrpwq1es/ZlWqnUoY63gzBKiY8
+	gc/ziN8uifFPoetC3qeTWSLRdPeB8F1/flvX5UphqZvmOEzYQdYQBtNS
+X-Gm-Gg: AYBFou3X8RaK7DQFFfPDCxu2kHOz82QIaGfB5L1TNALghFkdtlQaZGdZPBmNDaOCsDZ
+	+e9/6bd2BcAfHuqbhY4J7Xd8JnsVyy1XQ+2Zfza8m44lzXxPjZKciXwNFRK5bBbvTHFWXIwkWKa
+	uOfILri+hmY51pGzXYn8IYBG70bpoDD0on4PntF4pIZR0+2swXpk6AXIfttmiNZGUUyYcmDcjGB
+	GeeTAbaN8ZHg+mflYhMIi6fkxQ5aaYqBEM9CjnYhA4rCRXcA4WcbJD58upX1F6LOMDHQKbYzdiD
+	XuwK1VzhoMdbDjUc0DhzYE7cAzqRGpr+r3aM/2FltTRQ65X0PJKjwP1KvguUFtF42zWX+cUXn8v
+	l7AOQm8sYhbBxHdRpgzdrpy1r/69B1wtd2uwraXKZeMP4LIuFDzdfm705W6WD6sKXI0op080ytM
+	ITaqODW59WwiYPGL3GmNgET4TSXzSC5rWTTa49yMXO6U5Gz1oV89+pqenR51Tc08V9dKFTuJWOf
+	HppahXUdJgnrwKOnBdHXGrPlPIRFvt2LuLftImFn4McAi/YMRshhplDtLgAsz+4+1G1lVNutPHo
+	Kk/XtWmR8FN2TrsNk2hWUDZVAlH8LjgcDm5h4DKUMW8Xu+OLSNJ2vh+ysBTprbTgOOjc
+X-Received: by 2002:a17:90b:2e46:b0:3ac:aa8d:19eb with SMTP id 98e67ed59e1d1-3b182e0f256mr1318971a91.3.1794377457428;
+        Tue, 10 Nov 2026 22:10:57 -0800 (PST)
 Received: from [127.0.1.1] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17db7e8b1sm2978557a91.12.2026.11.10.22.10.48
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b17db7e8b1sm2978557a91.12.2026.11.10.22.10.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 22:10:50 -0800 (PST)
+        Tue, 10 Nov 2026 22:10:56 -0800 (PST)
 From: Kyle Hsieh <kylehsieh1995@gmail.com>
-Date: Wed, 11 Nov 2026 14:14:44 +0800
-Subject: [PATCH v2 3/5] ARM: dts: aspeed: ventura2: Name the COMe presence
- GPIO
+Date: Wed, 11 Nov 2026 14:14:46 +0800
+Subject: [PATCH v2 5/5] ARM: dts: aspeed: ventura2: Name the 88E1512 PHY
+ reset GPIO
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-ventura2-dts-update-v2-3-bce5b5dafc1f@gmail.com>
+Message-Id: <20261111-ventura2-dts-update-v2-5-bce5b5dafc1f@gmail.com>
 References: <20261111-ventura2-dts-update-v2-0-bce5b5dafc1f@gmail.com>
 In-Reply-To: <20261111-ventura2-dts-update-v2-0-bce5b5dafc1f@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -93,22 +93,21 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
  Kyle Hsieh <kylehsieh1995@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1009;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=993;
  i=kylehsieh1995@gmail.com; h=from:subject:message-id;
- bh=JUNGHAUf0IQHmc6IEwFOoWoV3n/zRCC0p3wp8n0F++I=;
- b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBq9Af1293/fjBxZT8qUQ7Ck1LzVeXz+XG4VA8iq
- w/9bLeZK7aJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCavQH9QAKCRClg0K3CVbE
- gd/HCAC29OQHvHu3hEGDxLtfZftWnVo9wSObeWfAYbo8H0gxB9xNgPeWCZdlnrbWJaoQW8iLJeJ
- nPbdsyxL3kL2h5sYjLFrZnPBxHUwI+LfYDHG6DgjdoKan1x0CxAWR72tkxv0/IVQBNmPl6DQajn
- KKjvIhtdPdU881ZSuBaOyTGfRpRImiTZbyqsZxsiAxhZMFWIAn/H1qOgkwVwnMWwJSBGMeW8j6E
- J1ox//pkKu2LZFkjIBRIC+LvdPkEd6r/wWDSJz7gcync1njgf3+fn/IfKkjVahhjIYguBFTnmY/
- eCea8i+6hU5+CkSU+JgM7oINoUxLzE4XfqQxXTyYAWnErhL3
+ bh=xxMp1/Ez1x0+u4gEwcM37HZ9S+6j5lTG4LB8OtJfTVM=;
+ b=owEBbQGS/pANAwAKAaWDQrcJVsSBAcsmYgBq9Af26OzcycIkzFNsHXF4FJMNd5XIH5LUASwIA
+ 6mD6yK5pEWJATMEAAEKAB0WIQTJHsaNZOdY+THGqJelg0K3CVbEgQUCavQH9gAKCRClg0K3CVbE
+ gTq3B/9YCHNGgux2LFrmmQhjhNtjCf3sYPpiQCl+wbB3hl5P18p1+BE5tmoWffF8zEbIEKFp1Hv
+ Muo+kaAZc6Thx/QsJRcIw9MOsWo1b1WSIBjmYzbdc3uw5wB4s3hdzNqxyZVfKShvw6+238sUSyh
+ QLYHpqe7rTQJprLHTtyA9qKJ7EYSckZwx/D7VkPys1Cn3AveHyIChLsITJ/cmhKUFI6bTMTt+J/
+ O1SAOCk4wMJHgCLjMaTptjyC22H+MA61k8WCHvULsm3WWZAz1zWZIOh9hdBF/tegK/YTW29XOY3
+ K8jE3xCp+6coF8UfdN3+njmgO2NoCDOoUYBXeOpg5lxz76Em
 X-Developer-Key: i=kylehsieh1995@gmail.com; a=openpgp;
  fpr=C91EC68D64E758F931C6A897A58342B70956C481
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_221052_504276_2EB353E3 
-X-CRM114-Status: UNSURE (   9.70  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261110_221058_412891_4507C4E0 
+X-CRM114-Status: GOOD (  11.66  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,36 +127,27 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Line 9 of the PCA9555 at address 0x23 on I2C bus 3 is the presence
-detect of the optional COM Express module. Name it PRSNT_COME_N so
-userspace can determine whether the module is present.
+Line 10 of the PCA9555 at address 0x67 on I2C bus 10 drives the reset
+of the Marvell 88E1512 PHY. Name it FPGA_RST_88E1512_PLD after the
+schematic net so userspace can reset the PHY during network bring-up.
 
 Signed-off-by: Kyle Hsieh <kylehsieh1995@gmail.com>
 ---
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
-index 21c40dd4bb84..c683ac19aba3 100644
+index a5e6cc94b280..aa83233f1710 100644
 --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
 +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura2.dts
-@@ -625,6 +625,17 @@ gpio@23 {
- 		reg = <0x23>;
- 		#gpio-cells = <2>;
- 		gpio-controller;
-+
-+		gpio-line-names =
-+			"", "",
-+			"", "",
-+			"", "",
-+			"", "",
-+			"", "PRSNT_COME_N",
-+			"", "",
-+			"", "",
-+			"", "";
-+
- 		interrupt-parent = <&io_expander7>;
- 		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
+@@ -2486,7 +2486,7 @@ gpio@67 {
+ 			"FPGA_TRAY37_PWRGD_BUF_R", "FPGA_TRAY38_PWRGD_BUF_R",
+ 			"FPGA_TRAY39_PWRGD_BUF_R", "FPGA_TRAY40_PWRGD_BUF_R",
+ 			"FPGA_ISO_CARRIER_BOARD_PWR_OK", "FPGA_UART_MUX_SEL",
+-			"", "",
++			"FPGA_RST_88E1512_PLD", "",
+ 			"", "",
+ 			"", "";
  	};
 
 -- 
