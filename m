@@ -2,91 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F84060A2609
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A081E606A897
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Gv+plOJB;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=pKvRM1uo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=f3pPJxZx;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Aw+jlCWu;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=JzGhvG7G
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=oXvxlksaJblGC0L39L7NSIn5/6y+4uN6j+x6V/9C4m4=; b=Gv+plOJBTrV/ESvYOXOUwBi9dl
-	bh5XXanPOzGc3mP6h/wZOC0MSVOl7G7HggSenZRCcusCE2YGFV9JchgAH0NO7FFs1tpdqIt+Gq5G8
-	tEMA4m6TrNvBxZ2RXuXxLMknRtpuV/2RbmiYghmSjuJec1qhT/HNXSY+pBYWWkT2u4JBJeYGVyXHU
-	3iS8dWsR0/4T3ZOMILgbjzoZleaaaufbo8y+C17l0NANj7KXYFD245OqbjD+ROMTpaSttEQKy3miQ
-	oWFShRRz2IGRP1zdaEbapsSnmm5LKWqCMc0+o5nO462l9V6y+MeiQZrqK5t/6ySbQ0uitePUTyp6U
-	/hInlYxg==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=; b=f3pPJxZxE24sAX
+	cBLmBUVoPUuYt7JcJvizse5F9vGKXJ4Eqg0czCIIL/vc1P0DL89NgDG0bEtaLXNvI8kCK7LzK1TP1
+	VEzMFaodcDZEHSzGRa5mZOm+E30qC4NTZ3JLVII9+heJssa/R1GsNu2BWa2W7zXIDznyVAJfLqFmR
+	4AA6Ujt/MSwGAgLMJhGEaDwpkG7Djyit0Np07jvzyvA3BkNS1bSSDrsVINKi/0CUhHeDpw6JdMwLS
+	HemV+O7OZvISoS+FxzL6XehtE+Jxqf1zQGwSo0cBnPoNjtOr9zBTTXAx+gp6zaXB+Zq6aIyzlE6e8
+	Uf1hDE/K934DPY0XxoZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5K8-00000006JLV-3nu0;
-	Wed, 11 Nov 2026 10:13:00 +0000
-Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
+	id 1xR5KD-00000006JOW-1MAo;
+	Wed, 11 Nov 2026 10:13:05 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5K3-00000006JJN-3bEX
+	id 1xR5K8-00000006JLB-2iUd
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 11 Nov 2026 10:13:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Cc:To:In-Reply-To:References:
+	Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Sender:Reply-To:Content-ID:Content-Description;
+	bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=; b=Aw+jlCWupgEBBrZyw7Y512i/Rc
+	IEHBZ6+xyYlZ+Br3KFSoqSx8XECvJzcgI4YnlJY0XSldaOkPrOi+ssOdkSVtZRwi6+9iHgSk7HcYV
+	FVvcMLskwlacFIW/1hmx3tyVCYizthIYWzifvtCDig+W4YHDjcCZGJDPj6LEe7g4rnR3Eci4i9lj0
+	NqdCI4xLtFseV7jGVoSYbx8n2Yp8Nbktu1Q7ixFkJgFkKA19lAvPhUw23ZYav3Z5QMj/mk/bZT7PF
+	hSwQkLuersNeOhL7BF+/1Kxoy3h4CE32Glv/MbFwAetCYZHcz52pUxKf5Vx/Pq6Jmc2XWglYyw3+G
+	MyF82jRg==;
+Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR5K5-000000090e7-3bng
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 11 Nov 2026 10:12:59 +0000
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-49d05d51553so20749135e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 02:12:55 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a20a37703bso21665515e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 02:12:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794391974; x=1794996774; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=oXvxlksaJblGC0L39L7NSIn5/6y+4uN6j+x6V/9C4m4=;
-        b=pKvRM1uoWIQho8B46bR8vBKpSiVUZf6sdQMCw+qds/6bJxp/UUIQnLTYGaKJ3Rl5e5
-         0ZduAKT7/OnR0JifupqkMErMM5vFESgKadbMHV75UFHsB88o1e2uEKf2zOsgxuz+UTjI
-         SmVLei0eFQYZyChgmfAo5j7qwA0d9PAMtbBO5Yr/x7DrJ2EOBAuqaXQ2UEdcWLRkKH2F
-         w9FFRJnlAxocSrPYnQ2wKdTyYfFLIh4G137AqLZlhEhY65hz7kDKOAj273ZxGM7lYPFw
-         KOI0UhHdw3agyuX+swFA0wat9AYHYCH+HGzhRcMG/q0j03HmuBbheeRiQfB9j2AXxxRP
-         K9zQ==
+        d=baylibre.com; s=google; t=1794391976; x=1794996776; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=;
+        b=JzGhvG7G77uiKi+zcpZzXr/Tz4OGTCgXitZfxPOyAAJZkMaAQKJ+wRRXbHzFgXdMwY
+         WTLUvGad3tfNBHftfUeFvE74j0pdKc/OpGYu5rq69YLqpusrkgaPWNma/cw1gAcQM0Qn
+         fbOjk8uXuqScgNXFNXH4tQKxeoQYICmFGG5d+AesR2FwqCOjoA7vRq3mKvVGW/I0p25j
+         SyHHQKk0JCGDV0bH2BPPUwu766rWAu6Lc59hscwJvuKFL14Ftl08MTD4FPwrk6oFPCiP
+         fnouRt82CYn8I0wm8LnqqccpEB/aeloIFcWnloiiGFeeRpayyMYdZPsR8dFmLT3A49AH
+         pJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794391974; x=1794996774;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=oXvxlksaJblGC0L39L7NSIn5/6y+4uN6j+x6V/9C4m4=;
-        b=bhS/DInD/1HUVNzOe+wieZhXrAA+0SyBiHuzo6W6jZVpuEWRNoROKs8ni4SFz5gHSH
-         cNLsqv6/gpr3O2y4yuf9vxdDHNnnKhUCw3s/cKqE3O8UZiU2aNgBsnn+B7qA+QE7Gt7Q
-         t6aVDiqPgzWheFZkcycKoyU3zvd4NjpcEYBh0C3v+B9b5Pn0FGnW02EyrVdr1CQgTaSs
-         ui9LEeRqGVIci3PIpD8ZGddD+uYfEMwcJfWtU3tVLsksocBKcsZ0VtQNHpasr6IIXlyA
-         PYpgjPxHiWgr5/qyQ7WcDKKVKbt117ukW2vQZqW75SYMWIYgOwBGutnJmAeROCrkLHXn
-         J4og==
-X-Forwarded-Encrypted: i=1; AL+hErHz2xDp9XOXt8fVuq9HDbPMiRv7r43E3ajrrF383jktOI6KKSUvmGe93iYMWG2bVO+Ufug9udE8Kb4SvmPyP8Ac@lists.infradead.org
-X-Gm-Message-State: APuU4Z9A5ZXifoWnyvyK7GjEvuDvKoAAxZHgcYD9Dkw5i6VQUk85Zppj
-	fSbt7yRMmzbvaaxfnXVgkcrlzmZo23ByyNSQUTD9asW+Yr8wvM56akAV16FERfu1tNo=
-X-Gm-Gg: AYBFou1wSD7ZI7yQH7QJrGLN7PxT7JrasNIX8IG6eMbZFn+TSqxNu0VQs+UZVPtJrVl
-	hwzyr5+Der2NWS60yVvL7SpGnAWd051XZ454TUlEGqroHq7+3jyFXcYJENhpq1tHL3AQb8OUNh0
-	1wPvXr0iWs5l/5PHYHFr68sE1vxcsBbGu/MWxEiMJH+Ur44/Nm2+h9fSxqpM5/lsu3wUxiRzCG9
-	MCPADmSOxTOo+eDo1mh1BiV/75xPjJNbrjrOpmaQVlK04o3K11usV7TL4/mty2rSamYpcgpdL+N
-	wswIu5eGPqdQ0Z+cZIf6TRyFcg8tQvzLw/L2zNwWaVpNS0r6wOvNwx0HCzZmkxN4CRSbGUjwqCf
-	Tg5ZZdK74dBNSNSOhVw1Mdjj1HxCh5gLTrVubPjKqGxYFdIWT5f1LcRwoB0FIwiS0gLUwmpW1Ue
-	7+or66AfJKM2cSoztjywCTt7yQqWOHJDqjW5Rq1NAZINt64Cnhiisc7nqM+TbzQrRZb9xapH74H
-	r7EPcDsdQ/eYG+IBz5aiZFmhQiWVQSV8mw1hB6CdJhycVS3+31kjmQN9uuxN8erEYhrc57PM1Be
-	nKRHX9kOsu2OfIGzpk4Vh0096B8=
-X-Received: by 2002:a05:600d:82e8:b0:4a1:cf60:dcc3 with SMTP id 5b1f17b1804b1-4ba093a902fmr32682805e9.29.1794391973923;
-        Wed, 11 Nov 2026 02:12:53 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794391976; x=1794996776;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=o4Vnk0yWIEYevoeI5rytnlxL+lVUP6Dc9a6y6ecj/KI=;
+        b=bp/TtQsFlNMpDxaLbDI2xUy45lZeSgxZP/Fxwa/TYfxv4eFtUfS8y4JC2rjmQdpNFE
+         BHmB8U2lOSBrmoQtASjNEIU1lxssivmbggtrfRbX2IKBD6jKuBOaJjAN0z0EuyhEwMHe
+         +xRaFCD5IKH85UjFfQrA0y3yoMkd+RfK830CO7URCn/QPlBMhGkQ9FGaqimXJ6Vjhsvy
+         1Mwp44ljOd8BhAeZmdL+3xBayavu9R3ks8cMKqQi+pGvS9vqDD2IoBz3nnKfNTz/0CeI
+         6BplAuTTKMww98DMNahT4IN8CQtSMXMNLMGUfR1rh1TTY23chaU89fyzup4c+v2WynGA
+         QIPQ==
+X-Forwarded-Encrypted: i=1; AL+hErFC3oNQCzAKkgQdELyA4wHY4SVDmyI/i3l3zhthknmvzQaIn+cI4GyexkHoNv/J0UbrfRe02umBoiCttJ992lYd@lists.infradead.org
+X-Gm-Message-State: APuU4Z+96nUt7C7SQjUOgDNW3tEXGknvKy9CPaeFmG5JxcnHup7S96H5
+	spsvs+2f1x9at8QyY9WcnVft8TMNOh6XtaH0x7bNYjS1FSb5+Nf/wsi2ErkiOBSI5nM=
+X-Gm-Gg: AYBFou1q+ygoiWpY7N7epvTvNmW5wK5jWJvHlXuCMghrIcIZeqoGu7BuKgEnJrzlR/y
+	FpSfz14/HqICx2xBMthrHNZk4qhoblbnUcuebrrbQtYoEB7DR3nFrAknnfg+Wwj5IFrwTByqt6E
+	LYz8/Bb/y/pTcjdjW4AzsXyv1PO3f5SJvD6spxrz2WBq29fEjsnAvyeO5bZUskoIsi0Y4/xF6MH
+	XhppvpxDeLaL0KJF75MDf5vYqN9vUl7ST2lmvb6wjlh4GViMrSpHl+SB4JG691TxslKDhqPN4x0
+	omlo4iZWdsUBuZwJZ7KdIWGDVxkasiIIdIAcGj/vsacTXGPWWnlB93mXl3IjHQSHJF0ci36LIGj
+	N3BDUOR3yIVY6Gi15tmWVAxEc+f9VACrMXpsRMS9edrTsxa9E0Q3+I+wqR3JK7S9ZZhS4F9pPD8
+	Tu1WUpjTXpPK3HdrEkVMifXaRjpdYsd9lHHOCnUZ5k4sbvPOZybWPKeb3o6XAZOHAMyB8yIOWXC
+	cfLmIOP9NM5eZyZPRPo5Qc970JCx55P0FS1ghbZ2gVaNIEj46SZWbz5zmbxfNNWlw+Y2WR4FN76
+	QqGPhcjXriVdUwO0u4Hh3+fK/9o=
+X-Received: by 2002:a05:600c:888d:b0:4ba:495c:2f5d with SMTP id 5b1f17b1804b1-4ba495c2fe5mr18878685e9.9.1794391975803;
+        Wed, 11 Nov 2026 02:12:55 -0800 (PST)
 Received: from [127.0.1.1] ([151.61.248.197])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fea745sm124194375e9.10.2026.11.11.02.12.53
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fea745sm124194375e9.10.2026.11.11.02.12.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 02:12:53 -0800 (PST)
+        Wed, 11 Nov 2026 02:12:55 -0800 (PST)
 From: Valerio Setti <vsetti@baylibre.com>
-Subject: [PATCH v2 0/2] ASoC: meson: gx-formatter: change stream lock from
- mutex to spinlock
-Date: Wed, 11 Nov 2026 11:12:47 +0100
-Message-Id: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
+Date: Wed, 11 Nov 2026 11:12:49 +0100
+Subject: [PATCH v2 2/2] ASoC: meson: gx-formatter: add lockdep_assert_held
+ check
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJ8/9GoC/42NQQ6CMBBFr0K6dgwdCIor72FY0DLAKLSkLQRCu
- LuAF3D5kvffX4Unx+TFI1qFo4k9W7MDXiKh29I0BFztLDDGTMYooZmhtq4vQyAHoyfwA5vO6g/
- gPVcJIaVZVYt9PziqeT7br+LHflRv0uEIHkbLPli3nOeTPLx/fiYJEm6SlM4RUx0nT1UuHStHV
- 217UWzb9gWq0QqX1wAAAA==
-X-Change-ID: 20261021-gx-formatter-use-spinlock-289b3e2e46df
+Message-Id: <20261111-gx-formatter-use-spinlock-v2-2-763241aeca52@baylibre.com>
+References: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
+In-Reply-To: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
 To: Jerome Brunet <jbrunet@baylibre.com>, 
  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
@@ -97,18 +110,18 @@ Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Valerio Setti <vsetti@baylibre.com>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1941; i=vsetti@baylibre.com;
- h=from:subject:message-id; bh=Bisk8TI8S7BLxKLf6s4XhQgEn2v4oH3ufymXr3gbBhE=;
- b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlf7Jfcf+tnuI7rVZ/Sw+13DifL+z5rsbLxPXXKjsN8m
- 3hF1MPFHaUsDGJcDLJiiiws0+/9LihVe2iccLIAZg4rE8gQBi5OAZjIjOuMDAe2+cgvmDBnRmvT
- rHvsrx2kbBy+zivWWerNzPPj1DSmZWGMDJear/7xEu2Qf2aa91j7s4Ud6xxpnwshdwsnyyku9ft
- 9lhEA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1220; i=vsetti@baylibre.com;
+ h=from:subject:message-id; bh=vZUPcnmxkAiby0ImBP4p7xGG24J8BAgjSTNkADYSIMA=;
+ b=owGbwMvMwCV2z3ty7kUrRgbG02pJDFlf7Jd0Ttd0+Gv7UCOveuLGBfyZezWL16bIlh+c8LR+d
+ v+dqRrpHaUsDGJcDLJiiiws0+/9LihVe2iccLIAZg4rE8gQBi5OAZjIXAOG/1mGURtdjiyrbC57
+ s7r5XsGPhnn+m40Dlt9qvtLML16S/4CR4Wq+vt6UL3Nrmtf+C/zyRbZZdreH3MHvwXftHDpvXHz
+ zgxMA
 X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
  fpr=0497DEFB707526E13360C970DE4B936DD13A0100
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_021255_911223_FAE1DA6C 
-X-CRM114-Status: GOOD (  10.44  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_101257_856824_9EDE03D6 
+X-CRM114-Status: GOOD (  11.95  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,54 +140,41 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Patch 1 fixes a pre-existing bugs, present since v7.3, reported by
-Sashiko [1] while reviewing the series adding I2S input support for
-Amlogic GX SoCs [2].
-[2] depends on patch 1 to address Sashiko's comment.
+The documentation of 'struct gx_formatter_ops' states that
+formatter's callbacks for enable/disable/prepare are called with the
+spinlock held. Validate this by adding 'lockdep_assert_held()' in
+'gx_formatter_enable'/'gx_formatter_disable'.
 
-Patch 2 adds a hardening check suggested by Martin while reviewing v1.
-
-[1] https://lore.kernel.org/all/sashiko-outbox-176054@kernel.org/
-[2] https://lore.kernel.org/all/20261018-audin-v5-0-4b8cc13a1b22@baylibre.com/
-
+Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 ---
-Changes in v2:
-- Moved 'gx_formatter_disable()' under the spinlock guard in
-  'gx_formatter_detach'. [Martin]
-- Added a new commit to introduce the 'lockdep_assert_held' check before
-  calling formatter's prepare/enable/disable callbacks. [Martin]
-- Link to v1: https://patch.msgid.link/20261021-gx-formatter-use-spinlock-v1-1-71ebc9224c03@baylibre.com
+ sound/soc/meson/gx-formatter.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-To: Jerome Brunet <jbrunet@baylibre.com>
-To: Liam Girdwood <lgirdwood@gmail.com>
-To: Mark Brown <broonie@kernel.org>
-To: Jaroslav Kysela <perex@perex.cz>
-To: Takashi Iwai <tiwai@suse.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-To: Kevin Hilman <khilman@baylibre.com>
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To: Valerio Setti <vsetti@baylibre.com>
-Cc: linux-sound@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-amlogic@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
+diff --git a/sound/soc/meson/gx-formatter.c b/sound/soc/meson/gx-formatter.c
+index d3bc0c6c81cd..46efe34e84e1 100644
+--- a/sound/soc/meson/gx-formatter.c
++++ b/sound/soc/meson/gx-formatter.c
+@@ -22,6 +22,8 @@ static int gx_formatter_enable(struct gx_formatter *formatter)
+ {
+ 	int ret;
+ 
++	lockdep_assert_held(&formatter->stream->lock);
++
+ 	/* Do nothing if the formatter is already enabled */
+ 	if (formatter->enabled)
+ 		return 0;
+@@ -46,6 +48,8 @@ static int gx_formatter_enable(struct gx_formatter *formatter)
+ 
+ static void gx_formatter_disable(struct gx_formatter *formatter)
+ {
++	lockdep_assert_held(&formatter->stream->lock);
++
+ 	/* Do nothing if the formatter is already disabled */
+ 	if (!formatter->enabled)
+ 		return;
 
----
-Valerio Setti (2):
-      ASoC: meson: gx-formatter: change stream lock from mutex to spinlock
-      ASoC: meson: gx-formatter: add lockdep_assert_held check
-
- sound/soc/meson/gx-formatter.c | 26 +++++++++++++++-----------
- sound/soc/meson/gx-formatter.h |  4 ++++
- sound/soc/meson/gx-interface.h |  3 ++-
- 3 files changed, 21 insertions(+), 12 deletions(-)
----
-base-commit: c03c1a14507dfaf8b856c2608f9ac216021fc222
-change-id: 20261021-gx-formatter-use-spinlock-289b3e2e46df
-
-Best regards,
---  
-Valerio Setti <vsetti@baylibre.com>
+-- 
+2.47.3
 
 
