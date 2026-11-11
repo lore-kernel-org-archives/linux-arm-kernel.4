@@ -2,77 +2,148 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75BB606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 21:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CCB0606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 21:06:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hhW/Yg2s;
-	dkim=pass (2048-bit key, unprotected) header.d=timsurber.de header.i=@timsurber.de header.a=rsa-sha256 header.s=MBO0001 header.b=Tn968xXV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y4xgnhFR;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=gsKPN+Ie
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=phA4+CyUoxbHyvL+wVGw21rFfYJHlyNvvy1aIyXcZcQ=; b=hhW/Yg2sd6Jwyw
-	+cMtDx8dfXultMkig/q18sHeB34K01tVsciOiEMzYM351lLq42MUt2Op9miAmoI2wlkQbPxaLUCJG
-	PbdH5lruavdPoDF8XRmYvDYTy+VIvJWOFgCHfcQ4CIn01y8OcDr5ptx1tCjob8HIWmCoSSKtl5ofN
-	u17yl8xttVQac5dzL/uPqXt77FfVScma0nPpGXnV7V1nU4UxNGGFPuVpWsNP65m2d/Rm/FKc+b3tM
-	kM32qpp1fp6s6pc2FLRGlSpb8Fnt0pFrewqMXqrEXq2S6i/L4ND5+76V1X3oHWcrIWx0svwOFqMvt
-	AvB7cAfk9WQ/9BfvlLrg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=f/EqXJgbMYz2COUGyhgscvwVvUXwFPqKfZlX557DJ6g=; b=Y4xgnhFRQYgUBOBRTIRPx5TcHj
+	oQnrFifqnv+lZF4hDPP6ACyv8FAmm/PldhtUISgJfhbWUpoJjSSVl8tGWoorWh4tqfDXdB79DW5iw
+	RG83IwDaEtvlgSMRsw9GseGQEsIzUncpQb7+Mq7qR/Z4+Lh63DBvaBebjAAjN26bRgA30PHMTe31b
+	FqVnU4ZnNU9TYMgRSsfUwgQ9uTBfaQmsZIqlgEfiFuzC8ltoxqHj206OAJnBZZjNydt/Q6m4EfTr3
+	8WZuqE539Kc7xLqjY6yebgahGN8idH7i6TR4Obdbb7GmCcy9os8pRU2wabdDbU7ih4YgpwG4iowKu
+	OLYns84A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRFRx-00000007hnd-1N7T;
-	Wed, 11 Nov 2026 21:01:45 +0000
-Received: from mout-p-202.mailbox.org ([2001:67c:2050:0:465::202])
+	id 1xRFWc-00000007i6a-1gwE;
+	Wed, 11 Nov 2026 21:06:34 +0000
+Received: from mail-northeuropeazon11010018.outbound.protection.outlook.com ([52.101.84.18] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRFRs-00000007hlE-1UQN;
-	Wed, 11 Nov 2026 21:01:41 +0000
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4jPwtS4K9FzMltJ;
-	Wed, 11 Nov 2026 22:01:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
-	s=MBO0001; t=1794430896;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=phA4+CyUoxbHyvL+wVGw21rFfYJHlyNvvy1aIyXcZcQ=;
-	b=Tn968xXVlYzLor7lhnO8lOrnrfj6E34WPUDS7qe52XfNv0TO7dyqCsbOhysif9yRlZ8yyp
-	XmvTQiDN1ezNsZSJ1kEvkl5WoU5SefjwlG7Hc28xQm6QoI5g8VaXWPON1s0FdTMPO9YXwv
-	rPl+prqWhfXG2gSrr60kWnSqTJ5hLdPaGBblqhvx9A5g1YHpN6GjnUrZh+cVn6LOKVM2uU
-	rzXZ0YZU8UJP+bczfpjgCweDU0mRYCbBHZ7o/Zat+h1r4Zviw8J8HsySn4P/FPLZdeuxnt
-	gnuh7O0XkM19zaKRT8zRIQbEb3KAZVVeCyeDRKz0VCWTG5dqZJAsxJ8vLTyXHg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=none;
-	spf=pass (outgoing_mbo_mout: domain of me@timsurber.de designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=me@timsurber.de
-From: Tim Surber <me@timsurber.de>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Tim Surber <me@timsurber.de>,
-	Rob Herring <robh@kernel.org>,
+	id 1xRFWa-00000007i6F-389v
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 21:06:33 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=y/rrCum3kDOUdZr11DXbNSbaYdGdwQbCCWRBr4OSeE76r5RcIty3fdbe7u8Vu8Md+YYZIsGWfxBLVFSghKUbHq6TTSNjQfcU6rOrE85NRfdzhmkjko+vp5zAzMYNmVq5dMx5Yi1u25AoqfYVS2Wz5YswtPIpUHGHx8/QvzrYRajV3xm/c9a8mjn8XlDoT7aQHFTC+N/bcdOXdX7Qm66MQzonSCUd90JwAZ0Fma7sorqAgrvWTPsiKe4NUCAVd2UacZWVpUxiHKhTsOvhsdc98H3El0LEK4T0pVrm/FkkyHO8Bqh4K2paNAsoDzZ4sgbudT7EMJJVCju3DWfn1JoiuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=f/EqXJgbMYz2COUGyhgscvwVvUXwFPqKfZlX557DJ6g=;
+ b=WbuIxbrMW1eEd2pmmrii3YgJhUvWxC03YFDXYTnW22Ptd/eWeTe2CbwqNRL/N5lqF735pO6anFl6mpxQibBsmjQ3od9ZNEz6ThW4DvnBIGpIiuTSpFLkCsshMUmLO1/vfJsgsD2Upv/bObSRGLWfnaI/2hlXzIfgOsuQjYEmVlmW+C0r+OquiYaxw/VgC2gSxMZfcmBpneVAbGEsuOWEsXq341N0WjdE5BdpKoTSDnCjcIu6c3IqzgDJR4YEWZbWOE+ZEQEVRS0c3mjwQvcGJDTTCYJjbzqhHm8l/MbEp4gfDC5k3lbHOy58+Ij4gNeOUuuVf5BH8zq1xNm3EElPqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=f/EqXJgbMYz2COUGyhgscvwVvUXwFPqKfZlX557DJ6g=;
+ b=gsKPN+IeM/4VNr+PburfUyqIfu0ewf70D5jyx5ZMY5zPkOqLReZFoJZ3t4MmuOJm6MhY3uG0YLuIat2qp8+fD41Vpi3ENCOHKvSSvAoSxFE90YSOi52u1SMetB0C3ide/LK5A+sP/cPE8JnVvukWpnEsCjWTuNGnT0+H2nonOJGz+RQ+TC+yXPcobmlwHGozHCCqjLTeNK2qjKNdCbo7+DZEVdhiM5RSrk0RZneS4kZVNaStWHsvEO2YSmzlP2Gw1oHEUcxDPp4fT+Wtc1h2SfUIETJN28Mu9dGiYEVish3wp22PVmlUjln0xGCJZINFCLQ138zs9cYTwoaT7nMAPA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by GV2PR04MB12631.eurprd04.prod.outlook.com (2603:10a6:150:369::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
+ 2026 21:06:27 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
+ 21:06:27 +0000
+From: Frank.Li@oss.nxp.com
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Valentin=20H=C4=83loiu?= <valentin.haloiu@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Stefan Wahren <wahrenst@gmx.net>
+Cc: Frank Li <Frank.Li@nxp.com>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: rockchip: fix HDMI RX 5V detection pin on CM3588 NAS
-Date: Wed, 11 Nov 2026 22:00:27 +0100
-Message-ID: <20261111210059.3489502-2-me@timsurber.de>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261111210059.3489502-1-me@timsurber.de>
-References: <20261111210059.3489502-1-me@timsurber.de>
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH V6 0/2] arm64: dts: freescale: Add chargebyte Charge Control Y
+Date: Wed, 11 Nov 2026 16:06:15 -0500
+Message-ID: <179443117284.3974627.5142202175025580154.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261009181551.6478-1-wahrenst@gmx.net>
+References: <20261009181551.6478-1-wahrenst@gmx.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DS1PR04CA0008.namprd04.prod.outlook.com
+ (2603:10b6:8:44f::15) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4jPwtS4K9FzMltJ
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV2PR04MB12631:EE_
+X-MS-Office365-Filtering-Correlation-Id: 399e50a1-f1d8-4fc6-473e-08df4037a6b5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|23010399003|376014|366016|19092799006|1800799024|10067099003|56012099006|261021121427099003|261009223027099003|11063799006|261028144727099003|261026140227099003|261022105027099003|261102123227099003|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: Y3ytoWkr1w3L8n9Y6YZYFTCCr/Kuk06rOYOxgD+sjkffzYvCL47jVp7/QphKbLgX1b4SC0sX0F3BZJ+FOmgtiZWJbcPpSxux58RRpk+7OLPT/ua4R0TFFmuiGsPFQ83IeyTM4Io5SE0WxmuxDtjxm+OXLMS122Qb0XLC6rnHAaT/Jez2pTZZkUShwMNQ2AcaLkeDwXjBSm89sw2xSXOywautdtCowVXi5BMRfpOKMf2Px3bVHn4dw7y9KyMHe79+jKDqY1t34hNON2Qvb0Njdru2PJEMLHKLAxbX/TOgAZWYLgM87H3DDr43oom2TCiTG4O2RQtLWYhaWSxfn1m0+ERSm8hM6NEJJ602tUwKuEI7LlVwiLcXFTafwcnUg18Dr/biYj6x9I3nCIvfKISPahv+WE8MKqeASg1HMrVh7o0tFyx24aMX3VIVI2Qwtt4biFtEVDUJt6sjSyNRDWgyIYaLDJ9mgYsef+P0Sr1qH7ufCxT10fR8fLWFcKUkP1AVSOnH+Uluyrf3i0xF/q9o+3MGWbToXgfyfkhUqEpNTo8UU07TnpNUgUltl1hy/CGtVKByZfp3nrmXkkPpJPB24OmmOeoqEKQL8BRaNzumbmRHUgk+HWuTdji3WzSC15AKbMkZ9gNYZwiKLaJlkxnsEZNKMm+nZeOrEzhxaz5PoKI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(366016)(19092799006)(1800799024)(10067099003)(56012099006)(261021121427099003)(261009223027099003)(11063799006)(261028144727099003)(261026140227099003)(261022105027099003)(261102123227099003)(22082099003)(18002099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VXBObjBBYmo5dDdEeFhlSUNROXplQnAzQjlqeUlNeENxZyt4aGRMM0U1ZXRx?=
+ =?utf-8?B?ajU2d2xWaS9vWWRJODRjd2pYcmVxelZRL2xVZ05jWDh0R1FNVjNqRlpqSDRq?=
+ =?utf-8?B?RCtoRVJxc2x4YWlvd0p6a1BRdEFPSytoeEF5a05DcXlzTzNyQ25uRE5ISXhT?=
+ =?utf-8?B?YjVHNDlGeVo3NTY0RHRSdmpzZHZDajhTOFFUSnFNSEt6VlpSNXlNdTI3a2hz?=
+ =?utf-8?B?V1BndU9FeEZSbWdydWJYQklJd3QxV2s2VFlYTlRvczJPYndvSnI2ZW9CWXNI?=
+ =?utf-8?B?Wlltc2Y5elViWTdGcU1BMXdjWXhLbGhodmpwMk81YWxBTW16cjd2NjEwZ1RO?=
+ =?utf-8?B?OUl3bzNWTnIvWVJwUUFnQ1lPeC9nc2QyL2kvcWxQTURYdWFUejR0N2s4T2d5?=
+ =?utf-8?B?VEpiTGx4NFY0WnlkKzFpY0pTbk15Qis4Z2Q5YkU1N1JWMWdNYkVyZEk4ZnJN?=
+ =?utf-8?B?aEN6MzhTT1JxaHRiZTgwUHMvU2Z0N0dPUEhTNXRveWZHYkdDamc2VnNYb3p2?=
+ =?utf-8?B?S2luci9mVUliWjdyVGpLMDNqODZjWFRLOWVveGUxQ3pXWEtCZCtqOHgrMzhy?=
+ =?utf-8?B?dGdSSjRZTXQ2TGVSNnY2ZTdPWlZ6a0c5NUJOMUFhQm5uTm92Z2Y3cU1hQzM3?=
+ =?utf-8?B?b1FKZFY2UVNEMm5FdVc2OXpVMFVDZVE3QmJWRXB1aVhRU0pxYzE4a3pxVTUz?=
+ =?utf-8?B?NVNraE9wM3ZETXNNald5TDRCWkJqems1bG1UaTFlcmZremZvTkdWczYweUFQ?=
+ =?utf-8?B?dnhnRW5uUU4vMG56ZTViZjZIQWloTzdXa3VpSlRzaTFMRnhZbmpjNlRPbDJS?=
+ =?utf-8?B?aERpOGRLSGNWWDJYcWR2eG5DUjVJVWlHRVRXL2V6SENCcGJOcTVIT0ZSNTNh?=
+ =?utf-8?B?bkRrWW91eXBzVDFTN0dSNUFRa1JXdlc2WE5FVGExUnVvQXpaa1o0WGxweUJH?=
+ =?utf-8?B?R3FUV2dCam05YmhkL2liTjVlZTR1VHhVejc4ZlhwSVlHaFJha2M0b05lREMz?=
+ =?utf-8?B?UjNzTjBoYUpEL1JZVklFUDhYUjlQR0tNUXgzbW1GYy90eDBBUTJrcW5HKzZS?=
+ =?utf-8?B?bFltYnFITXNPZ2dXdVFhTEhNSjJpNVhVNjVOV1Zya2FHanM3RVJEenlzMTNB?=
+ =?utf-8?B?ODBGZHRXRzNCdzVoUWh2MStUblluV2hwUjVxdnFxR3hjUjJldzA5UUZKbTZu?=
+ =?utf-8?B?S0QvUnlIVkhYWHhxVEcxYnhiWVpNWHYyOGgwejA2b2RhakwvRWR5aVlpZ3p1?=
+ =?utf-8?B?MXFuR0VwN09Cc1BYbk42S3dhYytaQ1ZJWlZpaVo0UlZxbHRiK01taHYyU1NI?=
+ =?utf-8?B?Rnp5SW1peXNXK1UxZ2l1a1MrUXlpRnRUeTRBVFI3a1lGeDJVK0s5UmhEcWJn?=
+ =?utf-8?B?UWJlNkhZY2hMbklaeXRFcUcrTDNYbmNzUjJHd1NFZldRSEh0T2R6bXd2T2s5?=
+ =?utf-8?B?VU1SYTM4aGRsSFcvZExNQm1mVkU4Y2lvYlNQeUZSNGkrVk92WVU1Y3lUa05I?=
+ =?utf-8?B?R3pONEwwMWlSUFREeWJvMTZhYloxbk51b2RRMWMxNzV6T1k2UllPVTdKeFVj?=
+ =?utf-8?B?TkdSd1BnT3hXVEJCS1U0czk4T3I3ZCtabkluM2xHSXA3L3hOdHJxNmJwYzI2?=
+ =?utf-8?B?UjdXRzA5ZzhmMDdDV3dCV1hidXhLbGRXOVg3MDJvUFdHMlpGeDR4V3V6UnZO?=
+ =?utf-8?B?T1ZvbUFpa0FyZVF4S2cvYUpZT2JWbncwY1dja3lPd1hjcjNUY2pBMlY0TDZP?=
+ =?utf-8?B?UTJUWW8ycjVYTGNjRTIxUmdQaFhsNDYrY2dJWkh3TjhyR1gvNFM5Zlp6eWVO?=
+ =?utf-8?B?b20xNHEvekNCZTkrdHlJQXZBVnU2N3Z5QloxQkdlS0U3UzNmdlBwM0JEZE1R?=
+ =?utf-8?B?NmYzQ0xna2ZsbytOSUxwSGdqNHJqelp1dlZZQzh2clNrekorWUNvL3RiK0Qw?=
+ =?utf-8?B?OXlZMTM3cWs3NjJwb1V0ci9DSEs2UDdPQXNPZmRpN2d6a1RHUG5zVnpFMW5K?=
+ =?utf-8?B?cVhrNFhNYUNJck0rVGtHZEhwdkJyL3NNNDhNNHJQN1pCdFFnNS9OZkNzQ29C?=
+ =?utf-8?B?Y0Z4SzFxVXpvcVZVdFlFcGRLcVRmTzhGVXNGVlZ0cXZoYnA2NVNvaDFqa0tS?=
+ =?utf-8?B?K1JrVjZ2YktJOUM0YzlsTjRNU0diam8raHdudzRwelVPVUNLbGRwbEhTd1k3?=
+ =?utf-8?B?TDNWaEc4cmVCd0ZrRTZ3SUJNcnE5MjUyM1RpMlNqMHJpUDZoaG5QbnBXQzlJ?=
+ =?utf-8?B?TlE2VFJoTFNkZ09WaVRScHcveTJiSWZsWURDRGVTNlRLK216bCt3Z2JlOXVB?=
+ =?utf-8?B?NWIrN0JKVldnNnV0TXpTemtyQVhjYjNMYkdzcmF6cTFNWngyazB1NG1wWS9B?=
+ =?utf-8?Q?tCl6mONJ1z5Xqg1yu8OTS47Q7S6ScfBPFsJ4s?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 399e50a1-f1d8-4fc6-473e-08df4037a6b5
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 21:06:27.5072
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OQfaHH/q4PhMoaSBHfzdvx8NWBpTnc9FrrzjE53XvpBpI9/C9r01zGHk/7U3SniZfsD0zx9ot+fD+oukpyU0Ayy9EJBeBo78COWGUOO15E/ufS9ejAd5ylx4HlOfWQT+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB12631
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_130140_542826_C7BCB593 
-X-CRM114-Status: GOOD (  19.12  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261111_130632_815080_6E1A7573 
+X-CRM114-Status: GOOD (  13.53  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,78 +154,39 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The HDMI receiver node uses GPIO3_D4 both as the receiver's HPD output
-(hdmim1_rx_hpdin) and as its 5V detection input (hpd-gpios and the
-hdmirx_hpd pin group). Both pin groups are in the same pinctrl state and
-the later one wins, so the pin ends up as a GPIO input with pull-up.
-The controller can then never drive HPD: the source sees HPD asserted
-all the time, and the 5V detection reads back the HPD line instead of
-the source's 5V.
+From: Frank Li <Frank.Li@nxp.com>
 
-The driver relies on HPD being low while it writes the EDID, at probe
-and on VIDIOC_S_EDID. With HPD stuck high, a source may read the EDID
-while it is being written. A source that does so at boot keeps the
-damaged copy, as it never sees the HPD pulse that should make it read
-the EDID again. On a CM3588 NAS with HDMI0 looped back into HDMI RX
-this happened on 3 of 10 boots: HDMI0 logged "EDID has corrupt header",
-found no valid EDID and fell back to 1024x768. Changing the EDID with
-VIDIOC_S_EDID was not noticed by the source at all.
 
-FriendlyElec's vendor device tree for the CM3588 uses GPIO1_D5, active
-low with pull-up, for the 5V detection. The NanoPC-T6 uses the same pin
-upstream. Use that pin and leave GPIO3_D4 to the HPD function.
+On Fri, 09 Oct 2026 20:15:49 +0200, Stefan Wahren wrote:
+> This series adds support for the chargebyte Charge Control Y, which is
+> an Electrical Vehicle Supply Equipment (EVSE) for MCS (Megawatt
+> Charging System) charging stations.
+> 
+> sashiko reported in the first version of the series [1] that X_nRST_LAN
+> is available via GPIO line names, but there is no reset mechanismn in the
+> device tree. This finding is valid. Since the reset line feature isn't
+> implemented for LAN8651 driver yet, I like to proceed with the current
+> version. The LAN8651 handles reset via SPI commands and in rare cases
+> we still have the possibility to control the reset from userspace.
+> Btw the pin has a pull resistor in hardware, so it's not floating.
+> 
+> [...]
 
-With this change the pin multiplexing shows GPIO3_D4 in the HPD
-function, the source's HPD interrupt fires on every EDID update, and a
-changed EDID reaches the source within 0.5 s. In 10 boots (5 power
-cycles, 5 reboots) the EDID read by HDMI0 always matched the one
-written by the receiver, and HDMI0 came up at its native mode every
-time. The receiver still detects the source's 5V and locks to its
-signal.
+Applied, thanks!
 
-Using the pin in two groups also made pinctrl warn on every unbind of
-the receiver ("not freeing pin 124 (gpio3-28) as part of deactivating
-group hdmim1-rx-hpdin - it is already used for some other setting"),
-and in earlier testing the following bind sometimes failed with
--EINVAL. With this change the warning is gone.
+[1/2] dt-bindings: arm: fsl: Add chargebyte Charge Control Y
+      commit: 3c0397f90fde224d620ad0f6ca2bcaff88ed4466
+[2/2] arm64: dts: freescale: Add chargebyte Charge Control Y
+      commit: b3bb1f678463062030a086d2098403240113c4d8
 
-Fixes: f9f45293f0d8 ("arm64: dts: rockchip: Enable HDMI receiver on CM3588")
-Signed-off-by: Tim Surber <me@timsurber.de>
----
- .../boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts      | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-index f4c34da61..b2df36113 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts
-@@ -376,7 +376,7 @@ &hdmi_receiver_cma {
- };
- 
- &hdmi_receiver {
--	hpd-gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-+	hpd-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
- 	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
- 	pinctrl-names = "default";
- 	status = "okay";
-@@ -571,7 +571,7 @@ hdmi1_tx_on_h: hdmi1-tx-on-h {
- 
- 	hdmirx {
- 		hdmirx_hpd: hdmirx-5v-detection {
--			rockchip,pins = <3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
- 
+Best regards,
 -- 
-2.55.0
-
+Frank Li <Frank.Li@nxp.com>
 
