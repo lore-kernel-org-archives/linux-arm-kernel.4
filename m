@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADA560A2607
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81CCB60A380D
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hFdEQlRa;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mTTujsHJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o9/Fn40G;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=P3hGA8kw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,73 +14,73 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1qmmBTGs9JqDhg2KV5f+IlYN+JpILY0qcFVik6CVIpo=; b=hFdEQlRaUsRZjUd74q5hicIdkE
-	ZwKlLlCSrcKIeZ7lm4/pdHE51vsAckxj0kmkG1Y3tWDfE1YAqOnTgVHO+zclcb/PydBkfduhJ6lTc
-	t/Ozxt1dR9Obh8Srw4DzpmMHANjI9GPY8/mkdDCQn3eGYGSe5G2BcUSTQ1+7ct0SidNTzmZt18L3w
-	pwHh/tLHDQ5GFETIxQzsEKO//Ocx5gnBsW+QsbrHYB/zxmZ+Lo8/sR96wP38DjO3IbiD5TqsLxEWT
-	gV0ZWYRr7mG7/jwg9SYdTdlVgo/zuy/t8/xWHyWE9nzP7CCuYg8caE07xs6BsPeOLjI5gC8dm/7YD
-	kO7Qh5zQ==;
+	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=; b=o9/Fn40GlXT5jEsAguecXWcECh
+	etokVeXi/TEPE46RTdCfnyYaA15MW2nUKXySYiKSw7NzrjkvgjnLju9NNb0icEQytEMXVUtVDhV1o
+	1Ll34m7lnHF75pAqZVhe6RXJh6vK2VfG3eVCfIITEEeXAMDpnVA0JBcKoJa+Pmy2XmuWoyUwk0iuA
+	FUEmShqa3STcvD6zXW85yBg5E2fhbeNDK5uXwvwsHsQntoz5MR6YKRKo4wnxtePTQFmkMXn1DhfBa
+	vflSXGS36Hvh5O0ph+honDNUw7qIwgVg9B2NXhUtC/CaZhqUDfFEISyUjQWUQuvFtw6bwNVREy85g
+	FDF+1zdA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1NT-00000005gpT-35tR;
+	id 1xR1NT-00000005gpZ-3SRs;
 	Wed, 11 Nov 2026 06:00:11 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR1NS-00000005gp4-0CuW
+	id 1xR1NT-00000005gpB-0PiS
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 06:00:10 +0000
+	Wed, 11 Nov 2026 06:00:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2B14961261;
-	Wed, 11 Nov 2026 06:00:09 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 4325446ACE;
+	Wed, 11 Nov 2026 06:00:10 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794376808;
-	b=RSBs5xilHiZe/i0r0XLG/G5mgiRUJ5HlxvgWXvAqVOvKYO2ceAdcwHIA2q2VXOWC/DvG
-	 NI/ct1vO2vdXcZmeTkr2N21T+Uo+3H6g+WvsQfNDC/V95czagrH+A+yta30bE8GoVOoyd
-	 vQcUNsxkahGqFCSfeJfSY2q1nPAmlr54n7uuAJ3mMhQemoEUpQnjnDzW+kqFsP5C4bE2z
-	 2XEDPIvq76H8bhVIsOru3+tnInXsAlSVqY5m8LyHBnwUBIKvWXAxZrU0PRwaOVTJnrTjg
-	 NCMt3xsKWTi6BLAxbFtFoTcLr2XY876KPJAUh00H1EkP6Mzy1mkGRidcbgtKC22s8cg==
+	t=1794376810;
+	b=X1gGQGRSsQE7EdiDZVz9Kj8amXxNX1DGKAGJbrdb4cg25KCr6bG5uiPF+520qJQUOePt
+	 nOF12zmuNq9Vm5LIS11v/naAAn43jdLR7Uf5S7wcQrIUkmG/Ex39chI5lrXGPgI+FubZq
+	 2Hvcd5HeMsviUsZ/jxzc7sPSTKXJRj0C54+04L0wVjOfTPR6K3+po1GPQ0HHKZFj90z0D
+	 Z2jaNnISqdGMokiVuqQj7PJOSzF9Jris4L2VxI2ows8rGaqR9gku/1tteYfMKlZQ4CD4I
+	 0/aML6qhX1qoIaoGNDktCncERVTaYU1HzFkG1Z9hrZEeX9j/q1gqHYOHfLyBAvNeXkQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794376808;
+	c=relaxed/relaxed; t=1794376810;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=1qmmBTGs9JqDhg2KV5f+IlYN+JpILY0qcFVik6CVIpo=;
-	b=Mp2h4iSvMPDO/RMOy+0/50PFgHifPu4qpizzPC46X0NTqXkWL50sTwfcmOpjGl4m+CJF
-	 XGjR8wpqI6UUNWbwGqGtMkEwNi0kpO0pemnhciOXbAJqRV5yxdZja4BADN+tl/siNcRmY
-	 YZ539Kg+g4VT70FDq4htxQaETeHLRm1ptxMuxBuL0lUJ7ex7P3hwEEctij9+TO1AQeVok
-	 TSpitr/3H6VeVjWLLLHc7m3fcqLoShp13IatENqUNfvcmTyP33tOVLsPFHLMgPALrwWrl
-	 cH8Ep7wobpGGYOZHmvszGXQ7xnS/L6LDMHqvicm/SYuhmVjBwCh67YhSuh4zZHaDJFg==
+	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=;
+	b=fC0L6E2T+Kww7c5T2Op0cNUM5OEeavxNyEyrc0I/uc092TMBA86CoFBGWQUmX9KOyuBS
+	 84bI0O/8SuOJ0P85FxqGLlyPJHRF/u94y2ifaKlZ25iq/aINebpqQtjUGTQsH4WMXaGlm
+	 nEsNDdsiauJaRdph0wGYxaQLk0ib5qIUDZ5TTqzkVo1NXrMFyR/IUooHYr+h/liIqanJb
+	 7ILldbJF3VTfYUJUwPqjVNlGK4vNOkBGGZ2bxJ+PFPlgSB7P1NzAbb+NnyUSpARj0I89f
+	 hFyn+Nao1tmcbXmnsLv6dDvpOWdAyHc8JDN9WNJf96wn4PDoUEhU40bPvNDp+OJZ15g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 2F8DF1F00A05;
+	by smtp.kernel.org (Postfix) with ESMTPS id 3C4721F00A08;
 	Wed, 11 Nov 2026 06:00:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794376808;
-	bh=1qmmBTGs9JqDhg2KV5f+IlYN+JpILY0qcFVik6CVIpo=;
+	s=k20260515; t=1794376810;
+	bh=16wVqdPDZIuHoW9AEJTC3axaVHxMIkstnwglYRMIniw=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=mTTujsHJtf4wo/9qI+97XbkrWJr4XIleYmHbkKnbIri6upwxPa5ElQ1+hBIVpOxAB
-	 ebMlW2QC7kJtfNJ6zXedHfwFgLVEv9sxd9UfVFEnkdLG/T9rIfufh3kDQTysocIsnV
-	 YP+ad6szAAWKjJNSMIeOKJQLpJRHc/Wp0OTySuCf1x3XOrGad+JTtSEnIlVRJ58eoT
-	 ttQ50hFGnKfnyb8QzF+HVXHHe/9ruH9Seu0+396mquNzarnvQTl7XBJlV3bRUJ3fzE
-	 HyYIFvIZZnWMQw8QBp7Noro2+cUGkPA+BxJGKRU4O/Cq0I1BaYIshD4MPfDkYQiLNE
-	 xaXcTheF2U8lQ==
+	b=P3hGA8kwV8Hyb7ZUQe/W7phZcnPAHLJH9GNkIrKSXi96eP2vmSXbRDLmClVkW1fE7
+	 GDudTZX1fKXBG2RmhnW86GW2bjAUpgUlzjz+Dxq3+00HWOPLBXMEHz6uKIZCKtRUId
+	 7MdqMr+vihNwRsn3RW+SSLoIjCuvcLJnZ2puar6U/kbHqEKxcpC+Ql3UCkxoQtdvDn
+	 vqM7xD8/RNdctboYidHHTNdkMhZrZIMKfnzbaelQIKX0pz4dUnz1OljGAB6bac/pvJ
+	 CRE8NbgBlvKvNpxwwvwVmRLfVqL7yWPR0wrUePcCfBvaK7cpxgednWYmZ+AEXaTJal
+	 4od+cadUpfwWA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id A4D0848DDB;
+	by lkml.kernel.org (Postfix) with ESMTP id B6AD248DDE;
 	Wed, 11 Nov 2026 06:00:07 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Wed, 11 Nov 2026 06:00:07 +0000
-Subject: [PATCH v2 1/8] arm64: dts: allwinner: h616: Cover the codec RAMP
- register
+Date: Wed, 11 Nov 2026 06:00:08 +0000
+Subject: [PATCH v2 2/8] arm64: dts: allwinner: orangepi-zero2: Let the PHY
+ add the RX delay
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261111-h616-zero2-dt-v2-1-88d8030fc975@gmail.com>
+Message-Id: <20261111-h616-zero2-dt-v2-2-88d8030fc975@gmail.com>
 References: <20261111-h616-zero2-dt-v2-0-88d8030fc975@gmail.com>
 In-Reply-To: <20261111-h616-zero2-dt-v2-0-88d8030fc975@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -92,11 +92,11 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794376807; l=1252;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794376807; l=1923;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=BSR+K6Y2s3B1U4tlKARegXXjsMuZ0Bl9ncjh06Y7t+g=;
- b=NDlrnKc/h1AS5iFoQAkz7jUnVgC/2x7mhMyCCIwtF8u/92Q5tpWsWp9vt0qa3fjW2MQrC6fgN
- IekD6SeMC4TAyQX1cmo5Ued7idQR5sfk1v0cHbALV6wmfUD0dAVH8I5
+ bh=hgTnawt6aimtaYNRLXqSLgWoRIBtKR4Hz80cKcd5MZQ=;
+ b=rJDt1Z+hIOmV2HpihY42r8mfiUSAtj5Uw7oj3xkPckWjqYiN3DNOs3d5wkuwFn7Qgnk3xkql1
+ 74YOR/oQxQUBlDDqpowj0gyIg8N53bVNxSijNzHPXZnx5qI5FyA/lUr
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -124,33 +124,47 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The codec node maps 0x31c bytes, but the H616 codec has its DAC
-RAMP control register at offset 0x31c (H616 user manual v1.0,
-section 8.4.6.56), and the sun4i-codec driver uses it: the H616
-regmap has max_register = SUN50I_H616_DAC_AC_RAMP_REG (0x31c). The
-access only works because ioremap() rounds the mapping up to a page.
+The Orange Pi Zero2 describes its RTL8211F link as "rgmii", with the
+whole RX clock delay (3100 ps, the maximum the H616 EMAC syscon can
+add) inserted by the MAC. With "rgmii" the Realtek PHY driver also
+clears the PHY's own RX delay bit, so RX sampling relies on the MAC
+delay alone and sits at the edge of the window.
 
-Grow the region to 0x320 bytes so that it covers the register.
+On the board this shows up as intermittent boots with a dead receive
+path, after cold and warm resets alike: the link comes up at
+1000/full and frames are transmitted and seen by the peer, but nothing
+is ever received and the EMAC raises no RX interrupt. All EMAC clock,
+pinmux, drive strength and syscon registers are the same on good and
+bad boots. On a bad boot, setting the PHY RX delay bit and clearing
+the syscon RX delay restores reception at once, without a link reset.
 
-Fixes: 3eef85034c96 ("arm64: dts: allwinner: h616: Add audio codec node")
+Use "rgmii-rxid" (RX delay in the PHY, none in the MAC), as the Orange
+Pi Zero3 with the same PHY already does, and as the vendor BSP does.
+The 700 ps MAC TX delay is kept. With this change 10 of 10 cold boots
+had a working receive path.
+
+Fixes: 5a378f9f2b15 ("arm64: dts: allwinner: h616: Add OrangePi Zero 2 board support")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index e4e0b999473e..68bd6137c316 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -806,7 +806,7 @@ spdif: spdif@5093000 {
- 		codec: codec@5096000 {
- 			#sound-dai-cells = <0>;
- 			compatible = "allwinner,sun50i-h616-codec";
--			reg = <0x05096000 0x31c>;
-+			reg = <0x05096000 0x320>;
- 			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_AUDIO_CODEC>,
- 				 <&ccu CLK_AUDIO_CODEC_1X>;
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+index f2e3300e078a..1fdf2d3c1a87 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts
+@@ -18,9 +18,9 @@ &cpu0 {
+ };
+ 
+ &emac0 {
+-	allwinner,rx-delay-ps = <3100>;
+ 	allwinner,tx-delay-ps = <700>;
+-	phy-mode = "rgmii";
++	/* RX delay is added by the PHY, TX delay by the EMAC */
++	phy-mode = "rgmii-rxid";
+ 	phy-supply = <&reg_dcdce>;
+ };
+ 
 
 -- 
 2.55.0
