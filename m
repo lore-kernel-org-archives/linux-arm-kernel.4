@@ -2,146 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E83E606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112A1606A88F
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 18:00:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nA/oXRzE;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=BGa3AokV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dwO+1zOR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DY/bh9cF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pkaJZSPpw4HX8tGoQuNeTOTO+g5PRUqg4PZdgIWKEx4=; b=nA/oXRzE4ICvs3+omdOjdVBLdn
-	IwfCK0PdYvrkVnStbs5zjHwev2hHKb1M3f7mj2AQEK3xBDeH/MmAlNg4aKMuVcIuhLstaiLJG+k8/
-	eLSS25GsJn6jI7XZWu6cUHlP3qQEp/XBKDM89hZ98SWqxeKnlUHpwLiyyNhqE9CxM99s6D8G44lQX
-	qBPSfKHl1tdg9IYOfk7Hv/BsIuZRnDB40wfsP+PD1J0bAUW67ZkahzEisHMk6jaBrxJHww3S3qI86
-	f5onoW8L7IYfRpTYEHSF/ndpgvCnAb/3x5BlnFUWs6s/hwUDovNzyi1clE0d0Mx+V2CZxB01UwY6x
-	AzonE4tw==;
+	bh=IfqxjrYK+5b6SwLDSCdGV5c3D1FWDwIXDLxmgwwKJjk=; b=dwO+1zOR6o3MbcjlDIMQGRvups
+	iXRl0wLEusspK8V0+Ok7Q2r5E6nZkf2AGbvfWJEdfSy7gpiAQuQ4qpWApN7i8+0DYAyNqPIbIO1Kr
+	lR8CDM/rgDJdatgFLMkxCRm5voaDQONNm9hhMSIIH6/0abKF3J5QONllUoiQCmjxYJ/BTQ8ss01hf
+	tK5NM/HkEKANKk0M+yyeVhruBtSQxJA1a1rDIs++jT6t0XZVh4L2aS2fTGHPEBFK6pQ4o/yDdH/oP
+	SMd30UjgHGHqAmz37Yjv2WZwYKZiXZZ+WGNytubooGWLvyA5wD36KN35e3vhrsWNgGo5pSIHKIxiI
+	xjuViBKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRCbr-00000007M8S-3PbR;
-	Wed, 11 Nov 2026 17:59:47 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1xRCck-00000007MGd-0FdQ;
+	Wed, 11 Nov 2026 18:00:42 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRCbp-00000007M7j-1fJo
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 17:59:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lvY20yreNFnA7SvUMKreH0C4kRBXbS+1bPhvpk8Sptyc1F/Kpm/zl+bD9av/xAb/KhfsTYmiMZP1AeY5zeDEooxwf2Wt7pD5Oxbkt8oVvAAuXgzBHqzE6rPukkbBVKA5QRlNYYfJ6LIS5BZjDAIefs1g5Z9QEJpLiGgPzeits5o7AZHsv77wZXzoU/Hw4ykbygNwdRtBhHdzOiHrHtlWj/4tDca2WD+6uuHZSL7igWwI8BIfu2+GOOWNUlZfLL1KEQweB8JZ5oNs1SjttHT517ZQiVSefDErowYXYoXpkxBuaY/CSm5XH8AdP2k3eF30q1AcOwTprR5CQ5leV4Ogug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pkaJZSPpw4HX8tGoQuNeTOTO+g5PRUqg4PZdgIWKEx4=;
- b=eat1BMCQiTWEKkK2Db+l0XfiCD8RpfJ3KVDsv9L6HctQrWWamVXKP3YoCT+4zJtHG2NUR/fukh2tQxsDTsVCX13u3NhxpmsxwYl2Lm/BOb63wXNVCC3yvGYILb9SuwlPJ4u5VEPwsYChrFtJ0QQc3sVz+6NJ6EJ7whi/1hOA9J8i0mmTayauaddFvaw/bwW4sI2NdJOSchX6JsNG5RNTb/fJsx7XvzGXVaUPhvVQeqz0JbUib2MVl4cbi0HXTbQxOTggMMJ6ukR2B1qsfb+QjejDmCPTKGpZayWjlzRp+CMZBMuRXaCI2tgjkSucBJ+UiF1h7zD/6JwIC7CX8fP/+Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pkaJZSPpw4HX8tGoQuNeTOTO+g5PRUqg4PZdgIWKEx4=;
- b=BGa3AokVZ+BMlp4yH7sdqVwIW1iu0KgiSFlGkVMMig6920xZqgl21dAjv7iJTfcSLxzYpA6EAtRqW+gniseru10e/6OA2nrdpIc1bRlRduhD3jST7Acg6v/0udDuoy04poGGui0KpAmUVQ8VJiFYKa0o/QYwbtJ9tHk/jmW6u4l/CyhSGPIjOYvBMML27o9UbXlmJfg7EtrxHmw9ywJc/eRM5BuBK8qFhshwoqM0wrs+7aOKUgvNnftJ8njcpkDtATPD1/AjPbnkIKwYwogOeeMvFo1IsSth1EgAgF40w5xJTR7BrKDBJn7WfMfsKxu/yDnuJ334o3TbajAalvVsaA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV1PR04MB10632.eurprd04.prod.outlook.com (2603:10a6:150:206::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
- 2026 17:59:40 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
- 17:59:40 +0000
-Date: Wed, 11 Nov 2026 11:59:29 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
+	id 1xRCci-00000007MGN-2Va1;
+	Wed, 11 Nov 2026 18:00:40 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1019A65515;
+	Wed, 11 Nov 2026 18:00:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA9B71F00A05;
+	Wed, 11 Nov 2026 18:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794420039;
+	bh=IfqxjrYK+5b6SwLDSCdGV5c3D1FWDwIXDLxmgwwKJjk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=DY/bh9cF3vhr8ka1oYjorFAP23L5hOTFCFuWyMSBy0jJ7Z3rTfHuQR477/xfLz05k
+	 7eGMM4/cO6H71FNh+yjBGPD0oEU6n4v4jVUvbZdD4iRsy7eXCf4wmq5hcapskZbJqy
+	 AlvGXeeQ8NT2/0U7lVOuiwQU9RbDs7JobTOmYh37LiXH8QnrPbUIg2Bp2iBdcyG0JE
+	 cdbsdXPLqri3hXiQBkNYrSnW5RBDObLSNSlmU7KGQQwpMY+X0joCLlw3OyG7hXMb63
+	 dEgTrqgkzVh7048xeWcHoTNaLMI78cJalP4lv3kwnWQX1OmMtp/0Z9NKM4wExOKWJt
+	 zoZ1VnC72ntzQ==
+Date: Wed, 11 Nov 2026 18:00:33 +0000
+From: Conor Dooley <conor@kernel.org>
+To: 1579567540@qq.com
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
-	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+	Heiko Stuebner <heiko@sntech.de>,
+	David Wu <david.wu@rock-chips.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v5 7/7] arm64: dts: imx95: convert eDMA to per-channel
- child nodes
-Message-ID: <avStAcZcvCRfDinx@SMW015318>
-References: <20261111-edma-iommu-v3-v5-0-2537cebe6ca2@nxp.com>
- <20261111-edma-iommu-v3-v5-7-2537cebe6ca2@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261111-edma-iommu-v3-v5-7-2537cebe6ca2@nxp.com>
-X-ClientProxiedBy: DS1P222CA0024.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:8:44b::10) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: rockchip-dwmac: Add
+ RK3572
+Message-ID: <20261111-sprinkled-kinswoman-9dae5d8040c6@spud>
+References: <20261111-add-board-ok3572-c-net-v2-0-304466394970@qq.com>
+ <20261111-add-board-ok3572-c-net-v2-1-304466394970@qq.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV1PR04MB10632:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f3de711-a77a-4d2c-9404-08df401d8ea7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|23010399003|1800799024|18002099003|22082099003|261009223027099003|4143699003|11063799006|56012099006|10067099003|261028144727099003|261022105027099003|261102123227099003|261021121427099003|261021123027099003|261026140227099003;
-X-Microsoft-Antispam-Message-Info: ugENbly/dBR7GjD2am9e5K6dgtGo5UkQl8P8gHd2wJJqmyht0acIpm80xUN8Rck6UG+5zxCFaJTmSMyGJ6zjUvevKYM1oVoS2RBC18gX4KQkNP29/SDZn3zmMdQVrCgeCmGC4myTLD5SDakqke4GzqVd1oy2BSVD7PQ4hpFez28kkeUsWWRJqy4zYqRee9q1gsU3Glf6ABJPzkrzY+UR0AMaseIXjah/xise/+O8ecCP7tBapN8mwECBvXofx22MUbuQSM1OI5DwhLbJtHLeylGVPNglOrD97++WqPjwNeCDCOs/11ukzCANmT9yqjJt0v7mO7e6uOddr+EAk+eiZU14aw5ONsbS7mO+zwy9EOBgyvEH+YHDo/P4UMoUT9497tMhs0cAuC6e/psl1RvYChqTTPR2xAv17eAPozhiH9eTYoG/1cEYbvW0BfE5T0RrwnfMSqoqfd67jXRy3kTG3p7ed2MNAF0cK2PhVCwnYUC8qQkBulpPWxDIXPjBT9iCGzmmU1OybZtTTamE0Iiuj8N0ZIcfXUbgEiR0mazbzaIKaLoZ+LAeu+c/mOdzJdGuQ1FDlO1fbroU+HOcv+q7PcW1TU1pCdm+P5toFfL8QhIGKFm72ImMckUhoCh25DdjE2cplxNK1ryQd5q6weoX2iS7bU9qlTWodrb2AvLP9oQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(23010399003)(1800799024)(18002099003)(22082099003)(261009223027099003)(4143699003)(11063799006)(56012099006)(10067099003)(261028144727099003)(261022105027099003)(261102123227099003)(261021121427099003)(261021123027099003)(261026140227099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CNnAaXIzMaR2unk0ofr9F8OkYTqL7XEUXLEFSkrrszJGD1A0f5p6IT7rx9in?=
- =?us-ascii?Q?14eUKCSFgZYvfuQl5Pc34/zeF5N0BeIg8Fw5nKKynMPVdwju5gewyupejEs8?=
- =?us-ascii?Q?VgCNo1nAngJOlOo0oaC14LlG0lJVnCR2Xa7iYuxQfEKHIHwx5Zrp8d9fsZy9?=
- =?us-ascii?Q?VEg38tsQVGWUmuZ0cyzFpr7OMmsw9Ero+PzRNwm1gp4BELvvxziicTWPRGQj?=
- =?us-ascii?Q?d5ePmcbOtPPzTkGXW1+xJumllSY3s79u+xAa7sAKkmbFMaCAoRGZvqEmAunJ?=
- =?us-ascii?Q?xHJFcGyeBb0PymOMXvxIlZe5V8WSg5PneJdXkjPQiyKs5UBd/ZcbDgahTjTZ?=
- =?us-ascii?Q?VkG21ycrZf2d2ZZ+OVOjDnt2cR1MRZNZFVcf2ZIXgyDjr+r6Y35BtBMiCJX2?=
- =?us-ascii?Q?DAzBa0Tamcp/XKLfeRWsJJ5+D5FFzABJsfnldp4E8prRvIAVqhWTfkBixSRy?=
- =?us-ascii?Q?SeudZdOegVfef+1gC3Q8NXSaMaUJ6P+ljuNRL+gwznJU7fKNC211Su7IZ+Ec?=
- =?us-ascii?Q?5z5UE7XBA8GegktS4Fs3IXh0zCHi6s5zHc/o6pmjEwq+VLD8p1CWQLbdLVZ0?=
- =?us-ascii?Q?fGSawCrg8P6bkXHDBTRKViVl+giz5mW96FCjMzwqKP0gTfwLAoynr/VNVo8R?=
- =?us-ascii?Q?MHTTvEHbraF2ssXiv+EpCpUnTGE/eihBahV4A6VfGHMS6GpO7bT3iKvpgdz6?=
- =?us-ascii?Q?J08d+bkvuk/1e4hGqbGqovnPFyiof8gC/iM8SYbOHRs9GktKpP3dsqa0YGEh?=
- =?us-ascii?Q?Db+jp0Rpbl66pAXaOqDm6p8aGi6MjlGRmZLD8lBPqkOXMqlL7LgGJ0WEiXHL?=
- =?us-ascii?Q?ZkoKFxqB5N3kBxxG7OY4J5ALtmUY+KcvlxhNuDk24tFDIvNCCn2XLLXoSQK4?=
- =?us-ascii?Q?g7lQL3qriZ2gNSBGcfMKUV+2CaXaXikWZbzwD2zeG7woJvevfBiuOOweyiKh?=
- =?us-ascii?Q?xs1y7rxA/lzhfLRBIXiHYZ1pUhBZmbdk4D4wI/fJ/ANNESPM+1WwdqVn0Kj/?=
- =?us-ascii?Q?NvD8o3821Fzd3bpTuf+ZCh77/fZ679Jdkx3wJYgEwGVtxc/BljuoPXlwLbOk?=
- =?us-ascii?Q?3zOt622lq2yjwAUxg4Jm9mA2RlJSfsnKtSF+NT6qLD8jPQuACjizblzICYVS?=
- =?us-ascii?Q?vmdRT6UEDK90mO6j/QivrmunxK4Z2ELfpVO3iiLiLn9SFCHBG09/ze7IsPJ0?=
- =?us-ascii?Q?ayO4M2rEpkX4cUqtp3koUl3d01JZEBwlPKVwi/K/ETEY/++R39QOPcwrMceB?=
- =?us-ascii?Q?pfhMeBc0IDthcu6rXddXMi+kvgKLNuKSdUtMsyggfR5E0FcykKerhEViOsGf?=
- =?us-ascii?Q?M2TbnxPLEr1oBx8Sd1xDk1ywijoew78PgmPSujMiqMHh5iKuPWFfVpEQ0foD?=
- =?us-ascii?Q?C0ToV6FSqcr551+lOjhzkAQXq7cxBy67O4OaB7AJvkXKOK6LammXx+pD5hFD?=
- =?us-ascii?Q?1kyI/26u3uwVNKmkH5jq8LKo+hJRVbwnuS2QjH4PceRDiorpvbSbCTt6Zsim?=
- =?us-ascii?Q?TApwrlH5h6Ond6XmjJ3+bVBwrQkz6ickTDrUEjXElsedfQ9zOEU8Ev9wJn4Y?=
- =?us-ascii?Q?OhRs+V6fyvHwh94u/H0bq5ifJJRxceNeXrXl0Hdug8Tce9RgtPUrL4mb4AmP?=
- =?us-ascii?Q?dNldvwmrzELGEUU5gkiWSeufODeByMDkPHNuKnATb7G4/CEd3rcu3X+h7SPg?=
- =?us-ascii?Q?SKDjBpgiIpS+YO4C+YIJZF4C7NM/sG204NjrQZk/zuCNSnLG7lEmGxIqg9hv?=
- =?us-ascii?Q?Kc8tQsg4togzzUpbnvzvBnWDAOQxw18tWumm8HD1hixDpdpIcNLe?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f3de711-a77a-4d2c-9404-08df401d8ea7
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 17:59:40.3234
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Cuebu3vgK6i4Fzv/JKlBmOZwj+4h/G2A+2MKc/ovBkJ46T1Y1wjbt7GY43lmyZRFu0HkZ/7PdDG+MPoxov2C41oBnKu3SzH0etAwknsIu2/j57R/7lnT5mkX/pcPiQ8h
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10632
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_095945_441819_8F8BFE61 
-X-CRM114-Status: GOOD (  12.42  )
-X-Spam-Score: 0.0 (/)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2kouTlog9XyxYE8J"
+Content-Disposition: inline
+In-Reply-To: <20261111-add-board-ok3572-c-net-v2-1-304466394970@qq.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,54 +84,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 09:47:35PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Convert edma2 and edma3 from flat interrupt arrays at the parent node
-> to per-channel child nodes (dma-channel@<addr>). Each child carries
-> its own reg (real per-channel MMIO region) and interrupts property.
->
-> edma2 (64 channels at 0x42000000):
->   - Channel N at 0x42010000 + N * 0x8000 (size 0x8000)
->   - Paired interrupts: SPI 128-159, two channels per SPI
->
-> edma3 (64 channels at 0x42210000):
->   - Channel N at 0x42220000 + N * 0x8000 (size 0x8000)
->   - Paired interrupts: SPI 256-287, two channels per SPI
->
-> edma1 (imx93-edma3, 31 channels with 1:1 non-paired interrupts) is
-> left unchanged as it uses a different interrupt scheme.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx95.dtsi | 774 ++++++++++++++++++++++++++-----
->  1 file changed, 646 insertions(+), 128 deletions(-)
->
-...
-> -					     <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&scmi_clk IMX95_CLK_BUSWAKEUP>;
->  				clock-names = "dma";
-> +
-> +				dma-channel@42010000 {
-> +					reg = <0x42010000 0x8000>;
-> +					interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_HIGH>;
-> +				};
+--2kouTlog9XyxYE8J
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-where iommu informaiton?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-Frank
+--2kouTlog9XyxYE8J
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavStQQAKCRB4tDGHoIJi
+0sWOAQCtxEQyPEIYrZQIMO9/45cDtSBZcJdG7Pcx0xqdgKv9bQD7Bk7YHrFee3MG
++kKbj7wQGVXcJV+Re8bAYp//6kEvzgI=
+=+Ani
+-----END PGP SIGNATURE-----
+
+--2kouTlog9XyxYE8J--
 
