@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873AD606A336
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969A1606A33A
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wTLjDk9Y;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hCpov68u
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HKa7MxGu;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Tn0Ccn88
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Poih9dB3auQAj++shuYGBNcxyMAxKrzMPsxjgIYbSBg=; b=wTLjDk9YKe0HTj
-	vm7uKWoQdVNW5V/WrdwoABMrzzjsGFrUJQvkYrs3J3/Q5m2jhAdZmv5GS1AHz8gaJ1ZT6pkvSvMjR
-	gdrZ56d6Ks6O+pF13SLnD+vYv7k9RkYQTbBe1cfXOafAPmlRyxqWK201w5Ll/ufGHs7/AgwAb7A7q
-	GAT4horAYFFAEBsrv8N8tmrY4gCYHcmKzaFCd9Qv1+IWsJar6A6vBdeuQ3Vxz0gy+QZ7j+KkWWvs7
-	36h8lBcrjWYA3StOz9I4DUOv51Gvbsfy8pAUSRmCf7jydGppkUnV1ubcRe2J9XpJx47qWeI2R2C6K
-	J93Gb+4NGLrBER/J4/dQ==;
+	List-Owner; bh=JLHMNIGX8tDW4EPIddI7SD0KvLCdeVVUDiw+ZKX10Wk=; b=HKa7MxGu4jPpaa
+	bwCFx/acvSOi+plPygwaiPSpIsP+S8v9USbiThtQ869B7dRz+ta7Cm+002pd5NKB/mdzHnZOs5WNv
+	pllsMX5SBIlTIvjdioPzF4/CvMJMgk7s/+nuBAZlNWU604quTcQZ69P/lPRE1XrBJF03G0vaKysmb
+	8PkGXPWVq5dANz9o1pNrCavQIL3x/R20gFLf1+2sbd4Ea82129qPsv2aXYj5+C9Dazk+TaSRRE2zW
+	5kdskB10Ka8sBkOh7M5BW99EgGALMTsoxPvqEZL2cxNMrgr0MQATuOVBsBVeoGeXzy4BCB+dY9XPr
+	H3LXMdxkUxjGWL59l7mw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBe-00000007XmR-2fkG;
-	Wed, 11 Nov 2026 19:40:50 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xREBd-00000007XjZ-2am0;
+	Wed, 11 Nov 2026 19:40:49 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBX-00000007Xe0-0Uyg
+	id 1xREBM-00000007XVw-431G
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 19:40:43 +0000
+	Wed, 11 Nov 2026 19:40:32 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8DF6865515;
-	Wed, 11 Nov 2026 19:40:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E3B21F00A06;
-	Wed, 11 Nov 2026 19:40:42 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id AEA2B41209;
+	Wed, 11 Nov 2026 19:40:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3209A1F00A09;
+	Wed, 11 Nov 2026 19:40:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794426042;
-	bh=Poih9dB3auQAj++shuYGBNcxyMAxKrzMPsxjgIYbSBg=;
+	s=k20260515; t=1794426032;
+	bh=JLHMNIGX8tDW4EPIddI7SD0KvLCdeVVUDiw+ZKX10Wk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=hCpov68upI2Hr/vcZo8JPCB73zJAAw4Aa9VSkxpRQX56FIfs+PeKuoAJibDNybEYC
-	 K8EPn4GtkKZK0CLUJYMIh8a7A0vkKIJf16oMef4tsPBQkLBuaDoujxXELi4b0kDxgN
-	 lPf/kNXlgFU19TqA1MSELM1yA1UU56Dsy6g0R1GGY1of3LA1xJHEMOb0L5fum8hjOI
-	 EtcgZ0u5zat18owYkYfMYR1QH+bJsmq+xhr/VNIQFsGfqPyDt8lbnrh1pNEsguouZm
-	 H7P8vRLiTu/Wy3v/2jlgtPW2OVKdy23tIEPZzUDWNilRzkasA0BYLyf2YckXE7pVxS
-	 SzeVc9EW8Hb6w==
+	b=Tn0Ccn88e/tw8YiYx6XcN3fnJM2YLTmRibl4bwr3mJ+4ZJwX+3Vh2+1EBk/06AMvB
+	 TU+WFLUwJbywyTwut6ysrR4ALBALhN9DWMIE1kQCAilAIPbiBjwGTrDZkGF8WwP6Z1
+	 L+9xEyxc0de1cBcLXKJNDeqpumsYsJPMRIahEuZQsmlBjGI6FeYKT4PJkgbu8olgYJ
+	 PB7YR0E9PvHx7BZoTl3+eGzgme03RvS9ngDvZspfGoCiIm3/O75ydAeXvWgw5NBFXi
+	 Jn4zLfUjDmPDl/uFflUbk6baUFZnP5zpp5/qZ1qeaoAxf9ObO5soB49TX+ZqCqa1Kj
+	 y09RLybBG5wtQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 13:40:21 -0600
-Subject: [PATCH 11/12] arm64: dts: hisilicon: Remove obsolete HiKey970 PMIC
- GPIO property
+Date: Wed, 11 Nov 2026 13:40:15 -0600
+Subject: [PATCH 05/12] arm64: dts: hisilicon: Drop HiKey DSI endpoint
+ unit-address
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-hisi-v1-11-6c9f5f80716c@kernel.org>
+Message-Id: <20261111-dtbs-hisi-v1-5-6c9f5f80716c@kernel.org>
 References: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 In-Reply-To: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -78,27 +78,27 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The PMIC IRQ driver obtains its interrupt using platform_get_irq().
-Remove the unused gpios property; interrupt-parent and interrupts
-already describe the same line.
+Rename the DSI output child from endpoint@0 to endpoint because the
+node has no reg property.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-index 299c4ab630e8..12f1f972ffde 100644
---- a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -21,7 +21,6 @@ pmic: pmic@0 {
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+index 5f31569cf494..25ff7d7dc176 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+@@ -300,7 +300,7 @@ ports {
+ 		port@1 {
+ 			reg = <1>;
  
- 			#interrupt-cells = <2>;
- 			interrupt-controller;
--			gpios = <&gpio28 0 0>;
- 
- 			regulators {
- 				ldo3: ldo3 { /* HDMI */
+-			dsi_out0: endpoint@0 {
++			dsi_out0: endpoint {
+ 				remote-endpoint = <&adv7533_in>;
+ 			};
+ 		};
 
 -- 
 2.53.0
