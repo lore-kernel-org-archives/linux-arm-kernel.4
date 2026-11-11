@@ -2,93 +2,158 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105A9606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 16:15:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6761E606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 16:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cLdCG7gA;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MXRFtoMu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j9dXH7RT;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=JUphMJ03;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=DabWLQVr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6VIZ3PtCdrmMEOv2W4/v/h0FEesRkpl7sdLewNtxWW4=; b=cLdCG7gADPcuvidtsdC6IiTMh+
-	/oZGoZpLuSn4ckEAb3HJ5hL7queXOMOaj+oQ/8/0dqrIsMBsatXPttOiecmJH6ar7dKU03M9X5AeL
-	mcvBH1nsPE8J3w3scXmeTzukilJm7FuLG2TdlswvPNcQaenFfZfx+4rcEpLeE/O1ORBGbF8l2JsEz
-	QEH6mY5A90CFYhnOgrN+OXWXopnqxwzdoOZ3zk5OwrqPvKb+mYOVcVU2WmhsRSYVn8Y46r6R8xiXT
-	6RVMpjRAxZHwySqhhv9TsVGKWxtAkV4n0sRDgfy8Fk5OAPj4nW3kQ+FqB571RBlvTleARfxgnTq+7
-	lnXX/pMw==;
+	bh=yN8rEZouC3yfilpL49Nn9rYRbZQUqv2Fvy1imuPZoCo=; b=j9dXH7RTIMM/u/QnQWqnFdrXEJ
+	zmF7ku1gqlfMDjBzLBiPT+vFysql/LE3gIm6Qe2YqAJh6OPHoBzhxy2HTfmjRNek8FR/l2sWeggFt
+	sWMFcLx4YBS5VEDHNIoiJja9UoM3dgjam9aVEL7eYE7X1YUgDRkmMNZA6I2nNbHM8Hcc+poo7cGSZ
+	1TK1zD5Rt7W+5s8+308Uh/mLb69iUW8XD6I7p9XhhJkLZTWhlBfFkec/CVdUudVG/UAbr43d8wBzZ
+	zkYBSDL2kFlOw3ReGoTamosIf16daqlYdIPR5EuvV9OyV/LXB6iqFGVRMv7kLwzIib9LmWzPxQds8
+	4nj5PBcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRAz6-000000079ar-3By1;
-	Wed, 11 Nov 2026 16:15:40 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRAzY-000000079fx-43zI;
+	Wed, 11 Nov 2026 16:16:08 +0000
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRAz5-000000079aN-2sWD
+	id 1xRAzW-000000079fa-3hmu
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 16:15:39 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id DBAC863E0D;
-	Wed, 11 Nov 2026 16:15:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFE261F00A05;
-	Wed, 11 Nov 2026 16:15:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794413738;
-	bh=6VIZ3PtCdrmMEOv2W4/v/h0FEesRkpl7sdLewNtxWW4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=MXRFtoMupiT3qJYgXy2sB5augkLgLy01qRPMNW45hSF9TkcmcmWYGEuV1Vz8rWyW6
-	 0ooJ3PmsQeytlwlshiRdctOVUiFAzHmpWyxKu9nbUHJdynm5l0dpxSF3+fMGPvTAtl
-	 h5Wrl2+XF/DcnC0+tpUiX1ybjfuL2oM7cFwCwZpi+3ORaDY+l4Ad0P+yIjIazHFrIA
-	 YKx6+GKltenDm8orj9uCHBo4Wv2y5lbssOY/NWJ+aLstSRAD6AtSBoYHk9V08IH3J8
-	 /HJ0P69c8aNYZzrVMV0lGp4+KJ7N/z8bUp+urrmmHsLr3Ll0KkVI476EDVM0DHH0/9
-	 +L8aD2xMGC3+A==
-Date: Wed, 11 Nov 2026 16:15:28 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Kevin Brodsky <kevin.brodsky@arm.com>
-Cc: linux-hardening@vger.kernel.org,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Ard Biesheuvel <ardb+git@google.com>,
-	Andy Lutomirski <luto@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"David Hildenbrand (Arm)" <david@kernel.org>,
-	Jann Horn <jannh@google.com>, Jeff Xu <jeffxu@chromium.org>,
-	Joey Gouly <joey.gouly@arm.com>, Kees Cook <kees@kernel.org>,
-	Linu Cherian <linu.cherian@arm.com>,
-	Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
-	Matthew Wilcox <willy@infradead.org>,
-	Maxwell Bland <mbland@motorola.com>,
-	"Mike Rapoport (IBM)" <rppt@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pierre Langlois <pierre.langlois@arm.com>,
-	=?iso-8859-1?Q?Pierre-Cl=E9ment?= Tosi <ptosi@google.com>,
-	Quentin Perret <qperret@google.com>,
-	Rick Edgecombe <rick.p.edgecombe@intel.com>,
-	Ryan Roberts <ryan.roberts@arm.com>,
-	Vlastimil Babka <vbabka@kernel.org>, Will Deacon <will@kernel.org>,
-	Yang Shi <yang@os.amperecomputing.com>,
-	Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org,
-	x86@kernel.org, Ira Weiny <iweiny@kernel.org>,
-	Lorenzo Stoakes <ljs@kernel.org>, Thomas Gleixner <tglx@kernel.org>
-Subject: Re: [PATCH RFC v10 22/22] mm: Add basic tests for
- kpkeys_hardened_pgtables
-Message-ID: <9deffbb1-75fd-407e-90cc-59bf4c2fa1a6@sirena.org.uk>
-References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
- <20261109-kpkeys-v10-22-aa6c4d9603bc@arm.com>
- <2d13fbb7-b5b4-446e-8709-5b43349ff19a@sirena.org.uk>
- <9e59fd71-97e7-422c-a7dd-bc23c6e6a852@arm.com>
- <717cccfe-81d6-4e09-a466-5361ae27776f@sirena.org.uk>
- <0b29393f-bb84-4df1-a699-f7afcb50f2e8@arm.com>
+	Wed, 11 Nov 2026 16:16:08 +0000
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ABF04sJ3597117
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 16:16:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=yN8rEZouC3yfilpL49Nn9r
+	YRbZQUqv2Fvy1imuPZoCo=; b=JUphMJ0330lneS4Ke67Ym/G1OlfGxwhhr9TBaM
+	qzZJARTt2KTVr9oBC6yMM1gyGqszmGF9ukpOZ26JDmNUb3DCUIU4vIprmhTmtfL2
+	hURWWTVrHopLFC/EOdvLfuyj9NkEtkm8rXvyzXs0ne2khAnLq7sTeGyCFJm8pn15
+	T+tuYMHDR0CJg5iVif/L1zayearw518TC90g46csH87sQ0LoPn2frYTAbpki3aLJ
+	hQi8GLqYijsiv0T1WkxjZ10tcO8Ol+jIovD5ABFi+tmGHtSlKN0Q/fJD9U9NJTqJ
+	h16Bg5pEfxt0IUc18HwFB2Iz4H+Pa5XIDsjNMMEMgk2+cuNA==
+Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hvt1u8h2d-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 16:16:05 +0000 (GMT)
+Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-1b238436265so1628675c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 08:16:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1794413765; x=1795018565; darn=lists.infradead.org;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=yN8rEZouC3yfilpL49Nn9rYRbZQUqv2Fvy1imuPZoCo=;
+        b=DabWLQVrL5P+3818psAafOr+1eROsrBRFmavO0VNdiJT3deC5dT3fOX66H43BGJh2+
+         FaIWZPv7GU8D/b2NeqJISGKqrrwxHwUxNb65sKCY2uKYyYCDf5zs31+F33l+6sABPmY0
+         xUBIJwZU4bDpUkzTGR2P9CKMXOhNEH6Ien3xgYcbOwxvMzDMsJhwRnZ1rpg6toTvHY3a
+         DS/UIp88EhnpqsM1vEWBgJu5Thj+EJOcnqlaoXqFF+yi4ThGuiWTFhdemfARYcD44Bro
+         6bVUGOzT865hqic8QohPQyLYRMxB/u0CcEfoBObstnIDY5GaZm8VpQuKZfrQ4AsOo9KW
+         WVww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794413765; x=1795018565;
+        h=cc:to:message-id:content-transfer-encoding:content-type
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=yN8rEZouC3yfilpL49Nn9rYRbZQUqv2Fvy1imuPZoCo=;
+        b=pzrH5SEZhEnWcjUpHW3W03bw8DZCk+mK0hZxPe1mfNGCg3UBS7pjgWbELoWXpEU6QD
+         m6r1qNeoKsgspBRBHvTjrMaPqA6uU0IEDyrPkPPqtG+B1yFJdgqL/nVzXdikRi+wBpE7
+         UAgQre7SUJCDLCnyshC1Lw+VBLUxmswnpqNMmJQHQt73bZEcalZP31vfBHkZ2XahpZlB
+         CpawyN3iXfshtpfn8NBcHNdTzc39//kohUa9fGTD3WS6UYiwY4ZGSVQuPDuRoha+YO7+
+         5890wLayTNYYjvm3QtsmnvytryBK0gYQ950Yr3vMEfA1kd+lO2qSjIUvjofWIiDY2mTL
+         CLyA==
+X-Forwarded-Encrypted: i=1; AL+hErGt2woBu/nPisfl5A6OXXY6zqs/QuoKEIoA39+Ksghbf+tD7LIlaMA8FFuQtZrCbAhfSFQkpS3fFqtjQ2F3UrPQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z/PPF1ZMaNjgszjgE01SJhWbCK541Ecr+2YUqE5Ss/97nmoQe7l
+	PTIo0+Q9nX3JdaSw6hGAMRd/oe/Le21vQAEhp4Fa1LcA9w4ThLY5jihE/xGHJIc/4Nx9FMcHYCL
+	kjtRgTg15SGo5CgsGuBmQWB8qlR6MOFPeSd8nM+w0jqO4t6D7wofXcIvfw321rnTKAoKgrj+y14
+	foa5KcQgGSew==
+X-Gm-Gg: AYBFou3QDmALnRwWbVEnatDuQFFuSCFf3VfzoqMGeGikQWkPe06/hlCeM/5HQkfv3GW
+	D1IJYP3TULOJiP4p8PeNkR1hQuPIYhUuHz/yqEpy3C7FoOx1pK1HjenvYK/tyxVsXl3fxO9V5eH
+	ZT0XbTtXt4RcBizzF5zjdBr7DYx6wMLYU+4P81IR3KFP018IxeAo5eq7oY81hTRrnn40d37L8Ad
+	DMM1VFEHxHO7+9P4ta0TshNniLf2qAgTVSQl3lM2Hji1cHEKZw3cUitVXivyBzzYkFedSq37yic
+	Nac5NkGIbWkL7Oc6gZmHpE9aaq0FyRSxWE8hHcJl60tvXs+dlO8KvfocJqCt4SxyeqeHVTo5K2e
+	BqFqIO0M4hL0Jl/+TlAbqLS2k2t9WDW1vrtwKYsg4AhRsl0gTDisCrG0MW+8wNlYcuw1H4M/dLP
+	SDO8g7pKLGzXGHoespMc+7orR/5j63jTVPvs6vqby5TxROgIJpDhw8CFstdv7Au0ccyi3yEbX2
+X-Received: by 2002:a05:701a:8148:20b0:18a:8164:ce4 with SMTP id a92af1059eb24-1b3c015056bmr2846275c88.0.1794413764919;
+        Wed, 11 Nov 2026 08:16:04 -0800 (PST)
+X-Received: by 2002:a05:701a:8148:20b0:18a:8164:ce4 with SMTP id a92af1059eb24-1b3c015056bmr2846245c88.0.1794413764380;
+        Wed, 11 Nov 2026 08:16:04 -0800 (PST)
+Received: from hu-hardshar-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5b11150sm23548337c88.5.2026.11.11.08.15.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 08:16:03 -0800 (PST)
+From: Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>
+Date: Wed, 11 Nov 2026 21:45:49 +0530
+Subject: [PATCH] ARM: dts: qcom: kuno: Add unit address to memory node
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OedQK9JKFipfKU6l"
-Content-Disposition: inline
-In-Reply-To: <0b29393f-bb84-4df1-a699-f7afcb50f2e8@arm.com>
-X-Cookie: Do not pick the flowers.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261111-kuno-dts-memory-unit-addr-v1-1-89e965f2c3ac@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIALSU9GoC/yXMQQ6CMBCF4auQWTuJIGDqVYwLSqc4Gloz0xoJ4
+ e5Webtv8f4VlIRJ4VKtIPRm5RgK6kMF430IEyG7YmiOTV+X4TOHiC4pzjRHWTAHTjg4J3j2xlv
+ TtdaaE5T/S8jz59++3nZrtg8a0y8I2/YFspt2830AAAA=
+X-Change-ID: 20261111-kuno-dts-memory-unit-addr-7f9fb954bb93
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abel Vesa <abelvesa@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel test robot <lkp@intel.com>,
+        Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794413759; l=1586;
+ i=hardeep.sharma@oss.qualcomm.com; s=20260204; h=from:subject:message-id;
+ bh=CSzQmEb5F718VpjW29JEnKagjfsiWXZUlmYmt8BWzBY=;
+ b=FnK1YiaXFJxbht2Fknevak7wOF2gTBehm4QTIXKU84L4+P5N9blTlHv8WVyrtwPzDQAVQiEtG
+ 7QFwiGlWOQICfAmzPDYQYWjCrqBH3kui/I/QBiXEw7AFb5JP3sbmKxD
+X-Developer-Key: i=hardeep.sharma@oss.qualcomm.com; a=ed25519;
+ pk=IvwPDKA2xr6jWaCIBBY2ran/H0124QUzVfun+CtEikM=
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTExMDA2NCBTYWx0ZWRfX6caInyVFgIDv
+ /0D9hiE6iGwBaa5+qRFly3cf0Cn6hDMgpHJ7bmsQxrbAmbYFcpBa2C8qVQFlcUh8PSa5F6RSIvt
+ O/Gljw1TQiWRsZrJpNRHBdZyz6pVBvM=
+X-Proofpoint-GUID: XjgVB-rNSbUNXcNMO1X6zUSAos_t_wxh
+X-Proofpoint-ORIG-GUID: XjgVB-rNSbUNXcNMO1X6zUSAos_t_wxh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTExMDA2NCBTYWx0ZWRfX0VnB5XZ2aGTv
+ o/rnVzUIgViR/TVmDDBrJ46RZTDAhQjYJe5hv8srYiold6vrOfYy0ioshp+nUYskP0gaJ9qFeep
+ QZD/caJEq89MrxhbfOA9CpkCkVDETaL5VrOTYW6NcZRot4Y5bXhM3vhkpXelnnJNxsfMR6yORA9
+ YSxBWYjdHn4MaDrQJM4dhkyZWFn5bgfLpARRjitm1QxdD6ViNLpVzsvn8GirRgzBccEDNOF+6EA
+ D/fnHbJLzJZpIKv8C8zDAbEg2RUQ+jT352GiDiKSh/skQUndC2bgeLPR+dWXNe37FJnyHsFXsoN
+ iZ+nw8JrcRYDt2qxFhRH1UJqBnaZgN0TVwwksYaqFdU2uaH+aP2ezFTcnbQnz2Ts7DaSFId8YmM
+ Nmg9T2LkX/xPoaMfUhT8O4kKJAYm/WYNVTbFuK0oceXApSNiPzJPnCtNoLwEpkWGIdnshWijTzk
+ PwOmzrmttu/NRr2BbFg==
+X-Authority-Analysis: v=2.4 cv=LvcHWXdc c=1 sm=1 tr=0 ts=6af494c5 cx=c_pps
+ a=JYo30EpNSr/tUYqK9jHPoA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=d7ooX_hxsFC440dZs5wA:9
+ a=QEXdDO2ut3YA:10 a=Fk4IpSoW4aLDllm1B1p-:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-11_04,2026-11-11_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 adultscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611110064
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_081606_932676_A4023EC0 
+X-CRM114-Status: GOOD (  16.36  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,63 +164,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+The /memory node has no unit address. The dtschema root node schema
+does not allow a bare "memory" node, and dtc warns about the missing
+unit name with W=1:
 
---OedQK9JKFipfKU6l
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+  qcom-kuno.dtsi:89.9-93.4: Warning (unit_address_vs_reg): /memory:
+    node has a reg or ranges property, but no unit name
+  qcom-kuno-idp.dtb: / (qcom,kuno-idp): False schema does not allow
+    {'device_type': ['memory'], 'reg': [[0, 0]]}
 
-On Wed, Nov 11, 2026 at 04:29:02PM +0100, Kevin Brodsky wrote:
-> On 10/11/2026 12:24, Mark Brown wrote:
-> > On Tue, Nov 10, 2026 at 10:01:36AM +0100, Kevin Brodsky wrote:
+The bootloader fills in both the base and the size of the memory node,
+so keep the reg = <0x0 0x0> placeholder and name the node memory@0 to
+match it, as done on other 32-bit Qualcomm SoCs such as apq8064,
+msm8226 and msm8974.
 
-> >> Do you mean adding the dependency KPKEYS_HARDENED_PGTABLES=y to
+Fixes: 7f6a63bc5fc9 ("ARM: dts: qcom: Add initial device tree for Kuno SoC")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/r/202611101833.G7LTXoJv-lkp@intel.com/
+Signed-off-by: Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>
+---
+ arch/arm/boot/dts/qcom/qcom-kuno.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> > Yes, or something like that - unfortunately KUnit checks to see if the
-> > config options appear in the configuration so something that vanishes on
-> > other architectures causes issues.
+diff --git a/arch/arm/boot/dts/qcom/qcom-kuno.dtsi b/arch/arm/boot/dts/qcom/qcom-kuno.dtsi
+index 9b111525e12b..eb5c1f3630b9 100644
+--- a/arch/arm/boot/dts/qcom/qcom-kuno.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-kuno.dtsi
+@@ -86,7 +86,7 @@ scm {
+ 		};
+ 	};
+ 
+-	memory {
++	memory@0 {
+ 		device_type = "memory";
+ 		/* Bootloader will fill base and size */
+ 		reg = <0x0 0x0>;
 
-> Alright, I guess there's not much we can do then, short of creating
-> arch-specific fragments.
+---
+base-commit: ae2005cea2e4f84692268e54199bb03f5c6f4558
+change-id: 20261111-kuno-dts-memory-unit-addr-7f9fb954bb93
 
-Or my suggestion below, or come up with some generic option that could
-always be there and would in turn select hardening things.  There's
-probably a case for having something given that the hardening features
-will tend to catch some kinds of test error but that feels more config
-fragment like.  Another idea would be to teach KUnit about the idea that
-it should try turning on some config options but not worry if they're
-not selected.
+Best regards,
+--  
+Hardeep Sharma <hardeep.sharma@oss.qualcomm.com>
 
-> > Perhaps the default for the config
-> > option ought to depend on KUNIT_ALL_TESTS?
-
-> Not sure I'm following, the config already has default KUNIT_ALL_TESTS?
-
-The config for the test does, but KPKEYS_HARDENED_PGTABLES which the
-test depends on does not so unless the underlying defconfig turns that
-on the test won't be enabled.  I was suggesting also adding a default
-for testing.
-
---OedQK9JKFipfKU6l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmr0lJ8ACgkQJNaLcl1U
-h9Dq7gf/ZN2+f02DNQ9bdbwTMYXtyyu+7wCmjXUlHCsNgO5GlbWut9+uS4GmuCc9
-WunBOQc+J/oUb1xLrMkgaxOW8h2KAztK6MPg8BzPufhwZctxuJ0HsBbUgTgnmHpc
-uoZtu7URTziUz+kLkGEIB4+6a34aEQiW4SYdu5Z22jWqmT4vxb9JIQDA0e5V/Roc
-hg2/qulDP5GDSotg3oHcwqqbXrxt4zvb6Z2fKdAZUJz3zc8gon/WHyqUXgJHRVOn
-bFcpqtPEyz0j7rRAyFagwJ42Sq2SRDsU/qjaHb8Hne1OK9cK0DSMMlCJ3Lf/+sx3
-Dk0E+Do8vqDs8wBZ0lCJuKqAtRjyng==
-=+B7J
------END PGP SIGNATURE-----
-
---OedQK9JKFipfKU6l--
 
