@@ -2,101 +2,117 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB32606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 04:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8741D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 05:28:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HJhymjTA;
-	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=ZeHvJ4qC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AE5L9LHd;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=IJJEPYRg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Lvre1MX6Fv185E+vol1UoVO9hXcj6H5AcuzmOlcLq2I=; b=HJhymjTAsWKPsczw+RYkKnuO8i
-	7OoloaCYvxNXsMGrdjQw7U1y7oVyKt1p0q46O2JRoWwZOXjz0aw8wdPIHHQtlASFrq9BTTUKRawHu
-	ALb3OBTaKflxsO0NoDy7i2ru7romajkc6WKkx41JQTb8FOahwYmYMYYjGBMo7tqIVHun9yOFkjZ/i
-	4oaZgfMVedHDuNOdmjCg8kINZpRyQU14/wZcHZFgvI0/GMHP/Vm/0mnF5hb/kpYUZ0mMz6aOEmj9g
-	vHohcPevH/ZPEtaZaUWWz0f18fII5n5yU77cz9YhglvjVohr5ySOWwTvQiVo+YhbU1bLS+n5xVcpD
-	Whlpf3EA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=hUPfJWrPKXadZ6OdI2hx5l6Gvu+kVXSB9AVbCboiOB4=; b=AE5L9LHduIJyXj
+	OKBGqpiR0k2+1rN66F49q911uF+Lpb/1RAaD0ozxYJFULrkdxR/6PbqXT5bjLdByKzkvPBzfEnk7G
+	Yy3r7l3nrtaC1E1XerNrUm33jslB5J00Zu014bglem14mV1JdB9PLE/Vl7SHL3jl5LZHpV6T2tMup
+	cvYX0BKHej/fPriC/wLR2mIL33q7DleB87e+TnEt2sAwIQC+uXrHqVFCxUSzfW/Ji/7dN+716Yi6u
+	gGO/+QKn1rS8piVY+EszDKn/rA0p+rWap9f1SjpRPNK7ojiUFbOs0JptzgfW9FkAxPN8GV3ngH6U5
+	H5QKHH5KVYCE0FVRrLyw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR074-00000005czT-1w5b;
-	Wed, 11 Nov 2026 04:39:10 +0000
-Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
+	id 1xR0sc-00000005fNz-3j6d;
+	Wed, 11 Nov 2026 05:28:18 +0000
+Received: from mail-lj1-x229.google.com ([2a00:1450:4864:20::229])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR072-00000005cxu-1o2n
+	id 1xR0sa-00000005fNQ-1ZFz
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 04:39:09 +0000
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-48e46e449e8so1844343f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 20:39:07 -0800 (PST)
+	Wed, 11 Nov 2026 05:28:17 +0000
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-3adfcafaabbso26011661fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 21:28:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794374894; cv=none;
+        d=google.com; s=arc-20260327;
+        b=XFVn9+qYZz8bJfWGzfxg9/Cy6HVYfAs4j2Bk40d/qJUoJJ4+iCSIGyBDB4W33RsPXT
+         C5D7smO2pKZ6pIVEUKYSGku/kQh8bASLQa5cSXp3TEUlxX9KfxVf1BqFDVhvo00NyJ1T
+         QtKdywZnpc5zt8ss13+XRcWxIRBzwwWr2KuiNfXzacc3fI/AkSIvHLrG1Lh2BujlGiJ0
+         d+ZVbbLXT19NJ5xikRqUyriC69ljjzoOYN64SU7YoYJLqII8PJHFc0B1y6vEysgDpcHc
+         LcD8//0Qm4NxwYbDSD8lZJof6vXgaTSxzcrdGBGZSlBUucphPcPaiUBAH3KPgee2+x7l
+         vhvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=hUPfJWrPKXadZ6OdI2hx5l6Gvu+kVXSB9AVbCboiOB4=;
+        fh=FVWeQSBSGiSUbR8JVxdvdxglrkgyhOW9KaViyq4oHII=;
+        b=byhEQq77gdgVPiHkSXZHUX8OvnzmYfKMmmbuP7EEi6gQ6y4B7B+i9/1VM9++KPjC64
+         fa3iRlJQYm/VfJ3S+ztl2t0glU943XzfQT4RY5ZKtNxphj193wXssJ11kUd9zJG7QaAD
+         EJfDdxzezJI9oenETpUXHzKgSbXp080yZGlxw8c4IhlBPhbfk/k3ySVGpKyj04H48sXv
+         daFIXJ+dqIivYbQwgESx8tn1pstGuWgzZjdym6bdobzIZbLUditZEZxN0y3UK+BHxar4
+         Z5BFY49DreYfcQgDzNf4r6XKKJJUWN3TpQk4wIdt0FQKE0EYeIMIFW0OxW5knL0WOb/d
+         Zkwg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chrisdown.name; s=google; t=1794371946; x=1794976746; darn=lists.infradead.org;
-        h=user-agent:content-disposition:content-type:mime-version:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=Lvre1MX6Fv185E+vol1UoVO9hXcj6H5AcuzmOlcLq2I=;
-        b=ZeHvJ4qCDpVQSU3II/XbKTegaJVJXlrieG4mb97iHav0IfWo0/5VHjXJCgZ6S//VZr
-         G7an+DS/PcPb/h4OyCsnZfpVJ/hrk4C5DV5eIsAbPkUTo+8eRZfDDkEAuHQaEmnZbqRe
-         qvoHWDjGyiem2A+lRbNJk/LW9cX9wTVLEd5mw=
+        d=gmail.com; s=20260707; t=1794374894; x=1794979694; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=hUPfJWrPKXadZ6OdI2hx5l6Gvu+kVXSB9AVbCboiOB4=;
+        b=IJJEPYRgz+XUXur7UOIP2863r24xNuLg+5VsscUytfJgGx/jM2FtUHrctKDn/Bdzzc
+         LKaXPKfpMb2s4XiSMIRH4Vb3uVhic/DeEAobgnMb72qlYjgGpwAY+BoCm3TnIvf0dLqm
+         1lBa/Fa8v0okvjdxupPnVTqTk9Y78RIPaYgQ+Anttlp3FgYSm/2F8qjNax0Z9aDixmC/
+         Uy7+xchdIVGZ6GGKPG1ru1cOZ1FX2dXNEl13AHRSGk6VEJlZLp6ppQ93m8EDLXAM5VZo
+         TiP/9KB3b56/DFNll6vhJfG49hmvz6OjiJsBqe7Tk9PsRlkluf8A4VkNRGMAbfCqll4c
+         MYlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794371946; x=1794976746;
-        h=user-agent:content-disposition:content-type:mime-version:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=Lvre1MX6Fv185E+vol1UoVO9hXcj6H5AcuzmOlcLq2I=;
-        b=JHRDU1rjJBDB0pF2qfrYlbXnesazLr9A86aDo2XAy9vnrDVoFQBFeWWfq1YCfmwfJ5
-         5egRi6qNSYX+sCeY16XENDBYATdBrnl/Et1NXJSZyf/7TWmxuyNqbChyEzAeEl++a7u2
-         SHkuAI4xxst0jvO7L/QhO9/AzuJfBTNTWO4mECD4mo+OTlaofWbHK4hpd+3DW32v1NSH
-         DQzKdtZBJKACVuRA4GYANHZ+Y4CNkmAqdDnnr3zY59GzmCs3PuKPXOhnii6AUO3T5Q0q
-         CNUE8Kk/tYT8w8cmZwfILfIjBSmgYpCw6OwtGl6s6p5y7lTzjnqrM2oC3ByPdyccza0Z
-         3qxQ==
-X-Forwarded-Encrypted: i=1; AL+hErGvBCeNfozX7OzJy/kn3ulr51sjJPgCVirC5TSBF/lcw0HDa/nnmI4mVOGOoOqyaY7gU6Oj2BQH12ZZYtkukn71@lists.infradead.org
-X-Gm-Message-State: APuU4Z+w9PJfD5xnXeqLn564G4r+u7dL35PGp+UZ5uaHlDePDIx7WvKN
-	nHLaIUSZzBqLSGrJPSwPAzotUWheB3yUPHJmptP0CE5795Ghgsf5tP31uP9Xz4vxsN0=
-X-Gm-Gg: AYBFou311IL8tjpuANcD6QJicPjE8t7HmGhtCLHUJ6Z87KDgK/wOnAPgF5Xbyque+H3
-	9s5+TJ96EYGCET/Yn1wzKREjmH9p+biDSGDo9End9jtPAz7xEFAQJvvUz0dEmT2kKLi5R0MGXhX
-	kVb6EwWqvQ7+DNSuHWlO2XnuZH/+nL5nW+Fm+XjayPZjf+03ywAZ9y8D5rCViz3+jUJ6I46ZlGO
-	Mdxr55E/ubsWfP/w9UiRxOeNMhjzJXfZI4fG5WjTA4oTPVF3o8/HQP2A4suhxUKKjpTPX3zfLqV
-	wn9qB/4xxDWSQ88w1/Q/CUNOGdeo4AsMu1UaW9mQ43FM6k6lUtgAT605A2HeBPLxa6eQCIIPtVB
-	yFGk+vlhYDqy45KU1iuD3gbMTEuoeD0Qzw0qpzQCbNkt8nMdH6qH5THYLqZRQf7AexL+nxSemZ/
-	ipgoR3AUfvwxzKSV3bb0GKhUhgMRMGT9+aJb3Wu1kubb/4yhYN2+n0XKe2ejPJnuAifz9qHJ+aW
-	nuLh899PzjxL2d42tEcVGECVLW2ndTRvpm8htiB1x/7MvRA6Dw80qeeDEZK0DHBCk4dFWotbXz7
-	i/1iLn5O1B75pWArH3mQIyqEOGAqxcpTUv6S5XMgMWAYXFAwjIYpVejfP7ncqgKxecC4Y8aKSFK
-	sFhzKrF2q6O7ea+2ouGczH0cHLUYN545YZDn34LMY7AJ1+3gWiDdvd/rGBHN7qwLfdhTi2/eekd
-	g/zB3LfDLNVfOmUXOnjduzfj1WwZ+RN1DhLSQ4vZRE1l6wxfyHu9XB
-X-Received: by 2002:a05:600c:4f15:b0:4a2:190f:cf6a with SMTP id 5b1f17b1804b1-4ba093d4aacmr18204945e9.35.1794371945737;
-        Tue, 10 Nov 2026 20:39:05 -0800 (PST)
-Received: from localhost ([199.201.64.8])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01ff3428sm124440165e9.15.2026.11.10.20.39.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 20:39:05 -0800 (PST)
-Date: Tue, 10 Nov 2026 20:39:02 -0800
-From: Chris Down <chris@chrisdown.name>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: linux-kernel@vger.kernel.org, kernel-team@meta.com,
-	Mark Rutland <mark.rutland@arm.com>,
-	Huang Ying <ying.huang@linux.alibaba.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Muchun Song <muchun.song@linux.dev>,
-	Oscar Salvador <osalvador@suse.de>,
-	David Hildenbrand <david@kernel.org>,
-	Mike Kravetz <mike.kravetz@oracle.com>,
-	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
-Subject: [PATCH] arm64: hugetlb: Prevent write fault livelocks on stale TLB
- entries
-Message-ID: <avPxZjjdBIlM_8_g@chrisdown.name>
+        d=1e100.net; s=20260707; t=1794374894; x=1794979694;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hUPfJWrPKXadZ6OdI2hx5l6Gvu+kVXSB9AVbCboiOB4=;
+        b=pvMcX3cYmIp9oufPuu1E7Z/LtjVw63gzdCDJiGDFl3pP1rjwcI6mkyaLcyv+21SjJW
+         sTN7QfjcZ6L8E1lGWoKVkJ+11bte/5MxNnZiMvRjpEI7kHOiykU0UBk9AbSnwo9E/mX4
+         cI+gpCFwJs8lalnkychrSVF6y0TK/SaXt56OxMaZrNKkurg3gvbtpfJw/bYLUz4tWJmr
+         YrVz+x2m2R5xZSIMUskmNO6Yn2t4N5GrH8+YN9LIq/EHqy6UT8aeg2mjvYwMeWo+91Ou
+         znxgP1uQqda7MT0tI8RkLH/lIvkdqBlkcYQtXEbjjKr7os7/xgXKhBrEzjcnQYamMgkb
+         HxFA==
+X-Forwarded-Encrypted: i=1; AL+hErFgQBMkfVSYhv0nwcwdpUBT2wsiutbLQzDmPbCsxcMDtrg5YLtQ6xDDncbSDPqXCwcv/23NPOO962mpqJmEmzQt@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Pv3TEh6BfUD4vWyVrY/p6p3ROeD9DVqhM+NrPLKuq1HoYKOR4
+	IxfGztVeAeRJnspo/x/nZKyu7/Sz2aLpGMbQ4XbQYC4GuPWrhOQE+bfNWV4cMt3MOhCOTEAPrgS
+	0ON1AhuY41VH/HpuiofAT4kB4QeS3xsQ=
+X-Gm-Gg: AYBFou0myRpPbOzmqUHU1KYbDqOSw6gDRKKNapXAS5oV5J5ZKDg/fbm/pAy92arodV1
+	E4b2PANlJTQqajb+VvR7mvoVPov+7Nh5wz6YcwjUYkokRfoCjyZFTAv3+22FXpomsBIs0lnxYmo
+	UJdsNdedYYWRASKs7eMi3waLuJ+4D9VHPDbb79e1Sd9yDX+mQlhL19r/Niq0lcF/9bmiDtaheSI
+	CCIBitROO2h0IviNL843LOffIr9LTJcBQKU8r1ZX9piw6Wa9kzeJKTKHXSsgnsrrIYDWPdqfPVP
+	UTNY3tMWLUQD+hdYg0jU2Dl95lJU5noyHH0PvSwCJgmcmrixqw6g46jODgDbJ3lH6Tn0k4oHQCX
+	hS+lOz46KZlSZExXBYRxsuJ2/cm84r8Z4+YEB1w==
+X-Received: by 2002:a05:651c:885:b0:3ab:3af4:c2d8 with SMTP id
+ 38308e7fff4ca-3ae126de2dfmr1890061fa.28.1794374894004; Tue, 10 Nov 2026
+ 21:28:14 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/2.3.3 (9073d26d) (2026-06-12)
+References: <20261106-ventura2-dts-update-v1-0-b085ece9bf57@gmail.com>
+ <245d0e9d4043c0957716a6a32985b6ea5a8cb9ef.camel@codeconstruct.com.au>
+ <CAF7HswPYb3hOWA7P-d1zASvd1XzaVeuBkoqz5nXHuDeEAXDhrA@mail.gmail.com> <cb3d9f50467089c6b13ea83aeddfb032c046848a.camel@codeconstruct.com.au>
+In-Reply-To: <cb3d9f50467089c6b13ea83aeddfb032c046848a.camel@codeconstruct.com.au>
+From: Kyle Hsieh <kylehsieh1995@gmail.com>
+Date: Wed, 11 Nov 2026 13:32:41 +0800
+X-Gm-Features: AclHuK9X5Dqhm5-z10kEg9eblLbAlNWS5sD8otV-cBTsQml1KPQHVi6FoGfBKpQ
+Message-ID: <CAF7HswNubLB9ZJRsJge5_YEGY4xZJCWaLA9k+My_8HcmC4fRzQ@mail.gmail.com>
+Subject: Re: [PATCH 0/3] ARM: dts: aspeed: ventura2: Add LTC2305 ADCs and GPIO
+ line names
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Ryan Chen <ryan_chen@aspeedtech.com>, Billy Tsai <billy_tsai@aspeedtech.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_203908_535028_A2C7876C 
-X-CRM114-Status: GOOD (  18.82  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_212816_429265_6C0C25F9 
+X-CRM114-Status: GOOD (  10.02  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -107,100 +123,21 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In Meta production, we have had tasks get stuck in a fault loop while
-using hugetlb on arm64. During my investigations I found that affected
-tasks share a private hugetlb page.
+On Wed, Nov 11, 2026 at 9:21=E2=80=AFAM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+> Thanks. Can you please let me know when this one has merged?
 
-Looking at the stuck task states, I found the following ordering:
+Yes, I will do. It was only posted yesterday and is still waiting for revie=
+w.
+I'll follow up once it has been applied, and send v2 with the reworked
+cover letter at that point.
 
-  CPU0                                 CPU1
-  ----                                 ----
-  read page
-  [read only entry cached in TLB]
-                                       write page
-                                       hugetlb_fault()
-                                         hugetlb_wp()
-                                         [reuse folio]
-                                         set_huge_ptep_maybe_writable()
-                                           set_huge_ptep_writable()
-                                         [flush local TLB only]
-
-  write page using stale entry
-  hugetlb_fault()
-    huge_ptep_set_access_flags()
-    [entry already writable, no flush]
-  retry write using stale entry
-  [fault indefinitely. well, that's not ideal!]
-
-The reason is that when a write fault makes a non-contiguous hugetlb
-entry writable, it only invalidates the local TLB. However, another CPU
-can keep the old read-only entry, so its write will fault even though
-the page table already permits it. hugetlb_fault() then finds nothing to
-change and leaves the stale entry in place, so the same write keeps
-going round in circles.
-
-This is particularly bad because, if the kernel is copying to user
-memory, the retry stays inside the kernel and the task can't act on the
-pending signal.
-
-It can even remain unkillable while holding locks across the copy,
-resulting in further failures. For example, a read into a hugetlb
-buffer can hold the pipe mutex and block other users of the pipe until
-the loop ends, causing cascading lockups across the machine.
-
-To fix this, when a write fault finds nothing to change in a
-non-contiguous hugetlb entry, let's invalidate the local entry.
-
-Fixes: cb1fa2e99955 ("arm64, tlbflush: don't TLBI broadcast if page reused in write fault")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Chris Down <chris@chrisdown.name>
----
- arch/arm64/mm/hugetlbpage.c | 21 ++++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/mm/hugetlbpage.c b/arch/arm64/mm/hugetlbpage.c
-index 8e799c1fe0aa..ff1f53e435e1 100644
---- a/arch/arm64/mm/hugetlbpage.c
-+++ b/arch/arm64/mm/hugetlbpage.c
-@@ -429,9 +429,24 @@ int huge_ptep_set_access_flags(struct vm_area_struct *vma,
- 	VM_WARN_ON(!pte_present(pte));
- 	ncontig = num_contig_ptes(huge_page_size(hstate_vma(vma)), &pgsize);
- 
--	if (!pte_cont(pte))
--		return __ptep_set_access_flags_anysz(vma, addr, ptep, pte,
--						     dirty, pgsize);
-+	if (!pte_cont(pte)) {
-+		if (__ptep_set_access_flags_anysz(vma, addr, ptep, pte,
-+						  dirty, pgsize))
-+			return 1;
-+
-+		/*
-+		 * Another CPU may have made the entry writable without
-+		 * invalidating our stale read-only TLB entry. To avoid
-+		 * indefinitely faulting on this entry, flush it.
-+		 */
-+		if (dirty)
-+			__flush_hugetlb_tlb_range(vma, addr, addr + pgsize,
-+						  pgsize,
-+						  TLBF_NOWALKCACHE |
-+						  TLBF_NOBROADCAST |
-+						  TLBF_NONOTIFY);
-+		return 0;
-+	}
- 
- 	if (!__cont_access_flags_changed(ptep, pte, ncontig))
- 		return 0;
-
-base-commit: 067c5c24cef23d913b67eaaf71ae67e7169a6620
--- 
-2.54.0
-
+Kyle Hsieh
 
