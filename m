@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3739606A8A0
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 14:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9AC606A895
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 14:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jL+C+cPf;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Onk5pseK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sn5hLbJh;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=g8mw7nOv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1RU0Zv7xZ1eKDPvSIZ7kINuDvaMO3evWPcMZzj06nYs=; b=jL+C+cPfKX98SS
-	toxbFPM5I9qZMiVuaqDkCPmyNoON723ZqvXYA1v/OF4xCgOMASD3DhTBnNMYIPbrOp7qYrLDF6H8T
-	2iBwlId2ERONL5DqWfLETNo7c57/y5i898O76aD08Qvgbzo15jGPTEzpPvAK8VKr22rGwm6YFsG5J
-	yreWorEWIjlRsc/ppUCLHdzFFQkNOMBgJJLS3nzKE9xgvZxt5seixJZXcOnLayOBDvzCplvnyUqPw
-	FQnUqGI1sJydpdcJ5PxHM5UWT7Q5LRpHd17DgsfZEn6uHLOCLAmxMahxP6sHepCCY6T8zs/1LCT3R
-	Kif/oeKOPVXMICxEYV8w==;
+	List-Owner; bh=LPsq33bOSJgVO/RNV124EKVcCGGrlMvdhjL7wfKrHy8=; b=sn5hLbJhK2xepK
+	jOahNvWCeT94mzoN1q4dtN1ms46oNASGrW8r5HovSuVQ1P3o8JkoimLzEPh/Blrqqvr3xOHt7u3Ee
+	Ph15qi/xaUO6ue2uINp7leFBneTFiOj3NT5vFRRAt6TY7aK0QwCGWEnwo6EjYAvdjzfBW7lSYV1Jo
+	fsF7KEFhZI/KTOK8Z1021JJLCfEcOEqbqwuBcvc5KKaGC40PotpY40osSZrgFBA5Z9PE4eCWwT+6g
+	Ssg7tL+xvnhH41Sik/DURluzu1HnalfyFDI1f7QQdUTmsteKNz2AxDByebDpHaay7Qjec4HgWf9VJ
+	dPHmv3AqsIQVt3yowWNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR9Z5-000000070HT-49Qu;
-	Wed, 11 Nov 2026 14:44:43 +0000
-Received: from mail-wr1-x430.google.com ([2a00:1450:4864:20::430])
+	id 1xR9ZF-000000070PT-3WtW;
+	Wed, 11 Nov 2026 14:44:53 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR9Z2-000000070Ec-15cW
+	id 1xR9Z3-000000070Fb-3KQs
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 14:44:41 +0000
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-490c3ae81d3so2175657f8f.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 06:44:39 -0800 (PST)
+	Wed, 11 Nov 2026 14:44:43 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a5087a5348so28432255e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 06:44:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794408278; x=1795013078; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794408280; x=1795013080; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=1RU0Zv7xZ1eKDPvSIZ7kINuDvaMO3evWPcMZzj06nYs=;
-        b=Onk5pseK6/Vw2FZj1bjD3MVJLdzAAiL+4IR4iXeozVsC5pPD4E6R1AyGr1VQnkvJss
-         5tfXqa4AveIprhWbS9ZS/tr154L4mAm1aBfLqai9NQFCufm73qf3zXS51TsPxQsxYMoT
-         Rs0uQQJr+d2G9SFSyF2dtVNIBHOG8ifGr9oRdHpLloI0YBDbetbxbMYUYw7uPPHnFWIG
-         hnZvFIR2VVZodBryCYj2CahQZrsZcnH4f2SznA0JpIkFIecDVVr6NNtlPTNNN2JJemFh
-         Xr8LqDjcq4MQ69cuSb1zE64Z1pTwXNwqdP3EwKjZ93579ISZwkR2fAiGRIZ+mxuAJzi7
-         s95w==
+        bh=LPsq33bOSJgVO/RNV124EKVcCGGrlMvdhjL7wfKrHy8=;
+        b=g8mw7nOvCBoDrtv+M2XAXbUXM+mKdCv9IZMTRxyap+iDVXGvBWU8sVOOx+lVTNe6Jz
+         9IQdln2nv/nc3eB1FUSPnwa4ofskj0yWgk317P8jAWJixDBoo3iF67K3HaiitLbCtHlB
+         Phx+nrqqQGBCbtht0gbHoOwVvA0BQR8yaPnjM7G5wA7oGT5nmnoXMV7Dk+wHzsQ1OJY9
+         XTl69Sk1At9Lo6oKXE+zsKqXJx7sWKGmvlVWYX5sutrSp9VdTfqQpSaucB+izVouWZzx
+         ilKhZX3niG3g8WW87noJpyv6YD9SYH0JvExhO+W1h8WKAyXP87iTTgn024w/c3hzgXCA
+         JKPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794408278; x=1795013078;
+        d=1e100.net; s=20260707; t=1794408280; x=1795013080;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=1RU0Zv7xZ1eKDPvSIZ7kINuDvaMO3evWPcMZzj06nYs=;
-        b=sWDGrSRtqDdzJGl79kN+kaV5pmudw9A6AOXHtqq5AD5oXFvNTypyyTvCmR7OyJ2xtB
-         HxkiYq5ChGQaDlH5QHT8kmvyb+7ioSqDhYK8KRO/PRl7fj8Y3fqEp8gaHJs2IuBmeYPl
-         Ll9x7SIWhcI6wAE+l0oeJbWDyqNj4enKWvSTJaqjfTBQp3oFcmv9oMZ7HEB9YcbKD3nd
-         syJcgtWTDn/k2MlrMWTdBgSzh2t6k/TzsrqqdTx8bEZdiO7twXjIgb/DQ8tupwy3x2BF
-         HxF/tvj2Fzp/XsDssRhUYLAosHCdwtCsdt+bfUc+mi/qBUBaC0yitpsSZTxBhrkUXkjp
-         1Gag==
-X-Forwarded-Encrypted: i=1; AL+hErGIXyhJ7ZlLIYSha3LebDscJsutGsH0yKIgI5hhPPziHIonKzEyWsRqjgctlJEvzKBLzi4u7YE9emCDQuRqN9xt@lists.infradead.org
-X-Gm-Message-State: APuU4Z+sePh4QzDv1GQZDVS6uRa96zOIiPi/A6Nq+P1+s0dlf3LGATTk
-	eKeAWqx63Z06UOAVP3MHJH0k+n0zD8Y4gk/zRpq7xxA01AijJrdQEdk/
-X-Gm-Gg: AYBFou1BpruxXi3P5fZjzy5vVqmY+tleUuXiqfeyMo2+3LFwfJ4DAI7DKxY0LWQkMSI
-	22+WRhEORfIhp2icG8F1wFubgeRTl+eCuFNzYtN6F6F63k7uBtx5tpj8zAGZ1VhKLs8AHCVvJEH
-	rPiSiDYHhNXhXTv2AI/ZteIBda+c724uKEx4phPga9I8mlCytfztRACZepZdZjjWi2a/lozdeic
-	mblmFDxwumawTr4kWkTI2ufNgdD+YXseiBpk8u1HctshHWHGRp2wuDhxfJG67h6dSL+xPE6Eqsv
-	b7GAPQbkddiHUL7/R113M2ehToVR3CcQD8Vj6Oy9FYl6TvvU9zzFDJazYG4Q7R0t/UYOiXKhSUY
-	kcpCf7w9liFLbw+oKp4mdMj4ruxiSRY+E+pWWKE3AXIBLo+WFaIi6FX2TAO8w4F3AO9vXOl0PFO
-	jeprqCo5u6EJZZVyKxuBRckpqgYJoWbjg8zLTt0JHAJEhz/NlgNRdU8KhnIT9PxiOHkYqWh1SfS
-	1ehQ5p31b+rxv+M9MOHm+nIZkaIaWgY0sORr6PdaGGl4sUbjw+Wb2HEhIe+mp0eDA2n8d/JXU5/
-	mp+qI/T/elcHnOdcoBgGgQfdYx/vOtYp2lM=
-X-Received: by 2002:a05:600c:6214:b0:49c:fa20:cbfd with SMTP id 5b1f17b1804b1-4ba09375bb4mr45272705e9.20.1794408278331;
-        Wed, 11 Nov 2026 06:44:38 -0800 (PST)
+        bh=LPsq33bOSJgVO/RNV124EKVcCGGrlMvdhjL7wfKrHy8=;
+        b=MlKjYYqQLOAzUwFMAp30uTGnHX2riUnM3v9yTDm+rnfdiYR7ZVTttne6YaBBCI6zIO
+         7ABvN0z++CH4+T1ymS1//4vUqSmT2QN5mY1uuFQyTM8Jsw1/3/2esllKW6uTzxoaF+Vo
+         9R7JYDL4oR5pufi7urABeroQyS9oryM/Izr6a/nZ2NvNFdLiKGOpp/YbmjMsw5Xtpvaz
+         xw0qDgwq651xu8UXO1mF1iaxViP9bkgrX/SCi1JknPoeSz7ADS073vmwu6vlwvlYQLSm
+         jdgrx9fZdclYfxtgenuECPQgPNHyaXc2n+ICDuV/jStv7NpjSfEMKDTubNa67ff/cGA2
+         gNeg==
+X-Forwarded-Encrypted: i=1; AL+hErH0bvA4QltsEWBS/bGtfDeUZJ4kvFuoXziryIiE4L6+HsXGqfvqk+Mfs8PSyO0NIJGBQgfe0oZwhZf97pnbAV4h@lists.infradead.org
+X-Gm-Message-State: APuU4Z8oqZC8sEb6WDQxXjSTSVOVEo2IG2qok/EV7l5ES/zpDnj3q25b
+	6jQWfRwriuTSZnfrVJK0foJITehI22RQl+hhL5vrO7Gup++DiIxZhFmJ
+X-Gm-Gg: AYBFou1vRCpnrlZzOOE4WjpW+evIP0kBnV92Em0QFJi6YJiJljEmuJWPv9+3G3IttAm
+	xaBQZUcX1jfVKs6J60wGSjeaBpgd1BlVDgxvaBiiVUCdd88Osfoz7Nbg7nKOpTqUg3OHwqadubf
+	ir66RvAcLfpghD+pOVzTmvjgJSPCx3ixRTALubTJP5K5Uamok5vGTrk0zdOOTkUMexGzjp5XCbh
+	nRH2PYRiF+OQiWCy8kV1o47vQ9Z1Ae9ZkFSJlgybBs6womgMShSCaheErzE1244ZmwX25D668fv
+	XUMu0LFJ+aYpOWM7AUHKofV1Ikmh+mkb6cR7hBXC/pLband2xSgAJUqmnwxQn6O4fCkH0/GZKZi
+	FecJ9FfcyHdnVVM1oWPOdhLtiMvyzJGPnFsbEAQk62AkzliaGIdry1UDZynWjfJAhId9Zx9vxYf
+	7rR+CH4pFtpOykqKxbvd17HrYdlJUveqxz+WpYaoIifbmII+T8B6kxTUy9m+oEoUiirVwd9JhCx
+	OMw1UgDokVdDEWn4uUqSZxIx4QN5cVJT5qSX/ScYTc5x7VjAUzwCTedPVvgLd2bTQQc1SH+tLCx
+	kMKqJL9vtZMH+kK1AOZRFzm85L3VsPqXdrBje2qeTRfkoADU3sjvYapt
+X-Received: by 2002:a05:600c:c83:b0:4a2:150f:1605 with SMTP id 5b1f17b1804b1-4ba0936f386mr49865155e9.24.1794408279927;
+        Wed, 11 Nov 2026 06:44:39 -0800 (PST)
 Received: from dev.Default ([86.127.229.203])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba08de826asm46656495e9.0.2026.11.11.06.44.36
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba08de826asm46656495e9.0.2026.11.11.06.44.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 06:44:37 -0800 (PST)
+        Wed, 11 Nov 2026 06:44:39 -0800 (PST)
 From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
 To: Navid Ghahremani <ghahramani.navid@gmail.com>,
 	Andrew Lunn <andrew+netdev@lunn.ch>
@@ -90,9 +90,9 @@ Cc: "David S . Miller" <davem@davemloft.net>,
 	linux-wireless@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH net-next 4/5] net: ethernet: zte: zx279128s: offload flows to and from WLAN ports
-Date: Wed, 11 Nov 2026 15:44:25 +0100
-Message-Id: <20261111144426.1321237-5-isasmendi.agus@gmail.com>
+Subject: [RFC PATCH net-next 5/5] net: ethernet: zte: zx279128s: debugfs knobs for the WLAN ring
+Date: Wed, 11 Nov 2026 15:44:26 +0100
+Message-Id: <20261111144426.1321237-6-isasmendi.agus@gmail.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20261111144426.1321237-1-isasmendi.agus@gmail.com>
 References: <20261111144426.1321237-1-isasmendi.agus@gmail.com>
@@ -100,8 +100,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_064440_354631_446A9204 
-X-CRM114-Status: GOOD (  28.22  )
+X-CRM114-CacheID: sfid-20261111_064441_952372_894F8A6D 
+X-CRM114-Status: GOOD (  14.21  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -121,250 +121,76 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Accept flows whose egress or ingress is a mac80211 AP interface, bound
-to a WLAN logical port on first use:
-
-- egress: the flowtable hands over the AP interface, or the bridge in
-  front of it (mac80211 fills no forwarding path, so the route stops at
-  the bridge); one step of the bridge's forwarding path for the next
-  hop MAC gives the interface.  The classifier entry's egress field
-  takes the WLAN port instead of a bridge port; the fabric then writes
-  the rewritten frame to the WLAN RX ring, and the ring delivers it to
-  the interface.
-- ingress: the flowtable reports the AP interface, or its bridge; the
-  flow's pre-NAT source address leads through the bridge's neighbour
-  entry and forwarding database to the interface.  The entry is
-  installed like a switch port's, and its key is listed for the
-  interface's ingress hook, which injects the matching frames so that
-  they reach the entry.
-
-The flows of a port are dropped when its interface is unregistered;
-their traffic returns to the software path and the flowtable offers
-them again once their hardware statistics stop.
+wlan_state (counters and port table), wlan_inject_all (inject every
+frame of the bound interfaces, as the vendor firmware does, to exercise
+the ring and the trap path without flows) and wlan_bind (bind an
+interface by name).  Testing aids, kept apart so they can be dropped.
 
 Assisted-by: LLM
 Signed-off-by: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
 ---
- drivers/net/ethernet/zte/zx279128s-eth.h  |  1 +
- drivers/net/ethernet/zte/zx279128s-ppe.c  | 92 ++++++++++++++++++-----
- drivers/net/ethernet/zte/zx279128s-wlan.c |  9 ++-
- 3 files changed, 82 insertions(+), 20 deletions(-)
+ drivers/net/ethernet/zte/zx279128s-wlan.c | 34 +++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/drivers/net/ethernet/zte/zx279128s-eth.h b/drivers/net/ethernet/zte/zx279128s-eth.h
-index b5a547eade35..a5c8df1c60c3 100644
---- a/drivers/net/ethernet/zte/zx279128s-eth.h
-+++ b/drivers/net/ethernet/zte/zx279128s-eth.h
-@@ -480,6 +480,7 @@ void zx_set_trap_dmac(struct zx_eth_adapter *adapter, int idx, const u8 *mac);
- extern const struct rhashtable_params zx_ppe_ht_params;
- void zx_update_traps(struct zx_eth_adapter *adapter);
- void zx_update_mac_tables(struct zx_eth_adapter *adapter);
-+void zx_ppe_wlan_flush(struct zx_eth_adapter *adapter, int wlan_port);
- int zx_eth_setup_tc(struct net_device *dev, enum tc_setup_type type,
- 		    void *type_data);
- 
-diff --git a/drivers/net/ethernet/zte/zx279128s-ppe.c b/drivers/net/ethernet/zte/zx279128s-ppe.c
-index ff19d2cc67bd..e02d6bfbddd9 100644
---- a/drivers/net/ethernet/zte/zx279128s-ppe.c
-+++ b/drivers/net/ethernet/zte/zx279128s-ppe.c
-@@ -37,6 +37,8 @@ struct zx_ppe_entry {
- 	u16			flow;
- 	u16			nh;
- 	u8			subnet;
-+	s8			wlan_in;	/* WLAN port of the ingress, or -1 */
-+	s8			wlan_out;	/* WLAN port of the egress, or -1 */
- };
- 
- const struct rhashtable_params zx_ppe_ht_params = {
-@@ -168,12 +170,13 @@ static void zx_ppe_slots(const struct zx_ppe_tuple *t, u16 slot[2])
- }
- 
- /*
-- * Classifier entry: rewrite index, egress port and forward flag, then the
-- * key. Words 1-3 are the same constants in every entry of the stock
-- * firmware, and so is the 0x44 in word 0.
-+ * Classifier entry: rewrite index, egress port (a bridge port or a WLAN
-+ * logical port) and forward flag, then the key. Words 1-3 are the same
-+ * constants in every entry of the stock firmware, and so is the 0x44 in
-+ * word 0.
-  */
--static void zx_ppe_hash_entry(const struct zx_ppe_tuple *t, u16 flow, int port,
--			      u32 w[9])
-+static void zx_ppe_hash_entry(const struct zx_ppe_tuple *t, u16 flow,
-+			      int egress, u32 w[9])
- {
- 	u8 key[20] = {};
- 	u16 hw[7];
-@@ -185,7 +188,7 @@ static void zx_ppe_hash_entry(const struct zx_ppe_tuple *t, u16 flow, int port,
- 	for (i = 0; i < 7; i++)
- 		zx_ppe_put_bits(key, 24 + 16 * i, 16, hw[i]);
- 	w[0] = FIELD_PREP(ZX_CLA_W0_FLOW, flow) | ZX_CLA_W0_FWD |
--	       FIELD_PREP(ZX_CLA_W0_EGRESS, ZX_BRPORT(port)) | ZX_CLA_W0_BITS;
-+	       FIELD_PREP(ZX_CLA_W0_EGRESS, egress) | ZX_CLA_W0_BITS;
- 	w[1] = 0xfa11c000;
- 	w[2] = 0x00000608;
- 	w[3] = 0x80000000;
-@@ -305,22 +308,17 @@ static int zx_ppe_flow_add(struct zx_eth_adapter *adapter,
- 	__be32 new_saddr, new_daddr;
- 	u16 slot[2];
- 	u32 w[17];
--	int i, ret, port, subnet, flow, nh;
-+	int i, ret, egress, subnet, flow, nh, ingress_ifindex = 0;
-+	int wlan_in = -1, wlan_out = -1;
- 
- 	if (rhashtable_lookup_fast(&adapter->ppe_flows, &f->cookie, zx_ppe_ht_params))
- 		return -EEXIST;
- 
--	/* the hardware only sees frames from our switch ports */
- 	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_META)) {
- 		struct flow_match_meta match;
- 
- 		flow_rule_match_meta(rule, &match);
--		for (i = 0; i < ZX_NUM_PORTS; i++)
--			if (adapter->ports[i] &&
--			    adapter->ports[i]->ifindex == match.key->ingress_ifindex)
--				break;
--		if (i == ZX_NUM_PORTS)
--			return -EOPNOTSUPP;
-+		ingress_ifindex = match.key->ingress_ifindex;
- 	}
- 
- 	if (flow_rule_match_key(rule, FLOW_DISSECTOR_KEY_CONTROL)) {
-@@ -363,6 +361,23 @@ static int zx_ppe_flow_add(struct zx_eth_adapter *adapter,
- 	rw.new_sport = t.sport;
- 	rw.new_dport = t.dport;
- 
-+	/*
-+	 * The hardware sees frames from our switch ports, and those a WLAN
-+	 * port's ingress hook injects for it (zx279128s-wlan.c).
-+	 */
-+	if (ingress_ifindex) {
-+		for (i = 0; i < ZX_NUM_PORTS; i++)
-+			if (adapter->ports[i] &&
-+			    adapter->ports[i]->ifindex == ingress_ifindex)
-+				break;
-+		if (i == ZX_NUM_PORTS) {
-+			wlan_in = zx_wlan_port_of_ingress(adapter, ingress_ifindex,
-+							  t.saddr);
-+			if (wlan_in < 0)
-+				return -EOPNOTSUPP;
-+		}
-+	}
-+
- 	flow_action_for_each(i, act, &rule->action) {
- 		switch (act->id) {
- 		case FLOW_ACTION_MANGLE:
-@@ -410,11 +425,19 @@ static int zx_ppe_flow_add(struct zx_eth_adapter *adapter,
- 		}
- 	}
- 
--	if (!odev || !zx_eth_is_port(odev))
-+	if (!odev)
- 		return -EOPNOTSUPP;
--	port = ((struct zx_eth_priv *)netdev_priv(odev))->port;
- 	if (!is_valid_ether_addr(eth.h_source) || !is_valid_ether_addr(eth.h_dest))
- 		return -EOPNOTSUPP;
-+	if (zx_eth_is_port(odev)) {
-+		egress = ZX_BRPORT(((struct zx_eth_priv *)netdev_priv(odev))->port);
-+	} else {
-+		/* an AP interface, or the bridge in front of it */
-+		wlan_out = zx_wlan_port_of_egress(adapter, odev, eth.h_dest);
-+		if (wlan_out < 0)
-+			return -EOPNOTSUPP;
-+		egress = ZX_WLAN_PORT(wlan_out);
-+	}
- 
- 	rw.sip = new_saddr != t.saddr;
- 	rw.dip = new_daddr != t.daddr;
-@@ -462,7 +485,7 @@ static int zx_ppe_flow_add(struct zx_eth_adapter *adapter,
- 	ret = zx_pp_write(adapter, ZX_CLA_BASE, ZX_CLA_AGING, slot[1], w, 0);
- 	if (ret)
- 		goto err_nh;
--	zx_ppe_hash_entry(&t, flow, port, w);
-+	zx_ppe_hash_entry(&t, flow, egress, w);
- 	ret = zx_pp_write(adapter, ZX_CLA_BASE,
- 			  slot[1] < ZX_PPE_HASH0_SIZE ? ZX_CLA_HASH0 : ZX_CLA_HASH1,
- 			  slot[1] % ZX_PPE_HASH0_SIZE, w, 9);
-@@ -474,11 +497,18 @@ static int zx_ppe_flow_add(struct zx_eth_adapter *adapter,
- 	e->flow = flow;
- 	e->nh = nh;
- 	e->subnet = subnet;
-+	e->wlan_in = wlan_in;
-+	e->wlan_out = wlan_out;
- 	ret = rhashtable_insert_fast(&adapter->ppe_flows, &e->node, zx_ppe_ht_params);
- 	if (ret)
- 		goto err_entry;
- 	set_bit(e->hash, adapter->ppe_hash_used);
- 	adapter->ppe_count++;
-+	/* the frames of a WLAN ingress flow only reach the entry if injected */
-+	if (wlan_in >= 0)
-+		zx_wlan_flow_set(adapter, flow,
-+				 zx_wlan_flow_key(t.proto, t.saddr, t.daddr,
-+						  t.sport, t.dport), wlan_in);
- 	return 0;
- 
- err_entry:
-@@ -499,6 +529,8 @@ static int zx_ppe_flow_add(struct zx_eth_adapter *adapter,
- static void zx_ppe_entry_remove(struct zx_eth_adapter *adapter,
- 				struct zx_ppe_entry *e)
- {
-+	if (e->wlan_in >= 0)
-+		zx_wlan_flow_set(adapter, e->flow, 0, 0);
- 	zx_pp_write(adapter, ZX_CLA_BASE,
- 		    e->hash < ZX_PPE_HASH0_SIZE ? ZX_CLA_HASH0 : ZX_CLA_HASH1,
- 		    e->hash % ZX_PPE_HASH0_SIZE, NULL, 0);
-@@ -524,6 +556,32 @@ static int zx_ppe_flow_del(struct zx_eth_adapter *adapter,
- 	return 0;
- }
- 
-+/*
-+ * Drop the flows of a WLAN port whose interface goes away; their traffic
-+ * returns to the software path, and the flowtable offers them again once
-+ * their statistics stop.  Called with ppe_lock held.
-+ */
-+void zx_ppe_wlan_flush(struct zx_eth_adapter *adapter, int wlan_port)
-+{
-+	struct rhashtable_iter iter;
-+	struct zx_ppe_entry *e;
-+
-+	rhashtable_walk_enter(&adapter->ppe_flows, &iter);
-+	rhashtable_walk_start(&iter);
-+	while ((e = rhashtable_walk_next(&iter))) {
-+		if (IS_ERR(e))
-+			continue;
-+		if (e->wlan_in != wlan_port && e->wlan_out != wlan_port)
-+			continue;
-+		rhashtable_remove_fast(&adapter->ppe_flows, &e->node,
-+				       zx_ppe_ht_params);
-+		zx_ppe_entry_remove(adapter, e);
-+		kfree(e);
-+	}
-+	rhashtable_walk_stop(&iter);
-+	rhashtable_walk_exit(&iter);
-+}
-+
- /* No packet counters: report use from the entry's hit flag */
- static int zx_ppe_flow_stats(struct zx_eth_adapter *adapter,
- 			     struct flow_cls_offload *f)
 diff --git a/drivers/net/ethernet/zte/zx279128s-wlan.c b/drivers/net/ethernet/zte/zx279128s-wlan.c
-index 17ba32bd993a..6c6f6a36d34f 100644
+index 6c6f6a36d34f..29970db47a41 100644
 --- a/drivers/net/ethernet/zte/zx279128s-wlan.c
 +++ b/drivers/net/ethernet/zte/zx279128s-wlan.c
-@@ -707,9 +707,12 @@ static int zx_wlan_netdev_event(struct notifier_block *nb, unsigned long event,
- 	if (event != NETDEV_UNREGISTER || !zx_wlan_is_ap(dev))
- 		return NOTIFY_DONE;
- 	mutex_lock(&w->adapter->ppe_lock);
--	for (i = 0; i < ZX_WLAN_PORTS; i++)
--		if (w->ports[i].vif == dev)
--			zx_wlan_port_put(w, i);
-+	for (i = 0; i < ZX_WLAN_PORTS; i++) {
-+		if (w->ports[i].vif != dev)
-+			continue;
-+		zx_ppe_wlan_flush(w->adapter, i);
-+		zx_wlan_port_put(w, i);
-+	}
- 	mutex_unlock(&w->adapter->ppe_lock);
- 	return NOTIFY_DONE;
+@@ -18,6 +18,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/seq_file.h>
+ #include <linux/tcp.h>
++#include <linux/uaccess.h>
+ #include <linux/udp.h>
+ #include <net/arp.h>
+ #include <net/cfg80211.h>
+@@ -751,6 +752,38 @@ static int zx_wlan_state_show(struct seq_file *s, void *data)
+ 	return 0;
  }
+ 
++/* Bind an interface by name without waiting for a flow (testing) */
++static ssize_t zx_wlan_bind_write(struct file *file, const char __user *ubuf,
++				  size_t count, loff_t *ppos)
++{
++	struct zx_eth_adapter *adapter = file->private_data;
++	char name[IFNAMSIZ + 1];
++	struct net_device *vif;
++	int ret;
++
++	if (count == 0 || count > IFNAMSIZ)
++		return -EINVAL;
++	if (copy_from_user(name, ubuf, count))
++		return -EFAULT;
++	name[count] = 0;
++	strim(name);
++	vif = dev_get_by_name(dev_net(adapter->wlan->napi.dev), name);
++	if (!vif)
++		return -ENODEV;
++	mutex_lock(&adapter->ppe_lock);
++	ret = zx_wlan_is_ap(vif) ? zx_wlan_port_get(adapter->wlan, vif) : -EINVAL;
++	mutex_unlock(&adapter->ppe_lock);
++	dev_put(vif);
++	return ret < 0 ? ret : count;
++}
++
++static const struct file_operations zx_wlan_bind_fops = {
++	.owner	= THIS_MODULE,
++	.open	= simple_open,
++	.write	= zx_wlan_bind_write,
++	.llseek	= noop_llseek,
++};
++
+ void zx_wlan_debugfs_init(struct zx_eth_adapter *adapter, struct dentry *dir)
+ {
+ 	if (!adapter->wlan)
+@@ -759,6 +792,7 @@ void zx_wlan_debugfs_init(struct zx_eth_adapter *adapter, struct dentry *dir)
+ 				    zx_wlan_state_show);
+ 	debugfs_create_bool("wlan_inject_all", 0600, dir,
+ 			    &adapter->wlan->inject_all);
++	debugfs_create_file("wlan_bind", 0200, dir, adapter, &zx_wlan_bind_fops);
+ }
+ 
+ /* ---- init / fini --------------------------------------------------- */
 -- 
 2.30.2
 
