@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D0E2606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E301606A33E
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qe06F70R;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=W+cL7W++
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fnttNCb/;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=LoFJ2M0q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1XlqkjYgUHqMtiyvO2/LqlbV238Aov7kyKv1cwFa5P4=; b=Qe06F70RU85ZQjZISyl40WxaMd
-	G+fD5ewe5U6JZR9rWD356m+cRTKlAvaILaF+HXb5bKoCfubEnb3bC2KKnyO1ucgs3KdYzgCR7D2r4
-	f1XG/w5ny1oQ47rb/OfNApZHDhuvDyY/NebHnYJ6O6AsKVfFAiCofkPN6kDw62Kgnh13fxeMnlKlu
-	scuVtZgvHXwrtTXvfm9LnkKNjfUhQjcuwPFhVZ+Xkw+nMeT0YIc3q2n1x+BiADe7WjVruOK83z7Gl
-	aEheTEEf07ilqObCgDnu3bHAa8J5tI8FwrLEz+mn0iwmmguso3NJng69nDnBDZRDikalqVHPnyQ6M
-	NcXztC1w==;
+	bh=k28NXrt+XbqyfRaacENrrFfeZjq4XEJuuf/YvC8HY10=; b=fnttNCb//7hh28XkQDiWaRZzK7
+	fOAyWVfetb9KW7G85ZuQ4N4OB//4uwW2hcdkQ1TbudnsJR9pOt6nl/skBzJQGRt5JSITG/FDlCDCp
+	NpYvdg+lVT4JGfr3xhn2rRCfW7zlgCszZwcTKF+jx7xeeWe3xeaVn3IB8sBF25L8CQ1l8rsSovxHV
+	f5at6G7bzpBZZHhEq23DO7Gn7ksL8H4/6snEyUC8drQUWsV/onO71ddvyugB6Zi6Q4EtX0e8ilsew
+	SlOpQ9JmLsBAQp8ICJVf6DXTM2JYOXv2nbUH8Ekgs42cR5wsUoBqqLnO2+QhS4S+U1fB3cnfqZvag
+	vtWmSrew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6CB-00000006R4M-0rci;
+	id 1xR6CB-00000006R3d-0Io8;
 	Wed, 11 Nov 2026 11:08:51 +0000
-Received: from mail-wr1-x447.google.com ([2a00:1450:4864:20::447])
+Received: from mail-ej1-x645.google.com ([2a00:1450:4864:20::645])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6C2-00000006Qvt-3X7J
+	id 1xR6C2-00000006Quv-1Aqc
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:08:44 +0000
-Received: by mail-wr1-x447.google.com with SMTP id ffacd0b85a97d-48e0461e040so2335715f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:08:42 -0800 (PST)
+	Wed, 11 Nov 2026 11:08:43 +0000
+Received: by mail-ej1-x645.google.com with SMTP id a640c23a62f3a-c4163a5400eso141922866b.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:08:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794395321; x=1795000121; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794395320; x=1795000120; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=1XlqkjYgUHqMtiyvO2/LqlbV238Aov7kyKv1cwFa5P4=;
-        b=W+cL7W++mJxg8msfrGkRsCboa8tcvsiCUuaC9IXG6qfsUksnpBFxg1zwdaFwO6HF0w
-         nZ3nKlEJmf4zxisaFpO3o/vRs60eyaqDzOAP9i7v4z3k/82QZqTdpWKUmOqZFI8DDvQz
-         LiRrjFsKVZ1c23aWBtrKb6NZxwyubYxNvp+8q5r/RjuD33dPiL8ouZX2XvLGd8A/IvWv
-         TUpbEoppqnLMs0qG+xFgcF46FxQB3POoyTucGWLfXGuRlGF6nk4sakCyr67yLP1boHIy
-         Lo+zta6SZ9e6waoi8YibfTlbRVvqOs9V3zQ2hyLwxn2iAKEp8biemaAigIkd81m9eq2C
-         rvZg==
+        bh=k28NXrt+XbqyfRaacENrrFfeZjq4XEJuuf/YvC8HY10=;
+        b=LoFJ2M0qUq911AQbLJm+Tv0agLI2YFY5XPdd5Ov3DgIUzzftbPB5JfNFVRCMZ/SCS6
+         wyeMeRbwfxFdDBkCssqcbviGaBwn4iE8tKSZm0EKeQTXu34TiLkqCr7O8aXfaAQHMKEn
+         amW6RZi0Dj5CDnCNlxxYbyo5kLfPRAUC4dPwrVs2M3gnee6QutrtZcpIJ3gLi3jB15wx
+         RL6apCm/ef+TxVtUxel5RB+8ceFfricY6Axf0s9eYM74QShpv3MYQR6NXXu/DBG9AU5b
+         2MyY64NTutVahuYZMqAuUFB+9TNYVEboQIGEZa7hHv6sGBKHNQ1Yydf1UFbWp28ySvWp
+         GN6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794395321; x=1795000121;
+        d=1e100.net; s=20260707; t=1794395320; x=1795000120;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=1XlqkjYgUHqMtiyvO2/LqlbV238Aov7kyKv1cwFa5P4=;
-        b=nm/mVBfxs9k5IdSWueTzaqCyAWLb55Rm+AgmDLlFNPhlBsciiRV58Sf0wLq5y6Jhad
-         n2Wgivu7ra9VBqMkyib1fXyVoQ57jnHWmjWvvxtXorwI6U+sk+GfVmcI10sLQVoLbv/y
-         2D0YRUSd4FZ6IZC8JcJvilZbXIwxe8AId6CdBakOI4xUN9UGvIiRJZUcRYdx47jZVcZ4
-         KB5RO3arz0hysW6+lQFVMigJZK46wzQd7PQM8Dgbf/+VdqZT8LUxPskEkm0O3Vbt7FsZ
-         lNNyb/82Uhi7Elt8RW5zzua2rOCVnxO507A5hWlqcC1oMTK+VkLS59vimzO53Kjp5jKB
-         KbRg==
-X-Forwarded-Encrypted: i=1; AL+hErGAsdeLbHGkwap4U7VG5AhjKlKyTpfnBYZ+MtOgBCqzccH6pWMW1so3G5NvCyNfJ7VVRGUKfv9CRVr77q6fJZns@lists.infradead.org
-X-Gm-Message-State: APuU4Z8THqIi5KyJbDSlFDWPj45jPPcrgboIWg0gDQpXoqLETe7xg0X0
-	lBKpkcvnEWRSTFBmVhItInPwJnImkFx1R2eJ7Kgic+tDgXLoHGf0UARz/0N40ceLStE24sZkHaq
-	7eaocfnZOxA0zu+MtWy3rFg==
-X-Received: from wrqn16.prod.google.com ([2002:a5d:4210:0:b0:48e:3826:ef3f])
+        bh=k28NXrt+XbqyfRaacENrrFfeZjq4XEJuuf/YvC8HY10=;
+        b=BEoP0oN2BfLjkYIitz4EHHcQPkgF5aH+AYtIsoFx8qjBecfyV21uEwmZE3U1virAEY
+         y8nnNAmCP12qThKThqCgTxZcGLFdv6OBmsqfqS3KF2os160AQYVEidSofVCUa8cUOvNC
+         74x30F6T1BxeCsiuqd+MROiRxWrLYL3N1aDzbtOR2gNKu+Af+5r5Wrk4RxuTxUwqV77Y
+         D5TwRspEEN0nSB8k0IniQJFRXd9qfT3HVZuWlpuzY6PpKGIMEKmjOgx4QWSTSBdLMuzL
+         NohJdVCVLrSWaVT77Kwa3Pp4Z/fEMA1J2EkzmsNzPlvjFhnqpv1uztzFPC7NkKf9ql9D
+         coGQ==
+X-Forwarded-Encrypted: i=1; AL+hErFG7Vhii51u2BvDFrv9S7rFIOHqQPZwtt8zmdUoEwTGJIf4oBRKIZaAjx5Lu38lMUxIJ2jjgxtmpRM+19ClWKh5@lists.infradead.org
+X-Gm-Message-State: APuU4Z+w7B/eCT1wd3OBCiZqxRoRCOmCw6fBJhlNWerZY/DSk/v4ttmo
+	/hvpGbzW/mr5jIW3RqKeJISEKrpIXTtcUqEhw69O4fJfA3dMW7OKT1bmCR/4tEx1e1FFD2wKHwz
+	FnWmvo7Z+yxLj7bn53HEVBQ==
+X-Received: from ejxe15.prod.google.com ([2002:a17:906:81cf:b0:c3f:75a:4837])
  (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6000:481d:b0:493:803e:800f with SMTP id ffacd0b85a97d-499c6e96f58mr3024659f8f.29.1794395320547;
- Wed, 11 Nov 2026 03:08:40 -0800 (PST)
-Date: Wed, 11 Nov 2026 11:07:38 +0000
+ 2002:a17:907:2d2c:b0:c50:6222:7b1c with SMTP id a640c23a62f3a-c5066cc68c2mr168857666b.23.1794395319574;
+ Wed, 11 Nov 2026 03:08:39 -0800 (PST)
+Date: Wed, 11 Nov 2026 11:07:37 +0000
 In-Reply-To: <20261111110738.872947-1-vdonnefort@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261111110738.872947-1-vdonnefort@google.com>
 X-Mailer: git-send-email 2.56.0.542.g3ef89b7020-goog
-Message-ID: <20261111110738.872947-9-vdonnefort@google.com>
-Subject: [PATCH v3 8/8] optee: Add support for lendable-dma-pool
+Message-ID: <20261111110738.872947-8-vdonnefort@google.com>
+Subject: [PATCH v3 7/8] arm64: Add support for lendable-dma-pool
 From: Vincent Donnefort <vdonnefort@google.com>
 To: catalin.marinas@arm.com, will@kernel.org, rppt@kernel.org, 
 	akpm@linux-foundation.org, m.szyprowski@samsung.com, jenswi@kernel.org, 
@@ -84,8 +84,8 @@ Cc: mark.rutland@arm.com, robin.murphy@arm.com, hch@lst.de,
 	Vincent Donnefort <vdonnefort@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_030842_914525_77043349 
-X-CRM114-Status: GOOD (  15.50  )
+X-CRM114-CacheID: sfid-20261111_030842_375996_DA076C82 
+X-CRM114-Status: GOOD (  18.95  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -101,118 +101,246 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When memory is lent to secure world, fatal CPU speculative reads can
-still occur while it retains a cacheable mapping. Use the
-lendable-dma-pool API to unmap pages before lending and restore them
-upon reclaim.
+Even when the linear map uses block mappings, regions marked with
+MEMBLOCK_PTEMAP are mapped at page granularity and can be modified at
+runtime. Implement the architecture hooks for the lendable-dma-pool to
+force the last-level mappings, validate ranges and update the direct
+mapping.
 
 Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
 ---
- drivers/tee/optee/protmem.c | 48 ++++++++++++++++++++++++++++++-------
- 1 file changed, 39 insertions(+), 9 deletions(-)
+ arch/arm64/Kconfig                  |  1 +
+ arch/arm64/include/asm/set_memory.h |  2 +
+ arch/arm64/mm/dma-mapping.c         | 71 +++++++++++++++++++++++++++++
+ arch/arm64/mm/pageattr.c            | 56 ++++++++++++++++++-----
+ 4 files changed, 118 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/tee/optee/protmem.c b/drivers/tee/optee/protmem.c
-index be3abf6e8aa6..10e8f1540e5e 100644
---- a/drivers/tee/optee/protmem.c
-+++ b/drivers/tee/optee/protmem.c
-@@ -4,6 +4,7 @@
-  */
- #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+index 1075bc661833..34fe7a7eea82 100644
+--- a/arch/arm64/Kconfig
++++ b/arch/arm64/Kconfig
+@@ -117,6 +117,7 @@ config ARM64
+ 	select DYNAMIC_FTRACE if FUNCTION_TRACER
+ 	select DMA_BOUNCE_UNALIGNED_KMALLOC
+ 	select DMA_DIRECT_REMAP
++	select DMA_LENDABLE if DMA_CMA
+ 	select EDAC_SUPPORT
+ 	select FRAME_POINTER
+ 	select FUNCTION_ALIGNMENT_4B
+diff --git a/arch/arm64/include/asm/set_memory.h b/arch/arm64/include/asm/set_memory.h
+index b6ec938703d6..ec8bbb59e51f 100644
+--- a/arch/arm64/include/asm/set_memory.h
++++ b/arch/arm64/include/asm/set_memory.h
+@@ -17,6 +17,8 @@ int set_memory_valid(unsigned long addr, int numpages, int enable);
  
-+#include <linux/dma-mapping.h>
- #include <linux/errno.h>
- #include <linux/genalloc.h>
- #include <linux/slab.h>
-@@ -21,6 +22,7 @@ struct optee_protmem_dyn_pool {
- 	u_int mem_attr_count;
- 	refcount_t refcount;
- 	u32 use_case;
-+	bool unmapped;
- 	struct tee_shm *protmem;
- 	/* Protects when initializing and tearing down this struct */
- 	struct mutex mutex;
-@@ -32,6 +34,35 @@ to_protmem_dyn_pool(struct tee_protmem_pool *pool)
- 	return container_of(pool, struct optee_protmem_dyn_pool, pool);
+ int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages);
+ int set_direct_map_default_noflush(struct page *page, unsigned int numpages);
++int __set_direct_map_invalid_noflush(struct page *page, unsigned int numpages);
++int __set_direct_map_default_noflush(struct page *page, unsigned int numpages);
+ bool kernel_page_present(struct page *page);
+ 
+ int set_memory_encrypted(unsigned long addr, int numpages);
+diff --git a/arch/arm64/mm/dma-mapping.c b/arch/arm64/mm/dma-mapping.c
+index 7f6f2f40dba2..c324e9826ce2 100644
+--- a/arch/arm64/mm/dma-mapping.c
++++ b/arch/arm64/mm/dma-mapping.c
+@@ -7,9 +7,13 @@
+ #include <linux/gfp.h>
+ #include <linux/cache.h>
+ #include <linux/dma-map-ops.h>
++#include <linux/kernel.h>
++#include <linux/memblock.h>
+ #include <xen/xen.h>
+ 
+ #include <asm/cacheflush.h>
++#include <asm/set_memory.h>
++#include <asm/tlbflush.h>
+ #include <asm/xen/xen-ops.h>
+ 
+ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+@@ -38,6 +42,73 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
+ 	dcache_clean_poc(start, start + size);
  }
  
-+static int zap_direct_map_dyn_protmem(struct optee_protmem_dyn_pool *rp)
++#ifdef CONFIG_DMA_LENDABLE
++int __init arch_dma_mark_lendable(phys_addr_t base, phys_addr_t size)
 +{
++	if (!PAGE_ALIGNED(base | size))
++		return -EINVAL;
++
++	return memblock_mark_ptemap(base, size);
++}
++
++bool __init arch_dma_is_lendable(struct page *page, unsigned int nr_pages)
++{
++	return direct_map_is_ptemap(page, nr_pages);
++}
++
++int arch_dma_zap_direct_map(struct page *page, unsigned int nr_pages,
++			    bool from_lendable)
++{
++	unsigned long start = (unsigned long)page_address(page);
++	unsigned long end = start + ((unsigned long)nr_pages << PAGE_SHIFT);
 +	int ret;
 +
-+	ret = dma_zap_direct_map(&rp->optee->teedev->dev,
-+				 phys_to_page(rp->protmem->paddr),
-+				 rp->protmem->size);
-+	if (ret && ret != -ENODEV)
++	/*
++	 * arch_dma_prep_coherent() only cleans as normal DMA buffers retain a
++	 * cacheable linear-map alias. Since that alias is being removed here,
++	 * also invalidate to make sure they can't be evicted later on while the
++	 * memory is secured.
++	 */
++	dcache_clean_inval_poc(start, end);
++
++	if (from_lendable) {
++		ret = __set_direct_map_invalid_noflush(page, nr_pages);
++	} else {
++		might_sleep();
++		ret = set_direct_map_invalid_noflush(page, nr_pages);
++	}
++
++	if (ret)
 +		return ret;
 +
-+	rp->unmapped = !ret;
++	flush_tlb_kernel_range(start, end);
 +
 +	return 0;
 +}
 +
-+static void restore_direct_map_dyn_protmem(struct optee_protmem_dyn_pool *rp)
++int arch_dma_restore_direct_map(struct page *page, unsigned int nr_pages,
++				bool from_lendable)
 +{
-+	if (WARN_ON(!rp->protmem))
-+		return;
++	unsigned long start = (unsigned long)page_address(page);
++	unsigned long end = start + ((unsigned long)nr_pages << PAGE_SHIFT);
++	int ret;
 +
-+	if (!rp->unmapped)
-+		return;
++	if (from_lendable) {
++		ret = __set_direct_map_default_noflush(page, nr_pages);
++	} else {
++		might_sleep();
++		ret = set_direct_map_default_noflush(page, nr_pages);
++	}
 +
-+	dma_restore_direct_map(&rp->optee->teedev->dev,
-+			       phys_to_page(rp->protmem->paddr),
-+			       rp->protmem->size);
-+	rp->unmapped = false;
++	if (ret)
++		return ret;
++
++	dcache_inval_poc(start, end);
++
++	return 0;
++}
++#endif /* CONFIG_DMA_LENDABLE */
++
+ void arch_setup_dma_ops(struct device *dev, bool coherent)
+ {
+ 	int cls = cache_line_size_of_cpu();
+diff --git a/arch/arm64/mm/pageattr.c b/arch/arm64/mm/pageattr.c
+index c7662fd2fcb2..467a420af0f5 100644
+--- a/arch/arm64/mm/pageattr.c
++++ b/arch/arm64/mm/pageattr.c
+@@ -167,8 +167,8 @@ bool __init direct_map_is_ptemap(struct page *page, unsigned int numpages)
+ 						      NULL, NULL);
+ }
+ 
+-static int update_range_prot(unsigned long start, unsigned long size,
+-			     pgprot_t set_mask, pgprot_t clear_mask)
++static int __update_range_prot(unsigned long start, unsigned long size,
++			       pgprot_t set_mask, pgprot_t clear_mask)
+ {
+ 	struct page_change_data data;
+ 	int ret;
+@@ -176,10 +176,6 @@ static int update_range_prot(unsigned long start, unsigned long size,
+ 	data.set_mask = set_mask;
+ 	data.clear_mask = clear_mask;
+ 
+-	ret = split_kernel_leaf_mapping(start, start + size);
+-	if (WARN_ON_ONCE(ret))
+-		return ret;
+-
+ 	lazy_mmu_mode_enable();
+ 
+ 	/*
+@@ -194,6 +190,18 @@ static int update_range_prot(unsigned long start, unsigned long size,
+ 	return ret;
+ }
+ 
++static int update_range_prot(unsigned long start, unsigned long size,
++			     pgprot_t set_mask, pgprot_t clear_mask)
++{
++	int ret;
++
++	ret = split_kernel_leaf_mapping(start, start + size);
++	if (WARN_ON_ONCE(ret))
++		return ret;
++
++	return __update_range_prot(start, size, set_mask, clear_mask);
 +}
 +
- static int init_dyn_protmem(struct optee_protmem_dyn_pool *rp)
+ static int __change_memory_common(unsigned long start, unsigned long size,
+ 				  pgprot_t set_mask, pgprot_t clear_mask)
  {
- 	int rc;
-@@ -42,19 +73,15 @@ static int init_dyn_protmem(struct optee_protmem_dyn_pool *rp)
- 		goto err_null_protmem;
- 	}
+@@ -316,28 +324,52 @@ int set_memory_valid(unsigned long addr, int numpages, int enable)
+ 					__pgprot(PTE_PRESENT_VALID_KERNEL));
+ }
  
--	/*
--	 * TODO unmap the memory range since the physical memory will
--	 * become inaccesible after the lend_protmem() call.
--	 *
--	 * If the platform supports a hypervisor at EL2, it will unmap the
--	 * intermediate physical memory for us and stop cache pre-fetch of
--	 * the memory.
--	 */
-+	rc = zap_direct_map_dyn_protmem(rp);
-+	if (rc)
-+		goto err_put_shm;
+-int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages)
++int __set_direct_map_invalid_noflush(struct page *page, unsigned int numpages)
+ {
+ 	pgprot_t clear_mask = __pgprot(PTE_PRESENT_VALID_KERNEL);
+ 	pgprot_t set_mask = __pgprot(PTE_PRESENT_INVALID);
+ 
++	return __update_range_prot((unsigned long)page_address(page),
++				   PAGE_SIZE * numpages, set_mask, clear_mask);
++}
 +
- 	rc = rp->optee->ops->lend_protmem(rp->optee, rp->protmem,
- 					  rp->mem_attrs,
- 					  rp->mem_attr_count, rp->use_case);
- 	if (rc)
--		goto err_put_shm;
-+		goto err_restore_direct_map;
- 	rp->protmem->flags |= TEE_SHM_DYNAMIC;
++int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages)
++{
++	unsigned long start = (unsigned long)page_address(page);
++	int ret;
++
+ 	if (!can_set_direct_map())
+ 		return 0;
  
- 	rp->gen_pool = gen_pool_create(PAGE_SHIFT, -1);
-@@ -76,6 +103,8 @@ static int init_dyn_protmem(struct optee_protmem_dyn_pool *rp)
- 	rp->gen_pool = NULL;
- err_reclaim:
- 	rp->optee->ops->reclaim_protmem(rp->optee, rp->protmem);
-+err_restore_direct_map:
-+	restore_direct_map_dyn_protmem(rp);
- err_put_shm:
- 	tee_shm_put(rp->protmem);
- err_null_protmem:
-@@ -112,6 +141,7 @@ static void release_dyn_protmem(struct optee_protmem_dyn_pool *rp)
- 	rp->gen_pool = NULL;
+-	return update_range_prot((unsigned long)page_address(page),
+-				 PAGE_SIZE * numpages, set_mask, clear_mask);
++	ret = split_kernel_leaf_mapping(start, start + PAGE_SIZE * numpages);
++	if (WARN_ON_ONCE(ret))
++		return ret;
++
++	return __set_direct_map_invalid_noflush(page, numpages);
+ }
  
- 	rp->optee->ops->reclaim_protmem(rp->optee, rp->protmem);
-+	restore_direct_map_dyn_protmem(rp);
- 	rp->protmem->flags &= ~TEE_SHM_DYNAMIC;
+-int set_direct_map_default_noflush(struct page *page, unsigned int numpages)
++int __set_direct_map_default_noflush(struct page *page, unsigned int numpages)
+ {
+ 	pgprot_t set_mask = __pgprot(PTE_PRESENT_VALID_KERNEL | PTE_WRITE);
+ 	pgprot_t clear_mask = __pgprot(PTE_PRESENT_INVALID | PTE_RDONLY);
  
- 	WARN(refcount_read(&rp->protmem->refcount) != 1, "Unexpected refcount");
++	return __update_range_prot((unsigned long)page_address(page),
++				   PAGE_SIZE * numpages, set_mask, clear_mask);
++}
++
++int set_direct_map_default_noflush(struct page *page, unsigned int numpages)
++{
++	unsigned long start = (unsigned long)page_address(page);
++	int ret;
++
+ 	if (!can_set_direct_map())
+ 		return 0;
+ 
+-	return update_range_prot((unsigned long)page_address(page),
+-				 PAGE_SIZE * numpages, set_mask, clear_mask);
++	ret = split_kernel_leaf_mapping(start, start + PAGE_SIZE * numpages);
++	if (WARN_ON_ONCE(ret))
++		return ret;
++
++	return __set_direct_map_default_noflush(page, numpages);
+ }
+ 
+ int __set_memory_enc_dec(unsigned long addr, int numpages, bool encrypt)
 -- 
 2.56.0.542.g3ef89b7020-goog
 
