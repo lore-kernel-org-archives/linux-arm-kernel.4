@@ -2,87 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AAF606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 15:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAF1606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 15:31:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rWGNemPc;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Dhj0+Yym
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HE0XzK/Z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZceZ+7Nr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=zx9iLP78IiBq1ALzjHVMZmBMtAYpZpkd8prlcsOB6hg=; b=rWGNemPcS/4NoU
-	8/ApBr72bJLsIUmf5NPdJdQCKkCfzCUi5hJcotu+KyjSYAm90+P3KWnYk9Ix0kfmGBBKNZMsAkXgt
-	487n156fSp6w8ZR9EFayQYpZjGK91Wf4eTuZDPHTPmQT//ItPCLqW6aAk1U7mmYGVDDXk1FgBqoir
-	sVf1zL1DMbU2w+H8gr0OHiSYl9Z/o37EGef2imJlYmsHuyLRrBLWwUOuWw5Dj4adgt+80/3fvL4hZ
-	OB+Onl2S8hwpBzzQsA27fWrndWkRhbE/AK6SUlsBIHbEty80UPiuTozp1sg+edlw251MfE/hQYNq8
-	tN7i4mmD2JM6LD2kr6Fg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=2qK2aGIye1HX+d13MbJVaOFMfu42XDmA8K7eVHsgcko=; b=HE0XzK/ZVmfUk/ZxJ+9bdc3gvP
+	q/mrP7klSQ17n3jHL62ZhDl13IDregcNH8w5ewOI7akAlFfBtwgiQJan32xCFAro4/Lug6+NB718Y
+	M5yky8k84Dj8++An7r00RYzSJviO4GVr1Q4HmkRY64tLI/zEKIq7gqNmxx47qd7Ea5mxpVao7rmRj
+	SAx9EHf3Ecf3/w1wHANplKnFW8uENZNqa2ozjjGpLOKORx7cm6QnM1AFzmRZtTs1DxpeTtqUTAbmr
+	uBqh4ReO3Rw4121fOfIb9QVnesRUbY2/956+zyONhWDeKOV0uKyBMRYMzsgzVH6QtxvwUbl9weJl8
+	ew3u94mQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRAGC-000000075GY-1VkF;
-	Wed, 11 Nov 2026 15:29:16 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRAG9-000000075Fl-38cM
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 15:29:14 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4C9A61576;
-	Wed, 11 Nov 2026 07:29:09 -0800 (PST)
-Received: from [10.43.20.72] (e126510-lin.lund.arm.com [10.43.20.72])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A40E73F632;
-	Wed, 11 Nov 2026 07:29:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794410952; bh=zx9iLP78IiBq1ALzjHVMZmBMtAYpZpkd8prlcsOB6hg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dhj0+YymHc7rFomknPwPRmnpBiVc9HeX4e1Mrc54aUxPNZzLyPVAjsbvoz7F/WA5c
-	 x/6gWKxQMKSaONFtPfoPEoqkOwozaexXi53y72L4XOIUfLKIaabfuCO6VO8rtFgrHt
-	 4l+2j1iAJMYNQaTu2anzXCelavKQ28MV+LNM1n5g=
-Message-ID: <0b29393f-bb84-4df1-a699-f7afcb50f2e8@arm.com>
-Date: Wed, 11 Nov 2026 16:29:02 +0100
+	id 1xRAHp-000000075Zr-2M8i;
+	Wed, 11 Nov 2026 15:30:57 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRAHo-000000075ZL-1IiQ;
+	Wed, 11 Nov 2026 15:30:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 8BB49605FD;
+	Wed, 11 Nov 2026 15:30:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 161A11F00A05;
+	Wed, 11 Nov 2026 15:30:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794411055;
+	bh=2qK2aGIye1HX+d13MbJVaOFMfu42XDmA8K7eVHsgcko=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ZceZ+7NrP14MGcOiFM03sWRRXENDOZXhRkrZ4/QNcwj0xgc1F2yz+EKuOVWVsLofE
+	 u0OHQ8NXUqLQ7+yp1A6dFg68NjW6YMDNv3IeeCbWh5CiU1Tz9xHU5zG9U03lSQiORd
+	 KJw2bdKFd96en/Ce4PI72efbnUG+P3uu9IrQO0ebQ0TQC1puayuZbQVxlDKOt0YmPF
+	 MQnqVaIXvvxEWhqoeQyNCRlEN6SJVxpi65+6a65b+dsrtXNiXMStsIYpTIMxMXoo00
+	 d8lX5ioZrmSNmSC0zdXs5BEYxoAz3VnWjm5ueWZPbzPUopJxulr4J++5L1VROtFWwk
+	 i0z027nC4re2A==
+Date: Wed, 11 Nov 2026 09:30:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: Gregor Herburger <gregor.herburger@linutronix.de>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Eric Anholt <eric@anholt.net>, Stefan Wahren <wahrenst@gmx.net>,
+	Srinivas Kandagatla <srini@kernel.org>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v9 00/12] nvmem: Add Raspberry Pi OTP nvmem driver
+Message-ID: <20261111153049.GA2640564-robh@kernel.org>
+References: <20261111-rpi-otp-driver-v9-0-0a7292a7a5b4@linutronix.de>
+ <66bf8629-225d-4f65-84dd-67f02aa4cab6@kernel.org>
+ <y2ocj374gtrwf3ozptwgmqhsy5k26y45uwlbgtyvvmlxkftc2k@gjs3jsbxbm4w>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v10 22/22] mm: Add basic tests for
- kpkeys_hardened_pgtables
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-hardening@vger.kernel.org, Andrew Morton
- <akpm@linux-foundation.org>, Ard Biesheuvel <ardb+git@google.com>,
- Andy Lutomirski <luto@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Dave Hansen <dave.hansen@linux.intel.com>,
- "David Hildenbrand (Arm)" <david@kernel.org>, Jann Horn <jannh@google.com>,
- Jeff Xu <jeffxu@chromium.org>, Joey Gouly <joey.gouly@arm.com>,
- Kees Cook <kees@kernel.org>, Linu Cherian <linu.cherian@arm.com>,
- Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, Maxwell Bland <mbland@motorola.com>,
- "Mike Rapoport (IBM)" <rppt@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Pierre Langlois <pierre.langlois@arm.com>,
- =?UTF-8?Q?Pierre-Cl=C3=A9ment_Tosi?= <ptosi@google.com>,
- Quentin Perret <qperret@google.com>,
- Rick Edgecombe <rick.p.edgecombe@intel.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Vlastimil Babka <vbabka@kernel.org>,
- Will Deacon <will@kernel.org>, Yang Shi <yang@os.amperecomputing.com>,
- Yeoreum Yun <yeoreum.yun@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org, x86@kernel.org,
- Ira Weiny <iweiny@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
- Thomas Gleixner <tglx@kernel.org>
-References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
- <20261109-kpkeys-v10-22-aa6c4d9603bc@arm.com>
- <2d13fbb7-b5b4-446e-8709-5b43349ff19a@sirena.org.uk>
- <9e59fd71-97e7-422c-a7dd-bc23c6e6a852@arm.com>
- <717cccfe-81d6-4e09-a466-5361ae27776f@sirena.org.uk>
-From: Kevin Brodsky <kevin.brodsky@arm.com>
-Content-Language: en-GB
-In-Reply-To: <717cccfe-81d6-4e09-a466-5361ae27776f@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_072913_832921_BD7C6BC6 
-X-CRM114-Status: GOOD (  12.68  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <y2ocj374gtrwf3ozptwgmqhsy5k26y45uwlbgtyvvmlxkftc2k@gjs3jsbxbm4w>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,32 +81,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/11/2026 12:24, Mark Brown wrote:
-> On Tue, Nov 10, 2026 at 10:01:36AM +0100, Kevin Brodsky wrote:
->
->> Do you mean adding the dependency KPKEYS_HARDENED_PGTABLES=y to
->> tools/testing/kunit/configs/all_tests.config? Indeed that would only be
->> meaningful on arm64 (for now). That said it wouldn't hurt other
->> architectures, so happy to add it there if you think that's worth it.
-> Yes, or something like that - unfortunately KUnit checks to see if the
-> config options appear in the configuration so something that vanishes on
-> other architectures causes issues.
+On Wed, Nov 11, 2026 at 09:14:32AM +0100, Gregor Herburger wrote:
+> On Wed, Nov 11, 2026 at 09:02:19AM +0100, Krzysztof Kozlowski wrote:
+> > On 11/11/2026 08:23, Gregor Herburger wrote:
+> > > Hi,
+> > > 
+> > > This series adds support for the Raspberry Pis OTP registers. The
+> > > Raspberry Pi has one or more OTP regions. These registers are accessible
+> > > through the firmware. Add a driver for it and add updates the devicetree
+> > > for the Raspberry Pi 5.
+> > > 
+> > > ---
+> > > Changes in v9:
+> > > - Fix sashiko comment and use fwbuf->count instead of bytes in memcpy
+> > > - Link to v8: https://patch.msgid.link/20261110-rpi-otp-driver-v8-0-797e0577d414@linutronix.de
+> > > 
+> > 
+> > Big series sent three times within last 24 h. Please slow down and give
+> > people chance to review your work.
+> I sent v7 with a missing commit and based on an wrong commit so Sashiko could
+> not apply the series. Sashiko found an issue in v8 so I tried to fix it in v9.
+> 
+> I have the impression people are not reviewing stuff as long as sashiko has
+> issues. So I wanted to fix those things quick.
 
-Alright, I guess there's not much we can do then, short of creating
-arch-specific fragments.
+Like many things, depends on the maintainer...
 
-> Perhaps the default for the config
-> option ought to depend on KUNIT_ALL_TESTS?
+sashiko found something on every patch? I only look at the binding 
+patches, so it is not going to matter to me if sashiko points out issues 
+on driver patches. Vice-versa is probably true too.
 
-Not sure I'm following, the config already has default KUNIT_ALL_TESTS?
-
-- Kevin
+Rob
 
