@@ -2,69 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B3B606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 20:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76EC606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 21:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Jc6Jfhyr;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EcNEcgLx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qt27D0QW;
+	dkim=pass (2048-bit key, unprotected) header.d=timsurber.de header.i=@timsurber.de header.a=rsa-sha256 header.s=MBO0001 header.b=KzcpJxT2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=rJtMZ+oQ2ftbIpYEVBAu9rDREp/nXzUYJLHQXQsg0HU=; b=Jc6Jfhyr7uefJUvmUKU9MACJ20
-	fcRkRP5eequKgxEPXsEGnmftmMCTJSVD5qls9AJ/fgs47C+evQiTIj/F/zIZbKBoiUq+wbO9PGDrD
-	nhzHJ6PdQR9GbUOQZT/YkuSrq5QjUstno+GF1k6bJkAOsSvRTJX3Nj6Fgq7ouUxue6kuBhqX0dC4D
-	Bs3Z1TLxLYtcrdn2QU3YNyMLY+mDMeEhvnczYx9TejbwNv4VrETvCHQcFZ9dIbPPKA9akAi/04X0l
-	eilaAJQdgAa3apckFm+rqfK21eIonoxvYr6gxX0re//aJrGFzt6YDucp8MdtTZmzFG9PuVuN8Ddhk
-	VG/Wqulw==;
+	bh=tlP7YiAB0ndxc1g1Kyrgds/y0lfbIBXihc8MyOXgpx0=; b=qt27D0QW8LLRIi7NweQrDIzFS9
+	BbA31Ts72YICu8Qj+9xUwbQutGBaC1HA1ohCuqUxTs4fKlwaLFY4QxS8e+fE/mahgzUwH8q+L0o6s
+	cv8Zb1Btm/RLb55KXzNgoxkyfEK1TxrMOTDgaR2mJ3dkJ7GNFNKFGvU0CfAMvqvgrSF1BdWJSJjID
+	lb0RxSHV4h6Fd6zP/z8Tbb3xheZ4VbAiu1CFs882uWV6z40DTp2fKQaPxBpHxQu7cRvYokyuwx18D
+	BwHk86vmc7RB9UIifHKw6w9ejcmWQu7jOdh1I3XU7TdSaWMLD2USsUDaIj+qvA/pX+n7lx2WXzhvj
+	5om9/OcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRFQ3-00000007hbW-3dw6;
-	Wed, 11 Nov 2026 20:59:47 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRFQ1-00000007hbB-1RZn
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 20:59:46 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 68503153B;
-	Wed, 11 Nov 2026 12:59:39 -0800 (PST)
-Received: from thinkpad-e142931.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4E9FE3F85F;
-	Wed, 11 Nov 2026 12:59:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794430782; bh=GvTWPjgOeMhK10lBp/x80dBPCkX7FkHbNjd4m6Rj3Io=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EcNEcgLxh8R4qgoGx5zt/BAiEPlEPgPQ5bJyg31SxFdqKQtTwJ6iyFz9dR8Pa45eo
-	 5bjD6JCeoE+Z6XkT6uG1bDWU/8OkCGqilXZCHG+WVhKDKQL1oYbZ4gyatCCuN2U6IT
-	 0gN8y26J/JidPb860oE6jToCtYBB/N74sVWdrtgU=
-Date: Wed, 11 Nov 2026 20:59:27 +0000
-From: Wei-Lin Chang <weilin.chang@arm.com>
-To: Haseeb Ashraf <haseebashraf091@gmail.com>, maz@kernel.org, 
-	Oliver Upton <oupton@kernel.org>
-Cc: Haseeb Ashraf <haseeb.ashraf@siemens.com>, 
-	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>, fahad.arslan@siemens.com, 
-	Steffen Eiden <seiden@linux.ibm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Zenghui Yu <yuzenghui@huawei.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
-	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] KVM: arm64: Resume stage-2 unmap where the walk
- stopped
-Message-ID: <lnqoq6pirbxwdl3ki3khiju6kkh3itw2meh67emmd6ck4lu6sl@ai5ctyvuhpuy>
-References: <20261110164706.582879-1-haseebashraf091@gmail.com>
- <20261110164706.582879-2-haseebashraf091@gmail.com>
+	id 1xRFRs-00000007hlN-0dEA;
+	Wed, 11 Nov 2026 21:01:40 +0000
+Received: from mout-p-201.mailbox.org ([2001:67c:2050:0:465::201])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRFRh-00000007hkd-2Xr7;
+	Wed, 11 Nov 2026 21:01:39 +0000
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4jPwtF2LtbzMlj3;
+	Wed, 11 Nov 2026 22:01:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
+	s=MBO0001; t=1794430885;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tlP7YiAB0ndxc1g1Kyrgds/y0lfbIBXihc8MyOXgpx0=;
+	b=KzcpJxT2REm1FzABc0qyuOqma9BV8isWmnUjjZiP817FKuTNsoSxyhOYsgbL+nsjDU9Vw/
+	vRUgw5aXQHu2DkZNAoF1bMmxUfCiDDSTaMLt5RfK+XuQj6gRolYLM2WtP44h4LkySKnMHn
+	MvH20E4Z5O72iRod0fAQrNAPTvJvJCYnggoh6xWL5qZRMJeCE7n664apWlUv/zXQQN6KIX
+	a66Z8vrtrDoT8JwCzd/OxJr7o6tW7dAqj+qI+UB5PCVSo5B35ZicBg482VCd1pVe89KkAJ
+	CxpNQFHtrNXNuWQl5mbNe7bDYg5qi8EVLlkVJXyhBvjmBvN9gu+W61WcKUylXA==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=none;
+	spf=pass (outgoing_mbo_mout: domain of me@timsurber.de designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=me@timsurber.de
+From: Tim Surber <me@timsurber.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Tim Surber <me@timsurber.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Valentin=20H=C4=83loiu?= <valentin.haloiu@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/1] arm64: dts: rockchip: fix HDMI RX HPD on CM3588 NAS
+Date: Wed, 11 Nov 2026 22:00:26 +0100
+Message-ID: <20261111210059.3489502-1-me@timsurber.de>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261110164706.582879-2-haseebashraf091@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4jPwtF2LtbzMlj3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_125945_465583_5E206D6C 
-X-CRM114-Status: GOOD (  27.31  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261111_130130_109472_F4907B20 
+X-CRM114-Status: GOOD (  10.80  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,121 +81,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+The upstream CM3588 NAS device tree uses GPIO3_D4 both as the HDMI
+receiver's HPD output and as its 5V detection input. The GPIO setting
+wins, so the receiver can never drive HPD. Sources then read the EDID
+while the driver is still writing it and keep the damaged copy. This
+patch moves the 5V detection to GPIO1_D5, the pin that FriendlyElec's
+vendor kernel uses for the CM3588 (rk3588-nanopi6-rev09.dts is the
+CM3588 board file there):
 
-On Tue, Nov 10, 2026 at 09:47:06PM +0500, Haseeb Ashraf wrote:
-> From: Haseeb Ashraf <haseeb.ashraf@siemens.com>
-> 
-> kvm_vm_stage2_unmap_range() unmaps a range one block-sized chunk at a
-> time. The walker steps over an invalid entry in one go, but the next
-> walk starts at the following chunk, so an invalid entry larger than a
-> chunk is visited once for every chunk it covers. Unmapping the whole
-> IPA space of a shadow stage-2, as emulating TLBI VMALLS12E1IS and TLBI
-> ALLE1IS does, takes 2^18 walks with 4K pages and a 48-bit IPA space,
-> however little it maps. Each walk also ends with a range TLBI when
-> FEAT_TLBIRANGE and FWB are available.
-> 
-> On an AmpereOne A192-32X (192 CPUs, Xen on KVM, 4K pages, 48-bit IPA),
-> a full-range unmap of one shadow stage-2 took 0.82-0.94 s (mean 0.91 s
-> over 192 unmaps) on 6.18.29. With this change and the mainline commits
-> it builds on backported, it took 2.1-27.8 ms (mean 3.8 ms over 128
-> unmaps), with 512 to 1024 walks instead of 262144. A TLBI VMALLS12E1IS
-> trap that unmapped two shadow stage-2s took up to 1.85 s before.
-> 
-> Add kvm_pgtable_stage2_unmap_range(), which returns the address its
-> walk reached, and have the unmap loop resume from there.
-> kvm_pgtable_stage2_unmap() still returns 0 or an error, for its
-> callers at EL2. The walk handles every entry it steps over, including
-> invalid entries that carry state, so nothing has to be looked up
-> beforehand.
-> 
-> The unmap of a shadow stage-2 also drops the guest stage-2 records of
-> the whole span the walk covered: nothing is mapped in the part it
-> stepped over, so any record there is stale. Each walk that remains
-> ends with the same deferred TLB invalidation as before. The spans that
-> were skipped have no valid entry, so there is nothing to invalidate.
-> 
-> Suggested-by: Oliver Upton <oupton@kernel.org>
-> Signed-off-by: Haseeb Ashraf <haseeb.ashraf@siemens.com>
-> ---
+  hdmirx-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
+  https://github.com/friendlyarm/kernel-rockchip/blob/30d3e1c2470a7282f37b96fdd4354314dda69aa3/arch/arm64/boot/dts/rockchip/rk3588-nanopi6-rev09.dts#L299-L309
 
-[...]
+  hdmirx_det: rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>;
+  https://github.com/friendlyarm/kernel-rockchip/blob/30d3e1c2470a7282f37b96fdd4354314dda69aa3/arch/arm64/boot/dts/rockchip/rk3588-nanopi6-rev09.dts#L584-L586
 
-> +/*
-> + * Unmap [start, end) one chunk at a time, resuming from the address that each
-> + * walk reached. An invalid entry that is larger than a chunk is then stepped
-> + * over once, rather than once for every chunk that it covers.
-> + */
-> +static int stage2_apply_unmap_range(struct kvm_s2_mmu *mmu, phys_addr_t start,
-> +				    phys_addr_t end,
-> +				    s64 (*fn)(struct kvm_pgtable *, u64, u64),
-> +				    bool resched)
-> +{
-> +	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
-> +	bool lock_dropped = false;
-> +	phys_addr_t addr = start;
-> +	u64 next;
-> +	s64 ret;
-> +
-> +	do {
-> +		struct kvm_pgtable *pgt = mmu->pgt;
-> +
-> +		/*
-> +		 * We may be raced on PGT teardown when we release the
-> +		 * kvm->mmu_lock. That's fine as the PGT is legitimately no
-> +		 * longer present.
-> +		 */
-> +		if (!pgt)
-> +			return lock_dropped ? 0 : -EINVAL;
-> +
-> +		next = stage2_range_addr_end(addr, end);
-> +		ret = fn(pgt, addr, next - addr);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		next = min_t(u64, ret, end);
-> +		if (resched && next != end) {
-> +			cond_resched_rwlock_write(&kvm->mmu_lock);
-> +			lock_dropped = true;
-> +		}
-> +	} while (addr = next, addr != end);
-> +
-> +	return 0;
-> +}
+Testing was done on a CM3588 NAS with HDMI0 looped back into HDMI RX.
+Both runs used the same kernel, built from linux-rockchip for-next
+(c3baae5f1a15) with nothing else applied, and only the DTB was
+swapped:
 
-In my opinion it is worth giving the same treatment to all users of
-stage2_apply_range(), instead of having this new
-stage2_apply_unmap_range() that is almost identical.
+                                    for-next DTB    with this patch
+  boots with a good EDID on HDMI0   7/10            10/10
+  pin 124 (GPIO3_D4) function       hdmirx GPIO     hdmi (HPD)
+  EDID change via VIDIOC_S_EDID     never seen      seen in ~0.48 s,
+  reaching the source                               2 HPD IRQs each
+  pinctrl "not freeing pin 124"     6/6 unbinds     0/6 unbinds
+  warning on unbind
+  5V detected (power_present),      yes             yes
+  receiver locks to 3840x2160
 
-Thanks,
-Wei-Lin Chang
+dtbs_check gives no new warnings.
 
-> +
->  static void kvm_vm_stage2_unmap_range(struct kvm_s2_mmu *mmu,
->  				      phys_addr_t start,
->  				      u64 size, bool may_block)
->  {
->  	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
-> -	int (*fn)(struct kvm_pgtable *, u64, u64);
-> +	s64 (*fn)(struct kvm_pgtable *pgt, u64 addr, u64 size);
->  
->  	if (kvm_is_nested_s2_mmu(kvm, mmu))
->  		fn = kvm_pgtable_stage2_unmap_tracked;
->  	else
-> -		fn = kvm_pgtable_stage2_unmap;
-> +		fn = kvm_pgtable_stage2_unmap_range;
->  
-> -	WARN_ON(stage2_apply_range(mmu, start, start + size, fn, may_block));
-> +	WARN_ON(stage2_apply_unmap_range(mmu, start, start + size, fn, may_block));
->  }
->  
+Tim Surber (1):
+  arm64: dts: rockchip: fix HDMI RX 5V detection pin on CM3588 NAS
 
-[...]
+ .../boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dts      | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+
+base-commit: c3baae5f1a15645cddadcb2b9abddef5df291f59
+-- 
+2.55.0
+
 
