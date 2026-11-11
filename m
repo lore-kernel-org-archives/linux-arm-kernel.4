@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E57606C132
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F19606A8B6
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cCipS7pT;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Geab3j7d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y538IBi/;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=buUpJwfg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/sHEUsYL1fLrcDtxWkY+EanrRcanvkHZv8Egmu5dY54=; b=cCipS7pTyrlyAV
-	Iacx9ap93Vrk0j4/LtWEilnDQg4cFow9NM6vCsv4xz4CtyMVO3eqP18vMratkQWND62yccCzsb4K9
-	N26tSVVMZiIxXkiG0aPdNMAzLlvb5eWWt6BGhRUFJ3R4xspPCryF6mIjiM/N3WHh5KPgldg7Zuzt6
-	9VoP+/XM7jqkbwahOgKIYyAHMbNkgz7Sb9w4BV5HVdo6rap0Ytco9l+9varCdWeg3FOaCNAQTU8GM
-	iOG8GnN3AB3qZsJ1jgSBGpIwDTeZ4WVx2iCSL/NVXAXn5VTwqxVS3m++gRDYI7lV+3zWXpkzsSTl+
-	UwbQJYIdh2oRhhJ7cHVA==;
+	List-Owner; bh=cX/Tp5audNOVGhUTi+88u7YfX7Lqy3DYIOIRzLRbeyY=; b=Y538IBi/42YXtO
+	xMC/qjGavu8RH6/ssg+TmHxSgGN8+MMm62JZqDd0L1uUm+XnWG89jzyN2tD7To7fKgW3eLNKfkMx/
+	CwuT56T7GbxwKNNvPsKoF+6itC6inessIuc0m9BetCDmRNHBUDKGMpaFRGFSL5Zy214xvrIHLsqnb
+	D5Wd3OwZ+5GrFxflcBifxj5Cirj4c7JPoAD0J0HLbzUMp9TAPPQCzenwhZrgdSebD70xe5OzClsoD
+	g/69spqxSFbI6EG2v1+nXGYGm7aU6kcVf6ywW2QYf1mF/bCzDMj1UH9uSnYVujlZL6LnjQzB64wxO
+	d0xWFpwWGjKwRM7fkcQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2G-000000080Gl-27zM;
-	Wed, 11 Nov 2026 22:43:20 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRH2W-000000080Pj-0UV6;
+	Wed, 11 Nov 2026 22:43:36 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2D-000000080EU-0GqX
+	id 1xRH2M-000000080Ip-1HOm
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:43:17 +0000
+	Wed, 11 Nov 2026 22:43:26 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 848676398F;
-	Wed, 11 Nov 2026 22:43:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C5891F00A08;
-	Wed, 11 Nov 2026 22:43:15 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id BE65063B34;
+	Wed, 11 Nov 2026 22:43:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D25E1F00A06;
+	Wed, 11 Nov 2026 22:43:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794436996;
-	bh=/sHEUsYL1fLrcDtxWkY+EanrRcanvkHZv8Egmu5dY54=;
+	s=k20260515; t=1794437005;
+	bh=cX/Tp5audNOVGhUTi+88u7YfX7Lqy3DYIOIRzLRbeyY=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=Geab3j7dU4DJKwXmvVey6M7rAvj3P5TjLmWO+PqqCSbYz6hLjS34N7PIRdFx5ixJ9
-	 d6Vrlonzq7j6to9H1R8SV4jvj4v22jlxOsT7MAxh/2oC4iroLGqKZhJzrstJV2PIsT
-	 UX27j5pqQgFDDP6yE4GNn8at1anpx603EySecb3dkCCxUkImysT2T2UmlkebN+AQ8v
-	 KNKTggKoXfO73KibAefj5pT2wJA0WazLnRV7dY49Mc0wqcR1fB+UnuhQoFbTO6I6/Z
-	 M2ye1Y6nXoH78a7OlvPBnbfrD2GYwDcRwtKE85T+aMTosN4sVgfGZ04vf5gGKDo6ah
-	 caHpWztyqiBrw==
+	b=buUpJwfgTYkO2rE+o86IT2/I+go5KxcIEK5OFkI5mIqdAWhG0kDrMe8TzKEWNWQAQ
+	 Sb9qv+WZH0H9h1N0aGnNZMYa/pXxFL00OWoytbDOe9uieJr1wXS5Dmoyi1l399+KJf
+	 XTfzvvmuoLASW+nOPknvvpTg/l0fTb8nHEBji1tRn+//ZPoiddA7aWEjtO3CjHvPOW
+	 jMDY8xvAXX8Ub3WvMZXdAvaOv05kHT/Mkea61tHwBDpTt7S4DkHdVWa9xpTdSEOmW0
+	 Uus4porQjBSWgoZoM5ODpN2S1WHLKIr3OH4eGoGcHX7JE/6WNNNWVL7m1rHEfr+pcu
+	 4cfBdWCQooe5Q==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 16:42:59 -0600
-Subject: [PATCH 2/9] arm64: dts: marvell: Add AP806/CP110 syscon
- compatibles
+Date: Wed, 11 Nov 2026 16:43:05 -0600
+Subject: [PATCH 8/9] arm64: dts: marvell: cn9131-cf-solidwan: Drop
+ st,m41t80 reset-gpios
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-marvell-v1-2-938788aff3ae@kernel.org>
+Message-Id: <20261111-dtbs-marvell-v1-8-938788aff3ae@kernel.org>
 References: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 In-Reply-To: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -79,63 +79,26 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add specific compatibles for the AP806 and CP110 system-controller
-syscon blocks that host pinctrl, GPIO, clock and thermal child nodes.
+The part has no reset line nor does the Linux driver handle the property,
+so drop it.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 6 ++++--
- arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 6 ++++--
- 2 files changed, 8 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-index 40e146982921..0da13b2cd1fc 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-@@ -267,7 +267,8 @@ ap_sdhci0: mmc@6e0000 {
- 			};
+diff --git a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
+index b6aeba7d0a61..0b079e1428bf 100644
+--- a/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
++++ b/arch/arm64/boot/dts/marvell/cn9131-cf-solidwan.dts
+@@ -252,7 +252,6 @@ carrier_rtc: rtc@68 {
+ 		pinctrl-names = "default";
+ 		interrupt-parent = <&cp1_gpio1>;
+ 		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
+-		reset-gpios = <&cp1_gpio1 13 GPIO_ACTIVE_LOW>;
+ 	};
+ };
  
- 			ap_syscon0: system-controller@6f4000 {
--				compatible = "syscon", "simple-mfd";
-+				compatible = "marvell,ap806-system-controller",
-+					     "syscon", "simple-mfd";
- 				reg = <0x6f4000 0x2000>;
- 
- 				ap_pinctrl: pinctrl {
-@@ -293,7 +294,8 @@ ap_gpio: gpio@1040 {
- 			};
- 
- 			ap_syscon1: system-controller@6f8000 {
--				compatible = "syscon", "simple-mfd";
-+				compatible = "marvell,ap806-system-controller",
-+					     "syscon", "simple-mfd";
- 				reg = <0x6f8000 0x1000>;
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-index 39599171d51b..9e365af19a0c 100644
---- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-@@ -225,7 +225,8 @@ CP11X_LABEL(rtc): rtc@284000 {
- 		};
- 
- 		CP11X_LABEL(syscon0): system-controller@440000 {
--			compatible = "syscon", "simple-mfd";
-+			compatible = "marvell,cp110-system-controller",
-+				     "syscon", "simple-mfd";
- 			reg = <0x440000 0x2000>;
- 
- 			CP11X_LABEL(clk): clock {
-@@ -277,7 +278,8 @@ CP11X_LABEL(gpio2): gpio@140 {
- 		};
- 
- 		CP11X_LABEL(syscon1): system-controller@400000 {
--			compatible = "syscon", "simple-mfd";
-+			compatible = "marvell,cp110-system-controller",
-+				     "syscon", "simple-mfd";
- 			reg = <0x400000 0x1000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
 
 -- 
 2.53.0
