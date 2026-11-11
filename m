@@ -2,91 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E65B7606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09DEF606A89F
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:11:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zb5JfOww;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=qJY77vGW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5AeOSYW8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=laMYshk/IpUNzmzRXv9ltVTwYgsKb/6KaHojH4Vu9w4=; b=Zb5JfOww55wR5qvwVfl7+XlPx5
-	AaZn53lKsMlG2WOGdUJcZxe7ptQXdsmvWzh+0OjwoDMEU1dPZ3NPV3llYh1iQMhzqUylPRuv5g2YQ
-	uFK3fEzra/GRlUqFdAKIyD/XoQK8xzO3JxGLJkFWI6YmBMYVCj+fCkiwmxSerDiftFMCmH/Q+cKo9
-	/Wlj6WkyRgBZH/IMqushjFD870lHG6RiwEuXMKsIo8hAOVAoF0fouYrx7pNR5FK+p7I/DCKfhOznf
-	bevvfgNI5rGrdyUqfi7CvhM5U/dClGBWTTZUHfBMVFsF/odrOF42gNuSIK6ByAAbAR1AKSxk7fgTB
-	6fFdaNkQ==;
+	bh=ml3p/AxADI1kPwVB1ta2/1LkU6QgLRbPMaZJLAyCaWY=; b=5AeOSYW85hVrBHt6EzzragrEf/
+	2tnXHAWowElceoFN6x8zRqL04hKqzrbi0vNu3QRekNf3KhnsSdDvDLBhuNqrCjnKnu0pORSpIpbiO
+	A8aVrU561LtvrjgL+UiAq8wgLncQvBEuS7VoctWDmHu8j/2nlXS6k9w1GcKFOoueCagMrBZe/jj5l
+	DPtpXPjZihjpMZIT5BNpCOzztEhP4aAYIgyTOI/BY9aIAY8pKi5TgRfV8yy0MtHgK2J+Acj1bMt7k
+	ZMGrkeiZq+GHHNA+uD3S7ztQM3qfdLeZtW8SQOWOBf2a0uyt52yOwmWU23v4NR8VeK6KLBD2KyhuO
+	EvqfRxpQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6CA-00000006R3N-44iJ;
-	Wed, 11 Nov 2026 11:08:50 +0000
-Received: from mail-wm1-x346.google.com ([2a00:1450:4864:20::346])
+	id 1xR6Ej-00000006Rvf-3jnf;
+	Wed, 11 Nov 2026 11:11:29 +0000
+Received: from mail-wm1-f47.google.com ([209.85.128.47])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6C1-00000006QuK-157l
+	id 1xR6Eh-00000006Rv3-1suW
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:08:42 +0000
-Received: by mail-wm1-x346.google.com with SMTP id 5b1f17b1804b1-4b9f7cace4bso28429305e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:08:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794395319; x=1795000119; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=laMYshk/IpUNzmzRXv9ltVTwYgsKb/6KaHojH4Vu9w4=;
-        b=qJY77vGWjX6jgYAdJW3EkYNUvfwK9KF/hFzUSr1oKctHjFDmBQ3mS9g2M8mC3sG3FZ
-         HtEDefJK25s1zlJb60Prf1tCRLsdCyRgVHJvvLeP2urY4ZWgyh33zrIxzUur3cZjta7u
-         9YxlgmguV+6ckedpZAkmnY1ABxI219theZ+erAsBzdSL5ZF+VH6tGP/ZRP+ciHICkO3o
-         ciDGpT3kPjNVYENrg0AhcTARNflf2jSYx6QdnYVI+VuCFXZdeHNkP6x8H6YRAu2e+Ae4
-         MSSsUI3ZXHKjC3AScF+ntIZQ2KOm2nNHG2KcakInKKyI01eUtrNmTJe51HKkPHg9t0G+
-         i6Tw==
+	Wed, 11 Nov 2026 11:11:28 +0000
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4afe2d546f9so38625875e9.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:11:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794395319; x=1795000119;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20260707; t=1794395485; x=1795000285;
+        h=content-disposition:content-type:mime-version:message-id:subject:cc
+         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=laMYshk/IpUNzmzRXv9ltVTwYgsKb/6KaHojH4Vu9w4=;
-        b=Z2o0rlu2PR7PHNMiHm9G/5rrBJtx6NjnsRQ6b8F5pSOyux/8SjC0/EnwQM3izCUjBx
-         91Kx9YixMOFv9GI55lo+97oEKNfz/6Q/PfBegnZMg+Dba7lFfWWSdqlAv//KSkI57TaJ
-         wantUB9IWZDQhDj8wpQPgF9UXaTgsbfzkgw+fCvoWoO/+fcwYrJc0wQx6OgX1rj3Biio
-         dGPCdJyCo1xcVHYXdefcgSQhoQZrDePD+JlAOkGToU3KPvgpcLKx6MDdF661Mekzf9nC
-         8H/JlKQVPgFj87C/fBQugl4WlhnyE++YLZj8l+ZX7qHo9LkQmTA6t7P/M0rOrwBE6NXQ
-         L+dQ==
-X-Forwarded-Encrypted: i=1; AL+hErHIqGjzlQEz9jNPvSqushpPK33gfxQotwFlUj4yv1NrB/hfW2GJpPJFwjvfwz2+IpJ5XoQ8UWzOLIZpXh4LMEI3@lists.infradead.org
-X-Gm-Message-State: APuU4Z/rUcaW7yRusF28bUFd7FBKhEwYB1QCnoi0Rze1gMRP9iA3l3tb
-	9yU9AovJPBSChDM2/U/0EVkB75VrzJFL9NAHn6FkFzR4qAOAHfMHT1vbD7gXQzi32/9IlIkQAFm
-	cvREUk70ls67BKjfH84Qxkw==
-X-Received: from wmbgx4.prod.google.com ([2002:a05:600c:8584:b0:4a1:cf4b:72c2])
- (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:1912:b0:4b2:612d:908c with SMTP id 5b1f17b1804b1-4ba093d13f1mr36933745e9.34.1794395318533;
- Wed, 11 Nov 2026 03:08:38 -0800 (PST)
-Date: Wed, 11 Nov 2026 11:07:36 +0000
-In-Reply-To: <20261111110738.872947-1-vdonnefort@google.com>
+        bh=ml3p/AxADI1kPwVB1ta2/1LkU6QgLRbPMaZJLAyCaWY=;
+        b=B5Qu9++FzrnrozUfW3hpUdc3x7u6OFUS2zfy2P1bD+gbOwkqNaC5N+MKVz1YDT8HIj
+         sU8xqONF1Az0U+ux1riGyCFDHabl3IDYNH/CDCJ90kiBn8b24p0uf1BN0+E/hJ3ZwdRS
+         SY/wQRsy0yoJj97D8ZTjTXJt6mrdczK3uwk3hpbUHK3e126ZXzR3fstYRhIIdlhtoA8A
+         XQhIZIaATZIzmxGfZO3/fH5INe8norvSjlMBadsh74KgOt9GSBH0goq42CLpK+RWGvuT
+         HclZb4Ln++GCc1RBvpG3Skf2fPKaZeUSRINkyj/RUsa/oDwFMQCi4yfmoxFJJYpV6VYD
+         s+2g==
+X-Forwarded-Encrypted: i=1; AL+hErGPCYS5VmgZ4ffOK6DVxto8Q1O+T6D8qowPNR58uIehUW7vxnEBVToY4HN4LczBewEFw7xPSiIWrWeljHg98+53@lists.infradead.org
+X-Gm-Message-State: APuU4Z/hAv4XZ/kUt0Brnpfxt1yK7QsigSEHMXpP5Ie6lPpvdnKlS7jO
+	fp/ORoW5qgitpIauuvA6Gj9mVcm2+Q28tDCuKbQmVk0Ge+nA/+1MIt6rj2wVtlv4GwfKjLv1
+X-Gm-Gg: AYBFou21TCOZvAC7J4dNeJR1X0IWCqIe9ypPFO0lju+c/jEXyQLTfXklxkvuSlkrKEj
+	n6xBHSrQ8vqzQHKjZzUVfmay2frmXufAiUmaX/NNpTjAeObD6xJLdoU9WFY9IRSUBHrJYv7j0Xd
+	WscNkoGQgfOZdEh50V19EP39w9+nj8gepc4dvnSDa4SFqeYKL/nhqqiSk3QH6DPmZ7XxzcGvVaW
+	EKdrFIUnCXxpJ4l1ZSZ17T6vAsiFEIJanvYL5HLSsHwCTAiZC+GHAhCbZCcxKdcERyus2gKi0jK
+	9zGser4BvGdEEEjyavvq2xQGuNLbF6qzkq6gdUMisq6pu/hgyJsSXzciTxJM3W5P38s7fwWvwFQ
+	9OX4ymGLwWeljzpX40jq5Zls3eE2Yo/iT3gKuEgSoPWzMKfAoYrZ7gd1YMLGtHQO6wNAc9RMkfO
+	ylFdGx1mE0SVnHDEA03FudH3b5V/htUwdxn/EUq7m5xZ1O73RPJ5vvPX3O8MEptOaz6lGUDKqWB
+	W36PjIu0i0xcPxAZ/GkkfYBo600A0ya4UPnpEKYDB4Wj86nSbZTD9U8CcawljYnlWIlME0j/6x3
+	uOm0bWAGxc9811Zg4lw82OkzMnBU/aXW+n/MQEHOzANHCBUaZItH7wgtbRDBvmkKHuRJSbGTkIW
+	Lj2OLYqKmerTcwbZsBEZfJyCoPbI3uCOIer8v1aeXw/nPUPesdMaFUbJR2Cxn+8s4
+X-Received: by 2002:a05:600c:a0c:b0:4b8:4af2:88b3 with SMTP id 5b1f17b1804b1-4ba0938b7f3mr40085265e9.22.1794395485364;
+        Wed, 11 Nov 2026 03:11:25 -0800 (PST)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba02043149sm125436565e9.8.2026.11.11.03.11.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 03:11:23 -0800 (PST)
+Date: Wed, 11 Nov 2026 14:11:19 +0300
+From: Dan Carpenter <dan@cryspen.com>
+To: Oliver Upton <oupton@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, Fuad Tabba <fuad.tabba@linux.dev>,
+	Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Karthik Bhargavan <karthik@pereq.eu>,
+	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
+Subject: [PATCH] KVM: arm64: nv: Initialize hw_mmu to NULL for nested vCPUs
+Message-ID: <d3571fb535e1832d2a067649f294b83d824d4350.1794395321.git.dan@cryspen.com>
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261111110738.872947-1-vdonnefort@google.com>
-X-Mailer: git-send-email 2.56.0.542.g3ef89b7020-goog
-Message-ID: <20261111110738.872947-7-vdonnefort@google.com>
-Subject: [PATCH v3 6/8] arm64: Introduce direct_map_is_ptemap()
-From: Vincent Donnefort <vdonnefort@google.com>
-To: catalin.marinas@arm.com, will@kernel.org, rppt@kernel.org, 
-	akpm@linux-foundation.org, m.szyprowski@samsung.com, jenswi@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: mark.rutland@arm.com, robin.murphy@arm.com, hch@lst.de, 
-	ryan.roberts@arm.com, sumit.garg@kernel.org, sudeep.holla@kernel.org, 
-	ardb@kernel.org, thierry.reding@kernel.org, david@kernel.org, 
-	danielmentz@google.com, linux-arm-kernel@lists.infradead.org, 
-	linux-mm@kvack.org, iommu@lists.linux.dev, op-tee@lists.trustedfirmware.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Vincent Donnefort <vdonnefort@google.com>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_030841_322531_4DEEB480 
-X-CRM114-Status: GOOD (  12.83  )
-X-Spam-Score: -9.5 (---------)
+X-CRM114-CacheID: sfid-20261111_031127_494736_EFA6ECCA 
+X-CRM114-Status: GOOD (  15.90  )
+X-Spam-Score: -1.4 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,125 +94,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Regions marked with MEMBLOCK_PTEMAP are mapped at page granularity so
-their direct mapping can be modified without splitting blocks at
-runtime. Introduce direct_map_is_ptemap(), which walks the kernel page
-tables during init to verify that every page in a range is backed by a
-present non-contiguous PTE.
+Before commit 6ded46b5a4fd ("KVM: arm64: nv: Keep reference on stage-2
+MMU when scheduled out"), kvm_vcpu_load_hw_mmu() would set ->hw_mmu on
+every load.  Now it only sets it when it is set to NULL.
 
-Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
+In kvm_vcpu_init_nested() the vcpu->arch.hw_mmu points to &kvm->arch.mmu
+from when it was set in kvm_arch_vcpu_create().
+
+Normally what happens next is a two step process.  KVM_ARM_VCPU_INIT
+calls kvm_reset_vcpu_core() and that sets the vcpu into hyp context
+(vEL2).  Then KVM_RUN calls kvm_vcpu_load_hw_mmu() which doesn't do
+anything.  But that is fine because we are in hyp context and the
+->hw_mmu already is pointing to the correct place.
+
+However if, for example, we are restoring a vcpu that was saved in L2
+context, then the VMM uses KVM_SET_ONE_REG to overwrite the vEL2 state
+that kvm_reset_vcpu_core() set up, and the vCPU is in L2 context when
+KVM_RUN loads it for the first time.  Ideally, kvm_vcpu_load_hw_mmu()
+would set the hw_mm to point to L2's page tables but, since is non-NULL,
+it leaves it as is.  At this point L2 can access L1's memory.
+
+Fix this bug but setting ->hw_mmu to NULL in kvm_vcpu_init_nested() so
+that kvm_vcpu_load_hw_mmu() always sets it correctly on the first load.
+
+Fixes: 6ded46b5a4fd ("KVM: arm64: nv: Keep reference on stage-2 MMU when scheduled out")
+Cc: stable@vger.kernel.org
+Signed-off-by: Dan Carpenter <dan@cryspen.com>
 ---
- arch/arm64/include/asm/set_memory.h |  4 ++
- arch/arm64/mm/pageattr.c            | 65 +++++++++++++++++++++++++++++
- 2 files changed, 69 insertions(+)
+ arch/arm64/kvm/nested.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/include/asm/set_memory.h b/arch/arm64/include/asm/set_memory.h
-index 0091ba12200e..b6ec938703d6 100644
---- a/arch/arm64/include/asm/set_memory.h
-+++ b/arch/arm64/include/asm/set_memory.h
-@@ -3,12 +3,16 @@
- #ifndef _ASM_ARM64_SET_MEMORY_H
- #define _ASM_ARM64_SET_MEMORY_H
+diff --git a/arch/arm64/kvm/nested.c b/arch/arm64/kvm/nested.c
+index 78fa433774c6..60bccb66e52c 100644
+--- a/arch/arm64/kvm/nested.c
++++ b/arch/arm64/kvm/nested.c
+@@ -140,6 +140,8 @@ int kvm_vcpu_init_nested(struct kvm_vcpu *vcpu)
+ 		kvm->arch.nested_mmus_size += S2_MMU_PER_VCPU;
+ 	}
  
-+#include <linux/init.h>
++	vcpu->arch.hw_mmu = NULL;
 +
- #include <asm/mem_encrypt.h>
- #include <asm-generic/set_memory.h>
- 
- bool can_set_direct_map(void);
- #define can_set_direct_map can_set_direct_map
- 
-+bool __init direct_map_is_ptemap(struct page *page, unsigned int numpages);
-+
- int set_memory_valid(unsigned long addr, int numpages, int enable);
- 
- int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages);
-diff --git a/arch/arm64/mm/pageattr.c b/arch/arm64/mm/pageattr.c
-index de7bf95003ea..c7662fd2fcb2 100644
---- a/arch/arm64/mm/pageattr.c
-+++ b/arch/arm64/mm/pageattr.c
-@@ -102,6 +102,71 @@ bool can_set_direct_map(void)
- 		arm64_kfence_can_set_direct_map() || is_realm_world();
+ 	return 0;
  }
  
-+static int __init direct_map_is_ptemap_pud_entry(pud_t *pud, unsigned long addr,
-+						 unsigned long next,
-+						 struct mm_walk *walk)
-+{
-+	if (pud_leaf(pudp_get(pud)))
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int __init direct_map_is_ptemap_pmd_entry(pmd_t *pmd, unsigned long addr,
-+						 unsigned long next,
-+						 struct mm_walk *walk)
-+{
-+	if (pmd_leaf(pmdp_get(pmd)))
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int __init direct_map_is_ptemap_pte_entry(pte_t *pte, unsigned long addr,
-+						 unsigned long next,
-+						 struct mm_walk *walk)
-+{
-+	pte_t val = __ptep_get(pte);
-+
-+	if (!pte_present(val) || pte_cont(val))
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int __init direct_map_is_ptemap_pte_hole(unsigned long addr,
-+						unsigned long next, int depth,
-+						struct mm_walk *walk)
-+{
-+	return -EINVAL;
-+}
-+
-+static const struct mm_walk_ops direct_map_is_ptemap_ops __initconst = {
-+	.pud_entry	= direct_map_is_ptemap_pud_entry,
-+	.pmd_entry	= direct_map_is_ptemap_pmd_entry,
-+	.pte_entry	= direct_map_is_ptemap_pte_entry,
-+	.pte_hole	= direct_map_is_ptemap_pte_hole,
-+};
-+
-+bool __init direct_map_is_ptemap(struct page *page, unsigned int numpages)
-+{
-+	unsigned long addr, end;
-+
-+	if (!pfn_valid(page_to_pfn(page)) || !numpages)
-+		return false;
-+
-+	addr = (unsigned long)page_address(page);
-+	end = addr + PAGE_SIZE * numpages;
-+
-+	/*
-+	 * Called during boot before runtime linear-map splitting, so it is
-+	 * safe to walk the page-table lockless.
-+	 */
-+	return !walk_kernel_page_table_range_lockless(addr, end,
-+						      &direct_map_is_ptemap_ops,
-+						      NULL, NULL);
-+}
-+
- static int update_range_prot(unsigned long start, unsigned long size,
- 			     pgprot_t set_mask, pgprot_t clear_mask)
- {
 -- 
-2.56.0.542.g3ef89b7020-goog
+2.53.0
 
 
