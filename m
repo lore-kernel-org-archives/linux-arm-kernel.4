@@ -2,94 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED579606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90530606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xiGycJcB;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UvdnVImc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PBbyETVF;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WT5zz0SP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=4wr+TVHDubo7QkZWmXYb7l0IP18SbqIz/pFvG9rCN0M=; b=xiGycJcB8VDMlM
-	Ld97u++3Uc916GdDX8rphn79iSuZgfR5G8v8TsypLEHLLapVoEzAKMKBVHpBZasqLOIhqfYmcGfTp
-	8cg+tVIUNBnMMz2V14ymgVwoaLZS7siZo46MrwNJhxZISCQu43CZ++Y6Jb7Zi04nYzBAmhYM//Srg
-	nYN5VBr0lZLXqL6L/h8U+5wb05e2hJyBGrTvCXaE5GwKZ5Kd/s4RQrNC3e+u7vPGag6DM6tVgXm+k
-	zX+e3EPBPtbG9qnTuYVCdR7f8kseGP8/BjpahaDa/Zu4jBunwtruByxYvHL7S53LtRD+M5SDQ0v//
-	RmZo20qtLL4jRWFXG2YA==;
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=a90TSHLYo3ufI2Ap4R5Yr5uKZJ9gis2VXsyUzLmZH4s=; b=PBbyETVFLI6G57HxTecUd8mMe3
+	v0Cds2MGYBI/mfHYjW69zJev7guK07hnNddEgHbf2H7SH1a8ppMX2GGMQ6C0ykUO0JT+MpILJsynD
+	zebP3mBMFhAXpX5Z4JuJZpK+mGk2B6sZTcD3TtMKdr/aIRKzDuJ7unn3HRNKNA9rHtK5P06he6o4s
+	dBavZzu9ZdSCGbW8VOQRGX4bRENVi2qJY2yLQpV/A5gg4pdRYiV2+wTIHnKw4JOiiv+qJJLyGdynX
+	sHZsTo0p8STJySiVU+UiSF03eKARJGDMHp4zyuY0LRFvuVnQfwHW+97/km5pQb+gi8/mm6dtrZ3EU
+	wm6b+A/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8UY-00000006pYM-3U5Y;
-	Wed, 11 Nov 2026 13:35:58 +0000
-Received: from mail-dy1-x1332.google.com ([2607:f8b0:4864:20::1332])
+	id 1xR8Y6-00000006qE2-1jqP;
+	Wed, 11 Nov 2026 13:39:38 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8UU-00000006pXj-3261
+	id 1xR8Y3-00000006qCR-0Tvh
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:35:57 +0000
-Received: by mail-dy1-x1332.google.com with SMTP id 5a478bee46e88-36f8cdd30beso5514382eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:35:54 -0800 (PST)
+	Wed, 11 Nov 2026 13:39:36 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a5720b0a57so18953605e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:39:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794404154; x=1795008954; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=4wr+TVHDubo7QkZWmXYb7l0IP18SbqIz/pFvG9rCN0M=;
-        b=UvdnVImcFY807q8npIAX4fPK2QKOWqMnRhsyT1x1srV0Cf6UuHQ9sz2CxAxkYywK1P
-         qzu0EVjw9TSswOxj85t0KMnr4n57OOUDXX+nGf16iJQ20VgmIjN/38jFuQsx1xkzxx/V
-         aVT/Egloo28qQJO3hvnXH52UQ0MAByc6ppEacsYQ2cvpUBPvq0pUQ2YgZP2Mjp/qokDu
-         zQQGe7S0mWct4KWG7G5vMxBUKiCJB4wcOpCQoq7rS26os1kkbk8t0rZ/CNK5Zc9MghZh
-         OkgkyLtT3xZ/pB+VkZK5b+pzwy0Eq3ld/TUibNXG/HUTdazW6ZU5kBTeaShZG5nLvXcb
-         dn/g==
+        d=gmail.com; s=20260707; t=1794404373; x=1795009173; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=a90TSHLYo3ufI2Ap4R5Yr5uKZJ9gis2VXsyUzLmZH4s=;
+        b=WT5zz0SP0LAJy4vbgruKtkieZNFVfXSAXbdXPcSYUWsxLBdJKo/a82VYEfXXxugvAW
+         uFdv8DhoLmOEDRxffE3bTQKAwtVs+WN817LPM4zN8wsiYL64hbMuk5H0vnzCorjzm7a/
+         XbScLkyLyDoUwttCA2ERB4DSIZeVGqn45IJIp59TqAzvivy8GvKSKdcH2RflUoybwENp
+         fqyygp6g0p4JVTuAnv5qNN0fKinzYnHlue0PtDVCaO3a9lR3TidbLWd/4cNGItxfstTo
+         4YHWrGX9gso7K+H8cIY5Rpxn6A5rC/qnp9csIj2DweHGA9f5IYy3IHI36gAslMc0A3HY
+         kQHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794404154; x=1795008954;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=4wr+TVHDubo7QkZWmXYb7l0IP18SbqIz/pFvG9rCN0M=;
-        b=ZqE8CQgIjjnjCOg6Pn2lAkDF8j+4Xovd5NLs1r9/PW2U797Kk3y2h9kklrDP/+lw4v
-         0GUtUmZOGxnU/m4O3fmROFZL8unang4w2aRAKS6nn6BWmwP/vS3Y1VjpBdYiXf5ylqP9
-         Lkbya1005BzvDh/rimXFTAMB6QVszBoFp36PSemdoorZxjok77CHtxMP5LKXpm9X/nHA
-         t+PyweWCxa3tCpyqYPYD02k6baamlRbLcgpYGYO5Dy+EoZibDSqhZ2dQ7o1JzQ/jMA9G
-         OqeWHJY30rEK5rCQoIFdgF7yvC8MNOski97b6jgsVHDw/WMz0gXErzm+S4n8tF0/Dj1L
-         x1Cw==
-X-Forwarded-Encrypted: i=1; AL+hErG/4WzURwAOTvKBCa8gxKqqs4CxdbcNFdalr5+Wz3K2wsHjssV/DH3QKJwVtDIMRcMsoeipk+ikpOV0VKTEaiGE@lists.infradead.org
-X-Gm-Message-State: APuU4Z+ieq1Nwuleokp5q3SPRgxL4gaf9bogKXIqKrVq2AyVIbFIGfKT
-	mlbnaj7UAylScNvqu4rUVW61yaVEHPeYjmElerWmWjP3DeaEN5iRghmf
-X-Gm-Gg: AYBFou3vdaiEEeyf+5yr42kcX4gNSQqASl+vpxKAyAYMzjIVspCh/elu/zqlyTVhb41
-	6A2EelgEC/LNYaVegdHotO69IjtTNVonveSuOKihE3+KoJfWzmJUAjWxKyuoL7wEzRPkmYqPu5N
-	Tb2VKfh+YcFLjoKSBHiS+52dmEDDX9Px/DCS7rLNgYlQGFF3vzHHiTQZZoQNN0SFq7ZTEf3kWJk
-	vxX5Zoyhz/o3l+ex5CwdIu1i4WAp5yd0B6VUEMuqdPZ6VQquxtF0hXlENg8WFv6/o1OvhLdPHtu
-	u00vgx8f7LD/PLdWckD9qumJRLKXgQy8UOJ5yBmx1wEavMMN4InQY5QnVrtnK9tb1uGv9I29+NB
-	E+H5Q3NrPNMs13OSQQGrHJpUZ6pNe1o1pUDlCZsqyRn/yHp2UVpkl+PG6dLGiM/wYPh+FEj7Nx6
-	JT9NDG7NYV8Dxjl7Zu3QL9j/S0BtszD6I+FwIW90FE+AubgdGS0toqwFOK6z/GP7ArzSZO4B/M+
-	EYBbK5DVvOo47n2EDRm7l3UDlH8WZmhxHfh4rg12hbxLst/L8Ue+58STIpwzVOgjM9WOEj7okOz
-	2R+Akc2QweC8lckMX9Ek2SQi81M=
-X-Received: by 2002:a05:7301:db15:b0:375:b560:a323 with SMTP id 5a478bee46e88-3768366a43cmr3063455eec.1.1794404153449;
-        Wed, 11 Nov 2026 05:35:53 -0800 (PST)
-Received: from [127.0.1.1] ([161.33.196.121])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-375212e9d78sm17768172eec.25.2026.11.11.05.35.50
+        d=1e100.net; s=20260707; t=1794404373; x=1795009173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=a90TSHLYo3ufI2Ap4R5Yr5uKZJ9gis2VXsyUzLmZH4s=;
+        b=u9FtL/A5MaI/d0zUyGmI5Y0peOkueY+lodiByz916RMK38a4BwFGYTxJdkUWBCMhkX
+         KYQ+jOIkNzxnN+5B4wjeUvZZNT9BiE41bWcPlivviEkoJo8ssDIIxfRFKPvngYbqPgrr
+         AKSVUwvQnmsg7iGekMJky1MTeqDp6B+l0gnnxoXdNoa94dk8yQt86wWG/mAHQ6wxeAPT
+         XjPgxf+gTot9oMPtxM6zZNf0NCGSv6KZPg+Oh1f2eTjKQIG4Q5aFB1t12mYs7C4kiwih
+         JRGoo4Qa4AG/WqhVPRHTNfZZmgLFDJXJksb7aEcYK/dbaGYYpZCYNmzySGz8u6LAMnID
+         UWkg==
+X-Gm-Message-State: APuU4Z8qRWF/Lu+7tRNipnmViNcm7wAEYnqaNqTxBMZcIxT1zBStVkLK
+	TnN9wFe4uMJCn2En1E691QvYLGK9MDiWK4vJ4/HnVWDETtEegsY/82SZ
+X-Gm-Gg: AYBFou0C4Ly6Frolymt+YuSVANNMpWDYzh1Csi/ujKPMo9pxQHda8SfxPUN3RgbCBGH
+	H7DCCPKE2STn51NjSMHsUkiaEQLmk9EdI9hok63imwKxB5x4SYvzYzAbqrtbeqj9Pr7I8kjn/Rd
+	899NDWGlQSeM6SONZ9YXX2nmsnF0MgL66nSNLLeZFnpUw/l3h6UcjdFNxHtBq2igKz2vnkbtEQZ
+	jDOvkua4K1+ClAtUbC0dqWJl5VctD8UC1S39LHk5CeahUMK0pMCwSODKXt8qlQGuqVurJygm9zp
+	qIqE5OmLkF1PNRM7pOfvg9OI0+yiE3BN4Btz7YNeK3e33dd6MURkWdz54i+BhW+/K6jCpXbnY3R
+	KLzQkDbLvV7ZYMeC2qO3mj468iZZFgXn9QKwPy4L4fdtYTjx7YAoeQTdRwHFUjoPpk46ar9Q/Iu
+	IiB0afojS+OdXOuxexWZ9rWjEjtPtepKw6rLNe3KuLsEnIChGTCpLFwrOAWH9krB6ZaX1DR9mTP
+	aWx9314JoJDYSEJ+a0+2XyJow+2bwT5l/RRPMcrdioCqOknBxnxXffS7NPi8KhGPd2eq35IJ/WA
+	aQc2zaNsBbfMWfV7EBLCt8T4YrFTItO7F+dIcuCiCqeGl7p2B2BD56si
+X-Received: by 2002:a05:600c:34d4:b0:4ba:cd:f45a with SMTP id 5b1f17b1804b1-4ba09376eb2mr47955805e9.14.1794404372781;
+        Wed, 11 Nov 2026 05:39:32 -0800 (PST)
+Received: from dev.Default ([86.127.229.203])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fea745sm136757365e9.10.2026.11.11.05.39.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 05:35:51 -0800 (PST)
-From: TAKANO Mitsuhiro <takano32@gmail.com>
-To: James Clark <james.clark@linaro.org>
-Cc: linux-perf-users@vger.kernel.org, Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>, John Garry <john.garry@linux.dev>, Ilkka Koskinen <ilkka@os.amperecomputing.com>, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] perf vendor events arm64 AmpereOneX: Fix misspelled PublicDescription keys
-Date: Wed, 11 Nov 2026 13:35:48 +0000
-Message-ID: <179440414898.2353714.11591904089911934138@gmail.com>
-In-Reply-To: <39ac224f-2903-496e-9a08-b4c5a33dc87f@linaro.org>
-References: <20261108183846.3804875-1-takano32@gmail.com> <bf6925f6-613f-4e20-8491-2a99183f34fb@linaro.org> <39ac224f-2903-496e-9a08-b4c5a33dc87f@linaro.org>
+        Wed, 11 Nov 2026 05:39:32 -0800 (PST)
+From: Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Arnd Bergmann <arnd@arndb.de>,
+	=?UTF-8?q?Stefan=20D=C3=B6singer?= <stefandoesinger@gmail.com>,
+	Navid Ghahremani <ghahramani.navid@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 0/2] ARM: l2c: honour status = "disabled" on the L2 cache node
+Date: Wed, 11 Nov 2026 14:39:28 +0100
+Message-Id: <20261111133930.3665251-1-isasmendi.agus@gmail.com>
+X-Mailer: git-send-email 2.30.2
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: kpatch-send.py
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_053554_761876_942778BB 
-X-CRM114-Status: GOOD (  15.38  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_053935_189737_733650AC 
+X-CRM114-Status: GOOD (  13.52  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,41 +100,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-11 10:16, James Clark wrote:
+Hi Russell,
 
-> IMO I would rather have something that's incredibly strict and simple,
-> or nothing at all. Having to work around edge cases and report near
-> misses doesn't sound great.
+l2x0_of_init() finds the L2 cache node by compatible and never looks at
+its status property, so a device tree cannot keep the L2 cache off.
+Patch 2 makes it honour status = "disabled", as the newer cache
+controller drivers in drivers/cache/ already do.  If the firmware left
+the cache enabled it cannot just be ignored, since nothing would
+maintain it, so it is cleaned, invalidated and disabled instead.  Patch 1 moves
+the number-of-ways computation out of the per-part init code so that
+the disable path can reuse it.
 
-Agreed, and the near-miss report is gone.  The series is posted again:
+The user is the ZTE ZX279128S (dual Cortex-A9, L2C-310 r3p3), where a
+PCIe read on one CPU deadlocks against an L2C-310 line operation by
+physical address or a Cache Sync on the other CPU, and the board hangs
+within seconds of WiFi traffic.  Running with the L2 cache off avoids
+it, and that was suggested as the fallback for the platform when a
+lock-based workaround was found too invasive for generic code:
 
-https://lore.kernel.org/linux-perf-users/20261111132622.2349165-1-takano32@gmail.com/
+  https://lore.kernel.org/r/20261110153522.1620088-1-isasmendi.agus@gmail.com
 
-The check is now a fixed list of the 51 keys a json object under arch/ may
-carry: 47 of them jevents.py reads, one more metric.py reads, and three are
-read by nothing although the tables hold them (Counter, CountersNumFixed,
-CountersNumGeneric).  A key outside that list is reported with the object
-that carries it.  There is no cut-off, no similarity and nothing that
-depends on what a run of the generator happened to read, so there is no
-edge case left to work around.
+Whether the ZX279128S device tree disables the cache is a decision for
+that thread; this series only makes the property work.
 
-It still runs as "make check-jevents" and as a perf test rather than as part
-of the build, and on the tree today it reports exactly the two misspellings
-we have, the 16 in this file and 3 in the AMD tables, so it wants those
-fixes in front of it or together with it.
+No in-tree L2 cache node is disabled, so existing device trees are not
+affected.  Tested on the ZTE ZXHN H3600 (not in mainline yet, on top of
+Navid Ghahremani's v2 platform series): with the node disabled the cache
+stays off (control register 0) and the system runs normally; with it
+enabled the cache comes up as before; the firmware-enabled path was
+exercised with a test-only change that enables the cache before the
+check.  Builds without warnings with W=1 (board config and
+multi_v7_defconfig); checkpatch --strict is clean.
 
-The one thing I did not do is put the list in a json schema file, because
-perf's build would then require jsonschema, which it does not use today and
-which is not in every builder's python.  The list holds the same names that
-a schema with "additionalProperties": false would say.  If you would rather
-have the schema file and take the dependency, it is a small change from
-here.
+Agustin Santiago Isasmendi (2):
+  ARM: l2c: factor out the number of ways
+  ARM: l2c: honour status = "disabled" on the L2 cache node
+
+ arch/arm/mm/cache-l2x0.c | 85 ++++++++++++++++++++++++++++------------
+ 1 file changed, 59 insertions(+), 26 deletions(-)
+
+
+base-commit: c03c1a14507dfaf8b856c2608f9ac216021fc222
+-- 
+2.30.2
 
 
