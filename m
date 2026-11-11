@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D198B606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 05:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3399606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 05:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OakjnB+p;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=gXDqhITJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4541nwsy;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=bGe5wGQi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=eLmVTYOfswJ+cGfMoCZUFy1VK5TCu4veYLS+0REM4CM=; b=OakjnB+pUP5qwi4CYO+O4DwKKk
-	pvpnfAY/V1REkjBRpzRBiLQIhSxxsJXCLJu50eue+AT9g25+KdHPEhG2pVlWitnpdCjw6tSVEPxVf
-	LTB+C3sZBARC24I4uZVjk7NlRYAI4992fzVsaC3kl0lOZCfH/nsRRyj4DgazCeCV3+KwAUN2Nktbw
-	bS/LOkl1GjWy7m3ly5Bcr7DrBl9+VlEQo3rg1M3Y4wtrhGz+x1idV+RJ+/cxxhz/bYDkhF2iFezmM
-	61+ikWbztNXPSuR+77TeQZCLKy6iGKJ5VFeCHwQXUH8micNxxcMOsVo8E8udIF6gtxQeEGUI+HXGP
-	SM2VOPWA==;
+	bh=lhosHtg8wPbXMxrTNQaWwGDOdBWHTWddIh+Zj1SEb0g=; b=4541nwsyMJcYrjqScBMydWSX7/
+	45kYI3F+8mO4h2MPOLM67n9dojpgtld5JyTYrvFd0jdAKrgAQJ+tRsnLQqiIEhUtTGWryHxpm6w3s
+	42p7g3CbeTKKa7jae+JRcIrnjrtp3Uzayh0Hl27oWRocmvnQ0OLCbPBLjzO247IPsKH+tZxZNheoG
+	KEV1kAITThlcr60n9yyVVFTLUoB+FhFNi+pHOFXZfhAGrHaiqSCvoeZPTLK+g3wG669lW3gD/WmqX
+	Q75/gRZLwE4n7biqusx191piexdrnaNkuFfojSQxpntas6+kHw/MKq/gQngZ3tPpqDyHQ3KZCKyum
+	FmHtC1Ww==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR117-00000005fsF-31TB;
-	Wed, 11 Nov 2026 05:37:05 +0000
-Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
+	id 1xR19p-00000005gD6-3KSS;
+	Wed, 11 Nov 2026 05:46:05 +0000
+Received: from mail-ed1-x546.google.com ([2a00:1450:4864:20::546])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR114-00000005fra-0pzW
+	id 1xR19n-00000005gCM-2d7D
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 05:37:03 +0000
-Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-4a359b714f8so21270045e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 21:37:01 -0800 (PST)
+	Wed, 11 Nov 2026 05:46:05 +0000
+Received: by mail-ed1-x546.google.com with SMTP id 4fb4d7f45d1cf-6b6723180baso2988398a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 21:46:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794375420; x=1794980220; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794375961; x=1794980761; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=eLmVTYOfswJ+cGfMoCZUFy1VK5TCu4veYLS+0REM4CM=;
-        b=gXDqhITJbQMkfj0LYTWciNSCN24yua84bpolJ86IFTFYY6ddWs+ay97itd8LtX4Rs0
-         zWzZmr0J2kEGNBdO8ijJG1HrfRFj2mZ+ekZCnHjKaADgNYKcGFy46p9DpO4n4xVx2Icy
-         InYzIQKut4sD8OJBuiZvewJmgEUMnnq/baH7FtndqMcSrvBPRTS7Kd5wARZLLA27Vhew
-         dUOBYHTmQVyOcIG5vKpbidNsIPLNqPbZMhgIzrQCbURu8W3PixYDaTCg4Gl+i7GZ3G/j
-         jUCIFuX8DzuqZV7IsEXwHkmKocOzfu2u8hG6B7c2l3jXIPILJgHcv5baTlxrgDgHuFv6
-         0+Qg==
+        bh=lhosHtg8wPbXMxrTNQaWwGDOdBWHTWddIh+Zj1SEb0g=;
+        b=bGe5wGQixGcOTQxTG324YG3eDPSbGXJjm6NWOePqLqC+6KPbs9jYV3Zi+OrUBwGUqv
+         /rMXyfsKr4qtLHka0lu5mTLwHknpMExWOiXEh7mKWfJRT0d3D0Wt0NjNPJdJD1SVb/th
+         3xU6wZGZ8EO//Qd3Gv8UoWVEK1BJxhONtpbC4DZje8HrkjVAbThoRwls/pKMeSZWMiJN
+         QZeYoupvfpFV60WAIH7mw584rsQ46C38cV5ZawWz9rkI28qk9QL6sxqxl9U3UYRoJO6B
+         JhvcM5kUaThkvPHwcRpAhYND1fnolc++y/gSoXRGKmGWKla/FpHbbalmzbCpSMe+Uvc3
+         VZWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794375420; x=1794980220;
+        d=1e100.net; s=20260707; t=1794375961; x=1794980761;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=eLmVTYOfswJ+cGfMoCZUFy1VK5TCu4veYLS+0REM4CM=;
-        b=vmqKhDuap9afkU9X/3n3ZjHvHUymQWBCj5nIIogU1aItDpEYJHDlbE9zt2M9t0LVCi
-         1rZMFx8DEwfaNvLVqSDYyNniDu0VY93osHj6wpwNXw1YYHSUdaQk1uITVTOUpIhuM5aF
-         EjJwfaFNF/oyTdOYpZDLdNliDtiklidtkjkqN4b+oqiaxl33/T4xIfjrY4LQ69VOvaH+
-         jo9SL1UidMUOv6mLdpPDvKzHPcVwSq+Fff9+nH+ZuVtM5GFK0E4cNpPlvhx/UtwM17fH
-         I5bfmczABMkrkXLAlJougOrJh1BxCyUByTIbio4hbSdIqljT9MJLdYglj1YLgq4ml44I
-         KtsQ==
-X-Forwarded-Encrypted: i=1; AL+hErG6IDyi9S3g3HcJ8JDaQYPSo7zLN4jEd/SE6YzcfSWJtTERhWztaCWGX0uql131lwhc0mbR4vth29qqFzT5c4jj@lists.infradead.org
-X-Gm-Message-State: APuU4Z+ZMEkQUqksnPVfdYY8OkBXVSp/UJprqO1WkEbhEgbRetwIkuVZ
-	AmUOX3WVr3e/OGYJ2jaUZn0IKu1mKKdqVtiOLLjdMiRlj5uXk3MdyonTvMJ44XQgk896mQOAd7E
-	f/5aH73ANnf/GhB1cGg==
-X-Received: from wmsl10.prod.google.com ([2002:a05:600c:1d0a:b0:4a3:5d5b:9ad9])
+        bh=lhosHtg8wPbXMxrTNQaWwGDOdBWHTWddIh+Zj1SEb0g=;
+        b=t9aqcLx2cF2+ULwXebE0NWvNXNrWZnIeDxplEe5Nih3gWT98G4PGeBOiJ2Xhhz22dG
+         6CIPBIeW45pCeS81i5nO+xSVqk/wHgeP5jWfXLNdiytDOeWqkGVWgC2B8MgBlhjxVR1x
+         sEr9fzoH7OjP0Ez09RW3gijejXKMaicqFsfLU2orHYCpwORlnMjiRJhltDrFbnJVxQFZ
+         q8lvHhWnF7SwrUzWkoXmCYFLIMCb6a6JThwNWFkg1MsCNvTfFAg0yBp72QaNvyqtU8oy
+         lwIqnAXME8Dp6j1ogMbYTEEs+Xt37m5ih3RlGSZAhfCkC/8vHK43VFzAg9UZ6zsw97c2
+         d5zg==
+X-Forwarded-Encrypted: i=1; AL+hErEVRHFLI3OvUZ0LSpsmwb26KdUJcaavARneN4zjbzuw8Mz+Td8xrV7mRoHg1T5vHXrjHJ/OtTk4x4VTV4DPacvv@lists.infradead.org
+X-Gm-Message-State: APuU4Z97/DzlUBeCX7EL/gBl8l88P050xasDTKQ9/MXccIjwAeouPzs5
+	yD9+UCsSbHLhJp4rUs7ibpb7dT3jU9NQ6pC3AsscF3W4CjIW3gJVqdx68Yyxv7M07277WfHH5OF
+	AgRQzsSlZkYdfE0moBw==
+X-Received: from eduw9.prod.google.com ([2002:aa7:dcc9:0:b0:6aa:448f:b887])
  (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:810c:b0:4a1:fbd2:f689 with SMTP id 5b1f17b1804b1-4ba09379cc1mr15865455e9.7.1794375419814;
- Tue, 10 Nov 2026 21:36:59 -0800 (PST)
-Date: Wed, 11 Nov 2026 05:36:58 +0000
-In-Reply-To: <DMRJJX2ZSYQT.2U1TTBGE7R4RA@soleen.com>
+ 2002:a05:6402:b18:b0:6b1:c1e5:a85b with SMTP id 4fb4d7f45d1cf-6b777342a32mr753053a12.3.1794375960798;
+ Tue, 10 Nov 2026 21:46:00 -0800 (PST)
+Date: Wed, 11 Nov 2026 05:45:59 +0000
+In-Reply-To: <DMRK0PU0VCN3.15F59WLOQ05P4@soleen.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com> <DMRJJX2ZSYQT.2U1TTBGE7R4RA@soleen.com>
-Message-ID: <9huz5wy4q685.fsf@tarunix.c.googlers.com>
-Subject: Re: [PATCH v4 00/19] kho, liveupdate: Add feature header for
- fine-grained ABI compatibility
+References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-3-tarunsahu@google.com>
+ <DMRK0PU0VCN3.15F59WLOQ05P4@soleen.com>
+Message-ID: <9huz1p8rrkdk.fsf@tarunix.c.googlers.com>
+Subject: Re: [PATCH v4 02/19] kho: block: Record the entry size in the block header
 From: tarunsahu@google.com
 To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
 	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
@@ -86,8 +86,8 @@ Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org,
 	linux-mm@kvack.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_213702_296878_B351550C 
-X-CRM114-Status: GOOD (  21.45  )
+X-CRM114-CacheID: sfid-20261110_214603_714088_29C7A44B 
+X-CRM114-Status: GOOD (  38.52  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,116 +99,216 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 "Pasha Tatashin" <pasha.tatashin@soleen.com> writes:
 
 > On Tue Nov 10, 2026 at 12:01 AM EST, Tarun Sahu wrote:
->> This v4 of feature flags support for LUO and KHO is no longer an RFC.
-...skip
+>> Subsystems using the KHO Serialization Blocks framework currently do
+>> not record the serialized entry size in the block header. The entry size
+>> is only known to individual callers, which must track and store it in an
+>> owning serialized data structure. If a newer source kernel adds fields
+>> to an entry, the changed entry size breaks the stride when an older
+>> target kernel iterates over blocks.
 >>
->> Each serialized structure is preceded in memory by struct kho_ser_hdr
->> and registered via DECLARE_KHO_SER(name, payload_size, nr_required,
->> nr_optional). Both struct kho_kexec_metadata and struct pci_dev_ser are
->> explicitly marked with __aligned(8) because their largest member is a
->> 32-bit integer, and 8-byte alignment is required by DECLARE_KHO_SER() so
+>> Add an entry_size field to struct kho_block_header_ser. On the outgoing
+>> side, record bs->entry_size into every block header during allocation.
+>> During restoration, derive the entry stride directly from the block
+>> header instead of relying on caller-supplied dimensions. The
+>> kho_block_set_init() interface remains unchanged. A zero entry size,
+>> or one that differs between blocks of a set, is rejected during
+>> restoration.
+>>
+>> This change modifies the serialized layout of struct kho_block_header_ser
+>> and shifts the offset of serialized entries within preserved blocks.
+>> Bump KHO_FDT_COMPATIBLE from kho-v4 to kho-v5 so that pre-v5 and post-v5
+>> kernels cleanly reject mismatched handover state during boot. Also
+>> update the stale compatible string example in the documentation.
+>>
+>> Suggested-by: Pratyush Yadav <pratyush@kernel.org>
+>> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
+>> ---
+>>  include/linux/kho/abi/block.h          | 10 ++++----
+>>  include/linux/kho/abi/kexec_handover.h |  6 ++---
+>>  kernel/liveupdate/kho_block.c          | 32 +++++++++++++++++++++++---
+>>  3 files changed, 38 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/include/linux/kho/abi/block.h b/include/linux/kho/abi/block.h
+>> index 36bdbaf9b3b8..a40b0906c821 100644
+>> --- a/include/linux/kho/abi/block.h
+>> +++ b/include/linux/kho/abi/block.h
+>> @@ -40,9 +40,10 @@
+>>  
+>>  /**
+>>   * struct kho_block_header_ser - Header for the serialized data block.
+>> - * @next:  Physical address of the next struct kho_block_header_ser.
+>> - * @count: The number of entries that immediately follow this header in the
+>> - *         memory block.
+>> + * @next:       Physical address of the next struct kho_block_header_ser.
+>> + * @count:      The number of entries that immediately follow this header in the
+>> + *              memory block.
+>> + * @entry_size: The size in bytes of each serialized entry in the block.
+>>   *
+>>   * This structure is located at the beginning of a block of physical memory
+>>   * preserved across a kexec. It provides the necessary metadata to interpret
+>> @@ -51,9 +52,10 @@
+>>  struct kho_block_header_ser {
+>>  	u64 next;
+>>  	u64 count;
+>> +	u64 entry_size;
+>>  };
+>>  
+>> -static_assert(sizeof(struct kho_block_header_ser) == 16);
+>> +static_assert(sizeof(struct kho_block_header_ser) == 24);
+>>  static_assert(!IS_ENABLED(CONFIG_64BIT) ||
+>>  	      __alignof__(struct kho_block_header_ser) == 8);
 >
-> I do not believe we need __aligned(8), because the struct immediately 
-> follows the newly introduced kho_ser_hdr, which is 8-byte aligned. 
-> However, we should verify that the combined size (header + payload) 
-> is 8-byte aligned.
+> The above change goes away once my comment on the previous patch 
+> is addressed.
 
-Yes, we can check total size alignment and remove the __aligned(8). I
-will update it.
+Ack.
+
+>
+>>  
+>> diff --git a/include/linux/kho/abi/kexec_handover.h b/include/linux/kho/abi/kexec_handover.h
+>> index 2f4fb9c63942..6f12f5037ea5 100644
+>> --- a/include/linux/kho/abi/kexec_handover.h
+>> +++ b/include/linux/kho/abi/kexec_handover.h
+>> @@ -41,7 +41,7 @@
+>>   *   restore the preserved data.::
+>>   *
+>>   *     / {
+>> - *         compatible = "kho-v3";
+>> + *         compatible = "kho-v5";
+>>   *
+>>   *         preserved-memory-map = <0x...>;
+>>   *
+>> @@ -62,7 +62,7 @@
+>>   *     };
+>>   *
+>>   *   Root KHO Node (/):
+>> - *     - compatible: "kho-v3"
+>> + *     - compatible: "kho-v5"
+>
+> These are just examples, don't update them.
+>
+Got it.
+
+>>   *
+>>   *       Identifies the overall KHO ABI version.
+>>   *
+>> @@ -90,7 +90,7 @@
+>>   */
+>>  
+>>  /* The compatible string for the KHO FDT root node. */
+>> -#define KHO_FDT_COMPATIBLE "kho-v4"
+>> +#define KHO_FDT_COMPATIBLE "kho-v5"
+>>  
+>>  /* The FDT property for the preserved memory map. */
+>>  #define KHO_FDT_MEMORY_MAP_PROP_NAME "preserved-memory-map"
+>> diff --git a/kernel/liveupdate/kho_block.c b/kernel/liveupdate/kho_block.c
+>> index 0d2a342ef422..9b148009085e 100644
+>> --- a/kernel/liveupdate/kho_block.c
+>> +++ b/kernel/liveupdate/kho_block.c
+>> @@ -16,6 +16,12 @@
+>>   * array of serialized entries. Multiple blocks are linked together via a
+>>   * physical pointer in the header, forming a linked list that can be easily
+>>   * traversed in both the current and the next kernel.
+>> + *
+>> + * Each block header also records the size of its entries. A newer kernel may
+>
+> "newer kernel" does not make sense in the documentation comment, as any 
+> kernel can do that. I would suggest "outgoing kernel." By the way, in 
+> this series you use the terms "source" and "destination" kernel, whereas 
+> traditionally we have used "outgoing" and "incoming." While both 
+> conventions work, it would be preferable to maintain consistency.
+>
+
+I used source and target, based one of the discussion we had in
+hypervisor liveupdate meeting. But, for consistency, I agree, I will
+change it to outgoing and incoming.
 
 ~Tarun
 
+>> + * append fields to an entry, so the kernel that writes a block and the kernel
+>> + * that reads it can use different entry sizes. The reader steps through the
+>> + * entries with the recorded size, so every entry is found, and it does not read
+>> + * beyond the recorded size of an entry.
+>>   */
+>>  
+>>  #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+>> @@ -110,6 +116,8 @@ static int kho_block_set_grow_one(struct kho_block_set *bs)
+>>  	if (IS_ERR(ser))
+>>  		return PTR_ERR(ser);
+>>  
+>> +	ser->entry_size = bs->entry_size;
+>> +
+>>  	err = kho_block_add(bs, ser);
+>>  	if (err) {
+>>  		kho_block_free_ser(bs, ser);
+>> @@ -242,7 +250,8 @@ static bool kho_block_set_is_cyclic(struct kho_block_set *bs)
+>>   *
+>>   * Restores a serialized block set from a given physical address. The caller is
+>>   * responsible for ensuring that the block set @bs has been allocated and
+>> - * initialized prior to calling this function.
+>> + * initialized prior to calling this function. The entry size and the number
+>> + * of entries per block are taken from the restored block headers.
+>>   *
+>>   * Return: 0 on success, or a negative errno on failure.
+>>   */
+>> @@ -250,6 +259,7 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
+>>  {
+>>  	struct kho_block_header_ser *ser;
+>>  	u64 next_pa = head_pa;
+>> +	u64 entry_size = 0;
+>>  	int err;
+>>  
+>>  	/* Restored block sets use size from the previous kernel */
+>> @@ -264,8 +274,21 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
+>>  	}
+>>  
+>>  	while (next_pa) {
+>> +		u64 capacity;
+>> +
+>>  		ser = phys_to_virt(next_pa);
+>> -		if (!ser->count || ser->count > bs->count_per_block) {
+>> +		if (!ser->entry_size || (entry_size && ser->entry_size != entry_size)) {
+>> +			pr_warn("Block contains invalid entry size: %llu\n",
+>> +				ser->entry_size);
+>> +			err = -EINVAL;
+>> +			goto err_destroy;
+>> +		}
+>> +		entry_size = ser->entry_size;
+>> +		bs->entry_size = entry_size;
+>> +		capacity = (KHO_BLOCK_SIZE - sizeof(*ser)) / bs->entry_size;
+>> +		bs->count_per_block = capacity;
+>> +
+>> +		if (!ser->count || ser->count > capacity) {
+>>  			pr_warn("Block contains invalid entry count: %llu\n",
+>>  				ser->count);
+>>  			err = -EINVAL;
+>> @@ -370,7 +393,10 @@ void *kho_block_set_it_reserve_entry(struct kho_block_set_it *it)
+>>   * @it: The block iterator.
+>>   *
+>>   * Iterates through previously written entries during state deserialization,
+>> - * respecting the actual count stored in each block's header.
+>> + * respecting the actual count stored in each block's header. Entries are
+>> + * spaced by the entry size recorded by the kernel that wrote them, which can
+>> + * be smaller or larger than the caller's structure. Fields beyond that size
+>> + * are not present in the entry.
+>>   *
+>>   * Return: A pointer to the next serialized entry, or NULL if all serialized
+>>   * entries have been read.
 >
->> trailing feature payloads remain 8-byte aligned across 32-bit and 64-bit
->> kernels.
->>
->> Also, Introduce DECLARE_KHO_SER_HDR(ser_name, fhdr) which is just the
->> wrapper for struct kho_ser_hdr fhdr, This makes it clear
->> To which ser_name, this fhdr belongs to.
->>
->>
->> Series structure:
->>   - Patch 1 removes __packed from KHO, LUO, and memfd ABI structures and
->>     asserts their natural size and 8-byte alignment under CONFIG_64BIT.
->>   - Patch 2 records entry_size in struct kho_block_header_ser so the
->>     incoming kernel derives the entry stride from the block header.
->>   - Patch 3 converts callers that embedded struct kho_vmalloc by value
->>     (memfd_luo and test_kho) to reference it via DECLARE_KHOSER_PTR so
->>     struct kho_vmalloc can grow independently.
->>   - Patch 4 converts struct luo_session_ser to reference
->>     struct luo_file_set_ser via DECLARE_KHOSER_PTR instead of embedding
->>     it by value so both structures can grow independently.
->>   - Patch 5 introduces struct kho_ser_hdr, DECLARE_KHO_SER(),
->>     DECLARE_KHO_SER_HDR(), and the serialization/validation helpers in
->>     include/linux/kho/abi/feature.h.
->>   - Patches 6-18 add the feature header to each of the 13 KHO, LUO, PCI,
->>     and memfd serialized structures in independent patches.
->>   - Patch 19 adds a KUnit test suite (kho_feature) covering the feature
->>     header helpers.
->>
->> [1] https://lore.kernel.org/all/20260903023452.721732-1-loganodell@google.com/
->> [2] https://lore.kernel.org/all/20261021152527.375070-1-tarunsahu@google.com/
->> [3] https://lore.kernel.org/all/20261026174217.603114-1-tarunsahu@google.com/
->>
->> Tarun Sahu (19):
->>   liveupdate, kho: Remove __packed from KHO, LUO and memfd ABI
->>     structures
->>   kho: block: Record the entry size in the block header
->>   kho, memfd_luo: Reference struct kho_vmalloc via serialized pointer
->>   liveupdate: Reference struct luo_file_set_ser via serialized pointer
->>   kho: Add feature header for fine-grained ABI compatibility
->>   kho: kexec_metadata: Add the feature header
->>   kho: vmalloc: Add the feature header
->>   kho: block: Add the feature header to blocks
->>   liveupdate: Add feature header to struct luo_ser
->>   liveupdate: Add feature header to struct luo_session_ser
->>   liveupdate: Add feature header to struct luo_file_set_ser
->>   liveupdate: Add feature header to struct luo_file_ser
->>   liveupdate: Add feature header to struct luo_flb_header_ser
->>   liveupdate: Add feature header to struct luo_flb_ser
->>   PCI: liveupdate: Add feature header to struct pci_ser
->>   PCI: liveupdate: Add feature header to struct pci_dev_ser
->>   mm: memfd_luo: Add feature header to struct memfd_luo_ser
->>   mm: memfd_luo: Add feature header to struct memfd_luo_folio_ser
->>   kho: Add KUnit test for the feature header helpers
->>
->>  MAINTAINERS                            |   1 +
->>  drivers/pci/liveupdate.c               |  99 +++----
->>  include/linux/kexec_handover.h         |  15 +-
->>  include/linux/kho/abi/block.h          |  21 +-
->>  include/linux/kho/abi/feature.h        | 372 +++++++++++++++++++++++++
->>  include/linux/kho/abi/kexec_handover.h |  11 +-
->>  include/linux/kho/abi/kexec_metadata.h |  17 +-
->>  include/linux/kho/abi/luo.h            | 102 ++++---
->>  include/linux/kho/abi/memfd.h          |  27 +-
->>  include/linux/kho/abi/pci.h            |  66 ++---
->>  include/linux/kho_block.h              |   8 +-
->>  kernel/liveupdate/kexec_handover.c     |  98 ++++---
->>  kernel/liveupdate/kho_block.c          | 172 +++++++++---
->>  kernel/liveupdate/luo_core.c           |  43 +--
->>  kernel/liveupdate/luo_file.c           |  58 ++--
->>  kernel/liveupdate/luo_flb.c            |  69 +++--
->>  kernel/liveupdate/luo_internal.h       |   9 +-
->>  kernel/liveupdate/luo_session.c        |  55 +++-
->>  lib/Kconfig.debug                      |  13 +
->>  lib/test_kho.c                         |  38 ++-
->>  lib/tests/Makefile                     |   1 +
->>  lib/tests/kho_feature_kunit.c          | 184 ++++++++++++
->>  mm/memfd_luo.c                         | 183 ++++++++----
->>  23 files changed, 1271 insertions(+), 391 deletions(-)
->>  create mode 100644 include/linux/kho/abi/feature.h
->>  create mode 100644 lib/tests/kho_feature_kunit.c
+>
+>
+>
 >
 > -- 
 > Pasha
