@@ -2,77 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FF9606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8B9606A897
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:31:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c74dCYkW;
-	dkim=pass (2048-bit key) header.d=bytesatwork-ch.20260707.gappssmtp.com header.i=@bytesatwork-ch.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=L1JR5QRb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4YVursme;
+	dkim=pass (2048-bit key) header.d=bytesatwork-ch.20260707.gappssmtp.com header.i=@bytesatwork-ch.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=bw5XsoLy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=G8qkZnmaQmgcsJmklkVA9+lzZWNtRCGmSFYQH3Mj5xE=; b=c74dCYkW7uSVpT
-	51/QEq3EWBSp60CtBJic13EHoGgOZgfLhyl0DHubgY2DeugP/9EXdOC4SDgRRUnHiRUUo6f9P1u6e
-	KefpvOf5TU583NL/6jc31jqXQopPKcZ3ZdxIujtzxAqT7kihw6VJed1ZJaztW9fUpSLFPvTiNd9OW
-	pIWKREw1V+dKPZRmzrAFlSpxQcCyzCoKogcMgS7A1kwtCsi17j0l6d+rlbOXxgvUVJKpM7HN/bCY9
-	ruZTdxNr4etcCspGFRWb4plsJqfcxnvfgOuBshQQfIAbxH/fVZo94fA997dlAu4MNwnd3YQfShQqt
-	FZw+2j2rBruuINFIf5jA==;
+	List-Owner; bh=gDkCPzQ/fTCTlPmLlCXyz89P1VioVc68pLa4Q0ahyVc=; b=4YVursme9au68W
+	Rn70b9HDO7BIwRocw+azx4UeO9JBGHfNpNsJ9U2bA8KPzhETvlCi91hs3mOve7Q8tigRepSP/XZPd
+	6Jf8sNqXtuv8KSn7bYAHd3kGHgfIoY0HajWssBkzdWq4UpJECRC2jkp1sEmJMxYmH8OtnrhWZgsn7
+	IX3xKgFub//0/y9bCQMakdmmt0X/MwVPhyHlEvRcmcBjQXQpMQREhKyRfWS8FpkUkhudN8Tl6Ygso
+	qbbzZwG3aokMSNhE1QbFSagw/sXcA+grZoPDkF39fk8CbO8z/RH40aTZTZeWBOloZgJvN405/ulLf
+	fnmulpwvRcpo7d4q/gCg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8QZ-00000006or2-1JCl;
+	id 1xR8QZ-00000006orE-1xSP;
 	Wed, 11 Nov 2026 13:31:51 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+Received: from mail-wr1-x429.google.com ([2a00:1450:4864:20::429])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8QU-00000006ooL-0qD5
+	id 1xR8QV-00000006op5-410l
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:31:47 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so38424845e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:31:45 -0800 (PST)
+	Wed, 11 Nov 2026 13:31:49 +0000
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-48fd2e38825so1918569f8f.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:31:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytesatwork-ch.20260707.gappssmtp.com; s=20260707; t=1794403904; x=1795008704; darn=lists.infradead.org;
+        d=bytesatwork-ch.20260707.gappssmtp.com; s=20260707; t=1794403906; x=1795008706; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=G8qkZnmaQmgcsJmklkVA9+lzZWNtRCGmSFYQH3Mj5xE=;
-        b=L1JR5QRboULGx5cHz8W1hrfH4Nsjdnvqxcm0GohAy+qsCym0VLSPyUYlNKq50s8sHf
-         XbA2gaS/AKXXmmpMnAvrynrgdAK/ZZM/iydl0okvm1MlxPMy36K0QjfeWM6pIUyLITmT
-         EWWrKyBBMFw9gQh8yUSeGUGH5a+9UEVfuVaZ3aMRgBpeZ5n0/3GZatVOqPStCHWBodK4
-         M4W02izMfHTIeLAYn8pklqknRBzPMzYWVLplzYLhr/rt4tdq1eazynBCWmZjNOwpcemT
-         UjmdbfUYU9BEJhOOLY4q5ytk3Q0CBthQVww4f4utaxxZdFNl/nmYcnDHXRuD8wrf6Uqu
-         Z4Zw==
+        bh=gDkCPzQ/fTCTlPmLlCXyz89P1VioVc68pLa4Q0ahyVc=;
+        b=bw5XsoLyaIhSrLoZLzIgZ5WUHNQfUJuE5TP4QielsGZ23TchqC4eQEtBEQNAdthzdu
+         33x9j0IFJVHKh797B6M3mcobSY3jzqXZj7t5LQgG5JjBTRTAKTmvIEdgklne4fXDveK+
+         60MFzMKq+xz/6vsnEHjzg/TUnf+S/TlYfzuYK+PvXjVojJuxZMWEao4w5msZONuVDyfG
+         miDTWQOofXZbZMYF5zSgmTa93S4QVc1jTiejCZIx5hl+gbQAN91gjyJ3QfbDd/wV4N6g
+         Fs+HNmCH52KqQNMLLDxjn4PEaDUrgUGouTr2zQ3I50+w76XpRDWkL6eXYbENtIstAdRe
+         cVKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794403904; x=1795008704;
+        d=1e100.net; s=20260707; t=1794403906; x=1795008706;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=G8qkZnmaQmgcsJmklkVA9+lzZWNtRCGmSFYQH3Mj5xE=;
-        b=wM/8yv8VUcX3DgO5fKjG4hQCxCPjRpZd6ZCAxFnaLLPKS5d/IGEsUDn3gKRDqrS3Ld
-         Gu0xkpfo2tSUdOk8V6eOpkXb256hOoSCPSDT9cB9Yd90dVAPJQOFn9jq+GZcU/8V9Hzj
-         TqSkr/vDWmB7JqxipIgtTjUVXtx70NZpipA7o7ZL2QuPrpvKXtF6d2HR1xHvdqlG2Bcx
-         249c/TyCukklSymfXU53rcD13YhUh4dXb/Pln9OfazDkLu4DStpdawYcMvdjeY/lBZFr
-         bbAFwGcNDt3Ve6fv8q51/JOQWteLY8cK4UgvFnYJvK6LZhYpQ3Jfd5QUoEXYCv1+bhWo
-         RFTA==
-X-Forwarded-Encrypted: i=1; AL+hErGgMgme8Yc3eSFfvCYReJgjK1YqeMgeHPCvhT/XaLbdzaCEtgWkk/zV9m3V6kam7bJv9D7KlFVHm0a1DgSZVJ77@lists.infradead.org
-X-Gm-Message-State: APuU4Z8FJhGCwVQtKswXv7M68VTmteo2ynRf8rbWB5YkSxzQeTOq1JZ1
-	ewVNE7HaWoRRBqorSHq0AW4r4YGylGlrRmVrtYrQwLlVLy1yXmC8BZb8ChCU7Xewyzk=
-X-Gm-Gg: AYBFou0KdjehhS2GrGeGsl/3iu4qrShPcC2nX4jxT7heEAGHYAndQdMhzz3yWfcIP22
-	/KtgCUYgsc+6OnOrNQ16JUyH/A6IIXRJ5w5TUGiHweqlu8qkz5LFWBU+d/H2UwF5MBDbz6XVi9h
-	yVgS01ZVl7Zr9VgZug6MorN63CgxP6clvD2rb5FfXGf+N0wJUsa5gMGobRSU9K+d25K9VQodR6Q
-	Fk5vESuAt5SCa4kl294lS/U6TZSrGHgPA9BKnAVx3BYaPHKlyEQuue192gPrd9y9HQfYJNmcbSB
-	yKjtw9caocK0y9caxkEpSsgeAYxKDceEE4wfAcS6J/xEgjif+/RHVXOCDX/DvAWFdkyd+iGeK2a
-	qdHqRU+w5U21ZCqgdhHvtdk3OAvyGMhi+4mzzg9hOS7OPw7KE5Dp7nJzhv10YNkk4GZwEJf8qaP
-	xFVmg5nvevyCe9tK+E4w83Ppcqy8It+zd+i58UezmN6n7hwlfsDWfa/dR8gjOoLvrQGhhoNtaC6
-	higF5pHhTtXhatJmqE+Cm/9geLoUYn/uukutRRjMaFJwMnwf8Ib6bGfT1yvkTKRV0VW5UAdYMEc
-	BzudK6ocj7rFVdpH81AKBTPdzGe61SfkevCcRu6qXSgH5turdzp7dMuzWe/G0oEi2Rg1Hf6QBzT
-	ZhO6yWoapKl4=
-X-Received: by 2002:a7b:c342:0:b0:4a2:f58:9a82 with SMTP id 5b1f17b1804b1-4ba08e16f94mr38360965e9.13.1794403904169;
-        Wed, 11 Nov 2026 05:31:44 -0800 (PST)
+        bh=gDkCPzQ/fTCTlPmLlCXyz89P1VioVc68pLa4Q0ahyVc=;
+        b=GDjUxh1PZk6IzBx9qGpmtYcHua0ejicjf6KikTOqbD8uHN8HMkZ+AOoJg82fTpazGR
+         7b55+IxFTzd9pBNwIo9h+d8N3dMPHaH+LaiW+pI2GtoWV60Jz92gIBlKPYM1fk3woTSB
+         hAlLeOBcNTmBwjX/ofOiHMOL9PcH+27qTMtX9m9t96ExRrLlNXzYd59g+QI3F+KbE2SK
+         mmLtGfPZBX1IgXiBvIpXwRTxN5/L4Gj3HPwu4rskExFbrHe30PaMrGwCYfnyB/VDXGya
+         kt4tn1bZcDiJjlyKRWXK8VWRCkz2gU4L8EwZoL1h8Y3edqsK2yuOE2HPn2IM/RPb0DiQ
+         T4vw==
+X-Forwarded-Encrypted: i=1; AL+hErEMBS5gU6/MJc2QMeiQ6gTtJgVHZLIMu/pcAjWcVu/dMKvHFw+A5wy1ltxVhv661V1GxVfyHBdlzOHofRy2+Zf/@lists.infradead.org
+X-Gm-Message-State: APuU4Z8+SDud6ZADSs/Vb8zcBUL3jlZghG07eXjQM01vBIGFtrYwTsgu
+	7992xIDCjpKuO2FUuPmS0hwGJiRZ7UsWeQ1JTAWCBcJa7V3qtVwPdP9K5MNZCtGj2q8xB+b6ZVS
+	+70W5IxY=
+X-Gm-Gg: AYBFou0Kx+bN2axzt4zw9tU2QktznbtvG7vQxgXN4ao4i6V29dZlaiDMZP2iRm+iQa4
+	UXE9eHv5RB0XRLE8Wvcsq+fTvZYPrDfBgem7aL0d6MFRLPROxF/6Swf5KrEA6iWDCO4JHDIXUPv
+	Wd0kabDPhcV8oTjEVIA9QZPLaVkslZ6JWxa3UdLKp0ZJSEB4G1hI91afFTD929ucT2q8oKuSnem
+	5IivyvXSA7JfxTU15bEbUhJre42dVEvtLSzOc8hP3AK0aV+wHvWXZjg3TmY/ap245rcquvNBLdX
+	H4WcPuHNsiNIFrxfnyYvalnhxdMs2yMfMG6rCl0kbagfSkbaGA5luIblMp7uxbJzZVn6+SC8Cwa
+	Q02oGuvglKS1uLlpK8B/K+HxSvqDvrt1YuArmYPPf2GM2SqcqXraZrRjgwf1JA93dOf/xhHCEhu
+	D7V8jsYAbURtAR07q2PU+ULfQixhgb5SAiF7Q5u6VTGSKrrWZEHsRiJjV5hEpCVbdVKRcI+qN+a
+	CGOBG218Di0SI1QZTp8xP7bmPli5a6tJJfD5qXVwb8EgYG/0Ev5LMaVQyL8Ry3V2Oqe9G9BgCGS
+	IR9Y2n4qgn3lMe9RA8RxVKO1KeK4lB31xFJf9qyM4WHgfLOktb4BTPgA3+RKuXDHCYSJmjZpEBJ
+	ey5Ja9/PxLA==
+X-Received: by 2002:a05:6000:4688:b0:493:8704:ad42 with SMTP id ffacd0b85a97d-49a90b3a0d6mr1095762f8f.7.1794403905804;
+        Wed, 11 Nov 2026 05:31:45 -0800 (PST)
 Received: from frobdeb.bytesatwork.ch (162.40.150.83.ftth.as8758.net. [83.150.40.162])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498363df7a5sm11089358f8f.37.2026.11.11.05.31.42
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498363df7a5sm11089358f8f.37.2026.11.11.05.31.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 05:31:43 -0800 (PST)
+        Wed, 11 Nov 2026 05:31:44 -0800 (PST)
 From: Frank Obergfell <frank.obergfell@bytesatwork.ch>
 To: Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
@@ -94,9 +95,9 @@ Cc: Daniel Baluta <daniel.baluta@nxp.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Frank Obergfell <frank.obergfell@bytesatwork.ch>
-Subject: [PATCH v3 3/5] arm64: dts: freescale: imx93: Add MIPI DSI controller node
-Date: Wed, 11 Nov 2026 14:31:17 +0100
-Message-ID: <20261111133119.1063210-4-frank.obergfell@bytesatwork.ch>
+Subject: [PATCH v3 4/5] dt-bindings: arm: fsl: Add byteENGINE i.MX93 platforms
+Date: Wed, 11 Nov 2026 14:31:18 +0100
+Message-ID: <20261111133119.1063210-5-frank.obergfell@bytesatwork.ch>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261111133119.1063210-1-frank.obergfell@bytesatwork.ch>
 References: <20261111133119.1063210-1-frank.obergfell@bytesatwork.ch>
@@ -104,8 +105,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_053146_253880_6A03489D 
-X-CRM114-Status: GOOD (  10.41  )
+X-CRM114-CacheID: sfid-20261111_053148_038545_A89E7E5D 
+X-CRM114-Status: UNSURE (   9.27  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -117,73 +119,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add dsi node to the i.MX93 for support with mipi dsi panels.
+Document the vendor prefix for bytesatwork AG and add the compatible
+strings for the byteENGINE i.MX93 System on Module (SoM) on the
+byteDEVKIT carrier board.
 
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 Signed-off-by: Frank Obergfell <frank.obergfell@bytesatwork.ch>
 ---
- arch/arm64/boot/dts/freescale/imx93.dtsi | 34 ++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml         | 7 +++++++
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 2 files changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-index e926b6360a9d..1123e372eb79 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -58,6 +58,39 @@ npu@4a900000 {
- 						 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
- 			assigned-clock-rates = <800000000>, <133000000>;
- 		};
-+
-+		dsi: dsi@4ae10000 {
-+			compatible = "fsl,imx93-mipi-dsi";
-+			reg = <0x4ae10000 0x10000>;
-+			interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX93_CLK_MIPI_DSI_GATE>,
-+				 <&clk IMX93_CLK_MEDIA_DISP_PIX>,
-+				 <&clk IMX93_CLK_MIPI_PHY_CFG>,
-+				 <&clk IMX93_CLK_24M>;
-+			clock-names = "pclk", "pix", "phy_cfg", "phy_ref";
-+			fsl,media-blk-ctrl = <&media_blk_ctrl>;
-+			power-domains = <&media_blk_ctrl 0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					dsi_to_lcdif: endpoint {
-+						remote-endpoint = <&lcdif_to_dsi>;
-+					};
-+				};
-+
-+				dsi_out_port: port@1 {
-+					reg = <1>;
-+				};
-+			};
-+		};
- 	};
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index c8290a83205b..e4be6fdb5808 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1555,6 +1555,13 @@ properties:
+               - fsl,imx93-wireless-frdm   # i.MX93 and IW610G WLCSP (Wi-Fi + BLE + 802.15.4) SiP FRDM Board
+           - const: fsl,imx93
  
- 	sram: sram@20480000 {
-@@ -183,6 +216,7 @@ lcdif_to_ldb: endpoint@1 {
- 
- 		lcdif_to_dsi: endpoint@2 {
- 			reg = <2>;
-+			remote-endpoint = <&dsi_to_lcdif>;
- 		};
- 	};
- };
++      - description: i.MX93 boards with bytesatwork byteENGINE and byteDEVKIT
++        items:
++          - enum:
++              - bytesatwork,bytedevkit-imx93
++          - const: bytesatwork,byteengine-imx93
++          - const: fsl,imx93
++
+       - description: i.MX93 boards with Toradex Lino Modules and Verdin Adapter
+         items:
+           - enum:
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index ac2f54adde73..95f386db1d01 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -285,6 +285,8 @@ patternProperties:
+     description: B&R Industrial Automation GmbH
+   "^bytedance,.*":
+     description: ByteDance Ltd.
++  "^bytesatwork,.*":
++    description: bytesatwork AG
+   "^calamp,.*":
+     description: CalAmp Corp.
+   "^calao,.*":
 -- 
 2.47.3
 
