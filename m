@@ -2,93 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3399606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 05:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADA560A2607
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 06:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4541nwsy;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=bGe5wGQi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hFdEQlRa;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mTTujsHJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
+	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=lhosHtg8wPbXMxrTNQaWwGDOdBWHTWddIh+Zj1SEb0g=; b=4541nwsyMJcYrjqScBMydWSX7/
-	45kYI3F+8mO4h2MPOLM67n9dojpgtld5JyTYrvFd0jdAKrgAQJ+tRsnLQqiIEhUtTGWryHxpm6w3s
-	42p7g3CbeTKKa7jae+JRcIrnjrtp3Uzayh0Hl27oWRocmvnQ0OLCbPBLjzO247IPsKH+tZxZNheoG
-	KEV1kAITThlcr60n9yyVVFTLUoB+FhFNi+pHOFXZfhAGrHaiqSCvoeZPTLK+g3wG669lW3gD/WmqX
-	Q75/gRZLwE4n7biqusx191piexdrnaNkuFfojSQxpntas6+kHw/MKq/gQngZ3tPpqDyHQ3KZCKyum
-	FmHtC1Ww==;
+	bh=1qmmBTGs9JqDhg2KV5f+IlYN+JpILY0qcFVik6CVIpo=; b=hFdEQlRaUsRZjUd74q5hicIdkE
+	ZwKlLlCSrcKIeZ7lm4/pdHE51vsAckxj0kmkG1Y3tWDfE1YAqOnTgVHO+zclcb/PydBkfduhJ6lTc
+	t/Ozxt1dR9Obh8Srw4DzpmMHANjI9GPY8/mkdDCQn3eGYGSe5G2BcUSTQ1+7ct0SidNTzmZt18L3w
+	pwHh/tLHDQ5GFETIxQzsEKO//Ocx5gnBsW+QsbrHYB/zxmZ+Lo8/sR96wP38DjO3IbiD5TqsLxEWT
+	gV0ZWYRr7mG7/jwg9SYdTdlVgo/zuy/t8/xWHyWE9nzP7CCuYg8caE07xs6BsPeOLjI5gC8dm/7YD
+	kO7Qh5zQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR19p-00000005gD6-3KSS;
-	Wed, 11 Nov 2026 05:46:05 +0000
-Received: from mail-ed1-x546.google.com ([2a00:1450:4864:20::546])
+	id 1xR1NT-00000005gpT-35tR;
+	Wed, 11 Nov 2026 06:00:11 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR19n-00000005gCM-2d7D
+	id 1xR1NS-00000005gp4-0CuW
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 05:46:05 +0000
-Received: by mail-ed1-x546.google.com with SMTP id 4fb4d7f45d1cf-6b6723180baso2988398a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 21:46:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794375961; x=1794980761; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=lhosHtg8wPbXMxrTNQaWwGDOdBWHTWddIh+Zj1SEb0g=;
-        b=bGe5wGQixGcOTQxTG324YG3eDPSbGXJjm6NWOePqLqC+6KPbs9jYV3Zi+OrUBwGUqv
-         /rMXyfsKr4qtLHka0lu5mTLwHknpMExWOiXEh7mKWfJRT0d3D0Wt0NjNPJdJD1SVb/th
-         3xU6wZGZ8EO//Qd3Gv8UoWVEK1BJxhONtpbC4DZje8HrkjVAbThoRwls/pKMeSZWMiJN
-         QZeYoupvfpFV60WAIH7mw584rsQ46C38cV5ZawWz9rkI28qk9QL6sxqxl9U3UYRoJO6B
-         JhvcM5kUaThkvPHwcRpAhYND1fnolc++y/gSoXRGKmGWKla/FpHbbalmzbCpSMe+Uvc3
-         VZWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794375961; x=1794980761;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=lhosHtg8wPbXMxrTNQaWwGDOdBWHTWddIh+Zj1SEb0g=;
-        b=t9aqcLx2cF2+ULwXebE0NWvNXNrWZnIeDxplEe5Nih3gWT98G4PGeBOiJ2Xhhz22dG
-         6CIPBIeW45pCeS81i5nO+xSVqk/wHgeP5jWfXLNdiytDOeWqkGVWgC2B8MgBlhjxVR1x
-         sEr9fzoH7OjP0Ez09RW3gijejXKMaicqFsfLU2orHYCpwORlnMjiRJhltDrFbnJVxQFZ
-         q8lvHhWnF7SwrUzWkoXmCYFLIMCb6a6JThwNWFkg1MsCNvTfFAg0yBp72QaNvyqtU8oy
-         lwIqnAXME8Dp6j1ogMbYTEEs+Xt37m5ih3RlGSZAhfCkC/8vHK43VFzAg9UZ6zsw97c2
-         d5zg==
-X-Forwarded-Encrypted: i=1; AL+hErEVRHFLI3OvUZ0LSpsmwb26KdUJcaavARneN4zjbzuw8Mz+Td8xrV7mRoHg1T5vHXrjHJ/OtTk4x4VTV4DPacvv@lists.infradead.org
-X-Gm-Message-State: APuU4Z97/DzlUBeCX7EL/gBl8l88P050xasDTKQ9/MXccIjwAeouPzs5
-	yD9+UCsSbHLhJp4rUs7ibpb7dT3jU9NQ6pC3AsscF3W4CjIW3gJVqdx68Yyxv7M07277WfHH5OF
-	AgRQzsSlZkYdfE0moBw==
-X-Received: from eduw9.prod.google.com ([2002:aa7:dcc9:0:b0:6aa:448f:b887])
- (user=tarunsahu job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6402:b18:b0:6b1:c1e5:a85b with SMTP id 4fb4d7f45d1cf-6b777342a32mr753053a12.3.1794375960798;
- Tue, 10 Nov 2026 21:46:00 -0800 (PST)
-Date: Wed, 11 Nov 2026 05:45:59 +0000
-In-Reply-To: <DMRK0PU0VCN3.15F59WLOQ05P4@soleen.com>
+	Wed, 11 Nov 2026 06:00:10 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2B14961261;
+	Wed, 11 Nov 2026 06:00:09 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794376808;
+	b=RSBs5xilHiZe/i0r0XLG/G5mgiRUJ5HlxvgWXvAqVOvKYO2ceAdcwHIA2q2VXOWC/DvG
+	 NI/ct1vO2vdXcZmeTkr2N21T+Uo+3H6g+WvsQfNDC/V95czagrH+A+yta30bE8GoVOoyd
+	 vQcUNsxkahGqFCSfeJfSY2q1nPAmlr54n7uuAJ3mMhQemoEUpQnjnDzW+kqFsP5C4bE2z
+	 2XEDPIvq76H8bhVIsOru3+tnInXsAlSVqY5m8LyHBnwUBIKvWXAxZrU0PRwaOVTJnrTjg
+	 NCMt3xsKWTi6BLAxbFtFoTcLr2XY876KPJAUh00H1EkP6Mzy1mkGRidcbgtKC22s8cg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794376808;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=1qmmBTGs9JqDhg2KV5f+IlYN+JpILY0qcFVik6CVIpo=;
+	b=Mp2h4iSvMPDO/RMOy+0/50PFgHifPu4qpizzPC46X0NTqXkWL50sTwfcmOpjGl4m+CJF
+	 XGjR8wpqI6UUNWbwGqGtMkEwNi0kpO0pemnhciOXbAJqRV5yxdZja4BADN+tl/siNcRmY
+	 YZ539Kg+g4VT70FDq4htxQaETeHLRm1ptxMuxBuL0lUJ7ex7P3hwEEctij9+TO1AQeVok
+	 TSpitr/3H6VeVjWLLLHc7m3fcqLoShp13IatENqUNfvcmTyP33tOVLsPFHLMgPALrwWrl
+	 cH8Ep7wobpGGYOZHmvszGXQ7xnS/L6LDMHqvicm/SYuhmVjBwCh67YhSuh4zZHaDJFg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2F8DF1F00A05;
+	Wed, 11 Nov 2026 06:00:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794376808;
+	bh=1qmmBTGs9JqDhg2KV5f+IlYN+JpILY0qcFVik6CVIpo=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
+	b=mTTujsHJtf4wo/9qI+97XbkrWJr4XIleYmHbkKnbIri6upwxPa5ElQ1+hBIVpOxAB
+	 ebMlW2QC7kJtfNJ6zXedHfwFgLVEv9sxd9UfVFEnkdLG/T9rIfufh3kDQTysocIsnV
+	 YP+ad6szAAWKjJNSMIeOKJQLpJRHc/Wp0OTySuCf1x3XOrGad+JTtSEnIlVRJ58eoT
+	 ttQ50hFGnKfnyb8QzF+HVXHHe/9ruH9Seu0+396mquNzarnvQTl7XBJlV3bRUJ3fzE
+	 HyYIFvIZZnWMQw8QBp7Noro2+cUGkPA+BxJGKRU4O/Cq0I1BaYIshD4MPfDkYQiLNE
+	 xaXcTheF2U8lQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id A4D0848DDB;
+	Wed, 11 Nov 2026 06:00:07 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Wed, 11 Nov 2026 06:00:07 +0000
+Subject: [PATCH v2 1/8] arm64: dts: allwinner: h616: Cover the codec RAMP
+ register
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261110050202.529473-1-tarunsahu@google.com> <20261110050202.529473-3-tarunsahu@google.com>
- <DMRK0PU0VCN3.15F59WLOQ05P4@soleen.com>
-Message-ID: <9huz1p8rrkdk.fsf@tarunix.c.googlers.com>
-Subject: Re: [PATCH v4 02/19] kho: block: Record the entry size in the block header
-From: tarunsahu@google.com
-To: Pasha Tatashin <pasha.tatashin@soleen.com>, Mike Rapoport <rppt@kernel.org>, robin.murphy@arm.com, 
-	maz@kernel.org, will@kernel.org, David Matlack <dmatlack@google.com>, 
-	Alexander Graf <graf@amazon.com>, seanjc@google.com, jgg@nvidia.com, loganodell@google.com, 
-	arnd@arndb.de, dwmw2@infradead.org, baolu.lu@linux.intel.com, 
-	Bjorn Helgaas <bhelgaas@google.com>, oupton@kernel.org, alex@shazbot.org, 
-	gle.com@google.com, pbonzini@redhat.com, 
-	Andrew Morton <akpm@linux-foundation.org>, kevin.tian@intel.com, joro@8bytes.org
-Cc: kvmarm@lists.linux.dev, linux-pci@vger.kernel.org, 
-	Pratyush Yadav <pratyush@kernel.org>, kexec@lists.infradead.org, kvm@vger.kernel.org, 
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	skhawaja@google.com, sagis@google.com, linux-arch@vger.kernel.org, 
-	linux-mm@kvack.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_214603_714088_29C7A44B 
-X-CRM114-Status: GOOD (  38.52  )
-X-Spam-Score: -9.5 (---------)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261111-h616-zero2-dt-v2-1-88d8030fc975@gmail.com>
+References: <20261111-h616-zero2-dt-v2-0-88d8030fc975@gmail.com>
+In-Reply-To: <20261111-h616-zero2-dt-v2-0-88d8030fc975@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, Ryan Walklin <ryan@testtoast.com>, 
+ Andre Przywara <andre.przywara@arm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794376807; l=1252;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=BSR+K6Y2s3B1U4tlKARegXXjsMuZ0Bl9ncjh06Y7t+g=;
+ b=NDlrnKc/h1AS5iFoQAkz7jUnVgC/2x7mhMyCCIwtF8u/92Q5tpWsWp9vt0qa3fjW2MQrC6fgN
+ IekD6SeMC4TAyQX1cmo5Ued7idQR5sfk1v0cHbALV6wmfUD0dAVH8I5
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,218 +112,48 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"Pasha Tatashin" <pasha.tatashin@soleen.com> writes:
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-> On Tue Nov 10, 2026 at 12:01 AM EST, Tarun Sahu wrote:
->> Subsystems using the KHO Serialization Blocks framework currently do
->> not record the serialized entry size in the block header. The entry size
->> is only known to individual callers, which must track and store it in an
->> owning serialized data structure. If a newer source kernel adds fields
->> to an entry, the changed entry size breaks the stride when an older
->> target kernel iterates over blocks.
->>
->> Add an entry_size field to struct kho_block_header_ser. On the outgoing
->> side, record bs->entry_size into every block header during allocation.
->> During restoration, derive the entry stride directly from the block
->> header instead of relying on caller-supplied dimensions. The
->> kho_block_set_init() interface remains unchanged. A zero entry size,
->> or one that differs between blocks of a set, is rejected during
->> restoration.
->>
->> This change modifies the serialized layout of struct kho_block_header_ser
->> and shifts the offset of serialized entries within preserved blocks.
->> Bump KHO_FDT_COMPATIBLE from kho-v4 to kho-v5 so that pre-v5 and post-v5
->> kernels cleanly reject mismatched handover state during boot. Also
->> update the stale compatible string example in the documentation.
->>
->> Suggested-by: Pratyush Yadav <pratyush@kernel.org>
->> Signed-off-by: Tarun Sahu <tarunsahu@google.com>
->> ---
->>  include/linux/kho/abi/block.h          | 10 ++++----
->>  include/linux/kho/abi/kexec_handover.h |  6 ++---
->>  kernel/liveupdate/kho_block.c          | 32 +++++++++++++++++++++++---
->>  3 files changed, 38 insertions(+), 10 deletions(-)
->>
->> diff --git a/include/linux/kho/abi/block.h b/include/linux/kho/abi/block.h
->> index 36bdbaf9b3b8..a40b0906c821 100644
->> --- a/include/linux/kho/abi/block.h
->> +++ b/include/linux/kho/abi/block.h
->> @@ -40,9 +40,10 @@
->>  
->>  /**
->>   * struct kho_block_header_ser - Header for the serialized data block.
->> - * @next:  Physical address of the next struct kho_block_header_ser.
->> - * @count: The number of entries that immediately follow this header in the
->> - *         memory block.
->> + * @next:       Physical address of the next struct kho_block_header_ser.
->> + * @count:      The number of entries that immediately follow this header in the
->> + *              memory block.
->> + * @entry_size: The size in bytes of each serialized entry in the block.
->>   *
->>   * This structure is located at the beginning of a block of physical memory
->>   * preserved across a kexec. It provides the necessary metadata to interpret
->> @@ -51,9 +52,10 @@
->>  struct kho_block_header_ser {
->>  	u64 next;
->>  	u64 count;
->> +	u64 entry_size;
->>  };
->>  
->> -static_assert(sizeof(struct kho_block_header_ser) == 16);
->> +static_assert(sizeof(struct kho_block_header_ser) == 24);
->>  static_assert(!IS_ENABLED(CONFIG_64BIT) ||
->>  	      __alignof__(struct kho_block_header_ser) == 8);
->
-> The above change goes away once my comment on the previous patch 
-> is addressed.
+The codec node maps 0x31c bytes, but the H616 codec has its DAC
+RAMP control register at offset 0x31c (H616 user manual v1.0,
+section 8.4.6.56), and the sun4i-codec driver uses it: the H616
+regmap has max_register = SUN50I_H616_DAC_AC_RAMP_REG (0x31c). The
+access only works because ioremap() rounds the mapping up to a page.
 
-Ack.
+Grow the region to 0x320 bytes so that it covers the register.
 
->
->>  
->> diff --git a/include/linux/kho/abi/kexec_handover.h b/include/linux/kho/abi/kexec_handover.h
->> index 2f4fb9c63942..6f12f5037ea5 100644
->> --- a/include/linux/kho/abi/kexec_handover.h
->> +++ b/include/linux/kho/abi/kexec_handover.h
->> @@ -41,7 +41,7 @@
->>   *   restore the preserved data.::
->>   *
->>   *     / {
->> - *         compatible = "kho-v3";
->> + *         compatible = "kho-v5";
->>   *
->>   *         preserved-memory-map = <0x...>;
->>   *
->> @@ -62,7 +62,7 @@
->>   *     };
->>   *
->>   *   Root KHO Node (/):
->> - *     - compatible: "kho-v3"
->> + *     - compatible: "kho-v5"
->
-> These are just examples, don't update them.
->
-Got it.
+Fixes: 3eef85034c96 ("arm64: dts: allwinner: h616: Add audio codec node")
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->>   *
->>   *       Identifies the overall KHO ABI version.
->>   *
->> @@ -90,7 +90,7 @@
->>   */
->>  
->>  /* The compatible string for the KHO FDT root node. */
->> -#define KHO_FDT_COMPATIBLE "kho-v4"
->> +#define KHO_FDT_COMPATIBLE "kho-v5"
->>  
->>  /* The FDT property for the preserved memory map. */
->>  #define KHO_FDT_MEMORY_MAP_PROP_NAME "preserved-memory-map"
->> diff --git a/kernel/liveupdate/kho_block.c b/kernel/liveupdate/kho_block.c
->> index 0d2a342ef422..9b148009085e 100644
->> --- a/kernel/liveupdate/kho_block.c
->> +++ b/kernel/liveupdate/kho_block.c
->> @@ -16,6 +16,12 @@
->>   * array of serialized entries. Multiple blocks are linked together via a
->>   * physical pointer in the header, forming a linked list that can be easily
->>   * traversed in both the current and the next kernel.
->> + *
->> + * Each block header also records the size of its entries. A newer kernel may
->
-> "newer kernel" does not make sense in the documentation comment, as any 
-> kernel can do that. I would suggest "outgoing kernel." By the way, in 
-> this series you use the terms "source" and "destination" kernel, whereas 
-> traditionally we have used "outgoing" and "incoming." While both 
-> conventions work, it would be preferable to maintain consistency.
->
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+index e4e0b999473e..68bd6137c316 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+@@ -806,7 +806,7 @@ spdif: spdif@5093000 {
+ 		codec: codec@5096000 {
+ 			#sound-dai-cells = <0>;
+ 			compatible = "allwinner,sun50i-h616-codec";
+-			reg = <0x05096000 0x31c>;
++			reg = <0x05096000 0x320>;
+ 			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&ccu CLK_BUS_AUDIO_CODEC>,
+ 				 <&ccu CLK_AUDIO_CODEC_1X>;
 
-I used source and target, based one of the discussion we had in
-hypervisor liveupdate meeting. But, for consistency, I agree, I will
-change it to outgoing and incoming.
+-- 
+2.55.0
 
-~Tarun
 
->> + * append fields to an entry, so the kernel that writes a block and the kernel
->> + * that reads it can use different entry sizes. The reader steps through the
->> + * entries with the recorded size, so every entry is found, and it does not read
->> + * beyond the recorded size of an entry.
->>   */
->>  
->>  #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
->> @@ -110,6 +116,8 @@ static int kho_block_set_grow_one(struct kho_block_set *bs)
->>  	if (IS_ERR(ser))
->>  		return PTR_ERR(ser);
->>  
->> +	ser->entry_size = bs->entry_size;
->> +
->>  	err = kho_block_add(bs, ser);
->>  	if (err) {
->>  		kho_block_free_ser(bs, ser);
->> @@ -242,7 +250,8 @@ static bool kho_block_set_is_cyclic(struct kho_block_set *bs)
->>   *
->>   * Restores a serialized block set from a given physical address. The caller is
->>   * responsible for ensuring that the block set @bs has been allocated and
->> - * initialized prior to calling this function.
->> + * initialized prior to calling this function. The entry size and the number
->> + * of entries per block are taken from the restored block headers.
->>   *
->>   * Return: 0 on success, or a negative errno on failure.
->>   */
->> @@ -250,6 +259,7 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
->>  {
->>  	struct kho_block_header_ser *ser;
->>  	u64 next_pa = head_pa;
->> +	u64 entry_size = 0;
->>  	int err;
->>  
->>  	/* Restored block sets use size from the previous kernel */
->> @@ -264,8 +274,21 @@ int kho_block_set_restore(struct kho_block_set *bs, u64 head_pa)
->>  	}
->>  
->>  	while (next_pa) {
->> +		u64 capacity;
->> +
->>  		ser = phys_to_virt(next_pa);
->> -		if (!ser->count || ser->count > bs->count_per_block) {
->> +		if (!ser->entry_size || (entry_size && ser->entry_size != entry_size)) {
->> +			pr_warn("Block contains invalid entry size: %llu\n",
->> +				ser->entry_size);
->> +			err = -EINVAL;
->> +			goto err_destroy;
->> +		}
->> +		entry_size = ser->entry_size;
->> +		bs->entry_size = entry_size;
->> +		capacity = (KHO_BLOCK_SIZE - sizeof(*ser)) / bs->entry_size;
->> +		bs->count_per_block = capacity;
->> +
->> +		if (!ser->count || ser->count > capacity) {
->>  			pr_warn("Block contains invalid entry count: %llu\n",
->>  				ser->count);
->>  			err = -EINVAL;
->> @@ -370,7 +393,10 @@ void *kho_block_set_it_reserve_entry(struct kho_block_set_it *it)
->>   * @it: The block iterator.
->>   *
->>   * Iterates through previously written entries during state deserialization,
->> - * respecting the actual count stored in each block's header.
->> + * respecting the actual count stored in each block's header. Entries are
->> + * spaced by the entry size recorded by the kernel that wrote them, which can
->> + * be smaller or larger than the caller's structure. Fields beyond that size
->> + * are not present in the entry.
->>   *
->>   * Return: A pointer to the next serialized entry, or NULL if all serialized
->>   * entries have been read.
->
->
->
->
->
-> -- 
-> Pasha
 
