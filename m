@@ -2,145 +2,63 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F13B606A33B
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FA1606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GbLJcpVv;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=AsanDwrE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JeCma/PD;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=VmalHv2M
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Sn/95PFLglvA2JTWXRMih2dJa3NUZ+6fbtddMJSyX2o=; b=GbLJcpVvUDRzMa4pUR0Vswh0Oi
-	7tYgiXskhYsan0HyPcTkFbRU3MWTuEf0G8Fhj9bsro/oRSwH8HnZTFKOJAvO0yn6ti4KZF0n86Agt
-	hpDBavOTia/fqkYmnNZjNTCvuwFtHrLbMNajnzMWn6UPV6TwhKbdZ2D7uzhGxiOLmIhZWnWtjdmgh
-	H8mi5e31lW9uHpWYosHkDi+niXfDwuNYuTECXPwgtS3vdroeNZMJ49K+0IK/+KqUVpOqDgvW0NmSR
-	4qkMgrj1u0bxgpbF7TNkVgniNSSXPaaiipxwDqC+X3UDk7uSGYyvnf0zDEMW/LCQugTSdNQ5cBIvE
-	86rmNodw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=uPqiu+ElU4cIICKoPtEjFRF5YoXaI3QeZNsern0wcRA=; b=JeCma/PDNs0KMr
+	lW47dcM0nzYOZgOfXpOC5b/ilE2aBOCH+WvrstpuQm4UKNZtLZyaSFkPfXoxg8AyaYW4DLyiLLM+r
+	9v7RZVYk6ADOcWAxGwanbsbBc8TgxDONOteW5TToBo+SPEp+Y9TUEDKqA7uz1GnRKBgYU/X8BqOEh
+	2qdHahiPr4VRqmbt7HesQUHkv5dqqMA3CLzZUqnRW+rmNl7wB0ia0dUlHoPVEQQfSgskQrPsHFwEK
+	EuJxWgQrXzFbwj4Q8zaI9JOqXQyCcyISL32Tc2T0QtuvXTiAZitiZeTKx5u/326ulYZjUkCALRABG
+	ez9s3yY37mUtRwCH9VIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRCAr-00000007JHY-3VKG;
-	Wed, 11 Nov 2026 17:31:53 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRCAn-00000007JFM-3d0d
+	id 1xRCDP-00000007JVl-1wdx;
+	Wed, 11 Nov 2026 17:34:31 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRCDM-00000007JVB-3O2F
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 17:31:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YCSle0GENBZvtMS3WvhPzQEaeWDT7I/9YQoPjLJPLXtYzZ2X21O9Qfa3celGJTpBJv+zKc031sIarTa32vb0tavGpl06qEXDcEK4+HQlopahR13rxzOf/MAlhrLAQ2rD6Q0GV3bcVv+qOHAiWPO8jLc6DETlRM5qDz3J/beBzxfAgNLXTsGEPNnngmSi6piznOwapH2V0SH1MXFJrEFvEEPSEU0i6ixb/YWE2UZnOPjrw3/td50RX7orCusdbdvW6+nJaW2ZYY+B563kj17GX0PyIKnFR1lEr0x1KBKXh6vmkXg8vkfDcH+b19tlb4wi8+xO0ZECw4ki+OjpoNDL2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Sn/95PFLglvA2JTWXRMih2dJa3NUZ+6fbtddMJSyX2o=;
- b=xzTHnj7zsqtOWYZs3N6yHWr+9rWCySTJKI8gBQ9oiQhz0+Et95k7cHgyV7hTMaLzEUuu7EUP4LtknbUMFu8IItl/ugqxw8pSp2rdajf+Hsvw9Sc9LVvwP5WqYte2Opwn4iMyZB6sU5CrcYKuCUbMc+GE+DFElRmTcURgrYEyGvyRT9SCMi5OPyckB10Nqca067qEB0ERh7bJXS2ymAgXHDeaN5hSxQnSHU/dUYhlh0PdevSPIeAeWcESPRDTfFy9O59NM6bNzqX62T4weiaFfHr0IvMkqVU2Bgl4/Ljc3HU1vPRg1g/579/tLMMQjUM0h2EvxhfUpppPgecaogKM3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Sn/95PFLglvA2JTWXRMih2dJa3NUZ+6fbtddMJSyX2o=;
- b=AsanDwrE1i9eIklViSiEVnGC5P7hu0iawbcZtQxnha1pxajY6qwDKcJfL8HZFFtv8l5oxzMJhLwW6MCjbJsv9gHjFEv5OQ/29vWpCUSXaQmI4S6bqfVnrZGfMkOri8/sGP5IsMMc49l4XhnoDeWPePUoLA0GUhXaeydRwuu147+IiOWhwlA3EFF+EFIAlSslqLegR13AMIvV1KT4zGktrSyodbfzP1L+Ibe+6/7a/zl80OoFqynBufzicpnlsLC/xMdLCGoGwf1V9UUdy23e0EqdNKxjpfqU7AVC2e9nhnCAtWzjJfexNqfKymPGAqZtuZH3AfpYYiNUZQZsSYIzyw==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by MI7PR04MB236726.eurprd04.prod.outlook.com (2603:10a6:290:10b::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
- 2026 17:31:45 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
- 17:31:45 +0000
-Date: Wed, 11 Nov 2026 11:31:32 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
-	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v5 2/7] dmaengine: add a bus for DMA channel devices
-Message-ID: <avSmdAQhFqKIOMis@SMW015318>
-References: <20261111-edma-iommu-v3-v5-0-2537cebe6ca2@nxp.com>
- <20261111-edma-iommu-v3-v5-2-2537cebe6ca2@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261111-edma-iommu-v3-v5-2-2537cebe6ca2@nxp.com>
-X-ClientProxiedBy: PH8PR02CA0032.namprd02.prod.outlook.com
- (2603:10b6:510:2da::11) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Wed, 11 Nov 2026 17:34:29 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5E4A31576;
+	Wed, 11 Nov 2026 09:34:22 -0800 (PST)
+Received: from [10.2.212.23] (e121345-lin.cambridge.arm.com [10.2.212.23])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC43B3F632;
+	Wed, 11 Nov 2026 09:34:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794418465; bh=frQdcUhueWWzIbR9Oz8s0QL9CPkNt6BylYNzxsYqnHM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=VmalHv2MEFAlvYotxBWyNb5nWPMltG0c0GKC+tKy8FxcJmRcihihtvBMUEwHt3Pj5
+	 QSzlax2bALWVO5jYfq0t8ibvDrGUqeqJo7e8wDqY7EJA2QS0+54NesiijJK8a1AdwV
+	 vQYJzqAFypYR0QyYjxn69GYfWDBRsM7rfcnQ4m7g=
+Message-ID: <dee315cb-9218-4da6-913e-8eb946ed2d68@arm.com>
+Date: Wed, 11 Nov 2026 17:34:23 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|MI7PR04MB236726:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7dfeb739-8793-4713-cd37-08df4019a81c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014|23010399003|18002099003|22082099003|6133799003|261009223027099003|4143699003|11063799006|56012099006|261028144727099003|261102123227099003|261102124527099003|261021121427099003|261021123027099003|261026140227099003|261022075727099003|261022105027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: UyNzT0hJ2xdJHGihqBEnCJ5dRL9kqqefxkWkcJWa0VHSVAC5bJ1hXaVNDWGVQmhBnlP15Ib3TMDUBuEoZoBQXPMcDjqZVTd+eDUWM/gIAsw7PfApE4+xuSx0dt3SAchlEz8StRs1nfAHadtcnL9eFsYAFeAOOsrR6v2LBrTbcSMJdF1pb/oA28bMp1YKGEbP9SghOFrlYeJyu7BO0RrMCgmlqYULI/O2GUMcri4BW5dHsfRDwUwGujrBmKeNAds2bEIHnDYaklBU5/l+4o4jGj6VjFI/usN5X0O0ZvXwprA6DO1pVScQMmNgU6cTsfq6TD4yqhdRu5paaatRZU2V5WtWUNOyl5/6OuxUTj2uQ4c9SCyYULudQKz+OgdY1EzLtb+AkMpYcA9GloIuQlkApblkeDNnhzWJRpFR/4JRfLFWnKbbQKS+DY0XuRiaEHoOLxPJaQ6FESrwhOn0z2znZXAT863IxryHDhCiq2+ohg/Za6dgAgU1/6IbA6z59BmVWmlfq3uvIk77HzUnc1vm8f0+oM0M36fb2wEoLOY4WvE5MjsNAFinXmpEe/dNggjXL+tmDHLqrJXSB1uk3IuA6J8/T6CGS+GhsvSQP9n0rCWuvx8gdcVA4MKaN8lagR0k8E4y6tm9n8rcrzQTfomt5W5obdcjo896CDjM8LLuDoc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014)(23010399003)(18002099003)(22082099003)(6133799003)(261009223027099003)(4143699003)(11063799006)(56012099006)(261028144727099003)(261102123227099003)(261102124527099003)(261021121427099003)(261021123027099003)(261026140227099003)(261022075727099003)(261022105027099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?L/a+9zfbAA1KxsvSbxvLkyMz70Rxyj00+Ksf01bhI/dOS0NKI/mRwJq7vztj?=
- =?us-ascii?Q?XfpT74HnRumRdRkSi+8j0Et/cOA1CL0m+ezlBPDlXn8T+4kAh/HIE/Inicht?=
- =?us-ascii?Q?JtBUPGc7PJf6iMfwDRgW+4ncFiP6x19Rb+mhyGqQwANCO0AD6DfURYN1t9Nm?=
- =?us-ascii?Q?5Rp2e/ss8qfEnODKosDLkOeolYR/2kT0tvv4TttWNWJO7qihig5gkx5M8J1D?=
- =?us-ascii?Q?HtTfCMvyeQFHBmmFctPiZd2i3GATnlcVeUK1KjlCcLmfoVR/abdx2srZeRJp?=
- =?us-ascii?Q?w+IDwWd3xXbpSTC8SA1hHht/2FpuM5/RZJv2Ri383JwSPXjq67UKAwz0qluJ?=
- =?us-ascii?Q?BhrXpJMd3OW+DV9XTD9hBdNYyTs/qEx1e9Uf6+EqTxHbIaFxdDLEtMv836du?=
- =?us-ascii?Q?dvF6dSyuNScAN1oKsw+drVUbojTwrCVD2W9EHV/+wsa/xahs+Bt0BkKI43o2?=
- =?us-ascii?Q?RQAG2jOvSQ+IURzlQnh1RzQJM2mVLNjJckp9BCdb01kXls63dpvvpqYjocNC?=
- =?us-ascii?Q?K8H8/4yQJf7LM2rQ7QvBHH9qpZaGi2JiXt6/GMhC1SXtcQh1xG0sQnYKtGUq?=
- =?us-ascii?Q?+g0zSv0/VifR5CF4kuPg1H0/Rxzmua6Oy/3MyIB87hFJCHrtdihfG2PBc01z?=
- =?us-ascii?Q?EzfKEm/AJEAXarJUKBDXmwlwgaxu6UmEvr3ESkqD890FuH1aa3IsiXevA/oR?=
- =?us-ascii?Q?bl82cGQ2iF0iuzw8m/ANK9HMpz3lSxVOL9yDzhDSDn4DdGzuHNNI75ktQ3nV?=
- =?us-ascii?Q?EQv/DdPnT664SQCfz1t+G0hSEoGkplZ9SZCZjPtWiKU6vxmmn+6IVBxyu5UA?=
- =?us-ascii?Q?FHdbNiIj2mViepuHkuA4JVfFdX7P+5yt6YNlhMJWZfY4cCnvOyBLdOXX1rXO?=
- =?us-ascii?Q?gx00a0ehkBA3Fe8ShtSxBoa5kbG0ogCvmDJNMCydJjfbimbUiKssAZ067Hkd?=
- =?us-ascii?Q?ViFa/XKIrTTe/OvtClQyGqj+Kkvxmq8jXgQkmR+CBsvcKtBqWrXAD4QKyj3g?=
- =?us-ascii?Q?FyzSrmMkTKprbCDG7/PlqoTYrD0/UaD5n5hmmoMBa29tkulXqz9SfrKzQZ9d?=
- =?us-ascii?Q?AeG9+RnhpaoCk7yGVJWUaJbKD+Ifc0RvuWy3hgyp6bXKdtn4dMZzJeaU1dYz?=
- =?us-ascii?Q?IqKo75+A9NMZ/9o3XEF0oYbLB8wHhXM7v7YnM5EX2KeVgifXd4JJ2+Vscg3b?=
- =?us-ascii?Q?NJ9IVGHVwdaEOUT+JEjhco+veHGXwz5qnEixBrGCMZqRyd+vf6Y3rzC9X2A/?=
- =?us-ascii?Q?6uTQgQC0Ap6hg72XFMiTonmOjEfJr1xZwdwb1s0LHXg2z5mvSU5uCHY3Zs01?=
- =?us-ascii?Q?aqRGFSmqQ+/WqN+0XhDYIR1vzTnLEwSW1NDYS51fXTt+mxD+DfH59iFzeh7o?=
- =?us-ascii?Q?WtAhs7nk91uMlanW/lPS8IQPkA6rdtpEYyd/XO8vDWyc/wCgeAd46wu2WJzc?=
- =?us-ascii?Q?Tl2yLD3z4dxSLs7DX5k5o5R60TMvQHo92iVYEdzzVYHFiNkUAGV3iS8Gvlk7?=
- =?us-ascii?Q?1gLWgVBqGAs7Ra6BnkByHJZiMAkgtyFBYZR5YbkDCEvWucaytSroggKSDy7c?=
- =?us-ascii?Q?RocfQaE61xEJ571gfCfg37V0UerJTPDlWTnLDgZd67cw2E50FKvx0A85xfhH?=
- =?us-ascii?Q?O6Y74U3B23gUjA1C/Dxsnpf4eagDK7GvTO2FRiwDarNdFWQ/cXzu2IAbEXpb?=
- =?us-ascii?Q?z2MfHeKC4NapReKHLlLLcOP8WShcP3/3PCTlLWXcJQNy+StzhN83t9g3rjl1?=
- =?us-ascii?Q?uxzItarm7Srzrg9ua4J8r6kqQFU2eQJFQ437iYFSolHN4W54m4u5?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7dfeb739-8793-4713-cd37-08df4019a81c
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 17:31:45.0788
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P3YWG1bq9qeuV3u+Nr22AfL6/GgQLYh15dNsl8LcmoqhVL47O2NcQ8holKRgq/nz+xx5FUittn0RGEh4EFsf3Hi2vwhx3oHrBuDkrYytqBCnEEWIkR4vUDyWYCBxblBT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MI7PR04MB236726
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] perf: Process subdirectory Makefiles unconditionally
+From: Robin Murphy <robin.murphy@arm.com>
+To: will@kernel.org
+Cc: mark.rutland@arm.com, linux-perf-users@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <4b2e518499270b2a6cab3e04a1123458d82d2759.1793990977.git.robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <4b2e518499270b2a6cab3e04a1123458d82d2759.1793990977.git.robin.murphy@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_093149_908033_549391FF 
-X-CRM114-Status: GOOD (  23.99  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261111_093428_893328_51ED965B 
+X-CRM114-Status: GOOD (  11.79  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,71 +69,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 09:47:30PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> DMA channel devices are currently created as class devices without a bus.
-> This works for sysfs, but it prevents per-channel DMA/IOMMU configuration:
-> of_dma_configure() only probes the IOMMU when dev->bus is set, and the
-> IOMMU core only installs probe/release notifiers for buses listed in
-> iommu_buses[].
->
-> Drivers that need per-channel IOMMU support currently work around this by
-> assigning dev->bus after device_register(). That leaves the bus subsystem
-> reference count unbalanced because bus_add_device() already ran with a NULL
-> bus, and bus_remove_device() will later drop a reference that was never
-> taken.
->
-> Add a dedicated bus for DMA channel devices and register it during
-> dmaengine initialisation.  Use core_initcall so the bus exists before any
-> IOMMU driver can call iommu_device_register(), which iterates iommu_buses[]
-> and fails on an unregistered bus.  The match callback always reports no
-> match, so no driver can bind to these devices.  A follow-up patch will
-> register the channel devices on this bus.
->
-> Clean up the unmap pools if dmaengine initialisation fails after they have
-> been allocated.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On 06/11/2026 6:49 pm, Robin Murphy wrote:
+> Our subdirectories here are purely for file-level organisation rather
+> than any particular build structure, and everything in the Makefiles
+> is already conditional on the appropriate config options. Plus they're
+> not exactly big and complex, so for simplicity let's just drop the
+> top-level conditions.
+> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
->  drivers/dma/dmaengine.c   | 28 +++++++++++++++++++++++++---
->  include/linux/dmaengine.h |  4 ++++
->  2 files changed, 29 insertions(+), 3 deletions(-)
->
-...
+>   drivers/perf/Makefile | 4 +---
+>   1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
+> index eb8a022dad9a..8c3146c604ce 100644
+> --- a/drivers/perf/Makefile
+> +++ b/drivers/perf/Makefile
+> @@ -1,4 +1,5 @@
+>   # SPDX-License-Identifier: GPL-2.0
+> +obj-y += amlogic/ arm_cspmu/ hisilicon/
+>   obj-$(CONFIG_ARM_CCI_PMU) += arm-cci.o
+>   obj-$(CONFIG_ARM_CCN) += arm-ccn.o
+>   obj-$(CONFIG_ARM_CMN) += arm-cmn.o
+> @@ -14,7 +15,6 @@ obj-$(CONFIG_ARM_SMMU_V3_PMU) += arm_smmuv3_pmu.o
+>   obj-$(CONFIG_FSL_IMX8_DDR_PMU) += fsl_imx8_ddr_perf.o
+>   obj-$(CONFIG_FSL_IMX9_DDR_PMU) += fsl_imx9_ddr_perf.o
+>   obj-$(CONFIG_FUJITSU_UNCORE_PMU) += fujitsu_uncore_pmu.o
+> -obj-$(CONFIG_HISI_PMU) += hisilicon/
 
-> diff --git a/include/linux/dmaengine.h b/include/linux/dmaengine.h
-> index 805668fbe437..14d8f182c7cb 100644
-> --- a/include/linux/dmaengine.h
-> +++ b/include/linux/dmaengine.h
-> @@ -412,6 +412,10 @@ struct dma_chan_dev {
->  	bool chan_dma_dev;
->  };
->
-> +#ifdef CONFIG_DMA_ENGINE
-> +extern const struct bus_type dma_chan_bus_type;
+Ha, in fact this might technically fix a bug already, since Sashiko's 
+hilarious internal monologue inadvertently highlights that HNS3_PMU can 
+be selected without HISI_PMU, but currently wouldn't be built if so.
 
-New API, need use dmaengine prefix, dmaengine_chan_bus_type
+Robin.
 
-Not sure how other dmaengine support it before? Maybe already block for
-long time.
+>   obj-$(CONFIG_QCOM_L2_PMU)	+= qcom_l2_pmu.o
+>   obj-$(CONFIG_QCOM_L3_PMU) += qcom_l3_pmu.o
+>   obj-$(CONFIG_RISCV_PMU) += riscv_pmu.o
+> @@ -32,8 +32,6 @@ obj-$(CONFIG_MARVELL_PEM_PMU) += marvell_pem_pmu.o
+>   obj-$(CONFIG_APPLE_M1_CPU_PMU) += apple_m1_cpu_pmu.o
+>   obj-$(CONFIG_ALIBABA_UNCORE_DRW_PMU) += alibaba_uncore_drw_pmu.o
+>   obj-$(CONFIG_DWC_PCIE_PMU) += dwc_pcie_pmu.o
+> -obj-$(CONFIG_ARM_CORESIGHT_PMU_ARCH_SYSTEM_PMU) += arm_cspmu/
+> -obj-$(CONFIG_MESON_DDR_PMU) += amlogic/
+>   obj-$(CONFIG_CXL_PMU) += cxl_pmu.o
+>   obj-$(CONFIG_NVIDIA_TEGRA410_CMEM_LATENCY_PMU) += nvidia_t410_cmem_latency_pmu.o
+>   obj-$(CONFIG_NVIDIA_TEGRA410_C2C_PMU) += nvidia_t410_c2c_pmu.o
 
-Frank
-
-> +#endif
-> +
->  /**
->   * enum dma_slave_buswidth - defines bus width of the DMA slave
->   * device, source or target buses
->
-> --
-> 2.34.1
->
 
