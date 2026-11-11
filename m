@@ -2,32 +2,32 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD18606A33F
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C99060A2602
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZHxKnWbB;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=gb8fha4o;
-	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=ySd5eoWs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=42VlCdJM;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.a=rsa-sha256 header.s=2020 header.b=uOd72DZi;
+	dkim=pass header.d=linutronix.de header.i=@linutronix.de header.a=ed25519-sha256 header.s=2020e header.b=7yECXhdA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ezFqtxLTIBFIG8G1txYl6cMQ0D5n/RwqQ2a2PuxKgEk=; b=ZHxKnWbB5bOW5E
-	wcV+y8CSSOWtB6e5dECnrCPxQPth9GRjMedHCyDmdNaujmsJ6XBrQ/tbiYQjpRAk3kbtJ6QlNaeGW
-	zSFW5WnrP6/lYpiZl1SlYnIKwBUfRUKiZ0we4YSbh87EtVpdJ+k2xmpFUhbkP+lCEZOdMWNhlKlPJ
-	0iv2f/to6a6W9T9CtHxjeZkNL0rA/b1Ei4uSanaR/F6c7pF6Qqf+dmQFK/ZKJbQbHyZjGRZbuWIgR
-	gWQjbaf8Tkb8iNOGffocPe4qevSC4hqUSoQ1VPseVzDDno/b0iu5/D2P1YWC2teokT7tGOxLcvbr5
-	OnXlUuOZtMn2zSD1q3QA==;
+	List-Owner; bh=tHUSNSerCRGFZ82siCqIUqFz+RSj5p+l4/WfkMPWLGQ=; b=42VlCdJMKxy+F6
+	IdYue2yK5HuCtVAuHYfvy03Au1+r96IC5Ixg/GN2zauUB4y5KkNkFOEYViyAO2UDj6PXL+gZF4zGy
+	wYYcqAxT9qmjcKqvgyRD1ctiPaMZlOYkMchhA1pHvzIgEWJifX+A2c1MKNkS4LxReiKr7V26ElLBU
+	5R3vS2znAntXYh0N1gC+lfduVp8Wn/A8aLoU71DILKJXqaGTpaIf51ZNGIFr8lEggGiqfIrCO5ZnH
+	RAx8pHKel6c4NcXGPhzg39yNL4Fznik4GKoSZy1/wLhwsQrtFjDI+kvktdVB+BQ3vg1DumPD3QLeO
+	qEbA+pX5MubbeLK4Onhw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2ga-00000005ssr-1LyU;
-	Wed, 11 Nov 2026 07:24:00 +0000
-Received: from galois.linutronix.de ([2a0a:51c0:0:12e:550::1])
+	id 1xR2gf-00000005sxK-02r8;
+	Wed, 11 Nov 2026 07:24:05 +0000
+Received: from galois.linutronix.de ([193.142.43.55])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2gE-00000005seB-1e9E;
-	Wed, 11 Nov 2026 07:23:39 +0000
+	id 1xR2gE-00000005seC-25JI;
+	Wed, 11 Nov 2026 07:23:40 +0000
 From: Gregor Herburger <gregor.herburger@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
 	s=2020; t=1794381814;
@@ -35,28 +35,28 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ezFqtxLTIBFIG8G1txYl6cMQ0D5n/RwqQ2a2PuxKgEk=;
-	b=gb8fha4o+8s8MVD4RqBJtGo7wJayb/CoiBFyYxKyedlmj6KWy1Nu6fj4ZRg2xEju3lGTOI
-	Wu8hrtbQwncjFcVYYMm7HzXm3DaKEUEiw2xOImvBAxkLt1vAt0o8ZC7x7thNJrtuwEY8gH
-	ggxj32b0S5jmyg2deMGYXwNQ4yF8SJ5uvNpS5YnabqOgJVXQtRfEETSy1BsEISsV8wg0Xs
-	dDn2vIqF+5LYifwA+XN87G/DR72BiNSrKVweaaHL9Ap2KwlBfUCcE4kzvrikEWFg/djfhp
-	gIouv2cDylH9gDZdKW2EE8yBRb+Wo1Vy+3c/qnPyG2D4QOlYwP2gsy8yRftAIA==
+	bh=tHUSNSerCRGFZ82siCqIUqFz+RSj5p+l4/WfkMPWLGQ=;
+	b=uOd72DZiCgAAAj5MQZDrvFvy6GlHDUpLSbbL74I4WZwQS/rzD5wt+S2ph0IjwDo8X88clN
+	SSJD9YK/tEkF9b/Ullh5k3MW66P8dHjN4Pshpfb7x0jv8K1jQbIKUCJK4mxEpEC5QbtCOo
+	nx3yCRGo3GokRq/R5eYU/G94lzSK04oGDA6lQsSYgSOu0jhgWCHw/qu3N9d5pcIPa5/zfw
+	IkWIVu8KJBHB7zAkQBQQgi22af9H8unMAh6+EAQLSyFHgMgCtLqKohde/6iGxHmAL9hML4
+	D7cE9p6h/Ywi04qSlYmb2rYLlVHj0s8kcmJx204rgxBacNiPMbprRAr0siVKqw==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
 	s=2020e; t=1794381814;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ezFqtxLTIBFIG8G1txYl6cMQ0D5n/RwqQ2a2PuxKgEk=;
-	b=ySd5eoWsHZxADB8OVpJ9liIm6iK9f69vR/Mfgt0Yth/xK/9AdClADK3ZWYdo1qYOML4IiO
-	/DFE2jR8cevvX3DA==
-Date: Wed, 11 Nov 2026 08:23:28 +0100
-Subject: [PATCH v9 06/12] firmware: raspberrypi: register nvmem driver
+	bh=tHUSNSerCRGFZ82siCqIUqFz+RSj5p+l4/WfkMPWLGQ=;
+	b=7yECXhdAkDhhiI0qGzG8Apf+9zxxXZuEVA6QLnSEiONmx6LtsNcz/zdZuQNz1Cl7E5RpH1
+	t7B+Mqokv5WaZ/Bw==
+Date: Wed, 11 Nov 2026 08:23:27 +0100
+Subject: [PATCH v9 05/12] nvmem: Add the Raspberry Pi OTP driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20261111-rpi-otp-driver-v9-6-0a7292a7a5b4@linutronix.de>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261111-rpi-otp-driver-v9-5-0a7292a7a5b4@linutronix.de>
 References: <20261111-rpi-otp-driver-v9-0-0a7292a7a5b4@linutronix.de>
 In-Reply-To: <20261111-rpi-otp-driver-v9-0-0a7292a7a5b4@linutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -73,16 +73,16 @@ Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-hardening@vger.kernel.org, 
  Gregor Herburger <gregor.herburger@linutronix.de>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794381812; l=4414;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794381812; l=6924;
  i=gregor.herburger@linutronix.de; s=20260226; h=from:subject:message-id;
- bh=YNBRPkvZhndKwpMu8ZxY1514Y/y9TgfpND27yu3L9nU=;
- b=XFnl7ovdUWJE6GV2Xw+JDREti65IFODyYjcwPh5earhDXMkPK7S/w7O8fPy3zzDqdYpFhFiqq
- 1CQ8Htn+RKyDygTRcGlnLjZKUVerqsjHjsvO5WlGRol/O4ZuQ0OOz4y
+ bh=NWFWibDgQzoJcxEf+x8BlYXmFYBWRFhuj35bPdzeMXc=;
+ b=FAPd+9axMqN7j67adXOZ+7kc0jKX5t02OXRne5Ofy6ASadjCaX9/FcFYa33P1ClRPzeP4rrQ2
+ iPV72hRz6MWBPMKV2UkGeROqiW8X4VqZkHP5sFHEIv2JJrHFJnpyXyk
 X-Developer-Key: i=gregor.herburger@linutronix.de; a=ed25519;
  pk=u72Lv7+/lS5CC1hmSrb17lv/6CK7HBh4Lvz77PHA5LM=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_232338_679108_023C3502 
-X-CRM114-Status: GOOD (  15.43  )
+X-CRM114-CacheID: sfid-20261110_232338_739284_612144DF 
+X-CRM114-Status: GOOD (  21.85  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,150 +94,229 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Raspberry Pi firmware exposes two regions with otp registers. The
-first region called "customer otp" is available on all Raspberry Pi
-models. The second is only available on the Raspberry Pi 5 (bcm2712).
+Raspberry Pis have OTP registers which can be accessed through the
+videocore firmware. Add a nvmem driver to support these OTP registers.
 
-Reviewed-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 Signed-off-by: Gregor Herburger <gregor.herburger@linutronix.de>
 ---
- drivers/firmware/raspberrypi.c             | 59 +++++++++++++++++++++++++++++-
- include/soc/bcm2835/raspberrypi-firmware.h |  5 +++
- 2 files changed, 63 insertions(+), 1 deletion(-)
+ drivers/nvmem/Kconfig                      |  11 +++
+ drivers/nvmem/Makefile                     |   1 +
+ drivers/nvmem/raspberrypi-otp.c            | 131 +++++++++++++++++++++++++++++
+ include/soc/bcm2835/raspberrypi-firmware.h |  10 +++
+ 4 files changed, 153 insertions(+)
 
-diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberrypi.c
-index 443459c8c90fa..755f845754c1c 100644
---- a/drivers/firmware/raspberrypi.c
-+++ b/drivers/firmware/raspberrypi.c
-@@ -25,12 +25,15 @@
- static struct platform_device *rpi_hwmon;
- static struct platform_device *rpi_clk;
- static struct platform_device *rpi_rtc;
-+static struct platform_device *rpi_otp_customer;
-+static struct platform_device *rpi_otp_private;
+diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+index d2f5bb236663f..11c557f2a088f 100644
+--- a/drivers/nvmem/Kconfig
++++ b/drivers/nvmem/Kconfig
+@@ -406,6 +406,17 @@ config NVMEM_QNAP_MCU_EEPROM
+ 	  information, like MAC addresses for ethernet devices that do not
+ 	  contain their own mac storage.
  
- struct rpi_firmware {
- 	struct mbox_client cl;
- 	struct mbox_chan *chan; /* The property channel. */
- 	struct completion c;
- 	u32 enabled;
-+	enum rpi_firmware_soc soc;
- 
- 	struct kref consumers;
- };
-@@ -252,6 +255,47 @@ static void rpi_register_rtc_driver(struct device *dev)
- 	rpi_rtc = pdev;
- }
- 
-+static const struct rpi_otp_driver_data rpi_otp_customer_data = {
-+	.name = "rpi-otp-customer",
-+	.read_tag = RPI_FIRMWARE_GET_CUSTOMER_OTP,
-+	.write_tag = RPI_FIRMWARE_SET_CUSTOMER_OTP,
-+	.size = 32,
-+	.root_only = false,
++config NVMEM_RASPBERRYPI_OTP
++	tristate "Raspberry Pi OTP support"
++	depends on RASPBERRYPI_FIRMWARE || COMPILE_TEST
++	help
++	  This driver provides access to the Raspberry Pi OTP memory via the
++	  nvmem subsystem. The driver supports the customer OTP as well as the
++	  device specific private key OTP (BCM2712 only).
++
++	  This driver can also be built as a module. If so, the module
++	  will be called raspberrypi-otp.
++
+ config NVMEM_RAVE_SP_EEPROM
+ 	tristate "Rave SP EEPROM Support"
+ 	depends on RAVE_SP_CORE
+diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+index 5e70bad9f0f9e..10ae38ec349a9 100644
+--- a/drivers/nvmem/Makefile
++++ b/drivers/nvmem/Makefile
+@@ -104,3 +104,4 @@ obj-$(CONFIG_NVMEM_ZYNQMP)		+= nvmem_zynqmp_nvmem.o
+ nvmem_zynqmp_nvmem-y			:= zynqmp_nvmem.o
+ obj-$(CONFIG_NVMEM_QORIQ_EFUSE)		+= nvmem-qoriq-efuse.o
+ nvmem-qoriq-efuse-y			:= qoriq-efuse.o
++obj-$(CONFIG_NVMEM_RASPBERRYPI_OTP)	+= raspberrypi-otp.o
+diff --git a/drivers/nvmem/raspberrypi-otp.c b/drivers/nvmem/raspberrypi-otp.c
+new file mode 100644
+index 0000000000000..2c632781f6003
+--- /dev/null
++++ b/drivers/nvmem/raspberrypi-otp.c
+@@ -0,0 +1,131 @@
++// SPDX-License-Identifier: GPL-2.0-only
++
++#include <linux/module.h>
++#include <linux/mod_devicetable.h>
++#include <linux/nvmem-provider.h>
++#include <linux/platform_device.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++#include <soc/bcm2835/raspberrypi-firmware.h>
++
++struct rpi_otp_priv {
++	struct rpi_firmware *fw;
++	u32 read_tag;
++	u32 write_tag;
 +};
 +
-+static const struct rpi_otp_driver_data rpi_otp_private_data = {
-+	.name = "rpi-otp-private",
-+	.read_tag = RPI_FIRMWARE_GET_PRIVATE_OTP,
-+	.write_tag = RPI_FIRMWARE_SET_PRIVATE_OTP,
-+	.size = 32,
-+	.root_only = true,
++struct rpi_otp_header {
++	__le32 start;
++	__le32 count;
++	__le32 data[] __counted_by_le(count);
 +};
 +
-+static void rpi_register_otp_driver(struct device *dev)
++static int rpi_otp_read(void *context, unsigned int offset, void *buf, size_t bytes)
 +{
-+	struct rpi_firmware *fw = dev_get_drvdata(dev);
++	struct rpi_otp_priv *priv = context;
++	struct rpi_otp_header *fwbuf;
++	u32 count;
++	int ret;
 +
-+	rpi_otp_customer = platform_device_register_data(dev, "raspberrypi-otp",
-+							 PLATFORM_DEVID_AUTO,
-+							 &rpi_otp_customer_data,
-+							 sizeof(rpi_otp_customer_data));
++	count = bytes / 4;
 +
-+	if (IS_ERR(rpi_otp_customer))
-+		dev_err(dev, "Failed to register customer OTP device: %pe\n",
-+			rpi_otp_customer);
++	fwbuf = kzalloc(struct_size(fwbuf, data, count), GFP_KERNEL);
++	if (!fwbuf)
++		return -ENOMEM;
 +
-+	if (fw->soc == RPI_FIRMWARE_SOC_BCM2712) {
-+		rpi_otp_private = platform_device_register_data(dev, "raspberrypi-otp",
-+								PLATFORM_DEVID_AUTO,
-+								&rpi_otp_private_data,
-+								sizeof(rpi_otp_private_data));
++	fwbuf->start = cpu_to_le32(offset / 4);
++	fwbuf->count = cpu_to_le32(count);
 +
-+		if (IS_ERR(rpi_otp_private))
-+			dev_err(dev, "Failed to register private OTP device: %pe\n",
-+				rpi_otp_private);
-+	}
++	ret = rpi_firmware_property(priv->fw, priv->read_tag, fwbuf,
++				    sizeof(struct rpi_otp_header) + bytes);
++	if (ret)
++		goto out;
++
++	memcpy(buf, fwbuf->data, le32_to_cpu(fwbuf->count) * 4);
++
++out:
++	kfree(fwbuf);
++	return ret;
 +}
 +
- unsigned int rpi_firmware_clk_get_max_rate(struct rpi_firmware *fw, unsigned int id)
- {
- 	struct rpi_firmware_clk_rate_request msg =
-@@ -320,6 +364,7 @@ static int rpi_firmware_probe(struct platform_device *pdev)
- 
- 	init_completion(&fw->c);
- 	kref_init(&fw->consumers);
-+	fw->soc = (uintptr_t)device_get_match_data(dev);
- 
- 	platform_set_drvdata(pdev, fw);
- 
-@@ -327,6 +372,7 @@ static int rpi_firmware_probe(struct platform_device *pdev)
- 	rpi_register_hwmon_driver(dev, fw);
- 	rpi_register_clk_driver(dev);
- 	rpi_register_rtc_driver(dev);
-+	rpi_register_otp_driver(dev);
- 
- 	return 0;
- }
-@@ -351,12 +397,23 @@ static void rpi_firmware_remove(struct platform_device *pdev)
- 	rpi_clk = NULL;
- 	platform_device_unregister(rpi_rtc);
- 	rpi_rtc = NULL;
-+	platform_device_unregister(rpi_otp_customer);
-+	rpi_otp_customer = NULL;
-+	platform_device_unregister(rpi_otp_private);
-+	rpi_otp_private = NULL;
- 
- 	rpi_firmware_put(fw);
- }
- 
- static const struct of_device_id rpi_firmware_of_match[] = {
--	{ .compatible = "raspberrypi,bcm2835-firmware", },
-+	{
-+		.compatible = "raspberrypi,bcm2835-firmware",
-+		.data = (void *)RPI_FIRMWARE_SOC_BCM2835,
++static int rpi_otp_write(void *context, unsigned int offset, void *val, size_t bytes)
++{
++	struct rpi_otp_priv *priv = context;
++	struct rpi_otp_header *fwbuf;
++	u32 count;
++	int ret;
++
++	count = bytes / 4;
++
++	fwbuf = kzalloc(struct_size(fwbuf, data, count), GFP_KERNEL);
++	if (!fwbuf)
++		return -ENOMEM;
++
++	fwbuf->start = cpu_to_le32(offset / 4);
++	fwbuf->count = cpu_to_le32(count);
++	memcpy(fwbuf->data, val, bytes);
++
++	ret = rpi_firmware_property(priv->fw, priv->write_tag, fwbuf,
++				    sizeof(struct rpi_otp_header) + bytes);
++
++	kfree(fwbuf);
++	return ret;
++}
++
++static int rpi_otp_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct nvmem_device *nvmem;
++	struct rpi_otp_priv *priv;
++	const struct rpi_otp_driver_data *data;
++	struct nvmem_config config = {
++		.read_only = false,
++		.word_size = 4,
++		.stride = 4,
++		.reg_read = rpi_otp_read,
++		.reg_write = rpi_otp_write,
++		.id = NVMEM_DEVID_NONE,
++	};
++
++	data = dev_get_platdata(dev);
++	if (!data)
++		return -ENODEV;
++
++	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->fw = dev_get_drvdata(dev->parent);
++	priv->read_tag = data->read_tag;
++	priv->write_tag = data->write_tag;
++	config.dev = dev;
++	config.priv = priv;
++	config.name = data->name;
++	config.size = data->size;
++	config.root_only = data->root_only;
++
++	nvmem = devm_nvmem_register(dev, &config);
++	if (IS_ERR(nvmem))
++		return dev_err_probe(dev, PTR_ERR(nvmem), "error registering nvmem config\n");
++
++	return 0;
++}
++
++static const struct platform_device_id raspberrypi_otp_id[] = {
++	{ "raspberrypi-otp" },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(platform, raspberrypi_otp_id);
++
++static struct platform_driver raspberrypi_otp_driver = {
++	.probe	= rpi_otp_probe,
++	.driver = {
++		.name	= "raspberrypi-otp",
 +	},
-+	{
-+		.compatible = "raspberrypi,bcm2712-firmware",
-+		.data = (void *)RPI_FIRMWARE_SOC_BCM2712,
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, rpi_firmware_of_match);
++	.id_table = raspberrypi_otp_id,
++};
++module_platform_driver(raspberrypi_otp_driver);
++
++MODULE_AUTHOR("Gregor Herburger <gregor.herburger@linutronix.de>");
++MODULE_DESCRIPTION("Raspberry Pi OTP driver");
++MODULE_LICENSE("GPL");
 diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
-index 96ddf886d579e..2fb1ef2a33141 100644
+index 33ac26f2f135a..96ddf886d579e 100644
 --- a/include/soc/bcm2835/raspberrypi-firmware.h
 +++ b/include/soc/bcm2835/raspberrypi-firmware.h
-@@ -9,6 +9,11 @@
- #include <linux/types.h>
- #include <linux/of_device.h>
+@@ -82,6 +82,7 @@ enum rpi_firmware_property_tag {
+ 	RPI_FIRMWARE_SET_POE_HAT_VAL =                        0x00030050,
+ 	RPI_FIRMWARE_NOTIFY_XHCI_RESET =                      0x00030058,
+ 	RPI_FIRMWARE_NOTIFY_DISPLAY_DONE =                    0x00030066,
++	RPI_FIRMWARE_GET_PRIVATE_OTP =                        0x00030081,
+ 	RPI_FIRMWARE_GET_RTC_REG =                            0x00030087,
+ 	RPI_FIRMWARE_SET_CLOCK_STATE =                        0x00038001,
+ 	RPI_FIRMWARE_SET_CLOCK_RATE =                         0x00038002,
+@@ -93,6 +94,7 @@ enum rpi_firmware_property_tag {
+ 	RPI_FIRMWARE_SET_SDHOST_CLOCK =                       0x00038042,
+ 	RPI_FIRMWARE_SET_GPIO_CONFIG =                        0x00038043,
+ 	RPI_FIRMWARE_SET_PERIPH_REG =                         0x00038045,
++	RPI_FIRMWARE_SET_PRIVATE_OTP =                        0x00038081,
+ 	RPI_FIRMWARE_SET_RTC_REG =                            0x00038087,
  
-+enum rpi_firmware_soc {
-+	RPI_FIRMWARE_SOC_BCM2835,
-+	RPI_FIRMWARE_SOC_BCM2712,
+ 	/* Dispmanx TAGS */
+@@ -201,6 +203,14 @@ struct rpi_firmware_clk_rate_request {
+ 		.id = cpu_to_le32(_id),		\
+ 	}
+ 
++struct rpi_otp_driver_data {
++	const char *name;
++	u32 read_tag;
++	u32 write_tag;
++	int size;
++	bool root_only;
 +};
 +
- struct rpi_firmware;
- 
- enum rpi_firmware_property_status {
+ #if IS_REACHABLE(CONFIG_RASPBERRYPI_FIRMWARE)
+ int rpi_firmware_property(struct rpi_firmware *fw,
+ 			  u32 tag, void *data, size_t len);
 
 -- 
 2.47.3
