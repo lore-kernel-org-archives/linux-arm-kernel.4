@@ -2,106 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CB6606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 20:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055C2606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 20:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BacLmQDH;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nLEjMedY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QtlpQXN5;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=nwawK37F
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=BXCg5/9AvBgoxGXtHqmAleI7yDwWo/ptOCsztMkRr8Y=; b=BacLmQDH2HwPOi
-	KJQxZzosCOrac+Hy0M6D+tkwrSq5wg+VRZzK0x9+ymAJBMYGpwrcEDNxa4hRj9PnXqPBbApQmj548
-	XcbAb9RxHLD9FT1wwjlJ/nZdQ0azn1u3tj/J2j//j8diUyA6P/UAk5UAx/aETYE8TmCmgVP6QfyCQ
-	41bj2piSPji46B/U9VmgjjZfTxsQ24ku6VMtePxZSOcpfrH93qvUoXkEUhLkk30J//A/B05hSfcac
-	xqnh4xrkg5TiJZtUCdu7v/JxPCRjxzhK/XwjSBVlkr1toQxox8EBQmPVocYaxgZO1iNeAx3yLgR44
-	2rOoMqZjQCiUHUzJoaEw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=YkiuKwTzFaKxocYqHbZJaiH6LJSy5oJp9dJAcEhaIF0=; b=QtlpQXN5UdKL1iHBzlzVBr0hN/
+	1e3H53Vb6FecC14Zxm3JUNhuGfyYSuOLSkQDTxE65GlCJIqgoz1Y40YLE6+viER+1K56qn7d58Ukt
+	Fquyd2EK2bupy/mFc0hc0jKvZIWOTYMFq+iJETQ4LZy+1zsT+tW105kxw5mV/TIJT3peqzlc1W6km
+	VeUZJpcMOvI+Hd+DNbc2R0Ws2MFubzkAKWbdvmzS81tjZ/GYdMOGCf3jxHvSi8haG6wiF5i5NO+KG
+	pJTJJ637BnjSr2tApW/GwkuXSBIGq48men8YigpynIGYaRH+enZBTqymPQOnWFLkajrZxpMN8eJrg
+	FBXb70+g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRF5H-00000007ee2-36FN;
-	Wed, 11 Nov 2026 20:38:19 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRF5G-00000007edU-2RJo
+	id 1xRFAI-00000007fgK-0Gcq;
+	Wed, 11 Nov 2026 20:43:30 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRFAE-00000007fe8-2q1k
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 20:38:18 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 572154020B;
-	Wed, 11 Nov 2026 20:38:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F5901F00A05;
-	Wed, 11 Nov 2026 20:38:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794429498;
-	bh=BXCg5/9AvBgoxGXtHqmAleI7yDwWo/ptOCsztMkRr8Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=nLEjMedY+zSvWsfmO0qAhPG8fJy0ryoRI73J/jyFu1jMf6cGQthaaLu8qm1Ysfuq0
-	 kBAZgC5K/FDlkqSnbJLOovawQqfjZJ70hTpCPxIIyTUdtUhmM6R9fK7+JQQCMoX4ea
-	 NpySGbhx1d1RBQI1KgkiaWf83f76lTrevZ6/CyPx+4xhn2R1AdJRz/vfjycRahQDFd
-	 hJq7sNTc1iP2EUdImBIiOPyWziuzAntLyPYoKEKB/O4vF1dqddthXok41tzKyPkgPa
-	 U+kXdHKiO2JzFgYcTH/ugFTmotEsQC9PHpK/M/wPe2DzinMzTpsiOCJ6bopri/oYF5
-	 X96J/Aua23WXw==
-Message-ID: <2097d211-8d96-4038-b21d-6285e5a16c53@kernel.org>
-Date: Wed, 11 Nov 2026 21:38:12 +0100
+	Wed, 11 Nov 2026 20:43:28 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 41A64153B;
+	Wed, 11 Nov 2026 12:43:22 -0800 (PST)
+Received: from localhost (unknown [10.2.196.114])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D12223F85F;
+	Wed, 11 Nov 2026 12:43:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794429805; bh=mx3VbQ9/b7aZO8Gcx1adUQM+AmPwFj6BLz1d9u/uU8U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nwawK37Fkk3B1Dd8xpjDH02kguU+B9x/ZRaD5YNvyMo74wCWalB0GpoJEeLPKJE86
+	 31HnfzhNse3dMDQrgcPdcaEiu7fOuN33UNqHb/5GPmekgyGPYeGmqNaT+5QEIdipZn
+	 FwgeBshyJewJ+AFuAZMFCFOSPHuewTnmyAlPLNyA=
+Date: Wed, 11 Nov 2026 20:43:22 +0000
+From: Leo Yan <leo.yan@arm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Jie Gan <jie.gan@oss.qualcomm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@arm.com>,
+	James Clark <james.clark@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+	Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v7 0/5] Fix traceNoC probe issue on multiple QCOM
+ platforms
+Message-ID: <20261111204322.GH9176@e132581.arm.com>
+References: <20261110-fix-trace-noc-probe-issue-v7-0-2f06905c77fe@oss.qualcomm.com>
+ <20261110154643.GA4159803-robh@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: defconfig: drop four symbols that no longer exist
-To: TAKANO Mitsuhiro <takano32@gmail.com>, soc@lists.linux.dev
-Cc: Arnd Bergmann <arnd@arndb.de>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Mikko Rapeli <mikko.rapeli@linaro.org>,
- Vincent Mailhol <mailhol@kernel.org>
-References: <20261111202914.2558187-1-takano32@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261111202914.2558187-1-takano32@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261110154643.GA4159803-robh@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_124327_100182_B4CA6D3A 
+X-CRM114-Status: GOOD (  14.26  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,59 +86,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 21:29, TAKANO Mitsuhiro wrote:
-> None of these symbols exists any more, so the lines look like options that
-> can still be chosen:
+On Tue, Nov 10, 2026 at 09:46:43AM -0600, Rob Herring wrote:
+> On Tue, Nov 10, 2026 at 09:21:13AM +0800, Jie Gan wrote:
+> > The CoreSight TNOC (Trace Network-On-Chip) binding so far only allowed the
+> > two-string AMBA form "qcom,coresight-tnoc", "arm,primecell". That form
+> > forces the device onto the AMBA bus, where the driver must read the
+> > peripheral ID from the device registers during probe. On several QCOM
+> > platforms this AMBA peripheral-ID probing fails, so the traceNoC device
+> > never probes and its trace path is unavailable.
 > 
->   NFS_V4_1                  folded into NFS_V4 (7537db24806f, 2025-12-04)
->   SLIM_QCOM_CTRL            driver removed     (7cbba32a2d62, 2025-09-12)
->   NET_VENDOR_PACKET_ENGINES vendor removed     (aec3202247b4, 2026-04-22)
->   SCHED_DEBUG               option removed     (b52173065e0a, 2025-03-17)
-> 
-> Three of the lines went stale when their symbol disappeared.  The Ethernet
-> line was added by commit 32379ad4060b ("arm64: defconfig: Drop unused
-> Ethernet vendors") on 2026-04-29, a week after the packetengines vendor
-> directory had been removed, so it was stale from the start.
-> 
+> But it works fine on some platforms? We have a property to override the 
+> peripheral-ID which would solve your issue. That would be much simpler 
+> and avoid the ABI break on any of the working platforms.
 
-Nothing below is suitable for git commit, drop.
+Looking back at the earlier discussion [1], Jie in v2 already proposed
+"arm,primecell-periphid". Questions about AMBA IDs and ATID handling got
+mixed together. The series later moved towards platform-device probing,
+then became current shape.
 
-> Scanning every Kconfig definition in the tree leaves no other stale line
-> in this file.  Similar leftovers remain in other architectures'
-> defconfigs; those are not touched here.
-> 
-> Mikko Rapeli sent a patch for the SLIM_QCOM_CTRL line in December 2025,
-> and Vincent Mailhol's "configs: cleanup obsolete or incorrect assignments"
-> series carried the NFS_V4_1 and SLIM_QCOM_CTRL lines in March 2026; both
-> submissions are still unmerged.  This patch covers all four lines and
-> would supersede those hunks; I am happy to drop the corresponding hunk if
-> either author would rather keep their own.
-> 
-> Tested as configuration text only: "make ARCH=arm64 defconfig" on v7.4-rc2
-> with and without this change gives a byte-identical .config, and "make
-> savedefconfig" emits none of the four lines.  No kernel was built or
-> booted from this change.
-> 
-> The change and the changelog text were produced with an AI coding
-> assistant (Hermes Agent, model deepseek-v4.1-flash) working from the tree
+Hope we make the right decision on arm,primecell-periphid this time.
 
-This goes to changelog, not commit msg, so under ---.
+Anyway, I'd like to apologise to Jie for all the back and forth.
 
-> and the git history.  I reviewed the diff and the reasoning, and I am
-> responsible for the submission.
+Thanks,
+Leo
 
-Not suitable for git log.
-
-
-
-Best regards,
-Krzysztof
+[1] https://lore.kernel.org/linux-arm-kernel/9432df20-08bf-4134-b4b9-e6b5d618af81@oss.qualcomm.com/
 
