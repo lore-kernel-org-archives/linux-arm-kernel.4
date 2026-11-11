@@ -2,55 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D3B4606B037
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE96606B038
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CoO/nDBD;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UFJg7ifo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j2KwX8+E;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QxbFGovA
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UeJIGxY5ErXXyutQODurGJuOPaEIwFDPftosdrDquo4=; b=CoO/nDBDgEHQFk
-	XtLpDU7GRJIAuQnYP0u8w5THUwoXWFkPSXYWtzWNV7YgcOwLh8eGMGFCmjY+La+sPSJE5u9QseddI
-	pxKzRo/YCC/f2xLPbq850rvadyguGoNXICMLU1iZEzRG5e3b0TFCuP6SGM+E4BOndnp3cm0963RgX
-	Hhzqn0FYYiycRyl4bErisPt0pvBTeh0SWzqEV7IPOCaPjRC81PXQAaSYACs+USa9tNepxCps/Rl+Q
-	ZkDjo9g9Heo5g5eKIRw4sjPsDR7EgEhlwKznB3LpxVKUe82x1PYgyicbAtAzlinnNivFceUJnuY3E
-	0V1pvT4BjhTlXY9xtxvg==;
+	List-Owner; bh=Mvm2B4aA/p4I2wK+YBoHM5JvjypAI+iz8BH1ZFQP+gk=; b=j2KwX8+EqbOkrN
+	hK8KXwkamTAeNu8T4M4XW5LNppR32UJlBz66UQNc9YYXknE/3t+E3J2iDC++6ZcNatyrz0/hXTf9o
+	TNO2Ce6ohA1WiXTRxZbw65tbQ/iGyuYSVWmnmsoyKeO16gR7gl5p517/taLZEL/LjvO4mskkC6a3+
+	XaE5x6BYIxVbRK8AeGDze14U3zC3ERpAJHcnSwbVApR73U4rgem5AuBUfIHU6nNatXLG642x3+zYq
+	5xrG80FFgCKEDho2Eun0k41yHk0ceHprjf8mM6SBBakaMb8JGd35znnrar+8kYmXdvXwO3EPS5l3C
+	tUlGuKvGldVcCu71PiVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2W-000000080QO-1Ncb;
+	id 1xRH2W-000000080Qz-1xBg;
 	Wed, 11 Nov 2026 22:43:36 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2L-000000080Io-0QX4
+	id 1xRH2N-000000080Kl-0iCd
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:43:26 +0000
+	Wed, 11 Nov 2026 22:43:27 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8C7F96398F;
-	Wed, 11 Nov 2026 22:43:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C6F21F00A06;
-	Wed, 11 Nov 2026 22:43:23 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id CE99B42AC6;
+	Wed, 11 Nov 2026 22:43:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805641F00A07;
+	Wed, 11 Nov 2026 22:43:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794437004;
-	bh=UeJIGxY5ErXXyutQODurGJuOPaEIwFDPftosdrDquo4=;
+	s=k20260515; t=1794437006;
+	bh=Mvm2B4aA/p4I2wK+YBoHM5JvjypAI+iz8BH1ZFQP+gk=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=UFJg7ifoWir3FpRhZXf10gK6sJsDWAE5nZot4uimGei2FVwGbQi09RGw73Va4/wCy
-	 76nLG8BPhPOXoMU7zmhaHOUQazwjcZVOU5QoonImdFlRDiLwxFx/Ih7akKV/yk90Oo
-	 q3wE/bPd/7UyGjGI/wWgQVOhQYncjO9kbsr57XEJ3BWbbVa+0rSrlsqpC7RxMh6XCy
-	 3Np5yTsPSd6D2cnFlwGMrui98dLeTo3QhZTbh9ALkBBptdn0OIdagl65R10xWXrr2o
-	 K4bOjoYrXRd9j9/lRn2ISKR2BOGK/ldbg2RuHCUndP9CdDu+lODBrzhbpYLBxJI1yd
-	 voJgfnzH4qCHg==
+	b=QxbFGovAddVgfQIBYt3i06TYTqIA+xDMdvDo8WJTWnPzCj1V4h+CSL0XpUJgV/eWr
+	 GfkNoQ1VjRK3K1z08+/VGIADIV995Dot4RllhCoST85lE3ybquJnyXzhN7ij7Kd3OR
+	 uQPtuUVs29t3UvaGQTXRr09PTbQv3dD0v8ftRYKVEsYw7c1329rjSjIqcneF50ujj6
+	 aqOWBfZPdR0hPbbidIWsV3/H8lYGESybD1PYDa7owc+vk5nyF7eH76z4gUhC/3+riD
+	 V6jBpwKYA9i3pzdB8uoAU4XK5dI/9vehG16fFIgKo1qSp/GChpSRvWsD2cybIUMTxN
+	 BfzOpUXnW55mA==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 16:43:04 -0600
-Subject: [PATCH 7/9] arm64: dts: marvell: Drop unused USB 'phy-names'
+Date: Wed, 11 Nov 2026 16:43:06 -0600
+Subject: [PATCH 9/9] arm64: dts: marvell: armada-3720-gl-mv1000: Add switch
+ fixed-link
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-marvell-v1-7-938788aff3ae@kernel.org>
+Message-Id: <20261111-dtbs-marvell-v1-9-938788aff3ae@kernel.org>
 References: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 In-Reply-To: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -78,53 +79,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-'phy-names' is not valid without a corresponding 'phys' property, so
-drop them when 'phys' is not present.
+As the switch port 0 has an 'ethernet' phandle, 'phy-mode' and one of
+'fixed-link', 'phy-handle' or 'managed' are required by the DSA schema.
+The expressobin has appears to have a similar configuration, so copy it
+and use 'fixed-link'.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/cn9130-crb-A.dts          | 2 --
- arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi | 4 ++--
- 2 files changed, 2 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-crb-A.dts b/arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
-index a7b6dfba8af5..5823b25e5faf 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
-+++ b/arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
-@@ -28,11 +28,9 @@ &cp0_comphy2 0
- &cp0_usb3_0 {
- 	status = "okay";
- 	usb-phy = <&cp0_usb3_0_phy0>;
--	phy-names = "usb";
- };
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+index a881a3326dba..93af902f4f6f 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+@@ -161,6 +161,12 @@ ethernet-port@0 {
+ 				reg = <0>;
+ 				label = "cpu";
+ 				ethernet = <&eth0>;
++				phy-mode = "rgmii-id";
++
++				fixed-link {
++					speed = <1000>;
++					full-duplex;
++				};
+ 			};
  
- &cp0_usb3_1 {
- 	status = "okay";
- 	usb-phy = <&cp0_usb3_0_phy1>;
--	phy-names = "usb";
- };
-diff --git a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-index 71c225221617..a68c958fbb30 100644
---- a/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9131-db-comexpress.dtsi
-@@ -89,15 +89,15 @@ &cp0_spi1 {
- &cp0_usb3_0 {
- 	status = "okay";
- 	usb-phy = <&cp0_usb3_0_phy0>;
--	phy-names = "usb";
- 	/delete-property/ phys;
-+	/delete-property/ phy-names;
- };
- 
- &cp0_usb3_1 {
- 	status = "okay";
- 	usb-phy = <&cp0_usb3_0_phy1>;
--	phy-names = "usb";
- 	/delete-property/ phys;
-+	/delete-property/ phy-names;
- };
- 
- &cp1_usb3_1 {
+ 			ethernet-port@1 {
 
 -- 
 2.53.0
