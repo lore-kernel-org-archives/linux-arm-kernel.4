@@ -2,84 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18B1606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 21:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC947606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 21:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CRomyTR2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jCM9Q700
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Aqpf3mVx;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TCkLQYD2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=w4918hHXXDmKU7fR/Ldi5kPR9rByWFlOgXHLpR/sBLM=; b=CRomyTR2Hm1u1CDw9g0GfeezC3
-	G1OOFLYgFrp9fc3T3iTnGr0/kaeads46p8gtwgsTV3b8meuct/V9CTz7otIiwOwcmvAWbbA9jhv4H
-	uZZ1BkgBSLY3xsIOAfhqK7RrPFXu79wtLdQgf+wPpnVXNGshJoFs1o6Zi+BOtaefqObxZKdPbiZ4O
-	8BJWc8DpeYSjfcDbT01tYakogm8iHiwaO0SNcdfXTPjIqFMUmbkc4lMAKPqWL/bT2WT4uaf8RNCGv
-	G58A9mrUnwJNOXzA4cfynlzMb8wpVSPz5xspCYqs4XD0rpsDNaYdkQFw88f7HaJYLab0o/TBH07KT
-	8oPaZsEg==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=if/+0+pFnNU6k0PCEw4KVoy6ZadNyLU8ILGbmz3mIQI=; b=Aqpf3mVxl0Qp0t
+	Ur1pBFqDoow8Cv+BYq/FwvgGxf1J5ZU2R1bcHIkjDa1ZCy46SdR5OjGINXwlYNWGOH/EOrjqB2i8p
+	UIxs+ZO8nrXpLZuosEQ7q2RmpPzmKWlMUc8XCINU7CRlf6csiCKG7DuGTqkoSf+6Q0xgdNPoJtw7u
+	OET8uE5JRw/xnwMaL8tX3cBLCuuZ6TLTkWbvKeqAPlaojr+g3Z1lxKnZh8AFnaeTgnF58UjII7/OZ
+	M3A1QYDqV84i2I66Qq8TxsCoEkNhXIxuFFVA1pocRZmxPP7v1Bvx9HBG7lm0OKwA1Mr7Gm0rm9bP2
+	DFwz2x7jM880tEPJu/YA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGFe-00000007qy9-2irE;
-	Wed, 11 Nov 2026 21:53:06 +0000
+	id 1xRGFk-00000007r0r-3rXt;
+	Wed, 11 Nov 2026 21:53:12 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGFc-00000007qxc-39X1;
-	Wed, 11 Nov 2026 21:53:05 +0000
+	id 1xRGFj-00000007r0C-3Lbd
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 21:53:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CD5F26344C;
-	Wed, 11 Nov 2026 21:53:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26C031F00A06;
-	Wed, 11 Nov 2026 21:52:59 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 40739635C5;
+	Wed, 11 Nov 2026 21:53:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CEC01F00A06;
+	Wed, 11 Nov 2026 21:53:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794433983;
-	bh=w4918hHXXDmKU7fR/Ldi5kPR9rByWFlOgXHLpR/sBLM=;
-	h=From:To:Cc:Subject:Date;
-	b=jCM9Q700oZYghT9ZuZtkTxVa7WzCKp6T+2kNdPYJhBtwwtts0mwOMiUYHHDWedJ9w
-	 h5SE8aYakvTCRXnnwyzIMWrBibmwKYpK9VmBSEnklHu67PZyFSy8WFEToGJY+hRA4D
-	 NJf+CdIrNLk9pHMmWw1py4NHbZyAVkYsLofqSuF/1poR3PCt/OW8PCe1lrCKVHVqSl
-	 +8YyPDLwpIB46jK9yk6StqbMysQS1bQAyhEyyzaYffSZb0zfKgZX+u8Hemzt6gZYsD
-	 +AvQz1XVMeCBuINqD1WrWBSAfFX2E1PPniw+qA8GHgfd4b2hNukVvuKbe4W+9s//+7
-	 7lv1AuU7Ya0AA==
+	s=k20260515; t=1794433991;
+	bh=if/+0+pFnNU6k0PCEw4KVoy6ZadNyLU8ILGbmz3mIQI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=TCkLQYD2wxm/SVXZdhDspHY9KM2fXi3kUefod6ZsVx1SMgHexvi502AKjsKY6llOF
+	 a0hJSKD11kEG4/KLoG0Z0KmfL9p89gvFahAcV6h0QoQBKSpWKoErgaod5eQW4e0XXX
+	 LbELG9NJkgnGwoGFswsKK5A22eixZlYfGh7CxzsJzGnXywv6fUSun0+mXUay1uZpUd
+	 hkI6LUz9TUXrd+ahltkwvAr06dRlpXYz6ap1JE/AdlZWM4oSmbLadVcGzkvEvbXOWd
+	 yVPdCxHGEhkx5Gac5Q7H5AGQDNQHCAZ3dJSohe5qxkg6RgHW6ZsQ4dnvWv/nBFFeOw
+	 SmqcSUJ3ikpRg==
 From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.com>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Andy Shevchenko <andy.shevchenko@gmail.com>,
-	Avi Fishman <avifishman70@gmail.com>,
-	Benjamin Fair <benjaminfair@google.com>,
-	Dvorkin Dmitry <dvorkin@tibbo.com>,
-	Haojian Zhuang <haojian.zhuang@linaro.org>,
-	Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
+To: lee@kernel.org,
 	Jacky Huang <ychuang3@nuvoton.com>,
-	James Tai <james.tai@realtek.com>,
-	jordan_hargrave@dell.com,
+	Shan-Chun Hung <schung@nuvoton.com>,
 	Linus Walleij <linusw@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-gpio@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	linux-realtek-soc@lists.infradead.org,
-	Nancy Yuen <yuenn@google.com>,
-	openbmc@lists.ozlabs.org,
-	Patrick Venture <venture@google.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Tali Perry <tali.perry1@gmail.com>,
-	tomer.maimon@nuvoton.com,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Tzuyi Chang <tychang@realtek.com>,
-	Wells Lu <wellslutw@gmail.com>,
-	Yu-Chun Lin <eleanor.lin@realtek.com>
-Subject: [PATCH 00/10] pinctrl: Fix resource leaks, out-of-bounds accesses, and error handling (batch 2)
-Date: Wed, 11 Nov 2026 21:51:45 +0000
-Message-ID: <20261111215256.1982044-1-lee@kernel.org>
+	linux-kernel@vger.kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH 01/10] pinctrl: nuvoton: ma35: Unmap reg_base and release clock on probe error
+Date: Wed, 11 Nov 2026 21:51:46 +0000
+Message-ID: <20261111215256.1982044-2-lee@kernel.org>
 X-Mailer: git-send-email 2.56.0.567.gdb80ae8cd5-goog
+In-Reply-To: <20261111215256.1982044-1-lee@kernel.org>
+References: <20261111215256.1982044-1-lee@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -91,70 +71,108 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-These issues were reported by Sashiko (batch 2).
+ma35_get_bank_data() maps bank->reg_base via fwnode_iomap() and acquires
+and enables bank->clk via of_clk_get() and clk_prepare_enable(), neither
+of which is devres-managed.  If of_clk_get() or clk_prepare_enable()
+fails, bank->reg_base is leaked, and ma35_pinctrl_get_soc_data() ignores
+the error and continues probing with an uninitialised bank.
 
-Cc: "Andreas Färber" <afaerber@suse.com>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Avi Fishman <avifishman70@gmail.com>
-Cc: Benjamin Fair <benjaminfair@google.com>
-Cc: Dvorkin Dmitry <dvorkin@tibbo.com>
-Cc: Haojian Zhuang <haojian.zhuang@linaro.org>
-Cc: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-Cc: Jacky Huang <ychuang3@nuvoton.com>
-Cc: James Tai <james.tai@realtek.com>
-Cc: jordan_hargrave@dell.com
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-gpio@vger.kernel.org
-Cc: linux-omap@vger.kernel.org
-Cc: linux-realtek-soc@lists.infradead.org
-Cc: Nancy Yuen <yuenn@google.com>
-Cc: openbmc@lists.ozlabs.org
-Cc: Patrick Venture <venture@google.com>
-Cc: Shan-Chun Hung <schung@nuvoton.com>
-Cc: Tali Perry <tali.perry1@gmail.com>
-Cc: tomer.maimon@nuvoton.com
-Cc: Tomer Maimon <tmaimon77@gmail.com>
-Cc: Tony Lindgren <tony@atomide.com>
-Cc: Tzuyi Chang <tychang@realtek.com>
-Cc: Wells Lu <wellslutw@gmail.com>
-Cc: Yu-Chun Lin <eleanor.lin@realtek.com>
+Register devm cleanup actions for bank->reg_base and bank->clk, and
+propagate errors from ma35_get_bank_data() in ma35_pinctrl_get_soc_data().
 
-Lee Jones (10):
-  pinctrl: nuvoton: ma35: Unmap reg_base and release clock on probe
-    error
-  pinctrl: nuvoton: ma35: Prevent out-of-bounds write in
-    ma35_pinctrl_get_soc_data()
-  pinctrl: nuvoton: ma35: Assign fwnode to gpio_chip in
-    ma35_gpiolib_register()
-  pinctrl: nuvoton: ma35: Avoid leaking map when parent node is missing
-  pinctrl: nuvoton: npcm8xx: Propagate npcm8xx_gpio_register() error in
-    probe
-  pinctrl: nuvoton: npcm7xx: Fix fwnode_irq_get() error check in
-    npcm7xx_gpio_of()
-  pinctrl: single: Reject invalid register width in pcs_probe()
-  pinctrl: single: Free pinconf settings array in pcs_dt_free_map()
-  pinctrl: sunplus: Validate pin_func index in sppctl_dt_node_to_map()
-  pinctrl: realtek: rtd1625: Set dcycle_offset to NA for pins without
-    duty-cycle support
+Fixes: f805e356313b ("pinctrl: nuvoton: Add ma35d1 pinctrl and GPIO driver")
+Closes: https://sashiko.dev/#/bug/linux-2046e6c6-45d1-42d4-ae9f-27fac33b07e7
+Cc: stable@vger.kernel.org
+Signed-off-by: Lee Jones <lee@kernel.org>
+---
+ drivers/pinctrl/nuvoton/pinctrl-ma35.c | 36 ++++++++++++++++++++++----
+ 1 file changed, 31 insertions(+), 5 deletions(-)
 
- drivers/pinctrl/nuvoton/pinctrl-ma35.c    | 55 ++++++++++++++++++-----
- drivers/pinctrl/nuvoton/pinctrl-npcm7xx.c |  7 +--
- drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c |  2 +-
- drivers/pinctrl/pinctrl-single.c          | 42 +++++++++--------
- drivers/pinctrl/realtek/pinctrl-rtd1625.c | 12 ++---
- drivers/pinctrl/sunplus/sppctl.c          |  7 ++-
- 6 files changed, 85 insertions(+), 40 deletions(-)
-
+diff --git a/drivers/pinctrl/nuvoton/pinctrl-ma35.c b/drivers/pinctrl/nuvoton/pinctrl-ma35.c
+index a79ebf4be2c3..408927ab19da 100644
+--- a/drivers/pinctrl/nuvoton/pinctrl-ma35.c
++++ b/drivers/pinctrl/nuvoton/pinctrl-ma35.c
+@@ -555,6 +555,22 @@ static int ma35_gpiolib_register(struct platform_device *pdev, struct ma35_pinct
+ 	return 0;
+ }
+ 
++static void ma35_bank_iounmap(void *data)
++{
++	struct ma35_pin_bank *bank = data;
++
++	iounmap(bank->reg_base);
++	bank->reg_base = NULL;
++}
++
++static void ma35_bank_clk_release(void *data)
++{
++	struct ma35_pin_bank *bank = data;
++
++	clk_disable_unprepare(bank->clk);
++	clk_put(bank->clk);
++}
++
+ static int ma35_get_bank_data(struct ma35_pin_bank *bank)
+ {
+ 	int ret;
+@@ -563,6 +579,10 @@ static int ma35_get_bank_data(struct ma35_pin_bank *bank)
+ 	if (!bank->reg_base)
+ 		return -ENOMEM;
+ 
++	ret = devm_add_action_or_reset(bank->dev, ma35_bank_iounmap, bank);
++	if (ret)
++		return ret;
++
+ 	bank->irq = fwnode_irq_get(bank->fwnode, 0);
+ 
+ 	bank->nr_pins = MA35_GPIO_PORT_MAX;
+@@ -572,10 +592,12 @@ static int ma35_get_bank_data(struct ma35_pin_bank *bank)
+ 		return PTR_ERR(bank->clk);
+ 
+ 	ret = clk_prepare_enable(bank->clk);
+-	if (ret)
++	if (ret) {
+ 		clk_put(bank->clk);
++		return ret;
++	}
+ 
+-	return ret;
++	return devm_add_action_or_reset(bank->dev, ma35_bank_clk_release, bank);
+ }
+ 
+ static int ma35_pinctrl_get_soc_data(struct ma35_pinctrl *pctl, struct platform_device *pdev)
+@@ -583,7 +605,7 @@ static int ma35_pinctrl_get_soc_data(struct ma35_pinctrl *pctl, struct platform_
+ 	struct fwnode_handle *child;
+ 	struct ma35_pin_ctrl *ctrl;
+ 	struct ma35_pin_bank *bank;
+-	int i, id = 0;
++	int i, id = 0, ret;
+ 
+ 	ctrl = pctl->ctrl;
+ 	ctrl->nr_banks = MA35_GPIO_BANK_MAX;
+@@ -603,8 +625,12 @@ static int ma35_pinctrl_get_soc_data(struct ma35_pinctrl *pctl, struct platform_
+ 		bank->fwnode = child;
+ 		bank->regmap = pctl->regmap;
+ 		bank->dev = &pdev->dev;
+-		if (!ma35_get_bank_data(bank))
+-			bank->valid = true;
++		ret = ma35_get_bank_data(bank);
++		if (ret) {
++			fwnode_handle_put(child);
++			return ret;
++		}
++		bank->valid = true;
+ 		id++;
+ 	}
+ 	return 0;
 -- 
 2.56.0.567.gdb80ae8cd5-goog
 
