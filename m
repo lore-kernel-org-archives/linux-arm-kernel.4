@@ -2,117 +2,112 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDE62606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 03:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE9F60A2601
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 03:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i5aw5NWH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MDDN14Ka;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=covh9Wub
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GyCibCE3AGxRDMG6Bz/W/z+0Uxg23s7Lb0U2X1cmJuE=; b=i5aw5NWH3egJX5
-	JE4Tmn3njL8R6ukgtfiB+8AM235tZ/ZiXW1r3aBIZn5W0hBzb3GrboFxvragnchNNzCNA5Gxn53mg
-	9tJUGDnqBapOIMBEiLk1AzAAT995CiFTEb9VqGNevSfABfmZkMw7GLvsIL3C/bge60a9aC1XM+kdy
-	dTiEJOez6VmZ77ZFhwEWJxumTVtErrXfm8gOlpZN73ruau2mHIcAIvLuAODba1TLRrOEB37yeLv5j
-	kEh0hEPUAtTVlMUGuyQTs6MaJqLwojqfHSSdPsg6E7K3iju15Ke81Ij8pnn/pbFXMojdIefuX9tmT
-	TOj7uSk6hAXr5edEI/bw==;
+	List-Owner; bh=Km95marAPwW2pP8wgGsfAj1lfQ/5UdjiVvHJl74YYFY=; b=MDDN14Kau3BpVe
+	8LXcxZy43RGWpZwiP7FYjX0xEJtaGxTwI6MYECCpDnAbY7ks6gERHvxs3a4lWeiQs6vqrSbHMMrAT
+	Q4daM+OJEhdQ/7i0LXNf89QacPH8ngqVEoKEFK2oCzKXZcQSfHvFjJ8KViZInS1/2ZkSNHa2UaLT4
+	oFeWQgi57tkLv4zhlh7KhXye0E6B7eCBXlrqZUIJgYlB6t/Qx0nGqIOGVhg53MRmI9O6X3HlNkJEw
+	8SYvilOksUFSe0metQvZeI3DykmPONE10IO8SyRJrTjb4BdTSSvDRXOgGNuI8Mz7vkytD3RoXAJuD
+	4s4aQWllAKmKGUAxZchw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQyiJ-00000005UxW-27Yv;
-	Wed, 11 Nov 2026 03:09:31 +0000
-Received: from mail-japanwestazlp170120003.outbound.protection.outlook.com ([2a01:111:f403:c406::3] helo=OS8PR02CU002.outbound.protection.outlook.com)
+	id 1xQyiV-00000005V0d-356R;
+	Wed, 11 Nov 2026 03:09:43 +0000
+Received: from mail-dl1-x122a.google.com ([2607:f8b0:4864:20::122a])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQyiG-00000005UwY-2YPs;
-	Wed, 11 Nov 2026 03:09:30 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JnvYnQEc/K1yy5jn2kHAU3Wm5BexrPruccSQ1wahbT81V7D7MwH8yaViHJihD2E99PppuIJAidxJM3l4vjHL3+fr5Dy70EKCFOMH/cZuJRJICm+gzvMrFbxsNnLnisnahApkovqgPnCug5pvQ9W3zTzT6DPdwO3Ql3UxJqiIeSK4Xi/pZ8DfH+Qpej5BOxP4sFqhpzItBS8BbDbbGmQWKvkHxQRSde9abrsBm91HDs7s9H9y0Wf9H4zXqqnfgHKMXM09UrIKbsSQx+B6qrNs3ZWnJqde/drx9uTvQa2QnFoAR6JEvJ1qC+Ggf8GA9QRUVvVW7FK/VM2WtjSjj917Sw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GyCibCE3AGxRDMG6Bz/W/z+0Uxg23s7Lb0U2X1cmJuE=;
- b=sEDxwoinJOFcEjDVWrg4J7HmSpUgPS9hJuFRkCbnV8zA3EL4t5ejvq59oZV1N1GVozMYXvxpQsm/VGVj4miAZoxOU9TAcYClZxT4kXoxvQhtH85472HxPudE03jFfHqVQrPCk0UFfUec3BHvoLnf2ID/wq+JZNGzoYr0nWkwCDv95bjkiiy8fZqA1g6tuRmcAbVxIPfM7lyX+kjVbvLB5HIRXouklaZtp7oPLhmxxUv83KDkg586ScVbmZMr5ufoIEhShDedmks3K+kIToOYrWedEmnx5tbHIxgfEPWYjPRWnxC6ebGpTmX5PoVdDJhfA+te8+uhodCCYG5njTRYuQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from PS2PR02CA0039.apcprd02.prod.outlook.com (2603:1096:300:59::27)
- by JH0PR06MB6438.apcprd06.prod.outlook.com (2603:1096:990:2c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.7; Wed, 11 Nov
- 2026 03:09:17 +0000
-Received: from OSA0EPF000000CA.apcprd02.prod.outlook.com
- (2603:1096:300:59:cafe::70) by PS2PR02CA0039.outlook.office365.com
- (2603:1096:300:59::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Wed, 11
- Nov 2026 03:09:16 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- OSA0EPF000000CA.mail.protection.outlook.com (10.167.240.56) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 11 Nov 2026 03:09:15 +0000
-Received: from hongliang-System-Product-Name (unknown [172.20.64.180])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id A8FC740920E1;
-	Wed, 11 Nov 2026 11:09:14 +0800 (CST)
-From: Hongliang Yang <hongliang.yang@cixtech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Hongliang Yang <hongliang.yang@cixtech.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Gary Yang <Gary.Yang@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>,
-	linux-phy@lists.infradead.org,
+	id 1xQyiJ-00000005Ux6-189X
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 03:09:32 +0000
+Received: by mail-dl1-x122a.google.com with SMTP id a92af1059eb24-15ea896ddc8so4318645c88.0
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 19:09:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794366570; x=1794971370; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Km95marAPwW2pP8wgGsfAj1lfQ/5UdjiVvHJl74YYFY=;
+        b=covh9Wub6+xg0SUE9Pc2tqhaSa9iunFLhP2ZtxdjyrKFpH5GWGA7yeMaz3UJ9vf9uK
+         4RqO0WBFHp1KGnRIf0r4YQ3rCdHdbXLY/kdRiACOXwvNyNVI9l4RGIrOyrI2Dav8QsDy
+         ToMlZpQlJqs3cDm7x+nrFivQZ5Jd7WmWdDvZpES9Y18tV1FysNBniqIsrRxFusG5dd9C
+         u7bSb5H2v2bM4ZyL+Fbi9cKbYUBxlomqlFtobD5tZjudwDePczy61rqi2wpvGYq1jQ1Q
+         +ZF5gZT9MdYfGtepp6ViRa9ZYbBRcPBcmuTi9UAnafz8c6D0oXieDNLIs0Sn31JdHtZ9
+         zOFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794366570; x=1794971370;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=Km95marAPwW2pP8wgGsfAj1lfQ/5UdjiVvHJl74YYFY=;
+        b=i8820GlSVVGESen5n4bLFZkXh45ZoUnjfFn/gYBm/9yvJu3rovR3/7ao4UFuvYsp7a
+         KVta9MvbzUrs1a2wQf/ZsF1lNXHc5AtfNcvUfn5AIBC9GkizyTrcIT+h6JkVmZsY+YX3
+         lFwDK678da35IBFDt7wVBLaHKa21rTngHMEeBFM1PVbZ+IrmKc/pDTLagSJzs5nNHGYx
+         uwx0qVuaJt9QrdDzZ4JJg+P6N6cOrgnN5hkmqFm2e5jv+HAWzwn6lTFXdPk4TFvZT/hw
+         +bSCSy8XQhsU/kkyvPPI6CPyjERxA/aNa/yJQ7nRLPKM2mHpSC9KsEUF+AvrkAw5wnbg
+         oaJQ==
+X-Forwarded-Encrypted: i=1; AL+hErHjJyaZzs3tDqZQnhGodngceT3sVbQrUqPYjLGU7DwDuNhRWtCYW4+nWYvjSgV7qF6TX4/u+CGrpgGJyziFHR6K@lists.infradead.org
+X-Gm-Message-State: APuU4Z+HRAQjKmL0xUzzHzLgWlaqrMluVDrxGi96mmi9GWOSakYjjb+M
+	2+VvLxrpDnJ/bObMc5hXRzJpZ4Mw0DCHBu6LcDH7wf00lo4g5AiRF4e7iYimtT+bw/Q=
+X-Gm-Gg: AYBFou2aU8i6YDtOU0rZVZbXHH7HekHcZLXIIOTvMHzfi6cQf85hSE6uWu3fPw/Xswy
+	uspSvk9omWWaA051ty9oGvjN4WZ2Nt+YAbEEK+kKpSZ8ql7iPrKl5PIy1GEi02XXz2vYgyLpc7y
+	HJl2sco5VoX+c1K9URNwnNHwOwcc1+O2dJwxjZMj31/9MYS+CCW22EPK7D2s5hFszdxSi2l9HMN
+	49Dx40On4ZHgebv7sxGJbJH+2jkBJgV8e3oJ47UA5jlOm0DjpZXCqTlsu+Lkb71m/xXe+qxodVS
+	KnKFrJhGRwhXOry66HhxDboixQ3wD5Nlsi3YioCARqUqhbj344XzrHEyLMyBcBbY0r18hDSCxUq
+	JI+bQzmAT9c52Pc0bHwKTG8wHzOStE/q4OUB4GysMHLIuiDP3OCUyCZ/ESQkdjDzNkYYNJ/NBhW
+	iuxLGzGEfvJ50vL97YLczcQdGVoNQ5pA8wVfi9AyO2Ay1cmlckvPexW69UsvuZoibLm/ljWWokv
+	3QRriJCK4BfiN+1gMpo+bGnnYvgSbTD7mIBatDxEuZ6irdKw3HaZvrtjQ9g9pN190HH9rvxNs/b
+	f5YWGFkQFInzSbGjmo/Tj2QUCQLC36+Tng/w8n9XQEvxYxvO+QXl74XPqg==
+X-Received: by 2002:a05:7022:7e8c:b0:1b2:43cc:48 with SMTP id a92af1059eb24-1b3c03387cfmr1271942c88.33.1794366570168;
+        Tue, 10 Nov 2026 19:09:30 -0800 (PST)
+Received: from mi-OptiPlex-7060.mioffice.cn ([43.224.245.234])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5b4ecccsm9623484c88.13.2026.11.10.19.09.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 19:09:29 -0800 (PST)
+From: Wen Jiang <jiangwenxiaomi@gmail.com>
+To: akpm@linux-foundation.org
+Cc: catalin.marinas@arm.com,
+	will@kernel.org,
+	urezki@gmail.com,
+	linux-mm@kvack.org,
+	baohua@kernel.org,
+	dev.jain@arm.com,
+	ryan.roberts@arm.com,
+	anshuman.khandual@arm.com,
+	david@kernel.org,
+	rppt@kernel.org,
+	leo.yan@arm.com,
+	xueyuan.chen21@gmail.com,
+	chleroy@kernel.org,
+	maddy@linux.ibm.com,
+	mpe@ellerman.id.au,
+	npiggin@gmail.com,
+	ajd@linux.ibm.com,
+	jiangwen6@xiaomi.com,
 	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-Subject: Re: [PATCH v6 0/3] phy: Add CIX Sky1 USB3 PHY support
-Date: Wed, 11 Nov 2026 11:09:14 +0800
-Message-ID: <20261111030914.2954368-1-hongliang.yang@cixtech.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261105-illegal-fervent-swift-3c05c2@quoll>
-References: <20261105011751.4058411-1-hongliang.yang@cixtech.com> <20261105-illegal-fervent-swift-3c05c2@quoll>
+	linuxppc-dev@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v12 07/10] mm/vmalloc: extend page table walk to support larger page_shift sizes and eliminate page table rewalk
+Date: Wed, 11 Nov 2026 11:09:20 +0800
+Message-Id: <20261111030920.1297625-1-jiangwenxiaomi@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261107134953.748622-8-jiangwenxiaomi@gmail.com>
+References: <20261107134953.748622-8-jiangwenxiaomi@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: OSA0EPF000000CA:EE_|JH0PR06MB6438:EE_
-X-MS-Office365-Filtering-Correlation-Id: d7e4eead-25d2-4de0-5c76-08df3fa12ba0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|36860700016|23010399003|1800799024|82310400026|10067099003|4143699003|261022105027099003|261021121427099003|261026140227099003|261028144727099003|56012099006|261102123227099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: SsIPt8B8K21f40Y8J9oPJmP4mvNpP5GZefo1HRUKbFy+EG4OfnMLZOoXrbAg3EVEy/qsXhhz8kG5nnKukXk8wJo5g4maERArt///Sz3Lkv1KU6nR0iXYNYM/kDvBJ5zOnzl5dfUIZQpD09T7eWc0wgDMKv79WnUqIbhWzGK92nIEPowz22Bejp3tGUUjRosSJ8p3c3bW2gaTzaFSZfIXTIzE5WRBbCgmenNcvc1gWoyhzn7/MRr6JpoCJIUPrfTrm1KSwlQoOQMadointazOLyT+6W7Bx9KvZbc9GC98TypkHCJ27Y9V1Yxe62UoEKn0JdiLVvcHYoVyYtkZShOiaXyy3maSVmrUEU1vZtQ84ZZbUy2x1Wwqk9wHqV05y1zCyV7ZKOgT1edkMWk/XxzIzcyegVwwbDSJLWktFyyfDDSPeYeLWTQuEx+10WSyNQND9E5ZHRP9Fa9UIqY+TFk6VL/vZ08slvk+GxpMm/5pn8h0n87vVRRO/FnEXb+X+y24F3Yxpl8Pl0Sjp7YZSdNUTA6t1P90NeJzoFWsC4xzh6fs/PTnAqpZleQDrP1KRsS9jPx5GlLMYrDzQa8XDZRE8QhwpIuC5vNwRTpn/B3RldelxWf0L0Qgfi0vwBiZve9AebZUIJ1mtKwM38DgAz/fjYIkV17VUADZbhsspC1cHhsK4l0VJsxjsqCdjSD+6I80gq8ovAsPchnCi7OVLfjRPw==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700016)(23010399003)(1800799024)(82310400026)(10067099003)(4143699003)(261022105027099003)(261021121427099003)(261026140227099003)(261028144727099003)(56012099006)(261102123227099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: GRnKAs6Ww2b1v68P1p1YcH4EQALSeJ3YigdJvlCDIegkJ23nSFLvaSMETclsbdmSx7SjVmI4qfwnuQHNUgUnMQixfO1W9jnD2WzAzP8hps0Sx4bGFs4tY13wDssypDIFD3Kegvjfk3zB7KWquH6ZxsMwt4rhAK/V6W2EZu+ONI2I/Hmf8bVG/3Cge9g1UTuJuFrSq9ICa4zzgcC6BtT12ggj8DTCaUmIIRDxC1Jg3bbtAHzOwZBGB+q68y0aLgQZ6hWXue4g0tpjTAAW25t+RiNZHeIgOXfb63elHYiYJHiiY/71XZHJNPeRQ7gaAaiyuxxI6uDLGbUq0pL4Mc1MH4EvFxh68pIvra/WNAnYEFdLvutyvfVNz5D9hJJqs7PQh51Ce9VFXqp8zfmHH7BvUzCV5w2UF9m/ZupxgjCWQ7q7EXzhJinnxqfaCIKXNLpG
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 03:09:15.8758
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7e4eead-25d2-4de0-5c76-08df3fa12ba0
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000CA.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6438
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_190928_889762_3C55BE0D 
-X-CRM114-Status: UNSURE (   9.92  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261110_190931_317085_72EA0B2E 
+X-CRM114-Status: GOOD (  10.31  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,36 +118,77 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> > Corrected the mail sender name: v5 was sent with a non-ASCII
-> > display name in the From header, v6 uses the plain ASCII name
-> > that matches the Signed-off-by.
->
-> No, you did not.
+Hi Andrew,
 
-You are right, I did not, and the changelog claim was wrong. The From
-of the v6 PHY series still carried the non-ASCII display name:
+Could you please fold this into this patch to use an unsigned long
+page index in the walker?
 
-	From: Hongliang Yang (杨宏亮) <hongliang.yang@cixtech.com>
+diff --git a/mm/vmalloc.c b/mm/vmalloc.c
+index 6a150b11261a3..48240fb674b9d 100644
+--- a/mm/vmalloc.c
++++ b/mm/vmalloc.c
+@@ -557,8 +557,8 @@ void vunmap_range(unsigned long addr, unsigned long end)
+ }
+ 
+ static int vmap_pages_pte_range(pmd_t *pmd, unsigned long addr,
+-		unsigned long end, pgprot_t prot, struct page **pages, int *nr,
+-		pgtbl_mod_mask *mask, unsigned int shift)
++		unsigned long end, pgprot_t prot, struct page **pages,
++		unsigned long *nr, pgtbl_mod_mask *mask, unsigned int shift)
+ {
+ 	const unsigned long chunk_pages = 1UL << (shift - PAGE_SHIFT);
+ 	unsigned long pfn, size, chunk_end;
+@@ -608,8 +608,8 @@ static int vmap_pages_pte_range(pmd_t *pmd, unsigned long addr,
+ }
+ 
+ static int vmap_pages_pmd_range(pud_t *pud, unsigned long addr,
+-		unsigned long end, pgprot_t prot, struct page **pages, int *nr,
+-		pgtbl_mod_mask *mask, unsigned int shift)
++		unsigned long end, pgprot_t prot, struct page **pages,
++		unsigned long *nr, pgtbl_mod_mask *mask, unsigned int shift)
+ {
+ 	pmd_t *pmd;
+ 	unsigned long next;
+@@ -646,8 +646,8 @@ static int vmap_pages_pmd_range(pud_t *pud, unsigned long addr,
+ }
+ 
+ static int vmap_pages_pud_range(p4d_t *p4d, unsigned long addr,
+-		unsigned long end, pgprot_t prot, struct page **pages, int *nr,
+-		pgtbl_mod_mask *mask, unsigned int shift)
++		unsigned long end, pgprot_t prot, struct page **pages,
++		unsigned long *nr, pgtbl_mod_mask *mask, unsigned int shift)
+ {
+ 	pud_t *pud;
+ 	unsigned long next;
+@@ -666,8 +666,8 @@ static int vmap_pages_pud_range(p4d_t *p4d, unsigned long addr,
+ }
+ 
+ static int vmap_pages_p4d_range(pgd_t *pgd, unsigned long addr,
+-		unsigned long end, pgprot_t prot, struct page **pages, int *nr,
+-		pgtbl_mod_mask *mask, unsigned int shift)
++		unsigned long end, pgprot_t prot, struct page **pages,
++		unsigned long *nr, pgtbl_mod_mask *mask, unsigned int shift)
+ {
+ 	p4d_t *p4d;
+ 	unsigned long next;
+@@ -696,7 +696,7 @@ static int vmap_pages_range_noflush_walk(unsigned long addr, unsigned long end,
+ 	pgd_t *pgd;
+ 	unsigned long next;
+ 	int err = 0;
+-	int nr = 0;
++	unsigned long nr = 0;
+ 	pgtbl_mod_mask mask = 0;
+ 
+ 	BUG_ON(addr >= end);
 
-The mail system rewrites the display name of outgoing mail from the
-account name, so the change did not survive the trip to the list, and I
-wrote the changelog entry before checking what actually arrived.
-
-It is fixed now. The USBSSP controller v7 series, sent on Nov 6, arrived
-with
-
-	From: Hongliang Yang <hongliang.yang@cixtech.com>
-
-and the PHY v7 series will be sent the same way. I will check the
-archived copy of the outgoing mail before claiming it again.
-
-Best regards,
-Hongliang Yang
+Thanks,
+Wen
 
