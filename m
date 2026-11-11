@@ -2,100 +2,94 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CCAB606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 02:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F01D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 02:34:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kMdya6Yv;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=R1oBa9qB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yEJla6L3;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=W0At8UCV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=s18d0QtUAH5SO1XlwoaKN258QqfdDcIgzB60hufTnb0=; b=kMdya6Yvx72VQlfz0h6Lo7uJrJ
-	RhUgDx695ajO4YVzwmIDQ0XKjj6BYCE7VYyRloTkbGAW4erlEeQVsF+pLbOu+HWF3sJ0kAfGTCkDq
-	H8XhuVQFcZg8pBQOlGTYzNgq4jwTyfMTbUBaEqSJiETKLr8EyPH07zOvRanKrvQgpRNlLUli1TkAI
-	AyiIs1EVMLOzdl6JOT1RF4lR0FijJME0jU5YpE1XabVe85nvtMHyrQ1fdmT8eDb0O8nD3cUKYEF/O
-	H0bpKWL3O12zrqSb0PuP6m1cPpuqxWtTmfaryDRohxuAB69XT86bhcKvZLTyT5SN9snY/FtPpS1LX
-	uu2MoVQA==;
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=U0zckNcofs5NcNAnuCtdYJs+4hx2lPz3JUe/9YdZO5g=; b=yEJla6L3Rhibwv
+	4XoC6/FL8EgRXH3t8t3uVKm0oTLKfwhFN+iEgwqZXbA/ZvlRxPSNZNVjQF71sytI7WK4pyBdzon7T
+	ONN+ajESkVhlkV/yB9d20QUADwJYTyL3r47LKVfQgUj5MOrP8WO2LOZlE/unliCE/A52bqR4CSSEC
+	Ln3njZ7FofO4z05+TjRceLd2pCAkWf+wGdGSUruhYhMs3w7E9esaNqlkLsxwmtglXhQ+tsMB5sSFo
+	2+L1PlLrrcCTI2DgDvyqJGpmwxD+Sz0eV49CpDeiD8eBqWs0281N20IKT5JscvE0etbbVk9qm2E6v
+	1BO0iS8F8TotjzCDkvQw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQy9d-00000005SYL-0361;
-	Wed, 11 Nov 2026 02:33:41 +0000
-Received: from mail-oi1-x236.google.com ([2607:f8b0:4864:20::236])
+	id 1xQy9r-00000005Sc0-0c5d;
+	Wed, 11 Nov 2026 02:33:55 +0000
+Received: from mail-dl1-x1230.google.com ([2607:f8b0:4864:20::1230])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQy9a-00000005SXr-0Yd7
+	id 1xQy9o-00000005Sb0-41UL
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 02:33:39 +0000
-Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-4b190cdc9feso1576788b6e.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:33:37 -0800 (PST)
+	Wed, 11 Nov 2026 02:33:54 +0000
+Received: by mail-dl1-x1230.google.com with SMTP id a92af1059eb24-14394530ec6so3565142c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:33:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794364417; x=1794969217; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=s18d0QtUAH5SO1XlwoaKN258QqfdDcIgzB60hufTnb0=;
-        b=R1oBa9qBFryd3qD0gUqfCKQunHh5HZuE8LEq8ar29KY9MbYZSprJTPeZ5p3dKlDFfQ
-         D9cusTNVnP7cDeqKg/Nl2btl1tr+U9Cd4EAYBCqziuquoXk+I7QMGtllyOMDLaSVo6Cx
-         fUCH1IkbL5Vzsl4JP0Cg3uVXXN6+hdEyKQevEIqG6yMRmZwWGLvKhnqaJ7aDee6xKeCN
-         dspuY4sq+HdBfFuooNW39eDNev+wSca2UjMVyVYprAb9LI87sTN9Bhp0GR/f/GHhF1p0
-         vhyGhv+1woFjRQ2/A0P6fsHOqu0ZQsD/vdq1ZPYelJqVujlde8Ja7ZgHaaXsN2mMg8Kj
-         XTzg==
+        d=gmail.com; s=20260707; t=1794364432; x=1794969232; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=U0zckNcofs5NcNAnuCtdYJs+4hx2lPz3JUe/9YdZO5g=;
+        b=W0At8UCVmlG1wBJOX93t4HFEuUIvMDEd9lwWxyc+j2sKaxqfO3CLdd6IHXP0pslgOY
+         sss71+KgnAyqbtGfQ6PesspwxvulCZABRBlsh30Ltm5v3t5Uar9NLv4PrfFsujrp0Rmm
+         WgF2GYXJB0t+HSkRWQapsc1g168jKooODWYk2HFDWe3FOBJix4ikRVBlERZsgWWlV25m
+         axCBJOatUc+WQ5+3SdVjGSJYt7ut50QLdw1SRRqJ/MqPOYgXk0Lfk4Hzpc42d4yKVZLa
+         eJcPlo6EWVDf0oKl8USKIAKN4lx/n41wv6s0XX0+IVzOuwWp4BfKKbrBgZxCK8NH7+PY
+         LL8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794364417; x=1794969217;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=s18d0QtUAH5SO1XlwoaKN258QqfdDcIgzB60hufTnb0=;
-        b=hZk/Wik19wM01JyMPKfALU5j+i6Du41aJuFaBxTc34hh664HQONMd+0xTzVaNdPiD5
-         Ej5GDfRrar5/+FjfA0YXdApIrxP27LmN8393UnKtG9Jevq4U2OOU/6QmyPlCoZCXBRW0
-         gsl59/37vgfQDc90nP24alxOomHqK2j3ca6wbRU4WC5edzHtHgv5EBDPndy1nhgnUPso
-         A3by7JdAcij1chZ/QEO8oYX9Vwx/hYApg0qawsjaxTOBz+XHvmBJ5GvcDjjN3EPFIl1c
-         4I0b0xHeRrogViZJNbfLGGUw+FU2clmGR7LpQ/BgNfgeGcv8cyAqTSKafd/40eLaAdHB
-         fdlg==
-X-Forwarded-Encrypted: i=1; AL+hErGNs+MUMCJ0GSiChfK/FE+14KKoNO+wXOxB0fG2e8Us4zizkZTy4V+YpPID88yJ07zGlGp6hlAbn4hp/zURr/cw@lists.infradead.org
-X-Gm-Message-State: APuU4Z+WZ2gXgtWg+e2ZKTta6APwm7csAVB28GFLUiBxEUPwyZ+bztsa
-	kU5wCPCNdklXxwJEb3M9X957NuEvfx58g2EdAjovsNIOU9ny8xjQD4nX
-X-Gm-Gg: AYBFou3c2tf59yYhcCq4O8p8meFlvwn1Gf7ygiMrtBu/ywf8pVG8Dsk2ItBCBS/ZHZX
-	vfLQK4W2q7eoxGn1zNlQSlbwQ8Kr1wVrmgX4tB9NSEkUehuwiJUUFvNKXiQuatIPgpHxVfrGU0o
-	+wB6GWF3673pwSEA4yxZXdtm0+CadISquIU1SW2rX2zu5lpWPIlHcKkuT5BzmBCj5gV7EqVnbAW
-	ts+kVCudYNQ/LcUpJRcIGZbtNQs+KUGaJzL1tiwHSiJQEOha/MDLEcFTJG8tXUOFCLootxC5k8F
-	+u1tE8FsiPhcWy58S5BCWKnFPgf28gbTsi7EsYjRqAt/diQmDAip1Vdo1uexc87y9Uaupjdjv0G
-	/TYsAzgBSpITfZTA8rfS7WyEEv7booWKfbxgetfRYNaE4QEzXAm502hBDRND/CrByBAAeRiq/1b
-	goMWYDQQ2xSTAcweMDijz0bUL7kZPgKVB6R0hgAkO1wDIEFvcfJEmkDh+Qr/ykKMqpgmEaTp2tL
-	w35S1xXivb/DpcOd4AZgUOJfWazLa1ttNtxqMpObCGo+wiwkbNI+/0s8nAni+L6iPF55T3cS8Xh
-	MlgxydpsWK+0B4ZiJAWXJmVQcDifzmSCZ1dTeY89fhnWdPsLnyeIcGAjD0nLM1T5EWInMFAHQiX
-	CaYJUF+hu7LI5GqvzCRHuzU1HW86UKlTksqvOp/ArWX09xCCUf22sl8qx0aHGZJBZHG6AkPl5f2
-	AyBg==
-X-Received: by 2002:a05:6808:138a:b0:567:e9b5:37b6 with SMTP id 5614622812f47-56b97c1742dmr835978b6e.41.1794364416881;
-        Tue, 10 Nov 2026 18:33:36 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-56906036028sm4103177b6e.11.2026.11.10.18.33.33
+        d=1e100.net; s=20260707; t=1794364432; x=1794969232;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=U0zckNcofs5NcNAnuCtdYJs+4hx2lPz3JUe/9YdZO5g=;
+        b=cjwHaOct/APx7u5T7Bzuqphqj9JjupH/31lL9P6hlFPdcuJuioD0OBk0MsmbxVEEvk
+         gfw+Vs99SnjXyX2mwC2Fyibr76IEPpoi9s1Ytpb9pmTraZonP/wQXZUvMmEv8xeJ44pG
+         U/3PQeoR/lJ73JmHi0TaIskruA5mj8kI+aJmG2/gWJyMg36LYuaYGU1MUv+odMeilgNo
+         QUpGnORkoASjqiHZuplrKDye/+aVrd6H1kH2Wbf3hJl6uLBPRn4St7xWQYmbdWScm9ko
+         eTkDTuY57aT1puqyTCnhWQTAhUWnDxknSt1v+YbSj6sA5GQosDb6vyZmDyXkS4Ekqdly
+         /B5w==
+X-Gm-Message-State: APuU4Z94Y/9xyPWDN4629UBTfMhBeODdWJO+vbJ1u5Onmh2r63M9BrCa
+	8SyzcyZ4/ZUfux3O9s2jBCDW3njJJcvvL3YWEP1B1wNCa7Ybp9TmC22H
+X-Gm-Gg: AYBFou3Vc1khnxHYSR34UDZ0aVqoeFg1iAvptnPfbjVcekmmyWsABZv+3WZggb9padB
+	P+XpqctcvPSojDZTBHtNJpJciP8X7zt5vVJMmLx1YASXXIMPbrCCbFTBnko+CKMNG86szVjbh6v
+	RUXhuY9o6WYC6ADHFQXiC9mDv2rxHnWWc8cc4oaEgWLvPsCu8SJagYHDLC8TiI7Nem6Z9bCl5xV
+	k5S3pwujH0Bv3KDfdH2MBLfnDHObbIKgziEgM5dUNB62VoG7RTOyIC+iSgcO/iDJ7VN9BZQIfxl
+	p0F7Gfw3NXy93I7q95xwO8fNI2hia018qnNXa6/kD4JFlvHAAWmeGHWyPQp6LOxmXOjeVMj54gU
+	EGBUvfpPwNpYVhxNKEkRNphL0Nf2X7tBA1rv/8EUI1NufaVuzJFLz98e38oTamaxmvTA9RHgy8t
+	eHWCrxh3PM+ut0Q+6828QijN+GbJ798FQc01L6ccFsfNL469gyR3sMWGB4b7CFVxAzAMRTkGxGD
+	ue2upTtvkO9S3deZMWIQXW/MVNS2pmkOwoQp4EETmy/T1I6wa6MckwRhUHc9aDUIOAkWlUlyPrj
+	EJvohGSvv9QwBKTPHTRDmvPLbw==
+X-Received: by 2002:a05:7022:ea8a:b0:160:90a3:ca8c with SMTP id a92af1059eb24-1b3c0334a40mr1074066c88.7.1794364431866;
+        Tue, 10 Nov 2026 18:33:51 -0800 (PST)
+Received: from [127.0.1.1] ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5b20c55sm9977000c88.8.2026.11.10.18.33.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 18:33:35 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Nathan Chancellor <nathan@kernel.org>
-Cc: Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-perf-users@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev
-Subject: [PATCH] perf: arm_v7_pmu: suppress -Winitializer-overrides for perf maps
-Date: Tue, 10 Nov 2026 18:33:26 -0800
-Message-ID: <20261111023326.70922-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.56.0
+        Tue, 10 Nov 2026 18:33:51 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: James Clark <james.clark@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org, TAKANO Mitsuhiro <takano32@gmail.com>
+Subject: Re: [PATCH] arm64: perf: Fix the userspace counter example link
+Date: Wed, 11 Nov 2026 02:33:49 +0000
+Message-ID: <179436442976.1969388.1279174885793827001@gmail.com>
+In-Reply-To: <1baeb4ec-4244-42e0-8c53-29df079c80f6@linaro.org>
+References: <20261106234551.1474417-1-takano32@gmail.com> <1baeb4ec-4244-42e0-8c53-29df079c80f6@linaro.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: kpatch-send.py
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_183338_174026_24F79A7A 
-X-CRM114-Status: GOOD (  11.35  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_183353_005406_AEC3E98C 
+X-CRM114-Status: UNSURE (   9.51  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,59 +100,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The perf_map and cache_map arrays intentionally use a range initializer
-to fill all entries with HW_OP_UNSUPPORTED / CACHE_OP_UNSUPPORTED, then
-override specific entries with supported event codes. This is valid C99
-designated initializer behavior (last initializer wins), but Clang's
--Winitializer-overrides warns about each overridden entry.
+You are right on all three points, and the middle one was worse than a
+style choice: I measured it after your message and "perf test -v user"
+does not run the cases in mmap-basic.c at all.  It matches the tests
+whose name contains "user" and runs those; the mmap interface cases that
+file provides are 175.x, so the v1 changelog was wrong about what the
+command runs as well.
 
-Suppress the warning around these array definitions using the kernel's
-__diag infrastructure, since the pattern is intentional and widespread
-across all CPU-specific perf map variants in this file.
+So v2 does what you suggested instead of pointing somewhere else:
+the sentence that sends the reader to another file, and its link target,
+are both gone.  The How-to section above already names test-evsel.c as
+the example, so the instruction for running an example moves there, next
+to the reference it belongs to:
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- drivers/perf/arm_v7_pmu.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+  make -C tools/lib/perf make-tests
+  tools/lib/perf/tests-static
 
-diff --git a/drivers/perf/arm_v7_pmu.c b/drivers/perf/arm_v7_pmu.c
-index a1e438101114..9ac28c8adf80 100644
---- a/drivers/perf/arm_v7_pmu.c
-+++ b/drivers/perf/arm_v7_pmu.c
-@@ -146,6 +146,15 @@
- 
- #define SCORPION_ITLB_MISS				0x12021
- 
-+/*
-+ * The perf_map and cache_map arrays use range initializers to fill all
-+ * entries with HW_OP_UNSUPPORTED / CACHE_OP_UNSUPPORTED, then override
-+ * specific entries with supported event codes. This is valid C99 but
-+ * triggers Clang's -Winitializer-overrides.
-+ */
-+__diag_push();
-+__diag_ignore_all("-Winitializer-overrides", "");
-+
- /*
-  * Cortex-A8 HW events mapping
-  *
-@@ -530,6 +539,8 @@ static const unsigned scorpion_perf_cache_map[PERF_COUNT_HW_CACHE_MAX]
- 	[C(BPU)][C(OP_WRITE)][C(RESULT_MISS)] = ARMV7_PERFCTR_PC_BRANCH_MIS_PRED,
- };
- 
-+__diag_pop();
-+
- PMU_FORMAT_ATTR(event, "config:0-7");
- 
- static struct attribute *armv7_pmu_format_attrs[] = {
--- 
-2.56.0
+I built that pair from a clean tree before writing it down, and the
+Makefile target produces both tests-static and tests-shared.
+
+The section on heterogeneous systems keeps its text about the PMU type
+number; it just no longer ends with an example pointer that was to a file
+which does not exist.
 
 
