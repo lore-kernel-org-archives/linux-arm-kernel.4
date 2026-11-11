@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CEC960A2636
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 04:20:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FA90606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 04:28:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hXXJhk9r;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=kbete8jq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AwkQLgbL;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=06kpRKki
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,54 +14,90 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=5VPvi16aTfUGvRge7NmMtGFtiMAVs5vb/QmpxWZyDtE=; b=hXXJhk9rDOe9yD9RKbwtUMYiPL
-	ZplepnVZMbhO4KPznTggj+L8o1PDm8sL4BLvU+v/4NqdWR24UUne4wPkmGYeFyriOmN8pit8JgonW
-	JvcB9LiIk+hicgwyadXdSWzFvLcpDurQNWwiKktJKtKDGqL+9xB1EICixUKYq+lg+67vvciFeGTOv
-	rPnOmpG/dKWROdLkTEsNJRxG+LC3CcfaoFF/FCoU6AduXUMv/VyPgg2FXd/6uUbXx4RuQVQrnbCoJ
-	BHx+C9xAzlovFtB6lkcwdsU6JBpIuBeQjt4C0+vABu4TjE6WX+bercaY6JedSl31kLjHQjptPdi8z
-	MiPK59Ew==;
+	bh=FlI97Kbc5IzIm3OlbOAAkvy4qx91Md/wmJY6Baz+hNI=; b=AwkQLgbLU2N/M6xplqXj5RJOJB
+	rvBy2gVRbllF9LKRj9Zr/WHsSCl/HOd6DZYNIFwQUWV+2vVnIMOGpcbWY4LStBSkOBblNQ82aNSVn
+	f9lh8WV5T0C8QxlGmL8f9WyuiM6Z0cvV4+A98yioCRB8sxA20VEuizIbjbYQ2orj9luWPt+HnPpci
+	XfZeAYxEhrtzR7ITVyBUil1ywqdrK9HTFLxdSn1/dz4fN5uoge5BJHEZ5XnWkNoScYeaRMAxmmvx1
+	nckm3hs6QWkCQ2tMBXDu16w4IG3c2XbHVJiQsbPdekQD+M3Ojq1bS2fnMUDbjv0F6t9sP6rxvqdUZ
+	LFow9mSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQzp9-00000005bUW-3S6g;
-	Wed, 11 Nov 2026 04:20:39 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQzp6-00000005bTn-03Ho
+	id 1xQzwQ-00000005c9l-4BnE;
+	Wed, 11 Nov 2026 04:28:11 +0000
+Received: from mail-dy1-x1329.google.com ([2607:f8b0:4864:20::1329])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xQzwO-00000005c9R-37LU
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 04:20:38 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 72CAF2F;
-	Tue, 10 Nov 2026 20:20:29 -0800 (PST)
-Received: from localhost (a085714.arm.com [10.164.19.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9F9ED3F85F;
-	Tue, 10 Nov 2026 20:20:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794370832; bh=q4bDza+9RXUkz14jm7hMKykBo0/ojwxsZGrMyrNAjbM=;
-	h=From:To:Cc:Subject:Date:From;
-	b=kbete8jq0c/XKOuk5zkXNSNsPrmUFXSfpTsWqba7embjkA6FQM0qtgvrR8QxJipqU
-	 fpOoayaYBicrh53xDQLg7g7UhAQkkxtz7v1EPoLT2+E4Rlg+9gzIXktDP1qY5j1aV5
-	 XBPQgvZk7YwG8B10h3VQc2b25E6Od7n29jk2l1NE=
-From: Anshuman Khandual <anshuman.khandual@arm.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Anshuman Khandual <anshuman.khandual@arm.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Ryan Roberts <ryan.roberts@arm.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Daniel Cashman <dcashman@google.com>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64/mm: Limit ARCH_MMAP_RND_BITS_MAX to 24 for 42-bit VA
-Date: Wed, 11 Nov 2026 09:50:27 +0530
-Message-ID: <20261111042027.1541604-1-anshuman.khandual@arm.com>
+	Wed, 11 Nov 2026 04:28:10 +0000
+Received: by mail-dy1-x1329.google.com with SMTP id 5a478bee46e88-3712b6d9843so2642691eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 20:28:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794371288; x=1794976088; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=FlI97Kbc5IzIm3OlbOAAkvy4qx91Md/wmJY6Baz+hNI=;
+        b=06kpRKkiUra/v2lYOa2gpd+HDzN+93bDR+amt+ZNuBiNgo/CCcybgr2wQhI4QE3gI/
+         DJxW61HShRynEx8xnAvS233ymhAAGuqh7lInek4i3VL8S3yJmGdH13FBL6nFPfwiaTAk
+         ZftdV73b+CChcRh9Q6P46SrCZqzQpM0YYiHkIMkW8g2GpYLRsHwJ+FPT/fmlrDDqyRxC
+         UJQOd9KRL1/9ZgWn6QzKQpCHtJqNxyWWSLURf64Se71XxIyRSMStOSMg28wVcDfXou5z
+         9nWn36nVK9hc6pfieqgcFzKOhCzHdY8zApERUVB5KgoJO6SqLTZC2xCwHwDnDnjv65wd
+         W1WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794371288; x=1794976088;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=FlI97Kbc5IzIm3OlbOAAkvy4qx91Md/wmJY6Baz+hNI=;
+        b=wXRmRVZQvusGTuH/DqwGx5GT6NsYwAPZBYH0cmYX4xEI+PQ81O8JxlkXUl5nnORMT2
+         7Scm3HmFiq0j9nRMrVJZCjdC0K1mOdLn8wjCZM9A8J2mDfvDXT9uKNWO+je2wySMh4S+
+         Jly6pvkLVQsY7Hq1kxHUGjgsGoD1sxF5lNm2F9LnO1Psj424idcwoNZkhacIdl8Fx40J
+         UG+HvKRymlIS0nMGxmv6nlOykNApPaZv2Ji2BliEjgn45zHI0w1w2JJqisCG40hF6tlz
+         Sy1XCE2xtphd2fQ4qIu2pSv9bgSsQNXgdELoYq9a88JPd+Tg8vfs9VwVDmQ+fK+SoVzL
+         hx1Q==
+X-Forwarded-Encrypted: i=1; AL+hErFA21hQ6oSfiF6vAYnVDNcYaN9wULwNkXgCTQeGFYzRT+EOeLrq0mTPjC9e/hyGT6P8ZO/gR9Mu3mlG8bqzdLA9@lists.infradead.org
+X-Gm-Message-State: APuU4Z/z9h6I059A6QkFt/Bd+GWgSDIc3jpCMpI6U7HIHep6az1JkIIG
+	wuwR5obiDPCFeu5yg8k6/LTO0a6DRTP6Dy1s/agcs+GElTVnfLL6jkm7
+X-Gm-Gg: AYBFou3JTTedn70veZQskdBOinmJ6DTyArheCpmwpLEpfmdaLiE6wOui+jQyBjUX97V
+	Chbl2jKhDhIpDqhy08TMRJYAzrZ3utT3UgTslBcp5+3ZkB/PQlE+TdOV1nyhfYNIAvH1oSoss72
+	CHNHUE8+1zY+6vKcPKt/vYZlEBQ2NfzRFhfDLw0HRznVHcL8enUbaZ62vQF1fXCzIE/n+aLOTKg
+	spONWJwc8udiS3GVCsfRyRKkTElBA6jNTWxH6wDLeTw2BMFi+hngZp5qJDzvFHUsoHgLbDK/6+b
+	NWHymgWD7qQdT2gMTPkCbNOvUWvChYy4QeTS70SO26I2S8GsjPKywubejQodOGd+vPOc66/2KDR
+	ZyRlWNo/UnlDLtwc3LX4xcn6873yxO0jt8Yo5zEG8U19ey9YIRh64arqFPr3MbBiTUpiiOWGgzJ
+	eWrRReZLYm6rzOGLFmhBeLyztpdL+ZAgRxDvwzA+Wh4fHK5iG8SdvDWAgsPCjUJIeL/63fNWK00
+	haD8ddBGVEhPJ1IEa33q6ACZ8u36UWfDiPAQY3c99fCX6r/WcZVfwvp/EdtcCJlxLe05tVBaJwr
+	6Q1RePpCyR4o5Dq+2ymfjmhGVlkMpKI6ozQUaTKq/UIrCdOgV0ioBWlspWjYN3YbPiKpi/kiRHm
+	edspLUFT1dZddX8ACii8K4NbiEgscmPZ9DgUyIWojA+m4
+X-Received: by 2002:a05:7301:d80f:20b0:36f:6d81:3fa6 with SMTP id 5a478bee46e88-37685a83893mr2193123eec.6.1794371287541;
+        Tue, 10 Nov 2026 20:28:07 -0800 (PST)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-375218c863csm11132090eec.28.2026.11.10.20.28.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2026 20:28:07 -0800 (PST)
+From: phucduc.bui@gmail.com
+To: Mark Brown <broonie@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Andrei Simion <andrei.simion@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+	linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH] ASoC: atmel-i2s: Use devm_clk_get_enabled() for pclk
+Date: Wed, 11 Nov 2026 11:27:46 +0700
+Message-ID: <20261111042746.14714-1-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_202036_226543_524617D2 
-X-CRM114-Status: GOOD (  13.25  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261110_202808_826942_5F9BA30E 
+X-CRM114-Status: GOOD (  15.06  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,119 +108,98 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The existing ARCH_MMAP_RND_BITS_MAX value of 27 for 42-bit VA (64K) pgtable
-configuration allows an mmap randomization range that exceeds the available
-user space address space constraints.
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-This can cause mmap allocations to fail when the maximum randomization is
-enabled. Although it does require CONFIG_EXPERT for ARCH_MMAP_RND_BITS to
-take values up to ARCH_MMAP_RND_BITS_MAX.
+The peripheral clock is only acquired and enabled once during
+probe. Use devm_clk_get_enabled() to combine clock acquisition
+and enabling into a single call.
 
-8>------------------------------------------------------------------------
-[    2.269084] Failed to execute /init (error -12)
-[    2.269114] Run /sbin/init as init process
-[    2.269137]   with arguments:
-[    2.269153]     /sbin/init
-[    2.269175]   with environment:
-[    2.269192]     HOME=/
-[    2.269213]     TERM=linux
-[    2.270517] Starting init: /sbin/init exists but couldn't execute it (error -12)
-[    2.270550] Run /etc/init as init process
-[    2.270573]   with arguments:
-[    2.270589]     /etc/init
-[    2.270611]   with environment:
-[    2.270628]     HOME=/
-[    2.270649]     TERM=linux
-[    2.270703] Run /bin/init as init process
-[    2.270726]   with arguments:
-[    2.270742]     /bin/init
-[    2.270764]   with environment:
-[    2.270781]     HOME=/
-[    2.270802]     TERM=linux
-[    2.270856] Run /bin/sh as init process
-[    2.270878]   with arguments:
-[    2.270895]     /bin/sh
-[    2.270916]   with environment:
-[    2.270933]     HOME=/
-[    2.270954]     TERM=linux
-[    2.272254] Starting init: /bin/sh exists but couldn't execute it (error -12)
-[    2.272294] Kernel panic - not syncing: No working init found.  Try passing init= option to kernel. See Linux Documentation/admin-guide/init.rst for guidance.
-[    2.273501] CPU: 0 UID: 0 PID: 1 Comm: sh Not tainted 7.4.0-rc2-00002-g8c7973a9cac1 #1 PREEMPT(full)
-[    2.273656] Hardware name: Foundation-v8A (DT)
-[    2.273734] Call trace:
-[    2.273793]  show_stack+0x18/0x24 (C)
-[    2.273919]  dump_stack_lvl+0x60/0x80
-[    2.274056]  dump_stack+0x18/0x24
-[    2.274189]  vpanic+0x168/0x354
-[    2.274318]  do_panic_on_target_cpu+0x0/0x1c
-[    2.274458]  kernel_init+0x120/0x150
-[    2.274611]  ret_from_fork+0x10/0x20
-[    2.274755] SMP: stopping secondary CPUs
-[    2.274835] Kernel Offset: disabled
-[    2.274897] CPU features: 0x0,00000000,0030002e,fbb88b43,2edce72f
-[    2.274998] Memory Limit: none
-[    2.275065] ---[ end Kernel panic - not syncing: No working init found.  Try passing init= option to kernel. See Linux Documentation/admin-guide/init.rst for guidance. ]---
-8<------------------------------------------------------------------------
+This also removes the need for manual clock disable handling
+on probe failures and in the remove callback, as the devm API
+automatically handles clock cleanup.
 
-Although ARCH_MMAP_RND_BITS_MAX as 25 creates 2TB randomization range which
-is well below total 4TB address range with VA_BITS = 42, it does not really
-work and causes the following segmentation faults during boot.
-
-8>------------------------------------------------------------------------
-[    2.265866] Run /init as init process
-Saving 256 bits of non-creditable seed for next boot
-Starting syslogd: Segmentation fault
-FAIL
-Segmentation fault
-Segmentation fault
-Populating /dev using udev: Segmentation fault
-FAIL
-Segmentation fault
-Starting crond: OK
-crond[97]: crond (busybox 1.37.0) started, log level 8
-8<------------------------------------------------------------------------
-
-Reduce ARCH_MMAP_RND_BITS_MAX from 27 to 24 for 42-bit VA configuration on
-64K base page size, which ensures randomization range remains within total
-available user space.
-
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Ryan Roberts <ryan.roberts@arm.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Daniel Cashman <dcashman@google.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Fixes: 8f0d3aa9de57 ("arm64: mm: support ARCH_MMAP_RND_BITS")
-Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
-This patch applies on v7.4-rc2
+ sound/soc/atmel/atmel-i2s.c | 25 ++++---------------------
+ 1 file changed, 4 insertions(+), 21 deletions(-)
 
- arch/arm64/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1075bc661833..8d8b1331178a 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -300,7 +300,7 @@ config ARCH_MMAP_RND_BITS_MIN
- config ARCH_MMAP_RND_BITS_MAX
- 	default 19 if ARM64_VA_BITS=36
- 	default 24 if ARM64_VA_BITS=39
--	default 27 if ARM64_VA_BITS=42
-+	default 24 if ARM64_VA_BITS=42
- 	default 30 if ARM64_VA_BITS=47
- 	default 29 if (ARM64_VA_BITS=48 || ARM64_VA_BITS=52) && ARM64_64K_PAGES
- 	default 31 if (ARM64_VA_BITS=48 || ARM64_VA_BITS=52) && ARM64_16K_PAGES
+diff --git a/sound/soc/atmel/atmel-i2s.c b/sound/soc/atmel/atmel-i2s.c
+index e1d8af056234..a3aeb8e607f6 100644
+--- a/sound/soc/atmel/atmel-i2s.c
++++ b/sound/soc/atmel/atmel-i2s.c
+@@ -660,8 +660,8 @@ static int atmel_i2s_probe(struct platform_device *pdev)
+ 	if (err)
+ 		return err;
+ 
+-	/* Get the peripheral clock. */
+-	dev->pclk = devm_clk_get(&pdev->dev, "pclk");
++	/* Get and enable the peripheral clock. */
++	dev->pclk = devm_clk_get_enabled(&pdev->dev, "pclk");
+ 	if (IS_ERR(dev->pclk))
+ 		return dev_err_probe(&pdev->dev, PTR_ERR(dev->pclk),
+ 				     "failed to get the peripheral clock\n");
+@@ -682,11 +682,6 @@ static int atmel_i2s_probe(struct platform_device *pdev)
+ 			return err;
+ 	}
+ 
+-	/* Enable the peripheral clock. */
+-	err = clk_prepare_enable(dev->pclk);
+-	if (err)
+-		return err;
+-
+ 	/* Get IP version. */
+ 	regmap_read(dev->regmap, ATMEL_I2SC_VERSION, &version);
+ 	dev_info(&pdev->dev, "hw version: %#x\n", version);
+@@ -698,10 +693,8 @@ static int atmel_i2s_probe(struct platform_device *pdev)
+ 	err = devm_snd_soc_register_component(&pdev->dev,
+ 					      &atmel_i2s_component,
+ 					      &atmel_i2s_dai, 1);
+-	if (err) {
+-		clk_disable_unprepare(dev->pclk);
++	if (err)
+ 		return err;
+-	}
+ 
+ 	/* Prepare DMA config. */
+ 	dev->playback.addr	= (dma_addr_t)mem->start + ATMEL_I2SC_THR;
+@@ -712,28 +705,18 @@ static int atmel_i2s_probe(struct platform_device *pdev)
+ 	if (of_property_match_string(np, "dma-names", "rx-tx") == 0)
+ 		pcm_flags |= SND_DMAENGINE_PCM_FLAG_HALF_DUPLEX;
+ 	err = devm_snd_dmaengine_pcm_register(&pdev->dev, NULL, pcm_flags);
+-	if (err) {
+-		clk_disable_unprepare(dev->pclk);
++	if (err)
+ 		return err;
+-	}
+ 
+ 	return 0;
+ }
+ 
+-static void atmel_i2s_remove(struct platform_device *pdev)
+-{
+-	struct atmel_i2s_dev *dev = platform_get_drvdata(pdev);
+-
+-	clk_disable_unprepare(dev->pclk);
+-}
+-
+ static struct platform_driver atmel_i2s_driver = {
+ 	.driver		= {
+ 		.name	= "atmel_i2s",
+ 		.of_match_table	= atmel_i2s_dt_ids,
+ 	},
+ 	.probe		= atmel_i2s_probe,
+-	.remove		= atmel_i2s_remove,
+ };
+ module_platform_driver(atmel_i2s_driver);
+ 
 -- 
 2.43.0
 
