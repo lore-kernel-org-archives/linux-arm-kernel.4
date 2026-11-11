@@ -2,152 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BAD606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Tue, 10 Nov 2026 23:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B723C606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 00:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xvERyJbi;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=RvSrJur+;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=JzAQJv2b
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OKsHZ+Fx;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=HGr4wPEb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=AUql2wymmW69Kp3VegqeXpHQ2/+7j980FfOkqgfA5LI=; b=xvERyJbirdLmu8
-	1ErKxuSnK+fAhP5J4sGlK4qccQLNVdsXjnyxmaOKK9iWvUbbdxVjXRoYiiaOeaX1gyn/jgmyPt2VL
-	eSiZGNAs/IseL1NbLheBQM71gSKbrNIcsOpOMVw0jJZv0++BzhxbC6LWp5dGdWZQ98nPtRSvUsceB
-	hiDC4HuNlM3+LMgTDmP9FhDm0SmYnuDBBerXitcYTODnzIoXd5C7FRW7aq1wjcwPANjO4TsB/p/TN
-	KrFy5HPlfMWu1Q3QMtupXm0erZtkUNSqYKfy4i5SjwpDQs7MtCNhziw/6vIvBi8P+gVhNvuAsKB1S
-	8XJ2zjzJ78As4QTUtLhQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=C8iDH3wzEUbfzw7vLUHykfELJX0fs/fYgQ0GVi2TiVI=; b=OKsHZ+FxqtQs63ajqdYWa0ni3c
+	PXNdop/dKq2DlqEAGGjDx9AjLBR4FxdwUMnY/d8oRMyh5cIRQWDNoAbKm1znGsZfQ9r22SsQ4G3vN
+	Yw9r23m+jn3RUIKvsYMdsjjc0oC4dsV2J+ouHktUUxtjYh87I7NowHsdczrm2jTeg7CS/5KeldYIY
+	zE2jKqWtkppgYeZvL0/kolzgAVgsBsW9BvoW7aYHqjkyLKdXmBJ9t+oiSJnX69RzUcifTwW84XO9i
+	McD4SJk4q2z3lQD3CziYPAUQUQkzYP0XSa1k4DfbgqNtyoeqslS7aqQqj8dfdll7CalXljxKMBLZh
+	ehFC2cNw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQvgF-00000005GzY-0BLW;
-	Tue, 10 Nov 2026 23:55:11 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xQvpD-00000005HBZ-44OW;
+	Wed, 11 Nov 2026 00:04:27 +0000
+Received: from mail-dy1-x1332.google.com ([2607:f8b0:4864:20::1332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQvgB-00000005GzC-0PAG
+	id 1xQvp8-00000005HBA-2r4R
 	for linux-arm-kernel@lists.infradead.org;
-	Tue, 10 Nov 2026 23:55:10 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AAMKsPe486748
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 23:55:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AUql2wymmW69Kp3VegqeXpHQ2/+7j980FfOkqgfA5LI=; b=RvSrJur+C7Q3n8AL
-	zjxGsdpF4JAjs2TkgsUSFax51novUV/gWuNOBY9bR2hYMr+5g3dKI7L8MAw1RUgS
-	ahREeWE3wwDuKFS3NpCGsORX1hfGhN37Wi46BALSWNXfwY3pb6zvewTAzs3mHu4b
-	cXdtGcVFq/SOcUn3ajhzCa7CBIIU8A+xsvr5A/b1GqJ38eRS1zGk4/INMgZQsg90
-	kkfsru0YWfqf9UR7l31J8wQsz8NaIDl9+WyeV8G7B7cf6AeH/fj8yvqkp+BEOlZx
-	OIjlBKKPxjGZ/6mLx4/UXS346IOByZRCJe5uZWfXPyqmUQMpN4QvEgMC+iA5GMv9
-	aWtYPQ==
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com [74.125.82.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4huvtdcba8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 23:55:04 +0000 (GMT)
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-37628596fc9so28919eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 15:55:04 -0800 (PST)
+	Wed, 11 Nov 2026 00:04:26 +0000
+Received: by mail-dy1-x1332.google.com with SMTP id 5a478bee46e88-3720addb068so4706221eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 16:04:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794354903; x=1794959703; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:organization
-         :references:in-reply-to:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=AUql2wymmW69Kp3VegqeXpHQ2/+7j980FfOkqgfA5LI=;
-        b=JzAQJv2b9FYlr4EbHM9aycCsPqBFTBQT1pxAssIpp9C1WjlS6Y9sG8siu1WC8MGF4a
-         ZII1Kw3Vq2eIjQvEPZLIboMKw22XYUV3Ft3MBinHDWx2PV67Wd0hj8RfJIr16KpXy5V9
-         tJ1RZ+CzOiiFRuKkMkE+HWNPlwIWCjrWtNps3cGDgXAKNas5yOZI7ARJo6C6L/crDRWC
-         iU6aJTKXnPnIcMiDVYKs4rCv2fT9/2Qxrsc5EktwuSsxBvp56Xt35XnB0y1H7ozmatpC
-         1XNalpz1BvmCnVx3a4H4if4pbM5t3jrcxpVfrGCq+eU72yBTahtrY7PNyhPNaqzVyToE
-         A+9g==
+        d=chromium.org; s=google; t=1794355461; x=1794960261; darn=lists.infradead.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=C8iDH3wzEUbfzw7vLUHykfELJX0fs/fYgQ0GVi2TiVI=;
+        b=HGr4wPEbkxbXvgz6MStriN2qWzU+1LaSNoCP5nzg30HoZ5tGezYC/oku7Y3hej4V1/
+         dCPmDOKzXLaUa6HMYQO8KTDBwsg2KbBHTkPKn9OTVsrnARcMy2cXzyeuQBCKSpieBsqE
+         Uf4dehqQs6/W3XnAqIfi2aOa+M2hylWP2MYt8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794354903; x=1794959703;
-        h=content-transfer-encoding:content-type:mime-version:organization
-         :references:in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=AUql2wymmW69Kp3VegqeXpHQ2/+7j980FfOkqgfA5LI=;
-        b=Dg/+I/qjCUW1DZI/VEWSyMfWOvev24DSR2GtieL0He4+LfLhFfSEoGT26HHtryxVPp
-         JzvAObU8SNnQdJsyWwHQ1EJXgMV5VqpVwKPkgmNF0U+jeJOZz+q9IwICzzCDJKY5ZkTv
-         DvhiU7OsBUxIrYhr5LusFJO+lc6gbpDq/7rfVK1kcPci6SUBI7cj5SVuv5NKBszZ5Gdb
-         RYYoxX1OaCbjAovr2PG7TC1kGXGkqzc1WYYnsSEITCVucKE3szwxekZkahZMIZjlYJdC
-         EQrQWjsB085bja0bI/N2/LOv75l9qzbaLUvQmHlL4R4DiDFh5xwQ7xV7uXJMk14W4hvP
-         D+cA==
-X-Forwarded-Encrypted: i=1; AL+hErFKxDQ/5Ku7RSAXH18zC9x5xUJdiC0uEeR2aUWoS624sQUrTgXRj87ItfdMtRNqsAHns57Hj3PqBCW+AxKyUTnx@lists.infradead.org
-X-Gm-Message-State: APuU4Z+MIgD886fxcQpzSF3ToUV7Q+qm72ZsEvMBEvtC6fFz+E/7TGOK
-	ha2es5pxIxsepC4CJ5+CQHBAq3aBzwv5jF29B+phTw3yz66ZTwwjG/605fpzNtIMSWKh9dBrjh8
-	hl4LqL0ZCPK/+o+Xv5cSOW0hzFnM8ZWQp6HscmXHen7og9rQrL3xv5/GzNk5csuiCbwgvoAlxSB
-	A10Q==
-X-Gm-Gg: AYBFou3rLGRKrPJfBFF/+7WwZTM8vCJi/MACnzt1v0n7ltrPOahw6RXmA5e7z8ZowuW
-	AhTp3sboI/edGOQy+kp5kndJ4O6rrYTstNsS3LnDZt7ItjRpUeJ6F82++qyhVSEehVpP+xX5Q41
-	teXMytbvLSehZGfAPbhYNnllfMOvVTlXBOryLhltW4WVfDkHZi3utsrZoHmDoRY8SRiIaMNk6AK
-	qr9iHc9BdUByqeyXwvVBiQh609bCr3uBs0TXXfQIvgqwT5kBH2JSx9UUihUBInafLTSgOtZACCM
-	O4GmciODSDveewSFIKkhZJfzrOnFgIMCRz9/WIdouD0iVfCQAj9OkK1MnfelickoiMrF4g51ZVy
-	CezTx9d8oakxC+U3+Yv3pD2EDXFtiSpLWEaiDbWFGByLuspaWwXt9j4MoqdE3FVn8/TF85v4jp/
-	v/uvqpIFoiVTFu+khyNMJYEG8OEA6r
-X-Received: by 2002:a05:7022:b0c4:b0:13e:5a50:1e17 with SMTP id a92af1059eb24-1b3c023cd8bmr667213c88.3.1794354903272;
-        Tue, 10 Nov 2026 15:55:03 -0800 (PST)
-X-Received: by 2002:a05:7022:b0c4:b0:13e:5a50:1e17 with SMTP id a92af1059eb24-1b3c023cd8bmr667173c88.3.1794354902630;
-        Tue, 10 Nov 2026 15:55:02 -0800 (PST)
-Received: from localhost (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5b2fc09sm21003960c88.10.2026.11.10.15.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 15:55:02 -0800 (PST)
-Date: Tue, 10 Nov 2026 15:54:43 -0800
-From: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
-        sudeep.holla@kernel.org, james.quinlan@broadcom.com,
-        f.fainelli@gmail.com, vincent.guittot@linaro.org,
-        etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
-        d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
-        philip.radford@arm.com, david@kernel.org, souvik.chakravarty@arm.com,
-        leitao@kernel.org, kas@kernel.org, puranjay@kernel.org,
-        usama.arif@linux.dev, kernel-team@meta.com
-Subject: Re: [PATCH v15 33/35] Documentation: Add SCMI System Telemetry
- documentation
-Message-ID: <20261110155443.00002e33@oss.qualcomm.com>
-In-Reply-To: <20261109091221.2532706-34-cristian.marussi@arm.com>
-References: <20261109091221.2532706-1-cristian.marussi@arm.com>
-	<20261109091221.2532706-34-cristian.marussi@arm.com>
-Organization: Qualcomm
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
+        d=1e100.net; s=20260707; t=1794355461; x=1794960261;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :content-type:mime-version:references:message-id:subject:cc:to:from
+         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=C8iDH3wzEUbfzw7vLUHykfELJX0fs/fYgQ0GVi2TiVI=;
+        b=OBgRSaE6xlZT9G+WF+18LoWzTSo7dFnG8bvG3OpB7QnSffETlHiy+dUBcn5NK5VMml
+         UtqzuknidFbVsi0ho/SY0iNEoiJGxEEwmO9ptjTh3JX+UOjewHSqSNOR27JtgAo+yngj
+         YwvtK8/1GXG6SBVzPxZFdhLrIWaAL23M3lgTvepOLUCmns53R5WNbkHqOL84cvwwThnx
+         Z/WcncxQhaeg/Xizt6TjXtINyEuGiXS8Upgi5fmeOqKbCga6xFxmDLIDpn1hKS+eMFPG
+         vp/fA9A0fzJuAtPk5VnAv3Lj2tPZeL+UhUDIA7igM4ZbBrd/XTGKcshhBDVBAYY3vECd
+         J3ZQ==
+X-Forwarded-Encrypted: i=1; AL+hErHS0UZ+n3jrxdjnWzWIZtdY4Cig9eq0t3Kqe4YCp1k3TzZMA7vqtPyDoSUpKPRi0c0OHmMWWjvBcvQHFxgFrbGL@lists.infradead.org
+X-Gm-Message-State: APuU4Z+kzgz0vYe+/uj9Jbe9NelZ0F3IUgYXAGYAaIpgpnMwuq9lOAsI
+	S3T1Uayf2iRLNhJnWF+/JiPsgo0BFva1/WcV7j7VaOC8dxCl/OmW6fIzBTvbkuij2xKIywnPpFj
+	9vSg=
+X-Gm-Gg: AYBFou25b0EDoTYOE20lIg4CIuD1aYEnFefvrGTd3TzRGPP2qdZcJURhtEfJL5RoJe6
+	STnu9IJcFVK2herqq7J5Lu/eAcPp+d3KgVgNXH5GQBkhuh4ODFOm4Dl3Irin/8J5hR4h+dvC4CK
+	GAgh0sz/IR87c03SJnW+xoYcRsVkq3mdhYx9acvV6h6ivH61R77CEV/OG0bESfpASEu9XPQ3qGb
+	mHtoXZHxtfvOLrQ+RtB7o2tXCkyjHMP+An2YY8i6lj01783rYUzRSXubWZp/EqFA2ceBI57CZSj
+	bytfs9P1BLxJf6u9xZqQX95xwlQL0SLKG0k/bAxP/iNUFwckyj+Jf9swsRcC2cTdIUW4ADwS5lG
+	xpZmvbHcMxKwMdVZ6gYyntm+qw5Y6bpoqXeQBH35IbgA0AR9+RZaAouJP3a3alqMGXjdGhqD6yv
+	F+BA0E95Jmz2ElK+JWmBnQibr943AQTnrm4lWxYIq5ZV3DCDliFYT2MQoUs/H1pu+P7Z5xkg1ue
+	Ei0yHGcUH/u6YSDqHeYclMibPh8guqne/q6OgBWzn+ZuDVvv6E9RtEAiHt2zZlLQ700Vm68cOl4
+	plUWdyAq+T4ulWq+yRcs0lXi8ha21u75c9v8MN+gaFrEhz+T4Dmk8DCCTgodlC2kQiGy
+X-Received: by 2002:a05:7300:8a19:b0:358:8f02:e0ca with SMTP id 5a478bee46e88-376854b83d1mr1098536eec.9.1794355460437;
+        Tue, 10 Nov 2026 16:04:20 -0800 (PST)
+Received: from localhost ([2a00:79e0:2e7c:8:d341:6018:352a:4503])
+        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-3751d9f135asm10118860eec.2.2026.11.10.16.04.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2026 16:04:18 -0800 (PST)
+Date: Tue, 10 Nov 2026 16:04:15 -0800
+From: Brian Norris <briannorris@chromium.org>
+To: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
+Cc: Fabrice Gasnier <fabrice.gasnier@st.com>, linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, Ulf Hansson <ulfh@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	Andy Shevchenko <andy@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alan Stern <stern@rowland.harvard.edu>
+Subject: Re: [PATCH v2 3/5] PM: runtime: Propagate last_busy from dependent
+ to dependency
+Message-ID: <avOw_4ZkqtKFHu1B@google.com>
+References: <20261103221717.3840215-1-briannorris@chromium.org>
+ <20261103141442.v2.3.I40c0bc917fa0b13111251844e9a54feb1d9cd7d2@changeid>
+ <CAJZ5v0jWCz0XDgzeETbmMfGOmvh2G9qcx7xLODrpQ9NiwsddKA@mail.gmail.com>
+ <auuICAm4BC_8Pzs5@google.com>
+ <CAJZ5v0jTX1FgeS9FCV=+V4uacSgLQBVsSPnU27ybgUGg57GUOA@mail.gmail.com>
+ <auzlLwlleGLPsLcw@google.com>
+ <CAJZ5v0g25xQeRaLJWJyAo2fcJko+gZ7w6JhX7FzMgRx2+uuimw@mail.gmail.com>
+ <au0oKFb9CmNzc6Cg@google.com>
+ <CAJZ5v0hKpjMsGQm8Cpa89x5wkNxqkggDNbp+eQ0S-E52DETWjQ@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: pzhPKeA4g2vtdLPy5zF5eZkI4ub8LRde
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEwMDA5NSBTYWx0ZWRfXznN37CJfMteo
- zOg11jULSxd/2N0YsVa33/pZWaN2MVB7sgqygnZ3021+B3jmO2PIZpP9qFODrWY+qetgikxx1vA
- kMmkO9uLIISSkQI8eTN7jXArHX0B2PM=
-X-Proofpoint-ORIG-GUID: pzhPKeA4g2vtdLPy5zF5eZkI4ub8LRde
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEwMDA5NSBTYWx0ZWRfXwMbEsSwwGhP0
- ViNU/bffINQ77Hd7Pi3aHvIWcsV0dPE1eOKNGJy7Nnmcw6gTYS5HUU2aCLvIxGmLUGzaqOY63na
- rOTmWaEtt3RyfvrP9VqvgH02n/iY//7bCnat3KgdvciIVPeK4aJ9bkg4x6uml9uCdlYOUkb6WvR
- ANZtXgJhj/K6C9MbEqh0o3HcISBSeoJMX39KKggl28oCeOeGryIVX5MTebQOd7tawuef2KhZQDJ
- hq4D3lXWwxIlXXuS45Xew1obr+dqC50EOFgZAexcHpedSxkvzLk2s35Vp2JOxxGldhDTx0Fmp2g
- 6CX+ENypPKJxaxQSushJoJQ7K3/aLqfPpNjJDG1t86lwSfzuT9OVMRzpzNtn0cDyr7Emswu8MF9
- KDDuieH8TfAu89A+u2up4vPtbdDfQCG2X5QnJNC1SOaQGD0uegd4tqyi6gJsXCQjkT+vbEhC79m
- qEunxu3GgUinIbU072Q==
-X-Authority-Analysis: v=2.4 cv=ArR7T+9P c=1 sm=1 tr=0 ts=6af3aed8 cx=c_pps
- a=PfFC4Oe2JQzmKTvty2cRDw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=7CQSdrXTAAAA:8 a=UJirIprmqi7MR36yQRAA:9 a=CjuIK1q_8ugA:10
- a=6Ab_bkdmUrQuMsNx7PHu:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-10_07,2026-11-06_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 spamscore=0 priorityscore=1501 impostorscore=0
- malwarescore=0 phishscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611100095
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJZ5v0hKpjMsGQm8Cpa89x5wkNxqkggDNbp+eQ0S-E52DETWjQ@mail.gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_155507_899812_B529D6D1 
-X-CRM114-Status: GOOD (  32.71  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261110_160422_794092_98FA73C2 
+X-CRM114-Status: GOOD (  62.09  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -158,261 +117,279 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon,  9 Nov 2026 09:12:19 +0000
-Cristian Marussi <cristian.marussi@arm.com> wrote:
+(+CC Alan, since he wrote much of the autosuspend stuff, but also
+because he might(?) have better context for some of the .runtime_idle()
++ pm_runtime_mark_last_busy() questions)
 
-> Document ARM SCMI Telemetry IOCTLs interface.
+Hi Rafael,
+
+I was a bit slow to respond here, because I wanted to consider this
+carefully, and not simply give a knee-jerk reaction.
+
+Overall, I have some positive and negative thoughts. I'm still leaning
+toward preferring a proposal more like my own, but I think with a few
+things cleared up, I may be convinced of yours instead.
+
+On Mon, Nov 09, 2026 at 04:24:33PM +0100, Rafael J. Wysocki (Intel) wrote:
+> On Fri, Nov 6, 2026 at 2:06 AM Brian Norris <briannorris@chromium.org> wrote:
+> > So, I'd love to hear what can make the ergonomics better here, with less
+> > core complexity.
 > 
-> Co-developed-by: Philip Radford <philip.radford@arm.com>
-> Signed-off-by: Philip Radford <philip.radford@arm.com>
-Various trivial things inline. For example code it is always
-a balance between writing production quality stuff that
-has lots of info that doesn't matter for docs, and over simplifying
-to the point of ending with random broken code.
-
-Here there is enough error handling to expect it to work but
-there are cases where it doesn't. So tidy those up for consistency.
-
-Jonathan
-
-
-> ---
->  Documentation/userspace-api/index.rst |   1 +
->  Documentation/userspace-api/stlm.rst  | 590 ++++++++++++++++++++++++++
->  2 files changed, 591 insertions(+)
->  create mode 100644 Documentation/userspace-api/stlm.rst
+> Let me start with a clear problem statement to kind of refresh the context.
 > 
-> diff --git a/Documentation/userspace-api/index.rst b/Documentation/userspace-api/index.rst
-> index a68b1bea57a8..22daa7ebf78e 100644
-> --- a/Documentation/userspace-api/index.rst
-> +++ b/Documentation/userspace-api/index.rst
-> @@ -54,6 +54,7 @@ Devices and I/O
->     dcdbas
->     vduse
->     isapnp
-> +   stlm
->  
->  Everything else
->  ===============
-> diff --git a/Documentation/userspace-api/stlm.rst b/Documentation/userspace-api/stlm.rst
-> new file mode 100644
-> index 000000000000..ea05a10d314f
-> --- /dev/null
-> +++ b/Documentation/userspace-api/stlm.rst
-> @@ -0,0 +1,590 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=======================================
-> +STLM - ARM SCMI Telemetry Userspace API
-> +=======================================
-> +
-> +.. contents::
-> +
-> +Overview
-> +========
-> +
-> +ARM SCMI is a System and Configuration Management protocol, based on a
+> In some cases, there are unwanted parent suspends occurring between
+> child suspend and resume that delay the latter unnecessarily and
+> generally waste energy.  They mostly occur when the child suspends and
+> resumes relatively often and the parent's autosuspend delay is too
+> short to cover the entire period between the child suspend and resume
+> along with the preceding period of the child activity following the
+> most recent update of the parent's last_busy timestamp, at least
+> sometimes.
 
-Wrap docs to 80 chars.
+Sure, that's one way to frame it.
 
-> +client-server model, that defines a number of messages that allows a
-> +client/agent like Linux to discover, configure and make use of services
-> +provided by the server/platform firmware.
+> Of course, this also equally applies to suppliers and consumers, but
+> let's focus the attention on parents and children.
+> 
+> The problem addressed by
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=55b2b8af704f845e01fa2f31ee259b07641ce3a9
+> 
+> makes the unwanted parent suppends to occur more often because it
+> causes the parent to entirely miss its last_busy updates in the cases
+> when pm_runtime_resume() (or equivalent) is called for it when it is
+> active.  When this goes away, it should be possible to address those
+> "unwanted parent suspends" at least in some cases by increasing the
+> parent's autosuspend delay.
 
-> +
-> +Enumerating DataEvents
-> +======================
-> +
-> +SCMI_TLM_GET_DE_LIST returns the DataEvent descriptors exposed by the
-> +Telemetery instance. Users can size the request from
-> +SCMI_TLM_GET_ABI_INFO.num_des or by issuing a zero-sized batch query.
-> +
-> +Example
-> +-------
-> +
-> +.. code-block:: c
-> +
-> +	int main(int argc, char **argv)
-> +	{
-> +		struct scmi_tlm_abi_info abi = {};
-> +		struct scmi_tlm_batch batch = {};
-> +		struct scmi_tlm_de_info *des;
-> +		int fd, ret, i;
-> +
-> +		fd = open("/dev/scmi/tlm_0", O_RDONLY | O_CLOEXEC);
-> +		if (fd < 0)
-> +			return fd;
-> +
-> +		abi.size = sizeof(abi);
-> +		ret = ioctl(fd, SCMI_TLM_GET_ABI_INFO, &abi);
-> +		if (ret) {
-> +			close(fd);
-> +			return ret;
-> +		}
-> +
-> +		if (!abi.num_des) {
-> +			close(fd);
-> +			return ret;
+I think "in some cases" is holding a lot of weight.
 
-returns success. Make that explicit with return 0;
+For every increased parent autosuspend delay, there is always some usage
+pattern that will subvert it (even post-commit-55b2b8af704f) -- the
+child simply needs to stay "in use" for a bit longer. We shouldn't have
+to think about how long a device is in use when determining the
+autosuspend delay.
 
-> +		}
-> +
-> +		des = calloc(abi.num_des, sizeof(*des));
-> +		if (!des) {
-> +			close(fd);
-> +			return -ENOMEM;
-> +		}
-> +
-> +		batch.num_items = abi.num_des;
-> +		batch.item_sz = sizeof(*des);
-> +		batch.items = (unsigned long)des;
-> +
-> +		ret = ioctl(fd, SCMI_TLM_GET_DE_LIST, &batch);
-> +		if (ret) {
-> +			free(des);
-> +			close(fd);
-> +			return ret;
-> +		}
-> +
-> +		for (i = 0; i < batch.num_items; i++) {
-> +			printf("0x%08x: %.*s size:%u type:%u unit:%u", des[i].id, 16,
-> +				des[i].name, des[i].data_sz, des[i].type, des[i].unit);
-> +
-> +			if (des[i].flags & SCMI_TLM_DEINFO_GROUP)
-> +				printf("group:%u", des[i].grp_id);
-> +
-> +			printf("\n");
-> +		}
-> +
-> +		return 0;
-> +	}
-> +
-> +Enumerating Groups
-> +==================
-> +
-> +SCMI_TLM_GET_GRP_LIST returns the groups exposed by the Telemetry Instance.
-> +Group descriptors report; the group ID, the number of DEs in the group, and
-> +the number of update intervals supported by the group.
-> +
-> +SCMI_TLM_GET_GRP_DESC can then be used to retrieve the DE IDs of a specific
-> +group.
-> +
-> +Example
-> +-------
-> +
-> +.. code-block:: c
-> +
-> +	int main(int argc, char **argv)
-> +	{
-> +		struct scmi_tlm_abi_info abi = {};
-> +		struct scmi_tlm_batch batch = {};
-> +		struct scmi_tlm_grp_info *groups;
-> +		int fd, ret, i;
-> +
-> +		fd = open("/dev/scmi/tlm_0", O_RDONLY | O_CLOEXEC);
-> +		if (fd < 0)
-> +			return fd;
-> +
-> +		abi.size = sizeof(abi);
-> +		ret = ioctl(fd, SCMI_TLM_GET_ABI_INFO, &abi);
-> +
-> +		if (ret){
-> +			free(groups);
-> +			close(fd);
-> +			return ret;
-> +		}
-> +
-> +		if (!abi.num_groups) {
-> +			ret = 0;
-> +			free(groups);
-> +			close(fd);
-> +			return ret;
+So I think this is a non-starter line of thought, and not just because
+of your system power arguments.
 
-			return 0;
-rather than setting ret.
+To me, autosuspend delay is simply broken today when looking at parent
+devices. Maybe we can glean some intention from the comments and context
+around any given delay used by drivers today, but they aren't reliably
+meaningful.
 
+> However, using larger autosuspend delay
+> values generally causes system power to grow (on average) because it
+> effectively causes devices to spend less time in suspend, so
+> increasing autosuspend delay values is not a particularly attractive
+> option.
+> 
+> Notice though that advancing the last_busy timestamp more often
+> without reducing the autosuspend delay values of the affected devices
+> is also likely to lead to the overall increase of system power because
+> it would effectively cause the devices to spend less time in suspend
+> (on average) likely increasing their power (unless the majority of
+> their suspends are unwanted).
 
-> +		}
-> +
-> +		groups = calloc(abi.num_groups, sizeof(*groups));
-> +		if (!groups) {
-> +			ret = -ENOMEM;
-> +			free(groups);
-> +			close(fd);
+I don't think we should be treating current autosuspend delays for
+parent devices as meaningful at all, per the above. So I think this is a
+chance to try to improve the architecture so it makes sense, and then
+figure out if any existing delays should be tuned/reduced.
 
-return an error rather than carrying on.
+Ideally, yes, we can avoid making significant system power changes to
+the negative, but I don't think that we should prioritize that above all
+else, as long as it's *possible* to tune the autosuspend delays in a way
+that makes sense.
 
-> +		}
-> +
-> +		batch.num_items = abi.num_groups;
-> +		batch.item_sz = sizeof(*groups);
-> +		batch.items = (unsigned long)groups;
-> +
-> +		ret = ioctl(fd, SCMI_TLM_GET_GRP_LIST, &batch);
-> +		if (ret) {
-> +			free(groups);
-> +			close(fd);
-> +			return ret;
-> +		}
-> +
-> +		for (i = 0; i < batch.num_items; i++) {
-> +			struct scmi_tlm_grp_desc desc = {};
-> +			__u32 *de_ids;
-> +			int j;
-> +
-> +			printf("group:%u des:%u intervals:%u\n", groups[i].grp_id,
-> +				groups[i].num_des, groups[i].num_intervals);
-> +
-> +			if (!groups[i].num_des)
-> +				continue;
-> +
-> +			de_ids = calloc(groups[i].num_des, sizeof(*de_ids));
-> +			if (!de_ids) {
-> +				ret = -ENOMEM;
-> +				free(groups);
-> +				close(fd);
-> +				return de_ids;
-				return -ENOMEM;
-I'm curious if sashiko noticed your docs and spotted this stuff?
-I guess it might be conservative as often such examples in docs
-skip error handling.
+> Now, let me acknowledge that some drivers evidently want rpm_idle() to
+> always set the autosuspend timer instead of suspending the device
+> right away.  That may be because of the "unwanted parent suspends"
+> problem at hand or for other reasons.
 
-> +			}
-> +
-> +			desc.grp_id = groups[i].grp_id;
-> +			desc.num_des = groups[i].num_des;
-> +			desc.composing_des = (unsigned long)de_ids;
-> +
-> +			ret = ioctl(fd, SCMI_TLM_GET_GRP_DESC, &desc);
-> +			if (ret) {
-> +				free(de_ids);
-> +				free(groups);
-> +				close(fd);
-> +				return ret;
-> +			}
-> +
-> +			printf("DataEvents:");
-> +			for (j = 0; j < desc.num_des; j++)
-> +				printf(" 0x%08x", de_ids[j]);
-> +			printf("\n");
-> +
-> +			free(de_ids);
-> +		}
-> +
-> +		free(groups);
-> +		close(fd);
-> +		return 0;
-> +	}
+Do we have any idea what the "other reasons" could be? For example,
+because driver writers found it too difficult to find all the
+appropriate places to call pm_runtime_mark_last_busy()? (Does commit
+b3db492e8335 ("PM: runtime: Mark last busy stamp in
+pm_runtime_put_autosuspend()") help? Or should pm_runtime_put() behave
+similarly?)
 
-...
+I'm genuinely interested. Because I think that you *might* be reasoning
+us into a weird corner where we "hope" things can be improved
+architecturally in the long run, but we don't really know, and aren't
+going to actually make it happen without knowing why things are the way
+that they are.
 
+> Regardless, it is effectively
+> equivalent to setting last_busy in rpm_idle(), so they use their
+> .runtime_idle() callbacks for calling pm_runtime_mark_last_busy().
+
+Side note: I think .runtime_idle() should be removed. As far as I can
+tell, it's only used for working around architectural problems in
+runtime PM (like $subject), or for implementing autosuspend without
+actually using autosuspend (usually because they predated autosuspend).
+
+At the same time, it makes it harder to reason about the runtime PM API
+surface -- because currently, .runtime_idle() is a primary reason that
+pm_runtime_put() and pm_runtime_put_autosuspend() are different. (A
+secondary reason is the last_busy update -- which is exactly the problem
+we're talking about here.)
+
+I have some experimental patches to remove it entirely, but I wanted to
+clear this obvious problem up first.
+
+> It
+> arguably would be nice to allow them to just declare that, for example
+> by introducing something like pm_runtime_use_autosuspend_always() to
+> be called instead of pm_runtime_use_autosuspend() if the driver wants
+> rpm_idle() to always set the autosuspend timer instead of attempting
+> to suspend the device directly.
+
+Maybe. I don't really like forcing driver writers to think about and opt
+into yet another quirk of RPM, especially if we can reason out whether
+the existing behavior is bad/quirky/broken, and that the new behavior is
+in fact better. (Frankly, I don't like making driver writers think about
+rpm_idle() at all. IMO, it makes more sense as an internal
+implementation detail than as a part of the client API.)
+
+If we go this route, would you be open to making it opt *out*, so
+drivers can opt back out (hopefully with clearly-documented reasons we
+can treat as problem reports) if necessary? Otherwise, I think we'll
+have a hard time bringing drivers along, and instead we'll simply have a
+more fragmented and confusing set of runtime PM features.
+
+> I think that using pm_runtime_use_autosuspend_always(), if it existed,
+> might be attractive for a couple of reasons.  First off, which is
+> rather obvious, a driver using pm_runtime_use_autosuspend_always()
+> wouldn't need to worry about last_busy at all, so it would never need
+> to call pm_runtime_mark_last_busy() or pm_runtime_put_autosuspend().
+
+Yes, that would be very nice.
+
+I also don't think drivers should ever have to think about the
+difference between pm_runtime_put_autosuspend() and pm_runtime_put(),
+although I think we can get there in other ways (removing
+.runtime_idle(); rolling pm_runtime_mark_last_busy() into all the put()
+helpers, or possibly to rpm_drop_usage_count()).
+
+> It would just need to call pm_runtime_use_autosuspend_always() once
+> and set the autosuspend delay (which may even be combined with the
+> former).
+
+> Second, the autosuspend delay of a driver using
+> pm_runtime_use_autosuspend_always() would only need to cover the
+> period after the last runtime PM reference to the given device had
+> been dropped
+
+I'd agree, this sounds very nice, except for one concern:
+
+"Last PM reference" can be a bit subtle; particularly, the child only
+drops a reference on its parent once it *completes* autosuspend (even if
+it was last "busy" much earlier). That means autosuspend delays become
+additive along the hierarchy. Is that desirable?
+
+Personally, I don't think so, and that's why I chose propagation (my
+proposal), rather than extension (what I'd call the behavior you're
+describing).
+
+I also _think_ that's what Jonathan was saying here:
+https://lore.kernel.org/all/20261103231719.486a18de@jic23-hlaptop/
+But I'm not quite sure, so I'll leave room for correction here.
+
+And really, I think this is the main distinction between our proposals.
+(The other is that you're proposing making this behavior conditional /
+opt-in.)
+
+To me, I think it's important to distinguish when the last real *use*
+was, versus when the runtime PM framework (timers, etc.) hadn't yet
+decided to suspend. Autosuspend is the trailing indicator, while
+mark_last_busy() is the leading indicator.
+
+Maybe I'm missing something though.
+
+> while currently an autosuspend delay needs to cover that
+> period along with some (usually unknown) period of device activity
+> between the most recent last_busy update and the time when rpm_idle()
+> gets called.
+> 
+> Thus, with pm_runtime_use_autosuspend_always(), the
+> autosuspend delay usage would be arguably more straightforward and
+> easier to reason about, and also the autosuspend delay might be
+> reduced in the majority of cases.
+> 
+> Of course, drivers that have the "unwanted parent suspends" problem
+> might switch over to using pm_runtime_use_autosuspend_always() and
+> adjust their autosuspend delay values to cover full periods of their
+> children's suspension.  In theory, it should be possible to reduce
+> their autosuspend delay values while at it, for reasons explained
+> above, so the total average system power might even remain unchanged
+> at least roughly.  That overall might be a zero-overhead change.
+> 
+> Using pm_runtime_use_autosuspend_always() would also make autosuspend
+> work consistently in all situations regardless of the reason why the
+> last runtime PM reference to the given device had been dropped,
+> including the "power/control" manipulations from user space, in which
+> case it would be equivalent to calling pm_runtime_mark_last_busy() in
+> the sysfs code path mentioned by you above.
+> 
+> Moreover, suppose that pm_runtime_use_autosuspend_always() turns out
+> to work for everybody, regardless of whether or not they have the
+> "unwanted parent suspends" problem.  In that case, it will be possible
+> to simplify the whole autosuspend delay handling quite a bit.
+
+I think many of these simplifications/improvements you talk about are
+good. I also don't really think they're unique to your described
+solution; I think we can get many or most of them in other ways too.
+
+For example, I think that with my propagation solution, we also can
+likely reduce autosuspend delays for many of the same cases that could
+be improved with yours, if that's deemed valuable.
+
+Or if we really want to go all-out on reducing inconsistency in
+mark_last_busy() placement: we could add pm_runtime_mark_last_busy()
+into rpm_drop_usage_count().
+
+I also would like to add / repeat a few questions:
+
+What, specifically, do you think my proposal misses?
+Too complex?
+Doesn't go far enough on updating last_busy (e.g., with the
+pm_runtime_allow() use cases)?
+Wastes power? (In what ways relative to your proposal? Simply because
+yours is opt-in?)
+Something else?
+
+Or because its concept is not good? For example, I don't think you
+really addressed a question from a few replies up:
+https://lore.kernel.org/all/auzlLwlleGLPsLcw@google.com/
+Rephrased: why shouldn't the parent's last busy time be the same (or
+later) than the child's?
+Your proposal seems to achieve almost the same (in fact, it's more
+aggressive), with slightly different means, and with more complexity for
+users -- that everyone has to opt in, and to think about what rpm_idle
+is.
+
+And a similar theme for other unanswered questions:
+https://lore.kernel.org/all/auzlLwlleGLPsLcw@google.com/
+Why shouldn't pci_config_pm_runtime_put() (and similar) update
+last_busy?
+
+To me, if we can't properly address the question of "when should we
+update last_busy?" (and instead defer to yet another opt-in feature
+within runtime PM, without making sure everyone can use it), then I
+think we'll never *really* move things forward.
+
+(And to be clear: I'm not trying to ask these questions to drive "my
+solution is better; why don't you agree?!" I just want to understand the
+principles in the design, and in the decisions you'd like to make here,
+so I can help make sure they do indeed make the driver experience
+better, and that there is a good path to convergence.)
+
+Brian
 
