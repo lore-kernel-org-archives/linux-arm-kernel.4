@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94245606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2001606A326
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZL+JcsRB;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=NnOpbHUN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TvEQg/7b;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=C21nt+/+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,69 +14,70 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cFxuh1PNIKEywo18Tfv8aFf+JkQMs0pwqiuaLoQb3k8=; b=ZL+JcsRBWshztjHHlopftcWHm1
-	RY1Etmu+Sg9xQFcTcOdlhWho2wx0Ud7VcvN9qDGGKB/Y7AiSWBU8jN3SNqXwiRYN24Pw+U1srhY7Q
-	1SNmY2cn64kKKzADsF+y60hUMnK1v/Cwchgu0SoOeakrWOvbayHDVV7VAwvA+nJVTL5lYdsIcYqzY
-	p7GkQZS882Gt89bHmcGKkm1IE8ZJ/PpECWsXC+kcBhrEOcVAKywJKhD9qZAvaD2DuhQtbUXEgLvfU
-	X2yNncXt+OBkV3OX8HqiJEZFV0fmuzegvhcdVjQHsUQubUrFWer2DGtHtSFSrIVbwnoof71jc4FV/
-	MGUL9iaQ==;
+	bh=SsTSYB3rsKvMWE7p57CQCiR1JUfH7D/jcQTe8wg93kY=; b=TvEQg/7bKRqNX0VgrGoVyT9hAE
+	gxy8/yZ8aKAVQ8UaxjqinYZanv7MQk90/aJZyAAcn8EPKtV3gnqE6NxtSecQ2PIL9MFlYvWC97LKD
+	GGS6qjxOh2It5DHUAmwTzqToeNnxiQ7uQLy9Y0xvwcsd3qEAwHk6doCVdTOhzjnygX5a7Es81teJT
+	b886uidYtiS0+nBqJ94z9MLMrK98t4U27sFKBNN3S/6qjFi0wfvU3leO68hbM2/iAzIAOQv04OTyi
+	uizpqKrE9QP+3VxB56h7e2XJ5rK0c2Xm2O3KHmWZciO4VDCwsvGjOv+UdarOM6gGx5GMkE8LeP1q1
+	FIkO79Hw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6tY-00000006YHg-1lKP;
+	id 1xR6tY-00000006YHG-1ATN;
 	Wed, 11 Nov 2026 11:53:40 +0000
-Received: from mail-wr1-x446.google.com ([2a00:1450:4864:20::446])
+Received: from mail-wm1-x345.google.com ([2a00:1450:4864:20::345])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6tT-00000006YCS-0w3p
+	id 1xR6tP-00000006YBx-3Ss8
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:53:36 +0000
-Received: by mail-wr1-x446.google.com with SMTP id ffacd0b85a97d-49187ad6a72so2152186f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:53:32 -0800 (PST)
+	Wed, 11 Nov 2026 11:53:35 +0000
+Received: by mail-wm1-x345.google.com with SMTP id 5b1f17b1804b1-4a359c7f47bso26444105e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:53:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794398011; x=1795002811; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794398010; x=1795002810; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=cFxuh1PNIKEywo18Tfv8aFf+JkQMs0pwqiuaLoQb3k8=;
-        b=NnOpbHUNvuMSijM69bfZjxab4vRytO3w1QSJBeo+9ZxP0x+PV4LrcFNNWP0y/BVDBO
-         4JusVT+7AOadByAwNbQpnir0Egxsivf6WbrnJz6CvkehbGI8frMB70slkG0xCONCwJe8
-         s54+f67YQXmSMSoXkMo3GATu8hqBqqXD4dZqVfKzJ2epcsSv+AmSJemz1KliN7cA9Rj8
-         B9mE9vLqDgNPhLvpmSZdCT4EvPuG6CL2lbLb8l4l51Ht7DLiplGckEEMf9FcJ/vgt1pO
-         hWHJCD+i11z6rXcO8dnQnbAqXLAkGoe/wnGIs0IhUlYLGVOllY8+uLgV983FLpbR+wAZ
-         g9AQ==
+        bh=SsTSYB3rsKvMWE7p57CQCiR1JUfH7D/jcQTe8wg93kY=;
+        b=C21nt+/+qDOFkNELyl5D8dRnSCzte0NdjT5zpy2Gil7SGHANeytaHcAquD+SxciWBW
+         xFVMD+wEsHDUZX/DPomg/cqL9hDrezrp+C2z9gyf3Oyr0/bH4lmFs3wpjFXr4R2exSnM
+         EVtaoS3KRhZX+2bbgAma0yx4PkcC2fky04VfusKgmdxwK5AFHnuRgLdRVW9VkWOn9npn
+         Y4qO1Kuh0smsBFq5OST+CKRHul+kA0Uwd9cMZaLHTBJFnI9R0zE5zMcHM9d9jYXxa0NR
+         kdlqp1/JhT3Q33MRspE8vLSuHxFRLgxJDVKWHkGk0VLjamuh5+CD6hABOYwqjHOFtOK/
+         +Bxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794398011; x=1795002811;
+        d=1e100.net; s=20260707; t=1794398010; x=1795002810;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=cFxuh1PNIKEywo18Tfv8aFf+JkQMs0pwqiuaLoQb3k8=;
-        b=S4Rg/Lilk+y3EBYpBL9PisIS7xIQ5A7ZSBjVcuiKpt/xIWOZLvNZ337A7rjVx5DhIJ
-         yJakJTFuQoEIm/5YuOst6Wby6p/5ifG38uwkT14gkXvQZFiKEtV5o8fEgFkvRbpAwLgd
-         2doTxAmC8TgmFAMsTdWjlTXnHzqC0gkGcaMuJ70/ECFPjAOaHAhPlHiSlVSFEnscIjnm
-         rQKzp15MI9s0oG6A9bqdKBUuycme3qnPdlj5m9APwCvCMJamlpZGytSwp8QAxzlmoWon
-         7UBkehDXhF/aoiQa1H6MJ1508OuaoIEFnVospAGdwOdHefWDGn6THm9XlLTP+kfZnLRa
-         EbTA==
-X-Gm-Message-State: APuU4Z/Cht+md0A5V7ylbAAIxvUpPVT2Ldcl/cV0Iq1cvU+DJ4orCXTH
-	gzhyC7TXfOoTQso17Nv7eAaJr4gRqVrwlKcWv4llLdsOGHVxyA+XUu4bbhBfkuyFg0JEZo+i2Bt
-	6iqN2ZW7JOTzex2PIB9rzgbdNkQHRrSsD8Zkmik5BrMEBW2hUJ+cuUJG4byUoxMhN69rFWLqH0t
-	2O1nbo/9HUpshqrK1gOdBXJJQAxtw0FXee6784XWP5xs9U
-X-Received: from wrbs5.prod.google.com ([2002:adf:d005:0:b0:48d:f346:cfd5])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6000:4a06:b0:492:5ef7:5d98
- with SMTP id ffacd0b85a97d-499c83c09damr3673566f8f.38.1794398010607; Wed, 11
- Nov 2026 03:53:30 -0800 (PST)
-Date: Wed, 11 Nov 2026 12:53:07 +0100
+        bh=SsTSYB3rsKvMWE7p57CQCiR1JUfH7D/jcQTe8wg93kY=;
+        b=FojJed+UxWWsWb9g2KsMcfcDOzgJcsCVm0cSUkKua8nFFOsTaHWrohpX33AYdoR9g+
+         xDGrzgIyTCIQPVD4YUVqhj38pzomiyHWCKBl6gWlCEYDvdLexKxTWT3IZD8y/i1jr6a8
+         YM/oipity0wZTAo1ly8PakwCIYe69puF0bokiloB3YRVidmKqBXsHNmnnYQ05TtC+FmN
+         wMbuulVQP/Ht3dyhzG9iQZgZgNHoQXqkGHaXTPmi74ArxgK/rLO/Uuwy9qgT/W5AaRhV
+         hjMYQuGMc9gqm8Xn3/rYnIueTFPPlKAaDzgSIFZkR/cv0J8rW5EWMor7zDI5MD4zyrD+
+         gy0g==
+X-Gm-Message-State: APuU4Z+o3aw76DHtxszsP01ReN8L0q5FccSbFRHaHPtP74MjaZWqYWQe
+	hOPlEGJ85COpYjc4ajchdUIvYjK+34GKkla04GJSxZk5znmV8lgV03QJHRZnqE0kyS/P7b0AukB
+	/KTfi8TzTcwP7eiFaolejXRoGzcgc8wxhNjIBV9FIYz6Tz/hIbcUNfF5YTGrwjkV4dISISwigjv
+	aKxvKCkvC+HzYnYGmi19vayih2AQUDT9diH9ehHkysAv5+
+X-Received: from wmbz24.prod.google.com ([2002:a05:600c:c098:b0:4a1:d0e3:1e1c])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:4ecb:b0:4a2:150f:1601
+ with SMTP id 5b1f17b1804b1-4ba093811b2mr37381255e9.12.1794398009585; Wed, 11
+ Nov 2026 03:53:29 -0800 (PST)
+Date: Wed, 11 Nov 2026 12:53:06 +0100
 In-Reply-To: <20261111115303.3749380-9-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261111115303.3749380-9-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1422; i=ardb@kernel.org;
- h=from:subject; bh=gky1cuStZY+PKkODphMTNkJfxP1zI/LkXCzNIngy2Oo=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIetLuIraBafO/3uCxL6HOTfI/Xp79PSm7ad3PTnAGGVg/
- 6vvwO32jlIWBjEuBlkxRRaB2X/f7Tw9UarWeZYszBxWJpAhDFycAjCR6FhGhha5aTIy8d42e3XZ
- nM/rRS3raTXYXXPq6rtEyx6pW5nqFxj+Su9f7PiSW/ZYn9mEI3NLeQ9zXdnpfm2p1qtQi5agayx NzAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2269; i=ardb@kernel.org;
+ h=from:subject; bh=JUc6v0P1teNo8OlbdRyY2etIOH20xoIr68pdPx7aM1A=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIetLuBK718xmx/ypLhO8b639fiw/YoMK26dtJRWz97G1P
+ e3qm9vfUcrCIMbFICumyCIw+++7nacnStU6z5KFmcPKBDKEgYtTACaSkcnI8PLL3UxDlVkHL3VV
+ eYfd1ty9yDx39+JDbeVdgWsM/GT4LjMytE98yxv86sDjaf+WxKw843a1NVN31j8lu8f3s+fL8wj +5gAA
 X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261111115303.3749380-12-ardb+git@google.com>
-Subject: [PATCH 3/7] arm64: dts: qcom: c630: Enable DisplayPort alt mode
+Message-ID: <20261111115303.3749380-11-ardb+git@google.com>
+Subject: [PATCH 2/7] arm64: dts: qcom: c630: Use LN_BB_CLK2 as the eDP bridge
+ reference clock
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Ard Biesheuvel <ardb@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
@@ -84,8 +85,8 @@ Cc: Ard Biesheuvel <ardb@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_035335_306368_2AC802C1 
-X-CRM114-Status: GOOD (  12.06  )
+X-CRM114-CacheID: sfid-20261111_035331_883799_923DC939 
+X-CRM114-Status: GOOD (  14.71  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -107,44 +108,60 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-The right-hand USB-C port supports DisplayPort alt mode. The EC takes care
-of entering it, and ucsi_yoga_c630 already sets the orientation of the
-combo PHY and passes the EC's DP hotplug events down the bridge chain. All
-that is missing is the DisplayPort controller, which sdm845.dtsi already
-connects to the combo PHY.
+The SN65DSI86 eDP bridge on the Yoga C630 is described as being clocked by
+an always-on fixed 19.2 MHz reference clock. However, as on the SDM845
+reference design (Cheza), its REFCLK appears to be fed by the LN_BB_CLK2
+output of the PMIC, which also serves as the master clock of the WCD9340
+audio codec.
 
-Limit it to two lanes. That is what the PHY provides alongside USB3 in its
-default mode, and it matches pin assignment D, which the EC picked with
-the monitor I tested. Four lanes would need the PHY to be switched to its
-DP only mode, which nothing does on this platform.
+As nothing tells Linux that the bridge depends on LN_BB_CLK2, the clock
+only runs when the codec happens to have it enabled, and the WCD934x
+driver only enables it on demand. If the bridge is brought up while
+LN_BB_CLK2 is off or being toggled, e.g., when the display stack probes
+before the codec, or while the codec is being initialized, all AUX
+transfers fail and the DP PLL does not lock, leaving the panel dark:
 
-Tested with a USB-C monitor: 1920x1200@60 over two lanes at HBR2, with the
-monitor's USB3 hub working at the same time.
+  ti_sn65dsi86 10-002c: Can't read lane count (-110); assuming 4
+  ti_sn65dsi86 10-002c: Can't read eDP rev (-110), assuming 1.1
+  ti_sn65dsi86 10-002c: Can't read max rate (-110); assuming 5.4 GHz
+  ti_sn65dsi86 10-002c: DP_PLL_LOCK polling failed (-110)
 
+So describe the actual clock instead, so that the bridge driver keeps it
+enabled for as long as the bridge is powered up.
+
+Fixes: 956e9c85f47b ("arm64: dts: qcom: c630: Define eDP bridge and panel")
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index a4a573ea7e4a..0645ab429177 100644
+index 9d38ae83c979..a4a573ea7e4a 100644
 --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -589,6 +589,14 @@ &mdss {
- 	status = "okay";
- };
+@@ -97,13 +97,6 @@ sw_edp_1p2: edp-1p2-regulator {
+ 		vin-supply = <&vreg_l2a_1p2>;
+ 	};
  
-+&mdss_dp {
-+	status = "okay";
-+};
-+
-+&mdss_dp_out {
-+	data-lanes = <0 1>;
-+};
-+
- &mdss_dsi0 {
- 	status = "okay";
- 	vdda-supply = <&vreg_l26a_1p2>;
+-	sn65dsi86_refclk: sn65dsi86-refclk {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-
+-		clock-frequency = <19200000>;
+-	};
+-
+ 	vph_pwr: regulator-vph-pwr {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -528,7 +521,7 @@ sn65dsi86: bridge@2c {
+ 		vpll-supply = <&vreg_l14a_1p88>;
+ 		vccio-supply = <&vreg_l14a_1p88>;
+ 
+-		clocks = <&sn65dsi86_refclk>;
++		clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
+ 		clock-names = "refclk";
+ 
+ 		no-hpd;
 -- 
 2.56.0.611.g1030f0b940-goog
 
