@@ -2,109 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24E59606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207C1606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:06:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e493muok;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=erGcS59I
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2bny0wU/;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DpCzmyI+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LERhbt5Ytdc1ar8GQ07npP5kbNMAPKzHwGZphCtzgew=; b=e493muokEtUjq4dk4ltfoN049T
-	NIIB3nou1XVGOnp0CU6cPLjptmwmOeZ79JolWomEa5/BIHrFq3B0lGDz3VWr2EfHwspnW+aIyfM1I
-	QH4OGDyfvrLTfdCzuzLo5p0pc6ogj5kR+341Qdk6gYIc3JlQA0NDYqhBp0tNgE8t2vsn9Au7dgpZZ
-	nSqhCN3ycSIQwm7do+NpHdy73LRWr8JfYqBxw6mKkcw5d2FHza+bDDD8gv2vlkAgi0qb66tCeWAWc
-	tT3BCbfmlY+7JOP8+06HOfE41OOk+sF9OCZIWvmlLegAAzPg7D+W+D8x/5O8KvUh+6QHe7ngKLvnA
-	Ze5yc93g==;
+	bh=wDTNKmKcvG/TVcEJQQhWa3Cr1cP+VoAZc+pn91JcdUM=; b=2bny0wU/1WuncL6foe8/U7leuc
+	DGbFlIwdgo8NjIOELZycMe7j1BtlcEzIdH5llR1RND8uaTLSPDuD7zyn83m8Sb9QJJnDLrI1w4vDn
+	XJfvnimVg52dtMBGy/23tkbimG9UZuuloRwTMtLGwXLMD3bPP/OmxeRvnuvV0HXLars+xZ545XHnh
+	viSn6rEt1L0Kt4R4/UQXJEUwXrrqA/UnGUl89FtslsPSN7HIVrQlUr/kUlGpGg22fWDBYMQRJwGoH
+	YQMA7tMy0APcR6qQv/xEKwvAvcw4HFrPuXOMjqa9uAkLKTF4lQgB8XWp6LL2oFY46BCs+pSytNg+1
+	bhPQfTXQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5BX-00000006I9s-2wZb;
-	Wed, 11 Nov 2026 10:04:07 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xR5E1-00000006IOc-0JpN;
+	Wed, 11 Nov 2026 10:06:41 +0000
+Received: from mail-dl1-x1230.google.com ([2607:f8b0:4864:20::1230])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5BV-00000006I91-3es1
+	id 1xR5Dx-00000006IOC-1ytH
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 10:04:05 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 09FFD63C1E;
-	Wed, 11 Nov 2026 10:04:05 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794391444;
-	b=ENq6XChdbDLF1JaAvQwDGna7DJL5Xd8McgeltnnZqrz/Vxcw3ZAxSsDm+StvFsw/Kqlg
-	 xw+621TPLXl0bX7IafGupbJUclk7URLqxBS6NsfQpCGXke3Cqq8b9URWmvYPZqQU3rDAa
-	 8/5jRZ+kbxvuGGEmsYNkdlJtpqkWlyNCM9+CIyqmG1vHXgS0wsD+unYANFhtVfg3VF9YQ
-	 7g6qvdTKRJILP7l8CQTcTPA4S1k0CY0fqNbYNaf7Ty89QXbAdNclFgsvDgtmrJYxz/U5D
-	 RUFhyK4CGg1dEpx9CASC4V6tYyyS3tZABZnHPUa5ewOpLdwF+yJ8+/C+s8tuTiYPBTg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794391444;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:Message-Id:X-B4-Tracking:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To;
-	bh=LERhbt5Ytdc1ar8GQ07npP5kbNMAPKzHwGZphCtzgew=;
-	b=zVWRF5YLBahFkpHOy27bVTANsVO4rnFZwq/ehsDeZUHeCzQF04/D74AKjPad3DHYsLfY
-	 8axNndbBHKiQVhZRuQshaAAeEXBY79Zpio2VRui7fDq/28JD1LmalfMdP2UcjmnyuS4QH
-	 /tViVCrg6cmxHtK5LvGllTvQdHsOD1zaAhYzOD5f9puWszuCT5TIbuZnkpxkVrQzQNFWA
-	 RYmtBaZWW+ck/g8wuTmlB3bvnxjsYwcNkRgq6nz6j1OazhJFj16bzVMJu+FU779Akun15
-	 jHSqq/cOUjpPzBhwr5d1WjCVaEs0cljBtMP8VFnWuIX/fU+UPRDpgKPpTUrFJ/sugrw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 293001F00A0E;
-	Wed, 11 Nov 2026 10:04:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794391444;
-	bh=LERhbt5Ytdc1ar8GQ07npP5kbNMAPKzHwGZphCtzgew=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=erGcS59ItktfZQvpSga90WTUkr0BM3wtiQdlaPLLxwCA8YjSI5FDbY/8Bbmyp4A8q
-	 muYzMDEj8teuRZURdrm3jZWCQvZVbiiUx7sM8q7wQ+ch/ud7KcTScVqyH4qG/dKEV3
-	 O3p7t5nkttCuCfK9hBfyQjUDPu3z6NIIAkjYPNLIMI3Yw1/aooBuzH0kLZjByhSEZa
-	 qhF5bEscz+b9vDdZjNp4nzeQG7eTkYVgbT1ZELgiWBm/8VWb1qrycnuZq5LS+FVY1w
-	 WPggkOwMxOX45Mh1nJjSYD4T0kBlJdX/feSBv/ASdC9nzeaZwBC2brnY50V1AeR10z
-	 Dsisy3ovVBxEg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 714EE48F1A;
-	Wed, 11 Nov 2026 10:04:03 +0000 (UTC)
-From: Eric Yang via B4 Relay <devnull+eric.yang.wiwynn.gmail.com@kernel.org>
-Date: Wed, 11 Nov 2026 10:04:03 +0000
-Subject: [PATCH v2] ARM: dts: aspeed: yosemite4: Remove Floating Falls
- board nodes
+	Wed, 11 Nov 2026 10:06:39 +0000
+Received: by mail-dl1-x1230.google.com with SMTP id a92af1059eb24-1931ff67a29so4547024c88.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 02:06:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794391597; x=1794996397; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=wDTNKmKcvG/TVcEJQQhWa3Cr1cP+VoAZc+pn91JcdUM=;
+        b=DpCzmyI+lfxyk9Mi86EjMuRaWmiKTwv5N7ZkiAcqmGoYu3qf3nlUEmhiccVGYx9nZO
+         5yXdfo/FqJWWG5OjiSEKSiEBRCvpqr9ukmtbR4AAxSwMiornzv0hoy3nbE2u+qIJs+96
+         OU0wbKK+HnBy0/PkFPqg1RqRNe7GvU82cRJPmnpj9xQr3Bg4rgIVewbNhmhmAsbBdbeC
+         YkRmL4fjNhJSgdtQBSFti5oy0pgCTJZDWbO5kVMtKD2ZnaSIaLh1v2mWxiffM9Wdy+rv
+         GoI6x8NYKlcF11wernmBWxOn/6Nxqjd37jGwWRUy50ghzyay/meSsv8RW8IINBjyfZlc
+         rwTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794391597; x=1794996397;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=wDTNKmKcvG/TVcEJQQhWa3Cr1cP+VoAZc+pn91JcdUM=;
+        b=dIxCLPdkHO1i+BLy08Wyqqsz7JMA0qX8rC9OXGojmawjr40R92eI7EZSel5oZjEj9Q
+         Iw1jEEwautqmky2l1CwYeZgl8BYnYg/I1m6cL7+xDSel9JVR2R4j+K766l+1WprnF0dN
+         mJM73SA3WjPuQtoJSqTGIoAUE5IV7Ki6vWpfFmR+syEwgkk46ErcJ0z7WN8L4iKTLWO8
+         mh9R4Dv9gFl/lMYgJ/nEQGPOHVw5rbTwNjhzgXrHgqBFGo7y7B+1h/ePEddL/7AuIYf1
+         Alaie+/m/ridXQTWHpHwn2RdEPYcVrZGxIdIYZO/xABsh7tmSNj8VODAGiJGdi6hoV5y
+         cqcQ==
+X-Forwarded-Encrypted: i=1; AL+hErFs5HdjWsb0WAFSOFR2VJ2xl4TEek7HgNZ0o3DlwoRevxK+A+Iqa9vVRCUSp/oghcpoEFMOxAV+1Rz4yakWOkbs@lists.infradead.org
+X-Gm-Message-State: APuU4Z+y6l7dZW2MjcCGKk9xGFWwH+55X+yC4Z8kherqHAQapIm2lBwu
+	KTrPRwGvem+iEVnuAKS/NecBO49AVnX9V6ybOoMzCG5CORh9gILkuflS
+X-Gm-Gg: AYBFou1aJgQjzbFPCe2Vhftf+jYovQL+jOOsOTGPySLO+x4JnhAzmr9BmcdvMo9nnB9
+	OaFW2s8PmSAoypnJMmoChRkpKVKYgMYzPJmzHiHtAdQZsoHIyB1vlpbXB5FPAo+VPL+1i9A5q5M
+	of0olV/Tb+p7fFKnv1x+xdgb59Nr6M3uTymvUdfUr53WRRI+UYKxLAy9/hs9NOcivH6/bo3V4vq
+	/wkkekxYBLTHaR0NZjmXRoXpefNYmnXs6B3gBL1LyZD9ztL7hOrDUtoe4FACA+RKMtiZufawV+i
+	OrKzDyW92dyjVJgdY58dYqpY5hR6xDIL1wUdEjViqlRWyUrCpNos883Kxejs1hAzq4iTx17GAzE
+	DfIbnrMY6rYTftMWma6E0JQEn0E08evgpQOtxNL0x4yJnJALxRVc3b3JM6u+3OIWEMBVy4mTXGI
+	Ghe7gvkR41ulIXa4JXqeQn8ao75vTPbeQvCACin6lx0iXloocjB0pitO7qTWe74RA1juQIw9Sg8
+	zPhjy2cIoCMPZCKLwhmZlTDSDZMXXzQiLT41KYvCVvI3xlVWOFnBnp2uxIElwQPTmeolKC/wNHh
+	0u/fRhns39OEi53izOUx0lR23TyeTQlpXJ2UyfMB58jT3whU6MPa14Nl5rs1VxCRhw5b1Zl3XXd
+	BgHyM2zXTOqZxeZOWuAeVNWV1N/GDh6Ld4QBInr9+UkBR
+X-Received: by 2002:a05:7022:107:b0:1af:2ba7:e44b with SMTP id a92af1059eb24-1b3c024be7cmr2489625c88.3.1794391596498;
+        Wed, 11 Nov 2026 02:06:36 -0800 (PST)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b3b5890584sm15778025c88.3.2026.11.11.02.06.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 02:06:36 -0800 (PST)
+From: phucduc.bui@gmail.com
+To: Mark Brown <broonie@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Andrei Simion <andrei.simion@microchip.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+	linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH v2 0/2] ASoC: atmel-i2s: Fix clock and slot width handling
+Date: Wed, 11 Nov 2026 17:06:14 +0700
+Message-ID: <20261111100616.31211-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-yv4-remove-ff-nodes-v2-1-aab5516c4305@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAJI99GoC/22NywrCMBBFf6XM2pEkfYS68j+ki9hM2gHbSCLBU
- vLvxoI7l+fAPXeHSIEpwqXaIVDiyH4toE4VjLNZJ0K2hUEJ1UkpatxSg4EWnwidw9VbitiTElI
- 0VtWdgrJ8BnL8Pqq3ofDM8eXDdpwk+bW/Xvu3lyRKNEYLbfpW67u+Tovhx3n0Cww55w+UQAn4t
- gAAAA==
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Ryan Chen <ryan_chen@aspeedtech.com>, 
- Billy Tsai <billy_tsai@aspeedtech.com>, patrick@stwcx.xyz
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Sean He <sean.he.wiwynn@gmail.com>, Eric Yang <eric.yang.wiwynn@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794391442; l=4734;
- i=eric.yang.wiwynn@gmail.com; s=20260911; h=from:subject:message-id;
- bh=jDtTAj/Xi/uCMH8VnoQE52JIB7Rtfet3e3fs7uQ9GG0=;
- b=6j7fFHyE16rD+I6wFBU7rNrZH/Pwk6/JFc/Y3u8ad9ZoOEw7fAPq7vrc5Bz0zsEb6/Y5QpAIa
- 1QFhsb/whLGBRd3X59J73KJHRCK+S8p23PaaS/yGQggi07DZxhbFqCW
-X-Developer-Key: i=eric.yang.wiwynn@gmail.com; a=ed25519;
- pk=XYQiwgPZNUCt1JCbsO7zX8ODEiRKocz7fYwt+aWnXBs=
-X-Endpoint-Received: by B4 Relay for eric.yang.wiwynn@gmail.com/20260911
- with auth_id=1023
-X-Original-From: Eric Yang <eric.yang.wiwynn@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_020637_537982_85C8637C 
+X-CRM114-Status: UNSURE (   8.47  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,206 +108,45 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: eric.yang.wiwynn@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Sean He <sean.he.wiwynn@gmail.com>
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-The Floating Falls (FF) board connects to the Sentinel Dome through a
-connector and carries a PCA9537 GPIO expander at address 0x49 and a FRU
-EEPROM at address 0x50 on each slot I2C bus. No system currently in use
-has an FF board, and its connector on the Sentinel Dome is not populated,
-so these addresses never acknowledge: the pca953x driver fails to probe
-the eight PCA9537 nodes on every boot and the at24 driver does not bind
-to the eight EEPROM nodes. Remove the nodes so that the devicetree
-matches the actual hardware.
+Hi all,
 
-Signed-off-by: Sean He <sean.he.wiwynn@gmail.com>
-Signed-off-by: Eric Yang <eric.yang.wiwynn@gmail.com>
----
-The changelog was drafted with an AI assistant (Claude Code) and
-reviewed by the submitter.
----
+This series simplifies peripheral clock handling and fixes the
+I2SC_WS slot width configuration in the Atmel I2S driver.
+
+Link v1: 
+https://lore.kernel.org/all/20261111042746.14714-1-phucduc.bui@gmail.com/
+
 Changes in v2:
-- Reworded the commit message: the FF board is a separate board, no
-  system in use has it, and its connector is not populated
-- Dropped the verification paragraph
-- Link to v1: https://lore.kernel.org/r/20261105-yv4-remove-ff-nodes-v1-1-aa707a9577b7@gmail.com
----
- .../dts/aspeed/aspeed-bmc-facebook-yosemite4.dts   | 96 ----------------------
- 1 file changed, 96 deletions(-)
+ - Move the devm_request_irq() call below clock initialization and
+   dev->regmap setup, as suggested by Sashiko.
+ - Add a patch to fix I2SC_WS slot width configuration, based on
+   the SAMA5D2 Series datasheet (Inter-IC Sound Controller).
+https://ww1.microchip.com/downloads/en/DeviceDoc/DS60001476B.pdf
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index e4172be84..4c7c96ce4 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -604,18 +604,6 @@ imux16: i2c@0 {
- 			reg = <0>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -631,18 +619,6 @@ imux17: i2c@1 {
- 			reg = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -658,18 +634,6 @@ imux18: i2c@2 {
- 			reg = <2>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -685,18 +649,6 @@ imux19: i2c@3 {
- 			reg = <3>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -726,18 +678,6 @@ imux20: i2c@0 {
- 			reg = <0>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -753,18 +693,6 @@ imux21: i2c@1 {
- 			reg = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -780,18 +708,6 @@ imux22: i2c@2 {
- 			reg = <2>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-@@ -807,18 +723,6 @@ imux23: i2c@3 {
- 			reg = <3>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			gpio@49 {
--				compatible = "nxp,pca9537";
--				reg = <0x49>;
--				gpio-controller;
--				#gpio-cells = <2>;
--			};
--
--			eeprom@50 {
--				compatible = "atmel,24c128";
--				reg = <0x50>;
--			};
--
- 			eeprom@51 {
- 				compatible = "atmel,24c128";
- 				reg = <0x51>;
-
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261103-yv4-remove-ff-nodes-9e20104d2362
+Compile-tested only.
 
 Best regards,
--- 
-Eric Yang <eric.yang.wiwynn@gmail.com>
+Phuc
 
+bui duc phuc (2):
+  ASoC: atmel-i2s: Use devm_clk_get_enabled() for pclk
+  ASoC: atmel-i2s: Fix I2SC_WS slot width configuration
+
+ sound/soc/atmel/atmel-i2s.c | 45 +++++++++++++------------------------
+ 1 file changed, 16 insertions(+), 29 deletions(-)
+
+-- 
+2.43.0
 
 
