@@ -2,63 +2,153 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE3B606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC524606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xFrsXDlD;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=Ocx7SLDW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o9466Kcb;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=VGLYcpsP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
 	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=sJfEnrqje2dVxymNjQcwU7Gc+3OnffsH5DyqeXyDRnw=; b=xFrsXDlDDyYeVlgktwZ27YYT9M
-	+3QTVNNjSAggyxKoJoa3gIKZawIfVM/yeME03JfPCD576R9S3ZwIQ3ElJ8PP0GJ3rz28lu6wX2Yrw
-	nF1gRo1MSXkFGMmwbZNGh6afq48fnwm1thTPJpuQQxUxJXD/uhyeCbuxapDXXW1QB7gBYUjB2GZ0X
-	Npplo/dN1FJznhIWbOZfmmAj8z65x57wtrxEOO0if/0MwOaXpLjaxr77KRQrCegoAqFoLyrx/1QLu
-	TLSxjJwrOjWFqcNn845VKa6iFAbyW6rDjGF60nYuOlSlWCtEIv5AlijLA1hpeawrxhkWAAIN2Fkrt
-	gL8YQ51w==;
+	bh=h9EptMgSb3aM7VkG+B4vfEt6I2Qf/NFiEbJ+pf0nYXw=; b=o9466KcbRgDb389E+sKh/4nG8s
+	ZQm8/nsc2481FfdBcD473ZRMuccBo+R0WS0IjS2dWNAodCjH1Yj9XNHuKjDp7FKY0ooQ3Aq8WsXD2
+	MNJiL1R9XJoDNlfxqU5u7BiL7Ghw+NIPE9mgm0LP2cMSi7IllUKEyA5YA9cgRgbOSku4w73mwwX63
+	6GEioOybvr/+Vosfx7ZrYuW+LKI2rq8XL4bc1uh1nSNGkxRAsmGNR6sREiuKVDldVXkOYaPg5fvpp
+	BQnMpmr03Q3eoJthZoAzqveFYUVnXs8TLOVv5v/9xnruxelmbLinRRzRLOR4hFE6OkVcFxFt47fyi
+	eiDsP9Vw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGeG-00000007vsq-2JEM;
-	Wed, 11 Nov 2026 22:18:32 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1xRGmR-00000007wsV-1s1u;
+	Wed, 11 Nov 2026 22:26:59 +0000
+Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGeD-00000007vrU-2NU5;
-	Wed, 11 Nov 2026 22:18:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=sJfEnrqje2dVxymNjQcwU7Gc+3OnffsH5DyqeXyDRnw=; b=Ocx7SLDWBioD5V+13ndERCvgBc
-	XYHPOYRDy+yiYBgCC8zsh4zisoDyEWjq5nTX13SAZiAeSqyTllUzVtgDj7ijNPGqmeySrNEJvL6Tb
-	OKDTCvTEW8CXLE6T+6JURg8KlF11qqbTmUe+gBe+IelA+vLGMU5InCs6z+uneuykj1ZA5pKQQw81V
-	ka1eAqjf7af5MRHOXr791ms1ndGmo2g+4liuVYplsOf58ETT+rTU93steN8uOGvWJc8xEpAVzxzxJ
-	JvX+NiF9xYIWWbv6GE7Le3HKzRVv9dJFUgKJlfOitpGfaHJ/orqZ1AWpYFUN7D3muEs4P9cDllmM8
-	Tv6GvjVg==;
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: Stephen Boyd <sboyd@kernel.org>, Tim Surber <me@timsurber.de>
-Cc: Tim Surber <me@timsurber.de>, Brian Masney <bmasney+clk@redhat.com>,
- Jerome Brunet <jbrunet+clk@baylibre.com>,
- Elaine Zhang <zhangqing@rock-chips.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] clk: rockchip: rk3588: Allow I2S5 TX and I2S6 RX frac to set
- parent rate
-Date: Wed, 11 Nov 2026 23:18:11 +0100
-Message-ID: <MgdhBsb8T_eDWUTKP6B0VQ@sntech.de>
-In-Reply-To: <20261111220656.3603628-1-me@timsurber.de>
-References: <20261111220656.3603628-1-me@timsurber.de>
+	id 1xRGmO-00000007wry-3kU5
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 22:26:57 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZC2anHEj7MgFpiFengg86oXRUsBEE5HVX2TFLKeFW/kJ9dLKBI3QbHk6vay4/i9igwfAVnspapYQDZ6dntxQ/TZkMMSIZFMZ7X3pI4L7iRI509lO3BbfkGOaAw93fthcqvqwBnK06COJY7DoB9wXKONlC/ExuubxWBOPznmVTMGw3yP98+BPG5HUu96OgzQgYXh/W8kpgk88ZlF5WHZ2b62Q3XSN4VHnKQOR9CVtsrP8lL5KN8hAUCUPba5cY+rTmyiZ3pHHLnyh+7+RKJoUH4E4+vN67FTLIYWhEMf7e9Yvay6sfC/IWQOAFYCeaRPp8E7gGciSV7P3DFDsovKILg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=h9EptMgSb3aM7VkG+B4vfEt6I2Qf/NFiEbJ+pf0nYXw=;
+ b=CTLBthww5bPDuMidMUkMyKZbO29XOggQUl8GJOA/thOUZ++3wdg46FOMhYHpNW4rUUefh6BwpmttHyvSrZ8GThGFKAJg+EbIRDzcSaaksUmf8k9TMXfLZHNQ/bXrZy6H8kQn/f5fZaBemifZp0DUQFxknMGsp979th5GG/5yTImfarOaM6AbzDem165UZ1qEq2apCp0H5dLquD+oQXF96cSJS51J9uDb/H82YGQjSOX5wcIH43CzOit9KeZ5oWhFVzuEU0LfHJTycgxZLVpLZTC92rZFc3+Y/0SwEn3AeD6TSGpsAO0xe9VAwyTobrqQ6XyCfvYsy1WwwI+KxIR/Sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=h9EptMgSb3aM7VkG+B4vfEt6I2Qf/NFiEbJ+pf0nYXw=;
+ b=VGLYcpsPGmNEz7yrJqeiOOKvCeiNc0UL7e5xbviuw3xnLeykdYImF9X7VzJXoLq5c1nHs6drTAoCFimb4ob+aATK9cQpz21Sk8Z2ERgGGitnZP1Bvws/EDPzcys0GttmjD7cRzNsInP+7p3CfDiN8gwDkiSOJRyH6EpR7nEz6SF4CGPr5em8VbGDQJMaSsyyj+KaLXyCLbBQhNhdaywM561GQMACu4PlRp1B52s9WQHUMEbz/NskKigSrvwgTfPQYZRaFBRUQ2VKw8OCAD65k4Et6OXj9N9jEfecj0QeBZO/B92oBxXuqwmmT0yiD1XOdOw+valUCDNrJ1FvwbVJLw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by DUYPR04MB12644.eurprd04.prod.outlook.com (2603:10a6:10:660::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
+ 2026 22:26:52 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
+ 22:26:52 +0000
+From: Frank.Li@oss.nxp.com
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Antoine Gouby <antoine.gouby@gmail.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Antoine Gouby <antoine.gouby@toradex.com>
+Subject: Re: [PATCH v2 0/6] ARM: dts: Add Colibri iMX6 overlays
+Date: Wed, 11 Nov 2026 17:26:44 -0500
+Message-ID: <179443316007.4030747.8750857671592857065.b4-ty@b4>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261110-colibri-imx6-overlays-v2-0-9776c186d953@toradex.com>
+References: <20261110-colibri-imx6-overlays-v2-0-9776c186d953@toradex.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PH7P220CA0097.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:32d::15) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DUYPR04MB12644:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ff09a53-661e-4d2c-6301-08df4042e24d
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|7416014|1800799024|366016|19092799006|10067099003|11063799006|56012099006|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: d/isjNd3UMoBSo0Z5FM5dHDyQHeIHv/5WLzxzcprHT56q+SQI9KREXz+T2GcZY8OJSWM1EXCAdCbb7OSZ3Rek1+5BTHAZAnVSYdHJk1pSz0+nNz2YPu15QXCQ61e7Xu7ABGuZIMNO+3Ca35rX3oeLpWdsKINIwKnN7HFRyVrQ+eHJbcBVnHVuC2kTel3Hr/mwM1MX5lHck3CMIcq0QLsNMd9mUfPS2IccbRnqXdmCwFRgXdcJw77LL2QYxO+VSpHhnzX0KJZJ2XmiPz3pbVeuUvsgNIZhpPumF15rU2vPtd3wgT6ASnINaPn+jyfInuEN6ZIRNWmvo0TSicopeJqouMROH0Xn9uLsQ6xTfYq7UYuPPQRGeynYdVRwCxe/PCgRGbGAPxjpYjt6HWC3qP9rGaLTIi7SCGvTG4skKbJaBpTqZP+Ge035bV+FIG1uOT/EIqoC4NPomf3pvBU/E0oQ0h1hUxotSVZn9oNvr5nPEt3CdAN8G46uZj9+stUwyEGZVjMt5jSbiYs1Pa2+pbuiVKoH8d1qq4Cw9mo+kU7OapIGjbpMs4eOnfmAHaYPc0xpBSW1Vl3de5mgSLSvCeGlOsjhUKtXR+BBwo2p8OA/hYFuAEKP65jejjO4ff7jEsQ5iIGNiEGxgiFyL9SD7BNklGu2gLnkvls3CV4BHgtW04=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(7416014)(1800799024)(366016)(19092799006)(10067099003)(11063799006)(56012099006)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VktQa3d4T1BPVSs4VU42Vk1uRlVEWGpLUDB0OVNoOVBjRDVsN0FVOUNUdVpD?=
+ =?utf-8?B?b3BicFZUTnNuN3JkMjU5dE5RVEZjTzJzcmdUOTZ3NGNSYW1CaVllM0t6VXQy?=
+ =?utf-8?B?TmlldjQ5dWszOVR1dEZQbk9sUUU4TkFtOENHSFc4L2dXSVBoV1EvN2NOcGNk?=
+ =?utf-8?B?c1N4dDBRNkgvMXJudERKVElGNFY1VWJDaVZRWnI0bllSN1J2bEE3QU1YbVBK?=
+ =?utf-8?B?dHNEWEt1dis3cmE4aisvNHBNRU9LWUZNWElVU2h3NVJNS0Fjc3ZXcHJMR3c2?=
+ =?utf-8?B?azE0VG1NNWJQVGYvOEhWMUszMXdUdXV2bmkyS3NJVnkwQVd0NXJIcWR3L3lw?=
+ =?utf-8?B?RHBSQ0FYT0NKTXlVY21pZCs5Z3BRYkd1M1ZJK0E1cEI3WHJQREZOU0ppY2x4?=
+ =?utf-8?B?ay9kaExDWjNLRlJiTjEwQTNMSjNlVW5DK0t3dnNJZ1pHaXo5cWN4WG5LSG9p?=
+ =?utf-8?B?UHUzZ1J4MXdSUyt5d1ZpTTF4RWV0SjZiQ0FZN0dZQlpYT25KbDVUc2xPL2pY?=
+ =?utf-8?B?M204amo0S2hLR3pZa0lkV0xmZ2ZUZys2d21RdDBtQ1dML0tBa1c0Z3FISzAz?=
+ =?utf-8?B?L1hvWFR2aGlWVTVNek5lTG5RM1NMS1dpSm9VeU1LRzM4RUc3T0tveC9sQ1ND?=
+ =?utf-8?B?UkN2ZGU1TFh2OVgrNkZJQVkzdSs3RXZTUXF5WHJBRUpvU2NaS3NDdG5TWVFF?=
+ =?utf-8?B?WG5DcHJ2c3VYZmdyaEF3MlRhSXZxcnhrTjJReE1EalUrNWw1Z09QcTY3dXdv?=
+ =?utf-8?B?NUVPSisxTU1TT1d1V0JLZy8rcTd5N3VSc2Y0MEV3K2hLLzFic3JXa3FTVSta?=
+ =?utf-8?B?dGZJUTVXYlJIYzdWaERjNm0xTCtBZVNMeVloWXEvdGM0NDB1aGhxQmtZUWMv?=
+ =?utf-8?B?QXNzSE1ybjA1bWhFWWkwajNXY2FKUlR0OFdrNUU3SXhIVzduQU5VODU1dUNs?=
+ =?utf-8?B?eUpOVS9HeDljY1NWRFpqVDJ5NFd1Wk1sZWNKMUFJTmNUbU5mb21TZmQyY1p0?=
+ =?utf-8?B?czN6dWdlazdldFhxMTlpckEzZ0xMZENOR21Dajg5MkN2Z0t3aW14Q3ZsVWFC?=
+ =?utf-8?B?ajZ4TDVEZllQZlhtcDRQQXcvSUJSNk9jTzNVUVJTMU9vVFl3bFNzaUF4UU1w?=
+ =?utf-8?B?VzFJeU1QWVNGUjV6aFdubVA4MFlBNWJ1YkErZi9VT2dIa2Nkc25jTHRaeW52?=
+ =?utf-8?B?Rm1WdnFXWTh1emp3SWM4ZjFjTHIyZEM4QWN3K0EySWxLeEErUUtlS3pRcmZa?=
+ =?utf-8?B?RXZrZmRtc3dLYTJ4Sy9LanNrZmdkd245K2U2NTY0S3JjMm1kTllZZjZUb2Fy?=
+ =?utf-8?B?dEpxZVBKbjJDcGhpT2pEUXhwWVdpUUhiTExDQUptbW1zaFJpUEQzclFTSGZZ?=
+ =?utf-8?B?WFhadVpxUHhOcjFLMmoxSzk3aVQvNFQ0OVhqSzB4QXptYndQUGF3bFdqMUdX?=
+ =?utf-8?B?MzVsU3FUZTFyTi9VMEJQNmpmVGpPeHk2SzdIMnhOT1h4UExDalNYQjVyckJN?=
+ =?utf-8?B?WStEandmb3VmTEMvdTE0YXovN3hKUVJMVjRZSS9hT2hHMktBa0F4K2t5UVVH?=
+ =?utf-8?B?amxrcWt4MkZBQjBySkxla2d3UGNQdnhMMmx4TjA5Z3ZzZGNVb2k1R01GL2du?=
+ =?utf-8?B?Q2I3VTV2b2J6YlNWZkMyQVZreDNJbEttc3Fkbk4yQytkWG0wNFZUVnlSSzlo?=
+ =?utf-8?B?TXZJM3huUmNyaDEvZTFZUnVjUUFDSnJEYWRkT2N5VGVIK1lNSjdoM2JtZGN3?=
+ =?utf-8?B?OFdsM2xxYUlxTlI2MWt4SS9iaXljUWUzRE5adTB0d1hjaEJXaklIbGxrNFIy?=
+ =?utf-8?B?K0JLRHo0alJHckh0a1phRUl3V0xlZFE5VThNY1lVdXI0SGZFZHhrWDNqQlVj?=
+ =?utf-8?B?Znd1Q0dkV3BHVzlvY3UvN0FsTDgzNVNBVFRVL3VmeENxTG5jZWQvaS9lY0ls?=
+ =?utf-8?B?MkNsZmF2WGw3RjdGSzc1NkRrVnVySW10VDBIS0pkVmJtNW91UXhDUzhnZFVK?=
+ =?utf-8?B?akhZUEVVTmpTM0hkSWtONUtCT2xkYWoxTG0xWDU3RkljMXZXTHhNWDBwSitv?=
+ =?utf-8?B?aCt5V0E4cERkaG9paUVRZG9wUFA5blJDa3EzSmExZHl4b0ZObHREVjZQbUFC?=
+ =?utf-8?B?YVJRNlRIZEtNK1hGSnZQQjBiVVlBQmdjRzVwTHBUNjd4TGQ2OTJKMzQyMEhw?=
+ =?utf-8?B?Y0U0RFNkQ1ZYSmdjZUxxZEZuNDM1bmpkaTNxUUNiQjVYQ3dyTUc0bWNvOUFt?=
+ =?utf-8?B?ZmlLUkhzYSt5RVh6U1k0MGpTZVh5Wjl0eUZXcmZlQzh2T0FjTmhxeEV4eUF0?=
+ =?utf-8?B?SVZPMTYyZThUUFh2anFWUm5BRDdtTE9TcTgyS1Q0dXB0MUFhemlxT2k1OFZl?=
+ =?utf-8?Q?9oVsQc8VeOKlSl2hfv2a2+T5t3p/CJAvr3K98?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ff09a53-661e-4d2c-6301-08df4042e24d
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 22:26:51.9337
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iRYpHuYpOiI6WunNMwWkRpZoHdAyVknZ18FnXfnk8ZO80gr0BfqKONxH8EujbH6Ic8fkZcVw1nYxUBeu/HyRD1yVsholAQ5OMLM57Cz3s0taQiX2CkLzYqFASIpbxxes
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUYPR04MB12644
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_141829_624295_B3FC14F0 
-X-CRM114-Status: GOOD (  25.06  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_142656_937237_1118852C 
+X-CRM114-Status: UNSURE (   9.79  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,117 +159,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-20.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-6.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Am Mittwoch, 11. November 2026, 23:06:53 Mitteleurop=C3=A4ische Normalzeit =
-schrieb Tim Surber:
-> All RK3588 audio fractional dividers except clk_i2s5_8ch_tx_frac and
-> clk_i2s6_8ch_rx_frac are registered with CLK_SET_RATE_PARENT. Without it
-> the divider cannot raise the rate of its *_src parent again once the
-> parent has been lowered.
->=20
-> That happens on HDMI0 (i2s5_8ch) after a 192 kHz stream. Its MCLK of
-> 24.576 MHz (128 * fs) is an integer divisor of AUPLL (786.432 MHz / 32),
-> so the mux selects clk_i2s5_8ch_tx_src directly and sets its divider to
-> 32. For a following 176.4 kHz stream the mux selects the fractional
-> divider. rockchip_fractional_approximation() sees that the parent is
-> less than 20 times the requested rate and computes m/n against the
-> grandparent (AUPLL) rate, but the parent is never changed. The divider
-> is then programmed with m/n =3D 147/160 from 24.576 MHz. The clock
-> framework reports the requested 22.5792 MHz, but the fractional divider
-> does not work at such a ratio and the I2S runs at about 54% of the
-> nominal rate (96000 instead of 176400 frames/s).
->=20
-> Add CLK_SET_RATE_PARENT to both dividers, as on all other I2S and SPDIF
-> fractional dividers of the RK3588 and as in the vendor kernel:
->=20
->   https://github.com/rockchip-linux/kernel/blob/470f9dccbdc42e7b8a824d0a5=
-c5640a10e9457d2/drivers/clk/rockchip/clk-rk3588.c#L2037
->   https://github.com/rockchip-linux/kernel/blob/470f9dccbdc42e7b8a824d0a5=
-c5640a10e9457d2/drivers/clk/rockchip/clk-rk3588.c#L2055
->=20
-> To reproduce, on any RK3588 board with HDMI0 audio enabled and a sink
-> that accepts 192 and 176.4 kHz LPCM: play 192 kHz, then time two
-> seconds of 176.4 kHz:
->=20
->   aplay -q -D hw:HDMI0 -t raw -f S16_LE -c 2 -r 192000 -d 1 /dev/zero
->   time aplay -q -D hw:HDMI0 -t raw -f S16_LE -c 2 -r 176400 -d 2 /dev/zero
->=20
-> On linux-rockchip for-next the second command takes 3.7 s instead of
-> 2.0 s, and clk_i2s5_8ch_tx_src stays at 24.576 MHz.
->=20
-> Tested on a FriendlyElec CM3588 NAS with HDMI0 cabled into its HDMI
-> receiver, the receiver's EDID advertising 192 and 176.4 kHz, and the
-> HDMI sound cards enabled in the device tree. Two 176.4 kHz runs after
-> boot, then three runs each preceded by a 192 kHz stream:
->=20
->                           176.4 kHz frames/s   clk_i2s5_8ch_tx_src
->                           after boot / after   after the 176.4 kHz
->                           192 kHz              stream (Hz)
->   for-next                175500 / 95600 (3x)  24576000
->   for-next + this patch   175500 / 174800 (3x) 786431991
->=20
-> With this patch the 32 to 192 kHz rates still play at their nominal
-> rate, and a frame counter played at 176.4 kHz after a 192 kHz stream
-> was captured bit-exact by the HDMI receiver. I2S6 RX is not used on
-> this board and was not tested.
->=20
-> Fixes: f1c506d152ff ("clk: rockchip: add clock controller for the RK3588")
-> Signed-off-by: Tim Surber <me@timsurber.de>
-
-This is waaaay too long for a siomple two line change. Please shorten
-this to a sane level.
+From: Frank Li <Frank.Li@nxp.com>
 
 
-Thanks
-Heiko
+On Tue, 10 Nov 2026 11:59:12 +0100, Antoine Gouby wrote:
+> This series adds device tree overlays for the Colibri iMX6 SoM. The
+> overlays cover HDMI, VGA and parallel displays.
+> 
+> The series adds support for:
+> 
+> - HDMI Displays, through a generic i.MX6QDL HDMI overlay
+> - Toradex Capacitive and Resistive Touch 7" Parallel Displays
+> - VGA Displays
+> 
+> [...]
 
-> ---
->  drivers/clk/rockchip/clk-rk3588.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk=
-=2Drk3588.c
-> index 24baa0ef9..63aeeb501 100644
-> --- a/drivers/clk/rockchip/clk-rk3588.c
-> +++ b/drivers/clk/rockchip/clk-rk3588.c
-> @@ -2024,7 +2024,8 @@ static struct rockchip_clk_branch rk3588_early_clk_=
-branches[] __initdata =3D {
->  	COMPOSITE(CLK_I2S5_8CH_TX_SRC, "clk_i2s5_8ch_tx_src", gpll_aupll_p, 0,
->  			RK3588_CLKSEL_CON(140), 10, 1, MFLAGS, 5, 5, DFLAGS,
->  			RK3588_CLKGATE_CON(62), 6, GFLAGS),
-> -	COMPOSITE_FRACMUX(CLK_I2S5_8CH_TX_FRAC, "clk_i2s5_8ch_tx_frac", "clk_i2=
-s5_8ch_tx_src", 0,
-> +	COMPOSITE_FRACMUX(CLK_I2S5_8CH_TX_FRAC, "clk_i2s5_8ch_tx_frac", "clk_i2=
-s5_8ch_tx_src",
-> +			CLK_SET_RATE_PARENT,
->  			RK3588_CLKSEL_CON(141), 0,
->  			RK3588_CLKGATE_CON(62), 7, GFLAGS,
->  			&rk3588_i2s5_8ch_tx_fracmux),
-> @@ -2043,7 +2044,8 @@ static struct rockchip_clk_branch rk3588_early_clk_=
-branches[] __initdata =3D {
->  	COMPOSITE(CLK_I2S6_8CH_RX_SRC, "clk_i2s6_8ch_rx_src", gpll_aupll_p, 0,
->  			RK3588_CLKSEL_CON(146), 7, 1, MFLAGS, 2, 5, DFLAGS,
->  			RK3588_CLKGATE_CON(63), 0, GFLAGS),
-> -	COMPOSITE_FRACMUX(CLK_I2S6_8CH_RX_FRAC, "clk_i2s6_8ch_rx_frac", "clk_i2=
-s6_8ch_rx_src", 0,
-> +	COMPOSITE_FRACMUX(CLK_I2S6_8CH_RX_FRAC, "clk_i2s6_8ch_rx_frac", "clk_i2=
-s6_8ch_rx_src",
-> +			CLK_SET_RATE_PARENT,
->  			RK3588_CLKSEL_CON(147), 0,
->  			RK3588_CLKGATE_CON(63), 1, GFLAGS,
->  			&rk3588_i2s6_8ch_rx_fracmux),
->=20
-> base-commit: c3baae5f1a15645cddadcb2b9abddef5df291f59
->=20
+Applied, thanks!
 
+[1/6] ARM: dts: imx: Add generic HDMI overlay
+      commit: bd0b8c65b8641b5a6d30f9f9545bcc3fca1f25ca
+[2/6] ARM: dts: imx6dl-colibri: Add HDMI DTBs
+      commit: 49aae2cfa76b3d1e5f6890b00c5ef854cd716d30
+[3/6] ARM: dts: imx6dl-colibri: Add Toradex Capacitive Touch Display 7" Parallel
+      commit: 23a58c96f34723f44335b2f6b3217ea73ba67b32
+[4/6] ARM: dts: imx6dl-colibri: Add Toradex Capacitive Touch Display 7" Parallel with Touch Adapter
+      commit: 45247546093121a5a5d0d7ed2020bc481b8082b7
+[5/6] ARM: dts: imx6dl-colibri: Add Toradex Resistive Touch Display 7" Parallel
+      commit: 0d1f6216f1749dbba9e768219300a030f7024442
+[6/6] ARM: dts: imx6dl-colibri: Add VGA overlay
+      commit: e2ca020156c83ee9d39b93b05bc38153519f0fe6
 
-
-
+Best regards,
+-- 
+Frank Li <Frank.Li@nxp.com>
 
