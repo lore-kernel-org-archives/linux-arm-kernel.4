@@ -2,60 +2,57 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E21466070080
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE92A6070084
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jPm9mZCM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BqVq9XjE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b3iOcyNW;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eqKj3Ioi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=mtRwj7jd0DiYu19HtXx15Rst1HSYAjuntUvy+oixF2Y=; b=jPm9mZCMgG09UJEKr+b2e0/Mik
-	Rsq0YUQmDL0rIYmjQlSHUatiZv+5iHnBZJ7/ZtLh8dhRPptLAJI+/yRgUX6xWC3bXGJJ0QDLfwSqT
-	t46U+LEXogxCWnRDPB/Mc7IL+//t+gPwy+P1oBLlheMPYKBzJmxwozv2zG2+r9wloiC+FjOGFpmLh
-	oj6W0X7SZJZvY9eDJag/t9ztou5PzSzH/VQfwVXjcqGjLQUQ4RF7Jf2phSGLrXjkDhcPo0z21afOM
-	nGNwrsVNH7CgBsJqnKZyU2tdHjc2bJv7y9e70IzBTVg/V6jdb+NUP3QegDspm5hQnKCpfSeDzc9+Z
-	PWeHsFFA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=xfIMJABMJNp7QfwugcM4fcD/xpFndn0xBvRbdTIn/Sc=; b=b3iOcyNWA0m3Pp
+	6UtIhGbTHOHasQNJe/c95Q4iiodIJ+EftnTquEAkT6NxTN5bAW7gGyEdW5LjXIHQyrIX/At38FvdY
+	BGqcxDBIF24MRKGBnDvG5Z+4tPiMfXNV64chaG0zebFGrYfMMKrZNJcmkPMaYC3jzXpP1ZiLPTegT
+	4/vIWh3x+SZWBSzayNc6Vwe1GzEunubACmiZ4GZ60I7nlqIRo08ASdx5Nps43VCM6oUfTyHCTrxR+
+	z1zDr78Qn7vNEr5xSVrW9S6vuqbhXCdbH0tgzn8v1Q5rwGqG3LUNo5cLwm6J7v7zkm4hhiO8o8DjN
+	K+oM7X9H95nzlGXvpPoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBH-00000007XUF-44Dk;
-	Wed, 11 Nov 2026 19:40:27 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xREBN-00000007XWz-1mg7;
+	Wed, 11 Nov 2026 19:40:33 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBG-00000007XTx-3vzT
+	id 1xREBL-00000007XVn-2wk6
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 19:40:26 +0000
+	Wed, 11 Nov 2026 19:40:31 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B0BBD455D7;
-	Wed, 11 Nov 2026 19:40:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C2521F00A07;
-	Wed, 11 Nov 2026 19:40:26 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 6865C407C2;
+	Wed, 11 Nov 2026 19:40:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1062B1F00A10;
+	Wed, 11 Nov 2026 19:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794426026;
-	bh=mtRwj7jd0DiYu19HtXx15Rst1HSYAjuntUvy+oixF2Y=;
-	h=From:Subject:Date:To:Cc;
-	b=BqVq9XjEZAeRNFCn6lDZ9U7Kgds5B/T6I7Hdy4ZZgjxg4O94d9AMoNZrr/qs4P4pr
-	 j9ZjVl5LEn3pAd+nckA4vYQx3yvwXx2NPUBHdpj0T50p6sz5AV8vLc3/ZluhLrUvxl
-	 ysxMQYdPlvhoUq5Qbycpmyww9wlIAwsHED4PGgfDx8+KEUVhG3q/5Bo6dOb1xfYi2T
-	 w5PT2e5+hUEPxwPllKXYed7wDYUurw6HHuM7UoWlTgaAcrCwW0tEl0yRG67dyk6aZu
-	 VLmEDgSsG5xP77a63JTS4E84T4PEm2nvHGOnInttTngNG8lHBVX6vUFJkNqNlaH34i
-	 Apx/xuJ5ozQ6A==
+	s=k20260515; t=1794426031;
+	bh=xfIMJABMJNp7QfwugcM4fcD/xpFndn0xBvRbdTIn/Sc=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc;
+	b=eqKj3IoihIJtj+pHl6B8puHU40wNPYe2V2gaPVH3AOkaOMoeTzbdkSeUT6encYtG0
+	 wiH/FgZU5F+65y/CYibJDFk07vfQJQu4/AcxJP1YjJFR55Fdt70JVgpIUmNm74xV8H
+	 QaUaJOG58G7MZEqxd+7Slv4Dn+/GvJQevPD+UPxoaK+9gnS47bormzdOPbSEeCnjUA
+	 NMsZi2MF1KjfiC3qCxj9jH5D/Q9H/BrCq8ey89ko8aZ0ww42h6uWYqbi60xF8JhxXP
+	 oF1+9qJF1Bp6VGyCnZoCNSeDt1IyAuuSbJZHBAfyTwOatY5gJ//LfRO8IvktPd4Xy0
+	 pG5tpebrYJASQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Subject: [PATCH 00/12] arm64: dts: hisilicon: DT warning fixes
-Date: Wed, 11 Nov 2026 13:40:10 -0600
-Message-Id: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
+Date: Wed, 11 Nov 2026 13:40:14 -0600
+Subject: [PATCH 04/12] arm64: dts: hisilicon: Describe ADV7533 supplies
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWMyw5AMBAAf0X2rIk2HuFXxKHaxTogXUQi/XeLu
- U0ymRsYAyFDk9wQ8CSmdRHRaQJussuIirw4mMyUWlB+71lN0qm6MNqgzbyucpB+CzjQ9b3a7nc
- ++hnd/g4gxgcaFcYRbQAAAA==
-X-Change-ID: 20261111-dtbs-hisi-95212ea0d174
+Message-Id: <20261111-dtbs-hisi-v1-4-6c9f5f80716c@kernel.org>
+References: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
+In-Reply-To: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Guodong Xu <guodong.xu@linux.dev>, 
  Wei Xu <xuwei5@hisilicon.com>
@@ -80,50 +77,68 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Another batch of DT schema warning fixes for HiSilicon platforms. This 
-fixes most of the remaining warnings on HiSilicon platforms.
-
-It's best if the whole series is taken together.
+Add the ADV7533 power supply phandles for HiKey and HiKey960. Both
+boards have a dedicated HDMI 1.8-V supply. HiKey has a 1.2-V PMIC rail,
+while the ADV7533 on HiKey960 uses its HDMI 1.8-V supply for V1P2.
+Describe the respective 3.3-V rails as well.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
-Rob Herring (Arm) (12):
-      dt-bindings: mfd: syscon: Add HiSilicon register bank compatibles
-      dt-bindings: mfd: Add HiSilicon reboot mode syscon schema
-      arm64: dts: hisilicon: Add specific syscon compatibles
-      arm64: dts: hisilicon: Describe ADV7533 supplies
-      arm64: dts: hisilicon: Drop HiKey DSI endpoint unit-address
-      arm64: dts: hisilicon: hi3798cv200: pinctrl node fixes
-      arm64: dts: hisilicon: hip05: Rename the HIP05 NOR flash node
-      arm64: dts: hisilicon: Move non-MMIO nodes out of simple-bus nodes
-      arm64: dts: hisilicon: Correct DMA node names
-      arm64: dts: hisilicon: hi6220: Correct I2S channel ordering
-      arm64: dts: hisilicon: Remove obsolete HiKey970 PMIC GPIO property
-      arm64: dts: hisilicon: Remove unsupported SBSA UART "reg-io-width"
+ arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts | 14 ++++++++++++++
+ arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts    |  6 ++++++
+ 2 files changed, 20 insertions(+)
 
- .../bindings/mfd/hisilicon,hi6220-reboot-mode.yaml |  34 +++++
- Documentation/devicetree/bindings/mfd/syscon.yaml  |   4 +
- .../arm64/boot/dts/hisilicon/hi3660-coresight.dtsi | 138 ++++++++++-----------
- arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts  |  17 ++-
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi          | 119 +++++++++---------
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi          |  26 ++--
- arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi     |   4 +-
- .../arm64/boot/dts/hisilicon/hi6220-coresight.dtsi |  69 +++++------
- arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts     |  11 +-
- arch/arm64/boot/dts/hisilicon/hi6220.dtsi          | 118 +++++++++---------
- .../arm64/boot/dts/hisilicon/hikey960-pinctrl.dtsi |  10 +-
- .../arm64/boot/dts/hisilicon/hikey970-pinctrl.dtsi |   8 +-
- arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi   |   1 -
- arch/arm64/boot/dts/hisilicon/hip05-d02.dts        |   2 +-
- arch/arm64/boot/dts/hisilicon/hip06.dtsi           |   2 +-
- arch/arm64/boot/dts/hisilicon/hip07.dtsi           |   5 +-
- 16 files changed, 310 insertions(+), 258 deletions(-)
----
-base-commit: aaa2f954c21b205a0bcd0961e5b2be4e82e58455
-change-id: 20261111-dtbs-hisi-95212ea0d174
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+index acecd2dfeeba..1b0ba3dd2cde 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
+@@ -192,6 +192,14 @@ wlan_en: wlan-en-1-8v {
+ 		enable-active-high;
+ 	};
+ 
++	fixed_3v3: regulator-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "fixed-3.3V";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++	};
++
+ 	firmware {
+ 		optee {
+ 			compatible = "linaro,optee-tz";
+@@ -571,6 +579,12 @@ adv7533: adv7533@39 {
+ 		status = "okay";
+ 		compatible = "adi,adv7533";
+ 		reg = <0x39>;
++		avdd-supply = <&ldo3>;
++		dvdd-supply = <&ldo3>;
++		pvdd-supply = <&ldo3>;
++		a2vdd-supply = <&ldo3>;
++		v3p3-supply = <&fixed_3v3>;
++		v1p2-supply = <&ldo3>;
+ 		adi,dsi-lanes = <4>;
+ 		ports {
+ 			#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+index 229116477f1d..5f31569cf494 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
++++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
+@@ -505,6 +505,12 @@ &i2c2 {
+ 	adv7533: adv7533@39 {
+ 		compatible = "adi,adv7533";
+ 		reg = <0x39>;
++		avdd-supply = <&ldo15>;
++		dvdd-supply = <&ldo15>;
++		pvdd-supply = <&ldo15>;
++		a2vdd-supply = <&ldo15>;
++		v3p3-supply = <&reg_vdd_3v3>;
++		v1p2-supply = <&ldo22>;
+ 		interrupt-parent = <&gpio1>;
+ 		interrupts = <1 2>;
+ 		pd-gpios = <&gpio0 4 0>;
 
-Best regards,
---  
-Rob Herring (Arm) <robh@kernel.org>
+-- 
+2.53.0
 
 
