@@ -2,80 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED084606A337
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 18:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F59606A8B6
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 18:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tssiNXpX;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=JrbjSFrv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ShIW1BVT;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hla1Zo5f
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nFABM/SwyM5n9FbKHYal/oQliYZ3pyaRcZ9nUutqbLU=; b=tssiNXpXsVMXhxQYqBJtN3AT+L
-	yeDS70udgbWNFtMF8qXLFvDQeKsQE8x0cEKTFC4HNZKvCnP0Jy2FCRBtlF9IK33kcwBcI3VKxpomk
-	S/G973YWSVNOnGwKhsdHutp3/zXQ4tJTbIp3HJF97J7E6pundRct42LK8y2i4P16NW0NX0qsOd5S6
-	P/4bkFHjyiStDsShGjQAeP1qIN6fX/z8J/OyjbIPDN7mH2z6QkpudUnoPAZJb/95QEdADKmMJueoD
-	kk95SR8BP9PB0vwRKU7S5fu2iokkR9PFqQGJUU2Dx3f1mXHYzmk8O8XLjyx4zX1pylz5VoQNn9GOS
-	NphF1BHw==;
+	bh=yMBHhxbvHmek25iNNzt/fSW9M/YAXtODnCUwnhn31Yw=; b=ShIW1BVTYJsET0460SmGfP2v/c
+	98IzXWwhezXsd0fueMqio0dQHmImivXRmLBkcTLSNTN3NFnXJwoaaTnIKOuQdWBYa/Gr74FzN1Sl5
+	Ez/CT3vfY5FTHq7wjNQ3f3iNa5wEPSxN8jyWYexV/Op9JVG7M6gZsSBEdQEo2++E9Ig+DWQ+UIlDu
+	EkqHXYaPp0cOsCaZ9OuO5W+7yKzZ1v6si8Y8gPfyVkGT3BOJ33YcT6kBXIHFS9CricrT+Mndgej6U
+	f+GtFFbRKj/j5ShiANKXTbg1018TbAPtn8JKOtwOR9WbdvL3qBcvyegQQGiSShPaC1tOJnd4OzURP
+	KCYcMdHQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRCim-00000007NFg-3vn1;
-	Wed, 11 Nov 2026 18:06:56 +0000
-Received: from out-169.mta0.migadu.com ([2001:41d0:1004:224b::a9] helo=mta0.migadu.com)
+	id 1xRCmu-00000007NTk-1iug;
+	Wed, 11 Nov 2026 18:11:12 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRCij-00000007NFL-3Ped
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 18:06:55 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=nFABM/SwyM5n9FbKHYal/oQliYZ3pyaRcZ9nUutqbLU=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794420411; v=1; x=1795025211;
- b=JrbjSFrvFjiSIqOjHe/kwt9pNguLVyi/YOteSfQioIvfhPlSKw2LTSIWSOUfE9fm5K2vX/FW
- jGFe+exbn2jcV3mwj8e36uROrWugdzMmz77lcw9fi13BKS6Qn9zZNBc569FaoYiE7Rsb/CQVZHG
- 9onAHxN5e9C6PWecs2aCUHj8=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 059c099c0865e01c;
-	Wed, 11 Nov 2026 18:06:51 +0000
-X-Mizu-Trace-ID: 059c099c0865e01c
-X-Migadu-Flow: FLOW_OUT
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5c00d7ac49dso44e87.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 10:06:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHhCXWKLAJMqhQei0luh92t4b3Beo14uO9lofqpvl62CBZRu41Ri114+/bB/7323fPn2BKY/HGaY8rP/3yzPDmf@lists.infradead.org
-X-Gm-Message-State: APuU4Z/nRNj/wIqASCiswKipJ1VeDPVcRg6Ip7gFBqF9HejdjE/pEu5w
-	8l+iGS37yD9OKF9qz/7TPryIDGrEViEE9IpxRei5kN/OyTE1pn0rJS3RJNVQbH/QlzcL3cK4ylN
-	BWaP+PEc2vXUHTG7KvE477WPu6PI6oXpTdHq/dz9k
-X-Received: by 2002:a05:6512:3054:b0:5bf:f0fb:2c9c with SMTP id
- 2adb3069b0e04-5c15d3f5907mr196823e87.5.1794420409621; Wed, 11 Nov 2026
- 10:06:49 -0800 (PST)
+	id 1xRCmt-00000007NTb-1skD;
+	Wed, 11 Nov 2026 18:11:11 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id F095840E56;
+	Wed, 11 Nov 2026 18:11:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44EC31F00AC8;
+	Wed, 11 Nov 2026 18:11:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794420670;
+	bh=yMBHhxbvHmek25iNNzt/fSW9M/YAXtODnCUwnhn31Yw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=hla1Zo5f8KHVEC2e6ZsF8gZqra+uYUowhu6Eu/gSJ2vXpqE2Q5bYCTJlwBBJf2lgQ
+	 ETuuVgjzc+C5tDTcVWvAe9w+N7G51+gwaMCUw7Q67qohNsMZPf3XKr2razL2HxcHM1
+	 gA5futdg0YSFb26D3qbD2OwYa3pIiyoA2Qehw1nBYQMidrEWNGMemoeHcHBmXAM+3r
+	 7zWnpX7OJbKzCJt5nM1GHKncWIio18r9H+X/PwyDG04GF5hFjpgo1dT3GxZE5YGTt8
+	 D5iKF+QJ0SHIuLPdLAVztasxRVvnvvmv5lpv8GAfnlKRLdxlkFms5nnmXdXcELFvf5
+	 CXZpFymY8TLMw==
+Date: Wed, 11 Nov 2026 18:11:05 +0000
+From: Conor Dooley <conor@kernel.org>
+To: John Crispin <john@phrozen.org>
+Cc: Stefan Roese <sr@denx.de>, Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	devicetree@vger.kernel.org, lei.dong@airoha.com,
+	Linqi.zhang@airoha.com, linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, Rajeev.kumar@airoha.com,
+	upstream@airoha.com, Weifeng.xu@airoha.com,
+	zhengping.zhang@airoha.com
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: mt7621: add Airoha AN7589
+Message-ID: <20261111-federal-pleat-191852ed2822@spud>
+References: <20261111093941.691801-1-john@phrozen.org>
+ <20261111093941.691801-2-john@phrozen.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261001135711.1640520-1-fuad.tabba@linux.dev>
- <20261001135711.1640520-10-fuad.tabba@linux.dev> <5fa8a1fb-4e2c-4746-8a70-a47f387ef0d6@arm.com>
- <CA+EHjTyCcGPMte9=HuqyvCS7CCCt80Lc_JQuA+1e3ZE+3A0zqQ@mail.gmail.com> <c426f5a3-d161-476d-8911-99903ecf8e46@arm.com>
-In-Reply-To: <c426f5a3-d161-476d-8911-99903ecf8e46@arm.com>
-From: Fuad Tabba <fuad.tabba@linux.dev>
-Date: Wed, 11 Nov 2026 18:06:12 +0000
-X-Gmail-Original-Message-ID: <CA+EHjTzJggL5gwBT=5+eF-30=W3rHnwtQoCguiqYZrnV-dhQNA@mail.gmail.com>
-X-Gm-Features: AclHuK-obnEvFeK-oZDjiRcp3WhqMlDvWCrbcxoPgPML16ljc-27phGiA9oxoSw
-Message-ID: <CA+EHjTzJggL5gwBT=5+eF-30=W3rHnwtQoCguiqYZrnV-dhQNA@mail.gmail.com>
-Subject: Re: [PATCH v4 09/18] KVM: arm64: Implement HVC handling for protected
- guests at EL2
-To: Ryan Roberts <ryan.roberts@arm.com>
-Cc: maz@kernel.org, oupton@kernel.org, kvmarm@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	catalin.marinas@arm.com, will@kernel.org, joey.gouly@arm.com, 
-	seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com, 
-	mark.rutland@arm.com, steven.price@arm.com, vdonnefort@google.com, 
-	qperret@google.com
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_100654_274952_5B501843 
-X-CRM114-Status: GOOD (  12.00  )
-X-Spam-Score: -2.1 (--)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PMGK6tzsdZTya8NZ"
+Content-Disposition: inline
+In-Reply-To: <20261111093941.691801-2-john@phrozen.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,27 +79,72 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 11 Nov 2026 at 17:50, Ryan Roberts <ryan.roberts@arm.com> wrote:
-[...]
-> > Yes, where the mitigation is the firmware one. The host can disable it
-> > with an ARM_SMCCC_ARCH_WORKAROUND_2 call, which EL2 forwards, and EL2
-> > doesn't enable it again before running the guest. With TF-A that's
-> > only on a Cortex-A76 without SSBS, the only CPU it implements the
-> > dynamic workaround for.
->
-> If the mitigation is via SSBS but SSBS is not exposed to the guest, I'm guessing
-> this is safe because the guest is expected to set SSBS=0 in this case?
+--PMGK6tzsdZTya8NZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yes. A vCPU is reset with PSTATE.SSBS and SCTLR_EL1.DSSBS clear, so
-the guest doesn't have to set it.
+On Wed, Nov 11, 2026 at 10:39:40AM +0100, John Crispin wrote:
+> The Airoha AN7589 carries the MT7621 I2C controller with a second
+> control register holding a wider clock divider. Give it a compatible of
+> its own so the driver can tell the variants apart.
 
-Cheers,
-/fuad
+I assume a fallback is not suitable here because setting this wider
+divider is a requirement?
+
+>=20
+> Signed-off-by: John Crispin <john@phrozen.org>
+> ---
+>  .../devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml      | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.ya=
+ml b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
+> index 118ec00fc190..28659bdd72f5 100644
+> --- a/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/mediatek,mt7621-i2c.yaml
+> @@ -9,12 +9,18 @@ maintainers:
+> =20
+>  title: Mediatek MT7621/MT7628 I2C master controller
+> =20
+> +description:
+> +  The same controller is used on Airoha SoCs. The AN7589 variant adds a
+> +  second control register with a wider clock divider.
+> +
+>  allOf:
+>    - $ref: /schemas/i2c/i2c-controller.yaml#
+> =20
+>  properties:
+>    compatible:
+> -    const: mediatek,mt7621-i2c
+> +    enum:
+> +      - airoha,an7589-i2c
+> +      - mediatek,mt7621-i2c
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.34.1
+>=20
+
+--PMGK6tzsdZTya8NZ
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavSvuQAKCRB4tDGHoIJi
+0iz2APoC+/pL38Hhk9ni7vQnB5Jy70F+PVBfryx7CexSJbVGKQEA33Dx/8Km+2K1
+X4AQByWlXEYYC/jmyQC/C8Qz3rjeRgw=
+=Pjb8
+-----END PGP SIGNATURE-----
+
+--PMGK6tzsdZTya8NZ--
 
