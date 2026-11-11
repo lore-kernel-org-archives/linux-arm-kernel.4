@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2001606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38C6606A327
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TvEQg/7b;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=C21nt+/+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ISV3j1tB;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=hSXv6uUV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,70 +14,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SsTSYB3rsKvMWE7p57CQCiR1JUfH7D/jcQTe8wg93kY=; b=TvEQg/7bKRqNX0VgrGoVyT9hAE
-	gxy8/yZ8aKAVQ8UaxjqinYZanv7MQk90/aJZyAAcn8EPKtV3gnqE6NxtSecQ2PIL9MFlYvWC97LKD
-	GGS6qjxOh2It5DHUAmwTzqToeNnxiQ7uQLy9Y0xvwcsd3qEAwHk6doCVdTOhzjnygX5a7Es81teJT
-	b886uidYtiS0+nBqJ94z9MLMrK98t4U27sFKBNN3S/6qjFi0wfvU3leO68hbM2/iAzIAOQv04OTyi
-	uizpqKrE9QP+3VxB56h7e2XJ5rK0c2Xm2O3KHmWZciO4VDCwsvGjOv+UdarOM6gGx5GMkE8LeP1q1
-	FIkO79Hw==;
+	bh=R1sC1VNhGnBtpHRUbV8Au5v/vixUhvc52DHmrj1EE2M=; b=ISV3j1tBhigsMOAqP3lf5cYXAl
+	IVQXeh/VZoCv7YYuWo9bRfANQoUppPxYIbv8LlmUCC6UEcZ8AHvrimzRH6t+9efYFwxjIAM0GoFVk
+	b+nDljSYDnjsk0vtILJvUnX5HW97HyJxfVWxYkHwKSof6eTPd8Vi0s16z9HyRIOBmj5hKbQ77bkXG
+	EgxTKX61CI425bWRU2Z3+2DP8F7iqP/rdkssLTSEkOTRb1TLK0laMyBV6E5B4u6CxlqNRLLkeanJ3
+	9OyMPXRrpWPuzubBBVgZKUw/DP6cGKIHKVvhIRRMM6atxd4TORSxz4xjPdDlWel6y4Oo8yRV7Eu4l
+	x6XDB2HA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6tY-00000006YHG-1ATN;
+	id 1xR6tY-00000006YIG-2gxt;
 	Wed, 11 Nov 2026 11:53:40 +0000
-Received: from mail-wm1-x345.google.com ([2a00:1450:4864:20::345])
+Received: from mail-ed1-f70.google.com ([209.85.208.70])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6tP-00000006YBx-3Ss8
+	id 1xR6tT-00000006YDp-1Tve
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:53:35 +0000
-Received: by mail-wm1-x345.google.com with SMTP id 5b1f17b1804b1-4a359c7f47bso26444105e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:53:31 -0800 (PST)
+	Wed, 11 Nov 2026 11:53:36 +0000
+Received: by mail-ed1-f70.google.com with SMTP id 4fb4d7f45d1cf-6b706aec65bso3453829a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:53:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794398010; x=1795002810; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794398012; x=1795002812; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=SsTSYB3rsKvMWE7p57CQCiR1JUfH7D/jcQTe8wg93kY=;
-        b=C21nt+/+qDOFkNELyl5D8dRnSCzte0NdjT5zpy2Gil7SGHANeytaHcAquD+SxciWBW
-         xFVMD+wEsHDUZX/DPomg/cqL9hDrezrp+C2z9gyf3Oyr0/bH4lmFs3wpjFXr4R2exSnM
-         EVtaoS3KRhZX+2bbgAma0yx4PkcC2fky04VfusKgmdxwK5AFHnuRgLdRVW9VkWOn9npn
-         Y4qO1Kuh0smsBFq5OST+CKRHul+kA0Uwd9cMZaLHTBJFnI9R0zE5zMcHM9d9jYXxa0NR
-         kdlqp1/JhT3Q33MRspE8vLSuHxFRLgxJDVKWHkGk0VLjamuh5+CD6hABOYwqjHOFtOK/
-         +Bxg==
+        bh=R1sC1VNhGnBtpHRUbV8Au5v/vixUhvc52DHmrj1EE2M=;
+        b=hSXv6uUVz78hr5FTqf0/vZDVFYgXELQ/9RS1TGL5QFdnOL+fDnuxVyP6RC2BrWlMjT
+         P7pwxe2SGyPy6ypd6sEElRwe/ZiCDK3ZtVgK28MdkDtZd4Jfu0PWJkGNyCloV4UgT9bh
+         E5xf1RAlFIvaiXAxBhi3HikziPhr+5ikN9MB6Z6SbpZNNOGKnS+7USFhewLStjRCvMeh
+         /YCLoodrc1eRCKb0FpEt/bPOWMHCIsNWTBFptgj4LwpYmjzT1RMocfkcPBRLprZIUAwM
+         DGVpe5T9CfWEx/50FfsslJKFHNoa/7EIB/B2rLA4txSMhneQn3URlEyDrsqKGeunj9t3
+         BtXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794398010; x=1795002810;
+        d=1e100.net; s=20260707; t=1794398012; x=1795002812;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=SsTSYB3rsKvMWE7p57CQCiR1JUfH7D/jcQTe8wg93kY=;
-        b=FojJed+UxWWsWb9g2KsMcfcDOzgJcsCVm0cSUkKua8nFFOsTaHWrohpX33AYdoR9g+
-         xDGrzgIyTCIQPVD4YUVqhj38pzomiyHWCKBl6gWlCEYDvdLexKxTWT3IZD8y/i1jr6a8
-         YM/oipity0wZTAo1ly8PakwCIYe69puF0bokiloB3YRVidmKqBXsHNmnnYQ05TtC+FmN
-         wMbuulVQP/Ht3dyhzG9iQZgZgNHoQXqkGHaXTPmi74ArxgK/rLO/Uuwy9qgT/W5AaRhV
-         hjMYQuGMc9gqm8Xn3/rYnIueTFPPlKAaDzgSIFZkR/cv0J8rW5EWMor7zDI5MD4zyrD+
-         gy0g==
-X-Gm-Message-State: APuU4Z+o3aw76DHtxszsP01ReN8L0q5FccSbFRHaHPtP74MjaZWqYWQe
-	hOPlEGJ85COpYjc4ajchdUIvYjK+34GKkla04GJSxZk5znmV8lgV03QJHRZnqE0kyS/P7b0AukB
-	/KTfi8TzTcwP7eiFaolejXRoGzcgc8wxhNjIBV9FIYz6Tz/hIbcUNfF5YTGrwjkV4dISISwigjv
-	aKxvKCkvC+HzYnYGmi19vayih2AQUDT9diH9ehHkysAv5+
-X-Received: from wmbz24.prod.google.com ([2002:a05:600c:c098:b0:4a1:d0e3:1e1c])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:4ecb:b0:4a2:150f:1601
- with SMTP id 5b1f17b1804b1-4ba093811b2mr37381255e9.12.1794398009585; Wed, 11
- Nov 2026 03:53:29 -0800 (PST)
-Date: Wed, 11 Nov 2026 12:53:06 +0100
+        bh=R1sC1VNhGnBtpHRUbV8Au5v/vixUhvc52DHmrj1EE2M=;
+        b=YJ6080/ekQe0vi3hGQdQTQ+mygPaPwkV/qVVu0N+2zWMaqFTBkzVuL33nTSoxqv56q
+         aPyDiPPfQWpuyF+lMeDbzOvo6h0SWbvuJqPxet5c39eyRjA1kwzKXIjU0bGdPbCXJpl5
+         /PLnE5I+1dGFp3G42g/jyJs85LHZhMr9VpahxSdlLk9ozsSlcQaC1EmJ3ET/A4gwH4eV
+         J29LYVrhoiGFcSyxynL3is3v+YgZRDCHhkNMfaipD1oRPki0s5F87OLY8erbcHXhC7Ul
+         dM5fnabWV1JFz6IDAfycsvbZvzQH/8wm9Igh5acRME8qyBX5FMhgtI8e+5eGubhRYHrb
+         dVUw==
+X-Gm-Message-State: APuU4Z8bFhqK0x7xNmUl5pFg4p3ge7j36ALG5JTezv99Rw0mXghBEF5q
+	RK2wsPrgGrTGO+YInCZ1S3AXFjKyLKjVQ1mKIWw2cSNKF6doKh6pFQHy2h4Xz9wGKIiHjZoJ9rs
+	XjNrZvyxpci4yqqoPraQRcwX/eyjYOBLf3fpgxiwYL5KhAfmZyccCRbSf9L04F1P/SOvCoLCUjU
+	SzfXV+jWMzCkylfv31CqvefdbQBQO8Wh+8fx47N5rn2+Bf
+X-Received: from edr5.prod.google.com ([2002:a05:6402:44c5:b0:6b6:4dd3:1b66])
+ (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6402:a511:20b0:6b3:f81f:927d
+ with SMTP id 4fb4d7f45d1cf-6b77733e8b0mr1246254a12.6.1794398011893; Wed, 11
+ Nov 2026 03:53:31 -0800 (PST)
+Date: Wed, 11 Nov 2026 12:53:08 +0100
 In-Reply-To: <20261111115303.3749380-9-ardb+git@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261111115303.3749380-9-ardb+git@google.com>
 X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2269; i=ardb@kernel.org;
- h=from:subject; bh=JUc6v0P1teNo8OlbdRyY2etIOH20xoIr68pdPx7aM1A=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIetLuBK718xmx/ypLhO8b639fiw/YoMK26dtJRWz97G1P
- e3qm9vfUcrCIMbFICumyCIw+++7nacnStU6z5KFmcPKBDKEgYtTACaSkcnI8PLL3UxDlVkHL3VV
- eYfd1ty9yDx39+JDbeVdgWsM/GT4LjMytE98yxv86sDjaf+WxKw843a1NVN31j8lu8f3s+fL8wj +5gAA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3183; i=ardb@kernel.org;
+ h=from:subject; bh=f2/b8qqgKRe7hacc/4x5TBVKpXpp7q5tLsN3LE74ybM=;
+ b=owGbwMvMwCVmkMcZplerG8N4Wi2JIetLuCpHgyIfm/LrS1FSu6Xvz1l0mHVTvFTtjONsay2OS
+ q6pmSvbUcrCIMbFICumyCIw+++7nacnStU6z5KFmcPKBDKEgYtTACZSOp3hf57brSnLdWznaZt/
+ VjXienpp2Q2HkCnVj5+FXDa4G9HrPIWRob363M6NP8xKju40Zp5WMvOvZt+vmxc+vViYvc6VuXn qGX4A
 X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261111115303.3749380-11-ardb+git@google.com>
-Subject: [PATCH 2/7] arm64: dts: qcom: c630: Use LN_BB_CLK2 as the eDP bridge
- reference clock
+Message-ID: <20261111115303.3749380-13-ardb+git@google.com>
+Subject: [PATCH 4/7] arm64: dts: qcom: c630: Use the idle states from the ACPI tables
 From: Ard Biesheuvel <ardb+git@google.com>
 To: linux-arm-kernel@lists.infradead.org
 Cc: Ard Biesheuvel <ardb@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
@@ -85,8 +84,8 @@ Cc: Ard Biesheuvel <ardb@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
 	Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_035331_883799_923DC939 
-X-CRM114-Status: GOOD (  14.71  )
+X-CRM114-CacheID: sfid-20261111_035335_434925_52A5EAD7 
+X-CRM114-Status: GOOD (  16.15  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -108,60 +107,83 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ard Biesheuvel <ardb@kernel.org>
 
-The SN65DSI86 eDP bridge on the Yoga C630 is described as being clocked by
-an always-on fixed 19.2 MHz reference clock. However, as on the SDM845
-reference design (Cheza), its REFCLK appears to be fed by the LN_BB_CLK2
-output of the PMIC, which also serves as the master clock of the WCD9340
-audio codec.
+Commit 07db10de262f ("arm64: dts: qcom: sdm850-lenovo-yoga-c630: lower
+PSCI cluster idle") dropped bit 14 from the PSCI suspend parameter of the
+cluster idle state, as the C630 would occasionally reset with the sdm845
+default. However, the firmware refuses the resulting value of 0x41008244:
+the cluster power domain is never entered, in EL1 or EL2, and the last CPU
+of the cluster keeps retrying instead, including during suspend to idle.
 
-As nothing tells Linux that the bridge depends on LN_BB_CLK2, the clock
-only runs when the codec happens to have it enabled, and the WCD934x
-driver only enables it on demand. If the bridge is brought up while
-LN_BB_CLK2 is off or being toggled, e.g., when the display stack probes
-before the codec, or while the codec is being initialized, all AUX
-transfers fail and the DP PLL does not lock, leaving the panel dark:
+In EL2, the firmware accepts the sdm845 default of 0x4100c244. However,
+besides powering down the cluster, this state also puts the rest of the
+SoC to sleep (LLCC off, AOSS sleep), and entering it at runtime while the
+display is off, e.g., right after locking the screen, makes the C630
+reset.
 
-  ti_sn65dsi86 10-002c: Can't read lane count (-110); assuming 4
-  ti_sn65dsi86 10-002c: Can't read eDP rev (-110), assuming 1.1
-  ti_sn65dsi86 10-002c: Can't read max rate (-110); assuming 5.4 GHz
-  ti_sn65dsi86 10-002c: DP_PLL_LOCK polling failed (-110)
+The _LPI objects in the C630's DSDT describe the states that Windows uses:
+on top of CPU state C4 (0x40000004), the cluster container has
+L3Cluster.D4 (0x40) at level 0x01000000, and the system container has
+platform.F2 (0xc300). So use L3Cluster.D4, i.e., 0x41000044, which only
+powers down the cluster and its L3 cache, as the cluster idle state.
 
-So describe the actual clock instead, so that the bridge driver keeps it
-enabled for as long as the bridge is powered up.
+Add platform.F2, i.e., 0x4100c344, as a second, deeper cluster idle state,
+which lets the SoC reach AOSS sleep and CX collapse during suspend to idle.
+It differs from the sdm845 default in bits 11:8, which are 3 rather than
+2, like in the corresponding states of newer SoCs and of the sc8180x and
+sc8280xp WoA platforms. Give it a minimum residency of about 71 minutes
+to keep the runtime governor away from it: suspend to idle always picks
+the deepest state that satisfies the CPU wakeup latency QoS constraint,
+regardless of its residency.
 
-Fixes: 956e9c85f47b ("arm64: dts: qcom: c630: Define eDP bridge and panel")
 Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 25 +++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index 9d38ae83c979..a4a573ea7e4a 100644
+index 0645ab429177..3e4df4335be8 100644
 --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -97,13 +97,6 @@ sw_edp_1p2: edp-1p2-regulator {
- 		vin-supply = <&vreg_l2a_1p2>;
+@@ -37,6 +37,24 @@ aliases {
+ 		serial1 = &uart6;
  	};
  
--	sn65dsi86_refclk: sn65dsi86-refclk {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--
--		clock-frequency = <19200000>;
--	};
--
- 	vph_pwr: regulator-vph-pwr {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -528,7 +521,7 @@ sn65dsi86: bridge@2c {
- 		vpll-supply = <&vreg_l14a_1p88>;
- 		vccio-supply = <&vreg_l14a_1p88>;
++	cpus {
++		domain-idle-states {
++			/*
++			 * platform.F2 on top of L3Cluster.D4 from the ACPI tables,
++			 * which also lets the rest of the SoC sleep. Suspend to idle
++			 * picks the deepest state regardless of its residency, so
++			 * use one that keeps the runtime governor away from it.
++			 */
++			cluster_sleep_1: cluster-sleep-1 {
++				compatible = "domain-idle-state";
++				arm,psci-suspend-param = <0x4100c344>;
++				entry-latency-us = <3263>;
++				exit-latency-us = <6562>;
++				min-residency-us = <0xffffffff>;
++			};
++		};
++	};
++
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
  
--		clocks = <&sn65dsi86_refclk>;
-+		clocks = <&rpmhcc RPMH_LN_BB_CLK2>;
- 		clock-names = "refclk";
+@@ -340,8 +358,13 @@ &cdsp_pas {
+ 	status = "okay";
+ };
  
- 		no-hpd;
++&cluster_pd {
++	domain-idle-states = <&cluster_sleep_0>, <&cluster_sleep_1>;
++};
++
++/* L3Cluster.D4 from the ACPI tables: powers down the cluster and its L3 */
+ &cluster_sleep_0 {
+-	arm,psci-suspend-param = <0x41008244>;
++	arm,psci-suspend-param = <0x41000044>;
+ };
+ 
+ &gcc {
 -- 
 2.56.0.611.g1030f0b940-goog
 
