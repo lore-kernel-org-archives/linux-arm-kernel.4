@@ -2,111 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E779606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:32:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20BA0606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:33:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=D32pcZ+m;
-	dkim=pass (2048-bit key) header.d=bytesatwork-ch.20260707.gappssmtp.com header.i=@bytesatwork-ch.20260707.gappssmtp.com header.a=rsa-sha256 header.s=20260707 header.b=DfpjY8fH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KxF7UnY5;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=lWP+oOsk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fIbVuyYHBo7KFAez09jAmznYL1xCEMyGsfdgCEUvS54=; b=D32pcZ+mhSf/p4
-	e1I7orowDIYAI9y7XEW/Aopz0flPO2vrqUXuyet23ra5ZVDdFss7mWBKi9hcL3oFOVa3tanhaiDtN
-	wxv8CaQAY8hglcYaFZ/Mlbvb8lDdEJTbHquiWyGvdwk5kdSLi07HRw8LQwW90bQTi/7bBLrJDfxvM
-	XzCJEaE1wThXJwbWiIizWg8kEC7fXKjkLShshgi5jWHvoD5mEsD5cV6KEA2iX7MJ9cp79RxZdzc86
-	TEeq0AalfIAD9ozlnUjHYT/r7hVSTdSERoFZFuyIP0IbEetkkevaLZuRISJuUwRc4455xqVXH79ko
-	4Imgn6kRtNazzOcp0lUQ==;
+	List-Owner; bh=HgCEM27S7IbNhqq3jM19SR/jbOHjwjqAZf0wVe5KS5o=; b=KxF7UnY546V9e1
+	2SgA68NnhHVhQfQIoLd0fyy/bMb0qX7ykYOyjCyV/+KoTgi8HEdjRUuo4h2E4qH/UgBjgNgndelgL
+	pthbJRRl2qptK8iGK6P23dvwsH8jQ0KmjxaFYqvBa3hXSLqgxV5cbXpWsja1T+12C8EKUEX3UVi15
+	tYHeFD6aDEQMzJr500smOauhOpuanYTZ7Pmv+lNP5OYQDiWwrlD9xfVkW8zCAgDNClqLTjzSYmCR6
+	3uJiI1arS/sFDwUGezUWbR4UaDYv478szZomwCrDYIVxShl3Gp6xd3KgRz6yAh8PerrAACOztGZQ7
+	JW50IhQxY/41hC3wToUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8Qo-00000006ozt-3Xnw;
-	Wed, 11 Nov 2026 13:32:06 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1xR8RV-00000006p7E-0uGB;
+	Wed, 11 Nov 2026 13:32:49 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8QX-00000006opq-47O5
-	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:31:52 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4ac95761c85so23571615e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 05:31:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytesatwork-ch.20260707.gappssmtp.com; s=20260707; t=1794403908; x=1795008708; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=fIbVuyYHBo7KFAez09jAmznYL1xCEMyGsfdgCEUvS54=;
-        b=DfpjY8fHJ31/yxRPXYMcmtcKG4kgFT/ZA+p5V8WRTIp1F+STod9QXVdi3mZEcHjHcH
-         TRFFu8fJrWW12tLq8As0vYImh11tg8JD6oF8kdxQHY5CTz6Yfa7BofAA1dPwwP8r5dfv
-         RXyw5GVjX1MUN8ZjuquCk9numWViRxb0SdntfqMF3ekmNC2CW98SJX8wjrzOXPOntZ6T
-         cTdR3QIiYEquA5wvPCLHmREhzUYppCt855cxbz1j1z2ZD58wo+M09zV/Ktb7FKSEAQSz
-         +uxBQsDJKZjkEl/PWcRDJnKm/8jHAEsW6WTqgpi9QSLd/MWnZkkcZ6757LCTFfRHb47y
-         K6BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794403908; x=1795008708;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=fIbVuyYHBo7KFAez09jAmznYL1xCEMyGsfdgCEUvS54=;
-        b=aF1zW3DnHWJ+enyndEfUdkrJYjiMWdhPFnKVWHF9ad43RQzNRIT9Tk8OqWGYEYQene
-         8KC8DLnruYb5YT4gnJCIF7rDwID3raOY3f0ZKnbZSSS7FVDyYclHARLB7NuIwCoq18Mn
-         1PsFeKl2RWjKAAewai62DZTDFNvSHBBieUhkJy08b8QJwfB1Clwj5rHW5DOYCD9SdvfB
-         wwOZe0Kawk2Af8nye5OHmjIcczf4Pbe3fqcmP/PdjMucOJgxjwX12IHSgJwVX91OONyj
-         0o/eqVDrwgIjXYrC39j2RDtynfOfa+zrH9OaYZQrUHNw+48I2lWdl7AT5zjX4ae1ZRYf
-         tJsw==
-X-Forwarded-Encrypted: i=1; AL+hErEsNIgzZDy6DLf+bTUlgrjY+zh62WUoa1uzViCvbvBP9ONVyv95V8Ub7u3rDe8b5H81rsAW0SSDDWugvHKN/jPA@lists.infradead.org
-X-Gm-Message-State: APuU4Z/LKlESljfnGl+k0ZhqXLqM8e41+UJOpDnGQ2exaY72xXYTBw9l
-	Uf5K7uB3fP1qBhlBG5lhwrHvqHaes+5ruC5IsTxxPlVydTIwQvZFp4T0VY0yIm8niGc=
-X-Gm-Gg: AYBFou2aaLV0kf4cXlyLIOq2IXYQT7dTYQ9uiMaZDBmdo3SH8AffB1CoyFN4sjlKSpN
-	iyTQ8I4V5Ked9gc+6h8Hp7C30QrsdYsSISUjmnk1jjkfgSheFM11z9xKMRp+PCDRBf5j9cFhHpl
-	9yeVgH9dYRvjn/l/9GeXYJapunGARG5afINJR0yDqxVOV3GzM3D0agvWWAYT+jp6FeYGZSOd6JJ
-	CvZLQmb73zGSI8smMn2dmKieIRncFO2D2kV0J8byzeRXXYGyFPlxy3CviN4CzLYxAq8TvoCDqq+
-	5ROREJwZGwdahJPKCxgn2V2YU2BQHD8/nrUUTqDnmEoLpsp+RD6mCtoAgLt0+8ENaHNUGoO2VvQ
-	Bt4soGL150HxhOPeuT9VwN5QclfwRT5N+9/hXkBQzKB1jfLAVcsZO+bZKTyF7Pd1hU/JV6L5Mgp
-	xhxDOUHHMy6tNYgicRusLHxaOMzi35yohOwT0QbRrDKAuOBn5XWSwnkRPLUERo5OvfUpflXJuN+
-	nYce+IcIHjd+3e9FhRN6CMwPnudZzECIIZFbUYArLqFX/MNLgpywYDsQSKHfhXH2oW5T2VvVglP
-	BG0TVqk3gZrz5ipdMRYIhWgwo/dlDEdUue1WjjTgJg+rppUJJIrgEazcuDTNoGANRE/O6oW4ywD
-	FZRXLil4XYA==
-X-Received: by 2002:a05:600c:310b:b0:4ba:a5:b920 with SMTP id 5b1f17b1804b1-4ba0936d8dcmr44440665e9.16.1794403907760;
-        Wed, 11 Nov 2026 05:31:47 -0800 (PST)
-Received: from frobdeb.bytesatwork.ch (162.40.150.83.ftth.as8758.net. [83.150.40.162])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498363df7a5sm11089358f8f.37.2026.11.11.05.31.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 05:31:46 -0800 (PST)
-From: Frank Obergfell <frank.obergfell@bytesatwork.ch>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Frank Li <Frank.Li@nxp.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Alexander Forsch <alexander.forsch@bytesatwork.ch>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Frank Obergfell <frank.obergfell@bytesatwork.ch>
-Subject: [PATCH v3 5/5] arm64: dts: freescale: Add support for bytesatwork i.MX93
-Date: Wed, 11 Nov 2026 14:31:19 +0100
-Message-ID: <20261111133119.1063210-6-frank.obergfell@bytesatwork.ch>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261111133119.1063210-1-frank.obergfell@bytesatwork.ch>
-References: <20261111133119.1063210-1-frank.obergfell@bytesatwork.ch>
+	id 1xR8RT-00000006p6d-1WKu;
+	Wed, 11 Nov 2026 13:32:48 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794403961; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mPlMZ4QBfCYhqRipVGIeZsOMwEbcb63/j0o01IhSP7fWxRYSo8DD/waCAOmx0issHPqj0W3ADT/2nVhLM/lhAjyDv8DiO8Q2R69I2QS/aKeWCI5JXJgLZqRK6IqDq71PXGyY/GZR75GiUJLYWjD9SbZF1HNQ03yi1a0ZhlPwsS8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794403961; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=HgCEM27S7IbNhqq3jM19SR/jbOHjwjqAZf0wVe5KS5o=; 
+	b=I+/M9noVCAvGbkX6B4zoaMWUBvlGqe5lOu089fhVLuQZ6GsLbydsiJ/4TSp63wugMYmAd5HlVvvQIqg4D+tk6oRwF8DZG/FQLxqvleQS8ho9oIPMer8kc42Q8lXxed7ZGPwEmn2T+ysaATAHzMb4wEa/fKxifExLmuzFvScmm+Q=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=michael.riesch@collabora.com;
+	dmarc=pass header.from=<michael.riesch@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=lWP+oOskxefOGnze70OdGE2pkyOkOegIGhKXhiqLmhkEQ3mQVw5WxA3fq+sOuxJWCySeZvGid/i8QV2wxJalmYcbuonWWmc016tW6S0bMNIyuRluHPCNJ71xNVXJFf34AhQ6GOMhvKwvLY+RcWJ67LZBuY9qn6bOrkZV4SqdZg0=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=HgCEM27S7IbNhqq3jM19SR/jbOHjwjqAZf0wVe5KS5o=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794403959576103.49384226317557;
+	Wed, 11 Nov 2026 05:32:39 -0800 (PST)
+Message-ID: <a11909bf-01f4-4905-81d9-e5c295feb595@collabora.com>
+Date: Wed, 11 Nov 2026 14:32:34 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 7/9] phy: rockchip-samsung-dcphy: Support the new
+ phy-type and direction binding
+To: Jason Yang <jason98166@gmail.com>, Vinod Koul <vkoul@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Guochun Huang <hero.huang@rock-chips.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261110-dcphy-rx-v1-v6-0-d681ba20b36a@gmail.com>
+ <20261110-dcphy-rx-v1-v6-7-d681ba20b36a@gmail.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20261110-dcphy-rx-v1-v6-7-d681ba20b36a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_053151_107581_4AAF8923 
-X-CRM114-Status: GOOD (  17.34  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_053247_466817_553DC9D1 
+X-CRM114-Status: GOOD (  21.02  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,670 +82,113 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for the bytesatwork i.MX93 byteENGINE OSM module
-placed on the byteDEVKIT.
+Hi Jason,
 
-Signed-off-by: Frank Obergfell <frank.obergfell@bytesatwork.ch>
----
- MAINTAINERS                                   |   8 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx93-bytedevkit.dts   | 415 ++++++++++++++++++
- .../boot/dts/freescale/imx93-byteengine.dtsi  | 185 ++++++++
- 4 files changed, 609 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-bytedevkit.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-byteengine.dtsi
+Thanks for the patch!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 93abbb315065..977c16e59a8c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5877,6 +5877,14 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/net/can/st,stm32-bxcan.yaml
- F:	drivers/net/can/bxcan.c
- 
-+BYTESATWORK MODULES AND BOARDS
-+M:	Alexander Forsch <alexander.forsch@bytesatwork.ch>
-+M:	Frank Obergfell <frank.obergfell@bytesatwork.ch>
-+L:	imx@lists.linux.dev
-+S:	Maintained
-+F:	arch/arm64/boot/dts/freescale/imx93-bytedevkit.dts
-+F:	arch/arm64/boot/dts/freescale/imx93-byteengine.dtsi
-+
- C-MEDIA CMI8788 DRIVER
- M:	Clemens Ladisch <clemens@ladisch.de>
- L:	linux-sound@vger.kernel.org
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a80cccf34eb5..0a7eb69ef76e 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -898,6 +898,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-11x11-frdm-pixpaper.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk.dtb
- imx93-14x14-evk-mqs-dtbs += imx93-14x14-evk.dtb imx9-mqs.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx93-14x14-evk-mqs.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx93-bytedevkit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-kontron-bl-osm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-lino-verdin-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-lino-verdin-dev.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-bytedevkit.dts b/arch/arm64/boot/dts/freescale/imx93-bytedevkit.dts
-new file mode 100644
-index 000000000000..a524412bfd4c
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-bytedevkit.dts
-@@ -0,0 +1,415 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 bytesatwork AG
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/net/ti-dp83867.h>
-+#include "imx93-byteengine.dtsi"
-+
-+/ {
-+	model = "bytesatwork byteDEVKIT i.MX93";
-+	compatible = "bytesatwork,bytedevkit-imx93", "bytesatwork,byteengine-imx93", "fsl,imx93";
-+
-+	aliases {
-+		serial0 = &lpuart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	reg_vdd_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vdd_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_vref_1v8: regulator-adc-vref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vref_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-+		off-on-delay-us = <12000>;
-+		enable-active-high;
-+	};
-+
-+	reg_usb2_vbus: regulator-vbus {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_usb2>;
-+		regulator-name = "USB2_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio2 18 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	mipi_bl: backlight-mipi {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_mipi_backlight>;
-+		compatible = "gpio-backlight";
-+		gpios = <&gpio3 26 GPIO_ACTIVE_HIGH>;
-+		default-on;
-+	};
-+};
-+
-+&adc1 {
-+	vref-supply = <&reg_vref_1v8>;
-+	status = "okay";
-+};
-+
-+&eqos {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_eqos>;
-+	pinctrl-1 = <&pinctrl_eqos_sleep>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy_qos>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		clock-frequency = <5000000>;
-+
-+		ethphy_qos: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+			enet-phy-lane-no-swap;
-+			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-+			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-+			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+			ti,dp83867-rxctrl-strap-quirk;
-+			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+		};
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	pinctrl-1 = <&pinctrl_fec_sleep>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy_fec>;
-+	fsl,magic-packet;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		clock-frequency = <5000000>;
-+
-+		ethphy_fec: ethernet-phy@c {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0xc>;
-+			enet-phy-lane-no-swap;
-+			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-+			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-+			tx-fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+			ti,dp83867-rxctrl-strap-quirk;
-+			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
-+		};
-+	};
-+};
-+
-+&lpi2c2 {
-+	status = "okay";
-+
-+	/* Mipi Touch */
-+	touchscreen@5d {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_mipi_touch>;
-+		compatible = "goodix,gt911";
-+		reg = <0x5d>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio2 20 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&lpuart1 { /* console */
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&media_blk_ctrl {
-+	status = "okay";
-+};
-+
-+&mu1 {
-+	status = "okay";
-+};
-+
-+&mu2 {
-+	status = "okay";
-+};
-+
-+&wdog3 {
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	vbus-supply = <&reg_usb2_vbus>;
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_gpio_sleep>;
-+	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	status = "okay";
-+	no-sdio;
-+	no-mmc;
-+};
-+
-+&dsi {
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "youritech,et050fw01-kt", "ilitek,ili9806e";
-+		reg = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_panel_reset>;
-+		backlight = <&mipi_bl>;
-+		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&reg_vdd_3v3>;
-+		vccio-supply = <&reg_vdd_1v8>;
-+
-+		port {
-+			panel_mipi_in: endpoint {
-+				remote-endpoint = <&dsi_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi_out_port {
-+	dsi_out: endpoint {
-+		remote-endpoint = <&panel_mipi_in>;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_eqos: eqos-grp {
-+		fsl,pins = <
-+			MX93_PAD_ENET1_MDC__ENET_QOS_MDC			0x57e
-+			MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x57e
-+			MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e
-+			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e
-+			MX93_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e
-+			MX93_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e
-+			MX93_PAD_ENET1_RXC__CCM_ENET_QOS_CLOCK_GENERATE_RX_CLK	0x5fe
-+			MX93_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e
-+			MX93_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e
-+			MX93_PAD_ENET1_TD1__ENET_QOS_RGMII_TD1			0x57e
-+			MX93_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e
-+			MX93_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e
-+			MX93_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x5fe
-+			MX93_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e
-+		>;
-+	};
-+
-+	pinctrl_eqos_sleep: eqosgrpsleep-grp {
-+		fsl,pins = <
-+			MX93_PAD_ENET1_MDC__GPIO4_IO00			0x31e
-+			MX93_PAD_ENET1_MDIO__GPIO4_IO01			0x31e
-+			MX93_PAD_ENET1_RD0__GPIO4_IO10			0x31e
-+			MX93_PAD_ENET1_RD1__GPIO4_IO11			0x31e
-+			MX93_PAD_ENET1_RD2__GPIO4_IO12			0x31e
-+			MX93_PAD_ENET1_RD3__GPIO4_IO13			0x31e
-+			MX93_PAD_ENET1_RXC__GPIO4_IO09			0x31e
-+			MX93_PAD_ENET1_RX_CTL__GPIO4_IO08		0x31e
-+			MX93_PAD_ENET1_TD0__GPIO4_IO05			0x31e
-+			MX93_PAD_ENET1_TD1__GPIO4_IO04			0x31e
-+			MX93_PAD_ENET1_TD2__GPIO4_IO03			0x31e
-+			MX93_PAD_ENET1_TD3__GPIO4_IO02			0x31e
-+			MX93_PAD_ENET1_TXC__GPIO4_IO07			0x31e
-+			MX93_PAD_ENET1_TX_CTL__GPIO4_IO06		0x31e
-+		>;
-+	};
-+
-+	pinctrl_fec: fec-grp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_MDC__ENET1_MDC			0x57e
-+			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x57e
-+			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x57e
-+			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x57e
-+			MX93_PAD_ENET2_RD2__ENET1_RGMII_RD2		0x57e
-+			MX93_PAD_ENET2_RD3__ENET1_RGMII_RD3		0x57e
-+			MX93_PAD_ENET2_RXC__ENET1_RGMII_RXC		0x5fe
-+			MX93_PAD_ENET2_RX_CTL__ENET1_RGMII_RX_CTL	0x57e
-+			MX93_PAD_ENET2_TD0__ENET1_RGMII_TD0		0x57e
-+			MX93_PAD_ENET2_TD1__ENET1_RGMII_TD1		0x57e
-+			MX93_PAD_ENET2_TD2__ENET1_RGMII_TD2		0x57e
-+			MX93_PAD_ENET2_TD3__ENET1_RGMII_TD3		0x57e
-+			MX93_PAD_ENET2_TXC__ENET1_RGMII_TXC		0x5fe
-+			MX93_PAD_ENET2_TX_CTL__ENET1_RGMII_TX_CTL	0x57e
-+		>;
-+	};
-+
-+	pinctrl_fec_sleep: fecsleep-grp {
-+		fsl,pins = <
-+			MX93_PAD_ENET2_MDC__GPIO4_IO14			0x51e
-+			MX93_PAD_ENET2_MDIO__GPIO4_IO15			0x51e
-+			MX93_PAD_ENET2_RD0__GPIO4_IO24			0x51e
-+			MX93_PAD_ENET2_RD1__GPIO4_IO25			0x51e
-+			MX93_PAD_ENET2_RD2__GPIO4_IO26			0x51e
-+			MX93_PAD_ENET2_RD3__GPIO4_IO27			0x51e
-+			MX93_PAD_ENET2_RXC__GPIO4_IO23			0x51e
-+			MX93_PAD_ENET2_RX_CTL__GPIO4_IO22		0x51e
-+			MX93_PAD_ENET2_TD0__GPIO4_IO19			0x51e
-+			MX93_PAD_ENET2_TD1__GPIO4_IO18			0x51e
-+			MX93_PAD_ENET2_TD2__GPIO4_IO17			0x51e
-+			MX93_PAD_ENET2_TD3__GPIO4_IO16			0x51e
-+			MX93_PAD_ENET2_TXC__GPIO4_IO21			0x51e
-+			MX93_PAD_ENET2_TX_CTL__GPIO4_IO20		0x51e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1-grp {
-+		fsl,pins = <
-+			MX93_PAD_UART1_RXD__LPUART1_RX		0x31e
-+			MX93_PAD_UART1_TXD__LPUART1_TX		0x31e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmc-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_RESET_B__GPIO3_IO07	0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpio-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio_sleep: usdhc2gpiosleep-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CD_B__GPIO3_IO00		0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2: usdhc2-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x1582
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x40001382
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x40001382
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x40001382
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x40001382
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x40001382
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhz-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x158e
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x4000138e
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x4000138e
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x4000138e
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x4000138e
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x4000138e
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhz-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__USDHC2_CLK		0x15fe
-+			MX93_PAD_SD2_CMD__USDHC2_CMD		0x400013fe
-+			MX93_PAD_SD2_DATA0__USDHC2_DATA0	0x400013fe
-+			MX93_PAD_SD2_DATA1__USDHC2_DATA1	0x400013fe
-+			MX93_PAD_SD2_DATA2__USDHC2_DATA2	0x400013fe
-+			MX93_PAD_SD2_DATA3__USDHC2_DATA3	0x400013fe
-+			MX93_PAD_SD2_VSELECT__USDHC2_VSELECT	0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_sleep: usdhc2sleep-grp {
-+		fsl,pins = <
-+			MX93_PAD_SD2_CLK__GPIO3_IO01		0x51e
-+			MX93_PAD_SD2_CMD__GPIO3_IO02		0x51e
-+			MX93_PAD_SD2_DATA0__GPIO3_IO03		0x51e
-+			MX93_PAD_SD2_DATA1__GPIO3_IO04		0x51e
-+			MX93_PAD_SD2_DATA2__GPIO3_IO05		0x51e
-+			MX93_PAD_SD2_DATA3__GPIO3_IO06		0x51e
-+			MX93_PAD_SD2_VSELECT__GPIO3_IO19	0x51e
-+		>;
-+	};
-+
-+	pinctrl_usb2: usb2-grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO18__GPIO2_IO18		0x31e
-+		>;
-+	};
-+
-+	pinctrl_mipi_touch: mipi-touch-grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO21__GPIO2_IO21		0x31e	/* MIPI Touch INT */
-+			MX93_PAD_GPIO_IO20__GPIO2_IO20		0x31e	/* MIPI Touch RST */
-+		>;
-+	};
-+
-+	pinctrl_panel_reset: panel-reset-grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO10__GPIO2_IO10		0x31e	/* MIPI Reset */
-+		>;
-+	};
-+
-+	pinctrl_mipi_backlight: mipi-backlight-grp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x31e	/* MIPI Backlight */
-+		>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx93-byteengine.dtsi b/arch/arm64/boot/dts/freescale/imx93-byteengine.dtsi
-new file mode 100644
-index 000000000000..47ee54015072
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-byteengine.dtsi
-@@ -0,0 +1,185 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2026 bytesatwork AG
-+ */
-+
-+#include "imx93.dtsi"
-+
-+/ {
-+	model = "bytesatwork byteENGINE i.MX93";
-+	compatible = "bytesatwork,byteengine-imx93", "fsl,imx93";
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		ele_reserved: ele-reserved@a4120000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0xa4120000 0 0x100000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&lpi2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_lpi2c2>;
-+	pinctrl-1 = <&pinctrl_lpi2c2>;
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9451a";
-+		reg = <0x25>;
-+
-+		regulators {
-+			buck1: BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <650000>;
-+				regulator-max-microvolt = <2237500>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck2: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <2187500>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck4: BUCK4 {
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: BUCK5 {
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck6: BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1600000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: LDO4 {
-+				regulator-name = "LDO4";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo5: LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	/* I2C IOexpander */
-+	tca6418e: gpio@34 {
-+		compatible = "ti,tca6418";
-+		reg = <0x34>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	bus-width = <8>;
-+	non-removable;
-+};
-+
-+&iomuxc {
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x1582
-+			MX93_PAD_SD1_CMD__USDHC1_CMD		0x40001382
-+			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x40001382
-+			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x40001382
-+			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x40001382
-+			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x40001382
-+			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x40001382
-+			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x40001382
-+			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x40001382
-+			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x40001382
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x1582
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x158e
-+			MX93_PAD_SD1_CMD__USDHC1_CMD		0x4000138e
-+			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x4000138e
-+			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x4000138e
-+			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x4000138e
-+			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x4000138e
-+			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x4000138e
-+			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x4000138e
-+			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x4000138e
-+			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x4000138e
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x158e
-+		>;
-+	};
-+
-+	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins = <
-+			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
-+			MX93_PAD_SD1_CMD__USDHC1_CMD		0x400013fe
-+			MX93_PAD_SD1_DATA0__USDHC1_DATA0	0x400013fe
-+			MX93_PAD_SD1_DATA1__USDHC1_DATA1	0x400013fe
-+			MX93_PAD_SD1_DATA2__USDHC1_DATA2	0x400013fe
-+			MX93_PAD_SD1_DATA3__USDHC1_DATA3	0x400013fe
-+			MX93_PAD_SD1_DATA4__USDHC1_DATA4	0x400013fe
-+			MX93_PAD_SD1_DATA5__USDHC1_DATA5	0x400013fe
-+			MX93_PAD_SD1_DATA6__USDHC1_DATA6	0x400013fe
-+			MX93_PAD_SD1_DATA7__USDHC1_DATA7	0x400013fe
-+			MX93_PAD_SD1_STROBE__USDHC1_STROBE	0x15fe
-+		>;
-+	};
-+
-+	pinctrl_lpi2c2: lpi2c2grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C2_SCL__LPI2C2_SCL		0x40000b9e
-+			MX93_PAD_I2C2_SDA__LPI2C2_SDA		0x40000b9e
-+			MX93_PAD_PDM_BIT_STREAM1__GPIO1_IO10	0x1280
-+		>;
-+	};
-+};
--- 
-2.47.3
+On 11/10/26 09:18, Jason Yang wrote:
+> The binding now selects the PHY with the cell and the mode of the block
+> with the phy-type property of the provider. Read phy-type in probe,
+> D-PHY by default.
+> 
+> of_xlate() returns the transmitter for PHY_DIRECTION_TX. The deprecated
+> PHY_TYPE_DPHY and PHY_TYPE_CPHY select the transmitter as today, so
+> existing DTs are unaffected.
+> 
+> A phy-type other than D-PHY or C-PHY fails probe. A deprecated cell
+> value that does not match phy-type gets a warning, and the transmitter
+> then refuses to power on, as in C-PHY mode today.
+> 
+> Signed-off-by: Jason Yang <jason98166@gmail.com>
+
+Reviewed-by: Michael Riesch <michael.riesch@collabora.com>
+
+Best regards,
+Michael
+
+> ---
+>  drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c | 32 ++++++++++++++++++-----
+>  1 file changed, 25 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c b/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> index c40c84791eca..e8e229fc4856 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> @@ -297,6 +297,7 @@ struct samsung_mipi_dcphy {
+>  	struct reset_control *grf_apb_rst;
+>  	struct samsung_mipi_phy tx;
+>  	u8 type;
+> +	bool legacy_mismatch;
+>  
+>  	const struct samsung_mipi_dcphy_plat_data *pdata;
+>  	struct {
+> @@ -1376,6 +1377,9 @@ static int samsung_mipi_dcphy_tx_power_on(struct phy *phy)
+>  {
+>  	struct samsung_mipi_dcphy *samsung = phy_get_drvdata(phy);
+>  
+> +	if (samsung->legacy_mismatch)
+> +		return -EOPNOTSUPP;
+> +
+>  	switch (samsung->type) {
+>  	case PHY_TYPE_DPHY:
+>  		return samsung_mipi_dphy_tx_power_on(samsung);
+> @@ -1549,13 +1553,21 @@ static struct phy *samsung_mipi_dcphy_xlate(struct device *dev,
+>  		return ERR_PTR(-EINVAL);
+>  	}
+>  
+> -	if (samsung->type != PHY_NONE && samsung->type != args->args[0])
+> -		dev_warn(dev, "phy type select %d overwriting type %d\n",
+> -			 args->args[0], samsung->type);
+> -
+> -	samsung->type = args->args[0];
+> -
+> -	return samsung->tx.phy;
+> +	switch (args->args[0]) {
+> +	case PHY_DIRECTION_TX:
+> +		return samsung->tx.phy;
+> +	case PHY_TYPE_DPHY:
+> +	case PHY_TYPE_CPHY:
+> +		if (args->args[0] != samsung->type) {
+> +			dev_warn(dev, "unsupported phy cell %u with phy-type %u\n",
+> +				 args->args[0], samsung->type);
+> +			samsung->legacy_mismatch = true;
+> +		}
+> +		return samsung->tx.phy;
+> +	default:
+> +		dev_err(dev, "invalid phy cell %u\n", args->args[0]);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+>  }
+>  
+>  static int samsung_mipi_dcphy_probe(struct platform_device *pdev)
+> @@ -1566,6 +1578,7 @@ static int samsung_mipi_dcphy_probe(struct platform_device *pdev)
+>  	struct phy_provider *phy_provider;
+>  	struct resource *res;
+>  	void __iomem *regs;
+> +	u32 type = PHY_TYPE_DPHY;
+>  	int ret;
+>  
+>  	samsung = devm_kzalloc(dev, sizeof(*samsung), GFP_KERNEL);
+> @@ -1620,6 +1633,11 @@ static int samsung_mipi_dcphy_probe(struct platform_device *pdev)
+>  		return dev_err_probe(dev, PTR_ERR(samsung->grf_apb_rst),
+>  				     "Failed to get system grf_apb_rst control\n");
+>  
+> +	of_property_read_u32(np, "phy-type", &type);
+> +	if (type != PHY_TYPE_DPHY && type != PHY_TYPE_CPHY)
+> +		return dev_err_probe(dev, -EINVAL, "unsupported phy-type %u\n", type);
+> +	samsung->type = type;
+> +
+>  	ret = devm_pm_runtime_enable(dev);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "Failed to enable runtime PM\n");
+> 
 
 
