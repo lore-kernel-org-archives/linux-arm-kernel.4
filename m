@@ -2,112 +2,113 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC4D606A89D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CE8606A882
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 10:45:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PET6AGm3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PkKcsUrY;
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.a=rsa-sha256 header.s=google header.b=Lv9sxcnr
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=5dU63iyK2TdlVk8neNqkJILw/3rQx/WMk4I9zLgIavw=; b=PET6AGm3okPCOekRQH1eUPGWgv
-	sZVx5lcZ7HynQs5Fg9PRcAFrmWydohGpTlQUOejYKor/0WwZcokLImpJptr4r3wzMI1SaItGnCha5
-	b3v9ttyc/+7KuUpNs6WWFcVX6WV/kL724gY43oIDGCbz/183fvwz/Rht71xorfZuaMi7egFwnHeVG
-	lfj5XAtxHdxOoUrEaUJFoqx363ePIopDbzvAfg6EaSc4RwauukYu6SzgTqZlr7ddJJgBeB/sus+ha
-	DtKbNtOmGmJkXwLdNdc5P5SZYuOi9v808lkvzTphKI8FZCq+bn+YjEq3DuUImTsJT9uNC/gLyqjJ+
-	h8cZUp7g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=VcKJabFzTVbjKEa9TZqeK9yN9ffYcu/rnFFvEOpyqps=; b=PkKcsUrY4uCABp
+	LLNYYcIMftvioC1B4/EvRfySryKmqilDMA+pPaau71srMUHo5+GR22efM1RkR8f6mB8scCjWlCI73
+	OIekxVK+lNkNrtaWRlcmjERYwtvyRQswT7p7TyWE06BsEC1koaH5xNxa7mOeyL0jiq2Q2cW673I0w
+	lfKQOYne1d46oHyEnZrVsOlnLidDF5DZQd5RTaRv/u4AnyJoJj/wyfY5fe6/3gbhIocJ630ApiJ7o
+	kYppJMvh4UotOiprHZXRGqFx/o+gmUo/dj6VU9qsEM8wOWfcAWOq/Rd9i6KwkvJ3I0YCj1s2pJ0K6
+	1V88LLQ+JP10eHwZmCfQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5kS-00000006ND7-0BvK;
-	Wed, 11 Nov 2026 10:40:12 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xR5pW-00000006NmL-0BmP;
+	Wed, 11 Nov 2026 10:45:26 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR5kO-00000006NC2-15LO
+	id 1xR5pS-00000006NlK-1p99
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 10:40:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZPIy8Q3iVrImABOuZZF695GXPDxwjhglQGpSr7OvKg48PMPRgN41XLw8ze9Ki517N0LAS8E7aOuY5umx3s4RecTTWqMURyibP3wUP5tNRTNgrXSHDJz/y5fuFpn1fRg7wgzpXwUFVv/J/fE5k1DaIQpIzr54pAf5BVTNglyooXwxUqJXn++nG9prOu4vsztt7HGQ5RqeviooBL329t+y2BliarbfHOS8ZBOtcPKwA8EIYAIVazcxSF0q3uMo4FG3z/GaZE8zFEnZgbpkYzfseECpnI9Yl9ePD7NMNfq9vvxvAKYp+uqax+76Z2lAHOnRz3AivhWR56idOxbErNu9Jw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5dU63iyK2TdlVk8neNqkJILw/3rQx/WMk4I9zLgIavw=;
- b=KlgAzMSQc1T0cSMr5gTc7ayB2fMJnNh/M5YdX7WduxI03ichGUCKnyC298/nQLfWL5BzJDrIYCrNFHouagqmMJSuO1nln/b8S9N7+ghrLTnLEwUfqE8nL+0/A3JjZ83fWSZOzP4t1lLxBzUBS30yULUvwps54X1/2tlfMslBBFt5ZQ53X2h197d8JlFr/0u33eiPZ5uS6tMCBafwjWmHXr5/xNlYl7qAYjShOGu3KhhxS0M47RWTDHv98n7dZqEoGZ+USrRksVN03MEaZKR846U8KPPeOxo6aKH8G7ltGSY7V5kgvpm2LSwY+jz3GeNW3Chzm6QnwVmPEMDHsR/lGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI2PR04CA0003.apcprd04.prod.outlook.com (2603:1096:4:197::23)
- by JH0PR06MB7295.apcprd06.prod.outlook.com (2603:1096:990:a9::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.7; Wed, 11 Nov
- 2026 10:39:57 +0000
-Received: from SG2PEPF000B66CE.apcprd03.prod.outlook.com
- (2603:1096:4:197:cafe::30) by SI2PR04CA0003.outlook.office365.com
- (2603:1096:4:197::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Wed, 11
- Nov 2026 10:39:56 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CE.mail.protection.outlook.com (10.167.240.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 11 Nov 2026 10:39:56 +0000
-Received: from cix (unknown [172.18.64.61])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 239674102E74;
-	Wed, 11 Nov 2026 18:39:55 +0800 (CST)
-From: joakim.zhang@cixtech.com
-To: tiwai@suse.de,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: cix-kernel-upstream@cixtech.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH] ALSA: hda: dt-bindings: cix: add hda dma memory-region
-Date: Wed, 11 Nov 2026 18:39:24 +0800
-Message-ID: <20261111103924.3395516-1-joakim.zhang@cixtech.com>
-X-Mailer: git-send-email 2.50.1
+	Wed, 11 Nov 2026 10:45:24 +0000
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c4cdc606b47so462746966b.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 02:45:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794393920; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Z5nz8+FOHXoTCMCXTHVS4WSXKETNE1Dd2F0VuIUOW7J2vnueb2jIgfVvzib/bfj0EJ
+         gXdWdZr8w1uKqcPlGHwlX+GIwV5KbEcYwXRdXL3QPhQ004/W8+76+MfwhnVzyTcXExlg
+         5M9LxqXJYTHND2mEwuVcU8WR8kpzygHQQG+RHoCTTtT9uNtouXX4Pg5ZKy/XzfuYdtAS
+         pekoW29mDdurVotGUSon4fKEp4SrhKZaNeXOQtBJ6Lxo26ZUB5rApcnYL7qBEl1B0wsn
+         aaJ3VKrQhHApOvn/VydB0Z/qG5/AiwHaD5oNY1glqCWKd0JAirMt/8PvRHn9RT75C1NF
+         9fSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=VcKJabFzTVbjKEa9TZqeK9yN9ffYcu/rnFFvEOpyqps=;
+        fh=iC2n4o0mMlwzzkf4nL+rbm6qMzRUa44KWAfo2/YlzM0=;
+        b=RD62+rsMzO3pabA+qG2KyfoPHMD3aiAO5bE67duTxFw6MSAqyc+NJo52DLDx6i+HGV
+         77VgVdnpdbSmSOjtHUOLoAzrVVGMGRphvThhgTD2xfFVbeLuebluLbJIFI2wFzGHdGIf
+         6uQXkR0R57qamamGje1d6Bowq6zWME9/V4NX4wFur81QwshWSNP7bi+KagD3P1k3q9Fw
+         M479d54MVpHlets5BpZKFDbNLUvSDHmHnHMY8zcGJAUDUqLV6mS5+2OIXKt0gGZXwEQs
+         JBB3pxOgs9gH150PLiwe3MnJXmvDYexjOlDmKZ4o0Cdg5F2ioHJUk9qwgvbfHVXbOfqB
+         DbUA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1794393920; x=1794998720; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=VcKJabFzTVbjKEa9TZqeK9yN9ffYcu/rnFFvEOpyqps=;
+        b=Lv9sxcnr3F6JoqcYF+SHhDpyYS0Wc21e/BxKj4AglkKXprbswWo4R48xx1wwUwdN3s
+         +m8e3Wm9jtfzWKWwatDvlHZeTeMjkEXGHvHkAkOJxOJTRg9eh1Vq4ks1XceeRBefmx8R
+         hH1mEMfE1uu6hOMUe5z4j9XFaDZ+E9kmivE5EBnpfpNKrHdDtB5r1W6ivi22EhevyZfM
+         P+uOnYXtmpADhC6A+fP3T8C+n/7pfyBJup1MmhJDGvY36L5T2rViQqHNfxphSnNVMCvZ
+         4fyP4/W32MOlc6ni11DBDKm5rE8Rnkg7eVmfvIUsH597xOLmfee2icTm8g3XJSM/zbMK
+         Wjhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794393920; x=1794998720;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=VcKJabFzTVbjKEa9TZqeK9yN9ffYcu/rnFFvEOpyqps=;
+        b=pFthEK/Gmq0fMYwiVer16paDCtV/FxJCYkDlIU33K6th0UfZ6rebTThXKXwPWy0Js/
+         iVW/lk5b2qjdfwAWbI0SD34lESHEeBaDdFODUHXbEoLJhu/CWd0ppT0WdZkKd3s8ZPXg
+         mSXiejZ2AcLSdJqoIiKukplQn609mj+HjlS7kAe0X8v2TsbLW9hxSU8qf5EGXM21ysSc
+         KI0uJexE8doUjRd6Ixyg9RonBLooCIWHM0QsniUmdRAOcRxDT1x9AiGt2nNsFDM5Ei2u
+         3TCR7c3Ubyb4syIrWZ5FCCBqGG0hoRnYNZnzgqU7FvjVp9zO+lUkWehACieCRsNJJ1ea
+         iDiw==
+X-Forwarded-Encrypted: i=1; AL+hErEWCcPmNcn3k4KwJg3bAxt8fmGZ71bMITHFmPvuvU7j/DfPBi2nIUSu52NZxpyqY2nKO7Kq2qxNuw4+iYnO1TtK@lists.infradead.org
+X-Gm-Message-State: APuU4Z/z+9Drk9NiA5P3mC/ukt8/oucS3Ij8hwPxBRJ3wf78B5H4Q56E
+	MDDcf09eT8xQ/WMsPhPypDf6/fet5Negu3T1Zl7526yRTFt575tepo3nfgGhGiwfkuTTcxDB3G1
+	cDqwR79C+MYvcxahLD/4FHTeHEqsdFsdXSLDyK3pt4Q==
+X-Gm-Gg: AYBFou2aORpmiPgiBFVN5wXdmebtMo7rjU+w3uWUaTJKo+piig77OELD9EGuazERd1v
+	iqbFgJxNK/cY8oL2fe4MS+dWsKDwY0d43kwKSIX25mdCLXan2CCOfUJaNuq21v+ENrrwMoBsiNW
+	vUYkOfur2PPhXOo+uOo2xv2rfoowUtT9g2BvClQeM2XZddi54/a/8tMmGaumQ8Gsq6gDf7f4+/W
+	Fvb0uRvO+Izbt/d8rKzcchDr6kxBOHwJw6eJ5DMtPNgBsP+anBj1eEgsIhWMgC8jnOWUnmaW7/t
+	TqI8Mr4ZqDNhYxAV/A0Gupn2vfF2E0pAOJe8giTCxSxdZL/QoOEpQB6DcjIlSlDsUzbBvnr2Rk+
+	HzQeguygIGOEG+LYJH8B1A/sHcC4mFy9zPxwnr6yH5TOPt2x1iP+nWi4eT/odOTzECnSPbQ==
+X-Received: by 2002:a17:907:7292:b0:c2e:2252:6ddb with SMTP id
+ a640c23a62f3a-c5066a84511mr152183666b.10.1794393919375; Wed, 11 Nov 2026
+ 02:45:19 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CE:EE_|JH0PR06MB7295:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 5d0a490e-7db4-4882-475d-08df3fe0210f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|36860700016|7416014|23010399003|1800799024|82310400026|10067099003|261026121527099003|261026140227099003|56012099006|261102123227099003|261022113327099003|261009223027099003|261022075727099003|261021123027099003|261028144727099003|261022105027099003|261021121427099003|18002099003;
-X-Microsoft-Antispam-Message-Info: iy5/a4pXvnjUB1h89oNS1nDoawaOVoDjFCkZhdbONY9eTo2Hk3JH9pvGjpTWUOPRqPtxCrXl7M+XglbIhFCEt3ZfK4PqbJXLBHczRDEqrYc0gWEhLzVS1Hd/C3Y2vHR1nzJ5RM9nBzTYaNGhddXFb3a6v0tmfKt3Gy5+ZEsTFplwvJbxdQ4eoyB4QPWGT1YxQZgZ+7+MJnGoq3/50nwV63+aTa0JvSTRB0E2HYwYRKF6AWwS1Go+uxW/MmOonM81Z5Ka7IpVTcz7hlY7f5+/nluJAA7ZdDHpX8FFHp0qnR+Mf/yb+LMZyjnz4fIGqqhBM7Kkub0PRajyolDAN0+s6cVteudhqDr5vaSjE2KWyh0MJf2mMPrTEBMgA1p6gqO88raIXfvHRssZx4FMxTeVti60mrgVumqFwdYCUuWtSk3hkMmGcB2XmWXgPOnkea2h3x1jVOBEyANRkPAbznLg1ELo1jVU8Q0B+VY3EWm1j7wK99tNv77zvDc+IFU9/blSmv3UxBO2RhTCEb55XBC9mm/otRgDmDmV+AiXcEdtXLwDdWJKOJUZePw/3zUGZDO0dl25i8vOvH6zw0cN9o2jBOO4UdLoolSbzpS+XRwCsX4jMkSzQOIHJFQymPhn15qN+fVDwUS+L1Wtv+Q9oAdoRC4FN8qm/Yu6euAIIMsNySWlLAOA30Hty2sWHn4kQIUv5XBSgzdgbEs2BGrPz2ZY1w==
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700016)(7416014)(23010399003)(1800799024)(82310400026)(10067099003)(261026121527099003)(261026140227099003)(56012099006)(261102123227099003)(261022113327099003)(261009223027099003)(261022075727099003)(261021123027099003)(261028144727099003)(261022105027099003)(261021121427099003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: v57NzvjQwG7RygBZ67M3639krswWEvkHKdwcBKyzYtm9f0OKR/JmD92KeRQfQzt4ozhpozR9fLWj1pI24S5c+mnIrRAxoLtBjWR38qUl8ZkpU61G34n9osRAEIbwRBgIAceBMYtK0c2iGr1chl85Vp9rz/hAHjtJm0jXYED42lESl0f7Rjelwg7v1KhdPwNI0bpA5MzBnZcM/i+XXvXuDI/mv6mRutukVOt+gxW1x2Bgbx+RhQ7taMOtWNMfw67pK/PZVUDx6ESzLXRJNhZYVMfrc/xxRBQnG8ANAgG1e7vhaTlOw/Kd0RJWIRjEsrK5IAPu4pXUeHHzJ+JhFundknP/8egsYVn1dpwwrKOLfAjdkLjBRUoc//dDpF+Yma/nN6mkv+TxV1gQ2gJC6VB8RbImG49JgRk6+c4iYP6ztvcFA+71Zv5UG3LN/nFLgU7+
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 10:39:56.7881
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d0a490e-7db4-4882-475d-08df3fe0210f
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG2PEPF000B66CE.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB7295
+References: <20261106-rk3576-evb1-husb311-v1-1-99c2f57ea2a5@flipper.net> <dd59d491-82b0-4047-ae98-f8070f6be112@rock-chips.com>
+In-Reply-To: <dd59d491-82b0-4047-ae98-f8070f6be112@rock-chips.com>
+From: Alexey Charkov <alchark@flipper.net>
+Date: Wed, 11 Nov 2026 14:45:08 +0400
+X-Gm-Features: AclHuK-JFFUWS_xdTW0P5OLa1DScA4kfALrbjXlHmDv-4WjET9Tuop7_ZcygSgc
+Message-ID: <CAKTNdwHbxnknob9NdjqWUcGU2fURO5B7V4kTTK+fvEYjNDOLCA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Describe the Type-C port on RK3576 EVB1
+To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_024008_301941_9C7B9CA5 
-X-CRM114-Status: GOOD (  11.01  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_024522_505830_3CC96373 
+X-CRM114-Status: GOOD (  19.84  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,52 +119,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Joakim Zhang <joakim.zhang@cixtech.com>
+Hi Chaoyi,
 
-Document the reserved memory region used for IPBLOQ HDA DMA buffers,
-since the memory accessed by HDA DMA has certain limitations.
+On Wed, Nov 11, 2026 at 1:31=E2=80=AFPM Chaoyi Chen <chaoyi.chen@rock-chips=
+.com> wrote:
+>
+> Hi Alexey,
+>
+> On 11/7/2026 1:52 AM, Alexey Charkov wrote:
+> > RK3576 EVB1 has its USBDP PHY routed to a Type-C port with a HUSB311 CC
+> > controller and a fixed-voltage VBUS supply.
+> >
+> > Describe it in the device tree, including the wiring for both the USB a=
+nd
+> > the DP side.
+> >
+> > This makes the data roles follow the Type-C port's negotiation, so the
+> > port stops being host only. It also leaves the VBUS regulator to be
+> > managed by TCPM instead of being hardwired via the tangentially related
+> > phy-supply on a USB controller. DP lanes are also muxed dynamically by
+> > the USBDP PHY based on the Type-C port's negotiation, so the hacky fixe=
+d
+> > lane muxing also goes away.
+> >
+>
+> Have you tested this? As far as I know, dw-dp driver does not support
+> Type-C HPD yet.
 
-The property is optional: the controller driver falls back to system
-memory when it is absent, but the limited region should be used when
-the platform provides one.
+I did - it works fine for me under Linux with Sebastian's patches. My
+primary motivation, however, was U-Boot, where the current phy-supply
+hack breaks USB data role switching, due to VBUS being forced
+always-on. With this patch it works, and now the DT actually describes
+the hardware, as it is supposed to.
 
-Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
----
- .../devicetree/bindings/sound/cix,sky1-ipbloq-hda.yaml    | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/cix,sky1-ipbloq-hda.yaml b/Documentation/devicetree/bindings/sound/cix,sky1-ipbloq-hda.yaml
-index 02ac5f1aa926..045e1a517f6f 100644
---- a/Documentation/devicetree/bindings/sound/cix,sky1-ipbloq-hda.yaml
-+++ b/Documentation/devicetree/bindings/sound/cix,sky1-ipbloq-hda.yaml
-@@ -36,6 +36,13 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  memory-region:
-+    maxItems: 1
-+    description: |
-+      Reserved memory region used for HDA DMA buffers. The property is
-+      optional; the controller driver falls back to system memory when
-+      it is absent.
-+
- required:
-   - compatible
-   - reg
-@@ -59,4 +66,5 @@ examples:
-         clock-names = "ipg", "per";
-         resets = <&audss_rst 14>;
-         model = "CIX SKY1 EVB HDA";
-+        memory-region = <&audio_alsa_hda>;
-     };
--- 
-2.50.1
-
+Best regards,
+Alexey
 
