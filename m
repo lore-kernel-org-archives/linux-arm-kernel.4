@@ -2,74 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4F7606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1DA606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uOVp3neY;
-	dkim=pass (2048-bit key, unprotected) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.a=rsa-sha256 header.s=h01 header.b=cO9XoWLf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Szaefmi0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Djhhcsbl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OYfWv7t3fNfV5mHgH3rQFUU5ZnGse0SEirQFnt+sNZA=; b=uOVp3neYvlWA0x1NVZcZZyYWBQ
-	+GSfPi6pOXE1EJswr5UHGh7WiRYqTlCd/0uZVktXCpk0YuAQ0a0zEQnvNKNujxsBLy275Da8ZWQGe
-	uLT8+ure+ooDdsWCeP/wNsKvjlxZgoX5z7qiLJ7imi4oTthBzghNFJ/lCBBBtkQCtYcRzEzB+WHW9
-	hoE5xwlpOmcUmkAwJBN0E9R+CH/i36pmt7k9I+iwlxt5kwdS5iCb1aoQcBVnsnXaZ5Dcqw1KJRWPH
-	euHZ0rPioqUvHBiUlWjnwhYPPHDx8kUwKqGv1jLv2wZJGGGLpwS6h2cm7YGDgUQF2owUlg0MBGJd+
-	kjyofdsA==;
+	bh=PzG0rJZUGKNJfM97jTQLU563A2BoSWOnrtLJjZWzR7Q=; b=Szaefmi0j1218hAetwow1WSUt1
+	mTARA8OIrfFiKWUZDJCDZ0Bhzznoce6cXXnzYWu9AzNpegay2J46uwi2pZD2LZyMrjRm+B6ov4ezC
+	CyNQgs4whpZcl2K2G1pqNgxzXPpXtXuzy35a3wF9Aauqff7N+krteBH5remui0IsgiPZY54B0p5m1
+	WFAFXBB9Ei7ioRkaAlFv3Gdg7nlWaKpTJ4V22wRbYUIJpt9Z2Jrqa8y9dz2mGkwtdQsu4KDMf8kDb
+	4U0554sKw9flRCMaRlOkVMZ8kHtGedouKIG0uTIkZvuWvPZ8atSGwQNKGBBIt03MPn94hroVIwfEK
+	SN5dyjXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR643-00000006P3g-2cO8;
-	Wed, 11 Nov 2026 11:00:27 +0000
-Received: from abb.hmeau.com ([180.181.231.80])
+	id 1xR64S-00000006P79-367Z;
+	Wed, 11 Nov 2026 11:00:52 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR640-00000006P2y-1Q3x
+	id 1xR64R-00000006P6n-0dGD
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:00:25 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
-	from:content-type:reply-to; bh=OYfWv7t3fNfV5mHgH3rQFUU5ZnGse0SEirQFnt+sNZA=; 
-	b=cO9XoWLfjDEAo8WYLWNOoEiRtgAE4GB5whJjASVlg2jl9XmeIcKVqZ99wCK8SeuajrdKFGY4a7J
-	l83YVFNtjopeZ2QhhCElQjui5HmK7/eCClUGF1gPmKhJKIJC1X1bAZVfcThNl6pKzSZkQukc1EV9o
-	8WghVTs7Cz0q6uDE8dH4X8nowKLY/jGAa/79QC9okwhA3v2LoLY3OoCd1yO5wFPukyTfmBXifjFQ0
-	y98Qrpd6yL2V7nAwtyOOaGtrXWX864+psHHS+KEFHDw+b3pJOAv183r+H151YNRbiE/jjviiT9yHh
-	+KlpasAfqR++rkd81godh9nh0zIBozgEs/iw==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.98.2 #2 (Debian))
-	id 1xR63k-0000000DmCq-0pos;
-	Wed, 11 Nov 2026 19:00:09 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Wed, 11 Nov 2026 19:00:08 +0800
-Date: Wed, 11 Nov 2026 19:00:08 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Russell King <linux@armlinux.org.uk>,
-	Eric Biggers <ebiggers@kernel.org>,
-	Demi Marie Obenour <demiobenour@gmail.com>,
-	Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
-	Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-	Birk Skyum <birk.skyum@pm.me>, linux-crypto@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, stable@vger.kernel.org
-Subject: Re: [PATCH v11 0/2] crypto - qce: make algos optional and remove the
- BROKEN label
-Message-ID: <avRKuPGD6QdRXrat@gondor.apana.org.au>
-References: <20261022-qce-fixes-broken-label-v11-0-0d33c34fd0c3@oss.qualcomm.com>
- <kh74or65txfcprntqqljabnszooj5ppuwizj35flv2r245zbvo@nfue4wdblicr>
+	Wed, 11 Nov 2026 11:00:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 968A461844;
+	Wed, 11 Nov 2026 11:00:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB8381F00A06;
+	Wed, 11 Nov 2026 11:00:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794394850;
+	bh=PzG0rJZUGKNJfM97jTQLU563A2BoSWOnrtLJjZWzR7Q=;
+	h=From:Subject:Date:To:Cc;
+	b=Djhhcsbl71g30wN5Nl+2FxXCkWu4IVvlAN2d1X8OUR76HYOaCZ1w1+B0VHBfP5THy
+	 ttBD6WbkSBvy4F8mYYWB/Nh5HMuAyiPd0yUgqF471Xvgg1Wctth/nsknmEP1OkTxn2
+	 +jj3BJrE6oNeNwM4mNWCUD+hN+ijETy6p/u5juSPl+SDnuLJdt96y/uRRyW5X+YTFk
+	 g79KtdSglCNFHih6TS5ad8sgQXA+CfIpLSbpE9xDcFOGdm+zn66XEDQUhbcAYXlTO0
+	 atip7dCmm2lrXR0v0lxeR6YkUMJ7tZ6NlGyN1VuDwRr45TGJxGh3pA5UpoiAkuVgVb
+	 3GefA94XhUYfA==
+From: Linus Walleij <linusw@kernel.org>
+Subject: [PATCH v4 0/7] BCMBCA PMB power, clock, reset and hardware
+ monitoring support
+Date: Wed, 11 Nov 2026 12:00:41 +0100
+Message-Id: <20261111-xg6846b-bcmbca-xrdp-reset-v4-0-17035a5e8ad2@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <kh74or65txfcprntqqljabnszooj5ppuwizj35flv2r245zbvo@nfue4wdblicr>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_030024_383285_2DAE9A25 
-X-CRM114-Status: GOOD (  17.12  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/33Oy2rDMBCF4VcRs/YUjSzJiVd5j5CFLmNHtLWNF
+ IxD8LsHB0JbCt6exXf+BxTOiQu04gGZ51TSOEArdCUgXN3QM6YIrQAllSVJNS69PWjr0YdvHxw
+ uOU6YufANIzfkDzIo4zRUAqbMXVpe9vlSCbimchvz/XU107a+Vb2jzoQSo+tMpKZhovr0yXngr
+ 48x97Cxs/qhSNIepVCiNqbjI3M0zP+o+jdl96h6q7Iusm/IdeH4h1rX9QkIJBhjWQEAAA==
+X-Change-ID: 20261013-xg6846b-bcmbca-xrdp-reset-de71b80c25a4
+To: Linus Walleij <linusw@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, 
+ Guenter Roeck <linux@roeck-us.net>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Jonathan Corbet <corbet@lwn.net>, Randy Dunlap <rdunlap@infradead.org>, 
+ Ulf Hansson <ulfh@kernel.org>, 
+ Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: mfd@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org, linux-pm@vger.kernel.org
+X-Mailer: b4 0.16.0
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,41 +87,154 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 02, 2026 at 10:58:12AM +0100, Bartosz Golaszewski wrote:
-> On Thu, Oct 22, 2026 at 10:57:58AM +0200, Bartosz Golaszewski wrote:
-> > This is the follow-up to the three smaller series fixing crypto
-> > self-tests in the QCE driver. It makes the crypto algorithms opt-in via
-> > a module parameter and removes the BROKEN label so that the driver is
-> > built by default.
-> > 
-> > The dependencies are:
-> > - https://lore.kernel.org/all/20261016-qce-fixes-sha-v1-1-3ee5a30d84f3@oss.qualcomm.com/
-> > - https://lore.kernel.org/all/20261019-qce-fixes-skcipher-v12-0-046e6be9bd83@oss.qualcomm.com/
-> > - https://lore.kernel.org/all/20261020-qce-fixes-aead-v12-0-77a2e09abd0c@oss.qualcomm.com/
-> > 
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-> > ---
-> 
-> Hi Herbert!
-> 
-> Gentle ping, can these three series + this one now get queued for v7.4?
-> The three dependencies have no more sashiko comments. The ones for this
-> one are minor about missing module params docs so can probably be
-> ignored or I can send a follow up.
+This is another of these big upfront design binding and driver hoards
+that is the consequence of adding new SoC support.
 
-Did you miss the Sashiko comments about missing documentation?
-Please address them first.
+My stake is to be able to boot and test a full featured Cortex-A7
+system and the BCM6846 XG6846B is one such system on my desk.
 
-Thanks,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+It's been cooking for a while in various prototype forms.
+
+IMPLEMENTATION:
+
+The PMC contains various stuff so this needs to be a simple MFD node
+so more things can be added into it later.
+
+Inside the PMC is the PMB, the power management bus. This bridges
+to several individual peripherals which are very clearly distinct
+devices on that bus.
+
+Handle the PMB with an MFD driver with power domain, clock, reset and hwmon
+providers.
+
+Expose the standard BPCM peripheral, memory, USB and PCIe domains and
+a combined XRDP domain covering XRDP, the three Runners and WAN. Keep
+the peripheral and memory domains always on. The power domain provider
+now owns zone transitions, leaving the reset provider to pulse resets.
+The CPU and PLL blocks use different register layouts and are excluded.
+This new power domain integration has not been tested on hardware.
+
+The BCM6846 XRDP reset sequence enabled full-MTU traffic on all four LAN
+ports and copper WAN and has been tested on that series. The zone
+power-up sequence also passed direct CFE flash boot in the Linux 6.18
+OpenWrt port; this folded v7.3-rc1 revision still needs hardware testing.
+
+MERGE STRATEGY:
+
+Through an MFD immutable branch once everyone ACKs the subdrivers,
+it will take time I guess. Queue the bindings and drivers in MFD.
+
+Updates to peripheral schemas and device trees to accommodate the power
+domains will be submitted separately.
+
+The patches were authored with the assistance of an LLM.
+
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+Changes in v4:
+- Reset: simplify sequence dispatch, rely on core translation defaults and
+  clarify power-domain ordering before reset pulses.
+- MFD transport: disable unsafe regmap debugfs access and keep register
+  reads, writes and bit updates serialized in the callbacks.
+- Introduce the PMB binding, child bindings and IDs before the PMC binding
+  so binding checks work at every commit.
+- Expand PMB as Power Management Bus throughout.
+- Sort the PMC and PMB example children by name and drop unused labels.
+- Link to v3: https://patch.msgid.link/20261106-xg6846b-bcmbca-xrdp-reset-v3-0-d6adeb71afc9@kernel.org
+
+Changes in v3:
+- Add a PMB power domain subdriver and binding with a combined XRDP domain.
+- Move XRDP, Runner and WAN power sequencing out of the reset driver.
+- Register the power domain MFD child.
+- MFD transport: simplify cell registration, drop unused state and
+  property.h, and add the bcmbca-pmb subject prefix.
+- Power domains: default to MFD_BCMBCA_PMB.
+- MFD transport and reset: use mutex guards; reset: use
+  str_assert_deassert().
+- Clock: use the reference clock as parent, limit CLK_GET_RATE_NOCACHE to
+  PLL outputs, drop CLK_IGNORE_UNUSED and simplify Runner registration.
+- Clock and reset: suppress manual bind/unbind.
+- MFD transport, clock, reset and hwmon: drop redundant mod_devicetable.h;
+  clock: drop slab.h.
+- Power domain, clock, reset and hwmon drivers and PMC/PMB bindings: drop
+  vendor-source references from comments.
+- Link to v2: https://patch.msgid.link/20261101-xg6846b-bcmbca-xrdp-reset-v2-0-455fe9eed5ee@kernel.org
+
+Changes in v2:
+- Use a shared PMB regmap in all child drivers, keeping keyhole semaphore
+  handling and timeout recovery inside the MFD provider.
+- Drop PCIe reset IDs and sequences pending proper power and lane
+  configuration handling.
+- Power up the XRDP, Runner and WAN zones before the XRDP reset pulse,
+  preserving the sequence tested with direct CFE flash boot in OpenWrt.
+- Describe clock, reset and PVTMON PMB child nodes with separate
+  compatibles.
+- Move the PMB transport and accessor header under MFD and register
+  clock, reset and PVTMON MFD cells matched to their child DT nodes.
+  Select reset variants through OF match data.
+- Add PMB clock support and PVTMON clock and reset bindings.
+- Add PVTMON hwmon support for temperature and all seven voltage inputs,
+  retaining the zero-cell thermal sensor through the hwmon bridge.
+- Drop the unnecessary literal block marker from the PMC description.
+- Use the BCM6846-specific "brcm,bcm6846-pmc" compatible.
+- Expand PMC as "Power Management Controller" throughout.
+- Move the LLM assistance disclosure from trailers to the cover letter.
+- Drop the RFC prefix.
+- Link to v1: https://patch.msgid.link/20261014-xg6846b-bcmbca-xrdp-reset-v1-0-daf5d177e113@kernel.org
+
+---
+Linus Walleij (7):
+      dt-bindings: soc: Describe the BCM6846 Power Management Bus
+      dt-bindings: mfd: Describe the BCM6846 PMC complex
+      mfd: bcmbca-pmb: Add a shared BCMBCA PMC3 PMB transport
+      pmdomain: bcm: Add BCMBCA PMB power domains
+      reset: Add BCMBCA block resets through the PMB
+      clk: bcm: Add BCMBCA PMB clocks
+      hwmon: Add Broadcom PMB PVTMON monitoring
+
+ .../bindings/clock/brcm,bcm6846-pmb-clock.yaml     |  39 +++
+ .../bindings/hwmon/brcm,bcm6846-pmb-pvtmon.yaml    |  42 +++
+ .../devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml  |  87 +++++
+ .../bindings/power/brcm,bcm6846-pmb-power.yaml     |  44 +++
+ .../bindings/reset/brcm,bcm6846-pmb-reset.yaml     |  31 ++
+ .../bindings/soc/bcm/brcm,bcm6846-pmb.yaml         |  90 +++++
+ Documentation/hwmon/bcm_pmb_pvtmon.rst             |  53 +++
+ Documentation/hwmon/index.rst                      |   1 +
+ MAINTAINERS                                        |  20 ++
+ drivers/clk/bcm/Kconfig                            |  11 +
+ drivers/clk/bcm/Makefile                           |   1 +
+ drivers/clk/bcm/clk-bcmbca-pmb.c                   | 388 +++++++++++++++++++++
+ drivers/hwmon/Kconfig                              |  18 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/bcm_pmb_pvtmon.c                     | 231 ++++++++++++
+ drivers/mfd/Kconfig                                |  11 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/bcmbca_pmc3_pmb.c                      | 308 ++++++++++++++++
+ drivers/pmdomain/bcm/Kconfig                       |  10 +
+ drivers/pmdomain/bcm/Makefile                      |   1 +
+ drivers/pmdomain/bcm/bcmbca-pmb.c                  | 279 +++++++++++++++
+ drivers/reset/Kconfig                              |  13 +
+ drivers/reset/Makefile                             |   1 +
+ drivers/reset/reset-bcmbca-pmb.c                   | 227 ++++++++++++
+ include/dt-bindings/clock/brcm,bcm6846-pmb.h       |  42 +++
+ include/dt-bindings/power/brcm,bcm6846-pmb.h       |  12 +
+ include/dt-bindings/reset/brcm,bcm6846-pmb.h       |  11 +
+ include/linux/mfd/bcmbca-pmb.h                     |  11 +
+ 28 files changed, 1984 insertions(+)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261013-xg6846b-bcmbca-xrdp-reset-de71b80c25a4
+
+Best regards,
+--  
+Linus Walleij <linusw@kernel.org>
+
 
