@@ -2,96 +2,131 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44195606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A6E606A898
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=10G/O/TG;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Hjkf1nv3
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Evu9K1vH;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H2HTk8rO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=HSCvd+sKcy/x5N18/OwME5CoI7fmfzufVnmhSLVqNak=; b=10G/O/TGqv1MRZUuI+iypVhHFu
-	ALDMdlDsoAWatpC4F00yf5Q55l/zPRZ87PULQ9H+GiPUA0DmUtw/g1ITYjvZF2EjihEaAFyxU5+Um
-	eGtyggqNswaglSJOO34nNabUW73hOEtEzF/OYwDqTJu6IRbZsdV58HL1xkKIW1jjXBibz5SxSBt24
-	FudluOJ71BwhnKJLI5UBm55LqP7cwOIwtfTfsggYTL87i35suI9sqPIBXuMFigUnaxVjU+tzYzHSy
-	nA2+UKxXlajc3r5eM6b/s+n29cE0NFf2H3AoCYK5JyIcwQ8VNfOt62lL2JChkdVGZedEQS8e/qW5B
-	ipDWgxOA==;
+	bh=/29Fh1u2FOm5/5k1pmwlztbcmx561O6eu158ApMSsyU=; b=Evu9K1vHAzYPv/uyFknSxqNVH3
+	UagUef1a9wAeioh0JnQfDUcgzFLpf0iWfQ5M0hjVciJq+1dc1qaG36DI+fAXA/AhFihyPHCF1xO2q
+	seI5AQU3TT3PlUnJ8omD4kM9JEMW7KWSQNwrND0LeBJX/9OHQu1BlvGj3/1TIgP/fp4buNfEbcZ3L
+	Kew/Di1aerA+Ub1X7mlJcJUZXawNrFqs8xNALQ89NfLqQJMX6XSP4O6Z1erkr1RSs8PPf7xjXM0Ff
+	xshkZT5n/Tz1LiYXhNNwYiL6ehR0VHetu8JLKsl3/OF/n/IFWrybHfuDONyhAaI2+pOqYm63HFpvj
+	lKCBQ8fQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGOe-00000007tFX-0kwz;
-	Wed, 11 Nov 2026 22:02:24 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1xRGPN-00000007tPV-1O0E;
+	Wed, 11 Nov 2026 22:03:09 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGOa-00000007tEa-3n9q
+	id 1xRGPM-00000007tPC-0V96
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:02:22 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a35a60499eso28355055e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 14:02:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794434538; x=1795039338; darn=lists.infradead.org;
-        h=content-type:mime-version:references:in-reply-to:message-id:date
-         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=HSCvd+sKcy/x5N18/OwME5CoI7fmfzufVnmhSLVqNak=;
-        b=Hjkf1nv3C1I0PIVfcfTVAOdOKAcWm5bNB+52A8hHMWuKuZmVPr5ZbB/LdePfKi6LRm
-         28SB80l09MODzY9UHGxfgUDnlcxwUriYGBs89PwXJJ/4tmKyM7idpZA0C7h0QDVfExyg
-         8NimbwZyURGCEUmIJEyInkrRovr+Kt+rnlpfWX75WWMtBZt8PjDPpoId8TZSuutO2cge
-         B0dxSDcgZ1d2l3E2XBknun+7Q8kLh0PAvaUzeNdPoIRr6QPXLlPg3/fCkKTNRl/szrS5
-         439aoCtEXfW06B2OBKzAGafuPDgQvXB10xc9KwzXeid3H7QxpPSvz9CcEnlE+IWqLQxQ
-         NDEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794434538; x=1795039338;
-        h=content-type:mime-version:references:in-reply-to:message-id:date
-         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=HSCvd+sKcy/x5N18/OwME5CoI7fmfzufVnmhSLVqNak=;
-        b=KsTZO4kXaNL1FM9snTuaCcrR5ADdzG0HTyPBZryZ094X/zfPjOCRtbF7CdKbd9VCMb
-         GM4dI4R1OQW9MVatlg1m10zR/4mqVWRbXUcZ3kR9DGunjiLYpPwD7PFjX5lHvEWtXYj/
-         v11CkyV7AJ6KOhoHDUsDfa6Ek3xgZtvztug5P3zvfaZ8pxrrYg/oyErTa3dLnltH8Trg
-         EFiF6ndaaaIhK1BHn2GUA26zef81AqC9mM38yPohHV53WN7cbsFExMh+6XiJsWCIYuFn
-         V+6be06D3w4/bhgEgDgiyOiNuEDd5xzoqsa/yHJKkpqk9efwKLofrWsPrFk1iZTNApyF
-         9U3w==
-X-Gm-Message-State: APuU4Z+VVhyB0NYa1Q6YjtUxlkebHKgiEG3ipfbVNinDuWVA+kWCfC4b
-	z+NR1/O28zWglSfOYQVm5OWteDRjBwZWUCN1kPY+Hd2zs+wXMUE6fC7m
-X-Gm-Gg: AYBFou2UH5xhlbBDF9p02o4hH+YUUl10MbL8bljIT+tWowur4ikl4FV663yCSRdYGt6
-	+EBGy2n9jFVjkiV68xsvCF7GOKm0XSg3zllLPxBn7nxBk5qb/t695nE2uWH5H/gLKUUGRzma0Yg
-	/b8Fe2xkHnYnD7tiDjttSojVyI0g8oqEHYG0pmo8e+XqvMfnFccJ2TrYniZfek0AKunW9e3i+JN
-	0RUGar78EPpxHwYKAIBk8an54sn1RE0tFoff8tAAX0l8p/8ieimR3mVUPV74YeBwo/m8qUbtPZc
-	YmTAIRwRqC0UH9s9ZUmdtL9ceK5hipuWYMHFNYEqcGF7hicbT0F46VnaVOSFxe2qX1tGsKnpyOo
-	275hnXQuxvSw5YNPfiuSPUgNNlsKJdLghJEQuHZMzmh6iqtJtpNmkweMiEFDpQ/duhSVXAFcbIU
-	MboYQIVoFGX0CJsLWeYUlcvB8XqFkxMvi2qK9NZgF1iu5mm6QpmWMq9hw/ogzRxH+FfX22XWF0E
-	OD4M1cYfE7iuHNrI4wpFoWzy6nE7UwiPTPVa4Ci5kYfi9boizMHJv5WsYoPJwvuuEBJJdrTzco4
-	SGwk+J52Gt1V/qNcBKHacHyxOh+C3UtzoLBwrOOmvC26
-X-Received: by 2002:a05:600c:190a:b0:4a3:59ee:86b with SMTP id 5b1f17b1804b1-4ba0931ed3amr68718305e9.4.1794434538175;
-        Wed, 11 Nov 2026 14:02:18 -0800 (PST)
-Received: from silicon.doe.home ([197.250.160.218])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e29d24dsm18035215e9.11.2026.11.11.14.02.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 14:02:16 -0800 (PST)
-From: Stefan =?UTF-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
-To: Navid Ghahremani <ghahramani.navid@gmail.com>,
- Agustin Santiago Isasmendi <isasmendi.agus@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, arnd@arndb.de, krzk@kernel.org
-Subject: Re: [PATCH v2 00/24] ARM: zte: Add support for Sanechips ZX279128S and ZTE
- ZXHN H3600
-Date: Thu, 12 Nov 2026 01:02:04 +0300
-Message-ID: <Lv-2l5qpSwW-LGAsxs8loQ@gmail.com>
-In-Reply-To: <20261110153522.1620088-1-isasmendi.agus@gmail.com>
-References: <20261014072109.1759502-1-ghahramani.navid@gmail.com>
- <taToYWqTRsyGXzOXNcd5Qw@gmail.com>
- <20261110153522.1620088-1-isasmendi.agus@gmail.com>
+	Wed, 11 Nov 2026 22:03:08 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 2040261D2C;
+	Wed, 11 Nov 2026 22:03:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E751F00A05;
+	Wed, 11 Nov 2026 22:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794434586;
+	bh=/29Fh1u2FOm5/5k1pmwlztbcmx561O6eu158ApMSsyU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=H2HTk8rOLZgWw9Lm2uB8it44XJGQ1VP252zKM3Vsl27YeQT3fQC/oPf+9dR1GGuPe
+	 fTrdVHJg83sazuCLRwsK7FMBmZ65BjYmx/5l1Fr9V4zrWbVX2E4c/EGrAZHOJ23iP5
+	 K6oVJy3Ue6XdepxFi87RWoq3TdzVK9qDLL8BM8XMCz9n7H3pjJ8s2COHz+NjnFIDwg
+	 2eGJ+4dbOKk2dBpxqBDuRpXAU1slNtJxbA2Dkar3W/730CiqV+uxXwdTMmafxIRXoH
+	 hanK6KHxVmWrohkzaChiP47GtgTq+nQUar+jL+4xWJclsB1e8afff/e4uoWiQs4JB9
+	 jrQrJYXOzTbWA==
+Date: Wed, 11 Nov 2026 23:02:51 +0100
+From: Gao Xiang <xiang@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	"James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+	Helge Deller <deller@gmx.de>, Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>,
+	Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Minchan Kim <minchan@kernel.org>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Jens Axboe <axboe@kernel.dk>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+	linux-parisc@vger.kernel.org, linux-s390@vger.kernel.org,
+	linux-block@vger.kernel.org, Yann Collet <yann.collet.73@gmail.com>,
+	Nick Terrell <terrelln@meta.com>, Gao Xiang <xiang@kernel.org>,
+	Chao Yu <chao@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	David Laight <david.laight.linux@gmail.com>,
+	Sungguk <sungguk.na@samsung.com>,
+	Jaehoon Chung <jh80.chung@samsung.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-erofs@lists.ozlabs.org,
+	linux-f2fs-devel@lists.sourceforge.net,
+	linux-crypto@vger.kernel.org
+Subject: Re: [PATCH v2 12/15] lib/lz4: widen LZ4_DECOMPRESS_INPLACE_MARGIN
+ for the fast decode loop
+Message-ID: <avTmC_1I59FKA1FN@MacBookPro.fritz.box>
+Mail-Followup-To: Michal Wilczynski <m.wilczynski@samsung.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	"James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+	Helge Deller <deller@gmx.de>, Heiko Carstens <hca@linux.ibm.com>,
+	Vasily Gorbik <gor@linux.ibm.com>,
+	Alexander Gordeev <agordeev@linux.ibm.com>,
+	Christian Borntraeger <borntraeger@linux.ibm.com>,
+	Sven Schnelle <svens@linux.ibm.com>,
+	Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Minchan Kim <minchan@kernel.org>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Jens Axboe <axboe@kernel.dk>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+	linux-parisc@vger.kernel.org, linux-s390@vger.kernel.org,
+	linux-block@vger.kernel.org, Yann Collet <yann.collet.73@gmail.com>,
+	Nick Terrell <terrelln@meta.com>, Gao Xiang <xiang@kernel.org>,
+	Chao Yu <chao@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
+	Eric Biggers <ebiggers@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	David Laight <david.laight.linux@gmail.com>,
+	Sungguk <sungguk.na@samsung.com>,
+	Jaehoon Chung <jh80.chung@samsung.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	linux-erofs@lists.ozlabs.org,
+	linux-f2fs-devel@lists.sourceforge.net,
+	linux-crypto@vger.kernel.org
+References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
+ <CGME20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7@eucas1p2.samsung.com>
+ <20261106-lz4-vendor-upstream-v2-12-ee04c3f0d7dc@samsung.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4Wgsehp6QMiK-lmXVDfWbw";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_140220_964600_CE6C8AB9 
-X-CRM114-Status: GOOD (  19.39  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261106-lz4-vendor-upstream-v2-12-ee04c3f0d7dc@samsung.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,83 +137,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---nextPart4Wgsehp6QMiK-lmXVDfWbw
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Stefan =?UTF-8?B?RMO2c2luZ2Vy?= <stefandoesinger@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, arnd@arndb.de, krzk@kernel.org
-Date: Thu, 12 Nov 2026 01:02:04 +0300
-Message-ID: <Lv-2l5qpSwW-LGAsxs8loQ@gmail.com>
-In-Reply-To: <20261110153522.1620088-1-isasmendi.agus@gmail.com>
-MIME-Version: 1.0
+Hi Michal,
 
-Hi,
+On Fri, Nov 06, 2026 at 03:42:52PM +0100, Michal Wilczynski wrote:
+> erofs decompresses a pcluster in place when the slack after the output
+> is at least LZ4_DECOMPRESS_INPLACE_MARGIN(compressed size), upstream's
+> (compressedSize >> 8) + 32.
+> 
+> That holds for the fork, which overshoots its output by at most 8
+> bytes. Upstream's LZ4_FAST_DEC_LOOP, which the next patch brings in for
+> x86 and arm64, copies in 32-byte steps and can overwrite input it has
+> not read yet: of 172410 valid streams laid out as erofs does at exactly
+> that margin, 3660 fail to decode, none with the fork. The worst needs
+> (compressedSize >> 8) + 33. Images mkfs.erofs built did not hit this,
+> but nothing in the format rules it out.
+> 
+> Use (compressedSize >> 8) + (compressedSize >> 15) + 36, which takes a
+> 4K pcluster's margin from 48 to 52 bytes. Upstream's lz4.h defines the
+> macro too, so undefine it first.
+> 
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 
-Am Dienstag, 10. November 2026, 18:35:22 Ostafrikanische Zeit schrieb Agustin 
-Santiago Isasmendi:
+First, I really think kernel LZ4 should be updated for many years, so
+thanks for this!
 
-> What ZTE does (from their 4.1.25 kernel binary): l2x0_lock is taken
-> around every line write of the L2C range operations and around the
-> Cache Sync, and around every register read of their mt7915 driver
-> (through an exported fixed_pci_read_u32()).  A later module only makes
-> the lock finer: the range ops drop it every 2 KiB, and a pending PCIe
-> read makes them drop it early.  I found no chicken bit: their L2C
-> setup matches ours and their PCIe init has no such setting.
+But my personal thought is that could you just fold this patch into
+the next one ("lib/lz4: switch the decompressor to the vendored sources")?
+Because this one should be part of the fast loop update.
 
-I haven't dealt with caches or PCI myself, so I have some clueless questions:
+Although the current patch order is also fine, but my potential concern
+is that people don't know the details maybe pick the random ones for
+backporting, which is what I'd like to avoid so I hope this patch could
+be just part of it, otherwise the inplace decompression could be broken.
 
-Is it possible to program PCIe mmio areas as uncached in the level 2 cache or 
-tell the cache to ignore a certain address range in some way? If it is 
-possible, is it enough to prevent the crash?
-
-Do you have a guess what's special about the PCI address space that it 
-triggers the issue? It sounds like it doesn't affect other hardware or RAM, 
-otherwise ZTE would have disabled (or just fixed) the cache entirely.
-
-> What goes wrong: a PCIe read on one CPU deadlocks against an L2C-310
-> line operation by PA or a Cache Sync on the other.  The TRM (DDI
-> 0246H, 3.3.10) says those operations stall the L2C slave ports until
-> they complete, and here the PCIe read apparently cannot complete
-> meanwhile.  3 boots x 8 minutes of WiFi traffic each:
-
-What does "TRM" mean in this context?
-
-As for the patches you sent separately: I can't say much about them since I 
-don't know the pl-310 cache controller. I guess I am also lucky that my board 
-has only once CPU :-)
-
---nextPart4Wgsehp6QMiK-lmXVDfWbw
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQJPBAABCAA5FiEEQxb0tqoFWyeVMl1sPRO8yFRPGiIFAmr05dwbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTIsMywyAAoJED0TvMhUTxoiGVkQAKzdA3BXSLcPIAbwMGF3
-hs9Waj2wQ+Rct96z8APYRaKJNXzByrmLB8rdKfgc1clyW0VGhGQWb1aofi09i4y4
-LwrLCzdLTIja0JwHoHaH/OgiDrHABA7ndKhUsJKQqjYpug+OaO59Jf83831f0HdV
-ukzunJYC1peYpN3pYEpaYNhqxvUl7GwAHJuuUIroWSndrpvlyUN2YHQX2Vkn+DM8
-cv2EAamwQEc7EItDbNeQwYDOA4bxHngN5eMKy7tYDtxwElI6BWi17yPw5GdqzIti
-OF+woNfAiTtZU2er1Kl5u4u993pH/3rmUXpUCNNQdn6uAfWWICukLCAQKvt1jm0T
-iyb62gacWJqEivpafMEsDVCyjvHUtin+Jxu6yxjPLROdspUO9QOe9p0UV5JNbAzq
-/ga9yZBO40MKsjwL76pHrkU92FMCVIfyx6/4P+64YXBxNfSbTO+CVDmpwSkJ63Rm
-J5aqXY+KP6CoPEfy8v496gB0zk3sC/xBWXKaDnlm0jFO8RNhYjRvVsy/RHkbdKR+
-yeGViCvlO2H7OjFxyj9ChhFgcqAP0Ym1hlrh+9jnSpNVd3ePygpFjk+ID+nodKva
-ibpuRVSEKpH2JMYpC25TpUkTWKQp/al5VAAYmaPevJ7W2FovgthEw2/7ZSDlD373
-/39naFBD20Yh2j0DVkPPbv1s
-=lhnD
------END PGP SIGNATURE-----
-
---nextPart4Wgsehp6QMiK-lmXVDfWbw--
-
-
-
+Thanks,
+Gao Xiang
 
