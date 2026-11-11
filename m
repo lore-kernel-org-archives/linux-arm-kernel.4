@@ -2,56 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82F360700A1
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE732606AB5C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g+hhmU8w;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iYtaJBDm
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oDis1T/V;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=f/31b13/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=xGCf+Bz5lFU1XFCRiHnhKx3lB4GnvS9tp4aw7yUggkE=; b=g+hhmU8w9UttZV
-	taASYpjwitEFHR95V1vp4IGKSEiGwvn9nUBmrRmkvjKyPHU9M4gI3iEljS8RZMEojc7OHL8UO9wRB
-	el0I71aOXQ0v3Y1jGtnW1BW631MvMbVu1UKgCBmYnJv0h1NtCQ7TZ8gkcLk/cwsOO0TiNM+mVhv8Y
-	HIHRj6I3NeLPrwnqJrifGXxVtMojU1hRh8MWAeBWyGVE7w3iXraKIs4OqBYbhP4Gc/N6Kud/UAcds
-	BierivwxdHqsCREzo9yMjlLTernVHzkgNq1uP7WAkRYTXI3LN3W5LJmqcn+gjiqExCcuj+x2qlM4X
-	Njdj35dKOXoWGSmIJzew==;
+	List-Owner; bh=WbtZfz6Ubs4QUtks6beIlGcmS0Vsf5BKmpwpM07CG88=; b=oDis1T/V8w8wGC
+	kVhfExi1W17KBZhw4dvS8UdFBXU41Z62V7Mv1YEtT2qAPcLv+o68EKQoVrIzXaETEaDH8mGG8iXft
+	CX8L4bAwbrXK0cyvJn8xlqv58ex8/e/4crXBBECkTvmbpEJC4P7ixFAJYF/UPasfLqrjR3CkXO98J
+	JZ2Y5/pxxW71tIPCAvSWyDFJM3T7tSUG+F8cp7dZiXhCqKcaGmjvOlEgSGi2998rgZTtcTQ6zHjDS
+	fJc+eQed4cRk5cUoF+x4JEh/acUHPjGfqfRySczCwXUg/Sxq9dOP1QLoHhvKozK0EJLGb09bSBlFt
+	IuBpDePCl13mmLCToYQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBN-00000007XWM-0txq;
+	id 1xREBN-00000007XW1-0OXe;
 	Wed, 11 Nov 2026 19:40:33 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xREBJ-00000007XUg-0kJT
+	id 1xREBI-00000007XUE-1KQA
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 19:40:29 +0000
+	Wed, 11 Nov 2026 19:40:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id EAB994777F;
-	Wed, 11 Nov 2026 19:40:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 924EA1F00A11;
-	Wed, 11 Nov 2026 19:40:28 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BCC68407C2;
+	Wed, 11 Nov 2026 19:40:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 716FE1F00A12;
+	Wed, 11 Nov 2026 19:40:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794426028;
-	bh=xGCf+Bz5lFU1XFCRiHnhKx3lB4GnvS9tp4aw7yUggkE=;
+	s=k20260515; t=1794426027;
+	bh=WbtZfz6Ubs4QUtks6beIlGcmS0Vsf5BKmpwpM07CG88=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=iYtaJBDmoEOy36rVT3sOYX2k89eAgCPaJocVb4IlGFA6zSLCvaeeki4jSX8thqUsa
-	 YSDvWwDzjHaJDriCDflrUVVBXTXfYurAsZox/5wEhCmLjehbtfKeiTt3KuB64pSJ3+
-	 CS1FdPgI9Z/oeKekXHYI1ZZW/pAI1eihQvD6CJdobdWJZ8teCWjvb6kNHYMFg65OhL
-	 UUFifH4c0aTDd5qeiG36/rFh7i7IX8R0Ghn4J2ta0ejapIdr/Ft8rf6F4mIRKHMjoP
-	 tkGflCBlnwV3qAkBkDmOB97pp9QDpcnyM4uaiWFAhqG0tpmvQCOKyW3McHUvJVvNPR
-	 EFtUK3LSSjxkw==
+	b=f/31b13/R2FZtZ3q3vCquxU8orHm4wVVI0X8E56yMA3CQEIc+kH7d4A0NUK9BNxaS
+	 QoeIb4qVIykPid6hoIlw4UTfIHgg0A6XTriG4KKnEncXHo9C9G0X4h30g92n/MVFNE
+	 sqDEHs42KCSQ9zwuaYmcTvbC1sJwb46q/jBmh0B01mNxKGxgKGVD8ba7fntVJ7eCU6
+	 4xqrSQfWK/pEaVkiAh9H8DGXvLG/sP4ajzc7ZmAibipos1cXcct+uw+3aF53CIZVpE
+	 zmEKG2a9i6Ab3bUVAL3YZT6Ae83y5yad01tNTdsmh4p8S4O/omJy/HpI8OCB6pHGpm
+	 9c8QNMonOI7HQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 13:40:12 -0600
-Subject: [PATCH 02/12] dt-bindings: mfd: Add HiSilicon reboot mode syscon
- schema
+Date: Wed, 11 Nov 2026 13:40:11 -0600
+Subject: [PATCH 01/12] dt-bindings: mfd: syscon: Add HiSilicon register
+ bank compatibles
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-hisi-v1-2-6c9f5f80716c@kernel.org>
+Message-Id: <20261111-dtbs-hisi-v1-1-6c9f5f80716c@kernel.org>
 References: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 In-Reply-To: <20261111-dtbs-hisi-v1-0-6c9f5f80716c@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -78,54 +78,33 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a dedicated schema for the HiSilicon reboot-mode syscon nodes and
-their reboot-mode child device which are missing a specific compatible.
+Several HiSilicon syscon blocks are missing specific compatibles. Add
+compatibles for the Hi6220 media NOC ADE, HIP06/HIP07 SerDes control,
+and HIP07 DSA CPLD register banks accessed through syscon references.
+The names are based on the label names in the .dts files.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/mfd/hisilicon,hi6220-reboot-mode.yaml | 34 ++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/hisilicon,hi6220-reboot-mode.yaml b/Documentation/devicetree/bindings/mfd/hisilicon,hi6220-reboot-mode.yaml
-new file mode 100644
-index 000000000000..8114d87d5f95
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/hisilicon,hi6220-reboot-mode.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/hisilicon,hi6220-reboot-mode.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon reboot mode system controller
-+
-+maintainers:
-+  - Wei Xu <xuwei5@hisilicon.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - hisilicon,hi3660-reboot-mode
-+          - hisilicon,hi6220-reboot-mode
-+      - const: syscon
-+      - const: simple-mfd
-+
-+  reg:
-+    maxItems: 1
-+
-+  reboot-mode:
-+    $ref: /schemas/power/reset/syscon-reboot-mode.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+
-+allOf:
-+  - $ref: syscon-common.yaml#
-+
-+unevaluatedProperties: false
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index dae706ca7642..1e2a46ac2e3a 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -69,8 +69,12 @@ properties:
+               - fsl,vf610-anatop
+               - fsl,vf610-mscm-cpucfg
+               - hisilicon,dsa-subctrl
++              - hisilicon,hi6220-medianoc-ade
+               - hisilicon,hi6220-sramctrl
+               - hisilicon,hip04-ppe
++              - hisilicon,hip06-serdes-ctrl
++              - hisilicon,hip07-dsa-cpld
++              - hisilicon,hip07-serdes-ctrl
+               - hisilicon,pcie-sas-subctrl
+               - hisilicon,peri-subctrl
+               - hpe,gxp-sysreg
 
 -- 
 2.53.0
