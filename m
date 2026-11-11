@@ -2,93 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBD8606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:47:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04CD606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a45mqVq5;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=hzUpV3DD;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=H04kjZjj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jvKb1hfc;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EFu8mts4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=6XTrqrTmhjmmRwv09h9oZokZmfmkV6AACDkBxFvTlyY=; b=a45mqVq5cvuHluOhry7InrYpDe
-	qVFN9E1GKM+oBMJ5twR4dGqR7Fn1DijzN6bVpVZCN2YgjAh+CdEQUMCuOfsb8pePzWi5+06zrT1Ed
-	ulAcqqbQtEkep2dpU/SppuRvCDMybWGPVkz18tXlQWJo10pPMwOXASRVcU4IphLI8BqJLwpqfTAUy
-	9hCHfKLBELoDAVgAzfUsg05ZPEwAj8XKBjfg9V+83ttD/bw5kY+z4x7G/o917B2Ad68h3ghyDl31c
-	NeyXac48O3IvqeTff9dAWGSbSPHxZmfdmBkmQVBYD4JfwQfq8zcUGaULntjN4QwiXpnIC+reYIEML
-	W4yNGaRQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ZaOAXSL5PhBkX1lwq9Lvt30xW6u3fElUTgPqgZ/Dpxo=; b=jvKb1hfcpta2pF
+	m7ElU+Aqut4rfusFSicQEe6nSsVYZPAn4vEAikXbzkgoZIYCu9Ogup0UGTPRyhJ0TezAXQTbo1SXk
+	g3c+4UOLwHVJfe4CsWuUigogu8dr8aY8KNqB/MKjC1w9PQlLboAHpxQ+MT1Y/JgS7mOJjO2q3OWQX
+	OL2XlMUJw9fpnczogKxXuJWSgBYHdgrzbUCy2Huht4UfazBUmX76sta1r199d49W6Egk/vUjlVLze
+	oDkO4pZFhqJrjXPAdpkw01RvsNQ90lpeT5i7B4kZ38ZCIAJyPVJr/MATON4mlFyLQurootIzLmCjc
+	+bTs5YEoijtWtSZu3XrA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6jR-00000006ViG-19iU;
-	Wed, 11 Nov 2026 11:43:13 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6jP-00000006VeP-1stE
-	for linux-arm-kernel@bombadil.infradead.org;
-	Wed, 11 Nov 2026 11:43:11 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=6XTrqrTmhjmmRwv09h9oZokZmfmkV6AACDkBxFvTlyY=; b=hzUpV3DDlGPg6WmFzIMF5dGL7L
-	1VxB9NPNsmHnzKjOBo7Jyya3wXA4yh1bQ4BxB+u/cblAYYjQ7KkWOX3yYTJAoQKbVR8JE5soM07KU
-	gHA2oMobtOFkzyB7QwWMR3/koriHMzN2C07QGL/HslJO7N5ENIuA/5qDv5Q7Aor8mWsfiPp9zjwZr
-	eGEjPph1Bc7aERLZsDkXTBYg/10Qs8FUDlCo0ZoxDC9ppDk66dfV1id3ExkcHBMmmegzBoGFIohhx
-	tO6eQiNOYKEXEZuPIkJMy9pAy4vsibvm+Kmq9VhvaaXz9eloPEnEH38KjrsEe/I3dgq2sv5wZxDOH
-	drweGv6w==;
-Received: from [113.46.200.221] (helo=canpmsgout06.his.huawei.com)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6jL-0000000956k-2dUJ
+	id 1xR6nD-00000006XNt-2I3Y;
+	Wed, 11 Nov 2026 11:47:07 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR6nA-00000006XN0-3JJB
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:43:09 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=6XTrqrTmhjmmRwv09h9oZokZmfmkV6AACDkBxFvTlyY=;
-	b=H04kjZjj/yzZFnWJDfmGL+pacj/GYrh3KjJZBGJJ2UOCUjE0NyL73R25YU2gsDHAX4LbPafR5
-	ldCmFAizL7lPssldKzdsYUtscSWhbhVp27KESDU7hIl9gkL45mNv7Ivko++PkVg8ut5VhLgr7Uy
-	n8kzTjuEubnYkEWF2mosgaA=
-Received: from mail.maildlp.com (unknown [172.19.163.0])
-	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4jPhTg6q3gzRhT3;
-	Wed, 11 Nov 2026 19:42:47 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 66DBA4057E;
-	Wed, 11 Nov 2026 19:42:58 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Wed, 11 Nov
- 2026 19:42:57 +0800
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-To: <catalin.marinas@arm.com>, <will@kernel.org>, <mark.rutland@arm.com>,
-	<oleg@redhat.com>, <shuah@kernel.org>, <kees@kernel.org>,
-	<luto@amacapital.net>, <wad@chromium.org>, <peterz@infradead.org>,
-	<ada.coupriediaz@arm.com>, <linusw@kernel.org>, <kevin.brodsky@arm.com>,
-	<anshuman.khandual@arm.com>, <thuth@redhat.com>, <james.morse@arm.com>,
-	<yeoreum.yun@arm.com>, <vladimir.murzin@arm.com>, <broonie@kernel.org>,
-	<ryan.roberts@arm.com>, <liqiang01@kylinos.cn>,
-	<mathieu.desnoyers@efficios.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-kselftest@vger.kernel.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH v21 10/15] arm64: syscall: Use exit-specific flags check in el0_svc_common()
-Date: Wed, 11 Nov 2026 19:42:20 +0800
-Message-ID: <20261111114225.3977243-11-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261111114225.3977243-1-ruanjinjie@huawei.com>
-References: <20261111114225.3977243-1-ruanjinjie@huawei.com>
+	Wed, 11 Nov 2026 11:47:06 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36B6A1576;
+	Wed, 11 Nov 2026 03:47:00 -0800 (PST)
+Received: from [10.57.58.72] (unknown [10.57.58.72])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E0A7E3F673;
+	Wed, 11 Nov 2026 03:46:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794397623; bh=KScK1ysL+lHu6wlTKeblSKIr7veza2wvKssyH7I2YNk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EFu8mts4+6oh4hvFYeVXgJWtv53vG7eS4FixHTQaCmpQr12aepyDXcfFGGqKBIhy2
+	 hylVb3ZLeAHW/RX/Yzn9Ih1ejvDl9IfOrnd+zO0njF0sAKA/K6GO0dccoHIAET/fqQ
+	 xfU++Wv2yygMLDXR2YNfJrvfTxL5Y8LL1ygCYB3Y=
+Message-ID: <d938b49d-331e-4332-ac01-911708f6135b@arm.com>
+Date: Wed, 11 Nov 2026 11:46:55 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/11] KVM: arm64: CCA: Introduce Realms
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>
+References: <20261102141304.126883-1-steven.price@arm.com>
+ <20261102141304.126883-3-steven.price@arm.com>
+ <avL9kNR2mGmqmcA9@FCCLS0092175.localdomain>
+ <45104e19-4197-4584-895a-0486c0782c9c@arm.com>
+ <bc0a6290-ddca-4005-9d22-b74833f435b9@arm.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <bc0a6290-ddca-4005-9d22-b74833f435b9@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems500001.china.huawei.com (7.221.188.70) To
- kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_114307_876243_F8A37407 
-X-CRM114-Status: GOOD (  12.15  )
-X-Spam-Score: 1.1 (+)
+X-CRM114-CacheID: sfid-20261111_034704_998750_A6377D50 
+X-CRM114-Status: GOOD (  35.24  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,55 +86,300 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The syscall exit path in el0_svc_common() re-evaluates all
-_TIF_SYSCALL_WORK flags, but this mask contains flags that only
-matter on entry:
+On 11/11/2026 10:14, Suzuki K Poulose wrote:
+> On 11/11/2026 10:11, Steven Price wrote:
+>> On 10/11/2026 11:42, Kohei Enju wrote:
+>>> Hi Steve,
+>>
+>> Hi Kohei,
+>>
+>>> On 11/02 14:12, Steven Price wrote:
+>>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>>
+>>>> Add foundational work for supporting Realms.
+>>>>   - Add a new VM flavor.
+>>>>   - At KVM init, check if the KVM can support Realms (though not
+>>>> functional
+>>>>     yet) and will be advertised by static key kvm_rmi_is_available.
+>>>> This
+>>>>     will be turned on in a later patch, once we have all the bits and
+>>>>     pieces ready. For now check if we are blessed with KVM_MODE_RMM.
+>>>>   - Add realm specific tracking in kvm_arch. Since Realm and
+>>>> protected pKVM
+>>>>     states are mutually exclusive, move them into a union.
+>>>>   - Also adjust the memslot preparation checks to reflect the changes.
+>>>>
+>>>> Please note that we cannot create Realm VMs yet. This requires further
+>>>> changes to the UABI and core RMI driver support, which will come later.
+>>>>
+>>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>> Signed-off-by: Steven Price <steven.price@arm.com>
+>>>> ---
+>>>>   arch/arm64/include/asm/kvm_emulate.h   | 16 +++++++
+>>>>   arch/arm64/include/asm/kvm_host.h      | 57 +++++++++++++++++-------
+>>>>   arch/arm64/include/asm/kvm_rmi.h       | 61 ++++++++++++++++++++++
+>>>> ++++
+>>>>   arch/arm64/include/asm/virt.h          |  1 +
+>>>>   arch/arm64/kvm/Makefile                |  2 +-
+>>>>   arch/arm64/kvm/arm.c                   | 24 ++++++++--
+>>>>   arch/arm64/kvm/hyp/include/nvhe/pkvm.h |  2 +-
+>>>>   arch/arm64/kvm/hyp/nvhe/switch.c       |  4 +-
+>>>>   arch/arm64/kvm/hyp/nvhe/timer-sr.c     |  2 +-
+>>>>   arch/arm64/kvm/mmu.c                   | 13 +++---
+>>>>   arch/arm64/kvm/rmi.c                   | 18 ++++++++
+>>>>   11 files changed, 169 insertions(+), 31 deletions(-)
+>>>>   create mode 100644 arch/arm64/include/asm/kvm_rmi.h
+>>>>   create mode 100644 arch/arm64/kvm/rmi.c
+>>>>
+>>>> diff --git a/arch/arm64/include/asm/kvm_emulate.h b/arch/arm64/
+>>>> include/asm/kvm_emulate.h
+>>>> index 334211b8b2ee..32021bdf2610 100644
+>>>> --- a/arch/arm64/include/asm/kvm_emulate.h
+>>>> +++ b/arch/arm64/include/asm/kvm_emulate.h
+>>>> @@ -831,4 +831,20 @@ static inline void kvm_reset_vcpu_psci(struct
+>>>> kvm_vcpu *vcpu,
+>>>>       vcpu_set_reg(vcpu, 0, reset_state->r0);
+>>>>   }
+>>>>   +static inline enum realm_state kvm_realm_state(struct kvm *kvm)
+>>>> +{
+>>>> +    return READ_ONCE(kvm->arch.realm.state);
+>>>> +}
+>>>> +
+>>>> +static inline void kvm_set_realm_state(struct kvm *kvm,
+>>>> +                       enum realm_state new_state)
+>>>> +{
+>>>> +    WRITE_ONCE(kvm->arch.realm.state, new_state);
+>>>> +}
+>>>> +
+>>>> +static inline bool kvm_realm_is_created(struct kvm *kvm)
+>>>> +{
+>>>> +    return kvm_vm_is_realm(kvm) && kvm_realm_state(kvm) !=
+>>>> REALM_STATE_NONE;
+>>>> +}
+>>>> +
+>>>>   #endif /* __ARM64_KVM_EMULATE_H__ */
+>>>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/
+>>>> asm/kvm_host.h
+>>>> index ccd2dc8f73c3..7d0222047ca1 100644
+>>>> --- a/arch/arm64/include/asm/kvm_host.h
+>>>> +++ b/arch/arm64/include/asm/kvm_host.h
+>>>> @@ -29,6 +29,7 @@
+>>>>   #include <asm/kvm.h>
+>>>>   #include <asm/kvm_asm.h>
+>>>>   #include <asm/kvm_hcall.h>
+>>>> +#include <asm/kvm_rmi.h>
+>>>>   #include <asm/vncr_mapping.h>
+>>>>     #define __KVM_HAVE_ARCH_INTC_INITIALIZED
+>>>> @@ -48,6 +49,13 @@
+>>>>   #define KVM_VCPU_MAX_FEATURES 10
+>>>>   #define KVM_VCPU_VALID_FEATURES    (BIT(KVM_VCPU_MAX_FEATURES) - 1)
+>>>>   +#define KVM_REALM_VCPU_VALID_FEATURES            \
+>>>> +    (BIT(KVM_ARM_VCPU_POWER_OFF)        |    \
+>>>> +     BIT(KVM_ARM_VCPU_PSCI_0_2)        |    \
+>>>> +     BIT(KVM_ARM_VCPU_PTRAUTH_ADDRESS)    |    \
+>>>> +     BIT(KVM_ARM_VCPU_SVE)            |    \
+>>>> +     BIT(KVM_ARM_VCPU_PTRAUTH_GENERIC))
+>>>> +
+>>>>   #define KVM_REQ_SLEEP \
+>>>>       KVM_ARCH_REQ_FLAGS(0, KVM_REQUEST_WAIT | KVM_REQUEST_NO_WAKEUP)
+>>>>   #define KVM_REQ_IRQ_PENDING        KVM_ARCH_REQ(1)
+>>>> @@ -409,6 +417,7 @@ enum kvm_arm_vm_flavor {
+>>>>       VM_PKVM,        /* Normal guests on pKVM */
+>>>>       MARKER(__VM_PROTECTED),
+>>>>       VM_PROTECTED_PKVM,    /* Protected VM */
+>>>> +    VM_REALM,        /* CCA */
+>>>>       VM_FLAVOR_MAX
+>>>>   };
+>>>>   @@ -502,11 +511,14 @@ struct kvm_arch {
+>>>>       /* Count the number of VNCR_EL2 TLBs */
+>>>>       atomic_t vncr_tlb_count;
+>>>>   -    /*
+>>>> -     * For an untrusted host VM, 'pkvm.handle' is used to lookup
+>>>> -     * the associated pKVM instance in the hypervisor.
+>>>> -     */
+>>>> -    struct kvm_protected_vm pkvm;
+>>>> +    union {
+>>>> +        /*
+>>>> +         * For an untrusted host VM, 'pkvm.handle' is used to lookup
+>>>> +         * the associated pKVM instance in the hypervisor.
+>>>> +         */
+>>>> +        struct kvm_protected_vm pkvm;
+>>>> +        struct realm realm;
+>>>> +    };
+>>>>     #ifdef CONFIG_PTDUMP_STAGE2_DEBUGFS
+>>>>       /* Nested virtualization info */
+>>>> @@ -1572,30 +1584,43 @@ struct kvm *kvm_arch_alloc_vm(void);
+>>>>     #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
+>>>>   -#ifdef __KVM_NVHE_HYPERVISOR__
+>>>> +#define kvm_vm_is_protected(kvm)    ((kvm)->arch.vm_flavor >=
+>>>> __VM_PROTECTED)
+>>>>   -#define kvm_vm_is_protected(kvm)            \
+>>>> -    (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor ==
+>>>> VM_PROTECTED_PKVM))
+>>>> +#ifdef __KVM_NVHE_HYPERVISOR__
+>>>>   /*
+>>>>    * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to
+>>>> convert the
+>>>>    * pointer to the hyp VA. With pKVM, the nVHE code runs with the
+>>>> hyp_vcpu,
+>>>> - * which is populated correctly and is gated on
+>>>> is_protected_kvm_enabled().
+>>>> + * which is populated correctly. Always vcpu_is_protected_pkvm(),
+>>>> which is
+>>>> + * gated on is_protected_kvm_enabled().
+>>>> + */
+>>>> +#define vcpu_is_protected(vcpu)        BUILD_BUG_ON(1)
+>>>> +#else
+>>>> +#define vcpu_is_protected(vcpu)        kvm_vm_is_protected((vcpu)-
+>>>> >kvm)
+>>>> +#endif
+>>>> +
+>>>> +#define kvm_vm_is_protected_pkvm(kvm)                    \
+>>>> +    (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor ==
+>>>> VM_PROTECTED_PKVM))
+>>>> +
+>>>> +/*
+>>>> + * Rely on is_protected_kvm_enabled() check in
+>>>> kvm_vm_is_protected_pkvm() to
+>>>> + * make sure the vcpu->kvm is always valid VA in the context
+>>>>    */
+>>>> -#define vcpu_is_protected(vcpu)                        \
+>>>> +#define vcpu_is_protected_pkvm(vcpu)                    \
+>>>>       ({                                \
+>>>>           struct kvm *__kvm = READ_ONCE((vcpu)->kvm);        \
+>>>>                                       \
+>>>> -        (__kvm && kvm_vm_is_protected(__kvm));            \
+>>>> +        (__kvm && kvm_vm_is_protected_pkvm(__kvm));        \
+>>>>       })
+>>>
+>>> I've tested the integration branch and found that the secondary CPU
+>>> bring-up fails:
+>>>      [    1.426502] smp: Bringing up secondary CPUs ...
+>>>      [    9.194442] CPU1: failed to come online
+>>>      [    9.194558] CPU1: failed in unknown state : 0x0
+>>>      [    9.197714] smp: Brought up 1 node, 1 CPU
+>>>      [    9.197775] SMP: Total of 1 processors activated.
+>>>
+>>> It seems that this patch missed replacing a use of
+>>> vcpu_is_protected() introduced by the following commit:
+>>>
+>>>      25d726dddc23 ("KVM: arm64: Reject host power-on of a vCPU that
+>>> EL2 holds powered off")
+>>>
+>>> The following diff fixes the issue for me. Also, though not included in
+>>> the diff, I think vcpu_is_protected() in __pkvm_create_hyp_vcpu() should
+>>> be replaced with vcpu_is_protected_pkvm() as well.
+>>
+>> Thanks for the patch - I'll include that in v2.
+> 
+> Please could we make it something like this :
+> 
+> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+> index 4edcaf1090f9..2108c1bf5481 100644
+> --- a/arch/arm64/kvm/arm.c
+> +++ b/arch/arm64/kvm/arm.c
+> @@ -989,7 +989,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu
+> *vcpu)
+>  /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
+>  bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
+>  {
+> -       return READ_ONCE(vcpu->arch.mp_state.mp_state) ==
+> KVM_MP_STATE_UNINITIALIZED;
+> +       return vcpu_is_protected_pkvm(vcpu) &&
+> +               READ_ONCE(vcpu->arch.mp_state.mp_state) ==
+> KVM_MP_STATE_UNINITIALIZED;
+>  }
 
-- _TIF_SECCOMP: seccomp filtering is entry-only
-- _TIF_SYSCALL_EMU: PTRACE_SYSEMU skips the syscall on entry
+This part looks good.
 
-Re-checking them on exit is unnecessary and may trigger redundant work.
+>  int kvm_arch_vcpu_ioctl_get_mpstate(struct kvm_vcpu *vcpu,
+> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
+> index b01f8d44033f..b7606c3542f8 100644
+> --- a/arch/arm64/kvm/psci.c
+> +++ b/arch/arm64/kvm/psci.c
+> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct kvm_vcpu
+> *source_vcpu)
+>          * STOPPED before that is the VMM's pause.
+>          */
+>         if (!kvm_arm_vcpu_stopped(vcpu) ||
+> -           (vcpu_is_protected(vcpu) && !
+> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
+> +           !kvm_pkvm_vcpu_is_powered_off(vcpu)) {
+>                 if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
+>                         ret = PSCI_RET_ALREADY_ON;
+>                 else
 
-Switch to _TIF_SYSCALL_EXIT_WORK for the exit-path re-check to evaluate
-only exit-relevant flags (_TIF_SYSCALL_TRACE, _TIF_SYSCALL_AUDIT, and
-_TIF_SYSCALL_TRACEPOINT).
+I think this is broken. kvm_pkvm_vcpu_is_powered_off() is defined as:
 
-No functional change intended.
+bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
+{
+	return vcpu_is_protected_pkvm(vcpu) &&
+		READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
+}
 
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Ada Couprie Diaz <ada.coupriediaz@arm.com>
-Reviewed-by: Ada Couprie Diaz <ada.coupriediaz@arm.com>
-Reviewed-by: Linus Walleij <linusw@kernel.org>
-Reviewed-by: Yeoreum Yun <yeoreum.yun@arm.com>
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
----
- arch/arm64/kernel/syscall.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+So if !vcpu_is_protected_pkvm() then it's always false, so this would
+break non-pKVM VMs.
 
-diff --git a/arch/arm64/kernel/syscall.c b/arch/arm64/kernel/syscall.c
-index 0061fc63e7ba..f1f0b6f3e32b 100644
---- a/arch/arm64/kernel/syscall.c
-+++ b/arch/arm64/kernel/syscall.c
-@@ -127,7 +127,7 @@ static void el0_svc_common(struct pt_regs *regs, int scno, int sc_nr,
- 	 */
- 	if (!has_syscall_work(flags) && !IS_ENABLED(CONFIG_DEBUG_RSEQ)) {
- 		flags = read_thread_flags();
--		if (has_syscall_work(flags) || flags & _TIF_SINGLESTEP)
-+		if (unlikely(flags & _TIF_SYSCALL_EXIT_WORK) || flags & _TIF_SINGLESTEP)
- 			arm64_syscall_exit_to_user_mode_work(regs);
- 		return;
- 	}
--- 
-2.34.1
+Thanks,
+Steve
+
+> 
+> i.e, check for pkvm vcpu as it should have been in the first case,
+> rather than spilling the check for protected vcpu and an explicit
+> check to see if that is powered off ?
+> 
+> 
+> Suzuki>
+>> Thanks,
+>> Steve
+>>
+>>> Thanks,
+>>> Kohei
+>>>
+>>> ---8<---
+>>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+>>> index 522a837637fe..be676c13e219 100644
+>>> --- a/arch/arm64/kvm/arm.c
+>>> +++ b/arch/arm64/kvm/arm.c
+>>> @@ -960,7 +960,8 @@ static void __kvm_arm_vcpu_power_off(struct
+>>> kvm_vcpu *vcpu, u32 mp_state)
+>>>   /* The guest's own CPU_OFF: EL2 has already powered the vCPU off. */
+>>>   void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu)
+>>>   {
+>>> -       u32 mp_state = vcpu_is_protected(vcpu) ?
+>>> KVM_MP_STATE_UNINITIALIZED : KVM_MP_STATE_STOPPED;
+>>> +       u32 mp_state = vcpu_is_protected_pkvm(vcpu) ?
+>>> +                      KVM_MP_STATE_UNINITIALIZED :
+>>> KVM_MP_STATE_STOPPED;
+>>>
+>>>          spin_lock(&vcpu->arch.mp_state_lock);
+>>>          __kvm_arm_vcpu_power_off(vcpu, mp_state);
+>>> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
+>>> index b01f8d44033f..6674e8d6ff4c 100644
+>>> --- a/arch/arm64/kvm/psci.c
+>>> +++ b/arch/arm64/kvm/psci.c
+>>> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct
+>>> kvm_vcpu *source_vcpu)
+>>>           * STOPPED before that is the VMM's pause.
+>>>           */
+>>>          if (!kvm_arm_vcpu_stopped(vcpu) ||
+>>> -           (vcpu_is_protected(vcpu) && !
+>>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
+>>> +           (vcpu_is_protected_pkvm(vcpu) && !
+>>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
+>>>                  if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
+>>>                          ret = PSCI_RET_ALREADY_ON;
+>>>                  else
+>>>
+>>
+> 
 
 
