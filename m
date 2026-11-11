@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B65606A33E
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BBF606A8A1
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 19:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IUGrMHJI;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VU4rJiyp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rGSMHkRJ;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Itnofz9e
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=fkBYOithnFO0IRX31SXjaTHWPBNV9b7p8e5gc+6w+Pw=; b=IUGrMHJI6YjR3Y
-	aeJuhm/GCYdLO9EJAssMgIEHAbJpWazjIVD2dE5qFfYGC9VhJAW1a0pVBXmpunlRaowTRfuRT6Fo9
-	GlR3UEJQMuTCW/XJ76/C0qfcMrbTH84sHIXgyInZx92VjHCUURl0mXZDNe3XHwlcbRcTfe64KGNno
-	cqKthllVOJNBg3c1Xb/283r+oJpUxpWPZX0uuU0wN6TNB1gqSXp2s5fcbfU2pwL7yNygkp9Ds8XL3
-	ZjDeOwBNW5OhyFhGvnxCMQK0Qf5IPGbE3K2yzA9Jr9QRN2upfSd/JOR4+PGY6/1QlgF0tlK/QRlUb
-	4nL9QNkO6ljmCXexlvfg==;
+	List-Owner; bh=lnltaZLRhP4fBsVvq0mCqASYDVlLQyGo5RH8flPD4Rg=; b=rGSMHkRJoIIXgy
+	sjS9GTrdZ8RO6D3UdRxDEVSPj3jZpaMHuAieFmEUoBuZvIL7l358uTcTjS95++PgW151aLQVrvpiZ
+	tfk+2WBlI/4r1j3OiwgQDBX3UIeOgdHazRvv3O+SE7+9sj4n+D78E7cuqETcxowISCKZ077PK05YE
+	cF0rPCVQGrV0DtEw+fGB4Q7kctoARrMhLSox41FYC4wqrVwKshBsEfTW64f7YamLXScZLn5hz9qIK
+	rmjJ5hMxlYMdcmmQVWg2dwI1cZIWYXHFPlh40g3G9cuEVeq0i9p4+2VOtN9DVSeAvBg0N0SvL3rXs
+	v/KqpVI3kSaYoW8723hQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRDcZ-00000007Tax-00uB;
-	Wed, 11 Nov 2026 19:04:35 +0000
-Received: from mail-pj1-x1035.google.com ([2607:f8b0:4864:20::1035])
+	id 1xRDcf-00000007TeH-0SeB;
+	Wed, 11 Nov 2026 19:04:41 +0000
+Received: from mail-pg1-x533.google.com ([2607:f8b0:4864:20::533])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRDcW-00000007TZt-19vz
+	id 1xRDcb-00000007TcX-4BvN
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 19:04:33 +0000
-Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-3b16896b8ceso1261397a91.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 11:04:31 -0800 (PST)
+	Wed, 11 Nov 2026 19:04:39 +0000
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-cc4aa18f9afso1434541a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 11:04:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794423871; x=1795028671; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794423877; x=1795028677; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=fkBYOithnFO0IRX31SXjaTHWPBNV9b7p8e5gc+6w+Pw=;
-        b=VU4rJiypB5h9oFcPQJFUsWcUQhYEHcqoxM3bk6Yp/AdIhEXhzt+NqDy3VlbP0e1ijo
-         9TBbxWl5YrW738x6x6a+KfUaOnQYjXWfHVLmmGH7YWQ1pQFbV2ooyTY9UBbsHIO5rhKx
-         8bxBFGtDo/cKWjLPdLIfVoYIROhL2oecfRKbXMiqqs09A6pc5EKrMYpEyWliXLBaeqtS
-         SGpqM6GLrj7sjqKWGcfVeXeC2w80ahnS5j1t9LP7w5GMr5jQ2uQ17TQLdW9gaxH+CTWH
-         reIErQakttLiLUMvyKPl4kdC+OpZZtQKNMEbPVJlPR4bcoTDvplLUOqZsGuufdJbTB0G
-         0/PA==
+        bh=lnltaZLRhP4fBsVvq0mCqASYDVlLQyGo5RH8flPD4Rg=;
+        b=Itnofz9eaLgFMrTbq0MC279lQ0gphQyo1TINPJBWEZCYWCsJb6YK1FXIsQoQ/8nv1F
+         EHj8jObRD6UYT+qY3brhj18jdAAWrwhfrIssP5lgA58EOlr/Ynt3kYvtIIls8moxb+84
+         ZjAc1UKIo/XRTRdw1rvPnCEGSzt3CR2Yf64s69Ooa2dYIy8kTMFDvTUI7JjFUWsjnZzm
+         GFsQycVMvl25Ok0V2qlh7izWE/0kDMs5uW8FaKoxCZXRTIOVqHsGm/70rb5fNuizt4vu
+         XyDtKt6iBSYzYimjCaEv69H7LaHJBxf2l0sqYJp1tX/lE505PnX6e2Yl7GjzZG6XDrPO
+         KnNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794423871; x=1795028671;
+        d=1e100.net; s=20260707; t=1794423877; x=1795028677;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=fkBYOithnFO0IRX31SXjaTHWPBNV9b7p8e5gc+6w+Pw=;
-        b=dzP9eXMC0SAYQ8RZWJ5xb1pno9L8yeq5rv1rGadNGCL7yE1z9om9TBFVrIuHE9rQNi
-         4A9n/cy7tRjPjKVKvJu/QrEx3ivm+szZNYXWDNsl339G6zNcQ1qM73Eb92nxeU3JqHsK
-         heOzGrR180T+YoMJlBgwMjSgpeRYoD8zI9jtOpYvhKXd3hVyBoDUxdFp/PCHBkZc5LFa
-         kfONNqw0j3g88+OR3lNQOv1AJ0R4igNrZdlfFGX4kYiNJvjI7OS53qJS4avwBm2Qn8U1
-         Rvg9z5fqxD3eyXvyWmeSJDN7K3CNW3hohvCLlZdUPc7eGo5CppUgZC29WESsyh5sBM/U
-         r+Kg==
-X-Forwarded-Encrypted: i=1; AL+hErE5s31Nqxvi92KObfFt4I9uzPIZlZY7RbEkDLFYeCY0zkjSMVw2uNDsJXzZu8Qy4MedxVW6Cs/CAlKqj+I16Ga/@lists.infradead.org
-X-Gm-Message-State: APuU4Z+b/Y1KHa+7zaOA5XKfuDLILPfjDpWYDvw0eIXK91oly81YV51p
-	fEMtMl7kNVDxBRg/J+bPcCUYuzNs0LW8LlIWy7V8Q3jHmVSR9OoqyWmp
-X-Gm-Gg: AYBFou3fQ1NIsOQYjy4OjTkmFXOmdRjGtegzXRDGRuX25nwNBpi7y6TI26e9TNP/I8O
-	xz34HULJ7STiYAbwvxYZKKwHWP91dwNyjWDygy5gq1x/jtTtN3j+oVPJEm2HCvTlfvjQj9k83cp
-	KuGjg/hi6C05mk1FowzA0NmXBm3wSvjJP2OUNyToDZxX23rgbN7gei1NfK6Y9qBwe1hs2Eck6YY
-	XHktxmmDQwSqrWNeGTpkt+EGSUFK5lZlqCCEYUbA4ZJ+YWJpjKQD/ze0oGjtYKgmKuyYR11R8qW
-	FHHhIDb/cQoYUR1kRtFDnTg5/wMsG+3vGyP10iK/nK+E4bQ7AWhclKy2ikasv2Zm8rm/fLWbRd6
-	qJE5TKpF3V4mHZk0BzTk5GGZd7v07uwMI6x/XoK5fA5RtmPjTjYpPM/MgcRdt96anBZ7HdnDdCZ
-	PoVD5cdAV4fpvppE/uwk/fDz9ol4CgxQs1N7J7LasbJGE+jli19zjTo72L98RzwfK2vddAIRwTA
-	aJXW9T+ll3FZJqDU09seHK39kNZF4l7mqpHCN18m0rQ1cZJRyxVfK+bcKZ+EC3nX529iJaBhapi
-	GWGTWgmSOTPRdA/zWPCREj4BrHHubaJxuUVNwzCc/VQbhisMKmnjI3o=
-X-Received: by 2002:a17:90b:3a0e:b0:3b1:4018:bfdd with SMTP id 98e67ed59e1d1-3b182e107dcmr3006901a91.7.1794423870904;
-        Wed, 11 Nov 2026 11:04:30 -0800 (PST)
+        bh=lnltaZLRhP4fBsVvq0mCqASYDVlLQyGo5RH8flPD4Rg=;
+        b=XWSXnQiS7DpM/LM/gPOEpIiS7grQVyIrNKn/Zoxshd91c9Ggr9Gvoqm+loom9sxxFO
+         75GENSTy38TDj0PUGc3CoVTDOlxFsar3Rsqf+8/SkXTAJuOYPCLaDuiyL2eQ/x5pOzuo
+         LyUWcrcHzvilkpXVnp511MUPDBGSPGg3pJA8WD16zX72B10LrM1yGPkDi04R91CDzAbE
+         F1KI3fVwHxjTrDH1J8NPsrD7pjjYZrwMZYVwgslxr8xNr/JDiTsDEkbVjOtSo9mitCb4
+         K+5AUV+wEfGHyymWdMbqU915Nr8O7S5X4v514o+6Z3/B+VZLeJc/Nzol3wiRwlKBysbg
+         mzbg==
+X-Forwarded-Encrypted: i=1; AL+hErF5QwBjLR+HV/HBmF61vCBGcghaNRNnO5b4+xykwWn/rVQQ25YHEuycj2PxQzpPdbC2SuOw4oQC7zE/aNG/QWmt@lists.infradead.org
+X-Gm-Message-State: APuU4Z9pPQO6RBY4hPI3LCXJ/Fe/W4yTSix2n9a7ET9byW/LBa8XAGH8
+	UhRiWOS0Qvve2gvk5az55eib3qY7v4Eyg0wvt1iIyYeLtga4yKmReCuN
+X-Gm-Gg: AYBFou2OnZe3wfmRSNV01sxHXKs6omNG3vNqbHg9pI6E70svCbyREjdt6A8XvakoUij
+	7Bzwe47tV6WSM2qB/WfCOl1GjwhZp0JNAbrpEbQ3NhsK92O1ceUPGeXesKf15dvL/EUTT/wcu4o
+	naFzkCg1eoYwmZt1YEqtdf2n+PUWuS5N/kkNU0Sulepc1Igh5YprujqXL4PFZm37JBbSAaaOS2a
+	d9LGcajr4fKKwn/AnoarAayGdu/7waU8X1SHeSZ3UNtfkdwaSVFz3Bzgyjk5peB51p6SHxsg5HA
+	vFa8+DJIKcxNq+5ug/kFiAiGLBwn5/Q9ada6F3QFFhbOsXHfd3KXFmixeQAmGqsvYFlbT8ysfkB
+	NJaTtJFCAwGV2s8W1wgkw0ssRC5tiXZ/ItUTap/Ec3JeGDlO3yvhJY9n1C7kvScTTR3Xdm97O5R
+	zGqq0hw2/L6yY9IzH8srhj9iBDn37PnV5c2hGrl1KuMtRV9NpyGVrWDKup9lpXEAusj0rWgCTqI
+	2qlGBER14Q9+mnhh97iWIBaMkJ8hksJDHIK8pyDVQVX8L9AgzNULfjLDBUk5XKamMhuHvtJm77/
+	Y2Q4NHz6pAkwk4bSGh2EQgNuWAmq1n3pDQ==
+X-Received: by 2002:a17:90b:1f90:b0:3a7:e11c:4e6e with SMTP id 98e67ed59e1d1-3b182f5a142mr3250774a91.59.1794423876623;
+        Wed, 11 Nov 2026 11:04:36 -0800 (PST)
 Received: from [127.0.1.1] ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b181f8fd59sm2727366a91.1.2026.11.11.11.04.26
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b181f8fd59sm2727366a91.1.2026.11.11.11.04.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 11:04:30 -0800 (PST)
+        Wed, 11 Nov 2026 11:04:36 -0800 (PST)
 From: Leonardo Costa <leoreis.costa@gmail.com>
-Date: Wed, 11 Nov 2026 16:03:58 -0300
-Subject: [PATCH v2 2/7] ARM: dts: imx6q-apalis-ixora: Add 3.3V_SW power
- regulator
+Date: Wed, 11 Nov 2026 16:03:59 -0300
+Subject: [PATCH v2 3/7] ARM: dts: imx6q-apalis: Add Toradex Capacitive
+ Touch Display 10.1" LVDS
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-b4-v2-apalis-imx6-overlays-v2-2-8129b21634c7@toradex.com>
+Message-Id: <20261111-b4-v2-apalis-imx6-overlays-v2-3-8129b21634c7@toradex.com>
 References: <20261111-b4-v2-apalis-imx6-overlays-v2-0-8129b21634c7@toradex.com>
 In-Reply-To: <20261111-b4-v2-apalis-imx6-overlays-v2-0-8129b21634c7@toradex.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -94,16 +94,16 @@ Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-bsp@toradex.com, Leonardo Costa <leonardo.costa@toradex.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794423849; l=1776;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794423849; l=4455;
  i=leonardo.costa@toradex.com; s=20261001; h=from:subject:message-id;
- bh=G0D3AUMCZAfAB+oBMBn/hQwsHUHoV16Fn9kK3ypcWVo=;
- b=nVAd3ioHTSP14EpXIOGgXQEKXYdlaDj7tVEwROvBxWF3/+gClQ12Rlidq7vEtLB+ule4J4Vk0
- 3bR2zBAFxnoCkRzAHzkq5qgKAg20KQVSPt5/X9Lvj3yCeW7DLsd4Jni
+ bh=oe0gNHFEkUnU4DGWTju+MJg1QgwQQbBq6PPLVxbI5NU=;
+ b=lhQ2QCeAMTxHxA6IWvu2h/Y6r9QtaPWxJFG8efc2jLx/HSL0wnuHil7uHqrWS5Po1Lq2DorDn
+ CGVUtSIkP2MBnzpcQOF+hJQg3ZiifuRvsFb33h7G4Vrw2sWkihPB98K
 X-Developer-Key: i=leonardo.costa@toradex.com; a=ed25519;
  pk=4xvoVLDt+NxIz9D8BJHhT0fD43Ig6XgSDw4jRN/gHzk=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_110432_325571_0EF1EE57 
-X-CRM114-Status: GOOD (  10.61  )
+X-CRM114-CacheID: sfid-20261111_110438_070637_15581157 
+X-CRM114-Status: GOOD (  15.99  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,54 +125,148 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Leonardo Costa <leonardo.costa@toradex.com>
 
-The Ixora carrier board has a switched 3.3V power lane that is used for
-powering peripherals. Add the correspondent power regulator node to the
-Ixora carrier board device trees, similarly to the already existing
-reg_3v3_sw node in imx6q-apalis-eval.dtsi, so that it can be referenced
-by peripherals that require a specified power supply.
+Add a device tree overlay for the Toradex Capacitive Touch Display 10.1"
+LVDS connected via the Apalis iMX6 LDB.
 
+The panel is a LogicTechno LT170410-2WHC 10.1" WXGA IPS LCD and the
+touch input is provided by an Atmel MaxTouch capacitive touch
+controller.
+
+Remove the panel-lvds node from the Apalis iMX6 dtsi, as it is an
+external component that does not exist at the SoM level.
+
+The overlay is also combined with the Apalis iMX6 V1.2 Ixora Carrier
+Board V1.2 device tree to provide a ready-to-use DTB.
+
+Link: https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
 Signed-off-by: Leonardo Costa <leonardo.costa@toradex.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts | 7 +++++++
- arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts      | 7 +++++++
- 2 files changed, 14 insertions(+)
+ arch/arm/boot/dts/nxp/imx/Makefile                 |  6 +++
+ ...-apalis-tdx-panel-cap-touch-10inch-lvds-v1.dtso | 53 ++++++++++++++++++++++
+ arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi      | 13 ------
+ 3 files changed, 59 insertions(+), 13 deletions(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts
-index 6ef2a986ca8cd..73e3b99486d0e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts
-@@ -57,6 +57,13 @@ led5-red {
+diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
+index cc0f5f100892f..3b69669b27129 100644
+--- a/arch/arm/boot/dts/nxp/imx/Makefile
++++ b/arch/arm/boot/dts/nxp/imx/Makefile
+@@ -164,6 +164,10 @@ imx6q-apalis-v1.2-ixora-v1.2-hdmi-dtbs := \
+ 	imx6q-apalis-v1.2-ixora-v1.2.dtb \
+ 	imx-hdmi.dtbo
+ 
++imx6q-apalis-v1.2-ixora-v1.2-tdx-panel-cap-touch-10inch-lvds-v1-dtbs := \
++	imx6q-apalis-v1.2-ixora-v1.2.dtb \
++	imx6q-apalis-tdx-panel-cap-touch-10inch-lvds-v1.dtbo
++
+ imx6qdl-dhcom-pdk2-overlay-497-200-x12-dtbs := \
+ 	imx6q-dhcom-pdk2.dtb \
+ 	imx6qdl-dhcom-pdk2-overlay-497-200-x12.dtbo
+@@ -320,6 +324,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+ 	imx6q-apalis-ixora-v1.1-hdmi.dtb \
+ 	imx6q-apalis-ixora-v1.2.dtb \
+ 	imx6q-apalis-ixora-v1.2-hdmi.dtb \
++	imx6q-apalis-tdx-panel-cap-touch-10inch-lvds-v1.dtbo \
+ 	imx6q-apalis-v1.2-eval.dtb \
+ 	imx6q-apalis-v1.2-eval-hdmi.dtb \
+ 	imx6q-apalis-v1.2-eval-v1.2.dtb \
+@@ -330,6 +335,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+ 	imx6q-apalis-v1.2-ixora-v1.1-hdmi.dtb \
+ 	imx6q-apalis-v1.2-ixora-v1.2.dtb \
+ 	imx6q-apalis-v1.2-ixora-v1.2-hdmi.dtb \
++	imx6q-apalis-v1.2-ixora-v1.2-tdx-panel-cap-touch-10inch-lvds-v1.dtb \
+ 	imx6q-apf6dev.dtb \
+ 	imx6q-arm2.dtb \
+ 	imx6q-b450v3.dtb \
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-tdx-panel-cap-touch-10inch-lvds-v1.dtso b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-tdx-panel-cap-touch-10inch-lvds-v1.dtso
+new file mode 100644
+index 0000000000000..a84114e1d3fba
+--- /dev/null
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-tdx-panel-cap-touch-10inch-lvds-v1.dtso
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/*
++ * Copyright (c) Toradex
++ *
++ * Toradex Capacitive Touch Display 10.1" connected via Apalis iMX6 LDB
++ * on carrier boards with a Toradex standard LVDS display connector.
++ *
++ * https://docs.toradex.com/105952-10-1-inch-lvds-capacitive-touch-display-1280x800-datasheet.pdf
++ * https://developer.toradex.com/hardware/accessories/displays/capacitive-touch-display-101inch-lvds
++ * https://www.toradex.com/accessories/capacitive-touch-display-10.1-inch-lvds
++ */
++
++/dts-v1/;
++/plugin/;
++
++&{/} {
++	panel-lvds {
++		compatible = "logictechno,lt170410-2whc";
++		backlight = <&backlight>;
++		power-supply = <&reg_3v3_sw>;
++
++		port {
++			lvds_panel_in: endpoint {
++				remote-endpoint = <&lvds0_out>;
++			};
++		};
++	};
++};
++
++&atmel_mxt_ts {
++	status = "okay";
++};
++
++&backlight {
++	status = "okay";
++};
++
++&ldb {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	status = "okay";
++
++	lvds-channel@0 {
++		reg = <0>;
++
++		status = "okay";
++	};
++};
++
++&lvds0_out {
++	remote-endpoint = <&lvds_panel_in>;
++};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+index af038ac472261..8f5a9ab1f20fa 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+@@ -95,18 +95,6 @@ lcd_panel_in: endpoint {
  		};
  	};
  
-+	reg_3v3_sw: regulator-3v3-sw {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "3.3V_SW";
-+	};
-+
- 	reg_3v3_vmmc: regulator-3v3-vmmc {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts
-index 6b5393accc092..6fb57935cdf1f 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts
-@@ -55,6 +55,13 @@ led5-red {
- 			label = "LED_5_RED";
+-	panel_lvds: panel-lvds {
+-		compatible = "panel-lvds";
+-		backlight = <&backlight>;
+-		status = "disabled";
+-
+-		port {
+-			lvds_panel_in: endpoint {
+-				remote-endpoint = <&lvds0_out>;
+-			};
+-		};
+-	};
+-
+ 	poweroff {
+ 		compatible = "regulator-poweroff";
+ 		cpu-supply = <&vgen2_reg>;
+@@ -735,7 +723,6 @@ port@4 {
+ 			reg = <4>;
+ 
+ 			lvds0_out: endpoint {
+-				remote-endpoint = <&lvds_panel_in>;
+ 			};
  		};
  	};
-+
-+	reg_3v3_sw: regulator-3v3-sw {
-+		compatible = "regulator-fixed";
-+		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "3.3V_SW";
-+	};
- };
- 
- &can1 {
 
 -- 
 2.43.0
