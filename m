@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83A7606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72F2606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:21:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xy5FPui/;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cQk0ITmt
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=m/4Foblw;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Z3NEcnpz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,63 +14,57 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=SbZNDieBY9hzEjO8/yCRQWNmGrtK1StoZinKCNvVSwY=; b=xy5FPui/ZEdjLJJgBZtGLxZpmY
-	NB0DcLTM49gVLz9iSmYcK2jCCxcR/8KjuxMVtCO5P2vAxwYv82xDw6sEY30MEa2mkarfRIRrP8Ukt
-	xEd7zsvjrFh95Hg2BWGbnSQZSetZbVnYfuMRQlSmdwaaxYjVlYf7qwXOmVKaTg7i/8/CWDrCimEF8
-	ShEHy9EnNU4LkdlGdNzNZlU7e9ehObx/D34OWrrNX2dN5Mkeongk798E2dKRxzdf+LChZ+PauGnVr
-	vMKKxv5SzT2uOMfDfvvlXJnapgCji+N33iAGyHDVUF+t4evdAEKqgJNA2EZ4u0OhvtQo/HrZlvqyd
-	XMcawMDg==;
+	bh=oHVW7jNgTo/7nIb4CmqK42I4MtbBzqJmNU5KyxcTUvE=; b=m/4FoblwqaaB8uKo3YgudJ95Vi
+	8vcv1Glu4V8eFg+EJzVW0F0M6aI1/Eb/e7oHbDRW+BJj5TkWD+oPAYdUudjjmF35kv+5606VDf2OK
+	9XXAG19pBBCd/M1AE1R3TFzlatfq7fI03M0DaJ+Id0Z8GiUDIiX/sSs4V5qgTVX/HjmS8vnqwGYMg
+	PktArI+2pteLEXAyFYe01q47owIljzzKIq8gWBFGB0JFyc+zrZlUtusPNc7tJQ2bS2bf0yfgCTGE7
+	PsBRs3BXTB7zTMqBi0W/F/R3Jc0GNaa0duTm5IwVl3tbud8AnTu3R6Ynuq2jV2OSD1xbf8hAIrgQY
+	trSPPbXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRByM-00000007Hu2-3Rfb;
-	Wed, 11 Nov 2026 17:18:58 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRByL-00000007HtY-19Ar;
-	Wed, 11 Nov 2026 17:18:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id EC60542A6B;
-	Wed, 11 Nov 2026 17:18:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F23E71F00A05;
-	Wed, 11 Nov 2026 17:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794417536;
-	bh=SbZNDieBY9hzEjO8/yCRQWNmGrtK1StoZinKCNvVSwY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cQk0ITmtBFI6MNWa6tcqdRP1Rrb1hw8KJqL3wDZjKkLS7qWsr8dkgtxobdWYng3pn
-	 q5ZO2KEOq/2ybyWYi1AhNEADaRFen86B9Qfc9zEijmOyQVXqJ5iAAn19vBib/ebrrg
-	 5Kf3k4DZdSx3HaFJzdPXXRcot0z8gkEkBVYvg5IY+dDOKPmybYmtL+kpMieQukIbXL
-	 hliusqQdHIYaUXsUNUmacQNVuD3WYmhX/ofmNDcaVRlplYYojaJCWxS8lj8rnQQHRj
-	 qbhT2IDffnC934hn2HpwgVmjLyCdlenDNhpkU3pmwTV7O5NULFrr+8rk8Jv1Lj8+Z0
-	 nrzWsuEDXXAHg==
-Date: Wed, 11 Nov 2026 17:18:50 +0000
-From: Mark Brown <broonie@kernel.org>
-To: jiebing.chen@amlogic.com
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	jian.xu@amlogic.com, shuai.li@amlogic.com, zhe.wang@amlogic.com
-Subject: Re: [PATCH v8 2/5] dt-bindings: Asoc: axg-audio: Add S4 audio tocodec
-Message-ID: <81581939-3079-4549-9bb8-2e935c173a7f@sirena.org.uk>
-References: <20261110-audio_drvier-v8-0-1489241e4c83@amlogic.com>
- <20261110-audio_drvier-v8-2-1489241e4c83@amlogic.com>
+	id 1xRC0R-00000007I5T-0tCi;
+	Wed, 11 Nov 2026 17:21:07 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRC0O-00000007I56-3OVW
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 17:21:06 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BDC441576;
+	Wed, 11 Nov 2026 09:21:00 -0800 (PST)
+Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 87BAC3F632;
+	Wed, 11 Nov 2026 09:21:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794417663; bh=Rf4ebtvltCctbkDc/Gv4WhpuRQ5MW6jqs73z5jo5cb0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z3NEcnpzN+rb8IhiTNoLslEyKdoUWksMEpnQHcWQAB7rr/bq5YHO2aUh9LZBJb9kZ
+	 NVJ4FctJSnEOQvL9bv8EUE5im5n3NvHjBD2tLY/0pcjk8MmodxdQ9Z4LUMN0lfvE87
+	 XlML061p/+aCR23TsCURNUlK6CPGFo+EFvOdFTcc=
+Date: Wed, 11 Nov 2026 17:20:08 +0000
+From: Alexandru Elisei <alexandru.elisei@arm.com>
+To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
+	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
+	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
+	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
+	james.clark@linaro.org
+Subject: Re: [RFC PATCH v7 05/28] perf: arm_spe_pmu: Add PMBIDR_EL1 and
+ PMSIDR_EL1 to struct arm_spe_pmu
+Message-ID: <avSjyLhFsYjI7tG_@raptor>
+References: <20260903160623.315525-1-alexandru.elisei@arm.com>
+ <20260903160623.315525-6-alexandru.elisei@arm.com>
+ <atDmDRSNDllpJtmL@gremlin>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oOrGjpPCIIgGz7y5"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261110-audio_drvier-v8-2-1489241e4c83@amlogic.com>
-X-Cookie: Do not pick the flowers.
+In-Reply-To: <atDmDRSNDllpJtmL@gremlin>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_092104_958347_9C26625F 
+X-CRM114-Status: GOOD (  33.36  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,44 +75,144 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi,
 
---oOrGjpPCIIgGz7y5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Oct 15, 2026 at 04:12:27PM +0100, Lorenzo Stoakes (ARM) wrote:
+> I think probably some kind of commit message would be good even for a
+> trivial change :)
 
-On Tue, Nov 10, 2026 at 10:28:25AM +0800, Jiebing Chen via B4 Relay wrote:
-> From: Jiebing Chen <jiebing.chen@amlogic.com>
->=20
-> Add S4 SoC tocodec compatibility support.
+Of course, I'll add something here.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+> 
+> On Thu, Sep 03, 2026 at 05:06:00PM +0100, Alexandru Elisei wrote:
+> > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
+> > ---
+> >  drivers/perf/arm_spe_pmu.c       | 3 +++
+> >  include/linux/perf/arm_spe_pmu.h | 2 ++
+> >  2 files changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+> > index 79c571a649d5..42ba0924bd02 100644
+> > --- a/drivers/perf/arm_spe_pmu.c
+> > +++ b/drivers/perf/arm_spe_pmu.c
+> > @@ -1095,6 +1095,7 @@ static void __arm_spe_pmu_dev_probe(void *info)
+> >  			"profiling buffer owned by higher exception level\n");
+> >  		return;
+> >  	}
+> > +	spe_pmu->pmbidr_el1 = reg;
+> 
+> This doesn't seem to be used anywhere in the series?
 
---oOrGjpPCIIgGz7y5
-Content-Type: application/pgp-signature; name="signature.asc"
+Indeed, that's a leftover from the previous iterations, will remove.
 
------BEGIN PGP SIGNATURE-----
+> 
+> >
+> >  	/* Minimum alignment. If it's out-of-range, then fail the probe */
+> >  	fld = FIELD_GET(PMBIDR_EL1_ALIGN, reg);
+> > @@ -1107,6 +1108,8 @@ static void __arm_spe_pmu_dev_probe(void *info)
+> >
+> >  	/* It's now safe to read PMSIDR and figure out what we've got */
+> >  	reg = read_sysreg_s(SYS_PMSIDR_EL1);
+> > +	spe_pmu->pmsidr_el1 = reg;
+> > +
+> >  	if (FIELD_GET(PMSIDR_EL1_FE, reg))
+> >  		spe_pmu->features |= SPE_PMU_FEAT_FILT_EVT;
+> >
+> > diff --git a/include/linux/perf/arm_spe_pmu.h b/include/linux/perf/arm_spe_pmu.h
+> > index af86fd184050..97b14e236fcd 100644
+> > --- a/include/linux/perf/arm_spe_pmu.h
+> > +++ b/include/linux/perf/arm_spe_pmu.h
+> > @@ -21,6 +21,8 @@ struct arm_spe_pmu {
+> >  	cpumask_t				supported_cpus;
+> >  	struct hlist_node			hotplug_node;
+> >
+> > +	u64					pmbidr_el1;
+> 
+> Equally, this doesn't seem to be used anywhere in the series, maybe drop?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmr0o3kACgkQJNaLcl1U
-h9CsCwf9Elzjbf8nHCLS5M+WLOLUCXXBlKz4ioAbZpwXCXKM+LrRVNgnLw4IzNmX
-POCp7OsztudK0+BWIZeo+K2/TRsSvkV5MnHLUBJ07sUq7LzHkotnhyviWmaxqwCM
-vr96FBCba5vQ3KI8XWOH7UUNdUVXiKxuPBMpxut7ZTLvEUKNtajO8tEs+vfT9nuw
-j+oMdNOLg+QdZhAqjzkbaarX44zJ7iSHHRdlZ1sWRuX7ygFc6mMWB0OrZV+3v6X+
-dSkRdZUhBV9TTA3GavN4+DlqnCaXpzcmIbZu4nKWvLSlFM6TaM3NHoJ9aC6xdLyb
-q6fQTd6FJ01z/qrQYUlUr3chvx+7MA==
-=C328
------END PGP SIGNATURE-----
+Fixed.
 
---oOrGjpPCIIgGz7y5--
+> 
+> > +	u64					pmsidr_el1;
+> 
+> This field is used in kvm_spe_has_feat_spe_fds() and
+> kvm_spe_has_feat_spe_fne():
+> 
+> bool kvm_spe_has_feat_spe_fds(struct kvm *kvm)
+> {
+> 	...
+> 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P4) &&
+> 	       FIELD_GET(PMSIDR_EL1_FDS, spe_pmu->pmsidr_el1);
+> }
+> 
+> bool kvm_spe_has_feat_spe_fne(struct kvm *kvm)
+> {
+> 	...
+> 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P2) &&
+> 	       FIELD_GET(PMSIDR_EL1_FnE, spe_pmu->pmsidr_el1);
+> }
+> 
+> So checking for FDS and FnE, but these are available as feature flags as
+> __arm_spe_pmu_dev_probe() gets these:
+> 
+> static void __arm_spe_pmu_dev_probe(void *info)
+> {
+> 	...
+> 	if (FIELD_GET(PMSIDR_EL1_FnE, reg))
+> 		spe_pmu->features |= SPE_PMU_FEAT_INV_FILT_EVT;
+> 	...
+> 	if (FIELD_GET(PMSIDR_EL1_FDS, reg))
+> 		spe_pmu->features |= SPE_PMU_FEAT_FDS;
+> 	...
+> }
+> 
+> And then kvm_spe_has_feat_spe_fds() and kvm_spe_has_feat_spe_fne() can be:
+> 
+> bool kvm_spe_has_feat_spe_fds(struct kvm *kvm)
+> {
+> 	...
+> 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P4) &&
+> 	       (spe_pmu->features & SPE_PMU_FEAT_FDS);
+> }
+> 
+> bool kvm_spe_has_feat_spe_fne(struct kvm *kvm)
+> {
+> 	...
+> 	return kvm_has_feat(kvm, ID_AA64DFR0_EL1, PMSVer, V1P2) &&
+> 	       (spe_pmu->features & SPE_PMU_FEAT_INV_FILT_EVT);
+> }
+> 
+> Right?
+
+In this use case they are functionally the same, yes, but conceptually, they are
+not the same thing. spe_pmu->features advertises the features that the SPE
+*driver* supports, PMSIDR_EL1 advertises the features that the *hardware*
+implements. The two are not always equal.  For example, KVM added handling for
+the PMSNEVFR_EL1 register (added by FEAT_SPE_FnE), a few years before the SPE
+driver supported FEAT_SPE_FnE.
+
+I can see KVM, in the future, having to virtualize hardware features not
+supported by the host driver yet, so unless you have a strong objection, I would
+rather keep the use of the architectural register instead of relying on the
+driver.
+
+> 
+> So it seems you could drop this patch from the series in general? Is there
+> another reason to get these fields?
+> 
+> Also - there seems to be a divergence in the naming there between FnE and
+> INV_FILT_EVT, is that intentional?
+
+I think that's a question for the person who added FEAT_PMU_FEAT_INV_FILT_EVT?
+
+Thanks,
+Alex
 
