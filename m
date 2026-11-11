@@ -2,69 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46FFB606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 13:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B3E4606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 14:03:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X68Dj7Yg;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=eO3N8mVU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O5uJ6/dV;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=fNZl4mDN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yWS0+4kurKjndaOQRErlwqMS9KCLA/8IMzcMt6fHeEk=; b=X68Dj7Yg5Z7QKr
-	8TD6GtLS73/BywEg/QMrMZm5bk7ZkaufhqptT16Egzgk3ITGIG1MfnOlRPYZHqxl5ToJE/LRLIXwj
-	xxhpldg8c1gQ0N3To+zD4iBb6oQjZAFb/BI3xrkZVb+syHuqpBpqROr/iFh6mH/Qclkzq8E1ZVeQB
-	YoJksycDFovHaDrTYZgfb1YISusPRTHQlp/yEyHYqMbERQPyNllvP75WVgIRCMa4HQUX+JBV53PpO
-	Y8MWlYOgnprdJrMzCLrN6viWUJezxJxuxwmO3iA0CBP1dt9NnlxesuqHfIZ32GgsEwyNkkjaG67l5
-	UZjwtQFmXG5/49wbFgSQ==;
+	List-Owner; bh=Ib+B96G7+gmq0/izhy8Z5ZthzY6w8s611Ial48mm0F8=; b=O5uJ6/dV4mylmV
+	RVRZi2EHzIJntlQ3XafaYf5OJvaLBMsiDkgy7feYbTENcLOiqR9DN08pufFMigASZKDtIx4wZxLPe
+	Nk0YMUr1jGXSRsQ66a2GW+ahD7/ExHKVy5Lav31RUQWLhT8XruNVXk/R4FmJ9FsVEEBu32LaGF2If
+	Xsh3UtPEf+OnIhQZZusqRNb2vOP9b/6FD9eN/rBDyv87hOl3HC9IcK27EP3F7YK2ryYFot1Tc01b+
+	fRBE//0K4u+yj/z39Q9wV3SbhVi5jxkWmWfY13I8KTq/YPMZ37YPqqUU5uwK9XUIlcc4jJcqsXUO8
+	jy9m7Nc4teRNCKm4qqKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8rI-00000006toR-0MaR;
-	Wed, 11 Nov 2026 13:59:28 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR8rE-00000006tn6-3MFQ
+	id 1xR8uw-00000006uIz-2iuX;
+	Wed, 11 Nov 2026 14:03:14 +0000
+Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xR8uu-00000006uIR-37To
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 13:59:26 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E68AB1576;
-	Wed, 11 Nov 2026 05:59:18 -0800 (PST)
-Received: from [10.57.69.47] (unknown [10.57.69.47])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AD9FE3F673;
-	Wed, 11 Nov 2026 05:59:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794405561; bh=ZS/6+logSEVjBhsJ898Tt4DanlJ8je6TCRqCH1C6kak=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eO3N8mVUBUtNqhII9a/tEc81Ec4bqXfC3opjg7RtnAwOj48vBxoFwn0gTgJjSe28j
-	 azwZd8fu84HHjudgNafZPbstRNInc2Bj0M4wjZcfOLEnhYbNtLA5Mf3TPRwFsRl/9u
-	 ZATQVUicbb+glkJc/EWmw1eC3blUY/XrGaS/I4Jc=
-Message-ID: <5fa8a1fb-4e2c-4746-8a70-a47f387ef0d6@arm.com>
-Date: Wed, 11 Nov 2026 13:59:17 +0000
+	Wed, 11 Nov 2026 14:03:14 +0000
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4b4571ff080so36038515e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 06:03:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1794405791; x=1795010591; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Ib+B96G7+gmq0/izhy8Z5ZthzY6w8s611Ial48mm0F8=;
+        b=fNZl4mDNndaEb2lXfN0inU6Tra7/Exf6sn0ZNsf1jbu4eAoyleIU24u9WH2IPbEsl0
+         aUiMK+mm8z5eIi0rM8LB9WrCer01kKPw+cMfHePkudtSDi6BIDuEU+A5prNg4PIH1ppd
+         KjdfLT0MUzDvpPno7K68QAm+0MM+b2za9PPENHAuDqRH4yTd5DTM267KYYm6rURFQ90p
+         nIfX0dRvdZlWEM9ep8gX7vv8ibBF5ElIY7ZPase6rdkOW+TmVJOWwhhNP7XaR70pO2NB
+         FGHRPgmqvuLwKEeGaItEO2g4Yo5syEO+1e0HWUrOWxHJZdRSA+cG1zYlErJSbCxzyPk3
+         xhIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794405791; x=1795010591;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=Ib+B96G7+gmq0/izhy8Z5ZthzY6w8s611Ial48mm0F8=;
+        b=YN6MS6TVmZNR1fDnlDyWPXOktzhFa1m0+tihLzXfDe/H63x+KYN8HrUZmQHAEHz9UX
+         L3zN3iMM2qAOGKXUPkY6id7MDzvVkeu0m6iwXYntUSwoRv19YO/GgiCZZbaVTeQdXVpr
+         rYHLYl8AFb4rUAsgOJn2EEaYW+C1qZ0weaP+h44xqt7EjNlBvlIPRb7eSRNv73yVnk+F
+         HQWY5B+9NtVJQwgDb25ITkwdR9pEO+tyQihp11WbjKaZWC7sRuX/X2v7ZnM4fMHSjVMM
+         Br/nAQKwAXMWHYmZGKQqxe0Y2tiuz4sioZnGs2WMCHj9eICCqGuwNBTFco+GEfqZiwvJ
+         DWnQ==
+X-Forwarded-Encrypted: i=1; AL+hErET0OBulaz7e7CWDDBRhDXvXqYvyZT0Ou34s2q4NX688vdw4Q6KotfAiWxX2Mdx9UsPyRJbIKRGggRdl87LRy8+@lists.infradead.org
+X-Gm-Message-State: APuU4Z8FQ0IatzJQdk+6944hcgku9dTHmxYAeVNRUZZ2uQVZ0TUOSPcZ
+	tYZ+fyU3PRRHKwkVBuoz6Qxny7shcDO74+v0jW3QaOR/DgZ/MPvkiSHRnRYgBnlOg0A=
+X-Gm-Gg: AYBFou3i0WYFkbQePIiZM/gEzAMeLaBapqg3T/2KZOfINEUQAxJi99lFQb/Z/hMHMHA
+	evLr3H9+R+inhGwOpAhCWEFpX6YqqIL2yD3BxO45lRaGrsKFjN+M4ISOZqPhG1jce92jv9e0Ahx
+	cXCVp2rDE6iVkaOXeJMfdkrfx++ZadjhI8QwHxTSYrp49h1QSTgH0f7IlDxDQXBFpM6rGnlJSxK
+	9+LH3tMI5hOuA8Z1qJ5lJ6NEylUqbjhn+Okani/C/8V276oW7IiJNRlHDBcYBIGxuf695Uf8AQ6
+	Mxf6S1Zf7b2NgtgD1pcDANmM02kH94mMEAQ4gQcSTzRaBqYuD6+sc/Z+DWTdhkCbwKxlxHqt+RG
+	5HqaehzzXgk8kCrgTH9jm3I8oUXNy/j1WDaguGN4CV+/7axKeHGzC5Tnc75GyQeba+tw/m6cwwQ
+	jYBk7NvhmMqciCp78RLN2J0VM66ng88mRCWIW5QvvN95uiFC5bQilxnEW21gLFH4RQG+LknsJbC
+	Y+cqqsXqDiG2aS+XRYVQn27jHt1Itg6J8g7ud+yNEMDd8JzxtyfjYj1/obWps1xFxwrtK5ROT+Z
+	rvGb/pUvAaK2Z9AdjgDevA32Dr2dzHzEySsatGHm9hc+G4DNcFRyfYw=
+X-Received: by 2002:a05:600c:1549:b0:4a2:cbe:bebc with SMTP id 5b1f17b1804b1-4ba0938ba0amr45260745e9.23.1794405790819;
+        Wed, 11 Nov 2026 06:03:10 -0800 (PST)
+Received: from [192.168.1.3] ([37.18.141.193])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba01fba476sm172702635e9.2.2026.11.11.06.03.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2026 06:03:10 -0800 (PST)
+Message-ID: <1e5907fc-40c6-4025-8d27-a92b3cb2845a@linaro.org>
+Date: Wed, 11 Nov 2026 14:03:09 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 09/18] KVM: arm64: Implement HVC handling for protected
- guests at EL2
-To: Fuad Tabba <fuad.tabba@linux.dev>, maz@kernel.org, oupton@kernel.org,
- kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Cc: catalin.marinas@arm.com, will@kernel.org, joey.gouly@arm.com,
- seiden@linux.ibm.com, suzuki.poulose@arm.com, yuzenghui@huawei.com,
- mark.rutland@arm.com, steven.price@arm.com, vdonnefort@google.com,
- qperret@google.com, tabba@google.com
-References: <20261001135711.1640520-1-fuad.tabba@linux.dev>
- <20261001135711.1640520-10-fuad.tabba@linux.dev>
-From: Ryan Roberts <ryan.roberts@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20261001135711.1640520-10-fuad.tabba@linux.dev>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH] perf vendor events arm64 AmpereOneX: Fix misspelled
+ PublicDescription keys
+To: TAKANO Mitsuhiro <takano32@gmail.com>
+Cc: linux-perf-users@vger.kernel.org,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Ian Rogers <irogers@google.com>,
+ John Garry <john.garry@linux.dev>,
+ Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261108183846.3804875-1-takano32@gmail.com>
+ <bf6925f6-613f-4e20-8491-2a99183f34fb@linaro.org>
+ <39ac224f-2903-496e-9a08-b4c5a33dc87f@linaro.org>
+ <179440414898.2353714.11591904089911934138@gmail.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <179440414898.2353714.11591904089911934138@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_055925_055897_B789FE8C 
-X-CRM114-Status: GOOD (  24.06  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261111_060312_812225_15B75659 
+X-CRM114-Status: GOOD (  25.46  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,187 +111,64 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Faud,
-
-I have some drive-by comments for this patch, having stumbled upon it while
-poking around in SSBS code today...
 
 
-On 01/10/2026 14:57, Fuad Tabba wrote:
-> Extend kvm_handle_pvm_hvc64() to handle SMCCC_VERSION,
-> SMCCC_ARCH_FEATURES and the vendor hypervisor call UID at EL2, so
-> these queries don't reach the host. ARCH_FEATURES is mandatory from
-> SMCCC 1.1, the version EL2 implements: it returns SUCCESS for itself and
-> for SMCCC_VERSION, NOT_SUPPORTED for anything else, and handles the
-> ARCH_WORKAROUND_1/2/3 queries as the host does, from a copy of the
-> host's mitigation state taken at init with the sanitised ID registers.
-> The workaround calls themselves are already handled on hyp entry.
+On 11/11/2026 13:35, TAKANO Mitsuhiro wrote:
+> On 2026-11-11 10:16, James Clark wrote:
 > 
-> Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
-> ---
->  arch/arm64/include/asm/kvm_hyp.h |  4 ++
->  arch/arm64/kvm/arm.c             |  4 ++
->  arch/arm64/kvm/hyp/nvhe/pkvm.c   | 68 ++++++++++++++++++++++++++++++++
->  3 files changed, 76 insertions(+)
+>> IMO I would rather have something that's incredibly strict and simple,
+>> or nothing at all. Having to work around edge cases and report near
+>> misses doesn't sound great.
 > 
-> diff --git a/arch/arm64/include/asm/kvm_hyp.h b/arch/arm64/include/asm/kvm_hyp.h
-> index 4974492744cc8..7609c78c68f34 100644
-> --- a/arch/arm64/include/asm/kvm_hyp.h
-> +++ b/arch/arm64/include/asm/kvm_hyp.h
-> @@ -10,6 +10,7 @@
->  #include <linux/compiler.h>
->  #include <linux/kvm_host.h>
->  #include <asm/alternative.h>
-> +#include <asm/spectre.h>
->  #include <asm/sysreg.h>
->  
->  DECLARE_PER_CPU(struct kvm_cpu_context, kvm_hyp_ctxt);
-> @@ -150,6 +151,9 @@ extern u64 kvm_nvhe_sym(id_aa64smfr0_el1_sys_val);
->  
->  extern unsigned long kvm_nvhe_sym(__icache_flags);
->  extern unsigned int kvm_nvhe_sym(kvm_arm_vmid_bits);
-> +extern enum mitigation_state kvm_nvhe_sym(spectre_v2_state);
-> +extern enum mitigation_state kvm_nvhe_sym(spectre_v4_state);
-> +extern enum mitigation_state kvm_nvhe_sym(spectre_bhb_state);
->  extern unsigned int kvm_nvhe_sym(kvm_host_sve_max_vl);
->  extern unsigned long kvm_nvhe_sym(hyp_nr_cpus);
->  extern unsigned int kvm_nvhe_sym(hyp_gicv3_nr_lr);
-> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> index db36815630790..cceeeee266902 100644
-> --- a/arch/arm64/kvm/arm.c
-> +++ b/arch/arm64/kvm/arm.c
-> @@ -2622,6 +2622,10 @@ static void kvm_hyp_init_symbols(void)
->  	kvm_nvhe_sym(__icache_flags) = __icache_flags;
->  	kvm_nvhe_sym(kvm_arm_vmid_bits) = kvm_arm_vmid_bits;
->  
-> +	kvm_nvhe_sym(spectre_v2_state) = arm64_get_spectre_v2_state();
-> +	kvm_nvhe_sym(spectre_v4_state) = arm64_get_spectre_v4_state();
-> +	kvm_nvhe_sym(spectre_bhb_state) = arm64_get_spectre_bhb_state();
+> Agreed, and the near-miss report is gone.  The series is posted again:
+> 
+> https://lore.kernel.org/linux-perf-users/20261111132622.2349165-1-takano32@gmail.com/
+> 
+> The check is now a fixed list of the 51 keys a json object under arch/ may
+> carry: 47 of them jevents.py reads, one more metric.py reads, and three are
+> read by nothing although the tables hold them (Counter, CountersNumFixed,
+> CountersNumGeneric).  A key outside that list is reported with the object
+> that carries it.  There is no cut-off, no similarity and nothing that
+> depends on what a run of the generator happened to read, so there is no
+> edge case left to work around.
+> 
 
-Is it really correct to snapshot this state then use it at runtime assuming its
-still accurate? See below...
+The linked patches seem like a bigger change than what I'd expect. I'm 
+not sure that's necessary for something conceptually as simple as 
+"validate the json files".
+
+I'm also a bit lost about the relationship between "[PATCH 0/3] perf 
+jevents: Report the JSON keys that jevents.py never reads" and "[PATCH] 
+perf jevents: Check the JSON keys that jevents.py never reads".
 
 
-> +
->  	/* Propagate the FGT state to the nVHE side */
->  	kvm_nvhe_sym(hfgrtr_masks)  = hfgrtr_masks;
->  	kvm_nvhe_sym(hfgwtr_masks)  = hfgwtr_masks;
-> diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-> index 6ff08d195ff56..10ff2ba6c6c1b 100644
-> --- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
-> +++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-> @@ -10,12 +10,18 @@
->  #include <linux/mm.h>
->  
->  #include <asm/kvm_emulate.h>
-> +#include <asm/spectre.h>
->  
->  #include <nvhe/mem_protect.h>
->  #include <nvhe/memory.h>
->  #include <nvhe/pkvm.h>
->  #include <nvhe/trap_handler.h>
->  
-> +/* The host's Spectre mitigation state, for SMCCC_ARCH_FEATURES. */
-> +enum mitigation_state spectre_v2_state;
-> +enum mitigation_state spectre_v4_state;
-> +enum mitigation_state spectre_bhb_state;
-> +
->  /* Used by icache_is_aliasing(). */
->  unsigned long __icache_flags;
->  
-> @@ -1181,8 +1187,70 @@ bool kvm_handle_pvm_hvc64(struct kvm_vcpu *vcpu, u64 *exit_code)
->  {
->  	u64 val[4] = { SMCCC_RET_INVALID_PARAMETER };
->  	bool handled = true;
-> +	u32 feature;
-> +	uuid_t uuid;
->  
->  	switch (smccc_get_function(vcpu)) {
-> +	case ARM_SMCCC_VERSION_FUNC_ID:
-> +		/* Nothing to be handled by the host. Go back to the guest. */
-> +		val[0] = ARM_SMCCC_VERSION_1_1;
-> +		break;
-> +	case ARM_SMCCC_ARCH_FEATURES_FUNC_ID:
-> +		/* The workaround calls themselves are handled on hyp entry. */
-> +		val[0] = SMCCC_RET_NOT_SUPPORTED;
-> +		feature = smccc_get_arg1(vcpu);
-> +		switch (feature) {
-> +		case ARM_SMCCC_VERSION_FUNC_ID:
-> +		case ARM_SMCCC_ARCH_FEATURES_FUNC_ID:
-> +			val[0] = SMCCC_RET_SUCCESS;
-> +			break;
-> +		case ARM_SMCCC_ARCH_WORKAROUND_1:
-> +			switch (spectre_v2_state) {
-> +			case SPECTRE_VULNERABLE:
-> +				break;
-> +			case SPECTRE_MITIGATED:
-> +				val[0] = SMCCC_RET_SUCCESS;
-> +				break;
-> +			case SPECTRE_UNAFFECTED:
-> +				val[0] = SMCCC_ARCH_WORKAROUND_RET_UNAFFECTED;
-> +				break;
-> +			}
-> +			break;
-> +		case ARM_SMCCC_ARCH_WORKAROUND_2:
-> +			switch (spectre_v4_state) {
-> +			case SPECTRE_VULNERABLE:
-> +				break;
-> +			case SPECTRE_MITIGATED:
-> +				/* With SSBS advertised the guest's default is safe. */
-> +				if (kvm_has_feat(vcpu->kvm, ID_AA64PFR1_EL1, SSBS, IMP))
-> +					break;
+> It still runs as "make check-jevents" and as a perf test rather than as part
+> of the build, and on the tree today it reports exactly the two misspellings
+> we have, the 16 in this file and 3 in the AMD tables, so it wants those
+> fixes in front of it or together with it.
+> 
+> The one thing I did not do is put the list in a json schema file, because
+> perf's build would then require jsonschema, which it does not use today and
+> which is not in every builder's python.  The list holds the same names that
 
-For this case (and the break immediately above) you return val[0] =
-SMCCC_RET_INVALID_PARAMETER (from init at top of this function). But the
-kernel's kvm_smccc_call_handler() returns val[0] = SMCCC_RET_NOT_SUPPORTED in
-these cases (which seems more likely to be correct). Does this violate the ABI?
+It could run if it exists and skip if not. Or we could make it a 
+requirement, but that would require some agreement. The docs builder 
+already has a pip requirements.txt file.
 
-> +				fallthrough;
-> +			case SPECTRE_UNAFFECTED:
-> +				val[0] = SMCCC_RET_NOT_REQUIRED;
+Even without jsonschema I can't see why a validator can't be written in 
+less than 10 lines.
 
-Is it possible that the (compromised) kernel could have disabled the mitigation
-after the state snapshot was taken? I.e. spectre_v4_state == SPECTRE_MITIGATED
-and the VM doesn't advertise SSBS so it returns SMCCC_RET_NOT_REQUIRED here. But
-the kernel has since turned off the mitigation?
-
-Thanks,
-Ryan
-
-> +				break;
-> +			}
-> +			break;
-> +		case ARM_SMCCC_ARCH_WORKAROUND_3:
-> +			switch (spectre_bhb_state) {
-> +			case SPECTRE_VULNERABLE:
-> +				break;
-> +			case SPECTRE_MITIGATED:
-> +				val[0] = SMCCC_RET_SUCCESS;
-> +				break;
-> +			case SPECTRE_UNAFFECTED:
-> +				val[0] = SMCCC_ARCH_WORKAROUND_RET_UNAFFECTED;
-> +				break;
-> +			}
-> +			break;
-> +		}
-> +		break;
-> +	case ARM_SMCCC_VENDOR_HYP_CALL_UID_FUNC_ID:
-> +		uuid = ARM_SMCCC_VENDOR_HYP_UID_KVM;
-> +		val[0] = smccc_uuid_to_reg(&uuid, 0);
-> +		val[1] = smccc_uuid_to_reg(&uuid, 1);
-> +		val[2] = smccc_uuid_to_reg(&uuid, 2);
-> +		val[3] = smccc_uuid_to_reg(&uuid, 3);
-> +		break;
->  	case ARM_SMCCC_VENDOR_HYP_KVM_FEATURES_FUNC_ID:
->  		val[0] = BIT(ARM_SMCCC_KVM_FUNC_FEATURES);
->  		val[0] |= BIT(ARM_SMCCC_KVM_FUNC_HYP_MEMINFO);
+> a schema with "additionalProperties": false would say.  If you would rather
+> have the schema file and take the dependency, it is a small change from
+> here.
+> 
 
 
