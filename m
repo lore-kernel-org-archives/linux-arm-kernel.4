@@ -2,134 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EEE6606A884
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507E8606A33C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 17:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FjfLofcg;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=dvImE6rk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yVHZ46T8;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Jvb50AXx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=JG06NaVvVnvwu7OzMEyIC6gEHaXMxVKLUDfPJ3H8sx8=; b=FjfLofcgSnIid5nRwqyOU6a09P
-	6+CYndjDEVudlhmPM0EyflPzsx3GAa3VCJE+WBrw8cJibDPAUIzJ6s/+UzPSdFQouXst7NVMjijzU
-	sX0SViuLBBoAeF66bVN+SAHbMgfLjRs4qp6tQ9NxQxJ1umuJhAZv+PapXHd2QxsIln0hMYwizkcmW
-	wzGXPKP7BmkaKPIOxgVME9ETzpoqNO0gULSXj2nWxPh5Mo09Ysb9p5dQss9dq+6ytDiKgFgHl28NT
-	fPfxLOeovB7dHkGHFyvuEJ6zVnDP/s+TqawEjF2AUTiaEIPBsYyEqlKBbHVwiXJoq1PUeGR5KJ+kR
-	dgSPr62g==;
+	bh=y9Z+7orzJdSx58L4lqUe9cGolgKUXKFkRTuN7SA8P9w=; b=yVHZ46T8+kRQYM+fnc1xr/3jae
+	Cfg08hA5RHRtrx6Pf/+6HUKWmueumwj4o5wg8DQcF031FggS2YJ/e1C8yRuAQ7EPjtBg6M0wqntUP
+	H+iGjWfqbB+KHyCh6BUT/GG/v9Tm/1k5301ZRRYN4RkNvjM7kriky8PSczgfbNrx1BeLDM7ryCHeJ
+	S65d+jFChImpX/EnDsKp+vlvihiEbyTz2wZaI38lXt+4s7b18MxbW/bpcni7bKp1iA6IZzT82K3sD
+	m7yGHsZvr3Ip/wjCytDth4fnhuHOX02rIpYrVp+kdrBeNIJxWnEe/BDem4o9HlrWx4nOm6qeBs0qa
+	PUIjYxvw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRBtF-00000007HFE-35De;
-	Wed, 11 Nov 2026 17:13:41 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRBtD-00000007HEi-14tK
+	id 1xRBun-00000007HNc-3szZ;
+	Wed, 11 Nov 2026 17:15:17 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRBuj-00000007HN7-3Ctg
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 17:13:40 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v2n+PfCExXGkXTrQANJXvYA67TZoQb47eLbP+UNDkDWsKrX0L440cxNZaB9tDOAlDkpsl3n1jUI1PKzUNJhlaokIioiaR0Ih2+JMZqZQxik6v8aaqvuligTkGDfQdTDMwIBKxyADCXRaGjM+bQ0rJhDhlssuKJTuIsJPdh3zzqKlXKVsaiTV8+eDx4UzD7rbsqZP5FqlX83MfvBRfgzytFRLsuXjxtgO3R9hke8jPQb0VOb0AZ6h2aO5PFVzXu4xvVz3iXCNddfNG2CptlDbAnpuCk8bcLlmG1HIaWUSYl6htJdRNwiWKpJjTl1UL6w00XX44IFG53jcIpBQm4KO5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JG06NaVvVnvwu7OzMEyIC6gEHaXMxVKLUDfPJ3H8sx8=;
- b=d6hEtWYRdXGOMYWolojLoXSrx9iM8wtxfNh3fveeITy5ywkn89LfvwYyMgxTOUoXBUNw/Och1/Zf3gvqU8z+JC1AFYnQurIjvt/Dl8iYqC69jXBSbBpsi+BHpOmtI8X5GyMYdYR8UfftWMFw/PkcdiPPy942tK2UOakvkmutpElpHKcHMeVW5vF74iSME3+g8p623vrF+54RHqctXfezbqhYGgGLer+h6/yFIlK54PIM34wXUwzXOI4nenTNpM9q4BZYa3UyBk5Ow43hiy0Uwn2ISw48jXOI+gnWME3Kx03YzPGk59VTPWAKuGN07QNWIze92Y59nZNgbH2KriFH4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JG06NaVvVnvwu7OzMEyIC6gEHaXMxVKLUDfPJ3H8sx8=;
- b=dvImE6rktwTDfqnsXliZL5kgoK8ksrntt/TFwXH1Ux4TJKlqTy6fzstt99aYRhrWVvtpRyFZgh0E/Es6NRtenlJoMCdoPey1XJdYLk+IgYvKTqDrS9FrmB5/8uRbUnrJzaPyo30D/fS4Sh7ebg5AcP2X1O42cRvOuv3Tw16JH6s9nerYfWVa5K7DhyeLBOWcG+mwgHOts4Rd90CABsumd1lJUrdmPQbaHO6P8xpjzAEsNI09jZlkMS3XyhH2L+asxsoJD2V0vGFIF0OQ2def00fILwfhIbE2wKbHjJIQbr9qtRTnCKYIcS5U096JXLwT7CAgWDAJV3AMsvqRfExVAg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by VI0PR04MB10298.eurprd04.prod.outlook.com (2603:10a6:800:21b::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
- 2026 17:13:34 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
- 17:13:34 +0000
-From: Frank.Li@oss.nxp.com
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-media@vger.kernel.org (open list:XILINX VIDEO IP CORES),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/ZYNQ ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev,
-	vkoul@kernel.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: [PATCH 1/1] media: xilinx: Use dmaengine_get_copy_align() accessor
-Date: Wed, 11 Nov 2026 12:13:24 -0500
-Message-ID: <20261111171325.3424645-1-Frank.Li@oss.nxp.com>
-X-Mailer: git-send-email 2.43.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PH8PR15CA0007.namprd15.prod.outlook.com
- (2603:10b6:510:2d2::10) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Wed, 11 Nov 2026 17:15:16 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CDE101576;
+	Wed, 11 Nov 2026 09:15:07 -0800 (PST)
+Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9914B3F632;
+	Wed, 11 Nov 2026 09:14:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794417310; bh=2McGIo0I0qUn9Z5Bkhx58ruHvjbNzDromBqTIw7cA/c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jvb50AXxGnQj9GSO/QAEN0TazkCWaZ2N/9XsGCnE/0y+001MSDX3Em9LlDYbwWLNr
+	 QRDX5Hvi6PR46zWdXB3NvONbRrGlXeIODQnhFpC2TzOqBoUZ6eYJfpjZ9s38QMUWTJ
+	 h5VqXB7zhPj4AiQnK6JXy4lYVlq3qKZ2O2qQgOvU=
+Date: Wed, 11 Nov 2026 17:14:48 +0000
+From: Alexandru Elisei <alexandru.elisei@arm.com>
+To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
+Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
+	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
+	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
+	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
+	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
+	james.clark@linaro.org
+Subject: Re: [RFC PATCH v7 02/28] arm64/sysreg: Define MDCR_EL2.E2PB values
+Message-ID: <avSiiFvN13FqNCDm@raptor>
+References: <20260903160623.315525-1-alexandru.elisei@arm.com>
+ <20260903160623.315525-3-alexandru.elisei@arm.com>
+ <atDUMAe0QGP_4swk@gremlin>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|VI0PR04MB10298:EE_
-X-MS-Office365-Filtering-Correlation-Id: 70afd9d3-c8d7-493f-b89a-08df40171e5e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|23010399003|366016|19092799006|261009223027099003|10067099003|261021123027099003|261102123227099003|261021121427099003|56012099006|11063799006|18002099003;
-X-Microsoft-Antispam-Message-Info: fQ/tquZcF9hqzB+U4OIrOYI32gmd0wyyvpzxjOAMQKQKN2SZU8Qs1Yx8g1hiRpN5Szt6dwQ8AizsI+Kirp3t9S38WjXrnYrhZd1/Mv+Mq+c0HxrZ+nJMdL5KoNITwNIA39xYTnt7ivnXf3xAgvzufla1vNOTRgVvtNr5kT413VPgCZMYv6XnwCZ84SoGnJE4gVMc+jKjD3QbPwCP8KU0aUtJpvgKuC2erF0kAP1vfjce4se6Ot7jqlWgvw7pdgb1yZgMU97kB+F3mu30VBANVh4+pgF9wiRjfrjJjL0eTbiPzNQFZpH374s8KNKA1XWLky9LaD2Kf2ZTEc9jofOyoSttyrsUSLrIBcSYkPTpvv05IlcGXIQQ6v1YZh9jdO16xqw4zpYkGq/xa1QtpgyiLXC4J5hI5EECqm+vvr9uWFLt2qvcfRt2Wl+xcLxaGMJ1mLhg5XFoM2nUkXgmJy1cDf/nFjxrDxC8QWsV3kUPPZSvWw1xulH2YbDV/H3vqLiWq1rPoG37AteLL14/zaIOMZhW7A8apZ4meFaJgP3L8uiuDInA4ZmpxlPQmPlnQ7AG328yt4A0DF5QlGugT6PH+wPnte/dJRBNLIZBaLRb7INf0NES/E5He/ijPXzo1LOmcxOpoBDe3KZ5vVJ9YPeCUdUz3IYf4ltmSlTeDFwguAQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(19092799006)(261009223027099003)(10067099003)(261021123027099003)(261102123227099003)(261021121427099003)(56012099006)(11063799006)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?l2cylP7gauOmKMV41ObLiYTUZvBwlfnk2+Ex6lWD75Ta6VAL+7IYj5lAQb+/?=
- =?us-ascii?Q?GNRsC4noVdcF6QjPDW6Ly4L7jO4Y1Xir6WA8fKwicy7BSCXFIi+L7Q+He/F0?=
- =?us-ascii?Q?SdSaDONFr6RW5GuDuYKAINUV5k5adTZrzHoOykOOqVEyhJw7ZfUbXakj+ROU?=
- =?us-ascii?Q?R4Vtue/60VUREz6aVRoV38VHQ/j/M9VA0B3jSdGpVTiVZQbGww3ghNGHDyNH?=
- =?us-ascii?Q?86B38KcMEvIUKSLgFA27gDLeCvaTtiK1NS606I0UPPcsxthjwkIPnd8fpaLz?=
- =?us-ascii?Q?ypb/efIeFa5ycJfvE697uJyrMgIOen2aSzMr9X5x2wY15cBdepUXLLNsmuX4?=
- =?us-ascii?Q?gcg7UoV3pluyLKXFAO/sJ5aguoyptSkLH1tw2y98lqDDCxargjGVzv3YNcMl?=
- =?us-ascii?Q?uswF7r0RNBvTo72kins0gBZg0cqIwHz1XmxEuXnShdRv5vrkkv9+M2a/IeJP?=
- =?us-ascii?Q?Dy+qXupdQTiwJdw/iRAPV4IgsDb3QHc5lxVjcvomw4goTz2a8oQHayfeDp5a?=
- =?us-ascii?Q?+UNb5D021MibOXqffVVf56UvtSYoyGvZcuWR+yxc5scstEwsF0VMFfxuIK2k?=
- =?us-ascii?Q?zNNrMcfqmq+fsQjOnM2uacoUTdouJMbZ94IkuC1BAPrVMHKkzO3H7SzoUrUO?=
- =?us-ascii?Q?3dCgRvMSrkohQa6rwdBg5/EI+u0aQr3Or43drIwywT239oKM04UtcgrDFgxX?=
- =?us-ascii?Q?8GF2lypwefWFBIVXI9+mCS5hSnD1pJ1aWBlJVd2jWF+jRb+nQOcJlxXVp8ed?=
- =?us-ascii?Q?gpzmehweWWGInIicvdw+pLNpaDq3B1/sO6vI1uIwL54ybLu+2MmGsUhiLQu/?=
- =?us-ascii?Q?Jq5xheiU8rHAw98zVhKk85WqLpJQzcdFvuXPvxlVgOzgjYpwH96BmeSx0Whi?=
- =?us-ascii?Q?H2HD1ZZ+t7CiNNhmIZD420qCkNruNyIPvh5/2r93hiunTN0UhYrrY4UhRYxt?=
- =?us-ascii?Q?RoK5CkcxusGhqWPGpwHn/T3e5PWv5FkEDcSSJGXyybrkrXzVsvTw8foGq1HV?=
- =?us-ascii?Q?eOoQjhYj/bGuLG1MUQJVTwXJEWCKJ/G1divR49VevuRHTZ19tVONHYXiCNqY?=
- =?us-ascii?Q?ggIkzLuSZP1P79yLGBy60tBV+rQGI4h/j45CFkroA2fXGGzEd8USJYayBeLk?=
- =?us-ascii?Q?BKs9tfaJq+kul8+nfaVGlgSa93BVDQ8PizeumimaCOH2CiXOPxKYGO335lAZ?=
- =?us-ascii?Q?4xkKEDA3MQeDIcynp5tHyRf0VmCu5/mN6PLwxXG55g6jTuUB+VsEbbMgnRNs?=
- =?us-ascii?Q?igVazCxo/MlWWC1S23ph1509UXbQrfOqILUOIHFncpxM+ob5zskJlZuFKMCq?=
- =?us-ascii?Q?Js/KBSbUjAYakNQdR8eMEswwiNHtBnLFoIU7/zgz9aT37kVmRIhh1l6SBYpH?=
- =?us-ascii?Q?Fg84yF6RdnpBeksVL5jTyXuJsA1Dn2OH2SQ1ojUkJLmCWYC9snkhVp1ALKNM?=
- =?us-ascii?Q?MTVqYH+gCMRAeY1X+gN7SJvEPqxmENcWRXiFQKxZvdelLlIQ5TioFpqc6men?=
- =?us-ascii?Q?OaSPYEsvIZJrgLdAWM9funH5Pr1STmXXHjJ5BlymAqtd7aEeMjQaCGjp6mkC?=
- =?us-ascii?Q?5cefIOanZ7ev5eKYWXbK0wbieZGmPl0lR5K7+MdXBTjPWiRkogmXg8Xezzmj?=
- =?us-ascii?Q?cXwsnTj/wa+yaINmEil4BiqisTfXuDLQEX2anorEPN7oKktHBmOBc8kmdcGu?=
- =?us-ascii?Q?foZTXlNFI10UMJU7CWUQrEzLjrS3yeoMgfrrwBOrH4f+WPRt2Ti40dlPMMgQ?=
- =?us-ascii?Q?uZcbMHzFk/1iw8w4UlmGcFKYhX+6qGvBwLV7y8ii/brGVAnz2tPA?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70afd9d3-c8d7-493f-b89a-08df40171e5e
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 17:13:34.8528
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4LxbEHmOfgvg81mW0u7M3dcOAL/5963ShTkwfp6RnnN43yvzyVnroJPhCwvO+UGRHo9qEWlndb1tuV/jWnjmvHPNlv8UJPDYg8IIKoF6Rmt4YaibjutfMdKicXjrArNs
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10298
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <atDUMAe0QGP_4swk@gremlin>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_091339_328483_75D31929 
-X-CRM114-Status: GOOD (  10.18  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261111_091514_000547_B9584987 
+X-CRM114-Status: GOOD (  27.79  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,39 +74,140 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Frank Li <Frank.Li@nxp.com>
+Hi Lorenzo,
 
-Replace direct access to dma->dma->device->copy_align with the
-dmaengine_get_copy_align() accessor function.
+On Thu, Oct 15, 2026 at 02:52:32PM +0100, Lorenzo Stoakes (ARM) wrote:
+> On Thu, Sep 03, 2026 at 05:05:57PM +0100, Alexandru Elisei wrote:
+> > KVM will make use of the different values for MDCR_EL2.E2PB, document them.
+> 
+> As with 1/28, using [0] to check the definition of the register.
+> 
+> >
+> > Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
+> 
+> Looks correct, a couple small nits below, with those addressed:
+> 
+> Reviewed-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
+> 
+> > ---
+> >  arch/arm64/tools/sysreg | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/tools/sysreg b/arch/arm64/tools/sysreg
+> > index a11a968eb707..4485736a4f49 100644
+> > --- a/arch/arm64/tools/sysreg
+> > +++ b/arch/arm64/tools/sysreg
+> > @@ -4045,7 +4045,12 @@ Field	17	HPMD
+> >  Res0	16
+> >  Field	15	EnSPM
+> >  Field	14	TPMS
+> > -Field	13:12	E2PB
+> > +UnsignedEnum	13:12 E2PB
+> 
+> MEGA NIT: Shouldn't there be a tab rather than a space after '13:12'? :)
 
-Prepare move struct dma_device to private.
+Fixed.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/media/platform/xilinx/xilinx-dma.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> > +	0b00	EL2
+> 
+> So broadly - this means EL2 owns the profiling buffer right?
 
-diff --git a/drivers/media/platform/xilinx/xilinx-dma.c b/drivers/media/platform/xilinx/xilinx-dma.c
-index ece2116639fc0..e01bb40bc39c7 100644
---- a/drivers/media/platform/xilinx/xilinx-dma.c
-+++ b/drivers/media/platform/xilinx/xilinx-dma.c
-@@ -710,7 +710,7 @@ int xvip_dma_init(struct xvip_composite_device *xdev, struct xvip_dma *dma,
- 		goto error;
- 	}
- 
--	dma->align = 1 << dma->dma->device->copy_align;
-+	dma->align = 1 << dmaengine_get_copy_align(dma->dma);
- 
- 	ret = video_register_device(&dma->video, VFL_TYPE_VIDEO, -1);
- 	if (ret < 0) {
--- 
-2.43.0
+Yes.
 
+> 
+> This seems to align with the document (which is very verbose, obviously :):
+> 
+> "If EL2 is implemented and enabled in the Profiling Buffer owning Security
+> state, then the Profiling Buffer owning Exception level is EL2. Otherwise,
+> the Profiling Buffer owning Exception level is EL1 and, Profiling is
+> prohibited at EL2."
+> 
+> "If EL2 is implemented and enabled in the current Security state, then
+> accesses to Profiling Buffer System registers at EL1 are trapped to EL2,
+> unless the access generates a higher priority exception."
+> 
+> > +	0b01	RESERVED
+> 
+> NIT: Hmm, it seems to be the convention to just omit entries that are
+> missing from the definition in the docs? So is this needed?
+
+Removed.
+
+> 
+> I see a couple named ones, e.g. in CTR_EL0.L1Ip:
+> 
+> 	# This was named as VPIPT in the ARM but now documented as reserved
+> 	0b00	RESERVED_VPIPT
+> 	# This is named as AIVIVT in the ARM but documented as reserved
+> 	0b01	RESERVED_AIVIVT
+> 
+> Which have comments explaining why, i.e. they were defined before but are
+> now reserved.
+> 
+> > +	0b10	EL1_TRAP
+> 
+> Again my understanding - EL1 owns the profiling buffer, but EL1 sysreg
+> accesses trap to EL2?
+
+Yes.
+
+> 
+> Seems to align with docs:
+> 
+> "Profiling Buffer owning Exception level is EL1. Profiling is prohibited at
+> EL2."
+> 
+> "If EL2 is implemented and enabled in the current Security state, then
+> accesses to Profiling Buffer System registers at EL1 are trapped to EL2,
+> unless the access generates a higher priority exception."
+> 
+> > +	0b11	EL1
+> 
+> And finally - EL1, traps to EL1 too right?
+
+Profiling buffer owning exception level is EL1, accesses to the profiling buffer
+registers made at EL1 are not trapped.
+
+For the exact trapping priority and possible trap configurations, you can have a
+look at the pseudocode for accessing one of the profiling buffer system
+registers (PMBSR_EL1, PMPTR_EL1 or PMBLIMITR_EL1).
+
+> 
+> Again seems to align with docs:
+> 
+> "Profiling Buffer owning Exception level is EL1. Profiling is prohibited at
+> EL2."
+> 
+> "Accesses to Profiling Buffer System registers at EL1 are not trapped by
+> this mechanism."
+> 
+> > +EndEnum
+> >  Field	11	TDRA
+> >  Field	10	TDOSA
+> >  Field	9	TDA
+> > --
+> > 2.43.0
+> >
+> >
+> 
+> All LGTM!
+
+Thanks,
+Alex
+
+> 
+> --
+> Cheers, Lorenzo
+> 
+> [0]:https://support.arm.com/documentation/ddi0601/2026-09/AArch64-Registers/MDCR-EL2--Monitor-Debug-Configuration-Register--EL2-?lang=en
 
