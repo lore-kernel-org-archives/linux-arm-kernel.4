@@ -2,79 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B742606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 09:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B8260A2601
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 09:15:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iIr/seoF;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FiDTk9HN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0eS6s1Fi;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=t8WHPWqj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Message-ID:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=htR73Z6NVxU0lkG220sIaALTFHPkl5m16dbexXoczJ0=; b=iIr/seoF4OjBp1SVF9LAV53655
-	INCXR84msOtJuVKSuq+GZnBW29UFA8642jRzk8KJ4MHxFiMwP/T2qizffDQWn21a4En2vRCi+5eT4
-	1sZhVpdkQNnHzTd5Wa6oTH0vbCofweIMYZ49DK6loabxJ6EvznsuUiiV3AF8Nv9uz0DMujG1JINzp
-	SCo7KiN9wD/OcaMBxRULhHxlpS1W+Ozfe1d8ytIDsg8PPV8X41d2//G99nsmnmNy6pKVu7CmoEEiu
-	wcKJpTsc3zs/HGxWb8AuqqqerqnHKbhGsfcGKAeFui9QrQcRqHvkv/8QtuWUuGDyZy2sSZeL5mCzf
-	NSkzlJgQ==;
+	bh=kxkRXuYhMPK0C30vvCMKN0f/tz8st3ZMYqyTNqjHyuc=; b=0eS6s1Fip8PywYOfVzEkpi3Xu2
+	6WChPt7Gyi7TQrpX4GEAGky5e5eqJ4XSpM6eI73xDCuNPTK64NHmiQKOiCWRHRl/lpbzovOm66s+X
+	5HxWtveTtC4yHdEexFtgOVVRE5Bw07GJJg4MUhzvFH9ZLpCKRhcq2IN1X4+goC7BQbDQhHR6xrSl+
+	N4wNN+iUCVDTKIfn0pivEcCfDWrtpe2yZIgJcB0OcXPHMP1dcnRfGzo+y6LRNDR7U6aMTy2GMmPZU
+	CuRTIVi7clPSG+SBIxsV/1kecGaG1aBJmVEGXATt7seFL+PcAKQBQMGRCEEHA38+xABD9UnOmdRYo
+	o/dqaGxw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR4Kp-000000068KV-12yJ;
-	Wed, 11 Nov 2026 09:09:39 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xR4Px-000000068ai-3UqU;
+	Wed, 11 Nov 2026 09:14:57 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR4Ko-000000068KN-0DRX
+	id 1xR4Pv-000000068aJ-1Xwz
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 09:09:38 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A27E0413C2;
-	Wed, 11 Nov 2026 09:09:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 825D31F00A05;
-	Wed, 11 Nov 2026 09:09:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794388177;
-	bh=htR73Z6NVxU0lkG220sIaALTFHPkl5m16dbexXoczJ0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=FiDTk9HNHaNkX2ypeG3Omgun2J6T0+Ry4iViwS3mepi1nuRCo7SACBz5SN99gYFNj
-	 HauQ3qwNyKf6GiL7+xIpDQvB42fI6P6B0ESdm8HUPTaQlvv7obkPOydwo7h+WnwJB9
-	 fb65GIj4iVHHm/ZGShyjXfgPxehyGD/kE/c9d1a9fgnLyBHl0Yf7uMLdYLmy4RUMLD
-	 pwphhR639xg6/qsmD1Qd5QBhUACptY36zXITFA3P7Qd/RwT5RNcVagPWjR2qUCCAy+
-	 JKJ+eJkC+V9pqMVQkI7YVdw6af11rZiiLpRUUa86Usw0dJ8JDSryncBTLF1MrNvumo
-	 txEKZLdHgXiMQ==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1xR4Kl-0000000ECif-06Cb;
-	Wed, 11 Nov 2026 09:09:35 +0000
-Date: Wed, 11 Nov 2026 09:09:34 +0000
-Message-ID: <86se1720q9.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Fuad Tabba <fuad.tabba@linux.dev>
-Cc: Thomas Gleixner <tglx@kernel.org>,
-	Radu Rendec <radu@rendec.net>,
-	Steven Price <steven.price@arm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Fuad Tabba <tabba@google.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] irqchip/gic-v3-its: Fix the ITT pool's alignment, zeroing and growth
-In-Reply-To: <20261106092625.3977163-1-fuad.tabba@linux.dev>
-References: <20261106092625.3977163-1-fuad.tabba@linux.dev>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	Wed, 11 Nov 2026 09:14:56 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a549cd7fd2so26557345e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 01:14:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794388493; x=1794993293; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=kxkRXuYhMPK0C30vvCMKN0f/tz8st3ZMYqyTNqjHyuc=;
+        b=t8WHPWqj6YnH0xnYn30XvCoCqEb4CxzVJRxqYQFZ1GGNsZZqNe5Rz/oeM7nLpfChDG
+         H7fR8ifDcT4HjQYR80dsia5JruuQv1b1uzbV75ocTZ08n0Jh4/rMUKT/0grOvR+5nVdJ
+         smDk2TdHETYjYI7r7UQnEcPPZ/FUwbnGdpIkx0/QUpcQrTIG68PoaGFGiHM1fIcefNPr
+         gRDMZInuiWeuEYYxgKqgIjJQXzK+a2+EQIjOGxrLWLLadoCPhctSMAHRDnHMgk9KQHg0
+         3Q9unvSm02Ay++RDW+2Ho32OcMac0SotxES0UfGXwBMBMKxwtt0O2whqCcdiGRhd7lyx
+         9WFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794388493; x=1794993293;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=kxkRXuYhMPK0C30vvCMKN0f/tz8st3ZMYqyTNqjHyuc=;
+        b=ngHVw8bj4BqpX+GVpIbegXxvrnEoJ4jfvYT2zqX5ZB0VYGbhYEostD5JEtwa9Dr4C+
+         7syGMKfm07HSMkGf7Uqqgq+Q+mR0KmTcMlt5r/KQ8+rxf09Zm98ukkHwY/z15p9por8p
+         2h1wdD8J0lO4reTQAkvOMYE/qX4YQ3nTo43abDOYqJECmV5ABIx9Hvf/pNLjk47YIYuZ
+         3MDEZZoBS25w4sGmmWCpyF01+m8N1ptoX4KfGTAkDVjSC/NGSpoFgkozEuzhfZJ6Aqd7
+         7APJLCteR7pvijzZ7NZzPYDdtK28HA4rNnzGXjJasDgDzw55vjPeXHsLpoptDuC9vdo5
+         gwlw==
+X-Forwarded-Encrypted: i=1; AL+hErEftncDigXO8NiK44xhIjK0PQfQz67P8LC/Sgxyy18XlUWknd3Oy1Pu7ReXSJNV1Ui4X0+hbpXPEjKzob/uI5eq@lists.infradead.org
+X-Gm-Message-State: APuU4Z9XNIKnLLvsFQbO98yE6V/oWs2oJt5w1hf/eYGW9Pkq3L/ajUvL
+	LZgYbb3xJ7Nr7NGyYNqx1cRkqbjlFc8/MnMTmjGzUB82F5gh5cP7zSUv
+X-Gm-Gg: AYBFou1iUXKiEdsCYNIU4wUOFTG+JtcG/xd2mm/KJtPIdttBNWKCvaN8eWbnF6ZYo0r
+	GtU2SsekrnSg3rJgXS5ZMVGCeE7WL6w0yQyRShp11nRz0AiGn0b8SlCcbyxXaT1Tt1RzxtDZDeu
+	K33qh+u7aPWeTOkap3wMNcN0SfGrnhgAkZ6qCvsOKOHKEXcAL7VNgPc9qzMexCNfxRqZEzz/ywx
+	XSl1IXW8MPQSdLrYTmRQF6N1uijRBrlpJYM7ZxTJpuF8PwEBxLlygfY4EJ54g9174oJ45e+iGvd
+	tax5V0QBTl3XrViR0fe9CyCSXGA0orX7IGSnej4bv9vqNmcdaev7q93o5tmk6DcGPBNvIT6uEO5
+	DCwDzTqc0gGERwMWqTq98T0ivoYrWHy3ApLJah6fMUTIfeiCcdl2IYnlS4gWlNTR1jlomgr9Y8n
+	0/KkxrL5t/pdA78EY2kLbI1WpCXec+3On+enAzDOASjtHdjcjrN6FDN9SscelP6r6RoxKJI/1yN
+	hIuzOxwOYa0IX7s0NzaZp2z4CYr3A0VZvR68IBZhDPgPj1bnXWKkFN+amvcbpZb4DieLV951B5N
+	LHBcqgoqyHFSx96RPThLHcRDZdmz8ATzEQ9IvOQSH3fG27JmSYX/Wv/UmyHvxvlkiGWk8o8Xd13
+	Y8S3eHB+rWc28OpCn0PdzL8DSb8OZrGzFBAF5OhSeYX0HUMPFXybmOBeiwV55JQ==
+X-Received: by 2002:a05:600c:6994:b0:4a2:1960:6fa with SMTP id 5b1f17b1804b1-4ba0935bd68mr32873845e9.4.1794388492912;
+        Wed, 11 Nov 2026 01:14:52 -0800 (PST)
+Received: from Lord-Beerus.station ([93.146.104.162])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4ba02005946sm145501635e9.1.2026.11.11.01.14.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 01:14:52 -0800 (PST)
+Date: Wed, 11 Nov 2026 10:14:50 +0100
+From: Stefano Radaelli <stefano.radaelli21@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Frank Li <Frank.li@oss.nxp.com>, Frank Li <Frank.Li@nxp.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	pierluigi.p@variscite.com, Nate.D@variscite.com,
+	Stefano Radaelli <stefano.r@variscite.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v1 1/1] arm64: dts: freescale: Move Variscite Ethernet
+ LEDs to carrier boards
+Message-ID: <avQyCgitN-stXoS7@Lord-Beerus.station>
+References: <20261105101739.10614-1-stefano.r@variscite.com>
+ <auy-OW_td7N8oHK_@SMW015318>
+ <auzAh7404GAsY-U0@Lord-Beerus.station>
+ <9c416362-4e28-4327-b8c3-bd789d2922f0@lunn.ch>
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: fuad.tabba@linux.dev, tglx@kernel.org, radu@rendec.net, steven.price@arm.com, suzuki.poulose@arm.com, will@kernel.org, tabba@google.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9c416362-4e28-4327-b8c3-bd789d2922f0@lunn.ch>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_011455_420403_8B4ACE86 
+X-CRM114-Status: GOOD (  10.64  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,47 +115,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 06 Nov 2026 09:26:22 +0000,
-Fuad Tabba <fuad.tabba@linux.dev> wrote:
+On Wed, Nov 11, 2026 at 03:03:12AM +0100, Andrew Lunn wrote:
+> > 2. The Ethernet connectors, LEDs and their wiring are on the carrier.
 > 
-> Hi folks,
+> The PHY itself is on the Module?
 > 
-> Three fixes to the ITT pool that took over sub-page ITTs from
-> kzalloc_node(). It doesn't align them to 256 bytes, though MAPD now
-> relies on it to. It doesn't zero the ITTs it reuses either, and it
-> leaks pages when it fails to grow.
-> 
-> The first gives the pool a 256-byte granule. With its 1-byte granule,
-> ITTs stay aligned only while every size is a multiple of 256, which
-> holds for power-of-two ITE sizes but not for QEMU's 12-byte ones. On
-> QEMU, two devices with 32 MSI-X vectors each are enough to put the
-> second device's ITT at an address MAPD truncates into the first's.
-> 
-> The second zeroes an ITT reused from the pool, as MAPD requires. The
-> third frees the page when gen_pool_add() fails.
+>     Andrew
 
-How does it relate to the series you posted right after
-(20261106120221.347309-1-fuad.tabba@linux.dev)? They both deal with
-all sort of zeroing and allocation requirements. So why isn't this one
-single consistent series?
+Hi Andrew,
 
-The scatter-gun approach you keep using is really becoming
-counter-productive. I really appreciate the effort you are putting in
-fixing the code, but please realise that humans are reviewing this,
-not an AI. So please make it at least easy to track and keep related
-things together.
+Yes, the PHYs whose LED configurations I'm moving are physically
+located on the SOM.
 
-Thanks,
+I'm moving them following the approach we previously discussed here:
 
-	M.
+https://lore.kernel.org/all/31f30651-7c99-42cb-9e27-e4806529d137@lunn.ch/
 
--- 
-Without deviation from the norm, progress is not possible.
+https://lore.kernel.org/all/fac81a12-92c9-4e29-96ca-473c18fca675@lunn.ch/
+
+Best Regards,
+Stefano
 
