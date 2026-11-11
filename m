@@ -2,104 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95129606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 02:29:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1590F606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 02:31:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LjIIJOUv;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WaONLq7Q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AuRw329J;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=Wm84xdic
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=O32a4AiJGMwcCR/+4zjDOYox+W85VRB2HAzvlPxTqmU=; b=LjIIJOUva/z+4/gHQ3mprWuqH/
-	Wmvn4hAxSX6dqSTMkQ8fgZSnI3odORh2kBKmzLCFB3XcCDD2CoDjr0DJTSdVN1w5ktLvFtxObo53W
-	gJRnhr6WhcZLfL+oAykLdo1T6zhl/XN3c73nEU5IQYCx+X/OUAU+A156eaepPrgpPZDLyBex/g8Re
-	FVj9fTTPMxSSR0NZreqwAGiSP+1ELkeyuL723k0qIrj05nPdYeHU+HYaEtZr4K0sDHwZP97BeEjXq
-	p7GN1cZPzo0eQ9g8yrXPMmhHUP7+SYW3GfYi9G+hDuxd/jaZEvgCEVTluUAxvJuAva9+lXyc4gOpm
-	BvsfjpYQ==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=t8BFlEAmJEj8HGxMKTsLsaY7aesl7fSNxoZ8biKmTbE=; b=AuRw329JHFKjW+
+	cd7KRvTfzc/KaADs2/3R9kMr6eHGzcWLRKrRoGE93DmTH9rVm5ltHhQ2CbyT+LuITAwsij2Z6rKXo
+	uBPc2QVtxwCGz6tfffhOW+uFCc37gYUlvLgc8fRzJPh07IRA4cujFSgPq950ls1oO2rNraL9831RR
+	JTjXN2S3OeWO4H9IqiaVsIN2BtJ6gYgipDK1Odpc7Iee8jB1ue6Qxw3WrAl9VdgJrLkT6Ln+b1rOB
+	lzlny4he5r+gdIU0X4V5hSGCBYXHOU6mx7a5K3LSb4iwl9gqcXBnSuiaUwPngZdp9YUBdtJ6JXeGO
+	FX6VB7HKJT+Z7WWTrZ0Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQy57-00000005Rzh-11tD;
-	Wed, 11 Nov 2026 02:29:01 +0000
-Received: from mail-pf1-x42f.google.com ([2607:f8b0:4864:20::42f])
+	id 1xQy6v-00000005SDm-2Wan;
+	Wed, 11 Nov 2026 02:30:53 +0000
+Received: from mail-yw1-x1135.google.com ([2607:f8b0:4864:20::1135])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQy54-00000005Ryw-2yF0
+	id 1xQy6t-00000005SD5-22jR
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 02:28:59 +0000
-Received: by mail-pf1-x42f.google.com with SMTP id d2e1a72fcca58-8b8ecfa886bso1260086b3a.0
-        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:28:58 -0800 (PST)
+	Wed, 11 Nov 2026 02:30:52 +0000
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-8b33de9d2b1so22285087b3.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 18:30:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794364250; cv=none;
+        d=google.com; s=arc-20260327;
+        b=AlxuzFHxD0hBKOtDh5ppePXtNQk0HiaajcWgAsGneUrt80l70nIdU9rmNzvW4UFjSt
+         m9oT8SVY33IzUxD/3lR6zC41680McqG/xeZbi5hmXc/iqink1K5XL1aXooDCCFURv1Gl
+         2pzPgf+7G82pUzTM6k24GC8OrfPq4SAYKGmzXExZ2RA9HXx0c/Gb7q5eZ7K0ZbsQJS/h
+         U5uBQdfaC/3CvNk470hMOT3ePyAsVTOamBexgPqp8taD4KWFt61j0ZYSBkaFuMbqz5GF
+         eeiRWCfAWJriDMXY8hz7k4G4A9K40uqqYcTT4bnsfdad56gH9cPu8uW2ZXQ7p9vJCkt+
+         OvOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=t8BFlEAmJEj8HGxMKTsLsaY7aesl7fSNxoZ8biKmTbE=;
+        fh=uj+H/L6WnzEgXruy1PIjFKzOjlyWUrLG+4RYaXju7PY=;
+        b=XYVZXXirIjd+k8ZB9hMtDsJ5uoCnbdPAMtLrLTP0sG5dfmIkxIAiPwCkP6MWH3EBL5
+         a9IRVDJM680jS+x5MzlCGf93LierOO3hExZBW1M3F/FcMnoBnzNSElFjPyKF5wQJJ6Ev
+         01C9vfTKOBw7Ydu+3hWahRECjMDpGv6mr3Td6nyP5mND4N8EiFao73iMjCihItW2QgVm
+         o3iXHpXF3gYaTe3zji2ftBouujBow+n4+7ZdVEl9dOQ7BmygV1bI6USO7uBJudXFr5xR
+         o/71WF1zuGmURorhYVW4h5r9gj/LyDykV81OOcHycI3qPgYJKRVJCwBgbyX/Cbq4KSsv
+         xbEw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794364137; x=1794968937; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=O32a4AiJGMwcCR/+4zjDOYox+W85VRB2HAzvlPxTqmU=;
-        b=WaONLq7QwKsrXIm6R/Lkfrz7DEJD4qprdfvMPW/Fj8oJYgEVSSfl3erwqaeBctZcJZ
-         NT1R7PgwpXOOHpuHkr/GYEoWJeXwpr8geO5c+1g20s4hAbEIcNbznsQSto37vyxXwYTa
-         i8Aya4WdumVu05oQAROO5LQC0cz+nQGOCDnCOiqa1MWwtqbXNIkncoLbsrwTNguCT47M
-         ifk9siXc7Pp1HE/PYlxBcVyHE2KpMoe4FKLOheia+1zkPXRPJoGGqgG/4hrCZYyexX6Y
-         iGPAe58H0JIyu8LKQHWGT+iNQ7xU606ikdgo7DYy9yFLUcetuUHVDv/OXoqLDK7PZImf
-         YH2A==
+        d=chromium.org; s=google; t=1794364250; x=1794969050; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=t8BFlEAmJEj8HGxMKTsLsaY7aesl7fSNxoZ8biKmTbE=;
+        b=Wm84xdicY3pqkdrNu+YCBF8RVyUnYSRuCIEFt4eCCN09uxcLlr6uJnes6LDYfSNZjF
+         8WJZCDnLtaEW4KZvSj4O2rmphiBqU/N6/UI3o9qevr4GzD8q61Tgmw4Uv0UDdk5xdLeD
+         7JBwENO/nChmlZjZLFKc/UYmgBaQ00udABk28=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794364137; x=1794968937;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=O32a4AiJGMwcCR/+4zjDOYox+W85VRB2HAzvlPxTqmU=;
-        b=LEsW6XB3OUJ358clrglaeDtmUgpAqPQQIrUvoYRpESmQmI10RkU86F6h9Iwxaf8vQg
-         B+eVltFKmTlSkPqNqMyVeYJhMh3UDy4+Z4nwGTKj5bUkm9Hgw2hrZEcacbPM6FoFFrrf
-         bcu4IhIXMh2+uGU4ClylbfLtyCAqnq21eX1LHJZGhG5l0s+W5OFJDDV8E4qngnQ1E4Kp
-         cZnDC+COMlnDmgeIqFEzwyogOi8ggm3WwI0GrOfhyumXCy9vdJ6W3TI/kcILuFSLQNWP
-         fxeXlI879tN0VcaiiY+2GkfGjT3eX3T/TReqTHv58KJjnEVAvirCksT/DRYJ3W/5JXbC
-         6a6w==
-X-Forwarded-Encrypted: i=1; AL+hErF45o4TQotQlHlSY2EtfMbWZSYFJWCIu4I2rZxlOdbdS1ZlMxzswc0krvx1XigPnWMkdhaNzVpnMEY2NKa+FbUU@lists.infradead.org
-X-Gm-Message-State: APuU4Z9Xri08ZFIrb39RLDMK4AYPI0zNppIfhFWvo1DgTqE2l1lD+MU1
-	hdSwDbCkKvAJTYcdbwUlni1q01JuE/zvrFcQ8PglO+2E/T7sxAkX/H9o
-X-Gm-Gg: AYBFou1zmjjwABJF5LOrM/Hfky4qxt527K1Z5XMRVKpeQD9MvZQy72dEmYLuPMWT29A
-	B/GTsiWVGy/BS5iK3Z/o+M7SlkTIZd4rlXrChkFonJLF/3dm1Ml6Rw4/XfPWADnp07pNGD6b2tg
-	Nhi6ep4TGUTs+GANV7Qcy7P2mZu4QkhlIte/c8jAaCMleOXf93ST5oQJJpmEYdC47tI5wN8Jy40
-	blQ5xq+aISrdiJWw4oQPCWb8NK50iYYZiA0NyHPFqQukcPJldcY3btzKQ0qBjqpTIS40IdvEkkS
-	jKmwwVLC4gA8bhGGLpX0XoAfuIWzblrWo2tKbBefKl1wAXILCIwwH0O7RjD9wqmfAUpYaNpU548
-	Ww8dK2dt5Ey8otMhp3MEUo2k2MbNm4V7bhElRfWrm/DD0j6CRb7ZcKy6nST8nLFn2elh+jJ1Ok5
-	gTE8L9Q8taIyn+LdcSGgeqJLXIiyL3nHfLQtJPZy8XGj7e1JdLA8p7VGIxO7elVs/7jw+IV+6oD
-	Jhuow6MGIWHm9xYtgn9lMB16LytOYDr3vAItbucmblQIlGhggwcjdnDz12QDyztjj9WrrdULquA
-	XYNmp2h1yiIWZ+zTyL8pulYdJ6nf6asjeMd3q3lx7fXT8DcFPnyQDL97i3bK8buGMEP0KzB8rTh
-	YAzIhuFMFXxIe9f4/yrf87mdxkxCLOxNNs+F7M3qp4K2+S4UELJwWT2a1zUv8tyJLylpC3UVL7h
-	VW1g==
-X-Received: by 2002:a05:6a21:1391:b0:3e1:9071:acb2 with SMTP id adf61e73a8af0-3f2ff2e0b6cmr821227637.33.1794364137319;
-        Tue, 10 Nov 2026 18:28:57 -0800 (PST)
-Received: from ryzen.lan ([2601:644:8000:37f::e34])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8baaa86ce5fsm1603153b3a.21.2026.11.10.18.28.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2026 18:28:56 -0800 (PST)
-From: Rosen Penev <rosenp@gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Dong Aisheng <aisheng.dong@nxp.com>,
-	Guoniu Zhou <guoniu.zhou@nxp.com>,
-	Jacopo Mondi <jacopo@jmondi.org>,
-	Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Christian Hemp <c.hemp@phytec.de>,
-	linux-media@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] media: nxp: imx8-isi: remove kzalloc_objs
-Date: Tue, 10 Nov 2026 18:28:22 -0800
-Message-ID: <20261111022822.67474-1-rosenp@gmail.com>
-X-Mailer: git-send-email 2.56.0
+        d=1e100.net; s=20260707; t=1794364250; x=1794969050;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=t8BFlEAmJEj8HGxMKTsLsaY7aesl7fSNxoZ8biKmTbE=;
+        b=MyWjmifrxkeVrrzMOLDu2rJ2uAFySNxpQwql5lClisBRrrnrroB7zR5QfOZ6uelG65
+         7zZEBUTpZYJG1xLFCx3WrpK92Lk/7XyP7Znecad5VL5YfXBCL0Ru6AT/ua3tlMFFy0IY
+         Yd7X9NU/p30dGwNWiK6hte04JZrfJ/ROExe9vGzvVXbt1ZgRkLcqMKz5cStmLFYbMbuF
+         HofK0rJaRd1kBfp5g+qmBOb8o4RgmZ+O6BEaIvswHZoALF47qDge3RGDOJOw/GVTmssp
+         TBkQtEnE1g8eKrVBnsvWq9nBhhMJvoOjn6CH9o1H8IQ3jxCGdeuUAvbbW/ewMCGD3azY
+         31qg==
+X-Forwarded-Encrypted: i=1; AL+hErGu62cOAxFbHHFcZQCXfyUQb1Fyp+906l69aOZQsgbekLtabJ8oqBFspTZEUz6RBIpvvyXioiNxzh1DcNwcyWx8@lists.infradead.org
+X-Gm-Message-State: APuU4Z+W8mLy7K/QPnf+eGcTcbGq75M6wrC+8FxHL793FL60TLIDNzlu
+	jnIVyobcW/tf+hUpu6pV7A+GKxemDKVQDfgQR8w7FlKgZF9n/DRV9CQFDkQeRjMbO/pp/6VAPfZ
+	zi895Fl0iMZQvC32CB9gol7Ltg/Um1KRG8MlEyeAT1R/+ZmwxTe4uDQ==
+X-Gm-Gg: AYBFou2iFv3uS6HWgCwQGGJl9whnzns9YP+bUgffjMV4YSIFjZf1ytlgw1zhcLTZzWc
+	WN9ZLZMaRZ8t+KN3oUb1mbbVhRyGDZy9ADrB5Yezt5ySxaH1U41YSa8e9ViNaoiryhIbsDA1OqS
+	aqnlJ13n5rjVBHs0pr5GwPjUPvyMazXEiYYGRYgeDUKLYlb7Wd3FHRjmXWDML6sEQKBW9DdO4OT
+	h/JtGExxEMlDrM71uLABBGWfdZT1K9u5VVlurg4RjQBP+f9gWob207bOhFDvN8mg30ex+dJ/4pM
+	8dJSC8yS7KwrZw1/WEvRfQjB8R78yR/qzTZnhUql4NZutORf+YT1Wo5nzSSe31+xvvyZ4SE7dib
+	4g/BKKMiUb9hcngioGle46zIStm1sLMIjR6GZNZI2McmqbXHI0dEERkA9NMMO0joomVPg7nEjRA
+	oDP9Xe61MOCuuE
+X-Received: by 2002:a05:690c:fd0:b0:8b0:cdf4:94a2 with SMTP id
+ 00721157ae682-8b3a81ab7e0mr7261967b3.84.1794364250231; Tue, 10 Nov 2026
+ 18:30:50 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20261110-mt6397-irq-num-fix-v2-1-9d5853a00437@protonmail.ch>
+In-Reply-To: <20261110-mt6397-irq-num-fix-v2-1-9d5853a00437@protonmail.ch>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 11 Nov 2026 11:30:39 +0900
+X-Gm-Features: AclHuK9ModA0hBuzgJ5zuMaqQJM9UHprenTTXYDmDO2P6KUA8OGeZIXeF99lf3k
+Message-ID: <CAGXv+5FgXESTgZ4hNyPP1Cdd4BfnV8dVTNpitKKpNAuWY-gYMQ@mail.gmail.com>
+Subject: Re: [PATCH v2] mfd: mt6397: Use PMIC specific interrupt count for
+ domain creation
+To: Ben Grisdale <bengris32@protonmail.ch>
+Cc: mfd@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_182858_749561_66938887 
-X-CRM114-Status: GOOD (  14.47  )
+X-CRM114-CacheID: sfid-20261110_183051_584305_F9EE762E 
+X-CRM114-Status: GOOD (  13.02  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,84 +116,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use a flexible array member to combine allocations.
+On Wed, Nov 11, 2026 at 7:51=E2=80=AFAM Ben Grisdale <bengris32@protonmail.=
+ch> wrote:
+>
+> mt6397_irq_init() currently creates its IRQ domain with a fixed number
+> of interrupts (MT6397_IRQ_NR). However, not every PMIC supported by this
+> driver has the same number of interrupts as the MT6397. The MT6328 has
+> 47 interrupts, so its interrupts above MT6397_IRQ_NR (32) are currently
+> unusable.
+>
+> Correct this by passing the PMIC's actual interrupt count to
+> irq_domain_create_linear() based on the chip ID. Define the missing
+> interrupt count for MT6328, as the other supported PMICs already have
+> it defined.
+>
+> Fixes: 6e31bb8d3a63 ("mfd: mt6397: Add initial support for MT6328")
+> Signed-off-by: Ben Grisdale <bengris32@protonmail.ch>
 
-It looks like pipes never gets freed anywhere. Meaning this effectively
-fixes a memory leak.
+Changes make sense to me, and it also seems to fix MT6332.
 
-Fixes: cf21f328fcaf ("media: nxp: Add i.MX8 ISI driver")
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- v3: use devm_kzalloc_flex
- v2: add fixes tag, fix typo, and move pdata assignment to original
- place.
- drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c | 10 ++++------
- drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h |  3 ++-
- 2 files changed, 6 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-index 2005584a1215..dcf6c25d7faa 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-@@ -473,24 +473,22 @@ static const struct dev_pm_ops mxc_isi_pm_ops = {
- 
- static int mxc_isi_probe(struct platform_device *pdev)
- {
-+	const struct mxc_isi_plat_data *pdata;
- 	struct device *dev = &pdev->dev;
- 	struct mxc_isi_dev *isi;
- 	unsigned int dma_size;
- 	unsigned int i;
- 	int ret = 0;
- 
--	isi = devm_kzalloc_obj(dev, *isi);
-+	pdata = of_device_get_match_data(dev);
-+	isi = devm_kzalloc_flex(dev, *isi, pipes, pdata->num_channels);
- 	if (!isi)
- 		return -ENOMEM;
- 
- 	isi->dev = dev;
- 	platform_set_drvdata(pdev, isi);
- 
--	isi->pdata = of_device_get_match_data(dev);
--
--	isi->pipes = kzalloc_objs(isi->pipes[0], isi->pdata->num_channels);
--	if (!isi->pipes)
--		return -ENOMEM;
-+	isi->pdata = pdata;
- 
- 	isi->num_clks = devm_clk_bulk_get_all(dev, &isi->clks);
- 	if (isi->num_clks < 0)
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-index 58b47335afc7..3165a65391c1 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-@@ -297,7 +297,6 @@ struct mxc_isi_dev {
- 	struct regmap			*gasket;
- 
- 	struct mxc_isi_crossbar		crossbar;
--	struct mxc_isi_pipe		*pipes;
- 	struct mxc_isi_m2m		m2m;
- 
- 	struct media_device		media_dev;
-@@ -305,6 +304,8 @@ struct mxc_isi_dev {
- 	struct v4l2_async_notifier	notifier;
- 
- 	struct dentry			*debugfs_root;
-+
-+	struct mxc_isi_pipe		pipes[];
- };
- 
- extern const struct mxc_gasket_ops mxc_imx8_gasket_ops;
--- 
-2.56.0
-
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
