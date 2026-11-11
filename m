@@ -2,91 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BD0606A8A6
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 16:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3372606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 16:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2UBcap29;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=Cz1PCGba
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W5Cc6dby;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bCdudd45
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
-	Subject:Message-ID:References:Mime-Version:In-Reply-To:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4CipcjEstkjXkbwrI150XBAgDE3Lvp07gX7FYPKQvaY=; b=2UBcap298OXvLRANtRRIiU7a7i
-	MNdI17VScXhBULNym6eWLvXw9QIxa3+Uv+j5wdOL7GLIVcGHrxqmYOTMfgByqS1Hs91x3FWPqGP/s
-	5mxcGoi6+fTKcnjndJ9mOHBVG75Gcex6w+EFrtqD0Bcn20sl5sxH6H5M+peiR/GPSHxjOCdxDWDlQ
-	1x7JsV4EyIqt92dzhw4fSpoG8/PPo8lV/0N13nKAs/LEVem96XQIp+9VOiz024FX86ertdFJu+C2y
-	8Mrgk2GOubL8HB6IhAXliY4nt38BwKCkZNEc8zuuZom7ZE6U5s5nvuJAsjfce2ho2ha0jCxNfw5N+
-	MmWxqtrw==;
+	bh=h7jKhgW2MQavDeYA5DvZZ06yeDl1v6ZtS0ur/qsa/To=; b=W5Cc6dbyCUwqDriu6vDnspeEoQ
+	wHc1BmkV4buja/gDUdvtSriZ8cM6/KLfnrCBBKm2XH96xzK9vuKcNRxgb3xwEZqTsZj+FfLhiF92F
+	UxrzA/m84DMLFNwrpQffiC9mpZtUUmYtXPxmzSZyOnzZXjkKBcbSYleCeLWAkJ5KTnSqgA8R0PH+4
+	63AXFsbnpCtC5ZBkPhoH2iuxI/DC4xA5IczqIkiraSP4H/GHCzQXdNK8EkIG/LzXcVCdgHn5oaOL/
+	s3W3see6oRg9Qw2kGDHj2UZVsg+SRAhMgM6EN0WXf3fVeEidpUYhMhqh3pJkFBesXdbs3FzuhYmlQ
+	V01jtS5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRBQr-00000007E4n-1agb;
-	Wed, 11 Nov 2026 16:44:21 +0000
-Received: from mail-wm1-x346.google.com ([2a00:1450:4864:20::346])
+	id 1xRBRs-00000007EhN-3oIF;
+	Wed, 11 Nov 2026 16:45:24 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRBQm-00000007E0o-3MN0
+	id 1xRBRs-00000007Eh6-0WUa
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 16:44:17 +0000
-Received: by mail-wm1-x346.google.com with SMTP id 5b1f17b1804b1-4a20fd059ddso24767915e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 08:44:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794415454; x=1795020254; darn=lists.infradead.org;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=4CipcjEstkjXkbwrI150XBAgDE3Lvp07gX7FYPKQvaY=;
-        b=Cz1PCGbaaQQT72BwQz4IebT6qGMqYHNc6SKBuGnsYrIczMPSNRBam70c18CxhGBAn7
-         b7t2s/ST2jnvL2R3Pm9qUUehYaVbxyG3CHCLcyw92mrnQQYCv1erlaFKGK2PzryVV6G4
-         cfoU3VAyBKGrD4jrd5zxXzVo29hHajAAoQ+fCwOe7t5FNGYrG1yDDME/343LyMTs3xha
-         VQIp/EyStdk3IAHhtggiMN6n7Vfo2fPfuc5FbAH5Yw3e2upzJkGfciyAMdSypJurPbht
-         hLSe6CGr5Q4E9f1N5Mp02gRDkBXFSqbE6In/V7TbNFL9aqEmH41pkg57CjjOp8sJG4LS
-         Zkow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794415454; x=1795020254;
-        h=content-type:cc:to:from:subject:message-id:references:mime-version
-         :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=4CipcjEstkjXkbwrI150XBAgDE3Lvp07gX7FYPKQvaY=;
-        b=TlIJX2gwJ1fCTPW35wSXPSKnhxbBoOwFs2vwPnjJ9oYGdPl8UOaEjy59RXJ5UniaBT
-         3WbL8f1Ojm789QTyI7QpcBa+rUo94BcpjmLCgmr71gLLeMWa1FNFmyTqlJaW6sduQFhe
-         zrauyeYOYig+1UpS3xt7O9JI6O5ZUWeaMFihrmT8fzpRrPE50kAisu7u2VqkDFAEhlmG
-         BIwijZ2z3nYqy4J3c6NPRmAAqIQrgsuckNu6vkrNyIw7e2vibrxx8Q9DSinqOuLpu+to
-         Y99Av6NSK8kF1NnzQ/ZErG2w7Mg2Bbyv1uOMWlKsWYm8Xrms+lLIwOg0w1/2YL7EPtts
-         liQg==
-X-Gm-Message-State: APuU4Z8hMuhLP9owy+v2JkMTYcCTZotSWKpWDs21nyDjCpe4SbKFM6/D
-	J3MOo1MKOFPdXaunVjIOwlUDFR3Hh0r7iQxRKJZLZwoG9rQBwFe/3ckYhXR0OoeWblHWOnBCEt2
-	RHL1kWLPbSgYzstmfKgF7do1W6tBzwIZrVbE0JKW0MYyoj+Iwb6SCo9JBGMdvnMWJP3gzRLyK0o
-	kTI/Bal/TIR2Vu9GuV0CgDfgrNb82pG6p9RKV6D6aF9HNU
-X-Received: from wrxa9.prod.google.com ([2002:a05:6000:1009:b0:496:16d:4e51])
- (user=ardb job=prod-delivery.src-stubby-dispatcher) by 2002:a05:600c:46d3:b0:4ba:6d8:dfad
- with SMTP id 5b1f17b1804b1-4ba0936ead9mr56748755e9.14.1794415454026; Wed, 11
- Nov 2026 08:44:14 -0800 (PST)
-Date: Wed, 11 Nov 2026 17:43:49 +0100
-In-Reply-To: <20261111164345.4059964-5-ardb+git@google.com>
+	Wed, 11 Nov 2026 16:45:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B63CA47404;
+	Wed, 11 Nov 2026 16:45:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 522A01F00A05;
+	Wed, 11 Nov 2026 16:45:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794415523;
+	bh=h7jKhgW2MQavDeYA5DvZZ06yeDl1v6ZtS0ur/qsa/To=;
+	h=From:To:Cc:Subject:Date;
+	b=bCdudd452ELxWqGQCoyC336cufFyki3Z4ZUyrtUobMnejdC5KGFvKDLrpgaaxe0Et
+	 8FAd8CFYzWgZmvK+A2rEtJPjn2ohFWwJ1DaVWoWNEdbLztZIXitFFT5kl5o6NL4Mtq
+	 Ko3VJlnFFGTIfbsneDLuqjZL0aw3M0Fc2HYWfgxAx58dYeWjmL1FQcWn4q1LmBQHXU
+	 Cw1XUtd1SzJdjUeo0L3yYeaxjlNKvtQ2WqwFVbxgOYRvoDUyQcAyY4IkjYV6zUyPJv
+	 sRRlLQyHTmyaRK20YwnQXBP8wHBwPXNLUhhc0gPAUAPi2sRpA8fVLN32uBryu+VhWJ
+	 JsICkMsKe/XPw==
+From: Thorsten Blum <blum@kernel.org>
+To: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Thorsten Blum <blum@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: [PATCH RESEND] arm64: patching: Annotate text_addrs, new_insns with __counted_by_ptr()
+Date: Wed, 11 Nov 2026 17:45:14 +0100
+Message-ID: <20261111164515.77988-2-blum@kernel.org>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-References: <20261111164345.4059964-5-ardb+git@google.com>
-X-Developer-Key: i=ardb@kernel.org; a=openpgp; fpr=F43D03328115A198C90016883D200E9CA6329909
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2934; i=ardb@kernel.org;
- h=from:subject; bh=uHP3CktPJt5MpAy8M29THFv1W5hkZAM4ez0yFg4K4Yc=;
- b=owGbwMvMwCVmkMcZplerG8N4Wi2JIevLbDcXpyOTOo/VLz2rv0fh1yz9F4lOZZ1Lj8U7P+8tW
- LZspl12RykLgxgXg6yYIovA7L/vdp6eKFXrPEsWZg4rE8gQBi5OAZgI9xqG/7W7M42v//rRFv5X
- JTpqlyfzopUTArO/W335cKyKb6r6GjuG/56WS3ujS1anZE69uvRJdmKP7aLDGe+4Re3mJ56y/tV VyQ8A
-X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
-Message-ID: <20261111164345.4059964-8-ardb+git@google.com>
-Subject: [PATCH 3/3] riscv: Rename __init_text_end to __inittext_end like
- other archs
-From: Ard Biesheuvel <ardb+git@google.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Ard Biesheuvel <ardb@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_084416_943890_AFE212B7 
-X-CRM114-Status: GOOD (  12.35  )
-X-Spam-Score: -9.5 (---------)
+MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=823; i=blum@kernel.org; h=from:subject; bh=BbljLzGPofMIqi5g5mgMPpwGq6qmez95yloL4CR6jK8=; b=owGbwMvMwCUWt7pQ4caZUj3G02pJDFlfZs8OqvzxpL26Ybrp7IuO/as3zX8mYFl67o7MacMI6 b3SN9J4OkpZGMS4GGTFFFkezPoxw7e0pnKTScROmDmsTCBDGLg4BWAiwWcZ/ko+Ltvx64DPPYn1 Ky0zPto8PZgsvX1VaEaD4+55LwL+yBgx/JXy9FMpVuz/I+uzR/XbofaTUxqEaoUunr327eZtZwN THW4A
+X-Developer-Key: i=blum@kernel.org; a=openpgp; fpr=1D60735E8AEF3BE473B69D84733678FD8DFEEAD4
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,91 +73,36 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
-	USER_IN_DEF_DKIM_WL autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ard Biesheuvel <ardb@kernel.org>
+Add __counted_by_ptr() to aarch64_insn_patch::text_addrs and
+aarch64_insn_patch::new_insns to enable access bounds checking via
+CONFIG_UBSAN_BOUNDS and CONFIG_FORTIFY_SOURCE.
 
-Align RISC-V with arm64, LoongArch and x86, and drop the underscore
-between 'init' and 'text' in the section markers. This allows the value
-to be captured by generic EFI stub code that can be shared between all
-those architectures.
-
-Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
+Signed-off-by: Thorsten Blum <blum@kernel.org>
 ---
- arch/riscv/include/asm/sections.h         | 2 +-
- arch/riscv/kernel/image-vars.h            | 2 +-
- arch/riscv/kernel/vmlinux.lds.S           | 4 ++--
- drivers/firmware/efi/libstub/riscv-stub.c | 2 +-
- 4 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm64/kernel/patching.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/riscv/include/asm/sections.h b/arch/riscv/include/asm/sections.h
-index a393d5035c54..4a882a28f414 100644
---- a/arch/riscv/include/asm/sections.h
-+++ b/arch/riscv/include/asm/sections.h
-@@ -11,7 +11,7 @@
- extern char _start[];
- extern char _start_kernel[];
- extern char __init_data_begin[], __init_data_end[];
--extern char __init_text_begin[], __init_text_end[];
-+extern char __inittext_begin[], __inittext_end[];
- extern char __alt_start[], __alt_end[];
- extern char __exittext_begin[], __exittext_end[];
+diff --git a/arch/arm64/kernel/patching.c b/arch/arm64/kernel/patching.c
+index 09f019c6547a..5fc7805a93f0 100644
+--- a/arch/arm64/kernel/patching.c
++++ b/arch/arm64/kernel/patching.c
+@@ -194,8 +194,8 @@ int __kprobes aarch64_insn_patch_text_nosync(void *addr, u32 insn)
+ }
  
-diff --git a/arch/riscv/kernel/image-vars.h b/arch/riscv/kernel/image-vars.h
-index 7b44b94f1283..bf703eba3fa5 100644
---- a/arch/riscv/kernel/image-vars.h
-+++ b/arch/riscv/kernel/image-vars.h
-@@ -27,7 +27,7 @@ __efistub__start		= _start;
- __efistub__start_kernel		= _start_kernel;
- __efistub__end			= _end;
- __efistub__edata		= _edata;
--__efistub___init_text_end	= __init_text_end;
-+__efistub___inittext_end	= __inittext_end;
- #if defined(CONFIG_EFI_EARLYCON) || defined(CONFIG_SYSFB)
- __efistub_sysfb_primary_display	= sysfb_primary_display;
- #endif
-diff --git a/arch/riscv/kernel/vmlinux.lds.S b/arch/riscv/kernel/vmlinux.lds.S
-index 9849a3e4d102..ba939c7365b2 100644
---- a/arch/riscv/kernel/vmlinux.lds.S
-+++ b/arch/riscv/kernel/vmlinux.lds.S
-@@ -46,7 +46,7 @@ SECTIONS
- 
- 	. = ALIGN(SECTION_ALIGN);
- 	__init_begin = .;
--	__init_text_begin = .;
-+	__inittext_begin = .;
- 	.init.text : AT(ADDR(.init.text) - LOAD_OFFSET) ALIGN(SECTION_ALIGN) { \
- 		_sinittext = .;						\
- 		INIT_TEXT						\
-@@ -72,7 +72,7 @@ SECTIONS
- 	}
- 	__exittext_end = .;
- 
--	__init_text_end = .;
-+	__inittext_end = .;
- 	. = ALIGN(SECTION_ALIGN);
- #ifdef CONFIG_EFI
- 	. = ALIGN(PECOFF_SECTION_ALIGNMENT);
-diff --git a/drivers/firmware/efi/libstub/riscv-stub.c b/drivers/firmware/efi/libstub/riscv-stub.c
-index 725b634c5179..5cbc50a814e1 100644
---- a/drivers/firmware/efi/libstub/riscv-stub.c
-+++ b/drivers/firmware/efi/libstub/riscv-stub.c
-@@ -34,7 +34,7 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
- 	efi_status_t status;
- 
- 	kernel_size = _edata - _start;
--	kernel_codesize = __init_text_end - _start;
-+	kernel_codesize = __inittext_end - _start;
- 	kernel_memsize = kernel_size + (_end - _edata);
- 	*image_addr = (unsigned long)_start;
- 	*reserve_size = kernel_memsize;
--- 
-2.56.0.611.g1030f0b940-goog
-
+ struct aarch64_insn_patch {
+-	void		**text_addrs;
+-	u32		*new_insns;
++	void		**text_addrs __counted_by_ptr(insn_cnt);
++	u32		*new_insns __counted_by_ptr(insn_cnt);
+ 	int		insn_cnt;
+ 	atomic_t	cpu_count;
+ };
 
