@@ -2,56 +2,55 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE96606B038
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A819606B032
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:43:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j2KwX8+E;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QxbFGovA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JVj2W+sc;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=We1CzFn3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Mvm2B4aA/p4I2wK+YBoHM5JvjypAI+iz8BH1ZFQP+gk=; b=j2KwX8+EqbOkrN
-	hK8KXwkamTAeNu8T4M4XW5LNppR32UJlBz66UQNc9YYXknE/3t+E3J2iDC++6ZcNatyrz0/hXTf9o
-	TNO2Ce6ohA1WiXTRxZbw65tbQ/iGyuYSVWmnmsoyKeO16gR7gl5p517/taLZEL/LjvO4mskkC6a3+
-	XaE5x6BYIxVbRK8AeGDze14U3zC3ERpAJHcnSwbVApR73U4rgem5AuBUfIHU6nNatXLG642x3+zYq
-	5xrG80FFgCKEDho2Eun0k41yHk0ceHprjf8mM6SBBakaMb8JGd35znnrar+8kYmXdvXwO3EPS5l3C
-	tUlGuKvGldVcCu71PiVQ==;
+	List-Owner; bh=qPjiFEL/KvMKPxsB3qj3BGsroSuozksKUttzqOJzzek=; b=JVj2W+scGfKSnm
+	C9TPOfj92BN57+C7HqJO14NJhXY28jlccS5bsdqXoUkxyZAEXAIvwlGGYBL8+riW1cGAn75Vh8nsR
+	tBjKh8Nos6vvTs8KvRkQWJNY0VSaykIdVq3ma+DHuzmMZASTlZq1o7nmeFikdSfZxRBacg0pw/QpK
+	JsUQ3vV3irtaCRFy4ahrUDmpMURox938spVmnslRn1qQlw+btYPOQ3MSBYGGpEO/ReFUWr1p00e8y
+	32Efm/k7Esf2J8FGQUWJNQEdTtJkiGxnlPtIpDmko8DQH84Sp17cukz0pxOrwJ5bo0OIG6f90L/aA
+	IkjAIA8qf/25m4lBZkLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2W-000000080Qz-1xBg;
-	Wed, 11 Nov 2026 22:43:36 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRH2V-000000080P4-3u5c;
+	Wed, 11 Nov 2026 22:43:35 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH2N-000000080Kl-0iCd
+	id 1xRH2F-000000080Ft-31Pl
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:43:27 +0000
+	Wed, 11 Nov 2026 22:43:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CE99B42AC6;
-	Wed, 11 Nov 2026 22:43:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 805641F00A07;
-	Wed, 11 Nov 2026 22:43:26 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3128B612E0;
+	Wed, 11 Nov 2026 22:43:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C88E1F00A05;
+	Wed, 11 Nov 2026 22:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794437006;
-	bh=Mvm2B4aA/p4I2wK+YBoHM5JvjypAI+iz8BH1ZFQP+gk=;
+	s=k20260515; t=1794436998;
+	bh=qPjiFEL/KvMKPxsB3qj3BGsroSuozksKUttzqOJzzek=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=QxbFGovAddVgfQIBYt3i06TYTqIA+xDMdvDo8WJTWnPzCj1V4h+CSL0XpUJgV/eWr
-	 GfkNoQ1VjRK3K1z08+/VGIADIV995Dot4RllhCoST85lE3ybquJnyXzhN7ij7Kd3OR
-	 uQPtuUVs29t3UvaGQTXRr09PTbQv3dD0v8ftRYKVEsYw7c1329rjSjIqcneF50ujj6
-	 aqOWBfZPdR0hPbbidIWsV3/H8lYGESybD1PYDa7owc+vk5nyF7eH76z4gUhC/3+riD
-	 V6jBpwKYA9i3pzdB8uoAU4XK5dI/9vehG16fFIgKo1qSp/GChpSRvWsD2cybIUMTxN
-	 BfzOpUXnW55mA==
+	b=We1CzFn3BL1WrJhdH9qzHLb1osxrR7Ct1iNxIYzDWZ/5LIppsoV0zRmk9Vw6zvt5M
+	 9B0wrQDl/VUlIX/E7EQlpHfc3yBPnzo2ndFSBRiHUuLe2nx1WMW7cS5n8FwXeVdVt2
+	 hF0sxfNCb9T0f7a9DM5fYEFW5I2gVrVRJmWQabtcm2geLxrgs9Z4BJXDOvo+Gwx5J8
+	 3v6E8q84gWWZzZJ06kf9JGpKiUqSNlDft1dZ3MQfhTlT3v0HZ7XlN6lsz0ExmSbtcm
+	 JN851I8IIMXrXSMBMxvTv8MUD1Dirp2BsJrEcCzcVMKJjpPr91hf+tnZKCzc7Ai8ON
+	 4k0uOIhfj5qpQ==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Date: Wed, 11 Nov 2026 16:43:06 -0600
-Subject: [PATCH 9/9] arm64: dts: marvell: armada-3720-gl-mv1000: Add switch
- fixed-link
+Date: Wed, 11 Nov 2026 16:43:01 -0600
+Subject: [PATCH 4/9] arm64: dts: marvell: Drop SPI max frequency
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-dtbs-marvell-v1-9-938788aff3ae@kernel.org>
+Message-Id: <20261111-dtbs-marvell-v1-4-938788aff3ae@kernel.org>
 References: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 In-Reply-To: <20261111-dtbs-marvell-v1-0-938788aff3ae@kernel.org>
 To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -79,33 +78,29 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-As the switch port 0 has an 'ethernet' phandle, 'phy-mode' and one of
-'fixed-link', 'phy-handle' or 'managed' are required by the DSA schema.
-The expressobin has appears to have a similar configuration, so copy it
-and use 'fixed-link'.
+Remove spi-max-frequency from the CP0 SPI controller node on the
+CN9130 SolidRun SOM. The property belongs on SPI devices, and the
+flash child already has its own maximum frequency. Plus, pretty
+sure 1.8GHz is not a possible SPI bus frequency.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-index a881a3326dba..93af902f4f6f 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
-@@ -161,6 +161,12 @@ ethernet-port@0 {
- 				reg = <0>;
- 				label = "cpu";
- 				ethernet = <&eth0>;
-+				phy-mode = "rgmii-id";
-+
-+				fixed-link {
-+					speed = <1000>;
-+					full-duplex;
-+				};
- 			};
+diff --git a/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi b/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
+index f95202decfce..7200f72b934f 100644
+--- a/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
++++ b/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
+@@ -106,8 +106,6 @@ &cp0_spi1 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&cp0_spi1_pins>;
+-	/* max speed limited by a mux */
+-	spi-max-frequency = <1800000000>;
  
- 			ethernet-port@1 {
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
 
 -- 
 2.53.0
