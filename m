@@ -2,30 +2,30 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43BAE60A2602
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD3B60A261B
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 03:16:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ef0GiRy2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1AxZJCyy
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
 	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vIdB7wAGTDno1mkd5UAv6J4fMESffp+CURdrKQrYqXc=; b=ef0GiRy2QP+dsB
-	o2oNAB+L+Qg7+jV9wSLM/gL78FY+F9eVEMRoLczA7xbSHh/87kLaD1HR34MvVo286kJpoot9VX3Ny
-	jbAXX4RSE74zaLm2ZyfRPHqIXEN4elILaRCsFKyHGfFn4XvLBDZETO2ofUGBduvKJzjco1TzvlCF5
-	zddQT5b2YgBTSR9aUoQWMZ9qAjCMkSg8sBNiy5tJLksVoP/PsNmAZu/jYZvwOC3voCmL8iSNh6iIi
-	BGyYv2mtVxpqhpjo2WGTudQzQyUltgxIhHQKF4hxjOLGcjh0GM4/WWhs6hxlBK29Mvhf4FsVSw4Q7
-	/lXiTmeshFlNmsvOVKIA==;
+	List-Owner; bh=o9bTZqbR1XvBSmTu8qrSg1NGYiQ9aPrsGDJsuKNGJzc=; b=1AxZJCyyeCJ+T/
+	dINapcpLsBzcn/VlZCqtzLbDSurgK+f8UISRd6jG1iesxHCGzYfcb7ZWVdUPMI2kL8M5WI7Do2C3e
+	BX0pp10xMGBOoUfQDniQ1ZNQw5cPdJXcdhTj4SSxoGvmnWsybLULGajbJUCP6Waqto+uNeOV6STqr
+	Us6wVCfQlDVRc4BNZ31ko9kWHDtsRDIYFRe0F7PduPySuyZt8d2+ZrmJqj9X9vY/n1oEZxZ9OL6I6
+	0u2MU+KUerA6GsH2RwhSFmfvuvF+gVxa87LeGNSnAt1cYMagICO18wkCs0l0parMDPqOTDwSKU+AT
+	NaSdXUc1T9Ql+Ckt18YA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQypQ-00000005WK4-0W9p;
+	id 1xQypQ-00000005WKW-1csF;
 	Wed, 11 Nov 2026 03:16:52 +0000
 Received: from mail.aspeedtech.com ([211.20.114.72] helo=twmbx01.aspeedtech.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xQypK-00000005WER-2fI9;
-	Wed, 11 Nov 2026 03:16:47 +0000
+	id 1xQypN-00000005WER-0JzJ;
+	Wed, 11 Nov 2026 03:16:50 +0000
 Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
  (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Wed, 11 Nov
@@ -34,14 +34,14 @@ Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
  (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.39 via Frontend
  Transport; Wed, 11 Nov 2026 11:16:31 +0800
 From: Billy Tsai <billy_tsai@aspeedtech.com>
-Date: Wed, 11 Nov 2026 11:16:29 +0800
-Subject: [PATCH v2 1/9] dt-bindings: i3c: Document generic bus timing
- properties
+Date: Wed, 11 Nov 2026 11:16:30 +0800
+Subject: [PATCH v2 2/9] dt-bindings: i3c: Document the AST2700 I3C
+ controller
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20261111-b4-i3c-hci-ast2700-v2-1-4d8fff5c5196@aspeedtech.com>
+Message-ID: <20261111-b4-i3c-hci-ast2700-v2-2-4d8fff5c5196@aspeedtech.com>
 References: <20261111-b4-i3c-hci-ast2700-v2-0-4d8fff5c5196@aspeedtech.com>
 In-Reply-To: <20261111-b4-i3c-hci-ast2700-v2-0-4d8fff5c5196@aspeedtech.com>
 To: Alexandre Belloni <alexandre.belloni@bootlin.com>, Frank Li
@@ -55,16 +55,16 @@ CC: <tbevis@amazon.com>, <linux-i3c@lists.infradead.org>,
 	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>, Billy Tsai
 	<billy_tsai@aspeedtech.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794366991; l=5440;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794366991; l=4018;
  i=billy_tsai@aspeedtech.com; s=20251118; h=from:subject:message-id;
- bh=8s/hr6LcKW3NUKIBczctmPCJ8HjrQqgS5f6q5QtjoUI=;
- b=FlOfxDc69OfnBYiNjbNnDOlB8QH4CyWBzrYFdBodKoQ84m9YOrKRgkHL6hjd00qQfHcB1ohwE
- H/lyP3vDKA9DFQyTelYKL3ZOHLkbahJCCDWoMq0Ki5fkRanbbLzjbZW
+ bh=C7LPU47uCZf5PPs+zL2heQyebkx3hyevu7kHTop8XYA=;
+ b=C5w0tgnbjl+kPCYW/DP5xE3+7DqdIX0sv2WA1xt/Uef0X70Oj+iPFJLJ6MC91BmLvag49ScN3
+ BwtoHa8o8nhCrF9EDbHA0drYLD0Ex2K4q3MOEIHmXhsjcyPFb1Gbrs3
 X-Developer-Key: i=billy_tsai@aspeedtech.com; a=ed25519;
  pk=/A8qvgZ6CPfnwKgT6/+k+nvXOkN477MshEGJvVdzeeQ=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_191646_740610_A0CB92F6 
-X-CRM114-Status: GOOD (  10.02  )
+X-CRM114-CacheID: sfid-20261110_191649_179273_B0EFEEFF 
+X-CRM114-Status: GOOD (  13.99  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -84,148 +84,132 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The push-pull and open-drain SCL periods, push-pull SDA output hold
-time, and the tCAS/tCBP periods around START and STOP conditions are
-normally derived from i3c-scl-hz, but board-level trace length,
-pull-up strength and capacitive loading can require different values
-than what that derivation produces for a given board.
+The AST2700 I3C controller implements the MIPI I3C HCI programming
+model, extended with an ASPEED in-house control block and a PHY
+programming window advertised through an HCI vendor extended
+capability.
 
-Document properties to override each of these independently, naming
-them after the MIPI I3C Basic Specification v1.1.1 timing parameters
-they adjust:
+The controller takes a core clock for PHY timing and two resets,
+named in reset-names as the controller's own reset and its DMA engine
+reset.
 
- - i3c-pp-scl-high-period-ns, i3c-pp-scl-low-period-ns
-   tHIGH, tLOW: Table 87 (I3C Push-Pull Timing Parameters)
-
- - i3c-od-scl-high-period-ns, i3c-od-scl-low-period-ns
-   tHIGH, tLOW_OD: Table 86 (I3C Open Drain Timing Parameters)
-
- - i3c-pp-sda-hold-ns
-   tHD_PP: Table 87 (I3C Push-Pull Timing Parameters)
-
- - i3c-cas-period-ns, i3c-cbp-period-ns
-   tCAS, tCBP: Table 86, Figures 144/145 (I3C Open Drain Timing
-   Parameters). These carry the protocol minima as constraints.
-
- - i3c-sr-p-scl-low-period-ns
-   The SCL low period held while a Controller stalls the clock in
-   the T-Bit phase before a STOP or repeated START, per Section
-   5.1.2.5 "Controller Clock Stalling" (Figures 19 and 20). The
-   specification describes this requirement qualitatively and does
-   not assign it a dedicated timing symbol, unlike the other
-   properties above.
-
-Any property left out keeps the derived default.
+Boards without external I3C pull-up resistors can use the PHY's
+built-in pull-ups instead, selected with bias-pull-up; the achievable
+strength set depends on which pin group backs the bus, since that
+fixes the pin voltage domain. Reuse bias-pull-up (pincfg-node.yaml)
+for the strength in Ohms; it is declared on this node rather than a
+pin-config node since the pull-up switch is part of the I3C PHY, not
+the broader SoC pin control IPs.
 
 Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- Documentation/devicetree/bindings/i3c/i3c.yaml | 86 ++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-index 5603f2e7807d..30f65fd1afa7 100644
---- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-+++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-@@ -57,6 +57,82 @@ properties:
- 
-       May not be supported by all controllers.
- 
-+  i3c-pp-scl-high-period-ns:
-+    description: |
-+      Push-pull SCL high period override, in nanoseconds (tHIGH, MIPI
-+      I3C Basic Specification v1.1.1 Table 87). When undefined, the
-+      value is derived from i3c-scl-hz.
+---
+We considered expressing bias-pull-up's dependency on a pinctrl state
+in the schema, but couldn't find a clean way to say "depends on
+whichever pinctrl-N is active" without hard-coding pinctrl-0
+specifically, which would be wrong in general (a node's active pin
+state doesn't have to sit at index 0). We've added pinctrl-0 to the
+example to illustrate the typical usage instead, without a formal
+schema-level dependency.
+---
+ .../bindings/i3c/aspeed,ast2700-i3c-hci.yaml       | 89 ++++++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/i3c/aspeed,ast2700-i3c-hci.yaml b/Documentation/devicetree/bindings/i3c/aspeed,ast2700-i3c-hci.yaml
+new file mode 100644
+index 000000000000..873398cbbcf6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i3c/aspeed,ast2700-i3c-hci.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/i3c/aspeed,ast2700-i3c-hci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+      May not be supported by all controllers.
++title: ASPEED AST2700 I3C controller
 +
-+  i3c-pp-scl-low-period-ns:
-+    description: |
-+      Push-pull SCL low period override, in nanoseconds (tLOW, MIPI I3C
-+      Basic Specification v1.1.1 Table 87). When undefined, the value is
-+      derived from i3c-scl-hz.
++maintainers:
++  - Billy Tsai <billy_tsai@aspeedtech.com>
 +
-+      May not be supported by all controllers.
++description:
++  The AST2700 I3C controller implements the MIPI I3C HCI programming model,
++  extended with an ASPEED in-house control block and a PHY programming window
++  that are advertised through an HCI vendor extended capability.
++
++properties:
++  compatible:
++    const: aspeed,ast2700-i3c-hci
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    items:
++      - description: Core controller reset.
++      - description: DMA engine reset shared by all I3C controllers.
++
++  reset-names:
++    items:
++      - const: core
++      - const: dma
++
++  bias-pull-up:
++    $ref: /schemas/pinctrl/pincfg-node.yaml#/properties/bias-pull-up
++    enum: [177, 231, 261, 317, 400, 470, 550, 600, 750]
++    description:
++      Enable the PHY-internal pull-ups on SCL and SDA and select their
++      strength, in Ohms. High-voltage pins support 400, 470 or 600 Ohms, and
++      low-voltage pins support 177, 231, 261, 317, 400, 550 or 750 Ohms. When
++      absent the internal pull-ups stay disabled and the bus relies on
++      external pull-ups.
 +
 +  i3c-od-scl-high-period-ns:
-+    description: |
-+      Open-drain SCL high period override, in nanoseconds (tHIGH, MIPI
-+      I3C Basic Specification v1.1.1 Table 86). Open-drain timing is not
-+      a function of i3c-scl-hz; when undefined, the controller uses its
-+      own default.
-+
-+      May not be supported by all controllers.
++    default: 380
 +
 +  i3c-od-scl-low-period-ns:
-+    description: |
-+      Open-drain SCL low period override, in nanoseconds (tLOW_OD, MIPI
-+      I3C Basic Specification v1.1.1 Table 86). Open-drain timing is not
-+      a function of i3c-scl-hz; when undefined, the controller uses its
-+      own default.
-+
-+      May not be supported by all controllers.
++    default: 620
 +
 +  i3c-pp-sda-hold-ns:
-+    description: |
-+      Push-pull SDA output hold time override relative to the SCL edge,
-+      in nanoseconds (tHD_PP, MIPI I3C Basic Specification v1.1.1 Table
-+      87). When undefined, the controller uses its own default.
-+
-+      May not be supported by all controllers.
-+
-+  i3c-cas-period-ns:
-+    minimum: 39
-+    description: |
-+      Clock-after-start (tCAS) period override driven after a START
-+      condition, in nanoseconds (MIPI I3C Basic Specification v1.1.1
-+      Table 86, Figure 144). When absent it is derived from the SCL low
-+      period of the applicable bus context, clamped to the protocol
-+      minimum.
-+
-+      May not be supported by all controllers.
-+
-+  i3c-cbp-period-ns:
-+    minimum: 20
-+    description: |
-+      Clock-before-stop (tCBP) period override driven before a STOP
-+      condition, in nanoseconds (MIPI I3C Basic Specification v1.1.1
-+      Table 86, Figure 145). When absent it is derived from the SCL low
-+      period of the applicable bus context, clamped to the protocol
-+      minimum.
-+
-+      May not be supported by all controllers.
++    default: 10
 +
 +  i3c-sr-p-scl-low-period-ns:
-+    description: |
-+      SCL low period override used while extending (stalling) the clock
-+      in the T-Bit phase before a STOP or repeated START condition, in
-+      nanoseconds (MIPI I3C Basic Specification v1.1.1 Section 5.1.2.5
-+      "Controller Clock Stalling", Figures 19 and 20; no dedicated
-+      timing symbol is defined there). Kept separate from the push-pull
-+      SCL low period to satisfy that requirement. When undefined, the
-+      controller uses its own default.
++    default: 40
 +
-+      May not be supported by all controllers.
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - reset-names
 +
-   mctp-controller:
-     type: boolean
-     description: |
-@@ -67,6 +143,16 @@ required:
-   - "#address-cells"
-   - "#size-cells"
- 
-+dependencies:
-+  i3c-pp-scl-high-period-ns:
-+    - i3c-pp-scl-low-period-ns
-+  i3c-pp-scl-low-period-ns:
-+    - i3c-pp-scl-high-period-ns
-+  i3c-od-scl-high-period-ns:
-+    - i3c-od-scl-low-period-ns
-+  i3c-od-scl-low-period-ns:
-+    - i3c-od-scl-high-period-ns
++allOf:
++  - $ref: i3c.yaml#
 +
- patternProperties:
-   "@[0-9a-f]+$":
-     type: object
++unevaluatedProperties: false
++
++examples:
++  - |
++    i3c@14c24000 {
++        compatible = "aspeed,ast2700-i3c-hci";
++        reg = <0x14c24000 0x1000>;
++        interrupts = <100>;
++        clocks = <&syscon 20>;
++        resets = <&syscon 37>, <&syscon 34>;
++        reset-names = "core", "dma";
++        bias-pull-up = <177>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_i3c4_default>;
++        #address-cells = <3>;
++        #size-cells = <0>;
++    };
 
 -- 
 2.34.1
