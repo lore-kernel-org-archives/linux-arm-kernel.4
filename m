@@ -2,76 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E903606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A79F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L+Nn4TMp;
-	dkim=pass (2048-bit key, unprotected) header.d=timsurber.de header.i=@timsurber.de header.a=rsa-sha256 header.s=MBO0001 header.b=ryJfnEPi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nBVLFK0y;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l+CZocFO
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wQB6avLROIXiPmK+n8cCsjZDDZknF7IBNV5dCVVCAcA=; b=L+Nn4TMppJbaJVy0MXFPXlGQlE
-	TLTqXxW21kprH5XX4dlaoXh0Qpr4P7Xh3Wl8h2S63f4bsrCFseZaFqqX6uWdU+PVzm1W3EcoHU1a9
-	F5yDxQzG0ka/2jy6b4ivRlk8tG/+ox9djUJiJRIZ2v6Tp9MI3SosCYkDC8FzfvhdDurhbRxS2HSD5
-	kNS034zpp1A+qYksz5c72+zO1eVfJDCnyyLoHOGKuJ2TYzHiFq+q8Zw76+TI9DamxBBd02nuv/yAh
-	ksNuaDVz4ayrXTJFMOEoFDgO9XbvaTzWbG02mlgYujMt9meUSGfQxoDvI5oj4HIrJ082Wle/FKDxM
-	xwtsFSJw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=MUGi+6yGnkd+Ifly32JGBty8CIYlhjDD8RBpprRWoYE=; b=nBVLFK0yetJD5B
+	JaVZ82hWTxilWyHbZ4VahBFJuiPp1TSrjhrNqVOPm/UAFHNccgglbIzcozH19S+yRU4eIwMHAxBE7
+	U/Xfz5TWPi3LQf0W2iWzq4CCTdQcndRzblhJ5JzkEQTuQXw49M9Ae+hRScopUZpdocRnRcpxNG1Jj
+	5jRb9MesVvtW4bV3saY6afemsFOHDTdHlOWCU8we3pFSihkiyu1NkdektQvU+JyeLHFoogbJzHw3h
+	6tjx1BoTIWPF9SoYRcnMKVKhRbfxmkOMum2rKeobx3bAiuv+8cc6OUESdr86SHdzWrr3qBvDxva5m
+	TS1SxJKflq3gX/6Eml9A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGTa-00000007tzi-1U5S;
-	Wed, 11 Nov 2026 22:07:30 +0000
-Received: from mout-p-101.mailbox.org ([2001:67c:2050:0:465::101])
+	id 1xRGXW-00000007uXQ-0pRT;
+	Wed, 11 Nov 2026 22:11:34 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRGTU-00000007txH-38i9;
-	Wed, 11 Nov 2026 22:07:26 +0000
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4jPyLF3sDBz8vP5;
-	Wed, 11 Nov 2026 23:07:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=timsurber.de;
-	s=MBO0001; t=1794434837;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=wQB6avLROIXiPmK+n8cCsjZDDZknF7IBNV5dCVVCAcA=;
-	b=ryJfnEPisdqIlArnTysAbzBAJCgavQE64PJnUt1pGqADXESLfYa+XLNL6w10dYJzE6v5n4
-	vb3n0BYkBxM9rsyUb2EXgl4oZ2HY5vqFTu40khtAFy8HfqGroeNQguR3+k/WuGISLjoaRA
-	IucobyuzLzfCAmI5bW65amPGJUPjwb+AD51SUeDnggqtTwOUt3fbH4mWYmpT2/1+ic8aMj
-	nYyR2oQ882e1OpP89Ter54bR2+ON9L1LXLQB2ayPQYe143f1KHLHYpNA9gTnT3KAYt3V+I
-	T1qarE7lQRwfyM96pUKcoBJ8VoMPHsqaDDSrfr9ESlEaUIMA6pdQg3yjNiNhXg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=none;
-	spf=pass (outgoing_mbo_mout: domain of me@timsurber.de designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=me@timsurber.de
-From: Tim Surber <me@timsurber.de>
-To: Heiko Stuebner <heiko@sntech.de>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: Tim Surber <me@timsurber.de>,
-	Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	linux-clk@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] clk: rockchip: rk3588: Allow I2S5 TX and I2S6 RX frac to set parent rate
-Date: Wed, 11 Nov 2026 23:06:53 +0100
-Message-ID: <20261111220656.3603628-1-me@timsurber.de>
-X-Mailer: git-send-email 2.55.0
+	id 1xRGXU-00000007uX7-1VM3
+	for linux-arm-kernel@lists.infradead.org;
+	Wed, 11 Nov 2026 22:11:32 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A33DA41424;
+	Wed, 11 Nov 2026 22:11:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2B461F00A05;
+	Wed, 11 Nov 2026 22:11:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794435090;
+	bh=MUGi+6yGnkd+Ifly32JGBty8CIYlhjDD8RBpprRWoYE=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=l+CZocFOipkssoSR4nDy8rXOPR4VscQyi4qnCL1vXPFwNQg8OaBOIuOCaInl8e96r
+	 ZwlRc1i7/6L4/vzQN+0L0DwnuPbmtt67pfOjPY+vb0dxgPlPB90E7P0j1anEKLviQv
+	 5LSrrdNHXhS/UOfzdhgQspSktdWd9/8F+qEEiPz38DK/XgFrpRqK9aYp87/QrAjErI
+	 +jyYnf8ekRSoAZKyHF1Fbpjw6W39yy9fnq3WO2Y5eYee09N9qA/Vhq3yWy92aWaXID
+	 32hmABD3dDPq1uccKqdLQN7VMxwxRDRnsHMjk9Ep7IHrJhQHw1C9tJr6BxPRHmK5Aw
+	 R1QVhNtVNZuIA==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4jPyLF3sDBz8vP5
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_140725_239513_920318A9 
-X-CRM114-Status: GOOD (  15.43  )
-X-Spam-Score: -2.8 (--)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v3 2/5] clk: cix: Handle Sky1 AUDSS DMA interrupt gates
+ as an irqchip
+From: Brian Masney <masneyb@kernel.org>
+To: Jelly Jia <Jelly.Jia@cixtech.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, robin.murphy@arm.com, sboyd@kernel.org, 
+ bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, 
+ devicetree@vger.kernel.org, Frank.Li@kernel.org, 
+ cix-kernel-upstream@cixtech.com, dmaengine@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, joakim.zhang@cixtech.com, 
+ Brian Masney <masneyb@kernel.org>
+In-Reply-To: <20261106013520.1134450-3-Jelly.Jia@cixtech.com>
+References: <20261106013520.1134450-1-Jelly.Jia@cixtech.com>
+ <20261106013520.1134450-3-Jelly.Jia@cixtech.com>
+Date: Wed, 11 Nov 2026 17:11:24 -0500
+Message-Id: <179443508445.1143992.8301638068435530250.b4-review@b4>
+X-Mailer: b4 0.17-dev-7ca47
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1393; i=masneyb@kernel.org;
+ s=20250903; h=from:subject:message-id;
+ bh=mfXkakMz9SQLnadusaEu+YqUiKYZPgdb6OV+3ZdFD4k=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLK+vOD9uZVb4uv3nHldHjJmJjzhf5Q2x70WmpclWMz7W
+ +QIq+bxjlIWBjEuBlkxRZYluUYFEamrbO/d0WSBmcPKBDKEgYtTACZiycTI8O5dXbIQ18kz2+d/
+ VygRbQh/eI+l8Dr3DPbTzS/t9x94/ZWR4RNX2yHlgn8zhYU2lpdo71SbWh0lLsL4/8tpp88+Mdx
+ +DAA=
+X-Developer-Key: i=masneyb@kernel.org; a=openpgp;
+ fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,96 +84,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-All RK3588 audio fractional dividers except clk_i2s5_8ch_tx_frac and
-clk_i2s6_8ch_rx_frac are registered with CLK_SET_RATE_PARENT. Without it
-the divider cannot raise the rate of its *_src parent again once the
-parent has been lowered.
+Hi Jelly,
 
-That happens on HDMI0 (i2s5_8ch) after a 192 kHz stream. Its MCLK of
-24.576 MHz (128 * fs) is an integer divisor of AUPLL (786.432 MHz / 32),
-so the mux selects clk_i2s5_8ch_tx_src directly and sets its divider to
-32. For a following 176.4 kHz stream the mux selects the fractional
-divider. rockchip_fractional_approximation() sees that the parent is
-less than 20 times the requested rate and computes m/n against the
-grandparent (AUPLL) rate, but the parent is never changed. The divider
-is then programmed with m/n = 147/160 from 24.576 MHz. The clock
-framework reports the requested 22.5792 MHz, but the fractional divider
-does not work at such a ratio and the I2S runs at about 54% of the
-nominal rate (96000 instead of 176400 frames/s).
+> The AUDSS CRU INFO_AP_IRQC register gates each DMA-350 channel interrupt
+> onto the shared AP GIC line. Manage these gates with an irqchip in the
+> CRU driver, keeping access to CRU registers out of the DMA driver. Mask
+> and unmask the corresponding AP gate through the IRQ core; this controls
+> interrupt delivery, not AP/DSP channel ownership.
+> 
+> The register exposes gate state but no per-channel pending status. Poll
+> each enabled child's DMA handler to check its channel-local status. Use
+> level flow handling so disabled and oneshot-threaded interrupts remain
+> masked, and mark the children as polled because IRQ_NONE is expected
+> when a different channel caused the parent interrupt.
+> 
+> Use a raw regmap lock for the hard-IRQ callbacks and keep the CRU powered
+> while its IRQ resources are in use or being torn down. Quiesce the parent
+> IRQ before runtime suspend and move system sleep handling to noirq.
+> Save and restore the interrupt gates and software reset state with the
+> other CRU context. Dispose of child mappings before removing the domain.
+> 
+> Signed-off-by: Jelly Jia <Jelly.Jia@cixtech.com>
 
-Add CLK_SET_RATE_PARENT to both dividers, as on all other I2S and SPDIF
-fractional dividers of the RK3588 and as in the vendor kernel:
+The irqchip driver doesn't belong in the clk subsystem, and it needs to
+go in the irqchip subsystem. You can use the auxilary device like what's
+done for the reset driver today.
 
-  https://github.com/rockchip-linux/kernel/blob/470f9dccbdc42e7b8a824d0a5c5640a10e9457d2/drivers/clk/rockchip/clk-rk3588.c#L2037
-  https://github.com/rockchip-linux/kernel/blob/470f9dccbdc42e7b8a824d0a5c5640a10e9457d2/drivers/clk/rockchip/clk-rk3588.c#L2055
+Brian
 
-To reproduce, on any RK3588 board with HDMI0 audio enabled and a sink
-that accepts 192 and 176.4 kHz LPCM: play 192 kHz, then time two
-seconds of 176.4 kHz:
-
-  aplay -q -D hw:HDMI0 -t raw -f S16_LE -c 2 -r 192000 -d 1 /dev/zero
-  time aplay -q -D hw:HDMI0 -t raw -f S16_LE -c 2 -r 176400 -d 2 /dev/zero
-
-On linux-rockchip for-next the second command takes 3.7 s instead of
-2.0 s, and clk_i2s5_8ch_tx_src stays at 24.576 MHz.
-
-Tested on a FriendlyElec CM3588 NAS with HDMI0 cabled into its HDMI
-receiver, the receiver's EDID advertising 192 and 176.4 kHz, and the
-HDMI sound cards enabled in the device tree. Two 176.4 kHz runs after
-boot, then three runs each preceded by a 192 kHz stream:
-
-                          176.4 kHz frames/s   clk_i2s5_8ch_tx_src
-                          after boot / after   after the 176.4 kHz
-                          192 kHz              stream (Hz)
-  for-next                175500 / 95600 (3x)  24576000
-  for-next + this patch   175500 / 174800 (3x) 786431991
-
-With this patch the 32 to 192 kHz rates still play at their nominal
-rate, and a frame counter played at 176.4 kHz after a 192 kHz stream
-was captured bit-exact by the HDMI receiver. I2S6 RX is not used on
-this board and was not tested.
-
-Fixes: f1c506d152ff ("clk: rockchip: add clock controller for the RK3588")
-Signed-off-by: Tim Surber <me@timsurber.de>
----
- drivers/clk/rockchip/clk-rk3588.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/clk/rockchip/clk-rk3588.c b/drivers/clk/rockchip/clk-rk3588.c
-index 24baa0ef9..63aeeb501 100644
---- a/drivers/clk/rockchip/clk-rk3588.c
-+++ b/drivers/clk/rockchip/clk-rk3588.c
-@@ -2024,7 +2024,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 	COMPOSITE(CLK_I2S5_8CH_TX_SRC, "clk_i2s5_8ch_tx_src", gpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(140), 10, 1, MFLAGS, 5, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(62), 6, GFLAGS),
--	COMPOSITE_FRACMUX(CLK_I2S5_8CH_TX_FRAC, "clk_i2s5_8ch_tx_frac", "clk_i2s5_8ch_tx_src", 0,
-+	COMPOSITE_FRACMUX(CLK_I2S5_8CH_TX_FRAC, "clk_i2s5_8ch_tx_frac", "clk_i2s5_8ch_tx_src",
-+			CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(141), 0,
- 			RK3588_CLKGATE_CON(62), 7, GFLAGS,
- 			&rk3588_i2s5_8ch_tx_fracmux),
-@@ -2043,7 +2044,8 @@ static struct rockchip_clk_branch rk3588_early_clk_branches[] __initdata = {
- 	COMPOSITE(CLK_I2S6_8CH_RX_SRC, "clk_i2s6_8ch_rx_src", gpll_aupll_p, 0,
- 			RK3588_CLKSEL_CON(146), 7, 1, MFLAGS, 2, 5, DFLAGS,
- 			RK3588_CLKGATE_CON(63), 0, GFLAGS),
--	COMPOSITE_FRACMUX(CLK_I2S6_8CH_RX_FRAC, "clk_i2s6_8ch_rx_frac", "clk_i2s6_8ch_rx_src", 0,
-+	COMPOSITE_FRACMUX(CLK_I2S6_8CH_RX_FRAC, "clk_i2s6_8ch_rx_frac", "clk_i2s6_8ch_rx_src",
-+			CLK_SET_RATE_PARENT,
- 			RK3588_CLKSEL_CON(147), 0,
- 			RK3588_CLKGATE_CON(63), 1, GFLAGS,
- 			&rk3588_i2s6_8ch_rx_fracmux),
-
-base-commit: c3baae5f1a15645cddadcb2b9abddef5df291f59
 -- 
-2.55.0
-
+Brian Masney <masneyb@kernel.org>
 
