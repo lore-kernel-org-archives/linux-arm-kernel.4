@@ -2,63 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1464606A320
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A33FD606A320
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 07:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zvcB46qY;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.a=rsa-sha256 header.s=2212171451 header.b=X/X8D6o7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PqBoLoJx;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=jRHFkCwz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Date:Subject:Cc:From:To:
-	Content-Type:Message-Id:Content-Transfer-Encoding:Mime-Version:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=8mTErck5JGupQOghrZ2jPp0xZxOQ50MpStd/zzuxbSw=; b=zvcB46qYqKXNC2CL8szuDm1zEE
-	DPv3teRIzZUdkCp1DXLTcEPCRp7GHCn5+3b96uNAg4Eq6fpTCpVILAqd67cMFQmPW0qdnszA6D7qP
-	+BE4ECfZEXB4RHpeAJphMGs0OX8Cs8LAOUeMryK1485IYYS0oIp8x3XfiF5xl2LMgXJTREqSllC5I
-	selu81dOhhOiX2gG/P2NC9pWFlBu7VsY6uUuOY6SuKH+WMbZVZZdMXfFG6PIecRsufgAWMTldyg15
-	xZfJGgPrc1kxkmky8p8SNo9v1HLerynqasSq70zcvBZTjTbwgdPYiYtqLB2j9k+Xr4o6s9KL3eL8J
-	xqQgxQSA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=27U7oUdIa14bzFyO20wq2H7dyWDMznLD1QtfCXJzapQ=; b=PqBoLoJxped6Vy
+	ycmRlAjPd0edBctJMQg/HPz7Uya9mRq00QkiQ6c5DG404lMoRmZlnoQULoTEnIi4i+wF1Y4pKU7mi
+	mdLy0rytUrgu488Dr8Vu+AIqsPYPz/7RGzZ1XB9/0hYdpKJiAAXjKUbQg9XGhlNq+foPooaostYXL
+	3d5sNXMcEtiM0/8p3tXQCyIzp7Z00YJMZQ6iNA2Cjayw+6E5eAC5u10UFdiZxLOrfomzYk+ykznJj
+	Itdu7V5eRbTgq3O+iaBMIybyj0bj4P/VQvhAPFDaltPj7b98yjtchsiXuWlEcqlDkxzZMxGc3oBoW
+	dlZYA+8lWufTjJHy+2Fw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2zJ-00000005wO2-1fg5;
-	Wed, 11 Nov 2026 07:43:21 +0000
-Received: from va-1-111.ptr.blmpb.com ([209.127.230.111])
+	id 1xR2zM-00000005wP4-2CrY;
+	Wed, 11 Nov 2026 07:43:24 +0000
+Received: from mail-ed1-x52e.google.com ([2a00:1450:4864:20::52e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR2zF-00000005wNE-1y5z
+	id 1xR2zH-00000005wNV-1GdY
 	for linux-arm-kernel@lists.infradead.org;
 	Wed, 11 Nov 2026 07:43:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=2212171451; d=bytedance.com; t=1794382992; h=from:subject:
- mime-version:from:date:message-id:subject:to:cc:reply-to:content-type:
- mime-version:in-reply-to:message-id;
- bh=8mTErck5JGupQOghrZ2jPp0xZxOQ50MpStd/zzuxbSw=;
- b=X/X8D6o7YCJbnKtcRqHB1NgObIu9QCw3LHKyn9a35l2tvVFwgh0r8vjho9OZGl3u7eA3ja
- GdlqNEwBBCMhEHl4p9Z0Aqkt7EYjrDIDGP31ho4wLBReYhUubLuWP24VK6TIk9Hlony5Y3
- L0aSp8sdb1UqVxOKjnjjtUSFDI89Bfuc2GhzcYK1C01MgGn7iLUXaepKKLP0qWQuvfspvn
- cFZ2EVZvl00o+/kTs+wye+KLURAbQTd4/+prUcnWS214xIc909z3Vo86pxCRGP3zSH9uuG
- c1Vsr9Rhr/SRdcyx9hn9O5ogIkxybOSkr5x48E33wOLjOPpdHRvq8Opv3ty/qg==
-X-Mailer: git-send-email 2.20.1
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-6b7221c0f2cso2278654a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Tue, 10 Nov 2026 23:43:18 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794382997; cv=none;
+        d=google.com; s=arc-20260327;
+        b=j+qIMnm3nwvWj617ZdhuCpQE1PmqKXNenZCEKR7kOSWfuPxdyqg88xzUbMDK+IfPSS
+         ZXHNRv3cFO1o4/yttAV0agGY21LMaYt9WCGE2zbSJ5+zHTMarSNcEexJeFzdjtppsXNH
+         gMRE5jxItr065RDndX/patgIWrIOrKCNHChrutLv8g3+w1vl/VaxS/fOhZ/pKkSd/W2l
+         oELAf9TJvd6K2JPU/KW0wWj7q20WuwwPqFUNLokoJZTYRSJtRfAyeTFQnRkz9fRqaD9d
+         U86OOecfi0k/AsYoM3aVF50boyAh3SjRfo8jBh3VI0nfRe2agVL6bAdCdAGQGfEHXEu5
+         cuDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=27U7oUdIa14bzFyO20wq2H7dyWDMznLD1QtfCXJzapQ=;
+        fh=LFMV4do/ytqSu71OWZrKln8MyfUVLjYbH0o2pD7ELP8=;
+        b=k46tE6NF1vIcoPXI7Q9Xcb39RbXP6QR00XDrK6VA8NrgHYfxvPp7rVqcsxQQiBkTBQ
+         QekRdJEgNgUvw6s8Ew4InKzBjPTnWiOTOA0DIKtrCshsPtEEvqXEYkXg9bpW5W/Dod/w
+         u9fGS5eP3nkcNqLKNHTd1pAUwi3RJVKCNAIc1AsVsSGbY65GHEHet6/drSqf+KGWq0LT
+         FjcnWe7n90xzSBX9DhdmKzmlqgKXlJtbmD0c1rtnXB1jGrjyDNrd39vleIh3qvtwULzx
+         /ar+NcGy8bsd+SbD9gvqfCDL3N1/KnSatGuOMeraa4bxucfj+QneIbd/xXDNvjroETrv
+         6gQw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794382997; x=1794987797; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=27U7oUdIa14bzFyO20wq2H7dyWDMznLD1QtfCXJzapQ=;
+        b=jRHFkCwzoFG7RFfIKbr4bWABD1+lnGZuPBz5jzpXoBsOZWINPdIcV+moH01+PQw0VY
+         Qg2Ca54jE8+A5Xc7QfOXuWNh0ylc32Yf2lppl/CVW1ykXgiPg3/DFW+1R0PIxVlvV2N8
+         AxvgbTNu2fh45LJXPUFigh5u9jWv+7M95R38vHjO0EkR1/cmIxrOGhEGFhAdDQUHVR6d
+         cCuP4KgTPb/pNBX34Of9lyqyidxsbR3QAL1hF5dehrfA/MkNzvljn8bHk75sqvBdHknb
+         xmiv39rSPi4mjXHh4sZAMLvFMdQSkZVLTz39iCAAtwWCXsJpqj9A0R2/aXlR7YK7YW+g
+         wYNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794382997; x=1794987797;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=27U7oUdIa14bzFyO20wq2H7dyWDMznLD1QtfCXJzapQ=;
+        b=M7x9Wfek7QK/a4SKEDLaM7p4S10VQGHkcVOwtUv5VuSL97YlrXhUl7s4b+zNk/aGMC
+         r75mQHfRfvuInPNOXPLSKabjNMy5sYE6Fwu1e9P4dB/8f0cA7ravBIt3pKJxFnmDu2zA
+         snRxY5UFe2fTScBtZQc+cTDODvKGK/113P/+YA/kd3ovjEgJZtEWZZBnsOErHVEqVxFM
+         STLyh8D3uQsItVh/DGJwtQqvSgSVbn/riTnBEw5F2iR7Ls5167K+o4eFkfrFF1iTOoio
+         dRUENdQVpH7+/+zwaj58zHRfswPPMUWJ2ouqZ5lUptqO7B+Rxx1pt6RlbraHHReFHord
+         IAiw==
+X-Forwarded-Encrypted: i=1; AL+hErFGEHXR5ms9CTQgQU2ar6hrkaIStNG+Q3KDE1Bt3LU5pYKA7GkJrFKHiupsn25klpdfgzWCS5XKfoz7LeK7lLMa@lists.infradead.org
+X-Gm-Message-State: APuU4Z+HPYXWD7QPfBr6Qu7i3LMYOyuuXZHR7uG5aR/dlHI4RVtQfKhz
+	5Zy0MtlM1xjS5Jjvq2iJcGfmqaxSECUf1VkRJw/gshyUY6GB5oOfrJ9muJSPeEjekCnTKl6iIFJ
+	1DQeKmzlOUkmIdA94PViRmyBWuwYpSAo=
+X-Gm-Gg: AYBFou3Haew99/cV6yzzs/1biYSLCRwJxa+JSOary3V7pWRVn7ScF9/MmWL4Kj9Zy40
+	AGkHr+5gQcrgWIYoaEyqgl984oa3xzBMsHyI/EpPEbEQOH+gz1WeyzcchNVcUFc9ZOoGXUvE+ie
+	sxmNhpqqZhlXPdgOETZcvDjhEZw4NgB2Ece0FdKVnBZbTNiKMTD98S7dSz4/5DXiXTWY5K9oQV4
+	oUYBvyQ2ufxK9wDmI5+T/Zxfqh1R1zqNMiIQEz2NuyJ4iydFTM1HJsBPANRD+HqP/sbKGg8U1LF
+	9XkIAhJC1Jb+dGVcxANZXDT/OAG83xKcCdX2/LkloT6kWY2lVOdqVWGt1UM5BN2RXm+bRHnfeiZ
+	asgnQjb7r/IshgJ1i+q3uF4hLqdbhKpgK0+TP4a/jppZTgYO5uOpEheqYnAu92EqwY2YUiw==
+X-Received: by 2002:aa7:c1c4:0:b0:6b5:90b9:e1f4 with SMTP id
+ 4fb4d7f45d1cf-6b7773edf4bmr819135a12.15.1794382997169; Tue, 10 Nov 2026
+ 23:43:17 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261111073906.652400-1-qirui.001@bytedance.com>
-X-Original-From: Rui Qi <qirui.001@bytedance.com>
-X-Lms-Return-Path: <lba+26af41c8e+6d017a+lists.infradead.org+qirui.001@bytedance.com>
-Content-Type: text/plain; charset=UTF-8
-To: "Catalin Marinas" <catalin.marinas@arm.com>, <will@kernel.org>
-From: "Rui Qi" <qirui.001@bytedance.com>
-Cc: <mark.rutland@arm.com>, <ardb@kernel.org>, <song@kernel.org>, 
-	<dylanbhatch@google.com>, <linux-arm-kernel@lists.infradead.org>, 
-	<linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>, 
-	"Rui Qi" <qirui.001@bytedance.com>
-Subject: [PATCH v2] arm64: module: Use text-poke for late PLT/veneer emission
-Date: Wed, 11 Nov 2026 15:39:06 +0800
+MIME-Version: 1.0
+References: <20261105-tonyk-syscall_table-v9-0-8d1275885d9c@igalia.com> <20261105-tonyk-syscall_table-v9-11-8d1275885d9c@igalia.com>
+In-Reply-To: <20261105-tonyk-syscall_table-v9-11-8d1275885d9c@igalia.com>
+From: Magnus Lindholm <linmag7@gmail.com>
+Date: Wed, 11 Nov 2026 08:43:04 +0100
+X-Gm-Features: AclHuK-WWcZzAuRTugYoSHBXz8aDMS8vLzO87BtuVYEGxCZ10b0uUmgcqCUEPe8
+Message-ID: <CA+=Fv5Tm4-DV9KEKxO11ta84EvqigB-KDemhOML1hx9zoxx0cA@mail.gmail.com>
+Subject: Re: [PATCH v9 11/15] alpha: Remove alpha_ prefix from custom syscall entries
+To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+Cc: Masami Hiramatsu <mhiramat@kernel.org>, Arnd Bergmanon <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-kbuild@vger.kernel.org, kernel-dev@igalia.com, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-alpha@vger.kernel.org, 
+	linux-s390@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	soc@lists.linux.dev, linux-mips@vger.kernel.org, sparclinux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261110_234317_596304_9C34EDB2 
-X-CRM114-Status: GOOD (  19.22  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261110_234319_401631_CD0815FC 
+X-CRM114-Status: GOOD (  21.05  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -69,210 +121,129 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-module_emit_plt_entry() and module_emit_veneer_for_adrp() write PLT
-entries into the .plt section by direct assignment.  Once a module is
-fully formed its .plt is read-only/executable, so a late (livepatch)
-relocation that falls back to PLT emission -- an out-of-range
-R_AARCH64_CALL26/JUMP26, or an ADRP under CONFIG_ARM64_ERRATUM_843419
--- triggers a synchronous Data Abort and panics.
+Hi Andr=C3=A9
 
-This is the same ROX premise that commit 91b89a634487
-("arm64/module: Use text-poke API for late relocations.") handled for
-the relocation writes through WRITE_PLACE(); the PLT/veneer emitters
-were left using direct assignment.
+On Thu, Nov 5, 2026 at 9:26=E2=80=AFPM Andr=C3=A9 Almeida <andrealmeid@igal=
+ia.com> wrote:
+>
+> Some architectures need special entry points for some syscalls (like
+> clone3). The current approach is, instead of having a special name like
+> arch_syscall, to name if as __syscall. This is enough to different the
+> common entry point to the architecture specific entry point.
+>
+> Change alpha special syscall entries to do the same. This makes easier to
+> join the syscall tables. Leave alpha_syscall_zero because this syscall on=
+ly
+> exists in alpha anyway.
+>
+> Signed-off-by: Andr=C3=A9 Almeida <andrealmeid@igalia.com>
+> ---
+> Changes from v7:
+> - Fix __clone3 entry
+> ---
+>  arch/alpha/kernel/entry.S              | 8 ++++----
+>  arch/alpha/kernel/syscalls/syscall.tbl | 8 ++++----
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/alpha/kernel/entry.S b/arch/alpha/kernel/entry.S
+> index 790389a15c3c..25d05f45512d 100644
+> --- a/arch/alpha/kernel/entry.S
+> +++ b/arch/alpha/kernel/entry.S
+> @@ -729,9 +729,9 @@ ret_from_kernel_thread:
+>
+>  .macro fork_like name
+>         .align  4
+> -       .globl  alpha_\name
+> -       .ent    alpha_\name
+> -alpha_\name:
+> +       .globl  __sys_\name
+> +       .ent    __sys_\name
+> +__sys_\name:
+>         .prologue 0
+>         bsr     $1, do_switch_stack
+>         // NB: if anyone adds preemption, this block will need to be prot=
+ected
+> @@ -746,7 +746,7 @@ alpha_\name:
+>         ldq     $26, 56($sp)
+>         lda     $sp, SWITCH_STACK_SIZE($sp)
+>         ret
+> -.end   alpha_\name
+> +.end   __sys_\name
+>  .endm
+>
+>  fork_like fork
+> diff --git a/arch/alpha/kernel/syscalls/syscall.tbl b/arch/alpha/kernel/s=
+yscalls/syscall.tbl
+> index 8fc4701a6328..59eb066a40bf 100644
+> --- a/arch/alpha/kernel/syscalls/syscall.tbl
+> +++ b/arch/alpha/kernel/syscalls/syscall.tbl
+> @@ -9,7 +9,7 @@
+>  #
+>  0      common  osf_syscall                     alpha_syscall_zero
+>  1      common  exit                            sys_exit
+> -2      common  fork                            alpha_fork
+> +2      common  fork                            __sys_fork
+>  3      common  read                            sys_read
+>  4      common  write                           sys_write
+>  5      common  osf_old_open                    sys_ni_syscall
+> @@ -72,7 +72,7 @@
+>  63     common  getpgrp                         sys_getpgrp
+>  64     common  getpagesize                     sys_getpagesize
+>  65     common  osf_mremap                      sys_ni_syscall
+> -66     common  vfork                           alpha_vfork
+> +66     common  vfork                           __sys_vfork
+>  67     common  stat                            sys_newstat
+>  68     common  lstat                           sys_newlstat
+>  69     common  osf_sbrk                        sys_ni_syscall
+> @@ -242,7 +242,7 @@
+>  309    common  get_kernel_syms                 sys_ni_syscall
+>  310    common  syslog                          sys_syslog
+>  311    common  reboot                          sys_reboot
+> -312    common  clone                           alpha_clone
+> +312    common  clone                           __sys_clone
+>  313    common  uselib                          sys_uselib
+>  314    common  mlock                           sys_mlock
+>  315    common  munlock                         sys_munlock
+> @@ -474,7 +474,7 @@
+>  542    common  fsmount                         sys_fsmount
+>  543    common  fspick                          sys_fspick
+>  544    common  pidfd_open                      sys_pidfd_open
+> -545    common  clone3                          alpha_clone3
+> +545    common  clone3                          __sys__clone3
+>  546    common  close_range                     sys_close_range
+>  547    common  openat2                         sys_openat2
+>  548    common  pidfd_getfd                     sys_pidfd_getfd
+>
+> --
+> 2.56.0
+>
+>
 
-The late path is reachable without remapping:
-klp_write_section_relocs() applies .klp.rela.* sections through
-apply_relocate_add() with the patch module already MODULE_STATE_LIVE,
-so .plt is ROX.
+This conflicts with my Alpha for-next:
 
-Route the emitters through the same text-poke write path the relocation
-code already uses, rather than open-coding a parallel helper.
+  https://git.kernel.org/pub/scm/linux/kernel/git/lindholm/alpha.git
+  branch: for-next
 
-Fixes: 91b89a634487d5614e51ee773a889ed57f5551ca ("arm64/module: Use text-poke API for late relocations.")
-Cc: stable@vger.kernel.org
-Signed-off-by: Rui Qi <qirui.001@bytedance.com>
----
-Changes since v1 (formerly 3/3 of a 3-patch series, now standalone):
+Commit d38895ba9330 ("alpha: dispatch system calls from C") removes
+the fork_like assembly wrappers and changes the table entries to
+sys_fork, sys_vfork, sys_clone and sys_clone3.
 
-- Dropped the former 1/3 and 2/3 (big-endian byte-order fixups): arm64
-  big-endian support is being removed in v7.4 (Catalin Marinas), so the
-  BE-only paths are no longer reachable.
+Consequently, this rename is no longer needed when integrating your
+series on top of that branch. I skipped this patch for my integration
+test and retained those existing entries.
 
-- Incorporated review (Catalin Marinas): unify the relocation write
-  helper and the open-coded PLT/veneer write helper into a single
-  module_write_place() macro in asm/module.h, used by module.c and
-  module-plts.c; drop the redundant aarch64_insn_copy() NULL check
-  (destination is always sufficiently aligned, __text_poke() !NULL).
+My for-next is registered with linux-next, so this is an interaction
+we should account for when the trees are combined.
 
- arch/arm64/include/asm/module.h | 16 ++++++++++++++++
- arch/arm64/kernel/module-plts.c | 10 +++++++---
- arch/arm64/kernel/module.c      | 22 ++++++----------------
- 3 files changed, 29 insertions(+), 19 deletions(-)
-
-diff --git a/arch/arm64/include/asm/module.h b/arch/arm64/include/asm/module.h
-index fb9b88eebeb1..4a1a47f8ba1a 100644
---- a/arch/arm64/include/asm/module.h
-+++ b/arch/arm64/include/asm/module.h
-@@ -6,6 +6,7 @@
- #define __ASM_MODULE_H
- 
- #include <asm-generic/module.h>
-+#include <asm/text-patching.h>
- 
- struct mod_plt_sec {
- 	int			plt_shndx;
-@@ -29,6 +30,21 @@ u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
- u64 module_emit_veneer_for_adrp(struct module *mod, Elf64_Shdr *sechdrs,
- 				void *loc, u64 val);
- 
-+/*
-+ * Write a relocation value to @place within a module.  While the module
-+ * is MODULE_STATE_UNFORMED the destination is writable and a direct store
-+ * is used; once the module is fully formed the region is read-only and
-+ * executable, so the write is routed through the text-poke API.
-+ */
-+#define module_write_place(place, val, mod) do {			\
-+	__typeof__(*place) __val = (val);				\
-+									\
-+	if (mod->state == MODULE_STATE_UNFORMED)			\
-+		*(place) = __val;					\
-+	else								\
-+		aarch64_insn_copy(place, &(__val), sizeof(*place));	\
-+} while (0)
-+
- struct plt_entry {
- 	/*
- 	 * A program that conforms to the AArch64 Procedure Call Standard
-diff --git a/arch/arm64/kernel/module-plts.c b/arch/arm64/kernel/module-plts.c
-index 7afd370da9f4..87d623789265 100644
---- a/arch/arm64/kernel/module-plts.c
-+++ b/arch/arm64/kernel/module-plts.c
-@@ -76,11 +76,13 @@ u64 module_emit_plt_entry(struct module *mod, Elf64_Shdr *sechdrs,
- 	int i = pltsec->plt_num_entries;
- 	int j = i - 1;
- 	u64 val = sym->st_value + rela->r_addend;
-+	struct plt_entry entry;
- 
- 	if (is_forbidden_offset_for_adrp(&plt[i].adrp))
- 		i++;
- 
--	plt[i] = get_plt_entry(val, &plt[i]);
-+	entry = get_plt_entry(val, &plt[i]);
-+	module_write_place(&plt[i], entry, mod);
- 
- 	/*
- 	 * Check if the entry we just created is a duplicate. Given that the
-@@ -107,6 +109,7 @@ u64 module_emit_veneer_for_adrp(struct module *mod, Elf64_Shdr *sechdrs,
- 	int i = pltsec->plt_num_entries++;
- 	u32 br;
- 	int rd;
-+	struct plt_entry entry;
- 
- 	if (WARN_ON(pltsec->plt_num_entries > pltsec->plt_max_entries))
- 		return 0;
-@@ -121,8 +124,9 @@ u64 module_emit_veneer_for_adrp(struct module *mod, Elf64_Shdr *sechdrs,
- 	br = aarch64_insn_gen_branch_imm((u64)&plt[i].br, (u64)loc + 4,
- 					 AARCH64_INSN_BRANCH_NOLINK);
- 
--	plt[i] = __get_adrp_add_pair(val, (u64)&plt[i], rd);
--	plt[i].br = cpu_to_le32(br);
-+	entry = __get_adrp_add_pair(val, (u64)&plt[i], rd);
-+	entry.br = cpu_to_le32(br);
-+	module_write_place(&plt[i], entry, mod);
- 
- 	return (u64)&plt[i];
- }
-diff --git a/arch/arm64/kernel/module.c b/arch/arm64/kernel/module.c
-index 24adb581af0e..595c358b4f0e 100644
---- a/arch/arm64/kernel/module.c
-+++ b/arch/arm64/kernel/module.c
-@@ -23,7 +23,6 @@
- #include <asm/insn.h>
- #include <asm/scs.h>
- #include <asm/sections.h>
--#include <asm/text-patching.h>
- 
- enum aarch64_reloc_op {
- 	RELOC_OP_NONE,
-@@ -49,15 +48,6 @@ static u64 do_reloc(enum aarch64_reloc_op reloc_op, __le32 *place, u64 val)
- 	return 0;
- }
- 
--#define WRITE_PLACE(place, val, mod) do {				\
--	__typeof__(val) __val = (val);					\
--									\
--	if (mod->state == MODULE_STATE_UNFORMED)			\
--		*(place) = __val;					\
--	else								\
--		aarch64_insn_copy(place, &(__val), sizeof(*place));	\
--} while (0)
--
- static int reloc_data(enum aarch64_reloc_op op, void *place, u64 val, int len,
- 		      struct module *me)
- {
-@@ -77,7 +67,7 @@ static int reloc_data(enum aarch64_reloc_op op, void *place, u64 val, int len,
- 
- 	switch (len) {
- 	case 16:
--		WRITE_PLACE((s16 *)place, sval, me);
-+		module_write_place((s16 *)place, sval, me);
- 		switch (op) {
- 		case RELOC_OP_ABS:
- 			if (sval < 0 || sval > U16_MAX)
-@@ -93,7 +83,7 @@ static int reloc_data(enum aarch64_reloc_op op, void *place, u64 val, int len,
- 		}
- 		break;
- 	case 32:
--		WRITE_PLACE((s32 *)place, sval, me);
-+		module_write_place((s32 *)place, sval, me);
- 		switch (op) {
- 		case RELOC_OP_ABS:
- 			if (sval < 0 || sval > U32_MAX)
-@@ -109,7 +99,7 @@ static int reloc_data(enum aarch64_reloc_op op, void *place, u64 val, int len,
- 		}
- 		break;
- 	case 64:
--		WRITE_PLACE((s64 *)place, sval, me);
-+		module_write_place((s64 *)place, sval, me);
- 		break;
- 	default:
- 		pr_err("Invalid length (%d) for data relocation\n", len);
-@@ -157,7 +147,7 @@ static int reloc_insn_movw(enum aarch64_reloc_op op, __le32 *place, u64 val,
- 
- 	/* Update the instruction with the new encoding. */
- 	insn = aarch64_insn_encode_immediate(AARCH64_INSN_IMM_16, insn, imm);
--	WRITE_PLACE(place, cpu_to_le32(insn), me);
-+	module_write_place(place, cpu_to_le32(insn), me);
- 
- 	if (imm > U16_MAX)
- 		return -ERANGE;
-@@ -183,7 +173,7 @@ static int reloc_insn_imm(enum aarch64_reloc_op op, __le32 *place, u64 val,
- 
- 	/* Update the instruction's immediate field. */
- 	insn = aarch64_insn_encode_immediate(imm_type, insn, imm);
--	WRITE_PLACE(place, cpu_to_le32(insn), me);
-+	module_write_place(place, cpu_to_le32(insn), me);
- 
- 	/*
- 	 * Extract the upper value bits (including the sign bit) and
-@@ -224,7 +214,7 @@ static int reloc_insn_adrp(struct module *mod, Elf64_Shdr *sechdrs,
- 						   AARCH64_INSN_BRANCH_NOLINK);
- 	}
- 
--	WRITE_PLACE(place, cpu_to_le32(insn), me);
-+	module_write_place(place, cpu_to_le32(insn), me);
- 	return 0;
- }
- 
--- 
-2.20.1
+Thanks,
+Magnus
 
