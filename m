@@ -2,73 +2,90 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60616606A89C
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 16:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896B8606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 16:24:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q6ynTVQo;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=W88VeegF
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LLoVV3cD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=D9R3bt8I
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ER7CQJLmf8a3n65haz0Sx18P2Y6E6cMclcthPxuIRO4=; b=Q6ynTVQou7CtySUHX2vMC+XB32
-	cBhB9zo+owmnl6eqJ8OXr35yAHJGYjiJO1kMDA2+FnjGkKrGQho9+7/nCunZSRzs7Hcspe4CHCaJl
-	ahpfPAqnRJI028DihLI1QV5yIIMQt8HkrXIDIHgSXksnRqI6SnXjLWkj6NxVBpkcU/P3wyCM9X69+
-	jEOKG0d3Mg6fkVGCvUYIlZfYRKJBfw1T9Bu3dRnB78lOlkNtGV2ZxjL40PsVPr2ZwAKdXTEebAvcs
-	um2sTmCfv2oLWtFMKKUW4fVOIAFx9C41sym0C9kcKf4Wf0LqZkR4vey1BRt3Beiq/PGLxF/qBqw9F
-	/C118xsw==;
+	bh=OjsO/ys/ad/piKfPb2QV+3VHWakKPWNbmqHXdLgFmLM=; b=LLoVV3cD+SiaeS3A1NhWOzO1UU
+	/LPXtPduYYNYTlrC32Wwtil3S+o2ezVfWkUCNWub6F5yBfgLVQzfZy6NFNe14bjE8CN0G6Qum2kJr
+	OAGPR3fV+y8woe244yRFRvBmaqBiWvwHh/1RjXNbit8yMKUpQwfkURcDrx3wi78E4WwciRemCDVDV
+	6n5LlO+m2USVtNaeqKy04gvqCAJ589VjvY7h3c5JE/amtF5bqVtk7471auo0EOK90KN+k26n2j6qO
+	CWU1OtaXMgwoMStgrk6KU9cDomCacgj4+rxAc1HSPAferairyfUsHLSMErnJqQO2hGSfTlcQ5M2VC
+	adNjGDNg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRB5F-00000007Amc-3d3x;
-	Wed, 11 Nov 2026 16:22:01 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRB5D-00000007Am3-3UUA
+	id 1xRB7z-00000007BLh-2dOk;
+	Wed, 11 Nov 2026 16:24:51 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRB7y-00000007BL2-18Yq
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 16:22:00 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5733F1576;
-	Wed, 11 Nov 2026 08:21:55 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ECC363F632;
-	Wed, 11 Nov 2026 08:21:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794414118; bh=wIEcp4gG3RzK9CK7Bl4yceNnesqt7U9huqJkdKCFszc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W88VeegFHLuNIGCmJW36kYi+ePaj9zkWVn2/RZB+WHKlySxcmt5Bpb03Zk8BymLTO
-	 8ccvQwCTbFg/uK2HDV8+qGU1IWmWrs8DEId67UP31hZZxak8AC6Vl+E7Snrq7VJKIC
-	 H54c6aGUgnwqcCdGApUoDr3nHLmtaji9gr+bE2GU=
-Date: Wed, 11 Nov 2026 16:21:55 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: James Clark <james.clark@linaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	coresight@lists.linaro.org,
+	Wed, 11 Nov 2026 16:24:50 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5142461C5C;
+	Wed, 11 Nov 2026 16:24:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3EF51F00A05;
+	Wed, 11 Nov 2026 16:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794414289;
+	bh=OjsO/ys/ad/piKfPb2QV+3VHWakKPWNbmqHXdLgFmLM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=D9R3bt8IMlmKCvjpNgRgysgj8jSfI13uGBJNO/Gz7VeltIMkdQtWk7rTUbnL+hSKP
+	 yw446sJdMUoV63jGJWmoLXrdm1ER/+eKiRPANmy8/oVLQQIHoxwQk4097d3gNv9RJN
+	 kPGqM0dBGFUDQwamvB9bgVigbzfmgo2HAwhl9bStSXnCsJPMOT+eRSw3AJbBNyDXRc
+	 8huwLIoPnXNi9b/6DowoNI3g+6A06OaWwxGcf8k5/7RxZl9Us0FcZzRZntTE+c9g0z
+	 h2AVNfplmuc6dmcm7rJeSw5ylRkvChp9Qq2tOVm3kX5/SsTu3LunBg9pwpNtEIVykp
+	 A7793R8G+sFfg==
+X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
+From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
+To: "Tian, Kevin" <kevin.tian@intel.com>,
+	"iommu@lists.linux.dev" <iommu@lists.linux.dev>
+Cc: Alex Williamson <alex@shazbot.org>,
+	Alexey Kardashevskiy <aik@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Joerg Roedel <joro@8bytes.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Krishna Reddy <vdumpa@nvidia.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
 	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Anshuman Khandual <anshuman.khandual@arm.com>,
-	Tamas Petz <tamas.petz@arm.com>,
-	Tamas Zsoldos <tamas.zsoldos@arm.com>,
-	Suyash Mahar <smahar@meta.com>, Amir Ayupov <aaupov@fb.com>
-Subject: Re: [PATCH v2 06/23] coresight: trbe: Drop redundant disable from
- enable path
-Message-ID: <20261111162155.GE9176@e132581.arm.com>
-References: <20261016-trbe_enable_disable_irq_handle_refactor-v2-0-3f57cf3199b1@arm.com>
- <20261016-trbe_enable_disable_irq_handle_refactor-v2-6-3f57cf3199b1@arm.com>
- <8136ec16-8132-4212-8ccc-6aff05ab698c@linaro.org>
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>,
+	Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>,
+	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-coco@lists.linux.dev" <linux-coco@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: RE: [PATCH v8 10/15] PCI/TSM: Add vIOMMU-bound device contexts
+In-Reply-To: <SA2PR11MB4844957D715CDA1CC614E8C38C762@SA2PR11MB4844.namprd11.prod.outlook.com>
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-11-aneesh.kumar@kernel.org>
+ <SA2PR11MB4844957D715CDA1CC614E8C38C762@SA2PR11MB4844.namprd11.prod.outlook.com>
+Date: Wed, 11 Nov 2026 21:54:32 +0530
+Message-ID: <yq5a4idntjy7.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8136ec16-8132-4212-8ccc-6aff05ab698c@linaro.org>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_082159_913729_E5F92693 
-X-CRM114-Status: GOOD (  15.26  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,32 +103,79 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 09, 2026 at 04:27:31PM +0000, James Clark wrote:
-> 
-> 
-> On 16/10/2026 17:55, Leo Yan wrote:
-> > The Arm ARM (ARM DDI 0487 M.c) rule RDJMDD says:
-> > 
-> >   | When the following conditions apply, the PE might ignore a direct or
-> >   | external write to any of certain Trace Buffer Unit registers, other
-> >   | than a direct write or external write to TRBLIMITR_EL1 that clears
-> >   | the conditions:
-> >   | • TRBLIMITR_EL1.E is 1, and either FEAT_TRBE_EXT is not implemented
-> >   |   or the Trace Buffer Unit is using Self-hosted mode.
-> > 
-> 
-> Doesn't the rule just say that the buffer must be disabled before doing
-> writes to other registers? But the explanation for removing the extra
-> disable is that it's already disabled at this point, so nothing changes.
-> 
-> The commit message would be clearer without this bit IMO. There's no
-> architectural requirement to make this change, it's only a software one.
+"Tian, Kevin" <kevin.tian@intel.com> writes:
 
-The rule reference was intended to provide context. The main purpose
-is to clarify the rule remains satisfied with this patch.
+>> From: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+>> Sent: Thursday, November 5, 2026 12:16 AM
+>> 
+>> An IOMMUFD vDEVICE represents a physical device within a virtual IOMMU
+>> (vIOMMU) for a guest. It must use the same TEE Security Manager as its
+>> vIOMMU. Pinning the vIOMMU backend keeps its tsm_dev registered, but
+>> does not preserve the connection between the physical function 0 (PF0)
+>> PCI device and that TSM.
+>> 
+>> Add a per-vDEVICE PCI TSM context. Verify that the PCI device and the
+>> vIOMMU use the same tsm_dev, and account active contexts on PF0. Reject
+>> disconnect with -EBUSY until all dependent vDEVICEs release their
+>> contexts.
+>
+> We really don't need so many vIOMMU/vDEVICE notations here,
+> especially in following code/comments. It's just about a tsm context
+> which holds the pf0 from disconnected. Then let's describe/code it
+> from that angle.
+>
+>> +struct pci_tsm_context *pci_tsm_context_get(struct pci_dev *pdev,
+>> +					    struct tsm_dev *viommu_tsm_dev)
+>
+> could clarify that each get returns a new context even on a same device.
+>
+> s/viommu_tsm_dev/tsm_dev/. It's just a parameter to be matched against.
+>
+>>  {
+>> -	struct pci_tsm_pf0 *tsm_pf0;
+>> -	struct pci_tdi *tdi;
+>> -
+>> -	if (!kvm)
+>> -		return -EINVAL;
+>> +	struct pci_tsm_context *context;
+>> +	struct pci_tsm_pf0 *pf0;
+>> 
+>>  	guard(rwsem_read)(&pci_tsm_rwsem);
+>> +	if (!pdev->tsm || !is_link_tsm(pdev->tsm->tsm_dev))
+>> +		return ERR_PTR(-EOPNOTSUPP);
+>> +	/*
+>> +	 * The vdevice can use a different PCI function from VIOMMU_ALLOC.
+>> The
+>> +	 * module pin keeps the vIOMMU's TSM registered, but does not
+>> freeze this
+>> +	 * function's link. Match its current TSM before pinning the link below.
+>> +	 */
+>
+> this is the example needing a rewrite...
+>
 
-I will refine the commit log to make it clear.
+I'll simplify this and document the vIOMMU tsm_dev reference in the CCA
+code.
 
-Thanks,
-Leo
+	/* The device must be connected to the TSM requested by the caller. */
+	if (pdev->tsm->tsm_dev != tsm_dev)
+		return ERR_PTR(-EXDEV);
+
+>
+>> +	if (pdev->tsm->tsm_dev != viommu_tsm_dev)
+>> +		return ERR_PTR(-EXDEV);
+>> 
+>> -	if (!pdev->tsm)
+>> -		return -EINVAL;
+>> +	pf0 = to_pci_tsm_pf0(pdev->tsm);
+>> +	if (!pf0)
+>> +		return ERR_PTR(-ENXIO);
+>
+> No need to check the return error as other places do?
+
+I didn't quite follow this feedback. Are you asking why we check for
+!pf0 here but not in other paths? If so, I think we can drop this check
+as well, since a valid pdev->tsm should imply a valid pf0.
+
+-aneesh
 
