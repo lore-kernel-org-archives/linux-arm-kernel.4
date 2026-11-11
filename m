@@ -2,55 +2,56 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0939606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE921606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PJmIg4wP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=W8KZwsi9
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nxMTcnwv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Bv2JknqV
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=QOkydq0cYYGGH7GG7wSCcbFytlG6lfG522uEzWQ+MSI=; b=PJmIg4wP87W4Pj
-	uJpF2ESv49XqHyHIFW91z49fNFnmkuAySaO4UYe5GEagJmsCGrwtZrlHpG2e+eqYgsi379qgp6Umw
-	2Yk6N5m45JxvmXMjgKeri0l2dCowWbdvOkDRkbjFiLNvnYHkNOHcPG3+klUNy05M+TCvsOa3FZaWR
-	4X07CN4zYiGBujBI1VEHAm3wHVXgw3LqJRKUB/ozafYqZeatjzbGgXqLQxSC3BoKEM1jdgEuHO6Kc
-	bNSTbuOC3CWglOyP/iiIONFBXHKUuGWt/poDvfdcj0ZS3p9YL87pFIj5nIjmf4/Q2NqCkUrbUKeMv
-	j5PMC21NckL9QmiFuf9g==;
+	List-Owner; bh=6RTlysA/PIhgVO/sQXdm0+7fS1X+z00w+wTFf2rImLU=; b=nxMTcnwvD5AwJf
+	kRLgmBveMjySvpdpbkHsIQtFlrFMLzkXU+bD92QRhkZgf4VDECjPeBNxbFV+x3WyUL1CULzvwPb67
+	hh7aKNYc2c9dBdTyHHJHxR27Vc+6EQfRd0t1QJXNbwFNgyJ7YAzruhPFPP5Es4iaAdV1AKLcJckLL
+	ili1aU2W+KPih3ZVtEfBGnviqLwDShgfmUwhrxdwLsuALe1FVr6dE6HXVRw0iPdQYeuV93m/CT3AF
+	Y77iRIQWpLdKAVawGDf3tne1fKGi77Be1QxlSw7i5rmimHEeA7y5AsLbumtdeefOjPYvx6FtQpGRL
+	grPkPTK0PLINbuS9iGPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR64f-00000006PCQ-0I4n;
-	Wed, 11 Nov 2026 11:01:05 +0000
+	id 1xR64k-00000006PF8-0nd3;
+	Wed, 11 Nov 2026 11:01:10 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR64c-00000006PBB-2dYJ
+	id 1xR64i-00000006PET-2Nk7
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:01:03 +0000
+	Wed, 11 Nov 2026 11:01:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 6340545572;
+	by sea.source.kernel.org (Postfix) with ESMTP id 5518443CB4;
+	Wed, 11 Nov 2026 11:01:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7DF51F00A05;
 	Wed, 11 Nov 2026 11:01:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C64771F00A0A;
-	Wed, 11 Nov 2026 11:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794394862;
-	bh=QOkydq0cYYGGH7GG7wSCcbFytlG6lfG522uEzWQ+MSI=;
+	s=k20260515; t=1794394868;
+	bh=6RTlysA/PIhgVO/sQXdm0+7fS1X+z00w+wTFf2rImLU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=W8KZwsi9Hcbt9TSZX6V5UL5nYaEUloPI0gxTYW4DfFh8F4JSK7uZnFHPjrXxecBqk
-	 ji41dAwrpmcKougQiJomEXkvOERXIVdKDkSscYsuF3nyoEVUspYHHXAvl+gs/QV7mQ
-	 QD9nU9IrhNFeL3tEWt/r+BEu7u7SNw5H3SokXWdOdSmo9c6ycJAozdIMYox+xJS1Pt
-	 V0/OPFjvefxcGni5v0VnEzGvv8/mqVoklMS07ru9LtdFWJMS3DDkkowDIhmYiIpL+9
-	 Z30wOfTJZxSoalehQGvfAucYO+t6mDmyyjCfLGv7iGZ9fC29CnYgr6bjxewArWh5i5
-	 oXyLROZfhyjkw==
+	b=Bv2JknqV9Sw28zfa1en4CDeAFXfdbpgewGSumULUlNd11w3JL5m2d5z2AtaDDGqHx
+	 PKRsDl2K9y/16v4cB6pEeE2blLyQpHua0xHgxRkTGaxUsgkI/fXgV1FGczQ45cQF5Z
+	 BpelbvCIlsHMTBR/34sgeQKL1FpK5ie0SNVTYqfewWRqJzH+Fp6zeJ5r5BU8L6/QpK
+	 5HpfjLP8TrJVDG35eXETQHn/OSI9sZtSpfPd7pffejGrZlCwMY8/WwIgWg/SsoFTBO
+	 zHCFcXzv4ldLZAe7wOmT0elZdsj5bfkVK0rUoHmi0fCk64Z/ktfjJYzSVhPodPO0Mi
+	 GC20lUy/tIcYw==
 From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 11 Nov 2026 12:00:43 +0100
-Subject: [PATCH v4 2/7] dt-bindings: mfd: Describe the BCM6846 PMC complex
+Date: Wed, 11 Nov 2026 12:00:44 +0100
+Subject: [PATCH v4 3/7] mfd: bcmbca-pmb: Add a shared BCMBCA PMC3 PMB
+ transport
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261111-xg6846b-bcmbca-xrdp-reset-v4-2-17035a5e8ad2@kernel.org>
+Message-Id: <20261111-xg6846b-bcmbca-xrdp-reset-v4-3-17035a5e8ad2@kernel.org>
 References: <20261111-xg6846b-bcmbca-xrdp-reset-v4-0-17035a5e8ad2@kernel.org>
 In-Reply-To: <20261111-xg6846b-bcmbca-xrdp-reset-v4-0-17035a5e8ad2@kernel.org>
 To: Linus Walleij <linusw@kernel.org>, Lee Jones <lee@kernel.org>, 
@@ -82,135 +83,419 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-14.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNWANTED_LANGUAGE_BODY,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The third generation Power Management Controller (PMC3) has
-different subdevices.
+Add an MFD driver for shared access to the Power Management Bus (PMB)
+of the third generation Power Management Controller (PMC3), initially
+for BCM6846.
 
-Identify the parent with the BCM6846-specific "brcm,bcm6846-pmc"
-compatible.
+Expose an uncached regmap to all children, encoding the bus, device and
+word offset in each register address. Keep keyhole semaphore acquisition
+and transaction recovery inside the MFD driver.
 
-Describe the complex as a simple-mfd with a PMB bus child owning its
-register resource. Include the PMB power, clock and reset controllers and
-PVTMON, with its acquisition clock and reset resources.
+A software timeout does not abort a transaction. If the keyhole is still
+busy, retain its hardware lock and reject new callers until delayed work
+observes completion and releases it.
+
+The keyhole register layout differs from older Broadcom PMB controllers.
+Match only BCM6846 for now.
 
 Signed-off-by: Linus Walleij <linusw@kernel.org>
 ---
- .../devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml  | 87 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 88 insertions(+)
+ MAINTAINERS                    |   2 +
+ drivers/mfd/Kconfig            |  11 ++
+ drivers/mfd/Makefile           |   1 +
+ drivers/mfd/bcmbca_pmc3_pmb.c  | 308 +++++++++++++++++++++++++++++++++++++++++
+ include/linux/mfd/bcmbca-pmb.h |  11 ++
+ 5 files changed, 333 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml b/Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
-new file mode 100644
-index 000000000000..6082e30d37ec
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/brcm,bcm6846-pmc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM6846 Power Management Controller
-+
-+maintainers:
-+  - Linus Walleij <linusw@kernel.org>
-+
-+description:
-+  The third generation Power Management Controller (PMC3) contains several
-+  register banks. This binding describes the Power Management Bus (PMB)
-+  interface within Procmon. The PMB child owns its register bank. The parent
-+  provides address translation and does not own a register bank.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: brcm,bcm6846-pmc
-+      - const: simple-mfd
-+
-+  ranges:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  '^bus@[0-9a-f]+$':
-+    $ref: /schemas/soc/bcm/brcm,bcm6846-pmb.yaml#
-+    description: PMB configuration, keyhole and address mapping registers
-+
-+required:
-+  - compatible
-+  - ranges
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/brcm,bcm6846-pmb.h>
-+    #include <dt-bindings/reset/brcm,bcm6846-pmb.h>
-+
-+    system-controller@ffb00000 {
-+        /* Broadcom BCM6846 Power Management Controller complex */
-+        compatible = "brcm,bcm6846-pmc", "simple-mfd";
-+        ranges = <0x0 0xffb00000 0x21000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        /* Power Management Bus */
-+        bus@20100 {
-+            compatible = "brcm,bcm6846-pmb";
-+            reg = <0x20100 0x200>;
-+
-+            pmb_clk: clock-controller {
-+                compatible = "brcm,bcm6846-pmb-clock";
-+                clocks = <&osc50m>;
-+                clock-names = "ref";
-+                #clock-cells = <1>;
-+            };
-+
-+            hwmon {
-+                compatible = "brcm,bcm6846-pmb-pvtmon";
-+                clocks = <&pmb_clk BCM6846_CLK_PVTMON>;
-+                resets = <&pmb_reset BCM6846_RESET_PVTMON>;
-+                #thermal-sensor-cells = <0>;
-+            };
-+
-+            power-controller {
-+                compatible = "brcm,bcm6846-pmb-power";
-+                #power-domain-cells = <1>;
-+            };
-+
-+            pmb_reset: reset-controller {
-+                compatible = "brcm,bcm6846-pmb-reset";
-+                #reset-cells = <1>;
-+            };
-+        };
-+    };
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e9112393e56b..e11fc5064dc5 100644
+index e11fc5064dc5..9c9ef7eddb10 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -5449,6 +5449,7 @@ M:	Linus Walleij <linusw@kernel.org>
- S:	Maintained
- F:	Documentation/devicetree/bindings/clock/brcm,bcm6846-pmb-clock.yaml
- F:	Documentation/devicetree/bindings/hwmon/brcm,bcm6846-pmb-pvtmon.yaml
-+F:	Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
+@@ -5453,9 +5453,11 @@ F:	Documentation/devicetree/bindings/mfd/brcm,bcm6846-pmc.yaml
  F:	Documentation/devicetree/bindings/power/brcm,bcm6846-pmb-power.yaml
  F:	Documentation/devicetree/bindings/reset/brcm,bcm6846-pmb-reset.yaml
  F:	Documentation/devicetree/bindings/soc/bcm/brcm,bcm6846-pmb.yaml
++F:	drivers/mfd/bcmbca_pmc3_pmb.c
+ F:	include/dt-bindings/clock/brcm,bcm6846-pmb.h
+ F:	include/dt-bindings/power/brcm,bcm6846-pmb.h
+ F:	include/dt-bindings/reset/brcm,bcm6846-pmb.h
++F:	include/linux/mfd/bcmbca-pmb.h
+ 
+ BROADCOM BDC DRIVER
+ M:	Justin Chen <justin.chen@broadcom.com>
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 87ed55c155f0..95e93ea155e1 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -173,6 +173,17 @@ config MFD_ATMEL_SMC
+ 	bool
+ 	select MFD_SYSCON
+ 
++config MFD_BCMBCA_PMB
++	bool "Broadcom BCMBCA Power Management Bus"
++	depends on ARCH_BCMBCA || COMPILE_TEST
++	depends on OF
++	select MFD_CORE
++	select REGMAP
++	help
++	  Provide shared Power Management Bus (PMB) access through the third
++	  generation Power Management Controller (PMC3), initially on
++	  BCM6846.
++
+ config MFD_BCM590XX
+ 	tristate "Broadcom BCM590xx PMUs"
+ 	select MFD_CORE
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index f8101d2a9ce9..f00f5caabe04 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -11,6 +11,7 @@ obj-$(CONFIG_MFD_88PM886_PMIC)	+= 88pm886.o
+ obj-$(CONFIG_MFD_ACT8945A)	+= act8945a.o
+ obj-$(CONFIG_MFD_SM501)		+= sm501.o
+ obj-$(CONFIG_ARCH_BCM2835)	+= bcm2835-pm.o
++obj-$(CONFIG_MFD_BCMBCA_PMB)	+= bcmbca_pmc3_pmb.o
+ obj-$(CONFIG_MFD_BCM590XX)	+= bcm590xx.o
+ obj-$(CONFIG_MFD_BD9571MWV)	+= bd9571mwv.o
+ obj-$(CONFIG_MFD_BQ257XX)	+= bq257xx.o
+diff --git a/drivers/mfd/bcmbca_pmc3_pmb.c b/drivers/mfd/bcmbca_pmc3_pmb.c
+new file mode 100644
+index 000000000000..8607429e8b9a
+--- /dev/null
++++ b/drivers/mfd/bcmbca_pmc3_pmb.c
+@@ -0,0 +1,308 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Broadcom BCMBCA Power Management Bus (PMB) transport for the third
++ * generation Power Management Controller (PMC3).
++ *
++ * Children access keyhole 0 through a shared regmap.
++ */
++
++#include <linux/bitfield.h>
++#include <linux/cleanup.h>
++#include <linux/io.h>
++#include <linux/iopoll.h>
++#include <linux/ioport.h>
++#include <linux/log2.h>
++#include <linux/mfd/bcmbca-pmb.h>
++#include <linux/mfd/core.h>
++#include <linux/module.h>
++#include <linux/mutex.h>
++#include <linux/platform_device.h>
++#include <linux/regmap.h>
++#include <linux/workqueue.h>
++
++#define PMB_CONFIG		0x00
++#define PMB_REGS_PER_DEVICE	GENMASK(29, 20)
++#define PMB_CONTROL		0x10
++#define PMB_WRITE_DATA		0x14
++#define PMB_MUTEX		0x18
++#define PMB_READ_DATA		0x1c
++#define PMB_START		BIT(31)
++#define PMB_TIMEOUT		BIT(30)
++#define PMB_SLAVE_ERROR		BIT(29)
++#define PMB_BUSY			BIT(28)
++#define PMB_WRITE		BIT(24)
++#define PMB_BUS			GENMASK(21, 20)
++#define PMB_LOCKED		BIT(0)
++
++struct bcmbca_pmb {
++	struct device *dev;
++	void __iomem *base;
++	/* Serializes regmap operations and recovery state. */
++	struct mutex lock;
++	struct delayed_work recovery;
++	u32 regs_per_device;
++	bool keyhole_acquired;
++	bool recovering;
++	bool stopping;
++};
++
++static void bcmbca_pmb_recover(struct work_struct *work)
++{
++	struct bcmbca_pmb *pmb = container_of(to_delayed_work(work),
++					   struct bcmbca_pmb, recovery);
++
++	guard(mutex)(&pmb->lock);
++	if (!pmb->stopping) {
++		if (readl(pmb->base + PMB_CONTROL) & PMB_BUSY) {
++			queue_delayed_work(system_dfl_wq, &pmb->recovery,
++					   msecs_to_jiffies(100));
++		} else {
++			writel(PMB_LOCKED, pmb->base + PMB_MUTEX);
++			pmb->recovering = false;
++		}
++	}
++}
++
++static int bcmbca_pmb_acquire(struct bcmbca_pmb *pmb)
++{
++	u32 value;
++	int ret;
++
++	lockdep_assert_held(&pmb->lock);
++	if (pmb->stopping)
++		return -ENODEV;
++	if (pmb->recovering)
++		return -EBUSY;
++	if (pmb->keyhole_acquired)
++		return 0;
++
++	/* Reading bit 0 acquires the hardware lock; writing 1 releases it. */
++	ret = readl_poll_timeout(pmb->base + PMB_MUTEX, value,
++				 value & PMB_LOCKED, 1, 1000);
++	if (!ret)
++		pmb->keyhole_acquired = true;
++	return ret;
++}
++
++static int bcmbca_pmb_op(struct bcmbca_pmb *pmb, u8 bus, u8 device,
++			 u16 offset, u32 *value, bool write)
++{
++	u32 status, command;
++	int ret;
++
++	lockdep_assert_held(&pmb->lock);
++	if (bus > FIELD_MAX(PMB_BUS) || offset >= pmb->regs_per_device)
++		return -EINVAL;
++
++	ret = readl_poll_timeout(pmb->base + PMB_CONTROL, status,
++				 !(status & PMB_BUSY), 1, 1000);
++	if (ret)
++		return ret;
++	command = PMB_START | FIELD_PREP(PMB_BUS, bus) |
++		  (device * pmb->regs_per_device) | offset;
++	if (write) {
++		writel(*value, pmb->base + PMB_WRITE_DATA);
++		command |= PMB_WRITE;
++	}
++	writel(command, pmb->base + PMB_CONTROL);
++	ret = readl_poll_timeout(pmb->base + PMB_CONTROL, status,
++				 !(status & PMB_BUSY), 1, 1000);
++	if (ret || status & PMB_TIMEOUT)
++		return -ETIMEDOUT;
++	if (status & PMB_SLAVE_ERROR)
++		return -EIO;
++	if (!write)
++		*value = readl(pmb->base + PMB_READ_DATA);
++	return 0;
++}
++
++static void bcmbca_pmb_regmap_lock(void *arg)
++{
++	struct bcmbca_pmb *pmb = arg;
++
++	mutex_lock(&pmb->lock);
++}
++
++static void bcmbca_pmb_regmap_unlock(void *arg)
++{
++	struct bcmbca_pmb *pmb = arg;
++
++	if (pmb->keyhole_acquired) {
++		if (readl(pmb->base + PMB_CONTROL) & PMB_BUSY) {
++			pmb->recovering = true;
++			dev_err(pmb->dev, "PMB keyhole still busy; deferring unlock\n");
++			queue_delayed_work(system_dfl_wq, &pmb->recovery,
++					   msecs_to_jiffies(100));
++		} else {
++			writel(PMB_LOCKED, pmb->base + PMB_MUTEX);
++		}
++		pmb->keyhole_acquired = false;
++	}
++	mutex_unlock(&pmb->lock);
++}
++
++/* Acquire lazily so semaphore errors reach the caller of the regmap API. */
++static int bcmbca_pmb_reg_read(void *context, unsigned int reg, unsigned int *value)
++{
++	struct bcmbca_pmb *pmb = context;
++	int ret;
++
++	bcmbca_pmb_regmap_lock(pmb);
++	ret = bcmbca_pmb_acquire(pmb);
++	if (!ret)
++		ret = bcmbca_pmb_op(pmb, reg >> 24, (reg >> 16) & 0xff,
++				    reg & 0xffff, value, false);
++	bcmbca_pmb_regmap_unlock(pmb);
++	return ret;
++}
++
++static int bcmbca_pmb_reg_write(void *context, unsigned int reg, unsigned int value)
++{
++	struct bcmbca_pmb *pmb = context;
++	int ret;
++
++	bcmbca_pmb_regmap_lock(pmb);
++	ret = bcmbca_pmb_acquire(pmb);
++	if (!ret)
++		ret = bcmbca_pmb_op(pmb, reg >> 24, (reg >> 16) & 0xff,
++				    reg & 0xffff, &value, true);
++	bcmbca_pmb_regmap_unlock(pmb);
++	return ret;
++}
++
++static int bcmbca_pmb_reg_update_bits(void *context, unsigned int reg,
++				      unsigned int mask, unsigned int value)
++{
++	struct bcmbca_pmb *pmb = context;
++	unsigned int tmp;
++	int ret;
++
++	bcmbca_pmb_regmap_lock(pmb);
++	ret = bcmbca_pmb_acquire(pmb);
++	if (ret)
++		goto out;
++
++	ret = bcmbca_pmb_op(pmb, reg >> 24, (reg >> 16) & 0xff,
++			    reg & 0xffff, &tmp, false);
++	if (ret)
++		goto out;
++
++	tmp = (tmp & ~mask) | (value & mask);
++	ret = bcmbca_pmb_op(pmb, reg >> 24, (reg >> 16) & 0xff,
++			    reg & 0xffff, &tmp, true);
++out:
++	bcmbca_pmb_regmap_unlock(pmb);
++	return ret;
++}
++
++static struct regmap *bcmbca_pmb_regmap_init(struct bcmbca_pmb *pmb)
++{
++	const struct regmap_config config = {
++		.reg_bits = 32,
++		.val_bits = 32,
++		.reg_stride = 1,
++		.max_register = BCMBCA_PMB_REG(3, 255, 65535),
++		.cache_type = REGCACHE_NONE,
++		/* Callbacks serialize I/O; suppress unsafe debugfs probing. */
++		.disable_locking = true,
++		.reg_read = bcmbca_pmb_reg_read,
++		.reg_write = bcmbca_pmb_reg_write,
++		.reg_update_bits = bcmbca_pmb_reg_update_bits,
++		.can_sleep = true,
++	};
++
++	return devm_regmap_init(pmb->dev, NULL, pmb, &config);
++}
++
++/* Children are removed before this action, while MMIO is still mapped. */
++static void bcmbca_pmb_stop(void *data)
++{
++	struct bcmbca_pmb *pmb = data;
++
++	scoped_guard(mutex, &pmb->lock)
++		pmb->stopping = true;
++	cancel_delayed_work_sync(&pmb->recovery);
++
++	if (pmb->recovering) {
++		if (readl(pmb->base + PMB_CONTROL) & PMB_BUSY)
++			dev_err(pmb->dev, "PMB keyhole remains busy; hardware reset required\n");
++		else
++			writel(PMB_LOCKED, pmb->base + PMB_MUTEX);
++	}
++}
++
++static const struct mfd_cell bcm6846_pmb_cells[] = {
++	{
++		.name = "bcm6846-pmb-power",
++		.of_compatible = "brcm,bcm6846-pmb-power",
++	},
++	{
++		.name = "bcm6846-pmb-clock",
++		.of_compatible = "brcm,bcm6846-pmb-clock",
++	},
++	{
++		.name = "bcm6846-pmb-reset",
++		.of_compatible = "brcm,bcm6846-pmb-reset",
++	},
++	{
++		.name = "bcm6846-pmb-pvtmon",
++		.of_compatible = "brcm,bcm6846-pmb-pvtmon",
++	},
++};
++
++static int bcmbca_pmb_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct bcmbca_pmb *pmb;
++	struct regmap *regmap;
++	struct resource *res;
++	int ret;
++
++	pmb = devm_kzalloc(dev, sizeof(*pmb), GFP_KERNEL);
++	if (!pmb)
++		return -ENOMEM;
++	pmb->dev = dev;
++	pmb->base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
++	if (IS_ERR(pmb->base))
++		return PTR_ERR(pmb->base);
++	if (resource_size(res) < PMB_READ_DATA + sizeof(u32))
++		return dev_err_probe(dev, -EINVAL, "PMB register range is too small\n");
++	pmb->regs_per_device = FIELD_GET(PMB_REGS_PER_DEVICE,
++					 readl(pmb->base + PMB_CONFIG));
++	if (!is_power_of_2(pmb->regs_per_device))
++		return dev_err_probe(dev, -EINVAL, "invalid PMB register stride\n");
++	mutex_init(&pmb->lock);
++	INIT_DELAYED_WORK(&pmb->recovery, bcmbca_pmb_recover);
++	ret = devm_add_action_or_reset(dev, bcmbca_pmb_stop, pmb);
++	if (ret)
++		return ret;
++	regmap = bcmbca_pmb_regmap_init(pmb);
++	if (IS_ERR(regmap))
++		return dev_err_probe(dev, PTR_ERR(regmap), "failed to register PMB regmap\n");
++	ret = devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, bcm6846_pmb_cells,
++				   ARRAY_SIZE(bcm6846_pmb_cells), NULL, 0, NULL);
++	if (ret)
++		return dev_err_probe(dev, ret,
++				     "failed to register PMB functions\n");
++
++	return 0;
++}
++
++static const struct of_device_id bcmbca_pmb_match[] = {
++	{ .compatible = "brcm,bcm6846-pmb" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, bcmbca_pmb_match);
++
++static struct platform_driver bcmbca_pmb_driver = {
++	.probe = bcmbca_pmb_probe,
++	.driver = {
++		.name = "bcmbca-pmb",
++		.of_match_table = bcmbca_pmb_match,
++		.suppress_bind_attrs = true,
++	},
++};
++builtin_platform_driver(bcmbca_pmb_driver);
++
++MODULE_DESCRIPTION("Broadcom BCMBCA Power Management Bus transport for PMC3");
++MODULE_LICENSE("GPL");
+diff --git a/include/linux/mfd/bcmbca-pmb.h b/include/linux/mfd/bcmbca-pmb.h
+new file mode 100644
+index 000000000000..36e2b42bf053
+--- /dev/null
++++ b/include/linux/mfd/bcmbca-pmb.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++#ifndef __LINUX_MFD_BCMBCA_PMB_H
++#define __LINUX_MFD_BCMBCA_PMB_H
++
++#include <linux/types.h>
++
++/* Logical regmap addresses: 8-bit bus, 8-bit device, 16-bit word offset. */
++#define BCMBCA_PMB_REG(bus, device, offset) \
++	(((u32)(bus) << 24) | ((u32)(device) << 16) | (offset))
++
++#endif
 
 -- 
 2.56.0
