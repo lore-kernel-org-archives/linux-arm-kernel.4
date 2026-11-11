@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E301606A33E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBBD606A331
 	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 11:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fnttNCb/;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=LoFJ2M0q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yWnEGzeG;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=A4tV0ILl
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
@@ -14,63 +14,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=k28NXrt+XbqyfRaacENrrFfeZjq4XEJuuf/YvC8HY10=; b=fnttNCb//7hh28XkQDiWaRZzK7
-	fOAyWVfetb9KW7G85ZuQ4N4OB//4uwW2hcdkQ1TbudnsJR9pOt6nl/skBzJQGRt5JSITG/FDlCDCp
-	NpYvdg+lVT4JGfr3xhn2rRCfW7zlgCszZwcTKF+jx7xeeWe3xeaVn3IB8sBF25L8CQ1l8rsSovxHV
-	f5at6G7bzpBZZHhEq23DO7Gn7ksL8H4/6snEyUC8drQUWsV/onO71ddvyugB6Zi6Q4EtX0e8ilsew
-	SlOpQ9JmLsBAQp8ICJVf6DXTM2JYOXv2nbUH8Ekgs42cR5wsUoBqqLnO2+QhS4S+U1fB3cnfqZvag
-	vtWmSrew==;
+	bh=fepHfB0plBo6LzhKi5imbPgE2fv/KA+5u7RqYYS0Pqg=; b=yWnEGzeGmjPD2xybvCw3ma6lGz
+	iaYPrbslsDvuvB0SBvwXCFPs+AsyAb9D9f0XuBAB1n5GCR7pSH4TaIwYBq79VfzzcrDD3YK0SlSjo
+	BnvPkZO82UKqq0MnNlnHMr8ZMC+zQlfCKPoGEfol+QwzUZF6Jq3uY/u+k33hMOG6Dt1wJimsafXLp
+	EirDpNC4KlwQQ/2hqNiy7tLf/eHvuOsPTqLcV/rmn2MAFkO+P6RHl4U/j8udCscvo3U7LPp0YynpF
+	2tGKLMAhZk3DbDOiBEHTnAI5YU4N43/w08DkhhbJ7xMixoC5i7imgngwjic5ym/tNAG+H4uwOhrGS
+	Hb0cZzTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6CB-00000006R3d-0Io8;
-	Wed, 11 Nov 2026 11:08:51 +0000
-Received: from mail-ej1-x645.google.com ([2a00:1450:4864:20::645])
+	id 1xR6Bw-00000006Qqf-1rcE;
+	Wed, 11 Nov 2026 11:08:36 +0000
+Received: from mail-wm1-x348.google.com ([2a00:1450:4864:20::348])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xR6C2-00000006Quv-1Aqc
+	id 1xR6Bp-00000006QmY-43Y0
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 11:08:43 +0000
-Received: by mail-ej1-x645.google.com with SMTP id a640c23a62f3a-c4163a5400eso141922866b.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:08:41 -0800 (PST)
+	Wed, 11 Nov 2026 11:08:31 +0000
+Received: by mail-wm1-x348.google.com with SMTP id 5b1f17b1804b1-4a35e1d2dddso24743125e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 03:08:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20260707; t=1794395320; x=1795000120; darn=lists.infradead.org;
+        d=google.com; s=20260707; t=1794395308; x=1795000108; darn=lists.infradead.org;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=k28NXrt+XbqyfRaacENrrFfeZjq4XEJuuf/YvC8HY10=;
-        b=LoFJ2M0qUq911AQbLJm+Tv0agLI2YFY5XPdd5Ov3DgIUzzftbPB5JfNFVRCMZ/SCS6
-         wyeMeRbwfxFdDBkCssqcbviGaBwn4iE8tKSZm0EKeQTXu34TiLkqCr7O8aXfaAQHMKEn
-         amW6RZi0Dj5CDnCNlxxYbyo5kLfPRAUC4dPwrVs2M3gnee6QutrtZcpIJ3gLi3jB15wx
-         RL6apCm/ef+TxVtUxel5RB+8ceFfricY6Axf0s9eYM74QShpv3MYQR6NXXu/DBG9AU5b
-         2MyY64NTutVahuYZMqAuUFB+9TNYVEboQIGEZa7hHv6sGBKHNQ1Yydf1UFbWp28ySvWp
-         GN6A==
+        bh=fepHfB0plBo6LzhKi5imbPgE2fv/KA+5u7RqYYS0Pqg=;
+        b=A4tV0ILlIep89WxwBlva2qHa+R4XUNYe69TdWBrV0xztr+1LtyZA9xQ/+7OJubgO1B
+         3mAdkh6dKy6Ia5Xvo4cUt1SIlGOdnPi9hNXXWPVEhjHeG7eHM3tIAgE0ek6LPjbf1rvJ
+         Awc9Mkjwu9D0P0cH2ouNQKnG5r8kI8jSMSR2X3fGLrszpupW2NDe78m1J4UsS5ujiRUu
+         UyCt1AGF96/YPUhyUJyTYVFul47R67Emok9OmpyY/5vfIpm0Ij4LwaURgcPKWGaMXWil
+         eZ1YulgL6YnTusEWckovltiLaM2HFNk+mP5rENGEyuY2bOFul66tRyMd2l7FKKBEScMf
+         YOkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794395320; x=1795000120;
+        d=1e100.net; s=20260707; t=1794395308; x=1795000108;
         h=content-type:cc:to:from:subject:message-id:references:mime-version
          :in-reply-to:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=k28NXrt+XbqyfRaacENrrFfeZjq4XEJuuf/YvC8HY10=;
-        b=BEoP0oN2BfLjkYIitz4EHHcQPkgF5aH+AYtIsoFx8qjBecfyV21uEwmZE3U1virAEY
-         y8nnNAmCP12qThKThqCgTxZcGLFdv6OBmsqfqS3KF2os160AQYVEidSofVCUa8cUOvNC
-         74x30F6T1BxeCsiuqd+MROiRxWrLYL3N1aDzbtOR2gNKu+Af+5r5Wrk4RxuTxUwqV77Y
-         D5TwRspEEN0nSB8k0IniQJFRXd9qfT3HVZuWlpuzY6PpKGIMEKmjOgx4QWSTSBdLMuzL
-         NohJdVCVLrSWaVT77Kwa3Pp4Z/fEMA1J2EkzmsNzPlvjFhnqpv1uztzFPC7NkKf9ql9D
-         coGQ==
-X-Forwarded-Encrypted: i=1; AL+hErFG7Vhii51u2BvDFrv9S7rFIOHqQPZwtt8zmdUoEwTGJIf4oBRKIZaAjx5Lu38lMUxIJ2jjgxtmpRM+19ClWKh5@lists.infradead.org
-X-Gm-Message-State: APuU4Z+w7B/eCT1wd3OBCiZqxRoRCOmCw6fBJhlNWerZY/DSk/v4ttmo
-	/hvpGbzW/mr5jIW3RqKeJISEKrpIXTtcUqEhw69O4fJfA3dMW7OKT1bmCR/4tEx1e1FFD2wKHwz
-	FnWmvo7Z+yxLj7bn53HEVBQ==
-X-Received: from ejxe15.prod.google.com ([2002:a17:906:81cf:b0:c3f:75a:4837])
+        bh=fepHfB0plBo6LzhKi5imbPgE2fv/KA+5u7RqYYS0Pqg=;
+        b=EmTVQojS3ahft1EJ9Rk+B6HdpKoyOfiRGuDG+S2Kk9qny20VnFiTUGdc6sqhAixe56
+         0UtuNRuWRq2kPc/Vv71i3Wgex3fTCIJMZLITGwjKzAnS5+OSx5YPB6zc4G6QJNAyCjjt
+         nxtxjOrRxD6XnMh3x2CZEL2vpEZ5QHHYiToHUdWhsUW+AzeYZSi0Q2xLqM7WEzqu4wbQ
+         ThJnTcEnppIf4ATt3U3dPkSzOX+ZlPnWo1X8TgwZ1MT1IExXF7wuFDCIVhA0SmICXpPL
+         QwGjSLz9Wp0PtilcsfAlOdkM4HoNAzyhUkpeG0AuCBawVCOvFDIxmO4gLZ56FH8miuAx
+         As3g==
+X-Forwarded-Encrypted: i=1; AL+hErHTFhRgU6ynPzsJ/HjndAKI3AA81YV8lIST8vuanA/MNv00m3HsD9aKRJIDsrs+38lItdjVblrMTj0YF20NEqUg@lists.infradead.org
+X-Gm-Message-State: APuU4Z/rs2hj38sALSpNwtbjwQgPrQTBhKrmvh96ihAZfiPR+0i1vR2S
+	gIxiO2WH/aQ7RI+abLMc3QPavH8Wy7GOVYllkfQ1bl87iylp5pRvuFJ39Zbxe7/zUW9d+TKCPuB
+	Ph3yK7vK6PCUZg/UfzFVIjA==
+X-Received: from wrtw18.prod.google.com ([2002:a5d:6092:0:b0:496:45d:6be1])
  (user=vdonnefort job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:2d2c:b0:c50:6222:7b1c with SMTP id a640c23a62f3a-c5066cc68c2mr168857666b.23.1794395319574;
- Wed, 11 Nov 2026 03:08:39 -0800 (PST)
-Date: Wed, 11 Nov 2026 11:07:37 +0000
+ 2002:a05:600c:c167:b0:4a1:a6e0:4ce4 with SMTP id 5b1f17b1804b1-4ba093acf6dmr33023215e9.33.1794395307950;
+ Wed, 11 Nov 2026 03:08:27 -0800 (PST)
+Date: Wed, 11 Nov 2026 11:07:35 +0000
 In-Reply-To: <20261111110738.872947-1-vdonnefort@google.com>
 X-Archived-By: <archiver.kernel.org>
 Mime-Version: 1.0
 References: <20261111110738.872947-1-vdonnefort@google.com>
 X-Mailer: git-send-email 2.56.0.542.g3ef89b7020-goog
-Message-ID: <20261111110738.872947-8-vdonnefort@google.com>
-Subject: [PATCH v3 7/8] arm64: Add support for lendable-dma-pool
+Message-ID: <20261111110738.872947-6-vdonnefort@google.com>
+Subject: [PATCH v3 5/8] dma-mapping: Introduce lendable-dma-pool
 From: Vincent Donnefort <vdonnefort@google.com>
 To: catalin.marinas@arm.com, will@kernel.org, rppt@kernel.org, 
 	akpm@linux-foundation.org, m.szyprowski@samsung.com, jenswi@kernel.org, 
@@ -84,8 +84,8 @@ Cc: mark.rutland@arm.com, robin.murphy@arm.com, hch@lst.de,
 	Vincent Donnefort <vdonnefort@google.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_030842_375996_DA076C82 
-X-CRM114-Status: GOOD (  18.95  )
+X-CRM114-CacheID: sfid-20261111_030830_078053_0E6BB815 
+X-CRM114-Status: GOOD (  27.73  )
 X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,241 +106,361 @@ X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Even when the linear map uses block mappings, regions marked with
-MEMBLOCK_PTEMAP are mapped at page granularity and can be modified at
-runtime. Implement the architecture hooks for the lendable-dma-pool to
-force the last-level mappings, validate ranges and update the direct
-mapping.
+On arm64, when memory is lent to secure world (e.g. via Arm FF-A), fatal
+CPU speculative reads can still occur while it retains a cacheable
+direct mapping. Introduce the "lendable-dma-pool" reserved-memory CMA
+driver with dma_zap_direct_map() and dma_restore_direct_map() to unmap
+pages before lending and restore them upon reclaim. Devices use the pool
+via "memory-region" or "linux,cma-default":
+
+  reserved-memory {
+      #address-cells = <0x2>;
+      #size-cells = <0x2>;
+      ranges;
+
+      linux,cma {
+          compatible = "lendable-dma-pool";
+          reusable;
+          linux,cma-default;
+          size = <0x0 0x4000000>;
+      };
+  };
+
+If no lendable-dma-pool node is provided, the API falls back to
+can_set_direct_map().
 
 Signed-off-by: Vincent Donnefort <vdonnefort@google.com>
 ---
- arch/arm64/Kconfig                  |  1 +
- arch/arm64/include/asm/set_memory.h |  2 +
- arch/arm64/mm/dma-mapping.c         | 71 +++++++++++++++++++++++++++++
- arch/arm64/mm/pageattr.c            | 56 ++++++++++++++++++-----
- 4 files changed, 118 insertions(+), 12 deletions(-)
+ include/linux/dma-map-ops.h |   9 ++
+ include/linux/dma-mapping.h |  16 +++
+ kernel/dma/Kconfig          |   3 +
+ kernel/dma/Makefile         |   1 +
+ kernel/dma/lendable.c       | 243 ++++++++++++++++++++++++++++++++++++
+ 5 files changed, 272 insertions(+)
+ create mode 100644 kernel/dma/lendable.c
 
-diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
-index 1075bc661833..34fe7a7eea82 100644
---- a/arch/arm64/Kconfig
-+++ b/arch/arm64/Kconfig
-@@ -117,6 +117,7 @@ config ARM64
- 	select DYNAMIC_FTRACE if FUNCTION_TRACER
- 	select DMA_BOUNCE_UNALIGNED_KMALLOC
- 	select DMA_DIRECT_REMAP
-+	select DMA_LENDABLE if DMA_CMA
- 	select EDAC_SUPPORT
- 	select FRAME_POINTER
- 	select FUNCTION_ALIGNMENT_4B
-diff --git a/arch/arm64/include/asm/set_memory.h b/arch/arm64/include/asm/set_memory.h
-index b6ec938703d6..ec8bbb59e51f 100644
---- a/arch/arm64/include/asm/set_memory.h
-+++ b/arch/arm64/include/asm/set_memory.h
-@@ -17,6 +17,8 @@ int set_memory_valid(unsigned long addr, int numpages, int enable);
- 
- int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages);
- int set_direct_map_default_noflush(struct page *page, unsigned int numpages);
-+int __set_direct_map_invalid_noflush(struct page *page, unsigned int numpages);
-+int __set_direct_map_default_noflush(struct page *page, unsigned int numpages);
- bool kernel_page_present(struct page *page);
- 
- int set_memory_encrypted(unsigned long addr, int numpages);
-diff --git a/arch/arm64/mm/dma-mapping.c b/arch/arm64/mm/dma-mapping.c
-index 7f6f2f40dba2..c324e9826ce2 100644
---- a/arch/arm64/mm/dma-mapping.c
-+++ b/arch/arm64/mm/dma-mapping.c
-@@ -7,9 +7,13 @@
- #include <linux/gfp.h>
- #include <linux/cache.h>
- #include <linux/dma-map-ops.h>
-+#include <linux/kernel.h>
-+#include <linux/memblock.h>
- #include <xen/xen.h>
- 
- #include <asm/cacheflush.h>
-+#include <asm/set_memory.h>
-+#include <asm/tlbflush.h>
- #include <asm/xen/xen-ops.h>
- 
- void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
-@@ -38,6 +42,73 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
- 	dcache_clean_poc(start, start + size);
+diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+index afaf2c12189b..e1d1e8d70855 100644
+--- a/include/linux/dma-map-ops.h
++++ b/include/linux/dma-map-ops.h
+@@ -379,6 +379,15 @@ static inline void arch_dma_prep_coherent(struct page *page, size_t size)
  }
+ #endif /* CONFIG_ARCH_HAS_DMA_PREP_COHERENT */
  
 +#ifdef CONFIG_DMA_LENDABLE
-+int __init arch_dma_mark_lendable(phys_addr_t base, phys_addr_t size)
-+{
-+	if (!PAGE_ALIGNED(base | size))
-+		return -EINVAL;
-+
-+	return memblock_mark_ptemap(base, size);
-+}
-+
-+bool __init arch_dma_is_lendable(struct page *page, unsigned int nr_pages)
-+{
-+	return direct_map_is_ptemap(page, nr_pages);
-+}
-+
++int __init arch_dma_mark_lendable(phys_addr_t base, phys_addr_t size);
++bool __init arch_dma_is_lendable(struct page *page, unsigned int nr_pages);
 +int arch_dma_zap_direct_map(struct page *page, unsigned int nr_pages,
-+			    bool from_lendable)
++			    bool from_lendable);
++int arch_dma_restore_direct_map(struct page *page, unsigned int nr_pages,
++				bool from_lendable);
++#endif /* CONFIG_DMA_LENDABLE */
++
+ void *arch_dma_set_uncached(void *addr, size_t size);
+ void arch_dma_clear_uncached(void *addr, size_t size);
+ 
+diff --git a/include/linux/dma-mapping.h b/include/linux/dma-mapping.h
+index efde0e5a58dc..24239599505d 100644
+--- a/include/linux/dma-mapping.h
++++ b/include/linux/dma-mapping.h
+@@ -511,6 +511,22 @@ void dma_free_pages(struct device *dev, size_t size, struct page *page,
+ int dma_mmap_pages(struct device *dev, struct vm_area_struct *vma,
+ 		size_t size, struct page *page);
+ 
++#ifdef CONFIG_DMA_LENDABLE
++int dma_zap_direct_map(struct device *dev, struct page *page, size_t size);
++void dma_restore_direct_map(struct device *dev, struct page *page, size_t size);
++#else
++static inline int dma_zap_direct_map(struct device *dev, struct page *page,
++				     size_t size)
 +{
-+	unsigned long start = (unsigned long)page_address(page);
-+	unsigned long end = start + ((unsigned long)nr_pages << PAGE_SHIFT);
-+	int ret;
-+
-+	/*
-+	 * arch_dma_prep_coherent() only cleans as normal DMA buffers retain a
-+	 * cacheable linear-map alias. Since that alias is being removed here,
-+	 * also invalidate to make sure they can't be evicted later on while the
-+	 * memory is secured.
-+	 */
-+	dcache_clean_inval_poc(start, end);
-+
-+	if (from_lendable) {
-+		ret = __set_direct_map_invalid_noflush(page, nr_pages);
-+	} else {
-+		might_sleep();
-+		ret = set_direct_map_invalid_noflush(page, nr_pages);
-+	}
-+
-+	if (ret)
-+		return ret;
-+
-+	flush_tlb_kernel_range(start, end);
-+
-+	return 0;
++	return -ENODEV;
 +}
 +
-+int arch_dma_restore_direct_map(struct page *page, unsigned int nr_pages,
-+				bool from_lendable)
++static inline void dma_restore_direct_map(struct device *dev, struct page *page,
++					  size_t size)
 +{
-+	unsigned long start = (unsigned long)page_address(page);
-+	unsigned long end = start + ((unsigned long)nr_pages << PAGE_SHIFT);
-+	int ret;
-+
-+	if (from_lendable) {
-+		ret = __set_direct_map_default_noflush(page, nr_pages);
-+	} else {
-+		might_sleep();
-+		ret = set_direct_map_default_noflush(page, nr_pages);
-+	}
-+
-+	if (ret)
-+		return ret;
-+
-+	dcache_inval_poc(start, end);
-+
-+	return 0;
 +}
 +#endif /* CONFIG_DMA_LENDABLE */
 +
- void arch_setup_dma_ops(struct device *dev, bool coherent)
+ static inline void *dma_alloc_noncoherent(struct device *dev, size_t size,
+ 		dma_addr_t *dma_handle, enum dma_data_direction dir, gfp_t gfp)
  {
- 	int cls = cache_line_size_of_cpu();
-diff --git a/arch/arm64/mm/pageattr.c b/arch/arm64/mm/pageattr.c
-index c7662fd2fcb2..467a420af0f5 100644
---- a/arch/arm64/mm/pageattr.c
-+++ b/arch/arm64/mm/pageattr.c
-@@ -167,8 +167,8 @@ bool __init direct_map_is_ptemap(struct page *page, unsigned int numpages)
- 						      NULL, NULL);
- }
+diff --git a/kernel/dma/Kconfig b/kernel/dma/Kconfig
+index 3830a63ae032..8d65e2daa7d2 100644
+--- a/kernel/dma/Kconfig
++++ b/kernel/dma/Kconfig
+@@ -192,6 +192,9 @@ config DMA_CMA
  
--static int update_range_prot(unsigned long start, unsigned long size,
--			     pgprot_t set_mask, pgprot_t clear_mask)
-+static int __update_range_prot(unsigned long start, unsigned long size,
-+			       pgprot_t set_mask, pgprot_t clear_mask)
- {
- 	struct page_change_data data;
- 	int ret;
-@@ -176,10 +176,6 @@ static int update_range_prot(unsigned long start, unsigned long size,
- 	data.set_mask = set_mask;
- 	data.clear_mask = clear_mask;
+ if  DMA_CMA
  
--	ret = split_kernel_leaf_mapping(start, start + size);
--	if (WARN_ON_ONCE(ret))
--		return ret;
--
- 	lazy_mmu_mode_enable();
- 
- 	/*
-@@ -194,6 +190,18 @@ static int update_range_prot(unsigned long start, unsigned long size,
- 	return ret;
- }
- 
-+static int update_range_prot(unsigned long start, unsigned long size,
-+			     pgprot_t set_mask, pgprot_t clear_mask)
++config DMA_LENDABLE
++	bool
++
+ config DMA_NUMA_CMA
+ 	bool "Enable separate DMA Contiguous Memory Area for NUMA Node"
+ 	depends on NUMA
+diff --git a/kernel/dma/Makefile b/kernel/dma/Makefile
+index 6977033444a3..6b257d82bd9b 100644
+--- a/kernel/dma/Makefile
++++ b/kernel/dma/Makefile
+@@ -4,6 +4,7 @@ obj-$(CONFIG_HAS_DMA)			+= mapping.o direct.o
+ obj-$(CONFIG_DMA_OPS_HELPERS)		+= ops_helpers.o
+ obj-$(CONFIG_ARCH_HAS_DMA_OPS)		+= dummy.o
+ obj-$(CONFIG_DMA_CMA)			+= contiguous.o
++obj-$(CONFIG_DMA_LENDABLE)		+= lendable.o
+ obj-$(CONFIG_DMA_DECLARE_COHERENT)	+= coherent.o
+ obj-$(CONFIG_DMA_API_DEBUG)		+= debug.o
+ obj-$(CONFIG_SWIOTLB)			+= swiotlb.o
+diff --git a/kernel/dma/lendable.c b/kernel/dma/lendable.c
+new file mode 100644
+index 000000000000..85ac3ad10df0
+--- /dev/null
++++ b/kernel/dma/lendable.c
+@@ -0,0 +1,243 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Lendable DMA Contiguous Memory Pool
++ *
++ * Prevents CPU speculative reads to DMA memory (e.g. when lent to a secure
++ * world) by unmapping it from the kernel direct map. This works if the
++ * architecture allows modifying the direct map globally (can_set_direct_map())
++ * or if the memory belongs to a reserved-memory CMA pool compatible with
++ * "lendable-dma-pool".
++ *
++ * Copyright (C) 2026 Google LLC
++ * Author: Vincent Donnefort <vdonnefort@google.com>
++ */
++
++#define pr_fmt(fmt) "dma-lendable: " fmt
++
++#include <linux/atomic.h>
++#include <linux/bsearch.h>
++#include <linux/cma.h>
++#include <linux/dma-map-ops.h>
++#include <linux/dma-mapping.h>
++#include <linux/init.h>
++#include <linux/mm.h>
++#include <linux/of_reserved_mem.h>
++#include <linux/set_memory.h>
++#include <linux/sort.h>
++#include <linux/suspend.h>
++
++#include "contiguous.h"
++
++#define DMA_LENDABLE_DISABLED	-1
++
++static struct cma *lendable_areas[MAX_CMA_AREAS] __ro_after_init;
++static unsigned int nr_lendable_areas __ro_after_init;
++static atomic_t dma_lendable_active;
++
++static int __lendable_cmp(const void *a, const void *b)
 +{
-+	int ret;
++	const struct cma *cma_a = *(struct cma * const *)a;
++	const struct cma *cma_b = *(struct cma * const *)b;
 +
-+	ret = split_kernel_leaf_mapping(start, start + size);
-+	if (WARN_ON_ONCE(ret))
-+		return ret;
-+
-+	return __update_range_prot(start, size, set_mask, clear_mask);
++	return cmp_int(cma_get_base(cma_a), cma_get_base(cma_b));
 +}
 +
- static int __change_memory_common(unsigned long start, unsigned long size,
- 				  pgprot_t set_mask, pgprot_t clear_mask)
- {
-@@ -316,28 +324,52 @@ int set_memory_valid(unsigned long addr, int numpages, int enable)
- 					__pgprot(PTE_PRESENT_VALID_KERNEL));
- }
- 
--int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages)
-+int __set_direct_map_invalid_noflush(struct page *page, unsigned int numpages)
- {
- 	pgprot_t clear_mask = __pgprot(PTE_PRESENT_VALID_KERNEL);
- 	pgprot_t set_mask = __pgprot(PTE_PRESENT_INVALID);
- 
-+	return __update_range_prot((unsigned long)page_address(page),
-+				   PAGE_SIZE * numpages, set_mask, clear_mask);
++static bool cma_is_lendable(struct cma *cma)
++{
++	return cma && bsearch(&cma, lendable_areas, nr_lendable_areas,
++			      sizeof(lendable_areas[0]), __lendable_cmp);
 +}
 +
-+int set_direct_map_invalid_noflush(struct page *page, unsigned int numpages)
++static bool cma_has_range(struct cma *cma, struct page *page, unsigned int nr_pages)
 +{
-+	unsigned long start = (unsigned long)page_address(page);
-+	int ret;
++	phys_addr_t start = page_to_phys(page);
++	phys_addr_t end = start + ((phys_addr_t)nr_pages << PAGE_SHIFT);
++	phys_addr_t base = cma_get_base(cma);
 +
- 	if (!can_set_direct_map())
- 		return 0;
- 
--	return update_range_prot((unsigned long)page_address(page),
--				 PAGE_SIZE * numpages, set_mask, clear_mask);
-+	ret = split_kernel_leaf_mapping(start, start + PAGE_SIZE * numpages);
-+	if (WARN_ON_ONCE(ret))
-+		return ret;
-+
-+	return __set_direct_map_invalid_noflush(page, numpages);
- }
- 
--int set_direct_map_default_noflush(struct page *page, unsigned int numpages)
-+int __set_direct_map_default_noflush(struct page *page, unsigned int numpages)
- {
- 	pgprot_t set_mask = __pgprot(PTE_PRESENT_VALID_KERNEL | PTE_WRITE);
- 	pgprot_t clear_mask = __pgprot(PTE_PRESENT_INVALID | PTE_RDONLY);
- 
-+	return __update_range_prot((unsigned long)page_address(page),
-+				   PAGE_SIZE * numpages, set_mask, clear_mask);
++	return start >= base && end <= base + cma_get_size(cma);
 +}
 +
-+int set_direct_map_default_noflush(struct page *page, unsigned int numpages)
++/**
++ * dma_zap_direct_map() - Remove a DMA page range from the kernel direct map
++ * @dev:	Device that allocated the pages (or NULL for default CMA pool)
++ * @page:	First page of the memory region
++ * @size:	Page-aligned size of the memory region in bytes
++ *
++ * Cleans and invalidates caches and removes the memory range from the kernel
++ * direct map to prevent speculative CPU accesses. Must be paired with
++ * dma_restore_direct_map().
++ *
++ * Context: Any context if allocated from a lendable pool; process context
++ *          (may sleep) otherwise.
++ * Return:
++ * * 0		- Success.
++ * * -EINVAL	- @size is 0 or not page-aligned.
++ * * -ENODEV	- Direct map cannot be modified and @dev has no lendable pool.
++ * * -EFAULT	- @dev has a lendable pool, but [@page, @page + @size) is
++ *		  outside that pool.
++ * * -EBUSY	- Direct map zapping is temporarily disabled (hibernation).
++ */
++int dma_zap_direct_map(struct device *dev, struct page *page, size_t size)
 +{
-+	unsigned long start = (unsigned long)page_address(page);
++	unsigned int nr_pages = size >> PAGE_SHIFT;
++	bool from_lendable, has_lendable;
++	struct cma *cma;
 +	int ret;
 +
- 	if (!can_set_direct_map())
- 		return 0;
- 
--	return update_range_prot((unsigned long)page_address(page),
--				 PAGE_SIZE * numpages, set_mask, clear_mask);
-+	ret = split_kernel_leaf_mapping(start, start + PAGE_SIZE * numpages);
-+	if (WARN_ON_ONCE(ret))
++	if (!size || !PAGE_ALIGNED(size))
++		return -EINVAL;
++
++	cma = dev_get_cma_area(dev);
++	has_lendable = cma_is_lendable(cma);
++	from_lendable = has_lendable && cma_has_range(cma, page, nr_pages);
++
++	if (!from_lendable && !can_set_direct_map())
++		return has_lendable ? -EFAULT : -ENODEV;
++
++	/* Provides full ordering */
++	if (!atomic_add_unless(&dma_lendable_active, 1, DMA_LENDABLE_DISABLED))
++		return -EBUSY;
++
++	ret = arch_dma_zap_direct_map(page, nr_pages, from_lendable);
++	if (ret)
++		atomic_dec(&dma_lendable_active);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(dma_zap_direct_map);
++
++/**
++ * dma_restore_direct_map() - Restore a zapped DMA page range in the direct map
++ * @dev:	Device that allocated the pages (or NULL for default CMA pool)
++ * @page:	First page of the memory region
++ * @size:	Page-aligned size of the memory region in bytes
++ *
++ * Restores the default kernel direct mapping and invalidates caches for a range
++ * previously zapped with dma_zap_direct_map().
++ *
++ * Context: Any context if allocated from a lendable pool; process context
++ *          (may sleep) otherwise.
++ */
++void dma_restore_direct_map(struct device *dev, struct page *page, size_t size)
++{
++	unsigned int nr_pages = size >> PAGE_SHIFT;
++	bool from_lendable;
++	struct cma *cma;
++
++	if (WARN_ON_ONCE(!size || !PAGE_ALIGNED(size)))
++		return;
++
++	cma = dev_get_cma_area(dev);
++	from_lendable = cma_is_lendable(cma) && cma_has_range(cma, page, nr_pages);
++
++	if (WARN_ON_ONCE(!from_lendable && !can_set_direct_map()))
++		return;
++
++	if (WARN_ON_ONCE(arch_dma_restore_direct_map(page, nr_pages, from_lendable)))
++		return;
++
++	WARN_ON_ONCE(atomic_dec_return_release(&dma_lendable_active) < 0);
++}
++EXPORT_SYMBOL_GPL(dma_restore_direct_map);
++
++static int dma_lendable_pm_notify(struct notifier_block *nb,
++				  unsigned long mode, void *data)
++{
++	/* Prevent hibernation while unmapped pages may be inaccessible */
++	switch (mode) {
++	case PM_HIBERNATION_PREPARE:
++	case PM_RESTORE_PREPARE:
++		if (atomic_cmpxchg_acquire(&dma_lendable_active, 0, DMA_LENDABLE_DISABLED))
++			return notifier_from_errno(-EBUSY);
++		break;
++	case PM_POST_HIBERNATION:
++	case PM_POST_RESTORE:
++		atomic_cmpxchg(&dma_lendable_active, DMA_LENDABLE_DISABLED, 0);
++		break;
++	}
++
++	return NOTIFY_DONE;
++}
++
++static struct notifier_block dma_lendable_pm_nb = {
++	.notifier_call	= dma_lendable_pm_notify,
++};
++
++static int __init dma_lendable_init(void)
++{
++	unsigned int i, nr = 0;
++
++	for (i = 0; i < nr_lendable_areas; i++) {
++		struct cma *cma = lendable_areas[i];
++
++		if (!arch_dma_is_lendable(phys_to_page(cma_get_base(cma)),
++					  cma_get_size(cma) >> PAGE_SHIFT)) {
++			pr_warn("Ignoring %s: not lendable\n", cma_get_name(cma));
++			continue;
++		}
++
++		lendable_areas[nr++] = cma;
++	}
++	nr_lendable_areas = nr;
++
++	sort(lendable_areas, nr_lendable_areas, sizeof(lendable_areas[0]), __lendable_cmp, NULL);
++
++	register_pm_notifier(&dma_lendable_pm_nb);
++
++	return 0;
++}
++core_initcall(dma_lendable_init);
++
++#ifdef CONFIG_OF_RESERVED_MEM
++static int __init rmem_lendable_validate(unsigned long node,
++					 phys_addr_t *align)
++{
++	return rmem_cma_ops.node_validate(node, align);
++}
++
++static int __init rmem_lendable_fixup(unsigned long node, phys_addr_t base,
++				      phys_addr_t size)
++{
++	int ret = rmem_cma_ops.node_fixup(node, base, size);
++
++	if (ret)
 +		return ret;
 +
-+	return __set_direct_map_default_noflush(page, numpages);
- }
- 
- int __set_memory_enc_dec(unsigned long addr, int numpages, bool encrypt)
++	return arch_dma_mark_lendable(base, size);
++}
++
++static int __init rmem_lendable_setup(unsigned long node,
++				      struct reserved_mem *rmem)
++{
++	int ret = rmem_cma_ops.node_init(node, rmem);
++
++	if (ret)
++		return ret;
++
++	lendable_areas[nr_lendable_areas++] = rmem->priv;
++
++	return 0;
++}
++
++static int rmem_lendable_device_init(struct reserved_mem *rmem,
++				     struct device *dev)
++{
++	return rmem_cma_ops.device_init(rmem, dev);
++}
++
++static void rmem_lendable_device_release(struct reserved_mem *rmem,
++					 struct device *dev)
++{
++	rmem_cma_ops.device_release(rmem, dev);
++}
++
++static const struct reserved_mem_ops rmem_lendable_ops = {
++	.node_validate	= rmem_lendable_validate,
++	.node_fixup	= rmem_lendable_fixup,
++	.node_init	= rmem_lendable_setup,
++	.device_init	= rmem_lendable_device_init,
++	.device_release	= rmem_lendable_device_release,
++};
++
++RESERVEDMEM_OF_DECLARE(cma_lendable, "lendable-dma-pool", &rmem_lendable_ops);
++#endif /* CONFIG_OF_RESERVED_MEM */
 -- 
 2.56.0.542.g3ef89b7020-goog
 
