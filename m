@@ -2,75 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EFF606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ADD9606A881
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=G9ZUS8ni;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NiDyh9CS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0CRBWZvS;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NQ3K80Qo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=MKcG3X7dsKXAw4NNVjEt7ZV1vzPfMBBW0q4ysZTtxpk=; b=G9ZUS8nijLPr6Jshlo/9feCIJ3
-	MkmByc0eQOxs1YqiD50MMjmsL9Nf61o78GgJs6pDfeexmLShId9pZ8ZnsVhQxpSdHYY9O+kP1DBd7
-	ICCWNs5kSY453giMrbcA8s5GN4vRauSEZnI1cFTtwffzcVG3k9daSKxvrMqXVr/M/PqjR5anq1Hkg
-	ol/xvnH3rRcXq91p/H6PBlcILIGcDTJh624NMFi6fo8HuFgBaPOqtkAhymmxXAk0MhaxdtNPtzGDu
-	7Rm1kgyW9rdUmu/j4TVh6dxtgoSFB8ccwGBBMOAYDsmahE5k5FulJ86lDrSpKDsbVUTyL1NuITUlF
-	x06e0Lmg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=kH63A4Q8NhJGmF9dCXy668pUMjIxPVBUhCn9NoDFJ2o=; b=0CRBWZvSB81D8S
+	Y5JkKuu1Jckzd6kKBDWJ9fLvHcRHapZ+QPKNSw1wLK/07w1BXMzJSuaFoEpEgX4mfgbTaquJU4sra
+	nbk/Nbhvhqe6vxnfRaVW2IFAJJn17vEamzKJ3fyw2WbFB6ilQXXfLYtzLcKiZk5cc4DLpFvaIV5qc
+	UF8xDThzjRSbiwENzCungxyv2JCeGYA+5zgiuwNzIS5CuYFVvCn8HgcWnquM2QLCRw/tip/rEdbuA
+	8jnr3Zs/t6X64TAUWTxeRio5IcbtkCevfIU7mSFJpPpPtKgflncUIfEZ4gmpPpQO8NHOhqSDrGzV7
+	b6aD52+Bu1crwqmRAXoQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTIk-00000009mKG-0b6L;
-	Thu, 12 Nov 2026 11:49:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRTJI-00000009mS4-1Obx;
+	Thu, 12 Nov 2026 11:49:44 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTIi-00000009mK3-28k4
+	id 1xRTJH-00000009mRv-2e5G
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:49:09 +0000
+	Thu, 12 Nov 2026 11:49:43 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A11E66186E;
-	Thu, 12 Nov 2026 11:49:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F07851F00A05;
-	Thu, 12 Nov 2026 11:49:01 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id DB455401B7;
+	Thu, 12 Nov 2026 11:49:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E76A1F00A0C;
+	Thu, 12 Nov 2026 11:49:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794484147;
-	bh=MKcG3X7dsKXAw4NNVjEt7ZV1vzPfMBBW0q4ysZTtxpk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=NiDyh9CSMf4fnMa1aXCvHZxu1XNPZLF0/Dl9XempRO4DnG2Rnv4Cg3GohFO4EBFz5
-	 81EpjF4nYwMtW7DcmV9HhlhPBEuZxpj9uyD4iv4l+EKqjYt1CyiVf+ASqrTv29jCn3
-	 vw7Cq+OEghXqj50p1/echU8vAtiEFP2pHx3+Q4f2zoGs8RITGhiQpBM9qNWaKvF/t9
-	 ziJmXqbPJb/qA9zZhB4bk4YCtqBFzsbaLaPIXeFmU1UPyBqijY4Klvc2TZ7W6n9eeT
-	 xG4p1Q4rF39lKl8yaiQimmWpvUVrLuHhJOiY8tpsIULS66Q4FRARKhqorLxL8+DzQm
-	 tq7vXZ+PENnMA==
-Date: Thu, 12 Nov 2026 13:48:58 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: linux-mm@kvack.org, Arnd Bergmann <arnd@arndb.de>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andreas Larsson <andreas@gaisler.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"David Hildenbrand (Arm)" <david@kernel.org>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
-	Matthew Wilcox <willy@infradead.org>,
-	Malin Jonsson <malin.jonsson@est.tech>,
-	Richard Weinberger <richard@nod.at>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org, linux-fsdevel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, x86@kernel.org
-Subject: Re: [PATCH v2 2/6] mm: remove ARCH_NEEDS_KMAP_HIGH_GET
-Message-ID: <avWnqt1E9ssKQDWt@kernel.org>
-References: <20261112112528.1116405-1-arnd@kernel.org>
- <20261112112528.1116405-3-arnd@kernel.org>
+	s=k20260515; t=1794484182;
+	bh=kH63A4Q8NhJGmF9dCXy668pUMjIxPVBUhCn9NoDFJ2o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=NQ3K80Qo2q3BL07IZpeFRUivMoPaMOVcJYxjzGx0tcJcgm4EeEH9gcDfaqOxphkNG
+	 4+MxAWdn6B9irz24jPAXNdMZgvvfY9Mri6qErqmu3AGnL7j0gh0X/HkWISiJ77x/NM
+	 wcdmBa/hLp3GhTX76C1yEdSp4g2h3EBgYXqBfaElrfMw0iZAAW3E4dGW0KXI772XJE
+	 7QIGZfetbzPSgYuMCtQOp+9MDnU+GWsMwJ0I8ybv8J5YBXFpy+E1Rq638+Mbf4pleY
+	 e5c2eixsB8gfI7s3Prz/9CAG4EPzNONXb9s7DHQGbPIv6muRUVHMWCIVnE55pwwora
+	 OyznJ7ojj6RUg==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Guenter Roeck <linux@roeck-us.net>, 
+ Lee Jones <lee@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Pablo Mazzini <pmazzini@gmail.com>
+Cc: Alistair Francis <alistair@alistair23.me>, 
+ Andreas Kemnade <andreas@kemnade.info>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, linux-hwmon@vger.kernel.org, 
+ mfd@lists.linux.dev, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20261108093602.329554-1-pmazzini@gmail.com>
+References: <20261108093602.329554-1-pmazzini@gmail.com>
+Subject: Re: (subset) [PATCH v3 0/5] sy7636a: power the panel only during
+ updates
+Message-Id: <179441948592.393238.163548015139580869.b4-ty@b4>
+Date: Wed, 11 Nov 2026 17:51:25 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261112112528.1116405-3-arnd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.17-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1560; i=broonie@kernel.org;
+ h=from:subject:message-id; bh=tAX4JPP5kVuvXSOIYyzrfdqHyXORq/eq+6a96LBatXo=;
+ b=owGbwMvMwCWm/754w+YLFp2Mp9WSGLK+Lr/kpG5TctlIuGON9dnug+cdZdn2r5yv8u8uD+u/P
+ UIVCpJ1HaUsDGJcDLJiiixxWdwv60ter+E7uLANZg4rE8gQBi5OAZhI1xOGf7oO+4suV7VltqyV
+ WM/wbt7dvlchVRr7TXWOrDzf4PaGT56R4WiCdLdg4W51W4b/Ejt/xk/af+lqgsDUPVtnzNuZXNL
+ LwwUA
+X-Developer-Key: i=broonie@kernel.org; a=openpgp;
+ fpr=3F2568AAC26998F9E813A1C5C3F436CA30F5D8EB
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,36 +82,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 12:25:24PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
+On Sun, 08 Nov 2026 09:35:57 +0000, Pablo Mazzini wrote:
+> sy7636a: power the panel only during updates
 > 
-> Arm has stopped setting ARCH_NEEDS_KMAP_HIGH_GET, so this
-> is handled using the same wrappers across all architectures
-> now, which leaves room for simplification.
+> The SY7636A hwmon driver keeps VCOM on from probe, so a display driver
+> can not power the panel only during updates.
 > 
-> Replace lock_kmap()/unlock_kmap() with open-coded spinlocks
-> and drop the now empty arch_kmap_local_high_get() and
-> kmap_high_unmap_local() helpers.
+> Read the temperature only while the rails are on instead, and bind the
+> regulator to the I2C device directly, with the hwmon driver as its
+> auxiliary driver.
 > 
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  mm/highmem.c | 100 ++++++---------------------------------------------
->  1 file changed, 10 insertions(+), 90 deletions(-)
+> [...]
 
-Nice :)
+Applied to
 
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-7.5
 
+Thanks!
 
--- 
-Sincerely yours,
-Mike.
+[1/5] regulator: sy7636a: don't wait for power good if already on
+      https://git.kernel.org/broonie/regulator/c/7d9a62b7e554
+[3/5] regulator: sy7636a: bind to the I2C device directly
+      https://git.kernel.org/broonie/regulator/c/5f828ac25ef9
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
