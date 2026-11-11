@@ -2,11 +2,12 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC26606A88D
-	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E5A4606B762
+	for <linux-arm-kernel@archiver.kernel.org>; Wed, 11 Nov 2026 22:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UGvoYJLy;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=K+5tY+xW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ynI8oOGy;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=UHEClICl;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=4p3A2UXL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,46 +15,61 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2BUOGcrh2S97il4Ttrd7WSFGfZ/SB2ZyhbaF0FuMYg0=; b=UGvoYJLyE0tVq8vkpdJBG0+UQp
-	aIR8XRsM21UaZJKg3H5r4MMK20e0ZMboz14Bdnl43sztzZTM4ADAp9DZFVrq0xfXodlRqq481xmzt
-	r8vBqUrI6AiINr/DVpvbSE6f+2UBmEBcoDkPuQnetEEdebunBGvXw4kK6MRgFpsHRQD49Jfv1GXPs
-	oduZAneDVH4JS46oj43ZxqFfVdvXceENGVMONXWDJLT4GO3IWpYTyPnTQlWtoJj+mtJOhIaGOXNJ7
-	Hfa65h/wureY5VvFtIWmi9j1PGSv+iXdaMRCfvVDcjEyG4yFtkBIPhGRaosNpLze5ota+HVinjCve
-	dcci7YCg==;
+	bh=bOsnuxBg9lSIpbXSJ/FFqqDKMm+/iFytfCNvVVIjFGw=; b=ynI8oOGygy74e6Dix3NbYDU2kv
+	Yd9tYh+aGyPa3SyF6hm9pQ8+oriC5PUNdp6EBiEnPgbwFTfX7xEtEgkysPeFZ3858JWF1wLDYEdJl
+	wSrw0AnQwP5b/6Pd9MpiZs+dHie0XWKDP60WkxoEB6t2QPLAHfduNCunyScskXji4myrgF0hawflC
+	SzwX1TN+Vd/0dPHuUmq5Iflsv8E+qsmW/7SV+VsFmHMhTtHGdlhvkBTq0RiXXOt/3cBnW5cVQ8poB
+	jobIxXRij5TjasYGLXbys+nXPEkEUsLCIHhFhLVgspvZmZDK+j9P/mrP/mKBg5WjoG9tCSz2b2zeT
+	SCJ0ExJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH63-000000082oS-0cNx;
-	Wed, 11 Nov 2026 22:47:15 +0000
-Received: from mail-southcentralusazlp170130001.outbound.protection.outlook.com ([2a01:111:f403:c10c::1] helo=SA9PR02CU001.outbound.protection.outlook.com)
+	id 1xRH6T-0000000839g-3IPL;
+	Wed, 11 Nov 2026 22:47:41 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRH5y-000000082hk-2ZWo
+	id 1xRH6R-0000000837A-2V38
+	for linux-arm-kernel@bombadil.infradead.org;
+	Wed, 11 Nov 2026 22:47:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=bOsnuxBg9lSIpbXSJ/FFqqDKMm+/iFytfCNvVVIjFGw=; b=UHEClIClIAnY2ooGh7Ask0bryo
+	QdB34c+9sySILmVk1q1yBKbUwnPGwijRji4Er9uXvGn9/J2+V8gWmWkaFssUYkTD3ynWdXUdquw0W
+	czix0Xt05hrJ6TxJVdQ8V9ebZNETeZX3K842F3eQQ9uOtfJzkmp4IpD2hTof07Ca5hd2jbtutq74+
+	A2haJuMe9Fr0Jwv009IJo11scaAXCkIjCiBZrmByqT01zeyPUr/bzRrW7J+qneicwn8xTqchvRJkz
+	GsajKFsP1te6VbVim0Mk0bCdqQzrD3rwWRgxRp3j3DNexhMQvrB7Q8piD1sOrk5vt04syn8DgRxxa
+	oq8gV45w==;
+Received: from mail-westus2azlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c005::5] helo=CO1PR03CU002.outbound.protection.outlook.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRH6N-00000009f3P-0lMf
 	for linux-arm-kernel@lists.infradead.org;
-	Wed, 11 Nov 2026 22:47:13 +0000
+	Wed, 11 Nov 2026 22:47:38 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=od4pSscMDiC7q2SE+BUP9lvvdNTEDIWNWYL8B81T3BVzRJskZav/NG+jxOEOcL5TQzZXV6XiygcVww/A+iT1xIBfCtpdRgLXtGY7tm8oEnUKtlmUz2RzRx5CqixKTZxtBvZS6Ej80QQNVT/irwqR4rQlQbY21X2mVFLt/RUAs8li5ULW1JD2cF3gCN07vhu2RM5WbOHdUPle88qqol7l6XYzLWfebCVPQK4GvLsba8wu+hqDrGeoFWE5F/e69SvfbK/eFQhnsbkNcf9nmm7Rodd/VSIPjdzHU8Briz5I4iYpRZSg8BKhlk0QKMu+i06A/t58PuYRgJv4gzu3RM+Ptw==
+ b=KteSEcOGQzY0UfxQbns8ZJSFbZ8Pst1v9/VQ3irKigG7k7VhyD26OvWtwJYQicnk9idDLn9gFFerbLN/BNn3Yvbf8bCpzzSAcAvPoT/s4QMEBGy+1nzZle887UQUxakKn714f/QGmtFMma0KF1hPIQiIJzLNDOeMKh3iMgP7DCsA5HyC85TeJ/5JL9PSg1ySU/dPH8uAFV4YkJPQDPdPXyUY3G6B29pAR9RqG8C7xMO1pxApjVM0c0+KiI8S6EscWPLmFFLIhaF+j8ofc5JNriGTxAkrBIS2w8NkugDGhSDnALvywUYqXJcNzNIpAIq7nHWIkgrk3izxFkwWYjbeCQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2BUOGcrh2S97il4Ttrd7WSFGfZ/SB2ZyhbaF0FuMYg0=;
- b=MmWRudPtbUqMOoKQYqkMsFu5lIpRrjB4w0i5DcOPvQV8/0V3XqPrPLHVyzMCpxSpbk6FiOegCQ0RxQFTkMOenmM6cPwL0bSB7PEkqahdb96IR9oaJL7y0yY3OAw5fEcrn0kDunTKMPOchz6cE+bdyjUuyz4Zyyr9Gp6efYKGUqBzX9gMtcFjXoa5fjgHH9GWhem7rBfdo0oq0k6KS7fRaYP9WSfBQNRmzBVighAh6PgMEGe0gZyHZVhAFA9mdx/OyJXBQT8422PPfnaMPicacZ8Lom+1urZuHTh2TEzHAvYt890Y0vSnuSCoEsPup7mk1XQJ4UkXWBFmOEE/gCGeXA==
+ bh=bOsnuxBg9lSIpbXSJ/FFqqDKMm+/iFytfCNvVVIjFGw=;
+ b=L0ZVkA+pt1+XKwWNVaSmTFtjzSUsRS5lZb6AJteBwwyfLsq3ezuEFfxtr3FaRO5+yNTH5h2w7tZrRY54+svLKiqFvwayoEkUgcBm4TCFP1ufmCIcr4f1BAgiy+Y9lF/wgXG8CeUSG1RMbA3GG9iGSS2rqdyilUyLGuzL/MYpTqYYdWWoWwMautLo9uTusQmYyj0oVLeOw1PlJJGXofZE6SgXFwCld7WcOo0eCQjm0BV9Nd7Ikujx5X992thgMQPhJpy+YHERnmED0+KFQPfFcbNOytswT7YmQoMoO3UXX2MUolsD8Gl8hLJI1zhLdU8p4kGvelW7xH1WZXPftGS3Zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2BUOGcrh2S97il4Ttrd7WSFGfZ/SB2ZyhbaF0FuMYg0=;
- b=K+5tY+xW5SqPW8DavTMqvNVVspzhVbbe9WhzKxAjqpipCkYuh0yfEop9z/FdSGOzC66Kt1s7FdxaCLluSlYtb1USDQKaB0vyxBTcvXb+JvW4dEX3BDFpoo6BfptYOZP1AAPU13PsqzLy9SveRBeJl1PVNzzd7mxQgcdduViVusg=
-Received: from MW4PR04CA0234.namprd04.prod.outlook.com (2603:10b6:303:87::29)
- by PH8PR12MB999298.namprd12.prod.outlook.com (2603:10b6:510:40b::11) with
+ bh=bOsnuxBg9lSIpbXSJ/FFqqDKMm+/iFytfCNvVVIjFGw=;
+ b=4p3A2UXLU4/GUuV4PKEFqxFASMdP4K4JpBB+e7ZshJZYkhqtrvc7uUZFhVmqbFqqz4ji8LaKlgwA6z2lOGlUKTXONq+7XhipRz/BwSbgFzz8gVvQS+WblKFwYzIkrB+V3HcGit+Tyk0Jc4qRmqN13TvgzinpZ0ebkf1XjTt5pyg=
+Received: from MW4PR04CA0221.namprd04.prod.outlook.com (2603:10b6:303:87::16)
+ by SJ2PR12MB9244.namprd12.prod.outlook.com (2603:10b6:a03:574::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Wed, 11 Nov
- 2026 22:47:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
+ 2026 22:47:22 +0000
 Received: from SJ5PEPF000001F2.namprd05.prod.outlook.com
- (2603:10b6:303:87:cafe::5) by MW4PR04CA0234.outlook.office365.com
- (2603:10b6:303:87::29) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:303:87:cafe::7d) by MW4PR04CA0221.outlook.office365.com
+ (2603:10b6:303:87::16) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Wed, 11
- Nov 2026 22:47:03 +0000
+ Nov 2026 22:47:21 +0000
 X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
  is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -63,11 +79,11 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
 Received: from satlexmb07.amd.com (165.204.84.17) by
  SJ5PEPF000001F2.mail.protection.outlook.com (10.167.242.70) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Wed, 11 Nov 2026 22:47:02 +0000
+ 15.21.615.4 via Frontend Transport; Wed, 11 Nov 2026 22:47:21 +0000
 Received: from bmoger-ubuntu.amd.com (10.180.168.240) by satlexmb07.amd.com
  (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Wed, 11 Nov
- 2026 16:47:01 -0600
+ 2026 16:47:09 -0600
 From: Babu Moger <babu.moger@amd.com>
 To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <ben.horgan@arm.com>,
 	<Dave.Martin@arm.com>, <james.morse@arm.com>, <bp@alien8.de>
@@ -83,9 +99,9 @@ CC: <babu.moger@amd.com>, <corbet@lwn.net>, <skhan@linuxfoundation.org>,
 	<kim.phillips@amd.com>, <ricardo.neri-calderon@linux.intel.com>,
 	<darwi@linutronix.de>, <linux-doc@vger.kernel.org>,
 	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v7 16/19] fs/resctrl: Reject mode changes for groups backing kernel mode
-Date: Wed, 11 Nov 2026 16:44:09 -0600
-Message-ID: <582409f73650a18edc594c2c40e14b404b0d25b8.1794437052.git.babu.moger@amd.com>
+Subject: [PATCH v7 17/19] fs/resctrl: Control visibility of global per-CPU kernel mode group files
+Date: Wed, 11 Nov 2026 16:44:10 -0600
+Message-ID: <6af7466df1a5e64bc2804ba3d8c7e2e592793cae.1794437052.git.babu.moger@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1794437052.git.babu.moger@amd.com>
 References: <cover.1794437052.git.babu.moger@amd.com>
@@ -97,29 +113,29 @@ X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
  (10.181.42.216)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|PH8PR12MB999298:EE_
-X-MS-Office365-Filtering-Correlation-Id: e3733dac-75f7-42cc-b4a0-08df4045b426
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001F2:EE_|SJ2PR12MB9244:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae4cb57f-c662-4554-b6b7-08df4045bf69
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|36860700016|82310400026|7416014|23010399003|376014|22082099003|18002099003|6133799003|261009223027099003|13003099007|260925022911599003|11063799006|56012099006|260925021911599003|261028144727099003|261021121427099003|261102123227099003|261026140227099003|261026121527099003|261022105027099003|261022075727099003|260925021311599003|10067099003;
-X-Microsoft-Antispam-Message-Info: w5dJjv9EfHQzii+TX6UibDNAdmliMAFoDkQnuZBv21IGnQWH3hMST+Sv6GfmS7kWagj8XOKEw/4P22hh8zazMOdcQlTSEbfnp2avg43hdinJUaW22P8CzCwTiaeFqEXSq1S8XM8gfkPjTW67/TSv4lbRq7cg7ZL2exmXIhJ50d6FgywaAEUv5h23jD481wUNKCBm52pvyUR6uQhavCldPIFv5mn5TTRiBIPPabEZtgkAIzLC7iURDzcU5f7Ae7qsCBZc8MGg+9/1RuZnyA4yyv+IB2cOTsdnSh0E1nGHc1Jzdiva0gJqEhCJxgV0O0+Qp8MctfZnSjJ6Hk3pHdsNaHIkRgBcOIBnGqzf8deUobH9L5di0tuPvmI64R8jdV5K/n8oH2X0+iDyTx1pTpqxSYTcDkYNkurOwpS1DtY0mJltLyGnu93WTFXx950qOOcMwvFaIgdvx7z26vssVzDAQM7reaknMcP333mcTGxeCGHlZjEg3kwDaFh/7VoCHp9N8VKXXFMPnl9O2OJpQhbzh/2Wb3zy4AM2Su1fNghEfXKYhenPM1ipg7nZB1sE29zuIAW2pnK3RUFP0dNwDxcRi+hXc9kMr39C8fKJG46ee94MEEso3DEGSetnwWi/WNgOZSq7acyIfEsiwNnzntu0CQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(7416014)(23010399003)(376014)(22082099003)(18002099003)(6133799003)(261009223027099003)(13003099007)(260925022911599003)(11063799006)(56012099006)(260925021911599003)(261028144727099003)(261021121427099003)(261102123227099003)(261026140227099003)(261026121527099003)(261022105027099003)(261022075727099003)(260925021311599003)(10067099003);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|23010399003|36860700016|376014|1800799024|82310400026|10067099003|5023799004|261021121427099003|56012099006|261009223027099003|11063799006|261022075727099003|261102123227099003|22082099003|18002099003|13003099007;
+X-Microsoft-Antispam-Message-Info: eZiADQ8SKq6sesR1LlxpBOb5o9gJ297uPEpyYNGj0M2xAUvcQpfM7gEu12T4sGZKbJOjkzFQ4JdyFZaXeHT3ZciMQGG22Ix/7cABvZJ7acArZdaP97PM6M9gMnXvIxEWIrbN4eedw8V3PcAoHGcm+Idk5lfmaZsSSOXXqkpC1ciSsRCN4ROEddk4ua8QqDCtOTtEUwm0Oqy/J17UETlAfeAzO/QdlNdiLmF8Lh61si0G+jv8ZUii6e3s9m+rntrj4mVElia5vZKu0nAxvWsLN8dMAQIoF6MGfp5j6Eo/xhxDKdwjmy8e4ir12RxLmCnIRkv8bdOtmxEb6PsWP344ZMcNGQ+Y65rFJVeU+bj/nyXl+LkRj/Zdv1uFwo52xns4043SgpIhj5DkksfcEeYhQzRVyve0cjVlh6KIGBuGTzNp7S3XEsz1DFLQeE4xY7oY2ew1Jw0JFR0arG4sLlWF7zMxGmCkDXEdTrP8ISXqTLd4IeKdj/avCRsl3ZzW3EyndpVwhlQDfC3wBTMfKfPfJ44H/7h8Rf3LmCOT31lV77s+7pphYItYqfapEfeDYDzi+wL7icuXJYTdS75w8Eqi0ygB2UrMkHXuUSXzivvKaxrd2BH68jgB0gccrK8tV+ofCQ1JUUgat7fyRklhR3Xk7tayJ2KRIZmLFdfrTfLy1c4=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(36860700016)(376014)(1800799024)(82310400026)(10067099003)(5023799004)(261021121427099003)(56012099006)(261009223027099003)(11063799006)(261022075727099003)(261102123227099003)(22082099003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: uVNoLKjKHnuYm0CYhmFAZlG4AkK3tUP2ZowAKW4EySK0j/fD5SPZAIERJWRy7PWEh5X/+PIYQ6h9wbSnoBODg7Oq4mA3CMPhALsKsdb9GDyUeBYGSKa+xBGMWU8kEoEhrzA/l2Zx2ECdimU1kIBveVKzQ09Hjpd9Jk8R8c0M9kurhAkZt1wPirCstudaanPhl7FiqgiD/5NBIFKuTA8epeyK1n1xo1iQy9Rj/UIz5Gz2gm++g7fAJz1k4IE3PFqDu5E3F3YxMmSFQm3O6Y6bKV+y+RkfK8uCCn9/IJEObwWQpe4ZA/K8E25zPc2tuk3ht9vOw/FghsSwslIfz5qtD6+FNiqbS0vTX1hxI4YPmPiQPSN0pkNU/Q/4j8ZU3jnzqGsQlo0MJ7B5+r3cRHoNCsFa49T+LXFxMxwtKH0I5q4XqzvM0ZV40WjwrZ9okDjK
+X-MS-Exchange-AntiSpam-MessageData-0: pUOISFE9hKSLi6P8zfGpXdapbABBjMtHOdWhlIdvl489Fi2mfxxOdRZwX28fXdo2uofSU2pPEKeXsLrgdVPD23/4cWYSaU/ej1NaPxIzH1VYbtYo96s38QrFWpyl0akyoPvyZdXwA9OCKUpNnkIp38FadCEg4zDRiWdls76X7+hmqn5uo+GlwOI9sxVGt7NVptsMVwO+nClLFQnGl+VwidHYAyLjgiCgjVv/GX0ZjGP346LDYn0PduM0wEw3JxPkhR8humdoeU7iIqWLuAGX5ACyYd8RFuhKBvMgXukhtrBLMFAfu074B+CAbnm68OYh3aw4pGQFkUwIW090eXJscK4Nzga3S3SKWe1KY6gyUQ9SB2afCJP116UCpoBROcFPkzTzplsbA7S/uxh9Cik9B82jh7NJr7GoqtbbJg14kFyRynYS26q6eFBL8Ml/7rH7
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 22:47:02.8003
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 22:47:21.6919
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e3733dac-75f7-42cc-b4a0-08df4045b426
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae4cb57f-c662-4554-b6b7-08df4045bf69
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001F2.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB999298
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9244
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_144710_700544_A2903CE7 
-X-CRM114-Status: GOOD (  19.47  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_224735_213010_9A8A4A60 
+X-CRM114-Status: GOOD (  16.92  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -138,95 +154,76 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The RESCTRL_GLOBAL_ENABLE_PER_CPU kernel mode uses the CLOSID and/or
-RMID of a backing group when transitioning from user mode to kernel
-mode. Since the CLOSID and RMID are shared with the group's tasks, the
-backing group must remain shareable while kernel mode is active.
+The kmode_cpus and kmode_cpus_list files are specific to the global per-CPU
+kernel mode. These files are created in a hidden state when an rdtgroup is
+created.
 
-Reject mode changes for a group backing the active kernel mode and for
-the parent of a backing monitor group.
+Introduce resctrl_kmode_global_files_show() to control the visibility of
+these files for individual resource groups. Show the files only for the
+group backing the active global per-CPU kernel mode and hide them for all
+other groups.
 
-Also reject reparenting a backing monitor group, as it would change the
-monitor group's parent and implicitly modify the active kernel mode
-configuration.
-
+Suggested-by: Reinette Chatre <reinette.chatre@intel.com>
 Signed-off-by: Babu Moger <babu.moger@amd.com>
 ---
-v7: Changelog update.
-    Moved the patch after the kernel_mode modify interface.
-    Added code comments to justify reparenting.
+v7: Updated the prototype rdtgroup_kmode_global_files_show().
+    Moved the patch after both rdtgroup_kmode_global_activate() and
+    rdtgroup_kmode_global_deactivate() is Introduced, so the change is
+    symmetrical.
+    Updated the changelog.
 
-v6: New patch to fix sashiko feedback.
-    https://sashiko.dev/#/patchset/cover.1787772750.git.babu.moger%40amd.com
+v6: Helper named for the global per-CPU files instead of unhiding every
+    hidden file on the group.
+    https://lore.kernel.org/lkml/34aa4824-810b-4c81-8188-f2f37e1dc277@intel.com/
 ---
- fs/resctrl/rdtgroup.c | 40 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ fs/resctrl/rdtgroup.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
 diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
-index 872755532fb4..1ad169e714a4 100644
+index 1ad169e714a4..86bd6a66812b 100644
 --- a/fs/resctrl/rdtgroup.c
 +++ b/fs/resctrl/rdtgroup.c
-@@ -1994,6 +1994,27 @@ static bool rdtgroup_mode_test_exclusive(struct rdtgroup *rdtgrp)
- 	return true;
+@@ -1136,6 +1136,24 @@ static int resctrl_kernel_mode_show(struct kernfs_open_file *of,
+ 	return 0;
  }
  
-+/* True when @rdtgrp or one of its monitor groups backs the kernel mode. */
-+static bool rdtgroup_has_kmode_global(struct rdtgroup *rdtgrp)
++/* Show or hide kmode_cpus and kmode_cpus_list on @kn. */
++static void resctrl_kmode_global_files_show(struct rdtgroup *rdtgrp, bool show)
 +{
-+	struct rdtgroup *child;
++	struct kernfs_node *kn_file;
 +
-+	if (!resctrl_kmode.rdtgrp)
-+		return false;
++	kn_file = kernfs_find_and_get(rdtgrp->kn, "kmode_cpus");
++	if (kn_file) {
++		kernfs_show(kn_file, show);
++		kernfs_put(kn_file);
++	}
 +
-+	if (resctrl_kmode.rdtgrp == rdtgrp)
-+		return true;
-+
-+	if (rdtgrp->type != RDTCTRL_GROUP)
-+		return false;
-+
-+	list_for_each_entry(child, &rdtgrp->mon.crdtgrp_list, mon.crdtgrp_list)
-+		if (child == resctrl_kmode.rdtgrp)
-+			return true;
-+
-+	return false;
++	kn_file = kernfs_find_and_get(rdtgrp->kn, "kmode_cpus_list");
++	if (kn_file) {
++		kernfs_show(kn_file, show);
++		kernfs_put(kn_file);
++	}
 +}
 +
  /*
-  * rdtgroup_mode_write - Modify the resource group's mode
-  */
-@@ -2034,6 +2055,12 @@ static ssize_t rdtgroup_mode_write(struct kernfs_open_file *of,
- 		goto out;
- 	}
+  * resctrl_kmode_global_online_cpu() - Program kernel mode association for @cpu
+  * @cpu: CPU that has just been brought online
+@@ -1194,6 +1212,7 @@ static void rdtgroup_kmode_global_deactivate(struct rdtgroup *rdtgrp)
  
-+	if (rdtgroup_has_kmode_global(rdtgrp)) {
-+		rdt_last_cmd_puts("Cannot change mode for kernel mode backing group\n");
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+
- 	if (!strcmp(buf, "shareable")) {
- 		if (rdtgrp->mode == RDT_MODE_PSEUDO_LOCKSETUP) {
- 			ret = rdtgroup_locksetup_exit(rdtgrp);
-@@ -4922,6 +4949,19 @@ static int rdtgroup_rename(struct kernfs_node *kn,
- 		goto out;
- 	}
+ 	resctrl_configure_kmode_global(&rdtgrp->kmode_cpu_mask, rdtgrp, false);
+ 	cpumask_clear(&rdtgrp->kmode_cpu_mask);
++	resctrl_kmode_global_files_show(rdtgrp, false);
  
-+	/*
-+	 * Changing the parent of a group backing the active kernel mode changes
-+	 * the effective CLOSID and/or RMID configuration applied to kernel work.
-+	 * Reject such moves and require kernel mode to be reconfigured explicitly
-+	 * instead.
-+	 */
-+	if (rdtgrp == resctrl_kmode.rdtgrp &&
-+	    rdtgrp->mon.parent != new_prdtgrp) {
-+		rdt_last_cmd_puts("Cannot move a group that backs kernel mode\n");
-+		ret = -EPERM;
-+		goto out;
-+	}
-+
- 	/*
- 	 * Allocate the cpumask for use in mongrp_reparent() to avoid the
- 	 * possibility of failing to allocate it after kernfs_rename() has
+ 	resctrl_kmode.rdtgrp = NULL;
+ 	resctrl_kmode.active = RESCTRL_INHERIT_USER;
+@@ -1214,6 +1233,7 @@ static void rdtgroup_kmode_global_activate(struct rdtgroup *rdtgrp,
+ 
+ 	cpumask_copy(&rdtgrp->kmode_cpu_mask, cpu_online_mask);
+ 	resctrl_configure_kmode_global(&rdtgrp->kmode_cpu_mask, rdtgrp, true);
++	resctrl_kmode_global_files_show(rdtgrp, true);
+ }
+ 
+ static int resctrl_kmode_parse_state(char *val, enum kmode_state *state)
 -- 
 2.43.0
 
