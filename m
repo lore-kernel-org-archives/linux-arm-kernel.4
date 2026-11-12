@@ -2,105 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8DE606A333
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EDCF606A33E
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xbyVL92V;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XU5tzQTW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mQzfBrka;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=b6i9f2fP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=qKYjBYnR5WGa5NCIh6j5J0rCxP117RMta7GUqAqVAXA=; b=xbyVL92Vl6cFIgvkhPsB3tg0Ip
-	zvrjiBOPBKbwzO8J9u1RKnNtQg6KbBLiB8gBHAMS+FLqzzphQieD7LBXaMlo9puhJdS8vicEjajNB
-	hPwLvEKQo82gMn9ZhUJHCP0wKpZm+a2ImwmdjU4gCOuyvYu6r50paPRfY3XAVR9sgcQQz8qFFxHWZ
-	JLKOai0ZIWHEApqzmiOOA+4fIrs7ocJFdPUc8FBUC47n41e8jSB6C0/UBANeG9TU8quP4fk+owIkO
-	a1C4QP90XdjMzmK72GyFtu3Vj6vELV2TrJrS1ZDpYcnFOUumGlcqKnlsH21c8ZaJm8xuyLBYSodgm
-	M2RgT8hw==;
+	bh=WDvWniJQrezDUB16xlhO8KCfZlmxV+ztbr/1RAmPaQI=; b=mQzfBrkaCn4o/weFKQgLhemfWR
+	M/5PBdLzILCkRGElmR2PrhOmdI/XgV5bW7ZmtzXjVCLxc9H8EQs1IfarZ+uUvOn6N3t50ugY3P426
+	9oKlHGq41tJWWf+5gTPaFCUtIzam0B75H2z/s5jaqqijyBeENs28enWtQPB4mD8JWFz95RV/RlaUn
+	Bp1sow0PiBftsk2w5EOgiOPTWKMIddr9LUkCqL7LKTSmV9oKkVNSRLyxx7Vlx+VEtOgibJhgB4FMO
+	ztzBw7CWDHAnrGE1zuwLV5/6n6vpQLQy54VdXFyZ76Knns/lpzyjbe6C88+LFFllog2I+4xUvY2fd
+	pkPocB3A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQ61-000000095NM-2wgw;
+	id 1xRQ61-000000095Mp-0hMy;
 	Thu, 12 Nov 2026 08:23:49 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQ5m-000000095HT-46O5;
+	id 1xRQ5j-000000095HK-41Ec;
 	Thu, 12 Nov 2026 08:23:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B94194479B;
-	Thu, 12 Nov 2026 08:23:34 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3275F61260;
+	Thu, 12 Nov 2026 08:23:31 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794471814;
-	b=1e2vDISgZGwm4TgjZ2t+Lr0muW3unKhckD0ZUyExOvsbE1c2cGVgonqCCz95KmgBRSfU
-	 ECX23hnppeKl6IuEi1gRBH3QTA1Zt/I1Kqc6wiEXdscfOpn53fUHykzAgrb5CqSii05rA
-	 2U41IUIr4uS3otNDRF5g3A6oqQfSmYleu6Zwwu81ebhaTKHJJqK7PqVbBDctuHLnNbV9Y
-	 Pb2nEhW4U6e2eIiI2lgZn5/it/vMZ0khAUmtnO9vRscanlvMlGU64TAgFD+l4KNf8NcYX
-	 29zIS094VLHojCRYWlkBRqFbTy9Xyt06hAEosVK/Ds0T3t6QZvXSbo10B8pWU/+GlPQ==
+	t=1794471810;
+	b=WCLA9w67jTZn41AzBmW1Ix8XthmQy3V9gU8GsSWseWkQao70krxWxS0r6xNmAmGSbmji
+	 /3u14sTqN3U33LLj4ZSzh0/HxRIRLfqRA3Q8xwJRq6fD3qvCQ7lpCWP1X5jntfVRXo03p
+	 XCikDIhMNZQOzUsMqLLfDmHXAIkOs6gd3grCCID+rwSuknbdDWDC+Qdj/VjDGuYKMq+j2
+	 YO461OBgjvNgwc8VwUZVnee5OiwWJE8tKTHGAMF/434vqon3/zRiXw+eNR6RrowdaZ3uj
+	 xG2CQbUZfCDFvn/I8vuvLxHSvb8reBm3K6TeyOGSNtNr3Bz4TuWkakl5+Day7ZvIx1g==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794471814;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=qKYjBYnR5WGa5NCIh6j5J0rCxP117RMta7GUqAqVAXA=;
-	b=EXn12fEFNp+Wj9i0CuZmq+rPNQWGlfjNvNhVeMzhjf8XIrWlzpFyXifleWUQR5K0VmSz
-	 AHmhU3adXN4km0qRqV0g7IiVS4sRIIKRjj0Z52FcBO1CoaFlIsoKCadWBiSV/PWj6jwsJ
-	 iBUXnpk9X/ZDNnOABTyjBtswd/Fe7APXi7lxaQk8rVl9amgaAHb8SsFlXzHqJSZBk/HQs
-	 472FO+cuR/KCHZNWjelg+hw/pi3QecXf65OJ4+6j2gS33Aj0WotQ0hC4fXHgOZIDiIysT
-	 Lxejx0oZYi3ZLZBKRupXFifhzSKIqpGw3kjgAnTGzYHy5FBxb8gXRO69+cTd4fOAnew==
+	c=relaxed/relaxed; t=1794471810;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=WDvWniJQrezDUB16xlhO8KCfZlmxV+ztbr/1RAmPaQI=;
+	b=UcEDv/k2iqh+k6s2pOvo10pr9qRDGonn7HPHj7eX/G59FMiQKOBxd2EVsoa5Daob6Ozn
+	 JMDZTZX/pxoPvt/i1SwXEUHV0F5idv0cB/ydECAlUV6yUkKhp3PP29YNqsocLamiA5FQU
+	 m8SXLi2TiCyFFI+/5iXFnKNwn924aB6Q3uR8s/toor/g68tqf21dISgbTAy4xHUS+RMrP
+	 qIxSZXV2TbAQJyE8abnc53PS2mMFi70//5uQ920iEITeuRY/3VEG5J8qeQJL5YkQHTR21
+	 rg8C2kZAzP1mDWex9BacZfiIZzaPt6H3k1u7g2nQS28b1g18Of5pqTlKY9G8UGd+MsA==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 649661F00AC8;
-	Thu, 12 Nov 2026 08:23:33 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 41EC51F00A06;
+	Thu, 12 Nov 2026 08:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794471814;
-	bh=qKYjBYnR5WGa5NCIh6j5J0rCxP117RMta7GUqAqVAXA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=XU5tzQTWCT4XiZ6Y2N6PKN1MlXwoot/4gcxImIf4zxM0NcspUo8Bx3fLjVrPfFCbf
-	 2RaQ/PYsWWLVok6qt0YUDEHMqZHclsnCZ05bIzYIPQODArvxgQfd7nwh/WpqPhU5m7
-	 0bAqwK+dTRSrGrbun9h8SAxoEHiMFCq9xB7Q/Uv7EqE3nWhW9XVYlc4TrCf1tDrvoO
-	 JwNO5HJ77m9PEsMf4iuu8a2g3ylMeC4NduZqpH5p2JzNOVqFIq9UMJx9Rt9tN6Ctgl
-	 FZkjxne+6RzYd0Ls9Pho8bwN1oiR5OATIEolj7IJHd+x2oVY99NpSfq2U70RTJdfBJ
-	 PBft74pJJWo2w==
+	s=k20260515; t=1794471810;
+	bh=WDvWniJQrezDUB16xlhO8KCfZlmxV+ztbr/1RAmPaQI=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=b6i9f2fPT1J7hyhD2DJR5Lsrr4hJMLO8WDudxwxUPdQ4wcFPlxYaod842rnrhOevp
+	 QtCTTf9n7QuXO18Y6Z3FLLly1MvmTCz53nzs6iGN/4Rnveh/T14FSLwbvmZlsVBbFz
+	 h0mAvEcYEhS1bRGR7pazi83ITR9zi/UMpv78snBBT0FtY/o4WIGkxteiKu4q6VrOuc
+	 UrJSlLtFiNi5D2SACge7t+SXiJtHaXPQeN885oIVw1bk0IRcF8+ZC25NWs7Fo1rtn2
+	 SRcG9n1pbHPMVfh1jElaE25nbhh0IHeGmjvf/JtoKHZqlWYrAbV/KNmmsHHsEFvPQB
+	 wNqDvWC9KIB/w==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id EC45E49361;
-	Thu, 12 Nov 2026 08:23:32 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 940054933F;
+	Thu, 12 Nov 2026 08:23:29 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:23:34 +0000
-Subject: [PATCH v2 2/2] usb: typec: fusb302: Toggle with the default Rp
- current
+Subject: [PATCH v2 0/2] pmdomain: rockchip: fix the probe error and
+ deferral paths
+Date: Thu, 12 Nov 2026 08:23:28 +0000
+Message-Id: <20261112-pmdomain-rockchip-v2-0-5cd942a23df7@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-tcpm-attach-reboot-v2-2-b4bc6ca83490@gmail.com>
-References: <20261112-tcpm-attach-reboot-v2-0-b4bc6ca83490@gmail.com>
-In-Reply-To: <20261112-tcpm-attach-reboot-v2-0-b4bc6ca83490@gmail.com>
-To: Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Guenter Roeck <linux@roeck-us.net>, Heiko Stuebner <heiko@sntech.de>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32OS27EIBBEr2KxDhFgaGyvco9oFjQ0Y5L4E/BYi
+ UZz9+DxPpuWSqp+9e6sUE5U2NDcWaY9lbTMNaiXhvnRzVfiKdTMlFAgpRR8ncIyuTTzvPhPP6a
+ Vt7q3TpGNIRpW/9ZMMf08me+XM5cbfpDfDtDRGFPZlvz7HN3l0fuPv0suOGAfHRA618HbtRa+X
+ v0yscvjHMj0favu27nKVrf5sZoPjVdReEMIYGR9tlpHgFargPV2xgF0JqKVhxa6QrxSp7QNjdX
+ WkOvQdCAB29YL7SL2FnwUsZJCHwK0EavC4w/gnlXvRgEAAA==
+X-Change-ID: 20261110-pmdomain-rockchip-3497a2e7fdf5
+To: Ulf Hansson <ulfh@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Shawn Lin <shawn.lin@rock-chips.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Kevin Hilman <khilman@linaro.org>, Caesar Wang <wxt@rock-chips.com>, 
+ Elaine Zhang <zhangqing@rock-chips.com>
+Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Yao Zi <me@ziyao.cc>, Igor Pecovnik <igor@armbian.com>, 
+ Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471812; l=3585;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471809; l=5076;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=tD7FYH82nlIArIvaQxvwuexRhWGTOTfnEzwgYwR8d8U=;
- b=spjM5HPPpWe+lrfW7WRU681uie2NR8dc4+wxVo2n+3xwGB6vSqQ1bU1/Os7tSe3znFz4XI8W2
- 2ONr7RyGZJ1CXPtw6TxihfctXruTMpLrgQehwYMr6XuEBm3iocDr10+
+ bh=bdn8cYKKzKlZzz1UfUin4coRd279HYZJRzRpgBrt3p4=;
+ b=85fXcymigcazjcdaZJGpvrxzTEvntfsmiXgH3L8DtL0aIS9YckTLoTa3z70D3YMPl1clEnnBl
+ 8nvbJ4WDTlpBqhDCtp1nc5ldIu7WjGvAyD2U/owR8dnZdVkzi+esN9R
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,88 +126,97 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+Two fixes for what happens when a Rockchip power domain clock is not
+available yet and rockchip_pm_domain_probe() defers. They are based on
+patch 1/2 "pmdomain: rockchip: Only put clocks that have been
+successfully obtained" of Yao Zi's series [1], which fixes the
+WARN_ON_ONCE() in __clk_put() on that path and has to be applied first.
 
-tcpm_start_toggling() programs the Rp current that tcpm asks for, which
-is the current of the source PDO (Rp 3.0A on boards that can source
-3A) when the port starts toggling from Unattached.SRC, and the default
-current when it starts from Unattached.SNK after a detach.
+1. The error cleanup removes the parent/child links before the domains.
+   pm_genpd_remove() refuses a domain that is still a parent, and on
+   RK3588 (RKVDEC0/1 are children of both VCODEC and VDPU) no ordering
+   avoids that, so devm freed domains that were still on gpd_list.
+2. Errors are reported once, where they happen, with dev_err_probe().
+   A deferral is no longer printed as an error, once per probe attempt
+   by rockchip_pm_add_one_domain() and once or twice by its callers,
+   its reason is recorded for devices_deferred, and the paths that
+   relied on the callers' message (clk_bulk_prepare(), pm_qos) now say
+   what failed.
 
-A Genesys Logic based USB-C to DisplayPort cable connected to the
-Orange Pi 5 is often not detected after a warm reboot: the FUSB302
-toggle state machine raises no interrupt with it while it drives the
-high Rp current, but finds it within seconds once toggling restarts
-with the default current after another device was detached.
+Patch 2 supersedes patch 2/2 "pmdomain: rockchip: Don't log when
+of_clk_get() fails with -EPROBE_DEFER" of [1]. That patch keeps the
+callers' messages and skips them for -EPROBE_DEFER, as v1 of this patch
+did; in the review of v1 Sebastian asked to drop the callers' messages
+and use dev_err_probe() in the error paths instead, which is what patch
+2 does, including the of_clk_get() path that 2/2 of [1] converts.
 
-Toggle with the default current, and switch to the requested one when
-toggling stops on a sink, before tcpm is told about the attach, so the
-sink sees the configured level from the start of the connection as
-before. tcpm does not set it again after attach on every path (not on
-ports without PD, for instance). The Rd detection threshold used for
-unplug detection follows the restored current.
+Tested on an Orange Pi 5 (RK3588S) with v1 of this series on a v7.3
+based kernel, with a test device tree that gives PD_FEC a clock which
+only appears about 26 s into boot. PD_FEC is nested under PD_VI and is
+reached after 18 domains and their links were registered, so every
+deferral runs the cleanup with nested domains present. devices_deferred
+shows "failed to get clk at index 5", there is no "failed to remove
+domain", list or slab corruption report (booted with page_poison=1
+init_on_free=1), no "-517" error lines, and the controller binds later
+with each of the 26 domains listed once in pm_genpd_summary. The same
+late clock on PD_NPU (the first domain, so nothing is registered yet
+when it defers) was only booted without these two patches; those boots
+are where the "-517" lines quoted in patch 2 come from. A host-side
+model of the probe and cleanup on the board's DTB, deferring at each
+domain in turn, leaves freed domains on gpd_list at 24 of 26 failure
+points without patch 1 and at none with it.
 
-The FUSB302B datasheet sets the toggle up the same way: under "Toggle
-Functionality" the processor writes HOST_CUR for the default current
-before it sets TOGGLE, and a HOST_CUR change after attach is applied to
-the CC line immediately ("HOST_CUR Changed After Attach").
+[1] https://lore.kernel.org/r/20261105001257.1368266-1-me@ziyao.cc
 
-Fixes: c034a43e72dd ("staging: typec: Fairchild FUSB302 Type-c chip driver")
+This series was developed with Claude (Anthropic) as a coding assistant:
+it wrote the code of both patches and the commit messages, and I
+reviewed every change and tested it as described above.
+
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/usb/typec/tcpm/fusb302.c | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+Changes in v2:
+- Dropped 1/3 "pmdomain: rockchip: put only the clocks that were got on
+  error" (Igor Pecovnik) in favour of Yao Zi's earlier fix for the same
+  bug, 1/2 of [1] (same Fixes tag, the same clocks are put). The series
+  is now based on that patch, and the dev_err_probe() for a failed
+  of_clk_get() that was part of the dropped patch is now in 2/2.
+- 2/2 (was 3/3): drop the "failed to handle (subdomain) node" messages
+  from the callers instead of skipping them for -EPROBE_DEFER, and
+  report each error once where it happens with dev_err_probe(),
+  including the clk_bulk_prepare() and pm_qos paths that relied on the
+  callers' message; new subject (Sebastian Reichel)
+- 2/2: a failed syscon_node_to_regmap() for a pm_qos node now returns
+  its own error (it can be -EPROBE_DEFER) instead of -ENODEV
+- 1/2 (was 2/3): unchanged
+- Cc Yao Zi
+- Not re-tested on the board. For the tested case (-EPROBE_DEFER from
+  of_clk_get()) v2 differs from what was tested only in where the
+  clocks are put (the err_put_clocks label, 1/2 of [1], instead of next
+  to of_clk_get()) and in the callers' messages, which v1 skipped for
+  -EPROBE_DEFER and v2 no longer has. The other changes in 2/2 are on
+  error paths the test did not reach. v2 is build-tested (W=1, arm64).
+- Based on v7.4-rc2; with 1/2 of [1] the series applies to the pmdomain
+  fixes branch as is. On the next branch, 1/2 of [1] conflicts with
+  "pmdomain: rockchip: cycle an optional power-domain reset on power-on"
+  (a reset_control_put() added after the changed line), and 2/2
+  conflicts with it in context only; git am -3 resolves the latter.
+- Link to v1: https://patch.msgid.link/20261110-pmdomain-rockchip-v1-0-6b9fa6ebaa86@gmail.com
 
-diff --git a/drivers/usb/typec/tcpm/fusb302.c b/drivers/usb/typec/tcpm/fusb302.c
-index 3319f6a2b0c9..44aa05fd4ba2 100644
---- a/drivers/usb/typec/tcpm/fusb302.c
-+++ b/drivers/usb/typec/tcpm/fusb302.c
-@@ -97,6 +97,7 @@ struct fusb302_chip {
- 	/* chip status */
- 	enum toggling_mode toggling_mode;
- 	enum src_current_status src_current_status;
-+	enum src_current_status toggling_src_current;
- 	bool intr_togdone;
- 	bool intr_bc_lvl;
- 	bool intr_comp_chng;
-@@ -942,10 +943,19 @@ static int tcpm_start_toggling(struct tcpc_dev *dev,
- 	}
- 
- 	mutex_lock(&chip->lock);
--	ret = fusb302_set_src_current(chip, cc_src_current[cc]);
-+	/*
-+	 * Look for a partner with the default USB current advertisement.
-+	 * Some sinks (seen with a Genesys Logic based USB-C to DisplayPort
-+	 * cable) present an Rd that the FUSB302 toggle state machine does
-+	 * not detect while it drives the high (3.0 A) Rp current, so they
-+	 * are only found when toggling starts from the sink side. The
-+	 * requested current is restored when toggling finds a sink.
-+	 */
-+	chip->toggling_src_current = cc_src_current[cc];
-+	ret = fusb302_set_src_current(chip, SRC_CURRENT_DEFAULT);
- 	if (ret < 0) {
- 		fusb302_log(chip, "unable to set src current %s, ret=%d",
--			    typec_cc_status_name[cc], ret);
-+			    typec_cc_status_name[TYPEC_CC_RP_DEF], ret);
- 		goto done;
- 	}
- 	ret = fusb302_set_toggling(chip, mode);
-@@ -1357,6 +1367,13 @@ static int fusb302_handle_togdone_src(struct fusb302_chip *chip,
- 			    typec_cc_status_name[cc2]);
- 		return fusb302_set_toggling(chip, toggling_mode);
- 	}
-+	/* advertise the requested Rp current now that a sink is attached */
-+	ret = fusb302_set_src_current(chip, chip->toggling_src_current);
-+	if (ret < 0) {
-+		fusb302_log(chip, "cannot set src current, ret=%d", ret);
-+		return ret;
-+	}
-+	rd_mda = rd_mda_value[chip->src_current_status];
- 	/* set polarity and pull_up, pull_down */
- 	ret = fusb302_set_cc_polarity_and_pull(chip, cc_polarity, true, false);
- 	if (ret < 0) {
+---
+Arun Iyengar (2):
+      pmdomain: rockchip: remove subdomain links before the domains on error
+      pmdomain: rockchip: report domain errors once, with dev_err_probe()
 
--- 
-2.55.0
+ drivers/pmdomain/rockchip/pm-domains.c | 144 ++++++++++++++++++++-------------
+ 1 file changed, 89 insertions(+), 55 deletions(-)
+---
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+change-id: 20261110-pmdomain-rockchip-3497a2e7fdf5
+prerequisite-patch-id: c2f0c5eb6651baa744f66342db63485a6685fb71
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
