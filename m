@@ -2,131 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73AA4606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B126606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mn5fpdyW;
-	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=VQQTu8Ca;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=Riyi6GBz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lvNC38JL;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=BFG0AX8w
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=O2cMjR9yzPx4FjNIH8WeRrejetDLBf3cij4Y+ejCORQ=; b=mn5fpdyWy8UaPW
-	aSaVEQDHn7YViVyJZGLWYj/pA+WT0jWbSyy3P1/2rNdhXXQpjsZonoOzQWmuNYwjEFtnJbyKCddt+
-	2PGeyjuUVBP7k4CHSHxh3+0hrG9HGKpilHEHicvoZWQEN1UpCRrky4kVFWv1q81u2tPDrP2Rg4kfu
-	lVh/Nf71SUQeY5i9YY/7lt0TE+Jr931VjqV4JL8jRVVqpopeoY4luV2xiL6kMbjhMZgI9rXJsfQ4B
-	T/0SgyJEdvzFluDFBO8bCn57dX8USMp4lxry99sd1wqXcsWi0ct+KReB+6/NAVnZMGScZ8nnVQ7dL
-	NWB/5pNtmDgll3L5yPGQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=y4NWcGpyLAF/FiolKWe6/Gbz2ERucyrW993TXlYX5t8=; b=lvNC38JLhAkWkYPX3orVDevs/E
+	SZ6tW3KhIgYNYyZDTaYOTKQsMSQ9Yf/vOf9HZ3T9ZaY+o3woanmBatQkCsz2iULfnfWd5vip7c8cr
+	4yMMY2t5WmHvBoNSkrGzJZVYo092twJ9QKRkpHImobiACxQ3HW2HRkEiGKRF0yAAiKur/eWkhdB2+
+	y/ALXsfipUKZGgzjxA7sBm4TM6ZDazrHpvoY6LGl+DHATm2IRdoH/mcVv7Kl0WBvmeb9Nozt+z0Vx
+	AkZMXGf9sMtTip+jIG3tLXPoc33TT4VoeX4Bq7RLh59Di6w6aPCu0fJLfpl5fSR8viIie+h2Yu/16
+	qw6iyZXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUpm-0000000A4If-1YYF;
-	Thu, 12 Nov 2026 13:27:22 +0000
-Received: from fhigh-b3-smtp.messagingengine.com ([202.12.124.154])
+	id 1xRUv2-0000000A4s7-1MjR;
+	Thu, 12 Nov 2026 13:32:48 +0000
+Received: from mail-wm1-x336.google.com ([2a00:1450:4864:20::336])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUpi-0000000A4Hs-3Yqg
+	id 1xRUuz-0000000A4rE-2Ydv
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 13:27:21 +0000
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 93ABF7A00CB
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 08:27:17 -0500 (EST)
-Received: from ams-imap-03 ([10.64.2.23])
-  by ams-compute-02.internal (MEProxy); Thu, 12 Nov 2026 08:27:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1794490027;
-	 x=1794576427; bh=O2cMjR9yzPx4FjNIH8WeRrejetDLBf3cij4Y+ejCORQ=; b=
-	VQQTu8Ca+GpoqtlLEEHD9zniEnLX1LcLlkvq4k7p+NOwt37jHvnhY3yyW9FgUN65
-	0HqHfGXOO8D4z/VHMHpTDBBFqQrLYqwEVaa/wTMv7YPZfmKXdJ2GqAcbIv8Wro5x
-	Oi/MK5Q68KcNYdVjaIRImSzvUlNNk+V451RvXqonH6WWLcWrznW2lgvYOzc6bNPX
-	HVnNMBkw5yUkC/2iwxleNjrXvASI7NlDLZR/U6BtsVSpUJ5/pqOhnIjthIyVGWpc
-	QLckFVdHDENAxIbDxqUJDnjI7tI1Tia6XnZlCPhLRqsk2kt2aDQvcKBYxrr/iUJ/
-	nBdqCSqcQYlYomiKlOptvg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794490027; x=
-	1794576427; bh=O2cMjR9yzPx4FjNIH8WeRrejetDLBf3cij4Y+ejCORQ=; b=R
-	iyi6GBz1HGz15e3j6yN33Phda/8+Z0nzmtJ/0qat4vHymgPwVyp3r7fNaXKLt9z6
-	x0EC3NTeXb+KTXSLVlatsAHtJbZxrhsrliNVshs4ByuHGjI3p1iwSFOLXwTeNfPB
-	0Pu3MfYotvbOjx8YMKVFOq7j9AcZFo0gPW1/jTxygcHtk00WukXSD8BlHxcS7JN8
-	coNgLvCIok090MOzpP2maHSnTr3z6HNOlgY6aYe6i5vRu/1rk1Zhsag5QuZt2+JU
-	hcC+fZr5SGdrV148aeKrJPDBfm5Uj+NIzmKVQ5xY+SoIFYa8D1vcYzTvMRPvZLSu
-	WOtX/qA7goQOrtFMA8XAA==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=arndb.de a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794490027; d=arndb.de;
-	mf=PGFybmRAYXJuZGIuZGU+;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:ifchz+eMCNY8yrIRHh50acr6xl3pXHSGopYylsVk2K2ROgd
-	kpS7fBwcp1dNkTB3KSJNMINmRzFXmavTUTdNHJz++J1ok3Bjsjq+iyQLX58It3/q
-	lYfKjS3dYcpBj6JOeR5PKk/lpeCDckadoo7YZh4Tl09IxeOFCsYTGXxk3i1dlylB
-	9frhe/UnZ2S22uDKf5Nnl/ILQspd/mYiUk6ulAn3UW6xKe3HST+i7nfHEzai2HDj
-	x2t8IRGw2Bqa/AAC9LHGXCP+zK0liixXb4iSBWHqk0aXJ6vWYg+AA+hWDZNkKMDZ
-	3nCvNZYC1gm53xVDStBcLsbtIp6bdArB+rdkRAw==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=12;
-	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
-	from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:Kff0dgzs0zBL+zaPVEZ/FAXWzqOn0OySYPVQarW0/94=:i4c501ZyCD5sNIncROoHKwQMRTWXxYq4u1vDcRxvSsU=;
-X-ME-Sender: <xms:o771apIEwU78ImdKJMIXZSKyBmiYRujvDbrz8RvwwXrsgLuEGRi70w>
-    <xme:o771av_xcKDi4AJTY8aD2M04WM3Hgk0evqdkIvBIFfTGTEZXwzzCSHFmkyVHfdG1w
-    IfT-fhf6AN2oVPP1Dlsyxza_lOct-jiXyPltZs1m1dzBFeGc9eaZNts>
-X-ME-Proxy-Cause: dmFkZTGAGn9YXYitrhore6IN0xSvjsAnm1g8uO8G/rBlyoZEPZcGKHflQ4cd1CGyc7u3FY
-    lyI4GGDINEaQvUJ60pNMagWhIrAAmeu9PCIX7BpFjMEOhFxQlDI7P9nKCEetRYakx9k4yH
-    zOdFMwgpltLtiRGIJAuajTvoZLN9zd//XoA8i6mpYenbg4h1qkOvWDMJWOrgPOhfQm+jjO
-    AIiaHcTGn0QmBIfDQ8RW/8HSjasttxmT/eOjUexIPxRf5pM6pH7O9LjCKTOofftixH5TVS
-    XwR9P0w80zcjkjtafAhUy+Qs29wJ7VmYwj4OLeB/vOO8N4xQuyEhJ27y32P4N3c9EtiTc6
-    i4rjJ2f2Jg9nwgzaQgBsV1Gzsr1y1OTTunwXZDGq+LUDFgF4/qVxEgQSBPbwAKCUmIpfGe
-    Q5KfNKy7hG4qBzSjXGCIAdrS4eoB5d7AfFspixFKVSlYRSImzXCPFAGAMTKPswc8Al7RTe
-    6mFof4PXlhRqj4PCnrfnAF7Iwcv5/RkbsY8Pp4ND2t99jcjcv8BFRw5m+ji31CCIrm4h+F
-    3fCKRBVXM8bCIQk5/UQ2B1SIZdHp/6FuPb8qtYnb7UO5zVMLWRcvfim5icH7eSXCPeNWNT
-    0ng4Psnest6tcFpeWklID9IBOLXSI3Pf/8nwvdenN7iYiKVjC/5WW/8w4ajQ
-X-ME-Proxy: <xmx:p771aqg1qe7lGBvhbLQgU0oOgVcivaDpZz9ezcs3gCs9C0N__LigEw>
-    <xmx:p771av6f8kcPjvAaCtvKmbHAAsVpmPPxVEX07zWmxLCdB1HtwsXTiQ>
-    <xmx:p771aqqbgJM7jJcBW4dJ-W8j3SylX-rG7XCxXoBM8gXFWW38YtQ6sw>
-    <xmx:p771akhSWCJ9LN8M76dbJIYsHOSgnLyVgZ9WJTYZxCEn4QPdPvhtyA>
-    <xmx:q771att1eGrcIwChuJ4viY_p7BF8HjIQDVNJ9_qJY6MtXunpkOKb0HDM>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id B149132A0099; Thu, 12 Nov 2026 08:26:59 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	Thu, 12 Nov 2026 13:32:46 +0000
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-4b76c15ae36so33345e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 05:32:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794490362; x=1795095162; darn=lists.infradead.org;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=y4NWcGpyLAF/FiolKWe6/Gbz2ERucyrW993TXlYX5t8=;
+        b=BFG0AX8wkuVCN4fXrGLIscUXdv8Qh/ZlAuYCavyp5P2pH+YwUMy2iH5jpHto0EimoK
+         Wxbk+DRPxrqMQ4V7G5dd+s7z4zejCSchA3SZRQAjjD7DpPDlR2OGvuMaq/mcfExbais6
+         stb72dUqGsTOxvLzwOGdiloPuMD7b50gNSD+Ocsi30DZGVPoQ3C5LA5Fa+YSCkpwBPIq
+         STc/lTrkaRm5oilBBxa4b75HqVn1YVZuAUdsqeQH/a/tAsmhgosBeDUYEKfvvYIqaf7X
+         /SZ4deZ14H0ozvUuyeKnJb3uJCQIrKOCZgddVzp3AUAJoUdqSteIZnL4jcUVJoLrEvyA
+         YewA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794490362; x=1795095162;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=y4NWcGpyLAF/FiolKWe6/Gbz2ERucyrW993TXlYX5t8=;
+        b=akYpNyNI6eIa6LdI/FNMKoiygRJbpIoHIbnkKF/Y92jD2k36g17exZjoESnucvAbJq
+         2q4wwW2p54HZHq/yIxTSzn/e8QPklNtTjl9e94xawLDlWol94ATsAHrv6bcN8JqvNzos
+         r3l4p4QKxzeIiZQ1BaW/WLBS3LymWTkNWHoLWb68Y6pfQkFEHFsrOsRk29lg8ge3qAQ5
+         gxdE/C1LxXBHqyY3xfpjqzRZ8FWe6RMmbeditywYwG8gACpUUVBBM4/YF/wdhAPIu+Lu
+         oY9AKTr7oJHTeNF0zu33ArVEkbAvwhVLXU3ZfbCRIA2G3TgFAIgdGa/tfL1DAM9wj3Xq
+         i2Qg==
+X-Gm-Message-State: APuU4Z8v9DExOx9s6rI0mOKOD9M0SmNf8NKMC55F8lQgAZWpwXzxV3qj
+	utQHFCD/jIvuZNTlgXqK/k+pJ27M0NLr9ykxkBkXD50fVJRWB3gtgJ+30KigS9l7Ew==
+X-Gm-Gg: AYBFou0x0dPiMaOWLbylxkqT5LQeTLQzIyaLZLIWhZ3WbLGZj2OJlhvrr+m0701qA5s
+	/GqPU3aJImHk05BRWTBwSdzKhR+QmlT1Vr/oYsrKXhA2O07HPcxuy5VGPgYdHUyCUKjxvn5AG2d
+	5pdMwvI5GGT/2x+uExWrISPhX43VhrkgJrtdkvC2fGMpbvcB1XNNee5Jq8oYtGoRblDgMz6kd/W
+	y0nAo7DNf/RlWYGJbe20S1424cQKHV693DbxdRl9ir/tmtstYWHo7fsuLu3/tCsiKdCooy2Qh/W
+	YBJhHkY9FXGT9ABueSlB3pMFPIfq9rxa3E62aiYDdzi+J7oeWUnGyXiFZOKWPk6qIt7TvxqNnT/
+	biNAI23iepdj8qGCA2rfT2vK0vZ+gZy2ZYdyKtFmq2edfuuyESjprrhJHxnZSf48PtvqkqQha3g
+	0EtlYd3FBAtup10BuM9TymbnJzfh75mQABhwvI4/ZYzviFdCp5SdLmpLATP7DCIebHBOGq21vVs
+	fzS7VCQo3RSSmjpvNDXwO5Mza1+qA+luwqB80TCQjzp5xvIBw4zKCiUhz+4S063dTCgRE7kwwRo
+	On9pBKIWl3S6iEOeyXpIqkMsfxznA86veSNttpgWF7xyXrBFCUjH0YilmZY1WYpWcvJdgifOYim
+	AXcD3zLWQAh5BsA4w
+X-Received: by 2002:a05:600c:a115:b0:4b6:c939:3bfe with SMTP id 5b1f17b1804b1-4bb4ff4ad18mr794835e9.8.1794490362201;
+        Thu, 12 Nov 2026 05:32:42 -0800 (PST)
+Received: from google.com (250.192.189.35.bc.googleusercontent.com. [35.189.192.250])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4983585923bsm17339835f8f.11.2026.11.12.05.32.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2026 05:32:40 -0800 (PST)
+Date: Thu, 12 Nov 2026 13:32:36 +0000
+From: Mostafa Saleh <smostafa@google.com>
+To: Nicolin Chen <nicolinc@nvidia.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	kvmarm@lists.linux.dev, iommu@lists.linux.dev,
+	catalin.marinas@arm.com, will@kernel.org, maz@kernel.org,
+	oliver.upton@linux.dev, joey.gouly@arm.com, suzuki.poulose@arm.com,
+	yuzenghui@huawei.com, joro@8bytes.org, jgg@ziepe.ca,
+	mark.rutland@arm.com, qperret@google.com, tabba@google.com,
+	vdonnefort@google.com
+Subject: Re: [PATCH v9 11/25] iommu/arm-smmu-v3-kvm: Add the kernel driver
+Message-ID: <avW_9A48mtnK383x@google.com>
+References: <20261015200903.2735565-1-smostafa@google.com>
+ <20261015200903.2735565-12-smostafa@google.com>
+ <auzvygiGRTWgJXzF@nvidia.com>
+ <avGk0ilyJh3obmKx@google.com>
+ <avJidXM9yQOX4VBJ@nvidia.com>
+ <avL016l_xASN5paR@google.com>
+ <avNhekBYqiiZ9IM2@nvidia.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: APvT47k4hUj-
-Date: Thu, 12 Nov 2026 14:26:39 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Mike Rapoport" <rppt@kernel.org>, "Arnd Bergmann" <arnd@kernel.org>
-Cc: linux-mm@kvack.org, "Andrew Morton" <akpm@linux-foundation.org>,
- "Andreas Larsson" <andreas@gaisler.com>,
- "Christophe Leroy" <chleroy@kernel.org>,
- "Dave Hansen" <dave.hansen@linux.intel.com>,
- "David Hildenbrand (Red Hat)" <david@kernel.org>,
- "Jason Gunthorpe" <jgg@nvidia.com>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Lorenzo Stoakes" <ljs@kernel.org>, "Matthew Wilcox" <willy@infradead.org>,
- "Malin Jonsson" <malin.jonsson@est.tech>,
- "Richard Weinberger" <richard@nod.at>,
- "Russell King" <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
- linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org
-Message-Id: <ba23a789-9820-4223-a6db-d9e99ebcf356@app.fastmail.com>
-In-Reply-To: <avWo4NrAPX8BisCY@kernel.org>
-References: <20261112112528.1116405-1-arnd@kernel.org>
- <20261112112528.1116405-5-arnd@kernel.org> <avWo4NrAPX8BisCY@kernel.org>
-Subject: Re: [PATCH v2 4/6] mm: drop HIGHPTE support altogether
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avNhekBYqiiZ9IM2@nvidia.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_052719_348471_75AF8D70 
-X-CRM114-Status: GOOD (  22.20  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_053245_670476_CA624C41 
+X-CRM114-Status: GOOD (  34.30  )
+X-Spam-Score: -17.6 (-----------------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -137,120 +112,74 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026, at 12:54, Mike Rapoport wrote:
-> On Thu, Nov 12, 2026 at 12:25:26PM +0100, Arnd Bergmann wrote:
->> From: Arnd Bergmann <arnd@arndb.de>
->> 
->> With both x86 and arm having dropped CONFIG_HIGHPTE support, no
->> architecture is left using it, so remove the remnants in common code.
->> 
->> It is likely that further cleanups are possible in the page table
->> code but those are not obvious from the config options.
->> 
->> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
->> ---
->>  include/linux/hugetlb.h | 5 +----
->>  include/linux/mm.h      | 1 -
->>  include/linux/pgtable.h | 9 ---------
->>  3 files changed, 1 insertion(+), 14 deletions(-)
->
-> With this and arm HIGHPTE patches applied there are still a few leftovers:
->
-> $ git grep  HIGHPTE
-> arch/arm/configs/vt8500_v6_v7_defconfig:CONFIG_HIGHPTE=y
+On Tue, Nov 10, 2026 at 10:24:58AM -0800, Nicolin Chen wrote:
+> On Tue, Nov 10, 2026 at 10:41:27AM +0000, Mostafa Saleh wrote:
+> > On Mon, Nov 09, 2026 at 04:16:53PM -0800, Nicolin Chen wrote:
+> > > On Mon, Nov 09, 2026 at 10:47:46AM +0000, Mostafa Saleh wrote:
+> > > > On Thu, Nov 05, 2026 at 01:06:18PM -0800, Nicolin Chen wrote:
+> > > > > On Thu, Oct 15, 2026 at 08:08:42PM +0000, Mostafa Saleh wrote:
+> > > > > > diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> > > > > > +#ifdef CONFIG_ARM_SMMU_V3_PKVM
+> > > > > > +/*
+> > > > > > + * Two devices are involved: the aux device bound to this driver, and the
+> > > > > > + * physical platform device bound to the pKVM init driver, which only uses it
+> > > > > > + * for discovery. This driver keeps using the platform device, as it carries
+> > > > > > + * the fwnode the IOMMU core and consumers link to, the DMA configuration and
+> > > > > > + * the IRQs.
+> > > > > 
+> > > > > It would be nicer to have a diagram or so to show the co-relationship
+> > > > > among different devices and drivers.
+> > > > > 
+> > > > > I assume the regular arm-smmu-v3 driver is a part of the picture too,
+> > > > > when the pkvm driver binding fails?
+> > > > > 
+> > > > 
+> > > > I can add some ASCII diagram.
+> > > > If pKVM driver fails, no aux devices are created and the main driver
+> > > > probes the platform SMMUv3 devices as usual.
+> > > 
+> > > I didn't check closely, but would it be safe to do so?
+> > > 
+> > > Is pkvm aware of the missing SMMU device and handling it properly?
+> > > 
+> > > When pkvm is enabled and the SMMU device is supposed to be a pkvm
+> > > device, should it not fall back to the main driver?
+> > 
+> > If pKVM fails to init for any reason (unsupported layout or non-coherent
+> > HW) the SMMU will be bound to the main driver so the system remains
+> > functional.
+> > 
+> > However, pKVM will not be safe in that case regarding DMA isolation
+> > as the status quo.
+> > In Android, in that case, pKVM clears the FW (called pvmfw) that loads
+> > the protected VM and authenticate it so any protected VM knows the
+> > system is not trusted. This part is not upstream yet. [1]
+> 
+> You might want to double check a dual-SMMU case, where one gets
+> accepted by pkvm driver and the other fails and so bound to the
+> main driver.
+> 
+> It seems the pkvm driver would still pkvm_iommu_register_driver
+> and carry on with an untrusted SMMU. Would it also clear the FW
+> and mark the system as not trusted?
+> 
 
-This got dropped in patch 5/6 in v2, but I've moved that here now.
+That shouldn't be possible, if one SMMU fail the whole thing will
+and the driver should clean up after as the probe is done through:
+	ret = platform_driver_probe(&smmuv3_nesting_driver, smmuv3_nesting_probe);
 
-> mm/memory.c:     * Dumping the PTE would be nice, but it's tricky with 
-> CONFIG_HIGHPTE,
-
-Added the patch below for this. Untested so far.
-
-> mm/pgtable-generic.c: * kmapped if necessary (when CONFIG_HIGHPTE), and 
-> locked against concurrent
-
-Updated the comment and also dropped __pte_map() after I noticed that
-open-coding the only caller in pte_offset_map_rw_nolock() is consistent
-with that comment change:
-
---- a/mm/pgtable-generic.c
-+++ b/mm/pgtable-generic.c
-@@ -314,7 +314,7 @@ pte_t *__pte_offset_map(pmd_t *pmd, unsigned long addr, pmd_t *pmdvalp)
-                pmd_clear_bad(pmd);
-                goto nomap;
-        }
--       return __pte_map(&pmdval, addr);
-+       return pte_offset_kernel(&pmdval, addr);
- nomap:
-        rcu_read_unlock();
-        return NULL;
-
-
-> mm/userfaultfd.c:        * index ordering when CONFIG_HIGHPTE is 
-> enabled. We mapped dst_pte
-
-Dropped that comment block as it no longer applies.
-
-> Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+In that case, that system will be considered untrusted.
 
 Thanks,
+Mostafa
 
-      Arnd
----
-Subject: [PATCH] mm: print pte in __print_bad_page_map_pgtable()
-
-HIGHPTE support is gone now, so it's easy enough to print the
-PTE here along with the upper level entries.
-
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-
-diff --git a/mm/memory.c b/mm/memory.c
-index ec3d9d99ccee..dabeb5568c94 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -528,9 +528,11 @@ static void __print_bad_page_map_pgtable(struct mm_struct *mm, unsigned long add
- 	char p4d_str[PTVAL_STR_MAX];
- 	char pud_str[PTVAL_STR_MAX];
- 	char pmd_str[PTVAL_STR_MAX];
-+	char pte_str[PTVAL_STR_MAX];
- 	p4d_t p4d, *p4dp;
- 	pud_t pud, *pudp;
- 	pmd_t pmd, *pmdp;
-+	pte_t pte, *ptep;
- 	pgd_t *pgdp;
- 
- 	/*
-@@ -567,13 +569,18 @@ static void __print_bad_page_map_pgtable(struct mm_struct *mm, unsigned long add
- 	pmd = pmdp_get(pmdp);
- 	ptval_to_str(pmd_str, pmd_val(pmd));
- 
--	/*
--	 * Dumping the PTE would be nice, but it's tricky with CONFIG_HIGHPTE,
--	 * because the table should already be mapped by the caller and
--	 * doing another map would be bad. print_bad_page_map() should
--	 * already take care of printing the PTE.
--	 */
--	pr_alert("pgd:%s p4d:%s pud:%s pmd:%s\n", pgd_str, p4d_str, pud_str, pmd_str);
-+	if (!pmd_present(pmd) || pmd_leaf(pmd)) {
-+		pr_alert("pgd:%s p4d:%s pud:%s pmd: %s\n",
-+			 pgd_str, p4d_str, pud_str, pmd_str);
-+		return;
-+	}
-+
-+	ptep = pte_offset_kernel(pmdp, addr);
-+	pte = ptep_get(ptep);
-+	ptval_to_str(pte_str, pte_val(pte));
-+
-+	pr_alert("pgd:%s p4d:%s pud:%s pmd:%s pte:%s\n",
-+		 pgd_str, p4d_str, pud_str, pmd_str, pte_str);
- }
- 
- /*
+> Nicolin
 
