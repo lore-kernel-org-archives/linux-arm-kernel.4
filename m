@@ -2,94 +2,120 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CEAD606A891
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7EA606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wx0EYI7G;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=IfLpwo4i
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=g8OD4B/Q;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=0jpUNEO8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=fMa1F596zZeCN4DtEvr02egD3NFnabU1nIZffJ3y2Fs=; b=wx0EYI7GteKjqQrfkBcqINdqiW
-	KIBxKZO89zQyYDTugwb4HnpJU5VYoXUXGdN3kzgR7sYkNxiFTb+h4eWBtRcUbwxhliJz5aXvlJ9i4
-	a+QVDO6//tUPRZseiNeI9NIsO5fVfHfaa77TlOOcv8ZYkaO4Zfpq8Zpc1VCkyc1I9frTeGzrbIcu9
-	8A3vhNRqLcEh41yz5hQUMEgk2E0cq2HKU5cCYFeHBUflu//5b2VBmLGGMMJ0o0Z4S/8ImPOLm//F9
-	L1q8Siw0KvV6vWw++PckNfR3QOhmYIMSMzNdvOxLdgBUcjLSd18/kU+by0iF2GAc29MxOa9yhKEhN
-	E1kNwhjQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=pqLudJhoiPVgD2EoEahVlHAVCEoKHq8SKN8B7L0dVhY=; b=g8OD4B/QHpVA8Z
+	6DIEJMlqOQ8Gy0ZlsdZ1S8dGm9I1J5URj42rxdOUC/QI6bY9/8y7hpahBhvU+5d3SyPTfoS8N4OBd
+	c78eE+inaC/UIxaYUCGodPB/vZtXhD6XRiG/eBXMmgQ1mzWOd2Zt+KJGlK7WaAn0ZWhxrMhP2SF93
+	7eru0KmDqNtdCxRMA47hquJ7Kgy3elp5cI72awpQH7Fhx8yzfEL40GDhNzE9qu2m01Dfui0XzxxGO
+	7Z59Bn+HKP6srvbfKcBthOMCF+xPJK5fwgJts4yolcNic/Ub3yJf+Hdp4OKR4VW0SnMC6nk0mQGUj
+	IC3tDQb8O/ersf/5q8kw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKh5-00000008XUi-0rwu;
-	Thu, 12 Nov 2026 02:37:44 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xRKho-00000008XeJ-2w4k;
+	Thu, 12 Nov 2026 02:38:28 +0000
+Received: from mail-qv1-xf30.google.com ([2607:f8b0:4864:20::f30])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKh2-00000008XUA-0L3v;
-	Thu, 12 Nov 2026 02:37:41 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794451057;
-	bh=lUDmKjtljGQw127/vFvt2r0JrBvNqetevLUcJso/6hs=;
-	h=From:Date:Subject:To:Cc:From;
-	b=IfLpwo4ivjWYLXGC3jzRWCcE78/65qO9rAG9w2IqBclGvj561Li5P0T0X1Fe73pwr
-	 eHRN86E43Mbapmo60lpHTwp3OU9E2oYDz9MwrAzQDW1T8jYQLMYMkRnXV+VyUjn/6U
-	 TlP2Y0MhBzksj4hfFOmnJARMAphqzb7FJmNpS/oVDc0eq+SyhV05ZkG2j8/UfFX8Ig
-	 /9pFNGAa6IkNUgUWl1Vo5FsEs1NaIKCalA8TIWwHkc/OD9gXxd6wREY8UuOktIovh2
-	 BTRDg62qO6mWijKFFI5/ToRvnmfMQA+IFbGTtORKqZG52iepVSO6IiSv04dl6k+2EC
-	 i4P6uH51iQTFw==
-Received: from jupiter.universe (unknown [100.64.1.62])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 08D6417E0240;
-	Thu, 12 Nov 2026 03:37:37 +0100 (CET)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id B87D948002C; Thu, 12 Nov 2026 03:37:36 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 12 Nov 2026 03:36:40 +0100
-Subject: [PATCH] clk: rockchip: rk3576: create proper platform device
+	id 1xRKhf-00000008Xbr-3PZs
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 02:38:22 +0000
+Received: by mail-qv1-xf30.google.com with SMTP id 6a1803df08f44-91ebf4cd218so34240216d6.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 18:38:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794451097; cv=none;
+        d=google.com; s=arc-20260327;
+        b=LnZokl3OmK9nrWg0yiXmMM7rtsV3Zz7GCCvKqMKA/ASMw9K6bDenNvhGfRw62MfDfe
+         DbAzN8gGUrPY32+Eat4nRxqBpNT+AZntGj+TwqkYtX3l7OhTJrxEXsysbPuJWHar4Xdn
+         HSEpc4wIDxakLMAi2wxRx2l2MOU83FM3wgbOLIBPE2TGpbIhEK463YC7vNAILMlmtrlQ
+         OBDsfVXHz7EcA3fFBvlpnszSPkJvX/LMXNw0DO3JrjCCmeflMEdVGqkOK6yh7oaO5hxW
+         BCQCamGIdyZxle9LJYhjMzUEZTcY2UvMv8ZZsKDeVMBp58SbU+3gpeHQDxyoDEfe9u0Y
+         tnXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=pqLudJhoiPVgD2EoEahVlHAVCEoKHq8SKN8B7L0dVhY=;
+        fh=qJ08KheteArpzl4IvKHXkEPiIjLYfE6bK7FL/PqjiYg=;
+        b=gWYgFdoS+63lNY0nzzbZPsQyhnk9mmAtgNdkafDuVbVr5vo4IJKJ7xlcXbhO/4J+85
+         9GlVKWD2jo2hJjqRvSOmRYCN/1HtQlmdNMKRSqRVzBEtgXe6fMQDvBnB2PN974kIDoiF
+         vodMPn2sN5v24AOoAEetV/OtwOSPl/1WQ4AvpCheAOpCF+5geADCTzyBDenC2/FOyy0f
+         LSsWEW63KZZckZuBW2BkQdPKhNQVQJJT1aPerLkc/pkDieZlgcDCGZK0dPEUQuq5vpHV
+         IflA+44jdg8nLEB8G2qdzK/I0o3rV8LjjpikUjavNISXrJA3+9PYH46AoCdeh2JU2Seo
+         9ttQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794451097; x=1795055897; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=pqLudJhoiPVgD2EoEahVlHAVCEoKHq8SKN8B7L0dVhY=;
+        b=0jpUNEO8tB4JpaUQwvf3C86N9fNtWiqhlsjtOHbzMeSGxELXuSWTMJoqZlrjG5weS9
+         7sgn8HKdwpWJmObQ+dX1DoquNBFYrIeOF4PyUlwE3Z7m9jOUjaH4TGwj3H4w3Z/egbDZ
+         h/cfCUNYwcTUIRZHpozhyqCBbqZlyOAnG9fJWfrzQpcdix0RTTu5wsZFEczLvQSDUETm
+         0A0hqiUBiMV30hg5Y7xAAaTY5XTKz9I3ImlzX28gu6j7MTvHD101vlZfy7fK2mE4WRYw
+         i4pGeAu/Z3SACEsDRKmgU7J6ZVQG/XRDyaBsJJ9vpEADaN3AjFe3jW6Br1AlGP9xIS6v
+         nFJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794451097; x=1795055897;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=pqLudJhoiPVgD2EoEahVlHAVCEoKHq8SKN8B7L0dVhY=;
+        b=uhr5nOAl4ekiOVg8cTAQhU9RyJXIkXs9b8E1nuUXKIOKl1c8HZ7fXqwTiytlcUJgi9
+         3aDT6ZWET5KaDDJIsc73nx7s4fQPZ2ctW1L6cYQbStb8Cts2v34CpBYJ69zMLAUTmDcA
+         ctbbefCHb1r/+HDGrFX6lZ9Z3jxr5FC2C0M2JHxwzsxCW8jHutiLVLfvrtc7AHfn7hcg
+         XN4gxykBy6xWcsjam+Th/x8txlUHP2SQbwVABVcqd71SzVJPqjq/QD7Q7Uf2gBpuucTo
+         qTQdDkMn9S0KRYmqE1+qINL6UeLQkal4mr/Wl6RUUBjdtrXPe8odqLM5Vq6G9qYcefca
+         Q+6g==
+X-Forwarded-Encrypted: i=1; AL+hErHRFckP02UBB4/cCkgzmVjUAYs6Ukan/0wPOWweZyLf4+3WIW5rcTaFEBwaZUS/qabRU135NSxz8a+2zidnX4Jb@lists.infradead.org
+X-Gm-Message-State: APuU4Z/Wy1lUveFGB/0q4L33Bt38N4K6cA/53SrI8InFk6q/EOu6Beuy
+	YTyzoP0/RnNx5ecZBhEaMiiqe69Fl4vPNQSM5fApkZEH9+PnH97+Xm9OM9H+4UcZE1VLEoQjXTo
+	USTdAcC18btjwpJxOwWABcZl8FRWE4kiqKaM02AA=
+X-Gm-Gg: AYBFou2mJHODYT+yDau+ii6keILl+PjrmP2EvYDagES15BApVFYqAQsn3iciuOeYuaw
+	8Sv6b3oYLr1Xl9uVOMVvvcvjSI0fjhlHjiJAaZDN79ofp1pLunHRW7tOIGrjKx+cMwzflpvq2fp
+	YDtBGe/CWTPogP/R3rFGQ06K4Dn9/AZ0HLKYFOwLtxlX6JAB0C0XqKl20LZto3v499zXUJYiGSr
+	GezmE02hCeY0AgJW6nwyt+29xBmLA3cNya7jV9VQwVQUWg2k0petaG7o9l0bDDveNGvE9MVrIE4
+	tmHwiNlA6sKE8lP9ZUhAqdhI0IPFDPHqccedb0/6KT++/GCng5C7l5snsziFe27iTuXYyOeJTn+
+	biG9iHTTrRtw4EbbqwL6nmjZoRHhOzSc8Y3Su
+X-Received: by 2002:a05:6214:62f:b0:91f:1383:1bea with SMTP id
+ 6a1803df08f44-91f13832415mr25376006d6.2.1794451097094; Wed, 11 Nov 2026
+ 18:38:17 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-rk3576-clk-platform-device-v1-1-2f3ac9f09403@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ6CQAxA4auQrm1CS4DoVYiLYeho5TcdICaEu
- zvq8lu8d0AUU4lwyw4w2TXqPCXQJQP/dNNDULtk4JwrImK0vijrCv3Q4zK4Ncw2YpdCL0jsAud
- lfW05QBosJkHfv3lz/ztu7Uv8+j3CeX4AnojzKn4AAAA=
-X-Change-ID: 20261112-rk3576-clk-platform-device-12af20579b2f
-To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Heiko Stuebner <heiko@sntech.de>, 
- Elaine Zhang <zhangqing@rock-chips.com>, Liang Chen <cl@rock-chips.com>, 
- YouMin Chen <cym@rock-chips.com>, Finley Xiao <finley.xiao@rock-chips.com>
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@collabora.com, Dragan Simic <dsimic@manjaro.org>, 
- Detlev Casanova <detlev.casanova@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4298;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=lUDmKjtljGQw127/vFvt2r0JrBvNqetevLUcJso/6hs=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGr1JnDFs9N+ORoHA/zkD4paMpzY9YFK/0oca
- aypg7XvG9a81IkCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJq9SZwAAoJENju1/PI
- O/qapGgP/3JYeHHE33FqJeXoA82rbh5VSH7oTa/FIq4xjf4mwBhcFMDYgd735i22DjNDHjct9BD
- RakcG3HSMNLVymfiAPEGtWFP9IgXDwwNJo4EU1ixpKzXyVLKn1jaL/ylpkhxsHzU+vjUCZTlhah
- 2j7LgwQ4U/yg0NK6RVTIT+YAUYx9fNxVDj+SfAdBFJaB/BjDRClh8Y1oKOVj3ju0RMRlVLd9+kY
- eWGR3c3QpMKk08SjtHSu881mncwflJm+eIM8IHzqiEN8UG48U6elwtoU+an/h4r/q7gdf36KNTi
- Hl2wJaD84fGquOkiIpVgh3eM45/gEZhIrpIl0SZ1bL2M7n8yDAxqsA3s1+dKFJr21xiLw5ZeUwc
- /pnscgSnLLQfMkWTgqcjP1ogxve7ylFCi+eU/GK0gmhSW7ub3oDcJpyhaEfllCO9kT0qKakNbdU
- PLWK5/dge5IigT4jhCboWewhJY7FAdSeuDNJPoxOeJgzXbFJwf/+39WVs9royCGivZ14g/5Z6zr
- jEz+walFZ/Dl9IEDYQ7qwHO0pqSRVxbIgMaGMB1mEVhMRLzVGeDUCAfHgxzQ/d8T6fewtKIRm8x
- 1wMlx2vg1s/FsyQ2HvYfJIB93vc3LdL4LZ21dH960hFbxuI4kA6cJ2J/rcRgl9nPIEjsZParQk8
- QBl1/jS73SbMNciNYXfUoZg==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+References: <20261109134506.2794160-1-zxyan0222@gmail.com> <179423231463.488859.16977464890948797360@kernel.org>
+ <20261111152012.3506cf35@kernel.org> <CAP7veT+buHRMu6f3o5RaKFdv3fABkWKgkO6KFn5js4PEeB8b0w@mail.gmail.com>
+ <20261111182822.580e871b@kernel.org>
+In-Reply-To: <20261111182822.580e871b@kernel.org>
+From: zhu xin <zxyan0222@gmail.com>
+Date: Thu, 12 Nov 2026 10:38:04 +0800
+X-Gm-Features: AclHuK9rCxYPptofSIgt7EF7v4G1h1kXDVVe9np1u7jTLTpnwVCKysG5CejzHGI
+Message-ID: <CAP7veTJpAMfEWQ7=Bm3iEiFC5L+WBj9PEnPQCEua6goKEP4VHA@mail.gmail.com>
+Subject: Re: [PATCH net-next v10 0/3] net: stmmac: dwxgmac2: timestamp
+ interrupt support + Agilex5 fix
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: netdev-bot+sinfo@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+	edumazet@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
+	richardcochran@gmail.com, muhammad.nazim.amirul.nazle.asmade@altera.com, 
+	rohan.g.thomas@altera.com, rmk+kernel@armlinux.org.uk, 
+	o.rempel@pengutronix.de, wojciech.drewek@intel.com, netdev@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_183740_304799_9DB785A5 
-X-CRM114-Status: GOOD (  24.33  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_183820_029146_AA5416F1 
+X-CRM114-Status: GOOD (  25.34  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,139 +126,48 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When RK3576 clock controller support was upstreamed, it copied the
-vendor kernel's logic. That code makes no sense as it contains a
-bunch of unused code (clk_rk3576_probe is never called as the DT
-node is already initialized; if it would be called, the clock tree
-would be registered twice).
+On Thu, Nov 12, 2026 at 10:28=E2=80=AFAM Jakub Kicinski <kuba@kernel.org> w=
+rote:
+>
+> On Thu, 12 Nov 2026 10:18:41 +0800 zhu xin wrote:
+> > On Thu, Nov 12, 2026 at 7:20=E2=80=AFAM Jakub Kicinski <kuba@kernel.org=
+> wrote:
+> > >
+> > > On Mon, 09 Nov 2026 13:51:54 +0000 netdev-bot+sinfo@kernel.org wrote:
+> > > >  - What hardware the change was tested on. For driver fixes please
+> > > >    mention the device (and if relevant firmware version) used for
+> > > >    testing, or say that the change was not tested on real hardware.
+> > > >
+> > > > Please do not repost the series just to address the above. Instead,
+> > > > reply to this email with the missing information, so that reviewers
+> > > > can take it into account. If the series needs another revision for
+> > > > other reasons, please include the information in the commit message=
+s
+> > > > then.
+> > >
+> > > You are at v10 and still getting these automated emails.
+> > > What's going on?
+> >
+> > As for what is going on: I answered the bot's full questionnaire once,
+> > in a direct reply at v7 [1], and since v10 the same facts are
+> > described in the cover letter.  The bot, maybe, evaluates the
+> > individual commit messages, where I never put the information,
+> > assuming the reply and the cover letter would count.  They do not,
+> > so the emails kept coming.  I will fold the tested-on and
+> > found-by-inspection statements into the commit messages with the
+> > next revision, which should settle it.
+>
+> Read what I quoted. It literally tells you to put it in the commit
+> message on revision. How many times do you have to receive this?
+> Please either pay attention or stop sending patches.
 
-Let's switch the driver to use the same style as RK3588: Continue to
-initialize the clock tree early via rk3576_clk_init executed by
-CLK_OF_DECLARE_DRIVER before the device model is initialized, but
-don't mark the DT node as processed.
-
-Later the device driver is probed for the DT node and registers the
-resets as well as the restart handler. It also officially becomes
-responsible for the DT node, which fixes all device link messages for
-power-domains with a clock phandle:
-
-Failed to create device link (0x180) with supplier soc for <device node>
-
-Note that the supplier is 'soc' here, because there is no device for
-the clock-controller before this change.
-
-Ideally at some point we move the clock tree registration to the
-device driver and get rid of the early init completely, but the
-upstream kernel is not yet ready for it on the Rockchip platform.
-This gets us at least in the right direction.
-
-Fixes: cc40f5baa91b ("clk: rockchip: Add clock controller for the RK3576")
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
-That's 16 scary looking error messages less printed during boot on that
-platform while reducing lines of code and modernizing the driver :)
----
- drivers/clk/rockchip/clk-rk3576.c | 39 ++++++++++++++++++---------------------
- 1 file changed, 18 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/clk/rockchip/clk-rk3576.c b/drivers/clk/rockchip/clk-rk3576.c
-index 2cdd667f4004..577100659593 100644
---- a/drivers/clk/rockchip/clk-rk3576.c
-+++ b/drivers/clk/rockchip/clk-rk3576.c
-@@ -1733,6 +1733,8 @@ static struct rockchip_clk_branch rk3576_clk_branches[] __initdata = {
- 			RK3576_CLKGATE_CON(59), 5, GFLAGS),
- };
- 
-+static struct rockchip_clk_provider *rk3576_early_ctx;
-+
- static void __init rk3576_clk_init(struct device_node *np)
- {
- 	struct rockchip_clk_provider *ctx;
-@@ -1802,12 +1804,10 @@ static void __init rk3576_clk_init(struct device_node *np)
- 	rockchip_clk_register_branches(ctx, rk3576_clk_branches,
- 				       ARRAY_SIZE(rk3576_clk_branches));
- 
--	rk3576_rst_init(np, reg_base);
--
--	rockchip_register_restart_notifier(ctx, RK3576_GLB_SRST_FST, NULL);
--
- 	rockchip_clk_of_add_provider(np, ctx);
- 
-+	rk3576_early_ctx = ctx;
-+
- 	return;
- 
- err_free_pmu0:
-@@ -1817,35 +1817,27 @@ static void __init rk3576_clk_init(struct device_node *np)
- 	return;
- }
- 
--CLK_OF_DECLARE(rk3576_cru, "rockchip,rk3576-cru", rk3576_clk_init);
--
--struct clk_rk3576_inits {
--	void (*inits)(struct device_node *np);
--};
--
--static const struct clk_rk3576_inits clk_rk3576_cru_init = {
--	.inits = rk3576_clk_init,
--};
-+CLK_OF_DECLARE_DRIVER(rk3576_cru, "rockchip,rk3576-cru", rk3576_clk_init);
- 
- static const struct of_device_id clk_rk3576_match_table[] = {
- 	{
- 		.compatible = "rockchip,rk3576-cru",
--		.data = &clk_rk3576_cru_init,
- 	},
- 	{ }
- };
- 
- static int clk_rk3576_probe(struct platform_device *pdev)
- {
--	const struct clk_rk3576_inits *init_data;
-+	struct rockchip_clk_provider *ctx = rk3576_early_ctx;
- 	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
- 
--	init_data = device_get_match_data(dev);
--	if (!init_data)
--		return -EINVAL;
-+	if (!ctx)
-+		return -ENODEV;
- 
--	if (init_data->inits)
--		init_data->inits(dev->of_node);
-+	rk3576_rst_init(np, ctx->reg_base);
-+
-+	rockchip_register_restart_notifier(ctx, RK3576_GLB_SRST_FST, NULL);
- 
- 	return 0;
- }
-@@ -1858,4 +1850,9 @@ static struct platform_driver clk_rk3576_driver = {
- 		.suppress_bind_attrs = true,
- 	},
- };
--builtin_platform_driver_probe(clk_rk3576_driver, clk_rk3576_probe);
-+
-+static int __init rockchip_clk_rk3576_drv_register(void)
-+{
-+	return platform_driver_register(&clk_rk3576_driver);
-+}
-+core_initcall(rockchip_clk_rk3576_drv_register);
-
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261112-rk3576-clk-platform-device-12af20579b2f
-
-Best regards,
---  
-Sebastian Reichel <sebastian.reichel@collabora.com>
-
+Understood, I misinterpreted the rule. I will put it in v11.
+Sorry for the repeated noise.
 
