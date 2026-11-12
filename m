@@ -2,112 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B47F606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199FA606A8A1
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:47:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Z7NHA03u;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=hjujjH/R
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xt3ubr1f;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=kobx8YkS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=L0I0n48oV5o7BRj/oH4f6pc2kqveIFdpMiqQByS78r4=; b=Z7NHA03u0Ux75cg05aU5vq0X7t
-	vUIKXp3sBtTFW2qLdELSTL/4M7YxOD5OXpjkAUhz0gTDS9ZnsEAUKqu4Buc65oU4cIOnfyi2AMDy9
-	kDFUZm6828jw8DnrbcRzl6QktILC2qVQUewTL0BXBxWHrK0L0SWn6TEHfrOc2GV3flHKnDNOMm5O6
-	Aluc5YjRlUrisJ991zUZMRFxAAdriR1xsbgvZoaR3C1v6tll+a5nakgm7DlFTI2mfRpJ0E7vfhkgi
-	tf+sPnsPTf3aKG0milV0ix/JaXrC/KX1SGEU8GDbozoBB884TV9DxxYFJRDgGLBb46lnViPXyYYib
-	YOH8XHbA==;
+	bh=zuWtrs163C+i6VB3CcXv//TKbh7ZjouV8eu/fctA6hI=; b=xt3ubr1f/A4DgA0+cs4lE1bs/L
+	C/MtxHjt7jY4+uQO4BUbi3Xh6pOTDQ0fRapG3MJncxnrtclnINtJ+clXI71eoB+whaL1qc6EzzgYM
+	gEuIftAWseoZLGoeMJdT9xVwpzFa1R0crZ/bsmEAij72jkJ0NoSxCcy3wTLmzvqhodXtCJtJ08dPQ
+	BR+1GTvjCUFJnqtmtR0zE8qV0svHlsTJoKFRhJVlTB7VAhE3UXwqeJVoRL6xy7wCDRGmwGKrLDH5V
+	eeCBIx6dpvLTzPaN2zDLx7w3ccwVhl26MHQTox2xfSGNfMknrfz6EXGprfMvFVqsKuiARJt1P6nxF
+	W/ha9gEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXuo-0000000Af2g-3sCG;
-	Thu, 12 Nov 2026 16:44:47 +0000
-Received: from mail-dl1-x1235.google.com ([2607:f8b0:4864:20::1235])
+	id 1xRXwz-0000000AfSM-0GO7;
+	Thu, 12 Nov 2026 16:47:01 +0000
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXui-0000000Af1w-1dhl
+	id 1xRXww-0000000AfPy-0N4x
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:44:45 +0000
-Received: by mail-dl1-x1235.google.com with SMTP id a92af1059eb24-1a2761c69fbso8018899c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 08:44:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1794501879; x=1795106679; darn=lists.infradead.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=L0I0n48oV5o7BRj/oH4f6pc2kqveIFdpMiqQByS78r4=;
-        b=hjujjH/RgmD/Cvq9uTGJ3+3mpauLd3JY0f+50RebK99y9XhTo7/37Jk4OTOLW0bDGZ
-         DEKnxGgEkJsYoim5D38X8EiG4qkQxkKKeEEkYgKWeKUGBGX7n7LkcW4OIWWC+qh+UJ34
-         udmnVFMZJzqblU4uFlnLUO4cavkT6L7oO3vZg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794501879; x=1795106679;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :content-type:mime-version:references:message-id:subject:cc:to:from
-         :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=L0I0n48oV5o7BRj/oH4f6pc2kqveIFdpMiqQByS78r4=;
-        b=mCnN7pL+R2thgtWJn3LW12hlS0hXs5vgei+aWva+5k4x9HH90WEOw6PVPbAKjcfhan
-         aW0YC71FrlDe6IpMyUdNXHOdTjL4usWf15yLEJ58Z9VqAXE0Wo6nOzrlnjQ7BBxYuGlQ
-         HD8isSaFwOzGHeLNvYsagaf4TuQpAeG2J1CWMYrKt/c33ZIVDRMy/XGHq5akjhPo9BFh
-         kP2u8Xb3hBfcPKXaRkxdvleVDltbQjKem87lFN5/QCq861QrPljUWB39CnCu1aFUoOQv
-         xzos6TSAhIeEw2ANO5YPx+P5OumgR+dA7wNid4CkwOBvhWoDJU2fglfjtRc2rnk5lffB
-         cN2Q==
-X-Forwarded-Encrypted: i=1; AL+hErG5GKwG+jfJ9y9piVXLh5Jo9afzPh3fe+JV1tQioomXo8ntACA86/79p21/AdXft4YGuBLf4Oq6+YGW9B/jN3hC@lists.infradead.org
-X-Gm-Message-State: APuU4Z9lQMvCG6EbXLjZB62JWmGR9CuJP0VzYfOMYVOrkqJSqwjPH+Gp
-	wPw7VN2mOLfHDSaEhuMAk/7swKZK/OgYRGDgUEhpU1FZsS9wXtbBpuhVUn9cZDspRCcoBgGrj2Q
-	rvow=
-X-Gm-Gg: AYBFou2tIKhDZ7UImnvJtNQWnTJgIIfc7FG6dGUd0rG85xBWy4QvKvFpXlXTAUo1eE5
-	R07y6xbHwWBIYpTsqEiwbhqqXnmcE/+vlsC6nu6NJpB8De9xTbnsjozXvuBzc3s9IxwHQtoKdEz
-	pg3GlmAV1zSvchmWVYsGzoRbOiQTb3vwrrVQLGUfOReDrU/c58QylM/Ha32MHl1kyD10vauf+tE
-	amedtAKNT/pSrynJrdUA2+8pwkn1c1ZD0/jj+ZGRdKhNU76ePTLMPU16PbZ02p7JYMWTSr3qUPz
-	+41x+hMkPgqXLO0wPU+zcVVmel31DsfQQ9T/NZy+zOGC0wMq3BwYkMx7Z6cjCpns3d77Qjb8dYT
-	iykYWgcaZX4xwltN16CvtWFb4CB/8X9gAVLrECyIS/nApyzcc83kc+9wtboOsjcAGVa/dEmIzYj
-	BWnJKU373eLxRU/bsJaBDoDooFcJrvU7uUco8LY8I4w3P5O3wyEQXY+TX29i/C0PV0YsqXIajQZ
-	U6TDibpxWRe5+LTbo2ZX0boY8u3X49LhFkthrFd+PLt9NgwdNOSeElXxf7xufVHgvoZetNXCKXI
-	ImJldGH3ZpPHVneqKO5ccBrbzxVONt5/4B8t44xJMQy9itDM0QHZkz1m8/qJSHX1QoO7
-X-Received: by 2002:a05:701b:4551:20b0:194:3a84:e67d with SMTP id a92af1059eb24-1b5031b37dcmr81202c88.44.1794501879423;
-        Thu, 12 Nov 2026 08:44:39 -0800 (PST)
-Received: from localhost ([2a00:79e0:2e7c:8:5446:563c:ac92:43a8])
-        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-1b5031b2519sm137097c88.13.2026.11.12.08.44.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Nov 2026 08:44:37 -0800 (PST)
-Date: Thu, 12 Nov 2026 08:44:35 -0800
-From: Brian Norris <briannorris@chromium.org>
-To: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
-Cc: Fabrice Gasnier <fabrice.gasnier@st.com>, linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, Ulf Hansson <ulfh@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	Andy Shevchenko <andy@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alan Stern <stern@rowland.harvard.edu>
-Subject: Re: [PATCH v2 3/5] PM: runtime: Propagate last_busy from dependent
- to dependency
-Message-ID: <avXs826ikSctpUnA@google.com>
-References: <auzlLwlleGLPsLcw@google.com>
- <CAJZ5v0g25xQeRaLJWJyAo2fcJko+gZ7w6JhX7FzMgRx2+uuimw@mail.gmail.com>
- <au0oKFb9CmNzc6Cg@google.com>
- <CAJZ5v0hKpjMsGQm8Cpa89x5wkNxqkggDNbp+eQ0S-E52DETWjQ@mail.gmail.com>
- <avOw_4ZkqtKFHu1B@google.com>
- <2c3bda2b-ccc3-4430-8e09-81b25f6fcda7@rowland.harvard.edu>
- <avSa97F1Nu1LTSCA@google.com>
- <fc43eb13-816b-4cd0-9711-848fdab605ef@rowland.harvard.edu>
- <avUHG8mLuTOUMr8O@google.com>
- <CAJZ5v0j+8_fOc_EEGx4tquqcaH3-nmHd0YMJRb38t2Rw40iV3g@mail.gmail.com>
+	Thu, 12 Nov 2026 16:46:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PllXc6r838SsQRlUngtXdQ0IEa+aqjHlsZpjRY4D23abkXRnzWgK6h0S0SaPDen0Qd2eBgxHlV9uyVU8e+8vRoWbbrSchs3qaeohCINx4n8OBI3zXiJhgM49wkVF8ndBdIJ8qjuNtjhZmlCRTLabO44BY2tGmAaLTd9Ul41MCO7cHtfepiM8YhHAC7dKoyaxO9eUZKCmdhznFi/S52HT3C1Z3fxcRRNpY3kK70DJAP3s5zWcsOj5xd3D2+s28Lphg4PyB/zJgTui1FNwy3khpFrc9X2pv+6FNcKRq9Aq2B5bOJEpJ8MPK8AfW3YIRx9MpRz2T2KLOltscSVicKa0Tw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zuWtrs163C+i6VB3CcXv//TKbh7ZjouV8eu/fctA6hI=;
+ b=RhAroOK9tqHTy3635619ZbI7dXx5zJiNiMc+bfGIWFujDS+932np+aFabZLRAhiOKJz9dYgQDdjpDJ40zqGH1XohHmEF62GQ5Xv6cpYTX0OQUCmNXnfvmZ73ptnCZeql3BFxlpK1QdoYraU752xTOSPREjytmTqWLrkSR/dvmFySrD3AxyXadCnr5/nyIK++l81BknUIcTAEm6WvQriJpZUHpbY5Wj2LVLJRIxPrDY10/ZSFcAtXvswaFLcxFxv57SQGrYExChj/wjRFixgBvv0PYk85WlN9SHQk1+KV1Hbft9qcR4fksoeU0Eusvzgu75eVe/DcwV5bVioSu/7HXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zuWtrs163C+i6VB3CcXv//TKbh7ZjouV8eu/fctA6hI=;
+ b=kobx8YkSueu01dp4zFnity0oOMVfVN4xPUOifVGaE9P6+rG7H2dFGCPbFzcnUWJUQz4MptxhIu8y5ZB9EWuiwZzCyBPVch7KcUYoeBlzW+oqB9OaujeM9huLPlHZ8l7Xrk4Q3ZHInPr3eExYj6fpS736oat6/L1yRNc9WluBRhtQPHy+2vlrRwWrgT3RBWQMui7ofI2b1K5AaWiunPOmCgd98gn1VmvTkOs20D6sUnArmd6Yu1BKEiQnJN2n4gV5oP9/Zr/mglMSl2UBDWIDwd+lFvo977dpzZok7PkZKq1JGSspno0FfD4LzExsm9oli3fOm2yG7cJxwpMR4NtA+w==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AM8PR04MB7988.eurprd04.prod.outlook.com (2603:10a6:20b:24e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
+ 2026 16:46:46 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Thu, 12 Nov 2026
+ 16:46:46 +0000
+Date: Thu, 12 Nov 2026 10:46:20 -0600
+From: Frank Li <Frank.li@oss.nxp.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
+	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v6 8/9] dmaengine: fsl-edma: support per-channel DT child
+ nodes
+Message-ID: <avXtXBPdQcrNQ1Us@SMW015318>
+References: <20261112-edma-iommu-v3-v6-0-b038edb8ce6f@nxp.com>
+ <20261112-edma-iommu-v3-v6-8-b038edb8ce6f@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261112-edma-iommu-v3-v6-8-b038edb8ce6f@nxp.com>
+X-ClientProxiedBy: PH8P222CA0005.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:510:2d7::23) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0j+8_fOc_EEGx4tquqcaH3-nmHd0YMJRb38t2Rw40iV3g@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AM8PR04MB7988:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca4234b3-e156-48d8-caa8-08df40dc8a0c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024|23010399003|19092799006|10067099003|11063799006|4143699003|56012099006|261021123027099003|261021121427099003|261022075727099003|261026140227099003|261009223027099003|261028144727099003|261026121527099003|261102123227099003|261022105027099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: XNlcRG/UuHKlzJU0u8lTCgyHdNeIAcWTwGee+ya4rYSJOuSXyFk5eLsQPllswyNIfEymdW5JSaUCLCp1zhuYPJTdJSNbIu0rtDy8/NoimtGDNqmKhbYxQ5ak22VO5CcIfutrlUFw18v2azckbKR91sEILirs70fFyQZkPocO5DheteX5iNcNuMXPPupOYrhG+hdeqFXBUHlJsDymlxOLr1PPe4Z7lj55OXx0oxzB/rpPccJbdhrpWtUlcdM6Ah4e815xCaPcIZ0zJ14ZkTkmW4+y37SssFVlvBYwFUX3ctbpZiqeqH15wkUyjAsUGh7R+SOa7szq4Ws7Kia5wl7tKpzH6G/yKw++hjYerpihNVKIDB8rcD/bRh9JhSND6bASLq4+RyMAszhyvbQTdJ+ginnEgugbmK5TOPgmD9cMl0ETCQSIsZvRdJzCELjZOxLIMUj5spe0fzv9m15TtSKpJjQJJeb0BeWm+4y04/05mM92bRfayWqxvmMh2ILBgsjnDsYRoeKfgvgVdTD3yrezPrTJcEs0hLubM7owtCDpotr0bd5tnwZSMWuXj+O4t1z4BoAGDJ0/l0dmCv4aHDsWp8F5UWYuuGml/P6I9omKQLkqT+aa78/xyOdQasHcZa8zesol6AQNWLZpdLJQlWpncylRnnItF3mPsmUvq0jnq88=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(23010399003)(19092799006)(10067099003)(11063799006)(4143699003)(56012099006)(261021123027099003)(261021121427099003)(261022075727099003)(261026140227099003)(261009223027099003)(261028144727099003)(261026121527099003)(261102123227099003)(261022105027099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rquTIftYCF5Vl4SLV10x9DrfOBQHBpjR3bkw1HucsVBVckZ9lvmIdh40dZka?=
+ =?us-ascii?Q?fRXK2UmODSk2Nxp41fwbx/cob4M9sH98SlHCitvcA+ucxM5aGUl5tS8z+jdz?=
+ =?us-ascii?Q?boBmyMZzFQtX0kJeE02v/cs8ivm8y4atyVtY1+5HPhoiH3BK8nwy85tPQLbc?=
+ =?us-ascii?Q?ymr4SwCQmwgM6gRq5ospLNjoFf0TzYxNG4DUQDbfh/VfdYjKNVuHO7szFMZl?=
+ =?us-ascii?Q?X/w33K0y6zMY30Ezo4RAp3wTO0v1gRAmrklcTCyLrOXMWOYTfUm92X7ei2+7?=
+ =?us-ascii?Q?oitVEblqmH96Fg8G/Tn5R8U0PD26Hk1KLrqQK6Fc6TDsVQ5Gwla7UgU2rmbw?=
+ =?us-ascii?Q?I8+deSUeJ38DuO7REfZ73gUik8PcagqUtWDsg+EGfHpGVPJGAoVG4arw9UuD?=
+ =?us-ascii?Q?SsO1/nXpXqT7bhLyHtmKzij/G6KXBjV9Bm8+yJwXa3Uj5MZ6JjTV2tLoLM8U?=
+ =?us-ascii?Q?vG7aIjgKvBz2iGcpYKAlVorY7vF5WeErRXd4ln7L2SI0N9nadUT9KchyJrMF?=
+ =?us-ascii?Q?COZutFcgWdFGLKGprY3ZkH3b1oog+zSxFeUTMIqdnOxLfwhgsz35S2Cq0uU+?=
+ =?us-ascii?Q?EPOdgD4g/GCmPlP/DrtpEPwaJCwsFIRupIeCwU7SNc6fIidflKZW09bAyE3n?=
+ =?us-ascii?Q?kRiwqIIYZxNJ8SLCseFdtCS3/fX8BZb23WZRm6UHFDSpocSqkhIeI5RRW/zG?=
+ =?us-ascii?Q?/M+53ll3HpgBmMbWZewRvLiug3u4BMBpK8Fe3I/QJ5o/HK/Kz3ZWMnzlIyDz?=
+ =?us-ascii?Q?F5F4L3ApbtNHXogDPWT1cyv/Oj0CUdvocyVXMreSLDVM222Q7GWiiNYeqSTX?=
+ =?us-ascii?Q?dFfKSh4qGog1n07JlO3g9AEdVzdbcgJxu9q41wn7PLiS66Zg/kYC6U6kr/8Z?=
+ =?us-ascii?Q?LdMnjIfg6KqCgbDtjqMUs/ULv0MpZtgJR57VVCLFn7y4RKXf7S4IkIqX7io6?=
+ =?us-ascii?Q?Vk0p1hVdFQfWT2UptoMnY8pM1RyKMCspA6SXL8vZUSZhToGENtOXNjyHTIRD?=
+ =?us-ascii?Q?lH2LZ74xAn+gGXHkqfnwAsD31+2TiUFWWlZqkf7BHv3toaExy/FcqjCKUqm2?=
+ =?us-ascii?Q?egk7Sc/cImamVcroNY/SbXC0ivFJa87W6GsdIeYXyqL4Uc6EK5cmgTTT1OeJ?=
+ =?us-ascii?Q?oQ3SLIzhiR8YC4+LpG25jql9MWHgxGvCrK8huNRprXygEmg9wbR3SIeEeWVX?=
+ =?us-ascii?Q?6c3xQyJ4FYVWefMtwPTfF1rWxJtqbVpO0LQwfNFju1tDYLuJwcUf+QJ9v1U6?=
+ =?us-ascii?Q?XnQ0Xhxm7CczlZcA1MTxSl/Xlndk1S6E7rqSBDghM3NzyesJRqXDDmPU9xaY?=
+ =?us-ascii?Q?yQLAyr0QgAfn6dCdArYAHzYnxFtiLUpvqYW0tctUmjRN7xd0HIdbQzT9JwcX?=
+ =?us-ascii?Q?X5Yr7brZHYQrNiFkowlf3c0Q0Pmh78G6XTw5ljDHQjJoUKzY+p97xaX8qSG9?=
+ =?us-ascii?Q?B7mnzoZn4uai4b20n+LhYrv1IidUq5/1nLMi6/kkN/+5bp6XlhOUsj8uHJ/S?=
+ =?us-ascii?Q?rZkJ1KCrag5Eg09Gno/kU1xiy8MnBQdS0AqBgWRYq88QOCAeBbfgK4nCePRe?=
+ =?us-ascii?Q?aGXiyyfz/8p/2YDPFD89LW7Nek9W3klW0EMO/z4cljWr31b4aemGdYgDgOK3?=
+ =?us-ascii?Q?R/K42SmpFMnp0LQXIlguai/4vMAFDGwaHIKQbzWk4a25nRaztbDYZMZWPVaA?=
+ =?us-ascii?Q?W0qMIUIRWjpent97o5xufwaIfW/WTIuRmrSLyNGoF8O/966Fozy9zKax7cAC?=
+ =?us-ascii?Q?GpHnp9YhM5IInUFL0S78R5Ggu25qsEfyUv7okI5TivT4XNF49vj3?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca4234b3-e156-48d8-caa8-08df40dc8a0c
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 16:46:46.5345
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TvCAXrw99iWLdQfcDJJ+l60mWqVXOjE/iUIDaZ6pIWB3gkJ6PmrmxipPNnYMhT1kYkuvWTieNZhSorLSrrplOCrDYqUm9jK82AeHuL8ZJEktLuM5I3h4Kc5i1irlNBhJ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7988
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_084441_281636_E53A9AAE 
-X-CRM114-Status: GOOD (  32.62  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_084658_295776_4301088F 
+X-CRM114-Status: GOOD (  31.84  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -118,76 +152,343 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 05:13:09PM +0100, Rafael J. Wysocki (Intel) wrote:
-> On Thu, Nov 12, 2026 at 1:24 AM Brian Norris <briannorris@chromium.org> wrote:
-> > I'll give this some time in case Rafael had any other thoughts/replies,
-> > but unless something major changes, I'll plan to write/test/submit v3
-> > where rpm_idle() calls pm_runtime_mark_last_busy() (part of Rafael's
-> > proposal), and *not* make it conditional (i.e., no
-> > pm_runtime_use_autosuspend_always()).
-> 
-> That will work for me.
-> 
-> > (Or, Rafael is free to do so, since it's his idea. Just let me know so I
-> > don't waste my time on it. But I figure he'd rather someone else do the
-> > work.)
-> 
-> I can cut that patch.  It is going to be a one-liner if I'm not
-> mistaken and I'd like to write a changelog for it.
+On Thu, Nov 12, 2026 at 03:53:11PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> Add support for parsing per-channel child nodes from devicetree.
+> Each child node can carry its own interrupts and iommus properties.
+> Child power-domains are not handled here; power domains remain attached
+> at the parent level.
+>
+> The implementation is split into three functions:
+>
+> - fsl_edma_child_to_chan_id()
+> - fsl_edma_configure_chan_from_dt()
+> - fsl_edma_configure_chan_iommu()
+>
+> Child nodes beyond the configured dma-channels are ignored, which allows
+> boards to reduce dma-channels without disabling every unused child node.
+> If child nodes are present, every unmasked channel must have a child node
+> with a valid interrupt; otherwise probe fails with an error asking for
+> dma-channel-mask.  In child-node mode fsl_edma3_irq_init() does not fall
+> back to the parent's flat interrupt array.
+>
+> The shared error IRQ remains a parent-node interrupt.  A child-node-only
+> DTS without that entry simply has no shared error IRQ.
+>
+> Use dev_err_probe() so -EPROBE_DEFER is not logged as an error, and reject
 
-OK.
+This common sense, can remove
 
-There's potentially quite a bit of follow-up, including patch 5 of this
-series (to drop now-redundant .runtime_idle() callbacks), but I can roll
-that separately if you'd like. (Would you want to make an immutable
-branch for other subsystems to pick the 1-liner up? Or just apply such
-patches to your tree, as it seems the IIO maintainer was probably OK
-with that?)
+> a channel whose iommus property did not result in an IOMMU mapping.
+>
+> Existing DTS without child nodes continues to work unchanged.
+>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  drivers/dma/fsl-edma-common.h |   1 +
+>  drivers/dma/fsl-edma-main.c   | 199 ++++++++++++++++++++++++++++++++++++++++--
+>  2 files changed, 194 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/dma/fsl-edma-common.h b/drivers/dma/fsl-edma-common.h
+> index cbb077e98f55..8843dd5661fb 100644
+> --- a/drivers/dma/fsl-edma-common.h
+> +++ b/drivers/dma/fsl-edma-common.h
+> @@ -271,6 +271,7 @@ struct fsl_edma_engine {
+>  	int			txirq_16_31;
+>  	int			errirq;
+>  	bool			big_endian;
+> +	bool			per_chan_irqs;
+>  	struct edma_regs	regs;
+>  	u64			chan_masked;
+>  	struct fsl_edma_chan	chans[] __counted_by(n_chans);
+> diff --git a/drivers/dma/fsl-edma-main.c b/drivers/dma/fsl-edma-main.c
+> index 818b9b986f13..88d2b9d6b6ab 100644
+> --- a/drivers/dma/fsl-edma-main.c
+> +++ b/drivers/dma/fsl-edma-main.c
+> @@ -12,11 +12,15 @@
+>
+>  #include <dt-bindings/dma/fsl-edma.h>
+>  #include <linux/bitfield.h>
+> +#include <linux/math64.h>
+>  #include <linux/module.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/clk.h>
+>  #include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_dma.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/pm_runtime.h>
+>  #include <linux/pm_domain.h>
+> @@ -400,12 +404,21 @@ static int fsl_edma3_irq_init(struct platform_device *pdev, struct fsl_edma_engi
+>  		if (fsl_edma->chan_masked & BIT_ULL(i))
+>  			continue;
+>
+> -		/* request channel irq */
+> -		fsl_chan->txirq = platform_get_irq(pdev, i);
+> -		if (fsl_chan->txirq < 0)
+> -			return  -EINVAL;
+> +		if (fsl_chan->txirq <= 0) {
+> +			/*
+> +			 * In child-node mode, missing child nodes are rejected
+> +			 * by fsl_edma_configure_chan_from_dt(); do not fall
+> +			 * back to the parent's flat interrupt array.
+> +			 */
+> +			if (fsl_edma->per_chan_irqs)
+> +				continue;
+>
+> -		fsl_chan->irq_handler = fsl_edma3_tx_handler;
+> +			fsl_chan->txirq = platform_get_irq(pdev, i);
+> +			if (fsl_chan->txirq < 0)
+> +				return fsl_chan->txirq;
+> +
+> +			fsl_chan->irq_handler = fsl_edma3_tx_handler;
+> +		}
+>
+>  		if (!(fsl_edma->drvdata->flags & FSL_EDMA_DRV_ERRIRQ_SHARE)) {
+>  			fsl_chan->errirq = fsl_chan->txirq;
+> @@ -415,7 +428,11 @@ static int fsl_edma3_irq_init(struct platform_device *pdev, struct fsl_edma_engi
+>
+>  	/* All channel err use one irq number */
+>  	if (fsl_edma->drvdata->flags & FSL_EDMA_DRV_ERRIRQ_SHARE) {
+> -		/* last one is error irq */
+> +		/*
+> +		 * The shared error IRQ remains a parent-node interrupt at
+> +		 * index n_chans.  A child-node-only DTS without that entry
+> +		 * simply has no shared error IRQ.
+> +		 */
+>  		fsl_edma->errirq = platform_get_irq_optional(pdev, fsl_edma->n_chans);
+>  		if (fsl_edma->errirq < 0)
+>  			return 0; /* dts miss err irq, treat as no err irq case */
+> @@ -703,6 +720,168 @@ static int fsl_edma3_attach_pd(struct platform_device *pdev, struct fsl_edma_eng
+>  	return -EINVAL;
+>  }
+>
+> +static int fsl_edma_child_to_chan_id(struct fsl_edma_engine *fsl_edma,
+> +				     struct device_node *child,
+> +				     struct resource *parent_res)
+> +{
+> +	const struct fsl_edma_drvdata *drvdata = fsl_edma->drvdata;
+> +	struct resource child_res;
+> +	u64 offset, ch_id;
+> +	u32 rem;
+> +	int ret;
+> +
+> +	ret = of_address_to_resource(child, 0, &child_res);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!resource_contains(parent_res, &child_res))
+> +		return -EINVAL;
+> +
+> +	if (child_res.start < parent_res->start + drvdata->chreg_off)
+> +		return -EINVAL;
+> +
+> +	offset = child_res.start - parent_res->start - drvdata->chreg_off;
+> +	ch_id = div_u64_rem(offset, drvdata->chreg_space_sz, &rem);
+> +	if (rem)
+> +		return -EINVAL;
+> +	if (ch_id > INT_MAX)
+> +		return -EINVAL;
+> +
+> +	return ch_id;
+> +}
+> +
+> +static int fsl_edma_configure_chan_from_dt(struct platform_device *pdev,
+> +					   struct fsl_edma_engine *fsl_edma)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct resource parent_res;
+> +	u64 child_mask = 0;
+> +	bool has_children = false;
+> +	int i, ret;
+> +
+> +	ret = of_address_to_resource(np, 0, &parent_res);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for_each_available_child_of_node_scoped(np, child) {
+> +		struct fsl_edma_chan *fsl_chan;
+> +		int ch_id, irq;
+> +
+> +		has_children = true;
+> +
+> +		ch_id = fsl_edma_child_to_chan_id(fsl_edma, child,
+> +						  &parent_res);
+> +		if (ch_id < 0) {
+> +			dev_err(&pdev->dev, "invalid channel in %pOFn\n", child);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (ch_id >= fsl_edma->n_chans)
+> +			continue;
+> +
+> +		if (fsl_edma->chan_masked & BIT_ULL(ch_id))
+> +			continue;
+> +
+> +		child_mask |= BIT_ULL(ch_id);
+> +
+> +		fsl_chan = &fsl_edma->chans[ch_id];
+> +
+> +		irq = of_irq_get(child, 0);
+> +		if (irq == -EPROBE_DEFER)
+> +			return -EPROBE_DEFER;
+> +		if (irq <= 0) {
+> +			dev_err(&pdev->dev,
+> +				"channel %d child node has no valid interrupt; add interrupts or disable it with dma-channel-mask\n",
+> +				ch_id);
+> +			return irq < 0 ? irq : -EINVAL;
 
-I also feel like there's probably room for unit tests in this area, but
-again, I can do that separately if they still seem valuable.
+logic have some complex,
 
-> After that patch though, using pm_runtime_mark_last_busy() elsewhere
-> will be mostly redundant except for pm_runtime_*_autosuspend().  Since
-> all of them call pm_runtime_mark_last_busy() (AFAICS), it looks like
-> last_busy can be updated directly in rpm_suspend() when RPM_AUTO is
-> passed to it, but if so, rpm_suspend() can simply set the autosuspend
-> timer unless it is already running and so last_busy can be eliminated
-> entirely.  I guess that should be done too (in follow-up patches)?
+	if (irq <= 0)
+		return dev_err_probe(&pdev->dev, irq ? irq: -EINVAL,
+				     "...." )
 
-__pm_runtime_put_autosuspend() still sticks out, but it's nearly gone.
-Its only user is just re-implementinng pm_runtime_put_autosuspend(), so
-obviously it doesn't actually make a difference. I've been waiting for
-someone to finish this patch...
-https://lore.kernel.org/all/20260806-smmu-rpm-v4-1-8183d007331c@oss.qualcomm.com/
+basic irq < 0 (include -EPROBE_DEFER), return irq
+      irq == 0, return -EINVAL
+      irq > 0, okay
 
-So I think you may be correct.
+> +		}
+> +
+> +		fsl_chan->txirq = irq;
+> +		fsl_chan->irq_handler = fsl_edma3_tx_handler;
+> +	}
+> +
+> +	if (!has_children)
+> +		return 0;
+> +
+> +	fsl_edma->per_chan_irqs = true;
+> +
+> +	for (i = 0; i < fsl_edma->n_chans; i++) {
+> +		if (fsl_edma->chan_masked & BIT_ULL(i))
+> +			continue;
+> +		if (child_mask & BIT_ULL(i))
+> +			continue;
+> +
+> +		dev_err(&pdev->dev,
+> +			"channel %d has no dma-channel child node; add one or disable it with dma-channel-mask\n",
+> +			i);
+> +		return -EINVAL;
+> +	}
 
-> Moreover, after all of that the difference between pm_runtime_put()
-> and pm_runtime_put_autosuspend() will become somewhat academic, so is
-> the difference worth retaining?  Or can we just say "If you set the
-> autosuspend delay, all async suspends will be deferred" and drop the
-> "autosuspend" variant?.
+print error only when bit is 0 at both fsl_edma->chan_masked and
+child_mask 0
 
-That's my preference. I think having so many put() variants hurts a lot
-more than it helps, and especially so if the differences are nearly
-nonexistent.
+if (~(fsl_edma->chan_masked | child_mask))
+	return dev_err_probe(....);
 
-> I also have to say that I agree with your remarks regarding the
-> .runtime_idle() callback.  I don't think it has ever been particularly
-> useful and life without it would have been simpler.  I'd be happy to
-> just get rid of it at one point.
+> +
+> +	return 0;
+> +}
+> +
+> +static int fsl_edma_configure_chan_iommu(struct platform_device *pdev,
+> +					struct fsl_edma_engine *fsl_edma)
+> +{
+> +	struct device_node *np = pdev->dev.of_node;
+> +	struct resource parent_res;
+> +	int ret;
+> +
+> +	ret = of_address_to_resource(np, 0, &parent_res);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for_each_available_child_of_node_scoped(np, child) {
+> +		struct fsl_edma_chan *fsl_chan;
+> +		struct dma_chan *chan;
+> +		struct device *chdev;
+> +		int ch_id;
+> +
+> +		if (!of_property_present(child, "iommus"))
+> +			continue;
+> +
+> +		ch_id = fsl_edma_child_to_chan_id(fsl_edma, child,
+> +						  &parent_res);
+> +		if (ch_id < 0)
+> +			continue;
+> +
+> +		if (ch_id >= fsl_edma->n_chans)
+> +			continue;
+> +
+> +		if (fsl_edma->chan_masked & BIT_ULL(ch_id))
+> +			continue;
+> +
+> +		fsl_chan = &fsl_edma->chans[ch_id];
+> +		chan = &fsl_chan->vchan.chan;
+> +		chdev = dmaengine_chan_dev(chan);
+> +		chdev->dma_parms = pdev->dev.dma_parms;
+> +		if (fsl_edma->drvdata->flags & FSL_EDMA_DRV_TCD64)
+> +			dma_coerce_mask_and_coherent(chdev,
+> +				DMA_BIT_MASK(64));
+> +		else
+> +			dma_coerce_mask_and_coherent(chdev,
+> +				DMA_BIT_MASK(32));
+> +		ret = of_dma_configure(chdev, child, true);
+> +		if (ret) {
+> +			dev_err_probe(&pdev->dev, ret,
+> +				      "IOMMU config failed for channel %d\n",
+> +				      ch_id);
+> +			return ret;
 
-Great! If a few other things settle, and I find that I'm able to clean
-up my existing patches to my liking, then I hope to submit such patches
-at a later time.
+return dev_err_probe(...)
 
-Brian
+> +		}
+> +
+> +		if (!device_iommu_mapped(chdev)) {
+> +			dev_err_probe(&pdev->dev, -ENODEV,
+> +				      "channel %d is not behind an IOMMU\n",
+> +				      ch_id);
+> +			return -ENODEV;
+> +		}
+> +
+> +		chan->chan_dev->chan_dma_dev = true;
+
+I think you move fetch irq logic into this funcitons, over half of both
+code is similar.
+
+Frank
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int fsl_edma_probe(struct platform_device *pdev)
+>  {
+>  	struct device_node *np = pdev->dev.of_node;
+> @@ -835,6 +1014,10 @@ static int fsl_edma_probe(struct platform_device *pdev)
+>  			clk_disable_unprepare(fsl_chan->clk);
+>  	}
+>
+> +	ret = fsl_edma_configure_chan_from_dt(pdev, fsl_edma);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ret = fsl_edma->drvdata->setup_irq(pdev, fsl_edma);
+>  	if (ret)
+>  		return ret;
+> @@ -897,6 +1080,10 @@ static int fsl_edma_probe(struct platform_device *pdev)
+>  		return dev_err_probe(&pdev->dev, ret,
+>  				     "Can't register Freescale eDMA engine.\n");
+>
+> +	ret = fsl_edma_configure_chan_iommu(pdev, fsl_edma);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ret = devm_of_dma_controller_register(&pdev->dev, np,
+>  			drvdata->dmamuxs ? fsl_edma_xlate : fsl_edma3_xlate,
+>  			fsl_edma);
+>
+> --
+> 2.34.1
+>
 
