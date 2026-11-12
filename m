@@ -2,118 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0AAA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF55606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OLPbfOFc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZB6y0FdK;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FZnrWJPs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=EzVBhe5jgJ09yEWuBCFpondz7mN8VA4cwT0CtQAAd9U=; b=OLPbfOFcRZA8V0ccnaX0JS7k+B
-	3PGVDCntGFJBs/WupK5OuPCn+mEoPABY7MsCKDWXyM6+m3xmIoUZEsOIi3lVGOWqRiN/OcDltaoBZ
-	qxw8eD9PBNnNGAMAEVw06WrgxKwTFJyPOOb5TJyR62PEb6cEaQ+FK5O5MIrlhLXhv6Df+DTXScvQY
-	bu1UzrSCZ2HckBgO4SeDxZCL2XICz3q0px6ElvF6BDKK3qhq0L2I2wg+VLSpIjV4cg+lVH4XnI/PG
-	utDGq2RjnZ1DE6fv9TkW9iNfglGM6mZiaGDPcxDaem/vNMV1bfOkX+AWl6N0LxdauTsnfLyx32nqq
-	24lRFfng==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=34hlWE/5yV74VGOsqUBaRozbIZwUYpRMajO1DTLdlcA=; b=ZB6y0FdK80p5H7
+	FfLqOkQbiWeNMOkdtNS/yVHWQ8LyWQSzaeAdowqVLyo4tGZumyUAaUv3173CpRY2S6urwg1nqSMy9
+	ttQq/zvwwUsprFQuQQaEvSwyKu8GasPDokQ7RbthTzNdCM3ZfnI+y/Ny416t3Mqx7mh8LEohlqoT6
+	xueKMRIuVvG0VsgoYmmqB6U4IYMEC4Xfw4+vUtLiFLDEhA/eDixPHLIgLHbOJ3rODfxJcDYfsp0Qh
+	5Giq68vbb5EAEqtpu5gFj1+LsvfL4HMWxfg70Tf91D9KNoHHl0Pu9q6SX9GUw/tskeyQLEvVzku5G
+	S8fns1EmXuGn0BxA+akg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKS4-00000008V7B-0Wdj;
-	Thu, 12 Nov 2026 02:22:12 +0000
-Received: from mail-koreacentralazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c40f::6] helo=SEYPR02CU001.outbound.protection.outlook.com)
+	id 1xRKVr-00000008Vkr-1qVK;
+	Thu, 12 Nov 2026 02:26:07 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKRs-00000008V2z-49pJ
+	id 1xRKVq-00000008Vkl-416P
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 02:22:10 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zJsC+AOMcxl90HBNiBygXNiO8PwsiPhxiJQznYEyZRMPVyO18tlLJtcsvTgPWtruyUQGh/wFk6nKlbSYt1WM7z9/0lfz31Jg7aFTM19aGIpSNAxeezmZjYpugmpkrwcUsOPCLh2ZFcSG0oLt2ZRE2M1vYtyp8OsbjV0h2ylQCTTzf9IvesBKs7H2+LgC8Vp5uttqzNV1fZ/u136YFVELYVU9QjaGLzAviv7Pqvxr3CaWCIMmgyw0PInOYTVeb/tH/33TMxjEzoQ2tYapCY64JeuszO3iIVmjelKZpAVX9oXyp5zh+JnYDYGRz1XmyuqQD4bd1jlr34vH6CfKMQ/mUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EzVBhe5jgJ09yEWuBCFpondz7mN8VA4cwT0CtQAAd9U=;
- b=gKr6opvtRs/krv6CA+PQ8tPJM8iIWQLTscUwIgq6WLwSTcI5jMdFG9zXjv1vauMlg6e1ONJM068mWhonDl9emz4foYTJkXzwn+R6RbDoTLcc+GUXwPvGxXUUKF/k/I9XVNYL/Orez8if3e7pIGqxQoEWKJ2RalTZOSUHOR8hsSiRjsWeCmddcNcGhi7D8QwnXD2Vg70wX/nkvXCtbgwMWxTYhpqE/sdZIosIMLOOLXHrQ05zfxdFqQgfR8O6reKjATtMfh2DCo+1mpG7Q78odonCPt9b0MJoF0Wd39lcZObt1a0qxrb05ssoaJvOIreLxULu8q3gakWCfxsr8k/Liw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from JH0PR03CA0023.apcprd03.prod.outlook.com (2603:1096:990:74::13)
- by SEYPR06MB5914.apcprd06.prod.outlook.com (2603:1096:101:db::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.0; Thu, 12 Nov
- 2026 02:21:45 +0000
-Received: from SG1PEPF000082E8.apcprd02.prod.outlook.com
- (2603:1096:990:74:cafe::7c) by JH0PR03CA0023.outlook.office365.com
- (2603:1096:990:74::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.0 via Frontend Transport; Thu, 12
- Nov 2026 02:21:45 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG1PEPF000082E8.mail.protection.outlook.com (10.167.240.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 02:21:44 +0000
-Received: from hongliang-System-Product-Name (unknown [172.20.64.180])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 3AEEC40920E1;
-	Thu, 12 Nov 2026 10:21:43 +0800 (CST)
-From: Hongliang Yang <hongliang.yang@cixtech.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Peter Chen <peter.chen@kernel.org>,
-	Pawel Laszczak <pawell@cadence.com>,
-	Roger Quadros <rogerq@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Gary Yang <Gary.Yang@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>
-Cc: linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	hongliang.yang@cixtech.com
-Subject: [PATCH v8 2/2] usb: cdns3: Add CIX Sky1 glue driver
-Date: Thu, 12 Nov 2026 10:21:41 +0800
-Message-ID: <20261112022141.4136099-3-hongliang.yang@cixtech.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261112022141.4136099-1-hongliang.yang@cixtech.com>
-References: <20261112022141.4136099-1-hongliang.yang@cixtech.com>
+	Thu, 12 Nov 2026 02:26:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 63FAE45EF3;
+	Thu, 12 Nov 2026 02:26:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74BD71F00A05;
+	Thu, 12 Nov 2026 02:26:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794450366;
+	bh=34hlWE/5yV74VGOsqUBaRozbIZwUYpRMajO1DTLdlcA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=FZnrWJPsE8nEortlRKkelOr+l+Tr8gz6+//JFpBUv0UbrnunMQVdj2MBgWR0El0nV
+	 qeH32cdvm/GubXrdZ1OkWxhIndBGNZjIO+idDzdCg4md2a6q8RLKj34Job3KZAupmj
+	 TzZeo0k+J3lnwhHM6HuOHFOei6uoFry0xDuM4og2JZjTgq++gDygxDG7wqQQBEtf6X
+	 utVTPM9z7NTJTbbigy+GWJjZapvXGG7uEqlP7wBuH2IL4Wc739oBUYJ3OO7FvJmJ2+
+	 utgq1RH0uCwd9TL1DkTdQ44zCBoZBKwJOg6u4bwMWUKwWrHvHZyUreCwbhuAx2b2Kg
+	 4gGwX46QONJ+w==
+Date: Thu, 12 Nov 2026 02:25:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
+Cc: linux-iio@vger.kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+ mripard@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] iio: adc: at91_adc: move to devm_* to fix NULL
+ pointer deref
+Message-ID: <20261112022558.03a6bbd9@jic23-hlaptop>
+In-Reply-To: <20261111101345.185122-1-abdelnasserhussein11@gmail.com>
+References: <20261111101345.185122-1-abdelnasserhussein11@gmail.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E8:EE_|SEYPR06MB5914:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 0972d53b-66ff-48ca-59aa-08df4063b218
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|7416014|376014|36860700016|23010399003|18002099003|22082099003|261009223027099003|261009223327099003|261009221227099003|261009221727099003|261009220027099003|921020|56012099006|5023799004|261028144727099003|261102123227099003|261026140227099003|261021121427099003|261022105027099003|261022075727099003|261026121527099003|10067099003;
-X-Microsoft-Antispam-Message-Info: +sXkbMMxVWvlLqjPl2LzJ/3nQB4Va+QEJ/kqMIHT/TmdfbBuz4QrCsLbqZsEPIcwMDtuSZrGKGrczDv6OTa04icUYg/KKDZJGvJjPTzl50abME63K5nsCNHKW7qCxlu6jaf/XzrcT8Nf9FivoJE0Ia0DBzMksjD5OyOyUbyG8ux/U6c/6Az2m7Hucf8uoJVXGsakJIFfj0bxmdj2+B7ENH4uxiMC3MQFW7wHTBG5MxlH1NHQ+HliB1EQ6vlRtcO421RijvZFeH5cUlePQU4PxgxAG/bFhwAFSTv9o6nhV/J5Y473GUWZkMNZBHnONyD454jcqQ0ysz0GWMAl5C0JNArVUPdhUGi+lfeOawxTcXn9A9jzsBZmPLBASJmm3delFICu7tiR3lrLoBWG9JInNV21+yhb5kbvXW1dAcLS8ry8ng89l4fgwaPLMdgtcCc5dev2DewrKGC0+VsUezLSXMth69vTPQ6KHaWUfoYwtvOUgI2Sy/HuPLAgMR9NHbqKPp4AA0i/XqM5V6TKFWP60bPtIoZjJ7vNazmaETqTbJH2JkZQEt/P81R79HRXm02if/j6WW6rLMAhB+GhFzsyHXarri4TQKRnLApDOVQ1smvII/llyLCcxUMepZuAYQqelOnO08H4umaDapmRRKLyzpn0wBCPrwCAzElxtm9CVfV6Vaufv69cf6EmjAEhXABYaMG3vJ7qEiKs5Mj3EXZBWiC1l3V5+G4LhCJNjFpNjO10cpXQ+KYkQH//ZHwi3XW9
-X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(7416014)(376014)(36860700016)(23010399003)(18002099003)(22082099003)(261009223027099003)(261009223327099003)(261009221227099003)(261009221727099003)(261009220027099003)(921020)(56012099006)(5023799004)(261028144727099003)(261102123227099003)(261026140227099003)(261021121427099003)(261022105027099003)(261022075727099003)(261026121527099003)(10067099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 0JddCIs0KiOlMFsXOvbng2BCiwwCToUXbv18RJarDAHS4UkL5IHuFEWHQMm0QuxgBw3z+IFF3SNG/jQf6aObcy/KT9E6+JVzvTsklgaFdF4yjVnBUqr6o+UkdryWnxkA5mbq4DAn7nHCT4WyRrVBfhqJhMrEbxmJDgy5uaAXXztyW3Umv53XBs3fcho/iB+Y3mGl2WezJVjeZ0K0PejzezfM+6/e19ch860rQ2KlxwMtjZFvYl+cGsO9cvI2910SjMZBRMuy5+yyL3ntFLYgI/C4qmQMhilXrel+KQMTlGOvgVeSq70871uEJMkRnvuYr7VFmlQhRlFznrWfaWakrciqA0+Wmt6ziH7hJMRuDZpSwr245UsCDME1HA7Daa7j3yIw33AGK/bO0M61XS9SmncyoCkNiWv8Od2h16i2UBEhhtrNBH7w1EBYV0n4W3rr
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 02:21:44.1994
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0972d53b-66ff-48ca-59aa-08df4063b218
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource: SG1PEPF000082E8.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5914
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_182209_171841_F9BE4033 
-X-CRM114-Status: GOOD (  30.82  )
-X-Spam-Score: -1.9 (-)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,894 +71,396 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a glue layer driver for the Cadence USBSSP controller integrated in
-the CIX Sky1 SoC. The driver manages the controller clocks, resets and
-the mode strap controls located in the Sky1 S5 system controller, and
-writes the AXI cache attributes and polls the AXI clock status of its
-own controller in the RCSU block.
+On Wed, 11 Nov 2026 12:13:45 +0200
+Abdelnasser Hussein <abdelnasserhussein11@gmail.com> wrote:
 
-The register range is mapped with devm_ioremap() instead of
-devm_platform_ioremap_resource(): the two Type-A controllers share one
-RCSU block and their register ranges overlap, so reserving the region
-would make the second controller fail with -EBUSY. The offset of the
-AXI clock status register inside the range is taken from the
-per-compatible match data, as it differs between the Type-A and Type-C
-register blocks of the SoC.
+> If 'atmel,adc-use-external-triggers' is not set in the device tree,
+> at91_adc_trigger_init() leaves the external trigger slots in st->trig
+> as NULL. The error paths and remove function unconditionally called
+> iio_trigger_unregister() and iio_trigger_free() on them, causing a
+> NULL pointer dereference.
+> 
+> Instead of just checking for NULL, refactor the driver to use the
+> device-managed (devm_*) API for registration and allocation. This
+> modernizes the code, eliminates the need for manual cleanup functions
+> (at91_adc_trigger_remove, at91_adc_buffer_remove, at91_ts_unregister,
+> and at91_adc_remove), and inherently fixes the NULL pointer dereference
+> since the core handles the cleanup of properly allocated triggers.
+> 
+> As part of this simplification, the remaining trigger initialization
+> logic has been inlined into at91_adc_probe().
+> 
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Fixes: 0e589d5fb317 ("ARM: AT91: IIO: Add AT91 ADC driver.")
+> Signed-off-by: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
 
-Signed-off-by: Hongliang Yang <hongliang.yang@cixtech.com>
----
-Changes in v8:
-- Read the two board properties with their vendor prefix:
-  cix,ssp-disable and cix,u3-port-disable.
-- Do not assert the resets in system suspend/resume: that discards the
-  OTG registers programmed by cdns_drd_init(), and nothing programs
-  them again after the child device resumes. Only the clocks are gated.
-- Rewrite shutdown() to use the same teardown as remove(): depopulate
-  the child while its clocks are still on, then assert the resets and
-  disable the clocks. Whether to stay alive is decided on the child
-  device, which owns the wakeup interrupt.
-- Allocate the child platform data with kzalloc() and free it if the
-  children cannot be created: platform_device_release() kfree()s
-  dev.platform_data, so it must not be devm-managed.
-- Only set PS_PME_En when wakeup is requested, and return -ETIMEDOUT
-  when the controller does not reach D3 or does not leave it.
-- Drop the cached wakeup state: it went stale as soon as the child
-  changed its own wakeup setting.
+Hi. The overall result here looks good, but generally for a large
+change like this we try to reduce the noise by making refactors like
+the introduction of struct device *dev = &pdev->dev as precusor
+simple patches (only touching lines not otherwise touched by the main patch).
 
-Changes in v7:
-- Map one register range taken from the first reg entry, instead of two
-  ranges selected with reg-names.
-- Map it with devm_ioremap() because the ranges of the two Type-A
-  controllers overlap.
-- Take the offset of the AXI clock status register from the match data.
 
-Changes in v6:
-- Read the USB mode strap register offset and bit position from the
-  cix,usb-syscon phandle arguments instead of relying on the usbN
-  aliases and the undocumented id property.
-- Use dev_err_probe() in the probe error paths.
-- Drop the unused over-current GPIO handling and the unused dr_base and
-  cdnsp_pdev fields.
-- Do not disable the clocks before they have been acquired.
-- Drop the redundant depends on USB_CDNS3 and fix the compatible name
-  in the Kconfig help text.
----
- MAINTAINERS                    |   1 +
- drivers/usb/cdns3/Kconfig      |  13 +
- drivers/usb/cdns3/Makefile     |   1 +
- drivers/usb/cdns3/cdnsp-sky1.c | 663 +++++++++++++++++++++++++++++++++
- drivers/usb/cdns3/cdnsp-sky1.h |  99 +++++
- 5 files changed, 777 insertions(+)
- create mode 100644 drivers/usb/cdns3/cdnsp-sky1.c
- create mode 100644 drivers/usb/cdns3/cdnsp-sky1.h
+> ---
+> v3:
+>  - Addressed review comments from Andy Shevchenko:
+>    - Removed the redundant dev_err() after devm_input_allocate_device().
+>    - Declared a local 'struct device *dev = &pdev->dev' and used it in
+>      at91_adc_probe().
+>    - Declared the loop iterator inside the for-loop.
+> 
+> v2:
+>  - Dropped the simple NULL check approach.
+>  - Refactored the driver to use devm_* API as suggested by Jonathan Cameron.
+>  - Removed manual cleanup functions and error paths entirely.
+>  - Inlined remaining trigger initialization into probe().
+> 
+>  drivers/iio/adc/at91_adc.c | 185 +++++++++++--------------------------
+>  1 file changed, 52 insertions(+), 133 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/at91_adc.c b/drivers/iio/adc/at91_adc.c
+> index 0ac74ad92fca..5293229f3dfa 100644
+> --- a/drivers/iio/adc/at91_adc.c
+> +++ b/drivers/iio/adc/at91_adc.c
+> @@ -608,85 +608,32 @@ static const struct iio_trigger_ops at91_adc_trigger_ops = {
+>  static struct iio_trigger *at91_adc_allocate_trigger(struct iio_dev *idev,
+>  						     const struct at91_adc_trigger *trigger)
+>  {
+> +	struct device *dev = idev->dev.parent;
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5144d02fc998..3c609d371306 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2906,6 +2906,7 @@ F:	Documentation/devicetree/bindings/mailbox/cix,sky1-mbox.yaml
- F:	Documentation/devicetree/bindings/usb/cix,sky1-usbssp.yaml
- F:	arch/arm64/boot/dts/cix/
- F:	drivers/mailbox/cix-mailbox.c
-+F:	drivers/usb/cdns3/cdnsp-sky1.*
- K:	\bcix\b
- 
- ARM/CLKDEV SUPPORT
-diff --git a/drivers/usb/cdns3/Kconfig b/drivers/usb/cdns3/Kconfig
-index 39ad23d1ada8..678cedd8de97 100644
---- a/drivers/usb/cdns3/Kconfig
-+++ b/drivers/usb/cdns3/Kconfig
-@@ -77,6 +77,19 @@ config USB_CDNSP_PCI
- 	  If you choose to build this driver as module it will
- 	  be dynamically linked and module will be called cdnsp-pci.ko
- 
-+config USB_CDNSP_SKY1
-+	tristate "Cadence USB3 support on CIX Sky1 SoC platforms"
-+	depends on ARCH_CIX || COMPILE_TEST
-+	default USB_CDNS3
-+	help
-+	  Glue driver for the Cadence USB dual-role controllers on CIX Sky1
-+	  (device tree compatible cix,sky1-usbssp). It enables clocks and
-+	  resets from the SoC, then uses the shared cdns3 platform core
-+	  (cdns.ko).
-+
-+	  If built as a module, the module is named cdnsp-sky1.ko and must be
-+	  loaded after the cdns core module when both are loadable modules.
-+
- config USB_CDNS3_TI
- 	tristate "Cadence USB3 support on TI platforms"
- 	depends on ARCH_K3 || COMPILE_TEST
-diff --git a/drivers/usb/cdns3/Makefile b/drivers/usb/cdns3/Makefile
-index b2e4ba6a49a3..ab813aaf9940 100644
---- a/drivers/usb/cdns3/Makefile
-+++ b/drivers/usb/cdns3/Makefile
-@@ -28,3 +28,4 @@ obj-$(CONFIG_USB_CDNSP_PCI)			+= cdnsp-pci.o
- obj-$(CONFIG_USB_CDNS3_TI)			+= cdns3-ti.o
- obj-$(CONFIG_USB_CDNS3_IMX)			+= cdns3-imx.o
- obj-$(CONFIG_USB_CDNS3_STARFIVE)		+= cdns3-starfive.o
-+obj-$(CONFIG_USB_CDNSP_SKY1)			+= cdnsp-sky1.o
-diff --git a/drivers/usb/cdns3/cdnsp-sky1.c b/drivers/usb/cdns3/cdnsp-sky1.c
-new file mode 100644
-index 000000000000..c5d0ff9141cc
---- /dev/null
-+++ b/drivers/usb/cdns3/cdnsp-sky1.c
-@@ -0,0 +1,663 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * cdnsp-sky1.c - CIX Sky1 glue for Cadence USBSSP DRD controller
-+ *
-+ * Copyright (C) 2026 CIX Technology Group Co., Ltd.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
-+#include <linux/reset.h>
-+
-+#include <linux/usb.h>
-+#include <linux/usb/hcd.h>
-+
-+#include "cdnsp-sky1.h"
-+#include "core.h"
-+
-+static const char *cix_usb_clk_names[CIX_USB_CLK_NUM] = {
-+	"sof",
-+	"axi",
-+	"lpm",
-+	"apb",
-+};
-+
-+static int cdnsp_sky1_set_mode(struct device *dev, int mode)
-+{
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+
-+	return regmap_update_bits(data->usb_syscon, data->strap_offset,
-+				  GENMASK(data->strap_bit + 1, data->strap_bit),
-+				  mode << data->strap_bit);
-+}
-+
-+/**
-+ * cdnsp_sky1_clk_enable_all() - enable all clocks for usb controller
-+ * @dev:	Pointer to the device of platform_device
-+ *
-+ */
-+
-+static int cdnsp_sky1_clk_enable_all(struct device *dev)
-+{
-+	int i, ret = 0;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+	struct clk **cix_usb_clks = data->cix_usb_clks;
-+
-+	for (i = 0; i < CIX_USB_CLK_NUM; i++) {
-+		cix_usb_clks[i] = devm_clk_get(dev, cix_usb_clk_names[i]);
-+		if (IS_ERR(cix_usb_clks[i])) {
-+			ret = dev_err_probe(dev, PTR_ERR(cix_usb_clks[i]),
-+					    "could not get %s clock\n",
-+					    cix_usb_clk_names[i]);
-+			goto err_usb_clks;
-+		}
-+		ret = clk_prepare_enable(cix_usb_clks[i]);
-+		if (ret) {
-+			dev_err(dev, "%s enable failed:%d\n", cix_usb_clk_names[i], ret);
-+			goto err_usb_clks;
-+		}
-+	}
-+	dev_dbg(dev, "enable sky1 USB clock done\n");
-+	return ret;
-+
-+err_usb_clks:
-+	while (--i >= 0)
-+		clk_disable_unprepare(cix_usb_clks[i]);
-+	return ret;
-+};
-+
-+/**
-+ * cdnsp_sky1_clk_disable_all() - disable all clocks for usb controller
-+ * @dev:	Pointer to the device of platform_device
-+ *
-+ */
-+
-+static void cdnsp_sky1_clk_disable_all(struct device *dev)
-+{
-+	int i;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+	struct clk **cix_usb_clks = data->cix_usb_clks;
-+
-+	for (i = 0; i < CIX_USB_CLK_NUM; i++)
-+		clk_disable_unprepare(cix_usb_clks[i]);
-+};
-+
-+/**
-+ * cdnsp_sky1_clk_enable_resume() - enable the clocks that are turned
-+ * off while suspend
-+ * @dev:	Pointer to the device of platform_device
-+ *
-+ */
-+
-+static int cdnsp_sky1_clk_enable_resume(struct device *dev)
-+{
-+	int i, ret;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+	struct clk **cix_usb_clks = data->cix_usb_clks;
-+
-+	for (i = 0; i < CIX_USB_CLK_OFF_NUM; i++) {
-+		ret = clk_prepare_enable(cix_usb_clks[i]);
-+		if (ret) {
-+			dev_err(dev, "failed to enable clock %s: %d\n",
-+				cix_usb_clk_names[i], ret);
-+			goto err_usb_clks;
-+		}
-+	}
-+	return 0;
-+
-+err_usb_clks:
-+	while (--i >= 0)
-+		clk_disable_unprepare(cix_usb_clks[i]);
-+	return ret;
-+};
-+
-+/**
-+ * cdnsp_sky1_clk_disable_suspend() - disable the clocks which are not
-+ * needed when suspend
-+ * @dev:	Pointer to the device of platform_device
-+ *
-+ */
-+
-+static void cdnsp_sky1_clk_disable_suspend(struct device *dev)
-+{
-+	int i;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+	struct clk **cix_usb_clks = data->cix_usb_clks;
-+
-+	for (i = 0; i < CIX_USB_CLK_OFF_NUM; i++)
-+		clk_disable_unprepare(cix_usb_clks[i]);
-+};
-+
-+static u32 sky1_rcsu_read_status(struct cdnsp_sky1 *data)
-+{
-+	return readl(data->rcsu_base + data->rcsu_status_offset);
-+}
-+
-+static int sky1_rcsu_handshake(struct cdnsp_sky1 *data, u32 mask, u32 done,
-+			       u64 timeout_us)
-+{
-+	u32	result;
-+	int	ret;
-+
-+	ret = readl_poll_timeout(data->rcsu_base + data->rcsu_status_offset,
-+				 result,
-+				 (result & mask) == done ||
-+				 result == U32_MAX,
-+				 10, timeout_us);
-+	if (result == U32_MAX)		/* card removed */
-+		return -ENODEV;
-+	return ret;
-+}
-+
-+static int cdns_sky1_platform_suspend(struct device *dev,
-+				      bool suspend, bool wakeup)
-+{
-+	struct cdns *cdns = dev_get_drvdata(dev);
-+	struct platform_device *xhci_dev = cdns->host_dev;
-+	struct usb_hcd  *hcd;
-+	struct device *parent = cdns->dev->parent;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(parent);
-+	u32 value;
-+	int poll;
-+	int ret = 0;
-+	int count = 3;
-+
-+	if (cdns->role != USB_ROLE_HOST)
-+		return 0;
-+
-+	if (!xhci_dev) {
-+		dev_dbg(dev, "host controller has not been registered\n");
-+		return 0;
-+	}
-+
-+	hcd = dev_get_drvdata(&xhci_dev->dev);
-+	if (!hcd) {
-+		dev_dbg(dev, "host controller have not registered\n");
-+		return 0;
-+	}
-+
-+	if (suspend) {
-+		while (count--) {
-+			value = readl(hcd->regs + XECP_PM_PMCSR);
-+			value &= ~PS_MASK;
-+			value |= PS_D3;
-+			if (wakeup)
-+				value |= PS_PME_En;
-+			writel(value, hcd->regs + XECP_PM_PMCSR);
-+			/* After controller enters D3, disable AXI and SOF
-+			 * until AXI valid flag changes to 0.
-+			 */
-+			if (sky1_rcsu_handshake(data, AXI_CLOCK_VALID, 0,
-+						100ULL * 1000)) {
-+				u32 ctst;
-+
-+				ctst = sky1_rcsu_read_status(data);
-+				dev_dbg(dev, "enter D3 failed, register value:%x\n",
-+					ctst);
-+			} else {
-+				break;
-+			}
-+		}
-+		if (count < 0) {
-+			u32 ctst;
-+
-+			ctst = sky1_rcsu_read_status(data);
-+			dev_err(dev, "enter D3 failed after retries, register value:%x\n",
-+				ctst);
-+			ret = -ETIMEDOUT;
-+		}
-+	} else {
-+		while (count--) {
-+			value = readl(hcd->regs + XECP_PM_PMCSR);
-+			value &= ~PS_MASK;
-+			value |= PS_D0;
-+			value &= ~PS_PME_En;
-+			writel(value, hcd->regs + XECP_PM_PMCSR);
-+			/* Wait power state back to D0 */
-+			poll = readl_poll_timeout(hcd->regs + XECP_PM_PMCSR,
-+						  value,
-+						  (value & PS_MASK) == 0,
-+						  10, 100ULL * 1000);
-+			if (poll) {
-+				dev_dbg(dev, "exit D3 timeout, power state=0x%lx\n",
-+					value & PS_MASK);
-+			} else {
-+				break;
-+			}
-+		}
-+		if (count < 0) {
-+			dev_err(dev, "exit D3 timeout after retries, power state=0x%lx\n",
-+				value & PS_MASK);
-+			ret = -ETIMEDOUT;
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static void cdnsp_sky1_configure_controller(struct cdnsp_sky1 *data)
-+{
-+	int clk;
-+	int v0, v1, v2, v3;
-+	u32 dev_cap, xhci_cap;
-+	u32 val = 0;
-+
-+	if (data->u3_disable) {
-+		dev_dbg(data->dev, "disable u3 port\n");
-+		writel(D_XEC_CFG_3XPORT_MODE_VALUE, data->device_base
-+			+ D_XEC_CFG_3XPORT_MODE);
-+	}
-+	dev_cap = readl(data->device_base + D_XEC_AXI_CAP);
-+	xhci_cap = readl(data->xhci_base + D_XEC_AXI_CAP);
-+	writel(dev_cap | AXI_HALT, data->device_base + D_XEC_AXI_CAP);
-+	writel(xhci_cap | AXI_HALT, data->xhci_base + D_XEC_AXI_CAP);
-+	writel(data->axi_bmax_value, data->device_base + D_XEC_AXI_CTRL0);
-+	writel(data->axi_bmax_value, data->xhci_base + D_XEC_AXI_CTRL0);
-+	writel(dev_cap & ~AXI_HALT, data->device_base + D_XEC_AXI_CAP);
-+	writel(xhci_cap & ~AXI_HALT, data->xhci_base + D_XEC_AXI_CAP);
-+	clk = data->sof_clk_freq;
-+	v0 =  25 * clk / 100000000;
-+	v1 = clk / 10000;
-+	v2 = clk / 10;
-+	v3 = 125 * clk / 1000000;
-+	writel(((v0 > 1) ? v0 - 1 : 1), data->device_base
-+		+ D_XEC_PRE_REG_250NS);
-+	writel((unsigned int)((v1 / 100 > 1) > 0 ? (v1 / 100) - 1 : 1),
-+	       data->device_base + D_XEC_PRE_REG_1US);
-+	writel((unsigned int)((v1 / 10 > 1) > 0 ? (v1 / 10) - 1 : 1),
-+	       data->device_base + D_XEC_PRE_REG_10US);
-+	writel(((v1) > 1 ? v1 - 1 : 1), data->device_base
-+		+ D_XEC_PRE_REG_100US);
-+	writel((unsigned int)(v3 > 1 ? v3 - 1 : 1),
-+	       data->device_base + D_XEC_PRE_REG_125US);
-+	writel(((v2 / 100 > 1) ? (v2 / 100) - 1 : 1), data->device_base
-+		+ D_XEC_PRE_REG_1MS);
-+	writel(((v2 / 10 > 1) ? (v2 / 10) - 1 : 1), data->device_base
-+		+ D_XEC_PRE_REG_10MS);
-+	writel((v2 > 1 ? v2 - 1 : 1), data->device_base
-+		+ D_XEC_PRE_REG_100MS);
-+	dev_dbg(data->dev, "readl:%x, %x ,%x, %x, %x, %x, %x, %x\n",
-+		readl(data->device_base + D_XEC_PRE_REG_250NS),
-+		readl(data->device_base + D_XEC_PRE_REG_1US),
-+		readl(data->device_base + D_XEC_PRE_REG_10US),
-+		readl(data->device_base + D_XEC_PRE_REG_100US),
-+		readl(data->device_base + D_XEC_PRE_REG_125US),
-+		readl(data->device_base + D_XEC_PRE_REG_1MS),
-+		readl(data->device_base + D_XEC_PRE_REG_10MS),
-+		readl(data->device_base + D_XEC_PRE_REG_100MS));
-+	clk = data->lpm_clk_freq;
-+	v0 =  25 * clk / 100000000;
-+	v1 = clk / 10000;
-+	v2 = clk / 10;
-+	v3 = 125 * clk / 1000000;
-+	writel(((v0 > 1) ? v0 - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_250NS);
-+	writel((unsigned int)((v1 / 100 > 1) > 0 ? (v1 / 100) - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_1US);
-+	writel((unsigned int)((v1 / 10 > 1) > 0 ? (v1 / 10) - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_10US);
-+	writel(((v1) > 1 ? v1 - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_100US);
-+	writel((unsigned int)(v3 > 1 ? v3 - 1 : 1),
-+	       data->device_base + D_XEC_LPM_PRE_REG_125US);
-+	writel(((v2 / 100 > 1) ? (v2 / 100) - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_1MS);
-+	writel(((v2 / 10 > 1) ? (v2 / 10) - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_10MS);
-+	writel((v2 > 1 ? v2 - 1 : 1), data->device_base
-+		+ D_XEC_LPM_PRE_REG_100MS);
-+	v0 = readl(data->xhci_base + XEC_USBSSP_CHICKEN_BITS_3);
-+	v0 &= ~(CFG_APB_TIMEOUT_PSLVERR_EN | CFG_APB_PSLVERR_EN);
-+	writel(v0, data->xhci_base + XEC_USBSSP_CHICKEN_BITS_3);
-+	if (data->u3_disable) {
-+		dev_dbg(data->dev, "disable u3 port\n");
-+		writel(XEC_CFG_3XPORT_MODE_VALUE, data->xhci_base
-+			+ XEC_CFG_3XPORT_MODE);
-+	} else if (data->ssp_disable) {
-+		dev_dbg(data->dev, "disable ssp\n");
-+		v0 = readl(data->xhci_base + XEC_CFG_3XPORT_MODE);
-+		writel(v0  & CFG_3XPORT_MODE_DIS_SSP, data->xhci_base
-+			+ XEC_CFG_3XPORT_MODE);
-+	}
-+	clk = data->sof_clk_freq;
-+	v0 =  25 * clk / 100000000;
-+	v1 = clk / 10000;
-+	v2 = clk / 10;
-+	v3 = 125 * clk / 1000000;
-+	writel(((v0 > 1) ? v0 - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_250NS);
-+	writel((unsigned int)((v1 / 100 > 1) > 0 ? (v1 / 100) - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_1US);
-+	writel((unsigned int)((v1 / 10 > 1) > 0 ? (v1 / 10) - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_10US);
-+	writel(((v1) > 1 ? v1 - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_100US);
-+	writel((unsigned int)(v3 > 1 ? v3 - 1 : 0),
-+	       data->xhci_base + XEC_PRE_REG_125US);
-+	writel(((v2 / 100 > 1) ? (v2 / 100) - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_1MS);
-+	writel(((v2 / 10 > 1) ? (v2 / 10) - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_10MS);
-+	writel((v2 > 1 ? v2 - 1 : 0), data->xhci_base
-+		+ XEC_PRE_REG_100MS);
-+	clk = data->lpm_clk_freq;
-+	v0 =  25 * clk / 100000000;
-+	v1 = clk / 10000;
-+	v2 = clk / 10;
-+	v3 = 125 * clk / 1000000;
-+	writel(((v0 > 1) ? v0 - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_250NS);
-+	writel((unsigned int)((v1 / 100 > 1) > 0 ? (v1 / 100) - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_1US);
-+	writel((unsigned int)((v1 / 10 > 1) > 0 ? (v1 / 10) - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_10US);
-+	writel(((v1) > 1 ? v1 - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_100US);
-+	writel((unsigned int)(v3 > 1 ? v3 - 1 : 0),
-+	       data->xhci_base + XEC_LPM_PRE_REG_125US);
-+	writel(((v2 / 100 > 1) ? (v2 / 100) - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_1MS);
-+	writel(((v2 / 10 > 1) ? (v2 / 10) - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_10MS);
-+	writel((v2 > 1 ? v2 - 1 : 0), data->xhci_base
-+		+ XEC_LPM_PRE_REG_100MS);
-+	val = readl(data->xhci_base + XEC_USBSSP_CLK_GATING_CTRL);
-+	val |= HOST20_ACLK_GATING_DISABLE | HOST20_UTMI_GATING_DISABLE;
-+	writel(val, data->xhci_base + XEC_USBSSP_CLK_GATING_CTRL);
-+}
-+
-+static int cdnsp_sky1_drd_init(struct cdnsp_sky1 *data)
-+{
-+	int ret = 0;
-+
-+	reset_control_assert(data->reset);
-+	reset_control_assert(data->preset);
-+	ret = cdnsp_sky1_clk_enable_all(data->dev);
-+	if (ret)
-+		return ret;
-+	writel(CIX_USB_AXI_WR_CACHE_VALUE, data->rcsu_base);
-+	cdnsp_sky1_set_mode(data->dev, MODE_STRAP_OTG);
-+	reset_control_deassert(data->preset);
-+	cdnsp_sky1_configure_controller(data);
-+	reset_control_deassert(data->reset);
-+	return ret;
-+}
-+
-+static void __iomem *sky1_of_get_addr_by_name(struct device_node *parent, const char *name)
-+{
-+	void __iomem *addr = NULL;
-+	struct device_node *node;
-+	int index;
-+
-+	for_each_child_of_node(parent, node) {
-+		index = of_property_match_string(node, "reg-names", name);
-+		if (index >= 0) {
-+			addr = of_iomap(node, index);
-+			of_node_put(node);
-+			break;
-+		}
-+	}
-+
-+	return addr;
-+}
-+
-+static void __iomem *sky1_get_addr_by_name(struct device *dev, const char *name)
-+{
-+	return sky1_of_get_addr_by_name(dev->of_node, name);
-+}
-+
-+static void sky1_put_addr(void __iomem *regs)
-+{
-+	if (regs)
-+		iounmap(regs);
-+}
-+
-+struct sky1_usbssp_cfg {
-+	unsigned int rcsu_status_offset;
-+};
-+
-+/* Offset of STRAP_STATUS0, the AXI clock status register, from 0x91c0314. */
-+static const struct sky1_usbssp_cfg sky1_usbssp_typea_cfg = {
-+	.rcsu_status_offset = 0xec,
-+};
-+
-+static int cdnsp_sky1_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+	struct of_dev_auxdata cdns_sky1_auxdata[] = {
-+		{ .compatible = "cdns,usb3", },
-+		{},
-+	};
-+	const struct sky1_usbssp_cfg *cfg;
-+	struct cdnsp_sky1 *data;
-+	struct cdns3_platform_data *cdns_sky1_pdata;
-+	struct resource *res;
-+	unsigned int args[2];
-+	int ret = 0;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+	cfg = of_device_get_match_data(dev);
-+	if (!cfg)
-+		return dev_err_probe(dev, -ENODEV, "unsupported device\n");
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return dev_err_probe(dev, -ENODEV, "missing register range\n");
-+	/*
-+	 * The two Type-A controllers share one RCSU block and their
-+	 * register ranges overlap, so the range is mapped without
-+	 * requesting it: request_mem_region() would make the second
-+	 * controller fail with -EBUSY.
-+	 */
-+	data->rcsu_base = devm_ioremap(dev, res->start, resource_size(res));
-+	if (!data->rcsu_base)
-+		return dev_err_probe(dev, -ENOMEM, "failed to map registers\n");
-+	data->rcsu_status_offset = cfg->rcsu_status_offset;
-+	data->reset = devm_reset_control_get_exclusive(&pdev->dev, "core");
-+	if (IS_ERR(data->reset))
-+		return dev_err_probe(dev, PTR_ERR(data->reset),
-+				     "failed to get core reset\n");
-+	data->preset = devm_reset_control_get_exclusive(&pdev->dev, "apb");
-+	if (IS_ERR(data->preset))
-+		return dev_err_probe(dev, PTR_ERR(data->preset),
-+				     "failed to get APB reset\n");
-+	platform_set_drvdata(pdev, data);
-+	data->dev = dev;
-+	data->usb_syscon =
-+		syscon_regmap_lookup_by_phandle_args(node, "cix,usb-syscon",
-+						     2, args);
-+	if (IS_ERR(data->usb_syscon))
-+		return dev_err_probe(dev, PTR_ERR(data->usb_syscon),
-+				     "failed to get S5 system controller\n");
-+	data->strap_offset = args[0];
-+	data->strap_bit = args[1];
-+	data->u3_disable = device_property_read_bool(dev, "cix,u3-port-disable");
-+	data->ssp_disable = device_property_read_bool(dev, "cix,ssp-disable");
-+	data->sof_clk_freq = CIX_USB_CLK_8M;
-+	data->lpm_clk_freq = CIX_USB_CLK_32K;
-+	data->axi_bmax_value = AXI_BMAX_VALUE_DEFAULT;
-+	data->xhci_base = sky1_get_addr_by_name(dev, "xhci");
-+	if (!data->xhci_base) {
-+		ret = -ENODEV;
-+		goto err_put_xhci;
-+	}
-+	data->device_base = sky1_get_addr_by_name(dev, "dev");
-+	if (!data->device_base) {
-+		ret = -ENODEV;
-+		goto err_put_addrs;
-+	}
-+	ret = cdnsp_sky1_drd_init(data);
-+	if (ret == -ETIMEDOUT)
-+		ret = -EPROBE_DEFER;
-+	if (ret) {
-+		/*
-+		 * drd_init() leaves the clocks disabled and the resets
-+		 * asserted on failure; only the address mappings are
-+		 * left to release.
-+		 */
-+		goto err_put_addrs;
-+	}
-+	/*
-+	 * platform_device_release() kfree()s dev.platform_data, so this
-+	 * buffer belongs to the child device once it is created. It cannot
-+	 * be devm-managed, and it is released here only if no child takes
-+	 * it over.
-+	 */
-+	cdns_sky1_pdata = kzalloc(sizeof(*cdns_sky1_pdata), GFP_KERNEL);
-+	if (!cdns_sky1_pdata) {
-+		ret = -ENOMEM;
-+		goto err_quiesce;
-+	}
-+	cdns_sky1_pdata->platform_suspend = cdns_sky1_platform_suspend;
-+	cdns_sky1_pdata->quirks = CDNS3_DEFAULT_PM_RUNTIME_ALLOW;
-+	cdns_sky1_auxdata[0].platform_data = cdns_sky1_pdata;
-+	ret = of_platform_populate(node, NULL, cdns_sky1_auxdata, dev);
-+	if (ret) {
-+		dev_err(dev, "failed to create children: %d\n", ret);
-+		kfree(cdns_sky1_pdata);
-+		goto err_quiesce;
-+	}
-+	device_set_wakeup_capable(dev, true);
-+	pm_runtime_set_active(dev);
-+	pm_runtime_enable(dev);
-+	return 0;
-+
-+err_quiesce:
-+	reset_control_assert(data->reset);
-+	reset_control_assert(data->preset);
-+	cdnsp_sky1_clk_disable_all(dev);
-+err_put_addrs:
-+	sky1_put_addr(data->device_base);
-+err_put_xhci:
-+	sky1_put_addr(data->xhci_base);
-+	return ret;
-+}
-+
-+static void cdnsp_sky1_remove(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+
-+	pm_runtime_get_sync(dev);
-+	of_platform_depopulate(dev);
-+	sky1_put_addr(data->xhci_base);
-+	sky1_put_addr(data->device_base);
-+	reset_control_assert(data->reset);
-+	reset_control_assert(data->preset);
-+	cdnsp_sky1_clk_disable_all(dev);
-+	pm_runtime_disable(dev);
-+	pm_runtime_set_suspended(dev);
-+	pm_runtime_put_noidle(dev);
-+}
-+
-+/*
-+ * Because the wake-up interrupt and host interrupt are the same interrupt,
-+ * closing the axi and sof clock will result in the inability to generate
-+ * port status change interrupt.
-+ *
-+ * The resets are left alone here. Asserting them throws away the OTG
-+ * registers programmed by cdns_drd_init(), and nothing programs them again
-+ * after the child device resumes, so the controller keeps its state across
-+ * system suspend and only the clocks are gated.
-+ */
-+static int cdnsp_sky1_system_suspend(struct device *dev)
-+{
-+	cdnsp_sky1_clk_disable_suspend(dev);
-+
-+	return 0;
-+}
-+
-+static int cdnsp_sky1_system_resume(struct device *dev)
-+{
-+	return cdnsp_sky1_clk_enable_resume(dev);
-+}
-+
-+static const struct dev_pm_ops cdnsp_sky1_pm_ops = {
-+	SYSTEM_SLEEP_PM_OPS(cdnsp_sky1_system_suspend, cdnsp_sky1_system_resume)
-+};
-+
-+static const struct of_device_id cdns_sky1_of_match[] = {
-+	{
-+		.compatible = "cix,sky1-usbssp",
-+		.data = &sky1_usbssp_typea_cfg,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, cdns_sky1_of_match);
-+
-+static int cdnsp_sky1_find_cdns_dev(struct device *dev, void *data)
-+{
-+	struct device **cdns_dev = data;
-+
-+	if (dev->of_node && of_device_is_compatible(dev->of_node, "cdns,usb3")) {
-+		/* keep a reference: the pointer is used after the iteration */
-+		*cdns_dev = get_device(dev);
-+		return 1;
-+	}
-+	return 0;
-+}
-+
-+static void cdnsp_sky1_shutdown(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct cdnsp_sky1 *data = dev_get_drvdata(dev);
-+	struct device *cdns_dev = NULL;
-+
-+	/*
-+	 * The wakeup interrupt and the host interrupt are the same one, so
-+	 * the controller has to stay alive when wakeup is enabled on the
-+	 * child device, which is the one that owns the interrupt.
-+	 */
-+	device_for_each_child(dev, &cdns_dev, cdnsp_sky1_find_cdns_dev);
-+	if (cdns_dev && device_may_wakeup(cdns_dev)) {
-+		put_device(cdns_dev);
-+		return;
-+	}
-+
-+	/*
-+	 * Same teardown as remove(): depopulate the child while its clocks
-+	 * are still on, so that its driver stops the controller and frees
-+	 * the interrupts before the resets and the clocks are taken away.
-+	 */
-+	pm_runtime_get_sync(dev);
-+	of_platform_depopulate(dev);
-+	reset_control_assert(data->reset);
-+	reset_control_assert(data->preset);
-+	cdnsp_sky1_clk_disable_all(dev);
-+	pm_runtime_put_noidle(dev);
-+	put_device(cdns_dev);
-+}
-+
-+static struct platform_driver cdnsp_sky1_driver = {
-+	.probe		= cdnsp_sky1_probe,
-+	.remove		= cdnsp_sky1_remove,
-+	.shutdown	= cdnsp_sky1_shutdown,
-+	.driver		= {
-+		.name	= "cdnsp-sky1",
-+		.of_match_table	= cdns_sky1_of_match,
-+		.pm	= pm_sleep_ptr(&cdnsp_sky1_pm_ops),
-+	},
-+};
-+
-+module_platform_driver(cdnsp_sky1_driver);
-+
-+MODULE_ALIAS("platform:cdnsp-sky1");
-+MODULE_DESCRIPTION("CIX Sky1 Cadence USBSSP DRD glue driver");
-+MODULE_AUTHOR("Hongliang Yang <hongliang.yang@cixtech.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/usb/cdns3/cdnsp-sky1.h b/drivers/usb/cdns3/cdnsp-sky1.h
-new file mode 100644
-index 000000000000..73e0dfe318c2
---- /dev/null
-+++ b/drivers/usb/cdns3/cdnsp-sky1.h
-@@ -0,0 +1,99 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef _CDNSP_SKY1_H
-+#define _CDNSP_SKY1_H
-+#include <linux/clk.h>
-+#include <linux/reset.h>
-+#include <linux/types.h>
-+
-+#define MODE_STRAP_OTG                  0
-+
-+#define AXI_HALT                        BIT(31)
-+#define AXI_BMAX_VALUE_DEFAULT          0x7
-+
-+#define D_XEC_CFG_3XPORT_MODE           0x2040
-+#define D_XEC_AXI_CAP                   0x2174
-+#define D_XEC_AXI_CTRL0                 0x217C
-+#define D_XEC_PRE_REG_250NS             0x21E8
-+#define D_XEC_PRE_REG_1US               0x21EC
-+#define D_XEC_PRE_REG_10US              0x21F0
-+#define D_XEC_PRE_REG_100US             0x21F4
-+#define D_XEC_PRE_REG_125US             0x21F8
-+#define D_XEC_PRE_REG_1MS               0x21FC
-+#define D_XEC_PRE_REG_10MS              0x2200
-+#define D_XEC_PRE_REG_100MS             0x2204
-+#define D_XEC_LPM_PRE_REG_250NS         0x2208
-+#define D_XEC_LPM_PRE_REG_1US           0x220C
-+#define D_XEC_LPM_PRE_REG_10US          0x2210
-+#define D_XEC_LPM_PRE_REG_100US         0x2214
-+#define D_XEC_LPM_PRE_REG_125US         0x2218
-+#define D_XEC_LPM_PRE_REG_1MS           0x221C
-+#define D_XEC_LPM_PRE_REG_10MS          0x2220
-+#define D_XEC_LPM_PRE_REG_100MS         0x2224
-+
-+#define XEC_CFG_3XPORT_MODE             0x2040
-+#define XEC_PRE_REG_250NS               0x21E8
-+#define XEC_PRE_REG_1US                 0x21EC
-+#define XEC_PRE_REG_10US                0x21F0
-+#define XEC_PRE_REG_100US               0x21F4
-+#define XEC_PRE_REG_125US               0x21F8
-+#define XEC_PRE_REG_1MS                 0x21FC
-+#define XEC_PRE_REG_10MS                0x2200
-+#define XEC_PRE_REG_100MS               0x2204
-+#define XEC_LPM_PRE_REG_250NS           0x2208
-+#define XEC_LPM_PRE_REG_1US             0x220C
-+#define XEC_LPM_PRE_REG_10US            0x2210
-+#define XEC_LPM_PRE_REG_100US           0x2214
-+#define XEC_LPM_PRE_REG_125US           0x2218
-+#define XEC_LPM_PRE_REG_1MS             0x221C
-+#define XEC_LPM_PRE_REG_10MS            0x2220
-+#define XEC_LPM_PRE_REG_100MS           0x2224
-+#define XEC_USBSSP_CHICKEN_BITS_3       0x2230
-+#define XEC_USBSSP_CLK_GATING_CTRL      0x2234
-+#define XECP_PM_PMCSR                   0x2240
-+
-+/* XEC_USBSSP_CLK_GATING_CTRL */
-+#define HOST20_ACLK_GATING_DISABLE      BIT(4)
-+#define HOST20_UTMI_GATING_DISABLE      BIT(5)
-+
-+/* XECP_PM_PMCSR */
-+#define PS_MASK                         GENMASK(1, 0)
-+#define PS_D0                           0
-+#define PS_D3                           3
-+#define PS_PME_En                       BIT(8)
-+
-+#define D_XEC_CFG_3XPORT_MODE_VALUE     0xa0031e07
-+#define XEC_CFG_3XPORT_MODE_VALUE       0xa0031e07
-+#define CFG_3XPORT_MODE_DIS_SSP         (~BIT(31))
-+
-+#define CFG_APB_TIMEOUT_PSLVERR_EN      BIT(22)
-+#define CFG_APB_PSLVERR_EN              BIT(23)
-+
-+#define CIX_USB_CLK_NUM                 (4)
-+#define CIX_USB_CLK_OFF_NUM             (2)
-+#define CIX_USB_AXI_WR_CACHE_VALUE      0x33
-+#define CIX_USB_CLK_32K                 32000
-+#define CIX_USB_CLK_8M                  8000000
-+
-+#define AXI_CLOCK_VALID                 BIT(1)
-+
-+struct cdnsp_sky1 {
-+	struct device *dev;
-+	void __iomem *rcsu_base;
-+	unsigned int rcsu_status_offset;
-+	void __iomem *xhci_base;
-+	void __iomem *device_base;
-+	struct reset_control *reset;
-+	struct reset_control *preset;
-+	struct clk *cix_usb_clks[CIX_USB_CLK_NUM];
-+	unsigned int strap_offset;
-+	unsigned int strap_bit;
-+	struct regmap	*usb_syscon;
-+	int lpm_clk_freq;
-+	int sof_clk_freq;
-+	bool u3_disable;
-+	bool ssp_disable;
-+	int axi_bmax_value;
-+};
-+
-+#endif /* _CDNSP_SKY1_H */
--- 
-2.54.0
+Pass the struct device in.  We shouldn't be relying on that parent relationship
+as that's an internal implementation detail.  The caller has the right dev
+to hand so easy to pass in.
+
+>  	struct iio_trigger *trig;
+>  	int ret;
+>  
+> -	trig = iio_trigger_alloc(idev->dev.parent, "%s-dev%d-%s", idev->name,
+> -				 iio_device_id(idev), trigger->name);
+> -	if (trig == NULL)
+> +	trig = devm_iio_trigger_alloc(dev, "%s-dev%d-%s", idev->name,
+> +				      iio_device_id(idev), trigger->name);
+> +	if (!trig)
+>  		return NULL;
+>  
+>  	iio_trigger_set_drvdata(trig, idev);
+>  	trig->ops = &at91_adc_trigger_ops;
+>  
+> -	ret = iio_trigger_register(trig);
+> -	if (ret) {
+> -		iio_trigger_free(trig);
+> +	ret = devm_iio_trigger_register(dev, trig);
+Hmm. This function is badly named as does things I'd consider not in
+scope for an _allocate.
+
+There isn't a lot here so what does it look like if we just squash
+this code to the caller? Maybe we do need a helper as indent is getting
+too large, but it doesn't look like it would be that bad.
+
+> +	if (ret)
+>  		return NULL;
+> -	}
+>  
+>  	return trig;
+>  }
+>  
+> -static int at91_adc_trigger_init(struct iio_dev *idev)
+> -{
+> -	struct at91_adc_state *st = iio_priv(idev);
+> -	int i, ret;
+> -
+> -	st->trig = devm_kcalloc(&idev->dev,
+> -				st->caps->trigger_number, sizeof(*st->trig),
+> -				GFP_KERNEL);
+> -
+> -	if (st->trig == NULL) {
+> -		ret = -ENOMEM;
+> -		goto error_ret;
+> -	}
+> -
+> -	for (i = 0; i < st->caps->trigger_number; i++) {
+> -		if (st->caps->triggers[i].is_external && !(st->use_external))
+> -			continue;
+> -
+> -		st->trig[i] = at91_adc_allocate_trigger(idev,
+> -							st->caps->triggers + i);
+> -		if (st->trig[i] == NULL) {
+> -			dev_err(&idev->dev,
+> -				"Could not allocate trigger %d\n", i);
+> -			ret = -ENOMEM;
+> -			goto error_trigger;
+> -		}
+> -	}
+> -
+> -	return 0;
+> -
+> -error_trigger:
+> -	for (i--; i >= 0; i--) {
+> -		iio_trigger_unregister(st->trig[i]);
+> -		iio_trigger_free(st->trig[i]);
+> -	}
+> -error_ret:
+> -	return ret;
+> -}
+> -
+> -static void at91_adc_trigger_remove(struct iio_dev *idev)
+> -{
+> -	struct at91_adc_state *st = iio_priv(idev);
+> -	int i;
+> -
+> -	for (i = 0; i < st->caps->trigger_number; i++) {
+> -		iio_trigger_unregister(st->trig[i]);
+> -		iio_trigger_free(st->trig[i]);
+> -	}
+> -}
+> -
+>  static int at91_adc_buffer_init(struct iio_dev *idev)
+>  {
+> -	return iio_triggered_buffer_setup(idev, &iio_pollfunc_store_time,
+> -		&at91_adc_trigger_handler, NULL);
+> -}
+> +	struct device *dev = idev->dev.parent;
+As above, we shouldn't rely on that.
+
+This helper seems rather pointless. Maybe just drop it and put the
+code inline.
+
+>  
+> -static void at91_adc_buffer_remove(struct iio_dev *idev)
+> -{
+> -	iio_triggered_buffer_cleanup(idev);
+> +	return devm_iio_triggered_buffer_setup(dev, idev,
+> +					       &iio_pollfunc_store_time,
+> +					       &at91_adc_trigger_handler, NULL);
+>  }
+>  
+>  static int at91_adc_read_raw(struct iio_dev *idev,
+> @@ -924,13 +871,10 @@ static int at91_ts_register(struct iio_dev *idev,
+>  {
+>  	struct at91_adc_state *st = iio_priv(idev);
+>  	struct input_dev *input;
+> -	int ret;
+>  
+> -	input = input_allocate_device();
+> -	if (!input) {
+> -		dev_err(&idev->dev, "Failed to allocate TS device!\n");
+> +	input = devm_input_allocate_device(&pdev->dev);
+> +	if (!input)
+>  		return -ENOMEM;
+> -	}
+>  
+>  	input->name = DRIVER_NAME;
+>  	input->id.bustype = BUS_HOST;
+> @@ -951,8 +895,7 @@ static int at91_ts_register(struct iio_dev *idev,
+>  		if (st->touchscreen_type != ATMEL_ADC_TOUCHSCREEN_4WIRE) {
+>  			dev_err(&pdev->dev,
+>  				"This touchscreen controller only support 4 wires\n");
+> -			ret = -EINVAL;
+> -			goto err;
+> +			return -EINVAL;
+			return dev_err_probe(&pdev->dev, -EINVAL,
+					     "This touch...
+
+>  		}
+>  
+>  		input_set_abs_params(input, ABS_X, 0, (1 << MAX_RLPOS_BITS) - 1,
+> @@ -964,39 +907,27 @@ static int at91_ts_register(struct iio_dev *idev,
+>  	st->ts_input = input;
+>  	input_set_drvdata(input, st);
+>  
+> -	ret = input_register_device(input);
+> -	if (ret)
+> -		goto err;
+> -
+> -	return ret;
+> -
+> -err:
+> -	input_free_device(input);
+> -	return ret;
+> -}
+> -
+> -static void at91_ts_unregister(struct at91_adc_state *st)
+> -{
+> -	input_unregister_device(st->ts_input);
+> +	return input_register_device(input);
+>  }
+>  
+>  static int at91_adc_probe(struct platform_device *pdev)
+>  {
+> +	struct device *dev = &pdev->dev;
+>  	unsigned int prsc, mstrclk, ticks, adc_clk, adc_clk_khz, shtim;
+> -	struct device_node *node = pdev->dev.of_node;
+> +	struct device_node *node = dev->of_node;
+>  	int ret;
+>  	struct iio_dev *idev;
+>  	struct at91_adc_state *st;
+>  	u32 reg, prop;
+>  	const char *s;
+>  
+> -	idev = devm_iio_device_alloc(&pdev->dev, sizeof(struct at91_adc_state));
+> +	idev = devm_iio_device_alloc(dev, sizeof(struct at91_adc_state));
+
+Whilst here make that sizeof(*st)
+
+>  	if (!idev)
+>  		return -ENOMEM;
+>  
+>  	st = iio_priv(idev);
+>  
+> -	st->caps = of_device_get_match_data(&pdev->dev);
+> +	st->caps = of_device_get_match_data(dev);
+>  
+>  	st->use_external = of_property_read_bool(node, "atmel,adc-use-external-triggers");
+>  
+> @@ -1041,7 +972,7 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, idev);
+>  
+> -	idev->name = dev_name(&pdev->dev);
+> +	idev->name = dev_name(dev);
+>  	idev->modes = INDIO_DIRECT_MODE;
+>  	idev->info = &at91_adc_info;
+>  
+> @@ -1060,25 +991,25 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  	at91_adc_writel(st, AT91_ADC_IDR, 0xFFFFFFFF);
+>  
+>  	if (st->caps->has_tsmr)
+> -		ret = devm_request_irq(&pdev->dev, st->irq,
+> +		ret = devm_request_irq(dev, st->irq,
+
+So there are several things in this patch that can be broken out.
+One is to introduce struct device *dev and convert only those cases
+that aren't touched in the more general refactors. That would reduce
+the noise in the main patch that follow by separating out changes like
+this one.
+
+>  				       at91_adc_9x5_interrupt, 0,
+> -				       pdev->dev.driver->name, idev);
+> +				       dev->driver->name, idev);
+>  	else
+> -		ret = devm_request_irq(&pdev->dev, st->irq,
+> +		ret = devm_request_irq(dev, st->irq,
+>  				       at91_adc_rl_interrupt, 0,
+> -				       pdev->dev.driver->name, idev);
+> +				       dev->driver->name, idev);
+>  	if (ret)
+> -		return dev_err_probe(&pdev->dev, ret,
+> +		return dev_err_probe(dev, ret,
+>  				     "Failed to allocate IRQ.\n");
+>  
+> -	st->clk = devm_clk_get_enabled(&pdev->dev, "adc_clk");
+> +	st->clk = devm_clk_get_enabled(dev, "adc_clk");
+>  	if (IS_ERR(st->clk))
+> -		return dev_err_probe(&pdev->dev, PTR_ERR(st->clk),
+> +		return dev_err_probe(dev, PTR_ERR(st->clk),
+>  				     "Could not prepare or enable the clock.\n");
+>  
+> -	st->adc_clk = devm_clk_get_enabled(&pdev->dev, "adc_op_clk");
+> +	st->adc_clk = devm_clk_get_enabled(dev, "adc_op_clk");
+>  	if (IS_ERR(st->adc_clk))
+> -		return dev_err_probe(&pdev->dev, PTR_ERR(st->adc_clk),
+> +		return dev_err_probe(dev, PTR_ERR(st->adc_clk),
+>  				     "Could not prepare or enable the ADC clock.\n");
+>  
+>  	/*
+> @@ -1090,13 +1021,13 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  	adc_clk = clk_get_rate(st->adc_clk);
+>  	adc_clk_khz = adc_clk / 1000;
+>  
+> -	dev_dbg(&pdev->dev, "Master clock is set as: %d Hz, adc_clk should set as: %d Hz\n",
+> +	dev_dbg(dev, "Master clock is set as: %d Hz, adc_clk should set as: %d Hz\n",
+>  		mstrclk, adc_clk);
+>  
+>  	prsc = (mstrclk / (2 * adc_clk)) - 1;
+>  
+>  	if (!st->startup_time)
+> -		return dev_err_probe(&pdev->dev, -EINVAL,
+> +		return dev_err_probe(dev, -EINVAL,
+>  				     "No startup time available.\n");
+>  	ticks = (*st->caps->calc_startup_ticks)(st->startup_time, adc_clk_khz);
+>  
+> @@ -1123,7 +1054,7 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  	/* Setup the ADC channels available on the board */
+>  	ret = at91_adc_channel_init(idev);
+>  	if (ret < 0)
+> -		return dev_err_probe(&pdev->dev, ret,
+> +		return dev_err_probe(dev, ret,
+>  				     "Couldn't initialize the channels.\n");
+>  
+>  	init_waitqueue_head(&st->wq_data_avail);
+> @@ -1137,14 +1068,26 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  	if (!st->touchscreen_type) {
+>  		ret = at91_adc_buffer_init(idev);
+>  		if (ret < 0)
+> -			return dev_err_probe(&pdev->dev, ret,
+> +			return dev_err_probe(dev, ret,
+>  					     "Couldn't initialize the buffer.\n");
+
+Can combine that onto one line.
+
+>  
+> -		ret = at91_adc_trigger_init(idev);
+> -		if (ret < 0) {
+> -			dev_err(&pdev->dev, "Couldn't setup the triggers.\n");
+> -			at91_adc_buffer_remove(idev);
+> -			return ret;
+> +		st->trig = devm_kcalloc(dev,
+> +					st->caps->trigger_number, sizeof(*st->trig),
+> +					GFP_KERNEL);
+> +		if (!st->trig)
+> +			return -ENOMEM;
+> +
+> +		for (int i = 0; i < st->caps->trigger_number; i++) {
+> +			if (st->caps->triggers[i].is_external && !(st->use_external))
+> +				continue;
+> +
+> +			st->trig[i] = at91_adc_allocate_trigger(idev,
+> +								st->caps->triggers + i);
+I'm fine with slightly longer lines where it helps readability.  This sort of split
+ends up looking silly so go long!
+
+However as above I'm wondering if you should just pull the code in that
+function down here and drop the helper.
+
+> +			if (!st->trig[i]) {
+> +				dev_err(&idev->dev,
+> +					"Could not allocate trigger %d\n", i);
+> +				return -ENOMEM;
+
+I thought I saw Andy mentioning this in v2, but maybe not.
+Generally we don't print errors on -ENOMEM as any path where that occurs
+tends to have a lot of error prints already.  So drop this print.
+
+
+> +			}
+>  		}
+>  	} else {
+>  		ret = at91_ts_register(idev, pdev);
+> @@ -1154,36 +1097,13 @@ static int at91_adc_probe(struct platform_device *pdev)
+>  		at91_ts_hw_init(idev, adc_clk_khz);
+>  	}
+>  
+> -	ret = iio_device_register(idev);
+> +	ret = devm_iio_device_register(dev, idev);
+>  	if (ret < 0) {
+> -		dev_err(&pdev->dev, "Couldn't register the device.\n");
+> -		goto error_iio_device_register;
+> +		dev_err(dev, "Couldn't register the device.\n");
+> +		return ret;
+
+Given you are touching the lines anyway, 
+
+		return dev_err_probe(dev, ret, "Couldn't register the device.\n");
+
+>  	}
+>  
+>  	return 0;
 
 
