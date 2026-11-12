@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AF3606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:32:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9496F606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:32:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zLSjEqPL;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m6vmzzYQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p8sPr1RI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MzC3q/kC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,37 +14,36 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OX3gd22w+rlqDW01NdjSI/b/1yTOJXzOcVqRAE9xFAs=; b=zLSjEqPLY/pGQ+tsFeLNEMlr8k
-	Ltuv4YzpVkKuzx7wKvjVMp2c8cRBp/agGMZzk8VoWBUCPaLOt4HVQUWriiuioxOrG60Euc/pAIOTk
-	e1g1vIWX9BWJewbZSLILUy0vFnOzXj58vEGnGMfdnJOd/IoKKx7xV9EtNt8rBbgAP08lkKaVj3ec3
-	Bnopg1TyvhWR5B+PPSdXFS1zUNssRdJgL9zulBoa6hxKCkLhQktyEJpxsSJnXn8Um2DpFmqtTBHzT
-	E5S9AvdNaKiIQwbfaA+vsqTz7sBV1blJgmMqfT16XTyvwudQC0RGghypLFo6QHg5So5WBgUrpT0re
-	dqVMxlFQ==;
+	bh=OH+0WymoBgcUXGycaB4LMqft3m6k34R9ciQ53jyzM9o=; b=p8sPr1RI8ENQPGNCB8ShUttDS1
+	6/vMy1KX8diWqL/ca1QeyIDA42uVMTOaMGbBc8yRWC1awUl38Fl99tbOeCa17DHRiFn+4NDf4cK7x
+	ny+4jnyXYTJzOQ1CM0gtb/8n0Kv8ZR+d3vj+uVNTBJ0fBWg+JGN1u3avhb8chuM6+naRa7ePNWdVT
+	6/+FkNl18yP4a2UX2AvlJbMVLbe5LzcXvW71Bk8rlfk6dKhYTGuuRLjXLD1HWelpbCfDqS0JhDrvi
+	iSxcOinrmxyviECkklk3TIv1m0B7UcwOl6CHWE44myVj/7BTdVhKDPQbxGn6wZBjqEndGkd2PqeA4
+	d3My5pUA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdLH-0000000BARz-0NDc;
-	Thu, 12 Nov 2026 22:32:27 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRdLN-0000000BAWO-18oS;
+	Thu, 12 Nov 2026 22:32:33 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdL2-0000000BAJP-0yXY;
-	Thu, 12 Nov 2026 22:32:12 +0000
+	id 1xRdL3-0000000BAK8-0fW1;
+	Thu, 12 Nov 2026 22:32:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 629A06248E;
+	by sea.source.kernel.org (Postfix) with ESMTP id E499540792;
+	Thu, 12 Nov 2026 22:32:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C3F1F000CD;
 	Thu, 12 Nov 2026 22:32:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0261D1F000CC;
-	Thu, 12 Nov 2026 22:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794522731;
-	bh=OX3gd22w+rlqDW01NdjSI/b/1yTOJXzOcVqRAE9xFAs=;
+	s=k20260515; t=1794522732;
+	bh=OH+0WymoBgcUXGycaB4LMqft3m6k34R9ciQ53jyzM9o=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=m6vmzzYQbxZxkawCQFWOClVFKpZIGPRjM8NvycCdpGoXEmLZt25/U/wcMNRDuWYri
-	 1E+zZR6ErAggzzyv+x4ngfSgoUs5phdn+s8u1G8j2ynEdRdo+dP1+aXZ90onXJJtUk
-	 leEqtDIaNF1Ur7O0UPMapTuhaS1xg6OIDD63O7wZbnvxxum2QK2PM+EZ9S6inkLYzg
-	 KV5cvXSmBSHQUxgD6howM8wph//Mxxfv7nkY9A3LMv9g19GFPBMH69Y8v4+U1hICVk
-	 umzfpe8Qsh1bJjiWLBdDl+/FPxflsnGsJG4bjBUDqIbhOvTYD6ABl+auc+axpC4bhY
-	 ism3xWQjHUrHg==
-Subject: Re: [PATCH net v9 04/10] can: dev: check netif_running() before
- bus-off recovery
+	b=MzC3q/kClS6U+kXLRaoowhQjOzZ63Z0TSjrBiLo+2gXsCGgsZg/DvhPVGPzQN0ab3
+	 Wm8lXXAOcEv3RbykuHY8mMukhtoSIq2GT1ZcL7yOWJ1WvxiWo/VuhBIiCwjb6cgOTc
+	 RlNbBw4eAT2IwrqW5kkDKAbkwbCOuym1fZqAmnnJ7rFlxDMKytJnZgk0y8wY1wwv4t
+	 r3ougT1O1IWbiWG6vYwfqF/fEj18XVAETxLyvyznpH8x9OXfritCFEvi9HY7qoTeuw
+	 EKqTf1fXoBgEb0PPlG3UC6QC6KCysBDHpr8PEhr4u5ueCUpgcxoUk9PEh/oejeQSNt
+	 313pXofxZFk9g==
+Subject: Re: [PATCH net v9 05/10] can: dev: add close_candev_cancel_restart_sync()
 From: netdev-bot+sashiko@kernel.org
 To: 1579567540@qq.com
 Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol@kernel.org,
@@ -55,11 +54,11 @@ Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
  stable@vger.kernel.org
-Date: Thu, 12 Nov 2026 22:32:09 +0000
-Message-ID: <179452272955.488853.2430789088711910750@kernel.org>
-In-Reply-To: <20261111-rockchip-canfd-restart-close-v9-4-6643f3825ba3@qq.com>
-References: <20261111-rockchip-canfd-restart-close-v9-4-6643f3825ba3@qq.com>
-X-sashiko-severity: High
+Date: Thu, 12 Nov 2026 22:32:11 +0000
+Message-ID: <179452273127.488853.12768732215259424178@kernel.org>
+In-Reply-To: <20261111-rockchip-canfd-restart-close-v9-5-6643f3825ba3@qq.com>
+References: <20261111-rockchip-canfd-restart-close-v9-5-6643f3825ba3@qq.com>
+X-sashiko-severity: Low
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -81,233 +80,78 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issue(s) to consider.
+Thank you for your contribution! Sashiko AI review found more severe
+issue(s) in other patches of this series. This mail is only an FYI, in case
+you want to address the nit picks below when you respin.
 
-Critical: 0 · High: 2 · Medium: 0 · Low: 1
+Low priority / nit picks for your consideration:
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [High] In can_bus_off() (drivers/net/can/dev/dev.c:274-285), the new
-  running check and the schedule_delayed_work() call are two separate…
-- [High] The new netif_running() check in can_restart()
-  (drivers/net/can/dev/dev.c:201) runs from the restart delayed work on…
-- [Low] The new text in Documentation/networking/can.rst makes an
-  unconditional promise about restart-ms.
+- [Low] The patch adds close_candev_cancel_restart_sync() as a static
+  inline in include/linux/can/dev.h and moves close_candev() onto it.
 
 --
 
-can: dev: check netif_running() before bus-off recovery
+can: dev: add close_candev_cancel_restart_sync()
 
-This patch adds netif_running() checks to can_restart() and can_bus_off().
-The goal is to stop automatic bus-off recovery from being scheduled or
-started once the interface has begun closing. It also updates
-Documentation/networking/can.rst to describe the new behaviour and to
-recommend setting restart-ms while the interface is down.
+This commit adds a static inline helper, close_candev_cancel_restart_sync(),
+to include/linux/can/dev.h. The helper synchronously cancels the CAN core
+bus-off restart work, and close_candev() now calls it. Drivers can then
+wait for recovery to finish before they tear down IRQ and hardware
+resources, and echo skb cleanup stays in close_candev().
 
-Link: https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261017-rockchip-canfd-restart-close-v6-0-ed605feb4b6e%40qq.com
-
-> diff --git a/Documentation/networking/can.rst b/Documentation/networking/can.rst
-> index 51bc70748f753..9debef8702d5f 100644
-> --- a/Documentation/networking/can.rst
-> +++ b/Documentation/networking/can.rst
-> @@ -1302,7 +1302,8 @@ More info to the above output:
->  	Automatic restart delay time. If set to a non-zero value, a
->  	restart of the CAN controller will be triggered automatically
->  	in case of a bus-off condition after the specified delay time
-> -	in milliseconds. By default it's off.
-> +	in milliseconds. Recovery is skipped if the interface is found
-> +	to be down. By default it's off.
+> diff --git a/include/linux/can/dev.h b/include/linux/can/dev.h
+> index 346faddee02eb..2a286f906394b 100644
+> --- a/include/linux/can/dev.h
+> +++ b/include/linux/can/dev.h
 
 [ ... ]
 
-> +Before scheduling or starting recovery, the kernel checks whether the
-> +interface is running and skips recovery if it is down.
+> @@ -115,6 +116,22 @@ struct can_priv *safe_candev_priv(struct net_device *dev);
+>  
+>  int open_candev(struct net_device *dev);
+>  void close_candev(struct net_device *dev);
+> +
+> +/**
+> + * close_candev_cancel_restart_sync() - cancel bus-off restart synchronously
+> + * @dev: CAN network device
+> + *
+> + * Call before tearing down resources used by the restart callback.
+> + * The driver must quiesce restart work producers before calling
+> + * close_candev() for the final cleanup.
+> + */
+> +static inline void close_candev_cancel_restart_sync(struct net_device *dev)
+> +{
+> +	struct can_priv *priv = netdev_priv(dev);
+> +
+> +	cancel_delayed_work_sync(&priv->restart_work);
+> +}
 
 [Severity: Low]
-Does this hold for every driver? Only the core software recovery path
-(can_bus_off() -> restart_work -> can_restart()) does the new check.
+This isn't a runtime bug, but should this patch carry a stable tag? The
+alternative would be for the following Rockchip fix to list it as a
+prerequisite.
 
-Several in-tree drivers read a non-zero restart_ms as "let the controller
-recover from bus-off by itself". In that case they never call can_bus_off()
-or can_restart(). For example, kvaser_pciefd_change_state():
+The next patch in the series, "can: rockchip_canfd: cancel bus-off restart
+before closing the device", has Fixes: ff60bfbaf67f and
+Cc: stable@vger.kernel.org. It calls the new helper at the start of
+rkcanfd_stop() in drivers/net/can/rockchip/rockchip_canfd-core.c:
 
-	if (!can->can.restart_ms) {
-		kvaser_pciefd_start_controller_flush(can);
-		can_bus_off(ndev);
-	}
+    close_candev_cancel_restart_sync(ndev);
 
-and grcan_err():
+This commit has no Cc: stable tag, and the Rockchip fix does not name it
+as a dependency.
 
-	if (priv->can.restart_ms && oldstate == CAN_STATE_BUS_OFF) {
-		unsigned long flags;
+If stable picks up only the tagged Rockchip fix, would the backport fail
+to build? close_candev_cancel_restart_sync() would be undefined there.
 
-		cf.can_id |= CAN_ERR_RESTARTED;
-		netdev_dbg(dev, "restarted\n");
-		priv->can.can_stats.restarts++;
-		netif_carrier_on(dev);
+Documentation/process/stable-kernel-rules.rst gives this form for
+prerequisites:
 
-kvaser_usb_leaf and kvaser_usb_hydra follow the same pattern. None of these
-check netif_running(). A hardware recovery between the clearing of
-__LINK_STATE_START and ndo_stop() stopping the controller is therefore not
-covered by the documented check.
+    Cc: <stable@vger.kernel.org> # x.y.z: <sha>: <subject>
 
-Given the races in the core path described below, would it be more
-accurate to say the check applies only to core-driven recovery and is
-best effort?
-
-> diff --git a/drivers/net/can/dev/dev.c b/drivers/net/can/dev/dev.c
-> index 769745e22a3c7..a893a49a33813 100644
-> --- a/drivers/net/can/dev/dev.c
-> +++ b/drivers/net/can/dev/dev.c
-> @@ -198,6 +198,9 @@ static int can_restart(struct net_device *dev)
->  	if (!priv->do_set_mode)
->  		return -EOPNOTSUPP;
->  
-> +	if (!netif_running(dev))
-> +		return -ENETDOWN;
-> +
-
-[Severity: High]
-Can a restart worker pass this check and still restart the controller
-while ndo_stop() is running?
-
-can_restart_work() runs on system_percpu_wq in preemptible process
-context. It holds neither RTNL nor the netdev instance lock, so nothing
-orders this test_bit() against __dev_close_many():
-
-worker                              close path
-can_restart_work()
-  can_restart()
-    netif_running() == true
-    <preempted>
-                                    __dev_close_many()
-                                      clear_bit(__LINK_STATE_START, ...)
-                                      ndo_stop()
-    can_flush_echo_skb()
-    netif_rx(CAN_ERR_RESTARTED skb)
-    netif_carrier_on()
-    priv->do_set_mode(dev, CAN_MODE_START)
-
-The only thing that waits for the worker is cancel_delayed_work_sync() in
-close_candev(). Many drivers call it at the end of ndo_stop, for example
-flexcan_close():
-
-	free_irq(dev->irq, dev);
-	can_rx_offload_disable(&priv->offload);
-	flexcan_chip_stop_disable_on_error(dev);
-
-	can_rx_offload_del(&priv->offload);
-	flexcan_transceiver_disable(priv);
-	close_candev(dev);
-
-In that case the worker's CAN_MODE_START can restart the chip after it
-was stopped. The chip can then stay active on the bus after the interface
-is down.
-
-The worker's can_flush_echo_skb() can also run at the same time as the
-driver's echo/TX teardown. That contradicts the "No synchronization needed
-because the device is bus-off" comment in can_restart().
-
-The commit message says these checks do not serialize with close. It
-also says the problem being fixed is "potentially re-enabling hardware
-while the driver is tearing it down", and that outcome still looks
-reachable here.
-
-Would the check and the restart need to be serialized against close? For
-example, can_restart_work() could take rtnl_trylock() or the instance lock
-and requeue on contention, or the core could enforce cancel ordering.
-
-The rest of the series appears to fix only rockchip_canfd, through
-close_candev_cancel_restart_sync(). The core and drivers such as FlexCAN
-are left unchanged.
-
-> @@ -259,13 +262,17 @@ int can_restart_now(struct net_device *dev)
-
-[ ... ]
-
->  void can_bus_off(struct net_device *dev)
->  {
->  	struct can_priv *priv = netdev_priv(dev);
-> +	bool restart;
->  
-> -	if (priv->restart_ms)
-> +	restart = priv->restart_ms && netif_running(dev);
-> +	if (restart)
->  		netdev_info(dev, "bus-off, scheduling restart in %d ms\n",
->  			    priv->restart_ms);
->  	else
-> @@ -273,7 +280,7 @@ void can_bus_off(struct net_device *dev)
->  
->  	netif_carrier_off(dev);
->  
-> -	if (priv->restart_ms)
-> +	if (restart)
->  		schedule_delayed_work(&priv->restart_work,
->  				      msecs_to_jiffies(priv->restart_ms));
->  }
-
-[Severity: High]
-Can restart_work still be queued after close_candev() has already
-cancelled it?
-
-The netif_running() test and schedule_delayed_work() are two separate
-steps with no lock between them. The cancel in close_candev() is not tied
-to either step:
-
-IRQ thread                          close path
-can_bus_off()
-  restart == true
-                                    __dev_close_many()
-                                      clear_bit(__LINK_STATE_START, ...)
-                                      ndo_stop()
-                                        close_candev()
-                                          cancel_delayed_work_sync()
-                                          (nothing queued yet)
-  schedule_delayed_work(&priv->restart_work, ...)
-
-HI3110 hits this case. hi3110_stop() calls close_candev() before free_irq(),
-so its IRQ thread can still be inside can_bus_off() when the cancel runs:
-
-	close_candev(net);
-
-	priv->force_quit = 1;
-	free_irq(spi->irq, priv);
-
-On removal, free_candev() only frees the netdev. It does not cancel
-restart_work, which lives inside netdev_priv(dev):
-
-void free_candev(struct net_device *dev)
-{
-	free_netdev(dev);
-}
-
-Would can_restart_work() then run on a freed can_priv? The new
-netif_running(priv->dev) check would itself read freed memory.
-
-On a fast reopen within restart_ms, open_candev() does not cancel the stale
-work, and netif_running() is true again. The new check in can_restart()
-can't tell stale pre-close work apart from work for the new open session.
-
-can_flush_echo_skb() would then free priv->echo_skb[] entries while the
-driver's xmit and TX completion paths may be using them. After that it
-calls netif_carrier_on() and do_set_mode(CAN_MODE_START) on a healthy
-controller.
-
-The underlying lifetime problem predates this patch, and the new check
-narrows the window. But the commit message says recovery "can therefore be
-queued or started after the interface has begun closing". The queuing side
-still seems reachable through this window.
-
-include/linux/workqueue.h already provides disable_delayed_work_sync() and
-enable_delayed_work(). If close_candev() used disable_delayed_work_sync()
-and open_candev() used enable_delayed_work(), any late
-schedule_delayed_work() would become a no-op for every driver. Would that
-work better than relying on the unlocked running check?
+Other patches in the series already state their backport dependencies.
+The earlier core patch "can: dev: check netif_running() before bus-off
+recovery" is also tagged for stable.
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-rockchip-canfd-restart-close-v9-0-6643f3825ba3%40qq.com
