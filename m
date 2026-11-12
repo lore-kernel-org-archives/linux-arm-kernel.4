@@ -2,156 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09032606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A77606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BPKEKiN9;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=xw7ekuAU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mTtj5mBl;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=sJGZ0KAK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=fIN5eRiK/uQwMsbCgu3VuKnu+Rj+wC0ixDxfqMueLaI=; b=BPKEKiN9/WgdOy8cZL36UTKFOG
-	LjX0A4T0+lFA1hssgv1DjUMbAohvarNB1l/Amy1v71AaH7Z/mRbkkYZzbSPZxV0n9f3yLT8R447Kh
-	NwH2Szre1OcG3/LBVvxDYIrWXOHPRVavOTqRsK/MDYipjID36iO4xNK7mjWDiH+QXZdLyZRp4JSgA
-	SyDsSRjqzursOSaqNQNUkX48EvfXJc3VMYd8q03LFHkVcryVS2WSNwwB+fgWbEVsjCZxErArhPbpV
-	3ds2Nzhd+iuOsjJh0bxDv89sPSCS1pL5J/W5Ry7MZOa1FgWg8Nprn8NeN+clmtIHxK83UkeuCSKsL
-	qTidgWaw==;
+	bh=U6GG76bNPQmllyCs8tfFJpjMzWTUyjK3H6rQErrf2X8=; b=mTtj5mBlT5j60ro90MIXZvEr60
+	meQWAC/KxJkcUqGLdfHE+B5ZJMf0ICScnDXm35OOR61ip30JeCESdKfnVgZdEt4HQ0/7yXZC8bUio
+	JYek9XsRIBGQd56/J68rs72wzVdrtoFDXWKByGrgQ3I+Ot+lidKSvKdaTRMcH2HO173huYLeH9NDf
+	XoDDu9dmMELPcOQ0DQ2GiT6L6m4eV8EqW9eiDxOBspLfhkRVMtsu3cE7s2fD9MXmkeDKBHye4TLHj
+	BczTYDWqPSIkT3fLCx5qPZNX8fTkt1mU+Yf5jNszjF1uESQSxgqr4V4qamPUaCtmkYfhK1qFDhOWq
+	+I1dJNmQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSlY-00000009dc4-32rh;
-	Thu, 12 Nov 2026 11:14:52 +0000
-Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
+	id 1xRSp8-00000009e28-1BJp;
+	Thu, 12 Nov 2026 11:18:34 +0000
+Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSlV-00000009dZm-0dbM
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:14:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U7hBqeM5M2aTNoF1b1EmQOGBR1Wpm29RXLiDeerDHXJeLL9AWBM8RjijyCP4LZ3JPsgAJST3Te5d8khcsHY7R2B7vDnxTlATAlBHGC2tMg81Olv+y+6V8f3FPZZXkcO7zFAwDZfF7RexKtFvlb4F3u0DMSY0R1ism7Xj+lKX2S2kjTJE5GaOZfQnzjIPBxa9B9meEzJ+iuFfnjzJzfwClEjGuFNE9jUtmBYgbh3cEWC2nEUZPbVsSv5cr+D+ZEBnuzslOTRyU42jqefvl1Ime4b3zrBnGw+DSnZ32p20g3PIUVweW8zwjNbpKUWXHkc/2U3zQOvmhZsVgXVVrTwhXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fIN5eRiK/uQwMsbCgu3VuKnu+Rj+wC0ixDxfqMueLaI=;
- b=wK95E+utOKqCoypCBFFTESLG4y0PyzBYXfSiT32mU6kX6zYVE5asok70SVaMVl0QfTdAdFhoVkQPFve6IZFIq1tz1x8HW2zFZrJmyJNFJNaUdsiN2m8NNN+0stuaFqVEAEVD0geyOcfXMJmBQxts+utGt8JeJeTd36guFjXg7Fs0HPIngxjodhSjcMV89SosALTO0Q3ikdqrXHW/TCOqctCq1cpOZX8PisVBabo7P3lZCYkobxdLZNlnJcZUZLayzPNzE+4KGYAzPZzlrCRSIaA4J0ayjhogA9j5t1kioRR9ULDCOMGaeOVQFhxaEJuiF4FZn9pqotP0Z9XgPuhj1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fIN5eRiK/uQwMsbCgu3VuKnu+Rj+wC0ixDxfqMueLaI=;
- b=xw7ekuAUeW34VH67m3gt5k6wz42XBeERV8arFwPNl21fqpO8FgUjcdQBFLHAExr4EMQ1WczLNgkxe1YwJTj4ywsMzaO0ya7duj2OTmPPeh0wkHS1Yyz+ZGsRIeZL5TxrLaZ3+pd9CNTvXiyYb023e2OT9i9F34VtoBBBRG/BF2I=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA1PR12MB999228.namprd12.prod.outlook.com
- (2603:10b6:806:4db::10) by IA0PR12MB7601.namprd12.prod.outlook.com
- (2603:10b6:208:43b::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
- 2026 11:14:41 +0000
-Received: from SA1PR12MB999228.namprd12.prod.outlook.com
- ([fe80::4dba:119e:8e7c:37b3]) by SA1PR12MB999228.namprd12.prod.outlook.com
- ([fe80::4dba:119e:8e7c:37b3%6]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
- 11:14:41 +0000
-Message-ID: <9eb572d7-fa3a-4734-9773-44a3fb465b6a@amd.com>
-Date: Thu, 12 Nov 2026 22:14:31 +1100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 02/15] virt: coco: tsm: Remove the device from lookup
- before PCI teardown
-To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>, iommu@lists.linux.dev
-Cc: Alex Williamson <alex@shazbot.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
- Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
- Nicolin Chen <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
- Samuel Ortiz <sameo@rivosinc.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Steven Price <steven.price@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
- Xu Yilun <yilun.xu@linux.intel.com>, kvm@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-coco@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
- <20261104161632.3547423-3-aneesh.kumar@kernel.org>
-From: Alexey Kardashevskiy <aik@amd.com>
-Content-Language: en-US
-In-Reply-To: <20261104161632.3547423-3-aneesh.kumar@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SY5P300CA0057.AUSP300.PROD.OUTLOOK.COM
- (2603:10c6:10:1fe::7) To SA1PR12MB999228.namprd12.prod.outlook.com
- (2603:10b6:806:4db::10)
+	id 1xRSp6-00000009e1i-0Ksl;
+	Thu, 12 Nov 2026 11:18:33 +0000
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c67:cdf:7464:6c04:36e4:ee87])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 33E8733D;
+	Thu, 12 Nov 2026 12:16:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1794482164;
+	bh=8iAErcYO3j90+V2TvbkZ3pX/JwuaKTs880JZDQ4ZpCI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=sJGZ0KAKG1/Q5NmCDs3vKUHor7Ud1tpEMNukRsSsvxdv5l25eswr6p7OFhFkocc/F
+	 co46ZZSvGWAAQGoy+2rZH03mKpgLEeME4W6bKIgJjDalvjZerH2rvyf1e6icTSoQ4O
+	 LPNSt3SyRwsbAUi6w2fnAtpeTka2X/rgrIlxDOVA=
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Subject: [PATCH v5 00/11] platform/raspberrypi: Support vc-sm-cma and
+ prepare for bcm2835-isp driver
+Date: Thu, 12 Nov 2026 16:47:58 +0530
+Message-Id: <20261112-b4-vc-sm-cma-v5-0-d25e3b687e71@ideasonboard.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR12MB999228:EE_|IA0PR12MB7601:EE_
-X-MS-Office365-Filtering-Correlation-Id: e147d1bb-4c4a-4c76-ea3b-08df40ae25a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|366016|1800799024|10067099003|4143699003|11063799006|56012099006|261022105027099003|261028144727099003|261026121527099003|261026140227099003|261021123027099003|261021121427099003|261102130727099003|261102123227099003|261009223027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: mNXGq2KMZc7as7THM31BnJhXTFmMqfYBkIu5CW+6XrWsgLuq8SGG41bp41nxHRamZoHHQCEkkksU0AWEIjxWld/SeDZEqHFMxTIdUqVrHLolTmGJEJSiHdnN+sTsguUiF4afPxKLqvQoLAquJ6lqMHI8A4XR2/EtEfuZjMZn3Oes9GUJZGj8dkmVHj1NRcU9UsV4/tpyqjCRgJIISnr4zVy4Tkrw5kuV67f2zlKVKPwZgMTqVG+Tu/iLAPY7noEONkfjNtc34OxuMUP7q2IxqKISIquAP3SzPQjmq+R9RruZgTqiqZE2p02kfSxq2ytmzwzhwAfe2jMTEjC1jnwijnjD6+4rWr0BLy9tyzlezz8gvYqEpAXZ3nqb8Bhone5o+fDateqUTtTupRQiQCr+/V/cSsy66QZRm1S6fOP4cI/3I+pGYlKFJ4NqTDxYbeus2h4Y5ASqE7ujlY+7/Gyt64jBSBgWVHnwjPS2gvFj0mbJvWwNOAZHdiTeXfMQiiLM93TUPD7slMoEVLN/vIFHLmUR67UB+pw9WAAEHrQ4M34ShE3EjOjJIsQEygvncHvU8AJu1fWXatdmhyufYKcdWSZXKjF8jEMrBz7VOTEpH/M40AuWXmcMCo/3+bgBbcSMaJS8vyZSo/LOyIGu8u6762mj7cKudmHgrGIwKil7Izo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR12MB999228.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(10067099003)(4143699003)(11063799006)(56012099006)(261022105027099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021123027099003)(261021121427099003)(261102130727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFhrVUU1TE5YL0NtRWpnSXNKSkd6c3ZHR1VaUjR0ZGw0MzdNMkkySzY4d0Z5?=
- =?utf-8?B?Vy9NZkR0N2hDQldlM09DdVgrRUg0THZJYXcyUVhLL2dpSko1bHJLSkMzd3Q3?=
- =?utf-8?B?WDdPU21CODBKN3ZMdXB1S1BHQjBBZ3ljZGRTaXRmNGJkaHl2OW9wV3haS21D?=
- =?utf-8?B?Zm1VbTk4M1QrQWt2NlJLdmdGbU1wWnJMaUwyVEE5NUJuai9Dc1l5VVpvQWk0?=
- =?utf-8?B?RTRpRlZDUTkxcWt2cFdsV1Izelg1VnEwL3FKS3MvdlVMdXFRQi9lN0tvYWdD?=
- =?utf-8?B?Q3doZ3NIalg5WlBycm9aL0VnejZvdFZPMFdTc3dHWTNMWXlVT2dFczVlQlRh?=
- =?utf-8?B?d0F4a1JaZ3VYZzF0ejhoblF6S3RhYVpadnpiY05vRE5HcDJZaGxidXM3amcw?=
- =?utf-8?B?dHY2NDNza1dWRTBuTWEzaUxSdm9ETXViSU1YbWFjVjBtRjBtTkd5Nnc1OVJn?=
- =?utf-8?B?clpURHZyNUJaMkNlRzNkSWYwY01iNXZWaE1HdmJ3Y1F2L1BJT0xNMGU0ckU2?=
- =?utf-8?B?cDZoS1RuNC82MityTmpHcFRUWVpxN2xKRkVLM3VlRHYvYmpkWW1KYWtRMkhL?=
- =?utf-8?B?ZkF0V01LTjRTL2pyOFhwK21kQXVUVFZ2UVZONHppUStwYm5Ic092Vk5sZHA5?=
- =?utf-8?B?S2F3UTAxcS9sTWVJbEZPcEk1azAyakhuT3JpcGdkWUg1T0RFYnAreksxZHpw?=
- =?utf-8?B?cVRHNS9FTVRkVzV1d0pCZHVidzlZMlZTT3RVa0ZjblB3UHAvQXBuQi8yRitN?=
- =?utf-8?B?SnVNVWcxTnlueVdzN3VjbU1HYlN6VHBkdEZXWW1zUyt6KzZCeXp6SFBNeWVz?=
- =?utf-8?B?T0FHMkJnRW1EVnlxSGtNdGtEeSt3cEUwV0d3UFdFcDZEU1k3QWowT1pLVE5S?=
- =?utf-8?B?SG9odzc2ejNrTWxkOVZJcGFFUitWTitZUHhSUExlT2J3Z09zVGVlcTR6Rnp4?=
- =?utf-8?B?NFVKYUMzclZhNWxtRGNudlFiNUdDUWkwdDczcjlsZU1sUlRYMWY3TjZMd1V5?=
- =?utf-8?B?R1dlTFE3VlB4N1FSdDVkeWNHbkJVaGxzUHZJNXA1RFRFOHMyOXhCclA2SHhI?=
- =?utf-8?B?cmdLUDlTU1h2c2RIR1R4eklNWDhmM3l5TndVYWw4RjFhSDJ4UjVuT3U1T0VP?=
- =?utf-8?B?bDBjei9HbGxla1BSeHZKNWNLNTZBWE1McXpOUC9PQWpuTmhXd3FxbStuMVNy?=
- =?utf-8?B?OXVzUC82dVFwOU9ERUJOcnVVZ0pLdDQrdlVseEZmaThPZExNcnM2OWV1QUZT?=
- =?utf-8?B?YW1LOWlWMHY4aEF2bE1rb3JZeVlzdzduaGt6alVZQi9NbjgwVmRkRzZ1ZGdk?=
- =?utf-8?B?UzdvZzhxQmNISUlqTzNvVU9DVFVZOXlBbEZRMHZmSlp6cWhaMTkvZzhtZDV1?=
- =?utf-8?B?dkhhUURZQTF5VkRlOHR0SERxYVhEQnJRVkNVQUQ4L2lrcEZyeUZYcWJYdnZh?=
- =?utf-8?B?ZWJWMkJ5K3llSzZ5Y1hkVzNXdk1nQURheUdmc256MUYwb3R0WWd1aTVIbFVU?=
- =?utf-8?B?cldJZWlONGFEWStpMXZweXF5S3NzQmc4VWlhR2JuLzRFcmRWd1RxNWxqSGpZ?=
- =?utf-8?B?cURYMzJWcDlTdnRNclpCRVhQbWNnUVpqdHQ2ZzJ1YXFwOUp6cC84YmoxNm5C?=
- =?utf-8?B?ZTg5STdQWkloNmZKMWt2QzJjR3F5bHNVcW92MGtER1M3bUUwWks3djk2S2da?=
- =?utf-8?B?QUFuTFpnUU5hajhWUzR3TlJoNitTbUthbnRkNURIUElSdVF6K1FMK2Rod3Vl?=
- =?utf-8?B?cWhHRWtHRDNLWi9qak02RnJTYmk0bkkrSXNXMlZlKzFYRjBIQTRYUzVPaXJI?=
- =?utf-8?B?d2QzODY3dUFGODFaU21NaEpwcmk2ZEp2ZjNnTVRMTGZBcXR0MW1CUjZvOTFi?=
- =?utf-8?B?MysxdFNBdWNwd0o1ZFZkdllQbWRCTlBnOC9qbEpGMWdKZVhDdmk2enlkYTFP?=
- =?utf-8?B?MjNDZVdBUWYxMEg4Sy9PZnMveWtvQ1RDa2RVUlE3WG9Rd0lFbzVuMUIrUjBE?=
- =?utf-8?B?SGVhUnF2WEk5a2R1MHNqZThFaHdKKzZmQS9nWUtKeWZMUG53UGExNnJ2U3Yy?=
- =?utf-8?B?dmhITnZrWXlQbEJFZDROS2gzeW5WUDBFcytDb0lLQ0ZnZlllVGd5NndIMFNW?=
- =?utf-8?B?RGZFZWlMU3lYeGdaa0hMSWZQMk9SUEp0V3l2clBaYXlnMldDUzllUWl2eTJ4?=
- =?utf-8?B?SDZYcS84MVdqNTZocG1ibnRLbXYycXJSTXRPRFdIVUdnQ3c0dnhjRzJFUVdK?=
- =?utf-8?B?RGp5R3M2eXRCRTJlM1o2WWhkWkNUMWdHcGtmQndwekUyUlNTUlRDdTZycVVy?=
- =?utf-8?Q?svsp56JUtRJyDM2rDd?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e147d1bb-4c4a-4c76-ea3b-08df40ae25a0
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB999228.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 11:14:41.0774
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1OE2d+KuUC+k+8peSIaknhR0dPi0NiDA8P/m3T07YF1289tJQKey3gaZPTogDJpUsIuXEd9kDGuxg+p7qG/blg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7601
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XOTU7DMBAF4KtEXuPK/yZdcQ/EwpmZUC8Sgx0sU
+ JW746agiogu32jmm3dmhXKkwo7dmWWqscQ0t2AfOganML8Sj9gyU0JZKbTgg+EVeJk4TIGPzis
+ PugdUlrWTt0xj/Ny455drzvT+0dTlOmRDKMQhTVNcjl31B8MzSHbZPcWypPy1NalyW/55Kv8+r
+ ZILLhAtCAI9WniKSKGkeUgh46Hhm1fVr+GEFHZnqGYYDBS86YGwv2Pom+Gl3xm6GQ4Mef8oDFm
+ 8Y5ib0Uu3M8ylh3copVGDxfEfY13Xb69SKeGnAQAA
+X-Change-ID: 20251030-b4-vc-sm-cma-f6727c39cd25
+To: Stefan Wahren <wahrenst@gmx.net>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Phil Elwell <phil@raspberrypi.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ bcm-kernel-feedback-list@broadcom.com
+Cc: Martin Wetterwald <martin@wetterwald.eu>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+ Jai Luthra <jai.luthra@ideasonboard.com>, stable@vger.kernel.org, 
+ Dom Cobley <popcornmix@gmail.com>, 
+ Alexander Winkowski <dereference23@outlook.com>, 
+ Juerg Haefliger <juerg.haefliger@canonical.com>, 
+ Paul Elder <paul.elder@ideasonboard.com>, Umang Jain <uajain@igalia.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5634;
+ i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
+ bh=8iAErcYO3j90+V2TvbkZ3pX/JwuaKTs880JZDQ4ZpCI=;
+ b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq9aBqwleXQIx9ZSWeg+f+tYDQar1busURI8mme
+ En/d6LQb2SJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavWgagAKCRBD3pH5JJpx
+ RXA1D/sHuM2/4ja4foh03jzvrrUxVrBOej4ErMzlAI3ZeQqggFHs8KQjLtSb5LoKNJNf325rKkI
+ ibgMZxODW7+LOXCurAKrHpq1xfUI87qqxMFLd/K/gGM4TTPEmDAES741FDu6cbor7T4sEyKAWlr
+ i9y6cucRY/P2qCMvhHQ2aDUzEc9UP0kS0D0w45CPl+5DR851d/+j+1fXn/weCBlkuf2FViqFhZV
+ yffd/IODv8AQHT5JlPxBarOb93wzybORwlA2rfVen2HT/QpaxniPK8Nxsfox5pxe1BJy/djvUUC
+ MigZx6M6b5F6HakzK5Ao1hYgpSpKj6HCi/0DDszyYkB6GTcg6fKzL+ZIrhTFybgw3kq2KchKiEa
+ PoB5yOKoBdr0GBnQyNmfGkiIf5p1mtLRcmtMKFtptreI+86O1tHUGiYKKt5UakN6E9tBd62IiGo
+ S6lczkA3FgVQZkbJaOKLiFjcwQdKSN+BLKd3X9IrV0xG8iHaEk+Ae6vxjIsOMPWxk3TQLUdNjRS
+ ELS3cDKCUAHpppPKtxPNrn7tN790Ft3LhTi4O77uKEajPV2Jb9r7RiNwW9hKtIzECUG+9qDCjlV
+ 0Hoxhz18oLenYfbx3ZExflYypxU3W65A86cw70KjFJdRD2e0pwkhaO6aKw7UcWPnuTTyFY9GgDV
+ MmJ4ZqyB4/w3u2g==
+X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
+ fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_031449_392985_65F355C7 
-X-CRM114-Status: GOOD (  21.84  )
+X-CRM114-CacheID: sfid-20261112_031832_308725_BEC7077D 
+X-CRM114-Status: GOOD (  21.91  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -163,103 +102,131 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 5/11/26 03:16, Aneesh Kumar K.V (Arm) wrote:
-> PCI connect looks up a TSM by ID under pci_tsm_rwsem. Previously,
-> tsm_unregister() released that lock after tearing down PCI state while
-> the TSM was still in the class lookup. 
+Hi,
 
-tsm_unregister() is not touching that lock, what do I miss?
+The vc-sm-cma driver allows contiguous memory blocks to be imported into
+the VideoCore VPU memory map. This series adds support for this driver
+and changes to VCHIQ MMAL layer required to get it functional.
 
-> A racing connect could then
-> attach a new PCI context that the teardown would never see.
-> 
-> Remove the device from the class lookup first, then take the PCI write
-> lock to drain in-flight operations and destroy their contexts. Drop the
-> device reference only after PCI teardown completes.
-> 
-> Fixes: 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link Encryption")
-> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
-> ---
->   drivers/virt/coco/tsm-core.c | 22 ++++++++++++++--------
->   1 file changed, 14 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
-> index e784993353d8..f79135986102 100644
-> --- a/drivers/virt/coco/tsm-core.c
-> +++ b/drivers/virt/coco/tsm-core.c
-> @@ -56,26 +56,25 @@ static struct tsm_dev *alloc_tsm_dev(struct device *parent)
->   	return no_free_ptr(tsm_dev);
->   }
->   
-> -static struct tsm_dev *tsm_register_pci_or_reset(struct tsm_dev *tsm_dev,
-> -						 struct pci_tsm_ops *pci_ops)
-> +static int tsm_register_pci(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
+These changes have lived in the staging directory of the downstream
+Raspberry Pi tree since quite some time, but are necessary for getting
+the VCHIQ based peripherals like the ISP functional in mainline.
 
-Why changing a pointer to an int here as later tsm_register() converts it back to a pointer?
+To ease application of the patches by separate maintainers of the
+platform tree and media tree, I've moved the VCHIQ dependencies for the
+ISP driver from the v5 of the ISP series (linked in changelog) to this
+series as [PATCH 7-11/11].
 
-And I never understood what is _reset for here (so +1 for that) but now we have tsm_register_pci() and pci_tsm_register() which is weird. May be just open code it? Thanks,
+Stefan, Florian,
 
+Would one of you be able to pick this series once it looks good to you?
 
->   {
->   	int rc;
->   
->   	if (!pci_ops)
-> -		return tsm_dev;
-> +		return 0;
->   
->   	tsm_dev->pci_ops = pci_ops;
->   	rc = pci_tsm_register(tsm_dev);
->   	if (rc) {
-> +		tsm_dev->pci_ops = NULL;
->   		dev_err(tsm_dev->dev.parent,
->   			"PCI/TSM registration failure: %d\n", rc);
-> -		device_unregister(&tsm_dev->dev);
-> -		return ERR_PTR(rc);
-> +		return rc;
->   	}
->   
->   	/* Notify TSM userspace that PCI/TSM operations are now possible */
->   	kobject_uevent(&tsm_dev->dev.kobj, KOBJ_CHANGE);
-> -	return tsm_dev;
-> +	return 0;
->   }
->   
->   struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
-> @@ -96,15 +95,22 @@ struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
->   	if (rc)
->   		return ERR_PTR(rc);
->   
-> -	return tsm_register_pci_or_reset(no_free_ptr(tsm_dev), pci_ops);
-> +	rc = tsm_register_pci(tsm_dev, pci_ops);
-> +	if (rc) {
-> +		device_del(dev);
-> +		return ERR_PTR(rc);
-> +	}
-> +	return no_free_ptr(tsm_dev);
->   }
->   EXPORT_SYMBOL_GPL(tsm_register);
->   
->   void tsm_unregister(struct tsm_dev *tsm_dev)
->   {
-> +	/* Remove the class lookup first. */
-> +	device_del(&tsm_dev->dev);
->   	if (tsm_dev->pci_ops)
->   		pci_tsm_unregister(tsm_dev);
-> -	device_unregister(&tsm_dev->dev);
-> +	put_device(&tsm_dev->dev);
->   }
->   EXPORT_SYMBOL_GPL(tsm_unregister);
->   
+Earlier VCHIQ lived in staging so Greg picked it up, but now that it is
+destaged, I am not sure which tree is the correct one for this to land
+in mainline.
 
+Also, please let me know if you would like to be marked as a Maintainer
+or Reviewer for the vc-sm-cma driver in the MAINTAINERS file?
+
+Thanks,
+    Jai
+
+Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+---
+Changes in v5:
+- Rebase on v7.4-rc1
+- Fix comments from Stefan
+- Moved [PATCH 7-11/11] from the v5 of bcm2835-isp series
+- Link to bcm2835-isp v5: https://lore.kernel.org/all/20260917-b4-vchiq-isp-v5-0-2d8870add2c0@ideasonboard.com/
+- Link to v4: https://lore.kernel.org/r/20260916-b4-vc-sm-cma-v4-0-476d1142b5df@ideasonboard.com
+
+Changes in v4:
+- Rebase on v7.3-rc1
+- Use Dave's .com email in commits and comments
+- Cut out all userspace import and VPU alloc code (from Dave)
+- Link to v3: https://lore.kernel.org/r/20260717-b4-vc-sm-cma-v3-0-6c4e77804e5d@ideasonboard.com
+
+Changes in v3:
+- Rebase on v7.2-rc1
+- Fix lkp bot errors with Kconfig dependencies
+- Switch from kzalloc with sizeof to kzalloc_obj
+- Link to v2: https://lore.kernel.org/r/20260105-b4-vc-sm-cma-v2-0-4daea749ced9@ideasonboard.com
+
+Changes in v2:
+- Drop patches that are not related to vc-sm-cma, or used for codec and
+  not ISP, so that is v1 PATCH 1, 2, 4, 5, 6, 7, 8, 12
+- Move v1 PATCH 11 to the top, adding a Fixes tag
+- Don't use global singletons for storing `struct vchiq_device` in
+  VCHIQ, instead converting the existing device drivers (audio) to be
+  stored inside `struct vchiq_drv_mgmt`
+- Update the vc-sm-cma driver to latest standards, like:
+    - Replace MODULE_ALIAS call with a proper device id_table
+    - Add kernel-doc comments for exported functions
+    - Move exported functions to a header under include/linux for use in
+      MMAL (and later V4L2 ISP and codec drivers)
+    - Use xarray instead of deprecated idr to map an integer ID to
+      imported/allocated buffer pointers
+    - Drop unnecessary pr_debug calls
+    - Replacing pr_xxx use with dev_xxx wherever possible
+    - Clean up stray comments
+- Link to v1: https://lore.kernel.org/r/20251031-b4-vc-sm-cma-v1-0-0dd5c0ec3f5c@ideasonboard.com
+
+---
+Dave Stevenson (5):
+      platform/raspberrypi: vchiq-mmal: Reset buffers_with_vpu on port_enable
+      platform/raspberrypi: Add VideoCore shared memory support
+      platform/raspberrypi: vchiq-mmal: Use vc-sm-cma to support zero copy
+      platform/raspberrypi: vchiq-mmal: Support sending data to MMAL ports
+      platform/raspberrypi: vchiq: Register vc-sm-cma as a platform driver
+
+Jai Luthra (6):
+      platform/raspberrypi: vchiq: Store audio device in driver management struct
+      platform/raspberrypi: vchiq-mmal: Include missing headers
+      platform/raspberrypi: vchiq-mmal: Move headers to include/linux
+      platform/raspberrypi: vchiq-mmal: Support ISP parameters and stats
+      platform/raspberrypi: vchiq-mmal: Support bayer and gray formats
+      platform/raspberrypi: vchiq: Add helpers for vchiq driver data
+
+ MAINTAINERS                                        |   8 +
+ drivers/platform/raspberrypi/Kconfig               |   2 +
+ drivers/platform/raspberrypi/Makefile              |   1 +
+ drivers/platform/raspberrypi/vc-sm-cma/Kconfig     |   9 +
+ drivers/platform/raspberrypi/vc-sm-cma/Makefile    |   5 +
+ drivers/platform/raspberrypi/vc-sm-cma/vc_sm.c     | 810 +++++++++++++++++++++
+ drivers/platform/raspberrypi/vc-sm-cma/vc_sm.h     |  64 ++
+ .../raspberrypi/vc-sm-cma/vc_sm_cma_vchi.c         | 513 +++++++++++++
+ .../raspberrypi/vc-sm-cma/vc_sm_cma_vchi.h         |  64 ++
+ .../platform/raspberrypi/vc-sm-cma/vc_sm_defs.h    | 304 ++++++++
+ .../raspberrypi/vchiq-interface/vchiq_arm.c        |  13 +-
+ drivers/platform/raspberrypi/vchiq-mmal/Kconfig    |   3 +-
+ .../platform/raspberrypi/vchiq-mmal/mmal-vchiq.c   |  92 ++-
+ .../linux/raspberrypi}/mmal-common.h               |   8 +
+ .../linux/raspberrypi}/mmal-encodings.h            |  67 ++
+ .../linux/raspberrypi}/mmal-msg-common.h           |   0
+ .../linux/raspberrypi}/mmal-msg-format.h           |   0
+ .../linux/raspberrypi}/mmal-msg-port.h             |   0
+ .../linux/raspberrypi}/mmal-msg.h                  |   0
+ .../linux/raspberrypi}/mmal-parameters.h           |  86 +++
+ .../linux/raspberrypi}/mmal-vchiq.h                |   1 +
+ include/linux/raspberrypi/vc_sm_cma_ioctl.h        | 105 +++
+ include/linux/raspberrypi/vc_sm_knl.h              |  76 ++
+ include/linux/raspberrypi/vchiq_arm.h              |   9 +
+ include/linux/raspberrypi/vchiq_bus.h              |  10 +
+ 25 files changed, 2227 insertions(+), 23 deletions(-)
+---
+base-commit: bc71431221f5ba8bb33918399552636e059c2c45
+change-id: 20251030-b4-vc-sm-cma-f6727c39cd25
+
+Best regards,
 -- 
-Alexey
+Jai Luthra <jai.luthra@ideasonboard.com>
 
 
