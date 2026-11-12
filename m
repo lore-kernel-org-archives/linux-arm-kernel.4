@@ -2,105 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAAEC606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:59:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C0C606A895
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 23:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r6SvkwD/;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=JCx5HzQB
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nMbmTC9x;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.a=rsa-sha256 header.s=20260707 header.b=zpGsydUi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EopehRq5ikgbdAiXlBfLUoKgyr9SSArgqvetpz1gLic=; b=r6SvkwD/pSTPAa
-	17+/vki852/1dYpCkR7fKvNoEnFifMqY303CAqRaRSXg72z7tCv85cInaAN2t2hHz9TTY3eWhfvB6
-	aT9ghBN17l7c7/8ez4VFFT8pZwNXZmobZzw004Cd486BE5JJuFJQoWBl08zQ6X1YwXjtJuyeIQBJF
-	lZimgUShZ0FOj2x/rYvYjtBy2iT6nnADfC/rirK48woDJUJIw+jXEWN8b+8YPrEQEiNKB7LXtMPgr
-	SYq4GxAbGIXfbYDznRCsCWqFLbIK1oPMMZdKQMjrWFAbQnNvi+BpOIQ1IBqdKmp098TdhRflTxNjg
-	qmaiOJw4Pgb1p5+cD81A==;
+	List-Owner; bh=vKFbfdMvXjvxtZz44CJBuXtclzOrS0keJtHN0viUnbU=; b=nMbmTC9xyCFqFO
+	Zheg48SZDDyL7RMaudlDOZuFSuUTE9DI4vw2rnPNgii7x0TAAS/uIx9XFrcqC3PDctBXRfpxNzcxa
+	3DR9Gq+oI6CzGQ+4TQfdq1BAaKVeEs5guIGvQ8V/x2yVWwQnZ2mYSW2/7WXId6MJrj3rDXCwgsd1O
+	X5CeQ7VkFLqHlkjM/1BJr2NWbBCyXEyBUmNdnYmLBE8wxrp+yPqbb+iDSGQYfHQ7RnyRyJ6DFp/sT
+	uQW+32J8bIR1Pc9XDP0UJLNpm4Wf6M8FulUULJ9wwzBREiTOYFaIzeKN32JAuWJZxVJjYDjCfGCh+
+	/fYfkZZZCUMIg9K7Pqgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdlY-0000000BDeb-27Fp;
-	Thu, 12 Nov 2026 22:59:36 +0000
-Received: from mail-yx1-xb132.google.com ([2607:f8b0:4864:20::b132])
+	id 1xRdn7-0000000BDoT-3VXG;
+	Thu, 12 Nov 2026 23:01:13 +0000
+Received: from mail-yx1-xb12e.google.com ([2607:f8b0:4864:20::b12e])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdlV-0000000BDdQ-1aF2
+	id 1xRdn5-0000000BDnb-1Vdi
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 22:59:34 +0000
-Received: by mail-yx1-xb132.google.com with SMTP id 956f58d0204a3-67be7b9abc8so278368d50.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 14:59:32 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794524371; cv=none;
+	Thu, 12 Nov 2026 23:01:12 +0000
+Received: by mail-yx1-xb12e.google.com with SMTP id 956f58d0204a3-67c2c2ac1c3so424408d50.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 15:01:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794524470; cv=none;
         d=google.com; s=arc-20260327;
-        b=Hg7ZK3XkPIVs2lgE+ouvCYBI+GPALlwPcu2fiLXWE9aEusxWqeBao2xfdkcQWFo5Nw
-         vLg9Phq0AruLFI24PZ000rtpmwS6JRNj2HpuK9Z7K+DCo95dXMpcyPZRaahnMWnFQjPW
-         PaGuD+/zSjl9l+dSUKhQWKILbLNV1rc/9ucJf0lZpGpD/Gd1x5rgGRYdBEgAc4813vng
-         E0ngCLtT/BEZVh0ED6DezySysw8CfQZDGIqD5PE7e7hUbDJ+U2RZQW2MQesL8qCKmWoq
-         8QKxrltkmqkmywukn7YerkB+W5CRLn8SYhMFIkfw28kAL6M96t3awmKXAYElWea9aGY5
-         V9Mw==
+        b=VzBSvfqbKkHHdE4SFcGHa2ZU4zvj1CDdkuJsSP0MT3Cn63N6yXf1MDDec5+Sz68UFm
+         prbARUNve+rIGGLkt8EGS7ZFR4fFjLFKFpfeNARNahc+pLQZa2t29enrhwfKyuc1qYWj
+         hDmi6RjtQfHipridp3EHU4FTKwxAI8bKgX0jGMV7SLzLNXbsfGsV7VJVi0tCJtXgtzug
+         r4rc8QVlZN47qOUZFWyS5f5/HLJG6oQI268vzDlHtU+Oc/yCAoS4/duONr99V50pdbQK
+         uisVC/h9cs1SotIR6+LDh4RsbzyY9gcXVIkPcIS8OAo9gdk6xrsuywtS9moh93PW7g8h
+         61gg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=EopehRq5ikgbdAiXlBfLUoKgyr9SSArgqvetpz1gLic=;
-        fh=Oe+8bzXeot40Kr9aQ4D0WJVU8QgCmEQ3lERymJLLX9M=;
-        b=X2kpZHydnOU2eXgS+fAtIQ6QK/sU/g9E1O+YPdUi67cfdZzWyOBXjfen5AN4sUzD/0
-         V7kR1GtRaqMnyxAweoaMiKQpb8mFInyeNkOTN4iY5gIkcRLZWJxNXwUCoc0maWM41jAV
-         Km3zN+aLunL5gc3FuYBeJ7adfuZnfEX8I8Ji96Tlyyp6xobqLeZDF+7a0h4v0qaV7Zwn
-         hfXJGa9OA045FU7yujUM1LY43ASioR1rSLwrsRZzlRmL9XVIRxaaJ4cb1XzSfX+KRhKb
-         Lsu5UM/628fQvXXJu+KJQTsiPXBoo/fAmGeCkWJ1vG0ozphMtZ7vFS6lXwxa6Dmu40jN
-         srmg==;
+        bh=vKFbfdMvXjvxtZz44CJBuXtclzOrS0keJtHN0viUnbU=;
+        fh=DY8mllOLRplqCYzlHT3/DrJKav3OcJAghYroFSh/jUc=;
+        b=Jd8QKmEASiDED94XwJz0qZIhlXKuNy8Sr31LYhHZU+U+pvChw/5y5uzoTQCnEeHw4+
+         iUP195y7rOvP1SaB2J5ga95bAWEXVfLFEr8MjZV69+mw1v2CrrvPw4vu/5Ph9tgjnIaz
+         mpLT+0EOvUc+F4pCvQHlU2tfKqWbAAxNMkje4c9J2Mo78hi+g3cxItyMQJGSksNx62Zu
+         PmokLK8ugfKlTjzB+5JwJtaqN5lrLZpRiQmSjI1j9weDruAbU0f4KQIqsiZ/rPQz0M/g
+         2+SEdA21OSrqtlIg6JjnQapEqqTvoeoGR07Zm8poyTyfqyTaKvnzflCchGpHK/RSbhM3
+         aeIQ==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20260707; t=1794524371; x=1795129171; darn=lists.infradead.org;
+        d=googlemail.com; s=20260707; t=1794524470; x=1795129270; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=EopehRq5ikgbdAiXlBfLUoKgyr9SSArgqvetpz1gLic=;
-        b=JCx5HzQBz6705+i2l3H3pkv90UGiH3JxBS95FHC/HNujq/6ec1S/AJ/nPo+70QPlRC
-         sFvPFx5okoOJ6+keQROKHgKjJM/IfF3hpESqi+v5uoTRlsPIgfNauuawdvwgSFw+zumm
-         UZYMHje2CyNun724TuvjYQB0hMIMKZXhFXS34fPLmWM8TZ/D/GTgESbRMC2SzLWHK5JU
-         JFe0DIqN7Uncs63ht/6aYwyIB7j07nizJRpW6uzOYvj3/nsT2tncN9kXJRHmA+MSxVdE
-         Noc8NL8z0euJ2eM7/Kcr/3BeKySTw5nYl7EaKH3CQ9jrw/GwEP/kBX27UOrYR+dkzcih
-         wmOQ==
+        bh=vKFbfdMvXjvxtZz44CJBuXtclzOrS0keJtHN0viUnbU=;
+        b=zpGsydUiyNvGPp0Ivl1PTaI5ElraHPqAt9/Ol4moidyK5yvTzJJHZLAYMgRIFTDKKB
+         7+Qdukq9V/3xJ1oWcFFfO2iNMdDcPFFYzvEbajPdNP5y+QCNUcZfTydaW62x6p3zUfB3
+         AtTspqKQPg77P3RE336LPF7gFJ4RLXzZjKQrawPz/7HgbkKEbtD+5AtwvTe355JrkxZp
+         r+pUTlICainQtqd3s3afZROhHYz6Yx3uUb69meSJI8GJNPrE3z82iNmjqi1yIelsXhuR
+         i+03PxuAX5oRYShTjn3EB+D3do48NXwSd/b2nsLVFbkQTqql+7noR/Lt2qhw+p8A5uPD
+         cLlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794524371; x=1795129171;
+        d=1e100.net; s=20260707; t=1794524470; x=1795129270;
         h=content-transfer-encoding:content-type:cc:to:subject:message-id
          :date:from:in-reply-to:references:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=EopehRq5ikgbdAiXlBfLUoKgyr9SSArgqvetpz1gLic=;
-        b=Kh/JpSUZli4C+M22gBglQK3i1Zn0oDqeg4RlD+ZPJ2hJhAvKd3Dvij0t2HVOinidGh
-         fn0uF9NWydZcCY1m5rMFev3+gtjkV7Ci5kC9HdsLb4d02tMjnNdXeGQwmWNy/BiYbwQR
-         mdial2DgGdUuViMl5t/77tIjf2ByfsPGat78G7ba2rETs4eonGCzIJgy4TXaSrMbXVBD
-         +T5ftHHM6utBULgGbJB+NSoh4ZZAG3JF1LR5Ov8VzaVbmHnJnU3kbKJTrNpa/X300MLv
-         nttnI08mQhr5SgEUN6uTFJsT3HBpxnp/2F2RT/BwN0z+mUvuMwxeL3v9ekCcNrcvc/YZ
-         953w==
-X-Forwarded-Encrypted: i=1; AL+hErFvgg//3wFB/q6AzBuDrrPs1pwZw8pIzCXtPVojOQMZkvIw0oi9MxPbwLSNs/dTE2NGLh+T54U8zd1ubShk06ie@lists.infradead.org
-X-Gm-Message-State: APuU4Z+mWRIGyQPO6AotBaEUMg8DYuE9cT1CjT4GsYdpA0lf9EmMskOo
-	8aOaG5a3AhUZhFk+sxRi7RcOMbEC37NREevPrp1JeKnhqeUjVmo4QilM/7MHWe3LOO+meLsP2Ig
-	0YfYwINS8T6XQ6Mb5j4GRuQoPvDuZnV8=
-X-Gm-Gg: AYBFou1XEiRseM7Rs+DV+88ybsjtHaasE/6+Wox871hjx55i/lWyHFO32y2aTCL+GyO
-	GqaTIHKUOPgf0h/VSO3PkkDx1670V8pB20UNPGzJ3g8dC8JLeKEfscSFuv3mzQLcshFwPyiKO6B
-	P0nmh9rarYOJhLZ+CA3HBGwyckS1kyyw9YqOfFmmpSpl+cY7G9f2q6qfXyPeqfEXrAbb86riVT7
-	EzeRc9t/uh+tYlBJY9rutn6JN9tnMcFJ+/F6Si/tFYIRUkT86ClM/+K6I12Owkt/txhvBcxTRFd
-	98zNvygMOGRGdELd7epY4TtclTXyD7Ou8EApzyocCSI9a2kGSohyR/ubhdFJuwwfpLdkinA/2jY
-	cERH0VmX6nc7MgR4iQ5QlwVzRgMQbyHQfopejdMURIg0zPqtDKpNRwV159p3uojVIyuwaYRlnb8
-	BjnFo+AJgd/R3waiM=
-X-Received: by 2002:a05:690e:d83:b0:67b:f64e:b323 with SMTP id
- 956f58d0204a3-67d897f316emr491608d50.87.1794524371234; Thu, 12 Nov 2026
- 14:59:31 -0800 (PST)
+        bh=vKFbfdMvXjvxtZz44CJBuXtclzOrS0keJtHN0viUnbU=;
+        b=F8CWpAKPx4ZkVrwhNoO5M7E4vNqR1zynRNqlfP+ftcRLwjZT0hv28g+OC2wOYCdvC9
+         ocaqUhqw+3vS2WPZXHAwHk6NH1nSHTjbQSerdoI/x/mT229/IITD38KJ2iNsbiBlu4Wz
+         3+ccn31pQz6DUSrwKCBK0YZ863F0FIRGFrRxJ0TGLcP0pq94QpBFXlTPIuHHLQhYs5MT
+         4FyfhgH3JPSJUex33dA2vAD1fbPpcm0VRLFOji4PnCpvZ8QmF1VlL/jR31FZmO0GThgJ
+         VpT/XauvhAh9Vqv4ZZGhS+FkVyH3S6PICbFfBFZZvvkcQmA5T7r3irHGqqvGSFybMxoy
+         ugjQ==
+X-Forwarded-Encrypted: i=1; AL+hErFuNQfzWx126PsprfLACj+McMsLcgu/OsKQChbZ7UxnIyntMFTa98WzwfC4bIx2LZXTf2wgTFPVmsHXeHbqeunp@lists.infradead.org
+X-Gm-Message-State: APuU4Z9l9Y8n1px8fwIXzZqTbXEzXs9KzJE5wR+F7mOSPsxytTKbjZHr
+	IYOjfdkCxLi2sCe0KP8l02PrgE2nGQKCZz5BJ04r5IO+FZQSQ+aGEYb5/Wm0ShOLHIZEiFmIvzM
+	yX8U5q/5eR1iZgI4v5wTZcyG5yMS11/8=
+X-Gm-Gg: AYBFou3CeoPozzCUlhzkmTcL4smMw55h7KIJLubkEQCSzzq4bbxHeHbkFxQyqc6Rvyc
+	lH4DzGK8sI/rmEAl+toYsvamUpSZanYxpZyCuTvD6dTDMx4+sS/6D+vDfFdGY4MOFlU4uudN+NW
+	EpvIIcg5RION8auIX4lTm4f16oUgaGORRBzVAih8j82jqxFoq6Az4lKofxQ5gBq6bMxJ07KGmAN
+	QsbHi8mRAkMDgHcjSXMrw5GNyRnY8orj9FwmXuapk0cnEgc5o6sIWFNjOgH4EI2Alpai+S4tzOB
+	VdKimy6dC+FTbnk2fbky2el5L5OlyQLj1B6AwN/0FjrosfYlb8varWjfMGGye8KcwAfSpPsEVyq
+	lscCTtJsexrpG/Oowk5U7hHebVKA/5BxnsT3JP4nZdDN/ZSK8+Dl0WNC4nDWQJpQM2vTcKkM=
+X-Received: by 2002:a05:690e:1182:b0:67c:1eb5:48d0 with SMTP id
+ 956f58d0204a3-67d895a730emr587688d50.21.1794524470098; Thu, 12 Nov 2026
+ 15:01:10 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 References: <20261111-gx-formatter-use-spinlock-v2-0-763241aeca52@baylibre.com>
- <20261111-gx-formatter-use-spinlock-v2-1-763241aeca52@baylibre.com>
-In-Reply-To: <20261111-gx-formatter-use-spinlock-v2-1-763241aeca52@baylibre.com>
+ <20261111-gx-formatter-use-spinlock-v2-2-763241aeca52@baylibre.com>
+In-Reply-To: <20261111-gx-formatter-use-spinlock-v2-2-763241aeca52@baylibre.com>
 From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Thu, 12 Nov 2026 23:59:20 +0100
-X-Gm-Features: AclHuK86E7RwyUwDuKN1XBLuFvJlmfcg53qNUpHMBnQ5zRn_8wYfmQuNj2Yj5C0
-Message-ID: <CAFBinCCdqpb-d4wEThYCLLEa89eqUNycxn7BYHMq9a6nTVPL=g@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: meson: gx-formatter: change stream lock from
- mutex to spinlock
+Date: Fri, 13 Nov 2026 00:00:59 +0100
+X-Gm-Features: AclHuK_m4BWciMvBzZXogG5H22e1sIVJEt1HWBlLSLAAMEV4Eu9tlsQViR8cFLo
+Message-ID: <CAFBinCB7Okxzq0cjAdpynmJb-oOuiYkGaf6w--091_nU0OJFKQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: meson: gx-formatter: add lockdep_assert_held check
 To: Valerio Setti <vsetti@baylibre.com>
 Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>, 
 	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
@@ -110,8 +108,8 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood <lgirdwood@gmail.com>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_145933_432644_CAB7B1AA 
-X-CRM114-Status: GOOD (  19.28  )
+X-CRM114-CacheID: sfid-20261112_150111_400132_5EEB9D8A 
+X-CRM114-Status: GOOD (  10.25  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -134,53 +132,12 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Wed, Nov 11, 2026 at 11:12=E2=80=AFAM Valerio Setti <vsetti@baylibre.com=
 > wrote:
 >
-> Currently a mutex is being used in 'struct gx_stream' to serialize
-> access to structure data. This was inherited from the AXG design. An
-> important difference though is that in axg-card dai_links are nonatomic
-> so callback functions like 'trigger' are allowed to sleep. In GX instead
-> dai_links are atomic.
+> The documentation of 'struct gx_formatter_ops' states that
+> formatter's callbacks for enable/disable/prepare are called with the
+> spinlock held. Validate this by adding 'lockdep_assert_held()' in
+> 'gx_formatter_enable'/'gx_formatter_disable'.
 >
-> For example, starting playback from userspace with
-> 'CONFIG_DEBUG_ATOMIC_SLEEP=3Dy' results in a warning message like:
->
-> [ ] BUG: sleeping function called from invalid context at kernel/locking/=
-mutex.c:316
-> [ ] in_atomic(): 1, irqs_disabled(): 1, non_block: 0, pid: 272, name: spe=
-aker-test
-> [ ] preempt_count: 1, expected: 0
->
-> due to the following call stack:
->
-> snd_pcm_do_start (called with spinlock taken)
->   dpcm_fe_dai_trigger
->     dpcm_fe_dai_do_trigger
->       dpcm_dai_trigger_fe_be
->         dpcm_be_dai_trigger
->           soc_pcm_trigger
->             snd_soc_pcm_dai_trigger
->               soc_dai_trigger
->                 aiu_encoder_i2s_trigger
->                   gx_stream_start (takes 'ts->lock')
->
-> Fix this by changing the lock type from mutex to spinlock. This is safe
-> on GX platform because all formatters' functions only perform MMIO regmap
-> calls that do not sleep.
->
-> 'spin_lock_irqsave' is used in 'gx_stream_start'/'gx_stream_stop' because
-> trigger runs with IRQs already disabled and stop can also run in IRQ
-> context (e.g. in case of XRUN while executing 'aiu_fifo_isr').
-> 'spin_lock_irq' is instead used in 'gx_formatter_attach'/
-> 'gx_formatter_detach' in order to prevent IRQs on the same CPU that might
-> end up calling 'gx_stream_stop' and therefore deadlock.
->
-> While at this also improve 'gx_formatter_detach()' by moving
-> 'gx_formatter_disable()' under the spinlock guard. This makes it symmetri=
-c
-> to 'gx_formatter_attach()' and ensures that the prepare/enable/disable
-> formatter callbacks are called with spinlock held.
->
-> Fixes: a295be8d6210 ("ASoC: meson: gx: add gx-formatter and gx-interface"=
-)
+> Suggested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > Signed-off-by: Valerio Setti <vsetti@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
