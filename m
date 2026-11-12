@@ -2,119 +2,104 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305D9606A882
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C72B606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:28:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M4Yxkbu6;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=bJQwmF1H
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rvfFqj39;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qqlp4DLQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Sg+KvGZYhVzYOkLqPIQhsfe/5idg5NwqYT0AfUXheas=; b=M4Yxkbu6L3op91vjt9FWphh5Bf
-	YY6Nt0vdg4H7SOeOrgh4EFLge0OkKOzt8OWbsJ4D+p8I5IZ82oWjcnkmTVMEXMYebCvfv6Pr6KEAl
-	mIEQpmsO8Dij9gQA91eHPdXj/f93MTa+Oj6g8Rprv6GQX0Vc3t4liP5pDie77NxR9hXukGJ1xTai1
-	CYpa5PJvefOhTJ0BErC8KwLXOM4PUmy8gL1nDkZdkPNZMcmyVvrGSdNdi9YiQOVdI9NfLZcD+sDUB
-	zSwR0+vOLgXTyRAkMs72jXW1BJ2xppBVBL3OziW/I2v9LpTtb9eOYubt3mTHL9UlRCkLX0pVKugTe
-	YzfD8BsA==;
+	bh=pRpWiPIA4DrUOnjtuQAu5NcMUWFxkdWpzhrlxObt3ug=; b=rvfFqj39ddJdnfJdIbxdBiBjiA
+	p239yEh7fvFI70dGZMEGDF9R7ZwnI7EMLUQDk5HmQq9GgAD+LGtQiLIqz9gQYsSU6Yhm5rzjWsiXO
+	mztRZKynqrzZ8U+ADGUbh9s+w24+CO4zdWHVmNlV7iVRykUm5zudl72m4eotZwl4BpHWFPGBMypcD
+	L6YNKdDb9POzILy4vUq+kgtnGAF4ONQhxKlZfxxmdpbAiFdf5DWdAhdXtwKpeA181Q67F5Sd4O9zg
+	D89o9nAlcZbm1kKO5neKNmOS+ViXGaMUL/pPFK3kA/5ldT2TSAjZHesV8xR52GWara0sGy8+f679r
+	jvr6AS2Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXaC-0000000AZpI-29MV;
-	Thu, 12 Nov 2026 16:23:28 +0000
-Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	id 1xRXfE-0000000Aacv-1kDA;
+	Thu, 12 Nov 2026 16:28:40 +0000
+Received: from mgamail.intel.com ([192.198.163.16])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXa9-0000000AZot-1Hug
+	id 1xRXfB-0000000AacV-330f
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:23:27 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O57N6PFvuEOYa91l9oqgZ+y//i/WB5kWAHnDEE60gPcZBn60tNucAv5f2yTF/ASWthWY6MkP+OYpMLCe9y/BngNoTpWNYtHVZU7QwaQAsVJFHogBqST4y+iPDfW/mwQrJcCNuSWtbiB6SNAxKk7EwFxRXhG1uZxBcVgMCfhzeRUfmjhjLgYJIgXmGbs3I8OAeUcipYx5mSqHbSlzwe98DLO7mfiBXfjjsl91zyoIHrEH8Ushv56kT+R7cW0307Bs6czt0Q1x3cWBIQECXTBh98uEjMjWpfZqAXKIN5Pns/wrX7HFtZWaDKQUAk3bw+jhXWevy+4sw2zGydhP2hAiEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Sg+KvGZYhVzYOkLqPIQhsfe/5idg5NwqYT0AfUXheas=;
- b=lssxlnGn+vicS/gPfSBHNw4WzKhEUt0fIxsgerrHLS0CNLyh5+VViZLsce84CRz1MAR65DwVYRXABIoALatRdbUTOl65G2hwPpXu8HerCQ13KVNKaO/WQbFtCZWugR57vRWAN7TpcMFAf5YiySx8xG4GGyvj33ma/maMIfuhAc0cxOf3I89twmS0F5PCGhSnahrPodEtcs9jWD+3mfgNTkD2QsJ7Xrt0KyhHx3DmwMlfAYpEwHiCMLlc/m+O8l/kVqCMWCRut6/ua2P6kki3Y+PH9ds/sr97F9Lhx7fXEZUTvzAgbh7xgQOgHlgZ20Fyg/uOe6eS9EXVEuNFE1kllw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Sg+KvGZYhVzYOkLqPIQhsfe/5idg5NwqYT0AfUXheas=;
- b=bJQwmF1H9gPhl9YON8Idd2oXLd7O/o8MzKdwphbVqZP7EbAKWfsGw+AnHAhMdeMi33WmEwvloU3AI4wcDq9BzD5ydxwJtTaZzcVXzhPmLtJ/KLb9kML+euap0CR9zkEDmzyslbBNf34taX3M0LBxgsHz4FDIrPrGFftKF6r7URySPDjcly1o8kN/05K6hKds62lYBvkWPiRb8Psljse0B3Tg/4gcZW5wwJJZe4aJo5KYtzIPpCmHxucfToMyzofk6BX7OS/+UjZY/f+EQdkWk3uL4rR/0cNetJNO+qyRmoUgum+hFpzSPymhm6ro4WjrIBUYjb/rTetl9TWQBW2pfQ==
-Received: from OS6P279CA0106.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:3c::8) by
- DU2PR10MB7743.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:46e::21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.8; Thu, 12 Nov 2026 16:23:20 +0000
-Received: from WA1PEPF00009B3B.eurprd05.prod.outlook.com
- (2603:10a6:e10:3c:cafe::1a) by OS6P279CA0106.outlook.office365.com
- (2603:10a6:e10:3c::8) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Thu,
- 12 Nov 2026 16:23:20 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.60; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.60) by
- WA1PEPF00009B3B.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 16:23:19 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
- (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 12 Nov
- 2026 17:24:04 +0100
-Received: from localhost (10.48.87.100) by STKDAG1NODE2.st.com (10.75.128.133)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Thu, 12 Nov
- 2026 17:23:05 +0100
-From: Patrick Delaunay <patrick.delaunay@foss.st.com>
-To: Ulf Hansson <ulfh@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@kernel.org>, Christian Loehle
-	<christian.loehle@arm.com>, Maulik Shah <quic_mkshah@quicinc.com>
-CC: <dario.binacchi@amarulasolutions.com>, Linux STM32
-	<linux-stm32@st-md-mailman.stormreply.com>, Patrick Delaunay
-	<patrick.delaunay@foss.st.com>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: [PATCH] cpuidle: psci: Skip SET_SUSPEND_MODE when OSI is unsupported
-Date: Thu, 12 Nov 2026 17:22:42 +0100
-Message-ID: <20261112172241.1.Ibe6dddf06a4b7e5b24af24dc85d053e36f940549@changeid>
-X-Mailer: git-send-email 2.43.0
+	Thu, 12 Nov 2026 16:28:39 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794500918; x=1826036918;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sslNQ9t4xM278pmgtdvt48t5+fW2uzyCfGO3Z4539zQ=;
+  b=Qqlp4DLQVlapsQ1N4Az79SimbuizhLR43Lpct95Mx0xggqv/8FYaQc8m
+   95SOXLwXcxYt1sf7wNbl9Ml0h6bbuMj/r61aws2vG1gOK3H2LnAA7ZMUl
+   ahDg/EBwkJNzklI8Ll2ruFvPBQ9HMJgaZ34mnUMzCDubXJOmuFjqp/Xnd
+   1n4fBas5PlCMazX8aPD0VAplEZklu0ey1XIBP0aEx6vrOYmj+91Oj0/Q5
+   7l72h3R2BirqZTRbH7FET1EMM96Tgkwapv2rOKHj6nBr4Gm0EUnaSR0mK
+   /HuYzeOdoc2YQY0Xzz1GYhkkFbLb7L6M0VNm7yJCeb/YZi+E3KLhG7Gr3
+   w==;
+X-CSE-ConnectionGUID: mLOTWxxvShmAxcEJpJFtJw==
+X-CSE-MsgGUID: 06KnYf4bQoqPUEY9nPzrfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3328543"
+X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
+   d="scan'208";a="3328543"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:28:37 -0800
+X-CSE-ConnectionGUID: QwynKHKvQhyg7yRdcyHipg==
+X-CSE-MsgGUID: wXpMW8M6QPu66Rlr12+fkA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
+   d="scan'208";a="8613701"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.6])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:28:30 -0800
+Date: Thu, 12 Nov 2026 18:28:27 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Raul E Rangel <rrangel@chromium.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Richard Genoud <richard.genoud@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Maciej W. Rozycki" <macro@orcam.me.uk>,
+	Timur Tabi <timur@kernel.org>,
+	Peter Ujfalusi <peter.ujfalusi@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v12 8/8] serial: 8250: retain DMA resources when
+ termination fails
+Message-ID: <avXpK70Fh7kkJGOg@ashevche-desk.local>
+References: <20261111-submit-serial-8250-dma-cancel-v1-v12-0-9e3456bc2555@gmail.com>
+ <20261111-submit-serial-8250-dma-cancel-v1-v12-8-9e3456bc2555@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: WA1PEPF00009B3B:EE_|DU2PR10MB7743:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46a012e4-9f5a-409d-a3d6-08df40d943a6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|7416014|23010399003|376014|36860700016|18002099003|10067099003|11063799006|261102123227099003|261021121427099003|261021123027099003|261022105027099003|56012099006|261028144727099003|261026140227099003|261026121527099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: wdxGxjGUSrvKR8BJZUi2x1qLwUtSMIIWjrAPnQaohIOekktThh0zh5Km7WiOs1IM5e8fg6hLIZkbxyQj7rFyiztVrMCWpZm4GHM9mTG50A6qUNaVXiJeU07yexkg3eFQBH5tCgvZem01yMS2a3oTGOoa+NC3lLPQmnQlOspqHEHCxka0fQ0K2P9XCtDhD2Ht0R4zVpzAcFmg71ZvvRWT0Y98Cihp0prfNQ7n4w2QDJJU4fPGQBE/KTHi3i+LiFFThoGYhDxX7J0c5y2PEE5XQ+FDyXQ4n2uIDDICh9GzNDiyhSEosGhYDAVxndnXcaGySu5upm1VICyptxE8/YUAephNyO7TgOWoHT/5vJ2RZgsO0YUkjWQvlSI3zwJfBRV1pXyCTLPZzflfZr42KXm+gi9H8IxBl+B8OE8e3/VFejE8Gc31ggcHgp23ykHXcBHFsttv+E2KhncC/hzraeASEOPMN5rk1Xqr/hfJtgKQblPofDW9kuuHb3P+pgSwYFFZzucK5p0M+RSNFi4p9hgNuVeeJA+vVFnSQiGAsx8ARgOEig8SRVbU08EngqkMBZ2YaZggASomQ08qtsckO22gqBrBEBGGJggn33/L3q4ww0QsFovG0SpKfdR07rWG+cfu1IbFo+pWvNDfgisriKE0e8VxbVlJfzgGIJ82L7X1/bE=
-X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(23010399003)(376014)(36860700016)(18002099003)(10067099003)(11063799006)(261102123227099003)(261021121427099003)(261021123027099003)(261022105027099003)(56012099006)(261028144727099003)(261026140227099003)(261026121527099003)(261009223027099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: TNdOyRVOS74iH6U4QyNpJsyNtgTKta0Rr7HRML6Lr8t8gYyiETPtydBlLsz6+DrMgRwetuVJ2ikT48gen2U9LBN5qaeTTpLX7JkH3Wxm0eVgHUVODbWe1K3uwAKIn/avGsAbKdtWDgZOdE43ua8epYwiATZU2Pp1CR371wxfy183UlCatdeOlsCyoJinQx9lbRwd9gRgZ0Dhxst1lnA3ks6/6rBooiEpEO+egZcvyC4S55qKmc/Nx8+S9U6KNyC94bMaIbXXMhW7Wd/4HD3OWhxTIEMxgCyT4I2TJXkobMiCielR0+n4govLHdvhOrVUaZe0FUo57PbDKz3DxBlu5W+T+ANKr5S2hdGRhtgLFxXa99+T5rSqrCJklW1/tDvo1gbaJNga8FKWE1nibgWr5wh+PLVgaDV/WYXNsDaOkzfsQiIveGrYba4L1YIhNV7k
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 16:23:19.5753
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46a012e4-9f5a-409d-a3d6-08df40d943a6
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: WA1PEPF00009B3B.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR10MB7743
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261111-submit-serial-8250-dma-cancel-v1-v12-8-9e3456bc2555@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_082325_659795_C5A86815 
-X-CRM114-Status: GOOD (  14.22  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_082837_911729_B134C0C5 
+X-CRM114-Status: GOOD (  22.92  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,90 +110,100 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The PSCI cpuidle domain probe calls psci_set_osi_mode(use_osi) after
-creating the power domains. When OSI is unsupported, this still calls
-SET_SUSPEND_MODE to select platform-coordinated mode. Firmware that
-does not implement this optional function may return NOT_SUPPORTED,
-causing the probe to fail with -EOPNOTSUPP.
+On Wed, Nov 11, 2026 at 03:16:33PM -0700, James Hilliard wrote:
+> serial8250_release_dma() ignores the return from dmaengine_terminate_sync()
+> before freeing the coherent RX buffer, unmapping the TX FIFO and releasing
+> the channels. If the provider fails to stop a channel, the DMAengine
+> wrapper returns the error without synchronizing its callbacks. Hardware
+> or a detached callback can then access the released storage and state.
+> 
+> Checking the error and returning early would not preserve their lifetime:
+> serial core frees the TX FIFO after the driver's shutdown callback returns,
+> and port removal can then release the callback context as well.
+> 
+> Require successful synchronous termination of both channels before
+> releasing any DMA resources. Retry failed channels after a sleep outside
+> the port lock, leaving channels that have already stopped and drained
+> alone. Keep the shutdown gate and storage reservation in place throughout
+> the retries.
+> 
+> Start retries with a 1 ms sleep and double it up to one second. This
+> makes short-lived failures responsive while bounding sustained retry
+> activity; neither delay is a hardware timeout. Report the initial failure
+> and ongoing failures with the elapsed time and current RX/TX error codes.
+> Track the five-second progress-report interval separately for each
+> teardown, so failures on different ports are reported independently.
+> Report recovery once both channels have stopped and drained.
+> 
+> A permanently failed DMA engine blocks close or removal. This deliberately
+> retains the buffers, mappings, channels and callback context until the
+> provider can establish that they are no longer in use.
 
-When OSI is unsupported, the PSCI specification allows the OS to assume
-platform-coordinated mode. Skip the call in that case, and request OSI
-mode only when psci_has_osi_support() is true.
+...
 
-Fixes: 12acb348fa45 ("cpuidle: psci: Move enabling OSI mode after power domains creation")
-Signed-off-by: Patrick Delaunay <patrick.delaunay@foss.st.com>
----
-Hi,
+> +static void serial8250_terminate_dma(struct uart_8250_port *p)
+> +{
+> +	struct uart_8250_dma *dma = p->dma;
+> +	unsigned int delay_us = 1 * USEC_PER_MSEC;
+> +	ktime_t start, last_report;
+> +	int rx_ret, tx_ret;
 
-This patch replaces the previous patch [1] in SCMI lib
+> +	rx_ret = dmaengine_terminate_sync(dma->rxchan);
+> +	tx_ret = dmaengine_terminate_sync(dma->txchan);
+> +	if (!rx_ret && !tx_ret)
+> +		return;
 
-The PSCI specification v1.3 describes the PSCI_SET_SUSPEND_MODE with:
+Why not check these already in the loop? See below.
 
-"
-5.21 PSCI_SET_SUSPEND_MODE
-5.21.3 Caller responsibilities
-The caller must be able to cope with the following error return codes:
-* NOT_SUPPORTED, in which case the calling OS can assume the platform
-will work in platform-coordinated mode. In this case,
-the PSCI_FEATURES feature flag 0 for CPU_SUSPEND is also 0.
-"
+> +	start = ktime_get();
+> +	last_report = start;
+> +	dev_err(p->port.dev,
+> +		"DMA termination failed: RX %d, TX %d; teardown blocked\n",
+> +		rx_ret, tx_ret);
+> +
+> +	/*
+> +	 * Shutdown cannot return while DMA owns storage or callback state:
+> +	 * serial core frees the TX FIFO afterwards, and removal frees the port.
+> +	 * Retain both channels and retry outside the port lock. A permanently
+> +	 * failed DMA engine therefore prevents teardown from completing.
+> +	 */
+> +	while (rx_ret || tx_ret) {
 
-This patch implements the expected behavior:
+I believe with refactoring this to do {} while () we may deduplicate
+the dmaengine_terminate_sync() calls.
 
-PC mode by default when OSI is not supported, i.e. CPU_SUSPEND
-(optional) are not supported; PSCI_FEATURES(CPU_SUSPEND) return
-NOT_SUPPORTED or return psci_func_id Bit[0]=0 for OS-initiated mode
-not supported.
-
-When OSI is not supported PSCI_SET_SUSPEND_MODE (optional) can report
-NOT_SUPPORTED and by default the platform will boot in
-platform-coordinated mode.
-
-[1] "firmware: psci: handle unsupported SET_SUSPEND_MODE in PC mode"
-    https://patchwork.kernel.org/project/linux-arm-kernel/patch/20261029191624.1.I5f8f3d75a566b72250d629ac6f43cf0d387c0218@changeid/
-    https://lore.kernel.org/all/20261029191624.1.I5f8f3d75a566b72250d629ac6f43cf0d387c0218@changeid/
-
-Regards,
-
-Patrick
-
- drivers/cpuidle/cpuidle-psci-domain.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpuidle-psci-domain.c
-index 5722365b943e..eed9ad94659a 100644
---- a/drivers/cpuidle/cpuidle-psci-domain.c
-+++ b/drivers/cpuidle/cpuidle-psci-domain.c
-@@ -159,10 +159,12 @@ static int psci_cpuidle_domain_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto remove_pd;
- 
--	/* let's try to enable OSI. */
--	ret = psci_set_osi_mode(use_osi);
--	if (ret)
--		goto remove_pd;
-+	if (use_osi) {
-+		/* let's try to enable OSI. */
-+		ret = psci_set_osi_mode(true);
-+		if (ret)
-+			goto remove_pd;
-+	}
- 
- 	pr_info("Initialized CPU PM domain topology using %s mode\n",
- 		use_osi ? "OSI" : "PC");
----
-base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
-branch: master
+> +		fsleep(delay_us);
+> +		/* Retry promptly at first, then limit sustained retry activity. */
+> +		delay_us = min(delay_us * 2, 1 * USEC_PER_SEC);
+> +		if (rx_ret)
+> +			rx_ret = dmaengine_terminate_sync(dma->rxchan);
+> +		if (tx_ret)
+> +			tx_ret = dmaengine_terminate_sync(dma->txchan);
+> +		if (rx_ret || tx_ret) {
+> +			ktime_t now = ktime_get();
+> +
+> +			if (ktime_ms_delta(now, last_report) < 5 * MSEC_PER_SEC)
+> +				continue;
+> +			dev_err(p->port.dev,
+> +				"DMA termination still failing after %lld ms: RX %d, TX %d\n",
+> +				ktime_ms_delta(now, start), rx_ret, tx_ret);
+> +			last_report = now;
+> +		}
+> +	}
+> +	dev_info(p->port.dev, "DMA termination recovered after %lld ms\n",
+> +		 ktime_ms_delta(ktime_get(), start));
+> +}
 
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
