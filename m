@@ -2,70 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FCBF606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6A660A3822
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lU4kXE6r;
-	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.a=rsa-sha256 header.s=smtpauto.stravinsky header.b=puI8dU53
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YFchru9a;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=vmzj/Kff
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=LIrhVpNAMQnwriu22bOa0PqtW9YlSEthziGhemny7Ms=; b=lU4kXE6rAI5/n/ahxNAK1LiqNm
-	nCooMlLaTqlA9mKWR347AmmHtGZgD8u+XhDfK4Wu6WUbqyzsQ6/uwkEZVBC97JibUl5YF/BEHLIZy
-	X6sbzqLMJOtokCIZg+Xqx3jaTjGNhxFjvKcjwaWmnb8w7KOsLF7GsQCblnANfD4iQAtmLUoxrYCGL
-	psn70eKdYSHZrT90v+FZ2OY6262QEoeTHC7fg3w2I/Qkf7nRWU832/okb91Di+B9oiFxuxIyjmmIz
-	mAndxAuigBzdfcUql1iCmd8s6EJCemHDWiDF+aXmts3/v++OJTK5OuSOaVuO/t5J83vTMH7tokszG
-	tPkbTtzQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=220ugqDuyQyPHtA/XrNCqAcUUimFC+lFQ4mNPAn6NRA=; b=YFchru9aebjLS9
+	fuP0sb6xowqWFEdRdQ9Mfz6XN2ySjIe+K1dTZPgth0d2xf85nBT7D+SaFKC6GCAWd+UW2lE94sSmG
+	iSiRBKmN+2HZ7umt323BNpJPMjTfIJl0NLFlwKdAg/RREohDZyaJcY1pUQJXdrLUKvHMX6u1kCUPS
+	jI+U9eeRUoXAWOHZkYH+DU3DpyRBBPJRELThFVt6oyxQH4PhK05BcMPmuHAgZwFOLil86llVcX7fm
+	FbZZEcjqL0td/NwpRQQwmwfzbQG9/JiZiP9ZtqipTOZiHnYa3CVVgXuip0YVjwxcRwQiCAmHXijuY
+	+1ywpymRyUPhzHk+YJ3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRRBr-00000009OFg-2SmT;
-	Thu, 12 Nov 2026 09:33:58 +0000
-Received: from stravinsky.debian.org ([2001:41b8:202:deb::311:108])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRRBp-00000009OEj-10lr;
-	Thu, 12 Nov 2026 09:33:54 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=LIrhVpNAMQnwriu22bOa0PqtW9YlSEthziGhemny7Ms=; b=puI8dU532w3bteGL0lW/oF1t9S
-	20zPt5U/I9Xawvgy/6VwNm6MV0lfqy1sEMo2zmiIGyfky+MaXBzUrXdIZDSJOjnQKPjoGH6kx6rj7
-	VcWdf6/Q2CBhYbnGJNDYm8k52wcBoSYbXHgwCNcgMr+1B+1an6PhPRbbvKwVNoqYI7s8ZtFT4/uUf
-	3qplPELIuLv8Y/9S56t9/6NvAe4lYrKV9Oz9uWWuzktlelLvzKxoBrijs5rjDZ2+IRY+YJhnIACRj
-	wOT/XB0wsOn0xgZUziRRw8mK8KqWF19PCOHmnagYyQ67hR4kOG53t+n2s05/rSJsyZwQlf+EXFyyb
-	dwQ+AYdQ==;
-Received: from authenticated-user
-	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-	(Exim 4.96)
-	(envelope-from <leitao@debian.org>)
-	id 1xRRBQ-00DreI-0I;
-	Thu, 12 Nov 2026 09:33:28 +0000
-Date: Thu, 12 Nov 2026 01:33:22 -0800
-From: Breno Leitao <leitao@debian.org>
-To: Oleg Nesterov <oleg@redhat.com>, akpm@linux-foundation.org
-Cc: "Peter Zijlstra (Intel)" <peterz@infradead.org>, 
-	Nicholas Piggin <npiggin@gmail.com>, "Eric W. Biederman" <ebiederm@xmission.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, kernel-team@meta.com, 
-	syzbot+8fdf0d8e10bdde1c2e88@syzkaller.appspotmail.com, stable@vger.kernel.org
-Subject: Re: [PATCH] reboot: halt when power off fails
-Message-ID: <avWGu4l_nXP_eFyh@gmail.com>
-References: <20261110-reboot-make-task-dead-v1-1-af88a3f37bf7@debian.org>
- <avTJ3o-n0UZS0YUj@redhat.com>
+	id 1xRRJQ-00000009PLv-1JK4;
+	Thu, 12 Nov 2026 09:41:44 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRRJL-00000009PL0-1Wl1
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 09:41:42 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 09344153B;
+	Thu, 12 Nov 2026 01:41:35 -0800 (PST)
+Received: from [10.0.129.47] (e122027.cambridge.arm.com [10.0.129.47])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C443D3F632;
+	Thu, 12 Nov 2026 01:41:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794476498; bh=wsUciV+efeTQCIVGRFWUTHzo6OWjjig7oVL2Hlvu3Do=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=vmzj/KffMUnSTgxJ9oWy92AHHsu+KlvSL1PYaGD6G5XriiSu8w8KE7KGTzZaTN6U5
+	 CER5uSOeYHgUJTU2rmyJyLEMApaNv/fSaEtfVj0gBCjwmC88P/COYdfHvGwPi1GTMG
+	 BNkhuxNjxLgDR3CtZUwX6xR3qq/K74GnFMcPcVQY=
+Message-ID: <a25321ce-7593-4c75-a529-e19c273638ef@arm.com>
+Date: Thu, 12 Nov 2026 09:41:26 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <avTJ3o-n0UZS0YUj@redhat.com>
-X-Debian-User: leitao
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/12] KVM: arm64: CCA: Prepare Realm memory management
+To: Kohei Enju <enju.kohei@fujitsu.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu
+ <yuzenghui@huawei.com>, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>,
+ Alexandru Elisei <alexandru.elisei@arm.com>,
+ Christoffer Dall <christoffer.dall@arm.com>, Fuad Tabba <tabba@google.com>,
+ linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>
+References: <20261111145758.217946-1-steven.price@arm.com>
+ <avV-P2_fOkFWQVnM@FCCLS0092175.localdomain>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <avV-P2_fOkFWQVnM@FCCLS0092175.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_013353_417572_983E91AA 
-X-CRM114-Status: GOOD (  12.20  )
+X-CRM114-CacheID: sfid-20261112_014140_355076_79CBDE5A 
+X-CRM114-Status: GOOD (  17.70  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -77,37 +84,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 09:02:38PM +0100, Oleg Nesterov wrote:
-> On 11/10, Breno Leitao wrote:
-> >
-> > --- a/kernel/reboot.c
-> > +++ b/kernel/reboot.c
-> > @@ -791,6 +791,9 @@ SYSCALL_DEFINE4(reboot, int, magic1, int, magic2, unsigned int, cmd,
-> >
-> >  	case LINUX_REBOOT_CMD_POWER_OFF:
-> >  		kernel_power_off();
-> > +		pr_emerg("Power off failed: System halted instead\n");
-> > +		/* kernel_power_off() already ran the shutdown, only halt. */
-> > +		machine_halt();
+On 12/11/2026 09:08, Kohei Enju wrote:
+> Hi Steve,
+
+Hi Kohei,
+
+> On 11/11 14:57, Steven Price wrote:
+>> This series adds the memory management plumbing for CCA, building on the
+>> basic RMM support [1]. Thank you to those who reviewed v1 - I'm
+>> attempted to address all the comments.
+>>
+>> The patches introduce internal Realm VM state and RMI feature checks,
+>> prepare Realm stage-2 setup and teardown, and provide RTT mapping and
+>> invalidation helpers. Realm memslots are restricted to the lower half
+>> of the IPA space because the protected and shared halves alias each
+>> other. The final patch connects the helpers to KVM's stage-2 MMU
+>> operations.
+>>
+>> This is the memory management portion of the larger Realm host series.
+>> Realm descriptor creation, REC entry and exit, activation, and the new
+>> uAPI follow in the integration stack. This series alone does not enable
+>> Realm creation.
+>>
+>> As before there's an integration branch[2] that includes the realm
+>> creation, REC entry/exit etc building on top of this series. I've also
+>> pushed a git branch[3] of just this series.
+>>
+>> Changes since v1:
+>> - Add a guest_memfd prerequisite patch that checks whether the backing
+>>   file supports mmap when preparing an arm64 memslot.
+>> - Combine the RMI availability and feature checks into one patch, and
+>>   move Realm vCPU feature restrictions to the integration stack.
+>> - Correct Realm IPA sizing and RTT teardown, including teardown before
+>>   activation, RTT accounting, and handling of missing or folded RTTs.
+>> - Rework RTT mapping to respect IPA and physical alignment, handle
+>>   partial RMI progress, and retry interrupted operations.
+>> - Preserve private mappings when a Realm guest_memfd memslot deletion is
+>>   rejected, and tighten Realm fault handling and stage-2 destruction.
+>>
+>> [1] https://lore.kernel.org/all/20261007073537.2454351-1-suzuki.poulose@arm.com/
+>> [2] https://gitlab.arm.com/linux-arm/linux-cca
+>>     branch: cca-host-mm/v2/integration
+>> [3] https://gitlab.arm.com/linux-arm/linux-cca
+>>     branch: cca-host-mm/v2/mm
+>>
+>> Steven Price (7):
+>>   KVM: arm64: CCA: Reserve the RMM mode
+>>   KVM: arm64: guest_memfd: Check mmap support when preparing memslot
+>>   KVM: arm64: CCA: Check RMI support and features at init
+>>   KVM: arm64: CCA: Add basic infrastructure for creating a realm
+>>   KVM: arm64: CCA: Tear down RTTs
+>>   KVM: arm64: CCA: Add Realm RTT mapping and invalidation helpers
+>>   KVM: arm64: CCA: Support runtime faulting of memory
+>>
+>> Suzuki K Poulose (5):
+>>   KVM: arm64: CCA: Introduce Realms
+>>   KVM: arm64: Handle attributes in stage2_unmap_range
+>>   KVM: Allow architectures to reject memslot changes before invalidation
+>>   KVM: arm64: CCA: Prevent memslot modifications after Realm creation
+>>   KVM: arm64: CCA: Add Realm stage-2 MMU operations
 > 
-> Agreed. Even if I don't think my ack has any value in this area:
+> I've tested the integration branch [2] including this series on our
+> hardware using the QEMU-VMM proposed in:
+>   https://lore.kernel.org/qemu-devel/20261002202026.1204110-1-mathieu.poirier@linaro.org/
+> 
+> The Realm guest VM (32 vCPUs, 16 GiB RAM) booted successfully. To
+> exercise the guest with a more realistic workload, I also performed a
+> full Linux kernel build, which completed successfully.
 
-Thanks, Oleg.
+Awesome - thank you very much for testing.
 
-I tried to find out who merges changes to this file and it is not clear.
-akpm seems to be the closest, as most of the changes went through him,
-and somehow he was not CCed here. :-|
+> A Tested-by tag might not be carried over to the next revision, if any,
+> but anyway, for this series:
+> 
+> Tested-by: Kohei Enju <enju.kohei@fujitsu.com>
 
-Andrew, would you be willing to take this one?
+Thanks,
+Steve
 
-thanks,
---breno
 
