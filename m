@@ -2,79 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1B63606A88D
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 10:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5403606A894
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 10:51:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VHLFsMAx;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sz/bRcPX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aPwN7w4s;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NyTu+pBP
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=X2j4x6ETnjsd3Kk7UiXLGfpl+QRCIcV4hL4S2HQyUOs=; b=VHLFsMAxsoL07S
-	PqiomIVRmjpzAjGi7BHJT/IlXhpjlWhw0hAraEQM6+z/l49HfICTSxVc/i1TDlIrOEo1ZqW5lL/Yh
-	UU4M+H92tEBRpKcDAAXW8tcKXZTGPOK8FrPZ4AFjSow0r78MDN2FkKu14y1//MEnQlUWzpGDxOXsB
-	ROF0pDKwBhhqfYF77G66PKZCfSneDecCyCQjiSEAPaZLtXVSXkrXhdLIraGmJr3khW25k1BXOdtPE
-	L01AuFmP7b2vdHXnpGyrIqWz3bGHOWdHMlvvrKgBVL33lbHznfiDkGvfaDJi8yR5vXWqdgpBWr6k5
-	I9ZcKW2w4WJdRSKajAvA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=pywy5r6pDPMlHENdQdhMX3LebB9YShrau+u2EOFSYes=; b=aPwN7w4smWoF0ubwtsb0sg6jJl
+	L1dNz/VPMYhV0XVusp7jrEGiSw66wUegezTR5GoCiC6M5dlLvQtHH6oBGIVHDt0JzpcNSuI7fKKz0
+	vXFc0KFGMOhaN5B9eOLzXuu6ZFnhVnJKGNLKi+sUPKKISotY3R+sB2KSVspxOkQQgGmbTn1MBd9Wn
+	EMWnSkLh15VN+Zkx1EOq0Rt49xk6+6/MP8suYF43BOlj3O9ZekT0qO803I+WnJAnAF4QOf3bYwTXM
+	XWz3eJyUKBwifz/n8pW7ZsM52uMMYMv1PU1JFHV23do5Z893QPY+T7qGQI83KswvFcWXUw9ousow5
+	l0hHo+dg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSH4-00000009Z3z-21w3;
-	Thu, 12 Nov 2026 10:43:22 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSH2-00000009Z2C-2Zsn
+	id 1xRSOt-00000009aeJ-1PXf;
+	Thu, 12 Nov 2026 10:51:27 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRSOr-00000009aeA-1P8w
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 10:43:21 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9CC8C153B;
-	Thu, 12 Nov 2026 02:43:14 -0800 (PST)
-Received: from [10.0.129.47] (e122027.cambridge.arm.com [10.0.129.47])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 76C8C3F673;
-	Thu, 12 Nov 2026 02:43:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794480197; bh=xDR73f4nxpZk5DSaOewf66eooDmTQ5dy0pwmOSiLIuw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sz/bRcPXFEyNa7belfSW5kTpVnMxp65VhQF1lieCCf0rIAi0oiwk3xn+JZFcig9CD
-	 1gcmn08lsRczfyJ6K8ZbBvOpIDzJ9EnXmgUZqfKoqEarzelQvs12nZW7bi6qrs3iCC
-	 KiUIJYqG1GFIcWLl7RHP5oXDUOBXgOfs70RBQC7E=
-Message-ID: <1e02dfff-c1ad-46bb-9834-fd4bbaa46179@arm.com>
-Date: Thu, 12 Nov 2026 10:43:13 +0000
+	Thu, 12 Nov 2026 10:51:25 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id A605643E99;
+	Thu, 12 Nov 2026 10:51:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEE0E1F00A05;
+	Thu, 12 Nov 2026 10:51:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794480684;
+	bh=pywy5r6pDPMlHENdQdhMX3LebB9YShrau+u2EOFSYes=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=NyTu+pBPJgo0IB/eZQsoHzsyRKO3iN+jIxpyl8bWDIcxaDufID0hYesdnuAEu5S09
+	 Sckhb1ihC0JjNfCe/VZ/0dE6EfvHMq1aeQjOGwGk+OV91Ff47v1Lqs6UvhF605Eta3
+	 wqD82AU6Z6Q5HyU9Ltah30EsTw+B1M4g4W5yhvs3eqwGRFkKZ3lxXdMmEjSEumyXip
+	 znxH4zR4+tL3nPFrvhzEV7ItlMOu0ZXK4cjY8u2jI7AC6j4dY1Vgqz6/YgsxSq5QDO
+	 kxcuLzRHt03BGPhofFDyKegLBVhQ/EevoaFq2FN8rm1xr5+eOOTgX+dssNLgKSFySa
+	 LHRs3t7Xtw3bA==
+X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
+From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
+To: "Tian, Kevin" <kevin.tian@intel.com>,
+	"iommu@lists.linux.dev" <iommu@lists.linux.dev>
+Cc: Alex Williamson <alex@shazbot.org>,
+	Alexey Kardashevskiy <aik@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Joerg Roedel <joro@8bytes.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Krishna Reddy <vdumpa@nvidia.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>,
+	Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>,
+	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-coco@lists.linux.dev" <linux-coco@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: RE: [PATCH v8 12/15] iommufd/viommu: Allow PCI TSM backends to
+ provide vIOMMU operations
+In-Reply-To: <CO1PR11MB483536F447DF311831A64D4D8C762@CO1PR11MB4835.namprd11.prod.outlook.com>
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-13-aneesh.kumar@kernel.org>
+ <CO1PR11MB483536F447DF311831A64D4D8C762@CO1PR11MB4835.namprd11.prod.outlook.com>
+Date: Thu, 12 Nov 2026 16:21:12 +0530
+Message-ID: <yq5av762pbkv.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/12] KVM: arm64: guest_memfd: Check mmap support when
- preparing memslot
-To: Suzuki K Poulose <suzuki.poulose@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261111145758.217946-1-steven.price@arm.com>
- <20261111145758.217946-3-steven.price@arm.com>
- <fbc33983-cb8a-48e4-854f-ce009cc5668f@arm.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <fbc33983-cb8a-48e4-854f-ce009cc5668f@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_024320_734390_83E45EF1 
-X-CRM114-Status: GOOD (  23.47  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -85,113 +97,100 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 15:21, Suzuki K Poulose wrote:
-> On 11/11/2026 14:57, Steven Price wrote:
->> Check the guest_memfd backing file when deciding whether an arm64
->> memslot has mappable memory rather than checking whether the slot is
->> gmem only. A public helper function is added to be able to reuse the
->> static kvm_gmem_supports_mmap() function.
->>
-> 
-> Please could you explain why we need this ? Why not rely on
-> kvm_memslot_is_gmem_only(), which already tells
-> kvm_gmem_supports_mmap() ? With inplace conversion support gmem supports
-> mmap.
+"Tian, Kevin" <kevin.tian@intel.com> writes:
 
-Unless I'm missing something it's still possible to create a guest_memfd
-that doesn't support mmap() by not passing the GUEST_MEMFD_FLAG_MMAP
-flag. So kvm_memslot_is_gmem_only() doesn't actually guarantee that it's
-a guest_memfd that supports mmap().
+>> From: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+>> Sent: Thursday, November 5, 2026 12:16 AM
+>> 
+>> In confidential-computing configurations, a vIOMMU may be implemented by
+>> a TEE Security Manager rather than by the physical IOMMU driver. Such an
+>
+> TSM is the firmware. Here it is the TSM driver.
+>
 
-> 
->> Signed-off-by: Steven Price <steven.price@arm.com>
->>
->> ---
->> Changes since v1:
->> - New patch in v2. Check the guest_memfd backing file rather than the
->>    memslot flag when deciding whether arm64 can map the backing memory.
->> ---
->>   arch/arm64/kvm/mmu.c     | 7 ++++---
->>   include/linux/kvm_host.h | 1 +
->>   virt/kvm/guest_memfd.c   | 6 ++++++
->>   3 files changed, 11 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
->> index 1db10d8d6db7..a146f6cde3d0 100644
->> --- a/arch/arm64/kvm/mmu.c
->> +++ b/arch/arm64/kvm/mmu.c
->> @@ -2839,10 +2839,11 @@ int kvm_arch_prepare_memory_region(struct kvm
->> *kvm,
->>           return -EFAULT;
->>         /*
->> -     * Only support guest_memfd backed memslots with mappable memory,
->> since
->> -     * there aren't any CoCo VMs that support only private memory on
->> arm64.
->> +     * Protected VMs currently require guest_memfd backed memslots with
->> +     * mappable memory to support shared mappings.
->>        */
->> -    if (kvm_slot_has_gmem(new) && !kvm_memslot_is_gmem_only(new))
->> +    if (kvm_arch_has_private_mem(kvm) && kvm_slot_has_gmem(new) &&
->> +        !kvm_gmem_slot_supports_mmap(new))
+Will use TSM driver instead of TSM 
 
-Sashiko has identified I've screwed up this condition though.
-kvm_arch_has_private_mem(kvm) shouldn't be in there as that allows a
-non-private VM to bind a non-mmappable gmem.
+>
+>> implementation also needs the TSM identity when creating and validating
+>> vdevices.
+>> 
+>> Allow VIOMMU_ALLOC to first query the TSM associated with the target PCI
+>> device for vIOMMU operations. Fall back to the physical IOMMU driver
+>> when the TSM does not provide operations for the requested vIOMMU type.
+>> 
+>> Resolve the PCI TSM association under pci_tsm_rwsem, pin the module
+>> providing the operations, and take a TSM device reference. Store the TSM
+>> device in the vIOMMU and release both references on allocation failure,
+>
+> what does "both references" mean?
+>
 
->>           return -EINVAL;
->>         /* guest_memfd is incompatible with MTE. */
->> diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
->> index e7fc94e2910a..f65728a713ec 100644
->> --- a/include/linux/kvm_host.h
->> +++ b/include/linux/kvm_host.h
->> @@ -2614,6 +2614,7 @@ static inline bool kvm_is_private_gfn(struct kvm
->> *kvm, gfn_t gfn)
->>     #ifdef CONFIG_KVM_GUEST_MEMFD
->>   bool kvm_gmem_is_private_gfn(struct kvm *kvm, gfn_t gfn);
->> +bool kvm_gmem_slot_supports_mmap(const struct kvm_memory_slot *slot);
->>   bool kvm_arch_supports_gmem_init_shared(struct kvm *kvm);
->>     static inline u64 kvm_gmem_get_supported_flags(struct kvm *kvm)
->> diff --git a/virt/kvm/guest_memfd.c b/virt/kvm/guest_memfd.c
->> index 8c97a69b16dc..3dd8d227bebb 100644
->> --- a/virt/kvm/guest_memfd.c
->> +++ b/virt/kvm/guest_memfd.c
->> @@ -442,6 +442,12 @@ static bool kvm_gmem_supports_mmap(struct inode
->> *inode)
->>       return GMEM_I(inode)->flags & GUEST_MEMFD_FLAG_MMAP;
->>   }
->>   +bool kvm_gmem_slot_supports_mmap(const struct kvm_memory_slot *slot)
->> +{
->> +    /* The guest_memfd file is pinned while preparing a new memslot. */
-> 
-> We should gate this on kvm_slot_has_gmem() and how do we ensure that the
-> call comes after it is prepared ?
+device reference and module reference. How about i update this to
 
-I'm not sure what you mean by "gate this on kvm_slot_has_gmem()" - yes
-this function only makes sense on a gmem slot - the user above checks
-that first. I'm not sure what value the function should call if you call
-it on a non-gmem slot?
+Resolve the PCI TSM association under pci_tsm_rwsem, take a TSM device
+reference, and pin the module providing the operations. Store the TSM
+device in the vIOMMU. Release the device reference and module pin on
+allocation failure, fallback to the physical IOMMU driver, or vIOMMU
+destruction. Drop the device reference before releasing the module pin,
+since the final put may call into the backend module.
 
-Thanks,
-Steve
 
->> +    return kvm_gmem_supports_mmap(file_inode(slot->gmem.file));
->> +}
->> +
->>   static vm_fault_t kvm_gmem_fault_user_mapping(struct vm_fault *vmf)
->>   {
->>       struct inode *inode = file_inode(vmf->vma->vm_file);
-> 
-> 
-> Cheers
-> Suzuki
 
+>
+>> fallback to the physical IOMMU driver, or vIOMMU destruction. Keep the
+>> module pinned until after dropping the device reference, since the final
+>> put may release the TSM device.
+>> 
+>> The device reference preserves the TSM allocation. Backends providing
+>> vIOMMU operations must not unregister their TSM while the module is pinned,
+>> since the reference does not prevent backend resource teardown.
+>> 
+>> This enables the Realm vIOMMU implementation to provide its operations
+>> through the PCI TSM backend and retain the TSM identity needed by its
+>> vdevices.
+>
+> It's not specific to Realm vIOMMU, and Realm is never explained in
+> prior patches.
+>
+
+I will drop this para.
+
+>
+>> @@ -49,15 +52,33 @@ int iommufd_viommu_alloc_ioctl(struct
+>> iommufd_ucmd *ucmd)
+>>  		rc = -EOPNOTSUPP;
+>>  		goto out_put_idev;
+>>  	}
+>> -	if (!iommu_dev->ops->get_viommu_ops) {
+>> -		rc = -EOPNOTSUPP;
+>> +	tsm_dev = tsm_get_device(idev->dev);
+>> +	if (IS_ERR(tsm_dev)) {
+>> +		rc = PTR_ERR(tsm_dev);
+>> +		tsm_dev = NULL;
+>>  		goto out_put_idev;
+>>  	}
+>
+> Is it legal to have a device connected in tsm (i.e. with a valid
+> pdev->tsm) but one wants to assign it to a non-confidential
+> guest using a non-cc vIOMMU type?
+>
+> If yes we want to fallback to the physical IOMMU driver even
+> when tsm_get_device() returns an error.
+
+
+tsm_get_device() does not use the vIOMMU type, so an error return
+(rather than NULL) indicates an actual error. In the case you describe,
+tsm_get_device() should return NULL or a valid TSM device. For a valid
+TSM device, tsm_viommu_get_ops() will return NULL because the TSM driver
+does not support the non-confidential vIOMMU type, allowing fallback to
+the physical IOMMU driver.
+
+-aneesh
 
