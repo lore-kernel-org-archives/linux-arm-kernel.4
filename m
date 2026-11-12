@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C2C606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319F9606A338
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dK4jr4eB;
-	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=WFx08cKh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ctA6ZWVo;
+	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=ELpIaBJp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
@@ -14,56 +14,58 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4aQHBiqJ06U37j0N40/YP+bLbY78zhD+Fcv1k2FBL0c=; b=dK4jr4eBshIykooxfiAf+XM5pw
-	LVnDYLm/+FD3JkHsh0Wrs9Vxvgf6ZHj8yB/KkFPVPFEuklBpMiUIQPvYnkRazMxyk/fLjgQ7JcsQu
-	KVGrmCKG25fDj08XfRXYy/uRDf5Bi0Ysy+M7dNsLHezOw39ctzMizatSss8ikbI758l1AB1jrBfAd
-	yYsk+vyrqvCyv0V61TDmiY8zS2i1qC1oj0oZ8Gv746/z0fNDP9M48yZYsVhx203CS3NL8jx94EgXV
-	riLlZiT0guSym/OAlKrQQhQ41cQ7Q8mhyR+HH9c7sp3hasUXoQLeFiK5lBN3GaY7R+OCVt+be19Co
-	qE9bHnpQ==;
+	bh=PSYYKqvNBHQRpRXqr6rKxOfnsA0fN/waXWV83fOGwXE=; b=ctA6ZWVoNPOaMKyDdjzqradlpt
+	EurCngZ3RGU4/bJ0xGzy4v/KGW3GZ+e2Rl9r1jhvXaHbJzWjU6w2M+5+atR25S2+rG6KhOt50f0ha
+	AJX4j94kr9HwZcOExx/G9wVpuGXyo0dYbC3Gwc1pvdjdNTBN4jN3umLmX8ZaElbZmYYfwnJD45dkK
+	NOZCi5NEefLJ9QoGJq4/5rXcLOZHX4raKVn76zgfTzfQGsdcENt4PRozx89Ta/wF3JVTUelFnbP0V
+	tvU4+K1fmxt3gAoqp9fKRhVMebpcIKiVLci+kU44FWz0i0xs9bnlSfGjr4tUlg4F/p20RPOF0CrS0
+	9Mr00Axg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKb2-00000008WXq-3LKn;
-	Thu, 12 Nov 2026 02:31:29 +0000
+	id 1xRKb9-00000008WZn-2Tn0;
+	Thu, 12 Nov 2026 02:31:35 +0000
 Received: from cmccmta8.chinamobile.com ([111.22.67.151])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKaz-00000008WWu-2MA5
+	id 1xRKb3-00000008WXo-0TNY
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 02:31:27 +0000
+	Thu, 12 Nov 2026 02:31:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=cmss.chinamobile.com; s=default; l=0;
 	h=from:subject:message-id:to:cc:mime-version;
 	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
-	b=WFx08cKhj65W8B/25YY/WT4NVFKCWadtE15HrlGmeAgx+8pEvWHscA6ss2Lvt4kuzDfhGPzu97kWr
-	 RNC4ikYTPlpRGuKLytaY4fSTTu0kLGO+n+8nQZ+rR+7LfXjiv276hMmfags829gatR3nIBxT3skzL9
-	 oA2nKudcY/+BizMA=
+	b=ELpIaBJpKA9J7AdD2NrAn+mvJYewlQpidOK53oTm3s7AO1Qt4pudeJZfGiVrr4C6sItXD40FChFuP
+	 c2u6Xh6hsgwucdOx9YtDJnx91RB7aly0D8+xEapgjWG4k1m8OCk2w6hjlMBOMwNoqT9OlzXKvnneGA
+	 hO/ZuC/eTcMScZO4=
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM-FLAG: 00000000
 Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
-	by rmmx-syy-dmz-app02-12002 (RichMail) with SMTP id 2ee26af524f8a92-189fa;
-	Thu, 12 Nov 2026 10:31:21 +0800 (CST)
-X-RM-TRANSID: 2ee26af524f8a92-189fa
+	by rmmx-syy-dmz-app06-12006 (RichMail) with SMTP id 2ee66af524ff6e2-a9421;
+	Thu, 12 Nov 2026 10:31:27 +0800 (CST)
+X-RM-TRANSID: 2ee66af524ff6e2-a9421
 X-RM-TagInfo: emlType=0                                       
 X-RM-SPAM-FLAG: 00000000
 Received: from devin-VMware-Virtual-Platform (unknown[10.55.1.72])
-	by rmsmtp-syy-appsvr06-12006 (RichMail) with SMTP id 2ee66af524f610c-ef34a;
-	Thu, 12 Nov 2026 10:31:20 +0800 (CST)
-X-RM-TRANSID: 2ee66af524f610c-ef34a
+	by rmsmtp-syy-appsvr08-12008 (RichMail) with SMTP id 2ee86af524feafc-eee32;
+	Thu, 12 Nov 2026 10:31:27 +0800 (CST)
+X-RM-TRANSID: 2ee86af524feafc-eee32
 From: Zhu Jun <zhujun2@cmss.chinamobile.com>
-To: chleroy@kernel.org
-Cc: linuxppc-dev@lists.ozlabs.org,
+To: wens@kernel.org
+Cc: jernej.skrabec@gmail.com,
+	samuel@sholland.org,
 	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
 	linux-kernel@vger.kernel.org,
 	Zhu Jun <zhujun2@cmss.chinamobile.com>
-Subject: [PATCH] soc: fsl: qbman: Release the private memory node reference
-Date: Thu, 12 Nov 2026 10:31:19 +0800
-Message-ID: <20261112023119.118215-1-zhujun2@cmss.chinamobile.com>
+Subject: [PATCH] soc: sunxi: sram: Release node references when claims fail
+Date: Thu, 12 Nov 2026 10:31:26 +0800
+Message-ID: <20261112023126.118228-1-zhujun2@cmss.chinamobile.com>
 X-Mailer: git-send-email 2.51.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_183126_151852_071A0F9F 
-X-CRM114-Status: UNSURE (   9.34  )
+X-CRM114-CacheID: sfid-20261111_183129_744273_B0D9043A 
+X-CRM114-Status: UNSURE (   6.19  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -83,35 +85,41 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-qbman_init_private_mem() obtains a node reference through
-of_parse_phandle() or of_find_compatible_node(), but never releases it.
-The reference leaks on successful initialization and on errors after the
-lookup.
+When claiming an SRAM region fails, sunxi_sram_claim() leaves the phandle
+iteration before it can release the current node. The rollback loop also
+parses each previously claimed region without releasing the returned
+node reference.
 
-Use automatic cleanup to release the reference on every return path once
-the reserved memory lookup and any reg property update are complete.
+Put the iterator's current node before rollback and release each node
+after undoing its claim.
 
 OpenAI Codex assisted with analysis and patch preparation.
 
-Fixes: 42d0349784c7 ("soc/fsl/qbman: Add common routine for QBMan private allocations")
+Fixes: be99eb936b4f ("soc: sunxi: sram: Support claiming multiple regions per device")
 Signed-off-by: Zhu Jun <zhujun2@cmss.chinamobile.com>
 ---
- drivers/soc/fsl/qbman/dpaa_sys.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/soc/sunxi/sunxi_sram.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/soc/fsl/qbman/dpaa_sys.c b/drivers/soc/fsl/qbman/dpaa_sys.c
-index 3504ff557231..e9c37c45dd58 100644
---- a/drivers/soc/fsl/qbman/dpaa_sys.c
-+++ b/drivers/soc/fsl/qbman/dpaa_sys.c
-@@ -37,7 +37,7 @@
- int qbman_init_private_mem(struct device *dev, int idx, const char *compat,
- 			   dma_addr_t *addr, size_t *size)
- {
--	struct device_node *mem_node;
-+	struct device_node *mem_node __free(device_node) = NULL;
- 	struct reserved_mem *rmem;
- 	int err;
- 	__be32 *res_array;
+diff --git a/drivers/soc/sunxi/sunxi_sram.c b/drivers/soc/sunxi/sunxi_sram.c
+index 2ccaeacf8c70..4667661b2003 100644
+--- a/drivers/soc/sunxi/sunxi_sram.c
++++ b/drivers/soc/sunxi/sunxi_sram.c
+@@ -294,12 +294,14 @@ int sunxi_sram_claim(struct device *dev)
+ 	return 0;
+ 
+ err:
++	of_node_put(it.node);
+ 	while (count--) {
+ 		struct of_phandle_args args;
+ 
+ 		of_parse_phandle_with_fixed_args(dev->of_node, SUNXI_SRAM_PROP,
+ 						 SUNXI_SRAM_CELLS, count, &args);
+ 		sunxi_sram_release_one(args.np, args.args[0]);
++		of_node_put(args.np);
+ 	}
+ 
+ 	return err;
 -- 
 2.51.0
 
