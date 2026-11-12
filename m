@@ -2,169 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6795606A881
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFA1606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=girAWuLN;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=cq+VVxjm;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=iVm41XWC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4/X53CiA;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=tPCR5WM9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=aLXIU9/c/oBQdx9HwSD56FRLf9Mqallr//0FEe+4FgQ=; b=girAWuLN52OXZ7
-	xL8d3ddS6sPlbpNozQo0YPN8qT5mu4IHVPufZj7/ad463SPbXoDiA0hC1arQvICMXpvAbUIcUAzwR
-	1ozkkEP/K9zGXPHnQMLwJq1ZZ8jvkCmGr/q4vUUEeF2imQ1fFI1WUAY/oDkhCQCdD3cWCLPXl3HoI
-	+2IPspZWcQ7GE5EIdPcIVYzn5Z3L1U+6bSxjIuHARIHlBtVhzRipU2VEb8R9KDaZu3+crsDj3rlS/
-	P3m9TEyP98Z/m5iXKRHgm+NPS/QzUKONhUdNgCvmUfHx17gPn30eLakGJ+GamerNH3UDEuWN+gowg
-	ugUbo6gtf1POs36445yA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=6GJSudJpvwFc8XOPxiV+2MBqyFI7A/YUwmDwBb/gHEE=; b=4/X53CiAksCcVlocEvnu6sIQh3
+	bUmEg/QNzlBMOBYr6ZApIvf3W512kcY6TVZjwR9S4Z4R5eF/3rv98FcNiVqA2Q5wF/ecuNLvSxGT+
+	hgLzkDWAlpFNFoNxySUEothVREd9BDUst9630qoQyxBKJH4W/ljPonc1fHIs0YxDZtEPdRdrt+f+Y
+	KBoevuwXo28dgP9cdSfdE6h8cbiM8VpWq6E4D6sclKMJtmXE8YzyBKbNa6yGSVHBFCsAksnLxGtxi
+	0AER+Giz1myQL79xDvUCKTD6pH/0sG9xo5ingogRgciSC/frfYW0+zWk1vphy59ZCM4b9mCSx1L1E
+	EFoJLakw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUj7-0000000A0AZ-2tC5;
-	Thu, 12 Nov 2026 13:20:29 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUj4-0000000A09T-3AOl
+	id 1xRUkJ-0000000A0Sg-0Won;
+	Thu, 12 Nov 2026 13:21:43 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRUkG-0000000A0Rk-1LfB
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 13:20:28 +0000
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ACAUQ8d1629021
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 13:20:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aLXIU9/c/oBQdx9HwSD56FRLf9Mqallr//0FEe+4FgQ=; b=cq+VVxjmNqDwCS8N
-	0shV36yL0oqsUY1jBiqYY8XLJlD9qWtMecXDbCojpT8AYp0Q7UJOB59ShSZnj0qm
-	lIJThHMTa9e2fDKtr+qbjKeSZrJh0xhbxaqbOP5jt/6UdPjMTQL8Q5KjQRsv95kr
-	LQytuAq7LAeN1ccit4dXv9L2WwFC/5jQjlm9aI2QGBvYc94YH+wfmAIxtqM70j2S
-	i+vWh4eDE9p+jZ4krzwRwwR8cVPV4bkvbZzNCwvqmHI1HYZ+3jocTftreeCxoOdI
-	SrkeVJp0e4fKzZidafBd//1VuAE11cWkcHLVZn8rk8ObSfZyFsheHQwBV302wXkx
-	hYkAFA==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hwbs00hy7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 13:20:25 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-91ec0ed4af9so12002646d6.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 05:20:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794489625; x=1795094425; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=aLXIU9/c/oBQdx9HwSD56FRLf9Mqallr//0FEe+4FgQ=;
-        b=iVm41XWCwT0wqBCou1Xy8TbeZr1pAkvGytEg6pbE4aUDClrQW2CbDRw0orYpN92IXf
-         JSUCvp/vjUQU+efEEQCOrht/JFXuy7tl5e2+CojYn9XYngJs44WTqmVdZs1pV/y0s+ZN
-         MzcWMHw1xTbA9X95hZxO2cpJrr7AEK5HhlOfO2WVo4/IUuSETqxtSgDMZjp366a5BCeQ
-         TPGIb8HWG1ArlWguteGSnh406MypZrWST1Nd78qlGDT52mRYHnmTTgpSdp3aabQ2rXL7
-         /Y9PKaVFh8xvUfkU9U5C2y58rY4bs++YF83UCMgP6/QIl/ZbfWgJxcQB09PZHVfZ3d9g
-         BDiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794489625; x=1795094425;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=aLXIU9/c/oBQdx9HwSD56FRLf9Mqallr//0FEe+4FgQ=;
-        b=yakzIT2FptSl1EkFKK2oJ2MhFO4Lx8tjMpTFJ6cVLLlfpdsX58OauXwR/X/WG9Cb7x
-         3qpaQjiOXgnhLr6OGYd9eLaatXLVYhYwfJ5bqLA7xUlskTQkXuoy2R7hrHDnbVPwa/SJ
-         L8LrdNwb0YeDxStbOjuGmAGPWCkAAo+o70ewFWHBY34MiV3IZRLKel/IaNzWC8JNV9eL
-         CQhlPqpNG+kTQegOoU2I1LsVs8Iz8vr/L9vkFtERoQexeWEMMGpL2wDgb+KrqC50ZYz3
-         W8STaXTPNrr5x02WR98Vtm6o+HPVCimKuHwsp69kZZQ8rV3XsavyiVOuBYAkQ9meViUO
-         362A==
-X-Forwarded-Encrypted: i=1; AL+hErFbHTmNk4zJAAfnkr32aL4oxTbnaKVcBcmXx57o4F6xfuBTJgaYEzmgcl65A6MLIGGXx/PygeXKTR5dUOQBLMNM@lists.infradead.org
-X-Gm-Message-State: APuU4Z8H6nBtX2tj4NnbZ8fsa4625YeUAB5GjNgW7pdHAyZzyiqqaoaq
-	Da4vWJ45ZYEuHNFB1h1AJviornbRZvaBeb1xfp2i7khczE05A39bgnbKSW7Y0tnGe/RR0UeHirR
-	UVvmTva1murIAKMaP9OuIQBP/0EWB/tSfJ0tLnjuHwvfwKxu9Dp4xb0phEbDg4S2XT+XCcllLUM
-	B1W0R2lp1ugg==
-X-Gm-Gg: AYBFou1shnGjKwrgtxp+M430xADeL2o3GGBBM3tJexlrjhD7iN37dDkl5/D/kwvTybT
-	CUvhAKuys3ieLhU6Mpq0Z6rBlNyqvtmP/Am/8xAYw35whYIPcfqufTzo0HCx3bYEsQRc/JqzpWJ
-	3k+mN85gd1QWHvqIpggTvq1adFCKq+evEEZGGVABMjtzXE4R7OLK/QGdRr0xTVEjxxoJWuYZQN/
-	OKTIxdqkH2vl0GY0TVFSq93tqn/1ehqqL1qqIeQLSboyXV9qhdRZpeQcgBReM4G7y9pOhnLwjAK
-	j2AUxb5kJ12oJZUYnbTrSyY0VVJsZImwRysJGYzmM9bawO5ThNhrG5CC1LN8G7Wo0T7jOKW/cwj
-	NkLhsk7xf+BZalrM66uGCJynYU4SIjbY0rFtO1FYnDBw2P+OVfF+nGA0uQ8CXkK8Oh6aArbRgAK
-	bTPdVx/7xMsPv7RWM3rUEA50Kq15lOgGXzpouQfYWT72mT7Rm/z3RniDAAe53aGew=
-X-Received: by 2002:a05:620a:462a:b0:943:7e61:fd9f with SMTP id af79cd13be357-94932c86d83mr416869985a.1.1794489624823;
-        Thu, 12 Nov 2026 05:20:24 -0800 (PST)
-X-Received: by 2002:a05:620a:462a:b0:943:7e61:fd9f with SMTP id af79cd13be357-94932c86d83mr416864585a.1.1794489624286;
-        Thu, 12 Nov 2026 05:20:24 -0800 (PST)
-Received: from brgl-qcom.local (2a01cb1d00dc7e0089167b9b97a26c96.ipv6.abo.wanadoo.fr. [2a01:cb1d:dc:7e00:8916:7b9b:97a2:6c96])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-498369a495csm16744366f8f.55.2026.11.12.05.20.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 05:20:22 -0800 (PST)
-From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Date: Thu, 12 Nov 2026 14:20:09 +0100
-Subject: [PATCH v12 2/2] Revert "crypto: qce - Mark QCE as BROKEN"
+	Thu, 12 Nov 2026 13:21:41 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 47B8E1477;
+	Thu, 12 Nov 2026 05:21:36 -0800 (PST)
+Received: from login2.euhpc2.arm.com (login2.euhpc2.arm.com [10.58.100.22])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D3DB83F632;
+	Thu, 12 Nov 2026 05:21:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794489699; bh=3ohek2Kd2aDE5AaqGrXT5gOBxoMrBHazWev3Yo/G+jk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=tPCR5WM9csOeRHba3npS3yo9RwICQbZ1KOr1XiKDiRZOd4Wx/HTfimdn/iqI3rGuJ
+	 qY++GaGGQUskaPOjZbdjMSGdSAnCdZFMDl8d/ZC2KP4OJLty+nMnyan70DkK3us8Bj
+	 PGnEEbhHaB+Tx9asviR/7TmRx04ulWsWjPsMCE80=
+From: Vladimir Murzin <vladimir.murzin@arm.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: catalin.marinas@arm.com,
+	will@kernel.org,
+	mark.rutland@arm.com,
+	lpieralisi@kernel.org,
+	ruanjinjie@huawei.com,
+	liaochang1@huawei.com,
+	ashok.raj@oss.qualcomm.com,
+	maz@kernel.org
+Subject: [PATCH v2 00/39] arm64: Add support for FEAT_NMI
+Date: Thu, 12 Nov 2026 13:20:03 +0000
+Message-Id: <20261112132042.129062-1-vladimir.murzin@arm.com>
+X-Mailer: git-send-email 2.24.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-qce-fixes-broken-label-v12-2-7b5b9c7083ed@oss.qualcomm.com>
-References: <20261112-qce-fixes-broken-label-v12-0-7b5b9c7083ed@oss.qualcomm.com>
-In-Reply-To: <20261112-qce-fixes-broken-label-v12-0-7b5b9c7083ed@oss.qualcomm.com>
-To: Bartosz Golaszewski <brgl@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Eric Biggers <ebiggers@kernel.org>,
-        Demi Marie Obenour <demiobenour@gmail.com>,
-        Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Birk Skyum <birk.skyum@pm.me>
-Cc: linux-crypto@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
-        stable@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3681;
- i=bartosz.golaszewski@oss.qualcomm.com; h=from:subject:message-id;
- bh=dTP2OM2+e7NKLkzDC+WPH7nchMkBUgJbaO93VdjhD00=;
- b=owEBbQKS/ZANAwAKAQWdLsv/NoTDAcsmYgBq9b0JmKrLP1AJ2kIffNsCs6yXcbF3sDHO5XOJt
- pSy15D8HFWJAjMEAAEKAB0WIQSR5RMt5bVGHXuiZfwFnS7L/zaEwwUCavW9CQAKCRAFnS7L/zaE
- w60cEAC0uUWQ5kQkPUz/Ov8Wb/2Uo7f8VDeC8/hyj8H74tQPEGSHz1t3J5Q/h/kULT1nCR2v6iZ
- gJS9rXcxB8PjxG8mMBw9rUL+Ku/xH1MkLKL/uAO1A0uSHePF6PJSEEVFcp9RSzBII5xBLf7ZdvH
- muzp5QSQlHCxld2wgcS0qVs35c3t1I0S7+XMWOCEVHhZXoOZJD5cHGxucvWG5uYbmwVv5u292D0
- GFngX+HJLzBkhEid1F5PAAiIaVmtpkWRoQU3ZhzwquVVl2W6MHXr/dZpl0ZwqAPFdugmqkKrvAG
- CZz8D9eRa3u3uIgzR7hqHPp8SWnoFuH0kcmo7vxjH4JkJpy6bxjzx+4UzlOVPCnWAZ7mbEbGjR2
- PmUQUlwIavhHTw3XGqP12z9CX29PXc8eDC6R+o/NkiIdHDcHwS5Gwt1AbjR6HWwVzvvLPOf+vwP
- QFR1RKdi776UsDGRL95ZcaUxXDUBMv23lKrYBq96e1mo4CqvabzajBVEOYQpEZyvNQrqcVFNRS8
- 0N89wIzwPwXk/fDrVQiS3JBm9wrdWBOPOmVwaI85AWcPV91Xx2M4pFByD+Z9KiwJlVkhXPj8tBf
- Epn2/S6Qz7dH7foF2uf3zen9Lvr+KMy8i4PKm5FAUnR3Fm5M4mvH8s/Zps2eIe37Xsl31G19r2X
- W6xcBoqprEW9ixA==
-X-Developer-Key: i=bartosz.golaszewski@oss.qualcomm.com; a=openpgp;
- fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDA1MyBTYWx0ZWRfX8wyOazirwp9A
- /nHaeqt+oWt+BxylSe7amFpbgP4zvHNwj47646g3Nz6Zj2E2wCA5dDBFZ1XjxNN6hmFqoKjKjhb
- E/FY/cnJJP8+enpCgiLFpIX13qZORTSw3nWNnaPIvjGAfQjXPC8+dno0wu074jUZ9L2S5ah26ZN
- 43uE67tgg1VzCUxfsaa3uNLrrcXjlIXYwNMrlRz2EGOBMhUkGdsWVEeb0EETELlwHV0Pxk2iQtN
- LV7vUqWpnv7Gni+gVRaG0siwLYA+X0xDZ5ExasDCOb3LUFW4q1exaP8Hrx4Eb0bqGKAn4BAk5R7
- vJg2TxIFjgBQtSS1lthyxEEh3IuLucFCjeVxEoC9zBPXTw1UJm4VmBm8RtHX4uL+0FFlL/SzrBu
- NlZHOSFL4TBPgVr8CIMgtNNg7zUEXKoNobdBplW+uMjucwea7mSBsAYRxIl4wwp0fMOL/TFEHO8
- hixQS3g5/AmovMNKFfw==
-X-Authority-Analysis: v=2.4 cv=AsF7T+9P c=1 sm=1 tr=0 ts=6af5bd19 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=W_IakApU47TVE70GsD8A:9 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDA1MyBTYWx0ZWRfXyKVL54++iwAS
- 0ksGq0MyMbvyO6p/c34Ar5ocNqq88u7KpAYva59MHnOCfNoYH/9DF8phPATo3YluwcTAlQW6IJL
- IID50rUEFTcfpez7feayKMqWrTwgulk=
-X-Proofpoint-GUID: KC9DXhQSUUdS322RAaCFQ5rMU_aiipqp
-X-Proofpoint-ORIG-GUID: KC9DXhQSUUdS322RAaCFQ5rMU_aiipqp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-12_01,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 phishscore=0 impostorscore=0 bulkscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611120053
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_052026_967817_7E6EA47E 
-X-CRM114-Status: GOOD (  18.37  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261112_052140_480263_EA9578C6 
+X-CRM114-Status: GOOD (  22.18  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -175,97 +72,227 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The self-tests for this driver have been fixed. The crypto algorithms
-are only registered if the user explicitly requests it with the provided
-module parameter defaulting to false. There's no reason to further keep
-it unbuildable with the BROKEN label so revert commit df373d39c6f0
-("crypto: qce - Mark QCE as BROKEN").
+FEAT_NMI provides an architected mechanism for supporting non-maskable
+interrupts (NMIs) and less-masked interrupts (LMIs).
 
-While at it: update the Kconfig description by saying this is an
-"offloader" and not an "accelerator".
+Since we already support pseudo-NMIs via priority masking, introducing
+another flavour of NMI on top of the existing infrastructure could
+easily become messy, making the code harder to follow and reason
+about.
 
-Cc: stable@vger.kernel.org
-Fixes: df373d39c6f0 ("crypto: qce - Mark QCE as BROKEN")
-Tested-by: Kuldeep Singh <kuldeep.singh@oss.qualcomm.com>
-Tested-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Tested-by: Birk Skyum <birk.skyum@pm.me> # X1E80100, Lenovo Yoga Slim 7x
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
----
- arch/arm/configs/multi_v7_defconfig |  1 +
- arch/arm64/configs/defconfig        |  1 +
- drivers/crypto/Kconfig              | 22 +++++++++++++---------
- 3 files changed, 15 insertions(+), 9 deletions(-)
+To avoid that, this series first makes room for the new NMI "tenant"
+by restructuring the existing exception masking logic.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 93144bc1474d9824e16a0801f7a1246746700227..fee64572027ece8a07524db7bcef5a4ccda71339 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -1305,6 +1305,7 @@ CONFIG_CRYPTO_DEV_ATMEL_AES=m
- CONFIG_CRYPTO_DEV_ATMEL_TDES=m
- CONFIG_CRYPTO_DEV_ATMEL_SHA=m
- CONFIG_CRYPTO_DEV_MARVELL_CESA=m
-+CONFIG_CRYPTO_DEV_QCE=m
- CONFIG_CRYPTO_DEV_ROCKCHIP=m
- CONFIG_CRYPTO_DEV_STM32_HASH=m
- CONFIG_CRYPTO_DEV_STM32_CRYP=m
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 898f4f1d595203fa61b2a99473b6ea06ba7abe58..f9179bba64de773886d20cee388293cf9f538ab0 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1800,6 +1800,7 @@ CONFIG_CRYPTO_AES_ARM64_CE_CCM=y
- CONFIG_CRYPTO_DEV_SUN8I_CE=m
- CONFIG_CRYPTO_DEV_FSL_CAAM=m
- CONFIG_CRYPTO_DEV_FSL_DPAA2_CAAM=m
-+CONFIG_CRYPTO_DEV_QCE=m
- CONFIG_CRYPTO_DEV_TEGRA=m
- CONFIG_CRYPTO_DEV_ZYNQMP_AES=m
- CONFIG_CRYPTO_DEV_ZYNQMP_SHA3=m
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 0189dfdcbbe11098ead0ea194293422a31d8fe65..adcbe15851899917fb3039efe89a77c8fe712bf1 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -527,17 +527,21 @@ source "drivers/crypto/marvell/Kconfig"
- source "drivers/crypto/intel/Kconfig"
- 
- config CRYPTO_DEV_QCE
--	tristate "Qualcomm crypto engine accelerator"
--	depends on (BROKEN && ARCH_QCOM) || COMPILE_TEST
-+	tristate "Qualcomm crypto engine offloader"
-+	depends on ARCH_QCOM || COMPILE_TEST
- 	depends on HAS_IOMEM
- 	help
--	  This driver supports Qualcomm crypto engine accelerator
--	  hardware. To compile this driver as a module, choose M here. The
--	  module will be called qcrypto.
--
--	  This driver does not have exclusive access to the
--	  hardware, causing races with the secure world.  It
--	  is also slower than the CPU.
-+	  This driver supports Qualcomm crypto engine offloader hardware. To
-+	  compile this driver as a module, choose M here. The module will be
-+	  called qcrypto.
-+
-+	  NOTE: With qcrypto.do_register_algos module parameter set to true,
-+	  this driver does not have exclusive access to the hardware, and may
-+	  cause races with the secure world. It is also *slower* than the
-+	  CPU for the same algorithms. By default it will not register crypto
-+	  algorithms and only scale down the interconnect bandwidth and disable
-+	  the relevant clocks. Use qcrypto.do_register_algos=1 at your own
-+	  risk!
- 
- config CRYPTO_DEV_QCE_SKCIPHER
- 	bool
+The main idea is to separate the logical view of exception state from
+its hardware representation. To achieve this, we introduce logical
+exception contexts that can be mapped onto the corresponding hardware
+state. This naturally consolidates the hardware-specific handling into
+a small number of places, while allowing the rest of the code to
+operate purely in terms of logical exception contexts.
+
+Since this restructuring is non-trivial and carries a risk of subtle
+behavioural changes, the series adds extensive debug checks to verify
+that the hardware state always matches the expected logical state.
+
+With this restructuring in place, wiring FEAT_NMI into the new
+framework becomes much more manageable. GIC support for NMI is build
+on top.
+
+This work would not have been possible without the contributions of
+Ada Couprie Diaz, Mark Brown, and Lorenzo Pieralisi - please credit
+them for everything that works well. Any remaining bugs or issues are
+entirely my own.
+
+Most of the testing has been done on QEMU, Fast Model and pre-silicon
+environment, so the series definitely benefit from extensive testing
+on real hardware (without NMI, with pseudo-NMI, and with FEAT_NMI).
+
+Patches are organized as follow
+
+1 - 15
+  Rework of existing pseudo-NMI logic to make room for FEAT_NMI
+
+16 - 33
+  FEAT_NMI support including some preparation patches which have
+  no dependencies:
+    - efi/runtime-wrappers: Permit architectures to override IRQ flags checks
+    - arm64: smp: Abstract SGI and LPI operations
+
+34 - 35
+  GICv3 support for NMI
+
+36 - 39
+  GICv5 support for NMI (including some preparation patches)
+
+Changelog
+
+  v1 -> v2
+
+    - Rebased on v7.4-rc2
+    - Select HAVE_PERF_EVENTS_NMI when FEAT_NMI is enabled
+    - Reworked APEI SEA handling to mask exceptions sequentially   
+    - Updated GICv3 initialization to clear NMI configuration
+    - Added Tested-by and Reviewed-by tags where approriate
+    - Droped tags due to meaningful changes for:
+      + "arm64: replace local_daif helpers"
+      + "irqchip/gic-v3: Implement FEAT_GICv3_NMI support"
+
+  RFC v2 -> v1
+
+    - Rebased on v7.3-rc3.
+    - Dropped RFC tag, have not received objections, at the same time
+      got support from Jinjie
+    - Dropped prerequisite patches already present in the newer base
+    - Added logic to reject probing/stepping over ALLINT
+    - Moved addition of arm64_debug_exc_context() in separate patch
+    - Reworked debug logic for validating direction of exception
+      transition
+    - Split support for NMI in GICv5 in 3 separate patches
+    - Added review tags
+
+  RFC v1 -> RFC v2
+
+    - Rebased on v7.2-rc5.
+    - Improved commit descriptions.
+    - Split some patches into smaller ones.
+    - Added a graceful fallback for IPI requests when FEAT_NMI is
+      supported by the CPU but unsupported by the interrupt
+      controller.
+    - Split the GICv3 preparation from the FEAT_GICv3_NMI
+      implementation.
+    - Added NMI support to GICv5, primarily as an illustration of the
+      implementation, although it also happens to work on Fast Model.
+    - Added review tags only to unchanged patches. Review tags were
+      intentionally dropped from modified patches to reflect those
+      changes and encourage re-review.
+
+RFC v1:
+  https://lore.kernel.org/linux-arm-kernel/20260709121333.23507-1-vladimir.murzin@arm.com/
+
+RFC v2:
+  https://lore.kernel.org/linux-arm-kernel/20260727163453.7969-1-vladimir.murzin@arm.com/
+
+v1:
+  https://lore.kernel.org/linux-arm-kernel/20260914102102.68597-1-vladimir.murzin@arm.com/
+
+Thanks!
+Vladimir
+
+Ada Couprie Diaz (15):
+  arm64: irqflags: Introduce arm64-specific irqflags type
+  arm64: irqflags: save and use both DAIF and PMR
+  arm64: interrupts: Add common exception state helpers
+  arm64: entry: Introduce entry specific exception masking helpers
+  arm64: entry: replace DAIF helpers with entry helpers
+  arm64: interrupts: Introduce exception masking save/restore helpers
+  arm64: interrupts: introduce a helper for GIC priority initialization
+  arm64: replace local_daif helpers
+  arm64: cpuidle: use new helpers to bypass interrupt priority masking
+  arm64: remove daifflags.h
+  arm64: gicv3: remove GIC_PRIO_PSR_I_SET
+  arm64: ptrace: Add PSR_ALLINT_BIT
+  arm64: cpufeature: Detect PE support for FEAT_NMI
+  arm64: nmi: Manage masking for superpriority interrupts
+  arm64: irq: Report FEAT_NMI masking local IRQs
+
+Lorenzo Pieralisi (2):
+  irqchip/gic-v3: Rename nmi to pseudo_nmi
+  irqchip/gic-v3: Implement FEAT_GICv3_NMI support
+
+Mark Brown (5):
+  arm64: booting: Document boot requirements for FEAT_NMI
+  arm64: sysreg: Add definitions for immediate versions of MSR ALLINT
+  arm64: idreg: Add an override for FEAT_NMI
+  arm64: nmi: Add handling of superpriority interrupts as NMIs
+  arm64: nmi: Add Kconfig for NMI
+
+Vladimir Murzin (17):
+  arm64: process: Lift check for exception state to generic
+    infrastructure
+  arm64: cpufeature: Remove system_has_prio_mask_debugging()
+  arm64: irqflags: Switch to CONFIG_DEBUG_IRQFLAGS
+  arm64: Kconfig: Remove CONFIG_ARM64_DEBUG_PRIORITY_MASKING
+  efi/runtime-wrappers: Permit architectures to override IRQ flags
+    checks
+  arm64/efi: Implement override for IRQ flags checks
+  arm64: probes: Reject stepping over ALLINT
+  arm64: suspend: Always initialise PSTATE.ALLINT
+  arm64/efi: Add ALLINT to IRQ flags checks
+  arm64: kprobes: Disable NMIs
+  arm64: smp: Abstract SGI and LPI operations
+  arm64: smp: Fall back to IRQ when IPI NMI request fails
+  arm64: nmi: Select HAVE_PERF_EVENTS_NMI for FEAT_NMI
+  arm64: smp: Add NMI support for LPI-backed IPIs
+  genirq: Trust local irqchip when considering IRQ for NMI
+  genirq: Do not call add_interrupt_randomness() in NMI context
+  irqchip/gic-v5: Add NMI support
+
+ Documentation/arch/arm64/booting.rst          |   6 +
+ arch/arm64/Kconfig                            |  31 +-
+ arch/arm64/include/asm/assembler.h            |  20 +-
+ arch/arm64/include/asm/cpucaps.h              |   2 +
+ arch/arm64/include/asm/cpufeature.h           |  14 +-
+ arch/arm64/include/asm/cpuidle.h              |  18 +-
+ arch/arm64/include/asm/daifflags.h            | 144 --------
+ arch/arm64/include/asm/efi.h                  |  42 ++-
+ arch/arm64/include/asm/entry-common.h         |   8 +-
+ arch/arm64/include/asm/insn.h                 |   1 +
+ .../include/asm/interrupts/common_flags.h     | 255 +++++++++++++
+ arch/arm64/include/asm/interrupts/entry.h     | 102 ++++++
+ arch/arm64/include/asm/interrupts/masking.h   | 166 +++++++++
+ arch/arm64/include/asm/irqflags.h             | 150 ++++----
+ arch/arm64/include/asm/kvm_host.h             |   1 -
+ arch/arm64/include/asm/mmu_context.h          |   1 -
+ arch/arm64/include/asm/ptrace.h               |  25 +-
+ arch/arm64/include/asm/sysreg.h               |   2 +
+ arch/arm64/include/uapi/asm/ptrace.h          |   1 +
+ arch/arm64/kernel/acpi.c                      |  43 +--
+ arch/arm64/kernel/cpufeature.c                |  68 +++-
+ arch/arm64/kernel/debug-monitors.c            |   1 -
+ arch/arm64/kernel/entry-common.c              | 335 +++++++++++++-----
+ arch/arm64/kernel/entry.S                     |  14 +-
+ arch/arm64/kernel/hibernate.c                 |  14 +-
+ arch/arm64/kernel/hw_breakpoint.c             |  16 +-
+ arch/arm64/kernel/irq.c                       |  45 ++-
+ arch/arm64/kernel/machine_kexec.c             |   4 +-
+ arch/arm64/kernel/pi/idreg-override.c         |   1 +
+ arch/arm64/kernel/probes/decode-insn.c        |  11 +-
+ arch/arm64/kernel/probes/kprobes.c            |  24 +-
+ arch/arm64/kernel/process.c                   |  24 +-
+ arch/arm64/kernel/setup.c                     |   4 +-
+ arch/arm64/kernel/signal.c                    |   1 -
+ arch/arm64/kernel/smp.c                       | 217 ++++++++----
+ arch/arm64/kernel/suspend.c                   |  14 +-
+ arch/arm64/kernel/traps.c                     |   1 -
+ arch/arm64/kvm/hyp/nvhe/switch.c              |   2 +-
+ arch/arm64/kvm/hyp/vgic-v3-sr.c               |   7 +-
+ arch/arm64/kvm/hyp/vhe/switch.c               |  14 +-
+ arch/arm64/mm/fault.c                         |   1 -
+ arch/arm64/mm/mmu.c                           |   7 +-
+ arch/arm64/tools/cpucaps                      |   2 +
+ drivers/firmware/efi/runtime-wrappers.c       |  32 +-
+ drivers/irqchip/irq-gic-v3.c                  | 145 +++++++-
+ drivers/irqchip/irq-gic-v5.c                  | 244 ++++++++++++-
+ include/linux/irq.h                           |   2 +-
+ include/linux/irqchip/arm-gic-v3-prio.h       |   8 -
+ include/linux/irqchip/arm-gic-v3.h            |   4 +
+ kernel/irq/handle.c                           |   3 +-
+ kernel/irq/manage.c                           |   5 -
+ 51 files changed, 1696 insertions(+), 606 deletions(-)
+ delete mode 100644 arch/arm64/include/asm/daifflags.h
+ create mode 100644 arch/arm64/include/asm/interrupts/common_flags.h
+ create mode 100644 arch/arm64/include/asm/interrupts/entry.h
+ create mode 100644 arch/arm64/include/asm/interrupts/masking.h
 
 -- 
-2.47.3
+2.34.1
 
 
