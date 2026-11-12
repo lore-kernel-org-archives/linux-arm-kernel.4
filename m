@@ -2,67 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49CD4606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:23:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352E460A262E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=39Vnucuy;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=cGyT9P3D
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xSmyap/s;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dhHNOE5H
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XLjQ9N+ETz22LHl7JVoKY8YKKdytIbDT+K/gK6twSwI=; b=39VnucuyOmDZln
-	W+P8Iw+4VmAC/f4ZdurrUjrOgp387uS8oa1TXEbxL3U/QnDdwASfvSK1sDMJ0MdOmfN0lsEFqKbJI
-	AY3uSHJD7XVBdFKN/SxFFuRqfrnbhcP3Ko/tBMh1CvBHDxHrBw5PzqOGkaq2NKhAxUgK9+ilzFDBH
-	/+95V2XYjl9C/S5nJFBxpdbZrgADbHrMNIf6fiPHpQthURYpT9HIr9JT35aLI6cVtUmwzYg/eXA4v
-	MOu3CapJezZJ+wttC9rmDcbuIs6u0THKsYUjLUVGaFyOwS41AoiEDS8TCB5HJ0TyVAu6AOk99fdW0
-	SQ+VQirAfpaycve5GQUw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=p3/q9baVarjH5p8c4QmSR6WdUwezO7jqcS3keXwu9c4=; b=xSmyap/skKg4Z/AflrJioQNOgf
+	ZPv+U1lUcZUfwbhi9p7V0w21kwkqBlZAfhyA1DSzCE21dTzPcwRuHtdIUMWZu5KTV3rHB+HWXqF5n
+	A60/AdcggPxzmTXNtovpNBpzvxkTdvgOh+kZRlA0rod0bVtFlfcUTwStTM4sh1+90ofQRM+p0Uauv
+	bUc8UvxM0532Mdyacu6VmhMIZaXwS2s5S7PjsUMxzlOldbLeONbty4MFtldU65N3SKEtOzTcwfiJ7
+	+aAQJryyrg63Qd20vB5S7UchCNFu+ViGnoDCjuv0iVvBaRhygGezrjEIRYIwQcj/gukQY+CGCWck9
+	8LPQXHjQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRR1U-00000009LmG-3Y7Y;
-	Thu, 12 Nov 2026 09:23:12 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRR1A-00000009LT3-0gGy
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 09:22:53 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DDB01153B;
-	Thu, 12 Nov 2026 01:22:46 -0800 (PST)
-Received: from [10.0.130.226] (e127648.arm.com [10.0.130.226])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5E7CE3F632;
-	Thu, 12 Nov 2026 01:22:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794475369; bh=7msOILnF2iV34j3YNeMMSLuZTv+hcDHQmdRUXPoS4iw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cGyT9P3Dp5Yok3OCIw76O+oLX1gE4awDG/OBBDi9aY5DCbqh0VKIV1choshoK0vUk
-	 xHLXSl84F+0IbRUf8y7tdktYsu3mWFi78nCAN2XLV/zXiKQk4CuOol+YgbtWgVrquy
-	 nXGHvjycRU7ysM5MxlGNkd0VqS/X7ZMVOyez0+Pc=
-Message-ID: <10a9170d-9ec7-46be-ad0f-d364c65563cd@arm.com>
-Date: Thu, 12 Nov 2026 09:22:46 +0000
+	id 1xRR23-00000009M8g-0jXG;
+	Thu, 12 Nov 2026 09:23:47 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRR21-00000009M7O-3gzp;
+	Thu, 12 Nov 2026 09:23:45 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 5273A63874;
+	Thu, 12 Nov 2026 09:23:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073F11F00A05;
+	Thu, 12 Nov 2026 09:23:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794475425;
+	bh=p3/q9baVarjH5p8c4QmSR6WdUwezO7jqcS3keXwu9c4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=dhHNOE5HJlI8/HZF95GSqvbXlSXOQPBaAfqlsslRFWBOsuCJ1cc49EeQo6a0GhP+J
+	 XzC4TmZF4fo5QqA4i5DfSg8io7p+GbY8BzJcT/aExqxZc4rUVpHe8zN/utOXn7zoJk
+	 7Wj6/VXk42pstkDZfPZ7gLAeWWDUNiiYyTwkB8Af1AaxvnIzehd0crik/tglyPIkpl
+	 gT26cZHHHdQRnpWYcZde/AZfiSPFw4GjBFJ1Rj2wGpwC9LfF9c10MlAUDlo9Ce/HQ3
+	 VLlo7ZwLGvrRmxfSUbVvjSxZVJn2kn/JBsieOBFiX117GB986z9aJky/m7/OHe3Wqo
+	 HyfwwuyESt7KA==
+Date: Thu, 12 Nov 2026 10:23:41 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yu-Chun Lin <eleanor.lin@realtek.com>
+Cc: sboyd@kernel.org, bmasney+clk@redhat.com, jbrunet+clk@baylibre.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, cylee12@realtek.com, 
+	afaerber@suse.com, jyanchou@realtek.com, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-realtek-soc@lists.infradead.org, james.tai@realtek.com, 
+	cy.huang@realtek.com, stanley_chang@realtek.com
+Subject: Re: [PATCH v16 1/9] dt-bindings: clock: Add Realtek RTD1625 Clock &
+ Reset Controller
+Message-ID: <20261112-screeching-marvellous-crocodile-f7bc0b@quoll>
+References: <20261112052544.555563-1-eleanor.lin@realtek.com>
+ <20261112052544.555563-2-eleanor.lin@realtek.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: topology: Reduce the skew for AMU feedback
- counter sampling
-To: Beata Michalska <beata.michalska@arm.com>
-Cc: linux-arm-kernel@lists.infradead.org, Vladimir.Murzin@arm.com,
- catalin.marinas@arm.com, will@kernel.org, suzuki.poulose@arm.com,
- xuewen.yan94@gmail.com, linux-kernel@vger.kernel.org
-References: <20261111124005.2688820-1-beata.michalska@arm.com>
- <20261111124005.2688820-4-beata.michalska@arm.com>
- <1493f335-a808-471f-932a-393aaa390d25@arm.com> <avS3CJI82z3xDQQT@arm.com>
-Content-Language: en-US
-From: Christian Loehle <christian.loehle@arm.com>
-In-Reply-To: <avS3CJI82z3xDQQT@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_012252_716486_F87269B2 
-X-CRM114-Status: GOOD (  14.39  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261112052544.555563-2-eleanor.lin@realtek.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,73 +72,47 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/26 18:42, Beata Michalska wrote:
-> On Wed, Nov 11, 2026 at 02:08:11PM +0000, Christian Loehle wrote:
->> On 11/11/26 12:39, Beata Michalska wrote:
->>> With the FFH support for CPPC, the AMU feedback counters, core and const
->>> counter, are being sampled to measure CPU performance. Checking for errata
->>> (which can affect both counters) between the reads delays the second
->>> sample and can skew the result.
->>>
->>> Take both samples in succession, then discard values from affected
->>> counters. This narrows the sampling interval used for CPPC feedback.
->>>
->>> Signed-off-by: Beata Michalska <beata.michalska@arm.com>
->>> ---
->>>  arch/arm64/kernel/topology.c | 76 +++++++++++++++++++++++-------------
->>>  1 file changed, 49 insertions(+), 27 deletions(-)
->>>
->>> diff --git a/arch/arm64/kernel/topology.c b/arch/arm64/kernel/topology.c
->>> index 66ac67bd025e..c968fa5b0c88 100644
->>> --- a/arch/arm64/kernel/topology.c
->>> +++ b/arch/arm64/kernel/topology.c
->>> @@ -381,29 +381,45 @@ enum cpc_ffh_ctr_id {
->>>  	CPC_FFH_CTR_CONST = 0x1,
->>>  };
->>>  
->>> -static void cpu_read_corecnt(void *val)
->>> +static inline void cpu_read_corecnt(void *val)
->>>  {
->>> -	/*
->>> -	 * A value of 0 can be returned if the current CPU does not support AMUs
->>> -	 * or if the counter is disabled for this CPU. A return value of 0 at
->>> -	 * counter read is properly handled as an error case by the users of the
->>> -	 * counter.
->>> -	 */
->>> -	*(u64 *)val = this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CORECNT) ?
->>> -		0UL : read_corecnt();
->>> +	*(u64 *)val = read_corecnt();
->>>  }
->>>  
->>> -static void cpu_read_constcnt(void *val)
->>> +static void cpu_try_read_corecnt(void *val)
->>>  {
->>> -	/*
->>> -	 * Return 0 if the current CPU is affected by a HW erratum.
->>> -	 * A value of 0 is also returned if the current CPU does not
->>> -	 * support AMUs or if the counter is disabled. A return
->>> -	 * value of 0 at counter read is properly handled as an error
->>> -	 * case by the users of the counter.
->>
->> Since you're moving this comment around, AFAICT it's not actually true?
->> cpu_has_amu_feat() is checked (which will return -EOPNOTSUPP) before
->> landing here, right?
->>
-> Not entirely, no.
-> `cpu_has_amu_feat()` verifies the support for AMUs, the extension itself
-> (ID_AA64PFR0_EL1). Workarounds are applied on top of it.
+On Thu, Nov 12, 2026 at 01:25:36PM +0800, Yu-Chun Lin wrote:
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External 27 MHz oscillator
+> +            - description: CRT SYS clock input
+> +            - description: CRT SYSH clock input
+> +            - description: CRT DDSA divide-by-four clock input
+> +            - description: CRT miscellaneous gate clock input
+> +
+> +        clock-names:
+> +          items:
+> +            - const: osc27m
+> +            - const: clk_sys
+> +            - const: clk_sysh
+> +            - const: clk_ddsa_div4
+> +            - const: clk_en_misc
 
-Right, I was only referring to:
-"A value of 0 is also returned if the current CPU does not support AMUs[...]"
+Put the list in the top level with minItems: 1, then here you only set
+minItems: 5 or maxItems: 1.
 
-> [snip]
+> +
+> +    else:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External 27 MHz oscillator
+> +
+> +        clock-names:
+> +          items:
+> +            - const: osc27m
+
+Best regards,
+Krzysztof
 
 
