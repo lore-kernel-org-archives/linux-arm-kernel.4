@@ -2,64 +2,157 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0124606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09032606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:14:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kOk12jo4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BVoIr6zI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BPKEKiN9;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=xw7ekuAU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=vhBTCgfGjK4u6xQ2T++mjQLtxlRqMmOmpCWMe7WKk5w=; b=kOk12jo4KdQ38C
-	cwFJYRtAg/NviXgDg7+E/zqSV+d5LGqv52a2Bq1u3wKa+jPJEXkxUN912dYR2ZiU+ZnKKLX1v15px
-	FPBViErwOGGIYzEGytnKuyfaSS5/9HeLuIFkHwQvUJXf+juyxn1XltLLbtQz/uHAIMPDLSvkuVwzP
-	ok6PUpDY9XFDCsrvbayxpF4SfQs3pmOnQZ4PZ/PKasFf3jX3P261KmSGGyA71/HU3NYRQPYe3fK2m
-	CkLURbfIiYQwKuyY4dftTspFKDzIJyRGg2kdN2yTm5uqXndGuqpmV7VuuHgeCgp2SuTrn5rEtwaK6
-	UMzMHImaHXHmzuJCQTCg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=fIN5eRiK/uQwMsbCgu3VuKnu+Rj+wC0ixDxfqMueLaI=; b=BPKEKiN9/WgdOy8cZL36UTKFOG
+	LjX0A4T0+lFA1hssgv1DjUMbAohvarNB1l/Amy1v71AaH7Z/mRbkkYZzbSPZxV0n9f3yLT8R447Kh
+	NwH2Szre1OcG3/LBVvxDYIrWXOHPRVavOTqRsK/MDYipjID36iO4xNK7mjWDiH+QXZdLyZRp4JSgA
+	SyDsSRjqzursOSaqNQNUkX48EvfXJc3VMYd8q03LFHkVcryVS2WSNwwB+fgWbEVsjCZxErArhPbpV
+	3ds2Nzhd+iuOsjJh0bxDv89sPSCS1pL5J/W5Ry7MZOa1FgWg8Nprn8NeN+clmtIHxK83UkeuCSKsL
+	qTidgWaw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSlG-00000009dV4-1tCF;
-	Thu, 12 Nov 2026 11:14:34 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRSlY-00000009dc4-32rh;
+	Thu, 12 Nov 2026 11:14:52 +0000
+Received: from mail-southcentralusazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c10d::3] helo=SN4PR0501CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSlE-00000009dU1-1bmY
+	id 1xRSlV-00000009dZm-0dbM
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:14:32 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1F3A145601;
-	Thu, 12 Nov 2026 11:14:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C0751F00A05;
-	Thu, 12 Nov 2026 11:14:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794482072;
-	bh=vhBTCgfGjK4u6xQ2T++mjQLtxlRqMmOmpCWMe7WKk5w=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=BVoIr6zIzfj2ME5K4TFlAtDwoDSDnwEBDTLgaC2rCXHkqYQNrYaa6xoKMskrjovph
-	 3DseA3Pfkt/o6TVwHKZTvDB5ihO5ltuWBT8jOHGzNrkTrfSSgQrz95mEGUyAQDrbN1
-	 WlJZ2o8IKC7L5cg2tRX8N4183gpCtDYSjTyxqdUxdw50IIJOhwSUeMAyHYFzHtCDUR
-	 wnX7VrgCEr+KBUUHSr+/05g6dFY43PcrQmSu5hKJkKGE4x/zU5i6kRCt4rHiu3n3hL
-	 YlCt3xJk6uNqyB9A564/Nsw9ziv1oL186CVyIk8kGXMbWK8AIOdjUt/oDaEe7mXmoL
-	 w79AUG73Mh1pA==
-From: Sudeep Holla <sudeep.holla@kernel.org>
-Date: Thu, 12 Nov 2026 11:14:08 +0000
-Subject: [PATCH v2 3/3] firmware: arm_ffa: Share FF-A version negotiation
+	Thu, 12 Nov 2026 11:14:51 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U7hBqeM5M2aTNoF1b1EmQOGBR1Wpm29RXLiDeerDHXJeLL9AWBM8RjijyCP4LZ3JPsgAJST3Te5d8khcsHY7R2B7vDnxTlATAlBHGC2tMg81Olv+y+6V8f3FPZZXkcO7zFAwDZfF7RexKtFvlb4F3u0DMSY0R1ism7Xj+lKX2S2kjTJE5GaOZfQnzjIPBxa9B9meEzJ+iuFfnjzJzfwClEjGuFNE9jUtmBYgbh3cEWC2nEUZPbVsSv5cr+D+ZEBnuzslOTRyU42jqefvl1Ime4b3zrBnGw+DSnZ32p20g3PIUVweW8zwjNbpKUWXHkc/2U3zQOvmhZsVgXVVrTwhXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fIN5eRiK/uQwMsbCgu3VuKnu+Rj+wC0ixDxfqMueLaI=;
+ b=wK95E+utOKqCoypCBFFTESLG4y0PyzBYXfSiT32mU6kX6zYVE5asok70SVaMVl0QfTdAdFhoVkQPFve6IZFIq1tz1x8HW2zFZrJmyJNFJNaUdsiN2m8NNN+0stuaFqVEAEVD0geyOcfXMJmBQxts+utGt8JeJeTd36guFjXg7Fs0HPIngxjodhSjcMV89SosALTO0Q3ikdqrXHW/TCOqctCq1cpOZX8PisVBabo7P3lZCYkobxdLZNlnJcZUZLayzPNzE+4KGYAzPZzlrCRSIaA4J0ayjhogA9j5t1kioRR9ULDCOMGaeOVQFhxaEJuiF4FZn9pqotP0Z9XgPuhj1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fIN5eRiK/uQwMsbCgu3VuKnu+Rj+wC0ixDxfqMueLaI=;
+ b=xw7ekuAUeW34VH67m3gt5k6wz42XBeERV8arFwPNl21fqpO8FgUjcdQBFLHAExr4EMQ1WczLNgkxe1YwJTj4ywsMzaO0ya7duj2OTmPPeh0wkHS1Yyz+ZGsRIeZL5TxrLaZ3+pd9CNTvXiyYb023e2OT9i9F34VtoBBBRG/BF2I=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA1PR12MB999228.namprd12.prod.outlook.com
+ (2603:10b6:806:4db::10) by IA0PR12MB7601.namprd12.prod.outlook.com
+ (2603:10b6:208:43b::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
+ 2026 11:14:41 +0000
+Received: from SA1PR12MB999228.namprd12.prod.outlook.com
+ ([fe80::4dba:119e:8e7c:37b3]) by SA1PR12MB999228.namprd12.prod.outlook.com
+ ([fe80::4dba:119e:8e7c:37b3%6]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
+ 11:14:41 +0000
+Message-ID: <9eb572d7-fa3a-4734-9773-44a3fb465b6a@amd.com>
+Date: Thu, 12 Nov 2026 22:14:31 +1100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 02/15] virt: coco: tsm: Remove the device from lookup
+ before PCI teardown
+To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>, iommu@lists.linux.dev
+Cc: Alex Williamson <alex@shazbot.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
+ Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
+ Nicolin Chen <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
+ Samuel Ortiz <sameo@rivosinc.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Steven Price <steven.price@arm.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
+ Xu Yilun <yilun.xu@linux.intel.com>, kvm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-coco@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-3-aneesh.kumar@kernel.org>
+From: Alexey Kardashevskiy <aik@amd.com>
+Content-Language: en-US
+In-Reply-To: <20261104161632.3547423-3-aneesh.kumar@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SY5P300CA0057.AUSP300.PROD.OUTLOOK.COM
+ (2603:10c6:10:1fe::7) To SA1PR12MB999228.namprd12.prod.outlook.com
+ (2603:10b6:806:4db::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-acpi_ffh_ffa-v2-3-575a9dbed22b@kernel.org>
-References: <20261112-acpi_ffh_ffa-v2-0-575a9dbed22b@kernel.org>
-In-Reply-To: <20261112-acpi_ffh_ffa-v2-0-575a9dbed22b@kernel.org>
-To: linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc: Sudeep Holla <sudeep.holla@kernel.org>, 
- Jamie Nguyen <jamien@nvidia.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Hanjun Guo <guohanjun@huawei.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Dat Mach <dmach@nvidia.com>
-X-Mailer: b4 0.16.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR12MB999228:EE_|IA0PR12MB7601:EE_
+X-MS-Office365-Filtering-Correlation-Id: e147d1bb-4c4a-4c76-ea3b-08df40ae25a0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|366016|1800799024|10067099003|4143699003|11063799006|56012099006|261022105027099003|261028144727099003|261026121527099003|261026140227099003|261021123027099003|261021121427099003|261102130727099003|261102123227099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: mNXGq2KMZc7as7THM31BnJhXTFmMqfYBkIu5CW+6XrWsgLuq8SGG41bp41nxHRamZoHHQCEkkksU0AWEIjxWld/SeDZEqHFMxTIdUqVrHLolTmGJEJSiHdnN+sTsguUiF4afPxKLqvQoLAquJ6lqMHI8A4XR2/EtEfuZjMZn3Oes9GUJZGj8dkmVHj1NRcU9UsV4/tpyqjCRgJIISnr4zVy4Tkrw5kuV67f2zlKVKPwZgMTqVG+Tu/iLAPY7noEONkfjNtc34OxuMUP7q2IxqKISIquAP3SzPQjmq+R9RruZgTqiqZE2p02kfSxq2ytmzwzhwAfe2jMTEjC1jnwijnjD6+4rWr0BLy9tyzlezz8gvYqEpAXZ3nqb8Bhone5o+fDateqUTtTupRQiQCr+/V/cSsy66QZRm1S6fOP4cI/3I+pGYlKFJ4NqTDxYbeus2h4Y5ASqE7ujlY+7/Gyt64jBSBgWVHnwjPS2gvFj0mbJvWwNOAZHdiTeXfMQiiLM93TUPD7slMoEVLN/vIFHLmUR67UB+pw9WAAEHrQ4M34ShE3EjOjJIsQEygvncHvU8AJu1fWXatdmhyufYKcdWSZXKjF8jEMrBz7VOTEpH/M40AuWXmcMCo/3+bgBbcSMaJS8vyZSo/LOyIGu8u6762mj7cKudmHgrGIwKil7Izo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR12MB999228.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(10067099003)(4143699003)(11063799006)(56012099006)(261022105027099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021123027099003)(261021121427099003)(261102130727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFhrVUU1TE5YL0NtRWpnSXNKSkd6c3ZHR1VaUjR0ZGw0MzdNMkkySzY4d0Z5?=
+ =?utf-8?B?Vy9NZkR0N2hDQldlM09DdVgrRUg0THZJYXcyUVhLL2dpSko1bHJLSkMzd3Q3?=
+ =?utf-8?B?WDdPU21CODBKN3ZMdXB1S1BHQjBBZ3ljZGRTaXRmNGJkaHl2OW9wV3haS21D?=
+ =?utf-8?B?Zm1VbTk4M1QrQWt2NlJLdmdGbU1wWnJMaUwyVEE5NUJuai9Dc1l5VVpvQWk0?=
+ =?utf-8?B?RTRpRlZDUTkxcWt2cFdsV1Izelg1VnEwL3FKS3MvdlVMdXFRQi9lN0tvYWdD?=
+ =?utf-8?B?Q3doZ3NIalg5WlBycm9aL0VnejZvdFZPMFdTc3dHWTNMWXlVT2dFczVlQlRh?=
+ =?utf-8?B?d0F4a1JaZ3VYZzF0ejhoblF6S3RhYVpadnpiY05vRE5HcDJZaGxidXM3amcw?=
+ =?utf-8?B?dHY2NDNza1dWRTBuTWEzaUxSdm9ETXViSU1YbWFjVjBtRjBtTkd5Nnc1OVJn?=
+ =?utf-8?B?clpURHZyNUJaMkNlRzNkSWYwY01iNXZWaE1HdmJ3Y1F2L1BJT0xNMGU0ckU2?=
+ =?utf-8?B?cDZoS1RuNC82MityTmpHcFRUWVpxN2xKRkVLM3VlRHYvYmpkWW1KYWtRMkhL?=
+ =?utf-8?B?ZkF0V01LTjRTL2pyOFhwK21kQXVUVFZ2UVZONHppUStwYm5Ic092Vk5sZHA5?=
+ =?utf-8?B?S2F3UTAxcS9sTWVJbEZPcEk1azAyakhuT3JpcGdkWUg1T0RFYnAreksxZHpw?=
+ =?utf-8?B?cVRHNS9FTVRkVzV1d0pCZHVidzlZMlZTT3RVa0ZjblB3UHAvQXBuQi8yRitN?=
+ =?utf-8?B?SnVNVWcxTnlueVdzN3VjbU1HYlN6VHBkdEZXWW1zUyt6KzZCeXp6SFBNeWVz?=
+ =?utf-8?B?T0FHMkJnRW1EVnlxSGtNdGtEeSt3cEUwV0d3UFdFcDZEU1k3QWowT1pLVE5S?=
+ =?utf-8?B?SG9odzc2ejNrTWxkOVZJcGFFUitWTitZUHhSUExlT2J3Z09zVGVlcTR6Rnp4?=
+ =?utf-8?B?NFVKYUMzclZhNWxtRGNudlFiNUdDUWkwdDczcjlsZU1sUlRYMWY3TjZMd1V5?=
+ =?utf-8?B?R1dlTFE3VlB4N1FSdDVkeWNHbkJVaGxzUHZJNXA1RFRFOHMyOXhCclA2SHhI?=
+ =?utf-8?B?cmdLUDlTU1h2c2RIR1R4eklNWDhmM3l5TndVYWw4RjFhSDJ4UjVuT3U1T0VP?=
+ =?utf-8?B?bDBjei9HbGxla1BSeHZKNWNLNTZBWE1McXpOUC9PQWpuTmhXd3FxbStuMVNy?=
+ =?utf-8?B?OXVzUC82dVFwOU9ERUJOcnVVZ0pLdDQrdlVseEZmaThPZExNcnM2OWV1QUZT?=
+ =?utf-8?B?YW1LOWlWMHY4aEF2bE1rb3JZeVlzdzduaGt6alVZQi9NbjgwVmRkRzZ1ZGdk?=
+ =?utf-8?B?UzdvZzhxQmNISUlqTzNvVU9DVFVZOXlBbEZRMHZmSlp6cWhaMTkvZzhtZDV1?=
+ =?utf-8?B?dkhhUURZQTF5VkRlOHR0SERxYVhEQnJRVkNVQUQ4L2lrcEZyeUZYcWJYdnZh?=
+ =?utf-8?B?ZWJWMkJ5K3llSzZ5Y1hkVzNXdk1nQURheUdmc256MUYwb3R0WWd1aTVIbFVU?=
+ =?utf-8?B?cldJZWlONGFEWStpMXZweXF5S3NzQmc4VWlhR2JuLzRFcmRWd1RxNWxqSGpZ?=
+ =?utf-8?B?cURYMzJWcDlTdnRNclpCRVhQbWNnUVpqdHQ2ZzJ1YXFwOUp6cC84YmoxNm5C?=
+ =?utf-8?B?ZTg5STdQWkloNmZKMWt2QzJjR3F5bHNVcW92MGtER1M3bUUwWks3djk2S2da?=
+ =?utf-8?B?QUFuTFpnUU5hajhWUzR3TlJoNitTbUthbnRkNURIUElSdVF6K1FMK2Rod3Vl?=
+ =?utf-8?B?cWhHRWtHRDNLWi9qak02RnJTYmk0bkkrSXNXMlZlKzFYRjBIQTRYUzVPaXJI?=
+ =?utf-8?B?d2QzODY3dUFGODFaU21NaEpwcmk2ZEp2ZjNnTVRMTGZBcXR0MW1CUjZvOTFi?=
+ =?utf-8?B?MysxdFNBdWNwd0o1ZFZkdllQbWRCTlBnOC9qbEpGMWdKZVhDdmk2enlkYTFP?=
+ =?utf-8?B?MjNDZVdBUWYxMEg4Sy9PZnMveWtvQ1RDa2RVUlE3WG9Rd0lFbzVuMUIrUjBE?=
+ =?utf-8?B?SGVhUnF2WEk5a2R1MHNqZThFaHdKKzZmQS9nWUtKeWZMUG53UGExNnJ2U3Yy?=
+ =?utf-8?B?dmhITnZrWXlQbEJFZDROS2gzeW5WUDBFcytDb0lLQ0ZnZlllVGd5NndIMFNW?=
+ =?utf-8?B?RGZFZWlMU3lYeGdaa0hMSWZQMk9SUEp0V3l2clBaYXlnMldDUzllUWl2eTJ4?=
+ =?utf-8?B?SDZYcS84MVdqNTZocG1ibnRLbXYycXJSTXRPRFdIVUdnQ3c0dnhjRzJFUVdK?=
+ =?utf-8?B?RGp5R3M2eXRCRTJlM1o2WWhkWkNUMWdHcGtmQndwekUyUlNTUlRDdTZycVVy?=
+ =?utf-8?Q?svsp56JUtRJyDM2rDd?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e147d1bb-4c4a-4c76-ea3b-08df40ae25a0
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB999228.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 11:14:41.0774
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1OE2d+KuUC+k+8peSIaknhR0dPi0NiDA8P/m3T07YF1289tJQKey3gaZPTogDJpUsIuXEd9kDGuxg+p7qG/blg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7601
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_031449_392985_65F355C7 
+X-CRM114-Status: GOOD (  21.84  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,236 +163,103 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-ACPI FFH and the FF-A transport driver use the same Normal-world
-endpoint. Independent FFA_VERSION calls can conflict with endpoint-wide
-version negotiation and make initialization order matter.
+On 5/11/26 03:16, Aneesh Kumar K.V (Arm) wrote:
+> PCI connect looks up a TSM by ID under pci_tsm_rwsem. Previously,
+> tsm_unregister() released that lock after tearing down PCI state while
+> the TSM was still in the class lookup. 
 
-Add a built-in helper to serialize and cache the FFA_VERSION result,
-and use it from both clients. The transport retains its existing version
-compatibility checks, while FFH continues to require v1.2.
+tsm_unregister() is not touching that lock, what do I miss?
 
-Build the helper when either client is enabled so the transport
-driver can remain modular.
+> A racing connect could then
+> attach a new PCI context that the teardown would never see.
+> 
+> Remove the device from the class lookup first, then take the PCI write
+> lock to drain in-flight operations and destroy their contexts. Drop the
+> device reference only after PCI teardown completes.
+> 
+> Fixes: 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link Encryption")
+> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+> ---
+>   drivers/virt/coco/tsm-core.c | 22 ++++++++++++++--------
+>   1 file changed, 14 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
+> index e784993353d8..f79135986102 100644
+> --- a/drivers/virt/coco/tsm-core.c
+> +++ b/drivers/virt/coco/tsm-core.c
+> @@ -56,26 +56,25 @@ static struct tsm_dev *alloc_tsm_dev(struct device *parent)
+>   	return no_free_ptr(tsm_dev);
+>   }
+>   
+> -static struct tsm_dev *tsm_register_pci_or_reset(struct tsm_dev *tsm_dev,
+> -						 struct pci_tsm_ops *pci_ops)
+> +static int tsm_register_pci(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
 
-Signed-off-by: Sudeep Holla <sudeep.holla@kernel.org>
----
- drivers/acpi/arm64/ffh.c           | 17 ++++++-----------
- drivers/firmware/arm_ffa/Kconfig   |  5 +++++
- drivers/firmware/arm_ffa/Makefile  |  3 ++-
- drivers/firmware/arm_ffa/driver.c  | 31 ++++++++++++++++--------------
- drivers/firmware/arm_ffa/version.c | 39 ++++++++++++++++++++++++++++++++++++++
- include/linux/arm_ffa.h            | 12 ++++++++++++
- 6 files changed, 81 insertions(+), 26 deletions(-)
+Why changing a pointer to an int here as later tsm_register() converts it back to a pointer?
 
-diff --git a/drivers/acpi/arm64/ffh.c b/drivers/acpi/arm64/ffh.c
-index 7f13a6d2473a..2b6489d9800e 100644
---- a/drivers/acpi/arm64/ffh.c
-+++ b/drivers/acpi/arm64/ffh.c
-@@ -66,23 +66,18 @@ static int acpi_ffh_ffa_features(struct acpi_ffh_data *ffh_ctxt, u32 fid)
- 
- static int acpi_ffh_ffa_init(struct acpi_ffh_data *ffh_ctxt)
- {
--	struct arm_smccc_1_2_regs args = { }, res;
-+	struct arm_smccc_1_2_regs args, res;
- 	u32 version;
--	int ret = 0;
-+	int ret;
- 
- 	guard(mutex)(&acpi_ffh_ffa_lock);
- 	if (acpi_ffh_ffa_initialized)
- 		return 0;
- 
--	args.a0 = FFA_VERSION;
--	args.a1 = FFA_VERSION_1_2;
--	acpi_ffh_ffa_invoke(ffh_ctxt, &args, &res);
--	version = res.a0;
--	if ((s32)version == SMCCC_RET_NOT_SUPPORTED ||
--	    FFA_MAJOR_VERSION(version) != 1 || version < FFA_VERSION_1_2) {
--		ret = -EOPNOTSUPP;
--		return ret;
--	}
-+	ret = arm_ffa_version_get(ffh_ctxt->invoke_ffh64_fn, FFA_VERSION_1_2,
-+				  &version);
-+	if (ret || version < FFA_VERSION_1_2)
-+		return -EOPNOTSUPP;
- 
- 	ret = acpi_ffh_ffa_features(ffh_ctxt, FFA_MSG_SEND_DIRECT_REQ2);
- 	if (ret)
-diff --git a/drivers/firmware/arm_ffa/Kconfig b/drivers/firmware/arm_ffa/Kconfig
-index 5e3ae5cf82e8..81be3d6dd7da 100644
---- a/drivers/firmware/arm_ffa/Kconfig
-+++ b/drivers/firmware/arm_ffa/Kconfig
-@@ -15,6 +15,11 @@ config ARM_FFA_TRANSPORT
- 	  This driver provides interface for all the client drivers making
- 	  use of the features offered by ARM FF-A.
- 
-+config ARM_FFA_VERSION_NEGOTIATION
-+	bool
-+	depends on ARM64
-+	default y if ACPI_FFH || ARM_FFA_TRANSPORT
-+
- config ARM_FFA_SMCCC
- 	bool
- 	default ARM_FFA_TRANSPORT
-diff --git a/drivers/firmware/arm_ffa/Makefile b/drivers/firmware/arm_ffa/Makefile
-index 168990a7e792..6bd09b81e15f 100644
---- a/drivers/firmware/arm_ffa/Makefile
-+++ b/drivers/firmware/arm_ffa/Makefile
-@@ -4,5 +4,6 @@ ffa-driver-y = driver.o
- ffa-transport-$(CONFIG_ARM_FFA_SMCCC) += smccc.o
- ffa-core-objs := $(ffa-bus-y)
- ffa-module-objs := $(ffa-driver-y) $(ffa-transport-y)
--obj-$(CONFIG_ARM_FFA_TRANSPORT)  = ffa-core.o
-+obj-$(CONFIG_ARM_FFA_VERSION_NEGOTIATION) += version.o
-+obj-$(CONFIG_ARM_FFA_TRANSPORT)  += ffa-core.o
- obj-$(CONFIG_ARM_FFA_TRANSPORT) += ffa-module.o
-diff --git a/drivers/firmware/arm_ffa/driver.c b/drivers/firmware/arm_ffa/driver.c
-index babc5d62bdd2..b9b0f88e8f24 100644
---- a/drivers/firmware/arm_ffa/driver.c
-+++ b/drivers/firmware/arm_ffa/driver.c
-@@ -138,30 +138,33 @@ static u32 ffa_compatible_version_find(u32 version)
- 	return FFA_DRIVER_VERSION;
- }
- 
--static int ffa_version_check(u32 *version)
-+static void ffa_version_invoke(const ffa_value_t *args, ffa_value_t *res)
- {
--	ffa_value_t ver;
-+	invoke_ffa_fn(*args, res);
-+}
- 
--	invoke_ffa_fn((ffa_value_t){
--		      .a0 = FFA_VERSION, .a1 = FFA_DRIVER_VERSION,
--		      }, &ver);
-+static int ffa_version_check(u32 *version)
-+{
-+	int ret;
-+	u32 ver;
- 
--	if ((s32)ver.a0 == FFA_RET_NOT_SUPPORTED) {
-+	ret = arm_ffa_version_get(ffa_version_invoke, FFA_DRIVER_VERSION, &ver);
-+	if (ret) {
- 		pr_info("FFA_VERSION returned not supported\n");
--		return -EOPNOTSUPP;
-+		return ret;
- 	}
- 
--	if (FFA_MAJOR_VERSION(ver.a0) > FFA_MAJOR_VERSION(FFA_DRIVER_VERSION)) {
-+	if (FFA_MAJOR_VERSION(ver) > FFA_MAJOR_VERSION(FFA_DRIVER_VERSION)) {
- 		pr_err("Incompatible v%d.%d! Latest supported v%d.%d\n",
--		       FFA_MAJOR_VERSION(ver.a0), FFA_MINOR_VERSION(ver.a0),
-+		       FFA_MAJOR_VERSION(ver), FFA_MINOR_VERSION(ver),
- 		       FFA_MAJOR_VERSION(FFA_DRIVER_VERSION),
- 		       FFA_MINOR_VERSION(FFA_DRIVER_VERSION));
- 		return -EINVAL;
- 	}
- 
--	if (ver.a0 < FFA_MIN_VERSION) {
-+	if (ver < FFA_MIN_VERSION) {
- 		pr_err("Incompatible v%d.%d! Earliest supported v%d.%d\n",
--		       FFA_MAJOR_VERSION(ver.a0), FFA_MINOR_VERSION(ver.a0),
-+		       FFA_MAJOR_VERSION(ver), FFA_MINOR_VERSION(ver),
- 		       FFA_MAJOR_VERSION(FFA_MIN_VERSION),
- 		       FFA_MINOR_VERSION(FFA_MIN_VERSION));
- 		return -EINVAL;
-@@ -169,9 +172,9 @@ static int ffa_version_check(u32 *version)
- 
- 	pr_info("Driver version %d.%d\n", FFA_MAJOR_VERSION(FFA_DRIVER_VERSION),
- 		FFA_MINOR_VERSION(FFA_DRIVER_VERSION));
--	pr_info("Firmware version %d.%d found\n", FFA_MAJOR_VERSION(ver.a0),
--		FFA_MINOR_VERSION(ver.a0));
--	*version = ffa_compatible_version_find(ver.a0);
-+	pr_info("Firmware version %d.%d found\n", FFA_MAJOR_VERSION(ver),
-+		FFA_MINOR_VERSION(ver));
-+	*version = ffa_compatible_version_find(ver);
- 
- 	return 0;
- }
-diff --git a/drivers/firmware/arm_ffa/version.c b/drivers/firmware/arm_ffa/version.c
-new file mode 100644
-index 000000000000..f5c973710dff
---- /dev/null
-+++ b/drivers/firmware/arm_ffa/version.c
-@@ -0,0 +1,39 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#define pr_fmt(fmt) "ARM FF-A: " fmt
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/arm_ffa.h>
-+#include <linux/cleanup.h>
-+#include <linux/errno.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+
-+static DEFINE_MUTEX(ffa_version_lock);
-+static int ffa_version;
-+
-+int arm_ffa_version_get(void (*invoke)(const struct arm_smccc_1_2_regs *args,
-+				       struct arm_smccc_1_2_regs *res),
-+			u32 input_version, u32 *version)
-+{
-+	struct arm_smccc_1_2_regs args = {
-+		.a0 = FFA_VERSION,
-+		.a1 = input_version,
-+	}, res;
-+
-+	guard(mutex)(&ffa_version_lock);
-+	if (!ffa_version) {
-+		invoke(&args, &res);
-+
-+		if ((s32)res.a0 == FFA_RET_NOT_SUPPORTED)
-+			ffa_version = -EOPNOTSUPP;
-+		else
-+			ffa_version = res.a0;
-+	}
-+
-+	if (ffa_version < 0)
-+		return ffa_version;
-+
-+	*version = ffa_version;
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(arm_ffa_version_get);
-diff --git a/include/linux/arm_ffa.h b/include/linux/arm_ffa.h
-index 3831fbe244c1..039308a41cdb 100644
---- a/include/linux/arm_ffa.h
-+++ b/include/linux/arm_ffa.h
-@@ -6,6 +6,7 @@
- #ifndef _LINUX_ARM_FFA_H
- #define _LINUX_ARM_FFA_H
- 
-+#include <linux/arm-smccc.h>
- #include <linux/bitfield.h>
- #include <linux/device.h>
- #include <linux/module.h>
-@@ -179,6 +180,17 @@ static inline void *ffa_dev_get_drvdata(struct ffa_device *fdev)
- 
- struct ffa_partition_info;
- 
-+#if IS_BUILTIN(CONFIG_ARM_FFA_VERSION_NEGOTIATION)
-+int arm_ffa_version_get(void (*invoke)(const struct arm_smccc_1_2_regs *args,
-+				       struct arm_smccc_1_2_regs *res),
-+			u32 input_version, u32 *version);
-+#else
-+static inline int arm_ffa_version_get(
-+	void (*invoke)(const struct arm_smccc_1_2_regs *args,
-+		       struct arm_smccc_1_2_regs *res),
-+	u32 input_version, u32 *version) { return -EOPNOTSUPP; }
-+#endif /* CONFIG_ARM_FFA_VERSION_NEGOTIATION */
-+
- #if IS_REACHABLE(CONFIG_ARM_FFA_TRANSPORT)
- struct ffa_device *
- ffa_device_register(const struct ffa_partition_info *part_info,
+And I never understood what is _reset for here (so +1 for that) but now we have tsm_register_pci() and pci_tsm_register() which is weird. May be just open code it? Thanks,
+
+
+>   {
+>   	int rc;
+>   
+>   	if (!pci_ops)
+> -		return tsm_dev;
+> +		return 0;
+>   
+>   	tsm_dev->pci_ops = pci_ops;
+>   	rc = pci_tsm_register(tsm_dev);
+>   	if (rc) {
+> +		tsm_dev->pci_ops = NULL;
+>   		dev_err(tsm_dev->dev.parent,
+>   			"PCI/TSM registration failure: %d\n", rc);
+> -		device_unregister(&tsm_dev->dev);
+> -		return ERR_PTR(rc);
+> +		return rc;
+>   	}
+>   
+>   	/* Notify TSM userspace that PCI/TSM operations are now possible */
+>   	kobject_uevent(&tsm_dev->dev.kobj, KOBJ_CHANGE);
+> -	return tsm_dev;
+> +	return 0;
+>   }
+>   
+>   struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
+> @@ -96,15 +95,22 @@ struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
+>   	if (rc)
+>   		return ERR_PTR(rc);
+>   
+> -	return tsm_register_pci_or_reset(no_free_ptr(tsm_dev), pci_ops);
+> +	rc = tsm_register_pci(tsm_dev, pci_ops);
+> +	if (rc) {
+> +		device_del(dev);
+> +		return ERR_PTR(rc);
+> +	}
+> +	return no_free_ptr(tsm_dev);
+>   }
+>   EXPORT_SYMBOL_GPL(tsm_register);
+>   
+>   void tsm_unregister(struct tsm_dev *tsm_dev)
+>   {
+> +	/* Remove the class lookup first. */
+> +	device_del(&tsm_dev->dev);
+>   	if (tsm_dev->pci_ops)
+>   		pci_tsm_unregister(tsm_dev);
+> -	device_unregister(&tsm_dev->dev);
+> +	put_device(&tsm_dev->dev);
+>   }
+>   EXPORT_SYMBOL_GPL(tsm_unregister);
+>   
 
 -- 
-2.43.0
+Alexey
 
 
