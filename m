@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9631C606A33D
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64F9606A8B3
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3DaFlo9g;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=GkM8K1QJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GElljJ/b;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=fby67aXm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,62 +14,60 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=9gXiTKwhd0i3FmOeF109/if7WExvzUv7qcneIWltTw4=; b=3DaFlo9gW5JPDk5/xABOOelUc7
-	WDuvpTA0E82NVH6Z+sW/EBcwxosttgq9Y+R/YabwJ1skJ6IFdH//UjEUNwypRMJH8HflpRAuaO2gv
-	FXRcDgXGy++ck/5M3eTHzckzUWoyWFho7vBJPGlmvOmxZ7H7GpU9FYReQih9pGSC6ilcGjEThSCVR
-	pcEmZwUwlF7GqI15DwOzu/rXUsc5iSE0CvuELuccgmC2KHa6yggVpWW6t/hss6kt7RW9BMrFik5yK
-	60uu7jBtk+d7uKjwmlf470EJPbJ9pFTemTn59ZnZkIEPevtX3dxg9OfJ/L1e66fj4iMVznxlZHwem
-	xvhPiyDQ==;
+	bh=sRazLDIEc7CMUp/9vgq2YR+tcffN4fGN/wRdKhy4qfE=; b=GElljJ/bXF5ATr9Y/Ph58kjmAI
+	V0K7JCZai6lQFueDsS7sbLJnBEqPKXJJ2wTw9FBwxuAKUeFWjbrNRiE6P3N3ZB9MXwpfrcCdWWUPU
+	m4lUbl6gFYd1RdlyOVcij+KFiCJk6ougt5lEdNpxTGMKRRIB4Uyu9F/q/U4Mx/AX9k+jo3cMUQxNg
+	CQvZKaeNvMTv6XZY6bXf4e+NKGy776TGTyC7OGsET+Mj42TtokT61lbRX8CEWxGtvIlmZmdbA9PSe
+	kjjZ0zdqjPDqkAx9b9A+ytRh1pJIyy9fkDWoBs8/AWs4J5GLPvyhz/nsYSBxAV+GyqItbOrZVTY0s
+	uVlczgkQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVi8-0000000AEjR-1lJr;
-	Thu, 12 Nov 2026 14:23:32 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVi6-0000000AEif-1RHF;
-	Thu, 12 Nov 2026 14:23:31 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=9gXiTKwhd0i3FmOeF109/if7WExvzUv7qcneIWltTw4=; b=GkM8K1QJwEYb9aj1af7OXzpN/G
-	g5/5QCVE6DP0q/LKaEPIJTuDFHiIOj6a6I/AgVt9J9E21WMfjotLjCaUmL7RtVSuSIDQag+Wgil14
-	NsMKr+8wvC+9gpqaUbXyB7NMVW9yQ02S67CO+kHdejDpBBDi6aj7c/JAMTSDGHkBra2c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xRVhr-00G2ck-B3; Thu, 12 Nov 2026 15:23:15 +0100
-Date: Thu, 12 Nov 2026 15:23:15 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Vincent Mailhol <mailhol@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
-	Fabio Estevam <festevam@gmail.com>,
-	Manivannan Sadhasivam <mani@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH V2 5/6] ARM: dts: mxs: add EVAchargeSE board support
-Message-ID: <bf6040aa-9cb0-4566-a2cb-f3edf39bf4c8@lunn.ch>
-References: <20261112130506.12823-1-wahrenst@gmx.net>
- <20261112130506.12823-6-wahrenst@gmx.net>
+	id 1xRVne-0000000AGSl-246K;
+	Thu, 12 Nov 2026 14:29:14 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRVnb-0000000AGS3-3R6E
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 14:29:13 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E07A61477;
+	Thu, 12 Nov 2026 06:29:07 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D93B83F673;
+	Thu, 12 Nov 2026 06:29:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794493750; bh=XiaNpbbvxm6cKE/zgmNwmyN9+sHlHIuKTGnW432EXr4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fby67aXmxYqsYQ+cJC3GcBthEnnJJfdGSIYm40Lcu20zGsDk9qauSSN3TVDH36s+A
+	 aizxncjEclC0Gap/jNtf43T4IKOjBghSsjwIFWshSDsu1J7xkfVFbrN8L9ZwyHuEn+
+	 GCODgR3flC+q2PeYAw8JU5AHNQWkEmCxf053CvKo=
+Date: Thu, 12 Nov 2026 14:29:06 +0000
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: "Oscar Salvador (SUSE)" <osalvador@kernel.org>
+Cc: Chris Down <chris@chrisdown.name>, Will Deacon <will@kernel.org>,
+	linux-kernel@vger.kernel.org, kernel-team@meta.com,
+	Mark Rutland <mark.rutland@arm.com>,
+	Huang Ying <ying.huang@linux.alibaba.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Muchun Song <muchun.song@linux.dev>,
+	Oscar Salvador <osalvador@suse.de>,
+	David Hildenbrand <david@kernel.org>,
+	Mike Kravetz <mike.kravetz@oracle.com>,
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Subject: Re: [PATCH] arm64: hugetlb: Prevent write fault livelocks on stale
+ TLB entries
+Message-ID: <avXNMuvCNyLwk7wt@arm.com>
+References: <avPxZjjdBIlM_8_g@chrisdown.name>
+ <avQvk0oxEHTLFacU@localhost.localdomain>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261112130506.12823-6-wahrenst@gmx.net>
+In-Reply-To: <avQvk0oxEHTLFacU@localhost.localdomain>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_062330_383086_3560C62A 
-X-CRM114-Status: UNSURE (   6.27  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_062911_979300_1F821036 
+X-CRM114-Status: GOOD (  26.29  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -80,47 +78,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> +&mac0 {
-> +	clocks = <&clks 57>, <&clks 57>, <&clks 64>;
-> +	clock-names = "ipg", "ahb", "enet_out";
-> +	phy-handle = <&ethphy>;
-> +	phy-mode = "rmii";
-> +	phy-supply = <&reg_3p3v>;
-> +	pinctrl-0 = <&mac0_pins_a &mac0_phy_reset_pin>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-id0007.c0f0","ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +			interrupt-parent = <&gpio4>;
-> +			interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-> +			max-speed = <100>;
-> +			pinctrl-0 = <&mac0_phy_int_pin>;
-> +			pinctrl-names = "default";
-> +			reset-assert-us = <500>;
-> +			reset-deassert-us = <500>;
-> +			reset-gpios = <&gpio4 13 GPIO_ACTIVE_LOW>;
-> +			smsc,disable-energy-detect;
-> +		};
-> +	};
-> +};
+On Wed, Nov 11, 2026 at 10:04:19AM +0100, Oscar Salvador (SUSE) wrote:
+> On Tue, Nov 10, 2026 at 08:39:02PM -0800, Chris Down wrote:
+> > In Meta production, we have had tasks get stuck in a fault loop while
+> > using hugetlb on arm64. During my investigations I found that affected
+> > tasks share a private hugetlb page.
+> > 
+> > Looking at the stuck task states, I found the following ordering:
+> > 
+> >   CPU0                                 CPU1
+> >   ----                                 ----
+> >   read page
+> >   [read only entry cached in TLB]
+> >                                        write page
+> >                                        hugetlb_fault()
+> >                                          hugetlb_wp()
+> >                                          [reuse folio]
+> >                                          set_huge_ptep_maybe_writable()
+> >                                            set_huge_ptep_writable()
+> >                                          [flush local TLB only]
+> > 
+> >   write page using stale entry
+> >   hugetlb_fault()
+> >     huge_ptep_set_access_flags()
+> >     [entry already writable, no flush]
+> >   retry write using stale entry
+> >   [fault indefinitely. well, that's not ideal!]
+> > 
+> > The reason is that when a write fault makes a non-contiguous hugetlb
+> > entry writable, it only invalidates the local TLB. However, another CPU
+> > can keep the old read-only entry, so its write will fault even though
+> > the page table already permits it. hugetlb_fault() then finds nothing to
+> > change and leaves the stale entry in place, so the same write keeps
+> > going round in circles.
+> > 
+> > This is particularly bad because, if the kernel is copying to user
+> > memory, the retry stays inside the kernel and the task can't act on the
+> > pending signal.
+> > 
+> > It can even remain unkillable while holding locks across the copy,
+> > resulting in further failures. For example, a read into a hugetlb
+> > buffer can hold the pipe mutex and block other users of the pipe until
+> > the loop ends, causing cascading lockups across the machine.
+> > 
+> > To fix this, when a write fault finds nothing to change in a
+> > non-contiguous hugetlb entry, let's invalidate the local entry.
+> > 
+> > Fixes: cb1fa2e99955 ("arm64, tlbflush: don't TLBI broadcast if page reused in write fault")
+> > Cc: <stable@vger.kernel.org>
+> > Signed-off-by: Chris Down <chris@chrisdown.name>
+> 
+> This makes sense to me, and I see that commit cb1fa2e99955 ("arm64, tlbflush:
+> don't TLBI broadcast if page reused in write fault") only invalidated local tlb
+> for cont-hugetlb.
+> Reading the changelog, I guess that was an oversight because I could not find
+> the reason behind.
 
-For these nodes only:
+I think you mean non-contiguous hugetlb here? cb1fa2e99955 switched
+__ptep_set_access_flags() to local invalidation, used on the
+non-contiguous hugetlb path. Contiguous hugetlb updates still broadcast
+through get_clear_contig_flush().
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Ordinary contpte mappings also switched to local invalidation but those
+go through the generic fault handler and its fix_spurious_fault()
+fallback. That fallback is what the hugetlb path was missing.
 
-    Andrew
+-- 
+Catalin
 
