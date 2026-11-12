@@ -2,88 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513A5606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD780606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:03:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ei3FM4jR;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mykMNeh5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ROMBFzro;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=bCSMFy5h
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=wTN3UxTT/XXw7NH/F07ZSE1+SznsV7bVJZdXlw3Sm0E=; b=ei3FM4jRVeg5lbptuTo1pNz71N
-	d+dVFq6rhlt6I4y5SxhFCLSiiNp9V3EsAASzsRJf/GQRHD/WlbQlGACTGdh4LKgo7OFebHaf0FmuR
-	QJGlLjeaqQLsDUf68T/G+KhPHWs6vLrO+uar/UzBXpwh0u01KWJ9l8mVtyJTrzZ70nuTEcCNch6hC
-	6oDmBUgTAnJIJjcXyUA7mqj2MQDgEoNf9V2Ld2yy9Hy7A3jk30f9pLk+lpk+xH4jR1YMCNuKkrpGi
-	hbUKyOucUADXWtoSErziZ/KmgQqeB7JaLlA59DX4Z7Cf8tSSglBBojvprqAZVLc54SxCPOxrxc3s4
-	G+40JboA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
+	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=Xw7r6iF+zO8fXkdzLRufgVhinglmDPnuGGdycV+HHa4=; b=ROMBFzrotLQukN
+	E15YaSqkW9+o0A5DA1gCtcqBL5476xU58luoEdScH3rJVbzwm21nsS0rv8uA2LbG8P2iYKLL8WDS8
+	iaK09GPgjvxYL7xbLys5VeQBfXcU7Xdqg8pKbrSHIRfzYjnt5QHcpV2FhQ4N5pJO8TypOU3NkfG5x
+	vXWVgEhbh0I4cVzXWbs1fvW8Twj54Etxxaj6IG1bzysaIz1LphcvvtPr45Z5uE2+0/N3hyaEnl2yd
+	gcjXssxuHeV8Xe3UP6ia1avSNE5TXY5bgySqe5U8SdKet9IGVlWTlnsQGqpXZX66gcbC+vcnD0SSp
+	xPLnCAJolbk2y+t5p3LA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTTe-00000009npo-14sA;
-	Thu, 12 Nov 2026 12:00:26 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRTWH-00000009o4V-38tb;
+	Thu, 12 Nov 2026 12:03:09 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTTc-00000009npg-39ld
+	id 1xRTWD-00000009o3D-0UBQ
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 12:00:24 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id E06B163950;
-	Thu, 12 Nov 2026 12:00:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 869391F00A05;
-	Thu, 12 Nov 2026 12:00:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794484823;
-	bh=wTN3UxTT/XXw7NH/F07ZSE1+SznsV7bVJZdXlw3Sm0E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=mykMNeh5BtXxUerEKT1YuKhyGYJ7QWD8IG5KpF4NuP4taMISSoglro4vnkkgm5jw7
-	 WQS/4vwRcKImTEfxhMYZ5wbg4cf0zsqSfNSCuEwHpTxLLpdEiTkzuh28KNZeLAVJNg
-	 ZfCkbQmePV1CQjWwx2EMjuLDIhpJighraQGEfBeHC2UHTK/MwHz7f2oBCj4SrVNuE8
-	 h5IIE+hXfIdS625oF8CuXci5blOoZ0531mmkrv2ibJ2+zxzA7PXsQSYWh5mHmJWrB0
-	 v/bWt32FVQ52/8TNJggbPdO6bVuM9pAUdH6G57AlDfNOf/PKeeT3jQZcm5rv//GblC
-	 jWyGILzZ6HoIw==
-Date: Thu, 12 Nov 2026 14:00:11 +0200
-From: Mike Rapoport <rppt@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: linux-mm@kvack.org, Arnd Bergmann <arnd@arndb.de>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Andreas Larsson <andreas@gaisler.com>,
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"David Hildenbrand (Arm)" <david@kernel.org>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	"Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
-	Matthew Wilcox <willy@infradead.org>,
-	Malin Jonsson <malin.jonsson@est.tech>,
-	Richard Weinberger <richard@nod.at>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org, linux-fsdevel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org, x86@kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Michal Simek <monstr@monstr.eu>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Suren Baghdasaryan <surenb@google.com>,
-	Michal Hocko <mhocko@suse.com>, Nishanth Menon <nm@ti.com>,
-	Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH v2 5/6] arch/*: increase lowmem size to avoid highmem use
-Message-ID: <avWqSw2YrUmfAX62@kernel.org>
-References: <20261112112528.1116405-1-arnd@kernel.org>
- <20261112112528.1116405-6-arnd@kernel.org>
+	Thu, 12 Nov 2026 12:03:07 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261112120258euoutp01964489faf544bdddd3f3211e2255de7c~nSpSE0Td51139111391euoutp01a;
+	Thu, 12 Nov 2026 12:02:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261112120258euoutp01964489faf544bdddd3f3211e2255de7c~nSpSE0Td51139111391euoutp01a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1794484978;
+	bh=Xw7r6iF+zO8fXkdzLRufgVhinglmDPnuGGdycV+HHa4=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=bCSMFy5h9WR5MXhQfr/yYMe50oNl4ZJ3B9PhLvn3AfoVJ3Uyo+MSQBjlm9BDOqF/s
+	 YI8qgTWpK/VpOR25WqLm1BIOQY430YCMn2hX6owWJ0ZuGG39vX4A1Pt/J8PKIj6edQ
+	 41nNcZwJxZucP719/0INyVtl5uX7gSp1npjbR8yk=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20261112120258eucas1p1c5cb56175a355c1eae521563b7e5958f~nSpR05hFs2595725957eucas1p1w;
+	Thu, 12 Nov 2026 12:02:58 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20261112120256eusmtip247d84ecda0f477bf594f640a7999ebf7~nSpQMIK460511505115eusmtip2L;
+	Thu, 12 Nov 2026 12:02:56 +0000 (GMT)
+Message-ID: <46236db8-c386-4db6-a8cd-e08073a5db0a@samsung.com>
+Date: Thu, 12 Nov 2026 13:02:55 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261112112528.1116405-6-arnd@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 10/15] lib/lz4: switch the compressor to the vendored
+ sources
+To: Sergey Senozhatsky <senozhatsky@chromium.org>
+Cc: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers
+	<ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt
+	<justinstitt@google.com>, Russell King <linux@armlinux.org.uk>, Thomas
+	Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley"
+	<James.Bottomley@hansenpartnership.com>, Helge Deller <deller@gmx.de>, Heiko
+	Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Alexander
+	Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
+	<borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Thomas
+	Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov
+	<bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Minchan Kim <minchan@kernel.org>, Jens
+	Axboe <axboe@kernel.dk>, Andrew Morton <akpm@linux-foundation.org>,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+	linux-parisc@vger.kernel.org, linux-s390@vger.kernel.org,
+	linux-block@vger.kernel.org, Yann Collet <yann.collet.73@gmail.com>, Nick
+	Terrell <terrelln@meta.com>, Gao Xiang <xiang@kernel.org>, Chao Yu
+	<chao@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>, Eric Biggers
+	<ebiggers@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>, David
+	Laight <david.laight.linux@gmail.com>, Sungguk <sungguk.na@samsung.com>,
+	Jaehoon Chung <jh80.chung@samsung.com>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org,
+	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <avKs4_S7r6EiUVgC@google.com>
+Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20261112120258eucas1p1c5cb56175a355c1eae521563b7e5958f
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261106144305eucas1p17b3b27d403dc7d13b85cdd9a4bea83b9
+X-EPHeader: CA
+X-CMS-RootMailID: 20261106144305eucas1p17b3b27d403dc7d13b85cdd9a4bea83b9
+References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
+	<CGME20261106144305eucas1p17b3b27d403dc7d13b85cdd9a4bea83b9@eucas1p1.samsung.com>
+	<20261106-lz4-vendor-upstream-v2-10-ee04c3f0d7dc@samsung.com>
+	<avKs4_S7r6EiUVgC@google.com>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_040305_755478_3D1C8E90 
+X-CRM114-Status: GOOD (  13.48  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -94,49 +106,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 12:25:27PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
+
+
+On 11/10/26 06:36, Sergey Senozhatsky wrote:
+> On (26/11/06 15:42), Michal Wilczynski wrote:
+> [..]
+>> diff --git a/drivers/block/zram/backend_lz4.c b/drivers/block/zram/backend_lz4.c
+>> index 1e4ad31d39a63f45b3bddd3d8a467d8d7d095beb..50265e3ce256490994cb6dae32a45da376e408e0 100644
+>> --- a/drivers/block/zram/backend_lz4.c
+>> +++ b/drivers/block/zram/backend_lz4.c
+>> @@ -42,7 +42,7 @@ static int lz4_setup_params(struct zcomp_params *params)
+>>  	if (!params->dict || !params->dict_sz)
+>>  		return 0;
+>>  
+>> -	dict_stream = kzalloc_obj(*dict_stream);
+>> +	dict_stream = kzalloc(LZ4_MEM_COMPRESS, GFP_KERNEL);
+>>  	if (!dict_stream)
+>>  		return -ENOMEM;
+>>  
+>> @@ -88,7 +88,7 @@ static int lz4_create(struct zcomp_params *params, struct zcomp_ctx *ctx)
+>>  		if (!zctx->dstrm)
+>>  			goto error;
+>>  
+>> -		zctx->cstrm = kzalloc_obj(*zctx->cstrm);
+>> +		zctx->cstrm = kzalloc(LZ4_MEM_COMPRESS, GFP_KERNEL);
+>>  		if (!zctx->cstrm)
+>>  			goto error;
+>>  	}
+>> @@ -112,7 +112,7 @@ static int lz4_compress(struct zcomp_params *params, struct zcomp_ctx *ctx,
+>>  					zctx->mem);
+>>  	} else {
+>>  		/* Cstrm needs to be reset */
+>> -		memcpy(zctx->cstrm, params->drv_data, sizeof(*zctx->cstrm));
+>> +		memcpy(zctx->cstrm, params->drv_data, LZ4_MEM_COMPRESS);
+>>  		ret = LZ4_compress_fast_continue(zctx->cstrm, req->src,
+>>  						 req->dst, req->src_len,
+>>  						 req->dst_len, params->level);
 > 
-> Most of the common 32-bit architectures (x86, arm, powerpc) all use the
-> default virtual memory layout that was already in place for i386 systems
-> in the 1990s, using exactly 3GiB of user TASK_SIZE, with the upper 1GiB
-> of addresses split between (at most 896MiB) lowmem and vmalloc.
+> The zram code here is outdated, it has been reworked quite a bit
+> (patches are in linux-next and Andrew's trees).
+> 
 
-...
+Right, I'll rebase on linux-next.
 
-> Based on the above observations and the discussion at the kernel summit,
-> change the defaults to the most appropriate values: use 1GiB of lowmem on
-> non-highmem configurations, and either 2GiB or 1.75GiB of lowmem on highmem
-> builds, depending on what is available on the architecture.
->
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-
-Acked-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
-
-> ---
->  arch/arm/Kconfig                            |  5 ++++-
->  arch/arm/configs/aspeed_g5_defconfig        |  1 -
->  arch/arm/configs/u8500_defconfig            |  1 -
->  arch/arm/configs/vt8500_v6_v7_defconfig     |  2 --
->  arch/arm/mach-omap2/Kconfig                 |  1 -
->  arch/microblaze/Kconfig                     |  9 ++++++---
->  arch/microblaze/configs/mmu_defconfig       |  1 -
->  arch/powerpc/Kconfig                        | 14 +++++++++-----
->  arch/powerpc/configs/44x/akebono_defconfig  |  1 -
->  arch/powerpc/configs/85xx/ksi8560_defconfig |  1 -
->  arch/powerpc/configs/85xx/stx_gp3_defconfig |  1 -
->  arch/x86/Kconfig                            |  4 +++-
->  12 files changed, 22 insertions(+), 19 deletions(-)
-
+Best regards,
 -- 
-Sincerely yours,
-Mike.
+Michal Wilczynski <m.wilczynski@samsung.com>
 
