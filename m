@@ -2,103 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A287606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 00:25:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F256A606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 00:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DeTyJa5X;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ogmkXiS8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=a122v2/E;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=EYyHYXuN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WmDxcQotq3NgeobvzOlqzwVczvRUhsveENxWAqE5LCM=; b=DeTyJa5XNoL0Ma3rxgDOUOUMZu
-	Rdvz6MknFznzoLiASVbC+AZ2OZyL4NwClRGYSqon0ugbJRW1vO6zk0dVM/XOoy7h/nfbqJYY+IimF
-	WK3WVh22vob8srHj3n6a6rHqIsc8QT7kz314nuNHyrLGgjN3p8XtNCVGw/qt+9tqqQVjImanAeOWs
-	82WXOe+wvxwvc1kSvagULR/URpuK5hvaGT1e8wVGeJWU953i6bcwLPO8mu1EUv64aevZSnbkt7LCL
-	3yngCZ+mnYpAjBVaiZBQagrm7o5q7qMmSmDEGARwjwX3lu7cFp1gslDWLUUCbrZ9e7xP3XayB2Bxl
-	ZtTcLY8A==;
+	bh=TaXxoXg0t5nBttAZgYSVgg/xNz6zmOPdNTy9TP8GuJE=; b=a122v2/ExkAVdyxiS1xY3qV1uQ
+	BeITwCCjSFG9cibhAsNnUXbnGQNzdGNgIKPRD+STR6O+pYw7hKuqvENA35i5G2F4dH/zGDRjyzjOy
+	s9rI+MKpSlKO9WfgG9AnDcLzGf85LsYlRKa/g/A4jnVdofkQihSNWs6mxVtq1K0eEp96vpddoZm2W
+	UYoYzyyxxYWL3cjF+rEf021Svb9gdeTjJUp23zWhZOvAcNIQKsH3k7SNj9PhtIp9dnd+J9eaAHOD5
+	Jn++FfsCUZB+TrGNGf0Kp+QyDws48aTexZ4gIvmsvr0P8I1HO2qav5XpSVAb+93f20yfpjzakWsaZ
+	6fujvnDg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRId0-00000008Ecb-0L3b;
-	Thu, 12 Nov 2026 00:25:22 +0000
-Received: from mail-dy1-x132a.google.com ([2607:f8b0:4864:20::132a])
+	id 1xRInj-00000008GBw-3I0Z;
+	Thu, 12 Nov 2026 00:36:27 +0000
+Received: from mail-westeuropeazon11013026.outbound.protection.outlook.com ([52.101.72.26] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRIcw-00000008Ebc-3lmI
+	id 1xRInh-00000008GBM-38Q8
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 00:25:20 +0000
-Received: by mail-dy1-x132a.google.com with SMTP id 5a478bee46e88-37071c0f42aso6358083eec.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 16:25:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794443117; x=1795047917; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=WmDxcQotq3NgeobvzOlqzwVczvRUhsveENxWAqE5LCM=;
-        b=ogmkXiS8n4Mq6gKzWanOtpgAepR1RpzvQdNjM5Y6B2p2Id7Nrlebh1O7keFbjBNntp
-         WADvBzUM7kdPnQQjp8rDNzKpbFoAer1bsLHvNjS46PF/SfXmoPsxz1ltqr8hrSMGLe9D
-         TE4Zrxxv9glLZsAl194TfoMBxCdmsWCYUVHHAeB/McjppE/Zof9lyNqvXHYcjGQLSr+a
-         P7q3NutjwNmjnHTDmtzEheXHgTn1CHglonAJqMVm7YNNA0YuuWh9IzyjTbxR1x+A6wtY
-         WchtZBJoQ11XWdDIaWax5eTHEbruOFUMxCJ/kJC69tqqYWhr+GZNO4yxJ6KNQXaZB9IS
-         SxSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794443117; x=1795047917;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WmDxcQotq3NgeobvzOlqzwVczvRUhsveENxWAqE5LCM=;
-        b=P7ROwbjedE+tlDQfJAap01V/OoQ7M7uiXpRn5gK7mgCE3OuK6vFFMuhVsUr4b41eGQ
-         WaJ7SQsTI05kX628cMRnf7PM7W898Iv2vCTWxVJNxWOsda4ongXLg366GRcHsLJcNMQk
-         AAChWLWgogeB+uO4MA8d0fV6s4HDPwbavh8yk+cYtKPRARq+vSZ1JhnbW8MZNpZWnaos
-         tYD89qw2qnLKscpdzCcWoSP6k0KIJGGcHWHy65QZhtn6McCbCxMrc5iVA0PEeTzAg6hp
-         iZt3uQZRwaMKBl+SuBXDTKiIX+tAQByAwk8P2ojePPVnGo1jPN9Vyq9kBGgtVa4G0rlH
-         /UNQ==
-X-Forwarded-Encrypted: i=1; AL+hErFzYhmFNKQDjXivMMmQ/KD+MUu9RHr1+/6KZTmVYtgxiYlSETxFL+bagPMYqlgk/LzRRGhWdZXFAr0bybHMhP9T@lists.infradead.org
-X-Gm-Message-State: APuU4Z8loP8sfsu64IlhKlFTJuyBRpJBAE9G3jihlgYgvdPoSvLusBd2
-	Qspm4hMCYAz91toX09iYog1aMjPA7jTw782Br5Bv0lS5fn8uWQCOJ4sO
-X-Gm-Gg: AYBFou2PsQ7Yo6VGdTCZJEy5ywMQzXQSJjvUVlDuQ+UdsywbMN401bYCaCTot/MQoTJ
-	3ejBgJQMxcnLr0DI9XGvTsLl+Sr6Mx8CsTEL1UF3AXJpnGCN9obElp0Ea6BgDdHOIlumn0KWnF+
-	LWP5/Q3IK6LR6gUS6mDk/UICqpAZejkUp2Kgg+4YnosjUowoWZb8wkqc1yTsBq4l6DNnhHhs8Fa
-	LIAgVfxSdxccrCEi7Og0SeASDkfgQCbufdqkfqKlCMb+PLDJQkFQOUC60/Wf/Iv37FRtNGAF0sY
-	iEkPIyjCorFxErU3jwbG6lqDylCPkU1dq9iY4KRMQ1GN0cQNKt534dRG317N6e5gEFd00PP2zJH
-	HNqxedMMn4BIBsLymM5380OxNmuYCg78DNxouwxLVYP7Y5OhczS5w8WWSv8UWErycXb1d6uxVyA
-	ncjBgKZIdtoruDhw5utTt6WcXMDjBQoPcxgY51X44JyCxyZXUUYly3RFRH91ovv3JmCILuvhHFx
-	D6xc7mz9kuHotuRMtQwZR6KaMnXf0E3qhdv+ITD0LFBwNvJwQiD25EmrTg0Sy2reRPbEef+WI+s
-	N0zZOfZMcR1f51p9SVvqpSCBDVmAKmJAOkXK5a8VIPunWcT8kX33qQOFIf0i78AdJn6zzw==
-X-Received: by 2002:a05:7301:d807:b0:378:2e89:3958 with SMTP id 5a478bee46e88-3782e893b15mr345363eec.19.1794443117438;
-        Wed, 11 Nov 2026 16:25:17 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:182d:659:ffce:39a4])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-3766146551asm12082193eec.1.2026.11.11.16.25.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 16:25:15 -0800 (PST)
-Date: Wed, 11 Nov 2026 16:25:11 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Jakob Unterwurzacher <jakobunt@gmail.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Tony Lindgren <tony@atomide.com>
-Cc: Joseph Chen <chenjh@rock-chips.com>, Lee Jones <lee@kernel.org>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
-	mfd@lists.linux.dev, devicetree@vger.kernel.org, 
-	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
-Subject: Re: [PATCH 1/4] Input: rk805-pwrkey - enable the wakeup interrupt
- during system suspend
-Message-ID: <avUGEQhSKlko0Fm9@google.com>
-References: <20261029-dev-tiger-v7-4-pre-20261028-tiger-suspend-b4-v1-0-cb12621c1fb4@cherry.de>
- <20261029-dev-tiger-v7-4-pre-20261028-tiger-suspend-b4-v1-1-cb12621c1fb4@cherry.de>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	Thu, 12 Nov 2026 00:36:27 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZFZB72+lBCGwR6OkRs1sdwoyjK02z/InqyYieoI6Ur/d3Pur51rkWrWDvqOIY0U+F/H9UVuMiTQu4uYzOqieniSK057w32keCywj0gAamtn+52WoWBziEMC+aq2GtC1KRY8dXRk7c1SdbPw7bHz4kT1vFjpI7U70BGAWxcag6CSJyMrnh6XybpFuCcfTHjjBoFsMkNuzPE9aon/U44oACjKxanqx4JKdn2NSscdrkouFux4de3of0GiqcakK6lwRHaDVh+ors551oHqWoFZJnfHrRJxFpe1XmzmaVNbT5ZBSQH/8Rnc5058nYQNgvXwTIkkXigV/FAKWA43QnpkIig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TaXxoXg0t5nBttAZgYSVgg/xNz6zmOPdNTy9TP8GuJE=;
+ b=fGOTja5mK2214/yg84pun+j8SA9qUDFE6RyEI4NHBm0bfff2ehf5YQsMDO09os/D1ENjzR3oBNZKjbOfmQGeYG0BXLdlWNgqiBdmKRcPiWgId/z0OxQWoMbuCdXeuPoy9sa/zYrVoMJBbs54cUyUZm6JbOV2+mIsO2nUpxgPdyvZO9ldKhZPapE7p30LVENroxlawrW0DMo4AJeKzUdZyZBvJBJBBzQg4xawEx9gv2WdzYFim/kfyKL/E3OfbMwKnNBEtjQfGFu8V+5mG4CGykdT3DrF1DlD6uMV+YyT5MWaGIhEEVTGtBTcU4O91zz6nMeqIyt4/2ZsfAmTpxob7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TaXxoXg0t5nBttAZgYSVgg/xNz6zmOPdNTy9TP8GuJE=;
+ b=EYyHYXuNdFYFokPbJHDCKFkxM0E336MeRIegDw/qXs6C4DQ06qYWjG27nyhQNeSVgpAE7GnhWE5enn+zQ41+uwP8beaFpR4nxYmmJzSb+MF/2ffA1LctORF0yj84+7tCQvPkVC4zyUSlsEeMS+XHeFUrjnqFKkXZefKXRQBkKt9Prd34h3oxbH63rYSpk6leCl/+WzXPDi3HkHe64OBhD6gV2/IphdcVG78sm+M4Gs3pN/sZ7NHBTaP6n0LMsJfN4ernPNOK1dayc9HQzRWaHBA7edHlnCbVhXITpjz5bR1wzAC1qPYQg8TiJCjnfM9zXVKAcgXtrLkqWB+kqreYVw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by AS8PR04MB8660.eurprd04.prod.outlook.com (2603:10a6:20b:42b::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Thu, 12 Nov
+ 2026 00:36:21 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0615.008; Thu, 12 Nov 2026
+ 00:36:21 +0000
+Date: Thu, 12 Nov 2026 08:41:16 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
+	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v5 6/7] dmaengine: fsl-edma: support per-channel DT child
+ nodes
+Message-ID: <avULLAj1s5IRo80N@shlinux89>
+References: <20261111-edma-iommu-v3-v5-0-2537cebe6ca2@nxp.com>
+ <20261111-edma-iommu-v3-v5-6-2537cebe6ca2@nxp.com>
+ <avSsj0Ho_n6DL36_@SMW015318>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261029-dev-tiger-v7-4-pre-20261028-tiger-suspend-b4-v1-1-cb12621c1fb4@cherry.de>
+In-Reply-To: <avSsj0Ho_n6DL36_@SMW015318>
+X-ClientProxiedBy: SI2PR01CA0005.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::23) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|AS8PR04MB8660:EE_
+X-MS-Office365-Filtering-Correlation-Id: acc5bd0d-99ff-42bf-d92b-08df4054f904
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|376014|1800799024|366016|19092799006|7416014|261026121527099003|261028144727099003|261022075727099003|11063799006|56012099006|261021121427099003|261009223027099003|4143699003|261022105027099003|261102123227099003|261026140227099003|22082099003|18002099003|6133799003|10067099003;
+X-Microsoft-Antispam-Message-Info: x+CNt6Ncop+hA8z+6Z7GOWE48c9sU+cus4+Ao2b6dZUJ+5DhXYmYfWptx+5NbKO+tj7n2jOIIwxE7dU6sxjI0dZFC0l0KAUOOwdTHNxygfpPaAPJXwEIdT9NSmDc+KUff9twd6H9zNigl9lZ4OaD4Cj9JCrJGLbBQScxToc4gIgpBS4szsdbyvOEiBzjaXxY9p6MicLJbyk0DXoF4t/o6WxOolZCl038qz9pe35BvMRZDiHmzcIeAmg28QG0G2OWY4bpQmuf1IGZ0gmPLJ7D69xGYFdtMQlkQevm0cIknfh3xWStxzz3KA9W6pBEchFFzplLtNpplpmB7MTuOO+BIEVe+nYpj/pe9k0tm+X7VZ557G9Gf+lQnKwQ0y5WtkqaooO+MDpHo5p1xe5hFHsYNhMLWRHkv3nOtQV4yGfPTJy2/PwCe09/DlyJhndvj5DiQzg2ht7yKDmwxZVOJ1rWQ4peAkFGXS3NynTRmidArucExna8lX9nYvUsFdXUzxdqwxpoFsl50IdKs/GOwyWW3EtT0uYB7RzxV3ga0VJntqucNFzrYLsZuoCQJWlPc7t1ztRqI7vjfhZqKGZaBXOHytX9PzzQEDFvUf7EY8hIu20FIyZPSjmsS5i8RJCE9umAX0BHuof0epOlwUGPufczqAhV822defHR16+KcutG8kQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(19092799006)(7416014)(261026121527099003)(261028144727099003)(261022075727099003)(11063799006)(56012099006)(261021121427099003)(261009223027099003)(4143699003)(261022105027099003)(261102123227099003)(261026140227099003)(22082099003)(18002099003)(6133799003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8YbuMpDTyK/bpi0CLSL4ZaUNV7q8SCASQ4EJ/Xbij5wf2AJyzrh/8BF69qQZ?=
+ =?us-ascii?Q?9/V4wQjOYBFEnwjkBFVS+ePAOuQHpCPRmgNMnect+ZW5z02gGuhUp3lvDp4q?=
+ =?us-ascii?Q?vYoIG/w+lm9nXvIT0QNc1T9TwCAj5FTFbE8GsUpe5mzknUqgKeGBon0jGo5H?=
+ =?us-ascii?Q?Of9sZ40kH9oEuk6eBVq8+xGqtUEAiUyW46p6GKu+tWi7j4aVuI+ksRI5Ex6+?=
+ =?us-ascii?Q?pmbsBtoDhdesbeVBP8i10AeYzwQtRwDpY/95OEW0+jJfu95I/UjKeknlFqcX?=
+ =?us-ascii?Q?wZTF34KkWlIwqdgbwBfDa0izf+kksPHlX3LJKGrFtAvA0I5UiTEC2bemV/ex?=
+ =?us-ascii?Q?Zzh1qADjgxGSF7OaPdl7CjFolzPjNhk6sVHlaA0c4NI6bA/MCEXVsnnaXJoR?=
+ =?us-ascii?Q?eimERI1FUFL74ZEvfaU8Ka3ciJSYxSSwLGLpGxdcEgmpfhwKJOVapGiF8GWf?=
+ =?us-ascii?Q?8Ji9ZpNIQISGJa8B1+RcgYovmbUy7U5Y032Ou8h67OQ8r9gjarYhvBA6EVmB?=
+ =?us-ascii?Q?+Z/9Q3xD8OsN2yaJkEVH0pi2vAvYofVEl3Cr3YtRexcZHBYqjcg1+lO9OzWU?=
+ =?us-ascii?Q?FlrrXeYzObZpTqboPzZfWw1WeV3eP+F5OJSoRYHzlRXYHIlW+QweENcfDhi3?=
+ =?us-ascii?Q?nopbNtPqWmYwfVwtD/gkv+mRSu+DnxS3AQp4ArG12Rey/2CAM1ktaTw6dnvB?=
+ =?us-ascii?Q?GwsrGFjnCjoNxUangD6kfuwGi47WTJli07rRPeM3wTnWNa1QQD7edN/TKng7?=
+ =?us-ascii?Q?Q2mjaQBWjC2OY+cL5xT+HXypr5JgcQJVBoQ4hWLMZceP/UAwSm0X59bDlCWF?=
+ =?us-ascii?Q?EWDhbHR++8NneLD3SXKxwumuNPatHkTEWe/TTe9vUHU6P895xyX4dcKqPgYJ?=
+ =?us-ascii?Q?u5mIrYui5CF182gQfNrUcRxjMh3XjUUdwoJLqOq+6hgshDf4KAlRcomGiSFl?=
+ =?us-ascii?Q?CZIsb9kklT0nX5R7aYZCKaqs/XCJ5OHn8uFI8fzjJHJXwyTPDWn+bUkgFBUa?=
+ =?us-ascii?Q?w/q9LqhZV1o2qriLMCO8eIWmJ7KRDqhEhPxK17k+Ej7YWmIZIkm8k4dQPHGD?=
+ =?us-ascii?Q?6dx9vDa9cnv7tZTKGYBxaMpvNZtYpNRaHQMK02y9B448AJAnf9SwGEcksdVM?=
+ =?us-ascii?Q?KNHwl0vwkE0Gl+6UnC6xgv/hHETeAW0MSBCZ2qyg+VReX2h7q1WSuyDqOcAs?=
+ =?us-ascii?Q?iWc53PT36DtNR01fbtx2A3tllS1H31GvdqJXsfkEGteA5aOLbLtkcHU6e4w3?=
+ =?us-ascii?Q?cawWaWWyWE55pGwWLI0+h2gdTaNIkibywlmBo3mWRXQcXVQFtEE5bD4enOcq?=
+ =?us-ascii?Q?/VuacCebllXw2c0GW0MFqnBeQ1lQQ8/50EZrJECmiC0qKdNSum7a9fDq9S2A?=
+ =?us-ascii?Q?XtYw9HM5Q/8TVf4izeTJqNYhj4N+WSY2E0FKD3FzhHbdVdBKMEk8zdympkdf?=
+ =?us-ascii?Q?FElgX+CKypUo4pHU+xpy+wYPlKeZvpMX+Gh3gaM3TM5xk6lwfUxNDUu8fkV3?=
+ =?us-ascii?Q?TBIvHv5hoDwItwcuWN2kdzNCjQ1/oiuYLxZywQCrYoJzHN20vc7JF9B728E3?=
+ =?us-ascii?Q?pbUoZFvmbbs+k0d9YA9ENAkieXGNdReAZyn4p4FpFpN31uDeIl56kKj6DFVj?=
+ =?us-ascii?Q?xb/Kq++A4nQulbCK3jn+agT4+cb/nU2IIaSdcsmh8/i2oTeJgn62OQAKpnFK?=
+ =?us-ascii?Q?Xn6smxQokvtIoiwQF1B784sQ2drn45RuOAaaCwtZfHzGQDDodMWFYKrLV2gc?=
+ =?us-ascii?Q?eLa+5xrtz60rdZwL4kHG138+OQkrjJ46E0dhbow+tTULXIqm43sK?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acc5bd0d-99ff-42bf-d92b-08df4054f904
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 00:36:21.4024
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dEMwNJLv5/6gg9ZoUY4LI2np12T+5Tum/VEm4ghS3ge3anvffTIhh6OUZeO+mEK7tEvfCK1RpTtCmro0nJ2BRhxGWeQ3LpExzRIBwqFm3pxFufGxhSGuy3Q+pjbwF3fQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8660
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_162518_939515_3913BEFE 
-X-CRM114-Status: GOOD (  36.27  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_163625_815287_E278DBDB 
+X-CRM114-Status: GOOD (  21.02  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -109,128 +153,123 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jakob,
+On Wed, Nov 11, 2026 at 11:57:35AM -0600, Frank Li wrote:
+>On Wed, Nov 11, 2026 at 09:47:34PM +0800, Peng Fan (OSS) wrote:
+>> From: Peng Fan <peng.fan@nxp.com>
+>>
+>> Add support for parsing per-channel child nodes from devicetree.
+>> Each child node can carry its own interrupts and iommus properties.
+>> Child power-domains are not handled here; power domains remain attached
+>> at the parent level.
 
-On Thu, Oct 29, 2026 at 11:06:23AM +0100, Jakob Unterwurzacher wrote:
-> From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
-> 
-> The driver marks the device as wakeup capable, but never enables the
-> power key interrupt as a wakeup interrupt. As a consequence, the PMIC
-> interrupt line is masked during system suspend and the power key cannot
-> wake up the system, e.g. from suspend-to-ram on RK3588 with an RK806.
-> 
-> Enable the interrupt as wakeup interrupt in the suspend callback if the
-> device may wake up the system, and disable it again on resume.
-> 
-> This is done in the regular suspend phase on purpose, rather than with
-> dev_pm_set_wake_irq(), which arms the wakeup in the noirq phase: there,
-> enabling it updates the PMIC's interrupt registers through regmap-irq,
-> which fails when the PMIC is connected via SPI:
-> 
->   spi_master spi2: Failed to power device: -13
->   rk8xx-spi spi2.0: Failed to sync masks in 7a
+[...]
 
-Sounds like this needs to be solved in PM core rather than hacked around
-in individual driver? Let's CC Tony and Rafael.
+>>
+>> - fsl_edma_configure_chan_iommu(): called after
+>>   dmaenginem_async_device_register() to configure per-channel IOMMU
+>>   by calling of_dma_configure() on each dma_chan_dev and setting
+>>   chan_dma_dev so dmaengine_get_dma_device() returns the per-channel
+>>   device.  Propagate the controller dma_parms to the per-channel device
+>>   so the DMA segment size limit is preserved.
+>
+>Needn't detail for each funciton.
+>
+>The implementation is split into three functions:
+>  - fsl_edma_child_to_chan_id()
+>  - fsl_edma_configure_chan_from_dt()
+>  - fsl_edma_configure_chan_iommu()
 
-> 
-> Fixes: 5a35b85c2d92 ("Input: add power key driver for Rockchip RK805 PMIC")
-> ---
->  drivers/input/misc/rk805-pwrkey.c | 42 ++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 41 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/input/misc/rk805-pwrkey.c b/drivers/input/misc/rk805-pwrkey.c
-> index 76873aa005b41..9b64ec7463c62 100644
-> --- a/drivers/input/misc/rk805-pwrkey.c
-> +++ b/drivers/input/misc/rk805-pwrkey.c
-> @@ -15,6 +15,10 @@
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  
-> +struct rk805_pwrkey {
-> +	int irq;
-> +};
-> +
->  static irqreturn_t pwrkey_fall_irq(int irq, void *_pwr)
->  {
->  	struct input_dev *pwr = _pwr;
-> @@ -37,10 +41,15 @@ static irqreturn_t pwrkey_rise_irq(int irq, void *_pwr)
->  
->  static int rk805_pwrkey_probe(struct platform_device *pdev)
->  {
-> +	struct rk805_pwrkey *priv;
->  	struct input_dev *pwr;
->  	int fall_irq, rise_irq;
->  	int err;
->  
-> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
->  	pwr = devm_input_allocate_device(&pdev->dev);
->  	if (!pwr) {
->  		dev_err(&pdev->dev, "Can't allocate power button\n");
-> @@ -84,16 +93,47 @@ static int rk805_pwrkey_probe(struct platform_device *pdev)
->  		return err;
->  	}
->  
-> -	platform_set_drvdata(pdev, pwr);
-> +	priv->irq = fall_irq;
-> +	platform_set_drvdata(pdev, priv);
->  	device_init_wakeup(&pdev->dev, true);
->  
->  	return 0;
->  }
->  
-> +/*
-> + * Arm the wakeup in the regular suspend phase rather than with
-> + * dev_pm_set_wake_irq(), which does it in the noirq phase: enabling the
-> + * wakeup updates the PMIC's interrupt registers, which is no longer
-> + * possible once the bus to the PMIC (e.g. SPI on RK806) is suspended.
-> + */
-> +static int rk805_pwrkey_suspend(struct device *dev)
-> +{
-> +	struct rk805_pwrkey *priv = dev_get_drvdata(dev);
-> +
-> +	if (device_may_wakeup(dev))
-> +		enable_irq_wake(priv->irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rk805_pwrkey_resume(struct device *dev)
-> +{
-> +	struct rk805_pwrkey *priv = dev_get_drvdata(dev);
-> +
-> +	if (device_may_wakeup(dev))
-> +		disable_irq_wake(priv->irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(rk805_pwrkey_pm_ops, rk805_pwrkey_suspend,
-> +				rk805_pwrkey_resume);
-> +
->  static struct platform_driver rk805_pwrkey_driver = {
->  	.probe	= rk805_pwrkey_probe,
->  	.driver	= {
->  		.name = "rk805-pwrkey",
-> +		.pm = pm_sleep_ptr(&rk805_pwrkey_pm_ops),
->  	},
->  };
->  module_platform_driver(rk805_pwrkey_driver);
-> 
+Fix in v6.
 
-Thanks.
+>
+>>
+>> Child nodes beyond the configured dma-channels are ignored, which allows
+>> boards to reduce dma-channels without disabling every unused child node.
+>> If child nodes are present, every unmasked channel must have a child node
+>> with a valid interrupt; otherwise probe fails with an error asking for
+>> dma-channel-mask.  In child-node mode fsl_edma3_irq_init() does not fall
+>> back to the parent's flat interrupt array.
+>>
+>> The shared error IRQ remains a parent-node interrupt.  A child-node-only
+>> DTS without that entry simply has no shared error IRQ.
 
--- 
-Dmitry
+[...]
+
+>>  	if (fsl_chan->dma_dir != DMA_NONE)
+>> -		dma_unmap_resource(fsl_chan->vchan.chan.device->dev,
+>> -				   fsl_chan->dma_dev_addr,
+>> -				   fsl_chan->dma_dev_size,
+>> +		dma_unmap_resource(dev, fsl_chan->dma_dev_addr, fsl_chan->dma_dev_size,
+>>  				   fsl_chan->dma_dir, 0);
+>
+>Use dmaengine_get_dma_device() needs sperate patches.
+
+ok. I will add a new patch in this series to handle it.
+
+>
+>>  	fsl_chan->dma_dir = DMA_NONE;
+>>  }
+>> @@ -321,7 +321,7 @@ static void fsl_edma_unprep_slave_dma(struct fsl_edma_chan *fsl_chan)
+>>  static bool fsl_edma_prep_slave_dma(struct fsl_edma_chan *fsl_chan,
+>>  				    enum dma_transfer_direction dir)
+>>  {
+
+[...]
+>> @@ -397,15 +401,24 @@ static int fsl_edma3_irq_init(struct platform_device *pdev, struct fsl_edma_engi
+>>
+>>  		struct fsl_edma_chan *fsl_chan = &fsl_edma->chans[i];
+>>
+>> -		if (fsl_edma->chan_masked & BIT(i))
+>> +		if (fsl_edma->chan_masked & BIT_ULL(i))
+>>  			continue;
+>
+>
+>This one need sperate patch to fix it.
+
+Fix in v6.
+
+>
+>>
+>> -		/* request channel irq */
+>> -		fsl_chan->txirq = platform_get_irq(pdev, i);
+>> -		if (fsl_chan->txirq < 0)
+>> -			return  -EINVAL;
+>> +		if (fsl_chan->txirq <= 0) {
+>> +		return ret;
+[...]
+>> +
+>> +	for_each_available_child_of_node(np, child) {
+>
+>for_each_available_child_of_node_scoped()
+
+Fix in v6.
+
+>
+>> +		struct fsl_edma_chan *fsl_chan;
+>> +		int ch_id, irq;
+>> +
+>> +		has_children = true;
+>> +
+>> +
+[...]
+>> +		list_for_each_entry(chan, &fsl_edma->dma_dev.channels,
+>> +				    device_node) {
+>> +			struct device *chdev;
+>> +
+>> +			if (to_fsl_edma_chan(chan) != fsl_chan)
+>> +				continue;
+>
+>Can we avoid scan channel twice?
+
+yeah. Fix in v6.
+
+Thanks
+Peng
 
