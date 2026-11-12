@@ -2,70 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9652E606A326
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 00:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E533606A324
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 00:44:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WLqf2z/7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=a5sDloga
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jcxYONyK;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mzxajcvg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Date:Message-Id:From:Subject:Content-Transfer-Encoding:MIME-Version:
-	Content-Type:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-Id:Date:References:
+	In-Reply-To:Cc:To:From:Subject:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Pulm5x7G4dTnPOGRPvkWjRQBu0sc7WIEs/VaZ0XqfGQ=; b=WLqf2z/7eYRFrn
-	RgVsUgcUvc4pMdPNPPlEFgzCQb5CMd88g/4t3GsvyQFCHy5XyuQ5z4xl+/c6maZ2fwY/en2xBkA7B
-	wcmw8/ZMe0elr39EHZWt+tO8WW7pyuj60cm2jEV+S41oB/irTPYl6AyWpg1YC22O8Cvl86kBpD1iH
-	4OaQouaqTHXbcZIMJsHTr9t4LfcWC46D17uO0hD9OhFG3EEadArRAuH1Gf3kQn8h1k7aJqN7Q/FS7
-	gN6OsZbjWI1Uuy0eBv14B1ZwPXn0kJyH8EisHt4MQJgjFrwx8kay0Lkdy5VkxM8ZVxCXPs/0weXsu
-	nWBzgSCS37q6vTkd5Lew==;
+	List-Owner; bh=gjKALxOJFxG8UPiX46nDuXcwHUPMssJRgdYUqts3/dE=; b=jcxYONyKojfyxJ
+	lJ5lqSszCKgiQyOqIgAbpd8gKogrhB0e4cDFTD6lVnqgOLFoWUER/jFowSn01Gm4WG2zZon6Bo1Np
+	UGYXnXGcG2uMpnAUNK4csRCTLe5KGVrSrZYg5Co1DUGNvSZw9H/16LyMOIYNq80GVDvwPWZIIH2ID
+	IdupKY4K2WNB55v8wG3FrrhGTme4qv1QuLenaPd9JrFCxIj4IfPTLpNegHyDKaCqayOfhc3c+Smjl
+	z8S6jcUbRqLSACUPubt5FNa7tNwO2vJdEeXbZnqP5VIxfyyX0ajOf8nqSMhtHhv2LXxCqtZOgMmC5
+	4nGFiXx/G5NUmy51fNcw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRIrK-00000008Gcc-1y9X;
-	Thu, 12 Nov 2026 00:40:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRIvJ-00000008GyP-0B96;
+	Thu, 12 Nov 2026 00:44:17 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRIrJ-00000008GcC-0a8P
+	id 1xRIvH-00000008GyF-2CW4
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 00:40:09 +0000
+	Thu, 12 Nov 2026 00:44:15 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7F67E60F36;
-	Thu, 12 Nov 2026 00:40:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D1331F00A05;
-	Thu, 12 Nov 2026 00:40:08 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id DEE2446A2C;
+	Thu, 12 Nov 2026 00:44:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7443D1F00A05;
+	Thu, 12 Nov 2026 00:44:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794444008;
-	bh=Pulm5x7G4dTnPOGRPvkWjRQBu0sc7WIEs/VaZ0XqfGQ=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc;
-	b=a5sDloga3by4UHoc0i01LyT1JanaR19dPLmAaL/0p+1sskYrJU7Tpc5rcNkCm0C/A
-	 2m3el+NB+fEdMypU7JBJWFSklVBA6/RkMcmZRnooGbKbuQsyZkkKYXEo1MJfHJBgPA
-	 DyB9bqAmyBdy93YbZuKKclRCjfKEMwTtcNlDuWw+RHAZfhVLTsit2u619V8af3HARN
-	 EJzApFAHin0VecpHPP16+JmerZOAKRPA57kisVt/ybHN29BeAljDZ3T0cITv2JpzbV
-	 bUsGblHe3FlDBU6vZEDU8KMVnIwGQ5aT7rKIF0591mbNTEa+1QsvpyPSq6ckRx0jAY
-	 heMgLge6PqIqw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 211BA391AFCA;
-	Thu, 12 Nov 2026 00:40:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20260515; t=1794444254;
+	bh=gjKALxOJFxG8UPiX46nDuXcwHUPMssJRgdYUqts3/dE=;
+	h=Subject:From:To:Cc:In-Reply-To:References:Date;
+	b=mzxajcvgAkvhwfEdzB25fKJhTZUHAj8SD/wf32E1pJNu9cPU8MKu+RYBrTFytCT1k
+	 4fheQAzH4EgEJGVM7XuXSjUY3biTBc+lB0i+++l2lqAYb4/oBECVoUnX4MB1PM2Hx4
+	 n8X5uYdMXQoNHFZdP7h9XW2sMMfLd4jbKtw8JEWubCRJv8mOxD7d3Lb9dVxkB+dRWq
+	 ndNp0JjHE7Y98RJZO90TIC7zf62VB/NfO8d00KNtbZKLbn448dFBpxqrP3lwG87DFA
+	 Ac8CuMRduxFB0bUCM7dz6d13H9rB/uzpFOn7d9e+c1nrRW0BR9ooHV5Y5o1YDZdIkT
+	 3FVIalTGAYpMw==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v6 RESEND 0/4] net: stmmac: fix DMA descriptor
- ring
- cleanup issues
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: <179444400693.1731667.7461680068493203190.git-patchwork-notify@kernel.org>
-Date: Thu, 12 Nov 2026 00:40:06 +0000
-References: <20261106090507.1020751-1-dinghui1111@163.com>
-In-Reply-To: <20261106090507.1020751-1-dinghui1111@163.com>
-To: Ding Hui <dinghui1111@163.com>
-Cc: maxime.chevallier@bootlin.com, andrew+netdev@lunn.ch, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- dinghui@lixiang.com, xiasanbo@lixiang.com, yangchen11@lixiang.com,
- liuxuanjun@lixiang.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 3/5] clk: stm32: Add STM32MP25 SYSCFG clock driver
+From: Brian Masney <masneyb@kernel.org>
+To: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Christophe Roullier <christophe.roullier@foss.st.com>, 
+ Dario Binacchi <dario.binacchi@amarulasolutions.com>, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Brian Masney <masneyb@kernel.org>
+In-Reply-To: <20261110-ups_mp25_clk_syscfg-v2-3-624559bb8ec7@foss.st.com>
+References: <20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com>
+ <20261110-ups_mp25_clk_syscfg-v2-3-624559bb8ec7@foss.st.com>
+Date: Wed, 11 Nov 2026 19:44:08 -0500
+Message-Id: <179444424838.1126566.15847633472676891180.b4-review@b4>
+X-Mailer: b4 0.17-dev-7ca47
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7204; i=masneyb@kernel.org;
+ s=20250903; h=from:subject:message-id;
+ bh=TiNTrbXao3sKZzrEQ2J3r1cIhFom2KEL9P62Ql6x9l8=;
+ b=owGbwMvMwCW2/dJd9di6A+2Mp9WSGLK+ct9Sknq0Ry+unclc8lRjrZzp67Z+oyfTGay7Fy1rc
+ Frdo7ixo5SFQYyLQVZMkWVJrlFBROoq23t3NFlg5rAygQxh4OIUgIl4nWdkmOfSeCji/1arRofp
+ NknnhTx8mw+ls+8/OLH228L/bAW+HAz/zL623bin+0onUEJvJ6+m7f9vElw3P09oVInZJpr1uFO
+ GFwA=
+X-Developer-Key: i=masneyb@kernel.org; a=openpgp;
+ fpr=A46D32705865AA3DDEDC2904B7D2DD275D7EC087
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,42 +87,212 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello:
+Hi Gabriel,
 
-This series was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Fri,  6 Nov 2026 17:05:02 +0800 you wrote:
-> From: Ding Hui <dinghui@lixiang.com>
+> On STM32MP23x and STM32MP25x, the LTDC pixel clock is selected in the
+> SYSCFG DISPLAYCLKCR register among the DSI PHY byte lane clock, the LVDS
+> PHY pixel clock (reset value) and the LTDC kernel clock, the latter
+> being the one needed by the RGB (DPI) output.
 > 
-> Hello,
+> No driver registers this clock, so the selection can't be changed from
+> its reset value and a display connected to the LTDC RGB output can't
+> work.
 > 
-> This is a resend of v6, originally posted on October 24, 2026,
-> when net-next was closed. The four patches are unchanged.
+> Add a driver registering this clock as a mux. The SYSCFG node is bound
+> to the STM32MP2 SYSCFG driver, which populates its sub-nodes, so the
+> driver is probed from the "st,stm32mp25-syscfg-clk" clock-controller
+> sub-node and uses the regmap of the parent SYSCFG node. The mux parents
+> are taken from the "clocks" property of the sub-node, and the clock is
+> exposed through a onecell provider so that the other SYSCFG clocks can
+> be added later.
 > 
-> [...]
+> Co-developed-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+> ---
+>  drivers/clk/stm32/Kconfig                |  11 +++
+>  drivers/clk/stm32/Makefile               |   1 +
+>  drivers/clk/stm32/clk-stm32mp25-syscfg.c | 134 +++++++++++++++++++++++++++++++
+>  3 files changed, 146 insertions(+)
+>
+> diff --git a/drivers/clk/stm32/Kconfig b/drivers/clk/stm32/Kconfig
+> index 5dbd75cde657..a298983f5511 100644
+> --- a/drivers/clk/stm32/Kconfig
+> +++ b/drivers/clk/stm32/Kconfig
+> @@ -39,5 +39,16 @@ config COMMON_CLK_STM32MP257
+>  	help
+>  	  Support for stm32mp25x SoC family clocks.
+>  
+> +config COMMON_CLK_STM32MP25_SYSCFG
+> +	tristate "Clock driver for stm32mp25x SYSCFG clocks"
+> +	depends on COMMON_CLK_STM32MP257
 
-Here is the summary with links:
-  - [net-next,v6,RESEND,1/4] net: stmmac: guard against NULL pointers when freeing TX/RX buffers
-    https://git.kernel.org/netdev/net-next/c/2bfa1143e190
-  - [net-next,v6,RESEND,2/4] net: stmmac: clean up partially allocated DMA rings on error
-    https://git.kernel.org/netdev/net-next/c/4d5e7a647e3e
-  - [net-next,v6,RESEND,3/4] net: stmmac: release descriptor resources through priv->dma_conf on open failure
-    (no matching commit)
-  - [net-next,v6,RESEND,4/4] net: stmmac: hold RTNL when reading descriptor rings in descriptors_status
-    https://git.kernel.org/netdev/net-next/c/241c2a868326
+Note for my future reference: The common has || COMPILE_TEST already.
 
-You are awesome, thank you!
+Also add:
+
+depends on SOC_STM32MP2 || COMPILE_TEST
+
+> +	select MFD_SYSCON
+> +	default COMMON_CLK_STM32MP257
+> +	help
+> +	  Support for the clocks provided by the stm32mp25x SYSCFG, i.e.
+> +	  the LTDC pixel clock source selection between the LTDC kernel
+> +	  clock (RGB output), the LVDS PHY pixel clock and the DSI byte
+> +	  lane clock.
+> +
+>  endif
+>  
+> diff --git a/drivers/clk/stm32/Makefile b/drivers/clk/stm32/Makefile
+> index e04727b59449..8088d172651f 100644
+> --- a/drivers/clk/stm32/Makefile
+> +++ b/drivers/clk/stm32/Makefile
+> @@ -2,3 +2,4 @@ obj-$(CONFIG_COMMON_CLK_STM32MP135)	+= clk-stm32mp13.o clk-stm32-core.o reset-st
+>  obj-$(CONFIG_COMMON_CLK_STM32MP157)	+= clk-stm32mp1.o reset-stm32.o
+>  obj-$(CONFIG_COMMON_CLK_STM32MP215)	+= clk-stm32mp21.o clk-stm32-core.o reset-stm32.o
+>  obj-$(CONFIG_COMMON_CLK_STM32MP257)	+= clk-stm32mp25.o clk-stm32-core.o reset-stm32.o
+> +obj-$(CONFIG_COMMON_CLK_STM32MP25_SYSCFG)	+= clk-stm32mp25-syscfg.o
+> diff --git a/drivers/clk/stm32/clk-stm32mp25-syscfg.c b/drivers/clk/stm32/clk-stm32mp25-syscfg.c
+> new file mode 100644
+> index 000000000000..69b9a7592838
+> --- /dev/null
+> +++ b/drivers/clk/stm32/clk-stm32mp25-syscfg.c
+> @@ -0,0 +1,134 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) STMicroelectronics 2023 - All Rights Reserved
+
+It's currently 2026.
+
+> + * Author: Gabriel Fernandez <gabriel.fernandez@foss.st.com> for STMicroelectronics.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/err.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/st,stm32mp25-syscfg-clk.h>
+> +
+> +#define SYSCFG_DISPLAYCLKCR		0x5000
+> +#define DISPLAYCLKCR_DPIVSLVDS		GENMASK(1, 0)
+> +
+> +#define STM32MP25_SYSCFG_NUM_CLKS	(CK_SYSCFG_PIX_LTDC + 1)
+> +
+> +/*
+> + * The LTDC pixel clock source is selected in SYSCFG_DISPLAYCLKCR among
+> + * the DSI byte lane clock, the LVDS PHY pixel clock (reset value) and
+> + * the LTDC kernel clock, which is used with the RGB (DPI) output.
+> + *
+> + * The parents are listed in the DPIVSLVDS field order, while .index refers
+> + * to the "clocks" property of the node, ordered "ltdc", "lvds", "dsi" so
+> + * that the inputs missing on a SoC can be omitted at the end of the list.
+> + */
+> +static const struct clk_parent_data clk_pix_ltdc_parents[] = {
+> +	{ .index = 2 },	/* dsi */
+> +	{ .index = 1 },	/* lvds */
+> +	{ .index = 0 },	/* ltdc */
+> +};
+> +
+> +struct stm32mp25_syscfg_mux {
+> +	struct clk_hw hw;
+> +	struct regmap *regmap;
+> +};
+> +
+> +static inline struct stm32mp25_syscfg_mux *to_syscfg_mux(struct clk_hw *hw)
+> +{
+> +	return container_of(hw, struct stm32mp25_syscfg_mux, hw);
+> +}
+> +
+> +static u8 stm32mp25_syscfg_mux_get_parent(struct clk_hw *hw)
+> +{
+> +	struct stm32mp25_syscfg_mux *mux = to_syscfg_mux(hw);
+> +	unsigned int val;
+> +
+> +	regmap_read(mux->regmap, SYSCFG_DISPLAYCLKCR, &val);
+
+regmap return value is not checked and val is uninitialized if an error
+occurs.
+
+> +
+> +	return FIELD_GET(DISPLAYCLKCR_DPIVSLVDS, val);
+> +}
+> +
+> +static int stm32mp25_syscfg_mux_set_parent(struct clk_hw *hw, u8 index)
+> +{
+> +	struct stm32mp25_syscfg_mux *mux = to_syscfg_mux(hw);
+> +
+> +	return regmap_update_bits(mux->regmap, SYSCFG_DISPLAYCLKCR,
+> +				  DISPLAYCLKCR_DPIVSLVDS,
+> +				  FIELD_PREP(DISPLAYCLKCR_DPIVSLVDS, index));
+> +}
+> +
+> +static const struct clk_ops stm32mp25_syscfg_mux_ops = {
+> +	.get_parent = stm32mp25_syscfg_mux_get_parent,
+> +	.set_parent = stm32mp25_syscfg_mux_set_parent,
+> +	.determine_rate = clk_hw_determine_rate_no_reparent,
+> +};
+> +
+> +static int stm32mp25_syscfg_clk_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct clk_hw_onecell_data *clk_data;
+> +	struct clk_init_data init = { };
+> +	struct stm32mp25_syscfg_mux *mux;
+> +	int ret;
+
+Put in reverse Christmas tree order.
+
+> +
+> +	clk_data = devm_kzalloc_flex(dev, *clk_data, hws,
+> +				     STM32MP25_SYSCFG_NUM_CLKS);
+> +	if (!clk_data)
+> +		return -ENOMEM;
+> +
+> +	clk_data->num = STM32MP25_SYSCFG_NUM_CLKS;
+> +
+> +	mux = devm_kzalloc_obj(dev, *mux);
+> +	if (!mux)
+> +		return -ENOMEM;
+> +
+> +	/* The mux is a sub-node of the SYSCFG, whose regmap it shares */
+> +	mux->regmap = syscon_node_to_regmap(dev->parent->of_node);
+
+Instead of dev->parent->of_node, you can use:
+
+    struct device_node *np __free(device_node) = of_get_parent(dev->of_node);
+    mux->regmap = syscon_node_to_regmap(np);
+
+> +	if (IS_ERR(mux->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(mux->regmap),
+> +				     "failed to get the SYSCFG regmap\n");
+> +
+> +	init.name = "clk_pix_ltdc";
+> +	init.ops = &stm32mp25_syscfg_mux_ops;
+> +	init.parent_data = clk_pix_ltdc_parents;
+> +	init.num_parents = ARRAY_SIZE(clk_pix_ltdc_parents);
+> +	init.flags = CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT;
+
+clk_hw_determine_rate_no_reparent() already prevents reparenting, so
+CLK_SET_RATE_NO_REPARENT is redundant here. It doesn't hurt anything
+though.
+
+Brian
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Brian Masney <masneyb@kernel.org>
 
