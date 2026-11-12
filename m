@@ -2,111 +2,123 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C337606B5BD
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:44:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753A4606B262
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UR3qTbca;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HNt4lR5O
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LgATKRjd;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=RSbWlRDg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7j4ZkRwyXw7fmRhYE9lsi9fnMe99t0IsGQ1HSh6+zso=; b=UR3qTbcatqDeZCRqQbkyb+Bn3s
-	p7qwE/LDFzw0EeOoMsGKpyiJRA7U7MTz4RpVhgDOVR3pVGpIbfKjyQt0Oqk1L9rYVTNDcbm5K9pYj
-	8XgzqsuWcAPlsvibxLLwRXUXyOVMAmsbEVbMv6acSZc5nOsHwfq1pdNDVZzXba7myGCwnVwxzur2W
-	7BRfunrZ2sZQnFPJ98D/gkRAS5S6+6Aic+2YQxJq2Zu2OYbbmsVNeV82AaKmM9ICKWk9FDjm2NZGC
-	SIUOE/LRmz43hME+Qe4zVkGhDrDXXXnsxzLbb3JgZabq6icdqv1B2TnTHl2SzZIrG0t3Eta9wLZYe
-	CqAM5xDQ==;
+	bh=KUTOuBd3kVUkUzHZNREwxjsJVaLX7twXuutZuUI8pTk=; b=LgATKRjdhn9VnmzRhPaFHKyj78
+	LU7s/Zp+DcXewzUgKl+h0k9X2P3BOpdGQ8KWB7AyXsQi8P2NW4VTFL8pIYpw8QzVF5/3ilr2rymQ+
+	W12r/tjHsuGCNNe+k2LNtZdaSS7YoSxe45pFkdE2O0tWBfX/8zCC+OkP4fe4oCOwMkTcRT3CTi3QR
+	3mm3gApEV/JiTvjPgkQoLkXt4qvzrmoSIrcjG8UNAdR8ZEGVK6BelGZ+TYFPzIcjUQvIk15w7ijRA
+	OWWatqUFy/3gI8nF8pJxuwy+HSIMRYqRM5LO9Ne/pdC+bjBmamlEt2Qw656OkTnWW+XV+QVbWVmlk
+	/NhfIYsQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQPb-00000009DDS-0UaY;
-	Thu, 12 Nov 2026 08:44:04 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRQQi-00000009Dk6-3itg;
+	Thu, 12 Nov 2026 08:45:12 +0000
+Received: from mail-eastusazon11011046.outbound.protection.outlook.com ([52.101.52.46] helo=BL2PR02CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQNR-00000009CTD-1fFZ
+	id 1xRQPn-00000009DK0-2TkT
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 08:41:50 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E47F147896;
-	Thu, 12 Nov 2026 08:41:48 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794472908;
-	b=Kfh5sG2hjb3rydiXRatVMywSRDQocLG9KlbGYohSdZIMQIMW74GBGpjWN39KcXG8Xd0Q
-	 u58LDdXOEVrB6ArL9e/JfS66imXMUVxrfTxVcNH9XdhA7vmH9EV1UCbToIUXEyEGU2y/W
-	 9q+T+1a7kFSt1NllEigWW7ouOqN7Fmvjdl1ARzArTFPUysTPPEBoH/YODy3vfwOnWCxoN
-	 pi9cK08sWjM288tPE0LnIc6+iTW3s3eq7HD/fxICdeTJhD1EBwZYR2fJPkXpMA2d4Z27Y
-	 1QF/Gio6SnNJW+ugwlcz1SMpyQxzjBZk3zMeMz3BQb21PUvFeZXfDcK7qzo/+5vim3g==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794472908;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=7j4ZkRwyXw7fmRhYE9lsi9fnMe99t0IsGQ1HSh6+zso=;
-	b=CveUSkcr2SeZx1160NxomlqsQWTCF+O/bFPNRcsDyMZK45SJ2NV2wWOSRHfeSBkkSt8d
-	 bkwTIh0N4LbC5gb8ff9SFYFGur7QTu2ES060SwImG34qV1RE/yhZPyjYyaIy3lZc7tGcf
-	 IzifoHHBvPtuhe8XX5XIkEPpk/yUfZbGJo3C0roeZZdMN7LEntlTDPpTLdsN4++gExRVN
-	 DMwXEuSDhY7bheqraPfE3IzfxZzmYialdbJRf7hM7/i2YVFSSGygbwqe3W2jGILi8T7YV
-	 WNLPFjriHyHaEBYKBnKfp8mf9ReMb8TB9jrkwE1JuEAmlveaSKn/0jAnfwzVbHhSfPw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id B1AD51F00A0B;
-	Thu, 12 Nov 2026 08:41:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794472908;
-	bh=7j4ZkRwyXw7fmRhYE9lsi9fnMe99t0IsGQ1HSh6+zso=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=HNt4lR5OCdkNXd2V606MySq0Y6wAGv95tQGRUV80IVqb0slK+mJoDh0BsNjBCYdKt
-	 5nI/f870NJK1QQgCt9TYKtaR1VjtTBWcUyYPGdySFrvhG/Jpbs9dd/Pll00W8HSXUF
-	 pUixb33jzrB+hz3TWlnNbADABXPs7KnMIZcBqxCHW1mD+Jd1VB2+ebbYrN+QViqc2w
-	 HkGFSExDi8usTB7SUWQXhYV8f9eAxuWaxT51tGfnZpkJriU8gUvOuHZD7Iil2WbMzR
-	 CKZVp1cjbWcRVhfC5pcJlq92LKRrTZeFPqX98ToBNuEeaBIraG6lmwL+V4O9oJybjV
-	 9gQWMCVsaOdzw==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3DBD9493D5;
-	Thu, 12 Nov 2026 08:41:47 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:41:48 +0000
-Subject: [PATCH net-next v2 2/2] net: stmmac: dwmac-sun8i: Enable jumbo
- frames up to MTU 2018
+	Thu, 12 Nov 2026 08:44:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oB+Uq42KvXeo8P5Uo2Vm9zhsyliNGzHBYWOWKaf2vpiePwVbh4vfYdN1cfg3kM+H68YWzc4NgSblHfmfWaBzX8/OeaSD3PK+34Zavyvvgpc/TBj66VVB4H9ZobsZF01n4kLwz9dK8A5n2ksprVMf5K+C38wXcxVjqNYvsQm6/a/4olYsJIuLdZvbwrUMiML7nTy+M9A190NYPR6C3E8LVvRvuLrcnrssg64RjAX4tw8cg1pMh/3Qp5WNyZHunfYpZlYbHR4oweyhVw3tp307GUTrAVAohE53Q6nZ8MFmCx+jvGVNPfWuJv0pZCpoSddrkUZrdE/OR1QrWGQDkecfog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KUTOuBd3kVUkUzHZNREwxjsJVaLX7twXuutZuUI8pTk=;
+ b=M+VMfQwqkgXPx+lMFUAnDC4AYrriQ/u6Yr2A245uGEmVruqdqlGSPcgjprxBlJ8zCyYp8BRw+17pT5+wdNVEWAYiQP44/lWpKfpVg0ACMQ8yvKAPK8uHvPh/XniJcv+jMmRR0/4IIESj97KDDY01phAqEAmpXJQiUvD1KXOtKy8LnU2qLHFFR76rGU+9oX0XM9rJrlvuxG5tIUA3JvMhFCL2raCtaAr9r+Zfc57DTqo9Cl4zjIkDV8SH7hIqr2Ds1CxIAKK9y8KS4OYxMWICQd1qw8TpRRUuAuQri6TagX4XrpcCiYFfJlCRQJNBj2Lx5BbDtr0jLyf3nTv15PaILA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KUTOuBd3kVUkUzHZNREwxjsJVaLX7twXuutZuUI8pTk=;
+ b=RSbWlRDgPc7QZQihtW4elYVt6MGX4kXPnf9ydNLfTh0Lvns92f9QXz25U1Ip3uNJyKSaESyWGwQZiy0zuOVlL/4wbxGDGZqJVFUMRxV1s4PywcCTIW7Erwk7XAvqz95gs4R2KapCmeq9mU2iGA0+pPzSpA/GQ3MmdG7Rrjb3dNY=
+Received: from MW4PR03CA0162.namprd03.prod.outlook.com (2603:10b6:303:8d::17)
+ by CY8PR12MB8339.namprd12.prod.outlook.com (2603:10b6:930:7e::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Thu, 12 Nov
+ 2026 08:44:08 +0000
+Received: from BY1PEPF0002695D.namprd05.prod.outlook.com
+ (2603:10b6:303:8d:cafe::29) by MW4PR03CA0162.outlook.office365.com
+ (2603:10b6:303:8d::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Thu, 12
+ Nov 2026 08:44:07 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BY1PEPF0002695D.mail.protection.outlook.com (10.167.244.166) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 08:44:07 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
+ 2026 02:44:03 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
+ 2026 02:44:02 -0600
+Received: from localhost (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53 via Frontend
+ Transport; Thu, 12 Nov 2026 02:44:01 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@amd.com>, <git@amd.com>
+CC: Sandeep Reddy Ghanapuram <sandeep.reddy-ghanapuram@amd.com>, Conor Dooley
+	<conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring
+	<robh@kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+ BINDINGS" <devicetree@vger.kernel.org>, "moderated list:ARM/ZYNQ
+ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: versal: dts: Add PCIe reset IDs
+Date: Thu, 12 Nov 2026 09:43:44 +0100
+Message-ID: <b06d55abdb0671d9dc987057f44c989317e19680.1794473022.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-sun8i-emac-jumbo-v2-2-aca0cf23cf17@gmail.com>
-References: <20261112-sun8i-emac-jumbo-v2-0-aca0cf23cf17@gmail.com>
-In-Reply-To: <20261112-sun8i-emac-jumbo-v2-0-aca0cf23cf17@gmail.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
- linux-kernel@vger.kernel.org, Corentin Labbe <clabbe.montjoie@gmail.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472906; l=4734;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=ZPiyfCZmfSnwUUZ2KWrlwC/8CYyWh0WpVDKIRZLdbyA=;
- b=0IUWEE0Wk0sl3sXsxfCbIwPqGk+0GPYaoUwZ0ZQ9e3Gu9EoHTdRH04zVOqGDJWJA31Sb3Mjw7
- 2BID/ohoa4nCptmWbC2IZbGeDXOTyFq/y57Y/myP9y7JLcMJEQKQiFv
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=938; i=michal.simek@amd.com; h=from:subject:message-id; bh=DBR7Ft0FnTklP2607nm892brRt41Fvy6Iow5AEVsyLA=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWR9rfEqLUjevyPjmkgS42L+TWntL4Ln75u8wHtlVsbiZ Rb6G8wKO0pZGMQ4GGTFFFmmM+k4rPl2banY8sh8mDmsTCBDGLg4BWAin/kY/ieEGj9evmDi28WP alK8nuR93LGqtDFMK+5ZROEetnmfmz4wMuzb21IUnpuR91k6ae8PzYM8R7/+N7P9sSXr3AGpqin CbAwA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0002695D:EE_|CY8PR12MB8339:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5df5dc2f-56ea-4fc6-6dcb-08df40991d7f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|36860700016|82310400026|23010399003|376014|1800799024|18002099003|10067099003|261028144727099003|261022075727099003|11063799006|261009223027099003|261102123227099003|56012099006|261021121427099003|261022105027099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: 0wn98bXJdD+KJGg+3z+Uykkri1wpyX3bo0H01cukphO2+9eY4Np9O+XqNMnEzj2nRtZjpMbOjJxqHU4ad+SFnFfKL1pKytIEuJYNttspPEGgYSBbylz3tKcD1E+aef/xdK0N7l8y12VNDKWnxTCWgbINmLxd1uVOf+NsZGT6El/F8XfM37w+Pi8OGfvhzOX1THr3D0WD3fTDvBEobT0rPp1ku3XvyIszYBtJ/Ua53aKbikzjAQnEl6V2j8ZEPs+F0JJUKtjsD0wqA/Rx20pNwdIHKo1k0TnGRPfHj+m1Hd8kok0uoj2l5UexQzUqVXTPVCp/hdl2XVX0z/Q8rCws/Sm2hco0IpdVTjw1wxC3FHJ+24NtaASOS2rX+i0Qd9KPsaFWA88TTsjeLoAcn0ec5u8JXQo3iV2vecIwZtsqay0cajuh1k75nAjAmFRmS27iZo2i3OZIzLx8StG76Rgih7i1VAijFPQH+NndPoFavajkt371VPWjUYnc9VjrFDFO53j1Wwp6thXZtvV66i7eq9GlfLCHsDKaP7yJRUKlZcXKV7bN29c361+ASlH9PU5qacfRyiIc2p/Bp3cM7UQZFBk102u2o8F83meeHRHgYHY8DZxRglgH3z6J+JJWXqAg1q2jhiDfScch+XtZHe3jnMy3Eu4pmAT+I5RfHedoBTsDCLQI6+YX63/ap18E9mly5Qkqch4VMcQmXXhL7ENdMw==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(82310400026)(23010399003)(376014)(1800799024)(18002099003)(10067099003)(261028144727099003)(261022075727099003)(11063799006)(261009223027099003)(261102123227099003)(56012099006)(261021121427099003)(261022105027099003)(261026140227099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: gI3cev2tGYyzoSlxptNNS00ypD8Qsk28P/nrRtmNyR+njwuVu33XnZKrMaNBkBBa5ZIrSY8yE/CEzitSi9ndgXGRGJD+ldIGTO9vwlx6i9DPytegDM4tNFCY/xTjPxTKB7cvNXjOpuaPXAlpsdAFWr8bk8/T8MYzStyHBC6rUADbTrjZ41qyDOXM2/MfHbaSuXTndCpPIp8gGctadmNw0o80xmE0dKumXILX+URXULQoD2NL46lbCTbbqcT6Gr0ZcJDOOm/lihtLo4ZHWLxxATLR7daKENizOFaa2YPgv5T/p5YtirVff+DPePLDNyBfL6JSLOCJRNtH2TixOJgmjF58G8UdomSDAhPyNCkpbLcBXoTZU3nzMnnge+96VJnF8kQMTs1K2JlilJOLHOlHtnv4sAwObvht/z5qqd6lR9794mtPzQpAiB3p1AexurgO
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 08:44:07.7986
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5df5dc2f-56ea-4fc6-6dcb-08df40991d7f
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0002695D.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8339
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_004424_382065_0DF841D9 
+X-CRM114-Status: GOOD (  10.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -116,127 +128,42 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+From: Sandeep Reddy Ghanapuram <sandeep.reddy-ghanapuram@amd.com>
 
-The sun8i EMAC advertises a maximum MTU of 3712, but no frame larger
-than the standard 1518 bytes is actually received: on an H616 board
-(Orange Pi Zero2, RTL8211F over RGMII) every ping above 1472 bytes with
-DF set is lost, and the rx_length counter goes up for each one.
+Add VERSAL_RST_XAPE_0 through VERSAL_RST_XAPE_1 reset binding
+definitions for CPM6 PCIe controllers. These IDs
+will be used by the PM reset controller to manage PCIe resets.
 
-There are two independent limits:
-
-1. EMAC_RX_CTL0 bit 29 (JUMBO_FRM_EN) is never set, so the receiver
-   rejects frames longer than 1518 (1522 with a VLAN tag) bytes. The
-   Allwinner BSP driver (sunxi-gmac) sets this bit unconditionally at
-   init. Set it in core_init as well; core_init runs after every DMA
-   soft reset, including the one done by an MTU change.
-
-2. The EMAC has no Synopsys HW feature register, so stmmac uses normal
-   descriptors in chain mode and, without enh_desc, sets max_mtu to
-   SKB_MAX_HEAD(NET_SKB_PAD + NET_IP_ALIGN), which is 3712 with 4K
-   pages. That value is not a hardware limit. The descriptor buffer
-   size field is 11 bits wide (the same in the BSP and the QEMU model),
-   so ndesc_init_rx_desc() caps each RX buffer at 2047 bytes, and
-   ndesc_get_rx_status() discards any frame that needs a second
-   descriptor. On TX, stmmac_xmit() only splits jumbo frames for
-   enh_desc, and norm_set_tx_desc_len_on_chain() masks the length to
-   11 bits, so a linear frame longer than 2047 bytes would be silently
-   truncated.
-
-Moreover, the RX DMA only fills a multiple of 4 bytes of a buffer: on
-the H616, with 2047 programmed, a 2044 byte frame (FCS included) is
-received in one descriptor and a 2045 byte frame already spills into a
-second one. The usable size is therefore 2044 bytes, the same value as
-DESC_BUF_MAX in the original sun8i-emac submission and in the U-Boot
-driver.
-
-Limit max_mtu so that a frame with two VLAN tags and the FCS fits in
-2044 bytes (MTU 2018). A device tree max-frame-size can still lower it.
-Longer frames from the wire span two descriptors and are dropped as a
-whole by stmmac_rx(), which drains the descriptors of a split frame
-since commit 834ec9530832 ("net: stmmac: drop split frames on AF_XDP
-zero-copy RX").
-
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Signed-off-by: Sandeep Reddy Ghanapuram <sandeep.reddy-ghanapuram@amd.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 24 +++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-index 0c82662fbe6e..a18d3daf6a3f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-@@ -6,6 +6,7 @@
-  */
- 
- #include <linux/clk.h>
-+#include <linux/if_vlan.h>
- #include <linux/io.h>
- #include <linux/iopoll.h>
- #include <linux/mdio-mux.h>
-@@ -219,12 +220,25 @@ static const struct emac_variant emac_variant_h616_emac1 = {
- 
- /* Used in RX_CTL0 */
- #define EMAC_RX_RECEIVER_EN             BIT(31)
-+#define EMAC_RX_JUMBO_FRM_EN		BIT(29)
- #define EMAC_RX_DO_CRC BIT(27)
- #define EMAC_RX_FLOW_CTL_EN             BIT(16)
- 
- /* Used in TX_CTL0 */
- #define EMAC_TX_TRANSMITTER_EN  BIT(31)
- 
-+/* The buffer size field of the EMAC DMA descriptors is 11 bits wide, and
-+ * the RX DMA only fills a multiple of 4 bytes of a buffer: with 2047
-+ * programmed, frames longer than 2044 bytes spill into a second
-+ * descriptor. The stmmac normal descriptor code used for this EMAC only
-+ * handles frames that fit in a single RX descriptor and a single TX
-+ * descriptor buffer. Bound the MTU so that a frame, including two VLAN
-+ * tags and the FCS, always fits in 2044 bytes.
-+ */
-+#define EMAC_MAX_FRAME_LEN	2044
-+#define EMAC_MAX_MTU		(EMAC_MAX_FRAME_LEN - ETH_HLEN - \
-+				 2 * VLAN_HLEN - ETH_FCS_LEN)
-+
- /* Used in EMAC_TX_FLOW_CTL */
- #define EMAC_TX_FLOW_CTL_EN             BIT(0)
- 
-@@ -645,6 +659,15 @@ static void sun8i_dwmac_core_init(struct mac_device_info *hw,
- 
- 	v = (8 << EMAC_BURSTLEN_SHIFT); /* burst len */
- 	writel(v, ioaddr + EMAC_BASIC_CTL1);
-+
-+	/* Without JUMBO_FRM_EN the receiver flags every frame longer than
-+	 * 1518 bytes (1522 with a VLAN tag) as a length error, so any MTU
-+	 * above 1500 is unusable. Frames are still bounded by the RX
-+	 * descriptor buffer size, see EMAC_MAX_MTU.
-+	 */
-+	v = readl(ioaddr + EMAC_RX_CTL0);
-+	v |= EMAC_RX_JUMBO_FRM_EN;
-+	writel(v, ioaddr + EMAC_RX_CTL0);
- }
- 
- static void sun8i_dwmac_set_mac(void __iomem *ioaddr, bool enable)
-@@ -1209,6 +1232,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
- 	plat_dat->mac_setup = sun8i_dwmac_setup;
- 	plat_dat->tx_fifo_size = 4096;
- 	plat_dat->rx_fifo_size = 16384;
-+	plat_dat->maxmtu = min(plat_dat->maxmtu, EMAC_MAX_MTU);
- 
- 	ret = sun8i_dwmac_set_syscon(&pdev->dev, plat_dat);
- 	if (ret)
+ arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h b/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
+index fe00f4a0ba65..f8189d1cbc12 100644
+--- a/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
++++ b/arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
+@@ -102,5 +102,7 @@
+ #define VERSAL_RST_XRAM				(0xc30c05dU)
+ #define VERSAL_RST_AIE_ARRAY			(0xc10405eU)
+ #define VERSAL_RST_AIE_SHIM			(0xc10405fU)
++#define VERSAL_RST_XAPE0			(0xc410115U)
++#define VERSAL_RST_XAPE1			(0xc410116U)
+ 
+ #endif
+---
 -- 
-2.55.0
-
+2.43.0
 
 
