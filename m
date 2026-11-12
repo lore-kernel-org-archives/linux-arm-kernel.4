@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339E8606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66E1606A88C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:30:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ceJWflf2;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dXtlBwGX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tCOlKi6v;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WYkpzBLe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,89 +14,96 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BUIoOdvM/LleNE9vPU9m5wgslnjsbtxMHIyToWC6kpw=; b=ceJWflf2Z74Rkw89JxRn1rQOxy
-	450OtxGCnNZkfiqaioffvfJx+mXbDd6h7+v0roayRZJhxrhdadyUV5ZvqFbQIX5EnQhIF4AHqCX9B
-	ZlA8W2Py7if3DT3LmoRtjTCVbQeZ3e/kfoDnT2xD01Rzgu+Z7XSyUPV6W+7U7Z6mBNib+6XNXzbkE
-	CKj5MmuTvORuMbzIFJrFYQ1NCEOhpJlXUvyXb30n7IMWoT6htc6rdl+wJDGredMIdLVFoCfyzecBj
-	pWOga3SquWMLUTHAlMu8L1VrfuvP+soHcA8DvcBPpU/LDUN7v0TkTZP9YZoFKLm1UBhVRvOl/c44f
-	SNc6PT4A==;
+	bh=hKuahGHQ0APnWIJaFL6RA1DFujLrUACycNekn7BglGU=; b=tCOlKi6vFuGVn8uSnnMZekNDP8
+	kqW2YrT4YIogKshjsEk0fUKtMu5ixT6K/qo+yLcl3QmpwcyPfoMVIsC916T6VQ+bHK0820FDSEdxr
+	wi4YRShtALqVjOlQfoRYbFzjq6wZ/idoB5xQms7CDw1qzDJMTJ7yYr/3ZZPDYvMQtNW8fgjYM7qQU
+	ac/UlYH9a4r1Nhh38nFkuNasjiq4DtI/eMEluiG1NC29uzEG5Y0S5bMPnd4Ee6phoDpWcTgXi2+Da
+	oHUcjIO7Z90GmmdD8D9jJXePxYCAabTvvKHmKzKc50xIb+IfCUdEyhiO6U0beI8RiOH+yYgY0PGDd
+	IB2reLgQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQ63-000000095PF-25yl;
-	Thu, 12 Nov 2026 08:23:51 +0000
+	id 1xRQCq-0000000970G-02Fh;
+	Thu, 12 Nov 2026 08:30:52 +0000
 Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQ5k-000000095HN-0UZL;
-	Thu, 12 Nov 2026 08:23:37 +0000
+	id 1xRQCo-000000096zN-2hJI;
+	Thu, 12 Nov 2026 08:30:50 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C78BB413B6;
-	Thu, 12 Nov 2026 08:23:31 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 1DBD545021;
+	Thu, 12 Nov 2026 08:30:50 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794471811;
-	b=wcMMBd1Hb2Ilk71pww10XRgNP3WD1G/YNlzMfYbNkdrUlkP13BpHvjQsI5DqM51z+0XV
-	 X9eE8vvhcByIYDmJUxz285uzUJoq9yXo8AIQieKSIjj1U/Dc8TxaFa8SgL2+LL8FA9sDu
-	 9O2QFLUUyXQixaaEEzG+biRMuZ0CLFbG+gtmGj4XuP342Dp8rK7+IxDXIFniHP9t03rMb
-	 3wnpsygwWkdg5MtFfG0p2c+HJgmgLv2ImLW5/oIMJfly7I/O3iq5qQ50AjQdNLGygesL/
-	 DEYi20WCpPpl00+NenZVcJck4aCV2qMrxSQIq+P+Q+7eCEZvNcI+LPZfh/lU58YbCVQ==
+	t=1794472250;
+	b=KtfNqADoq81K3tziX8Ra6eFlkF/d8Bkjj8/A5zShulhyYH2LXgui2TenBv7XXl0bvmCc
+	 IJ7YWBjNEnDvjJx6xKEciyVIKvfzIbqiS5FG9wYMBuH0VoD/0xfFzj2k4bX5HsnJDwpOq
+	 H5dSZ66k7iV0jKMEGcqUj51VyWJLmAo+dim5ejIAQgrcmi8/2ppz2ENaoTALAlT/Wz/7Y
+	 IKqPfHAk6CMXDmwLgrJWEoOGvenEOdNJK/g126ARRisMEJtCj6bcCfW45pMXAWFggdtjz
+	 n8eOpJiEt0psAFUbUYCMXBpnflDTHQkXiEp0dLdwF6geepckIsQCkJ1l0bFKK2uShgw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794471811;
+	c=relaxed/relaxed; t=1794472250;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=BUIoOdvM/LleNE9vPU9m5wgslnjsbtxMHIyToWC6kpw=;
-	b=q9TMJc96QipZfMQ4mRqoBlVs1iupL2g4WhmVmkTwAs/5NTxF0Y0NRNiy+Qp0vRrPqwMf
-	 /lqcw6kIwKQUWfqOeOB1nDKOvtvJp3w7JgD1OH06y4b5omKMXpIPouj4Q/XUXtPQxnpCT
-	 0baHKSOu18HxE3Ss1xywmIuXig7OsiNbQKAUOsLx2qnSGsjCEDLTek2hlTCrvISeqEo4z
-	 nPp44vMXnFQZICCTsHsaVOtgbztgZc4pEDvlh5+eijPTsTUsWhThKnUAzXvSFag7Y/5ex
-	 Bf3Y2XHTKOvP6UCb2bQ8HPqPKteiz46h8K/UH8SuM3o2tHsGZwT3Hk8trzXUXgtVMiw==
+	bh=hKuahGHQ0APnWIJaFL6RA1DFujLrUACycNekn7BglGU=;
+	b=ZsV/tbq2tqWLsXNL038JVbaFfsUU2i0+ekwxJe/PL1xFO7nqoFp40cVIe20r54yqUEax
+	 CxltctBCkP4PsbcPGVVugVdoMw6Nke+uHnOL4mNdxPS4Ghwg232SNr29NErBxQujG5b/x
+	 x+TWtCLSGYuLB7J26wZ+/RUPeCCJGImip3jm75xe4GzWreGT4vxwLLXh7bDTxh5RHC1Kp
+	 tldqkxI9Fu01BPsffcXFiVj8YZODPZGdmdSDnvZhs0M52uBhfmAKA8c+j+n6FwnxPi4uI
+	 za5EiMjhwRePsJDi3RBT4X0AGifTKQqNDZ4KwdQp6Vh8jP2AfxvJZkqIKkI3k8uHeyg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 41FDD1F00A07;
-	Thu, 12 Nov 2026 08:23:30 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 8579D1F00A08;
+	Thu, 12 Nov 2026 08:30:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794471811;
-	bh=BUIoOdvM/LleNE9vPU9m5wgslnjsbtxMHIyToWC6kpw=;
+	s=k20260515; t=1794472249;
+	bh=hKuahGHQ0APnWIJaFL6RA1DFujLrUACycNekn7BglGU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=dXtlBwGX4QADCtFzVbZ8yyIqPyzhEXRUX7iHsRKOzKOKZjA8q8GKblSkCbdgXO4a8
-	 VrgkFCCjp2j0trxNjoYBTX3ybW2yqldayBLDoTboAiR1fdD38E0Blia4gVVSqYIo2s
-	 9UwcKThVYrK428dwTZaV1OdqqEtP5ZwjIxtD0AnIzB4VKZHBV5guO1QU+xc7ef42tK
-	 U0b7xA4yZrFmw2EPxkoTxb++rcXfk+MJojYFgHUed2ThHPSmJJ8Xo/jjx5cEBfxDD9
-	 rQZ7cjyEZUQw80Afo16Zl3WGGBBWlS/QqniEtypVGbb+K/kSVGaO3zo+f2Sd8VJ9dt
-	 pESMySoVPn3VQ==
+	b=WYkpzBLenmwUPf2zd3uq1njx4uMjWtSAQCgvaijuZCh9CJhVV3UA1SFOq1Ntlyo3w
+	 Bhe3c/JklCRAUyQghlVbMfoLHpIjEnDnAxwgx1zPO4ZAGnh+V8M34IF1DsGDhbgoU0
+	 zReUijHlJVAKHw2PP7mF8jfI5kq6CiTPjH+f8fjts1cfv6cAQVPyX847mrwgoYrv2I
+	 FD7R7bdA8nzM7T1mcOB3hMtoskktPe89RhkrF51Ra5YzDiCyy8fD0z2DG53lV1nvKS
+	 l/3WZx92gzEogZ7wpiVK3QLmQjb5y4OdP5guRfRKE7sOR70fWcEYq/IgsaMNWFz5dr
+	 eOKwaUHxzB0gw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id AA7E249355;
-	Thu, 12 Nov 2026 08:23:29 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 0C7964937D;
+	Thu, 12 Nov 2026 08:30:48 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:23:29 +0000
-Subject: [PATCH v2 1/2] pmdomain: rockchip: remove subdomain links before
- the domains on error
+Date: Thu, 12 Nov 2026 08:30:48 +0000
+Subject: [PATCH v2 2/6] media: verisilicon: Don't hold the VPU in reset
+ after remove
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-pmdomain-rockchip-v2-1-5cd942a23df7@gmail.com>
-References: <20261112-pmdomain-rockchip-v2-0-5cd942a23df7@gmail.com>
-In-Reply-To: <20261112-pmdomain-rockchip-v2-0-5cd942a23df7@gmail.com>
-To: Ulf Hansson <ulfh@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Shawn Lin <shawn.lin@rock-chips.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Kevin Hilman <khilman@linaro.org>, Caesar Wang <wxt@rock-chips.com>, 
- Elaine Zhang <zhangqing@rock-chips.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Yao Zi <me@ziyao.cc>, Igor Pecovnik <igor@armbian.com>, 
+Message-Id: <20261112-hantro-robust-v2-2-18561fd48838@gmail.com>
+References: <20261112-hantro-robust-v2-0-18561fd48838@gmail.com>
+In-Reply-To: <20261112-hantro-robust-v2-0-18561fd48838@gmail.com>
+To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, 
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>, 
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Hans Verkuil <hverkuil@kernel.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>, 
+ Tharit Tangkijwanichakul <tharitt97@gmail.com>, 
  Arun Iyengar <aiyengar1990@gmail.com>, stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471809; l=4093;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472247; l=3396;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=HmcyW0DxnBVZSZC6Y5OzDTxCaMmgNoXvaW5puYHZHjI=;
- b=0b42T8GqnJyvy8hetveu/oq6O8tsqKdECKifJLTziXUw4t270sGclByhcSTABlQkPpD9faKz2
- Gx0FUsBgqlmAeBHvtYsN5WD0Ui2jogtMiHD8S1H/WBA4Tq3i1Et/K39
+ bh=anNmhGiL7WByI9+zM577XJx5bZa3C8k/V1V7McF0Fl4=;
+ b=2EFkfYTDn6pLkeZxwuRwLY45wAj10XzVKpR2UnGp21Z3SBiwzuU8sYxnpb0Ga7wuPijpxXsKJ
+ 45neb9AXVThCQHWvnSPHT3H7YpXL4Dd+4YAW875XWa2VkLpO4PxprBi
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -124,101 +131,81 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-When rockchip_pm_domain_probe() fails after some domains were
-registered, for example because a clock of a nested domain is not
-available yet and returns -EPROBE_DEFER, rockchip_pm_domain_cleanup()
-calls pm_genpd_remove() for every registered domain in domain id order.
+On the RK3588, the resets of the AV1 decoder include the AXI and APB
+bus interface resets (SRST_A_AV1_BIU, SRST_P_AV1_BIU), which also cover
+the Verisilicon IOMMU of the decoder. When the driver is unbound, the
+driver core runtime resumes the device and, through the runtime PM
+device link, its IOMMU. hantro_remove() then asserts the resets, and
+when the IOMMU autosuspends 100 ms later, vsi_iommu_suspend() writes to
+its registers while they are held in reset, which raises an SError and
+panics the system:
 
-pm_genpd_remove() refuses a domain that is still the parent of another
-domain and returns -EBUSY. The cleanup walks parents before their
-children in id order, and on RK3588 RKVDEC0/RKVDEC1 (ids 14 and 15) are
-also children of VDPU (id 21), so no ordering of the domain array lets
-every removal succeed. Each refused parent only gets the "state may be
-inconsistent" message, and on return devm frees its struct
-rockchip_pm_domain, the embedded generic_pm_domain included, while it
-is still linked on the global gpd_list. The next registration, the
-unused domain power off at late_initcall and the genpd debugfs files
-then walk freed memory.
+  SError Interrupt on CPU4, code 0x00000000be000411 -- SError
+  Workqueue: pm pm_runtime_work
+  Call trace:
+   clk_disable+0x30/0x90 (P)
+   clk_bulk_disable+0x44/0x90
+   vsi_iommu_suspend+0x4c/0xc8 [vsi_iommu]
+   pm_generic_runtime_suspend+0x38/0x80
+   genpd_runtime_suspend+0xc4/0x348
+   ...
+  Kernel panic - not syncing: Asynchronous SError Interrupt
 
-Remove the parent/child links first, walking the power domain nodes
-depth first in the same way rockchip_pm_add_subdomain() added them, so
-that each child no longer has subdomains of its own when its link is
-removed. With no links left, and no provider or devices attached in the
-probe error path, pm_genpd_remove() succeeds for every domain before
-devm frees it. pm_genpd_remove_subdomain() also drops the parent's
-subdomain count, which removing the child with pm_genpd_remove() alone
-does not.
+This was hit when reloading the module, unless the decoder happened to
+be probed again within the autosuspend delay of its IOMMU.
 
-Fixes: 79d12b7a7f22 ("soc: rockchip: power-domain: use pm_genpd_remove in error cleanup")
+The IOMMU is not the only one to access the bus interface after remove.
+Commit 8e26d4c20ed2 ("media: hantro: disable runtime PM before hardware
+teardown") moved the assert after the runtime PM teardown because the
+power domain code faulted on it when powering the domain off. With the
+resets left asserted, the same domain code runs again when the domain
+is powered on for the next bind, before hantro_probe() deasserts the
+resets, and when the domain is powered off after a failed probe.
+
+A runtime suspended VPU has its resets deasserted and its clocks off.
+Leave it in that state on remove and on the probe error path instead of
+asserting the resets; hantro_probe() deasserts them anyway.
+
+Fixes: ea71631b7129 ("media: hantro: add support for reset lines")
 Cc: stable@vger.kernel.org
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/pmdomain/rockchip/pm-domains.c | 46 ++++++++++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ drivers/media/platform/verisilicon/hantro_drv.c | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index 86b5074b0469..00c7e78f89b5 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -955,12 +955,58 @@ static void rockchip_pm_remove_one_domain(struct rockchip_pm_domain *pd)
- 	/* devm will free our memory */
+diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
+index 26e5d5547466..4542322dba71 100644
+--- a/drivers/media/platform/verisilicon/hantro_drv.c
++++ b/drivers/media/platform/verisilicon/hantro_drv.c
+@@ -1210,7 +1210,7 @@ static int hantro_probe(struct platform_device *pdev)
+ 	ret = clk_bulk_prepare(vpu->variant->num_clocks, vpu->clocks);
+ 	if (ret) {
+ 		dev_err(&pdev->dev, "Failed to prepare clocks\n");
+-		goto err_pm_disable_assert_reset;
++		goto err_pm_disable;
+ 	}
+ 
+ 	ret = v4l2_device_register(&pdev->dev, &vpu->v4l2_dev);
+@@ -1264,11 +1264,6 @@ static int hantro_probe(struct platform_device *pdev)
+ 	v4l2_device_unregister(&vpu->v4l2_dev);
+ err_clk_unprepare:
+ 	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
+-err_pm_disable_assert_reset:
+-	pm_runtime_dont_use_autosuspend(vpu->dev);
+-	pm_runtime_disable(vpu->dev);
+-	reset_control_assert(vpu->resets);
+-	return ret;
+ err_pm_disable:
+ 	pm_runtime_dont_use_autosuspend(vpu->dev);
+ 	pm_runtime_disable(vpu->dev);
+@@ -1290,7 +1285,6 @@ static void hantro_remove(struct platform_device *pdev)
+ 	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
+ 	pm_runtime_dont_use_autosuspend(vpu->dev);
+ 	pm_runtime_disable(vpu->dev);
+-	reset_control_assert(vpu->resets);
  }
  
-+static struct generic_pm_domain *
-+rockchip_pm_node_to_genpd(struct rockchip_pmu *pmu, struct device_node *node)
-+{
-+	u32 id;
-+
-+	if (of_property_read_u32(node, "reg", &id) ||
-+	    id >= pmu->genpd_data.num_domains)
-+		return NULL;
-+
-+	return pmu->genpd_data.domains[id];
-+}
-+
-+/*
-+ * Undo the pm_genpd_add_subdomain() calls of rockchip_pm_add_subdomain().
-+ * Links are only ever added between a DT node and its children, so walking
-+ * the tree depth first and removing the links of the children before the
-+ * link to their parent always finds the subdomain without subdomains of its
-+ * own, as pm_genpd_remove_subdomain() requires. This also covers domains with
-+ * more than one parent (RKVDEC0/RKVDEC1 on RK3588), which a walk in domain id
-+ * or registration order does not.
-+ */
-+static void rockchip_pm_remove_subdomains(struct rockchip_pmu *pmu,
-+					  struct device_node *parent)
-+{
-+	struct generic_pm_domain *parent_domain, *child_domain;
-+
-+	parent_domain = rockchip_pm_node_to_genpd(pmu, parent);
-+
-+	for_each_child_of_node_scoped(parent, np) {
-+		rockchip_pm_remove_subdomains(pmu, np);
-+
-+		child_domain = rockchip_pm_node_to_genpd(pmu, np);
-+		if (parent_domain && child_domain)
-+			pm_genpd_remove_subdomain(parent_domain, child_domain);
-+	}
-+}
-+
- static void rockchip_pm_domain_cleanup(struct rockchip_pmu *pmu)
- {
- 	struct generic_pm_domain *genpd;
- 	struct rockchip_pm_domain *pd;
- 	int i;
- 
-+	/*
-+	 * pm_genpd_remove() refuses a domain that still has subdomains, and
-+	 * devm frees the domains on return whether or not they were removed,
-+	 * which would leave freed memory on the global genpd list. Remove all
-+	 * parent/child links first, so every domain can be removed.
-+	 */
-+	for_each_available_child_of_node_scoped(pmu->dev->of_node, np)
-+		rockchip_pm_remove_subdomains(pmu, np);
-+
- 	for (i = 0; i < pmu->genpd_data.num_domains; i++) {
- 		genpd = pmu->genpd_data.domains[i];
- 		if (genpd) {
+ static int hantro_runtime_resume(struct device *dev)
 
 -- 
 2.55.0
