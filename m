@@ -2,114 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9503A606A8B0
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 05:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 265D4606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 05:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=olvO/n+7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oZiRt3k+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pxNesfQx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=W6mZOJg0qLo6Oh/FE3CEb1vYHcaROZa/HUARz/kORXE=; b=olvO/n+75q70tHM3JofZ4mIAH1
-	DlSlbMKZKekjmJMan33ROjb3y/RlmbNNqw0Oelr5qcnT+GZseYz9GQM/noZiYFZOktHnL5e6DCYJM
-	uf2oZgfUzU4wq3dOO6mqPoJMDHGgtu4gSRgyK/z/arFWm0MpQhSqOytNBGIfWamb7MO6ENbNCJpak
-	pavNXlPtV2Few2slqygReLLwz3l0Qp6kODqGXjSuCiAK8FFZC2RqR89WaL0YKhKCTDA4gjNnDhDtL
-	j0+Fk8EP75MX7ykHouNkmmK5Gwq3UR05Ii1z1MaHtuxU/bBszvT/4w1498nfxqnrcFBYXgJ4xe8v9
-	t9OLSuMA==;
+	bh=hNlfYdQobugmf9UW73UA0KZ3DncrTeY2FGpbRf8Ii54=; b=pxNesfQxF8uidYp6GsD9u28Z/L
+	BwDS+4ife1arPPvWqpZwZantyzm7VOoiqBLdz+nfg1PSmt+Snu2zEK1Vqy+KXwglz+ZIZbsPJHl0n
+	BgTccek7D3M5w52BUO2RA3gHzZssQ5KJFBdeewamhjaJxifKw3uf05Avk2cHMCggzUbVNd3hAJd6n
+	YBSXGGLsmnZWsSaMAX/MZDJB3lWglx85srXn9Gx9SVEBs8Nl791p0rliZv60ZiyL4+Ynjp34CAaC9
+	NpRXgfpUpFXGv61J3I7fBAot36JxHtuFztlFVLImbLdnw89NqsQ9ni48OUM4RdiW6e+noULzIjqb2
+	wtLHLEZw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNM4-00000008l3w-2j9O;
-	Thu, 12 Nov 2026 05:28:12 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRNN0-00000008lHt-3stx;
+	Thu, 12 Nov 2026 05:29:10 +0000
+Received: from mail-wm1-f53.google.com ([209.85.128.53])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNM0-00000008l2q-0wc5
+	id 1xRNMe-00000008lAj-424O
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 05:28:09 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 35A9E6375E;
-	Thu, 12 Nov 2026 05:28:07 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794461286;
-	b=H9vUwjI/2pkawjH/yZx1jvNuHTPxjiRtRdl7q3GBJiAW+cGTyKvzraBxdjf3ac8KUJlS
-	 BhSHLgKygYT2buK7BE/zxMQTr8yah58ekCGWBlac0UiqDtWS1sR6lIXXRzYyFEGCLbtnC
-	 jdR71tL69Rv4BPzsdR1kP0Xl/EoD6ZjUvxdCqRK1R79Mx430WOtx+sC65Jwi31/tHMHrn
-	 S0JmzKtxhLkSFtmrvwxFmecaSBc0OQ+NqJJlU5j7qLrmTXqdfVZdrDPQIVDv+5Lt8MmzA
-	 m+Sxzm3WNYhaDPsUW31rve1VL5++iatVtfGhp554KL2KjPB/UyETXwyVy2ciT0TyiQg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794461286;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=W6mZOJg0qLo6Oh/FE3CEb1vYHcaROZa/HUARz/kORXE=;
-	b=0hMwJi/5kZc60K2cThvoO09Io1eeh0RrhWnGdZXC3eFF0SjfZj5LZvtO0AcaKqHIbffy
-	 qiSD7LzvrjXJtS5/3MKy+LUm9ZnKAL8Btlnp/Si/XVaOOVdGY1vhQ1x+SOLR30dqoSVHC
-	 pNI7ADcZ4TxbTZSnGVImx3Jigl9WYpkIAZDtENfBo49eq4ZE5/Rq1oVc9XGjhKX0delAM
-	 /8TIle5esV+XRKMwOW8BlSt8qJJyWazvS4Kf4UTTLd7M3/lRs+v++8WE8rUQhhe7jYCpi
-	 uM/+kM5o/0YGgjbQSI/y3x/dHXdhfTz5Okhr7PUl9cDdVCA0MT4KRgm9aCX2kGabTQw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BE6021F00A09;
-	Thu, 12 Nov 2026 05:28:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794461286;
-	bh=W6mZOJg0qLo6Oh/FE3CEb1vYHcaROZa/HUARz/kORXE=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=oZiRt3k+5VLSUnqmGNXWTTO6XAnuzwR740thG6dGPVl3CLpu1FDFmdE11owrSmqHq
-	 BPFDoflNNhsytwPaBdJ8JhyV754h7lCpwdE/FDqYxIu2aRBrwKBGgstP8qCG3tzZnz
-	 E3LBdofMaNeN4NUv42K00Hcr6EgBj5Puv6/2mIH1CrXXq9A7+t0LbG3IuhNEPt3DCo
-	 ZzplRRTlAQtRWpu0Pqn0zelwNIYYb3W3Mgm7T1PuSHTfpZE2WeiRFX9DEdMVAeQ1oO
-	 vMXvekvdKbmqQM/lPOjKY8cMYI+n8KFblDFKuxL0R+R7EEao16nZI/CADHTZOpXNAV
-	 uVHkLkvs3KyTA==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3815549191;
-	Thu, 12 Nov 2026 05:28:05 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 05:28:05 +0000
-Subject: [PATCH net] net: stmmac: dwmac-sun8i: Fix use-after-free in the
- MDIO mux error path
+	Thu, 12 Nov 2026 05:29:10 +0000
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4a4d7ae1ae9so35653955e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 21:28:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794461327; x=1795066127;
+        h=in-reply-to:content-disposition:content-type:mime-version
+         :references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=hNlfYdQobugmf9UW73UA0KZ3DncrTeY2FGpbRf8Ii54=;
+        b=nhipT389fY6WhAsn3rxbzPXyJT3EbRy2ei8rfyrjj/v20ln2DUwzr8KyKn9ju3VHzW
+         U+LXt2VPtmIcpXkEP814VcUmJ9jsay3VS7cq97nNLdL5x1x4BVfOBl68u3P1Dpe45Nl2
+         78auToc0nIwaCcHXzu+e4BJYoiOBYVCPRxBNOeh2zx90uPFYUiLoeIfWwlIsY+zwbpyG
+         DhduMjWl1XsEDjXDE5bLpozWaTrZ1F4Gy8oTFGj8qC05VEqOiVKsIqmgfO3B2e7/ngNV
+         978hvHHc8ZE5RdA0z9aio75baNpTe5XwShT8HWz0f19AB1UTEG9mFew16g6ybfI9pXk1
+         Jncw==
+X-Forwarded-Encrypted: i=1; AL+hErEmWezUk4ZbNQGQfJjfiDUsnO4gICyYVcQFFUvrmlQJ+bDxa6gkYuw+t8J5/LFHVZvWlDmBfLapi+7BT5sz5uD/@lists.infradead.org
+X-Gm-Message-State: APuU4Z/vOZ37fZq9QqsANJFNvxhKsvdDjdkPuTvoLzUbZ8iZawW53zOv
+	s9UqqUaW6oslfvG85qpY2fmZZacb2CvrTH/w0FGB9vtqrpOAVGm+lz1y
+X-Gm-Gg: AYBFou2u9ra+gbUgnIkRsM6h1f/fkblOezFdOGAx5Zi3QaHdv0VNrUgR3PGBmMCHq1t
+	mwGFVZKSDwE+rCfFm9Fm/aMNIi+Cv9TYdQRaEnM8U83vY2/Mnngf2ZLsfxcZDrGV8cfb1vZzIL2
+	j2mk8KLGqgMWodwcgktjkLsxPDMmlIVVAWNL/cQioRiyvIW7Wah3dmySimwINF82YW6IBjeHaiI
+	BpxcTJasrsGxa7+3yS90N52XoUk2D2yBWszZOV7HBUlbnVcKeOzWyjugloe6oZ+xV4BllN0rghI
+	jHXUghuJNqYoyrXC+iON+JHtH7SUJTAbrtSjCaVNGisS2epLl9k5iGDQe/vGJhzY5XpNfP8jbHS
+	KRokmWZxUFflWLUsyMdxcsAxI0LMThdw+zb35nDog60gyZ9Zc9nuTEfN+riO027YcGeghu6x9po
+	DfcTjZU7sxJaT2ByalKwYqZWbcvJi4/pZ1hDeBBNrt8sh+K2Dw5m2uDoAVsNBlH3U8G5220Tq0Y
+	VReWXHa7u2fkGcAyj93Ehk7IydLKeQjDb7NbGkKUgKiqNOJ/tuO7503nY13vnSkoV5Xgw90iOGB
+	Gngz3h7LjfXApOYF2nLNWfaMpVJH0VrgbyH1W/hPSkFl10yAMQrLZgTXlzSmfVKLjNROpX7HEHH
+	Bb2rwiHMSo4nXm/7nbKDOE87nbu5JRPxzcGR7SdSqHe8iqSiTv1tZPjimCNH4
+X-Received: by 2002:a05:600c:8708:b0:4a7:c366:d791 with SMTP id 5b1f17b1804b1-4ba0931c364mr69232725e9.1.1794461326740;
+        Wed, 11 Nov 2026 21:28:46 -0800 (PST)
+Received: from localhost ([2c0f:3d00:6be:8900:ce5e:9212:ea4b:f30])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49944d646f9sm11119109f8f.32.2026.11.11.21.28.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 21:28:46 -0800 (PST)
+Date: Thu, 12 Nov 2026 08:28:42 +0300
+From: Dan Carpenter <dan@pereq.eu>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Dan Carpenter <dan@cryspen.com>, Oliver Upton <oupton@kernel.org>,
+	Fuad Tabba <fuad.tabba@linux.dev>, Joey Gouly <joey.gouly@arm.com>,
+	Steffen Eiden <seiden@linux.ibm.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Zenghui Yu <yuzenghui@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org, kvmarm@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Karthik Bhargavan <karthik@pereq.eu>,
+	=?iso-8859-1?Q?Cl=E9ment?= Blaudeau <clement@cryspen.com>
+Subject: Re: [PATCH] KVM: arm64: nv: Initialize hw_mmu to NULL for nested
+ vCPUs
+Message-ID: <avVOivX0YmlES4Pe@stanley.mountain>
+References: <d3571fb535e1832d2a067649f294b83d824d4350.1794395321.git.dan@cryspen.com>
+ <86ld6z1782.wl-maz@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-sun8i-emac-mux-uaf-v1-1-308ae7e6fcf2@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yWMwQrCMBAFf6Xs2QU3YIn+inhI44uu0CjZphRK/
- 91UjzMws5KhKIwu3UoFs5q+cwM5dBSfIT/Aem9M7uh6EXFsNXtljCHyWBeuIbEMwfuTk3MCqIW
- fgqTLb3qljIluf2l1eCFO+4627QucXK9qewAAAA==
-X-Change-ID: 20261112-sun8i-emac-mux-uaf-1ba885219fee
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794461284; l=2672;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=NsburT4Rs6TuKeRLvNh9ntKMBycWNUHji+Gwj+018cs=;
- b=KuvZTvy/m2KLD0YOLU883uIqDNTznxKHAhJWD8davNR1BvQqXeosLyiPNYJbDYPG6qKvJDQdR
- LcFJgmVCqFeAlJD1ouD1bdILIdSCBHTVE1tYyniSitGLJ+rn/Vi2tK2
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86ld6z1782.wl-maz@kernel.org>
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261111_212852_793437_4F68365C 
+X-CRM114-Status: GOOD (  15.72  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,78 +98,39 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+On Wed, Nov 11, 2026 at 07:46:53PM +0000, Marc Zyngier wrote:
+> 
+> I think this really needs a comment to explain why we repaint hw_mmu
+> to NULL, because the next idiot who looks at this (likely me) will
+> probably remove this line...
+> 
+> The other thing is that this means that nothing can evaluate
+> vcpu->arch.hw_mmu anywhere outside of the loaded path, as it can be
+> NULL. I *think* this is OK, but I need to really convince myself...
+> 
+> I'd like to add something like:
+> 
+> 	/*
+> 	 * We can't rely on the S2 MMU being the canonical one,
+> 	 * as userspace can restore a nested context. Nuke the
+> 	 * hw_mmu early to ensure that we pick the correct one
+> 	 * load time. It also means that we can't rely on hw_mmu
+> 	 * being set to anything useful if the vcpu isn't loaded.
+> 	 */
+> 
+> If that works for you, I'll squash that in.
 
-mdio_mux_init() registers the child MDIO buses one after the other.
-Scanning the internal bus makes mdio_mux_syscon_switch_fn() select the
-internal PHY and power it, which sets gmac->internal_phy_powered. If
-mdio_mux_init() then fails without switching away from the internal
-bus, for example because registering the external bus returns
--EPROBE_DEFER before any access to it, or because an allocation for it
-fails, sun8i_dwmac_probe() jumps to dwmac_mux with the PHY still
-powered.
+Absolutely.  Thanks so much.
 
-That error path releases gmac->rst_ephy and gmac->ephy_clk and only
-then calls stmmac_pltfr_remove(), which ends in sun8i_dwmac_exit().
-Since the PHY is still marked as powered, sun8i_dwmac_exit() calls
-sun8i_dwmac_unpower_internal_phy(), which passes the clock and the
-reset control that were just freed to clk_disable_unprepare() and
-reset_control_assert().
-
-Unpower the internal PHY before releasing its clock and reset control,
-as sun8i_dwmac_remove() does. The later call from sun8i_dwmac_exit()
-then does nothing because internal_phy_powered is already cleared.
-
-Fixes: 529254216773 ("net: stmmac: dwmac-sun8i: Balance internal PHY resource references")
-Cc: stable@vger.kernel.org
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-The problem was pointed out by the Sashiko AI review of an unrelated
-dwmac-sun8i series of mine. It holds against the code: clk_put() and
-reset_control_put() free the per-consumer struct clk and the exclusive
-reset control, and nothing between the dwmac_mux label and
-sun8i_dwmac_exit() clears internal_phy_powered.
-
-This is build-tested only (arm64 and arm, W=1). I have no board with the
-internal PHY (H3, H5 or V3s), so the error path was not exercised.
-
-This patch was developed with Claude (Anthropic) as a coding assistant:
-it checked the report against the code and wrote the fix and the commit
-message. I reviewed it.
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-index 47954537b29e..4436532af2dc 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-sun8i.c
-@@ -1245,6 +1245,7 @@ static int sun8i_dwmac_probe(struct platform_device *pdev)
- 	return 0;
- 
- dwmac_mux:
-+	sun8i_dwmac_unpower_internal_phy(gmac);
- 	reset_control_put(gmac->rst_ephy);
- 	clk_put(gmac->ephy_clk);
- dwmac_remove:
-
----
-base-commit: 145480b28ca82e9fae789427cc4569e596515a32
-change-id: 20261112-sun8i-emac-mux-uaf-1ba885219fee
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
+regards,
+dan carpenter
 
 
