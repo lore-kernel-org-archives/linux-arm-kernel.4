@@ -2,106 +2,147 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC279606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F996606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QZF4Wrhs;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=bvPVKgWa
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MYarFAF0;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=dR9VBBX7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=B5lFknzbFblOuXPlPPjcfE8p4dbikqXW3Uf43fx34os=; b=QZF4Wrhs7LYBwg
-	g3MZh7bw9EYRIfT/ICpR0V9mk6Rgcy9KTEAd7Ph1LWbJFl3IZuR9G4qmsre6sCoJ2FZ5ZkZV8T7jK
-	KDDim0J6IJNBbw7PCmSnDocrXe1k3YuA6icY64s1/UFLsEOz2aTpp8qiNkUMYZ5QDvByPAzuBuwp0
-	pekfqpn4WPPLyP58GS5CMaSTk6kVDPgaA1zdxxbYepNJyYPJrlWFAPopZoqmoG/9Cch7dPAvsHHFg
-	sSblqovk6xxpNc8sUr1woPfCfXPgXqtOTY9kcbpWuJhtmVHqU4cmf7AhVbRz4u+BWhUQhmg2Ba8IJ
-	qnjrlWDhKiJa4aj6mYYw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ZQE4wH07HskksBy081BLQaHeHPxim4J9SFvGunClQ0Y=; b=MYarFAF0zZb6uNzDqoHMAj+Mdy
+	QWhIlHoMESXDBFyp+1G3GY9z3Xtok5BiVRUZcZyDd582y0IlbZdzvO2zq8cz8TQOqtOTUMT4+7I4s
+	SiesGjniiVWq/t1uKXb5Yoe6BeOjShUDHrQgMLlR09qH+hBpJNhnZnr2Gtgqk5KKm80dE37zjrBg7
+	LrGFVU7MDTb36CVhykFHnRrhbRyxhw3ZVG5mn62d93nWF11IfH3WV9CtG/OkTA4NNiN2d7hddzCdk
+	Xop6mKhrH1gNKnaYlP4rwCPEXkv1kAwNzVub5K8G0Giwb8uqVCsgXlECwbtgnZKKnjv9LefMzKiBb
+	oCQJAmIw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRO9H-00000008nfK-4B5E;
-	Thu, 12 Nov 2026 06:19:04 +0000
-Received: from mail-qv1-xf2e.google.com ([2607:f8b0:4864:20::f2e])
+	id 1xROBB-00000008oIx-2JIy;
+	Thu, 12 Nov 2026 06:21:01 +0000
+Received: from mail-eastus2azlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c110::3] helo=BN8PR05CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRO8J-00000008nOz-10sC
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 06:18:23 +0000
-Received: by mail-qv1-xf2e.google.com with SMTP id 6a1803df08f44-91eb5559b34so29296106d6.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 22:18:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794464282; x=1795069082; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=B5lFknzbFblOuXPlPPjcfE8p4dbikqXW3Uf43fx34os=;
-        b=bvPVKgWaehBkb7+dCUbRYh2bZdFcFj89Cmio0KL0T6ncJxZAUwypHzudPx4j8rbn/G
-         muhqkqCrvnyH1C4GAr2DsBin2xVImOPp1R0DZTCsl9UOT8IM3OzAWr5L4ybgkNnldaYL
-         N9gKw8O0QOaJid4LKM+FD39G4a5tRfIDNnTZFrlqm9KnUy7fO6/G0ybje5BD3zHaKDnF
-         p1diSVv9XC3czrB0jQduEe6eM4wUUvkRzv1ztBCZXZf/cpl2zyWrTfH851HNHwoix3yO
-         zo0vNT8SEc5F7aDvvyGvdHBBVgxzYazVLciaObF5O0coauEPiuUAAoTEiuLMoi/a1Xga
-         R7hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794464282; x=1795069082;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=B5lFknzbFblOuXPlPPjcfE8p4dbikqXW3Uf43fx34os=;
-        b=HCvBag9hvj5b61jPlAJvfSHk3Xrus+VsDx8isx8aX39WkZki96/ov236uDA7wl0nl1
-         YbvXfHqCxOWIZfY3NaLHzusYkI1GsyMTB1CgMuNvpKAEO9D8idZs85JLmmlRICiFZm2n
-         MN/ADG0w3f+O/LQddcvJI7vpxL35V9GbcdRZTuXGqn7ZqUJGQaELJIFTrFiZBPhl4lXF
-         voxgWWK9DUO0OR7zx1BwZR/TU4g8OAVhTJnocJEvTksRYLEL/8kWbGslcGfPPxAiGYM0
-         1r5w0DojJr/tNQT+PL10CpnsLAB5ItHY7tAGSGeMBVngBUtf8gWg5OvXx5vIAB0Z11Fr
-         l53w==
-X-Forwarded-Encrypted: i=1; AL+hErGsCz7EB4Ja8b+wsgYC2D0JF3zLxWDuNlV9e0C9FVRdZBx4O7r6GqRb24urNNLYCby5MabRieFsNv2kOqwZnDDa@lists.infradead.org
-X-Gm-Message-State: APuU4Z+5kdiJBPtpmQuLNFnXB1TquBH2z5ngsjxuO/RKQOmI2q5Ij6h5
-	2Fl2Zz3jJVHMo1sZpvut55F6zOcYRfNCVSxHq0y7Y5R7CUaXiI0kaL0=
-X-Gm-Gg: AYBFou37ZYjlhIL6NX8AK2FAJ8gZTb0ZlQKePIXfuZ3vlLaOgotR4UFbeLg/Ur8sjEf
-	S2CQCavMSbJPrDkgxy8Ij/BlNWj4lRmSUnf9EArrKrSmxvwppsnwSKKwaHfHDzBZCgzKsCF82d5
-	OsURSFlbPRob6th2prfOaFiQ5AdBIpcC+sujkfVs28Szi9Ck07Cai6UgC2P1SmkTMhGTSyhUXX5
-	4opToxlyPY0P3Ale5hzHI6LOeQdFAXLaSLmDiCQJTtfoYEsy84adJSUbaOSkqCprwnlbF7rUB+w
-	WvmlYKuYTDPih9Ov1FVOCVZHqWf5bb4EYNII9py0ccJCGNqHf8+aitKsFmee6l6VIvFQJSND8W3
-	rf0n9C/86DmlJyiCYL2RxQSWUMv9nQkVsyuBfLtth9C8XCwEvIlsz9MqZL7LY6czlm7szxx5qja
-	3fvgvcgE7GlPLXXf/3lBAFBkYEprTPIbkirBC58oJiXm2MpahqjL9VHG5HD1GRgjOi0dqNt2DmK
-	ndY4QTxmZWZ/MciYdg802UUzvkgOzi88DhvXWYR10Ar0X/dXvAt9uf1eWongcGWpu+gO467mjtA
-	lPioXzZzsV2rz246uhEtnR6L/WyvMFYkohswPpMS2iVD8abYV1LqDmZigneq1Tqnde5VTBDM8QA
-	LGw/vaKb8tubbbiqC+w/w2MYXLw+I4eEf+AuY5/cwocxn/vSPGpsrrQDfAEY5M8cPOVAbqrHZRH
-	AFKOw1rXqWiYpvxyapPyhYOmxBifzcAsIt/cg8D+Ky/AdVUdWGsoC2Pw==
-X-Received: by 2002:a05:620a:2628:b0:93f:565f:e46 with SMTP id af79cd13be357-947afff4ee6mr743160185a.52.1794464281908;
-        Wed, 11 Nov 2026 22:18:01 -0800 (PST)
-Received: from localhost.localdomain (h16.44.55.139.dynamic.ip.windstream.net. [139.55.44.16])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-947a5ac3f27sm513931985a.22.2026.11.11.22.18.00
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 11 Nov 2026 22:18:01 -0800 (PST)
-From: Myeonghun Pak <mhun512@gmail.com>
-To: Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>
-Cc: Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Ijae Kim <ae878000@gmail.com>,
-	Trevor Wu <trevor.wu@mediatek.com>
-Subject: [PATCH v2 4/5] ASoC: mediatek: mt8195: Keep the AFE IRQ within its resource lifetime
-Date: Thu, 12 Nov 2026 01:17:48 -0500
-Message-ID: <20261112011708-afe-v2-4-mhun512@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20261112011708-afe-v2-0-mhun512@gmail.com>
-References: <20261112011708-afe-v2-0-mhun512@gmail.com>
+	id 1xRO8q-00000008nVB-3qt8;
+	Thu, 12 Nov 2026 06:18:49 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=twN1qiGmhTKcRdK14xaii7vjLpn5dgWxrtFzq+4AVxtTGz5HYiE4pthVRZISwHFF81SkLUwgMDlSGeZWE91YCucOFkn45hSH8QCWWL2aYBTwj4iNXChz4Omlw5kmbtEqlk32GddczijcdvhNdvHa0Jvd8+e6BcqbmmX8hGxCfu/m/T/RLH9uwCeyX73TbO7Aq+5LwuGtDc5IGR7/2HWZSjStkg2L5JdpUfi84Paa7mUSjDqa/r9o6/dmFywz+XvTBv13lurOc2aNlO0U7x/Re6VnCyHYfMyykfR8nS/1j+DugNU/aO77EwOM1K6rwItawCTjOB+itKZn7/ad+EQtbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZQE4wH07HskksBy081BLQaHeHPxim4J9SFvGunClQ0Y=;
+ b=MRnXScW6mPKbFIzgSFV/cXS5kQB1QMw9irpNj+7NNTrT17VkmsBqrUQr3frn4ma7t88MTUqCYzQHxTN5J+6oYR0zF7uZywUcBeQbjmUxkxi4cMq4qxsR0BkXAvHsr1lM6Mj/Sgwy6Ea5DQGAiBtxA+ZwPkQNrDWvlvU7WZYo1oTT0Ayb3nYswag4ADtb0rrDwJ/TpDLtN0LDYUr0S0vaAue5IJPhjqVlejcs1It8Z+xAjXERSZfMdBIZ4xAvXtWoAcLL1ivSb23XCmdA1ilmKJtdZJ+jNS3AQo+OkkfkVRmNRgJqis/wjDbxwBDFJHYfqMMSY5g/kbcM+m0hD7+I1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZQE4wH07HskksBy081BLQaHeHPxim4J9SFvGunClQ0Y=;
+ b=dR9VBBX7mRwx1MP721tQC3kEQJrAguuugeEmaGwArivsBf7ZhGUandfkA64RGDkrT7QTsc3iRyaPVdH8Sc7o/Et0WCWwKg84chXAugmctJTSWiJHYr5laxZemIL3noYi6TCOeECoWXW0NPqpj5Kk8z9YYa8iqBRAjODYWEq7jqutH5zjfiNFqW1l2ebTxbC9yd0xW6Gqlxh3xEFZAX0qT6+65eM+vg1D907O67jCphhjEP4QpQ8xehu1HlYc573wl62b+jqwzBKJyInEFq8O8ojvKqXpP68DvcoRUgo0SV9LhG60TgvzG4NFCdkbEgE6spQf2DdT/bvOYsMmluBmtQ==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB4914.namprd12.prod.outlook.com (2603:10b6:208:1c4::16)
+ by CY1PR12MB9604.namprd12.prod.outlook.com (2603:10b6:930:108::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.8; Thu, 12 Nov
+ 2026 06:18:28 +0000
+Received: from BL0PR12MB4914.namprd12.prod.outlook.com
+ ([fe80::4921:cbe6:78cd:b445]) by BL0PR12MB4914.namprd12.prod.outlook.com
+ ([fe80::4921:cbe6:78cd:b445%4]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
+ 06:18:27 +0000
+Date: Thu, 12 Nov 2026 00:18:21 -0600 (CST)
+From: Vidith Madhu <vmadhu@nvidia.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+cc: Xaver Hugl <xaver.hugl@gmail.com>, 
+    "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+    Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>, 
+    Fangzhi Zuo <Jerry.Zuo@amd.com>, Daniel Stone <daniels@collabora.com>, 
+    Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+    Maxime Ripard <mripard@kernel.org>, 
+    Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+    Simona Vetter <simona@ffwll.ch>, Helge Deller <deller@gmx.de>, 
+    Andrzej Hajda <andrzej.hajda@intel.com>, 
+    Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+    Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+    Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+    Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+    Sandy Huang <hjc@rock-chips.com>, 
+    =?ISO-8859-15?Q?Heiko_St=FCbner?= <heiko@sntech.de>, 
+    Andy Yan <andyshrk@163.com>, 
+    =?ISO-8859-15?Q?Michel_D=E4nzer?= <michel.daenzer@mailbox.org>, 
+    dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+    linux-fbdev@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+    linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+    Derek Foreman <derek.foreman@collabora.com>, 
+    wayland-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 17/27] drm/connector: Add "Media" VRR display mode
+ for QMS
+In-Reply-To: <20261105-vrr-limiter-uapi-v2-17-55f4215be2c2@collabora.com>
+Message-ID: <3e4c8552-5dc0-f189-dee8-2ca0ebe01629@nvidia.com>
+References: <20261105-vrr-limiter-uapi-v2-0-55f4215be2c2@collabora.com> <20261105-vrr-limiter-uapi-v2-17-55f4215be2c2@collabora.com>
+Content-Type: text/plain; charset=US-ASCII
+X-ClientProxiedBy: SJ2P221CA0010.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:a03:5db::19) To BL0PR12MB4914.namprd12.prod.outlook.com
+ (2603:10b6:208:1c4::16)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4914:EE_|CY1PR12MB9604:EE_
+X-MS-Office365-Filtering-Correlation-Id: 00ecfe5f-0317-458c-7b36-08df4084c373
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|366016|7416014|376014|1800799024|22082099003|18002099003|261021135927099003|3023799007|261022105027099003|56012099006|10067099003|261009223027099003|261028144727099003|261026140227099003|261021123027099003|261102130727099003|261022113327099003|261009221227099003|261021121427099003|261026121527099003|261102123227099003|261022075727099003|11063799006|4143699003|6133799003;
+X-Microsoft-Antispam-Message-Info: 7ap2RKfZ2jcc2TKYc74ETJo5FWJy7Ez5VkBrUV47LZyJLPolXpYt0MNL41Q3GrAFWPPlhoSOXxRoBX3xHHWy64zretiEGQnFaZX5GEwSU+ci3GpoEeVUYQKfMf7vwV43wSlNyaOJ2+2g7dwoMyrO2SkRzwtHp2HEk0Gk0wmIB0QBglQe1q6lSdxeBnLNwnqCDYZgM1YLADnb8Xyw+NMXcQMRppPjH0aeNHFKUg6ALgvr0wJt809yKGGi93X3oWB+0evf/r+CCLVjsEJ9H1xOwbGHvG4bu9FIoEkMYuTpxlwF3uzVoCE+gH9YH/9amt5vewtVmbHEkMmZrJutZDDAJhC97DoKLPaOT+hu6qxKGhfAlg+EGiclk9c4qKmyYi3pkDI9DzsLuDByrLDUH9mUG3Gk+aTUYyLz6teLEZZ3NUfagvLFPw5zIEowCSiRj0A8XU6uYsHTnTY2j27Sq7VJKK6NVNsEtctYtCKro3dGuLpNQsffA65QWI0lDLUBrdb3OecQixF33A2rOg7y/jn7GoziX3brhUk+YaCcJb6RoUxK2x8Bon5Fg8JiPSMvwvxA68LNDw9fOh5P8u6J+YT1X0jeFDCcQiRsvB16swGDPU0T7EEvIrE/RRfcZmj8/TNnl6AT9fCgnJ52AYdKSGwF47vAJwsK5W8IbstP5l3BEKY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB4914.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(7416014)(376014)(1800799024)(22082099003)(18002099003)(261021135927099003)(3023799007)(261022105027099003)(56012099006)(10067099003)(261009223027099003)(261028144727099003)(261026140227099003)(261021123027099003)(261102130727099003)(261022113327099003)(261009221227099003)(261021121427099003)(261026121527099003)(261102123227099003)(261022075727099003)(11063799006)(4143699003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Rs1j8hAfNwBmcKnIXuQbZ9L9SrX3EUhKTzgXBp20Narsv/4SeSgkKiZXG+5A?=
+ =?us-ascii?Q?cUq72M4/TXnmCBXNMsnRSL4bEUwtRVugS0EnbaOMMSZrc97L80ytDtKTq8rW?=
+ =?us-ascii?Q?WjF2q99YyQuMIe3VCTDNlTAU9fMn+QFnG59OshmKifnC/5OooIUSPKPTb9eQ?=
+ =?us-ascii?Q?xo2TADD5z4Dmsa6pRawvJgu88g7ixDPcKdj6yQ6JahMkXEBFW4EsfServuez?=
+ =?us-ascii?Q?aYHtLSREE1KbEy1HbLS5izLM4+hqqQTYwAP/KymHzco4r3t0yUh5JfPpcOlv?=
+ =?us-ascii?Q?hGP9p1PAs2Awfx/e8SpTXgQuiGXdxuEPfmJ+wB1KBGGOspWVChwKdKpSbpYr?=
+ =?us-ascii?Q?ZfvkIKUucumNh+cMsvIJOcje3gqutjyCFj+VBa8DoaykwMrEUyk/7ymPmm02?=
+ =?us-ascii?Q?Yq9MkzkZUkifo6mrFJAwPcavXQZ1GKs5VEMvmIeCO7f315xvVICqlJimJRPJ?=
+ =?us-ascii?Q?dDF6lMSTonGYVdrneBiD7D9Wb8HXvmiJwZalgpk4ytOyQjR+JZbz5pymGmcJ?=
+ =?us-ascii?Q?zFu4DoL9Ej3UA9MTlOOJYDcFmLkcXnKbpm2Eet7ZclZ9W1d8WyyGvHs3AP6N?=
+ =?us-ascii?Q?hQ9899JFbnYHfsZAPbwwUALni2TPx1vWcsTfldB0xOsGqMhpSf4KaNyFLJvW?=
+ =?us-ascii?Q?h1p+xfnGN/DQN6LnI91s8vj/Aps8MWAMCq7Rf4bNVaOVBA+4SrETxS5nNQ6u?=
+ =?us-ascii?Q?hfNjVyJ6P6mkpRjGZO3cPMvgsemshzU+weL6gqg0h9nUR+X7fPDZHusNG0t4?=
+ =?us-ascii?Q?CMXc9931078YHXu1Q7Wo8lkUKyALGIHvXxfa+8Dm6lH56ELBzzCFB8DQgLpj?=
+ =?us-ascii?Q?HwwMYljpbnLtxh2SjeUAALkXj2RorpygCDaZGh6Rr3fjiKHlVC/GkcD1y9V7?=
+ =?us-ascii?Q?PO+dUWHWpsWeJyfJjSVihQ9vq840SKNVyXl0EsOLlUxnE0BLQKSXhYwguZiN?=
+ =?us-ascii?Q?JgGHSKa7CRZpBsZSaW8/a3jJJ1zKIMnddwUCYGyBsgEJxHCjvzN3dVKYahhs?=
+ =?us-ascii?Q?8xgiEHVRsjLbwuls1/XGKQHBIMMIXiKQZv8qhZZ5PsgPLYknUZ0fQ0gdCsfc?=
+ =?us-ascii?Q?uVwns7Uxm6MfKkp2muj5O02TCNQca5XDhuEdK4xqCvDQ7yXw+yq/Z0kSoqZ1?=
+ =?us-ascii?Q?OYSJn+NnqYTEqjpc9sCdDL1wXHAP/pDsHfoDXnPkehG6A41sXVw6VffK6qM0?=
+ =?us-ascii?Q?X+hVqkZC12QYbXahxI1eQFL+4HolfB5+iwRgs8DPGORPs6cej76bGQ+Lwmbf?=
+ =?us-ascii?Q?MyB2/QgMj4uBsrPIibmQVYlPbiszL1vdhSreycNk5Rdib/JeYftyVDFS/a5a?=
+ =?us-ascii?Q?Df9wt0ZWgB2U9vQAY1HT8eawC8i5pgWDqsddXt4c3HXYzvwwJ4zo1pAdafV7?=
+ =?us-ascii?Q?U+13UTpfIk293Nv53oiCH7DZvFVnEcNy/pJGATUS+mdScJS7TALGqyiK+XvY?=
+ =?us-ascii?Q?xF8YQQ4qxnYe60rSjX86LjHe+8MwnPmhzk+u+XgJrKkdPpntBOUYsFfSsvCe?=
+ =?us-ascii?Q?IkOj1Mswxt7gpL6jjDpLHCuoO6DyFvXyRfi8DebNfJ2wtwQbAkwHzDupQesE?=
+ =?us-ascii?Q?eIDFo+Cj1391tacjX8gLa9+A84cvpd5U5xmJqyO0VvQq5n6PQuI4tin2/D2+?=
+ =?us-ascii?Q?2jWARmvgLqlO3JQAS+p0uV+UhAl195T/1GKkFeLPBbWSQ+Oh3rr/HpeklaV8?=
+ =?us-ascii?Q?nv2FKiJjcgPyNl0yR7yRYwko4BzfXCW2BOPMku+x7tRAfifD?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00ecfe5f-0317-458c-7b36-08df4084c373
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB4914.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 06:18:27.0615
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4/8BAtq163Nr/aODFj8mnjYBYgPcKBqI7V2bVt/iZeh+2mBzt7XrjbIUjQDlscBZmwA08CsZBqBmL5mefkhXxA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9604
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_221805_667073_E60BE3C3 
-X-CRM114-Status: GOOD (  19.05  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_221841_403281_4BE43008 
+X-CRM114-Status: GOOD (  25.58  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,93 +153,111 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The AFE IRQ handler uses afe->regmap, but its managed IRQ is requested
-before the regmap is allocated. The audiosys reset earlier in probe
-makes an interrupt before that point unlikely, but devres still
-releases the regmap before the IRQ on probe failure and removal. The
-remove callback also suspends the AFE, which disables its clocks, while
-the IRQ is still requested.
 
-Request the IRQ after initializing the regmap and before registering
-the component, so that a failed request takes the existing runtime PM
-unwind and the regmap's managed lifetime encloses the IRQ. Release the
-IRQ at the start of removal, before the AFE is suspended, using the IRQ
-number saved at probe.
 
-Found by a static analysis tool under development.
+On Thu, 5 Nov 2026, Nicolas Frattaroli wrote:
 
-Fixes: 6746cc858259 ("ASoC: mediatek: mt8195: add platform driver")
-Co-developed-by: Ijae Kim <ae878000@gmail.com>
-Signed-off-by: Ijae Kim <ae878000@gmail.com>
-Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
----
+> HDMI includes a feature called "Quick Media Switching", or QMS for
+> short, which builds upon the existing VRR to allow for quick switching
+> between a select few common frame rates.
+> 
+> Add a new VRR display mode, "VRR_DISPLAY_MODE_MEDIA", to the
+> vrr_display_mode connector property, in order to expose support for
+> this.
+> 
+> Additionally, add a boolean flag to the connector's HDMI sub-struct with
+> which source-side support for QMS can be indicated, as well as the QMS
+> tfr byte to the HDMI state sub-struct.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_connector.c |  6 ++++++
+>  include/drm/drm_connector.h     | 14 ++++++++++++++
+>  2 files changed, 20 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index 21222214a843..f7d619926e2d 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -1456,6 +1456,7 @@ DRM_ENUM_NAME_FN(drm_get_tv_mode_name, drm_tv_mode_enum_list)
+>  static const struct drm_prop_enum_list drm_vrr_mode_enum_list[] = {
+>  	{ VRR_DISPLAY_MODE_GAME,   "Game" },
+>  	{ VRR_DISPLAY_MODE_OFF,    "Off" },
+> +	{ VRR_DISPLAY_MODE_MEDIA,  "Media" },
+>  };
+>  DRM_ENUM_NAME_FN(drm_get_vrr_mode_name, drm_vrr_mode_enum_list)
+>  
+> @@ -2593,6 +2594,11 @@ EXPORT_SYMBOL(drm_mode_create_scaling_mode_property);
+>   *	    - Game - set display to game mode if display supports it,
+>   *	      regardless of CRTC state
+>   *	    - Off - set display to VRR disabled mode, regardless of CRTC state
+> + *	    - Media - a "media" VRR mode that only supports a select number of
+> + *	      common media refresh rates as fixed targets, but does so with
+> + *	      possibly better display-side processing. In the HDMI display
+> + *	      protocol, this is QMS (Quick Media Switching), though the mode
+> + *	      enum itself is vendor-agnostic
+>   *
+>   * VRR Limiter/Target Properties
+>   * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 4801bb2769e1..41f272afbb1e 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -829,6 +829,8 @@ enum vrr_display_mode {
+>  	VRR_DISPLAY_MODE_GAME = 0,
+>  	/** @VRR_DISPLAY_MODE_OFF: Turn off VRR on the display */
+>  	VRR_DISPLAY_MODE_OFF,
+> +	/** @VRR_DISPLAY_MODE_MEDIA: Protocol-agnostic fixed rate media mode */
+> +	VRR_DISPLAY_MODE_MEDIA,
+>  	/** @VRR_DISPLAY_MODE_COUNT: Sentinel, not a valid mode, keep last */
+>  	VRR_DISPLAY_MODE_COUNT
+>  };
+> @@ -1241,6 +1243,12 @@ struct drm_connector_hdmi_state {
+>  	 * deliberately not requested by the helper.
+>  	 */
+>  	bool scrambler_needed;
+> +
+> +	/**
+> +	 * @qms_tfr_byte: Target frame rate byte for HDMI QMS, or 0 if QMS is
+> +	 * not in use.
+> +	 */
+> +	u8 qms_tfr_byte;
+>  };
+>  
+>  /**
+> @@ -2270,6 +2278,12 @@ struct drm_connector_hdmi {
+>  	 */
+>  	bool scrambler_enabled;
+>  
+> +	/**
+> +	 * @qms_supported: Whether the connector supports HDMI Quick Media
+> +	 * Switching (QMS) on the source side, irrespective of display support.
+> +	 */
+> +	bool qms_supported;
+I'm not really understanding why a source-side capability is being 
+captured at the connector level. The way I envisioned this is that
+source-side Media-VRR support can be determined by whether the driver
+attaches the CRTC frame limit properties. The ability to maintain an
+arbitrary fixed refresh rate (implied by attaching the properties) should
+be the only QMS-specific requirement the source needs to support.
 
- sound/soc/mediatek/mt8195/mt8195-afe-common.h |  1 +
- sound/soc/mediatek/mt8195/mt8195-afe-pcm.c    | 16 +++++++++++-----
- 2 files changed, 12 insertions(+), 5 deletions(-)
-
-diff --git a/sound/soc/mediatek/mt8195/mt8195-afe-common.h b/sound/soc/mediatek/mt8195/mt8195-afe-common.h
-index f93f439e2bd9..905f29673d3e 100644
---- a/sound/soc/mediatek/mt8195/mt8195-afe-common.h
-+++ b/sound/soc/mediatek/mt8195/mt8195-afe-common.h
-@@ -123,6 +123,7 @@ struct mtkaif_param {
- struct clk;
- 
- struct mt8195_afe_private {
-+	int irq_id;
- 	struct clk **clk;
- 	struct clk_lookup **lookup;
- 	struct regmap *topckgen;
-diff --git a/sound/soc/mediatek/mt8195/mt8195-afe-pcm.c b/sound/soc/mediatek/mt8195/mt8195-afe-pcm.c
-index 13e5bc02fac5..0cf39f66992e 100644
---- a/sound/soc/mediatek/mt8195/mt8195-afe-pcm.c
-+++ b/sound/soc/mediatek/mt8195/mt8195-afe-pcm.c
-@@ -3133,11 +3133,7 @@ static int mt8195_afe_pcm_dev_probe(struct platform_device *pdev)
- 	irq_id = platform_get_irq(pdev, 0);
- 	if (irq_id < 0)
- 		return irq_id;
--
--	ret = devm_request_irq(dev, irq_id, mt8195_afe_irq_handler,
--			       IRQF_TRIGGER_NONE, "asys-isr", (void *)afe);
--	if (ret)
--		return ret;
-+	afe_priv->irq_id = irq_id;
- 
- 	/* init sub_dais */
- 	INIT_LIST_HEAD(&afe->sub_dais);
-@@ -3192,6 +3188,11 @@ static int mt8195_afe_pcm_dev_probe(struct platform_device *pdev)
- 		goto err_pm_put;
- 	}
- 
-+	ret = devm_request_irq(dev, irq_id, mt8195_afe_irq_handler,
-+			       IRQF_TRIGGER_NONE, "asys-isr", afe);
-+	if (ret)
-+		goto err_pm_put;
-+
- 	/* register component */
- 	ret = devm_snd_soc_register_component(dev, &mtk_afe_pcm_platform,
- 					      afe->dai_drivers, afe->num_dai_drivers);
-@@ -3223,6 +3224,11 @@ static int mt8195_afe_pcm_dev_probe(struct platform_device *pdev)
- 
- static void mt8195_afe_pcm_dev_remove(struct platform_device *pdev)
- {
-+	struct mtk_base_afe *afe = platform_get_drvdata(pdev);
-+	struct mt8195_afe_private *afe_priv = afe->platform_priv;
-+
-+	devm_free_irq(&pdev->dev, afe_priv->irq_id, afe);
-+
- 	if (!pm_runtime_status_suspended(&pdev->dev))
- 		mt8195_afe_runtime_suspend(&pdev->dev);
- }
--- 
-2.43.0
-
+Thanks,
+Vidith 
+> +
+>  	/**
+>  	 * @scdc_work: Work item currently used to monitor sink-side scrambling
+>  	 * status and retry setup if the sink resets it.
+> 
+> -- 
+> 2.56.0
+> 
+> 
 
