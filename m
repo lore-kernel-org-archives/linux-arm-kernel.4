@@ -2,65 +2,128 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C2E606A8AB
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 19:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF6760A2612
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 19:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mFeEGZuZ;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=KIa6jf8x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z32PIuTQ;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=U3ZWby/E
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=KrAKCc1OnJY4LbejaA118mCBpDZA++ULUTspBpWDwjI=; b=mFeEGZuZ9ShhpCoOxIldKm+v5H
-	Zq3FvxWNuF0sYdwO3d9RGESmW1wjOIfaxaxcwtofjV2EvumVsdwoGqMuPVAb1ZH/8YcBXLUWa/tL5
-	9naqty4FAKBUHf1dNDYfHMi4Uu2DhYCVWuoqxBs5DrWsb9bGX/h2+nUZVgRFoH8WotRhoAX6nPLZm
-	J0ptbuET0VT8GtwukmwT9aXW5gSc8pV+bOL22vXriWKH29/rh0Isitf91mX1Op2eCehQfLaoBG5NZ
-	qobV2LLoBIUilxC33WUWokP3miYifllPGmeLL9aMQue8bFJFOInR0KjhkhESLX4IqJyxF+FOrOa6f
-	LwNcgpZg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=29R05VH5Y4/K9A+0U43YHRXTFG/IR621ypMLaZzADxo=; b=z32PIuTQxEpXPD
+	n1IJ4zY9JRFzrv5a14KxbgGwwoJu7cHyQRdCEHe+AMT0bD1CFdLx81nfRvAV7OyDUwmpO95uTndyz
+	MKpiZk9kDAayTZK5WkLYULr36rFEOPxg9HsQw5CCuy4D/ehRdTP10/6QN/Tdxz3DdqADZljNK+3f2
+	GNB5bjna4MNXy+PgJcspDmRKJnD6cs9IMDf8UTRYRNGT0YXOXxaY1v1DpCDNep4vjkIRSMvpLjE2g
+	65W7pHvMWJCQGtwdzutBHdv141koDr3wExoTcG64NsGUb7NqKffmaYq8WvzzC87VNfJN6wSmz/CWA
+	rIQzkNPwgUORmHSD8mSg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRar4-0000000AyMv-44RQ;
-	Thu, 12 Nov 2026 19:53:07 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRar2-0000000AyMV-3i3o
+	id 1xRarN-0000000AyPn-2qbt;
+	Thu, 12 Nov 2026 19:53:25 +0000
+Received: from mail-westus3azlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c107::3] helo=PH0PR06CU001.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRarK-0000000AyP6-1Jbu
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 19:53:06 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1608B143D;
-	Thu, 12 Nov 2026 11:53:01 -0800 (PST)
-Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E67833F632;
-	Thu, 12 Nov 2026 11:53:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794513184; bh=UVssr2h0mtTlZR3uknoInjfb4xYkRuFDnS+ok0EQ/Js=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KIa6jf8xPIhnYjIt1/ah9uwMyqR51klIIHUVgOF56JSTCncADpFq7xBqP2MixQIcJ
-	 lar+vP5zIri1gYTsurYMR/2zyxKxAviqSzUjHuInf/T5u3xfuEFZ4PJbUNfJxKzJlC
-	 BXRRfQxb5Z7xmfdWLFC8XyLxLlUthyJ2GWqdnZEw=
-Date: Thu, 12 Nov 2026 19:52:56 +0000
-From: Catalin Marinas <catalin.marinas@arm.com>
-To: linux-arm-kernel@lists.infradead.org,
-	Beata Michalska <beata.michalska@arm.com>
-Cc: Will Deacon <will@kernel.org>, Vladimir.Murzin@arm.com,
-	suzuki.poulose@arm.com, xuewen.yan94@gmail.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/3] arm64: errata: Update AMU workarounds
-Message-ID: <avYZGOO_gku8RUKj@arm.com>
-References: <20261111124005.2688820-1-beata.michalska@arm.com>
- <179451296804.3304937.3878967781756339834.b4-ty@b4>
+	Thu, 12 Nov 2026 19:53:24 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZzAugoITDNOLPZA2YQ5fR6y800QRzOZ8TmS59YeYpbQ5/vhLg2HU/jMWyGjVD6xS9EOkBYzW3hZp6bKtxDh4Nt6VPPw36y78ECFXiNva31ZgvEJD9gZXlY4t2OpdySqIjXYq/C0Z2Rz8OWpOqJsM8dL/7gSsCDGkp0o73nejhle9r06iwDqmuRieegB+1NIDKTM7/iV1NfGnr1JnxcPXUYc2GP2eoPM96Zd266vRly1yKix6GjxjPIFwOtnL5kYXzyrzdYUArwcauHu8Gy5Fcj7mM0HEaCB5OfWjQ/y2fuDuCgIb/ggN44m0QJ5kfUFSHiBVfU9tCYV4XK8JGaJe4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=29R05VH5Y4/K9A+0U43YHRXTFG/IR621ypMLaZzADxo=;
+ b=RfBN4tixcSID8DqhHKXJg7H6kERZ0a14fQZ2SS5m18sFiTQkHRuy9eurhk585l3H62dN7jP+rMBIAkaBWRncLb8XCL4JATrlGMl+bDPncAwCb4XTfE4R6Dl49/KK/rWHh/7rhT9we0XfyapNIu4UaDXOIoeXWm6VDa6gwRLHDa+Qo+DBO6Nu37ELaA2oue+kb628PvaJwZw6LWYUGCzE2jS3fiumD4z6AIw6DpdIFZhD0cWwgm3CaJJKyOBX/LbZWv6ImLnGFzAtm8pGmWAMY+my9Hm0it7rMKTyNazH9MuQOrUuIXV7SF5ktv/p8itq6FdGwA9AD7PVyPJf+XvWjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=29R05VH5Y4/K9A+0U43YHRXTFG/IR621ypMLaZzADxo=;
+ b=U3ZWby/EqgBxlvB+JNAXbGLRHeI4T09Y51UA+ILiDKrBtCRyZjXwO/l27HRuWbs16VOZynyK9cjONvVyBcTaKTrDQ19MYTuWmYEjz57ZBPAYEp1HmP1aIiLnyANq0K+xVWjz8Re1onOMFAmNkhcdCoIS4DAQUjG6QlbLEIFkmUM=
+Received: from CH0PR03CA0022.namprd03.prod.outlook.com (2603:10b6:610:b0::27)
+ by LVUPR12MB999159.namprd12.prod.outlook.com (2603:10b6:408:3a4::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Thu, 12 Nov
+ 2026 19:53:11 +0000
+Received: from CO1PEPF00018868.namprd03.prod.outlook.com
+ (2603:10b6:610:b0:cafe::4c) by CH0PR03CA0022.outlook.office365.com
+ (2603:10b6:610:b0::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.11 via Frontend Transport; Thu,
+ 12 Nov 2026 19:52:58 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ CO1PEPF00018868.mail.protection.outlook.com (10.167.249.153) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 19:52:47 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
+ 2026 12:47:22 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
+ 2026 12:47:21 -0600
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
+ Transport; Thu, 12 Nov 2026 12:47:16 -0600
+From: Srinivas Neeli <srinivas.neeli@amd.com>
+Date: Fri, 13 Nov 2026 00:16:46 +0530
+Subject: [PATCH net-next v4 2/8] net: xilinx: tsn: add TSN endpoint wrapper
+ driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <179451296804.3304937.3878967781756339834.b4-ty@b4>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261113-patches_v2_external-v4-2-56bb26f042a4@amd.com>
+References: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
+In-Reply-To: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
+To: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>, "Michal
+ Simek" <michal.simek@amd.com>, Sebastian Andrzej Siewior
+	<bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, "Steven
+ Rostedt" <rostedt@goodmis.org>, Eric Dumazet <edumazet@kernel.org>, "Eric
+ Dumazet" <edumazet@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-rt-devel@lists.linux.dev>, Srinivas Neeli <srinivas.neeli@amd.com>,
+	<git@amd.com>, <neelisrinivas18@gmail.com>
+X-Mailer: b4 0.16.0
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00018868:EE_|LVUPR12MB999159:EE_
+X-MS-Office365-Filtering-Correlation-Id: af6dcf59-1dcd-4fa2-3b91-08df40f686fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|1800799024|82310400026|36860700016|921020|10067099003|11063799006|56012099006|261022075727099003|261026121527099003|261026140227099003|261022105027099003|261021121427099003|261028144727099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: PuV4/+8U/z3cgw1zfk4CHyBDjQ+EiV7OrNG04Edih47JlzCl4szpt+yd82jeuUh3Emq7UV4h9X0hReamhz3szdy6gbUTNq0OMM5kNKZzQqxalxEwwTUUhfx/2lB7WoRPWGG5y5hxTGGfdn2RD/iBWiIS6tZQKzEb/juB3hzn4xDVIvR4RKOl7j4uYOPNhkrR5N5KCva2wIMBgmBGfsRRencnuuVd2j+iNiEEVL8RdUhcvpp6FEocllTc9Dl8sQDPDy85H2QQeKY7w1bieJMxlWbCbH1NDIAqoSgPvBUiT0q9xbPOqFx+L6FxuVcbe4cCAaHu5b52UqwnS8JkqYWiMiAgzPUgBNEPNVGbsjj+Bm/0oS7xYrZ7jWKp04EcB5QMM7O7t1m7KA9Zf+MopKxoLBKZhV5k2KY/zzLGN6oYKEkUQUmMTblggrXRTCW/JyZFMZKK/vInTqP9ebunFfZjrgel3+9NU7V43GhZzAeHRBR8zOlpMXP8EQ1UYV/vLXF3tchh6bv15RX3s8KQdNrlbecbXB4V8ZvI0xfhwrYg3F+7LjispOTOUv770yBYGzj9cholVYXaS+h7OY3FtbdGYOLRa7UnhsNrxG+15c3kMlQyiAjbmyn4NrUxmfZbzOHXhOwEJ42BjAfwBPGfiTOIL9aBYY3GmxrEfzgr1+3t6gY1dFCDvz205T4ELC1JBwWalVvpMkRjGLHyTEp31he9cWn0zMekL3ROmvWYaP7fgkguTuW1U5fw6aoeLtybuWg49qnhbpGSLUsw+U52nqFt+A==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(1800799024)(82310400026)(36860700016)(921020)(10067099003)(11063799006)(56012099006)(261022075727099003)(261026121527099003)(261026140227099003)(261022105027099003)(261021121427099003)(261028144727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: pEV/o2Ndkk0GyMHOorZAJNoxbel7TQnHz5tS9T+/hCEO8db1WXANKcL7f/2TbTtOsQXuof2oi+EoM4+DGxMdFYtwezvIoALHatcTWDYr9nV4F5tNCiLYNMuKEKEP+xW1L/IYS26uMaHal/FW8NxtYphH/sdq12rz0N8scOlRxu73yAXK9i6VkxaUDfhpnsdOD2JPN+E1d+HKAdeqYFvdlXfVHpmYKPr+4ajp3ykAp5i9HDR0bPj9mzEYjifojMoqBbdykLl/CeADKeCLI4S9W0cQTURDVJ5SvmrGJbrHCpngUCmzRL2gXSManeM+fi48NjS6/cbt6Q5RfInICCKTfDW4wIjSrRiUIiCXSCDEgYYGUmBzD3EcTxk/pTxEn5xPzJ5cGVgpA7l2T3fZmBkytFXkYYQTkRYUo7oCgqFPglgF4xPmsszFtgfCd93lYpzR
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 19:52:47.9455
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: af6dcf59-1dcd-4fa2-3b91-08df40f686fd
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00018868.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LVUPR12MB999159
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_115304_974393_692CFA29 
-X-CRM114-Status: GOOD (  12.71  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_115322_404520_71946E53 
+X-CRM114-Status: GOOD (  26.05  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,34 +134,215 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 07:49:28PM +0000, Catalin Marinas wrote:
-> On Wed, 11 Nov 2026 13:39:26 +0100, Beata Michalska wrote:
-> > This short series updates errata for AMU core & const counters.
-> > The last patch in the series tries to optimize a bit the paired
-> > readings of both counters, so that the workaround checks do not
-> > skew the results. It is also intentionally the last one, as it
-> > will not apply on older stable kernels.
-> > 
-> > 
-> > [...]
-> 
-> Applied to arm64 (for-next/fixes), thanks! I left the 3rd patch to Will
-> for the upcoming merging window.
-> 
-> [1/3] arm64: errata: Extend the workaround for broken AMEVCNTR01 counter
->       https://git.kernel.org/arm64/c/139a9b7d5a07
-> [2/3] arm64: errata: Add Cortex-A715/A720 AMU core counter workaround
->       https://git.kernel.org/arm64/c/be7771458582
+The TSN Endpoint Ethernet MAC IP groups several sub-nodes under one IP
+node with a set of IP-wide clocks. Each sub-node needs its own driver,
+and the shared clocks must be running before any of them probe.
 
-Ignore this one, I applied v2 but b4 still remembered.
+Add a thin wrapper platform driver for the IP node. Enable the IP-wide
+clocks from the device tree and bind each sub-node to its own driver.
+
+Co-developed-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
+Signed-off-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
+Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+
+---
+Changes in v4:
+- Drop the Kconfig reference to a companion DSA driver that is not in
+  this series.
+
+Changes in v2:
+- Depend on OF_ADDRESS instead of OF && HAS_IOMEM.
+- Point the Kconfig help text at the companion DSA driver, not a symbol that
+  does not exist yet at this patch.
+- Drop the mod_devicetable.h include, platform_device.h already pulls it in.
+---
+ MAINTAINERS                                       |   1 +
+ drivers/net/ethernet/xilinx/Kconfig               |   1 +
+ drivers/net/ethernet/xilinx/Makefile              |   1 +
+ drivers/net/ethernet/xilinx/tsn/Kconfig           |  14 +++
+ drivers/net/ethernet/xilinx/tsn/Makefile          |   2 +
+ drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c | 104 ++++++++++++++++++++++
+ 6 files changed, 123 insertions(+)
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 6e71049322df..27f42178c12d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -30748,6 +30748,7 @@ M:	Srinivas Neeli <srinivas.neeli@amd.com>
+ L:	netdev@vger.kernel.org
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/net/xlnx,tsn-endpoint-ethernet-mac.yaml
++F:	drivers/net/ethernet/xilinx/tsn/
+ 
+ XILINX UARTLITE SERIAL DRIVER
+ M:	Peter Korsgaard <jacmet@sunsite.dk>
+diff --git a/drivers/net/ethernet/xilinx/Kconfig b/drivers/net/ethernet/xilinx/Kconfig
+index 7502214cc7d5..c6d704c8d3d4 100644
+--- a/drivers/net/ethernet/xilinx/Kconfig
++++ b/drivers/net/ethernet/xilinx/Kconfig
+@@ -41,4 +41,5 @@ config XILINX_LL_TEMAC
+ 	  This driver supports the Xilinx 10/100/1000 LocalLink TEMAC
+ 	  core used in Xilinx Spartan and Virtex FPGAs
+ 
++source "drivers/net/ethernet/xilinx/tsn/Kconfig"
+ endif # NET_VENDOR_XILINX
+diff --git a/drivers/net/ethernet/xilinx/Makefile b/drivers/net/ethernet/xilinx/Makefile
+index 7d7dc1771423..66dab012650b 100644
+--- a/drivers/net/ethernet/xilinx/Makefile
++++ b/drivers/net/ethernet/xilinx/Makefile
+@@ -8,3 +8,4 @@ obj-$(CONFIG_XILINX_LL_TEMAC) += ll_temac.o
+ obj-$(CONFIG_XILINX_EMACLITE) += xilinx_emaclite.o
+ xilinx_emac-objs := xilinx_axienet_main.o xilinx_axienet_mdio.o
+ obj-$(CONFIG_XILINX_AXI_EMAC) += xilinx_emac.o
++obj-$(CONFIG_XILINX_TSN) += tsn/
+diff --git a/drivers/net/ethernet/xilinx/tsn/Kconfig b/drivers/net/ethernet/xilinx/tsn/Kconfig
+new file mode 100644
+index 000000000000..3164d1ce7caa
+--- /dev/null
++++ b/drivers/net/ethernet/xilinx/tsn/Kconfig
+@@ -0,0 +1,14 @@
++# SPDX-License-Identifier: GPL-2.0-only
++#
++# Xilinx TSN device configuration
++#
++
++config XILINX_TSN
++	tristate "Xilinx TSN Ethernet driver"
++	depends on OF_ADDRESS
++	help
++	  This driver supports the AMD/Xilinx Time-Sensitive Networking
++	  (TSN) Endpoint Ethernet MAC IP. It provides the wrapper device
++	  and the endpoint MAC that connects the IP to the host CPU.
++
++	  If unsure, say N.
+diff --git a/drivers/net/ethernet/xilinx/tsn/Makefile b/drivers/net/ethernet/xilinx/tsn/Makefile
+new file mode 100644
+index 000000000000..6f99226f3dc8
+--- /dev/null
++++ b/drivers/net/ethernet/xilinx/tsn/Makefile
+@@ -0,0 +1,2 @@
++obj-$(CONFIG_XILINX_TSN) += xilinx_tsn.o
++xilinx_tsn-y := xilinx_tsn_main.o
+diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c
+new file mode 100644
+index 000000000000..afe7609c67fb
+--- /dev/null
++++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c
+@@ -0,0 +1,104 @@
++// SPDX-License-Identifier: GPL-2.0
++
++/*
++ * Time Sensitive Networking (TSN) Ethernet MAC wrapper driver.
++ *
++ * Copyright (C) 2026 Advanced Micro Devices, Inc.
++ */
++
++#include <linux/clk.h>
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++
++#define TSN_NUM_CLOCKS		6
++
++/**
++ * struct xlnx_tsn_ip - wrapper-private IP state
++ * @clks: bulk-managed IP clocks
++ */
++struct xlnx_tsn_ip {
++	struct clk_bulk_data clks[TSN_NUM_CLOCKS];
++};
++
++static const char * const tsn_clk_names[TSN_NUM_CLOCKS] = {
++	"gtx",
++	"gtx90",
++	"host_rxfifo",
++	"host_txfifo",
++	"ref",
++	"s_axi",
++};
++
++static void tsn_clk_bulk_disable(void *data)
++{
++	struct xlnx_tsn_ip *w = data;
++
++	clk_bulk_disable_unprepare(TSN_NUM_CLOCKS, w->clks);
++}
++
++static int tsn_ip_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct xlnx_tsn_ip *w;
++	int ret;
++
++	w = devm_kzalloc(dev, sizeof(*w), GFP_KERNEL);
++	if (!w)
++		return -ENOMEM;
++
++	for (int i = 0; i < TSN_NUM_CLOCKS; i++)
++		w->clks[i].id = tsn_clk_names[i];
++
++	ret = devm_clk_bulk_get(dev, TSN_NUM_CLOCKS, w->clks);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to get clocks\n");
++
++	ret = clk_bulk_prepare_enable(TSN_NUM_CLOCKS, w->clks);
++	if (ret)
++		return dev_err_probe(dev, ret, "failed to enable clocks\n");
++
++	ret = devm_add_action_or_reset(dev, tsn_clk_bulk_disable, w);
++	if (ret)
++		return ret;
++
++	return devm_of_platform_populate(dev);
++}
++
++static const struct of_device_id tsn_of_match[] = {
++	{ .compatible = "xlnx,tsn-endpoint-ethernet-mac-3.0" },
++	{ }
++};
++MODULE_DEVICE_TABLE(of, tsn_of_match);
++
++static struct platform_driver tsn_driver = {
++	.probe = tsn_ip_probe,
++	.driver = {
++		.name = "xilinx-tsn",
++		.of_match_table = tsn_of_match,
++	},
++};
++
++static struct platform_driver * const tsn_drivers[] = {
++	&tsn_driver,
++};
++
++static int __init xlnx_tsn_init(void)
++{
++	return platform_register_drivers(tsn_drivers, ARRAY_SIZE(tsn_drivers));
++}
++module_init(xlnx_tsn_init);
++
++static void __exit xlnx_tsn_exit(void)
++{
++	platform_unregister_drivers(tsn_drivers, ARRAY_SIZE(tsn_drivers));
++}
++module_exit(xlnx_tsn_exit);
++
++MODULE_AUTHOR("Srinivas Neeli <srinivas.neeli@amd.com>");
++MODULE_DESCRIPTION("AMD/Xilinx TSN Endpoint Ethernet MAC wrapper driver");
++MODULE_LICENSE("GPL");
 
 -- 
-Catalin
+2.43.0
+
 
