@@ -2,80 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4301E606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62413606A8A6
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iqM3KhTB;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=e8p0n/4q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1eLp27y7;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=Rd9h/v7r
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wWL8E9/FzqN09J68Lnx5883U9S+W8XARlqWFahZqWE8=; b=iqM3KhTBfZLMlX
-	KpxjydjVao8LMD9wqipI2UhUaDNjExJuceC115PSOajSel3iW2XXdtyvfRt5hUGg+9QOwY1HiDgy9
-	0HU7oMjgb0tvj/hSEbAM9oxsoQ1rloITws99q2NGzUH2hlmJbxIpzT0Bs+wYULyu7eU8sJNJQF8DR
-	gjHcCsKx0Tli1HiJ94BvLgvRoczFvxEBiQa0RrJdWmZ2NxEX/1nCdHwkCjBpoh+vUro4iKAZCwIoO
-	z5MadlDcCn+twKmfllU4hw0GlPfeC/XHfJUMo7VD12MwzC/pHSir6cq8888HHwAzcVw1r5fFyqQaB
-	oJtzg1frUbX2GtgFq2fA==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=M5yd3L4xpmBeVM5XoGF353kDrspRqwKbIMSF1r2WHMU=; b=1eLp27y79oCs/ss0BHItUVRB1j
+	htJRg3M6IFn6QXd+Xnf4UN2zNrBwk0dkfdVzFZp98NSNpC+yrpDWBgtiJvJl0QYuL+zYPt3U67w7I
+	RkLWXR9lLdFfSDkeeGEDRI2K2d9Eh21v7nvdiQkR3vgzwInjljBx/toxteKd5QTQTMeI1d6XmolXK
+	gUhaERTZJ/e19BLtlQ9zWDAdtY35jy8nNkdeHS+f2JzKCwBPyrVih0A1FMjl9z7jhbljb4ITOc0tu
+	5+vxMRCnok4nvv2RVbTPtp7ETDxrWQiF8p/Zr7ef9sFGKr9cYp2xu5H9AUjGokGQRYN9mLIvIbf8E
+	GUzga4EQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXmr-0000000Ac33-327S;
-	Thu, 12 Nov 2026 16:36:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXm2-0000000AbtM-19GL
+	id 1xRXnx-0000000AcOj-3jQb;
+	Thu, 12 Nov 2026 16:37:41 +0000
+Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRXnp-0000000AcHi-3L6g
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:35:50 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1BCBC1516;
-	Thu, 12 Nov 2026 08:35:38 -0800 (PST)
-Received: from [10.57.67.215] (unknown [10.57.67.215])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 740E93F673;
-	Thu, 12 Nov 2026 08:35:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794501341; bh=vTYfjBdjeqxRbi+MJ2rG5iyba+KEUTEpSaYPJP9Bu+Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e8p0n/4q9s8RBofHWjQWNiYG1+QrvR3aODbKwPBwYIpdLJjzLHXx7WnElo/f9a5eR
-	 ttF4y1qTnBH3ytKlJM2/Ac7bDbdglxlicr1DogG70oCm3NDLdzVCm2opITWZY+4BEv
-	 WNvpixt1WR4JCSqd1HrwvzWh311YVhWC70r5sfw8=
-Message-ID: <26a29420-8d27-4069-bbd5-28692c9e8542@arm.com>
-Date: Thu, 12 Nov 2026 16:35:35 +0000
+	Thu, 12 Nov 2026 16:37:39 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB77310A716;
+	Thu, 12 Nov 2026 17:37:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1794501439; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=M5yd3L4xpmBeVM5XoGF353kDrspRqwKbIMSF1r2WHMU=;
+	b=Rd9h/v7rSnKUtWdeUZfHA28W7NZgYmXtAD8dkv86sa2dlucShA2T3wevFF/tWU3aRF9b1i
+	7aLHK91cSgMZmB5Df6N85bsuSjqtBQD1yJzQpMnfLRIn2oKtDUDx06D+Ebg7cLyN5sxhwe
+	Esle93iKfga3Sspw3WDLKWvafkPlRHwcuQixxASjAR/VLaFKKB62k9QvuQ76C0GsUXZVAR
+	8UU8Su9FDvAmNrtv6c6StyvMgFnCBEGODy5F5XLn196ZqKTSlk9E0sDaBKLZRjJmCLj1bj
+	y0Mo5OuJWHndMyxa1ABh5AdC9muvQMidnHbj2t9P5xYAzCurDttjo3cO+f4XpQ==
+From: Lukasz Majewski <lukma@nabladev.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Lukasz Majewski <lukma@nabladev.com>
+Subject: [PATCH v2 1/3] dt-bindings: arm: fsl: Add an entry for Cloos CBASE board
+Date: Thu, 12 Nov 2026 17:37:01 +0100
+Message-ID: <20261112163703.3358164-1-lukma@nabladev.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/12] KVM: arm64: guest_memfd: Check mmap support when
- preparing memslot
-Content-Language: en-GB
-To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
- kvmarm@lists.linux.dev, Ackerley Tng <ackerleytng@google.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kohei Enju <enju.kohei@fujitsu.com>
-References: <20261111145758.217946-1-steven.price@arm.com>
- <20261111145758.217946-3-steven.price@arm.com>
- <fbc33983-cb8a-48e4-854f-ce009cc5668f@arm.com>
- <1e02dfff-c1ad-46bb-9834-fd4bbaa46179@arm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1e02dfff-c1ad-46bb-9834-fd4bbaa46179@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_083548_682364_7CC0EB6A 
-X-CRM114-Status: GOOD (  26.56  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_083734_072588_F5DC41C8 
+X-CRM114-Status: UNSURE (   9.08  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,130 +79,37 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 12/11/2026 10:43, Steven Price wrote:
-> On 11/11/2026 15:21, Suzuki K Poulose wrote:
->> On 11/11/2026 14:57, Steven Price wrote:
->>> Check the guest_memfd backing file when deciding whether an arm64
->>> memslot has mappable memory rather than checking whether the slot is
->>> gmem only. A public helper function is added to be able to reuse the
->>> static kvm_gmem_supports_mmap() function.
->>>
->>
->> Please could you explain why we need this ? Why not rely on
->> kvm_memslot_is_gmem_only(), which already tells
->> kvm_gmem_supports_mmap() ? With inplace conversion support gmem supports
->> mmap.
-> 
-> Unless I'm missing something it's still possible to create a guest_memfd
-> that doesn't support mmap() by not passing the GUEST_MEMFD_FLAG_MMAP
-> flag. So kvm_memslot_is_gmem_only() doesn't actually guarantee that it's
-> a guest_memfd that supports mmap().
+Add an entry for the i.MX8MM Cloos CBASE board.
 
-I see, while the KVM decides that, with inplace conversion shared pages
-come from gmem, we do allow creation of gmem without MMAP set, implying
-we would fail the mmap request from VMM, which is pretty pointless. But
-should the KVM fail this when VMM is shooting on its foot ? Only makes
-sense if there are no untrusted device DMA for the CoCo Guest.
+Signed-off-by: Lukasz Majewski <lukma@nabladev.com>
+---
+Changes for v2:
+- Place cbase in the correct order
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Am I missing something ?
-
-Cheers
-Suzuki
-
-
-
-
-> 
->>
->>> Signed-off-by: Steven Price <steven.price@arm.com>
->>>
->>> ---
->>> Changes since v1:
->>> - New patch in v2. Check the guest_memfd backing file rather than the
->>>     memslot flag when deciding whether arm64 can map the backing memory.
->>> ---
->>>    arch/arm64/kvm/mmu.c     | 7 ++++---
->>>    include/linux/kvm_host.h | 1 +
->>>    virt/kvm/guest_memfd.c   | 6 ++++++
->>>    3 files changed, 11 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
->>> index 1db10d8d6db7..a146f6cde3d0 100644
->>> --- a/arch/arm64/kvm/mmu.c
->>> +++ b/arch/arm64/kvm/mmu.c
->>> @@ -2839,10 +2839,11 @@ int kvm_arch_prepare_memory_region(struct kvm
->>> *kvm,
->>>            return -EFAULT;
->>>          /*
->>> -     * Only support guest_memfd backed memslots with mappable memory,
->>> since
->>> -     * there aren't any CoCo VMs that support only private memory on
->>> arm64.
->>> +     * Protected VMs currently require guest_memfd backed memslots with
->>> +     * mappable memory to support shared mappings.
->>>         */
->>> -    if (kvm_slot_has_gmem(new) && !kvm_memslot_is_gmem_only(new))
->>> +    if (kvm_arch_has_private_mem(kvm) && kvm_slot_has_gmem(new) &&
->>> +        !kvm_gmem_slot_supports_mmap(new))
-> 
-> Sashiko has identified I've screwed up this condition though.
-> kvm_arch_has_private_mem(kvm) shouldn't be in there as that allows a
-> non-private VM to bind a non-mmappable gmem.
-> 
->>>            return -EINVAL;
->>>          /* guest_memfd is incompatible with MTE. */
->>> diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
->>> index e7fc94e2910a..f65728a713ec 100644
->>> --- a/include/linux/kvm_host.h
->>> +++ b/include/linux/kvm_host.h
->>> @@ -2614,6 +2614,7 @@ static inline bool kvm_is_private_gfn(struct kvm
->>> *kvm, gfn_t gfn)
->>>      #ifdef CONFIG_KVM_GUEST_MEMFD
->>>    bool kvm_gmem_is_private_gfn(struct kvm *kvm, gfn_t gfn);
->>> +bool kvm_gmem_slot_supports_mmap(const struct kvm_memory_slot *slot);
->>>    bool kvm_arch_supports_gmem_init_shared(struct kvm *kvm);
->>>      static inline u64 kvm_gmem_get_supported_flags(struct kvm *kvm)
->>> diff --git a/virt/kvm/guest_memfd.c b/virt/kvm/guest_memfd.c
->>> index 8c97a69b16dc..3dd8d227bebb 100644
->>> --- a/virt/kvm/guest_memfd.c
->>> +++ b/virt/kvm/guest_memfd.c
->>> @@ -442,6 +442,12 @@ static bool kvm_gmem_supports_mmap(struct inode
->>> *inode)
->>>        return GMEM_I(inode)->flags & GUEST_MEMFD_FLAG_MMAP;
->>>    }
->>>    +bool kvm_gmem_slot_supports_mmap(const struct kvm_memory_slot *slot)
->>> +{
->>> +    /* The guest_memfd file is pinned while preparing a new memslot. */
->>
->> We should gate this on kvm_slot_has_gmem() and how do we ensure that the
->> call comes after it is prepared ?
-> 
-> I'm not sure what you mean by "gate this on kvm_slot_has_gmem()" - yes
-> this function only makes sense on a gmem slot - the user above checks
-> that first. I'm not sure what value the function should call if you call
-> it on a non-gmem slot?
-> 
-> Thanks,
-> Steve
-> 
->>> +    return kvm_gmem_supports_mmap(file_inode(slot->gmem.file));
->>> +}
->>> +
->>>    static vm_fault_t kvm_gmem_fault_user_mapping(struct vm_fault *vmf)
->>>    {
->>>        struct inode *inode = file_inode(vmf->vma->vm_file);
->>
->>
->> Cheers
->> Suzuki
-> 
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index c8290a83205b..0fd10f1a1a58 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1101,6 +1101,7 @@ properties:
+           one compatible is needed.
+         items:
+           - enum:
++              - cloos,imx8mm-cbase         # i.MX8MM Cloos CBASE Board
+               - cloos,imx8mm-phg           # i.MX8MM Cloos PHG Board
+               - tq,imx8mm-tqma8mqml-mba8mx # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM on MBa8Mx
+           - const: tq,imx8mm-tqma8mqml     # TQ-Systems GmbH i.MX8MM TQMa8MQML SOM
+-- 
+2.39.5
 
 
