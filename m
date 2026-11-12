@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA69606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:13:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBD8606A8A7
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H41hKqAW;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=r8wHeS6a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R5oq53dv;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=drx2TZUT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=XILbzNG8364SQMzEVvGGmHe9jocP0yD2ZAPIhRzCmkM=; b=H41hKqAWObBBItHCqD7sFkU17J
-	uzqkd0EeNSR/oq/+7bSvphyqelB+facOD5Loa2JRHGNBwapBgaW0yV6Xqp2lpR4Ih48Hkiy6zUSBE
-	amNMmibmaU/+NsKWuiovWssk9eIbCas0z61hz4Z0HG+Z+J9a+eKbwoj35+4iwZqDIWTedaOlItPLL
-	Qqe/FT+N37Asmre9I580cpjt8oj26kCeVSkynuPgy9cFikeLE4zzub+Qy/KjLsZkt3WTolquubl6d
-	JoXEg7iahVEjG3Ebw45HhJ4+MH+jhMogtHY7vfOOBlmmLW6kDGEP3/zqPQ35BgeNfqRXMHtBastBE
-	jVBl19HQ==;
+	bh=gLB3AodSpU0dXlPx9c6iIhtx2r+VDjwaKhOy+CroF8w=; b=R5oq53dvZNrybbqCc+mR4mZnHu
+	WGv1ue0O8sIerKxSoFb8E0m9/FyIK6ek4pQqc9NkVBagsuWOVGe5GXhL4/zXa0pwlhrXRaAD1HQv9
+	joW7b2Yi2A8dmSXWIhG0ODkAK7cPSzkJ8/LzgW1g+RKjwipmyw/XgWifUhjV5PDCBYjNeYYBG12zl
+	ajfb7xEgU6IJHtm3VePbTrvhHnOa8eVf3li7uY5JSdFNkRJhbHfJNgFf7q4G4pD1mP0aHTufC/Jev
+	4iZlKR+dU2lN0uXaMi8L/vK1tsmOUinLCZ/iKJpdDdg3vsekjYhcfoUM60fBQV5RcMpKwWuLXi3RV
+	gcF358wg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUcY-00000009ybn-31OJ;
-	Thu, 12 Nov 2026 13:13:42 +0000
-Received: from canpmsgout08.his.huawei.com ([113.46.200.223])
+	id 1xRUca-00000009yec-0YMk;
+	Thu, 12 Nov 2026 13:13:44 +0000
+Received: from canpmsgout10.his.huawei.com ([113.46.200.225])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUcC-00000009ySe-3911
+	id 1xRUcL-00000009ySk-3kLE
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 13:13:24 +0000
+	Thu, 12 Nov 2026 13:13:32 +0000
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=XILbzNG8364SQMzEVvGGmHe9jocP0yD2ZAPIhRzCmkM=;
-	b=r8wHeS6acBmnEGDFSwxfdP41EG/95w5Po9kK2Ge9tLaadBF8pBK3/UCOCHoDk1Q5hs0Vk94Xz
-	XPoiPZ1MJAgEktzloodoIZcrDtuzLM1tAeyKkCk+qazNL6IELJmNrzG2cfWyF4crCa+C2q/T9vb
-	1ro43tPWT8q0hsKsjjJOFMc=
-Received: from mail.maildlp.com (unknown [172.19.163.163])
-	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jQLRH0vjKzmV8H;
-	Thu, 12 Nov 2026 21:12:59 +0800 (CST)
+	bh=gLB3AodSpU0dXlPx9c6iIhtx2r+VDjwaKhOy+CroF8w=;
+	b=drx2TZUTgNbcBaDLGsueCnUS35TVKSSTWlGTziffZkaUXXQT8lZZWX7cztDxUuvqImxA7q/ob
+	+orojus/iyK4befL40vJSnXiMDxqOlxeb9erS0VQcsWn77zFnRdCl5IZhYocgR5ZpG86zVOXgS8
+	8kkQRYzKOBxZZEgTdKXdVfs=
+Received: from mail.maildlp.com (unknown [172.19.163.200])
+	by canpmsgout10.his.huawei.com (SkyGuard) with ESMTPS id 4jQLRQ6GBpz1K9BQ;
+	Thu, 12 Nov 2026 21:13:06 +0800 (CST)
 Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id E57544048B;
-	Thu, 12 Nov 2026 21:13:14 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id D96F64055B;
+	Thu, 12 Nov 2026 21:13:16 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
  (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
- 2026 21:13:14 +0800
+ 2026 21:13:16 +0800
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <Dave.Martin@arm.com>,
 	<james.morse@arm.com>, <babu.moger@amd.com>, <corbet@lwn.net>,
@@ -56,9 +56,9 @@ To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <Dave.Martin@arm.com>,
 	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [RFC PATCH v2 5/9] fs/resctrl: Allow mba_MBps with assignable MBM counters
-Date: Thu, 12 Nov 2026 21:12:50 +0800
-Message-ID: <20261112131255.4043381-6-ruanjinjie@huawei.com>
+Subject: [RFC PATCH v2 8/9] x86,fs/resctrl: Let the architecture cap the RMIDs for the software controller
+Date: Thu, 12 Nov 2026 21:12:53 +0800
+Message-ID: <20261112131255.4043381-9-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261112131255.4043381-1-ruanjinjie@huawei.com>
 References: <20261112131255.4043381-1-ruanjinjie@huawei.com>
@@ -69,8 +69,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
  kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_051321_114825_8BC73E3F 
-X-CRM114-Status: GOOD (  24.82  )
+X-CRM114-CacheID: sfid-20261112_051330_806134_59B0B27E 
+X-CRM114-Status: GOOD (  23.46  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,174 +90,145 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The controller needs a counter for the event selected by mba_MBps_event
-in every monitoring group, so mba_MBps is refused when MBM counters are
-assignable. On MPAM a group's monitor is assigned from a fixed pool
-when the group is created, and users can otherwise only pick a
-percentage of a maximum that firmware does not report.
+The MBA software controller measures every monitor group. When the
+architecture assigns each group a counter from a shared pool as the
+group is created, the number of groups must not exceed the number of
+counters while the controller is in use. resctrl has no way to learn
+this from the architecture.
 
-Allow the controller when the architecture has a fixed assignment mode
-and assigns counters when a group is created. Keep mbm_assign_on_mkdir
-enabled while the controller is in use, restore its previous value
-when the controller is disabled, and refuse to unassign the
-controller's counter meanwhile.
+The rmid_idx space cannot change for this: rmid_ptrs[] is set up on
+the first mount, and RMIDs in limbo outlive an unmount.
 
-Only MPAM has this mode; other systems keep the previous behavior.
+Add two hooks instead.
+- resctrl_arch_set_mba_sc(). Called when the controller is enabled
+  or disabled, so the architecture can update what it reports
+- resctrl_arch_rmid_valid(). Skips the RMIDs that arch refuses.
 
-Suggested-by: Ben Horgan <ben.horgan@arm.com>
+The hook runs before the number of CLOSIDs is read again, so the reset
+of the bandwidth targets covers the CLOSIDs the controller may use.
+The reset is skipped when the controller is disabled: the targets are
+not read while it is off, and a domain that came online while it was
+enabled may have allocated mbps_val for the capped, smaller number of
+CLOSIDs.
+
+Both hooks are no-ops on x86 and, for now, on MPAM.
+
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- Documentation/filesystems/resctrl.rst |  7 +++++--
- fs/resctrl/monitor.c                  | 25 ++++++++++++++++++++++
- fs/resctrl/rdtgroup.c                 | 30 +++++++++++++++++++++------
- 3 files changed, 54 insertions(+), 8 deletions(-)
+ arch/x86/include/asm/resctrl.h |  6 ++++++
+ fs/resctrl/monitor.c           |  6 ++++--
+ fs/resctrl/rdtgroup.c          | 25 ++++++++++++++++++++-----
+ include/linux/arm_mpam.h       |  8 ++++++++
+ 4 files changed, 38 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
-index b52795e03303..d70aec6f7096 100644
---- a/Documentation/filesystems/resctrl.rst
-+++ b/Documentation/filesystems/resctrl.rst
-@@ -471,7 +471,8 @@ with the following files:
- 	Determines if a counter will automatically be assigned to an RMID, MBM event
- 	pair when its associated monitor group is created via mkdir. Enabled by default
- 	on boot, also when switched from "default" mode to "mbm_event" counter assignment
--	mode. Users can disable this capability by writing to the interface.
-+	mode. Users can disable this capability by writing to the interface. While the
-+	MBA software controller is enabled, auto assignment cannot be disabled.
- 
- 	"0":
- 		Auto assignment is disabled.
-@@ -704,7 +705,9 @@ When monitoring is enabled all MON groups may also contain:
- 	   mbm_total_bytes:0=e;1=e
- 	   mbm_local_bytes:0=e;1=e
- 
--	Assignments can be modified by writing to the interface.
-+	Assignments can be modified by writing to the interface. While the
-+	MBA software controller is enabled, the counter of the event the
-+	controller uses cannot be unassigned.
- 
- 	Examples:
- 
-diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
-index 8f3b8c3e3010..5a67c8089615 100644
---- a/fs/resctrl/monitor.c
-+++ b/fs/resctrl/monitor.c
-@@ -1210,6 +1210,12 @@ ssize_t resctrl_mbm_assign_on_mkdir_write(struct kernfs_open_file *of, char *buf
- 		goto out_unlock;
- 	}
- 
-+	if (!value && is_mba_sc(NULL)) {
-+		rdt_last_cmd_puts("mbm_assign_on_mkdir is required by the software controller\n");
-+		ret = -EBUSY;
-+		goto out_unlock;
-+	}
-+
- 	r->mon.mbm_assign_on_mkdir = value;
- 
- out_unlock:
-@@ -1776,6 +1782,19 @@ static struct mon_evt *mbm_get_mon_event_by_name(struct rdt_resource *r, char *n
- 	return NULL;
+diff --git a/arch/x86/include/asm/resctrl.h b/arch/x86/include/asm/resctrl.h
+index 8f6edcdcfd87..ac51b63f6dde 100644
+--- a/arch/x86/include/asm/resctrl.h
++++ b/arch/x86/include/asm/resctrl.h
+@@ -181,6 +181,12 @@ static inline u32 resctrl_arch_rmid_idx_encode(u32 ignored, u32 rmid)
+ 	return rmid;
  }
  
-+/*
-+ * Return the event the MBA software controller uses as its input for @rdtgrp.
-+ * A monitor group has no event of its own: its bandwidth is summed into the
-+ * parent control group, which is the group with the mba_MBps_event setting.
-+ */
-+static enum resctrl_event_id rdtgrp_mba_mbps_event(struct rdtgroup *rdtgrp)
++static inline void resctrl_arch_set_mba_sc(bool enable) { }
++static inline bool resctrl_arch_rmid_valid(u32 closid, u32 rmid)
 +{
-+	if (rdtgrp->type == RDTMON_GROUP)
-+		return rdtgrp->mon.parent->mba_mbps_event;
-+
-+	return rdtgrp->mba_mbps_event;
++	return true;
 +}
 +
- static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *d,
- 					struct rdtgroup *rdtgrp, struct mon_evt *mevt)
- {
-@@ -1789,6 +1808,12 @@ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *
- 		ret = rdtgroup_assign_cntr_event(d, rdtgrp, mevt);
- 		break;
- 	case '_':
-+		if (is_mba_sc(NULL) &&
-+		    mevt->evtid == rdtgrp_mba_mbps_event(rdtgrp)) {
-+			rdt_last_cmd_puts("Counter is in use by the software controller\n");
-+			ret = -EBUSY;
-+			break;
-+		}
- 		rdtgroup_unassign_cntr_event(d, rdtgrp, mevt);
- 		break;
- 	default:
+ /* x86 can always read an rmid, nothing needs allocating */
+ struct rdt_resource;
+ static inline void *resctrl_arch_mon_ctx_alloc(struct rdt_resource *r,
+diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
+index 5a67c8089615..bcd809083f18 100644
+--- a/fs/resctrl/monitor.c
++++ b/fs/resctrl/monitor.c
+@@ -216,12 +216,14 @@ static struct rmid_entry *resctrl_find_free_rmid(u32 closid)
+ 		 * to be if it were used with this CLOSID.
+ 		 * If the CLOSID is irrelevant on this architecture, the two
+ 		 * index values are always the same on every entry and thus the
+-		 * very first entry will be returned.
++		 * very first entry will be returned. Skip the RMIDs the
++		 * architecture does not allow.
+ 		 */
+ 		itr_idx = resctrl_arch_rmid_idx_encode(itr->closid, itr->rmid);
+ 		cmp_idx = resctrl_arch_rmid_idx_encode(closid, itr->rmid);
+ 
+-		if (itr_idx == cmp_idx)
++		if (itr_idx == cmp_idx &&
++		    resctrl_arch_rmid_valid(closid, itr->rmid))
+ 			return itr;
+ 	}
+ 
 diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
-index b32831871f70..518d89b0c67d 100644
+index 9f10b6ceff8a..e186ae322f08 100644
 --- a/fs/resctrl/rdtgroup.c
 +++ b/fs/resctrl/rdtgroup.c
-@@ -2610,10 +2610,9 @@ static void mba_sc_domain_destroy(struct rdt_resource *r,
-  * The MBA software controller is supported only if MBM is supported and MBA is
-  * in linear scale, and the MBM monitor scope is the same as MBA control scope.
-  *
-- * The software controller cannot be supported when the MBM counters are
-- * assignable.  There is no guarantee that MBM counters are assigned to the
-- * event backing the software controller in all monitoring domains of all
-- * monitoring groups.
-+ * The controller needs a counter for its event in every monitoring group.
-+ * With assignable counters that requires a fixed assignment mode, with
-+ * counters assigned automatically while the controller is in use.
-  */
- static bool supports_mba_mbps(void)
- {
-@@ -2623,9 +2622,13 @@ static bool supports_mba_mbps(void)
- 	return (resctrl_is_mbm_enabled() &&
- 		r->alloc_capable && is_mba_linear() &&
- 		r->ctrl_scope == rmbm->mon_scope &&
--		!rmbm->mon.mbm_cntr_assignable);
-+		(!rmbm->mon.mbm_cntr_assignable ||
-+		 rmbm->mon.mbm_cntr_assign_fixed));
- }
- 
-+/* mbm_assign_on_mkdir before the software controller forced it on. */
-+static bool mba_sc_saved_assign_on_mkdir;
-+
- /*
-  * Enable or disable the MBA software controller
-  * which helps user specify bandwidth in MBps.
-@@ -2633,6 +2636,7 @@ static bool supports_mba_mbps(void)
- static int set_mba_sc(bool mba_sc)
+@@ -2640,16 +2640,20 @@ static int set_mba_sc(bool mba_sc)
  {
  	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_MBA);
-+	struct rdt_resource *rmbm = resctrl_arch_get_resource(RDT_RESOURCE_L3);
- 	u32 num_closid = resctrl_arch_get_num_closid(r);
+ 	struct rdt_resource *rmbm = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+-	u32 num_closid = resctrl_arch_get_num_closid(r);
  	struct rdt_ctrl_domain *d;
  	unsigned long fflags;
-@@ -2643,6 +2647,20 @@ static int set_mba_sc(bool mba_sc)
+-	int i;
+ 
+ 	if (!supports_mba_mbps() || mba_sc == is_mba_sc(r))
+ 		return -EINVAL;
  
  	r->membw.mba_sc = mba_sc;
  
 +	/*
-+	 * The controller needs its event counted in every monitoring group:
-+	 * force automatic assignment on, and restore the user's setting when
-+	 * the controller is disabled.
++	 * The architecture may cap the groups to what the controller can
++	 * measure. Do it before the number of CLOSIDs is used below.
 +	 */
-+	if (rmbm->mon.mbm_cntr_assignable) {
-+		if (mba_sc) {
-+			mba_sc_saved_assign_on_mkdir = rmbm->mon.mbm_assign_on_mkdir;
-+			rmbm->mon.mbm_assign_on_mkdir = true;
-+		} else {
-+			rmbm->mon.mbm_assign_on_mkdir = mba_sc_saved_assign_on_mkdir;
-+		}
-+	}
++	resctrl_arch_set_mba_sc(mba_sc);
 +
+ 	/*
+ 	 * The controller needs its event counted in every monitoring group:
+ 	 * force automatic assignment on, and restore the user's setting when
+@@ -2666,9 +2670,20 @@ static int set_mba_sc(bool mba_sc)
+ 
  	rdtgroup_default.mba_mbps_event = mba_mbps_default_event;
  
- 	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
-@@ -3352,7 +3370,7 @@ static int rdt_parse_param(struct fs_context *fc, struct fs_parameter *param)
- 		ctx->enable_cdpl2 = true;
- 		return 0;
- 	case Opt_mba_mbps:
--		msg = "mba_MBps requires MBM (mbm_event mode not supported) and linear scale MBA at L3 scope";
-+		msg = "mba_MBps requires MBM and linear scale MBA at L3 scope";
- 		if (!supports_mba_mbps())
- 			return invalfc(fc, msg);
- 		ctx->enable_mba_mbps = true;
+-	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
+-		for (i = 0; i < num_closid; i++)
+-			d->mbps_val[i] = MBA_MAX_MBPS;
++	/*
++	 * Reset the targets of the CLOSIDs the controller uses. Skip this
++	 * when disabling: nothing reads the targets while the controller is
++	 * off, and a domain that came online while it was enabled may have
++	 * allocated mbps_val for the capped, smaller number of CLOSIDs.
++	 */
++	if (mba_sc) {
++		u32 num_closid = resctrl_arch_get_num_closid(r);
++		int i;
++
++		list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
++			for (i = 0; i < num_closid; i++)
++				d->mbps_val[i] = MBA_MAX_MBPS;
++		}
+ 	}
+ 
+ 	fflags = mba_sc ? RFTYPE_CTRL_BASE | RFTYPE_MON_BASE : 0;
+diff --git a/include/linux/arm_mpam.h b/include/linux/arm_mpam.h
+index 002f56e15362..73a6277f688c 100644
+--- a/include/linux/arm_mpam.h
++++ b/include/linux/arm_mpam.h
+@@ -63,6 +63,14 @@ u32 resctrl_arch_rmid_idx_encode(u32 closid, u32 rmid);
+ void resctrl_arch_rmid_idx_decode(u32 idx, u32 *closid, u32 *rmid);
+ u32 resctrl_arch_system_num_rmid_idx(void);
+ 
++/* MPAM does not limit the RMIDs for the MBA software controller yet. */
++static inline void resctrl_arch_set_mba_sc(bool enable) { }
++
++static inline bool resctrl_arch_rmid_valid(u32 closid, u32 rmid)
++{
++	return true;
++}
++
+ struct rdt_resource;
+ void *resctrl_arch_mon_ctx_alloc(struct rdt_resource *r, enum resctrl_event_id evtid);
+ void resctrl_arch_mon_ctx_free(struct rdt_resource *r, enum resctrl_event_id evtid, void *ctx);
 -- 
 2.34.1
 
