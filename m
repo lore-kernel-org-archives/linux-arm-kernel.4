@@ -2,67 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44281606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 02:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AEB8606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 02:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bgCa/Mdk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=T3u/Jidc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ey5op0i5;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=cimBUg+3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
+	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KXBsLbHqbNY0tnMKABAel74HWjlwLz2G94116zY2phk=; b=bgCa/MdkWNp2lu
-	0MZDozFEWfaYmIgRzrVfW/eh1iKg2whPM5KdydIRphjMcfQeVn2WlyuNssivjjZUR7yPcEllNfw9U
-	yfsG+VudXV9Mm5fXDrwoAHKgaemS2+LC3wxAi0iBJBcX61Bmk1CuqM1mz+l4ZNAuaIBf5jWOujgRC
-	3uwEjZT6kNa80GvyCgHt4dp/rjXTXYwF6Blva8xoC7eRyhMBLsv+8eKTb0tCCoMtWb+d8jU0BGhr+
-	xBT+zizLPy5asf4e0Hyei6j2jUoKI6dbRANRNituxmGHgYe6qHH9+ZWF6/W2a9URbTyAL6VMh7h+k
-	ct2duPe36+0nuOeq/VDA==;
+	List-Owner; bh=P14KhoMXfGPni5qi61eVjUkVCq90IQqObPqvQa87lCY=; b=Ey5op0i5EHWfZB
+	m/7JMlLKXdnm/HkTvZMpBNgwTTNxHng67WO/FMFzIj5TLemnfts+K68lVnksnE9GxNYnyqehu14uK
+	mZy159AMJxF8KII5kY4IEbXGb2o8CcmEtBs9CkL7Yyb0ZSRNJ/8oAQRA6IDrJvrTAXKlb6D3A8I4R
+	I2F0ipCBIxenpxqGUxlhwUs6wgdOhlVkuY3zPSm2FLjuEpouzdBtD9oJcCHWcYMO3NYq9N5WBA5BH
+	dCYGskUJoUy2VWEHutiRBz/ZR9hTvl+1utt7HfhFy04J5GMHNDmF0l5uU+CcQnTUAaqxAVIT8qQd7
+	0xw1KEzvB0WmY0kgw0/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRh6g-0000000BV8e-0bxq;
-	Fri, 13 Nov 2026 02:33:38 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRhJy-0000000BVyk-1Us6;
+	Fri, 13 Nov 2026 02:47:22 +0000
+Received: from mail-westusazlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c001::5] helo=BYAPR05CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRh6e-0000000BV8G-0xqe
+	id 1xRhJu-0000000BVyE-23rk
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 02:33:36 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7F960612B8;
-	Fri, 13 Nov 2026 02:33:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 320E91F000C6;
-	Fri, 13 Nov 2026 02:33:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794537215;
-	bh=KXBsLbHqbNY0tnMKABAel74HWjlwLz2G94116zY2phk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=T3u/Jidc7xu8JsGU6dv4NwbO97Wf1optilw/vxJkmlS2KkX5EFyRAVq3Z/PQkz1ry
-	 rnrOGnHp5JlyShIK089TBkZWk/PS4A1uIhJynPInptR5Js/oTAEjMIhgkRmn8rHTBG
-	 Kf+zZ3E8IQPqhGqmKMQO4n072F0rPqb7t/WZMVtOYyhELPqbg/Ny1jLvjqlN3f2j3k
-	 UiVhZfjzJxbYe93CyK4UU13rkmjxUqbQFAP59fTykCIu9gBXqdx1CXoMXQGDtgkcl2
-	 EZWIXg7EVE3JpfAISneQYtpz/tOo9eTcyNVPJv0eF3Odvq+9VheQjjytuefra/T7Bs
-	 YqUYUtMDT7sug==
-From: Sasha Levin <sashal@kernel.org>
-To: stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>,
-	gregkh@linuxfoundation.org,
-	yeoreum.yun@arm.com,
-	suzuki.poulose@arm.com,
-	leo.yan@arm.com,
-	coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	xueshuai@linux.alibaba.com
-Subject: Re: [PATCH] coresight/etm4: fix missing disable active config
-Date: Thu, 12 Nov 2026 21:33:14 -0500
-Message-ID: <daily-reply-2026-11-12-2154998661@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261112135406.71749-1-xueshuai@linux.alibaba.com>
-References: <20261112135406.71749-1-xueshuai@linux.alibaba.com>
+	Fri, 13 Nov 2026 02:47:20 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vMeQP/b+Diuo5Tw3nknM13XPP8n4C1NMGBn6z2rz00w7yCSGI9C4LhSoSOPXhu6yEejX0P3ax4Z0tuvyJ9V1rco3Q9zQLckfg15rrHp10fi/lWyFRotrjteTYomG47OHwQAhckUEUCKCVTEJaCb4ENRR2f7edgeBoQXsOe2w5th1rgBgCLz4zMWbf0cKk/qw8jRB5DyTz7jk3NtWrL+GxZG4l6UutoEZytiWhMZBONQQBaJsdHAPx6oorCevV6h3hrZP+AHoFPrwNmOZWubZPQYCaJUJSKlMpI7ZXkRoS1CFI2TnyPtNb8CW3vltDBdYelvgBo5F7OxNWvos8CaIhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P14KhoMXfGPni5qi61eVjUkVCq90IQqObPqvQa87lCY=;
+ b=PTkDaHochbbbT4pHbGjzE3XxhnCu4qHhejzj2ZfxbjLT0AINPqj6VgMF6U3bgz/khhVtAfwCtuN8n5LzYZ1G44UwVEN7G51ZQjySYUCuqwbJlVPV+D0YtgLEq+BSSadyiZBWXWNXOLMGgK7wPNwMN252oggRkSb7m7DmNdJERJdMnpOeME5MnBlYXzAo1IQU4dJaFPcNWiVkFo4v0swlXybs8J6pvtU3zxdhQpvTx6n6BMD82p5FjkwdlwbsiqiqbBQCKyPROUmDAHKAvaAxr2H4BUDWrHKXDPjX5bCZHqINidHdYzd+mGem+SA7QLguOE9advhMOm/IUvRqIUPiHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none
+ action=none header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=P14KhoMXfGPni5qi61eVjUkVCq90IQqObPqvQa87lCY=;
+ b=cimBUg+3QHDKjO1NXdGDqg2AvXpoiM9kqDrinPMXFfxzhSrFFbc/DbY5HnXgWUJ4wUBtuazPsLTmqn5N56odgkfsYurJIlNNUj6xT4UPdMyW29aFrpZosG0/yI6lbqSqAAd2exbag3F5LTaIeUzUhLfyLP47XBjRdSAQ8g3HqhE=
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; dkim=none (message
+ not signed) header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DS1P221CA0001.NAMP221.PROD.OUTLOOK.COM (2603:10b6:8:451::6) by
+ MW4PR12MB7192.namprd12.prod.outlook.com (2603:10b6:303:22a::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Fri, 13 Nov
+ 2026 02:43:51 +0000
+Received: from CH2PEPF00016D47.namprd02.prod.outlook.com
+ (2603:10b6:8:451:cafe::5e) by DS1P221CA0001.outlook.office365.com
+ (2603:10b6:8:451::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.522.4 via Frontend Transport; Fri, 13
+ Nov 2026 02:43:50 +0000
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CH2PEPF00016D47.mail.protection.outlook.com (10.167.244.116) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Fri, 13 Nov 2026 02:43:50 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
+ 2026 12:47:50 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
+ 2026 12:47:49 -0600
+Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
+ Transport; Thu, 12 Nov 2026 12:47:44 -0600
+From: Srinivas Neeli <srinivas.neeli@amd.com>
+Date: Fri, 13 Nov 2026 00:16:51 +0530
+Subject: [PATCH net-next v4 7/8] net: xilinx: tsn: add the endpoint TX data
+ path
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20261113-patches_v2_external-v4-7-56bb26f042a4@amd.com>
+References: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
+In-Reply-To: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
+To: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>, Andrew Lunn
+	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>, "Michal
+ Simek" <michal.simek@amd.com>, Sebastian Andrzej Siewior
+	<bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, "Steven
+ Rostedt" <rostedt@goodmis.org>, Eric Dumazet <edumazet@kernel.org>, "Eric
+ Dumazet" <edumazet@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-rt-devel@lists.linux.dev>, Srinivas Neeli <srinivas.neeli@amd.com>,
+	<git@amd.com>, <neelisrinivas18@gmail.com>
+X-Mailer: b4 0.16.0
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF00016D47:EE_|MW4PR12MB7192:EE_
+X-MS-Office365-Filtering-Correlation-Id: 58d0f16c-717d-40ba-c14e-08df412ff2fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|36860700016|1800799024|82310400026|921020|10067099003|11063799006|261021123027099003|261026121527099003|261026140227099003|56012099006|261022105027099003|261028144727099003|261102123227099003|261021121427099003|261009223027099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: CoGM6xgD2wOEankpt+uizDMXHTbEnCa8iMLXWqpG5/Ln5Y0tSePQ+NTt5jQxucrCLCzNM/Iw9IbGiQWSOWKhCYimtlcDV9ef0MC8Y9fAU4GsC2ECdCBtkkBhkpHjlEnqjwIaKxVEiujz6GDQp5S7O+Lga4cxUuDOkcuYKFZ/A9jl0udpYoYGHr7VGxryTSMtSTYoWDCW3baagNsgNB+3+FOa/ovUEPEcs5j6qWuj/N8J35feEIww4tYJVSEUjf+3FnRoQt0XtA6HfkE6agRz3JouN7s60ErVM+GvcVnuNexKLAi+R5IlXli/Sz0F1IOEN5zsJ8kHaLOnKZRJ+X73yNV77EaFplt2gVlhKAeQ6dG5rKkmtB/U5WUMC/xVjcQ0I4GFl6RLvkTMzYqLVW309YTcVclBAeORPikO0e7YAE/+a9a6G7Lcv3I3T5Zl/j0xT6sJ+DeynsixsIycL5n+J80Y7R2ZiaxHEzUv2CxKhOYw64Ol8bIe/b8HFqb77NQTRrJI2PN2hDyUPJiv3VIkf+S39y6VSD5X2NZWoloz3sdgXhItCrZeTBXbI28EEpRHD9x0peizFjwQipW5Ar6sZoBxxjxO+eluOQ35lZCi49OMnukgJHCXXBN5UamQG9F60lzaKw8j6LNfX4Tvg3+1BRAx02wjnd4kJhntyLHEWj5bzBCgeblbkhnk11k1pFUvmkc7x3dIcYUThJHqTsneHQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(36860700016)(1800799024)(82310400026)(921020)(10067099003)(11063799006)(261021123027099003)(261026121527099003)(261026140227099003)(56012099006)(261022105027099003)(261028144727099003)(261102123227099003)(261021121427099003)(261009223027099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 8KYrTqqTpjTk+5kpr5UaYXA1TOPGJ2gf2mv5rfrvvUJPBHpsZTWTKQ+i20IThKpxZYNf2DDaUfCRdwCgxKHBqCyUGwY66c0AtLd9petK0Y+rUo7b1h9+qwd7yfZfk54TZrEdJd+7GK3KwBTYe+T3aldNjXrZjTDkdA+GmwBbmErZg2KI+o9WAK2NwLb4oU6jnHE3MfZfawb1SfkDQ+4X4FHq61z+h15lLuy8u8ZQUUuN5RMGgWYJ25vl8pfUgjmvQs7HBk8WqA3DFZxCOO4GValM9Q+0pNwNOOAU4EH2Z7kIMy6H4hRFA+H87WMYi8cX/QaNuYCM+wByzfe+6cTymTEHG5tE/Iy/D68GZaKIkgEYYs0DhFAJEqv1WJUF0sbtpqZawLymksahGVe5QAUCdFMQWwRHjHhRiQ5KiSlZrIgpTSqXC05d8QCseg2ivgR1
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 02:43:50.5383
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 58d0f16c-717d-40ba-c14e-08df412ff2fe
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00016D47.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7192
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_184718_544554_4247B89A 
+X-CRM114-Status: GOOD (  25.74  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,23 +128,305 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-12, Shuai Xue wrote:
-> [PATCH] coresight/etm4: fix missing disable active config
-> When etm4 device is disabled via sysfs, it should disable its active
-> count.
-> Fixes: 7ebd0ec6cf94 ("coresight: configfs: Allow configfs to activate configuration")
+Add the transmit path so the endpoint can send frames.
 
-Queued for 6.12 and 6.6, thanks.
+Select the TX channel by indexing tx_chans[] with the frame's logical
+queue. ep_init_dmaengine() fills that array in logical-queue order, so the
+index maps to the channel that queue's descriptors were set up on. The
+driver consults tx_dma_chan_map[] only to reject a queue with no mapping.
+Map the frame and submit it to that channel. Stop the queue when the ring
+runs out of space, and wake it from the completion callback once a slot
+opens.
 
+Co-developed-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
+Signed-off-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
+Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+
+---
+Changes in v4:
+- Call skb_tx_timestamp() before dmaengine_submit(). The provider can
+  start a pending descriptor from the IRQ of an earlier transfer, so the
+  completion callback could free the skb before the timestamp was taken.
+- Add .get_ts_info with ethtool_op_get_ts_info() so ethtool reports the
+  software TX timestamps the driver now generates.
+- Terminate the TX channels in ndo_stop() before netif_tx_disable(). A
+  completion that read the closing flag as false then finishes before the
+  queues are stopped and can no longer wake one while the channels are
+  freed.
+- Extend the @closing kernel-doc to the TX completion callback, which
+  tests it before waking a stopped queue.
+
+Changes in v3:
+- Free a DMA-error TX frame with dev_kfree_skb_any() and a completed one
+  with dev_consume_skb_any(), so dropped frames are not reported as
+  delivered.
+- Add skb_tx_timestamp() at the hardware handoff for software TX
+  timestamps.
+- Skip the queue wake in the completion callback while closing. Use
+  __netif_txq_completed_wake() with the closing flag, and set ep->closing
+  before netif_tx_disable().
+- Reword the body to state that tx_chans[] is indexed by logical queue, and
+  drop the description of a runtime channel lookup that no longer exists.
+
+Changes in v2:
+- Take the scatterlist entry count from skb_to_sgvec() instead of assuming
+  nr_frags + 1, so dma_map_sg() cannot walk past the end of the list.
+- Check dmaengine_submit() with dma_submit_error() before advancing the ring
+  head and charging BQL, and drop the frame if the submit fails.
+- Publish the ring head with WRITE_ONCE(), paired with the READ_ONCE() on the
+  completion side.
+- Take the ring size from the channel instead of the compile-time constant.
+- Use dmaengine_prep_slave_sg() instead of calling the ops member directly.
+- Move tx_lock into the per-channel struct, mirroring rx_lock, so independent
+  TX queues do not serialise on one device-wide lock.
+- Narrow the tx_lock kernel-doc to what it actually protects.
+- Mark the ring_tail store in the completion callback with WRITE_ONCE() to
+  match the READ_ONCE() readers.
+- Use the spinlock_bh guard class in the completion callback so it matches the
+  spin_lock_bh() in the xmit path.
+- Index tx_chans directly by logical queue in ep_start_xmit() and drop the
+  phys_chan/dma_dev locals, so the transmit path no longer re-derives the
+  channel through tx_dma_chan_map.
+---
+ drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c | 161 +++++++++++++++++++++++-
+ 1 file changed, 159 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
+index f179062c7d14..6e2721a74f28 100644
+--- a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
++++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
+@@ -28,6 +28,8 @@
+ #include <linux/timer.h>
+ #include <linux/types.h>
+ 
++#include <net/netdev_queues.h>
++
+ #include "xilinx_tsn.h"
+ 
+ #define DRIVER_NAME			"xilinx_tsn_ep"
+@@ -82,6 +84,7 @@ struct skbuf_dma_descriptor {
+  * @ring_tail: consumer index
+  * @ring_size: number of slots in @skb_ring
+  * @rx_lock: serialises @ring_head between the RX callback and the refill timer
++ * @tx_lock: serialises @ring_head and @ring_tail between xmit and TX completion
+  * @rx_refill_timer: retries RX refill after an allocation failure
+  * @is_tx: true for TX channels, false for RX
+  */
+@@ -94,6 +97,7 @@ struct xlnx_tsn_ep_dma_chan {
+ 	u32 ring_tail;
+ 	u32 ring_size;
+ 	spinlock_t rx_lock;	/* serialises @ring_head */
++	spinlock_t tx_lock;	/* serialises @ring_head and @ring_tail */
+ 	struct timer_list rx_refill_timer;
+ 	bool is_tx;
+ };
+@@ -112,6 +116,7 @@ struct xlnx_tsn_ep_dma_chan {
+  * @tx_chans: array of TX channels (size @num_tx_queues)
+  * @rx_chans: array of RX channels (size @num_rx_queues)
+  * @closing: set in ndo_stop so the RX completion callback stops re-arming
++ *	and the TX completion callback stops waking a stopped queue
+  */
+ struct xlnx_tsn_ep {
+ 	struct net_device *ndev;
+@@ -311,8 +316,151 @@ static void ep_dma_rx_cb(void *data, const struct dmaengine_result *result)
+ 	ep_rx_refill(xchan, true);
+ }
+ 
++static void ep_dma_tx_cb(void *data, const struct dmaengine_result *result)
++{
++	struct xlnx_tsn_ep_dma_chan *xchan = data;
++	struct skbuf_dma_descriptor *skbuf_dma;
++	struct netdev_queue *txq;
++	struct net_device *ndev;
++	struct scatterlist *sgl;
++	struct sk_buff *skb;
++	int sg_len;
++	int len;
++
++	scoped_guard(spinlock_bh, &xchan->tx_lock) {
++		skbuf_dma = ep_get_desc(xchan,
++					xchan->ring_tail & (xchan->ring_size - 1));
++		if (!skbuf_dma || !skbuf_dma->skb)
++			return;
++
++		skb = skbuf_dma->skb;
++		sgl = skbuf_dma->sgl;
++		sg_len = skbuf_dma->sg_len;
++
++		dma_unmap_sg(xchan->dma_dev, sgl, sg_len, DMA_TO_DEVICE);
++
++		skbuf_dma->skb = NULL;
++		WRITE_ONCE(xchan->ring_tail, xchan->ring_tail + 1);
++	}
++
++	ndev = skb->dev;
++	txq = netdev_get_tx_queue(ndev, skb_get_queue_mapping(skb));
++	len = skb->len;
++
++	if (unlikely(result->result != DMA_TRANS_NOERROR)) {
++		DEV_STATS_INC(ndev, tx_errors);
++		dev_kfree_skb_any(skb);
++	} else {
++		DEV_STATS_INC(ndev, tx_packets);
++		DEV_STATS_ADD(ndev, tx_bytes, len);
++		dev_consume_skb_any(skb);
++	}
++
++	__netif_txq_completed_wake(txq, 1, len,
++				   CIRC_SPACE(READ_ONCE(xchan->ring_head),
++					      READ_ONCE(xchan->ring_tail),
++					      xchan->ring_size), 2,
++				   READ_ONCE(xchan->ep->closing));
++}
++
+ static netdev_tx_t ep_start_xmit(struct sk_buff *skb, struct net_device *ndev)
+ {
++	struct dma_async_tx_descriptor *dma_tx_desc;
++	struct xlnx_tsn_ep *ep = netdev_priv(ndev);
++	struct skbuf_dma_descriptor *skbuf_dma;
++	int queue = skb_get_queue_mapping(skb);
++	struct xlnx_tsn_ep_dma_chan *xchan;
++	struct netdev_queue *txq;
++	int sg_len, nents, ret;
++	dma_cookie_t cookie;
++
++	if (unlikely(queue >= ep->num_tx_queues)) {
++		if (net_ratelimit())
++			netdev_warn(ndev, "Invalid TX queue %d (max %u)\n",
++				    queue, ep->num_tx_queues);
++		goto err_drop_skb;
++	}
++
++	if (ep->tx_dma_chan_map[queue] == TSN_DMA_CH_INVALID) {
++		if (net_ratelimit())
++			netdev_warn(ndev, "Logical TX queue %d has invalid DMA mapping\n",
++				    queue);
++		goto err_drop_skb;
++	}
++
++	xchan = ep->tx_chans[queue];
++
++	sg_len = skb_shinfo(skb)->nr_frags + 1;
++	txq = netdev_get_tx_queue(ndev, queue);
++
++	spin_lock_bh(&xchan->tx_lock);
++	if (CIRC_SPACE(xchan->ring_head, READ_ONCE(xchan->ring_tail),
++		       xchan->ring_size) <= 1) {
++		netif_txq_try_stop(txq,
++				   CIRC_SPACE(xchan->ring_head,
++					      READ_ONCE(xchan->ring_tail),
++					      xchan->ring_size),
++				   2);
++		spin_unlock_bh(&xchan->tx_lock);
++		if (net_ratelimit())
++			netdev_warn(ndev, "TSN TX ring full\n");
++
++		return NETDEV_TX_BUSY;
++	}
++
++	skbuf_dma = ep_get_desc(xchan, xchan->ring_head & (xchan->ring_size - 1));
++	if (!skbuf_dma) {
++		spin_unlock_bh(&xchan->tx_lock);
++		goto err_drop_skb;
++	}
++	spin_unlock_bh(&xchan->tx_lock);
++
++	sg_init_table(skbuf_dma->sgl, sg_len);
++	ret = skb_to_sgvec(skb, skbuf_dma->sgl, 0, skb->len);
++	if (ret < 0)
++		goto err_drop_skb;
++	sg_len = ret;
++
++	nents = dma_map_sg(xchan->dma_dev, skbuf_dma->sgl, sg_len, DMA_TO_DEVICE);
++	if (!nents)
++		goto err_drop_skb;
++
++	dma_tx_desc = dmaengine_prep_slave_sg(xchan->chan, skbuf_dma->sgl,
++					      nents, DMA_MEM_TO_DEV,
++					      DMA_PREP_INTERRUPT);
++	if (!dma_tx_desc)
++		goto err_unmap_sg;
++
++	skbuf_dma->skb = skb;
++	skbuf_dma->sg_len = sg_len;
++	dma_tx_desc->callback_param = xchan;
++	dma_tx_desc->callback_result = ep_dma_tx_cb;
++
++	skb_tx_timestamp(skb);
++
++	spin_lock_bh(&xchan->tx_lock);
++	cookie = dmaengine_submit(dma_tx_desc);
++	if (dma_submit_error(cookie)) {
++		spin_unlock_bh(&xchan->tx_lock);
++		skbuf_dma->skb = NULL;
++		goto err_unmap_sg;
++	}
++	WRITE_ONCE(xchan->ring_head, xchan->ring_head + 1);
++	netdev_tx_sent_queue(txq, skb->len);
++	netif_txq_maybe_stop(txq,
++			     CIRC_SPACE(xchan->ring_head,
++					READ_ONCE(xchan->ring_tail),
++					xchan->ring_size),
++			     2, 2);
++	spin_unlock_bh(&xchan->tx_lock);
++
++	dma_async_issue_pending(xchan->chan);
++
++	return NETDEV_TX_OK;
++
++err_unmap_sg:
++	dma_unmap_sg(xchan->dma_dev, skbuf_dma->sgl, sg_len, DMA_TO_DEVICE);
++err_drop_skb:
+ 	dev_kfree_skb_any(skb);
+ 	DEV_STATS_INC(ndev, tx_dropped);
+ 	return NETDEV_TX_OK;
+@@ -343,10 +491,16 @@ static int ep_open(struct net_device *ndev)
+ static int ep_stop(struct net_device *ndev)
+ {
+ 	struct xlnx_tsn_ep *ep = netdev_priv(ndev);
++	unsigned int i;
+ 
+-	netif_tx_disable(ndev);
+ 	WRITE_ONCE(ep->closing, true);
++	for (i = 0; i < ep->num_tx_queues; i++)
++		dmaengine_terminate_sync(ep->tx_chans[i]->chan);
++
++	netif_tx_disable(ndev);
+ 	ep_exit_dmaengine(ep);
++	for (i = 0; i < ndev->num_tx_queues; i++)
++		netdev_tx_reset_subqueue(ndev, i);
+ 
+ 	return 0;
+ }
+@@ -366,6 +520,7 @@ static const struct net_device_ops ep_netdev_ops = {
+ 
+ static const struct ethtool_ops ep_ethtool_ops = {
+ 	.get_drvinfo	= ep_get_drvinfo,
++	.get_ts_info	= ethtool_op_get_ts_info,
+ };
+ 
+ static struct xlnx_tsn_ep_dma_chan *
+@@ -402,7 +557,9 @@ ep_alloc_dma_chan(struct xlnx_tsn_ep *ep, struct dma_chan *dma_chan,
+ 	chan->ep = ep;
+ 	chan->ring_size = ring_size;
+ 	chan->dma_dev = dmaengine_get_dma_device(chan->chan);
+-	if (!is_tx) {
++	if (is_tx) {
++		spin_lock_init(&chan->tx_lock);
++	} else {
+ 		spin_lock_init(&chan->rx_lock);
+ 		timer_setup(&chan->rx_refill_timer, ep_rx_refill_timer, 0);
+ 	}
 
 -- 
-Thanks,
-Sasha
+2.43.0
+
 
