@@ -2,87 +2,81 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16CDC606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56501606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:57:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lAA8z9NQ;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ElCTLXIy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=StUDTGjJ;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=tNGxxaHv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=EI+/gOi3YcwXHjbf8KM4BWSUOlp+RtEEWptAHvG91Jc=; b=lAA8z9NQSVQUGv
-	vv0s+W6/81L65cU8/8npSEKSlOW10F9MpAcg3zZif49YalkEhRN6fa9P3qdIy2hRmBkUaJhHXJIBP
-	3eFdztMhJISkME/uu2bkD42cMBV8D+sN/4d24mHsTFQAyU76hoSZ5Pu3sbPWAfH0thPe2UiG1K3a7
-	S7MKtknzOpYn1izlovRnZzmsQrduLuS+a0GpaDqfonp8WLYAZn8YesSjDew88OZa8Xr6qLFKhOrbn
-	gaAyMieUXEYISkHH8CaRT+RvlUVa/CvWfssLFCsQOQisu4HF1lDvvgYQWjVmqNWN/WYa0Dw8exORB
-	vbqdzpVZIC/Mm848oolw==;
+	List-Owner; bh=Fz3ok1xgLMCevgKit+vc08GYfcHPvlYtyNknEWCsv+M=; b=StUDTGjJkPapR5
+	81M5AAJ+CIMfU68SSqJrdegpKm6eqsUxVuCAy7BNIg5eP29coCZ4VHPrLjdQ5MLf5bgzIhJtzjmnY
+	vIKXi0IOQHO9FuLpOSIHf4ThvQYTEXn+qnT2R3cf8Nvow1pKvZ76qdXpFjTqHcwoVwinGiaB0tYAI
+	igPdXIlz0FV8odJ/QCZcuWCrK6qodgsJrH0RDczdp0VwpRuZLXp5Ux8mKun9JOxrgh38QntQY52PZ
+	Ix3a6KJ7hRvWsrRtSrrtenu6xNkLRgwTq4JFy7kepgvE2eJeKFJZbeGQQJjDAXpjTw8a2BTKAEVrX
+	mKHz35GX6foa+e8AnxBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXxR-0000000Afas-1vt0;
-	Thu, 12 Nov 2026 16:47:29 +0000
-Received: from mgamail.intel.com ([198.175.65.13])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXxB-0000000AfUR-3eeb
+	id 1xRY78-0000000Ah7g-3Xsy;
+	Thu, 12 Nov 2026 16:57:30 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRY73-0000000Ah5Q-1gGR
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:47:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794502034; x=1826038034;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=gb+ertXw9oZUZYFRwrzAW9mTO6w0J+Qo9JE40Aj9z54=;
-  b=ElCTLXIy45zUq+VhKCDGgpscrwvd8iaA+bsUeKr3P3ZSbhIlfP4aq3V/
-   OJC6rqAPWSuh4vzNgilsHCpGkIQy/u79NyB64PIra0S/ftYpMIBovzb6N
-   MNkePz7xnxZsenFjU1CwRMSwLHVyWv3q9MKniK+hQ8EpPO9had8BGvk4O
-   GvbSK2UMsi/HISEYC769PAeA+arTatX84ms3fzCFs65TFOvYcinGYKZ1R
-   Zv39s5Uw8l6QTdsznlGbw9AwhSOJLmvkHtjw6Iwd4TPaW1D1piwaPutp9
-   qhZ7Z5VDZ9q5i3cq7RK5h7a1Qk6nLc/NM+7DLhd1W9cAG2b+6umYlziIo
-   g==;
-X-CSE-ConnectionGUID: f7J2bePlSYKANojcg+zxuA==
-X-CSE-MsgGUID: hHVBIYEzSjSHBvb8uJkNAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3176596"
-X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
-   d="scan'208";a="3176596"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:47:06 -0800
-X-CSE-ConnectionGUID: lzK5vqr6QuuygsvCO9xHyw==
-X-CSE-MsgGUID: fvngpodqSqOyq1wRmPy0EA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
-   d="scan'208";a="8699912"
-Received: from dawidgla-mobl.ger.corp.intel.com (HELO [10.246.19.71]) ([10.246.19.71])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:47:03 -0800
-Message-ID: <d246fbef-d923-475c-8e1f-bbeca20847e7@linux.intel.com>
-Date: Thu, 12 Nov 2026 17:47:00 +0100
+	Thu, 12 Nov 2026 16:57:29 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C8B51516;
+	Thu, 12 Nov 2026 08:57:20 -0800 (PST)
+Received: from [10.57.67.215] (unknown [10.57.67.215])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CEA383F673;
+	Thu, 12 Nov 2026 08:57:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794502643; bh=n2YAal6lwAvLkGjEYo4/CPDxHN6fr05biMtI54HCe30=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=tNGxxaHvtfVA43zvRnB7GTnGJoDyTosQUMhEXFkpKP4DM07ISyw/1a6JwnDIzfeVt
+	 iPFZYAuyr7J7aOLWZPHXLLDlPIrzG0j4O6jDVSDxGQbuXq5MM8hFZEpxOFPK8LgeeI
+	 w5IruCxrFPIbf5Si6pQxMDpCHFztBO57Uco6Vvh0=
+Message-ID: <87c408e4-95cd-477c-9656-b472983c6df7@arm.com>
+Date: Thu, 12 Nov 2026 16:57:18 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/3] ARM: dts: aspeed: Add Intel AVCRP BMC
-To: Andrew Jeffery <andrew@codeconstruct.com.au>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- maciej.lawniczak@intel.com, Andrew Lunn <andrew@lunn.ch>
-References: <cover.1794242015.git.dawid.glazik@linux.intel.com>
- <ee6958ba4b93cde4719fbac89c4027964c2236bc.1794242015.git.dawid.glazik@linux.intel.com>
- <fff90721f7892c0285f4fed7fed460c7c1e183cb.camel@codeconstruct.com.au>
- <599f1b31-f175-47df-b074-1915688eb390@linux.intel.com>
- <a92395610d27fc0f97af3b27b150de61583c2197.camel@codeconstruct.com.au>
-Content-Language: en-US
-From: Dawid Glazik <dawid.glazik@linux.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <a92395610d27fc0f97af3b27b150de61583c2197.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 02/12] KVM: arm64: guest_memfd: Check mmap support when
+ preparing memslot
+Content-Language: en-GB
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
+ kvmarm@lists.linux.dev, Ackerley Tng <ackerleytng@google.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261111145758.217946-1-steven.price@arm.com>
+ <20261111145758.217946-3-steven.price@arm.com>
+ <fbc33983-cb8a-48e4-854f-ce009cc5668f@arm.com>
+ <1e02dfff-c1ad-46bb-9834-fd4bbaa46179@arm.com>
+ <26a29420-8d27-4069-bbd5-28692c9e8542@arm.com>
+In-Reply-To: <26a29420-8d27-4069-bbd5-28692c9e8542@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_084721_082140_F3FA284D 
-X-CRM114-Status: GOOD (  23.53  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261112_085726_460806_0DB3D601 
+X-CRM114-Status: GOOD (  25.48  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,95 +87,152 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 2:49 AM, Andrew Jeffery wrote:
-> On Tue, 2026-11-10 at 17:42 +0100, Dawid Glazik wrote:
->> On 11/10/2026 6:53 AM, Andrew Jeffery wrote:
->>> On Mon, 2026-11-09 at 18:41 +0100, Dawid Glazik wrote:
->>>> AVCRP is an Intel x86 server platform equipped with an ASPEED
->>>> AST2600 BMC. The BMC is used for out-of-band management, platform
->>>> monitoring, and system control.
+On 12/11/2026 16:35, Suzuki K Poulose wrote:
+> On 12/11/2026 10:43, Steven Price wrote:
+>> On 11/11/2026 15:21, Suzuki K Poulose wrote:
+>>> On 11/11/2026 14:57, Steven Price wrote:
+>>>> Check the guest_memfd backing file when deciding whether an arm64
+>>>> memslot has mappable memory rather than checking whether the slot is
+>>>> gmem only. A public helper function is added to be able to reuse the
+>>>> static kvm_gmem_supports_mmap() function.
+>>>>
 >>>
->>> It's probably my fault to some degree for not providing a better
->>> explanation of what I was after on v4, and for merging changes from
->>> others in the past that were pretty lax on the description, but what I
->>> was hoping for was something more like e.g:
->>>
->>> - f28674fab34f ("ARM: dts: aspeed: Add NVIDIA MSX4 HPM"), or
->>> - bc83b7353d2b ("ARM: dts: aspeed: Add Facebook Anacapa platform")
->>>
->>> Are there more details you can provide? If there are, I'm fine if you
->>> reply here with them, and if there are no further concerns I can update
->>> the commit message while applying the patches.
->>>
->>> This also applies to the JNCRP patch that follows.
->>>
->>> Andrew
+>>> Please could you explain why we need this ? Why not rely on
+>>> kvm_memslot_is_gmem_only(), which already tells
+>>> kvm_gmem_supports_mmap() ? With inplace conversion support gmem supports
+>>> mmap.
 >>
->> Hi Andrew,
->>
->> Thanks, that helps. I also found one more issue in v5 (uart-routing
->> issue), so I'll send a v6 with the fuller descriptions below
->> instead of having you edit them. Please hold off applying v5.
->>
->> AVCRP is an Intel x86 server platform. The BMC is an ASPEED
->> AST2600-based RunBMC module on the platform's DC-SCM. It supports the
->> platform's out-of-band management and exposes board management I/O such
->> as the system UARTs, status LEDs and control buttons, while integrating
->> with the host's telemetry and management infrastructure.
+>> Unless I'm missing something it's still possible to create a guest_memfd
+>> that doesn't support mmap() by not passing the GUEST_MEMFD_FLAG_MMAP
+>> flag. So kvm_memslot_is_gmem_only() doesn't actually guarantee that it's
+>> a guest_memfd that supports mmap().
 > 
-> Can you talk more about the division of duties around RunBMC vs DC-SCM?
-> Can you describe how components of each spec are used in the design?
-> 
-> What's the motivation for designing this module vs using another? Are
-> there any specific target platforms intended for it? If there are, then
-> some further details about those would be nice. If not, no problem.
+> I see, while the KVM decides that, with inplace conversion shared pages
+> come from gmem, we do allow creation of gmem without MMAP set, implying
+> we would fail the mmap request from VMM, which is pretty pointless. But
+> should the KVM fail this when VMM is shooting on its foot ? Only makes
+> sense if there are no untrusted device DMA for the CoCo Guest.
 
-AVCRP is an Intel x86 server platform based on Granite Rapids
-processors. Its BMC is an AST2600-based RunBMC module on the
-platform's DC-SCM. The DC-SCM provides the board management features,
-such as USB, system UART over USB, status LEDs and the power and ID
-buttons. RunBMC was chosen to enable a broader BMC ecosystem and
-implementation flexibility.
+See Documentation/virt/kvm/api.rst, under section : KVM_CREATE_GUEST_MEMFD
 
-The BMC provides the platform's out-of-band management. It exposes the
-system UARTs, USB, network, KCS, MCTP over I3C and LPC POST code
-snooping, and it handles the status and ID LEDs, the power and reset
-controls and the host fault signals.
+
+"When the KVM MMU performs a PFN lookup to service a guest fault, the 
+fault will
+always be consumed from guest_memfd, regardless of whether it is a 
+shared or a
+private fault (unless in-place conversion is disabled and the backing
+guest_memfd does not have the GUEST_MEMFD_FLAG_MMAP flag set)."
+
+
+Cheers
+Suzuki
+
 
 > 
->>
->> JNCRP is an Intel x86 server platform managed by an ASPEED AST2600 BMC.
->> The BMC is the platform management controller for the host system and
->> supports platform power and reset control, while participating in
->> out-of-band monitoring and reporting for host faults during bring-up and
->> normal operation.
+> Am I missing something ?
 > 
-> You don't mention RunBMC/DC-SCM here, so I assume the BMC is integrated
-> into the platform? Can you describe the purpose of the platform itself
-> (beyond the purpose of the BMC, which tends to be the same for most
-> platforms)?
+> Cheers
+> Suzuki
+> 
+> 
+> 
+> 
+>>
+>>>
+>>>> Signed-off-by: Steven Price <steven.price@arm.com>
+>>>>
+>>>> ---
+>>>> Changes since v1:
+>>>> - New patch in v2. Check the guest_memfd backing file rather than the
+>>>>     memslot flag when deciding whether arm64 can map the backing 
+>>>> memory.
+>>>> ---
+>>>>    arch/arm64/kvm/mmu.c     | 7 ++++---
+>>>>    include/linux/kvm_host.h | 1 +
+>>>>    virt/kvm/guest_memfd.c   | 6 ++++++
+>>>>    3 files changed, 11 insertions(+), 3 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+>>>> index 1db10d8d6db7..a146f6cde3d0 100644
+>>>> --- a/arch/arm64/kvm/mmu.c
+>>>> +++ b/arch/arm64/kvm/mmu.c
+>>>> @@ -2839,10 +2839,11 @@ int kvm_arch_prepare_memory_region(struct kvm
+>>>> *kvm,
+>>>>            return -EFAULT;
+>>>>          /*
+>>>> -     * Only support guest_memfd backed memslots with mappable memory,
+>>>> since
+>>>> -     * there aren't any CoCo VMs that support only private memory on
+>>>> arm64.
+>>>> +     * Protected VMs currently require guest_memfd backed memslots 
+>>>> with
+>>>> +     * mappable memory to support shared mappings.
+>>>>         */
+>>>> -    if (kvm_slot_has_gmem(new) && !kvm_memslot_is_gmem_only(new))
+>>>> +    if (kvm_arch_has_private_mem(kvm) && kvm_slot_has_gmem(new) &&
+>>>> +        !kvm_gmem_slot_supports_mmap(new))
+>>
+>> Sashiko has identified I've screwed up this condition though.
+>> kvm_arch_has_private_mem(kvm) shouldn't be in there as that allows a
+>> non-private VM to bind a non-mmappable gmem.
+>>
+>>>>            return -EINVAL;
+>>>>          /* guest_memfd is incompatible with MTE. */
+>>>> diff --git a/include/linux/kvm_host.h b/include/linux/kvm_host.h
+>>>> index e7fc94e2910a..f65728a713ec 100644
+>>>> --- a/include/linux/kvm_host.h
+>>>> +++ b/include/linux/kvm_host.h
+>>>> @@ -2614,6 +2614,7 @@ static inline bool kvm_is_private_gfn(struct kvm
+>>>> *kvm, gfn_t gfn)
+>>>>      #ifdef CONFIG_KVM_GUEST_MEMFD
+>>>>    bool kvm_gmem_is_private_gfn(struct kvm *kvm, gfn_t gfn);
+>>>> +bool kvm_gmem_slot_supports_mmap(const struct kvm_memory_slot *slot);
+>>>>    bool kvm_arch_supports_gmem_init_shared(struct kvm *kvm);
+>>>>      static inline u64 kvm_gmem_get_supported_flags(struct kvm *kvm)
+>>>> diff --git a/virt/kvm/guest_memfd.c b/virt/kvm/guest_memfd.c
+>>>> index 8c97a69b16dc..3dd8d227bebb 100644
+>>>> --- a/virt/kvm/guest_memfd.c
+>>>> +++ b/virt/kvm/guest_memfd.c
+>>>> @@ -442,6 +442,12 @@ static bool kvm_gmem_supports_mmap(struct inode
+>>>> *inode)
+>>>>        return GMEM_I(inode)->flags & GUEST_MEMFD_FLAG_MMAP;
+>>>>    }
+>>>>    +bool kvm_gmem_slot_supports_mmap(const struct kvm_memory_slot 
+>>>> *slot)
+>>>> +{
+>>>> +    /* The guest_memfd file is pinned while preparing a new 
+>>>> memslot. */
+>>>
+>>> We should gate this on kvm_slot_has_gmem() and how do we ensure that the
+>>> call comes after it is prepared ?
+>>
+>> I'm not sure what you mean by "gate this on kvm_slot_has_gmem()" - yes
+>> this function only makes sense on a gmem slot - the user above checks
+>> that first. I'm not sure what value the function should call if you call
+>> it on a non-gmem slot?
+>>
+>> Thanks,
+>> Steve
+>>
+>>>> +    return kvm_gmem_supports_mmap(file_inode(slot->gmem.file));
+>>>> +}
+>>>> +
+>>>>    static vm_fault_t kvm_gmem_fault_user_mapping(struct vm_fault *vmf)
+>>>>    {
+>>>>        struct inode *inode = file_inode(vmf->vma->vm_file);
+>>>
+>>>
+>>> Cheers
+>>> Suzuki
+>>
+> 
 
-No, JNCRP also uses a DC-SCM.
-
-JNCRP is an Intel x86 server platform with Intel Xeon host processors.
-Its BMC is an AST2600-based platform management controller on the
-platform's DC-SCM, providing out-of-band management of the host
-through KCS, network and MCTP over I3C.
-
-The BMC controls platform power and reset, and monitors CPU and memory
-thermal and fault signals as well as host processor module (HPM)
-presence, FRU and fault signals. It also captures POST codes.
-
-I'll fold these into the commit messages in v6, together with the
-uart-routing fix, so there's no need to edit them when applying.
-
-Regards,
-Dawid
 
