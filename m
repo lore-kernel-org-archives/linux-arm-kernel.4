@@ -2,64 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE014606A885
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:27:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EF0606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2bL9Lr1g;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ybcb8Dfv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KwUrBw2V;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lHOIVamz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=O4AXPfiKbyDpre+CB6uNRY4elkcJBCP9G8bvuRhJYmw=; b=2bL9Lr1gYco8Md
-	jViWjffnOcvezym9tSEc6zNfuUAGxoendkAOz+R2f8N+1mcDORVhrG9aU3v1yUVe4BiSF2VaBhiSu
-	DNGVne8zkparqce7h7bnQIz9XUEbAF2/6US0WKXI+sDutdzHvmE5rM1z4iGvN0hdyMId5wfcXdxMx
-	oKYTexfTwW+/9VxXPfV9E//WlMI1wfj64KsxLpO9/AElPzgF9JY/kHt+rBptgEIjjMO+80eHl4Bt4
-	2p29hSDabFgcYNh6X9hUfKye84HmWGDDS2s7YGf73+d32AGPsCIf4xSPWqcaUVHrqoDBAC4hQUSbK
-	3nftcl5MUkiz53hQd1xw==;
+	List-Owner; bh=/oEd/Rx7z61vzKiE7TrZNxTBqcUG5YHAydriCm6gOsA=; b=KwUrBw2VRGVKE9
+	7L1XRZRPtCJv0Nlot2N3TEmIrnI3FjZr3mkpVOCZ2+0MQ9ZuU/eL0Ek3tsBdXowSJShn8116uK659
+	tf/snVUbV/z7JJlP6Xxzk8yqc3KDMeVB0HWjB9auL1fpsLOcaMsTDapLRJc84qQ8Uw2DntOa/nTC4
+	ngI8WR3BnN8TUqzsNYPs7m3QaU98Bpf5Wibm7we+BL9ud7xdt+cUE2zQUHibSTM8vIBBtFOZuVbBb
+	2aZm/BKpW+GAVvroBAhhvzLSvKz90rsjS4i/Z89JGBvAX5O+sbxkG/QIR0VMSW7ggIxt7fAtCJJ9E
+	U27D0Ranrefp+hhRzQzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSxh-00000009hh6-0Rsi;
-	Thu, 12 Nov 2026 11:27:25 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRSxt-00000009i1j-3gO9;
+	Thu, 12 Nov 2026 11:27:37 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSxM-00000009hIR-0g9J;
-	Thu, 12 Nov 2026 11:27:04 +0000
+	id 1xRSxQ-00000009hNm-0YzM;
+	Thu, 12 Nov 2026 11:27:08 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7B11F6061E;
+	by sea.source.kernel.org (Postfix) with ESMTP id 69ED644591;
+	Thu, 12 Nov 2026 11:27:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0C691F00A05;
 	Thu, 12 Nov 2026 11:27:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F951F00A05;
-	Thu, 12 Nov 2026 11:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794482823;
-	bh=O4AXPfiKbyDpre+CB6uNRY4elkcJBCP9G8bvuRhJYmw=;
+	s=k20260515; t=1794482827;
+	bh=/oEd/Rx7z61vzKiE7TrZNxTBqcUG5YHAydriCm6gOsA=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=Ybcb8DfvJJta43gpnhAApzXPdEbGDIo6BxvlEiV3cgQi+hMbTguU8+tzxFY970n8H
-	 lAf0aUSMrjjvueWzhwLzG6mzZKi1ac+ij1FlV70wuRR5ENj6eVsvPW97/aZ4JFDl9P
-	 SItvqxet/FaHTHTzOGOQ8X46vnSiZhtIqp/d45EAvfiRzPqQ9lddb9AxQllWdN6taf
-	 PueIJHjQIdLyGkXJSDlJ6OZjXr6Ii+w6sH4Sht/6omTTRlRL3Z9FM4Mi0E+9GpHbpw
-	 vuNphCR0M9x69chCkgI4+VW8ChioDcN9xpBRgREkpqLRjhMuLpd49bcMFxfoV2WSiH
-	 vO4Hfn6M5Wqnw==
+	b=lHOIVamzl2HbE2kYl6t1Hi/fSLUIo5a5kdanxjhNZXwjar2Q3xFo7LP69tPoT8FoD
+	 j3Y3zsgNV1Jrkd7xcKNNC6Vfkn0Z29wjdb5h9pWjXgfitk6gJN8htyOqX1zzwLe+/J
+	 wuosM1b5oWfzkAUTuE1V6kVtPrCwuQBQ13KgRfWML/k7R5dVS3We3zNdiG0T8g79yr
+	 OPYcLErMrgOspm9X5kpCjyRxXvaRlc6nQDmtfSgFnKEp7KQdSMuXRLjORLaDscXkBc
+	 1jOye5p9Bi+6AkJ+pQkHJCGING5VpDMNYsGIO3YysGk5RHxqYg+acjTmdQm+x7dwD8
+	 TuBDhhUIRDN7Q==
 From: Vinod Koul <vkoul@kernel.org>
-To: neil.armstrong@linaro.org, mani@kernel.org, krzk@kernel.org, 
- peter.griffin@linaro.org, alim.akhtar@samsung.com, pritam.sutar@samsung.com, 
- andre.draszik@linaro.org, kernel@lvkasz.us, pengpeng@iscas.ac.cn, 
- kishon@kernel.org, linux-phy@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Selvarasu Ganesan <selvarasu.g@samsung.com>
-Cc: jh0801.jung@samsung.com, h10.kim@samsung.com, dh10.jung@samsung.com, 
- akash.m5@samsung.com, hongpooh.kim@samsung.com, eomji.oh@samsung.com, 
- shijie.cai@samsung.com, muhammed.ali@samsung.com, thiagu.r@samsung.com, 
- stable@vger.kernel.org
-In-Reply-To: <20261020063559.3530901-1-selvarasu.g@samsung.com>
-References: <CGME20261020063617epcas5p4ba00854fcd38bf211c573629ee062621@epcas5p4.samsung.com>
- <20261020063559.3530901-1-selvarasu.g@samsung.com>
-Subject: Re: [PATCH v3] phy: exynos5-usbdrd: Use dynamic phy_cfg size to
- prevent OOB access
-Message-Id: <179448281584.507383.1286765834477602323.b4-ty@kernel.org>
-Date: Thu, 12 Nov 2026 16:56:55 +0530
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Manivannan Sadhasivam <mani@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Joy Chakraborty <joychakr@google.com>, Roy Luo <royluo@google.com>, 
+ Naveen Kumar <mnkumar@google.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: linux-phy@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <90a172c2980073a09b4f01c21a251c3d0d2d6fe5.1792499240.git.geert+renesas@glider.be>
+References: <90a172c2980073a09b4f01c21a251c3d0d2d6fe5.1792499240.git.geert+renesas@glider.be>
+Subject: Re: [PATCH v2] phy: PHY_GOOGLE_USB should depend on ARCH_GOOGLE
+Message-Id: <179448282346.507383.17246536028374736454.b4-ty@kernel.org>
+Date: Thu, 12 Nov 2026 16:57:03 +0530
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
@@ -83,25 +81,18 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Tue, 20 Oct 2026 12:05:59 +0530, Selvarasu Ganesan wrote:
-> The probe loop currently iterates using EXYNOS5_DRDPHYS_NUM (2),
-> creating both UTMI and PIPE3 PHY instances regardless of the SoC
-> capability. Several SoCs (Exynos2200, Exynos7870, Exynos850, Exynos990,
-> and ExynosAutoV920) provide phy_cfg arrays containing only a single
-> element.
+On Tue, 20 Oct 2026 14:27:51 +0200, Geert Uytterhoeven wrote:
+> The Google Tensor SoC USB PHY is only present on Google Tensor G5
+> (Laguna) SoCs.  Hence add a dependency on ARCH_GOOGLE, to prevent asking
+> the user about this driver when configuring a kernel without Google
+> Tensor SoC support.
 > 
-> On these SoCs, when the loop reaches index 1, the driver reads past the
-> end of the rodata array, populating the second PHY instance with garbage
-> data. Since the configuration structure contains critical function
-> pointers (phy_isol, phy_init, set_refclk), any subsequent access to this
-> PHY instance via exynos5_usbdrd_phy_xlate could result in a kernel oops.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] phy: exynos5-usbdrd: Use dynamic phy_cfg size to prevent OOB access
-      commit: ba6618a1e7c02f384069f7817133ff8cb5c793b8
+[1/1] phy: PHY_GOOGLE_USB should depend on ARCH_GOOGLE
+      commit: 518d5bc7a636696969e3f4a7f9c66483e4f35e1e
 
 Best regards,
 -- 
