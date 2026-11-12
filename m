@@ -2,73 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5B960A2631
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56012606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BMFFXOWH;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.a=rsa-sha256 header.s=20171124 header.b=WIJl/qw7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yDDUdtgu;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=MBujkgxw
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=JsseaZWlHALkJDroqnvRsrsIA8/F+g3l2qrb9axVxOs=; b=BMFFXOWHqwJU3xQ/d3p9KWWcrw
-	5nKiEj5a+pXxoa6rWfkEoM0jHygfxysf2dLN/D+YjLtNTWpGDw43zQghD+QAT2qhj3LIx56Y8W1gO
-	n2fOx/rtjjIUAMmpS7agDyr0Bsn0cvbSf5YD+sPEen6xVAVaWkZdSHLBHhr860zj742T145SXF7A4
-	wyFMa2WcfTbVFZQFRp4PVUpLYAGzKuQ5TAhkE9Zm9UVTYiBEhMma8jfYm+S15V6ug1D57gDvWmAeu
-	g+zf3AupH7BbOsOrm/SxN23c/nF5OQ45j6C/uTtWDqfhnuiFdvOCwFP+2AHMb9oyxFhx4E+NSorBA
-	5qZSwcYg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=WugcE7vBuFSmf7462xh20D/WJqEas4fzxwH29ysv18s=; b=yDDUdtgu9afuVa
+	1Olm6RxyzT+/ShsAZzoh5inmt7EpdD/tNhj1zmb4F3SiioKkKSU+IOns+T+4WlbieDFKgxJAd/B+X
+	/5MUQcE1kxnsBi32FFxRDoPfZtTSRfDJpy3w8o/n/ENvak8zpTEbw61SRq+G6tNeRccXmFxksK6Q3
+	OlT26GAoLeJycTL72FW2MXMW0CpRyEUbBbXLpBQq7y1RjI3ozyqR7XECS00e1IMpAPzONq5LZeaCz
+	/wJKApMNmCLsk65ApRlHpACEEvImd/ZO//0rMhnNfcQZBZM71ua+8c8b/AqCvcuLO40yo7z7kKY67
+	oCshcFb9Y+92JMUuL8Fg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUdJ-00000009zGv-196k;
-	Thu, 12 Nov 2026 13:14:29 +0000
-Received: from vps0.lunn.ch ([156.67.10.101])
+	id 1xRUe5-00000009zhU-1rzF;
+	Thu, 12 Nov 2026 13:15:17 +0000
+Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUdA-00000009z8C-3Pg8
+	id 1xRUe2-00000009zeO-2sOj
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 13:14:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=JsseaZWlHALkJDroqnvRsrsIA8/F+g3l2qrb9axVxOs=; b=WIJl/qw7H0BAcm1v01iuIz8K0n
-	/zMRv/4PU6hmW6MyyaRlRwjgpLKzdkb+rhiJrtiGtdp5c0BlWUd8nxgs3pMCg9asI6XeZ8oVc5gRr
-	/A8XijRY6spjDYf2F9uh2CuhqOe8LqdJeU7ovZBP65Q0Jo/pXQSCGpH3Y2H0fEHpU0Ww=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1xRUcp-00G1SL-1Y; Thu, 12 Nov 2026 14:13:59 +0100
-Date: Thu, 12 Nov 2026 14:13:59 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: aiyengar1990@gmail.com
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH net] net: stmmac: dwmac-sun8i: Fix use-after-free in the
- MDIO mux error path
-Message-ID: <e526541c-f91a-484b-a677-4c55e4a96a7b@lunn.ch>
-References: <20261112-sun8i-emac-mux-uaf-v1-1-308ae7e6fcf2@gmail.com>
+	Thu, 12 Nov 2026 13:15:16 +0000
+dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
+	c=relaxed/relaxed; q=dns/txt;
+	h=From;
+	bh=WugcE7vBuFSmf7462xh20D/WJqEas4fzxwH29ysv18s=;
+	b=MBujkgxw/LgkfQWxtQpizS2+i71khFhMJYAwF3FbI5PiJzy7AJcJ49U34EpqkMOnFUTLgCvbs
+	/vUvuprN4d17pRx2flYki3azkm6XKr2x60t9ZAz8FRIA73OQjeQdL95YMmmXtlzS6NguL8Bc6d2
+	2pOrmEUd1w7TJGM7Pb/k3lw=
+Received: from mail.maildlp.com (unknown [172.19.162.140])
+	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jQLTp6ZR3z12LdQ;
+	Thu, 12 Nov 2026 21:15:10 +0800 (CST)
+Received: from kwepemr100010.china.huawei.com (unknown [7.202.195.125])
+	by mail.maildlp.com (Postfix) with ESMTPS id 5880D203AB;
+	Thu, 12 Nov 2026 21:15:05 +0800 (CST)
+Received: from [10.67.120.103] (10.67.120.103) by
+ kwepemr100010.china.huawei.com (7.202.195.125) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Thu, 12 Nov 2026 21:15:04 +0800
+Message-ID: <fee835a5-a027-4b68-b933-6f8e81987bce@huawei.com>
+Date: Thu, 12 Nov 2026 21:15:02 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261112-sun8i-emac-mux-uaf-v1-1-308ae7e6fcf2@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 11/15] KVM: arm64: Reserve dirty ring space for the
+ HDBSS buffer
+To: Leonardo Bras <leo.bras@arm.com>
+CC: <maz@kernel.org>, <oupton@kernel.org>, <catalin.marinas@arm.com>,
+	<will@kernel.org>, <corbet@lwn.net>, <pbonzini@redhat.com>,
+	<yuzenghui@huawei.com>, <wangzhou1@hisilicon.com>, <yangjinqian1@huawei.com>,
+	<caijian11@h-partners.com>, <liuyonglong@huawei.com>,
+	<tangchengchang@huawei.com>, <yezhenyu2@huawei.com>, <yubihong@huawei.com>,
+	<linuxarm@huawei.com>, <joey.gouly@arm.com>, <kvmarm@lists.linux.dev>,
+	<kvm@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <seiden@linux.ibm.com>,
+	<suzuki.poulose@arm.com>, <fuad.tabba@linux.dev>, <mark.rutland@arm.com>,
+	<seanjc@google.com>, <rdunlap@infradead.org>, <linux-doc@vger.kernel.org>,
+	<linux-kselftest@vger.kernel.org>, <skhan@linuxfoundation.org>
+References: <20260929103655.85107-1-zhengtian10@huawei.com>
+ <20260929103655.85107-12-zhengtian10@huawei.com> <auikG0clmr19sAjh@LeoBrasDK>
+ <afcbf19b-bd13-4afc-ab56-8bc50c793e50@huawei.com>
+ <au30DqzWIFny1tpr@LeoBrasDK>
+ <d81243e3-d790-4ee8-9b28-36d35591ee77@huawei.com>
+ <avIOZTvQF-1sxs2p@LeoBrasDK>
+ <90775cb3-84ab-4690-a252-1ac41488118f@huawei.com>
+ <avMSw3LLDIFT3kSR@LeoBrasDK>
+From: Tian Zheng <zhengtian10@huawei.com>
+In-Reply-To: <avMSw3LLDIFT3kSR@LeoBrasDK>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
+ kwepemr100010.china.huawei.com (7.202.195.125)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_051420_927503_D29959BD 
-X-CRM114-Status: GOOD (  12.85  )
+X-CRM114-CacheID: sfid-20261112_051515_106579_595C35FC 
+X-CRM114-Status: GOOD (  50.08  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,44 +92,255 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 05:28:05AM +0000, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> mdio_mux_init() registers the child MDIO buses one after the other.
-> Scanning the internal bus makes mdio_mux_syscon_switch_fn() select the
-> internal PHY and power it, which sets gmac->internal_phy_powered. If
-> mdio_mux_init() then fails without switching away from the internal
-> bus, for example because registering the external bus returns
-> -EPROBE_DEFER before any access to it, or because an allocation for it
-> fails, sun8i_dwmac_probe() jumps to dwmac_mux with the PHY still
-> powered.
-> 
-> That error path releases gmac->rst_ephy and gmac->ephy_clk and only
-> then calls stmmac_pltfr_remove(), which ends in sun8i_dwmac_exit().
-> Since the PHY is still marked as powered, sun8i_dwmac_exit() calls
-> sun8i_dwmac_unpower_internal_phy(), which passes the clock and the
-> reset control that were just freed to clk_disable_unprepare() and
-> reset_control_assert().
-> 
-> Unpower the internal PHY before releasing its clock and reset control,
-> as sun8i_dwmac_remove() does. The later call from sun8i_dwmac_exit()
-> then does nothing because internal_phy_powered is already cleared.
-> 
-> Fixes: 529254216773 ("net: stmmac: dwmac-sun8i: Balance internal PHY resource references")
-> Cc: stable@vger.kernel.org
-
-Does this bother anybody? Seems more like this should be for net-next.
 
 
-    Andrew
+On 11/10/2026 8:49 PM, Leonardo Bras wrote:
+> On Tue, Nov 10, 2026 at 04:54:30PM +0800, Tian Zheng wrote:
+>>
+>>
+>> On 11/10/2026 2:18 AM, Leonardo Bras wrote:
+>>> On Mon, Nov 09, 2026 at 12:00:52PM +0800, Tian Zheng wrote:
+>>>>
+>>>>
+>>>> On 11/6/2026 11:36 PM, Leonardo Bras wrote:
+>>>>> On Fri, Nov 06, 2026 at 06:36:04PM +0800, Tian Zheng wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 11/2/2026 10:54 PM, Leonardo Bras wrote:
+>>>>>>> On Tue, Sep 29, 2026 at 06:36:51PM +0800, Tian Zheng wrote:
+>>>>>>>> The dirty ring reserves room for CPU-side dirty buffers via
+>>>>>>>> kvm_cpu_dirty_log_size(). Report the HDBSS buffer entry count
+>>>>>>>> through it, so a full buffer flush always fits in the ring.
+>>>>>>>>
+>>>>>>>> Pin the HDBSS buffer size to PAGE_SIZE when dirty-ring is enabled,
+>>>>>>>> via kvm_arch_dirty_ring_size_updated(): a larger buffer only
+>>>>>>>> shrinks the soft_limit and forces more frequent userspace drains.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Tian Zheng <zhengtian10@huawei.com>
+>>>>>>>> ---
+>>>>>>>>      arch/arm64/kvm/arm.c | 8 ++++++++
+>>>>>>>>      arch/arm64/kvm/mmu.c | 8 ++++++++
+>>>>>>>>      2 files changed, 16 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+>>>>>>>> index 9d7bdece149a..5a7046acb62e 100644
+>>>>>>>> --- a/arch/arm64/kvm/arm.c
+>>>>>>>> +++ b/arch/arm64/kvm/arm.c
+>>>>>>>> @@ -215,6 +215,14 @@ static int kvm_arm_default_max_vcpus(void)
+>>>>>>>>      	return vgic_present ? kvm_vgic_get_max_vcpus() : KVM_MAX_VCPUS;
+>>>>>>>>      }
+>>>>>>>>
+>>>>>>>> +void kvm_arch_dirty_ring_size_updated(struct kvm *kvm)
+>>>>>>>> +{
+>>>>>>>> +	if (!system_supports_hdbss())
+>>>>>>>> +		return;
+>>>>>>>> +
+>>>>>>>> +	kvm->arch.hdbss_buffer_size = KVM_ARM_HDBSS_DEFAULT_SIZE;
+>>>>>>>> +}
+>>>>>>>> +
+>>>>>>>
+>>>>>>> On the same subject as a previous patch:
+>>>>>>> I don't think this is the best approach, on top of adding a new weak
+>>>>>>> function to take care.
+>>>>>>>
+>>>>>>> Maybe during the dirty-ring allocation, on vcpu creation, we could take
+>>>>>>> into account the requested dirty-ring size, and just allocate the HDBSS
+>>>>>>> buffer taking that into account. That would make it simpler, don't you
+>>>>>>> agree?
+>>>>>>>
+>>>>>>> Thanks!
+>>>>>>> Leo
+>>>>>>
+>>>>>> Hi Leo,
+>>>>>>
+>>>>>> The "set once" guard we're discussing comes from the patch that adds the
+>>>>>> ioctl, and it isn't really needed. We discussed this earlier [1]: we can
+>>>>>> just initialize hdbss_buffer_size to PAGE_SIZE at VM creation and let
+>>>>>> the ring reservation use it directly. **That also means
+>>>>>> kvm_arch_dirty_ring_size_updated() can be removed.** Thanks for your
+>>>>>> suggestion.
+>>>>>
+>>>>> :)
+>>>>>
+>>>>>>
+>>>>>> As for why PAGE_SIZE is the right value in ring mode: the HDBSS buffer
+>>>>>> is flushed on every VM exit, so a larger buffer doesn't reduce the flush
+>>>>>> frequency. It only inflates the ring reservation (64 + size/
+>>>>>> sizeof(u64)), which shrinks the soft_limit and forces more frequent
+>>>>>> exits to userspace for the ring to be drained. Draining the dirty ring
+>>>>>> from QEMU is more expensive than draining the HDBSS buffer from the
+>>>>>> kernel, so the smallest buffer gives the best performance. In this mode,
+>>>>>> a larger buffer provides no benefit to users.
+>>>>>
+>>>>> Humm, if properly dimensioned larger buffers would be benefitial for
+>>>>> memory-intensive workloads, unless they are guest_exiting for other
+>>>>> reasons in the meantime.
+>>>>>
+>>>>
+>>>> Agreed, and the workload I tested is on the "unless" side. The guest
+>>>> exits constantly for other reasons, so the larger buffer never got a
+>>>> chance to pay off, and only cost ring capacity.
+>>>>
+>>>>>>
+>>>>>> In my tests, I also saw performance degrade when more space is reserved.
+>>>>>>
+>>>>>
+>>>>> Humm, what kind of workloads did you test?
+>>>>> Did you have the chance to monitor what were the reasons for VM exiting?
+>>>>>
+>>>>
+>>>> For the workload question, it's a Redis server in the guest under redis-
+>>>> benchmark (SET-only, 2KB values, 1M keys, 100M requests). The traffic is
+>>>> network-driven, so the guest exits constantly to service requests. The
+>>>> HDBSS buffer only accumulates entries between two exits and is flushed
+>>>> on every exit, so it rarely fills regardless of size. A larger buffer
+>>>> only inflated the ring reservation, which shrinks the soft_limit and
+>>>> makes the ring-full exit and userspace drain fire more often.
+>>>>
+>>>>> I am not saying this is mandatory for the HDBSS implementation, but the
+>>>>> whole idea of letting the user choose their own HDBSS buffer size is
+>>>>> because different workloads may benefit from different buffer sizes: if a
+>>>>> VM writes a lot to new memory, and exits very little for other reasons,
+>>>>> then a larger buffer will cause the VM to guest_exit much less often.
+>>>>>
+>>>>> Does that make sense?
+>>>>>
+>>>>> Thanks!
+>>>>> Leo
+>>>>
+>>>> It does make sense. That's exactly the workload where a larger buffer
+>>>> pays off, and the next version no longer gets in its way. The two ioctls
+>>>> are no longer mutually exclusive.
+>>>>
+>>>> The only coupling left is the reservation. hdbss_buffer_size starts at
+>>>> SZ_4K at VM creation, so a ring enabled right away reserves for the
+>>>> default buffer (64 + 512 entries), and the minimum ring size accepted is
+>>>> unchanged from v5. KVM_CAP_ARM_HDBSS_BUFFER_SIZE is the gate. When the
+>>>> ring is already enabled, a size is accepted only if its reservation
+>>>> still fits in the ring, otherwise -EINVAL. In the other order, ring-
+>>>> enable validation rejects a ring too small for the configured size.
+>>>
+>>> I don't think this is needed. If using dirtyring, we don't need to allow
+>>> user to set hdbss size: HDBSS size should be sized according to the
+>>> dirty-ring dimensions, that are set by userspace before the first vcpu is
+>>> created.
+>>>
+>>>
+>>>> So SZ_4K is just the conservative default for guests that exit often.
+>>>> Anything larger, within what the ring can reserve, is up to the user.
+>>>>
+>>>> Does this work for you?
+>>>
+>>> I still think we should do PAGE_SIZE for dirty-bitmap. Dirty ring should do
+>>> based on the dirty-ring size, and maybe review the use of reserved
+>>> entries, or it's accounting.
+>>>
+>>> What do you think?
+>>>
+>>> Thanks!
+>>> Leo
+>>
+>> Hi Leo,
+>>
+>> Thanks for your review. It does make sense!
+>>
+>> I agree that dirty-bitmap mode will keep PAGE_SIZE as the default, and
+>> in that mode the ioctl stays available for a larger buffer.
+>>
+>> In ring mode we will drop the ioctl, the two remain mutually exclusive,
+>> and the buffer will be derived from the ring size userspace configured
+>> before the first vCPU is created:
+>>
+>> ```
+>> hdbss_buffer = clamp_t(unsigned long,
+>>                         rounddown_pow_of_two(ring_size / 16),
+>>                         SZ_4K, KVM_ARM_HDBSS_MAX_SIZE);
+>> ```
+>>
+> 
+> Are you allocating 1/16th of the ring size in bytes as an hdbss buffer?
+> That's confusing. I recommend we rather have something like:
+> 
+> ring_entries = ring_size / sizeof(struct kvm_dirty_gfn);
+> hdbss_entries = ring_entries / 2; // Or any number we decide to use here.
+> hdbss_buf_size = hdbss_entries * sizeof(hdbss_buf_entry);
+> 
+> Then we do
+> hdbss_buf_size = clamp_t(unsigned long,
+>                           rounddown_pow_of_two(hdbss_buf_size),
+>                           SZ_4K, KVM_ARM_HDBSS_MAX_SIZE);
+> 
+> So it's clear what is what here.
+> Just dividing by 16 above can be confusing to whoever is reading the code.
+> 
+> 
+>> A buffer entry is 8 bytes and a ring entry is 16 bytes, so:
+>>
+>> ```
+>> buffer entries = buffer_size / 8
+>> ring entries   = ring_size / 16
+>> ```
+> 
+> Remember to use the sizeof instead of fixed numbers.
+> 
+>>
+>> This means ring_size / 16 reserves at most one eighth of the ring
+>> entries for the HDBSS buffer. That keeps the usable ring above 85% while
+>> the buffer still grows with the configured ring size, and the result is
+>> independent of the kernel page size, with SZ_4K as the only minimum.
+> 
+> Yeah, remember that if you are dealing with the ringbuffer like this, an
+> user can request a 4k ringbuffer and we just won't be able to use hdbss, as
+> it means 4k/16 entries, and hdbss has the minimum of 4k/8.
+> 
+> As I mentioned, maybe this approach of reserved entries is not the right
+> way of dealing with it in arm64.
+> 
+>>
+>> One eighth is the ratio that looks reasonable to me so far. What do you
+>> think?
+>>
+> 
+> I see no reason why it could not be higher than that. It all depends on how
+> you want to deal with the full buffer in the future patchset. If hdbss
+> buffer is full, it has to exit and drain to the dirtyring. The guarantee
+> you seek with reserved entries is that all hdbss entries fit in the
+> dirty-ring.
+> 
+> As long as the user is required to drain entries until the dirty-ring is
+> not 'full' anymore, we could easily work with dirty-ring having twice as
+> many entries as the hdbss buffer.
+> 
+> How does it sound?
+> 
+> Thanks!
+> Leo
 
----
-pw-bot: cr
+Hi Leo,
+
+Thanks for the suggestion.
+
+For the next version I'll still go with the reservation scheme. It's the
+safest approach I can think of. The guarantee I want is that a full
+buffer flush always fits in the ring by construction, without depending
+on how quickly userspace drains it.
+
+I'll also switch to sizeof(struct kvm_dirty_gfn) and
+sizeof(hdbss_buf_entry) instead of the hardcoded 16 and 8, and size the
+HDBSS buffer at half the ring entries as you suggested.
+
+On the 4K ring case: HDBSS can't fit there. One option is to just not
+enable HDBSS in that scenario, but I'll start with returning -EINVAL for
+now. I'm happy to switch to the other option if you think that's better.
+
+Thanks,
+Tian
 
