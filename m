@@ -2,100 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79ED60A2623
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:41:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22EDE60A263B
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:41:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Fk4RaRnE;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=EF/p6PI8;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=blM14kIw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Equ+/FSt;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Z2HWyp/t
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NPENMsmu3+BS94VMSAUvkedwRU3NJYclxTKT7IXQmWU=; b=Fk4RaRnEO85+qX
-	VxawczhmNzrq5OreCJ34a8xKeWzGrrhu8YmJMnhOQPVk8Zx1UJgCOYd2DkCTztmzLFMLHeyXMCC9y
-	6my32KgpCHQcpRCh983zQMhUi+V2jaIl7YsiqhJt5A4v2lnOSc6HwKdeVvmSwPM04Vru0YYGm0/Zu
-	iBnmTi57ZrJm+AQpEF+nQgFDoaEi+4q0qN9qjcZGRcsPeR2gIGLez+XGhBpIHzhRGlgv9la6zfHRs
-	a8Y3hEoIot5+glvRzWSTcgA9WBBdbOF/0L+KQeULH19InwEz81YOELQp3LZG577pPmOqRTn2WqNvU
-	QR0pdyOkSW9d292caYfw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=h4XhdGstHHaoDKhn87VxtYdFBjOR/ijZJS15gJryUyk=; b=Equ+/FStWLdAotOe2/zZS18Ojq
+	sKybwTKbeuCOQuE1zpcQTPtX7ren2eKiomRq0KZoYLAzE8LSTa4F74hHx+2oCd6alsWdrVxOfGXLd
+	ZcjDiUACE13vGpu+jDzrTUjn0fSn1LpCktYA8lIEEuajNbYMlOVgUm1YjzS0fGrGba4iiFOAlCRub
+	Uc/dkTi8GSMn2tx6h0MgIFhnwHBnhWKGnn6OZ0mY9zGndOo4G3ZaPQakN5h2kZGJkV0PcSbxX3uYz
+	4wqFxph6E+uRo3goTd/98g+tgc12sykqTxlue/hEMAks4WX8c3LXEjtibXlvyGG0KXJjtnwMwn8wW
+	VGVX4e1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXr2-0000000Ae9x-3avX;
-	Thu, 12 Nov 2026 16:40:52 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xRXr4-0000000AeB2-2Jy2;
+	Thu, 12 Nov 2026 16:40:55 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXqq-0000000Ae2F-2ybc
-	for linux-arm-kernel@bombadil.infradead.org;
-	Thu, 12 Nov 2026 16:40:40 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=NPENMsmu3+BS94VMSAUvkedwRU3NJYclxTKT7IXQmWU=; b=EF/p6PI8vHHZq4Q1PQzCrE0raZ
-	j5bic/VUAkw8PiANtaVhWuK1DSoiZNqYQncV0xKwJPLg4IXzm1E0etIU++hP0sW7OQnu9Sh6YpMYj
-	BH5zHmi4J2cLcZZXXgG+zdzkk5JGsDTuAaiV+vHLfTiLExWhAWxq/nAACZhZpkUvW1NlCgtdGQf9/
-	a8n8fskSjcaUFGikxRmfu3TEiFV+ZWnE9YoGIZdFSf98oYfWjn4COJDEDnVHcALsaktdUeFGX4kX2
-	mPEE81Q4rG0LBALzSKc3FfQtNsuMkGePM3FXfywRmHu5n7D8AHFJQ+VO+ws1V/L0KyFWxXkUDp8SH
-	hoE1tK9g==;
-Received: from smtpout-03.galae.net ([185.246.85.4])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXqn-0000000AZGg-3U3l
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:40:39 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 933304E41593;
-	Thu, 12 Nov 2026 16:40:29 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 49C59601AD;
-	Thu, 12 Nov 2026 16:40:29 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A833611BC069D;
-	Thu, 12 Nov 2026 17:40:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794501627; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=NPENMsmu3+BS94VMSAUvkedwRU3NJYclxTKT7IXQmWU=;
-	b=blM14kIwqeQ+LdPhURV+QXNd9dZpWq5sYV4WTJ87Eu5fTOxUa5YrWkpHu6Ev2On3EhCpYs
-	a6QQSQ6U3HCTAOPcam5BeVKyeQWnOY812CEvxa9fuh/D0WKFpww623wzgt5Tehs2c/k6NW
-	xyXIDhVVkuRJAva6HSB6jdYXtvgLcxnSLFOmOxy2J+TMSGw0167tKKVH5Dv6CcFd7l7hJC
-	SsUw5YK+1pMes0fopVmk0rQxmX/khrgmE/tLc63Sm+CFM391EZh/0lOMDiz25cq7c9Qa1y
-	jk/1HZAI7H2UWASETSrz3GCkHqo9Rl1lnxV8yZf7LxN9LviYMtjPdNwSEPEaCw==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
- Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Marek Vasut <marex@denx.de>, 
- Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20261110-dcif-upstreaming-v11-0-9e13c85ae0d8@oss.nxp.com>
-References: <20261110-dcif-upstreaming-v11-0-9e13c85ae0d8@oss.nxp.com>
-Subject: Re: (subset) [PATCH v11 0/7] Add support for i.MX94 DCIF
-Message-Id: <179450161929.2117501.14949541716164131629.b4-ty@b4>
-Date: Thu, 12 Nov 2026 17:40:19 +0100
+	id 1xRXr0-0000000Ae8E-1O70;
+	Thu, 12 Nov 2026 16:40:51 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D0DC4438F2;
+	Thu, 12 Nov 2026 16:40:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 222B31F000C4;
+	Thu, 12 Nov 2026 16:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794501649;
+	bh=h4XhdGstHHaoDKhn87VxtYdFBjOR/ijZJS15gJryUyk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=Z2HWyp/tJDDjjTHcJR3EqrO+Co3DWeMLJ1+cp2ynX2OINbp8WyivGS6bUYCElRnHv
+	 j82yu2W0I6XbhRl6k1jGMrybLRN3rtsxa9jpBTx+ED6Lo2I2lVItYT5jq4zrZSGZzs
+	 JXUgU8bmDotIuPcRgcQnRfdkmCpC0cle2atzG2wdTeGxjiblOhweVWrNK8sHl3qORz
+	 AptP+WXgJYapp1q4qpa21NtXJZGJFCXXQTz9CI+U/mh2RSFbpUGKjXJrisLA5A/IyL
+	 WRrvvgmWPTatgjPr4LX8gIKpHS1COMkia2Rnrxs+diTDADTj0jXe4+8KHHufORL2wP
+	 EtFhzktL6OIhg==
+Date: Thu, 12 Nov 2026 17:40:43 +0100
+From: Christian Brauner <brauner@kernel.org>
+To: linux-fsdevel@vger.kernel.org
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, 
+	Breno Leitao <leitao@debian.org>, Chris Mason <mason@kernel.org>, 
+	Thomas Gleixner <tglx@kernel.org>, x86@kernel.org, kexec@lists.infradead.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org, 
+	linux-riscv@lists.infradead.org, loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
+	linux-sh@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	David Hildenbrand <david@kernel.org>, stable@vger.kernel.org
+Subject: Re: [PATCH RFC 0/4] crash_dump: recover from machine checks in
+ copy_oldmem_page()
+Message-ID: <20261112-singt-gewettert-rohkost-74009dcf3366@brauner>
+References: <20261112-work-procfs-oldmem-v1-0-ecdcafd99265@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.16.0
-X-Last-TLS-Session-Version: TLSv1.3
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_164037_779527_04EDA3F1 
-X-CRM114-Status: GOOD (  10.82  )
-X-Spam-Score: -0.2 (/)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261112-work-procfs-oldmem-v1-0-ecdcafd99265@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,38 +72,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-On Tue, 10 Nov 2026 14:27:40 +0000, Laurentiu Palcu wrote:
-> This patch-set adds support for the i.MX94 Display Control Interface.
+On Thu, Nov 12, 2026 at 05:37:06PM +0100, Christian Brauner wrote:
+> A capture kernel reads the memory of the crashed kernel. That memory
+> may have uncorrectable errors in it. Which is likely also what murdered
+> the first kernel.
 > 
-> Also, included in the patch-set are patches that the DCIF driver depends on
-> for functioning properly:
->  * 1/7 - 2/7 : add support for i.MX94 to fsl-ldb driver;
+> On x86 a machine check in the copy that /proc/vmcore does out of an old
+> page panics the capture kernel. On book3s64 the read() comes up short
+> and splice() panics. Breno has observed that on a fleet iiuc. The first
+> kernel dies of a machine check and then there's no vmcore either.
 > 
-> Thanks,
-> Laurentiu
+> I had the powerpc half of this as a fix in part 1 of the procfs series
+> because Chris ran into it there. Breno pointed out that x86 has the same
+> hole.
 > 
-> [...]
+> I think that likely makes this a kdump problem and not a procfs problem.
+> So I moved this out together with the ioremap_cache() fix.
 
-Applied, thanks!
-
-[1/7] dt-bindings: display: fsl,ldb: Add i.MX94 LDB
-      commit: 35d189bdab8542d8eaecee4a39e15c1eb737f558
-[2/7] drm/bridge: fsl-ldb: Add support for i.MX94
-      commit: 7678b7f2d38b5575981b1a7c09139a4660b66826
-
-Best regards,
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
+So I'm not super familiar with the machine check stuff. I know that
+@Linus has some familiarity with this. So I guess a yay or nay would be
+nice. Not sure if really a localized fix for the architectures that have
+mc support makes more sense. A common helper seems less fragile to me.
 
