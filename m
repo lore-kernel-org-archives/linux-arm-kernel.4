@@ -2,168 +2,177 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8076C606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:14:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA0F606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=v6stdDAE;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=hXUGRL4y;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=kF4kWAuD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ul8fxU/z;
+	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=R2wXxCT7;
+	dkim=pass (1024-bit key) header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=XmIhOPf0
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=jyq0CHFpuFmFNoRbVotKqEcNN2VMoPGS7s9L+aqOXM4=; b=v6stdDAEb00LIZ
-	4C5dO+8Wa4S9gTN7aFUL3qjr2hqbIdzws1VlYYhtDS+4gIHTPH0u1Kv3rUiYaBXZZlRfrjh+v1WKT
-	pyMia6Zinp4nzsqEbsEeanXJoDMoWnWgsxxo3lbwUhhMfFrUmY1fYcr0Iof3buMYmh7O+mB2QCwW/
-	BSLLKU+nvsnp1ee5+M3y8joVt26SNn+5UofAQoHs5LK73R0g2Vk8GxfvQwfvDab9sBAOEo1fF8rSG
-	ZQQ7WfPMc8bJuzCAhRbCCHbnxu0u6npBXhuPB1DRq/HX+SmHl7zm1QE/SJDuCFPz672AtmomZIBe5
-	bvWnLDUDpADfprUGIdIg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=nPp3tgjH3+3CXXrzYC5sLcWdnJG8JyAXnsch+Wdxas4=; b=Ul8fxU/zueHTXGUj9fxnoh4Gvr
+	7fgZjYLqUoxerCxrbOg8to1H3aotge3xRXcjOKGP6KNUIMiB3QOwrvc4ZIwH7LTHDXhOXmA/6U792
+	tmfFyQpgSo9BWTXQjfoBqIgZet3MiKLuB5Jo79gzL8U6OGFF7rBN1jzNpA3IYlb7DaYyWT6x3z5Et
+	UOhflulU62KijHsIfYo+TRPTC09/8k5JfydievaZ6OR7dt5TjCBAo9iZfvF4PprZPvr5JMat7Ih7G
+	SKak2hx/lJkb+eY7f0jSCuqazCssFCFB7ihF5TlUQwwSiEbqp7ow2I7E2nNAGvwk2kdxJPZr7NHmi
+	cn+EAfwg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRr70-0000000CrBD-3A6b;
-	Fri, 13 Nov 2026 13:14:38 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xRrC8-0000000CsQ5-133r;
+	Fri, 13 Nov 2026 13:19:56 +0000
+Received: from mx0b-0002e601.pphosted.com ([148.163.154.28])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRr6x-0000000CrAM-3bo1
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 13:14:37 +0000
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ADCJd2x059078
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 13:14:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jyq0CHFpuFmFNoRbVotKqEcNN2VMoPGS7s9L+aqOXM4=; b=hXUGRL4yHi00dJim
-	M25dk6Dz2Sx28JEYAIfIC89lLjEMl09eKnBGb3dStt55GUkm6DY/ppMLhXV61X7g
-	IbPQoDpwCNdD0Xwq+UPXPFLgt+NQXSg4zeLjPPyhon93RLbLSwGsTDQ5oDUwwwBf
-	acYRDQ1x3Ss6ukHMzrWf3csw9HeFECM3u4e8BxcdynnTmCVnpmqbUg5PLK8l1fud
-	fkNdr10V/zYZnLIEPQysW+ApCS9J+Ua4/NjMJe73UuGJa4rK4pEXt8ZFX0jShDYk
-	J0YrM9zaEEuORdgU9FKOQ8NbfzZHkM4nZx4NQuqs6j2DkhuD++kXM3BwyAzCYX0f
-	d+Klxw==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hwkgwb4wh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 13:14:34 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3ad30487d55so1782833a91.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 05:14:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794575674; cv=none;
-        d=google.com; s=arc-20260327;
-        b=DQnpOw2vRC2cemyINHBQBku1KePZrMERSiqMs+JcX57m55CWGECs8Hw9Wdojujx3Dr
-         4BBW1h6AIc78HzRQ/H3BcI2kXt1+qVFcojRZuPcsqztEmage1h4cZDC1uROssDVzECBF
-         GlkdbFn/MgQKq29bnov+PPpUPpttNS/oT3LHR9tbACzALtug416P+tEB2dDgSvKuQa4h
-         sBNtT2heR+EB9ciWPKr+WX35k62ufHLKekOPFiaQ+uggItdljBU751x9fj3trMTPJY0i
-         NVV1IUZkisBUsjh0GZKeaRf9mQn5Wbe8WL13Bk4+qmlta33sNNYnHAl3Y8VYLWgWuZKn
-         5VcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=jyq0CHFpuFmFNoRbVotKqEcNN2VMoPGS7s9L+aqOXM4=;
-        fh=fThyYWMGFnZk4OW0jtaqVBkQfwJPGplAVLHYhw8PBZo=;
-        b=QpnGRDEB9SA9DygFPGONJU0Za4xPJVigfDV4p7msY1a7zgHbdwaLjue6+X6FCeetKn
-         fn0dbg9ni0en5ffYCeTmAIaGNClY8MSgcK4h1SK31VujKIWCz+EK+784tUdi48Ul+h2G
-         J63/WJZNA2KKXWtzSGgRnmGgEZOAXe3vKWwTHqCrINirfXkn9MFAzrnYwNQUhL/V22Rk
-         IZJSxOHleQlmfUE4KpOepdihsxGs0KlHogLDvkBUnKdDColeTAR5tqTm4FP9RCz5wf/G
-         9y/OkD/DEswnB0cNWdVF60QU6CT5rc4VPclMBqKEiA6WHQFCA0/e8gxzyt4xZefML5I8
-         bBfw==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	id 1xRrBl-0000000Cs4k-4C0o;
+	Fri, 13 Nov 2026 13:19:36 +0000
+Received: from pps.filterd (m0374955.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ADCWaCo2027891;
+	Fri, 13 Nov 2026 07:18:02 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=nPp3tgjH3+3CX
+	XrzYC5sLcWdnJG8JyAXnsch+Wdxas4=; b=R2wXxCT72uJJxLRkogj4g+NRIUspx
+	I3HIMIH2qrrZnRWIw6TEiQA0uk59A8xNZtsz143vnJBqGVJ0qsqzIfQZ9bFfQ8xJ
+	FwjY0JEt1YKukK9owiyTQZpEWy8S04hZrYUD/ukNZKfbO7DL6WEHDPx+krVWXpyl
+	v6KOiXsJxAIZpfoffG8tHWawolmmHWuerDtPS1nsfOAK6Fw9vy6BxVgLfNkH6UzZ
+	KAYdJIlFboXClTEecQHkoIMXTJ1D2tltLVv4Ku3xv7RFhPjaemOSSUcRm8ZI//TV
+	BKQfLiCxjMyTpc5VReQ7CoJ4mELGopsKGKdbKWGehUrof5nyKTpdwK8FA==
+Received: from dm5pr21cu001.outbound.protection.outlook.com (mail-centralusazon11011034.outbound.protection.outlook.com [52.101.62.34])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4hwg9rwkxc-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 13 Nov 2026 07:18:02 -0600 (CST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YAAMV3mPqrk7JbboBW5K5z3lDvfAwQ0VTJi+YkYr0x4+zSYZMgeCG1Lztti9ecjpyhi2uRVprQxxZYX/duA41aShvzl5yt5+sG3Av1eU1+PwsQH/m459vR+FTXCGT5/EwGIdcSe7HNUEJmW9PruRF1Y6ZKssbNKZVJG66LpKWZDbeYFWvFbZBoA3Qx25qggeFRPgp94OGgftAlk7yc/jMNFrr34uyIWZ0x6F9IZMtxH6DU4sUuxrmAxQKg76uUCtrsSeUvwm9RZK+M93MJuTx7omonswKkMmr2EMPrBEiTkHlGoUGPZ+DrlTzW4r48q6IpXy8XvwGwkTp4Tfk/wSpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nPp3tgjH3+3CXXrzYC5sLcWdnJG8JyAXnsch+Wdxas4=;
+ b=QYvZgmnF3vVqJZQ/uwU0IwBXc9yw50QPR4RPSlmdWrSGOzOyFYXs6IUOoa1f3AKKvXJbeFP4/NiWxHzkkOk4QhT8GCWSODpbtmRvhwZ3d2lwwCMJ5aFDxMKwCx6Mg84u9AxIt5y7/zSboTRG3XgBh7nTVKH1IowyGyMWRxoUaDeG3sejUtvXP2fr8oP6dGI6wrhyOA4ZOaSDmwJkRKoZlgEaYvlNc7rGkrQaIOznxVL1xlLTcUGI/3hvZOSveYZBUzdLI+Ha+zjLCJfx3Z1CORxpwK6vPAhGojvcwPa7MCtH1441e2zegCXDN5pv+Mvw/cgPXuLi9JRZAiNP9E4lVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794575674; x=1795180474; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=jyq0CHFpuFmFNoRbVotKqEcNN2VMoPGS7s9L+aqOXM4=;
-        b=kF4kWAuDB2wbPBUkUXnzzn6a4Z4tBc0s7EW9/3DACtXgMf1xsc4e4BCqnHhyYEIWMx
-         avfCg0EEHu3l0sbwRCl/TO+920FqhzvZWCqsu2T6nmWYtvJlwTZ528F/YCNQYqMPVeBg
-         uCf55lr0MK/BNXRh+iDchzNgJhB5nW8mcO4N+9hbORUiOkMxij/xAeoo+GiXIYlzxY45
-         bqJoXavvXMpTBgpVn0AMNxt2oOuufSm5agbPi8JuLsRlRG/B68Wu1qBNDy+tNOl5tKD/
-         xyx5zL2KNOw69R8VSGE/nskOlfinT8Xv77k9bxq06DysTDtXGfnDlFU05bclZcahwzUA
-         wGPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794575674; x=1795180474;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=jyq0CHFpuFmFNoRbVotKqEcNN2VMoPGS7s9L+aqOXM4=;
-        b=Wpsy7H204F8NaG9yCwCveKVGF1qgL6lHo5nMsjXeT8XrHbTZtSIiJwS0CQseUXuVTb
-         xej5wfNq/q9UBMT4Oh0SUvpPApNQ54g/fDGIkfe+NHpEqrS6605p9MXsXRj0DctWkFUI
-         ny79TSDYPfyuDSVi7blfwAob3w8b14N4k8gbOfkQI8OXajZdL30QL4oOJ5EX7U8tbQRe
-         dlaT0CtgWxYJc5mfpp9b63w1Chm8SVfPypyVu1B+NnAIggLhNO1GGuWioGLBs/OJ2uMF
-         EADowIDg3UL7hWZXAoClHiBRmoenY3Kvrop1yq4mJezKBrCWpvlkrgatSUc78DreIDhN
-         NlNg==
-X-Forwarded-Encrypted: i=1; AL+hErHQyzmZhfOS+BgVNuuzd4CEOiEssookhiIVmCZEPsB6NqqXRy2qB4Hj7IOy83+B0W0mWt4TUpJdaqj4Uq0ruQws@lists.infradead.org
-X-Gm-Message-State: APuU4Z8BmflpG/vw2SJ3LUH103r2HxMuJcFautexYAslSKkDkEv/w8eh
-	DawN63zXgFs9Ppd+dd8QDCTZPPP/yzAn6V9TR/bvRxBhRR917CNGlS3wGhjdePyxL7k4UEeZV8e
-	fGHnjWiwF3E2dpbCyTAuETx7zmcjXM0fTvewOkWcegsI/eCryXddPp+s+1TLW0dqfP/fbqOnrXt
-	2/7q7ubkY0qzkSn7//whxc6f3KDYLE8RzPm4hC+UHvZGZyrLgLykHq
-X-Gm-Gg: AYBFou3UQCwzNqiSZsgoAkpqGLc5FdpipCE6Ln5aMkDdpTDYxDXscmfsB6ugf5HoXYF
-	SBFOxodDVSV9HgDAMs/fRnjAMXbb9CHdxkblRMeXolWebvMv3lr500qaVNUDNDu+glJYq5F+5wf
-	STKisEQRpKy5IFVt+4kLvj7lzjTrLs3zR5L+0U8s6asfoLvbH4mgkRGoBIYw==
-X-Received: by 2002:a17:90b:4c8e:b0:3b0:d808:a991 with SMTP id 98e67ed59e1d1-3b1b0d3420fmr2545462a91.55.1794575673632;
-        Fri, 13 Nov 2026 05:14:33 -0800 (PST)
-X-Received: by 2002:a17:90b:4c8e:b0:3b0:d808:a991 with SMTP id
- 98e67ed59e1d1-3b1b0d3420fmr2545420a91.55.1794575673121; Fri, 13 Nov 2026
- 05:14:33 -0800 (PST)
+ d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nPp3tgjH3+3CXXrzYC5sLcWdnJG8JyAXnsch+Wdxas4=;
+ b=XmIhOPf0DKYuuez5f1Qtgc9EaiVF43IdV63t5KyUF3n+k6bdN10aZbdMKMNuYwNGOJhY8Ou0F5cPiGrMpB4IFs946SmSI6p0Sk/k7Gzw28lf7CAo7+qdVndA3/I4sYjbcDyMrnwz/3glHqLCBEO90bctiJY+PvzS/2DRvmY2+9A=
+Received: from MW4PR04CA0135.namprd04.prod.outlook.com (2603:10b6:303:84::20)
+ by PH7PR10MB6252.namprd10.prod.outlook.com (2603:10b6:510:210::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.9; Fri, 13 Nov
+ 2026 13:17:52 +0000
+Received: from SJ1PEPF000037B5.namprd05.prod.outlook.com
+ (2603:10b6:303:84:cafe::9c) by MW4PR04CA0135.outlook.office365.com
+ (2603:10b6:303:84::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Fri, 13
+ Nov 2026 13:17:52 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 198.47.21.195) smtp.mailfrom=ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ SJ1PEPF000037B5.mail.protection.outlook.com (10.167.244.200) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Fri, 13 Nov 2026 13:17:51 +0000
+Received: from DFLE211.ent.ti.com (10.64.6.69) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
+ 2026 15:42:24 -0600
+Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE211.ent.ti.com
+ (10.64.6.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
+ 2026 15:42:23 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE200.ent.ti.com
+ (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
+ Transport; Thu, 12 Nov 2026 15:42:23 -0600
+Received: from ula0226330.lan ([10.249.37.26])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6ACLgN2v1653138;
+	Thu, 12 Nov 2026 15:42:23 -0600
+From: Andrew Davis <afd@ti.com>
+To: Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Mark Rutland
+	<mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "Paul Walmsley" <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert
+ Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+        Philipp Zabel
+	<p.zabel@pengutronix.de>, Arnd Bergmann <arnd@arndb.de>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        "Andrew
+ Davis" <afd@ti.com>
+Subject: [PATCH] reset: Remove ARCH_HAS_RESET_CONTROLLER Kconfig symbol
+Date: Thu, 12 Nov 2026 15:42:22 -0600
+Message-ID: <20261112214223.765100-1-afd@ti.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261022-psci-fix-v3-0-9ce2133c5659@gmail.com> <20261022-psci-fix-v3-2-9ce2133c5659@gmail.com>
-In-Reply-To: <20261022-psci-fix-v3-2-9ce2133c5659@gmail.com>
-From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Date: Fri, 13 Nov 2026 14:14:21 +0100
-X-Gm-Features: AclHuK_DTsDuBkxo1YAzBq_C8oLcltIpHJD3FMGKMO-2WiG84I3huHHxGsWxuKE
-Message-ID: <CAPx+jO-qPAuOGnGfCyGnSYym8PBOaqUJptZh8duYJKZN4HARaw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] cpuidle: psci: Allow skipping the suspend mode switch
-To: Reza Kurniawan <imkyufie@gmail.com>
-Cc: Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@kernel.org>,
-        Christian Loehle <christian.loehle@arm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abel Vesa <abelvesa@kernel.org>, Val Packett <val@packett.cool>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Alejandro Tafalla <atafalla@dnyon.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=DNgacCNb c=1 sm=1 tr=0 ts=6af70d3a cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=yx91gb_oNiZeI1HMLzn7:22 a=pGLkceISAAAA:8 a=UY4Qpe7uAAAA:8
- a=Bs3vFoulODVTn7UWAnkA:9 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
- a=Dz9CbhmWzz49oM4s8yQO:22
-X-Proofpoint-ORIG-GUID: muce-j858Y5ECS5RHF_ycgB_z4HOLyS2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEzMDA1MiBTYWx0ZWRfXyj8kJPBYxMZc
- +D64m4PUoHTvJ5l+8Pigl21iWv4KiTdKXGHdtkB6t2db4yEafAm+dj6E2c1P0u/yIrsT0UWr1/K
- 4nGFHM6uqLWlUwLvwYiPxX+cxuMM3cwOz67WIUrvk0gjUZ/TkGIU5TjR3jrtH1Ly05QFWb5kwNE
- cCF8MwB58GvR2OkXr1XYP8UcbqvVX1PuEMkJt3DCOQkE8OyN60sQXhYjWJ6nM/yWGnlZAFOL1vR
- zWN6I/BlAFMtDcifqc9RtcO+IngLhBMzCfn2cliuMKCt9ufMSElyRNZNt3Zm9Ck2ckcGczqfYRP
- M5x2/sJqmbD50jutqMtgCbWTEDSKyUP2i4r1RW0MdoVx4Y9E79/0RiyP02JxrPN8IJqZRSEvvOc
- 98IzJ9jnAwAQSe6lVdBAvXjAVYWzFCtUd3K25AhiQKk0uf4WPUG2PNHnrr2UfxzAlKY0mUnhvsQ
- VdkjyE3oaHyx869reEg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEzMDA1MiBTYWx0ZWRfX00N/es0+ohoB
- RdKRK2fEHj1u8O7WBNSyajsd54QAXEuVSSWBCwMKnp+g3f44sLyKc6KT4zxyQ1J74kyRaO2BtSk
- tenzrJyE/yWRg366Ri4xudc9eTmx1E4=
-X-Proofpoint-GUID: muce-j858Y5ECS5RHF_ycgB_z4HOLyS2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF000037B5:EE_|PH7PR10MB6252:EE_
+X-MS-Office365-Filtering-Correlation-Id: b212a7e7-de74-40f8-07b9-08df418884f5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|1800799024|376014|82310400026|36860700016|921020|56012099006|261028144727099003|261022105027099003|261026140227099003|261021121427099003|261102123227099003|261026121527099003|261021123027099003|261009223027099003|18002099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 8AB3GqfYfmYtBedxT+Ft5STN4tg3cWRwaLsBa6coAMS0YGTEmZ0aRzUy/p7yA7/R8HgpaDKtH6B9fiE2gHpZsvsu/zgjRNmjcT3QcAbxdr+l6DtcFLWaJ03+EOzWcuEZiW6QBsuUfrOv3H9SIUW49WBfoImC9zCBCeen0zktzEz8An11Se1OmC6ONpST1jH2PFnq/SnKskUQ3ONf5oTfd7f65qIxfkVDRMQEXzKDkMmG1oI7ykYMNJNw/wCIGUs95DrtWun5p9AaJChkltJ9CTk0MLO30LmpWr7qlxqNCVwtY7NLNmPOXKuGpH1FipBsNDueN823AMyYj08WetGU+XO1Gp/oEI9IUyi8xnvfIuwMch1/TofPY2PeWwbrWlvf7czJ8KBXybfYRUDjAgYqZNsgZUZSxjqRENWdV4uCz8iQtrZNqWXD17vd/t3TbDaq0DxzSaiZAKyq2JX+BaLrD5O87yYPGw18gWeCA9Id+XL15CInv/fwtUu1mhu5aef2hetaMFeSQ7E2l39tIZ7vj9eZ/GNaUpICDuIaPilQKRBI6iKNVadJviK4usQ6W4ippCkjHbmAZq78t+b6G4AmGikpSpwBV2R+UMEYmX/4i2wIGuSBGZGE7sFICgPFjqBdkBmzCvWP39rixm2a5l2f5GBDxA0mFuDwGw49JdYXEvBb0A5o+EY3UIaS8Bk0y/0pON5CWKjQwnupiQH0EmGW1HOeZucVQIc9MODI8xYF0ppu6PSlFlXE5TvYF83v/4kL
+X-Forefront-Antispam-Report: CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(1800799024)(376014)(82310400026)(36860700016)(921020)(56012099006)(261028144727099003)(261022105027099003)(261026140227099003)(261021121427099003)(261102123227099003)(261026121527099003)(261021123027099003)(261009223027099003)(18002099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: SXy0sylydb1nx8sWTujDu1QbASNu5DBpIu4qQb+uo6BXFc/1q2YKl9ELZ72y9oEGkX+zbdhWfq8XsK7N+o1J9NQZ5liH8Qlx8TKs+g4tcbWgTQ0wbtqR79UtOjccRo+rdHVqVLm/P3gYmcT5sknSswYDd9gHzcY/MUFmmPE3DHaaV0E7glHqye+PjCDyIP1NqBnxts3jClWfsBItXvgU2TLGsZbbWPIivQ+qUp3fQPVJPY2khcrxu4WfUebxUajMtIIEOy3gh5i6d4F3ELCsTUCaLMUMvkEmnMyE9GQAhXgALG7oHtJeDu+0ThShdW80FyG+gm8LJ01bvY927yeUU71tK/BcKG7o22RHETFHcu9GuIjmL9FzBz7vq6LpLeD+Eib6/Jtr9v5F7w8t2aRG8r8F9NrgRPlV0q/mt0WU3c5teJdCisU4IvCjaUtt7F1v
+X-Exchange-RoutingPolicyChecked: M7cIDMaGgHNx3Xuuq1qFCXyoHZ72ezqXcHNHYhHieDDpXQ1OET/5WtX0mrskQ49ZMb4DgX9puwtAiDGAkRikCNDCiqgaAh/TuVMyjPLULpwlO0sZBGX9oysrLadJLq3CtsAbBkghn0gb2v3JpWajWJzV08ybk9sWqwLberqkjqiU50Qak/kCe7aOHtmtcnOV7SCd9iOjr7+aXrrhKcdWsm54aFeEH4WVvQ3/Fjoa77j1c6J2arcaZcLXirLzDIZBoa2PCmlbJqcOmbJXtWxpCAVCq2ZurSJW1Cv72ZetRINyPnOQDKugZMEHJIXSawlUL9LCvuFV613hwQr3JT5bxQ==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 13:17:51.0594
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: b212a7e7-de74-40f8-07b9-08df418884f5
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF000037B5.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6252
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEzMDA1MiBTYWx0ZWRfX56QVT0GYKW7Z
+ ckzpDT3yaj1mVt2EG+2vkivUHbecVfEp5JrN3kU91lYhIdwFI8THc9RXfkg1UWSQnMg0CHF6rfD
+ Y2TxIHDPgNoxny4YyCY6sDH93wz3xfvEcO1N31laCrnL5P1n7at5EwNQc21ghl3GZMeVj/IRVy1
+ wayYzxKG16XbntV5nlD2AA5077xbepv42J6KN4CB418sbs8WL/kf+CrtrA2jQkrYef0+ezXO4tQ
+ +0PoQrbnOJXQDmmzngcyDhxTQ9LqUG5tvt16Ak/Mu4/bNHxxFusrZewtpbxPtFSK/K3zMpY7ihm
+ 9gd2xNtx5ADkjaTcxz7AobNUfAnFk/INgm+KeA55PhALWWo/pZelKFRBYrMiLezwlxueh3zfTzG
+ WnXidD4xra7OF4vDzkFhOLhR5RZpfQE+hxa5nrNVemQWL1XNAgEdzlqeO1Nz5LYPYWnCiLuut26
+ lk4Xo2eFB+J6TwhLnfg==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEzMDA1MiBTYWx0ZWRfX7kLz+/qrWPXr
+ 80aL6D1/wCWRoUheylBCyU/Sy87u0axewZC2mkwKNjXl6DUNN+2pukhs88JddhxR4lOsqb3RL5d
+ om511w0NTwUUODOZcndB3RRIHfsSil4=
+X-Proofpoint-ORIG-GUID: XDqTlLgjspKs7yzx3UQoUPXeolzNGWW_
+X-Authority-Analysis: v=2.4 cv=b7oncdGx c=1 sm=1 tr=0 ts=6af70e0a cx=c_pps
+ a=5k1muW5XIJfqWNzrwyhXkQ==:117 a=tJyPKKxUohctrY4NYmUjkA==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=zJRp6_cAMcgA:10 a=AlMIdn_sM9wA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22 a=fPAWb5peG099m5CrUpKH:22
+ a=sozttTNsAAAA:8 a=2QSx6drZsS2ta5UW6hwA:9 a=XAbBb_B534XbvIaE:21
+X-Proofpoint-GUID: XDqTlLgjspKs7yzx3UQoUPXeolzNGWW_
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-13_04,2026-11-11_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
- impostorscore=0 priorityscore=1501 clxscore=1015 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611130052
+ impostorscore=0 bulkscore=0 clxscore=1011 adultscore=0 phishscore=0
+ lowpriorityscore=0 spamscore=0 suspectscore=0 malwarescore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611130052
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_051436_039467_472CC224 
-X-CRM114-Status: GOOD (  26.69  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261113_051934_357519_9C274587 
+X-CRM114-Status: GOOD (  15.52  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -174,105 +183,418 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 22, 2026 at 11:41=E2=80=AFAM Reza Kurniawan <imkyufie@gmail.com=
-> wrote:
->
-> From: Alejandro Tafalla <atafalla@dnyon.com>
->
-> On some SoCs (e.g. Qualcomm MSM8917 and MSM8937), PSCI reports that OSI
-> mode is supported but rejects any PSCI_SET_SUSPEND_MODE call with
-> NOT_SUPPORTED. psci_set_osi_mode() then fails with -EOPNOTSUPP and the
-> probe is aborted:
->
->   psci-cpuidle-domain psci: probe with driver psci-cpuidle-domain failed
->   with error -95
->
-> Add support for the "skip-suspend-mode-switch" property. When present,
-> do not call psci_set_osi_mode() and continue with the topology that was
-> already built.
->
-> Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
-> [Reza Kurniawan: split out the patch, added log message for skip case, re=
-named
->  the property, added property check at PSCI initialization]
-> Co-developed-by: Reza Kurniawan <imkyufie@gmail.com>
-> Signed-off-by: Reza Kurniawan <imkyufie@gmail.com>
-> ---
->  drivers/cpuidle/cpuidle-psci-domain.c | 16 ++++++++++------
->  drivers/firmware/psci/psci.c          |  6 ++++--
->  2 files changed, 14 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/cpuidle/cpuidle-psci-domain.c b/drivers/cpuidle/cpui=
-dle-psci-domain.c
-> index 5722365b94..cc9f14769b 100644
-> --- a/drivers/cpuidle/cpuidle-psci-domain.c
-> +++ b/drivers/cpuidle/cpuidle-psci-domain.c
-> @@ -159,13 +159,17 @@ static int psci_cpuidle_domain_probe(struct platfor=
-m_device *pdev)
->         if (ret)
->                 goto remove_pd;
->
-> -       /* let's try to enable OSI. */
-> -       ret =3D psci_set_osi_mode(use_osi);
-> -       if (ret)
-> -               goto remove_pd;
-> +       if (of_property_read_bool(np, "skip-suspend-mode-switch")) {
+Many ARCH_HAS_* symbols change some behavior based on what an ARCH
+supports, but ARCH_HAS_RESET_CONTROLLER is used only to set a default
+for RESET_CONTROLLER. Those ARCH symbols that select this can skip the
+middleman and directly select RESET_CONTROLLER, and many already do.
 
-Rather than reading this property here and in the psci fw driver, I
-suggest we just do this in the fw driver.
+Replace all selection of this symbol with a direct selection of
+RESET_CONTROLLER when it is not already in the selection list. In the
+latter case when RESET_CONTROLLER is also already selected we can simply
+remove the ARCH_HAS_RESET_CONTROLLER without changing existing behavior.
 
-In other words, let's make psci_set_osi_mode() to succeed when
-"skip-suspend-mode-switch" is set.
+Some ARCHs "select" this symbol when they actually "depend on" the
+RESET_CONTROLLER framework to build, in those cases the indirect select
+could lead to broken randconfig builds. In cases when it is not needed
+for building the ARCH code, these selections can be switched to the weaker
+"imply" to allow it deselected for minimal builds without reset support.
+Additional checking will be needed to find such cases.
 
-> +               pr_info("Initialized CPU PM domain topology, keeping firm=
-ware-set mode\n");
-> +       } else {
-> +               ret =3D psci_set_osi_mode(use_osi);
-> +               if (ret)
-> +                       goto remove_pd;
-> +
-> +               pr_info("Initialized CPU PM domain topology using %s mode=
-\n",
-> +                       use_osi ? "OSI" : "PC");
-> +       }
->
-> -       pr_info("Initialized CPU PM domain topology using %s mode\n",
-> -               use_osi ? "OSI" : "PC");
->         return 0;
->
->  remove_pd:
-> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> index e73bae6cb2..3226af6d89 100644
-> --- a/drivers/firmware/psci/psci.c
-> +++ b/drivers/firmware/psci/psci.c
-> @@ -791,8 +791,10 @@ static int __init psci_1_0_init(const struct device_=
-node *np)
->         if (psci_has_osi_support()) {
->                 pr_info("OSI mode supported.\n");
->
-> -               /* Default to PC mode. */
-> -               psci_set_osi_mode(false);
-> +               if (!of_property_read_bool(np, "skip-suspend-mode-switch"=
-)) {
-> +                       /* Default to PC mode. */
-> +                       psci_set_osi_mode(false);
-> +               }
->         }
->
->         return 0;
->
-> --
-> 2.56.0
->
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ arch/arm/Kconfig               | 2 +-
+ arch/arm/Kconfig.platforms     | 1 -
+ arch/arm/mach-bcm/Kconfig      | 4 ++--
+ arch/arm/mach-berlin/Kconfig   | 2 +-
+ arch/arm/mach-ep93xx/Kconfig   | 2 +-
+ arch/arm/mach-gemini/Kconfig   | 2 +-
+ arch/arm/mach-imx/Kconfig      | 2 +-
+ arch/arm/mach-keystone/Kconfig | 2 +-
+ arch/arm/mach-mmp/Kconfig      | 6 +++---
+ arch/arm/mach-omap2/Kconfig    | 1 -
+ arch/arm/mach-rockchip/Kconfig | 2 +-
+ arch/arm/mach-socfpga/Kconfig  | 1 -
+ arch/arm/mach-sti/Kconfig      | 1 -
+ arch/arm/mach-stm32/Kconfig    | 1 -
+ arch/arm/mach-sunxi/Kconfig    | 1 -
+ arch/arm/mach-tegra/Kconfig    | 1 -
+ arch/arm/mach-zynq/Kconfig     | 2 +-
+ arch/arm64/Kconfig.platforms   | 9 +++------
+ arch/mips/Kconfig              | 6 ++----
+ arch/riscv/Kconfig.socs        | 2 +-
+ drivers/reset/Kconfig          | 4 ----
+ 21 files changed, 19 insertions(+), 35 deletions(-)
 
-Kind regards
-Uffe
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index 0cc289a7184ab..dd039f349e45e 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -473,7 +473,7 @@ source "arch/arm/mach-zynq/Kconfig"
+ config ARCH_LPC18XX
+ 	bool "NXP LPC18xx/LPC43xx (DEPRECATED)"
+ 	depends on ARM_SINGLE_ARMV7M
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select CLKSRC_LPC32XX
+ 	select PINCTRL
+diff --git a/arch/arm/Kconfig.platforms b/arch/arm/Kconfig.platforms
+index 2e118b65f93b4..e89d515c0c378 100644
+--- a/arch/arm/Kconfig.platforms
++++ b/arch/arm/Kconfig.platforms
+@@ -191,7 +191,6 @@ endif
+ config ARCH_UNIPHIER
+ 	bool "Socionext UniPhier SoCs"
+ 	depends on ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_GLOBAL_TIMER
+ 	select ARM_GIC
+diff --git a/arch/arm/mach-bcm/Kconfig b/arch/arm/mach-bcm/Kconfig
+index 24bc6e18d8067..d91629f4ffc8d 100644
+--- a/arch/arm/mach-bcm/Kconfig
++++ b/arch/arm/mach-bcm/Kconfig
+@@ -182,7 +182,7 @@ config ARCH_BCM_53573
+ config ARCH_BRCMSTB
+ 	bool "Broadcom BCM7XXX based boards"
+ 	depends on ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_GIC
+ 	select ARM_GIC_V3
+@@ -229,7 +229,7 @@ config ARCH_BCMBCA_CORTEXA9
+ 	bool "Cortex-A9 SoCS"
+ 	select ARM_ERRATA_754322
+ 	select ARM_ERRATA_764369 if SMP
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_GLOBAL_TIMER
+ 	select CACHE_L2X0
+ 	select HAVE_ARM_TWD if SMP
+diff --git a/arch/arm/mach-berlin/Kconfig b/arch/arm/mach-berlin/Kconfig
+index 01861fa72c971..2447f62da52ab 100644
+--- a/arch/arm/mach-berlin/Kconfig
++++ b/arch/arm/mach-berlin/Kconfig
+@@ -2,7 +2,7 @@
+ menuconfig ARCH_BERLIN
+ 	bool "Marvell Berlin SoCs"
+ 	depends on ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_GIC
+ 	select DW_APB_ICTL
+ 	select DW_APB_TIMER_OF
+diff --git a/arch/arm/mach-ep93xx/Kconfig b/arch/arm/mach-ep93xx/Kconfig
+index 812b71dcf60e0..5573a8e90a8b5 100644
+--- a/arch/arm/mach-ep93xx/Kconfig
++++ b/arch/arm/mach-ep93xx/Kconfig
+@@ -5,7 +5,7 @@ menuconfig ARCH_EP93XX
+ 	depends on ARCH_MULTI_V4T
+ 	# CONFIG_ARCH_MULTI_V7 is not set
+ 	depends on CPU_LITTLE_ENDIAN
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARCH_SPARSEMEM_ENABLE
+ 	select ARM_AMBA
+ 	select ARM_VIC
+diff --git a/arch/arm/mach-gemini/Kconfig b/arch/arm/mach-gemini/Kconfig
+index f436a2009eca3..11e0e966c3bb6 100644
+--- a/arch/arm/mach-gemini/Kconfig
++++ b/arch/arm/mach-gemini/Kconfig
+@@ -3,7 +3,7 @@ menuconfig ARCH_GEMINI
+ 	bool "Cortina Systems Gemini"
+ 	depends on ARCH_MULTI_V4
+ 	depends on CPU_LITTLE_ENDIAN
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_APPENDED_DTB # Old Redboot bootloaders deployed
+ 	select COMMON_CLK_GEMINI
+diff --git a/arch/arm/mach-imx/Kconfig b/arch/arm/mach-imx/Kconfig
+index 3f0521c652cb0..d3b603a4a8b3c 100644
+--- a/arch/arm/mach-imx/Kconfig
++++ b/arch/arm/mach-imx/Kconfig
+@@ -33,7 +33,7 @@ config HAVE_IMX_MMDC
+ 
+ config HAVE_IMX_SRC
+ 	def_bool y if SMP
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 
+ if ARCH_MULTI_V6
+ 
+diff --git a/arch/arm/mach-keystone/Kconfig b/arch/arm/mach-keystone/Kconfig
+index de69cc2dd4831..aeadb7a57ec1e 100644
+--- a/arch/arm/mach-keystone/Kconfig
++++ b/arch/arm/mach-keystone/Kconfig
+@@ -5,7 +5,7 @@ config ARCH_KEYSTONE
+ 	select ARM_GIC
+ 	select HAVE_ARM_ARCH_TIMER
+ 	select KEYSTONE_TIMER
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_ERRATA_798181 if SMP
+ 	select COMMON_CLK_KEYSTONE
+ 	select ZONE_DMA if ARM_LPAE
+diff --git a/arch/arm/mach-mmp/Kconfig b/arch/arm/mach-mmp/Kconfig
+index 8c1d4402fd693..d709d2b603a5b 100644
+--- a/arch/arm/mach-mmp/Kconfig
++++ b/arch/arm/mach-mmp/Kconfig
+@@ -18,7 +18,7 @@ config MACH_MMP_DT
+ 	depends on ARCH_MULTI_V5
+ 	select PINCTRL
+ 	select PINCTRL_SINGLE
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select CPU_MOHAWK
+ 	help
+ 	  Include support for Marvell MMP2 based platforms using
+@@ -30,7 +30,7 @@ config MACH_MMP2_DT
+ 	depends on ARCH_MULTI_V7
+ 	select PINCTRL
+ 	select PINCTRL_SINGLE
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select CPU_PJ4
+ 	select PM_GENERIC_DOMAINS if PM
+ 	select PM_GENERIC_DOMAINS_OF if PM && OF
+@@ -47,7 +47,7 @@ config MACH_MMP3_DT
+ 	select CACHE_L2X0
+ 	select PINCTRL
+ 	select PINCTRL_SINGLE
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select CPU_PJ4B
+ 	select PM_GENERIC_DOMAINS if PM
+ 	select PM_GENERIC_DOMAINS_OF if PM && OF
+diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+index 79f8afe3a6bfa..65fbaa63a79b3 100644
+--- a/arch/arm/mach-omap2/Kconfig
++++ b/arch/arm/mach-omap2/Kconfig
+@@ -97,7 +97,6 @@ config SOC_DRA7XX
+ config ARCH_OMAP2PLUS
+ 	bool
+ 	select ARCH_HAS_BANDGAP
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select ARCH_OMAP
+ 	select CLKSRC_MMIO
+ 	select GENERIC_IRQ_CHIP
+diff --git a/arch/arm/mach-rockchip/Kconfig b/arch/arm/mach-rockchip/Kconfig
+index c90193dd39283..3dc3b5581947e 100644
+--- a/arch/arm/mach-rockchip/Kconfig
++++ b/arch/arm/mach-rockchip/Kconfig
+@@ -4,7 +4,7 @@ config ARCH_ROCKCHIP
+ 	depends on ARCH_MULTI_V7
+ 	select PINCTRL
+ 	select PINCTRL_ROCKCHIP
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_GIC
+ 	select CACHE_L2X0
+diff --git a/arch/arm/mach-socfpga/Kconfig b/arch/arm/mach-socfpga/Kconfig
+index 528c5c1368c37..fc4a56291bd78 100644
+--- a/arch/arm/mach-socfpga/Kconfig
++++ b/arch/arm/mach-socfpga/Kconfig
+@@ -2,7 +2,6 @@
+ menuconfig ARCH_INTEL_SOCFPGA
+ 	bool "Altera SOCFPGA family"
+ 	depends on ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_GIC
+ 	select CACHE_L2X0
+diff --git a/arch/arm/mach-sti/Kconfig b/arch/arm/mach-sti/Kconfig
+index e58699e13e1a5..22d169a2277e5 100644
+--- a/arch/arm/mach-sti/Kconfig
++++ b/arch/arm/mach-sti/Kconfig
+@@ -9,7 +9,6 @@ menuconfig ARCH_STI
+ 	select PINCTRL
+ 	select PINCTRL_ST
+ 	select MFD_SYSCON
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select HAVE_ARM_SCU if SMP
+ 	select GPIOLIB
+ 	select ARM_ERRATA_754322
+diff --git a/arch/arm/mach-stm32/Kconfig b/arch/arm/mach-stm32/Kconfig
+index 4ac3384e397aa..00dab551bcce2 100644
+--- a/arch/arm/mach-stm32/Kconfig
++++ b/arch/arm/mach-stm32/Kconfig
+@@ -7,7 +7,6 @@ menuconfig ARCH_STM32
+ 	select ARM_GIC if ARCH_MULTI_V7
+ 	select ARM_PSCI if ARCH_MULTI_V7
+ 	select ARM_AMBA
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select CLKSRC_STM32
+ 	select PINCTRL
+ 	select RESET_CONTROLLER
+diff --git a/arch/arm/mach-sunxi/Kconfig b/arch/arm/mach-sunxi/Kconfig
+index e015f2497111a..9d0e7d8dc5d95 100644
+--- a/arch/arm/mach-sunxi/Kconfig
++++ b/arch/arm/mach-sunxi/Kconfig
+@@ -2,7 +2,6 @@
+ menuconfig ARCH_SUNXI
+ 	bool "Allwinner SoCs"
+ 	depends on (CPU_LITTLE_ENDIAN && ARCH_MULTI_V5) || ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select CLKSRC_MMIO
+ 	select GPIOLIB
+ 	select PINCTRL
+diff --git a/arch/arm/mach-tegra/Kconfig b/arch/arm/mach-tegra/Kconfig
+index 3a06ba263e345..c85d8c6d34954 100644
+--- a/arch/arm/mach-tegra/Kconfig
++++ b/arch/arm/mach-tegra/Kconfig
+@@ -2,7 +2,6 @@
+ menuconfig ARCH_TEGRA
+ 	bool "NVIDIA Tegra"
+ 	depends on ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_GIC
+ 	select CLKSRC_MMIO
+diff --git a/arch/arm/mach-zynq/Kconfig b/arch/arm/mach-zynq/Kconfig
+index 05be5aa9b4028..e3d7649b9899a 100644
+--- a/arch/arm/mach-zynq/Kconfig
++++ b/arch/arm/mach-zynq/Kconfig
+@@ -2,7 +2,7 @@
+ config ARCH_ZYNQ
+ 	bool "Xilinx Zynq ARM Cortex A9 Platform"
+ 	depends on ARCH_MULTI_V7
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARM_AMBA
+ 	select ARM_GIC
+ 	select ARM_GLOBAL_TIMER
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 49dcd7be82cef..bee8766c1312b 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -17,7 +17,6 @@ config ARCH_AIROHA
+ 
+ config ARCH_SUNXI
+ 	bool "Allwinner sunxi 64-bit SoC Family"
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select PINCTRL
+ 	select RESET_CONTROLLER
+ 	select SUN4I_TIMER
+@@ -99,7 +98,7 @@ config ARCH_BCMBCA
+ 
+ config ARCH_BRCMSTB
+ 	bool "Broadcom Set-Top-Box SoCs"
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select GENERIC_IRQ_CHIP
+ 	select PINCTRL
+ 	help
+@@ -353,7 +352,7 @@ config ARCH_RENESAS
+ 
+ config ARCH_ROCKCHIP
+ 	bool "Rockchip Platforms"
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select PINCTRL
+ 	select PM
+ 	select ROCKCHIP_TIMER
+@@ -376,7 +375,7 @@ config ARCH_INTEL_SOCFPGA
+ 
+ config ARCH_SOPHGO
+ 	bool "Sophgo SoCs"
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	help
+ 	  This enables support for Sophgo SoC platform hardware.
+ 
+@@ -405,7 +404,6 @@ config ARCH_SYNQUACER
+ 
+ config ARCH_TEGRA
+ 	bool "NVIDIA Tegra SoC Family"
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select ARM_GIC_PM
+ 	select CLKSRC_MMIO
+ 	select TIMER_OF
+@@ -442,7 +440,6 @@ config ARCH_THUNDER2
+ 
+ config ARCH_UNIPHIER
+ 	bool "Socionext UniPhier SoC Family"
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select PINCTRL
+ 	select RESET_CONTROLLER
+ 	help
+diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
+index dac3ec5120a34..53bde6032076c 100644
+--- a/arch/mips/Kconfig
++++ b/arch/mips/Kconfig
+@@ -228,7 +228,7 @@ config ATH25
+ 
+ config ATH79
+ 	bool "Atheros AR71XX/AR724X/AR913X based boards"
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select BOOT_RAW
+ 	select CEVT_R4K
+ 	select CSRC_R4K
+@@ -250,7 +250,7 @@ config ATH79
+ 
+ config BMIPS_GENERIC
+ 	bool "Broadcom Generic BMIPS kernel"
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select ARCH_HAS_SYNC_DMA_FOR_CPU_ALL
+ 	select BOOT_RAW
+ 	select NO_EXCEPT_FILL
+@@ -472,7 +472,6 @@ config LANTIQ
+ 	select USE_OF
+ 	select PINCTRL
+ 	select PINCTRL_LANTIQ
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select RESET_CONTROLLER
+ 
+ config MACH_LOONGSON32
+@@ -690,7 +689,6 @@ config RALINK
+ 	select SYS_SUPPORTS_MIPS16
+ 	select SYS_SUPPORTS_ZBOOT
+ 	select SYS_HAS_EARLY_PRINTK
+-	select ARCH_HAS_RESET_CONTROLLER
+ 	select RESET_CONTROLLER
+ 
+ config MACH_REALTEK_RTL
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index cecbce0c49838..723761037d0d5 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -112,7 +112,7 @@ config ARCH_CANAAN
+ config SOC_CANAAN_K210
+ 	bool "Canaan Kendryte K210 SoC"
+ 	depends on !MMU && ARCH_CANAAN
+-	select ARCH_HAS_RESET_CONTROLLER
++	select RESET_CONTROLLER
+ 	select PINCTRL
+ 	select COMMON_CLK
+ 	help
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index eda9c698a95f3..4e37c432823da 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -1,10 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-config ARCH_HAS_RESET_CONTROLLER
+-	bool
+-
+ menuconfig RESET_CONTROLLER
+ 	bool "Reset Controller Support"
+-	default y if ARCH_HAS_RESET_CONTROLLER
+ 	help
+ 	  Generic Reset Controller support.
+ 
+-- 
+2.43.0
+
 
