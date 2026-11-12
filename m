@@ -2,86 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39CAA6070F53
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 18:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82EE606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 18:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NtFBfpSH;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=vh73mWMb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J7i7ek4N;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=ND3gOHEX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=a4iEaD8NWzFH56Fd6ulOFSIYM+4Rcg1gxrmby4HTmHM=; b=NtFBfpSH/ZSIth
-	INS4ZnhWNxe8WqyLLomQPgVdYW7V+gbw+yGY6VduY1yG6nrl75O1KpCsluwRvD4OXthOOTTnglagb
-	xqATmwXgFVdB/f9qKXtU2+vv7jK8bKAmnRMw/uCXTJyKUIQV8uCrASPy/xfovLZKUfBu6k1LUNI/E
-	PpsDq0Ylf8eVv0cIDEqMiW0a92/mm7a90jKffq0CNz1pQm9/zh5YPizOsR5rWOoNZN/7D5CKPE4Ao
-	lJDL6Kt6J26XFFcTNbIH6qo9NZrVT72u3v+BtjvDH7UFauFfNecVhvAzbzg+DD5ZRQRk+IwZuiw/4
-	wb2lkACy1OlBrWYWOptw==;
+	List-Owner; bh=M8xbWLTM1tDLF8IdDJE0ybXERn0+Q9azTV5NEZXnfIQ=; b=J7i7ek4NmUtimB
+	8WDmq4Mq30BqJ1To6kPJ1o44oKjsYdTTdPV5PHhYHoKNZ5ZpOg0Eoaj5WMBM/chlt018GZUfGJh86
+	2h++zXmnGwLoyBiRJ606aqdyN4WfjEbVUY9yLFJxewvB0EhWWBPW2XeVXoA5kt0KaS53dPdkCbj23
+	Imi/PEh1szUqcuhgtSBvTh1qNNOprxboRbeyJ87eUOWXJ1P6L5GsHzZ2vFjcYW3lOk1oGb1cn6zOZ
+	EBPQA1qUlWzesPeXSxeRZiC0ybqj/SwoZ8yXNsgbCy/EBkpq0ij9d5p2L6kqmS66QrJxjWIscisYI
+	wu+DXiTJuylRp7r3GU5w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRZxV-0000000Atnq-1VC1;
-	Thu, 12 Nov 2026 18:55:41 +0000
-Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
+	id 1xRZxX-0000000Atow-3FOS;
+	Thu, 12 Nov 2026 18:55:43 +0000
+Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRZxE-0000000AtjQ-3mnW
+	id 1xRZxM-0000000Atle-0N1J
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 18:55:30 +0000
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so1415435e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 10:55:24 -0800 (PST)
+	Thu, 12 Nov 2026 18:55:37 +0000
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4a207b02a2cso860835e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 10:55:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794509723; x=1795114523; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794509730; x=1795114530; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=a4iEaD8NWzFH56Fd6ulOFSIYM+4Rcg1gxrmby4HTmHM=;
-        b=vh73mWMbzKXlpXe9ggtA8THFuoXX2jXbwpJ617mVG52GCVbodXqY90AhJXAosMmKMF
-         JXcmJhL3Dzu0LCvDkNvkZYBh/SxwG13H4eFQoCwwnOzwCrGZqQowAMeOE3z0YgNuEyZf
-         Q/bDygJge3iCjUaDPTTzed4tbEoPm8WoyIPDjbiJw94hKsHfE/Ilq1ebaMCmjSBvajIZ
-         uM3nOzbTHQEOjpPmD+cGN/PwqWj9NssLmcIYb9bCoC/9sKo7v1zn8y3w2sWOCdW6b63q
-         bedHbn2DYeHrFZvVqQKBXTDL8C+GKedhKQBErf32hpBNLopi6/ErTbwqT8ArJZI8Vfy+
-         /vBg==
+        bh=M8xbWLTM1tDLF8IdDJE0ybXERn0+Q9azTV5NEZXnfIQ=;
+        b=ND3gOHEXeKklp1dHBg/iyH4Y53MaHcxY2yO0YK5gqyCScb94T+MCZrr2XgZxQvdxmg
+         e/BqZSNrIwZE3jJQJXcelgidsxnc6HmuTGA6PLFWOspb7aQOmZtUBObPa7R8Cav5ZiCD
+         L/HPIAzmuijrZr3DYRzTZzxbhFGQlU50r3BS/eE6qv/8yduViTTNzzMp1VBwaRZDJ3fG
+         zpc4Dsr6Qm9lBbJ8vBrTKpVUn3GrL6GaaoPl4EVq/YHgSncLdFUhGFz+hEICR2k3m2E3
+         /tL9R49LHS1wBVGFBgo7E1u6Ytn6EK/pqPDVYw1hDDkF12KWfAgE1741uzP06pubbdpo
+         IA9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794509723; x=1795114523;
+        d=1e100.net; s=20260707; t=1794509730; x=1795114530;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=a4iEaD8NWzFH56Fd6ulOFSIYM+4Rcg1gxrmby4HTmHM=;
-        b=gxp5pYKY/shS66A0Hd+PhUru0b8vFNqmO92IN7z9auZ/t9BKko6g2FV2u0WlCAMKxe
-         u263yg79YIXo6u1m54VJMtbBkcZa8rDE0HuINnIuMexO0gOyuQJfVVF/cL53mLOCLRU3
-         XU3LLqnwaMIxTlPtCsYfvDNsmGcITUB90uUD9qwgR6uQbNLleqjVwlVNw/0hpwJ9wKm/
-         /rUoJPsLVeivCodTJm6hUCL2+zH6RS8cANubI9QqFDQU1AGTNh+o8EBYMaA7wJyjtjiR
-         +UmAdh0kzziNhZd3/hnxvM5B55dQzEHxBqqRqBF9Yvgw6Qsk5UfuUVy7twonq1nDIPpu
-         43Ow==
-X-Gm-Message-State: APuU4Z9zwPYiwaSPKsmBEWUXFMKP202au1aej6IBppLwmgcjp4x903g2
-	qBTqHJUc0ucgB69tjomQMC9NISTddkZSFrhdrRN2IAG9zoK/T3wkHcJF
-X-Gm-Gg: AYBFou0Gsnt4RljbPOGTP3PWvBz5tfTH8ayurUAg3HYhUD4IiKvREwEuw76n8R5SaE5
-	RdDPe/ideypwraFsA0YTh0Oi+PZf+QVxWB0k9BYnxVF8uiEr3Lxcx68HKJ3dFbqo0YdbedxsJeP
-	oLCOGDFrgPvR9MndMovRk+wE5XUZsZ8sEjRJ6meCSUCL8ZV6XLtYN0ttrQ15rdw4Dd7blrkc1ia
-	wWqcRrpDGI7t4nnOhRMq3d6J83YfDvw09+H30X1jHzBcjXjQfGyXvs+12aT0urzWXDwI5oYQGPL
-	epvrV0YZnK+6hAtmn+ZN9Jdp/rQeWCB+Q0t9kpkHuufInLoTW9W1s0WWOAZl0YWa67T+1haAmSa
-	osTs4xGPY6i4GMGE4gd+1Fvbyus3LacuvZhaii3oKoLLhfWJVt2COFtYokTCDHKIzcxGsoI+FiA
-	SM2X1yZxypg/gwpStc48NMNhpHM1EuuR5VtJfa4kesdsYFRTCerI7JBYiR4tYM16JfCZVyiIYhb
-	ouhNxZYi9t3P/3DOsUzC2yeHbiu4xwq1GtjKgFcwc0VRjrOkwJFy4e0pRtrH2YNkhIebe7RQ0j9
-	C2GovqbXRkmA9yA/x9cxrqVyvmOTUTBHyFpwrtvV+Xv0sZvrXTnHH2eqcAGh+qUe85LXlxsyVRY
-	JLOP7vy0=
-X-Received: by 2002:a05:600c:354a:b0:49e:65f2:db64 with SMTP id 5b1f17b1804b1-4bb55a61152mr3023845e9.5.1794509722810;
-        Thu, 12 Nov 2026 10:55:22 -0800 (PST)
+        bh=M8xbWLTM1tDLF8IdDJE0ybXERn0+Q9azTV5NEZXnfIQ=;
+        b=GzH6HsrfafxvlgvIVDpOLV4YoFJhr6dADMxyBAbimpjWO7Ea8IS96v5CtbjTzK7MUn
+         19y4K2HJkBCYJoNLnBc8ghI5lDolUsXBf9zSvo3mo2bwS8UkmmXR9G5J8xURRCX1RnCm
+         FrP1MX6AMkRhfroNYZuMZPSyhBQfU8+NkfVpfdz18H1nZN+US5+Y3xMVrQCHOVPOGdYk
+         7TuXAUK4BiLAhLAEWGmYxxtYB6cMRgRnnLYLr/g693/yo98uB2YPbgDw5vG6KVyApGvl
+         GnsVJ4iEzXCaWRhpNTHmNBHagkw9x0ZzZXzde3Ze2BbyGOuTqQhA2Khv4p/qgP4w9Idy
+         fatw==
+X-Gm-Message-State: APuU4Z9irmhRUxePFeJNgGP3rc8ARIgAsJ16zHsvXVMu0iuWVcKMKXAr
+	/x793OjXBAQhB3s7H0YhK+UKv9DrBd389AfHcS++RMO9DtY/Jm9FTAEu
+X-Gm-Gg: AYBFou2zRFp9kn1VgHYSdOOWaDEXSxLMl30z1n3iDPtS9iEg+OGKtJLQh5ODXZsVRWD
+	bYG4bNYSQWIMsn8KkkHnxGv8jNKUjHhrUri0AKbO0ahcPD/MY4L63171ogme2q8uf5CxUgZSFbC
+	+ntvrYPcxiGt5oeRnkJtaurbxThb0Sza6BJSDiEATzbUTmJ5YbfI3iSOAD7FfbyXWqYLpmJCsgz
+	ijuRnob9ZoGUEPljoI/njMioH9m/sNvUKImINe4MxVRNo1vsv9eyFG1rv82FJmyPErtRv89fLCa
+	UUf9FVOmFouiOYa4cFYPHD7M1RHV+JA842YzDEZH7A0X9jrExdmjXlcfhtLPjJmKlrEk2Unna0e
+	Rf0TsSYoN0HK6JRohS61kgo99uykfIjaLQnoSNKCEUtggkgAjXJd4UcgYWFd01RtlXeEm0XSTrW
+	XDY67ULtDYokpD9gb08bvMALkR9amHwN65pKilr5eIPpCGVwGrMwHlK9NNy7aUTUIgbs87CK1JG
+	4Gq2yiqB1qzM9eAuqh1K5dAkxx5OVIUpOeJwW5CoHbtJeDRPxgU25qAZ4z+CqEHDUvjrbiyxsR/
+	gX/Ps44vSWRG7pmKZLkZZCQglfFmhs1jMqFUTmwNGckrHB0A68cvh0la5PZLpf7KU7OTuwWllcx
+	BUl0iPcir
+X-Received: by 2002:a05:600c:6092:b0:4a2:397:73f6 with SMTP id 5b1f17b1804b1-4bb55a44be7mr2737975e9.8.1794509730281;
+        Thu, 12 Nov 2026 10:55:30 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e28d0b2sm71734755e9.7.2026.11.12.10.55.20
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e28d0b2sm71734755e9.7.2026.11.12.10.55.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 10:55:22 -0800 (PST)
+        Thu, 12 Nov 2026 10:55:29 -0800 (PST)
 From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 12 Nov 2026 22:55:08 +0400
-Subject: [PATCH v6 1/4] clocksource/drivers/timer-vt8500: Add defines for
- magic constants
+Date: Thu, 12 Nov 2026 22:55:11 +0400
+Subject: [PATCH v6 4/4] watchdog: vt8500: Add a restart handler
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-vt8500-timer-updates-v6-1-fd1cea645d1f@gmail.com>
+Message-Id: <20261112-vt8500-timer-updates-v6-4-fd1cea645d1f@gmail.com>
 References: <20261112-vt8500-timer-updates-v6-0-fd1cea645d1f@gmail.com>
 In-Reply-To: <20261112-vt8500-timer-updates-v6-0-fd1cea645d1f@gmail.com>
 To: Alexey Charkov <alchark@gmail.com>, 
@@ -93,17 +92,17 @@ To: Alexey Charkov <alchark@gmail.com>,
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-watchdog@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4597; i=alchark@gmail.com;
- h=from:subject:message-id; bh=EnyVwDXCZhJWH17WUOtGzbF79lP3UqVzlI+QeOXtwgE=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR94566fN/rX09CX+SE+N1+sltrHncie1l+zM+0u0c3B
- gve23Gkp2MiC4MYF4OlmCLL3G9LbKca8c3a5eHxFWYOKxPIEGmRBgYgYGHgy03MKzXSMdIz1TbU
- MzTSMdYxYuDiFICpvsvI8D923c+Yj1skqsW9U1b5zJ9wOOksR5e1QdGZJdV27QlPtC8wMnQvPrM
- m5HQX640vBQ9Kdz+TeG45xdhw/fmr50XuLGte8osTAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2437; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=mhiGhVHaKTYXayUI3xItTRTmu/lVOn1Xybq1LOkaLfI=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR9457KJNYU8KBxuukRh1TepIj3vSFT2Y3K/HRezn62L
+ ZPLXcmwYyILgxgXg6WYIsvcb0tspxrxzdrl4fEVZg4rE8gQaZEGBiBgYeDLTcwrNdIx0jPVNtQz
+ NNIx1jFi4OIUgKne9Jbhf7bE/eTPHLPCjjzMiZf8bpdj4/j46HTVI4v+dUrFXHPf9ZiRYc2lfdM
+ Klr9VNJebZHyI5YRmybOTQT9V3px7HCA7U0SllxMA
 X-Developer-Key: i=alchark@gmail.com; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_105526_826588_8F24A0C1 
-X-CRM114-Status: GOOD (  17.55  )
+X-CRM114-CacheID: sfid-20261112_105533_628134_73D0C1B4 
+X-CRM114-Status: GOOD (  15.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,130 +122,66 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add defines for the timer registers and their bits to make the code more
-self-explanatory. While at that, replace _VAL suffixes with more
-intuitive _REG suffixes on register offsets.
+Reset the SoC through the watchdog when the machine's own restart hook
+leaves it running: the PMSR write in vt8500_restart() has no effect on
+WM8950, so a reboot there ends in "Reboot failed -- System halted"
+unless a watchdog armed from userspace happens to fire.
 
-No functional changes.
+Arm the match a millisecond ahead of the current count, which leaves
+ample margin for the register writes to land.
+
+Register at priority 128, the default for restart handlers and also the
+priority of the ARM machine restart hook. That hook is registered first,
+from setup_arch(), and handlers of equal priority run in registration
+order, so this one runs right after it and only matters where the hook
+fails to reset the SoC.
 
 Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- drivers/clocksource/timer-vt8500.c | 62 ++++++++++++++++++++++++--------------
- 1 file changed, 39 insertions(+), 23 deletions(-)
+ drivers/watchdog/vt8500-wdt.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/clocksource/timer-vt8500.c b/drivers/clocksource/timer-vt8500.c
-index a469b1b5f972..c4694cf8bea6 100644
---- a/drivers/clocksource/timer-vt8500.c
-+++ b/drivers/clocksource/timer-vt8500.c
-@@ -24,15 +24,28 @@
+diff --git a/drivers/watchdog/vt8500-wdt.c b/drivers/watchdog/vt8500-wdt.c
+index e0f838fd1d50..0ce1e2b06410 100644
+--- a/drivers/watchdog/vt8500-wdt.c
++++ b/drivers/watchdog/vt8500-wdt.c
+@@ -25,6 +25,9 @@
  
- #define VT8500_TIMER_OFFSET	0x0100
- #define VT8500_TIMER_HZ		3000000
--#define TIMER_MATCH_VAL		0x0000
--#define TIMER_COUNT_VAL		0x0010
--#define TIMER_STATUS_VAL	0x0014
--#define TIMER_IER_VAL		0x001c		/* interrupt enable */
--#define TIMER_CTRL_VAL		0x0020
--#define TIMER_AS_VAL		0x0024		/* access status */
--#define TIMER_COUNT_R_ACTIVE	(1 << 5)	/* not ready for read */
--#define TIMER_COUNT_W_ACTIVE	(1 << 4)	/* not ready for write */
--#define TIMER_MATCH_W_ACTIVE	(1 << 0)	/* not ready for write */
-+
-+#define TIMER_MATCH_REG(x)	(4 * (x))
-+#define TIMER_COUNT_REG		0x0010	 /* clocksource counter */
-+
-+#define TIMER_STATUS_REG	0x0014
-+#define TIMER_STATUS_MATCH(x)	BIT((x))
-+#define TIMER_STATUS_CLEARALL	(TIMER_STATUS_MATCH(0) | \
-+				 TIMER_STATUS_MATCH(1) | \
-+				 TIMER_STATUS_MATCH(2) | \
-+				 TIMER_STATUS_MATCH(3))
-+
-+#define TIMER_INT_EN_REG	0x001c	 /* interrupt enable */
-+#define TIMER_INT_EN_MATCH(x)	BIT((x))
-+
-+#define TIMER_CTRL_REG		0x0020
-+#define TIMER_CTRL_ENABLE	BIT(0)	 /* enable clocksource counter */
-+#define TIMER_CTRL_RD_REQ	BIT(1)	 /* request counter read */
-+
-+#define TIMER_ACC_STS_REG	0x0024	 /* access status */
-+#define TIMER_ACC_WR_MATCH(x)	BIT((x)) /* writing Match (x) value */
-+#define TIMER_ACC_WR_COUNTER	BIT(4)	 /* writing clocksource counter */
-+#define TIMER_ACC_RD_COUNTER	BIT(5)	 /* reading clocksource counter */
+ #define VT8500_WDT_DEFAULT_TIMEOUT	30	/* seconds */
  
- #define msecs_to_loops(t) (loops_per_jiffy / 1000 * HZ * t)
- 
-@@ -43,11 +56,12 @@ static void __iomem *regbase;
- static u64 vt8500_timer_read(struct clocksource *cs)
- {
- 	int loops = msecs_to_loops(10);
--	writel(3, regbase + TIMER_CTRL_VAL);
--	while ((readl((regbase + TIMER_AS_VAL)) & TIMER_COUNT_R_ACTIVE)
--						&& --loops)
++/* How far ahead of the current count to arm the match for a restart */
++#define VT8500_WDT_RESTART_TICKS	(VT8500_TIMER_HZ / 1000)	/* 1 ms */
 +
-+	writel(TIMER_CTRL_ENABLE | TIMER_CTRL_RD_REQ, regbase + TIMER_CTRL_REG);
-+	while (readl(regbase + TIMER_ACC_STS_REG) & TIMER_ACC_RD_COUNTER &&
-+	       --loops)
- 		cpu_relax();
--	return readl(regbase + TIMER_COUNT_VAL);
-+	return readl(regbase + TIMER_COUNT_REG);
- }
- 
- static struct clocksource clocksource = {
-@@ -63,23 +77,25 @@ static int vt8500_timer_set_next_event(unsigned long cycles,
- {
- 	int loops = msecs_to_loops(10);
- 	u64 alarm = clocksource.read(&clocksource) + cycles;
--	while ((readl(regbase + TIMER_AS_VAL) & TIMER_MATCH_W_ACTIVE)
--						&& --loops)
-+
-+	while (readl(regbase + TIMER_ACC_STS_REG) & TIMER_ACC_WR_MATCH(0) &&
-+	       --loops)
- 		cpu_relax();
--	writel((unsigned long)alarm, regbase + TIMER_MATCH_VAL);
-+	writel((unsigned long)alarm, regbase + TIMER_MATCH_REG(0));
- 
- 	if ((signed)(alarm - clocksource.read(&clocksource)) <= MIN_OSCR_DELTA)
- 		return -ETIME;
- 
--	writel(1, regbase + TIMER_IER_VAL);
-+	writel(TIMER_INT_EN_MATCH(0), regbase + TIMER_INT_EN_REG);
- 
+ static bool nowayout = WATCHDOG_NOWAYOUT;
+ module_param(nowayout, bool, 0);
+ MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
+@@ -75,9 +78,18 @@ static int vt8500_watchdog_stop(struct watchdog_device *wdd)
  	return 0;
  }
  
- static int vt8500_shutdown(struct clock_event_device *evt)
- {
--	writel(readl(regbase + TIMER_CTRL_VAL) | 1, regbase + TIMER_CTRL_VAL);
--	writel(0, regbase + TIMER_IER_VAL);
-+	writel(readl(regbase + TIMER_CTRL_REG) | TIMER_CTRL_ENABLE,
-+	       regbase + TIMER_CTRL_REG);
-+	writel(0, regbase + TIMER_INT_EN_REG);
- 	return 0;
- }
++static int vt8500_watchdog_restart(struct watchdog_device *wdd,
++				   unsigned long action, void *data)
++{
++	struct vt8500_wdt_info *info = watchdog_get_drvdata(wdd);
++
++	return vt8500_watchdog_arm(info, VT8500_WDT_RESTART_TICKS);
++}
++
+ static const struct watchdog_ops vt8500_watchdog_ops = {
+ 	.start			= vt8500_watchdog_start,
+ 	.stop			= vt8500_watchdog_stop,
++	.restart		= vt8500_watchdog_restart,
+ };
  
-@@ -95,7 +111,7 @@ static struct clock_event_device clockevent = {
- static irqreturn_t vt8500_timer_interrupt(int irq, void *dev_id)
- {
- 	struct clock_event_device *evt = dev_id;
--	writel(0xf, regbase + TIMER_STATUS_VAL);
-+	writel(TIMER_STATUS_CLEARALL, regbase + TIMER_STATUS_REG);
- 	evt->event_handler(evt);
+ static const struct watchdog_info vt8500_watchdog_info = {
+@@ -107,6 +119,7 @@ static int vt8500_wdt_probe(struct auxiliary_device *auxdev,
+ 	info = container_of(auxdev, struct vt8500_wdt_info, auxdev);
+ 	watchdog_set_drvdata(wdd, info);
+ 	watchdog_set_nowayout(wdd, nowayout);
++	watchdog_set_restart_priority(wdd, 128);
  
- 	return IRQ_HANDLED;
-@@ -119,9 +135,9 @@ static int __init vt8500_timer_init(struct device_node *np)
- 		return -EINVAL;
- 	}
- 
--	writel(1, regbase + TIMER_CTRL_VAL);
--	writel(0xf, regbase + TIMER_STATUS_VAL);
--	writel(~0, regbase + TIMER_MATCH_VAL);
-+	writel(TIMER_CTRL_ENABLE, regbase + TIMER_CTRL_REG);
-+	writel(TIMER_STATUS_CLEARALL, regbase + TIMER_STATUS_REG);
-+	writel(~0, regbase + TIMER_MATCH_REG(0));
- 
- 	ret = clocksource_register_hz(&clocksource, VT8500_TIMER_HZ);
- 	if (ret) {
+ 	/* Let the core feed a watchdog left running, e.g. across kexec */
+ 	if (readl(info->regbase + VT8500_WDT_EN_REG) & VT8500_WDT_EN)
 
 -- 
 2.56.0
