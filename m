@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9496F606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:32:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58EA6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=p8sPr1RI;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MzC3q/kC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Sw9oBElN;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WK1SZ2ty
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,36 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=OH+0WymoBgcUXGycaB4LMqft3m6k34R9ciQ53jyzM9o=; b=p8sPr1RI8ENQPGNCB8ShUttDS1
-	6/vMy1KX8diWqL/ca1QeyIDA42uVMTOaMGbBc8yRWC1awUl38Fl99tbOeCa17DHRiFn+4NDf4cK7x
-	ny+4jnyXYTJzOQ1CM0gtb/8n0Kv8ZR+d3vj+uVNTBJ0fBWg+JGN1u3avhb8chuM6+naRa7ePNWdVT
-	6/+FkNl18yP4a2UX2AvlJbMVLbe5LzcXvW71Bk8rlfk6dKhYTGuuRLjXLD1HWelpbCfDqS0JhDrvi
-	iSxcOinrmxyviECkklk3TIv1m0B7UcwOl6CHWE44myVj/7BTdVhKDPQbxGn6wZBjqEndGkd2PqeA4
-	d3My5pUA==;
+	bh=48VJYDAuIt0iLg0S1Cc71k3C6Jpv8GbdLJgMXR02WJE=; b=Sw9oBElNKr4WUIWTb3HA7QkAwp
+	9Zs3d6lLyV8qx60ic6dg2vjYsmnikNQIEItd3dYizfauB9W1GYQLs/l5FTSDuR9pVmEnE/1gKIeTn
+	O1IRrc1H52zqpxp7Oj+VvND0gEwZLqslCUAskWcQZPRcVLeXdGnbhIFjPj1MJgHh8czkz7ZNLK3lz
+	mQb3L31hEXqirmks6VDnuQ7zEkKPJ17571hXp8pAV4lm4vv/DP1fkZ+FZ3opGNK8evcas2ha98Y7u
+	pjOAh/Yz/G+PoREXQzUIq7GqsJAZO+1cM0okFTqTagIX6ZP5Rgti29kz2E5VlStaPeuWRw8LZMZhU
+	B8qhCZPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdLN-0000000BAWO-18oS;
-	Thu, 12 Nov 2026 22:32:33 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRdLV-0000000BAb0-23kv;
+	Thu, 12 Nov 2026 22:32:41 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdL3-0000000BAK8-0fW1;
-	Thu, 12 Nov 2026 22:32:13 +0000
+	id 1xRdL4-0000000BAKt-3Vxa;
+	Thu, 12 Nov 2026 22:32:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id E499540792;
-	Thu, 12 Nov 2026 22:32:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C3F1F000CD;
-	Thu, 12 Nov 2026 22:32:11 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8BA6944E62;
+	Thu, 12 Nov 2026 22:32:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68B8B1F000C9;
+	Thu, 12 Nov 2026 22:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794522732;
-	bh=OH+0WymoBgcUXGycaB4LMqft3m6k34R9ciQ53jyzM9o=;
+	s=k20260515; t=1794522734;
+	bh=48VJYDAuIt0iLg0S1Cc71k3C6Jpv8GbdLJgMXR02WJE=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=MzC3q/kClS6U+kXLRaoowhQjOzZ63Z0TSjrBiLo+2gXsCGgsZg/DvhPVGPzQN0ab3
-	 Wm8lXXAOcEv3RbykuHY8mMukhtoSIq2GT1ZcL7yOWJ1WvxiWo/VuhBIiCwjb6cgOTc
-	 RlNbBw4eAT2IwrqW5kkDKAbkwbCOuym1fZqAmnnJ7rFlxDMKytJnZgk0y8wY1wwv4t
-	 r3ougT1O1IWbiWG6vYwfqF/fEj18XVAETxLyvyznpH8x9OXfritCFEvi9HY7qoTeuw
-	 EKqTf1fXoBgEb0PPlG3UC6QC6KCysBDHpr8PEhr4u5ueCUpgcxoUk9PEh/oejeQSNt
-	 313pXofxZFk9g==
-Subject: Re: [PATCH net v9 05/10] can: dev: add close_candev_cancel_restart_sync()
+	b=WK1SZ2tyrMYhJF/bZa4tEgn7hNxQSuUHNriOZekpe0FEf805H9H30EWWPUzGdG7ZS
+	 f7dFNPDMTUlTK6k6D75/z7hCezGI6bgRaNl6oSBghVHoMYD7rdlST0RoxoBQxJG+e0
+	 RSnR8GmZyArpwpmvQ/eKbVkZLDmX3l1txiaQ+H2uNYyFZcRXI21LbkxrxWrRKZniHF
+	 07g5RCfvQp+KYJlx7oF45NucDumEpUZCq2rWM3gJk5i8HbbQpnT2wmVSK7Qznn0mdB
+	 /GIlK/W6mEITS/+PzTCZjOosbMjnuKZcnyDNwEu/fvNL38lZxAYFOodbg7rdU4emV/
+	 SR2CImU1I8o2g==
+Subject: Re: [PATCH net v9 06/10] can: rockchip_canfd: cancel bus-off restart
+ before closing the device
 From: netdev-bot+sashiko@kernel.org
 To: 1579567540@qq.com
 Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol@kernel.org,
@@ -54,10 +55,10 @@ Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol@kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
  stable@vger.kernel.org
-Date: Thu, 12 Nov 2026 22:32:11 +0000
-Message-ID: <179452273127.488853.12768732215259424178@kernel.org>
-In-Reply-To: <20261111-rockchip-canfd-restart-close-v9-5-6643f3825ba3@qq.com>
-References: <20261111-rockchip-canfd-restart-close-v9-5-6643f3825ba3@qq.com>
+Date: Thu, 12 Nov 2026 22:32:12 +0000
+Message-ID: <179452273299.488853.8253978964891645481@kernel.org>
+In-Reply-To: <20261111-rockchip-canfd-restart-close-v9-6-6643f3825ba3@qq.com>
+References: <20261111-rockchip-canfd-restart-close-v9-6-6643f3825ba3@qq.com>
 X-sashiko-severity: Low
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -86,72 +87,84 @@ you want to address the nit picks below when you respin.
 
 Low priority / nit picks for your consideration:
 
-- [Low] The patch adds close_candev_cancel_restart_sync() as a static
-  inline in include/linux/can/dev.h and moves close_candev() onto it.
+- [Low] The patch has a missing stable dependency annotation.
 
 --
 
-can: dev: add close_candev_cancel_restart_sync()
+can: rockchip_canfd: cancel bus-off restart before closing the device
 
-This commit adds a static inline helper, close_candev_cancel_restart_sync(),
-to include/linux/can/dev.h. The helper synchronously cancels the CAN core
-bus-off restart work, and close_candev() now calls it. Drivers can then
-wait for recovery to finish before they tear down IRQ and hardware
-resources, and echo skb cleanup stays in close_candev().
+The patch adds a call to close_candev_cancel_restart_sync() at the start
+of rkcanfd_stop(). Today restart_work is only cancelled in close_candev(),
+which runs after the IRQ has been freed and the controller stopped. The
+earlier cancel is meant to stop a concurrent bus-off restart from turning
+the controller back on after IRQ teardown.
 
-> diff --git a/include/linux/can/dev.h b/include/linux/can/dev.h
-> index 346faddee02eb..2a286f906394b 100644
-> --- a/include/linux/can/dev.h
-> +++ b/include/linux/can/dev.h
-
-[ ... ]
-
-> @@ -115,6 +116,22 @@ struct can_priv *safe_candev_priv(struct net_device *dev);
+> diff --git a/drivers/net/can/rockchip/rockchip_canfd-core.c b/drivers/net/can/rockchip/rockchip_canfd-core.c
+> index 1cae86973da5a..59a79fe057e66 100644
+> --- a/drivers/net/can/rockchip/rockchip_canfd-core.c
+> +++ b/drivers/net/can/rockchip/rockchip_canfd-core.c
+> @@ -758,6 +758,7 @@ static int rkcanfd_stop(struct net_device *ndev)
+>  {
+>  	struct rkcanfd_priv *priv = netdev_priv(ndev);
 >  
->  int open_candev(struct net_device *dev);
->  void close_candev(struct net_device *dev);
-> +
-> +/**
-> + * close_candev_cancel_restart_sync() - cancel bus-off restart synchronously
-> + * @dev: CAN network device
-> + *
-> + * Call before tearing down resources used by the restart callback.
-> + * The driver must quiesce restart work producers before calling
-> + * close_candev() for the final cleanup.
-> + */
-> +static inline void close_candev_cancel_restart_sync(struct net_device *dev)
-> +{
-> +	struct can_priv *priv = netdev_priv(dev);
-> +
-> +	cancel_delayed_work_sync(&priv->restart_work);
-> +}
+> +	close_candev_cancel_restart_sync(ndev);
+>  	netif_stop_queue(ndev);
+>  
+>  	rkcanfd_chip_interrupts_disable(priv);
 
 [Severity: Low]
-This isn't a runtime bug, but should this patch carry a stable tag? The
-alternative would be for the following Rockchip fix to list it as a
-prerequisite.
+This patch has Fixes: ff60bfbaf67f and Cc: stable@vger.kernel.org. Will it
+build when backported on its own?
 
-The next patch in the series, "can: rockchip_canfd: cancel bus-off restart
-before closing the device", has Fixes: ff60bfbaf67f and
-Cc: stable@vger.kernel.org. It calls the new helper at the start of
-rkcanfd_stop() in drivers/net/can/rockchip/rockchip_canfd-core.c:
+The close_candev_cancel_restart_sync() helper is only added to
+include/linux/can/dev.h by the earlier commit "can: dev: add
+close_candev_cancel_restart_sync()". That commit has no Fixes: tag and no
+Cc: stable tag:
 
-    close_candev_cancel_restart_sync(ndev);
+static inline void close_candev_cancel_restart_sync(struct net_device *dev)
+{
+	struct can_priv *priv = netdev_priv(dev);
 
-This commit has no Cc: stable tag, and the Rockchip fix does not name it
-as a dependency.
+	cancel_delayed_work_sync(&priv->restart_work);
+}
 
-If stable picks up only the tagged Rockchip fix, would the backport fail
-to build? close_candev_cancel_restart_sync() would be undefined there.
+The early cancel also appears to depend on the earlier commit "can: dev:
+check netif_running() before bus-off recovery". That commit adds these
+checks in drivers/net/can/dev/dev.c:
 
-Documentation/process/stable-kernel-rules.rst gives this form for
-prerequisites:
+can_bus_off():
+	restart = priv->restart_ms && netif_running(dev);
 
-    Cc: <stable@vger.kernel.org> # x.y.z: <sha>: <subject>
+can_restart():
+	if (!netif_running(dev))
+		return -ENETDOWN;
 
-Other patches in the series already state their backport dependencies.
-The earlier core patch "can: dev: check netif_running() before bus-off
-recovery" is also tagged for stable.
+Without those checks, a bus-off IRQ can still arrive after the new early
+cancel but before free_irq(). In that case can_bus_off() would requeue
+restart_work.
+
+can_restart() would then call do_set_mode(CAN_MODE_START) unconditionally:
+
+can_restart_work()
+  can_restart()
+    priv->do_set_mode(dev, CAN_MODE_START)
+      rkcanfd_set_mode()
+        rkcanfd_chip_start()
+
+That turns the controller and its interrupts back on and schedules
+timestamp work after free_irq() and rkcanfd_chip_stop_sync(). This is the
+same failure the commit message describes. The cancel_delayed_work_sync()
+in close_candev() runs after rkcanfd_chip_stop_sync(), so it comes too late
+to prevent it.
+
+In mainline both prerequisites come earlier in the series, so the in-tree
+fix is complete. Other patches in this series say what their backports need
+(for example, the "Backports must include ..." notes in "can:
+rockchip_canfd: retry the outstanding TX buffer" and "can: rockchip_canfd:
+serialize TX state and command writes").
+
+Could this patch carry a similar note, or Stable-dep-of annotations, for
+both of these dependencies?
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-rockchip-canfd-restart-close-v9-0-6643f3825ba3%40qq.com
