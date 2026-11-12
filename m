@@ -2,68 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66137606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 17:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C806E606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 17:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0fpnPLn7;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=u/Jt9bDL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=O2xOfXLF;
+	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.a=rsa-sha256 header.s=smtpauto.stravinsky header.b=m973B4rI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BlY58mh9Hw/tgSMH5z15/+c8H0ljlIKjWB31zCng0sM=; b=0fpnPLn78PaXQTswEsGpm2K3ny
-	HlM7SvCZ46m5SKz46qjm/Pj18fexoofhXOZkwBTXGZDeTy/UW3k4If9TSe3bIAKSh7Q0aDn46WA/l
-	EQHdaZ+et8S9fxfqudKB6m7M6juzd4Sinsnmm3PTli840CS/JJ80EqqhFlDPmnou3KQP+BMiqZGPJ
-	VVkDWpeosIPvBbJCiFzO+MW2U0dJYMWLJs6N9a4zCyfinWYegI6z814+X3A5tji2iju+Zf07cM1HO
-	uwoJJxd1lj9SSRfWAVaGpJvrU1IMZadEBcIPBheVHkgecY8WB7i+eEleKsw8y3I/q3G8FyW7m0cz4
-	sd27ouiQ==;
+	bh=5yEBX8ZKycqZOP6+Y73EyUw52cEw6hCVyTtC7UHxHx4=; b=O2xOfXLFSrGOWOw/5Z30dOnxSE
+	fWqk9ekouzSSlyDTBy6RPz2gG5ZBfFr4zZrfXjcGlSpuKhyyXgFlgmTWfTidEYELxUeVBaKDKmUH4
+	bmIlcoyxXSkvFygQLPtQeGc0/1dgENZGH2TS6X0kKHwc0VLos8m3bLDctWZtY/WwZM7Ge4uYA9AOg
+	pSwOIN3DOtD99szWrEfkR5NL4JN0j0bX6uTc5g+LZPd4A/Hl2j4jUl59lja86/gx/GilbtH11ig8K
+	kRIF7KHjyakkg5v7g67Bxdl70Nu/OfTTGV+Bn0Drlq/mPbcg3CBKvNnw8JGgzrj/9j0SmlJmPAhqE
+	C+Pa91EA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRYRx-0000000Ak62-3fHe;
-	Thu, 12 Nov 2026 17:19:03 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRYRs-0000000Ak50-3XH0
+	id 1xRYUJ-0000000AkEV-3uwU;
+	Thu, 12 Nov 2026 17:21:28 +0000
+Received: from stravinsky.debian.org ([2001:41b8:202:deb::311:108])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRYUG-0000000AkDt-1qii
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 17:19:00 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 305411516;
-	Thu, 12 Nov 2026 09:18:51 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EE7693F632;
-	Thu, 12 Nov 2026 09:18:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794503934; bh=PMnroKYZu+m0u0h/6B9jMwGrR1fmbzde9UqBEKf/0sA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u/Jt9bDLrv1f6QNL1AEOhElHFgK1s4fLaLHscOU9PjRzYui4BbMl8SJka2h6VikLY
-	 WJNC5gWbUoj1lZkjG+3kKbiM+UE2gl1/nt0oVpl+q+zL1RUd5J1qTihCq3E8Y5acfI
-	 Rkht22WSzistnaD4kF7Nya7bqy8yDEr6UcYYWwb8=
-Date: Thu, 12 Nov 2026 17:18:49 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
-	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
-	james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 07/28] KVM: arm64: Add KVM_ARM_VCPU_SPE VCPU
- feature
-Message-ID: <avX0-TDCOlQq-4iX@raptor>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <20260903160623.315525-8-alexandru.elisei@arm.com>
- <atIr8IWcXcrjQ0wF@gremlin>
+	Thu, 12 Nov 2026 17:21:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+	s=smtpauto.stravinsky; h=X-Debian-User:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:In-Reply-To:References;
+	bh=5yEBX8ZKycqZOP6+Y73EyUw52cEw6hCVyTtC7UHxHx4=; b=m973B4rIKJKWkH31TLIyylMdEG
+	h2FYJt3osVqGgZAKePwq8VGo8dr0WXFB/Sjr2pO6T5V7CSOEP5HqzAhUBhCesVLoDRG81ldhZt4fx
+	L+b7r7MxSoTKVKDZ6ZbywXqnHTb6qbWiCWtCWgPoebHp3eeoZmZILjqkk/ttpbfqpMdWGicVgKmC6
+	Kg5Op+G+2qxHLHQjoTz7MnNLfUN2nM7cdc2M8gSW/VJIPIxqJixZ0daIuaec8h99Uj5mz0HZJal9b
+	s2Je+/s4YfqiYcA4ht8yohRl9a8KzJuCR/Iw3bfWPx/Kj4pkkIP+NMPSfzIDwHLBsyMP4+PEtm031
+	XXUPdQ5Q==;
+Received: from authenticated-user
+	by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+	(Exim 4.96)
+	(envelope-from <leitao@debian.org>)
+	id 1xRYUA-00E84s-0a;
+	Thu, 12 Nov 2026 17:21:18 +0000
+From: Breno Leitao <leitao@debian.org>
+Date: Thu, 12 Nov 2026 09:21:07 -0800
+Subject: [PATCH] arm64: proton-pack: Don't query firmware for Spectre-v4 on
+ SSBS CPUs
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <atIr8IWcXcrjQ0wF@gremlin>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261112-arm64-spectre-v4-off-v1-1-f03c21744559@debian.org>
+X-B4-Tracking: v=1; b=H4sIAIL19WoC/x3MTQqAIBBA4avErBtQk4yuEi0sx5pFP4wRgXT3p
+ OW3eC9DImFK0FcZhG5OfOwFuq5gXv2+EHIoBqNMq7U26GVrLaaT5ksIb4tHjOiUi01wtlHdBCU
+ 9hSI//3YY3/cDw0OtA2YAAAA=
+X-Change-ID: 20261112-arm64-spectre-v4-off-707f3d74308b
+To: Catalin Marinas <catalin.marinas@arm.com>, 
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ atish.patra@linux.dev, thepacketgeek@gmail.com, kernel-team@meta.com, 
+ Breno Leitao <leitao@debian.org>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2261; i=leitao@debian.org;
+ h=from:subject:message-id; bh=LWkbKAGp3Y7xDCW1oETznHpRWADRbc7ruRh+moLNX7M=;
+ b=owEBbQKS/ZANAwAIATWjk5/8eHdtAcsmYgBq9fWLed+k3k0ibZR7//SagnIMHagA9+NN/gfB7
+ 7QsG7yM0N6JAjMEAAEIAB0WIQSshTmm6PRnAspKQ5s1o5Of/Hh3bQUCavX1iwAKCRA1o5Of/Hh3
+ bUl3D/9s4UxixQz9H1237FraklLHh/z3vqlJrSBY/2LDDrBkVI3UJu9lMIQRl/+/1lZpj0/6Nq/
+ aRYv6fgyL4/j44IJiNHyMQLADFuZBlS2oJOdHvODgSLJhfcuCxpQxovcfZWaa5iFmjeUdL6FBS7
+ mwNDby/KY9vrPsvoN5oraVm1wC++s0rP74QdnDhWV5d9kJMMs4jBERlZ+ZUp7A1SR/+wzsRHOXB
+ NpfhkeHSnGaedEpau4ntrMmI/rcaaUM8Dlh6kLIh2G9CIC705aUq9p6WiHL3OUM4HElr0L3UUKv
+ 3zHtzvn4+p544aVs76lkvbb/8tLWBtXeCck4o0fKwmR6TH1lYP38zEHfVjK+fqvPdN2e7z8BCcV
+ Woc/SGT8REoodInHG8vSA4ZVeOpnU6Mbnksd2RmhwEWmvB1QT1/csNDsqfV0XLZQSji4xu0cwmB
+ G1Oo1Ew80kEqAQGeysOyv8w972Z7DsHHQFDKfxfkaGmqI3ihpqiZARSLUnl9SMhYrN2emoqmE1T
+ xWnxE/NfyRUJHPyixAOLe94XR0MLOhGjpkACaKQRAZWF1CuZz0pBwE/7IY0k58Ecy075lqC4rJO
+ ru3QCj1umUHfl2kJPtHm7eNDgoFSbdgbuJZ1vqhunWT6j2U+MPx5NVKpUtx/JnEm5Nr0BSVSvqk
+ zphorDxVfiFCXrQ==
+X-Developer-Key: i=leitao@debian.org; a=openpgp;
+ fpr=AC8539A6E8F46702CA4A439B35A3939FFC78776D
+X-Debian-User: leitao
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_091859_611150_AF8F2EA0 
-X-CRM114-Status: GOOD (  21.64  )
+X-CRM114-CacheID: sfid-20261112_092124_562541_FAAD47A9 
+X-CRM114-Status: GOOD (  11.58  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -75,70 +95,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo,
+On a CPU that implements SSBS, booting with mitigations=off or
+ssbd=force-off makes spectre_v4_enable_hw_mitigation() set DSSBS and
+PSTATE.SSBS and return SPECTRE_VULNERABLE. spectre_v4_enable_mitigation()
+then treats the CPU like one without a hardware mitigation and queries
+firmware for SMCCC_ARCH_WORKAROUND_2.
 
-On Fri, Oct 16, 2026 at 03:23:57PM +0100, Lorenzo Stoakes (ARM) wrote:
-> On Thu, Sep 03, 2026 at 05:06:02PM +0100, Alexandru Elisei wrote:
-> > Add a new VCPU feature that enables SPE virtualization when set by
-> > userspace. KVM_VCPU_MAX_FEATURE will be bumped and the feature will
-> > become selectable by userspace once SPE support in KVM is implemented.
-> 
-> I guess it's also limited currently at this point in the series by
-> KVM_CAP_ARM_SPE being unselectable as it stands I think?
+Firmware answers that query about its own mitigation. For a CPU with
+SSBS it can report that none is needed, as
+SMCCC_ARCH_WORKAROUND_RET_UNAFFECTED or SMCCC_RET_NOT_REQUIRED.
+spectre_v4_get_cpu_fw_mitigation_state() turns both into
+SPECTRE_UNAFFECTED, so spectre_v4_state keeps its initial
+SPECTRE_UNAFFECTED value. The kernel logs "detected: Spectre-v4", then
+reports "Not affected" in sysfs and PR_SPEC_NOT_AFFECTED from prctl(),
+although every CPU runs with SSBS set. KVM follows spectre_v4_state and
+tells guests that ARCH_WORKAROUND_2 is not required.
 
-Yes, indirectly - KVM_CAP_ARM_SPE is advertised only when
-kvm_supports_spe() is true, and KVM_ARM_VCPU_SPE also depends on
-kvm_supports_spe(). CONFIG_KVM_ARM_SPE=y is required, but not sufficient,
-for kvm_supports_spe() to be true. So all of this depends on the Kconfig
-option, maybe I should document that in the capability doc.
+Before commit c28762070ca6 ("arm64: Rewrite Spectre-v4 mitigation code"),
+a CPU with SSBS never queried firmware, and the same configuration
+reported "Vulnerable", which seems the correct approach, given
+mitigation=off ?! Same for prctl().
 
-> 
-> Maybe worth mentioning here that you're adding KVM_ARM_VPCU_SPE to the uapi,
-> updating docs, etc.?
+Only fall back to firmware on CPUs without SSBS. When
+spectre_v4_enable_hw_mitigation() returns SPECTRE_VULNERABLE for a CPU
+with SSBS, the mitigation was disabled on the command line, whatever
+firmware says.
 
-I can mention it, but the short diff should speak for itself?
+Signed-off-by: Breno Leitao <leitao@debian.org>
+---
+ arch/arm64/kernel/proton-pack.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> 
-> >
-> > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
-> 
-> I wonder if there are any dependencies that need expressing in
-> arch/arm64/kvm/config.c?
-> 
-> In any case all LGTM, with mega-nit below addressed :):
-> 
-> Reviewed-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
-> 
-> > ---
-> >  Documentation/virt/kvm/api.rst    | 2 ++
-> >  arch/arm64/include/asm/kvm_spe.h  | 5 +++++
-> >  arch/arm64/include/uapi/asm/kvm.h | 1 +
-> >  arch/arm64/kvm/arm.c              | 7 +++++++
-> >  4 files changed, 15 insertions(+)
-> >
-> > diff --git a/Documentation/virt/kvm/api.rst b/Documentation/virt/kvm/api.rst
-> > index 1ed5c389c7a4..654736fac78c 100644
-> > --- a/Documentation/virt/kvm/api.rst
-> > +++ b/Documentation/virt/kvm/api.rst
-> > @@ -3591,6 +3591,8 @@ Possible features:
-> >  	  Depends on KVM_CAP_ARM_EL2_E2H0.
-> >  	  KVM_ARM_VCPU_HAS_EL2 must also be set.
-> >
-> > +        - KVM_ARM_VCPU_SPE: Enable SPE for the CPU. Depends on KVM_CAP_ARM_SPE.
-> 
-> Super nitty, sorry, but it seems other parts of the docs use tabs, whereas this
-> uses spaces?
+diff --git a/arch/arm64/kernel/proton-pack.c b/arch/arm64/kernel/proton-pack.c
+index 3bcf86154d95cd..80c5f6a198241c 100644
+--- a/arch/arm64/kernel/proton-pack.c
++++ b/arch/arm64/kernel/proton-pack.c
+@@ -638,7 +638,7 @@ void spectre_v4_enable_mitigation(const struct arm64_cpu_capabilities *__unused)
+ 	WARN_ON(preemptible());
+ 
+ 	state = spectre_v4_enable_hw_mitigation();
+-	if (state == SPECTRE_VULNERABLE)
++	if (state == SPECTRE_VULNERABLE && !this_cpu_has_cap(ARM64_SSBS))
+ 		state = spectre_v4_enable_fw_mitigation();
+ 
+ 	update_mitigation_state(&spectre_v4_state, state);
 
-Fixed.
+---
+base-commit: aaa2f954c21b205a0bcd0961e5b2be4e82e58455
+change-id: 20261112-arm64-spectre-v4-off-707f3d74308b
 
-Thanks,
-Alex
+Best regards,
+--  
+Breno Leitao <leitao@debian.org>
+
 
