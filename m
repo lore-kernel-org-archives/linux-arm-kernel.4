@@ -2,128 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6229606A8AA
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5FA606A8B6
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vS0iMC0b;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=BPQ4oeOj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N8qjXLs1;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VeMnwYi3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=w2zn7zBKFnW3u0uo/c51wplsYOKWCwojPLE2KnPlAx8=; b=vS0iMC0bNB7nDH
-	3v8Cwq3PTqGK0lfpTeZ8UrJtLs0unIDuZN0TmC7cmDGjzvqlQTQYqw0AJ1movfJPo5nDxacWRIqSW
-	JKm3q+tOEbJWBEGKnKHmXRJFyUsIFeJz9SJEE8shBG4xOImjTPITSYlE1lBtXuaepf4faqStxXErv
-	wX/iNKxd4J8Rd4mXCBp0B1Je1ljwrk/YhlzJLhtnncg/aitGe3CQvMgI04RB++pyIchDAlYXZ8aYw
-	FKLdlyVixGr7gQgjSgsI0spSXWKSV0+frZGafekJiq+E2YuiGcKv3U5/zo72K3mjI81/wlF9SnrHu
-	x0nSWlf2OiMTV0egPr0g==;
+	List-Owner; bh=ig8TOwEwu93oj/vlPs1jDWfcC/HjbbLnhomiuGEjcu0=; b=N8qjXLs1KewVo+
+	vxqDaKIiq+VtR334z4I36ouzALFmwH41Q80xKwBjK9X8pjtR8X5iDJ5JlHd/G2CRgHuYlVVoJgY/5
+	iRiKaLopwkYK+CweBOznMr18/VWS+bwXG8QwCEw390FUd2UM4TdGQzbwxRUbfPSYGRixuVf/kmsax
+	AWC+zJ/TEbtymSgRvURolJrZDSTtFtcUseClWecBSIwoATpZkBrviKfk8pjzt94HMtvhnW31JbWD3
+	kOBFDLBQG6cO0GRzau5l5xB+6kbDmMYgDKYDs3nhHQPj96188K5PGk0mioZka7kDm3wuPgbCDDFfw
+	QZLCvUrREDQ2eBOoe2Mg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQNl-00000009CZd-3L8V;
-	Thu, 12 Nov 2026 08:42:10 +0000
-Received: from mail-westeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c201::1] helo=AM0PR83CU005.outbound.protection.outlook.com)
+	id 1xRQOh-00000009CtB-3kDW;
+	Thu, 12 Nov 2026 08:43:07 +0000
+Received: from mail-lf1-x12b.google.com ([2a00:1450:4864:20::12b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQIu-00000009A8G-2hOr
+	id 1xRQL4-00000009BK5-2Rff
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 08:37:52 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y0oZZHlewf7fhulE/R4I1i5g0nrzh6ksqUSSlCm8096DXTNUS8lSWi99EZckhEKHSzFebR9Y0tN6a829jbIa+xyDxgHf4CvB6rJdrLjusy4Nmdf93XocRlIfE6kyx3L0ma1JPS/U9I4bwMzjFAlw19JYCn/nBHXFNiaRSvplzV7sQSAp2IulopewzaX22jWQGw4FvrlL6HCzyeAaIcu2qjCjlek47ZLNZwS52FTIh96f5HqZnqxtODjwCGqIokZRCGea0FdnVA+kx0FM2SaK+g3YVRVF4KyneLBmPFLMIie4luHPvB+Ozv5zUJ4ocgyXHN7YWhTbXHXVvnCu5DmDvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w2zn7zBKFnW3u0uo/c51wplsYOKWCwojPLE2KnPlAx8=;
- b=thh1Rpwv0uhEI4i6rXJ0tBV18d5++VDt146KL8DW1vmh1HWYoXsn32TQ3NK2FTkNllC14cZ/SmgJ1xLBD5m36rjrgmNdLse+fog4b+OO6sxGo54XQ1Q/PBYZt3SB53NChM5i4DM+O+XBimzxojQe11ppB2COFFDs9EpJPD08NsAMyAwXaBMm1+V1nNmy6nYp9erbLkP83tst6IR+nykXxDfpiC9V6M9/GfZGI/HN7AMoWyVrDqzwddt7s8pKiSCCiE0NCdfSewaimCCHP4TveZAvOaUsue4m0v8i1dV+Ox5FVSGH+NbSuJOzJiV9htXZCiNT+h1VNpaTGV1yOOmSLg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w2zn7zBKFnW3u0uo/c51wplsYOKWCwojPLE2KnPlAx8=;
- b=BPQ4oeOj5ylKa9G4ONOKMCvt5EwpflUI02d3TxRG6hSey79T1rXHAudZAoZ38+bgwzwqm7beZI8eReO0vzrCCvz41WKkQiuS8oy2Jtzkyq6xxz9D4PGdxrSXqTqDGHj9OFjvsiW8GVSL4LJjV/t1sGtIJSXY6X6fSClVVWA8dryIwV+CMcUSGlFbTbMBZs3Pa3bzAKZCzWLxv9nCcRZi6/Eg+QwbKYAHfZi4OPuhq9jvpz7DNW1mA/j89aF7UnOodXjSTf3x6qf5e+voDmZQGD9x3Jkx9xhQPUHvcEKWl4e9gw/JTyVTK0BY1hsUjVr7xwFepvCj1jQn94foWjEsPQ==
-Received: from DUZPR01CA0237.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b5::20) by AS8PR10MB7546.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:5ad::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Thu, 12 Nov
- 2026 08:37:01 +0000
-Received: from DB1PEPF000509E7.eurprd03.prod.outlook.com
- (2603:10a6:10:4b5:cafe::83) by DUZPR01CA0237.outlook.office365.com
- (2603:10a6:10:4b5::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.10 via Frontend Transport; Thu,
- 12 Nov 2026 08:37:00 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DB1PEPF000509E7.mail.protection.outlook.com (10.167.242.57) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 08:37:00 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 12 Nov
- 2026 09:37:41 +0100
-Received: from [10.48.87.14] (10.48.87.14) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Thu, 12 Nov
- 2026 09:36:59 +0100
-Message-ID: <c4f08bb7-cea5-4f79-8a11-4045220f3b89@foss.st.com>
-Date: Thu, 12 Nov 2026 09:36:59 +0100
+	Thu, 12 Nov 2026 08:39:46 +0000
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-5c05727a58aso103472e87.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 00:39:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794472760; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ht6SvofZdNrrqJoeZ7+hVEytae2HEgtsKJcBl+4WxBT938rl2HPuEIMcGD6ajf+KGE
+         pKdFHGtuxmPLENljNo7Hb/St2hBRTLPlo7vs8MKXscEPon3sh03duPhq+Z7prBJkGLwu
+         OAskTj8ibtCb+57xtcf75rwtgeR/P8yLJrBecn9pxTCAg31xHZnNAklogkXBNX8MW8PN
+         niEPCdjfcJG215tk82HK+73FRI60U87A3RopS91S9XBlbJEgaBPrJZaHoeQQj8NxJp0i
+         0VMXhQmORugv1EqBdMf/B84UpdUmp8s9fhvYpWGWQyURDrUtuNcrUlEfNgQ0Es9xdaar
+         6EvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ig8TOwEwu93oj/vlPs1jDWfcC/HjbbLnhomiuGEjcu0=;
+        fh=ecaU3r1cpleVeoJ6Op9soD/ys206YGywfNqgSivzI8g=;
+        b=eZJGxvu83T3ZIIEMU53lUYZ5/52dVKuUNqARVQhywbZhwkzeoqJywMutCZS8f7aNcd
+         6hfpOsvLnDuBaOl0d6gXO/bSQBFD2Eyzpd89+mmdrx6DPxJ+v8ieXXp+PcxtVJBQFADg
+         Wma60mIQVC11VCdBklol8dsOPHns9NA6g2qZsMPhSdxbxeIXZmSBkV3LgJnvGAAJSpQq
+         7QxfvcnEoM0nEQDsA65w7zem+sJwKf6BJ/dU+V9eYpBpuvDko7nIzku7nnOGqtsth3xC
+         abCX6VnYoGfiANUFK1lKA/0M1AKMSlhLpnGsAQBuSg3wkPaC6grfUzk4JWOw1Tqd7yWc
+         3Yjg==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794472760; x=1795077560; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=ig8TOwEwu93oj/vlPs1jDWfcC/HjbbLnhomiuGEjcu0=;
+        b=VeMnwYi38fFtKuUe0bVv9fEoYygDo6yaLkGc9Kbg0g6DnFixnAiV8ZJcZpYOAptC0O
+         4MXNqIUct9GKvzbI4HQHxc9xRyBIf5azaZwgKyQ2sDX6MjaT6aOoBNoXdmM30rCP5fT+
+         Uf3jhIVXhgJu80BOduiEr0v3hZ8BwZA9+jG6L7AVPgva9ucf8YxdrNju9vrRNefmV94w
+         u85TAEageYJgsz7/OJjJwi1M175GLFfjxbnHu0VrINziSZJWz4P4pXfUEfGI5NAvr6VG
+         +aMzVeqJL5yDM2PhLe5BxSItmKv01G+PVle4ZUq3ClQzHULmJktgGVxCm05Mq7WPAiJM
+         IBFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794472760; x=1795077560;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=ig8TOwEwu93oj/vlPs1jDWfcC/HjbbLnhomiuGEjcu0=;
+        b=qcQ1DmXW/6BWzFE0hbNBu1yBVDKcT7R9qu2xbnTZnDmLv5sl7SkdO90qMkqcTHDOJo
+         xeKkBe92UMHo7RlK5fPfd7rO7hgMNTK8kj4H8ks9NdQvcT7F34UJEtXYkYF9InXOmCeL
+         6tyu1hN9NjoGD9AdTIXEwPMSxdf6BLMbtVXjxv4N4AVSBFjuJ0UEnQRVi754rDhOz01+
+         UiTCRLOxAbarxhRjOGkG0ImbpjGTQZaPl2ZtPGGCIPyEUUYzHiKUZpcT2m3LTrvOu5vp
+         cKPyKW3nZkGOWxXDJSwe5scKz/rygZF61zoJTOgepgfGTincF6IbolD4T1tvJUiVUzZd
+         vOIA==
+X-Forwarded-Encrypted: i=1; AL+hErEU9H//LAEwkzNW5lD7fBtk4VgGxphUVoSLVH1pPUlXbSob0PcsWc0hfFEGXLI9CelSVZ5T5E/130YPPVy3deXE@lists.infradead.org
+X-Gm-Message-State: APuU4Z84y1s7oEeDJUAJLHUXOxowjETfafBE9Teym3A4AkzIsYSFFH4P
+	BdTuGGW0hlu9X20xAycksh4H5/4HwFxsDL+tsRaS/YeKFu5WEGg1UZ5nE9r+lhnt5sKagUVcVsF
+	wdYPGUKjKslt0dH2aif+fH8TL9RAz54Q=
+X-Gm-Gg: AYBFou2BLnuhXaRn/HeRzQvsSp5MNucwelpu/v7SRfXjCicDycG9Yhuwh/W+Ish+p3F
+	n898vjUtrLXlqEBPH306Gojoms6kXt7H2yRE2CeaotsiwzC0whwWCp8JXjx50o61aBSgaaStHfe
+	cYG7yWg41rdYm9J51Ao9ZtVYrzG93eG7ikapWY72Eiy5WFr9v5WJbXr4tNHMvLNgXHSHsbKVPU3
+	6CJSBMeH4Kjg0DUAbxw4lI8XGn+aJgIhuuDS/nOgxqVIkqKs679VWyjfiaDr/oxjYW6yugXu/45
+	unFaHeNsHhBCO6Y+rQPB/w5srtOj5s19jCbFArNL6pDeN981CNfKbV+rxrzzWP4e6440pz/BObc
+	sKZAxhbYjhSszmTXEfkVvn3voeXP0NLmQkDQ0YsJoiwL3iU0uBhgEXNyxxnlZWDYFP4pi4DM=
+X-Received: by 2002:ac2:51c8:0:b0:5c1:57ce:d4b4 with SMTP id
+ 2adb3069b0e04-5c15d5f7848mr1986848e87.2.1794472760172; Thu, 12 Nov 2026
+ 00:39:20 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: arm: stm32: Add clock-controller
- sub-node to STM32MP2 SYSCFG
-To: Conor Dooley <conor@kernel.org>
-CC: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Christophe Roullier
-	<christophe.roullier@foss.st.com>, Dario Binacchi
-	<dario.binacchi@amarulasolutions.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20261110-ups_mp25_clk_syscfg-v1-0-667829cd290a@foss.st.com>
- <20261110-ups_mp25_clk_syscfg-v1-2-667829cd290a@foss.st.com>
- <20261110-confidant-bundle-08385b99bd78@spud>
-Content-Language: en-US
-From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
-In-Reply-To: <20261110-confidant-bundle-08385b99bd78@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509E7:EE_|AS8PR10MB7546:EE_
-X-MS-Office365-Filtering-Correlation-Id: 157f1756-290f-487a-1953-08df40981ec5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|7416014|376014|82310400026|36860700016|1800799024|4143699003|11063799006|56012099006|261026140227099003|261009223027099003|261022105027099003|261026121527099003|261021121427099003|261028144727099003|261102123227099003|261022075727099003|22082099003|18002099003|10067099003|3023799007;
-X-Microsoft-Antispam-Message-Info: 8afAIice5/xMROc+8noieLgUbu7ah63yTUM51Oa+ysbbqpm7YmiCy8FYKBDvmC5Pasx/JA87gLckV3TapSTTium5DdnsiC/M4TndEc+J+2yu3PXwhS+I5XQlJ1+IQRYHrxtLPynVScQHYNX5tiZ2JJJ4/6ywDUE6f1RLkX/wAjDULqaPeSrcm97pX7qHw2Ai6QrhWWI/6obqQAZ1tyLI5y19NBe0QfPcFKJpDI+QkUv2tMzZS/bRzjV0sZxBhcQEai/E/reGCZDy0XHGYN6M9o8nl/w4koUgqHRCVmvBj1eCN1OoK2uiTj+QOM6mELw1HVIsZBrNG8lM54Ms20eGqKH8KTjni+Av4CcjeN9Yhn1MEQjGu9CzeZFu/yXyf3/hlry4UlUk7xizMIzSs0d9yimTUsuLYAZm8UIcuelEvf045vqQo/MDtBVNIdgmXm/IUdUiMBtPK6HslZyl+Ywmd37TpWGkvO24qEW2KtvcIDKMhlB7ChC6wJHJwpa9/M509Frc/nWGS/NKi0QatqbsW2tqdE9rZ3dN2M53EQPZ1ZIcTpwQnwrrzTCF+8jIxM5wu5MtxqATR/FuprqtBdzI5CAlJQ759BBWQXkhQ9RIxcqGPaUuJ11h+OfvDsNpz59/IwWqGBafkH3c9ksAsWD+zKgXrr0Y0TGZpAkYtVk4Pvw=
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(23010399003)(7416014)(376014)(82310400026)(36860700016)(1800799024)(4143699003)(11063799006)(56012099006)(261026140227099003)(261009223027099003)(261022105027099003)(261026121527099003)(261021121427099003)(261028144727099003)(261102123227099003)(261022075727099003)(22082099003)(18002099003)(10067099003)(3023799007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: p5WFCKE7dc8DUtGymDXbQhDbAyypED6vtFxzoEnU9x8XW5dSQ2/OHGX41LjdLJN32PWxqerfAdMEDoNMxCum5qrGQ1m8cD5Xir1QaqyN69q/+0Yq+GKx68bZGPlSdSiVzBSt5Jp36PmGdijB9S6ikNA8GPhc6LqCmh3/Erf9ratzQgR+q5EqRwkXzThK0Dg9SFPK/1WGlWm/LjxnbYXslixBWzK4PB3Vcx+0tTKDJOJ58cOjCe8n89MVV058vFqVNNHqOZh5IpgBHTG7TR/SE6nVE4otv6NJLCIvkDOlj8vFSViv2Qq7RaxzN6/2OTNoOS4VCooW/sar723Mlj2b4RSz/FbEmsCwmMyUJxz8c/Fy0vi8cr83ikBNnPcnOpeEIUjVvviGLwMAELsNJV1EuTI/VCV7praT5mYHysv88HVfMiCzg/Ar2NZwZ+BALekS
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 08:37:00.4256
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 157f1756-290f-487a-1953-08df40981ec5
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509E7.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR10MB7546
+References: <20261112-dwc3-s2idle-optin-v1-0-842e3f8413d0@gmail.com>
+In-Reply-To: <20261112-dwc3-s2idle-optin-v1-0-842e3f8413d0@gmail.com>
+From: Arun Iyengar <aiyengar1990@gmail.com>
+Date: Thu, 12 Nov 2026 00:39:08 -0800
+X-Gm-Features: AclHuK-LsUOtbUqqsSLc1VRlkuatKOgx5pOiztBW2KXQJW8AeA8OYEhVHHOWdbc
+Message-ID: <CAEy9hNXag+0ssyuc9U9vSLqUS3jv=xKAaPkegR3W3Lyqma=1TA@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/2] usb: dwc3: Let the Rockchip glue keep the host
+ bus across suspend-to-idle
+To: aiyengar1990@gmail.com
+Cc: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Heiko Stuebner <heiko@sntech.de>, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Joonhoe Kim <26rote@gmail.com>, 
+	Vladyslav Tymoshchuk <tvlad744@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_003713_967296_14F3B0BE 
-X-CRM114-Status: GOOD (  21.01  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_003924_668211_D8B63522 
+X-CRM114-Status: GOOD (  37.21  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -134,112 +122,145 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_GMAIL_RCVD,
+	FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Conor,
+Please drop this series.
 
-Thanks for review
+In host mode, patch 1 duplicates Joonhoe Kim's earlier "usb: dwc3:
+tell xHCI that it lost its state when the core is powered off" [1],
+which I only found after sending. I have tested it on an Orange Pi 5
+(RK3588S), with the core teardown forced so that it takes the same
+path as that patch alone: 10 of 10 suspend-to-idle cycles with the
+core powered off recover without "xHC error in resume". Please take
+it instead.
 
-On 11/10/26 19:54, Conor Dooley wrote:
-> On Tue, Nov 10, 2026 at 11:42:17AM +0100, Gabriel Fernandez wrote:
->> The LTDC pixel clock multiplexer of the STM32MP23x and STM32MP25x
->> SYSCFG is described by a clock-controller sub-node of the SYSCFG node.
->>
->> Add this sub-node to the SYSCFG binding. It is required on STM32MP23x
->> and STM32MP25x and not allowed on the other SoCs.
->>
->> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> Why does this need a child node at all, can't the clock controller
-> properties go straight into this syscon node?
+Patch 2 is not safe as a default for every dwc3 host (Sashiko's review
+of it holds). I have reworked it as an opt-in that a glue driver sets,
+used by the Rockchip glue for RK3588 only, and posted it as an RFC on
+top of Sebastian Reichel's Rockchip glue series and Joonhoe's patch:
+https://lore.kernel.org/r/20261112-dwc3-s2idle-optin-v1-0-842e3f8413d0@gmai=
+l.com
+
+[1] https://lore.kernel.org/r/20260929130252.869-1-26rote@gmail.com
+
+Arun
+
+On Thu, Nov 12, 2026 at 12:35=E2=80=AFAM Arun Iyengar via B4 Relay
+<devnull+aiyengar1990.gmail.com@kernel.org> wrote:
 >
-> Cheers,
-> Conor.
-
-I sent a v2 [1] shortly before your reply, which explains this in the
-commit message, but the question still applies to it, so let me answer
-here.
-
- From a hardware point of view, the mux inputs could indeed be described
-in the SYSCFG node. The problem is that this node is a "syscon": when
-the syscon core creates the regmap of the node (syscon_node_to_regmap()
-or syscon_regmap_lookup_by_*()), it takes the first clock of the node as
-the clock of the registers, keeps it prepared and enables/disables it
-around each register access.
-
-The SYSCFG has no clock gate in the RCC, so this first clock would be
-the LTDC kernel clock, i.e. the first input of the mux. It would then be
-enabled on every SYSCFG access by all the users of this syscon (PCIe,
-ComboPHY, Ethernet, OMM...).
-
-Registering our own regmap with of_syscon_register_regmap() from the
-SYSCFG driver doesn't solve it either: these users reach the SYSCFG
-through vendor phandles (st,syscon, st,syscfg-amcr) or by compatible,
-which are not tracked by fw_devlink, so one of them can create the
-syscon regmap, with the clock, before the SYSCFG driver probes.
-
-Apart from adding a dummy clock in first position, which would describe
-something which doesn't exist in the hardware, I didn't find a way to
-keep these properties in the SYSCFG node. So the mux is described by a
-sub-node with its own clock inputs, like the USB2 PHYs of the SYSCFG
-which are already described as sub-nodes.
-
-In v2, the '#clock-cells' property of the SYSCFG node is deprecated, so
-that the sub-node is the only provider of this clock. No driver ever
-registered a clock on the SYSCFG node, so this doesn't change anything
-for existing devicetrees.
-
-[1] 
-https://lore.kernel.org/r/20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com
-
-Best regards,
-
-Gabriel
-
-
+> In host mode, dwc3 tears the core down for system suspend unless the
+> controller is a wakeup source. On RK3588 that ends the power session of
+> every suspended USB device in suspend-to-idle: on an Orange Pi 5 a
+> SanDisk Extreme drive on the Type-A USB3 port and a card reader behind a
+> USB3 hub are disconnected and enumerated again after every resume, which
+> kills a filesystem mounted on them. With the bus kept suspended they
+> resume from U3 in milliseconds.
 >
->> ---
->>   Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> index a559f8b03b84..38c844e8f19d 100644
->> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
->> @@ -45,6 +45,10 @@ properties:
->>     "#size-cells":
->>       const: 1
->>   
->> +  clock-controller:
->> +    type: object
->> +    $ref: /schemas/clock/st,stm32mp25-syscfg-clk.yaml#
->> +
->>   patternProperties:
->>     "^phy@2[48]00$":
->>       type: object
->> @@ -80,6 +84,7 @@ allOf:
->>           - "#address-cells"
->>           - "#clock-cells"
->>           - "#size-cells"
->> +        - clock-controller
->>           - phy@2400
->>           - phy@2800
->>       else:
->> @@ -87,6 +92,7 @@ allOf:
->>           '#address-cells': false
->>           '#clock-cells': false
->>           '#size-cells': false
->> +        clock-controller: false
->>           phy@2400: false
->>           phy@2800: false
->>   
->>
->> -- 
->> 2.43.0
->>
+> Patch 2 of v1 [1] kept the host core in suspend-to-idle for every dwc3
+> host. Sashiko found three ways in which that breaks other platforms, and
+> all three hold on usb-next:
+> - legacy glue drivers still act in their own suspend callbacks in
+>   suspend-to-idle (dwc3-of-simple asserts its resets on rk3399,
+>   dwc3-meson-g12a powers the PHYs off, dwc3-exynos switches its supplies
+>   off), so the core would skip the re-init on a reset controller;
+> - dwc3-google asserts its resets unless wakeup is enabled;
+> - genpd keeps a domain on for a device on the awake path only with
+>   GENPD_FLAG_ACTIVE_WAKEUP, which e.g. RK3568 PD_PIPE does not set.
+>   Vladyslav Tymoshchuk has since seen this one on hardware [2]: on
+>   SM8750 the USB GDSCs lack the flag, genpd powers them off in
+>   suspend-to-idle and the xHCI dies on resume, already on the existing
+>   wakeup path.
+> Commit c4a5153e87fd ("usb: dwc3: core: Power-off core/PHYs on
+> system_suspend in host mode") also made the teardown deliberate, so
+> that the PHYs can be powered off. Thanks to Sashiko for the review and
+> to Vladyslav for the test on SM8750.
+>
+> This version makes it an opt-in instead: patch 1 adds
+> keep_host_bus_in_s2idle to dwc3_properties for the glue to set, and
+> patch 2 sets it in the Rockchip glue for RK3588 only, whose PD_USB has
+> GENPD_FLAG_ACTIVE_WAKEUP. Nothing changes for any other platform, nor
+> for suspend-to-RAM and hibernation.
+>
+> It is an RFC because it depends on two postings that are not merged:
+> - Sebastian Reichel's Rockchip dwc3 glue driver, v18 [3]; patch 2 is on
+>   top of it.
+> - Joonhoe Kim's "usb: dwc3: tell xHCI that it lost its state when the
+>   core is powered off" [4]; patch 1 uses its xhci_power_lost flag to
+>   re-initialise the core on resume exactly when suspend tore it down.
+>   In host mode it does the same as patch 1 of v1 [1], which I withdrew
+>   in its favour.
+> The base is usb-next (v7.4-rc1) with [3] and [4] applied.
+>
+> Tested on an Orange Pi 5 (RK3588S, no wakeup source) with the code of
+> this series on top of [3] and [4] in a v7.3-based kernel, 50
+> suspend-to-idle cycles through rtcwake. Both dwc3 controllers of the
+> board run on the Rockchip glue: USB3OTG2 (no power domain) with a
+> SanDisk Extreme drive on the Type-A port, and USB3OTG0 (in PD_USB) with
+> the USB 2.0 billboard device behind the Type-C port.
+> - Bus kept (this series), 40 of 40 cycles: the same USB bus and device
+>   numbers before and after resume; no "root hub lost power", no "xHC
+>   error in resume", no disconnect, re-enumeration or "reset
+>   SuperSpeed", no WARNING/BUG/Oops; the drive was readable after every
+>   resume (64 MiB direct read).
+> - Core torn down as without the opt-in (forced with a test-only module
+>   parameter that is not part of this series), 10 of 10 cycles: all
+>   root hubs reported "root hub lost power or was reset" (80 lines), no
+>   "xHC error in resume" thanks to [4], no WARNING/BUG/Oops; the drive
+>   was disconnected and enumerated again on every resume, which is what
+>   this series avoids.
+> Not tested: RK3576 (left unchanged), USB3OTG1 (not on the RK3588S),
+> suspend-to-RAM (not run with this series; the opt-in does not apply
+> there).
+>
+> [1] https://lore.kernel.org/r/20261110-dwc3-s2idle-v1-0-2ef4cc3f8130@gmai=
+l.com
+> [2] https://lore.kernel.org/r/20261111121556.1871-1-tvlad744@gmail.com
+> [3] https://lore.kernel.org/r/20261021-b4-rockchip-dwc3-rockchip-glue-v18=
+-0-60000d03fca2@collabora.com
+> [4] https://lore.kernel.org/r/20260929130252.869-1-26rote@gmail.com
+>
+> This series was developed with Claude (Anthropic) as a coding assistant:
+> it wrote the code and the commit messages, and I reviewed and tested it
+> as described above.
+>
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+> Arun Iyengar (2):
+>       usb: dwc3: Let the glue keep the host bus suspended across suspend-=
+to-idle
+>       usb: dwc3: rockchip: Keep the host bus across suspend-to-idle on RK=
+3588
+>
+>  drivers/usb/dwc3/core.c          | 41 ++++++++++++++++++++++++++++++++++=
+++----
+>  drivers/usb/dwc3/core.h          |  3 +++
+>  drivers/usb/dwc3/dwc3-rockchip.c | 10 ++++++++++
+>  drivers/usb/dwc3/glue.h          |  7 +++++++
+>  4 files changed, 57 insertions(+), 4 deletions(-)
+> ---
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+> change-id: 20261110-dwc3-s2idle-optin-1e3021adb650
+> prerequisite-message-id: <20261021-b4-rockchip-dwc3-rockchip-glue-v18-0-6=
+0000d03fca2@collabora.com>
+> prerequisite-patch-id: 4fa3aae8ccfa5383522070179c8777302411082c
+> prerequisite-patch-id: db09b4f5b0cffc1d5bf098fbdebb06b8be448fb7
+> prerequisite-patch-id: c2e1c453454a7589a691fe391dc79e86f09ca7b7
+> prerequisite-patch-id: dadeaf9e369e04d8b3329493a1a0756ddd6140f0
+> prerequisite-patch-id: aa0125edb604ecf704a69250cc0d693013a977c9
+> prerequisite-patch-id: 62b492b7b6e9957282f1029a02aaf258b63e990f
+> prerequisite-patch-id: fcc7dd5dcd583913f91bf9986b0137c2930d2200
+> prerequisite-message-id: <20260929130252.869-1-26rote@gmail.com>
+> prerequisite-patch-id: 34a5a2c638a729bde49c06a330bf0847bf17e5e9
+>
+> Best regards,
+> --
+> Arun Iyengar <aiyengar1990@gmail.com>
+>
+>
 
