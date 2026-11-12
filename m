@@ -2,50 +2,50 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254FB606A893
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1086606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nLs0487o;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=MfQ0njGU
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3Aj2DSvV;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=k2rEr47l
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uAjtZOgqP1xFIodDG4lxbEDIZIdahu3nqR7pJwwfQ0I=; b=nLs0487o9ihbNJi8xIfcq7te3F
-	GNSmFOr+3na2GqeDKeSAMpRAZlmaTpD/wJwl3lp8vMkAAI5da9cwlb6G1RihTQ+9uZh4kmOr50jPg
-	ucIXNoPy5CMD+i6N8dykgQlNHYfKwIrU+0CAAVDsXF5tGCFrntSs7pSzTqZ+xUxml45EKY3pC/Al6
-	Mv+k/rUZJZoZpfHCoe9S3SSHfH7fsU8nf9r8e9Ock146uqrzJDsfvmYCZDGjQo5Wv7eghvdO33k+c
-	BZhkW+wtOZMju3VC67+ueSiNtfNkE94GjvwFnIA1Dekokv9EjuMltKn9HOyMPruMNnNdXcQ9Gz4qK
-	nQYTp8uA==;
+	bh=hFS8yRfxQ5OZUtkjC4uzd9WD96DZbQ+krAj2khYgeG8=; b=3Aj2DSvVjTdSjY2nEnmwiEIXIw
+	FmRq9YfptCJTisCvSyycKSyMiBhhO5u13jkjXBQS+OrV7MCtLiAbIcLIg4qIGLjEofw2pShsxVL/G
+	FGKGjoLCGU3NAGSuR5J4mrKPYnjw3zRQuKVng/Nbyb6vqzLBAMyiKifIe9r1gB/HuqFPWXt87BpLE
+	dV6XWh2iRG5eRBbgXFlbcjn5vJ64nrcEULXuSlNDML/xRK1pBnPhXJhheb2Bs4FS3h2iipIsGvP4l
+	+6/M/6JYyJHKITQBL7e4B5lW/Iu0KtFh+7zpeCipOT96CciyGFQ325ANwd7kOd4KSpS/nxoxSq/x5
+	F+z/7iPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUcG-00000009yVP-1CXq;
+	id 1xRUcG-00000009yVI-0HNr;
 	Thu, 12 Nov 2026 13:13:24 +0000
-Received: from canpmsgout02.his.huawei.com ([113.46.200.217])
+Received: from canpmsgout03.his.huawei.com ([113.46.200.218])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUcB-00000009ySY-3T0n
+	id 1xRUcC-00000009ySf-0nxi
 	for linux-arm-kernel@lists.infradead.org;
 	Thu, 12 Nov 2026 13:13:22 +0000
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=uAjtZOgqP1xFIodDG4lxbEDIZIdahu3nqR7pJwwfQ0I=;
-	b=MfQ0njGUgySFiCDcmSDn4lF6Shc6Hpyq2Ho6GpDY5+0t5ZpYu96000K5qo1JR8wM+o6XWX72b
-	M9DgOJBL2rHkMSYVUqePW7G2fyTLaJuUxsILVxXqROwgNcDlNXigB15N+c1LL2p1Lg222VXtJAs
-	0DnqT+mQNTrd6+LA6qY7kz4=
+	bh=hFS8yRfxQ5OZUtkjC4uzd9WD96DZbQ+krAj2khYgeG8=;
+	b=k2rEr47lZ+yX0EcB1+iTV1UnbdloEkv9yMsupDOd3MOLwnL7zV5rLYzMSaY8jSogwybKzQBoY
+	XQfXg6cxmJ2SMcG7IAIG+ZJwovPKaG4Msy6y+pPhG0/AXpiSoksOPZyt3YOB9YtCKtd5CurMPIc
+	gdEs1o/NuK/suohR8r0M5Dk=
 Received: from mail.maildlp.com (unknown [172.19.162.197])
-	by canpmsgout02.his.huawei.com (SkyGuard) with ESMTPS id 4jQLQj6jVRzcbPN;
-	Thu, 12 Nov 2026 21:12:29 +0800 (CST)
+	by canpmsgout03.his.huawei.com (SkyGuard) with ESMTPS id 4jQLQr0JQdzpT13;
+	Thu, 12 Nov 2026 21:12:36 +0800 (CST)
 Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id B256D40579;
-	Thu, 12 Nov 2026 21:13:11 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id 8E97340579;
+	Thu, 12 Nov 2026 21:13:15 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
  (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
- 2026 21:13:10 +0800
+ 2026 21:13:14 +0800
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <Dave.Martin@arm.com>,
 	<james.morse@arm.com>, <babu.moger@amd.com>, <corbet@lwn.net>,
@@ -56,10 +56,12 @@ To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <Dave.Martin@arm.com>,
 	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [RFC PATCH v2 0/9] fs/resctrl: Support mba_MBps on MPAM
-Date: Thu, 12 Nov 2026 21:12:45 +0800
-Message-ID: <20261112131255.4043381-1-ruanjinjie@huawei.com>
+Subject: [RFC PATCH v2 6/9] fs/resctrl: Reject mba_MBps when the maximum is only a soft limit
+Date: Thu, 12 Nov 2026 21:12:51 +0800
+Message-ID: <20261112131255.4043381-7-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261112131255.4043381-1-ruanjinjie@huawei.com>
+References: <20261112131255.4043381-1-ruanjinjie@huawei.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -67,8 +69,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
  kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_051320_448917_8047B158 
-X-CRM114-Status: GOOD (  21.24  )
+X-CRM114-CacheID: sfid-20261112_051320_739981_916CF2CB 
+X-CRM114-Status: GOOD (  15.12  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,143 +82,82 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Resctrl offers two ways to describe an MBA policy:
+The controller lowers the maximum bandwidth control when the measured
+bandwidth exceeds the target, and relies on the hardware enforcing
+that maximum. A hard limit does not service requests above the
+maximum; a soft limit services them when no other request is waiting,
+so a group without competing traffic keeps exceeding the target and
+the controller never converges.
 
-- The percentage interface writes a fraction of the maximum bandwidth
-  into the hardware control register
-
-- The MBA software controller (mounted with -o mba_MBps) takes
-  an absolute target in MiB/s and adjusts that percentage based on
-  the MBM counters sampled once per second.
-
-The problem is that a percentage alone isn't enough. How much bandwidth
-a percentage actually corresponds to depends on the memory frequency,
-the channel count, how many threads are generating traffic, the access
-pattern, and the traffic of other groups. And neither MPAM nor x86
-resctrl reports the maximum bandwidth in MiB/s. So an administrator who
-wants to enforce an absolute budget (a tenant SLA, a noisy-neighbour
-limit) has to measure and re-tune the percentage on every machine. x86
-resctrl has had this software controller since 2018; MPAM has never been
-able to use it.
-
-This series makes mba_MBps work on MPAM.
-
-What this series does
-=====================
-
-MPAM refuses mba_MBps in two places:
-
-- Its MBM counters are assignable, and supports_mba_mbps() refuses
-  the option when they are.
-
-- Its maximum bandwidth control is a soft limit by default, which
-  can't hold a single requester down to the target.
-  MPAMF_MBW_IDR.MAX_LIM reports whether the hard limit exists.
-
-MPAM's monitor groups also each take a bandwidth counter from a shared
-pool, while nothing relates the number of groups to the number of
-counters: a group created once the pool is empty is invisible to the
-controller.
-
-MPAM also makes two generic defects reachable:
-
-- Writing the control register sleeps (smp_call_on_cpu()), while
-  the worker runs under the RCU read lock
-
-- A 16-bit fraction lets the minimum control value reach zero, which
-  divides by zero in the estimator
-
-The patches:
-
-- Patches 1 to 3 fix the two generic defects
-
-- Patches 4 and 5 make the loop runnable on MPAM: the worker takes the
-  CPU hotplug lock around the sleeping control update, and assignable
-  counters are accepted with a fixed assignment mode
-
-- Patches 6 and 7 handle the maximum: mba_MBps is refused where only
-  the soft limit exists, and the driver sets HARDLIM.
-
-- Patches 8 and 9 cap the CLOSID/RMID space resctrl may use to the
-  number of counters while the controller is enabled, so that every
-  group it measures has a counter.
-
-x86 has no assignable counters in the mode where the controller is
-allowed, and does not set the soft-limit flag, so its behaviour is
+Add resctrl_membw::max_is_soft_limit for architectures whose maximum
+control implements only the soft limit, and refuse to mount with
+mba_MBps when it is set. Architectures that leave the flag clear are
 unchanged.
 
-Changes in RFC v2
-=============
+Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+---
+ fs/resctrl/rdtgroup.c   | 5 ++++-
+ include/linux/resctrl.h | 2 ++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-- Extract the step decision into a helper, with no behaviour change
-- Use bw_gran instead of min_bw in the estimate
-- Drop the warning when a monitor group gets no counter, as
-  the new cap makes it unreachable (Ben)
-- While the controller is enabled, cap the CLOSID/RMID space to the
-  number of bandwidth counters (Ben)
-- Link to RFC v1:
- - https://lore.kernel.org/all/20261109132621.3862497-1-ruanjinjie01@gmail.com/
- - https://lore.kernel.org/all/dc1398f4-b81c-4ad8-b706-df89a1622e6c@arm.com/
-
-Testing
-=======
-
-With the MPAM MSC model in QEMU:
-
-- From a 9595 MiB/s baseline, a 7000 MiB/s target converges to
-  6978 MiB/s and a 9000 MiB/s target to 8732 MiB/s.
-
-- The memory-side MSC register shows MBW_MAX.HARDLIM set.
-
-- A modelled MSC that implements only the soft limit refuses the
-  mba_MBps mount, while a plain mount succeeds.
-
-- With 8 counters and 32 PARTIDs, an mba_MBps mount reports 8 CLOSIDs
-  and 8 RMIDs, and the 8th mkdir fails with ENOSPC instead of
-  creating a group the controller cannot see
-
-- With 4 PMGs and 64 counters, a plain mount reports 32 CLOSIDs and
-  128 RMIDs while an mba_MBps mount reports 32 and 64: only the RMIDs
-  per CLOSID shrink
-
-- With mbm_assign_on_mkdir forced on while the controller is in use,
-  a write of 0 is refused, and the user's value is restored after
-  unmount
-
-- The KUnit tests for the MPAM driver pass.
-
-Jinjie Ruan (9):
-  fs/resctrl: Extract the software controller's step decision
-  fs/resctrl: Avoid division by zero in the MBA software controller
-  fs/resctrl: Do not update bandwidth from a failed counter read
-  fs/resctrl: Take the CPU hotplug lock for software controller updates
-  fs/resctrl: Allow mba_MBps with assignable MBM counters
-  fs/resctrl: Reject mba_MBps when the maximum is only a soft limit
-  arm_mpam: Program the hard limit for the software controller
-  x86,fs/resctrl: Let the architecture cap the RMIDs for the software
-    controller
-  arm_mpam: Cap the CLOSID/RMID space by the bandwidth counters for
-    mba_MBps
-
- Documentation/filesystems/resctrl.rst |   7 +-
- arch/x86/include/asm/resctrl.h        |   6 ++
- drivers/resctrl/mpam_devices.c        |  55 +++++++++---
- drivers/resctrl/mpam_internal.h       |   4 +
- drivers/resctrl/mpam_resctrl.c        |  56 +++++++++++-
- fs/resctrl/monitor.c                  | 123 +++++++++++++++++++-------
- fs/resctrl/rdtgroup.c                 |  66 +++++++++++---
- include/linux/arm_mpam.h              |   2 +
- include/linux/resctrl.h               |   2 +
- 9 files changed, 259 insertions(+), 62 deletions(-)
-
+diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
+index 518d89b0c67d..9f10b6ceff8a 100644
+--- a/fs/resctrl/rdtgroup.c
++++ b/fs/resctrl/rdtgroup.c
+@@ -2613,6 +2613,8 @@ static void mba_sc_domain_destroy(struct rdt_resource *r,
+  * The controller needs a counter for its event in every monitoring group.
+  * With assignable counters that requires a fixed assignment mode, with
+  * counters assigned automatically while the controller is in use.
++ *
++ * The maximum control must also be a hard limit, see max_is_soft_limit.
+  */
+ static bool supports_mba_mbps(void)
+ {
+@@ -2622,6 +2624,7 @@ static bool supports_mba_mbps(void)
+ 	return (resctrl_is_mbm_enabled() &&
+ 		r->alloc_capable && is_mba_linear() &&
+ 		r->ctrl_scope == rmbm->mon_scope &&
++		!r->membw.max_is_soft_limit &&
+ 		(!rmbm->mon.mbm_cntr_assignable ||
+ 		 rmbm->mon.mbm_cntr_assign_fixed));
+ }
+@@ -3370,7 +3373,7 @@ static int rdt_parse_param(struct fs_context *fc, struct fs_parameter *param)
+ 		ctx->enable_cdpl2 = true;
+ 		return 0;
+ 	case Opt_mba_mbps:
+-		msg = "mba_MBps requires MBM and linear scale MBA at L3 scope";
++		msg = "mba_MBps requires MBM, linear scale MBA at L3 scope and an enforced maximum";
+ 		if (!supports_mba_mbps())
+ 			return invalfc(fc, msg);
+ 		ctx->enable_mba_mbps = true;
+diff --git a/include/linux/resctrl.h b/include/linux/resctrl.h
+index 10dfdca7f4bf..933bab2b8289 100644
+--- a/include/linux/resctrl.h
++++ b/include/linux/resctrl.h
+@@ -250,6 +250,7 @@ enum membw_throttle_mode {
+  * @bw_gran:		Granularity at which the memory bandwidth is allocated
+  * @delay_linear:	True if memory B/W delay is in linear scale
+  * @arch_needs_linear:	True if we can't configure non-linear resources
++ * @max_is_soft_limit:	True if maximum control only marks traffic as low priority
+  * @throttle_mode:	Bandwidth throttling mode when threads request
+  *			different memory bandwidths
+  * @mba_sc:		True if MBA software controller(mba_sc) is enabled
+@@ -261,6 +262,7 @@ struct resctrl_membw {
+ 	u32				bw_gran;
+ 	u32				delay_linear;
+ 	bool				arch_needs_linear;
++	bool				max_is_soft_limit;
+ 	enum membw_throttle_mode	throttle_mode;
+ 	bool				mba_sc;
+ 	u32				*mb_map;
 -- 
 2.34.1
 
