@@ -2,106 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8588D606A336
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:17:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8511606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=L7JlpK4s;
-	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=Zo9efcIB;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=XhhVe9IY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fstGnOqn;
+	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=BgDCCRZe;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=DjNFiF/g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
 	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UbnPlEC24dkXjKamOs3/pbar/DmSKOkynvOR6CwNOYI=; b=L7JlpK4sMSgMOn
-	6vnCPpoCy3cvb5mLmYudairgyTSy42y0QOAhClzV3ta2uZDosJ+eQ7WIQYd6lHr7cAV1P0spTteqT
-	nJon2Sxh5ZojESttb3zsWr4jenl8LefP1gU2VcifMK9fbp5yTQl6FxCs6OAoZZT5WrT5QMZo6dpA/
-	Fbe/JffyBOlA5yxNn9evvtmkw5r85TemnE5K13Wmi9AQ3IgYTgE7ihNkSW/LbZ2mbCcsPsp5YZnpt
-	YNkzVHToyLsaJQx56B57fs81/+vYBTE6IwelKbS8S4IlVmJet8E76o+b0yiXiT5EJBh5Eveiu6jmX
-	1dKioDD526AB7X1HMngQ==;
+	List-Owner; bh=Dl26GbVg1oiRuWqjJg2siO0OK6Jj2MIKjLQSLXLLVvI=; b=fstGnOqnK2ZvbX
+	8vcJ7rvplA8t4dzgAHOJbak+RT80XAQzSnVFwk8ZrpHGBhoiobyJkDpdeJPp7mquO8AVe4MuJtHhr
+	pDFJ6vbE20A0iT9Dh80OnAZqjsyk29zTPQF15Vb4yya80JvR0ZdVi494JNsK0Ydy0bo9FsJVmIeE4
+	Vhyj2ma0kUK4dPHqxE1Ocu3AQB7vrgOz+rmdBv9EVEDnYCCz5kJF4m9NE6WhAYq8GjnT6QJmfpREG
+	Cf91siinvBqpExU6ID3JyFuuXkYKkcAyl+AFXwmOrPH39lisaQHIdbSFQ2Rl0hnPSDZLT8LYcUFyH
+	fSE3DV9gR+tcsUm1TOzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVbp-0000000ADti-1bF2;
-	Thu, 12 Nov 2026 14:17:01 +0000
-Received: from fout-b1-smtp.messagingengine.com ([202.12.124.144])
+	id 1xRVcX-0000000AE3Q-2hHP;
+	Thu, 12 Nov 2026 14:17:45 +0000
+Received: from fhigh-b7-smtp.messagingengine.com ([202.12.124.158])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVbn-0000000ADt9-1NMq
+	id 1xRVcR-0000000AE1v-2Y7x
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 14:17:00 +0000
+	Thu, 12 Nov 2026 14:17:44 +0000
 Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfout.stl.internal (Postfix) with ESMTP id 7AC681D0005E
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 09:16:58 -0500 (EST)
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 9CC4D7A00DF
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 09:17:38 -0500 (EST)
 Received: from ams-imap-03 ([10.64.2.23])
-  by ams-compute-02.internal (MEProxy); Thu, 12 Nov 2026 09:16:58 -0500
+  by ams-compute-02.internal (MEProxy); Thu, 12 Nov 2026 09:17:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
 	:cc:content-transfer-encoding:content-type:content-type:date
 	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1794493014;
-	 x=1794579414; bh=UbnPlEC24dkXjKamOs3/pbar/DmSKOkynvOR6CwNOYI=; b=
-	Zo9efcIBsV78Vf7GQOyuzvtCvTm2u3MlgEKOux4tEFcwIxcLJDAElgyImkKJZWGM
-	RW8b/ibuCWyFPs4J/4r2X14zHg295WnvPsaAeswZzrgqtWFjP5sXGAaZIE2DGyGu
-	PQzy8ZLLXtPB45VkkoDzxuXnCGMXaWwdJcwYoPZd90DojaeXxIQMrLdtgouHNmAB
-	num6RS2HUj+pD1yxMzAN1uak93kdgfOVd2YiISsSy/cWw5d54zPRYYV7aThMlAXw
-	UcVn9pirhBrOb6+N4bAQd+p+vVH/huRZfn+Ma8rq5f+viyORhqCpaX+JPDyoL90t
-	j6UVGOGE4m7h9YEfDdeawA==
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1794493054;
+	 x=1794579454; bh=Dl26GbVg1oiRuWqjJg2siO0OK6Jj2MIKjLQSLXLLVvI=; b=
+	BgDCCRZeMAYVP5Mkj3rC4Dx0zPfpuVx1tHrvLPUjMUiE9v4Th8qYAkXqf30BhCsD
+	AbHa8yCNbVYzzKPm6VaDXRF8TdKbbwwygMupuI9lRPeiB+IDkvWyGW1D2U8LDwRJ
+	REBa4iHNytvQeP2cdQ26sEhXGgegb4THLEYaB5KxSwZMGoNreZAuoETdNSs0RqW+
+	WiBU9wK11SpZRjP5h3H1afBYZFpN8N8XuvWNoXcMlRxxEHVk9LCpYojqMa1Xvicg
+	70gBugV2yVntrBidoQA1rZ8KpsZUR45dNhF9L3iwDGmHFtO0xoiTHXZ9m8LBSbT1
+	Gj1Y3Cb1MebI7XZb6ooSiA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794493014; x=
-	1794579414; bh=UbnPlEC24dkXjKamOs3/pbar/DmSKOkynvOR6CwNOYI=; b=X
-	hhVe9IYYq7iI/u1fU8tbuZ4FHSYY/53NyzJh7/mAIFWl/8U99ycxaF1H6lANmhIi
-	bVjyp+45zE7Q1cm2do/HF2qh6F5gCGVnfE+5HuX7hPxFfoOwAXx0KjpXbwBO/tTC
-	Vd8X8OVaheeQ4buEDOoLwgmoDku1J5ST0xaZzpMHkmKi92XZvvYrGzThEY0dLGVk
-	ZjVFLII8bFfsH2lrybiI1OBpHwXL5fTtUb8xLYe4tIXAPslzLMnT39jTFz6uv5iZ
-	vRY2lie75dslydLYg5XvHDJSkKkB5EB9VoGHmQpoVpeXcwFsmaMOrqhsWRh/k//x
-	rPvQKHYw9shsucBIgAPqQ==
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794493054; x=
+	1794579454; bh=Dl26GbVg1oiRuWqjJg2siO0OK6Jj2MIKjLQSLXLLVvI=; b=D
+	jNFiF/gyldbSf72yF03RPBfvfqo3QLXXUSHA23Y6f4JFfRjITQ7MR51oKm7Y/m36
+	G14pKndIrwIwIEWh4evUxSara5lSHuTGH5v3E7C529/nAlq7iy+MzsWTt7SChnvv
+	wR74cJz8zTVpv0G9nWezRB/Gcx+RGnsmh16nx9Ykl9V549U9Ue1j8RaRcDb3pK9S
+	cl7J1H35YxYrSWKNWiuMRiaQK2fYo4VUCev3OID0lZUb7Ganbs4EbC9Yhbx9jp97
+	7RvuJGYg2tcBAzBE/9bQm9U2sOxfdscsQvcvwzCDVr/uKZPvOd53IeX+5IbT/fsi
+	U8yGmb91KO2ihEzrHHKow==
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=sign d=arndb.de a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794493014; d=arndb.de;
+DKIM2-Signature: i=1; m=1; t=1794493054; d=arndb.de;
 	mf=PGFybmRAYXJuZGIuZGU+;
 	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:SFLicWMYWhn5TZkFxjHaHUpOJ9xZhcu6uwx6IL27zIGbtyc
-	7+N+eC3jdcHqFtz931enn5p89zrBF1KaKuu+kGCP1qfzDCybcp4OL7mPmDijBXC7
-	t41QIU3DYXfypGh35T16kLcQTh4L5CT5pKcHCGI7v4ya7A/GvJU6Et1ZJsWsatCL
-	fFtSBUqu1s/u/04TIdEvOd8+y95jh/T7UDR6pY5KYD8QBr04qxNixwbgd2xuHp1W
-	5Tgfhluvmm/k21MEr2hiWPS2uD9T7aYuNjuFfrpYLKEctCz6LadMfTG8psr6ssYG
-	LRKoOnxyVMae8A3GYN3DeQd29gLkjZKBE3NtYcw==;
+	s=fm2:rsa-sha256:j02oqsKRbIWL568RS+qY0TKcDH4EvwZtaLuwLxnb07Hwl5D
+	qVRfiSOIfEyXgJu/bx2Lid/9TUmmFYOp8A5/xN6DhLJw4z+u7oksXZZOqJ8JjLYR
+	nvCfvjrYvTwg75m17Ww1fBOkYU/NxWGiF1FdusvF+NcwGsLWAPX2eQEQ6aMQYH9p
+	ya7BJUmCbbkF8BZmovMPVmom1/RSGgIEND48THOawGyoUljVUu/yWjnffHV/TSdc
+	0ZyzPb9PkbWV0WVIFmdsPb8enKgQ4Q//dfhkue4jXK8Y0BAn5ufdrh+su9bhaj1d
+	rtMBJdIqcCl19ZcAY7lJS7q2RVHHbUCRlYkTczA==;
 X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
 	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
 	action=mi-m=1; hc=12;
 	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
 	from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:RJMoJlBKzRz4YafuepOWgyGgRwmbNROO/4+xzp0wgnA=:voWKWCaOGlpdmVP0Cwkilh51Ef0aw4U3oRcvlpmnlcI=;
-X-ME-Sender: <xms:Usr1asjg9G4PPrrr82juOslt7WKJN2ox9e-bN6SzpTxkGdZM0A_dDg>
-    <xme:Usr1av04JsRqLh9v9gbHE1H_izlBix8MV34vFWayd6EjzWrkxHPwiFWLrHvDmo26s
-    ovJDj8__BsFibCUgFTXI737JjmO5mwOO0BL3xeXFvJrkizs4QQO0SsY>
-X-ME-Proxy-Cause: dmFkZTGU1UV2oYSfQ0TDb1+YCaM1GfW0+RS3kK7MgTRdv3CA05JCz48Ta9CCSLlOcpZnTE
-    5+ZOMsON9AJ3ihTXUUpRdagXPodCCoX6aSe4q5jQysfDOpftb9F+DFbYH7T2XBDQ7VjKfO
-    kI6OhDcTdOghERSXPTFLEsqkUrMOnhT6vfB2kbZOXMxWGEnfDaRp9cSlFXHNSKBIf4r47G
-    4UHIhOtAVLx1q6wW8GKxQdM7x6pA399ztVauThgsUqwHlKALouxJ7qbpJSnrvVw4HdBBfn
-    rr0IGOO4fLpCz/qnjaC4U0it81fcb+Ukr6/dPb2fOTpIwMvU1Q1LkaugEouHuqsMSRrZMR
-    wV2gg/g3S07ecr7z3571XaK5lEBI91xNUybORKYiWEuNXxwFFwvfUgSLVVUKe9kW/uxhbd
-    GX8PX23AF79RywweGYodz3PlJe9ZozIMs2roOlsVr8lH0EB+TwL3walkuyEZQ+gY4fJSqa
-    PRURPvRwJTeZh3C0FKz/ZoYkgakQuZmn8A3xnYOOTXuTOsozSOJV4MTOvyXPBX0L4u6EZP
-    ZFekd1SJrKrVK/v5LX7o5DqlBAVNNSyi2f8yamaDRcunU86gEoaMyuQQj+9YR8LUFBeUyD
-    uNY4M0HCGLraPM58SZuaw6nEEdvr0veDZlNZKCN8poVAPde3S/fO9I4sgxWQ
-X-ME-Proxy: <xmx:VMr1aqkc6vj6abTdLo9cLUp0T0kq2sgpni80YY7mV3HtE5BBDfwxkA>
-    <xmx:VMr1aiR95H7Gh3yZfCsXTicuFLoqUwgsX_WWV7HkuqoxcsoHYiNRkg>
-    <xmx:VMr1aoYQy0UwsKNL0xGgEHQMls0uV32cDihyhr37Cxc9GbjGJVFSpA>
-    <xmx:VMr1aq88aO4veFItIVp-gV4Ex-D1sEipyC0nBa7yTRep2NeKu6s2tA>
-    <xmx:Vsr1aivy198MKwqJ4bN_4_eeISMyguI0Px1x3gP4D8vhBtwwmWJfmHEJ>
+Message-Instance: m=1; h=sha256:pDEDEbEGIMSKrrCLp4vJbOtj9ftXD25ifr3Txi0ong0=:ihnDo+fn6sT3wW2JYtL6VV4KZA17ran4u86UJkWTYTg=;
+X-ME-Sender: <xms:esr1auMX3thMxma8_ztiAYINB64rYZ1OoGq4Lba2qMVXHlnsLf0gBA>
+    <xme:esr1anzx2JrsuiaSpQUKP6BShu4yxdXEafjZevf5iJ_PSj0AagENZIqZNG10Dcy4T
+    ZPNvEMEVMcjlsml9O8C4afEUZuRbLQfVpMo61KGPNgTymIh_lFs2RhP>
+X-ME-Proxy-Cause: dmFkZTFzWmoFbTkI7ku6XcdQ5hmYHvBEWKmAFPbxx+KR4fuDHIzPXuKeT0NCsMF/OpNsoS
+    vNCHz4+rbPFGPxzWkj4fQ2mhyluj+KuubUvMLFtq5HTh8zcdQVazJy1ZO3KupoUgNX/HBz
+    UK3ZMd78YWZnDEkDu4jfayCCjWchMJCp0hVux7BUm7FZ+xpkw2l21dm6hf65cO0zUU+UgW
+    0xJ4JOUkxgcOjmsQHqWBoqOPcyOeq6m7PU2wJyINkQmiuXddixOgB6X5MZXIUgZ/6A+4gi
+    /2GHdXAjLTRdlPJq5XdS+MaFOnCet398jadXoGZk8QwjUY1dNB1DztJ7N2yCV6k9hzAVt3
+    YERdmi3cxnlo2u/Fr4+/jwLaSG8K06vfncSJgdAFlvJ9IZGhCtFH+SA/c0iKVjdqoj5RmA
+    mv3O8ysmd1Cx9w7Iwck1JLIDnD/UEoV+lxqpTENFt8z9V1QbqGN/lRqpkoY/m6DRdJidMW
+    voZZDuRV2L98fCiOLdzGJRQQTjyvEhk68t3azBy+bMrHBalh/WcEzV+mgM1qMKuxKND9aV
+    vsGkexNAZg+vqQ+h/jjW6Fj5+BMvdn7a1tClce4EYlaRMGvOt7BBw9XmDobvscVt9D7sZM
+    RfuxKt+2V07xyHeeQwiwbV2R0EDBQe0yXWD/ukogazvfc1OeoSWp+n1b6YgQ
+X-ME-Proxy: <xmx:fcr1arvlfUZ5zY7s63oNATD2IKLwoP7oPXxeI0fDqUY_oT_MsXprtQ>
+    <xmx:fcr1atFCSHPOQGOFSy0rC8QHirVbD09Ymq7u5Mr9nEfXsj3MYw9Kow>
+    <xmx:fcr1ap4ICi-1ZsEaVt5Jq2HXR5jOvv8K2T4XspKXDbRfuzr58VQ9pQ>
+    <xmx:fcr1auypVhvDdDON9TS-fms29QCLjYsgXsSB-RHjS1-zByWAEcyaHQ>
+    <xmx:fsr1agLFJdgZsVPD-Yn31hgBLVw90wdlTHc07fX6wz_fVaKteeZn42mv>
 Feedback-ID: i56a14606:Fastmail
 Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id 78F7432A0099; Thu, 12 Nov 2026 09:16:50 -0500 (EST)
+	id DCE5932A009C; Thu, 12 Nov 2026 09:17:30 -0500 (EST)
 X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-ThreadId: AytIAyy8u7pB
-Date: Thu, 12 Nov 2026 15:16:29 +0100
+Date: Thu, 12 Nov 2026 15:17:10 +0100
 From: "Arnd Bergmann" <arnd@arndb.de>
 To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
  "Masami Hiramatsu" <mhiramat@kernel.org>
@@ -111,17 +111,16 @@ Cc: "Christian Brauner" <brauner@kernel.org>, linux-kernel@vger.kernel.org,
  linux-alpha@vger.kernel.org, linux-s390@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, soc@lists.linux.dev,
  linux-mips@vger.kernel.org, sparclinux@vger.kernel.org
-Message-Id: <d7086f73-c6c7-466f-9f33-e64af741f126@app.fastmail.com>
-In-Reply-To: <20261105-tonyk-syscall_table-v9-4-8d1275885d9c@igalia.com>
+Message-Id: <cf0ce4be-43df-4341-816e-4d7f4f486beb@app.fastmail.com>
+In-Reply-To: <20261105-tonyk-syscall_table-v9-5-8d1275885d9c@igalia.com>
 References: <20261105-tonyk-syscall_table-v9-0-8d1275885d9c@igalia.com>
- <20261105-tonyk-syscall_table-v9-4-8d1275885d9c@igalia.com>
-Subject: Re: [PATCH v9 04/15] s390: Use the common syscall table
+ <20261105-tonyk-syscall_table-v9-5-8d1275885d9c@igalia.com>
+Subject: Re: [PATCH v9 05/15] sparc: Use the common syscall table
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_061659_429699_E33EF1E9 
-X-CRM114-Status: UNSURE (   9.23  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261112_061739_690075_3407D402 
+X-CRM114-Status: GOOD (  10.13  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -133,10 +132,10 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
@@ -144,13 +143,16 @@ On Thu, Nov 5, 2026, at 21:05, Andr=C3=A9 Almeida wrote:
 > Remove some of the duplicated code by using the common syscall number
 > table.
 >
+> The generated files are not exactly the same as before, but they have =
+no
+> functional changes:
+>
+>  - syscall_table_32.h would generated lines like the following
+>    __SYSCALL_WITH_COMPAT(422, sys_futex, sys_futex), which is equivale=
+nt to
+>    __SYSCALL(422, sys_futex)
+>
 > Signed-off-by: Andr=C3=A9 Almeida <andrealmeid@igalia.com>
-> ---
->  arch/s390/kernel/syscall.c            |  2 ++
->  arch/s390/kernel/syscalls/Makefile    | 12 ++++++---
->  arch/s390/kernel/syscalls/syscall.tbl | 49 --------------------------=
----------
->  3 files changed, 10 insertions(+), 53 deletions(-)
 
 Acked-by: Arnd Bergmann <arnd@arndb.de>
 
