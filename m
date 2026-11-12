@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1524606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 172F5606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:14:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VEPcLAum;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=tDi7v/dp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ebk/MvGt;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BBJqyU5j
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,57 +14,92 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7v68YZ5OR9YnCTmdJ/878LbBsOgRuy7SsL0cUuqtrJw=; b=VEPcLAumthVBECUdJFGdRrL6+n
-	SVj0se4IMkv/UzsMUz1l85T2wwtqRNnYbgk3OMb9EplJytuYA72OSNxzJnSfhkGER5OOyB7K5/vMJ
-	f9mJnQH+3X1SNrfmYil/VgDGQ3kqHisTbbPczrKKVzZVDnw+o/fzTrkRbZ4CgD+pUH5FJKxzXoSFz
-	u3CwHsLmst+w+4gVF04oQXbv+JpN/joYlRmYUpHXWCBqKvgT9eF2DVFU0IjFzbu77Q8NRjKoHyrbw
-	z0R90anv8mgze20C+4L+RpSU6Sos8g+ik1H+vUxYgqet9z8yOf/dbi4FGPlE7mkEX5FnF332tNGZ/
-	FAe4/15g==;
+	bh=c4OknN5YfqROvQIcmXbW+MOiSND7LTxhC21JuzqOEYM=; b=Ebk/MvGtH7NnhWdC4l4sLC4atd
+	cnbHtKGtfw7uIBENn3WJB4MnQQcG/2LS3DscQHIAqZ+Sq0YZfCem8hYLnRjuDYVyWGdPv1SIo5xsj
+	yrVBBBGTlPEYUTMlQRlWjBoUNLUVHxuZy0c5DcgpAQd+qJmBpbOBLkueus7GOd+UDN4OtcVxUXMvL
+	0IFYxncm2dS6XbPPNCpTSIUQkFYGWt5OFBoYoWgIxYoObGyzL9Xid4ZEqolK83p9aURX9sUrRPkBF
+	3L6g+J2502Xu52hUMmzMiv02mGdh0d2dacAgd+goyhh5+Gxhr6/unfWQ2GRGEYTrxxBS9Ec2BiW2i
+	kzl/DHUQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXQa-0000000AYgX-3h4Q;
-	Thu, 12 Nov 2026 16:13:33 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXQV-0000000AYfY-2nAV
+	id 1xRXR3-0000000AYnb-2MFQ;
+	Thu, 12 Nov 2026 16:14:01 +0000
+Received: from mgamail.intel.com ([192.198.163.11])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRXR0-0000000AYmZ-2Vdy
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:13:30 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 981501516;
-	Thu, 12 Nov 2026 08:13:23 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8B32A3F673;
-	Thu, 12 Nov 2026 08:13:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794500006; bh=ypcXC4yZuFXp31/sANCT8ECJG0IUu2kVuWxgJOc2Qko=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tDi7v/dpggh82dTCsclxMKT8WK2iJzpaE5YQvlleUIgkyLbucObj5dDU+MTipbEi/
-	 iX7YexJdYCv2JNE8PISfAhXmue+W+lz43Bq3BKfGYpKSHuUAatImOfBaeoIQadPugC
-	 wBAcVl9DYCmJtnvp1x6Kbbgztipo9zTExuTvLz5k=
-Date: Thu, 12 Nov 2026 16:13:21 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
-	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
-	james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 06/28] KVM: arm64: Add KVM_CAP_ARM_SPE capability
-Message-ID: <avXloVVaBeEwEplU@raptor>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <20260903160623.315525-7-alexandru.elisei@arm.com>
- <atDtheEuNRs7v3Gx@gremlin>
- <avXcdwY89YPFGIlk@raptor>
+	Thu, 12 Nov 2026 16:14:00 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794500039; x=1826036039;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=P3eY0n6vlSPXz45ttiFWukVb0XOFJGYuxSNON9DZg6w=;
+  b=BBJqyU5jLzrqm3uwjT8AVddpzs6xLM8oFHeV/3JM0OWnv6lEME/tTfZJ
+   Xn6400iOKCX88MED6MoPk3FYQ0zdrkDZGxsUjNtG0e25R54yH/O3a2E46
+   GAuAs6bHW0R+2xXOi/St9t3Eg+qiWIj2HoA6rtdryL2OB1PQdRIaez/hv
+   a8tosv6hDYtU52S3dIqto5b2vh0xk/EEyegzTx8CZxXbJMaf1V2CNqTQl
+   AkQ/o2rhOJHqOH+F7ic/RRiYUpyfT9VjlG4vX9bDxAnkCZM/h+wu8v9nM
+   iBzBihdV3WW0Qa/rv1Uwg4lhB/3piVvncgup9e/HEUSwjKG+CWQjA+Dnq
+   A==;
+X-CSE-ConnectionGUID: NvsCF5xjSzGDVv3I3Bq08w==
+X-CSE-MsgGUID: NcG2tjHOQUW6dpeMH+dgsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3210541"
+X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
+   d="scan'208";a="3210541"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:13:58 -0800
+X-CSE-ConnectionGUID: YpTlbcAPQJGxf1iKlOYuBw==
+X-CSE-MsgGUID: 7vG+U6ikQHSqNIVXrFRQLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
+   d="scan'208";a="8519157"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.6])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:13:51 -0800
+Date: Thu, 12 Nov 2026 18:13:49 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Raul E Rangel <rrangel@chromium.org>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Richard Genoud <richard.genoud@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Jacky Huang <ychuang3@nuvoton.com>,
+	Shan-Chun Hung <schung@nuvoton.com>,
+	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"Maciej W. Rozycki" <macro@orcam.me.uk>,
+	Timur Tabi <timur@kernel.org>,
+	Peter Ujfalusi <peter.ujfalusi@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+	linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v12 5/8] serial: core: allow drivers to reserve flushed
+ transmit storage
+Message-ID: <avXlve7ROG9jb6AH@ashevche-desk.local>
+References: <20261111-submit-serial-8250-dma-cancel-v1-v12-0-9e3456bc2555@gmail.com>
+ <20261111-submit-serial-8250-dma-cancel-v1-v12-5-9e3456bc2555@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <avXcdwY89YPFGIlk@raptor>
+In-Reply-To: <20261111-submit-serial-8250-dma-cancel-v1-v12-5-9e3456bc2555@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_081327_758247_3184D21C 
-X-CRM114-Status: GOOD (  14.57  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_081358_711806_2C49F6CB 
+X-CRM114-Status: GOOD (  21.59  )
+X-Spam-Score: -4.2 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,37 +110,87 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo,
-
-On Thu, Nov 12, 2026 at 03:34:15PM +0000, Alexandru Elisei wrote:
-> Hi Lorenzo,
+On Wed, Nov 11, 2026 at 03:16:30PM -0700, James Hilliard wrote:
+> uart_flush_buffer() resets the transmit FIFO before calling the driver's
+> flush callback. An asynchronous DMA transfer can still access that storage
+> after the callback returns, while a new write can immediately reuse it.
 > 
-> On Thu, Oct 15, 2026 at 05:51:03PM +0100, Lorenzo Stoakes (ARM) wrote:
-> > On Thu, Sep 03, 2026 at 05:06:01PM +0100, Alexandru Elisei wrote:
-> > > [..]
-> > > +	if (!entry)
-> > > +		return;
-> > 
-> > Hmm, shouldn't failing to allocate here be an error, or at least a warning?
+> Add uart_xmit_block() and uart_xmit_unblock() so a driver can reserve the
+> flushed storage until its transfer and completion callbacks have retired.
+> Serialize the reservation with FIFO producers using the port lock.
 > 
-> I don't think it's something that should cause the probe to fail. I could
-> add a warning, I guess, to let the user know why KVM_CAP_ARM_SPE is missing
-> even though the SPE module was loaded successfully.
+> While the storage is reserved, write_room() reports no space and write()
+> and put_char() accept no data. Defer write-ready notifications until the
+> reservation is released, preserving one-shot TTY wakeups. Keep the flush's
+> write-ready notification under the port lock so it cannot race another
+> reservation.
+> 
+> Wake tty->write_wait after flushing even when writes remain blocked.
+> tty_wait_until_sent() waits for the logical FIFO to empty, independently
+> of whether its storage can be reused. Notify these drain waiters without
+> invoking the line discipline's write_wakeup() callback, so a reservation
+> does not prevent a completed logical flush from waking a drain waiter or
+> consume a one-shot write-ready notification prematurely.
+> 
+> Suppress ordinary TX starts while the FIFO storage is blocked. Preserve
+> high-priority flow-control characters, which use separate storage.
+> Releasing the reservation wakes writers through the existing TTY wakeup
+> path. This preserves immediate logical flushing while applying write
+> backpressure until the storage is reusable.
+> 
+> Track port readiness separately from DMA ownership. Retirement releases the
+> reservation even during startup or shutdown, while writes and wakeups stay
+> gated until successful startup or resume. Reopening or restarting a port
+> wakes deferred writers with either a new or retained FIFO. Restart queued
+> output when reusing a FIFO after suspension. Keep its write-ready
+> notification pending until the retained output drains below the normal
+> wakeup threshold. Share that threshold check with generic 8250 and OMAP
+> TX DMA completion through uart_write_wakeup_if_needed().
+> 
+> Publish resume readiness under the same port lock as the TX restart,
+> without clearing any reservation. A concurrent flush can then reserve a
+> new transfer without resume releasing its storage prematurely.
+> 
+> Assert the port-lock requirement at uart_write_wakeup(), alongside the
+> reservation helpers, so callers cannot inspect readiness or release a
+> one-shot notification concurrently with a reservation change.
 
-On second thought, there's really no need to taint the kernel if the
-allocation fails, KVM and the SPE driver can still function correctly.
-Since the likelyhood of it happening is very low (it's a small allocation,
-only three pointers), and userspace can detect it happening because
-KVM_CAP_ARM_SPE is not available, I am inclined to keep it as it is and not
-print a warning.
+...
 
-Thanks,
-Alex
+>  void uart_write_wakeup(struct uart_port *port);
+
+> +void uart_xmit_block(struct uart_port *port);
+> +void uart_xmit_unblock(struct uart_port *port);
+
+These are not used in the below helper, so, move them after it, with that
+the uart_xmit_*() and uart_write_*() will be grouped.
+
+> +/**
+> + * uart_write_wakeup_if_needed - notify writers when queued output is low
+> + * @port: port to be processed
+> + *
+> + * Keep one-shot write-wakeup notifications pending until fewer than
+> + * %WAKEUP_CHARS remain in the transmit FIFO. This also applies to output
+> + * retained across suspend and resume.
+> + *
+> + * Context: @port->lock held.
+> + */
+> +static inline void uart_write_wakeup_if_needed(struct uart_port *port)
+> +{
+> +	if (kfifo_len(&port->state->port.xmit_fifo) < WAKEUP_CHARS)
+> +		uart_write_wakeup(port);
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
