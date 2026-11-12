@@ -2,80 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EFD606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8AC606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1bcjp8Yk;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=aFOih66d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xtez9jk3;
+	dkim=pass (4096-bit key) header.d=lausen.nl header.i=@lausen.nl header.a=rsa-sha256 header.s=uberspace header.b=f9LFcXvY
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NyJ+wR05o+PC3wSvFLyYczzwPBzneUQ3BZvLf0UVclw=; b=1bcjp8YkBtyHv1
-	59C7UC1+hAqDOU99qZH8EkJ7iHGrI27geYdw1G3Bo15fW0OwiZ7473NnCT5PaRgPReP7PJEIVw02R
-	c9N1dP365p20sVYxIaXCMXDJAvFohN2KK9HXSqrGeOk7dLhX+2CL+uegVnOGIOrAzP5rvMnUs3jZ4
-	7lhtdhyhn/qIxkI/yV0WfzssTrNzOhf0QZXHjzq+ycK6QS+OjsazLPc8n1kMIuTMAi4VWOMy/kBBF
-	3a+v3sH5GCCfjWFP7dkdMonEeqhERyZZsL6ZdQWwSDPpO5r2I9jeENx1zQzpNaBpgJAera+WWodgW
-	5JjeVYL0GEWrRgTYYvPQ==;
+	List-Owner; bh=chOtkRmA9LqcH4xpz7Hul5fzkPX+9e1RBVUmRFQ4sbE=; b=xtez9jk3CRAiRs
+	NSfW5374ZVOJa4b2oTl8E7qKoQ50o4bSA4UGcwkiaijVlnN7/cBAsQQUedtuLd1aDtVPTLG98CZZV
+	J6Ru1RYBXeGcsfwhV5cuo2Aogu43lfUczvEfJ8nAIRlNFLQgZpuS0yYFWFUB2ztdD3ZLvc5IpFVnb
+	CynXz+dTAH3lcf4auB5dZqaI2vCLQOe5jbBUpLvtj+6BSifkp7w3ce3HgtNCPU2KXe+OL0HFVSrq9
+	cO4/6SkU4SmtFH8+VLaaoNEk7xK3AJO0ntu4xS6t1MbSzg8dX1Z/vici9yTJ6B9e8ZfUnrekO+BLm
+	n2JS6rw7Jw0IpNKrUnXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXNY-0000000AY6f-1lTv;
-	Thu, 12 Nov 2026 16:10:25 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXNV-0000000AY5U-1OWV
+	id 1xRXP1-0000000AYME-3rej;
+	Thu, 12 Nov 2026 16:11:55 +0000
+Received: from mailgate01.uberspace.is ([95.143.172.20])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRXNX-0000000AY55-1Gs0
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:10:23 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ECF6D1516;
-	Thu, 12 Nov 2026 08:10:13 -0800 (PST)
-Received: from [10.57.67.215] (unknown [10.57.67.215])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EFCD63F673;
-	Thu, 12 Nov 2026 08:10:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794499816; bh=eI6HLMNYzVDBvHBVufuc5J2FJd7cWcvR6MgqBPZ4zpI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aFOih66dfccYzufBc17r9WpthMTMDuR4BQ3PUFO1D9Lg/lw4bQSAaTCb9TwdLfPD4
-	 qdkLALALRiwLntg+u0S0ZgUxKzw7lLwT19Hh6W6NHS+t7Vu2NwDFeVMuUrt/qOGe4b
-	 trnAx8mxKRgqky/enezXsehZ5oy4T0NueLBrtZjU=
-Message-ID: <256e6390-437d-4427-969d-5b774e79861d@arm.com>
-Date: Thu, 12 Nov 2026 16:10:11 +0000
+	Thu, 12 Nov 2026 16:10:26 +0000
+Received: from devico.uberspace.de (devico.uberspace.de [185.26.156.185])
+	by mailgate01.uberspace.is (Postfix) with ESMTPS id E89C1608B1
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 17:10:12 +0100 (CET)
+Received: (qmail 9224 invoked by uid 990); 12 Nov 2026 16:10:12 -0000
+Authentication-Results: devico.uberspace.de;
+	auth=pass (plain)
+Received: from unknown (HELO unknown) (::1)
+	by devico.uberspace.de (Haraka/3.1.1) with ESMTPSA; Thu, 12 Nov 2026 17:10:12 +0100
+Message-ID: <13dd3297-f264-4cfb-b8ac-b05c53d3c820@lausen.nl>
+Date: Thu, 12 Nov 2026 17:10:06 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/11] KVM: arm64: CCA: Introduce Realms
-Content-Language: en-GB
-To: Steven Price <steven.price@arm.com>, Kohei Enju <enju.kohei@fujitsu.com>
-Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
- Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
- Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
- Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
- <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
- Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
- Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
- Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
- Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
- <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
- Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>
-References: <20261102141304.126883-1-steven.price@arm.com>
- <20261102141304.126883-3-steven.price@arm.com>
- <avL9kNR2mGmqmcA9@FCCLS0092175.localdomain>
- <45104e19-4197-4584-895a-0486c0782c9c@arm.com>
- <bc0a6290-ddca-4005-9d22-b74833f435b9@arm.com>
- <d938b49d-331e-4332-ac01-911708f6135b@arm.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <d938b49d-331e-4332-ac01-911708f6135b@arm.com>
+Subject: Re: [PATCH 1/2] pmdomain: rockchip: Manage the RK3576 GPU domain
+ supply
+To: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
+Cc: ulfh@kernel.org, heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, detlev.casanova@collabora.com,
+ finley.xiao@rock-chips.com, zhangqing@rock-chips.com, inindev@gmail.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, gahing@gahingwoo.com
+References: <20261019092417.391522-1-leonard@lausen.nl>
+ <20261019092417.391522-2-leonard@lausen.nl>
+ <CAPx+jO-9BqNgA1Nx2TiHX=BS6cJMmETepYsiujBCeeb3wPt1bQ@mail.gmail.com>
+Content-Language: en-US
+From: Leonard Lausen <leonard@lausen.nl>
+In-Reply-To: <CAPx+jO-9BqNgA1Nx2TiHX=BS6cJMmETepYsiujBCeeb3wPt1bQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Bar: -
+X-Rspamd-Report: SUSPICIOUS_RECIPS(1.5) BAYES_HAM(-2.999905) XM_UA_NO_VERSION(0.01) MIME_GOOD(-0.1)
+X-Rspamd-Score: -1.589905
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=lausen.nl; s=uberspace;
+	h=from:to:cc:subject:date;
+	bh=6Bq9skfW1p6CvrhTcRQngnvs1JbfcWRTcyvjApbE79k=;
+	b=f9LFcXvYXYLJ6LKsYRYU0/74LbfOdjzkKFjcsco/PWpx9sJwNbRIduzRv26MuDj+gDOcgmh1R2
+	lA7YzyvTarn0W8RaqGzE4g0aB5D4K2Ojo0xZ85sk0fRLlME4IeP1Fs1OmwA1JYcUYNNsVnyWAEFN
+	sCmj+itYuCK8X7d4Yxc/GB2iw63A7/2Uc/ffpz6pfmfxWkpjBWshuNygy425mCMDTp1to9v1EpVA
+	9eXid+2WSfnXEwyB0y53bOX+nlY+QVUHrPCfKxaY0eiHhBnv3GCREEtB9lrLnbj5TKvoY844R91k
+	5pLR9f+2akWQxHG6HPUg+x8OL2eWydAIgF1fNYxqiQuQyF3BVl86flWYzFoAZseVKesV8/jWmwXl
+	wl0/lAdkYgGLKkzhHiTZActWAqK3flQQLliggPBZAAhqBvlQTcmVzWYXhbH/S+m0W9UFpqlob4hk
+	xKdXacopb/lN6944nO+CyTTKQinGvI/lnDqjaq6uSjeV/U32HAv+Z7Jly2mw8zTiVntDM900PHFd
+	3xGcix27TEuWKwX0ET6urawGSuGAxRONBshGOKBWN5YQEM6TDsd08pWBrPxPSRKakrX66XzXHUUo
+	/bXtrLZGxxsuHxQFL+Sdc9XlGHVu2YgeoZs2zrCMWQBpgtP8x3Uhlm/ZkapxN4Lr4EQeR1xLGHH7
+	Q=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_081021_456861_1D3DE77E 
-X-CRM114-Status: GOOD (  32.33  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_081023_558157_293BD9E8 
+X-CRM114-Status: GOOD (  12.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -86,312 +89,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/2026 11:46, Steven Price wrote:
-> On 11/11/2026 10:14, Suzuki K Poulose wrote:
->> On 11/11/2026 10:11, Steven Price wrote:
->>> On 10/11/2026 11:42, Kohei Enju wrote:
->>>> Hi Steve,
->>>
->>> Hi Kohei,
->>>
->>>> On 11/02 14:12, Steven Price wrote:
->>>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>>>
->>>>> Add foundational work for supporting Realms.
->>>>>    - Add a new VM flavor.
->>>>>    - At KVM init, check if the KVM can support Realms (though not
->>>>> functional
->>>>>      yet) and will be advertised by static key kvm_rmi_is_available.
->>>>> This
->>>>>      will be turned on in a later patch, once we have all the bits and
->>>>>      pieces ready. For now check if we are blessed with KVM_MODE_RMM.
->>>>>    - Add realm specific tracking in kvm_arch. Since Realm and
->>>>> protected pKVM
->>>>>      states are mutually exclusive, move them into a union.
->>>>>    - Also adjust the memslot preparation checks to reflect the changes.
->>>>>
->>>>> Please note that we cannot create Realm VMs yet. This requires further
->>>>> changes to the UABI and core RMI driver support, which will come later.
->>>>>
->>>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->>>>> Signed-off-by: Steven Price <steven.price@arm.com>
->>>>> ---
->>>>>    arch/arm64/include/asm/kvm_emulate.h   | 16 +++++++
->>>>>    arch/arm64/include/asm/kvm_host.h      | 57 +++++++++++++++++-------
->>>>>    arch/arm64/include/asm/kvm_rmi.h       | 61 ++++++++++++++++++++++
->>>>> ++++
->>>>>    arch/arm64/include/asm/virt.h          |  1 +
->>>>>    arch/arm64/kvm/Makefile                |  2 +-
->>>>>    arch/arm64/kvm/arm.c                   | 24 ++++++++--
->>>>>    arch/arm64/kvm/hyp/include/nvhe/pkvm.h |  2 +-
->>>>>    arch/arm64/kvm/hyp/nvhe/switch.c       |  4 +-
->>>>>    arch/arm64/kvm/hyp/nvhe/timer-sr.c     |  2 +-
->>>>>    arch/arm64/kvm/mmu.c                   | 13 +++---
->>>>>    arch/arm64/kvm/rmi.c                   | 18 ++++++++
->>>>>    11 files changed, 169 insertions(+), 31 deletions(-)
->>>>>    create mode 100644 arch/arm64/include/asm/kvm_rmi.h
->>>>>    create mode 100644 arch/arm64/kvm/rmi.c
->>>>>
->>>>> diff --git a/arch/arm64/include/asm/kvm_emulate.h b/arch/arm64/
->>>>> include/asm/kvm_emulate.h
->>>>> index 334211b8b2ee..32021bdf2610 100644
->>>>> --- a/arch/arm64/include/asm/kvm_emulate.h
->>>>> +++ b/arch/arm64/include/asm/kvm_emulate.h
->>>>> @@ -831,4 +831,20 @@ static inline void kvm_reset_vcpu_psci(struct
->>>>> kvm_vcpu *vcpu,
->>>>>        vcpu_set_reg(vcpu, 0, reset_state->r0);
->>>>>    }
->>>>>    +static inline enum realm_state kvm_realm_state(struct kvm *kvm)
->>>>> +{
->>>>> +    return READ_ONCE(kvm->arch.realm.state);
->>>>> +}
->>>>> +
->>>>> +static inline void kvm_set_realm_state(struct kvm *kvm,
->>>>> +                       enum realm_state new_state)
->>>>> +{
->>>>> +    WRITE_ONCE(kvm->arch.realm.state, new_state);
->>>>> +}
->>>>> +
->>>>> +static inline bool kvm_realm_is_created(struct kvm *kvm)
->>>>> +{
->>>>> +    return kvm_vm_is_realm(kvm) && kvm_realm_state(kvm) !=
->>>>> REALM_STATE_NONE;
->>>>> +}
->>>>> +
->>>>>    #endif /* __ARM64_KVM_EMULATE_H__ */
->>>>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/
->>>>> asm/kvm_host.h
->>>>> index ccd2dc8f73c3..7d0222047ca1 100644
->>>>> --- a/arch/arm64/include/asm/kvm_host.h
->>>>> +++ b/arch/arm64/include/asm/kvm_host.h
->>>>> @@ -29,6 +29,7 @@
->>>>>    #include <asm/kvm.h>
->>>>>    #include <asm/kvm_asm.h>
->>>>>    #include <asm/kvm_hcall.h>
->>>>> +#include <asm/kvm_rmi.h>
->>>>>    #include <asm/vncr_mapping.h>
->>>>>      #define __KVM_HAVE_ARCH_INTC_INITIALIZED
->>>>> @@ -48,6 +49,13 @@
->>>>>    #define KVM_VCPU_MAX_FEATURES 10
->>>>>    #define KVM_VCPU_VALID_FEATURES    (BIT(KVM_VCPU_MAX_FEATURES) - 1)
->>>>>    +#define KVM_REALM_VCPU_VALID_FEATURES            \
->>>>> +    (BIT(KVM_ARM_VCPU_POWER_OFF)        |    \
->>>>> +     BIT(KVM_ARM_VCPU_PSCI_0_2)        |    \
->>>>> +     BIT(KVM_ARM_VCPU_PTRAUTH_ADDRESS)    |    \
->>>>> +     BIT(KVM_ARM_VCPU_SVE)            |    \
->>>>> +     BIT(KVM_ARM_VCPU_PTRAUTH_GENERIC))
->>>>> +
->>>>>    #define KVM_REQ_SLEEP \
->>>>>        KVM_ARCH_REQ_FLAGS(0, KVM_REQUEST_WAIT | KVM_REQUEST_NO_WAKEUP)
->>>>>    #define KVM_REQ_IRQ_PENDING        KVM_ARCH_REQ(1)
->>>>> @@ -409,6 +417,7 @@ enum kvm_arm_vm_flavor {
->>>>>        VM_PKVM,        /* Normal guests on pKVM */
->>>>>        MARKER(__VM_PROTECTED),
->>>>>        VM_PROTECTED_PKVM,    /* Protected VM */
->>>>> +    VM_REALM,        /* CCA */
->>>>>        VM_FLAVOR_MAX
->>>>>    };
->>>>>    @@ -502,11 +511,14 @@ struct kvm_arch {
->>>>>        /* Count the number of VNCR_EL2 TLBs */
->>>>>        atomic_t vncr_tlb_count;
->>>>>    -    /*
->>>>> -     * For an untrusted host VM, 'pkvm.handle' is used to lookup
->>>>> -     * the associated pKVM instance in the hypervisor.
->>>>> -     */
->>>>> -    struct kvm_protected_vm pkvm;
->>>>> +    union {
->>>>> +        /*
->>>>> +         * For an untrusted host VM, 'pkvm.handle' is used to lookup
->>>>> +         * the associated pKVM instance in the hypervisor.
->>>>> +         */
->>>>> +        struct kvm_protected_vm pkvm;
->>>>> +        struct realm realm;
->>>>> +    };
->>>>>      #ifdef CONFIG_PTDUMP_STAGE2_DEBUGFS
->>>>>        /* Nested virtualization info */
->>>>> @@ -1572,30 +1584,43 @@ struct kvm *kvm_arch_alloc_vm(void);
->>>>>      #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
->>>>>    -#ifdef __KVM_NVHE_HYPERVISOR__
->>>>> +#define kvm_vm_is_protected(kvm)    ((kvm)->arch.vm_flavor >=
->>>>> __VM_PROTECTED)
->>>>>    -#define kvm_vm_is_protected(kvm)            \
->>>>> -    (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor ==
->>>>> VM_PROTECTED_PKVM))
->>>>> +#ifdef __KVM_NVHE_HYPERVISOR__
->>>>>    /*
->>>>>     * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to
->>>>> convert the
->>>>>     * pointer to the hyp VA. With pKVM, the nVHE code runs with the
->>>>> hyp_vcpu,
->>>>> - * which is populated correctly and is gated on
->>>>> is_protected_kvm_enabled().
->>>>> + * which is populated correctly. Always vcpu_is_protected_pkvm(),
->>>>> which is
->>>>> + * gated on is_protected_kvm_enabled().
->>>>> + */
->>>>> +#define vcpu_is_protected(vcpu)        BUILD_BUG_ON(1)
->>>>> +#else
->>>>> +#define vcpu_is_protected(vcpu)        kvm_vm_is_protected((vcpu)-
->>>>>> kvm)
->>>>> +#endif
->>>>> +
->>>>> +#define kvm_vm_is_protected_pkvm(kvm)                    \
->>>>> +    (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor ==
->>>>> VM_PROTECTED_PKVM))
->>>>> +
->>>>> +/*
->>>>> + * Rely on is_protected_kvm_enabled() check in
->>>>> kvm_vm_is_protected_pkvm() to
->>>>> + * make sure the vcpu->kvm is always valid VA in the context
->>>>>     */
->>>>> -#define vcpu_is_protected(vcpu)                        \
->>>>> +#define vcpu_is_protected_pkvm(vcpu)                    \
->>>>>        ({                                \
->>>>>            struct kvm *__kvm = READ_ONCE((vcpu)->kvm);        \
->>>>>                                        \
->>>>> -        (__kvm && kvm_vm_is_protected(__kvm));            \
->>>>> +        (__kvm && kvm_vm_is_protected_pkvm(__kvm));        \
->>>>>        })
->>>>
->>>> I've tested the integration branch and found that the secondary CPU
->>>> bring-up fails:
->>>>       [    1.426502] smp: Bringing up secondary CPUs ...
->>>>       [    9.194442] CPU1: failed to come online
->>>>       [    9.194558] CPU1: failed in unknown state : 0x0
->>>>       [    9.197714] smp: Brought up 1 node, 1 CPU
->>>>       [    9.197775] SMP: Total of 1 processors activated.
->>>>
->>>> It seems that this patch missed replacing a use of
->>>> vcpu_is_protected() introduced by the following commit:
->>>>
->>>>       25d726dddc23 ("KVM: arm64: Reject host power-on of a vCPU that
->>>> EL2 holds powered off")
->>>>
->>>> The following diff fixes the issue for me. Also, though not included in
->>>> the diff, I think vcpu_is_protected() in __pkvm_create_hyp_vcpu() should
->>>> be replaced with vcpu_is_protected_pkvm() as well.
->>>
->>> Thanks for the patch - I'll include that in v2.
+Am 12.11.26 um 16:19 schrieb Ulf Hansson:
+> On Mon, Oct 19, 2026 at 11:24 AM Leonard Lausen <leonard@lausen.nl> wrote:
 >>
->> Please could we make it something like this :
+>> On the NanoPi M5, boot hangs during Panfrost initialization. Before this
+>> fix, booting required blacklisting Panfrost on the kernel command line.
+>> Loading Panfrost after boot reports a GPU power-domain acknowledgment
+>> timeout:
 >>
->> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
->> index 4edcaf1090f9..2108c1bf5481 100644
->> --- a/arch/arm64/kvm/arm.c
->> +++ b/arch/arm64/kvm/arm.c
->> @@ -989,7 +989,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu
->> *vcpu)
->>   /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
->>   bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
->>   {
->> -       return READ_ONCE(vcpu->arch.mp_state.mp_state) ==
->> KVM_MP_STATE_UNINITIALIZED;
->> +       return vcpu_is_protected_pkvm(vcpu) &&
->> +               READ_ONCE(vcpu->arch.mp_state.mp_state) ==
->> KVM_MP_STATE_UNINITIALIZED;
->>   }
-> 
-> This part looks good.
-> 
->>   int kvm_arch_vcpu_ioctl_get_mpstate(struct kvm_vcpu *vcpu,
->> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
->> index b01f8d44033f..b7606c3542f8 100644
->> --- a/arch/arm64/kvm/psci.c
->> +++ b/arch/arm64/kvm/psci.c
->> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct kvm_vcpu
->> *source_vcpu)
->>           * STOPPED before that is the VMM's pause.
->>           */
->>          if (!kvm_arm_vcpu_stopped(vcpu) ||
->> -           (vcpu_is_protected(vcpu) && !
->> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
->> +           !kvm_pkvm_vcpu_is_powered_off(vcpu)) {
->>                  if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
->>                          ret = PSCI_RET_ALREADY_ON;
->>                  else
-> 
-> I think this is broken. kvm_pkvm_vcpu_is_powered_off() is defined as:
-> 
-> bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
-> {
-> 	return vcpu_is_protected_pkvm(vcpu) &&
-> 		READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
-> }
-> 
-> So if !vcpu_is_protected_pkvm() then it's always false, so this would
-> break non-pKVM VMs.
-
-Bah, you are right. I think the whole thing needs to go in a helper.
-Something like
-
-kvm_arm_vcpu_is_turned_on()
-
-For now, lets fix the call and deal with it later.
-
-Suzuki
-
-> 
-> Thanks,
-> Steve
-> 
+>>    failed to get ack on domain 'gpu', val=0x113ff
 >>
->> i.e, check for pkvm vcpu as it should have been in the first case,
->> rather than spilling the check for protected vcpu and an explicit
->> check to see if that is powered off ?
+>> Add regulator support to the RK3576 domain descriptors and mark the GPU
+>> domain as regulator-dependent. This lets the existing Rockchip
+>> power-domain regulator handling manage the GPU domain supply.
 >>
+>> A corresponding domain-supply property is needed in the board DT.
 >>
->> Suzuki>
->>> Thanks,
->>> Steve
->>>
->>>> Thanks,
->>>> Kohei
->>>>
->>>> ---8<---
->>>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
->>>> index 522a837637fe..be676c13e219 100644
->>>> --- a/arch/arm64/kvm/arm.c
->>>> +++ b/arch/arm64/kvm/arm.c
->>>> @@ -960,7 +960,8 @@ static void __kvm_arm_vcpu_power_off(struct
->>>> kvm_vcpu *vcpu, u32 mp_state)
->>>>    /* The guest's own CPU_OFF: EL2 has already powered the vCPU off. */
->>>>    void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu)
->>>>    {
->>>> -       u32 mp_state = vcpu_is_protected(vcpu) ?
->>>> KVM_MP_STATE_UNINITIALIZED : KVM_MP_STATE_STOPPED;
->>>> +       u32 mp_state = vcpu_is_protected_pkvm(vcpu) ?
->>>> +                      KVM_MP_STATE_UNINITIALIZED :
->>>> KVM_MP_STATE_STOPPED;
->>>>
->>>>           spin_lock(&vcpu->arch.mp_state_lock);
->>>>           __kvm_arm_vcpu_power_off(vcpu, mp_state);
->>>> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
->>>> index b01f8d44033f..6674e8d6ff4c 100644
->>>> --- a/arch/arm64/kvm/psci.c
->>>> +++ b/arch/arm64/kvm/psci.c
->>>> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct
->>>> kvm_vcpu *source_vcpu)
->>>>            * STOPPED before that is the VMM's pause.
->>>>            */
->>>>           if (!kvm_arm_vcpu_stopped(vcpu) ||
->>>> -           (vcpu_is_protected(vcpu) && !
->>>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
->>>> +           (vcpu_is_protected_pkvm(vcpu) && !
->>>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
->>>>                   if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
->>>>                           ret = PSCI_RET_ALREADY_ON;
->>>>                   else
->>>>
->>>
+>> The regulator-capable descriptors are based on the regulator support in
+>> Jiaxing Hu's pending RK3576 NPU enablement series, without its NPU settle
+>> delay changes.
 >>
+>> Link: https://lore.kernel.org/all/20260924102135.92217-10-gahing@gahingwoo.com/
+>> Fixes: cfee1b507758 ("pmdomain: rockchip: Add support for RK3576 SoC")
+>> Signed-off-by: Leonard Lausen <leonard@lausen.nl>
 > 
+> So this should be applied as a fix and tagged for stable kernels, right?
+Hi Uffe,
 
+No concerns on backporting from my side. I was previously running 6.19 
+and had to disable panfrost to avoid the boot hang fixed here. I 
+validated the fix only on 7.3 however. If you prefer only applying to 
+next, it also works for me.
+
+Best regards
+Leonard
 
