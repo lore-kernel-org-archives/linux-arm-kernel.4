@@ -2,105 +2,105 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8A35606A893
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281DD606A88D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=exr2H6gw;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=jQCB+TdO;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=W0uhX9kq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aiARtarl;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=NMOTIcR+;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=aEFgCxIg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ht9dr7DTrvc5N3Sijprb8a3IFfZmsbP7xbKAQ2/ikn8=; b=exr2H6gwfQg7Nr
-	HdMKx/mXcXbU5Y22ADQEVZSbZqj6YArR/PfheTSsL7al+dhuViAekUbyoztgzz8u5e+nDv01BiYe7
-	clNnZSResPYxF3ZOkYPygHWfwD3J/z+nz7R7TTbFI59sG+Ird54vBtOvFBhh1hHCvhjYytJ36vx2+
-	+RroE2e/gRCESrcFw0uwfU0tZ+mT7cqWMdU86SMSciUj+QFrmy1+pWqIIEksEDxl/0UqgpJrvLRKS
-	Qa3pdNXllG7s9m3Hce6DcGKzci0PouQXLHNnko5HbLK5UA8g33a3iakwMS1V45LH0+PwGOJb4ardh
-	AczqRFA5HTHbJvj67yHA==;
+	List-Owner; bh=wusg38HgCb4IaOp5BRSapHlon+L+ha7WNeunLyBc97o=; b=aiARtarlM9oSWT
+	2dBqAC2Zj9exk8pipqOH6Fvs2a1WnJjNCSdEU2LNLGoSll6FnpJmgynHVH2+8jwNvHJhiVWLdc7zC
+	NUufVwuU10gw8ZriCRBqgzZBtpRKOQGoM5YT9iQQKpVtAuuQLF914QE27liVadtmEHsithKZuwNsl
+	xMC01WwshDUP55l5Xz/x/SEt5ozShH2TIIyE8oe9WMIUUCiAD4haHQ9BZXMa1GHf53GRgkv+FzvIo
+	tqivLKM8GfKWUDqp2bxr0AyKe6bMzc23LokTVc2knji4c38/ceGwuR9gYF78Vy/JUdyy4xdjX6sBn
+	/zdcbSZEZtuOoz6GX00Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXlQ-0000000Abi3-0oxq;
-	Thu, 12 Nov 2026 16:35:04 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xRXlR-0000000AbjE-36eK;
+	Thu, 12 Nov 2026 16:35:05 +0000
+Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXl8-0000000AbaJ-3m2b
+	id 1xRXlA-0000000Abaj-3Oxs
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:34:48 +0000
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ACFZVgK1736574
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:34:46 GMT
+	Thu, 12 Nov 2026 16:34:51 +0000
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ACFZjdE3180978
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:34:48 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ht9dr7DTrvc5N3Sijprb8a3IFfZmsbP7xbKAQ2/ikn8=; b=jQCB+TdO9HvPNp0E
-	q4v5lmgSswC2h7Spqpk5ruzI5e4LHB9uJjkwMFCcEekKUZyej6K1sOnPBVrJzHNC
-	c2ojSkGPNzD6Ep/qyZwDewP3Ulat34rgrq1Da9rBXKXU/D4XW5LwK1eMlZbOLbgs
-	MlXShAKJySgUCE4/75lDBSJhHeN/dIteMelt+ZLF84kp4gGFmhdHYSe4odw+BegI
-	XPJNDUudYqk0t6iOpWnVZCAvC+lzWBRlDoGo3wz9ueyY1yscyL1Cg21K2BF2B8wR
-	ufqThHxLq1KlLrk/t15NyfCLJY4fhYvRcX6tcASNu7T6bleqldQnIGLreSe0FMy5
-	RIykYQ==
-Received: from mail-ua1-f72.google.com (mail-ua1-f72.google.com [209.85.222.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hw7nc2c97-1
+	wusg38HgCb4IaOp5BRSapHlon+L+ha7WNeunLyBc97o=; b=NMOTIcR+krVHn61y
+	LKpFviS9NKCyKuBdi4dH0rTrbJmDpQtw5A+t44i3oCzYTZwzdBizBZSCozLNZ/Ad
+	jRokNnn01vJwvhypnq/AL0Svphb4IPMfx06lfUbobQ6sIH/lUjiMfH9gFzIuQNsL
+	7kTUBEDPo2dRHosoRAU5Q8oXZQt1olTF6nbq+WnY2IyCtekO839acQgsr5bnirlF
+	lRhLjv5PwZvcLlUdwj/WXrkAY17QkZZ006V+h7WRCCegfRB+I9Clv9CX6iI2wLlY
+	cCthBbfgF22SgnwsvTIB2f432HgYeYXPRRNHGhLxKNj9bnehicaOVBikJCJLinxN
+	cDoU3w==
+Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hwc1j18vc-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:34:46 +0000 (GMT)
-Received: by mail-ua1-f72.google.com with SMTP id a1e0cc1a2514c-98a829c43f3so21176241.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 08:34:46 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:34:47 +0000 (GMT)
+Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-99b92772710so30074241.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 08:34:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794501285; x=1795106085; darn=lists.infradead.org;
+        d=oss.qualcomm.com; s=google; t=1794501287; x=1795106087; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=ht9dr7DTrvc5N3Sijprb8a3IFfZmsbP7xbKAQ2/ikn8=;
-        b=W0uhX9kqSglurwCd+Xv3XT6HPOFnDnSw21BC89PuoQporPa34N/aWJxSeYh+O78p7J
-         NaF+fe0dQ39NoxWjZKXr6xuArnnjnFFYt7VR1N3A8jwAe86w8zf52onqmxdCLzUN/HSx
-         h2vk2Z48+/UJM02pFPymClp8GM8pnzLDZ77o/fUleC2LO1VpU3OR/nGLgZo7gLNu0Qo+
-         y+EHJh7MzuzCkdjmv9yck52D+YqL67to6iprQjbC/tQGvDDP7Dk8/3WQi2Rs1X5lcA9W
-         yrP1a0ehDxeGI7DsZvBOGfhmHmjZEqdFCqFK+7Mafyf2R0HFYVkSseeiSOyNhEYNTIKy
-         yEpQ==
+        bh=wusg38HgCb4IaOp5BRSapHlon+L+ha7WNeunLyBc97o=;
+        b=aEFgCxIgOy1VCtqhLLbSwel4tiDWWwgVvS3xdb1lCLoGswBAebxF80gF76vMK2lbEO
+         Ks75T4EWhv3ym73/sgo3Vpu0XmTe6pr+8RpLVMSqtnWWCyxB7Va01vOkUYttafTnXYsY
+         Lzr2LDlT3vBNzYcbptdXJA9tLVRhGPowc9Z8nm9K1yHj37cF1Q3VEOqrL1xGhnFGg4Eq
+         qrvSxSNfGVa3HoCv3Ngj8V37GRkY6NolDLQSZ5Eofl5CPDPh0l7TnR5DaiQ7AWK3S6NJ
+         Cb7pqOZLNn05dJU5WLP9KYcutY2pwISnAn+XAnUO4YcWhzjZ8AG51ZS7kF1Q4Nqf7kQx
+         AKdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794501285; x=1795106085;
+        d=1e100.net; s=20260707; t=1794501287; x=1795106087;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ht9dr7DTrvc5N3Sijprb8a3IFfZmsbP7xbKAQ2/ikn8=;
-        b=HYdI1/G71atbcxtc5eB8vV2F7GRfJQjp5jvDPhtj0PW6G8iBLKP16+2Nh/jlJeFwBx
-         WUwZAo9jqg6gk0Q2htjywztUxi7uGmYdvOCFASmjmoWcV6W91Rq4RNoaE++PoHRM09Ku
-         kmuuELWeeWGE+eRIgBcAOmi5GXvRtQev/EOb3ixMAdRamP8jvWhhTmgKnS1Yzyh+UhRI
-         qk4vtzTFCgu20cXa1UOayuqtOphA+wGPC7214JtJuoWfBI/+sF1u3nr03++5WB38LaY9
-         kcMkMLAzvaC2LuLf9kP8FGvID7wn9E2gmeu+exqDhpguDafID80YHCNbED0SGmWF//Jx
-         6bNQ==
-X-Forwarded-Encrypted: i=1; AL+hErFT78XrLAydBi5zK9pEi1tZLidStWFTIEh5ytVkzofn+sfX5r2H1mzlxtZ+23sZtMLt6fswRLz/pmjD4MuuX8H/@lists.infradead.org
-X-Gm-Message-State: APuU4Z+DqY+JW1jl31uVtF0xO+Ao7K3KgRO1Vx8fa7Tg3BuUIBLWXzZB
-	zfcYKFrkzL46MiXWx52vNSFaNAFh5WHGA/3c5T3b2xHFOKSDf//gVGz7P45tZ9RutBkBl4Ddgra
-	BKZYJfkohN0uLEp16thU97/tTtw1KUqwMIb/CSzbXUteQjOXPPQ7dNk8zmrajX6uFFhR/DpSlUJ
-	IduQ==
-X-Gm-Gg: AYBFou2+N5XrbIQsWNRnVnuehuDCztTkZti066H4/hsW8uTrWrE2247N5517OhH1eT+
-	7J45UkxfOP9YFvTFvFieu2JO0i7LZ9DrYDjhetOxztBcGlnBqGuG4IL9ANrFD5aeP95t5Dx6cLz
-	X+BDLGG1LL7am8Z4gQcW04ugJyReDQaic3aiur4pP6DKpSnDCTSaIH1LfsTVUgaXHEu2ysfbkX7
-	rwF6KTqsNlqJIEWgT7/6KWpAGnkJtWNafGs7Czfz6hTaFSFnuuoXmbwJXLcnKcud+BNRCniJ1Hz
-	ccrjTiKVi66VO5RYPwJxIXNwBKiNNyTT237Y4GR7sWCwCGyjMibtMCgfAnXDIbgH2QF24YAjxAr
-	oyYOnoHG54Zmim00ya2aoBwDgapwC29kxCtp3sGpmOjHE4JVb6FWIJdEERIp67CI=
-X-Received: by 2002:a05:6102:2928:b0:7cc:95ed:3147 with SMTP id ada2fe7eead31-7d5061e6d3bmr2487615137.34.1794501285297;
-        Thu, 12 Nov 2026 08:34:45 -0800 (PST)
-X-Received: by 2002:a05:6102:2928:b0:7cc:95ed:3147 with SMTP id ada2fe7eead31-7d5061e6d3bmr2487585137.34.1794501284694;
-        Thu, 12 Nov 2026 08:34:44 -0800 (PST)
+        bh=wusg38HgCb4IaOp5BRSapHlon+L+ha7WNeunLyBc97o=;
+        b=k/m525fPOy6RrsJs1Ew2XB48zL2URrwaLb4HVF0HyZJwrZOoKJweSERvNxHHsFgiSW
+         gqjrWWj/sUuAWQ2l6dggOnxGP4Qf4lA2FfrerrgFI+p1nB4W+BvX3Rk3I/xb+LQKO+70
+         SBG9j12mYRI81jj/HlmaMAXGA/4466Sp9ntzKYkF4rzpZoIG0njPa0UuHmW0tVnrhGNs
+         XdVuuHBrnfkpsGW2a4NmlFxSqrLZKuMpqZ0Fwngj+nhYPMRe/K9lkNC61/I/I1jGngID
+         AuzW87/VI5Vx4qYa6dTTQqa6QBlRY6g+VuEA4z0L/kXTbfd6HZR/lBNAlrMKxkMLYJFr
+         J7hw==
+X-Forwarded-Encrypted: i=1; AL+hErELS8TlmJBif1QI1NTcSHcsdGDLxi9ubrbuL4waZGUT3OFTnzStD+QiwYL6winz067gBLO02A4/0teFeoBsDwQi@lists.infradead.org
+X-Gm-Message-State: APuU4Z8a0TH6ekJGRqoOCblJHVtxKeFpYrZD5ci8aHXLfK2yOlZIyzda
+	6H09nCuF5ew82JSeahYDkgE77V3Zsraa4bLmaXj/zeZQH6u67SpskBsVpCscmim5oC2J7oSfa2O
+	x+1pLcP276a52mHLpND5WZdXmT27CcQ7b7fNUoecuu4STQro7IXSx6TAyd5sD8czPryweS2GhSU
+	Wa5w==
+X-Gm-Gg: AYBFou2OlqRCeajvOEZjtwS5oedB/ufVmpw+RoYDVYIhYoSqp4EaeBzws6op+1Lv6/5
+	kGVVCL1dFEQR4TZO+IZ7Fi/HjqbJ9Rs3gc6Vi9te5MZrgZUKoZ8vH5dIVs52x0pqZZQi4+psBcC
+	lWv/wE3E2EulNvZlVMq9Y/bwZ+Oxn7aJP2G6WfIX99ts09k234Q+SBSsUR0PuNl/cv/jojxKn0j
+	YBD2lPM/JLRudQsqBwHjkcbm7DLGGHEo5rwWTIMQoejkBrityOc9f+SfFbOpDETpysvSh+tpSAO
+	tJLWvYJwJV6qOUsYHRBKaoD6p8zthcNhhYGgJvych8b30uO3Xr+e/agISAIqwJkoh+fwDlSEAne
+	P4hWewHXD+QrMwbkQ0J9Pef4XTyr93/0z65HuGNAvhdghh5fNF/nmbmRanAa7JAQ=
+X-Received: by 2002:a05:6102:6051:b0:7cc:56a:58d3 with SMTP id ada2fe7eead31-7d5061fc3c3mr2720226137.31.1794501286902;
+        Thu, 12 Nov 2026 08:34:46 -0800 (PST)
+X-Received: by 2002:a05:6102:6051:b0:7cc:56a:58d3 with SMTP id ada2fe7eead31-7d5061fc3c3mr2720208137.31.1794501286355;
+        Thu, 12 Nov 2026 08:34:46 -0800 (PST)
 Received: from localhost ([93.66.104.131])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2538b9sm144499035e9.1.2026.11.12.08.34.43
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c603f4d29sm130165f8f.35.2026.11.12.08.34.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 08:34:43 -0800 (PST)
+        Thu, 12 Nov 2026 08:34:45 -0800 (PST)
 From: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-Date: Thu, 12 Nov 2026 17:34:10 +0100
-Subject: [PATCH net-next v10 1/4] net: xdp: add __xdp_build_skb_from_buff()
+Date: Thu, 12 Nov 2026 17:34:11 +0100
+Subject: [PATCH net-next v10 2/4] net: xdp: add xdp_buff_shrink_tail()
  helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-stmmac-rx-mb-v10-1-d3d04b65c6bc@oss.qualcomm.com>
+Message-Id: <20261112-stmmac-rx-mb-v10-2-d3d04b65c6bc@oss.qualcomm.com>
 References: <20261112-stmmac-rx-mb-v10-0-d3d04b65c6bc@oss.qualcomm.com>
 In-Reply-To: <20261112-stmmac-rx-mb-v10-0-d3d04b65c6bc@oss.qualcomm.com>
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
@@ -128,36 +128,36 @@ Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         bpf@vger.kernel.org,
         Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Proofpoint-ORIG-GUID: afDenTfpYFR27lpmFD4mQm8uxa_Kbqr-
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDA2NiBTYWx0ZWRfX8z+L3O9x9/kf
- fVCw7z140N3LgqdjM/atXCLwn9SdJ7k+nEtapvV5Kz6qXMnxY9LfTc2yEqBLQ7kU/U33D5QmTY/
- GuBEggpGeA32ZDjqoegKK9Pj02XLTpE=
-X-Proofpoint-GUID: afDenTfpYFR27lpmFD4mQm8uxa_Kbqr-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDA2NiBTYWx0ZWRfX+QQcjYk2/SYO
- UEHpcUmpBuZPoVjyigPx/EhL5sv1FE/0/Z27e57Q5oB6SrhfAXuYbYoE4ppRJl1Z4WEhS/85lNX
- gbRq2xa194NdaA0L6yJJKKBh0XnP5Jnjo6sTZGiMkH7R5GoIPZ89/cYp9+1PG2lU+8NDldengRI
- WB3MHTOXXmMm+HmGZTCwADuHQ/YZzwKRMW1P9M+5BpDl4ocIIzfjine5NJH5q/b1yUKpQ9Y2bjH
- /PXcG9SWk2GG1z+dgwxrl+j0tXM56q5lkrmuskMYtbkYA9IQPKMk/V9vU8B3pRomDPqRfCST51N
- jBTb/GEcB4gVHG3pGmPX5S0ntl5+rVtEeDou9AI7g2apYEu1/RfzyxCvFx2A+ptvkzoGKGNFIZD
- qCWwF4ncRA/1qtufO7v73ei4OtWIm5UJKbd4ODhRgrnkFiTKE51C9UbsIqBimqg+Tkpf+pcqlEi
- RvX5K+akfBCy5S38Hcw==
-X-Authority-Analysis: v=2.4 cv=A8b5rKWG c=1 sm=1 tr=0 ts=6af5eaa6 cx=c_pps
- a=ULNsgckmlI/WJG3HAyAuOQ==:117 a=cAAIdyqZgEis9HJxay2Blw==:17
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDA2NSBTYWx0ZWRfXyOzVIOZPyoHE
+ I/d0cJyNrgRNaLYib6H2nZhWX3ZRZWdG0397Hwk6NDxZwOTjtfgZRRCnd7fU5D1nDwI359fDfxI
+ D3WrqWY0MMGp3sj839mvr23odPfYYgs=
+X-Proofpoint-ORIG-GUID: jBSMQhoQgL7hhbBXghLshPQ3Q6yR5nqW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDA2NSBTYWx0ZWRfXxJ/n891tfema
+ CdtBSlczGzgH6nJF4bZhE66QhaRyKvdiRruQNCw7LWGNUJBxp4XgG6UYUbapKY1nkoWg8leujN1
+ v5rPQkCDeRPTE4Z6Vkmg8O1ZHUU9iOOX4PVcLwEIN2fltPS80muF+gPPro+OoGASqG6iq6JEF8m
+ Kjujzvfn3oodarkUOyygrANa3vfd7fxajULy9UZalnAjW7OXO2/kH7m6Rf5w4psAbgmuZ38S2Ob
+ 66SJOhDaA7uTdGOpiVivdWxhlUoQRPcShNOIkXmq9p8W3dF/rHc5Zd31iLFqP+GFlQdMU8KJgA1
+ LmqT26JFbzIfoWdwxs14RLcW7gkGWkysc3dtnBO6O4yC1rHY4yRjFeQjE/qvW5bLAxvyRN/zy0P
+ UqDRyUvo19i6mTk8h9nAQpQ0WWESkTC4aUaZ1u/z3qrXIWCjv/F0+cl6cjDY/EOePEYudbw04zU
+ u5rFYPRT4qX4KJRfRSw==
+X-Proofpoint-GUID: jBSMQhoQgL7hhbBXghLshPQ3Q6yR5nqW
+X-Authority-Analysis: v=2.4 cv=Vqe2kO2n c=1 sm=1 tr=0 ts=6af5eaa7 cx=c_pps
+ a=KB4UBwrhAZV1kjiGHFQexw==:117 a=cAAIdyqZgEis9HJxay2Blw==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=ksGhbug9fU3i8ddnHjYA:9 a=QEXdDO2ut3YA:10
- a=1WsBpfsz9X-RYQiigVTh:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
+ a=EUspDBNiAAAA:8 a=7V0IxQAAFVITDsu0YkUA:9 a=QEXdDO2ut3YA:10
+ a=o1xkdb1NAhiiM49bd1HK:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-12_02,2026-11-11_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 impostorscore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 clxscore=1015 priorityscore=1501 spamscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 phishscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611120066
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611120065
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_083447_041407_D59C4051 
-X-CRM114-Status: GOOD (  20.11  )
+X-CRM114-CacheID: sfid-20261112_083449_152422_7F9702DC 
+X-CRM114-Status: GOOD (  24.65  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -177,95 +177,260 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-xdp_build_skb_from_buff() always calls eth_type_trans() on the skb it
-builds, which consumes the Ethernet header and advances skb->data.
-Drivers that still need to process the L2 header before protocol parsing
-therefore cannot use the helper.
+Move the XDP tail-shrink logic out of bpf_xdp_adjust_tail() into
+net/core/xdp.c so it can be shared with drivers. The frag helpers
+(bpf_xdp_shrink_data_zc(), bpf_xdp_shrink_data() and
+bpf_xdp_frags_shrink_tail()) move along with it; the latter two are
+renamed to xdp_buff_shrink_data() and xdp_frags_shrink_tail().
 
-stmmac is such a driver: its software VLAN path (stmmac_rx_vlan()) reads
-the tag at skb->data and shifts the MAC addresses, so it has to run
-before eth_type_trans().
+Add xdp_buff_shrink_tail(), which handles the linear case too and is
+exported with EXPORT_SYMBOL_GPL() for driver use. Unlike
+bpf_xdp_adjust_tail(), it takes the number of bytes to remove as a
+positive value; bpf_xdp_adjust_tail() keeps its signed offset ABI and
+passes -offset for the shrink case. Negative offsets are rejected.
 
-Split the implementation into __xdp_build_skb_from_buff(), which builds
-the skb (including the recycle mark, the Rx queue index and the frags
-info) but leaves protocol parsing to the caller, and make
-xdp_build_skb_from_buff() an inline wrapper that still calls
-eth_type_trans() as before. There is no functional change for existing
-users; a follow-up patch will let stmmac use the underscore variant.
+bpf_xdp_pull_data() keeps using the frag helper under its new name.
+Behavior for valid offsets is unchanged.
+
+This lets stmmac use the common helper to strip the Ethernet FCS from
+the xdp_buff it accumulates for a multi-descriptor frame.
 
 Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
 ---
- include/net/xdp.h | 17 ++++++++++++++++-
- net/core/xdp.c    | 11 +++++------
- 2 files changed, 21 insertions(+), 7 deletions(-)
+ include/net/xdp.h |  3 ++
+ net/core/filter.c | 83 +++-----------------------------------------------
+ net/core/xdp.c    | 91 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 98 insertions(+), 79 deletions(-)
 
 diff --git a/include/net/xdp.h b/include/net/xdp.h
-index 07231adfb5f8..3a25307e1d67 100644
+index 3a25307e1d67..1ec49f7a9d7a 100644
 --- a/include/net/xdp.h
 +++ b/include/net/xdp.h
-@@ -379,7 +379,22 @@ xdp_update_skb_frags_info(struct sk_buff *skb, u8 nr_frags,
- void xdp_warn(const char *msg, const char *func, const int line);
- #define XDP_WARN(msg) xdp_warn(msg, __func__, __LINE__)
+@@ -403,6 +403,9 @@ struct sk_buff *__xdp_build_skb_from_frame(struct xdp_frame *xdpf,
+ struct sk_buff *xdp_build_skb_from_frame(struct xdp_frame *xdpf,
+ 					 struct net_device *dev);
+ struct xdp_frame *xdpf_clone(struct xdp_frame *xdpf);
++int xdp_buff_shrink_tail(struct xdp_buff *xdp, int offset);
++bool xdp_buff_shrink_data(struct xdp_buff *xdp, skb_frag_t *frag,
++			  int shrink, bool tail);
  
--struct sk_buff *xdp_build_skb_from_buff(const struct xdp_buff *xdp);
-+struct sk_buff *__xdp_build_skb_from_buff(const struct xdp_buff *xdp);
-+static inline
-+struct sk_buff *xdp_build_skb_from_buff(const struct xdp_buff *xdp)
-+{
-+	const struct xdp_rxq_info *rxq = xdp->rxq;
-+	struct sk_buff *skb;
-+
-+	skb = __xdp_build_skb_from_buff(xdp);
-+	if (!skb)
-+		return NULL;
-+
-+	skb->protocol = eth_type_trans(skb, rxq->dev);
-+
-+	return skb;
-+}
-+
- struct sk_buff *xdp_build_skb_from_zc(struct xdp_buff *xdp);
- struct xdp_frame *xdp_convert_zc_to_xdp_frame(struct xdp_buff *xdp);
- struct sk_buff *__xdp_build_skb_from_frame(struct xdp_frame *xdpf,
-diff --git a/net/core/xdp.c b/net/core/xdp.c
-index 1d679e8fd649..470bf90d93ef 100644
---- a/net/core/xdp.c
-+++ b/net/core/xdp.c
-@@ -620,17 +620,18 @@ void xdp_warn(const char *msg, const char *func, const int line)
- EXPORT_SYMBOL_GPL(xdp_warn);
+ static inline
+ void xdp_convert_frame_to_buff(const struct xdp_frame *frame,
+diff --git a/net/core/filter.c b/net/core/filter.c
+index 9b8d5191c4ba..5ea45dfce7a2 100644
+--- a/net/core/filter.c
++++ b/net/core/filter.c
+@@ -4438,96 +4438,21 @@ static int bpf_xdp_frags_increase_tail(struct xdp_buff *xdp, int offset)
+ 	return 0;
+ }
  
- /**
-- * xdp_build_skb_from_buff - create an skb from &xdp_buff
-+ * __xdp_build_skb_from_buff - create an skb from &xdp_buff
-  * @xdp: &xdp_buff to convert to an skb
-  *
-  * Perform common operations to create a new skb to pass up the stack from
-  * &xdp_buff: allocate an skb head from the NAPI percpu cache, initialize
-  * skb data pointers and offsets, set the recycle bit if the buff is
-- * PP-backed, Rx queue index, protocol and update frags info.
-+ * PP-backed, record the Rx queue index and update frags info. Protocol
-+ * parsing is left to the caller.
-  *
-  * Return: new &sk_buff on success, %NULL on error.
-  */
--struct sk_buff *xdp_build_skb_from_buff(const struct xdp_buff *xdp)
-+struct sk_buff *__xdp_build_skb_from_buff(const struct xdp_buff *xdp)
+-static struct xdp_buff *bpf_xdp_shrink_data_zc(struct xdp_buff *xdp, int shrink,
+-					       bool tail, bool release)
+-{
+-	struct xdp_buff *zc_frag = tail ? xsk_buff_get_tail(xdp) :
+-					  xsk_buff_get_head(xdp);
+-
+-	if (release) {
+-		xsk_buff_del_frag(zc_frag);
+-	} else {
+-		if (tail)
+-			zc_frag->data_end -= shrink;
+-		else
+-			zc_frag->data += shrink;
+-	}
+-
+-	return zc_frag;
+-}
+-
+-static bool bpf_xdp_shrink_data(struct xdp_buff *xdp, skb_frag_t *frag,
+-				int shrink, bool tail)
+-{
+-	enum xdp_mem_type mem_type = xdp->rxq->mem.type;
+-	bool release = skb_frag_size(frag) == shrink;
+-	netmem_ref netmem = skb_frag_netmem(frag);
+-	struct xdp_buff *zc_frag = NULL;
+-
+-	if (mem_type == MEM_TYPE_XSK_BUFF_POOL) {
+-		netmem = 0;
+-		zc_frag = bpf_xdp_shrink_data_zc(xdp, shrink, tail, release);
+-	}
+-
+-	if (release) {
+-		__xdp_return(netmem, mem_type, false, zc_frag);
+-	} else {
+-		if (!tail)
+-			skb_frag_off_add(frag, shrink);
+-		skb_frag_size_sub(frag, shrink);
+-	}
+-
+-	return release;
+-}
+-
+-static int bpf_xdp_frags_shrink_tail(struct xdp_buff *xdp, int offset)
+-{
+-	struct skb_shared_info *sinfo = xdp_get_shared_info_from_buff(xdp);
+-	int i, n_frags_free = 0, len_free = 0;
+-
+-	if (unlikely(offset > (int)xdp_get_buff_len(xdp) - ETH_HLEN))
+-		return -EINVAL;
+-
+-	for (i = sinfo->nr_frags - 1; i >= 0 && offset > 0; i--) {
+-		skb_frag_t *frag = &sinfo->frags[i];
+-		int shrink = min_t(int, offset, skb_frag_size(frag));
+-
+-		len_free += shrink;
+-		offset -= shrink;
+-		if (bpf_xdp_shrink_data(xdp, frag, shrink, true))
+-			n_frags_free++;
+-	}
+-	sinfo->nr_frags -= n_frags_free;
+-	sinfo->xdp_frags_size -= len_free;
+-
+-	if (unlikely(!sinfo->nr_frags)) {
+-		xdp_buff_clear_frags_flag(xdp);
+-		xdp_buff_clear_frag_pfmemalloc(xdp);
+-		xdp->data_end -= offset;
+-	}
+-
+-	return 0;
+-}
+-
+ BPF_CALL_2(bpf_xdp_adjust_tail, struct xdp_buff *, xdp, int, offset)
  {
- 	const struct xdp_rxq_info *rxq = xdp->rxq;
- 	const struct skb_shared_info *sinfo;
-@@ -667,11 +668,9 @@ struct sk_buff *xdp_build_skb_from_buff(const struct xdp_buff *xdp)
- 					  tsize, xdp_buff_get_skb_flags(xdp));
+ 	void *data_hard_end = xdp_data_hard_end(xdp); /* use xdp->frame_sz */
+ 	void *data_end = xdp->data_end + offset;
+ 
+-	if (unlikely(xdp_buff_has_frags(xdp))) { /* non-linear xdp buff */
+-		if (offset < 0)
+-			return bpf_xdp_frags_shrink_tail(xdp, -offset);
++	if (offset < 0)
++		return xdp_buff_shrink_tail(xdp, -offset);
+ 
++	if (unlikely(xdp_buff_has_frags(xdp))) /* non-linear xdp buff */
+ 		return bpf_xdp_frags_increase_tail(xdp, offset);
+-	}
+ 
+ 	/* Notice that xdp_data_hard_end have reserved some tailroom */
+ 	if (unlikely(data_end > data_hard_end))
+ 		return -EINVAL;
+ 
+-	if (unlikely(data_end < xdp->data + ETH_HLEN))
+-		return -EINVAL;
+-
+ 	/* Clear memory area on grow, can contain uninit kernel memory */
+ 	if (offset > 0)
+ 		memset(xdp->data_end, 0, offset);
+@@ -12839,7 +12764,7 @@ __bpf_kfunc int bpf_xdp_pull_data(struct xdp_md *x, u32 len)
+ 		xdp->data_end += shrink;
+ 		sinfo->xdp_frags_size -= shrink;
+ 		delta -= shrink;
+-		if (bpf_xdp_shrink_data(xdp, frag, shrink, false))
++		if (xdp_buff_shrink_data(xdp, frag, shrink, false))
+ 			n_frags_free++;
  	}
  
--	skb->protocol = eth_type_trans(skb, rxq->dev);
--
- 	return skb;
+diff --git a/net/core/xdp.c b/net/core/xdp.c
+index 470bf90d93ef..7c98dbc2a770 100644
+--- a/net/core/xdp.c
++++ b/net/core/xdp.c
+@@ -672,6 +672,97 @@ struct sk_buff *__xdp_build_skb_from_buff(const struct xdp_buff *xdp)
  }
--EXPORT_SYMBOL_GPL(xdp_build_skb_from_buff);
-+EXPORT_SYMBOL_GPL(__xdp_build_skb_from_buff);
+ EXPORT_SYMBOL_GPL(__xdp_build_skb_from_buff);
  
++static struct xdp_buff *xdp_buff_shrink_data_zc(struct xdp_buff *xdp,
++						int shrink, bool tail,
++						bool release)
++{
++	struct xdp_buff *zc_frag = tail ? xsk_buff_get_tail(xdp) :
++					  xsk_buff_get_head(xdp);
++
++	if (release) {
++		xsk_buff_del_frag(zc_frag);
++	} else {
++		if (tail)
++			zc_frag->data_end -= shrink;
++		else
++			zc_frag->data += shrink;
++	}
++
++	return zc_frag;
++}
++
++bool xdp_buff_shrink_data(struct xdp_buff *xdp, skb_frag_t *frag,
++			  int shrink, bool tail)
++{
++	enum xdp_mem_type mem_type = xdp->rxq->mem.type;
++	bool release = skb_frag_size(frag) == shrink;
++	netmem_ref netmem = skb_frag_netmem(frag);
++	struct xdp_buff *zc_frag = NULL;
++
++	if (mem_type == MEM_TYPE_XSK_BUFF_POOL) {
++		netmem = 0;
++		zc_frag = xdp_buff_shrink_data_zc(xdp, shrink, tail, release);
++	}
++
++	if (release) {
++		__xdp_return(netmem, mem_type, false, zc_frag);
++	} else {
++		if (!tail)
++			skb_frag_off_add(frag, shrink);
++		skb_frag_size_sub(frag, shrink);
++	}
++
++	return release;
++}
++
++static int xdp_frags_shrink_tail(struct xdp_buff *xdp, int offset)
++{
++	struct skb_shared_info *sinfo = xdp_get_shared_info_from_buff(xdp);
++	int i, n_frags_free = 0, len_free = 0;
++
++	if (unlikely(offset > (int)xdp_get_buff_len(xdp) - ETH_HLEN))
++		return -EINVAL;
++
++	for (i = sinfo->nr_frags - 1; i >= 0 && offset > 0; i--) {
++		skb_frag_t *frag = &sinfo->frags[i];
++		int shrink = min_t(int, offset, skb_frag_size(frag));
++
++		len_free += shrink;
++		offset -= shrink;
++		if (xdp_buff_shrink_data(xdp, frag, shrink, true))
++			n_frags_free++;
++	}
++	sinfo->nr_frags -= n_frags_free;
++	sinfo->xdp_frags_size -= len_free;
++
++	if (unlikely(!sinfo->nr_frags)) {
++		xdp_buff_clear_frags_flag(xdp);
++		xdp_buff_clear_frag_pfmemalloc(xdp);
++		xdp->data_end -= offset;
++	}
++
++	return 0;
++}
++
++int xdp_buff_shrink_tail(struct xdp_buff *xdp, int offset)
++{
++	void *data_end = xdp->data_end - offset;
++
++	if (unlikely(offset < 0))
++		return -EINVAL;
++
++	if (unlikely(xdp_buff_has_frags(xdp))) /* non-linear xdp buff */
++		return xdp_frags_shrink_tail(xdp, offset);
++
++	if (unlikely(data_end < xdp->data + ETH_HLEN))
++		return -EINVAL;
++
++	xdp->data_end = data_end;
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(xdp_buff_shrink_tail);
++
  /**
   * xdp_copy_frags_from_zc - copy frags from XSk buff to skb
+  * @skb: skb to copy frags to
 
 -- 
 2.56.0
