@@ -2,117 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FEF6606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:31:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF36606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:32:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WHIz7+6n;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=Of5oYSrV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JB+JeW1e;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Zu31w4F9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=ei8dH+lQVjN7xvZrUNzulVpjahdWK5/bbzW8ZyK4nJk=; b=WHIz7+6nBE8TztVOyKETJ+15N6
-	BdHe76zBzO9CAm5cWF+MltXoaZov7VpAGTlRapu4AtMKcx3MSOAIEJFoyWThL+mPC5JIwooG0GoWO
-	f+zjEd5UMzYOUQGB7Kp73T3ztxbyULPSB6Ntfk1ZIBQEbnUe6Y5EiHtj1nRayBk0qbIR79z1yEOAi
-	pKpQdR0kpzkRLQh+sYgMlhOeygrHjYv2EoYCveF0Lleql95uSjLtn0C8Zzn6qo2On7nVfkGs47SJR
-	uHJNGaHEnOmo5CnZqCCnOfsbXqx+HqdaqWbx1YIidvyiHFj5EZMO2Cl46mz3SYw7WmgkD5q9gmwoY
-	S1981xdg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=rtcQGxtUUhhpjG057YI1ec0swZMNCA7K0pNp77UPUn4=; b=JB+JeW1eSU+hgk
+	zssg6jR7Gcoqdd4CRFPaPMm246p3QKPZ9nhd7kwAap1Bsyg7+Sudqw8YzUKja7A0nyIRFq/9w5lEp
+	6hN7Gm2lhi7N5HmB9VVBFOH0JgrPPQstH3WDd87Di7I5+hBWvlWaDbkFzpleg0bTkuG182AXXblai
+	UdxOEeyEjrbcHP1qW88Yp1nZrWW6yrfb0c30AWKqFyVfjKFw+ZKk36hWAJZh3NmmUv3NqPYO3BIKu
+	+L47eo2VVPb5W1ab5bgRvMoF9NQWSyYeAmFCYGv8fWiid1K7TIFnIraSbLlNs5VS85BrzZznJ8Ziu
+	AtPVMoQWyS2Cq2/5ljlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRR9N-00000009NiC-1aNn;
-	Thu, 12 Nov 2026 09:31:21 +0000
-Received: from mail-yx1-xb12d.google.com ([2607:f8b0:4864:20::b12d])
+	id 1xRRAH-00000009NvR-2tS4;
+	Thu, 12 Nov 2026 09:32:17 +0000
+Received: from mail-oo1-xc36.google.com ([2607:f8b0:4864:20::c36])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRR9K-00000009Nh0-22ks
+	id 1xRRAF-00000009NuQ-0D8j
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 09:31:20 +0000
-Received: by mail-yx1-xb12d.google.com with SMTP id 956f58d0204a3-67921b515a7so4623033d50.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 01:31:17 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794475876; cv=none;
+	Thu, 12 Nov 2026 09:32:16 +0000
+Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-6de1fd5f572so1695337eaf.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 01:32:14 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794475934; cv=none;
         d=google.com; s=arc-20260327;
-        b=pvMoZI7+Geh+hWtpfBZN3NTOBEKANFj0V3M/rryUnOmRWXPyFzGOJWVe7GnGEPUpmr
-         5BiZ8i/+XXUTBjIuPrwXycN7yB0N66lbAVH731w/AOMaeobwCYHQ0GI5ugH4jOPbNif3
-         bjWf7H260Pu/2NSB4U3raemF4R6YiH5CA2AoWTWgLaRyiH6qAvPBLM5RhctuOVaqzF33
-         Gr44FXLkWl3j3LbZpqtP0sizDHi+idTPPwe8v5f22w1KY1K0QnfcYbNhbH8IGlPWl+nh
-         5a0spazOue9DKu/px6ttzOU/tKcoF9LN/crIPO1uwpF/3bCcpJBoyFwnZDBnK89BoDFR
-         w+Dw==
+        b=hI3PlsXjRHhBfE3OwThLWg6sVqLtvL6fdIwFC5Qb5goNWLdBBSziVqvraHh4jUf2BH
+         e90YzccXd2mV4eJJgKNOHc6lJVwCkFFZ5aFAwHCCE6zl3AJ8s5XH/YTckWLOHY8TW2+d
+         qSQG9hehNYMbATnPrNb0rvj3kvcgOO39FYSext5TE8Fjmkzqn2XidjVcKDwDbGzcR3DX
+         RVhbl8PE0abIqKRngK5m39wTEWa6UF7i5oRiD8RCfXJrsm/KAc8LjYimf4nUjhTG86N4
+         9nIPmAYWnc9K7AL8IYMs8H7v46A5PMwTZRyXrpJGqQPL2mG9T7SkHgRny6U6/O/EaHWO
+         iy0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=ei8dH+lQVjN7xvZrUNzulVpjahdWK5/bbzW8ZyK4nJk=;
-        fh=SkW/KvKEmI9FLK1hCja9k2eAgNOxse+h3Z1E1lHLP1o=;
-        b=lFJEkNz0QbGRczJVKY12jmwqGSH9J8vSaZjQp1UUR+lnBzWfPR+uxK9dHGJlUswkwb
-         cmF/XcMTwOz2zU/YlPgMc3tL5RcbBAuB89sDDctHh2PXlORFdrcuK5MtK2P7srRIUJXg
-         M5flZPha/ppPA5O6Ahva8v/X8RK2jber9gryWEY51PirF6s8mWx7zcF0lhuhu9UqG3/B
-         yGlbUhXIhB3BLQylrIns99gFskAsIkVYuF7fNqGzAdP5KGTNWyVVUC+bgZ0vYlmq0dV3
-         zZ8FzyligB0gHZETgPXT9R5qhMgYCrGIczmE0td1WyBw//drwgIoljoaezys+E274Rhc
-         +7Gg==;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=rtcQGxtUUhhpjG057YI1ec0swZMNCA7K0pNp77UPUn4=;
+        fh=nQgK3MLCWsAVfEd14+oZBU5IHFa1LnevNTNac50RyrQ=;
+        b=JIG42v2wqEsJvKLjiWUk12hYlxtZmFwt4jXcelZBXBIWYIH6CNc4jCSNWryggoaNzI
+         HM1vtIFnkqL9S3Jh6ABS+ntmDmAmsvCiV/rTAoYQ9RkDkTbB2QZ67Yr11daZv3+RpYfg
+         Gr8+qBh5OSfQ2kMtnyxRVKFyHGk8Snsma149Jrz01FuK37QK/Hs51WqWNf3+DzkXI1Ab
+         q4ickM8/trHzVqxEb4o/bapnIyglFNouVOdb1CSRUwlfQ0Lmj5Gd1GfyS+qc9ucXMZ8H
+         YwA/FiD8L7oyfaA068LylU+LZv3yx4LP2P44QYwahwvdD0pyr0Py6XCmeZGRfzgLXna7
+         BU4Q==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794475876; x=1795080676; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ei8dH+lQVjN7xvZrUNzulVpjahdWK5/bbzW8ZyK4nJk=;
-        b=Of5oYSrVPeHTTn8S8G7fBXulc+4t0Gmn6/EnjRKiCOTIMo6VGmBlCJdZ6bZ5cXjxBk
-         kgEIpYYDzcuWPnELnYITBEVklbGZOpUv+Hy3DK9J1tST50XWgncVI7bzcSXTLG2KbJFL
-         mGYl3VQJpdxX4MzyeVwnjm3GIx0Yb4eJA9uwrE/qTf9Dh+wQnqdmlKuvHpGUZ7kyhaCU
-         iDw/P1vadjxFkiH6BjGae4nbBO9vAYJfgxbK0E1nAHgmL6ZHz2JDj3Jk2cbw6rz+W+wD
-         xUDMWZ28FI432yuMjSO2rxnprCrgeRc9CrDEygEI+YuMm/C77nGOZzMb0aZS9VF3TEbh
-         Lnsw==
+        d=gmail.com; s=20260707; t=1794475934; x=1795080734; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=rtcQGxtUUhhpjG057YI1ec0swZMNCA7K0pNp77UPUn4=;
+        b=Zu31w4F96tfjXYj7KmGhk1riW/V011VzEITpPeKzzuLi23aN6nUGfstgLY+bnZomuo
+         FacxiVBmyMhBtW3VmAaiwnamArW4ysUhveAUcKJgwRiwvweJ1Wo928Ctl+0UiMY3t+Zk
+         ErQIYOWfETCh6uw9acwSqE9xTvHdIkbmk0s1PcLeE+jV4ONna/NUaGHI5dnoXitz565T
+         irPlwUqpC7dMGpg+SOfDc1TjVvTnSS3Q5aAO1eNiFyMj4c7TVfGoZY32yfKYsCLQFgXM
+         C4FSm78J360eXnrJz5qHMbwCNuuH6DJxwNcfeFZ5bGtXKC/kn1gvCEtSCLibu7DPVTUY
+         JM8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794475876; x=1795080676;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=ei8dH+lQVjN7xvZrUNzulVpjahdWK5/bbzW8ZyK4nJk=;
-        b=KJI83FPgoAdMZKffY3HlcAXPwWOEBoWes/aegf7khkaZTwnO2MM88Al1EE3xmRu9cG
-         b6Pa4XZU1tYKXUW6agCNwjU30bznSg9qQwjU1UoqJodzJ04m9zE+86d55b4QkVhYZ739
-         9/gfzDGF4NMxIg56hQJw92bw7DzBU+LCzTfDwZTcL8PfU1J0ArvwCwCO/N0qS0o1bUxB
-         PjkXbcYTiZAB5tuPuSlV8B6vr+TbOHBAvwmPVdVbQriL1PomF8pkOKzKKb6FfhpblCc/
-         5PQRptjX8rEYnRD6xrrxt+HEZtH4XbKP7oq58XXMwFdoYXUdPdeZmk6EVip0v21r4Scn
-         XhNQ==
-X-Forwarded-Encrypted: i=1; AL+hErF1+34rUVFDUeK6OyR91YCwHZiSw+waWY2RpBrfkHo7oIUmujTJXs9xa2OgQibNCPjgddnt33pRkfoZezbwOj9s@lists.infradead.org
-X-Gm-Message-State: APuU4Z8waAUr9LoIFQMmvmvejadETo14F6KqPDWuT/QM+Ydinh266TF+
-	fQSG+BDIADS+kF8q0aHTYF178crZOE9E4zj22zR6XwxFnK7BsTbCj2hq1grnyANeeLOCAPejiCF
-	ijQkHA1FPbH36hhhobU8Ujga+YehSTeO/DFseeiqTpA==
-X-Gm-Gg: AYBFou3y+t2BvFzwDWMY716QLrVDjg5qVS/wjtqVYsfXOmJodkIVNiv/qYPLA4zmo47
-	pfoSNfmF6K/X1OdK3ocGkvHuStQmzojzvA165roPq9bYlDPQJi1sl+CI1jWwCyagMiTkFa/tKv1
-	Reeq4N7fRjpfr9joM7qKLUMgV7A/8XWboQ5kVc1tFssgIn8PjYuW9rb5kwWfGDXPcBadH3ghMvQ
-	r6AXKVuTh1L8PAMh31z7BOOva2Zi1UMUcGTMJ9P1wSr0X0FT/MF5G3ijIzhklTYe1toAHRVmkhm
-	LIL4PE9PtjqHMjplJCC1SjhcDrxOCAFkglx8erUcTbwK/JexEcUsX8u+DZqLgLncSpNqmaSCfQQ
-	WsHsQV9s2PaRLeA6DG1I4+47m6+3zifFZ0ZcgmiG/GT83r+VrLwg/cyAykmUZjmCK3aZV6n2vGh
-	K7dwJMaMIYBwm2XpI5YlMaqpcAEmvsPG4xzjOTMCpKcw==
-X-Received: by 2002:a53:a74f:0:b0:67b:f91c:10b5 with SMTP id
- 956f58d0204a3-67c67fdfee6mr2823993d50.98.1794475876355; Thu, 12 Nov 2026
- 01:31:16 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794475934; x=1795080734;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=rtcQGxtUUhhpjG057YI1ec0swZMNCA7K0pNp77UPUn4=;
+        b=aqWwyESJwW730eZl1IqsYJyOnv2niCgVw4t1hdn6z0V1ko9IhUHRmOMI8JIZLPfkN+
+         SjFhXmwJSH43K4Hcca+W/zErL8uDAlvmfCBhuPxHCcMdr138z97ruETjOju3bi759Ynm
+         m4MprWmdCRa4s0wqk5MkfXLuVj3OxkTS2ZXxxBm8Otw6v5deL2bDUT+rfq/COdH/VaSQ
+         7qNqOHecCh3lYf/WWAGGKkb6/qp26oqLhBeM/zZtNL4ZTBdlEZ3SSP4nc/GOmIxSdgj5
+         7/bq9kuXv83LLYyv2YmpJsveSowL7LMYrRmRqx4GJGqv/Cm5YXfipnVrG6M7WXZz5Kv6
+         KiSQ==
+X-Forwarded-Encrypted: i=1; AL+hErG9Jhad5+TpEPF71xxf7vHXvsEX6zDCy2AEhHCoM9r5qLhREX6Q5iLX64piRYWdiFqggOZyq1ROke2EobL2h4e0@lists.infradead.org
+X-Gm-Message-State: APuU4Z8cWFWwyEYBrUaWOnW0wxxwWa9BF3J2Rx/x/px+VCfDZpszkx/7
+	8gKmnU38ifE6CLjlwJ5MTPkPkha6O+HwempBceQ7SX6MJo5N5cfyxqfpNK7qYNRxwV61XHCaOOX
+	/SdARuYOmV8cVsV2ixoNHddb6xv7RS8M=
+X-Gm-Gg: AYBFou3bWESJZD+rmWuTIHynvdeVe1cYHrzGoGO8Le+Fb87HTPeWqS6C9xexzHzizR0
+	C9q9yThBZ+vPifmiSOEUZRrPshZmfo+zQIz2JrJ6F3lylzmfEIP2JXRV6W8MN08jgYcJo5aCvjC
+	eybIz+MQYJrrnrjPF+M6gOL55XiJ5pT764qgvCs2W0F8/J7hfpIrYyN57lL1XRieKAzz5EkOt7j
+	tRBwH1sQzXxdVxa3eOavvZFc5BtuUkb4IId9knqC7KS+KEA/Ogey0ORzYjIkyQygVYpIGSijAhB
+	Nly5f5hA5mFCrj/er0p2x4sxtfeNsRDZ8YqZD2pUE0kurxWsCUgNpiM4RJTM4bqZLvkzIhL4v8T
+	q2Ymr4SUBm+acaR4zQgaXOOJFb/u+ObaqRcoacA==
+X-Received: by 2002:a05:6820:f016:b0:70d:9063:1ff3 with SMTP id
+ 006d021491bc7-719172c5534mr3337591eaf.0.1794475933878; Thu, 12 Nov 2026
+ 01:32:13 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261112025159.473997-1-patrick.lister.dev@gmail.com> <0384a52a-31f6-4bbd-9de8-8efe73610e28@app.fastmail.com>
-In-Reply-To: <0384a52a-31f6-4bbd-9de8-8efe73610e28@app.fastmail.com>
-From: Peter Maydell <peter.maydell@linaro.org>
-Date: Thu, 12 Nov 2026 09:31:05 +0000
-X-Gm-Features: AclHuK9o1ZFb6zJeR4-pm6DWlpcG08b32X5ENGmHxfFB3Vx0UUm9PpdFEohX-II
-Message-ID: <CAFEAcA8bim81-aKR=whfBaaT92EUAWwwNS8QFAq79Je4Sm+XwA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: nwfpe: use task_pt_regs() to find user registers
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Patrick Lister <patrick.lister.dev@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Ard Biesheuvel <ardb@kernel.org>, Linus Walleij <linusw@kernel.org>, Keith Packard <keithpac@amazon.com>, 
-	Nicolas Pitre <nico@fluxnic.net>, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
-	Nick Clifton <nickc@redhat.com>, Richard Earnshaw <richard.earnshaw@arm.com>, 
-	Ramana Radhakrishnan <ramanara@nvidia.com>, qemu-arm@nongnu.org, Riku Voipio <riku.voipio@iki.fi>, 
-	=?UTF-8?B?QWxleCBCZW5uw6ll?= <alex.bennee@linaro.org>, 
-	luis.machado.foss@gmail.com, thiago.bauermann@linaro.org
+References: <20261111101345.185122-1-abdelnasserhussein11@gmail.com>
+ <20261111121544.00006c23@kernel.org> <20261112022619.5693c4f9@jic23-hlaptop>
+In-Reply-To: <20261112022619.5693c4f9@jic23-hlaptop>
+From: Abdelnasser Hussein <abdelnasserhussein11@gmail.com>
+Date: Thu, 12 Nov 2026 11:32:02 +0200
+X-Gm-Features: AclHuK9G6SS4NwCS9PaJ-OUYEnCgsYzhvEBdLrccU8KpXeI6G-aNGeVg9dQfdU0
+Message-ID: <CANpqX3YF5X1_LjXvymcXPwib9koufOAFaAgd97RH8dB61bmZpQ@mail.gmail.com>
+Subject: Re: [PATCH v3] iio: adc: at91_adc: move to devm_* to fix NULL pointer deref
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Joshua Crofts <crofts@kernel.org>, linux-iio@vger.kernel.org, dlechner@baylibre.com, 
+	nuno.sa@analog.com, andy@kernel.org, nicolas.ferre@microchip.com, 
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, mripard@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_013118_659759_5EA3CEA2 
-X-CRM114-Status: GOOD (  23.93  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_013215_176097_D126BD4A 
+X-CRM114-Status: UNSURE (   7.36  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,47 +121,21 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 12 Nov 2026 at 07:59, Arnd Bergmann <arnd@arndb.de> wrote:
->
-> On Thu, Nov 12, 2026, at 03:51, Patrick Lister wrote:
-> > NWFPE locates the trapping process's saved registers relative to
-> > current_thread_info(), assuming thread_info sits at the bottom of the
-> > kernel stack. Since ARM moved thread_info into task_struct, that
-> > expression points past the end of the task_struct instead.
-> >
-> > This breaks FPA instruction emulation, as the user registers are
-> > never read or written and causes out-of-bounds reads and writes of
-> > kernel memory beyond the task_struct. Any unprivileged process can
-> > trigger this.
->
-> Thanks a lot for chasing this down!
->
-> As I understand it, this means that nobody has seriously used or
-> tested OABI since 5.16. I last tested it myself in 5.14 when
-> working on 4e57a4ddf6b0 ("ARM: 9107/1: syscall: always store
-> thread_info->abi_syscall"), but it was quite hard to properly
-> test it at the time, even getting an old Debian rootfs to work
-> with a modern kernel and qemu was nontrivial.
+ Hi Jonathan,
 
-> I've added the maintainers for the Arm ports in gcc, qemu and binutils
-> to Cc here, I believe all of these still have some level of OABI
-> support that they kept just because Linux still handles it, but
-> that can then also be removed.
+Thanks for the review. I=E2=80=99ll prepare a v4 patch series with the chan=
+ges
+split into three parts: the NULL check, prep cleanups, and the full
+devm_* conversion addressing your comments.
 
-QEMU has already deprecated its OABI and NWFPE emulation as of our
-11.0 release in April this year. We'll probably remove it in 12.0
-in April next year. (Our deprecation policy only requires two
-releases of notice before removal, so we could have removed it
-for 11.2 if we'd remembered, but as we're already in freeze it's
-a bit late to do so now.)
+Best regards,
 
-thanks
--- PMM
+Abdelnasser
 
