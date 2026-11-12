@@ -2,98 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9470606A880
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA83C606A8BA
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LjK4UNwu;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=AvhYjNqW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=q7eksHZD;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JETWMfWj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
-	Content-Transfer-Encoding:In-Reply-To:From:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ipHsKGzdySUFK43kUSa1EUse/xjwdqGzCAkyYU+4IsQ=; b=LjK4UNwufTLNP2
-	Gmn+HqNH7RCSV5UxS90FQ7LZZXq+zVf9sDAUF6u0Kksmkvf8kQQrSW3KLpoyY/FBudlunO2jTGWKB
-	qmc/hlEV1Yyp6Wzt8gDOo/MhmThF8+FHs22I3JcoVENdADa5QKlnQGrHsBQ7cokrViLl91P5M5kTo
-	hw6CsFT0GoFDILyzzjzckEP8+ubEf/3YQsjrCFs6uGuYq5pYgO+3VWCCOxx18wCbSzyns31felW4Y
-	9SZfHSG+MQwrPTbgMJg9+pbr6NowI3OIt1RQ7U2b/z39QYHOuGdlLG8enw2cWaLUtrGmf6rNx6NAY
-	YDj3Noj+F+6ovRyMDPOw==;
+	List-Owner; bh=FD/V4+e8O0iqTKVI3Ylc4RORwqMbtboEEa/TKhMeE7M=; b=q7eksHZDwt0tMF
+	3+ArH/sgzy2o1ZDM5iMt1w2zjBswwFQ7HPiF1oZTW3pSbpQ82aA/RGcurmMKQo90/miTi6mgz8Wnm
+	h13V9v5cI6ZZnR5Apu2caYeDZsIfxD1y/ghWWSPBXp5Lh/YQedQXmLvQFt1FobgcORAHWaucSf4Qj
+	Hf6SZEcJPdXxc8B5nKgaSpCLFH79iUNMRfZvVcawJdjocW7E13CnEsBJNp9JhqY6W6FZukXWZEn94
+	2ugErz5ZmEs2R0AfvbVln+5PsEZf0fjwmGxqsXh2MWjYZxSuecuzFvxGH7V9lZSEUYMSTAejUp9db
+	GY5jw3uVDrhqgx48iy3w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSwC-00000009gb0-3KPI;
-	Thu, 12 Nov 2026 11:25:52 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1xRSwU-00000009gkY-2jCW;
+	Thu, 12 Nov 2026 11:26:10 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSw7-00000009gYE-0WsZ
+	id 1xRSwH-00000009gfJ-3oSA
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:25:50 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261112112543euoutp010f016eb7fa47ed13835ab3afff799d5d~nSIxA7B940644806448euoutp01J;
-	Thu, 12 Nov 2026 11:25:43 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261112112543euoutp010f016eb7fa47ed13835ab3afff799d5d~nSIxA7B940644806448euoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1794482743;
-	bh=ipHsKGzdySUFK43kUSa1EUse/xjwdqGzCAkyYU+4IsQ=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=AvhYjNqWqGDSDWciDHfOXU3HOJjD8I0PqyiBFvEino+CXJ/Ts8YCaLP0CTP7r83SV
-	 D0u2NoLv9bExEfdz3CuNTS48kAhibm5QmC2eYY3NRLEJ1vo1+7ksYjGgKf8B93b7Ln
-	 eIdw+0vhCIWca8FGDq/+owQFBplfxnoB2Ht47E5M=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261112112543eucas1p2f3aa7565474df56edb967cbecfd1858d~nSIwwzSqJ0570005700eucas1p2G;
-	Thu, 12 Nov 2026 11:25:43 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20261112112540eusmtip2793b80df566384250842db8b2aa8054b~nSIuZrphA1705017050eusmtip2o;
-	Thu, 12 Nov 2026 11:25:40 +0000 (GMT)
-Message-ID: <feca1837-fb17-4d96-b6d9-7e5d413ef222@samsung.com>
-Date: Thu, 12 Nov 2026 12:25:40 +0100
+	Thu, 12 Nov 2026 11:25:58 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 1D21247A1E;
+	Thu, 12 Nov 2026 11:25:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 662A91F00A05;
+	Thu, 12 Nov 2026 11:25:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794482757;
+	bh=FD/V4+e8O0iqTKVI3Ylc4RORwqMbtboEEa/TKhMeE7M=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=JETWMfWjkKeINJWiPkhAD/QsItp30dH2rFFfUxvvsc0JyhM1taj1AERUtJ/N3Cjs3
+	 AwYVFzZ/m6zQ7KYBU+YiTIl9hTHpftthT74h5Nr4oeuYEHYYSiIf3AXVs+RKZKKHrV
+	 mIOmMwkG2K3nP1x7rGrbfTQKpZOVBqfxi9f/LcxqS5J0K6eBwmu7A8mogUZQyc4cgy
+	 znPGEVxp9AgLlfDVNExZSLItcLclY123hZKVh9JoHVE3H6OQiccRm+Ibc4Tk7V2+rw
+	 AM4h3/ZJfG+Yk80QegP3t50LRsE3vQEfEM9YcerbVpZJF++E9cU7QgrbnSemDfJFmG
+	 qhJVBLKkuZ+CQ==
+From: Arnd Bergmann <arnd@kernel.org>
+To: linux-mm@kvack.org
+Cc: Arnd Bergmann <arnd@arndb.de>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Andreas Larsson <andreas@gaisler.com>,
+	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	"David Hildenbrand (Arm)" <david@kernel.org>,
+	Jason Gunthorpe <jgg@nvidia.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	"Lorenzo Stoakes (ARM)" <ljs@kernel.org>,
+	Matthew Wilcox <willy@infradead.org>,
+	Malin Jonsson <malin.jonsson@est.tech>,
+	Richard Weinberger <richard@nod.at>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-fsdevel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org,
+	x86@kernel.org
+Subject: [PATCH v2 3/6] ARM: drop CONFIG_HIGHPTE support
+Date: Thu, 12 Nov 2026 12:25:25 +0100
+Message-ID: <20261112112528.1116405-4-arnd@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261112112528.1116405-1-arnd@kernel.org>
+References: <20261112112528.1116405-1-arnd@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/15] lib/lz4: stop forking upstream LZ4, vendor it
- instead
-To: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers
-	<ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt
-	<justinstitt@google.com>, Russell King <linux@armlinux.org.uk>, Thomas
-	Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley"
-	<James.Bottomley@HansenPartnership.com>, Helge Deller <deller@gmx.de>, Heiko
-	Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Alexander
-	Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
-	<borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Thomas
-	Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov
-	<bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>, Minchan Kim <minchan@kernel.org>, Sergey
-	Senozhatsky <senozhatsky@chromium.org>, Jens Axboe <axboe@kernel.dk>, Andrew
-	Morton <akpm@linux-foundation.org>
-Cc: linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-	linux-parisc@vger.kernel.org, linux-s390@vger.kernel.org,
-	linux-block@vger.kernel.org, Yann Collet <yann.collet.73@gmail.com>, Nick
-	Terrell <terrelln@meta.com>, Gao Xiang <xiang@kernel.org>, Chao Yu
-	<chao@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>, Eric Biggers
-	<ebiggers@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>, David
-	Laight <david.laight.linux@gmail.com>, Sungguk <sungguk.na@samsung.com>,
-	Jaehoon Chung <jh80.chung@samsung.com>, Marek Szyprowski
-	<m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org,
-	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20261112112543eucas1p2f3aa7565474df56edb967cbecfd1858d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261106144247eucas1p15bdd0704f32d1cb3b19f9d2296a0cbc3
-X-EPHeader: CA
-X-CMS-RootMailID: 20261106144247eucas1p15bdd0704f32d1cb3b19f9d2296a0cbc3
-References: <CGME20261106144247eucas1p15bdd0704f32d1cb3b19f9d2296a0cbc3@eucas1p1.samsung.com>
-	<20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_032547_811864_4626D87D 
-X-CRM114-Status: GOOD (  10.97  )
-X-Spam-Score: -4.4 (----)
+Content-Transfer-Encoding: 8bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -104,30 +81,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi everyone,
+From: Arnd Bergmann <arnd@arndb.de>
 
-On 11/6/26 15:42, Michal Wilczynski wrote:
-> 
-> The import is the v1.10.0 release tag.
+CONFIG_HIGHPTE was added in linux-2.6.32, a few years before 64-bit
+support. At the time it made sense, as the CONFIG_ARM_LPAE option allowed
+systems with 16GB of memory that made lowmem a particularly scarce
+resource, and the HIGHPTE implementation gave feature parity with 32-bit
+x86 and frv machines.
 
-It appears v1.11.0, followed by v1.11.1 were released in the
-meantime. The next revision of this patchset will import from the
-v1.11.1 release tag to take advantage of the newest code. It already
-contains the backported commits so I will drop the backports.
+Since Arm is the last architecture remaining that uses this, and almost
+no 32-bit machines support more than 4GB of RAM, the cost of continuing
+to maintain HIGHPTE seems unjustified, so remove it here to allow
+simplifying the generic page table handling.
 
-I will redo all the measurements with the newr version for the v3.
+Link: https://lore.kernel.org/lkml/20241204103042.1904639-8-arnd@kernel.org/T/#u
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+I sent a patch to drop HIGHPTE support on x86 today, see
+https://lore.kernel.org/lkml/20241210144945.2325330-9-arnd@kernel.org/T/#u
 
-> 
+If that one gets merged, we can merge this one instead of the one
+that makes HIGHPTE depend on !PREEMPT_RT, but if we decide against
+the x86 change, then we probably don't want this one either.
 
-Best regards,
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ arch/arm/Kconfig               | 11 -----------
+ arch/arm/include/asm/pgalloc.h |  8 +-------
+ 2 files changed, 1 insertion(+), 18 deletions(-)
+
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index fd01ccab9c12..fc66d52d847e 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -1225,17 +1225,6 @@ config HIGHMEM
+ 
+ 	  If unsure, say n.
+ 
+-config HIGHPTE
+-	bool "Allocate 2nd-level pagetables from highmem" if EXPERT
+-	depends on HIGHMEM && !PREEMPT_RT
+-	default y
+-	help
+-	  The VM uses one page of physical memory for each page table.
+-	  For systems with a lot of processes, this can use a lot of
+-	  precious low memory, eventually leading to low memory being
+-	  consumed by page tables.  Setting this option will allow
+-	  user-space 2nd level page tables to reside in high memory.
+-
+ config ARM_PAN
+ 	bool "Enable privileged no-access"
+ 	depends on MMU
+diff --git a/arch/arm/include/asm/pgalloc.h b/arch/arm/include/asm/pgalloc.h
+index a17f01235c29..ef6cb3e6d179 100644
+--- a/arch/arm/include/asm/pgalloc.h
++++ b/arch/arm/include/asm/pgalloc.h
+@@ -85,18 +85,12 @@ pte_alloc_one_kernel(struct mm_struct *mm)
+ 	return pte;
+ }
+ 
+-#ifdef CONFIG_HIGHPTE
+-#define PGTABLE_HIGHMEM __GFP_HIGHMEM
+-#else
+-#define PGTABLE_HIGHMEM 0
+-#endif
+-
+ static inline pgtable_t
+ pte_alloc_one(struct mm_struct *mm)
+ {
+ 	struct page *pte;
+ 
+-	pte = __pte_alloc_one(mm, GFP_PGTABLE_USER | PGTABLE_HIGHMEM);
++	pte = __pte_alloc_one(mm, GFP_PGTABLE_USER);
+ 	if (!pte)
+ 		return NULL;
+ 	if (!PageHighMem(pte))
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+2.53.0
+
 
