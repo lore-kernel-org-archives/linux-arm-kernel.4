@@ -2,109 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA403606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB4A0606A8B5
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KEprk7El;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=DDNgAmZO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ahRdvMxY;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=MX186qlK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:From:
+	Subject:Message-ID:Mime-Version:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/osIbHmFt4J7QJbFux8V6dVqtquVgZjnHNZgBl0VYa8=; b=KEprk7ElqQ8MoBs0MhwC1H3kij
-	5UtQyig1CRaWApEIduLds5p13XS4POp3a6ywTcsJIVba7XTh23vYmGhsTdJpLR+H/cpP8KPhF/AEP
-	9wAGQdcKR27uBZDjpTAaobf3Mr8h7dVTb8hVBSrQeXoGfWMlpC35qsdgCwBm+T1EqNL3PXBKTVx7i
-	PPHi1+caX434jneht2jxfuToF8mAZW+0yHoPMz345z+EvDxMXSOlJVLTgaXptNrd9My9tWgy3LvF4
-	Ik5u/uOm/nYOw7LE+PXb4pSiZqGLmxNQMV4IQkHvmjARZVtLGWC6UkiQ+b5CLBDvYHoHil36T4tEJ
-	oYt/YPgw==;
+	bh=njjyBXz9L58T+lg+LdB1WaYpD3pBpeVCDltq1wefIsE=; b=ahRdvMxYTZ9ABTdT8FdpGJEOLY
+	XYzWx/FDfq7r/xol3JiiKF5Yf7L8XIzp0LiYlpb6FDB6DCEpa7GQDWfGw0IdJkmPdxxYQGPE04Hjf
+	Hud+/CeqHaBbKnknzUyNsgnA2/SoDQmXwAQw5AScMaCiwC45b9xVodggmWBiKHSWvfVtof+aE/pGw
+	qqjB2tJzpyZZsD1EcUddhA8Zw7EXge8J2K0l1AIer57BER9sGQ+SJ+yA/vQbrJi5ZrDm+/4drC3oM
+	MjCjgMJAHkRjQnc23AfSfqIgjcC1yOz4fR5DKBqF4ieHBTRbDrPdDvs1Mf7Dxgf7F/aSCA1B9SNte
+	xYpP7sVg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRO4T-00000008n6N-4A1b;
-	Thu, 12 Nov 2026 06:14:06 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xRO85-00000008nJG-3RiD;
+	Thu, 12 Nov 2026 06:17:49 +0000
+Received: from mail-pg1-x547.google.com ([2607:f8b0:4864:20::547])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRO4P-00000008n62-1uER
+	id 1xRO81-00000008nI9-0Ugl
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 06:14:03 +0000
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AC4m0ws3893195;
-	Thu, 12 Nov 2026 06:13:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=/osIbHmFt4J7QJbFux8V6dVq
-	tquVgZjnHNZgBl0VYa8=; b=DDNgAmZOpqUl43zoX6MNTLLFqeYiyo5XBuvIRvP4
-	wg/ZlQ6pICc+5TomMXJ04YQT2BTmrAIVUPKGTlMf2BuAxtMg8rv7swEpT7ZSqG07
-	+C5Far7hNnBPumcPQAKLUsoqsm4/6+AVcI36vuGvgzNOdpHK1MUkjFnNZ9227A2U
-	bBqmlaUQQJN6RYMJRJ5xv0AJ380QKB9GbqcijfrNnXjqhK3sxDNUlJ9n0Xr3Oi/2
-	NAm3zwNYiLLkl5dEiYz/GWOc8czLkY5sSFauqtiL7rh3vkxKxgosPI9oRNU0yDI7
-	PgIZiqLXpmcPq1F30rhMHf1ybpYxnxL6fPXmhjrwWkFJgw==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hw6re08dp-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Thu, 12 Nov 2026 06:13:52 +0000 (GMT)
-Received: from pps.filterd (apblrppmta01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6AC6DnNZ1791902;
-	Thu, 12 Nov 2026 06:13:49 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-bibekkum-hyd.qualcomm.com [10.147.243.199])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 6AC6Dnvf1791896
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Thu, 12 Nov 2026 06:13:49 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4253010)
-	id E10B75FA; Thu, 12 Nov 2026 11:43:47 +0530 (+0530)
-Date: Thu, 12 Nov 2026 11:43:47 +0530
-From: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Will Deacon <will@kernel.org>,
-        "Joerg Roedel (AMD)" <joro@8bytes.org>, iommu@lists.linux.dev,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] iommu: arm-smmu-qcom: Skip fault-info reads when
- suspended
-Message-ID: <20261112061347.oxh6qg6i53v3ixuj@hu-bibekkum-hyd.qualcomm.com>
-References: <20260912-priv_call_runtime_handlers-v1-1-fc0c3a17523f@oss.qualcomm.com>
- <fe22fb3d-77dd-4b34-9dd8-aafe11f36988@arm.com>
- <20260915125758.ekt323jhwsiis6bp@hu-bibekkum-hyd.qualcomm.com>
+	Thu, 12 Nov 2026 06:17:47 +0000
+Received: by mail-pg1-x547.google.com with SMTP id 41be03b00d2f7-cd652c0385bso2685569a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 22:17:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20260707; t=1794464263; x=1795069063; darn=lists.infradead.org;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=njjyBXz9L58T+lg+LdB1WaYpD3pBpeVCDltq1wefIsE=;
+        b=MX186qlK3lboQOYY5xsxJHtVGMbIZLZ3zhkgPoOYT2rtoBJo5T9hq2L+dEqcP2eHye
+         RLtJREoIoe3FqqNM3tuXBJqDnzweS5stl5C/4mUDFei48KyXLBLsAHzlOEb7/lu/qe3r
+         qIuxvX1WmLZ7iGgbCtEzLVU6MRvWxKwG7N+Wuo65e+pYoTcXmkcmxy1vSdi5oECPCMW8
+         9JmIM3BkjRNuvLMUTVoWdeqVYQKwLOBgC6sJ/ml8GMGp/W7jbN3285r3jl88FosUXY1e
+         +Ep7bawKg86wjcty3RcyBJBaUxHUMpVZg8B1+pYqHBYEqRvOWtb9GaghB/0RTfvbFgnV
+         MX+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794464263; x=1795069063;
+        h=content-type:cc:to:from:subject:message-id:mime-version:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=njjyBXz9L58T+lg+LdB1WaYpD3pBpeVCDltq1wefIsE=;
+        b=zXLyNW7PvDog/T5r+pe3j0OZ9w1oht3/FoOyWa/kSq4WdMnJi/U9E5I+6bAUlNxIlv
+         abkfgDgUibb2VXEYvFuGzE68UExJxgjiVhcdOqr0yaRm1cRxJv5lXIsQTWhJQtW4XPbt
+         A6B8Ye4al3dssoD8IKwpCUvZzdEeGnJAooNfq9g2ygRBsWp7KLVlG7FKI9tb/noT91Cp
+         wcHXcVutlgz3vBTO7cj537G4ESW+Fyo0foNIRHKVXCi6qVIci1LrTkreSEhBMmpKmY6S
+         PcmDCcHFju8PSapomcX8PDsSyin9EQ8yUrz0Po1eg4jv1e6NEOzN1lVjhzzpkxHTRRlL
+         74LA==
+X-Forwarded-Encrypted: i=1; AL+hErGJUQt2O6U3L73fAry4cJSKlC1qar83DzauOa4BBC3pWSDIkkEN72C27RaW7qeOjPe67ZXT0vKn5HV+GIvbICzb@lists.infradead.org
+X-Gm-Message-State: APuU4Z9npsMbLSdj7bi7Ckz5x1gTCz35DK80MBccWlWmyrK0tnTaTaHs
+	6Nw5hivxPtlqyl5A1esUnCghtYigG+lFCmFrTe4ZUNsNmsw1NM0sD+mFpAKpFC2mT28mt/YNrjs
+	m0XhGnVJy3Q==
+X-Received: from pjbga7.prod.google.com ([2002:a17:90b:387:b0:3ab:3979:1be4])
+ (user=yidilin job=prod-delivery.src-stubby-dispatcher) by 2002:a17:90b:2584:b0:3ac:7556:8eed
+ with SMTP id 98e67ed59e1d1-3b182f8532dmr4081954a91.44.1794464263018; Wed, 11
+ Nov 2026 22:17:43 -0800 (PST)
+Date: Thu, 12 Nov 2026 14:17:36 +0800
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20260915125758.ekt323jhwsiis6bp@hu-bibekkum-hyd.qualcomm.com>
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-ORIG-GUID: 5NLhUop60S9Wfdljujw7SLVCY7yQ6pEr
-X-Proofpoint-GUID: 5NLhUop60S9Wfdljujw7SLVCY7yQ6pEr
-X-Authority-Analysis: v=2.4 cv=NJhAaE6g c=1 sm=1 tr=0 ts=6af55921 cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=NEAV23lmAAAA:8 a=w0EGknLvMgiScxiyWWQA:9 a=CjuIK1q_8ugA:10
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDAyNCBTYWx0ZWRfX0R3T51rCWELb
- p0Kt9an0W42Xbs2FWx/zvKA6Mf6DOEJ/4dNXNUcm/zC5til49DCPKbv238r1i6X+4rq6OBZq2d9
- exB2GKKss3h7XmrTLOlIB9YHi8MG6Jc=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDAyNCBTYWx0ZWRfX+sygBQtJCrN5
- e26yJtUcz9gBpeb57qAum/J15+kI0mM/jq7Nv16cNrC+iD/UYL3LSfXDLjnaaEr5VEDU8EFtM4i
- E525jeXXb0hDtVGEB6gyA+6M7qgYuPYuA9LC52OK2X0rokAYSWlDa8IPRDd7T5gRRHlEVpJK9We
- 9MhDAqpqG8d2+vwcbisnCI794yS+ynJVgjj6h6sfigJkrfuw2kWa5wsKxUodTELxrr2wmiYx4yg
- jH9gclZPRhR7aBnlxMWdgdSnwsFjSXu9oqxJ8W1oi8zABSdGkk/29gNcUWQymIo5SFRsAQLH4vB
- tcc0tyzPchijI5C0jWUuOHvmHK+SII0hcAp074wg0infxOfH0Nfh4VW9Vo09YOsUz+oIR+FlubY
- 69ZdaoV6dbs8rPFwu2fRH0IXByjdHqYF8Xfo1zc9nfRrOkeEnXZ9z2VwZJhs63SHprr80h63xU4
- /Y/uTK4O/rGD9uSY87w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-12_01,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 phishscore=0 spamscore=0 clxscore=1011
- malwarescore=0 adultscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611120024
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.56.0.611.g1030f0b940-goog
+Message-ID: <20261112061736.4014993-1-yidilin@google.com>
+Subject: [PATCH] drm/mediatek: dp: Wait for the complete AUX reply before
+ reading it
+From: Yidi Lin <yidilin@google.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Fei Shao <fshao@chromium.org>, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Yidi Lin <yidilin@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_221401_513362_34DF6A13 
-X-CRM114-Status: GOOD (  17.29  )
-X-Spam-Score: -2.6 (--)
+X-CRM114-CacheID: sfid-20261111_221745_160977_E59BABE1 
+X-CRM114-Status: GOOD (  17.12  )
+X-Spam-Score: -9.5 (---------)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -115,148 +92,157 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-26.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT,
+	USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sep 15, Bibek Kumar Patro wrote:
->On Sep 14, Robin Murphy wrote:
->>On 11/09/2026 11:25 pm, Bibek Kumar Patro wrote:
->>>qcom_adreno_smmu_get_fault_info() accesses SMMU registers without
->>>holding a runtime PM reference. A fault is raised while the SMMU is
->>>active, but the GPU may drop its power vote before the threaded fault
->>>handler reaches the callback, allowing the SMMU to runtime suspend.
->>>
->>>Accessing the SMMU registers after suspend has started is unsafe and
->>>may cause subsequent register accesses during runtime resume to fail
->>>with a NoC error and an asynchronous SError.
->>
->>But hang on, if I'm following the code correctly, the callchain would be:
->>
->>arm_smmu_context_fault
->> report_iommu_fault
->>   msm_gpu_fault_handler
->>    qcom_adreno_smmu_get_fault_info
->>
->>and from here we still need to return to arm_smmu_context_fault() to 
->>clear the FSR, so surely that still has the same problem in itself?
->>
->
->Ah, yes this path also should have the same problem for GPU smmu.
->But I am carrying [1] in my workspace [2] for testing currently.
->So haven't encountered the same yet. We might need to address [1]
->also as part of this thread. wdyt?
->
->[1]: https://lore.kernel.org/all/20260313-smmu-rpm-v2-1-8c2236b402b0@oss.qualcomm.com/
->[2]: https://github.com/qualcomm-linux/kernel/blame/aff7542c319ede2037eeee316f20c2429062c08a/drivers/iommu/arm/arm-smmu/arm-smmu.c#L500
->
+mtk_dp_aux_wait_for_completion() returns for a read as soon as the RX
+FIFO write pointer is non-zero, i.e. when the first byte of the reply
+has arrived. The rest of the reply is still on the AUX line, so
+mtk_dp_aux_read_rx_fifo() sleeps 500-1000 us before reading each byte
+of an I2C-over-AUX reply and 100-200 us before each byte of a native
+reply. The FIFO is drained this way even for DEFER replies, which carry
+no data.
 
-Hi Robin,
+A 16-byte EDID read therefore takes about 16 ms, although the reply is
+complete within about 300 us of the request.
 
-Do you have any concerns or suggestions on this patch?
-lmk incase needed, I can resend the rebased version for both
-current and [1] patch.
-[1]: https://lore.kernel.org/all/20260313-smmu-rpm-v2-1-8c2236b402b0@oss.qualcomm.com/
+Wait for the AUX receive-complete (or 400 us timeout) interrupt status
+instead, which the write path already relies on, and drain the RX FIFO
+without delays. Poll every 20 us instead of every 100-500 us.
 
-Thanks & regards,
-Bibek
+Reading the 256-byte EDID through the DP AUX DDC adapter drops from 266
+to 6.5 ms on an MT8189 Chromebook, and from 547 to 23 ms on an MT8196
+Chromebook whose panel defers every 16-byte read once. A 16-byte DPCD
+read drops from about 4.7 to 0.5 ms.
 
->Thanks & regards,
->Bibek
->
->>Thanks,
->>Robin.
->>
->>>Use pm_runtime_get_if_active() to keep the SMMU active while collecting
->>>the fault information, and skip the register reads if suspend has
->>>already started.
->>>
->>>Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
->>>---
->>>qcom_adreno_smmu_get_fault_info() accesses SMMU registers without
->>>holding a runtime PM reference. A fault is raised while the SMMU is
->>>active, but the GPU may drop its power vote before the threaded fault
->>>handler reaches the callback, allowing the SMMU to runtime suspend.
->>>
->>>The failure sequence:
->>>
->>>  GPU context fault
->>>          |
->>>          v
->>>  qcom_adreno_smmu_get_fault_info()
->>>          |
->>>          | GPU drops its power vote
->>>          | SMMU starts runtime suspend
->>>          v
->>>  SMMU register access without an active RPM reference
->>>          |
->>>          v
->>>  later Adreno PRR private-interface operation
->>>          |
->>>          v
->>>  pm_runtime_resume_and_get()
->>>          |
->>>          v
->>>  arm_smmu_runtime_resume()
->>>          |
->>>          v
->>>  arm_smmu_device_reset()
->>>          |
->>>          v
->>>  SMMU register access
->>>          |
->>>          v
->>>  NoC error / asynchronous SError
->>>
->>>Use pm_runtime_get_if_active() to keep the SMMU active while collecting
->>>the fault information. If suspend has already started, skip the register
->>>reads instead of accessing the SMMU while it is being powered down.
->>>---
->>> drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 14 ++++++++++++++
->>> 1 file changed, 14 insertions(+)
->>>
->>>diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->>>index 795e8ec7e8fa..b1787a4ba0d3 100644
->>>--- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->>>+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
->>>@@ -129,6 +129,18 @@ static void qcom_adreno_smmu_get_fault_info(const void *cookie,
->>> 	struct arm_smmu_cfg *cfg = &smmu_domain->cfg;
->>> 	struct arm_smmu_device *smmu = smmu_domain->smmu;
->>>+	/*
->>>+	 * A fault can only fire while the SMMU is active (GPU is issuing
->>>+	 * transactions). Use get_if_active so that if by a rare race the
->>>+	 * device has already suspended, we skip the register reads rather
->>>+	 * than triggering a cold resume which would call device_reset and
->>>+	 * destroy the fault state we are trying to capture.
->>>+	 */
->>>+	if (pm_runtime_get_if_active(smmu->dev) <= 0) {
->>>+		dev_warn(smmu->dev, "get_fault_info: device not active, skipping\n");
->>>+		return;
->>>+	}
->>>+
->>> 	info->fsr = arm_smmu_cb_read(smmu, cfg->cbndx, ARM_SMMU_CB_FSR);
->>> 	info->fsynr0 = arm_smmu_cb_read(smmu, cfg->cbndx, ARM_SMMU_CB_FSYNR0);
->>> 	info->fsynr1 = arm_smmu_cb_read(smmu, cfg->cbndx, ARM_SMMU_CB_FSYNR1);
->>>@@ -136,6 +148,8 @@ static void qcom_adreno_smmu_get_fault_info(const void *cookie,
->>> 	info->cbfrsynra = arm_smmu_gr1_read(smmu, ARM_SMMU_GR1_CBFRSYNRA(cfg->cbndx));
->>> 	info->ttbr0 = arm_smmu_cb_readq(smmu, cfg->cbndx, ARM_SMMU_CB_TTBR0);
->>> 	info->contextidr = arm_smmu_cb_read(smmu, cfg->cbndx, ARM_SMMU_CB_CONTEXTIDR);
->>>+
->>>+	pm_runtime_put_autosuspend(smmu->dev);
->>> }
->>> static void qcom_adreno_smmu_set_stall(const void *cookie, bool enabled)
->>>
->>>---
->>>base-commit: f61bb3920fa8cb44b84d32e0fa9fbaab4eb00c80
->>>change-id: 20260912-priv_call_runtime_handlers-7f3547544040
->>>
->>>Best regards,
->>>--
->>>Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
->>>
->>
+Signed-off-by: Yidi Lin <yidilin@google.com>
+---
+ drivers/gpu/drm/mediatek/mtk_dp.c | 64 ++++++++++++-------------------
+ 1 file changed, 25 insertions(+), 39 deletions(-)
+
+diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
+index f656b85b84212..b2f7f42cbe715 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dp.c
++++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+@@ -45,7 +45,8 @@
+ #define MTK_DP_4P1T 4
+ #define MTK_DP_HDE 2
+ #define MTK_DP_PIX_PER_ADDR 2
+-#define MTK_DP_AUX_WAIT_REPLY_COUNT 20
++#define MTK_DP_AUX_POLL_US 20
++#define MTK_DP_AUX_TIMEOUT_US 10000
+ #define MTK_DP_TBC_BUF_READ_START_ADDR 0x8
+ #define MTK_DP_TRAIN_VOLTAGE_LEVEL_RETRY 5
+ #define MTK_DP_TRAIN_DOWNSCALE_RETRY 10
+@@ -825,20 +826,18 @@ static void mtk_dp_aux_fill_write_fifo(struct mtk_dp *mtk_dp, u8 *buf,
+ }
+ 
+ static void mtk_dp_aux_read_rx_fifo(struct mtk_dp *mtk_dp, u8 *buf,
+-				    size_t length, int read_delay)
++				    size_t length)
+ {
+ 	int read_pos;
+ 
+ 	mtk_dp_update_bits(mtk_dp, MTK_DP_AUX_P0_3620,
+ 			   0, AUX_RD_MODE_AUX_TX_P0_MASK);
+ 
++	/* The complete reply is in the RX FIFO, so read it without delays. */
+ 	for (read_pos = 0; read_pos < length; read_pos++) {
+ 		mtk_dp_update_bits(mtk_dp, MTK_DP_AUX_P0_3620,
+ 				   AUX_RX_FIFO_READ_PULSE_TX_P0,
+ 				   AUX_RX_FIFO_READ_PULSE_TX_P0);
+-
+-		/* Hardware needs time to update the data */
+-		usleep_range(read_delay, read_delay * 2);
+ 		buf[read_pos] = (u8)(mtk_dp_read(mtk_dp, MTK_DP_AUX_P0_3620) &
+ 				     AUX_RX_FIFO_READ_DATA_AUX_TX_P0_MASK);
+ 	}
+@@ -864,33 +863,28 @@ static void mtk_dp_aux_set_length(struct mtk_dp *mtk_dp, size_t length)
+ 	}
+ }
+ 
+-static int mtk_dp_aux_wait_for_completion(struct mtk_dp *mtk_dp, bool is_read)
++static int mtk_dp_aux_wait_for_completion(struct mtk_dp *mtk_dp)
+ {
+-	int wait_reply = MTK_DP_AUX_WAIT_REPLY_COUNT;
+-
+-	while (--wait_reply) {
+-		u32 aux_irq_status;
+-
+-		if (is_read) {
+-			u32 fifo_status = mtk_dp_read(mtk_dp, MTK_DP_AUX_P0_3618);
+-
+-			if (fifo_status &
+-			    (AUX_RX_FIFO_WRITE_POINTER_AUX_TX_P0_MASK |
+-			     AUX_RX_FIFO_FULL_AUX_TX_P0_MASK)) {
+-				return 0;
+-			}
+-		}
+-
+-		aux_irq_status = mtk_dp_read(mtk_dp, MTK_DP_AUX_P0_3640);
+-		if (aux_irq_status & AUX_RX_AUX_RECV_COMPLETE_IRQ_AUX_TX_P0)
+-			return 0;
++	u32 aux_irq_status;
++	int ret;
+ 
+-		if (aux_irq_status & AUX_400US_TIMEOUT_IRQ_AUX_TX_P0)
+-			return -ETIMEDOUT;
++	/*
++	 * Wait until the whole reply has been received. The RX FIFO write
++	 * pointer becomes non-zero as soon as the first byte of the reply
++	 * arrives, while the rest of the reply is still on the AUX line, so
++	 * it cannot be used to tell that the reply is complete.
++	 */
++	ret = regmap_read_poll_timeout(mtk_dp->regs, MTK_DP_AUX_P0_3640,
++				       aux_irq_status,
++				       aux_irq_status &
++				       (AUX_RX_AUX_RECV_COMPLETE_IRQ_AUX_TX_P0 |
++					AUX_400US_TIMEOUT_IRQ_AUX_TX_P0),
++				       MTK_DP_AUX_POLL_US, MTK_DP_AUX_TIMEOUT_US);
++	if (ret)
++		return ret;
+ 
+-		/* Give the hardware a chance to reach completion before retrying */
+-		usleep_range(100, 500);
+-	}
++	if (aux_irq_status & AUX_RX_AUX_RECV_COMPLETE_IRQ_AUX_TX_P0)
++		return 0;
+ 
+ 	return -ETIMEDOUT;
+ }
+@@ -928,7 +922,7 @@ static int mtk_dp_aux_do_transfer(struct mtk_dp *mtk_dp, bool is_read, u8 cmd,
+ 	mtk_dp_aux_request_ready(mtk_dp);
+ 
+ 	/* Wait for feedback from sink device. */
+-	ret = mtk_dp_aux_wait_for_completion(mtk_dp, is_read);
++	ret = mtk_dp_aux_wait_for_completion(mtk_dp);
+ 
+ 	*reply_cmd = mtk_dp_read(mtk_dp, MTK_DP_AUX_P0_3624) &
+ 		     AUX_RX_REPLY_COMMAND_AUX_TX_P0_MASK;
+@@ -952,15 +946,7 @@ static int mtk_dp_aux_do_transfer(struct mtk_dp *mtk_dp, bool is_read, u8 cmd,
+ 				   AUX_TX_AUXTX_OV_EN_AUX_TX_P0_MASK |
+ 				   AUX_RESERVED_RW_0_AUX_TX_P0_MASK);
+ 	} else if (is_read) {
+-		int read_delay;
+-
+-		if (cmd == (DP_AUX_I2C_READ | DP_AUX_I2C_MOT) ||
+-		    cmd == DP_AUX_I2C_READ)
+-			read_delay = 500;
+-		else
+-			read_delay = 100;
+-
+-		mtk_dp_aux_read_rx_fifo(mtk_dp, buf, length, read_delay);
++		mtk_dp_aux_read_rx_fifo(mtk_dp, buf, length);
+ 	}
+ 
+ 	return 0;
+-- 
+2.56.0.611.g1030f0b940-goog
+
 
