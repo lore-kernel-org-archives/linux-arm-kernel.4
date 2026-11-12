@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE295606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2F72606A339
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:03:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lBaTr9Mb;
-	dkim=pass (2048-bit key, unprotected) header.d=dolcini.it header.i=@dolcini.it header.a=rsa-sha256 header.s=default header.b=eYdsEyum
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=epKvr5BT;
+	dkim=pass (2048-bit key, unprotected) header.d=dolcini.it header.i=@dolcini.it header.a=rsa-sha256 header.s=default header.b=EzyZIlwT
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=CZfgLCA7ZrK/D1WTMEULX43MHGDrUY5pCM1cItjDeW0=; b=lBaTr9MbGGWA6Q
-	4pEC/UdNoXsQlWavB/rbQidoNebBjLEEILfIguHBebKS1esg+kMEM7rALYm4SayUPEdNZyKnjZkBS
-	NKzj8uZaZQQ1JhW7G/tIQF/mgGYuo1S1/UdcqWiykqVKQahHVKy339CMEVirmg35/UJ3LNdKzCS0N
-	MfmCksY1AjwNzShWsMuAlFN+Ht4HoIpgjSkCeJwHNgHwtwKMUfdrHOHsMAtBbX8BXZUPEw0tAAUIu
-	gzBwXkYv9jMNfvryRunDpRGKN3K781XFSUzQmiGCbZzNaR8gb4QCpz1THtyibbB1Iwm+g3DN/3ly8
-	pIOQ9slPOGVaMF7RWjWA==;
+	List-Owner; bh=Ixcj6PNq9GxugAmLZbG5bwGiWeCce+wGaPCQOB8zgAE=; b=epKvr5BTSfAdYl
+	ipozmkwypINpIATC/t9yRdpNGgwmPAsKyYozX/gZdg+CAYbQDO+lYIgW+KbJ0mL7J/Z6RQrp0C81N
+	l0yhWHkBy09+pgb33DAsQEBVOaINi+E88uofReqvXn4A2VEiA32BEQ5q0p8LrhamjzX3VPVt67/HM
+	UF+LQhQxG4gjQBWCwCXERWLPqaeClzHQY2OmQVsMA7Kg9huq8yg0twPoUfCkOdfWzTUWDPfneRvbp
+	yL7hpmhjok/+pIXGMIhVec1qcipc5Vf20SmaepwPLC/NHdVVJI4hn3gUxSQeBtV0IiET3Tkob4pjh
+	TTNDN+f7bbR+JuaZyAEQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWKY-0000000ANSn-0SdT;
+	id 1xRWKY-0000000ANUe-2wbl;
 	Thu, 12 Nov 2026 15:03:14 +0000
-Received: from mail11.truemail.it ([217.194.8.81])
+Received: from mail11.truemail.it ([2001:4b7e:0:8::81])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWKC-0000000ANCn-1ev5
+	id 1xRWKD-0000000ANE5-03o6
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 15:02:53 +0000
+	Thu, 12 Nov 2026 15:02:54 +0000
 Received: from francesco-nb.. (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 0665C231B8;
-	Thu, 12 Nov 2026 16:02:49 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id B91E423217;
+	Thu, 12 Nov 2026 16:02:50 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1794495770;
-	bh=CZfgLCA7ZrK/D1WTMEULX43MHGDrUY5pCM1cItjDeW0=; h=From:To:Subject;
-	b=eYdsEyumSKICw76OqGTQkGIk/92MV4LN5Q9pbT2bd7I51qdx85qVJjVBp/Qr7lwbo
-	 pB2tBEtt4I2BRByAI6rjbmpX0BhR3uB/gsBGMSHNwpsk6cE9J+VsgHGtdbLSElhhCA
-	 HvSQB5JpFbfb1oiM+m3zPnoHSsQkHgBJ56VGCA4Y8HnJkuCO24hxie0ZY1EA5Pl1jL
-	 wHcR+AhUUglNSQNAdnC1OM2f+GYhrHLzht8EzHmcW6keOeK2kxiV7ZQJI+PwfwQN3M
-	 HNjnlo+9HVLOvUaq7+BxDTYmMW/SFE/V8jLzUosiI7AHwjEJW60k7JtlBJ74UU1WAr
-	 ScH0m7Tqyirkg==
+	s=default; t=1794495771;
+	bh=Ixcj6PNq9GxugAmLZbG5bwGiWeCce+wGaPCQOB8zgAE=; h=From:To:Subject;
+	b=EzyZIlwT/mow0+EAlGqUhjrokW4rsCObajWVJXNA2QkM/m+z0BFHrRzVGYlxdikMp
+	 hBmQHsu6uUZtEM27h4mrO07vWglFckUbcimpKBDm7UYXCIQOmEOV7AREUkcrcSuHSo
+	 3wN7d1VEtLxOrUfll1iJDxNpylABcPMKDyUsExdn/aA0E3tDZrTiaCzqFAdQwCDjz9
+	 U5fKxDKf4RxwaJM+GtLfCpMl7xhP4dvugByup3BOogf84IGz0Lc/OCZIpU2ZyHaOA1
+	 KuH0Hr4ef12gZ3m4/e3b+qVnC+TI4/Af37mOXtkInNh72EQm4I+kUF5lJIfQ+p0X4n
+	 gWavjqiGVrdGw==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	Rob Herring <robh@kernel.org>,
@@ -54,9 +54,9 @@ Cc: linux-bsp@toradex.com,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 10/11] arm64: dts: freescale: imx93-imx91-toradex-osm-common: Add SPI aliases
-Date: Thu, 12 Nov 2026 16:02:32 +0100
-Message-ID: <20261112150236.164850-11-francesco@dolcini.it>
+Subject: [PATCH v1 11/11] arm64: dts: freescale: imx95-toradex-osm: Add SPI aliases
+Date: Thu, 12 Nov 2026 16:02:33 +0100
+Message-ID: <20261112150236.164850-12-francesco@dolcini.it>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261112150236.164850-1-francesco@dolcini.it>
 References: <20261112150236.164850-1-francesco@dolcini.it>
@@ -64,7 +64,7 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_070252_717514_91C5E7A6 
+X-CRM114-CacheID: sfid-20261112_070253_241557_B4FFF68B 
 X-CRM114-Status: UNSURE (   9.61  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
@@ -90,7 +90,7 @@ From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
 The OSM specification defines the module interfaces and their naming,
 SPI_A and SPI_B being the SPI buses available to the carrier board,
-implemented by lpspi8 and lpspi1 on Toradex OSM iMX93 and iMX91.
+implemented by lpspi4 and lpspi1 on Toradex OSM iMX95.
 
 Without aliases the Linux SPI bus numbers are assigned dynamically and
 can change with the carrier board or probe order. Add spi0 and spi1
@@ -99,21 +99,21 @@ OSM interface order, SPI_A being spi0 and SPI_B spi1.
 
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- .../boot/dts/freescale/imx93-imx91-toradex-osm-common.dtsi      | 2 ++
+ arch/arm64/boot/dts/freescale/imx95-toradex-osm.dtsi | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-imx91-toradex-osm-common.dtsi b/arch/arm64/boot/dts/freescale/imx93-imx91-toradex-osm-common.dtsi
-index 8b0131d4e6e2..f6fd64176893 100644
---- a/arch/arm64/boot/dts/freescale/imx93-imx91-toradex-osm-common.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93-imx91-toradex-osm-common.dtsi
+diff --git a/arch/arm64/boot/dts/freescale/imx95-toradex-osm.dtsi b/arch/arm64/boot/dts/freescale/imx95-toradex-osm.dtsi
+index 8eb7ea4ed9ee..dc2ef7035246 100644
+--- a/arch/arm64/boot/dts/freescale/imx95-toradex-osm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx95-toradex-osm.dtsi
 @@ -30,6 +30,8 @@ aliases {
- 		serial1 = &lpuart6;
- 		serial2 = &lpuart7;
- 		serial3 = &lpuart2;
-+		spi0 = &lpspi8;
+ 		serial2 = &lpuart5;
+ 		serial3 = &lpuart3;
+ 		serial4 = &lpuart2;
++		spi0 = &lpspi4;
 +		spi1 = &lpspi1;
- 		usb0 = &usbotg1;
- 		usb1 = &usbotg2;
+ 		usb0 = &usb2;
+ 		usb1 = &usb3;
  	};
 -- 
 2.47.3
