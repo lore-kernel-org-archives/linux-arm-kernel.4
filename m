@@ -2,109 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681B160713D2
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1D88606A89E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hma0/7/z;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dvRoKTUe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lciCBfuR;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VbBbH463
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1XKbNH2/KH99YbWTOs529XIXwoRw5zG3NS6qzqt74p8=; b=Hma0/7/z6MGEO7Ra8Gtm2wRnl6
-	ojOkhBHiTXghYupPyrS+f0NPf0HtnrhXkZMZ4pqaWp6/nUm8nNQPrs4O2oMZsD6DkuvSzlGtKgBJ8
-	81ZiE/PW+quFrS7XZT7EKrXs8pqJCz9lHab5sl0oPOKLZOo/M3+RtvIbV5OCZCDRgdam52UQ56mDk
-	OVwZOnXdYdydT06xonOlVhEWknzBoQVfnc8vsoqGTTSFQ/oYjtcChF/J2hVgGulyM2gN686U/rwoY
-	/Y335oZQOibKOUFDk5/RxXRR4P/cqINiS3zgA0Uo1cz02FUepmaDHEXtW4LO2EU74Gvhq6y0Zv+2W
-	TLfNFQIg==;
+	bh=AhYG6w1qML4RFbxnBYmXjKt+JJQJssjJV8N3yc6IzSM=; b=lciCBfuRKv5GSzyeHcLxDH0frJ
+	ShBMi5ucUgLJwbKwm7KohXX8WjGRi9R9NDOBa3D2IhvgZiF2ek3Dfgp7z0bOA/XuS2wsw9FJj2agS
+	8XN7YHKicZo0MAFeV4PRK2YMAZ3rZHW2jsimGYXhaON1yhzL8++2U/OjeAdRLQgWv847GscOaUZrj
+	Ukvu7f0gOuM139zCj1tBcmldJEt40DpA0vktsUB5dpLhrKIM9nSXpz61JGjBWTNro68NbGRn/BP9V
+	x4U9hKE3usOgaMaFnseTALRE/it29XyRrLGCP0YIT7+3U3UrxG1MhPYcgQNifI2FMNlokrQJMHmot
+	dP0VaSNQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQJy-00000009AbR-3Wwo;
-	Thu, 12 Nov 2026 08:38:15 +0000
+	id 1xRQMf-00000009BwR-45SN;
+	Thu, 12 Nov 2026 08:41:02 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQFI-000000098S4-1YcQ;
-	Thu, 12 Nov 2026 08:33:24 +0000
+	id 1xRQHl-000000099lO-1Bt7;
+	Thu, 12 Nov 2026 08:35:58 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C7AA447914;
-	Thu, 12 Nov 2026 08:33:10 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id DE99740521;
+	Thu, 12 Nov 2026 08:35:56 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794472390;
-	b=waCX05Diok23MLZF/zLOIQ52uvRtHzsQjFes/WBkDtDfzNuh+TriRJIZo17CePoZGK6v
-	 ZLmRDFrTyINR4LW8/G/cgtImmex3RtV5RLhGLoaHsvQgIYjIKB9OLmRhE5248LLV9oShz
-	 u7xDPVIxtLpxqyMKNfXZpSb74KOEwlHO66vLuxdgOiThXjHnWN7HJ/GMrjD9UsqH9vYgX
-	 oOO2qcyfjZQToXDI2Qz2Dlwt9X0itedi5UM5UG5AKb7ERrcJvakcki6xgn39mKWWwCXad
-	 frm29jH1JAVBGutPxLOK8VyZZ7IV3XdAePzpAlGN/RaOC2Qphvj3VWy4IOoY0XqaGkQ==
+	t=1794472556;
+	b=UidDXUxULgpYvfUylorBYW9GnN86ZLF5mpzUX3csY8IccQ5ZPmZYwpRLBFF5JsWF/rIM
+	 eYkQpIvYvydZUNrNZuTVhARYNQtx4kgU/IOxRKHF5FMabp/FhrJButsn6uGIiqNDi2njB
+	 K/h2YnMAq4xtkMyYTFytpp4BMh+CfdRaSsXeflBrKvwDBcdBpOBOXFwMqjClK0UoxvhjU
+	 gEqVdTwXQNckTkbYAF5eNYSsemfQU4wY6e42/NM4cJ1rzseC4yTtGwZ1V/mLd6/zmfrav
+	 4xSWJI7aIFPOdTVviEQpuqWs1F8s8EJubqfcOlszNZYMNWHsvkQHPDqi4xKpWatuJDw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794472390;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=1XKbNH2/KH99YbWTOs529XIXwoRw5zG3NS6qzqt74p8=;
-	b=osh3AJtbSd2jdnf/krpwJM4JHOsxKWklkahrXlmHPipWMoTWt49h6H5ns+3uQyJIah0v
-	 7gpS1TcVseQCmD8l9aeJLbvzGTVDxhXp/MKD3TMW1FjRSr6UkPC5li27mCbO4HSW5zUeb
-	 R2rANnaz5K3RRfev9f8Dp4IqWlq2SiPMGD30o0uejBtcBTif3ANcyvYjZWwXc5uXkeMT/
-	 fEhDeXIBWMGL+yYgfD+IAetTLAoAwUtvI6D6D3F5trcBnpvDLNUs9d47qC5o8dDx8ZCOr
-	 jP76Go4U/fE5qRc+oH8cng0ffqsAEA8aRKxzYJo8A4yphjv7BBs7Ne/omFGNDUpJVsg==
+	c=relaxed/relaxed; t=1794472556;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=AhYG6w1qML4RFbxnBYmXjKt+JJQJssjJV8N3yc6IzSM=;
+	b=beG17EnblJC71X7az7fT/xxHsPwK0t6xbt2x1N2vfAk3V2R8caVDjouLrMVgsqn90G+2
+	 H8CXaUSVpSlfDW1eHX1f2UVqkLR5NnP78hbIuZsZaI6m0i6fb1RxgV69gwP0oZ2GXBxgG
+	 XlRyWL2ZhK/Invx+eVETWihfWXGWtUh3FMtCKr9h4oltaSuK+O8de9E2BRbPrD+AZhMB1
+	 hpANS2lR06rLl3j1uYn6AIGIk+aMoKxZOGfYmrXqMQ905iUHpl6ZPvsS+ejxiEtzro5+k
+	 mR+qCIhw/p12RWJIvxHdAw06HGB9+eouIPKzB9RHkpw3LvhmM42T74JR5VBYZk3yx2g==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id F2C7D1F00A0E;
-	Thu, 12 Nov 2026 08:33:08 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id ACF0A1F00A05;
+	Thu, 12 Nov 2026 08:35:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794472390;
-	bh=1XKbNH2/KH99YbWTOs529XIXwoRw5zG3NS6qzqt74p8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=dvRoKTUe5c0tIh5y3rUyPYZVEdpcAMzud+1SnMbRvG2AAmBeDsf5rTMCi8jwkiNHW
-	 9/LzT0jwXry8lokd0uxJo7vtApVzw/c/CF9IhN5ddPqU12W2VuuwrpDGHSy/feS9pQ
-	 mR11l2iStfaRaqgbyB0NxEgnu9M672jK7dDEW7RKqm/uP4ynznRhHNVELvAUok9EoD
-	 7d92mxN4bkfooFrzYJ2Eq+KeklZK94PWlW3XM20pDUGAIkROI/r9pEaT09ie5f2BOJ
-	 O4lnJJn6spd6h42qQCjVvCV9O2bEJvS/wNCDBjb2vcDGGoRYumEp31mJTAD09OpXWS
-	 OAqBQ6dd35Q8A==
+	s=k20260515; t=1794472556;
+	bh=AhYG6w1qML4RFbxnBYmXjKt+JJQJssjJV8N3yc6IzSM=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=VbBbH463BIbIvTMWdZo+fYmsd4+52ONHACc5U7VGVyRQFj/Is1W+ONfE4I0Va4U16
+	 U7SQ5WJRte0IEB2wE2E5+bkj+IPzbunqR68QrVB9horF1hDuO8IlE6Z1CuSJzu8W6l
+	 FCbyLuYXp0dhRIFUSn3Pi2QwoNXj8tkCL5oF+by/MgfGoh1a7mmSQs9E4nryYP2oQW
+	 RnMpz43oqy9ZhzUFSFFiYUOe/3e3ATaUYUN2zR6sBsTkEhwOs77Tbu9z0gYLOguLis
+	 B8+jz2KlHhoLpGqBZ9x5vPSpjOWwgtxiJDy/VasvwSFZkpWIyqdrQ8vSi0asKbqgfA
+	 RM2O7/bufp+jA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id D9CC9493C2;
-	Thu, 12 Nov 2026 08:33:06 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 2720A493AE;
+	Thu, 12 Nov 2026 08:35:55 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:33:12 +0000
-Subject: [PATCH v2 8/9] drm/rockchip: vop2: Keep the other LUT_PORT_SEL
- fields on gamma LUT updates
+Subject: [PATCH RFC 0/2] usb: dwc3: Let the Rockchip glue keep the host bus
+ across suspend-to-idle
+Date: Thu, 12 Nov 2026 08:35:54 +0000
+Message-Id: <20261112-dwc3-s2idle-optin-v1-0-842e3f8413d0@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-vop2-fixes-v2-8-8218c1cf8ac8@gmail.com>
-References: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
-In-Reply-To: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andyshrk@163.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Piotr Zalewski <pZ010001011111@proton.me>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WOy2rDMBBFf8Vo3QnS2FZkU0qg0A/otmShxzhRa
+ 1uuZKeFkH+v4oRsOrs73DlnzixR9JRYW5xZpJNPPow5iKeC2aMeDwTe5cyQoxRCcHA/toSE3vU
+ EYZr9CIJKjkI7I2vO8t0UqfO/K/ODvb+9sv1tmRbzSXa+0u61SN9LNs737kAp6dXYFs+rMHPBV
+ BCD/bJHP93kj3ToF4KTUMBB8jyOl53VuLOh77UJUW9sGF6urn9k3mAj8ts1bpRsQADKGGbaHQb
+ t+8eZ0Ykgh8HPbSElKtq6ykqDtVVOqE6UVU2lRu5QKGy0pi1VbH+5/AGHV0/IVwEAAA==
+X-Change-ID: 20261110-dwc3-s2idle-optin-1e3021adb650
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Heiko Stuebner <heiko@sntech.de>
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Joonhoe Kim <26rote@gmail.com>, Vladyslav Tymoshchuk <tvlad744@gmail.com>, 
+ Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472385; l=1484;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472554; l=5505;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=WoObJhqQCguUZVQZS4V4CMddVbsfxO9PvoIdXFATrrs=;
- b=v7uDMm0D5IZjEF8Q5Kr1g/6NEsROZFDbJNyG8T4DzjiDBiH8wCp30u+EhYBiyuDF763+7vlzQ
- bJgLrzzMHGNCZcwDdpAx1LSPmEsbt8swnR9cpsqp3RGWTLsr2tvXF0n
+ bh=r2pcT4ZGixdnFRH/sAK0mcOgo6siBSBMOfaZwbhbgmc=;
+ b=rVIh1V5lwTlkLiqHtQdq4q9ZJDtAoCbQbe4v/9kI27BxqONQ6Q0GX51dJl52T8EBvbENMZE4q
+ sMcrUL3prEPDmW0YX7jNPZXn3bYwAk2wZ3QQduTE5IMCq0tM0orrrQU
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
  auth_id=1480
 X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,42 +125,107 @@ X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+In host mode, dwc3 tears the core down for system suspend unless the
+controller is a wakeup source. On RK3588 that ends the power session of
+every suspended USB device in suspend-to-idle: on an Orange Pi 5 a
+SanDisk Extreme drive on the Type-A USB3 port and a card reader behind a
+USB3 hub are disconnected and enumerated again after every resume, which
+kills a filesystem mounted on them. With the bus kept suspended they
+resume from U3 in milliseconds.
 
-On RK3588 the gamma LUT of a video port is written through a window that
-GAMMA_AHB_WRITE_SEL in SYS_CTRL_LUT_PORT_SEL selects. The register also
-holds the dclk source selection of video ports 0 and 2 and the enable of
-the video port 0/1 merge for modes wider than 4096 pixels, which writing
-the whole register clears.
+Patch 2 of v1 [1] kept the host core in suspend-to-idle for every dwc3
+host. Sashiko found three ways in which that breaks other platforms, and
+all three hold on usb-next:
+- legacy glue drivers still act in their own suspend callbacks in
+  suspend-to-idle (dwc3-of-simple asserts its resets on rk3399,
+  dwc3-meson-g12a powers the PHYs off, dwc3-exynos switches its supplies
+  off), so the core would skip the re-init on a reset controller;
+- dwc3-google asserts its resets unless wakeup is enabled;
+- genpd keeps a domain on for a device on the awake path only with
+  GENPD_FLAG_ACTIVE_WAKEUP, which e.g. RK3568 PD_PIPE does not set.
+  Vladyslav Tymoshchuk has since seen this one on hardware [2]: on
+  SM8750 the USB GDSCs lack the flag, genpd powers them off in
+  suspend-to-idle and the xHCI dies on resume, already on the existing
+  wakeup path.
+Commit c4a5153e87fd ("usb: dwc3: core: Power-off core/PHYs on
+system_suspend in host mode") also made the teardown deliberate, so
+that the PHYs can be powered off. Thanks to Sashiko for the review and
+to Vladyslav for the test on SM8750.
 
-Only update the write select field.
+This version makes it an opt-in instead: patch 1 adds
+keep_host_bus_in_s2idle to dwc3_properties for the glue to set, and
+patch 2 sets it in the Rockchip glue for RK3588 only, whose PD_USB has
+GENPD_FLAG_ACTIVE_WAKEUP. Nothing changes for any other platform, nor
+for suspend-to-RAM and hibernation.
 
-Fixes: 4f537776340d ("rockchip/drm: vop2: add support for gamma LUT")
-Reviewed-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+It is an RFC because it depends on two postings that are not merged:
+- Sebastian Reichel's Rockchip dwc3 glue driver, v18 [3]; patch 2 is on
+  top of it.
+- Joonhoe Kim's "usb: dwc3: tell xHCI that it lost its state when the
+  core is powered off" [4]; patch 1 uses its xhci_power_lost flag to
+  re-initialise the core on resume exactly when suspend tore it down.
+  In host mode it does the same as patch 1 of v1 [1], which I withdrew
+  in its favour.
+The base is usb-next (v7.4-rc1) with [3] and [4] applied.
+
+Tested on an Orange Pi 5 (RK3588S, no wakeup source) with the code of
+this series on top of [3] and [4] in a v7.3-based kernel, 50
+suspend-to-idle cycles through rtcwake. Both dwc3 controllers of the
+board run on the Rockchip glue: USB3OTG2 (no power domain) with a
+SanDisk Extreme drive on the Type-A port, and USB3OTG0 (in PD_USB) with
+the USB 2.0 billboard device behind the Type-C port.
+- Bus kept (this series), 40 of 40 cycles: the same USB bus and device
+  numbers before and after resume; no "root hub lost power", no "xHC
+  error in resume", no disconnect, re-enumeration or "reset
+  SuperSpeed", no WARNING/BUG/Oops; the drive was readable after every
+  resume (64 MiB direct read).
+- Core torn down as without the opt-in (forced with a test-only module
+  parameter that is not part of this series), 10 of 10 cycles: all
+  root hubs reported "root hub lost power or was reset" (80 lines), no
+  "xHC error in resume" thanks to [4], no WARNING/BUG/Oops; the drive
+  was disconnected and enumerated again on every resume, which is what
+  this series avoids.
+Not tested: RK3576 (left unchanged), USB3OTG1 (not on the RK3588S),
+suspend-to-RAM (not run with this series; the opt-in does not apply
+there).
+
+[1] https://lore.kernel.org/r/20261110-dwc3-s2idle-v1-0-2ef4cc3f8130@gmail.com
+[2] https://lore.kernel.org/r/20261111121556.1871-1-tvlad744@gmail.com
+[3] https://lore.kernel.org/r/20261021-b4-rockchip-dwc3-rockchip-glue-v18-0-60000d03fca2@collabora.com
+[4] https://lore.kernel.org/r/20260929130252.869-1-26rote@gmail.com
+
+This series was developed with Claude (Anthropic) as a coding assistant:
+it wrote the code and the commit messages, and I reviewed and tested it
+as described above.
+
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Arun Iyengar (2):
+      usb: dwc3: Let the glue keep the host bus suspended across suspend-to-idle
+      usb: dwc3: rockchip: Keep the host bus across suspend-to-idle on RK3588
 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index c59e270739b6..259e30ebb9cb 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -2015,8 +2015,9 @@ static void vop2_crtc_atomic_set_gamma_seamless(struct vop2 *vop2,
- 						struct vop2_video_port *vp,
- 						struct drm_crtc *crtc)
- {
--	vop2_writel(vop2, RK3568_LUT_PORT_SEL,
--		    FIELD_PREP(RK3588_LUT_PORT_SEL__GAMMA_AHB_WRITE_SEL, vp->id));
-+	regmap_update_bits(vop2->map, RK3568_LUT_PORT_SEL,
-+			   RK3588_LUT_PORT_SEL__GAMMA_AHB_WRITE_SEL,
-+			   FIELD_PREP(RK3588_LUT_PORT_SEL__GAMMA_AHB_WRITE_SEL, vp->id));
- 	vop2_vp_dsp_lut_enable(vp);
- 	vop2_crtc_write_gamma_lut(vop2, crtc);
- 	vop2_vp_dsp_lut_update_enable(vp);
+ drivers/usb/dwc3/core.c          | 41 ++++++++++++++++++++++++++++++++++++----
+ drivers/usb/dwc3/core.h          |  3 +++
+ drivers/usb/dwc3/dwc3-rockchip.c | 10 ++++++++++
+ drivers/usb/dwc3/glue.h          |  7 +++++++
+ 4 files changed, 57 insertions(+), 4 deletions(-)
+---
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+change-id: 20261110-dwc3-s2idle-optin-1e3021adb650
+prerequisite-message-id: <20261021-b4-rockchip-dwc3-rockchip-glue-v18-0-60000d03fca2@collabora.com>
+prerequisite-patch-id: 4fa3aae8ccfa5383522070179c8777302411082c
+prerequisite-patch-id: db09b4f5b0cffc1d5bf098fbdebb06b8be448fb7
+prerequisite-patch-id: c2e1c453454a7589a691fe391dc79e86f09ca7b7
+prerequisite-patch-id: dadeaf9e369e04d8b3329493a1a0756ddd6140f0
+prerequisite-patch-id: aa0125edb604ecf704a69250cc0d693013a977c9
+prerequisite-patch-id: 62b492b7b6e9957282f1029a02aaf258b63e990f
+prerequisite-patch-id: fcc7dd5dcd583913f91bf9986b0137c2930d2200
+prerequisite-message-id: <20260929130252.869-1-26rote@gmail.com>
+prerequisite-patch-id: 34a5a2c638a729bde49c06a330bf0847bf17e5e9
 
--- 
-2.55.0
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
 
