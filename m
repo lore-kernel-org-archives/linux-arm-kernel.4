@@ -2,99 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDA2606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:41:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A05E606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:48:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uzvjqGDI;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=res/twsR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KQPKa1Wf;
+	dkim=pass (2048-bit key) header.d=tipi-net.de header.i=@tipi-net.de header.a=rsa-sha256 header.s=dkim header.b=D7HcLpg6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
-	Content-Transfer-Encoding:In-Reply-To:From:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=I9X4XD5ud4JHTzb58pE9cFq0Gp7fU1CTG2I9JiABR6U=; b=uzvjqGDIQM0WNU
-	irn2eT5s+4t4heYtQUwXCs4LsH8tcSi7W6omh32D7fl3TOAomBBS+8Q4uvNxXTybPdM/z6wewWI9Z
-	7u96Lkk+A1eh+rUqJ+Gs6J3mM+5dj805N1L1M51Ym/V2d/mCFd0m5h85eetrydIPPkXmnh5DUmvqx
-	Uc55t6/d/mHxMyHHX15dRhw6R27lg98YyaSblAri57qRz6bmJ2sbQFK+Sh8vu5CLPOs7OlSOk1Hyj
-	s6raBOv0HGjL0nW05d2qCtHeX2LOsg4KH3u5C6sG3sh7gZ+Ol/s+vQ+ZmPDf3RiGdUMEXLA3RzxHc
-	xbVnEu19GeiROxMBo+QQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=2ydDXOxFBj0SVycf8TwirFfYbpVr31/wQtaeKtsEhMo=; b=KQPKa1WfvlLwSl
+	AV0cx5iRlb9VtfoNVRsnM7q0pDEqYp1C1ad1rQoxgUx7FWbGBPS93NrP5mTZy9wzhM30quII+hcst
+	B7N6DTFcafwS3Bx0ear/rpxKXpB7r2chpXJAAu30nK3Kizjpyx1ZKX9BdJKByOT6CgifzKk+KcGvd
+	1nvd0QYoM5dfde3GDtRFez9V7vqwbnL7O30rqH0RPJLLqWHTJDfZKQchCSwoKLurQBdp2QJyefGZw
+	Ye63k0NuvXAvYp9kxbmsQz8D1/kcb5gKQkTrvRyKDrqKBUxbqdjOLbtvDdkx02e0w/rXe96jCsGcM
+	wPNuQuptXF1ot7nlDMGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRU6s-00000009uT3-0Mqb;
-	Thu, 12 Nov 2026 12:40:58 +0000
-Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	id 1xRUEA-00000009vFv-1nHt;
+	Thu, 12 Nov 2026 12:48:30 +0000
+Received: from mail.tipi-net.de ([194.13.80.246])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRU6m-00000009uRQ-32oj
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 12:40:56 +0000
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261112124042euoutp01e70ce1178d26db6b7c248a8e4494b386~nTKOYIdlg2545925459euoutp01N;
-	Thu, 12 Nov 2026 12:40:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261112124042euoutp01e70ce1178d26db6b7c248a8e4494b386~nTKOYIdlg2545925459euoutp01N
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1794487242;
-	bh=I9X4XD5ud4JHTzb58pE9cFq0Gp7fU1CTG2I9JiABR6U=;
-	h=Date:Subject:To:From:In-Reply-To:References:From;
-	b=res/twsRekcb00rl0hpigdDQU49wJT9sewqF9AZUfNVtehuVCXJxiXNmMChvBTE4G
-	 eET/M3Ndk/cN+pz1L0w+/FpjnaGKptZRpIyBuWJJY/P+4a8RF1Bcj0RGmLHmGYIVpi
-	 4s1s/PiyRviToazDh7OQfOe5aoNIe42v3Wv4p1io=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20261112124041eucas1p2e0fefb8eb4e504a6bbf86fc3bbd57b3b~nTKOBqqaA1051410514eucas1p21;
-	Thu, 12 Nov 2026 12:40:41 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20261112124039eusmtip15ffbafa2efefdb32bf4f0155ad33cff7~nTKMZv7ec1174711747eusmtip1g;
-	Thu, 12 Nov 2026 12:40:39 +0000 (GMT)
-Message-ID: <52c54fdf-0879-4dda-9eac-822180f811bc@samsung.com>
-Date: Thu, 12 Nov 2026 13:40:39 +0100
+	id 1xRUE8-00000009vFC-1wdl;
+	Thu, 12 Nov 2026 12:48:29 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 49B8BA1563;
+	Thu, 12 Nov 2026 13:48:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tipi-net.de; s=dkim;
+	t=1794487705; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=2ydDXOxFBj0SVycf8TwirFfYbpVr31/wQtaeKtsEhMo=;
+	b=D7HcLpg63LrjbttMO0pxYYrV4lPsjGVL0AmomQUy6vklnuvaQd47hBSSw4M9yWYO0IvDS7
+	EVJQkjzDstRV1nWS5gxD9evSHMU00LKFV2Uzinb5em+0lDA7Pv3vUfuE1n02P9x7z2s8AL
+	udl0MFHopqM+m2nkP2W7T3sJtdIog6KxIRdIsNS1gCUOPuQXJhis4QC2AkFRo6aQKBUfGc
+	kC50mM3sfe5RaXlFC85b7EaySfN3e/FHI1IoNH9JX1HzYioAuS/YdW44UO6AA3UPtA++Jk
+	qFmO1Wp7Uy3WXtCFl4AojrHhJbA82rGMQDAnvR5sBbBMlpea4W8bxk5/tz98vg==
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/15] lib/lz4: widen LZ4_DECOMPRESS_INPLACE_MARGIN
- for the fast decode loop
-To: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers
-	<ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt
-	<justinstitt@google.com>, Russell King <linux@armlinux.org.uk>, Thomas
-	Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley"
-	<James.Bottomley@HansenPartnership.com>, Helge Deller <deller@gmx.de>, Heiko
-	Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Alexander
-	Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
-	<borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Thomas
-	Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov
-	<bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>, Minchan Kim <minchan@kernel.org>, Sergey
-	Senozhatsky <senozhatsky@chromium.org>, Jens Axboe <axboe@kernel.dk>, Andrew
-	Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org,
-	linux-s390@vger.kernel.org, linux-block@vger.kernel.org, Yann Collet
-	<yann.collet.73@gmail.com>, Nick Terrell <terrelln@meta.com>, Gao Xiang
-	<xiang@kernel.org>, Chao Yu <chao@kernel.org>, Jaegeuk Kim
-	<jaegeuk@kernel.org>, Eric Biggers <ebiggers@kernel.org>, Herbert Xu
-	<herbert@gondor.apana.org.au>, David Laight <david.laight.linux@gmail.com>,
-	Sungguk <sungguk.na@samsung.com>, Jaehoon Chung <jh80.chung@samsung.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org,
-	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <avTmC_1I59FKA1FN@MacBookPro.fritz.box>
+Date: Thu, 12 Nov 2026 13:48:24 +0100
+From: Nicolai Buchwitz <nb@tipi-net.de>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+ Jerome Brunet <jbrunet+clk@baylibre.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, Scott
+ Branden <sbranden@broadcom.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Andrew
+ Lunn <andrew@lunn.ch>, Stefan Wahren <wahrenst@gmx.net>, Phil Elwell
+ <phil@raspberrypi.com>, netdev@vger.kernel.org, James Clark <jjc@jclark.com>
+Subject: Re: [PATCH 3/3] ARM: dts: bcm2711: give the GENET MDIO controller its
+ clock
+In-Reply-To: <6125aa53-4fad-46ed-b627-e0fce7df7b84@broadcom.com>
+References: <20261020-devel-bcm2711-gisb-clk-v1-0-a1728724d0f8@tipi-net.de>
+ <20261020-devel-bcm2711-gisb-clk-v1-3-a1728724d0f8@tipi-net.de>
+ <6125aa53-4fad-46ed-b627-e0fce7df7b84@broadcom.com>
+Message-ID: <c00ede37512d46c8155647eed7e39450@tipi-net.de>
+X-Sender: nb@tipi-net.de
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-CMS-MailID: 20261112124041eucas1p2e0fefb8eb4e504a6bbf86fc3bbd57b3b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7
-X-EPHeader: CA
-X-CMS-RootMailID: 20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7
-References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
-	<CGME20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7@eucas1p2.samsung.com>
-	<20261106-lz4-vendor-upstream-v2-12-ee04c3f0d7dc@samsung.com>
-	<avTmC_1I59FKA1FN@MacBookPro.fritz.box>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_044053_035196_9868B197 
-X-CRM114-Status: GOOD (  22.53  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_044828_669601_630B4591 
+X-CRM114-Status: UNSURE (   9.90  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,57 +80,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi Florian
 
+On 20.10.2026 17:40, Florian Fainelli wrote:
+> On 10/20/26 07:58, Nicolai Buchwitz wrote:
+>> The MDC of the GENET MDIO controller comes from the GISB clock.
+>> Describe it, so mdio-bcm-unimac can get the real 200 MHz from
+>> clk_get_rate() instead of assuming the 250 MHz of the STB chips, and
+>> can put bounds on when an MDIO write completes for PTP.
+>> 
+>> Signed-off-by: Nicolai Buchwitz <nb@tipi-net.de>
+> 
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 
-On 11/11/26 23:02, Gao Xiang wrote:
-> Hi Michal,
-> 
-> On Fri, Nov 06, 2026 at 03:42:52PM +0100, Michal Wilczynski wrote:
->> erofs decompresses a pcluster in place when the slack after the output
->> is at least LZ4_DECOMPRESS_INPLACE_MARGIN(compressed size), upstream's
->> (compressedSize >> 8) + 32.
->>
->> That holds for the fork, which overshoots its output by at most 8
->> bytes. Upstream's LZ4_FAST_DEC_LOOP, which the next patch brings in for
->> x86 and arm64, copies in 32-byte steps and can overwrite input it has
->> not read yet: of 172410 valid streams laid out as erofs does at exactly
->> that margin, 3660 fail to decode, none with the fork. The worst needs
->> (compressedSize >> 8) + 33. Images mkfs.erofs built did not hit this,
->> but nothing in the format rules it out.
->>
->> Use (compressedSize >> 8) + (compressedSize >> 15) + 36, which takes a
->> 4K pcluster's margin from 48 to 52 bytes. Upstream's lz4.h defines the
->> macro too, so undefine it first.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> 
-> First, I really think kernel LZ4 should be updated for many years, so
-> thanks for this!
-> 
-> But my personal thought is that could you just fold this patch into
-> the next one ("lib/lz4: switch the decompressor to the vendored sources")?
-> Because this one should be part of the fast loop update.
-> 
-> Although the current patch order is also fine, but my potential concern
-> is that people don't know the details maybe pick the random ones for
-> backporting, which is what I'd like to avoid so I hope this patch could
-> be just part of it, otherwise the inplace decompression could be broken.
-> 
+sorry for ignorance, but I'm not familiar with how the ordering between
+these trees is usually handled. Patches 1+1 are in clk-next now 
+(af7994af5228,
+ab94dbf30233), and the last one for your dt tree needs the define from 
+the first patch
 
-Make sense I'll fold it into the decompressor switch in v3 so the
-wider margin and the fast loop can't be picked up separately.
+Do you take the dt patch for devicetree/next, or should I wait until the 
+rest lands
+in mainline? Thanks!
 
-Thanks for the review and the kind words
-
-Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Nicolai
 
