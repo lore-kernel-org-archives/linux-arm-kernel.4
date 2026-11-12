@@ -2,151 +2,149 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB206606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 18:02:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5519D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 18:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=2uW7lax+;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=A2/jZtNk;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=RnXWHBMG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yUWIdNBg;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=IpV8/bXk;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=TStF3xdk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=/q+HZAXO33VdMbT6NBmFvKukVr7avEJ3PXxPK7OsNsg=; b=2uW7lax+jTar7k
-	fHcs5Sjv0jmPYZGQWqxYKUBTxiER4m0dph91NJ7EVl/an9/9JplE5BH21/FvLmqBySHg1V0udy3KZ
-	MfkRUgMOAqhkNkxpIpjlnexAfb6QldZ5o0y6rYo9KdgkaNtpXFtp5xWIeXPZFYVCKzLXmeTY6h6uK
-	vvKhb9bO0i7uN+22sXMFDLM4FnfJq78sESNaaM9yHNVKwMWLdh+/WJZsRKZCElNiSC81yxVFBznmF
-	YqQ7jVtgdD+d1qUSXv4yP5X+4t0K5Vy+gD7ROvCRo6Kwdpopqii+s4K+ugcaobQuCdPmq837VDISC
-	Ff74J3vwMV/yp9meTo4Q==;
+	List-Owner; bh=is1IjOBk13wV8pAnUUZXWALQm5FmYZmf98T0QXm6I/k=; b=yUWIdNBgL4+FPd
+	Vb6GhjrZXt3FfHSxPPD8SC5juvF3mbR5+Y3lOKNU+2R8aTC7gDpB6+GXu+pq/EScaiQD40PiKOZ3p
+	mfwv7z0i80efK1+IB4iKAoY/4qrd19cZxwvlThIQgGgOyq+WfFs3+N4jyF3r/KKup3DuaABcoPPA7
+	pUCLHB0tgPa309dXAeRWy4UhqodOI0fGJsf4V4KOPsmQbqT5cI1tlGHfW8xUonm8C4+GSzIMu/c+v
+	ArYFufBDkPxZdKU49Up26kxbZ1OKohR+sxw0dMP+pVK/UsFmrqh/wVFSXw3Mr2CsIHVpuqj86FJGs
+	bF4IeqFo5PTnh0bb20qA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRZ85-0000000ApoI-2Dlo;
-	Thu, 12 Nov 2026 18:02:35 +0000
+	id 1xRZ9A-0000000Apvq-1QvB;
+	Thu, 12 Nov 2026 18:03:40 +0000
 Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRZ82-0000000Apnk-3BVF
+	id 1xRZ97-0000000Apuq-470x
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 18:02:31 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ACFZs51011948
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 18:02:30 GMT
+	Thu, 12 Nov 2026 18:03:39 +0000
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ACFZdVd1736685
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 18:03:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/q+HZAXO33VdMbT6NBmFvKukVr7avEJ3PXxPK7OsNsg=; b=A2/jZtNklLwEH3VF
-	MjxWSGKtysNcngnLz9nCc5sc7/gnGbaGuYZ7zGqVOcKlM3AKsHIhmaDNdYQI4ZWi
-	az0VQuSJZy2CM9eerFUxN61c5NsUuQzxiT8gItwg263EYYQpvSe2OFTk1hHyIHWv
-	zj2A5PMIXu8TmQfB+bV94iuGZi7aE2RXG7j/lEkQz0san5pM0oxql7aDbK002WSr
-	q3YACElXm56wWe+/r/V6oMS73GNwJk13I7nFJ22sdQaxoLFya70HPeAgeXEJhP2C
-	IZFSFwkvlw+nRnbXeumYkkoleNslYC3xwOyapsv/o/316CYMF4zOohQxHMX4w/kE
-	hE54bQ==
-Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hwg1b8p72-1
+	is1IjOBk13wV8pAnUUZXWALQm5FmYZmf98T0QXm6I/k=; b=IpV8/bXkpYXuHKVf
+	kdWRRPY9OgvhYkjJ9MVBevP/Md7oek15QRAzpgkKf6CHE1OCUKr19RE/4q+x532M
+	2Ic/9mkFsJWPZIKBqrbIP0w8fv5tkqveh/hZIyy2EtfZsa4+9Oas4kRJB164knVa
+	MhJ6VK1S576kZjFjLSxjcfYD3ot+JTaY8Ojpjdhne7Oy4qaTjBKwU203HqTpXH53
+	W4jdkp0kMzDJXwkt4Z/w2XTg+WzfskLVhG96XXTA8+1HBP56Bz6aOgO8YDD9iZkG
+	NEOBRQIBENPXEKUZ7+6EfvuhZFhGPuTuO/EWfq8vvOL35D+V+RDButzh2h6Kaxom
+	d7TN9Q==
+Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hw7nc2r8v-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 18:02:29 +0000 (GMT)
-Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-370230d93efso365421eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 10:02:29 -0800 (PST)
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 18:03:36 +0000 (GMT)
+Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-99089f9591aso48349241.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 10:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794506549; x=1795111349; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:organization
-         :references:in-reply-to:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=/q+HZAXO33VdMbT6NBmFvKukVr7avEJ3PXxPK7OsNsg=;
-        b=RnXWHBMGA53kJ8p1AZMdSGDgA2su7Ucl5Pl58sHHCkxvZVkpee21BnzNr+PG63nJth
-         S6mnMM6sngZV/fXAc5upF0JmstOtZdVjaeg5WngIVqfYpmiW8AbF3VWD5FT/hr19rdQX
-         0ki86qvR2AF6e4E6m9VmF6VyytlKyagxYiMwvtX58TlvlEhw6VsMbIiw3DW0lA0GCqRj
-         YkOumAESzhrbZVwUJ1+He4pyHbIAYMQbD2yrTJKLtqOEkLr61ZLJWrf8UsilzDc1GzIU
-         3RUbrAJJZqPhswZp+ZDhdDJLi93+r/zvPfzk5x7XN6VBQnh4DbPpJXV4bocHxdUiuIsk
-         Xk2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794506549; x=1795111349;
-        h=content-transfer-encoding:content-type:mime-version:organization
-         :references:in-reply-to:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+        d=oss.qualcomm.com; s=google; t=1794506616; x=1795111416; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=/q+HZAXO33VdMbT6NBmFvKukVr7avEJ3PXxPK7OsNsg=;
-        b=aThRnjA/dosVUG1/DhTIrQ88Gc4GyyGaS+5lOTu4b3RF3NHhlf5CVUftgMP7cBDzUh
-         QsQ3mQ0CkDCxoeyZc6GQqMuq0frgU0jgpTXU1hzTUlii/4XNgG+luob7sGYXsrbbuwjl
-         kqSzutuIMstLRDLRkhLLBIZgNFxfoj3Mxjt1vnHElOps/hHJuiYyE2NLGSU+Xjl4ZBWG
-         MqV76G4uOjErXlhbJFros+tiHhrSJFj8XeDyjN948Cya6M+AG5SOOm1Bu2wKTliuJjva
-         jzL19ZkCbxgSXlw0AOB8qh+f3jpidY+EBYu4hFSEXtsQzzi27M/1ER3HC/RJEPisDq4L
-         dsDA==
-X-Forwarded-Encrypted: i=1; AL+hErHLDHpZNJvw1fZlesZSZPd/baQjH/bhljGemb7wuD0JirEROmODEzgV7jrm2oLKPfdDx9WmuTAqwUL6XyOO89HZ@lists.infradead.org
-X-Gm-Message-State: APuU4Z9nKW5kNHxUXADS8u3OjlsrnAFd7Gy7lGOi8nOjICkYMY0pc3a8
-	TrE9qBdCpEjFc1hYERI+bpFDdqgo5MIn+uqCLL7hnZiO1fldCdsGN2iIgHbeu7n/sxXPOQdEbuA
-	pBxiSmhvScRzrpk6PIFYSd1dgXNtIRE51mmSTbIn/5Ozxy/v+Scipar0yA9uDt91bIG87QSTzIu
-	KxfA==
-X-Gm-Gg: AYBFou0YikSMcMieh6WmlZGNvtLu0GUh/LmFTfFxUBj2njyMV4OcMZHH6XEB865m1dt
-	+gZm4x5lpY3Ng6cmHMMgCDz6sEf6MfWAmxCQKLbFB0j8cJuGottZbN28Y8j8kaNQE2G8AIyGrCA
-	igajULBXHLpLqRztL+cSDn3chzGEt9AWprBV50Ix6CsLTlThKwu3I7MV8zw12UAe7nZtgWsJmE2
-	nGzxY3wuv/6n/d/6fSL91OzrxFs85RGWt10a65ITtnQo3JZ6t89UslDmrllcNadcmrsgVCQkvFg
-	Zkvwp4PJaCB5ChEg+HqhI6pEakasiEwLlyVx1e5N2oTNPxJCYw1yYhJBGso984YhnBlxh8yZBox
-	ZIS6cbGSylxsE1VllVHhNBrIzfll61RTduS3UZezUh92UkFAEEryYFHQDA+NGHfH75dVA1G6GnO
-	cS8oEPqj8Gg1qBdeSPpgm90xvb/qo=
-X-Received: by 2002:a05:7300:fc0e:b0:376:9e80:2bf5 with SMTP id 5a478bee46e88-3769e8f760amr6022763eec.38.1794506547883;
-        Thu, 12 Nov 2026 10:02:27 -0800 (PST)
-X-Received: by 2002:a05:7300:fc0e:b0:376:9e80:2bf5 with SMTP id 5a478bee46e88-3769e8f760amr6021582eec.38.1794506510251;
-        Thu, 12 Nov 2026 10:01:50 -0800 (PST)
-Received: from localhost (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37955332ae7sm510064eec.8.2026.11.12.10.01.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 10:01:49 -0800 (PST)
-Date: Thu, 12 Nov 2026 10:01:45 -0800
-From: Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        arm-scmi@vger.kernel.org, linux-doc@vger.kernel.org,
-        sudeep.holla@kernel.org, james.quinlan@broadcom.com,
-        f.fainelli@gmail.com, vincent.guittot@linaro.org,
-        etienne.carriere@st.com, peng.fan@oss.nxp.com, michal.simek@amd.com,
-        d-gole@ti.com, elif.topuz@arm.com, lukasz.luba@arm.com,
-        philip.radford@arm.com, david@kernel.org, souvik.chakravarty@arm.com,
-        leitao@kernel.org, kas@kernel.org, puranjay@kernel.org,
-        usama.arif@linux.dev, kernel-team@meta.com
-Subject: Re: [PATCH v15 10/35] firmware: arm_scmi: Add Telemetry resources
- enumeration
-Message-ID: <20261112100145.00000560@oss.qualcomm.com>
-In-Reply-To: <20261109091221.2532706-11-cristian.marussi@arm.com>
-References: <20261109091221.2532706-1-cristian.marussi@arm.com>
-	<20261109091221.2532706-11-cristian.marussi@arm.com>
-Organization: Qualcomm
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.51; x86_64-w64-mingw32)
+        bh=is1IjOBk13wV8pAnUUZXWALQm5FmYZmf98T0QXm6I/k=;
+        b=TStF3xdk1EejuR2vNogEqFtv9klQYbsWnxWZ9kL3p5e5YnECKINlkck3kqjxxEv0d7
+         mfFdBSHhEqtcriS1mUOrjNqJTOtyMLpDkOQtwY1mlHQs94auuPaakHHckLVzzLkMcV2G
+         cJ+e02F7RuJaRA29hah63YJ9V7IxyTvb1kmzFoXnGZU3F+s0JFLOHvZHd0TVVwqFFBAR
+         t/JUi7IlgcEL5b5dec0CC7IgqJtCj1PCLiKYgK8QNsOudc8VDGmswdFZyePk2haOnuo6
+         nTXimiZ4vGeiQmjNZloj9vRXSwdwsEBocAo8//PLERjTmx+8BciJ8UHKUyKpb5AaIhew
+         vH0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794506616; x=1795111416;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=is1IjOBk13wV8pAnUUZXWALQm5FmYZmf98T0QXm6I/k=;
+        b=e0BNQxXOIsBrjpLfVi+F8zxC0C7vybE5dxcbbJgBHwUbVSwSbnRY5DSYTF2Ohx6jff
+         c5d1ckaC1+6ynzRzuHmnJsby+CHIUsY4oahj/hKvcOCRq1SdOsG2ROFgcAzh1esNku0e
+         CYQXRrebuZ4eX56uobqDvwTV7kCdGAlhZ81qD3GPklsgCqcV5taCC4l6JlH5nXmoySHb
+         pRqiiwPH1BJEYjPNDMVDojJagwfPuhBRF5lP1rSH1CG9a7cjkwpRd/hwwI3SXqm1Kjhh
+         qXcNW7C4UOg81aIqR/tpF0YrDkF6G4NkadNMy2IK3+qxz4c75JiOFsMqvsx/2+5pK138
+         vhig==
+X-Forwarded-Encrypted: i=1; AL+hErGkiyHLn8XXfrrjn+53ronE46Kg0MGTYO8AtoXt/ezxhyzOVG1ZHfXwDDlwGSmHwx8jsVxekjDhpfHNfxltT3tM@lists.infradead.org
+X-Gm-Message-State: APuU4Z8Q8VSyo9r0MjYOuOAt24/Ff9EP0VOoDbTDU01FzkP2UYig7xVq
+	3nqcIAKi8TRG4pSbZ9ieM6imm6AbBOxLaD7JYPMtsJb2tax7e9NvDXbYvdfZevc9IkKzGONi2qb
+	HKA1n17KgrdNveGxD4E+YNUIdOAoFnZaYe5L+yjBHmjbIyaoHUqbLvtDijjPruc4hqjaf/gibNw
+	+Hlg==
+X-Gm-Gg: AYBFou0X75lAywSdha5t48HOemLDu84X2YAPhqv5NTn1jvX6qknICoPwiJ9+3CuGsR/
+	XswA6tqq1JabIa5fSc7t+YuE6XMdrWSXnNMcoR1S0innYdVWl2Q53Y+Txdgm2Bhi7HID0INhnOE
+	ewt1kmN9Jx1uyss4ahkjaOCTIJygb/n4wG/2CCvOPt5JsPeJeWU1YYNmYWTeEIvDnal/xv6/6ti
+	cWw+3t/PBB3qlgMhGW6bseEbgVkXF8lsxrDea14b4qqNBGskaxm1xhIemFLen4QzCDu11cTmxgj
+	BpXBW23S1Y0ERIoJZXjFi+3v442gVmrJBstHFk4BNcnE1nIYB2Tos/nyMYKEvKcKg7eDdma4yHP
+	Jqt5dPdEI2/ZCPZoQzIN0S1pVzZfBzVT3XEqCeJwyDCnvXEVCmdXezN+Ssb8GiPG0ALIzyPXyEw
+	xfmc4Is1GPVEyy+WYbSmpLoqNOhTiWWk2NZXw=
+X-Received: by 2002:a05:6122:3d06:b0:5ec:3e18:a912 with SMTP id 71dfb90a1353d-5ee1c41a938mr2612962e0c.14.1794506615493;
+        Thu, 12 Nov 2026 10:03:35 -0800 (PST)
+X-Received: by 2002:a05:6122:3d06:b0:5ec:3e18:a912 with SMTP id 71dfb90a1353d-5ee1c41a938mr2612929e0c.14.1794506614860;
+        Thu, 12 Nov 2026 10:03:34 -0800 (PST)
+Received: from ?IPV6:2a05:6e02:1041:c10:7d20:e20f:a77f:4ef7? ([2a05:6e02:1041:c10:7d20:e20f:a77f:4ef7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2acf81sm80058415e9.14.2026.11.12.10.03.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Nov 2026 10:03:32 -0800 (PST)
+Message-ID: <d30df23c-c1f4-4a7d-a56d-33c1f9e1a6f7@oss.qualcomm.com>
+Date: Thu, 12 Nov 2026 19:03:31 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] smpboot: Allow restricting per-CPU threads to a CPU
+ mask
+To: Thomas Gleixner <tglx@kernel.org>, akpm@linux-foundation.org,
+        rafael@kernel.org, peterz@infradead.org
+Cc: Heiko Stuebner <heiko@sntech.de>,
+        "moderated list:ARM/Rockchip SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+        "open list:CPU HOTPLUG" <linux-kernel@vger.kernel.org>
+References: <cover.1793660202.git.daniel.lezcano@oss.qualcomm.com>
+ <af37c4e7811a86adafb2064e7cf4aa4f5090ab4b.1793660202.git.daniel.lezcano@oss.qualcomm.com>
+ <87zeverlrs.ffs@fw13>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+In-Reply-To: <87zeverlrs.ffs@fw13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=c6Q+0h9l c=1 sm=1 tr=0 ts=6af5ff36 cx=c_pps
- a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=kj9zAlcOel0A:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
- a=7CQSdrXTAAAA:8 a=eWwvBSKlxOWLqK439NMA:9 a=CjuIK1q_8ugA:10
- a=bBxd6f-gb0O0v-kibOvt:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-X-Proofpoint-GUID: jI9t2SV2tIQQlnlnwjwKrootFdqudBAr
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDA3MSBTYWx0ZWRfX9U9HTr8cfy3K
- DNzvdky9Xb6dCmet7hJmrDnUPRBvMKq6U7uqiT3VCkZSnOaLBiINUHGK9oDlzXYBfSauxuxvVGX
- ksN8m2adH0JGYQxJEMt65Xl9L7b+VjP55JbmBDVtRy+4Vk79r3DM7f5s1tFu66yA9+k63qKGOEY
- 08umEJmZMqXl0Vg/tLd4yjjiih3DOaPmQif3ud5ow3D2Y0MvIp2T1u54d6wIb+9qmpGWAnqhGQG
- czZL5mCY1Je11pGQY4eIHRSXNuCqpTgyxzTWu8EsoFLHgxHefX5g7obAwfMURCcsFu0+E9da0W3
- hBvp9kCeuAr7ROLMxr8qHYLMzWupH4bnwJjRHwHnrnNm2J4k22aysaBsBQgSqmGMOZivlhRn15x
- oAcgaac8LxkBNgWyULBPWgFhbyNysQFWXTG0lKl1AOpXR7Mfmtfgf9FjshoENgFU80WD6H/1Ed6
- LPqVaN2dIxRcI7RMkgw==
-X-Proofpoint-ORIG-GUID: jI9t2SV2tIQQlnlnwjwKrootFdqudBAr
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDA3MSBTYWx0ZWRfX+qzqhprX9Zqa
- wFsfyE+j+sVExMZ2ekSW+yElMj8yATYthgO2Yr+f21mFywZsgrwZoMDcxoftqtXfpii5rXNuX5A
- iHBReLC6ShXHLPBDnXuaH48bj7767Nw=
+X-Proofpoint-ORIG-GUID: SwspPpg1FVnwm4iazQ13IDR6oEByp3wO
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDA3MSBTYWx0ZWRfX+vy7s3s2o7rB
+ MUyGphlIIPyHm7iLIN02p0H3OPJ9qPbfE6OMtJaO4s7P1q73Pa110x9Qfrwuz/nnqzO0+fOkYnP
+ VsPV2GkdEsxvCreUx3/j6sA93CSqi0U=
+X-Proofpoint-GUID: SwspPpg1FVnwm4iazQ13IDR6oEByp3wO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDA3MSBTYWx0ZWRfXwcZ7f2XkVgUv
+ qrpHI1Gq6a0WNnf5EMgVsAL1zwz387UK2XHB0PshDG/97a83akNZe5C1PbuScJroq90EzR03G46
+ ECTB0vw1Yjf+4G2yW7Lyq0BGJPqAwlCSKrvwmjlxS+s4dgaLNVvtwVOmWXnME1dI41CLG4q/TQb
+ IjFRc5F8oYNFt7/BvWoN8oWUfUu5Ug3Y+DZLDvQCgQNawI53ITwPIPu2hizaunR6xi2tu/b+d9R
+ W89X9xnVbHiC8qhmLYhf4NBnTXBI8I+yqNI6pzL/fpWXrpnBCPqZSSxEDn/3a53FFz1kyJ2j4pb
+ 5Lzkc49BSW9qtQ+LDsdSrH0CbHYcZ4X1my3VwcXx1U14pLGomgr0CjAwUyLI/+Zq+q0yqUICqG9
+ PINlCUCGHwglbzflLJBJqRumweAgP3lnsRZy6XJqqDJ/woipVLTHYNQVtj4KIAwX5ZDOKi5eSu8
+ iWmo9Xt3Gsw9Z6nZWHw==
+X-Authority-Analysis: v=2.4 cv=A8b5rKWG c=1 sm=1 tr=0 ts=6af5ff78 cx=c_pps
+ a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=A-cxFYNZenKyrZAO6n4A:9
+ a=QEXdDO2ut3YA:10 a=TOPH6uDL9cOC6tEoww4z:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
  definitions=2026-11-12_02,2026-11-11_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 lowpriorityscore=0
+ adultscore=0 malwarescore=0 spamscore=0 clxscore=1015 impostorscore=0
+ priorityscore=1501 lowpriorityscore=0 bulkscore=0 suspectscore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611120071
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_100230_842330_FA3D1DE1 
-X-CRM114-Status: GOOD (  16.58  )
+X-CRM114-CacheID: sfid-20261112_100338_038091_7F2D8659 
+X-CRM114-Status: GOOD (  17.42  )
 X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -158,54 +156,68 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon,  9 Nov 2026 09:11:56 +0000
-Cristian Marussi <cristian.marussi@arm.com> wrote:
 
-> Add basic Telemetry allocation and initialization routines, introducing and
-> wiring-up the logic needed to enumerate all the SCMI Telemetry resources
-> optionally using a lazy on-demand scheme: this approach factors in the
-> flexibility needed to minimize the amount of initialization work based on
-> the effective access pattern used by the upper layer ABI.
+Hi Thomas,
+
+thanks for reviewing the patch
+
+On 11/12/26 18:40, Thomas Gleixner wrote:
+> On Tue, Nov 03 2026 at 00:09, Daniel Lezcano wrote:
+>> smpboot_register_percpu_thread() creates a thread for every online CPU
+>> and registers the descriptor for subsequent CPU hotplug operations.
+>> There is currently no way to restrict these threads to a subset of
+>> CPUs, even when the user only needs work performed on that subset.
+>>
+>> For example, an idle injection device targets a specific CPU mask.
+>> Creating threads outside that mask consumes resources unnecessarily.
+>> Supporting multiple such devices also requires each descriptor to
+>> manage only the threads associated with its own CPUs.
+>>
+>> Add an optional CPU mask to struct smp_hotplug_thread and apply it
+>> throughout the thread lifecycle. Registration creates threads only for
+>> online CPUs in the mask. CPU bring-up creates threads for selected
+>> CPUs that were offline at registration, while parking and unparking
+>> are restricted to the same mask.
+>>
+>> Apply the restriction to thread destruction as well, both during
+>> unregistration and registration failure cleanup. This is necessary
+>> when descriptors with disjoint masks share the same per-CPU task
+>> storage: tearing down one descriptor must not stop or clear threads
+>> owned by another descriptor.
+>>
+>> The caller must keep the mask valid and unchanged until the descriptor
+>> is unregistered. Callers sharing per-CPU task storage must ensure their
+>> masks do not overlap and serialize ownership changes themselves.
 > 
-> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+> This really wants a built-in check which prevents overlapping
+> registrations for the same thread storage. It's easy enough to do:
+> 
+> smpboot_register_percpu_thread()
+> 
+> 	if (!pt->cpumask)
+> 		pt->cpu_mask = cpu_possible_mask;
+> 
+> 	guard(cpus_read_lock)();
+>          guard(mutex)(&smpboot_threads_lock);
+>          list_for_each_entry(ht, &hotplug_threads, list) {
+> 		if (ht->store != pt->store)
+>                  	continue;
+>                  if (WARN_ON_ONCE(cpumask_intersects(ht->cpumask, pt->cpumask)))
+>                  	return -EBUSY;
+>          }
+>                  
+> Hmm?
+Yes, I agree it will prevent strange things happening
 
-Hi Cristian,
+Thanks for the suggestion
 
-This stretches across the patch set but first elements related to it are
-in this patch.  How do we handle larger values of de_data_sz?
-
-The spec allows (and it's useful for things like histograms)
-DEs to have an integer multiple of 64 bits for a single element.
-In the shared memory buffer that just ends up with a bunch of matching
-IDs with discovery via the parsing done in this patch.
-
-The only (I think) today to dump that from this patch set is
-to use the shmti dump interface.  That's not exactly nice!
-
-I messed around with (well chatted with an LLM about) a couple of
-options.
-
-1. Make the whole stack aware of multi line DEs. So all the requests
-   get to return more data.
-2. Adding indexing so you can get a multi line DE in multiple calls.
-   That makes the interface for a bulk read a bit odd.  Userspace will
-   have to be cleverer given variable sized elements.
-
-Given this is a ABI related aspect, needs figuring out sooner rather
-than later I think.
-
-Which way do you think makes more sense?  Or am I missing something?
-
-Jonathan
-
-
-
+   -- Daniel
 
