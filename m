@@ -2,114 +2,170 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B751560A380F
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B39606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q+jjZJbn;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GURFOUjJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W1TBgrBl;
+	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=I5IVkihk;
+	dkim=pass (1024-bit key) header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=GsbwUCu9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=BycxkJDEkQrYGACgnxRcwOpm358ZLLzx9eK5XW7KLlA=; b=Q+jjZJbn7mFhRBRGonU9gIhB4+
-	ng7mURy4P8UMA0NGX/E5fqgUwhfWX1fJSDKOCszCkNqfZjAX3YKRI+EGvAHFI2lWrlhwYM6nXApys
-	VWdrWM7r6qsnlMtO7kWMWS2DBI+PLwbW/BoC0Nh2TLChpLjkD6FUR30x5OM9hwXaw/wh3u5dCjmXH
-	cS2rqNBo2ggwsgNPmtO/eYd+KiQJ/utjnhSBysgdNJrcUccrlD4WYsxCA4Ww/ilgabby0KCpo2Sly
-	MVDxcAAphc5BVIXNItfGE8yTxlxL78LPqlxP4qB5gkds5ul+E6ONUqid56GY+KQAkqXrH4g2b3Zor
-	VE97sdWQ==;
+	bh=WLw+K2gevzwJjIj2qfWa/NmUfAsNOd+u2sr4nRDPehI=; b=W1TBgrBlq7cevxzdDRUGBWD4Oe
+	WWyKhnJRP1JGeBgmGZEnY/QeLEkLf1zbdBCZmfYQmbilZK+WK8ulhdBv0zYVQGtdZ15XJTAyMjNfj
+	ff5+/WhkxujmtMZI6o9GBDwVQJfHHIeqV/xxvPczAdeUJMYsIZ+AswlRLdvqLqFE+cu+jQioujv8/
+	g9Kc3XKM073j8ox+b5SgSVastGyDytxOKkRLCbrba2jpGKqWT6FG5L/Mt+Oj1WUN6kS2+cqHUmOoS
+	YbAVwrihBFAfzAglkUh5NrGAk58FxCUYnSMuG3IpoNtzPOT+YcELyZM4sNXQoHTOMK2vnhq15TBCy
+	oDBTnkZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRPtL-000000092HS-0vC5;
-	Thu, 12 Nov 2026 08:10:43 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRPu2-000000092Qx-3R6T;
+	Thu, 12 Nov 2026 08:11:26 +0000
+Received: from mx0a-0002e601.pphosted.com ([148.163.150.75])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRPtI-000000092HE-1YiD;
-	Thu, 12 Nov 2026 08:10:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 21FF4455C4;
-	Thu, 12 Nov 2026 08:10:40 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794471040;
-	b=S0jVKuIo0ChZACKK9/TNnPGxPgY0vHLyaLkSkloANHxJOKtSp4b4t5solTn97epf+2Tf
-	 kfQdG5qKhqmCty3uTRHr1E2qaS3oI/u8WDfZcwVSgrpvoTWNr5OeXB1Jnp91YaSM6T+4v
-	 2PO7DYVXBsNzKk3SqeHDdsP0owwidDV/qohfLEiZtmdtJ5gNtu+5bu/9ktnkj31DpDlQv
-	 JJNAOJjE0sIBj89IaeZ6rHsaHxiyLwTC3lV46Po8yMMQrtEtMyHca6fuUw6J1M5/m/4Lt
-	 EQplCgaXMGKDZUVitV138Ybae1nUN5KsVFzUrfy6bR5+rwlh3OqhGsC6Th95gFRFoTg==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794471040;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=BycxkJDEkQrYGACgnxRcwOpm358ZLLzx9eK5XW7KLlA=;
-	b=VhWbUzoXc4JGeEF2mxidvF6/gjSPn1UL5/3OR0TVgxUwiFiRjQnXcmHEJACjYCS9oaEn
-	 HKvuh+BIu+TMDKYR7/go2S+u2wugSpvKfxfIORTaR1kU/72wWLjyWnw94l2HPlsGlBpQa
-	 6x2KttNDxTMEOr7mX/u9brUpsDr7XCslf9X7PTQU/3+FxeV8L+A63GQMKhr3/NpWo1S7a
-	 FF6ENm9enqnZO3UPs6c6XG5mOhtpwRf/Z/d/CI9/3q3z8qFSWNgC1KYvNcGXaacrMbmoZ
-	 T6586fivu3sX+2QWKwbRHSjciEu38opnMthKJ9R+mBuNwhWbpuMlNhwpeMp+TqZaR3w==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 5F1DE1F00A05;
-	Thu, 12 Nov 2026 08:10:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794471040;
-	bh=BycxkJDEkQrYGACgnxRcwOpm358ZLLzx9eK5XW7KLlA=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=GURFOUjJE8jzpEJuv/bXoOyr81p/2Uw4s9ZtUZuiVKULqMKyuOpkqlccwcdNL1LjD
-	 G4vtZfOIHM33g+pfWRnKEQN27TAyX3iz2jm1X2WeKz+1nKDybDLjlC3ubmbCf5yiSz
-	 4VkRWokLzBaS8yWLwEMJcMgr09HLwK6xUQVgHOWZ1UmQ7et5mYOHHuSHAH2nBzbguM
-	 QV1UlHZWyaMNckcIn7QwIhqPIBjrnUDzSP0H69yo/4LxRmxQihjEa6zIUumqh3hbjA
-	 czbGpC1lzv7nWqYseGLS6IBhfQHrCOdjEf7YTmH4fPebr+1VmT3A51ugFh68CK0Grb
-	 vAGo1s/f4ECAQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id B44534932C;
-	Thu, 12 Nov 2026 08:10:38 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:10:39 +0000
-Subject: [PATCH v2] drm/panthor: Suspend devfreq until the GPU is first
- resumed
+	id 1xRPtr-000000092PU-1DIE
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 08:11:17 +0000
+Received: from pps.filterd (m0384305.ppops.net [127.0.0.1])
+	by m0384305.ppops.net (8.18.1.11/8.18.1.11) with ESMTP id 6AC7nuog3094898;
+	Thu, 12 Nov 2026 02:11:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=proofpoint-05-2026; bh=WLw+K2gevzwJj
+	Ij2qfWa/NmUfAsNOd+u2sr4nRDPehI=; b=I5IVkihkd2Bh93AkzPMhL9WX1L0IQ
+	4Op6b12LITl8afGmxYn1LZ/j6DpbAZvT8zrVyQufIvuBvJTCyQYk+dm09emPAb2n
+	IOKj9CqBiG6uON8Ip7ss+a4n7rtxr8+buOo5NcUym2c0lQY98kJg0lhc0zSvmLY8
+	ntVEMak3VFChFI71bN3O7q6/u7BBVc/boC1oU0jeWU4QqKfgNrS+Lv4fkvkT0QH0
+	K5Cmoqe0RDT0OUtYLH96KV0EScYWUIkzNAxkjZEGjtp14WJBc248WWGsEfrIoV7d
+	pmGmno+d+IhQX/KCzkggj/ZRrBREsjccrejJgS6v21OJF7/15NRS5x31A==
+Received: from byapr05cu005.outbound.protection.outlook.com (mail-westusazon11010039.outbound.protection.outlook.com [52.101.85.39])
+	by m0384305.ppops.net (PPS) with ESMTPS id 4hw4cy1v3f-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Thu, 12 Nov 2026 02:11:08 -0600 (CST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SuhYDjwWVTyRsVYeBumPknHWK1zEbWKAcswdFgsM0d18/ZJIFIMgN0itAvrVayib5H0vWjj3TtLAiC5SMDiMnwumcVy+yU82g1O0Dw1TSY9ric8eOkxL4uQ+kXfmo8UG+4HX6Qi65MmQneM6PiB78QSBCnzcZLHQEfhmbsMUSV5VJWh4xgmwlk1Ns82HZc7ONuugSD497iSy7GIlGqROeHme3MNbCMTQ6+eGFAQNOxa8IAp+OFdb44cxUkNb+oq+sMK4HvMhBim4AApVovj2bQTgLYMRseelGQ5FTF8J1+LsBJRaMmiq003lBQcMqs+7P1UmdS1nndvMV4fL2dJq5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WLw+K2gevzwJjIj2qfWa/NmUfAsNOd+u2sr4nRDPehI=;
+ b=RsTv5OClWXIvSgtCUky4pEUsOKF0VZPWVkAF96UxudxqMb2S7I3+FFKzMnZ7DmJLHJxJmT0BprbqXp3LttLy3n2FaW5kZWlytYWiVyKARCLcGq4F3N34oldRRlw9YXlj1FVHyxKEE7NQBTSSsn+g3DTBTr4etDzp35ctELc4CleZX4cxiwo3ONcxEXIr7De6V2xmIZxlSzGJQL8N5oNHhEuPc/+9cSi2SYwWS4I9ftRhroR7Thu2OA5TISyUQ+MmBH+QboysDmyqyYOaWJ9NbAHZy38rwPElFvrXRZN2l5zEmvNdxUcXVHnwxRGPAqGq/4EY3GRdRg/UGhmgZQ7GMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WLw+K2gevzwJjIj2qfWa/NmUfAsNOd+u2sr4nRDPehI=;
+ b=GsbwUCu9dDeWeqkRSRjbg5NGzP41BJBxYVuB7luRNhbr5Jp8HdQPjCxE88JFv8eVOkNgMBmcU3D+PkbKxVtyww7t+OM6NLNYQaOnn6O/ejXZGch0xPGFDEYpQAMNj0C2gPQZTOZrrJX8GOVlR88NY88y01ZCra9FlGvuKN7EDwA=
+Received: from CH5P223CA0008.NAMP223.PROD.OUTLOOK.COM (2603:10b6:610:1f3::29)
+ by CH3PR10MB7162.namprd10.prod.outlook.com (2603:10b6:610:122::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Thu, 12 Nov
+ 2026 08:11:06 +0000
+Received: from CH2PEPF000166BF.namprd04.prod.outlook.com
+ (2603:10b6:610:1f3:cafe::11) by CH5P223CA0008.outlook.office365.com
+ (2603:10b6:610:1f3::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Thu, 12
+ Nov 2026 08:11:05 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 198.47.23.195) smtp.mailfrom=ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CH2PEPF000166BF.mail.protection.outlook.com (10.167.252.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 08:11:05 +0000
+Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
+ 2026 02:10:53 -0600
+Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
+ 2026 02:10:53 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
+ Transport; Thu, 12 Nov 2026 02:10:53 -0600
+Received: from moteen-ubuntu-desk.dhcp.ti.com (moteen-ubuntu-desk.dhcp.ti.com [10.24.50.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6AC8AlaK1453305;
+	Thu, 12 Nov 2026 02:10:48 -0600
+From: Moteen Shah <m-shah@ti.com>
+To: <conor+dt@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <nm@ti.com>, <ssantosh@kernel.org>
+CC: <u-kumar1@ti.com>, <gehariprasath@ti.com>, <m-shah@ti.com>,
+        <vigneshr@ti.com>, <afd@ti.com>, <a-limaye@ti.com>,
+        <y-abhilashchandra@ti.com>, <johan@kernel.org>, <kees@kernel.org>,
+        <jm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v3 0/4] soc: ti: Add TDA54 SCM configuration syscon support
+Date: Thu, 12 Nov 2026 13:40:43 +0530
+Message-ID: <20261112081047.1550471-1-m-shah@ti.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-panthor-suspend-clk-v2-1-62e1b168052d@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32OS47CMBBErxJ5jUfdSZyMWXGPEQu70yYeyAfbi
- QYh7o5D9rN86qp6/RSRg+cojsVTBF599NOYoTwUgnozXlj6LrMooWwQEeRsxtRPQcYlzjx2km5
- XidipBmrHyrLIzTmw83+f1Z/zznGxv0xpm9oSvY9pCo+PdsUt979hRYlSVbVqQQEr5NNlMP72R
- dMgzq9dEfi+5P/T7hXWRJb5Pvh0LMiCaSoHpBv+ZrIaUGtmqzVRaVpHzrRQdXUee70BaxZKHhQ
- BAAA=
-X-Change-ID: 20261110-panthor-suspend-clk-11d5604fe5be
-To: Boris Brezillon <boris.brezillon@collabora.com>, 
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Akash Goel <akash.goel@arm.com>, Karunika Choo <karunika.choo@arm.com>, 
- Lukas Zapolskas <lukas.zapolskas@arm.com>, 
- Chris Diamand <chris.diamand@arm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Heiko Stuebner <heiko@sntech.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Jonas Karlman <jonas@kwiboo.se>, Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471038; l=6121;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=uiwyQooI2QqdHVVbIj2tbEKcTWRM+G3FzfbhcKof+kg=;
- b=wivOOwJ/7GTvbZBbl834segCag1oFnqKSy2+v8GXNHok6K8gnpd49EQDjqRZ2Ifr4AEJT7Xg3
- pSZ8BrJXh9wBSgatVc/kYmttND3QH/F7PLPS1qxGYtybmlz9/HqCGC5
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PEPF000166BF:EE_|CH3PR10MB7162:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04241b8f-1286-4fd8-1044-08df4094801f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|36860700016|376014|23010399003|1800799024|18002099003|6133799003|261009223027099003|261009221227099003|13003099007|56012099006|261028144727099003|261102123227099003|261021121427099003|261022105027099003|261102130727099003|261022075727099003|261026121527099003|261026140227099003|261021123027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: bMz4nBSMoTPUHadls+uEb91UiA+TFLupxSKWSMGzVzORUTMjelH91/kUOiWLg/6K02W4X9vB6AlH56aVFeo7/bYCUzrct45cCJFgQ9FRbVYYCAmS5rLdWQLx98BOngE+VfQ6nPTU0WVnvYUqwnyBwkf0tvk1vQi0XF+RppQvYA7X7DGeYVvAkFE4qaCMqQSRNiANhenI0E9JM4fsezEUGIPeh6jVrapS0+GrEqtYBTmEbeK6uQF8GrHqGRgRxuWttRVcj0u7kb8c//afSJGQIo87cv8iPBIbhYtrzM1NIR7T+lS3v/XRRlB/Hl8CQoBDRKS1wTUNQGqhzQpSGaXTUx+JTSZ/UgfIZMHXpBHZKUMS86Mx6xq6I3hgxLiWGjvx1uiwpj22Vwdnu/LRDm13nzdUvYy5puTQYpJvj26QZLKb1fVwpagAVO1sreD7G0fHLaYbBIToRllVOhLjE01dhSNvFF2ykILatpSTTAdJpjkqrec+m+ijVJdMOC3++HDTA7AVYuUsNKRYBijVzUfB8gL8C/jeJX1Y+TBtKnYqajNuIFth9KAaLF2tHNYQUtdNhskP+EVJp6/aSbwI4BLlvLNFGfmlfYsZlCzNCjyNwQHwAagjouOU+6myWrb7U7zzDvFOdMRMSVP4oaU8h23jMg==
+X-Forefront-Antispam-Report: CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(23010399003)(1800799024)(18002099003)(6133799003)(261009223027099003)(261009221227099003)(13003099007)(56012099006)(261028144727099003)(261102123227099003)(261021121427099003)(261022105027099003)(261102130727099003)(261022075727099003)(261026121527099003)(261026140227099003)(261021123027099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: QpGeM2Dl0HQewFMEBfsGmbyOQ14BZwHKc/eVvuovGxux34vHR1pRPiTxre2XJBrWbXyA1DmEJ29wQJGkkmTi+1EoUmMiH/WDc7CfIXJ1IAt2yS4v7GL46XdUwyo1gjza9NXzNn2UhlEgg9fEPz00/d52Hjn+j8F/gYrU+iZxeDcZ9xY5rX4CIkvIfqVsZMdLBdk+5PaNuLks8w/XkS5yz+K5R33zaCzqvBYRtJunCLz1MEHNrMfkonM9/0OoHgR8q5WRcRW2na+PTeRzMdk6uq+OLCBY8FqKJCeNy58rjmCh1KMisrG1NDh7IhfMjK015qpyc1qe2baFlX+Dt/Rnl/DS/HlBB8cqiIna2kpPN4D4WW+IP9mcllrdw+3M3OizoGRA73/jtF8fq0AoJ64hjxukcRZ9515l/45xZRXBeboAv6O3dxo80HHJb5lpGQmt
+X-Exchange-RoutingPolicyChecked: Kje5w83JYPW0Wv56O6vDnxGXOQgxPuusXY8bz7ImkfxxPEXoQ9m/4xJ2+IujK2VmjjMb4CxMyZ1oyDmBG1XjbOxatFbWWk/ALD+WcoD3OyPdt1Lfeum7NWvhvv7+G/e+uNLA66wddD0vuBEA6n4QVu/fsjjbzomgoShiA77dtK7YiYfZSus+rj+FJ1oYzeXsWxzLib4dfJKfvZMYjg+25pYB/TBeBtk3oB24lr+Ap+7e4wcHpXpG5PX1IZlk77qzzmqojKnG0KpK9C+Fu9XI1wf5b3+3JPG0cs1wob3/0Q7GWwX1N18sWFRQioynXI6t1JFf+7QO/r/HDsnrSrhX1w==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 08:11:05.7764
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04241b8f-1286-4fd8-1044-08df4094801f
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF000166BF.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR10MB7162
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDAzMiBTYWx0ZWRfX4sRDKmb1bfhx
+ 7LCPPYHx9tMcWriyidX8KG9k0DhLUvdl+uhyFdBatK/aU9CqqQ3blq9YiIfk6c7rF6lsZ+ZLRSs
+ UaBgKkjsnHsfo5Vqu3SbRoH44+v2BI8=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDAzMiBTYWx0ZWRfX7wOYFEx2Ilhw
+ V3IsX7CaOP5FsIPfpurPDfkmbjfgDPtdlZnyVI6++76G0CsYfQ7XxEbmBGRjsKeVlcUhDEe0Tr0
+ /4Y+IMVQV577ME5443SOWikIKvs9vZGneGsyF4/9IT/NdevcWSAZNSfI7FWSDqkWnF5E0M5kNi7
+ OoisR4/Bcs93tVhTiCuMY6Ync1WcuBtOB2t9C3xknoq3XOyf0CcuaEoKt0qZQanPOYMKLyw795y
+ Go13Kizi1g2xKgJBwJYOBxPhv17WRSGcGxkKxaSo7cijazWm6+oGhOtMuYuPc1n+DmmbrZdUyKP
+ uwskIDZ6RQYABkSfckLpUT4/Z/A7T0M8OoEttc9sc2mNUiBWQl1TP9HEh00ANHDxbc72fZ2+Kyt
+ AU1jGwhWUff1bxQQ+EnF6ZB41f26QVgfaBdG6fIfgGf9l2oqbqOVDazsRBRvjsshEx7cWjbY9Uv
+ NokZXBU2L9k+y5PlWIw==
+X-Proofpoint-ORIG-GUID: FUQFSm2YurOc-lfPEcf_nuvMKKxL7K0u
+X-Proofpoint-GUID: FUQFSm2YurOc-lfPEcf_nuvMKKxL7K0u
+X-Authority-Analysis: v=2.4 cv=asYnmiZV c=1 sm=1 tr=0 ts=6af5749c cx=c_pps
+ a=pAJzO7k5KbwWJfk/IQaIJw==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=zJRp6_cAMcgA:10 a=s63m1ICgrNkA:10
+ a=AlMIdn_sM9wA:10 a=VkNPw1HP01LnGYTKEx00:22 a=Z8NIEmU8O1QQgoT56wFK:22
+ a=taLDd7a_hP9WKsMzeGRc:22 a=VwQbUJbxAAAA:8 a=sozttTNsAAAA:8
+ a=UCzFRFlywXcFtRv7-asA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-12_01,2026-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 adultscore=0 impostorscore=0 phishscore=0 malwarescore=0
+ lowpriorityscore=0 suspectscore=0 clxscore=1015 spamscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611120032
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_001115_639012_249049A0 
+X-CRM114-Status: GOOD (  13.64  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,132 +175,64 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+This series adds support for the TDA54 SCM configuration region in the MCU
+domain. The region is shared by several peripherals, so it is exposed as a
+syscon regmap for other drivers to look up by phandle.
 
-panthor_devfreq_init() adds the devfreq device while the GPU is still
-suspended, and the first panthor_device_resume() then calls
-devfreq_resume_device() without a matching devfreq_suspend_device(). The
-devfreq suspend count stays off by one for the lifetime of the device:
--1 while the GPU is active, 0 while it is runtime suspended.
+Patch 1 adds the device tree binding for ti,tda54-mcu-scm-conf.
 
-devfreq_suspend() and devfreq_resume() around a system suspend therefore
-treat a runtime suspended GPU as an active one: devfreq_suspend()
-applies the suspend OPP, if there is one, and devfreq_resume() restarts
-the polling of the simple_ondemand governor, which then sets GPU rates
-while the GPU is still runtime suspended, until its next runtime resume
-and suspend. With the devfreq core keeping a suspended device's
-frequency alone ("PM / devfreq: Do not change the frequency of a
-suspended device"), the unbalanced devfreq_resume() also marks the
-device resumed while the GPU is powered down.
+Patch 2 converts the SoC attributes, revision string, and registered SoC device
+in k3-socinfo to device-managed cleanup.
 
-Suspend devfreq right after adding it, as msm_devfreq_init() does, so
-that the devfreq suspend and resume calls pair up.
+Patch 3 splits the SoC decode and registration logic out of
+k3_chipinfo_probe() into k3_socinfo_register() and exports it, so drivers that
+read the JTAG ID through another access path can reuse the common K3 SoC
+identification logic.
 
-Fixes: fac9b22df4b1 ("drm/panthor: Add the devfreq logical block")
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-v1 kept devfreq from changing the GPU clock rate while the GPU is
-suspended by filtering the calls in panthor_devfreq_target(). As Boris
-pointed out, that cannot be done race-free in the driver, so v2 moves it
-to the devfreq core: "PM / devfreq: Do not change the frequency of a
-suspended device" (linux-pm [1]) keeps devfreq from calling
-->target() between devfreq_suspend_device() and devfreq_resume_device()
-and applies the requests made in between on resume. The SError fix
-needs that patch. What is left for panthor is this patch, which makes
-panthor's devfreq suspend and resume calls pair up; it does not depend
-on the devfreq patch to build or to be correct.
+Patch 4 adds the TDA54 SCM configuration driver. It provides proxy-aware
+register access with SCM unlock and claim handling, publishes the regmap
+through syscon, and registers TDA54 SoC information through the helper from
+patch 3. The option defaults to m on ARCH_K3.
 
-Tested on an Orange Pi 5 (RK3588S) running a v7.3-based kernel with
-this patch and the devfreq patch, with the GPU core clock on the
-firmware-managed SCMI_CLK_GPU and a 200 MHz opp-suspend (the
-configuration of Jonas Karlman's RFC, not in mainline): min_freq,
-max_freq, the userspace governor's set_freq and the devfreq cooling
-state written while the GPU was runtime suspended, also right after a
-suspend-to-idle cycle, no longer end in an SError and take effect on
-the next GPU job; 200 runtime suspend/resume cycles with max_freq
-toggling every ~35 ms and a 3 minute sustained load ran without an
-SError, WARN or panthor fault.
+Changelog:
+Link to v2: https://lore.kernel.org/all/20261027083700.1964371-1-m-shah@ti.com/
 
-This patch was developed with Claude (Anthropic) as a coding assistant:
-it wrote the code and the commit message, and I reviewed it and tested
-it as described above.
+Changes in v3:
+- Split the k3-socinfo device-managed cleanup changes from the exported SoC
+  registration helper into separate patches.
 
-[1] https://lore.kernel.org/r/20261112-devfreq-suspend-sync-v1-1-af64603ef43e@gmail.com
----
+Link to v1: https://lore.kernel.org/all/20261019080736.944127-1-m-shah@ti.com/
+
 Changes in v2:
-- Dropped the check in panthor_devfreq_target() (Boris): neither
-  pm.state nor devfreq::suspend_count can be read there without racing
-  with devfreq_suspend_device() and devfreq_resume_device(), which only
-  take devfreq->lock around the suspend and resume frequency changes.
-  The devfreq core now tracks the suspended state under devfreq->lock
-  and does not call ->target() while it is set, as Boris suggested.
-- New patch: start with devfreq suspended. The first runtime resume
-  called devfreq_resume_device() without a matching suspend, so the
-  suspend count was -1 while the GPU was active and 0 while it was
-  suspended (the reason v1 did not use it). Without this, the devfreq
-  core change would not hold across a system suspend taken while the
-  GPU is runtime suspended.
-- Liviu, on returning 0 instead of -EINVAL: returning 0 was wrong, devfreq
-  then records a rate the GPU does not run at (Boris). An error is
-  better than 0, but -EINVAL reports a valid request as invalid (-EBUSY
-  fits better), and either way nothing retries the request on resume:
-  the userspace and performance governors never re-evaluate, and
-  simple_ondemand only at its next poll. With the core change panthor
-  never gets these calls, so there is nothing left to reject.
-- Liviu, on disabling the clock when the power domain goes down: the
-  clocks are already disabled in panthor_device_suspend() before the
-  domain goes down, and the SError happens in that state. On RK3588 a
-  rate change on the disabled SCMI clock still goes to TF-A, which
-  programs the PVTPLL through the GPU GRF in the powered-down domain.
-  So the rate change itself has to be held back while suspended.
-- Liviu, on the comment length: the remaining comment is two lines.
-- Sashiko's findings on v1 (a rate requested while suspended was lost
-  without a suspend OPP or with a non-polling governor; the lockless
-  state check could race with the clocks going off; Fixes: tag) are
-  covered by the devfreq core change, which applies deferred requests on
-  resume and keeps the state under devfreq->lock. Thanks to Sashiko for
-  them. The new patch has Fixes: fac9b22df4b1, the commit Sashiko named:
-  the unbalanced count is a mainline bug, independent of the SCMI clock.
-- Link to v1: https://patch.msgid.link/20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com
----
- drivers/gpu/drm/panthor/panthor_devfreq.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+- No changes to the device tree binding patch.
+- Use devm-managed allocation for the SoC attributes and revision string in
+  k3-socinfo, and simplify the cleanup of the registered SoC device.
+- Enable fast_io for the TDA54 SCM configuration regmap.
 
-diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
-index 2249b41ca4af..45ae42dacdcb 100644
---- a/drivers/gpu/drm/panthor/panthor_devfreq.c
-+++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
-@@ -256,6 +256,12 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
- 		return ret;
- 	}
- 
-+	/*
-+	 * The GPU stays suspended until the first panthor_device_resume(),
-+	 * which resumes devfreq. Suspend devfreq to match.
-+	 */
-+	panthor_devfreq_suspend(ptdev);
-+
- 	cooling = devfreq_cooling_em_register(pdevfreq->devfreq, NULL);
- 	if (IS_ERR(cooling))
- 		DRM_DEV_INFO(dev, "Failed to register cooling device\n");
+Moteen Shah (4):
+  dt-bindings: soc: ti: Document the ti,tda54-mcu-scm-conf
+  soc: ti: k3-socinfo: Use device managed allocations and unregistration
+  soc: ti: k3-socinfo: Export SoC registration helper
+  soc: ti: Add TDA54 SCM configuration syscon support
 
----
-base-commit: cb0a63f0c96e8ecb90199eeb99cc2a7fcfa703d4
-change-id: 20261110-panthor-suspend-clk-11d5604fe5be
+ .../soc/ti/ti,tda54-mcu-scm-conf.yaml         |  78 +++++++
+ drivers/soc/ti/Kconfig                        |  16 ++
+ drivers/soc/ti/Makefile                       |   1 +
+ drivers/soc/ti/k3-socinfo.c                   | 111 +++++----
+ drivers/soc/ti/tda54-mcu-sysconf.c            | 217 ++++++++++++++++++
+ 5 files changed, 380 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/ti/ti,tda54-mcu-scm-conf.yaml
+ create mode 100644 drivers/soc/ti/tda54-mcu-sysconf.c
 
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
+-- 
+2.34.1
 
 
