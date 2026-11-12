@@ -2,82 +2,148 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12E9606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:31:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3E58606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PnkbghGC;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=k57GMODD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YV39ZoTd;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=wiq2ZR3g
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:Subject
+	:Date:Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=+JS/u9nVbprwfAlBTGmlnxIj2t3cznYIMek4M/WJ2t4=; b=PnkbghGCVoVgTfnN9GMobXB4k0
-	QCmuQ10lhcfRkUY1Iy9Qk6XRx7ajL9JbQCg8kjlQNs1ywyICsnSAj7NcqVAQcpT7jwCmaNi/N4Mcz
-	Uuz/UGX87BwobC8UPaufnmJhbD3bJ0Xn8XS1sir2KFzZEL4NrgEfrCu3f5KhHu/Q4cDQSz3oUHet7
-	mODSJRdGV0q+o5ZzzA2FuDZtorXVhl9kBJQKwtxnTklfBZlYjiZIuWrC/VksuniCga9VUu3XtSQ2j
-	8y3mt7Bo43y9HiV/FQwkgGXCOwRuPi2SpT6LHVBj7clJwOV2aSalGowD8/BkxcXlvzIAIPyncHzyC
-	P6Xe6JrQ==;
+	bh=4cvCl6aqrwq9OktfPI03bqbGDGXnJhTyM7lJh5qC0aM=; b=YV39ZoTdplT9/xBsQ1B3BA3iZW
+	eAGe2jjOnBlQxe0uRGUnUj1mdibsGbRpuegF22rynJoRANtEFMIIR8dp1Wbcu58p54G3QdwVHQnTR
+	z45fH1vjytcEybkBA2QNdjSjVBdCZ46Y8V9Bx9lWuGo8NndQNshUMReF+wlhPh8YLuvaL14kC4MeD
+	OBmZiviM0zp1GkDryTZz9iyfzkmL9QJjO+/49iqh0mX3Xtn7hp/SnO2/2e3kGjjzX05p1cVgRkTTV
+	a6dlucqC4AFaDK+sKtzXxMVY6uXjTMGUf+Vl/h0ZTzO/jU9isKYoz9mgj7qUpU4t+N2kqHDKY/M6g
+	X44jfjUw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRT1F-00000009jM8-3nnp;
-	Thu, 12 Nov 2026 11:31:05 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xRT1t-00000009jYw-0yRE;
+	Thu, 12 Nov 2026 11:31:45 +0000
+Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRT17-00000009jEG-01Za;
-	Thu, 12 Nov 2026 11:31:05 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794483053;
-	bh=evv+CrxPRGP4psPKxNQ1cTVcYtBSFk2IB3FxbDUgnAg=;
-	h=From:Date:Subject:To:Cc:From;
-	b=k57GMODDZ67douUoHRA4mSwQ7ooA/P+lSRygRsHsj4698JkIRpuvYXOu5z09nD/jm
-	 gaq5uLeEJ20N0XfSCj7YsF93Uk1Y04Si4fDWjq6mq4FEu9IT4JK0TepuzwJEHA91Wa
-	 nyZl/xe/HGvqmRXixvbH7cjMRAufs4C2V6Bj2QJHA3ioNy/h2y3vCqSpa/nRSrwBkh
-	 UZdKqfBJSZZ/E6da4q9028xEx7yjmR0c3mJnyrBmpNLw7x9PWzVo4emEt/Gg6sgbFI
-	 2CRfckSY4G0ZzD4CWtTzH1ZWXbp4q5E9msPuMfDhzCMjfmj5hdmrhEYlcZyQdbldqa
-	 /opkoAcwCS3UQ==
-Received: from yukiji.home (unknown [100.64.0.131])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D555217E057E;
-	Thu, 12 Nov 2026 12:30:52 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Thu, 12 Nov 2026 12:30:46 +0100
-Subject: [PATCH] ASoC: mediatek: mt8195: Fix ETDM3_OUT DAI startup error
+	id 1xRT1o-00000009jWZ-2S4R
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 11:31:43 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Jc5OjQ4DqmiuLpT3dza/kQ6FLoreQWbeaFP9Uvmknb4IcqTYaaOJBQbD2G93k1rXgKLBo7AUcaw4gsMMAhs+ieyGFj02meF9jQxAFiG3KJmlYBg+Wz4Ik1517mtponemXpetunj35xUaKTh8MQEWWREs37/kH/XO61uQ9npD0Xa1TR8bM1HijnE3f1edk7+Ke1Rt24qq2GBejgEsd26QB7q87zt4Wh04M4eiB/0Niz7+mNFzfLDFtvQGo4w7eeGsOTGFviT9xFQl7vZ6t8OLKHSXnkNO9eXUZK1rkojZU1CZmco5h7VMCaNOOmKgvoWrh1U/N0nhx5J0LDHcrAs7LQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4cvCl6aqrwq9OktfPI03bqbGDGXnJhTyM7lJh5qC0aM=;
+ b=aWL+o59ncbhrye8jKno3JVckVd7yiBIfyi3WckVKg6DKy3+q01GJqB2Pvk9yB3zhyWxja88dAT+Dmq0AlBaAssn8b1bjw1fryOnuaS3PaC49BRq68+CyqtafeTejhCToo9WIGAaKhVDpZoDWyLVxX1PTsna/LPGO6WcgVPvQ5nBjPpzOpQv0JWZZA2ix629oICCkkP5i+VdsRzyDiEMNoYmPtsnG454nopfuO7c3u1xd3hWHF1HUlGy3ZspkKweUxgFhWJ0sXaN7gmvNnSuVA/0Dq/NLOMn1Z+cnT1RNKRtfaQcrcKSuo1f3h49ol+QRqyz7ip64TokiQXC4P5xn7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4cvCl6aqrwq9OktfPI03bqbGDGXnJhTyM7lJh5qC0aM=;
+ b=wiq2ZR3gaQpAMeEJV0gG+/vzHmRQjb+1ExIvk5lZpGxTYG08JjGuCxQJRhfxU/zUsBuR1J5YxfsABtLquy8A+TsbuZ03HUick6i4vuG9Sja02Eb9G3CsrT27Wkf+THOowlApNlDrpzMyq6Doey8hE3Iw8wmwczrHDYwG1u4FnN3/MGcQe5K1H5C/EAgymk4NUo05dMtf2d8+zte/mlG28YCdyhbecD0gpQpAcx6jxFj/zZLgCNQ55euyN05JV+6sqzQ/We3QkBRdkA593kg4bYGlrZu34xb0LuDUbmqKUXd4T2GXNs915JOHtO31ofhs6A/UPYKGdRjCL6BPTgqluA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GVXPR04MB12316.eurprd04.prod.outlook.com (2603:10a6:150:2c6::8)
+ by PAXPR04MB8125.eurprd04.prod.outlook.com (2603:10a6:102:1cc::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
+ 2026 11:31:32 +0000
+Received: from GVXPR04MB12316.eurprd04.prod.outlook.com
+ ([fe80::fc6e:ca22:f065:def4]) by GVXPR04MB12316.eurprd04.prod.outlook.com
+ ([fe80::fc6e:ca22:f065:def4%5]) with mapi id 15.21.0592.012; Thu, 12 Nov 2026
+ 11:31:32 +0000
+Message-ID: <0e002d54-e94f-456d-847f-5d092f9461ed@oss.nxp.com>
+Date: Thu, 12 Nov 2026 13:35:15 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] arm64: dts: imx8ulp-evk: Enable HiFi4 DSP
+To: shengjiu.wang@oss.nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shengjiu.wang@nxp.com, daniel.baluta@nxp.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ andersson@kernel.org, mathieu.poirier@linaro.org, Frank.Li@nxp.com,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ p.zabel@pengutronix.de, linux-remoteproc@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20261111031808.570680-1-shengjiu.wang@oss.nxp.com>
+ <20261111031808.570680-6-shengjiu.wang@oss.nxp.com>
+Content-Language: en-US
+From: Daniel Baluta <daniel.baluta@oss.nxp.com>
+In-Reply-To: <20261111031808.570680-6-shengjiu.wang@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0153.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:a2::11) To GVXPR04MB12316.eurprd04.prod.outlook.com
+ (2603:10a6:150:2c6::8)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-mt8195-dai-etdm-fix-startup-v1-1-2a9fb98b9f6e@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2NQQ6CMBBFr0Jm7SRMTRG4imFR6aCzaMF2MCSEu
- 9uIy/d/8t4OmZNwhr7aIfFHssyxAF0qGF8uPhnFFwZTm4aIDAZtqbPonSCrDzjJhlld0nVB01p
- uuvpmpytDMSyJy/2z34eTE7/XEtFzhIfLjOMcgmhfRd4U/yGC4Ti+r7MZqZ4AAAA=
-X-Change-ID: 20261112-mt8195-dai-etdm-fix-startup-285e69075f3e
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- bui duc phuc <phucduc.bui@gmail.com>
-Cc: kernel@collabora.com, linux-sound@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794483052; l=4156;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=evv+CrxPRGP4psPKxNQ1cTVcYtBSFk2IB3FxbDUgnAg=;
- b=MyLx+bJ/4LwXeHbcsHvX9ezbWch2KPZd+M9+oYLuJhTTdrz8wBOfiCRMyS8kWIfnjmj56QqBN
- I7e1TuPefqlClhaJ9bwjZFZtxOKYNtDAlqmCZ6bSU9qTBujzbk3Ih82
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12316:EE_|PAXPR04MB8125:EE_
+X-MS-Office365-Filtering-Correlation-Id: 383529e3-ffdf-4510-cccf-08df40b08054
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|23010399003|19092799006|921020|10067099003|4143699003|11063799006|56012099006|261022105027099003|261028144727099003|261026140227099003|261021135927099003|261021121427099003|261102123227099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: aOPdtlUaO+Nq0oX+p3+JZlL+erN/bibXoJNBE7gJVTMmBEM/Sz8MVEHGP2jJLB/0PK+L5REoSr87sOOWylxYDpZJbaXpmWAaOJcMVMolkvf9Va6Qv1ziAzcUAL5YskiaJRW3sVhC6upxmbSyBfttm1D9xQokwLDK6SrKFVM9A2Ey0poTe0OD5e6Vg//aHsi5kAp2m2HZTDsO1ZfHOfhPmr4StLm5FNlsKXxxHGw6dfg7y+KGZRFruQVimukJtFXL87kxVcBZbu4PL6LcyRg0NxZAMuCqnM4qJRqXM0tHwCof7aKeK3P5Rejp6Z8ZQt9P8xYc6bvTC1PO6TlAe3oPppU5vITjjOg/XcCTV+ELKvKbdrI8zIfUuZ3GyDYid8PADG8eRzvWjaFb6qDPu0x/dTScn41dYfDVxJI7IY016hCP5dDgjk3EaEKHGb1WpkFZjxhHLNQ6K7Q81A0akz1/M1JX296buXTEN+/lpW7v5VV9Eme2QNxWutwIA/8mBJW26V7wRK2YZwGsUr9uDar8/gNEDdMSmaI4FxjnanBuxOcaEGQ8gDYcMK2R6lwTRQMQ4D4+LmVB4yWgj6UnraUsHvQAdg7AxVcXc3hHp4JJGnTuGK9GO46GGQD2Q2+kiy0+3mHZhGHiBCXWyddy8W+v5ksGWRztmPr4B0965BcljeYASWv8yjDdfTJDmYIbxJ/oq8himALQ4R3EVosrB3tWKQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12316.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(23010399003)(19092799006)(921020)(10067099003)(4143699003)(11063799006)(56012099006)(261022105027099003)(261028144727099003)(261026140227099003)(261021135927099003)(261021121427099003)(261102123227099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L3BBZERaUWVjb1hFc0lUTDVIR0ZwaHZER0JKaGFCYXN0U0pRZ2N3NlArNkpt?=
+ =?utf-8?B?MldjMWp6MFU5Mm1UMDFZdEM1ZkNTdllWLzgzVmxSRHNFcDBSMGtTU0cyRTBo?=
+ =?utf-8?B?SWxPdXRFTTZnS2pCRGdyWWdJcjNxNnhuSmRYU2N0M0lwNU85RWVQem02UWpO?=
+ =?utf-8?B?Rkh0VzNIcnMyTXgvZTZlc0d5R2dyUG43dVFUcy9nNXR2L2VwbUlrWU10SGsx?=
+ =?utf-8?B?YThVNkl2ZllJaFVjTUdKRkZRYVdkMHVJeE9Bd0pzZmowcXZnbWlpMVNPYzNn?=
+ =?utf-8?B?ZG9LRm1CTXE5UmtYRFJpdUUvWFU0Z05UeGJOUzJxek5ydk5tc0tiSHhGSFp1?=
+ =?utf-8?B?aUFYeW90RnJCTHBGZFk4anRGZFpXc1BGd0FsSmFIelJBMUNBeXN3YWRhZm5z?=
+ =?utf-8?B?WnBHQXNCcm1YYW9JWmw3d25zVDFzbENxRmlqU1NaTXBPNFVpcVdia3dwQUVL?=
+ =?utf-8?B?MWVzbWxycGhRd1VhV20wMWk4b1dCUVpXM05KV0tDWGo3cFFBVnlnZVdySlJ0?=
+ =?utf-8?B?dVNpT0d6NmNRV2N5N1kxVDdqajNMMVpLaFUvZk1DNXpmTE5tQTlwM0tQdkFE?=
+ =?utf-8?B?VytkTjBJZVhHWG1pd2NYbkhVVXVXQ2ZjVGVxenJjM0JGQnBBK2dCNHRpYVRG?=
+ =?utf-8?B?Vy96dXVsMlZsOFl0bGpZK2NrNjQxa1hGeGhWZ2tiQTFrVlZiMkpsM2Zqbk9O?=
+ =?utf-8?B?VmFMTWZkN1UvU3M2NXNGY1lvS05XOEdIYS9IR2FPZENpaklXY1pGR1RLL3RK?=
+ =?utf-8?B?bjNhaVNKMHl4MDdadkhGUS9PVThwMm9NUVpUWXJvRlFTczh3ektPaFRGRkUv?=
+ =?utf-8?B?czJTQ2x0Z0tScVgrSUdKVm9JenZlSXVGc1RNYllQbEhrWmlGR1hIUEpsRkVT?=
+ =?utf-8?B?eVZMMnV2TnJWdFNQb2hZUHZoU1RvZkRxZFZoY2tUUUo0TzhpTHdTekk3VkNT?=
+ =?utf-8?B?TEIyS01aNGNOdHp2dGpLOWNZUFZacUcrS1VOZ09XdlVudnZDc3BFQWY2Ukp3?=
+ =?utf-8?B?TW1keUFwYzhLUVR1VVZET0dDK3lBMmlHTEwyOGxpbjN6OUMvRjd0THBqbkxi?=
+ =?utf-8?B?MkRvZzAxN1NzVUE0Zk5PYlNWRGNDdlFCZjZjQUR5VzRsZzIxZzY2R2R3am91?=
+ =?utf-8?B?WTRPbmtmRURZUHlWV0JiREs4QzVQS29YZ2ZFMGFHaG9Yd3hOYXNQZy9KdENo?=
+ =?utf-8?B?WW8ydWV2eEdSK3VlMXZ2dHZHZHJoZjkvOEoxWSs2bjl5MDVkODNlQkRaSDE4?=
+ =?utf-8?B?cjZ3TzJHMnhpYi9RWkpWeVVsbFk4Z0lISUJ3dnl3UEJLVGhOMDRhNXBPQlZV?=
+ =?utf-8?B?RHA1OUZuS1BOa3lOb1NRajIxcEovc2N4cTRYNk4rVDVpcUx1L0ZzZ0tucVpp?=
+ =?utf-8?B?YXdNVzdjVVljK1lQb0d5ZDQ2R0ZSOTJTSWw1ZDQ5dkdlZTlzazg1a3dVcXRz?=
+ =?utf-8?B?VHhQenpRUEgySUF3S3l6dm5FUGx4eDE2ZnlVbnpjMFozYlVOK3V5WVVjOEhq?=
+ =?utf-8?B?NVVVZkxtT0JjS0I3K0RCV2s0MlBuTUJYeXVPcStvNnFGUk5WSXVLbmRjb21w?=
+ =?utf-8?B?S2FDWEtiZzNTc3JkZC9XME4xM29RYzQwckcydm9aMmlkdWNTdGVPUk1nb0hr?=
+ =?utf-8?B?K3EyM0VjWFlEQjllOGJOQWRkR0U2ZFlNK2Jwd1A0WHJIZnE3NGNzZVV1K1pi?=
+ =?utf-8?B?b0wxMmhpUHp6OUxkL3lZcFo4dUJ4UnpmViswZHVUc3B5eS84U0lRNW0zTGh5?=
+ =?utf-8?B?ME5QSUZqdjNrNzhvbUF2R2o0ek5jbVpPN1llNlNUd3ZsRmJ4YnNIeUlkYzlw?=
+ =?utf-8?B?a1pSNWRuT3ltTzZyaklsQ2VoY2U5UjBTbzNLTi9uR3JYTzA3Ky9PWDFuREpM?=
+ =?utf-8?B?NzB3NUN4a3NHNndBb1lLY3BVa0gyMWw3anpQZkZHZlk1NnJSUit6Tm9kSVBj?=
+ =?utf-8?B?VnUwUmt3NFYyU21pNWp2QklaK2pMa2NSSFQ0YjROM1ZhYjg5RFhTbDZsSjky?=
+ =?utf-8?B?a1dTaUlDa1lvZUlOLytPMUp6a1FCOWlhNGRSZnRMRktnK3FEUEoxL3JDMmtR?=
+ =?utf-8?B?TUFCTm00aEtyUFYraUt6OFlLSitoVlBZUkxkVVMzVlNua3BnNnVkN2kwWVNX?=
+ =?utf-8?B?WWdKZCtQbFpFeEtXWXY4UFNyaEZzcENmUmFKeHE2c1pVazFTNWNXVUR6WVJF?=
+ =?utf-8?B?aFlWQ0lyR0ZlUkh3RkN6bU9CVTRWRlFUWGh0WmJLTEhTY0VyZ1hEZnYxdVEy?=
+ =?utf-8?B?LzVOMWxCMkFUK1FMZWduNkRsQkdNd1JqamxjeWR3c0RqOG4wR1YxT0xQMjRm?=
+ =?utf-8?B?YVdQaGMveUlCSmtRU242emFwa0c5OEtyZ1ZGWHNKZnJqZEpvdE5CQT09?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 383529e3-ffdf-4510-cccf-08df40b08054
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12316.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 11:31:32.3873
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HGD2QrnOLaMC8gDuj0CuzNz6uLXnFxrKV4ZhGwc2gOKByGer7KEuORMZuPPf8HVF6CQCLEpjOtifNX6pthGrDg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8125
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_033057_255221_1596CAE4 
-X-CRM114-Status: GOOD (  18.93  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_033142_753000_D1CB4707 
+X-CRM114-Status: UNSURE (   7.08  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.0 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -88,111 +154,25 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-mtk_dai_hdmitx_dptx_startup(), used by both ETDM3_OUT and DPTX DAI as
-startup callbacks, calls mtk_dai_etdm_enable_mclk() to enable the MCLK
-clock linked to the giveb DAI.
-For ETDM3_OUT DAI case, mtk_dai_etdm_enable_mclk() always returns
-EINVAL error because no clock divider is mapped for this DAI in
-mtk_dai_etdm_get_clkdiv_id_by_dai_id(), contrary to DPTX DAI that has
-one mapped, and this lookup failure is processed as an error.
+On 11/11/26 05:18, shengjiu.wang@oss.nxp.com wrote:
+> From: Shengjiu Wang <shengjiu.wang@nxp.com>
+> 
+> Configure the HiFi4 DSP clocks and memory regions, including the
+> vdev0vring0, vdev0vring1, vdev0buffer, and dsp_reserved regions.
+> 
+> Enable MU3, which provides the mailbox used for communication with
+> the DSP, and enable the HiFi4 DSP.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-Since commit 1d6f1785d903 ("ASoC: mediatek: mt8195: Fix HDMI TX startup
-error handling"), mtk_dai_hdmitx_dptx_startup() now propagates the
-error returned by mtk_dai_etdm_enable_mclk() and it leads the ETDM3_OUT
-DAI startup to fail systematically. The error was previously present
-but since it was silently ignored, the startup sequence could continue
-anyway.
 
-Same thing also occurs in mtk_dai_hdmitx_dptx_shutdown(), when calling
-mtk_dai_etdm_disable_mclk(), that also returns EINVAL for this DAI and
-for the same reason. But its return code is not checked in
-mtk_dai_hdmitx_dptx_shutdown, so the error has no effect.
-
-Since there is no need to enable or disable the MCLK for ETDM3_OUT DAI,
-and no benefit to handle a systematic error, that could be avoided in
-the first place, add dedicated startup and shutdown callbacks to only
-perform the needed actions for this DAI.
-
-Fixes: 1d6f1785d903 ("ASoC: mediatek: mt8195: Fix HDMI TX startup error handling")
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
-The patch has been tested on Mediatek Genio 1200-EVK board, that
-integrates a MT8395 SoC (variant of MT8195) with a kernel based on
-linux-next tree (tag: next-20261111) plus patch [1].
-
-Note that the issue root cause was also detected by Sashiko during its
-"ASoC: mediatek: mt8195: Fix HDMI TX startup error handling" patch
-review ([2]).
-
-[1]: https://lore.kernel.org/linux-sound/20261109102536.357134-1-ghidoliemanuele@gmail.com/
-[2]: https://sashiko.dev/#/patchset/20261014112752.683032-1-phucduc.bui%40gmail.com?part=14
----
- sound/soc/mediatek/mt8195/mt8195-dai-etdm.c | 30 +++++++++++++++++++++++++++--
- 1 file changed, 28 insertions(+), 2 deletions(-)
-
-diff --git a/sound/soc/mediatek/mt8195/mt8195-dai-etdm.c b/sound/soc/mediatek/mt8195/mt8195-dai-etdm.c
-index 5fe40299ec80..1806ddc46708 100644
---- a/sound/soc/mediatek/mt8195/mt8195-dai-etdm.c
-+++ b/sound/soc/mediatek/mt8195/mt8195-dai-etdm.c
-@@ -2355,6 +2355,32 @@ static void mtk_dai_hdmitx_dptx_shutdown(struct snd_pcm_substream *substream,
- 		mt8195_afe_disable_clk(afe, afe_priv->clk[cg_id]);
- }
- 
-+static int mtk_dai_etdm3_startup(struct snd_pcm_substream *substream,
-+				       struct snd_soc_dai *dai)
-+{
-+	struct mtk_base_afe *afe = snd_soc_dai_get_drvdata(dai);
-+	struct mt8195_afe_private *afe_priv = afe->platform_priv;
-+	int cg_id = mtk_dai_etdm_get_cg_id_by_dai_id(dai->id);
-+
-+	if (cg_id < 0)
-+		return -EINVAL;
-+
-+	return mt8195_afe_enable_clk(afe, afe_priv->clk[cg_id]);
-+}
-+
-+static void mtk_dai_etdm3_shutdown(struct snd_pcm_substream *substream,
-+					 struct snd_soc_dai *dai)
-+{
-+	struct mtk_base_afe *afe = snd_soc_dai_get_drvdata(dai);
-+	struct mt8195_afe_private *afe_priv = afe->platform_priv;
-+	int cg_id = mtk_dai_etdm_get_cg_id_by_dai_id(dai->id);
-+
-+	if (cg_id < 0)
-+		return;
-+
-+	mt8195_afe_disable_clk(afe, afe_priv->clk[cg_id]);
-+}
-+
- static unsigned int mtk_dai_get_dptx_ch_en(unsigned int channel)
- {
- 	switch (channel) {
-@@ -2541,8 +2567,8 @@ static const struct snd_soc_dai_ops mtk_dai_hdmitx_dptx_ops = {
- 
- static const struct snd_soc_dai_ops mtk_dai_hdmitx_dptx_ops2 = {
- 	.probe		= mtk_dai_etdm_probe,
--	.startup	= mtk_dai_hdmitx_dptx_startup,
--	.shutdown	= mtk_dai_hdmitx_dptx_shutdown,
-+	.startup	= mtk_dai_etdm3_startup,
-+	.shutdown	= mtk_dai_etdm3_shutdown,
- 	.hw_params	= mtk_dai_hdmitx_dptx_hw_params,
- 	.trigger	= mtk_dai_hdmitx_dptx_trigger,
- 	.set_sysclk	= mtk_dai_hdmitx_dptx_set_sysclk,
-
----
-base-commit: 6aa7dbf8ad5ebd3babf53a4d6209018f86939f17
-change-id: 20261112-mt8195-dai-etdm-fix-startup-285e69075f3e
-
-Best regards,
--- 
-Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
 
