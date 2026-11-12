@@ -2,91 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6393606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 10:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99157606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 10:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rhF1sttV;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SVCKZF+a
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RB/Y4d9x;
+	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=FaX951dm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=DaFOdktrS9fp8GjCaaexp9MaiiYjCXQTieg0RYTagzo=; b=rhF1sttV7/vP8Frc08C0xRUs59
-	hzP8/TD+o2G35f/HluKS5y3uhprOGQRovTJaiQRcRzhQBGUWus/P699U4lkEvOxOHoTjT6eUwldqr
-	50YJ60Zp9coIolTGQfE96QXrvMuGtJwJlQd7DEk//0DZeKYD5nShVoqYOIgv96tRrVAD9hJWLU34a
-	JxTVoHQSQox20hAMZNqaMBF+hQzjML+UJFv5221dbz0GI18E6lbYZBfnUolRu/h4TOVHnTEdzWc2u
-	lhQr0MPTmk8ej4F1IhuZIdjrNybINCs24lY2EAdHf6XOMZKMrS01K6T7BPERf1L6/mp0VMDyO03eb
-	GprHou6w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=ftYYhz0F1xYWCp+ZyInzOrwbrwgilJKW80j5+GyzcNU=; b=RB/Y4d9xXHKwzt
+	8uRamPDgtSe76AgO2NbDBY5CpjumAbD95HxF/kZSVhsBiNsaeX6JJPXkT8GzovR+elZu/fa+dODE1
+	/odq0UuGXMNRRv1/jXIEQybQGiqQjaB7w91xOd+LyKcAbdkusqNIOfIm5dobFT0iSBIDDrijH4exD
+	nUi+s8ZZM8wcYdad4s1SfYRXj3uIWmOUm37U4MKaP0lB70V/xzoFc5MgaEMhrKJA8P9/rDGVgoWUL
+	VZxpW6MUxUqXvjrmQF6tUPGJXwtiHIaR6WV2nHsMLDmuuYCyMTpfSrQ5wrBWtRywwyA3xJnMAyr3Q
+	j0nSrbVJ8/abDEKn6IMQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRS6B-00000009XBE-2vRl;
-	Thu, 12 Nov 2026 10:32:07 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRSAO-00000009Xiu-1No3;
+	Thu, 12 Nov 2026 10:36:28 +0000
+Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRS6A-00000009XB7-1FFj
+	id 1xRSAK-00000009Xi8-3u33
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 10:32:06 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7CBF94039C;
-	Thu, 12 Nov 2026 10:32:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9843A1F00A05;
-	Thu, 12 Nov 2026 10:31:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794479525;
-	bh=DaFOdktrS9fp8GjCaaexp9MaiiYjCXQTieg0RYTagzo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=SVCKZF+auGmqT7JSUb746d9UAYnxXK8NWFfq/0oYpoErPWvB81l2FLR7ZNtt1TzRs
-	 SOfI8u76neTSvF2w5qbIOVuKL+j0Qdh6z4NfLSuKTzJC1HYiLRrvVCW+ItdeGsyYhB
-	 0xlkYqobVHgprk7YC6bfI9EaNr8ah+XrX4cNJm0+dsmvib7BsjEv9Z3jN2rLkg2sGR
-	 MI32t1e5nR4llWY0pS55Dcb/MdeZz4OkIAu7g3AqoCR6aOMCNrkFy4bHY133gLUfKu
-	 NvKAmHPiobyEkFiawUS89SUAGf2RECSFN4yWnkCah3YSfAeSzsWc22rZpjE4HCsa5S
-	 l3Qlv9hfTFjNQ==
-X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
-From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: "Tian, Kevin" <kevin.tian@intel.com>,
-	"iommu@lists.linux.dev" <iommu@lists.linux.dev>
-Cc: Alex Williamson <alex@shazbot.org>,
-	Alexey Kardashevskiy <aik@amd.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacob Pan <jacob.pan@linux.microsoft.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>,
-	Will Deacon <will@kernel.org>,
-	Xu Yilun <yilun.xu@linux.intel.com>,
-	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-coco@lists.linux.dev" <linux-coco@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-Subject: RE: [PATCH v8 11/15] iommufd/viommu: Select vIOMMU operations
- before allocation
-In-Reply-To: <SA2PR11MB4844544BB238847916EA3A038C762@SA2PR11MB4844.namprd11.prod.outlook.com>
-References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
- <20261104161632.3547423-12-aneesh.kumar@kernel.org>
- <SA2PR11MB4844544BB238847916EA3A038C762@SA2PR11MB4844.namprd11.prod.outlook.com>
-Date: Thu, 12 Nov 2026 16:01:54 +0530
-Message-ID: <yq5ay0aypch1.fsf@kernel.org>
+	Thu, 12 Nov 2026 10:36:26 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pOqo6QhOb3HxFxAefo5yrtcGgv/EO7EUGtTLN1fCANNP/z3h2h3YE5qQPth6P1tGGKMO15LBq/5HXp09kJeUtMNbF0pICURYxoCkNqsAxunX4VVayEctnQwYP1Fi2Rd7cc+5ZxVGcvzG3+xWjDhMscC5ZUcp7XcTa8p/XdD0yYGkpupaPA/Z7lkMjAvS4n6L0Cp7CGbLVJm2rCrJqpUP54mV36H/fo8yuyIVPonlYvO79D89SZerDVbPl+gnH2vaAKWYTgB2G0fZFk5mR9Ho1/o78Y3/NL+XIOC3At8FsMBhOgoWXIvZXWKACO3y2ukN9KXtA7v/1MGsHfLVstiv6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ftYYhz0F1xYWCp+ZyInzOrwbrwgilJKW80j5+GyzcNU=;
+ b=BbKgMulgsqg3/lokqukmKOvdVJeq1jEGBAlryZhjaOoYmq+SrEY3NEHNzQS+WljtkKQGwNA53nK28GLzel4CbJTtPIuj0VAT7r9Lm4KAUEzqMXoys9C+iSODLx9nkGu+DoHx6MxjPHtHrG3c0jjYjLal+k8kE+fmGhuOvxfGGxbQecODApxsMkQdfbBa306yjskt9XDln19UdU7Cs11Sg11sPPOO1gpbOdAzAeTthTIEmLNOOavl4zH2NtQMiKkiiuwIsODbUq4rcCLs8s5QGjsaBnTvlrDhwYdd/qnIVm1SmHMkz+KTrvb/cxu95PWJF8FLdBerVnkqxcykom4voQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ftYYhz0F1xYWCp+ZyInzOrwbrwgilJKW80j5+GyzcNU=;
+ b=FaX951dm2iw0oA7oRxJf/g67Riq/tlKa074n74/aiRcypVSqYos/CAxlwPPCsCzrWZyvsR721DrkMnO9ngpQXnE7AFTKNrSQ6/YpOqPn1zCg6rLlhPAHnMzeAjZ2ThoooMIF/NDoLVBLHY9pHTGd0yakPZv5CWYaIvJHfCUTWdw8ghTLsqaxM9XANYcqKUQGh7UTFODafZazStyV73rp3xvRM2TVv+lT4t9zxxuA5UYV9wirsBYUByyR/Ih/gHdY5iqug9sddPAoGVExXTZ/p+qNOCT9uzvQonEq7V0rZJo3nldXKK0WcRxx0TZ2W/RgwRZ+Fl8YgJceFIog/0848w==
+Received: from FR0P281CA0244.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:af::13)
+ by AM0PR10MB3473.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:151::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.0; Thu, 12 Nov
+ 2026 10:36:18 +0000
+Received: from ZR1PEPF0000E464.eurprd04.prod.outlook.com
+ (2603:10a6:d10:af:cafe::f) by FR0P281CA0244.outlook.office365.com
+ (2603:10a6:d10:af::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.0 via Frontend Transport; Thu, 12
+ Nov 2026 10:36:18 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
+ is 164.130.1.60) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ ZR1PEPF0000E464.mail.protection.outlook.com (10.167.241.57) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 10:36:18 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 12 Nov
+ 2026 11:37:15 +0100
+Received: from [10.48.87.100] (10.48.87.100) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Thu, 12 Nov
+ 2026 11:36:17 +0100
+Message-ID: <a1f17bcd-e67e-45bb-9c06-9e7d213b7e98@foss.st.com>
+Date: Thu, 12 Nov 2026 11:36:16 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] firmware: psci: handle unsupported SET_SUSPEND_MODE in PC
+ mode
+To: Sudeep Holla <sudeep.holla@kernel.org>
+CC: Mark Rutland <mark.rutland@arm.com>, Lorenzo Pieralisi
+	<lpieralisi@kernel.org>, Ulf Hansson <ulfh@kernel.org>,
+	<dario.binacchi@amarulasolutions.com>, Linux STM32
+	<linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261029191624.1.I5f8f3d75a566b72250d629ac6f43cf0d387c0218@changeid>
+ <20261030-origami-tarantula-of-contentment-a70ab2@sudeepholla>
+ <4690f55f-dc13-4e43-82f9-d508253f6c64@foss.st.com>
+ <20261112-illegal-slick-rottweiler-bdc9ea@sudeepholla>
+Content-Language: en-US
+From: Patrick DELAUNAY <patrick.delaunay@foss.st.com>
+In-Reply-To: <20261112-illegal-slick-rottweiler-bdc9ea@sudeepholla>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: ZR1PEPF0000E464:EE_|AM0PR10MB3473:EE_
+X-MS-Office365-Filtering-Correlation-Id: d01130db-794d-42c9-068e-08df40a8c90c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|82310400026|36860700016|23010399003|376014|18092099006|18002099003|22082099003|6133799003|261009223027099003|4143699003|261021121427099003|11063799006|261102123227099003|261028144727099003|56012099006|261022105027099003|261026140227099003|261022075727099003|10067099003|261021123027099003|261026121527099003;
+X-Microsoft-Antispam-Message-Info: 8434FnhkMXorYnhqtbupb1vWq/yS5NvSjL/spnebC5jhn01aFi3+Tbk8dv1tirUo+9wycm0f81GeprFcI/SH1ddo5rY/nchq/RyF1iog9S/zxhLdgZZnZ5+l4ybDs8Xc0DZ0BhXX3RkolSJonMWd8tBfo7JdnW5+JP6SaHl/XWVBwhEdnROmqBCNoKvdDixYU7aVxZkXhlX9ZMBYr1SMTJrMbQIdjmnR06iE6SpNXHeIpuN8qnC1VJs70OK2z1aKwEKCPiKryXxIdE2kcets8lgEypw00YXKGKPKr4X5YE/FM4Hqzni/UKXoNvjay0w+PK8ox9jelnypt+vHryzSLKxkU/s+tYiInAKifgcD+U6VYOGjECZKf24smfhpASTN5eq3Zh7ZgPOvWUkpvJJrGxcghShU5M7L+xeG5HAw4rmfo2cFzd6wI6E3+qfp+/xieVgMXQ+d/16/wThlvz9xRGXG+6h7UlA3zu7zdh5KkQI85B8icuxWBF3V4lU5xnIoOSi0I2if9Jh2f/kBZL7/ceitJ84vR/H4Prt+4KwfwRo3lsR86hRgvKT1l+xDASQSlKYez4LtPqp8DkyjP0EnBEekvGAj//w6NZ9kSE63B9ez7UnDMgXE0zKXFpVE52xrEYY4ZwFK7vVcKM4exo8xo4CK+N8VE1JmJJ8At7OeS07oP5tA3fQJmsXplhG0R5u4iK0RJcyBCI+3z9JijUzo+g==
+X-Forefront-Antispam-Report: CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700016)(23010399003)(376014)(18092099006)(18002099003)(22082099003)(6133799003)(261009223027099003)(4143699003)(261021121427099003)(11063799006)(261102123227099003)(261028144727099003)(56012099006)(261022105027099003)(261026140227099003)(261022075727099003)(10067099003)(261021123027099003)(261026121527099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: NZxN1H+i6VjaxoEsthUi+Zdv+1sJgnirfrh4jY88U/MP77IZl1m7yvtMh2r2VH1OL2R5F9IQ1WjxYflwBq/xU4ns4GEYqAVIHzCDGE2RETCobL/I9OxXafqPZCBl0SksZTLV7+tku0dNKUG0RcCx3LV6qpgBdyvWylu1WocxnQviaX4iT7SwcVW3KrIBWWxfmh1qGe8AKqgxyB1YK9HPxdzea37t0pMH8e2bgszGZo0bFJtpbAzqVj+r6QbsV/lg8itBUhOm5ITIK13B0xGuxc3/cnV/b3+wrkJzLK4SZUzPzwpGXf7gsZqSDfDR+Lb9rFr38IaQlcXEn9mt9wuAPfBDk1/nPt7N3S/VMoV8fELurfQDQZdbyfzvUIDii4JC/O/rFUNVfiy5bCzLlROV8bS1ZZFYrC7X1vWSiB2wdXnxqjt9Vfz33l0yUazc5xlf
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 10:36:18.1218
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: d01130db-794d-42c9-068e-08df40a8c90c
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource: ZR1PEPF0000E464.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3473
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_023625_144674_9502930A 
+X-CRM114-Status: GOOD (  31.21  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,70 +131,117 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-"Tian, Kevin" <kevin.tian@intel.com> writes:
+Hi,
 
->> From: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
->> Sent: Thursday, November 5, 2026 12:16 AM
->> 
->> Physical IOMMU drivers currently provide the vIOMMU size and
->> initialization callbacks through iommu_ops. The initialization callback
->> then selects and installs the corresponding iommufd_viommu_ops.
->> 
->> Add iommu_ops::get_viommu_ops() to select the operations from the
->> physical device and requested vIOMMU type before allocation. Move the
->> size and initialization callbacks into iommufd_viommu_ops. The core can
->> then validate the selected operations, allocate the driver structure,
->> initialize it, and install the operations.
->> 
->> Convert AMD, Arm SMMUv3, Tegra CMDQV, and the selftest backend to the
->> new interface.
->> 
->> Selecting the operations early allows subsequent changes to use
->> implementation-specific vIOMMU properties, including when validating the
->> parent HWPT.
+On 11/12/26 11:06, Sudeep Holla wrote:
+> On Fri, Oct 30, 2026 at 11:04:51AM +0100, Patrick DELAUNAY wrote:
+>> Hi,
+>>
+>> On 10/30/26 09:32, Sudeep Holla wrote:
+>>> On Thu, Oct 29, 2026 at 07:16:25PM +0100, Patrick Delaunay wrote:
+>>>> The PSCI specification makes PSCI_SET_SUSPEND_MODE optional. If it
+>>>> returns NOT_SUPPORTED when Linux requests platform-coordinated (PC)
+>>>> mode, Linux can assume that PC mode is in effect. Treat this response
+>>>> as success so PSCI power-domain providers can initialize when firmware
+>>>> does not support OS-initiated (OSI) mode.
+>>>>
+>>>> Continue to report an error when OSI mode is requested but
+>>>> SET_SUSPEND_MODE is not supported.
+>>>>
+>>> So, your platform advertises the presence/support for OSI mode and yet
+>>> opted for not implementing SET_SUSPEND_MODE ? If so, it is indeed a
+>>> firmware bug as reported.
+>>>
+>> I think it is no realy a platform bug but a too strict management in Linux
+>> kernel, for PSCI power domain.
+>> The OSI mode is not yet supported by the STM32MP25 platform in Linux at
+>> upstream but I introduce PSCI domains in device tree (but without idle power
+>> domain) just to prepare this activation in next steps.
+>>
+> Fair enough, that shouldn't be a problem.
 >
-> what does "implementation-specific" mean? Isn't every existing vIOMMU
-> type already implementation specific?
+>> As the PSCI support is not activated in Firmware (TF-A BL31), the firmware
+>> correctly expose its capacities (PSCI_OS_INIT_MODE =0) => PSCI feature
+>> indicate that OSI is not supported (FF_SUPPORTS_OS_INIT_MODE = 0) =>
+>> PSCI_SET_SUSPEND_MODE function is not supported (optional when OSI
+>> is not supported)
+>>
+>> in Linux side, the power domain driver
+>> (drivers/cpuidle/cpuidle-psci-domain.c)
+>>
+>> correctly check the support of OSI:
+>>      bool use_osi = psci_has_osi_support();
+>>
+>> in STM32MP25 platform use_osi = false, so the driver request
+>> Plafrom Cooordinated mode (PC mode) as expected
+>> But here  the GENPD driver try to use optional function to set mode:
+>>
+>>      /* let's try to enable OSI. */
+>>      ret = psci_set_osi_mode(use_osi);
+>>      if (ret)
+>>          goto remove_pd;
+>>
+> IMO we should make this psci_set_osi_mode() call only when use_osi == true
+> above. If it is passing false, it is setting PC mode but as comments states
+> it may be assuming OSI mode and proceeding further which is completely wrong.
+> I would bail out of psci_cpuidle_domain_probe() early if use_osi is false.
+>
+>> And the problem occurs here because the optional function is called but the
+>> normal use case is not handled (OSI mode not supported / PSCI_SET_SUSPEND_MODE
+>> not supported)
+>>
+> Agreed, but I would check before calling here. The proposed fix hides
+> PSCI_RET_NOT_SUPPORTED error for PC-mode setting. So clear NACK for that.
+>
+>> With the proposed patch, the Linux kernel can have PSCI domain in device
+>> tree even when PSCI OSI support is deactivated in PSCI firmware (or not yet
+>> activated): the domain are always ON (GENPD_FLAG_ALWAYS_ON).
+>>
+> Do you see any issue failing in psci_cpuidle_domain_probe() instead ?
+>
+>> NB: I hesitate between the current patch and a patch in PSCI power domain
+>> driver:
+>>
+>>      /* let's try to enable OSI. */
+>>      ret = psci_set_osi_mode(use_osi);
+>> + if (ret == -EOPNOTSUPP && !use_osi)
+>> +    ret = 0;
+>>
+>>      if (ret)
+>>          goto remove_pd;
+>>
+> See above, if the driver is assuming OSI mode is set after the call like the
+> comment states, it better check if use_osi = true.
+>
+>> but I patch PSCI firmware driver because I think it is a more generic place
+>> to handle optional PSCI function.
+>>
+> If we have to handle it in the psci, I would rather not make a call to the
+> firmware if PSCI_FEATURES(PSCI_1_0_FN_SET_SUSPEND_MODE) returns not supported.
+> That is the expectation for any ABI the firmware said it doesn't support.
+> Making unsupported ABI call to the firmware may result in unexpected behaviour
+> and must be avoided.
 >
 
-How about I update this to.
+Ok, it is clear
 
-The current code requires a valid parent HWPT before calling
-viommu_init(), which selects the vIOMMU operations. A later patch adds
-an operations flag indicating that a vIOMMU type does not require a parent
-HWPT. Selecting the operations earlier allows the core to check that flag
-before deciding whether to look up and validate a parent HWPT.
+Thanks for the review
 
->
->> 
->>  /*
->>   * This function is assigned to struct
->> iommufd_viommu_ops.alloc_domain_nested()
->> - * during the call to struct iommu_ops.viommu_init().
->> + * when the vIOMMU operations are selected.
->>   */
->>  struct iommu_domain *
->>  amd_iommu_alloc_domain_nested(struct iommufd_viommu *viommu, u32
->> flags,
->
-> the comment sounds changing the semantics.
->
-> ideally it's still assigned at viommu_init(), just from iommufd_viommu_ops
-> instead of iommu_ops now.
+you can drop this patch and I will propose an other patch in PCSI CPU idle
 
-How about
- /*
-  * This function is assigned to struct iommufd_viommu_ops.alloc_domain_nested()
-- * during the call to struct iommu_ops.viommu_init().
-+ * during the call to struct iommufd_viommu_ops.viommu_init().
-  */
+driver to no more request "PC mode" with psci_set_osi_mode()
 
--aneesh
+when use_osi= false
+
+
+Patrick
+
 
