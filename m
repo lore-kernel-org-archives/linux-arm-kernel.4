@@ -2,179 +2,95 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BB8606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48214606A8A3
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RvL5ukpA;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=DrGZQfRj;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Y5haXcI2
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PXwvV0l6;
+	dkim=temperror header.d=mobileye.com header.i=@mobileye.com header.a=rsa-sha256 header.s=MoEyIP header.b=F6SwZqUc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
-	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pO3YEKGxi+3qRd5rGZDqJBcroU+l4uX2l6hv38gngDE=; b=RvL5ukpAku/EB+Nm+IYilxiDX2
-	UJ4Zn5QQVRVPbeCU/b0etsz/6bcsh+JDUM8+wTON2BjTOmBZiy7P5uxurFycZQeYGwlwsyFW8StSB
-	JqfmVlNIKkCQhfNNQlEh1EDglwMi4gZTWbNuVyDy4D8unI2DQ+X21wfi/lrM6XiX5Rd2mULIyQpef
-	Dj8yJ2Ady5JVSsg/5lAMC/hMKVRyian0bUtl27aOGQPguScA55ZfuNcyjKVhzGmHDKZN+nsWBznOH
-	p5tqYv9+hirhoZMyZXVw4UDIf1V+s9p9lGYWrvW44d2crjlGd3uCVVXcqbj/9ROaMkIgkuI2akdYL
-	z4j8NlLg==;
+	bh=nDW+I7pR54nOMsKvI1W+hH5KbFWxBLJmUjtsUkPGktE=; b=PXwvV0l61+MV2A7q8WqsPRsNHD
+	iSE5ofVp+uZluIXDRTLArgEvojMf3gASVCVJUuOT9TMfeiXKGMGXmseyGC3PSY7SBHifq0UFjAND0
+	EDquIFrA2S52X92asIdw57xwF4WlbIc+0CHA0rlpXUQuttfhFIFQUfHQy9F79i2X4IeBUBsfu+5V+
+	VHIggO66tG2ZaXAZtj2pIsN1gfL5LqgGYmzPeE622YWX1VLSJpCHsx9ZxHKWumOOO5b0WAGTr2Zq1
+	pZZfXqwVP0ORfqcDAZOUMUUrjyk9rzuU35iKj4AOsJtRrkS/e3i8ZlTrt0R3eeF5/BZkFJFkBaGZg
+	RzNstnqA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTu0-00000009rkW-1yXB;
-	Thu, 12 Nov 2026 12:27:42 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xRTvg-00000009s6o-40NI;
+	Thu, 12 Nov 2026 12:29:24 +0000
+Received: from esa1.hc555-34.eu.iphmx.com ([23.90.104.144])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTty-00000009rjT-2v9H
-	for linux-arm-kernel@bombadil.infradead.org;
-	Thu, 12 Nov 2026 12:27:38 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Transfer-Encoding
-	:Content-Type:In-Reply-To:From:References:Cc:To:Subject:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=pO3YEKGxi+3qRd5rGZDqJBcroU+l4uX2l6hv38gngDE=; b=DrGZQfRjQ6Q7k9ZVgSXsxbtlmx
-	aJ69lQEmjRPjpzg7woUa6g+nbSQwy9awU+JJMYVufGs5aAi9PuEBjqW3L3pPYe17UXNB01iTJXtyG
-	bJ6z090Nv+Vy/2Jtwh1aV2w5nENiGl88w6wWSIhsiZUr/Sr6Sc3Z7qqfNyS6oZ8yUSQjSMT9Zanpo
-	T9nJQCEm02ij5Ks7AmT+v6so3zsI4440t+qM4ox6V63/lQNa40/fa8D5ZX7mzHzAUBNiS1v5k+9ym
-	3978rNA2wPU9SxQmSDF/iZ2ia1YVSvwYBtepDAEX8Kzzu1gXN9YIRJ/wrfp+HNEQUWqFf3GhDxfdu
-	HCea0ZSg==;
-Received: from mail-centralusazon11011035.outbound.protection.outlook.com ([52.101.62.35] helo=DM5PR21CU001.outbound.protection.outlook.com)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTtv-0000000AJUM-2puF
+	id 1xRTvc-00000009s4E-02yv
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 12:27:37 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AQYUjLqUzQxSex2VvLS71snSDnnoEIqGSJ3iFFfonTLcdmpuny+xzjG3g/sYXtOmBGONFqH1IUo3GETEXVpHh8z5ce0TOZcOCnjeom1hKSwnDDDJbFJ2XmZa2btThCOjymdCtv99DYXpiIXK8mLBFB3qV6wJN1FEBp+C/H+idMBu4rn+KlNuvLSXutfbmsPw/NjLqfOB2SqjloDAu3LtFwHUDFeo3sysGfwhAuRHlAGQPzstkrB/dbECwSpJE2ToKnFSer7mScViejEEIJBbcf8Mr9ivCIetidqHxUFW9GCwMaedOCErbbUipTMiQ8EKBKgzdL2pCzYRwHG5IOsl1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pO3YEKGxi+3qRd5rGZDqJBcroU+l4uX2l6hv38gngDE=;
- b=QMFO7VN1Ra4wsj0SvpLSP25upAlJKYzXRlLVuBS35FsGiOBhC9oP+YKB88DP7k47iVGQKllgb+jhXJ7aUeua1/y47OfIoPaFF/SunRUPjRqjMlgGUNMckcdgOpNEC3EaJqhHVv5V1y3Jhx97T/qO1JwxKKjZ22x2QnVOAxY0SN4ULDSoTlNlq+NnQeIrGkCb2VXCROWp1IGhMsa2q/z6EZ2R0ELdw7Z6MhkD+o3lAJEg5BfJyFlN3JbG8Z5TLC0wkBo8xr4FIxBSXDa/rgmjIGSbnE/PkannWZYsUCOB6srv8HGp+VcYUkqyWrDCo/gMlkzxKdrQ07u+zt6/GjFe2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pO3YEKGxi+3qRd5rGZDqJBcroU+l4uX2l6hv38gngDE=;
- b=Y5haXcI2zDd0kJRNnCxAGWUoMoZi7yjKcZe0pK9Ww0M8UdbUx9/QPNWUkFb3AeDZjXAQnVtf2fqkGaYryNqmQpwYG+bNmR8MCLdsMLBR/ggzhVu6Pdhdgmv7uN93tFk+m4cprEnguHn3WtYnuV4YSn6wAV3U8AfBZ4IhTByMUsU=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SA1PR12MB999228.namprd12.prod.outlook.com
- (2603:10b6:806:4db::10) by CYXPR12MB9320.namprd12.prod.outlook.com
- (2603:10b6:930:e6::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Thu, 12 Nov
- 2026 12:25:56 +0000
-Received: from SA1PR12MB999228.namprd12.prod.outlook.com
- ([fe80::4dba:119e:8e7c:37b3]) by SA1PR12MB999228.namprd12.prod.outlook.com
- ([fe80::4dba:119e:8e7c:37b3%6]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
- 12:25:56 +0000
-Message-ID: <97053bb6-c221-4ae0-972c-603b194ec25a@amd.com>
-Date: Thu, 12 Nov 2026 23:25:46 +1100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 06/15] iommufd/device: Hold a KVM file reference for
- the device lifetime
-To: "Tian, Kevin" <kevin.tian@intel.com>,
- "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>,
- "iommu@lists.linux.dev" <iommu@lists.linux.dev>
-Cc: Alex Williamson <alex@shazbot.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, Krishna Reddy <vdumpa@nvidia.com>,
- Lukas Wunner <lukas@wunner.de>, Nicolin Chen <nicolinc@nvidia.com>,
- Robin Murphy <robin.murphy@arm.com>, Samuel Ortiz <sameo@rivosinc.com>,
- Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
- Steven Price <steven.price@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
- Xu Yilun <yilun.xu@linux.intel.com>,
- "kvm@vger.kernel.org" <kvm@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-coco@lists.linux.dev" <linux-coco@lists.linux.dev>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
- <20261104161632.3547423-7-aneesh.kumar@kernel.org>
- <CO1PR11MB4835982DE81AFE060EEE01B88C762@CO1PR11MB4835.namprd11.prod.outlook.com>
-From: Alexey Kardashevskiy <aik@amd.com>
-Content-Language: en-US
-In-Reply-To: <CO1PR11MB4835982DE81AFE060EEE01B88C762@CO1PR11MB4835.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SY8P282CA0017.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:29b::24) To SA1PR12MB999228.namprd12.prod.outlook.com
- (2603:10b6:806:4db::10)
+	Thu, 12 Nov 2026 12:29:23 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
+  t=1794486560; x=1826022560;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=8ZFQvAS7fy+Es8ydgt0QM68OCf5wxuSnAUS6l0H+WCo=;
+  b=F6SwZqUc2aLs9RoioXdVHNmxrSwM8ecybP0GENv0iRdE0079fPv4DK4J
+   rzY/Yqa6JuqMP8E+sj6qv13CrivOdZXpaBADtFUS+aUK5I2q4lAr18Ud0
+   yEum/nNkS1UIEi0GUEKf7CiKLYWYnp3UogY/I0tL3LzT7aSzNCl2oHL2j
+   O9Xt/7WteL/SY2EyGnB6Oi454XYH5JomvTvEmK9UcCzk/vaPXrV4AxKHQ
+   JB0DCETWh7yZByHwWYncMCzyYT26nX5lILh5V/ApI1KBmZz4tztVCF4QE
+   B6JARGoZhlnZKtiXtV1ASp5p3kWa9DXfHu7B6kvFgfLH4H7048gT4p8e+
+   w==;
+X-CSE-ConnectionGUID: WmqWy4yNQna4n1b4CLwfkw==
+X-CSE-MsgGUID: S/6UbLnBTKKQHhPPmNqgdw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
+  by esa1.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 14:29:17 +0200
+X-CSE-ConnectionGUID: SM6LiygqQzy9bfr3IerDhA==
+X-CSE-MsgGUID: CRTdBiWZQzyyAh7FTl/ZyA==
+Received: from unknown (HELO epgd071.me-corp.lan) ([10.154.54.3])
+  by ces02_data.me-corp.lan with SMTP; 12 Nov 2026 14:37:24 +0200
+Received: by epgd071.me-corp.lan (sSMTP sendmail emulation); Thu, 12 Nov 2026 14:29:15 +0200
+From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: [PATCH v2 0/6] perf: add PMU driver for the MIPS Coherence Manager
+ 3 performance counters
+Date: Thu, 12 Nov 2026 14:28:57 +0200
+Message-Id: <20261112-i6500-cm3-pmu-v2-0-cd2569571819@mobileye.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR12MB999228:EE_|CYXPR12MB9320:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7a4d9e9e-6899-48c1-b747-08df40b8199d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|23010399003|22082099003|261009223027099003|18002099003|261022105027099003|261022075727099003|261026121527099003|261028144727099003|261026140227099003|56012099006|10067099003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: SFbBhZmUBGbyU3KQ4BC2JUG6eOWvYIOdzuaLP+70mVGYditDrPPB+Sp27r0OX9m7rYsPjZpLl1dGhKwV6BwlM6P+escBaVeOyM5plMtBBXYEaAFqabS+Z0KrutRs/6yiVIVkmIL+kAGZM0iVqnkmCdpLPEm77/UU2KbDl2OuFW9Odh0qGK4Upq0bzlwKsfQLHKACIaTTSup0u4KrTlC6+iSZ2d3R8tF4N9sWCwpVdtcwyf+v/T3yOrEdJFOtbfGYNuRRZxSl4jV7Zph1XiCpGjJVqlnIsNyB7eZaASlYbgjsZZuO88/xrCV+bX0CKTk3ity42wOpX/k2Ff/vDq29DTuOF2uzBBzKtvnTK/cgGR7Cmt+w5S5GAQRg4m386SWq5+kGWF3P4Pv7kj1n9Jkf5PbYuNzDZtJFKKaILe2uxdU+uDj7eqSn7L9Q9jXG74kPkyin1+FyF2iG5r31PqpfjbcyNg5lcVIadDP7tIWMRCu9IRou1HFjYoCI9QDu8xgRvpI9efo9E6jEvTiWaOk4wyfYMdSsVsnyvDn1B1ntrX0zsEhpx1AmXYEhFcX664MzYtBnWABRnZ4IV+yYDqIhM2FiuRJXbJ6XcWTVLYaoEyz1x9lHZP9jAVMRu3n2nlCKCf20m6BzPsiHhZ80GHGhA4oJnF6+mZ3CMeUjeJ0XiIs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR12MB999228.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(23010399003)(22082099003)(261009223027099003)(18002099003)(261022105027099003)(261022075727099003)(261026121527099003)(261028144727099003)(261026140227099003)(56012099006)(10067099003)(11063799006)(4143699003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T0wwMTVIVHZPN1FpcFlsT0Z5Z1dDMlVDYXZEOVZ5MEcwY1ZZQXpzNm9rcUto?=
- =?utf-8?B?d0piZ2t0S1NVV0hMK2tEWXhBOGtzY2tscHZPbkR6Y0ViMm9wM3BmQ1ZmQjdQ?=
- =?utf-8?B?RmVTSHZDWkFQSlVvbTBkSjFjTmNpWUZlampzZ215RGdCQWgySFhZalA2ZEdY?=
- =?utf-8?B?NjZLT3RyUGdKZVQvRTdoNytuR2FmcFBNMndya1lvTGk2cGQ0SHlwTnpsZ3B1?=
- =?utf-8?B?bDF0anV1c2NxSzNqNEZlZWwvc2EzNmF6TVg5TGgwQ2Q1N2ZJRHBONExxRmxH?=
- =?utf-8?B?SkxlblhlTHRTeVovZ2VSdEY1Y1EycFAwdDcwNUJkUGxUVGJOZzZGS045cFJS?=
- =?utf-8?B?dllRaWdZM25JSTRObkQwekRZZXpEVk5DMXNsc0loeVFqQ3FiSjdvdUZDZHln?=
- =?utf-8?B?b1NKYjhoV1JHdmFwWElJL1pKeFczZUVja2N1TTJ2dnpGajBDYjc1emM3R0xn?=
- =?utf-8?B?N096UnJlYUVMWHFzcGJpSTNaMUtjTzN3V0dIcTJPZUFTeU5WZFVOajcxZWNX?=
- =?utf-8?B?K00vOUJDQWlVdWJJSUcySUJWNkxYdUJxOUNGanJYekMyd0V0dE5Ma3kwb0RU?=
- =?utf-8?B?OXhXNHBJZENReDR3SXVhTVloQzI2OENhOFE5ckhVQWhHRUFaZTFvQ3dhQ0NM?=
- =?utf-8?B?S0pHK09lTXIxUG9SUmZZelV6N25HUHdsTElCaHJlZi8vWXMvZGplbW9PeVor?=
- =?utf-8?B?TU9OVG56clZaZWJiMzNhR1FlelRxbmJJaXNoc0Zibko2b3dvcy8wWE5FdzVI?=
- =?utf-8?B?MmJzMDBlUXpJWWs1MmVOdE1BNlFuVWlRS3dZbkhjRTU0UnpPNEM0ZmEvVWI0?=
- =?utf-8?B?bVVWdWs0SkwvTkNmb1dDUUludDl0VDhDbXhXS3ZpdlVYRFpoM0ZoODdibTJn?=
- =?utf-8?B?Ulo4dncydFdpSUlkOVM0YzBvUEh5ejVlZXNVUkpNNzRIUjZsS3NWeERkZnNo?=
- =?utf-8?B?OXJoODNLOE9yRUExbC9GZDhUYkgzVkpYWFNXYTJpS0ZYZGFPNkt4dmZtZERr?=
- =?utf-8?B?UnA4blhqYStaVGErVGJZdTRkb0VwRThhbGZNL3JqV2MydHc1Q1pmUmJjeUdD?=
- =?utf-8?B?T2lMU0txNjZUZlhhT2V5QWQ4Mjl2cTZHUzE2RGVkd0RLck91cDBpRG5DclhC?=
- =?utf-8?B?QzRJZnJJMlloTVFGdlpsamdnc0gzbmw4K3lNMjMrazJ5TjJEZ3dGek1pd2dw?=
- =?utf-8?B?bG4yUTdXK2k2bnNaQ0F0aXRaMnAvcW1Uc2xmbjJmMzNPcmtnb3Y1WDhLMnVI?=
- =?utf-8?B?dmIxM1JFdy9VQlNLQWl4NG5Ua3A4WGRzU21qZDB3THF2Y3BwUjJaNkJuU0JX?=
- =?utf-8?B?aU5yZHRqM2ljNVhOWkM2VGppczdvdU4yd1ZocnEvUUFMUi9TWnVVZFAxaUpK?=
- =?utf-8?B?Q2JRNEV0anQ3RkNzY3Avai9ZYm43eUZ0QXhVNXFuajFhb29yNklnUTBycXQx?=
- =?utf-8?B?cEg0d3BGeHAzVDhTeXJkZHJ3ZmJkcm00UEY4Q1BmNTZLMmI2eXNGY1NzOE1q?=
- =?utf-8?B?YnFTcWtMWHd1U25mRldCZ3VOYmVrU3ZOZ1M3MjZBc3RhRE5hdFMyK1FONTBO?=
- =?utf-8?B?a1pNRkdOUGhUUmJZU204V0ZIMGUvY1RDOWo3aEhhUVczWVB5WGZtMGgzb3hW?=
- =?utf-8?B?YkdpbEg1N01oMnZFZFNoWHhnSXBWaGQ3eVZMekc1K2F1dko1ZWlsYkhhWFpH?=
- =?utf-8?B?VFM5MW13YUNqRzFNd3hWRzlqVnVWMG0vTEl2SGNxSkh5cnhwakdITUx2Y0dk?=
- =?utf-8?B?Vkg0M2l1U2FocGNWeXRZL3dMUmh2TnJ1V3YvWDAyV243aTZFeUI3RGpsODl3?=
- =?utf-8?B?bkY5RVF4dGpLL3ExM01EY0txc0U2dXZHWGF3T3JFSGVmZjU5SFk4di94dlh1?=
- =?utf-8?B?VStDTFJXYnJ1djU0bnc1VTFSbWE4SGdwRHowUEVpdlQ1WGtZWjdxeHV4MCta?=
- =?utf-8?B?aloyMmY5eDdyQkIrVERjbmJjdC9najRvZ3FpQTNPK0hjQUdBdTVIM1J3QXpO?=
- =?utf-8?B?dnRWZFQ4SkM2bXVnd2FkOWthajFmczVwUGhlYW1aSUttNkxRQXZod3I4ZTlI?=
- =?utf-8?B?Vis0Y0g1NVNYd2JqdjlHNWttMEZyZkNlZE90T0ExbG5LMGc0THVqeElvQVhL?=
- =?utf-8?B?QTUyWGxSNHBTa3dNYlhMeEE5MDNFenFvRVNnYm1Cc2lZUlIyODB2aWFFS0VV?=
- =?utf-8?B?VTlFWEJScWRHb2xUT21KTVhYMFpLRUpxU1VqTWloUFUwa3c5d3VURUU4bVRt?=
- =?utf-8?B?VU9Wb3JZbXQ2bHdyU1ZqNHJnenVkWGY4eEZiS3Q5WUttbEQxT0tUd3JDTEdm?=
- =?utf-8?Q?Wuq0kfl4CedOay8yfZ?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7a4d9e9e-6899-48c1-b747-08df40b8199d
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB999228.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 12:25:56.0407
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NWLaChzp0Ih1ZjEDmbKjZOp1XPZqIaUd7NUx5niTG48Kfy2qpLeh4u1rt/uzc1QR2QqD2IYC3NuZhIpCmz20Fw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9320
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAqx9WoC/12Nyw6CMBBFf4V07ZgOr1BX/IdhQcsgYywlLRAJ4
+ d8FjBuXJzn33FUE8kxB3KJVeJo5sOt3iC+RMF3dPwi42VnEMs4RJQLnmZRgbAKDnSCtEdtEKZ0
+ mUuybwVPL77N3r74cJv0kMx6Rw+g4jM4v5+GMh/drF3/tGUGCbhBVVqSFwrq0TvOLFroaZ0W1b
+ dsH3CAVU78AAAA=
+X-Change-ID: 20261101-i6500-cm3-pmu-4a11f399b430
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Randy Dunlap <rdunlap@infradead.org>, Will Deacon <will@kernel.org>, 
+ Mark Rutland <mark.rutland@arm.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Fu Chao-Ying <chao-ying.fu@globalfoundries.com>
+Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, linux-hardening@vger.kernel.org, 
+ Paul Burton <paulburton@kernel.org>
+X-Mailer: b4 0.16.0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_122735_625300_320D9487 
-X-CRM114-Status: GOOD (  21.22  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261112_042920_659331_7E7B6E2D 
+X-CRM114-Status: GOOD (  42.77  )
+X-Spam-Score: -4.0 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -185,92 +101,260 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 6/11/26 18:16, Tian, Kevin wrote:
->> From: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
->> Sent: Thursday, November 5, 2026 12:16 AM
->>
->> The KVM file stored in an iommufd_device currently relies on the
->> reference held by VFIO while the device is open. Normally, unbind waits
->> for outstanding device references before VFIO drops its KVM reference.
->> However, REMOVE_WAIT only waits for 60 seconds. If that timeout expires,
->> the device object remains in the iommufd xarray.
->>
->> For example, an IOMMU_GET_HW_INFO ioctl can hold a device reference
->> while
->> blocked on a userspace buffer fault:
->>
->>    iommufd_fops_ioctl()
->>      iommufd_get_hw_info()
->>        iommufd_get_device()
->>          iommufd_get_object()
->>            iommufd_lock_obj()       /* takes users and wait_cnt refs */
->>        copy_to_user() / clear_user() /* may block before putting refs */
->>
->> A concurrent final release of the VFIO device file takes this path:
->>
->>    vfio_device_fops_release()
->>      vfio_df_unbind_iommufd()
->>        vfio_df_close()
->>          vfio_df_device_last_close()
->>            vfio_df_iommufd_unbind()
->>              vfio_iommufd_physical_unbind()
->>                iommufd_device_unbind()
->>                  iommufd_object_destroy_user()
->>                    iommufd_object_remove(..., REMOVE_WAIT)
->>                      iommufd_object_dec_wait() /* timeout: -EBUSY */
->>                    WARN_ON(ret)
->>        vfio_device_put_kvm()
->>          fput(device->kvm)
->>
->> iommufd_object_destroy_user() warns on -EBUSY but does not propagate it:
->> iommufd_device_unbind() returns void. Thus VFIO close effectively ignores
->> the unbind failure and proceeds to drop its KVM file reference even
->> though the iommufd_device is still alive and its ID remains usable.
->>
->> Once the remaining KVM file references are released, a later ioctl on
->> the still-open iommufd can access the stale pointer:
->>
->>    iommufd_fops_ioctl()
->>      iommufd_viommu_alloc_ioctl()
->>        iommufd_get_device()         /* finds the surviving device ID */
->>        get_file(idev->kvm_file)     /* accesses the freed KVM file */
->>
->> Take a KVM file reference when binding the device and release it when
->> the iommufd_device is actually destroyed. Release it before the igroup
->> check in the destructor so that bind failure cleanup is covered too.
->> Document the ownership in the bind API and device structure.
-> 
-> I don't think this needs to be fixed. There is already a WARN_ON()
-> in iommufd_object_destroy_user() and many bad things could
-> happen afterwards...
+The Coherence Manager 3 (CM3) of the MIPS I6500 multiprocessing system
+is the point where the requests of all cores, I/O coherence units and
+the hardware prefetcher are serialized before reaching the shared L2
+cache and the memory interface. It carries a small set of performance
+counters which observe this traffic: two programmable 32-bit event
+counters and a 32-bit cycle counter, programmed through the GCR global
+debug block (GCR_DB_PC_*).
 
-imho it is just a right thing to do - hold a reference to the pointer in a structure.
+The counters can count requests serialized by the CM, requests received
+by an IOCU, requests issued on the memory interface, AXI handshake
+cycles on the memory and IOCU buses, and PDTrace statistics. Each event
+is refined by a 64-bit qualifier made of groups of bits (originating
+port, thread, command, cacheability, L1/L2 line state, eviction, bank,
+scheduler, ...): a request is counted when it matches a set bit in
+every group, so the same event can be narrowed down to, for example,
+L2 misses caused by coherent reads from core 1.
 
-> If we really think an ioctl could take more than 60s in sane scenarios,
+This is the only visibility into the L2 and the memory interface that
+the I6500 offers; the per-core counters stop at the L1. It is the
+natural place to attribute memory bandwidth to cores and IOCUs, or to
+measure the L2 hit rate of a workload, on SoCs such as the Mobileye
+EyeQ6H.
 
-It is quite possible when some TSM operation involves (in)validation of hundreds GBs of MMIO.
+This series adds an uncore perf driver for these counters.
 
-> it's a more complex issue to be handled in iommufd core.
-> 
->>
->> Fixes: d8bb80c8f0e5 ("iommufd/device: Associate KVM file pointer with
->> iommufd_device")
-> 
-> btw no fix tag for an issue introduced by an earlier patch in the
-> same series.
+Design notes
+------------
 
-+1. should be just squashed into 05/15. Thanks,
+The driver binds to the existing coherency-manager device tree node
+("mti,mips-cm" / "mobileye,eyeq6-cm") and reuses the GCR mapping
+already set up by mips_cm_probe(), so no new reg property is needed:
+the GCR base is discovered from CP0 CMGCRBase as for everything else in
+the CM. The register definitions go into asm/mips-cm.h next to the
+other GCRs, following the existing accessor scheme.
 
+Events are described by two fields: 'event' (config:0-8) is the number
+written to GCR_DB_PC_EVENT, with 0x100 as a pseudo event selecting the
+cycle counter, and 'qual' (config1:0-63) is the raw qualifier. A
+qualifier of 0 picks a per-event default counting every occurrence;
+this matters for the I/O and AXI events, whose qualifiers contain
+encoded values (IOCU number, AXI channel) rather than masks, so "all
+ones" is not a sensible default there. Named events cover the common
+combinations and, since they are plain event=/qual= strings, serve as
+templates for custom qualifiers.
 
--- 
-Alexey
+A multi-cluster system has one CM3, and thus one set of counters, per
+cluster. The number of clusters comes from GCR_CONFIG and one PMU is
+registered per cluster, named mips_cm3_pmu_<cluster>. A cluster need
+not have CPUs, online or at all, for its CM to be busy: its L2 and
+memory interface may serve the I/O devices behind its IOCUs while its
+cores are absent or powered down. The counters of a cluster are thus
+accessed through the GCR redirect block (GCR_Cx_OTHER with BLOCK set
+to the debug block) from whichever CPU the PMU runs on, which may be in
+any cluster. The one thing required is that the CM of the counted
+cluster is powered, which the driver checks in the CPC (the CM "core"
+STAT_CONF sequencer state) when an event is opened; the counters of a
+cluster that is powered down at probe time are initialized on first
+use, and events on it fail with -ENODEV until then. The counters are
+shared by the whole cluster: events are system-wide only, pinned to one
+CPU which follows CPU hotplug, and sampling, task events and the
+exclude_* attributes are rejected.
+
+A cluster holding CPUs is a special case of the above: Linux leaves
+CPC_PWRUP_CTL.CM_PWRUP clear once it has booted a cluster, so the CM
+powers down together with the last of its cores and the counters go
+with it. The hotplug callbacks track this: when the last online CPU
+of a cluster goes down and CM_PWRUP is clear, the PMU of that cluster
+is paused (counts harvested, running events kept but not counting,
+new events refused with -ENODEV) and it is resumed, the events
+restarted, when a CPU of the cluster comes back online and the CM
+with it. Pause and resume run on the PMU's CPU with interrupts
+disabled, like the perf callbacks, so they do not race with them;
+the pause precedes the death of the last CPU, hence the power down,
+so everything that touches the counters either runs on that CPU
+with interrupts disabled or is waited for by the pause (the poll
+timer). The remaining exposure is a cluster without CPUs whose power
+is not managed by this kernel: only the CPC check at event open
+covers it.
+
+Overflow is where the SoC integration leaks in. The CM3 has a
+so_cm_perf_cnt_int output, but whether it is wired to a GIC input is
+the integrator's choice and is not discoverable. The binding therefore
+gains an optional 'interrupts' property: when present the driver uses
+it to extend the 32-bit counters, otherwise it polls them every 250 ms,
+which is comfortably below the time the fastest event needs to wrap
+at the CM3 clock rates. Both paths yield 64-bit counts. In interrupt
+mode the counter is only read on demand and may make a full turn
+between two reads, so the overflow status is folded into the delta.
+No DTS change is included because the EyeQ6H routing of that signal
+is not documented on my side; the driver works in polling mode
+without it.
+
+The interrupt can only serve the cluster the CPUs live in, and only
+when they all live in that one cluster. Each cluster's CM drives its
+own interrupt output into its own GIC, and the GIC driver routes a
+shared interrupt to the cluster of its affinity CPU, so a single
+'interrupts' entry cannot serve several clusters at once. The PMUs of
+the other clusters, and all PMUs when CPUs are spread over clusters,
+are polled.
+
+The driver can be built as a module. That requires exporting
+mips_gcr_base, mips_cpc_base, mips_cm_{lock,unlock}_other() and, less
+obviously, mips_cm_is64, since the CPS accessor macros consult it on
+every 64-bit GCR access. All are exported _GPL.
+
+The redirect block is reached from the perf callbacks, which run under
+the raw perf context lock, and from the polling timer in hard
+interrupt context. mips_cm_lock_other() takes cm_core_lock, a plain
+spinlock, which is an invalid wait context there and on PREEMPT_RT.
+Paul Burton's patch turning it into a raw spinlock, posted in 2019 but
+never merged, is picked up as the first patch of the series.
+
+Patches
+-------
+
+Patch 1 is Paul Burton's conversion of cm_core_lock to a raw spinlock.
+
+Patch 2 adds the GCR_DB_PC_* register and field definitions, with
+local and redirect accessors.
+
+Patch 3 exports the CM and CPC symbols needed by a modular user of the
+GCR accessors.
+
+Patch 4 extends the mti,mips-cm binding with the optional performance
+counter interrupt.
+
+Patch 5 is the driver itself together with its admin-guide document,
+which describes the perf interface and transcribes the event numbers
+and qualifier layouts so that users do not need the TRM to build a
+qualifier.
+
+Patch 6 enables the driver (as a module) in eyeq6_defconfig.
+
+Testing
+-------
+
+Built with eyeq6_defconfig with the driver both built-in and as a
+module; every patch of the series builds on its own, and the binding
+and the document pass their respective checkers.
+
+Run on the EyeQ6H board with 2 clusters, loaded as module in polling
+mode. The overflow interrupt path could not be validated on real
+hardware: I have no platform where so_cm_perf_cnt_int is wired to the
+GIC, so that mode is build-tested and reviewed only.
+
+[   66.128375] mips_cm3_pmu coherency-manager: mips_cm3_pmu_0: 2 counters + cycles, polled
+[   66.129617] mips_cm3_pmu coherency-manager: mips_cm3_pmu_1: 2 counters + cycles, polled
+
+dev / # perf stat -a -e mips_cm3_pmu_0/cm_requests_l2_hit/,mips_cm3_pmu_0/cm_requests_l2_miss/,mips_cm3_p
+mu_1/cm_requests_l2_hit/,mips_cm3_pmu_1/cm_requests_l2_miss/,mips_cm3_pmu_0/cycles/,mips_cm3_pmu_1/cycles
+/ sleep 1
+
+ Performance counter stats for 'system wide':
+
+            505821      mips_cm3_pmu_0/cm_requests_l2_hit/                                   
+             49083      mips_cm3_pmu_0/cm_requests_l2_miss/                                   
+            184893      mips_cm3_pmu_1/cm_requests_l2_hit/                                   
+             37760      mips_cm3_pmu_1/cm_requests_l2_miss/                                   
+        1807514589      mips_cm3_pmu_0/cycles/                                      
+        1807491360      mips_cm3_pmu_1/cycles/                                      
+
+       1.005857149 seconds time elapsed
+
+Signed-off-by: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+---
+Changes in v2:
+- Pick up Paul Burton's "MIPS: CM: Make cm_core_lock raw spinlocks" as
+  patch 1: the redirect block is accessed under the raw perf context
+  lock and from hard interrupt context (Sashiko).
+- Account a full counter turn in interrupt mode: fold the overflow
+  status into the delta instead of relying on the 32-bit difference
+  alone, which lost 2^32 on every wrap (Sashiko).
+- Keep the 64-bit qualifier in hwc->config1 rather than the
+  unsigned long hwc->config_base, truncated on 32-bit (Sashiko).
+- Set hwc->config before validating the group, and do not walk the
+  siblings of an event that is its own leader: it has none yet and
+  its context is not set (Sashiko).
+- Use cpuhp_state_remove_instance_nocalls() so that the unregistered
+  PMU is not migrated (Sashiko).
+- Check that the cluster is powered on every event open, not only
+  the first time (Sashiko).
+- Pause the PMU of a cluster when its last online CPU goes down and
+  the CM is set to power down with its cores, resume it when a CPU
+  of the cluster comes back online; closes the window where the
+  counters of a cluster could vanish under running events. The
+  poll timer stops with the pause and is re-armed by the resume.
+- Note in the cover letter that the interrupt mode was not validated
+  on hardware.
+- Link to v1: https://patch.msgid.link/20261108-i6500-cm3-pmu-v1-0-bd119584891a@mobileye.com
+
+To: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Clark Williams <clrkwllms@kernel.org>
+To: Steven Rostedt <rostedt@goodmis.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>
+To: Jonathan Corbet <corbet@lwn.net>
+To: Shuah Khan <skhan@linuxfoundation.org>
+To: Randy Dunlap <rdunlap@infradead.org>
+To: Will Deacon <will@kernel.org>
+To: Mark Rutland <mark.rutland@arm.com>
+To: Kees Cook <kees@kernel.org>
+To: "Gustavo A. R. Silva" <gustavoars@kernel.org>
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+To: Benoît Monin <benoit.monin@bootlin.com>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Théo Lebrun <theo.lebrun@bootlin.com>
+To: Fu Chao-Ying <chao-ying.fu@globalfoundries.com>
+Cc: linux-mips@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-rt-devel@lists.linux.dev
+Cc: devicetree@vger.kernel.org
+Cc: linux-doc@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-perf-users@vger.kernel.org
+Cc: linux-hardening@vger.kernel.org
+
+---
+Paul Burton (1):
+      MIPS: CM: Make cm_core_lock raw spinlocks
+
+Vladimir Kondratiev (5):
+      MIPS: CM: add CM3 performance counter GCR definitions
+      MIPS: CM: export the symbols needed to access the GCRs from a module
+      dt-bindings: mips: mti,mips-cm: add performance counter interrupt
+      perf: add MIPS Coherence Manager 3 (CM3) PMU driver
+      MIPS: eyeq6_defconfig: enable the CM3 PMU
+
+ Documentation/admin-guide/perf/index.rst           |    1 +
+ Documentation/admin-guide/perf/mips_cm3_pmu.rst    |  346 ++++++
+ .../devicetree/bindings/mips/mti,mips-cm.yaml      |    6 +
+ arch/mips/configs/eyeq6_defconfig                  |    2 +
+ arch/mips/include/asm/mips-cm.h                    |   51 +-
+ arch/mips/kernel/mips-cm.c                         |   25 +-
+ arch/mips/kernel/mips-cpc.c                        |    2 +
+ drivers/perf/Kconfig                               |   12 +
+ drivers/perf/Makefile                              |    1 +
+ drivers/perf/mips_cm3_pmu.c                        | 1237 ++++++++++++++++++++
+ 10 files changed, 1672 insertions(+), 11 deletions(-)
+---
+base-commit: c03c1a14507dfaf8b856c2608f9ac216021fc222
+change-id: 20261101-i6500-cm3-pmu-4a11f399b430
+
+Best regards,
+--  
+Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
 
 
