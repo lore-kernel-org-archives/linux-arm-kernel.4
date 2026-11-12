@@ -2,108 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10596606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 23:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A58D606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 23:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NEJs2myb;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=aMFpOYBV
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R87FerFu;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iDhs6wU2
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=Fp4tdSd/mDb/LWGtHZMVb3duVaZTa+5YiNZw4U0pJl0=; b=NEJs2mybrb5Fa4
-	2PkUA3sBtPGfgxcOcG7XQsgiiXLscpimzLcwgQdJ3qg/W3w7BnPVL9UUeB3+oJN0xWIMs+MH+SAnd
-	pBErZ7QcvgBiJl7Xp0g6iBS/3w0916NaflH+2nJXIcl0NWkH2FMJWAuaVMsICBGYQZ2bnXBlBhMgL
-	zoF0JvwVYq3z8mU9uVR0LyUttOQ3YHqNSQrhjlsOmpy77QIXWEOyG4TGUfbI56dg4TKowfrKEvryl
-	kC7Dl/QOigwwkt9ihYhWV8M2JYQVheJ8TEbnSeZbhfCHTzcD3V3N24f9zkOEY3rX0CtoMJDQjmNl/
-	eM+N/emgTfDrB6I+3gaw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ihiq+0qddYW2J+cwl+nH5pr1pmcIs2DvPvGp5YujItE=; b=R87FerFuF6Wgupo0XIXvAjSlDU
+	s9E6/fVPvoyds8TKQrDCmnh4CoMqPK7YWQgGgNxmwl+/jQB3k/wGTJvJtum/F6GN9FthV+yed0xey
+	deT2FlRvvkapC8zwY/zlVecpkrIu1H4Q/Unwmxw7m8CHl3H74XRWnxSQ58Kfiw2C8XrEgNy8URTg5
+	711CAasna+f3GsDjnQjx5OI/WnzMBbbAMpTi9EYJytPDKrhcJY+Of83s1moTZiKJLbEQazCuZ5MZ4
+	78FRPkM5K9soabKkB6nccLKgbVMGqlQAyswaputN/TCWbccXzTvJx97fJ/CxDuOXTCVMsmo2iHxGe
+	0O05hzEw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xReVE-0000000BGf2-03Zs;
-	Thu, 12 Nov 2026 23:46:48 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xReW2-0000000BGko-1K0Y;
+	Thu, 12 Nov 2026 23:47:38 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xReVB-0000000BGeX-1Bo9
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 23:46:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794527204;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Fp4tdSd/mDb/LWGtHZMVb3duVaZTa+5YiNZw4U0pJl0=;
-	b=aMFpOYBV3sKiSX/C8LUcfGIZPqqNl7cJvy70h4f9lAsjx/mUAuvubLzk2HuukL23bojyzk
-	rXt8wtR87Qo3HyV6NhzfbmXGOGnxkySdlrcMDEho7gVPEhBXV5/MVfrsL4WbOFTVmRpiav
-	uWYWr9s2bMm74CTwe6z3n+pbCuzg+II=
-Received: from mail-dy1-f200.google.com (mail-dy1-f200.google.com
- [74.125.82.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-222-VTYT7EEaPyOuSIiGB-cY3w-1; Thu, 12 Nov 2026 18:46:40 -0500
-X-MC-Unique: VTYT7EEaPyOuSIiGB-cY3w-1
-X-Mimecast-MFC-AGG-ID: VTYT7EEaPyOuSIiGB-cY3w_1794527199
-Received: by mail-dy1-f200.google.com with SMTP id 5a478bee46e88-341eff9e381so601539eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 15:46:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794527199; x=1795131999;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=Fp4tdSd/mDb/LWGtHZMVb3duVaZTa+5YiNZw4U0pJl0=;
-        b=ko36v9kE1qoI0M/SEhu3/ChhmwPk4MXcvXggYfsYqFHahM1nO/hLMYNct5fUxVRnHZ
-         txtrbDnPyXKG96k5XkhIe2oPibbVxrLZLZFdJQMWkXOcPk6Ut2iVlTaKLAmj3gp+u4iG
-         TQWMYLMsvY+rUC4S6gW+hijeSFZqQud6b3Cme/PNgaDAAJLJfy64e2r1oppOkk5UmoQ7
-         o8lpBMAxhrPEUdPUYj7m8DS0FW/nBh6GMiR61D8cNdsp6cMyv828shkyS7iZlHGEYXKm
-         6FkyVqALmba9DQYJLtZLZ7jm2LE3XP/N5UFD22TTEXhRV+bGAuHOpQo6Spa0IsQ7H0v2
-         28fA==
-X-Forwarded-Encrypted: i=1; AL+hErHOCRDwqeAq/yakSD9dDH8A7OcEz2M9FoefIshtFJcn9Rs5eX9vB7w+jCo1RpqRQ+BbaO7ESQbn3vdIvBP+iCUU@lists.infradead.org
-X-Gm-Message-State: APuU4Z9PeADj4j8g4NLnnrpe7O/UKq1AHoax8h9DLWEZkxVFha0OT9cY
-	W11/aFnkBcmc6sMh1EIppZXOrTs0Y83o3rdfWIo2aMMVDWaxGKG9m5jwm6h3qaGJjXHqJEat32b
-	TFHsgn3m8AUIACQ2cBZsVJc6tFxY25mVLOC2mVKHOXnP8zHUDDAdqYsXd/rwzsjO7wNbHNU/dvK
-	FJ
-X-Gm-Gg: AYBFou2+MzwReuNaramZIRQpt6wHvei+OxC/AgUXqFQikUNxVmV1cUa8WGiLSeytooF
-	EepcwQZpGYj1eGgBanUtv/KOANz8cvd5D3j5OF8T7DUc1p3vibpkwZRpvtHTpVqMg/Yu76FYNSc
-	37DZjQbuNMdmZ0Czc19Bd2BTS8C+VflcLRm6BamOZc+kDjcrWGViaWjlY9W5AFA4ucUYIeOkcl7
-	OcSRvMFo0WGjJOII6+rKX5hplntrpvgx8K963JfH0OGxyQtLfoLmP0bTNKccYnm1aHb/5iuVAWo
-	7WLSi2n+zpgdQYL+rgyPKjHhwnFdfS6WWwuzz7kNH6HSxExkfemOZqii359MZaD0GPUck40Ccus
-	s/5WP3m1ejPPEJOgIUAYqMfmopiw54JUsoPxZ3NXpXcA3s8RsEzJ+9d+EP9Zs6ZIu4hs0EXnP2w
-	vez5quE89o/bej6As=
-X-Received: by 2002:a05:7300:a21f:b0:36e:c85c:3bbc with SMTP id 5a478bee46e88-37965ca778amr617158eec.12.1794527199125;
-        Thu, 12 Nov 2026 15:46:39 -0800 (PST)
-X-Received: by 2002:a05:7300:a21f:b0:36e:c85c:3bbc with SMTP id 5a478bee46e88-37965ca778amr617132eec.12.1794527198548;
-        Thu, 12 Nov 2026 15:46:38 -0800 (PST)
-Received: from [192.168.68.52] (n175-34-8-244.mrk21.qld.optusnet.com.au. [175.34.8.244])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-379553316f2sm1655703eec.9.2026.11.12.15.46.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Nov 2026 15:46:37 -0800 (PST)
-Message-ID: <da4c6658-a4a0-43ae-92da-14d8463dfc08@redhat.com>
-Date: Fri, 13 Nov 2026 09:46:32 +1000
+	id 1xReW1-0000000BGkb-1zZg;
+	Thu, 12 Nov 2026 23:47:37 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D6147455B8;
+	Thu, 12 Nov 2026 23:47:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB4301F000C5;
+	Thu, 12 Nov 2026 23:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794527256;
+	bh=ihiq+0qddYW2J+cwl+nH5pr1pmcIs2DvPvGp5YujItE=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=iDhs6wU2RWdAuAsKAj9BTZP4O9whlnUCeeRWRZ86YVknzdYZybxJjR8v9UpF2c/D/
+	 4Y+cHpL2KHoA/cwnU5Z0OX/qhwqii0nLOtz+yYkn//3O8HBX8l2Su7yKg5ch/x4eEP
+	 QCy7CYuXiGvYPX9SnsjhhRrP1IFO74+6y+NdspjPvEEmH6XGJbi8mrbDou0l9QCp4y
+	 HPz1uIXfcPyBA0IYKVvqjXXKUz28WrZLrTXOiqQQYUiH1KfvrWkFHkiQexJf9YScXr
+	 /T2lCT264WXKfhaPqu59TvvxAxXNE+pPj8wx07PH5eq+J23QR60zNM04cZFLQzdVi3
+	 DHpxH85131v/Q==
+Subject: Re: [PATCH net-next v4 1/3] net: ethernet: mtk_eth_soc: reset RX DMA
+From: netdev-bot+sashiko@kernel.org
+To: sandeeph@loljews.com
+Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, linux@armlinux.org.uk,
+ mason-cw.chang@mediatek.com, frank-w@public-files.de,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Thu, 12 Nov 2026 23:47:35 +0000
+Message-ID: <179452725530.2199510.183276812923001293@kernel.org>
+In-Reply-To: <patch-6b45cf654903652eb4ed98e2e7514f5c@loljews.com>
+References: <patch-6b45cf654903652eb4ed98e2e7514f5c@loljews.com>
+X-sashiko-severity: Low
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm_mpam: resctrl: Limit num_rmids to the CLOSIDs
- in use
-To: Jinjie Ruan <ruanjinjie@huawei.com>, james.morse@arm.com,
- ben.horgan@arm.com, reinette.chatre@intel.com, fenghuay@nvidia.com,
- zengheng4@huawei.com, tan.shaopeng@jp.fujitsu.com, jic23@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261111081316.3828283-1-ruanjinjie@huawei.com>
- <20261111081316.3828283-4-ruanjinjie@huawei.com>
-From: Gavin Shan <gshan@redhat.com>
-In-Reply-To: <20261111081316.3828283-4-ruanjinjie@huawei.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: luapB1-sUeg0q_rupa3fGjh6jRZkAxizqdz72-jFKPQ_1794527199
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_154645_403625_482722F6 
-X-CRM114-Status: GOOD (  21.88  )
-X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,67 +72,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/26 6:13 PM, Jinjie Ruan wrote:
-> On MPAM an RMID is a PMG within a PARTID, so resctrl can only allocate
-> the PMGs of the CLOSIDs it uses. info/L3_MON/num_rmids is instead set
-> to the whole PARTID and PMG space when the monitors are initialised,
-> and halved when CDP is enabled. It reports more RMIDs than resctrl can
-> allocate in two cases:
-> 
-> - With CDP each CLOSID takes two PARTIDs, and resctrl halves the
->    CLOSID count rounding down, while MPAM halves the whole RMID space.
->    With 5 PARTIDs and 2 PMGs resctrl has 2 CLOSIDs and 4 RMIDs, but
->    num_rmids reads 5. The count is too high whenever the number of
->    PARTIDs is odd and there is more than one PMG.
-> 
-> - On a monitor-only system there are no control groups and resctrl
->    only uses the default CLOSID, but num_rmids still covers every
->    PARTID. With 5 PARTIDs and 2 PMGs it reads 10 while only 2 RMIDs
->    can be allocated.
-> 
-> RMID allocation is limited to the CLOSIDs in use, so only the value
-> reported to userspace is too high. Creating as many monitor groups as
-> num_rmids allows fails with -ENOSPC before that number is reached.
-> 
-> Count the CLOSIDs resctrl uses instead: every resource has
-> mpam_partid_max + 1 CLOSIDs, halved and rounded down while CDP is
-> enabled, and a system with no resource that can allocate uses only the
-> default CLOSID. Report (pmg_max + 1) RMIDs for each of those CLOSIDs.
-> Count at monitor initialisation and from resctrl_arch_set_cdp_enabled(),
-> which resctrl calls whenever a mount or unmount enables or disables
-> CDP.
-> 
-> Fixes: 264c285999fc ("arm_mpam: resctrl: Add monitor initialisation and domain boilerplate")
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> Cc: <stable@vger.kernel.org> # 7.1+
-> Cc: James Morse <james.morse@arm.com>
-> Cc: Ben Horgan <ben.horgan@arm.com>
-> Cc: Reinette Chatre <reinette.chatre@intel.com>
-> Cc: Fenghua Yu <fenghuay@nvidia.com>
-> ---
-> v4:
-> - Simplify the fix with mpam_partid_max, cdp_enabled
->    and resctrl_arch_alloc_capable() as Ben suggested.
-> v3:
-> - Drop resctrl_arch_set_mon_rmid_count() and count the CLOSIDs in the
->    MPAM driver instead, as Ben suggested.
-> - v2: https://lore.kernel.org/all/20261105123304.2281987-1-ruanjinjie@huawei.com/
-> v2:
-> - Also fix num_rmids on monitor-only systems, as Ben suggested.
-> - Retitle from "arm_mpam: Round the CDP RMID count down to whole CLOSIDs".
-> - v1: https://lore.kernel.org/all/20261104101622.563280-1-ruanjinjie@huawei.com/
-> ---
->   drivers/resctrl/mpam_resctrl.c | 30 +++++++++++++++++-------------
->   1 file changed, 17 insertions(+), 13 deletions(-)
+Thank you for your contribution! Sashiko AI review found more severe
+issue(s) in other patches of this series. This mail is only an FYI, in case
+you want to address the nit picks below when you respin.
 
-Reviewed-by: Gavin Shan <gshan@redhat.com>
+Low priority / nit picks for your consideration:
 
+- [Low] The commit message does not accurately describe the change.
+
+--
+
+net: ethernet: mtk_eth_soc: reset RX DMA
+
+This patch moves the DMA_MAPPING_ERROR initialisation of dma_addr in
+mtk_poll_rx() to the top of the RX loop, so it is reset on every
+iteration. On MTK_36BIT_DMA SoCs, a descriptor that is released through
+release_desc without a new mapping then keeps its own high address bits
+in rxd2.
+
+> net: ethernet: mtk_eth_soc: reset RX DMA
+>
+> [ ... ]
+>
+> With MTK_36BIT_DMA and DRAM above 4 GiB the hardware then DMAs the next
+> frame to an address that is neither buffer, and the driver passes the
+> stale contents of the untouched buffer up the stack.
+
+[Severity: Low]
+This isn't a bug, but could the subject line be more specific?
+
+The patch only resets the local dma_addr variable at the top of each
+iteration of the loop in mtk_poll_rx(). No RX DMA engine is reset.
+
+In this driver, "reset" usually refers to the hardware/SER reset code
+(MTK_RESETTING, mtk_hw_reset(), reset.monitor_work). Someone reading the
+shortlog, or a stable backporter, could take this for a change to the
+reset path.
+
+Should the body also say that this completes commit 6e0490fc36cd ("net:
+ethernet: mtk_eth_soc: fix SER panic with 4GB+ RAM")?
+
+That commit added this check at release_desc in mtk_poll_rx():
+
+		if (MTK_HAS_CAPS(eth->soc->caps, MTK_36BIT_DMA)) {
+			if (unlikely(dma_addr == DMA_MAPPING_ERROR))
+				addr64 = FIELD_GET(RX_DMA_ADDR64_MASK,
+						   rxd->rxd2);
+			else
+				addr64 = RX_DMA_PREP_ADDR64(dma_addr);
+		}
+
+The check only works if dma_addr is DMA_MAPPING_ERROR on every release
+path. Since commit e10a35abb3da ("net: ethernet: mtk_eth_soc: fix
+uninitialized variable"), dma_addr is set only once, before the loop. So
+the MTK_RESETTING path that 6e0490fc36cd was fixing can still pick up the
+high bits of a buffer mapped for an earlier descriptor in the same poll.
+
+mtk_rx_clean() then unmaps an address built from mismatched high and low
+bits:
+
+			if (MTK_HAS_CAPS(eth->soc->caps, MTK_36BIT_DMA))
+				addr64 = RX_DMA_GET_ADDR64(rxd->rxd2);
+
+			dma_unmap_single(eth->dma_dev, ((u64)rxd->rxd1 | addr64),
+					 ring->buf_size, DMA_FROM_DEVICE);
+
+This is the SER panic described in 6e0490fc36cd. The body covers the
+misdirected DMA and the stale data passed up the stack, but not this
+unmap during SER.
+
+Would it make sense to mention it and reference 6e0490fc36cd in the
+commit message?
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/patch-fc08a7ef40667bf3017366e452e6d3c0%40loljews.com
 
