@@ -2,78 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BC9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 07:03:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742EF606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 07:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EU89QZQP;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=SyqcupJg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FMnVo+tO;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Ha2/Ufq9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Message-Id:MIME-Version:To:Date:Subject:From:Reply-To:Cc:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=nzAjgOTLX8liwVDaIjjhbrB5TSRS945lQsicsDv648A=; b=EU89QZQPq/vgPlCKYIfS91DLA7
-	m7wVf9+67XUmW3BMazDLwlDhYO2xXx8CwgX0faYc2hVgTFX2lW6K9D/p2NRsSZ8G6VCCcuUNy0j56
-	tnTs4dG/8KhK3PKF+Xq5LHUCx2GJVLKXGHrW1oWL0XpH/oVTEOkqPfW5MCs1tbNz2uZ/56/4ITwn7
-	7VFuullKNx9l7HXbjJ9rALIt5JAeKyXI6qQCBLTIUlQ0e0wt6V3xPD+cduSjCGeRYGPXrLzeVSbhY
-	Z8X8/sImPD4NNg9TwdizIKUumNfMZ6zM5Rt573ou6RaqDKiWZ+8iNoSXvDdgYpfVN8Vv9nAxdqE/s
-	HGECu6/A==;
+	bh=p+q3LFIMHbm/nMce+FLXOK/M2t+rToT1SbCyE/uCano=; b=FMnVo+tO+JMyWKfGnCz9tnPnxw
+	3PSWy28QDhbiz9pY8/72TzbYZSGxXg+wtZJswq33x1GLOwA96r8uxiwUwK/gBbxqX385sr7Yc1ySW
+	BKeRUnbdduAhM23OGIlzjYq+74KjgjLRmaBhVLgdkhoQsGGd8Zmy9AsK9oy1Cnz50tKW39JqFL7pS
+	YSzYdttNGLxb1ZHXdE7HL603o26I2z6pzfNhfN1LtuTSKMCkGyCoo2uE3Xfq3NERc4/qxptK9KKjv
+	3jZQVvvoa2zBIyF9DkIZqe1ZcAe+CrJj4EaiIwqw5GivhrJPI1sGX5XL4ZWbq29tjzWRTwQG6DWZs
+	3YxGF70Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xROqA-00000008s0D-1uON;
-	Thu, 12 Nov 2026 07:03:22 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+	id 1xROqr-00000008s6d-3DVF;
+	Thu, 12 Nov 2026 07:04:05 +0000
+Received: from mail-qk1-x72b.google.com ([2607:f8b0:4864:20::72b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xROq2-00000008rzo-2zB4
+	id 1xROqn-00000008s5r-3Vdn
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 07:03:16 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794466991;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=nzAjgOTLX8liwVDaIjjhbrB5TSRS945lQsicsDv648A=;
-	b=SyqcupJgmpLc5oz7gTth4ZVrreW43dYqaa+QSlE/RE0MCZqEnkViBaxvrqLclmpbPUV652
-	b0jZMXslsIathje11Re+CrbefEEfyrVaJ9YE0Xlfdb9b6euLTWdqGMRqcs2319kLYjT67m
-	pA4SFmj+m6xbldFZZPBoMKmhVaj7hdk=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-103-J0lMeIM8NVahVZIby-0NEg-1; Thu,
- 12 Nov 2026 02:03:05 -0500
-X-MC-Unique: J0lMeIM8NVahVZIby-0NEg-1
-X-Mimecast-MFC-AGG-ID: J0lMeIM8NVahVZIby-0NEg_1794466985
-Received: from mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.95])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 4D85019540C2;
-	Thu, 12 Nov 2026 07:03:04 +0000 (UTC)
-Received: from [172.20.178.129] (unknown [10.30.44.133])
-	by mx-prod-int-10.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id A1FF944D;
-	Thu, 12 Nov 2026 07:03:03 +0000 (UTC)
-From: cki-project@redhat.com
-Subject: =?utf-8?b?4pyF?= PASS (MISSED 6 of 54): Test report for for-kernelci
- (7.4.0-rc1, upstream-arm-next, 7ca48805)
-Date: Thu, 12 Nov 2026 07:03:03 -0000
-To: catalin.marinas@arm.com, will@kernel.org,
- linux-arm-kernel@lists.infradead.org
+	Thu, 12 Nov 2026 07:04:04 +0000
+Received: by mail-qk1-x72b.google.com with SMTP id af79cd13be357-93f269e335eso474840085a.3
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 23:04:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794467040; x=1795071840; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=p+q3LFIMHbm/nMce+FLXOK/M2t+rToT1SbCyE/uCano=;
+        b=Ha2/Ufq9cWr4tGRgKslEeof8ccQhcqCdeZG6Nr6EDW1C7HLRLFOBwMYEQBRe3ThhZp
+         0+a6KPTLZMHsWxvNzSDlUqKe6trnfkZvkIsOIvoTc0sP8eIvCkRnqcwlBTIdgntrwwFo
+         /ULGp+0P8Gkl537df+WAbh+ViOQc7RyeuScoWTK4Wbu8RfS58GSLTbjyNJdwHIkYF6my
+         DRBUkUsC+PqVz3IRg1ir6BNXDxA9GUAebPcYKNM+/0cVJ+Pvq//D9UULmyQGLfa7Ou9B
+         SdHC9n5tCpsNKKBmfpeqSk1lCJ/vddh3mMtARognvZMi+VOc1h+3j2rips76xKugP7Jt
+         r2ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794467040; x=1795071840;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=p+q3LFIMHbm/nMce+FLXOK/M2t+rToT1SbCyE/uCano=;
+        b=w1TTcygM3Bmb6bS6Pp6ASGGkR0lGsZybOoZDTG4+tZ+yGrEOUyTlAY17xQcNL4M7xs
+         W0of8b/dyaHwtYE00nXv0aCObiTio9nW6u4+dpGNzXe2ews9+yJSBIyerWThQz1DPwgH
+         +9fK3QGb1D30ixRd35Pht5ax1Ff6oXisJihfdqGpqoeLT9GHAI9Jq8sAzV8myNxsQHUx
+         3kWfNbgivufpjurOMZiLzEsJdfhmW3fu+zcsu6E7ajDBlH7S6jrpQB1896MTZ1kL0T+7
+         Tp0AG2Duh/QBUjrZqk1FArBXoC8wt5faHLHZZX9zveNbnGoMKmqWHUktCZjNUAgAiDfE
+         W47w==
+X-Forwarded-Encrypted: i=1; AL+hErGnVLGwphqh04T1Ung57g3RjIUILVs2QBMnRMyrYwRwmR9VPzbsXBZVMulvpJffM0Rz7fjzHtW7/jo5Jg9CJS/X@lists.infradead.org
+X-Gm-Message-State: APuU4Z/71LuzOrQYijGeTBDa3w32/6yEePVFht96WEzFSsb3+eroWhya
+	5XVGYHbXacnfTIbbephZazOxWyPZPVGWhDxWvwqGhh5l4hVPoCOcM24=
+X-Gm-Gg: AYBFou0uCZNEyeFzKHCz52KS/f0EJbjL3V6RTmyGXyFl+gu4Fucl59gb5Cc1oO/8miJ
+	bryCj+dN1iEodAhkj3bJi5kRRjbI0Qbl3d6h3PJpiSlLmL0tj9tudJTMVBiXBtaYET9S39u7hYK
+	KpUYC98V27BWdp/sGoPYGpVJxelmGO9YQdCOVBB18yh/K4ELE3ubNhKkUTzi9v/f4on+WhW5v5S
+	APjMbj1xO9uA4z5lAbigo1zGCBX7WJ+I/Xiz00mdGoPstd2odYwZFuwDm9NqvsdRRFanD5PGSh2
+	hbxncsYoUDTnhltNH1C00rMePnemKcUh8PD91/nRlPSmW6BqIbgDlun2/8c6cXS28gW1Fs20uXe
+	ugpSEvQ3XHo1yGZuWmT5RkWtvjNNBnEzNeHSVtm3jV71A/flDKPQqdzHkyrcijS9NJlNs/gaott
+	uwQ8gHJAlPIdx1C3dMnZ828Muu4jbB/VjSRgBn3v00vsxcnY6irWRZXRkZ4kqoWMo4tQMwz5Pbj
+	uYp3yGQlQnaMJHqFgFOFMUrDHn4nVGXYTRca2D4V88F7zDZM0VUhvYn3n4auYQrkv9SZrznBNki
+	ef7fq+QQCmEJyfjxWZ7RO+6doiIz6nddUzz77bK6ZGAuc6waEidZhevkI78RhJ4z3DZRfA77pSm
+	Zj+9Q2/L2z6batlAZgaWquT/JSUVEE/mbJbJ1h3Mzi/X+LA0+OM2/IFQckgiMZORwUFgnFSEHtC
+	1qqlVg4BuinQMcXNcYesOdecbVf3q17ieUwDNWe7Sqb+Ffkva//yBecw==
+X-Received: by 2002:a05:620a:460e:b0:93b:ef24:bc8c with SMTP id af79cd13be357-947afff0a6amr852657585a.47.1794467040229;
+        Wed, 11 Nov 2026 23:04:00 -0800 (PST)
+Received: from localhost.localdomain (h16.44.55.139.dynamic.ip.windstream.net. [139.55.44.16])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-9479e7f2edesm663463585a.40.2026.11.11.23.03.58
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 11 Nov 2026 23:03:59 -0800 (PST)
+From: Myeonghun Pak <mhun512@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>,
+	Billy Tsai <billy_tsai@aspeedtech.com>,
+	linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	Ijae Kim <ae878000@gmail.com>
+Subject: [PATCH] serial: 8250_aspeed_vuart: shut down the unthrottle timer on removal
+Date: Thu, 12 Nov 2026 02:03:57 -0500
+Message-ID: <20261112070357.38870-1-mhun512@gmail.com>
+X-Mailer: git-send-email 2.47.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.6 on 10.30.177.95
-Message-Id: <63309.126111202030500949@us-mta-103.us.mimecast.lan>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: XeQwbfYEeUmH_dpsKhSfp2oGwFHDb3JZQCninQMIYmY_1794466985
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_230315_041777_8ACE99FD 
-X-CRM114-Status: UNSURE (   6.90  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: 0.5 (/)
+X-CRM114-CacheID: sfid-20261111_230401_916645_A52AA2C7 
+X-CRM114-Status: GOOD (  13.77  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,68 +107,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi, we tested your kernel and here are the results:
+aspeed_vuart_remove() deletes unthrottle_timer while the port IRQ is
+still active. An interrupt can re-arm the timer before port shutdown,
+allowing its callback to access freed driver data.
 
-    Overall result: PASSED
-             Merge: OK
-           Compile: OK
-              Test: OK
+Use timer_shutdown_sync() to prevent rearming. Keep it before
+serial8250_unregister_port(), which releases the register mapping
+used by the callback.
 
-Tested-by: CKI Project <cki-project@redhat.com>
+Found by a static analysis tool under development.
 
-Kernel information:
-    Commit message: arm64: suspend: Save GCS state over suspend
+Compile-tested with W=1 for arm64 and x86_64.
+Not tested on hardware.
 
-You can find all the details about the test run at
-    https://datawarehouse.cki-project.org/kcidb/checkouts/redhat:3056980048
+Fixes: 5909c0bf9c7a ("serial/aspeed-vuart: Implement quick throttle mechanism")
+Co-developed-by: Ijae Kim <ae878000@gmail.com>
+Signed-off-by: Ijae Kim <ae878000@gmail.com>
+Signed-off-by: Myeonghun Pak <mhun512@gmail.com>
+---
 
-One or more kernel tests failed:
-    We also see the following known issues which are not related to your ch=
-anges:
-        Issue: [upstream] Hardware - Firmware test suite - auto-waive failu=
-res
-            URL: https://gitlab.com/cki-project/infrastructure/-/issues/779
-            Affected tests:
-                Hardware - Firmware test suite [aarch64]
-        Issue: selinux-policy: serge-testsuite: Client ioctl BINDER_WRITE_R=
-EAD error: Invalid argument
-            URL: https://lore.kernel.org/selinux/CAAUqJDt1pXQ2KVBvMoMiDrzz8=
-ishonqhQ0nnQLEppot4nmv9Bw@mail.gmail.com/T/
-            Affected tests:
-                selinux-policy: serge-testsuite [aarch64]
+ drivers/tty/serial/8250/8250_aspeed_vuart.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/tty/serial/8250/8250_aspeed_vuart.c b/drivers/tty/serial/8250/8250_aspeed_vuart.c
+index 452bef82bec2..0776675b8382 100644
+--- a/drivers/tty/serial/8250/8250_aspeed_vuart.c
++++ b/drivers/tty/serial/8250/8250_aspeed_vuart.c
+@@ -552,7 +552,7 @@ static void aspeed_vuart_remove(struct platform_device *pdev)
+ {
+ 	struct aspeed_vuart *vuart = platform_get_drvdata(pdev);
+ 
+-	timer_delete_sync(&vuart->unthrottle_timer);
++	timer_shutdown_sync(&vuart->unthrottle_timer);
+ 	aspeed_vuart_set_enabled(vuart, false);
+ 	serial8250_unregister_port(vuart->port);
+ 	sysfs_remove_group(&vuart->dev->kobj, &aspeed_vuart_attr_group);
 
-Tests that were not ran because of internal issues:
-    /distribution/command [aarch64]
-    Reboot test [aarch64]
-    stress: stress-ng - cpu-cache [aarch64]
-    stress: stress-ng - memory [aarch64]
-
-
-If you find a failure unrelated to your changes, please ask the test mainta=
-iner to review it.
-This will prevent the failures from being incorrectly reported in the futur=
-e.
-
-Please reply to this email if you have any questions about the tests that w=
-e
-ran or if you have any suggestions on how to make future tests more effecti=
-ve.
-
-        ,-.   ,-.
-       ( C ) ( K )  Continuous
-        `-',-.`-'   Kernel
-          ( I )     Integration
-           `-'
-___________________________________________________________________________=
-___
+base-commit: 630059a5a632377b9b7b487baccde92b7ae1dd47
+-- 
+2.43.0
 
 
