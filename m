@@ -2,85 +2,85 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E973D606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:34:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B650606A8AC
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:34:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RkGvStSB;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Vp58YUnl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ePKqG4+z;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gUzndpbc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cb9BEjmbKiC1e6Ns5PB9qNgJqLkx/tEuk0+MP84fm7I=; b=RkGvStSBglCNqJ
-	9YSrSVFJkNu6Ev1zy7vJVC4222YmKs5rlweaM41me8oHYdWLlG3Kh6dKqYCTgI7Mf7wEOBegpNiz9
-	o+dVYx+a1oKfzrjNjvlZe+gue21ASww37aZrgfBeYrRSxf10kPn+rnww+ERwqo8oBD2ty8UHXIvLw
-	llQUPILzMEXSwsZWiYJTmY5evOZdoHhoLUUHFO/z3e7GafuzakT1L4r8Da1MBtX1hpaLQwrrHjVOl
-	1+kilMLDk9iOGlJ870tLpr3xvA3Kq2/hruDudjcTQV0zMEFHcH66E06tJWxagVDkPA4QVVTTNOe2z
-	YN+UGnSgqZOVXJN+Ktdg==;
+	List-Owner; bh=6lC9fobCw8jtySKuvUyiU/10ib75zIoG1CNd+i9ZAGU=; b=ePKqG4+zXIzjKk
+	ollZhEGPspUGmBtLje/937OPELFPfgJhcYrdSZ8/8cFo6KngTT/q/iVFqztDNrkjh5zazDDTr3BtH
+	zAbusBuAFxBkLBN8YyBWVSuxs4/MVdpna4isRDKS3gzhe3XV+QwMHZYwALQU1e+Ghxp02J9nkd9GW
+	rr+3SwtfGzsTO9s/hqQzsNjmYTkQhcSjDwRxGQH1Gxymr3fBvt0C1jQCL89d+RJCT1n1cd5B+3YHc
+	UvqTU5kbDp4fthpzjHtuKjWZ7UB9pC3KAduJaws2MS1WcsPbRqnH1Jdydoh5s4xXzAsgmV59jDUqW
+	MnDcl3FP81yxfPL6ZtPA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWoY-0000000ASv5-3vDd;
-	Thu, 12 Nov 2026 15:34:14 +0000
-Received: from mail-wm1-x32a.google.com ([2a00:1450:4864:20::32a])
+	id 1xRWoO-0000000ASnc-3OrJ;
+	Thu, 12 Nov 2026 15:34:05 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWoP-0000000ASml-2C3z
+	id 1xRWoL-0000000ASkz-2INz
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 15:34:07 +0000
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-4a2167bd087so42404115e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 07:34:04 -0800 (PST)
+	Thu, 12 Nov 2026 15:34:03 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a5177d78c7so39066115e9.2
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 07:34:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794497643; x=1795102443; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794497639; x=1795102439; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=cb9BEjmbKiC1e6Ns5PB9qNgJqLkx/tEuk0+MP84fm7I=;
-        b=Vp58YUnl27rbwJ6brSvshakMXwKyAA8Q3JACNiP+yFvx4ewL65iATj1inRNc+JX2L5
-         7TP9718L09ACzkE1YyvhYpgC8KlDxQElTlPKDlv++ueTDZzgL7pJ8mxmHNZdERrYEGHT
-         528jyqfC/EBQcj4n6PArMvxbTPL28e6/68Ort7qeFgvH0smEi7fmK6LEnDZCz+1pLJxR
-         YEK9q5MIInwRu3m8sjtww6e0aoAho/KF3SAaGZf1wUEcEQz9Gs49JcCp6MpxGao1Bpvd
-         jmiNzN3UFn905XBoXQCaH+c5yA/N55HCLFyvDDggwhuM1wsbwWThbPQs/sxGKE7+Ihln
-         Qykw==
+        bh=6lC9fobCw8jtySKuvUyiU/10ib75zIoG1CNd+i9ZAGU=;
+        b=gUzndpbccRNJl7yIRq0/S/ymgMaBB+bpSyVkN6KlcUwtl7yg6cGt5NcJ7pPB/LwSHU
+         0QHXnPyl18c+lec4y/m0nCbqy4y9VHVzSKAgku7p79dFH3vn+Xym7/wXmTGIXed5pVSD
+         0gxmh2nMzb2MTmpR1p2MI20vux/AYc8Rb4rRyrG75kkWhrplm33+hv7NqhTa77RZP3dQ
+         E5x+AwOiouX3TPOwfCGgiCuKCnkgjLzNuu7WULLb/eYy9ATWHDiHPM62pmxRdj9KOatH
+         rPfhmBWc9UGtEBR1tSeKIMLgTDAdG6b2ZY98n56sKbLZNDP6fE9XM/xiKvsHy1co78VC
+         pcsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794497643; x=1795102443;
+        d=1e100.net; s=20260707; t=1794497639; x=1795102439;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=cb9BEjmbKiC1e6Ns5PB9qNgJqLkx/tEuk0+MP84fm7I=;
-        b=kOfZeNwZbPoQUuBQgM4Wq6i88wU1Bd3KoiVoTkqmFeqoIDEX/SSBravWv4zmeZgWn0
-         W9ASU5LxANv5hvsf2kPZ+q25aoTnyh8TNnYjdMJvefls4pMMsjpHV6ko+hvmmyUJQ7NE
-         DeS/eFNbgA58R4ZdGMTelOZxRLcJCqWqV/T2B9R3e7PhWjZj+akBkFojtdT4jl7+FN4O
-         ik5SCbfjYagwmGNnOGb4Ol49E85gHyhLObk87tysoyiB/kwX9J4mmaPHzepQ9KJxBxd5
-         Tb2N3xg7mZtpqApC9F4+TKhHA7ecyW5Cg1EKJ4Kre+flBlWiYb7V8adrsI69CqyxanDi
-         54zA==
-X-Gm-Message-State: APuU4Z/XhQUJmQJvUzqVROjqxFjTZJ5Nm7h/7Zrm0paBxB+3qH4L0+Ht
-	aoh7Q22ajztPcRZq8WmLOUXd1HvioItFOITwK3lAhph8TIb/YAaGCQDp
-X-Gm-Gg: AYBFou2fYDhNU487hP8ZfJfL9OWG17NrU8VNXELGWIC/gjIXuWa22IyZYCtCDJbCRVC
-	tWO059JebI49S+f7ZM6VxrhLO452myoABZKqIzkwAfIY001HKFEEvKs7T6nm7d1OZy2+PVmx2vS
-	aSx/gjHtrhTx7s2JC74fh3gZjdhvuDqn35NfbZ4+Zx9nog6J0hYH3fE1kRo+DzGGoRUIQYnC2Ko
-	B7sU5p12UG91yswA8XdS2Jb64SPIXLEBHF1v796AeMDwJwFyhYL5eD6PSOWPb9C2lxIb46pKt6z
-	ecBIA6POjdU8N/upKucbaVkUBoPZKkYqC02K9pzcROdudpelPvDxgnP+ImbgWO1dXktXZvwc/in
-	7oOLZ1BjKnQpkLhYxbCU+gjtJjAv66W0C3zy8wP0y5chSQUak+SgdDU1OxGFQvF4ViXmd05nvER
-	pCXLAqJKGyEtq+UhZbv6UHF9niJJHbi0UkWi7ICgx+c9vqyj2Movp8u9RkcbYQ8Rd0+5Fcdbl+V
-	XP5YJH91YLFFYC6uSnTjn9Zxcls805hn7i3MOt+Hec4ab9F94sGvRvMbH0AyA47yJQeCkH6JGrw
-	aPl/zAo9Y45IP2ZQwh6EtwgpNNvDw5JQ4EdFl5+QZgorMhztG/NNxSunqXnq89j8E2iotKCwev7
-	lqJvycSA=
-X-Received: by 2002:a05:600c:1c0d:b0:4a2:1e1:d55 with SMTP id 5b1f17b1804b1-4ba093a3cf9mr133072185e9.28.1794497643353;
-        Thu, 12 Nov 2026 07:34:03 -0800 (PST)
+        bh=6lC9fobCw8jtySKuvUyiU/10ib75zIoG1CNd+i9ZAGU=;
+        b=hePBuHyxA2+4+A4zT2dagQulnWU4J3tCCz+VdJrlFQ+LBG8obGqZFPHwToWCh9FqeV
+         srMgvdCj9c4Qz0ivPohoo21XIAWxDxQPlRaPTUNO2bJ0qxZpR8itH9KBZfBJw9fd7ZCp
+         /7+fX+AM5fae3l3aAnMbgIuOiFApHwjm5xomomS4alONnhjdbKgPAVp9iBfdz3um0odV
+         v2yZbEecPnoVDsqtM4f2AAHOq4BC9PD+VohU2L2zaZI4DvxXHjZV8Q4JnCiUSXMKJiDM
+         6LOtAKTJRMPHVcPt56JBInpxVpnMLkUidAum+M0qvK1dpQbYwvisjchcQxIkmBv7uAaE
+         uzkQ==
+X-Gm-Message-State: APuU4Z/qARphZHVQpR/dw+nL3aHs0u6TKaJT1aRfFesODFQToju5BnoU
+	N5TvEchreWeX5+7BbP9uS/Q1rffnSJeiNA/qS47/e2zQ4jpxBmQvFvDY
+X-Gm-Gg: AYBFou0OipfUwHdfhUM++OWsC9fsSLmU2QDYtQLnairHqN+sud212GqrtqylbFPV5av
+	fPn6d4LvHvClUGYI+Ww12CbPKLm5id9aIdR4u6ghWZoK8tJvHxEPFxOrFN+oCE9HFkdZJ6mBfSY
+	/OQ1qIIG8TFdrKyurOjKu52NB7RZ0D2qPEbTO7BYGx1vM1utm5iwaQpT6UY9VWnehfz6fng3Zrc
+	f1JMAh+IrIMxNgzSgt+3xL9ndh0JW018tNdnZ8xB9IZERo6TXJ0hzO1lmUN7WrWNGb/OTEbNtDn
+	UPciX2RFwQxZkhmkvDw/7NZNFR2IftbGYqmZTq0ocJpiZLwDF7F1JPCGUSkNJGz/omb8eDlB2XY
+	r33ET/sKiy3xWh+sxrb0W/pbXxpZMCZYTdj9+ZZCgdVxQuVHIncvC6ko4pg8CR3NfiLu2atGd8/
+	fRYmKBNOzwr1sr8IvmbKw9MK7l66UttPc1mxj9uZ/40td1lv82xjDn2P8AZ7X7RC3oiz9QFwDzl
+	/fbkPEpDCUrLZ4bVKJfK3WdMFiCImv39fV+stpa1+Bsi3nS4xGqPVrb6tOZMF0IZnnkM5jc4BKI
+	rxMb39O/sWqSyP9L4F9pYR4rzX9zRlFExUBpHuoIModAW2Ft93jy+1kUHx1VEuSq+qKfq82IYNU
+	INYNAMg==
+X-Received: by 2002:a05:600c:e558:20b0:4bb:4b30:8042 with SMTP id 5b1f17b1804b1-4bb4b308088mr60698665e9.19.1794497639340;
+        Thu, 12 Nov 2026 07:33:59 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2593e4sm87105855e9.5.2026.11.12.07.33.59
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2593e4sm87105855e9.5.2026.11.12.07.33.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 07:34:02 -0800 (PST)
+        Thu, 12 Nov 2026 07:33:57 -0800 (PST)
 From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 12 Nov 2026 19:33:13 +0400
-Subject: [PATCH v2 5/6] serial: vt8500: Use devm_clk_get_enabled()
+Date: Thu, 12 Nov 2026 19:33:12 +0400
+Subject: [PATCH v2 4/6] serial: vt8500: Drop the port index bitmap
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-vt8500-serial-cleanup-v2-5-36b258e0c0dd@gmail.com>
+Message-Id: <20261112-vt8500-serial-cleanup-v2-4-36b258e0c0dd@gmail.com>
 References: <20261112-vt8500-serial-cleanup-v2-0-36b258e0c0dd@gmail.com>
 In-Reply-To: <20261112-vt8500-serial-cleanup-v2-0-36b258e0c0dd@gmail.com>
 To: Alexey Charkov <alchark@gmail.com>, 
@@ -90,19 +90,19 @@ To: Alexey Charkov <alchark@gmail.com>,
  Alan Cox <alan@linux.intel.com>
 Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  linux-serial@vger.kernel.org, Greg Kroah-Hartman <gregkh@suse.de>, 
- Wentao Liang <vulab@iscas.ac.cn>
+ Wentao Liang <vulab@iscas.ac.cn>, Sashiko <sashiko-bot@kernel.org>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1756; i=alchark@gmail.com;
- h=from:subject:message-id; bh=aNl/b6SlgUpHOAaonf2+NOgTxzDT2w4YvE4m0DcTp5A=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR9veNVq5GRPm8+5/97Vp57flnN8ok9osmhc4pnQyWb+
- aMLclUqHRNZGMS4GCzFFFnmfltiO9WIb9YuD4+vMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
- oZGOsY4RAxenAEx1kQTD/xjOrdoB5jYTvIocngROMXJnStaND3j2f4be9NNnDzQUFTH84Xlde5U
- 7PCF1/zJFi0kODQWJz9wmaGx9eWiFjNpzo++pTAA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3072; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=jcZiVN1H4g98kKKxKtvLfwo5DJs4n8bgP8iSaXWS7PQ=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR9veNVbnW206G2RPjcydy2gPKuWSVLNTMqt6RvDzt25
+ HHy55jjHRNZGMS4GCzFFFnmfltiO9WIb9YuD4+vMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
+ oZGOsY4RAxenAEy11D9GhulSd9anyf49pKkfUaeiMq/uS/NlzjdFh3w7rMynn/G6Kczwv/aaJYs
+ 025G1j19l8Ch1hTznyC1fN6O5oT/qgl8m0/cyDgA=
 X-Developer-Key: i=alchark@gmail.com; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_073405_841315_831D965E 
-X-CRM114-Status: GOOD (  13.67  )
+X-CRM114-CacheID: sfid-20261112_073401_639049_93031B03 
+X-CRM114-Status: GOOD (  19.45  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,53 +122,93 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Let devres own the UART clock, so that no probe error path, present or
-future, has to remember to disable and put it.
+Stop reserving a line in the vt8500_ports_in_use bitmap before probe
+acquires its resources: nothing ever clears the bit, so an early probe
+failure strands the line, and a retry then fails with -EBUSY on an
+aliased port or drifts to the next free index on an unaliased one.
 
-Pass the clock lookup error up through dev_err_probe() instead of
-replacing it with -EINVAL, so that a clock provider that is not ready
-yet defers the probe rather than failing it for good.
+Keep using an in-range "serial" alias, and otherwise let the serial core
+pick a free line while it registers the port, so that a line is only
+ever held by a registered port. That also stops an unaliased port from
+taking the line of an aliased one that probes later.
 
+Fixes: 4001130df1a7 ("serial: vt8500: Add devicetree support for vt8500-serial")
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://sashiko.dev/#/bug/linux-ca000721-4a5b-4d88-bdb8-7f1e438dc81e
 Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- drivers/tty/serial/vt8500_serial.c | 17 ++++-------------
- 1 file changed, 4 insertions(+), 13 deletions(-)
+ drivers/tty/serial/vt8500_serial.c | 37 +++++--------------------------------
+ 1 file changed, 5 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/tty/serial/vt8500_serial.c b/drivers/tty/serial/vt8500_serial.c
-index 0c8ddd55f94d..cd5188282f64 100644
+index 4abd4a8d5ef3..0c8ddd55f94d 100644
 --- a/drivers/tty/serial/vt8500_serial.c
 +++ b/drivers/tty/serial/vt8500_serial.c
-@@ -586,7 +586,6 @@ static int vt8500_serial_probe(struct platform_device *pdev)
- 	struct resource *mmres;
- 	struct device_node *np = pdev->dev.of_node;
- 	const unsigned int *flags;
--	int ret;
- 	int port;
- 	int irq;
+@@ -90,7 +90,6 @@
  
-@@ -606,18 +605,10 @@ static int vt8500_serial_probe(struct platform_device *pdev)
- 	if (IS_ERR(vt8500_port->uart.membase))
- 		return PTR_ERR(vt8500_port->uart.membase);
+ #define VT8500_RECOMMENDED_CLK		12000000
+ #define VT8500_OVERSAMPLING_DIVISOR	13
+-#define VT8500_MAX_PORTS	6
  
--	vt8500_port->clk = of_clk_get(pdev->dev.of_node, 0);
--	if (IS_ERR(vt8500_port->clk)) {
--		dev_err(&pdev->dev, "failed to get clock\n");
--		return  -EINVAL;
+ struct vt8500_port {
+ 	struct uart_port	uart;
+@@ -101,13 +100,6 @@ struct vt8500_port {
+ 	unsigned int		vt8500_uart_flags;
+ };
+ 
+-/*
+- * we use this variable to keep track of which ports
+- * have been allocated as we can't use pdev->id in
+- * devicetree
+- */
+-static DECLARE_BITMAP(vt8500_ports_in_use, VT8500_MAX_PORTS);
+-
+ static inline void vt8500_write(struct uart_port *port, unsigned int val,
+ 			     unsigned int off)
+ {
+@@ -606,29 +598,6 @@ static int vt8500_serial_probe(struct platform_device *pdev)
+ 	if (irq < 0)
+ 		return irq;
+ 
+-	if (np) {
+-		port = of_alias_get_id(np, "serial");
+-		if (port >= VT8500_MAX_PORTS)
+-			port = -1;
+-	} else {
+-		port = -1;
 -	}
 -
--	ret = clk_prepare_enable(vt8500_port->clk);
--	if (ret) {
--		dev_err(&pdev->dev, "failed to enable clock\n");
--		clk_put(vt8500_port->clk);
--		return ret;
+-	if (port < 0) {
+-		/* calculate the port id */
+-		port = find_first_zero_bit(vt8500_ports_in_use,
+-					   VT8500_MAX_PORTS);
 -	}
-+	vt8500_port->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-+	if (IS_ERR(vt8500_port->clk))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(vt8500_port->clk),
-+				     "failed to get and enable clock\n");
- 
- 	vt8500_port->vt8500_uart_flags = *flags;
- 	vt8500_port->clk_predivisor = DIV_ROUND_CLOSEST(
+-
+-	if (port >= VT8500_MAX_PORTS)
+-		return -ENODEV;
+-
+-	/* reserve the port id */
+-	if (test_and_set_bit(port, vt8500_ports_in_use)) {
+-		/* port already in use - shouldn't really happen */
+-		return -EBUSY;
+-	}
+-
+ 	vt8500_port = devm_kzalloc_obj(&pdev->dev, struct vt8500_port);
+ 	if (!vt8500_port)
+ 		return -ENOMEM;
+@@ -661,7 +630,11 @@ static int vt8500_serial_probe(struct platform_device *pdev)
+ 	vt8500_port->uart.irq = irq;
+ 	vt8500_port->uart.fifosize = 16;
+ 	vt8500_port->uart.ops = &vt8500_uart_pops;
+-	vt8500_port->uart.line = port;
++	port = of_alias_get_id(np, "serial");
++	if (port >= 0 && port < vt8500_uart_driver.nr)
++		vt8500_port->uart.line = port;
++	else
++		vt8500_port->uart.line = UART_LINE_AUTO;
+ 	vt8500_port->uart.dev = &pdev->dev;
+ 	vt8500_port->uart.flags = UPF_IOREMAP | UPF_BOOT_AUTOCONF;
+ 	vt8500_port->uart.has_sysrq = IS_ENABLED(CONFIG_SERIAL_VT8500_CONSOLE);
 
 -- 
 2.56.0
