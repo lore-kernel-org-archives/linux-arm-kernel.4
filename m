@@ -2,134 +2,89 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FF8B606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 19:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0C4606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 19:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LGgskU7x;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=edIbcuam
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R3Wwysc1;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=jbpv6X+C
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0NFlXnpRRPhnGMqAMkHCrdcok9303l9d7PbOKy+jxQ0=; b=LGgskU7xYLOb+pAvLSLtt1+FNt
-	4dyB1tWfOkrFwcuUQCEdrObvYkeTr623jB2yki1Lvmkz9IQ+otlHfPyEgYg7Lul4Kpu9Npmtrthzo
-	7vpfromuLWHyWmUgU50kJtYUNLdAoL/pGntfMBBbKUWzyln7qSXSQPtTULLo2dSj/kqfF+H9KKru9
-	vtSBBXr9/8c9KD1I36k/jl8SvLFkRWqF6jdKkpkf9XPaPNjl0mFl7JhvUwGNsptKK67RqYYkzsEp2
-	cEPqFwzQItWn4Wq5jcsriBKeOorzyRbCCKWPipwR35Feu4ZxF3djb/1buu5/3jmRTkTO7DhrS+qLv
-	K7n0IfBw==;
+	bh=0YziDZfUnrU7+ZJzcup14ZR4PkDNoZg+AFnvLqgDtiI=; b=R3Wwysc1q4FjzeZTlQt7IIHkKB
+	/NQqn25m+BfTu0rg1J4rjAsj/qZo78dxHZ26ddDWpbdH/zBnIDE3tzpp1wSGXHGSNr05iwBT++T88
+	UY8XRfHbK5rGgPUHJY3AOTKI0trp9Wo+WQtivThNBw3ko0b0U8oLOOTuQIqLxaUEk8QTtPvriQCjs
+	g1CjlMBobHRZ5Omrbp32u0J2Oc1gu6NiYlGHqwB9pO+uCfze54Okh+ycI9G1am7Rn335UZwigYYdS
+	tOFMvzQJkXfdcdcYw2ZqKPPHVbI0MOlIXA5r2WRKoFIzrptp5jJmLXfmxviaPWaQQhWxU0YF6XSGP
+	fRQnoRgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRajo-0000000AxpI-2QJe;
-	Thu, 12 Nov 2026 19:45:36 +0000
-Received: from mail-northeuropeazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c200::5] helo=DUZPR83CU001.outbound.protection.outlook.com)
+	id 1xRan2-0000000Axzr-0Ax0;
+	Thu, 12 Nov 2026 19:48:56 +0000
+Received: from mgamail.intel.com ([192.198.163.13])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRajk-0000000Axoa-0vRV
+	id 1xRamy-0000000AxzP-1vNz
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 19:45:35 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yMZSFYADnuX+vzn/LNC5fIHHcVSlPr3uEoPE1Lh0rNphUZtrz2MRwhg6uSqLESic18MgQWyeN0N/vGRsZb+o8NJHINlcNhmpHZd3JcZL724vL4LBb8CfAJ9D5rr2Kw9Xv0S7YqjD30W70q9B5lN1DwQIfMySWO/zO4l2p36Igonn8/v4UP25588luazOSBwwdSpksOZS9Wnr1lgZQTsOU6Ad1N/yK471Ckfc9BD83WP9WduCKVn2pY9BWp26OFrUUsQo0AO4icdktFvVm4NrvukHEa3Q5xWiqeAZWBCO51vAj9zQDB81hOxSBwh1mdngqQo+kGKBU/TXtBLF2nknWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0NFlXnpRRPhnGMqAMkHCrdcok9303l9d7PbOKy+jxQ0=;
- b=Rdpu0dauv5h5ZwaMMAWm5cxQmvgFJC80dH2C2xWVUMpgm0TXjmQbyFYsXBR4AK+Jf5YsXeWV3E0Qd3z6FQ3l8jQINjl41e+d2cdvve56goU6PFIaycBYvek4DjmGkMFidftnK7LOjbYaa9Q8gwzIgbCnBWFJtzyka/kDQ/eMLd0yuyHdJQt/qUdh6QWbrgZqG/e5qyDiM0ekJySluUAQ6khfAtqbpgiWQHlMXlswYlX3SUoOR/3pU6g/Jcj++F1wj3rW+Xhx2xbiUB2M3Qc6tqPdNOMdJpXnRMXtL/2LmEshGVheogL5CXS8a9Nz/g2DTVbWIA973N774IIwNt/wFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0NFlXnpRRPhnGMqAMkHCrdcok9303l9d7PbOKy+jxQ0=;
- b=edIbcuamepDqIA9wx2WTh8UedOpZKb2cNRdZIpK935sypyd9UnT/JyBPmc5wCCY7tOyyEQ5mLOsS/nfSQDjLkz4esms3tSNsv0CEYaE6sc7htLVh/Xi0UrzKGtrT7ZSS1bq6Hyush93fna+wjYzkUCIo1eX9ZSyOiij+AaiiD63DclaCr+MUiwFHN+RB7DzKmBUeAH2pojYs6Mg/M0V+LRJ1yOZn3+BeYYXw4CydFrOiQP62NZ+m2IzXn677CHWwmfx+Mj0twWRwGc/r9wtYvyXbbeJg+5jgyLoCZmTZ4a+yfo10Mkq0MNIad4KfeZNSQhwHBDrKlqhVbSdiv08fXg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by AMDPR04MB11297.eurprd04.prod.outlook.com (2603:10a6:20b:6cb::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
- 2026 19:45:27 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Thu, 12 Nov 2026
- 19:45:27 +0000
-Date: Thu, 12 Nov 2026 14:45:14 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Jelly Jia <Jelly.Jia@cixtech.com>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, robin.murphy@arm.com,
-	devicetree@vger.kernel.org, Frank.Li@kernel.org,
-	cix-kernel-upstream@cixtech.com, dmaengine@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/5] dt-bindings: dma: arm,dma-350: Describe the CIX
- Sky1 integration
-Message-ID: <avYXSo7X3lh60DiM@lizhi-Precision-Tower-5810>
-References: <20261106013453.1134239-1-Jelly.Jia@cixtech.com>
- <20261106013453.1134239-4-Jelly.Jia@cixtech.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261106013453.1134239-4-Jelly.Jia@cixtech.com>
-X-ClientProxiedBy: AS9PR06CA0412.eurprd06.prod.outlook.com
- (2603:10a6:20b:461::6) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Thu, 12 Nov 2026 19:48:54 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794512933; x=1826048933;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1H8hTocbRs5F0H8f9VjKeKS3W2Q+jtOlQ95m5Xrt4xE=;
+  b=jbpv6X+C1Afh8f4nEuo/jqv2UbwP9Sh47Sc6RyJbNW+wewlj4LDnhO0K
+   ZAjjrrbyGsENCtSBywSTh3v+OkuC85USHGTrBykCW+TjL5dGW1R0dGISZ
+   lkORQEZYJ6Qtyve05hVm6iqttwK/ced9CrpAQR2PBSlB61UqpMoxTgDO3
+   8qWBdzgNDavSGJkJcRGsTtmZVWH3jZGnusx6r2KWzEtUCsWQ9ctknLtna
+   M8oQ+McYpZm8+kHNkc3PxXIvYSg9ySUJK+Fdy66uxi7JWnhF0ChNI5mhv
+   5nztTXq98AJCcTpZu9Y7k6cRrHVwRaSdpQ9GuPol0MfIs3LjWtv0dY1yh
+   w==;
+X-CSE-ConnectionGUID: 79d4nsWfT8+IKzLWZej6HQ==
+X-CSE-MsgGUID: Ce1xdZ71T5C3V12chqeGnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3309592"
+X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
+   d="scan'208";a="3309592"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 11:48:52 -0800
+X-CSE-ConnectionGUID: JAAS6zlARt+yL8xcodFyKA==
+X-CSE-MsgGUID: yMKYkCFERiWre3Fu7XfTBA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
+   d="scan'208";a="9296784"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 12 Nov 2026 11:48:49 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xRamr-000000011yx-3hkD;
+	Thu, 12 Nov 2026 19:48:45 +0000
+Date: Fri, 13 Nov 2026 03:48:39 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rosen Penev <rosenp@gmail.com>, Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Nathan Chancellor <nathan@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-perf-users@vger.kernel.org, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev
+Subject: Re: [PATCH] perf: arm_v7_pmu: suppress -Winitializer-overrides for
+ perf maps
+Message-ID: <202611130312.GB4BOZab-lkp@intel.com>
+References: <20261111023326.70922-1-rosenp@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AMDPR04MB11297:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9a35e27b-ce26-49f2-230e-08df40f58043
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|366016|7416014|376014|23010399003|1800799024|18002099003|22082099003|6133799003|4143699003|11063799006|261102123227099003|261026140227099003|261028144727099003|261026121527099003|261022105027099003|261021121427099003|56012099006|261021123027099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: o93TvgAd8Ll0y+nIPpGkvTtOaW6tIpTFTsjIUPTLEwEqueqRjeyfXFhfSCbN2mTtpE2i37Jn7ROX5AJLBZ6WW4EiyjqqJ1qT79e9JKq5WkoEzC76Mm6L7ANxpMgJY3lLeDKaRIqQWyvKQ97msxN2KtPYMRQau4fWtB981v4r09xFl5rJy9QLPxFftwUfnzmmECFyfNfJDqLVLW4DOGSvhmQ3C8hn+1IvPnmFXE8XsGe2pjtWSgwD4N9K1PAWDsUbhMlOd9re6L9CqcWIhucgMKiEfH+JLS+BCdzgCq4FrDiQKFKZmqSddklegdloYdK02fDENiZwzM5PLFFgjdFZSC5CFkOMHJlImCIZhokAmdkjZn/G42zPV961NTKw+0AeBAxnsM4mZzLX86jvmEjuzkc5rzKOzD16nYN/G86SJXwFz+GWR8p2GmFIFBi3KQMSw97nP8Se5htwMZ/ZYcwvU1nrQpTQ0qG8xQXXyi34xu6jXECsxm1RC7YvzGjdFGbmyzckbU/0DmjQDlQZnxb2Crdy9BMpLjx1W+ay/tLlTMCrav/eTmMtwS4Qjit1cbuaB5yVcgHxoUudAl199g72SkmT+2v4exD7ogdUtkU9L9tSHi09C1xLQ6l16FA2KjStxbSvQsJNxcYURqrA17vIk6yGoQvqxjGH7X4d7xJXBdc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(7416014)(376014)(23010399003)(1800799024)(18002099003)(22082099003)(6133799003)(4143699003)(11063799006)(261102123227099003)(261026140227099003)(261028144727099003)(261026121527099003)(261022105027099003)(261021121427099003)(56012099006)(261021123027099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+jJfmhBuS5Unrt5nnjM1s44Y+5tzStuK6ssxH/QzwHhInLFK2jefYz8bVIcT?=
- =?us-ascii?Q?D4Iv2sSQgRQ3wv+teLEfwX/liywMdN3QrfQAqBHzVF5WEj5JcrCDKIfQPbJH?=
- =?us-ascii?Q?hb4/Gs01iRYc28yoZTP3H4fAsIbME6qOabAI6WkelLD2ypJYNfrg2H0FxM/j?=
- =?us-ascii?Q?EJORYRMfCi0XFYvjJefTQ8nYlTb9x07cypmjZL5YLszC7w1csYPGJNK8jDp0?=
- =?us-ascii?Q?nYM/Jftw4vZ/SM7xO6/v8WF2O8/19dDDRaIRgSc/xkpf23OVWQu48LHJ9oZ4?=
- =?us-ascii?Q?8Q2Qq53I/IcTkTwLWDcu49iyJyLvixcCroG3GjSiRXnrqCyTUob/ugclzCqy?=
- =?us-ascii?Q?G02x617ChkcdiPZARCV8VajlF7C2zTIwgxUFefZToM3eBnb048Au41iae4SR?=
- =?us-ascii?Q?kwDSvWiErIMmA3JM31rD0DztmHBVuyhV+rZc5CkIUNgbOqOWhjCAJqLQL+se?=
- =?us-ascii?Q?yQ0NS6pr6upXHtv4BDZRlVEZ+dqvRGbIOVYGykwDGVM/ie2rb86uOf8rT0b8?=
- =?us-ascii?Q?2+i2R5Jo1tmrP6aB2Cc2qtshje1Ov0ULhtmSqsqLZOMntpAZAhK0HkFBREMl?=
- =?us-ascii?Q?4MWnq2b/JkYp0cfn4Pg26NPapnipjiYBwI4OZ2JeCgBQJCxK+c1WHLckD28V?=
- =?us-ascii?Q?2IJMb+EAhPlNn00C+aCxZWMxVJRv+DZGrIhrnScjX3WVlp9ptc/aK20P4c9M?=
- =?us-ascii?Q?e4wcDqFnic0+EQ8X0k0hUwqQtdT6ROUSYO6+9KIdAZJMFCTqH9PmaucB8gP4?=
- =?us-ascii?Q?KbAAzkE9wu0faYxfQQxyShPmOzDucEs8oay3PfGIO1qVlNCexkoZg9MAxx0f?=
- =?us-ascii?Q?1E7PCaIRKBdmBqMA9wB9WUKb0FYJdSkDY8/VvI5IvdrIlB/P7Jv5+ZICLARH?=
- =?us-ascii?Q?2wDjwqE/AK3ynTzlf43i6dCCZoawzhmOyGLf8OSCG8V1lm79lKuMmj6omhN6?=
- =?us-ascii?Q?IfAHVxZKeVJYmx0k7VeCxKNrsL6wB16xPbwiBPhuGyjeJykaE5kHyn4Qk+rT?=
- =?us-ascii?Q?TL4v/rNQU35fwfGPsUn9mgQBQMAukW89IXLcRqw2fyn+aa6KFHsBHn9avCyt?=
- =?us-ascii?Q?7sBe0ItvwS/X/4B04m20/WWnXyS2ZNSd76xEtYjEYYsnwQl2TaFBWCRjaV1D?=
- =?us-ascii?Q?iWx7BnOQzbWmPzjhnf5kLRNP3PXCrbL9agPpPXYmBJ4cW9aRF13B3tQ/EorM?=
- =?us-ascii?Q?N3N+eprtDD5jYx0uc4wLrb8qgnaR29SohVv3ESUGMoiKxwQ6CcKUQm6hAo+q?=
- =?us-ascii?Q?vjrAd/m4RGf0eBVVWeOMr1QmAeQMvJZGFKXKXnSMmbb2lcK3q3csVjIV63Jo?=
- =?us-ascii?Q?dUPthY93XztLUxTILvYU0Vo7WAwuUF1SGnH+L9tlRnL1aLjAOHm1Ahbvsked?=
- =?us-ascii?Q?e5aLL5rQjzfZva2XLemgtDklUfj8r1LJ1HyrOSLKb+jrMe6SAhgEh1oZZTak?=
- =?us-ascii?Q?IbtpJn351h7xn/YXahDKbxniujgx7OR7/ebJWU0jk4eBCs5GwBtmgEEdfaSg?=
- =?us-ascii?Q?w+EmNI4xlCFAKQIbuwUJ2hyST43nuUEIq9rRN8FmK3SAx7XHtjE4mRpc27iH?=
- =?us-ascii?Q?mSmNNUY1xV2CTwkA4q5A4hMaCVJW/abEyuGJX1QFUb4JhfTnEEh1IUHLL2A6?=
- =?us-ascii?Q?54wWqDYQbxoTrEuAfSsEr6gfPFCqTyuULI+RObLq9gfBs37YnphrHa9JpDoO?=
- =?us-ascii?Q?7HhPkkP2kaoPFj6fcSpGVDozSKZWlUCjikryKIF8irtI844v3f6oxZj637yD?=
- =?us-ascii?Q?XYyARagZoQD8RgZ9y1F/o3UqF+kGBsatRrJZb7v6y06RE00mYHu0?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a35e27b-ce26-49f2-230e-08df40f58043
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 19:45:27.4576
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4ZNg/nrerLu4bFsUhmW/0loZKA1+3TbA/jwFiLT3ZD/wFpJ+2Tiqvd2nmcHN1pCqHE1SjFXYvN4zKQFA21Yjv3MJlwxjU195AgVe6sQZMcPzQ9ASDWvyZ6oCkuD60HhA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMDPR04MB11297
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261111023326.70922-1-rosenp@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_114533_751134_6D203BFB 
-X-CRM114-Status: GOOD (  14.93  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261112_114852_568152_5A50A1DF 
+X-CRM114-Status: GOOD (  12.03  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -140,87 +95,152 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 09:34:51AM +0800, Jelly Jia wrote:
-> DMA-350 integrations may gate the controller with a bus clock or hold it
-> in reset. Describe these standard resources on the DMA controller node.
->
-> Add the CIX Sky1 compatible with an arm,dma-350 fallback. Sky1 requires
-> a bus clock for both its FCH and AUDSS instances, while only the AUDSS
-> instance provides a reset. Require clocks for the Sky1 compatible and
-> keep resets optional.
->
-> Both resources remain optional for the generic compatible alone, so
-> existing device trees remain valid.
->
-> Signed-off-by: Jelly Jia <Jelly.Jia@cixtech.com>
-> ---
+Hi Rosen,
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+kernel test robot noticed the following build warnings:
 
->  .../devicetree/bindings/dma/arm,dma-350.yaml  | 30 ++++++++++++++++---
->  1 file changed, 26 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> index 429f682f15d8..eab3b31aeba7 100644
-> --- a/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> +++ b/Documentation/devicetree/bindings/dma/arm,dma-350.yaml
-> @@ -9,12 +9,13 @@ title: Arm CoreLink DMA-350 Controller
->  maintainers:
->    - Robin Murphy <robin.murphy@arm.com>
->
-> -allOf:
-> -  - $ref: dma-controller.yaml#
-> -
->  properties:
->    compatible:
-> -    const: arm,dma-350
-> +    oneOf:
-> +      - const: arm,dma-350
-> +      - items:
-> +          - const: cix,sky1-dma350
-> +          - const: arm,dma-350
->
->    reg:
->      items:
-> @@ -36,9 +37,30 @@ properties:
->      const: 1
->      description: The cell is the trigger input number
->
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      Bus clock, where the integration gates the controller clock.
-> +
-> +  resets:
-> +    maxItems: 1
-> +    description:
-> +      Optional reset line, where the integration exposes one.
-> +
->  required:
->    - compatible
->    - reg
->    - interrupts
->
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: cix,sky1-dma350
-> +    then:
-> +      required:
-> +        - clocks
-> +
->  unevaluatedProperties: false
-> --
-> 2.54.0
->
+[auto build test WARNING on arm-perf/for-next/perf]
+[also build test WARNING on linus/master v7.4-rc2 next-20261111]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Rosen-Penev/perf-arm_v7_pmu-suppress-Winitializer-overrides-for-perf-maps/20261110-183326
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git for-next/perf
+patch link:    https://lore.kernel.org/r/20261111023326.70922-1-rosenp%40gmail.com
+patch subject: [PATCH] perf: arm_v7_pmu: suppress -Winitializer-overrides for perf maps
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20261113/202611130312.GB4BOZab-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 16.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261113/202611130312.GB4BOZab-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611130312.GB4BOZab-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/compiler_types.h:173,
+                    from <command-line>:
+>> include/linux/compiler-gcc.h:118:33: warning: unknown option after '#pragma GCC diagnostic' kind [-Wpragmas]
+     118 | #define __diag(s)               _Pragma(__diag_str(GCC diagnostic s))
+         |                                 ^~~~~~~
+   include/linux/compiler-gcc.h:129:9: note: in expansion of macro '__diag'
+     129 |         __diag(__diag_GCC_ignore option)
+         |         ^~~~~~
+   drivers/perf/arm_v7_pmu.c:156:1: note: in expansion of macro '__diag_ignore_all'
+     156 | __diag_ignore_all("-Winitializer-overrides", "");
+         | ^~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:78:57: warning: initialized field overwritten [-Woverride-init]
+      78 | #define ARMV7_PERFCTR_CPU_CYCLES                        0xFF
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:167:51: note: in expansion of macro 'ARMV7_PERFCTR_CPU_CYCLES'
+     167 |         [PERF_COUNT_HW_CPU_CYCLES]              = ARMV7_PERFCTR_CPU_CYCLES,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:78:57: note: (near initialization for 'armv7_a8_perf_map[0]')
+   drivers/perf/arm_v7_pmu.c:167:51: note: in expansion of macro 'ARMV7_PERFCTR_CPU_CYCLES'
+     167 |         [PERF_COUNT_HW_CPU_CYCLES]              = ARMV7_PERFCTR_CPU_CYCLES,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:45:57: warning: initialized field overwritten [-Woverride-init]
+      45 | #define ARMV7_PERFCTR_INSTR_EXECUTED                    0x08
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:168:51: note: in expansion of macro 'ARMV7_PERFCTR_INSTR_EXECUTED'
+     168 |         [PERF_COUNT_HW_INSTRUCTIONS]            = ARMV7_PERFCTR_INSTR_EXECUTED,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:45:57: note: (near initialization for 'armv7_a8_perf_map[1]')
+   drivers/perf/arm_v7_pmu.c:168:51: note: in expansion of macro 'ARMV7_PERFCTR_INSTR_EXECUTED'
+     168 |         [PERF_COUNT_HW_INSTRUCTIONS]            = ARMV7_PERFCTR_INSTR_EXECUTED,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:41:57: warning: initialized field overwritten [-Woverride-init]
+      41 | #define ARMV7_PERFCTR_L1_DCACHE_ACCESS                  0x04
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:169:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_ACCESS'
+     169 |         [PERF_COUNT_HW_CACHE_REFERENCES]        = ARMV7_PERFCTR_L1_DCACHE_ACCESS,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:41:57: note: (near initialization for 'armv7_a8_perf_map[2]')
+   drivers/perf/arm_v7_pmu.c:169:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_ACCESS'
+     169 |         [PERF_COUNT_HW_CACHE_REFERENCES]        = ARMV7_PERFCTR_L1_DCACHE_ACCESS,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:40:57: warning: initialized field overwritten [-Woverride-init]
+      40 | #define ARMV7_PERFCTR_L1_DCACHE_REFILL                  0x03
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:170:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_REFILL'
+     170 |         [PERF_COUNT_HW_CACHE_MISSES]            = ARMV7_PERFCTR_L1_DCACHE_REFILL,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:40:57: note: (near initialization for 'armv7_a8_perf_map[3]')
+   drivers/perf/arm_v7_pmu.c:170:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_REFILL'
+     170 |         [PERF_COUNT_HW_CACHE_MISSES]            = ARMV7_PERFCTR_L1_DCACHE_REFILL,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:57:57: warning: initialized field overwritten [-Woverride-init]
+      57 | #define ARMV7_PERFCTR_PC_WRITE                          0x0C
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:171:51: note: in expansion of macro 'ARMV7_PERFCTR_PC_WRITE'
+     171 |         [PERF_COUNT_HW_BRANCH_INSTRUCTIONS]     = ARMV7_PERFCTR_PC_WRITE,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:57:57: note: (near initialization for 'armv7_a8_perf_map[4]')
+   drivers/perf/arm_v7_pmu.c:171:51: note: in expansion of macro 'ARMV7_PERFCTR_PC_WRITE'
+     171 |         [PERF_COUNT_HW_BRANCH_INSTRUCTIONS]     = ARMV7_PERFCTR_PC_WRITE,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:61:57: warning: initialized field overwritten [-Woverride-init]
+      61 | #define ARMV7_PERFCTR_PC_BRANCH_MIS_PRED                0x10
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:172:51: note: in expansion of macro 'ARMV7_PERFCTR_PC_BRANCH_MIS_PRED'
+     172 |         [PERF_COUNT_HW_BRANCH_MISSES]           = ARMV7_PERFCTR_PC_BRANCH_MIS_PRED,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:61:57: note: (near initialization for 'armv7_a8_perf_map[5]')
+   drivers/perf/arm_v7_pmu.c:172:51: note: in expansion of macro 'ARMV7_PERFCTR_PC_BRANCH_MIS_PRED'
+     172 |         [PERF_COUNT_HW_BRANCH_MISSES]           = ARMV7_PERFCTR_PC_BRANCH_MIS_PRED,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:84:57: warning: initialized field overwritten [-Woverride-init]
+      84 | #define ARMV7_A8_PERFCTR_STALL_ISIDE                    0x56
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:173:51: note: in expansion of macro 'ARMV7_A8_PERFCTR_STALL_ISIDE'
+     173 |         [PERF_COUNT_HW_STALLED_CYCLES_FRONTEND] = ARMV7_A8_PERFCTR_STALL_ISIDE,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:84:57: note: (near initialization for 'armv7_a8_perf_map[7]')
+   drivers/perf/arm_v7_pmu.c:173:51: note: in expansion of macro 'ARMV7_A8_PERFCTR_STALL_ISIDE'
+     173 |         [PERF_COUNT_HW_STALLED_CYCLES_FRONTEND] = ARMV7_A8_PERFCTR_STALL_ISIDE,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:41:57: warning: initialized field overwritten [-Woverride-init]
+      41 | #define ARMV7_PERFCTR_L1_DCACHE_ACCESS                  0x04
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:186:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_ACCESS'
+     186 |         [C(L1D)][C(OP_READ)][C(RESULT_ACCESS)]  = ARMV7_PERFCTR_L1_DCACHE_ACCESS,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:41:57: note: (near initialization for 'armv7_a8_perf_cache_map[0][0][0]')
+   drivers/perf/arm_v7_pmu.c:186:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_ACCESS'
+     186 |         [C(L1D)][C(OP_READ)][C(RESULT_ACCESS)]  = ARMV7_PERFCTR_L1_DCACHE_ACCESS,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:40:57: warning: initialized field overwritten [-Woverride-init]
+      40 | #define ARMV7_PERFCTR_L1_DCACHE_REFILL                  0x03
+         |                                                         ^~~~
+   drivers/perf/arm_v7_pmu.c:187:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_REFILL'
+     187 |         [C(L1D)][C(OP_READ)][C(RESULT_MISS)]    = ARMV7_PERFCTR_L1_DCACHE_REFILL,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:40:57: note: (near initialization for 'armv7_a8_perf_cache_map[0][0][1]')
+   drivers/perf/arm_v7_pmu.c:187:51: note: in expansion of macro 'ARMV7_PERFCTR_L1_DCACHE_REFILL'
+     187 |         [C(L1D)][C(OP_READ)][C(RESULT_MISS)]    = ARMV7_PERFCTR_L1_DCACHE_REFILL,
+         |                                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/perf/arm_v7_pmu.c:41:57: warning: initialized field overwritten [-Woverride-init]
+      41 | #define ARMV7_PERFCTR_L1_DCACHE_ACCESS                  0x04
+
+
+vim +118 include/linux/compiler-gcc.h
+
+8793bb7f4a9dd13 Arnd Bergmann 2018-06-19  115  
+8793bb7f4a9dd13 Arnd Bergmann 2018-06-19  116  #define __diag_str1(s)		#s
+8793bb7f4a9dd13 Arnd Bergmann 2018-06-19  117  #define __diag_str(s)		__diag_str1(s)
+8793bb7f4a9dd13 Arnd Bergmann 2018-06-19 @118  #define __diag(s)		_Pragma(__diag_str(GCC diagnostic s))
+8793bb7f4a9dd13 Arnd Bergmann 2018-06-19  119  
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
