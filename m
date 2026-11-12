@@ -2,78 +2,114 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 376B6606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:08:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B751560A380F
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QDdaNHM7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Dov5eEhJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q+jjZJbn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GURFOUjJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=f/K/dT4G7j/2V0oqueVsADMWh93CbLx6C63d9vDA5x8=; b=QDdaNHM7S/E08rz/epIrQRh+ZT
-	m69q1zEqIZX4C6dnXjpTtZ1JRDAotk5ufc9SAC+I7SumGKEf14Sw++/nTfIn5ntkS5LK1mGlK6F52
-	K3EXnGJIbtTjbl4N78lMPVyA+ty82ZF/+lxoc1luaxpGHNNWQFFtOsf8ibqjxwK3fUrbWWqvD6t96
-	LTiVvuCwUpSd3S/ckCu03Q/Vlc8qzEbCCyPY/5NsXbfFWqkscqV88nqTq0bfZFoOTWpadajTokxM1
-	QTUMlgWDE42Q6UAXWS/rO4XL3sAnEkbXbkr/vzuzeMFEMw4aKuTiiCVgjha1bZl7VlZOz6fP++NVS
-	2IPdbfAw==;
+	bh=BycxkJDEkQrYGACgnxRcwOpm358ZLLzx9eK5XW7KLlA=; b=Q+jjZJbn7mFhRBRGonU9gIhB4+
+	ng7mURy4P8UMA0NGX/E5fqgUwhfWX1fJSDKOCszCkNqfZjAX3YKRI+EGvAHFI2lWrlhwYM6nXApys
+	VWdrWM7r6qsnlMtO7kWMWS2DBI+PLwbW/BoC0Nh2TLChpLjkD6FUR30x5OM9hwXaw/wh3u5dCjmXH
+	cS2rqNBo2ggwsgNPmtO/eYd+KiQJ/utjnhSBysgdNJrcUccrlD4WYsxCA4Ww/ilgabby0KCpo2Sly
+	MVDxcAAphc5BVIXNItfGE8yTxlxL78LPqlxP4qB5gkds5ul+E6ONUqid56GY+KQAkqXrH4g2b3Zor
+	VE97sdWQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRPrS-000000091yG-3Yhc;
-	Thu, 12 Nov 2026 08:08:46 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRPtL-000000092HS-0vC5;
+	Thu, 12 Nov 2026 08:10:43 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRPrR-000000091y2-2UiI
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 08:08:45 +0000
+	id 1xRPtI-000000092HE-1YiD;
+	Thu, 12 Nov 2026 08:10:41 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 0118643733
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 08:08:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D84D91F00A07
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 08:08:44 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 21FF4455C4;
+	Thu, 12 Nov 2026 08:10:40 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794471040;
+	b=S0jVKuIo0ChZACKK9/TNnPGxPgY0vHLyaLkSkloANHxJOKtSp4b4t5solTn97epf+2Tf
+	 kfQdG5qKhqmCty3uTRHr1E2qaS3oI/u8WDfZcwVSgrpvoTWNr5OeXB1Jnp91YaSM6T+4v
+	 2PO7DYVXBsNzKk3SqeHDdsP0owwidDV/qohfLEiZtmdtJ5gNtu+5bu/9ktnkj31DpDlQv
+	 JJNAOJjE0sIBj89IaeZ6rHsaHxiyLwTC3lV46Po8yMMQrtEtMyHca6fuUw6J1M5/m/4Lt
+	 EQplCgaXMGKDZUVitV138Ybae1nUN5KsVFzUrfy6bR5+rwlh3OqhGsC6Th95gFRFoTg==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794471040;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=BycxkJDEkQrYGACgnxRcwOpm358ZLLzx9eK5XW7KLlA=;
+	b=VhWbUzoXc4JGeEF2mxidvF6/gjSPn1UL5/3OR0TVgxUwiFiRjQnXcmHEJACjYCS9oaEn
+	 HKvuh+BIu+TMDKYR7/go2S+u2wugSpvKfxfIORTaR1kU/72wWLjyWnw94l2HPlsGlBpQa
+	 6x2KttNDxTMEOr7mX/u9brUpsDr7XCslf9X7PTQU/3+FxeV8L+A63GQMKhr3/NpWo1S7a
+	 FF6ENm9enqnZO3UPs6c6XG5mOhtpwRf/Z/d/CI9/3q3z8qFSWNgC1KYvNcGXaacrMbmoZ
+	 T6586fivu3sX+2QWKwbRHSjciEu38opnMthKJ9R+mBuNwhWbpuMlNhwpeMp+TqZaR3w==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 5F1DE1F00A05;
+	Thu, 12 Nov 2026 08:10:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794470924;
-	bh=f/K/dT4G7j/2V0oqueVsADMWh93CbLx6C63d9vDA5x8=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc;
-	b=Dov5eEhJPw9J1UHAeJgAmdh8myoy8L7sxELnUxlL/7fc3MfsnL3rY+pt0+8hcD/OX
-	 NfKVKmZHCSPoyWy7mkKoLnoIxDvrxRcNuwJaJ9nUegaE+61xlN8qMxTFSaSlBvNVnM
-	 gC8nuPC892qUwVuaHk/xtalK+nZ69SYCg9ic+yG4lnTAG2TEzmO6zRtZcNRgERsSEa
-	 f4s1T3y4PWKuTZHs3r2JvaQZMdIEGarXDsPEIPQ2w+5RPQzKNCKE3W65gGTBhc8RhV
-	 pZcgN21CCgADnpJFba1R4Eg+I1DPL3CxzqpVrpcroyk8Fpo0RI9VkvMLVOWn6sVHZh
-	 DApu0rN2toQBg==
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3ae25dcbd81so1109231fa.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 00:08:44 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErGPuzFXxU53OXFftNoa+EOmBQDUOZkWwoPVsmLUMLJZYDKPiu6WuXTYN7++rl1F8srbooRlAfLk85kbI2Vll5wR@lists.infradead.org
-X-Gm-Message-State: APuU4Z90l6Tcuar9VSA8zwy6MPXLABd45GfT7XHkEOXI8NHr0Zb079ah
-	f7mbaY1rnA58MSkeljeIIR5iecbfz4vRey3r36A5FoFCjVGGILiv88wRSQdwIO4PAQ8ItEoDNFy
-	9vt4hOG41UUPtJiD1469+rNgs5PWaaBY=
-X-Received: by 2002:a05:651c:31cb:b0:3ac:ff0a:9d9f with SMTP id
- 38308e7fff4ca-3ae1266bd28mr10702011fa.5.1794470923286; Thu, 12 Nov 2026
- 00:08:43 -0800 (PST)
+	s=k20260515; t=1794471040;
+	bh=BycxkJDEkQrYGACgnxRcwOpm358ZLLzx9eK5XW7KLlA=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=GURFOUjJE8jzpEJuv/bXoOyr81p/2Uw4s9ZtUZuiVKULqMKyuOpkqlccwcdNL1LjD
+	 G4vtZfOIHM33g+pfWRnKEQN27TAyX3iz2jm1X2WeKz+1nKDybDLjlC3ubmbCf5yiSz
+	 4VkRWokLzBaS8yWLwEMJcMgr09HLwK6xUQVgHOWZ1UmQ7et5mYOHHuSHAH2nBzbguM
+	 QV1UlHZWyaMNckcIn7QwIhqPIBjrnUDzSP0H69yo/4LxRmxQihjEa6zIUumqh3hbjA
+	 czbGpC1lzv7nWqYseGLS6IBhfQHrCOdjEf7YTmH4fPebr+1VmT3A51ugFh68CK0Grb
+	 vAGo1s/f4ECAQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id B44534932C;
+	Thu, 12 Nov 2026 08:10:38 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Thu, 12 Nov 2026 08:10:39 +0000
+Subject: [PATCH v2] drm/panthor: Suspend devfreq until the GPU is first
+ resumed
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261110-usb-port-pairing-v1-0-9307e29d2ed2@gmail.com>
- <20261110-usb-port-pairing-v1-1-9307e29d2ed2@gmail.com> <CAGb2v65goAuKgYu-849171FGeCxZ8Cq3GUxQLDLaHLbhRTMmqA@mail.gmail.com>
- <CAEy9hNV9saBWyKxuMR5unmLjzBM2+S7u+FewEevuLV-6yo1ztw@mail.gmail.com>
-In-Reply-To: <CAEy9hNV9saBWyKxuMR5unmLjzBM2+S7u+FewEevuLV-6yo1ztw@mail.gmail.com>
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Thu, 12 Nov 2026 17:08:31 +0900
-X-Gmail-Original-Message-ID: <CAGb2v64xjbc2t+fMegBUSptiwT5FQBqc8aqiVkLjwfaB+3FV0A@mail.gmail.com>
-X-Gm-Features: AclHuK-4Nt4Ya-T8NosoJJyqrIsgDGmHMB4Vbzc5kPzl1tQ_x9NWcs04d9vsDrI
-Message-ID: <CAGb2v64xjbc2t+fMegBUSptiwT5FQBqc8aqiVkLjwfaB+3FV0A@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: usb: generic-ehci: Allow describing the
- root hub ports
-To: Arun Iyengar <aiyengar1990@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Alan Stern <stern@rowland.harvard.edu>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261112-panthor-suspend-clk-v2-1-62e1b168052d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32OS47CMBBErxJ5jUfdSZyMWXGPEQu70yYeyAfbi
+ QYh7o5D9rN86qp6/RSRg+cojsVTBF599NOYoTwUgnozXlj6LrMooWwQEeRsxtRPQcYlzjx2km5
+ XidipBmrHyrLIzTmw83+f1Z/zznGxv0xpm9oSvY9pCo+PdsUt979hRYlSVbVqQQEr5NNlMP72R
+ dMgzq9dEfi+5P/T7hXWRJb5Pvh0LMiCaSoHpBv+ZrIaUGtmqzVRaVpHzrRQdXUee70BaxZKHhQ
+ BAAA=
+X-Change-ID: 20261110-panthor-suspend-clk-11d5604fe5be
+To: Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+ Akash Goel <akash.goel@arm.com>, Karunika Choo <karunika.choo@arm.com>, 
+ Lukas Zapolskas <lukas.zapolskas@arm.com>, 
+ Chris Diamand <chris.diamand@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Heiko Stuebner <heiko@sntech.de>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ Jonas Karlman <jonas@kwiboo.se>, Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471038; l=6121;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=uiwyQooI2QqdHVVbIj2tbEKcTWRM+G3FzfbhcKof+kg=;
+ b=wivOOwJ/7GTvbZBbl834segCag1oFnqKSy2+v8GXNHok6K8gnpd49EQDjqRZ2Ifr4AEJT7Xg3
+ pSZ8BrJXh9wBSgatVc/kYmttND3QH/F7PLPS1qxGYtybmlz9/HqCGC5
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,131 +119,132 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: wens@kernel.org
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 5:00=E2=80=AFPM Arun Iyengar <aiyengar1990@gmail.co=
-m> wrote:
->
-> Hi Chen-Yu,
->
-> On Wed, Nov 11, 2026 at 02:35 UTC, Chen-Yu Tsai wrote:
-> > Would this patch covering all HCDs be better?
-> >
-> > https://lore.kernel.org/all/20261014082037.1774672-2-wenst@chromium.org=
-/
-> >
-> > Also see Rob's comment about covering the port numbers.
->
-> Yes, yours is better: it covers every host controller, and
-> generic-ehci.yaml gets it through usb-hcd.yaml. Rob's point about the
-> port numbers applies to my patch too.
->
-> v2 drops this patch and builds on your patch 1 instead. Only the
-> Orange Pi 5/5B DT patch, which now goes to the Rockchip tree on its
-> own, needs it; that DT passes dtbs_check with your patch applied, and
-> also with 'reg' limited to 1 and up as Rob suggested.
->
-> The v2 cover has one question for you: patch 1 there looks the graph
-> ports up by root hub port number, while you have said root hub graph
-> ports should use the raw xHCI port number. Which one do you want?
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-I don't see a v2 yet. So that's patch 2 of v1.
+panthor_devfreq_init() adds the devfreq device while the GPU is still
+suspended, and the first panthor_device_resume() then calls
+devfreq_resume_device() without a matching devfreq_suspend_device(). The
+devfreq suspend count stays off by one for the lifetime of the device:
+-1 while the GPU is active, 0 while it is runtime suspended.
 
-It should definitely use the raw port number, since that is what is
-supposed to be used in DT (and what is used in ACPI).
+devfreq_suspend() and devfreq_resume() around a system suspend therefore
+treat a runtime suspended GPU as an active one: devfreq_suspend()
+applies the suspend OPP, if there is one, and devfreq_resume() restarts
+the polling of the simple_ondemand governor, which then sets GPU rates
+while the GPU is still runtime suspended, until its next runtime resume
+and suspend. With the devfreq core keeping a suspended device's
+frequency alone ("PM / devfreq: Do not change the frequency of a
+suspended device"), the unbalanced devfreq_resume() also marks the
+device resumed while the GPU is powered down.
 
-FWIW I'm also pushing a series to wire up USB on M.2 connectors [1].
-That also has some code that does OF graph lookup. I still need to
-push a v10. And I have a few other patches that fix up port lookup
-in other bits of USB OF code.
+Suspend devfreq right after adding it, as msm_devfreq_init() does, so
+that the devfreq suspend and resume calls pair up.
+
+Fixes: fac9b22df4b1 ("drm/panthor: Add the devfreq logical block")
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+---
+v1 kept devfreq from changing the GPU clock rate while the GPU is
+suspended by filtering the calls in panthor_devfreq_target(). As Boris
+pointed out, that cannot be done race-free in the driver, so v2 moves it
+to the devfreq core: "PM / devfreq: Do not change the frequency of a
+suspended device" (linux-pm [1]) keeps devfreq from calling
+->target() between devfreq_suspend_device() and devfreq_resume_device()
+and applies the requests made in between on resume. The SError fix
+needs that patch. What is left for panthor is this patch, which makes
+panthor's devfreq suspend and resume calls pair up; it does not depend
+on the devfreq patch to build or to be correct.
+
+Tested on an Orange Pi 5 (RK3588S) running a v7.3-based kernel with
+this patch and the devfreq patch, with the GPU core clock on the
+firmware-managed SCMI_CLK_GPU and a 200 MHz opp-suspend (the
+configuration of Jonas Karlman's RFC, not in mainline): min_freq,
+max_freq, the userspace governor's set_freq and the devfreq cooling
+state written while the GPU was runtime suspended, also right after a
+suspend-to-idle cycle, no longer end in an SError and take effect on
+the next GPU job; 200 runtime suspend/resume cycles with max_freq
+toggling every ~35 ms and a 3 minute sustained load ran without an
+SError, WARN or panthor fault.
+
+This patch was developed with Claude (Anthropic) as a coding assistant:
+it wrote the code and the commit message, and I reviewed it and tested
+it as described above.
+
+[1] https://lore.kernel.org/r/20261112-devfreq-suspend-sync-v1-1-af64603ef43e@gmail.com
+---
+Changes in v2:
+- Dropped the check in panthor_devfreq_target() (Boris): neither
+  pm.state nor devfreq::suspend_count can be read there without racing
+  with devfreq_suspend_device() and devfreq_resume_device(), which only
+  take devfreq->lock around the suspend and resume frequency changes.
+  The devfreq core now tracks the suspended state under devfreq->lock
+  and does not call ->target() while it is set, as Boris suggested.
+- New patch: start with devfreq suspended. The first runtime resume
+  called devfreq_resume_device() without a matching suspend, so the
+  suspend count was -1 while the GPU was active and 0 while it was
+  suspended (the reason v1 did not use it). Without this, the devfreq
+  core change would not hold across a system suspend taken while the
+  GPU is runtime suspended.
+- Liviu, on returning 0 instead of -EINVAL: returning 0 was wrong, devfreq
+  then records a rate the GPU does not run at (Boris). An error is
+  better than 0, but -EINVAL reports a valid request as invalid (-EBUSY
+  fits better), and either way nothing retries the request on resume:
+  the userspace and performance governors never re-evaluate, and
+  simple_ondemand only at its next poll. With the core change panthor
+  never gets these calls, so there is nothing left to reject.
+- Liviu, on disabling the clock when the power domain goes down: the
+  clocks are already disabled in panthor_device_suspend() before the
+  domain goes down, and the SError happens in that state. On RK3588 a
+  rate change on the disabled SCMI clock still goes to TF-A, which
+  programs the PVTPLL through the GPU GRF in the powered-down domain.
+  So the rate change itself has to be held back while suspended.
+- Liviu, on the comment length: the remaining comment is two lines.
+- Sashiko's findings on v1 (a rate requested while suspended was lost
+  without a suspend OPP or with a non-polling governor; the lockless
+  state check could race with the clocks going off; Fixes: tag) are
+  covered by the devfreq core change, which applies deferred requests on
+  resume and keeps the state under devfreq->lock. Thanks to Sashiko for
+  them. The new patch has Fixes: fac9b22df4b1, the commit Sashiko named:
+  the unbalanced count is a mainline bug, independent of the SCMI clock.
+- Link to v1: https://patch.msgid.link/20261110-panthor-suspend-clk-v1-1-53457050e51e@gmail.com
+---
+ drivers/gpu/drm/panthor/panthor_devfreq.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/panthor/panthor_devfreq.c b/drivers/gpu/drm/panthor/panthor_devfreq.c
+index 2249b41ca4af..45ae42dacdcb 100644
+--- a/drivers/gpu/drm/panthor/panthor_devfreq.c
++++ b/drivers/gpu/drm/panthor/panthor_devfreq.c
+@@ -256,6 +256,12 @@ int panthor_devfreq_init(struct panthor_device *ptdev)
+ 		return ret;
+ 	}
+ 
++	/*
++	 * The GPU stays suspended until the first panthor_device_resume(),
++	 * which resumes devfreq. Suspend devfreq to match.
++	 */
++	panthor_devfreq_suspend(ptdev);
++
+ 	cooling = devfreq_cooling_em_register(pdevfreq->devfreq, NULL);
+ 	if (IS_ERR(cooling))
+ 		DRM_DEV_INFO(dev, "Failed to register cooling device\n");
+
+---
+base-commit: cb0a63f0c96e8ecb90199eeb99cc2a7fcfa703d4
+change-id: 20261110-panthor-suspend-clk-11d5604fe5be
+
+Best regards,
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
 
 
-ChenYu
-
-[1] https://lore.kernel.org/all/20260916075745.3549953-1-wenst@chromium.org=
-/
-
-> Thanks,
-> Arun
->
-> On Tue, Nov 10, 2026 at 6:35=E2=80=AFPM Chen-Yu Tsai <wens@kernel.org> wr=
-ote:
-> >
-> > On Tue, Nov 10, 2026 at 4:20=E2=80=AFPM Arun Iyengar via B4 Relay
-> > <devnull+aiyengar1990.gmail.com@kernel.org> wrote:
-> > >
-> > > From: Arun Iyengar <aiyengar1990@gmail.com>
-> > >
-> > > The USB 2.0 lines and the SuperSpeed lanes of a USB 3 connector don't
-> > > always reach the same host controller. On the Rockchip RK3588, the
-> > > SuperSpeed-only USB 3.0 host 2 (xHCI) is paired on the board with one
-> > > of the separate USB 2.0 hosts (EHCI/OHCI). Only the device tree knows
-> > > which EHCI root hub port shares a connector with which SuperSpeed por=
-t.
-> > >
-> > > The USB core already reads a hub's OF graph, with one graph port per
-> > > downstream port, and uses it for the port connect type. Allow the sam=
-e
-> > > "ports" node on EHCI controllers, so that a root hub port can be link=
-ed
-> > > to its usb-connector node.
-> > >
-> > > Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 13 +++++++=
-++++++
-> > >  1 file changed, 13 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml =
-b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> > > index 908b02d9175e..9dcba539d60d 100644
-> > > --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> > > +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
-> > > @@ -160,6 +160,19 @@ properties:
-> > >        - host
-> > >        - otg
-> > >
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +    description:
-> > > +      The root hub's downstream facing ports, linked to the connecto=
-rs they
-> > > +      are wired to. Needed when a connector's SuperSpeed lanes go to=
- a
-> > > +      different host controller, which then pairs with the root hub =
-port
-> > > +      through the connector.
-> > > +
-> > > +    patternProperties:
-> > > +      "^port@[1-9a-f][0-9a-f]*$":
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: Root hub port, numbered from 1.
-> > > +
-> >
-> > Would this patch covering all HCDs be better?
-> >
-> > https://lore.kernel.org/all/20261014082037.1774672-2-wenst@chromium.org=
-/
-> >
-> > Also see Rob's comment about covering the port numbers.
-> >
-> > ChenYu
-> >
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > >
-> > > --
-> > > 2.55.0
-> > >
-> > >
-> > >
 
