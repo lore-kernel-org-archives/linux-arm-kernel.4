@@ -2,50 +2,50 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 305A660A261B
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27F2606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:19:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0t1L/vvd;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=lK2AqCxG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=29jsX9hU;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=l9SLFHo4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=8PaTPRfY18/VrkHR3rlFWu2zaXTlaADkuWpNQpBjuZ0=; b=0t1L/vvdQayo6o
-	ElDSwcgr/N3xxMnZOWvfe56MUG2IjS0qnpvHi/b6euTUNHqbPJetNqvrR1bQphKSCL+lLEuZM4r2o
-	paA/gxu0bL9vaG8k+3af9nnz/A+SbbWX4sauc0wdjSLAn91nvjiv+KZPWKccw0LoLa6RX8ghVgqRl
-	SQro0g63Ynl1jEjIUGyF6JFwEa5+uOsmML7rD++5iFnFjE1YDY5dRIyiqtRHk+vxQE9mr1ViPbdSx
-	tGLpAhatyNyeACPdwuUFBlJGI7MNsc2DOaw7tdhsXFY5UJmJBIiCIl/IQyCvd/RtE3ZLE8gH2kCxt
-	/XO14O5QM+Kx9J4uFF1Q==;
+	List-Owner; bh=J8kZ5mHWAEF4Q9MNL04JoTrDY4DRK49OnzPJtnM7hFs=; b=29jsX9hUYvknyQ
+	wc3dypPWSuAdRtTy/y+HLB+QM7xe3pYc4eX+p0gnV/hhKA39XQsW5ySY75mBBhbj3loWmfw3zjVV9
+	1kgG5V+IQW8aQqqgyld46GgO1n1YpIJSMgMeeaRTpsr5Wow7h3NvyT+51WuoFBYo6Z8ngV+BjOxxO
+	JcA0b4GUJN+truQ09CRULCqCz/05LFN6pyIiXWLY4U27R8/jOIVo2TgZlAyqUG34piaqTgHqjAe1d
+	XIscSODOSIor7rPe0q9HvAcQk3mTRDdnCbQ33LiUNgYFrU9zuDTzc/DtIhH7ZvFiyYdHSu06cpRKV
+	D831x5MWIK4Q2cgzkWIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSpb-00000009eGS-2Orn;
-	Thu, 12 Nov 2026 11:19:03 +0000
+	id 1xRSpo-00000009eP0-2jdI;
+	Thu, 12 Nov 2026 11:19:16 +0000
 Received: from perceval.ideasonboard.com ([213.167.242.64])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSpU-00000009eD0-49R0;
-	Thu, 12 Nov 2026 11:18:58 +0000
+	id 1xRSpZ-00000009eF1-3Ylt;
+	Thu, 12 Nov 2026 11:19:04 +0000
 Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c67:cdf:7464:6c04:36e4:ee87])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6515633D;
-	Thu, 12 Nov 2026 12:16:31 +0100 (CET)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 32F4333D;
+	Thu, 12 Nov 2026 12:16:36 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1794482191;
-	bh=CNvO+8+4X3vZ3+dwSeXTIkMpEyJGlbKDDed/6QEVRzM=;
+	s=mail; t=1794482196;
+	bh=9sTnIDhO75CSQfGHhJyHPnsOH/91apCfP7O0Mis4EWc=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=lK2AqCxGcEH+5Jdz2JbN0TXkWgBngR4tYVohgWpSfOgBLYxPZK9lvziwAkiPS3MRj
-	 Fv1mPBQYsAGLRQWzz0+492lrtF55yC3XguZGgJ9ENNG0wO/2FpM0N0zPu6C1XWrIwj
-	 E77V4EoG0FQ18OQipIMEXvS09N8qqfui4KDnxdVM=
+	b=l9SLFHo4mJzuRhleT/rypJeMDEYzigOpHf0U3/BIsuhsXS+vscV4Z9jBvJ/3EhD7P
+	 rsj87ZSUWrDhqMteLIO9z9VmnUxpSlueZ0BlYW3JqxwLdM/FHsmdqiNPfznFCfRl9W
+	 6zSdB5FIg1N8VyL4t7zO/qyqLfoGGVDYjJdjul/A=
 From: Jai Luthra <jai.luthra@ideasonboard.com>
-Date: Thu, 12 Nov 2026 16:48:03 +0530
-Subject: [PATCH v5 05/11] platform/raspberrypi: vchiq-mmal: Support sending
- data to MMAL ports
+Date: Thu, 12 Nov 2026 16:48:04 +0530
+Subject: [PATCH v5 06/11] platform/raspberrypi: vchiq: Register vc-sm-cma
+ as a platform driver
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-b4-vc-sm-cma-v5-5-d25e3b687e71@ideasonboard.com>
+Message-Id: <20261112-b4-vc-sm-cma-v5-6-d25e3b687e71@ideasonboard.com>
 References: <20261112-b4-vc-sm-cma-v5-0-d25e3b687e71@ideasonboard.com>
 In-Reply-To: <20261112-b4-vc-sm-cma-v5-0-d25e3b687e71@ideasonboard.com>
 To: Stefan Wahren <wahrenst@gmx.net>, 
@@ -62,27 +62,26 @@ Cc: Martin Wetterwald <martin@wetterwald.eu>,
  linux-rpi-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
  Jai Luthra <jai.luthra@ideasonboard.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1944;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1651;
  i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=obSwlVdM608icuVl5+YqF7zv8oNbUjjskp6328gSnko=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq9aB4KjXm53vEFC2Ox3e3/JGfP9x38YpKfj6Dq
- ASo4JfalJWJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavWgeAAKCRBD3pH5JJpx
- RfcaD/9D9sW9bBcqrq4VykqwwaVwsfV+vxb5Qgfl8sE7TBPcjSInosaBsOCwwOenJCbknfAeEkB
- lOP+8sjtBXJf0LDaIc0ZVs2+g2mN7V59I2BiwHmZREUqQsorM8tBIfg3soiz/+S6toh9B3s68Q6
- rCvD0lC04RZdBsbiFVz2/Ezr/fioD7YwqhpB1e5zmqD7goOJvYwU1Mi2GYTbNAsfR9Y7tqMefNa
- oiQxi9rL6ao9btaA9yCDMoNh4Bk2WLSVmXwm7YrJNS6GeepS+xSYyClXD3LWE7HLJzwLJf3g3Ak
- 5hRyR78sF7CrNH37BS36BlX014xPod6wEPmLG3CGMH2jEUy0/d4uqhP8UUzkvC/3zZFT7SxfUhH
- VknI/8dYCnlPzlyTdiVJU+ce6M3BNWdRZMtHUhS7xs1n1yvzXweG7D4lI5BPzV9/NR+5HJyBqUy
- GrGGSbZnt0iu8PRgfCv7cwcN3KJqJINlNr4bpDCWgODct33Gn5bCMFlC3ee15Z2hFDhZMkSYloO
- Se1dlXPVjkbTWqMUJofyEhsuQRqIkhyUSF4YjxSULBiNhFAksDmsSeToQuC5nP0OgZo4W89YQ0Z
- 6X+Mh6/3TRH7ymEI63YYyjWZE+cwNE1bQjWBHJIKgLD2n+oLBZwBMp+eAiTKT7rzkB1T2GU8BpY
- iMFuEzlrq8DzjLg==
+ bh=jmL2C9ZT4ymW/6uMtp071mlFSwkY2dVi+zbShm6aLoM=;
+ b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBq9aB53pORKP1sMzNVCp6H1GhsUgh3D1hQlBqjP
+ qKguhxtq/mJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCavWgeQAKCRBD3pH5JJpx
+ RUhmD/9hfgA5whlF2OZWg58i2YBPVQ8dl0xEGPOxbzMCu5pBTgSzrlp1sw/xReawZqemdOqVJ1U
+ qlEfnlRlK1pJtQjj3eJg5IscoVzd671BoAKxocT8GN2pklC9bXFIQ/uMlXOtYOxXirF6RTU9I1Q
+ 9zo2mG6JSOwmPeTjKMKeq/9NCnmP/Lnc1CeGj9yUna7cTBaFXnN/cNg9B+duJj4QHw5wTDpePY8
+ zjyY4zQ480Q2oqjcH3vjkEa21VLJdR+gaAgx61luFJYl3llaw650pAX8tEaiQg7zBkxBcq1nyaP
+ aq0pkpSyMo8kgeOdNsFGYvRBPjBY5PlA1Yyp/Fp0s0cWoFft3E3pk+jP2g2NfTTnlACE7kmuZa4
+ qlEseM/65tP07RYVYuNGAvpjYsexh45isWzgO9PNFxF21crub5KYAEfqI9h0oHEb7NVCkMRpxQG
+ LckW0L8b2vxO4EWAo/TOClHv4eQ4hyOKFTC59F8rojKFSXbK48Dx6yuqrwtCvo91sS4IhxGB90U
+ wYizWwUMQJBUggrUDueIAxg3BI941fO1E8N96+rO3J0t1XOx7euGReKOfQ61Ap27ts82PDrMWxL
+ Q/zD93XQX9nWAnK2LhCWtzMc3fN9QobxeoA8E4rv08wwKp7D3afxMTaR8R4VjBWWZE7plNavEun
+ hzdq/xTc1a4C4hg==
 X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
  fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_031857_502698_1B80BE3E 
-X-CRM114-Status: UNSURE (   9.35  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261112_031903_630436_2CFE7A0C 
+X-CRM114-Status: GOOD (  11.03  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -104,45 +103,47 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-Add the ability to send data to ports. This only supports
-zero copy mode as the required bulk transfer setup calls
-are not done.
+Register the vc-sm-cma driver as a platform driver under vchiq.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
 ---
- drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+ drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c | 2 ++
+ include/linux/raspberrypi/vchiq_arm.h                    | 1 +
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c b/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c
-index 2909def73f3d..5091bcaddd11 100644
---- a/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c
-+++ b/drivers/platform/raspberrypi/vchiq-mmal/mmal-vchiq.c
-@@ -430,11 +430,19 @@ buffer_from_host(struct vchiq_mmal_instance *instance,
- 			(u32)(unsigned long)buf->buffer;
+diff --git a/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c b/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+index d5a25033a261..ec951ab19d67 100644
+--- a/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
++++ b/drivers/platform/raspberrypi/vchiq-interface/vchiq_arm.c
+@@ -1414,6 +1414,7 @@ static int vchiq_probe(struct platform_device *pdev)
+ 	vchiq_debugfs_init(&mgmt->state);
  
- 	m.u.buffer_from_host.buffer_header.alloc_size = buf->buffer_size;
--	m.u.buffer_from_host.buffer_header.length = 0;	/* nothing used yet */
--	m.u.buffer_from_host.buffer_header.offset = 0;	/* no offset */
--	m.u.buffer_from_host.buffer_header.flags = 0;	/* no flags */
--	m.u.buffer_from_host.buffer_header.pts = MMAL_TIME_UNKNOWN;
--	m.u.buffer_from_host.buffer_header.dts = MMAL_TIME_UNKNOWN;
-+	if (port->type == MMAL_PORT_TYPE_OUTPUT) {
-+		m.u.buffer_from_host.buffer_header.length = 0;
-+		m.u.buffer_from_host.buffer_header.offset = 0;
-+		m.u.buffer_from_host.buffer_header.flags = 0;
-+		m.u.buffer_from_host.buffer_header.pts = MMAL_TIME_UNKNOWN;
-+		m.u.buffer_from_host.buffer_header.dts = MMAL_TIME_UNKNOWN;
-+	} else {
-+		m.u.buffer_from_host.buffer_header.length = buf->length;
-+		m.u.buffer_from_host.buffer_header.offset = 0;
-+		m.u.buffer_from_host.buffer_header.flags = buf->mmal_flags;
-+		m.u.buffer_from_host.buffer_header.pts = buf->pts;
-+		m.u.buffer_from_host.buffer_header.dts = buf->dts;
-+	}
+ 	mgmt->audio_dev = vchiq_device_register(&pdev->dev, "bcm2835-audio");
++	mgmt->vcsm_cma_dev = vchiq_device_register(&pdev->dev, "vcsm-cma");
  
- 	/* clear buffer type specific data */
- 	memset(&m.u.buffer_from_host.buffer_header_type_specific, 0,
+ 	return 0;
+ }
+@@ -1422,6 +1423,7 @@ static void vchiq_remove(struct platform_device *pdev)
+ {
+ 	struct vchiq_drv_mgmt *mgmt = dev_get_drvdata(&pdev->dev);
+ 
++	vchiq_device_unregister(mgmt->vcsm_cma_dev);
+ 	vchiq_device_unregister(mgmt->audio_dev);
+ 	vchiq_debugfs_deinit();
+ 	vchiq_deregister_chrdev();
+diff --git a/include/linux/raspberrypi/vchiq_arm.h b/include/linux/raspberrypi/vchiq_arm.h
+index 541b4efd64d9..d59837eaaa8c 100644
+--- a/include/linux/raspberrypi/vchiq_arm.h
++++ b/include/linux/raspberrypi/vchiq_arm.h
+@@ -62,6 +62,7 @@ struct vchiq_drv_mgmt {
+ 	 * the interface.
+ 	 */
+ 	struct vchiq_device *audio_dev;
++	struct vchiq_device *vcsm_cma_dev;
+ };
+ 
+ struct user_service {
 
 -- 
 2.56.0
