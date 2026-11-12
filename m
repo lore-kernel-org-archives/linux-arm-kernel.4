@@ -2,86 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B576606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E347D606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0D7Pkr9O;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=SlzSn2Z+
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IsHu+FJr;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=VLVYTYvW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XdkaBsBaFVJPPurgDNIn6T1G0WeNJH9pMqVBcKCihf8=; b=0D7Pkr9OR6fNZk
-	re3Yy24Xftv9KbeapVNPESo/dtOmN1Mm25vr1BkpmgyJzKnaVpRkY/DiQc236SMiT7XNAb3AWkRPK
-	b5RQO2S3HDiS/HZ4Xx0cf5wQakbB2dVJ/fan/W5uVGGo+ssmnAdBah3UCnFiAX4sZDjLUxS2WwmXU
-	/nSQNGTMaxo3gjRZ7X4e0u+Z4M6FUb5psVZGA0UmsO+K23TX7+AqdbxfoCxYJT3YaeJqn7/W7jmwu
-	D/sOST5tFSr5OuTijkYPLNW1/P7E5O3WyC37IZjMGacEnoP1M1YzGZTpMGIJGGboB4nViAy3auJdf
-	8b4lR5amtk9cOJU8j4Iw==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=8yMHCtcZ/1cI9oadvNBaz1GIBWo+u42FQNaRXMLSLbc=; b=IsHu+FJr8dvVNNnnHHFU3FzDWC
+	P3vTtfIykijy6HzKhJakRtowNUBoEpxg4yVXGPJuPgQFiFZOKKmLs7MV3DrBc7PZvrguKLMuGn5kJ
+	rEKKtxWyYQzgfTQZffo3cAOOivBspwxHwKkugj9jhLpib1yYvuNAKeK8cSD0cFbS/nFvWXtqGgTe4
+	kFKz+TojK1QI0+qw3qOVVVGe5uMPI1M85VTnB9qIqV6/sUzkUNTqq8wkkfMDbxZXs4j11SHTmFUzy
+	hjTTQ4M1WVZg4AfDX3+DwJp50J2cACZbTlPwMZ3hvUrz2b1WRlpkoOgn/qJepbSEGhiSxYFaJvPeD
+	vu3cDNBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKmj-00000008YKs-01aQ;
-	Thu, 12 Nov 2026 02:43:34 +0000
-Received: from linux.microsoft.com ([13.77.154.182])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKmg-00000008YKW-0rqs
+	id 1xRKwh-00000008ZEq-0DAJ;
+	Thu, 12 Nov 2026 02:53:51 +0000
+Received: from mail-pj1-x102f.google.com ([2607:f8b0:4864:20::102f])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRKwe-00000008ZEP-20pn
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 02:43:31 +0000
-Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 0ACFE20B7166;
-	Wed, 11 Nov 2026 18:43:24 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 0ACFE20B7166
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1794451404;
-	bh=XdkaBsBaFVJPPurgDNIn6T1G0WeNJH9pMqVBcKCihf8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SlzSn2Z+Gl7kJcsX9wJLqJ90/vk2fEkxrE+wu5+JYE1DqzF0i4hmLIYUxC2bTTM9u
-	 E6Gmvo27MKj5KArH76fYvRbG97Iw6gByVN8EqGGz3Rs1ThL8ZwqSC8n8NxB+TXjeGw
-	 K3q9NMitLOhAYSiq1vFLg45YHdeyROGC134yrgQk=
-Message-ID: <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
-Date: Wed, 11 Nov 2026 18:43:26 -0800
+	Thu, 12 Nov 2026 02:53:49 +0000
+Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-3ad41b47541so2375236a91.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 18:53:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794452027; x=1795056827; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=8yMHCtcZ/1cI9oadvNBaz1GIBWo+u42FQNaRXMLSLbc=;
+        b=VLVYTYvWjJ1AxDY2IQxQOedhwviAst+ORBo5lt/45Q/TtJOrnComfTdS1xVV7zMa7/
+         K60OQHK5jkxBf2GpTQlIJIoc3ZvhV5QgU1n9ScQqHZx8N2VM1VJJqIPjWMXlN5arbhWT
+         n87HqvHIt++rJB6J6O29fX6/o5/kjb9ZvolZeGs/VFuduEwQSO3rvCpqnw6NVtPp6uYj
+         Gbib44H3I33epjx6ilfNO9B82I7sn3oERPcW6ZzbaiqJ+auW4A9h/chgpowc2H1msbKG
+         hllr2Q4UDqI/biLG+MmWwMwlzm4IK2rbjp9FkOY4JjbHMTsMxGZYfhfNhItmjAGGHtUF
+         1Rtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794452027; x=1795056827;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=8yMHCtcZ/1cI9oadvNBaz1GIBWo+u42FQNaRXMLSLbc=;
+        b=yptDnC15z6WIcYcxXZ8p6kR4t/vr2hYOLCtaEtuJy6FaPed07zhisNoCShp8pUAQaw
+         7K1qfcO4OdXXq/L2s8kAUDvTw5VCLTFbtvJSpHzQsHbV2l1yZcitLrMFBPUnYXZudxG9
+         Q1xf5qPQLeiHQqjZa3GTGh/i7n83x0f2MEZh/ET+v1eB9shRPK+1gQKqDqLrRttTdAh+
+         4V/ptHS6WoqRJYO4OZBtuBwcNEPQXeb3+kpFv8GihuIL+1lY8LazH9NgBw+NqTm9L+mh
+         GtUfqn6eTW7Zv8ymNVLKyBGQE5JRoT5uPUegfaDkgCSpoDetqoqF5G/X2mJjNqbzNVse
+         +kLQ==
+X-Forwarded-Encrypted: i=1; AL+hErH10gabrIKLW3cmqmgxnQqJI5tuFsZK6Vgkh0WkdCTKQ+xGVxYcPT8X+rOIKGFyXgdVt9QxRZ26JGnAcc248sMV@lists.infradead.org
+X-Gm-Message-State: APuU4Z+z3TORRcH2rgtcrNNt9Yi5mzGOol/9PXfbQqQovZM1l1sENJxS
+	LlX+Zb9y9vLqWukpdv9/0d4KdZR6gvLZ+irQO8XsymUVnN/4m8IVOo36
+X-Gm-Gg: AYBFou0F8GrtdQ008wFOYUpVsAkzFREJ8ZUgZ6kb99UhFlxiu6nWSXHaIaOcz+fJrV7
+	cN8XP9PCDghQc2oUmnCmic8t6bt0jPquzE97FmTcAaCed+6F9vfzKc3QhonGh7mVmJEvpzlrUzD
+	S+kEBrYia/fTYI6KgOmURY/VO7TD4nkWdwa7CvJjYCjjzUMZmpxdUgSVIXTg+eD8cANaMkCMqHR
+	VcvTvaNBVoL73ud+AvK/7vdvOMC+VQAZIA0nNKA5wEEmvgIvm5YaNVdxHzjc/YZcvPpCcsvH5kT
+	gHrl99MjZo/LYK63pG3y6uXp0UyHQh7ah0Z3VG3tZ2i5kF716UJZLjzD4YdUk91/3luzusr7q+y
+	HTh7NjWF9u86rbvMfTI5LsJaA20bIb6zkg44PElkwa+U21EmU7hfid9ru+PHEUhw2m7xWerA5nH
+	6+POJSyaOX2nzKkedCizYM71Pi4yRjNXN56KhJe2p4IV1YTum6DpPXWbzz0egILg21k2Wmtne5Q
+	9GkRk8CjBcrPCAKDybAMNMU/bDMNw+G80t5JSkBhx/98C5tn3zV0DX/SzzEBLGszFwIhcdZqLCD
+	1Y6Rjuie6Fn+AR36tzDlQuA8IgmPeeZF33VtUkETDm7bEUJay5t7py7HqzzltEgFNqMLgKFfZfd
+	wXSmGx8dj8mtobd8PKLIuIArYRYUr
+X-Received: by 2002:a17:90b:4a43:b0:3b0:a3eb:759e with SMTP id 98e67ed59e1d1-3b182e6f662mr4020514a91.17.1794452027099;
+        Wed, 11 Nov 2026 18:53:47 -0800 (PST)
+Received: from prox-debian13-dev.listerlab.win (203-96-142-148.dsl-dynamic.connections.net.nz. [203.96.142.148])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2edb6d7bf46sm27052045ad.31.2026.11.11.18.53.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 18:53:46 -0800 (PST)
+From: Patrick Lister <patrick.lister.dev@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: Ard Biesheuvel <ardb@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Linus Walleij <linusw@kernel.org>,
+	Keith Packard <keithpac@amazon.com>,
+	Nicolas Pitre <nico@fluxnic.net>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Patrick Lister <patrick.lister.dev@gmail.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] ARM: nwfpe: use task_pt_regs() to find user registers
+Date: Thu, 12 Nov 2026 15:51:59 +1300
+Message-ID: <20261112025159.473997-1-patrick.lister.dev@gmail.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
- CCA Realms
-Content-Language: en-US
-To: Michael Kelley <mhklinux@outlook.com>,
- Kameron Carr <kameroncarr@linux.microsoft.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>
-Cc: "arnd@arndb.de" <arnd@arndb.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
- "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
-References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
- <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
- <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
-From: Mukesh R <mrathor@linux.microsoft.com>
-In-Reply-To: <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_184330_285245_BE16183E 
-X-CRM114-Status: GOOD (  22.58  )
-X-Spam-Score: -4.5 (----)
+X-CRM114-CacheID: sfid-20261111_185348_585566_3F96D371 
+X-CRM114-Status: GOOD (  15.74  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -92,142 +105,81 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/11/26 10:01, Michael Kelley wrote:
-> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
->>
->> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
->> to be marked as decrypted (shared) for confidential VM isolation types.
->> This is already done for SNP and TDX isolation; extend the same handling
->> to Arm CCA Realm guests so that the host hypervisor can access the
->> shared hypercall buffers.
->>
->> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
->> builds on arm64 (it includes <asm/memory.h>), so using it directly in
->> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
->> Introduce a Hyper-V-specific helper following the established
->> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
->>
->> On architectures other than arm64 the weak default keeps the existing
->> behaviour.
->>
->> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
->> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
->> ---
->>   arch/arm64/hyperv/mshyperv.c   |  5 +++++
->>   drivers/hv/hv_common.c         | 17 +++++++++++++----
->>   include/asm-generic/mshyperv.h |  1 +
->>   3 files changed, 19 insertions(+), 4 deletions(-)
->>
->> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->> index 46ab2da..da6c3aa0 100644
->> --- a/arch/arm64/hyperv/mshyperv.c
->> +++ b/arch/arm64/hyperv/mshyperv.c
->> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
->>   	return hyperv_initialized;
->>   }
->>   EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->> +
->> +bool hv_isolation_type_cca(void)
->> +{
->> +	return is_realm_world();
->> +}
->> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
->> index 31256cb..a60c92c 100644
->> --- a/drivers/hv/hv_common.c
->> +++ b/drivers/hv/hv_common.c
->> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>   	u64 msr_vp_index;
->>   	gfp_t flags;
->>   	const int pgcount = hv_output_page_exists() ? 2 : 1;
->> +	const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
->>   	void *mem;
->>   	int ret = 0;
->>
->> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>   	 * online and then taken offline
->>   	 */
->>   	if (!*inputarg) {
->> -		mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
->> +		mem = kmalloc(alloc_size, flags);
->>   		if (!mem)
->>   			return -ENOMEM;
->>
->> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
->>   		}
->>
->>   		if (!ms_hyperv.paravisor_present &&
->> -		    (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
->> -			ret = set_memory_decrypted((unsigned long)mem, pgcount);
->> +		    (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->> +		     hv_isolation_type_cca())) {
-> 
-> Could this big "if" statement use "hv_is_isolation_supported()" instead
-> of explicitly testing for each CoCo VM type? I ask partly because
-> Mukesh Rathor has just submitted a patch [1] that introduces a new
-> function that does something almost exactly the same as
-> hv_is_isolation_supported() and uses it here.
+NWFPE locates the trapping process's saved registers relative to
+current_thread_info(), assuming thread_info sits at the bottom of the
+kernel stack. Since ARM moved thread_info into task_struct, that
+expression points past the end of the task_struct instead.
 
->> +		    (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->> +		     hv_isolation_type_cca())) {
+This breaks FPA instruction emulation, as the user registers are
+never read or written and causes out-of-bounds reads and writes of
+kernel memory beyond the task_struct. Any unprivileged process can
+trigger this.
 
-With my change, this will become:
+Fix by using task_pt_regs(current), which finds the registers on the
+stack.
 
-         (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
+The bug was found with assistance from Claude Code (Anthropic), model
+Claude Opus 5.5 (claude-opus-5-5).
 
+Fixes: 18ed1c01a7dd ("ARM: smp: Enable THREAD_INFO_IN_TASK")
+Fixes: 9c46929e7989 ("ARM: implement THREAD_INFO_IN_TASK for uniprocessor systems")
+Cc: stable@vger.kernel.org # 5.16+
+Signed-off-by: Patrick Lister <patrick.lister.dev@gmail.com>
+---
+Build tested on Russell King's linux-arm tree with footbridge_defconfig
+(CPU_SA110, FPE_NWFPE,THREAD_INFO_IN_TASK), W=1, no new warnings.
 
-Thanks,
--Mukesh
+Runtime-tested on 6.12.116, where this patch applies unchanged
+(arch/arm/nwfpe/fpa11.h is identical to mainline):
 
+ - QEMU versatilepb (ARM926) with OABI_COMPAT, FPE_NWFPE and KASAN:
+   a test that executes FLT and FIX gets the wrong result back and
+   KASAN reports "slab-out-of-bounds in PerformFLT" without this patch;
+   with it the result is correct and KASAN reports nothing.
 
-> You don't provide the non-stub hv_is_isolation_supported() until
-> Patch 6 of this series, but the weak stub should allow everything to
-> build if a bisection splits this patch series.
-> 
-> Michael
-> 
-> [1] https://lore.kernel.org/linux-hyperv/20261111022036.351231-2-mrathor@linux.microsoft.com/
-> 
->> +			ret = set_memory_decrypted((unsigned long)mem,
->> +						   alloc_size >> PAGE_SHIFT);
->>   			if (ret) {
->>   				/* It may be unsafe to free 'mem' */
->>   				return ret;
->>   			}
->>
->> -			memset(mem, 0x00, pgcount * HV_HYP_PAGE_SIZE);
->> +			memset(mem, 0x00, alloc_size);
->>   		}
->>
->>   		/*
->> @@ -666,6 +669,12 @@ bool __weak hv_isolation_type_tdx(void)
->>   }
->>   EXPORT_SYMBOL_GPL(hv_isolation_type_tdx);
->>
->> +bool __weak hv_isolation_type_cca(void)
->> +{
->> +	return false;
->> +}
->> +EXPORT_SYMBOL_GPL(hv_isolation_type_cca);
->> +
->>   void __weak hv_setup_vmbus_handler(void (*handler)(void))
->>   {
->>   }
->> diff --git a/include/asm-generic/mshyperv.h b/include/asm-generic/mshyperv.h
->> index bf601d6..1fa79ab 100644
->> --- a/include/asm-generic/mshyperv.h
->> +++ b/include/asm-generic/mshyperv.h
->> @@ -79,6 +79,7 @@ u64 hv_do_fast_hypercall16(u16 control, u64 input1, u64
->> input2);
->>
->>   bool hv_isolation_type_snp(void);
->>   bool hv_isolation_type_tdx(void);
->> +bool hv_isolation_type_cca(void);
->>
->>   /*
->>    * On architectures where Hyper-V doesn't support AEOI (e.g., ARM64),
->> --
->> 2.45.4
->>
+ - Nokia 770 (OMAP1710, ARM926, OABI userspace): fixes the maemo
+   battery daemon's FPA arithmetic which would incorrectly calculate
+   the remaining charge of the battery and power off the device.
+
+Not runtime tested on mainline: since 25900bd99d4d ("ARM: limit OABI
+support to StrongARM CPUs") NWFPE is StrongARM-only, and QEMU's only
+StrongARM machine (collie) currently fails to boot mainline.
+
+A reproducer is available on request.
+
+ arch/arm/nwfpe/fpa11.h | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/nwfpe/fpa11.h b/arch/arm/nwfpe/fpa11.h
+index d51195d41f5b..25c327a73a27 100644
+--- a/arch/arm/nwfpe/fpa11.h
++++ b/arch/arm/nwfpe/fpa11.h
+@@ -13,13 +13,12 @@
+ #define GET_FPA11() ((FPA11 *)(&current_thread_info()->fpstate))
+ 
+ /*
+- * The processes registers are always at the very top of the 8K
+- * stack+task struct.  Use the same method as 'current' uses to
+- * reach them.
++ * The process's registers are saved at the top of its kernel stack.
+  */
+-#define GET_USERREG() ((struct pt_regs *)(THREAD_START_SP + (unsigned long)current_thread_info()) - 1)
++#define GET_USERREG() task_pt_regs(current)
+ 
+ #include <linux/thread_info.h>
++#include <linux/sched/task_stack.h>
+ 
+ /* includes */
+ #include "fpsr.h"		/* FP control and status register definitions */
+-- 
+2.47.3
 
 
