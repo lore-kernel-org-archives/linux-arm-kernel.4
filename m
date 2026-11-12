@@ -2,71 +2,128 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01939606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 07:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8E8606A332
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M6+pX4iX;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=EtV3vfny
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hlta10+c;
+	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=M4vY5XKe;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=pRtyqCoc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=zAWSlv59a8MCO7BiIv0PjshhyKJmXxJ12N3fAjhXUPU=; b=M6+pX4iXLblI8i9VQfq7ItwRQT
-	rXMUJqC5jlVBS9RBneRhQdPiM7OB7TnPu21RRVv47wVA8emUUjXT6CMz08P+LwYGYQt1wLzGq4mjO
-	c3TBD1RPVe8CW/I2V3+r5NFkIm3daJUquUHcqOeWNg00iYj/4YdpxfRBMe3aRtZEkBMPBJxaG3CMK
-	BHUm39Gg/gn9JPH1KdkLCBnWYPYWynlHtybpgfNe+PRCLFyORc3SprJ/VwIBS5s0Ug7EDXLtdPEdH
-	zILRo/RDuTFyfQ7lJ/0OIp/Y5RT9NdeODjcjAn7dz1NbLuIGbbe1AYl5gRqIU/o8foLQYPJyHrokD
-	V/ZWGVMw==;
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=cVSEKR/sSEcj2kqUoOCDBG4g9Z6MGl0XVNPCAKPLItQ=; b=Hlta10+czAtdjN
+	4oKRNmbnyVKMRUsjS1T409qwcEELXdiNIJqzo8iitj7lCSD7I4jGS0jhXXETcSkSszb4ZMS0ljkTv
+	3kQceBGy+rl+krMtoXxGcQtZOePOgwuJd07tLMKAe/IwAiF2v81f6Sn0uL5+az3BilTNKfogiDMuu
+	vTUq8YlQFaPmFYUYikf50Iy28xT+6HpXX+j7jp9IG0qU2ecb4G7BlMqdXREyOLrFg2eRjSxtjgPLW
+	dbRmkptSAJlgJmNAq4RWcfrI9h/uxym7LWJaJXNuxfitKsYnCfioxH9iGpB6v4CTVLQDLBVqDPrJo
+	sZ0hfXi/XisLfyXsMLWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRPid-000000090D7-1jOu;
-	Thu, 12 Nov 2026 07:59:40 +0000
-Received: from out-6.mta0.migadu.com ([2001:41d0:1004:224b::6] helo=mta0.migadu.com)
+	id 1xRPio-000000090Fb-3elG;
+	Thu, 12 Nov 2026 07:59:51 +0000
+Received: from fhigh-b4-smtp.messagingengine.com ([202.12.124.155])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRPiU-000000090AB-0o3L
+	id 1xRPiV-000000090B0-2fq3
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 07:59:38 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=cISyCbOfugjzFqMvt9U+R6HEQpkQoIcxPv/Uh007S2o=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794470368; v=1; x=1795075168;
- b=EtV3vfny01bqLl/0J2VawmrzTUqJ3v5Kw1aDpBRKTW8xYwaUK+8kkuvXUYLYaZCNVt3a01/S
- lcGRBtrHQX+eppKQmopQLSwrdbfXvkiCMpv9megj56HWg7jDJ+roLIPyPMhsXnAJs9+jiOY7zTW
- 5fafqST68n9oWMpKcAHdKTQo=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 80bbba1496a8ace9;
-	Thu, 12 Nov 2026 07:59:27 +0000
-X-Mizu-Trace-ID: 80bbba1496a8ace9
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Marc Zyngier <maz@kernel.org>,
-	Oliver Upton <oupton@kernel.org>
-Cc: kvmarm@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Joey Gouly <joey.gouly@arm.com>,
-	Steffen Eiden <seiden@linux.ibm.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Zenghui Yu <yuzenghui@huawei.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Vincent Donnefort <vdonnefort@google.com>,
-	Fuad Tabba <tabba@google.com>
-Subject: [PATCH v2] KVM: arm64: Sync a pVM's control state before CPU_ON reads its endianness
-Date: Thu, 12 Nov 2026 07:59:23 +0000
-Message-ID: <20261112075923.3018139-1-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
+	Thu, 12 Nov 2026 07:59:41 +0000
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 397957A025D
+	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 02:59:30 -0500 (EST)
+Received: from ams-imap-03 ([10.64.2.23])
+  by ams-compute-02.internal (MEProxy); Thu, 12 Nov 2026 02:59:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1794470361;
+	 x=1794556761; bh=cVSEKR/sSEcj2kqUoOCDBG4g9Z6MGl0XVNPCAKPLItQ=; b=
+	M4vY5XKe8fCu6y1pn7kRzf2jTalRMXggmoxydRGZsxUvUB7eKaRxpXrvP2i2jIt5
+	1LQCdoUu0drH2BaZO245x6NT7Tf5spJn3T8lB0hPtrbaoockx6gFbF1IZxA9Xd0O
+	SaBmRmDqNb/TCw3SdHT7rhSC/u7T+/L0nXTWI2SgoLbcNh9zuZiGDeL1tdr4/D1E
+	v9y0fFJWtLoiqfBnYvhsl4yxks+fSnDxy+tj9gs5VJhSNr5m3cOzIndcGyQ51Ah5
+	YabZYIsuDlwDrNAQYBG3xwEJYVlceoquLAdG1I3u4ph/E7tjFuMyQtu4d2wCrOaO
+	pd64VenJwoziA9yX+0OJ8w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794470361; x=
+	1794556761; bh=cVSEKR/sSEcj2kqUoOCDBG4g9Z6MGl0XVNPCAKPLItQ=; b=p
+	RtyqCocN70nKAkOIpL8dIRy6WVXq9bLwqLPReTCgWcVTmcnOVmD9bb3q5JCakgD6
+	WYn4mtvup4uMAnoXDe76EFNEWQ8Hewn1MpHrcsAheoXOTWFIb9ZVpjrvppzOYa81
+	oYGqztYgtyQrlz4vBxuS9Xi++3chzrmkuAhsx/Z7Fr7suM9ljmRLm+RbidsB7uEg
+	H2oJKOhORx1cZeH2+nY48iH3nucHstFbq4xP1M/WwXYtFDkSHzuK/QLJS3UUu2Kf
+	Ok5ilYzXvfX1rl731PjSV7R7OrIfBZzo1xH4nBHavRlDH0nLzQGAH/OI3fgLw114
+	HCiFW/nGlkcO0vDAo8vSQ==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=arndb.de a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1794470361; d=arndb.de;
+	mf=PGFybmRAYXJuZGIuZGU+;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:lwb5vlhAw4q7f/17XOFq7LcwskXfZf4Se6arM5YdnVH8z2J
+	rnbP5Dyq4Y/7M/idG3LOJe943GaoaaTPSmbfx0n+utM2bQVbXkCoKlacQpU2dzGJ
+	e4cJ3TDTroLgyRiYjJh9sj13zcMmDvdA/6y8Xw2XOc3Qz1cnrB8Cail+6hDpBSAN
+	Yy5xdj5n61EAOtxkwRCwkXuzRFz5xSLhVklnyBkEe114nOANVsWB11Wx5uAVg1LE
+	/l3JmdIJmPd5iVywTxfXgFtKrnTqwqdx1bvIAM0XDnWlqJ52+CsZXFyyu0PBpK0v
+	2uevqFZwkbUL2LycgI0M2NKDK2N7cz6m/dsTK5Q==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:wc87NUQSquJRYsFpZvFg2+DhZhq1+zJDa5SS0gU553o=:69/HbqOdtr3yYUEdgCRTpCvFlV3qPLdmUzQcSdPq78o=;
+X-ME-Sender: <xms:0nH1arLtEAKr7CvJjA9r-xLBmtlX6KKTNxOsQ9Yy4WkptkKZtCJ0Ew>
+    <xme:0nH1ap_0aW42F8pQiIC5ueWcMiVigvWTTrgf604nXYE5CLvsB7qDOZA6Hcx3r1Qdh
+    8xBL7-g5HhiaL84_ZMF3IMmCfkL5KkVjQLJp7fBFVMSxvgl5CTVhyYC>
+X-ME-Proxy-Cause: dmFkZTFkSIWXOLZlwBlmHCHL1e0Lydj3Y83p6vUWF2DqJnMTU7D1RcjMmV5frrxyY4IzE2
+    mruh3DxAHY5MY1BWw071w4M9sXazaTyOYorwJN6DIg/J7JtbBc9hxZXk5c1toZJo8X1o8C
+    O7f+HHYH7vSsfj3MXq13X6/aYl0Bj/1LlEqoM5l1DmJRB0luiqRU8M3u+u4NIS7EONDQCk
+    8vQb6zrOdHj+zyIF76hC6F0ffNGaA3rUhAxXgiNXu3W8Onn9Ab7QkUQvwArfW0C2l2X+Tb
+    +DMV3P8abBOGmakKgU3GbJdA3zb2Fsf4TUBJ1rDAEZ6tF4OxoQ/XFdisddYYf+RCWZA8oN
+    DwIxI4qNcndKWKi5jbwEEBhGjYu95e5q07yo5JPbl5fHm0PAcztXuMXwGx0nL6GMkaToaP
+    0YyE9OnzeRruwb/iMATT1q4th+coE7HQ3JJDBYbasaZcKLGLdXzw08oFt1ASCQgU6eIYQm
+    Fk4Obrl3pUy9Bg/BwmXn1KhpStwdnQnpJR7hysIbWZwQpNctmREanWrPiX4IJwtogQnOcQ
+    /gIZeG6omAfYvmY8Th6RaNvxLP5qgf8UzulEZEcnLFQZkHxbQ3O6DY42TuJz80UjMWf1+m
+    hC+IM1iMG07uRb8SUOmY5VVzRDxbNI/+sMZCkAo0e2GX3/lR/toB//0Bwxow
+X-ME-Proxy: <xmx:1XH1ahdaTjQ2MiSzC6jfWPg9WWBsvbvs4qcXMMAnMmEbqqgvdFifuQ>
+    <xmx:1XH1agmdmwvBYjy_NGHO2yMjdMc_VjWqrHUGsatxhZE0nbGym6ipqA>
+    <xmx:1XH1ajyyWu4HH8R34JFrmueksShBO9ELXUPyM-IiQvgGlmb6W6dJtQ>
+    <xmx:1XH1ajOCBlSBaoUoS3Pwk6Z9mT65dHzpuPIx0sPCkcq7TLT-cVdECQ>
+    <xmx:2XH1anLN8dbVzakiPe6FkOmx8CZ_cUG7aLnys8IneL1c37FGuRIzt35Z>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 5A4CD32A0099; Thu, 12 Nov 2026 02:59:14 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-ThreadId: Aqe2GYTsJ-4J
+Date: Thu, 12 Nov 2026 08:58:53 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Patrick Lister" <patrick.lister.dev@gmail.com>,
+ "Russell King" <linux@armlinux.org.uk>
+Cc: "Ard Biesheuvel" <ardb@kernel.org>, "Linus Walleij" <linusw@kernel.org>,
+ "Keith Packard" <keithpac@amazon.com>, "Nicolas Pitre" <nico@fluxnic.net>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, "Nick Clifton" <nickc@redhat.com>,
+ "Richard Earnshaw" <richard.earnshaw@arm.com>,
+ "Ramana Radhakrishnan" <ramanara@nvidia.com>,
+ "Peter Maydell" <peter.maydell@linaro.org>, qemu-arm@nongnu.org,
+ "Riku Voipio" <riku.voipio@iki.fi>,
+ =?UTF-8?Q?Alex_Benn=C3=A9e?= <alex.bennee@linaro.org>,
+ luis.machado.foss@gmail.com, thiago.bauermann@linaro.org
+Message-Id: <0384a52a-31f6-4bbd-9de8-8efe73610e28@app.fastmail.com>
+In-Reply-To: <20261112025159.473997-1-patrick.lister.dev@gmail.com>
+References: <20261112025159.473997-1-patrick.lister.dev@gmail.com>
+Subject: Re: [PATCH] ARM: nwfpe: use task_pt_regs() to find user registers
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_235930_586245_DE5E796F 
-X-CRM114-Status: GOOD (  12.09  )
+X-CRM114-CacheID: sfid-20261111_235938_165314_BD81D918 
+X-CRM114-Status: GOOD (  21.83  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -78,102 +135,59 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-pKVM handles a protected guest's PSCI CPU_ON at EL2 before the guest's
-EL1 sysregs are saved, so kvm_vcpu_is_be() reads a stale SCTLR_EL1. A
-guest that changes SCTLR_EL1.EE and calls CPU_ON before its next exit
-to the host starts the target vCPU with the old endianness.
+On Thu, Nov 12, 2026, at 03:51, Patrick Lister wrote:
+> NWFPE locates the trapping process's saved registers relative to
+> current_thread_info(), assuming thread_info sits at the bottom of the
+> kernel stack. Since ARM moved thread_info into task_struct, that
+> expression points past the end of the task_struct instead.
+>
+> This breaks FPA instruction emulation, as the user registers are
+> never read or written and causes out-of-bounds reads and writes of
+> kernel memory beyond the task_struct. Any unprivileged process can
+> trigger this.
 
-Have CPU_ON sync the caller's PC, PSTATE, VBAR_EL1 and SCTLR_EL1 before
-reading its endianness, through a helper factored out of
-inject_sync64(), so that both handlers sync the same state.
+Thanks a lot for chasing this down!
 
-Fixes: 9d4ec80be2eb4 ("KVM: arm64: Handle PSCI calls for protected VMs at EL2")
-Suggested-by: Marc Zyngier <maz@kernel.org>
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
+As I understand it, this means that nobody has seriously used or
+tested OABI since 5.16. I last tested it myself in 5.14 when
+working on 4e57a4ddf6b0 ("ARM: 9107/1: syscall: always store
+thread_info->abi_syscall"), but it was quite hard to properly
+test it at the time, even getting an old Debian rootfs to work
+with a modern kernel and qemu was nontrivial.
 
-Notes:
-    Changes in v2:
-    - Factor inject_sync64()'s sync into a helper and call it from CPU_ON,
-      as Marc suggested. Named pkvm_sync_vcpu_ctrl_state() rather than
-      ..._before_exception(), since CPU_ON injects no exception.
-    - Subject and message reworded to match.
-    
-    v1: https://lore.kernel.org/r/20261111082746.1064567-1-fuad.tabba@linux.dev
+> Fix by using task_pt_regs(current), which finds the registers on the
+> stack.
+>
+> The bug was found with assistance from Claude Code (Anthropic), model
+> Claude Opus 5.5 (claude-opus-5-5).
+>
+> Fixes: 18ed1c01a7dd ("ARM: smp: Enable THREAD_INFO_IN_TASK")
+> Fixes: 9c46929e7989 ("ARM: implement THREAD_INFO_IN_TASK for
+> uniprocessor systems")
+> Cc: stable@vger.kernel.org # 5.16+
+> Signed-off-by: Patrick Lister <patrick.lister.dev@gmail.com>
 
- arch/arm64/kvm/hyp/include/nvhe/pkvm.h |  1 +
- arch/arm64/kvm/hyp/nvhe/pkvm.c         |  2 ++
- arch/arm64/kvm/hyp/nvhe/sys_regs.c     | 16 ++++++++++------
- 3 files changed, 13 insertions(+), 6 deletions(-)
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
 
-diff --git a/arch/arm64/kvm/hyp/include/nvhe/pkvm.h b/arch/arm64/kvm/hyp/include/nvhe/pkvm.h
-index 0261b2bc681f7..5c68c9184bda6 100644
---- a/arch/arm64/kvm/hyp/include/nvhe/pkvm.h
-+++ b/arch/arm64/kvm/hyp/include/nvhe/pkvm.h
-@@ -133,6 +133,7 @@ bool kvm_handle_pvm_restricted(struct kvm_vcpu *vcpu, u64 *exit_code);
- void kvm_init_pvm_id_regs(struct kvm_vcpu *vcpu);
- void kvm_reset_pvm_sys_regs(struct kvm_vcpu *vcpu);
- int kvm_check_pvm_sysreg_table(void);
-+void pkvm_sync_vcpu_ctrl_state(struct kvm_vcpu *vcpu);
- 
- int pkvm_reset_vcpu(struct pkvm_hyp_vcpu *hyp_vcpu);
- struct pkvm_hyp_vcpu *pkvm_mpidr_to_hyp_vcpu(struct pkvm_hyp_vm *vm, unsigned long mpidr);
-diff --git a/arch/arm64/kvm/hyp/nvhe/pkvm.c b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-index fc0475f0877d1..eedc1dd81ee56 100644
---- a/arch/arm64/kvm/hyp/nvhe/pkvm.c
-+++ b/arch/arm64/kvm/hyp/nvhe/pkvm.c
-@@ -1321,6 +1321,8 @@ static bool pvm_psci_vcpu_on(struct pkvm_hyp_vcpu *hyp_vcpu)
- 		goto error;
- 	}
- 
-+	pkvm_sync_vcpu_ctrl_state(&hyp_vcpu->vcpu);
-+
- 	reset_state = &target->vcpu.arch.reset_state;
- 	WRITE_ONCE(reset_state->pc, smccc_get_arg2(&hyp_vcpu->vcpu));
- 	WRITE_ONCE(reset_state->r0, smccc_get_arg3(&hyp_vcpu->vcpu));
-diff --git a/arch/arm64/kvm/hyp/nvhe/sys_regs.c b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-index 32e82653ebf7e..be785eec2ec96 100644
---- a/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-+++ b/arch/arm64/kvm/hyp/nvhe/sys_regs.c
-@@ -254,17 +254,21 @@ static u64 pvm_calc_id_reg(const struct kvm_vcpu *vcpu, u32 id)
- 	}
- }
- 
--static void inject_sync64(struct kvm_vcpu *vcpu, u64 esr)
-+/*
-+ * pKVM handles some exits at EL2 before it saves the guest's EL1 state, so
-+ * sync the copies that exception injection and PSCI CPU_ON read.
-+ */
-+void pkvm_sync_vcpu_ctrl_state(struct kvm_vcpu *vcpu)
- {
- 	*vcpu_pc(vcpu) = read_sysreg_el2(SYS_ELR);
- 	*vcpu_cpsr(vcpu) = read_sysreg_el2(SYS_SPSR);
--
--	/*
--	 * Sync VBAR_EL1 and SCTLR_EL1, both read by enter_exception64(),
--	 * as pKVM handles traps before sysregs are resync'ed.
--	 */
- 	__vcpu_assign_sys_reg(vcpu, VBAR_EL1, read_sysreg_el1(SYS_VBAR));
- 	__vcpu_assign_sys_reg(vcpu, SCTLR_EL1, read_sysreg_el1(SYS_SCTLR));
-+}
-+
-+static void inject_sync64(struct kvm_vcpu *vcpu, u64 esr)
-+{
-+	pkvm_sync_vcpu_ctrl_state(vcpu);
- 
- 	kvm_pend_exception(vcpu, EXCEPT_AA64_EL1_SYNC);
- 
+The patch looks fine, and it's clearly harmless to merge as there
+are no users, so please add it to the patch tracker according to
+the instructions at https://www.arm.linux.org.uk/developer/patches/info.php
 
-base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
--- 
-2.47.3
+Hopefully this way we can have OABI/NWFPE in a working state for the
+LTS backports when we remove it in the near future, in case
+anyone ever wants to play with it later.
 
+I've added the maintainers for the Arm ports in gcc, qemu and binutils
+to Cc here, I believe all of these still have some level of OABI
+support that they kept just because Linux still handles it, but
+that can then also be removed.
+
+      Arnd
 
