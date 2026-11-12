@@ -2,68 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903D8606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF04606A882
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=21zYrlHi;
-	dkim=pass (2048-bit key) header.d=tipi-net.de header.i=@tipi-net.de header.a=rsa-sha256 header.s=dkim header.b=ZrNPvQFC
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1AFAiWZm;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=Xic6RRQk
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Message-ID:References:In-Reply-To:Subject:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=yEC/vZNOKTkAFWLkMBKlCC1dHTq3fXauXlYSOK1PQyw=; b=21zYrlHi7KWEOP
-	YR2bOnKcvyMSC8N+TpxZi85orBJOlLiHJWbUtMP3BtwzaS1JlWLfZ8Lrt13/4lfvcy5Cb/YI0E6Yj
-	kEAw9nE8FocIf8jdZWfXJpohzFmtKGfMlRUK1DiQSlRqFswVSinqJm72V3XFJwyVNbuO8xl0/vEWu
-	gpCcg95LojT/5qYP8/U3gb/vSDRnJMyBvNXb0ZzP0jc5Ac3kuIhJfhAJTb+AMQVzQyKLsPyCx5Dxu
-	r/qTz+luzCI2XwX9iA8jWvQBWKrhY41zPTZb0E5nwpX2S0y/o3Q/h7qY4GUHQ+rajCNkuC98NXY1+
-	e+h1qIX3N1IysxHY2Otw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=z6JTZh8vNDGRD9x0jZi5MafAeLnjKMbQyD95TlqG/OM=; b=1AFAiWZmLANtkqXcNzW5V7J4oi
+	2iMAAbQ7hI9yAQ4uSjnjEhw/sbtCg80gnuFg1Gg3eTA4HdIysXmkqZ7C/yHdp+xuDsMaoYKlOyR+q
+	3l3DGLbuQHWYqV2M1YoltvYnNHy+p7MK86UHfLSFi4T+2on9MOWrvtJb0cTojHmyqnJgqYZD9fuhs
+	Q1/AWxaQhTQx9z6OV42meFKu+BK/OhBRQhHnSEf0WrBLr04BTql1F/fswudC6wmm9+FKPZt6IfZfH
+	xFRHYc3eiLNIKxYKzPxQpkJIUD2dGFcOQC8Gd/NafapxjehxjkXjRRuOqYa/MY84VbetvKkzoyO26
+	IpeIV2hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRRXC-00000009R8I-0dyz;
-	Thu, 12 Nov 2026 09:55:58 +0000
-Received: from mail.tipi-net.de ([194.13.80.246])
+	id 1xRRY2-00000009RHt-0ABh;
+	Thu, 12 Nov 2026 09:56:50 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRRX8-00000009R7t-0cBY
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 09:55:55 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC880A166C;
-	Thu, 12 Nov 2026 10:55:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tipi-net.de; s=dkim;
-	t=1794477351; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=yEC/vZNOKTkAFWLkMBKlCC1dHTq3fXauXlYSOK1PQyw=;
-	b=ZrNPvQFCjsKZS7uA10pKE5Ip5QJMXl7RtmjRFs5ZpJwi4sQNluDjt2qSC7fH+oUYwvcC9t
-	cqo3Ws0M/ab44x9I7FmHdrzIG6HsXHXWY6nQwOd/kKqZvLWO+yMCabcflpxOXgz0gP3NPu
-	7QdvnVxkgVAbBVUUAxBh5GDCi0+AbkI7alCvyXUKLmOMccEyvtGbf2y1m8H/9oER8+3X3q
-	gkTUN+1qv0cnZvoWOtZtBqx0m/i9Mkb46zs9vmFOuL6nC/VdOgY9vR8TxKEaeIWqyZysyU
-	Wfqwdt14wRUuwQlAjbdeOWgJ693cGtodKUTQlnB6YJeTO3GbMH5DpZMVcQSO9g==
+	id 1xRRXr-00000009RDs-1nHL;
+	Thu, 12 Nov 2026 09:56:45 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=z6JTZh8vNDGRD9x0jZi5MafAeLnjKMbQyD95TlqG/OM=; b=Xic6RRQkqxB4/7hx0qfNs4vPAH
+	6jnUKY/DtcS/rcmP+Jzd58MEZw/xE2ekU9owR/e2/PLQxcceHWCLf+UGK5uA0mtExyxxy3DIPjSOw
+	YPrePb+ZSdV2E8o+LGOnvRB/DTJU7cT2q58WZeKj4bTgDkCxS4d+1UVLGKKwGeeE7sE5Hg1Tm1J/7
+	uxKwRBcuovEWZK5ny7FaX1SqEeLFaMVk3O4ADPVh8Lwt/TiOMwnLiB+X8VB1hqFiZ+I13/Ahz5iGv
+	uTgJONfjj/MeC49xcJWWa6B83ezlAW5JgiA0I8htiX85JVt4TeNVfl5pUsQtE2wO7gyzTaoo+gjsP
+	C/EoR3Cw==;
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, aiyengar1990@gmail.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Arun Iyengar <aiyengar1990@gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Mark the Orange Pi 5/5B Type-C port
+ self-powered
+Date: Thu, 12 Nov 2026 10:56:32 +0100
+Message-ID: <lAAxUnzGTXWSlQTm8PmFcg@sntech.de>
+In-Reply-To: <20261112-opi5-typec-self-powered-v2-1-751906d65b70@gmail.com>
+References: <20261112-opi5-typec-self-powered-v2-1-751906d65b70@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 12 Nov 2026 10:55:49 +0100
-From: Nicolai Buchwitz <nb@tipi-net.de>
-To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre
- Torgue <alexandre.torgue@foss.st.com>, Richard Cochran
- <richardcochran@gmail.com>, Jose Abreu <Jose.Abreu@synopsys.com>,
- netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net] net: stmmac: re-base EST after PTP settime64
-In-Reply-To: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
-References: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
-Message-ID: <6fcb41af4802e0d5b9d759b5e2d3ecd6@tipi-net.de>
-X-Sender: nb@tipi-net.de
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_015554_647974_0E91A3D3 
-X-CRM114-Status: UNSURE (   5.34  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261112_015639_560887_9D19A39C 
+X-CRM114-Status: GOOD (  13.74  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -82,24 +74,37 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo
+Am Donnerstag, 12. November 2026, 09:25:10 Mitteleurop=C3=A4ische Normalzei=
+t schrieb Arun Iyengar via B4 Relay:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+>=20
+> The board is powered from its separate power-only USB-C input. The
+> FUSB302 port's VBUS comes from vcc5v0_sys through a load switch, so the
+> board never runs from this port's VBUS.
+>=20
+> Without self-powered, tcpm keeps Rp on CC during PORT_RESET (error
+> recovery), because opening CC on a port-powered device would remove its
+> own supply. With self-powered, the port opens CC for tErrorRecovery
+> whenever it resets, including at boot. A partner left in a stale state
+> by a warm reboot then sees a real detach.
+>=20
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+> This was patch 3 of the series "usb: typec: Find a Type-C partner
+> after a warm reboot on the Orange Pi 5"; it is split out of v2 of that
+> series so that it goes through the Rockchip tree. It does not depend on
+> that series to build, but without its tcpm patch ("usb: typec: tcpm:
+> Don't cut a pending state delay short on a re-queue" [1]) the open-CC
+> period at boot is cut short.
 
-On 11.11.2026 10:54, Lorenzo Bianconi wrote:
-> stmmac_set_time() initializes the PTP clock through
-> stmmac_init_systime() (TSINIT) while holding only ptp_lock.  It neither
-> takes est_lock nor disables and re-bases EST around the step, unlike
-> stmmac_adjust_time(), which performs TSUPDT through
-> stmmac_adjust_systime() under est_lock.
+As you describe this as fixing a stale state accross reboots, does
+applying this before the tcpm patch degrade current functionality of
+the device?
 
-adjust_time() drops est_lock around the step, so this isn't quite right.
-Same for "as stmmac_adjust_time() does" below. Please reword this if 
-there
-is a v2.
 
-> [...]
+Thanks
+Heiko
 
-Reviewed-by: Nicolai Buchwitz <nb@tipi-net.de>
 
-Thanks,
-Nicolai
+
 
