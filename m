@@ -2,104 +2,125 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C72B606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02F27606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rvfFqj39;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qqlp4DLQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hPVZ3yu6;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=YocVrJGg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pRpWiPIA4DrUOnjtuQAu5NcMUWFxkdWpzhrlxObt3ug=; b=rvfFqj39ddJdnfJdIbxdBiBjiA
-	p239yEh7fvFI70dGZMEGDF9R7ZwnI7EMLUQDk5HmQq9GgAD+LGtQiLIqz9gQYsSU6Yhm5rzjWsiXO
-	mztRZKynqrzZ8U+ADGUbh9s+w24+CO4zdWHVmNlV7iVRykUm5zudl72m4eotZwl4BpHWFPGBMypcD
-	L6YNKdDb9POzILy4vUq+kgtnGAF4ONQhxKlZfxxmdpbAiFdf5DWdAhdXtwKpeA181Q67F5Sd4O9zg
-	D89o9nAlcZbm1kKO5neKNmOS+ViXGaMUL/pPFK3kA/5ldT2TSAjZHesV8xR52GWara0sGy8+f679r
-	jvr6AS2Q==;
+	bh=v6np08FptyurW/megBjlbM8MYiZL+rC2ypAnZD842Wo=; b=hPVZ3yu6UeiKXoChEIFkuFij6t
+	Usr0SBshrg8YN3hnQiIKKT5jtDlVaZpenilW5AXwgEUmBVQ9ObUiO8XzeO9mFxNXVKiwWo2MocKPT
+	nQbXUXAaThRHcE4Z3OH/Krl6nIiaxo/Px0zZu85d5/Y+hDrTq87LqG9lfHjDjtFIJZ8aLnEhEfG95
+	4oUsIU1W+pfIW7Rk1tz77/p5Vc24mu3n+Vt6tv0rUD38oQiMAZXAjvSiVBTtXsvggagT1l3iy/exY
+	RZOCOxUQrkYMSxbW3RQyrZQDOm2Z0EKG7lxXXfu6fLcX7hzfFG0By+M2l2eIo81iafHcM+UMIijGV
+	ul7TTuPw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXfE-0000000Aacv-1kDA;
-	Thu, 12 Nov 2026 16:28:40 +0000
-Received: from mgamail.intel.com ([192.198.163.16])
+	id 1xRXhw-0000000AavO-35Jp;
+	Thu, 12 Nov 2026 16:31:31 +0000
+Received: from mail-northcentralusazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c105::7] helo=CH4PR04CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXfB-0000000AacV-330f
+	id 1xRXht-0000000Aauc-3wi6
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:28:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1794500918; x=1826036918;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sslNQ9t4xM278pmgtdvt48t5+fW2uzyCfGO3Z4539zQ=;
-  b=Qqlp4DLQVlapsQ1N4Az79SimbuizhLR43Lpct95Mx0xggqv/8FYaQc8m
-   95SOXLwXcxYt1sf7wNbl9Ml0h6bbuMj/r61aws2vG1gOK3H2LnAA7ZMUl
-   ahDg/EBwkJNzklI8Ll2ruFvPBQ9HMJgaZ34mnUMzCDubXJOmuFjqp/Xnd
-   1n4fBas5PlCMazX8aPD0VAplEZklu0ey1XIBP0aEx6vrOYmj+91Oj0/Q5
-   7l72h3R2BirqZTRbH7FET1EMM96Tgkwapv2rOKHj6nBr4Gm0EUnaSR0mK
-   /HuYzeOdoc2YQY0Xzz1GYhkkFbLb7L6M0VNm7yJCeb/YZi+E3KLhG7Gr3
-   w==;
-X-CSE-ConnectionGUID: mLOTWxxvShmAxcEJpJFtJw==
-X-CSE-MsgGUID: 06KnYf4bQoqPUEY9nPzrfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3328543"
-X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
-   d="scan'208";a="3328543"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:28:37 -0800
-X-CSE-ConnectionGUID: QwynKHKvQhyg7yRdcyHipg==
-X-CSE-MsgGUID: wXpMW8M6QPu66Rlr12+fkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
-   d="scan'208";a="8613701"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.6])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:28:30 -0800
-Date: Thu, 12 Nov 2026 18:28:27 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Raul E Rangel <rrangel@chromium.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Tony Lindgren <tony@atomide.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Richard Genoud <richard.genoud@bootlin.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Jacky Huang <ychuang3@nuvoton.com>,
-	Shan-Chun Hung <schung@nuvoton.com>,
-	Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"Maciej W. Rozycki" <macro@orcam.me.uk>,
-	Timur Tabi <timur@kernel.org>,
-	Peter Ujfalusi <peter.ujfalusi@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Patrice Chotard <patrice.chotard@foss.st.com>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH v12 8/8] serial: 8250: retain DMA resources when
- termination fails
-Message-ID: <avXpK70Fh7kkJGOg@ashevche-desk.local>
-References: <20261111-submit-serial-8250-dma-cancel-v1-v12-0-9e3456bc2555@gmail.com>
- <20261111-submit-serial-8250-dma-cancel-v1-v12-8-9e3456bc2555@gmail.com>
+	Thu, 12 Nov 2026 16:31:27 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kJ2mT3Ia+PycOQUPSgmv5x4fVlMNmj5++70yBd0l/mmEfk7T94LtYB/kKn8AywsBf9aUt/4/MI8ppLeo6IvSWq4+PARZCWzklnUZ9JSJu3Av/0SZ/amwgqlU3yS4EBDA/XKuscJhln+e4Ojheu0/TzSmARANf30wdOoZ5SthGP/3xKN3aeZbh3bYYAXgIwBnNZofmKni8/A4JZYnIQ9eTguCntLhM77K+0P8MAskCmKAg91F53XusEgel5ooEYEi5iM+EnnYw8977TT9eDN6IdTHT1I5XTGEeG4gMN50UsKT+B9uxh4MBnmxo1t6S3WC5fBYShSkhkSMVI4ReSP4WA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v6np08FptyurW/megBjlbM8MYiZL+rC2ypAnZD842Wo=;
+ b=gsKL7Rtbv87VIhhexwf/EAmsxuqvdk84WGwrVqj58zIoJexebf5xIOB61ob0yri4Bhig2vJnwWd7IfZ7IBRhu7TUayc9ROeg1V5d3mYD2GTC5yh+Sm1IZDrKMEzTjmEv0ynSGBr0khXxnafMLUEb01KdCWjEqxHFNLBLzfn+IvUWTl9hDfpSflh74cYMpDtZ0cnHt76QCE/rkD6vvBEezehl5DmRE7lUkbEMMTIbSRSIOhKAa3qF9Ts5uc8lBrYLfujL3Zv7Y6iu6xz/jG7mbAm+20nLwTH6M7IjMaZxJkShb0/boQvtqXksoBr2lg55eQgy0g7U8dXgdwIXDA5ouw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v6np08FptyurW/megBjlbM8MYiZL+rC2ypAnZD842Wo=;
+ b=YocVrJGgDeEj8VnDOkIB3yX4hpG4jJqtXaU4iS9pZvM+4QqeVAgGbHt6i5zkqxB/DjUzb+4zQpFUY/Vs3rRaAQIt3Fjks1ppunsYSpS8hOT311f336UCLRU9XAHYIwEMHHgipCfmVZqLYgRyjARaQwQ3zK3qMvWjp+sCIoTegYEfeqPzLp4Fpsg3JnBdIXlZ8unKXppE5oig58cK9Ts4QoPWiV3CwiXghEb3MgTIP8lCct4NUWFz4A9i7wiKVPPzAjJOosq14E2cxDMdp5rxpDOzEfIYHQK/JDESWozeYQyDxJBtrPWejIXX+3P4V6vF9h5tncLG5NiuB9ABxDwE/A==
+Received: from CY5PR19CA0031.namprd19.prod.outlook.com (2603:10b6:930:1a::23)
+ by DM6PR12MB4450.namprd12.prod.outlook.com (2603:10b6:5:28e::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
+ 2026 16:31:15 +0000
+Received: from DS1PEPF0005344F.namprd04.prod.outlook.com
+ (2603:10b6:930:1a:cafe::9e) by CY5PR19CA0031.outlook.office365.com
+ (2603:10b6:930:1a::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Thu, 12
+ Nov 2026 16:31:15 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 216.228.117.160) smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DS1PEPF0005344F.mail.protection.outlook.com (10.167.23.231) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 16:31:15 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 12 Nov
+ 2026 08:30:48 -0800
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Thu, 12 Nov
+ 2026 08:30:48 -0800
+Received: from dgx-1v-42.nvidia.com (10.127.8.11) by mail.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56 via Frontend
+ Transport; Thu, 12 Nov 2026 08:30:48 -0800
+From: Jamie Nguyen <jamien@nvidia.com>
+To: Sudeep Holla <sudeep.holla@kernel.org>
+CC: Jamie Nguyen <jamien@nvidia.com>, <linux-acpi@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Lorenzo Pieralisi
+	<lpieralisi@kernel.org>, Hanjun Guo <guohanjun@huawei.com>, Catalin Marinas
+	<catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Dat Mach
+	<dmach@nvidia.com>
+Subject: Re: [PATCH v2 3/3] firmware: arm_ffa: Share FF-A version negotiation
+Date: Thu, 12 Nov 2026 08:30:47 -0800
+Message-ID: <20261112163047.575186-1-jamien@nvidia.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261112-acpi_ffh_ffa-v2-3-575a9dbed22b@kernel.org>
+References: <20261112-acpi_ffh_ffa-v2-0-575a9dbed22b@kernel.org> <20261112-acpi_ffh_ffa-v2-3-575a9dbed22b@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261111-submit-serial-8250-dma-cancel-v1-v12-8-9e3456bc2555@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF0005344F:EE_|DM6PR12MB4450:EE_
+X-MS-Office365-Filtering-Correlation-Id: eed84d51-f8e5-4597-0a0b-08df40da5f41
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|36860700016|23010399003|82310400026|4143699003|10067099003|5023799004|11063799006|56012099006|261026121527099003|261022075727099003|261021121427099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: Xl1kIfU9JsQdjTPowT2jTuvXeNzIkdAo4hVJ211GrzsLY1W/IcreCigfJ+WhDFGKJEvvtjwFMJLKtU8O4oCQ6mWWrpMVyxBpmtfOv4+fD9tAJFpKVR05vV1ofP7f2WqFvnDgprUQJdtuA1hh/S8OrfP+eVqPVFUuBuLz+GE9kX5rPdb4nHXmtScd8WMVTf30eiIqelkcShJsfkxSse2TS492nkJynigGuUXSEUwx65ZUsynw285tOuMFkK92LlLAMz3WKhMlz4P4eYUa0ydBvs5EGPHzSrhsPJNne+vlCy/RSdfMCNoLGDxDB+4IKSpgMS37AtFuTZ9Cno1rfymS8d+BsdnrQ2NP7oCpoQl2vLciMSRZ/WfmUcgMTcn5BDn3tOtOVPS7EN3786vVESicCJ0ohAK2d09auIRa5kMbHWw+vCC5GdxgOwuZICPv7WvfbfEWEqMPLMGJY5me1o19jaj1W9D7m+UatKKwS0Bbx0ZN4IJvBUIdJ9xR5I5SoeId7w9i9N0upWA8zXEgTfEgdGz8Y9i0otMWYA/pve8qdhiXIVLgkIV+7EVoMK5m3GSlHicGVa5hYt2dy5SYISIVj6fY+OATYaZL99AK/vTvLPq4du7ZjtLl6TxjyJfiZEKK2x6lvInNEszX+bqC6FxuTtxbyLVFS47o5LTo4NZgyWqBeGKCnzmfA1A1VSbJve9Twm2PBrFQYqQcnlc4a6qxLw==
+X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700016)(23010399003)(82310400026)(4143699003)(10067099003)(5023799004)(11063799006)(56012099006)(261026121527099003)(261022075727099003)(261021121427099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: w5NlOL5coEJdNi4VzDRe78zkkeX6PtgRyPD99TxnZKc3yAgAM1w9S8zFyL/rLjajPncgE0QZHmtzA2pnXZmOoLnYddnp/AVM9iiGkMX1ps5FXCDl0ZBOaQyHcjbJ46UwNB0tfGc1f8jrRbVldWXRWnKgW3h2twW9j91wxHUaYyd3yutnYPw13uK+D6gZQ2rBRJ9zbuWvZOtiyRLJHerihDvAnha6NstiYk9bUhN6eWE2uFXNC6BnQ43lBn9Y2kFI6yFsz5maFJAs8opQEaaJTWDT3Xe9JDvPMdNpsVkYn1e+9jH12Nsj5W4of5c+bHXoQS1T0aOGoy44D1Ryy0mN+p25jeyL0P4x+/DV5lznesaGHP/wPTJ9xeuZSg97MBxy5PByJnml72XUNS+wqpd/UgEmzD1PDdXn9ylSiNB+t6bzi2MHzLj9ctzf1UZ3LBYZ
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 16:31:15.3796
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eed84d51-f8e5-4597-0a0b-08df40da5f41
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0005344F.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4450
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_082837_911729_B134C0C5 
-X-CRM114-Status: GOOD (  22.92  )
-X-Spam-Score: -4.2 (----)
+X-CRM114-CacheID: sfid-20261112_083126_019839_F81A333E 
+X-CRM114-Status: UNSURE (   8.16  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,100 +131,32 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 03:16:33PM -0700, James Hilliard wrote:
-> serial8250_release_dma() ignores the return from dmaengine_terminate_sync()
-> before freeing the coherent RX buffer, unmapping the TX FIFO and releasing
-> the channels. If the provider fails to stop a channel, the DMAengine
-> wrapper returns the error without synchronizing its callbacks. Hardware
-> or a detached callback can then access the released storage and state.
-> 
-> Checking the error and returning early would not preserve their lifetime:
-> serial core frees the TX FIFO after the driver's shutdown callback returns,
-> and port removal can then release the callback context as well.
-> 
-> Require successful synchronous termination of both channels before
-> releasing any DMA resources. Retry failed channels after a sleep outside
-> the port lock, leaving channels that have already stopped and drained
-> alone. Keep the shutdown gate and storage reservation in place throughout
-> the retries.
-> 
-> Start retries with a 1 ms sleep and double it up to one second. This
-> makes short-lived failures responsive while bounding sustained retry
-> activity; neither delay is a hardware timeout. Report the initial failure
-> and ongoing failures with the elapsed time and current RX/TX error codes.
-> Track the five-second progress-report interval separately for each
-> teardown, so failures on different ports are reported independently.
-> Report recovery once both channels have stopped and drained.
-> 
-> A permanently failed DMA engine blocks close or removal. This deliberately
-> retains the buffers, mappings, channels and callback context until the
-> provider can establish that they are no longer in use.
+On Thu, Nov 12, 2026 at 11:14:08AM +0000, Sudeep Holla wrote:
+[...]
+> +	guard(mutex)(&ffa_version_lock);
+> +	if (!ffa_version) {
+> +		invoke(&args, &res);
 
-...
+Can this scenario happen?
 
-> +static void serial8250_terminate_dma(struct uart_8250_port *p)
-> +{
-> +	struct uart_8250_dma *dma = p->dma;
-> +	unsigned int delay_us = 1 * USEC_PER_MSEC;
-> +	ktime_t start, last_report;
-> +	int rx_ret, tx_ret;
+1) pKVM is enabled but not yet initialised, and offset-2 AML runs
+   (e.g. during the initial ACPI scan), so ffh.c gets here first and
+   negotiates directly with EL3.
+2) The result is cached.
+3) Once pKVM is up, ffa_version_check() gets the cached version and
+   never sends FFA_VERSION through the proxy.
 
-> +	rx_ret = dmaengine_terminate_sync(dma->rxchan);
-> +	tx_ret = dmaengine_terminate_sync(dma->txchan);
-> +	if (!rx_ret && !tx_ret)
-> +		return;
+If so, then I think kvm_host_ffa_handler() would reject the transport's
+calls, since has_version_negotiated is never set.
 
-Why not check these already in the loop? See below.
-
-> +	start = ktime_get();
-> +	last_report = start;
-> +	dev_err(p->port.dev,
-> +		"DMA termination failed: RX %d, TX %d; teardown blocked\n",
-> +		rx_ret, tx_ret);
-> +
-> +	/*
-> +	 * Shutdown cannot return while DMA owns storage or callback state:
-> +	 * serial core frees the TX FIFO afterwards, and removal frees the port.
-> +	 * Retain both channels and retry outside the port lock. A permanently
-> +	 * failed DMA engine therefore prevents teardown from completing.
-> +	 */
-> +	while (rx_ret || tx_ret) {
-
-I believe with refactoring this to do {} while () we may deduplicate
-the dmaengine_terminate_sync() calls.
-
-> +		fsleep(delay_us);
-> +		/* Retry promptly at first, then limit sustained retry activity. */
-> +		delay_us = min(delay_us * 2, 1 * USEC_PER_SEC);
-> +		if (rx_ret)
-> +			rx_ret = dmaengine_terminate_sync(dma->rxchan);
-> +		if (tx_ret)
-> +			tx_ret = dmaengine_terminate_sync(dma->txchan);
-> +		if (rx_ret || tx_ret) {
-> +			ktime_t now = ktime_get();
-> +
-> +			if (ktime_ms_delta(now, last_report) < 5 * MSEC_PER_SEC)
-> +				continue;
-> +			dev_err(p->port.dev,
-> +				"DMA termination still failing after %lld ms: RX %d, TX %d\n",
-> +				ktime_ms_delta(now, start), rx_ret, tx_ret);
-> +			last_report = now;
-> +		}
-> +	}
-> +	dev_info(p->port.dev, "DMA termination recovered after %lld ms\n",
-> +		 ktime_ms_delta(ktime_get(), start));
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Should we decline here instead, without caching, while
+is_protected_kvm_enabled() && !is_pkvm_initialized(), like ffa_probe()
+already does?
 
