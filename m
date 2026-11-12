@@ -2,94 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EB77606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A5A606B4A4
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:50:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YsVuVKKj;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=BBrT4jRJ;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.a=rsa-sha256 header.s=dkim header.b=EgCk1Kws
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qBYMgnkd;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KoW0zKqn
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=5Bj236QKlbOmZUne8+61KK72I2ecq4E/arsotSfNs+I=; b=YsVuVKKj2JfVxlgLUG20IUijho
-	dQ6PS4Qe25uV+kOidSqlRveU7UllpcqF/iIbkZcXaCylXEzeo9D03oYExaQBS5FXPVlXKYlE8C+N/
-	A8nk+fX2AUwPxj9ecw/Ber/vmK/tOjNxdUrUmKg49b7qHz/TeGeVxsXFGHGPF7/NoyOdMpZyca9VP
-	0vHfVdwM1BCXFaKcbco6w70Uz/J87cCUyeXZGqiYMfER6EAMnCtUPJnNq8N/LrFc58s6GEXS3QyFR
-	+E0KvzuHUWudp+FfQixWyQZ8l3HNt2kXHMgsvdK2HRWqcTYuN7PnP6BDL/FIgeaxmMoThgDJFGGBA
-	AHKKOBfQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=vVhsLL1Pu2n4j4YLMUMbDZ8LRYF6+iKldnx7jPCdxAo=; b=qBYMgnkd1X+yXW
+	UIsLB3WGqrgJLmA3Gs7Y+HulImWWclx8hMi1ER8N6bjvYpN/LskqjX4lvLMbi2J7MXV9mQ/YxQXCC
+	T3fJxrVMdFEk29g4QoTUYUtY3MAfxF6ywaD6Zx7kPrsMERT6mG0mo6NbeOLaU2szUN7aV97IRoe4M
+	bD1Eh9e7oC+hVMIu5fmXV0+LgVziArnE77u0gPDUCbPYefEV8+fyTxudyQENP8PLPeNnQ66FzNc2z
+	UKPtT1t7sxcCx3sXopLX7qCW2DEylhSI3fmaiy3H+3FauwAcuqsvw0AE8X7xEg2zsBqN1CFNic+sC
+	K+2QAVeENIflXhWYfZ+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNKU-00000008kBF-4BiG;
-	Thu, 12 Nov 2026 05:26:35 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xROdN-00000008qne-3niZ;
+	Thu, 12 Nov 2026 06:50:09 +0000
+Received: from mail-dy1-x1335.google.com ([2607:f8b0:4864:20::1335])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNKO-00000008k6r-3opY;
-	Thu, 12 Nov 2026 05:26:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
-	Content-Description:In-Reply-To:References;
-	bh=5Bj236QKlbOmZUne8+61KK72I2ecq4E/arsotSfNs+I=; b=BBrT4jRJW2U5UpE1/urT6aI8Ov
-	Pu4549WID6wQN8cMovDNAjD6Uc+6JOmg+EMiDWoK7GWSSdWZrxSkx1aDc/zrb3jp3g0pFSFQZ78T1
-	vEYqYOg167UjqOyEfEc0lx3c4JAs6sRIcNp2XX9AXsZ3Q1L8YrnTVrLyDTb8iQdpe3seYnm/l9EDV
-	DnMRv5olNEqRDt3qh06bZTAa6xjxy2B9CMTlAfzhX/tkrFcAmWavawLz15hPYMWqu06WSZo3SKSkG
-	qG5lccs+OFxvS5ibb8NxQTo6qv8Gw7oKj9Y4ZmCeWuqa0ZoYlWXrIaxEDAQrYQQ7S6O5tDAL8ZazR
-	xGs4nOxQ==;
-Received: from rtits2.realtek.com ([211.75.126.72] helo=rtits2.realtek.com.tw)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNKH-00000009vM5-2XgY;
-	Thu, 12 Nov 2026 05:26:26 +0000
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6AC5PjSO23459325, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1794461145; bh=5Bj236QKlbOmZUne8+61KK72I2ecq4E/arsotSfNs+I=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:Content-Type;
-	b=EgCk1KwsTO4MUsW0rNwSIqUbyIbUO/q6hDKcPSNxfHnIirHhF133fIHDjf0rvJhHw
-	 rkt+kS+DZaYRggQ4QwDwk+iXnENjaAlCkYupd+cydDg4pVW2UDR1nlHRz+td49oH0N
-	 hDvZRVpDlYeFndLnS+RuzgCYahbWVzDcuwIFufvGSoVibhg8fOkoMGlyrjWmsYArq0
-	 baPKeK+TfHRxkJKZJbsxunyntMExpntjY/5bhWsMXEQgVrpfWYctL1cAOlYTp95QdY
-	 VlbrhezLqgEf1DkzcdrixeqktK1hdTPf5mtYnVIfbXJ2IuEK9TpiJ7Wx2E0ERGH12h
-	 FLjGFT+0j0pGw==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 6AC5PjSO23459325
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 12 Nov 2026 13:25:45 +0800
-Received: from RTKEXHMBS05.realtek.com.tw (10.21.1.55) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 12 Nov 2026 13:25:45 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS05.realtek.com.tw (10.21.1.55) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 12 Nov 2026 13:25:44 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
- (10.21.1.56) with Microsoft SMTP Server id 15.2.2562.56 via Frontend
- Transport; Thu, 12 Nov 2026 13:25:44 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
-	<cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-	<eleanor.lin@realtek.com>
-Subject: [PATCH v16 0/9] clk: realtek: Add RTD1625 clock support
-Date: Thu, 12 Nov 2026 13:25:35 +0800
-Message-ID: <20261112052544.555563-1-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
+	id 1xROdK-00000008qm0-3IQc
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 06:50:09 +0000
+Received: by mail-dy1-x1335.google.com with SMTP id 5a478bee46e88-36a315ed211so586393eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 22:50:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794466206; x=1795071006; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=vVhsLL1Pu2n4j4YLMUMbDZ8LRYF6+iKldnx7jPCdxAo=;
+        b=KoW0zKqn5VVBArwomk4fU9FWw33LUf4v/BzT/2HuB3mJHc8ktCFH282qrpOj/1QNeU
+         t7sBuX+Shx6OSS/9aYhDmMEGQNTJ9Y6Fnj48lzSfdDMiz8UXXWDdy56yQkqEO30QlAeL
+         xOBW1tAJl5iI4qlHaK+OZMlO7+vSBczMBbDVGSnqL1XDcBJ4+xzuT1Ou/4FAFsiper5l
+         nAKk4EXlurBIxz0gg5DHj32rvLrry1tncySgQq8ju1Siho1AGlZbug4HTAaQNJpbzW1O
+         XEKgANYKM3F/tZm84rN5hSqCe1N7w0/Xc4iwm03cALMBVna+nH5KPGq9X+qxdXBVPfRd
+         rQWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794466206; x=1795071006;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=vVhsLL1Pu2n4j4YLMUMbDZ8LRYF6+iKldnx7jPCdxAo=;
+        b=Jr9Z9hV3/LgF2lRk7w9rQOV9Zt0AsTeiGwp8Uhw7JYlsokJN6N0ThEmRy7XaugVnlu
+         5xOtlgcWQrTJ36vuYp14uuVOFGL+tv88pnrwlwg6AAtLWSp3/G+jzdiasu23AsnrbzSV
+         f461omxm0sD6mmKq2ptKDTs8VDOe2SdJhP2BRgcXJm1TM2JXBZLoiWwJVxmNHZM27FGa
+         NcidYhnJnluTGbdSl91uRRIR0gCRH+NEhN5tk22kzwVUOq/7aLKzTrZXQ892jU1YB8pj
+         yoz2cQB+Ar/ahnZgWAAKZl3Mmqd4j+lVHZLl9XMi7q8phLUIeYULkmBY32+tDbUKHxIN
+         0SdA==
+X-Forwarded-Encrypted: i=1; AL+hErF5RnU9b+TEDqYqkkzpvuHpt0NdUurFVvqpAvTPYMMMnkCiId3qRLtVqVvVpIxg2YwVap/2BdqmxNhqnOkJ6kDh@lists.infradead.org
+X-Gm-Message-State: APuU4Z/gGZbTPL7yMMjEcQV+clHuXQCTXhXAOBAORv5g0d7Wz5C12LKz
+	PDTQvFiNgu6ZuTwFajV2OBVq3odncEthWHwnMAPgvrN05CvrL8/r1XQu
+X-Gm-Gg: AYBFou0JFoos/I8KHAK4YvsEEQUKmjjc29GdhieyowjbrsteWWi1EW1mISIuXSgDURI
+	18xymb6+klhmgHm/AQbM6TOIBT1bo/0z/iMLEqvI+NHXZhuIGjdoiTxhTjl0nJbDnI9Wv/VXRLU
+	epQuSig38E5OB085BrlwLiEtVtgnrykyk0BmEr9i+ycfExf52LXE1W7C81W1eMksfDEAH7f05dH
+	0xQXGxXTVo817vCJpysUOa6wpXN8CVPgBBpawvlf4TBUhvVUWJuUn2BhcdQ7H0hF0pL8Wp+f5Sv
+	8YnOoXr48qL3kAawd/mF14EMsuOZgqfI14lWwAD8MGchCSJO+jw2wRTbwZJo10gEE/jSmr+9tOd
+	czD233U/mpEyQFNSwJM9sT7tEP4g2crdYFC6/34GMXPQqq78XbuoTWdvo93eBRiy1tnLsUzXSoA
+	bFrV8EgJ3HGjbvrKIo/t4d/Q31bVBjwIGYqFw7yTReTD6zBNkFe0wbhMoMJPV5h/YfKNhIGOVyL
+	HustbYN6oUbYMI2U+0CoRTEtpVnjME99iIsD5M9W7STDW0r/Prly+qhmTWf07JPkWOcNpq6BE8Y
+	Cb01ZakwfXi6mhPvGGUZMf1al/BHeX7P19xLPxmQu4ZuJ226JJwB9pkw6V/rWmzEkpB4b8KzcG5
+	Javjbzt8hmk320qgE
+X-Received: by 2002:a05:7300:148c:b0:361:a195:c46e with SMTP id 5a478bee46e88-377de5f761amr2466577eec.1.1794466205719;
+        Wed, 11 Nov 2026 22:50:05 -0800 (PST)
+Received: from dtor-ws.sjc.corp.google.com ([2a00:79e0:2ebe:8:182d:659:ffce:39a4])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37520cfdfadsm27190961eec.19.2026.11.11.22.50.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2026 22:50:05 -0800 (PST)
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Linus Walleij <linusw@kernel.org>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Daniel Mack <daniel@zonque.org>,
+	Haojian Zhuang <haojian.zhuang@gmail.com>,
+	Robert Jarzmik <robert.jarzmik@free.fr>,
+	Arnd Bergmann <arnd@arndb.de>
+Cc: Mark Brown <broonie@kernel.org>,
+	"H . Nikolaus Schaller" <hns@goldelico.com>,
+	Kris Bahnsen <kris@embeddedTS.com>,
+	Mark Featherston <mark@embeddedTS.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+	linux-input@vger.kernel.org,
+	linux-spi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 2/5] Input: ads7846 - simplify sample filtering
+Date: Wed, 11 Nov 2026 22:49:54 -0800
+Message-ID: <20261112064957.1796975-3-dmitry.torokhov@gmail.com>
+X-Mailer: git-send-email 2.56.0.567.gdb80ae8cd5-goog
+In-Reply-To: <20261112064957.1796975-1-dmitry.torokhov@gmail.com>
+References: <20261112064957.1796975-1-dmitry.torokhov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_052622_281308_AD71F904 
-X-CRM114-Status: GOOD (  17.02  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261111_225007_340903_922BD225 
+X-CRM114-Status: GOOD (  20.15  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -100,170 +112,148 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello,
+The filter and filter_data members of struct ads7846, along with the
+generic signature of ads7846_debounce_filter(), are leftovers from
+custom filter callbacks that were removed in commit 937f5d5ec642
+("Input: ads7846 - remove custom filter handling functions from pdata").
 
-This patch series adds the clock controller support for Realtek's
-RTD1625 SoC platform.
+Drop the filter and filter_data function pointers, remove the unused
+ads7846_no_filter() stub, simplify ads7846_debounce_filter() to take
+struct ads7846 and the sample value directly, and call it without
+pointer indirection.
 
-Because the reset controllers share the same register space with the
-clock controllers on this platform, we utilize the Auxiliary Bus framework
-to decouple them. The clock controllers act as the primary devices,
-registering the reset controllers as auxiliary devices.
-
-The series includes:
-1. Device Tree Bindings:
-   - Add bindings for the Realtek RTD1625 Clock & Reset Controllers.
-
-2. Clock Subsystem Infrastructure:
-   - Introduce a common probe, and add support for basic clocks including
-     PLLs, gate clocks, mux clocks, and MMC-tuned PLLs.
-
-3. Clock Platform Drivers:
-   - Add the clock controller drivers for RTD1625-CRT and RTD1625-ISO.
-   - These drivers provide the clock sources and instantiate the
-     corresponding auxiliary reset devices.
-
-Best regards,
-Yu-Chun Lin
+Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 ---
-Changes in v16:
-General:
-- Split out the reset controller support into a separate series.
+ drivers/input/touchscreen/ads7846.c | 72 ++++++++++++-----------------
+ 1 file changed, 30 insertions(+), 42 deletions(-)
 
-Patch 1 (dt-binding):
-- Remove Krzysztof's reviewed-by tag.
-- Add 'clock-name' property with a predefined enum list.
-- Update 'clocks' property constraints.
-- Move the reset ID header to the reset controller series.
-
-Patch 3 (PLL):
-- Remove Brian's reviewed-by tag.
--  Introduce 'expected_parent_rate' validation in '.determine_rate()' and
-'.set_rate()' to safely enforce the fixed input rate requirement.
-- In determined_rate, replacing the floor/ceil algorithm with a closest-match
-search within [min_rate, max_rate] boundaries.
-- Improve comments for spinlock. 
-- Add '.is_enabled' callback to 'rtk_clk_pll_ro_ops'
-
-Patch 4 (GATE):
-- Remove Brian's reviewed-by tag.
-- Replace 'CLK_HW_INIT' with 'CLK_HW_INIT_HW' and 'CLK_HW_INIT_FW_NAME' macros
-to avoid relying on unstable internal CCF global names.
-- Drop all unused NO_PARENT macro and 'rtk_clk_regmap_gate_ro_ops'.
-
-Patch 5 (MUX):
-- Remove Brian's reviewed-by tag.
-- Replace 'CLK_HW_INIT_PARENTS' with 'CLK_HW_INIT_PARENTS_HW' to use '.parent_hws'
-
-Patch 6 (MMC PLL):
-- Remove Brian's reviewed-by tag.
-- Move the MMC PLL structs and ops declarations out of clk-pll.h into a new
-  clk-regmap-pll-mmc.h.
-- Add a separate 'struct rtk_clk_pll_mmc_phase' with its own to_clk_pll_mmc_phase().
-- Merge prepare/unprepare/is_prepared into enable/disable/is_enabled, as
-  suggested: there is no sleeping operation.
-- Introduce the 'rtk_clk_pll_mmc_div_cfg' table for the SSCPLL analog tuning.
-- Introduce the 'rtk_clk_pll_mmc_rate' table.
-   - determine_rate() selects the closest entry within [min_rate, max_rate]
-   - set_rate() programs that entry only
-   - recalc_rate() matches all five raw register fields against the table. However,
-   only on a miss does it fall back to 'clk_pll_mmc_calc_rate()', which implements
-   the formula.
-
-Patch 7 & 8 (CRT & ISO clock driver):
-- Remove Brian's reviewed-by tag.
-- Replace 'const char *' parent arrays with 'struct clk_hw *' arrays.
-- Switch all gate, mux, and fixed-factor clock initializations to use '_HW' or
-'_FW_NAME' macros.
-- Use 'CLK_HW_INIT_FW_NAME' for regmap_pll initialization when referencing external
-  clocks, and add 'expected_parent_rate' to ensure a safe input rate.
-- Refactor eMMC PLL initialization (decoupling phases and appending rate tables).
-
-Patch 9 (DTS):
-- Add 'clock-names = "osc27m"' to the 'cc' and 'iso_s_cc' clock controller nodes.
-- Explicitly wire up internal parent clocks from the 'cc' controller to the 'ic'
-  clock controller, along with their corresponding 'clock-names'.
-
-v15: https://lore.kernel.org/lkml/20261002074331.3066919-1-eleanor.lin@realtek.com/
-v14: https://lore.kernel.org/lkml/20260901072446.2563145-1-eleanor.lin@realtek.com/
-v13: https://lore.kernel.org/lkml/20260812020009.3480538-1-eleanor.lin@realtek.com/
-v12: https://lore.kernel.org/lkml/20260804163807.1285869-1-eleanor.lin@realtek.com/
-v11: https://lore.kernel.org/lkml/20260728142806.1954638-1-eleanor.lin@realtek.com/
-v10: https://lore.kernel.org/lkml/20260713155630.3054636-1-eleanor.lin@realtek.com/
-v9: https://lore.kernel.org/lkml/20260624112940.3475605-1-eleanor.lin@realtek.com/
-v8: https://lore.kernel.org/lkml/20260610080824.255063-1-eleanor.lin@realtek.com/
-v7: https://lore.kernel.org/lkml/20260508111641.3192177-1-eleanor.lin@realtek.com/
-v6: https://lore.kernel.org/lkml/20260402073957.2742459-1-eleanor.lin@realtek.com/
-v5: https://lore.kernel.org/lkml/20260324025332.3416977-1-eleanor.lin@realtek.com/
-v4: https://lore.kernel.org/lkml/20260313081100.596224-1-eleanor.lin@realtek.com/
-v3: https://lore.kernel.org/lkml/20260122110857.12995-1-eleanor.lin@realtek.com/
-v2: https://lore.kernel.org/lkml/20260113112333.821-1-eleanor.lin@realtek.com/
-v1: https://lore.kernel.org/lkml/20251229075313.27254-1-eleanor.lin@realtek.com/
-
-Cheng-Yu Lee (7):
-  clk: realtek: Introduce common probe()
-  clk: realtek: Add support for phase locked loops (PLLs)
-  clk: realtek: Add support for gate clock
-  clk: realtek: Add support for mux clock
-  clk: realtek: Add support for MMC-tuned PLL clocks
-  clk: realtek: Add RTD1625-CRT clock controller driver
-  clk: realtek: Add RTD1625-ISO clock controller driver
-
-Yu-Chun Lin (2):
-  dt-bindings: clock: Add Realtek RTD1625 Clock & Reset Controller
-  arm64: dts: realtek: Add clock support for RTD1625
-
- .../bindings/clock/realtek,rtd1625-clk.yaml   |  95 ++
- MAINTAINERS                                   |   7 +
- arch/arm64/boot/dts/realtek/kent.dtsi         |  41 +
- drivers/clk/Kconfig                           |   1 +
- drivers/clk/Makefile                          |   1 +
- drivers/clk/realtek/Kconfig                   |  46 +
- drivers/clk/realtek/Makefile                  |  12 +
- drivers/clk/realtek/clk-regmap-gate.c         |  59 ++
- drivers/clk/realtek/clk-regmap-gate.h         |  54 ++
- drivers/clk/realtek/clk-regmap-mux.c          |  40 +
- drivers/clk/realtek/clk-regmap-mux.h          |  42 +
- drivers/clk/realtek/clk-regmap-pll-mmc.c      | 457 +++++++++
- drivers/clk/realtek/clk-regmap-pll-mmc.h      |  66 ++
- drivers/clk/realtek/clk-regmap-pll.c          | 219 +++++
- drivers/clk/realtek/clk-regmap-pll.h          |  53 ++
- drivers/clk/realtek/clk-rtd1625-crt.c         | 878 ++++++++++++++++++
- drivers/clk/realtek/clk-rtd1625-iso.c         | 140 +++
- drivers/clk/realtek/clk-rtk-common.c          |  84 ++
- drivers/clk/realtek/clk-rtk-common.h          |  37 +
- drivers/clk/realtek/freq_table.c              |  63 ++
- drivers/clk/realtek/freq_table.h              |  24 +
- .../dt-bindings/clock/realtek,rtd1625-clk.h   | 166 ++++
- 22 files changed, 2585 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/realtek,rtd1625-clk.yaml
- create mode 100644 drivers/clk/realtek/Kconfig
- create mode 100644 drivers/clk/realtek/Makefile
- create mode 100644 drivers/clk/realtek/clk-regmap-gate.c
- create mode 100644 drivers/clk/realtek/clk-regmap-gate.h
- create mode 100644 drivers/clk/realtek/clk-regmap-mux.c
- create mode 100644 drivers/clk/realtek/clk-regmap-mux.h
- create mode 100644 drivers/clk/realtek/clk-regmap-pll-mmc.c
- create mode 100644 drivers/clk/realtek/clk-regmap-pll-mmc.h
- create mode 100644 drivers/clk/realtek/clk-regmap-pll.c
- create mode 100644 drivers/clk/realtek/clk-regmap-pll.h
- create mode 100644 drivers/clk/realtek/clk-rtd1625-crt.c
- create mode 100644 drivers/clk/realtek/clk-rtd1625-iso.c
- create mode 100644 drivers/clk/realtek/clk-rtk-common.c
- create mode 100644 drivers/clk/realtek/clk-rtk-common.h
- create mode 100644 drivers/clk/realtek/freq_table.c
- create mode 100644 drivers/clk/realtek/freq_table.h
- create mode 100644 include/dt-bindings/clock/realtek,rtd1625-clk.h
-
+diff --git a/drivers/input/touchscreen/ads7846.c b/drivers/input/touchscreen/ads7846.c
+index 9bcb2ef129cd..f1827684c902 100644
+--- a/drivers/input/touchscreen/ads7846.c
++++ b/drivers/input/touchscreen/ads7846.c
+@@ -135,8 +135,6 @@ struct ads7846 {
+ 	bool			suspended;	/* P: lock */
+ 
+ 	void			(*read_state)(struct ads7846 *ts);
+-	int			(*filter)(void *data, int data_idx, int *val);
+-	void			*filter_data;
+ 	struct gpio_desc	*gpio_pendown;
+ 	struct gpio_desc	*gpio_hsync;
+ };
+@@ -631,11 +629,12 @@ ATTRIBUTE_GROUPS(ads784x);
+ 
+ /*--------------------------------------------------------------------------*/
+ 
+-static int ads7846_debounce_filter(void *ads, int data_idx, int *val)
++static enum ads7846_filter ads7846_debounce_filter(struct ads7846 *ts, int val)
+ {
+-	struct ads7846 *ts = ads;
++	if (!ts->debounce_max)
++		return ADS7846_FILTER_OK;
+ 
+-	if (!ts->read_cnt || (abs(ts->last_read - *val) > ts->debounce_tol)) {
++	if (!ts->read_cnt || abs(ts->last_read - val) > ts->debounce_tol) {
+ 		/* Start over collecting consistent readings. */
+ 		ts->read_rep = 0;
+ 		/*
+@@ -643,39 +642,34 @@ static int ads7846_debounce_filter(void *ads, int data_idx, int *val)
+ 		 * wasn't consistent enough.
+ 		 */
+ 		if (ts->read_cnt < ts->debounce_max) {
+-			ts->last_read = *val;
+-			ts->read_cnt++;
+-			return ADS7846_FILTER_REPEAT;
+-		} else {
+-			/*
+-			 * Maximum number of debouncing reached and still
+-			 * not enough number of consistent readings. Abort
+-			 * the whole sample, repeat it in the next sampling
+-			 * period.
+-			 */
+-			ts->read_cnt = 0;
+-			return ADS7846_FILTER_IGNORE;
+-		}
+-	} else {
+-		if (++ts->read_rep > ts->debounce_rep) {
+-			/*
+-			 * Got a good reading for this coordinate,
+-			 * go for the next one.
+-			 */
+-			ts->read_cnt = 0;
+-			ts->read_rep = 0;
+-			return ADS7846_FILTER_OK;
+-		} else {
+-			/* Read more values that are consistent. */
++			ts->last_read = val;
+ 			ts->read_cnt++;
+ 			return ADS7846_FILTER_REPEAT;
+ 		}
++
++		/*
++		 * Maximum number of debouncing reached and still
++		 * not enough number of consistent readings. Abort
++		 * the whole sample, repeat it in the next sampling
++		 * period.
++		 */
++		ts->read_cnt = 0;
++		return ADS7846_FILTER_IGNORE;
+ 	}
+-}
+ 
+-static int ads7846_no_filter(void *ads, int data_idx, int *val)
+-{
+-	return ADS7846_FILTER_OK;
++	if (++ts->read_rep > ts->debounce_rep) {
++		/*
++		 * Got a good reading for this coordinate,
++		 * go for the next one.
++		 */
++		ts->read_cnt = 0;
++		ts->read_rep = 0;
++		return ADS7846_FILTER_OK;
++	}
++
++	/* Read more values that are consistent. */
++	ts->read_cnt++;
++	return ADS7846_FILTER_REPEAT;
+ }
+ 
+ static int ads7846_get_value(struct ads7846_buf *buf)
+@@ -759,7 +753,7 @@ static int ads7846_filter_cmd(struct ads7846 *ts, unsigned int cmd_idx)
+ 	for (b = l->skip; b < l->count; b++) {
+ 		int val = ads7846_get_value(&packet->rx[l->offset + b]);
+ 
+-		switch (ts->filter(ts->filter_data, cmd_idx, &val)) {
++		switch (ads7846_debounce_filter(ts, val)) {
+ 		case ADS7846_FILTER_REPEAT:
+ 			if (b == l->count - 1)
+ 				return -EAGAIN;
+@@ -1367,14 +1361,8 @@ static int ads7846_probe(struct spi_device *spi)
+ 	device_property_read_u16(dev, "ti,debounce-tol", &ts->debounce_tol);
+ 	device_property_read_u16(dev, "ti,debounce-rep", &ts->debounce_rep);
+ 
+-	if (ts->debounce_max) {
+-		if (ts->debounce_max < 2)
+-			ts->debounce_max = 2;
+-		ts->filter = ads7846_debounce_filter;
+-		ts->filter_data = ts;
+-	} else {
+-		ts->filter = ads7846_no_filter;
+-	}
++	if (ts->debounce_max && ts->debounce_max < 2)
++		ts->debounce_max = 2;
+ 
+ 	err = ads7846_setup_pendown(ts);
+ 	if (err)
 -- 
-2.43.0
+2.56.0.567.gdb80ae8cd5-goog
 
 
