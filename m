@@ -2,102 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99997606A32A
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5006606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JVAJdDwR;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.a=rsa-sha256 header.s=google header.b=NoktrjZ8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sUGHMsm3;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cCqjw9Ln
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:Date:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=q1l9kCQFpxB8dabUGd45sO6QQcnMpjxeKqAqJFRtMGo=; b=JVAJdDwRMmQvcu9UAKaDhgeaTj
-	87FD31Wo4opm85M3cBf/c19TNo1bKrCGheKBazz+MAWiAMWv5HPV3BamP9p0iOgLGyd5FWkUQeIoJ
-	h8Jh65Mk8TC5MxHowNpIKNqAFQkn9P2SLgApW5n/osquFsi0ZRGtBzy2crD42nnaiuRdFlpb/ahoi
-	Tn/kuaE8XSDjhNBHwaOoBIzWTOZaM/g0FgMc4JOUJxUwrl0jqi3Dk+MbmaTJoxyIsSGb8rWytZN9+
-	/6EPVaBcGSHH+LSS4isCRd3YGe1OEXPA7lbzohhy69jnGx34tkooMb6alallFnHlPxj/PczgxTP83
-	xI8qugaA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:References:In-Reply-To:Subject:CC:To:
+	From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=t+ufZCvXNHzyxYBYTdCkDnWym74ZB21L+z+qr86hT/0=; b=sUGHMsm3WJL7Sw
+	ba68ouU7utbzOGOGZO2UgRffcTFy9BSrOPXP9y3Ir1r5Wd/pfNOqyFuzK/DZwgN1BYBxIj0AnXR8U
+	hTHCUg9NNeXxQYNY39aKzhLFoUc7IpSdrA2vIGoD1rQQGP0R2UWAoziAjyQEjGueG3UlbjvaTjYId
+	p2U7sjbgXNPuIZE0IF8TAjwKxnRmL+mbCFCG88Dx9RGMToS5txYNVS2rrOnrfezi7+58pHqeKBZ6q
+	Y0UcZldQUomRWRpE8gNZ5kArgIvmjdP4xB1wL7oxeBomT0mXaXJcPSc24kYZ9EPKCbsNv8QY6aFZF
+	lu2o/XAXZ6z/+jMshmYQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTjH-00000009pqN-21sH;
-	Thu, 12 Nov 2026 12:16:35 +0000
-Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
+	id 1xRTk9-00000009q4b-40nP;
+	Thu, 12 Nov 2026 12:17:30 +0000
+Received: from mail-pj2-x03.google.com ([2607:f8b0:4864:39::3])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTjA-00000009po4-1a3m
+	id 1xRTk1-00000009q1J-3AxU
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 12:16:29 +0000
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4a1b07c3c5fso40104115e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 04:16:27 -0800 (PST)
+	Thu, 12 Nov 2026 12:17:27 +0000
+Received: by mail-pj2-x03.google.com with SMTP id 98e67ed59e1d1-3ac96ba6a4eso397514a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 04:17:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1794485786; x=1795090586; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:date:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=q1l9kCQFpxB8dabUGd45sO6QQcnMpjxeKqAqJFRtMGo=;
-        b=NoktrjZ89KpHkDR2Ao2FIS5uR89m3A9rIi+1U8I6k+92h115ZrNp934RgJ6bbwwgIw
-         gWc+X4GLIH8Zb5vD84DclVqI/TZ63s7/ck4M86MWj0fi8Bjy0vM/jspNhSvwa0XpJuCF
-         QdN2IUhgRpfheTAAUjL2eq5Y6gpTqhq0VY81Q/op6pH4udjF8zQpl/r7WdVlU9BSGItl
-         2GJVv+p27MmO247UOjAn6Mk1xeUVYIXoQf5TzPTP4VdgO5UZfcVEJ1f4dkk1fU848j7d
-         9Lx2sPcTj3irRWYbbhBzbbFOu1kkLiIUENH6GIwFVlVm12zhb1MXZrsEc6OSzzk2AELq
-         K3NQ==
+        d=gmail.com; s=20260707; t=1794485840; x=1795090640; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:message-id
+         :references:in-reply-to:user-agent:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=t+ufZCvXNHzyxYBYTdCkDnWym74ZB21L+z+qr86hT/0=;
+        b=cCqjw9Lnp6HkY3hZ3q09Fch/jzvm4Hgaf1nPUl1jqDt2WZLuTmFxX4koNjjkC1hrQw
+         4X3bzGPkVN8qdmalWZO0XlmoLiAZvirLdAEFV+i0EXC24EzDNHGgoKFfX5N8E1uPQZ0m
+         350q9kuplYgEXyWOlGR3UtLelKup/TxP6brqKpJeo9bSEvc7rWuaiWlzPP3BC8tunvKh
+         BzhntrdUaGnxdUkmX67rVJT2MOIPVAt0mza/yAmHXvaR1aEycejk7aUCdicsRzfTSpKK
+         fJdMhK7NJw3Hu+8Xt5GS94tNNthTQwWVP9Q4oj07u1gr1TXg+L3b3+X/mAaT0NpJsNSl
+         xu3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794485786; x=1795090586;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:date:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1794485840; x=1795090640;
+        h=content-transfer-encoding:content-type:mime-version:message-id
+         :references:in-reply-to:user-agent:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=q1l9kCQFpxB8dabUGd45sO6QQcnMpjxeKqAqJFRtMGo=;
-        b=xZgbc7g0xZF/5Kh4qEo6V7TY/dy1uRmj7UyjdjZxvrUUubQPmADU6ti4UeNYeZtc4M
-         BbKO4rjaHlF8X0b5BRVVSPePn2qwXwoKWxnDz8IAsdM/+Q5V+EPrv8bdoYFnT7E5+uls
-         wi9AYmTww1oVHpaWwTwEDzgbWVw+ygYid1hly6wWCQsb4qIx9bOKZg+Tfmp8ZyjPDVme
-         TNegKnMPYN73uwdpRO/0/Tvh9Z716YjWLGud5ah4jFYa63n5ioQQ5jP2t3Q912bt9PfZ
-         uJRUYxCQ9JouSGm+OYjPoYQ7eDKhgCtPrRwiQvttBzA9FcyYPnsUr7Eo25qUIwie57ws
-         AQ9Q==
-X-Forwarded-Encrypted: i=1; AL+hErGOmUnFSR66wE8bYnW5CkCy+IjsSFIJ6ryaXudjWyCs6MWqONDCYuvV4Oqy+TE3IZGofVNjNJyXxtmqcpFh90x1@lists.infradead.org
-X-Gm-Message-State: APuU4Z9wfJvCKCIbrNTY8RnQa0ssMa0RWEJOJEYT82bnENqWyAz0Z0V2
-	LVtd/6giADkEey8gBq5GCeBXiE6MuK/w6Zq/owWw58rYRgYPMk2We7uX6oCt1lEqp/w=
-X-Gm-Gg: AYBFou0iCkIxKkeGWxPg+tYooa1IKEV8G5fT928TP+D8P6Yp0omHCiqrMRZNY+t7dyb
-	j1iRHY2xndSsz7dPYzXewRiGMwmW797jqDKDVMqzWSye0lYynRkk8OILn6+tn0ljI5gKYGfdMUN
-	oNWJL3hE1Cy4/LRhfWulmiFScyHWhUZRpduMNaOxDNwwI0w8IDVk+9q1JUkB6HiPKVg7AVY1Jry
-	TX/jdTpjm6Duo8PIBoLKS9pzxK31U87Fm3pPr8xf7CZFW/EHc+0RpnI3f03LnfSCLlzSrWTIx84
-	buEQALB/ri7ybDC831CTa1xhy+gJR9HjOgpuNYoh7ISXoTeqN1W+YrvRqpTsZhECPYtuptBmAZ2
-	b2PLYp73lYAK9xoM7JG5a63SGgy0vrxpQHUksMkyBaGjXzlCS3uS/dtvZF1G8RqTXzRTWJW+Wj4
-	iLTHnLNsWP2HczAlcCvk33X8+pk1ln6SWpmZFPcDOEvCX/bVXS1PzS2VvfYp6CVr9EwvTDUKl8g
-	uqkIfQD0Vi0hZxCRntPt5DVCfBARH0d+F3JvLSkebzQB0G7gMvHmOpluZdLzQFQtk591WUYx47Q
-	lgs6IkDqOEEOYvwP0gOex6JvPTpq
-X-Received: by 2002:a05:600c:4504:b0:4a3:5a91:5f61 with SMTP id 5b1f17b1804b1-4ba09375b67mr98996565e9.14.1794485786500;
-        Thu, 12 Nov 2026 04:16:26 -0800 (PST)
-Received: from localhost ([195.94.151.204])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e29daa5sm70743175e9.12.2026.11.12.04.16.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 04:16:25 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 12 Nov 2026 13:20:23 +0100
-To: Wang Xiaolei <wangxiaolei01@kaihong.com>
-Cc: linusw@kernel.org, florian.fainelli@broadcom.com, rjui@broadcom.com,
-	sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	daniel@dragonzap.com, iivanov@suse.de, andrea.porta@suse.com,
-	phil@raspberrypi.com, linux-gpio@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Jonathan Bell <jonathan@raspberrypi.com>
-Subject: Re: [PATCH 3/3] pinctrl: bcm: Use pinconf_generic_dt_free_map in
- brcmstb
-Message-ID: <avWvB1MV3BMAnJaO@apocalypse>
-References: <20261106070628.1428691-1-wangxiaolei01@kaihong.com>
- <20261106070628.1428691-4-wangxiaolei01@kaihong.com>
+        bh=t+ufZCvXNHzyxYBYTdCkDnWym74ZB21L+z+qr86hT/0=;
+        b=jNBMtaj2CZbeUpyFkDiV4e6tCWG1XFW1bCKi2ZhmFyDixIp1NrDxyJIvKmqBSfuMTh
+         Xd6co/a2FqKCf2Sy8CESpJv+q53BLP39lBF+zzSOdm9mthQXaMYscFYib9alztAetHQ9
+         qn2eA8LzYeQeOAteDN+YTSJaokrPhZ7zleNSoM+QD6bC7797MGepAeObmwIo2vzcdE0j
+         J3I9gPDeBtixc3H/z0DEV/qMgPtNfOnc3h7O0PRYgfdkOJZCesvPN+id3QJThV6g5oNH
+         nZwAU9PyOEsRqD/5NVKH9shcWpe3K9tdvgmTxiZurFz4fj7OCV/VcNSvu0MGTzEkkKfK
+         PxXA==
+X-Forwarded-Encrypted: i=1; AL+hErEeFBLaQ98Lg2yrM6Pge5tz/XXznu6yjmlyF7lCqdmY2xbcZi9cyxFK0soRdxd0lKo68mXwobPwv3V8/FWf3FAi@lists.infradead.org
+X-Gm-Message-State: APuU4Z/tXLDrw9G9CxYsxAxdT5XXiCFpkoB7mz80T6V0HmMaOqlRhPMj
+	ZQ75+tXT7fYAz7DgVtb5NX9NbX7C2tcYSsYzMaZNY730neRvF+WpNhgv
+X-Gm-Gg: AYBFou2cgDqRpUKj993QsSCQDcSjlNbBT5QNkuQw/k8XZ0vCIc8ky/Kf2tnXc+7eJpn
+	WKDVbFlDAswj7/uFZPYYasa+DEfPLHNDb7evc0PO0rh8AvIsUqtUuPIwqAL6AWpEZk2Dhrsg/Ni
+	DfqHm0tTxfYTPGfJCj0HjMks5mPMHy8vi9/REILESeFEqdU5LDJl2o7wCOT/4sfhDhf90rfV7PO
+	sf5ca5+2MYCO1zEVhe5H6iIQZvmmv2h1bGTS1ETGso3yQR0MxC/9lzDOAezBzKY53mVaC8h3sVN
+	0DD2J9JJ+e46PywMHqh39YUZmLVUE8R/W4KqlyqadyG0SAMSenRO8RYU6v8YDJNKTrQYyC8ewjR
+	tdWCahPhRNhuoEQukNlvsrIspeCe89mIEc3iV7Q/5Z2WAMv7aMHy/ToPJU39L9t03u1Ig+Nj3ub
+	tzxzaAjGhBfHkeIIA0RARjMlCb0sVkNW3EgX8aYp5zDCw0W+QWiYTBQU1IwQApl4MuC1hnjs8Rw
+	Mspmj3MYo/DhEv0bn0m9ra4CCzw8+65dZk3mMfbGmi0NePH4wXyYdLbWwamNWx+0hOBQpiEJC2R
+	51qsrdJq8LaHXik5cHmPjQ==
+X-Received: by 2002:a17:90a:8c12:b0:3b0:a7b5:c044 with SMTP id 98e67ed59e1d1-3b197c81815mr1116711a91.1.1794485840292;
+        Thu, 12 Nov 2026 04:17:20 -0800 (PST)
+Received: from ehlo.thunderbird.net ([2401:5a0:1000:10:233::14])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b197c8b2cdsm4489297a91.16.2026.11.12.04.17.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Nov 2026 04:17:19 -0800 (PST)
+Date: Thu, 12 Nov 2026 20:17:14 +0800
+From: Coia Prant <coiaprant@gmail.com>
+To: Vinod Koul <vkoul@kernel.org>
+CC: Shawn Lin <shawn.lin@rock-chips.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v13_2/2=5D_phy=3A_rockchip=3A_naneng-?=
+ =?US-ASCII?Q?combphy=3A_add_SGMII_MAC_selection_for_RK3568?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <avV77eoO96zacmoq@parshuram>
+References: <20261006162807.2843858-1-coiaprant@gmail.com> <20261006162807.2843858-3-coiaprant@gmail.com> <ac2a4e80-6d35-457a-bdc5-ee8511198bec@rock-chips.com> <CALj3r0gQ_U2ZUJkRgF4NdB1Gd3A8ZT3T6qjLhwGZPg=VUXLsrQ@mail.gmail.com> <CALj3r0hSyVpn4Upbun4DOk5hdOH+fzEFG2E3LpfvS2YUXH8twA@mail.gmail.com> <CALj3r0jg5Ht9UUJGryuNdJdegBkPQgSTPSE6amjCr0g0PE7i6Q@mail.gmail.com> <avV77eoO96zacmoq@parshuram>
+Message-ID: <073A7037-8E56-4B14-BBDD-DA3118970086@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261106070628.1428691-4-wangxiaolei01@kaihong.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_041628_570010_91F0D45B 
-X-CRM114-Status: GOOD (  19.37  )
+X-CRM114-CacheID: sfid-20261112_041721_809566_0F6ACC95 
+X-CRM114-Status: GOOD (  11.68  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -109,74 +108,49 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Wang,
+On November 12, 2026 4:42:21 PM GMT+08:00, Vinod Koul <vkoul@kernel=2Eorg> =
+wrote:
+>On 22-10-26, 10:32, Coia Prant wrote:
+>> Hi Vinod,
+>>=20
+>> Gentle ping on this series=2E
+>>=20
+>> The net-next parts (XPCS glue, dwmac-rk SGMII) are now in linux-next:
+>> https://git=2Ekernel=2Eorg/netdev/net-next/c/5e91edfb0e45
+>>=20
+>> The DTS changes are waiting on this PHY binding and driver to land befo=
+re
+>> they can be sent=2E Is there anything you'd like changed, or is it just
+>> queued?
+>
+>I dont see the dt patch acked=2E=2E
+>
 
-On 07:06 Fri 06 Nov     , Wang Xiaolei wrote:
-> Replace the hand-written dt_free_map callback with the generic
-> pinconf_generic_dt_free_map() helper, which wraps
-> pinctrl_utils_free_map(). This drops the duplicated free loop and
-> pairs the callback with the pinconf_generic_dt_node_to_map_all()
-> already used for dt_node_to_map.
-> 
-> The driver already selects GENERIC_PINCONF, so no Kconfig change is
-> needed.
-> 
-> Cc: Jonathan Bell <jonathan@raspberrypi.com>
-> Cc: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Wang Xiaolei <wangxiaolei01@kaihong.com>
+Hi Vinod,
 
-Please CC:stable.
+Conor Dooley already provided an Acked-by for this patch on Oct 7th:
 
-Reviewed-by: Andrea della Porta <andrea.porta@suse.com>
+Acked-by: Conor Dooley <conor=2Edooley@microchip=2Ecom>
 
-Many thanks,
-Andrea
+You can see it in the patchwork thread here:
 
-> ---
->  drivers/pinctrl/bcm/pinctrl-brcmstb.c | 15 +--------------
->  1 file changed, 1 insertion(+), 14 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/bcm/pinctrl-brcmstb.c b/drivers/pinctrl/bcm/pinctrl-brcmstb.c
-> index 2b942ca7196b..e81c5b295a05 100644
-> --- a/drivers/pinctrl/bcm/pinctrl-brcmstb.c
-> +++ b/drivers/pinctrl/bcm/pinctrl-brcmstb.c
-> @@ -180,26 +180,13 @@ static void brcmstb_pctl_pin_dbg_show(struct pinctrl_dev *pctldev,
->  	seq_printf(s, "function %s", fname);
->  }
->  
-> -static void brcmstb_pctl_dt_free_map(struct pinctrl_dev *pctldev,
-> -				     struct pinctrl_map *maps,
-> -				     unsigned int num_maps)
-> -{
-> -	int i;
-> -
-> -	for (i = 0; i < num_maps; i++)
-> -		if (maps[i].type == PIN_MAP_TYPE_CONFIGS_PIN)
-> -			kfree(maps[i].data.configs.configs);
-> -
-> -	kfree(maps);
-> -}
-> -
->  static const struct pinctrl_ops brcmstb_pctl_ops = {
->  	.get_groups_count = brcmstb_pctl_get_groups_count,
->  	.get_group_name = brcmstb_pctl_get_group_name,
->  	.get_group_pins = brcmstb_pctl_get_group_pins,
->  	.pin_dbg_show = brcmstb_pctl_pin_dbg_show,
->  	.dt_node_to_map = pinconf_generic_dt_node_to_map_all,
-> -	.dt_free_map = brcmstb_pctl_dt_free_map,
-> +	.dt_free_map = pinconf_generic_dt_free_map,
->  };
->  
->  static int brcmstb_pmx_free(struct pinctrl_dev *pctldev, unsigned int offset)
-> -- 
-> 2.34.1
-> 
+https://patchwork=2Ekernel=2Eorg/project/linux-phy/patch/20261006162807=2E=
+2843858-2-coiaprant@gmail=2Ecom/
+
+Or in the lore archive:
+
+https://lore=2Ekernel=2Eorg/all/20261007-9753b5de7344a15472337c6d@squawk/
+
+If you need an additional Ack from someone else, please let me know=2E
+
+Thanks,
+Coia
 
