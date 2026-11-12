@@ -2,85 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57A6606A89D
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216DC60A5BCB
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:34:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tOFqz9G1;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=heSrKbhJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VjY5C6Aa;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BR0324SQ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gOHeB5d4ws3WTTlDcSY7S8wi2CUUdkygOoZR8h/O8BQ=; b=tOFqz9G1GjtW73
-	RF9T62tK5w2S1wRs4dDl7N3Mfn2nX0Y8XsOWe1yY10UVUF2L3bS7TXMj8OgRPivY4jQeTkq5oGKSU
-	yrvbU162tyG625fZNlHK+zQ/mF6/ozXrh+t3CkCYvtGvzT9FDNGmVuTnighyh3H9a1dXzLCz/5pYe
-	WTBo+zT6tbkgKZNX4KEIuSMUeXCFCtrKwwvZdRIq6fPsL/CL0Q1Ew+uEg638sN8sWyKocSQoZz5JY
-	BvsBBqaYy34j5DUfiY71raeVhZgtydEfyQ5SSykEWiF275+Z4ynPrPruGwz8SKsWXQNKAp1sU0juW
-	FNYTr+Udixg3SCkWJqkA==;
+	List-Owner; bh=L1LMY5qyBag2HeM/ukaz5enhzW6oSXExQCIV3gTZALI=; b=VjY5C6AatrDs23
+	HTbsF6hsUhpqPOZGzvnt3eTUNRnmZgmhwl/sQB59B1idB5TTSDNiPMyVDRqMonscb1VZNRWhs+YzB
+	wTFT81RFvWxKEKMeaAhVMvo6fvMFdhOT0q0+B7zAUoiVRtUHTw3Rgn3Y6wjmfs4r7QeULbuZL08Po
+	RwQVyVdU5+ZE3fxYyaEBpGwCb0NLHn35LxWSH8aXHlf24MeTzlBpr8mDUmFmor6NUrYqs0b0UP6ui
+	PWl81NGwn/zzgwAmBwnZjzA8tXHPHxVVUhNn+Zw2AEcYO9rv/pjEBAVl06SfrEOA4CxQIfo0pgMe0
+	ByelIZkUMIeeFC6QaFRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWo9-0000000ASfk-2Qz6;
-	Thu, 12 Nov 2026 15:33:49 +0000
-Received: from mail-wm1-x333.google.com ([2a00:1450:4864:20::333])
+	id 1xRWoG-0000000ASim-3pan;
+	Thu, 12 Nov 2026 15:33:56 +0000
+Received: from mail-wm1-x332.google.com ([2a00:1450:4864:20::332])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWo7-0000000ASeT-0QvM
+	id 1xRWoD-0000000ASh9-2hhQ
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 15:33:48 +0000
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-4b7252a32c8so48138925e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 07:33:46 -0800 (PST)
+	Thu, 12 Nov 2026 15:33:55 +0000
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-4a5720b0a57so6542995e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 07:33:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794497625; x=1795102425; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794497631; x=1795102431; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=gOHeB5d4ws3WTTlDcSY7S8wi2CUUdkygOoZR8h/O8BQ=;
-        b=heSrKbhJusyKcI26wGj+o0yGmPjYcUK1J8DOKO03mfAozBWo/RjRGN8NBX4M4PSOXw
-         xrBQUMK5z2Xj9AH7Uxlp+dB59S92D06omCFcu7VR3tYxAipMhrZv+GtFAwZcsF3dO9Ub
-         bnMLsRwcEkAjSeaSPhuDH1oBL522aHOWpBH8yEQYj0bOKP2AbroF5raMiRNc56nDmlLW
-         wbdbCU8JVQTuiI3eqGa/Ep0oWE4b4Yw9hNSaSn4082dA4vcasioDHkr3D+rlpFEI0wzE
-         ObvkV93Ul9ES9KIuERk4XNfnt53FKnNrsKzcvXGo+kbt2sE6OKSaJkhEA6feoVhtg+KJ
-         sRMQ==
+        bh=L1LMY5qyBag2HeM/ukaz5enhzW6oSXExQCIV3gTZALI=;
+        b=BR0324SQRN6K7pdgex8h8mYY1++zt6QJRdxkzMwp/FOL3eFeQrLsUi+0NRxj8Bp9Xo
+         EgYUAmuUXR0Iyzl456PICIwJaxXN4871m/8xhlKlpuktojrbtD40tvO2Qo3oNbGDVQkv
+         KpigMeO0DB4O3J14lgHQpka4Iij5LemGrIc6TRq6quePHJ+NDeojgPo/37Uo5kPZJIeq
+         riy2BedAlJVGKQPotOzyW46S0SIeX6NYjjEkLJAtJ/E7M99sAPDdfnVcv2hekRs59Tfb
+         A0HgJhA+r5H1Ou6f+P123t6RN7QkqEOxmja+trkGEM/LpEyXlhf+1lPPVrzI0Esjm1yo
+         1apw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794497625; x=1795102425;
+        d=1e100.net; s=20260707; t=1794497631; x=1795102431;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=gOHeB5d4ws3WTTlDcSY7S8wi2CUUdkygOoZR8h/O8BQ=;
-        b=puK2O0GjSeIv0IVBJ2z7zNjWQyL6uHVqx7CcABf3M/G5s+LCupih8geWo+/mtSQfOc
-         kTBFtiyaLAF3cO73MLJuFXvu5yNvNBXqrw+zGKDX7f40OwtNVKz2zBON4v4xBwuY80UO
-         FBGmtrnV/mJ/5sviFALiJ+kkZy0MhE3dkQPT4UlXzjoMPulNK84rBwSD3pnJZ0X7hvIe
-         ZDe9b2/ZkGFoiattYq4KGfWd22UMo7QNh0AYRGYm1Yf5ZiTrqVjRt204uxyrChl0pHaA
-         Zmt53/PP45b0GghJon99oB0wbQuLl3sNvZ+XufQLC4B0NZ9zKC9Q8JID24N3vAURVBe0
-         FZEA==
-X-Gm-Message-State: APuU4Z/a45oXnIlf/hClQiXmaTATD3vgm3yVXivleJ62NEe14EXlvP90
-	ufWGHJyHtkew6lm/EZwc/fdUO5PsUQD9+hYyQvfEzMq5xb3E34A27qdS
-X-Gm-Gg: AYBFou2riJI3SBwsXF/aWr7HH/VZr55ihCw/gdtgJ2RWTgnKAQFk6ltqUFHjURRN7np
-	Hl+N7IOt+6TKnlhnHDQ9w9ghEklQf7v/R8q0kRtwv9m5moV32FXrNb6s5sUV3HNao7BAZyW2loZ
-	yfZkUqy2EUrCo91uNwntzVPr9dDkuEgoMOMufJ6BhCSt8nufuCF1DKGiCZkcpSqWDuWVDEatmz+
-	xWylSI3Hl8PgrafNfxdlaT6m7oMeqMHtNQQumGSFQ8PDAN7iSEUWqEElbt3grNZzcz0En/Th/72
-	jc4t8sSt1SDfpoB97w0oD4oy1V2eHX3xELWckic4kd6ra5NPPqyl1gP5BMPx3Whwh/7reFkADQe
-	PqgIq4V6TQko96Yq95pfxgsS3IZ7BxHjLkKgnWA+icoCCjzp7C+AuifR8JfcKvtW0NNV5MrjJns
-	HDwuUvBhmzOBMCNKNZqsjjZt5xcDhumTuhM4Og+T1vuZiWsK4R1UpbESL6CkVf7oekoPnew6HpU
-	mfrsU8AH4PX1vwxBkF7acK1/mQZ9/rRN2U03XCwojN3fxchbzaa3UZiwOnD1GrZTaJkGqD7Q2Ky
-	ksIL+iEVm8/C8vwTrUte1Pz9iUGJCR/dVPz55lV6RtCLz5Rj7OfgRvtV+7Ag0loa6eHUKvsucc7
-	d4IXoyg==
-X-Received: by 2002:a05:600c:698e:b0:4a3:12fb:1ee7 with SMTP id 5b1f17b1804b1-4ba09383e08mr115598955e9.25.1794497624825;
-        Thu, 12 Nov 2026 07:33:44 -0800 (PST)
+        bh=L1LMY5qyBag2HeM/ukaz5enhzW6oSXExQCIV3gTZALI=;
+        b=bSy/Ai9fQJSQQx0B247E10xOp6/HgPpvJ37djiW7hSBZiKggV1bc29cL9L/kswqzlI
+         pC05YkDqOy8bN2g+9pOEIhPmqmfUPDWK4PyrLB38vIdrsFKjmsvR7I9zGl/m5F6xBHT6
+         9OQLBx1fx5ZHn0uHxLEybmSI5fdt2iDVLLmckV60Dh83H57zpW6gyEVTclpj6GjST0b2
+         PSRUgWK3l56tuJJMRtwfJIMhqXbpJzdU1+86UJjCprfWg0kprkw4tQbn7UqXzMlO394x
+         YnrA8ZzDB18LxIZf4u44kqnRO0rP0wVUX5ZtmpIdinaxLRCw6SUZ+Dhp7pyxk7hpmCuj
+         Qz4g==
+X-Gm-Message-State: APuU4Z9gXDTOl3m1/E3bZCVgVG9kHk7PUEF25UPoI2VuxCbjYa6XYEPk
+	vn3SO6derb341oZ7PX70w9NHhvUDvtEDoHsffMUWE3liMp6Jh+fEGdZf
+X-Gm-Gg: AYBFou1nh4fMQB75LCcQaYMvAdQant+kdvFYcyRdrxTYKIvOfNkBU12lfyYPpzBivku
+	SzERN0JW3T/+QfEchLHEBNkzS+pjpYFBZkHQP/eTOCGtio7VtkLDN1EpLSvzmUiFGkmpQwIHT0G
+	AN8hW+TpglaEaZsofISYZeG3kvs0jMv7ChAl8RvFfxfHLAIflXEKvhxOiOLCJNysgr3ZHny0bQ3
+	uWacTe32J+dbhpDxCNsltc1ruc6iyF//mzdiHpktdfCMedhcWV6DH7ALf+eSl6WypB18m+dvp0T
+	1E7HKEC5hPMLKs/uogiw0qVVvQCRnUyXMsrtwk39lgyQSqkoJmDXl2naVguNB8asQkINj+tgxVJ
+	nlc0csFUagSmMLKlRWMYKVHtUU6f1pFKFwnyrf2PNOPhVkrxZTN3iND0O7Jf9gw7R+iuDoy286u
+	hq72XKghn/VH0Kyw+0IgnzMTtbCR48hnWnu5kV3cK+N626X61hUOo30RNuEyr77tpR3meAGFDWS
+	JgtxLhvfiClpBYIjo0kgOLM2moZJSD1EWnJbs6eSfQhP9xs0w6GymcM+KgJ/ZSEYPxm81z3EcXI
+	+AQQO5BwS4zNuYkwjPYNSTXqMUfAFubXyCU9RfOQu2yuaIXzgtwfxYuy7MHBfb89lJx5+pXpKNS
+	gmhHisA==
+X-Received: by 2002:a05:600c:a31c:b0:4bb:53e4:a7c5 with SMTP id 5b1f17b1804b1-4bb53e4a861mr15636085e9.14.1794497631072;
+        Thu, 12 Nov 2026 07:33:51 -0800 (PST)
 Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2593e4sm87105855e9.5.2026.11.12.07.33.37
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e2593e4sm87105855e9.5.2026.11.12.07.33.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 07:33:39 -0800 (PST)
+        Thu, 12 Nov 2026 07:33:47 -0800 (PST)
 From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 12 Nov 2026 19:33:09 +0400
-Subject: [PATCH v2 1/6] serial: core: Add uart_console_port()
+Date: Thu, 12 Nov 2026 19:33:10 +0400
+Subject: [PATCH v2 2/6] serial: core: Allocate a free line for
+ UART_LINE_AUTO ports
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-vt8500-serial-cleanup-v2-1-36b258e0c0dd@gmail.com>
+Message-Id: <20261112-vt8500-serial-cleanup-v2-2-36b258e0c0dd@gmail.com>
 References: <20261112-vt8500-serial-cleanup-v2-0-36b258e0c0dd@gmail.com>
 In-Reply-To: <20261112-vt8500-serial-cleanup-v2-0-36b258e0c0dd@gmail.com>
 To: Alexey Charkov <alchark@gmail.com>, 
@@ -92,17 +93,17 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org, Greg Kroah-Hartman <gregkh@suse.de>, 
  Wentao Liang <vulab@iscas.ac.cn>
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2599; i=alchark@gmail.com;
- h=from:subject:message-id; bh=axSnBeslNCexms4qsSumKGe3yRSirau1N9EJqbpzpbk=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR9veP5wMhIM9FtplyeqkXsedYffPteyhVOmmASsXyuS
- Jxn1WbLjoksDGJcDJZiiixzvy2xnWrEN2uXh8dXmDmsTCBDpEUaGICAhYEvNzGv1EjHSM9U21DP
- 0EjHWMeIgYtTAKZ63myG/1XZLH2TLTLO5O8+z5x1/HQnE88Lc87Z52/d8FRaFaR1dgMjw0ebfaE
- LKhm7D3sl7Tf//nbfL5OJzVcm3dM0OaDitTCghwcA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4704; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=V3K8xL7bNVN+ns8AQIHh0AGuzdUIQXbz5k/DUkYJUmI=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR9veM16cHDd2d+W8cyNDpPTSmbuSrnR+2eDdNnb1Ve+
+ 3q7bZRXWMdEFgYxLgZLMUWWud+W2E414pu1y8PjK8wcViaQIdIiDQxAwMLAl5uYV2qkY6Rnqm2o
+ Z2ikY6xjxMDFKQBTLcrIyPC5XujIgXAeXYcPEwyi+D5sl/maHD7JMzV8adzxxbytIVWMDN3Lpa2
+ bI6rWsx2dPsNptpXTS/WZsiuZ/vo8+t+4pn/nFG4A
 X-Developer-Key: i=alchark@gmail.com; a=openpgp;
  fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_073347_214420_454A90C5 
-X-CRM114-Status: GOOD (  15.90  )
+X-CRM114-CacheID: sfid-20261112_073353_754532_834487D5 
+X-CRM114-Status: GOOD (  23.14  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -122,66 +123,146 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Console ->setup() and ->write() callbacks need the port behind
-co->index. Most drivers keep a static port array just for that lookup,
-and the few that skip it read the uart_driver state table, which the
-header reserves for the core.
+Drivers that accept ports without a "serial" alias each carry their own
+line allocator, be it a bitmap, an IDA or a scan of a static port array.
+Each one has to get locking against concurrent probes and release on
+failed registration right by itself, and the state table already holds
+the same information.
 
-Provide the lookup next to uart_console_device(), which already relies
-on co->data pointing at the uart_driver. The core links a port into the
-state table before registering its console and unregisters the console
-before unlinking the port, so the result stays valid in both callbacks.
+Let such drivers set the line to UART_LINE_AUTO and pick it while
+registering the port under port_mutex, which serialises every change to
+the state table, so the choice cannot race another registration and
+needs no separate bookkeeping. Skip lines that an enabled device claims
+through a "serial" alias, so that the device still finds its line free
+if it probes later, and hand those out only once no other line is free.
+
+Restore UART_LINE_AUTO when registration fails, so that a retry with the
+same port allocates afresh.
 
 Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
- drivers/tty/serial/serial_core.c | 21 +++++++++++++++++++++
- include/linux/serial_core.h      |  1 +
- 2 files changed, 22 insertions(+)
+ drivers/tty/serial/serial_core.c | 68 ++++++++++++++++++++++++++++++++++++++--
+ include/linux/serial_core.h      |  4 +++
+ 2 files changed, 70 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/tty/serial/serial_core.c b/drivers/tty/serial/serial_core.c
-index b06d2649be34..683ffb4fda92 100644
+index 683ffb4fda92..e0f9551ff7f8 100644
 --- a/drivers/tty/serial/serial_core.c
 +++ b/drivers/tty/serial/serial_core.c
-@@ -2890,6 +2890,27 @@ struct tty_driver *uart_console_device(struct console *co, int *index)
+@@ -3351,16 +3351,73 @@ static int serial_core_port_device_add(struct serial_ctrl_device *ctrl_dev,
+ 	return 0;
  }
- EXPORT_SYMBOL_GPL(uart_console_device);
  
-+/**
-+ * uart_console_port - look up the port behind a console
-+ * @co: console whose @data points at its &struct uart_driver
-+ *
-+ * Serial core registers a port's console only after linking the port into
-+ * the driver's state table, and unregisters it before unlinking the port, so
-+ * the result stays valid for the console's ->setup() and ->write() callbacks.
-+ *
-+ * Return: the port registered on line @co->index, or %NULL if there is none.
-+ */
-+struct uart_port *uart_console_port(struct console *co)
++/* Whether an enabled device claims @line through a "serial" alias */
++static bool serial_core_line_is_aliased(unsigned int line)
 +{
-+	struct uart_driver *drv = co->data;
++	char alias[sizeof("serial") + 10];
++	struct device_node *np;
++	bool available;
 +
-+	if (co->index < 0 || co->index >= drv->nr)
-+		return NULL;
++	snprintf(alias, sizeof(alias), "serial%u", line);
++	np = of_find_node_by_path(alias);
++	available = of_device_is_available(np);
++	of_node_put(np);
 +
-+	return drv->state[co->index].uart_port;
++	return available;
 +}
-+EXPORT_SYMBOL_GPL(uart_console_port);
 +
- static ssize_t uartclk_show(struct device *dev,
- 	struct device_attribute *attr, char *buf)
++/*
++ * Pick a line for a port registered with UART_LINE_AUTO. Skip lines that an
++ * enabled device claims through a "serial" alias, so that the device still
++ * finds its line free if it probes later, and hand one of them out only when
++ * no other line is free. Caller must hold port_mutex, which serialises every
++ * change to the driver's state table.
++ */
++static int serial_core_alloc_line(struct uart_driver *drv,
++				  struct uart_port *port)
++{
++	unsigned int line, fallback = drv->nr;
++
++	lockdep_assert_held(&port_mutex);
++
++	for (line = 0; line < drv->nr; line++) {
++		if (drv->state[line].uart_port)
++			continue;
++
++		if (!serial_core_line_is_aliased(line))
++			break;
++
++		if (fallback == drv->nr)
++			fallback = line;
++	}
++
++	if (line == drv->nr)
++		line = fallback;
++	if (line == drv->nr)
++		return -ENOSPC;
++
++	port->line = line;
++
++	return 0;
++}
++
+ /*
+  * Initialize a serial core port device, and a controller device if needed.
+  */
+ int serial_core_register_port(struct uart_driver *drv, struct uart_port *port)
  {
+ 	struct serial_ctrl_device *ctrl_dev, *new_ctrl_dev = NULL;
++	bool auto_line = port->line == UART_LINE_AUTO;
+ 	int ret;
+ 
+ 	guard(mutex)(&port_mutex);
+ 
++	if (auto_line) {
++		ret = serial_core_alloc_line(drv, port);
++		if (ret)
++			return ret;
++	}
++
+ 	/*
+ 	 * Prevent serial_port_runtime_resume() from trying to use the port
+ 	 * until serial_core_add_one_port() has completed
+@@ -3371,8 +3428,10 @@ int serial_core_register_port(struct uart_driver *drv, struct uart_port *port)
+ 	ctrl_dev = serial_core_ctrl_find(drv, port->dev, port->ctrl_id);
+ 	if (!ctrl_dev) {
+ 		new_ctrl_dev = serial_core_ctrl_device_add(port);
+-		if (IS_ERR(new_ctrl_dev))
+-			return PTR_ERR(new_ctrl_dev);
++		if (IS_ERR(new_ctrl_dev)) {
++			ret = PTR_ERR(new_ctrl_dev);
++			goto err_free_line;
++		}
+ 		ctrl_dev = new_ctrl_dev;
+ 	}
+ 
+@@ -3402,6 +3461,11 @@ int serial_core_register_port(struct uart_driver *drv, struct uart_port *port)
+ err_unregister_ctrl_dev:
+ 	serial_base_ctrl_device_remove(new_ctrl_dev);
+ 
++err_free_line:
++	/* Let a retry with the same port pick a line afresh */
++	if (auto_line)
++		port->line = UART_LINE_AUTO;
++
+ 	return ret;
+ }
+ 
 diff --git a/include/linux/serial_core.h b/include/linux/serial_core.h
-index 4eeb8253752a..9ac1ce1c10b5 100644
+index 9ac1ce1c10b5..a6955c446eaf 100644
 --- a/include/linux/serial_core.h
 +++ b/include/linux/serial_core.h
-@@ -1127,6 +1127,7 @@ void uart_parse_options(const char *options, int *baud, int *parity, int *bits,
- int uart_set_options(struct uart_port *port, struct console *co, int baud,
- 		     int parity, int bits, int flow);
- struct tty_driver *uart_console_device(struct console *co, int *index);
-+struct uart_port *uart_console_port(struct console *co);
- void uart_console_write(struct uart_port *port, const char *s,
- 			unsigned int count,
- 			void (*putchar)(struct uart_port *, unsigned char));
+@@ -1135,6 +1135,10 @@ void uart_console_write(struct uart_port *port, const char *s,
+ /*
+  * Port/driver registration/removal
+  */
++
++/* Set uart_port.line to this to have uart_add_one_port() pick a free line */
++#define UART_LINE_AUTO		UINT_MAX
++
+ int uart_register_driver(struct uart_driver *uart);
+ void uart_unregister_driver(struct uart_driver *uart);
+ int uart_add_one_port(struct uart_driver *reg, struct uart_port *port);
 
 -- 
 2.56.0
