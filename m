@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25CF6606A334
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFA69606A334
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 13:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AsKSZcnH;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=YOH2z47x
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H41hKqAW;
+	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=r8wHeS6a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=wU31mejql4PZZEtgae16N4HX4x4UHd5kwXITvcm2N2A=; b=AsKSZcnHVWn479ZFqbJFc7gLFB
-	eD9RX4Y+EsZlp2GqPe8mEpMJnszSdzfveWuyzZGOnFtcNCYXhv7qphnN5NbFpfduW9fbYuvsAZJ7s
-	qILOrd+ldLoSU4YmYsx7glX1Tk1gn+qRHOryO3BnFlGOmUhWhs6NHJhJ82x1flWWxgnWm6VwlWJv7
-	VrkAFowyti5MCEsuRCkvK3BdJfYCgn1+FjZUfv4YZdd79/DKdpP/DU3Y5wk+gyAdBkD2d3bYfou37
-	gYfYtVG6+BhmGgO7+XG0WTmMlJ47ss4y9hAEZpkBAc6/Hw2TDK9SyDDPeqFbLJisQMo3nwPTSbNJM
-	LO1a+2+w==;
+	bh=XILbzNG8364SQMzEVvGGmHe9jocP0yD2ZAPIhRzCmkM=; b=H41hKqAWObBBItHCqD7sFkU17J
+	uzqkd0EeNSR/oq/+7bSvphyqelB+facOD5Loa2JRHGNBwapBgaW0yV6Xqp2lpR4Ih48Hkiy6zUSBE
+	amNMmibmaU/+NsKWuiovWssk9eIbCas0z61hz4Z0HG+Z+J9a+eKbwoj35+4iwZqDIWTedaOlItPLL
+	Qqe/FT+N37Asmre9I580cpjt8oj26kCeVSkynuPgy9cFikeLE4zzub+Qy/KjLsZkt3WTolquubl6d
+	JoXEg7iahVEjG3Ebw45HhJ4+MH+jhMogtHY7vfOOBlmmLW6kDGEP3/zqPQ35BgeNfqRXMHtBastBE
+	jVBl19HQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUcZ-00000009ycm-1NTS;
-	Thu, 12 Nov 2026 13:13:43 +0000
-Received: from canpmsgout06.his.huawei.com ([113.46.200.221])
+	id 1xRUcY-00000009ybn-31OJ;
+	Thu, 12 Nov 2026 13:13:42 +0000
+Received: from canpmsgout08.his.huawei.com ([113.46.200.223])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRUcC-00000009ySi-4BTy
+	id 1xRUcC-00000009ySe-3911
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 13:13:26 +0000
+	Thu, 12 Nov 2026 13:13:24 +0000
 dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
 	c=relaxed/relaxed; q=dns/txt;
 	h=From;
-	bh=wU31mejql4PZZEtgae16N4HX4x4UHd5kwXITvcm2N2A=;
-	b=YOH2z47xfLP3iWrQL8m1jnQ2PfUMKMOeXoGvAO89FIX2UxeFs4J0xxGL+qGyrCHGfb0MkxRot
-	vZ29cnj0vtJV/Uwbg9UAtoAU/3C9AEXDvpaEl1aQ0Yv2ZxSvGYAaXgjjjFiYw466xi80jq6uyo+
-	ttTWpJC7rQsMjWEX329kT0A=
-Received: from mail.maildlp.com (unknown [172.19.162.197])
-	by canpmsgout06.his.huawei.com (SkyGuard) with ESMTPS id 4jQLRP1Tf9zRhQs;
-	Thu, 12 Nov 2026 21:13:05 +0800 (CST)
+	bh=XILbzNG8364SQMzEVvGGmHe9jocP0yD2ZAPIhRzCmkM=;
+	b=r8wHeS6acBmnEGDFSwxfdP41EG/95w5Po9kK2Ge9tLaadBF8pBK3/UCOCHoDk1Q5hs0Vk94Xz
+	XPoiPZ1MJAgEktzloodoIZcrDtuzLM1tAeyKkCk+qazNL6IELJmNrzG2cfWyF4crCa+C2q/T9vb
+	1ro43tPWT8q0hsKsjjJOFMc=
+Received: from mail.maildlp.com (unknown [172.19.163.163])
+	by canpmsgout08.his.huawei.com (SkyGuard) with ESMTPS id 4jQLRH0vjKzmV8H;
+	Thu, 12 Nov 2026 21:12:59 +0800 (CST)
 Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 47E6C40579;
-	Thu, 12 Nov 2026 21:13:16 +0800 (CST)
+	by mail.maildlp.com (Postfix) with ESMTPS id E57544048B;
+	Thu, 12 Nov 2026 21:13:14 +0800 (CST)
 Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
  (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 12 Nov
- 2026 21:13:15 +0800
+ 2026 21:13:14 +0800
 From: Jinjie Ruan <ruanjinjie@huawei.com>
 To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <Dave.Martin@arm.com>,
 	<james.morse@arm.com>, <babu.moger@amd.com>, <corbet@lwn.net>,
@@ -56,9 +56,9 @@ To: <tony.luck@intel.com>, <reinette.chatre@intel.com>, <Dave.Martin@arm.com>,
 	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>
 CC: <ruanjinjie@huawei.com>
-Subject: [RFC PATCH v2 7/9] arm_mpam: Program the hard limit for the software controller
-Date: Thu, 12 Nov 2026 21:12:52 +0800
-Message-ID: <20261112131255.4043381-8-ruanjinjie@huawei.com>
+Subject: [RFC PATCH v2 5/9] fs/resctrl: Allow mba_MBps with assignable MBM counters
+Date: Thu, 12 Nov 2026 21:12:50 +0800
+Message-ID: <20261112131255.4043381-6-ruanjinjie@huawei.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261112131255.4043381-1-ruanjinjie@huawei.com>
 References: <20261112131255.4043381-1-ruanjinjie@huawei.com>
@@ -69,8 +69,8 @@ Content-Type: text/plain
 X-ClientProxiedBy: kwepems100001.china.huawei.com (7.221.188.238) To
  kwepemk200008.china.huawei.com (7.202.194.74)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_051321_360900_C673E9BB 
-X-CRM114-Status: GOOD (  22.62  )
+X-CRM114-CacheID: sfid-20261112_051321_114825_8BC73E3F 
+X-CRM114-Status: GOOD (  24.82  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -90,185 +90,174 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MPAM's maximum bandwidth control has a HARDLIM bit:
-- When set, a PARTID that uses more than its maximum gets no further
-  bandwidth
-- When clear, requests above the maximum are serviced when no other
-  request is waiting
+The controller needs a counter for the event selected by mba_MBps_event
+in every monitoring group, so mba_MBps is refused when MBM counters are
+assignable. On MPAM a group's monitor is assigned from a fixed pool
+when the group is created, and users can otherwise only pick a
+percentage of a maximum that firmware does not report.
 
-The driver writes only the 16-bit maximum, so the control is a soft
-limit and the controller cannot keep a single requester below its target.
+Allow the controller when the architecture has a fixed assignment mode
+and assigns counters when a group is created. Keep mbm_assign_on_mkdir
+enabled while the controller is in use, restore its previous value
+when the controller is disabled, and refuse to unassign the
+controller's counter meanwhile.
 
-Carry the hard limit in mpam_config and set it when the controller is
-enabled. MPAMF_MBW_IDR.MAX_LIM reports the implemented behaviors: 00
-both, 10 hard only, 01 soft only. Record the soft-only case and the
-reserved 0b11 in resctrl_membw::max_is_soft_limit so mba_MBps is
-refused there. Merging resources into a class propagates the soft-only
-case, because the hard limit is usable only when every resource
-implements it.
+Only MPAM has this mode; other systems keep the previous behavior.
 
-The percentage interface never sets the hard limit, and resctrl clears
-a limit set by the controller when it resets the controls on unmount.
-Write the bit from the controller state on every write, so that a hard
-limit left by an interrupted reset is cleared.
-
+Suggested-by: Ben Horgan <ben.horgan@arm.com>
 Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
 ---
- drivers/resctrl/mpam_devices.c  | 55 ++++++++++++++++++++++++++-------
- drivers/resctrl/mpam_internal.h |  4 +++
- drivers/resctrl/mpam_resctrl.c  |  8 +++++
- 3 files changed, 56 insertions(+), 11 deletions(-)
+ Documentation/filesystems/resctrl.rst |  7 +++++--
+ fs/resctrl/monitor.c                  | 25 ++++++++++++++++++++++
+ fs/resctrl/rdtgroup.c                 | 30 +++++++++++++++++++++------
+ 3 files changed, 54 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-index c067b6d57d71..2c8f60c96d3f 100644
---- a/drivers/resctrl/mpam_devices.c
-+++ b/drivers/resctrl/mpam_devices.c
-@@ -1025,8 +1025,22 @@ static int mpam_ris_hw_probe(struct mpam_msc_ris *ris)
- 		 */
- 		props->bwa_wd = min(props->bwa_wd, 16);
+diff --git a/Documentation/filesystems/resctrl.rst b/Documentation/filesystems/resctrl.rst
+index b52795e03303..d70aec6f7096 100644
+--- a/Documentation/filesystems/resctrl.rst
++++ b/Documentation/filesystems/resctrl.rst
+@@ -471,7 +471,8 @@ with the following files:
+ 	Determines if a counter will automatically be assigned to an RMID, MBM event
+ 	pair when its associated monitor group is created via mkdir. Enabled by default
+ 	on boot, also when switched from "default" mode to "mbm_event" counter assignment
+-	mode. Users can disable this capability by writing to the interface.
++	mode. Users can disable this capability by writing to the interface. While the
++	MBA software controller is enabled, auto assignment cannot be disabled.
  
--		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MAX, mbw_features))
-+		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MAX, mbw_features)) {
-+			/*
-+			 * MAX_LIM: 0b00 both limits, 0b01 the soft limit
-+			 * only, 0b10 the hard limit only. 0b11 is reserved;
-+			 * treat it as the soft limit only so the software
-+			 * controller is refused rather than rely on an
-+			 * unknown limit behavior.
-+			 */
-+			props->max_lim = FIELD_GET(MPAMF_MBW_IDR_MAX_LIM, mbw_features);
-+			if (props->max_lim == 3)
-+				props->max_lim = 1;
-+
- 			mpam_set_feature(mpam_feat_mbw_max, props);
-+			/* The hard-limit bit is a configuration bit. */
-+			mpam_set_feature(mpam_feat_max_limit, props);
-+		}
+ 	"0":
+ 		Auto assignment is disabled.
+@@ -704,7 +705,9 @@ When monitoring is enabled all MON groups may also contain:
+ 	   mbm_total_bytes:0=e;1=e
+ 	   mbm_local_bytes:0=e;1=e
  
- 		if (props->bwa_wd && FIELD_GET(MPAMF_MBW_IDR_HAS_MIN, mbw_features))
- 			mpam_set_feature(mpam_feat_mbw_min, props);
-@@ -1911,16 +1925,21 @@ static int mpam_reprogram_ris_partid(struct mpam_msc_ris *ris, u16 partid,
+-	Assignments can be modified by writing to the interface.
++	Assignments can be modified by writing to the interface. While the
++	MBA software controller is enabled, the counter of the event the
++	controller uses cannot be unassigned.
+ 
+ 	Examples:
+ 
+diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
+index 8f3b8c3e3010..5a67c8089615 100644
+--- a/fs/resctrl/monitor.c
++++ b/fs/resctrl/monitor.c
+@@ -1210,6 +1210,12 @@ ssize_t resctrl_mbm_assign_on_mkdir_write(struct kernfs_open_file *of, char *buf
+ 		goto out_unlock;
  	}
  
- 	if (mpam_has_feature(mpam_feat_mbw_max, rprops)) {
--		if (mpam_has_feature(mpam_feat_mbw_max, cfg)) {
--			ret = mpam_write_partsel_reg(msc, MBW_MAX, cfg->mbw_max);
--			if (ret)
--				return ret;
--		} else {
--			ret = mpam_write_partsel_reg(msc, MBW_MAX,
--						     MPAMCFG_MBW_MAX_MAX);
--			if (ret)
--				return ret;
--		}
-+		u32 val = MPAMCFG_MBW_MAX_MAX;
-+
-+		if (mpam_has_feature(mpam_feat_mbw_max, cfg))
-+			val = cfg->mbw_max;
-+
-+		/*
-+		 * The hard-limit bit follows its own feature bit so that it
-+		 * can be set without changing the maximum.
-+		 */
-+		if (mpam_has_feature(mpam_feat_max_limit, cfg) && cfg->max_limit)
-+			val |= MPAMCFG_MBW_MAX_HARDLIM;
-+
-+		ret = mpam_write_partsel_reg(msc, MBW_MAX, val);
-+		if (ret)
-+			return ret;
- 	}
- 
- 	if (mpam_has_feature(mpam_feat_mbw_prop, rprops)) {
-@@ -2661,6 +2680,19 @@ static void __props_mismatch(struct mpam_props *parent,
- 		parent->bwa_wd = min(parent->bwa_wd, child->bwa_wd);
- 	}
- 
-+	/*
-+	 * The hard limit is only usable if every resource implements it,
-+	 * so the soft limit only wins the merge. The encoding follows
-+	 * MPAMF_MBW_IDR.MAX_LIM.
-+	 */
-+	if (alias && !mpam_has_feature(mpam_feat_mbw_max, parent) &&
-+	    mpam_has_feature(mpam_feat_mbw_max, child)) {
-+		parent->max_lim = child->max_lim;
-+	} else if (mpam_has_feature(mpam_feat_mbw_max, parent) &&
-+		   child->max_lim == 1) {
-+		parent->max_lim = 1;
++	if (!value && is_mba_sc(NULL)) {
++		rdt_last_cmd_puts("mbm_assign_on_mkdir is required by the software controller\n");
++		ret = -EBUSY;
++		goto out_unlock;
 +	}
 +
- 	if (alias && !mpam_has_cmax_wd_feature(parent) && mpam_has_cmax_wd_feature(child)) {
- 		parent->cmax_wd = child->cmax_wd;
- 	} else if (MISMATCHED_HELPER(parent, child, mpam_has_cmax_wd_feature,
-@@ -3405,6 +3437,7 @@ static bool mpam_update_config(struct mpam_config *cfg,
- 	maybe_update_config(cfg, mpam_feat_cpor_part, newcfg, cpbm, has_changes);
- 	maybe_update_config(cfg, mpam_feat_mbw_part, newcfg, mbw_pbm, has_changes);
- 	maybe_update_config(cfg, mpam_feat_mbw_max, newcfg, mbw_max, has_changes);
-+	maybe_update_config(cfg, mpam_feat_max_limit, newcfg, max_limit, has_changes);
+ 	r->mon.mbm_assign_on_mkdir = value;
  
- 	return has_changes;
+ out_unlock:
+@@ -1776,6 +1782,19 @@ static struct mon_evt *mbm_get_mon_event_by_name(struct rdt_resource *r, char *n
+ 	return NULL;
  }
-diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-index 1f86cc158100..184fbc01fa91 100644
---- a/drivers/resctrl/mpam_internal.h
-+++ b/drivers/resctrl/mpam_internal.h
-@@ -234,6 +234,7 @@ enum mpam_device_features {
- 	mpam_feat_msmon_mbwu_capture,
- 	mpam_feat_msmon_mbwu_rwbw,
- 	mpam_feat_partid_nrw,
-+	mpam_feat_max_limit,
- 	MPAM_FEATURE_LAST
- };
  
-@@ -243,6 +244,7 @@ struct mpam_props {
- 	u16			cpbm_wd;
- 	u16			mbw_pbm_bits;
- 	u16			bwa_wd;
-+	u8			max_lim;
- 	u16			cmax_wd;
- 	u16			cassoc_wd;
- 	u16			intpri_wd;
-@@ -364,6 +366,7 @@ struct mpam_config {
- 	u32	cpbm;
- 	u32	mbw_pbm;
- 	u16	mbw_max;
-+	bool	max_limit;
++/*
++ * Return the event the MBA software controller uses as its input for @rdtgrp.
++ * A monitor group has no event of its own: its bandwidth is summed into the
++ * parent control group, which is the group with the mba_MBps_event setting.
++ */
++static enum resctrl_event_id rdtgrp_mba_mbps_event(struct rdtgroup *rdtgrp)
++{
++	if (rdtgrp->type == RDTMON_GROUP)
++		return rdtgrp->mon.parent->mba_mbps_event;
++
++	return rdtgrp->mba_mbps_event;
++}
++
+ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *d,
+ 					struct rdtgroup *rdtgrp, struct mon_evt *mevt)
+ {
+@@ -1789,6 +1808,12 @@ static int rdtgroup_modify_assign_state(char *assign, struct rdt_l3_mon_domain *
+ 		ret = rdtgroup_assign_cntr_event(d, rdtgrp, mevt);
+ 		break;
+ 	case '_':
++		if (is_mba_sc(NULL) &&
++		    mevt->evtid == rdtgrp_mba_mbps_event(rdtgrp)) {
++			rdt_last_cmd_puts("Counter is in use by the software controller\n");
++			ret = -EBUSY;
++			break;
++		}
+ 		rdtgroup_unassign_cntr_event(d, rdtgrp, mevt);
+ 		break;
+ 	default:
+diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
+index b32831871f70..518d89b0c67d 100644
+--- a/fs/resctrl/rdtgroup.c
++++ b/fs/resctrl/rdtgroup.c
+@@ -2610,10 +2610,9 @@ static void mba_sc_domain_destroy(struct rdt_resource *r,
+  * The MBA software controller is supported only if MBM is supported and MBA is
+  * in linear scale, and the MBM monitor scope is the same as MBA control scope.
+  *
+- * The software controller cannot be supported when the MBM counters are
+- * assignable.  There is no guarantee that MBM counters are assigned to the
+- * event backing the software controller in all monitoring domains of all
+- * monitoring groups.
++ * The controller needs a counter for its event in every monitoring group.
++ * With assignable counters that requires a fixed assignment mode, with
++ * counters assigned automatically while the controller is in use.
+  */
+ static bool supports_mba_mbps(void)
+ {
+@@ -2623,9 +2622,13 @@ static bool supports_mba_mbps(void)
+ 	return (resctrl_is_mbm_enabled() &&
+ 		r->alloc_capable && is_mba_linear() &&
+ 		r->ctrl_scope == rmbm->mon_scope &&
+-		!rmbm->mon.mbm_cntr_assignable);
++		(!rmbm->mon.mbm_cntr_assignable ||
++		 rmbm->mon.mbm_cntr_assign_fixed));
+ }
  
- 	struct mpam_garbage	garbage;
- };
-@@ -628,6 +631,7 @@ int mpam_fb_check_shared_buffer_size(struct mpam_msc *msc);
++/* mbm_assign_on_mkdir before the software controller forced it on. */
++static bool mba_sc_saved_assign_on_mkdir;
++
+ /*
+  * Enable or disable the MBA software controller
+  * which helps user specify bandwidth in MBps.
+@@ -2633,6 +2636,7 @@ static bool supports_mba_mbps(void)
+ static int set_mba_sc(bool mba_sc)
+ {
+ 	struct rdt_resource *r = resctrl_arch_get_resource(RDT_RESOURCE_MBA);
++	struct rdt_resource *rmbm = resctrl_arch_get_resource(RDT_RESOURCE_L3);
+ 	u32 num_closid = resctrl_arch_get_num_closid(r);
+ 	struct rdt_ctrl_domain *d;
+ 	unsigned long fflags;
+@@ -2643,6 +2647,20 @@ static int set_mba_sc(bool mba_sc)
  
- /* MPAMF_MBW_IDR - MPAM features memory bandwidth partitioning ID register */
- #define MPAMF_MBW_IDR_BWA_WD		GENMASK(5, 0)
-+#define MPAMF_MBW_IDR_MAX_LIM		GENMASK(9, 8)
- #define MPAMF_MBW_IDR_HAS_MIN		BIT(10)
- #define MPAMF_MBW_IDR_HAS_MAX		BIT(11)
- #define MPAMF_MBW_IDR_HAS_PBM		BIT(12)
-diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
-index 5468367776e2..53fcffb23984 100644
---- a/drivers/resctrl/mpam_resctrl.c
-+++ b/drivers/resctrl/mpam_resctrl.c
-@@ -1236,6 +1236,7 @@ static int mpam_resctrl_control_init(struct mpam_resctrl_res *res)
- 		r->ctrl_scope = RESCTRL_L3_CACHE;
+ 	r->membw.mba_sc = mba_sc;
  
- 		r->membw.delay_linear = true;
-+		r->membw.max_is_soft_limit = (cprops->max_lim == 1);
- 		r->membw.throttle_mode = THREAD_THROTTLE_UNDEFINED;
- 		r->membw.min_bw = get_mba_min(cprops);
- 		r->membw.max_bw = MAX_MBA_BW;
-@@ -1481,6 +1482,13 @@ int resctrl_arch_update_one(struct rdt_resource *r, struct rdt_ctrl_domain *d,
- 		if (mpam_has_feature(mpam_feat_mbw_max, cprops)) {
- 			cfg.mbw_max = percent_to_mbw_max(cfg_val, cprops);
- 			mpam_set_feature(mpam_feat_mbw_max, &cfg);
-+			/*
-+			 * Always carry the hard-limit bit: the control follows
-+			 * the software controller, so a hard limit left by an
-+			 * earlier mount is cleared by the next write.
-+			 */
-+			mpam_set_feature(mpam_feat_max_limit, &cfg);
-+			cfg.max_limit = r->membw.mba_sc;
- 			break;
- 		}
- 		fallthrough;
++	/*
++	 * The controller needs its event counted in every monitoring group:
++	 * force automatic assignment on, and restore the user's setting when
++	 * the controller is disabled.
++	 */
++	if (rmbm->mon.mbm_cntr_assignable) {
++		if (mba_sc) {
++			mba_sc_saved_assign_on_mkdir = rmbm->mon.mbm_assign_on_mkdir;
++			rmbm->mon.mbm_assign_on_mkdir = true;
++		} else {
++			rmbm->mon.mbm_assign_on_mkdir = mba_sc_saved_assign_on_mkdir;
++		}
++	}
++
+ 	rdtgroup_default.mba_mbps_event = mba_mbps_default_event;
+ 
+ 	list_for_each_entry_rcu(d, &r->ctrl_domains, hdr.list, lockdep_is_cpus_held()) {
+@@ -3352,7 +3370,7 @@ static int rdt_parse_param(struct fs_context *fc, struct fs_parameter *param)
+ 		ctx->enable_cdpl2 = true;
+ 		return 0;
+ 	case Opt_mba_mbps:
+-		msg = "mba_MBps requires MBM (mbm_event mode not supported) and linear scale MBA at L3 scope";
++		msg = "mba_MBps requires MBM and linear scale MBA at L3 scope";
+ 		if (!supports_mba_mbps())
+ 			return invalfc(fc, msg);
+ 		ctx->enable_mba_mbps = true;
 -- 
 2.34.1
 
