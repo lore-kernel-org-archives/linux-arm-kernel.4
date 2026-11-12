@@ -2,72 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E083606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 10:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6393606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 10:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pJvRsWx3;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=PSUhd3ik
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rhF1sttV;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SVCKZF+a
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=nK9CXykOQdpoKKSKUEUW4Y0a7OU0zuqfF4zOk5eKRjM=; b=pJvRsWx36VztZh
-	Ra73rBcRntwkmLjuPz+Eg81L6w+/bASr6RaY/Zgh/XIOLsNHjNiyWCe0sKpyODRWoFbKGUEs/MDiA
-	oJ5KZPTuaQP8VNz6x4Jm/6U8RwLpGEscd2KwVdaIDhbQodt/kcHT2PdeQPkWmOwKMB3LS/7zK+1dW
-	KE3PG8ZmBIf7U6cpRej8k6mY12KFQnTL4V5gJ5mHWY4Ji/p6Rq8ZyVmkzByi1hDVcY8LoPFnmZPjj
-	pC00OW7KSNHJMVGscazppOJVZH7Oq31S7bEVBjyWOHy5+X6ojzUvUHqRtpLMXEs9EYYEdJArR0h5A
-	nAyij9yB+l2YBjBQQKVw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=DaFOdktrS9fp8GjCaaexp9MaiiYjCXQTieg0RYTagzo=; b=rhF1sttV7/vP8Frc08C0xRUs59
+	hzP8/TD+o2G35f/HluKS5y3uhprOGQRovTJaiQRcRzhQBGUWus/P699U4lkEvOxOHoTjT6eUwldqr
+	50YJ60Zp9coIolTGQfE96QXrvMuGtJwJlQd7DEk//0DZeKYD5nShVoqYOIgv96tRrVAD9hJWLU34a
+	JxTVoHQSQox20hAMZNqaMBF+hQzjML+UJFv5221dbz0GI18E6lbYZBfnUolRu/h4TOVHnTEdzWc2u
+	lhQr0MPTmk8ej4F1IhuZIdjrNybINCs24lY2EAdHf6XOMZKMrS01K6T7BPERf1L6/mp0VMDyO03eb
+	GprHou6w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRS2N-00000009Wm8-3TR9;
-	Thu, 12 Nov 2026 10:28:12 +0000
-Received: from mail-m1602365315.xmail.ntesmail.com ([160.236.53.15])
+	id 1xRS6B-00000009XBE-2vRl;
+	Thu, 12 Nov 2026 10:32:07 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRS2I-00000009WlH-2JwF;
-	Thu, 12 Nov 2026 10:28:09 +0000
-Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5472ffebd;
-	Thu, 12 Nov 2026 18:28:01 +0800 (GMT+08:00)
-Message-ID: <17a08dd7-819c-4598-94cd-f8ed208646d8@rock-chips.com>
-Date: Thu, 12 Nov 2026 18:28:00 +0800
+	id 1xRS6A-00000009XB7-1FFj
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 10:32:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7CBF94039C;
+	Thu, 12 Nov 2026 10:32:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9843A1F00A05;
+	Thu, 12 Nov 2026 10:31:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794479525;
+	bh=DaFOdktrS9fp8GjCaaexp9MaiiYjCXQTieg0RYTagzo=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=SVCKZF+auGmqT7JSUb746d9UAYnxXK8NWFfq/0oYpoErPWvB81l2FLR7ZNtt1TzRs
+	 SOfI8u76neTSvF2w5qbIOVuKL+j0Qdh6z4NfLSuKTzJC1HYiLRrvVCW+ItdeGsyYhB
+	 0xlkYqobVHgprk7YC6bfI9EaNr8ah+XrX4cNJm0+dsmvib7BsjEv9Z3jN2rLkg2sGR
+	 MI32t1e5nR4llWY0pS55Dcb/MdeZz4OkIAu7g3AqoCR6aOMCNrkFy4bHY133gLUfKu
+	 NvKAmHPiobyEkFiawUS89SUAGf2RECSFN4yWnkCah3YSfAeSzsWc22rZpjE4HCsa5S
+	 l3Qlv9hfTFjNQ==
+X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
+From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
+To: "Tian, Kevin" <kevin.tian@intel.com>,
+	"iommu@lists.linux.dev" <iommu@lists.linux.dev>
+Cc: Alex Williamson <alex@shazbot.org>,
+	Alexey Kardashevskiy <aik@amd.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Joerg Roedel <joro@8bytes.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Krishna Reddy <vdumpa@nvidia.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>,
+	Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>,
+	"kvm@vger.kernel.org" <kvm@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-coco@lists.linux.dev" <linux-coco@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+Subject: RE: [PATCH v8 11/15] iommufd/viommu: Select vIOMMU operations
+ before allocation
+In-Reply-To: <SA2PR11MB4844544BB238847916EA3A038C762@SA2PR11MB4844.namprd11.prod.outlook.com>
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-12-aneesh.kumar@kernel.org>
+ <SA2PR11MB4844544BB238847916EA3A038C762@SA2PR11MB4844.namprd11.prod.outlook.com>
+Date: Thu, 12 Nov 2026 16:01:54 +0530
+Message-ID: <yq5ay0aypch1.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] drm/rockchip: vop2: Take the UV plane address from
- the second GEM object
-To: aiyengar1990@gmail.com
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Piotr Zalewski <pZ010001011111@proton.me>, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
- <20261112-vop2-fixes-v2-1-8218c1cf8ac8@gmail.com>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261112-vop2-fixes-v2-1-8218c1cf8ac8@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa1cf4cd70803a7kunm7a1f598398933d
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDS0hJVkkdSRhMTRkaTE0fGVYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQkxVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=PSUhd3ik9cmURLl7TV8DlHTNFhsrQMTPF6B4XoguWBNzygr61uUmH1Q27gyZ4iPwMbmPmxZjuL3C/YdW4X5IK1ccRVgjkFvVQ9LsVJmoz9MCwzuMe8tPVLKQpA1K3w002rLAg1tSZrAkjpQ6J5cUW2xX2RLN6aGN/eMe447vr6Q=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=nK9CXykOQdpoKKSKUEUW4Y0a7OU0zuqfF4zOk5eKRjM=;
-	h=date:mime-version:subject:message-id:from;
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_022807_454122_5DCFF5F5 
-X-CRM114-Status: GOOD (  17.69  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,64 +97,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Arun, 
+"Tian, Kevin" <kevin.tian@intel.com> writes:
 
-On 11/12/2026 4:33 PM, Arun Iyengar via B4 Relay wrote:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
-> 
-> vop2_plane_atomic_update() computes the address of the chroma plane of a
-> multi-planar YUV framebuffer from fb->obj[0], the object of the luma
-> plane, plus the offset of the chroma plane. A framebuffer may have its
-> planes in different GEM objects though (DRM_IOCTL_MODE_ADDFB2 with two
-> handles, as with an NV12M buffer from a V4L2 decoder imported as two
-> DMA-BUFs). The window then fetches the chroma plane from the luma buffer,
-> at an offset meant for another buffer, which shows a wrong picture or
-> reads past the end of the luma buffer.
-> 
-> Use fb->obj[1] for the chroma plane. Single plane YUV formats like
-> DRM_FORMAT_YUV420_8BIT have no second object and keep using fb->obj[0].
-> This is also what the vendor kernel does.
-> 
-> Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
-> Reported-by: Sashiko <sashiko-bot@kernel.org>
-> Closes: https://lore.kernel.org/all/sashiko-outbox-206550@kernel.org/
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
-> ---
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index 76d151b8bc52..ea8d837d661f 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -1369,7 +1369,9 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
->  		if ((pstate->rotation & DRM_MODE_REFLECT_Y) && !afbc_en)
->  			offset += fb->pitches[1] * ((pstate->src_h >> 16) - 2) / vsub;
->  
-> -		rk_obj = to_rockchip_obj(fb->obj[0]);
-> +		/* Single plane formats like YUV420_8BIT have no second object */
+>> From: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+>> Sent: Thursday, November 5, 2026 12:16 AM
+>> 
+>> Physical IOMMU drivers currently provide the vIOMMU size and
+>> initialization callbacks through iommu_ops. The initialization callback
+>> then selects and installs the corresponding iommufd_viommu_ops.
+>> 
+>> Add iommu_ops::get_viommu_ops() to select the operations from the
+>> physical device and requested vIOMMU type before allocation. Move the
+>> size and initialization callbacks into iommufd_viommu_ops. The core can
+>> then validate the selected operations, allocate the driver structure,
+>> initialize it, and install the operations.
+>> 
+>> Convert AMD, Arm SMMUv3, Tegra CMDQV, and the selftest backend to the
+>> new interface.
+>> 
+>> Selecting the operations early allows subsequent changes to use
+>> implementation-specific vIOMMU properties, including when validating the
+>> parent HWPT.
+>
+> what does "implementation-specific" mean? Isn't every existing vIOMMU
+> type already implementation specific?
+>
 
-Drop this comment.
+How about I update this to.
 
+The current code requires a valid parent HWPT before calling
+viommu_init(), which selects the vIOMMU operations. A later patch adds
+an operations flag indicating that a vIOMMU type does not require a parent
+HWPT. Selecting the operations earlier allows the core to check that flag
+before deciding whether to look up and validate a parent HWPT.
 
-> +		if (fb->format->num_planes > 1)
-> +			rk_obj = to_rockchip_obj(fb->obj[1]);
->  		uv_mst = rk_obj->dma_addr + offset + fb->offsets[1];
->  	}
->  
-> 
+>
+>> 
+>>  /*
+>>   * This function is assigned to struct
+>> iommufd_viommu_ops.alloc_domain_nested()
+>> - * during the call to struct iommu_ops.viommu_init().
+>> + * when the vIOMMU operations are selected.
+>>   */
+>>  struct iommu_domain *
+>>  amd_iommu_alloc_domain_nested(struct iommufd_viommu *viommu, u32
+>> flags,
+>
+> the comment sounds changing the semantics.
+>
+> ideally it's still assigned at viommu_init(), just from iommufd_viommu_ops
+> instead of iommu_ops now.
 
--- 
-Best, 
-Chaoyi
+How about
+ /*
+  * This function is assigned to struct iommufd_viommu_ops.alloc_domain_nested()
+- * during the call to struct iommu_ops.viommu_init().
++ * during the call to struct iommufd_viommu_ops.viommu_init().
+  */
 
+-aneesh
 
