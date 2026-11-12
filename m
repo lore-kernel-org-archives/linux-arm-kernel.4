@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5201E60A2619
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B575F606A889
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HQoAlzel;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=R5aEfpPh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EB1mntCV;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=wAKgWrus
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XAIZnoux/n2tbjv162cNDAMdWgGrOolZSCwfLvbKHTE=; b=HQoAlzelT/1ctS
-	S2mmw9LAUZGiX+BqW+ggik3oT1WLAg4Q2tyLrStCmyn3kQtLcgyFsBqMpq4ulXnGEKTQiT/ZcLZcZ
-	OHOgJAX3s6Paang9lafN+2DoHZeH6oOYSwPAa8XYKUPOaqH+lccXkpniSnpNsisS/dDEM7bbnCNx+
-	Yrp7D/j8kFVOeHu41WWn6oaaIevV0Fd+s55ROKlpBThZDVARitcc2ey2oJwhHiyHkgJvmhRizjjkY
-	seaMI2z3QGdLalCJHCmNlhBRzDplyAX7zPM98C1M9Z+cIcIde6FDlSqq1ox+Fpb6CIkgaD7sU/jdS
-	6pAKUA9Dy7/+0LUMPRFw==;
+	List-Owner; bh=ZVpuREB8xPMvnvzIHzSU5Q+SDBQM9PRI4uI6fRX5adE=; b=EB1mntCVSD7fol
+	x5hnW2g+L0Qiwn2LCYUdlbsc4Jdm9VGRnxM6TkAsdr+bpXER601X0CidxciZlprQMBX5r+CesO4EN
+	NzV4GQLG1BoxPszoCcNExysDgKEYM/HTDB5pbbWoVM9AQGyrea8Pi7NFTSDZXAoENQNv0Bp2qibo8
+	iPfP8ZrQyIPd6blMhxDpXBBQAQpGtLO0Jo93aVBDB9SQjwQ7flLk5dRiUU5pNy93fQAH/kZJXwFvQ
+	nFwiMO/icxA3+EVijEEewpGbzQwcC0oUY+LPiNuX+sbvq0nA3WM+vw33IzvwyqO6myeI8Q/2K9uHm
+	CkdQ8n0woSDVaZMJiq3Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVwU-0000000AI65-0u1U;
-	Thu, 12 Nov 2026 14:38:22 +0000
-Received: from mail-vs1-xe35.google.com ([2607:f8b0:4864:20::e35])
+	id 1xRVwa-0000000AIAB-227c;
+	Thu, 12 Nov 2026 14:38:28 +0000
+Received: from mail-ua1-x92b.google.com ([2607:f8b0:4864:20::92b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVwQ-0000000AI4N-0tct
+	id 1xRVwV-0000000AI6A-0wt8
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 14:38:19 +0000
-Received: by mail-vs1-xe35.google.com with SMTP id ada2fe7eead31-7cc81984fceso1492145137.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 06:38:17 -0800 (PST)
+	Thu, 12 Nov 2026 14:38:25 +0000
+Received: by mail-ua1-x92b.google.com with SMTP id a1e0cc1a2514c-9906a5410f5so842691241.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 06:38:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794494297; x=1795099097; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794494302; x=1795099102; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=XAIZnoux/n2tbjv162cNDAMdWgGrOolZSCwfLvbKHTE=;
-        b=R5aEfpPhrlRvXHvxQtSEG1qtYllzVhJEAAuvGETEtG0ZzMLxcw0sIWuWYOXGx8i2jZ
-         4iycgUjC25TDfPr7lmui1qgpGD8ev94PvFyhBuv3paH04G/2LdnZ1VPjA+gj4sEX/U8T
-         cQvvKtuxQp5GG9un2OpjTFcDNcue1nOXXTI73mAz7ka2zbEYAyqhVFsBc01pSlCrSdFZ
-         tWR5LhbxgkTM1iN8fej1otzPviTIX7RTw/5qtYgmWP46zlQTTFVSyyCQOyK21G8cy3MK
-         VQVp0JUJUm8dOM4IyQMEegAeLZFbC+PoSTIXPSB5o4H2RLTmKlGDhfmcszkZS3iGH1rU
-         QKQQ==
+        bh=ZVpuREB8xPMvnvzIHzSU5Q+SDBQM9PRI4uI6fRX5adE=;
+        b=wAKgWrus0q3dJQAdWy+fI8TgQPCxRz8UbqgUSeGQ1UTYoavxQmjOINGjzzKCtEjpzr
+         4/dD38dchLVpoCcXqDE02hFO92HI8YU8loYkRP3XynmhzSRGvtrPiwf/7MjKXLsh+t2M
+         YvrtWEKkbri22gocUlzSGAgpeVkCubDVvEva97cIVfi7vRK2Fhfg+b33UNA96cIs21wI
+         v3V3sjHMUu8B2K6L/vV2OPnRBlwRX1xxm3SoMEwp/WLkTlTHbFZ+GLXJq01Xe3XNK7lY
+         bSM6IjoHoguhsmd+NMrpTvEWP9InPyzsFXLWq6QiJaCVc5HMQLQNCyhxsy5eEDvBzpgm
+         qARQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794494297; x=1795099097;
+        d=1e100.net; s=20260707; t=1794494302; x=1795099102;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=XAIZnoux/n2tbjv162cNDAMdWgGrOolZSCwfLvbKHTE=;
-        b=aiPcO99nDesq+Bs/ZCBe5ZVcBJlNtC0+SccZ9yRHbOTKOsGqcx4qtQ3EI4g0gPPmFm
-         l1N+GtqlMeU+UD/jhHUSEC41Db23GfRYCvB0YS106k0borKYzcJA7EY6JNYRoekd/iD+
-         mvusQ/AdTenKPCCJejxLRllVwwg+MUNLbb9Ay3tqFd925Goub8S872mhHtpLgGQ0QAY+
-         ytpC7dvNDVAmkBMCSRyLzj3DrUMs8zhWmqtIl+uqX/V92ifULY4suoXYhUC06SxaLnVN
-         FBcnj9DAaRykNXbZ4ZYv3SVoS7zmyBP3GfRmB5WTa4il/TJbLfjGtkqxs3y2FbhlOYqL
-         ozEg==
-X-Forwarded-Encrypted: i=1; AL+hErGdPqoR98RnFMVC59Xp4PVU6PQOUubPBK3l4vvslrDvQGKEQjIdb5R0HtGtNAy5j+rVPhHWtywGI/gQWfLu2cp6@lists.infradead.org
-X-Gm-Message-State: APuU4Z/dCQTajQU2NYV8iGdFIFIjXoCL/SlhQ63d9zrsPig2ZzRre/H1
-	kaY8qtZL2J4QIAB+dsWZZtVj0+Zh2AkHo2r5vxn9qOuPB7/ixpASCHx6
-X-Gm-Gg: AYBFou0aOcrqi+YqieaQ2vydtKAUypogfHINfKjjE62ba99GjjaEqi9EK7SDqt2+c+3
-	hSDZEWbtHfSN6NCmd4QHRsQAudH19xFbKjKKIS1Wlq29jT33mRLa3qeHpXAS1/5kvRCS3vv9zF2
-	0UbrNbj23sZ5VYE5WBvx+KFbTQ0hcFCJ/EniYuiqrPpF2tt08gD4re8gNFFuX4ZFJh3kkYU8xLv
-	ngscrTxes3ODs0NgT2cLQ/QBP3LIE4yh0GYneRPrpKxWSc1ybm82eDVvj8tUyDJCDHmpwbN5+fz
-	agusFT5vt/RBvpRaavVFgcT6H6jC4qU1FqU06HnqwhFejltCeJf2EUxigyZtlc7qonx8saCwiWm
-	v5pHFyS0W2HWkJYLx1lS4Lr7ddvGiWHSBEAMjRzfSsrAz3Di8R/9oz10a4XwEDiZrXwsI7hiPXN
-	VUQQQpJp+EJ+v+lp7SsB6/hXr7lMYsGpGcNB8weT4vQpBNUWBDnh4/ZaHFbtN4ejqqeO+XkPRbd
-	2rKMcos6FEBxVEYI1BKbxpV7gfo0M4wSlQsEYUg1h3RAp9d+fA8RLJEoWNKz9S4rgLTdwK0VR10
-	FRKviEHdDmRvVnreLwHgCOgRSvaJinCeexkWi9iv4Lg5dNlChbNIynw=
-X-Received: by 2002:a05:6102:c4f:b0:7d2:75bf:2fb3 with SMTP id ada2fe7eead31-7d4edd1c21dmr1830857137.1.1794494296470;
-        Thu, 12 Nov 2026 06:38:16 -0800 (PST)
+        bh=ZVpuREB8xPMvnvzIHzSU5Q+SDBQM9PRI4uI6fRX5adE=;
+        b=qDzy4tkj2XbChq+obEHIY0RdLR9oqOe9XtWHeln71+BNzfovKSDclAt8pJ/9fMzm3N
+         iy8Sg1GRPqMxQLQ6eF2mCfXRuhnQyLkzes9mRUOisZG7sBVOMcPCgTfpKKIQuJGsmWjl
+         MTQnW/+dEjGzgUfZ3Zp3NnuIR04PAiOSceO6/yqi7NVIGyA3n4FhClR7K7eGYmxgwvW9
+         WRC21deUlySNO7TxBsptHO+2rmP4CFagnIr8BdV+9E5GQsfrteb+lTWohG7sJp5P0gCZ
+         NwkcSW/RNqPdxUVRmQdzGtKJZcYG5AcX1FJt8gukNbdfamZNNOSlUqDhhyuPWUY6c5qW
+         Hvrg==
+X-Forwarded-Encrypted: i=1; AL+hErEVYc8WPK4L3ig0yAfg62CrtHzOy6O5Rh+W2ld16cTTeEC9q40jy8PmfogF0+YLeVJMjtozwWspTBGtuLEXJjFq@lists.infradead.org
+X-Gm-Message-State: APuU4Z9yGyWAojdsyVkMzj7KHNBiP4OJsmvEK/3GHXblKSBdhjaFH1aA
+	wApFO1x5QJDuxIugvHKy3y34h9HffxJFpHJlRAxXLK9XGZ2CP6fo/mhd
+X-Gm-Gg: AYBFou3m4lqYX4sD4Lsuqz7THhtOGM8CghIeRQTQr3wJmkrZkoKWhr9MC9tNMav0MKm
+	WVQX0c+s1W8ZxPrglfjUVQ4igoRggMMqoEB6ogMNzG+lqUr3ZP/mDCSUKe1R3QIe6igzYcfUm3v
+	UlbT4d3ReXgi+o8kkL+KNLNMmLOIeRi7oJYbOp3njzVrj7xwTAz1jGFrO38Y3wgmyJBcT5Md0YO
+	r7QzXP2NX1lflb3aRdLcx2wzz+E7tsBD/knQl4iytXTqBy+XHJv0eQMD6DepZutWSXyvT7ekInj
+	P0eDTHZEDQw6kb6Li2Srqnv1E25SErEplmDPqPpNjRFlfK1a53WlQJR06QxsoYFyRSH3BsAr6Lm
+	P9vWRSotzXREo3hQ7HhQCrRXV6sEasosYQagyJ+mJejJQ5m1K9McCKHkVPL4sRblpNYdqudeNn8
+	PovvDo4hp9M81BXgSoVmALVDhuSGUcAR6hCZ27Lk2MrUpJZc5InayP67Eqn+8+G8ZgCHBx+IDIs
+	Uc/UW6Apg79v2PXRFVIVRBIppD/wC5Ogm8Yy8odJW5+z/ltO3GV8rtHBwbCC9e9Xj+CRve1CE/2
+	DoB2gdytTDKWvNElTfI0CLqazOe+FrTZkQ==
+X-Received: by 2002:a05:6102:6884:b0:7bd:ce85:b00f with SMTP id ada2fe7eead31-7d631812c87mr733923137.40.1794494301320;
+        Thu, 12 Nov 2026 06:38:21 -0800 (PST)
 Received: from [127.0.1.1] ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99c1fffe12dsm5177230241.5.2026.11.12.06.38.11
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99c1fffe12dsm5177230241.5.2026.11.12.06.38.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 06:38:16 -0800 (PST)
+        Thu, 12 Nov 2026 06:38:21 -0800 (PST)
 From: Leonardo Costa <leoreis.costa@gmail.com>
-Date: Thu, 12 Nov 2026 11:37:34 -0300
-Subject: [PATCH 2/3] arm64: dts: freescale: imx95-aquila: Add GPIO
- pingroups for the Lotus Carrier Board
+Date: Thu, 12 Nov 2026 11:37:35 -0300
+Subject: [PATCH 3/3] arm64: dts: freescale: imx95-aquila: Add Lotus Carrier
+ Board
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-b4-v1-aquila-lotus-dtbs-v1-2-ca150bb4b0f9@toradex.com>
+Message-Id: <20261112-b4-v1-aquila-lotus-dtbs-v1-3-ca150bb4b0f9@toradex.com>
 References: <20261112-b4-v1-aquila-lotus-dtbs-v1-0-ca150bb4b0f9@toradex.com>
 In-Reply-To: <20261112-b4-v1-aquila-lotus-dtbs-v1-0-ca150bb4b0f9@toradex.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -93,16 +93,16 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  Leonardo Costa <leonardo.costa@toradex.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794494281; l=3366;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794494281; l=9267;
  i=leonardo.costa@toradex.com; s=20261001; h=from:subject:message-id;
- bh=E6ByCUL0N/O7LejHb/X4auWSlo2ji9+18EP0glmb2AE=;
- b=kfiguU1plVyEnzHlHbVhmFtsvSJI1nrPiCltOAJzbi1SapThDG0yPx+EWCJJJBvaKpqrocvLg
- RtvqJCcTPwkD5IZL3ScBoHZCa8ifHFmHWe7d6TDcrTjEJPFevtjwiEb
+ bh=oRQABbPT78J3ds1qH6YAq8U3BmoCtY9BHxeZLI5mJEk=;
+ b=x5X4+BTojUPJqFVMsqkAXbnN1gfkUoK8ry+6pKywK5Vs5kCilmqp6sWUb1yAeDrOPAThxGnqR
+ f8wSBDdKHGUDXbqReXc+4F2zU78uoVow5ibIJa/44ft+yjdeJ9TtQgj
 X-Developer-Key: i=leonardo.costa@toradex.com; a=ed25519;
  pk=4xvoVLDt+NxIz9D8BJHhT0fD43Ig6XgSDw4jRN/gHzk=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_063818_315502_9359B5F4 
-X-CRM114-Status: GOOD (  12.93  )
+X-CRM114-CacheID: sfid-20261112_063823_383416_61BD7B5F 
+X-CRM114-Status: GOOD (  13.71  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,125 +124,407 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Leonardo Costa <leonardo.costa@toradex.com>
 
-The PWM_4_DP and I2S_1_* signal pins, except for I2S_1_BCLK, are used as
-GPIOs for SFP+ low-speed signals on boards which contain an SFP+ Cage.
+Add support for the Aquila iMX95 SoM mated with the Lotus Carrier Board.
+Lotus is a carrier board for the Aquila family featuring a small form
+factor (Nano-ITX 120mm x 120mm) and built for volume production.
 
-Add pingroups muxing those pins to their GPIO functions and update the
-gpio-line-names properties with the newly added GPIO pins. Additionally
-extend the modified gpio-line-names arrays to their full size.
+I2S_1_BCLK, GPIO_07 and GPIO_08 are used as digital input readbacks for
+the Isolated Digital IOs on the Lotus Carrier Board. Add pingroups
+muxing these pins as GPIOs in the Lotus device tree, with no pull-ups or
+pull-downs, since the Isolated Digital IO circuit includes external
+pull-downs for the readback pins.
 
-Also add the I2S_1_BCLK pin (AQUILA_B20) to gpio-line-names, as it is
-used as an Isolated Digital IO readback on the Lotus Carrier Board.
-
+Link: https://www.toradex.com/computer-on-modules/aquila-arm-family/nxp-imx95
+Link: https://www.toradex.com/products/carrier-board/lotus
 Signed-off-by: Leonardo Costa <leonardo.costa@toradex.com>
 ---
- arch/arm64/boot/dts/freescale/imx95-aquila.dtsi | 61 ++++++++++++++++++++++---
- 1 file changed, 55 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ .../boot/dts/freescale/imx95-aquila-lotus.dts      | 365 +++++++++++++++++++++
+ 2 files changed, 366 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-aquila.dtsi b/arch/arm64/boot/dts/freescale/imx95-aquila.dtsi
-index dbb0b44583a55..369d5aa469ce7 100644
---- a/arch/arm64/boot/dts/freescale/imx95-aquila.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95-aquila.dtsi
-@@ -277,7 +277,29 @@ &gpio2 {
- 			  "",
- 			  "AQUILA_B42",
- 			  "",
--			  "AQUILA_B43";
-+			  "AQUILA_B43",
-+			  "", /* 10 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "", /* 20 */
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "AQUILA_B58",
-+			  "",
-+			  "",
-+			  "",
-+			  "", /* 30 */
-+			  "";
- };
- 
- &gpio3 {
-@@ -323,18 +345,20 @@ &gpio4 {
- 			  "",
- 			  "",
- 			  "",
--			  "",
-+			  "AQUILA_B23",
- 			  "AQUILA_C22",
- 			  "AQUILA_C21",
- 			  "AQUILA_C20",
--			  "", /* 20 */
--			  "",
--			  "",
-+			  "AQUILA_B21", /* 20 */
-+			  "AQUILA_B20",
-+			  "AQUILA_B22",
- 			  "AQUILA_C23",
- 			  "AQUILA_D23",
- 			  "AQUILA_D24",
-+			  "AQUILA_B24",
-+			  "AQUILA_D25",
- 			  "",
--			  "AQUILA_D25";
-+			  "";
- };
- 
- &gpio5 {
-@@ -1041,10 +1065,30 @@ pinctrl_sai2: sai2grp {
- 			   <IMX95_PAD_ENET2_RX_CTL__NETCMIX_TOP_SAI2_TX_DATA_BIT0	0x11e>; /* Aquila B22 */
- 	};
- 
-+	/* Aquila I2S_1_MCLK as GPIO */
-+	pinctrl_i2s_1_mclk_gpio: sai2mclkgpiogrp {
-+		fsl,pins = <IMX95_PAD_ENET2_RD2__GPIO4_IO_BIT26	0x31e>; /* Aquila B24 */
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index a80cccf34eb56..60ab650f04279 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -965,6 +965,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-evk-sof.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-19x19-frdm-pro.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-aquila-clover.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-aquila-dev.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx95-aquila-lotus.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-navq.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-osm-dev.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx95-toradex-smarc-dev.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts b/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts
+new file mode 100644
+index 0000000000000..4ae600636106b
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx95-aquila-lotus.dts
+@@ -0,0 +1,365 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/*
++ * Copyright (c) Toradex
++ *
++ * https://www.toradex.com/computer-on-modules/aquila-arm-family/nxp-imx95
++ * https://www.toradex.com/products/carrier-board/lotus
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/pwm/pwm.h>
++#include <dt-bindings/usb/pd.h>
++#include "imx95-aquila.dtsi"
++
++/ {
++	model = "Aquila iMX95 on Aquila Lotus Board";
++	compatible = "toradex,aquila-imx95-lotus",
++		     "toradex,aquila-imx95",
++		     "fsl,imx95";
++
++	aliases {
++		eeprom1 = &carrier_eeprom;
 +	};
 +
- 	pinctrl_sai2_mclk: sai2mclkgrp {
- 		fsl,pins = <IMX95_PAD_ENET2_RD2__NETCMIX_TOP_SAI2_MCLK	0x31e>; /* Aquila B24 */
- 	};
- 
-+	/* Aquila I2S_1_D_IN as GPIO */
-+	pinctrl_i2s_1_d_in_gpio: sai2rxdata0gpiogrp {
-+		fsl,pins = <IMX95_PAD_ENET2_TD3__GPIO4_IO_BIT16	0x31e>; /* Aquila B23 */
++	dp0-connector {
++		compatible = "dp-connector";
++		dp-pwr-supply = <&reg_dp_3p3v>;
++		type = "mini";
++
++		port {
++			dp_1_connector_in: endpoint {
++				remote-endpoint = <&dsi2dp_out>;
++			};
++		};
 +	};
 +
-+	/* Aquila I2S_1_D_OUT as GPIO */
-+	pinctrl_i2s_1_d_out_gpio: sai2txdata0gpiogrp {
-+		fsl,pins = <IMX95_PAD_ENET2_RX_CTL__GPIO4_IO_BIT22	0x31e>; /* Aquila B22 */
++	reg_dp_3p3v: regulator-dp-3p3v {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_21_dp>;
++		/* Aquila GPIO_21_DP */
++		gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-max-microvolt = <3300000>;
++		regulator-min-microvolt = <3300000>;
++		regulator-name = "DP_3V3";
++		startup-delay-us = <10000>;
 +	};
 +
-+	/* Aquila I2S_1_SYNC as GPIO */
-+	pinctrl_i2s_1_sync_gpio: sai2txsyncgpiogrp {
-+		fsl,pins = <IMX95_PAD_ENET2_TX_CTL__GPIO4_IO_BIT20	0x31e>; /* Aquila B21 */
++	sfp: sfp {
++		compatible = "sff,sfp";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_19_dsi_1>, <&pinctrl_i2s_1_sync_gpio>,
++			    <&pinctrl_i2s_1_d_in_gpio>, <&pinctrl_pwm4_dp_gpio>,
++			    <&pinctrl_i2s_1_mclk_gpio>, <&pinctrl_i2s_1_d_out_gpio>;
++		i2c-bus = <&lpi2c2>;
++		los-gpios = <&gpio5 13 GPIO_ACTIVE_HIGH>;
++		maximum-power-milliwatt = <4000>;
++		mod-def0-gpios = <&gpio4 20 GPIO_ACTIVE_LOW>;
++		rate-select0-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
++		rate-select1-gpios = <&gpio2 26 GPIO_ACTIVE_HIGH>;
++		tx-disable-gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>;
++		tx-fault-gpios = <&gpio4 22 GPIO_ACTIVE_HIGH>;
++	};
++};
++
++/* Aquila ADC_[1-4] */
++&adc1 {
++	status = "okay";
++};
++
++&dsi2dp_out {
++	remote-endpoint = <&dp_1_connector_in>;
++};
++
++/* Aquila ETH_1 */
++&enetc_port0 {
++	status = "okay";
++};
++
++/* Aquila ETH_2_XGMII */
++&enetc_port2 {
++	managed = "in-band-status";
++	phy-mode = "10gbase-r";
++	sfp = <&sfp>;
++
++	status = "okay";
++};
++
++/* Aquila CAN_1 */
++&flexcan1 {
++	status = "okay";
++};
++
++/* Aquila CAN_2 */
++&flexcan2 {
++	status = "okay";
++};
++
++/* Aquila CAN_3 */
++&flexcan3 {
++	status = "okay";
++};
++
++/* Aquila CAN_4 */
++&flexcan4 {
++	status = "okay";
++};
++
++/* Aquila QSPI_1 */
++&flexspi1 {
++	pinctrl-0 = <&pinctrl_flexspi1_4bit>,
++		    <&pinctrl_qspi_cs1>;
++
++	status = "okay";
++
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0x0>;
++		spi-max-frequency = <66000000>;
++		spi-rx-bus-width = <4>;
++		spi-tx-bus-width = <4>;
++	};
++};
++
++&gpio1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio_8_dig_in_rb>;
++};
++
++&gpio4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio_1>,
++		    <&pinctrl_gpio_2>,
++		    <&pinctrl_gpio_3>,
++		    <&pinctrl_gpio_4>,
++		    <&pinctrl_gpio_7_dig_in_rb>,
++		    <&pinctrl_i2s_1_bclk_dig_in_rb>;
++};
++
++/* Aquila I2C_2 */
++&i3c2 {
++	status = "okay";
++};
++
++/* Aquila I2C_1 */
++&lpi2c2 {
++	status = "okay";
++
++	fan_controller: fan@18 {
++		compatible = "ti,amc6821";
++		reg = <0x18>;
++		#pwm-cells = <2>;
++
++		fan {
++			cooling-levels = <255>;
++			pwms = <&fan_controller 40000 PWM_POLARITY_INVERTED>;
++		};
 +	};
 +
- 	/* Aquila SD_1_CD# as GPIO */
- 	pinctrl_sd1_cd_gpio: sd1cdgpiogrp {
- 		fsl,pins = <IMX95_PAD_SD2_CD_B__GPIO3_IO_BIT0	0x1100>; /* Aquila A1 */
-@@ -1070,6 +1114,11 @@ pinctrl_pwm3_dsi: tpm5ch0grp {
- 		fsl,pins = <IMX95_PAD_GPIO_IO06__TPM5_CH0	0x11e>; /* Aquila B46 */
- 	};
- 
-+	/* Aquila PWM_4_DP as GPIO */
-+	pinctrl_pwm4_dp_gpio: tpm5ch3gpiogrp {
-+		fsl,pins = <IMX95_PAD_GPIO_IO26__GPIO2_IO_BIT26	0x31e>; /* Aquila B58 */
++	gpio@20 {
++		compatible = "ti,tca6408";
++		reg = <0x20>;
++		#gpio-cells = <2>;
++		gpio-controller;
++		gpio-line-names =
++			"DO1_EN",
++			"DO2_EN",
++			"DO3_EN",
++			"",
++			"DI1_EN",
++			"DI2_EN",
++			"DI3_EN",
++			"";
 +	};
 +
- 	/* Aquila PWM_4_DP */
- 	pinctrl_pwm4_dp: tpm5ch3grp {
- 		fsl,pins = <IMX95_PAD_GPIO_IO26__TPM5_CH3	0x11e>; /* Aquila B58 */
++	temperature-sensor@4f {
++		compatible = "ti,tmp1075";
++		reg = <0x4f>;
++	};
++
++	/* USB-C OTG (TCPC USB PD PHY) */
++	tcpc@52 {
++		compatible = "nxp,ptn5110", "tcpci";
++		reg = <0x52>;
++		interrupt-parent = <&som_gpio_expander_1>;
++		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
++
++		connector {
++			compatible = "usb-c-connector";
++			data-role = "dual";
++			op-sink-microwatt = <0>;
++			power-role = "dual";
++			self-powered;
++			sink-pdos = <PDO_FIXED(5000, 0, PDO_FIXED_USB_COMM)>;
++			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
++			try-power-role = "sink";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					typec_con_hs: endpoint {
++						remote-endpoint = <&usb1_con_hs>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					typec_con_ss: endpoint {
++						remote-endpoint = <&usb1_con_ss>;
++					};
++				};
++			};
++		};
++	};
++
++	carrier_eeprom: eeprom@57 {
++		compatible = "st,24c02", "atmel,24c02";
++		reg = <0x57>;
++		pagesize = <16>;
++	};
++};
++
++/* Aquila I2C_4_CSI1 */
++&lpi2c4 {
++	status = "okay";
++};
++
++/* Aquila I2C_6 */
++&lpi2c5 {
++	status = "okay";
++};
++
++/* Aquila I2C_3_DSI1/I2C_5_CSI2 */
++&lpi2c8 {
++	status = "okay";
++};
++
++/* Aquila SPI_1 */
++&lpspi6 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpspi6>, <&pinctrl_gpio_5>;
++	/* Aquila SPI_1_CS (Aquila D09), Aquila GPIO_05 (Aquila C21) */
++	cs-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>, <&gpio4 18 GPIO_ACTIVE_LOW>;
++
++	status = "okay";
++
++	tpm@1 {
++		compatible = "infineon,slb9670", "tcg,tpm_tis-spi";
++		reg = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_6>;
++		/* Aquila GPIO_06 (Aquila C22) */
++		interrupt-parent = <&gpio4>;
++		interrupts = <17 IRQ_TYPE_LEVEL_LOW>;
++		spi-max-frequency = <12000000>;
++	};
++};
++
++/* Aquila UART_3, used as the Linux Console */
++&lpuart1 {
++	status = "okay";
++};
++
++/* Aquila UART_4 */
++&lpuart2 {
++	status = "okay";
++};
++
++/* Aquila UART_1 as Non-Isolated RS-485 */
++&lpuart3 {
++	linux,rs485-enabled-at-boot-time;
++
++	status = "okay";
++};
++
++/* Aquila UART_2 as Isolated RS-485 */
++&lpuart7 {
++	linux,rs485-enabled-at-boot-time;
++
++	status = "okay";
++};
++
++/* Aquila PCIE_1 */
++&pcie0 {
++	status = "okay";
++};
++
++/* Aquila PWM_1 */
++&tpm3 {
++	status = "okay";
++};
++
++/* Aquila PWM_3_DSI. Don't claim PWM_4_DP, as it's used as SFP+ RS1 */
++&tpm5 {
++	pinctrl-0 = <&pinctrl_pwm3_dsi>;
++
++	status = "okay";
++};
++
++/* Aquila PWM_2 */
++&tpm6 {
++	status = "okay";
++};
++
++/* Aquila USB_2 */
++&usb2 {
++	status = "okay";
++};
++
++/* Aquila USB_1 */
++&usb3 {
++	status = "okay";
++};
++
++&usb3_dwc3 {
++	status = "okay";
++
++	port {
++		usb1_con_hs: endpoint {
++			remote-endpoint = <&typec_con_hs>;
++		};
++	};
++};
++
++&usb3_phy {
++	orientation-switch;
++
++	status = "okay";
++
++	port {
++		usb1_con_ss: endpoint {
++			remote-endpoint = <&typec_con_ss>;
++		};
++	};
++};
++
++/* Aquila SD_1 */
++&usdhc2 {
++	status = "okay";
++};
++
++&scmi_iomuxc {
++	/* Aquila GPIO_07 without internal pull-up or pull-down */
++	pinctrl_gpio_7_dig_in_rb: gpio7diginrbgrp {
++		fsl,pins = <IMX95_PAD_ENET2_RXC__GPIO4_IO_BIT23	0x11e>; /* Aquila C23 */
++	};
++
++	/* Aquila GPIO_08 without internal pull-up or pull-down */
++	pinctrl_gpio_8_dig_in_rb: gpio8diginrbgrp {
++		fsl,pins = <IMX95_PAD_PDM_BIT_STREAM1__AONMIX_TOP_GPIO1_IO_BIT10	0x11e>; /* Aquila C24 */
++	};
++
++	/* Aquila I2S_1_BCLK without internal pull-up or pull-down */
++	pinctrl_i2s_1_bclk_dig_in_rb: sai2txbclkdiginrbgrp {
++		fsl,pins = <IMX95_PAD_ENET2_TXC__GPIO4_IO_BIT21	0x11e>; /* Aquila B20 */
++	};
++};
 
 -- 
 2.43.0
