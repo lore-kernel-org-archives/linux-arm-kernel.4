@@ -2,78 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3CE4606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 03:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37203606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 03:52:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B3QkE7pq;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=Pyois4i7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0tmQc+VZ;
+	dkim=pass (1024-bit key) header.d=cmss.chinamobile.com header.i=@cmss.chinamobile.com header.a=rsa-sha256 header.s=default header.b=vlk87VrX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=od2MTFJr2n07GulawypdnHc+XDeU/CQF54c7+qeGSkg=; b=B3QkE7pqpzW6dcTrdPsvA9Xx7I
-	Ig9Itd3cRlvkSz97PyXgDVYt555QHYB6lkesdUQefFpVfJLnawi05Nk5n4ItoPwGgvNyUmEeW7tZk
-	wFl9l7eG9XC7/ywHDisUGHqAcgDETFf2bs7MzZOJB1yfS1d51EA2cL10OrXzly305lV3JFLKQc5fQ
-	zU+/ZTmcTTUVa459BDz+53mX2ekTNEbUIXkUNjXY/pHHKV0dEtw1FtFsiFdJn6/0E5+w4KYkW8Ss3
-	hQJasPOpe23QQyl2y5HiywxkTMKEDIrNLujdJwWCjkqZbpQTvSHRzl9QGlrgUTmj2In9zgU4btLvs
-	fvDwunpA==;
+	bh=SCVn4ixoUhM5kBe1PutJBybtN9lGQ3HUNA/BXvLhSJw=; b=0tmQc+VZaxDqqqW+g5hq/JAGjx
+	9gbq9ivsSbMRuIeVStve/JFlSEBp1md6j6Y7YgUJFNeVwU+qteUDh21V7dFc04s6FQwmUqzDwtP17
+	rPEr9ehlKxGQffCVCdStxmSmk4M1tEdqcfVln4gY4/xdl918nb22ZiwGvIzCWbbAw30AQX70jkqIY
+	fuba7HxnRqnMJNwYfaHbYXQ1wMMWdqFbLRYrXr9rzXTopI9qYAUgtCavquhBuxbpFRNXizD6iXVH6
+	iQ8k2TWp0yfLQjvt/J65oXu3NpkxyqLMYfm69eaavX7w/Lp24VE1X+XSeMapcM68B7jsAAvLR+D9y
+	zJnNCeqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRLqD-00000008eVm-16hB;
-	Thu, 12 Nov 2026 03:51:13 +0000
-Received: from sender6-op-o11.zoho.com ([165.173.180.11])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRLqA-00000008eVK-3Hce;
-	Thu, 12 Nov 2026 03:51:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; t=1794455460; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=miLEUgmPqEBpcIUKRBbHJcTMV73hdJYQRlNyUHE0BMSpiI6fmHAvyb8adXuq5UAVbQ5AowDfkohUjSyVu+k9TIoCaCCOZe1uLoN5joY5e+7CbIxAzfia9iiro8XAF6cqusXOVcSrvTqq1m2g8N17KFFLZT5Wz6HoyGFUnqhIrU0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1794455460; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=od2MTFJr2n07GulawypdnHc+XDeU/CQF54c7+qeGSkg=; 
-	b=YcBfySgNNac/Gr2W4Mj6FBzx3G6IXTcAbeQ0ey3pTxW0C+MjtgJlD504YjKtwwJ3WnKu8aUXWIvxgqSth5Ey4Ez9fr1BITAPSqG2aPvNL3PdwrvsBBZKQxsbnSFNLzSlNjXpBZWHm7torfuRhaGA7MuoDfFKTbqkGblF/uGopVo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: a=rsa-sha256; b=Pyois4i7O2HfzlPfTxnQqjrvraZ4PYa2L7WfF+E+HQyBKTQl1iq2FfSYXWJNNSv/XN0XEVfp0220gEvkOq8QdQrVA+7X7K6mJMUNvwZCRfqOCFy0/RRFwnoEXHvyO080ZDeXpVD175i3pUubojIrbLnxpghFq8X4nPmn7OFsZDE=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=od2MTFJr2n07GulawypdnHc+XDeU/CQF54c7+qeGSkg=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
-Received: by smtp.zohomail.com with SMTPS id 1794455458780967.2624418168582;
-	Wed, 11 Nov 2026 19:50:58 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 9CDA2180BC0; Thu, 12 Nov 2026 04:50:53 +0100 (CET)
-Date: Thu, 12 Nov 2026 04:50:53 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: aiyengar1990@gmail.com, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, "Joerg Roedel (AMD)" <joro@8bytes.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Niklas Cassel <cassel@kernel.org>, 
-	Shawn Lin <shawn.lin@rock-chips.com>, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Simon Xue <xxm@rock-chips.com>, "finley.xiao" <finley.xiao@rock-chips.com>
-Subject: Re: [PATCH 0/5] iommu/arm-smmu-v3: power domain and clock of the
- RK3588 PCIe SMMU
-Message-ID: <avU2I_QzCiBPVTDC@venus>
-References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
- <10924894.NyiUUSuA9g@diego>
- <ea8fa04c-4a8c-4c55-b4fa-f37d74267e93@rock-chips.com>
- <9_7qTfdNSViwtNUGq9D13w@sntech.de>
+	id 1xRLqi-00000008ebO-32XG;
+	Thu, 12 Nov 2026 03:51:44 +0000
+Received: from cmccmta2.chinamobile.com ([111.22.67.135])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRLqd-00000008ea2-1oby;
+	Thu, 12 Nov 2026 03:51:43 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cmss.chinamobile.com; s=default; l=0;
+	h=from:subject:message-id:to:cc:mime-version;
+	bh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+	b=vlk87VrXfClLyKz7/NC3Akq1maOI8c5Zh93vseazjnYYm/jZNUyraeRP0dcaEX3N+h/gMC69JmDqm
+	 7ZeWRGhv13kNZ1qRRvIjNxKFnoGC2wbLI7c7b+uI/F4bdCA5VceRPnhr1g6pqGu90jlSAqK/19EMJS
+	 WhtkFF5/Cl+GeyMk=
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM-FLAG: 00000000
+Received: from spf.mail.chinamobile.com (unknown[10.188.0.87])
+	by rmmx-syy-dmz-app07-12007 (RichMail) with SMTP id 2ee76af537c3b47-de5a5;
+	Thu, 12 Nov 2026 11:51:31 +0800 (CST)
+X-RM-TRANSID: 2ee76af537c3b47-de5a5
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM-FLAG: 00000000
+Received: from [198.18.0.64] (unknown[223.108.79.101])
+	by rmsmtp-syy-appsvr03-12003 (RichMail) with SMTP id 2ee36af537c24aa-f086d;
+	Thu, 12 Nov 2026 11:51:31 +0800 (CST)
+X-RM-TRANSID: 2ee36af537c24aa-f086d
+From: Xia Yan <yanxia@cmss.chinamobile.com>
+To: netdev@vger.kernel.org
+Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, David S. Miller <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Yanqing Wang <ot_yanqing.wang@mediatek.com>,
+ Bartosz Golaszewski <brgl@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ yana06070@163.com
+Subject: [PATCH net-next v2] net: ethernet: mtk-star-emac: fix device_node
+ leak in mtk_star_probe()
+Date: Thu, 12 Nov 2026 11:51:30 +0800
+Message-ID: <1794455490000.585551.2561101329908158128@cmss.chinamobile.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="x7tmavbsaviu3rdb"
-Content-Disposition: inline
-In-Reply-To: <9_7qTfdNSViwtNUGq9D13w@sntech.de>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.13.1.5.4/294.450.56
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_195110_888861_795BE048 
-X-CRM114-Status: GOOD (  36.70  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261111_195141_582688_04C0826F 
+X-CRM114-Status: GOOD (  11.16  )
+X-Spam-Score: -2.4 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,124 +80,67 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+mtk_star_probe() gets the PHY node from the "phy-handle" property
+with of_parse_phandle(). The helper takes a reference on the node it
+returns. The node is used by of_phy_connect() each time the netdevice
+is opened.
 
---x7tmavbsaviu3rdb
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 0/5] iommu/arm-smmu-v3: power domain and clock of the
- RK3588 PCIe SMMU
-MIME-Version: 1.0
+That reference is never dropped. Every error return after the lookup
+leaks it. Unbind leaks it as well: the driver is devm-only and has no
+remove callback.
 
-Hi,
+Release it with a devm action, registered right after the lookup.
+The error paths and the unbind path then drop the node through the
+devm cleanup.
 
-On Wed, Nov 11, 2026 at 10:53:28AM +0100, Heiko St=C3=BCbner wrote:
-> Am Mittwoch, 11. November 2026, 09:02:30 Mitteleurop=C3=A4ische Normalzei=
-t schrieb Shawn Lin:
-> > Hi Heiko
-> >=20
-> > =E5=9C=A8 2026/11/10 =E6=98=9F=E6=9C=9F=E4=BA=8C 16:49, Heiko St=C3=BCb=
-ner =E5=86=99=E9=81=93:
-> > > Am Dienstag, 10. November 2026, 09:40:44 Mitteleurop=C3=A4ische Norma=
-lzeit schrieb Shawn Lin:
-> > >> Cc: Simon and Finley
-> > >>
-> > >> =E5=9C=A8 2026/11/10 =E6=98=9F=E6=9C=9F=E4=BA=8C 15:11, Arun Iyengar=
- via B4 Relay =E5=86=99=E9=81=93:
-> > >>> The MMU-600 in front of the PCIe controllers of the Rockchip RK3588
-> > >>> (mmu600_pcie) is enabled for every RK3588 board, but its node descr=
-ibes
-> > >>> neither the power domain it lives in (RK3588_PD_PCIE) nor its clock
-> > >>> (ACLK_MMU_PCIE). Both are held by any enabled PCIe controller, whic=
-h is
-> > >>> why nobody noticed: on a board that enables no PCIe controller in t=
-hat
-> > >>> domain (an Orange Pi 5 with its M.2 slot in SATA mode, or any RK3588
-> > >>> board without PCIe), genpd powers the domain off and the clock fram=
-ework
-> > >>> gates the clock as unused after boot, while arm-smmu-v3 stays bound.
-> > >>> At reboot, arm_smmu_device_shutdown() then writes CR0 and polls CR0=
-ACK on
-> > >>> the dead block, the interconnect stalls, "reboot: Restarting system=
-" is
-> > >>> never reached and the board only comes back ~90 s later when the
-> > >>> watchdog fires.
-> > >=20
-> > > We have a work-around for that in some boards, manually disabling the
-> > > smmu until now. As the SMMU is part of the SoC and always present
-> > > the general DT practice is to have it always enabled, as it does not
-> > > depend on the actual board design.
-> > >=20
-> > > Hence we end up in the situation described above.
-> > >=20
-> >=20
-> > I notice that mmu600_php is disabled in rk3588-base.dtsi. If describing
-> > the SMMU that way is incorrect, should we enable mmu600_php as well? I'm
-> > asking because I see a different picture in the RK3588 TRM: both
-> > mmu600_php and mmu600_pcie reside under PD_PHP, not PD_PCIE. Therefore,
-> > even without any PCIe controller enabled, PD_PHP should remain powered
-> > on (it is never added in rk3588-base.dtsi, so it should be outside the
-> > kernel=E2=80=99s scope). How does the original problem occur in that ca=
-se?
->=20
-> The original problem is the smmu probing (probably during boot when
-> everything is still powered), not doing anything with it and on shutdown
-> the smmu driver wanting to access the smmu registers and thus ending
-> in a hang.
->=20
-> So the problem is not necessarily the power-domain, but can also be
-> the clocks getting turned off during clk_disable_unused.
->=20
->=20
-> As for not disabling it, the case is also the some for things like the
-> video-encoders - they are also present all the time, so we don't have
-> devicetree wiggling for them.
->=20
-> The fully correct thing would be, power-domain + clock handling
-> and adding runtime-pm to the smmu for when it is not in use.
-> So this would then not require any special thinking
->=20
-> And yes, I think the other smmu should also use the same handling.
->=20
-> @Arun care to also add a runtime-pm patch? :-)
+Found during a code review of the OF node handling in ethernet drivers.
 
-Adding runtime PM support is already WIP:
+Fixes: 8c7bd5a454ff ("net: ethernet: mtk-star-emac: new driver")
+Signed-off-by: Xia Yan <yanxia@cmss.chinamobile.com>
+---
+Changes in v2:
+- Add the missing Fixes: tag.
 
-https://lore.kernel.org/all/20260929034510.2023173-1-praan@google.com/
+v1: https://lore.kernel.org/netdev/1794061182000.57993.3986467551914992480@cmss.chinamobile.com/
 
-(this is also needed to avoid potential crashes with system
-suspend/resume on RK3588, since we enable PCIe IOMMU by default)
+ drivers/net/ethernet/mediatek/mtk_star_emac.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Greetings,
+diff --git a/drivers/net/ethernet/mediatek/mtk_star_emac.c b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+index b83886a41121..bac4a24c5979 100644
+--- a/drivers/net/ethernet/mediatek/mtk_star_emac.c
++++ b/drivers/net/ethernet/mediatek/mtk_star_emac.c
+@@ -1501,6 +1501,11 @@
+ 	clk_bulk_disable_unprepare(MTK_STAR_NCLKS, priv->clks);
+ }
+ 
++static void mtk_star_of_node_put(void *data)
++{
++	of_node_put(data);
++}
++
+ static int mtk_star_set_timing(struct mtk_star_priv *priv)
+ {
+ 	struct device *dev = mtk_star_get_dev(priv);
+@@ -1603,6 +1608,11 @@
+ 		return -ENODEV;
+ 	}
+ 
++	ret = devm_add_action_or_reset(dev, mtk_star_of_node_put,
++				       priv->phy_node);
++	if (ret)
++		return ret;
++
+ 	priv->rmii_rxc = of_property_read_bool(of_node, "mediatek,rmii-rxc");
+ 	priv->rx_inv = of_property_read_bool(of_node, "mediatek,rxc-inverse");
+ 	priv->tx_inv = of_property_read_bool(of_node, "mediatek,txc-inverse");
 
--- Sebastian
 
---x7tmavbsaviu3rdb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmr1N5oACgkQ2O7X88g7
-+poq8Q/+P0pOInRktOpa7ipZqr7ZZw0Ry5Z09iTXZlgJa5ImtfUKuwho88ecAs+Y
-AijE7yqpKPfi/a0xBUyWWdrGYWhEBZo97uvlxNlLT1I5TnPXz/8xY6fP8iW09TpN
-TssTFHUZH1jwpkMZx56idljsFwIwDkhbxjApqnW0CjQi9He8qx88w6AXzHC603VH
-zSxHgSpyTCkNigp7txnzxrt9x1/5PZool+9mt/ougKDtOZHaQP4r8PRqvJPcMBWr
-Qmn5WjkMUSaiOGv+E7WKuBO3gz5RoymMqwGdQFG6s+TnyRxvmy7ZiJZBOZcGiR8a
-NdN9Ow2Q3Mh+XrSJZj5De+LWjBRbSB5urw149w07xE/1HxOFlbpR/V8nNDlBIgXT
-JoUcNTKo/NMlkj8KauGJXcQUNsaNFCIQGSngnn+FyKG5rRyiGXPuaP9cDplZcVv3
-WYYMtYOxLnT3ouNJ+wq6kF8N2sVzx+ezZw1ipCXVXVu2Gl49GlAIGknuBwZLVwd7
-ZoM+PwQEy/AyNQY8Maefctg5zh49lZhzA7fMV5Lcg1ErLnhuBG6qBsY8N/snDPwi
-EFANmXjlRCRQ8Yot+LigovbQuOZBLfUGF5Ql0u+/t8L4eyO1I53JvsRfG0k+NoZ1
-aYj+apKKbcr0SFiobCOTeHLNM9DhA132MPfpMR3sVmc7aDqDq/s=
-=RkWx
------END PGP SIGNATURE-----
-
---x7tmavbsaviu3rdb--
 
