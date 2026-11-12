@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A31606A335
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:50:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF03A606AE54
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xk/YxoDs;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zTLoBrdl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sWDCdMzv;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=aKLjmuIU
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=h1v3GwTQW47LQ5TJOhvyv2Mw5v+tziCrMDZBrKab9Q0=; b=xk/YxoDsj8xj9U4+TpZLWV9ubM
-	VpIPpLeiq5CMZP7PGZtJ+OQvR8QlMpKpTvauU3tIpQ/dNhvfYN1rHcV2jKg2zB5zkcJ54iobGsXMf
-	j5V1olxSl/GR1ONtXmshk170VcUfzsZKe4OSLtXF0DbMjSnADHBlBaSrMxwfrrzu/tkqLEwkeozr3
-	CdgiUJbedDvuTvtNFiWGS2hePbZb6oJQpD17S3w9vepc/WQpQAS2rBXxpFt4z8wshABTZeA06aTqO
-	FYsYNaoqryMCMixJm75YLzvzbq0/lCa60y+dSbCWmygwE55KhzfnLMrFP+1EeacUvq4q6QqaL41LK
-	0X7Rk1DA==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=fSSCkqvwTZj1huGL8Zl26siSAmzWWRmX0EP+FjZ9eu0=; b=sWDCdMzv7AM5cq
+	5ywFLkkp5yYBN/57183syMZiHH9l7GKiCq/5VCDuMXdxFgHY2MQzWMDonK/GHkJcbnIClXD8qXV0n
+	0y8R8V1AkzdjncEkOFUGiGsjT/37lInUpLI3qRQ68oHpZPZ03djf4VOnnNINsRXEblP8ONFntgK9a
+	Bnrhsm/h/Xe0e0UKMAPpVVzgayFCPikN/xc2lcQcEJH3/MSsTNEXGvdXP74K5ZOMoW9eBrWa/+DaK
+	UEqq7kkCqE9GYH3ZFliKjQyzSJ/Cn54R4zty2RBytxA8ZSf2Rn8LP9fLk7V8bhs3fCyHJtDoJSGC9
+	/9Z5Xh73wyU41Vzv9kGA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xROdN-00000008qnX-36Ba;
-	Thu, 12 Nov 2026 06:50:09 +0000
-Received: from mail-dy1-x1329.google.com ([2607:f8b0:4864:20::1329])
+	id 1xROdh-00000008qwF-3esf;
+	Thu, 12 Nov 2026 06:50:29 +0000
+Received: from mail-dy1-x132d.google.com ([2607:f8b0:4864:20::132d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xROdI-00000008qlq-0PFi
+	id 1xROdO-00000008qnm-1lZG
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 06:50:09 +0000
-Received: by mail-dy1-x1329.google.com with SMTP id 5a478bee46e88-36f8cdd30beso7306003eec.1
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 22:50:03 -0800 (PST)
+	Thu, 12 Nov 2026 06:50:11 +0000
+Received: by mail-dy1-x132d.google.com with SMTP id 5a478bee46e88-37628596783so3776232eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 22:50:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794466203; x=1795071003; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=h1v3GwTQW47LQ5TJOhvyv2Mw5v+tziCrMDZBrKab9Q0=;
-        b=zTLoBrdlCqGdA6uuJPjFOfc3GSgkxpj/Iz5oqn8rLPJ4PRF9RRekorSKyVCqGPhih6
-         e5vvPPGG7wgJ7qnwbJyUVo0AdtMHJHvH7/A9656NOgunUsaKawRP4USEGDhK5xDXLs/C
-         eY7rTIE5vDEyQGexNj1hFeQ+GV2iuMxQLvpc+RpoZe3LH2rx0vmwcudfvxydbbeU3TVH
-         77tdj1XcscE8HSkdov1MyAcX5vkc4KU/va6jWgBRYblWGI+LrD5syJGsVyxfG9U9nqm+
-         yuABXHI0pihIcZc+0/xBdE+G70DhbtzKD395xFrHtaZnK/F8T4LB7q11ktJ3sWaQ4dCi
-         T+iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794466203; x=1795071003;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1794466209; x=1795071009; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=h1v3GwTQW47LQ5TJOhvyv2Mw5v+tziCrMDZBrKab9Q0=;
-        b=oawxH3PsdKXmx6bH8e4NqWONmsily09vxEPWUvdrfL1rJRievGZQ+pRv2HBVMQiNYi
-         UU8MY5MkQ5ckwRZNOJ71ocKEosuYZV3PSPRvZrzQ0bwVJvECwmt8XuxRf0HEcLindzmU
-         wqd7si/9FVkDT75LODNfm8sVMUlZW1gJuwayYby7cLABVLxCtYQMWb7zfHMiJo3dTpZi
-         Gdj1eMLmovWQuw3o5SHzgjpGSsXKeZzpPZgtxK/T3+MAq3D2tCtj60AfzCA7OXXu5hqH
-         04aQX+z72teuAKF7ATpH8v8J8xJEUz356W09pGnKSTFsF4e4kXOTFJdC/QghwkKsQck7
-         Jifw==
-X-Forwarded-Encrypted: i=1; AL+hErF3a1xVshSwUz1t4O5bPjIJkLYGdlNrm1WRTk2zpng8tb669uYf9p+MA24OrOp0idghlkKaFk6Z45cxK7OzWze5@lists.infradead.org
-X-Gm-Message-State: APuU4Z8CN25E5/aTRN/ZdopXDXFVQbg95Edxy0N8hSVp8vvEArXnwi7i
-	HqnWYD4xsO9zPNKfbL3iDyiNIQ6L9asEqqpv9aKBTSsNdfZeILF1W5gF
-X-Gm-Gg: AYBFou3jU0LLqZFnvGQoIjoYzFWBz+JdGUk4Vgn+9TharLdwyoQm6nYDlR76natlI79
-	1x+BSplqWvPKpu/QMXKxzNU83w/RYDl+0rSBv0rkl0fMEEBUO4npkHHia3v1qkz9ADLhzF5s13Q
-	J8J8ijlRP+0UQ7JSjif1uHL/gqzx1+N+u7eDbucbaFuiMwaJeSerHm8UF6shxvIyev1uedIzlbF
-	d6mJ5i5m26jxTm7y+m96ZiqfZX7lT0gTQ/Vj9ArAJDrY2ndaxcpeu2cW29mltJ+2tgHGH8RBpCa
-	1xpUT2Zh/+5Zn/uhM7cOba/DhU/sK7Ue6Wfw6AiignFbe+x5h936kBAgXLUPOi9d3ulOZkmCSRo
-	olFJSpwx/xq2nBs6B1NMF8lMXHqJXWzO9kTdTpepwyrSzug6HCdw+ipjG8EJldR7DuqaiHkm+kw
-	U+VvCGl0TGu5SCs6gsK72yJALPzz9zYYicJQfBZ5/ubyBzYWtpdNB6icKVVcYQPg48lvny7wl/H
-	paCcWQE9caOiiptovZd+2RPFwp/m6JbkhvQpoZgYbZG8xi6KJW9+8yWfU5vj9MZuoD3iH+AEWWl
-	pwgDfCfv4FbfMoFueoc4rRLOfCdxSGspuNGQEfXgBmquP0dg4XICuKFHu2ILd0PaWX0ukjxbIdY
-	40od3aQbohrHzsUFL
-X-Received: by 2002:a05:693c:8852:b0:371:ede8:3e9b with SMTP id 5a478bee46e88-3768721116amr4902164eec.36.1794466202380;
-        Wed, 11 Nov 2026 22:50:02 -0800 (PST)
+        bh=fSSCkqvwTZj1huGL8Zl26siSAmzWWRmX0EP+FjZ9eu0=;
+        b=aKLjmuIUEjNCWleMkZmgGcZmqOgUtEl58RO4QrrEbpprY09gBmllKTT5DiOBsa1zJA
+         CHVYzYWu2IKfwI/bPszgp4itAY+agVjIGlR+4h4rEMm9J/FDJw2YHAvYtW2G4HCtLjHt
+         703lPvI+1TdHLdQwtkdOTB94Gr6FXjMwsTxkdMinu4WEWzQGoFtUFFGVJODr9eTs5i0b
+         HydqQCt4OSYWY7xixP3qe4jQClLL2wwRS/MLLFBXJMjaI9YXujkvr3wSvdp4RGkMsRsY
+         rm+UrjwQx5zlMVh9Mf6Ki4Pz2tlRNoXlyNWlGuQWWWFKkFWC00Dsvi0/I8uFGcjEBtn1
+         2J9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794466209; x=1795071009;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=fSSCkqvwTZj1huGL8Zl26siSAmzWWRmX0EP+FjZ9eu0=;
+        b=CNmAM0fHGb+ZoeTD5b+WmwRsDTfnYjWvVWLYARJ7zvQ0qfpraaSyqqSZ8RZ0yv9xO/
+         g+7YPkQYvdH8zzJmO7zoRXpBNjFE79+mhHQD46q7YPzkvrdBevRXtnmdvUX2t6WZKrkt
+         iQwcUd1G0fkF1Yf3DHa2hSFvcyQ1vKOZBor+jvh07dqfsFMpeWkeh5lJ32TrLfWjlDWu
+         DWTutPxrRsYQ23+zTiQ2AY6tsP2hRhI4SLBAJ7mAqTDnlVJOkYPeWewpq64EjkXlQvI0
+         6iHvy7VyZPPBv7hIAf5CLBJs63x2G40dNByPf7OkyldPyWNdZdhC2DB2vCkSxV8c6Q66
+         IHFg==
+X-Forwarded-Encrypted: i=1; AL+hErFzchQcHKGasknqdPf0fpFGLBGEdrwsk8AsPfczwCjlWSPKRIyWQlI9AvCQJdtwW5bTwh/fvfMUaLmsEULPBNoD@lists.infradead.org
+X-Gm-Message-State: APuU4Z+vaOJXtoDS9GioBMTHZKTH7cspUBKQMENNQrLdRAdNIFtrgWKW
+	geNr/9LXYpZ9ZnR9B9nolVmYgAu51oVtPSRUfZGPsmkaTBwzAmR8XIDRFpMXMw==
+X-Gm-Gg: AYBFou0CMQWbJViqS7lrExsVHokD+dEa98JApBMBTZhub/5/8ej18Sw7yvhAPJAlDD5
+	lc29G4F+DAbkeriNd7djNy9+oc7QWk2XO/aNGu7N+z119AMp355kergXrIHKD0UelI58kJCPT0P
+	qJF0IC6ViGp5rXtvMP3H4m9XtEbl72JmLhEuFJ5Qw0b0P31P8rwt2nAWimTYilklf22ZBRn4cJ3
+	QZP8StbLfmoQy3Pkav9O2o38CPBxX3+H87fueYU/GQY0HPgJqsCDQw1dWRx85752NtlIUyYIAXD
+	m2WQ8M9F+1du9LTO2/HX28qpeI4Nga0xnSdGEPTsIko6ps1UsOJIIMYoYTBe/+9N03EAIzPeKgI
+	/9LWgqNOaVbsaiyulFDm/NUZ8mds3JCV5ZxjGGcSsTHvVj39IW9nYjYrX2lUJwP9P1JuZTvbyUj
+	myDhkTrx4qHgDOgtaCPzz3pLguO0/nzK5EpvqOd2yoFmsor647MkhpvYqHX461EqaBGYoF+g/ZG
+	LkwLEmrGzTbwBzGx200GORupfcJy619MstYChdOlvSYIVf55SxEh+bgH9EjeTBZOHOrTJrsueX7
+	/whNy+VvXB5WwWJEOI0iuLUX8ay4cS7dpryKKRO0Y5yxEJqqYAlTgb+2vogC0g9skthZ8oCazcd
+	3OLk5KijkbpqUih4Q
+X-Received: by 2002:a05:7300:f54b:b0:36c:a42d:9bc9 with SMTP id 5a478bee46e88-37685c7a866mr4653158eec.25.1794466209304;
+        Wed, 11 Nov 2026 22:50:09 -0800 (PST)
 Received: from dtor-ws.sjc.corp.google.com ([2a00:79e0:2ebe:8:182d:659:ffce:39a4])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37520cfdfadsm27190961eec.19.2026.11.11.22.50.00
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37520cfdfadsm27190961eec.19.2026.11.11.22.50.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2026 22:50:01 -0800 (PST)
+        Wed, 11 Nov 2026 22:50:08 -0800 (PST)
 From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 To: Linus Walleij <linusw@kernel.org>,
 	Aaro Koskinen <aaro.koskinen@iki.fi>,
@@ -89,17 +89,18 @@ Cc: Mark Brown <broonie@kernel.org>,
 	linux-spi@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/5] Input: ads7846 - drop platform data support and cleanups
-Date: Wed, 11 Nov 2026 22:49:52 -0800
-Message-ID: <20261112064957.1796975-1-dmitry.torokhov@gmail.com>
+Subject: [PATCH 4/5] Input: ads7846 - remove unused code
+Date: Wed, 11 Nov 2026 22:49:56 -0800
+Message-ID: <20261112064957.1796975-5-dmitry.torokhov@gmail.com>
 X-Mailer: git-send-email 2.56.0.567.gdb80ae8cd5-goog
+In-Reply-To: <20261112064957.1796975-1-dmitry.torokhov@gmail.com>
+References: <20261112064957.1796975-1-dmitry.torokhov@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_225007_819360_E9F0E62F 
-X-CRM114-Status: UNSURE (   9.92  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261111_225010_488192_DF457431 
+X-CRM114-Status: GOOD (  13.50  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -111,36 +112,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Now that all in-tree boards using ads7846 have been converted to Device
-Tree or software nodes, this series drops legacy platform data support
-and its header file, simplifies sample filtering by calling
-ads7846_debounce_filter() directly instead of through function pointers,
-removes redundant memory barriers, deletes dead code, and cleans up
-minor coding style issues.
+Remove the pwrdown_cmd member from struct ads7846_packet, unused since
+commit 6965eece2a89 ("Input: ads7846 - convert to one message").
 
-Thanks.
+Also remove the unused REF_OFF macro definition and drop the CS_CHANGE()
+macro along with its sole call in ads7846_read12_ser(), since the
+request structure is allocated with kzalloc_obj() and cs_change is
+already zero.
 
-Dmitry Torokhov (5):
-  Input: ads7846 - drop platform data support
-  Input: ads7846 - simplify sample filtering
-  Input: ads7846 - remove unneeded memory barriers
-  Input: ads7846 - remove unused code
-  Input: ads7846 - fix minor coding style issues
+Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+---
+ drivers/input/touchscreen/ads7846.c | 11 -----------
+ 1 file changed, 11 deletions(-)
 
- arch/arm/mach-pxa/spitz.c           |   1 -
- drivers/input/touchscreen/ads7846.c | 434 +++++++++++-----------------
- include/linux/spi/ads7846.h         |  45 ---
- 3 files changed, 171 insertions(+), 309 deletions(-)
- delete mode 100644 include/linux/spi/ads7846.h
-
+diff --git a/drivers/input/touchscreen/ads7846.c b/drivers/input/touchscreen/ads7846.c
+index 6352117cd898..4a5a141bb4a6 100644
+--- a/drivers/input/touchscreen/ads7846.c
++++ b/drivers/input/touchscreen/ads7846.c
+@@ -84,8 +84,6 @@ struct ads7846_packet {
+ 	struct ads7846_buf *rx;
+ 	struct ads7846_buf *tx;
+ 
+-	struct ads7846_buf pwrdown_cmd;
+-
+ 	bool ignore;
+ 	u16 x, y, z1, z2;
+ };
+@@ -145,13 +143,6 @@ enum ads7846_filter {
+ 	ADS7846_FILTER_IGNORE,
+ };
+ 
+-/* leave chip selected when we're done, for quicker re-select? */
+-#if	0
+-#define	CS_CHANGE(xfer)	((xfer).cs_change = 1)
+-#else
+-#define	CS_CHANGE(xfer)	((xfer).cs_change = 0)
+-#endif
+-
+ /*--------------------------------------------------------------------------*/
+ 
+ /* The ADS7846 has touchscreen and other sensors.
+@@ -195,7 +186,6 @@ enum ads7846_filter {
+ 	| ADS_12_BIT | ADS_SER)
+ 
+ #define	REF_ON	(READ_12BIT_DFR(x, 1, 1))
+-#define	REF_OFF	(READ_12BIT_DFR(y, 0, 0))
+ 
+ /* Order commands in the most optimal way to reduce Vref switching and
+  * settling time:
+@@ -400,7 +390,6 @@ static int ads7846_read12_ser(struct device *dev, unsigned command)
+ 
+ 	req->xfer[7].rx_buf = &req->scratch;
+ 	req->xfer[7].len = 2;
+-	CS_CHANGE(req->xfer[7]);
+ 	spi_message_add_tail(&req->xfer[7], &req->msg);
+ 
+ 	scoped_guard(mutex, &ts->lock) {
 -- 
 2.56.0.567.gdb80ae8cd5-goog
 
