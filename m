@@ -2,183 +2,143 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81314606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73DF0606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:41:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Zxztmkum;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=KI/qRF06;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=JiyNngVp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YioVj63B;
+	dkim=pass (2048-bit key, unprotected) header.d=OUTLOOK.JP header.i=@OUTLOOK.JP header.a=rsa-sha256 header.s=selector1 header.b=YzWQb/n5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=; b=ZxztmkumRc5uA2
-	pjqZliJyGlx0QPzhhA6Kp301lu5wKjG4MlZg+1EcGTzW9hCLSvo4agXJ25e2Y7lAaKQS4xEqZHE8S
-	EjX88a6FmuJWAeMfcYVvRwWUT5GroNm0pbxYyk9pDb3GjJqMqaADzrbYkUx81BsgMZ/Sah/EbxjzY
-	r6Dyu0CifaQCHFW/nYW3WTHC4+YbnG3V7QW/XS2rUW78WPPHDew0ewf5sMBzkSSmqXpxJnjdAEnYl
-	CERS0U4qyX2YN+G0KUEiTUL6G5+3KgZGJtH+E/bpSvHMjVEA8jEy99FADyP9GXFttfsRrHhDKDN33
-	WyBjy8eaE4nFWXjLqIYw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-ID:Date:Subject:CC:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=PeN0ZKbeuu4kaH7lfK3ligvhaB2XWVA3N5srhCDi5ZI=; b=YioVj63BfY91JELvwzv7jy9WO3
+	NbrfRgyeTb1RCopIK0PwV0Qp1DkDfMc8ltI9L0XyUrOr6SlOSMz09ya2F3k98NHy3hooAUPSc6rVH
+	nFDZpQCOzHNs8XFU/9gsY+a+pp/+Qdk/c+lVCaKkGkCcyoeqszrvNXKg1rDjzYo0fRlZDtnnkNQpo
+	n0H7/JXcCoDrXjjMkNTlcvlrXbprFGqih6cn+SRKVolTIimQAJuZTFzAr3MsxzHKLFYn0b9qf0P+i
+	gxzNefXuw0Lr5yoWzwbCOYVE/ilBnlnG0UnyT4I+uAjJkO1Y6BZnSphxxU2U1UPnLBPR/IQo6/1DF
+	+9CG121Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKjg-00000008Xt2-1EIb;
-	Thu, 12 Nov 2026 02:40:24 +0000
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131])
+	id 1xRKks-00000008Y9Y-2Ztd;
+	Thu, 12 Nov 2026 02:41:38 +0000
+Received: from mail-japaneastazolkn190100000.outbound.protection.outlook.com ([2a01:111:f403:d405::] helo=TY3P286CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKjd-00000008Xrp-0YZt
+	id 1xRKkq-00000008Y8a-0l2d
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 02:40:22 +0000
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AC2Zc9q4149412
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 02:40:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=; b=KI/qRF060qDr0r2Y
-	cJuOgXtsBpuDssWcFJlKOO1nnz751BpTeh9oz1oPGvjmslvWwhtLwO06nYw9Mz4r
-	ecj4zy4uuMABNaIYsfdpdtFlcLHOb0GPfLodjZXjXNDK8Vf+XQwfP+fvVcSjA1fG
-	8h4TorsRex4rX7DoDD7Xb8uxUGXLLNcE7DByWRDzOUXxuwCBoKiBaRMH9GFL3BUA
-	/SVMy9oqTiO0QrtV7oovqEHmjChkcnZA0sdNFtNSTh5HzTW33BNQPX4QbldT90Az
-	F5ZYYFXjKa2Gozlp/vRRIx8hfdaKFek54kf3AKzEgLxcExHQcVbuPbqhhr1obTxj
-	daAuAw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hvxc61b5g-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 02:40:19 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-535131e4c25so77715761cf.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 18:40:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794451219; x=1795056019; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=;
-        b=JiyNngVpyNY6NSzp/tmEW5EBraHtg72fHFEXQkdAx4zKs5LA5aChcKAAorA+xqskrS
-         nCyGmuUpoInkQckky5su+E7JTZ6kYjjNXyTJlbfKZVkMmeD/SBLQ+oBvPX2VNeFzTBBH
-         eFVsGHTIBZfGZgxwRBw48NZGu0JAoPtAGrJsaKeTrGWlBNwXJ/EAlztS+2BiQbDS5+sI
-         8FA4XYOW5bddRJVn7/YyZbjV38cdEwCcG9fLHLNj+K7V0YmlI8q9g61xn3D2IxYSXBmc
-         KhUxNgSn2ZnGn64d/hNBKOttJ42q9MukbKA+x9CB8GlLec7cHHnACbyK3Lvtm99B/dXp
-         +eow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794451219; x=1795056019;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=iih96abnjxj/PozHFDBWYCK9JcXmwzDO9tgu+OyMggw=;
-        b=nlKVKc+77uB1P2/aN+anAicnMEtLbOl4p1CSgdcPHCGSVIeZAjB/VvyQFfskjEw1Bi
-         zz6/nbwLTPWVtDbZKCH5N8QYCAhVb5pBCCajo5/S2wnSoh/zCaXzS0nAbRw9iDzy/8Rj
-         yvS67yw7JzEHSxlav4aw0RA8qCslulzsfuQAKW1E65X7T+hEAPtlQpn9gSA0RFs28Zdy
-         E8Jr/w4xfRl7IoNR1deKq7sXvWIsghnNmCgjWitdOCLfntywjsBW6HRzmFsuQaWis66z
-         PNQ30fK10HX/NUAO+WGCoj7hMpDushmnm4pilQ/V5mMfJtfdVj6luEDgTMV9PTSrzmO3
-         qCgg==
-X-Forwarded-Encrypted: i=1; AL+hErEQAyhP0u1OzPmrtx7sEPG4R9QZcPqT0sgRMlrzt/5iPW1abWaLvQ0xQthfiJPm6lCrrHdG4Bvp7b/QKrff29Y2@lists.infradead.org
-X-Gm-Message-State: APuU4Z81Pk14I9MSxmHNIze1r+JDNjYPmRDCGf2UI2e232HIA/sVDEuP
-	kB1IyP+Yz88dIXgGGINuzOR4LooD7GAXxmBioEg2oaiGOCFn1q8eCwQpQWzCUNRKfyYoq9yZHV0
-	KjNj2ssxcr6eq+VlGpj7AD6norFPsAInFNwYiLRDqbXnsc7egjjtKwvtuy73f8A1D83wRnhhXmC
-	iSqQ==
-X-Gm-Gg: AYBFou2/gWGgK5ESED19bi55TC+8z3d86AIwMuAJp/+krW9MURU04Mo7wbYRYG/tF2g
-	cytXvUw19Prvy5Sz2Ia2o2p7QKzOe3Rt/febD3vPMH/eJsHgghs/EO6Oshi7nyy+V9oYJo6Igsg
-	m5+xDagfe8fCd4YggnxbEW2SN+uiMhL7YsRpmuagKbAkzs0c2XKGNzJsHAwDXEDSCXJYGN8uOM/
-	vhv5UUs8dGfGTGxg7FZPy+i0m6147168/yzrS3nodFXNfFGtMFDk+ejg5od36AfxZ9t1a9tWICY
-	B3j4YOLoSD2BgXRBDXr+WiPXUNM3lQTu7gxLqhs+A4sNDR/usXSCZmfGvfyRJaRAn7sHUgBPQsH
-	wn3riTNEDd8QVcMM+smzsf53xxZg2g8e5MlJ1Jv+6KfQ9YEBJDsBZs+XLxv4vZk5pRvnr+XaJKC
-	4uNN7mrjyg+HCj4fYcvTjUGlvGjFKkcTyOFvqNrZU=
-X-Received: by 2002:a05:622a:4e0a:b0:536:352d:65e9 with SMTP id d75a77b69052e-556c25188e0mr64865941cf.65.1794451219025;
-        Wed, 11 Nov 2026 18:40:19 -0800 (PST)
-X-Received: by 2002:a05:622a:4e0a:b0:536:352d:65e9 with SMTP id d75a77b69052e-556c25188e0mr64861391cf.65.1794451209677;
-        Wed, 11 Nov 2026 18:40:09 -0800 (PST)
-Received: from [10.111.167.254] (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5550bd33340sm64426881cf.21.2026.11.11.18.39.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2026 18:40:09 -0800 (PST)
-Message-ID: <ffe9dd90-909c-4259-8a57-2ea67307a95b@oss.qualcomm.com>
-Date: Thu, 12 Nov 2026 10:39:56 +0800
+	Thu, 12 Nov 2026 02:41:37 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ImDXVcB0ugebTbHBG/EeK5WbAeiOJ1aJxFIyIjY3neqOY6Of7NBfphITpeWVuQV+6mdTF9bGVecvgp46GmYmJvJ0bmLBAAikpiOLgipa8Wvfzq4C2ts4PSjaA1gINbRl0ZJvyutAXRrFgxYHvtaFT3ENkXwQl9OWjS+RU5GazSY+Tq4mti2xeCPRbCRLk+y3pyb2s91jyPkjH5gL1TlJGJrkYo8CvCe0e5IlKaHXtbkX/gy2LywLnn8eNxNjFVh3N7Trc9J4crhgxg8+gsQZobNjdJfJbgGsPeoDBX136R0YfnBMfAxlpeju21tmCg9h/TowcXqxFTOKQNFtXFgdkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PeN0ZKbeuu4kaH7lfK3ligvhaB2XWVA3N5srhCDi5ZI=;
+ b=ZUazewHPp+rLwpbn4bi7V94kHwPuX0Fjozi7naaDFvrZ8xfGEE7GUQaM6DVihpnjHoYpVnloI9UOEPMURB9krSOhxN+hZ6eh521WGl2z5S5msZBEs5m92UuTLrq88Fb6YiHhPyvBhoIlW2MTuluRorP7vDnLXJPR7D4o87z5td5gVigbeBqZ5kJNsbxnBtGH+j/1m8TLrg07k44mu27dttOLPNcmh+nVKaS1awEIa8I3yOwflNyRHOTjSeYFp+7HYyLAHu6AZ0dtd6TCNo4ymPSN4zbvk3vCSRSaoKCMQfiNEIxanY+KekCXd0rFoeV+Tzv9C8rsFHJwdppw8z7YTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=OUTLOOK.JP;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PeN0ZKbeuu4kaH7lfK3ligvhaB2XWVA3N5srhCDi5ZI=;
+ b=YzWQb/n5M+dTbkHkh0OEIO2ZmC9UrfqQLB6eomQyQlKomb8dOsI3h9VNPCDwYrm9CpyAghtAiq+NuAIEOwt+Gh0YdtYPwPbEwabG0zWqAwy0uSgF2zscd5w8DwcHEc9wvs++E6Co/AxQKRs2ku4c2thWFaxaOkPoSM8VAWbHxXoS9C2Sdqf1OaG44+Ep5jGBtq2WDF0Au9tFvU2wlR6cJVMBDdJVpi+iWZeoPu7B+hy4X4j3inKw7jYYh99uVQU/suH3vGcW/zgTE0tSOtvSnF4aE3H4ySFREmEGHyL2jY07UJ6N+NgO4/RptBIl0LONSr6IwCBsf8ewTSAOOT5gEA==
+Received: from OS7PR01MB14363.jpnprd01.prod.outlook.com
+ (2603:1096:604:388::11) by OS9PR01MB17912.jpnprd01.prod.outlook.com
+ (2603:1096:604:447::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Thu, 12 Nov
+ 2026 02:41:25 +0000
+Received: from OS7PR01MB14363.jpnprd01.prod.outlook.com
+ ([fe80::eeff:dfdb:bd3b:591b]) by OS7PR01MB14363.jpnprd01.prod.outlook.com
+ ([fe80::eeff:dfdb:bd3b:591b%6]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
+ 02:41:25 +0000
+From: Keisuke Tsukuda <tkdkei@outlook.jp>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sven Peter
+	<sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, "asahi@lists.linux.dev"
+	<asahi@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH] usb: roles: wait for role callbacks on unregister
+Thread-Topic: [PATCH] usb: roles: wait for role callbacks on unregister
+Thread-Index: AQHdck9PU/KUKHcnBUmIhlWYOi7Giw==
+Date: Thu, 12 Nov 2026 02:41:24 +0000
+Message-ID: <20261112024101.83321-1-tkdkei@outlook.jp>
+Accept-Language: en-US, ja-JP
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS7PR01MB14363:EE_|OS9PR01MB17912:EE_
+x-ms-office365-filtering-correlation-id: ac355f8e-7a53-4716-4029-08df406671d2
+x-microsoft-antispam: BCL:0;ARA:14566002|31061999003|15080799012|25031999004|22121099003|24021099003|39105399006|41001999006|19110799012|8062599012|8060799015|38102599003|4140399003|25010399006|12121999013|26104999009|440099028|3412199025|102099032|40105399003|53005399003|12091999003;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?beI0xg4H32hdWjsXnU1zMTM/8dLsTxtNPQUHtEzgmmhEAlWEKxR9wLAF4V?=
+ =?iso-8859-1?Q?hSpcot/o2lX3Bu4oA+k7cGZmiPA99HioyWLQ9WCbj6EUOFiz8lqnSyzvzV?=
+ =?iso-8859-1?Q?+qYDdYks1sK5fAJxuvawD5KKszxyf1TMiNCq2OVuNZBhywDv+0a7JuqFKE?=
+ =?iso-8859-1?Q?fVJ3d3m1GEAkiqdlsGhFrznAFp6GAxSAygH6BsJL9DIK186XBsiH8+KAtB?=
+ =?iso-8859-1?Q?lUFTaHrFTO9E493WnTVF1Nil3NavbIVfHKb7ALkKMRywCn3cibtKdupdM4?=
+ =?iso-8859-1?Q?TffHXrV7zg0OMo0TMyCOi0VjU+crC+6TvE8KmlQetLvAW5sRJjFojQIzsy?=
+ =?iso-8859-1?Q?g0eX94l7EAXNzrXFys1zQTyUb6duo0fJaNqdx7OBLD9jRjA2sXusC6xcyk?=
+ =?iso-8859-1?Q?IMZ5ExBKSGjWIa01iVnek4uPVI0t96U+a0XTIBk+8rMlYtbNdAbDBCqyXM?=
+ =?iso-8859-1?Q?c7G/WVhvftuPpW9JzvCvzpy5T0yHEb08adYJzHFU6CUBR35MZt9pFEXOii?=
+ =?iso-8859-1?Q?BCDXc1QCW50WPUfCUW8PBKW9zcACtDmX0RLpgFsDyhEnA2FXiQtI7inKQM?=
+ =?iso-8859-1?Q?RCruGSoQdOt27J4V0H7oWG+QaANttSSjbkHXOFmBFQsDGaafEo2IooEPuS?=
+ =?iso-8859-1?Q?Geaw4C7fK1ID5qOFCIOaQCQ+AuIqi0unZhrGjO6lBceyPMNQLiMkEpZnUj?=
+ =?iso-8859-1?Q?z7XU1uvEyVHh9Z++MelpAffQtRzH63OA4XsUN0OByVfPUHV82ljjeg/0Ln?=
+ =?iso-8859-1?Q?lFa85NA8MtdvVTm+2dfJv7nFMlbGHCWt2QMASzTgXSJNb97zwQZm5voUP7?=
+ =?iso-8859-1?Q?Nq94c7edal9ez7dlFWr+SdjELmDTJ32FKsZbu5aQ73r37pVGOXAHUjgc2G?=
+ =?iso-8859-1?Q?yr5zEVM6tXFRi7LMfY4bFXRu/a/A4ewX6mYaxJsh8Q+fYejqIF10OBpEqp?=
+ =?iso-8859-1?Q?iJUoj3wS8An1Sq4lPM3tBwHN6/1A6/DX2dKTGCjuYVWz0Iok/z/eMwc1Xt?=
+ =?iso-8859-1?Q?HJGeTOLmA57bK5j4wXQsJvFnolguJtpa+uNZv3LDdoUWJJoDMrJyFNVd4V?=
+ =?iso-8859-1?Q?4CTqoDl9Rd1Qh7DNd0uZXaj6rAX5BU0tsyWednTcsW+lVZ+ljkxrGHLqx7?=
+ =?iso-8859-1?Q?4rlcsKjzH/vSaEM0fU3ji60af5HgEPwpCxq7d+5w6fnsaNNRUjgwm7pf9z?=
+ =?iso-8859-1?Q?uZhqQQ89c4aa5nInVWppAW4J6vrHNbcm7Hc=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?UUANG0gReFAEGXfvFd2KHGEUy6Jy64U+L/C1W5z9EjDJ6vZJeNbqS1FV5G?=
+ =?iso-8859-1?Q?+2bvq0yYQg/uTaE/bC4+DwOUWm24IqgJMMuGJMEkxCHhHI3kF+aSivUlge?=
+ =?iso-8859-1?Q?xtiKYunuKgw6v8QcAQokfd6VzW7onpHD0cOriv5iPVLZcuaYc3v8SnvtZ3?=
+ =?iso-8859-1?Q?o+nPdg6BCLx+XlklDP4tP1rzbMitxIBLqeBaVNRKApbb5j5cCaY8pubgBq?=
+ =?iso-8859-1?Q?hub5QC0ET42ek5nuRwXukNRY6akPPm3cm0JaU+hURC1uSOmQ4d6pUJaBzK?=
+ =?iso-8859-1?Q?5pcJv+lKBqvJ6hpmuvHew4VKnnKIw1VVOArQvfK2/hIFd/XiJd6VVppZk3?=
+ =?iso-8859-1?Q?w/jZ4s/hxFxXk6asMxj+vdX/ebXBw/PQeUsioHkmNHbyKjpLvf9CaezTAf?=
+ =?iso-8859-1?Q?xUlN8T1+2xmRerG5iJNLzz9d/Ea6hsNYMjAqoI12hcKdsabvorAkxs0LQw?=
+ =?iso-8859-1?Q?/GRp9UzVkTf4BoOe3r2u/5Le0c/8JfTlWK4MVPl5QW7XuuQnRNfTguj0RF?=
+ =?iso-8859-1?Q?zxil6obO2glJT5hBOERiDjifAsSRj0whM+0KbHwSNyT31Pc76hAENwlgjl?=
+ =?iso-8859-1?Q?3HxxgTM45TQnCa7IViyEkNqxLbuQsvZkrJJqos07d5xaS42t+b6QDiwSDe?=
+ =?iso-8859-1?Q?pfGuLHW0FaP9osMe5zs/be7f3vLQS1McL0Qele0na/dxUIhE4aKkyJbo12?=
+ =?iso-8859-1?Q?Il44xhIYIzix8fCYlPIKKpH8ZrthpLo4j79El9BYnh0xpxcqdNxDlU3NIi?=
+ =?iso-8859-1?Q?ghGnD25zBBUAAsnhK97S0rBsASXjXsnYUcFhJD5D7JncwRnVh4F2sjuEAy?=
+ =?iso-8859-1?Q?G3XAVPRKgyLAeAXJJPrCndCyGDDOPqbK9SZiqTr5q5qnt1PT4l/wx2gy1E?=
+ =?iso-8859-1?Q?WzgCO8yhh6jnrMnu/YSnr6+xMxCcGEw2xUANxMwaiSzdbScCr4ApkTWKxe?=
+ =?iso-8859-1?Q?TvsZEHK++mpyc5h7Pxe3Zy90j/NhkPEcRUuSHn0AjiEy+6ZFwBwnaKKgyx?=
+ =?iso-8859-1?Q?9AQEpfThY+YdwvLisinwcO74hI0IdmYqLPR7GumpBvGt6tHXwNbLmIOfy9?=
+ =?iso-8859-1?Q?HuXerGrzn7IsvmVKOjnQC/5CHQ8njGmpqoE3BsdNawpBOs+uSWAd2NwpbB?=
+ =?iso-8859-1?Q?goFB3VA9DIP3VV44oG14kpBtcPS4YUTD3peke49pNUJY0h4i7nX+hkCc8J?=
+ =?iso-8859-1?Q?rkDyIcgrFJQKbS9XmFkAtUcZsLzrjmP2sEAJvAxJ3mdAPrCczXH5X+MtWg?=
+ =?iso-8859-1?Q?n4iWHld+LIMCVV+DhzR4q+tPMWRKH7LTQwXqyCnSJ3HjF1UfEl3XIu0JQK?=
+ =?iso-8859-1?Q?/fazbzGDkXjqmbAeyX7LcZuI9LJBtseP82cJmlwyr/SDcNN0x0HA6EBxIQ?=
+ =?iso-8859-1?Q?u+WkIJMEEIui1aeaPiYhKtalYIaIwC4+ttJPxJlr0c9x1ZpmFJxts=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 6/9] drm/msm/dp: don't take extra references on
- multiple plug events
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Jani Nikula <jani.nikula@linux.intel.com>,
-        Rodrigo Vivi <rodrigo.vivi@intel.com>,
-        Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
-        Tvrtko Ursulin <tursulin@ursulin.net>,
-        Francesco Dolcini <francesco@dolcini.it>,
-        Kevin Hilman
- <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Pengyu Luo <mitltlatltl@gmail.com>,
-        Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
-        intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
- <20261024-hpd-irq-events-v8-6-6ee949e7a384@oss.qualcomm.com>
-Content-Language: en-US
-From: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-In-Reply-To: <20261024-hpd-irq-events-v8-6-6ee949e7a384@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: RI8GcMNpf_5OTJKUqpmNlxhgY--WgQhD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEyMDAxMCBTYWx0ZWRfX2StsWiHlF89I
- vshw6PkVjAozePZ39ENEPHHx1Qa1QNMTLeEtOi/GHc/HARv0O6P9u20hdpAN9FMJ2alSegVNjgP
- 8wbzEE4CM4S3ZjOK4BGmYQmrKiDXJKoTjQy/HbIjsRPdVBN/bsUT8aw0mcqk1GaiHYUGkGR2pjy
- L+USeuaX0p8kCZ3KXHrZJpWM98cWcaK9yzyBXdLbNBrvaYoWb2qYQAhLRCppaQSFpTFfU0Eo7HI
- 7c3joRXEusG1NKTbu3jrtLvvLag2z2HMsRRaFgStvsf78RTcgPWvKrtM8qiXig3ggkkKux2cei5
- E3tjxcWAlN+EokHHGmFnAyFVB89EEs3tQg+sVV5GSKG4rqeXCzfjUz9aZDs0dqs9Yqyrl+iJ65o
- qkgHKx6oL+pTObl5v52oqoHHbUgO/YXjrL3UcOsj1nzyWnwcnGWosnLHSPT9wxbDbD1ixvAfnUZ
- z7duAwWSZrBa5LPUsMg==
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEyMDAxMCBTYWx0ZWRfX2d3mxtMQ0KE4
- a/eZTvFQBkl21InBN5254WzPP1WlixZfFM0XwirQOblRlTjeLmqTc6B+j5Ec7t3phkkPIZRoESg
- QJc1SX3VVkVBOrPGGeN6pQ9aad8D4yI=
-X-Proofpoint-GUID: RI8GcMNpf_5OTJKUqpmNlxhgY--WgQhD
-X-Authority-Analysis: v=2.4 cv=O/ysLx9W c=1 sm=1 tr=0 ts=6af52713 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=EUspDBNiAAAA:8 a=UkfVDg3vQ6na--iosyQA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-12_01,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- bulkscore=0 adultscore=0 malwarescore=0 impostorscore=0 phishscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611120010
+X-OriginatorOrg: sct-15-20-9412-3-msonline-outlook-b83fc.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS7PR01MB14363.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac355f8e-7a53-4716-4029-08df406671d2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2026 02:41:24.9800
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB17912
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_184021_583559_1C5E8F1C 
-X-CRM114-Status: GOOD (  22.56  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261111_184136_228114_71088728 
+X-CRM114-Status: GOOD (  13.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -189,51 +149,125 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-
-
-On 10/24/2026 8:35 AM, Dmitry Baryshkov wrote:
-> The upper layers might signal multiple sequential HPD plug events. Don't
-> take extra references and skip all further HPD plug events until we
-> receive the unplug event.
-> 
-> Fixes: 3ea2d1c3d154 ("drm/msm/dp: turn link_ready into plugged")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->   drivers/gpu/drm/msm/dp/dp_display.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index fa8942922b53..ce919a26fba2 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -412,6 +412,9 @@ static int msm_dp_hpd_plug_handle(struct msm_dp_display_private *dp)
->   
->   	guard(mutex)(&dp->plugged_lock);
->   
-> +	if (dp->plugged)
-> +		return 0;
-> +
->   	ret = pm_runtime_resume_and_get(&pdev->dev);
->   	if (ret) {
->   		DRM_ERROR("failed to pm_runtime_resume\n");
-> 
-Hi, the issue reported by the AI is real. There is a regression in the 
-SST case: when .detect() runs first, it sets plugged to true. As a 
-result, when msm_dp_hpd_plug_handle() is called, 
-msm_dp_display_process_hpd_high() is skipped, which causes the 
-subsequent failure.
-
-I tried removing the plugged update from .detect(), and that fixes the 
-SST issue. The display works now. However, there is still an 
-intermittent issue where the wrong resolution is selected. I suspect 
-this is related to the timing of the EDID read: when fbcon comes up, the 
-correct EDID may not be available immediately.
+usb_role_switch_set_role() and usb_role_switch_get_role() check the=0A=
+registered flag before taking the switch lock. If a provider is=0A=
+unregistered during a role request, unregister can return while its=0A=
+callback is still running. The provider may then free memory used by=0A=
+the callback, causing a use-after-free. A caller that passed the check=0A=
+can also enter a callback after unregister returns.=0A=
+=0A=
+Move the registered checks under the switch lock and clear the flag while=
+=0A=
+holding the same lock on unregister. This waits for active callbacks and=0A=
+rejects callers that acquire the lock after the flag is cleared.=0A=
+=0A=
+The Apple DWC3 remove path currently holds its private mutex around=0A=
+unregister. Its role callbacks take that mutex under the switch lock, so=0A=
+waiting on the switch lock in unregister would reverse the lock order.=0A=
+Unregister before taking the Apple mutex.=0A=
+=0A=
+Fixes: fde0aa6c175a ("usb: common: Small class for USB role switches")=0A=
+Signed-off-by: Keisuke Tsukuda <tkdkei@outlook.jp>=0A=
+---=0A=
+Tested on ARM64 QEMU with Linux 7.3.4 and mainline 7.4-rc2=0A=
+(067c5c24cef2), with KASAN and lockdep enabled. Synthetic providers=0A=
+trigger KASAN use-after-free reports in both set and get callbacks before=
+=0A=
+this change. With the change, unregister waits for the callbacks and=0A=
+neither test reports KASAN.=0A=
+=0A=
+A lockdep test modeling the Apple callback/remove lock order warns for the=
+=0A=
+original order and not for the new one. Apple DWC3 hardware was not tested.=
+=0A=
+=0A=
+ drivers/usb/roles/class.c     |   18 ++++++++++++++----=0A=
+ drivers/usb/dwc3/dwc3-apple.c |    4 ++--=0A=
+ 2 files changed, 16 insertions(+), 6 deletions(-)=0A=
+=0A=
+diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c=0A=
+--- a/drivers/usb/roles/class.c=0A=
++++ b/drivers/usb/roles/class.c=0A=
+@@ -79,10 +79,11 @@=0A=
+ 	if (IS_ERR_OR_NULL(sw))=0A=
+ 		return 0;=0A=
+ =0A=
+-	if (!sw->registered)=0A=
+-		return -EOPNOTSUPP;=0A=
+-=0A=
+ 	mutex_lock(&sw->lock);=0A=
++	if (!sw->registered) {=0A=
++		ret =3D -EOPNOTSUPP;=0A=
++		goto unlock;=0A=
++	}=0A=
+ =0A=
+ 	ret =3D sw->set(sw, role);=0A=
+ 	if (!ret) {=0A=
+@@ -90,6 +91,7 @@=0A=
+ 		kobject_uevent(&sw->dev.kobj, KOBJ_CHANGE);=0A=
+ 	}=0A=
+ =0A=
++unlock:=0A=
+ 	mutex_unlock(&sw->lock);=0A=
+ =0A=
+ 	return ret;=0A=
+@@ -107,16 +109,21 @@=0A=
+ {=0A=
+ 	enum usb_role role;=0A=
+ =0A=
+-	if (IS_ERR_OR_NULL(sw) || !sw->registered)=0A=
++	if (IS_ERR_OR_NULL(sw))=0A=
+ 		return USB_ROLE_NONE;=0A=
+ =0A=
+ 	mutex_lock(&sw->lock);=0A=
++	if (!sw->registered) {=0A=
++		role =3D USB_ROLE_NONE;=0A=
++		goto unlock;=0A=
++	}=0A=
+ =0A=
+ 	if (sw->get)=0A=
+ 		role =3D sw->get(sw);=0A=
+ 	else=0A=
+ 		role =3D sw->role;=0A=
+ =0A=
++unlock:=0A=
+ 	mutex_unlock(&sw->lock);=0A=
+ =0A=
+ 	return role;=0A=
+@@ -423,7 +430,10 @@=0A=
+ {=0A=
+ 	if (IS_ERR_OR_NULL(sw))=0A=
+ 		return;=0A=
++	/* Wait for in-flight set/get callbacks before unregistering. */=0A=
++	mutex_lock(&sw->lock);=0A=
+ 	sw->registered =3D false;=0A=
++	mutex_unlock(&sw->lock);=0A=
+ 	if (dev_fwnode(&sw->dev))=0A=
+ 		component_del(&sw->dev, &connector_ops);=0A=
+ 	device_unregister(&sw->dev);=0A=
+diff --git a/drivers/usb/dwc3/dwc3-apple.c b/drivers/usb/dwc3/dwc3-apple.c=
+=0A=
+--- a/drivers/usb/dwc3/dwc3-apple.c=0A=
++++ b/drivers/usb/dwc3/dwc3-apple.c=0A=
+@@ -487,9 +487,9 @@=0A=
+ 	struct dwc3 *dwc =3D platform_get_drvdata(pdev);=0A=
+ 	struct dwc3_apple *appledwc =3D to_dwc3_apple(dwc);=0A=
+ =0A=
++	usb_role_switch_unregister(appledwc->role_sw);=0A=
++=0A=
+ 	guard(mutex)(&appledwc->lock);=0A=
+-=0A=
+-	usb_role_switch_unregister(appledwc->role_sw);=0A=
+ =0A=
+ 	/*=0A=
+ 	 * If we're still in DWC3_APPLE_PROBE_PENDING we never got any cable conn=
+ected event and=0A=
 
