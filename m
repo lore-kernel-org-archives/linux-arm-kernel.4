@@ -2,126 +2,65 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC53606A888
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:08:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1053606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=iSdZcyTQ;
-	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=cRlAZarm;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=QqHaFT0F
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FyENfB15;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jZrKInB/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5GXdvZHa3knndYwSDmToIG3fcge9m7l+oguuWUgRnLk=; b=iSdZcyTQZY1x4i
-	/Woe/nMouAMEVpCeCpuY9oMCdwDa83PrckdgQoTbNPwbYoLOvLKVnuBmJdf81nKfut0IeIxANIbWH
-	F2SsIt/GmtY9xYmuGs/d2AcO1Nots8MD5DfYq9jVVLYAvf6v5OCgNR1Nor4r9drXK9LMW8YuecSYU
-	sxv0bXIB5LOCAnE8u9uWt8nH7eydLyY8hY4LQ4OW8cgiXY/fXJVw8CFEFrIilwMGhFde+vCLzU2CF
-	SJD0hLtr+oG2oSQJKjI6Lmh1SdzC7H13qD58GVTJAfuFVDeu2S6G0wvYNJh8x/l7jVX1h0w3JMPzc
-	MA77NIhdHyGKQgBsjUuQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=3r3YK91+4doEhazd+Tla/QmKvzSykFfCA7OhTKV88Mc=; b=FyENfB15y6vuhNTpJgoa+Y5ES8
+	wOJFU3SBoFh6gdynF9KZPE+u8Q3B3LH2ZguIAXvbRvYO3N+Sm1QxrNFZbYM6s4fOJ6f6Vl551rFfV
+	FIt+3BBuG9f9OGMwbBysnqTiysio5sY1R93mQCWwlOFH7lcVPE2JH+PSHucLzpMdfLnq5/Pr76nvr
+	y1l/C3McZ3qVLF58R5rg9OYA6hA4tdOMmZcoFIM3WWq3mSGyTgS29Fikvml9m7Vdo8pBo/k7PTOCo
+	xgvwmHiYDwchEeYfNB+Ifau21APMRZT8+aynh0vXVvUIfcjLGmlL3YeKY7BnpgX6Wh5NLz4VWanLZ
+	DxlTt0rQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVT1-0000000ABzP-0Ka3;
-	Thu, 12 Nov 2026 14:07:55 +0000
-Received: from fhigh-b7-smtp.messagingengine.com ([202.12.124.158])
+	id 1xRVUB-0000000ACFr-4162;
+	Thu, 12 Nov 2026 14:09:08 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVSw-0000000AByY-2DJQ
+	id 1xRVUB-0000000ACFa-0ijY
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 14:07:53 +0000
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 99E5D7A0176
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 09:07:49 -0500 (EST)
-Received: from ams-imap-03 ([10.64.2.23])
-  by ams-compute-02.internal (MEProxy); Thu, 12 Nov 2026 09:07:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1794492465;
-	 x=1794578865; bh=5GXdvZHa3knndYwSDmToIG3fcge9m7l+oguuWUgRnLk=; b=
-	cRlAZarmZS4105Z8tE7f5RDZYNntIRDnBfMMwHtbWXAlvjAnUs8euZwHzC1oA4qV
-	g1bITi/YN+sbnyrChh/8anW6sQGvnqA965k71YUZ18+D4wLBl1MkPCgkyT/HKte4
-	BnpFI1Almwv7zBh0yge61xnfmnIJ3D14TFtgf94jeLh6pQ4kpKOAxpkgGPJ4CX4B
-	XlOSs37j/bSR3CdqILwBv5+w9TmIccKFqV2TqXbkCYwi6R50mLbcw57uR91SIiKs
-	tFCUNrBIqj4sy9V+Ukm8Op7fGcPOJjUPVjAvogbXgOEDgCf5Y9t8ZSRcAJPDVdRW
-	Osd+XB3y/EwjtCI7jz3f0A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794492465; x=
-	1794578865; bh=5GXdvZHa3knndYwSDmToIG3fcge9m7l+oguuWUgRnLk=; b=Q
-	qHaFT0Fm+Wxf3hVMxQa558O3fZ0Go6Jvi6S274zLQEJS6swjaKCN6kB3AUwkcVZ4
-	dHDEA5RRuivP73JeVzYN2a5M4QjNAqcGSjHw1HLzo2U59UMJIODJxa6SnojiP4lH
-	Uj8EcGbNTu6T+rJayzrCydwjkYYmRenBBxShjzXDHIPuKBwWs8nRPX3Gevj2Tt8o
-	AJNjpm3Rw9AO2nlSHmfC64ON2h78tL2HbGW6/r0IvWKMsJOacuWA0cFZV3qOs1bQ
-	nWepqOlxwFocK7Vu0Jab9gbKs2dT7oHaoq659r4agjGKZkHp0pXjsKU/1RcZxXY3
-	ZKiLkERh/JVcsTsfQvhkg==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=arndb.de a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794492465; d=arndb.de;
-	mf=PGFybmRAYXJuZGIuZGU+;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm2:rsa-sha256:ID3iuI3KbEO/BJoOdQQPXy16l44cvAzp61vQ5leeK/KuN9i
-	WxFuRDHTAxTniQVnVTX8M47LWJh3f9HVapMev6/cU28M6UQRlgcz1aheJ8nBtosS
-	92t/HXtGFrMXw1dB41usyYNqvhE+mACYMaFuWh2qsN4WmJNNg+irdfFMFq0+RILW
-	Mu+ZWp0MLxIWHMFSLKd8ElRGzsLrmNjs2pwHd9qJt6I//68UjU50Jgz9uh0txHKe
-	tB1ucKvad+PN3uwUH0JmxHPsIyFjvmiWjvaUar/hEwraOpr/0Ed12/TqvAo3RxDn
-	hPhTygFgNONqlytuA+zZXlmZZwTF+g0f6Nt7bjw==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=12;
-	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
-	from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:zJP+fHFCTvxBi9D/O28hUzwh2VX6rVFNk/0QKB44wyY=:8TXN24dfbYOYJLrLvVuV4dl9S5EX/zjyzYT5+JZds8s=;
-X-ME-Sender: <xms:Lcj1al2oDFJnOlUAmK_BhKEcST47Y0N6e5UIX07eNEXBv_yYUlsZtA>
-    <xme:Lcj1am4R8gX-0bHXcCTlyCS1H-JNx-BAPKywKQ0kjLuDYlEpivo9LVv98dmWysKay
-    3qssT5BdSa0DkALv8tcXnEC-qPrdrNxsauOzMj_NzZPFMcj6E7oTzM>
-X-ME-Proxy-Cause: dmFkZTEghsy3+LDBk1J/jXVYB3hbg3urWjbCnf+Is56K6KlyTy7hIW7mdHHgDWmuP6IaSb
-    ZDXdDcOc8EV8xGJ7CVkyaa8YfJnz+Oz5uIt8kzZFWND+RFfODBO8sLHZboCnmWkQc0NtGG
-    l3m+7yn/hIETUBKmCSO/0i8f92jbpUkfzY35dzz2GqeR8krzd/ZZtpA1opel6Labd8o8Jr
-    MepMBknmBvH7aoLJ+2u/caDVcD2sFC6WrTvozBvhoz+OtDk47fDCPU9aDRAS/xK9Z5NRJV
-    eZ98T+xm+0pq/5D+gOcXKSGMdgNITE5JJLPWGOTTJ8yb37oXvlE+xkuERaKDpqamuH6Znp
-    6jsnsra3ZK0HdT4HHKtvD8eikpleAHDfwks7gof9zPlIUPsvoTUFbXoatjBALn7XX1se9k
-    kCeWhN1h7Ygg92ZrcUrSM/mCxz2MLa/YggUp+0ssbZVkcA3RVSmma9cljg8YjYKA7fE1vh
-    BRTNx8nN1Y38eUCjaghHkPadoJuJID/h/SAhHbZKAMEL3WQEKGmncFIC1zTrshehz2GSt2
-    0ZD9dYFtc8YO8UDcWym4jdmJoX6Blmvh1WfUaM9DI3Faa6e1EiPsDGYj56HHmNQC/lZYlx
-    B1NZh6hbAg7ESf5+tvi5K4i06eDUo822q39zlCb/tB5MexwQOpyv+Kfk/SCw
-X-ME-Proxy: <xmx:MMj1akaCpyajzwhvAHKKZ3HZJuUDzUBJAMdPBUx4tG84ACWN6y34JA>
-    <xmx:MMj1av3Oj_SGPc4gcInww3tWYrXMmHgYyqV7T113ctRHn8jyHVYBfQ>
-    <xmx:MMj1auvfUe2etshsDERBjwS6ULQab0lCcKkEXyrIW_sbpl8v72g-IA>
-    <xmx:MMj1arBIPygLK1JsaclQxxjbHq9DZQwyg5dqTqfYUfb22rZx5khPDw>
-    <xmx:Mcj1asAQNZSZLBQmYqLGCj-qn6alc9lGF0WTdC3VDXPX5SzDibl_9SIC>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id AEE7532A009C; Thu, 12 Nov 2026 09:07:41 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	Thu, 12 Nov 2026 14:09:07 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 46B3840840;
+	Thu, 12 Nov 2026 14:09:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E82231F00A05;
+	Thu, 12 Nov 2026 14:09:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794492545;
+	bh=3r3YK91+4doEhazd+Tla/QmKvzSykFfCA7OhTKV88Mc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=jZrKInB/dw9y7sshA7jXo61/laxLjxtNTGogkJSw4mbYJdGM5Z0lvvgBXztPKXOMU
+	 h2cDV1ssFEl1HHKGRP5V45NJEAA3j+/Oxd6QEmEtEtFnk4uPGaArZBYLUvOV6FwD3g
+	 JdAj9NqyACwoZDbUYb50924lD3+tZmdiDWSTVHLqGKd/MHfSaVUFBYGThoEvNHy28o
+	 cHfsQ5hddnsnmcw/Diuopv9jRDmWXkMOKk4H3DQmBZ2eUq7gJYa6KceOqCmYSLzmKo
+	 sHYzZHqfPMPcRdKrOkmAWdZuYgoH7uhzzuVTZ3eoWbgq/6ral1ujjDn0am+NHOY+2r
+	 fEJq2rZC0QjJQ==
+Date: Thu, 12 Nov 2026 08:09:02 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: jbrunet+clk@baylibre.com, p.zabel@pengutronix.de, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, sboyd@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michal.simek@amd.com, conor+dt@kernel.org, bmasney+clk@redhat.com,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: clock: convert zynq-7000.txt to yaml
+Message-ID: <179449254210.403147.12378067448658354620.robh@kernel.org>
+References: <20261111150812.1874449-1-radhey.shyam.pandey@amd.com>
+ <20261111150812.1874449-3-radhey.shyam.pandey@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AXRzvbN5yUxV
-Date: Thu, 12 Nov 2026 15:07:21 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
- "Masami Hiramatsu" <mhiramat@kernel.org>
-Cc: "Christian Brauner" <brauner@kernel.org>, linux-kernel@vger.kernel.org,
- linux-kbuild@vger.kernel.org, kernel-dev@igalia.com,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- linux-alpha@vger.kernel.org, linux-s390@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, soc@lists.linux.dev,
- linux-mips@vger.kernel.org, sparclinux@vger.kernel.org
-Message-Id: <0cfb4dbf-f3e2-4ceb-ab89-0453ae59793d@app.fastmail.com>
-In-Reply-To: <20261105-tonyk-syscall_table-v9-9-8d1275885d9c@igalia.com>
-References: <20261105-tonyk-syscall_table-v9-0-8d1275885d9c@igalia.com>
- <20261105-tonyk-syscall_table-v9-9-8d1275885d9c@igalia.com>
-Subject: Re: [PATCH v9 09/15] syscalls: Add an option for offsetting the common table
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_060750_873875_0C15CD43 
-X-CRM114-Status: GOOD (  11.57  )
-X-Spam-Score: -2.1 (--)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261111150812.1874449-3-radhey.shyam.pandey@amd.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -132,31 +71,43 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 5, 2026, at 21:05, Andr=C3=A9 Almeida wrote:
-> To better support architectures that doesn't share the same syscall
-> numbers, but have them in the same sequence, add an new option to offs=
-et
-> the common syscall table numbers by a value. This make it possible to =
-reuse
-> the common syscall table for alpha.
->
-> Signed-off-by: Andr=C3=A9 Almeida <andrealmeid@igalia.com>
+
+On Wed, 11 Nov 2026 20:38:12 +0530, Radhey Shyam Pandey wrote:
+> Convert the Zynq 7000 clock controller binding to DT schema format.
+> 
+> ps-clk-frequency becomes optional with a documented 33 MHz default. The
+> text version listed it as required, but zynq-7000.dtsi does not set it
+> and five in-tree boards (zynq-cc108 and zynq-zc770-xm010 through xm013)
+> never override it, so requiring it would reject device trees that are
+> already in use.
+> 
+> trace_emio_clk is added to the clock inputs. It is the external trace
+> clock feeding the debug trace mux, which the text version never listed.
+> The example is corrected the same way: it used can_mio_clk_23, which
+> does not match the mio_clk_XX form this binding defines for an EMIO
+> clock on a MIO pin.
+> 
+> clock-output-names is enumerated as 48 const entries instead of the
+> prose "shall be a list of the outputs below", so the names and their
+> order are now checked. The clock cell is an index into that list.
+> 
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 > ---
-> Changes from v4:
->  - I was reusing the logic from --offset to apply the --common-offset,=
- but
->  the logic is different: --offset does a string concat, and --common-o=
-ffset
->  does a addition to the number
+>  .../bindings/clock/xlnx,ps7-clkc.yaml         | 145 ++++++++++++++++++
+>  .../devicetree/bindings/clock/zynq-7000.txt   | 110 -------------
+>  2 files changed, 145 insertions(+), 110 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,ps7-clkc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/clock/zynq-7000.txt
+> 
 
-I don't understand why this should be different here.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-    Arnd
 
