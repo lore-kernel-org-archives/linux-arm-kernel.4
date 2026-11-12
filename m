@@ -2,73 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C04606A88C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 19:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C2E606A8AB
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 19:53:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XSWRxGV/;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sJ6IJ1gu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mFeEGZuZ;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=KIa6jf8x
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=hYKrXo3r1holufW7AcHtZgDm/1s3GasnuMhptxVhdNA=; b=XSWRxGV/SLMC9M
-	9tX0PWiaOR6c/Oy85ps+3fpynCGyqOEyFvHzdmzHSyPEXikLym1tDjy3g8mlQXcVmJ0eZWVN6HqQc
-	j+876EIFLyR8f+I5oTZhiwiFn1XaosBYxYW4MvOLUAHDxSA33Xo7Pxcnkp4IvGawaL75DZu1uNQdP
-	TV0tAD8g7s7zyUV/7hLvz35CMoMO6dB2SGZD9uEp1B3rYSKq/TXPVz9sxTP0hgvxA9tu4sdA9fhDb
-	D+JVl3rlJYCO8eTpfKODF5H9VTbUXZrZ12JPn6oXPmdF5MulI1AfxnsmsjRpDIGI2h83MrLgpPA4D
-	VqH+WVjmNWbECwafnHew==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=KrAKCc1OnJY4LbejaA118mCBpDZA++ULUTspBpWDwjI=; b=mFeEGZuZ9ShhpCoOxIldKm+v5H
+	Zq3FvxWNuF0sYdwO3d9RGESmW1wjOIfaxaxcwtofjV2EvumVsdwoGqMuPVAb1ZH/8YcBXLUWa/tL5
+	9naqty4FAKBUHf1dNDYfHMi4Uu2DhYCVWuoqxBs5DrWsb9bGX/h2+nUZVgRFoH8WotRhoAX6nPLZm
+	J0ptbuET0VT8GtwukmwT9aXW5gSc8pV+bOL22vXriWKH29/rh0Isitf91mX1Op2eCehQfLaoBG5NZ
+	qobV2LLoBIUilxC33WUWokP3miYifllPGmeLL9aMQue8bFJFOInR0KjhkhESLX4IqJyxF+FOrOa6f
+	LwNcgpZg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRaqj-0000000AyHW-3Xaa;
-	Thu, 12 Nov 2026 19:52:45 +0000
+	id 1xRar4-0000000AyMv-44RQ;
+	Thu, 12 Nov 2026 19:53:07 +0000
 Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRaqG-0000000AyEi-48e3
+	id 1xRar2-0000000AyMV-3i3o
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 19:52:23 +0000
+	Thu, 12 Nov 2026 19:53:06 +0000
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5624D165C;
-	Thu, 12 Nov 2026 11:52:13 -0800 (PST)
-Received: from gaia.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 751393F632;
-	Thu, 12 Nov 2026 11:52:14 -0800 (PST)
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1608B143D;
+	Thu, 12 Nov 2026 11:53:01 -0800 (PST)
+Received: from arm.com (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E67833F632;
+	Thu, 12 Nov 2026 11:53:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794513136; bh=nzXj1rL608SvCKmeouEdQMlkLBeYWbBshMWDCnenC7k=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sJ6IJ1gu1+aTPx9IErkAHP9oAy80fnJm+AzVzxBbOHeKmVUf/WNZCVckq4ot5jGY0
-	 ICY5yoD/UEP0Lyl5KGImaaBCXgLtKuMjYkxDTkeoJHtHW9hiVggOnC1y69nK7skRJH
-	 5LmecvElJd8fsswmmAk2M9BYt5pCXE2yEi7B2tbM=
+	t=1794513184; bh=UVssr2h0mtTlZR3uknoInjfb4xYkRuFDnS+ok0EQ/Js=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KIa6jf8xPIhnYjIt1/ah9uwMyqR51klIIHUVgOF56JSTCncADpFq7xBqP2MixQIcJ
+	 lar+vP5zIri1gYTsurYMR/2zyxKxAviqSzUjHuInf/T5u3xfuEFZ4PJbUNfJxKzJlC
+	 BXRRfQxb5Z7xmfdWLFC8XyLxLlUthyJ2GWqdnZEw=
+Date: Thu, 12 Nov 2026 19:52:56 +0000
 From: Catalin Marinas <catalin.marinas@arm.com>
-To: akpm@linux-foundation.org,
-	baoquan.he@linux.dev,
-	graf@amazon.com,
-	leitao@debian.org,
-	mark.rutland@arm.com,
-	mpilaniy@redhat.com,
-	pasha.tatashin@soleen.com,
-	pratyush@kernel.org,
-	will@kernel.org,
-	yeoreum.yun@arm.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jinjie Ruan <ruanjinjie01@gmail.com>
-Cc: ruanjinjie@huawei.com
-Subject: Re: [PATCH v9] arm64: kexec_file: Do not use CMA for images with a non-zero text_offset
-Date: Thu, 12 Nov 2026 19:52:09 +0000
-Message-ID: <179451296806.3304937.7524260457442565579.b4-ty@b4>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20261109041324.3642034-1-ruanjinjie01@gmail.com>
-References: <20261109041324.3642034-1-ruanjinjie01@gmail.com>
+To: linux-arm-kernel@lists.infradead.org,
+	Beata Michalska <beata.michalska@arm.com>
+Cc: Will Deacon <will@kernel.org>, Vladimir.Murzin@arm.com,
+	suzuki.poulose@arm.com, xuewen.yan94@gmail.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/3] arm64: errata: Update AMU workarounds
+Message-ID: <avYZGOO_gku8RUKj@arm.com>
+References: <20261111124005.2688820-1-beata.michalska@arm.com>
+ <179451296804.3304937.3878967781756339834.b4-ty@b4>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <179451296804.3304937.3878967781756339834.b4-ty@b4>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_115219_625545_7486133D 
-X-CRM114-Status: UNSURE (   9.04  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261112_115304_974393_692CFA29 
+X-CRM114-Status: GOOD (  12.71  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -80,26 +71,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 09 Nov 2026 12:13:24 +0800, Jinjie Ruan wrote:
-> image_load() adds text_offset to kernel_segment->mem and subtracts it
-> from kernel_segment->memsz.  For CMA backed segments this breaks the
-> load path: the payload is copied to page_address(cma), which is the CMA
-> base, while image->start is set to the adjusted address, so kexec jumps
-> into the middle of the kernel.  kimage_map_segment() has the same
-> mismatch when a segment has been moved.
+On Thu, Nov 12, 2026 at 07:49:28PM +0000, Catalin Marinas wrote:
+> On Wed, 11 Nov 2026 13:39:26 +0100, Beata Michalska wrote:
+> > This short series updates errata for AMU core & const counters.
+> > The last patch in the series tries to optimize a bit the paired
+> > readings of both counters, so that the workaround checks do not
+> > skew the results. It is also intentionally the last one, as it
+> > will not apply on older stable kernels.
+> > 
+> > 
+> > [...]
 > 
-> [...]
+> Applied to arm64 (for-next/fixes), thanks! I left the 3rd patch to Will
+> for the upcoming merging window.
+> 
+> [1/3] arm64: errata: Extend the workaround for broken AMEVCNTR01 counter
+>       https://git.kernel.org/arm64/c/139a9b7d5a07
+> [2/3] arm64: errata: Add Cortex-A715/A720 AMU core counter workaround
+>       https://git.kernel.org/arm64/c/be7771458582
 
-Applied to arm64 (for-next/fixes), thanks!
+Ignore this one, I applied v2 but b4 still remembered.
 
-[1/1] arm64: kexec_file: Do not use CMA for images with a non-zero text_offset
-      https://git.kernel.org/arm64/c/18f2d01bfce9
+-- 
+Catalin
 
