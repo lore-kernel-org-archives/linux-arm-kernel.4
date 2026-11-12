@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619B7606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D09CA606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=z1/gOPx+;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GsBDW7jk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=umg16bAr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XZNd7Am/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,81 +14,53 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Bav+dbiKMPv2EGpsaUAhorWs7PAXLzQQGUUajdSwRU8=; b=z1/gOPx+UVTYQsokACEykMl8ij
-	J1y8duXUA8JTgfX29NJ0RnHjwbu+A9UkW+9YL5Ll8Wl/+Ge71kF6n8uiBxdkBEzgFxodXjOFCLHgt
-	EyLXMD3TiTyNaHaB2vVATmvVZQoDjIyuwVhyhcGTylQIONhHngPS/cWwr8F0HSTlq+bUM8hXrk8aL
-	TjPBX8AA+PCcVuoWQ5AB+2rbiZz59CD1/H+6ZSvvyFVDVPjH4LPJ6FF7TdQFf/Q6mUC1FG585N4Xe
-	EBLmjjUKsQvjcHkZ9crXjCuwK4Lm6Beuu6MwIRjnjtfjvVt5l/7pdSmdXYGGAwYJZIlKxzVmEN8wd
-	PVCZTB2Q==;
+	bh=SmLZ8gf1GKBz7EI8vmfSH7lLCzmVzRkRLb0jnz0/qbk=; b=umg16bArWT+cLfoAfJItPaWNBe
+	TiuIJyoc52b8ec1lNgKvp/J3ZwItKmf5Nhk4vkP7xHotCXObLPs/QfZh5QGrn5cs1nllo43B8xUNB
+	IJ4PqUkBFYXE0YjxbvXDD7JQYdTppObU5S8HN34qAm+cpkcUqOiVdWyzPIskgYC9OMJyarrc3+8Iw
+	BLWUhvJVc26PvaOdkHUcIosCqAZby6GRJiOkCTnJmQFM3cxpMVQxZUXukZHLlCX3PZ9l5vVaJw1Wi
+	ONUwfABwDIdk2w8nOZkr4Q1TbwVoHH8C+PP7u4IRmPayrJmIQbQTrmNFr++JuCPS4jF9T79+EJqFq
+	HgJJOm6A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVUT-0000000ACJV-0UCU;
-	Thu, 12 Nov 2026 14:09:25 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRVUp-0000000ACQo-19se;
+	Thu, 12 Nov 2026 14:09:47 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVUR-0000000ACJ9-1zKW
+	id 1xRVUo-0000000ACPt-1brk
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 14:09:23 +0000
+	Thu, 12 Nov 2026 14:09:46 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id B5C6362D1D;
-	Thu, 12 Nov 2026 14:09:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 193031F00A06;
-	Thu, 12 Nov 2026 14:09:15 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id A7CE561282;
+	Thu, 12 Nov 2026 14:09:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 213BF1F00A05;
+	Thu, 12 Nov 2026 14:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794492562;
-	bh=Bav+dbiKMPv2EGpsaUAhorWs7PAXLzQQGUUajdSwRU8=;
+	s=k20260515; t=1794492585;
+	bh=SmLZ8gf1GKBz7EI8vmfSH7lLCzmVzRkRLb0jnz0/qbk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=GsBDW7jkZwGolei5OwviUP8YfwzZAxvq7dLne75yiI+QNaAhKCVLTXjTeGCmLawTS
-	 A4BuUY4qYFLZc2UIeSe8ZibVZ3raDK3EiWH0ycSOieOQTKZd30GUVthpaI/jPpKmXE
-	 Wgdc472S+8VsrgWtji6ZeAe/RPaxWsIfJC1/82UEevEwPBEUaYMPTiEiW5p8w08tj2
-	 diQPmi5mPkydDsKrDYWdqNWZDO7b/pxth0rRA8iVyDuFGcZrrKai3IajCA/yKybHQE
-	 h7ADR80unMaw3b73T/FJVgDl0hFOgO/3OgxibHF0Y6GLz2r/F3ctMavaZesf2EYRqR
-	 mKlHk5hT9HB9w==
-Date: Thu, 12 Nov 2026 14:09:13 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Yeoreum Yun <yeoreum.yun@arm.com>
-Cc: Kevin Brodsky <kevin.brodsky@arm.com>, linux-hardening@vger.kernel.org,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Ard Biesheuvel <ardb+git@google.com>,
-	Andy Lutomirski <luto@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"David Hildenbrand (Arm)" <david@kernel.org>,
-	Jann Horn <jannh@google.com>, Jeff Xu <jeffxu@chromium.org>,
-	Joey Gouly <joey.gouly@arm.com>, Kees Cook <kees@kernel.org>,
-	Linu Cherian <linu.cherian@arm.com>,
-	Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
-	Matthew Wilcox <willy@infradead.org>,
-	Maxwell Bland <mbland@motorola.com>,
-	"Mike Rapoport (IBM)" <rppt@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Pierre Langlois <pierre.langlois@arm.com>,
-	=?iso-8859-1?Q?Pierre-Cl=E9ment?= Tosi <ptosi@google.com>,
-	Quentin Perret <qperret@google.com>,
-	Rick Edgecombe <rick.p.edgecombe@intel.com>,
-	Ryan Roberts <ryan.roberts@arm.com>,
-	Vlastimil Babka <vbabka@kernel.org>, Will Deacon <will@kernel.org>,
-	Yang Shi <yang@os.amperecomputing.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mm@kvack.org, x86@kernel.org, Ira Weiny <iweiny@kernel.org>,
-	Lorenzo Stoakes <ljs@kernel.org>, Thomas Gleixner <tglx@kernel.org>
-Subject: Re: [PATCH RFC v10 07/22] arm64: Initialize POR_EL1 register on
- cpu_resume()
-Message-ID: <0d12b173-ba74-4d5d-b1d9-bd441033ba6d@sirena.org.uk>
-References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
- <20261109-kpkeys-v10-7-aa6c4d9603bc@arm.com>
- <be361be8-c5ad-4ff7-a6db-7b0815bfe1d0@sirena.org.uk>
- <avNH_AdvK9AqvfF7@e129823.arm.com>
- <7b92f7c8-1543-447e-8ef3-aba608141699@arm.com>
- <6808f3a6-1c12-4cb2-a109-30704d812490@sirena.org.uk>
- <avW7mVh-s90SdUYN@e129823.arm.com>
+	b=XZNd7Am/j2siX5Bd4nG4XDFcC61MusmSOn062NE0PVt+q1l5BHBXMWjmuVxKwlocd
+	 sUlxcuWxs7+4FaEUeLOATmg+F3XyC4tjkpMo0oZ9kmoDfe/eJB80BssqOZ11c2V7Yp
+	 N7D0PZW0nPtNxgWzPcqWIpiIg8FXcbtr+IawNhlPm11pqotdYaH4pRQtjCSAxomHMs
+	 rt6B2Kxe3GvRL1sG2IWxUuTSZAmlyUtCy5+xDcP79C2yUjIiea6WCjbYmWmCZNnxdL
+	 x7VkDDdxx0pYCwPN27hWU+aEyxZldmtkQ3Rn9xXPDBR0XVjn+GazatHC28+dvdIkBA
+	 3gl9W7Exo5TSw==
+Date: Thu, 12 Nov 2026 08:09:43 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: jbrunet+clk@baylibre.com, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, bmasney+clk@redhat.com,
+	michal.simek@amd.com, devicetree@vger.kernel.org, sboyd@kernel.org,
+	krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: reset: convert zynq-reset.txt to yaml
+Message-ID: <179449258263.406339.11789920788113048063.robh@kernel.org>
+References: <20261111150812.1874449-1-radhey.shyam.pandey@amd.com>
+ <20261111150812.1874449-2-radhey.shyam.pandey@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ORVk8nI4MBGvkiv/"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <avW7mVh-s90SdUYN@e129823.arm.com>
-X-Cookie: Baby On Board.
+In-Reply-To: <20261111150812.1874449-2-radhey.shyam.pandey@amd.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -99,47 +71,38 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
---ORVk8nI4MBGvkiv/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Wed, 11 Nov 2026 20:38:11 +0530, Radhey Shyam Pandey wrote:
+> Convert the Xilinx Zynq reset manager binding to DT schema format.
+> 
+> The reset output list is kept, hung off #reset-cells since that is what
+> the numbers describe. It is preceded by the encoding the text version
+> left implicit: the cell is the register's position in the block times 32
+> plus the bit number within that register. This also explains the gaps in
+> the list, which are reserved bits and, in the case of 0x23c, a reserved
+> register.
+> 
+> No dt-bindings header is added. Unlike the firmware-defined IDs in
+> xlnx,zynqmp-reset, these indices are derived from the SLCR register map
+> in UG585, and no in-tree device tree references them.
+> 
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> ---
+>  .../bindings/reset/xlnx,zynq-reset.yaml       | 99 +++++++++++++++++++
+>  .../devicetree/bindings/reset/zynq-reset.txt  | 68 -------------
+>  2 files changed, 99 insertions(+), 68 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/reset/xlnx,zynq-reset.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/reset/zynq-reset.txt
+> 
 
-On Thu, Nov 12, 2026 at 01:14:01PM +0000, Yeoreum Yun wrote:
-> On Thu, Nov 12, 2026 at 01:02:16PM +0000, Mark Brown wrote:
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> > Possibly just have one before writing TCR2_EL1 rather than for each of
-> > the indvididual features, that's harder to mess up?
-
-> I'm not sure that's necessarily better, as we'd end up executing an isb()
-> even when POE or other features aren't enabled.
-> Wouldn't it be better to execute an isb() only when needed?
-
-OTOH it seemed like we'd repeatedly omitted them where we needed them,
-and we'd end up issuing multiple barriers this way.  But Kevin pointed
-out that the second one needs to be where it is anyway so it doesn't
-matter.
-
---ORVk8nI4MBGvkiv/
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmr1yIgACgkQJNaLcl1U
-h9AwXwf+NHY6AAbg8csFjXrZMuDQdUMboaJkVfC+Hn1q5Gsm/gt8SqmjIwUM0/R3
-MBiR8arflazFuvWDuOyqikdvaaggIetDiefUXzhSqBmVdUZSP5znX/cGchB3ATHU
-r9jz5IaIKvtxnWr+m3uCzKwQgjqCSsq5uDNirluS7voueb/fqJG9Ff99KsgujR99
-ush3ACE4LSyOZc7fOAr2h73OsMxJE9HG2pT4Qn45Bngd3yW4+kKaB4q8oWwin8nj
-Pc2uX+vfLnh8hRLAbDxc1EOt5vLd+ws+QGxlneaX8NBf56pZWPWra4vvfJIVIqID
-Fv8s1/jFofx3Fe/o4LjSia4hffneCg==
-=1AlE
------END PGP SIGNATURE-----
-
---ORVk8nI4MBGvkiv/--
 
