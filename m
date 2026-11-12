@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0945606B356
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A359E606A323
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=As1LuOpO;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gwt/fNWO
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=43woKAu8;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ry3XpEgg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bsiyTGE3E/PTM1EG/tisvzM/pe3H12wpmJnKZF8EROE=; b=As1LuOpONBEwhZ
-	KJuWgG5OAKoYuv8Hn5GX9P8OynxHAyEWjxxhYyZ64QXjzdWnNIVDJ6oPoNqtUTqYVtBjBe1jW5iDL
-	kG+adTZ3nlJn+lm4pkUlkyWKyYsY+V5uCtxT26aPi8S1V7ZJxcuGSi0XrVezRUScJhaVF7tKT1Uij
-	93bEh/DNKFEv5KnahJlcvV3LwpF/8zJ6xKrkYIfsGVDgFWS+Cs12yQhVZ24mDzSnpM3yZp2s/Fy+c
-	gIJF4my4BaFU4BfT4ETRE4YQ3w+kIs1BVt5wdSyx7kuBuvqJRyf6QBUINP/QF6ElOVV3ilAxON76t
-	C2HzxEsH7DAfM76gpAcg==;
+	List-Owner; bh=3VVpz5psM2laYGejfxE2TEh3teXoUIxXSF/mpB+JTEc=; b=43woKAu8Ad0bdn
+	revZ0Cfhm+YajAQ1ktcdnVWWbw/Cc6vXzal2ec4VrmKlwN1pIBu1QV2QMB/zgn8aQA5ohh28KsEsQ
+	7bGCyN9yleIaCucWPH08/yoldclqylEJlhqDajWPqeDTNBQl6klsE7Om5ersO1+7A2mesJo7q+HtH
+	QC/oz2y4pkJSzL2/qUlMP5lLCkms58MIisicR7nhEa6PQEt3qw2/3eDK5bjcRIxjsse6DXWrUOQUY
+	bYVLgejs8PQAZeR7mf47dxO/uG67gsqlkzVj5j4NyIHYBszBIYNOrYgAwdRpCaVDrRYK3K/cHQ6ID
+	E7eE5yXa2iqIbHqYWAiA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSwU-00000009gkA-0l5u;
+	id 1xRSwU-00000009glC-3jfJ;
 	Thu, 12 Nov 2026 11:26:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSwD-00000009gcP-3S9m
+	id 1xRSwT-00000009gjo-0Egx
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:25:53 +0000
+	Thu, 12 Nov 2026 11:26:09 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3E29F61248;
-	Thu, 12 Nov 2026 11:25:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 584E31F00A05;
-	Thu, 12 Nov 2026 11:25:49 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 5871D61D19;
+	Thu, 12 Nov 2026 11:26:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 814851F00A05;
+	Thu, 12 Nov 2026 11:26:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794482753;
-	bh=bsiyTGE3E/PTM1EG/tisvzM/pe3H12wpmJnKZF8EROE=;
+	s=k20260515; t=1794482768;
+	bh=3VVpz5psM2laYGejfxE2TEh3teXoUIxXSF/mpB+JTEc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=gwt/fNWO4++DPBZwX3yvy9kSW4ZY0iIGZxE1ev1Ec/HjhSJzhR9dp8QRwivd0Ht3p
-	 xcyNJ5+Ii5dDH71RIZ/WrlxY6mzgvXWVa02xFA262X3UF1UJDZdpbOOL5DarZthRox
-	 DN+DOS9qOr+0ba/mcrRaxwYV+Ybkuc67H7niR6nt9NbeCn7vnFaMQobSRVuEtgl8ug
-	 JVUWeJusKt1vvnf9ZAo8P+0iaKoRUjQpRGZXx1MCjtbwdxVohJ1PHAIXYqZs7D2blf
-	 R4yqBBDbfrOZMrRPSlacC7QEwj7+AGVoP+3t/kOZWKkOqabrUHAaMtG7o17D4v6tqs
-	 QGNisUPNnJRdw==
+	b=Ry3XpEggf+Y/U+gHDo0Sl1S+64zSp7z+po5It5dfXVshbeIsMADslm+eic4b1vUp8
+	 nCYZCB8THCccHluH2kCUodzmzBA3Xg2w4e65odbbITDw1cpx9NKHjlrID8sg9Y60vH
+	 E2QLZyVmOWlON2xlaqePyYlJgBJCpoh8oTFhgJdXE2JhLekyCeUO+WknTiOIiCE7rE
+	 oq+a2MsmdLdXk8JrIun4SyGjwfiwKN41K/bFG1ltub0f7+U0XTyFQnCQ9pAT87tDHQ
+	 +6o/AidowvvA/IrEiLsYKkJ4OkhUMQLJm8xGBA1uwu0fZgTtgl4kPrsOPQBt+LqmTA
+	 quLr5ST5z8zpQ==
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-mm@kvack.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -61,10 +61,26 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-fsdevel@vger.kernel.org,
 	linuxppc-dev@lists.ozlabs.org,
-	x86@kernel.org
-Subject: [PATCH v2 2/6] mm: remove ARCH_NEEDS_KMAP_HIGH_GET
-Date: Thu, 12 Nov 2026 12:25:24 +0100
-Message-ID: <20261112112528.1116405-3-arnd@kernel.org>
+	x86@kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Michal Simek <monstr@monstr.eu>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Mike Rapoport <rppt@kernel.org>,
+	Suren Baghdasaryan <surenb@google.com>,
+	Michal Hocko <mhocko@suse.com>,
+	Nishanth Menon <nm@ti.com>,
+	Lucas Stach <l.stach@pengutronix.de>
+Subject: [PATCH v2 5/6] arch/*: increase lowmem size to avoid highmem use
+Date: Thu, 12 Nov 2026 12:25:27 +0100
+Message-ID: <20261112112528.1116405-6-arnd@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261112112528.1116405-1-arnd@kernel.org>
 References: <20261112112528.1116405-1-arnd@kernel.org>
@@ -84,223 +100,373 @@ Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-Arm has stopped setting ARCH_NEEDS_KMAP_HIGH_GET, so this
-is handled using the same wrappers across all architectures
-now, which leaves room for simplification.
+Most of the common 32-bit architectures (x86, arm, powerpc) all use the
+default virtual memory layout that was already in place for i386 systems
+in the 1990s, using exactly 3GiB of user TASK_SIZE, with the upper 1GiB
+of addresses split between (at most 896MiB) lowmem and vmalloc.
 
-Replace lock_kmap()/unlock_kmap() with open-coded spinlocks
-and drop the now empty arch_kmap_local_high_get() and
-kmap_high_unmap_local() helpers.
+Linux-2.3 introduced CONFIG_HIGHMEM for large x86 server machines that
+had 4GiB of RAM or more, with the VMSPLIT_3G/2G/1G options added in
+v2.6.16 for machines that had one or two gigabytes of memory but wanted
+to avoid the overhead from managing highmem. Over time, similar options
+appeared on other 32-bit architectures.
 
+Twenty years later, it makes sense to reconsider the default settings,
+as the tradeoffs have changed a bit:
+
+ - Configurations with more than 2GiB have become extremely rare,
+   as any users with large memory have moved on to 64-bit systems.
+   There were only ever a few Laptop models in this category: Apple
+   Powerbook G4 (2005), Macbook (2006), IBM Thinkpad X60 (2006), Arm
+   Chromebooks based on Exynos 5800 (2014), Tegra K1 (2014) and RK3288
+   (2015), and manufacturer support for all of these has ended in 2020
+   or (much) earlier.
+   Embedded systems with more than 2GiB use additional SoCs of a
+   similar vintage: Intel Atom Z5xx (2008), Freescale QorIQ (2008),
+   Marvell Armada XP (2010), Freescale i.MX6Q (2011), LSI Axxia (2013),
+   TI Keystone2 (2014), Renesas RZ/G1M (2015). Most boards based on
+   these have stopped receiving kernel upgrades and later 32-bit chips
+   only support smaller memory configurations, though in particular the
+   i.MX6Q and Keystone2 families have expected support cycles past 2035.
+   While 32-bit server installations used to support even larger memory,
+   none of those seem to still be used in production on any architecture.
+
+ - While general-purpose distributes for 32-bit targets were common,
+   it was rather risky to change the CONFIG_VMSPLIT setting because
+   there is always a possibility of running into device driver bugs or
+   applications that need a large virtual memory size. Presumably
+   a lot of these issues have been resolved now, so most setups should
+   be fine using a custom vmsplit instead of highmem now.
+
+ - As fewer users test highmem, the expectation is that it will
+   increasingly break in the future, so getting users to change the
+   vmsplit means that even if there is a bug to fix initially,
+   it improves the situation in the long run.
+
+ - Highmem will ultimately need to be removed, at least for the page
+   cache and most other code using it today. In a previous discussion, I
+   had suggested doing this as early as 2029, but based on the discussions
+   since ELC, the plan is now to leave highmem-enabled page cache as an
+   option until at least 2029, at which point remaining users will have
+   the choice between no longer updating kernels or using a combination of
+   a custom vmsplit and zram/zswap. Changing the defaults now should both
+   speed up the highmem deprecation and make it less painful for users.
+
+ - The most VM space intensive applications tend to be web browsers,
+   specifcally Chrome/ChromeOS and Firefox. Both have now stopped
+   providing binary updates.
+   Testing various combinations on Debian/armhf, I found that Firefox 140
+   can still show complex websites with VMSPLIT_2G_OPT with and without
+   HIGHMEM, though it failed for me both with the small address space
+   of VMSPLIT_1G and the small lowmem of VMSPLIT_3G_OPT when HIGHMEM
+   is disabled.
+   This is likely to get worse with future versions, so embedded users
+   may still be forced to migrate to specialized browsers like WPE Webkit
+   when HIGHMEM pagecache is finally removed.
+
+Based on the above observations and the discussion at the kernel summit,
+change the defaults to the most appropriate values: use 1GiB of lowmem on
+non-highmem configurations, and either 2GiB or 1.75GiB of lowmem on highmem
+builds, depending on what is available on the architecture.  As ARM_LPAE
+and X86_PAE builds both require a gigabyte-aligned vmsplit, those get
+to use VMSPLIT_2G. The result is that the majority of previous highmem
+users now only need lowmem. For platform specific defconfig files that
+are known to only support up to 1GiB of RAM, drop the CONFIG_HIGHMEM line
+as well as a simplification.
+
+On PowerPC and Microblaze, the options have somewhat different names but
+should have the same effect. MIPS and Xtensa cannot support a larger
+than 512MB of lowmem but are limited to small DDR2 memory in most
+implementations, with MT7621 being a notable exception. ARC and C-Sky
+could support a configurable vmsplit in theory, but it's not clear
+if anyone still cares.
+SPARC is currently limited to 192MB of lowmem and should get patched
+to behave either like arm/x86 or powerpc/microblaze to support 2GiB
+of lowmem.
+
+There are likely going to be regressions from the changed defaults,
+in particular when hitting previously hidden device driver bugs
+that fail to set the correct DMA mask, or from applications that
+need a large virtual address space.
+Ideally the in-kernel problems should all be fixable, but as a fallback,
+the previous behavior is still selectable based on CONFIG_EXPERT=y.
+
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Madhavan Srinivasan <maddy@linux.ibm.com>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Nicholas Piggin <npiggin@gmail.com>
+Cc: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: Michal Simek <monstr@monstr.eu>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@suse.cz>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: Matthew Wilcox <willy@infradead.org>
+Cc: linux-mm@kvack.org
+Cc: Richard Weinberger <richard@nod.at>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Nishanth Menon <nm@ti.com>
+Cc: Andreas Larsson <andreas@gaisler.com>
+Cc: Lucas Stach <l.stach@pengutronix.de>
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- mm/highmem.c | 100 ++++++---------------------------------------------
- 1 file changed, 10 insertions(+), 90 deletions(-)
+ arch/arm/Kconfig                            |  5 ++++-
+ arch/arm/configs/aspeed_g5_defconfig        |  1 -
+ arch/arm/configs/u8500_defconfig            |  1 -
+ arch/arm/configs/vt8500_v6_v7_defconfig     |  2 --
+ arch/arm/mach-omap2/Kconfig                 |  1 -
+ arch/microblaze/Kconfig                     |  9 ++++++---
+ arch/microblaze/configs/mmu_defconfig       |  1 -
+ arch/powerpc/Kconfig                        | 14 +++++++++-----
+ arch/powerpc/configs/44x/akebono_defconfig  |  1 -
+ arch/powerpc/configs/85xx/ksi8560_defconfig |  1 -
+ arch/powerpc/configs/85xx/stx_gp3_defconfig |  1 -
+ arch/x86/Kconfig                            |  4 +++-
+ 12 files changed, 22 insertions(+), 19 deletions(-)
 
-diff --git a/mm/highmem.c b/mm/highmem.c
-index a33e41183951..214164f9172b 100644
---- a/mm/highmem.c
-+++ b/mm/highmem.c
-@@ -143,25 +143,6 @@ static  __cacheline_aligned_in_smp DEFINE_SPINLOCK(kmap_lock);
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index fc66d52d847e..797705a94b28 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -1025,7 +1025,8 @@ config BL_SWITCHER_DUMMY_IF
+ choice
+ 	prompt "Memory split"
+ 	depends on MMU
+-	default VMSPLIT_3G
++	default VMSPLIT_2G if HIGHMEM || ARM_LPAE
++	default VMSPLIT_3G_OPT
+ 	help
+ 	  Select the desired split between kernel and user memory.
  
- pte_t *pkmap_page_table;
+@@ -1034,8 +1035,10 @@ choice
  
--/*
-- * Most architectures have no use for kmap_high_get(), so let's abstract
-- * the disabling of IRQ out of the locking in that case to save on a
-- * potential useless overhead.
-- */
--#ifdef ARCH_NEEDS_KMAP_HIGH_GET
--#define lock_kmap()             spin_lock_irq(&kmap_lock)
--#define unlock_kmap()           spin_unlock_irq(&kmap_lock)
--#define lock_kmap_any(flags)    spin_lock_irqsave(&kmap_lock, flags)
--#define unlock_kmap_any(flags)  spin_unlock_irqrestore(&kmap_lock, flags)
--#else
--#define lock_kmap()             spin_lock(&kmap_lock)
--#define unlock_kmap()           spin_unlock(&kmap_lock)
--#define lock_kmap_any(flags)    \
--		do { spin_lock(&kmap_lock); (void)(flags); } while (0)
--#define unlock_kmap_any(flags)  \
--		do { spin_unlock(&kmap_lock); (void)(flags); } while (0)
--#endif
--
- struct page *__kmap_to_page(void *vaddr)
- {
- 	unsigned long base = (unsigned long) vaddr & PAGE_MASK;
-@@ -238,9 +219,9 @@ static void flush_all_zero_pkmaps(void)
+ 	config VMSPLIT_3G
+ 		bool "3G/1G user/kernel split"
++		depends on !HIGHMEM || EXPERT
+ 	config VMSPLIT_3G_OPT
+ 		depends on !ARM_LPAE
++		depends on !HIGHMEM || EXPERT
+ 		bool "3G/1G user/kernel split (for full 1G low memory)"
+ 	config VMSPLIT_2G
+ 		bool "2G/2G user/kernel split"
+diff --git a/arch/arm/configs/aspeed_g5_defconfig b/arch/arm/configs/aspeed_g5_defconfig
+index 1327a09e163a..7f077c667478 100644
+--- a/arch/arm/configs/aspeed_g5_defconfig
++++ b/arch/arm/configs/aspeed_g5_defconfig
+@@ -27,7 +27,6 @@ CONFIG_SMP=y
+ # CONFIG_ARM_CPU_TOPOLOGY is not set
+ CONFIG_VMSPLIT_2G=y
+ CONFIG_NR_CPUS=2
+-CONFIG_HIGHMEM=y
+ CONFIG_UACCESS_WITH_MEMCPY=y
+ CONFIG_VFP=y
+ CONFIG_NEON=y
+diff --git a/arch/arm/configs/u8500_defconfig b/arch/arm/configs/u8500_defconfig
+index 2fe25f5eb9a5..b284c2c31758 100644
+--- a/arch/arm/configs/u8500_defconfig
++++ b/arch/arm/configs/u8500_defconfig
+@@ -6,7 +6,6 @@ CONFIG_KALLSYMS_ALL=y
+ CONFIG_ARCH_U8500=y
+ CONFIG_SMP=y
+ CONFIG_NR_CPUS=2
+-CONFIG_HIGHMEM=y
+ CONFIG_ARM_APPENDED_DTB=y
+ CONFIG_ARM_ATAG_DTB_COMPAT=y
+ CONFIG_CMDLINE="root=/dev/ram0 console=ttyAMA2,115200n8"
+diff --git a/arch/arm/configs/vt8500_v6_v7_defconfig b/arch/arm/configs/vt8500_v6_v7_defconfig
+index 2925a1f1dbb6..1f6dca21d569 100644
+--- a/arch/arm/configs/vt8500_v6_v7_defconfig
++++ b/arch/arm/configs/vt8500_v6_v7_defconfig
+@@ -8,8 +8,6 @@ CONFIG_ARM_ERRATA_720789=y
+ CONFIG_ARM_ERRATA_754322=y
+ CONFIG_ARM_ERRATA_775420=y
+ CONFIG_HAVE_ARM_ARCH_TIMER=y
+-CONFIG_HIGHMEM=y
+-CONFIG_HIGHPTE=y
+ CONFIG_ARM_APPENDED_DTB=y
+ CONFIG_ARM_ATAG_DTB_COMPAT=y
+ CONFIG_VFP=y
+diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+index f0f1d7a8640c..d145e448a6b8 100644
+--- a/arch/arm/mach-omap2/Kconfig
++++ b/arch/arm/mach-omap2/Kconfig
+@@ -135,7 +135,6 @@ config ARCH_OMAP2PLUS_TYPICAL
+ 	bool "Typical OMAP configuration"
+ 	default y
+ 	select AEABI
+-	select HIGHMEM if !CPU_CACHE_VIVT
+ 	select I2C
+ 	select I2C_OMAP
+ 	select MENELAUS if ARCH_OMAP2
+diff --git a/arch/microblaze/Kconfig b/arch/microblaze/Kconfig
+index 9063a91cfb41..8ce8d108bfd7 100644
+--- a/arch/microblaze/Kconfig
++++ b/arch/microblaze/Kconfig
+@@ -164,7 +164,8 @@ config LOWMEM_SIZE_BOOL
  
- void __kmap_flush_unused(void)
- {
--	lock_kmap();
-+	spin_lock(&kmap_lock);
- 	flush_all_zero_pkmaps();
--	unlock_kmap();
-+	spin_unlock(&kmap_lock);
- }
+ config LOWMEM_SIZE
+ 	hex "Maximum low memory size (in bytes)" if LOWMEM_SIZE_BOOL
+-	default "0x30000000"
++	default "0x80000000" if HIGHMEM
++	default "0x40000000"
  
- static inline unsigned long map_new_virtual(struct page *page)
-@@ -274,10 +255,10 @@ static inline unsigned long map_new_virtual(struct page *page)
+ config MANUAL_RESET_VECTOR
+ 	hex "Microblaze reset vector address setup"
+@@ -190,7 +191,8 @@ config KERNEL_START_BOOL
  
- 			__set_current_state(TASK_UNINTERRUPTIBLE);
- 			add_wait_queue(pkmap_map_wait, &wait);
--			unlock_kmap();
-+			spin_unlock(&kmap_lock);
- 			schedule();
- 			remove_wait_queue(pkmap_map_wait, &wait);
--			lock_kmap();
-+			spin_lock(&kmap_lock);
+ config KERNEL_START
+ 	hex "Virtual address of kernel base" if KERNEL_START_BOOL
+-	default "0xc0000000"
++	default "0x70000000" if HIGHMEM
++	default "0xb0000000"
  
- 			/* Somebody else might have mapped it while we slept */
- 			if (page_address(page))
-@@ -313,60 +294,32 @@ void *kmap_high(struct page *page)
- 	 * For highmem pages, we can't trust "virtual" until
- 	 * after we have the lock.
- 	 */
--	lock_kmap();
-+	spin_lock(&kmap_lock);
- 	vaddr = (unsigned long)page_address(page);
- 	if (!vaddr)
- 		vaddr = map_new_virtual(page);
- 	pkmap_count[PKMAP_NR(vaddr)]++;
- 	BUG_ON(pkmap_count[PKMAP_NR(vaddr)] < 2);
--	unlock_kmap();
-+	spin_unlock(&kmap_lock);
- 	return (void *) vaddr;
- }
- EXPORT_SYMBOL(kmap_high);
+ config TASK_SIZE_BOOL
+ 	bool "Set custom user task size"
+@@ -204,7 +206,8 @@ config TASK_SIZE_BOOL
  
--#ifdef ARCH_NEEDS_KMAP_HIGH_GET
--/**
-- * kmap_high_get - pin a highmem page into memory
-- * @page: &struct page to pin
-- *
-- * Returns the page's current virtual memory address, or NULL if no mapping
-- * exists.  If and only if a non null address is returned then a
-- * matching call to kunmap_high() is necessary.
-- *
-- * This can be called from any context.
-- */
--void *kmap_high_get(const struct page *page)
--{
--	unsigned long vaddr, flags;
--
--	lock_kmap_any(flags);
--	vaddr = (unsigned long)page_address(page);
--	if (vaddr) {
--		BUG_ON(pkmap_count[PKMAP_NR(vaddr)] < 1);
--		pkmap_count[PKMAP_NR(vaddr)]++;
--	}
--	unlock_kmap_any(flags);
--	return (void *) vaddr;
--}
--#endif
--
- /**
-  * kunmap_high - unmap a highmem page into memory
-  * @page: &struct page to unmap
-  *
-- * If ARCH_NEEDS_KMAP_HIGH_GET is not defined then this may be called
-- * only from user context.
-+ * This may be called only from user context.
-  */
- void kunmap_high(const struct page *page)
- {
- 	unsigned long vaddr;
- 	unsigned long nr;
--	unsigned long flags;
- 	int need_wakeup;
- 	unsigned int color = get_pkmap_color(page);
- 	wait_queue_head_t *pkmap_map_wait;
+ config TASK_SIZE
+ 	hex "Size of user task space" if TASK_SIZE_BOOL
+-	default "0x80000000"
++	default "0x70000000" if HIGHMEM
++	default "0xb0000000"
  
--	lock_kmap_any(flags);
-+	spin_lock(&kmap_lock);
- 	vaddr = (unsigned long)page_address(page);
- 	BUG_ON(!vaddr);
- 	nr = PKMAP_NR(vaddr);
-@@ -393,7 +346,7 @@ void kunmap_high(const struct page *page)
- 		pkmap_map_wait = get_pkmap_wait_queue_head(color);
- 		need_wakeup = waitqueue_active(pkmap_map_wait);
- 	}
--	unlock_kmap_any(flags);
-+	spin_unlock(&kmap_lock);
+ config MB_MANAGER
+ 	bool "Support for Microblaze Manager"
+diff --git a/arch/microblaze/configs/mmu_defconfig b/arch/microblaze/configs/mmu_defconfig
+index 7f9b19d0d9db..19a13d3ece5c 100644
+--- a/arch/microblaze/configs/mmu_defconfig
++++ b/arch/microblaze/configs/mmu_defconfig
+@@ -15,7 +15,6 @@ CONFIG_XILINX_MICROBLAZE0_USE_FPU=2
+ CONFIG_HZ_100=y
+ CONFIG_CMDLINE_BOOL=y
+ CONFIG_CMDLINE_FORCE=y
+-CONFIG_HIGHMEM=y
+ CONFIG_MODULES=y
+ CONFIG_MODULE_UNLOAD=y
+ CONFIG_PARTITION_ADVANCED=y
+diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
+index c3b6cd655606..31e68cd32a10 100644
+--- a/arch/powerpc/Kconfig
++++ b/arch/powerpc/Kconfig
+@@ -489,6 +489,7 @@ menu "Kernel options"
+ config HIGHMEM
+ 	bool "High memory support"
+ 	depends on PPC32
++	depends on PPC_BOOK3S_32 || PPC_85xx || 44x
+ 	select KMAP_LOCAL
  
- 	/* do wake-up, if needed, race-free outside of the spin lock */
- 	if (need_wakeup)
-@@ -508,30 +461,11 @@ static inline void kmap_local_idx_pop(void)
- #define arch_kmap_local_unmap_idx(idx, vaddr)	kmap_local_calc_idx(idx)
- #endif
+ source "kernel/Kconfig.hz"
+@@ -1190,7 +1191,8 @@ config LOWMEM_SIZE_BOOL
  
--#ifndef arch_kmap_local_high_get
--static inline void *arch_kmap_local_high_get(const struct page *page)
--{
--	return NULL;
--}
--#endif
--
- #ifndef arch_kmap_local_set_pte
- #define arch_kmap_local_set_pte(mm, vaddr, ptep, ptev)	\
- 	set_pte_at(mm, vaddr, ptep, ptev)
- #endif
+ config LOWMEM_SIZE
+ 	hex "Maximum low memory size (in bytes)" if LOWMEM_SIZE_BOOL
+-	default "0x30000000"
++	default "0x80000000" if HIGHMEM
++	default "0x40000000"
  
--/* Unmap a local mapping which was obtained by kmap_high_get() */
--static inline bool kmap_high_unmap_local(unsigned long vaddr)
--{
--#ifdef ARCH_NEEDS_KMAP_HIGH_GET
--	if (vaddr >= PKMAP_ADDR(0) && vaddr < PKMAP_ADDR(LAST_PKMAP)) {
--		kunmap_high(pte_page(ptep_get(&pkmap_page_table[PKMAP_NR(vaddr)])));
--		return true;
--	}
--#endif
--	return false;
--}
--
- static pte_t *__kmap_pte;
+ config LOWMEM_CAM_NUM_BOOL
+ 	bool "Set number of CAMs to use to map low memory"
+@@ -1242,7 +1244,8 @@ config PAGE_OFFSET_BOOL
  
- static pte_t *kmap_get_pte(unsigned long vaddr, int idx)
-@@ -575,8 +509,6 @@ EXPORT_SYMBOL_GPL(__kmap_local_pfn_prot);
+ config PAGE_OFFSET
+ 	hex "Virtual address of memory base" if PAGE_OFFSET_BOOL
+-	default "0xc0000000"
++	default "0x70000000" if HIGHMEM
++	default "0xb0000000"
  
- void *__kmap_local_page_prot(const struct page *page, pgprot_t prot)
- {
--	void *kmap;
--
- 	/*
- 	 * To broaden the usage of the actual kmap_local() machinery always map
- 	 * pages when debugging is enabled and the architecture has no problems
-@@ -585,11 +517,6 @@ void *__kmap_local_page_prot(const struct page *page, pgprot_t prot)
- 	if (!IS_ENABLED(CONFIG_DEBUG_KMAP_LOCAL_FORCE_MAP) && !PageHighMem(page))
- 		return page_address(page);
+ config KERNEL_START_BOOL
+ 	bool "Set custom kernel base address"
+@@ -1258,8 +1261,9 @@ config KERNEL_START_BOOL
+ config KERNEL_START
+ 	hex "Virtual address of kernel base" if KERNEL_START_BOOL
+ 	default PAGE_OFFSET if PAGE_OFFSET_BOOL
+-	default "0xc2000000" if CRASH_DUMP && !NONSTATIC_KERNEL
+-	default "0xc0000000"
++	default "0x72000000" if HIGHMEM && CRASH_DUMP && !NONSTATIC_KERNEL
++	default "0xb2000000" if CRASH_DUMP && !NONSTATIC_KERNEL
++	default PAGE_OFFSET
  
--	/* Try kmap_high_get() if architecture has it enabled */
--	kmap = arch_kmap_local_high_get(page);
--	if (kmap)
--		return kmap;
--
- 	return __kmap_local_pfn_prot(page_to_pfn(page), prot);
- }
- EXPORT_SYMBOL(__kmap_local_page_prot);
-@@ -607,14 +534,7 @@ void kunmap_local_indexed(const void *vaddr)
- 			WARN_ON_ONCE(1);
- 			return;
- 		}
--		/*
--		 * Handle mappings which were obtained by kmap_high_get()
--		 * first as the virtual address of such mappings is below
--		 * PAGE_OFFSET. Warn for all other addresses which are in
--		 * the user space part of the virtual address space.
--		 */
--		if (!kmap_high_unmap_local(addr))
--			WARN_ON_ONCE(addr < PAGE_OFFSET);
-+		WARN_ON_ONCE(addr < PAGE_OFFSET);
- 		return;
- 	}
+ config PHYSICAL_START_BOOL
+ 	bool "Set physical address where the kernel is loaded"
+@@ -1295,7 +1299,7 @@ config TASK_SIZE_BOOL
+ config TASK_SIZE
+ 	hex "Size of maximum user task space" if TASK_SIZE_BOOL
+ 	default "0x80000000" if PPC_8xx
+-	default "0xc0000000"
++	default PAGE_OFFSET
  
+ config MODULES_SIZE_BOOL
+ 	bool "Set custom size for modules/execmem area"
+diff --git a/arch/powerpc/configs/44x/akebono_defconfig b/arch/powerpc/configs/44x/akebono_defconfig
+index bdb0e6ece6ec..cc1e3da5f8f5 100644
+--- a/arch/powerpc/configs/44x/akebono_defconfig
++++ b/arch/powerpc/configs/44x/akebono_defconfig
+@@ -14,7 +14,6 @@ CONFIG_MODULE_UNLOAD=y
+ CONFIG_PPC_47x=y
+ # CONFIG_EBONY is not set
+ CONFIG_AKEBONO=y
+-CONFIG_HIGHMEM=y
+ CONFIG_HZ_100=y
+ CONFIG_IRQ_ALL_CPUS=y
+ # CONFIG_COMPACTION is not set
+diff --git a/arch/powerpc/configs/85xx/ksi8560_defconfig b/arch/powerpc/configs/85xx/ksi8560_defconfig
+index 9cb211fb6d1e..f2ac1fc41303 100644
+--- a/arch/powerpc/configs/85xx/ksi8560_defconfig
++++ b/arch/powerpc/configs/85xx/ksi8560_defconfig
+@@ -9,7 +9,6 @@ CONFIG_PARTITION_ADVANCED=y
+ CONFIG_KSI8560=y
+ CONFIG_CPM2=y
+ CONFIG_GEN_RTC=y
+-CONFIG_HIGHMEM=y
+ CONFIG_BINFMT_MISC=y
+ CONFIG_MATH_EMULATION=y
+ # CONFIG_SECCOMP is not set
+diff --git a/arch/powerpc/configs/85xx/stx_gp3_defconfig b/arch/powerpc/configs/85xx/stx_gp3_defconfig
+index 0a42072fa23c..1033977711d6 100644
+--- a/arch/powerpc/configs/85xx/stx_gp3_defconfig
++++ b/arch/powerpc/configs/85xx/stx_gp3_defconfig
+@@ -7,7 +7,6 @@ CONFIG_MODULES=y
+ CONFIG_MODVERSIONS=y
+ # CONFIG_BLK_DEV_BSG is not set
+ CONFIG_STX_GP3=y
+-CONFIG_HIGHMEM=y
+ CONFIG_BINFMT_MISC=m
+ CONFIG_MATH_EMULATION=y
+ CONFIG_PCI=y
+diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+index 58dce0b66179..18b3eeebb7ce 100644
+--- a/arch/x86/Kconfig
++++ b/arch/x86/Kconfig
+@@ -1410,7 +1410,9 @@ config HIGHMEM4G
+ 
+ choice
+ 	prompt "Memory split" if EXPERT
+-	default VMSPLIT_3G
++	default VMSPLIT_2G_OPT if HIGHMEM && !X86_PAE
++	default VMSPLIT_2G if X86_PAE
++	default VMSPLIT_3G_OPT
+ 	depends on X86_32
+ 	help
+ 	  Select the desired split between kernel and user memory.
 -- 
 2.53.0
 
