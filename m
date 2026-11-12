@@ -2,66 +2,148 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC429606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 03:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D04606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 03:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=JokDDfqr;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.a=rsa-sha256 header.s=default header.b=KuEDjXji
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ug2Ab3sQ;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=aFU2mkns
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=0hASrZa3KsQ/rJDPLJgE3hfFDgP737Rr5tw+ZVyeGEQ=; b=JokDDfqrflXfSl7+fjtwn0cRLJ
-	l1B5Ypd1agTbqTXcH3qbx1ol1s3veXbNQZNhWtCydrL4Bkc0DNBrXvkhHaNF2yf5A8NLQTpeQhaDo
-	GFj2PMwebSDVLXnsj/QCdw7yeIJoc+O9sJQM/XXPqP9gqNm103UJahD534AmxUR75PjBVToHzx1sL
-	/kU96wQ5LojO13FiCcFxZG+5oymmUzM30NNdxOb0B9t/DPpXPI3K3b4QiP/BCgX9sEZneNe5xDIC+
-	jXhfVXtzhr+jdAbAP6/Z04E0VgHW45gmq8UxlO6XWub/YcLMIXyPcri5SMr45GX+cN9rpx66Q6hIs
-	z9eTa3tw==;
+	bh=RiBCISnpJiqbr0nI7/ueSbTpeFzR/h0QLNdgAcoovZI=; b=Ug2Ab3sQNz6lSbyHEj9ajpjekD
+	yUaiJxxeYeT02eHUg7zWCQoWP5On3T9QjNNAQbDDfHHuO+RM1prgcQmfwrwOdwLATkkX5DcRIIjWd
+	gHSD66UXkGs7AiI7bgbvy6dc73Sy33jZfc9w+OLry5lQ8MnmUoSArPLmZOH7Cd9xC99CQS9wpxUOg
+	cO6y+qga92rRtwM+ZTwyCAzzMFQTrVUX0IkGexdJMg58b52lHsK/pGW6KrsgWsepVR4OoswJxqdDf
+	omCJWB77MwDWMZYlx9o4F4TezJpKyUpuCp1rtly223SLHMzQsSCvo2HBudJzCC5u0MG5ct3D5dwQe
+	ZoHt+v2A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRLAk-00000008acB-3Q0q;
-	Thu, 12 Nov 2026 03:08:22 +0000
-Received: from out30-111.freemail.mail.aliyun.com ([115.124.30.111])
+	id 1xRLBQ-00000008aiq-0N6m;
+	Thu, 12 Nov 2026 03:09:04 +0000
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRLAh-00000008ab3-1MGY
+	id 1xRLBN-00000008ahw-2Bnd
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 03:08:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1794452894; h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type;
-	bh=0hASrZa3KsQ/rJDPLJgE3hfFDgP737Rr5tw+ZVyeGEQ=;
-	b=KuEDjXjiQ8GklFW+NWbVOu4odCMFSqlzhTmvhPxDRY7Cl3wArweQpIGPU4BHryxtmxDaYSF1Gzs6tQzauufXaiBOD6ow2Uc6ChC+dxsFP2cqGprYL3ITIeQeCizCeOaHBJXE5tBSsmaWIs1TVvm4MUxxG4hoQPxKXAns1IB8fMA=
-X-Alimail-AntiSpam: AC=PASS;BC=-1|-1;BR=01201311R691e4;CH=green;DM=||false|;DS=||;FP=0|-1|-1|-1|0|-1|-1|-1;HT=maildocker-contentspam033032089153;MF=ying.huang@linux.alibaba.com;NM=1;PH=DS;RN=13;SR=0;TI=SMTPD_---0XEaUfqM_1794452884;
-Received: from DESKTOP-5N7EMDA(mailfrom:ying.huang@linux.alibaba.com fp:SMTPD_---0XEaUfqM_1794452884 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Thu, 12 Nov 2026 11:08:14 +0800
-From: "Huang, Ying" <ying.huang@linux.alibaba.com>
-To: Chris Down <chris@chrisdown.name>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,  Will Deacon
- <will@kernel.org>,  linux-kernel@vger.kernel.org,  kernel-team@meta.com,
-  Mark Rutland <mark.rutland@arm.com>,  Andrew Morton
- <akpm@linux-foundation.org>,  Muchun Song <muchun.song@linux.dev>,  Oscar
- Salvador <osalvador@suse.de>,  David Hildenbrand <david@kernel.org>,  Mike
- Kravetz <mike.kravetz@oracle.com>,  linux-arm-kernel@lists.infradead.org,
-  linux-mm@kvack.org
-Subject: Re: [PATCH] arm64: hugetlb: Prevent write fault livelocks on stale
- TLB entries
-In-Reply-To: <avPxZjjdBIlM_8_g@chrisdown.name> (Chris Down's message of "Tue,
-	10 Nov 2026 20:39:02 -0800")
-References: <avPxZjjdBIlM_8_g@chrisdown.name>
-Date: Thu, 12 Nov 2026 11:08:02 +0800
-Message-ID: <87ld6yn3vx.fsf@DESKTOP-5N7EMDA>
-User-Agent: Gnus/5.13 (Gnus v5.13)
+	Thu, 12 Nov 2026 03:09:02 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=N2BiQfzVv+ikfc9JAHRUiLwM7zx4mZnFynrISmLDfv3SqLhuQL4DDKKAlVrJu+CCc5Yx5GRpA2icQbXJxChdI5YA1ezb/fC/PU9dj0CVtkFIh00WwcmnS6oaWFiFYsoelgnA1SQjDK4hT2INLhN1TAEpP6J/ux0FWBPyasEThgfps4hvltZCmFG0O02UNy7i9cm2mJ8tJnbNHplEYcaQC4lr9OxcTHSRBC/8r0vgdCHIrX/VOrwWPKQaGmvKYzlBztfnaRpY1XR1rquHzMzzeztcRcXqRIx3FB5ohRc+p/ybfkcbVNrPALIxYdnjMp34qhzuDqNzrQJHdyjqEBBNeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RiBCISnpJiqbr0nI7/ueSbTpeFzR/h0QLNdgAcoovZI=;
+ b=yBEkVhVT97f1SwlMnEJc+7L5QFJzy2vZAJy23b5zqZ8pDoApC9612a5v7Y1ers65ZTp0Pdaydfsln3I7rysTBerqaRH6xI0YN40mkIhNEOFDlEZd/6x/C1Gg0NXJ/bJS+yPfSHcF4Kjm8DAyAAu34zhIVGQIedO1NSHDZEpnFh22XGjGw5QQ5qwl4QCElciAgZlhm5O/9Myyba9uUgJLTcNcI9Ncmzj4Fi5tkMDexBPDSSS2no8gh0jJzOzeB3jNMsSYpfVfs4of+7/hy6pe0Y/11HSjEfyLHFjT1xPf6x7FhUFwaOrmEr/cBld1uTFXZoo4cFwzvESxHylkXErgWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RiBCISnpJiqbr0nI7/ueSbTpeFzR/h0QLNdgAcoovZI=;
+ b=aFU2mknsPygj/gIFsbK9EdBYLY9d0yATER2qBNJWORRQKtPslCeuTr4MOviGpJ+lgTKZoUGNMLe2afnGQ/SNqUaqEX9zQ3etE95QoVD2QzfeC5/3yoEAP/DGPruDg286idJ16X6oTFd4uDBKuLO48/amgEhnXzK4dt7KD6M5n6+ip0JZA3QIolfoV4Wj4NtsJbEdZM1JanIjex1yq2NxF7xVzAsHVMmrrjdttAtaJ1PAvMTRb/XQVfyDoobmyM3YZOQ3CF1kFPgFc+Be/oi13MwqUwGrUZbV7dBba42SBbYIIiPegN7GGih0UZJ28BweGjHSw3eqrvm5ZRCJGmdekg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com (2603:10a6:20b:24d::9)
+ by DBBPR04MB7658.eurprd04.prod.outlook.com (2603:10a6:10:20d::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Thu, 12 Nov
+ 2026 03:08:55 +0000
+Received: from AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9]) by AM8PR04MB7874.eurprd04.prod.outlook.com
+ ([fe80::ac38:1699:6f18:c5d9%5]) with mapi id 15.21.0615.008; Thu, 12 Nov 2026
+ 03:08:54 +0000
+Date: Thu, 12 Nov 2026 11:13:49 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Frank Li <Frank.li@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	"Joerg Roedel (AMD)" <joro@8bytes.org>,
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+	Laxman Dewangan <ldewangan@nvidia.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
+	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
+	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v5 2/7] dmaengine: add a bus for DMA channel devices
+Message-ID: <avUu7akskg50FfL/@shlinux89>
+References: <20261111-edma-iommu-v3-v5-0-2537cebe6ca2@nxp.com>
+ <20261111-edma-iommu-v3-v5-2-2537cebe6ca2@nxp.com>
+ <avSmdAQhFqKIOMis@SMW015318>
+ <avUH9MXGu5AzEkv/@shlinux89>
+ <avUhh6_vdOg-g1qf@SMW015318>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <avUhh6_vdOg-g1qf@SMW015318>
+X-ClientProxiedBy: JH0PR01CA0186.apcprd01.prod.exchangelabs.com
+ (2603:1096:990:75::11) To AM8PR04MB7874.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24d::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ascii
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7874:EE_|DBBPR04MB7658:EE_
+X-MS-Office365-Filtering-Correlation-Id: ebe6d7a9-4838-4a8f-1e59-08df406a4868
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|376014|7416014|366016|23010399003|1800799024|22082099003|18002099003|6133799003|261009223027099003|5023799004|261102123227099003|56012099006|11063799006|4143699003|261026121527099003|261021121427099003|261022075727099003|261021123027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: +3gcuJUAgl6zd/nsM7iywcBupTDSOzLww6IQYa/aFdauhswAqjbglj+p0Hd46WaWUNWpIa8cQbN136IEN/ZXDYUsyoGoo4zMgmmezhmkLK/dUqpWZH6eegXwfmmt86ojRhyhJDItgDzmzek1KvDTJGoZoi8Lf5sNIKl1OkTdYzpl5/Hm+EORy7gLPCHQaS7VNtAn9fLd9KTxKA3ehIUeGNMVLUKuj6YzB47aEuKEIxQWd3Y/rvcH+jk//VeOkNJis1Yb9vyWix9BqdMgpE35vceXRIxSxGxdHFS7MRejroHkHJz0NViZjYCXo/cMMhiFGTJ22xm4/+FQz8nQKGijsNx/0+XQoBIOpK1FtM6P7gOUOxM+W5Uu/NCVHBVweIdc5bi3hy5YQr4AZHnU0yZOAKqc3SFxiVGYmHnTbU1FiPqoZJ5OLhde9jkSZu0fVgBaAZjEhzizzjWXv3/8KFhH2Kh4yrGyuTu6ZBbjYaD/0kxMpQlBp473x6ci3cCim4WvOzdKjHWa+2dspfjxr4PIvzqctoKDw+y2KygDx4WR9Y4JdBZRLCXYQWRpDng28pwy58JDKmy761Q4OC4fbCWS/RvgNzZguT+ueHzYygYgqnHrOqItLx6iAYf7YN51yXon
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7874.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(7416014)(366016)(23010399003)(1800799024)(22082099003)(18002099003)(6133799003)(261009223027099003)(5023799004)(261102123227099003)(56012099006)(11063799006)(4143699003)(261026121527099003)(261021121427099003)(261022075727099003)(261021123027099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?M/dGf+bOfwHgjUnECRvecyKjnH0tUMBfkfqwByAkJAgTmE362ZdF5hSlr85c?=
+ =?us-ascii?Q?CKUq2vcl9e4NTdYdWAxxzh8xZycGQd5kuC183RFNQ3tg5QQfWLvJBTSCWmlM?=
+ =?us-ascii?Q?cA1AnumqEWkOL7TjjHFn8wFA6RplecCi8bpG955fzGqIAx1Wcrb1hz+nqQs3?=
+ =?us-ascii?Q?1CZ7O572QC7gafy7U+ltmoM/p5VDjnRKxAnLICJVPR3k/W1bskiTefA0GAT5?=
+ =?us-ascii?Q?WcBykJ9Nk24GjUI7jZQkxXhrSiXy+f2twR6d8xS80mMwlqY5QH/3ezqlOy8z?=
+ =?us-ascii?Q?6z4BRVp0MhLQLChMa4xfpvDb2p8WeH6MjKoveoLowMVXZtWO4YbiyEaex/0V?=
+ =?us-ascii?Q?6Tg732Rb2BRGbkBTxubx9wHd1zG2V2Rt85ID+gYlVQKZBuiA2AYnKwc5p5wl?=
+ =?us-ascii?Q?iwqy46vlH1MXIiPvF/KCYzUcvY2W3xZa3C9mM6WdF3fMd5pYALMRBhgDFr2v?=
+ =?us-ascii?Q?jr/1dZOXY5bN6iC5qXko+fA/5SsLaDGf5md/h0ETYhLqG4qks5tdwxUVA6Nm?=
+ =?us-ascii?Q?Z6lD5iwf44hnwcUBu+fJV1ZiYi7i9vK8F3hsh1OFG2kEi6TOY+1WqjxDxa+Q?=
+ =?us-ascii?Q?1LuRV/9Tp0CMqad/wVA/dp46CRDaLbfKUF7T+sBJoLRk61rUECu6v/5nP0x1?=
+ =?us-ascii?Q?fdJZvv6UEG4s6/wZr+K20sE9arqLyoQfZXWa7b1t0/X7nGd401xNcAL2rHR8?=
+ =?us-ascii?Q?UCGUghfsZ5EdIjfN8DSj+FH1qf1fPUuOYhWE+w5z6J7Zf6abidkPIWsBsXdm?=
+ =?us-ascii?Q?cEIt0w7dqewWQ+/zAEV/p9z1LVlxDFizjGgrZ4rKXCflOXlKiCXnYBtjhfIJ?=
+ =?us-ascii?Q?Q8XoLMBquoc9b6yvVZG/jGAt9PKncTVGaL8tTrkGcqkeFYrBeLVycDu5aNuI?=
+ =?us-ascii?Q?HjhVls5StUWfXXIwlvwSWcFUmFih/vbZd9mAfJc1bIN9qmduc5EAP7alDoFa?=
+ =?us-ascii?Q?QvM98GVGcK8Ym5fSOs48TGDXbMkEtnKN/BH8+yprXPMq79H70gNw8hEQ4Xia?=
+ =?us-ascii?Q?kmsSSETD6+K6bYWCYJsaQukqPcpyXurJq0Ci4H95qIdrPcfX7cloUEJARtYC?=
+ =?us-ascii?Q?XtR9bQuueORyPMCP32o/3hJXzEYRtV+hWKhe8gwUHWAKHHPefEmBN2IcTRuV?=
+ =?us-ascii?Q?fspgVRmK1vdtah9vVWwjYP1gsH4rBFsAmUz+Jf8m8f9XrCUv3WIOIGOcx8gu?=
+ =?us-ascii?Q?dH+36+lnfwyG/59frFeeVJ7uFatOh/c8+pJkZNaWzibGEE2RTeFpKWw/5OIu?=
+ =?us-ascii?Q?uyEdcJyc0w5CuWACjuSNrCIpc0bYbp93eZ5DK14zGlVz0gpOGn4BRd5J0Nhj?=
+ =?us-ascii?Q?YJVlXswEitRCnavkB0vZ4lm4+iCGHDT9jSIO+mOwJuzWrQqXFPCTh4tCwOZr?=
+ =?us-ascii?Q?nalfHUeVabLGsGsRerhImgbMFFcYAXL3BxqaP3/QwXjp94tIzrtbU3b7/jUO?=
+ =?us-ascii?Q?2ditIn+gmcSXgg3sn16BCcoe7oeFrUQgdenTQFjTHknUTGmxxmMC4dVBDuuG?=
+ =?us-ascii?Q?fpZNuWXlpAXPHnvLklO12TnspGiRWEjKgrFiAmQGvr32xjE2DTpJwdJlacpV?=
+ =?us-ascii?Q?FZSIUpPnohxwNLNCECYpEiehI6W99XN7xwWKmEtkN+ulnyNp/49gLBANMV5R?=
+ =?us-ascii?Q?+ULhp5Nz/aF/vCMgRY54XW4LHuXgc7cu9CEpE0lDNgIDlv7/cq/qyIrAz/fT?=
+ =?us-ascii?Q?GEPdzZn9jt5UJ3DNfp4zMk9498CWdFZJv90Fvm7tYUNxmtahrhJdxL1tp5LP?=
+ =?us-ascii?Q?5gJ3zd50hA8wKEaIXO+9dhfpwqbNwkARYdn9AptCW+k6JYlxjkOE?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebe6d7a9-4838-4a8f-1e59-08df406a4868
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7874.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 03:08:53.9301
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6/ExsI+z4Tyo6P+MzK4z9Qch69uwySiwx1web2Zuk+B627zYVfEk+5o2XdNoNdxfYcwqrBZFt6tFdNUx+9umfUwc2TGwpwQkkKSDWcW6DUYRsLdPOYsjntps5emU9da8
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7658
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_190819_670368_4440AC36 
-X-CRM114-Status: GOOD (  27.98  )
-X-Spam-Score: -17.6 (-----------------)
+X-CRM114-CacheID: sfid-20261111_190901_574332_62D03003 
+X-CRM114-Status: GOOD (  13.30  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,110 +154,66 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-24.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY,
-	USER_AGENT_SANE_1,USER_IN_DEF_DKIM_WL autolearn=unavailable
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Chris Down <chris@chrisdown.name> writes:
+On Wed, Nov 11, 2026 at 08:16:39PM -0600, Frank Li wrote:
+...
+>>
+>> >
+>> >Not sure how other dmaengine support it before? Maybe already block for
+>> >long time.
+>>
+>> In drivers/dma/tegra186-gpc-dma.c:
+>> 1543       if (use_iommu_map) {
+>> 1544                chdev->bus = pdev->dev.bus;
+>>
+>> I used similar method, but Sashiko spotted issue for v1 [1], we have to
+>> add a new bus to handle it.
+>>
+>> "
+>> Does this illegally modify the bus type of an already-registered device?
+>>
+>> This is executed after dmaenginem_async_device_register() has already called
+>> device_add(). Since bus_add_device() is never executed, won't device_del()
+>> invoke bus_remove_device() during driver unbinding or removal, causing a fatal
+>> reference count underflow and use-after-free on the global platform_bus_type
+>> subsystem?
+>> "
+>>
+>> [1] https://lore.kernel.org/dmaengine/20260916160608.099201F000FF@smtp.kernel.org/
+>
+>Can you add it to commit message to know why need add new bus type
 
-> In Meta production, we have had tasks get stuck in a fault loop while
-> using hugetlb on arm64. During my investigations I found that affected
-> tasks share a private hugetlb page.
->
-> Looking at the stuck task states, I found the following ordering:
->
->   CPU0                                 CPU1
->   ----                                 ----
->   read page
->   [read only entry cached in TLB]
->                                        write page
->                                        hugetlb_fault()
->                                          hugetlb_wp()
->                                          [reuse folio]
->                                          set_huge_ptep_maybe_writable()
->                                            set_huge_ptep_writable()
->                                          [flush local TLB only]
->
->   write page using stale entry
->   hugetlb_fault()
->     huge_ptep_set_access_flags()
->     [entry already writable, no flush]
->   retry write using stale entry
->   [fault indefinitely. well, that's not ideal!]
->
-> The reason is that when a write fault makes a non-contiguous hugetlb
-> entry writable, it only invalidates the local TLB. However, another CPU
-> can keep the old read-only entry, so its write will fault even though
-> the page table already permits it. hugetlb_fault() then finds nothing to
-> change and leaves the stale entry in place, so the same write keeps
-> going round in circles.
+ok. Update in V6.
 
-Good catch!  Thanks!
+Thanks
+Peng
 
-> This is particularly bad because, if the kernel is copying to user
-> memory, the retry stays inside the kernel and the task can't act on the
-> pending signal.
 >
-> It can even remain unkillable while holding locks across the copy,
-> resulting in further failures. For example, a read into a hugetlb
-> buffer can hold the pipe mutex and block other users of the pipe until
-> the loop ends, causing cascading lockups across the machine.
+>Frank
 >
-> To fix this, when a write fault finds nothing to change in a
-> non-contiguous hugetlb entry, let's invalidate the local entry.
+>>
+>> Thanks
+>> Peng
+>>
+>> >
+>> >Frank
+>> >
+>> >> +#endif
+>> >> +
+>> >>  /**
+>> >>   * enum dma_slave_buswidth - defines bus width of the DMA slave
+>> >>   * device, source or target buses
+>> >>
+>> >> --
+>> >> 2.34.1
+>> >>
+>> >
 >
-> Fixes: cb1fa2e99955 ("arm64, tlbflush: don't TLBI broadcast if page reused in write fault")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Chris Down <chris@chrisdown.name>
-> ---
->  arch/arm64/mm/hugetlbpage.c | 21 ++++++++++++++++++---
->  1 file changed, 18 insertions(+), 3 deletions(-)
 >
-> diff --git a/arch/arm64/mm/hugetlbpage.c b/arch/arm64/mm/hugetlbpage.c
-> index 8e799c1fe0aa..ff1f53e435e1 100644
-> --- a/arch/arm64/mm/hugetlbpage.c
-> +++ b/arch/arm64/mm/hugetlbpage.c
-> @@ -429,9 +429,24 @@ int huge_ptep_set_access_flags(struct vm_area_struct *vma,
->  	VM_WARN_ON(!pte_present(pte));
->  	ncontig = num_contig_ptes(huge_page_size(hstate_vma(vma)), &pgsize);
->  
-> -	if (!pte_cont(pte))
-> -		return __ptep_set_access_flags_anysz(vma, addr, ptep, pte,
-> -						     dirty, pgsize);
-> +	if (!pte_cont(pte)) {
-> +		if (__ptep_set_access_flags_anysz(vma, addr, ptep, pte,
-> +						  dirty, pgsize))
-> +			return 1;
-> +
-> +		/*
-> +		 * Another CPU may have made the entry writable without
-> +		 * invalidating our stale read-only TLB entry. To avoid
-> +		 * indefinitely faulting on this entry, flush it.
-> +		 */
-> +		if (dirty)
-> +			__flush_hugetlb_tlb_range(vma, addr, addr + pgsize,
-> +						  pgsize,
-> +						  TLBF_NOWALKCACHE |
-> +						  TLBF_NOBROADCAST |
-> +						  TLBF_NONOTIFY);
-
-IIUC, this is similar to fix_spurious_fault() for non-hugetlb folios.
-Can we use similar logic?
-
-> +		return 0;
-> +	}
->  
->  	if (!__cont_access_flags_changed(ptep, pte, ncontig))
->  		return 0;
->
-> base-commit: 067c5c24cef23d913b67eaaf71ae67e7169a6620
-
----
-Best Regards,
-Huang, Ying
 
