@@ -2,73 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB590606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 21:19:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ABF4606A884
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 21:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=TCuSmmjV;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Vsex3fdN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d2ziT72F;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=KSFRAyX9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NWZiXsZIO9JbQ9mqYN0WWdRXv+kVOWB/KKAR39dAavU=; b=TCuSmmjVBwn/aE
-	cHujogtx2sYpRA8L7gubF5+jM8D8bms+8USPKkZumS3EJEa/FC/2Ti1hpkKLU7uxuQqgynNQKWOgH
-	tku5jrPsRX0NEoAG0S7REUfAdXzpajc1svMe9JFhqGoCQOON5PdxMmqwq6DcmCjhIeco1imr8NKZH
-	5Ywg/UDFmv98kmHSnQCQvjiE8maebGENze7Vrq+zbFVAuGCsc0hwlbMgsF5COUXKIDjTtSzX2oC7Z
-	sgO02y/q4T/sSnfjxt81FiptiSh7D8fNto/pjr3UjWYJm0ByRdQFjiEEP+qR+4Ojn4L92TOjATAUj
-	7hk/iKflQiW30if4IEHQ==;
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=EaGxXuKjbqWsjiNJFFTn53rRjYcJvhNf+ZE9bk47lFk=; b=d2ziT72FqnwMmj7C5Jwvj4AqOG
+	jROWRxlzSvJWpSD8q/7ylslE5Q+crm6nki6egCNw+CzdZFXU32nPCpC2MKtX4CzrtMEzRYjbaUMBG
+	INnGavV+IBCOrIc2+cZ6a/xehyVZ+pbrp35iozi0faFjM9iXW0jb3ZTFi241gSCMUz4yLp+3gCDEH
+	+AkF7eoYFbN22nypZdiye4WzkJEBnLW2jpHA5MUDWwqjsvzae+76L1JP9UxJNPkYHwiVca+iV6jBS
+	29xbKyluq0Pi4EZhOOpKPBscGn+0HgJL6q4SdB4rN26qTvEpcVuSkCLqe526QWQ8stnkSWzh++kK9
+	ZWb6uuog==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRcC8-0000000B55q-22A5;
-	Thu, 12 Nov 2026 21:18:56 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRcC5-0000000B54u-1S2X
+	id 1xRcUr-0000000B7KQ-2aEW;
+	Thu, 12 Nov 2026 21:38:17 +0000
+Received: from mail-oo1-xc33.google.com ([2607:f8b0:4864:20::c33])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRcUo-0000000B7JM-0Okv
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 21:18:54 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 64E861516;
-	Thu, 12 Nov 2026 13:18:48 -0800 (PST)
-Received: from [10.211.55.3] (unknown [10.57.14.230])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C003D3F632;
-	Thu, 12 Nov 2026 13:18:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794518331; bh=GjzrUYC0FSKDkhN90grSXlqpyDPaHp92cULgUh2tfzI=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Vsex3fdNuqG3xF0tWSe+ChHgcFjCFRm+bCis60U/M/RAh/iE2ON/wppdCijNGYfMc
-	 1nH8aCS+WxJsjv+lKCCstbW5NQbFFdazIZGbLKOnFkbarvFK/ReYFO3VfWNttcZX5C
-	 BbgLuYLCC6NKGDEyeKJ7y0lEQaIThQIIHHiDsmXk=
-Message-ID: <7aa50421-6e92-4ea6-be39-88045e682a9f@arm.com>
-Date: Thu, 12 Nov 2026 21:18:36 +0000
+	Thu, 12 Nov 2026 21:38:16 +0000
+Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-6f8a519e215so480976eaf.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 13:38:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794519493; x=1795124293; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=EaGxXuKjbqWsjiNJFFTn53rRjYcJvhNf+ZE9bk47lFk=;
+        b=KSFRAyX9JMwAXnLiyytR20s94wXqhX/H6yquBKrTa6i8N8UtQb2OOmDYl5X3btQIzP
+         6y7hqzdFD+ftTKY7IzSpB7M60CHeV5N2srx3uGHbzaOokiY8fM52PMiIusFBxeiQyvRf
+         CqwC7tOsnLD6SElsusp4f96eKdYpjGaSkTYMAH9vXaBvsH88n1U21tvFsm75JKyTGixU
+         eghOfWf7LYpk4UgcrEgtRzVEdXyIyl91ep4uXmT/LxI+v311tN67EwQ6o2WT1TbzUuuC
+         i3/UqIhOc0o90GBeVRzNZ3VFgjSVNEvsh60pKB/Pdnky2Z/nRFPTZuhMFIMEJEPMO5Bb
+         +3ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794519493; x=1795124293;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=EaGxXuKjbqWsjiNJFFTn53rRjYcJvhNf+ZE9bk47lFk=;
+        b=cXPebhkwBDAvchMN509+YFY4G3CSU0lRYtHX5HZOXmjMpPcjE165nQVTHABLgEUSpB
+         4sAeWggvRpup/bOVvc8EgQo6v/slvZsqvhrRpBvisHPM9UALPbJQ4pUg4dl1ZM6bHhKk
+         N3NGI315RyFXfqNKJLdBGAraiCWfxyknnnOd2gwbCZHttdfhDwzWIdvVj3Wg0lMcr1BE
+         ka6SOxqRlryq5RzLL36osCgucIgRJuNiXOqZ/iSGQDg4bY/qp8bTsk4GIVvNsjIhWlbz
+         tfXMbMUz5XYbVsh4vAuy4EaEqiWGVJULRBdjJUfWw7WHdXWzxSv+S6y4J6mhlItSwpcr
+         cu9g==
+X-Forwarded-Encrypted: i=1; AL+hErEd1iX4cadEXUxBiFt8JjiP9Y7r/+G+i1EfGlZPnN5fXCT3NoXQmbt2EfJGYjl0g2H2EWtupID7sna5zmYe5x4M@lists.infradead.org
+X-Gm-Message-State: APuU4Z+wYpj0MaHJaRie6pt7rpGY6C4hlCa2KKW8mWrYhi4aYzqRR96F
+	YjpKtpCi21o3GwFS3KTfkORQmjdhO180wBDuH4I6xoIUzS68rMnNP2/8
+X-Gm-Gg: AYBFou0278Cynnr4I3oYBYb1v9cLxe0k9A2W7VJT/kDBeMEuLJScHVVRva9kfMXMMMa
+	zlWsSbW3cdXIBW/Oq+AlbcwkOJsXczqUlKTdQUjjj+jPmGdXyIkGnVi/qFskp0C3iV4hrCeWrA0
+	lUT2WMkp9dnY+xBMNbcZ1fz4lEsowCoo0OVybOrK6Pd9NRcEefAATyRfWTkWxDWK8VnLeK0/EQY
+	AVt1NzaNPINBpLK6CVhCtoGAqADvOvBA6qoSLLJGDIMfK4o2Ub0jIzsRqaNNI9cQ7zwBH6hR5zX
+	p9n1XzrPT2BZS9rFukgLesVGuDwuS81d1KHL8oC2+jUbSUxyC4Kwalcp+Fnl+3ggOqvoQI86EKU
+	tXAUhwaG5IfI3ZBfbY7boPtgCQJygqKSrBfEKhi0iEcThzIHMMRGiP0A6PPZ1V+ydFKsh9QfUN0
+	Q6SRFyIG3eYgJHqgkij/IuVy2p8oxUyCY2/iko9z1DMhzoUzazo6aO9HPzxwMXZ/X3V+aHfwkOw
+	GxkT92nZGmgPoK7GhNKwqfvU441jITU01GluTHt4kQx9sZRcIRCFt7EgC2fikd3nh8vuSSYAQA4
+	Y8dAOeFjK7e7Jz9cloNahCJrOUap31qaUuQQd05cATkVH77oC2yXgzLnhBDVrwgLhxFwqUqnKKv
+	S1i2T
+X-Received: by 2002:a05:6820:f02d:b0:6d3:abd1:9b8e with SMTP id 006d021491bc7-7197cf224d0mr2811908eaf.52.1794519492651;
+        Thu, 12 Nov 2026 13:38:12 -0800 (PST)
+Received: from AMD.home.internal (dhcp-9-244-8-156.gobrightspeed.net. [9.244.8.156])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4afe229b9d1sm234017fac.11.2026.11.12.13.38.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2026 13:38:11 -0800 (PST)
+From: Enzo Adriano <enzo.adriano.code@gmail.com>
+To: sboyd@kernel.org,
+	bmasney+clk@redhat.com,
+	jbrunet+clk@baylibre.com,
+	wens@kernel.org,
+	jernej.skrabec@gmail.com,
+	samuel@sholland.org
+Cc: Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	linux-clk@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Vinicius Pedrosa <vinicius.eduardo.pedrosa@gmail.com>
+Subject: [PATCH v2] clk: sunxi-ng: a733: Keep SCP firmware bus clocks enabled
+Date: Thu, 12 Nov 2026 16:38:09 -0500
+Message-ID: <20261112-a733-fwclk-v2@gmail.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Thunderbird Daily
-Subject: Re: [PATCH v5 RESEND 5/7] fs/resctrl: Release the limbo RMIDs when
- the CDP state changes
-To: Reinette Chatre <reinette.chatre@intel.com>,
- Jinjie Ruan <ruanjinjie@huawei.com>, tony.luck@intel.com,
- Dave.Martin@arm.com, james.morse@arm.com, babu.moger@amd.com,
- corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org,
- tglx@kernel.org, mingo@redhat.com, bp@alien8.de,
- dave.hansen@linux.intel.com, hpa@zytor.com, fenghuay@nvidia.com,
- tan.shaopeng@fujitsu.com, will@kernel.org, gshan@redhat.com,
- zengheng4@huawei.com, jic23@kernel.org, x86@kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20261110133938.3768632-1-ruanjinjie@huawei.com>
- <20261110133938.3768632-6-ruanjinjie@huawei.com>
- <3c48dac2-78af-44c9-b546-e5fcf7bbd8d6@intel.com>
-Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <3c48dac2-78af-44c9-b546-e5fcf7bbd8d6@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_131853_591347_94A5D1C5 
-X-CRM114-Status: GOOD (  30.80  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_133814_181870_C0C87FF8 
+X-CRM114-Status: GOOD (  10.73  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,79 +113,85 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Reinette, Jinjie,
+The A733 PRCM's bus-r-riscv and bus-r-msgbox gates have no Linux
+consumers, so unused-clock cleanup gates them. With vendor SCP firmware
+running on the E902 as shipped on Cubie A7S, warm reboot then stalls.
 
-On 11/11/2026 18:33, Reinette Chatre wrote:
-> Hi Jinjie,
-> 
-> On 11/10/26 5:39 AM, Jinjie Ruan wrote:
-> 
->> still carry those RMIDs are accounted to the next user of each RMID.
->>
->> The CDP state that matters is the one that changes the PARTIDs used by
->> the monitors, which is not necessarily the CDP state of the L3
->> resource. MPAM gives every CLOSID two PARTIDs in all MSCs while CDP is
->> enabled on any resource, so enabling CDP on L2 alone also changes the
->> PARTIDs the L3 monitors use. Add resctrl_arch_mon_cdp_enabled() to let
->> the architecture report this. Only MPAM can be affected, so the RMIDs
->> are only released where the RMID depends on the CLOSID. On x86 the
->> RMID does not depend on the CLOSID, and resctrl_arch_mon_cdp_enabled()
->> returns false.
-> 
-> nack. The helper name and value returned on x86 is the first hint that this
-> is not right. For x86 the value is not a statement about x86: CDP exists on
-> x86 and can be enabled, so a function called resctrl_arch_mon_cdp_enabled()
-> returning false reads as wrong until the comment above it explains that what
-> is really being reported is whether CDP changes the IDs the monitors use.
+Keep both critical until remoteproc/mailbox drivers can claim them.
+This follows A523 bus-r-cpucfg in commit 1dba74abf3e2 ("clk: sunxi-ng:
+Mark A523 bus-r-cpucfg clock as critical") and the temporary SCPI firmware
+clock protection for Meson AXG fclk_div3 in drivers/clk/meson/axg.c.
 
-The invariant that the limbo handler is currently relying on is that the
-mapping of rmid index to the underlying hardware monitor index is fixed.
-For MPAM, if cdp is enabled at all then the mapping is changed and so
-the invariant does not hold between mounts. MPAM's emulation of CDP is
-why it breaks the invariant. resctrl shouldn't need to care about this
-MPAM specific reason and should only care whether or not the invariant
-is upheld or not. In the future, MPAM may use more than the two existing
-indexing schemes. For instance, if we wanted to have one memory
-bandwidth monitor per monitor group, without assignment, then we would
-need to limit the number of monitor groups.
+On Cubie A7S with vendor boot0/BL31/SCP/U-Boot and without
+clk_ignore_unused, warm reboot returns with both clocks critical and
+stalls without them. Vinicius found either flag alone insufficient on
+Cubie A7Z. Power-off, suspend, single flags on A7S, other
+boards/firmware and upstream TF-A were not tested.
 
-> 
-> Every architecture now needs to match this. This looks more like forcing
-> every architecture to indicate whether it has the same quirk as MPAM.
-> 
-> If there is no way to handle this in MPAM driver then handling this should at
-> least be contained between resctrl filesystem and MPAM driver. This should not
-> be forced on all architectures.
+Link: https://lore.kernel.org/r/20261005183038.417798-1-vinicius.eduardo.pedrosa@gmail.com
+Signed-off-by: Enzo Adriano <enzo.adriano.code@gmail.com>
+---
+Changes in v2:
+- Drop r-timer0, bus-r-timer and bus-msgbox0: A7S warm reboot works with
+  these at 0/0. Keep only the two E902/mailbox bus gates after Junhui's
+  review, pending remoteproc/mailbox ownership.
+- Rebase on CCU v7; its PRCM clock definitions are unchanged from v6.
 
-I don't see a way for the MPAM to keep the same RMID for when it is
-emulating CDP and when it's not.
+v1:
+https://lore.kernel.org/r/20261031020640-263f7b05-a7s-clock@gmail.com
 
-> 
-> I trust the MPAM folks to say whether it can or cannot be done in MPAM driver.
-> If this is not possible in MPAM driver then it looks like this needs to go back
-> to include the L2 CDP check as was done in previous version. With this check 
-> gated by IS_ENABLED(CONFIG_RESCTRL_RMID_DEPENDS_ON_CLOSID) it does hint "MPAM"
-> but would also need a comment to explain why that is done.
-> 
+Base: v7.4-rc1. Depends on CCU v7 (all eight patches):
+https://lore.kernel.org/r/20261112-a733-clk-v7-0-db7c5451ffa2@pigmoral.tech
 
-Would something like an rmid indexing generation count be any better or
-is that just overthinking it?
+November 12 board test: two RAM boots and warm reboot -f returns on
+Cubie A7S with vendor boot0/BL31/SCP/U-Boot, without clk_ignore_unused.
+Both retained clocks were 1/1; all three dropped clocks were 0/0.
+The no-flag stall was observed with CCU v6 on Nov 10; PRCM code is
+byte-identical in v7, where the no-flag control was not repeated.
+Runtime used DT v3 and its dependencies (all four UART v2 patches),
+with the PMIC identifier and pinctrl IRQ-map context adapted to the base:
+https://lore.kernel.org/r/cover.1794227241.git.enzo.adriano.code@gmail.com
 
-int resctrl_arch_rmid_indexing_generation(void);
+ drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-If the indexing never changes the arch could always return 1 and if it
-does change the architecture can bump the number on every change. It
-would still never change when resctrl is mounted.
+diff --git a/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c b/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+index b8f6e8c6e507..f2965daba0d3 100644
+--- a/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
++++ b/drivers/clk/sunxi-ng/ccu-sun60i-a733-r.c
+@@ -108,7 +108,9 @@ static SUNXI_CCU_DUALDIV_MUX_GATE(r_spi_clk, "r-spi", r_spi_parents, 0x150,
+ 				  0);
+ static SUNXI_CCU_GATE_HW(bus_r_spi_clk, "bus-r-spi", &r_ahb_clk.common.hw, 0x15c, BIT(0), 0);
+ 
+-static SUNXI_CCU_GATE_HW(bus_r_msgbox_clk, "bus-r-msgbox", &r_ahb_clk.common.hw, 0x17c, BIT(0), 0);
++/* Vendor SCP firmware on E902 needs this until a remoteproc/mailbox driver claims it. */
++static SUNXI_CCU_GATE_HW(bus_r_msgbox_clk, "bus-r-msgbox", &r_ahb_clk.common.hw,
++			 0x17c, BIT(0), CLK_IS_CRITICAL);
+ 
+ static SUNXI_CCU_GATE_HW(bus_r_uart0_clk, "bus-r-uart0", &r_apb1_clk.common.hw, 0x18c, BIT(0), 0);
+ static SUNXI_CCU_GATE_HW(bus_r_uart1_clk, "bus-r-uart1", &r_apb1_clk.common.hw, 0x18c, BIT(1), 0);
+@@ -146,8 +148,9 @@ static SUNXI_CCU_MUX_DATA_WITH_GATE(r_riscv_clk, "r-riscv", r_riscv_parents, 0x2
+ 				  24, 2,	/* mux */
+ 				  BIT(31),	/* gate */
+ 				  0);
++/* Vendor SCP firmware on E902 needs this until a remoteproc/mailbox driver claims it. */
+ static SUNXI_CCU_GATE_HW(bus_r_riscv_clk, "bus-r-riscv", &r_apb0_clk.common.hw,
+-			 0x21c, BIT(0), 0);
++			 0x21c, BIT(0), CLK_IS_CRITICAL);
+ static SUNXI_CCU_GATE_HW(bus_r_riscv_cfg_clk, "bus-r-riscv-cfg", &r_apb0_clk.common.hw,
+ 			 0x21c, BIT(1), 0);
+ 
 
-Thanks,
+base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+-- 
+2.53.0
 
-Ben
 
