@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70DBE606C37C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AB0606C37B
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 17:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lIs78ibW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AhfnOUQQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=J2CMMcQP;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KvkJz7/c
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=L5gZr8LkoSSvhp3LdUUifNs3aqbergjMkFjbBHtRFQ8=; b=lIs78ibWGFjArQmRw9VX8AxuvM
-	czO1/uSn/bCEY7PQm6dDwZXYS7foAaNsmvS2LPwOjeYT511p8nseEnZuDUG6tbHHxzYCZwwTxpMp5
-	HARwmTyvahLSQOo66LCcfr3HIP6+tIiUxjrButSjFlJ9+RCuBwFR6NFZ0TqTo1KpEETh8wKJqJMyj
-	l70unSkDdHmDBfkcZQx3+FgYUI76pLlqul5KHGuAIIXKgvI37nyGdv/maEk2jaxLkbeFF90DlrqQ8
-	gFlXjqolOnaJrk5us+AC3z8L/OkGK2Fo2jaDEOifRMFQOnlE1qjODtvbXDeKUdcrKQZPQN8pe3wvA
-	SG84ofog==;
+	bh=k6pn9nCU8/diiJOQiOnHSa9q5XfgvqFN2sbLyFB5850=; b=J2CMMcQPRQmbJnLkpiV5w+DjL5
+	Zo5wKSjRLQmslDkf4m9iuXVgyoYvaLHKiS4QznPEwXd4ttBeR19oHkAA3ZLNFKMPP6o0fnW2Sqp2n
+	xHx1ML6KG1ahdciL4yhkq1f0nUkKDrVI8HIGQ4VvIYGQySKnwphJS6BKfxCiLmcqoM9vTBqioL841
+	tu7FKZnoF+hePb6gx33kNSFZ4nvuoR/2xFm0Tz1CWUM6zeJkmQJ63ERUBpwRRrvrFIoP2FvpzqV2I
+	MwMWiY/522JGQRuzKlgMTsIMaMGDCmAfFlqXBnR5o8B8AJcVJVakAYiLoaKi2MSRRnaFwrxDB9hbP
+	GwLoKRQg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRYgC-0000000Ala5-0hgT;
-	Thu, 12 Nov 2026 17:33:44 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRYg9-0000000AlZM-01BE;
+	Thu, 12 Nov 2026 17:33:43 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRYfq-0000000AlV3-0onr
+	id 1xRYfp-0000000AlUb-0w45
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 17:33:22 +0000
+	Thu, 12 Nov 2026 17:33:21 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id ED25946291;
-	Thu, 12 Nov 2026 17:33:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 005271F000C6;
+	by tor.source.kernel.org (Postfix) with ESMTP id A60CB62330;
 	Thu, 12 Nov 2026 17:33:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83DBF1F000D1;
+	Thu, 12 Nov 2026 17:33:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794504801;
-	bh=L5gZr8LkoSSvhp3LdUUifNs3aqbergjMkFjbBHtRFQ8=;
+	s=k20260515; t=1794504800;
+	bh=k6pn9nCU8/diiJOQiOnHSa9q5XfgvqFN2sbLyFB5850=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=AhfnOUQQzAR9yW548q27tCsf4+R03i4MgjH9dqOQZzhH5NcB7NAujErtFKBp18n4b
-	 1mL5VZ1xshvoJOU5vt8SEczX3yfdML+O0gA5ja+vd42hG+LhsB9W5IbBk0W0e6F8hR
-	 nNJaG5oWKLn5QlIFa8XG41IQAE1sd7w/HWKrAUDQ4mHessANaIwPNuVSe2zwuQg2oE
-	 3DwpfY7243OWjvM6sRNtijEegiRgxQDfXv53wJyB6BSTqoEUCM0MCIcOuZji9UW5eJ
-	 oxNrx91Ek+Sbv0tk7fMhLujIVfDeDzbDTyq5upA7eMQhXq/LiHoTQGrDdJNvsLyEpM
-	 uIyhyHwx8CR3Q==
-Subject: Re: [PATCH net-next v2 9/9] net: sparx5/lan969x: add support for
- changing the MTU
+	b=KvkJz7/cDU6GejIo9YKXTnmGT9HZlN/dB6E+Rsl8vTX0AP/71In0QYgP8yk3YUsg5
+	 SkvrlMI65/yplVDu/waX12zntZsOnCDXA53KDSKs+uHqBFcsVYttrAXYIRm+/0RjRp
+	 ZvCWr+Laabf36G/3gdZRBnWTJJSJF/lGgUhMlMyS4zAzSVGHlck4i/XdIwjpjxpA94
+	 d6yM71n3nBSRc55H2EB86YU2enXKslc4MRPb1VjGWY6VmZCOPQkFncxyDF9S3Tslay
+	 pjnd1OkFqIw4a80+BbcP8yG5QsLEZeaJyS1oJLkjRlD7t39Lexva1IHKBdhoa0lBjV
+	 JCUtGJeeIMwbQ==
+Subject: Re: [PATCH net-next v2 8/9] net: sparx5/lan969x: scale the TAS guard
+ band with the MTU
 From: netdev-bot+sashiko@kernel.org
 To: daniel.machon@microchip.com
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
@@ -54,11 +54,11 @@ Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
  netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, robert.marko@sartura.hr,
  horatiu.vultur@microchip.com, jensemil.schulzostergaard@microchip.com
-Date: Thu, 12 Nov 2026 17:33:20 +0000
-Message-ID: <179450480055.2199510.5195062101976319185@kernel.org>
-In-Reply-To: <20261111-sparx5-mtu-change-v2-9-59c91357e8f6@microchip.com>
-References: <20261111-sparx5-mtu-change-v2-9-59c91357e8f6@microchip.com>
-X-sashiko-severity: High
+Date: Thu, 12 Nov 2026 17:33:19 +0000
+Message-ID: <179450479909.2199510.1751417721062491348@kernel.org>
+In-Reply-To: <20261111-sparx5-mtu-change-v2-8-59c91357e8f6@microchip.com>
+References: <20261111-sparx5-mtu-change-v2-8-59c91357e8f6@microchip.com>
+X-sashiko-severity: Medium
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -80,10 +80,10 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 4 potential
+Thank you for your contribution! Sashiko AI review found 2 potential
 issue(s) to consider.
 
-Critical: 0 · High: 1 · Medium: 2 · Low: 1
+Critical: 0 · High: 0 · Medium: 1 · Low: 1
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -91,245 +91,130 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [High] net: sparx5: lan969x: double free of RX page after
-  lan969x_fdma_rx_get_frame()
-- [Medium] net: sparx5: GFP_ATOMIC RX ring allocation in
-  sparx5_port_change_mtu()
-- [Medium] net: sparx5: sparx5_port_change_mtu() blocks non-FDMA MTU
-  changes
-- [Low] An MTU increase can fail even when the current FDMA buffers
-  already fit the new MTU.
+- [Medium] sparx5_tas_gb_update()
+  (drivers/net/ethernet/microchip/sparx5/sparx5_tas.c) computes one…
+- [Low] sparx5_tas_gb_update() sizes the guard band from L2 bytes only:
+  SPX5_HW_MTU(max_mtu) + 2*VLAN_HLEN, i.e. MTU + ETH_HLEN + FCS + two…
 
 --
 
-net: sparx5/lan969x: add support for changing the MTU
+net: sparx5/lan969x: scale the TAS guard band with the MTU
 
-This adds an ndo_change_mtu callback for sparx5/lan969x ports. It
-programs the MAC maximum frame length and resizes the shared FDMA
-buffers, and orders these steps so the MAC never accepts frames larger
-than the RX buffers. MTU changes are only allowed when the FDMA is
-used, and max_mtu is set from the 14000 byte MAC limit.
+This commit adds the HSCH_TAS_QMAXSDU_CFG register. It also adds
+sparx5_tas_gb_update(), which sizes the TAS guard band of every port and
+traffic class for the largest MTU across all ports. The guard band is
+programmed at init, and the helper is exported so it can be called when
+the MTU changes.
 
-> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c b/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c
-> index b3725cf2dd44c..095925752f5f6 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_netdev.c
-> @@ -250,6 +250,44 @@ static int sparx5_port_hwtstamp_set(struct net_device *dev,
->  	return sparx5_ptp_hwtstamp_set(sparx5_port, cfg, extack);
->  }
->  
-> +static int sparx5_port_change_mtu(struct net_device *dev, int new_mtu)
-> +{
-> +	struct sparx5_port *port = netdev_priv(dev);
-> +	struct sparx5 *sparx5 = port->sparx5;
-> +	bool resize = new_mtu > dev->mtu;
-> +	int err;
+> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_tas.c b/drivers/net/ethernet/microchip/sparx5/sparx5_tas.c
+> index ec80bc69371ab..32e502bc4f18f 100644
+> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_tas.c
+> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_tas.c
 
 [ ... ]
 
-> +	/* Never let the MAC accept frames larger than the RX buffers */
-> +	if (!resize)
-> +		sparx5_port_max_len_set(sparx5, port, SPX5_HW_MTU(new_mtu));
+> @@ -718,6 +721,40 @@ int sparx5_tas_disable(struct sparx5_port *port)
+>  	return err;
+>  }
+>  
+> +/* Size the guard band of all ports for a frame of the largest MTU of all
+> + * ports, as a port can transmit frames forwarded from any port.
+> + */
+> +void sparx5_tas_gb_update(struct sparx5 *sparx5)
+> +{
+> +	u32 max_mtu = 0, gb;
+> +	int i, tc;
 > +
-> +	err = sparx5->data->ops->fdma_resize(sparx5, port, new_mtu);
-> +	if (err) {
-> +		if (resize)
-> +			return err;
-
-[Severity: High]
-This error path isn't new in this patch, but wiring up fdma_resize()
-for MTU changes makes it reachable at runtime. Can the lan969x resize
-double free an RX page?
-
-Once the page belongs to the skb, lan969x_fdma_rx_get_frame() clears
-the slot with:
-
-	rx->page[fdma->dcb_index][fdma->db_index] = NULL;
-
-This tells lan969x_fdma_free_pages() that the driver no longer owns the
-page. The free_page path is taken when WARN_ON(!port) triggers or
-build_skb() returns NULL. There, the page is handed back with
-page_pool_recycle_direct(), but the rx->page[][] slot still points at
-it.
-
-lan969x_fdma_napi_poll() then breaks out without advancing dcb_index
-or refilling the descriptor. The next poll processes the same, already
-recycled, page again.
-
-On an MTU change, lan969x_fdma_resize() -> lan969x_fdma_rx_free() ->
-lan969x_fdma_free_pages() calls page_pool_put_full_page() on every
-non-NULL rx->page[i][j]. That returns the recycled page to
-rx->page_pool a second time.
-
-Without the resize path, the ring was only freed from
-lan969x_fdma_deinit(). With ndo_change_mtu, a build_skb() failure
-under memory pressure followed by an MTU change is enough to corrupt
-the page pool.
-
-Should the free_page path also clear the rx->page[][] slot, and reset
-or refill the descriptor so the poll loop moves past it? The
-underlying bug predates this series, so would it make sense to fix it
-separately for net?
-
-[Severity: Medium]
-Does sparx5_fdma_resize() end up allocating the whole replacement RX
-ring with GFP_ATOMIC?
-
-sparx5_port_change_mtu() runs in process context under RTNL. But
-sparx5_fdma_resize() allocates the new ring through
-sparx5_fdma_rx_alloc() -> fdma_dcbs_init() -> fdma_dcb_add(), which
-calls sparx5_fdma_rx_dataptr_cb() for each of the 64 * 15 = 960
-buffers. That callback always allocates with GFP_ATOMIC:
-
-	skb = __netdev_alloc_skb(rx->ndev, fdma->db_size, GFP_ATOMIC);
-
-With max_mtu now raised to 13982, db_size grows to roughly 14 KB. Each
-skb head becomes an order-2 allocation, and the replacement ring is
-around 15 MB. All of it is allocated while the old ring is still held.
-
-GFP_ATOMIC can't enter direct reclaim or compaction. On a system that
-has been up for a while, this is likely to fail with -ENOMEM and make
-the MTU increase fail. It can also drain the atomic reserves that NAPI
-and interrupt handlers on all the other ports rely on.
-
-Could the gfp flags be passed down to the dataptr callback? Then the
-resize and init paths could use GFP_KERNEL, and only the refill from
-NAPI would keep GFP_ATOMIC.
+> +	for (i = 0; i < sparx5->data->consts->n_ports; i++) {
+> +		if (sparx5->ports[i])
+> +			max_mtu = max_t(u32, max_mtu,
+> +					READ_ONCE(sparx5->ports[i]->ndev->mtu));
+> +	}
+> +
+> +	gb = DIV_ROUND_UP(SPX5_HW_MTU(max_mtu) + 2 * VLAN_HLEN,
+> +			  TAS_QMAXSDU_UNIT);
 
 [Severity: Low]
-Can an MTU increase fail here even though the current FDMA buffers
-already fit the new MTU?
+Should this calculation include the 8 bytes of preamble and SFD?
 
-When resize is true, sparx5_port_change_mtu() treats any fdma_resize()
-error as fatal. But sparx5_fdma_resize() skips the reallocation only
-when the size matches exactly:
+The guard band is MTU + ETH_HLEN + ETH_FCS_LEN + 2 * VLAN_HLEN, rounded up
+to 64 bytes, so the rounding slack is anywhere from 0 to 63 bytes. For some
+MTUs the slack is under 8 bytes. With MTU 9190, for example:
 
-drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c:sparx5_fdma_resize() {
-    ...
-	db_size = sparx5_fdma_get_db_size(sparx5, port, new_mtu);
-	if (db_size == rx->fdma.db_size)
-		return 0;
+    9190 + 14 + 4 + 8 = 9216 = 144 * 64
 
-	rx_new = kzalloc_obj(*rx_new);
-    ...
-}
+which leaves no slack at all.
 
-lan969x_fdma_resize() does the same with page_order:
+Suppose the HSCH converts QMAXSDU_VAL * 64 to time at the link speed and
+does not add preamble/SFD itself. Then a maximum size frame started just
+before the guard band could still be on the wire for up to 8 byte times
+after the gate closes.
 
-drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c:lan969x_fdma_resize() {
-    ...
-	page_order = lan969x_fdma_get_page_order(sparx5, port, new_mtu);
-	if (page_order == rx->page_order)
-		return 0;
-    ...
-}
-
-Take port A at MTU 9000 and all other ports at 1500. Lowering A to 1500
-tries to shrink the buffers. If that allocation fails, the 9000-sized
-buffers are kept and MTU 1500 is published, as intended.
-
-Then port B is raised to 3000. The needed db_size (or page_order) is
-smaller than the current one, so the driver allocates new, smaller
-rings. If that allocation also fails, the increase returns an error and
-B's MTU stays the same, even though the existing buffers would hold
-3000-byte frames.
-
-This doesn't match the commit message:
-
-    If the buffers cannot be grown, the MTU is not changed.
-
-Would a "needed > current" check on the grow path avoid this? Treating
-a failed shrink as non-fatal in this case would work too.
+I couldn't confirm this from the register definitions. The felix driver
+uses the same formula for QSYS_PORT_MAX_SDU and adds the 24 byte L1
+overhead only when it checks gate lengths, so the hardware may already
+handle it. The default MTU of 1500 has 10 bytes of slack and is not
+affected.
 
 > +
-> +		/* The current, larger, buffers still fit all frames */
-> +		netdev_warn(dev, "Failed to resize FDMA buffers: %d\n", err);
+> +	mutex_lock(&sparx5->tas_lock);
+> +
+> +	/* Each port uses the TAS profile of its own number */
+> +	for (i = 0; i < sparx5->data->consts->n_ports; i++) {
+> +		if (!sparx5->ports[i])
+> +			continue;
+> +
+> +		for (tc = 0; tc < SPX5_PRIOS; tc++)
+> +			spx5_rmw(HSCH_TAS_QMAXSDU_CFG_QMAXSDU_VAL_SET(gb),
+> +				 HSCH_TAS_QMAXSDU_CFG_QMAXSDU_VAL,
+> +				 sparx5,
+> +				 HSCH_TAS_QMAXSDU_CFG(i, tc));
 > +	}
 > +
-> +	WRITE_ONCE(dev->mtu, new_mtu);
-
-[ ... ]
-
-> @@ -250,6 +250,44 @@ static int sparx5_port_hwtstamp_set(struct net_device *dev,
->  	return sparx5_ptp_hwtstamp_set(sparx5_port, cfg, extack);
->  }
->  
-> +static int sparx5_port_change_mtu(struct net_device *dev, int new_mtu)
-> +{
-> +	struct sparx5_port *port = netdev_priv(dev);
-> +	struct sparx5 *sparx5 = port->sparx5;
-> +	bool resize = new_mtu > dev->mtu;
-> +	int err;
-> +
-> +	/* Register based extraction sizes its skbs from the MTU at the time
-> +	 * a frame is read, so it cannot handle frames queued before an MTU
-> +	 * decrease.
-> +	 */
-> +	if (sparx5->fdma_irq <= 0)
-> +		return -EOPNOTSUPP;
-> +
-> +	/* Never let the MAC accept frames larger than the RX buffers */
-> +	if (!resize)
-> +		sparx5_port_max_len_set(sparx5, port, SPX5_HW_MTU(new_mtu));
-> +
-> +	err = sparx5->data->ops->fdma_resize(sparx5, port, new_mtu);
-> +	if (err) {
-> +		if (resize)
-> +			return err;
-> +
-> +		/* The current, larger, buffers still fit all frames */
-> +		netdev_warn(dev, "Failed to resize FDMA buffers: %d\n", err);
-> +	}
-> +
-> +	WRITE_ONCE(dev->mtu, new_mtu);
-> +
-> +	sparx5_port_wm_update(sparx5, port);
-> +	sparx5_tas_gb_update(sparx5);
-> +
-> +	if (resize)
-> +		sparx5_port_max_len_set(sparx5, port, SPX5_HW_MTU(new_mtu));
-> +
-> +	return 0;
+> +	mutex_unlock(&sparx5->tas_lock);
 > +}
-> +
->  static const struct net_device_ops sparx5_port_netdev_ops = {
->  	.ndo_open               = sparx5_port_open,
->  	.ndo_stop               = sparx5_port_stop,
 
 [Severity: Medium]
-Doesn't this take away something that works today with register
-based extraction?
+A later patch in this series, "net: sparx5/lan969x: add support for
+changing the MTU", makes sparx5_port_change_mtu() call
+sparx5_tas_gb_update(). After that, raising the MTU of any one port grows
+the guard band of every port. This includes ports that stay at MTU 1500
+and already run an offloaded taprio schedule.
 
-This affects systems where sparx5->fdma_irq <= 0: Sparx5 rev 0, no
-FDMA interrupt in the devicetree, or the fallback to xtr_irq. Without
-an ndo_change_mtu, __netif_set_mtu() just updates dev->mtu. Userspace
-can currently set any MTU in the [68, 1500] range that ether_setup()
-advertises.
+For example, port A runs a 1G schedule in which one TC has a 15-20 us
+window. That works with the 1536 byte guard band (about 12.3 us at 1G).
+Setting MTU 9000 on port B raises the guard band on port A to 9088 bytes
+(about 72.7 us at 1G).
 
-With this patch, every such change returns -EOPNOTSUPP. Meanwhile,
-sparx5_register_netdevs() still leaves min_mtu at 68 and max_mtu at
-1500 on these ports. Lowering the MTU for a tunnel, for example, used
-to work and now fails.
+Would that TC on port A then stop starting frames, without any error or
+log message?
 
-For the same reason, the commit message is not quite accurate when it
-says the MTU is currently fixed to 1500.
+Nothing seems to catch this case. sparx5_tas_enable() checks entry
+intervals only against TAS_MIN_CYCLE_TIME_NS and TAS_MAX_CYCLE_TIME_NS,
+not against the guard band time at the port speed.
+sparx5_tas_gb_update() rewrites the live profiles without looking at
+running schedules. Because sparx5_tas_init() sets
+HSCH_TAS_CFG_CTRL_ALWAYS_GUARD_BAND_SCH_Q, the new value applies to every
+gate close.
 
-That said, lowering the MTU on the register based path isn't safe
-today either. sparx5_xtr_grp() allocates netdev->mtu + ETH_HLEN bytes,
-which already leaves out the FCS and any VLAN tags. It then copies
-extraction words into rxbuf until EOF without checking skb_tailroom().
-With the MAC maximum length still at 1518, a smaller dev->mtu lets a
-full sized frame overrun the skb.
+For comparison, vsc9959_tas_guard_bands_update() in felix_vsc9959.c
+re-checks each TC's minimum gate length against the required frame time
+when the MTU changes. When the gate is too short, it enables oversize
+frame dropping and prints a dev_info, so the TC does not hang the port.
 
-Which behaviour is intended here? If MTU changes are not supported
-without the FDMA, would it be better to set min_mtu and max_mtu to
-ETH_DATA_LEN for these ports? The core would then reject the change,
-and the advertised range would match what the driver accepts.
+Sizing for the global maximum looks reasonable, because matchall mirred
+and flower redirect can send frames from any port to any egress port.
+Could running schedules whose windows become unusable be validated, or at
+least reported?
 
-Alternatively, could sparx5_xtr_grp() size its skbs from the MAC
-maximum frame length and bound the copy? Then the register based path
-could follow the MTU as well. Either way, the missing tailroom check
-probably deserves its own fix for net.
+The commit message also says:
+
+    As the scheduler does not start a frame inside the guard band, a gate
+    window shorter than the guard band at the link speed cannot transmit,
+    as is already the case for the default 1536 byte guard band.
+
+It doesn't mention that this threshold now changes under existing
+schedules when another port's MTU changes.
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-sparx5-mtu-change-v2-0-59c91357e8f6%40microchip.com
