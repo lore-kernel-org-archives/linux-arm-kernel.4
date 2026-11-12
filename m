@@ -2,55 +2,54 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DE360A2601
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4469660A2601
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:39:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=coo7c6ez;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lCDGyKKY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AtA9xfNB;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ct0ieuZx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=P2GAXQL+CRALZ6ktolsI+wkJgETtKYVg5/S1WwdnjP8=; b=coo7c6ezLHRqm8
-	Z5fxU7agNThzwhH/hz/xjtgURpYVdtMvi2RZ0kndZjpzk5CbS0UGhkP7RGGuh5B7+iOSpTUCG53rc
-	fVtvm15roNFH2rUrst7gZaJaeuE5dhtGfoCv+Nx1zOt1Q8SN45KRR7LRh7bjdr6EYqaaop8EiU6sp
-	ErIldCz12JxJTnTjArGabtTgNzQO1WTbzZrLz3scGI6ZL/AdWvx0nwbZvJMEMpSD66NrK1+KlTYuH
-	cgb0ZJ8RqHVgEpfKyVJzU2hzSXSg6ubqp+jgxmRESE1rCOETbO6/pm5BOFPecBk0JMHl04qzChM+Z
-	oU+nFSI83c/JbWSynwVA==;
+	List-Owner; bh=tg11reGp6/y5YQodUEdH2NhfRCo1EXpa30JYKUFUCXg=; b=AtA9xfNB4DCfbr
+	eanzAdIJw1nkbBm2FpesrvhMxikeUFlagYRaMYIcQN80gT3P1nlj1W9ShhGfVQ8l+EjphXq8SZcNh
+	rRl6X2gHGXKUwrEXaZSVVEMREk2ZXJTVi3NN+bkvWRRNW0WeM4m6+VoiVgK9vnCp0YEd0Sw8z7dix
+	VWAOlbyT/Hay0+5iskgYgIbARNG2y25hRBbkgGM3AamgmuY7Jer2aKwzAVtN5gGY1QLCol/Qorsgj
+	bka4Lx96Y8y7QU4CBBW30u4tyw4BWNs46hj/l3yH8VqNOh/yN+GMXo2jJg7u8yKtYE/FoJC6vaoyp
+	zrqsuYGCT4eYPp1BmoJA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXpO-0000000AdEG-0X2E;
-	Thu, 12 Nov 2026 16:39:10 +0000
+	id 1xRXpa-0000000AdMK-1eE9;
+	Thu, 12 Nov 2026 16:39:22 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXoJ-0000000AcaA-0kyb;
-	Thu, 12 Nov 2026 16:38:03 +0000
+	id 1xRXoQ-0000000Acfp-2jWu;
+	Thu, 12 Nov 2026 16:38:11 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DE86445050;
-	Thu, 12 Nov 2026 16:38:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 460611F000C6;
-	Thu, 12 Nov 2026 16:37:59 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 68849417B5;
+	Thu, 12 Nov 2026 16:38:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BB811F000CA;
+	Thu, 12 Nov 2026 16:38:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794501482;
-	bh=P2GAXQL+CRALZ6ktolsI+wkJgETtKYVg5/S1WwdnjP8=;
+	s=k20260515; t=1794501490;
+	bh=tg11reGp6/y5YQodUEdH2NhfRCo1EXpa30JYKUFUCXg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=lCDGyKKYBC8Fs6CZs83hFW2kfQvIWzrbx55R2xhY23bPVejs4jP03UhTMbPYwkdFq
-	 6QnSYzu3WeVqWx+Ar0edjh2cqOYYgzZqe/DZ5+wO5as7ByI7SvXh6bulOXMCzm12Eu
-	 kASOJRtSewIDlEzyPzzCY1AdAWX/EVv1Af43bEp/TzGRyu8tlqudESjSsVdhjFBpbc
-	 gPakCksrVRPklHGcZFFoijOXgWwbOd12WzoiKbEcn8WBWaclGOUWPLB0E7xNqJ2ACq
-	 pLxZ0JI0ySEeRWv9k3TGyTyi5fx1EhNiDCo/FW3wSZW06JeHOMYn6a8E5q27+Wxlkv
-	 sJ5MuJnwBIRmA==
+	b=Ct0ieuZxSJF+C+3ekWtkvAswjSRq4utdVYRR2Up0NV9RTebUlZoXzOhsIU/+KplNf
+	 ccN1LqvaaNLSUHQd0D+H20oJ3lpDi6ORwoV3yLJ+NgqCKlZDl2jJ6l3wI8RB1Cpqd5
+	 TCMm9RkkrkvH1E6ksAn/xeprzyVqWxnvDs48gDgZaIZ7GoT0nrLHnMmsHytnv6Bk8N
+	 HZ3QslM6AfZV5kRsVDR1ubxLCuvA4t/bJVlIzlj4B4jb8rZcNoxSg54HPWCtn+8wYv
+	 pWxhkZNv2N8USDXoiD8N/gzD9UMg6XSt8CIykxIKSvwsyDfzm3HedgLlY8x0GB5Ljj
+	 yg0tKyys8okmw==
 From: Christian Brauner <brauner@kernel.org>
-Date: Thu, 12 Nov 2026 17:37:08 +0100
-Subject: [PATCH RFC 2/4] sh/crash_dump: check ioremap() in
- copy_oldmem_page()
+Date: Thu, 12 Nov 2026 17:37:10 +0100
+Subject: [PATCH RFC 4/4] crash_dump: use copy_oldmem_to_iter() everywhere
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261112-work-procfs-oldmem-v1-2-ecdcafd99265@kernel.org>
+Message-Id: <20261112-work-procfs-oldmem-v1-4-ecdcafd99265@kernel.org>
 References: <20261112-work-procfs-oldmem-v1-0-ecdcafd99265@kernel.org>
 In-Reply-To: <20261112-work-procfs-oldmem-v1-0-ecdcafd99265@kernel.org>
 To: linux-fsdevel@vger.kernel.org
@@ -62,14 +61,14 @@ Cc: Linus Torvalds <torvalds@linux-foundation.org>,
  loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
  linux-sh@vger.kernel.org, linux-kernel@vger.kernel.org, 
  David Hildenbrand <david@kernel.org>, 
- "Christian Brauner (Amutable)" <brauner@kernel.org>, stable@vger.kernel.org
+ "Christian Brauner (Amutable)" <brauner@kernel.org>
 X-Mailer: b4 0.17-dev-ce4c1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1003; i=brauner@kernel.org;
- h=from:subject:message-id; bh=q6FpWygcFHpF/XYp2OeRsrvJ/y8aBzOdxnvKzJI5CUg=;
- b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWR9fR2ZXPfx+k0nz9UdCcufZi5bEfNP4/gkpZxGBe7ty
- U5mqhMMO0pZGMS4GGTFFFkc2k3C5ZbzVGw2ytSAmcPKBDKEgYtTACbCX8DIsO3Srhdppo67Nmsn
- CMzvSEg8stFmw5lYXa2tcWbPH7+Ou8Pwv/BN4KTdgsEMAr8vHor9ftTa73Deda0PH0/LeesVzJZ
- gZQIA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4472; i=brauner@kernel.org;
+ h=from:subject:message-id; bh=rv3dL5CVw/xI5rVNJEEjG9zaPNbP1VG9+iQug4VKJfg=;
+ b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWR9fR3DKnst5cjfG5xsdgbCavdne+wN+Nkh/pffe02Mp
+ N6xtffudpSyMIhxMciKKbI4tJuEyy3nqdhslKkBM4eVCWQIAxenAEzkoADD/wT5NYIcQd67a3j/
+ 1sc1zRBc6nxzfcAJjYgZL6b0veNRkGX4Hx0wbQHPbdM/b5N2z70xc5nvM/uz5dt/rBdy3nhl8Yc
+ gcUYA
 X-Developer-Key: i=brauner@kernel.org; a=openpgp;
  fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -90,34 +89,122 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-copy_oldmem_page() maps a page of the old kernel with ioremap() and
-copies from it without checking whether the mapping worked. If it
-didn't, the copy reads from an offset into the NULL page.
+Make the remaining copy_oldmem_page() implementations copy the page of
+the crashed kernel with copy_oldmem_to_iter() like x86_64 and powerpc
+do. None of these architectures has a machine check safe copy today, so
+for them this is copy_to_iter() under another name. But the copy of a
+page of the old kernel is in one place now, and an architecture that
+gains ARCH_HAS_COPY_MC later gets the recovery without touching its
+crash dump code.
 
-Return -ENOMEM like the other architectures do. read_from_oldmem() turns
-that into -EFAULT like any other short copy.
+s390 stays as it is. It copies the old kernel's memory through its real
+address mode window in memcpy_real_iter(), and an uncorrected storage
+error is fatal on s390 anyway (cf. s390_handle_damage()).
 
-Fixes: 4d5ade5b29c6 ("sh: kdump support.")
-Cc: stable@vger.kernel.org
+No functional changes.
+
 Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
 ---
- arch/sh/kernel/crash_dump.c | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm/kernel/crash_dump.c       | 2 +-
+ arch/arm64/kernel/crash_dump.c     | 2 +-
+ arch/loongarch/kernel/crash_dump.c | 2 +-
+ arch/mips/kernel/crash_dump.c      | 2 +-
+ arch/riscv/kernel/crash_dump.c     | 2 +-
+ arch/sh/kernel/crash_dump.c        | 2 +-
+ arch/x86/kernel/crash_dump_32.c    | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/sh/kernel/crash_dump.c b/arch/sh/kernel/crash_dump.c
-index 19ce6a950aaca..85c0e58f1a59f 100644
---- a/arch/sh/kernel/crash_dump.c
-+++ b/arch/sh/kernel/crash_dump.c
-@@ -20,6 +20,9 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
+diff --git a/arch/arm/kernel/crash_dump.c b/arch/arm/kernel/crash_dump.c
+index 938bd932df9a0..0f2628872b00c 100644
+--- a/arch/arm/kernel/crash_dump.c
++++ b/arch/arm/kernel/crash_dump.c
+@@ -28,7 +28,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
+ 	if (!vaddr)
+ 		return -ENOMEM;
+ 
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
+ 
+ 	iounmap(vaddr);
+ 	return csize;
+diff --git a/arch/arm64/kernel/crash_dump.c b/arch/arm64/kernel/crash_dump.c
+index 670e4ce818223..c774b3aba107d 100644
+--- a/arch/arm64/kernel/crash_dump.c
++++ b/arch/arm64/kernel/crash_dump.c
+@@ -24,7 +24,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
+ 	if (!vaddr)
+ 		return -ENOMEM;
+ 
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
+ 
+ 	memunmap(vaddr);
+ 
+diff --git a/arch/loongarch/kernel/crash_dump.c b/arch/loongarch/kernel/crash_dump.c
+index e559307c10929..03a136b8be8da 100644
+--- a/arch/loongarch/kernel/crash_dump.c
++++ b/arch/loongarch/kernel/crash_dump.c
+@@ -15,7 +15,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
+ 	if (!vaddr)
+ 		return -ENOMEM;
+ 
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
+ 
+ 	memunmap(vaddr);
+ 
+diff --git a/arch/mips/kernel/crash_dump.c b/arch/mips/kernel/crash_dump.c
+index 6e50f49024094..078c0d1e8df46 100644
+--- a/arch/mips/kernel/crash_dump.c
++++ b/arch/mips/kernel/crash_dump.c
+@@ -12,7 +12,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
  		return 0;
  
- 	vaddr = ioremap(pfn << PAGE_SHIFT, PAGE_SIZE);
-+	if (!vaddr)
-+		return -ENOMEM;
-+
- 	csize = copy_to_iter(vaddr + offset, csize, iter);
+ 	vaddr = kmap_local_pfn(pfn);
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
+ 	kunmap_local(vaddr);
+ 
+ 	return csize;
+diff --git a/arch/riscv/kernel/crash_dump.c b/arch/riscv/kernel/crash_dump.c
+index ea2158cee97b3..0820e3db12603 100644
+--- a/arch/riscv/kernel/crash_dump.c
++++ b/arch/riscv/kernel/crash_dump.c
+@@ -21,7 +21,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
+ 	if (!vaddr)
+ 		return -ENOMEM;
+ 
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
+ 
+ 	memunmap(vaddr);
+ 	return csize;
+diff --git a/arch/sh/kernel/crash_dump.c b/arch/sh/kernel/crash_dump.c
+index 85c0e58f1a59f..2a5988b6e9d7a 100644
+--- a/arch/sh/kernel/crash_dump.c
++++ b/arch/sh/kernel/crash_dump.c
+@@ -23,7 +23,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn,
+ 	if (!vaddr)
+ 		return -ENOMEM;
+ 
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
  	iounmap(vaddr);
  
+ 	return csize;
+diff --git a/arch/x86/kernel/crash_dump_32.c b/arch/x86/kernel/crash_dump_32.c
+index 5f4ae5476e193..cb202d4e1f703 100644
+--- a/arch/x86/kernel/crash_dump_32.c
++++ b/arch/x86/kernel/crash_dump_32.c
+@@ -40,7 +40,7 @@ ssize_t copy_oldmem_page(struct iov_iter *iter, unsigned long pfn, size_t csize,
+ 		return -EFAULT;
+ 
+ 	vaddr = kmap_local_pfn(pfn);
+-	csize = copy_to_iter(vaddr + offset, csize, iter);
++	csize = copy_oldmem_to_iter(vaddr + offset, csize, iter);
+ 	kunmap_local(vaddr);
+ 
+ 	return csize;
 
 -- 
 2.53.0
