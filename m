@@ -2,146 +2,80 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E6DF606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63EFD606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 16:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BwwonUBY;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=GE3p84jo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1bcjp8Yk;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=aFOih66d
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=X/fOu0EIwP74iv4Y49vsqZtVCb4D018mu7v86BwRqIw=; b=BwwonUBYZQMINd8w5GgxocXgra
-	O/CeWr5g12BhRXjdJdvoWlgW8kGhW/x9P70jPEWM6gkx3mGaJ+RmUWZpHPWITiFoRB799POAgYFRm
-	KhqpGSna+X0JRGSVlAjUIzfUYWBo8etWa62qXKrjBJyA26rPXF+ssf4ovPnObR7UCSOxVlmgSoJ2G
-	xrbLl4qAB+KxbCKXB+PmDKdOCNG2bICHINHGLtjFgo2aBqeQQphg4+Ebc+yOoDy9LdFLNliJBX6un
-	xA///j0Tn72RRzSkzB/Qm3QWZfWe7QTxEgl194es/qjK5xDICnZG0K5D2/dMnXQCZJ3HO1q7TVKPz
-	StHDX0Iw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=NyJ+wR05o+PC3wSvFLyYczzwPBzneUQ3BZvLf0UVclw=; b=1bcjp8YkBtyHv1
+	59C7UC1+hAqDOU99qZH8EkJ7iHGrI27geYdw1G3Bo15fW0OwiZ7473NnCT5PaRgPReP7PJEIVw02R
+	c9N1dP365p20sVYxIaXCMXDJAvFohN2KK9HXSqrGeOk7dLhX+2CL+uegVnOGIOrAzP5rvMnUs3jZ4
+	7lhtdhyhn/qIxkI/yV0WfzssTrNzOhf0QZXHjzq+ycK6QS+OjsazLPc8n1kMIuTMAi4VWOMy/kBBF
+	3a+v3sH5GCCfjWFP7dkdMonEeqhERyZZsL6ZdQWwSDPpO5r2I9jeENx1zQzpNaBpgJAera+WWodgW
+	5JjeVYL0GEWrRgTYYvPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXKE-0000000AXim-3dqC;
-	Thu, 12 Nov 2026 16:06:58 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRXKB-0000000AXhs-1yRS
+	id 1xRXNY-0000000AY6f-1lTv;
+	Thu, 12 Nov 2026 16:10:25 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRXNV-0000000AY5U-1OWV
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 16:06:57 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=djRQIKj0EMpXlVq/BZt3nW1bzolxPpa0rFgDdYhFL9t9n9bfLIEU9nrQRMbRGbl/dwODIjGK9pwM7NOrgSiNKXw09kRpxEIaVsczWVMhFDxL8bBtvHfbjpaEhu6mm+mvq1TYcVzgRTSvLmICxg8Zkliw2YyoV1cOfLVu5HlAYkEOrnhpm7vZVujSIU6AYacYWAD6EfrnY4o5DwL94B19REUL3fxL4ARHSAIQAm3k2S/oENVjlpf8Mn2wcVNUrqu00simF+x8aEkDKsrQHuXGhF9oSyRzUMVlWjj0INIS8CAQR9Nn4k5oTJ1R4KnvRqHS+siHLyTTb2sOet8LF2BCrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X/fOu0EIwP74iv4Y49vsqZtVCb4D018mu7v86BwRqIw=;
- b=u3SFcXAYmDczSposBvNzTat4tHhghasJ3FJRkqQI3eoufOrllKr+MwG7urzYU6zcpsO592SOUrCj64TDmMU83mPm5g5VKvaOfWVCWP/WivhNYe8U0XV0dlT0UisIMwaJhBhwsIJXGZaJ4cyo5ROx32liQ0HzOIDk4uCsB/oxBPdAoEbKvG9ZZ1Y+85JJluYkhE/pvuWlq+4fQxWkIdYpmguVlxhl2IVeWBKvfyCzg2bypPJclWOIwXpTMHqI21IS7Lmapx3lALmqO75b+aHsWRuTvCt47ng9oPFu2q02dIBZE8tyv9xPVHZ/dFz3Wb+pfCcK/w3Ejrb1DiT3MbmN9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X/fOu0EIwP74iv4Y49vsqZtVCb4D018mu7v86BwRqIw=;
- b=GE3p84joTBS/xJR5JN0mcKmchKt8lsy305o1aTegN+irSOGA77ZnFlBKq4sq84gpTVxgbhqP9o/xLzqUvmSYOfAqabzjKmKBd0+PcKbL4iBdO08Dikq4kcKSBsV4/tPjysrKLqqINSN5h8FZRvD1LvQJYBH+TEEErb34kijHv7e8nxnYcZHAT4pms529oApsyg4cN+nJR8GjZJwuOt0vZkr08xN7tBsWckMDFYSzyYcXVutjMhvg9MC1+3kHuMOuPmCFX+EuIlyHL8Opa28fGzyY1zLbl+E3ZtTvlgEBB56rkWitAijOfQx5V7hWvH25zmz6iJJ6Lv1mC8g9t4fTIQ==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by PAXPR04MB8911.eurprd04.prod.outlook.com (2603:10a6:102:20e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.9; Thu, 12 Nov
- 2026 16:06:43 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Thu, 12 Nov 2026
- 16:06:43 +0000
-Date: Thu, 12 Nov 2026 10:06:31 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
-	"Joerg Roedel (AMD)" <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-	Laxman Dewangan <ldewangan@nvidia.com>,
-	Jon Hunter <jonathanh@nvidia.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@kernel.org>,
-	Larisa IIeana Grigore <larisa.grigore@nxp.com>, imx@lists.linux.dev,
-	dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-tegra@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v6 7/9] dmaengine: fsl-edma: use
- dmaengine_get_dma_device()
-Message-ID: <avXkB8apdBFfWt9e@SMW015318>
-References: <20261112-edma-iommu-v3-v6-0-b038edb8ce6f@nxp.com>
- <20261112-edma-iommu-v3-v6-7-b038edb8ce6f@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261112-edma-iommu-v3-v6-7-b038edb8ce6f@nxp.com>
-X-ClientProxiedBy: CYXP220CA0009.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:930:ee::17) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Thu, 12 Nov 2026 16:10:23 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ECF6D1516;
+	Thu, 12 Nov 2026 08:10:13 -0800 (PST)
+Received: from [10.57.67.215] (unknown [10.57.67.215])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EFCD63F673;
+	Thu, 12 Nov 2026 08:10:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794499816; bh=eI6HLMNYzVDBvHBVufuc5J2FJd7cWcvR6MgqBPZ4zpI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aFOih66dfccYzufBc17r9WpthMTMDuR4BQ3PUFO1D9Lg/lw4bQSAaTCb9TwdLfPD4
+	 qdkLALALRiwLntg+u0S0ZgUxKzw7lLwT19Hh6W6NHS+t7Vu2NwDFeVMuUrt/qOGe4b
+	 trnAx8mxKRgqky/enezXsehZ5oy4T0NueLBrtZjU=
+Message-ID: <256e6390-437d-4427-969d-5b774e79861d@arm.com>
+Date: Thu, 12 Nov 2026 16:10:11 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|PAXPR04MB8911:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90302ebf-4d16-4a3b-6bff-08df40d6f1af
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|23010399003|376014|1800799024|366016|19092799006|10067099003|11063799006|56012099006|261102123227099003|261009223027099003|261021121427099003|261021123027099003|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: UZJJc002611HpBFYe+ZZahmsDu+TC5NLvPGKiGNivjr6t++WQKCvu1m5dyMfY52IQZOHRkheL3ddExQ41QNLIIrXGNyrby461Fhy6vwnkva9e0h7Pi7CMsPC6hxsRSyJNJhLJod69QSuzXY7SOqhN+Hy0QPY4VGKkvCbn/+oMol21/ogbBYOWLRLbLPEEeW0ikJXIgwcBsT0A2WYqIunBDOVkr95YtGK+HwN4IGzMJhW+xbV1C7HBLBzqch7yPtEIBGWsZt7ubvKxme+sdDq6r7qi7NUN/zxPTjdDuVH97hQVN+T8+joPDAEbZJOU5/vhPr04CJBWWg6jQR4aPCg3AHI8WvYQ7Kem+hSjpMv1t+mfuo/AOF6lp/QIHV9M5HWGQxtcToW36O6DgSV3wTEU566NFkL4Zsz7M+zDLCfZC+LjiJwMBXG6dCftF4sLTP4iQxKvP0LBsqJVmnUEJGI3WukNvyJTWj2jmmRJoANUae30ZH28X33r36OdqqDuw2ovRyMU2h1R6hE5QrlMM3szRcYAx2uO0aqXoCeyKHB3LfEyK9YhG2HHwU2o76sRTcWuS/LgUcEXADx5yoVmSiSBq+oNHrmtw3lia02TmtqR6mn6h2EkAiuDq0CvHQNJKYY59UXtaNZbI3KWRsCujyLIzeRJQs1sFDt7UuDrKEdixQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(1800799024)(366016)(19092799006)(10067099003)(11063799006)(56012099006)(261102123227099003)(261009223027099003)(261021121427099003)(261021123027099003)(4143699003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e0Lwlqfc7TiD0Nn5jeunDVwu0C1XM4U3XGIM2f4hdSX49I91hJdGYRbg6k/Q?=
- =?us-ascii?Q?9fNgVukcus8lLXRvNti2/w7QzySpCS/cFvZfhuCM8/OrtAn5PyItfi3ijsFs?=
- =?us-ascii?Q?fjqMOSli012PptoOhRmT1E1jQO0Jy+ZlWtC3wejSkXA+vSjslRe43UpmrUQF?=
- =?us-ascii?Q?eDggVflgH5hE62rpRRlPPc9YYq5HQ4q8bCtd9arJPfvpy1l3zToaR/GyTy3h?=
- =?us-ascii?Q?KJMP9vHqufpeT207a2vmGZhUExr6svi3REZqY4bz4oRpnqxqkL4sB50dB1oC?=
- =?us-ascii?Q?RseVKe5j+O8oeu/0uGbzqOxgX7EKExSN6z+EzqAe5qYUEqOriGYiL+ukKx9b?=
- =?us-ascii?Q?LaJg4dRqsdsCUuBghUAlUp4r75Y3HOSMoN84k8ccEoxqD588BV0LLn1G4CA6?=
- =?us-ascii?Q?jtIuo0gJnGPg0l4BN31Mxdr9vMnYImmqyt1WdOEXREC34n0GiBQdCh47BYB+?=
- =?us-ascii?Q?lHG4JO2LpoQI4sNtwnN0D0Hli0q60FNmhwNgnaXiefn6xQNqqcf2Zpifa/6b?=
- =?us-ascii?Q?rL9VLQmV4RVyHe1NOrVAvSRUhVRpRnBHIq1d5EhL2IuwoX96Kcz1E/0F0QBB?=
- =?us-ascii?Q?ZX0nt6Ags93+hDLEs/gUMXAziVL4X+COVZTaPDOfwZoRAEhM/YLLoL8YttgG?=
- =?us-ascii?Q?rLeHrmcQYNg/N41ELUA8zcBc7fq3QyHdq97zkf4a437ShzAlxcV/T7h1Cqli?=
- =?us-ascii?Q?i9fcfu87Ow5iVGhliCSRSIE9Y8T/nfJ4stbf30Vh7FozvL0j5JdrAQsVUwp0?=
- =?us-ascii?Q?um88q3l0PDCcFcemvxaoLGk014B+akMY1cqILLXCF78YEn3FqzbSXFHHYwe8?=
- =?us-ascii?Q?4APHLMcQHC9nudpk0nJ5sthARkJacE0oejI9jGgL1wMInuBq6wVtGIJdUKie?=
- =?us-ascii?Q?zf0Hr5Jp873uQAGLYbXYiNYy/xvJADXrxMPtBdUaMAT91MnFxe3fin+EwbOy?=
- =?us-ascii?Q?N2xAz8HAxDBk9YWEjolnKH/n/LeF8uRbnQjhYYoBYUCAgRjYB38zB03DoFNk?=
- =?us-ascii?Q?NBo2Xi5Yx08wEYNkKqQ4W5UKcS8bnJ7dnsJMZWe42O/agFcqBU6xFb/q4Q/3?=
- =?us-ascii?Q?BWExPbuGOXYCcCb6z55hx7cpYFX3PEcxLB8WaUGPmJ9maFgNpYA+Gbr/Y1Mv?=
- =?us-ascii?Q?BRhLxhuiv5B0SmC2dUAzu3wZSvNYC8z66I4GqQBToJsWaeNSaL0RdglgVA7h?=
- =?us-ascii?Q?/1hM0SerfK9vC0Xz07oda2GAf2WRJwHk1ktPTtWJXvkzvQhtf6lkEmD287Z1?=
- =?us-ascii?Q?S94uctJSPxwJi0b73qwdk7kR8GEhdATXKjh5Dl4Mf1CZXCdzs2W4faZbnp5Y?=
- =?us-ascii?Q?TEu1AZ4ty5wH50AqWEy1cV/vaaoQaaV28djPkl44VSVSVXOg3k2SWQ2LAxvs?=
- =?us-ascii?Q?DHs3DJPLpXovzNZaSkkNiMte+rbTc+YYk4hSqOIHNf0AJ8VBjM2QzHgvOs/C?=
- =?us-ascii?Q?qb+VDpIMy8/uDpp6lrpq+l6fVxNKZ8xuxeCn8Bb5LLu/xOn6MJl+5WGIrxFG?=
- =?us-ascii?Q?vfvvugRm2pzcVpJQ7mM+cOC0a5iAnitFTXlt8lW5/870Q/WX2IkNWrCqiAMe?=
- =?us-ascii?Q?iawjmUdK+b7gbFJ+k+xhp4EXKixDJT6631RsrtiS+8F12YAI/TNDh+Wy2Kxg?=
- =?us-ascii?Q?tbw2elMM1hZi9swnUIV1uCSd7RmK5GIxPsXEUVdK/eRMY0UcuwlwT9rv1IdY?=
- =?us-ascii?Q?16BUFeJcQvdrSWCS/LJ/Cph+ecr1n2QmST63ehJQKGJpzaBMkk1KrLn61v6z?=
- =?us-ascii?Q?+3wJy9rdOjsvKCgRElgC/nwOSVN2L4+XRSmxZZv4+Uxvoedc0OsN?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90302ebf-4d16-4a3b-6bff-08df40d6f1af
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 16:06:43.3955
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vdql28pmFR6A5zxhYyLA/FQrIAvIgaH21UzgkIWaexstBcA2XDvW1aXHFlP6jVSwR8GcgIOV14fU3ogO0OnHd6ReBp/+z1n1k0VV/VQoTlnvgDcKE0e2sBWEIC5BG+2w
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8911
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/11] KVM: arm64: CCA: Introduce Realms
+Content-Language: en-GB
+To: Steven Price <steven.price@arm.com>, Kohei Enju <enju.kohei@fujitsu.com>
+Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev,
+ Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>
+References: <20261102141304.126883-1-steven.price@arm.com>
+ <20261102141304.126883-3-steven.price@arm.com>
+ <avL9kNR2mGmqmcA9@FCCLS0092175.localdomain>
+ <45104e19-4197-4584-895a-0486c0782c9c@arm.com>
+ <bc0a6290-ddca-4005-9d22-b74833f435b9@arm.com>
+ <d938b49d-331e-4332-ac01-911708f6135b@arm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <d938b49d-331e-4332-ac01-911708f6135b@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_080656_079931_638F7B00 
-X-CRM114-Status: GOOD (  18.56  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261112_081021_456861_1D3DE77E 
+X-CRM114-Status: GOOD (  32.33  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -152,67 +86,312 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 03:53:10PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Use dmaengine_get_dma_device() instead of chan->device->dev when creating
-> the TCD pool and when mapping the slave resource. This lets the driver use
-> the per-channel device once per-channel IOMMU support enables it, without
-> changing behaviour for existing users.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
+On 11/11/2026 11:46, Steven Price wrote:
+> On 11/11/2026 10:14, Suzuki K Poulose wrote:
+>> On 11/11/2026 10:11, Steven Price wrote:
+>>> On 10/11/2026 11:42, Kohei Enju wrote:
+>>>> Hi Steve,
+>>>
+>>> Hi Kohei,
+>>>
+>>>> On 11/02 14:12, Steven Price wrote:
+>>>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>>>
+>>>>> Add foundational work for supporting Realms.
+>>>>>    - Add a new VM flavor.
+>>>>>    - At KVM init, check if the KVM can support Realms (though not
+>>>>> functional
+>>>>>      yet) and will be advertised by static key kvm_rmi_is_available.
+>>>>> This
+>>>>>      will be turned on in a later patch, once we have all the bits and
+>>>>>      pieces ready. For now check if we are blessed with KVM_MODE_RMM.
+>>>>>    - Add realm specific tracking in kvm_arch. Since Realm and
+>>>>> protected pKVM
+>>>>>      states are mutually exclusive, move them into a union.
+>>>>>    - Also adjust the memslot preparation checks to reflect the changes.
+>>>>>
+>>>>> Please note that we cannot create Realm VMs yet. This requires further
+>>>>> changes to the UABI and core RMI driver support, which will come later.
+>>>>>
+>>>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>>> Signed-off-by: Steven Price <steven.price@arm.com>
+>>>>> ---
+>>>>>    arch/arm64/include/asm/kvm_emulate.h   | 16 +++++++
+>>>>>    arch/arm64/include/asm/kvm_host.h      | 57 +++++++++++++++++-------
+>>>>>    arch/arm64/include/asm/kvm_rmi.h       | 61 ++++++++++++++++++++++
+>>>>> ++++
+>>>>>    arch/arm64/include/asm/virt.h          |  1 +
+>>>>>    arch/arm64/kvm/Makefile                |  2 +-
+>>>>>    arch/arm64/kvm/arm.c                   | 24 ++++++++--
+>>>>>    arch/arm64/kvm/hyp/include/nvhe/pkvm.h |  2 +-
+>>>>>    arch/arm64/kvm/hyp/nvhe/switch.c       |  4 +-
+>>>>>    arch/arm64/kvm/hyp/nvhe/timer-sr.c     |  2 +-
+>>>>>    arch/arm64/kvm/mmu.c                   | 13 +++---
+>>>>>    arch/arm64/kvm/rmi.c                   | 18 ++++++++
+>>>>>    11 files changed, 169 insertions(+), 31 deletions(-)
+>>>>>    create mode 100644 arch/arm64/include/asm/kvm_rmi.h
+>>>>>    create mode 100644 arch/arm64/kvm/rmi.c
+>>>>>
+>>>>> diff --git a/arch/arm64/include/asm/kvm_emulate.h b/arch/arm64/
+>>>>> include/asm/kvm_emulate.h
+>>>>> index 334211b8b2ee..32021bdf2610 100644
+>>>>> --- a/arch/arm64/include/asm/kvm_emulate.h
+>>>>> +++ b/arch/arm64/include/asm/kvm_emulate.h
+>>>>> @@ -831,4 +831,20 @@ static inline void kvm_reset_vcpu_psci(struct
+>>>>> kvm_vcpu *vcpu,
+>>>>>        vcpu_set_reg(vcpu, 0, reset_state->r0);
+>>>>>    }
+>>>>>    +static inline enum realm_state kvm_realm_state(struct kvm *kvm)
+>>>>> +{
+>>>>> +    return READ_ONCE(kvm->arch.realm.state);
+>>>>> +}
+>>>>> +
+>>>>> +static inline void kvm_set_realm_state(struct kvm *kvm,
+>>>>> +                       enum realm_state new_state)
+>>>>> +{
+>>>>> +    WRITE_ONCE(kvm->arch.realm.state, new_state);
+>>>>> +}
+>>>>> +
+>>>>> +static inline bool kvm_realm_is_created(struct kvm *kvm)
+>>>>> +{
+>>>>> +    return kvm_vm_is_realm(kvm) && kvm_realm_state(kvm) !=
+>>>>> REALM_STATE_NONE;
+>>>>> +}
+>>>>> +
+>>>>>    #endif /* __ARM64_KVM_EMULATE_H__ */
+>>>>> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/
+>>>>> asm/kvm_host.h
+>>>>> index ccd2dc8f73c3..7d0222047ca1 100644
+>>>>> --- a/arch/arm64/include/asm/kvm_host.h
+>>>>> +++ b/arch/arm64/include/asm/kvm_host.h
+>>>>> @@ -29,6 +29,7 @@
+>>>>>    #include <asm/kvm.h>
+>>>>>    #include <asm/kvm_asm.h>
+>>>>>    #include <asm/kvm_hcall.h>
+>>>>> +#include <asm/kvm_rmi.h>
+>>>>>    #include <asm/vncr_mapping.h>
+>>>>>      #define __KVM_HAVE_ARCH_INTC_INITIALIZED
+>>>>> @@ -48,6 +49,13 @@
+>>>>>    #define KVM_VCPU_MAX_FEATURES 10
+>>>>>    #define KVM_VCPU_VALID_FEATURES    (BIT(KVM_VCPU_MAX_FEATURES) - 1)
+>>>>>    +#define KVM_REALM_VCPU_VALID_FEATURES            \
+>>>>> +    (BIT(KVM_ARM_VCPU_POWER_OFF)        |    \
+>>>>> +     BIT(KVM_ARM_VCPU_PSCI_0_2)        |    \
+>>>>> +     BIT(KVM_ARM_VCPU_PTRAUTH_ADDRESS)    |    \
+>>>>> +     BIT(KVM_ARM_VCPU_SVE)            |    \
+>>>>> +     BIT(KVM_ARM_VCPU_PTRAUTH_GENERIC))
+>>>>> +
+>>>>>    #define KVM_REQ_SLEEP \
+>>>>>        KVM_ARCH_REQ_FLAGS(0, KVM_REQUEST_WAIT | KVM_REQUEST_NO_WAKEUP)
+>>>>>    #define KVM_REQ_IRQ_PENDING        KVM_ARCH_REQ(1)
+>>>>> @@ -409,6 +417,7 @@ enum kvm_arm_vm_flavor {
+>>>>>        VM_PKVM,        /* Normal guests on pKVM */
+>>>>>        MARKER(__VM_PROTECTED),
+>>>>>        VM_PROTECTED_PKVM,    /* Protected VM */
+>>>>> +    VM_REALM,        /* CCA */
+>>>>>        VM_FLAVOR_MAX
+>>>>>    };
+>>>>>    @@ -502,11 +511,14 @@ struct kvm_arch {
+>>>>>        /* Count the number of VNCR_EL2 TLBs */
+>>>>>        atomic_t vncr_tlb_count;
+>>>>>    -    /*
+>>>>> -     * For an untrusted host VM, 'pkvm.handle' is used to lookup
+>>>>> -     * the associated pKVM instance in the hypervisor.
+>>>>> -     */
+>>>>> -    struct kvm_protected_vm pkvm;
+>>>>> +    union {
+>>>>> +        /*
+>>>>> +         * For an untrusted host VM, 'pkvm.handle' is used to lookup
+>>>>> +         * the associated pKVM instance in the hypervisor.
+>>>>> +         */
+>>>>> +        struct kvm_protected_vm pkvm;
+>>>>> +        struct realm realm;
+>>>>> +    };
+>>>>>      #ifdef CONFIG_PTDUMP_STAGE2_DEBUGFS
+>>>>>        /* Nested virtualization info */
+>>>>> @@ -1572,30 +1584,43 @@ struct kvm *kvm_arch_alloc_vm(void);
+>>>>>      #define __KVM_HAVE_ARCH_FLUSH_REMOTE_TLBS_RANGE
+>>>>>    -#ifdef __KVM_NVHE_HYPERVISOR__
+>>>>> +#define kvm_vm_is_protected(kvm)    ((kvm)->arch.vm_flavor >=
+>>>>> __VM_PROTECTED)
+>>>>>    -#define kvm_vm_is_protected(kvm)            \
+>>>>> -    (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor ==
+>>>>> VM_PROTECTED_PKVM))
+>>>>> +#ifdef __KVM_NVHE_HYPERVISOR__
+>>>>>    /*
+>>>>>     * Accessing vcpu->kvm from nVHE hyp stub is tricky, as we need to
+>>>>> convert the
+>>>>>     * pointer to the hyp VA. With pKVM, the nVHE code runs with the
+>>>>> hyp_vcpu,
+>>>>> - * which is populated correctly and is gated on
+>>>>> is_protected_kvm_enabled().
+>>>>> + * which is populated correctly. Always vcpu_is_protected_pkvm(),
+>>>>> which is
+>>>>> + * gated on is_protected_kvm_enabled().
+>>>>> + */
+>>>>> +#define vcpu_is_protected(vcpu)        BUILD_BUG_ON(1)
+>>>>> +#else
+>>>>> +#define vcpu_is_protected(vcpu)        kvm_vm_is_protected((vcpu)-
+>>>>>> kvm)
+>>>>> +#endif
+>>>>> +
+>>>>> +#define kvm_vm_is_protected_pkvm(kvm)                    \
+>>>>> +    (is_protected_kvm_enabled() && ((kvm)->arch.vm_flavor ==
+>>>>> VM_PROTECTED_PKVM))
+>>>>> +
+>>>>> +/*
+>>>>> + * Rely on is_protected_kvm_enabled() check in
+>>>>> kvm_vm_is_protected_pkvm() to
+>>>>> + * make sure the vcpu->kvm is always valid VA in the context
+>>>>>     */
+>>>>> -#define vcpu_is_protected(vcpu)                        \
+>>>>> +#define vcpu_is_protected_pkvm(vcpu)                    \
+>>>>>        ({                                \
+>>>>>            struct kvm *__kvm = READ_ONCE((vcpu)->kvm);        \
+>>>>>                                        \
+>>>>> -        (__kvm && kvm_vm_is_protected(__kvm));            \
+>>>>> +        (__kvm && kvm_vm_is_protected_pkvm(__kvm));        \
+>>>>>        })
+>>>>
+>>>> I've tested the integration branch and found that the secondary CPU
+>>>> bring-up fails:
+>>>>       [    1.426502] smp: Bringing up secondary CPUs ...
+>>>>       [    9.194442] CPU1: failed to come online
+>>>>       [    9.194558] CPU1: failed in unknown state : 0x0
+>>>>       [    9.197714] smp: Brought up 1 node, 1 CPU
+>>>>       [    9.197775] SMP: Total of 1 processors activated.
+>>>>
+>>>> It seems that this patch missed replacing a use of
+>>>> vcpu_is_protected() introduced by the following commit:
+>>>>
+>>>>       25d726dddc23 ("KVM: arm64: Reject host power-on of a vCPU that
+>>>> EL2 holds powered off")
+>>>>
+>>>> The following diff fixes the issue for me. Also, though not included in
+>>>> the diff, I think vcpu_is_protected() in __pkvm_create_hyp_vcpu() should
+>>>> be replaced with vcpu_is_protected_pkvm() as well.
+>>>
+>>> Thanks for the patch - I'll include that in v2.
+>>
+>> Please could we make it something like this :
+>>
+>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+>> index 4edcaf1090f9..2108c1bf5481 100644
+>> --- a/arch/arm64/kvm/arm.c
+>> +++ b/arch/arm64/kvm/arm.c
+>> @@ -989,7 +989,8 @@ static bool kvm_arm_vcpu_suspended(struct kvm_vcpu
+>> *vcpu)
+>>   /* Only the guest's CPU_ON may start a vCPU EL2 holds powered off. */
+>>   bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
+>>   {
+>> -       return READ_ONCE(vcpu->arch.mp_state.mp_state) ==
+>> KVM_MP_STATE_UNINITIALIZED;
+>> +       return vcpu_is_protected_pkvm(vcpu) &&
+>> +               READ_ONCE(vcpu->arch.mp_state.mp_state) ==
+>> KVM_MP_STATE_UNINITIALIZED;
+>>   }
+> 
+> This part looks good.
+> 
+>>   int kvm_arch_vcpu_ioctl_get_mpstate(struct kvm_vcpu *vcpu,
+>> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
+>> index b01f8d44033f..b7606c3542f8 100644
+>> --- a/arch/arm64/kvm/psci.c
+>> +++ b/arch/arm64/kvm/psci.c
+>> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct kvm_vcpu
+>> *source_vcpu)
+>>           * STOPPED before that is the VMM's pause.
+>>           */
+>>          if (!kvm_arm_vcpu_stopped(vcpu) ||
+>> -           (vcpu_is_protected(vcpu) && !
+>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
+>> +           !kvm_pkvm_vcpu_is_powered_off(vcpu)) {
+>>                  if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
+>>                          ret = PSCI_RET_ALREADY_ON;
+>>                  else
+> 
+> I think this is broken. kvm_pkvm_vcpu_is_powered_off() is defined as:
+> 
+> bool kvm_pkvm_vcpu_is_powered_off(struct kvm_vcpu *vcpu)
+> {
+> 	return vcpu_is_protected_pkvm(vcpu) &&
+> 		READ_ONCE(vcpu->arch.mp_state.mp_state) == KVM_MP_STATE_UNINITIALIZED;
+> }
+> 
+> So if !vcpu_is_protected_pkvm() then it's always false, so this would
+> break non-pKVM VMs.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Bah, you are right. I think the whole thing needs to go in a helper.
+Something like
 
->  drivers/dma/fsl-edma-common.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/dma/fsl-edma-common.c b/drivers/dma/fsl-edma-common.c
-> index 513b0f4e5be2..62cd60179bc6 100644
-> --- a/drivers/dma/fsl-edma-common.c
-> +++ b/drivers/dma/fsl-edma-common.c
-> @@ -310,10 +310,10 @@ int fsl_edma_resume(struct dma_chan *chan)
->
->  static void fsl_edma_unprep_slave_dma(struct fsl_edma_chan *fsl_chan)
->  {
-> +	struct device *dev = dmaengine_get_dma_device(&fsl_chan->vchan.chan);
-> +
->  	if (fsl_chan->dma_dir != DMA_NONE)
-> -		dma_unmap_resource(fsl_chan->vchan.chan.device->dev,
-> -				   fsl_chan->dma_dev_addr,
-> -				   fsl_chan->dma_dev_size,
-> +		dma_unmap_resource(dev, fsl_chan->dma_dev_addr, fsl_chan->dma_dev_size,
->  				   fsl_chan->dma_dir, 0);
->  	fsl_chan->dma_dir = DMA_NONE;
->  }
-> @@ -321,7 +321,7 @@ static void fsl_edma_unprep_slave_dma(struct fsl_edma_chan *fsl_chan)
->  static bool fsl_edma_prep_slave_dma(struct fsl_edma_chan *fsl_chan,
->  				    enum dma_transfer_direction dir)
->  {
-> -	struct device *dev = fsl_chan->vchan.chan.device->dev;
-> +	struct device *dev = dmaengine_get_dma_device(&fsl_chan->vchan.chan);
->  	enum dma_data_direction dma_dir;
->  	phys_addr_t addr = 0;
->  	u32 size = 0;
-> @@ -1090,7 +1090,7 @@ int fsl_edma_alloc_chan_resources(struct dma_chan *chan)
->  	if (fsl_edma_drvflags(fsl_chan) & FSL_EDMA_DRV_HAS_CHCLK)
->  		clk_prepare_enable(fsl_chan->clk);
->
-> -	fsl_chan->tcd_pool = dma_pool_create("tcd_pool", chan->device->dev,
-> +	fsl_chan->tcd_pool = dma_pool_create("tcd_pool", dmaengine_get_dma_device(chan),
->  				fsl_edma_drvflags(fsl_chan) & FSL_EDMA_DRV_TCD64 ?
->  				sizeof(struct fsl_edma_hw_tcd64) : sizeof(struct fsl_edma_hw_tcd),
->  				32, 0);
->
-> --
-> 2.34.1
->
+kvm_arm_vcpu_is_turned_on()
+
+For now, lets fix the call and deal with it later.
+
+Suzuki
+
+> 
+> Thanks,
+> Steve
+> 
+>>
+>> i.e, check for pkvm vcpu as it should have been in the first case,
+>> rather than spilling the check for protected vcpu and an explicit
+>> check to see if that is powered off ?
+>>
+>>
+>> Suzuki>
+>>> Thanks,
+>>> Steve
+>>>
+>>>> Thanks,
+>>>> Kohei
+>>>>
+>>>> ---8<---
+>>>> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+>>>> index 522a837637fe..be676c13e219 100644
+>>>> --- a/arch/arm64/kvm/arm.c
+>>>> +++ b/arch/arm64/kvm/arm.c
+>>>> @@ -960,7 +960,8 @@ static void __kvm_arm_vcpu_power_off(struct
+>>>> kvm_vcpu *vcpu, u32 mp_state)
+>>>>    /* The guest's own CPU_OFF: EL2 has already powered the vCPU off. */
+>>>>    void kvm_arm_vcpu_power_off(struct kvm_vcpu *vcpu)
+>>>>    {
+>>>> -       u32 mp_state = vcpu_is_protected(vcpu) ?
+>>>> KVM_MP_STATE_UNINITIALIZED : KVM_MP_STATE_STOPPED;
+>>>> +       u32 mp_state = vcpu_is_protected_pkvm(vcpu) ?
+>>>> +                      KVM_MP_STATE_UNINITIALIZED :
+>>>> KVM_MP_STATE_STOPPED;
+>>>>
+>>>>           spin_lock(&vcpu->arch.mp_state_lock);
+>>>>           __kvm_arm_vcpu_power_off(vcpu, mp_state);
+>>>> diff --git a/arch/arm64/kvm/psci.c b/arch/arm64/kvm/psci.c
+>>>> index b01f8d44033f..6674e8d6ff4c 100644
+>>>> --- a/arch/arm64/kvm/psci.c
+>>>> +++ b/arch/arm64/kvm/psci.c
+>>>> @@ -68,7 +68,7 @@ static unsigned long kvm_psci_vcpu_on(struct
+>>>> kvm_vcpu *source_vcpu)
+>>>>            * STOPPED before that is the VMM's pause.
+>>>>            */
+>>>>           if (!kvm_arm_vcpu_stopped(vcpu) ||
+>>>> -           (vcpu_is_protected(vcpu) && !
+>>>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
+>>>> +           (vcpu_is_protected_pkvm(vcpu) && !
+>>>> kvm_pkvm_vcpu_is_powered_off(vcpu))) {
+>>>>                   if (kvm_psci_version(source_vcpu) != KVM_ARM_PSCI_0_1)
+>>>>                           ret = PSCI_RET_ALREADY_ON;
+>>>>                   else
+>>>>
+>>>
+>>
+> 
+
 
