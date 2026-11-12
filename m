@@ -2,66 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F427606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:02:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E6560A261C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 14:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uBVEDc1W;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YyCNKNBp
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=MF0CHSHV;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=g16WEPmL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=80POjU5WP6ctS0DqN7hA/63JAQ8Agh1hTny2C1kJcvk=; b=uBVEDc1W/aAzRGGHkTld+elvUe
-	UEkrBHGGdbehvppHc9ITjh2XyxmRs6sHacNGeHkhJON6F6hbLo2grHscB19zVow9avB9fNzd4S1+h
-	5wl3yt1NKD/tNnfRaCv4T9VXvJGZN70irkpm7wZIkBU/fBZmW8IA3emGbeC5OjabRVWyd83yMcFFk
-	PQtbn0lGdT3o074hxywbG5vQyG0bwQ5Unnz7j992kmu1/QvwbUAkbYcZBQYd10pfr2QOMu9UFLHOw
-	KL8mSofRZkIr0sOcekymWJnV2nylofWOEE+EESj5aj0W1RsSP61XSDgo4sp2L2b55aS8Ceqnhlboa
-	QfPZZEGA==;
+	bh=m4qjcb8gdZJwkaxEoXzAOBIqfyt8ugrUmG3Eiv5qTnQ=; b=MF0CHSHV1AWBfBfe+qOvmUL93Y
+	ioSs9cEwojiSlgtlj1WFPjBlU4A9MiIhwvQgCWr0DQpSGCzS12LbmSGO3LQZfoudDtDPlijDA5Dk6
+	k3z9GDqgXWlWZmb89YSyj4NH+U88WJ3WvfaHQPJfq/N120WBTQOzX9U16IvE4fuy7mgnA9nkrkneo
+	wvZFFF2EYzL7weurOMtnqpVMle6EpeM4TGosTwtIL40OuYfu1KOlT0gD9bRG6lKRi0Yx7wQC8zCxz
+	07o11GZguyuMl7/ZQlhli++VDba5GeRheDhabXbb6Y8xAj3+H5ks0cF1ZQ/tX7/0YxygeRrVyauiy
+	lscW/5gA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVNa-0000000AAZ3-0m0v;
-	Thu, 12 Nov 2026 14:02:18 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRVP7-0000000AAt7-363S;
+	Thu, 12 Nov 2026 14:03:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRVNZ-0000000AAYo-1ESK;
-	Thu, 12 Nov 2026 14:02:17 +0000
+	id 1xRVP4-0000000AAsP-2VP5;
+	Thu, 12 Nov 2026 14:03:51 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id C6DE0433E1;
-	Thu, 12 Nov 2026 14:02:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6EF71F00A05;
-	Thu, 12 Nov 2026 14:02:15 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id D5B9665811;
+	Thu, 12 Nov 2026 14:03:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 495D01F00A05;
+	Thu, 12 Nov 2026 14:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794492136;
-	bh=80POjU5WP6ctS0DqN7hA/63JAQ8Agh1hTny2C1kJcvk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=YyCNKNBpysLCemDZZfCc/F7vDencDP1Pi2Tlq8tELy9rXkatBVzAOHrqGzPLREvTv
-	 3EugFEpVaEx7gw+p9pYcraR8NCmVJLrdZDrKRneUbsK5aYwHyQ7u6o/5z2ONY5H+uC
-	 Vi3tib2d8pdZFDNQd1Ih6P5gm89J+D2Eq920ss5gB8muXviyaCVbZZwYDPgxAuJD/0
-	 KX19mbNrh7ropLv8yEQJyulvRHQedqHidDk4byAha0nHUVldjghZoi2fOn2J8BJuLU
-	 KFsmuffgEt7ykLEIKgrKJ3xsDcItZlX5u2RGnH59NXUjpC+Q1YLBrE0V9GmuDWBX3v
-	 g9Xmlwvw3C54w==
-From: netdev-bot+sinfo@kernel.org
-To: Guangshuo Li <liguangshuo@mail.sdu.edu.cn>
-Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net] net: ethernet: mtk_eth_soc: Fix potential PPE hash table leak
-Date: Thu, 12 Nov 2026 14:02:15 +0000
-Message-ID: <179449213543.2168702.9560735261651362363@kernel.org>
-In-Reply-To: <20261112-88a3a7ff32-net-mtk@mail.sdu.edu.cn>
-References: <20261112-88a3a7ff32-net-mtk@mail.sdu.edu.cn>
-Auto-Submitted: auto-generated
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+	s=k20260515; t=1794492229;
+	bh=m4qjcb8gdZJwkaxEoXzAOBIqfyt8ugrUmG3Eiv5qTnQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=g16WEPmLJh2qfr1y0FgQLLw3UDj+I8Xs57kLoCCMeud5BUl5MzWwBLwMzXZO3Dtrt
+	 Kp5UWBp/duCls8fuuCh011u2HBXX6esYppxVKEt45L9eStIrRL7Rf0kpHTZeGEy/iS
+	 SEy/JvO10r/qLQ6VvxOVNHjIpPMj2ttl+zR1zpykqEVjD0fo43ybVmC7fkRT/aS1pY
+	 Au9dRXTw4Fexd+5rBiWz4zo7cHPOIqACnpdMVOYCeoZDxThBgHobl2L+9BbT1xNqgd
+	 ZFaM/tUt6BBetfGfopq1EOkI9MPfHfLeUeWn3lXZsGwBkc0NyM0j+fVAyItEUiL4Qg
+	 UOT4O6qRePA4A==
+Date: Thu, 12 Nov 2026 19:33:43 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Aiden Isik <aidenisik@protonmail.com>
+Cc: aidenisik@member.fsf.org, Neil Armstrong <neil.armstrong@linaro.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 2/2] phy: exynos5-usbdrd: Add support for the Exynos5515
+ usbdrd phy
+Message-ID: <avXHP-GPIRXqFkEv@parshuram>
+References: <20261022-for-next-lucky7-usb-phy-v1-0-2e47f8484bf4@member.fsf.org>
+ <20261022-for-next-lucky7-usb-phy-v1-2-2e47f8484bf4@member.fsf.org>
+ <avWeJqbpbLcWgq_R@parshuram>
+ <Dhrinh2IqyBByHLyFp_SHX9igTjQgKk4G62C1vp6tHdO8QkM4kiFDLaExxnZeljVMXJ8YksFrLRDRT9voAj6LiJYqPvrUg3nFVNFzi7C9Bc=@protonmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Dhrinh2IqyBByHLyFp_SHX9igTjQgKk4G62C1vp6tHdO8QkM4kiFDLaExxnZeljVMXJ8YksFrLRDRT9voAj6LiJYqPvrUg3nFVNFzi7C9Bc=@protonmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,21 +88,24 @@ X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi!
+On 12-11-26, 12:53, Aiden Isik wrote:
+> Hi Vinod,
+> 
+> > .n_phy_cfg does not exist.. Please fix this
+> 
+> As stated in the cover letter, this is introduced by dependency [1]:
+> 
+> > This patchset also depends on [1], due to using an
+> > exynos5_usbdrd_phy_drvdata member > (.n_phy_cfg) which was introduced to fix
+> > an out-of-bounds access bug.
+> 
+> > [1] - https://lore.kernel.org/all/20261020063559.3530901-1-selvarasu.g@samsung.com/
+> 
+> Which has since been merged by yourself. I assume you just
+> looked at these patches in a different order so saw mine first?
 
-This is an automated message. This series looks like a fix, but its
-commit messages seem to be missing some information:
+Yep, picked now
 
- - What hardware the change was tested on. For driver fixes please
-   mention the device (and if relevant firmware version) used for
-   testing, or say that the change was not tested on real hardware.
-
-Please do not repost the series just to address the above. Instead,
-reply to this email with the missing information, so that reviewers
-can take it into account. If the series needs another revision for
-other reasons, please include the information in the commit messages
-then.
-
-The evaluation is done by an LLM so it may be wrong, if you think
-that is the case please reply and explain.
+-- 
+~Vinod
 
