@@ -2,47 +2,47 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91E3606A895
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B22606B5AC
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gsDWm4S1;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WQ4M66Ff
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rvez/PO1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=h/r3xrdE
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1ahb900BtN45H4B5q25OIDwOBOyq++YAh9gkOLMihQg=; b=gsDWm4S12Ae7zO
-	2cGgETYnuR8gh+KLMdjXgp+4kTBOOtTU+5Li4MbsOjCJtMSzujj39VO1bsDJtnXFklHUY+ESHIxXd
-	zcUjfMTqUVjCt8+qaAnx7s8t8dGG83B/a/x1cECBhLCZCUCUBEOA54LztGnnYDO6MtdzknClOOalp
-	MtbkOiT4hu6+YGr9U0gTYyWZJ1Uz+fl4ExY36kqtxteZt6HAPy/EAw4KKuKakcyyOe3ZWtjLgzltz
-	FbSMhuLtF6hJhuyG6z+fIfVHoxLcTLzOuHHAmu6eFuaCk4byanVhgg1wlDfzLp+UrWDZYbFb0RA7F
-	Wto4BOjNLMtPNPg59QJg==;
+	List-Owner; bh=GZ4lZp1oW2s0U2uL8ErHvlu8up2Pjx215zhjtPcKJ2Q=; b=rvez/PO1gjF393
+	Lpru1tw7ZPbSCywgo4HHJYJIqRvzkaF9pZx/U4tQvWwpJGv3+soX/WTYfUHlCtoCoFEvdoAaDx6n6
+	nzhaR27RHdDpObmWzXveJQ3S1Gl+rXlQBHazZhw5f3g9xH+QO8pKJ0R/CNeRlaT0/Kpgb74AmF/7N
+	YdRQ0Ef50GMNS+yBE92lxhgh1pRO78Xzz6jWZccsCguf9Qsf8eX+Poi9bu3z9N1x5B2rcAQHuFLtI
+	LyaqE2Zz2NYDxOetR0MpRuhynhIwTkWGj5HySQWufEGpR1FWtb69+oVCmZdYZLGPsy+2tgtI1aQSW
+	3RGDD3SMAJ8ZeO3HrPTA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSwU-00000009gkt-3JsH;
-	Thu, 12 Nov 2026 11:26:10 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRSwl-00000009gvt-0ffj;
+	Thu, 12 Nov 2026 11:26:27 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRSwM-00000009gh4-0ADS
+	id 1xRSwX-00000009gnD-0DnQ
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:26:02 +0000
+	Thu, 12 Nov 2026 11:26:13 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5742561D19;
-	Thu, 12 Nov 2026 11:26:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71EEE1F00A07;
-	Thu, 12 Nov 2026 11:25:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 39F5941325;
+	Thu, 12 Nov 2026 11:26:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC0C1F00A05;
+	Thu, 12 Nov 2026 11:26:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794482761;
-	bh=1ahb900BtN45H4B5q25OIDwOBOyq++YAh9gkOLMihQg=;
+	s=k20260515; t=1794482772;
+	bh=GZ4lZp1oW2s0U2uL8ErHvlu8up2Pjx215zhjtPcKJ2Q=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=WQ4M66FfhknQRiwDgcQNx9UTF6dw9I471yvpzzFpUSuIaGtUEIDttLJmvxsZHmCLQ
-	 hJX0F1qlMlGDXUOYxTWf7SdVpL7CvzelD5QV/7wcBolWvM85ghWaA+9JhhRWKEqC3r
-	 WniKL7pGR1/h0wZfwpTPxeY9yrq0JtLKm6qJS9CAq4M5AQAbwbQPtcvfMNTke5zy86
-	 CxstBYAp1AKAptvpHqOlsDaeMJlRSIBRt4KAg8Z1cmGVPcjrm8Oq8RHrUiuj0GsC7p
-	 YMtbiBe7/bYpGf43nhfrv078hWGpRSWJwn/m5859ygg8Z1pOoCtVRFawuoaJgLIDPa
-	 xmpvfL3jz+yuQ==
+	b=h/r3xrdEhQleZV4yGgXPVqBfanfjsSKJ/g60PP/OJoc5XviAAJAUlX2KuMamvkihO
+	 6S5H6k5b1RNd4xXJLVJ91kcuCCQCZTXO1k+1hQn6/O+7RvV8jNjkBRJXIlQ1V9idnR
+	 9XiRe0gigvMNyWa7iIbigaFbf2JOHB8+iOYN0Ye9RreZ/JWwevZQj5VfLzPUXudYPN
+	 9zN8Zh9SPvZmpMfi3VkkfJS4yMkZoVwR2dg8Pxff5QMrY76ACoV9Zd44FOHqSG8vPH
+	 /mQ1HwpQ/1l+8doGR2M/t4fFEC8tmhl4Zq43fF36z8VjNjv8+aaMf4c4pJisKk9Stz
+	 Dl7K858NfhsuA==
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-mm@kvack.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -62,9 +62,9 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-fsdevel@vger.kernel.org,
 	linuxppc-dev@lists.ozlabs.org,
 	x86@kernel.org
-Subject: [PATCH v2 4/6] mm: drop HIGHPTE support altogether
-Date: Thu, 12 Nov 2026 12:25:26 +0100
-Message-ID: <20261112112528.1116405-5-arnd@kernel.org>
+Subject: [PATCH v2 6/6] ARM: add CONFIG_VMSPLIT_2G_OPT option
+Date: Thu, 12 Nov 2026 12:25:28 +0100
+Message-ID: <20261112112528.1116405-7-arnd@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261112112528.1116405-1-arnd@kernel.org>
 References: <20261112112528.1116405-1-arnd@kernel.org>
@@ -91,89 +91,63 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-With both x86 and arm having dropped CONFIG_HIGHPTE support, no
-architecture is left using it, so remove the remnants in common code.
+Unlike x86 and powerpc, there is currently no option to use exactly 2GiB
+of lowmem on Arm. Since 2GiB is still a relatively common configuration
+on embedded systems, it makes sense to allow this to be used in
+non-highmem builds.
 
-It is likely that further cleanups are possible in the page table
-code but those are not obvious from the config options.
+Add the Kconfig option and make this the default for non-LPAE builds
+with highmem enabled instead of CONFIG_VMSPLIT_2G.  LPAE still requires
+the vmsplit to be on a gigabyte boundary, so this is only available for
+classic pagetables at the moment, same as CONFIG_VMSPLIT_3G_OPT.
+
+Tested in qemu -M virt, both with and without HIGHMEM enabled.
 
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- include/linux/hugetlb.h | 5 +----
- include/linux/mm.h      | 1 -
- include/linux/pgtable.h | 9 ---------
- 3 files changed, 1 insertion(+), 14 deletions(-)
+ arch/arm/Kconfig | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/hugetlb.h b/include/linux/hugetlb.h
-index 58f755e70e96..7c6d191fdf50 100644
---- a/include/linux/hugetlb.h
-+++ b/include/linux/hugetlb.h
-@@ -178,7 +178,6 @@ void hugetlb_bootmem_set_nodes(void);
- 
- /* arch callbacks */
- 
--#ifndef CONFIG_HIGHPTE
- /*
-  * pte_offset_huge() and pte_alloc_huge() are helpers for those architectures
-  * which may go down to the lowest PTE level in their huge_pte_offset() and
-@@ -193,7 +192,6 @@ static inline pte_t *pte_alloc_huge(struct mm_struct *mm, pmd_t *pmd,
- {
- 	return pte_alloc(mm, pmd) ? NULL : pte_offset_huge(pmd, address);
- }
--#endif
- 
- pte_t *huge_pte_alloc(struct mm_struct *mm, struct vm_area_struct *vma,
- 			unsigned long addr, unsigned long sz);
-@@ -1047,9 +1045,8 @@ static inline spinlock_t *huge_pte_lockptr(struct hstate *h,
- 	 */
- 	if (size >= PUD_SIZE)
- 		return pud_lockptr(mm, (pud_t *) pte);
--	else if (size >= PMD_SIZE || IS_ENABLED(CONFIG_HIGHPTE))
-+	else if (size >= PMD_SIZE)
- 		return pmd_lockptr(mm, (pmd_t *) pte);
--	/* pte_alloc_huge() only applies with !CONFIG_HIGHPTE */
- 	return ptep_lockptr(mm, pte);
- }
- 
-diff --git a/include/linux/mm.h b/include/linux/mm.h
-index 6af3b7008f1a..019de55bd796 100644
---- a/include/linux/mm.h
-+++ b/include/linux/mm.h
-@@ -4025,7 +4025,6 @@ static inline spinlock_t *pte_lockptr(struct mm_struct *mm, pmd_t *pmd)
- 
- static inline spinlock_t *ptep_lockptr(struct mm_struct *mm, pte_t *pte)
- {
--	BUILD_BUG_ON(IS_ENABLED(CONFIG_HIGHPTE));
- 	BUILD_BUG_ON(MAX_PTRS_PER_PTE * sizeof(pte_t) > PAGE_SIZE);
- 	return ptlock_ptr(virt_to_ptdesc(pte));
- }
-diff --git a/include/linux/pgtable.h b/include/linux/pgtable.h
-index 780fe849ff8b..1352b4cee7ae 100644
---- a/include/linux/pgtable.h
-+++ b/include/linux/pgtable.h
-@@ -100,14 +100,6 @@ static inline pte_t *pte_offset_kernel(pmd_t *pmd, unsigned long address)
- #define pte_offset_kernel pte_offset_kernel
- #endif
- 
--#ifdef CONFIG_HIGHPTE
--#define __pte_map(pmd, address) \
--	((pte_t *)kmap_local_page(pmd_page(*(pmd))) + pte_index((address)))
--#define pte_unmap(pte)	do {	\
--	kunmap_local((pte));	\
--	rcu_read_unlock();	\
--} while (0)
--#else
- static inline pte_t *__pte_map(pmd_t *pmd, unsigned long address)
- {
- 	return pte_offset_kernel(pmd, address);
-@@ -116,7 +108,6 @@ static inline void pte_unmap(pte_t *pte)
- {
- 	rcu_read_unlock();
- }
--#endif
- 
- void pte_free_defer(struct mm_struct *mm, pgtable_t pgtable);
- 
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index 797705a94b28..8992fedfdf37 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -1025,7 +1025,8 @@ config BL_SWITCHER_DUMMY_IF
+ choice
+ 	prompt "Memory split"
+ 	depends on MMU
+-	default VMSPLIT_2G if HIGHMEM || ARM_LPAE
++	default VMSPLIT_2G if ARM_LPAE
++	default VMSPLIT_2G_OPT if HIGHMEM
+ 	default VMSPLIT_3G_OPT
+ 	help
+ 	  Select the desired split between kernel and user memory.
+@@ -1042,6 +1043,9 @@ choice
+ 		bool "3G/1G user/kernel split (for full 1G low memory)"
+ 	config VMSPLIT_2G
+ 		bool "2G/2G user/kernel split"
++	config VMSPLIT_2G_OPT
++		depends on !ARM_LPAE
++		bool "2G/2G user/kernel split (for full 2G low memory)"
+ 	config VMSPLIT_1G
+ 		bool "1G/3G user/kernel split"
+ endchoice
+@@ -1050,6 +1054,7 @@ config PAGE_OFFSET
+ 	hex
+ 	default PHYS_OFFSET if !MMU
+ 	default 0x40000000 if VMSPLIT_1G
++	default 0x70000000 if VMSPLIT_2G_OPT
+ 	default 0x80000000 if VMSPLIT_2G
+ 	default 0xB0000000 if VMSPLIT_3G_OPT
+ 	default 0xC0000000
+@@ -1058,6 +1063,7 @@ config KASAN_SHADOW_OFFSET
+ 	hex
+ 	depends on KASAN
+ 	default 0x1f000000 if PAGE_OFFSET=0x40000000
++	default 0x4f000000 if PAGE_OFFSET=0x70000000
+ 	default 0x5f000000 if PAGE_OFFSET=0x80000000
+ 	default 0x9f000000 if PAGE_OFFSET=0xC0000000
+ 	default 0x8f000000 if PAGE_OFFSET=0xB0000000
 -- 
 2.53.0
 
