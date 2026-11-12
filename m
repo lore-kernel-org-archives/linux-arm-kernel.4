@@ -2,44 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22769606A339
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E22606A88B
 	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:03:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wEOhOO2z;
-	dkim=pass (2048-bit key, unprotected) header.d=dolcini.it header.i=@dolcini.it header.a=rsa-sha256 header.s=default header.b=elmq5Boc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EgHxcPE3;
+	dkim=pass (2048-bit key, unprotected) header.d=dolcini.it header.i=@dolcini.it header.a=rsa-sha256 header.s=default header.b=iKGqdZ+/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ylShe8HWjM2yCOaQXzQ0NGIXs6JPh3EhfmIe6mjqzT4=; b=wEOhOO2z2CeIZT
-	BD5eZbRnc82SVhtLyYSqkKfKSPV/tee/jVqDQ9dSjd5pIYWY0TdwuDGKpqRMeWPtFC/GQtj5OG9T4
-	+T962EIhhnwyWlVPVrPMosLWJPmkIl6I5Oia6dVfcG3RZiDdz896N9qqUSAP7f+JgInOFoA4ReS6U
-	k0fpAiBWm+l5FiKuFfd9Zdjz4ZJ0rAjDOTvfAa44G690aiVfDzTCA0NxEiC2ZZ0kNrp9jxoFs5S8l
-	KbGIxsBeuD7QUY2e6DC8vtBrHsEPEGvlGzzO0lMuch+pzmWVck3nSNO9B3xMiQBTYlwruMsjqyy3S
-	RN2isrL2BSFO1QdvVjqg==;
+	List-Owner; bh=pHY2Uuseo/Jj08uOzuHqoVYzJM4L4mvUnlsbTZ8f4LA=; b=EgHxcPE3dyYNrT
+	c2F07OwpCRVrmXaLGg4qkNxXIMoBHHpyPgn3z3IvZnAAEICQJY6mjmwm7fpNl/Z9A5mGKLziHo/2z
+	XG91z1TEs/MTctbzf1W5Jb4OYJQo8yklN0NKvW40DU+vOacpCT1ghQ3ftRaYgv/XMZdJd3SdrVfUI
+	sOa16UzYM1HRHXe7Zz6ZwBmMHwfmjE37qCWoE1tfNPHNLyhs3g8fsbuFQUZHfQchuboJY2HC4/0Qp
+	cY2/LuCPAgFsLXSlcP+LONwyWOpOcPpfvu/D0am+qG/HB+GIA95QpH1S1E2BRQFaOIZVHXSvH5FW/
+	tS5e8cztwH072wK2gn/w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWKX-0000000ANQP-0Uux;
+	id 1xRWKX-0000000ANRH-25us;
 	Thu, 12 Nov 2026 15:03:13 +0000
-Received: from mail11.truemail.it ([2001:4b7e:0:8::81])
+Received: from mail11.truemail.it ([217.194.8.81])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWK9-0000000ANB0-2O6W
+	id 1xRWKA-0000000ANBI-338I
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 15:02:51 +0000
+	Thu, 12 Nov 2026 15:02:52 +0000
 Received: from francesco-nb.. (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 29323231D6;
-	Thu, 12 Nov 2026 16:02:46 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id 7AAA023211;
+	Thu, 12 Nov 2026 16:02:48 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1794495766;
-	bh=ylShe8HWjM2yCOaQXzQ0NGIXs6JPh3EhfmIe6mjqzT4=; h=From:To:Subject;
-	b=elmq5Boc7mSXRw2ZQTiTmd30m7eQsb+OS2hWtcZ3oiz63c3BMJw6Ny+x37NSYjkS2
-	 HF6vSxQgq3QmAa8WS6c7SKtA7lid9km6+jkAhIvgIBQ3+NIsXWqG75noYVFdloh8cX
-	 Qjgio6U/oIqyJ303sYJA/9OM+5hY2HxK15lUkzn3vMtVuZtKQvExV9JWFApgdnRc6t
-	 S5kcx+wF2wnSPrzK5aNRjfw1hbBphVXPUS2RvLS+LU3azIBx8J6Gfz+WwvaQxAT3b0
-	 MnLXDAORdGORQp5WctvByzVuwgYCSbTf9PbvNvjGqkxqZh1pUrPVzTD5g7ORnEycPV
-	 qem1R07MpJf8g==
+	s=default; t=1794495769;
+	bh=pHY2Uuseo/Jj08uOzuHqoVYzJM4L4mvUnlsbTZ8f4LA=; h=From:To:Subject;
+	b=iKGqdZ+/7OJ+sXnCPIRbjDsNy2ruzCEiVX5HdsVE18shrGiXPpiKFHU5rKkoIE9Lk
+	 H4TR4ZVlu3an394nP8WYhKGLDY16SqPbdW/OSlcn7S7wTtIFfT2xwRcaDeJnvpfHIi
+	 hV5EeMwut2HlpbpaDFMkFua/ceI3zCZiq4HLkGyWFN4WBzmSMdEZL1SQSvXwzYyH2F
+	 qfKHavk2zhx76yiMQQJk3c5QC0sZFO7Igz4rhtzbMCmaErMwuYKufEBSLva1boHdUa
+	 3eOf+ni5xT90i6RoRupI2ezxpXhnWOXTSxs2RFLSAGgW/gZH5e7zYiM/RF/c7Tjkec
+	 ZDXRGP7GNzwfA==
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Francesco Dolcini <francesco.dolcini@toradex.com>,
 	Rob Herring <robh@kernel.org>,
@@ -54,9 +54,9 @@ Cc: linux-bsp@toradex.com,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 05/11] arm64: dts: freescale: imx8mp-toradex-smarc: Add SPI aliases
-Date: Thu, 12 Nov 2026 16:02:27 +0100
-Message-ID: <20261112150236.164850-6-francesco@dolcini.it>
+Subject: [PATCH v1 08/11] arm64: dts: freescale: imx8-apalis: Add SPI aliases
+Date: Thu, 12 Nov 2026 16:02:30 +0100
+Message-ID: <20261112150236.164850-9-francesco@dolcini.it>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261112150236.164850-1-francesco@dolcini.it>
 References: <20261112150236.164850-1-francesco@dolcini.it>
@@ -64,8 +64,9 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_070249_805686_7C45B8AD 
-X-CRM114-Status: GOOD (  10.42  )
+X-CRM114-CacheID: sfid-20261112_070250_949713_C3F37A01 
+X-CRM114-Status: UNSURE (   9.71  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -87,31 +88,31 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-The SMARC specification defines the module interfaces and their
-numbering, SPI0 and SPI1 being the SPI buses available to the carrier
-board, implemented by ecspi1 and ecspi2 on Toradex SMARC iMX8MP.
+The Apalis family pinout defines the SoM interfaces and their
+numbering, SPI1 and SPI2 being the SPI buses available to the carrier
+board, implemented by lpspi0 and lpspi2 on Apalis iMX8.
 
-Without aliases the Linux SPI bus numbers are assigned dynamically and
-can change with the carrier board or probe order. Add spi0 and spi1
-aliases so the bus numbers in sysfs and the spidev names match the
-SMARC interface numbering. This replaces the spi0 alias imx8mp.dtsi
-gives to flexspi, which is not used on Toradex SMARC iMX8MP.
+imx8qm.dtsi numbers lpspi0 as spi0 and lpspi2 as spi2, so SPI2 does
+not match the Apalis numbering. Add spi0 and spi1 aliases in the SoM
+dtsi, zero-based with SPI1 being spi0, and delete the inherited spi2,
+so lpspi2 is bus 1 and carries a single alias.
 
 Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc.dtsi
-index eb8b9db7e3cd..f3d21d788b85 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc.dtsi
-@@ -20,6 +20,8 @@ aliases {
- 		serial1 = &uart4;
- 		serial2 = &uart2;
- 		serial3 = &uart3;
-+		spi0 = &ecspi1;
-+		spi1 = &ecspi2;
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+index 64604f91d567..806f5a8a51c8 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+@@ -8,6 +8,9 @@
+ / {
+ 	aliases {
+ 		ethernet0 = &fec1;
++		spi0 = &lpspi0;
++		spi1 = &lpspi2;
++		/delete-property/ spi2;
  	};
  
  	chosen {
