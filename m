@@ -2,68 +2,83 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D47E606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:34:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFF1606A888
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QwpWYW6x;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=CjiLcwNS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y/7HBDQX;
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=zohomail header.b=dXXu9RMD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=/J56hK+npGwUcYHlvvjnzB+Ql98rLiCDb+PVkIYFOG0=; b=QwpWYW6x1OP2FC21zV2GiDV0II
-	fgGqN8vUxZLBh5fzbOk66YZfxKWJSw+pcL2Pv6W2I8wv2jDAuBbIrHG4eWSrOVVarOIFPa5We2tBu
-	pjR+9s+Kdkgu46M8qWtdJZcRVyyN2/dvXYizjGVyqT4/NpbLvdQN2bedfd6tZ6vooIjF1d54hc69t
-	jWKuhwTKM/AIMJibWJXR2eQdPTk5IK6vDyzrzbdefF7KxANDginnaXetU9rAIUck8/MZtHDLTMbmA
-	LhSnjRg0Yz13evPWG76pW1h4TZYPAsal0t20jCybKyKnNmusw0UnWdz1lsha0fm1yhPYRliIV+mKR
-	9YmxRbdg==;
+	bh=WjpgXx6NEvfU1QpeJ8K6NIoACTTNQ40ei6HG54E25G4=; b=y/7HBDQXQyDzRz7G4GjehG8lVu
+	Ml+xJ4Ho87UfbnzaooMhGys1pBcAefs9Y/P7CExE3AKZa//uqsTJsDLAiSMYceQNXipGr/JtYtf/n
+	0gfyhoCQv+KqbqoYkkuZJ1bu8kOyj3JoM/FXGpfQLzIidRV8uLV/dmBrbaKGqyK50w72xEN+r/D5e
+	mja9jO9sd6LIhPm+wyqSZMCO+E3YHiwqRearFjLKS3Pkk5vJWQBBpeWMO7MCYmaKzyRHvpGcVZFhu
+	7FeWt5gSl7eh7ZnfkTL0Tgzgoz5JL/0D0VOJmRRKl3AA1UJRvkcgPDdu7B/q/ETrZGYryhv3qUISx
+	fKZqqjtw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWos-0000000AT7u-3sbB;
-	Thu, 12 Nov 2026 15:34:38 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWoj-0000000AT0M-0YRX
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 15:34:30 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5C3CB1516;
-	Thu, 12 Nov 2026 07:34:20 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 34E7E3F632;
-	Thu, 12 Nov 2026 07:34:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794497663; bh=v/5ba4HhdEKibvPby5qRUyDyDF/hjUFrNiHj+mQAZkY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CjiLcwNSF67aeSiSWGY8jDgobhA1YG49NCsh+PlIuuOlyspq9gf2vIK2Lfx6O58jl
-	 7DXzsnZvyjV/uOHKovMgmrZFr3bo5JQQhpD5LoTfYwQEUKWEpqozc5DreMdXL06A7T
-	 pANlEd4o5qvv6E5kQUvszpo9fc2drKpxqUvcApvY=
-Date: Thu, 12 Nov 2026 15:34:15 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-Cc: maz@kernel.org, oupton@kernel.org, fuad.tabba@linux.dev,
-	joey.gouly@arm.com, seiden@linux.ibm.com, suzuki.poulose@arm.com,
-	yuzenghui@huawei.com, linux-arm-kernel@lists.infradead.org,
-	kvmarm@lists.linux.dev, will@kernel.org, mark.rutland@arm.com,
-	linux-perf-users@vger.kernel.org, catalin.marinas@arm.com,
-	james.clark@linaro.org
-Subject: Re: [RFC PATCH v7 06/28] KVM: arm64: Add KVM_CAP_ARM_SPE capability
-Message-ID: <avXcdwY89YPFGIlk@raptor>
-References: <20260903160623.315525-1-alexandru.elisei@arm.com>
- <20260903160623.315525-7-alexandru.elisei@arm.com>
- <atDtheEuNRs7v3Gx@gremlin>
+	id 1xRWpW-0000000ATNk-1ZYf;
+	Thu, 12 Nov 2026 15:35:14 +0000
+Received: from sender4-pp-f112.zoho.com ([136.143.188.112])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRWpO-0000000ATJv-1wsJ;
+	Thu, 12 Nov 2026 15:35:12 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794497650; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Kq9864SPyKvjjMeRkdipd1E35RQlhbP0ilf6aRZxwioSOZqJRi4hUgIpli49TkACpJs+Y+kjV6OsGiZxnOZqzJermko4nVXap6/lqVSYHa2aNJw6g0Y3tpGksvDE4DkMYnrAfxunpoEEzUVTaolJTZO8gQJBTUMKJoi57CBjCzw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1794497650; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=WjpgXx6NEvfU1QpeJ8K6NIoACTTNQ40ei6HG54E25G4=; 
+	b=jL5Z6j3nO2eolGSsRFZwEnO/838+wTgReS9TqAHhUAFdXOgBTW7XKnEbORC6W1mUieN9qv06Pt5BNh7oW24fhayZSLAz6BGrt7LWsS2M6thyaMb9UjUhFZjVOa2fynYf6xhhtGDtD9Bz/wduku52/5YHoX1lJDB+kQ5uqvbN8og=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: a=rsa-sha256; b=dXXu9RMDE0xezo6kZ18H2VSiccbq6FlBnZmCo/DcR2ZMbbhHVHrljwAtBAOFm859uXeyyFX/pUyOZhP/wCxZjlKTahs83Fb6HxhROSkyXKsfHvpVpiRwl+92SWmr9RTRScyeK+9IbHmEctP9m3I0//4XQtkGXz38uRPAqK1914E=; c=relaxed/relaxed; s=zohomail; d=collabora.com; v=1; bh=WjpgXx6NEvfU1QpeJ8K6NIoACTTNQ40ei6HG54E25G4=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zohomail.com with SMTPS id 1794497647702543.2304470024969;
+	Thu, 12 Nov 2026 07:34:07 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Vidith Madhu <vmadhu@nvidia.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>,
+ Fangzhi Zuo <Jerry.Zuo@amd.com>, Daniel Stone <daniels@collabora.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Helge Deller <deller@gmx.de>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andyshrk@163.com>,
+ Michel =?UTF-8?B?RMOkbnplcg==?= <michel.daenzer@mailbox.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+ Derek Foreman <derek.foreman@collabora.com>,
+ wayland-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 09/27] drm: Add VRR target frame rate properties
+Date: Thu, 12 Nov 2026 16:33:58 +0100
+Message-ID: <6MnpleYQQheiUMA8VObDVg@collabora.com>
+In-Reply-To: <812a813c-05cf-190d-6006-b8f63764beb7@nvidia.com>
+References: <20261105-vrr-limiter-uapi-v2-0-55f4215be2c2@collabora.com>
+ <20261105-vrr-limiter-uapi-v2-9-55f4215be2c2@collabora.com>
+ <812a813c-05cf-190d-6006-b8f63764beb7@nvidia.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <atDtheEuNRs7v3Gx@gremlin>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_073425_267372_2ECBA1D4 
-X-CRM114-Status: GOOD (  70.13  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_073506_571951_A5DBE2F2 
+X-CRM114-Status: GOOD (  37.60  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,447 +89,118 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Lorenzo,
-
-On Thu, Oct 15, 2026 at 05:51:03PM +0100, Lorenzo Stoakes (ARM) wrote:
-> On Thu, Sep 03, 2026 at 05:06:01PM +0100, Alexandru Elisei wrote:
-> > Add the SPE capability that will be used by userspace to test if KVM
-> > supports SPE virtualization.
+On Thursday, 12 November 2026 06:24:50 Central European Standard Time Vidith Madhu wrote:
 > 
-> You are also adding spe.c too right? Which is adding functionality for the
-> perf driver to call into? Probably worth mentioning that you're adding the
-> foundations of this stuff in the commit message also.
-
-Done.
-
+> On Thu, 5 Nov 2026, Nicolas Frattaroli wrote:
 > 
-> >
-> > The SPE driver supports heterogenous systems. Keep track of all the
-> > available Statistical Profiling Units (SPUs) in the system, because KVM
-> > will require the user to associate a VM with exactly one SPU.
-> 
-> I guess questions more for my understanding here :)
-> 
-> Is it one SPU per core, or is it some property of heterogenous systems,
-> i.e. 1 per big/LITTLE etc.?
-
-Usually one per CPU cluster/group: in a homogeneous CPU, one instance; in a
-CPU with big cores and little cores, there would be two SPE instances; in a
-CPU with big, medium and little, three instances. I'm sure it's possible to
-come up with more exotic configurations.
-
-The SPE driver supports this partitioning only with device tree, not with
-ACPI (for now, there's a series on the mailing list to fix this) and it
-looks at the ppi-partitions node to determine which CPUs are associated
-with each SPE instance. The node is described in
-Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml.
-
-For example, look at arch/arm64/boot/dts/rockchip/rk3399-base.dtsi, at the
-PMU (not SPE) nodes: there's pmu_a53, associated with ppi_cluster0, which
-is interrupt-partition-0, and it includes CPUs cpu_l0 to cpu_l3 (I assume
-'l' here stands for 'little'). Then there's also pmu_a72, associated with
-ppi_cluster1, which includes CPUs cpu_b0 and cpu_b1 (where 'b' is probably
-'big').
-
-If SPE were supported by all the cores, there would have been two
-instances: spe_a53, associated with ppi_cluster0, and spe_a72, associated
-with ppi_cluster1. If SPE were supported only on the big cores, there would
-have been one instance, spe_a72 associated with ppi_cluster1 (naming is
-obviously not set in stone, that's just an example).
-
-I think I know what you're going to say and you are right: yes, there are
-no device tree files for heterogeneous systems with SPE. Supporting this
-type of systems was requested by Will Deacon, the SPE driver maintainer,
-because the SPE driver supports them.
-
-> 
-> How can a user decide which? Do you actually expose the ability to select a
-> named SPU, or is it automatically determined based upon which CPUs are used
-> by the VM?
-
-All SPE instances are exposed in /sys/bus/event_source/devices. This is an
-example for an Orion O6 board (with ACPI and the driver hacked to make it
-probe successfully):
-
-$ ls /sys/bus/event_source/devices/
-total 0
-lrwxrwxrwx 1 root root 0 Nov 12  2026 arm_spe_0 -> ../../../devices/platform/arm,spe-v1/arm_spe_0/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 armv8_pmuv3_0 -> ../../../devices/armv8_pmuv3_0/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 armv8_pmuv3_1 -> ../../../devices/armv8_pmuv3_1/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 breakpoint -> ../../../devices/breakpoint/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 kprobe -> ../../../devices/kprobe/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 software -> ../../../devices/software/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 tracepoint -> ../../../devices/tracepoint/
-lrwxrwxrwx 1 root root 0 Nov 12  2026 uprobe -> ../../../devices/uprobe/
-
-Notice how there are two PMU instances, but only one SPE instances, that's
-because not all CPUs have SPE.
-
-It's up to the user to configure which one the VM uses - see patch #13 in
-the series, "KVM: arm64: Add SPE VCPU device attribute to set the SPE
-device". As for an example implementation, the user specifies on which
-physical CPUs the VM runs, and from there kvmtool finds the SPE instance
-that includes those CPUs. See my kvmtool patches [0], namely
-spe__init() -> find_pmu() [1] and what find_pmu() does [2].
-
-Having KVM trying to guess what userspace wants sounds frought with danger
-to me.
-
-Two different SPE instances cannot be used interchangeably, because A. they
-might be totally different implementations (different versions of SPE,
-different implemented registers, different events, etc), and even if they
-are in theory the same, the events they are recording might have different
-semantics across different CPU clusters. For example, Cortex-A53 is in
-in-order, Cortex-A72 is out-of-order. How is the guest going to make sense
-of any record relating to speculation, and how is the guest going to know
-which record was for an instruction sampled on which core?
-
-[0] https://gitlab.arm.com/linux-arm/kvmtool-ae/-/commit/d93b287acad184be48118448fa8b2c7ae6cae249
-[1] https://gitlab.arm.com/linux-arm/kvmtool-ae/-/blob/kvm-spe-v7/arm64/spe.c#L111
-[2] https://gitlab.arm.com/linux-arm/kvmtool-ae/-/blob/kvm-spe-v7/arm64/pmu.c#L195
-
-> 
-> What if a VM spans both 'big' and 'LITTLE' cores?
-
-I think you might have answered that yourself, judging from your subsequent
-comments :) Similar to the PMU, KVM will not allow that, and a VCPU will
-exit with KVM_EXIT_FAIL_ENTRY if it's scheduled on a physical CPU that is
-not part of the cluser that belongs to the SPE instance assigned to the VM.
-
-In general, even if KVM might allow the user to create a VM with VCPUs with
-mismatched features, this is not supported and it will almost definitely
-blow up at some point. At least, that was the stance of the KVM maintainer
-a few years ago, when KVM_ARM_VCPU_PMU_V3_SET_PMU was added.
-
-> 
-> >
-> > Signed-off-by: Alexandru Elisei <alexandru.elisei@arm.com>
+> > Userspace may wish to set a target frame rate for the Variable Refresh
+> > Rate mechanism. There are multiple possible ways such a target could be
+> > communicated.
+> > 
+> > It's desirable for userspace to not only set a fixed target, but a
+> > target range within which VRR may operate. This is because even if a
+> > sink advertises a certain range as supported, said range may not be the
+> > ideal range to use, as numbers on the extreme end of the range may
+> > induce flickering or other glitches.
+> > 
+> > There's four choices to how one bracketing value for the target range
+> > could be communicated:
+> > 1. Target frame rate in something like millihertz
+> > 2. Target frame period in something like usecs
+> > 3. Target vtotal value
+> > 4. Target frame rate as a fraction expressed by two integers
+> > 
+> > Choice 1 is unpleasant as it would introduce some amount of rounding to
+> > common broadcast framerates like 24/1.001, which seems minor except that
+> > exact matches to standard framerates would rely on making all userspace
+> > and kernel agree on a specific method of rounding. This is sure to go
+> > wrong, so is disqualified.
+> > 
+> > Choice 2 has the same problem as 1, with the added complication that
+> > the EDID's VRR range is expressed in frames per second, and other HDMI
+> > features express things in frames per second as well, which would
+> > require possibly imprecise computations.
+> > 
+> > Choice 3 is disqualified as mechanisms other than VRR, such as FVA, may
+> > also modify the vtotal value. Additionally, it has the same drawbacks of
+> > choice 2 and 1.
+> > 
+> > Choice 4 is therefore what's implemented. The frame rate 24/1.001Hz, for
+> > example, is expressed as nominator=24000 and denominator=1001. As there
+> > is both a minimum and a maximum, there are 4 properties in total: two
+> > numerators, and two denominators. A fixed rate with no variability is
+> > expressed by setting the minimum fractional and the maximum fractional
+> > properties to the same value.
+> > 
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > > ---
-> >  Documentation/virt/kvm/api.rst   | 10 ++++++
-> >  arch/arm64/include/asm/kvm_spe.h | 18 ++++++++++
-> >  arch/arm64/kvm/Makefile          |  1 +
-> >  arch/arm64/kvm/arm.c             |  4 +++
-> >  arch/arm64/kvm/spe.c             | 56 ++++++++++++++++++++++++++++++++
-> >  drivers/perf/arm_spe_pmu.c       |  4 +++
-> >  include/linux/perf/arm_spe_pmu.h | 12 +++++++
-> 
-> The KVM arm MAINTAINERS entry has:
-> 
-> F:	arch/arm64/kvm/
-> F:	include/kvm/arm_*
-> 
-> So arch/arm64/kvm/spe.c and include/linux/perf/arm_spe_pmu.h don't need any
-> updates there.
-> 
-> >  include/uapi/linux/kvm.h         |  1 +
-> >  8 files changed, 106 insertions(+)
-> >  create mode 100644 arch/arm64/include/asm/kvm_spe.h
-> >  create mode 100644 arch/arm64/kvm/spe.c
-> >
-> > diff --git a/Documentation/virt/kvm/api.rst b/Documentation/virt/kvm/api.rst
-> > index e0430cc750c9..1ed5c389c7a4 100644
-> > --- a/Documentation/virt/kvm/api.rst
-> > +++ b/Documentation/virt/kvm/api.rst
-> > @@ -9600,6 +9600,16 @@ take care to differentiate between these cases.
-> >  The presence of this capability indicates that the nested KVM guest can
-> >  start in ESA mode.
-> >
-> > +8.48 KVM_CAP_ARM_SPE
-> > +--------------------
-> > +
-> > +:Capability: KVM_CAP_ARM_SPE
-> > +:Architectures: arm64
-> > +:Type: vm
-> > +
-> > +This capability indicates that Statistical Profiling Extension (SPE)
-> > +virtualization is available in KVM.
-> 
-> Is it worth adding something here about the perf driver? As this seems key
-> to the thing. Or is that too much of an implementation detail?
+> >  drivers/gpu/drm/drm_atomic.c      | 14 ++++++++++++
+> >  drivers/gpu/drm/drm_atomic_uapi.c | 24 ++++++++++++++++++++
+> >  drivers/gpu/drm/drm_connector.c   | 48 +++++++++++++++++++++++++++++++++++++++
+> >  drivers/gpu/drm/drm_crtc.c        | 34 +++++++++++++++++++++++++++
+> >  drivers/gpu/drm/drm_mode_config.c | 20 ++++++++++++++++
+> >  include/drm/drm_crtc.h            |  6 +++++
+> >  include/drm/drm_mode_config.h     | 45 ++++++++++++++++++++++++++++++++++++
+> >  7 files changed, 191 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> > index 9bb761eda59f..da5c6925c349 100644
+> > --- a/drivers/gpu/drm/drm_atomic.c
+> > +++ b/drivers/gpu/drm/drm_atomic.c
+> > @@ -489,6 +489,7 @@ EXPORT_SYMBOL(drm_atomic_get_crtc_state);
+> >  static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+> >  				 const struct drm_crtc_state *new_crtc_state)
+> >  {
+> > +	const struct drm_crtc_vrr_state *vrr = &new_crtc_state->vrr_state;
+> >  	struct drm_crtc *crtc = new_crtc_state->crtc;
+> >  
+> >  	/* NOTE: we explicitly don't enforce constraints such as primary
+> > @@ -544,6 +545,19 @@ static int drm_atomic_crtc_check(const struct drm_crtc_state *old_crtc_state,
+> >  		return -EINVAL;
+> >  	}
+> >  
+> > +	/*
+> > +	 * Reject VRR limiter ranges that only specify one end of the limit, or
+> I think specifying just one end of the limit should still be a valid case, 
+> the client may want to use the default bound on one side implied by the 
+> base timings/min. refresh rate and constrain the other.
 
-I'll add something, because I don't think the dependency is obvious.
+That is what the RFC did, but unfortunately this leads to problems for
+the kernel and non-obvious behaviour for userspace. Specifically, userspace
+may set what is a fixed rate without intending to do so, and the kernel needs
+to do a chicken-and-egg dance to determine whether something could be a fixed
+rate to see if CinemaVRR lowering the minimum rate applies at which point it
+may no longer be a fixed rate.
+
+The new display-min/max properties are so that userspace knows what limits the
+kernel is using (so that it factors in quirks applied outside of what's in the
+EDID) and get to essentially specify one end that way.
 
 > 
-> > +
-> >  9. Known KVM API problems
-> >  =========================
-> >
-> > diff --git a/arch/arm64/include/asm/kvm_spe.h b/arch/arm64/include/asm/kvm_spe.h
-> > new file mode 100644
-> > index 000000000000..f05e6d3f5705
-> > --- /dev/null
-> > +++ b/arch/arm64/include/asm/kvm_spe.h
-> > @@ -0,0 +1,18 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (C) 2021 - ARM Ltd
-> > + */
-> > +
-> > +#ifndef __ARM64_KVM_SPE_H__
-> > +#define __ARM64_KVM_SPE_H__
-> > +
-> > +#ifdef CONFIG_KVM_ARM_SPE
-> > +bool kvm_supports_spe(void);
-> > +#else
-> > +static __always_inline bool kvm_supports_spe(void)
-> 
-> Very nitty, but not sure if __always_inline is strictly necessary, you'd hope
-> that the compiler would naturally inline a false on optimisation :)
-
-I think that's an artifact from an earlier iteration, when it was called
-from the hyp object, which is a different namespace than the rest of the
-kernel and the __always_inline was required to make sure the function was
-copied at the call sites.
-
-I'll remove.
-
-> 
-> > +{
-> > +	return false;
-> > +}
-> > +#endif /* CONFIG_KVM_ARM_SPE */
-> > +
-> > +#endif /* __ARM64_KVM_SPE_H__ */
-> > diff --git a/arch/arm64/kvm/Makefile b/arch/arm64/kvm/Makefile
-> > index 59612d2f277c..9ee271f713cd 100644
-> > --- a/arch/arm64/kvm/Makefile
-> > +++ b/arch/arm64/kvm/Makefile
-> > @@ -29,6 +29,7 @@ kvm-y += arm.o mmu.o mmio.o psci.o hypercalls.o pvtime.o \
-> >  kvm-$(CONFIG_HW_PERF_EVENTS)  += pmu-emul.o pmu.o
-> >  kvm-$(CONFIG_ARM64_PTR_AUTH)  += pauth.o
-> >  kvm-$(CONFIG_PTDUMP_STAGE2_DEBUGFS) += ptdump.o
-> > +kvm-$(CONFIG_KVM_ARM_SPE)     += spe.o
-> >
-> >  kvm-$(CONFIG_NVHE_EL2_TRACING) += hyp_trace.o
-> >
-> > diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> > index 8b080804bc90..eca1184ef9dd 100644
-> > --- a/arch/arm64/kvm/arm.c
-> > +++ b/arch/arm64/kvm/arm.c
-> > @@ -42,6 +42,7 @@
-> >  #include <asm/kvm_nested.h>
-> >  #include <asm/kvm_pkvm.h>
-> >  #include <asm/kvm_ptrauth.h>
-> > +#include <asm/kvm_spe.h>
-> >  #include <asm/sections.h>
-> >  #include <asm/stacktrace/nvhe.h>
-> >
-> > @@ -468,6 +469,9 @@ int kvm_vm_ioctl_check_extension(struct kvm *kvm, long ext)
-> >  	case KVM_CAP_ARM_PMU_V3_STRICT:
-> >  		r = kvm_supports_guest_pmuv3();
-> >  		break;
-> > +	case KVM_CAP_ARM_SPE:
-> > +		r = kvm_supports_spe();
-> > +		break;
-> >  	case KVM_CAP_ARM_INJECT_SERROR_ESR:
-> >  		r = cpus_have_final_cap(ARM64_HAS_RAS_EXTN);
-> >  		break;
-> > diff --git a/arch/arm64/kvm/spe.c b/arch/arm64/kvm/spe.c
-> > new file mode 100644
-> > index 000000000000..646806a60d66
-> > --- /dev/null
-> > +++ b/arch/arm64/kvm/spe.c
-> > @@ -0,0 +1,56 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (C) 2021 - ARM Ltd
-> > + */
-> > +
-> > +#include <linux/cpumask.h>
-> > +#include <linux/kvm_host.h>
-> > +#include <linux/perf/arm_spe_pmu.h>
-> > +
-> > +#include <asm/kvm_spe.h>
-> > +#include <asm/sysreg.h>
-> 
-> NIT: include <linux/cleanup.h> for guard(mutex)() etc.?
-
-Ok.
-
-> 
-> > +
-> > +static LIST_HEAD(spe_pmus);
-> > +static DEFINE_MUTEX(spe_pmus_lock);
-> > +
-> > +struct spe_pmu_entry {
-> > +	struct list_head link;
-> > +	struct arm_spe_pmu *spe_pmu;
-> > +};
-> 
-> This seems like an odd way of making this into a list, can't you just embed
-> list_head in arm_spe_pmu?
-> 
-> Then adding becomes:
-> 
-> list_add_tail(&spe_pmu->link, &spu_pmus);
-> 
-> And removing:
-> 
-> list_del(&spe_pmu->link);
-> 
-> And you can avoid the alloc below too.
-
-This is the same pattern used for the PMU. Seems like a small thing, so I
-think consistency is better? I don't expect more than three SPE instances
-in a system (little + medium + big), so the extra 3 * 8 bytes should not be
-an issue?
-
-On the other hand, it is indeed more common to embed list_head in struct
-arm_spe_pmu. Up to you what you prefer.
-
-> 
-> 
-> > +
-> > +void kvm_spe_add_instance(struct arm_spe_pmu *spe_pmu)
-> 
-> Hmm I'm guessing this is per-SPU but no mention of SPU in the function
-> name? Is an 'SPE instance' equivalent?
-
-Yes, they are equivalent, my bad for not explaining it properly.
-
-> 
-> If so, maybe worth referencing SPE instances rather than SPUs in the commit
-> message, or at least say something like 'otherwise known as SPE instances'.
-
-Indeed, done.
-
-> 
-> > +{
-> > +	struct spe_pmu_entry *entry;
-> > +
-> > +	guard(mutex)(&spe_pmus_lock);
-> > +
-> > +	entry = kmalloc(sizeof(*entry), GFP_KERNEL);
-> 
-> The convention is kmalloc_obj() now. Which also lets you elide GFP_KERNEL
-> so this can be:
-
-Done.
-
-> 
-> 	entry = kmalloc_obj(*entry);
-> 
-> > +	if (!entry)
-> > +		return;
-> 
-> Hmm, shouldn't failing to allocate here be an error, or at least a warning?
-
-I don't think it's something that should cause the probe to fail. I could
-add a warning, I guess, to let the user know why KVM_CAP_ARM_SPE is missing
-even though the SPE module was loaded successfully.
-
-> 
-> > +
-> > +	entry->spe_pmu = spe_pmu;
-> > +	list_add_tail(&entry->link, &spe_pmus);
-> > +}
-> > +EXPORT_SYMBOL_FOR_MODULES(kvm_spe_add_instance, "arm_spe_pmu");
-> > +
-> > +void kvm_spe_remove_instance(struct arm_spe_pmu *spe_pmu)
-> > +{
-> > +	struct spe_pmu_entry *entry, *tmp;
-> > +
-> > +	guard(mutex)(&spe_pmus_lock);
-> > +
-> > +	list_for_each_entry_safe(entry, tmp, &spe_pmus, link) {
-> 
-> You break once you find the entry, so doesn't have to be the _safe variant.
-
-Hmm... in my head, the _safe variant was always associated with deletion,
-and not having the safe variant might cause a bug, if in the future, the
-body of the loop is modified and the break removed.
-
-Do you strongly oppose to keeping the safe variant?
-
-Thanks,
-Alex
-
-> 
-> But can avoid all the complexity with an embedded list_head in the spe_pmu
-> type if it's possible to put it there!
-> 
-> > +		if (entry->spe_pmu == spe_pmu) {
-> > +			list_del(&entry->link);
-> > +			kfree(entry);
-> > +			break;
-> > +		}
+> > +	 * specify a numerator > 0 with a denominator that is 0.
+> > +	 */
+> > +	if ((!vrr->vrr_min_n || !vrr->vrr_min_d ||
+> > +	     !vrr->vrr_max_n || !vrr->vrr_max_d) &&
+> > +	    (vrr->vrr_min_n > 0 || vrr->vrr_max_n > 0)) {
+> > +		drm_dbg_atomic(crtc->dev,
+> > +			       "[CRTC:%d:%s] incomplete VRR limiter range\n",
+> > +			       crtc->base.id, crtc->name);
+> > +		return -EINVAL;
 > > +	}
-> > +}
-> > +EXPORT_SYMBOL_FOR_MODULES(kvm_spe_remove_instance, "arm_spe_pmu");
-> > +
-> > +bool kvm_supports_spe(void)
-> > +{
-> > +	guard(mutex)(&spe_pmus_lock);
-> > +	return !list_empty(&spe_pmus);
-> > +}
-> > diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
-> > index 42ba0924bd02..f24b122a087c 100644
-> > --- a/drivers/perf/arm_spe_pmu.c
-> > +++ b/drivers/perf/arm_spe_pmu.c
-> > @@ -1370,6 +1370,8 @@ static int arm_spe_pmu_device_probe(struct platform_device *pdev)
-> >  	if (ret)
-> >  		goto out_teardown_dev;
-> >
-> > +	kvm_spe_add_instance(spe_pmu);
 > > +
 > >  	return 0;
-> >
-> >  out_teardown_dev:
-> > @@ -1383,6 +1385,8 @@ static void arm_spe_pmu_device_remove(struct platform_device *pdev)
-> >  {
-> >  	struct arm_spe_pmu *spe_pmu = platform_get_drvdata(pdev);
-> >
-> > +	kvm_spe_remove_instance(spe_pmu);
-> > +
-> >  	arm_spe_pmu_perf_destroy(spe_pmu);
-> >  	arm_spe_pmu_dev_teardown(spe_pmu);
-> >  	free_percpu(spe_pmu->handle);
-> > diff --git a/include/linux/perf/arm_spe_pmu.h b/include/linux/perf/arm_spe_pmu.h
-> > index 97b14e236fcd..bdb703558a87 100644
-> > --- a/include/linux/perf/arm_spe_pmu.h
-> > +++ b/include/linux/perf/arm_spe_pmu.h
-> > @@ -49,4 +49,16 @@ struct arm_spe_pmu {
-> >
-> >  #define to_spe_pmu(p) (container_of(p, struct arm_spe_pmu, pmu))
-> >
-> > +#ifdef CONFIG_KVM_ARM_SPE
-> > +void kvm_spe_add_instance(struct arm_spe_pmu *spe_pmu);
-> > +void kvm_spe_remove_instance(struct arm_spe_pmu *spe_pmu);
-> > +#else
-> > +static inline void kvm_spe_add_instance(struct arm_spe_pmu *spe_pmu)
-> > +{
-> > +}
-> > +static inline void kvm_spe_remove_instance(struct arm_spe_pmu *spe_pmu)
-> > +{
-> > +}
-> > +#endif /* CONFIG_KVM_ARM_SPE */
-> > +
-> >  #endif /* __PERF_ARM_SPE_PMU_H__ */
-> > diff --git a/include/uapi/linux/kvm.h b/include/uapi/linux/kvm.h
-> > index ac2d77d14963..1565a609890b 100644
-> > --- a/include/uapi/linux/kvm.h
-> > +++ b/include/uapi/linux/kvm.h
-> > @@ -999,6 +999,7 @@ struct kvm_enable_cap {
-> >  #define KVM_CAP_S390_HPAGE_2G 249
-> >  #define KVM_CAP_PPC_COMPAT_CAPS 250
-> >  #define KVM_CAP_ARM_PMU_V3_STRICT 251
-> > +#define KVM_CAP_ARM_SPE 252
-> >
-> >  struct kvm_irq_routing_irqchip {
-> >  	__u32 irqchip;
-> > --
-> > 2.43.0
-> >
-> >
-> 
-> --
-> Cheers, Lorenzo
+> >  }
+> >  
+>> [snip]
+
+
+
+
 
