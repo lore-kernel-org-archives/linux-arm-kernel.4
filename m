@@ -2,151 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9876D606A8BA
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 07:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3208606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 07:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IXwZC1y/;
-	dkim=pass (2048-bit key, unprotected) header.d=gahingwoo.com header.i=@gahingwoo.com header.a=rsa-sha256 header.s=fm1 header.b=tF0F9SoA;
-	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=yaqfQY0d
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=o8jFOGhJ;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jYd/fAZz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=bJ8bCP6CSgwTUoA5Jdtpfv6fl23Ll6VoeGU8ytMkhDI=; b=IXwZC1y/V4810R
-	E9bke2J7wvHieiFYzklAoIqPY82jQMLAmw7DOpw39uaZdykYq5+AF3PkqkAPrzDZdsSliZXM3lRf3
-	Yk4uASdRrCfvu0GYlEGwbp8mhiV8s9jD2fyY0cvjEr3Luhl5E4MwJNEnqsUoECo844FecmP/quEHb
-	4zPgVe5Wp+3szX9npf5N2e/hc3uBizesQSUflJRQF0NrXRLU6LG6R+4GI+/sOa9wxQ7813KgBvmwE
-	wqPY7EJefWFrIxvigvJQUPIp1g4zPPamIRVagTnHyhX+CbCLhvgKMfhZ6YADy4IrOYJAJq6AeHc/E
-	D1m4msOPisrgmCkBZQlw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=a1xEK6Aga3yjCNS1Hmlu8sGRBKzLE3yolmU5IVLWK9g=; b=o8jFOGhJYECRZKs3C0kLVJkJpl
+	Evee21+unGBAvOqLZLBNDkKvJthv4abvTwH2UmI64HOAavaxZ8MgmjF2YIsCUYWl+kGLVcfCGkffw
+	a1zFV7mK/JGs9iKTH7FX3n4cfqCLUWiHOBgV/x6aZ4F5Xp9WqvuwhkPHvkqbb7kzOPjD3Q9/cvTxD
+	/9ZGeK3RTpIpkJgHYVIniF8ilM2/lQzjb81JkBvgssPWD/vMXCc+/yNsopI3rmle72BQX7tZoB63x
+	ib4x9Ldll5jLaPC8oy8V/h4Qbn2dBOrPrqO3EnDqPxCIdYO5N5Un4kTGPGgkWkqQvV4z9XxlEo6Ii
+	cMvxloFw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRP8T-00000008ulM-1OP0;
-	Thu, 12 Nov 2026 07:22:17 +0000
-Received: from flow-a7-smtp.messagingengine.com ([103.168.172.142])
+	id 1xRPBJ-00000008v9X-3D62;
+	Thu, 12 Nov 2026 07:25:13 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRP8C-00000008ufd-2pWL
+	id 1xRPBB-00000008v96-0Ltf
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 07:22:14 +0000
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailflow.phl.internal (Postfix) with ESMTP id D1A1E138023D
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 02:21:59 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-02.internal (MEProxy); Thu, 12 Nov 2026 02:21:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gahingwoo.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm1; t=1794468118; x=
-	1794475318; bh=bJ8bCP6CSgwTUoA5Jdtpfv6fl23Ll6VoeGU8ytMkhDI=; b=t
-	F0F9SoAH6M1Jmttn0BNFQF6wa/hS9p9c1PyA9ks+/9eTHeBsYHoJArnY8GZoYJmS
-	/yt/X0KuLwZW8kWuoXS6twE2a0qfyrxXNRGmIdaphZ865Zdsc3syrj9kZLzWgw+F
-	lZYQmdNPlh51PXnqyQ29bWm15B32QT+R9hCWFrQ8s52vIZy1+/2O8UlwghbBnMuQ
-	c0j24paUuPZJCgxLdNHSSjkc9ntZKe+5wWCRCawK8SFfWsNA7bUdBrv/vBY1fzZU
-	eFvxT0bURa0p33j4GkcyGWk3I13JEU+BdF979A0/7Myq9FNoo5FmVJwiTvwfoxXt
-	6BTBXgtiZc43W3myuxPig==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm3; t=1794468118; x=1794475318; bh=b
-	J8bCP6CSgwTUoA5Jdtpfv6fl23Ll6VoeGU8ytMkhDI=; b=yaqfQY0dFDD/zQDXH
-	fa9Wmy5pWzxphmoTfhGWdAY4CWIfBliCgnSSkkMtnn17G1aMwI7E3rnyo+ZZb6wP
-	vyw7/y2HogD81EWymm8WAQdzTldcb3b5TpyzbZE8Ln6bTCIJv0WnbrdYlC+I1y0Z
-	I8j5UJpRHuAXd2CMjSO8YcVFK7ZkqHvCD70gkc4gaeYN83G1Z17FL5HpNJb5rCi5
-	MGeMbL9yS7uwuf0Qt7zwwOvFS2491yr+B04lHPS0lzPH1uiV6YXoBQlFMTTGpKlW
-	uSh5RKQ7I1IBQE7DwU9RfdkUlXpRapzbIra1il9YhOSeHT60OJQ81iAike43l4cD
-	qU0Dg==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=sign d=gahingwoo.com a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1794468118; d=gahingwoo.com;
-	mf=PGdhaGluZ0BnYWhpbmd3b28uY29tPg==;
-	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
-	s=fm1:rsa-sha256:by8fjdejFimF7A5ypA3Eixln8f6IBa3BBPRyyc70JsxGvBT
-	xKYX0OENwS53GvDDSJ4ahyrl1OtQ8gPi/MnCina6G3FCZr5HcqM+/AKH0qinA0J4
-	EjDFReNQrv5L+FWnHO6WroAXZzMguJVk+efai7hikJ1KgB5lzeqfzoBK5Vgz1O+1
-	Hf5PKbhyUrUerH2VvNgHME+KX7mBBaEc/JPldh1YU63ybZjUh+tHbqjJLosMG0xi
-	MFv6ZvOFj3rwv7unvCMsnSmJgQtu2Na3z/yU0fd1Jrjg4io1s38KmGLqr5K6mGpu
-	ZGulFKs2v/arHzvqDxmSXBX/jLzXFta17B+ckmg==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
-	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
-	action=mi-m=1; hc=11;
-	hn=cc,content-transfer-encoding,date,feedback-id,from,
-	in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1; h=sha256:xuxAie5g+6iRjBprhGgdJCyhDhMjW7s+lKKHIWO1yd0=:bJ8bCP6CSgwTUoA5Jdtpfv6fl23Ll6VoeGU8ytMkhDI=;
-X-ME-Sender: <xms:Fmn1ahqt2i__S3t7VvjOrolKTcZTzWIO9Ft1sy_kHoBpWb2kGnoXAg>
-    <xme:Fmn1aqd1uZtVZuZdtUBboJ48SIjUmggzXUZI6xF6StzTUeq8g1Nwwe7kMcI9kVrGZ
-    HlkzW7JBsOWynfbajCgqn5rtvqi7k6xBD8ALBgXrwARL1uzcYWXt2c>
-X-ME-Received: <xmr:Fmn1anK4LBOxBOc2_iI6ucfoGI7MgN9u_9HzmtYFDfbAMTt22u_pQWU8maFuOP_OWsPnFrf2>
-X-ME-Proxy-Cause: dmFkZTFmFrZJuGg63UB/F32b8s4zaNC9XRPHixjcDy/1vRk99j3V/8zr+THDSX7svlTEmy
-    4dG1lJL3583nXtEoyQR6vHI3FPNAjfS21CqW0k2k5cqZ6TEkfUZ7yQZP7OGrUeVIb7c94X
-    pjCA4kDO/W68xNy+tBda21RUbJBqnVTo13bxuqEK4DXiqGGhK5YkgbNkV1B+oHr7BuxNzL
-    6gcR6FSGRDK+sNbEjPHIzQmGts9QCYc0FS6HRQLTfllqbaGvOHcy25AxQ3fsV8kYeJqbUj
-    7tVHvFDs9cT8uJ4rYzEmLPEKorO5JjMbXdlfCstWJmUKho5t5lQxrSvoMeGxIT83vk+OFg
-    oymre8z6E++IHi7zKFs6Qov/bFKiB7eSCarIj1JByykDyGDcJIcME12Yuyid7W/v7bSAbB
-    LOH4BVqyVHo5cT9cFwsbTTdnL+Uj8eB1IAcwu2L7lR9qYchicjJzG1wi0jgWnMp3BYOoF8
-    s76ocnS16UhP8orLeETzE+jzEtLU/P2SI35DjW5ksOmenlWKIlOxz6qp6KjvKtE8qRhQPR
-    /lLUKdbgnrfV2gpx54przCT/IlygE7BcK4fCrGNxtoihP6PuhL6FExioYnjC1pbTtD73rk
-    oIBpknCPShTMyBscXFsE6BhYclqKbyrJJ1bMPbn+4dl/f/vS+dWgzzOiT8bg
-X-ME-Proxy: <xmx:Fmn1avu_2lSgVeR5VpguZSSSn2NdBdOLsGy0vv1OTRYkrMkpby07cA>
-    <xmx:Fmn1alLDs25vhaf8vjWaDnxwwNcVPWkVeLmV1zG1s7SQDYYY7NmBoQ>
-    <xmx:Fmn1ajA-jDLtM-goDOvOk1Rthu9AWRrftj3QaUPu21odKhGmARgi1w>
-    <xmx:Fmn1aiXXlYQ8-1M-Ks5bixOrYM0T_iA4GAG52_di3rgQGXa6kJVIZA>
-    <xmx:Fmn1anUq41PMEbG7seJ1o17fqqnKl6ZIxTtEfJDLEGco-ZB8ZGTAzHtr>
-Feedback-ID: i7a5e4b5f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 12 Nov 2026 02:21:48 -0500 (EST)
-From: Jiaxing Hu <gahing@gahingwoo.com>
-To: ulf.hansson@oss.qualcomm.com,
-	heiko@sntech.de
-Cc: finley.xiao@rock-chips.com,
-	shawn.lin@rock-chips.com,
-	tomeu@tomeuvizoso.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	joro@8bytes.org,
-	will@kernel.org,
-	robin.murphy@arm.com,
-	ulfh@kernel.org,
-	p.zabel@pengutronix.de,
-	ogabbay@kernel.org,
-	zhangqing@rock-chips.com,
-	royalnet026@gmail.com,
-	abel.vesa@oss.qualcomm.com,
-	sebastian.reichel@collabora.com,
-	sidong.yang@furiosa.ai,
-	u.kleine-koenig@baylibre.com,
-	chaoyi.chen@rock-chips.com,
-	diederik@cknow-tech.com,
-	alchark@flipper.net,
-	leonard@lausen.nl,
-	jeff.hugo@oss.qualcomm.com,
-	rfoss@kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-rockchip@lists.infradead.org,
-	iommu@lists.linux.dev,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jiaxing Hu <gahing@gahingwoo.com>
-Subject: Re: [PATCH v15 00/15] accel/rocket: RK3576 NPU (RKNN) enablement
-Date: Thu, 12 Nov 2026 20:21:46 +1300
-Message-ID: <20261112072146.41218-1-gahing@gahingwoo.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <CAPx+jO_gRtipR7iuh0D7G2Wi25GZoqFD1JHVbJNmhd1UyC3Bmg@mail.gmail.com>
-References: <20261101082307.151957-1-gahing@gahingwoo.com> <6777074.j6PcuT4dK6@diego> <CAPx+jO_gRtipR7iuh0D7G2Wi25GZoqFD1JHVbJNmhd1UyC3Bmg@mail.gmail.com>
+	Thu, 12 Nov 2026 07:25:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5FC1F41AD7;
+	Thu, 12 Nov 2026 07:25:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCABA1F00A05;
+	Thu, 12 Nov 2026 07:25:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794468304;
+	bh=a1xEK6Aga3yjCNS1Hmlu8sGRBKzLE3yolmU5IVLWK9g=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=jYd/fAZzm3pNLz3fQRYz76G0ehETIQ1m4H5F5RwgD5a5V/lt8BdhrdeqEUQ8DrKzx
+	 5Lm/FRO0U6X7Onjr+NZLtQHmdJ9ja0FHhIy1RkskBrSOcRr9vNkmTVZspK4JLV4uMt
+	 8/eIzPHtw+eHGdO3q2Gfnz5uYplSF2TLUk4eAHssQV2zNdjMRbOOESIz1I5njrPCdZ
+	 nzChP00C8o3u/dr9voat0JXLcVqm7c/t1+V3g7dM5lTjv9/vIW3ciP2Qfe23xM5xyO
+	 kPhovEsTMClfGYhNs51SrAFMd9/+pKnPuHSym9kHcY7uil/x+RAvJ8MhFoRVMngQN2
+	 cGxWUKLdAT/cA==
+Subject: Re: [PATCH net-next 1/3] dt-bindings: mfd: syscon: add ti,am654-gtc
+From: netdev-bot+sashiko@kernel.org
+To: jjc@jclark.com
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
+ kuba@kernel.org, pabeni@redhat.com, richardcochran@gmail.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lee@kernel.org, s-vadapalli@ti.com,
+ rogerq@kernel.org, bigeasy@linutronix.de, martin.kaistra@linutronix.de,
+ vadim.fedorenko@linux.dev, r-sharma3@ti.com, robertcnelson@gmail.com,
+ nm@ti.com, vigneshr@ti.com, c-vankar@ti.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, mfd@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Date: Thu, 12 Nov 2026 07:25:02 +0000
+Message-ID: <179446830222.2199510.13606408467624966277@kernel.org>
+In-Reply-To: <42bbc4a03679958f2ed4e195acea99fb57c68fd6.1794284248.git.jjc@jclark.com>
+References: <42bbc4a03679958f2ed4e195acea99fb57c68fd6.1794284248.git.jjc@jclark.com>
+X-sashiko-severity: Low
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_232204_321293_06AA119C 
-X-CRM114-Status: UNSURE (   8.51  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -157,27 +74,90 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thanks Ulf!
+Thank you for your contribution! Sashiko AI review found more severe
+issue(s) in other patches of this series. This mail is only an FYI, in case
+you want to address the nit picks below when you respin.
 
-On second thought, I think it would be best to drop patch 7 (the
-binding) and patch 10 (the reset) from next. Once patch 10 is gone,
-patch 7 is no longer needed either.
+Low priority / nit picks for your consideration:
 
-Finley Xiao from Rockchip pointed out on v16 that the reset is not
-needed, and testing on the current code confirms it:
-https://lore.kernel.org/all/ca90a994-70cc-410a-902d-5c4c0aacc9b7@rock-chips.com/
+- [Low] The new compatible "ti,am654-gtc"
+  (Documentation/devicetree/bindings/mfd/syscon.yaml, line 134) is named…
+- [Low] The subject line "dt-bindings: mfd: syscon: add ti,am654-gtc"
+  starts the description after the prefix with a lowercase "add".
 
-Patch 9 can stay. I will send a separate small patch to fix the delay
-table.
+--
 
-Thanks!
+dt-bindings: mfd: syscon: add ti,am654-gtc
 
-Jiaxing
+This adds a ti,am654-gtc compatible to the generic syscon binding. It is
+for the CFG0 register frame of the TI K3 Global Timebase Counter. The CPTS
+driver writes GTC_CFG0_PUSHEVT in that frame to pick the counter bit the
+GTC exports as its push event, which provides hardware cross-timestamps.
+
+> dt-bindings: mfd: syscon: add ti,am654-gtc
+
+[Severity: Low]
+This isn't a bug, but MFD subjects normally capitalize the description
+after the prefix. Recent commits to syscon.yaml do this, for example:
+
+  dt-bindings: mfd: syscon: Add ESWIN EIC7700 compatible
+
+Should this be "dt-bindings: mfd: syscon: Add ti,am654-gtc"?
+
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 80ff0e1caca22..b1030f11b2dbf 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -131,6 +131,7 @@ properties:
+>                - ti,am625-dss-oldi-io-ctrl
+>                - ti,am62p-cpsw-mac-efuse
+>                - ti,am654-dss-oldi-io-ctrl
+> +              - ti,am654-gtc
+
+[Severity: Low]
+Is ti,am654-gtc the right name for this node? The commit message says it
+describes only "the CFG0 register frame" of the GTC. The compatible,
+though, is named after the whole GTC IP.
+
+The GTC has more than one register frame. k3-am62l.dtsi maps a
+0x34000-byte window for it:
+
+arch/arm64/boot/dts/ti/k3-am62l.dtsi:
+    ranges = <0x00 0x00a80000 0x00 0x00a80000 0x00 0x00034000>, /* GTC */
+
+The generic syscon schema allows only one register region and no extra
+properties:
+
+  reg:
+    maxItems: 1
+  [ ... ]
+unevaluatedProperties: false
+
+So a node with this compatible can never describe the other GTC frames
+or resources.
+
+The syscon.yaml description also says syscon is for registers that are
+"not cohesive enough to represent as any specific type of device". The
+GTC is a specific counter IP, and PUSHEVT is one of its own functions.
+
+Compatibles become DT ABI once merged. A full GTC binding added later
+would then need a different name for the same IP.
+
+Would a frame-specific name such as ti,am654-gtc-cfg0, or a dedicated GTC
+binding, describe the hardware more accurately?
+
+The ti,gtc-push property in ti,k3-am654-cpts.yaml, added later in the
+series, also describes its target as only the GTC CFG0 syscon. No later
+patch in the series changes syscon.yaml, so the naming is the same at the
+end of the series.
+
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/cover.1794284248.git.jjc%40jclark.com
 
