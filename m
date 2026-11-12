@@ -2,93 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D599606A8A6
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB179606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 09:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NuJARnN5;
-	dkim=pass (2048-bit key) header.d=fujitsu.com header.i=@fujitsu.com header.a=rsa-sha256 header.s=fj2 header.b=ixZVp3kS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C2eXZqjS;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=uswq2blK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=s27wvHS07SuwEnoAPuKZTYMrrXbi2Voqx1f7y+dH6O0=; b=NuJARnN5bt1IpJqbR+cc4JYa/L
-	CZ917yWMDoplqlrXzUtsarnju3E923hzr+x85OZNnKiTwb0XoYySL2x5Ehs9cf/ROA7Vkx2NJwSQA
-	lqA+2tG9vEOIDBKRG87V5ZvmaVFk8cdw8QzFJWCLt0WgkefEW4EIHU9wxtZY68Yqezq4ehkCNeAS9
-	OhvdaJY2RZM7J3HdzSsBvj/rJgX5cZZF7uzWoauxtWFS00O8J1cN7AMVAuk/gokwTyP4NlItXAUiX
-	xPeWnUCl4ZH3/4dq9ljwptrDB/fxJyE69SGPNEZmxVocatatQNjsPqY8mSzlzwJJC13VfjIpqp8Bb
-	pXj0mr8w==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wQj27ksVjqLhjplnEMuQzGY5NWfyAFriN6cwBtDVCCk=; b=C2eXZqjSiC6Kjn
+	CsrAoo0fZ+E5YQmCAjQ9ACTwtnTQMZQBLD9x1V9C+yiv3795x60AFcK9mqnyuw2OoUKrPdYZz2b50
+	o8N+CI0YfA8wsJO5QEdDgE4he98mAe9zx2KYGvbcsHWQvBmOrkTpgpRyqfrvZN3Rlu1Ce+TfwuuKM
+	7H6DUr7F0jkfth8lc7uLO/4IM5mbDufuP+V33MMuK4ioNMEiElkJTlkv+uMAGvHneNIx7AMxGpElV
+	1Hnf84i4f7RjA7zTDHJBB/A4mXYQ66Ol++VhPhe58N+J+2DPYOTZIB1/q4dFjiVWdrK+mOApsaP0+
+	4uf6DctUYJMfVQGdmeXg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQn9-00000009IVH-1XdB;
-	Thu, 12 Nov 2026 09:08:23 +0000
-Received: from esa9.hc1455-7.c3s2.iphmx.com ([139.138.36.223])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQn4-00000009ITO-3KTg
+	id 1xRQpI-00000009Iz5-3sDC;
+	Thu, 12 Nov 2026 09:10:37 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRQpG-00000009IyH-17Xb
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 09:08:23 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj2;
-  t=1794474499; x=1826010499;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9Tx2kYwYrf5VVNfDHDCGqna3I8YOzDbxeRSc934oNm0=;
-  b=ixZVp3kSvwYSn/pUBxQ99m0yeuW423l/ayAO3ygbS10hpUM36+sB8FVn
-   4+Ymyeoi5dtSZPMENHX8T+tsrx7RCaZwCGVVJzeh80Xrbp/VYBM5ewOm8
-   YCBozjmDYQtOHnZjnRM36zE5Da8RT2R1xwUSoR/MuK3G/Etzx/lSAnVCr
-   JAK8Lj4QX1pC31rtj2ThchrTTlmZedt5aKnAyGz5hLUKOYF9LJu7rBSg8
-   1Hrim2ttSu2d7aWbDDeDG528XxQB0A6XYnFZhIm/bbVBtFw6MzQyd/xZu
-   YvZQk1ZRGiFhRYxStCU4BNjjzcCc6YSgXtEu6KHZAxIKgEXzwr261TM0V
-   Q==;
-X-CSE-ConnectionGUID: qgT3Yg74RsefMX1j0qkRYQ==
-X-CSE-MsgGUID: 7SR7dbeZTxqoHPR53h0lJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="249096633"
-X-IronPort-AV: E=Sophos;i="6.27,209,1786978800"; 
-   d="scan'208";a="249096633"
-Received: from gmgwuk01.global.fujitsu.com ([172.187.114.235])
-  by esa9.hc1455-7.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 18:08:17 +0900
-Received: from az2uksmgm1.o.css.fujitsu.com (unknown [10.151.22.198])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by gmgwuk01.global.fujitsu.com (Postfix) with ESMTPS id B52B61C02E0C
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 09:08:16 +0000 (UTC)
-Received: from az2uksmom4.o.css.fujitsu.com (unknown [10.151.22.204])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by az2uksmgm1.o.css.fujitsu.com (Postfix) with ESMTPS id 659F98D65C4
-	for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 09:08:16 +0000 (UTC)
-Received: from FCCLS0092175.localdomain (unknown [10.9.86.149])
-	by az2uksmom4.o.css.fujitsu.com (Postfix) with SMTP id 706EA405EFB;
-	Thu, 12 Nov 2026 09:08:07 +0000 (UTC)
-Date: Thu, 12 Nov 2026 18:08:06 +0900
-From: Kohei Enju <enju.kohei@fujitsu.com>
-To: Steven Price <steven.price@arm.com>
-Cc: kvm@vger.kernel.org, kvmarm@lists.linux.dev, 
-	Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>, Will Deacon <will@kernel.org>, 
-	James Morse <james.morse@arm.com>, Oliver Upton <oliver.upton@linux.dev>, 
-	Suzuki K Poulose <suzuki.poulose@arm.com>, Zenghui Yu <yuzenghui@huawei.com>, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Joey Gouly <joey.gouly@arm.com>, 
-	Alexandru Elisei <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>, 
-	Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev, 
-	Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>, Gavin Shan <gshan@redhat.com>, 
-	Shanker Donthineni <sdonthineni@nvidia.com>, Alper Gun <alpergun@google.com>, 
-	"Aneesh Kumar K . V" <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>, 
-	Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com, Lorenzo Pieralisi <lpieralisi@kernel.org>
-Subject: Re: [PATCH v2 00/12] KVM: arm64: CCA: Prepare Realm memory management
-Message-ID: <avV-P2_fOkFWQVnM@FCCLS0092175.localdomain>
-References: <20261111145758.217946-1-steven.price@arm.com>
+	Thu, 12 Nov 2026 09:10:36 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 16D16339;
+	Thu, 12 Nov 2026 01:10:30 -0800 (PST)
+Received: from [10.0.130.226] (e127648.arm.com [10.0.130.226])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0CEA73F673;
+	Thu, 12 Nov 2026 01:10:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794474633; bh=BYQlVTt2TsRYaw7IbDV9qQr5GG+v5qK7pRAPyT0Uld8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uswq2blKugXllc32B9EkYHllbNXq+RNpfxr0gL5G8z+TuwvAAwqG/9GWpKlGFCU2B
+	 WQCpnAG3OVLNUmIq8dsY0u9Wxzb3ApojwCTUBAabrO+vR++HncNcEsehCuQNZYewnn
+	 OqRbeCuFXdyaXWAN6i9Xe+KcMToka0jAht+o6CGo=
+Message-ID: <30ba2eb9-5fe4-4b8a-879d-0283a8388f28@arm.com>
+Date: Thu, 12 Nov 2026 09:10:28 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20261111145758.217946-1-steven.price@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: topology: Reduce the skew for AMU feedback
+ counter sampling
+To: Beata Michalska <beata.michalska@arm.com>
+Cc: linux-arm-kernel@lists.infradead.org, Vladimir.Murzin@arm.com,
+ catalin.marinas@arm.com, will@kernel.org, suzuki.poulose@arm.com,
+ xuewen.yan94@gmail.com, linux-kernel@vger.kernel.org
+References: <20261111124005.2688820-1-beata.michalska@arm.com>
+ <20261111124005.2688820-4-beata.michalska@arm.com>
+ <45d9ce54-0f6f-46b0-aed6-de8d12b3d6de@arm.com> <avS2In7pb6A2XJaT@arm.com>
+Content-Language: en-US
+From: Christian Loehle <christian.loehle@arm.com>
+In-Reply-To: <avS2In7pb6A2XJaT@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_010819_329191_C8B825DD 
-X-CRM114-Status: GOOD (  20.23  )
+X-CRM114-CacheID: sfid-20261112_011034_666525_8A5438B1 
+X-CRM114-Status: GOOD (  23.03  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -100,83 +73,164 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Steve,
+On 11/11/26 18:38, Beata Michalska wrote:
+> Hi Christian,
+> On Wed, Nov 11, 2026 at 01:56:49PM +0000, Christian Loehle wrote:
+>> On 11/11/26 12:39, Beata Michalska wrote:
+>>> With the FFH support for CPPC, the AMU feedback counters, core and const
+>>> counter, are being sampled to measure CPU performance. Checking for errata
+>>> (which can affect both counters) between the reads delays the second
+>>> sample and can skew the result.
+>>>
+>>> Take both samples in succession, then discard values from affected
+>>> counters. This narrows the sampling interval used for CPPC feedback.
+>>>
+>>> Signed-off-by: Beata Michalska <beata.michalska@arm.com>
+>>> ---
+>>>  arch/arm64/kernel/topology.c | 76 +++++++++++++++++++++++-------------
+>>>  1 file changed, 49 insertions(+), 27 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/kernel/topology.c b/arch/arm64/kernel/topology.c
+>>> index 66ac67bd025e..c968fa5b0c88 100644
+>>> --- a/arch/arm64/kernel/topology.c
+>>> +++ b/arch/arm64/kernel/topology.c
+>>> @@ -381,29 +381,45 @@ enum cpc_ffh_ctr_id {
+>>>  	CPC_FFH_CTR_CONST = 0x1,
+>>>  };
+>>>  
+>>> -static void cpu_read_corecnt(void *val)
+>>> +static inline void cpu_read_corecnt(void *val)
+>>>  {
+>>> -	/*
+>>> -	 * A value of 0 can be returned if the current CPU does not support AMUs
+>>> -	 * or if the counter is disabled for this CPU. A return value of 0 at
+>>> -	 * counter read is properly handled as an error case by the users of the
+>>> -	 * counter.
+>>> -	 */
+>>> -	*(u64 *)val = this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CORECNT) ?
+>>> -		0UL : read_corecnt();
+>>> +	*(u64 *)val = read_corecnt();
+>>>  }
+>>>  
+>>> -static void cpu_read_constcnt(void *val)
+>>> +static void cpu_try_read_corecnt(void *val)
+>>>  {
+>>> -	/*
+>>> -	 * Return 0 if the current CPU is affected by a HW erratum.
+>>> -	 * A value of 0 is also returned if the current CPU does not
+>>> -	 * support AMUs or if the counter is disabled. A return
+>>> -	 * value of 0 at counter read is properly handled as an error
+>>> -	 * case by the users of the counter.
+>>> -	 */
+>>> -	*(u64 *)val = this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CONSTCNT) ?
+>>> -		      0UL : read_constcnt();
+>>> +	if (!this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CORECNT)) {
+>>> +		cpu_read_corecnt(val);
+>>> +	} else {
+>>> +		/*
+>>> +		 * A value of 0 can be returned if the current CPU does not support AMUs
+>>> +		 * or if the counter is disabled for this CPU. A return value of 0 at
+>>> +		 * counter read is properly handled as an error case by the users of the
+>>> +		 * counter.
+>>> +		 */
+>>> +		*(u64 *)val = 0UL;
+>>> +	}
+>>> +}
+>>> +
+>>> +static inline void cpu_read_constcnt(void *val)
+>>> +{
+>>> +	*(u64 *)val = read_constcnt();
+>>> +}
+>>> +
+>>> +static void cpu_try_read_constcnt(void *val)
+>>> +{
+>>> +	if (!this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CONSTCNT)) {
+>>> +		cpu_read_constcnt(val);
+>>> +	} else {
+>>> +		/*
+>>> +		 * Return 0 if the current CPU is affected by a HW erratum.
+>>> +		 * A value of 0 is also returned if the current CPU does not
+>>> +		 * support AMUs or if the counter is disabled. A return
+>>> +		 * value of 0 at counter read is properly handled as an error
+>>> +		 * case by the users of the counter.
+>>> +		 */
+>>> +		*(u64 *)val = 0UL;
+>>> +	}
+>>>  }
+>>>  
+>>>  static inline
+>>> @@ -461,14 +477,20 @@ static void amu_read_core_const_ctrs(void *val)
+>>>  {
+>>>  	struct amu_ffh_ctrs *ctrs = val;
+>>>  
+>>> +	cpu_read_corecnt(&ctrs->corecnt);
+>>> +	cpu_read_constcnt(&ctrs->constcnt);
+>>> +
+>>>  	/*
+>>> -	 * cpu_read_constcnt() incurs slight latency due to the
+>>> -	 * ARM64_WORKAROUND_BROKEN_AMU_CONSTCNT check.
+>>> -	 * Read it first to minimize the sampling skew between the const
+>>> -	 * and core counters.
+>>> +	 * Return 0 if the current CPU is affected by a HW erratum.
+>>> +	 * A value of 0 is also returned if the current CPU does not
+>>> +	 * support AMUs or if the counter is disabled. A return
+>>> +	 * value of 0 at counter read is properly handled as an error
+>>> +	 * case by the users of the counter.
+>>
+>> Why do we read them first then on 
+>> ARM64_WORKAROUND_BROKEN_AMU_CORECNT or ARM64_WORKAROUND_BROKEN_AMU_CONSTCNT
+>> respectively?
+>>
+> That's what this patch is all about - isn't it ?
 
-On 11/11 14:57, Steven Price wrote:
-> This series adds the memory management plumbing for CCA, building on the
-> basic RMM support [1]. Thank you to those who reviewed v1 - I'm
-> attempted to address all the comments.
-> 
-> The patches introduce internal Realm VM state and RMI feature checks,
-> prepare Realm stage-2 setup and teardown, and provide RTT mapping and
-> invalidation helpers. Realm memslots are restricted to the lower half
-> of the IPA space because the protected and shared halves alias each
-> other. The final patch connects the helpers to KVM's stage-2 MMU
-> operations.
-> 
-> This is the memory management portion of the larger Realm host series.
-> Realm descriptor creation, REC entry and exit, activation, and the new
-> uAPI follow in the integration stack. This series alone does not enable
-> Realm creation.
-> 
-> As before there's an integration branch[2] that includes the realm
-> creation, REC entry/exit etc building on top of this series. I've also
-> pushed a git branch[3] of just this series.
-> 
-> Changes since v1:
-> - Add a guest_memfd prerequisite patch that checks whether the backing
->   file supports mmap when preparing an arm64 memslot.
-> - Combine the RMI availability and feature checks into one patch, and
->   move Realm vCPU feature restrictions to the integration stack.
-> - Correct Realm IPA sizing and RTT teardown, including teardown before
->   activation, RTT accounting, and handling of missing or folded RTTs.
-> - Rework RTT mapping to respect IPA and physical alignment, handle
->   partial RMI progress, and retry interrupted operations.
-> - Preserve private mappings when a Realm guest_memfd memslot deletion is
->   rejected, and tighten Realm fault handling and stage-2 destruction.
-> 
-> [1] https://lore.kernel.org/all/20261007073537.2454351-1-suzuki.poulose@arm.com/
-> [2] https://gitlab.arm.com/linux-arm/linux-cca
->     branch: cca-host-mm/v2/integration
-> [3] https://gitlab.arm.com/linux-arm/linux-cca
->     branch: cca-host-mm/v2/mm
-> 
-> Steven Price (7):
->   KVM: arm64: CCA: Reserve the RMM mode
->   KVM: arm64: guest_memfd: Check mmap support when preparing memslot
->   KVM: arm64: CCA: Check RMI support and features at init
->   KVM: arm64: CCA: Add basic infrastructure for creating a realm
->   KVM: arm64: CCA: Tear down RTTs
->   KVM: arm64: CCA: Add Realm RTT mapping and invalidation helpers
->   KVM: arm64: CCA: Support runtime faulting of memory
-> 
-> Suzuki K Poulose (5):
->   KVM: arm64: CCA: Introduce Realms
->   KVM: arm64: Handle attributes in stage2_unmap_range
->   KVM: Allow architectures to reject memslot changes before invalidation
->   KVM: arm64: CCA: Prevent memslot modifications after Realm creation
->   KVM: arm64: CCA: Add Realm stage-2 MMU operations
+I thought it's about getting (all GCC 11.4 here)
+mrs x0, amevcntr00_el0
+str x0, [x19]
+mrs x0, amevcntr01_el0
 
-I've tested the integration branch [2] including this series on our
-hardware using the QEMU-VMM proposed in:
-  https://lore.kernel.org/qemu-devel/20261002202026.1204110-1-mathieu.poirier@linaro.org/
+instead of
+mrs     x1, amevcntr01_el0
+[100 instructions here...]
+mrs     x1, amevcntr00_el0
 
-The Realm guest VM (32 vCPUs, 16 GiB RAM) booted successfully. To
-exercise the guest with a more realistic workload, I also performed a
-full Linux kernel build, which completed successfully.
+(before this patch)
 
-A Tested-by tag might not be carried over to the next revision, if any,
-but anyway, for this series:
+> It allows direct read of both counters (those being read first),
+> and only once that's done, it verifies whether the workaround should be applied
+> or not. For cores that do not have either it eliminates the check between
+> reading the counters.
+> Or you had smth else in mind I did not quite manage to grasp ?
 
-Tested-by: Kohei Enju <enju.kohei@fujitsu.com>
+Something like:
 
-Thanks,
-Kohei
+    bool core_broken = this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CORECNT);
+    bool const_broken = this_cpu_has_cap(ARM64_WORKAROUND_BROKEN_AMU_CONSTCNT);
+
+    if (core_broken) {
+        ctrs->corecnt = 0;
+        ctrs->constcnt = const_broken ? 0 : read_constcnt();
+    } else if (const_broken) {
+        ctrs->corecnt = read_corecnt();
+        ctrs->constcnt = 0;
+    } else {
+        ctrs->corecnt = read_corecnt();
+        ctrs->constcnt = read_constcnt();
+    }
+
+
+gives us
+
+mrs x0, amevcntr00_el0
+mrs x1, amevcntr01_el0
+stp x0, x1, [x19]
+
+(for the non-broken case obviously)
 
