@@ -2,106 +2,166 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51293606A8A0
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB877606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LatRHciM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bYzSwcK6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RQKmiau3;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=R0byH2Kb;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=tvESyPXR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:Message-Id:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=o9Sb7j8unYocUYyfUbeIl2vU4wtbZrpzJhLkOGZjRmY=; b=LatRHciM8VhJC2Nr9hIWBRVpdS
-	9yC7lyidiGYZANbdJc+VxPmxa/J3TF1OZfCTHyorbQ/D8l6XQfi1dxl2+wtYl6D+olsbW2QJibYlo
-	9J0HhRFKVdXsmveEKVvWw3PqBXkbkdJYGxBtMSW3Yc81pS9/BWAWK4RWRxUiiQKExueapQt4S3k2S
-	PO1ZO1UF63i+zMNAzOW+fkOsEPEh+LTve6ZMx4h5IACv32f61RPg3ZKeJrff7ZRrNTIKuJ8wRUQlg
-	Q/CJ9VXySfe3t07oaIOzNliQUIX4vCEghtKv4uUNw/OYblqyGYBfMXd7etMZ9GUmnjiTDqGO6vnJK
-	+XXUavZQ==;
+	bh=hne+ZhQ6gairMaVHIgKF4Q5ChZ49q63S9LCZcE4yShE=; b=RQKmiau3UukwVUHiQL+ER5AQHU
+	HjgQeLH0NSGh7r6dcAHVhyZF7sZTI5mg10D316ro1Xt4BjLB9EhWWV+YVpXQwAWRdnLRok0hL/3q0
+	v5bAm9ZDu+fJR+1hfQh3pql6pjQ89KBICXJo7KG2835ux3ldxZYnPODolMDPrlj8Pnb311TfD5VAv
+	efxA2gVEa0D9tSKESK8tA+ZTV3covwicuYInQbL+22lBFCSZS4P5wJjP+HMniPS/JTdybS7VdSO2T
+	64gY8d6Hw0QtsgRFkcrU1BDmVtXz0XK6zdzpD/+ZfTfEL9IxR3zQ3gfNQOwNbMm664v1XYQC0DXUP
+	+RTRzRlw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQMg-00000009Bwq-1IRp;
-	Thu, 12 Nov 2026 08:41:03 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRQMz-00000009CDl-0UIp;
+	Thu, 12 Nov 2026 08:41:21 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQHl-000000099lP-1IyO;
-	Thu, 12 Nov 2026 08:35:58 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 15AE6447F3;
-	Thu, 12 Nov 2026 08:35:57 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794472557;
-	b=H6ma+6q5qaYRTPN1bQ3l+qFrPfgACDo/ILZ6OaNvHFvTRt9kK599euf7ZSKwAE2KIoLB
-	 A24icgZSuilbuZT5xNPjjQKZ8i68QGkraXYROWHvKx0hPMilVgUqr6MDTfUvt7aLU4b4J
-	 fPCZ5STkZAviMboBy1JO5fHTXZKrErbW9dnGPXiyuJ0RqQBRHaDIa7M8/NhT00XjTCVML
-	 RmwSE7pJHuNca6OQu/HRdAZfcMoc4WMFf6bcHXWmvBiulqCP5Y8Hy5mKwFW1kUJZ6VAGp
-	 +xhSnUBFselHF3P8e4Q47NPe/jbVQCZEoPP6DFm+3cut2AA5CM4/AuhP593aHrlls2w==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794472557;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=o9Sb7j8unYocUYyfUbeIl2vU4wtbZrpzJhLkOGZjRmY=;
-	b=fXWhPmal4AolzrXa+AMXONcwOW1lksh6ToqZXFcOGzFmQAxAO9xNCYbY2ZemkOTn6Hsp
-	 nr2IiOdPVcUeEgTABDYxUPHUx4CD1kb0neYSroPZutnrTwd6GwRKzRwV3aXSGfDUGswUO
-	 9x4Gs1Jgp4Ir6hdZxD0RXp+kQcC5xA6aFhjbF/dmhwEoUXOl5m77VSvwu90omh5ekYXyq
-	 y8MEPHjDWQc+7Z09T5qkVSJdiasVYHOQt8LFcCZ4w8FogqvCx0m4vR/Ij4lAC82v2RRc1
-	 HLU8BcScQ3oJm7krpAgC219OOdhscD6umMCf8nJUh02ZZVTbdWp1zxihgDfjE6+bjAA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id BB5201F00A06;
-	Thu, 12 Nov 2026 08:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794472556;
-	bh=o9Sb7j8unYocUYyfUbeIl2vU4wtbZrpzJhLkOGZjRmY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=bYzSwcK6PfPirOFSoz4XSOX647eHePJSZSn9Ff0/KdIngYIQSHxzBk6woVGnBM/FB
-	 YWTv1ejT6t0aNvY15rFAC2XHSZnrvqyJSk/4V0fevG9hXM6U/xOTUGBbjKB5+mhS4Q
-	 WYbcJd81un5tcYIOe6RVrVvHOfrAakUznmmNh48WJ9bR5tq+7fOaIXxu+XZcF2xYp+
-	 OkIsKphfTTcnq/SFI1f3DZwfTYeHerdAnBY2yFmN9UaQgkikCR5fcMGm2ENFlTl116
-	 4JB38eVqVrmnY5x5fowr362WQ9FZnzscv974FRv0omEmjtrL5E068n5GiD+EBM90/k
-	 9cwIJH7w3Q1Dg==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 3ED82493BE;
-	Thu, 12 Nov 2026 08:35:55 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:35:55 +0000
-Subject: [PATCH RFC 1/2] usb: dwc3: Let the glue keep the host bus
- suspended across suspend-to-idle
+	id 1xRQI1-000000099rX-2hIx
+	for linux-arm-kernel@bombadil.infradead.org;
+	Thu, 12 Nov 2026 08:36:27 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=MIME-Version:Content-Transfer-Encoding
+	:Content-Type:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+	Content-Description:In-Reply-To:References;
+	bh=hne+ZhQ6gairMaVHIgKF4Q5ChZ49q63S9LCZcE4yShE=; b=R0byH2KbIaS++gw0NNG1au5pqp
+	gL4+qIUf8iX0DhFQtbJFtGbJMV82D8JzMnCXWW2jBFHc7IAbmnAgNoj13FeD24P+BHs+P4yvcyWTT
+	aN6PP9qAcRUzps+jiW35oG/8eYLHdBdFpfOHONUlVwsVb/NQh9sSO1Up95gST8teHLJWLrJmjYWkP
+	gUPIlazGHWlmgXorQdCHR2k6krKe/iEYYXMWDBdPtVc6Pib3QlQYLlz0bKVU90A1ZeCFiVVppGgNB
+	stHSYAnJv/kT7CHOIhQ2jYL/Mlf5LSYccPcGJW7ZksjFHShqLu4lwFrP5xs9u4EOMM8SucHMyUpAu
+	0HonB0lw==;
+Received: from mail-westeuropeazlp170130006.outbound.protection.outlook.com ([2a01:111:f403:c201::6] helo=AM0PR02CU008.outbound.protection.outlook.com)
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRQHv-0000000A3tp-20dl
+	for linux-arm-kernel@lists.infradead.org;
+	Thu, 12 Nov 2026 08:36:11 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nbv2LoyjA6UhPAdw6X8gDLYS6GDopbQZSfdoUmIUWgoYMfubf6Z88+2Bp5UtC65Okxm6s5EWLZHec9Sx0+B+nGwXXR6yvZNESjFI/dMB2SGItzZPVPZfKdffn+kPvSVYguP+DnG+uuBY8eil0Y8m52Q60Ky4fvQdwTOaoHOtfh25dXV7HSISPv8n2lBl6ORBcq+lygRetevI6LVlPjx4Pl/TRNS3WqbgkaOaj7COhIZZ1txx4xrzSADwXAjmKeDalAv1bLS/A0/CgHRZPpN7xcHYImTeCJEcxqwF252OoJJnnjFrZ2DDq3YNdqRSxIwbIrftxNi9bl6o4Cv777TdFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hne+ZhQ6gairMaVHIgKF4Q5ChZ49q63S9LCZcE4yShE=;
+ b=WPGws41cG3x1fJdvp6DPvUoO01ifmCnQxiQzLV0dQWWTuU3sY+C8NyMUHYalhj6HsYjW98Bye2P6qX/84I8V/ryNeZQcolVayVFU2SyNKloktSh+hFQwMcKhWKjAQyehdfR0i0jY5uYcRzbKnEGDb6qc8Ta07mjagz40CArG0jqYuTLCcWYOIUnS1/dStlYfqOjP4tLQuClqnqm0aXXnsEqVGIrCvnl5ZlrNx9ZbarXlfAKhcFjlG1q+z5YbaOm6FFZhOXWJ1NCnDjmyBRWqCN+OClH5mLXYjyVUnqr80Y76V1rnFzfC/0r5Y/Brf+Rco7L+PfVgV8oiPRCYBIvZnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hne+ZhQ6gairMaVHIgKF4Q5ChZ49q63S9LCZcE4yShE=;
+ b=tvESyPXRMWIytfQmqJyxNDAtpXXdM5IJ7M+yAQUojquidUNp8HpBErDnmMfqsg751Wz/OrRgRgy7UEW9t7ZS9/OyrX4e2QaJXHUPwrYBeEAgC7DJthiJeVg4yeIInHr/2x+awJEg9rAGs72oU8mvFjPNWNPcc8HQt1XDB/1fgsfPYozqHj2g81Y1IrdZkB2u6uJ+dyu/AXhs0xnrYr6iFtLXUX0gRymv3+T7ngw4urH4Y3W4b2bd+jfPX0c5EODF6nXXmUMebLdJXmIybx3PRILrVQ9QnTAVq82yEiXW0WTjjXtfYxCoiXhw2WB4YDoC2oIsiYh7iT8dWwJDVIDvJw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM9PR04MB8179.eurprd04.prod.outlook.com (2603:10a6:20b:3b5::20)
+ by PA4PR04MB7631.eurprd04.prod.outlook.com (2603:10a6:102:e1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Thu, 12 Nov
+ 2026 08:36:01 +0000
+Received: from AM9PR04MB8179.eurprd04.prod.outlook.com
+ ([fe80::a551:cde0:6730:1d85]) by AM9PR04MB8179.eurprd04.prod.outlook.com
+ ([fe80::a551:cde0:6730:1d85%5]) with mapi id 15.21.0615.008; Thu, 12 Nov 2026
+ 08:36:01 +0000
+From: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
+To: Linus Walleij <linusw@kernel.org>,
+	Dong Aisheng <aisheng.dong@nxp.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Jacky Bai <ping.bai@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4] pinctrl: nxp: s32g2: Enable by default on ARCH_S32
+Date: Thu, 12 Nov 2026 09:36:00 +0100
+Message-Id: <20261112083600.1550204-1-khristineandreea.barbulescu@oss.nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0134.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:94::18) To AM9PR04MB8179.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3b5::20)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-dwc3-s2idle-optin-v1-1-842e3f8413d0@gmail.com>
-References: <20261112-dwc3-s2idle-optin-v1-0-842e3f8413d0@gmail.com>
-In-Reply-To: <20261112-dwc3-s2idle-optin-v1-0-842e3f8413d0@gmail.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Heiko Stuebner <heiko@sntech.de>
-Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Joonhoe Kim <26rote@gmail.com>, Vladyslav Tymoshchuk <tvlad744@gmail.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472554; l=7514;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=GXZ6XCGRtnZ3mkCt6txb5zlLxRttrEmogA32LTQM6WQ=;
- b=MnPB2888GGLp8MeAl5mL2ZlPMYVRBJgpgv7aySIUB27BN1YAjsNTBOmVBqo6ncfyw40e9xeW9
- VyVxZSwg72mCsXUPGz26tO+ZZ7NWJfRZKo4rjTONRIqWARyZQX7Fkxc
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8179:EE_|PA4PR04MB7631:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7aa75e71-2214-43f1-ede8-08df4097fb67
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|23010399003|366016|1800799024|19092799006|10067099003|11063799006|56012099006|261021123027099003|261021121427099003|261022075727099003|261009223027099003|261102123227099003|261026121527099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: wnkiv5CWobVLathy/zKpE2WbjpP+7btCWsL6QAEvrSL1CZLa3CsR3y7lszuQDsHhi2WtvDt/fEI4Cdt463LcF324QftDGocfqsQDmDRNtvfR5KpmPUURHLunoRjfPSp0A0ZcnEX1yOI7LPVfoFxldAitrw1w2Z6EwNdnBc9HFOkb5uF2i0Pr2G0yX1FZDlhyhRrm8bfEj/qER9ZHxSQglI0rdRBix3vgjmMnGWGrZt++fYPtEHGRFlJNQ1flUd05WFakbzV9t+4mTnDC2m6SEYWbuWjZaHJnjQkjXu/4ruajwi/MYSDjufMmUkCUtSwU/7v08m7h+rW8BHF1pZE9uUjseOP6QKxr4gm8wH+Wj9KE8gesPa4s9l/ogplan5CnJaBiRg1Q20CEWXjllPVqE81Jp1PHWUmyLt8yTruPWi08oPrgG0+GE+8FTOvNvN58t9G8p/1eGb+60hhIX08f7G5CpGXILo/QhGo4pBZINLI5M990FNRO8CLLVqsl6SdLYIXUntQPk/I6HS1GO+GhGyImkyrYGand4ayEpHOYrHoFub9UjmZQql1ZzbCo9Nf7eNYEtIAstD8WNaGobAc7snkG2cyra5VZnSeGGt6bN1FQ0Ojvo4EHUFv1N/fE6mp7sLrgrtj28uxw1mLzoDVPGJwAoLe1UX/702Sy3JzaRIA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8179.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(19092799006)(10067099003)(11063799006)(56012099006)(261021123027099003)(261021121427099003)(261022075727099003)(261009223027099003)(261102123227099003)(261026121527099003)(18002099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVc5YzBVbDIyc3NvSHZ3elNMK3NqUE5XYTFrT0llV1QvV1V6NnRucU1JWWps?=
+ =?utf-8?B?UUFpUUZpakRnNlVSMmhDWitCMHVHNGNmckUxbkVST2YrU0ZkNFJVdXBvTVhv?=
+ =?utf-8?B?VjhHVjZjNUM1M2FSMkVjSFlvMm5ScTRjMVl1QlNsWnVCQ2o3QUxvR2tZL25y?=
+ =?utf-8?B?dXVqYnRqY1VZYkNGOUt5eDQrMkZwQnFoeFM5bHlIK1hBL1VDMGEzT0h3aGxz?=
+ =?utf-8?B?bkJlSEw2Z3ZQRHMwNjJGWmNNbzFLYkZHSU9VVExXV0hEeXUyVzFEZWYvUkRB?=
+ =?utf-8?B?amYvdk51TU83TVZJUXZNL2R4VkRUdzdWOUFrL01ESDZHQVZ5U2QyQjFJVlVD?=
+ =?utf-8?B?Nk54SHlyT3RQeXNVOWpYMGFYZGZUeTlNV0ZwemFIckk3K0hPdlUzYlNBMWcx?=
+ =?utf-8?B?NjVuRWJES09mNlZ6OUdSZTNTQm1zU0V2VVBBVVlQNzhzKzd0Q2JVVzlEV3RP?=
+ =?utf-8?B?VUh0S3paSDFqRlowSmZnYTNsT2lGaVdhV3ZSSk9PVHhVUXRsSVBITE5WaWtQ?=
+ =?utf-8?B?c1JRQ2NSNFkwd1Zodm9nbldRTmcyOG1qMTlSUmd0RWc2Tk01UU1WZkt6c1Ex?=
+ =?utf-8?B?ZEZrQkh1bXRjbzRuTWhUN01vK1M0TFhScVZEVTJ2RzVNakswMDJGUkUyckRp?=
+ =?utf-8?B?YWl6VmVKYzlTN3lnYmZrbHZNU3hmekJTUXkybW1pOXZBZ3VwRXNSRXhMSmxL?=
+ =?utf-8?B?VmduWDRJQyt4R1BXZXk0Y1ZHL3dVN3E5VEp6b1V2YXd5RTBQdllyZmlmUURi?=
+ =?utf-8?B?ODJQelNqdDJRNXRVazN4bk1sSGFqUFRBWEQ4QXl2NEVtenY2bG5ablU3VC8x?=
+ =?utf-8?B?TjVqMmNDUm5rZ3dFL3V2SlFRaGJmN3pCcjk0elZFYkFSL0IvMnJPb3JIUnN5?=
+ =?utf-8?B?bEFrL2dEemFEYTV5TnMxd3RVdTBtNE1PNzBIYzhoTENJMC9yMnJXSXYreDh2?=
+ =?utf-8?B?bEJXVUIxL2Zia2V0R3d6d2UvN0daZmVFWmFpTW5GUUtHLzhzRnlFM2RCb0gw?=
+ =?utf-8?B?YUIrc29BNjAzeDd5bGM5ckhpZ3VHYU82bldDeGd6cFhHMWpMbnJoc0NDYW12?=
+ =?utf-8?B?Qy9HS0xJOGIxVTEvL1FVWDlPUnFoc295K1huNWp0U3JTd1Vac2xzMG85Vy9t?=
+ =?utf-8?B?dThtQ3k4WlVmb1JtNGNaaDEweHJCVktrQnQ1RG9IRkxqRldxUDgvWFpZRGlO?=
+ =?utf-8?B?V3VSdE94RTJCQXNVeHVTamdsMGM4cnRwOUlWbTU3MmlOZlNXeDhuSTU4WEtX?=
+ =?utf-8?B?b3ZTaEFMY0EvTmpuVkRmcjNvRDZRT2hPVjVBUDJaTFZuamtONUZieDF2SEpO?=
+ =?utf-8?B?aUFEZXdFQnpWRkltVkt6VkIyTEJQZ2UwbWlGb3ZkL29XUk9JSFFMTEhVcktB?=
+ =?utf-8?B?ZisxbmlETkRFekZ3NEZ1L0NLMlRra3FBRk80WGcvMUY3QUlKZ3BWaFVUKzBC?=
+ =?utf-8?B?WWRyMU5RRkdWSFZmYVlvMHhFZ0s1dkdTNkhCVW1ZMUEyaXh5V0lIQnNaMmRl?=
+ =?utf-8?B?Q1R3ZFpTWVFLRWw5bE1IV1orakdpSS9lMGI2MURVTHVIWmdhaStYSmRVQlVJ?=
+ =?utf-8?B?NGRVTUhaYVFKTGRtRm8wRXlaL2NXR0lFYTh6MUowUWF3RE9GcHd5SlhhZGFo?=
+ =?utf-8?B?Mlp1MDlrNHlaMmZSY2JKNzhtZlF0ZEN3d2RwWVpEbElEUU4xOVRrd3JzdHk0?=
+ =?utf-8?B?V0h6WlVjNlBLbVNlQWNUbDN6c1BFc0JUTlo1Mkk0dnMyejAwTCtmbGlPeWd3?=
+ =?utf-8?B?WTQ4ajZucW9WS0ptdHZaM1BCeGVPNXZEMHhuQjZmZFd1cVZWWUl6UUNtb1o4?=
+ =?utf-8?B?K0Z3UkZpdXBTRHRCVlJHTWNVOXUzM2hOOXAzemhtbTFWVXJiMmdENHVmMmJJ?=
+ =?utf-8?B?eXBleDlVUzhxTWZJRml4SSt5S1ZKMWpMdmpmZ3dKT2xpalZuaytlMTJuYlhR?=
+ =?utf-8?B?dTdtRWxiNnNKV0NzY21xMnJ0Y3E1ZTVPNEhiTlQ3MWl0Y2ZKMG1BZEFBVDhw?=
+ =?utf-8?B?bjUrdmtPVjBUVzRBZ0txS0ZLT1JsT0t4d0p0RXZBZDc2U2lRSlhBS1VuMmg3?=
+ =?utf-8?B?Uk5zV3ZPSTZwV1pwMW5UUGVMcDJNaEpCZFk3Yk1IVXNmV1Bhc1FKR0NBQjgx?=
+ =?utf-8?B?R0NtVVg1Y1AyRExFK2UybXFNRWxZUXl0QjI3Q0pnd0RsNm5sSzNOWlVyZ09N?=
+ =?utf-8?B?S3VPNEFlT2ZMUHROMVJyQTRNZmQ1NFcvN3Y5bkRCWU1HLzg2SlNtaTJLcjdE?=
+ =?utf-8?B?dUVpbDNpbllEcms1RVNCbUJ0aVRZMU1VbEl3N1lLeExjZ1JiZXQ5VDF5OE9T?=
+ =?utf-8?B?bmsveEJwL3pweW1rTVF3QituREtMU3pjTTRFUkhyY3RuU1QvenZmQjFrRUVT?=
+ =?utf-8?Q?0ZoNMR8Yb/Bwq6U/qLdjL2vbMiwmniJm24KJN?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7aa75e71-2214-43f1-ede8-08df4097fb67
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8179.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 08:36:01.4845
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QYRx1Z2fRyWrd1uhYO1sgRAYCCeGJh2NvHyvqDgNuXN73mdEW9OQ/Vc5KuvbTbHImfIigjDHiskaxW4NUpc6fHSNfshvlKH85lX3fvvGg5ljbXaHFEgo6VjoZ1AujXec
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7631
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_083607_405731_F2D3042B 
+X-CRM114-Status: GOOD (  16.13  )
+X-Spam-Score: 1.9 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -111,192 +171,76 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+The SIUL2 pin controller provides the pin muxing used by peripherals on
+the supported S32G boards: the S32G2-based S32G274A-EVB and
+S32G274A-RDB2, and the S32G3-based S32G399A-RDB3. Without the driver
+some peripherals never finish probing and a defconfig kernel cannot
+boot to rootfs on these boards.
 
-In host mode, dwc3_suspend_common() tears the core down for system
-suspend (dwc3_core_exit(): PHYs off, core reset) unless the controller
-is a wakeup source. By then xhci-plat has already suspended the bus:
-the root ports and every device behind them are in U3/suspend and
-expect to keep their power session (Documentation/driver-api/usb/
-persist.rst). Resetting the core ends all of them. On resume xhci-plat
-finds a reset controller ("root hub lost power or was reset") and the
-USB core has to reset-resume every device, which only works for devices
-that come back within the 2 s that usb_port_resume() waits for a
-connection.
+As the driver is required by every supported S32G board, make
+PINCTRL_S32G2 default to ARCH_S32 so it is enabled out of the box,
+while keeping the prompt so it can still be disabled on ARCH_S32
+platforms that do not need it.
 
-Devices that are cut off in U3 do not necessarily come back that fast.
-On an Orange Pi 5 (RK3588S) a SanDisk Extreme drive on the Type-A USB3
-port only connects again ~3 s after resume, and a card reader behind a
-USB3 hub loses VBUS when the hub is reset and needs ~2.35 s. Both are
-disconnected and enumerated again on every resume, which kills a
-filesystem mounted on them. With the bus kept suspended they resume
-from U3 in milliseconds.
-
-Whether the bus can be kept is a property of the platform, not of the
-dwc3 core: in suspend-to-idle some glue drivers still assert resets or
-switch off PHY supplies in their own suspend callbacks, some power
-domains are switched off, and some platforms rely on the PHYs being
-powered off to reach their low-power state (c4a5153e87fd ("usb: dwc3:
-core: Power-off core/PHYs on system_suspend in host mode")). So make it
-an opt-in: a glue driver whose platform keeps the controller, its PHYs
-and its power domain powered across suspend-to-idle sets
-keep_host_bus_in_s2idle in dwc3_properties, and only then does the core
-keep the suspended bus in suspend-to-idle, as it does for wakeup. It
-also marks the device as being on the awake path so that a power domain
-with GENPD_FLAG_ACTIVE_WAKEUP stays on. Resume re-initialises the core
-exactly when suspend tore it down, which xhci_power_lost now records.
-Nothing changes for platforms that do not set the flag, nor for
-suspend-to-RAM, hibernation and needs_full_reinit controllers.
-
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Signed-off-by: Khristine Andreea Barbulescu <khristineandreea.barbulescu@oss.nxp.com>
 ---
- drivers/usb/dwc3/core.c | 41 +++++++++++++++++++++++++++++++++++++----
- drivers/usb/dwc3/core.h |  3 +++
- drivers/usb/dwc3/glue.h |  7 +++++++
- 3 files changed, 47 insertions(+), 4 deletions(-)
+v4 -> v3:
+- addressed Sashiko's review comments:
+- keep the prompt visible so it can be disabled on ARCH_S32
+- depend on (ARCH_S32 || COMPILE_TEST) && OF so COMPILE_TEST works
 
-diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-index bc9ce8dce0c6..21746fc8624a 100644
---- a/drivers/usb/dwc3/core.c
-+++ b/drivers/usb/dwc3/core.c
-@@ -16,6 +16,7 @@
- #include <linux/spinlock.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/suspend.h>
- #include <linux/interrupt.h>
- #include <linux/ioport.h>
- #include <linux/io.h>
-@@ -1694,6 +1695,9 @@ static void dwc3_get_software_properties(struct dwc3 *dwc,
- 	if (properties->needs_full_reinit)
- 		dwc->needs_full_reinit = true;
- 
-+	if (properties->keep_host_bus_in_s2idle)
-+		dwc->keep_host_bus_in_s2idle = true;
-+
- 	dwc->gsbuscfg0_reqinfo = DWC3_GSBUSCFG0_REQINFO_UNSPECIFIED;
- 
- 	if (properties->gsbuscfg0_reqinfo !=
-@@ -2554,6 +2558,30 @@ static int dwc3_core_init_for_resume(struct dwc3 *dwc)
- 	return ret;
- }
- 
-+/*
-+ * In host mode, system suspend suspends the bus: xhci-plat puts the root ports
-+ * and with them every attached device into U3/suspend, and the USB core
-+ * expects them to keep that power session (see
-+ * Documentation/driver-api/usb/persist.rst). Tearing the core down ends all of
-+ * them: the devices then have to go through a reset-resume, and one that takes
-+ * longer to come back than the USB core waits for is disconnected, e.g. with a
-+ * mounted filesystem.
-+ *
-+ * The core is kept when it is a wakeup source, and in suspend-to-idle on
-+ * platforms whose glue says that the controller, its PHYs and its power domain
-+ * stay powered then (keep_host_bus_in_s2idle). Everywhere else it is torn down
-+ * so the PHYs can be powered off.
-+ */
-+static bool dwc3_host_keep_core(struct dwc3 *dwc)
-+{
-+	if (dwc->needs_full_reinit)
-+		return false;
-+	if (device_may_wakeup(dwc->dev))
-+		return true;
-+	return dwc->keep_host_bus_in_s2idle &&
-+	       pm_suspend_target_state == PM_SUSPEND_TO_IDLE;
-+}
-+
- static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
- {
- 	u32 reg;
-@@ -2584,14 +2612,20 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
- 		dwc3_core_exit(dwc);
- 		break;
- 	case DWC3_GCTL_PRTCAP_HOST:
--		if (!PMSG_IS_AUTO(msg) &&
--		    (!device_may_wakeup(dwc->dev) || dwc->needs_full_reinit)) {
-+		if (!PMSG_IS_AUTO(msg) && !dwc3_host_keep_core(dwc)) {
- 			dwc3_core_exit(dwc);
- 			dwc->xhci_power_lost = 1;
- 			break;
- 		}
- 		dwc->xhci_power_lost = 0;
- 
-+		/*
-+		 * The core and its PHYs stay powered to keep the suspended bus:
-+		 * keep the power domain on as well.
-+		 */
-+		if (!PMSG_IS_AUTO(msg))
-+			device_set_awake_path(dwc->dev);
-+
- 		/* Let controller to suspend HSPHY before PHY driver suspends */
- 		if (dwc->dis_u2_susphy_quirk ||
- 		    dwc->dis_enblslpm_quirk) {
-@@ -2650,8 +2684,7 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
- 		dwc3_gadget_resume(dwc);
- 		break;
- 	case DWC3_GCTL_PRTCAP_HOST:
--		if (!PMSG_IS_AUTO(msg) &&
--		    (!device_may_wakeup(dwc->dev) || dwc->needs_full_reinit)) {
-+		if (!PMSG_IS_AUTO(msg) && dwc->xhci_power_lost) {
- 			ret = dwc3_core_init_for_resume(dwc);
- 			if (ret)
- 				return ret;
-diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-index 94408958e9a1..ee1afa0d106a 100644
---- a/drivers/usb/dwc3/core.h
-+++ b/drivers/usb/dwc3/core.h
-@@ -1137,6 +1137,8 @@ struct dwc3_glue_ops {
-  * @usb2_gadget_lpm_disable: set to disable usb2 lpm for gadget
-  * @needs_full_reinit: set to indicate the core may lose power and need full
-  *			initialization during system pm
-+ * @keep_host_bus_in_s2idle: set if the platform keeps the controller powered
-+ *			across suspend-to-idle, so the host bus stays suspended
-  * @disable_scramble_quirk: set if we enable the disable scramble quirk
-  * @u2exit_lfps_quirk: set if we enable u2exit lfps quirk
-  * @u2ss_inp3_quirk: set if we enable P3 OK for U2/SS Inactive quirk
-@@ -1407,6 +1409,7 @@ struct dwc3 {
- 	unsigned		usb2_lpm_disable:1;
- 	unsigned		usb2_gadget_lpm_disable:1;
- 	unsigned		needs_full_reinit:1;
-+	unsigned		keep_host_bus_in_s2idle:1;
- 
- 	unsigned		disable_scramble_quirk:1;
- 	unsigned		u2exit_lfps_quirk:1;
-diff --git a/drivers/usb/dwc3/glue.h b/drivers/usb/dwc3/glue.h
-index d738e1739ae0..130c455d9c4e 100644
---- a/drivers/usb/dwc3/glue.h
-+++ b/drivers/usb/dwc3/glue.h
-@@ -14,10 +14,17 @@
-  * @gsbuscfg0_reqinfo: Value to be programmed in the GSBUSCFG0.REQINFO field
-  * @needs_full_reinit: indicate the controller may not remain power during system
-  *			pm and need full initialization
-+ * @keep_host_bus_in_s2idle: indicate the controller, its PHYs and its power
-+ *			domain stay powered across suspend-to-idle when the core
-+ *			keeps them on, so a suspended host bus can be kept
-+ *			instead of being torn down. Set it only if the USB power
-+ *			domain, if there is one, stays on in suspend-to-idle for
-+ *			a device on the awake path (GENPD_FLAG_ACTIVE_WAKEUP)
-  */
- struct dwc3_properties {
- 	u32 gsbuscfg0_reqinfo;
- 	unsigned needs_full_reinit:1;
-+	unsigned keep_host_bus_in_s2idle:1;
- };
- 
- #define DWC3_DEFAULT_PROPERTIES ((struct dwc3_properties){		\
+v3 -> v2:
+- add the Signed-off-by tag
 
+v2 -> v1:
+- list the S32G boards that need the pinctrl driver
+in the commit message
+- drop the v1 arm64 defconfig change
+- default to ARCH_S32 in Kconfig instead
+
+ drivers/pinctrl/nxp/Kconfig | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/pinctrl/nxp/Kconfig b/drivers/pinctrl/nxp/Kconfig
+index abca7ef97003..24f94900a8dd 100644
+--- a/drivers/pinctrl/nxp/Kconfig
++++ b/drivers/pinctrl/nxp/Kconfig
+@@ -1,15 +1,23 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ config PINCTRL_S32CC
+ 	bool
+-	depends on ARCH_S32 && OF
++	depends on ARCH_S32 || COMPILE_TEST
++	depends on OF
+ 	select GENERIC_PINCTRL_GROUPS
+ 	select GENERIC_PINMUX_FUNCTIONS
+ 	select GENERIC_PINCONF
+ 	select REGMAP_MMIO
+ 
+ config PINCTRL_S32G2
+-	depends on ARCH_S32 && OF
+ 	bool "NXP S32G2 pinctrl driver"
++	depends on ARCH_S32 || COMPILE_TEST
++	depends on OF
++	default ARCH_S32
+ 	select PINCTRL_S32CC
+ 	help
+-	  Say Y here to enable the pinctrl driver for NXP S32G2 family SoCs
++	  Enable the SIUL2 pin controller driver for NXP S32G2 family SoCs.
++
++	  This controller provides the pin muxing and configuration needed by
++	  peripherals on the S32G274A-EVB, S32G274A-RDB2 and S32G399A-RDB3
++	  boards, which cannot reach rootfs without it. It is therefore
++	  enabled by default on ARCH_S32.
 -- 
-2.55.0
-
+2.34.1
 
 
