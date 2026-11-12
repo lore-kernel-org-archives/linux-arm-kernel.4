@@ -2,106 +2,156 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6AF606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:40:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BED7606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 11:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wf8V94sp;
-	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=JIZnsQnq
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Uoa+3LZ4;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=hLaIA1zg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
-	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=WZHCTs4f986cWxYB4Wn0WoeFqnSR+ysmF/iaTpKX2P0=; b=wf8V94spJplNWI
-	SlZ863bwIIu+9SNzWH7w4UI+fHFei80N7+59h82JAl2cM1ZjmfqMd8UjwxXHuJD7VG17JTOAx1BGI
-	r/5jMB3eErK5PQ7g2zjGQ1C2PEbX7r8nhJwtviQvCnKWGwxOB9egoyIfbZhXWQnY/+KORPdzEepR9
-	HR+B7zfKC/R9LiNsAYxOyIyblPNi6aY7fYsk8e5DCIvU778/nfvPnL7jYoVJT56PmhKYuyvy6Tsbc
-	c1/HJAZVOzWM6cvQQhTUkGk6iaFaxb212mt+TWpqAnPK1tbzMRjrLJwGtoGBMpRXvR8C5tvZoPClQ
-	z6yV2bh8+9SxTZKlCANA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=ObbK7DcFrrnAFnco2vakl0ICKmRsOJ2xnMm3XbyFtu8=; b=Uoa+3LZ4TKWodt4L87JY+lLyDb
+	BMM2MJVqYPx8RvuHyCHUkdFyINFiz9hjgU9lI7299+CKc18slm2H0HxJBEtXFdg9dE3lHXtq4EJVA
+	P6QDZyl8zkRyiH9+UG8ORf9ARZTpi1AZtBIqNj9Q/qtRlGw9EED01q4TPV7CN1sx6bAlCVeGURkWq
+	BmSDUe6aDbJTzsAfJiKT+UTuLAjD2vETSLNEVaSsNhQJZG7QDOnfiJN2upZvsBp7Du1uL67no9FJN
+	GoRFQm4kBzQA4/nVXxOVDuxAtwjnU5MMucfbMdXP0zfJDgrApQ3lvRcNOBWjK73v1hxTvnWZETbUL
+	KWjw60Nw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRTA3-00000009kkh-2m8E;
-	Thu, 12 Nov 2026 11:40:11 +0000
-Received: from mail-wr1-x436.google.com ([2a00:1450:4864:20::436])
+	id 1xRTC7-00000009lG7-1P6B;
+	Thu, 12 Nov 2026 11:42:19 +0000
+Received: from mail-westusazon11010015.outbound.protection.outlook.com ([52.101.85.15] helo=BYAPR05CU005.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRT9w-00000009ki0-2Qcl
+	id 1xRTC3-00000009lFH-2Bsi
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 11:40:06 +0000
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-49465892f7bso3023948f8f.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 03:40:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1794483602; x=1795088402; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=WZHCTs4f986cWxYB4Wn0WoeFqnSR+ysmF/iaTpKX2P0=;
-        b=JIZnsQnq2V0kZl5yqqLlGBfBh/WgIeiZ2MGbtdWBqPH+zdYePizHZQR90z4DDRFzaW
-         aHCsQTEFNkIDS6kiftuESQtz6/LejsAVqUrgaF9uMQeEEkIGWYdrXDc22+FGE9RofFTs
-         QEn8SHgTOjgGrjReNUuFSGELclUU5cU2QQqP4faKPhJhvgsxl72mKKP8nG+bg+VmbzcV
-         4LIpssvYs7fGO1fAGBq8xhvYcNWkyeSZZohdQ3Z+rBEMHJx9PYykIeqAyEm86h/wC0Ul
-         z9bnWJTflwWK2mH2tOKF9e6RS7qi1l9s/3NwcU/H0+kc8+dHvQDidiHUkuASNEo8DPcY
-         8h6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794483602; x=1795088402;
-        h=content-transfer-encoding:content-type:mime-version:references
-         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WZHCTs4f986cWxYB4Wn0WoeFqnSR+ysmF/iaTpKX2P0=;
-        b=Ln8bHWOFq9alkgxRDAVu7VULKtmwgjtXLLRHRHN7EQMzY1y33gHeMNostidfjjaPC/
-         Keml0iOkul7cejoGspXpRrYrvsoyrbNctJYJOch5MREeqxHCGXipIcCDxs6c37isJIkX
-         NCciJ7f6UIkOIshwwHQtt2jL9VWQmI40b+c1W+MtRnNadK/kee4m34jctI1KAgslw4rW
-         ogTQo0WpPnOCbyFIWeRfGdVh3OKnwE/c7dZTmio6jMi7qfd7s21h8uysxnfh5Ei/Ikwf
-         RlXoGdoRToMNg8iSKnX3jJQ+L0XOORGCtoCSzFJ4Abgg11BM+SIrELnvEgolk5MxRmZX
-         GkjQ==
-X-Forwarded-Encrypted: i=1; AL+hErHii+uqSW58nF3FnyklaUWdUhLRdQm0z32Hn/oiZo+R0sVpn8YcR/w0e+CSUfTBtwNsOqh8YZzOaKgdcsY6XpWq@lists.infradead.org
-X-Gm-Message-State: APuU4Z+uXekzh7ONa4u+eedad1XnoHfTBqvkt1/L5VoGima5SUyp8g84
-	U7wlp1fzEXXTeeRCPZPeCFxnkDsYgEqHUu17nHhu2ni4WM0WV2H6QkaR+GoSPtKvwOg=
-X-Gm-Gg: AYBFou1SJHWCk3orXnrEw91zUubhOvVLuf4NdeG2xeDXRQ++NIx5sRpRn/PCYhub9aM
-	TzAEWY99Ezj3W55TFdhALlVS0lzU/pw5tCL8YCHYBzs6zcRcOYldMQK+sHmy8Z6jRH8lPX2Zrm9
-	gJR7hY6YDOfKNT4SKMC3c+fo4B7r8L4TIOq58wicV4YNh9LUyngeDEMCtt1ZhyusYCrRhxrtdmO
-	NpjYYMNySveV4u/QcJK6eWDvmu5hSc871QZWXYjX507RIfGf2vEiKla5Mdb7nYAZMtqNPRFhVCx
-	A+QWhh4QsjNghqOfefHJo1Ez6zW713oMUKL8b60mLwbPExU6z9cR+TgLZELQfVRgi7dtj63ocjE
-	Y4r71WrPCmEJaEIeDI5y7RPLxre0zB733ElNpPC6zYo6i0DdXS1gQESCD26roFzunkqG6oFb+fu
-	xUHSMk9hseGPN1ZGREUfWS8Gm8OhPc/LMD6fPrCwIJQZmpvVnaiC4gcJaMTEMt3SHOXTqi59SvO
-	utoWS6Un4tp6APKnzCcTgFnuyyS1ZbFfLf6sZh2Z4PM+IJy+I54gyPj23yuRZOVU1lxagCKa/K7
-	J02uPcmgLm7zX2NJUEzvKm9LgLp5hPGuBzN83jeFSlk4EfXjKd4961sMbAJqrli++nsVeoSSi1H
-	oEWQ2Zs9+FlMc3oQu
-X-Received: by 2002:a05:6000:248a:b0:493:1477:cdd7 with SMTP id ffacd0b85a97d-499c7271d72mr9671131f8f.45.1794483602143;
-        Thu, 12 Nov 2026 03:40:02 -0800 (PST)
-Received: from localhost (p200300f65f19a904528996c8ea0fadad.dip0.t-ipconnect.de. [2003:f6:5f19:a904:5289:96c8:ea0f:adad])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-498366c43f4sm19115427f8f.47.2026.11.12.03.40.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 03:40:01 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH v4 2/2] remoteproc: imx_dsp_rproc: Implement .memcpy_tova()
-Date: Thu, 12 Nov 2026 12:39:51 +0100
-Message-ID: <922f685493e615b450c913b77cf33022c9cda8a3.1794483181.git.u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1794483181.git.u.kleine-koenig@baylibre.com>
-References: <cover.1794483181.git.u.kleine-koenig@baylibre.com>
+	Thu, 12 Nov 2026 11:42:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ccY6wZv//LbvkfQdr8urKe2Z02sBiqKKxrczeMtmuGrdWCTH+e7EDh5wNQIJz8ibUtnsmvPxM+iEhV+AwzEndfzfKft88ZCtvaLryHigeRKRoBIBbeTq/JVKsPpQ3yU2/X6RoOFtdc9SCrTPOjW+8wnk56nHpdKu2aisWh4CwtvGgaqnDdFk1wC1OuOIE1e8yAiPdw249dGtDpzPYvlicRBzJqwtXWo6p4b8jQlo/emnI2xDzBO5Yncj/lrjs+7+/guvPFrCPoSs/UrSxKzdrXBhk4HO1wMYm13oTu5kl00sOIiA8rB/2CHkzDPFVGeD+ibdOLMPz4qJplzG0XydTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ObbK7DcFrrnAFnco2vakl0ICKmRsOJ2xnMm3XbyFtu8=;
+ b=xuEog6Hy4hPRORKYTXfLxw83/Szrhtmo3IrmJjzLTNIeSIj5rPgTvNQ0fpGDrg9xf4zipGgp8RsW2FrfxTndnbaw7cBgXsf6iJetP4jnxgzKBJnGcchv+2BD3L+dOW1mauFNl6CX7JZM46I8uy1lJls+MGUSYrk16ZyzCPD/zJ9vrLmdS0iUs6oMSyhQaKL0/ulrwh1D1eNureN5oJLhKJVQZ43MTeorFNZ1KjqAlS2H1o0gQZt1B2+7vj9kinrO/LC8T999S7p+QMDDWWZWq0QBukwCA4aqM6DHePmPeSgAO9FvEt3cR8ZwlVrx16aajMMyjvn7WlRG/1zrCdkonw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ObbK7DcFrrnAFnco2vakl0ICKmRsOJ2xnMm3XbyFtu8=;
+ b=hLaIA1zgSV8hhq45Oiid3aTRLmOq6iwkwoW5DssktSLy2ig6XSHgIeD5xpiRE0R0GyPJ9aR4UhaYCzxpFLjWOCKn+aaUx0b/RxcI4LspJZYvnrvAy8BTxtYGW5QyxhGobd//rgQEnp8i39D/g+8yNQFk436sVT656Fuzp4qhAdc=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SA1PR12MB999228.namprd12.prod.outlook.com
+ (2603:10b6:806:4db::10) by PH7PR12MB7354.namprd12.prod.outlook.com
+ (2603:10b6:510:20d::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Thu, 12 Nov
+ 2026 11:42:08 +0000
+Received: from SA1PR12MB999228.namprd12.prod.outlook.com
+ ([fe80::4dba:119e:8e7c:37b3]) by SA1PR12MB999228.namprd12.prod.outlook.com
+ ([fe80::4dba:119e:8e7c:37b3%6]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
+ 11:42:08 +0000
+Message-ID: <9773f2fa-f80a-449c-9e9e-722d1c71f989@amd.com>
+Date: Thu, 12 Nov 2026 22:41:53 +1100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 03/15] virt: coco: tsm: Complete PCI registration
+ before publishing the device
+To: "Aneesh Kumar K.V (Arm)" <aneesh.kumar@kernel.org>, iommu@lists.linux.dev
+Cc: Alex Williamson <alex@shazbot.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jacob Pan <jacob.pan@linux.microsoft.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Joerg Roedel <joro@8bytes.org>, Jonathan Cameron <jic23@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
+ Krishna Reddy <vdumpa@nvidia.com>, Lukas Wunner <lukas@wunner.de>,
+ Nicolin Chen <nicolinc@nvidia.com>, Robin Murphy <robin.murphy@arm.com>,
+ Samuel Ortiz <sameo@rivosinc.com>,
+ Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+ Steven Price <steven.price@arm.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Vasant Hegde <vasant.hegde@amd.com>, Will Deacon <will@kernel.org>,
+ Xu Yilun <yilun.xu@linux.intel.com>, kvm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-coco@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-4-aneesh.kumar@kernel.org>
+From: Alexey Kardashevskiy <aik@amd.com>
+Content-Language: en-US
+In-Reply-To: <20261104161632.3547423-4-aneesh.kumar@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SY5P300CA0040.AUSP300.PROD.OUTLOOK.COM
+ (2603:10c6:10:1fd::7) To SA1PR12MB999228.namprd12.prod.outlook.com
+ (2603:10b6:806:4db::10)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5301; i=u.kleine-koenig@baylibre.com; h=from:subject:message-id; bh=RohBdpkH8TSHsnslkd4R654KBrqmv882JRSoJjjuoBA=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq9aV5PpSrVGWZ6id8gqP3pN3LFSP2HbKY5hyhn ejyAuxXlg2JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCavWleQAKCRCPgPtYfRL+ TugHB/4zsoFIUiu1rOAe+sEMu7U7+oNyHE4Z35KbOqRblj73O+ECqOwmAw1N3/wOf3BVIlj3ntN eex6WkpCriW/JsOvPr8ZRnPIJhvy01Bv/J9xk2UsjjMSghOyUBT7sv5MrDbDezDI9F6eUgUrOR/ 3HafN1OrkN+mT6dTNMqyV71+ymkrO6T/2PAGgcZ1+7dMAt0lA/EeiXJ16jIma/ma/4jjQXeviOE 9LQc7EihvT1ZykXMQEV+hRqi9ADMe/Agq8a462/Xs2SHlzcpQXyS9jERrXgv3QGooTnaT9Po739 B9QXPhoILPe4UbTm8i4R6TN4eR8M1q5R5uAH0JKEW32fWVed
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA1PR12MB999228:EE_|PH7PR12MB7354:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26426111-8848-43a7-5764-08df40b1fb7e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|23010399003|366016|1800799024|261102130727099003|56012099006|261026140227099003|11063799006|261022105027099003|4143699003|261021123027099003|261022075727099003|261026121527099003|261021121427099003|261028144727099003|261102123227099003|261009223027099003|10067099003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: Tbkl2SSsl7WbbVJ4IkVDO4TqTHv9INGV7lpnanfIkrhKu0MRgg6+xQqcshmeR4KwJDeSuB6bpf4AVdnP9vB9ahdPidyTu/YvkeondRioIRRHvPmQfZTOYKAgtoq+BIsVO2NO6mMooiSwu1kczmdTCM7E5INSt9GzdTwB22/AEPyicj1hvcCy/GfyKXKc99oemJ3S/fRE6F9lnqjGdXM6AERdrwJdK3JzPk8mjB9oa4c3w6jwkhEiMVNn+jQPLfWiUV0f5pGdBwZU6iMuR8CnJqOFb+Bzz/BL8exXmejxYFpQDOcMXxjhwV4fg9IFxAGynpS8B8SQS1nDJiCMC51WpXg1FA9F8FprQWTs/2blzGIz/fn1u7EIpUXAUM5D2AXy6CpWGW3a7Ovmx24uuixJgGursGQoxKOqRAw4NsLZtKCVZuwDojvzLoUkgceKOjyAcPhxQ/jwRXxplJeeK93kdxQ97pjBMwSuthPJvLIY5B94DPaaRpMcnBaGek4fcFiweHoZ74YWWbpl9G8QS+C12Dgd5uwwCEvfpyez/HKUKrCEeEAzPjqms7VB45awvG7cC04TPrbmkH+TH09SK/aegblh6FLLRD3C+oI9VOrOdSwbjiI7uVuzgwpbLc/pZMWIzjsSuEgdzgcgy/X9CiqMpS8OX5yoRP3HeHPrI3ETiGc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR12MB999228.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(23010399003)(366016)(1800799024)(261102130727099003)(56012099006)(261026140227099003)(11063799006)(261022105027099003)(4143699003)(261021123027099003)(261022075727099003)(261026121527099003)(261021121427099003)(261028144727099003)(261102123227099003)(261009223027099003)(10067099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MWVBZG04M0JLWmxKaWE2a0JLOEEzbDE0eEduLzBYZUdXRmc2RTBuRGdpZlMz?=
+ =?utf-8?B?Y2JZNFlCWmZ6aU5hUUhXVVcrUitSRUllejNxMkZDZzVXSkRVT3ZwRE12NXdr?=
+ =?utf-8?B?b3lUb3kxOWdnMS9KVERpRzdZdnl5Q09FUkF6S1VnNjZjM1FKbEZyYzBBdE9L?=
+ =?utf-8?B?N1g2YTNSQVJzWGZ6Q1lVTGNGUEpCS2tqTUFzWDc5RFErNUdML3o1dGtUVWpM?=
+ =?utf-8?B?cnNTODBmcDcxb3hqL29jeWhSNzJuZUN5YkhEK1V0Y2tPT21LQUMzbm9PRzVP?=
+ =?utf-8?B?Q013T01HVUZ0eGg4VS9xcmc4cXpxbWdnbUNwZ1o5cnlUQ0s5TTBIWTFTWVBI?=
+ =?utf-8?B?cG1QRi91Nzg1ZVQwSFhJdTJ1MTB3TFFBSFZUb3J0R0lnVGdneFRueUJyR3hJ?=
+ =?utf-8?B?bVlMOEthSWpuTmY3Y2dlMTVYMXBuY1dycjFmRytSMEcyRXJyL1ZYVVZKMHlU?=
+ =?utf-8?B?VzMrNHBsWWxWMHlQeW9NZ1U4N0hQSGNxTk8vTTZLR0xHYnNQcEtkaG04MVZU?=
+ =?utf-8?B?NUVkQXQxcnVwb0xZOVFWMkdyODVzVHFzMzhMdFVKTEVWR1h5VmZwVmpaVjFC?=
+ =?utf-8?B?d0ZCZmhJRVo4ck9mTlc4bU9uMVYyc21EMXRRdWxQMGZ0cjQrZFJwaVhodkdj?=
+ =?utf-8?B?Wis2TXQvVVZHdzZBNEU0TzNNZ3IzOTFQNis0T1Z6WE1Ob2QvazhCWW5TWkxN?=
+ =?utf-8?B?NTZ4bjIrenNyanFXejF0ZHVQSmJDdkZmNDkvQmVUWmdrV3dLTEI0aUlBd2R6?=
+ =?utf-8?B?Q1ZEOFFDbjBZU01FdUY5dVBMZTFsRVF4Q25EYmNrN0ZYemFINk1saEJSSzU3?=
+ =?utf-8?B?NGFGcTBVbVNYUHEvUFZSV2dKbWtwU2M4TGRPcjV1TDViQlU5VzBrTTF4WlB5?=
+ =?utf-8?B?eWZJMjNTdHp0dFJoMUp5MUdXbEdETEpHbmIrK3BWSmtXYkd0allpZnJWeG5Z?=
+ =?utf-8?B?WnVvR1BZNGp6dmhQNktBa1poR3VlRy9xbWozRGpBTXMrMXpLcEcvdTMxWUtF?=
+ =?utf-8?B?bzhBVXFsWjFibEZXNXhYMHJtUWV5cjlPNlJ5Q0hEWnRQeWR1MVcyMmV0V3Z5?=
+ =?utf-8?B?Z3VSaEtRMzRvV0R4c0Z4VC93SVVBM04zZldYRk1ZR0w5eWJDYkIvWm8xWVlS?=
+ =?utf-8?B?UDJMYkU5UGNML2NUcVpPMDdPYm5rU2lwNmZCZGtzd0N6S1kzUU10UUJWK0lz?=
+ =?utf-8?B?K2E1Wm1sWkpxL0JtRmpXQTFXeW5mS042MVAycVZSRFF6Wk10cGhjMDFPVWVO?=
+ =?utf-8?B?dXpFUlBhZmJFbWF0NEVhQm1jRTdnekppWk4yLzBEUlZlbFp3ZFNqUUZHMVV1?=
+ =?utf-8?B?bktmSVBzK3BZRDl1QjV5SDJjSUhNRGJ5T1p2bVRFOUtldDVDWFhKakFxeG1V?=
+ =?utf-8?B?V2huQWxkSklUQVJnc2lXOWphOHNCVzAvbW95UXNHWG9GQXE0TDJKSDRPTWVN?=
+ =?utf-8?B?cmQ5TWdqUVJmcGQ3SHJtWDY3bUFuTll2TG5zUW9PeGtpbHg3dldUdStGVTh0?=
+ =?utf-8?B?NGZZYkNEdU45c200U28vWnFCWk1RbFF6MHNiajMyWHVvY1J2VXEzenRZcEhq?=
+ =?utf-8?B?aFk3VUxxSDhaelprbFVaTlVwZkNYd0F1UmZJYWwrakFXOXpyeXpFRWhCcEsy?=
+ =?utf-8?B?bXY1Zm0rZk0zVWhicTBJUGFNYmtsdjBzM3NlMFkzQmNXbE40cDh1TCtvaFJE?=
+ =?utf-8?B?VUU3bUlud2IzekRiLzJhYzdBeVU2NGE1Qk9iQVc3UjVEY1RIK1FVZmhNbm9u?=
+ =?utf-8?B?ZGpJcFBucWxrd3JuZlF0S1FBeDBvYWNuUkJyRHlsUjRYcnFpdXBrMktUSmF1?=
+ =?utf-8?B?YUhPemwxK1lkOHRLSHMrMm0yelVpdldtK253N3lHcW0vdVlIOVVCaWxqRmRP?=
+ =?utf-8?B?aVRzUFdCVkllZDNsTmhGUlRlYXMzbGs3SHo4UE1ZeG9pK0JvRGxpYkc1b0h1?=
+ =?utf-8?B?ZWhhN1pSb01ML1huOFhFeXZBdm45RnRsNFZvU0tkQ2d5MWhjbjFINXRGMDlS?=
+ =?utf-8?B?N1pyNXdCSkMwNFoyWGlzNURnQjNkcmRDdUpoelR5NkpOMzFyaFVGOVo3aEF0?=
+ =?utf-8?B?elY4bFU2WjQydzFPQ2FrZit6OSthbmRCeUFjRmkxOUIxZjFiTzRRbzdRTzZt?=
+ =?utf-8?B?WjNjaGFEWGJTWFR2NkhHQmZwNzVmS0FGNHNMdWZybFlEalovT2o2MEZFNEJx?=
+ =?utf-8?B?Y29wdkV2c1F2aUhnVnRTUTR1aXJBa3A1MDlGcmNOZ1EvSGkrdjRVaS9SRVNI?=
+ =?utf-8?B?OUZ5eFU0TVU1ZXdmSTZWbUMrcTFvYUFHbFpTZzlnWDIzNmEvcmNETWk2ckx5?=
+ =?utf-8?Q?wVFew2E8XEki2E+87Z?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26426111-8848-43a7-5764-08df40b1fb7e
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR12MB999228.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 11:42:08.3515
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m+WB17RtA/cDYQJgs2QMApQ5fOcYRVGmE5VFC027kBT8ldtEUcJ8qf0iIIc58Bl2tLDzgzPcmvuVFdoGQF2bRw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7354
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_034004_713021_774299E4 
-X-CRM114-Status: GOOD (  20.75  )
+X-CRM114-CacheID: sfid-20261112_034215_578833_59BA4ECA 
+X-CRM114-Status: GOOD (  24.28  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -113,183 +163,127 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This callback allows to use the core's rproc_elf_load_segments()
-function instead of reimplementing it for very minor changes.
+On 5/11/26 03:16, Aneesh Kumar K.V (Arm) wrote:
+> tsm_register() calls device_add() before initializing and validating the
+> PCI operations. This makes the new TSM discoverable through the class
+> lookup while PCI registration can still fail. This ordering was introduced
+> by commit 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link
+> Encryption").
+> 
+> An existing link TSM can keep the PCI connect attribute visible during
+> registration of another TSM. A concurrent write naming the new TSM can
+> therefore reach it through:
+> 
+>    connect_store()
+>      find_tsm_dev()
+>        class_find_device()
+>      is_link_tsm()
+>      pci_tsm_connect()
+> 
+> If the new backend supplies both link and device security operations,
+> pci_tsm_register() rejects it before taking pci_tsm_rwsem. The registration
+> thread then follows:
+> 
+>    tsm_register()
+>      tsm_register_pci()
+>        pci_tsm_register() -> -EINVAL
+>        tsm_dev->pci_ops = NULL
+>      device_del()
+>      put_tsm_dev() [cleanup guard]
+> 
+> If connect has already attached a PCI context, its temporary device
+> reference does not protect the stored tsm_dev pointer after the call
+> returns. Registration cleanup can then free a TSM still referenced by
+> that context. The original tsm_register_pci_or_reset() error path also
+> had this problem: device_unregister() removed the class device and dropped
+> its reference without tearing down an attached PCI context.
+> 
+> Commit 37a73b0448ad ("tsm: Remove the device from lookup before PCI
+> teardown") subsequently added the unlocked pci_ops reset shown above.
+> That reset can also race with the connect path's accesses to pci_ops.
+> 
+> Complete PCI registration before device_add() publishes the class device.
+> On PCI registration failure, the TSM remains undiscoverable. If
+> device_add() fails instead, unregister the PCI operations to roll back
+> the counters and PCI sysfs visibility before releasing the device.
+> 
+> With pci_ops initialized before device_add(), the class PCI attributes
+> are created with the correct visibility, so remove the subsequent sysfs
+> group update. Keep the PCI change notification after successful device
+> publication.
+> 
+> Fixes: 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link Encryption")
+> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
+> ---
+>   drivers/virt/coco/tsm-core.c | 16 ++++++++++------
+>   1 file changed, 10 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
+> index f79135986102..e370806d8436 100644
+> --- a/drivers/virt/coco/tsm-core.c
+> +++ b/drivers/virt/coco/tsm-core.c
+> @@ -71,9 +71,6 @@ static int tsm_register_pci(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops
+>   			"PCI/TSM registration failure: %d\n", rc);
+>   		return rc;
+>   	}
+> -
+> -	/* Notify TSM userspace that PCI/TSM operations are now possible */
+> -	kobject_uevent(&tsm_dev->dev.kobj, KOBJ_CHANGE);
+>   	return 0;
+>   }
+>   
+> @@ -91,15 +88,22 @@ struct tsm_dev *tsm_register(struct device *parent, struct pci_tsm_ops *pci_ops)
+>   	if (rc)
+>   		return ERR_PTR(rc);
+>   
+> -	rc = device_add(dev);
+> +	/* Complete PCI registration before exposing the TSM to class lookup. */
+> +	rc = tsm_register_pci(tsm_dev, pci_ops);
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- drivers/remoteproc/imx_dsp_rproc.c | 120 ++++++++---------------------
- 1 file changed, 30 insertions(+), 90 deletions(-)
+I'd move the !pci_ops check from tsm_register_pci() here, to match the pci_tsm_unregister() below. Or just open code it.
 
-diff --git a/drivers/remoteproc/imx_dsp_rproc.c b/drivers/remoteproc/imx_dsp_rproc.c
-index 96d619daf3f5..324c10f18507 100644
---- a/drivers/remoteproc/imx_dsp_rproc.c
-+++ b/drivers/remoteproc/imx_dsp_rproc.c
-@@ -864,97 +864,41 @@ static int imx_dsp_rproc_memset(void *addr, u8 value, size_t size)
- 	return 0;
- }
- 
--/*
-- * imx_dsp_rproc_elf_load_segments() - load firmware segments to memory
-- * @rproc: remote processor which will be booted using these fw segments
-- * @fw: the ELF firmware image
-- *
-- * This function loads the firmware segments to memory, where the remote
-- * processor expects them.
-- *
-- * Return: 0 on success and an appropriate error code otherwise
-- */
--static int imx_dsp_rproc_elf_load_segments(struct rproc *rproc, const struct firmware *fw)
-+static int imx_dsp_rproc_memcpy_tova(struct rproc *rproc, u64 da, const void *src,
-+				     size_t filesz, size_t memsz)
- {
- 	struct device *dev = &rproc->dev;
--	const void *ehdr, *phdr;
--	int i, ret = 0;
--	u16 phnum;
--	const u8 *elf_data = fw->data;
--	u8 class = fw_elf_get_class(fw);
--	u32 elf_phdr_get_size = elf_size_of_phdr(class);
-+	void *ptr;
-+	int ret;
- 
--	ehdr = elf_data;
--	phnum = elf_hdr_get_e_phnum(class, ehdr);
--	phdr = elf_data + elf_hdr_get_e_phoff(class, ehdr);
-+	/* grab the kernel address for this device address */
-+	ptr = rproc_da_to_va(rproc, da, memsz, NULL);
-+	if (!ptr) {
-+		dev_err(dev, "bad phdr da 0x%llx mem 0x%zx\n", da, memsz);
-+		return -EINVAL;
-+	}
- 
--	/* go through the available ELF segments */
--	for (i = 0; i < phnum; i++, phdr += elf_phdr_get_size) {
--		u64 da = elf_phdr_get_p_paddr(class, phdr);
--		u64 memsz = elf_phdr_get_p_memsz(class, phdr);
--		u64 filesz = elf_phdr_get_p_filesz(class, phdr);
--		u64 offset = elf_phdr_get_p_offset(class, phdr);
--		u32 type = elf_phdr_get_p_type(class, phdr);
--		void *ptr;
--
--		if (type != PT_LOAD || !memsz)
--			continue;
--
--		dev_dbg(dev, "phdr: type %d da 0x%llx memsz 0x%llx filesz 0x%llx\n",
--			type, da, memsz, filesz);
--
--		if (filesz > memsz) {
--			dev_err(dev, "bad phdr filesz 0x%llx memsz 0x%llx\n",
--				filesz, memsz);
--			ret = -EINVAL;
--			break;
--		}
--
--		if (offset + filesz > fw->size) {
--			dev_err(dev, "truncated fw: need 0x%llx avail 0x%zx\n",
--				offset + filesz, fw->size);
--			ret = -EINVAL;
--			break;
--		}
--
--		if (!rproc_u64_fit_in_size_t(memsz)) {
--			dev_err(dev, "size (%llx) does not fit in size_t type\n",
--				memsz);
--			ret = -EOVERFLOW;
--			break;
--		}
--
--		/* grab the kernel address for this device address */
--		ptr = rproc_da_to_va(rproc, da, memsz, NULL);
--		if (!ptr) {
--			dev_err(dev, "bad phdr da 0x%llx mem 0x%llx\n", da,
--				memsz);
--			ret = -EINVAL;
--			break;
--		}
--
--		/* put the segment where the remote processor expects it */
--		if (filesz) {
--			ret = imx_dsp_rproc_memcpy(ptr, elf_data + offset, filesz);
--			if (ret) {
--				dev_err(dev, "memory copy failed for da 0x%llx memsz 0x%llx\n",
--					da, memsz);
--				break;
--			}
--		}
--
--		/* zero out remaining memory for this segment */
--		if (memsz > filesz) {
--			ret = imx_dsp_rproc_memset(ptr + filesz, 0, memsz - filesz);
--			if (ret) {
--				dev_err(dev, "memset failed for da 0x%llx memsz 0x%llx\n",
--					da, memsz);
--				break;
--			}
-+	/* put the segment where the remote processor expects it */
-+	if (filesz) {
-+		ret = imx_dsp_rproc_memcpy(ptr, src, filesz);
-+		if (ret) {
-+			dev_err(dev, "memory copy failed for da 0x%llx memsz 0x%zx\n",
-+				da, memsz);
-+			return ret;
- 		}
- 	}
- 
--	return ret;
-+	/* zero out remaining memory for this segment */
-+	if (memsz > filesz) {
-+		ret = imx_dsp_rproc_memset(ptr + filesz, 0, memsz - filesz);
-+		if (ret) {
-+			dev_err(dev, "memset failed for da 0x%llx memsz 0x%zx\n",
-+				da, memsz);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
- }
- 
- static int imx_dsp_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
-@@ -969,7 +913,6 @@ static int imx_dsp_rproc_load(struct rproc *rproc, const struct firmware *fw)
- 	struct imx_dsp_rproc *priv = rproc->priv;
- 	const struct imx_dsp_rproc_dcfg *dsp_dcfg = priv->dsp_dcfg;
- 	struct rproc_mem_entry *carveout;
--	int ret;
- 
- 	/* Reset DSP if needed */
- 	if (dsp_dcfg->reset)
-@@ -985,11 +928,7 @@ static int imx_dsp_rproc_load(struct rproc *rproc, const struct firmware *fw)
- 		}
- 	}
- 
--	ret = imx_dsp_rproc_elf_load_segments(rproc, fw);
--	if (ret)
--		return ret;
--
--	return 0;
-+	return rproc_elf_load_segments(rproc, fw);
- }
- 
- static const struct rproc_ops imx_dsp_rproc_ops = {
-@@ -998,6 +937,7 @@ static const struct rproc_ops imx_dsp_rproc_ops = {
- 	.start		= imx_dsp_rproc_start,
- 	.stop		= imx_dsp_rproc_stop,
- 	.kick		= imx_dsp_rproc_kick,
-+	.memcpy_tova	= imx_dsp_rproc_memcpy_tova,
- 	.load		= imx_dsp_rproc_load,
- 	.parse_fw	= imx_dsp_rproc_parse_fw,
- 	.handle_rsc	= imx_dsp_rproc_handle_rsc,
+>   	if (rc)
+>   		return ERR_PTR(rc);
+>   
+> -	rc = tsm_register_pci(tsm_dev, pci_ops);
+
+ah that's why a pointer became an int...
+
+
+> +	rc = device_add(dev);
+>   	if (rc) {
+> -		device_del(dev);
+> +		if (pci_ops)
+> +			pci_tsm_unregister(tsm_dev);
+>   		return ERR_PTR(rc);
+>   	}
+> +
+> +	/* Notify TSM userspace that PCI/TSM operations are now possible. */
+> +	if (pci_ops)
+> +		kobject_uevent(&dev->kobj, KOBJ_CHANGE);
+
+Why do we do this only when pci_ops!=NULL? Also, why do we even allow pci_ops==NULL?
+[a minute later] ah 04/15 does just that. Make it first in the series so following patches get simpler?
+
+01..04 can go first really.
+
+Thanks,
+
+
+> +
+>   	return no_free_ptr(tsm_dev);
+>   }
+>   EXPORT_SYMBOL_GPL(tsm_register);
+
 -- 
-2.56.0.rc1
+Alexey
 
 
