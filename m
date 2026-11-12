@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09BA60713D1
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681B160713D2
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:38:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=isQ911ZT;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VvpYQmxc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hma0/7/z;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dvRoKTUe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=RhdgniR7Xv7Tq5+THcnfG7FzL9goeLQzbhmqdAGPw54=; b=isQ911ZT/WwvFwUS1GUSJJyz/k
-	nto3uqGbp/d5JCf4OyBjM6GQnXRpa5QQmR1x6NjTethlS6jQX0TZeBIogNPnnXs985dD3tJG/Z6EU
-	eJvIh6wcaYNHsLn0PF76xegqb3je9Em04uwd0TGtWSDodPAmFDwLMDVHdUSUbHZdykeqP93c4v5i7
-	fBZhK0exLM0lE+uEdCelLdJ3nz2qMWJmXWuh+ePghU3kUPE7gOsUgokoMMmo5XLn/FmzMM6yKL1eV
-	hhHc4lBqQkaIeF88CCHw2+oWaudkZN36M78bvxIQ/f3/rZf0DemEEGsgiJVT/HB88/qWYSrkCQFMQ
-	oo+uSlDQ==;
+	bh=1XKbNH2/KH99YbWTOs529XIXwoRw5zG3NS6qzqt74p8=; b=Hma0/7/z6MGEO7Ra8Gtm2wRnl6
+	ojOkhBHiTXghYupPyrS+f0NPf0HtnrhXkZMZ4pqaWp6/nUm8nNQPrs4O2oMZsD6DkuvSzlGtKgBJ8
+	81ZiE/PW+quFrS7XZT7EKrXs8pqJCz9lHab5sl0oPOKLZOo/M3+RtvIbV5OCZCDRgdam52UQ56mDk
+	OVwZOnXdYdydT06xonOlVhEWknzBoQVfnc8vsoqGTTSFQ/oYjtcChF/J2hVgGulyM2gN686U/rwoY
+	/Y335oZQOibKOUFDk5/RxXRR4P/cqINiS3zgA0Uo1cz02FUepmaDHEXtW4LO2EU74Gvhq6y0Zv+2W
+	TLfNFQIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQJY-00000009ARV-1PdQ;
-	Thu, 12 Nov 2026 08:37:51 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRQJy-00000009AbR-3Wwo;
+	Thu, 12 Nov 2026 08:38:15 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQF1-000000098ME-32XO;
-	Thu, 12 Nov 2026 08:33:08 +0000
+	id 1xRQFI-000000098S4-1YcQ;
+	Thu, 12 Nov 2026 08:33:24 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 7AE364791A;
-	Thu, 12 Nov 2026 08:33:07 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id C7AA447914;
+	Thu, 12 Nov 2026 08:33:10 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794472387;
-	b=midOdj1lEXBligdJ8Q5mhxR8xgtQUBpLR5XeWnezNplrsewJsrMkWu9Uz9IsNFzEBiTX
-	 dghw3N1REs3JXL9OCiQ+U1a1vuJGjRl5rdDZtDJNEbIzcsaBvqSMDiVFGFa4v+xJU88Vb
-	 LuVyRIKaJ74kYHPPV9eI7l3QzknLlVTvRZ8xBYRGnhIOAYJ1zsdsQMSirTrofloGt2drG
-	 m0nfpvZ4+HY6jehXPKlkLrdVtrLdbJcrilJqvNNGssKgIPUWUNV/YsFV3r5zZp2c3fKDF
-	 V4EnIbOP9p0+T239G2MpnhAU/oghJxfKdfE5L12u9AOcZ/8EqGb2R1Q8Eh1C3ky6ToQ==
+	t=1794472390;
+	b=waCX05Diok23MLZF/zLOIQ52uvRtHzsQjFes/WBkDtDfzNuh+TriRJIZo17CePoZGK6v
+	 ZLmRDFrTyINR4LW8/G/cgtImmex3RtV5RLhGLoaHsvQgIYjIKB9OLmRhE5248LLV9oShz
+	 u7xDPVIxtLpxqyMKNfXZpSb74KOEwlHO66vLuxdgOiThXjHnWN7HJ/GMrjD9UsqH9vYgX
+	 oOO2qcyfjZQToXDI2Qz2Dlwt9X0itedi5UM5UG5AKb7ERrcJvakcki6xgn39mKWWwCXad
+	 frm29jH1JAVBGutPxLOK8VyZZ7IV3XdAePzpAlGN/RaOC2Qphvj3VWy4IOoY0XqaGkQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794472387;
+	c=relaxed/relaxed; t=1794472390;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=RhdgniR7Xv7Tq5+THcnfG7FzL9goeLQzbhmqdAGPw54=;
-	b=Wc/ocfOBGFXP2Vth0rkJ3HEIyZ7obUuWXlkH0hD4pLokDdE4m2ZGwx8sG4k5BedtSHrm
-	 1HT1y1Bdi+S0mAhlsD4EkVmWtDy3f5dElU9GyEv/y5rfdXxqrGF8PPCEwNn7bRaaG7ZLu
-	 2iletN1dKbGDLjrHXbjNdMZaXA9dYoUuoHe/lqSH2JlISofUfVT8n0u9cVqed1oZFEWiE
-	 ZS22sjzLnwXJnhO/nVkqicGaExJK1ZKXBkziBX7oDApsjLJg3TMR4+8/hS7AG45VX8rUi
-	 r8i6OD/6BP7SAl1T3+d1tdOGDocNtj4i9TROCmJyNIw2kzEbMEKo0f8TrtR3lzQc3aA==
+	bh=1XKbNH2/KH99YbWTOs529XIXwoRw5zG3NS6qzqt74p8=;
+	b=osh3AJtbSd2jdnf/krpwJM4JHOsxKWklkahrXlmHPipWMoTWt49h6H5ns+3uQyJIah0v
+	 7gpS1TcVseQCmD8l9aeJLbvzGTVDxhXp/MKD3TMW1FjRSr6UkPC5li27mCbO4HSW5zUeb
+	 R2rANnaz5K3RRfev9f8Dp4IqWlq2SiPMGD30o0uejBtcBTif3ANcyvYjZWwXc5uXkeMT/
+	 fEhDeXIBWMGL+yYgfD+IAetTLAoAwUtvI6D6D3F5trcBnpvDLNUs9d47qC5o8dDx8ZCOr
+	 jP76Go4U/fE5qRc+oH8cng0ffqsAEA8aRKxzYJo8A4yphjv7BBs7Ne/omFGNDUpJVsg==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id CB6CC1F00A0C;
-	Thu, 12 Nov 2026 08:33:06 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id F2C7D1F00A0E;
+	Thu, 12 Nov 2026 08:33:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794472387;
-	bh=RhdgniR7Xv7Tq5+THcnfG7FzL9goeLQzbhmqdAGPw54=;
+	s=k20260515; t=1794472390;
+	bh=1XKbNH2/KH99YbWTOs529XIXwoRw5zG3NS6qzqt74p8=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VvpYQmxc83SJbPJeKVGeQ3hXL7ZpBI5Zq2825/p9PKTn4YzzkHZdbWYdO6h8n4qUd
-	 8itrjuwEFHQRS7N9qW89WyBh86imBWjHkGkm4NH+LX7enJMkH21tFE46G0PtP5f6oH
-	 eQg3fHFVCvxxhnORn4gFhvYy6P3ZH7dHFNUzx2isTILER2JFxNyMy+zLw1OmaKOVIw
-	 cLoLUV8T50Jklv/k5dR3/04Q2+x4jFyWue2YfVwkFsTVc0kIyrBGw8LJehd5Crn5gx
-	 ZMlOmeqJHsJ2vK4+B8tn9PqzeShi+wFBUWK91wVcRSXXAY3tBS2MpK8enSuGXiRYbO
-	 Ufpu3qu7jAm/A==
+	b=dvRoKTUe5c0tIh5y3rUyPYZVEdpcAMzud+1SnMbRvG2AAmBeDsf5rTMCi8jwkiNHW
+	 9/LzT0jwXry8lokd0uxJo7vtApVzw/c/CF9IhN5ddPqU12W2VuuwrpDGHSy/feS9pQ
+	 mR11l2iStfaRaqgbyB0NxEgnu9M672jK7dDEW7RKqm/uP4ynznRhHNVELvAUok9EoD
+	 7d92mxN4bkfooFrzYJ2Eq+KeklZK94PWlW3XM20pDUGAIkROI/r9pEaT09ie5f2BOJ
+	 O4lnJJn6spd6h42qQCjVvCV9O2bEJvS/wNCDBjb2vcDGGoRYumEp31mJTAD09OpXWS
+	 OAqBQ6dd35Q8A==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 4FB9B4939E;
+	by lkml.kernel.org (Postfix) with ESMTP id D9CC9493C2;
 	Thu, 12 Nov 2026 08:33:06 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:33:05 +0000
-Subject: [PATCH v2 1/9] drm/rockchip: vop2: Take the UV plane address from
- the second GEM object
+Date: Thu, 12 Nov 2026 08:33:12 +0000
+Subject: [PATCH v2 8/9] drm/rockchip: vop2: Keep the other LUT_PORT_SEL
+ fields on gamma LUT updates
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-vop2-fixes-v2-1-8218c1cf8ac8@gmail.com>
+Message-Id: <20261112-vop2-fixes-v2-8-8218c1cf8ac8@gmail.com>
 References: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
 In-Reply-To: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
 To: Sandy Huang <hjc@rock-chips.com>, 
@@ -92,14 +92,13 @@ To: Sandy Huang <hjc@rock-chips.com>,
 Cc: Piotr Zalewski <pZ010001011111@proton.me>, 
  Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org, 
  linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>, 
- stable@vger.kernel.org
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472385; l=1838;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794472385; l=1484;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=c6L45VmSkCBmk0ERX5lNSIXdj9a2eckfk+73qA8sDb8=;
- b=bNeTudL523j6Oh7G+s25KWoAvRH5h9NVLNWYV+GSaMqLiTaDWtX4j2lI+02qf8Y5TtY6yHfN3
- 3AEArtFHBkpAOJZNZx6SmuxwHhXYzW9/VSt7E2jNe1ayGQUaGNQSjax
+ bh=WoObJhqQCguUZVQZS4V4CMddVbsfxO9PvoIdXFATrrs=;
+ b=v7uDMm0D5IZjEF8Q5Kr1g/6NEsROZFDbJNyG8T4DzjiDBiH8wCp30u+EhYBiyuDF763+7vlzQ
+ bJgLrzzMHGNCZcwDdpAx1LSPmEsbt8swnR9cpsqp3RGWTLsr2tvXF0n
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -127,43 +126,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-vop2_plane_atomic_update() computes the address of the chroma plane of a
-multi-planar YUV framebuffer from fb->obj[0], the object of the luma
-plane, plus the offset of the chroma plane. A framebuffer may have its
-planes in different GEM objects though (DRM_IOCTL_MODE_ADDFB2 with two
-handles, as with an NV12M buffer from a V4L2 decoder imported as two
-DMA-BUFs). The window then fetches the chroma plane from the luma buffer,
-at an offset meant for another buffer, which shows a wrong picture or
-reads past the end of the luma buffer.
+On RK3588 the gamma LUT of a video port is written through a window that
+GAMMA_AHB_WRITE_SEL in SYS_CTRL_LUT_PORT_SEL selects. The register also
+holds the dclk source selection of video ports 0 and 2 and the enable of
+the video port 0/1 merge for modes wider than 4096 pixels, which writing
+the whole register clears.
 
-Use fb->obj[1] for the chroma plane. Single plane YUV formats like
-DRM_FORMAT_YUV420_8BIT have no second object and keep using fb->obj[0].
-This is also what the vendor kernel does.
+Only update the write select field.
 
-Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
-Reported-by: Sashiko <sashiko-bot@kernel.org>
-Closes: https://lore.kernel.org/all/sashiko-outbox-206550@kernel.org/
-Cc: stable@vger.kernel.org
+Fixes: 4f537776340d ("rockchip/drm: vop2: add support for gamma LUT")
+Reviewed-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 76d151b8bc52..ea8d837d661f 100644
+index c59e270739b6..259e30ebb9cb 100644
 --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
 +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -1369,7 +1369,9 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
- 		if ((pstate->rotation & DRM_MODE_REFLECT_Y) && !afbc_en)
- 			offset += fb->pitches[1] * ((pstate->src_h >> 16) - 2) / vsub;
- 
--		rk_obj = to_rockchip_obj(fb->obj[0]);
-+		/* Single plane formats like YUV420_8BIT have no second object */
-+		if (fb->format->num_planes > 1)
-+			rk_obj = to_rockchip_obj(fb->obj[1]);
- 		uv_mst = rk_obj->dma_addr + offset + fb->offsets[1];
- 	}
- 
+@@ -2015,8 +2015,9 @@ static void vop2_crtc_atomic_set_gamma_seamless(struct vop2 *vop2,
+ 						struct vop2_video_port *vp,
+ 						struct drm_crtc *crtc)
+ {
+-	vop2_writel(vop2, RK3568_LUT_PORT_SEL,
+-		    FIELD_PREP(RK3588_LUT_PORT_SEL__GAMMA_AHB_WRITE_SEL, vp->id));
++	regmap_update_bits(vop2->map, RK3568_LUT_PORT_SEL,
++			   RK3588_LUT_PORT_SEL__GAMMA_AHB_WRITE_SEL,
++			   FIELD_PREP(RK3588_LUT_PORT_SEL__GAMMA_AHB_WRITE_SEL, vp->id));
+ 	vop2_vp_dsp_lut_enable(vp);
+ 	vop2_crtc_write_gamma_lut(vop2, crtc);
+ 	vop2_vp_dsp_lut_update_enable(vp);
 
 -- 
 2.55.0
