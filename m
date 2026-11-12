@@ -2,68 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D89A6606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B2A606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 22:34:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cBov9NyU;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WR3VWbUK
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=3bNKc6wI;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ZM+kP8bg
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=7I8Bl8j2DkVNE27qVMX3vqtaNvrvL7NhHRJK3KxV54A=; b=cBov9NyUNxsIbPAmKf6MCp+Y7C
-	7qKa2ev9pv8IfVQQf50wdr1yyEpKlfLNSxBZgW1MhNEg2FIJiVugw6AoxgYzRTI8tgQQFDYe5SYeh
-	a/DcV6f5bVaUM4/DwX021hNA9FfeqgHIHspZMiyHV/LtJ0HMBYlmq1j9aLngxMk5zsKwv2cIdVFiL
-	AbOW7F1NXH1itLUtHgztSWlrqdpxjd2WKk8qhjZu1nwFZ2RdQPZa+AmHDel0sPC/72Bj1TA6oRB6K
-	XBcerqZ28slEBmO+3skJeYshJVwTnHLZXb9ZI4SnojOiZmU8wvcgUK/jQahDkgi8tQst5lPh14oO5
-	Wx4sL+Xg==;
+	bh=RZmkQsegMJj7uMwYkqEnAyJP3f797VptXlgVvu0XiXk=; b=3bNKc6wICgukLDL2INapA8gqKY
+	DlkJAVkjvxdZOjT3fi+KwO382yclVG5uko7v3uSm9Fa7mFXKSjN5+qfAao3Kk2mS9wJcgyTyJdRxq
+	65W2RdsIe6AFwqRL7OX/gx36KHE/nWQJWWn5SaI7TQumNW/t/Vd/dlUcBGH18UbucIRhE0pRGr9J4
+	2Xn8uYvPjB1UXfVxyCQoHMPmZg0Skk45OyskX5xveO4st8ebWj6ac1mXZy5y5pXOZdexwOOkusWwA
+	CHyYkm3f1BoiiQSGxgh51ay+KSTh48b2Puv60/qYCmaxJlXKV4bHrLPnrN+N6vjifLM/u/CZtSZyO
+	RzvCzjAg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdLh-0000000BAiE-3ndP;
-	Thu, 12 Nov 2026 22:32:53 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRdN2-0000000BAxw-0f11;
+	Thu, 12 Nov 2026 22:34:16 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRdL8-0000000BANa-1ReV;
-	Thu, 12 Nov 2026 22:32:18 +0000
+	id 1xRdN0-0000000BAxO-2r77;
+	Thu, 12 Nov 2026 22:34:14 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 114A6464D6;
-	Thu, 12 Nov 2026 22:32:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B350D1F000C5;
-	Thu, 12 Nov 2026 22:32:16 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id E9E4F62488;
+	Thu, 12 Nov 2026 22:34:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71D0D1F000C9;
+	Thu, 12 Nov 2026 22:34:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794522737;
-	bh=7I8Bl8j2DkVNE27qVMX3vqtaNvrvL7NhHRJK3KxV54A=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=WR3VWbUK1imnQlQmpNAhqSsCOW99QnIUHIcVwRERBUB4R/jAwYxqHbCFi1NkKzLoa
-	 ++/G59vhWLixAa9mEUEFGaU4gePyrs3VnVA09595dCjvaKajFGHofoN8XhUcYErqHP
-	 mChkoSGEKpddY3E1an1/DwCzTOeoAfXiiV55MWuRWtgoWvpRLoORurIa4d8gh/hEcp
-	 K+epw8KzroVsBPW5kuFg8ur7b1k8r1APmZnYOG0rRYfEeEaF5aWQPJ6qMb639O7JbH
-	 0Y8hT2yAVt9BfRDAyG2aNSLli4ZxHj62IV5iifmtuRZCbF+l9cL+Y+KQCwGeE9GoNI
-	 XttgZKyF9yFfw==
-Subject: Re: [PATCH net v9 09/10] can: rockchip_canfd: prevent timestamp work
- from rearming after bus-off
-From: netdev-bot+sashiko@kernel.org
-To: 1579567540@qq.com
-Cc: mkl@pengutronix.de, kernel@pengutronix.de, mailhol@kernel.org,
- heiko@sntech.de, socketcan@hartkopp.net, davem@davemloft.net,
- edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
- corbet@lwn.net, skhan@linuxfoundation.org, rdunlap@infradead.org,
- wg@grandegger.com, linux-can@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- stable@vger.kernel.org
-Date: Thu, 12 Nov 2026 22:32:16 +0000
-Message-ID: <179452273623.488853.960003123754786062@kernel.org>
-In-Reply-To: <20261111-rockchip-canfd-restart-close-v9-9-6643f3825ba3@qq.com>
-References: <20261111-rockchip-canfd-restart-close-v9-9-6643f3825ba3@qq.com>
-X-sashiko-severity: Low
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1794522853;
+	bh=RZmkQsegMJj7uMwYkqEnAyJP3f797VptXlgVvu0XiXk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=ZM+kP8bg96LTcgRrl2O4tGJEin6FVZ7fV8cdLYYi9RGQjd1Ol44XopCDh7O3rYhgi
+	 eYdIxmx6rQwupBV1dD3kXO1s/5tTfFLoR2gAWrjHekiffpv6X21tT/8ec1RLo9NVWX
+	 hLgMaP/hzxEc+rRtp+hb8fq2/XYBeW/qDDvuWxVwzohPvW8MSB3PUelUcffzzwhMb/
+	 sygPytE9j/V3kEq95ft3hExbLSJDXdN2UL+exfS7DXxiVBhhudY0xwEXQQYY+bu/WA
+	 4CkKrv4Ae+GkOmdnhcQAaOTu7xtpRl5rK07scbQvWKp9484/kLciakm28D7Bx4Cmhm
+	 Rsz/ThonRFqVw==
+Date: Thu, 12 Nov 2026 16:34:11 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Yaozhong Li <yaozhonguwl@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Joseph Chen <chenjh@rock-chips.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chris Zhong <zyw@rock-chips.com>,
+	linux-rockchip@lists.infradead.org,
+	Heiko Stuebner <heiko@sntech.de>, mfd@lists.linux.dev,
+	Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Zhang Qing <zhangqing@rock-chips.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: rk8xx: add board level power
+ hold GPIOs
+Message-ID: <179452285047.1753442.18416322410277903479.robh@kernel.org>
+References: <20261101154053.3874-1-yaozhonguwl@gmail.com>
+ <20261101154053.3874-2-yaozhonguwl@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261101154053.3874-2-yaozhonguwl@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,82 +76,55 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found more severe
-issue(s) in other patches of this series. This mail is only an FYI, in case
-you want to address the nit picks below when you respin.
 
-Low priority / nit picks for your consideration:
+On Sun, 01 Nov 2026 23:40:50 +0800, Yaozhong Li wrote:
+> Some boards route "power hold" lines from the SoC into the board's power
+> circuitry. Those lines have to be held asserted while the system is
+> running and released before the PMIC shutdown request is written,
+> otherwise the rails can drop and come back up instead of staying off.
+> 
+> Add power-hold-gpios to describe those lines and power-hold-delay-ms for
+> the settle time. The driver reads them for every RK8xx variant that is
+> the system power controller, so define them once, in a schema shared by
+> the seven RK8xx bindings, and reference it from each. The bindings
+> switch to unevaluatedProperties: false so that the shared properties are
+> allowed, except rk817, which keeps additionalProperties: false and lists
+> the two properties: it also references dai-common, of which it only
+> allows a subset.
+> 
+> The array is bounded at two entries. Firefly's vendor kernel handles
+> exactly two such lines, pmic,hold-gpio and pmic,stby-gpio, and its board
+> files use one or both of them, with an RK808 and with an RK818.
+> 
+> The lines are released from the PMIC's power-off path, so they are only
+> meaningful when the PMIC is the system power controller. Require that.
+> A board adding these lines is expected to switch to the generic
+> system-power-controller property at the same time, so the deprecated
+> rockchip,system-power-controller spelling is not accepted here.
+> 
+> Assisted-by: LLM
+> Signed-off-by: Yaozhong Li <yaozhonguwl@gmail.com>
+> ---
+>  .../bindings/mfd/rockchip,rk801.yaml          |  5 ++-
+>  .../bindings/mfd/rockchip,rk805.yaml          |  3 +-
+>  .../bindings/mfd/rockchip,rk806.yaml          |  1 +
+>  .../bindings/mfd/rockchip,rk808.yaml          |  5 ++-
+>  .../bindings/mfd/rockchip,rk816.yaml          |  5 ++-
+>  .../bindings/mfd/rockchip,rk817.yaml          |  4 ++
+>  .../bindings/mfd/rockchip,rk818.yaml          |  5 ++-
+>  .../mfd/rockchip,rk8xx-power-hold.yaml        | 42 +++++++++++++++++++
+>  8 files changed, 65 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk8xx-power-hold.yaml
+> 
 
-- [Low] Commit "can: rockchip_canfd: prevent timestamp work from rearming
-  after bus-off" is tagged Cc: stable but does not say it depends on the…
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
---
-
-can: rockchip_canfd: prevent timestamp work from rearming after bus-off
-
-After bus-off, the rockchip_canfd timestamp worker could requeue itself
-and keep polling. This patch switches the worker to disable_delayed_work()
-and enable_delayed_work() to stop that. It also adds timestamp_lock and
-timestamp_active so counter reads are serialized with start and stop, and
-rkcanfd_timestamp_stop_sync() now calls the non-sync stop before it
-cancels the work.
-
-> Keep workqueue operations outside timestamp_lock; the IRQ and restart
-> paths already serialize start and stop. Synchronous stop waits for the
-> callback before reinitialization or clock shutdown.
->
-> Fixes: 4e1a18bab124 ("can: rockchip_canfd: add hardware timestamping support")
-> Cc: stable@vger.kernel.org
-
-[Severity: Low]
-This doesn't affect the current tree, but should this patch say that
-it depends on the previous commit, "can: rockchip_canfd: serialize TX
-with bus-off and restart"?
-
-That commit created the one-time probe helper that this patch extends.
-It moved INIT_DELAYED_WORK() out of rkcanfd_timestamp_init(), which
-runs on every chip start. With this patch, rkcanfd_timestamp_work_init()
-in rockchip_canfd-timestamp.c becomes:
-
-	spin_lock_init(&priv->timestamp_lock);
-	priv->timestamp_active = false;
-	INIT_DELAYED_WORK(&priv->timestamp, rkcanfd_timestamp_work);
-	disable_delayed_work(&priv->timestamp);
-
-Three calls need to stay balanced: the disable at probe,
-enable_delayed_work() in rkcanfd_timestamp_start(), and
-disable_delayed_work() in rkcanfd_timestamp_stop(). That only works if
-the work is initialized exactly once.
-
-The sentence "the IRQ and restart paths already serialize start and
-stop" also relies on that commit. It added the restart quiescing in
-rkcanfd_set_mode() for CAN_MODE_START:
-
-	WRITE_ONCE(priv->irq_suspended, true);
-	/* Wait for handlers that already passed the suspended check. */
-	synchronize_irq(ndev->irq);
-	rkcanfd_timestamp_stop_sync(priv);
-
-Without the prerequisite, this patch won't apply to stable trees.
-Suppose a backport fixes the conflict by hand and leaves
-INIT_DELAYED_WORK() in rkcanfd_timestamp_init(). Then every chip start
-resets the disable count to 0 just before enable_delayed_work() runs.
-That would trigger the workqueue disable count underflow warning and
-undo the requeue blocking added here.
-
-The prerequisite is in the same series and is also Cc: stable, so
-stable tooling would normally apply both in order. Could the dependency
-still be made explicit? A prerequisite note on the Cc: stable line, as
-stable-kernel-rules.rst describes, or a "Backports must include ..."
-line would do it.
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-rockchip-canfd-restart-close-v9-0-6643f3825ba3%40qq.com
 
