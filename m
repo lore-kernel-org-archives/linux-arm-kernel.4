@@ -2,104 +2,108 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C464606A338
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 23:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AFA6606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 23:42:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HlaARN3a;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=hOYA8Oal
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=d7TC2zHn;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=A7jcPOKL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=Bhk1XAMEGUqw4Gd56fR/vruXqPANPGJWP7xiupKdveQ=; b=HlaARN3aKFQyz/8lYQe4AEnCO1
-	3CEhSps5tYDmIuA5Y9H2IcqWvdkzMcmXwdN8GumV3tKeiNs/4oE8/clr8bsZDrwVFw9LLQ+lqM6Kc
-	/+nzPR5KUPYTVllFwArYit65CGyisXuJbNXoh1nf4hbYrYdnWiF9ZZUcridqyvwY9k7edP2Rfz2N1
-	VuSWXOzZdTQAEyzsqlD7AJHqOrvz3i1jVFXUbbejLDf6YqVBSrTGDGnxLUvyLgxjzer5UqhsOTPpB
-	MwjvdiI2ZWOBfMbxHoE4BDXwqI8IxJVLJVBWnTYtCu/jylz3PERQMsLAJv0yTjwuCoMbs34pp1gNz
-	9NJxFuhA==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=DttvFnge8kOenaa6QdgP5d+NJ+mqXut24bqDnL4lrTM=; b=d7TC2zHnvzQ9q5
+	tkbr3h9kBC0G3DI3Z1at5kX9/w/dXGKjcrZI4BSP32GV+3x9HPJzy4Yy0V9PRguiDWjHufgO1sdp2
+	y2chiMDmmS8hJ4a54TZI5M5M8BrSCP1HhsrJIOuN/LwfRKxFRItDVk+0DR+oX++zpQNxxjlMulRLx
+	v/NRIkh+8Q/87+6W+jLiMjo6oJQmKILn7uSjefmP8eerHBUDae/P11zddK+1lz3d4dA41opWbC8K8
+	J47HlTx3bBCe/TUDNgP3ue6f7AK7bkWEF8JC2kYOz0pCwFzrH21pE6pRn5xtHSwNXr8Ycl/nZvabR
+	wLEEMcdQgKaJK2Suyl8w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xReMx-0000000BG64-3gwP;
-	Thu, 12 Nov 2026 23:38:15 +0000
-Received: from mail-pg1-x534.google.com ([2607:f8b0:4864:20::534])
+	id 1xReRG-0000000BGR4-27Om;
+	Thu, 12 Nov 2026 23:42:42 +0000
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xReMt-0000000BG5Q-2rg6
+	id 1xReRC-0000000BGQW-3dKE
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 23:38:14 +0000
-Received: by mail-pg1-x534.google.com with SMTP id 41be03b00d2f7-cdba1b5ed8dso158131a12.1
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 15:38:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794526691; x=1795131491; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=Bhk1XAMEGUqw4Gd56fR/vruXqPANPGJWP7xiupKdveQ=;
-        b=hOYA8Oal2eFpVuD10WmNUquEK0XuQYYeq6Z2CI+c9WKv6z2ok25/USzAo8Yr+all0j
-         7N8bqG/z4pRvVfMq9K8+yVU/7NDmSONSULQxbrAH4B3DQ1J09UAv1Vt7pjIpIH5OaI6T
-         d/kEabaRP2JqFMGDqF01uDR7HwUj3ni2qgX9hKoDzKKzW2Jzhkq/YurQ+WyGb1bREaYf
-         bI2kATD5Ujl+O82S+bM1/phdZlQIMNyjj9JgzxRCWFWrSTkW+ax6s/ReM9tsXtVaRUi0
-         QFjqp/c+1G1vI/vljyz7fj/Y7GP0kt5eaJR7wkqA3kTLQyuAiW6tQ9t9PHjHEOI3w053
-         PYVg==
+	Thu, 12 Nov 2026 23:42:40 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1794526956;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DttvFnge8kOenaa6QdgP5d+NJ+mqXut24bqDnL4lrTM=;
+	b=A7jcPOKLGJoxCIk4ZtvCqLiS+9tUZO2McjYTf05863js08aJHsKtpjwMzjsoTYLDLy2MJ6
+	LHZPulD9IjBS/+O8qPyYw+BZtS9JnbR8wmRg1HlOfdU7zs/MOPGpvF4tuwY1z8T3gQiXXC
+	yuhl04T1QnQO38v6CxV8t2B4Wc5YDzQ=
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com
+ [74.125.82.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-91-luLGKr3EOiyCz7QySOTrhQ-1; Thu, 12 Nov 2026 18:42:31 -0500
+X-MC-Unique: luLGKr3EOiyCz7QySOTrhQ-1
+X-Mimecast-MFC-AGG-ID: luLGKr3EOiyCz7QySOTrhQ_1794526948
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-36f26e6abe9so441893eec.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 15:42:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794526691; x=1795131491;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20260707; t=1794526948; x=1795131748;
+        h=content-transfer-encoding:content-type:in-reply-to:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=Bhk1XAMEGUqw4Gd56fR/vruXqPANPGJWP7xiupKdveQ=;
-        b=dKrxYZW7rPfAIktdCL98U5sA3871px6/g0kQeNfqNV+JPvtX9KUCMLn3jvEok6B5qg
-         2ipiIUyZD+UA5vsXyKf0NCGqi8Rgk4ewwB0VPtD0EPAyG8DLEWjZiLqcvD0gj9B9lRoT
-         9R3ssbtPVvb46Lzx4nOPXgisAQGQrK4p+wOzyl4R7Q7E+xFCurt8td/AQUJyuqLy8tU5
-         OqMozS8/Cuai+w/wT1JsrlXRY9tee2QkljdMqHAaDs2IoP1Rsb+KjeiioYSArjHJ5Yuq
-         9VWrKGSuE0Np4VP2u0BgYJ47M2yRqsgP+WPT5oueOtsIFRf440jYRqRT3L1WDvmJz6z3
-         kr1w==
-X-Forwarded-Encrypted: i=1; AL+hErEa9MgHCztiGDT86t53NWAjxN4WeAGrvFe5XsE3rK0Ev71yOWYfAx1P3FUrIh7UI/Tl+1AM10gENSD497I3LBPx@lists.infradead.org
-X-Gm-Message-State: APuU4Z8vknVxGxgsoJx4PVuIsGuBfkgEyBXsnub7SVDmTQOZEd1I4F3r
-	bO3kT2r4FwtWU4fSdQl5mCmvKAr2fiTP6yZfHGSBlZBKES9VRObHeOkQ
-X-Gm-Gg: AYBFou218PU9cGm5BO6TIxLVxJUQAGGYU4oBBsg3852GVrGgYM1fOzocukjWluyukiG
-	WoqVtmvEPc8y7UNjuOhcumOKYXa98GvvTK/FZdmNgzioI96zz6p1G96XUbaisjDoxjUFse85HW3
-	xhx7vUuYmTdDq8HPKj3J8VurkXkbvS9oNa2Kq34UlaCeky4ANeS1vELqqeH94LmX2TCPq2xoAam
-	DPpvYCJAQevXyzs4TaZZIAXZns90s3dZfxCNKld1WmFAVtoiSAASXS9/KguzdTVS5dU8vm1OkNk
-	7D6VVp1SXK7PuUD5PQpmUuBhz9eAE4b9ZUqYKfkMTIewohBBS14DEhCvFYTuRD149t2VIGZFZyQ
-	cV2tKg1wKvBO85sOT+VJIR8SV1PMwp2FDVuQ5fdjYMxxUgfuyLQejc3qmMPAMvKI9f8uzAAIb5J
-	DuE8KrJCt8IY1KSBtvd31xXEwbGKZhY5guvmId/3WG74T5QhZEPDnXXYERgpNyEVZvVhF6ADqEm
-	QYtCv/MrdfUIH8EkXplA9zHXByPjv0q8069iFrqTRtFcFSecMhYxM6iz1DSrVC6ieEw1bT789SR
-	DTf4tTG7Rtn0HYiJL4p9Hi2KlvuoLzRkn574aEA8GYRAMB/nqbfkAQMVvS2TFKW+yIcyw6n2aRn
-	oPQMh5q7Bpnb+98RPvgEzcdNxOfVuTAa119QEEPYf8jjjgzMguMDT79AClqMlvohXWfbli3Xv8O
-	vYk5G6OMMl6QWiiJtdQFJWZa83CZBK516jos5hwUh5
-X-Received: by 2002:a17:90a:d60e:b0:3ad:677f:567f with SMTP id 98e67ed59e1d1-3b1b0d7622bmr327595a91.40.1794526690626;
-        Thu, 12 Nov 2026 15:38:10 -0800 (PST)
-Received: from sid-dev-env.cgrhrlrrq2nuffriizdlnb1x4b.xx.internal.cloudapp.net ([4.155.54.158])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1b3d279d8sm102411a91.2.2026.11.12.15.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 15:38:10 -0800 (PST)
-From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-To: Peter Huewe <peterhuewe@gmx.de>,
-	Jarkko Sakkinen <jarkko@kernel.org>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>,
-	Sudeep Holla <sudeep.holla@kernel.org>,
-	Yeoreum Yun <yeoreum.yun@arm.com>,
-	Stuart Yoder <stuart.yoder@arm.com>,
-	apais@microsoft.com,
-	rlmenge@gmail.com,
-	hargar@linux.microsoft.com,
-	linux-integrity@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Siddharth Chintamaneni <sidchintamaneni@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v1 1/1] tpm: tpm_crb_ffa: Only register driver when ACPI TPM2 uses FF-A
-Date: Thu, 12 Nov 2026 23:38:07 +0000
-Message-ID: <20261112233807.70664-1-sidchintamaneni@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        bh=DttvFnge8kOenaa6QdgP5d+NJ+mqXut24bqDnL4lrTM=;
+        b=g+7lzs3+sK5C36TJDSKlT03NCASH9AlBr7ktK6LXLGkduCaJgk7FXiic2h9gRyy1DA
+         6Wf67F5UH1xzyouHHtYh9O/i5ITTcSqVt/+ac03vQ2WB8jX7r4Kd/v3ksSWXwuCfwSAP
+         +SVbkLZ9TDvcLnkDweYzAIaM1mM7mAn9PyyhPuIbuqRrLKedyHOT/lJIsNTFnqynUHge
+         y1M8MTxCRbTaP0Ih6RH3J+h6R6xBsA6ePxCgMzVvlByecDA0cHhTSfsoGaMlyKOqiMMo
+         HiXst5Yv+bUr3lJSIp+RS9MKJvlro2VrApErsgLMKUkYs/QuYIH+fgiERtuUsn6RJyGw
+         xRJA==
+X-Forwarded-Encrypted: i=1; AL+hErGl+aSaThWVAefLcZ1LGG3dSHsBTXKuvNpKcjiCKESF/SjQzRbonTwr1kg0a/i7wnuUIU4VMepu2xvxVXZ+YX1Y@lists.infradead.org
+X-Gm-Message-State: APuU4Z+80/2JHgYpIArLv/CgQoDgt5ni2JTM4NKpoPArpX8jSazq9Vqb
+	edzYqyuUcyfx3c/TdsJ54+EhJkn7q6TzI1W1ksW7+7wBcur0s9OaycdCEDO4tADGfyHp5qjGk35
+	GCOj+nTGdGVXg7fs4D9WQzFqDEwsd6/it2f3r0XQ+VP2faFjHOnMgDiwO0E3dDyrU8gi0UvR5S1
+	77
+X-Gm-Gg: AYBFou0CBHe6LpjBmry5bBfOaH3IIWiAnBlWaF0NQmSv9RlcD6bXEfa83nVJ5uaBYSg
+	9ds7zJXbmYghXF8WS+yxCqHczHH4ASba43CxMMVhwPP+83s1q65/o+y0iZNrbgLq7m4aK2zLGQT
+	gTpcL+hOhiw2t1ShVAPJhTAqyTE9oRNlpKzYoddSuI0mZhhz2eXAVj208vts93UaBWUMLjCWRav
+	JoK+utXOcwGGlGfe+fnL8eKlaqa/aXDAgkHm8o+kgH+lcdsf36mzFORqvdedUNx8V4SUy5aOUTd
+	aN9P+C+xyNfDcIutYvxuV6gHg1L4zwoWIybQwM4BCMl5m/5ZaLSFCcOsqoVtcqBtweux0Z6OOAg
+	Zi6gTVXe7iic9+Uc4UaV2j06qqy8K8dX5hiAr+EELNdhpziFFOWy5ZL45R4jreBXxkZhRSsgUxb
+	W4ODoI3TwBbe8dvkA=
+X-Received: by 2002:a05:701b:2616:b0:182:6c6c:d876 with SMTP id a92af1059eb24-1b5030e74dcmr678967c88.8.1794526948217;
+        Thu, 12 Nov 2026 15:42:28 -0800 (PST)
+X-Received: by 2002:a05:701b:2616:b0:182:6c6c:d876 with SMTP id a92af1059eb24-1b5030e74dcmr678949c88.8.1794526947710;
+        Thu, 12 Nov 2026 15:42:27 -0800 (PST)
+Received: from [192.168.68.52] (n175-34-8-244.mrk21.qld.optusnet.com.au. [175.34.8.244])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1b5031468b7sm2689566c88.5.2026.11.12.15.42.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Nov 2026 15:42:27 -0800 (PST)
+Message-ID: <a783b375-7c27-4c91-b40e-7e615d33bc5b@redhat.com>
+Date: Fri, 13 Nov 2026 09:42:21 +1000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm_mpam: resctrl: Only enable CDP on a resource
+ that supports it
+To: Jinjie Ruan <ruanjinjie@huawei.com>, james.morse@arm.com,
+ ben.horgan@arm.com, reinette.chatre@intel.com, fenghuay@nvidia.com,
+ zengheng4@huawei.com, tan.shaopeng@jp.fujitsu.com, jic23@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261111081316.3828283-1-ruanjinjie@huawei.com>
+ <20261111081316.3828283-3-ruanjinjie@huawei.com>
+From: Gavin Shan <gshan@redhat.com>
+In-Reply-To: <20261111081316.3828283-3-ruanjinjie@huawei.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: SRjywT9ftnq8bxgJn9NdPhMIVcjIsThpToh6cwrxEUQ_1794526948
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_153812_731090_EB112E9A 
-X-CRM114-Status: GOOD (  15.29  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_154239_308553_38F2CFE0 
+X-CRM114-Status: GOOD (  21.76  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -110,121 +114,75 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Prior to commit 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed
-when tpm_crb_ffa is built-in"), built-in tpm_crb_ffa only registered
-tpm_crb_ffa_driver from tpm_crb_ffa_init() after crb_acpi_probe()
-confirmed start_method == ACPI_TPM2_CRB_WITH_ARM_FFA. After that
-commit, tpm_crb_ffa unconditionally registers on the FF-A bus at
-device_initcall time (and when loaded as a module) without checking
-the platform's ACPI TPM2 table.
+On 11/11/26 6:13 PM, Jinjie Ruan wrote:
+> resctrl_arch_set_cdp_enabled() enables CDP for any cache level that is
+> requested, even one that has no MPAM cache controls. Mounting resctrl
+> with -o cdpl2 when only L3 can allocate still turns CDP emulation on for
+> the whole system, so every CLOSID takes two PARTIDs while resctrl keeps
+> its CLOSID count at the number of PARTIDs. Control groups in the upper
+> half then map to PARTIDs beyond mpam_partid_max, which index past the
+> configuration and monitor arrays and program out of range PARTIDs into
+> the MSCs. On QEMU with 5 PARTIDs the first monitor read after creating
+> 2 control groups raises MSMONCFG_ID_RANGE for PARTID 5, and MPAM is
+> disabled.
+> 
+> Do not enable CDP when a resource cannot allocate or is not CDP capable,
+> as x86 does, so the mount fails instead. Only the enable path is checked,
+> since unmount disables CDP on both cache levels to restore the MBA control.
+> 
+> A system where only MBA can allocate, or that only has monitors, now
+> fails a mount with CDP as well: CDP hides the MBA control because
+> mbw_max is a per-PARTID maximum, leaving nothing for CDP to apply to.
+> 
+> Fixes: 6789fb99282c ("arm_mpam: resctrl: Add CDP emulation")
+> Link: https://sashiko.dev/#/bug/linux-05c19551-0bba-4a06-aa2c-3c90fab5853d
+> Suggested-by: Ben Horgan <ben.horgan@arm.com>
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+> Cc: <stable@vger.kernel.org> # 7.1+
+> ---
+>   drivers/resctrl/mpam_resctrl.c | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/resctrl/mpam_resctrl.c b/drivers/resctrl/mpam_resctrl.c
+> index 573617ba09df..afa3c084c475 100644
+> --- a/drivers/resctrl/mpam_resctrl.c
+> +++ b/drivers/resctrl/mpam_resctrl.c
+> @@ -222,6 +222,10 @@ int resctrl_arch_set_cdp_enabled(enum resctrl_res_level rid, bool enable)
+>   	if (enable && mpam_partid_max < 1)
+>   		return -EINVAL;
+>   
+> +	if (enable && (!mpam_resctrl_controls[rid].resctrl_res.alloc_capable ||
+> +		       !mpam_resctrl_controls[rid].resctrl_res.cdp_capable))
+> +		return -EINVAL;
+> +
 
-A platform's firmware may expose a TPM CRB over FF-A Secure Partition
-for UEFI boot services while advertising a non-FF-A start method to
-the OS in the ACPI TPM2 table. When the ACPI TPM2 table designates a
-non-FF-A start method, Linux has no consumer for tpm_crb_ffa and
-should not probe the FF-A TPM service.
+x86 only checks 'cdp_capable', so this check isn't exactly same as to what's
+done on x86, as claimed in the commit log?
 
-On Microsoft Cobalt 200 systems, the ACPI TPM2 table does not use
-ACPI_TPM2_CRB_WITH_ARM_FFA, yet ffa_init() discovers the FF-A TPM
-partition and tpm_crb_ffa_probe() unconditionally sends
-CRB_FFA_GET_INTERFACE_VERSION via FFA_MSG_SEND_DIRECT_REQ2/REQ SMC.
-That request wedges the calling CPU in Secure World (with Non-Secure
-interrupts and GICv3 pseudo-NMIs masked), hanging boot with an RCU CPU
-stall:
+int resctrl_arch_set_cdp_enabled(enum resctrl_res_level l, bool enable)
+{
+         struct rdt_hw_resource *hw_res = &rdt_resources_all[l];
 
-  [    5.507519] ARM FF-A: Driver version 1.2
-  [    5.507519] ARM FF-A: Firmware version 1.2 found
-  [    5.507551] ARM FF-A: Notification setup failed -61, not enabled
-  [    7.150580] Freeing initrd memory: 293640K
-  [   65.515248] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-  [   65.521346] rcu:     10-...0: (3 GPs behind) idle=dd9c/1/0x4000000000000000 softirq=37/37 fqs=5262
-  [   65.530031] rcu:              hardirqs   softirqs   csw/system
-  [   65.535589] rcu:      number:        0          0            0
-  [   65.541146] rcu:     cputime:        0          0            0   ==> 30028(ms)
-  [   65.548102] rcu:     (detected by 66, t=15010 jiffies, g=-951, q=1384 ncpus=132)
-  [   65.555228] Sending NMI from CPU 66 to CPUs 10:
-  [   75.560686] After 10 seconds, these CPUS still haven't responded to the NMI: 10
+         if (!hw_res->r_resctrl.cdp_capable)
+                 return -EINVAL;
 
-Check the ACPI TPM2 table in tpm_crb_ffa_driver_init() and return
--ENODEV before calling ffa_register() unless the table is present and
-specifies ACPI_TPM2_CRB_WITH_ARM_FFA, matching the check_acpi_tpm2()
-pattern in tpm_tis.c. This ensures Linux only issues FF-A TPM requests
-when ACPI advertises the FF-A start method (for both built-in and
-modular builds), while preserving normal FF-A bus probing on platforms
-that use CRB over FF-A.
+         :
+}
 
-Fixes: 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed when tpm_crb_ffa is built-in")
-Fixes: eb93f0734ef1 ("tpm_crb: ffa_tpm: Implement driver compliant to CRB over FF-A")
-Cc: stable@vger.kernel.org
-Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
----
- drivers/char/tpm/tpm_crb_ffa.c | 37 +++++++++++++++++++++++++++++++++-
- 1 file changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/char/tpm/tpm_crb_ffa.c b/drivers/char/tpm/tpm_crb_ffa.c
-index 025c4d4b17ca..8219a8d01344 100644
---- a/drivers/char/tpm/tpm_crb_ffa.c
-+++ b/drivers/char/tpm/tpm_crb_ffa.c
-@@ -9,6 +9,7 @@
- 
- #define pr_fmt(fmt) "CRB_FFA: " fmt
- 
-+#include <linux/acpi.h>
- #include <linux/arm_ffa.h>
- #include <linux/delay.h>
- #include <linux/moduleparam.h>
-@@ -395,7 +396,41 @@ static struct ffa_driver tpm_crb_ffa_driver = {
- 	.id_table = tpm_crb_ffa_device_id,
- };
- 
--module_ffa_driver(tpm_crb_ffa_driver);
-+static bool __init tpm_crb_ffa_has_acpi_tpm2(void)
-+{
-+	struct acpi_table_tpm2 *buf;
-+	acpi_status status;
-+	bool match;
-+
-+	if (acpi_disabled)
-+		return false;
-+
-+	status = acpi_get_table(ACPI_SIG_TPM2, 1,
-+				(struct acpi_table_header **)&buf);
-+	if (ACPI_FAILURE(status))
-+		return false;
-+
-+	match = buf->header.length >= sizeof(*buf) &&
-+		buf->start_method == ACPI_TPM2_CRB_WITH_ARM_FFA;
-+	acpi_put_table((struct acpi_table_header *)buf);
-+
-+	return match;
-+}
-+
-+static int __init tpm_crb_ffa_driver_init(void)
-+{
-+	if (!tpm_crb_ffa_has_acpi_tpm2())
-+		return -ENODEV;
-+
-+	return ffa_register(&tpm_crb_ffa_driver);
-+}
-+module_init(tpm_crb_ffa_driver_init);
-+
-+static void __exit tpm_crb_ffa_driver_exit(void)
-+{
-+	ffa_unregister(&tpm_crb_ffa_driver);
-+}
-+module_exit(tpm_crb_ffa_driver_exit);
- 
- MODULE_AUTHOR("Arm");
- MODULE_DESCRIPTION("TPM CRB FFA driver");
--- 
-2.45.4
+>   	/*
+>   	 * resctrl_arch_set_cdp_enabled() is only called with enable set to
+>   	 * false on error and unmount.
+
+Thanks,
+Gavin
 
 
