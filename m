@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902F0606A8A7
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 17:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3376606C372
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 17:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hE2Hbow0;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OweugKwy
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sfFFhRWG;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nzzxEmNf
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,38 +14,38 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=ggmLOcruT1G1b2ZukTwuMIVuiyxgrbAXSuX5T2fz/qE=; b=hE2Hbow07SMsCV8TfMpLj2CvOG
-	0W+vOF2pFVrt9kGdPbjATW3cNkllVpyCHfMXDhpn4ArL9G6LY+nn13+aCUnZgNDVH5Rqtdc8/v3ZO
-	2zgh5jWUJjPODgAF34IDE1kVy28okUcUwvBi9Px/mkEMNzFCdZGxc3xLcRk6To9icXxzRHC1tKV3n
-	Ed1h3ytcLnhiIpMkl/gCxIHKQencGav3triGzemf9Zfa53ZN5jCR4s+SDAO8smBwIpb36GtT+WlvR
-	YGZnNNu8S/k9SGNpo7dYSdhpv8S9WImmImnSlv6aaFCEfLJsVe/Fjp7zU7aNRqnQekPu2apWYcChK
-	aFFhrBdw==;
+	bh=kLqQj0fPXIjHp2jTl7IwJO//6P6zW5QHVSed10H8W/w=; b=sfFFhRWGP08AJfg43vE5UpzOaX
+	ju4TZ0WEb8efSSq7yvv6D497mSwfLyVjlRzoHld5+3VEg6xg1e5B8Dbk1yb0a4QhQncoNJhzVj5dT
+	VRB/NZ5Ccc4gm3rIgmo8Zv3AoVeXsQanbWFmwfMjUHSIrvJbkhKOovpIgT2wVOVR5/cTz9P0YrJar
+	uLp1zZkGpw3hfV+JxHogJOryEppcwUXPTo4MtyzDqkGpBN9ec6gbTuyz+5NOmes1fD2y4oR+EuHHj
+	+LC6cpRMSyoacVqYHBfipk+guY4Xr7QGdWFCNSd6ob4EixM7IoHj0f+DsEio8wuXcnjIt4Ux+WDzL
+	oX1w9TNA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRYfo-0000000AlTq-0ROU;
-	Thu, 12 Nov 2026 17:33:20 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRYfn-0000000AlTT-1nn9;
+	Thu, 12 Nov 2026 17:33:19 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRYfl-0000000AlTC-4AJH
+	id 1xRYfl-0000000AlT3-0WWE
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 17:33:18 +0000
+	Thu, 12 Nov 2026 17:33:17 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9CF8B46293;
-	Thu, 12 Nov 2026 17:33:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B76661F000C5;
+	by tor.source.kernel.org (Postfix) with ESMTP id 7225A62330;
 	Thu, 12 Nov 2026 17:33:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD761F000C5;
+	Thu, 12 Nov 2026 17:33:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794504797;
-	bh=ggmLOcruT1G1b2ZukTwuMIVuiyxgrbAXSuX5T2fz/qE=;
+	s=k20260515; t=1794504796;
+	bh=kLqQj0fPXIjHp2jTl7IwJO//6P6zW5QHVSed10H8W/w=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=OweugKwyvvDT8Lx3qpAUjfosSibH7Y0FQDgkg3Ldpv8GW+Sm31GzCy/B7jbTrilRz
-	 haQ64yC9Y75BPLMPTux3hEO0nagkRSIV2DeyfXscg3tpYlGrGQ+yx1j05QGrzM4tyC
-	 OqiNelVfHN8NxbxcGJw8rLnFwUgZyQOYQ+nvD5cjDhJXMbLKh0CXm0sWTKijGiqBNS
-	 a7tyBQe75y3Jz19hS5jWjP/EeQ+PtVaxYIrymcAv/0CawAFLPAEdUlV27EOmOFPkbj
-	 xTvEx6G7ayQ5rob8dWZl7ZS8xYa8hhVgcCid25re2lslt6cpN4u0ZfkyP+lgdimGbT
-	 11NP+h+nP5xNg==
-Subject: Re: [PATCH net-next v2 2/9] net: sparx5/lan969x: free the FDMA
- buffers on init errors and deinit
+	b=nzzxEmNfsOO+sjTDRk9YkiRVjwgqlpFBNsjFxlhC2Lfe7bQNWc1pq4I+C3hKreA0W
+	 kf2bZnKqfwNleY4H8ePgIqEFgef60qD4cr6J4E5iyO1ZgrMlX1cDRT2rsrL22yViFk
+	 l+owVvmVZ/9KMWdFpM2mfV/kKRpDQcPyV3IlJq3bInDAMK0FJs9ItTrMFrTVZgG8zh
+	 XA/NmPJk2QNJiShKMmjT7hSyrPmDH8d52jVB4q+aXeaV/50xliYJ/Xyi6yWtSPMsTl
+	 x+g4OqeL0mrANifP+WT58rjoOO+Yvxjo5+njkGUITKy1YgbGycKwmjm83zWXbHA4r5
+	 ajeG8ofuUfskA==
+Subject: Re: [PATCH net-next v2 1/9] net: sparx5/lan969x: stop the FDMA
+ channels properly
 From: netdev-bot+sashiko@kernel.org
 To: daniel.machon@microchip.com
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
@@ -54,11 +54,11 @@ Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
  netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, robert.marko@sartura.hr,
  horatiu.vultur@microchip.com, jensemil.schulzostergaard@microchip.com
-Date: Thu, 12 Nov 2026 17:33:16 +0000
-Message-ID: <179450479633.2199510.4808333993834819818@kernel.org>
-In-Reply-To: <20261111-sparx5-mtu-change-v2-2-59c91357e8f6@microchip.com>
-References: <20261111-sparx5-mtu-change-v2-2-59c91357e8f6@microchip.com>
-X-sashiko-severity: High
+Date: Thu, 12 Nov 2026 17:33:14 +0000
+Message-ID: <179450479493.2199510.4440156833220844993@kernel.org>
+In-Reply-To: <20261111-sparx5-mtu-change-v2-1-59c91357e8f6@microchip.com>
+References: <20261111-sparx5-mtu-change-v2-1-59c91357e8f6@microchip.com>
+X-sashiko-severity: Medium
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -80,10 +80,10 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 1 potential
+Thank you for your contribution! Sashiko AI review found 2 potential
 issue(s) to consider.
 
-Critical: 0 · High: 1 (1) · Medium: 0 · Low: 0
+Critical: 0 · High: 0 · Medium: 1 · Low: 1
 
 If you believe none of the issues are legitimate, please reply to each
 issue of Medium severity or higher and explain why the AI is wrong.
@@ -91,167 +91,152 @@ If any of them are legitimate and you plan to respin, please let patchwork
 know by including "pw-bot: cr" as a separate line at the end of your reply
 (one such reply per series is enough).
 
-- [High] On lan969x, the ownership tracking for RX pages is still
-  incomplete in the free_page error path of lan969x_fdma_rx_get_frame().
-
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but both NAPI
-  handlers ignore the return value of fdma_dcb_add() when they refill RX…
+- [Medium] If the FDMA_CH_ACTIVE poll in sparx5_fdma_stop()
+  (sparx5_fdma.c:486-493) times out, the function only calls…
+- [Low] In sparx5_fdma_stop()
+  (drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c:472-509), the…
 
 --
 
-net: sparx5/lan969x: free the FDMA buffers on init errors and deinit
+net: sparx5/lan969x: stop the FDMA channels properly
 
-This patch adds sparx5_fdma_rx_free(), lan969x_fdma_rx_free() and
-lan969x_fdma_tx_free(). They release the RX skbs/pages, the page_pool,
-the TX buffer state and the in-flight TX buffers on init error paths and
-on deinit. It also checks the return value of fdma_dcbs_init() for RX,
-and stores the mapped TX length so it no longer reads skb->len.
+This commit changes sparx5_fdma_stop() to disable the FDMA channels
+through FDMA_CH_DISABLE and to poll the new FDMA_CH_ACTIVE register until
+they are inactive. It also stops the injection port through INJ_STOP. The
+XTR_BUF_IS_EMPTY poll now waits for the buffer to be empty instead of
+non-empty.
 
-> diff --git a/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c b/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
-> index 053d125eda658..8e0f1ddcbf2c4 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/lan969x/lan969x_fdma.c
+> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+> index 15ec9b053824f..bcae0bbd5e44e 100644
+> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
+> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_fdma.c
 
 [ ... ]
 
-> @@ -90,12 +90,29 @@ static void lan969x_fdma_free_pages(struct sparx5_rx *rx)
->  	struct fdma *fdma = &rx->fdma;
+> @@ -468,20 +471,39 @@ int sparx5_fdma_start(struct sparx5 *sparx5)
 >  
->  	for (int i = 0; i < fdma->n_dcbs; ++i) {
-> -		for (int j = 0; j < fdma->n_dbs; ++j)
-> +		for (int j = 0; j < fdma->n_dbs; ++j) {
-> +			if (!rx->page[i][j])
-> +				continue;
+>  int sparx5_fdma_stop(struct sparx5 *sparx5)
+>  {
+> +	u32 channels = BIT(sparx5->rx.fdma.channel_id) |
+> +		       BIT(sparx5->tx.fdma.channel_id);
+>  	struct sparx5_rx *rx = &sparx5->rx;
+>  	struct sparx5_tx *tx = &sparx5->tx;
+>  	u32 val;
+>  
+>  	napi_disable(&rx->napi);
+>  
+> -	/* Stop the fdma and channel interrupts */
+> +	/* Disable the channels, and wait for them to finish the current DCB */
+> +	spx5_wr(FDMA_CH_DISABLE_CH_DISABLE_SET(channels), sparx5,
+> +		FDMA_CH_DISABLE);
 > +
->  			page_pool_put_full_page(rx->page_pool,
->  						rx->page[i][j], false);
-> +			rx->page[i][j] = NULL;
-> +		}
->  	}
+> +	if (read_poll_timeout(sparx5_fdma_ch_active,
+> +			      val,
+> +			      !(FDMA_CH_ACTIVE_CH_ACTIVE_GET(val) & channels),
+> +			      SPX5_FDMA_STOP_SLEEP_US,
+> +			      SPX5_FDMA_STOP_TIMEOUT_US,
+> +			      false,
+> +			      sparx5))
+> +		dev_warn(sparx5->dev, "Failed to stop FDMA channels\n");
+
+[Severity: Medium]
+If this FDMA_CH_ACTIVE poll times out, what stops the channels from
+continuing to DMA into memory that the callers free right afterwards?
+
+In that case sparx5_fdma_stop() only warns and still returns 0. Both
+deinit callers ignore the return value anyway, and free the DMA memory
+without resetting the FDMA:
+
+sparx5_fdma_deinit() {
+	sparx5_fdma_stop(sparx5);
+	fdma_free_phys(&sparx5->rx.fdma);
+	fdma_free_phys(&sparx5->tx.fdma);
+	...
+}
+
+lan969x_fdma_deinit() {
+	...
+	sparx5_fdma_stop(sparx5);
+	fdma_free_coherent(sparx5->dev, &tx->fdma);
+	fdma_free_coherent(sparx5->dev, &rx->fdma);
+	lan969x_fdma_free_pages(rx);
+	page_pool_destroy(rx->page_pool);
+	...
+}
+
+A channel that is still active keeps the DCB addresses in its LLP
+registers. Could it then fetch DCBs from the freed coherent rings, or
+write extracted frames into RX pages or skbs that have already gone back
+to the allocator? Unbind/remove reaches this through
+sparx5_frame_io_deinit()->ops->fdma_deinit()->sparx5_fdma_stop().
+
+The code alone doesn't show whether a channel can really stay active
+longer than SPX5_FDMA_STOP_TIMEOUT_US after CH_DISABLE. Still, the timeout
+branch exists, and the frees after it run no matter what the stop returns.
+
+Later in this series, "net: sparx5/lan969x: add support for resizing the
+FDMA buffers" adds sparx5_fdma_pause(). It follows sparx5_fdma_stop() with
+an FDMA_CTRL NRESET before the buffers are freed. That covers the resize
+path, but the deinit paths still have no reset.
+
+Would it make sense to return -ETIMEDOUT from sparx5_fdma_stop(), or to
+assert FDMA_CTRL NRESET in the deinit paths before releasing the DMA
+memory, or both?
+
+> +
+> +	/* Stop the fdma and the RX channel interrupt */
+>  	sparx5_fdma_rx_deactivate(sparx5, rx);
+>  	sparx5_fdma_tx_deactivate(sparx5, tx);
+>  
+> -	/* Wait for the RX channel to stop */
+> -	read_poll_timeout(sparx5_fdma_port_ctrl, val,
+> -			  FDMA_PORT_CTRL_XTR_BUF_IS_EMPTY_GET(val) == 0,
+> -			  500, 10000, 0, sparx5);
+> +	/* Wait for the extraction buffer to be empty */
+> +	read_poll_timeout(sparx5_fdma_port_ctrl,
+> +			  val,
+> +			  FDMA_PORT_CTRL_XTR_BUF_IS_EMPTY_GET(val),
+> +			  SPX5_FDMA_STOP_SLEEP_US,
+> +			  SPX5_FDMA_STOP_TIMEOUT_US,
+> +			  false,
+> +			  sparx5);
+
+[Severity: Low]
+Can this poll still time out while RX traffic is arriving?
+
+The extraction channel is disabled and polled inactive first, while the
+extraction port is still running. XTR_STOP is only set after that, in
+sparx5_fdma_rx_deactivate():
+
+	/* Stop RX fdma */
+	spx5_rmw(FDMA_PORT_CTRL_XTR_STOP_SET(1), FDMA_PORT_CTRL_XTR_STOP,
+		 sparx5, FDMA_PORT_CTRL(0));
+
+Frames may keep reaching the CPU extraction queue during that window, and
+CPU forwarding (QFWD_SWITCH_PORT_MODE_PORT_ENA) stays enabled on the
+deinit path. If so, there may be no active channel left to move data out
+of the extraction buffer, and XTR_BUF_IS_EMPTY might never become 1.
+
+The result of this read_poll_timeout() is also discarded and nothing is
+printed. A non-empty buffer therefore looks the same as a clean stop.
+
+The commit message says the old wait "always runs until it times out".
+Could the new wait still do that in this case?
+
+Later in the series, sparx5_fdma_pause() disables CPU forwarding and
+drains the CPU queues before it calls sparx5_fdma_stop(). That suggests
+the stop sequence alone does not handle extraction that is still in
+progress.
+
+Would it help to set XTR_STOP before disabling the channel and poll
+XTR_BUF_IS_EMPTY while the channel is still active? Another option is to
+flush the buffer with FDMA_PORT_CTRL_XTR_BUF_RST, which is defined in
+sparx5_main_regs.h but never used. At the very least, checking and
+reporting the poll result would keep the diagnostic.
+
+>  
+>  	return 0;
 >  }
-
-[Severity: High]
-Is a non-NULL slot here always a page that the driver still owns?
-
-lan969x_fdma_rx_get_frame() takes its free_page error path when
-WARN_ON(!port) fires or build_skb() fails:
-
-free_page:
-	page_pool_recycle_direct(rx->page_pool, page);
-
-	return NULL;
-
-That returns the page to the pool, but
-rx->page[fdma->dcb_index][fdma->db_index] still points at it.
-lan969x_fdma_napi_poll() then breaks out of the loop without advancing
-or refilling that DB:
-
-		skb = lan969x_fdma_rx_get_frame(sparx5, rx);
-		if (!skb)
-			break;
-
-On a later teardown through
-lan969x_fdma_deinit()->lan969x_fdma_rx_free()->lan969x_fdma_free_pages(),
-wouldn't page_pool_put_full_page() run on that stale slot a second time?
-
-A page in the pool cache still has pp_ref_count == 1. So
-page_pool_unref_netmem() takes the second put as the last reference and
-recycles the page again, this time into the ptr_ring, while it also
-sits in the alloc cache. page_pool_destroy() would then DMA-unmap the
-page twice and call put_page() on it twice.
-
-The commit message says:
-
-  "To know which RX buffers are still owned by the driver, clear the RX
-  buffer slot once the buffer has been passed to the stack on Sparx5, and
-  make lan969x_fdma_free_pages() skip and clear the empty slots of the
-  ring."
-
-However, lan969x does not clear any slot at this commit. A later patch
-in the series, "net: sparx5/lan969x: add support for resizing the FDMA
-buffers", fixes the success path: it sets rx->page[...] = NULL before
-returning the skb. The free_page path still leaves the slot set there.
-
-That later patch also adds lan969x_fdma_resize(), which calls
-lan969x_fdma_rx_free() on an MTU change. After it, the double put can
-happen without an unbind.
-
-Separately, and this part predates the patch: the stuck DB stays DONE,
-so the next poll processes the same, already recycled page again. If
-build_skb() succeeds that time, the stack gets an skb on a page that
-the refill can hand straight back to the hardware.
-
-Would it work to set rx->page[fdma->dcb_index][fdma->db_index] = NULL
-after page_pool_recycle_direct()? The poll loop would also need to
-consume or refill that DB, or reuse the page in place, instead of
-recycling the page while the DB still references it.
-
-[ ... ]
-
-> @@ -169,14 +186,18 @@ static int lan969x_fdma_rx_alloc(struct sparx5 *sparx5)
->  		return PTR_ERR(rx->page_pool);
->  
->  	err = fdma_alloc_coherent(sparx5->dev, fdma);
-> -	if (err)
-> +	if (err) {
-> +		page_pool_destroy(rx->page_pool);
->  		return err;
-> +	}
->  
-> -	fdma_dcbs_init(fdma,
-> -		       FDMA_DCB_INFO_DATAL(fdma->db_size),
-> -		       FDMA_DCB_STATUS_INTR);
-> +	err = fdma_dcbs_init(fdma,
-> +			     FDMA_DCB_INFO_DATAL(fdma->db_size),
-> +			     FDMA_DCB_STATUS_INTR);
-> +	if (err)
-> +		lan969x_fdma_rx_free(sparx5);
->  
-> -	return 0;
-> +	return err;
->  }
-
-[Severity: High]
-This isn't a bug introduced by this patch, but the same allocation
-failure is still unchecked when the RX DCBs are refilled at runtime. The
-patch only adds the check at init time.
-
-lan969x_fdma_napi_poll() ignores the return value of fdma_dcb_add():
-
-		fdma_dcb_add(fdma,
-			     old_dcb,
-			     FDMA_DCB_INFO_DATAL(fdma->db_size),
-			     FDMA_DCB_STATUS_INTR);
-
-So does sparx5_fdma_napi_callback() in sparx5_fdma.c:
-
-		fdma_dcb_add(fdma, fdma->dcb_index,
-			     FDMA_DCB_INFO_DATAL(fdma->db_size),
-			     FDMA_DCB_STATUS_INTR);
-
-__fdma_db_add() in fdma_api.c writes the status, with DONE cleared,
-before it calls the dataptr callback:
-
-	db->status = cpu_to_le64(status);
-
-	err = cb(fdma, dcb_idx, db_idx, &dataptr);
-	if (unlikely(err))
-		return err;
-
-Suppose page_pool_dev_alloc_pages() in lan969x_fdma_rx_dataptr_cb() or
-the GFP_ATOMIC __netdev_alloc_skb() in sparx5_fdma_rx_dataptr_cb()
-fails. __fdma_dcb_add() then returns before it links the DCB or updates
-fdma->last_dcb. The next successful add links around that DCB, so the
-hardware skips it.
-
-Once dcb_index wraps around to that DCB, fdma_has_frames() and
-fdma_db_is_done() return false. Would both NAPI handlers then stop at
-that DCB on every poll? The hardware would fill the remaining DCBs, but
-nothing would consume or refill them, and CPU RX would stay stalled
-until the driver is rebound.
-
-This code is unchanged through the end of the series.
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-sparx5-mtu-change-v2-0-59c91357e8f6%40microchip.com
