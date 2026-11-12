@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0737606A881
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD9E606A8A9
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 08:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wUmJdWHg;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UfjcjxHw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pEXNnzO+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JJApeob/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=FPtSYDIVMTzneVOc/lShGERpGf9ZXly06LM0wT9bXXM=; b=wUmJdWHgNXrfViFWx73+WE3uCh
-	sPlgWs93Ho9019+B8MOfaaTaIU9HNwauwMKW5g9GOURrkyNGdAgCgbtjcgYQxN3gwo7zzuYpldg4A
-	GEWFcqLG1lpYUJRDClGZH4MzSPwnABmHjuI+HwvK+ZdlpAFF2FIjd83VF9iSzFwCb9/Qf5nd7DDol
-	JPAJSI++ynrgnwPmIeXUhSzkMO0br/k+YC3mvj6TDrUyOygW3V9nOR8SY6HZeLlkzPrEfQ1YcAaf2
-	PyK7FC+wbBw7Djlsanx3RGuVVRjlakqp3m74Bqwx7YRd/is9jwUCafeC7xF8gbAToq4dVEklqE/bK
-	D81EBhxg==;
+	bh=ifn3rhc/aaZsY5m1CIrGkh+6CUMXhWAN0wg/qVoSa1M=; b=pEXNnzO+Du6FVnxC7WukPCxSSF
+	FD8lLTQ42n7sASiJumt026nUziss9XKL/xiQ32cuyGrH15Eb9OaaVqt0vQBIQimE2p0zfN2TUeU8Y
+	McuLy6Gf/i6UHU7kybk2xBtT661bZvXOvdzSo4dqxsdGxY95oQUx2OX50jsyreJTrh+wCgJ9W9/qj
+	aUbvDpKR+y23huah+fraNilaJCwPDMvnZ5JGH+QdeR4+GpUIud9qF/gK3zS2nTv0x/9ym0p/7pz1S
+	e7ZnJctoQVyaEVk5YcR67vNDOPbuXRoJK6Nc1Zfb3qyULXuel1zZskZ783ZUETvpjZ++ylUlJ5Ldw
+	6nM2KGGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQ37-0000000949n-3vrx;
-	Thu, 12 Nov 2026 08:20:54 +0000
+	id 1xRQ3D-000000094CM-1CjY;
+	Thu, 12 Nov 2026 08:20:55 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRQ2j-0000000944w-16rW;
+	id 1xRQ2j-0000000944y-32fQ;
 	Thu, 12 Nov 2026 08:20:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4B13A47427;
+	by sea.source.kernel.org (Postfix) with ESMTP id 9696840A07;
 	Thu, 12 Nov 2026 08:20:24 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
 	t=1794471624;
-	b=Zyk/j0r0OtByJPlriSyvKDjwV7HicLWBA013JIigAFeTm4wynNV/bG/nDNmPg6C+6R6I
-	 CZMSY7k+rjzCSRvWRui19KrX5ES5WSEZN7VBsnl/LiHz15XmxR+bWxPUcl3SY1wVVskFn
-	 vvVGLYr/OLzs/7bsXsF4gs+tk403hskYq5qU1WQgX/5pSkEc1SLZX0ezswSPaDcofSq3t
-	 iNCHERzRgGb7FZDYJl7gZlriLjKvy6+WinbzvPUOh2VLichRzayA3dg0Ql9Hzqu9YsPPU
-	 ghhkrWzXRzq1AwJ8IDihfu7X78xKaidalPlxfvtNIKzAAIJRoeysDJNu1anBI7bUqBg==
+	b=pF+s6M1hebni/j3Nj3VBQ7qWt1q2zSeH7stNRca6JU793e7KdpIO8Q8u99IFiKbUzQC4
+	 Lx//wDM4WT/wOU+tYsoZ2HejC5vvccpC4Nqu7kjq+VXJhwNpTDai6FWjT0SEzCOn6+bb8
+	 QIarZGTuVB9PMfpJOmUV6FLQvIslmb6ZVcTPUhpg2OwLHb9lFBH2dt2+ptsHEji7zeGdH
+	 gL8AQYZeOOZOMA0slKPAuy/xkuDjGlQ1faNe+/+evUN3eka1I8UZVRYPlx08PmsBSx9FT
+	 wKVwCyfBW1/m8QD/RTLU1y9ayD0GORfDtvCNkI2Dqg8Y5i+0Dq04bPSF9PoNlgRYTow==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
 	c=relaxed/relaxed; t=1794471624;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=FPtSYDIVMTzneVOc/lShGERpGf9ZXly06LM0wT9bXXM=;
-	b=sD/8p1wasVcS+hdl/eajw4CUl7tyU9R3+qVxZbsKDpTtEG4WZaLsO5GUlMtSM+mYc0fa
-	 mcwbN92lBqxfMZAWC4dWbGSMUjMc/dEfI2jQc/wpBnsN+wc6kzLRbKnoV+RrGRPHKh+j6
-	 0FbcoIyn50wi/vuagr23oGCW5sQ6fCCUBJ5y4Pt0lHbQaRIf0fg8RrqqQHrIwqq01Puym
-	 2JmSEDH0/4Q6M8hCs8hURrBPluHHFevymGkIMGLJFok074/ZXlZhTu1n2gbYW0uIOc+NI
-	 Q4n26pqMAcTINJQqCLtL5es0Nhl4YAUNE5h7GebFAW2w1qLFAEqJq6pFvd0Q7xsTVIg==
+	bh=ifn3rhc/aaZsY5m1CIrGkh+6CUMXhWAN0wg/qVoSa1M=;
+	b=uNaOsOktK7kOLVQ2HMThY5fBeEWOK3hszkP4oJull8BJ2hBy056HdCcR94c8j5gVtMnA
+	 Sb4o++YEYHUniSzhLkewfhoGH41tZJ7bf1tTNNinwSk04dftg6E0OysNzzqzsm8d8jxIB
+	 4Nyaz+S2Jsvsjvf6mjjTrAUErS8MuppY/NkpYqev0R0iWmKOYqTqzkOS864jY9uUrGehF
+	 VYFNKfLpDBwdBCCwxzDyGii+2izJTmGKqQK3NGxP5UCrTjNeG9ad4F0ED3QjyPBNINNEx
+	 ZSw80Mtv10OyxPZbW0FZwRv8MjXGcc66478nqufMb8y4AMT1FIGZqrSm2+1CzSajmpw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 0FB661F00A11;
-	Thu, 12 Nov 2026 08:20:23 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id C82581F00A10;
+	Thu, 12 Nov 2026 08:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
 	s=k20260515; t=1794471624;
-	bh=FPtSYDIVMTzneVOc/lShGERpGf9ZXly06LM0wT9bXXM=;
+	bh=ifn3rhc/aaZsY5m1CIrGkh+6CUMXhWAN0wg/qVoSa1M=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=UfjcjxHw7wYMmapUoxMpum0tedlIVJTrRjFUj2/K4KS6uIMu4zDl7dPlPGB/OIKFo
-	 1Zmg2QY77NS9Aja2pmRWDao6u5ZjC+P1AX0NFg5ZdnAByCx8XDPioaDMyH4njmINAB
-	 3TGCd9YoiYGj48Z4EYNWitdhqQEHzpR+ktuhEKCYbu18spstegKcbEdBuSzOh4A46i
-	 +YcAH2xEdeOd1AssVHaH808hFMe6kHTQhX9KQm+cyKS+/5UO+c2D+ErL+Vd609FoFn
-	 d4YlH2EdaQEj5Bh3lCl8zO8zWYmdNQ0gKe0FZL+F4cAZYvewLUTHFlE39lrsja9HhZ
-	 BDgo818T7g8yQ==
+	b=JJApeob/6aKjmYks/z6TpS++jqNPqNVGjs8FB6BY9sicAa57bT7HLrOuUGPDbcbAK
+	 HnTKvWLPu5E/SaWE1TbzvlbPrDO/w1au+qIYMNJ9El8AK3t4D3+PNcGraa8n0Hkt9l
+	 5pYhSbxLliwv1nt0fb7FhzhMlwU7mp7kgcNmH+Xrmki003Clhsb1X78KjnC42QWoZV
+	 M3AuSfXr/JejRea8LxcaltNuKyrowr2HpRn1pKO2Pd+Kf4bAIxK5OQ9wXLx3ZAOl4w
+	 Ji64POLDy8jGWehMJbjvKNI7qxwqsDLwysq3eSPRVbjtF3ch567gIrcJ7JnT4d+ODD
+	 Be935tV+Xu05A==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 8E92F49351;
+	by lkml.kernel.org (Postfix) with ESMTP id 5554149345;
 	Thu, 12 Nov 2026 08:20:22 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Thu, 12 Nov 2026 08:20:25 +0000
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: Add the reset of the RK3588
- PCIe SMMU
+Date: Thu, 12 Nov 2026 08:20:22 +0000
+Subject: [PATCH v2 1/4] dt-bindings: iommu: arm,smmu-v3: Allow a clock and
+ a reset
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261112-smmu-v3-pcie-pd-v2-4-3a77bbb6b2c4@gmail.com>
+Message-Id: <20261112-smmu-v3-pcie-pd-v2-1-3a77bbb6b2c4@gmail.com>
 References: <20261112-smmu-v3-pcie-pd-v2-0-3a77bbb6b2c4@gmail.com>
 In-Reply-To: <20261112-smmu-v3-pcie-pd-v2-0-3a77bbb6b2c4@gmail.com>
 To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
@@ -96,11 +96,11 @@ Cc: Pranjal Shrivastava <praan@google.com>,
  Finley Xiao <finley.xiao@rock-chips.com>, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471621; l=901;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794471621; l=1761;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=yMU3CRWnB+XjuBD0UcTK2F5C3aJnFDvPe+6GBdY2fjI=;
- b=y93n/EpF6PWfLsnsaGUaIrO2x+dm5s9ksej3O2HvYP5uoOYvsWIgrwvy3c1b9Y//j0fLwRh9p
- FrDhoOPM321Ah3I01Gz/9hNlI/hAe8q5/i9zBRk7U0Rw2yNf8aNV4Gk
+ bh=JzTX29/TpR9nxeGBdiZSgKclV4i70sBR/P9CmAq8ikE=;
+ b=meanwe78j5XeCWZ+lc3cXV+gk13lyQBfIrhT/Usf6uvGl6Qs3NxLqmQXwoOl4CPLYS3YZIBO6
+ bAOb6gHoUQuA6jkHrGNmy7DV00xKs/7FY55AnihnTg3kBZxeuBP4R/9
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -128,27 +128,47 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The MMU-600 for the PCIe controllers (mmu600_pcie) has a reset line in
-the CRU, SRST_A_MMU_PCIE, which its node does not describe. Add it, so
-that the node describes both the clock and the reset of the MMU-600.
+Some SoCs feed the SMMUv3 from a clock that the OS controls. On the
+Rockchip RK3588 the MMU-600 for PCIe runs from ACLK_MMU_PCIE, whose only
+other consumers are the PCIe controllers. When no PCIe controller is
+enabled, the clock framework gates it as unused, and the SMMU can no
+longer be accessed. The same SMMU also has a reset line in the CRU,
+SRST_A_MMU_PCIE.
 
+Allow a single clock and a single reset, so that both can be described.
+The architecture defines no clock or reset inputs; the MMU-600 TRM lists
+one clock and one reset signal, and the one integration that needs this
+has one of each. An implementation with more clocks or resets can add
+them with names and a specific compatible.
+
+Link: https://support.arm.com/documentation/100310/0202/Signal-descriptions/Clock-and-reset-signals
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index dfed34a8aa57..45c1bb335447 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -560,6 +560,7 @@ mmu600_pcie: iommu@fc900000 {
- 			     <GIC_SPI 367 IRQ_TYPE_EDGE_RISING 0>;
- 		interrupt-names = "eventq", "gerror", "priq", "cmdq-sync";
- 		clocks = <&cru ACLK_MMU_PCIE>;
-+		resets = <&cru SRST_A_MMU_PCIE>;
- 		#iommu-cells = <1>;
- 	};
+diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+index 3c044e4f03d4..29b81b4fb650 100644
+--- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
++++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
+@@ -63,6 +63,17 @@ properties:
  
+   msi-parent: true
+ 
++  clocks:
++    maxItems: 1
++    description:
++      Clock of the SMMU's register and memory interfaces, on SoCs where the
++      OS has to keep it running.
++
++  resets:
++    maxItems: 1
++    description:
++      Reset of the SMMU, on SoCs where it is controlled by the OS.
++
+   nvidia,cmdqv:
+     description: |
+       A phandle to its pairing CMDQV extension for an implementation on NVIDIA
 
 -- 
 2.55.0
