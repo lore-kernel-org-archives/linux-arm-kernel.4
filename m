@@ -2,96 +2,146 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4027B606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 05:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E71606A33B
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 05:36:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pPFgtC5U;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Yg/vI3jx;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.a=rsa-sha256 header.s=dkim header.b=lqmIS5Fx
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=i09NWa8q;
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=ipLNJa6n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	References:Message-ID:In-Reply-To:Subject:cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=d6Vmz2yO8JeCHPhwWe9fXInHv17oitJtHUvnGtbPBpI=; b=pPFgtC5UlEXPk0j+xY6kCXLea+
-	n/m0iwDR9toc5VGI9FM9xgy6XcMVt02rfVnRuYqSJs04CwQx8zzIbVSg3oIV5Wb16cOzLVDCKalmQ
-	4uu3eH/Lkoux63vmszQ27YtsnO5fkdS0vV5ayuvdZdfYSff7XAiTCLtESHLqH/+oIo5aHMqkSMcj3
-	OkHVt6L5g617alCZuTWWnm05MQQWoHz5I0drQ2y4MGgEASkm+WsKb0Hb6mr+oA1eQkakED1bXJaLj
-	h2QBz7qFobk+brLNb6fwA+IFQ7H4y6NbjN5Pk+WhRDtITRcdHFHr+z838x84Puck47TZfkbu8LRen
-	GLPba8VA==;
+	bh=I4L2droYwPuQiGvQHNhcMSTOaHDL2TEmf87Rb8ua0eo=; b=i09NWa8qpn3GAEN/xKD/79wQqg
+	zf257ZrG0N7dbcHRdiLhawA414Iowcop7+BfKOD0qrlaHlWCsTrhMFoK2AEv7kuq0VX7+3Rr3qQ/k
+	H/dgdcIGBsWb34fHvLGR0wc8uWfUiU36rpzjKaqzP6V8FmhvTDNfxcCjU8nAElbrlhrNnwTKN5+X/
+	Muh0RcpxQ77AZWX+717qQPGdg9Tjb5Ptg3zB0lv0XhCzpffcTcznyaRkCtNxOl0+nfJXjYW+qrDkg
+	L4++V67OD0CkQvMof7r7ifIfMAzD97dbIUwhtmKfdpLDpDAdoEIofQ5rteJ7uYT+8xHLOiZTD2uHq
+	GPL2e1yg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNKV-00000008kDT-3Goc;
-	Thu, 12 Nov 2026 05:26:35 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xRNTf-00000008m1A-3O4z;
+	Thu, 12 Nov 2026 05:36:03 +0000
+Received: from mail-northcentralusazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c105::1] helo=CH1PR05CU001.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNKP-00000008k7b-3uW3;
-	Thu, 12 Nov 2026 05:26:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=d6Vmz2yO8JeCHPhwWe9fXInHv17oitJtHUvnGtbPBpI=; b=Yg/vI3jxr/VLSXJtmw/AKmTosu
-	362oD8peMPgdjhVGf/7RSKLtLcdHvs5Rv0tSyetIIa+q3bUn3dVILbPNToqn4quPGvy5ZJoqT8G6y
-	7FbYET/LfuRJcEb/dkjxuqmEOg8MBL3CxxLgSIUVq6U3u20ix6ixfObxld1fGHlbA1kC+8O6b/k6n
-	14SB98mbGFaCFdgzCFk15y97e0eKKJOgnSI367yFfn2dPEii5G6CBR5aEqgH+FjhJUMvEsl2HOBz5
-	6eSd5UczJ6iIGrguuc2gTRoNimy60qV6Qu1d1U5wcAL55ZdeXFU7LuADLYYFzgCXCEewoScIxcP8H
-	S9h/6CFQ==;
-Received: from rtits2.realtek.com ([211.75.126.72] helo=rtits2.realtek.com.tw)
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRNKH-00000009vM6-2J09;
-	Thu, 12 Nov 2026 05:26:27 +0000
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6AC5PlcqE3459346, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1794461147; bh=d6Vmz2yO8JeCHPhwWe9fXInHv17oitJtHUvnGtbPBpI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=lqmIS5FxZbgyGt51vBC26jn04SGJnGFgUnnFPKjhzf7GkVFHkq0gWkq9fiRirNvKP
-	 HVZe9dPxyqtQaFF6FBzIbNNPdwasqXzLnZvtaHTbl0fO7BZhstkXbQ1ArF5jg0K7il
-	 mWJteCSlGOzkmqzv0w/X1//6Z3cJxpdpSS31Awu5reAdOgq9S/L/CHuQdVOj5cSRxL
-	 9p3jL9BQ2N0UW38BIw/s2/CUUO3DCl+6l1bB8BXulCYb/xVDuUtoYbuUQh5oZ1Tf5i
-	 oVXcDN/C5W6T4V6VIQyWRGvCooYQt3td022u4auQlwNGiKTmOyAYtAst1E8Iu0o801
-	 AAt60e2vylVrA==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.29/5.94) with ESMTPS id 6AC5PlcqE3459346
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 12 Nov 2026 13:25:47 +0800
-Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 12 Nov 2026 13:25:47 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 12 Nov 2026 13:25:46 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
- (10.21.1.56) with Microsoft SMTP Server id 15.2.2562.56 via Frontend
- Transport; Thu, 12 Nov 2026 13:25:46 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <sboyd@kernel.org>, <bmasney+clk@redhat.com>, <jbrunet+clk@baylibre.com>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<cylee12@realtek.com>, <afaerber@suse.com>, <jyanchou@realtek.com>
-CC: <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-realtek-soc@lists.infradead.org>, <james.tai@realtek.com>,
-	<cy.huang@realtek.com>, <stanley_chang@realtek.com>,
-	<eleanor.lin@realtek.com>
-Subject: [PATCH v16 6/9] clk: realtek: Add support for MMC-tuned PLL clocks
-Date: Thu, 12 Nov 2026 13:25:41 +0800
-Message-ID: <20261112052544.555563-7-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20261112052544.555563-1-eleanor.lin@realtek.com>
-References: <20261112052544.555563-1-eleanor.lin@realtek.com>
+	id 1xRNTZ-00000008m0G-1jgv;
+	Thu, 12 Nov 2026 05:36:01 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DsnJi/wOLY7lHhbivJQmn1LlZbj98eZ3yGdi2t30YovsotdSdLpg8n6C3fN6KN0BzcystJE5VvBE6m696JNYbOT/4YlIhlh7yvfVA0ljv4vgBIHr65IOU3OUsPhgvMixOrdLB8kQt5DcHfJ7w8BeAzUjz2u8mEfVSh3g1rJ8WNH4penzAgsiy6/NUarrXDub06bVR4+kNiwPvUe5VaDJ79cCcJIFtFh5y4TGs5F2r1RKzWVCJx8aJeyI1AVrKioP4fCyw+qzxIHFsVqSGanP1FOexx8X3QclDNDiP5F7X/vYsfvyr3OalycpFWmGaoKoZ23qVd9nv+UmTsO668X8ow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I4L2droYwPuQiGvQHNhcMSTOaHDL2TEmf87Rb8ua0eo=;
+ b=gG3+U+TJI4/PfjGmXdBDMNuQxzLsDCujRiiyNAk4PK7Vd9N6vIQYKiWZeubCwNxirgyya23ZlDROHzQdJ+ZmsJ8+H58pkyDLVZu2Evn8MV7NRcJlYHNYbtOHOkR+7mZtNxr8Bzeq7+wkhczb9K91Z9ckc0vuFvkJAL07ogJl2suVJD7FNcQ0QPmqrr4D5p88+6CQNCpyqej3lx9kl5YDv5FN/yHsvKtlz8BjQ0UXtnMz+q1YyYtJxK0dRQnX6hS1cMQj7y5EEhWb1cVtIVNVa2kIHbo0d61kDdb0XlNMxhPIHQrmeFKMUBc65c+hhxeuuUrt088uPcnQ1WEqSr+sSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I4L2droYwPuQiGvQHNhcMSTOaHDL2TEmf87Rb8ua0eo=;
+ b=ipLNJa6nQbZMrLuSz5E2zQfHl/IUcC/MaZ/7EiJvDOgCqsYp6Ez+0HVgmQHsftfQM73NqeCd6VAAGOB8jzdTdO3742o+6RoHmj8S5sTCUnwKbiWpZxflg/65qLMp9726fyApgpq+/TV9tB4+Z0SxzrxlgqZsiS0Nkqd9x0YuoDs0ysMp5mIPxmSpVdbGEyNkkZCIQiYklTk46VQq9+qn7jndFLb/XtRw4hcUSxCqUSQdpjtLWZXFRRrA3bKhhAm0Vv9bmhvIH3lmwpUVOHyBTeGDH4+GinUA7X4FMwXS+qh22EIx2jGYeSubbz7LI7k6iEZ1P7HPedYrDuNTOqPOeg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB4914.namprd12.prod.outlook.com (2603:10b6:208:1c4::16)
+ by IA1PR12MB7520.namprd12.prod.outlook.com (2603:10b6:208:42f::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Thu, 12 Nov
+ 2026 05:35:49 +0000
+Received: from BL0PR12MB4914.namprd12.prod.outlook.com
+ ([fe80::4921:cbe6:78cd:b445]) by BL0PR12MB4914.namprd12.prod.outlook.com
+ ([fe80::4921:cbe6:78cd:b445%4]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
+ 05:35:49 +0000
+Date: Wed, 11 Nov 2026 23:35:44 -0600 (CST)
+From: Vidith Madhu <vmadhu@nvidia.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+cc: Xaver Hugl <xaver.hugl@gmail.com>, 
+    "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+    Leo Li <sunpeng.li@amd.com>, Harry Wentland <harry.wentland@amd.com>, 
+    Fangzhi Zuo <Jerry.Zuo@amd.com>, Daniel Stone <daniels@collabora.com>, 
+    Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+    Maxime Ripard <mripard@kernel.org>, 
+    Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+    Simona Vetter <simona@ffwll.ch>, Helge Deller <deller@gmx.de>, 
+    Andrzej Hajda <andrzej.hajda@intel.com>, 
+    Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+    Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+    Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+    Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+    Sandy Huang <hjc@rock-chips.com>, 
+    =?ISO-8859-15?Q?Heiko_St=FCbner?= <heiko@sntech.de>, 
+    Andy Yan <andyshrk@163.com>, 
+    =?ISO-8859-15?Q?Michel_D=E4nzer?= <michel.daenzer@mailbox.org>, 
+    dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+    linux-fbdev@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+    linux-arm-kernel@lists.infradead.org, kernel@collabora.com, 
+    Derek Foreman <derek.foreman@collabora.com>, 
+    wayland-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 11/27] drm: Implement VRR rate limiting
+In-Reply-To: <20261105-vrr-limiter-uapi-v2-11-55f4215be2c2@collabora.com>
+Message-ID: <ebaad99a-ef6e-3829-2c27-5ccd5dc1b498@nvidia.com>
+References: <20261105-vrr-limiter-uapi-v2-0-55f4215be2c2@collabora.com> <20261105-vrr-limiter-uapi-v2-11-55f4215be2c2@collabora.com>
+Content-Type: text/plain; charset=US-ASCII
+X-ClientProxiedBy: SJ0PR05CA0198.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::23) To BL0PR12MB4914.namprd12.prod.outlook.com
+ (2603:10b6:208:1c4::16)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4914:EE_|IA1PR12MB7520:EE_
+X-MS-Office365-Filtering-Correlation-Id: aad75563-a42c-4be0-622a-08df407ecf1a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|23010399003|22082099003|18002099003|6133799003|3023799007|10067099003|261102130727099003|11063799006|56012099006|261026140227099003|261022105027099003|261102123227099003|261021135927099003|261028144727099003|261026121527099003|261009221227099003|261022075727099003|261021121427099003|261022113327099003|261021123027099003|261009223027099003|4143699003;
+X-Microsoft-Antispam-Message-Info: t/iQ8nQ0wrOIwWAuwaA1zkfRa2I/3bMRpmKQ9nUgoHb4E5iojKl2wYK2l+dXKksN45QG8asVPqo8ErleamcEY5JWdIQaW8xReoqxItZ1uA8Ys1bM/zAOAeKkNwR2Rzziq2wLv6q8jBpk3o64FMBuQPpI/Iz3uQA4YvPPbHBq0Mxr3b/xwh3hmQ2EeK5Aa2SPlqaWjyFgdDX1PMpHTnaH4TLpETI3EphAJZARXlPzt1Xb0uBQD3mV8rFCSDQMDexqb5wzVv5a/2+heUBD5Cr3S6wJwDqEQ8A7SJookfDUdRaN8EDTS/3JeVyp4s67jSnotj0M78kJLGk1TRQI0vEpOXWsVrMR1s0Gldg/q9ql5VBJMCIsEOZLWGDAOoH+YkJ1p8GdhkkkFx6UXjTX9aX/Esr35OFhBXpKkKS6xkyhDrPeAZUJbPFCEZmNfjUuJjH63y/PXjl9fsJmg3m/7xGpzLWQvldcx6njxhliwfudvOub8HIfM5/mmTVo9asTNfDqiE3kAdCK7dvcSXLzN+HkxcLdSn/eQu1VzOTYGNohokW3pHwk0PrS9KIQ6AVmmfhOL9f5HsNqP5dUwMJwro+cXkXUu6n6kKgpB+BVfrgIKk2xbB3JMdVjh/BTRQ0sjrFhD1vTfprSjr69xZzNdJuIIK5Wh5Vzx2JdNi+DLcjzmdQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB4914.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(22082099003)(18002099003)(6133799003)(3023799007)(10067099003)(261102130727099003)(11063799006)(56012099006)(261026140227099003)(261022105027099003)(261102123227099003)(261021135927099003)(261028144727099003)(261026121527099003)(261009221227099003)(261022075727099003)(261021121427099003)(261022113327099003)(261021123027099003)(261009223027099003)(4143699003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4n8p9Ca2NXLVCCRHUUgGWbqG0wJCSY551jrRWf74ilCIgb3dxSJtljsA2/N8?=
+ =?us-ascii?Q?6zMICMNNRM1p2sMG49cJcxZVKz85QQEf1nbu1rKEJyus0xOj0NnKg6AH/RVK?=
+ =?us-ascii?Q?xggVFSg8u6gmUhOyVX1UPviI+ZDloTEepWiZ77Q7QXn/5QsPeYLaAtbb5YS9?=
+ =?us-ascii?Q?i1tSKrUyFyPEjXWbLAZ+So2BJqBJg88u/wUKAau5JBhA3/n8A/66Hi42qCGh?=
+ =?us-ascii?Q?XH5mJw4C+bWwhG9F39GvUkN6VWx9//PjwXHc4i/bPZWWZNsRJPdlTsTe0AJ4?=
+ =?us-ascii?Q?r78CsujUpNqGmHi8dVlrXJhPG3Mq1Wv7YWEi7jljHVxDRYNqKLP9K/QZenrQ?=
+ =?us-ascii?Q?Z6sDoeKAWMgIvKGgETTRqOW6LuJMr/CahUNXoFzbUtwQc5jZihI65AHc53fS?=
+ =?us-ascii?Q?BjsGffY0BhX3TZMkjTb4C+lv5itb9uwqV8iyToJsa0WGRERm8aZyfURtWWIS?=
+ =?us-ascii?Q?rfEDu+AeeebG27pSx40F5k4j42NmXFxFuTabWCqbxIzuv07wylFumnTJe5QP?=
+ =?us-ascii?Q?mAid9Y8I3paHY3B9HJ4c/+cn9B52I9OVd+PO/QmEwO7SM5XjFK5xZSpIQ7u5?=
+ =?us-ascii?Q?m0LT7yf2wr66VYZonpOiJiYDG9yL1FlnLYF/jFcaxvg+YbsBOSRehPnF4kdl?=
+ =?us-ascii?Q?mHy87wHGJpdPrtY1x82Ia8tqKRcQagZfA6xug25gaV35HBuRQUo9Agvjhuuo?=
+ =?us-ascii?Q?72UBXuvByLXLRbbwtB4XfbL4cUyOrUqwl3cu6YZz46RIubPCkEXTcNrwDLQK?=
+ =?us-ascii?Q?SIXqF42SO637nHIGxxsZRdvwemrkD6ObmTHNCIYFF2TVQbNx1CTgKi+vSNxS?=
+ =?us-ascii?Q?Tq1obWuwkiIn2jFcqqKpZMjxa544KDcsxvJTcfLlfxe3Cjf0IH1OQEJpmi8O?=
+ =?us-ascii?Q?CZF6dLOAy5Emg6Qm0CXvYfhwVmwGg6Rx8xku0c1D/laNV7/Mmup5WyFRXoUX?=
+ =?us-ascii?Q?sF1qWugQ7cf0EMpdeqUBoaU5lWIX37wFF8z8D+4KzNOK6wSN19quf/Yg5utO?=
+ =?us-ascii?Q?CqLW+su9Azca4T4H0tueQXCDfyuwjB/kvwV1xhajbsWK6UPggpKDl6swdNS5?=
+ =?us-ascii?Q?MPkNbuE18vsGKiQ6LRDuHYgTGqfGX60kkCwdAqjUk+6tA7HArcpxFQbJFG2l?=
+ =?us-ascii?Q?4kbJbE4WHe3SBaIbj4jCHmFjrm7dDKtMNmBfJcX5KR7iFeJdwoYEvtdWD15p?=
+ =?us-ascii?Q?JKws0gE9vvwgE5KVt+Rm5DiId0XDxpA2POGCwL56k1QdZLSm4Lbw2WbUivgH?=
+ =?us-ascii?Q?xmylu4LI3Svq768pZVX7rlUhMNyDvzmjOeOQP7cYr27LXdbMYhj/PXaN5q0g?=
+ =?us-ascii?Q?a/nTgup6Ktv+lOqhjHEFxmPblCpBKCdGMbjS0uHrzC3CxpGz2oHBTjNHqESG?=
+ =?us-ascii?Q?OAhwL8wHDIcx2KwI8pmBreMKWRg2SapObNq160YVA7PW9KsyMvtCvtw+N/Yx?=
+ =?us-ascii?Q?3HmPjsNtxAkPnTc/UfgweexopvWAkDjrmNG3elFY0mABf5TfAI900tabqsQB?=
+ =?us-ascii?Q?VKhHyUqwykcSmPp4PKpk4Bux08L9tULXEUJiHi94GmlXGawHn6RsAw5Pln7S?=
+ =?us-ascii?Q?F3al4oywlS0IP3tTrb+spj5N82EfPDNQLrpC0bcLuS+q+4ysZq6TIh1D+Zzp?=
+ =?us-ascii?Q?E+9HWLDELaQghrKzZ/CrHaxUed58c0LbIwtv8XmrJzVokVNAsCal7bDjMezL?=
+ =?us-ascii?Q?CqJ9Ei6vsCtbs6iP7K7bo3YLkNNeocAV4DO9ByemIQUSTlt5?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aad75563-a42c-4be0-622a-08df407ecf1a
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB4914.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 05:35:49.8293
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: sF+3qjLAx2ektGrlFawxRguBhZoJYigh9xYyWRJimIYtrfxeQqvjiEolRdNf0X8HdLQiGDkHghw6muTnErvpFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7520
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_052622_436471_0010687C 
-X-CRM114-Status: GOOD (  23.98  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261111_213557_547039_2E62FD41 
+X-CRM114-Status: GOOD (  29.39  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -102,620 +152,338 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Cheng-Yu Lee <cylee12@realtek.com>
 
-Add clk_pll_mmc_ops for enable/disable, rate control, and status operations
-on MMC PLL clocks.
 
-Also add clk_pll_mmc_phase_ops to support phase get/set operations.
+On Thu, 5 Nov 2026, Nicolas Frattaroli wrote:
 
-Signed-off-by: Cheng-Yu Lee <cylee12@realtek.com>
-Co-developed-by: Jyan Chou <jyanchou@realtek.com>
-Signed-off-by: Jyan Chou <jyanchou@realtek.com>
-Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
-Changes in v16:
-- Remove Brian's reviewed-by tag.
-- Move the MMC PLL structs and ops declarations out of clk-pll.h into a new
-  clk-regmap-pll-mmc.h.
-- Add a separate 'struct rtk_clk_pll_mmc_phase' with its own to_clk_pll_mmc_phase().
-- Merge prepare/unprepare/is_prepared into enable/disable/is_enabled, as
-  suggested: there is no sleeping operation.
-- Introduce the 'rtk_clk_pll_mmc_div_cfg' table for the SSCPLL analog tuning.
-- Introduce the 'rtk_clk_pll_mmc_rate' table.
-   - determine_rate() selects the closest entry within [min_rate, max_rate]
-   - set_rate() programs that entry only
-   - recalc_rate() matches all five raw register fields against the table. However,
-   only on a miss does it fall back to 'clk_pll_mmc_calc_rate()', which implements
-   the formula.
----
- drivers/clk/realtek/Kconfig              |   3 +
- drivers/clk/realtek/Makefile             |   2 +
- drivers/clk/realtek/clk-regmap-pll-mmc.c | 457 +++++++++++++++++++++++
- drivers/clk/realtek/clk-regmap-pll-mmc.h |  66 ++++
- drivers/clk/realtek/freq_table.c         |   1 +
- 5 files changed, 529 insertions(+)
- create mode 100644 drivers/clk/realtek/clk-regmap-pll-mmc.c
- create mode 100644 drivers/clk/realtek/clk-regmap-pll-mmc.h
+> Currently, VRR is allowed to use the entire range advertised by the
+> sink's EDID. Userspace may find it desirable, however, to limit this
+> range, or set a fixed target rate entirely. The latter is mainly useful
+> for multimedia playback applications, where judder can be avoided by
+> matching the content's frame rate precisely.
+> 
+> With the new VRR target frame rate properties, the necessary
+> infrastructure is in place to allow implementing this.
+> 
+> Add the necessary logic to hdmi_validate_vrr, as well as the VRR
+> helpers. Since not every target rate can be reached precisely, the
+> per-frame error is calculated, and dithered one row at a time across
+> subsequent frames. This means some frames are one vtotal larger than
+> others, so that averaged over the frames, the desired target rate is
+> achieved. Such dithering is explicitly permitted by HDMI, and is still
+> considered a constant target frame rate.
+> 
+> Co-developed-by: Derek Foreman <derek.foreman@collabora.com>
+> Signed-off-by: Derek Foreman <derek.foreman@collabora.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 134 +++++++++++++++++++++---
+>  drivers/gpu/drm/drm_crtc_helper.c               |  34 +++++-
+>  include/drm/drm_crtc.h                          |   3 +
+>  include/drm/drm_crtc_helper.h                   |   2 +
+>  4 files changed, 156 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> index ce680eaa5047..846f7a72fddc 100644
+> --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include <drm/drm_atomic.h>
+>  #include <drm/drm_connector.h>
+> +#include <drm/drm_crtc_helper.h>
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_modes.h>
+>  #include <drm/drm_print.h>
+> @@ -1051,15 +1052,60 @@ static int hdmi_calculate_vtotal(const struct drm_display_mode *mode,
+>  	return 0;
+>  }
+>  
+> +static int hdmi_validate_vrr_limits(struct drm_crtc_state *crtc_state, u16 vrr_min)
+> +{
+> +	struct drm_crtc_vrr_state *vrr_state = &crtc_state->vrr_state;
+> +	const struct drm_display_mode *mode = &crtc_state->mode;
+> +	u32 limit_d;
+> +	u8 round;
+> +	int ret;
+> +
+> +	/* No limiter, don't need to validate, but reset the error */
+> +	if (!drm_crtc_helper_vrr_is_fixed_rate(vrr_state)) {
+> +		vrr_state->per_frame_err = 0;
+> +		vrr_state->cur_err = 0;
+> +		return 0;
+> +	}
+> +
+> +	/* Don't allow rates equal to or below the minimum VRR rate / 1.001 */
+> +	if (cmp_fraction(vrr_state->vrr_min_n, vrr_state->vrr_min_d,
+> +			 vrr_min * 1000, 1001) < 0)
+> +		return -EINVAL;
+> +
+> +	if (check_mul_overflow(mode->crtc_htotal, vrr_state->vrr_min_n, &limit_d))
+> +		return -ERANGE;
+> +
+> +	ret = hdmi_calculate_vtotal(&crtc_state->mode, vrr_state->vrr_min_n,
+> +				    vrr_state->vrr_min_d, &vrr_state->base_vtotal,
+> +				    &vrr_state->denom, &vrr_state->per_frame_err);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Allow rounding up for the vtotal check below */
+> +	if (vrr_state->per_frame_err >= vrr_state->denom / 2)
+> +		round = 1;
+> +	else
+> +		round = 0;
+> +
+> +	if (vrr_state->base_vtotal + round < mode->crtc_vtotal)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+I believe in the previous revision we discussed factoring out the 
+protocol-agnostic validation of the CRTC frame limit ranges properties
+(e.g. checking against min/max_vfreq, checking for a degenerate range)
+to the main CRTC atomic check path. Is that still the intention?
 
-diff --git a/drivers/clk/realtek/Kconfig b/drivers/clk/realtek/Kconfig
-index e8deccf93f94..00ef9c5ba969 100644
---- a/drivers/clk/realtek/Kconfig
-+++ b/drivers/clk/realtek/Kconfig
-@@ -26,4 +26,7 @@ config RTK_CLK_COMMON
- 	  infrastructure to spawn reset controllers via the auxiliary bus
- 	  where required.
- 
-+config RTK_CLK_PLL_MMC
-+	bool
-+
- endif
-diff --git a/drivers/clk/realtek/Makefile b/drivers/clk/realtek/Makefile
-index 4be39e2dd5b4..5fefe9bf901f 100644
---- a/drivers/clk/realtek/Makefile
-+++ b/drivers/clk/realtek/Makefile
-@@ -6,3 +6,5 @@ clk-rtk-y += clk-regmap-gate.o
- clk-rtk-y += clk-regmap-mux.o
- clk-rtk-y += clk-regmap-pll.o
- clk-rtk-y += freq_table.o
-+
-+clk-rtk-$(CONFIG_RTK_CLK_PLL_MMC) += clk-regmap-pll-mmc.o
-diff --git a/drivers/clk/realtek/clk-regmap-pll-mmc.c b/drivers/clk/realtek/clk-regmap-pll-mmc.c
-new file mode 100644
-index 000000000000..50df27ef8539
---- /dev/null
-+++ b/drivers/clk/realtek/clk-regmap-pll-mmc.c
-@@ -0,0 +1,457 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2021-2026 Realtek Semiconductor Corporation
-+ * Author: Cheng-Yu Lee <cylee12@realtek.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/delay.h>
-+#include <linux/export.h>
-+#include <linux/math64.h>
-+#include <linux/regmap.h>
-+#include "clk-regmap-pll-mmc.h"
-+
-+#define RTK_PLL_EMMC1_OFFSET            0x0
-+#define RTK_PLL_EMMC2_OFFSET            0x4
-+#define RTK_PLL_EMMC3_OFFSET            0x8
-+#define RTK_PLL_EMMC4_OFFSET            0xc
-+#define RTK_PLL_SSC_DIG_EMMC0_OFFSET    0x0
-+#define RTK_PLL_SSC_DIG_EMMC3_OFFSET    0xc
-+#define RTK_PLL_SSC_DIG_EMMC4_OFFSET    0x10
-+
-+#define RTK_PLL_PHRT0_MASK              BIT(0)
-+#define RTK_PLL_PHSEL_MASK              GENMASK(4, 0)
-+#define RTK_PLL_SSCPLL_RS_MASK          GENMASK(12, 10)
-+#define RTK_PLL_SSCPLL_ICP_MASK         GENMASK(9, 5)
-+#define RTK_PLL_SSC_DIV_EXT_F_MASK      GENMASK(25, 13)
-+#define RTK_PLL_PI_IBSELH_MASK          GENMASK(28, 27)
-+#define RTK_PLL_SSC_DIV_N_MASK          GENMASK(23, 16)
-+#define RTK_PLL_NCODE_SSC_EMMC_MASK     GENMASK(20, 13)
-+#define RTK_PLL_FCODE_SSC_EMMC_MASK     GENMASK(12, 0)
-+#define RTK_PLL_GRAN_EST_EM_MC_MASK     GENMASK(20, 0)
-+#define RTK_PLL_EN_SSC_EMMC_MASK        BIT(0)
-+#define RTK_PLL_SSC_DIG_EMMC0_EN_SSC    BIT(1)
-+#define RTK_PLL_FLAG_INITIAL_EMMC_MASK  BIT(8)
-+
-+#define RTK_PLL_PHRT0_SHIFT             1
-+
-+#define CYCLE_DEGREES                   360
-+#define PHASE_STEPS                     32
-+#define PHASE_SCALE_FACTOR              1125
-+
-+static inline struct rtk_clk_regmap_pll_mmc *to_clk_pll_mmc(struct clk_hw *hw)
-+{
-+	struct rtk_clk_regmap *clkr = to_rtk_clk_regmap(hw);
-+
-+	return container_of(clkr, struct rtk_clk_regmap_pll_mmc, clkr);
-+}
-+
-+static inline struct rtk_clk_pll_mmc_phase *to_clk_pll_mmc_phase(struct clk_hw *hw)
-+{
-+	struct rtk_clk_regmap *clkr = to_rtk_clk_regmap(hw);
-+
-+	return container_of(clkr, struct rtk_clk_pll_mmc_phase, clkr);
-+}
-+
-+static inline int get_phrt0(struct rtk_clk_regmap_pll_mmc *clkm, u32 *val)
-+{
-+	u32 reg;
-+	int ret;
-+
-+	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC1_OFFSET, &reg);
-+	if (ret)
-+		return ret;
-+
-+	*val = (reg >> RTK_PLL_PHRT0_SHIFT) & RTK_PLL_PHRT0_MASK;
-+
-+	return 0;
-+}
-+
-+static inline int set_phrt0(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC1_OFFSET,
-+				  RTK_PLL_PHRT0_MASK << RTK_PLL_PHRT0_SHIFT,
-+				  val << RTK_PLL_PHRT0_SHIFT);
-+}
-+
-+static inline int clk_pll_emmc_set_sscpll_rs(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC2_OFFSET,
-+				  RTK_PLL_SSCPLL_RS_MASK, FIELD_PREP(RTK_PLL_SSCPLL_RS_MASK, val));
-+}
-+
-+static inline int clk_pll_emmc_set_sscpll_icp(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_update_bits(clkm->clkr.regmap,
-+				  clkm->pll_ofs + RTK_PLL_EMMC2_OFFSET,
-+				  RTK_PLL_SSCPLL_ICP_MASK,
-+				  FIELD_PREP(RTK_PLL_SSCPLL_ICP_MASK, val));
-+}
-+
-+static inline int clk_pll_emmc_set_ssc_div_ext_f(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC2_OFFSET,
-+				  RTK_PLL_SSC_DIV_EXT_F_MASK,
-+				  FIELD_PREP(RTK_PLL_SSC_DIV_EXT_F_MASK, val));
-+}
-+
-+static inline int clk_pll_emmc_set_pi_ibselh(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC2_OFFSET,
-+				  RTK_PLL_PI_IBSELH_MASK, FIELD_PREP(RTK_PLL_PI_IBSELH_MASK, val));
-+}
-+
-+static inline int clk_pll_emmc_set_ssc_div_n(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_update_bits(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC3_OFFSET,
-+				  RTK_PLL_SSC_DIV_N_MASK, FIELD_PREP(RTK_PLL_SSC_DIV_N_MASK, val));
-+}
-+
-+static inline int set_pow_ctl(struct rtk_clk_regmap_pll_mmc *clkm, u32 val)
-+{
-+	return regmap_write(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC4_OFFSET, val);
-+}
-+
-+static inline int get_pow_ctl(struct rtk_clk_regmap_pll_mmc *clkm, u32 *val)
-+{
-+	u32 raw_val;
-+	int ret;
-+
-+	ret = regmap_read(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC4_OFFSET, &raw_val);
-+	if (ret)
-+		return ret;
-+
-+	*val = raw_val;
-+
-+	return 0;
-+}
-+
-+static int rtk_clk_regmap_pll_mmc_phase_set_phase(struct clk_hw *hw, int degrees)
-+{
-+	struct rtk_clk_pll_mmc_phase *clkm = to_clk_pll_mmc_phase(hw);
-+	int ret;
-+	u32 val;
-+
-+	val = DIV_ROUND_CLOSEST(degrees * 100, PHASE_SCALE_FACTOR);
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->pll_mmc->pll_ofs + RTK_PLL_EMMC1_OFFSET,
-+				 RTK_PLL_PHSEL_MASK << clkm->shift, val << clkm->shift);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(10, 20);
-+
-+	return 0;
-+}
-+
-+static int rtk_clk_regmap_pll_mmc_phase_get_phase(struct clk_hw *hw)
-+{
-+	struct rtk_clk_pll_mmc_phase *clkm = to_clk_pll_mmc_phase(hw);
-+	unsigned int raw_val;
-+	int ret;
-+	u32 val;
-+
-+	ret = regmap_read(clkm->clkr.regmap, clkm->pll_mmc->pll_ofs + RTK_PLL_EMMC1_OFFSET,
-+			  &raw_val);
-+	if (ret)
-+		return ret;
-+
-+	val = (raw_val >> clkm->shift) & RTK_PLL_PHSEL_MASK;
-+
-+	return DIV_ROUND_CLOSEST(val * CYCLE_DEGREES, PHASE_STEPS);
-+}
-+
-+const struct clk_ops rtk_clk_pll_mmc_phase_ops = {
-+	.set_phase = rtk_clk_regmap_pll_mmc_phase_set_phase,
-+	.get_phase = rtk_clk_regmap_pll_mmc_phase_get_phase,
-+};
-+EXPORT_SYMBOL_NS_GPL(rtk_clk_pll_mmc_phase_ops, "CLK_REALTEK");
-+
-+static int rtk_clk_regmap_pll_mmc_enable(struct clk_hw *hw)
-+{
-+	struct rtk_clk_regmap_pll_mmc *clkm = to_clk_pll_mmc(hw);
-+	int ret;
-+
-+	ret = set_pow_ctl(clkm, 7);
-+	if (ret)
-+		return ret;
-+
-+	ret = set_phrt0(clkm, 1);
-+	if (ret)
-+		return ret;
-+
-+	udelay(10);
-+
-+	return 0;
-+}
-+
-+static void rtk_clk_regmap_pll_mmc_disable(struct clk_hw *hw)
-+{
-+	struct rtk_clk_regmap_pll_mmc *clkm = to_clk_pll_mmc(hw);
-+
-+	set_phrt0(clkm, 0);
-+	udelay(10);
-+	set_pow_ctl(clkm, 0);
-+}
-+
-+static int rtk_clk_regmap_pll_mmc_is_enabled(struct clk_hw *hw)
-+{
-+	struct rtk_clk_regmap_pll_mmc *clkm = to_clk_pll_mmc(hw);
-+	u32 pow_val, phrt_val;
-+	int ret;
-+
-+	ret = get_pow_ctl(clkm, &pow_val);
-+	if (ret)
-+		return 1;
-+
-+	ret = get_phrt0(clkm, &phrt_val);
-+	if (ret)
-+		return 1;
-+
-+	return (pow_val != 0x0) && (phrt_val == 0x1);
-+}
-+
-+static unsigned long clk_pll_mmc_calc_rate(unsigned long parent_rate,
-+					   u32 div_n, u32 div_ext_f)
-+{
-+	u64 rate = (u64)parent_rate * (div_n + 2);
-+
-+	rate += (u64)parent_rate * div_ext_f / 8192;
-+
-+	return div64_u64(rate, 4);
-+}
-+
-+static unsigned long rtk_clk_regmap_pll_mmc_recalc_rate(struct clk_hw *hw,
-+							unsigned long parent_rate)
-+{
-+	struct rtk_clk_regmap_pll_mmc *clkm = to_clk_pll_mmc(hw);
-+	u32 emmc2, emmc3, ssc3, ssc4, val, ext_f, ncode, fcode, gran_est;
-+
-+	if (regmap_read(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC2_OFFSET, &emmc2))
-+		return 0;
-+
-+	if (regmap_read(clkm->clkr.regmap, clkm->pll_ofs + RTK_PLL_EMMC3_OFFSET, &emmc3))
-+		return 0;
-+
-+	if (regmap_read(clkm->clkr.regmap, clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC3_OFFSET, &ssc3))
-+		return 0;
-+
-+	if (regmap_read(clkm->clkr.regmap, clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC4_OFFSET, &ssc4))
-+		return 0;
-+
-+	val = FIELD_GET(RTK_PLL_SSC_DIV_N_MASK, emmc3);
-+	ext_f = FIELD_GET(RTK_PLL_SSC_DIV_EXT_F_MASK, emmc2);
-+	ncode = FIELD_GET(RTK_PLL_NCODE_SSC_EMMC_MASK, ssc3);
-+	fcode = FIELD_GET(RTK_PLL_FCODE_SSC_EMMC_MASK, ssc3);
-+	gran_est = FIELD_GET(RTK_PLL_GRAN_EST_EM_MC_MASK, ssc4);
-+
-+	for (unsigned int i = 0; clkm->rate_tbl && i < clkm->num_rate_tbl; i++) {
-+		const struct rtk_clk_pll_mmc_rate *entry = &clkm->rate_tbl[i];
-+
-+		if (entry->ssc_div_n == val && entry->ssc_div_ext_f == ext_f &&
-+		    entry->ncode == ncode && entry->fcode == fcode &&
-+		    entry->gran_est == gran_est)
-+			return entry->rate;
-+	}
-+
-+	return clk_pll_mmc_calc_rate(parent_rate, val, ext_f);
-+}
-+
-+static const struct rtk_clk_pll_mmc_rate *
-+rtk_clk_pll_mmc_find_rate(const struct rtk_clk_regmap_pll_mmc *clkm, unsigned long rate)
-+{
-+	if (!clkm->rate_tbl || !clkm->num_rate_tbl)
-+		return NULL;
-+
-+	for (unsigned int i = 0; i < clkm->num_rate_tbl; i++) {
-+		if (clkm->rate_tbl[i].rate == rate)
-+			return &clkm->rate_tbl[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+static const struct rtk_clk_pll_mmc_rate *
-+rtk_clk_pll_mmc_find_closest_rate(const struct rtk_clk_pll_mmc_rate *tbl, u32 num,
-+				  unsigned long rate, unsigned long min_rate,
-+				  unsigned long max_rate)
-+{
-+	const struct rtk_clk_pll_mmc_rate *best = NULL;
-+	unsigned long best_delta = ~0UL;
-+
-+	for (unsigned int i = 0; i < num; i++) {
-+		const struct rtk_clk_pll_mmc_rate *entry = &tbl[i];
-+		unsigned long delta;
-+
-+		if (entry->rate < min_rate || entry->rate > max_rate)
-+			continue;
-+
-+		delta = entry->rate >= rate ? entry->rate - rate : rate - entry->rate;
-+		if (delta < best_delta) {
-+			best = entry;
-+			best_delta = delta;
-+		}
-+	}
-+
-+	return best;
-+}
-+
-+static int rtk_clk_regmap_pll_mmc_determine_rate(struct clk_hw *hw,
-+						 struct clk_rate_request *req)
-+{
-+	struct rtk_clk_regmap_pll_mmc *clkm = to_clk_pll_mmc(hw);
-+	const struct rtk_clk_pll_mmc_rate *entry;
-+
-+	if (!clkm->rate_tbl || !clkm->num_rate_tbl ||
-+	    req->min_rate > req->max_rate)
-+		return -EINVAL;
-+
-+	entry = rtk_clk_pll_mmc_find_closest_rate(clkm->rate_tbl,
-+						  clkm->num_rate_tbl, req->rate,
-+						  req->min_rate, req->max_rate);
-+	if (!entry)
-+		return -EINVAL;
-+
-+	req->rate = entry->rate;
-+
-+	return 0;
-+}
-+
-+static const struct rtk_clk_pll_mmc_div_cfg clk_pll_emmc_default_div_cfg[] = {
-+	{ 31, 46, 3, 3, 2 },
-+	{ 20, 30, 2, 3, 1 },
-+	{ 10, 19, 1, 2, 1 },
-+	{  5,  9, 0, 2, 0 },
-+};
-+
-+static const struct rtk_clk_pll_mmc_div_cfg *
-+clk_pll_emmc_find_div_cfg(struct rtk_clk_regmap_pll_mmc *clkm, u32 div)
-+{
-+	const struct rtk_clk_pll_mmc_div_cfg *tbl = clkm->div_cfg;
-+	u8 num = clkm->num_div_cfg;
-+
-+	if (!tbl) {
-+		tbl = clk_pll_emmc_default_div_cfg;
-+		num = ARRAY_SIZE(clk_pll_emmc_default_div_cfg);
-+	}
-+
-+	for (unsigned int i = 0; i < num; i++) {
-+		if (div >= tbl[i].div_min && div <= tbl[i].div_max)
-+			return &tbl[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+static int clk_pll_emmc_program_div_cfg(struct rtk_clk_regmap_pll_mmc *clkm, u32 div)
-+{
-+	const struct rtk_clk_pll_mmc_div_cfg *t = clk_pll_emmc_find_div_cfg(clkm, div);
-+	int ret;
-+
-+	if (!t)
-+		return -EINVAL;
-+
-+	ret = clk_pll_emmc_set_pi_ibselh(clkm, t->ibselh);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_pll_emmc_set_sscpll_rs(clkm, t->rs);
-+	if (ret)
-+		return ret;
-+
-+	return clk_pll_emmc_set_sscpll_icp(clkm, t->icp);
-+}
-+
-+static int rtk_clk_regmap_pll_mmc_set_rate(struct clk_hw *hw, unsigned long rate,
-+					   unsigned long parent_rate)
-+{
-+	struct rtk_clk_regmap_pll_mmc *clkm = to_clk_pll_mmc(hw);
-+	const struct rtk_clk_pll_mmc_rate *entry = rtk_clk_pll_mmc_find_rate(clkm, rate);
-+	int ret;
-+
-+	if (!entry)
-+		return -EINVAL;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC0_OFFSET,
-+				 RTK_PLL_FLAG_INITIAL_EMMC_MASK,
-+				 FIELD_PREP(RTK_PLL_FLAG_INITIAL_EMMC_MASK, 0));
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_pll_emmc_set_ssc_div_n(clkm, entry->ssc_div_n);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_pll_emmc_set_ssc_div_ext_f(clkm, entry->ssc_div_ext_f);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_pll_emmc_program_div_cfg(clkm, entry->ssc_div_n);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC3_OFFSET,
-+				 RTK_PLL_NCODE_SSC_EMMC_MASK,
-+				 FIELD_PREP(RTK_PLL_NCODE_SSC_EMMC_MASK, entry->ncode));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC3_OFFSET,
-+				 RTK_PLL_FCODE_SSC_EMMC_MASK,
-+				 FIELD_PREP(RTK_PLL_FCODE_SSC_EMMC_MASK, entry->fcode));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC4_OFFSET,
-+				 RTK_PLL_GRAN_EST_EM_MC_MASK,
-+				 FIELD_PREP(RTK_PLL_GRAN_EST_EM_MC_MASK, entry->gran_est));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC0_OFFSET,
-+				 RTK_PLL_SSC_DIG_EMMC0_EN_SSC,
-+				 FIELD_PREP(RTK_PLL_SSC_DIG_EMMC0_EN_SSC, 1));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC0_OFFSET,
-+				 RTK_PLL_EN_SSC_EMMC_MASK,
-+				 FIELD_PREP(RTK_PLL_EN_SSC_EMMC_MASK, 1));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC0_OFFSET,
-+				 RTK_PLL_EN_SSC_EMMC_MASK,
-+				 FIELD_PREP(RTK_PLL_EN_SSC_EMMC_MASK, 0));
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(clkm->clkr.regmap,
-+				 clkm->ssc_dig_ofs + RTK_PLL_SSC_DIG_EMMC0_OFFSET,
-+				 RTK_PLL_FLAG_INITIAL_EMMC_MASK,
-+				 FIELD_PREP(RTK_PLL_FLAG_INITIAL_EMMC_MASK, 1));
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(10, 20);
-+
-+	return 0;
-+}
-+
-+const struct clk_ops rtk_clk_pll_mmc_ops = {
-+	.enable           = rtk_clk_regmap_pll_mmc_enable,
-+	.disable          = rtk_clk_regmap_pll_mmc_disable,
-+	.is_enabled       = rtk_clk_regmap_pll_mmc_is_enabled,
-+	.recalc_rate      = rtk_clk_regmap_pll_mmc_recalc_rate,
-+	.determine_rate   = rtk_clk_regmap_pll_mmc_determine_rate,
-+	.set_rate         = rtk_clk_regmap_pll_mmc_set_rate,
-+};
-+EXPORT_SYMBOL_NS_GPL(rtk_clk_pll_mmc_ops, "CLK_REALTEK");
-diff --git a/drivers/clk/realtek/clk-regmap-pll-mmc.h b/drivers/clk/realtek/clk-regmap-pll-mmc.h
-new file mode 100644
-index 000000000000..c2e973f3df72
---- /dev/null
-+++ b/drivers/clk/realtek/clk-regmap-pll-mmc.h
-@@ -0,0 +1,66 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (C) 2026 Realtek Semiconductor Corporation
-+ */
-+
-+#ifndef __CLK_REALTEK_CLK_PLL_MMC_H
-+#define __CLK_REALTEK_CLK_PLL_MMC_H
-+
-+#include "clk-rtk-common.h"
-+
-+/* SSCPLL charge-pump settings per divider range */
-+struct rtk_clk_pll_mmc_div_cfg {
-+	u16 div_min;
-+	u16 div_max;
-+	u8 ibselh;
-+	u8 rs;
-+	u8 icp;
-+};
-+
-+/* Register settings for a specific eMMC PLL rate */
-+struct rtk_clk_pll_mmc_rate {
-+	unsigned long rate;
-+	u32 ssc_div_n;
-+	u32 ssc_div_ext_f;
-+	u32 ncode;
-+	u32 fcode;
-+	u32 gran_est;
-+};
-+
-+struct rtk_clk_regmap_pll_mmc {
-+	struct rtk_clk_regmap clkr;
-+	unsigned int pll_ofs;
-+	unsigned int ssc_dig_ofs;
-+
-+	/*
-+	 * Optional per-SoC tuning table. When NULL, the driver's default table
-+	 * is used and num_div_cfg is ignored;
-+	 */
-+	const struct rtk_clk_pll_mmc_div_cfg *div_cfg;
-+	u32 num_div_cfg;
-+
-+	/*
-+	 * Supported operating points. Must be set: without a table
-+	 * ->determine_rate() and ->set_rate() return -EINVAL, while
-+	 * ->recalc_rate() falls back to the divider formula. There is no
-+	 * default table here because the register values are SoC-specific.
-+	 */
-+	const struct rtk_clk_pll_mmc_rate *rate_tbl;
-+	u32 num_rate_tbl;
-+};
-+
-+#define __rtk_clk_regmap_pll_mmc_hw(_ptr)  __rtk_clk_regmap_hw(&(_ptr)->clkr)
-+
-+extern const struct clk_ops rtk_clk_pll_mmc_ops;
-+
-+struct rtk_clk_pll_mmc_phase {
-+	struct rtk_clk_regmap clkr;
-+	struct rtk_clk_regmap_pll_mmc *pll_mmc;
-+	u32 shift;
-+};
-+
-+#define __rtk_clk_regmap_pll_mmc_phase_hw(_ptr) __rtk_clk_regmap_hw(&(_ptr)->clkr)
-+
-+extern const struct clk_ops rtk_clk_pll_mmc_phase_ops;
-+
-+#endif /* __CLK_REALTEK_CLK_PLL_MMC_H */
-diff --git a/drivers/clk/realtek/freq_table.c b/drivers/clk/realtek/freq_table.c
-index 0f977a3fc902..d0e015131e57 100644
---- a/drivers/clk/realtek/freq_table.c
-+++ b/drivers/clk/realtek/freq_table.c
-@@ -1,5 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-only
- 
-+#include <linux/limits.h>
- #include <linux/types.h>
- #include "freq_table.h"
- 
--- 
-2.43.0
-
+>  static int hdmi_validate_vrr(struct drm_connector *connector,
+>  			     struct drm_atomic_commit *state)
+>  {
+>  	struct drm_connector_state *new_conn_state =
+>  		drm_atomic_get_new_connector_state(state, connector);
+> +	struct drm_connector_state *old_conn_state =
+> +		drm_atomic_get_old_connector_state(state, connector);
+>  	struct drm_crtc_state *new_crtc_state =
+>  		drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
+>  	struct drm_crtc_vrr_state *vrr_state =
+>  		&new_crtc_state->vrr_state;
+> +	struct drm_crtc_vrr_state *old_vrr_state;
+> +	struct drm_crtc_state *old_crtc_state = NULL;
+>  	struct drm_display_info *info = &connector->display_info;
+>  	const struct drm_display_mode *mode = &new_crtc_state->mode;
+>  	struct drm_device *dev = connector->dev;
+> @@ -1068,10 +1114,14 @@ static int hdmi_validate_vrr(struct drm_connector *connector,
+>  	u32 min_vfreq_d = 1;
+>  	u32 max_vfreq_n = info->hdmi.vrr_cap.vrr_max;
+>  	u32 max_vfreq_d = 1;
+> +	bool is_fixed;
+>  
+>  	if (!new_crtc_state->vrr_enabled)
+>  		return 0;
+>  
+> +	if (old_conn_state)
+> +		old_crtc_state = drm_atomic_get_old_crtc_state(state, old_conn_state->crtc);
+> +
+>  	if (!info->hdmi.vrr_cap.supported)
+>  		return -EOPNOTSUPP;
+>  
+> @@ -1087,6 +1137,21 @@ static int hdmi_validate_vrr(struct drm_connector *connector,
+>  	if (!max_vfreq_n || max_vfreq_n > mode_refresh)
+>  		max_vfreq_n = mode_refresh;
+>  
+> +	is_fixed = drm_crtc_helper_vrr_is_fixed_rate(vrr_state);
+> +	if (is_fixed && info->hdmi.vrr_cap.cinema_vrr)
+> +		min_vfreq_n = 24;
+> +
+> +	/* If the VRR target changed, make sure to reset the error accumulator */
+> +	if (old_crtc_state) {
+> +		old_vrr_state = &old_crtc_state->vrr_state;
+> +		if (drm_crtc_helper_vrr_is_fixed_rate(old_vrr_state) != is_fixed ||
+> +		    cmp_fraction(vrr_state->vrr_min_n, vrr_state->vrr_min_d,
+> +				 old_vrr_state->vrr_min_n, old_vrr_state->vrr_min_d) ||
+> +		    cmp_fraction(vrr_state->vrr_max_n, vrr_state->vrr_max_d,
+> +				 old_vrr_state->vrr_max_n, old_vrr_state->vrr_max_d))
+> +			vrr_state->cur_err = 0;
+> +	}
+> +
+>  	if (!min_vfreq_n) {
+>  		drm_dbg_kms(dev, "Could not get minimum VRR rate from sink\n");
+>  		return -EINVAL;
+> @@ -1098,25 +1163,64 @@ static int hdmi_validate_vrr(struct drm_connector *connector,
+>  		return -EINVAL;
+>  	}
+>  
+> -	if (cmp_fraction(min_vfreq_n, min_vfreq_d, max_vfreq_n, max_vfreq_d) > 0) {
+> -		drm_dbg_kms(dev, "Target max (%u/%u) > target min (%u/%u)\n",
+> -			    max_vfreq_n, max_vfreq_d, min_vfreq_n, min_vfreq_d);
+> -		return -EINVAL;
+> -	}
+> -
+> -	ret = hdmi_calculate_vtotal(mode, max_vfreq_n, max_vfreq_d,
+> -				    &vrr_state->base_vtotal, NULL, NULL);
+> +	ret = hdmi_validate_vrr_limits(new_crtc_state, min_vfreq_n);
+>  	if (ret) {
+> -		drm_dbg_kms(dev, "Couldn't calculate base_vtotal: %pe\n", ERR_PTR(ret));
+> +		drm_dbg_kms(dev, "Invalid VRR fixed target rate: %pe\n", ERR_PTR(ret));
+>  		return ret;
+>  	}
+>  
+> -	/*
+> -	 * Even at its fastest, it can't go faster than the mode, so
+> -	 * clamp to avoid imprecisely rounded mode_refresh values we
+> -	 * can't do anything about from ruining our day.
+> -	 */
+> -	vrr_state->base_vtotal = max(vrr_state->base_vtotal, mode->crtc_vtotal);
+> +	if (!is_fixed) {
+> +		vrr_state->dynamic = true;
+> +
+> +		if (vrr_state->vrr_min_n) {
+> +			if (!vrr_state->vrr_min_d)
+> +				return -EINVAL;
+> +
+> +			if (cmp_fraction(vrr_state->vrr_min_n, vrr_state->vrr_min_d,
+> +					 min_vfreq_n * 1000, 1001) < 0) {
+> +				drm_dbg_kms(dev, "Target min (%u/%u) < supported min (%u/%u)\n",
+> +					    vrr_state->vrr_min_n, vrr_state->vrr_min_d,
+> +					    min_vfreq_n, min_vfreq_d);
+> +				return -EINVAL;
+> +			}
+> +			min_vfreq_n = vrr_state->vrr_min_n;
+> +			min_vfreq_d = vrr_state->vrr_min_d;
+> +		}
+> +		if (vrr_state->vrr_max_n) {
+> +			if (!vrr_state->vrr_max_d)
+> +				return -EINVAL;
+> +
+> +			if (cmp_fraction(vrr_state->vrr_max_n, vrr_state->vrr_max_d,
+> +					 max_vfreq_n, max_vfreq_d) > 0) {
+> +				drm_dbg_kms(dev, "Target max (%u/%u) > supported max (%u/%u)\n",
+> +					    vrr_state->vrr_max_n, vrr_state->vrr_max_d,
+> +					    max_vfreq_n, max_vfreq_d);
+> +				return -EINVAL;
+> +			}
+> +			max_vfreq_n = vrr_state->vrr_max_n;
+> +			max_vfreq_d = vrr_state->vrr_max_d;
+> +		}
+> +		if (cmp_fraction(min_vfreq_n, min_vfreq_d, max_vfreq_n, max_vfreq_d) > 0) {
+> +			drm_dbg_kms(dev, "Target max (%u/%u) > target min (%u/%u)\n",
+> +				    max_vfreq_n, max_vfreq_d, min_vfreq_n, min_vfreq_d);
+> +			return -EINVAL;
+> +		}
+> +
+> +		ret = hdmi_calculate_vtotal(mode, max_vfreq_n, max_vfreq_d,
+> +					    &vrr_state->base_vtotal, NULL, NULL);
+> +		if (ret) {
+> +			drm_dbg_kms(dev, "Couldn't calculate base_vtotal: %pe\n", ERR_PTR(ret));
+> +			return ret;
+> +		}
+> +
+> +		/*
+> +		 * Even at its fastest, it can't go faster than the mode, so
+> +		 * clamp to avoid imprecisely rounded mode_refresh values we
+> +		 * can't do anything about from ruining our day.
+> +		 */
+> +		vrr_state->base_vtotal = max(vrr_state->base_vtotal,
+> +					     mode->crtc_vtotal);
+> +	}
+>  
+>  	if (cmp_fraction(min_vfreq_n, min_vfreq_d, mode_refresh, 1) >= 0) {
+>  		/* refresh <= VRR min, don't do VRR vtotal adjustment */
+> diff --git a/drivers/gpu/drm/drm_crtc_helper.c b/drivers/gpu/drm/drm_crtc_helper.c
+> index 4ffb3b0b7878..dd696f0c5016 100644
+> --- a/drivers/gpu/drm/drm_crtc_helper.c
+> +++ b/drivers/gpu/drm/drm_crtc_helper.c
+> @@ -838,6 +838,22 @@ int drm_crtc_helper_set_config(struct drm_mode_set *set,
+>  }
+>  EXPORT_SYMBOL(drm_crtc_helper_set_config);
+>  
+> +bool drm_crtc_helper_vrr_is_fixed_rate(const struct drm_crtc_vrr_state *vrr)
+> +{
+> +	if (!vrr->vrr_min_n)
+> +		return false;
+> +
+> +	if (!vrr->vrr_min_d || !vrr->vrr_max_d)
+> +		return false;
+> +
+> +	if (mul_u32_u32(vrr->vrr_min_n, vrr->vrr_max_d) ==
+> +	    mul_u32_u32(vrr->vrr_min_d, vrr->vrr_max_n))
+> +		return true;
+> +
+> +	return false;
+> +}
+> +EXPORT_SYMBOL(drm_crtc_helper_vrr_is_fixed_rate);
+> +
+>  /**
+>   * drm_crtc_helper_vrr_flush - Update VRR state on frame ready
+>   * @crtc_state: pointer to &struct drm_crtc_state of CRTC that has a new frame ready
+> @@ -864,6 +880,9 @@ bool drm_crtc_helper_vrr_flush(struct drm_crtc_state *crtc_state)
+>  		return false;
+>  	}
+>  
+> +	if (drm_crtc_helper_vrr_is_fixed_rate(vrr))
+> +		return false;
+> +
+>  	if (vrr->cur_vtotal == vrr->base_vtotal)
+>  		return false;
+>  
+> @@ -889,10 +908,21 @@ bool drm_crtc_helper_vrr_vsync(struct drm_crtc_state *crtc_state)
+>  	struct drm_crtc_vrr_state *vrr = &crtc_state->vrr_state;
+>  	u16 old_vtotal = vrr->cur_vtotal;
+>  
+> -	if (!crtc_state->vrr_enabled)
+> +	if (!crtc_state->vrr_enabled) {
+>  		vrr->cur_vtotal = 0;
+> -	else
+> +		vrr->cur_err = 0;
+> +	} else if (drm_crtc_helper_vrr_is_fixed_rate(vrr)) {
+> +		if (vrr->cur_err >= (int) (vrr->denom / 2)) {
+> +			vrr->cur_err -= vrr->denom;
+> +			vrr->cur_vtotal = vrr->base_vtotal + 1;
+> +		} else {
+> +			vrr->cur_vtotal = vrr->base_vtotal;
+> +		}
+> +
+> +		vrr->cur_err += vrr->per_frame_err;
+> +	} else {
+>  		vrr->cur_vtotal = vrr->max_vtotal;
+> +	}
+>  
+>  	if (abs_diff(vrr->cur_vtotal, old_vtotal) > 1)
+>  		vrr->dynamic = true;
+> diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
+> index 9004f7c2f21e..cfd051ccbd2e 100644
+> --- a/include/drm/drm_crtc.h
+> +++ b/include/drm/drm_crtc.h
+> @@ -70,6 +70,9 @@ struct drm_crtc_vrr_state {
+>  	u32 vrr_min_d;
+>  	u32 vrr_max_n;
+>  	u32 vrr_max_d;
+> +	u32 denom;
+> +	u32 per_frame_err;
+> +	int cur_err;
+>  	u16 base_vtotal;
+>  	bool dynamic;
+>  };
+> diff --git a/include/drm/drm_crtc_helper.h b/include/drm/drm_crtc_helper.h
+> index 0c8c11ea36dd..7d7b75045bd9 100644
+> --- a/include/drm/drm_crtc_helper.h
+> +++ b/include/drm/drm_crtc_helper.h
+> @@ -45,6 +45,7 @@ struct drm_framebuffer;
+>  struct drm_mode_set;
+>  struct drm_modeset_acquire_ctx;
+>  struct drm_crtc_state;
+> +struct drm_crtc_vrr_state;
+>  
+>  void drm_helper_disable_unused_functions(struct drm_device *dev);
+>  int drm_crtc_helper_set_config(struct drm_mode_set *set,
+> @@ -63,6 +64,7 @@ int drm_helper_connector_dpms(struct drm_connector *connector, int mode);
+>  void drm_helper_resume_force_mode(struct drm_device *dev);
+>  int drm_helper_force_disable_all(struct drm_device *dev);
+>  
+> +bool drm_crtc_helper_vrr_is_fixed_rate(const struct drm_crtc_vrr_state *vrr);
+>  bool drm_crtc_helper_vrr_flush(struct drm_crtc_state *crtc_state);
+>  bool drm_crtc_helper_vrr_vsync(struct drm_crtc_state *crtc_state);
+>  
+> 
+> -- 
+> 2.56.0
+> 
+> 
 
