@@ -2,116 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48439606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:21:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1833F606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 06:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=HZibibYz;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=S25K4l1X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=e6gwh4bT;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=UrOqU3G3
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=GmUggzBwh054ycyLcdU256fZfq9HoFB8UcP89KTzYog=; b=HZibibYzozf4PN
-	xnXr7RJXRlStVLe0uwYHI1YYq142NhKJOeeNJ101zhrTx3hSnILX9TTG16v8DHgCh2P1YLQkLH70p
-	o9hTbfANSX8vPUM0bO3+1bkKAXEWTcGZhGHTJ+nXLP+rF28Z7pAndSDh5K1VrC19G1o3Dgq84XcS/
-	aoZG2p/aoK2E6gw45SOf5M4HXWRHTJf6/C1RK6Wah4Rsw5ZyBkzNxc0fWCToodHBg9slNijPxQitt
-	1NE4hfLJHFarjn+jjapJ0aTN4iMnTKKEWOxUdk19lzN8qWCQ6XSsdt021+QNYo5vs4zT8NI6P2vsd
-	sGlLPQkeHP/K8dwBN6fA==;
+	List-Owner; bh=HQqBrTbEZxsA8ilEZ7vX7+ePIXnnagD5L9RGTt8hUKU=; b=e6gwh4bT9X33LA
+	d6SMjReHaDOTpn0vToji7TVGG/X9DycTnzeQciU/8iUZPY/fbY01Z8xOphnZOUUet5guS6yIL7xb/
+	lBsysFW+VFx1zx09ZdZXh8eIEQLTNeGQvSqfaCoZVzrB7eQpzZoHsXwgU035YJ83hDSxi2KhF0CCY
+	MeytM8hgnNgqh6sSi/NMZCJbYGjHimT1BrKy5gG1FhwrdfH/2s1hd4iAJLogqquqlEGvwfTQ88a5t
+	098489UvbeKZIdlRFMli3Oc2/1I1/pUV2Bq03MQsX7u9Jex3Ij+tqso25oq3astkYfCY4w+kAUZm8
+	JPxP7tP7Fqfany3FZ1hg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xROBi-00000008oPZ-2jSk;
-	Thu, 12 Nov 2026 06:21:41 +0000
-Received: from mail-ed1-x531.google.com ([2a00:1450:4864:20::531])
+	id 1xROGq-00000008oyc-3lyI;
+	Thu, 12 Nov 2026 06:26:52 +0000
+Received: from mx.nabladev.com ([178.251.229.89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xROB0-00000008oGH-3yFS
+	id 1xROGn-00000008oxB-2ggi
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 06:21:01 +0000
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-6b7221c0f2cso3740510a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 22:20:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794464449; cv=none;
-        d=google.com; s=arc-20260327;
-        b=PZWrvZrIsN4OW+dEXtmnH/7Z8CCzVKwnLHMqrhRDl4evMeDwD/fw5xrFl+4DiLKJ8B
-         5zkOGHyUKMQSQW4XHt06TmYk+mxbWqUzsiCCFxzYZ6kXQ+xoyPa4SDyXueVJZkGUf6Rf
-         g9tcJtuk8+VCk7k/KbJWqN0y45eEgUhKlvxvBjepa+2yjbNIBlEUgumNs2CS/kzkHsa9
-         WedaZ5wHfGkp7CwNiJuaCmj8IIB5jEju8Ipf7qorE+dfUb2skshz2NgbbOpWLDZuUBeZ
-         VE1zpM4CS4iz6mHKjN/DPGAoxNDo7uog6Op/ZnJj7d3Xx/kKRDElFuXL0dwlrNIvJiGL
-         l2DA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=GmUggzBwh054ycyLcdU256fZfq9HoFB8UcP89KTzYog=;
-        fh=6cK8eSOh7QTgoOgFPmJdD6XlWqErjWWytYwh+UfceUk=;
-        b=Pdro6pzYD7jUthfaKq6NCZp9yKhgJPlphi2Gz0dhC9gYbcfiPV62GaOaF6KTmJfGtP
-         TSZuuuvy6CahlqqSqpSRpeZlIyfHBhADUBK8Ymu1qjtUD8AJjA8ipLrdMkzQQTYBl0f0
-         +GS7DsAn+S2QCPhl0Eyi9qPz2S/9U94cS1PnBv/r5z8L1zWVEEWJhr1e/ZuwQzvWN5Lt
-         W4ykHI07zuKKv6HCjXuoH4R8DQ0YNfQ3/f0pci+BJGIslw9yMv5fx+FvFk6cGkWf+Uv8
-         PZft1vcwfPhD2iGDxE48qIIuxfBpxti78p+BMR/ZdMGP0ItTyUfQhRMkH7NUxsXdU9E3
-         9w+w==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794464449; x=1795069249; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=GmUggzBwh054ycyLcdU256fZfq9HoFB8UcP89KTzYog=;
-        b=S25K4l1XjqUv2OhwPYAkYwn8xp8eTtkuubt3nyQolCPBXb6SYydb9z6M2il4r23+jR
-         tZrPf4G3PwCPMckbVtiTY35IbwAS/F7a0tcXfk0QubNS89zOKKiqlhtN7rLUj06NVijI
-         9+nGcZXcB1RN+EV4TVwPSEulJK9QlZcx94Ctxv02aBOcJCrdXlYbWtKHb3YdiHl5rY1T
-         1qagYqQcQq40VNn4lr0NYEQU40eG2nRNHeOqMEqoT/+9H2dd1tnjXmKCLiI73EanYi1p
-         PNegJES00pvY8zVc5M4NGB1R3/SHwvOYigMn9eaQfdDpEY+IPKg83Ec/tpqRgdWlBfZQ
-         cPpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794464449; x=1795069249;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=GmUggzBwh054ycyLcdU256fZfq9HoFB8UcP89KTzYog=;
-        b=pLLH9xPtzRW86nUeMOf2Seu0L8WoT1fYjOyiGe/rzpJpJFkOjtdTSoNn4Qeq4vBtQw
-         cvGpuL2HxWokcEtzI+wU0TmjlYP19oeqwI3T9dcqYDrHrdEOqfXjeVrKPpBCYCqt1EwN
-         tX09/q7pvMWdTPgokDM+OlyOENlnT61s1pJBv3IbYiYaZmvsE8Ge2zr2cl+pVbGf7wh0
-         rMw5DnYf6kj7gJvFxwepeUP6avHvCmry0HHVNa52XK9AoJRjrYd6XpgtpsMzDUJSFxMZ
-         Clqq5RBoTthaku/LM+pyIsuifW5nGKR0/vW9rKrj/YoCZI8kzJNoGTrbUuvVCB7hs2fu
-         y18Q==
-X-Forwarded-Encrypted: i=1; AL+hErHn+0SA9fkTVBZIuf4Vmh3sdkkapTmO87a/D2SqtDPm3oLtoYulsRlReHEu9bbrtfskc981HRqUvwelvLctrIqP@lists.infradead.org
-X-Gm-Message-State: APuU4Z+LIbZ7+z6fxvLc26AzWoJEpJfpmeB9IcJmLgyJH0EshyhmoiS9
-	NFAJOkm6iXyOOMd/MPQ0SuVo1ihKJvyunB/wkCtrxkiq8zURrmnjOXWYhPA+nWBMHBxR5irSQkW
-	6ZFfD7ZjQVBuFCwBvOhIahEPUt2MM6g==
-X-Gm-Gg: AYBFou2QouFjbCmMsRDwFURjQglYaq9u4NNXdUdmLWxcxa6Kt/64XJ7bNGKkUhLwH6w
-	U42Gp+02yUGdaXkeD2DmeXITIuMqPHOYJJ+xGEydAKWbkBz95Cgw1pEMyhgWpra6UmRbX/03eVd
-	WYw53kjJJuMV16Kn3OeQn5mR2K+wl75Upi4OMRLiyaI55RI7po7vcWyDFXyKZGncUhELlWjfuSv
-	NOr9WrxFL5x8mJaXXhF03ZG5uQTyrgz7v9nCC23RppBFeHx/oVIPX1N0Dmw9FanmulIPN8+nUZp
-	n2Vr7N2bdc4U4Gv5AvU1ksR+cXQ0/xuVyNlzGMiLgwgQolcSg2CXVj9G2mo8xJMqBrL+oWWobN7
-	PlYMxXTN/2gZ1KOv/kNisbGRwaVtV19wBf/IACBWHZTbw/r12FVxQGPfjY/30jZ0QmSV6DmjOtR
-	tfOcbv3X0ojF08Cr4UQ+7V3NnsJwcX/XW07KEvrRag+Q7+ZVo=
-X-Received: by 2002:a05:6402:2809:b0:6b4:21c1:21a9 with SMTP id
- 4fb4d7f45d1cf-6b7778159cbmr3839503a12.31.1794464448878; Wed, 11 Nov 2026
- 22:20:48 -0800 (PST)
+	Thu, 12 Nov 2026 06:26:51 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C2AEC10E394;
+	Thu, 12 Nov 2026 07:26:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
+	s=dkim; t=1794464784;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=HQqBrTbEZxsA8ilEZ7vX7+ePIXnnagD5L9RGTt8hUKU=;
+	b=UrOqU3G31RyOiOqFQExBFk/gH/aWva67ebwxY/V4/r0OTjA6A1UFpegkRCSIk+tE0mFD33
+	Wtq9qE24rFg0BigDkfjPT5qwA8YrIwZQ3w3riH6OlpJm2nnWA/jN/cHH7CsoiG+Zjv5H8s
+	E/36RtsB4sX3SoI6dWvu3cJq9oiVsR3iyJSf5l3MVmnzmE8thu8sBqXr3R3PmsiNsje4+B
+	u/2Sg8e5L1PhKDwi2FUzuKeGyk3GJFv1gMY3l1XSVsP4WkfoC2zBLgDqUQQVb1pWSd3hmx
+	oklxgLxwfH6TWsiJPNTQWy0acnm0ueUh9EjoilfioFqZJTV4QX2/rNgY2fFCNA==
+Message-ID: <c3cbd7ab-e689-4a9b-b311-af43980738d2@nabladev.com>
+Date: Thu, 12 Nov 2026 02:22:10 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261011222234.2098904-1-mhun512@gmail.com> <179406798190.3424803.7064068903462702662.b4-review@b4>
-In-Reply-To: <179406798190.3424803.7064068903462702662.b4-review@b4>
-From: Myeonghun Pak <mhun512@gmail.com>
-Date: Thu, 12 Nov 2026 01:20:36 -0500
-X-Gm-Features: AclHuK8iacxlbWVlhHrmZf4nXYKveYZX5zn-UdiKOJPEhizJAmxWAuRAURZ4Y8g
-Message-ID: <CAGEsz8FAOrkf7AzjfJS+ZXnU5eZdTbSjYtVtceBimH=RyMz7YQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] ASoC: mediatek: fix AFE IRQ registration and removal ordering
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-sound@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Ijae Kim <ae878000@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mmc: mmci: stm32: handle mmc power up
+To: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
+Cc: linux-mmc@vger.kernel.org,
+ Christophe Kerello <christophe.kerello@foss.st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Ulf Hansson <ulfh@kernel.org>,
+ kernel@dh-electronics.com, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com
+References: <20261030215427.488298-1-marex@nabladev.com>
+ <CAPx+jO8sc8gbxNQTjK2tx+1UPLqwwEof3E9vknHNc4kmbeB7oA@mail.gmail.com>
+ <51207e63-ec60-4805-bf6a-b10647ee3866@nabladev.com>
+ <CAPx+jO89Z0Z241L1jyB_3sUygdEwGicqT-WfHc6ppG8egHUO2w@mail.gmail.com>
+Content-Language: en-US
+From: Marek Vasut <marex@nabladev.com>
+In-Reply-To: <CAPx+jO89Z0Z241L1jyB_3sUygdEwGicqT-WfHc6ppG8egHUO2w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_222052_624532_41A00C7C 
-X-CRM114-Status: UNSURE (   9.92  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261111_222650_007151_DCEF002F 
+X-CRM114-Status: GOOD (  13.53  )
+X-Spam-Score: -0.5 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -122,26 +77,44 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thanks. I've rebased the series onto your for-next branch and resent
-it as v2 in a new thread.
+On 11/11/26 12:45 PM, Ulf Hansson wrote:
 
-2026=EB=85=84 11=EC=9B=94 7=EC=9D=BC (=ED=86=A0) =EC=98=A4=EC=A0=84 11:13, =
-Mark Brown <broonie@kernel.org>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
->
-> > The AFE IRQ handlers access regmap and PCM state. Register each handler
-> > after its inputs exist and release it before the final remove callback
-> > or managed component teardown releases those inputs. The mt8186 patch
-> > also balances IRQ wake settings on probe failure and removal.
->
-> This doesn't apply against current code, please check and resend.
->
-> --
-> Mark Brown <broonie@kernel.org>
+Hello Ulf,
+
+>>>> -       if (ios.power_mode == MMC_POWER_OFF) {
+>>>> +       if (ios.power_mode == MMC_POWER_OFF ||
+>>>> +           ios.power_mode == MMC_POWER_UP) {
+>>>>                   /* Only a reset could power-off sdmmc */
+>>>>                   reset_control_assert(host->rst);
+>>>>                   udelay(2);
+>>>
+>>> What exactly will this reset?
+>> The controller.
+> 
+> Okay, I see.
+> 
+> In that case, this reset also makes us reset preceding updates to any
+> other registers, for example the clock register. I would not recommend
+> doing that here, but perhaps there is no better option.
+
+Does that pose a problem in the MMC_POWER_OFF/UP state ? I agree this 
+would pose a problem in the MMC_POWER_ON state, but here the card is not ON.
+
+> If I may I suggest an alternative solution, perhaps we can manage this
+> in the ->runtime_resume() callback instead. If the power_mode ==
+> MMC_POWER_OFF, perhaps do this reset there instead? Would that work?
+> 
+> Anothing thing that caught my eyes was the MCI_STM32_PWR_CYC bit that
+> gets written at MMC_POWER_OFF. This bit becomes cached in
+> host->pwr_reg, hence it's also rewritten at MMC_POWER_ON. Is that
+> intentional?
+I _think_ so, this seems to be used to power cycle the card.
 
