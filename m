@@ -2,84 +2,191 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A58F8606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCDD606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 15:47:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y2VkURUl;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=D1qDPLrz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M5WbclOW;
+	dkim=pass (1024-bit key, unprotected) header.d=cherry.de header.i=@cherry.de header.a=rsa-sha256 header.s=selector1 header.b=J17DgXVJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:Message-ID:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2jggDFXfiKjyjxfNyJQQxWRj7IWrl5y+P/gKpuovSl0=; b=Y2VkURUlVEE+xDYddEdN/msTHa
-	KCj213crxL4DkU1+yEWGgoP84H32au01GdZdHUovF/AZdzkaUX2GRjFDFQ9ixStFxS7qjhaFnokh+
-	lq1T5z42uCzrjG5fREw4mDzN3JUdQb3vN805rtCPGwLJ3c+Es339MaG2dItU9ms2gvvT0a6Ur5eXX
-	Y8MERjp/YK8TDueELsnqrbUgfgD5F2Ad/LyiqLGIOpPqvYy3Zu3a8Ux3v5kqvOOq+ZLD4oieAFRbW
-	V2KVVmh0YGNscHM3SOW1GgDObd3ccBsPu9n4Y2P8yhnkhQy4bVBe0m02SgbNQD6NbJRWGMmeCnlPz
-	TKfpkp7w==;
+	bh=G+xi2zq4wifTL3Z27TNx1a7rrb9h+NPDP51Jed5Yo1c=; b=M5WbclOWgs2ri96xtb2dS8111l
+	JiMUtueLqPrlqubTOkXV5kgvnh7jDg+WdTUas56M4+UmlrFgYC7yNgaRb4ksQhd3k+4qHObFVpXoQ
+	GaMRQd528aawzxuqfZ0rZV4d5bDm9BqCk3KSgyTcuDhhiCn3TRQepZjQSl25z/2YmZBAw2xBp+XDN
+	Qi3AflJbml2+OThg4bOZPuQGa2LtkMnI1sx2Dx+CT6xYzox4jPaNbR7vEYG+RTgmQ86Cr/Z6nctLi
+	YxXINHS8eDem+zi0W30wkk0g9JBpgnPTLYMlxW3OWKUZGfQZ/cbehrxfVPQs/tZNb4zs95cVBccY8
+	MCADWfPQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWyM-0000000AV2A-3JKa;
-	Thu, 12 Nov 2026 15:44:22 +0000
-Received: from esa.microchip.iphmx.com ([68.232.153.233])
+	id 1xRX0v-0000000AVV0-3Ecw;
+	Thu, 12 Nov 2026 15:47:01 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRWyI-0000000AV1T-1lh4
-	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 15:44:20 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1794498258; x=1826034258;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=HxgHa+ylojaHP6gqM1yhKD1ewdvIyZI+z1/zt8wg2Fk=;
-  b=D1qDPLrzOgj20y7Ls3iJnDo+XBvTcGoXiSU9OtC5OEhrd5PSttXg0nu2
-   ymBH8AqVNreyn4LGZ7NPvRUf+Stocq43lX1n08bZoABNhKg7FHTCAdA+7
-   11GCx6Cn3dzB623A+D7QbVH+XbZ6ijwKWyWg4Yf9T1Uxgqf4LPcRCH2Rl
-   1vmQaXdijVbFqf+Vk5vLAM64ga69Q5Q6kOBnkZs49KyhwWaHCcyCUfAV+
-   jXov2qrw+3N1l7WXiKhBtfQx2bfqdYxAlKTsukv552ZdUw6H50f7IWVKy
-   LUwKmBWAWHN6t01OmFRuD6wkKk2kT+V0UmbM+x1tKgTGv4EkUCIDGy9ZO
-   w==;
-X-CSE-ConnectionGUID: hFPvcHixS26nUTs0b7YK8w==
-X-CSE-MsgGUID: bvlYCDkkQXWNbTmxtQ8J0w==
-X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="66419760"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2026 08:44:17 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.56; Thu, 12 Nov 2026 08:44:16 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Thu, 12 Nov 2026 08:44:14 -0700
-From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
-	<jensemil.schulzostergaard@microchip.com>
-Date: Thu, 12 Nov 2026 16:43:58 +0100
-Subject: [PATCH] spi: atmel: poll short PIO transfers
+	id 1xRX0r-0000000AVU7-08bE;
+	Thu, 12 Nov 2026 15:46:59 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Lt//TMAKQUjh9gc9h++PsfJTBw5m14WyECrnKzvFQz3BBTZ+EABf4Fkgi6wFtpGIsfQ6sgBDEJ33gckMp4ECRxlVzCsm4v3eo1z2ZQAXqqppaezyT9s+ccUXFRQc0bqhaRF/UzMz6zbsoTx2YNnZq5a3TAQ/Jf0MuMf94EsbqM5xmbDu2b2b9FQKnRO4I8wzfJRHriY/HwePdH911XWGP8cwwM29HIsr4k37rh4PzTYplpK1FxBc2I6KH9V2BmS02F3fwyQMvtwJEfIlDQ/0g7BjRQTOTbKxxFUnPTXcgSt8GR3cCRqOz37GOUNxCnHAODjpqPeeQ7t907KMXsjWhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=G+xi2zq4wifTL3Z27TNx1a7rrb9h+NPDP51Jed5Yo1c=;
+ b=ib5vKHICxMlHcx2tZDzrZO2WGiD47cSlw9FH6KGcL/mL4ssQKuDhp+NtbHu+SZco+lnSGTj1EAC2MDjXZ7JU34mVa0ICQUIFnyTlO456GlJZBcWqu46H9E/dnPZFKka2Ma+bGcl0ebVovvGxNBBqwUEZRkNThBACZiWHe6dgaG5MpEny/5jyFq+9/Yi5SFyarAEdPwmLV7sA+Hf3iSCQJ153e8bCQvLmU54zywL1FCzuYbcW01i0estqK8YaFTHVnBsB+tuwbA0+pQ5QSOusWrSwRbhsu6gKiEAbYRAWH0XSGkrLr0gydzrAKvtNkxkIpm02Eq0bx0bYxZhmHOQcTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=G+xi2zq4wifTL3Z27TNx1a7rrb9h+NPDP51Jed5Yo1c=;
+ b=J17DgXVJ46diOks99a7YycBjQTm/p/f4h7dgWMr0ROIvUu5q4tkRuKKYoe29JyR6cefZS0fw0y1ZJQITrbJPX8jQf6IboVXgR/8oaIzYmYzIyLKrv0xv+VTB8hNlmdTYQh3IJ0KHkcy80Z2sfAK7AhDzxvxgBAmNreZAUH73xuU=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from GVXPR04MB12016.eurprd04.prod.outlook.com (2603:10a6:150:335::6)
+ by AM0PR04MB6962.eurprd04.prod.outlook.com (2603:10a6:208:188::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 12 Nov
+ 2026 15:46:49 +0000
+Received: from GVXPR04MB12016.eurprd04.prod.outlook.com
+ ([fe80::f2d4:9db8:9a4e:b0bd]) by GVXPR04MB12016.eurprd04.prod.outlook.com
+ ([fe80::f2d4:9db8:9a4e:b0bd%4]) with mapi id 15.21.0615.009; Thu, 12 Nov 2026
+ 15:46:49 +0000
+Message-ID: <ae532396-557b-4a0b-b13c-920a971962b8@cherry.de>
+Date: Thu, 12 Nov 2026 16:46:47 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/6] phy: rockchip: inno-usb2: ensure PHY is running
+ when clock is requested
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ William Wu <william.wu@rock-chips.com>
+Cc: linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Igor Paunovic <royalnet026@gmail.com>, kernel@collabora.com
+References: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
+Content-Language: en-US
+From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+Autocrypt: addr=jakob.unterwurzacher@cherry.de; keydata=
+ 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
+ ldPHIqbIwpfecQ==
+In-Reply-To: <20261110-phy-rockchip-inno-usb2-clock-fix-v5-0-d2e24582ab22@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0225.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::46) To GVXPR04MB12016.eurprd04.prod.outlook.com
+ (2603:10a6:150:335::6)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20261112-spi-atmel-poll-short-pio-transfers-v1-1-240ccc868cc3@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAL3e9WoC/x3NMQrDMAxA0asEzRVUHkrSq5QOtiM3Atc2kimBk
- LvXZHzL/wcYq7DBczpA+ScmtQzQbYK4+fJhlHUY3N09iMihNUHfv5yx1ZzRtqodm1Ts6oslVsO
- wzimGJdISAoxQU06yX5PX+zz/IAezvnQAAAA=
-To: Ryan Wanner <ryan.wanner@microchip.com>, Mark Brown <broonie@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
-CC: <linux-spi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
-	<jensemil.schulzostergaard@microchip.com>
-X-Mailer: b4 0.15-dev
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR04MB12016:EE_|AM0PR04MB6962:EE_
+X-MS-Office365-Filtering-Correlation-Id: 75097006-3097-4068-5c27-08df40d429fd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|23010399003|376014|22082099003|18002099003|261009223027099003|11063799006|56012099006|261022075727099003|261021135927099003|10067099003;
+X-Microsoft-Antispam-Message-Info: 8jlaGJNI9aequ0mpbH3O637UyMufKy55a6kPxqp30PNAbmvcR++ydOkHEPLVNRbIOSwDfnor8iUPhSO86vPtIr0wJz+d2BLpANEzVVNVa9ZYaLNWo6CLCgRpMVdgHXHTPWopSyxt8QIkA6baQ8fdQWpv/s6RXKDYT7BjxHlIvDPejtMELlZqzyH7eSiqJFRBRCWCyWadUI0E6qclq1sAtN/jW2fOgY0EJkRnwLQb5IGzz7YX++io8mSr4lM0SBUJQU7Uoase/F52l/T7MW3WtPVKvHDiKOO3vbLlX1DdJf0ax8ZcMeebZh09vcHW6gDb9hbgaLid9iXPY3YMPXvVKTTjLVxHXL/B78H1jOpNnJWg5r/cBRWAqJzhOAGz4sq5YyzPp+kglIKW6seHv1k3G7gI0gfGidGuBp8xDbdNU91KgD4Dmvw6+vXu5Gt7xQ7OYmwxNX7O8tX0xCGRLv6LbXno7FXUuTboSmP6B9KWrbdcX5tPZAM87uad5GuP4JDUK0Oy7SHoC1+q+NEk/ezgYqNwj8qVfSyYQmZz6LESp+5mgRG0CFPgxqUkRS7EH1+dJzN0XFxyuVejhHhiHWFsIbGszPGYweEggMnvL4HmVb0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR04MB12016.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(23010399003)(376014)(22082099003)(18002099003)(261009223027099003)(11063799006)(56012099006)(261022075727099003)(261021135927099003)(10067099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L2xmb0dMc0dNUFNyTHRXUWFPTElOZzM2KzErYnprWWkzTmtUcjRNaXlPbHZ0?=
+ =?utf-8?B?TTJtRm00V0tCL3I3YWhTQ093c1IvUDM0WEcvRnVGdXprSnZLK0JqS251Rm1B?=
+ =?utf-8?B?b2dBU1FueDFSd1pVdGNMcElWZVY1Y0Z5Z24xeXpkeDdvbkRQSWkyMmpXQ2tZ?=
+ =?utf-8?B?OHU2ODNQQmJXdDBFQUZ5YWNoMS9IUTIwTWUxVVZQTVB4aHVweWJDM2QzZmE5?=
+ =?utf-8?B?OHNDRXJ1aVlqZGEyK0tjRDFrSFVteEFpcXhWTmtibjBkMUFqTFV5RjRsZS9Y?=
+ =?utf-8?B?d3JnQWJsNVNvUlFjWDcvUHJ5M1NOQzhFK1d0cmlGUXRDUTVCWml6dDNUdytI?=
+ =?utf-8?B?VXlsVVhnTWpIZWMrNkxIMGQ0NWdPUy8wSE56cFVxbFlRcGtCVnE4V3JBZTd0?=
+ =?utf-8?B?WWFXQkdiTTVRK0NmaU9tYUNxcFhiTlZ5WFVicVVNV253Q1VnSzFIb3dVVkpq?=
+ =?utf-8?B?NGtWd1pqQlJjSVlYZVZmZlNEdnJ6NVhheDRhVTdtQlI0RDVtQWljRlUraU9Q?=
+ =?utf-8?B?Q0tvcTkyWmhGWW9xY2lOMnBjZldWd0xQK1pUM1JEcGY4N0RmckpNamx4Qjdm?=
+ =?utf-8?B?WjZoUmp6QkRySmRLR0FoZWFGRFFQb0wxZE84aGxnd2dxRWIxVWpzTDRKVW8z?=
+ =?utf-8?B?TXNKbHMzak40VWJmYStEMklINEhSZDNlbDZmbFBEUkQvZnd1Ty90ZzR4SEN5?=
+ =?utf-8?B?dWIrTmZoNHNrMUVxZElONXVGeTVsT0ZxWVNSeGZYNEpPdVJZTE5wQjJ3ZHlm?=
+ =?utf-8?B?QzViZi9XQlNJcjlMVXdYYlF3QlN3Z0VJVWlHTzJzaDgzZUMvTVBKelhxODVp?=
+ =?utf-8?B?ZnlNdTZpOXo3ODlnNFBRZlV2Q0F2dWdNZ2hNVjB1MzRWRGFMQ0FJMXB0alpl?=
+ =?utf-8?B?WVdlUHMvMjBSTVZuVEZjbjY5cTY4V3huMEhRT2NEVFBUR2NtbENRd1hpSCt3?=
+ =?utf-8?B?Mm1oTG9KSG9yT243bUM4NjVmQWNmODZsL2FoTmMxMG50bDhINHVDYnhPMzhH?=
+ =?utf-8?B?WjY2WFhPQXgyb042MklQWndQTTBRc0QvM1AvUWZZejQzZWhGTSt3ZXpZcTcz?=
+ =?utf-8?B?R1VDZUZ6TnRkWFA4M3g3alJrdURPVnJqc04wbjlZK2wxU3BlL1BxMDN2RFJY?=
+ =?utf-8?B?VTQyRk1maUlITVpTZTdGczdHM1d0M2ZIMHRuaTIrWDdVSHQ3WDBqSUJYOTlY?=
+ =?utf-8?B?cUpEWmp5Wi90eFN5SDZlYlNrVndlTUExV2xwZGxYYWVUanNUVTA2OFg1QUhj?=
+ =?utf-8?B?cUtMbXlPampBTVFHYWQ0SHJETE9Kb3FTNDdGTk9TdTRYL0VwSWRjYjNoeFBz?=
+ =?utf-8?B?dDNudy9zWlIvNFBMK2svdVgwTzc2UlNKZVlFWXVtcHBWN29rRFQrN2hITkti?=
+ =?utf-8?B?U01WdXVYSC9HZnc5a0c4K3dPOXZDRjk1bW5YQnp3VExnSC8yODQzQ0kvL21J?=
+ =?utf-8?B?YVhIWXhQZGpPVnRncHM5dTdHM1VsM1ZPcUl5L3VUTHBiY1RXa0pMWDgzTlBp?=
+ =?utf-8?B?UWpwVTAxK2VnSHhNZCtkZG1xc09Fa2J1VEJSb0NrejA0V05aNnhxaW9WTVlU?=
+ =?utf-8?B?VHR3MG1yYVIwRmhGMm1YMXNoRm1sZ1VXMnBJaW1jdkVoV0ZOUzdhOVV0dHpH?=
+ =?utf-8?B?amRsV2pQZlh5K2NYMzc5MXowVnhaaWk5RFZhZE1jeWVyR3BIdWxFVmkrYUNl?=
+ =?utf-8?B?Z3RVQzduVm5lZTlVS0NLdHFlVjdDdzNQZVgyYjlKVFVGcjFNOVhobmNPZ0JI?=
+ =?utf-8?B?bWRDU0RXcHNQZUVVZXlMRjhzV3crUG9ISnd0WWpPaFpNbi8wYktXZnprL2dm?=
+ =?utf-8?B?aldQT0ZBR1lVMjBDNXRYdEQwVFZETGhqVmJOV25DZHliallqUlhZRW9sbjRG?=
+ =?utf-8?B?eklLQ0dNQ21LMGRPd0podTluSmhoVnlwZDdZY2V5emc1NUVEa2owZ2Q3TmZ2?=
+ =?utf-8?B?TzlKNnNzb3VuYm9EdHFRVHJGQkZkdFlZS3lOSnE0a0JKa0J3SE91Qlh4d0RK?=
+ =?utf-8?B?TkJGYlEwOE1pbG0ySVVrc3o5eWdTbXM0ZmFsa0h5YVlEU3R2VUZBVVJOelhS?=
+ =?utf-8?B?YnZuTDBFcnpuM3p0UlBvTXZMVVFVUFVvT3U2MGlBRFJna25tN2Z6djV4VHRB?=
+ =?utf-8?B?cE41eUppcm5kMWZFcXY4MmFsUXlNTzkxa2NsdHVPLy94RnN2V2dhcWFkNWw0?=
+ =?utf-8?B?UVd0ZGFVN1c3OHRQd3dsSFBhS0FIQUsxaFl4ZGxwdlBreXNTRlI4MHVSeHpl?=
+ =?utf-8?B?R055Rjg5WG5TRDRUWFRnTWUxMHlhRGt3WnVZRWlzc1ZnRUdMbmVDbDFmMzI5?=
+ =?utf-8?B?cFJvSTRDZzJVNUs2bDlOZC9tazZGRDRpTGVmL3VLZzhFaXBqYVo5eUg1bWo0?=
+ =?utf-8?Q?t3bROUd9ukSI0Ue8=3D?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75097006-3097-4068-5c27-08df40d429fd
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR04MB12016.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 15:46:49.3301
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5xxh3BUPFM70a4M6PscSWbswdZmdIZv04kDVjyrVmVY6xlSh94phNnXI3tJrxK6cw8qgc/DgnCEghhoFpKWlM603NPMXOCxG0Dymv9CdRTQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6962
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_074418_704596_D3510FEE 
-X-CRM114-Status: GOOD (  18.79  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_074657_120665_4F298543 
+X-CRM114-Status: UNSURE (   9.64  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,194 +197,31 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Every PIO transfer enables the controller interrupt and sleeps in
-wait_for_completion_timeout() until the interrupt handler has drained the
-receive data. For a transfer of a few bytes, the interrupt, the
-completion and the two context switches take several times longer than
-the transfer on the wire. Devices that do their register IO over SPI,
-such as SPI attached Ethernet switches, issue one message of a few short
-transfers per register access, so this overhead dominates their register
-access time.
+On 11/10/26 18:19, Sebastian Reichel wrote:
+> This was noticed on RK3588 EVB1 when resuming from system suspend. This
+> is technically a fix, but its unclear when the bug was introduced and
+> system suspend is broken on RK3588 for quite a while and not just due
+> to this problem. So I think this fix can be merged the normal way via
+> linux-next.
+I tested this on a rk3588-tiger and it fixed the usb-related hang I saw 
+in suspend/resume!
 
-Busy-wait on the status register instead of enabling the interrupt when
-the transfer is estimated to take less than polling_limit_us, 30 us by
-default, as spi-imx does. The estimate uses the effective clock rate and
-the word delay. Setting the module parameter to 0 disables polling.
+Thank you!
 
-Mask the receive and overrun interrupts before a polled transfer is
-started. An earlier interrupt driven transfer can leave them enabled:
-the overrun interrupt always stays enabled, and the receive interrupt
-also stays enabled after an overrun or a timeout. The interrupt handler
-would then consume the status the poll waits for. Like the interrupt
-handler, the poll only reads received data while bytes are outstanding.
+Just for posterity, this was the hack I had in place before, which I 
+could now drop:
+https://git.embedded.cherry.de/tiger-linux.git/commit/?id=c6467bf3bec2c70d563e712ac9bd0efe81fe8941
 
-Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
----
- drivers/spi/spi-atmel.c | 80 +++++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 78 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/spi/spi-atmel.c b/drivers/spi/spi-atmel.c
-index ffc1292b08c1..25a0a3acfc4e 100644
---- a/drivers/spi/spi-atmel.c
-+++ b/drivers/spi/spi-atmel.c
-@@ -234,6 +234,11 @@
-  */
- #define DMA_MIN_BYTES	16
- 
-+static unsigned int polling_limit_us = 30;
-+module_param(polling_limit_us, uint, 0664);
-+MODULE_PARM_DESC(polling_limit_us,
-+		 "maximum time in us to run a transfer in polling mode");
-+
- #define AUTOSUSPEND_TIMEOUT	2000
- 
- struct atmel_spi_caps {
-@@ -274,6 +279,8 @@ struct atmel_spi {
- 
- 	bool			use_dma;
- 	bool			use_pdc;
-+	bool			poll;
-+	unsigned int		poll_limit_us;
- 
- 	bool			keep_cs;
- 
-@@ -688,6 +695,9 @@ static void atmel_spi_next_xfer_single(struct spi_controller *host,
- 
- 	dev_vdbg(host->dev.parent, "atmel_spi_next_xfer_pio\n");
- 
-+	if (as->poll)
-+		spi_writel(as, IDR, SPI_BIT(RDRF) | SPI_BIT(OVRES));
-+
- 	/* Make sure data is not remaining in RDR */
- 	spi_readl(as, RDR);
- 	while (spi_readl(as, SR) & SPI_BIT(RDRF)) {
-@@ -706,7 +716,8 @@ static void atmel_spi_next_xfer_single(struct spi_controller *host,
- 		xfer->bits_per_word);
- 
- 	/* Enable relevant interrupts */
--	spi_writel(as, IER, SPI_BIT(RDRF) | SPI_BIT(OVRES));
-+	if (!as->poll)
-+		spi_writel(as, IER, SPI_BIT(RDRF) | SPI_BIT(OVRES));
- }
- 
- /*
-@@ -725,6 +736,9 @@ static void atmel_spi_next_xfer_fifo(struct spi_controller *host,
- 
- 	dev_vdbg(host->dev.parent, "atmel_spi_next_xfer_fifo\n");
- 
-+	if (as->poll)
-+		spi_writel(as, IDR, SPI_BIT(RXFTHF) | SPI_BIT(OVRES));
-+
- 	/* Compute the number of data to transfer in the current iteration */
- 	current_remaining_data = ((xfer->bits_per_word > 8) ?
- 				  ((u32)as->current_remaining_bytes >> 1) :
-@@ -776,7 +790,8 @@ static void atmel_spi_next_xfer_fifo(struct spi_controller *host,
- 	 * Enable RX FIFO Threshold Flag interrupt to be notified about
- 	 * transfer completion.
- 	 */
--	spi_writel(as, IER, SPI_BIT(RXFTHF) | SPI_BIT(OVRES));
-+	if (!as->poll)
-+		spi_writel(as, IER, SPI_BIT(RXFTHF) | SPI_BIT(OVRES));
- }
- 
- /*
-@@ -1375,6 +1390,58 @@ static void atmel_spi_set_cs(struct spi_device *spi, bool enable)
- 
- }
- 
-+static bool atmel_spi_use_poll(struct atmel_spi *as,
-+			       struct spi_transfer *xfer)
-+{
-+	u32 hz = xfer->effective_speed_hz ?: xfer->speed_hz;
-+	unsigned int limit = as->poll_limit_us;
-+	int word_delay_ns;
-+	u32 words;
-+	u64 us;
-+
-+	if (!limit || as->use_pdc || atmel_spi_use_dma(as, xfer) || !hz)
-+		return false;
-+
-+	us = div_u64((u64)xfer->len * BITS_PER_BYTE * USEC_PER_SEC, hz);
-+
-+	word_delay_ns = spi_delay_to_ns(&xfer->word_delay, xfer);
-+	if (word_delay_ns > 0) {
-+		words = xfer->len / DIV_ROUND_UP(xfer->bits_per_word,
-+						 BITS_PER_BYTE);
-+		us += div_u64((u64)words * word_delay_ns, NSEC_PER_USEC);
-+	}
-+
-+	return us < limit;
-+}
-+
-+static int atmel_spi_poll_xfer(struct atmel_spi *as,
-+			       struct spi_transfer *xfer)
-+{
-+	u32 done = as->fifo_size ? SPI_BIT(RXFTHF) : SPI_BIT(RDRF);
-+	u32 status;
-+	int ret;
-+
-+	ret = readl_poll_timeout(as->regs + SPI_SR, status,
-+				 status & (done | SPI_BIT(OVRES)),
-+				 0, (u64)as->poll_limit_us * 10);
-+	if (ret) {
-+		dev_err(&as->pdev->dev, "spi transfer timeout\n");
-+		return -EIO;
-+	}
-+
-+	if (status & SPI_BIT(OVRES)) {
-+		dev_warn(&as->pdev->dev, "overrun\n");
-+		return -EIO;
-+	}
-+
-+	atmel_spi_lock(as);
-+	if (as->current_remaining_bytes)
-+		atmel_spi_pump_pio_data(as, xfer);
-+	atmel_spi_unlock(as);
-+
-+	return 0;
-+}
-+
- static int atmel_spi_one_transfer(struct spi_controller *host,
- 					struct spi_device *spi,
- 					struct spi_transfer *xfer)
-@@ -1412,6 +1479,8 @@ static int atmel_spi_one_transfer(struct spi_controller *host,
- 	as->done_status = 0;
- 	as->current_transfer = xfer;
- 	as->current_remaining_bytes = xfer->len;
-+	as->poll_limit_us = READ_ONCE(polling_limit_us);
-+	as->poll = atmel_spi_use_poll(as, xfer);
- 	while (as->current_remaining_bytes) {
- 		reinit_completion(&as->xfer_completion);
- 
-@@ -1437,6 +1506,13 @@ static int atmel_spi_one_transfer(struct spi_controller *host,
- 			atmel_spi_lock(as);
- 			atmel_spi_next_xfer_pio(host, xfer);
- 			atmel_spi_unlock(as);
-+
-+			if (as->poll) {
-+				as->done_status = atmel_spi_poll_xfer(as, xfer);
-+				if (as->done_status)
-+					break;
-+				continue;
-+			}
- 		}
- 
- 		dma_timeout = msecs_to_jiffies(spi_controller_xfer_timeout(host, xfer));
-
----
-base-commit: 2bc7eb398cd0f89fd2331d5a1a8fe7ed17addd35
-change-id: 20261112-spi-atmel-poll-short-pio-transfers-bd8fcb9c19bb
+Tested-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
 
 Best regards,
--- 
-Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
-
+Jakob
 
