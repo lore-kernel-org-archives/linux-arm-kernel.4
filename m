@@ -2,118 +2,115 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6FE9606A324
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:19:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47750606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 02:22:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pHWoXs2r;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=LXSiawIN
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ci9npu6q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=uSIrkRDA93Mj/PVtKNG7+nFpfhhPf2AG8Tz5QutxZsE=; b=pHWoXs2rE11/6V
-	qW3HW3s0K8BZfV4inK86iZ7vYjeuYb/Y1tGxEenhkCv9mEQH6PfP0I6sccD+yiTNAEaIbLn6jO43Q
-	X/B5deGi/yRr2iod+lOoayxcMWIwPlCGe/GDzQAGC/FXdeQEAqPAXpS5QuxZEpy4iK9cSn7kb/JzN
-	9LWeT76L7A4CCs9EafSEmrCNv9z4rsjlRShNE0KLeWAldSl4yjM8WUlSaFmp3zBHsMmUvyy0kQQ9E
-	RCwFR9tbh6Q3K9PRKagfe+64mCx/K1ele+tF8JUXPJN51IUqT766XB+kElr1wAkBfqoOgcZtLsnqa
-	FpL2ZaZNevu2CNzwMMyg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Bw239Pgdn3QC0cdzWj3Bt2TXtO4xGoScoP4AqGL7gJk=; b=Ci9npu6qB1GwLdpmQXtwnV+hpG
+	vkpIARy2v6ciK0rq0MJSCs4xcYjglXAuhnMFEUv7eqXjqswwNVZk1ga3pJ20Cx1fQfCQybaG7cRng
+	tV+2VdS/Vkk+G4dKsDqjkhVGJaIpCXBB/NionRrUceXA7H3X6eHDnBJurRzVj9n9pFIUd7Guvpm+x
+	jNdMVepKOYJyeF98HeFebzv8aPxgh16Wy2/FR2zzlpemVhJYdjmoRc25Hdyk10zfxLUl/Crr7SEEv
+	mdUhhPgM5ykjtRHcr6sF5LtgvNKF2vDVlrPhj9t7aYAoqUVOikTs0bcHQQcEr+2rHX5vsNb8CUJYO
+	wdOdvYzQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKOw-00000008Umb-3Lyj;
-	Thu, 12 Nov 2026 02:18:58 +0000
-Received: from mail-qv1-xf32.google.com ([2607:f8b0:4864:20::f32])
+	id 1xRKRn-00000008V2U-230A;
+	Thu, 12 Nov 2026 02:21:55 +0000
+Received: from mail-japaneastazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c405::7] helo=TYDPR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRKOs-00000008Ulc-2e5N
+	id 1xRKRk-00000008V1g-1Wm7
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 02:18:56 +0000
-Received: by mail-qv1-xf32.google.com with SMTP id 6a1803df08f44-91f1324a134so3817386d6.0
-        for <linux-arm-kernel@lists.infradead.org>; Wed, 11 Nov 2026 18:18:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794449933; cv=none;
-        d=google.com; s=arc-20260327;
-        b=pYIrAgZn12Bpb+mU1utK1eZREHrocaWKExFnG5QaExTM+ANjGtv47DVtBW3QKakAJk
-         DJQsFxar/HxJehmYDOAEwJtOsmljhd7Pc7grPocSMNcv63RzzDq7dvazxHoBBO8QSrbF
-         OfSUxSqme5xF3AkmiXWHMZk/5djbFCBILwCOs9NuW3grW/Kyvpzf84dM3opbOrbi3f8Y
-         DKHCHSacXDP+pdyrIXW+fwdHtUaBsuVdPy3Ur16tH75VJbpLCReJrnWg/y+O4giCxwUb
-         xWemfzEUqgV6sdcj6yY2sg/EN/XclGl/kVTLGh0Nyk2PMQLv+GXH8cIYDWyIvEXs8N6R
-         Ofvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=uSIrkRDA93Mj/PVtKNG7+nFpfhhPf2AG8Tz5QutxZsE=;
-        fh=md+HoMqMCqWw6g5KTaUY69jHVjNJ8YTk/0eCV8RCL6s=;
-        b=iib2tz2m23FMu6SjZUuJ80+EQYP2M2FUEanWApTIgLsVE1iODMU0FMoNij4SqOIMNv
-         i15HcSBDf/NCGrBd9DEE2mWveKHiWpWxhQwQ2FVkb/xUAi6Rli2BiEckDMdAQgZAn0L2
-         lG0OZNFbGVyUNJkG1jaoK1mp8odVI3qVBhx9pB1wIvicArp4khf8Vo1O+zpzlriUISmP
-         S3d4y8SMjeiQzxa9oXhoAA/ouMHxsTB3UdZa8sb4N7b2NkiKlpKiJ3ujMi70Gg1LD54M
-         fuk8ARK6awAHlr58/c0NH14njeMo3IOAGlm+zrrWBuieI4h7cMQ0wP+VZNE+eqt3to1x
-         Eg6w==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794449933; x=1795054733; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=uSIrkRDA93Mj/PVtKNG7+nFpfhhPf2AG8Tz5QutxZsE=;
-        b=LXSiawIN5nrc9hRzxCDQGAzz+Uv3RqVCq8azj0LMfqLCphOgBBMEuZeiKaluItLui/
-         jY1Xr9GEsavu1tQ0zm6x7brPmcZf75SCH1oA+3dePZc6SkuNsUm+7REJFYXCRO+yhkka
-         weZcix0z+F6WHM+KbAgoXCMLfTLYY06N6qDuNhuEFvmRWKlzWg5GpfgMl/Rmq6d2jxTg
-         PoonkeSULMq8J8wWYrFc3rtblc+u80zwJn3LtkGImRLOMwN8SDoHPgf2OTgnTuts2++0
-         n9DBDBfkGOxO5rEhtHduVufyV+HYbmZFICpnz/4jsvw5CtZiRvDPVjosjXnNS0JoG67J
-         2MuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794449933; x=1795054733;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=uSIrkRDA93Mj/PVtKNG7+nFpfhhPf2AG8Tz5QutxZsE=;
-        b=l7Zq1ifl38NtD+T7H1qxGMRrmSx4HqorsSVLIEUAT/w9XKJ7QyggN5iQtlNWmbkGey
-         rS1VOGcesr2b98iR2bTfO28RYh+HtDdWU4y0TLTuQZw+Rvomb/nMy8JEK4zjVUceUnEM
-         NdqCg1VmuYv+CqXljNZP1qafcUF8wSpN8SYziVL+Udxu4VqzIF2+K+LPxS8jSnpZQjIH
-         hV5Ri+J1nK9r1x8Ma0/EsvRPRYucmlZ9BFSKKEnOd3R6muBRsDIZTu/vG0lnopyfYDZu
-         lB5BRKJXy0JXEFfI3cs8JcIrfqgJG10K8DOknin6rzyK2GeE99nQNiLBlaIYbq25x3oj
-         KtBQ==
-X-Forwarded-Encrypted: i=1; AL+hErEcbwj81PHuIhX5JY0ur6sqnKDaEmO+v7zHQ6BliZCqVwhJygHFvxAMvqIsd4Yg760d9vEKMUoir2MN/C7MP97k@lists.infradead.org
-X-Gm-Message-State: APuU4Z+oWY9bEiYxWjGBR62hMt6lPjc7zxCb0OgvL8EVsGs5077Xdoqd
-	9KuU6EgyEuK74E1DM9eSmP46uBcYHDXnWwsGdbCDZpHTPCL6bP2NE7o9sQ026uEOqs5In1mzkux
-	fSmYrC80By+fq3O5mdeoTIjYmHT4VLxQ=
-X-Gm-Gg: AYBFou3VYgK05P/YIBlEQfnjQgzHikhidNXDbc8Wrt7dSGxEAkVw7vt5Pm5x3TE1G3C
-	FlnBSpNFBfrmIkSk0fvsW7OR2mJtT030/epdV1PejgZaflBnKhAPA9XLz8h/xGKL9jzF3ysPsCH
-	ZEFiUchtB5RCfgbde8B9fbEOdQsS71Fm5dJC/Wo9VOUXoWebfg0Pf13znUyeMb4JteJlI72wEEs
-	UjK5J4YskKI17moN4kknw+FZVXU6Khg0WL/rJ8tPmLwyKyGYKwNFxbzxzTAnelbxr7YKi5sOoIV
-	zoMMt5aveuTcKplVAnU+H+92N0pm6eaOTGu4AHabtOFCteYxWZ7j/XNGqKv8cfW4luMqlKsbSDE
-	bQ1pRzd4uwi/jJYrbX0J3umBnIOh9LXZM3ZZq
-X-Received: by 2002:a05:6214:6112:b0:91f:12f9:fc6e with SMTP id
- 6a1803df08f44-91f12f9fe1fmr26500366d6.31.1794449933323; Wed, 11 Nov 2026
- 18:18:53 -0800 (PST)
+	Thu, 12 Nov 2026 02:21:53 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yST1DK3RHjX9VL59Yd9PKaDfaZG6ps6AZYMI3MlXIZDJHWq+AvlykZopm/jQbdC2ezUUyuNf2DusIgR7/u/PGdgpl4FzekXJEFbMabo9IHA1qNep/fJIi7mcp25xm3vQCw9yLWRpDI464FhXJwP714tmp1LG4L7j41V3OhGDXb3eYdtvLrQwlEN+tRU73MEgcSlhENUCjpAKsuTFtrPCI/cusualentc8iPvLx6dE0vr6BYyglX9CGmXwYDhxDg+DDbQxh872RFv25BNSdpk8lknOPmM67pD1lNE3MTIbkGplHnEKr1UDRveRXtS7H9PbpeRBroKZ5pWHMGJbLqCIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Bw239Pgdn3QC0cdzWj3Bt2TXtO4xGoScoP4AqGL7gJk=;
+ b=iiCTLls5hhV6QKmIBfKkroCnIclL5ReRhNFC4Og1uKSIOoeKCaBXVhiDbqX737wMDp7SqOHtpPVeBibzFtRRpF15rB9IBxLhhXwOoOU1P6BC2cPVBhHBSu9PhRopuU5wJTMjqvT2sX8o8+yrQwaSF89lyT73FYTlGJcl02p7WnG5B9q/Cfoo9+RPx5114sRl8AyI5QVZgj0MtqHvBVjlguDBYYCTcLWjSSyL5CBafzbSUFJX6pdizMVfvHoa7nT3eXiBFhnn0Pe4+MuBib2SSpHut7WuMTGBrAqjupfR3HIqO0S1kKs0wqzyy4UyiGq1On4vo4+VFs7+AewAGlplCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SE2P216CA0115.KORP216.PROD.OUTLOOK.COM (2603:1096:101:2c9::16)
+ by PS1PPFC5EBD37C3.apcprd06.prod.outlook.com (2603:1096:308::265) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.0; Thu, 12 Nov
+ 2026 02:21:44 +0000
+Received: from OSA0EPF000000C8.apcprd02.prod.outlook.com
+ (2603:1096:101:2c9:cafe::2b) by SE2P216CA0115.outlook.office365.com
+ (2603:1096:101:2c9::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Thu, 12
+ Nov 2026 02:21:44 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 222.71.101.198) smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000C8.mail.protection.outlook.com (10.167.240.54) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Thu, 12 Nov 2026 02:21:43 +0000
+Received: from hongliang-System-Product-Name (unknown [172.20.64.180])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 5564D4102E62;
+	Thu, 12 Nov 2026 10:21:42 +0800 (CST)
+From: Hongliang Yang <hongliang.yang@cixtech.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Peter Chen <peter.chen@kernel.org>,
+	Pawel Laszczak <pawell@cadence.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Gary Yang <Gary.Yang@cixtech.com>,
+	Fugang Duan <fugang.duan@cixtech.com>
+Cc: linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	hongliang.yang@cixtech.com
+Subject: [PATCH v8 0/2] Add CIX Sky1 USBSSP controller support
+Date: Thu, 12 Nov 2026 10:21:39 +0800
+Message-ID: <20261112022141.4136099-1-hongliang.yang@cixtech.com>
+X-Mailer: git-send-email 2.54.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261109134506.2794160-1-zxyan0222@gmail.com> <179423231463.488859.16977464890948797360@kernel.org>
- <20261111152012.3506cf35@kernel.org>
-In-Reply-To: <20261111152012.3506cf35@kernel.org>
-From: zhu xin <zxyan0222@gmail.com>
-Date: Thu, 12 Nov 2026 10:18:41 +0800
-X-Gm-Features: AclHuK8QI62ccttn1Xw-oY6fIZrapeK5u9UcITSCWeJbJUttr5lLmZTnCyZA2Bs
-Message-ID: <CAP7veT+buHRMu6f3o5RaKFdv3fABkWKgkO6KFn5js4PEeB8b0w@mail.gmail.com>
-Subject: Re: [PATCH net-next v10 0/3] net: stmmac: dwxgmac2: timestamp
- interrupt support + Agilex5 fix
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: netdev-bot+sinfo@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
-	edumazet@kernel.org, pabeni@redhat.com, maxime.chevallier@bootlin.com, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, 
-	richardcochran@gmail.com, muhammad.nazim.amirul.nazle.asmade@altera.com, 
-	rohan.g.thomas@altera.com, rmk+kernel@armlinux.org.uk, 
-	o.rempel@pengutronix.de, wojciech.drewek@intel.com, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000C8:EE_|PS1PPFC5EBD37C3:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 924fb4a3-6962-4d4d-0840-08df4063b1c0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|36860700016|7416014|376014|23010399003|1800799024|18002099003|6133799003|261009223027099003|921020|56012099006|261026121527099003|261021121427099003|261102123227099003|261022105027099003|261022075727099003|261026140227099003|261028144727099003|10067099003;
+X-Microsoft-Antispam-Message-Info: C9+70ulsYmDNrAcXhuTfvNtV1NeUFBsqYMpADr6tfie4Qf+cDLgQxL4Idk/lXU+HmBPwz2cwYqWtcMKUKMYn01EAq5c/AZb4U1lWJ7rjSx5CEqo8J5p+JykkdXwbPhfVaVoiMn/P2HX08zWAVXbMY9HWjAb8fGq5qJ3jQ31Q2WeyWyC9X42VPFI80kVx6gyv5k2W5Nb9Kg53DKlO5CZvHpetQd6cpLpTXvj2cAIco7JkTsZhZPo8NMCtUsemSTl8DQpd4AMHfqiRM1lgoCnTS05R1AiPVAmsbfxioxO0wJRhcN8+TKOIWvwqglXMclDioB4UmKazG2zKtMWRkJi5KqaoG25nf2e5B7xl8lBtKFUjZ3Xv51yXnm1+RS5EXcF7nCXDaNTrqg2UEHA9qwIzlRurOIDS+wus8DC4hfS5pO+rlTz8Apf0y4xqeJXhANnfTuumXKX30ecvn14NYTlSJByiU1ydyRZ0uBOS7OGtMHsRIEabPaKHVP22TPhF9HvRTLvPw9MBGDOnSYl6Ytx5/nRqhFP1nbYPdCr92Wo+qug8hvh8QOiCyudBzag88sgdh3KTybvW+s85LETwGbYg4z7eFD/6B01uuSlDODbm/G0AXy3+ILSh0TvpwyeNPbivurp51Z8zIyEP32MIJilxD92oB/gqwuskuq5XgbnX+pEcxy82vSUMAXBixT1uSkuhggD9m/yd5/juSgXS+f3tU6ua6INbNS5e/H05sNWHTNs5fjR8yURFrDTCk747QlTN
+X-Forefront-Antispam-Report: CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(7416014)(376014)(23010399003)(1800799024)(18002099003)(6133799003)(261009223027099003)(921020)(56012099006)(261026121527099003)(261021121427099003)(261102123227099003)(261022105027099003)(261022075727099003)(261026140227099003)(261028144727099003)(10067099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: safCjRFSERugEJGuj9pmZ5wt7h+JULb1Uv6AO4YNmgDxDBTbs5/+SEzmj3lNo6Oe2Yg0GemdpaKHyZkq+FZBcfBvcgJyyQuJ1obu4oeX70upv7QoC2K9c47fy/sGB5IEGMujBH2Jg4tCC17SnGzVMY4BIlU+T2A62mXJNJLatiCLUjeCNdZM9owxS9Vu40/AToL6jEOi/8op3PpzrVcOpzndOc0cf1zus0DevkGjRXfVA7Er/I1KYObQGXuegiS5K7giLkwL9sUeKqrZnFMm3LSXP6dM0nQ39dYBXlTaZ2ylCIEywOl4TIwmIvC+7PBozlEeSem6nzk0sbgtcR16NHzUnRQiD3PK3Y5p5qQIhuitBh6hE4lKixXwXn0aDInlbJDYMdZsz8+wGqysf9jItr88r5uxHF6yL1vw4hem029sx3nAvUQPKQdAw2qRaeFe
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 02:21:43.5101
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 924fb4a3-6962-4d4d-0840-08df4063b1c0
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource: OSA0EPF000000C8.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PPFC5EBD37C3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261111_181854_675849_AE993D95 
-X-CRM114-Status: GOOD (  17.79  )
+X-CRM114-CacheID: sfid-20261111_182152_545570_266533F5 
+X-CRM114-Status: GOOD (  23.46  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,38 +122,135 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jakub,
+This series adds support for the Cadence USBSSP DRD controller
+integrated in the CIX Sky1 SoC: the device tree binding and the glue
+driver. It is a USB series only. The arm64 device tree nodes belong to
+the SoC subsystem, so they are not part of this series and will be sent
+separately once the binding is accepted.
 
-On Thu, Nov 12, 2026 at 7:20=E2=80=AFAM Jakub Kicinski <kuba@kernel.org> wr=
-ote:
->
-> On Mon, 09 Nov 2026 13:51:54 +0000 netdev-bot+sinfo@kernel.org wrote:
-> >  - What hardware the change was tested on. For driver fixes please
-> >    mention the device (and if relevant firmware version) used for
-> >    testing, or say that the change was not tested on real hardware.
-> >
-> > Please do not repost the series just to address the above. Instead,
-> > reply to this email with the missing information, so that reviewers
-> > can take it into account. If the series needs another revision for
-> > other reasons, please include the information in the commit messages
-> > then.
->
-> You are at v10 and still getting these automated emails.
-> What's going on?
+Tested on Radxa Orion O6 (Sky1) in host mode, together with the CIX
+USB3 PHY series posted separately. The series applies on top of
+v7.4-rc1.
 
-As for what is going on: I answered the bot's full questionnaire once,
-in a direct reply at v7 [1], and since v10 the same facts are
-described in the cover letter.  The bot, maybe, evaluates the
-individual commit messages, where I never put the information,
-assuming the reply and the cover letter would count.  They do not,
-so the emails kept coming.  I will fold the tested-on and
-found-by-inspection statements into the commit messages with the
-next revision, which should settle it.
+Each controller is described as one address range in the USB30 Type-A
+DRD RCSU block at 0x091c0000, starting at its AXI cache attribute strap
+register and ending after its AXI clock status register. The two Type-A
+controllers interleave their strap and status registers in that block:
+
+  0x300  STRAP_PIN0     stream ID           USB4
+  0x304  STRAP_PIN1     stream ID           USB5
+  0x30c  STRAP_PIN3     clock enables       USB4, USB5
+  0x314  STRAP_PIN5     awcache/arcache     USB4
+  0x324  STRAP_PIN9     awcache/arcache     USB5
+  0x328  STRAP_PIN10    USB2 PLL            USB4
+  0x400  STRAP_STATUS0  AXI clock state     USB4
+  0x410  STRAP_STATUS4  AXI clock state     USB5
+
+Only STRAP_PIN3 is common to both controllers; every other register is
+read or written by one of them. There is no contiguous window that
+covers the registers of one controller only, so the two ranges overlap.
+The range is mapped with devm_ioremap() instead of
+devm_platform_ioremap_resource(): requesting the region would make the
+second controller fail with -EBUSY.
+
+Thanks to Krzysztof Kozlowski for the review of the earlier versions.
+
+Changes in v8:
+- Fix the example: the USB3 PHY is a single provider shared by both
+  controllers, so the core node references one phandle. The example
+  still carried the per-lane two-PHY form that v5 of the PHY series
+  used. Keep the USB2 PHY reference and describe it as usb-nop-xceiv,
+  since it needs no configuration.
+- Add the vendor prefix to the two board properties: cix,ssp-disable
+  and cix,u3-port-disable.
+- Driver: do not assert the resets in system suspend/resume, and do not
+  cache the wakeup state; the child device that owns the wakeup
+  interrupt is asked instead.
+- Driver: rewrite shutdown() to use the same teardown as remove(), and
+  allocate the child platform data with kzalloc() so that
+  platform_device_release() can free it.
+- Driver: only set PS_PME_En when wakeup is requested, and return
+  -ETIMEDOUT when the controller does not reach D3 or does not leave
+  it.
+
+Changes in v7:
+- Describe the RCSU registers of each controller as one address range
+  starting at its AXI cache attribute register, instead of two 16-byte
+  register slots, and drop the reg-names property.
+- Map that range with devm_ioremap(); request_mem_region() cannot be
+  used because the two Type-A controllers share the block and their
+  ranges overlap.
+- Take the offset of the AXI clock status register from per-compatible
+  driver data (0xec on Type-A, 0xf0 on Type-C), instead of two
+  reg-names.
+- Dropped #syscon-cells from the S5 system controller binding: the
+  property does not exist in the kernel, and the series no longer
+  touches bindings/soc/cix.
+- Removed the arm64 dts from the series: it is a separate SoC patchset.
+
+Changes in v6:
+- Dropped the simple-bus RCSU container; each node is placed at the
+  address of its glue registers and the core is a child at its own
+  address.
+- Replaced the usbN aliases and the undocumented id property with the
+  register offset and bit position arguments of cix,usb-syscon.
+- Converted probe error paths to dev_err_probe().
+- Removed the unused over-current GPIO handling and the unused dr_base
+  and cdnsp_pdev fields.
+- Fixed the 125us prescaler value: time * frequency - 1.
+- Made the AXI halt writes read-modify-write so the preserved and RW1C
+  bits of XEC_AXI_CAP keep their state.
+
+Changes in v5:
+- Dropped the cix,sky1-usbss-rcsu syscon binding and the cix,usb-rcsu
+  phandle; the glue registers are described in the controller node.
+- Added the MAINTAINERS entry for the glue driver.
+
+Changes in v4:
+- Split the combined PHY/USBSSP series into two independent series.
+- Restructured the RCSU registers as a shared syscon region with offsets
+  (reverted in v5).
+- Fixed the indentation reported by checkpatch.
+
+Changes in v3:
+- Fixed the interrupt specifiers of the core nodes: the Sky1 GICv3 uses
+  four cells, so every entry needs the fourth (empty) cell.
+- PHY driver: assert the resets before registering the PHY provider,
+  disable clocks in LIFO order, and fix the error unroll path so clocks
+  that were never enabled are not disabled.
+
+Changes in v2:
+- Split the single binding into a PHY binding and a USBSSP binding.
+- clock-names: apb/ref for the PHY, sof/axi/lpm/apb for the controller.
+- reset-names: core/apb instead of reset/preset.
+- Dropped axi_bmax_value from DT; it is a driver constant.
+- Added the MAINTAINERS entries.
+
+Changes in v1: initial version.
+
+Hongliang Yang (2):
+  dt-bindings: usb: Add CIX Sky1 USBSSP controller
+  usb: cdns3: Add CIX Sky1 glue driver
+
+ .../bindings/usb/cix,sky1-usbssp.yaml         | 163 +++++
+ MAINTAINERS                                   |   2 +
+ drivers/usb/cdns3/Kconfig                     |  13 +
+ drivers/usb/cdns3/Makefile                    |   1 +
+ drivers/usb/cdns3/cdnsp-sky1.c                | 663 ++++++++++++++++++
+ drivers/usb/cdns3/cdnsp-sky1.h                |  99 +++
+ 6 files changed, 941 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/cix,sky1-usbssp.yaml
+ create mode 100644 drivers/usb/cdns3/cdnsp-sky1.c
+ create mode 100644 drivers/usb/cdns3/cdnsp-sky1.h
+
+--
+2.54.0
+
 
