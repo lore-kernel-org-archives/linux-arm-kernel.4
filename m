@@ -2,85 +2,98 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFEA5606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CDA2606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 12:41:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PJrQYXPj;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=G92ewwS6
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uzvjqGDI;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=res/twsR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=qwGHYWqkzjPKzDNH4i/tvvgZ4hxVWyzdRGgiuO5uYi0=; b=PJrQYXPjDekyfT
-	WQNZZMQukA2CuF4ez/zv+s4FxBuNVAssIOQtKk/JsHeXGvxwmZUz2ndtJzvw57oIKL+2bNlBDImVR
-	s68Paz/brHD+9QKZHXtZrwfQBO9ZqmuM7ELfCbbwjQJnWHW7sWdCNIkBHQ762BcBVe7WEJMwYnmMv
-	MQj3V6Cd2ONZVO8V2u7IwkKwOjJvcSRYF+CyiMBMyAEpvUFMocXCrMtDyHt6ycfc+OhEjbXYCr+mC
-	g6NY+8YcCdOzeytRAk/pGSAiP5KJ5EV7jo9CWLJHbPzMS5KgXmWOYq73vzR5/WAtCH8NvxrFTKjBp
-	N41VKCAnSRBLD8YW6/uA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
+	Content-Transfer-Encoding:In-Reply-To:From:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=I9X4XD5ud4JHTzb58pE9cFq0Gp7fU1CTG2I9JiABR6U=; b=uzvjqGDIQM0WNU
+	irn2eT5s+4t4heYtQUwXCs4LsH8tcSi7W6omh32D7fl3TOAomBBS+8Q4uvNxXTybPdM/z6wewWI9Z
+	7u96Lkk+A1eh+rUqJ+Gs6J3mM+5dj805N1L1M51Ym/V2d/mCFd0m5h85eetrydIPPkXmnh5DUmvqx
+	Uc55t6/d/mHxMyHHX15dRhw6R27lg98YyaSblAri57qRz6bmJ2sbQFK+Sh8vu5CLPOs7OlSOk1Hyj
+	s6raBOv0HGjL0nW05d2qCtHeX2LOsg4KH3u5C6sG3sh7gZ+Ol/s+vQ+ZmPDf3RiGdUMEXLA3RzxHc
+	xbVnEu19GeiROxMBo+QQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRU4R-00000009u2J-32xj;
-	Thu, 12 Nov 2026 12:38:27 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRU4P-00000009u1k-2Shr
+	id 1xRU6s-00000009uT3-0Mqb;
+	Thu, 12 Nov 2026 12:40:58 +0000
+Received: from mailout1.w1.samsung.com ([210.118.77.11])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRU6m-00000009uRQ-32oj
 	for linux-arm-kernel@lists.infradead.org;
-	Thu, 12 Nov 2026 12:38:26 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 354211477;
-	Thu, 12 Nov 2026 04:38:21 -0800 (PST)
-Received: from [10.57.59.183] (unknown [10.57.59.183])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F0E6E3F673;
-	Thu, 12 Nov 2026 04:38:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794487104; bh=GXDArifiTXzGS/TEyKUeQy694OV8tzZyyHhxUDTufKU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G92ewwS69xI/sQnwPuFxDuaGeeicD5gWXRAQcqnYkeOnE+1AhuhQD+T9u+2gEnSvA
-	 8Tz0b5fy8Nanp500jVMIfPIBqybgWOu28wUx9eUNS6BsJB8hlKLfKfowurrVqb8yg0
-	 gegWtANRaNOjC5bAe0P7rnTdXxQKCb9wTnu50CiQ=
-Message-ID: <7b92f7c8-1543-447e-8ef3-aba608141699@arm.com>
-Date: Thu, 12 Nov 2026 13:38:13 +0100
+	Thu, 12 Nov 2026 12:40:56 +0000
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20261112124042euoutp01e70ce1178d26db6b7c248a8e4494b386~nTKOYIdlg2545925459euoutp01N;
+	Thu, 12 Nov 2026 12:40:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20261112124042euoutp01e70ce1178d26db6b7c248a8e4494b386~nTKOYIdlg2545925459euoutp01N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1794487242;
+	bh=I9X4XD5ud4JHTzb58pE9cFq0Gp7fU1CTG2I9JiABR6U=;
+	h=Date:Subject:To:From:In-Reply-To:References:From;
+	b=res/twsRekcb00rl0hpigdDQU49wJT9sewqF9AZUfNVtehuVCXJxiXNmMChvBTE4G
+	 eET/M3Ndk/cN+pz1L0w+/FpjnaGKptZRpIyBuWJJY/P+4a8RF1Bcj0RGmLHmGYIVpi
+	 4s1s/PiyRviToazDh7OQfOe5aoNIe42v3Wv4p1io=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20261112124041eucas1p2e0fefb8eb4e504a6bbf86fc3bbd57b3b~nTKOBqqaA1051410514eucas1p21;
+	Thu, 12 Nov 2026 12:40:41 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20261112124039eusmtip15ffbafa2efefdb32bf4f0155ad33cff7~nTKMZv7ec1174711747eusmtip1g;
+	Thu, 12 Nov 2026 12:40:39 +0000 (GMT)
+Message-ID: <52c54fdf-0879-4dda-9eac-822180f811bc@samsung.com>
+Date: Thu, 12 Nov 2026 13:40:39 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v10 07/22] arm64: Initialize POR_EL1 register on
- cpu_resume()
-To: Yeoreum Yun <yeoreum.yun@arm.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-hardening@vger.kernel.org, Andrew Morton
- <akpm@linux-foundation.org>, Ard Biesheuvel <ardb+git@google.com>,
- Andy Lutomirski <luto@kernel.org>, Catalin Marinas
- <catalin.marinas@arm.com>, Dave Hansen <dave.hansen@linux.intel.com>,
- "David Hildenbrand (Arm)" <david@kernel.org>, Jann Horn <jannh@google.com>,
- Jeff Xu <jeffxu@chromium.org>, Joey Gouly <joey.gouly@arm.com>,
- Kees Cook <kees@kernel.org>, Linu Cherian <linu.cherian@arm.com>,
- Linus Walleij <linusw@kernel.org>, Marc Zyngier <maz@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, Maxwell Bland <mbland@motorola.com>,
- "Mike Rapoport (IBM)" <rppt@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Pierre Langlois <pierre.langlois@arm.com>,
- =?UTF-8?Q?Pierre-Cl=C3=A9ment_Tosi?= <ptosi@google.com>,
- Quentin Perret <qperret@google.com>,
- Rick Edgecombe <rick.p.edgecombe@intel.com>,
- Ryan Roberts <ryan.roberts@arm.com>, Vlastimil Babka <vbabka@kernel.org>,
- Will Deacon <will@kernel.org>, Yang Shi <yang@os.amperecomputing.com>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mm@kvack.org, x86@kernel.org, Ira Weiny <iweiny@kernel.org>,
- Lorenzo Stoakes <ljs@kernel.org>, Thomas Gleixner <tglx@kernel.org>
-References: <20261109-kpkeys-v10-0-aa6c4d9603bc@arm.com>
- <20261109-kpkeys-v10-7-aa6c4d9603bc@arm.com>
- <be361be8-c5ad-4ff7-a6db-7b0815bfe1d0@sirena.org.uk>
- <avNH_AdvK9AqvfF7@e129823.arm.com>
-From: Kevin Brodsky <kevin.brodsky@arm.com>
-Content-Language: en-GB
-In-Reply-To: <avNH_AdvK9AqvfF7@e129823.arm.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2 12/15] lib/lz4: widen LZ4_DECOMPRESS_INPLACE_MARGIN
+ for the fast decode loop
+To: Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers
+	<ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, Justin Stitt
+	<justinstitt@google.com>, Russell King <linux@armlinux.org.uk>, Thomas
+	Bogendoerfer <tsbogend@alpha.franken.de>, "James E.J. Bottomley"
+	<James.Bottomley@HansenPartnership.com>, Helge Deller <deller@gmx.de>, Heiko
+	Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, Alexander
+	Gordeev <agordeev@linux.ibm.com>, Christian Borntraeger
+	<borntraeger@linux.ibm.com>, Sven Schnelle <svens@linux.ibm.com>, Thomas
+	Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov
+	<bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>, Minchan Kim <minchan@kernel.org>, Sergey
+	Senozhatsky <senozhatsky@chromium.org>, Jens Axboe <axboe@kernel.dk>, Andrew
+	Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org,
+	linux-s390@vger.kernel.org, linux-block@vger.kernel.org, Yann Collet
+	<yann.collet.73@gmail.com>, Nick Terrell <terrelln@meta.com>, Gao Xiang
+	<xiang@kernel.org>, Chao Yu <chao@kernel.org>, Jaegeuk Kim
+	<jaegeuk@kernel.org>, Eric Biggers <ebiggers@kernel.org>, Herbert Xu
+	<herbert@gondor.apana.org.au>, David Laight <david.laight.linux@gmail.com>,
+	Sungguk <sungguk.na@samsung.com>, Jaehoon Chung <jh80.chung@samsung.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>, linux-erofs@lists.ozlabs.org,
+	linux-f2fs-devel@lists.sourceforge.net, linux-crypto@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <avTmC_1I59FKA1FN@MacBookPro.fritz.box>
 Content-Transfer-Encoding: 7bit
+X-CMS-MailID: 20261112124041eucas1p2e0fefb8eb4e504a6bbf86fc3bbd57b3b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7
+X-EPHeader: CA
+X-CMS-RootMailID: 20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7
+References: <20261106-lz4-vendor-upstream-v2-0-ee04c3f0d7dc@samsung.com>
+	<CGME20261106144309eucas1p2a9bfcc1cf81779d473fb073e7d9139b7@eucas1p2.samsung.com>
+	<20261106-lz4-vendor-upstream-v2-12-ee04c3f0d7dc@samsung.com>
+	<avTmC_1I59FKA1FN@MacBookPro.fritz.box>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_043825_667928_FC6FFA85 
-X-CRM114-Status: UNSURE (   9.15  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261112_044053_035196_9868B197 
+X-CRM114-Status: GOOD (  22.53  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -92,39 +105,57 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/11/2026 17:36, Yeoreum Yun wrote:
-> On Tue, Nov 10, 2026 at 03:53:30PM +0000, Mark Brown wrote:
->> On Mon, Nov 09, 2026 at 03:58:32PM +0000, Kevin Brodsky wrote:
->>> From: Yeoreum Yun <yeoreum.yun@arm.com>
->>>
->>> The POR_EL1 register is reset to an unknown value after cpu_suspend().
->>> Since POR_EL1 always holds POR_EL1_INIT when entering cpu_suspend(),
->>> initialize POR_EL1 with POR_EL1_INIT before cpu_do_resume().
->>>> +#ifdef CONFIG_ARM64_POE
->>> +alternative_if_not ARM64_HAS_S1POE
->>> +	b	.Lskip_por_set
->>> +alternative_else_nop_endif
->>> +	mov_q	x2, POR_EL1_INIT
->>> +	msr_s	SYS_POR_EL1, x2
->>> +	/* isb can be skipped since cpu_do_resume() will do it. */
->>> +.Lskip_por_set:
->>> +#endif /* CONFIG_ARM64_POE */
->> cpu_do_resume() will update TCR2_EL1 to enable POE again, a sufficiently
->> unhelpful implementation could potentially decide to do that before this
->> POR_EL1 value takes effect AFAICT given that there's no barriers.
-> Thanks. seems required to isb() after initialising SYS_POR_EL1.
 
-Agreed (as Sashiko reported as well). Presumably that means we also need
-an ISB after writing to POR_EL1 in cpu_enable_poe(), as that's basically
-the same situation.
 
-- Kevin
+On 11/11/26 23:02, Gao Xiang wrote:
+> Hi Michal,
+> 
+> On Fri, Nov 06, 2026 at 03:42:52PM +0100, Michal Wilczynski wrote:
+>> erofs decompresses a pcluster in place when the slack after the output
+>> is at least LZ4_DECOMPRESS_INPLACE_MARGIN(compressed size), upstream's
+>> (compressedSize >> 8) + 32.
+>>
+>> That holds for the fork, which overshoots its output by at most 8
+>> bytes. Upstream's LZ4_FAST_DEC_LOOP, which the next patch brings in for
+>> x86 and arm64, copies in 32-byte steps and can overwrite input it has
+>> not read yet: of 172410 valid streams laid out as erofs does at exactly
+>> that margin, 3660 fail to decode, none with the fork. The worst needs
+>> (compressedSize >> 8) + 33. Images mkfs.erofs built did not hit this,
+>> but nothing in the format rules it out.
+>>
+>> Use (compressedSize >> 8) + (compressedSize >> 15) + 36, which takes a
+>> 4K pcluster's margin from 48 to 52 bytes. Upstream's lz4.h defines the
+>> macro too, so undefine it first.
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> 
+> First, I really think kernel LZ4 should be updated for many years, so
+> thanks for this!
+> 
+> But my personal thought is that could you just fold this patch into
+> the next one ("lib/lz4: switch the decompressor to the vendored sources")?
+> Because this one should be part of the fast loop update.
+> 
+> Although the current patch order is also fine, but my potential concern
+> is that people don't know the details maybe pick the random ones for
+> backporting, which is what I'd like to avoid so I hope this patch could
+> be just part of it, otherwise the inplace decompression could be broken.
+> 
+
+Make sense I'll fold it into the decompressor switch in v3 so the
+wider margin and the fast loop can't be picked up separately.
+
+Thanks for the review and the kind words
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
