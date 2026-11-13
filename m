@@ -2,78 +2,73 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B185B606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:54:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39C6606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=THPE1lUM;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=BI6WdYdc
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y+4IXItQ;
+	dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.a=rsa-sha256 header.s=20231125 header.b=RR6557OX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LiiTlo37cd7Mx61Wns5oLMYH6SZa01qZWw0uJ0Q/vyI=; b=THPE1lUMaPbD9jc/nZ+KHlpd3J
-	oMIlnWPni8txrBs09iAyy1rY82UfgBNHrKz5vO/SEZkyxrPVei8AxqPKdp3U1oVAnJVKuMxKYQXt7
-	9ckZWFspjlKNW+ZaDppo5eSW5C/+a81uOkR+12OqKdfT7bEwbC50KBoG3oe7qsCefowWeIgVHEdEy
-	TFOeS6vcnMhDTbDeSO+l8RHH3qLV0a+OQxIMA45yRuTgcfy3ue/R65gaIRBIM0UVMt8B0IoIntanL
-	mhKv0qcW7F3ktFC3DMAO18pjGNVtnyslnpT0ft5H+PmTs27LI8YT7ZllalsDQLBasJ2QsBvpmwGFI
-	G2P0OEVQ==;
+	bh=9SHVJ3ztCnSJ27zC/+zhu0OPeKjyVFzIDEXKL3ZFpaM=; b=y+4IXItQ+9eRuIWSUfJhxYqLt4
+	nY1wqq2tOUqG2CvnhSJPA4EiTh3/+K+ykwCqOQPUOufo5znUrh4t5rLM9K02ahupqPU7z/dPCQZAe
+	0vFl447IKSsa/6FTfi31lsv9L5QpZrMYd8j/HRhHWeLMiMlVS76R7Lyd2VmfJQOj3fF6QUpPrtlZ/
+	XX83faDIK13xxNjmDDLq3qAWjzl+yLnW05AVhzV7f0dpgCLiXtwo0w9JEqldORXA+6aXtLKAxIPo4
+	jVw27ZcHvFS6na1O7VPLzbfO/x3XcqchqTkMlIP2ETE+WA8lGPIL1vndNmSGzUWG4HOeMgNRHbGbk
+	4t5sruaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRsfr-0000000DGEw-1rfX;
-	Fri, 13 Nov 2026 14:54:43 +0000
-Received: from mout-p-103.mailbox.org ([80.241.56.161])
+	id 1xRsgt-0000000DGf0-0QoB;
+	Fri, 13 Nov 2026 14:55:47 +0000
+Received: from smtp-8fad.mail.infomaniak.ch ([83.166.143.173])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRsfo-0000000DGCu-1EkS;
-	Fri, 13 Nov 2026 14:54:42 +0000
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4jR0f12vLvzKnQG;
-	Fri, 13 Nov 2026 15:54:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1794581673;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LiiTlo37cd7Mx61Wns5oLMYH6SZa01qZWw0uJ0Q/vyI=;
-	b=BI6WdYdcVedfGyuD296xwBOk3ei9OLFIatflNebZWNtoOt4Ka+eplP24Bk/aMI/yy99JnB
-	qNHTlCEt1cnyPTTcXfeS0IU1QyigYJbfPDvOH/GV9U6G9MIlqvZM/3Hdr+zIZ6P0XD3KRS
-	pR5PJ8Ly/DKeYRHS2f1XvrDSTBZ7tB8ETgJpyp/JMzB6LHpDtxXfE/NfAPR69zh3406dcd
-	VtXbd5vl8UgQSX8PTtsRCDPyo4Hg9Xj9zz2UeRbPlO4VLDtxns8zffUnrgnz2trWDAKMsa
-	fc4bXU/IWxtaqrxyovBEmruPacm9QfZmBeJQiDOZfhPtyriX0d9t2F2EfS62+A==
-Message-ID: <0140bc0b3d1078bf8851340e0cb893b2907e146a.camel@mailbox.org>
-Subject: Re: [PATCH] ASoC: meson: aiu-fifo: prevent sleeping when spinlock
- is held
-From: Manuel Ebner <manuelebner@mailbox.org>
-To: Valerio Setti <vsetti@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,  Takashi Iwai
- <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
- <khilman@baylibre.com>,  Martin Blumenstingl
- <martin.blumenstingl@googlemail.com>, Kuninori Morimoto
- <kuninori.morimoto.gx@renesas.com>,  Christian Hewitt
- <christianshewitt@gmail.com>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Fri, 13 Nov 2026 15:54:29 +0100
-In-Reply-To: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
-References: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xRsgp-0000000DGcp-1fJw
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 14:55:45 +0000
+Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
+	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4jR0gK0t2CzHPN;
+	Fri, 13 Nov 2026 15:55:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=0leil.net;
+	s=20231125; t=1794581740;
+	bh=9SHVJ3ztCnSJ27zC/+zhu0OPeKjyVFzIDEXKL3ZFpaM=;
+	h=From:Date:Subject:To:Cc:From;
+	b=RR6557OX7nqTqnRLnpCH/gRxUYBPmETC/asPEUMkD7oDnhbpzqMxEMp3CinARlePr
+	 WSrNRWdDCc0dW23DOC1GPxutrNZVYBDwFGe+UETNdKfwXnjpdp/kL4ra+fjDrsZy5J
+	 r+LJvnGE7EJiiPPh+L5365SCQfahJjAfVai3T06f8pNW0pZ4qPEZJ881dPiU8akezD
+	 +wsFj8GCUYi3kS4O3t+xg8rN/qQQ8T9BT6bRbVgXGudSajukI1mRc/MRJzT2e8EE+Q
+	 +sNSsrx5trlCoXL606uzwnFh4E8PfyqFeq30Q4i7FMUnKuFyAoepm9s3DVTCHfzZvO
+	 H0xZ04yOeMxbg==
+Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4jR0gH4tFTzqcg;
+	Fri, 13 Nov 2026 15:55:39 +0100 (CET)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Date: Fri, 13 Nov 2026 15:55:28 +0100
+Subject: [PATCH v2] arm64: dts: rockchip: support camera module on Haikou
+ Video Demo on RK3399 Puma
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MBO-RS-ID: 1e7b1d7ce8dec38f883
-X-MBO-RS-META: cfbo8tz5cnod83gdmbzdxxfiyfdwomg3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261113-rk3399-puma-haikou-video-demo-cam-v2-1-e71acf307f92@cherry.de>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/5WOQQ6CMBBFr9LM2jGUKlJW3sOwKO0oI4GSFhoJ4
+ e4GPIHLn7z891aIFJgiVGKFQIkj+wEqkZ8E2NYML0J2UAnIs7yQMlMYOqW0xnHuDbaGOz9jYkc
+ eHfUerenRlUVDhdJGS4KTgDHQkz+H41H/dpybN9lpP96JluPkw3JEJLlz//iSRInaXLTTt1Lp5
+ nq3LYWwnB1BvW3bF0/XkrbkAAAA
+X-Change-ID: 20261103-rk3399-puma-haikou-video-demo-cam-d86be639a91e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.17-dev
+X-Infomaniak-Routing: alpha
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_065440_662395_E0411A81 
-X-CRM114-Status: GOOD (  26.99  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261113_065543_582315_6AD9B8A1 
+X-CRM114-Status: GOOD (  13.63  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -84,200 +79,141 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Valerio,
+From: Quentin Schulz <quentin.schulz@cherry.de>
 
-I have read your patch and have a question.
+The Haikou Video Demo adapter has a proprietary connector for a camera
+module which has an OV5675 camera sensor and a companion DW9714 focus
+lens driver.
 
-On Wed, 2026-11-11 at 11:09 +0100, Valerio Setti wrote:
-> dai_links in the gx-card are atomic which means that the DAI trigger
-> callback is called with the spinlock held. This means that usage of
-> potentially sleeping functions (e.g. mutexes) is not allowed here.
->=20
-> 'snd_soc_component_write'/'snd_soc_component_read' take the component's
-> io_mutex on entry.
->=20
-> Replace usage of these functions in:
-> - 'aiu_fifo_i2s_trigger'
-> - 'fifo_spdif_trigger'
-> - 'aiu_fifo_pointer'
->=20
-> This is meant to resolve the following runtime bug found while starting I=
-2S
-> playback on an OdroidC2 device where the kernel was built enabling
-> CONFIG_DEBUG_ATOMIC_SLEEP and CONFIG_PROVE_LOCKING:
->=20
-> [...]
->=20
-> Fixes: e8712315c44d ("ASoC: soc-component: use io_mutex correctly")
-> Fixes: 6b59c53c8adc ("ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF=
- datapath on start/stop")
-> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
-> ---
-> I found this issue while working on [1].
-> This patch is independent of [1] and they can go in in any order. They
-> are fixing the same problem in different modules.
->=20
-> [1]: https://lore.kernel.org/all/20261021-gx-formatter-use-spinlock-v1-1-=
-71ebc9224c03@baylibre.com/
-> ---
-> =C2=A0sound/soc/meson/aiu-fifo-i2s.c=C2=A0=C2=A0 | 15 ++++++++++++---
-> =C2=A0sound/soc/meson/aiu-fifo-spdif.c | 14 ++++++++++----
-> =C2=A0sound/soc/meson/aiu-fifo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 6 +++++-
-> =C2=A03 files changed, 27 insertions(+), 8 deletions(-)
->=20
-> diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2=
-s.c
-> index eccbc16b293ad..8f785241585df 100644
-> --- a/sound/soc/meson/aiu-fifo-i2s.c
-> +++ b/sound/soc/meson/aiu-fifo-i2s.c
-> @@ -5,6 +5,7 @@
-> =C2=A0
-> =C2=A0#include <linux/bitfield.h>
-> =C2=A0#include <linux/clk.h>
-> +#include <linux/regmap.h>
-> =C2=A0#include <sound/pcm_params.h>
-> =C2=A0#include <sound/soc.h>
-> =C2=A0#include <sound/soc-dai.h>
-> @@ -48,14 +49,22 @@ static int aiu_fifo_i2s_trigger(struct snd_pcm_substr=
-eam *substream, int cmd,
-> =C2=A0=09=09=09=09struct snd_soc_dai *dai)
-> =C2=A0{
-> =C2=A0=09struct snd_soc_component *component =3D dai->component;
-> +=09unsigned int val;
+This adds support for the camera module on RK3399 Puma module fitted on
+a Haikou devkit with the Haikou Video Demo adapter.
 
-Here is val.
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Camera only works once the ov5675 driver is adapted[1] to work with
+24MHz MCLK. With the similar work done for RK3588 Tiger[2], we now have
+all our modules supporting the same set of features when used in
+conjunction with Haikou Video Demo.
 
-> +=09int ret;
-> =C2=A0
-> =C2=A0=09switch (cmd) {
-> =C2=A0=09case SNDRV_PCM_TRIGGER_START:
-> =C2=A0=09case SNDRV_PCM_TRIGGER_RESUME:
-> =C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
-> -=09=09=09=09=09AIU_RST_SOFT_I2S_FAST);
-> -=09=09snd_soc_component_read(component, AIU_I2S_SYNC);
-> +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT=
-_I2S_FAST);
-> +=09=09if (ret < 0)
-> +=09=09=09return snd_soc_ret(component->dev, ret,
-> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
-> +
-> +=09=09ret =3D regmap_read(component->regmap, AIU_I2S_SYNC, &val);
+Same request as made in [2], please only merge this once the OV5675
+series[1] is merged.
 
-So as I understand val/&val is just there to listen and forget what gets re=
-turned.
-That's kinda weird, but not an issue.
+[1] https://lore.kernel.org/linux-media/20261026101646.2450051-1-heiko@sntech.de/
+[2] https://lore.kernel.org/linux-rockchip/20261026102027.2451025-1-heiko@sntech.de/
+---
+Changes in v2:
+- added missing #address-cells and #size-cells to &isp1/ports,
+- Link to v1: https://patch.msgid.link/20261103-rk3399-puma-haikou-video-demo-cam-v1-1-9a49d97839b5@cherry.de
+---
+ .../rockchip/rk3399-puma-haikou-video-demo.dtso    | 58 ++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
 
-> +=09=09if (ret < 0)
-> +=09=09=09return snd_soc_ret(component->dev, ret,
-> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to read register on trigger");
-> =C2=A0=09=09break;
-> =C2=A0=09}
-> =C2=A0
-> diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-=
-spdif.c
-> index a9861c5d66374..297834bce1c7a 100644
-> --- a/sound/soc/meson/aiu-fifo-spdif.c
-> +++ b/sound/soc/meson/aiu-fifo-spdif.c
-> @@ -69,15 +69,21 @@ static int fifo_spdif_trigger(struct snd_pcm_substrea=
-m *substream, int cmd,
-> =C2=A0=09case SNDRV_PCM_TRIGGER_START:
-> =C2=A0=09case SNDRV_PCM_TRIGGER_RESUME:
-> =C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-> -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
-> -=09=09=09=09=09AIU_RST_SOFT_958_FAST);
-> +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT=
-_958_FAST);
-> +=09=09if (ret < 0)
-> +=09=09=09return snd_soc_ret(component->dev, ret,
-> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
-> +
-> =C2=A0=09=09fifo_spdif_dcu_enable(component, true);
-> =C2=A0=09=09break;
-> =C2=A0=09case SNDRV_PCM_TRIGGER_SUSPEND:
-> =C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
-> =C2=A0=09case SNDRV_PCM_TRIGGER_STOP:
-> -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
-> -=09=09=09=09=09AIU_RST_SOFT_958_FAST);
-> +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT=
-_958_FAST);
-> +=09=09if (ret < 0)
-> +=09=09=09return snd_soc_ret(component->dev, ret,
-> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
-> +
-> =C2=A0=09=09fifo_spdif_dcu_enable(component, false);
-> =C2=A0=09=09break;
-> =C2=A0=09default:
-> diff --git a/sound/soc/meson/aiu-fifo.c b/sound/soc/meson/aiu-fifo.c
-> index 8b54f9681d00c..f3cdcce1ebfe3 100644
-> --- a/sound/soc/meson/aiu-fifo.c
-> +++ b/sound/soc/meson/aiu-fifo.c
-> @@ -5,6 +5,7 @@
-> =C2=A0
-> =C2=A0#include <linux/bitfield.h>
-> =C2=A0#include <linux/clk.h>
-> +#include <linux/regmap.h>
-> =C2=A0#include <linux/dma-mapping.h>
-> =C2=A0#include <sound/pcm_params.h>
-> =C2=A0#include <sound/soc.h>
-> @@ -37,8 +38,11 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_comp=
-onent *component,
-> =C2=A0=09struct aiu_fifo *fifo =3D snd_soc_dai_dma_data_get_playback(dai)=
-;
-> =C2=A0=09struct snd_pcm_runtime *runtime =3D substream->runtime;
-> =C2=A0=09unsigned int addr;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
+index 141a921a06e47..013920d9a3392 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
++++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
+@@ -16,6 +16,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/media/video-interface-devices.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
+ 
+ &{/} {
+@@ -100,6 +101,12 @@ &i2c1 {
+ 	/* OV5675, GT911, DW9714 are limited to 400KHz */
+ 	clock-frequency = <400000>;
+ 
++	focus: focus@c {
++		compatible = "dongwoon,dw9714";
++		reg = <0xc>;
++		vcc-supply = <&cam_afvdd_2v8>;
++	};
++
+ 	touchscreen@14 {
+ 		compatible = "goodix,gt911";
+ 		reg = <0x14>;
+@@ -122,6 +129,53 @@ pca9670: gpio@27 {
+ 		pinctrl-names = "default";
+ 		reset-gpios = <&gpio4 RK_PD6 GPIO_ACTIVE_LOW>;
+ 	};
++
++	camera@36 {
++		compatible = "ovti,ov5675";
++		reg = <0x36>;
++		assigned-clocks = <&cru SCLK_CIF_OUT>;
++		assigned-clock-rates = <24000000>;
++		clocks = <&cru SCLK_CIF_OUT>;
++		avdd-supply = <&cam_avdd_2v8>;
++		dvdd-supply = <&cam_dvdd_1v2>;
++		dovdd-supply = <&cam_dovdd_1v8>;
++		lens-focus = <&focus>;
++		orientation = <MEDIA_ORIENTATION_FRONT>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&cif_clkouta>;
++		reset-gpios = <&pca9670 6 GPIO_ACTIVE_LOW>;
++		rotation = <180>;
++
++		port {
++			cam_output: endpoint {
++				data-lanes = <1 2>;
++				link-frequencies = /bits/ 64 <450000000>;
++				remote-endpoint = <&mipi_in_cam>;
++			};
++		};
++	};
++};
++
++&isp1 {
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			mipi_in_cam: endpoint@0 {
++				reg = <0>;
++				data-lanes = <1 2>;
++				link-frequencies = /bits/ 64 <450000000>;
++				remote-endpoint = <&cam_output>;
++			};
++		};
++	};
++};
++
++&isp1_mmu {
++	status = "okay";
+ };
+ 
+ &mipi_dsi {
+@@ -145,6 +199,10 @@ mipi_in_panel: endpoint {
+ 	};
+ };
+ 
++&mipi_dsi1 {
++	status = "okay";
++};
++
+ &mipi_out {
+ 	mipi_out_panel: endpoint {
+ 		remote-endpoint = <&mipi_in_panel>;
 
-Here it's addr. It's not yours, you just kept it.
+---
+base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
+base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
+change-id: 20261103-rk3399-puma-haikou-video-demo-cam-d86be639a91e
 
-> +=09int ret;
-> =C2=A0
-> -=09addr =3D snd_soc_component_read(component, fifo->mem_offset + AIU_MEM=
-_RD);
-> +=09ret =3D regmap_read(component->regmap, fifo->mem_offset + AIU_MEM_RD,=
- &addr);
+Best regards,
+--  
+Quentin Schulz <quentin.schulz@cherry.de>
 
-Similar as above. But why is addr here and val above? I think it's the same=
- role in regmap_read().
-Would it make sense to name both the same? If it does, I'm in favor of val,=
- because that's in the
-kernel-doc of regmap_read().
-
-drivers/base/regmap/regmap.c:
-> /**
->  * regmap_read() - Read a value from a single register
->  *
->  * @map: Register map to read from
->  * @reg: Register to be read from
->  * @val: Pointer to store read value
-
-
-> +=09if (ret < 0)
-> +=09=09return snd_soc_ret(component->dev, ret, "Failed to read FIFO point=
-er");
-> =C2=A0
-> =C2=A0=09return bytes_to_frames(runtime, addr - (unsigned int)runtime->dm=
-a_addr);
-Here addr is used, so it's not same as above.
-
-Looking forward to your POV.
- Manuel
-
-> =C2=A0}
->=20
-> ---
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-> change-id: 20261111-aiu-fifo-fix-sleep-on-spinlock-0ecec8d64a9b
->=20
-> Best regards,
-> --=C2=A0=20
-> Valerio Setti <vsetti@baylibre.com>
 
