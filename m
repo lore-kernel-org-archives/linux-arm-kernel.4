@@ -2,107 +2,118 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D58606A88F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3518606A882
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eeqXgMr6;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DGBrgu2V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=r78ixica;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=Zl3yjhzC
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
-	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=zcbGexqUs6AyY6rvNjsjQJWCSAAYmXVOXmh3IdhOCBM=; b=eeqXgMr6lE+2e8/KzR/Oum2Em9
-	B2qfw6xGQjERlQs6BwwVWIoeb3k6YYv2k0ALtxlB8wxwZ8OXLFhDXZnBLzkMy+rIjCo3yZhMI5qgL
-	WUuAs2kP/gCueWae2GktltPXifsaeI1asG2+rwv/NrahJNwD1CMOHd5vNFaZPNQLL7ljZ24hD1Y/1
-	qrl/+NMrWnl1l1MBCU6//ouwwunojFG3vI+zRonIMsJYil41ofnAZS3vViBRTjH/5ZwhiRCN1GfOX
-	9JKbaPXR/sDPfju9pIWcfkouCsRKat6Jh7oEwRq2Xv3nYadeA6o8p2D/w1yjI2/ah9qKbvuOatKCd
-	zRtjffKg==;
+	bh=cQWS3D95HYvPb7PWVOlG0meKch2x/9ofLSM7aTh6608=; b=r78ixicaDxbjUeeFEubdgR4yF7
+	dCJgxKnGayOe78bWAIJ4PnqG5MRa6FSJBruXZgFHszxvCdMLKmzROHb6Y66Yt8GE2miK4h7HNUjmV
+	DcSVpjs5Qy4/ysh7jG2wwX6AG34P9yshLB94aXT9zm0oisPx2hZSXtwDR1AaxNSIXdCsVJs7Bvwv/
+	AU/3zLPCMZ9R01kKwF0g6Lu4OqAoQjxgEMr9Po6lIpiq1shAEj3M84GZ1JRLb6R5nvkkw8UQDLOZI
+	efF7aYzq7fCvz2o1vxfKdh800BkD/1FhfvnTcFw4c6AEeewJZdwB2w8G/rUM5h6eEO8u77PJISdB9
+	puH4joSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRy27-0000000ERoV-0gLB;
-	Fri, 13 Nov 2026 20:38:03 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRy2M-0000000ERzA-2llD;
+	Fri, 13 Nov 2026 20:38:18 +0000
+Received: from mail-lf1-x12c.google.com ([2a00:1450:4864:20::12c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRy21-0000000ERlX-42PX;
-	Fri, 13 Nov 2026 20:37:58 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id B5BD746EA2;
-	Fri, 13 Nov 2026 20:37:57 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794602277;
-	b=v5BYhPzNZkRqAgpV0tgR3NYA9zY712vFNSIjr1vcgGzs/FfA+/wTJ9XoJMlm9wZuNMIJ
-	 Woop4HL3uE+jTYrhTOMtZfBebkZTw7HOKafeCpCQG+fjognYg2iGVulrCBx2Bk5NeJx0N
-	 cNjSChLc6s4NUR2LWz35VEhqdbtfe4rY7RcMirR15bPw/8pfkPLv0lAf6eu47FkKHcSKH
-	 3hKzq3qgTOlSK9FOx00i7HQEFwDsGwYFIRzeoZkrIRoj6/0buFc0lJVw0PNcqn4jLXODI
-	 p7zLOw12uQ9M1/MF3IdRswb6sYX4NwDgM795ymSeUN4fI3KxMiQ9ACtqt53UGYGy9VA==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794602277;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=zcbGexqUs6AyY6rvNjsjQJWCSAAYmXVOXmh3IdhOCBM=;
-	b=1KBXuMvz+W9nyPwHc91KN1255Heq09pcKu0z2uiU0tqAQtFenc4aF4MUi4KZ5vvOqGI3
-	 WgF+qXYViPzsCQ107/noPqByuVG44oaWp3jAvoaWsvERCVtHBstFvzunOfZKGlcKqR0u3
-	 Q62EpMnp8114GJXA6M2DmXexRUQjOW9EeOMl1rjL/susk8kEhtdP1pN8Uy/00/nuehu+V
-	 9I+9I3XZ/YIUdMtmFgo6AL03LW9lOPqFOKIFrI1rcjGhtP8otgTcGKlX32oZhK2bgqIRR
-	 h+lydXXxUPNMYfPhmAN9Y1PWKInnesG/10/1I9z7nbzFsv2JByemuhdYaw8D4/qmmdA==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 2629B1F000C5;
-	Fri, 13 Nov 2026 20:37:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794602277;
-	bh=zcbGexqUs6AyY6rvNjsjQJWCSAAYmXVOXmh3IdhOCBM=;
-	h=From:Date:Subject:To:Cc:Reply-To;
-	b=DGBrgu2V0TLeGXO57K3WHeHX2F5btUEhAsCWTruq06By8FEhHvvbN+D3bcP/cLffV
-	 aIJTWEltyJMpkPIdGeP42pQ+FXwMbLbViG5/0Esvzotav9h9qanrGu9Zufz/texXqt
-	 sCD+qRv9tyHgbVb/ycM2LjSAmBma81RXnZcPdmaziL8B4iNeNEVCFPHJKQBXNj2ZrF
-	 qGp6XPOTKhneJCNPuKbKZeTWU03h28cjnsR1Ccj+2IYIn3OuOh5HCLPrx9wmNqGd5f
-	 Vtn7g66g9wNEH/yk0ua671FVkY/Dzw5RBqLDREOn7x9IUmKlv2eVC0/GVM+MAPdR+V
-	 e9vipkOnNOeaQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 7B09D49ABD;
-	Fri, 13 Nov 2026 20:37:56 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 13 Nov 2026 20:37:56 +0000
-Subject: [PATCH] arm64: dts: rockchip: Fix the order of the RK3588 AV1
- decoder resets
+	id 1xRy2I-0000000ERv0-1WcB
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 20:38:17 +0000
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-5bccb867d6fso1989049e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:38:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1794602292; x=1795207092; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=cQWS3D95HYvPb7PWVOlG0meKch2x/9ofLSM7aTh6608=;
+        b=Zl3yjhzCkh9RM/aKYyjM8fICdFukE2e2CwDjH3B4E26czaG+jq22fd1uSmj/Tq8e4P
+         HlWctwJVWfIozw9eg4wG3JQQruAHpWpt2lRrXLM0CK7QGcr67/6PYrgpZ3Dy2Yb4Jr5E
+         RfsqwmdQAvtZ2qe0Jl6SCRF3yG2eUFxvNI1IM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794602292; x=1795207092;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=cQWS3D95HYvPb7PWVOlG0meKch2x/9ofLSM7aTh6608=;
+        b=iVY4XbKbxta0VG6RxxSaGGLjgEpKQDY2H3Zj+mvQ9cjpC51ALX3vLjWC2aYqCajFa6
+         4TwHbrIwUxtTe5sPz9GLEBbHBaKH8GGMsjSZI/Pt44IM9GoKzFgDkDpPU5YGFZIj/bs8
+         zNo3VcuIGXOWf12+IkK+FZ4VUS2X0Bt5e8matYRXLdr/rrAbgYQ5dTbxKWkjgyYJzy38
+         iQj/kPe9jrHBytG7JdE1muBSAUtTXWVhVBRx6xg6N8ERc8wKTRLW9JUGByDBI9VaBrC0
+         gUx8qWc9rjFv9FJfG33vd2ThMdtDNUWuafNDu5CrrMj+XS0qd+eM2TjNX6EcY/XKC3s4
+         QJ1A==
+X-Forwarded-Encrypted: i=1; AL+hErHUanJosLACK0CL8ausdfk09jXFwfsbiZwnNbbJgCswgyFosvn4tsX/I3d48duX2OaWcltSipALriXWDgUQVo9I@lists.infradead.org
+X-Gm-Message-State: APuU4Z9Fb7x1EofhNVHg0rW3+hocM44GU2kWx3Zlb9K1Wgu97i+WgLCt
+	FTV3StRDn9b+fR8uBUaNnG2tZN7d6FhwbswencCM6Zj5o7L6sLnLh9CBPbCv2zCbJpRvQs7LfmT
+	90vQ8RfKp
+X-Gm-Gg: AYBFou27QFhKEnZ5JTT9QpLd/UuYNqFoCLaNRpCdNgXUBnO/XVYgjPuIrFolUDgmVDR
+	MqcAaRX7hNMGb/HKvRCBAyllSPk6RwCqc2p51d1/ENkP76/hDk/ltDAPgY4OOPjJUdi1Hx44kwR
+	ARqllwphA+98lkOxXM5XOpPQiZVittLjYrSCppeDz0WF2C0TfUpxEF3vEaOOEQ7za0cFpnk1qci
+	Z//SC9e4zW/YcQabSGY0/TUWUST00h2GgtUhbOC7yL2nR6EvP/mqy+9hxMDgzwtOuYje0e9U1cK
+	9Zlo2z7Gqppd4jdzwUnGHVEwr7z9BZATH5KFbBNVEnHZ87WM16W1rvvBuFziK5bDZUxlzvXwqG8
+	KOpq2CJ1JWfqf706jTOZl7sfCqpvx8V4H8uMTrihGnq2oK7o5JtRhkPwQ6rI7BU7df4tJE1DDRq
+	LrMUHSjl3KE38y2Qyan4L12q78UmCiBr/0ew6hqq3QPsMh1X3u5gPh/i4U6QRYoJuFvBpqWV6sm
+	yjpCO5GGBWwZ8Di2Bc53TyVYG2VzP/+UOOOsCQDcR19dtdoSNStQUd2dyR0EBKqCQUCDosA49lD
+	9WwvCBKrE5iC+kkznViv65nSY+48pIJyLsaqM+6+L/MXtVnv2Oi3nF2sYucrzEbljabhvcDQA2E
+	COvZHWZ9/4rIQNA==
+X-Received: by 2002:a05:6512:2241:b0:5c0:a7f:3ee8 with SMTP id 2adb3069b0e04-5c1705fabd3mr1538891e87.8.1794602291622;
+        Fri, 13 Nov 2026 12:38:11 -0800 (PST)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c179893072sm492671e87.64.2026.11.13.12.38.11
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Nov 2026 12:38:11 -0800 (PST)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5bccb867d6fso1989030e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:38:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEGf/N/GPYKhmnAESRIGo3/ZuL24xyMiAR7ae3wTxfPLwv/h1UdDnGOmkzxk/ocK+YLhsByrhVXWgsE1VyAkOeN@lists.infradead.org
+X-Received: by 2002:a05:600c:8b05:b0:4a4:4d57:8462 with SMTP id
+ 5b1f17b1804b1-4bb55a99ed0mr76502555e9.24.1794601957270; Fri, 13 Nov 2026
+ 12:32:37 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-rk3588-av1-reset-order-v1-1-d73f60222ff9@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QqCQBCF4VeRuW6gcTW0VwkvdvVUU6AxYxKI7
- +5Wlx+H86/kMIXTuVjJsKjrNGbIoaD+HscbWIdsKo/lSUQC2zPUTcNxETY4Zp5sgHGq8h7bOqY
- 2UD6/DFf9/MKX7m9/pwf6+VujbdsBhO9S/noAAAA=
-X-Change-ID: 20261113-rk3588-av1-reset-order-b4261a95ab93
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794602276; l=1508;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=YP+Ju9QjQfuU0YGwfWBljQdLr0V0QHLGHZyAd+cCC3w=;
- b=h2Y6s+lUrSYGVaonyq4DMPUpiqk68iJw40e55HnQ6t7RM1x9PLBQhBMoWYd4m+8wB0YLKqp18
- ZScq/59KbGvCoQqS2b+yERSYY7jGHr4Gf+2ESpKOOVfHH4VqwHLBUul
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+References: <20261020153652.2907186-1-dianders@chromium.org>
+ <20261020083501.RFC.5.I4a691041bb6d31e5ab2fde8cd4139ca72ee72c5b@changeid>
+ <CAFLszTh6vmFGVD4_Reewe9p4QqQjN=CVJ3SgfQKosAhedJpAQA@mail.gmail.com>
+ <CAD=FV=V7neyofHdv-LdAtFaEhAcWEHHNRYAKrr5f2EHXWmKAuA@mail.gmail.com>
+ <CAFLszTiVvuaMUsRHjhRTFxFf8Q2hbN1a1K-G=QFv4DyXNpWY6w@mail.gmail.com> <CAD=FV=XAj0f7vm89eCor2Ea7_nHaZmE-6VC+vsQ4vXido7Kj0A@mail.gmail.com>
+In-Reply-To: <CAD=FV=XAj0f7vm89eCor2Ea7_nHaZmE-6VC+vsQ4vXido7Kj0A@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 13 Nov 2026 12:32:25 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=U1JfzYKJDBjCkNGTAZCG6QAC76WrPCqj7MPJR0rDCAbQ@mail.gmail.com>
+X-Gm-Features: AclHuK8SHFgoyjCXNJrs3RjG85XKuoNtkqoClolncw8zp41l0jasiLh2oN-rCLw
+Message-ID: <CAD=FV=U1JfzYKJDBjCkNGTAZCG6QAC76WrPCqj7MPJR0rDCAbQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 5/7] kbuild: fit: Add opt-in FIT_FACTOR_DTBS support
+ using fdtfactor
+To: Simon Glass <sjg@chromium.org>
+Cc: Devicetree-compiler@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-kbuild@vger.kernel.org, 
+	Brian Norris <briannorris@chromium.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Chen-Yu Tsai <wenst@chromium.org>, linux-arm-msm@vger.kernel.org, 
+	Nicolas Schier <nsc@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Nathan Chancellor <nathan@kernel.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Devicetree@vger.kernel.org, 
+	Julius Werner <jwerner@chromium.org>, Saravana Kannan <saravanak@kernel.org>, 
+	Will Deacon <will@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Josh Poimboeuf <jpoimboe@kernel.org>, 
+	Marco Elver <elver@google.com>, "Peter Zijlstra (Intel)" <peterz@infradead.org>, Rong Xu <xur@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_123814_419789_2E3FAF04 
+X-CRM114-Status: UNSURE (   9.35  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,56 +123,36 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+Following up on one piece of my earlier reply:
 
-The binding lists the AV1 resets as AXI, AXI BIU, APB, APB BIU. Use that
-order. The driver gets them as an array, so only the order in which they
-are toggled changes.
+> The idea is that fdtfactor and the overlay fixes will all land in the
+> upstream dtc project. Then as part of this series we will bring both
+> in, so we should be all good.
 
-Fixes: dd6dc0c4c126 ("arm64: dts: rockchip: Add AV1 decoder node to rk3588s")
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
-Found while describing the same resets on the AV1 IOMMU (hantro-robust
-v3). AV1 fluster on RK3588S (Orange Pi 5) is unchanged (203/242).
+Thinking about this more, we won't actually be able to sync and run
+`fdtfactor` itself from `scripts/dtc/`. `fdtfactor` is a Python script
+that relies on `pylibfdt` (similar to `scripts/make_fit.py`), and the
+upstream kernel maintainers have pushed back against building `pylibfdt`
+from the kernel tree's copy of `dtc`. Since `fdtfactor` needs a matching
+`pylibfdt` installed on the host anyway, `fdtfactor` will simply remain
+an optional external host dependency when `FIT_FACTOR_DTBS=1` is used.
 
-Developed with Claude (Anthropic), which wrote the code and the commit
-message. I reviewed it.
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+By contrast, `fdtoverlay` is a C host tool already built in
+`scripts/dtc/`, so we _will_ still sync the `libfdt` overlay
+`/__local_fixups__` updates into `scripts/dtc/libfdt/` once they land
+upstream, meaning composite DTBs built by kbuild are still covered.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index d0f364547ae5..3d1e4369578b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1471,7 +1471,8 @@ av1d: video-codec@fdc70000 {
- 		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
- 		clock-names = "aclk", "hclk";
- 		power-domains = <&power RK3588_PD_AV1>;
--		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
-+		resets = <&cru SRST_A_AV1>, <&cru SRST_A_AV1_BIU>,
-+			 <&cru SRST_P_AV1>, <&cru SRST_P_AV1_BIU>;
- 		iommus = <&av1d_mmu>;
- 	};
- 
+In v2 I've documented the optional `fdtfactor` external dependency in
+`Documentation/process/changes.rst` and
+`Documentation/kbuild/kbuild.rst` (as well as in the commit message).
 
----
-base-commit: c3baae5f1a15645cddadcb2b9abddef5df291f59
-change-id: 20261113-rk3588-av1-reset-order-b4261a95ab93
-
-Best regards,
---  
-Arun Iyengar <aiyengar1990@gmail.com>
-
-
+-Doug
 
