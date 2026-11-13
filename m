@@ -2,117 +2,185 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D5C606A334
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6555A60A3801
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RPUtFerq;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=NAOhlLRz;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.a=rsa-sha256 header.s=google header.b=BDKArjiA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=P1kXCQ0g;
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=4EObd+72
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3Gv2/MKpyRqwLVCQK8qd3m6Sf9ERO4AXWX6+f6IJg18=; b=RPUtFerqrQABsn
-	YInFKTro5l/sbit+XEfPdmGHfHRTFSJMjxt088BBx+N8B/cPf6H1BnGH2bvwIZGYXoLct876saRxX
-	pO8QdhEpL2COuUhr4eh5du3XC/ADvDsh4ziyoV19OSfZE5t1VhYEScLPAJO6NgCMkEZ2itFOtCrgc
-	SLYY+Y66iHnltV4I7vl1ih5ZuHYJSlryGYfZOKxgE+brYQcYh9gL2vq5GsWebHAqmNC26YcKQaLst
-	9feMd+4XtMbYGaF/MErtPLfj52qr9yA6Ut5aUNwEgNrKd+oRR4ZwEv3QwL1eA0dDZ9IkPhWyTMfRb
-	SwGV6JinNVPDBLIF1NLg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+	Subject:Date:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=l3vUTCiFrqYPsM7jXOQkc8hoThEnNUzOHIfBZ7FEwSQ=; b=P1kXCQ0gYRn1ZaSbPiW7HKzQuM
+	FoNEj1bhFS8dEAIjhEkMfv7MjateMVJGCa1pgmPgPmWH3RmpdQte09sepQ2lnIG6ZoAyXC0fb4BXe
+	lwer2INVfWcoMump02RLc47pOsTC8ivrJNv4oJIlfQf7FJFszFHoxZ55sx3MFQWa0iG5nIpXSJpgs
+	X1SKXIFve6RJNXUfd90e+K0BdoBintw2QQGNTk5p3E6abP3ujZYZQ1hAsDwqqaMORKqJFU7sEmMTP
+	S3gIUowOtNFCce4i3OBrg9svu1HRmWblTRNw2Qv+dPWBDX3/LnQ5bs5G+O14+CO8Bsl6p2HrXp2ao
+	W7lGuqVw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqyh-0000000Cpaj-3Pu6;
-	Fri, 13 Nov 2026 13:06:03 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xRqyn-0000000Cpdc-0OQC;
+	Fri, 13 Nov 2026 13:06:09 +0000
+Received: from mail-westus2azlp170100005.outbound.protection.outlook.com ([2a01:111:f403:c005::5] helo=CO1PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqyb-0000000CpZt-1bvY
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 13 Nov 2026 13:06:01 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-	:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=3Gv2/MKpyRqwLVCQK8qd3m6Sf9ERO4AXWX6+f6IJg18=; b=NAOhlLRzFyfrFIcLI6XiAp946R
-	8fUDApPclDVVikNobMIxDNpVXoSJnbEZSeOLfkPWuqfqYhDBhH4jKhFAcCwyeMcKhtv0WWvxMD+Ub
-	A6yqgXD5rrLcloiFpspiHxUprRxtBD6pCF9lJ8cT0To5E62C0vFRdIv+HajdbAXmGiOA9PinGMnCX
-	+6mgnIHONEYeW8c6tlwVFCI4AVXH7Ig4+A8UA2JYBD64xGRWqKb1oMXSYvtD6VujWgNzDWmAEuWBJ
-	8f7OQT9XN0CTHtMCArI6Sjm27gyL6v73Pj7SsmwzUkrVnwRh5Ru2xoAsBtJPBkVQqnKjQP4fYxy97
-	+eoyxy2Q==;
-Received: from mail-wm2-x0a.google.com ([2a00:1450:4864:31::a])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqyX-0000000BHg4-2Hjx
+	id 1xRqyh-0000000CpaW-2qhW
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 13:05:56 +0000
-Received: by mail-wm2-x0a.google.com with SMTP id 5b1f17b1804b1-4b769975b2bso2925225e9.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 05:05:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1794575151; x=1795179951; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=3Gv2/MKpyRqwLVCQK8qd3m6Sf9ERO4AXWX6+f6IJg18=;
-        b=BDKArjiAh8ZmkQfAu0dWxynglUATjkt7BP3u1m/+Q9619N0q80IxouMM7uRPsTpyGi
-         KMoW6WfwlXmhMK3pg46FHU9JDpsrFV0YXtbjAZcIxKuRrqWNmMhR00wwoniLUODsAlHu
-         3HFBU4nZY90Mb9EG5qPIbId/diqh+OBiitsIWm/SRbfkeMW4krFI46RVwefjtDUyuqWy
-         gUr/g1s13RTGLUfDHeKv37xWjpQccCJXhHmWFNLINETx8261KdVpouLzFX5P3fcoi9Hl
-         cnQ4MSd+r6fbnOq+7T3QBnHGLyLIFC6FBFHuPuGDyFCes1TRHOOZIAR86KlvbBuDOgcw
-         7SRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794575151; x=1795179951;
-        h=content-transfer-encoding:content-type:in-reply-to:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=3Gv2/MKpyRqwLVCQK8qd3m6Sf9ERO4AXWX6+f6IJg18=;
-        b=x27VCBMfXRIhfQW9GWuahw2fxXRjGqJuEgOJiz25Uh4JcCSPVv85qaaQj0U7SdsNjl
-         GHqxuqDVjw9o2Y3lkYdTCOQUwuqgdzvjJd2094ZN4fLamgTbGsYfnEXUCP52QCOYhpcr
-         SnCM25QpY3gIZ5O4hzD4SKuYQ3hv/eOX04tscL/syVlwLz7zBe8E3i/X+mhWu26NXC/a
-         LVNSdR9IGgmm5IAKoigzQXXhrw/H3pHugTRzBOp6LDYOP0jtS5eSP56b0XT1lsyzFSLw
-         QmThmA6ql01ZE6MTUf626rQqQ94hOOOo/mumQVduE3hWahFyW3bveSda/L6FNYMthpCw
-         h1eA==
-X-Forwarded-Encrypted: i=1; AL+hErEAiXBel+pfkP2PWZlIJDGevVh4RcRQ+W8bU7xqNroBkPlw/33ONopVg4+bKoXxz4uZ4ArvVgWdMG1p4Lf65B9K@lists.infradead.org
-X-Gm-Message-State: APuU4Z95dJIWUbr2dsvog2Df09ouQfZWuVRQ3gK6mhgmaR+Wvktmzi95
-	Pq/O7NYPkPhWENdkZ+kWMORxCMePnHxlB5NNCbby6BTurf0XI7R0R3Is04tQwKQpKLA=
-X-Gm-Gg: AYBFou1mDHQt1hMr5bxhEpBp+7eZcsfdNvUhKtWg8mo7l48Bt/UbsX5Zcqd0rU+mVjH
-	PZjLOVzz/IfLVbWFKS/Na63738RxVTrOC4ENmG2YuVfFaglYzPLQyKsSL20i9kF64d/KpAZMakT
-	i7ijAAZjLHNEAM9KbfyRYfTbl6tTXztG0etgPEidfAQAGMAjXdWLJEaeHiiD+FZJxDVGOU4KC1L
-	4i/JESnxuR6tbspGSwb7l+GNvQ44ata66cOMTPhJ6bDmR702u6FWrHF4OPJBolQ4PZFi3GxZuBq
-	XUBrx8NulK9R8R8w+1L9jD+drCLAdCdLVRxhW8gEkRqeslxfJN453/eAPCWy/esgIDIs0nIZMBx
-	3D3hF2DEI0XUSHe3nWhEf5Ov/4zdhhmpJ4EmK8glbOUQjGxcPA6S17FgoKTr7jVisbnIndmxb5F
-	pX4SF3xHgaN0GuzB5QLVvZV+8bC4Dj8DF0PHlXD/toEl553OW/sjaDd+XpDe67V0Yzk6HjpQ7mc
-	suhOQ6GdgxnDLbeasfpBPJsIGzGkJ3IvP9C/xmotEPip8XYOeDXBxTWH9c5wP8Cuglx+fUepUyV
-	uuvOn1vTb3gnm8xrL2rlOmLqZOeanNfxXccEyLEnf9G+tOILFQ4LlK4fYqHe02BWcGBNljukNSA
-	gTOI9eKP89L+dCgamSl7Q63B7WtZAcx+rY0Bi4wYHQNhqTI/IgTT9rds85qzUQSdfUPcwPw==
-X-Received: by 2002:a05:600c:4e56:b0:4ac:aae6:6400 with SMTP id 5b1f17b1804b1-4bb55a48042mr50442305e9.13.1794575150222;
-        Fri, 13 Nov 2026 05:05:50 -0800 (PST)
-Received: from ?IPV6:2003:e6:6714:e500:cb5f:91bd:76cb:96be? (p200300e66714e500cb5f91bd76cb96be.dip0.t-ipconnect.de. [2003:e6:6714:e500:cb5f:91bd:76cb:96be])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb5720f6basm25742635e9.4.2026.11.13.05.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Nov 2026 05:05:49 -0800 (PST)
-Message-ID: <c6c39058-ebb2-433a-ab0e-5e35f5ccae24@9elements.com>
-Date: Fri, 13 Nov 2026 14:05:48 +0100
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	Fri, 13 Nov 2026 13:06:05 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xBwUV0o8ie67mKogpU82/Up/55BbXJZ3mAaHk5TohnvcSWLYDRffijXaCjjYYS3i4oKnXD9IyuciENx/86Crw2us3aM4kcgDKr9FLfJLSYbmcxNkf4e6VizQuV8eX2sZJE2pTJMZubQeP5W5JoEn834ocQOxbSeNCtNtWXC1BRZwV0+RBF6BcSJ3fKO4fwA/hKvkLfIrCZwkBXFenXaJ94H7gX3Bwjo++fYhXQRH/IGnHP78T289fp1H7EmX+af7RZCr6vaH5fNYJg4hz1jq3YtuF+iLd+xcmfR54P+BJUFktdAcxsdNgGmaxBLxBR+NDYVBs8QhzHuJhIxpc4lsnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=l3vUTCiFrqYPsM7jXOQkc8hoThEnNUzOHIfBZ7FEwSQ=;
+ b=x7KZ1QG33a+KkGqe0XOh370PbTtIXZ9IdwxDp9YFgJvUZW3CYCyv8kD9Hq3/xN5PFKwEBBRouB/HVOsJSLtWCBWlrjPlSX7Ie5VlQJ5aHCtnWGJAVoJcERK4qRbuFenffHmbwEV7MD21hiSPLa1hzlrmsrswPUJJDDTDU0bbvgXc1IJ21ijbWbcAvt3b2NF4eo5T1/kNYGig1dQHcwhqAXaYEjGojdA4Np+Ct2Xej6RTn30/VIy+1gjcDKcCEqipQNb+XriDg6Z6nRV5ChthyGrNdzABFX6XVMrrONHdzjmhsA8Qosjanr6BW6f7pnayeUEtJ997D9Hjl9VBCOOr0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=l3vUTCiFrqYPsM7jXOQkc8hoThEnNUzOHIfBZ7FEwSQ=;
+ b=4EObd+72I73pDkojXjqjnHE4EBxyo9VB+rOLvJ8ymOAT0lPeu2CNy6QeZDchYfa+v3k0L/lWuvb//Z2H0pzkOCZ50m1RFAlpkZQwhrt3pBbAPuZLYBDr2Rmi7YK7TpDwbwakZZ2noessPTzCpivUCNH7X9BBg6WSg5vR6o6yHss=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from LV5PR12MB9779.namprd12.prod.outlook.com (2603:10b6:408:301::14)
+ by DS0PR12MB8444.namprd12.prod.outlook.com (2603:10b6:8:128::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
+ 2026 13:05:57 +0000
+Received: from LV5PR12MB9779.namprd12.prod.outlook.com
+ ([fe80::8ac8:e862:8ae9:9287]) by LV5PR12MB9779.namprd12.prod.outlook.com
+ ([fe80::8ac8:e862:8ae9:9287%5]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
+ 13:05:56 +0000
+Message-ID: <45adea9b-be14-4954-8335-267dba33afbe@amd.com>
+Date: Fri, 13 Nov 2026 14:05:43 +0100
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] nvmem: aspeed: Add read-only AST2600 OTP support
-To: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>, srini@kernel.org
-Cc: joel@jms.id.au, andrew@codeconstruct.com.au, ryan_chen@aspeedtech.com,
- billy_tsai@aspeedtech.com, neal_liu@aspeedtech.com,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org
-References: <20261113034213.158390-1-prasanth.padarthi10@gmail.com>
- <20261113034213.158390-2-prasanth.padarthi10@gmail.com>
+Subject: Re: [PATCH v3 0/2] ARM: dts: zynq: Add ALINX AX7Z020B development
+ board
+To: Pufan Jin <cyan2254650260@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
+References: <20261112193245.250149-1-cyan2254650260@gmail.com>
 Content-Language: en-US
-From: Tan Siewert <tan.siewert@9elements.com>
-In-Reply-To: <20261113034213.158390-2-prasanth.padarthi10@gmail.com>
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ mpwx1d8=
+In-Reply-To: <20261112193245.250149-1-cyan2254650260@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR10CA0092.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:803:28::21) To LV5PR12MB9779.namprd12.prod.outlook.com
+ (2603:10b6:408:301::14)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV5PR12MB9779:EE_|DS0PR12MB8444:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0920e253-bde6-4be9-0cba-08df4186daf7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|23010399003|10067099003|11063799006|56012099006|261026121527099003|261022075727099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: 9pCXQjBMwAR+39p5Wj/Y417s/G77NYVy8/CjWndJe6HAc6sXJjRFGTFBcwToW2FUIdbtZtAvL/olKEtBPEqMDeF9G4ZuyMnkLH/b+Gin+jenA4DORbqKasI5EtCh5C2kHuciQnHHactn2DMiy70lKw2HAlWHf89vmdEq8g7CMpmHM1UPErfhxvVTiZNwxFsdGzrPjRiDz7Jt0dQ2hurH9IefRBnmat44udQ1wKcrTYhm2vDr/0MvhQ6S3x5H9iFZ3Bfo+8nEKNbQ6+3QAZ4UvhAr39hieOAR52O7BOcp4EfV259Qz/DrFp1gcZOk/YIlvmZfyqdJTmQ/6S0jOpagBBaKm25xEhrCqlwTe/E9LTN9yCyNe1wqVIQP3SOHdXcyT3dZ+cQhJ1mCDm2O/5l0xNleGwa3HZzlOUNvdhbZ+esl3jAhgWSyW/4mJ28TA2Qllh8/SvrbdAswNsOBjRuvS0r23VwedeB0TcxYtTsn5dkDjpMxS7KGN+K3/MNwXVqKXRG7IdgFUnDAjbE5M5wHYDMp5v45JN1gojrtAGOvhkedimp1qgBrGy818gxtz+knlPZB+m+eSg0fjxQ0q0bt+97ha9kokDlkDypj4Y3WVHwkQvAVXddShwRIOPj1SYmxw/LNHu3bSLJRCzyvfA+nbR2y05Z9Z8C1KPjqBp3FRJs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV5PR12MB9779.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(11063799006)(56012099006)(261026121527099003)(261022075727099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(3023799007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YThaMUpHS0NUcEJETkk3b1JSUjdPbG9zNUhJQ0lnTzhxajIvcHhHekwvbFFj?=
+ =?utf-8?B?L0p5cDBjWG5IUjhLSWZTRzlRVlB0QjBwTTRySXdpaDlYanlmUHpmYlNuNUxT?=
+ =?utf-8?B?T0VUMm9RVkhFWUdaUXFYbDVkVWtNamxxOHRjakwwUlh3SURNL2tBaVA2SzVE?=
+ =?utf-8?B?NVpKc084SlJQMlRzNXNlcCs3SUhKM0dLSWhTOWNld1NsZDBWM01mYUdsSVdG?=
+ =?utf-8?B?VURINzJwN0xVdGI3ZGlPSm8vbjMwMnlpNk5WWW9NUEFTajVhNmtDbkNTRStl?=
+ =?utf-8?B?aSt6WmY4SU5mWnJYTWZTTG9GU3NNY3VsYjdEU2Mvdjg5bzRUeWN4TFNDT09P?=
+ =?utf-8?B?SGh1bTVlUHcwdCtUcFVvOVVGdWExQVNwYlIzRTFCYlNDTC9qYXZTc0p3bm90?=
+ =?utf-8?B?QUhEOVkrcjd3OHRzaGNzMGkvMXE2Nzc4VkFqZis2cUlibEdkV2FYc1JIS3dx?=
+ =?utf-8?B?TnVRSzdXQk1Ubks0RFRUbFd0VmNvL1M1MnhQWFFxRGlXc2FPQ3ZJWjZHUUJC?=
+ =?utf-8?B?ZzFLbjVkbGRPdC94NWxyY0R2RkVaY3AwdUNTMFdYRmU1aCtvQnFVMEc5RmNP?=
+ =?utf-8?B?clo2bVBoSlIxaWN2WWs0d2plNUFEaHRpcEZ3NnlFM1ZjT1NiMFZMbEhOZTRr?=
+ =?utf-8?B?MWhCMFFSZitHNnVxNlVBMklzR2xvdFowUHZBMUNGOExhZ0d3S3QxeFowUkFi?=
+ =?utf-8?B?Q3ZKVlNzSFN6QlptVXpYdW9HQXNhMXdmOUxwbCtuR0s4eEtkRVZMY2Fpb01s?=
+ =?utf-8?B?K0xkT2M4eCt0dlA1dUFBMXVTM1VzZGpqNExRT2J1d0owQ3RLZTEwV0tyV3Yz?=
+ =?utf-8?B?aDFsRHFJQ3U1dUN0RExlT3Nrb2lyWXlITHFsNWx0VHZ4MTM3M2pYVDh0eXAz?=
+ =?utf-8?B?NWZIUVMxVkNndGJhRGo2NDhzY2tNT3V2Q0orSkc2enBCWHUrQ05XbzVOaFBp?=
+ =?utf-8?B?YnhzK01NTy9KZFphK0JJbzJ0SEM4cXhrb3M4bFE0YURyMWJEeGtPQ21PQ0lo?=
+ =?utf-8?B?aHRPSFpEMGthaGY5b2l4b1VxU095U3FrV25pekFlNVpObEwxYWQyWGQ1Qkdu?=
+ =?utf-8?B?em1FeGhzcnh3dGZyRllVRTFSYTdqQlFHbzdZKzc4a1hlQkduTVp5MHFlYlJH?=
+ =?utf-8?B?aXc4MVVyai9qV1Y3SFNYYUNNeWNFc3lGMlNBUUEwVWMrekY4THpKaVFmVC9Y?=
+ =?utf-8?B?K1VxRHJCMXN1WDRtRXlxRFBlTDV6NEdEcDZEdCtRUmhUSkU3SDFFS1hxY0VR?=
+ =?utf-8?B?QmRDTFZMTURCMUhYQVZBSkhZSmV5Yk5BTFBQTlBHbHdaNmg2YzNWRnhaVUNj?=
+ =?utf-8?B?YWxOUkV3MlFJMTdUaW15Q2pTRFVqRkZsb1hkdzdyWmFaWlJ4c2NyS2IrWDNq?=
+ =?utf-8?B?bGgzbzdMTzBVaUphL1BWbWJmSEhOMmJ5K2d6dUJJZmlkMlViSGRCajdhL3BO?=
+ =?utf-8?B?dmtUVGlYcHQ4WFVsRnlHeFVlTVBvbHYxODQxVmdmSDl6NUh4Q1hqQXB6UVpB?=
+ =?utf-8?B?OHBIQ2Y4dHY3NDZXRHJJc25mc3dVaU9helpzUm15am96L01pRVFIS1RWeFF1?=
+ =?utf-8?B?Y2F3MFZyNytHSzR6eGlDNS84WHV6d3RsM29hRGlkeUp5S0JBVSt0V2ZQN3VQ?=
+ =?utf-8?B?STF0KzFYeXFiYVZ4bDUwZnBsSWd4NktXOGFkSHl4eG55a29XcHYydTkxMks5?=
+ =?utf-8?B?Vm1WVGIydFhUc1RLQjlKSDk0dVFrK04xMjhXVmJqTGxzcUNnMll0VnlpWW1T?=
+ =?utf-8?B?K2xaUHdwY3RoU0xqUjZpa0RlUVBlQmlQMUpnT1p6Zm9wQkE4YjhUbndzeVMz?=
+ =?utf-8?B?dVNudWZSNEJxMmhJUFR2WjY2VkdQOUtTd283eW5zdXg0dS9vQ1c1bmxCRjF3?=
+ =?utf-8?B?cy9WNk1HMHEvMVpaRk5Na2k2ajl4NVQ0QTVFUmdydmtKYU5jUktuSzRqdTJx?=
+ =?utf-8?B?MCswL0sxZDZZN0hvZmw3eTdzLzMxZTRFZTBqTUkvK1lmVW1qODNhT3djNkdz?=
+ =?utf-8?B?dk5aSmx2VHhaTlY0UHl1TUk5WVN4WkxRdUxXb0dXT0JlaHZ2TEtsSU9YaVlz?=
+ =?utf-8?B?VkpFSjNHemw2WUZlM1JGUGNEWHdNTHg5T1FjQlRiZFZEamN4SjlJY2ZxSlpG?=
+ =?utf-8?B?eWQxMTkvT3d3L1JFLyt0N0NQQm96S0dwVHBMTGpBSXVOYzQ1NjRzZFhaVEdI?=
+ =?utf-8?B?N2pXOVpOakMydGVDNWQ0L3pFUkp0ZFBjMCtVdTh3Mno2MjB3QXE5S2xFODlZ?=
+ =?utf-8?B?aEt5bGZZQUxxcURZeUY5a1dDYnlCSjhIZzcxS2xMYkhuVjNlSk1lU2Fpdjlp?=
+ =?utf-8?B?VklFeklUZjZkOVQ1U0tCYSsyZXdMbFVsR3dJL3owTWlrUzFocXAwZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0920e253-bde6-4be9-0cba-08df4186daf7
+X-MS-Exchange-CrossTenant-AuthSource: LV5PR12MB9779.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 13:05:56.7568
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gcrlk3+KH24c9ZZCykBt0nCYnayaAXeyWYxAY8bVLtW1Hv4ZSz58uiNX7PdTVz5D
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8444
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_130553_667876_D0CBF824 
-X-CRM114-Status: GOOD (  45.78  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261113_050603_832384_56A2B514 
+X-CRM114-Status: GOOD (  15.75  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,472 +191,52 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/13/26 4:42 AM, Prasanth Kumar Padarthi wrote:
-> Expose permitted AST2600 OTP data through NVMEM using the existing SBC
-> node. Serialize controller transactions, bound completion polling and
-> reject reads into the configured secure prefix.
 
-This only repeats what the code does. Please explain *why*. Who uses the 
-data and which cells?
 
+On 11/12/26 20:32, Pufan Jin wrote:
+> Add devicetree support for the ALINX AX7Z020B board, built around the
+> ALINX AC7Z020 system on module with a Zynq-7000 (XC7Z020-2CLG400I) SoC.
 > 
-> Adapt the read sequence from ASPEED's downstream driver, preserving its
-> attribution. Register the driver for ASPEED review and restrict raw OTP
-> access to root.
-
-If you mean the MAINTAINERS hunk, just say so.
-
+> Changes in v3:
+> - Drop the vendor website Link: tags (Krzysztof Kozlowski).
+> - Drop the empty bootargs property (Krzysztof Kozlowski).
+> - Rename the USB PHY node from phy0 to phy, as there is only one USB PHY
+>    on the board (Krzysztof Kozlowski).
+> - Keep the explicit mdio node under gem0, as requested during the v1
+>    review and reviewed by Andrew Lunn in v2.  dtc W=1 flags the parent
+>    node's inherited #address-cells/#size-cells.  DT schema validation
+>    reports the same Zynq-7000 diagnostics as zynq-zybo-z7.  The MDIO
+>    layout was also verified on hardware.
+> - Sort I2C child nodes by address and reorder status/reg properties.
+> - Add Krzysztof's Acked-by to patch 1.
 > 
-> Link: https://github.com/AspeedTech-BMC/linux/blob/769f62b7baa84d6998723b0ea60280e380183553/drivers/soc/aspeed/ast2600-otp.c
-
-No DCO Sign-off (neither from you nor Neal). And given that you've used 
-the downstream driver as base it'd be cool if you can keep Neal as 
-Co-developed-by in (with Neal's agreement).
-
-> ---
-> Tested on ASRock Rack B650D4U, AST2600 A3, OpenBMC Linux 6.18.24:
-
-Please test against the base commit you've used (i.e. 7.4-rc3). Using a 
-vendor / OpenBMC tree here is not useful at all.
-
-> - Repeated, paired and cross-pair reads matched.
-> - Four concurrent readers completed 40 matching reads.
-> - Bytes 8172..8183 matched a separate vendor-derived reader.
-> - Synthetic pre-MMIO timeout, failure latching and rebind recovery passed.
-> Host fault-injection tests passed all 42 polling-timeout cases.
+> The "alinx" vendor prefix is already queued in linux-next as commit
+> 1f06cd374a60 ("dt-bindings: vendor-prefixes: Add ALINX vendor prefix"),
+> so it is not part of this series.
 > 
->   MAINTAINERS                 |   1 +
->   drivers/nvmem/Kconfig       |  12 ++
->   drivers/nvmem/Makefile      |   1 +
->   drivers/nvmem/ast2600-otp.c | 259 ++++++++++++++++++++++++++++++++++++
->   4 files changed, 273 insertions(+)
->   create mode 100644 drivers/nvmem/ast2600-otp.c
+> Tested on hardware before the DTS style reordering: SD boot, UART
+> console, SD card, GbE (900+ Mbps and LED hardware offload), dual CAN,
+> I2C, QSPI and XADC.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 93abbb3..c92ea8e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2813,6 +2813,7 @@ F:	Documentation/devicetree/bindings/arm/aspeed/
->   F:	arch/arm/boot/dts/aspeed/
->   F:	arch/arm/mach-aspeed/
->   F:	arch/arm64/boot/dts/aspeed/
-> +F:	drivers/nvmem/ast2600-otp.c
->   N:	aspeed
->   
->   ARM/AXIADO ARCHITECTURE
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index d2f5bb2..cdcd071 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -164,6 +164,18 @@ config NVMEM_APPLE_SPMI
->   	  This driver can also be built as a module. If so, the module
->   	  will be called apple-nvmem-spmi.
->   
-> +config NVMEM_ASPEED_AST2600_OTP
-> +	tristate "ASPEED AST2600 OTP support"
-> +	depends on ARCH_ASPEED || COMPILE_TEST
-> +	depends on HAS_IOMEM
-> +	help
-> +	  Read-only access to the AST2600 OTP data region. The configured
-> +	  secure prefix is not exposed. Fuse programming is not supported.
-> +	  The controller reads paired 32-bit words through command registers.
-
-This is implementation-specific and doesn't help whether to enable the 
-option. Drop.
-
-> +	  Access to raw OTP data is restricted to root.
-> +
-> +	  If built as a module, the module will be called ast2600-otp.
-> +
-
-"If unsure, select N"?
-
->   config NVMEM_BCM_OCOTP
->   	tristate "Broadcom On-Chip OTP Controller support"
->   	depends on ARCH_BCM_IPROC || COMPILE_TEST
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 5e70bad..9fac69d 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -23,6 +23,7 @@ obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
->   nvmem-apple-efuses-y 			:= apple-efuses.o
->   obj-$(CONFIG_NVMEM_APPLE_SPMI)		+= apple_nvmem_spmi.o
->   apple_nvmem_spmi-y			:= apple-spmi-nvmem.o
-> +obj-$(CONFIG_NVMEM_ASPEED_AST2600_OTP)	+= ast2600-otp.o
-
-Maybe call the file "nvmem-aspeed-otp" or so? Would be nice if we can 
-extend the driver for AST2700 support later on.
-
->   obj-$(CONFIG_NVMEM_BCM_OCOTP)		+= nvmem-bcm-ocotp.o
->   nvmem-bcm-ocotp-y			:= bcm-ocotp.o
->   obj-$(CONFIG_NVMEM_BRCM_NVRAM)		+= nvmem_brcm_nvram.o
-> diff --git a/drivers/nvmem/ast2600-otp.c b/drivers/nvmem/ast2600-otp.c
-> new file mode 100644
-> index 0000000..94b1225
-> --- /dev/null
-> +++ b/drivers/nvmem/ast2600-otp.c
-> @@ -0,0 +1,259 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) ASPEED Technology Inc.
-> + *
-> + * ASPEED AST2600 OTP Controller driver
-> + * Read sequencing adapted from ASPEED's downstream ast2600-otp driver.
-
-This comment feels unnecessary. It's already been said in the commit 
-description.
-
-> + */
-> +
-> +#include <linux/align.h>
-
-align could be removed if you use round_down() or word & ~1 maybe?
-
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/of.h>
-
-You don't call any of_ functions. Replace with mod_devicetable.h.
-
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-
-unused. devm_kzalloc comes through platform_device.h.
-
-> +#include <linux/string.h>
-> +
-> +#define AST2600_OTP_PROTECT_KEY		0x00
-> +#define AST2600_OTP_CMD			0x04
-> +#define AST2600_OTP_ADDR		0x10
-> +#define AST2600_OTP_STATUS		0x14
-
-The SB Controller driver checks for the OTP_PROTECTED bit. What happens 
-if OTP protection is enabled?
-
-> +#define AST2600_OTP_COMPARE_1		0x20
-> +#define AST2600_OTP_COMPARE_2		0x24
-> +
-> +#define AST2600_OTP_CMD_READ		0x23b1e361
-> +#define AST2600_OTP_CMD_WRITE_MODE	0x23b1e362
-> +#define AST2600_OTP_UNLOCK_KEY		0x349fe38a
-> +#define AST2600_OTP_STATUS_DONE		0x6
-
-Describe the bits here. Either two BIT() or GENMASK(2, 1).
-
-> +#define AST2600_OTP_TIMEOUT_US		100000
-
-Where does this come from?
-
-> +
-> +#define AST2600_OTP_DATA_WORDS		0x800
-> +#define AST2600_OTP_SIZE			(AST2600_OTP_DATA_WORDS * sizeof(u32))
-> +#define AST2600_OTP_CONF0_ADDR		0x800
-> +#define AST2600_OTP_CONF0_SEC_SIZE		GENMASK(21, 16)
-> +#define AST2600_OTP_SEC_SIZE_UNIT		(32 * sizeof(u32))
-> +
-> +struct ast2600_otp {
-> +	void __iomem *base;
-> +	/* Serialize the complete unlock, read and relock sequence. */
-> +	struct mutex lock;
-> +	bool failed;
-> +};
-> +
-> +static int ast2600_otp_wait_complete(struct ast2600_otp *otp)
-> +{
-> +	u32 status;
-> +	int i, ret;
-> +
-> +	/* Allow the command to start before sampling the idle flags. */
-> +	udelay(1);
-
-You could use read_poll_timeout too?
-
-> +
-> +	/* Match the downstream sequence: observe both idle flags twice. */
-> +	for (i = 0; i < 2; i++) {
-
-This is not a valid reason. Do you really have to poll twice? Is this an 
-erratum? If so, please cite it.
-
-> +		ret = readl_poll_timeout(otp->base + AST2600_OTP_STATUS,
-> +					 status,
-> +					 (status & AST2600_OTP_STATUS_DONE) ==
-> +					 AST2600_OTP_STATUS_DONE,
-> +					 1, AST2600_OTP_TIMEOUT_US);
-> +		if (ret) {
-> +			/* Do not reuse a controller with an outstanding command. */
-> +			otp->failed = true;
-
-That'd disable the device on a single timeout. Do we really have to do 
-this, or would it be enough to retry on the next access? If you want to 
-keep it, then a dev_err() would be good instead of failing it silently.
-
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ast2600_otp_prepare_read(struct ast2600_otp *otp)
-> +{
-> +	static const u32 mode_addresses[] = { 0x3000, 0x5000, 0x1000 };
-> +	int i, ret;
-> +
-> +	ret = ast2600_otp_wait_complete(otp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Restore the macro's default read mode, as in otp_soak(ctx, 0).
-> +	 * These writes target volatile mode registers, not OTP fuse cells.
-> +	 * No fuse programming command or programming timing is used.
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(mode_addresses); i++) {
-> +		writel(mode_addresses[i], otp->base + AST2600_OTP_ADDR);
-> +		writel(0, otp->base + AST2600_OTP_COMPARE_1);
-> +		writel(AST2600_OTP_CMD_WRITE_MODE, otp->base + AST2600_OTP_CMD);
-
-Setting the OTP back to default doesn't need write mode if I understand 
-the datasheet correctly.
-
-> +		ret = ast2600_otp_wait_complete(otp);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ast2600_otp_read_pair(struct ast2600_otp *otp,
-> +				 unsigned int aligned_word,
-> +				 u32 *word0, u32 *word1)
-> +{
-> +	int ret;
-> +
-> +	/* The hardware reads two words starting at an even word index. */
-> +	if ((aligned_word & 1) || aligned_word >= AST2600_OTP_DATA_WORDS)
-> +		return -EINVAL;
-
-You're already passing an aligned index everywhere which makes this code 
-redundant. It also blocks the read for CONF0, so please drop this check 
-and use read_pair() for CONF0 too.
-
-> +
-> +	writel(aligned_word, otp->base + AST2600_OTP_ADDR);
-> +
-> +	writel(AST2600_OTP_CMD_READ,
-> +	       otp->base + AST2600_OTP_CMD);
-> +
-> +	ret = ast2600_otp_wait_complete(otp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*word0 = readl(otp->base + AST2600_OTP_COMPARE_1);
-> +	*word1 = readl(otp->base + AST2600_OTP_COMPARE_2);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ast2600_otp_read(void *context, unsigned int offset,
-> +			    void *val, size_t bytes)
-> +{
-> +	struct ast2600_otp *otp = context;
-> +	u8 *buf = val;
-> +	unsigned int word_index;
-> +	unsigned int aligned_word;
-> +	unsigned int secure_size;
-> +	__le32 pair[2];
-> +	u32 conf0;
-> +	u32 word0, word1;
-> +	size_t chunk, skip;
-> +	int ret;
-> +
-> +	if (!bytes)
-> +		return -EINVAL;
-
-OTP could be empty too?
-
-> +
-> +	if (offset % sizeof(u32) || bytes % sizeof(u32))
-> +		return -EINVAL;
-> +
-> +	if (offset >= AST2600_OTP_SIZE ||
-> +	    bytes > AST2600_OTP_SIZE - offset)
-> +		return -EINVAL;
-> +
-> +	mutex_lock(&otp->lock);
-
-guard(mutex)(&priv->lock); ? Requires <linux/cleanup.h>.
-
-> +
-> +	if (otp->failed) {
-> +		ret = -EIO;
-> +		goto out_unlock;
-> +	}
-> +
-> +	writel(AST2600_OTP_UNLOCK_KEY, otp->base + AST2600_OTP_PROTECT_KEY);
-> +
-> +	ret = ast2600_otp_prepare_read(otp);
-> +	if (ret)
-> +		goto out_lock;
-
-The secure region size is fixed once programmed. Maybe read it once in 
-probe instead of on every access? With nvmem_keepout, this would clean 
-up the read path a bit.
-
-> +
-> +	/* Configuration word 0 describes the unreadable secure data prefix. */
-> +	writel(AST2600_OTP_CONF0_ADDR, otp->base + AST2600_OTP_ADDR);
-> +	writel(AST2600_OTP_CMD_READ, otp->base + AST2600_OTP_CMD);
-> +	ret = ast2600_otp_wait_complete(otp);
-> +	if (ret)
-> +		goto out_lock;
-> +
-> +	conf0 = readl(otp->base + AST2600_OTP_COMPARE_1);
-> +	secure_size = FIELD_GET(AST2600_OTP_CONF0_SEC_SIZE, conf0) *
-> +		      AST2600_OTP_SEC_SIZE_UNIT;
-
-You can also keep out the secure region by using nvmem_keepout.
-
-> +	/* Conservatively deny the entire secure prefix, including its header. */
-> +	if (offset < secure_size) {
-> +		ret = -EACCES;
-> +		goto out_lock;
-> +	}
-> +
-> +	while (bytes) {
-> +		word_index = offset / sizeof(u32);
-> +		aligned_word = ALIGN_DOWN(word_index, 2);
-> +
-> +		ret = ast2600_otp_read_pair(otp, aligned_word,
-> +					    &word0, &word1);
-> +		if (ret)
-> +			goto out_lock;
-> +
-> +		pair[0] = cpu_to_le32(word0);
-> +		pair[1] = cpu_to_le32(word1);
-> +		skip = (word_index - aligned_word) * sizeof(u32);
-> +		chunk = min(bytes, sizeof(pair) - skip);
-> +
-> +		memcpy(buf, (u8 *)pair + skip, chunk);
-> +		buf += chunk;
-> +		offset += chunk;
-> +		bytes -= chunk;
-
-NVMEM already returns the data in the correct order if I see this right. 
-You can store the readl() results directly into a u32*buf var. That'd 
-make the pair/skip/chunk code and endianness conversion unnecessary.
-
-> +	}
-> +
-> +	ret = 0;
-> +
-> +out_lock:
-> +	writel(0, otp->base + AST2600_OTP_PROTECT_KEY);
-> +	/* Flush the protection write before another reader takes the mutex. */
-> +	readl(otp->base + AST2600_OTP_PROTECT_KEY);
-
-for what are you reading the otp key register here?
-
-> +out_unlock:
-> +	mutex_unlock(&otp->lock);
-> +	return ret;
-> +}
-> +
-> +static int ast2600_otp_probe(struct platform_device *pdev)
-> +{
-> +	struct nvmem_config config = {};
-> +	struct nvmem_device *nvmem;
-> +	struct ast2600_otp *otp;
-
-Can we name this priv maybe?
-
-> +
-> +	otp = devm_kzalloc(&pdev->dev, sizeof(*otp), GFP_KERNEL);
-
-Maybe assign &pdev->dev as struct device * variable and use that one 
-instead?
-
-> +	if (!otp)
-> +		return -ENOMEM;
-> +
-> +	otp->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(otp->base))
-> +		return PTR_ERR(otp->base);
-> +
-> +	mutex_init(&otp->lock);
-
-devm_mutex_init?
-
-> +
-> +	config.dev = &pdev->dev;
-
-Same here with the var.
-
-> +	config.name = "ast2600-otp";
-> +	config.id = NVMEM_DEVID_AUTO;
-> +	config.owner = THIS_MODULE;
-> +	config.type = NVMEM_TYPE_OTP;
-> +	config.read_only = true;
-> +	config.root_only = true;
-> +	config.word_size = sizeof(u32);
-> +	config.stride = sizeof(u32);
-> +	config.size = AST2600_OTP_SIZE;
-> +	config.reg_read = ast2600_otp_read;
-
-These can already be set in the config struct before.
-
-> +	config.priv = otp;
-> +
-> +	nvmem = devm_nvmem_register(&pdev->dev, &config);
-
-And here.
-
-> +	return PTR_ERR_OR_ZERO(nvmem);
-> +}
-> +
-> +static const struct of_device_id ast2600_otp_of_match[] = {
-> +	{ .compatible = "aspeed,ast2600-sbc" },
-
-The SB Controller driver has "additionalProperties: false" set and 
-doesn't allow nvmem properties.
-
-Please add "$ref: /schemas/nvmem/nvmem.yaml#" and 
-"unevaluatedProperties: false" as a separate patch.
-
-Tan
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ast2600_otp_of_match);
-> +
-> +static struct platform_driver ast2600_otp_driver = {
-> +	.probe = ast2600_otp_probe,
-> +	.driver = {
-> +		.name = "ast2600-otp",
-> +		.of_match_table = ast2600_otp_of_match,
-> +	},
-> +};
-> +module_platform_driver(ast2600_otp_driver);
-> +
-> +MODULE_AUTHOR("Neal Liu <neal_liu@aspeedtech.com>");
-> +MODULE_AUTHOR("Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>");
-> +MODULE_DESCRIPTION("ASPEED AST2600 read-only OTP NVMEM driver");
-> +MODULE_LICENSE("GPL");
-> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-
+> Pufan Jin (2):
+>    dt-bindings: soc: xilinx: Add ALINX AX7Z020B board
+>    ARM: dts: zynq: Add ALINX AX7Z020B development board
+> 
+>   .../bindings/soc/xilinx/xilinx.yaml           |   5 +
+>   arch/arm/boot/dts/xilinx/Makefile             |   1 +
+>   .../boot/dts/xilinx/zynq-alinx-ac7z020.dtsi   |  71 +++++++++
+>   .../boot/dts/xilinx/zynq-alinx-ax7z020b.dts   | 146 ++++++++++++++++++
+>   4 files changed, 223 insertions(+)
+>   create mode 100644 arch/arm/boot/dts/xilinx/zynq-alinx-ac7z020.dtsi
+>   create mode 100644 arch/arm/boot/dts/xilinx/zynq-alinx-ax7z020b.dts
+Applied.
+M
 
