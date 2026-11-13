@@ -2,87 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0322F606A880
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB42C606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QFiBElpH;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=LyRs6kPv
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QacoNiUl;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zyajyh/Z
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=6cKcdP6ZFsbUpqGoJa0cKoc76Hw0duCjesAc2W0YCc0=; b=QFiBElpHnXpEY1
-	VVRFrd5hJy7D1fryuthwsYqrjNYwl+LgMjEyQXSEfdXQLV2htnF58BYZMReDFoB1XsTmc1NI6f5cx
-	jNS//c5QqyFN1ahjk7Grd09qVOS1fGfy3CEts4O/ZhI1IXh72bYDXQXyklpOYkRAaljFQZp0HRiyN
-	8wKk/kEeytDrd6iMdrORVxBx5NO8ke/KdhXFnqFtNeocJXe2/CsBst2cmIejX3Ex8fMqK6eOAtu4s
-	hrFVMvRqShYNCx+Vn658SrE75rHMny67fxQg3vuxMbYW2W6mE1B1jBu0cPejVQI0RSIXsrd2OCczn
-	PaNZM/lfa6t0SzoRDCwg==;
+	List-Owner; bh=v4l0l6/0LSTjMRIJU8wqE1PZYCYMuyzVKSvXtjgLdxw=; b=QacoNiUlL+fTA7
+	poc7IsJU0MnKO7Adrbg8iBRQBe3BhhhNhlvq8YidjvnU8iXQOjOW1TouoekPg7zHbYCjzZsfWU+V/
+	E5z7S2OBlESTttkGcx+n7Uis/WzRFONjEaFaPP++lAr7FBxoudd5s150K2wpWm2fuxCFq+j72ZK+R
+	bHJJ0BNvX2EJs6HEVq+2aeBa7IoGOjD7cstSIbVlGoiiZQ/0Gf6HhesoBYTLedLXYxpQAMmY0lVlM
+	rMWbVOa2Yx9vIhlFm8gUD3QJ+8JVcEfAXoV6m8tfAStu6ONA2iCG+I1VvpEbwJXQ6t/+18UbXovyE
+	StwM/BylaKTZiCBY3+ew==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxzW-0000000ER7v-0vHS;
-	Fri, 13 Nov 2026 20:35:22 +0000
-Received: from mail-oi2-x0b.google.com ([2607:f8b0:4864:32::b])
+	id 1xRxzX-0000000ER92-2bAq;
+	Fri, 13 Nov 2026 20:35:23 +0000
+Received: from mail-oi1-x242.google.com ([2607:f8b0:4864:20::242])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxzO-0000000ER1q-2WxQ
+	id 1xRxzQ-0000000ER33-2GRG
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:35:16 +0000
-Received: by mail-oi2-x0b.google.com with SMTP id 5614622812f47-539d2baa897so505670b6e.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:35:14 -0800 (PST)
+	Fri, 13 Nov 2026 20:35:18 +0000
+Received: by mail-oi1-x242.google.com with SMTP id 5614622812f47-4e4a4d77e5bso2264461b6e.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:35:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794602113; x=1795206913; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794602115; x=1795206915; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=6cKcdP6ZFsbUpqGoJa0cKoc76Hw0duCjesAc2W0YCc0=;
-        b=LyRs6kPvtSIUGgAa39N9aOuOimmS8wJslshu5NdVde3aROvX7/SiFc86gGHSNmSAWd
-         LkonCMGRl+CjgJXOZBnfA4O111agfoJ+Iz607+8Ba88RJV/lyMP+gHGmHvzB0f1rtltO
-         BNnBsm7QKPO6Md/TlkVg8ANW76cMpG2bVEzV95q6grrr0dll5nchbYMe43tlrs42zQ1x
-         50PW9RLmVeLoE1I0yC+MgPg9jAUhGFZFioUpI2uOKviy22zFiA2rLWxOh8VVAFN6iDvw
-         wBECDuRjSxI17TP6EIlJPEjI33VlvT8yJYGuhaf3nICZZ8LW8IAaiwqwFGCGnK+SACeg
-         7pUg==
+        bh=v4l0l6/0LSTjMRIJU8wqE1PZYCYMuyzVKSvXtjgLdxw=;
+        b=zyajyh/ZEBA9JkEfnztK+f2/oe9eMHITyjG9t8XX8pgVf0AVEFI2/2me/8CuLzDxAm
+         JLu/n47lptwGoiG3sGZugXQSQfLoH/Dki0OiJcyKMSorKvV9rzoe9vReJ+rgb1DCx+dC
+         4P2Et10GpP0bI7nguveX1WOQX+fdTsGcQMgQQXIeFT0ApBXcttDfcUqltJBT3cERL9lq
+         VE2oxGswRDh8p4xZK2Zghuw4bXrTPRJOKTtMXrp4wtQ9ahD28MZ+RSgxAJ4p8zid+9sA
+         Yn0rv+NEBjfcVeopUtK/VBWvOIN/xglEtYWtOslPnE38AXnGYNq7fS/Wa5Ok9cxQwJNa
+         e6jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794602113; x=1795206913;
+        d=1e100.net; s=20260707; t=1794602115; x=1795206915;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=6cKcdP6ZFsbUpqGoJa0cKoc76Hw0duCjesAc2W0YCc0=;
-        b=uHP1Jmrk0k3fuSiBVZEHeQhEM0Y3i1EVDfxmZlTT6vtE1fTAWID1kxdcxYKrAM9F5p
-         uk/WXIZGC0EwwL/Vzpj/8Gn99vKD2HPb7lHI5NTpFNPHNTipBh60Np7mSA+HTnDnbpwH
-         O4zye7Nej68n+W74kmBVCDxDL5vWLE53f29pspaD7K+XriDuvH53gL7GHhzKetcTcDm2
-         LBsEQtheiIpeoFbTqOH14YxLP/c4KEfv9FgCmH/EscLYZryvMsb/G9ayLqufWyXxiM+f
-         XsT8b/yQHXb2WsOT88OPWzWxSGGRW6RUHdHjBZAdki0PwIEp/srHSLeshsYJEIUsoiEm
-         Lhfg==
-X-Forwarded-Encrypted: i=1; AL+hErGNK5Gt0qoSiLoTOOCYpbGUkIpxCxW9Bg+5GRv+U6ffzLrb4FE6ylwktuCPv3XiBmq1/ppuuO1RTGsQh9rIHmsd@lists.infradead.org
-X-Gm-Message-State: APuU4Z9soeBkKiiiY6vCvLQr6P9j9PKzC7/pjxxEi0mCjka59FGm5h7n
-	DViFIu4oFTLzjh6XmQCqVLnsB2sMXE+gXxSUsUNkX37GM9T9Riv9Dznn
-X-Gm-Gg: AYBFou2mr7RlGzFQ0iEPaq56iLb7ITQd7cPiFtW8ResR9EuLcMDRmOioeGNeXevDax/
-	H9rinOOXj0YxiPrx4MqCVXfSTeKqDu9bWTtmaeRUC4EoZ2GWzcSErHGm0gDpZHpFqNPvFbY2AV3
-	UBPwl23iIbwBBfb+9vdpVXcE0LVKlFZ82gZXwGZCIPgVCMIIPxLD2yDbV5IV1E+5QWGlB6c4Zqg
-	p+EJZGcOJdEjqv64wu2/DmKN2URVYkWuwcaxEAhv/s0NaZt1KmnPZ24H3hOVmVt9/lq//5nu+IX
-	zazXkSI25s3VPjWdHWsPDrdlNY6RzPtP0QmAwafE9QRQvosS2A3SrQpYW7tsMPPSgd8aKbRgyFf
-	d1ppxfr5sOxfMs4cjCFgxBDqUkJ7XDF1XQz1n6el83LbYZ2K5HL0KNQ4+ejlaWI8RfGnj+hVOpu
-	ykT/7XJazjuUjcHqIR4QHh+qCqjDJ//pbFyXJCVZbrjyF3KYS6971jTAIBcJvRv98Ygbhc+WH08
-	94zOUG4kBleRxjWZxzbmxuqg69aDDPSQnZKCqh01wZi1jOifEiu3mtLoY+rT2sKyehsCRV9528S
-	jJpAnEATPULoUjpROb4nYmWmYuNAz9srhkcrpBm8gea54vojBKcIH2efp9/3YQX3NyRKSJwV9Lh
-	DdDcWKFScLfZ1UEYu/8s=
-X-Received: by 2002:a05:6808:10cd:b0:4ed:7045:d3bc with SMTP id 5614622812f47-56e641d6c13mr3204181b6e.32.1794602113421;
-        Fri, 13 Nov 2026 12:35:13 -0800 (PST)
+        bh=v4l0l6/0LSTjMRIJU8wqE1PZYCYMuyzVKSvXtjgLdxw=;
+        b=UUNXMl+358lM4kdaOkRcvs0mVzsymxZc4EiELMkwYbd4RtgSNiae/vHSXh4UUQtb42
+         wigfc9Axu9YJTe9NIuof/W08B3iROdlQ7z3/FKILdcovJBuUwWKh7TTnSji2NoATwCqS
+         UfP57fLhtnvDcC5MTDAAtJbw9QM6X9pqADwHjfYYRT1WZ8uDrGSbnvomR3WmHjjf2TLB
+         tDwWMkHZKjxh2wxs+M67J2J39fl28JVhR0hRdMjdtcXsJsIVGMI+4alVGeGaEo3sazrN
+         9oMGvMjobNvML/Ge0LaxdDN7gTvcP0tissXYkiER8RmkJYQ9fEv4eJvVEAlH01C+ngjo
+         MFFw==
+X-Forwarded-Encrypted: i=1; AL+hErGu699j9DPTDcbWHWwfYv9GgPRaBkgQvYhDhmO+MYUB8E8Kv06fMnAd2EzapkMBL67dqCzjuEpZXP5pky0sI76P@lists.infradead.org
+X-Gm-Message-State: APuU4Z+rnD5+wrpGGoS40oB+KTUNaZIyI6B6FkrMZZJ6Kwo2fmRNEjm4
+	4d0u+3ScptOM3U9Gs5N75fl+uoKzzUQYHlQT2tAnXrzRPHOgWfUzrQVU
+X-Gm-Gg: AYBFou3Nhkrnsc7W+IvPyhHMQuOs7Cz57216HvcgkgoVmTywTEgc1nVhU0jY5vNQHC1
+	m24pu/qXKY8SeRzZYpv6WgC3nr60ZWzuHxF4GhwwH+/KCaMAleH9tr0T2f3qVkT5csW/2n92R3v
+	h7lp43Xzo9usicXRRYGprqiBwIhCLgeUyDz0SBYQfT8OewsYzcsu7yB4u43KlUWT0ocGmncs5lQ
+	fT+XLwdIFbYVT+PMHjkg+tfQomTmb/pfz/qrjvTFJezpBwx9sQNQX0+9T33Ll90JrSoUZeEsNJV
+	gt1l71YZuZrvrWePyP8lSxxl74zo1TETOwmkwczMnoITL6VbzePQVOC3hE8hoi2HZdQR7GULB12
+	w4NbXwvtnsXyc1gJixtI8BzoLVXn9ir2dbcvh9omJyTIpZVcpeedoSRoHvLvSLzq4jphAGuyG5N
+	//cVE6QlJsm18GjbJQda1GNyuCK7GjhGmPNc5C8BkG/O16B3I6Y3NZhsFWiTAGnj5J9rFw57j6H
+	GhwNo0P3GkSGJED5yerFjdeMiGTAFxqPXgJWS45zA9Vo/XBZ80DhpqAlGnH8W7d+4fyaS+uHyYa
+	ZCMh4+eMi2sRuPq8P2Gze5dcBJ3o20+9o+6rXk2ZB1kNf95J2S89xjcMGxTO3YoCfotazaKjQ0N
+	+R6EWQQVxXSPXyOepYc8=
+X-Received: by 2002:a05:6808:1691:b0:4d6:9133:cfea with SMTP id 5614622812f47-56cd8ed24a4mr4376780b6e.47.1794602115430;
+        Fri, 13 Nov 2026 12:35:15 -0800 (PST)
 Received: from [10.10.18.223] (wsip-64-207-253-118.tu.ok.cox.net. [64.207.253.118])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-56e70c58f9bsm2712225b6e.13.2026.11.13.12.35.11
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-56e70c58f9bsm2712225b6e.13.2026.11.13.12.35.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 12:35:13 -0800 (PST)
+        Fri, 13 Nov 2026 12:35:14 -0800 (PST)
 From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Fri, 13 Nov 2026 14:34:55 -0600
-Subject: [PATCH RESEND 1/2] clk: mediatek: mt8173: fix the FHCTL DDS mask
+Date: Fri, 13 Nov 2026 14:34:56 -0600
+Subject: [PATCH RESEND 2/2] clk: mediatek: mt6795: fix the FHCTL DDS mask
  width
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-mt8173-fix-dds-mask-width-v1-1-c8d1e3288df9@gmail.com>
+Message-Id: <20261113-mt8173-fix-dds-mask-width-v1-2-c8d1e3288df9@gmail.com>
 References: <20261113-mt8173-fix-dds-mask-width-v1-0-c8d1e3288df9@gmail.com>
 In-Reply-To: <20261113-mt8173-fix-dds-mask-width-v1-0-c8d1e3288df9@gmail.com>
 To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
@@ -94,16 +94,16 @@ Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  Ryan Brue <ryanbrue.dev@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794602109; l=1762;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794602109; l=1505;
  i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=+CADWjqc22AUSeVeKeNbBWk6vnVbnoxXOpZ/q/waG+w=;
- b=iLQXE6+fT67k/1+QXFmsj0CBbRIh+BBShAboAlWwKdNv6JETp70VldtQbm1fwLYVRqDFJsRNd
- EbaohlTqIw/A4R5rO4Jb0oapwZN+1s1+IeGmBrmEnDmvq7F1aGrFtC+
+ bh=6k5SPDasHR10JbeQ/goG0GjfXjoojCF7pZ/1g9TWB+w=;
+ b=GGeJS8jm21rjpv1QyTbpsKBtZCTmbEes2ARBh8p1OfaWD0t2XZ4J3BHySxW23bkyOdUv48ruh
+ PRoIkzSIg1UAt0oRD1ii2tTNNj083KeKa67msj2r1YTGbGXjFo0ryOP
 X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
  pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_123515_276970_F74E4FFA 
-X-CRM114-Status: GOOD (  14.17  )
+X-CRM114-CacheID: sfid-20261113_123516_731717_86D5B8B2 
+X-CRM114-Status: GOOD (  13.72  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -123,41 +123,37 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-MT8173's hoppable PLLs have pcwbits = 21, so the FHCTL DDS field is bits
-20:0, but FH() declares .dds_mask = GENMASK(21, 0). Bit 21 of FHCTL_MON is
-a status bit that comes up once a hop has settled, and new_dds from
-mtk_pll_calc_values() is always 21-bit, so the poll in hopping_hw_flow()
-never matches and every hop runs to the 1000 us timeout. The PLL does reach
-the requested rate and clk_change_rate() discards the error, so the cost is
-1 ms of atomic polling plus a warning and a register dump on each rate
-change.
+All eight PLLs in mt6795's pllfhs[] have pcwbits = 21, so the FHCTL DDS
+field is bits 20:0, but _FH() declares .dds_mask = GENMASK(21, 0). As on
+MT8173, new_dds from mtk_pll_calc_values() is always 21-bit, so admitting
+bit 21 of FHCTL_MON into the poll in hopping_hw_flow() can only make it
+time out. The same mask feeds the CON1 write-back and fhctl_set_ssc_regs().
 
-Six MMPLL rate changes on an Amazon Fire HD 10 (2017) all time out with
-GENMASK(21, 0), MON reading the requested DDS with bit 21 set, and all pass
-with GENMASK(20, 0).
+Unlike MT8173 this path has a user: mt6795-sony-xperia-m5.dts switches
+FHCTL on for mainpll, mpll and msdcpll, with SSC.
 
-mt8186, mt8192 and mt8195 share the constant but are correct, as their
-hoppable PLLs really are 22-bit. mt6795 is fixed in the next patch.
+Found by inspection while fixing MT8173. I have no MT6795 hardware, so
+this one is untested.
 
-Fixes: 45a5cbe05d1f ("clk: mediatek: mt8173: Add support for frequency hopping through FHCTL")
+Fixes: f222a1baec5f ("clk: mediatek: mt6795: Add support for frequency hopping through FHCTL")
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 ---
- drivers/clk/mediatek/clk-mt8173-apmixedsys.c | 2 +-
+ drivers/clk/mediatek/clk-mt6795-apmixedsys.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/mediatek/clk-mt8173-apmixedsys.c b/drivers/clk/mediatek/clk-mt8173-apmixedsys.c
-index d7d416172ab3..327240cd34fb 100644
---- a/drivers/clk/mediatek/clk-mt8173-apmixedsys.c
-+++ b/drivers/clk/mediatek/clk-mt8173-apmixedsys.c
-@@ -100,7 +100,7 @@ enum fh_pll_id {
+diff --git a/drivers/clk/mediatek/clk-mt6795-apmixedsys.c b/drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+index 123d5d7fea85..ff01cfefc31f 100644
+--- a/drivers/clk/mediatek/clk-mt6795-apmixedsys.c
++++ b/drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+@@ -79,7 +79,7 @@ enum fh_pll_id {
  			.fh_id = _fhid,					\
  			.fh_ver = FHCTL_PLLFH_V1,			\
  			.fhx_offset = _offset,				\
 -			.dds_mask = GENMASK(21, 0),			\
 +			.dds_mask = GENMASK(20, 0),			\
- 			.slope0_value = 0x6003c97,			\
- 			.slope1_value = 0x6003c97,			\
+ 			.slope0_value = _slope,				\
+ 			.slope1_value = _slope,				\
  			.sfstrx_en = BIT(2),				\
 
 -- 
