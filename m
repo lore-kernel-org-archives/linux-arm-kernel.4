@@ -2,72 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B14B606A332
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 18:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D54606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 18:52:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Se6z17QW;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UVgpn0Wz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hvbTQ1je;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EtuBOIjW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=cjhG7Bzi1tsnaOBL0/3qmbPStuw8rhrR+V7LVA+Ywdw=; b=Se6z17QW1EfyWxxRVDKV/cA1PY
-	Ou7FGkK4jVMXi2DwiRrelLqelEds7gZRvRiUrlkSOJBljN4YJ7ClZogkOz/wWKEG+xPvNFCd9HCih
-	/fCrKr7DrdeIB4CJRAW1L+sy3q34/5Ufepfb4KBdYPtOn0lPRvIzU246a6hGubipn8hnRu9gv/ZCr
-	uv+q2cyCfxCiI9NWTRxI8Sa0SwdX4YBsWnNNIag2KRH/WB54E2f831rNNR9Y+vkzEtwNdmTu31mk7
-	i5p+oD3QbGzM3tMsHypAPsmD3rnn8TQUCPSoFzCwKNcNCsJpvq480sW/pgb/d68727jb6YnCk70bG
-	13l0TQTg==;
+	bh=2MDi62zSrUcHu3jIKja7h0mngHAeGSbDpYPRSVAWgbk=; b=hvbTQ1jeFPqb6c7pF2SahE4hdq
+	i4PEHi/tVJhWv+wd+U372g/vMzDwn8THofTi0b25HRwcnyYaTF2r5fx1nLbRMbRA+sZla48bHRc2X
+	/fUWEo75XiKwAiahEdHP34mK6hIWD7GzcvnSQqURJw2x51gEWiNtHmTmCIByw5xFvw8Th5cX8UZIc
+	6THquJ6rquH7LNeScaQ9EWQxrmktwNfv34RjwMy1KrSCv3Gv07ILwL4r/2dR69x0yIiCN+YqgxAAK
+	6eTHGV3EtV/RIF59CL20gbVslsxQh9sDrZRSWc/CWrtigttsaAPnGJsvhLJ6ko1MqiPVKupo3uXn/
+	CcJFucSA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwMS-0000000E0Ee-33dU;
-	Fri, 13 Nov 2026 18:50:56 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwMR-0000000E0Dx-25dw;
-	Fri, 13 Nov 2026 18:50:55 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id A08DE60D25;
-	Fri, 13 Nov 2026 18:50:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 342F01F000C4;
-	Fri, 13 Nov 2026 18:50:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794595854;
-	bh=cjhG7Bzi1tsnaOBL0/3qmbPStuw8rhrR+V7LVA+Ywdw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=UVgpn0WzoFhIdaDcho/bQqb7ril090RQfOnX/VijF+DvoHH0Y72fNWgWhmJ4EvAR8
-	 4zB5sg31cdpBewBdyn8bfzlTgTH/KOEF1QRjM1XOD9FCg6KNRBbJtdE6+Cqo1mWjbX
-	 38lAMLpT3Yt7J5idBo0tzpGbZ1p+khrdFloyuFRdEzDKcG/Zp0OOqgVzxtsX0tLy1/
-	 zG7WTraWKezTiSqkqkGEI2tiSXS3SH7bYP67wneO48jTvX5X9m8nmo5z4EmSXyuf/b
-	 ko6fK5PwhpOf2QGvdms7NSFTthaukAKDvXokMjw8kmpKkedd0qmWApWV0S+Xrm97UK
-	 afrnnnALFIbvQ==
-Date: Fri, 13 Nov 2026 18:50:47 +0000
-From: Lee Jones <lee@kernel.org>
-To: Ryan Brue <ryanbrue.dev@gmail.com>
-Cc: Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eddie Huang <eddie.huang@mediatek.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-pm@vger.kernel.org, mfd@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	id 1xRwOJ-0000000E0fY-3XLh;
+	Fri, 13 Nov 2026 18:52:54 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRwOG-0000000E0eN-3sNL
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 18:52:50 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DDF58143D;
+	Fri, 13 Nov 2026 10:52:43 -0800 (PST)
+Received: from gaia.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 290A13F673;
+	Fri, 13 Nov 2026 10:52:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794595966; bh=LmDTb5gajHHD2PRP+VluaoNil6RAYYnV0tkAZjWtwU8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=EtuBOIjWX1OobRGrYVOS9JSxIrN3DhzJ/ppQVVbFMWaa+1b0Y9/oPLH+6Ejaddpc2
+	 plRKB/EWMABFESSlx64g2Me4w4mwqaafKAdukvOoSx4Sx/dMpWU4m9py8xzIbwR5NG
+	 FNtWFZJy3ScjUqBvq93OytCicqBAjF2Tv4eXx7NM=
+From: Catalin Marinas <catalin.marinas@arm.com>
+To: Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Will Deacon <will@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH 2/2] rtc: mt6397: provide the 32 kHz output as a clock
-Message-ID: <20261113185047.GH6323@joneslee-macbookpro.roam.internal>
-References: <20261101-rbrue-suez-upstreaming-mt6397-rtc-32k-v1-0-9758f38d7053@gmail.com>
- <20261101-rbrue-suez-upstreaming-mt6397-rtc-32k-v1-2-9758f38d7053@gmail.com>
+	linux-kernel@vger.kernel.org
+Subject: [GIT PULL] arm64 fixes for 7.4-rc3
+Date: Fri, 13 Nov 2026 18:52:41 +0000
+Message-ID: <20261113185244.3798402-1-catalin.marinas@arm.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261101-rbrue-suez-upstreaming-mt6397-rtc-32k-v1-2-9758f38d7053@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_105249_300302_87CCD9B6 
+X-CRM114-Status: GOOD (  12.90  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -78,195 +68,104 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,INCLUDES_PULL_REQUEST,
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sun, 01 Nov 2026, Ryan Brue wrote:
+Hi Linus,
 
-> The RTC's 32 kHz output is gated by RTC_CON.F32KOB, which the vendor
-> kernel clears before it powers the Wi-Fi/Bluetooth combo chip. Mainline
-> never touches it, so on a board whose bootloader leaves it set, such a
-> chip has no sleep clock and does not come up.
-> 
-> Register the output as a clock when the RTC node has #clock-cells, so
-> the chip's power sequence can enable it.
-> 
-> Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
-> ---
->  drivers/rtc/rtc-mt6397.c       | 85 ++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/mt6397/rtc.h |  6 +++
->  2 files changed, 91 insertions(+)
-> 
-> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
-> index d6e156516aa6..5130fecffa7b 100644
-> --- a/drivers/rtc/rtc-mt6397.c
-> +++ b/drivers/rtc/rtc-mt6397.c
-> @@ -6,6 +6,7 @@
->  
->  #include <linux/array_size.h>
->  #include <linux/bitfield.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/err.h>
->  #include <linux/interrupt.h>
->  #include <linux/mfd/mt6397/core.h>
-> @@ -317,6 +318,84 @@ static int mtk_rtc_nvram_write(void *priv, unsigned int offset, void *val,
->  	return ret;
->  }
->  
-> +#ifdef CONFIG_COMMON_CLK
-> +static int mtk_rtc_clkout_set(struct clk_hw *hw, bool on)
-> +{
-> +	struct mt6397_rtc *rtc = container_of(hw, struct mt6397_rtc, clkout);
-> +	int ret;
-> +
-> +	mutex_lock(&rtc->lock);
-> +	ret = regmap_update_bits(rtc->regmap, rtc->addr_base + rtc->data->con,
-> +				 RTC_CON_F32KOB, on ? 0 : RTC_CON_F32KOB);
-> +	if (!ret)
-> +		ret = mtk_rtc_write_trigger(rtc);
-> +	mutex_unlock(&rtc->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mtk_rtc_clkout_prepare(struct clk_hw *hw)
-> +{
-> +	return mtk_rtc_clkout_set(hw, true);
-> +}
-> +
-> +static void mtk_rtc_clkout_unprepare(struct clk_hw *hw)
-> +{
-> +	mtk_rtc_clkout_set(hw, false);
-> +}
-> +
-> +static int mtk_rtc_clkout_is_prepared(struct clk_hw *hw)
-> +{
-> +	struct mt6397_rtc *rtc = container_of(hw, struct mt6397_rtc, clkout);
-> +	u32 con;
-> +
-> +	if (regmap_read(rtc->regmap, rtc->addr_base + rtc->data->con, &con))
-> +		return 0;
-> +
-> +	return !(con & RTC_CON_F32KOB);
-> +}
-> +
-> +static unsigned long mtk_rtc_clkout_recalc_rate(struct clk_hw *hw,
-> +						unsigned long parent_rate)
-> +{
-> +	return 32768;
-> +}
-> +
-> +static const struct clk_ops mtk_rtc_clkout_ops = {
-> +	.prepare = mtk_rtc_clkout_prepare,
-> +	.unprepare = mtk_rtc_clkout_unprepare,
-> +	.is_prepared = mtk_rtc_clkout_is_prepared,
-> +	.recalc_rate = mtk_rtc_clkout_recalc_rate,
-> +};
-> +
-> +/* The 32 kHz output the PMIC drives to other chips, such as a combo chip */
-> +static int mtk_rtc_register_clkout(struct device *dev, struct mt6397_rtc *rtc)
-> +{
-> +	struct clk_init_data init = {
-> +		.name = "mt6397-rtc-32k",
-> +		.ops = &mtk_rtc_clkout_ops,
-> +	};
-> +	int ret;
-> +
-> +	if (!rtc->data->con || !of_property_present(dev->of_node, "#clock-cells"))
-> +		return 0;
-> +
-> +	rtc->clkout.init = &init;
-> +
-> +	ret = devm_clk_hw_register(dev, &rtc->clkout);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get,
-> +					   &rtc->clkout);
-> +}
-> +#else
-> +static int mtk_rtc_register_clkout(struct device *dev, struct mt6397_rtc *rtc)
-> +{
-> +	return 0;
-> +}
-> +#endif
-> +
->  static int mtk_rtc_probe(struct platform_device *pdev)
->  {
->  	struct resource *res;
-> @@ -380,6 +459,11 @@ static int mtk_rtc_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	ret = mtk_rtc_register_clkout(&pdev->dev, rtc);
-> +	if (ret)
-> +		return dev_err_probe(&pdev->dev, ret,
-> +				     "failed to register the 32k clock\n");
-> +
->  	nvmem_cfg.priv = rtc;
->  
->  	return devm_rtc_nvmem_register(rtc->rtc_dev, &nvmem_cfg);
-> @@ -416,6 +500,7 @@ static const struct mtk_rtc_data mt6358_rtc_data = {
->  
->  static const struct mtk_rtc_data mt6397_rtc_data = {
->  	.wrtgr = RTC_WRTGR_MT6397,
-> +	.con = RTC_CON_MT6397,
->  };
->  
->  static const struct of_device_id mt6397_rtc_of_match[] = {
-> diff --git a/include/linux/mfd/mt6397/rtc.h b/include/linux/mfd/mt6397/rtc.h
-> index f4da579ec638..a8130d726c59 100644
-> --- a/include/linux/mfd/mt6397/rtc.h
-> +++ b/include/linux/mfd/mt6397/rtc.h
-> @@ -9,6 +9,7 @@
->  #ifndef _LINUX_MFD_MT6397_RTC_H_
->  #define _LINUX_MFD_MT6397_RTC_H_
->  
-> +#include <linux/clk-provider.h>
->  #include <linux/jiffies.h>
->  #include <linux/mutex.h>
->  #include <linux/regmap.h>
-> @@ -22,6 +23,9 @@
->  #define RTC_WRTGR_MT6397       0x003c
->  #define RTC_WRTGR_MT6323       RTC_WRTGR_MT6397
->  
-> +#define RTC_CON_MT6397         0x003e
-> +#define RTC_CON_F32KOB         BIT(5)
-> +
->  #define RTC_IRQ_STA            0x0002
->  #define RTC_IRQ_STA_AL         BIT(0)
->  #define RTC_IRQ_STA_LP         BIT(3)
-> @@ -72,6 +76,7 @@
->  
->  struct mtk_rtc_data {
->  	u32                     wrtgr;
-> +	u32                     con;
+Please pull the arm64 fixes below: hugetlb write fault livelock,
+permission overlay and GCS state preservation across CPU suspend,
+cpuidle context tracking during system suspend, GCS mode handling on
+signal return, AMU counter errata workarounds, kexec loading of images
+with a non-zero text_offset and a spurious ptrace warning.
 
-These are terrible variable names.
+Thanks.
 
-The nomenclature should be self-describing.
+The following changes since commit 58c1eb84e97701c583605ba2fd553b69afba2245:
 
->  };
->  
->  struct mt6397_rtc {
-> @@ -83,6 +88,7 @@ struct mt6397_rtc {
->  	int                     irq;
->  	u32                     addr_base;
->  	const struct mtk_rtc_data *data;
-> +	struct clk_hw           clkout;
->  };
->  
->  #endif /* _LINUX_MFD_MT6397_RTC_H_ */
-> 
-> -- 
-> 2.55.0
-> 
+  arm64: sdei: Preserve the interrupted context's exception registers (2026-11-06 17:43:20 +0000)
 
--- 
-Lee Jones
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux tags/arm64-fixes
+
+for you to fetch changes up to ad3fc05c7e65009355effeea06aa629a687acef2:
+
+  arm64: suspend: Only track cpuidle context for idle tasks (2026-11-13 17:12:34 +0000)
+
+----------------------------------------------------------------
+arm64 fixes:
+
+ - Fix hugetlb write fault livelocks caused by stale read-only TLB
+   entries after another CPU makes the page writable and only performs a
+   local invalidate. Unlike the generic fault path, hugetlb has no
+   fix_spurious_fault() fallback
+
+ - Save and restore POR_EL0, GCSPR_EL0 and GCSCRE0_EL1 across CPU
+   suspend
+
+ - Restrict cpuidle context tracking in cpu_suspend() to idle tasks,
+   avoiding context tracking warnings during system suspend
+
+ - Ignore attempts to change GCS mode through signal return, which
+   updated the software state without updating the hardware. Changes
+   made through prctl() in the signal handler are preserved. This
+   changes the documented ABI but no known userspace relies on it.
+   Allowing mode changes through both prctl() and signal return also
+   creates confusing interactions, with signal return potentially
+   undoing changes deliberately made by the handler
+
+ - Extend the AMU constant counter workaround to additional CPUs and
+   add a core cycle counter workaround for Cortex-A715/A720, treating
+   the affected counters as unavailable
+
+ - Avoid CMA allocations when loading a kexec Image with a non-zero
+   text_offset, fixing an incorrect entry point and a memory leak
+   when freeing the image
+
+ - Remove a spurious ptrace warning when setting the syscall number
+   of a task in a non-seized group-stop without siginfo
+
+----------------------------------------------------------------
+Beata Michalska (2):
+      arm64: errata: Extend the workaround for broken AMEVCNTR01 counter
+      arm64: errata: Add Cortex-A715/A720 AMU core counter workaround
+
+Chris Down (1):
+      arm64: hugetlb: Prevent write fault livelocks on stale TLB entries
+
+Jinjie Ruan (1):
+      arm64: kexec_file: Do not use CMA for images with a non-zero text_offset
+
+Mark Brown (3):
+      arm64: suspend: Save POR_EL0 over suspend
+      arm64: suspend: Save GCS state over suspend
+      arm64/gcs: Ignore attempts to change GCS mode during signal return
+
+Uladzislau Zhauniarovich (1):
+      arm64: suspend: Only track cpuidle context for idle tasks
+
+Zhao Gongyi (1):
+      arm64: ptrace: don't warn on missing siginfo in a group-stop
+
+ Documentation/arch/arm64/gcs.rst            | 13 +++------
+ Documentation/arch/arm64/silicon-errata.rst | 12 ++++++++
+ arch/arm64/Kconfig                          | 44 +++++++++++++++++++++++++++--
+ arch/arm64/include/asm/suspend.h            |  2 +-
+ arch/arm64/kernel/cpu_errata.c              | 28 ++++++++++++++++++
+ arch/arm64/kernel/cpufeature.c              |  3 +-
+ arch/arm64/kernel/kexec_image.c             |  7 +++++
+ arch/arm64/kernel/ptrace.c                  |  8 ++++--
+ arch/arm64/kernel/signal.c                  | 22 +--------------
+ arch/arm64/kernel/suspend.c                 | 11 ++++++--
+ arch/arm64/kernel/topology.c                |  3 +-
+ arch/arm64/mm/hugetlbpage.c                 | 21 ++++++++++++--
+ arch/arm64/mm/proc.S                        | 20 +++++++++++++
+ arch/arm64/tools/cpucaps                    |  1 +
+ 14 files changed, 151 insertions(+), 44 deletions(-)
 
