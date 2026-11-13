@@ -2,58 +2,58 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77588606B24F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D7F7606BD81
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y8l6IOuf;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=ayoA88Gb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lBR3ZXul;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.a=rsa-sha256 header.s=mail20170921 header.b=u1s53RMK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:References:Content-Type:
 	Content-Transfer-Encoding:MIME-Version:In-Reply-To:Message-Id:Date:Subject:Cc
 	:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=28rmWq+A8KDxEjlcVsxlUltityBAAcI5g3XbyuFKJbo=; b=y8l6IOuf3AHPu8
-	Lj5ORTQ1zsBSBXOXoSlvT+Zdm2H8jaM1ThRe6ItJ9eHEvqdjL2e6W5vzJn9kaYnoslJW9wvZVr+CQ
-	63pfEg4cSIl+H0YvXJwxVdYN1+O+xaue8aDeWofMyIRoq5TKDNEMEvv5OYBPEvs5aVdmT+BxEyRfe
-	8gQLA5yE95YeyIMs727wzhdyKKlpi6n2n86nyt/0dHvaF2Cfgq8Zehrn2uz6c6b7ZmkrNkTdkJ17A
-	s4vQJepjRQ/SUZjiVtQzWWoZVO97W2e+kOp6ee1hJ9GtW37cJ0oXE+ojHAh7q6PEdTdb5TpHW+/AQ
-	32lRO/fEMJ6D0swznb4w==;
+	List-Owner; bh=qhFh7zT1+bzubZ3GCKmZli8T8ugrkRfM7QpmtOWqwF8=; b=lBR3ZXul3r/enP
+	5X5zUECYya9RfTKP1mzmW0+tT3Rvi+fbq9NTWD/gebNyNX9qkecMUjdXnM8mW38VjtTRCtBa5bViw
+	rt9azuiCeDzs+39uccL8/rdukrsbjOKykD1TbxJ1AQcTpxn8coH6NC9mUO7sfGd1+oTRzk8e3ezGj
+	6hudfgHIZ4R99cQavIhG85isVuU+5Kdah9tV1iKImmlwa8JM0wjYRom8McHIj8/uZTBWed+on0ar7
+	HWopxxV0xtmvgOhA/SBf8SI0YlFnDaxVf184/lCtdkj2pg6cJ4zET8y6yepom309QKTH3GLVse9a4
+	0zJOIqrN7tbJ9tE+z0/Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRoyv-0000000CR7Y-13r8;
-	Fri, 13 Nov 2026 10:58:09 +0000
-Received: from mailout3.samsung.com ([203.254.224.33])
+	id 1xRoz1-0000000CRAL-1e7k;
+	Fri, 13 Nov 2026 10:58:15 +0000
+Received: from mailout2.samsung.com ([203.254.224.25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRoyr-0000000CR5f-2BBq
+	id 1xRoyt-0000000CR5y-1x6X
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 10:58:07 +0000
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20261113105803epoutp037b5ff41b939d1043ade1bc42195dcaa4~nlZ4-CSTQ0998309983epoutp033
+	Fri, 13 Nov 2026 10:58:09 +0000
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20261113105803epoutp020c3f80c35c74265b141a17b6c648a0a9~nlZ5JJdpY1201712017epoutp02S
 	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:58:03 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20261113105803epoutp037b5ff41b939d1043ade1bc42195dcaa4~nlZ4-CSTQ0998309983epoutp033
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20261113105803epoutp020c3f80c35c74265b141a17b6c648a0a9~nlZ5JJdpY1201712017epoutp02S
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
 	s=mail20170921; t=1794567483;
-	bh=28rmWq+A8KDxEjlcVsxlUltityBAAcI5g3XbyuFKJbo=;
+	bh=qhFh7zT1+bzubZ3GCKmZli8T8ugrkRfM7QpmtOWqwF8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ayoA88GbbNd0Krgn9qxERu7eaF0M3zE6wQ/RXncHoA6DarA6t1dxIi7evU7lWhJF8
-	 OxGhHr1R5KsUbZ+nI98xfCR88Zots2NEQFzKXrLZHWPoU+4DgNhTu5Rt9QB/LctGim
-	 YolkIdFY2HUsNlcG8AbjjJJ5R3LlDM3KQSarsSqI=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
-	20261113105802epcas5p40800810aca811156bf17fde289e03840~nlZ4XUPA-1246012460epcas5p4b;
-	Fri, 13 Nov 2026 10:58:02 +0000 (GMT)
+	b=u1s53RMKS4d41x3WlHcK5Cj0e8pIrS+08KlB9ZmNnowQmlvZofpgwRq9fStkqId1M
+	 g0Y+s9VZJGvPGfo7PhhzpAJIQwbQBaXN+P2F3Z9/Kt985/gR3ZOZO8BJt4AyvLwJtg
+	 DBcN9PWL1Fiq3Pn/r1t1yckpHj8xR4CW5pVKm7LQ=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20261113105803epcas5p3885531154ec8e0cd5610ed634c9dfe12~nlZ4pxRFU2375523755epcas5p3G;
+	Fri, 13 Nov 2026 10:58:03 +0000 (GMT)
 Received: from epcpadp2new (unknown [182.195.40.142]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4jQvP658Npz6B9m6; Fri, 13 Nov
-	2026 10:58:02 +0000 (GMT)
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4jQvP70DP5z6B9m6; Fri, 13 Nov
+	2026 10:58:03 +0000 (GMT)
 Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
 	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20261113104835epcas5p4771d9933265138321769ebe010ee7334~nlRnyv-c60561205612epcas5p46;
-	Fri, 13 Nov 2026 10:48:35 +0000 (GMT)
+	20261113104844epcas5p4c1cb0c31de8b5b445f7f0060f81cf753~nlRwAgOo21464514645epcas5p4O;
+	Fri, 13 Nov 2026 10:48:44 +0000 (GMT)
 Received: from bose.samsungds.net (unknown [107.108.83.9]) by
 	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20261113104832epsmtip21927b4edd91e850e5510fdf06ba996a2~nlRlQH48k2501325013epsmtip2G;
-	Fri, 13 Nov 2026 10:48:32 +0000 (GMT)
+	20261113104841epsmtip261c51c6b828a5949207dbae96280c353~nlRtf8azg2503825038epsmtip2I;
+	Fri, 13 Nov 2026 10:48:41 +0000 (GMT)
 From: Raghav Sharma <raghav.s@samsung.com>
 To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
 	peter.griffin@linaro.org, alim.akhtar@samsung.com, sboyd@kernel.org,
@@ -64,28 +64,28 @@ Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org, is.gandhi@samsung.com, ts.amit@samsung.com,
 	pokala.reddy@samsung.com, Krzysztof Kozlowski
 	<krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v3 02/14 RESEND] dt-bindings: clock: exynos8855: add top &
- peric clock definitions
-Date: Fri, 13 Nov 2026 16:36:00 +0530
-Message-Id: <973576304.21794567482719.JavaMail.epsvc@epcpadp2new>
+Subject: [PATCH v3 05/14 RESEND] dt-bindings: clock: exynos8855: add usb
+ clock definitions
+Date: Fri, 13 Nov 2026 16:36:03 +0530
+Message-Id: <927327686.61794567483016.JavaMail.epsvc@epcpadp2new>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261113110612.3265841-1-raghav.s@samsung.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20261113104835epcas5p4771d9933265138321769ebe010ee7334
+X-CMS-MailID: 20261113104844epcas5p4c1cb0c31de8b5b445f7f0060f81cf753
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 X-Sendblock-Type: REQ_APPROVE
 CMS-TYPE: 105P
 X-CPGSPASS: Y
 X-Hop-Count: 3
-X-CMS-RootMailID: 20261113104835epcas5p4771d9933265138321769ebe010ee7334
+X-CMS-RootMailID: 20261113104844epcas5p4c1cb0c31de8b5b445f7f0060f81cf753
 References: <20261113110612.3265841-1-raghav.s@samsung.com>
-	<CGME20261113104835epcas5p4771d9933265138321769ebe010ee7334@epcas5p4.samsung.com>
+	<CGME20261113104844epcas5p4c1cb0c31de8b5b445f7f0060f81cf753@epcas5p4.samsung.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_025806_216714_B49110B9 
-X-CRM114-Status: GOOD (  17.41  )
+X-CRM114-CacheID: sfid-20261113_025807_836419_E6F9BE36 
+X-CRM114-Status: GOOD (  11.77  )
 X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -105,368 +105,71 @@ X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add device tree clock binding definitions for CMU_TOP & CMU_PERIC
+Add device tree clock binding definitions for CMU_USB
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 ---
- .../clock/samsung,exynos8855-clock.yaml       | 133 +++++++++++
- .../dt-bindings/clock/samsung,exynos8855.h    | 206 ++++++++++++++++++
- 2 files changed, 339 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
- create mode 100644 include/dt-bindings/clock/samsung,exynos8855.h
+ .../clock/samsung,exynos8855-clock.yaml       | 21 +++++++++++++++++++
+ .../dt-bindings/clock/samsung,exynos8855.h    |  8 +++++++
+ 2 files changed, 29 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-new file mode 100644
-index 000000000000..486b7347ad44
---- /dev/null
+index 21928235d131..c68a64eb35c5 100644
+--- a/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
 +++ b/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-@@ -0,0 +1,133 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/samsung,exynos8855-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung Exynos 8855 SoC clock controller
-+
-+maintainers:
-+  - Raghav Sharma <raghav.s@samsung.com>
-+
-+description: |
-+  Exynos 8855 clock controller is comprised of several CMU units, generating
-+  clocks for different domains. Those CMU units are modeled as separate device
-+  tree nodes, and might depend on each other. Root clocks in that clock tree are
-+  two external clocks:: OSCCLK/XTCXO (76.8 MHz) and RTCCLK/XrtcXTI (32768 Hz).
-+  The external OSCCLK must be defined as fixed-rate clock in dts.
-+
-+  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
-+  dividers; all other clocks of function blocks (other CMUs) are usually
-+  derived from CMU_TOP.
-+
-+  Each clock is assigned an identifier and client nodes can use this identifier
-+  to specify the clock which they consume. All clocks available for usage
-+  in clock consumer nodes are defined as preprocessor macros in
-+  'include/dt-bindings/clock/samsung,exynos8855.h' header.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - samsung,exynos8855-cmu-peric
-+      - samsung,exynos8855-cmu-top
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 4
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 4
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  samsung,sysreg:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to system registers interface.
-+
-+allOf:
+@@ -32,6 +32,7 @@ properties:
+       - samsung,exynos8855-cmu-peric
+       - samsung,exynos8855-cmu-peris
+       - samsung,exynos8855-cmu-top
++      - samsung,exynos8855-cmu-usb
+ 
+   clocks:
+     minItems: 1
+@@ -143,6 +144,26 @@ allOf:
+       required:
+         - samsung,sysreg
+ 
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
-+            const: samsung,exynos8855-cmu-peric
++            const: samsung,exynos8855-cmu-usb
 +
 +    then:
 +      properties:
 +        clocks:
 +          items:
 +            - description: External reference clock (76.8 MHz)
-+            - description: CMU_PERIC NOC clock (from CMU_TOP)
-+            - description: CMU_PERIC MMC_CARD clock (from CMU_TOP)
-+            - description: CMU_PERIC IP clock (from CMU_TOP)
++            - description: CMU_USB NOC clock (from CMU_TOP)
++            - description: CMU_USB USB20DRD clock (from CMU_TOP)
 +
 +        clock-names:
 +          items:
 +            - const: oscclk
 +            - const: bus
-+            - const: mmc_card
-+            - const: ip
++            - const: usb20drd
 +
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos8855-cmu-top
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: External reference clock (76.8 MHz)
-+
-+        clock-names:
-+          items:
-+            - const: oscclk
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos8855-cmu-top
-+    then:
-+      properties:
-+        samsung,sysreg: false
-+    else:
-+      required:
-+        - samsung,sysreg
-+
-+required:
-+  - compatible
-+  - "#clock-cells"
-+  - clocks
-+  - clock-names
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/samsung,exynos8855.h>
-+
-+    cmu_peric0: clock-controller@15400000 {
-+        compatible = "samsung,exynos8855-cmu-peric";
-+        reg = <0x15400000 0x8000>;
-+        #clock-cells = <1>;
-+
-+        clocks = <&xtcxo>,
-+                 <&cmu_top CLKCMU_DOUT_PERIC_NOC>,
-+                 <&cmu_top CLKCMU_DOUT_PERIC_MMC_CARD>,
-+                 <&cmu_top CLKCMU_DOUT_PERIC_IP>;
-+        clock-names = "oscclk",
-+                      "bus",
-+                      "mmc_card",
-+                      "ip";
-+        samsung,sysreg = <&sysreg_peric>;
-+    };
-+
-+...
+ required:
+   - compatible
+   - "#clock-cells"
 diff --git a/include/dt-bindings/clock/samsung,exynos8855.h b/include/dt-bindings/clock/samsung,exynos8855.h
-new file mode 100644
-index 000000000000..cd445bb45070
---- /dev/null
+index 67cd97d8fab8..f4261956ab4a 100644
+--- a/include/dt-bindings/clock/samsung,exynos8855.h
 +++ b/include/dt-bindings/clock/samsung,exynos8855.h
-@@ -0,0 +1,206 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2026 Samsung Electronics Co., Ltd.
-+ * Author: Raghav Sharma <raghav.s@samsung.com>
-+ *
-+ * Device Tree binding constants for Exynos 8855 clock controller.
-+ */
+@@ -222,4 +222,12 @@
+ #define CLK_GOUT_UFS_EMBD_ACLK_HSI         5
+ #define CLK_GOUT_UFS_EMBD_UNIPRO_HSI       6
+ 
++/* CMU_USB */
++#define CLK_MOUT_USB_NOC_USER              1
++#define CLK_MOUT_USB_USB20DRD              2
++#define CLK_MOUT_USB_USB20DRD_USER         3
++#define CLK_DOUT_USB_NOC_DIV3              4
++#define CLK_GOUT_CMU_USB                   5
++#define CLK_GOUT_SYSREG_USB                6
 +
-+#ifndef _DT_BINDINGS_CLOCK_EXYNOS8855_H
-+#define _DT_BINDINGS_CLOCK_EXYNOS8855_H
-+
-+/* CMU_TOP  */
-+#define FOUT_SHARED0_PLL		   1
-+#define FOUT_SHARED1_PLL		   2
-+#define FOUT_SHARED2_PLL		   3
-+#define FOUT_SHARED3_PLL		   4
-+#define FOUT_SHARED4_PLL		   5
-+#define FOUT_MMC_PLL			   6
-+#define MOUT_SHARED0_PLL		   7
-+#define MOUT_SHARED1_PLL		   8
-+#define MOUT_SHARED2_PLL		   9
-+#define MOUT_SHARED3_PLL		   10
-+#define MOUT_SHARED4_PLL		   11
-+#define MOUT_MMC_PLL			   12
-+#define CLKCMU_MOUT_PERIC_NOC              13
-+#define CLKCMU_MOUT_PERIC_MMC_CARD         14
-+#define CLKCMU_MOUT_PERIC_IP               15
-+#define CLKCMU_DOUT_PERIC_NOC              16
-+#define CLKCMU_DOUT_PERIC_MMC_CARD         17
-+#define CLKCMU_DOUT_PERIC_IP               18
-+#define DOUT_SHARED0_DIV1		   19
-+#define DOUT_SHARED0_DIV2		   20
-+#define DOUT_SHARED0_DIV3		   21
-+#define DOUT_SHARED0_DIV4		   22
-+#define DOUT_SHARED1_DIV1		   23
-+#define DOUT_SHARED1_DIV2		   24
-+#define DOUT_SHARED1_DIV3		   25
-+#define DOUT_SHARED1_DIV4		   26
-+#define DOUT_SHARED2_DIV1		   27
-+#define DOUT_SHARED2_DIV2		   28
-+#define DOUT_SHARED2_DIV3		   29
-+#define DOUT_SHARED2_DIV4		   30
-+#define DOUT_SHARED3_DIV1		   31
-+#define DOUT_SHARED3_DIV2		   32
-+#define DOUT_SHARED3_DIV3		   33
-+#define DOUT_SHARED3_DIV4		   34
-+#define DOUT_SHARED4_DIV1		   35
-+#define DOUT_SHARED4_DIV2		   36
-+#define DOUT_SHARED4_DIV3		   37
-+#define DOUT_SHARED4_DIV4		   38
-+#define FOUT_MMC_PLL_DIV1                  39
-+#define FOUT_MMC_PLL_DIV2                  40
-+#define CLKCMU_MOUT_PERIS_GIC              41
-+#define CLKCMU_MOUT_PERIS_NOC              42
-+#define CLKCMU_DOUT_PERIS_GIC              43
-+#define CLKCMU_DOUT_PERIS_NOC              44
-+#define FOUT_MMC_PLL_CLKOUT_DIV2           45
-+#define CLKCMU_MOUT_HSI_NOC                46
-+#define CLKCMU_MOUT_HSI_UFS_EMBD           47
-+#define CLKCMU_DOUT_HSI_NOC                48
-+#define CLKCMU_DOUT_HSI_UFS_EMBD           49
-+#define CLKCMU_MOUT_USB_NOC                50
-+#define CLKCMU_MOUT_USB_USB20DRD           51
-+#define CLKCMU_DOUT_USB_NOC                52
-+#define CLKCMU_DOUT_USB_USB20DRD           53
-+#define FOUT_MIF_SWITCH_PLL		   54
-+#define MOUT_MIF_SWITCH_PLL		   55
-+#define FOUT_MMC_PLL_DIV3                  56
-+#define FOUT_MMC_PLL_DIV4                  57
-+#define FOUT_MIF_SWITCH_PLL_DIV1           58
-+#define FOUT_MIF_SWITCH_PLL_DIV2           59
-+#define FOUT_MIF_SWITCH_PLL_DIV3           60
-+#define FOUT_MIF_SWITCH_PLL_DIV4           61
-+#define CLKCMU_MOUT_AUD_CPU                62
-+#define CLKCMU_MOUT_AUD_NOC                63
-+#define CLKCMU_MOUT_CPUCL0_SWITCH          64
-+#define CLKCMU_MOUT_CPUCL0_NOCP            65
-+#define CLKCMU_MOUT_DSU_SWITCH             66
-+#define CLKCMU_MOUT_CPUCL1_SWITCH          67
-+#define CLKCMU_MOUT_CIS_CLK0               68
-+#define CLKCMU_MOUT_CIS_CLK1               69
-+#define CLKCMU_MOUT_CIS_CLK2               70
-+#define CLKCMU_MOUT_CIS_CLK3               71
-+#define CLKCMU_MOUT_CIS_CLK4               72
-+#define CLKCMU_MOUT_CMU_BOOST_TOP          73
-+#define CLKCMU_MOUT_CMU_BOOST              74
-+#define CLKCMU_MOUT_CMU_BOOST_CPU          75
-+#define CLKCMU_MOUT_CMU_BOOST_MIF0         76
-+#define CLKCMU_MOUT_CSIS_NOC               77
-+#define CLKCMU_MOUT_CSTAT_NOC              78
-+#define CLKCMU_MOUT_CSTAT_BYRP             79
-+#define CLKCMU_MOUT_DPU_NOC                80
-+#define CLKCMU_MOUT_G3DCORE_SWITCH         81
-+#define CLKCMU_MOUT_M2M_NOC                82
-+#define CLKCMU_MOUT_M2M_JPEG               83
-+#define CLKCMU_MOUT_M2M_GDC                84
-+#define CLKCMU_MOUT_MIF1_NOCP              85
-+#define CLKCMU_MOUT_MFC_NOC                86
-+#define CLKCMU_MOUT_MIF0_NOCP              87
-+#define CLKCMU_MOUT_NOCL0_NOC              88
-+#define CLKCMU_MOUT_NOCL1A_NOC             89
-+#define CLKCMU_MOUT_RGBP_NOC               90
-+#define CLKCMU_MOUT_YUVP_NOC               91
-+#define CLKCMU_MOUT_ALIVE_NOC              92
-+#define CLKCMU_MOUT_CSIS_DCPHY             93
-+#define CLKCMU_MOUT_CSIS_OIS               94
-+#define CLKCMU_MOUT_ICPU_NOCD_0            95
-+#define CLKCMU_MOUT_ICPU_NOCD_1            96
-+#define CLKCMU_MOUT_GNPU0_NOC              97
-+#define CLKCMU_MOUT_GNPU0_XMAA             98
-+#define CLKCMU_MOUT_SDMA_NOC               99
-+#define CLKCMU_MOUT_DNC_HTU               100
-+#define CLKCMU_MOUT_DNC_NOC               101
-+#define CLKCMU_MOUT_PSP_NOC               102
-+#define CLKCMU_MOUT_G3D_NOCP              103
-+#define CLKCMU_MOUT_USI_NOC               104
-+#define CLKCMU_MOUT_USI_IP                105
-+#define CLKCMU_MOUT_CPUCL0_DBG_NOC        106
-+#define CLKCMU_MOUT_BOOST_RCO             107
-+#define CLKCMU_MOUT_MIF0_SWITCH           108
-+#define CLKCMU_MOUT_MIF1_SWITCH           109
-+#define CLKCMU_MOUT_NOCL1B_NOC            110
-+#define CLKCMU_MOUT_CPUCL2_SWITCH         111
-+#define CLKCMU_MOUT_CMU_BOOST_MIF1        112
-+#define CLKCMU_MOUT_CSTAT_MCSC            113
-+#define CLKCMU_MOUT_G3D_HTU               114
-+#define CLKCMU_DOUT_AUD_CPU               115
-+#define CLKCMU_DOUT_AUD_NOC               116
-+#define CLKCMU_DOUT_CPUCL0_SWITCH         117
-+#define CLKCMU_DOUT_CPUCL0_NOCP           118
-+#define CLKCMU_DOUT_DSU_SWITCH            119
-+#define CLKCMU_DOUT_CPUCL1_SWITCH         120
-+#define CLKCMU_DOUT_CIS_CLK0              121
-+#define CLKCMU_DOUT_CIS_CLK1              122
-+#define CLKCMU_DOUT_CIS_CLK2              123
-+#define CLKCMU_DOUT_CIS_CLK3              124
-+#define CLKCMU_DOUT_CIS_CLK4              125
-+#define CLKCMU_DOUT_CMU_BOOST_TOP         126
-+#define CLKCMU_DOUT_CMU_BOOST             127
-+#define CLKCMU_DOUT_CMU_BOOST_CPU         128
-+#define CLKCMU_DOUT_CMU_BOOST_MIF0        129
-+#define CLKCMU_DOUT_CSIS_NOC              130
-+#define CLKCMU_DOUT_CSTAT_NOC             131
-+#define CLKCMU_DOUT_CSTAT_BYRP            132
-+#define CLKCMU_DOUT_DPU_NOC               133
-+#define CLKCMU_DOUT_G3DCORE_SWITCH        134
-+#define CLKCMU_DOUT_M2M_NOC               135
-+#define CLKCMU_DOUT_M2M_JPEG              136
-+#define CLKCMU_DOUT_M2M_GDC               137
-+#define CLKCMU_DOUT_MIF1_NOCP             138
-+#define CLKCMU_DOUT_MFC_NOC               139
-+#define CLKCMU_DOUT_MIF0_NOCP             140
-+#define CLKCMU_DOUT_NOCL0_NOC             141
-+#define CLKCMU_DOUT_NOCL1A_NOC            142
-+#define CLKCMU_DOUT_RGBP_NOC              143
-+#define CLKCMU_DOUT_YUVP_NOC              144
-+#define CLKCMU_DOUT_ALIVE_NOC             145
-+#define CLKCMU_DOUT_CSIS_DCPHY            146
-+#define CLKCMU_DOUT_CSIS_OIS              147
-+#define CLKCMU_DOUT_ICPU_NOCD_0           148
-+#define CLKCMU_DOUT_ICPU_NOCD_1           149
-+#define CLKCMU_DOUT_GNPU0_NOC             150
-+#define CLKCMU_DOUT_GNPU0_XMAA            151
-+#define CLKCMU_DOUT_SDMA_NOC              152
-+#define CLKCMU_DOUT_DNC_HTU               153
-+#define CLKCMU_DOUT_DNC_NOC               154
-+#define CLKCMU_DOUT_PSP_NOC               155
-+#define CLKCMU_DOUT_G3D_NOCP              156
-+#define CLKCMU_DOUT_USI_NOC               157
-+#define CLKCMU_DOUT_USI_IP                158
-+#define CLKCMU_DOUT_CPUCL0_DBG_NOC        159
-+#define CLKCMU_DOUT_NOCL1B_NOC            160
-+#define CLKCMU_DOUT_CPUCL2_SWITCH         161
-+#define CLKCMU_DOUT_CMU_BOOST_MIF1        162
-+#define CLKCMU_DOUT_CSTAT_MCSC            163
-+#define CLKCMU_DOUT_G3D_HTU               164
-+
-+/* CMU_PERIC */
-+#define CLK_MOUT_PERIC_IP_USER             1
-+#define CLK_MOUT_PERIC_MMC_CARD_USER       2
-+#define CLK_MOUT_PERIC_NOC_USER            3
-+#define CLK_MOUT_PERIC_I2C                 4
-+#define CLK_MOUT_PERIC_UART_DBG            5
-+#define CLK_MOUT_PERIC_USI00               6
-+#define CLK_MOUT_PERIC_USI01               7
-+#define CLK_MOUT_PERIC_USI02               8
-+#define CLK_MOUT_PERIC_USI03               9
-+#define CLK_MOUT_PERIC_USI04               10
-+#define CLK_MOUT_PERIC_USI09_USI_OIS       11
-+#define CLK_MOUT_PERIC_USI10_USI_OIS       12
-+#define CLK_DOUT_PERIC_NOCP                13
-+#define CLK_DOUT_PERIC_UART_DBG            14
-+#define CLK_DOUT_PERIC_USI00_USI           15
-+#define CLK_DOUT_PERIC_USI01_USI           16
-+#define CLK_DOUT_PERIC_USI02_USI           17
-+#define CLK_DOUT_PERIC_USI03_USI           18
-+#define CLK_DOUT_PERIC_USI04_USI           19
-+#define CLK_DOUT_PERIC_USI09_USI_OIS       20
-+#define CLK_DOUT_PERIC_USI10_USI_OIS       21
-+#define CLK_DOUT_PERIC_USI_I2C             22
-+#define CLK_GOUT_CMU_PERIC                 23
-+#define CLK_GOUT_SYSREG_PERIC              24
-+#define CLK_GOUT_UART_DBG_PERIC            25
-+#define CLK_GOUT_USI_PERIC                 26
-+
-+#endif /* _DT_BINDINGS_CLOCK_EXYNOS8855_H */
+ #endif /* _DT_BINDINGS_CLOCK_EXYNOS8855_H */
 -- 
 2.34.1
 
