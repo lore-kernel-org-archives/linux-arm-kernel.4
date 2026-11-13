@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83F2606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D607606A88F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:51:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lrXeDiq5;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lkNi0WJe
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ygNGMQnP;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fozEA5AF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
@@ -14,37 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=GjFNdrxT3EZFR3J6YnNd1f/Z2k934t/npf1oL+Xxd74=; b=lrXeDiq5sJdr2Fx2bZy19WY3j2
-	hsMuxls/D7dP5OaZbJtY0M3/Heo6DTCbNVpaUBO/9vExtRHg55rNDQl8oU5CEZYAThx5lL5ieBhd5
-	KxYxNxBG/0ahbKK3sb94T/cMXBJ+ldZCTJTEILb4QA9WWR9V2D2se5ugTJFFMVvl2Ee1u6MKQhi0e
-	yWh+4njjMk/iWB17n1BOX9kw3we0zwY5hteKOVom3bKksdOjNCakg2MlD8aJ6ZnN7xKQrKbhQUNKY
-	ojSrU3ngMUHvi9tA16GKGMMknjiKXYEg4PStlnHoBKuXqtjwk7fIGIcVFEnYqUkl8gQFdkHZhOcHC
-	6opymHlA==;
+	bh=Kbug0i2azHhZSrQxD3FTjyQMkcwVwvLBJeQgIdTmpKw=; b=ygNGMQnP4DCruzd1TL8DUwsf0i
+	2O0Z3T5IyI+Rl5m0uUVVjtCNAyWvoz4slK7K0IQu7bB/WI0db9drX6FSyc68P4WZ/sMqcIBx5xCxG
+	PZWs+wGvoD50oXBv7hcj6D3xhrc1V9I8snJ5Uf5VvngZQQztqo1wsY9uDAdWexotMFVsNSq7vF+iN
+	nKmRJkRWSwaVG9J+WCA4+5WF76rqDPf78A6RFDSrQsfuyYizg4yCpxX4z7cQLWeDmrXDIiAZ9cyt6
+	uwcH3V2ElcVb5PRnrqDhMXFB7B1KOFASHGQa4pk70MvUoFerGBi0NbA+7g0f+Ec13tmDy+vLhM/Ur
+	/BrWOGwA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkC9-0000000BisX-0mL7;
+	id 1xRkC9-0000000Bisx-1Uju;
 	Fri, 13 Nov 2026 05:51:29 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkC7-0000000BisE-3NWg;
-	Fri, 13 Nov 2026 05:51:27 +0000
+	id 1xRkC8-0000000BisO-2WN4;
+	Fri, 13 Nov 2026 05:51:28 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8DB6D61404;
+	by sea.source.kernel.org (Postfix) with ESMTP id 1114146058;
+	Fri, 13 Nov 2026 05:51:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1EE91F000C8;
 	Fri, 13 Nov 2026 05:51:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 117941F000C8;
-	Fri, 13 Nov 2026 05:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794549086;
-	bh=GjFNdrxT3EZFR3J6YnNd1f/Z2k934t/npf1oL+Xxd74=;
+	s=k20260515; t=1794549088;
+	bh=Kbug0i2azHhZSrQxD3FTjyQMkcwVwvLBJeQgIdTmpKw=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=lkNi0WJeOwuHsOONt4kswun2pDApIBs0KFMSAwcGgXveBRLLWwsWzxZiBA+wmzVRm
-	 aDXJz5A/WG+ht+rX6gAiKuUcIys5pvIHz/8YRLkgVnR+d3vXeNdO9ly1lcAzmvoUgL
-	 750MWv3GfoMcL1A8aFvgbMO35MyG+jKdssBcJW0K2XqbPyWTYPVtro3PedEkB7txfa
-	 S+csPzK/tfaFktsR9fkycsF0Zo3imP1STx+9L4YL1z22Jib8n8p1qrSdWZ3MRr2KBU
-	 qjsVvgzJnMahByMt1sTaQD+OGz89baO2mADlxNS28Fg8/Mx5bQzrvn+ATWEROOYk/V
-	 QT4rDzwwq0AbQ==
-Subject: Re: [PATCH net v5 1/4] net: phy: move irq_suspended and irq_rerun out
- of the bitfield
+	b=fozEA5AFMJwnW4bzEl7G8aFE83bWmL1l9ouF7n83SfLJXUr3Sla0V0KDPASsKeypu
+	 mWaXBOaQFDm+7NDnoFOtp1k6VEXP51IUm62/jS1efCKtka5cdKA7mT2O0ekzk0qNTV
+	 EOIrTgZwJTTjb3OFM8VyHFrb5Z0ZCCr1ST5wmtvn6WHFSTpZu6gE+NSF9FLq6Cd1yi
+	 r9KLIVO7qrNoLnge/NUk3kU3Wnk+LluO1FsMjhv+Gm6oMGwrQocHFsrGnTEeml2q24
+	 L8wBH24y8PKZoPlT98mHDkdyEi4Mx49tD8sNyN90Nmm9vvN11dl12/OOPjcwqFKIVm
+	 ZAfUVGHUL11sQ==
+Subject: Re: [PATCH net v5 2/4] net: phy: keep the line of a postponed PHY
+ interrupt balanced
 From: netdev-bot+sashiko@kernel.org
 To: iav@iav.lv
 Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
@@ -55,11 +55,11 @@ Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
  shenwei.wang@nxp.com, Haoning.CHENG@cn.bosch.com, netdev@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Date: Fri, 13 Nov 2026 05:51:24 +0000
-Message-ID: <179454908461.2199510.508928890759611464@kernel.org>
-In-Reply-To: <20261111-b4-phylib-mac-pm-irq-v3-v5-1-bbfdb5afb7d3@iav.lv>
-References: <20261111-b4-phylib-mac-pm-irq-v3-v5-1-bbfdb5afb7d3@iav.lv>
-X-sashiko-severity: Low
+Date: Fri, 13 Nov 2026 05:51:26 +0000
+Message-ID: <179454908644.2199510.9163619774771791131@kernel.org>
+In-Reply-To: <20261111-b4-phylib-mac-pm-irq-v3-v5-2-bbfdb5afb7d3@iav.lv>
+References: <20261111-b4-phylib-mac-pm-irq-v3-v5-2-bbfdb5afb7d3@iav.lv>
+X-sashiko-severity: Medium
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
@@ -81,92 +81,170 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found more severe
-issue(s) in other patches of this series. This mail is only an FYI, in case
-you want to address the nit picks below when you respin.
+Thank you for your contribution! Sashiko AI review found 3 potential
+issue(s) to consider.
 
-Low priority / nit picks for your consideration:
+Critical: 0 · High: 0 · Medium: 2 · Low: 1
 
-- [Low] The patch adds the comment "/* Written without phydev->lock, so
-  not bitfields */" above irq_suspended and irq_rerun in struct…
+If you believe none of the issues are legitimate, please reply to each
+issue of Medium severity or higher and explain why the AI is wrong.
+If any of them are legitimate and you plan to respin, please let patchwork
+know by including "pw-bot: cr" as a separate line at the end of your reply
+(one such reply per series is enough).
+
+- [Medium] phy_free_interrupt() (drivers/net/phy/phy.c) can re-enable a
+  shared line that the PHY may still be asserting.
+- [Medium] phy_free_interrupt() gives back the depth that the postponed
+  disable_irq_nosync() took.
+- [Low] In phy_free_interrupt() (drivers/net/phy/phy.c), the check
+  irq_has_action(phydev->irq) and the following enable_irq(phydev->irq)…
 
 --
 
-net: phy: move irq_suspended and irq_rerun out of the bitfield
+net: phy: keep the line of a postponed PHY interrupt balanced
 
-This commit turns irq_suspended and irq_rerun in struct phy_device from
-1-bit bitfields into bools. phy_interrupt() sets irq_rerun without
-phydev->lock, and that write could lose an update to link and
-autoneg_complete, which share the same word. After this change the two
-flags are separate memory locations.
+This patch makes only the phy_interrupt() run that sets irq_rerun disable
+the line. phy_free_interrupt() now consumes irq_rerun after free_irq() and
+calls enable_irq() when other actions remain on the line. It also adds
+irq_pm_lock to serialize phy_free_interrupt() against the rerun in
+mdio_bus_phy_resume_irq().
 
-> diff --git a/include/linux/phy.h b/include/linux/phy.h
-> index 21afc2082b174..bbe28ff97e51c 100644
-> --- a/include/linux/phy.h
-> +++ b/include/linux/phy.h
-> @@ -726,8 +726,9 @@ struct phy_device {
->  
->  	/* Interrupts are enabled */
->  	unsigned interrupts:1;
-> -	unsigned irq_suspended:1;
-> -	unsigned irq_rerun:1;
-> +	/* Written without phydev->lock, so not bitfields */
+> diff --git a/drivers/net/phy/phy.c b/drivers/net/phy/phy.c
+> index 9af303d60bd6b..ea22ebb14a832 100644
+> --- a/drivers/net/phy/phy.c
+> +++ b/drivers/net/phy/phy.c
+
+[ ... ]
+
+> @@ -1507,7 +1510,18 @@ EXPORT_SYMBOL(phy_request_interrupt);
+>  void phy_free_interrupt(struct phy_device *phydev)
+>  {
+>  	phy_disable_interrupts(phydev);
+> +
+> +	mutex_lock(&phydev->irq_pm_lock);
+>  	free_irq(phydev->irq, phydev);
+> +	/* Give the depth a postponed interrupt took back to the other users of
+> +	 * a shared line; requesting a line we were alone on resets its depth.
+> +	 */
+> +	if (phydev->irq_rerun) {
+> +		phydev->irq_rerun = false;
+> +		if (irq_has_action(phydev->irq))
+> +			enable_irq(phydev->irq);
+
+[Severity: Medium]
+Can this unmask a shared line while the PHY is still asserting it?
+
+phy_free_interrupt() ignores the return value of phy_disable_interrupts().
+Also, a postponed interrupt never acknowledged the PHY status: the
+postponed path in phy_interrupt() returns IRQ_HANDLED without calling the
+driver's handle_interrupt().
+
+If the MDIO write in phy_disable_interrupts() fails, the PHY interrupt
+mask and latched status stay set. On a level-triggered shared line,
+enable_irq() then unmasks the line with no PHY handler installed.
+
+If none of the remaining handlers claims the interrupt, would
+note_interrupt() eventually disable the line with IRQS_SPURIOUS_DISABLED
+for every remaining user?
+
+That failure looks reachable with cpsw_new once the later patch "net: phy:
+postpone PHY interrupts during sleep with MAC-managed PM" is applied. The
+davinci_mdio controller is a child created by devm_of_platform_populate(),
+so it suspends first, and davinci_mdio_suspend() calls
+pm_runtime_force_suspend(). Then:
+
+cpsw_suspend()
+  cpsw_ndo_stop()
+    phy_disconnect()
+      phy_free_interrupt()
+        phy_disable_interrupts()
+          davinci_mdio_write()
+            pm_runtime_resume_and_get()  <- fails, runtime PM disabled
+
+Before this patch, the line stayed disabled until mdio_bus_phy_resume(),
+which runs after the MAC reopens and installs the PHY handler again. With
+this patch, the line is unmasked from the close until
+suspend_device_irqs(). It is unmasked again from resume_device_irqs()
+until the MAC reopens. Nothing clears the source in either window.
+
+The commit message says:
+
+    Re-enabling after free_irq(), not
+    before, leaves no PHY handler to run again on a source that
+    phy_disable_interrupts() did not clear.
+
+That covers the PHY handler, but what about the other sharers on the
+line? Should the enable_irq() be skipped when phy_disable_interrupts()
+fails?
+
+[Severity: Medium]
+Is this enable_irq() still balanced if phy_free_interrupt() runs inside
+the noirq window on a wake-armed line?
+
+The commit message names stmmac_reset_subtask(), whose workqueue does not
+freeze, as a path into phy_free_interrupt() during the sleep transition.
+stmmac_suspend() does not set STMMAC_DOWN, so the subtask can run.
+
+bcm_phy_set_wol() calls enable_irq_wake(phydev->irq). Several irqchips set
+IRQCHIP_ENABLE_WAKEUP_ON_SUSPEND: gpio-mxc, gpio-vf610, pinctrl-msm,
+qcom-pdc, pinctrl-amd and pinctrl-starfive-jhb100.
+
+Consider this sequence, with another action still on the line:
+
+phy_interrupt()
+  disable_irq_nosync()           depth 0 -> 1
+
+suspend_device_irq()
+  __enable_irq()                 depth 1 -> 0
+  irqd_set(irqd, IRQD_IRQ_ENABLED_ON_SUSPEND)
+
+phy_free_interrupt()
+  irq_has_action() is true
+  enable_irq()
+    __enable_irq() case 0        WARN "Unbalanced enable for IRQ"
+
+resume_irq()
+  __disable_irq()                depth 0 -> 1
+
+The line is not IRQS_SUSPENDED, so nothing enables it again on resume.
+irq_rerun has already been consumed, so mdio_bus_phy_resume_irq() does
+nothing either. A shared re-request from dev_open() does not touch the
+depth.
+
+Would the line then stay disabled after resume for every user, including
+the reopened PHY? Before this patch, irq_rerun stayed set until
+mdio_bus_phy_resume(), which ran after resume_irq() had restored depth 1.
 
 [Severity: Low]
-This isn't a bug, but the new comment states a rule that the
-neighbouring fields don't follow. Several of them are written without
-phydev->lock. They are still 1-bit bitfields in the same run as link
-and autoneg_complete, and the state machine writes those two under the
-lock.
+Can the irq_has_action() check race with another driver requesting the
+same line?
 
-interrupts, the field just above, is written in phy_config_interrupt():
+By this point free_irq() has already dropped desc->request_mutex.
+irq_has_action() only returns a snapshot. irq_pm_lock is per-phydev, so
+other drivers don't take it.
 
-drivers/net/phy/phy.c:phy_config_interrupt() {
-    ...
-	phydev->interrupts = interrupts ? 1 : 0;
-    ...
-}
+Suppose the PHY was the last user and a postponed interrupt left depth
+at 1:
 
-This is reached from phy_request_interrupt()/phy_free_interrupt(). Some
-PHY drivers also set it in their suspend/resume paths (dp83867, micrel,
-marvell-88q2xxx).
+free_irq()
+  irq_shutdown()                 depth 1 -> 2
 
-phy_suspend() writes wol_enabled and suspended:
+                                 other driver: request_irq()
+                                   __setup_irq()
+                                     irq_startup()   depth = 0
 
-drivers/net/phy/phy_device.c:phy_suspend() {
-    ...
-	phydev->wol_enabled = phy_may_wakeup(phydev) ||
-    ...
-		phydev->suspended = true;
-    ...
-}
+irq_has_action() returns true
+enable_irq()
+  __enable_irq() case 0          WARN "Unbalanced enable for IRQ"
 
-mdio_bus_phy_suspend() and mdio_bus_phy_resume() write
-suspended_by_mdio_bus:
+If the new requester used IRQ_NOAUTOEN, irq_startup() resets the depth to
+1 instead. This enable_irq() would then start a line that driver asked to
+keep disabled.
 
-	phydev->suspended_by_mdio_bus = 1;
-
-The commit message itself names these unlocked writers of the same word.
-
-Later in the series, "net: phy: postpone PHY interrupts during sleep
-with MAC-managed PM" adds another bitfield to this word, wol_phy:1.
-phy_suspend() writes it without phydev->lock, and phy_irq_wake_source()
-reads it.
-
-Could the comment say that these two fields are split out because
-phy_interrupt() writes them from the IRQ thread? As written, a reader
-could assume the remaining bitfields are all lock-protected.
-
-If any of those unlocked writers can run at the same time as each
-other, or as the locked link/autoneg_complete writers, the lost-update
-problem this commit describes would still apply to them. I haven't
-shown that concurrency here.
-
-> +	bool irq_suspended;
-> +	bool irq_rerun;
->  
->  	unsigned default_timestamp:1;
->
+> +	}
+> +	mutex_unlock(&phydev->irq_pm_lock);
+>  }
+>  EXPORT_SYMBOL(phy_free_interrupt);
 
 -- 
 Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-b4-phylib-mac-pm-irq-v3-v5-0-bbfdb5afb7d3%40iav.lv
