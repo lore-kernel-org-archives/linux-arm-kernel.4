@@ -2,96 +2,102 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A78D606B7C2
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B41860700AC
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:35:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Dv+CqJwq;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=kP6QkGWf
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DpsYQ26Y;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dAg9jJSa
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cd/uujLGZzwEqXuug02cxdjnVdUI9NU92QKxsbB/new=; b=Dv+CqJwqZfHgId
-	a7K4jMqNFywNJ4FzgJqyngG4ZobrFvjwd33NFlQ31vF/idXJmtVRHsPIqn4uxBB957CSlBNERHS9E
-	WAwgw/r/rpC4zj0p57E/5OQRsJMpHkoPtlaZ9ZYDv7TiCrYPzJRXjHkwurvkDUnfyKLxo8bwJFh8d
-	t7it+95HCxMo4Dj+ChW+3+thhOD0W+FehlI3Jye+l8AizonLDwRIBuimJnFtwgaBjnP4Af+fY4E7S
-	lCgqeznoZ1KbhK2S09gXJWUP45nYj85JZ9dEU1vcxAiFj1SNQfgMRUE6mKW/WN3Q1cFiDqGFU3YXm
-	wEOLBlMzZkXzGHcBZ8pA==;
+	List-Owner; bh=Bo6GRnWsPzDKJpIy+O18mYadrppy/33WpVxw6zlhaBU=; b=DpsYQ26YNZ5aRq
+	WP1lj9S1nad9FfRE5L52yvtr6Bdnk/xuXI5XGVj7yXNhVUb0Yj3rx2RNGroIuKKo1HsCzeoKOCbY0
+	P9Zb7bGRYtGswfeP/1jSZ7nNIY0CLZ9WaIyVXw7kwQ1lMsKtJU3QdiRGbPIjslE/7zHSJYkdsKr+J
+	Sa8PCfAT2gM1K1M5YBGe6oOXULw+pQob5Gv8i8IIKD7Jmx20W7L8uwZ/FwUqut/kOT772rwCqrBgj
+	REnBIxPUUuX7cMV6cvUxxXC9Ui5gSLbrbrQiFvXAgIRf7h8R1QTXQeVhik2zHeQlcwJoUIp1i+tNo
+	HC83lIasMmqEjnPydrbw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfGP-0000000BKYA-1rWN;
-	Fri, 13 Nov 2026 00:35:33 +0000
-Received: from mail-wm1-x335.google.com ([2a00:1450:4864:20::335])
+	id 1xRfGa-0000000BKcI-2Tpt;
+	Fri, 13 Nov 2026 00:35:44 +0000
+Received: from mail-wr1-x435.google.com ([2a00:1450:4864:20::435])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfGM-0000000BKX5-3nRU
+	id 1xRfGS-0000000BKZ9-3Afv
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 00:35:32 +0000
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-4afe2d546f9so5538565e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:35:30 -0800 (PST)
+	Fri, 13 Nov 2026 00:35:37 +0000
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-492f563d1c6so208125f8f.3
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:35:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794530129; x=1795134929; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794530135; x=1795134935; darn=lists.infradead.org;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=cd/uujLGZzwEqXuug02cxdjnVdUI9NU92QKxsbB/new=;
-        b=kP6QkGWfIyirtI0YWZouiCErcfqcH+99hKy+VIispoM0RZksN4Jv4RY84tSHY6CDoo
-         FcLq6eBYJYjzIoz84rDJ5oCZqcQ3efoCsc5udwIRv/NqGE/LzUnBgKsxS9xKM5FzT5TE
-         MUOEGq3ScJN0Rplx5SfoRDH5662lzFwZ1QUd7P/7Zn5JRWMDGUjFZldw9nbTHXORmGJE
-         n5+lBod0EblzM69asY4egsEsrltmidcgEUVOjnn4GEP4wwXLUcAY+qSySmENia2aOiJH
-         umD9I1TwQeSUg7KcTHyhVGEP17soHdr1jrdHGY4W14ZVY+1cGp3z/LMz6S/0ja/80Le4
-         HObw==
+        bh=Bo6GRnWsPzDKJpIy+O18mYadrppy/33WpVxw6zlhaBU=;
+        b=dAg9jJSaUKWdHpKfEjFYT4dBXyd7vMVbS7+76yb/JIxAphW8Z7w+fLF03Z1VTNRB4o
+         jQqf/vIxWj8wELSKH60TkBgauMEMDtrXbZcla4qrJ4etU7c3TmarCN7PXzjCXg8EhM3T
+         sk5UWpRf51cExLGjzGfpHiZ7BEEcOOCewv6yxY3s+XDBmfDucEmOO+8tnnGsqqAj2+rf
+         4FsXHVUoofWnCXaZ12wKJc5iXfHDSDND0ElibXcmU+ve4HTTx+3gPU16yc94KRc34Go3
+         kYzoY8JKePSC7H4TWhem2G9kqEuKQfAPWirEi6DPz974gzNE7MIuXASXCv07eOuln99P
+         8Hhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794530129; x=1795134929;
+        d=1e100.net; s=20260707; t=1794530135; x=1795134935;
         h=content-transfer-encoding:content-type:mime-version:references
          :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=cd/uujLGZzwEqXuug02cxdjnVdUI9NU92QKxsbB/new=;
-        b=Ae6it/qhWZGqmkmnF92Gaxde7TLJaqMCLJuW43tdrpYsqh2oc777rixTRHsmnM57GL
-         XoEUCiMmyukf9KagrdoPEPrO7SgyqpK9EfpuHKdAnk09BDkq6nNK5/0rZJiqEMOhERqz
-         lUZA0ALz8jJTpfgI2Qxvg0iWOA2DL9pQ3IRdMAEaDf2vEptA/Qe+Ehpti6H0a1roQw+l
-         65X4XsF+j9anTOYBEkFBHC4hPyqSumT3m1sdnMWnNNRSKDRVFsaMmjTY5wZ8uaMnZofK
-         TSCsOZgCxSo0c3I+dRxe1PmQyTulh++FB+F1N7n1ApuplZid7froKNnrcvvwqAtwWIJ6
-         B0Jw==
-X-Gm-Message-State: APuU4Z/Z8jVZIwixluc05T1Vc9kX6KyqKBHNzx6TG7gHT0F1/eXjU3YW
-	IGufBl/onw1wSNZ/720vUoGbD+vym+HgV8d9IN4mX/5Cy1BFkSdHhce0OTgSmJvc
-X-Gm-Gg: AYBFou27QqUcdprIWU9pMxmR2P6FknFmYWTHfELglAX8gwfwrmUQclCar9bQDEUyXZe
-	Z+E1nwAjIbbf3rj8oOSMooXQ+xFgPSUe1HJ3NBIpuYjMBd41cV4KJcFktdP+3rHY8KbSOd6zby6
-	BkNwjCjZPjIp3EUmR1x+NAa8qUoAIUZ/c4gBo+vA1yPZKG2Fx1T6un1BshVGT6mqexMdLx5CTvJ
-	gWmPBN81+sZHPntahLxgDyVpqanZ/Tz/yg4X6dJjS6YWxuA7dOTFB9ZM/tbrj5xqlxlRLsovLUs
-	AGMF5M6zCXtnyOP2P9TG3a5NtFU47W87by5Oy3UaPdjm3B0mKi71sjdDr1vcq7VaV2TwZE39/vu
-	PkQSdmBCBTF3uUL3DAsjsa2mx8imz4w/Iw15p4imTlf6HCZ1mGM14WNVAyWBx1mVKac6OrM5xo2
-	1/9pbeDdkzNfAH4YnPxfZCWfFdri9EyDpG+Q+IkNE/AH2O9qt8p7AVp5j0LPxLl+ai59/JQnHU5
-	Bb5RX31FnIbhR/jwQG9Ld5G+/vayGfEoocPMqrKeU3ao9vIwchxRsvl7bheN+hXEu9uQn6lU5TN
-	/9xO8h/F6WIGa3rFmogqqj+QCOmrzg+Vk3yRjs4BdWTIN4u8cTO6vDjGhLyxve/pyMuWkNwYSyB
-	HdbPKTVqiaryoT5wUvjcAtgppUAqjrw9UX4P8WW8QhrWGtMrlfPgUCWeEOXQf4EPMk8p9/7PsAr
-	m5gCe1SdW6fHfhpX0+I6AGXKlPv9nePuqlsiZ52W0=
-X-Received: by 2002:a05:600c:3f08:b0:4ad:5e09:ae43 with SMTP id 5b1f17b1804b1-4bb55a8d2d6mr16303505e9.29.1794530128534;
-        Thu, 12 Nov 2026 16:35:28 -0800 (PST)
+        bh=Bo6GRnWsPzDKJpIy+O18mYadrppy/33WpVxw6zlhaBU=;
+        b=W5mu9WEjhzj+GChEoIcbFJ7yz1UtSL/9ODX2UmiV5rxa2UPl5UGSzxuR7WvkIC6HRA
+         wcThovBd5QGdkIP7EalcnQ5oFKC1jieTXekLnC3c88jonmQh29eo31lS1DmDFED0mhBt
+         nZ4iC5I/r+Mi3tG/t0RTiUKsPvxbx7yRirW0WOQF9BIU/XsLZVEba2tOaTv87aQJvJ8T
+         I/D02Y4q+vqibeAlqkgSOPkwndVTPNWmkvSHCqg1VQuhd6HFpjaXzK6dtNnWHZdT1fAy
+         NREL/n+Oyx8fuEuV6nNK/Wj61VXuix6sUo94/zekc/Isv59kc/wVH/vG4huwQPtjUqXB
+         dB/g==
+X-Gm-Message-State: APuU4Z/1fqEkI5txiNV+JrVf+qnFXnIrJEhHdDoZ5nrQHQlfsq9VmEzR
+	5ubiUjy7KkA3joXv/URpBkaZPqwX3oalT0j9jw5FSLDY0nF/AXMdB9+L
+X-Gm-Gg: AYBFou0MZpbgcmSxptOJRM3idzrPC7hKaSyBXHVyOsAXYo8zHahd4pe6AaH6893omIE
+	e+eQPsXTeb2wvH9VaC7S4c+Rgykf/qaD4EOlE3Q9GBIMil7YqdXNLJlQhTpfT3aw9desoqVzi6r
+	yN6slH1b7484z9/CUFaTPxhW20Bu+5MJC6iOv2T0phuQeX8OtjsxROQOm20flI1+zUBDABzAi1b
+	E0H6fl+jHFtJ/x6Stl1s+sxd0w37pMiyzWZ64bF5Erhm1y1NpTvLFXlEe4nMyAIf+BJltZnGFuO
+	igslaZhqjj6G4rlk/SGzUt9MvtTyGperaNbBkWAzg8uYiP+Y39P2K5RLAJbp+mMUmfo5xAJawqO
+	jGjxEOjX8MZnjV3R7TbpFC1w9/WszT5NtrA2rt9vNi/XuOwtE+wBUnPLctosDfH9Z2LR+0LrcmN
+	pt0bOlFijkxlujeDGsVkC8SRTDhBuhDdWz9u83M7Lw9X0eOa/z49dQE/AHv7i/jpWnJAcP6Y+Ud
+	8zIlNVoMfK4ou3TrEFcRwG3d8FtX6Y998Zk/MI2rtQXtyyWgf7dI3EKt6wons/DZsJVqs7yTS3q
+	y57W+a5KleW3Hi9BV1eqdkIoPp0hjY/QMZ32bPmke47DPN2lUgfP6dCsHQv/VYkAOez6Ja3T5e2
+	umDZKcthGei4uyV7RXSv54TmUsM/a5Nzcwno6e6hv0PHXNpVocqu82oLs6qZyoXcK7YY5X9rLd+
+	orNq0eLUODMH0nj4F2
+X-Received: by 2002:a05:6000:1606:b0:492:820d:107e with SMTP id ffacd0b85a97d-49c72f7b036mr1416827f8f.47.1794530134927;
+        Thu, 12 Nov 2026 16:35:34 -0800 (PST)
 Received: from navid-pc ([2a01:4b00:a856:6220::a11])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb571f2c40sm3699615e9.2.2026.11.12.16.35.27
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5f1c18b9sm1703515f8f.20.2026.11.12.16.35.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 16:35:27 -0800 (PST)
+        Thu, 12 Nov 2026 16:35:34 -0800 (PST)
 From: Navid Ghahremani <ghahramani.navid@gmail.com>
-To: =?UTF-8?q?Stefan=20D=C3=B6singer?= <stefandoesinger@gmail.com>
+To: =?utf-8?q?Stefan_D=C3=B6singer?= <stefandoesinger@gmail.com>
 Cc: linux-arm-kernel@lists.infradead.org,
 	arnd@arndb.de,
-	krzk@kernel.org
-Subject: Re: [PATCH v2 00/24] ARM: zte: Add support for Sanechips ZX279128S and ZTE ZXHN H3600
-Date: Fri, 13 Nov 2026 00:35:23 +0000
-Message-ID: <20261113003523.3659602-1-ghahramani.navid@gmail.com>
+	krzk@kernel.org,
+	Stephen Boyd <sboyd@kernel.org>,
+	Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 06/24] clk: zte: Add ZX279128S CRM clock and reset driver
+Date: Fri, 13 Nov 2026 00:35:33 +0000
+Message-ID: <20261113003533.3660311-1-ghahramani.navid@gmail.com>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <rum7uPffTpawXUWooWWkfg@gmail.com>
-References: <20261014072109.1759502-1-ghahramani.navid@gmail.com> <rum7uPffTpawXUWooWWkfg@gmail.com>
+In-Reply-To: <86bpNzKYRniAzc8v_5Lpqg@gmail.com>
+References: <20261014072109.1759502-1-ghahramani.navid@gmail.com> <20261014072109.1759502-7-ghahramani.navid@gmail.com> <86bpNzKYRniAzc8v_5Lpqg@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_163530_970898_CBDD9C6B 
-X-CRM114-Status: GOOD (  26.32  )
+X-CRM114-CacheID: sfid-20261112_163536_817349_4FB36E3C 
+X-CRM114-Status: GOOD (  11.42  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,86 +109,33 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
 	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=ham autolearn_force=no version=4.0.1
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 Hi Stefan,
 
 Stefan Dösinger wrote:
-> I recommend to focus on the above patches first and wait with the rest until
-> the basic board description and clock drivers are in. This reduces load on
-> reviewers and keeps the patch series focused.
+> The comments I sent for v1 still apply to v2 I think.
 
-I will do that. The next version will only have MAINTAINERS, the ARM
-binding, the platform code, the clock and reset bindings and drivers
-and a basic SoC dtsi and board dts. It will be based on v7.4-rc1, which
-now has your drivers/clk/zte code, and it will use that code, so the
-regmap clocks, pll-zx.c and zx_clk_common_probe(), with an MFD parent
-and a separate reset driver like in your zx297520v3 series. GPIO, PCIe
-and USB will come later as one series per subsystem, and the networking
-patches will go to netdev as Andrew asked. I am dropping the SPI driver
-since you will submit it.
+You are right. In my reply on the RFC I wrote that your points were
+done in v2, and for the clock driver that was wrong. It still had its
+own PLL code, direct MMIO and its own lock, and the resets were still
+in drivers/clk.
 
-Agustin Santiago, who has the same board, has a clock and reset rework
-for the zx279128s on top of your framework and is sending it to me. I
-will test it on my board, and if it works the next version will use it
-with Agustin as the author.
+> Please try to reuse the infrastructure in place for zx29. Ideally clk-
+> zx279128s.c should be just static data and a minimalistic _probe function that
+> invokes zx_clk_common_probe().
 
-Before the MFD and reset parts are final, which way would you prefer?
-
- a) new drivers/mfd/zte-zx279128s-crm.c and
-    drivers/reset/reset-zte-zx279128s.c with the same structure as
-    yours
- b) adding zx279128s compatibles and data to your MFD and reset drivers
-    once they are merged
-
-b) avoids duplicated code but has to wait for your patches. All reset
-lines I have found on my SoC are active low like yours, so your reset
-ops would work as they are.
-
-I also still owe you answers to the hardware questions from your review
-of RFC patch 7, about REFDIV, the 32 kHz source, the missing LSP clocks
-and resets and the TOP_CLK_EN gaps. I want to measure them on the
-router instead of taking them from ZTE's code, and I will reply here
-with the results before I send the next version.
-
-Two things I can already tell from the PLL registers on my board.
-
-Bits 23:18 read 1 on all five PLLs I looked at, the A9, LSP, audio, DDR
-and PON ones, so it looks like your REFDIV with its default value. I
-have not changed it yet to prove that it really divides.
-
-The audio PLL uses the fractional part. Its registers read 0x000409ec
-and 0x15525460, and 25 MHz * (39 + 0x525460 / 2^24) / 5 / 4 gives
-49.152 MHz, the usual audio rate, which only works out with the
-fraction. So reading this PLL right needs fractional support in
-pll-zx.c, and I can test that on my board.
-
-> Out of curiosity, do you have a public git repository with your patches
-> somewhere?
-
-Yes, v2 as I sent it is here
-https://github.com/ghahramani/linux/tree/zx279128s-v2
-
-You also wrote that you want to give feedback to a human and not to a
-Claude prompt, and that is fair. I use Claude, Antigravity and Codex to
-read sources, learn about the parts, write code and fix my English in
-these mails. I go through all the code they write and fix what I can,
-but I am coming back to C after a long break and I still miss things.
-The kernel sources are a lot to take in with all their code and
-history, and on top of that this SoC is closed, with nothing public to
-look up. So reverse engineering the original drivers is the only way
-in, and that can bring along code that turns out not to be needed,
-like the MDIO clear Andrew spotted. I can assure you that I test all
-of it heavily on my router, and whenever I spot something wrong in the
-code I revise it. I am also always open to suggestions on how to
-improve my coding style and my approach. The next version will carry
-the Assisted-by tag the kernel docs ask for.
+That is how the next version will do it, on v7.4-rc1, with static data
+for the regmap clocks and pll-zx.c, a short probe that calls
+zx_clk_common_probe() and the resets in a separate reset driver. My
+question about the MFD and reset layout is in my reply to the cover
+letter.
 
 Best regards,
 Navid
