@@ -2,76 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD95A606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 06:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51090606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 06:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=A47/ufeg;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=BJqKcKPQ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n0T4suxR;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sCJ9eEuX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tVqWo4cVCxBufMJRq8N/ZAqWxdIZ0UAwob+ppyXcu3U=; b=A47/ufegMqzUWo
-	cBYA4MWzQYvJU9IxDUWD8ZxHXdoDTw/uLjxDbZ2RIT9C3W3L6NB2POzBBgbI633bDqMRPJ1g7zw6i
-	ZLncR5TUtmjQ0XmZidSi0nAG+6Q0XC8UNqEqc8Q9R/9L8RI3Gb3SG4f7jpvrZodDt4XmBN9UeOaa8
-	mrBWbjrelokd/btRbarYRIB//z1zPEyEqHZbsgcAd/wSZASlx6eG9MwyQupfwcdBVxOYlUMQE/kld
-	Sm+fcavhSw5JGbT9swGzTmWOZ+ZYESVVPAOhu1EFkMupgc9J0hckahZvi/NNbobYTUMeuYEAuFLQC
-	vyYkUAzptdoJirEQqR/g==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=2V+tV4ewaynofE8kPco4QPP/Avu9AgLsEkRfsCohWsI=; b=n0T4suxRs/RMo0rSz7GuexkUHi
+	p/tXYXwIIbSsoUQ2J0cESBIP7QWqTI7cQxpB+KfeZEjogMP6pvOwNKuLsgt7H1xiqPPOc7DrqOzE7
+	T2UT0s89UScYeWfABfXJzifOAMhCt9ixZ5YMk9qo79QrnBcI1yOrh+VeUNsipTC+e1OdKsfmiORWv
+	LKlboKsUb6Bx6KnZGbA864adJsVSH/Iyn484VGbZFveg89RfnqtyxoOQWFTVq64B05EgNc7GuQERH
+	b/2fz2VGG8mlFCew2oRp1UcGFIaVWm3eTRmloLYnTid90QEUmoVCgmwakaJiHe8W2wCqvR6fvG3oy
+	EvmDDTIQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRl1I-0000000BnrO-3utG;
-	Fri, 13 Nov 2026 06:44:21 +0000
-Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRl1D-0000000BnpR-1QAC
+	id 1xRl4u-0000000BoLS-3jye;
+	Fri, 13 Nov 2026 06:48:04 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRl4q-0000000BoL0-42Gu
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 06:44:16 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BF69C10E6A8;
-	Fri, 13 Nov 2026 07:44:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1794552249;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=tVqWo4cVCxBufMJRq8N/ZAqWxdIZ0UAwob+ppyXcu3U=;
-	b=BJqKcKPQIyZTHht8rnp6/wF4liFZJl+SeRXYchiuCNM0JlAXNdmnQ8QQAwxj1Xl/fh+dfA
-	UVlBqScY20LOgjyzSZltMux4qMdC6oWcMAb48KMaLFR6jlc4nnt4SSuhLJHo75/qhYCiar
-	w24XUFfKEw7tRLbY/dapb6u4EY5yi3j1oGua08eHOAxheFtmAhzzxsCupzsS5jkDebEHup
-	a4oALLWDRN+pOvhgRr/4TUUeg2QcasWfbxXt5jz3K6gHOmz3ISlBS5uHQ5Bt+9PSt0krTi
-	97pE7tLSUHuRHslkfSHhRVgDWKPoUgCFmMkviVzb/JH1kxCejXx331gy8g5YPw==
-Message-ID: <d218212f-191c-47cc-843a-d4587e478fc0@nabladev.com>
-Date: Thu, 12 Nov 2026 18:13:53 +0100
+	Fri, 13 Nov 2026 06:48:02 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C066616F2;
+	Thu, 12 Nov 2026 22:47:55 -0800 (PST)
+Received: from localhost (a085714.arm.com [10.164.19.28])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0EFBB3F85F;
+	Thu, 12 Nov 2026 22:47:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794552478; bh=5i7fDyuQrBPfqbfudFwvrfilL8nz8d+trbu034WceBU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sCJ9eEuXBnkpPB+5xYYSTJZKQIv2FyOza6IduZmLGvxBm/AjRigGwtWQ0bh8UmagQ
+	 TbYwfJoXNo+ZuQpa2iGOFgo5MFSasfVKaJiXzi8QljIpJh8j533RoyPp5LSAlsh8rA
+	 wz0XuEGtjc868dTQbbtg4WNXfApl4kI2T02vXAYo=
+Date: Fri, 13 Nov 2026 12:17:55 +0530
+From: Anshuman Khandual <anshuman.khandual@arm.com>
+To: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
+	will@kernel.org
+Cc: Ryan Roberts <ryan.roberts@arm.com>, 
+	Mark Rutland <mark.rutland@arm.com>, Lorenzo Stoakes <ljs@kernel.org>, 
+	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>, 
+	Mike Rapoport <rppt@kernel.org>, Linu Cherian <linu.cherian@arm.com>, 
+	linux-kernel@vger.kernel.org, linux-mm@kvack.org
+Subject: Re: [PATCH V4 0/4] arm64/mm: Convert pgtable READ_ONCE() as
+ pxdp_get()
+Message-ID: <ikp346hhtfkswk4gabydkaxgtuvoygrj75clezzv25r2j7t6gz@q32fppupesvt>
+References: <20261105043403.3326445-1-anshuman.khandual@arm.com>
+ <vtaekdnpxd5avhpv3hlmeswwq5raf57ila2qyilxvddu3w5nnq@lkenzauzv7hy>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/3] dt-bindings: phy: ti,tcan104x-can: Document
- Microchip ATA6563
-To: Vinod Koul <vkoul@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Aswath Govindraju <a-govindraju@ti.com>, Conor Dooley <conor+dt@kernel.org>,
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Marc Kleine-Budde <mkl@pengutronix.de>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev, linux-can@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260930214729.809649-1-marex@nabladev.com>
- <d8c3ca76-3d93-4abc-8a78-d23e0f018975@nabladev.com>
- <auGdT2kdxwfbB_ol@parshuram>
- <0865fe86-3ea1-4ebd-8ded-642eff159b97@nabladev.com>
- <avXqWxBQBK2lKPMv@parshuram>
-Content-Language: en-US
-From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <avXqWxBQBK2lKPMv@parshuram>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <vtaekdnpxd5avhpv3hlmeswwq5raf57ila2qyilxvddu3w5nnq@lkenzauzv7hy>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_224415_530696_B0E2328C 
-X-CRM114-Status: UNSURE (   9.35  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.1 (-)
+X-CRM114-CacheID: sfid-20261112_224801_179459_2097E1B0 
+X-CRM114-Status: GOOD (  28.72  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -82,24 +74,124 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-6.3 required=3.0 tests=BAYES_00,DATE_IN_PAST_12_24,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/12/26 5:33 PM, Vinod Koul wrote:
-> On 10-11-26, 14:59, Marek Vasut wrote:
->> On 10/28/26 7:59 AM, Vinod Koul wrote:
+On Fri, Nov 13, 2026 at 08:58:51AM +0530, Anshuman Khandual wrote:
+> On Thu, Nov 05, 2026 at 10:03:59AM +0530, Anshuman Khandual wrote:
+> > Route READ_ONCE() accesses on pgtable entries via level specific generic MM
+> > pxdp_get() helpers which platforms could then override when required. These
+> > accessors on arm64, will help in ensuring page table accesses are performed
+> > in an atomic manner while reading 128 bit page table entries later. But for
+> > now they just default to READ_ONCE(), thus preserving existing behaviour on
+> > current D64 translation a well.
+> > 
+> > This is similar to generic MM where all atomic accesses have already been
+> > converted from READ_ONCE() into pgtable level specific accessors.
+> > 
+> > These are preparatory patches for D128 enablement, although standing their
+> > own for D64 translation as well. These patches are split from earlier D128
+> > V1 series. There are no functional changes here, and besides mm kselftests
+> > do not show any regression.
+> > 
+> > https://lore.kernel.org/linux-mm/20260729122452.3797443-1-anshuman.khandual@arm.com/
+> > 
+> > This series applies on v7.4-rc1 and have been hosted below for reference.
+> > 
+> > git@git.gitlab.arm.com:linux-arm/linux-anshuman.git (arm64_pxdp_get_v4)
+> > 
+> > Changes in V4:
+> > 
+> > - Dropped all pxdp_get() platform overrides per Catalin
+> > - Moved pmdp_test_and_clear_young() and [pud|p4d]_offset[_phys]()
+> >   helpers inside arch/arm64/mm/mmu.c to avoid build problems
+> > - Updated all commit messages as required
 > 
->>>> +CC Vinod, is this patch OK with you ?
->>>
->>> Looks good to me, I will pick this after rc1 (monday)
->> I would like to do a brief reminder here, so this won't get lost, since rc1
->> is now out and I don't see this in dmaengine.git.
+> This series has run into some KASAN fault issues during boot with 5 level
+> pgtables but also unlike Sashio suggestions these would require more code
+> churn to fix. Please find the details below.
 > 
-> I have picked it up in phy tree...
-Thank you !
+> https://lore.kernel.org/all/ohyhflzuoxdemccemutoosmj5hsfwylrlt6tvnyehulerk7gf3@ada6wu4zrzkp/
+> 
+> NOTE: somehow Sashiko had dropped LAKML from the thread although it shows
+> up in MM list.
+> 
+> Given the above scenario, I would suggest falling back on the V3 series,
+> that defined and override pxdp_get() helpers for arm64 platform. Although
+> similar to generic MM default fallback, they prevented code movement into
+> arch/arm64/mm/mmu.c file causing these KASAN issues in the first place.
+> 
+> https://lore.kernel.org/all/20260924062214.1635078-1-anshuman.khandual@arm.com/
+> 
+> V3 series apples cleanly, builds, boots and also clears MM selftests on
+> v7.4-rc2 as well.
+
+The following upstream commit had changed pxdp_get() arguments as 'const'
+(since V3 was posted) which would now require similar changes to be made
+in all platform overrides for pxdp_get().
+
+48bd5dc504cc ("constify arguments in default pxdp_get()")
+
+Hence will repost V3 series as V5 after changing the arguments as 'const
+pgprot_t *' if there are no other conerns.
+
+> 
+> > 
+> > Changes in V3:
+> > 
+> > https://lore.kernel.org/all/20260924062214.1635078-1-anshuman.khandual@arm.com/
+> > 
+> > - Added overrides for pxdp_get() and replaced remaining READ_ONCE()
+> > - Updated all commit messages as required
+> > - Dropped previous tags
+> > 
+> > Changes in V2:
+> > 
+> > https://lore.kernel.org/all/20260922061638.3967467-1-anshuman.khandual@arm.com/
+> > 
+> > - Rebased on v7.3-rc4 along with all latest dependencies
+> > - Updated commit messages per Ryan
+> > - Added tags from Ryan
+> > 
+> > Changes in V1:
+> > 
+> > https://lore.kernel.org/all/20260903060657.2717457-1-anshuman.khandual@arm.com/
+> > 
+> > Cc: Catalin Marinas <catalin.marinas@arm.com>
+> > Cc: Will Deacon <will@kernel.org>
+> > Cc: Ryan Roberts <ryan.roberts@arm.com>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: Lorenzo Stoakes <ljs@kernel.org>
+> > Cc: Andrew Morton <akpm@linux-foundation.org>
+> > Cc: David Hildenbrand <david@kernel.org>
+> > Cc: Mike Rapoport <rppt@kernel.org>
+> > Cc: Linu Cherian <linu.cherian@arm.com>
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: linux-mm@kvack.org
+> > 
+> > Anshuman Khandual (4):
+> >   arm64/mm: Use pmdp_get() for PMD accesses
+> >   arm64/mm: Use pudp_get() for PUD accesses
+> >   arm64/mm: Use p4dp_get() for P4D accesses
+> >   arm64/mm: Use pgdp_get() for PGD accesses
+> > 
+> >  arch/arm64/include/asm/pgtable.h | 38 +++----------
+> >  arch/arm64/mm/fault.c            |  8 +--
+> >  arch/arm64/mm/fixmap.c           |  6 +-
+> >  arch/arm64/mm/hugetlbpage.c      | 10 ++--
+> >  arch/arm64/mm/kasan_init.c       | 18 +++---
+> >  arch/arm64/mm/mmu.c              | 97 ++++++++++++++++++++++----------
+> >  arch/arm64/mm/pageattr.c         |  8 +--
+> >  arch/arm64/mm/trans_pgd.c        | 14 ++---
+> >  8 files changed, 108 insertions(+), 91 deletions(-)
+> > 
+> > -- 
+> > 2.43.0
+> > 
 
