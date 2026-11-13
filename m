@@ -2,103 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EA3606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0FE1606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:42:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qhh8HIs8
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=YYTMBGZL;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PF3sf3oj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
-	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Subject:Date:Cc:
+	To:From:Content-Transfer-Encoding:MIME-Version:Content-Type:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=l1+NgW92VziZf9PgBdzApbIe2BkR1TvVvXtYjUT220A=; b=qhh8HIs8so+zzObKirfXuVSM6h
-	2f98i/I3dPq0nURMMr0HDbKIPhsm8GjLZwNXL5ci6+UHzdWOpS8ZRr/mcwQSRoTANyCdrGo2fvFj+
-	QICz8fuy0aJtxO8aPc2SQNRTJEriUlGAtqEmtl5unq6hCXrz50g+zr1xot9IUYfJuXipytn8fi4eh
-	3LAwisO5R43AxrB4YmUsjqYkrDyYKwbci23rSPjh7k2N326pFzh9lIoF1940UIdNNL7i+pnyXSy9q
-	AMxXjI02ecyzQd/7V9cqYcG0LSa3gkI2rpSFpph884SocTzjPZd9agbtWEYER3p7kNt51w6+9Xany
-	qnI2NwGw==;
+	bh=GkfjZtGpjcjZtys/mwSpi5hx436XAXHBdQQU3vB4joo=; b=YYTMBGZLuvN+MVlpWjhkrh0Jyt
+	tM+pj4tZ7fsmyJ5SdTxt9+nDnl2Ca2g7b0NzZ8m4q72gM+vS06OBVZ8Lx59J9mIiObV87b9QjhflR
+	QpGx/C8v00OnMjj0H4/I5PeuQUQIG1RMuuqaApzgw4ipmLgKivLXLotRw//8sn8l+GVbp4hrgk5dV
+	nUAeqHKmnjmP+1jBrJx3/xsSQEiGEwBAhsC/oPK+KIb4BlovEbAs3d+AyQJrtqFf3smERmkAUpLBA
+	abo+Glfn4AZbVTgIJIL5YYl99vh+m78oRy2Jh3R8TayAdJXPmdCfbLfcPJFaGxHZtiVKfwgB4kxaN
+	5JP3+6dQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRpdz-0000000CYmo-3RqR;
-	Fri, 13 Nov 2026 11:40:35 +0000
-Received: from mail-yx1-f52.google.com ([74.125.224.52])
+	id 1xRpfw-0000000CZ3q-1Qh2;
+	Fri, 13 Nov 2026 11:42:36 +0000
+Received: from mail-pj1-x102c.google.com ([2607:f8b0:4864:20::102c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRpdv-0000000CYl4-2xx2
+	id 1xRpfs-0000000CZ37-3y3U
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 11:40:34 +0000
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-67be4f2f4d4so914066d50.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:40:31 -0800 (PST)
+	Fri, 13 Nov 2026 11:42:35 +0000
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-3b0ae87069dso669749a91.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:42:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794570152; x=1795174952; darn=lists.infradead.org;
+        h=message-id:subject:date:cc:to:from:content-transfer-encoding
+         :mime-version:content-type:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=GkfjZtGpjcjZtys/mwSpi5hx436XAXHBdQQU3vB4joo=;
+        b=PF3sf3oj3CEM3JxVoL08puGw5w1x1kNAnpWKMCarcZ2okaE7pfQPGUxdkYiuNaR/lK
+         wQbVmbIvS8M7MPb2JN7jkNW1xXJwwEDgi9wAmz1tarenzi6W8+UYSKV+l+7OWl6zImR5
+         6vLdbMaTixtH16hXcMZwk5/FukZcSc+12eqQgftaW6J2Px0q1TpfhNRBs29F1E9v+H8h
+         cAYGPluWkHWVk9U4gqxaegMQQT07/1Dwf+9UV2NGPTWSZjm70VKJbO3slfqhdfrj4ViL
+         g60NX21TbwYzE/YZsypIM/KDfS3iUbf0KJEOlQ6KZphLAwKnbGyPmqiy8jetueMF6Dl0
+         rh/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794570030; x=1795174830;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:reply-to:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=l1+NgW92VziZf9PgBdzApbIe2BkR1TvVvXtYjUT220A=;
-        b=J51B5Nao9jS6qASY2TRZ8XmvkOtYsBULIMqx55tGHSLwL+2FwZq+eq+3Q65pvQ8LY3
-         FWmpHovJBEEJ1MnAY4QQzh98hR2zVxkOAy/m4XuYRteiWCbcALKZgvPMgvPrfyLyOkBn
-         Vnh7mtewi/iLBZIDJG9kn05Yocnzfy+bqK3eCbvxiqrOgmuhtTsriLXVp3x/QTZbTdfO
-         3q4OqAd+XVZigHlQe1z5uYIver2SAcMzrW8NjsqueTm7zUOONHlTeYcOXubySqGjv/wS
-         2/4T9zz7Osa+sHsahyUAkE6auCDFW+VF0VGefaE4UgWtGh+haVboPZN8Cu8HjVLETCL0
-         TD4w==
-X-Forwarded-Encrypted: i=1; AL+hErHJoE58GeBGAIo5KjcVY19jzXOCvzpixQZUGib/c3+ICTpxnabEGCi/x95SWDEHZMtF9BSUcyO4pSNU3KYd6ZPY@lists.infradead.org
-X-Gm-Message-State: APuU4Z8sHUCPPeVofOHFI5bS5g8m5k5SAK9kF7DVQG5EOkZuVFXA/Z7E
-	0mefK947Evh+r+woQTKsBOYBo9ruooa2wN2QpZ/aJUCOuuZF/G++kkkytPbK8KuzwTw=
-X-Gm-Gg: AYBFou0oiXO+kyLQrEdIWthQ7cMlDMapOX3h1HQ8/jnSgKeokGa9gG+lTdwB+3GZ6Cy
-	I4CUABudTL9uv97dNGmKqcR0QSYyOkaIvamnpUxAAUg4OitXWjOuwemwFkA2pHJZHtI/kEDgvz+
-	DsoohV5J1nL8wJ2F/LOe6T4tu9b3EiPgybJuIG6QsrFAHNoySxmUtdOs/k3vQRHRoc5Lk1ujphR
-	nheCUQdUXq7w3R07YzgXUGu1+KRANXRsUf3zRFj5XhyAMx7pHVtMcUVnsHj9xjqPuaSXeMD/Rby
-	yLTGpBiYD1zqlwsA/0RK7wdedUXqBpakGNL49cZ92v6fcmuBlss/DekoByeU3TwFhzqQJvOme/A
-	pbQWah0VQaGhDeFH9RLSD9UcjjIa01Xbn1gG3naov6+9eh+gIXeew28t5iqze/9DIjRzGAu1N0P
-	kKsSnJCAoAv2qO+mtLC6Uu7MrzD/2W2ncHgUC2CCzlfcq08j8H3Y/EfQu6ExD4UjnkBZBWPrQW/
-	nQS2j5eaNyPD72nxJuzz7brmPQcz/hnSytnjWQNUxKvaeJ26HOl01oaO5rEF1FVOkZSZb3HnDQS
-	/QsF2lggcs+5woGoXKkUMe/XkwIc2dw99DB37CEM/NOO7lgoEamHGMFPAlXmVZ9ZIqcowJELhn7
-	mpNOL3wiSb33bWnAs4XnIIeRuhQk4miBMZxuSy5IELYY7T8DXivtoLA==
-X-Received: by 2002:a05:690e:400b:b0:67c:55a7:c5f3 with SMTP id 956f58d0204a3-67d8965c15fmr1351254d50.43.1794570030436;
-        Fri, 13 Nov 2026 03:40:30 -0800 (PST)
-Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com. [74.125.224.52])
-        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-67d8a5a4bb4sm1774655d50.11.2026.11.13.03.40.29
-        for <linux-arm-kernel@lists.infradead.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Nov 2026 03:40:29 -0800 (PST)
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-67c6a0abc2eso847053d50.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:40:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErHAKFav+HQFrFwvUkiHQIWz1sU1LdWhhanRlQFIdtuE5WzTG2/9hL3ASVI5kglcW7+78T6aEhUTxj66osUD64l/@lists.infradead.org
-X-Received: by 2002:a05:690c:f85:b0:8b3:45b:a4f3 with SMTP id
- 00721157ae682-8b4aa350595mr13731467b3.83.1794570029115; Fri, 13 Nov 2026
- 03:40:29 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794570152; x=1795174952;
+        h=message-id:subject:date:cc:to:from:content-transfer-encoding
+         :mime-version:content-type:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=GkfjZtGpjcjZtys/mwSpi5hx436XAXHBdQQU3vB4joo=;
+        b=n2Lp2yOfGzm3IR2HG1J5orXXV+wjA9aHkCeAEKkCKDQFhSCDjleTPZcw3Mc0QnUyUQ
+         pXCG2W6Mm9meZnTiASyu0glcGjfRNLldninF+ydnxaHniQ0BpNMZpxgNFFebBGBgb2m2
+         qoC7WKySj9yAYY135hX6PCuMGPs45KjRjKrbzwszqT33Ppm879HrLUbBZq1ZD6sSpW8D
+         4C5XhpN8m283mJL6NT4/TTN1GVnxP5Qt2gclWHaLxiIh2TVHz3/zICV6tXu41576WQ5k
+         rAUVwQM7loxBgJXuYorVPlHfzfbxn5C2wSL5vK14EaQywdvh8lcgFhHt4BhE7WWm6pE7
+         191Q==
+X-Forwarded-Encrypted: i=1; AL+hErEDO8yrVkgntNiSoUH6GISOV0nDW5/3Z8SHq95swuuSJdQLS2L9MGBVgCCA7It4fztnSsIdZnhrvo6ZG/7DQVD/@lists.infradead.org
+X-Gm-Message-State: APuU4Z8v9LZNq3YunorEtMPm7ZEhnYh2qKnzTIuVfVB7XX6sty/zsyk5
+	YALjnLJ6n3ZnTgQru+JWXhpTDNb4GTE1wLa7oyn2i9fMbLYW3ktFQ7d2
+X-Gm-Gg: AYBFou3FJ+ZfSI3JLnuC7fwVgENScfWSttKCZESyzJGKfU4AyPGYSHhsxvz56+Fi954
+	WKyNPZG3cGG9ILsQIAhaf9cu9CLYAumWufpT2CU+h/0GVFwiS9BhNHikVKC5vU5c6HNqo+vofV9
+	UC6htt+BXFc4YW+fZeD4ZP2uxTl781jDkVyOLatQXW+rRIO3lvI9bHmv35O+LPUB3G4tee0J87u
+	ALVc/RzHKIrToJRT5CYTwMgww5CLD3b8YxHJ1bwMzukUQE/CNwgiZiHvexS7IEdeQSU942Vxu+h
+	y+uJFVjJ7ykyrKxHbqU/qcpedaUqOrAlcK61eRvFUQbxcs3qOXpuSMg2qsE+oyJZmpIBSTvSGZ6
+	mTAeDrTIPv73bSSSslziwPomlbjI/UCziYJ+i7BfiJT/oxYqOV5iCB+jl9f0LEDMm2Jy1Hh5KIf
+	ObRL5600MQEvZZ7vqwmXVo2+mc4GR5MArH9JMLELe68guwMOTIQv0Wl29cG+SARsIYCWWv7UHJS
+	nU1pm1iJXQEA0w+FNnMULr/V5QJ6WUand6WyKVSM/X1Y0GbezPTik9EcbQCjBYQoHMkH+ApIA8i
+	Sp0ipe1s18xmt8nbrT/ZIQrYGgai2TTiYeSjsg==
+X-Received: by 2002:a17:90b:2cc3:b0:3ac:8af9:4a73 with SMTP id 98e67ed59e1d1-3b1b0a0db9emr1816819a91.28.1794570151823;
+        Fri, 13 Nov 2026 03:42:31 -0800 (PST)
+Received: from [58.206.202.11] ([104.28.215.69])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1ae981c55sm4347234a91.1.2026.11.13.03.42.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2026 03:42:30 -0800 (PST)
+Content-Type: text/plain; charset="us-ascii"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261103163715.385394-1-tanure@linux.com> <20261103163715.385394-3-tanure@linux.com>
- <20261105-stoic-cricket-of-tolerance-cb3014@quoll> <35dc1ebf-5194-4ec8-adfb-dcc8ea717750@amlogic.com>
- <CAJX_Q+0QqBHGv-4nfmY8N_xr=KQgUFtwPQTVZBxTK1LHV0jGOQ@mail.gmail.com> <bbe0dedf-4b02-4cc6-97be-accfc06baa10@amlogic.com>
-In-Reply-To: <bbe0dedf-4b02-4cc6-97be-accfc06baa10@amlogic.com>
-From: Lucas Tanure <tanure@linux.com>
-Date: Fri, 13 Nov 2026 11:40:16 +0000
-X-Gmail-Original-Message-ID: <CAJX_Q+0seFwDvd6zksLnJjWYJJY1QcLc1gAjr=FN1p+aTdumpw@mail.gmail.com>
-X-Gm-Features: AclHuK9I2BMo6FvBmijHWWypkJRsPu48XUE9NXvVmMxUtTJAFVoacoB_pnoFyzs
-Message-ID: <CAJX_Q+0seFwDvd6zksLnJjWYJJY1QcLc1gAjr=FN1p+aTdumpw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/7] dt-bindings: net: amlogic,meson-dwmac: add amlogic,t7-dwmac
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, xianwei.zhao@amlogic.com, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
-	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Maxime Chevallier <maxime.chevallier@bootlin.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+From: Haoran Wang <haoranwangsec@gmail.com>
+To: Steen.Hegelund@microchip.com, daniel.machon@microchip.com, UNGLinuxDriver@microchip.com
+Cc: netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Fri, 13 Nov 2026 19:42:25 +0800
+Subject: [PATCH net-next] net: sparx5: check DT port reg against array size
+Message-ID: <179457014579.23820.10657909253312598784@gmail.com>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_034031_761970_348B6F25 
-X-CRM114-Status: GOOD (  34.94  )
-X-Spam-Score: 0.6 (/)
+X-CRM114-CacheID: sfid-20261113_034233_019011_FC5433F4 
+X-CRM114-Status: GOOD (  11.10  )
+X-Spam-Score: 1.2 (+)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -108,219 +96,55 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: tanure@linux.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 11:43=E2=80=AFAM Chuan Liu <chuan.liu@amlogic.com> =
-wrote:
->
-> Hi Lucas,
->
-> On 11/9/2026 11:43 PM, Lucas Tanure wrote:
-> > [ EXTERNAL EMAIL ]
-> >
-> > On Fri, Nov 6, 2026 at 3:16=E2=80=AFAM Chuan Liu <chuan.liu@amlogic.com=
-> wrote:
-> >>
-> >> Hi Krzysztof, Lucas,
-> >>
-> >> On 11/5/2026 7:57 PM, Krzysztof Kozlowski wrote:
-> >>> [ EXTERNAL EMAIL ]
-> >>>
-> >>> On Tue, Nov 03, 2026 at 04:37:10PM +0000, Lucas Tanure wrote:
-> >>>>
-> >>>> Assisted-by: LLM
-> >>>
-> >>> Drop this one.
-> >>>
-> >>>> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> >>>> ---
-> >>>>    .../bindings/net/amlogic,meson-dwmac.yaml     | 59 ++++++++++++++=
-+++++
-> >>>>    1 file changed, 59 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwm=
-ac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> >>>> index e769c9bb70d8..6de013e3e8f6 100644
-> >>>> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> >>>> @@ -23,6 +23,7 @@ select:
-> >>>>              - amlogic,meson-gxbb-dwmac
-> >>>>              - amlogic,meson-axg-dwmac
-> >>>>              - amlogic,meson-g12a-dwmac
-> >>>> +          - amlogic,t7-dwmac
-> >>>>      required:
-> >>>>        - compatible
-> >>>>
-> >>>> @@ -57,6 +58,59 @@ allOf:
-> >>>>                - const: clkin1
-> >>>>                - const: timing-adjustment
-> >>>>
-> >>>> +  - if:
-> >>>> +      properties:
-> >>>> +        compatible:
-> >>>> +          contains:
-> >>>> +            const: amlogic,t7-dwmac
-> >>>> +    then:
-> >>>> +      properties:
-> >>>> +        clocks:
-> >>>> +          items:
-> >>>> +            - description: GMAC main clock
-> >>>> +            - description: First parent clock of the internal mux
-> >>>> +            - description: Second parent clock of the internal mux
-> >>>> +            - description:
-> >>>> +                clock of the pipeline stage inserted in the bus pat=
-h between
-> >>>> +                the controller and the DRAM. Without it, the contro=
-ller cannot
-> >>>> +                complete DMA transfers.
-> >>>> +            - description:
-> >>>> +                clock of the register block holding PRG_ETH0 and PR=
-G_ETH1.
-> >>>> +                Without it, the block reads as zero and ignores wri=
-tes.
-> >>>
-> >>> This sounds like you take clock from other block. That's wrong, that
-> >>> device should take its own clock.
-> >>
-> >> I see that the clock in the dts patch corresponds to <&clkc_periphs
-> >> CLKID_SYS_ETHPHY>. This clock provides the working clock for the APB B=
-us
-> >> of the ETH PHY controller, and this clock will affect the register
-> >> reading and writing of the ETH PHY (including the ETH_PLL). See sectio=
-n
-> >> 15.3.4.2 RegisterDescription in A311D2 Datasheet for details.
-> >
-> > Thanks. That section is the PHY block at 0xfe028000, the region of the
-> > mdio multiplexer node. The registers in this description are PRG_ETH0
-> > and PRG_ETH1 in eth_top at 0xfe024000. On the VIM4 the same gate feeds
-> > them too: with it off they read as zero and ignore writes. My datasheet
-> > revisions do not say which clock feeds eth_top. Can you confirm it is
-> > this one?
->
-> The information I can confirm is:
->    - The base address of eth_phy is 0xfe028000, and its corresponding
-> APB clock is <&clkc_periphs CLKID_SYS_ETHPHY>.
->    - The base address of eth_top is 0xfe024000, and the base address of
-> eth_mac is 0xfdc00000; their corresponding APB clock is <&clkc_periphs
-> CLKID_SYS_ETH>.
+From: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+Date: Fri, 13 Nov 2026 19:42:25 +0800
+Subject: [PATCH net-next] net: sparx5: check DT port reg against array size
 
-That is not what the VIM4 does. The stmmac core enables
-CLKID_SYS_ETH before any glue code runs. With that clock on and
-CLKID_SYS_ETHPHY off, PRG_ETH0 and PRG_ETH1 read as zero and the
-driver's writes are lost: U-Boot's 0xa0000 was still in PRG_ETH1
-after the driver had written 0. Enabling CLKID_SYS_ETHPHY right
-before the write makes it land. That was the v3 bug, every frame a
-CRC error. I repeated it today on the running kernel, toggling only
-bit 4 of CLKCTRL_SYS_CLK_EN0_REG0 from user space, every other gate
-left on:
+mchp_sparx5_probe() reads the 'reg' property of each ethernet-port DT
+node into portno and passes it to sparx5_create_port(), which uses it
+to index the fixed-size sparx5->ports[SPX5_PORTS] array:
 
-  both gates on        EN0=3Dffffffff EN1=3Dffffffff PRG_ETH0=3D00001601
-  ethphy off, eth on   EN0=3Dffffffef EN1=3Dffffffff PRG_ETH0=3D00000000
-  ethphy restored      EN0=3Dffffffff EN1=3Dffffffff PRG_ETH0=3D00001601
+    sparx5->ports[config->portno] = spx5_port;
 
-So on this chip CLKID_SYS_ETH alone does not give access to eth_top.
-Could the register interface of eth_top sit behind the eth_phy APB
-slave? Either way the MAC node has to enable CLKID_SYS_ETHPHY, and
-the binding will describe it as the clock of the glue registers.
+The value is never validated, so a device tree with an out-of-range
+'reg' value (runtime overlay, corrupted or attacker-controlled DTB,
+kexec-supplied or bootloader-fixed-up DT) turns probe into an
+out-of-bounds write, potentially far outside the allocation.
 
->
-> The CPU reads and writes the registers of these peripheral controllers
-> (or Processing Units) via the APB. Consequently, the registers of these
-> controllers cannot be read and written properly if the corresponding APB
-> clock (sys_clk/clk81) is not enabled.
->
-> >
-> > Thanks,
-> > Lucas
-> >
-> >>
-> >>>
-> >>>
-> >>>> +
-> >>>> +        clock-names:
-> >>>> +          items:
-> >>>> +            - const: stmmaceth
-> >>>> +            - const: clkin0
-> >>>> +            - const: clkin1
-> >>>> +            - const: pipeline
-> >>>> +            - const: pclk
-> >>>> +
-> >>>> +        # The PHY adds the 2ns RGMII delays, see ethernet-controlle=
-r.yaml.
-> >>>> +        # The RX delay line of this glue is fine tuning in 200ps st=
-eps,
-> >>>> +        # added on top of what phy-mode describes. The TX side has =
-no fine
-> >>>> +        # tuning: its only step is a quarter of the clock period, t=
-he full
-> >>>> +        # 2ns at 1Gbit/s, so the TX property is not accepted.
-> >>>> +        tx-internal-delay-ps: false
-> >>>> +
-> >>>> +        # Deprecated: new SoCs use the standard *-internal-delay-ps
-> >>>> +        # properties instead.
-> >>>> +        amlogic,tx-delay-ns: false
-> >>>> +        amlogic,rx-delay-ns: false
-> >>>> +
-> >>>> +  # Delay definitions for Meson8b and newer
-> >>>> +  - if:
-> >>>> +      properties:
-> >>>> +        compatible:
-> >>>> +          contains:
-> >>>> +            enum:
-> >>>> +              - amlogic,meson8b-dwmac
-> >>>> +              - amlogic,meson8m2-dwmac
-> >>>> +              - amlogic,meson-gxbb-dwmac
-> >>>> +              - amlogic,meson-axg-dwmac
-> >>>> +              - amlogic,meson-g12a-dwmac
-> >>>> +    then:
-> >>>> +      properties:
-> >>>>            amlogic,tx-delay-ns:
-> >>>>              enum: [0, 2, 4, 6]
-> >>>>              default: 2
-> >>>> @@ -106,6 +160,7 @@ allOf:
-> >>>>              contains:
-> >>>>                enum:
-> >>>>                  - amlogic,meson-g12a-dwmac
-> >>>> +              - amlogic,t7-dwmac
-> >>>>        then:
-> >>>>          properties:
-> >>>>            rx-internal-delay-ps:
-> >>>> @@ -142,6 +197,10 @@ properties:
-> >>>>          - items:
-> >>>>              - const: amlogic,meson6-dwmac
-> >>>>              - const: snps,dwmac
-> >>>> +      - items:
-> >>>> +          - const: amlogic,t7-dwmac
-> >>>> +          - const: snps,dwmac-5.10a
-> >>>> +          - const: snps,dwmac
-> >>>
-> >>> I see no such hunk in the code, so not sure how to review this.
-> >>>
-> >>> Best regards,
-> >>> Krzysztof
-> >>>
-> >>>
-> >>> _______________________________________________
-> >>> linux-amlogic mailing list
-> >>> linux-amlogic@lists.infradead.org
-> >>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> >>
-> >> --
-> >> Best regards,
-> >> Chuan
-> >>
->
-> --
-> Best regards,
-> Chuan
->
-Thanks,
-Lucas
+Add a range check while parsing and skip nodes with an invalid port
+number.
+
+Fixes: f3cad2611a77 ("net: sparx5: add hostmode with phylink support")
+Signed-off-by: Haoran Wang <wanghr2026@mail.zgclab.edu.cn>
+---
+ drivers/net/ethernet/microchip/sparx5/sparx5_main.c | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+index 08a398adf121..6616e76bd0e3 100644
+--- a/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
++++ b/drivers/net/ethernet/microchip/sparx5/sparx5_main.c
+@@ -845,6 +845,11 @@ static int mchp_sparx5_probe(struct platform_device *pdev)
+ 			dev_err(sparx5->dev, "port reg property error\n");
+ 			continue;
+ 		}
++		if (portno >= SPX5_PORTS) {
++			dev_err(sparx5->dev, "port %u: reg out of range\n",
++				portno);
++			continue;
++		}
+ 		config = &configs[idx];
+ 		conf = &config->conf;
+ 		conf->speed = SPEED_UNKNOWN;
+--
+2.43.0
 
