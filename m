@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72342606A568
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 22:34:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F00606A55A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 22:34:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j9J0u/L3;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ISGi70qh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=E0ElqRX1;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GgBd5sd6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uCSBQsnFH1v0qJqLur3HuSvJBaK4cr2cKSQjBjx2zgs=; b=j9J0u/L3fzmE1e1a8Pb/b6w/gP
-	cT1/v6p6R7oqfdOmK6bWB7eL0esseWeuKtDfy0Nsb5eDbAuiM6Mt5qJ5csbtD4CJeCqr9r2Ds/ALs
-	MTe1HLLQngpabvAnyF7FEHvT/bI+Hlv2Y6uvhtQmTse6wrxPYfDTW7345QxIbgdMOuLht3Vq3K2LC
-	fGK6+rwASZhYyO5FO3ubwCVdE+de90XbhCkQOQN22uI3BSGf63YRBa+0jZvuM+cUtKRdTv1ikke/V
-	Q5xqdvUKCcpg1S584liXk93IlOHNnU4lQIgcgNqCbCns7u9HVzr0SaAnALzSZWcc7A6gzp1tbTgK0
-	IDIkDB/Q==;
+	bh=CAFByr2n00H9cjNvqOJZ3pMec76bQwORRhdn9gRTjKE=; b=E0ElqRX1M3MIFp4qR0G1HqUoZ3
+	N5HVBGRJCKh6SZ8ZDgjZ7zGQmNl4FKJ/zLur7VgTwQTOmKPEXzRfj18AcVklkVhA3yZCe9rh8T6jT
+	4aXFnIoOxI4w4FPPRbiZ3rThOIJ+WRBnG9qxxalIIOQiQAI5fNQft+tpDCgoyoDUW+9/7QaSxc64g
+	cFkmsm5vEyhA/lsCW40D6OaDAxK9I+RIlDZZ9YNjV3wqs9gPQyEfvLo0f17jT3YVOOPuPhip+Vinf
+	sWUPjxzFGI7HCT14MtBCAtFvdLDfDodORLPWnIFU43Tyo5eA7HZeLehgzFsahj0FDByTTE1ZEcUfd
+	XBbzLtfA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRzqa-0000000Eibx-2F4j;
-	Fri, 13 Nov 2026 22:34:16 +0000
+	id 1xRzqe-0000000Eilg-2cQC;
+	Fri, 13 Nov 2026 22:34:20 +0000
 Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRzq0-0000000Ehmc-3iB5;
-	Fri, 13 Nov 2026 22:33:40 +0000
+	id 1xRzq3-0000000Ehoc-0OJF;
+	Fri, 13 Nov 2026 22:33:43 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 9D5544393A;
-	Fri, 13 Nov 2026 22:33:40 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id CBF3243ECB;
+	Fri, 13 Nov 2026 22:33:42 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794609220;
-	b=UrDpaTKoAeL32rogoy7KmjT87zEMbdIBFUi8Yqskg6PLc7LFDr/Krw62oWfwlUKO5zx2
-	 OZmHbAUdq4OMuIgr1DKvan1aOxG6cDcUzi1Dwi8qWWYjfXpftheBHW68L81baZspk7n6b
-	 5gL9rvROvTzL334uhWZPHg7SL7gm/lSRG8sKqL7Jh5vQyy3e1Ve2PSy5KR3imaO/bncFL
-	 st3F8JbsDP6Pha4XqWVqKtiK55VnkY61wUZRpBdGxED2tZnZB0NQdUXE0TgChkW1ner42
-	 /87zEcxJ2X6Mti+lxfY4iJJvsKsbPEzYEdYvdl4B0pnET7wsBHxe7MPm9Um3LgbvKWg==
+	t=1794609222;
+	b=Ai4ThK1bpwD9ZB8Fa3BzV7K90L7VWI8BfdH3Apv8ipz8UhZ0EgiHRxIB6nNbhTiUMrEK
+	 2tFFnsJCuwMZ/jQltYwtl/IbAdv8a/dTnUfEXUFFoGynyzBvb0aftDYh22zAG6vLmgkhy
+	 ZqujVjVVnzhL6ukmnnRsWeY5ZT5IHE3iW6dDF6wPUErVTN4zhmsORnDkEy7vpB2VnYMMc
+	 ynI90C3T6RlpAMNDqXsIhjQqokJk+YNbVUP4HZOLE4QXo17y/6d3Wcrm8M4Zgw8obSZAl
+	 P/2z2yWCoQ41QFIxsyK3aPjscmcTvRKr6QiWqNYTWVmDfAOrFE/9MEg0hpnObJ/Fqaw==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794609220;
+	c=relaxed/relaxed; t=1794609222;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=uCSBQsnFH1v0qJqLur3HuSvJBaK4cr2cKSQjBjx2zgs=;
-	b=Y00WgXSs2lycL4GCl9Lu42iSpguhWJbdbbfIQqrQQGLUoq0oEd0b8N2cre9CHj1pRi0Q
-	 JGf1gLrIqNNZuWqHZ8Zu+Sgc8C0YdkoY9YAnv+7YoSyXoGF/eFsW6KL2iMgevqmkHgffT
-	 Fvv7S/WlRJV6ES57gm1rjGsP9djDokGGr5vlPEDJ403CZ9i6gwpH2NMu1swasADhh3dY2
-	 smwBoDYmBwROuIgWZxR/NgIJSJrPzrjONDY539q+BJEymzloIVY7vNfz8oLNsB9OhYdwU
-	 PMzoSyuk+TfmK6G1mGhY7h4YgtZ+rPWfToW53jywtMdeL5mkZLm+arl0MoY5eEZugoQ==
+	bh=CAFByr2n00H9cjNvqOJZ3pMec76bQwORRhdn9gRTjKE=;
+	b=e9zGbSVv5EqKimZ6BIM79T0Us6/mB4ifnUooHE308wE2xZpQkEaPQrJTyy2+x412lXIF
+	 RdOi0v4URkmqrriU9woyjlJ1CGS9lz5S617P6mt7pGrU85RTbMSwLIRjebU0AnVWQjY1I
+	 miUBFXQIXwIb7/i4071KArJZtYEdojIjNEe079RJJH6WR2UI0KbpHje/acS5zJ8FscR8P
+	 NUpkjnioYWjhVBEmgWv0G06U/0YzCjEAgHuXe1MaK/o0U1C1nLxIrQehiUpDhaNusnblX
+	 VjmRC+h3Noytutz3ccVj5E4UEE7HWj8w8HGsl2cZIE33VXPeL9qeGOqtplhS/R6GzYw==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E0D3E1F00937;
-	Fri, 13 Nov 2026 22:33:35 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id 3D54D1F000D4;
+	Fri, 13 Nov 2026 22:33:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794609220;
-	bh=uCSBQsnFH1v0qJqLur3HuSvJBaK4cr2cKSQjBjx2zgs=;
+	s=k20260515; t=1794609222;
+	bh=CAFByr2n00H9cjNvqOJZ3pMec76bQwORRhdn9gRTjKE=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=ISGi70qhfAp3wCAhR/HLl33dPfOjD30lG6Awl/KjDKfO7VppU3ysQIY/QCpEMM0IP
-	 /v4vlno1rqjj+nWtkK3JMXh/cGWTvR3JjsQnmB4C7MY9vtZnazCUrm2TjkGAHKvLKn
-	 UJk0Xv7I5GyyE/b4tUiSpYQU0xe/7BbJ64bUsVEpmdTVkIYkNwjvHksc0gGFuw0rXP
-	 R3BKrdf6m3OjAlBkaDMdWrbfhmbyrDwJqfxBO+o7Yg9+H30Z0+BX24XiRCz1u66JDl
-	 3yEFLXZHiMnLE++W1cwkzYDCyfmXSh6P6ahPEtXDoPCqM1u2prMkZYuubRv9/o3DAP
-	 6ifwM67qtqYmQ==
+	b=GgBd5sd6yCT6XYKUFyZ87x2EAwlGn94mo5diQzJabbmBlWv5b3Ew37mukz50amV6p
+	 3JRbZr2FJPMF8glmOPUJPk68IcaBlLCRed8JIt7dd0Ma4MSlwVqmYWw/QEseHiFqOc
+	 yrz3Vuql5Zb9Gkw7nwXVc57rp0LGsNoI3hzPu7g/rA/pcAZl9YLUww8QzvEu7CUFrW
+	 gqUzcdymTeH52mDEmMZzV5/IoCGZGaBtwLEWoRN04k7nGYmF08BHQRTxUUL+rfWAqk
+	 R/uDozwsk6yZFQgMiriJQt8+cmlX4aqxH2xqxnc/XLRHEiU2q8HfhgEfomS1332kzG
+	 5CdWJfEGPTZsw==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id BEF0C49B8C;
-	Fri, 13 Nov 2026 22:33:33 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 0956249B96;
+	Fri, 13 Nov 2026 22:33:34 +0000 (UTC)
 From: Han Gao via B4 Relay <devnull+gaohan.iscas.ac.cn@kernel.org>
-Date: Sat, 14 Nov 2026 06:33:40 +0800
-Subject: [PATCH 14/19] pinctrl: sunxi: add support for the Allwinner V861
- PIO
+Date: Sat, 14 Nov 2026 06:33:43 +0800
+Subject: [PATCH 17/19] dt-bindings: riscv: sunxi: add the YuzukiHD Avaota
+ F2
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261114-v861-v1-14-eb71ec3ee523@iscas.ac.cn>
+Message-Id: <20261114-v861-v1-17-eb71ec3ee523@iscas.ac.cn>
 References: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
 In-Reply-To: <20261114-v861-v1-0-eb71ec3ee523@iscas.ac.cn>
 To: Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
@@ -106,11 +106,11 @@ Cc: Han Gao <rabenda.cn@gmail.com>, linux-riscv@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, 
  linux-gpio@vger.kernel.org
 X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794609209; l=3631;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794609209; l=831;
  i=gaohan@iscas.ac.cn; s=20261021; h=from:subject:message-id;
- bh=dyHeGHv1zlRbsyWinbBdGwEJ5XkzCvJf3cZN/GfUYvk=;
- b=HNsKo9qWkRP5dIQtqxM+VpZT7emu0epD/ZwzOK2CDJX/49+eucj70g22c8PstYnuPDpuVLwW6
- C8J/jc4D4tYDvHgV0PCOxmlDH2E+Huq7coTiH6w6N1oXNtS4dDJKdH1
+ bh=ooczlTdXN+mxwhOn3DrrtrOaDvXXu8uSmXOercqvMcg=;
+ b=R/PxCFRHwUc43McpjXcMGYT1yN8X25eLXw30rD02e5LKxSZr/Gn1YD5tqkBM3/MPA5VI4neiy
+ /0dXCag8VjGCzSDkaC2auQA85V+nRQZqYS0WqWgn0TPWr5Ys0vGbcPq
 X-Developer-Key: i=gaohan@iscas.ac.cn; a=ed25519;
  pk=J8WHEK3filS86QaCaIHDGafqhxKyQ4K7+vFgRirTIiY=
 X-Endpoint-Received: by B4 Relay for gaohan@iscas.ac.cn/20261021 with
@@ -138,107 +138,30 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Han Gao <gaohan@iscas.ac.cn>
 
-Add the V861 main pin controller driver, using the DT based function
-tables.
-
-The 1.8 V mode of bank PF is not supported, as none of the existing I/O
-bias variants handles its control register.
+Document the YuzukiHD Avaota F2 board, which is based on the Allwinner
+V861 SoC.
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
- drivers/pinctrl/sunxi/Kconfig                | 10 ++++++
- drivers/pinctrl/sunxi/Makefile               |  1 +
- drivers/pinctrl/sunxi/pinctrl-sun252i-v861.c | 49 ++++++++++++++++++++++++++++
- 3 files changed, 60 insertions(+)
+ Documentation/devicetree/bindings/riscv/sunxi.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/pinctrl/sunxi/Kconfig b/drivers/pinctrl/sunxi/Kconfig
-index 831bb1dc9373..2d5ace1e5f5f 100644
---- a/drivers/pinctrl/sunxi/Kconfig
-+++ b/drivers/pinctrl/sunxi/Kconfig
-@@ -86,6 +86,16 @@ config PINCTRL_SUN20I_D1
- 	default MACH_SUN8I || (RISCV && ARCH_SUNXI)
- 	select PINCTRL_SUNXI
+diff --git a/Documentation/devicetree/bindings/riscv/sunxi.yaml b/Documentation/devicetree/bindings/riscv/sunxi.yaml
+index b36e313e13a6..9e993a5752e4 100644
+--- a/Documentation/devicetree/bindings/riscv/sunxi.yaml
++++ b/Documentation/devicetree/bindings/riscv/sunxi.yaml
+@@ -69,6 +69,11 @@ properties:
+           - const: widora,mangopi-mq-r-f133
+           - const: allwinner,sun20i-d1s
  
-+config PINCTRL_SUN252I_V861
-+	bool "Support for the Allwinner V861 PIO"
-+	default RISCV && ARCH_SUNXI
-+	select PINCTRL_SUNXI
-+	help
-+	  Support for the main pin controller of the Allwinner V861 SoC.
-+	  It provides pin multiplexing, GPIOs and GPIO interrupts for the
-+	  PA and PC to PH banks, and is required on boards based on this
-+	  SoC.
++      - description: YuzukiHD Avaota F2
++        items:
++          - const: yuzukihd,avaota-f2
++          - const: allwinner,sun252i-v861
 +
- config PINCTRL_SUN50I_A64
- 	bool "Support for the Allwinner A64 PIO"
- 	default ARM64 && ARCH_SUNXI
-diff --git a/drivers/pinctrl/sunxi/Makefile b/drivers/pinctrl/sunxi/Makefile
-index 3658c9d06b49..dc7559e260e1 100644
---- a/drivers/pinctrl/sunxi/Makefile
-+++ b/drivers/pinctrl/sunxi/Makefile
-@@ -22,6 +22,7 @@ obj-$(CONFIG_PINCTRL_SUN8I_H3)		+= pinctrl-sun8i-h3.o
- obj-$(CONFIG_PINCTRL_SUN8I_H3_R)	+= pinctrl-sun8i-h3-r.o
- obj-$(CONFIG_PINCTRL_SUN8I_V3S)		+= pinctrl-sun8i-v3s.o
- obj-$(CONFIG_PINCTRL_SUN20I_D1)		+= pinctrl-sun20i-d1.o
-+obj-$(CONFIG_PINCTRL_SUN252I_V861)	+= pinctrl-sun252i-v861.o
- obj-$(CONFIG_PINCTRL_SUN50I_H5)		+= pinctrl-sun50i-h5.o
- obj-$(CONFIG_PINCTRL_SUN50I_H6)		+= pinctrl-sun50i-h6.o
- obj-$(CONFIG_PINCTRL_SUN50I_H6_R)	+= pinctrl-sun50i-h6-r.o
-diff --git a/drivers/pinctrl/sunxi/pinctrl-sun252i-v861.c b/drivers/pinctrl/sunxi/pinctrl-sun252i-v861.c
-new file mode 100644
-index 000000000000..742465076d86
---- /dev/null
-+++ b/drivers/pinctrl/sunxi/pinctrl-sun252i-v861.c
-@@ -0,0 +1,49 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Allwinner V861 SoC pinctrl driver.
-+ *
-+ * Copyright (c) 2026 Han Gao <gaohan@iscas.ac.cn>
-+ */
-+
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/pinctrl/pinctrl.h>
-+
-+#include "pinctrl-sunxi.h"
-+
-+static const u8 v861_nr_bank_pins[SUNXI_PINCTRL_MAX_BANKS] =
-+/*	  PA  PB  PC  PD  PE  PF  PG  PH */
-+	{ 22,  0, 12, 23, 18,  7,  8, 16 };
-+
-+static const unsigned int v861_irq_bank_map[] = { 0, 2, 3, 4, 5, 6, 7 };
-+
-+static const u8 v861_irq_bank_muxes[SUNXI_PINCTRL_MAX_BANKS] =
-+/*	  PA  PB  PC  PD  PE  PF  PG  PH */
-+	{ 14,  0, 14, 14, 14, 14, 14, 14 };
-+
-+static struct sunxi_pinctrl_desc v861_pinctrl_data = {
-+	.irq_banks = ARRAY_SIZE(v861_irq_bank_map),
-+	.irq_bank_map = v861_irq_bank_map,
-+};
-+
-+static int v861_pinctrl_probe(struct platform_device *pdev)
-+{
-+	return sunxi_pinctrl_dt_table_init(pdev, v861_nr_bank_pins,
-+					   v861_irq_bank_muxes,
-+					   &v861_pinctrl_data,
-+					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
-+}
-+
-+static const struct of_device_id v861_pinctrl_match[] = {
-+	{ .compatible = "allwinner,sun252i-v861-pinctrl", },
-+	{}
-+};
-+
-+static struct platform_driver v861_pinctrl_driver = {
-+	.probe	= v861_pinctrl_probe,
-+	.driver	= {
-+		.name		= "sun252i-v861-pinctrl",
-+		.of_match_table	= v861_pinctrl_match,
-+	},
-+};
-+builtin_platform_driver(v861_pinctrl_driver);
+ additionalProperties: true
+ 
+ ...
 
 -- 
 2.55.0
