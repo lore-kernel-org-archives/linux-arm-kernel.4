@@ -2,108 +2,111 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E98606A889
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:25:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 344C860A6F7B
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:28:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QeqCoVI2;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=D+U1P7nw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aIUP0sAn;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fq7Z93cN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=tjOZX/K6WuuHANRm5zaWFMNlF3ieqw+28w/8fCcYL6g=; b=QeqCoVI215K+oe
-	A7kQD4A5VRyMvoHbH0Y90Ibyp48gOPgHHthbNam2evZtV2mNNQN+UqhRSjKu8yrAK1WAdPar5/KRs
-	LwuU/4/Dg0505ghICWC11H1otKnvXqQosLV9W12haYkXgTvt7mZaoVX6L7F26rQVPcD70kF8RlKfK
-	5zoknFTDh6BccisiJLpieSV/q1YrfB9c1H5ribvGq/eTSKVAVtsNNzWRssh+lLdYDrrhEZDI73F/Z
-	y1qDvfmCl4ptPoy3+hVGmNGrPAF3r465RVIccIqxsEPeb78Dzijnd9Vh8bkNr8Lp0oYgmb+8s1T9C
-	ff/oU3c7LKxw485CfO2w==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	From:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=W0QA3/P8oDUZY2+s6+4g1qU6clbKe+MnPLTSzZtiRR4=; b=aIUP0sAnQN5AtTtGPENRSlVFb0
+	E5u4/UOzeWEp4OBHA/rzqZ5EZdlCENHCe/7Zi09SPRN6l8yMsQL+PRU1G+9VrlWyjFMN/KP4+/B8Z
+	OUNT9UzeANYipmHJ6pOncUJeualN/sY7c+5RwOY9SLJib+7lYRfY86qIQOQTBcLrdAM1DQ1bwQ5m5
+	WCjkliySm8f51aoFD6+85W8QNUVFvlSiH4+KViflMOlG1Qv3lY8Orpxx4rskbcZISP5lge0sW/e6T
+	KDmPWnFwJk54uss+cflC93zieLLKhSdHnZKaNeTpEzx3YVH6R3rVniDLxXaOhtWjUK9ts/ZHgB6+1
+	yLZ4A8SQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrHK-0000000CvVx-11A4;
-	Fri, 13 Nov 2026 13:25:18 +0000
-Received: from mail-wr1-x433.google.com ([2a00:1450:4864:20::433])
+	id 1xRrK3-0000000CwYM-1Xk1;
+	Fri, 13 Nov 2026 13:28:07 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrH2-0000000CvMK-2TeP
+	id 1xRrJz-0000000CwX2-1SeR
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 13:25:04 +0000
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-492fcbfaa87so472082f8f.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 05:24:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794576298; x=1795181098; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=tjOZX/K6WuuHANRm5zaWFMNlF3ieqw+28w/8fCcYL6g=;
-        b=D+U1P7nwaoUyFSS41UBpcLywZsYf+BRhEm0akldE4M0Fbd09GWJAuv+aA4PidG/XiZ
-         y2TdXwvPx6D/JaTFPaleNqtnulDX+yiwsDJI9v7M6G8aoEZvwzOhBTagO4sc5ikEh5w5
-         gukd4XxWiAu0aWaemZxfVseOmH1PScUxAkeHaZ4ibNxDQtVq0j5o9pge7K1hg2K3Ajv9
-         PVMjBSCwej/IRNMlZ3szArPS6e0JTVcLP/hwiL4cFgCFikeUPfS+hkL54RhWQLFij8Sz
-         EbX+AhBTUFBYCyWXoNrju2Ly9rWBv7wkCVYyoO3WaTR9S0A8ALm8aOfrvXNBlU1n+8I6
-         pfqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794576298; x=1795181098;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=tjOZX/K6WuuHANRm5zaWFMNlF3ieqw+28w/8fCcYL6g=;
-        b=BlTpzrjg2vVCMHOIM4jEbAmPVpEcTECvKLyCiXUNcsFLH6/y7cnk8xhPU5e59e55RY
-         j8OgGNxGubxfSQrLNXEtOAR0RaGEVr19wjUwUt/4SBtHToc2PZ+9/7h1gY1TcQ7N+GN2
-         NrMG+VgSqChu8DnbClokg2cxcWFfQv4Mj6/CWlETjpwxexTpY+I6VTOVon19k0Ehvtpp
-         wzIZm5z+M3pWmdX/JVB644NXJcvU8fLeSOEw05dnJZEBpwwEk6GMfuM3HTswYrc1ZcPR
-         /tYvOtpMm/rMFOLXjzjMN+8DLHw8ZmSVU5hx67vPWc0gvHhuYpBm8WrrdjFVXQcsFPUF
-         6Xlw==
-X-Gm-Message-State: APuU4Z+E0UnVrFKIjT/6BVVMgY7RrVlGN44TT3mFYiT6T/T2fYweHRA4
-	nB+26a9/PPL/eAdG95SI4nVdJSVkc6eLYV/ujUF8F+FNDgflSzs3P1A/SvVWSPyhNb0lNw==
-X-Gm-Gg: AYBFou0t+D521qkSCDubk5e53D368W+au5GvMXyY4YZEcq6cQ6J21gZC7wbIhJyOSlJ
-	zTwzK55IY3pn/C9lZ3a/7xpwT6UdU+lUnlTGHUucznLTlkQDoef8YrnzpYKZN9xJOMZ0U4vZYqM
-	V0q43E7LEfvKZDHu/kUSG9SKdC+pe48kBEn53hSrwplfzMm3TRU65h0k6E3gypl5XMJUKu678en
-	S4nnuo79A6sqfkftz9dw18iqTPFkPPlOPZ6yRwrmebKWf7FHW9Yzgc1RXgxl10MMMuoqiQor1Jf
-	NdZy97WxQtDJSYNjW2YxRk3vYRUryG+Vg6oFr8Hk8/2PLFrYc6XQhwXtg4g5PtCHurH9yC+npsb
-	bSn/keiTtqAVFF7ns8NiCG56gbiAElg0b0hZMNHw/RGLtOqe+SJHiZUnS41bZK3FFD+uWH6S6jP
-	/pNEtbQi+KwRzAN02ysDSsDd/ewxKlumDehByQvdC27COuDq+u7w4SdpHH1tu+n9oKm+5lUdXPF
-	t2NLDuuvaZ+2vMrc9hUQ/PKzjgXCZf3azDjaDYo4MEighCrFTKA/ky5dFAVFVU4VV32JdkYVKGM
-	cm32i4YYDMbG/ehlvzrKB+IwTe7yQF3LqPYoFh6XMoYjxGpw5e4rMWPdaK2R/OHsRUvP
-X-Received: by 2002:a05:6000:2311:b0:48d:ffe7:e883 with SMTP id ffacd0b85a97d-49c741b1371mr6012548f8f.46.1794576298236;
-        Fri, 13 Nov 2026 05:24:58 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-86-98-194-229.alshamil.net.ae. [86.98.194.229])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c60f8d66esm4680211f8f.57.2026.11.13.05.24.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 05:24:57 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 13 Nov 2026 17:24:42 +0400
-Subject: [PATCH v7 3/4] watchdog: Add support for VIA/WonderMedia SoC
- watchdog functionality
+	Fri, 13 Nov 2026 13:28:06 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9AA686271E;
+	Fri, 13 Nov 2026 13:28:02 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794576482;
+	b=kwabG08jNKy+L/zTTygo3wDzjrcbFToEqUw7QyUNRLBNYMwkThF3Lc5FjQuBycsvVEOU
+	 xUHUguMdtzZsdl714TBk1a89ApYjax75k6tEZsIIGrrM8v1Vi0XxUBEz4Dlre5VHqII+H
+	 /a4DJhoxf3WzHyE26xgHHUbcah91j0ZcxjmZUwl80ZId5S/O2x3yEeErwgF8IkH+M602f
+	 G4Ao9XWmGY0yLB0WEJjc0ND1JdkWdW+TTBVy1RxFO7blg8fUfn6CvRcYdjvKqBsMmRnew
+	 ZrD+JXXywCds51C3Oc0uyfoc0Gx/tz0j/258BAIFHHca5ih7BBv+VoF5vaYOo9OhtPw==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794576482;
+	h=DKIM-Signature:Received:From:Subject:Date:Message-Id:MIME-Version:
+	 Content-Type:Content-Transfer-Encoding:X-B4-Tracking:X-Change-ID:To:
+	 Cc:X-Mailer:X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To;
+	bh=W0QA3/P8oDUZY2+s6+4g1qU6clbKe+MnPLTSzZtiRR4=;
+	b=x8cJDtnvZXkOVV84gd4Vmln7/z5ZZFMYFPzZOwfCJKjG3TeG/SwnGOIVqXY0j2jAxQnv
+	 ixNMy212Yd+kQ9cWKmqrv9ZnG3Dg54RHie0NHyWKVMlA6hKcn1A270tmkJygslG/8VNKg
+	 ZbFPpqUulnPNEqRwmQvc9UbLDHUJhen+9gLlYTUpg0qPhOgkn8tbZgPcK7e9UnFWzTgcw
+	 FRaU3Ib9U0GC15cFLx0JsIR5glL0FOO6wVfEJ4+yf7hMV2kg+BF/8u5OczTTOpVFNgmfN
+	 akUPzzyJNOjzRL8/cq4UZ9Qt+uG7SD+cIyEVOf7axK7ObarwWGGcGbAMVFPQI2vhBOg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id E88D81F000C8;
+	Fri, 13 Nov 2026 13:28:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794576482;
+	bh=W0QA3/P8oDUZY2+s6+4g1qU6clbKe+MnPLTSzZtiRR4=;
+	h=From:Subject:Date:To:Cc:Reply-To;
+	b=fq7Z93cN6rQGivRWdpVD7ATUU0Giv3hVk0smZscl4iRpQ3sQyeBIw6fvQTINSPj9U
+	 3cRchTygBxevoYsgK+9r8IsLWPbBvxzdlbU55xnzExxLLwgIEeqqo/VDyyMuQmsaz5
+	 YrgY4SneBazd0/fb0N7b1/pLf6Kkf8T54kxPqWA4EMrdgDe61ez7/RTrSiYils82Kk
+	 NPijsOVJbYLHXBU0Of1mfMFoNR3wp5GJgfjP83s770HDZhgP7C/mnv/EbYmFfqBe6F
+	 gpaAQ++uxUGQw0h2T5IK41SDbRMbzburWuEGh1jbLS2RIh1WzdD5nJf3LaeXdYUQNn
+	 mnlioaRVGP8qQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 497D7477C9;
+	Fri, 13 Nov 2026 13:28:00 +0000 (UTC)
+From: Ghennadi Procopciuc via B4 Relay <devnull+ghennadi.procopciuc.oss.nxp.com@kernel.org>
+Subject: [PATCH RFC 0/2] firmware: arm_scmi: clock: stop discovering every
+ clock at boot
+Date: Fri, 13 Nov 2026 15:27:45 +0200
+Message-Id: <20261113-b4-scmi-clk-on-demand-v1-0-7fd162097b57@oss.nxp.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-vt8500-timer-updates-v7-3-a1dcc4031b12@gmail.com>
-References: <20261113-vt8500-timer-updates-v7-0-a1dcc4031b12@gmail.com>
-In-Reply-To: <20261113-vt8500-timer-updates-v7-0-a1dcc4031b12@gmail.com>
-To: Alexey Charkov <alchark@gmail.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-watchdog@vger.kernel.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7950; i=alchark@gmail.com;
- h=from:subject:message-id; bh=hyWHvc0h3BNHC+IYNfkAcOOw1wzOzOaIDKO9cWPzNvA=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWR9519gFZe/do7rxqneGrHZ/JNmPFy0+WO72/LJp/bqf
- t7lwTMvpmMiC4MYF4OlmCLL3G9LbKca8c3a5eHxFWYOKxPIEGmRBgYgYGHgy03MKzXSMdIz1TbU
- MzTSMdYxYuDiFICp7pnPyPBocqxM5Nk3Et+jt/YWzfOITuS81mnP/29ZcW9lxrPN6XkMv1m/v5j
- 7Q+bp2Wszlu9iCfls1XKH0TBipefWWcv/1S/ZXMoLAA==
-X-Developer-Key: i=alchark@gmail.com; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_052500_778161_EFA9FE1D 
-X-CRM114-Status: GOOD (  28.00  )
-X-Spam-Score: -2.1 (--)
+X-B4-Tracking: v=1; b=H4sIAFIQ92oC/yWMzQrCMBAGX6V8ZxeaGqv1KvgAXsVDflZdtalkV
+ YTSdzfqcQZmRihnYcW6GpH5JSpDKmBmFcLZpROTxMJo6qY1xszJW9LQC4XblYZEkXuXIi2WtnM
+ t193KW5T2nvko7993j912g8Nf6tNfODy+R0zTByfIzQl+AAAA
+X-Change-ID: 20261113-b4-scmi-clk-on-demand-5749a6e098b4
+To: Brian Masney <bmasney+clk@redhat.com>, 
+ Sudeep Holla <sudeep.holla@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+ Jerome Brunet <jbrunet+clk@baylibre.com>, 
+ Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-doc@vger.kernel.org, Alberto Ruiz <aruizrui@redhat.com>, 
+ linux-arm-kernel@lists.infradead.org, Christophe Lizzi <clizzi@redhat.com>, 
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ arm-scmi@vger.kernel.org, Eric Chanudet <echanude@redhat.com>, 
+ Enric Balletbo <eballetb@redhat.com>, NXP S32 Linux Team <s32@nxp.com>, 
+ Jonathan Corbet <corbet@lwn.net>
+X-Mailer: b4 0.15.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794576479; l=7652;
+ i=ghennadi.procopciuc@oss.nxp.com; s=20261113; h=from:subject:message-id;
+ bh=gZgo2l01v/+zPm3N88ysUMp9g86TRzNGPYo8Hm6Qk38=;
+ b=9AWQ7Q2v3OeyoO3YTe7FJBR77MmPpmc1ggiEMtaHHuI4QIyO91hZuUaZzWFcMP8zWie1IbxOY
+ jpOEuuJuf+3AazK8/0su5lhkhraXfu9ORUhf67LNP2x5doPVHfPgng4
+X-Developer-Key: i=ghennadi.procopciuc@oss.nxp.com; a=ed25519;
+ pk=hNLk4ZpONFOVJg3NdDWRU2LtaL+HBg4W2I1KU0+XBmo=
+X-Endpoint-Received: by B4 Relay for
+ ghennadi.procopciuc@oss.nxp.com/20261113 with auth_id=1509
+X-Original-From: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -113,242 +116,184 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: ghennadi.procopciuc@oss.nxp.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VIA/WonderMedia SoCs can use their system timer's first channel as a
-watchdog device which will reset the system if the clocksource counter
-matches the value given in its match register 0 and if the watchdog
-function is enabled.
+Hi all,
 
-Since the watchdog function is tightly coupled to the timer itself, it
-is implemented as an auxiliary device of the timer device. Build it in
-rather than as a module, as the timer it depends on is always built in
-and the driver is tiny.
+At probe, the SCMI clock protocol and clk-scmi discover and register
+every clock the platform reports, whether or not a Linux consumer
+references it. On platforms that report hundreds of clocks, this can
+add tens of milliseconds or more to every boot.
 
-Report a watchdog found running at probe, as one armed before a kexec
-would be, so that the core keeps it fed until userspace takes over.
+This is sent as RFC to get feedback on the direction before a final
+version. The questions are listed at the end.
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
+The problem
+===========
+
+For each clock, probe sends a fixed number of messages:
+
+  - CLOCK_ATTRIBUTES, in scmi_clock_protocol_init()
+  - CLOCK_GET_PERMISSIONS, if the platform supports it
+  - CLOCK_DESCRIBE_RATES, at least once even with the bounded iterators
+  - CLOCK_POSSIBLE_PARENTS_GET and CLOCK_NAME_GET, when applicable
+  - CLOCK_RATE_GET, from __clk_core_init() at registration
+
+The total cost is about N_clocks x messages_per_clock x message_latency.
+It grows with the number of clocks the platform reports, not with the
+number of clocks Linux uses. Three properties make it worth addressing:
+
+1. It is paid on every boot. The result does not change between boots
+   with the same firmware, but nothing is cached. Every cold boot, warm
+   reboot or kexec pays it again, and so does every VM that has its own
+   SCMI clock provider.
+
+2. It is on the critical path. scmi_clocks_probe() runs synchronously
+   and registers the provider only at the end. Every consumer of an SCMI
+   clock waits for the whole set to be discovered, and through fw_devlink
+   so do the devices that depend on those consumers. A storage controller
+   that needs one clock to mount the root filesystem waits for hundreds.
+
+3. Most of the work is for clocks Linux has no use for. SoCs that run
+   several agents or partitions on one SCMI server often report the full
+   clock space to every agent. An agent may have only a dozen clocks
+   referenced in its device tree, and may not even be allowed to control
+   the others, but it still discovers and registers all of them.
+
+clk_disable_unused() adds to this. It walks every registered clock and,
+for clocks with an is_prepared op, sends CLOCK_CONFIG_GET for each one,
+including clocks Linux can never disable.
+
+An example: NXP S32N79
+======================
+
+S32N79 is one platform where the problem shows up. It is used here only
+because it was the platform at hand for measurements; any platform with
+a large SCMI clock space and a non-trivial message latency has the same
+profile.
+
+  - Transport: arm,scmi-smc, one channel, SCMI clock protocol v2.1.
+  - The platform reports 432 clocks to the Linux agent.
+  - The device tree references 4 of them.
+  - All 432 have state, rate and parent control forbidden for this agent.
+
+Before this series:
+
+  Window                                Messages   Time in SCMI
+  ------------------------------------  --------   ------------
+  protocol init (devm_protocol_get)         1300       76.7 ms
+    CLOCK_ATTRIBUTES                         432       26.2 ms
+    CLOCK_DESCRIBE_RATES                     432       25.8 ms
+    CLOCK_GET_PERMISSIONS                    432       24.5 ms
+    version and attributes                     4        0.2 ms
+  registration + __clk_core_init()           432       26.0 ms
+    CLOCK_RATE_GET                           432       26.0 ms
+  scmi_clocks_probe() total                 1732      102.7 ms
+                                                     (103.5 ms wall)
+  clk_disable_unused()                       432       25.8 ms
+    CLOCK_CONFIG_GET                         432       25.6 ms
+    CLOCK_CONFIG_SET                           0
+
+  - The average cost of a message is about 59 us, and it is about the
+    same for every message type, so the fixed per-call cost of the
+    transport and firmware dominates.
+  - About 99% of the probe time is spent waiting for the platform.
+  - The clk_disable_unused() pass sends 432 queries and then disables
+    nothing, because no clock can be gated by this agent.
+  - Together that is about 129 ms of SCMI clock traffic before user
+    space starts, for 4 clocks that are actually used.
+
+Expected with this series and dt_referenced_only=1:
+
+  Window                                Messages   Time (expected)
+  ------------------------------------  --------   ---------------
+  scmi_clocks_probe()                         72       ~4.3 ms
+  clk_disable_unused()                        17       ~1.0 ms
+
+The proposed solution
+=====================
+
+The idea is to stop discovering the clocks that Linux does not use. It
+takes two steps:
+
+  - The SCMI clock protocol discovers a clock the first time a caller
+    uses it, instead of discovering all of them at protocol init.
+  - On request, clk-scmi registers only the clocks referenced by
+    enabled device tree nodes, plus their parents. The other clocks
+    are never discovered. This mode is off by default and is enabled
+    with the dt_referenced_only module parameter.
+
+TI's sci-clk already does something similar: it registers only the
+clocks referenced in the device tree, with a Kconfig option to probe all
+of them from firmware instead (commit 8e48b33f9def, "clk: keystone:
+sci-clk: probe clocks from DT instead of firmware").
+
+What dt_referenced_only gives up:
+
+  - clk_summary and debugfs list only the registered clocks.
+  - Disabled nodes are skipped, as in sci-clk. A device tree overlay
+    that references an SCMI clock ID not present at probe time, or that
+    enables a disabled node, is not supported yet. Support can be added
+    if this approach is agreed on.
+  - A clock referenced only from a property other than "clocks",
+    "assigned-clocks" and "assigned-clock-parents" is not registered.
+
+What discovery on first use gives up, with and without
+dt_referenced_only:
+
+  - No clock is discovered yet when the protocol events are registered,
+    so the support for the rate notifications is checked per clock only
+    when a notifier is enabled. A notifier for an event that the
+    platform implements, but that no clock supports, is no longer
+    rejected with -EOPNOTSUPP at registration. It fails with -EINVAL
+    when it is enabled, after the clocks it covers are discovered. No
+    in-tree driver registers SCMI clock notifiers. This can be addressed
+    if this approach is agreed on.
+
+Questions
+=========
+
+The aim of this RFC is to agree on the direction first. The details of
+the implementation can follow in a later version.
+
+1. Is it acceptable to discover and register only the SCMI clocks that
+   the device tree references, instead of every clock the platform
+   reports?
+
+2. If so, should this stay in SCMI, or become a generic mechanism in the
+   clock framework that other firmware-backed clock providers can share?
+
+Any feedback, including "this should be done differently", is welcome.
+
+Thanks,
+Ghennadi
+
 ---
- Documentation/watchdog/watchdog-parameters.rst |   7 ++
- MAINTAINERS                                    |   1 +
- drivers/watchdog/Kconfig                       |  12 +++
- drivers/watchdog/Makefile                      |   1 +
- drivers/watchdog/vt8500-wdt.c                  | 132 +++++++++++++++++++++++++
- 5 files changed, 153 insertions(+)
+Ghennadi Procopciuc (2):
+      firmware: arm_scmi: clock: discover clock domains on first use
+      clk: scmi: optionally register only clocks referenced in the device tree
 
-diff --git a/Documentation/watchdog/watchdog-parameters.rst b/Documentation/watchdog/watchdog-parameters.rst
-index 348229ffcb43..27453b659545 100644
---- a/Documentation/watchdog/watchdog-parameters.rst
-+++ b/Documentation/watchdog/watchdog-parameters.rst
-@@ -637,6 +637,13 @@ uniphier_wdt:
- 
- -------------------------------------------------
- 
-+vt8500_wdt:
-+    nowayout:
-+	Watchdog cannot be stopped once started
-+	(default=kernel config parameter)
-+
-+-------------------------------------------------
-+
- w83627hf_wdt:
-     wdt_io:
- 	w83627hf/thf WDT io port (default 0x2E)
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e8c2b1101b68..73039535eba2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4010,6 +4010,7 @@ F:	drivers/tty/serial/vt8500_serial.c
- F:	drivers/video/fbdev/vt8500lcdfb.*
- F:	drivers/video/fbdev/wm8505fb*
- F:	drivers/video/fbdev/wmt_ge_rops.*
-+F:	drivers/watchdog/vt8500-wdt.c
- F:	include/clocksource/vt8500-timer.h
- 
- ARM/ZTE ZX29 SOC SUPPORT
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index c884f86be4e3..a252f9c9c2c8 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -1183,6 +1183,18 @@ config SUNPLUS_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called sunplus_wdt.
- 
-+config VT8500_WATCHDOG
-+	bool "VIA/WonderMedia VT8500 watchdog support"
-+	depends on ARCH_VT8500 || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	select AUXILIARY_BUS
-+	help
-+	  VIA/WonderMedia SoCs can use their system timer as a hardware
-+	  watchdog, as long as the first timer channel is free from other
-+	  uses and respective function is enabled in its registers. To
-+	  make use of it, say Y here and ensure that the device tree
-+	  lists at least two interrupts for the VT8500 timer device.
-+
- # X86 (i386 + ia64 + x86_64) Architecture
- 
- config ACQUIRE_WDT
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 19cb25f51624..5a5a111b4815 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -106,6 +106,7 @@ obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
- obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
- obj-$(CONFIG_GUNYAH_WATCHDOG) += gunyah_wdt.o
- obj-$(CONFIG_MA35D1_WDT) += ma35d1_wdt.o
-+obj-$(CONFIG_VT8500_WATCHDOG) += vt8500-wdt.o
- 
- # X86 (i386 + ia64 + x86_64) Architecture
- obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-diff --git a/drivers/watchdog/vt8500-wdt.c b/drivers/watchdog/vt8500-wdt.c
-new file mode 100644
-index 000000000000..e0f838fd1d50
---- /dev/null
-+++ b/drivers/watchdog/vt8500-wdt.c
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// SPDX-FileCopyrightText: 2026 Alexey Charkov <alchark@gmail.com>
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/bits.h>
-+#include <linux/container_of.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/limits.h>
-+#include <linux/minmax.h>
-+#include <linux/moduleparam.h>
-+#include <linux/stringify.h>
-+#include <linux/types.h>
-+#include <linux/watchdog.h>
-+
-+#include <clocksource/vt8500-timer.h>
-+
-+/* Offsets within the timer register block */
-+#define VT8500_WDT_MATCH_REG	0x0000	/* timer match register 0 */
-+#define VT8500_WDT_EN_REG	0x0018
-+#define VT8500_WDT_EN		BIT(0)
-+#define VT8500_WDT_ACC_STS_REG	0x0024	/* timer access status */
-+#define VT8500_WDT_ACC_WR_MATCH	BIT(0)	/* match register 0 write pending */
-+
-+#define VT8500_WDT_DEFAULT_TIMEOUT	30	/* seconds */
-+
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-+		 __stringify(WATCHDOG_NOWAYOUT) ")");
-+
-+/* Arm the watchdog to reset the SoC @cycles counter ticks from now */
-+static int vt8500_watchdog_arm(struct vt8500_wdt_info *info, u64 cycles)
-+{
-+	u32 deadline, sts;
-+	int ret;
-+
-+	/* Let a previous match write settle, as the timer driver does */
-+	ret = readl_poll_timeout_atomic(info->regbase + VT8500_WDT_ACC_STS_REG,
-+					sts, !(sts & VT8500_WDT_ACC_WR_MATCH),
-+					1, 10000);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The deadline is matched against the hardware clocksource counter,
-+	 * which is a u32 value incrementing at VT8500_TIMER_HZ and continuing
-+	 * past wraparound. When the return value of timer_next is greater than
-+	 * U32_MAX then the match should occur after the hardware counter wraps
-+	 * around, thus we take only the lower 32 bits of timer_next return val
-+	 */
-+	deadline = info->timer_next(cycles);
-+	writel(deadline, info->regbase + VT8500_WDT_MATCH_REG);
-+	writel(VT8500_WDT_EN, info->regbase + VT8500_WDT_EN_REG);
-+
-+	return 0;
-+}
-+
-+static int vt8500_watchdog_start(struct watchdog_device *wdd)
-+{
-+	struct vt8500_wdt_info *info = watchdog_get_drvdata(wdd);
-+	u32 timeout_ms = min(wdd->timeout * 1000, wdd->max_hw_heartbeat_ms);
-+
-+	return vt8500_watchdog_arm(info,
-+				   (u64)timeout_ms * (VT8500_TIMER_HZ / 1000));
-+}
-+
-+static int vt8500_watchdog_stop(struct watchdog_device *wdd)
-+{
-+	struct vt8500_wdt_info *info = watchdog_get_drvdata(wdd);
-+
-+	writel(0, info->regbase + VT8500_WDT_EN_REG);
-+
-+	return 0;
-+}
-+
-+static const struct watchdog_ops vt8500_watchdog_ops = {
-+	.start			= vt8500_watchdog_start,
-+	.stop			= vt8500_watchdog_stop,
-+};
-+
-+static const struct watchdog_info vt8500_watchdog_info = {
-+	.identity		= "VIA VT8500 watchdog",
-+	.options		= WDIOF_MAGICCLOSE |
-+				  WDIOF_KEEPALIVEPING |
-+				  WDIOF_SETTIMEOUT,
-+};
-+
-+static int vt8500_wdt_probe(struct auxiliary_device *auxdev,
-+			    const struct auxiliary_device_id *id)
-+{
-+	struct vt8500_wdt_info *info;
-+	struct watchdog_device *wdd;
-+
-+	wdd = devm_kzalloc_obj(&auxdev->dev, *wdd);
-+	if (!wdd)
-+		return -ENOMEM;
-+
-+	wdd->info = &vt8500_watchdog_info;
-+	wdd->ops = &vt8500_watchdog_ops;
-+	wdd->min_timeout = 1;
-+	wdd->timeout = VT8500_WDT_DEFAULT_TIMEOUT;
-+	wdd->max_hw_heartbeat_ms = U32_MAX / (VT8500_TIMER_HZ / 1000);
-+	wdd->parent = &auxdev->dev;
-+
-+	info = container_of(auxdev, struct vt8500_wdt_info, auxdev);
-+	watchdog_set_drvdata(wdd, info);
-+	watchdog_set_nowayout(wdd, nowayout);
-+
-+	/* Let the core feed a watchdog left running, e.g. across kexec */
-+	if (readl(info->regbase + VT8500_WDT_EN_REG) & VT8500_WDT_EN)
-+		set_bit(WDOG_HW_RUNNING, &wdd->status);
-+
-+	return devm_watchdog_register_device(&auxdev->dev, wdd);
-+}
-+
-+static const struct auxiliary_device_id vt8500_wdt_ids[] = {
-+	{ .name = "timer_vt8500.vt8500-wdt" },
-+	{}
-+};
-+
-+static struct auxiliary_driver vt8500_wdt_driver = {
-+	.name =	"vt8500-wdt",
-+	.probe = vt8500_wdt_probe,
-+	.id_table = vt8500_wdt_ids,
-+	.driver = {
-+		/* Unbinding would leave the hardware armed with no one to ping */
-+		.suppress_bind_attrs = true,
-+	},
-+};
-+builtin_driver(vt8500_wdt_driver, auxiliary_driver_register);
+ Documentation/admin-guide/kernel-parameters.txt |   7 ++
+ drivers/clk/Kconfig                             |  11 ++
+ drivers/clk/clk-scmi.c                          | 120 +++++++++++++++++-
+ drivers/firmware/arm/scmi/clock.c               | 160 ++++++++++++++++++------
+ include/linux/scmi_protocol.h                   |   4 +-
+ 5 files changed, 254 insertions(+), 48 deletions(-)
+---
+base-commit: 49c49ca0c4d02848a9576f72c4741c38c5ba09de
+change-id: 20261113-b4-scmi-clk-on-demand-5749a6e098b4
 
--- 
-2.56.0
+Best regards,
+--  
+Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+
 
 
