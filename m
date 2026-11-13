@@ -2,64 +2,135 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13EC1606A897
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F130D60A261C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q6PZrEPv;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=FjmDfQ58
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=k26RtnB3;
+	dkim=pass (2048-bit key, unprotected) header.d=vaisala.com header.i=@vaisala.com header.a=rsa-sha256 header.s=selector1 header.b=fs0m1kk5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Message-ID:Date:Subject:Cc:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NzUe96JVXyAQFI34A54wINR48uzs8BVsrG29CnSSRI4=; b=Q6PZrEPvhn0DYeW3cx/iBHOjZT
-	ZYNpf9l8XJq5hYYaGSuiHy2VxgbbVoPjLko3vbslyopvejmuLkLt5l042XwQIjCVRCcKqJ97CMVpb
-	iowY8/rGN3TattUg8tOYbaBQxzfUci5MCXgkXlUq6Pa3240JzD8oXc6wfHKKRM74u8+izhCVCimp5
-	8UDdsIgQ9GmWgtqs1nYGoaooMUfOnByHWrA05s79NnQpKFrqPugOMGw5AiCJHAlRvxnSZ98vf+43c
-	DxmXzS+Wdbq8Fh48HO24UjTXpW0ECjO1jnE1TRR2OpSLYVelItbFEPSgcGagUYAp+a1u4I+E5ckII
-	hots0ksw==;
+	bh=ECVX/5zk6mejiKBUTdPa4xXiFeXBfKE+Ws1j5PsmeAM=; b=k26RtnB3Y1goWYdWRfVX7Tp4nX
+	gv9V7vV8Hj96+dzmYLf4w72SiKmNbWY/HIpW0NPH6zYftT+Tgw1OmLaHWUpxXeNm6a+0dBtUAA5A/
+	r4ZIjD24Td4xMBc30kczBNT+3xw+I2z1DfyINa6xSihrhFvgoTD165QPuQ2rvab4/zIkoQ7H3AA/Y
+	C85qwiISrbh4tlr1O4VlSqxGFYmGUe5lR1Rr+tfanzJyHUX3TII2TRIu10kaH2KNpa5L01uhQUFp0
+	0CfHDSz1yJX8BEp57FdX1xm/ivB3Ztm1Hx2zhKldRqJ8/q51V9dBAUborTIwhKWE/Z7S22wBr4Hu1
+	hrNZVLoA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRsY0-0000000DDR2-0Ta1;
-	Fri, 13 Nov 2026 14:46:36 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRsXr-0000000DDQ9-0M17
+	id 1xRsbw-0000000DE5B-2pRW;
+	Fri, 13 Nov 2026 14:50:41 +0000
+Received: from mail-northeuropeazlp170100001.outbound.protection.outlook.com ([2a01:111:f403:c200::1] helo=DB3PR0202CU003.outbound.protection.outlook.com)
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRsbp-0000000DE3I-07ZN
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 14:46:28 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D00F339;
-	Fri, 13 Nov 2026 06:46:22 -0800 (PST)
-Received: from localhost (unknown [10.2.196.114])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 462EC3F673;
-	Fri, 13 Nov 2026 06:46:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794581185; bh=aq6NKdkVpAukouuQY8lIKEWV5Lcr58p7BuiGWLz4MYA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FjmDfQ58j8A2NukEY6Anu0yBRZfVsflGs86Pv4DKo2LUl8tBtUdNreYBdD3GUuh+O
-	 lFZj8bnbMjvKOHoFW7E54RpKdF34kESYY6U8ON43GfyvhbQJq/05yFQEunZnB/P3Yb
-	 hh73WAo171sYqKmDbdn+lHAt1a6ybWhiSc0kVH8w=
-Date: Fri, 13 Nov 2026 14:46:23 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Igor Velkov <iav@iav.lv>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@arm.com>,
-	James Clark <james.clark@linaro.org>, coresight@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: coresight: cpu-debug: PC sampling via PMPCSR (FEAT_PCSRv8p2)?
-Message-ID: <20261113144623.GQ9176@e132581.arm.com>
-References: <20261113-coresight-pmpcsr-question-1@iav.lv>
+	Fri, 13 Nov 2026 14:50:38 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eepy5k/CD27S8Ag6FDsCGmngPT3lK2dB+AZ+MS2VRC0hqwsB5OoxLtzxnehmqB0uZhuV3XtqMMSAf0wqvVlMGJLE/vkBajrZO3XQmAfZenScmWTxC9GsfEMlGlqOB/aj9S5XSbNDuQxYJIlprCrdDJc4/9kaxYXVu+b1IcRczurlmvKhu0LNeRpNRYgllerboS0Cq9dKPDyd/RkJ/+NNZN1WbW6Fpg5UtwcGEvXMF4ooP7zK9O8qshjaNV1t3om2zEvc+nDRHuR5REvP2kaUSEZX2oxeGUERs4VHFP6Fs+HGOW8s8tQqqx8Nvh3w0i5hQ5Pw8uQ7xBUVc1odP97QkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ECVX/5zk6mejiKBUTdPa4xXiFeXBfKE+Ws1j5PsmeAM=;
+ b=dC4OboFCzxwCuG60fvnV89eipfiVxq9ZsOPNIHqRvIYH0duVs7S4b9XgML7ybJ9qTUnE59E+/X1vF5WFnas1t04naE1DzhirEdhcmUJL37b6xxDF0TuUF1ZuduVEuj55iK4F3qzukJ26Z/GBmOgoY6o48ipt66DENRPLNxcqX44CZcK4azS5OvjiOPaxc8goHQJjKl+MgGZasQdZ04DrQ5SnH61xfZD9meC1LiCL2yx8N87ePRbTfrULdTxy1Y21ZPXXvnz04jJ+PsvMKnGfR+3E5V7NswJqAkPt136yUr8p91yYc41odaCeQp7S0+sH4iP6ehghzz5ecmn/bX2UWg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ECVX/5zk6mejiKBUTdPa4xXiFeXBfKE+Ws1j5PsmeAM=;
+ b=fs0m1kk5KbQFOWcbucg9j+0SFRD0/HGGnB6iKfGqv8VmlgdsXWQjhSqPi4yrtxIqXZTm5dj06B1Vd3YXGzchu8kKQjw8eOSrqtd0TUxH/845/klw5kzm2gRuoK7ba7JOFADmg3NBIdy2E+DktVA6MVoOfKhxYpiXhhReUTpMhJKGKBd8Ek6vDgoSWyJPQaVTfy6EaG6Lg9TvLGS8/nCT2xrTW9Gq0SxzWZMpPnImZMoXr9wnF+MIT+eElZKR82sD8B0N81ejdPdCQA5vYijxvtso+EQqLhbspYLbQpQ9NSH6Zc1OJTs7h0X2EZI2B+qMyi5I5mUbcMHKG85DSapGRA==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vaisala.com;
+Received: from GVXPR06MB9766.eurprd06.prod.outlook.com (2603:10a6:150:1dc::17)
+ by AM8PR06MB7747.eurprd06.prod.outlook.com (2603:10a6:20b:363::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
+ 2026 14:50:21 +0000
+Received: from GVXPR06MB9766.eurprd06.prod.outlook.com
+ ([fe80::485c:86c9:bd8:53bc]) by GVXPR06MB9766.eurprd06.prod.outlook.com
+ ([fe80::485c:86c9:bd8:53bc%6]) with mapi id 15.21.0592.009; Fri, 13 Nov 2026
+ 14:50:21 +0000
+From: Niko Mauno <niko.mauno@vaisala.com>
+To: gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	michal.simek@amd.com
+Cc: linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	jakub.turek@elsta.tech,
+	andriy.shevchenko@linux.intel.com,
+	Niko Mauno <niko.mauno@vaisala.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] serial: xilinx_uartps: fix oops when disabling RS-485
+Date: Fri, 13 Nov 2026 16:50:00 +0200
+Message-ID: <20261113145000.17691-1-niko.mauno@vaisala.com>
+X-Mailer: git-send-email 2.47.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: GV3PEPF0001DC3F.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::2e6) To GVXPR06MB9766.eurprd06.prod.outlook.com
+ (2603:10a6:150:1dc::17)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261113-coresight-pmpcsr-question-1@iav.lv>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GVXPR06MB9766:EE_|AM8PR06MB7747:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35c8d2f0-2588-461e-61ac-08df419570cd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|376014|52116014|366016|18002099003|261009223027099003|56012099006|261021135927099003|10067099003|261102123227099003|261026121527099003|261022105027099003|261022075727099003|261021121427099003|261026140227099003|261028144727099003|261021123027099003|38350700014|11063799006;
+X-Microsoft-Antispam-Message-Info: BXOutpn4TcQktM8hDfavhNgv16XQHNxCPB0kbxHsKd/WWQM5WVIT96OwCRTVsUzXCM2NGPzKRTlax5jg+h4Gq32E6VDEMm0YvnMyN8jSTHrSnQzLcRUlJPuL2bCGEitGgysHBxccMSgUmBrkVq5ipTGfb9tAXgFSXS7EkTob639PN1bGiuGQiQWi2BrPYYxtMJPl7nh6gOvu6PLwNzEeBxcOkM85OBeSxyuh7qDhR2PoZvTjX9ojXsmwaPB13kai0GguOpb1x9LCbHV6I1JvN/xzE3SxxMti0mk8TEYXXbfANYiOSa+AgNXdmWo00DEL330eGbG6jtJEjN+3eKbm2bihDHzIC9s3tGV7Eb82L30+lXiWcE3c9Jtnp8TRWfT2VBp5GfoHyI1m/OvIvE1OtcYIh/P4O4wez6PvjLpFu6lEtpXIih+8RYJ1pQyWsK4+U72UHB5Tfv0i8qYZR0oxeVF0/iOl5Cc39JHtiJQDOQWxcom9ABYNTbOvYnRuER+5ywRtvesWq+clmjEd92UAHOt5FAlj3d+frk8QQ0+V/kM7wlaSdDZlqL1wU2DN1uylXEEOy+H3sPcvpJm3764xqmyauulpavRz05CS9Itmvz7E/xx3xDaiIPhU6TsAhf58utgrcmetWM0MBgnZWmnSG84hxqd2xwxog7OCrbm5Y06hEgu1x1uQkMAMIw9LxQP1h0vqMfv1qfU6Mad+ajbF/H5V5QkeHar4eSsAzdaFWHA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXPR06MB9766.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(52116014)(366016)(18002099003)(261009223027099003)(56012099006)(261021135927099003)(10067099003)(261102123227099003)(261026121527099003)(261022105027099003)(261022075727099003)(261021121427099003)(261026140227099003)(261028144727099003)(261021123027099003)(38350700014)(11063799006);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TihvB/CN1bDsmUiY9k5TV//tc2JSBvBT0DQiG1DxIfMRqVI99bZFbKNys4As?=
+ =?us-ascii?Q?AeJbIN/gilYVsNjSHAgI+IAG9t7QP8ZQCxv/l/ztn5wo+BLn6w7oQYeiLBLX?=
+ =?us-ascii?Q?CZDih74xlxvF3suIosie+IdtpJRDGsTTpdv31EQ3+ZxAcXgFXr+FFYpfmwPY?=
+ =?us-ascii?Q?wvg9ZqMuXviUANG8xB9o3ji7lqqz6tNOtXXfq4B57apBsasEL7Yg1kFQWIze?=
+ =?us-ascii?Q?WK0ufuF0SnHY55nbpLeVMbQc0p7P+3LkbmN47/wJZ47uBEDVUH4Txj8yowqI?=
+ =?us-ascii?Q?EqLnEItgffy1eTtrYTgrX73LPQVTX+H/Qg23hygnVGKz+ZVwLp607gpA5nTz?=
+ =?us-ascii?Q?tQUkJLQ8ZS0LYmQQwnpsdEaRQ2kwY5N4xQ+mynezGjqdNKnYfIIksuKR54D8?=
+ =?us-ascii?Q?ShXRQFBOi8/zHXFonoFX/o5FMeTbvEvrNl5kLy8Rs88LRU/b2DZI2q3hLjCE?=
+ =?us-ascii?Q?OcLYH64fRmZhleTNJv7Rs+uT6QNeaiY+gQziHkdoJi4YtPRKdq9pdp3Z/bpO?=
+ =?us-ascii?Q?fZeIJt6rC64Mx7f0uN4hM597y5XHhQ5XQJ+kJkmiK0b6bbtJZ7GzdI9n9ZAM?=
+ =?us-ascii?Q?Kt6gpJgubxddJomiAwcVPuHgCdufjucvNh2euT02XjIwpBkzzNOT2J60xkFH?=
+ =?us-ascii?Q?7MCUJ8gQ/WeVFO+D0pzHMsSD/CDy2iksrMHy4txoE4270iz5p2dPYLtXYtZ0?=
+ =?us-ascii?Q?nwfRXN3ejYZOrM7OCD2C9rK5JgToM3BbMyRn8HKfi/KYhE+TNawHZT2284Go?=
+ =?us-ascii?Q?bxK7Vz7BK7Y1FtOmLBPSIEM/JK1NNWU4UAh9WyeI9HtoaBZvzQBdljhY8b5h?=
+ =?us-ascii?Q?6wW5qgcBIz4VqfDeK5fv079aImqQKoOvgsUkAzj7ZDcfbP33tWX1n9b78K5X?=
+ =?us-ascii?Q?UvUMhR0F1NV0CGDvsmxLtXSQtSGuSf3zB3MxYpMyQPRCycwb4hPTaCKdX1lc?=
+ =?us-ascii?Q?heT7Yx4B3VN+y/Y9EjQt74lqTEaLIfxVFUH44qznvavkuoPOWbASbWi3Iz/Q?=
+ =?us-ascii?Q?OrrG8gnFg7G/i11CCb1PWg85eeoQnqF90WfdgnBJKGHIkh2la9M3K1Y5j0zZ?=
+ =?us-ascii?Q?wx2s2MD83L4263hbLGlFSHUn0/hz++BR+iiELmz6Zl6WARNgkdIGWMYuorAo?=
+ =?us-ascii?Q?Hq/IKKeDh4/+SePrDea8R+fc6pELg+3U7ZwjMLqYIgKu9TN+SQoGsh5W034W?=
+ =?us-ascii?Q?bS7BthoQk8CN3z3EHw2RYpTeZi1henrjf+81AJxduZ3RYDj14hb5AkUjYXLr?=
+ =?us-ascii?Q?OtgqRCRCYX+hHUM4hBOPt0z7k1fJfwoztz86CTg6x4KuRZ6xEx+U/m8BUS8N?=
+ =?us-ascii?Q?BMhdQIyZFCfNIl2l3ieb9XnXBeXirFbkBKPyZFZmuNdMAtydNZKuCCiCGSHZ?=
+ =?us-ascii?Q?u98iwVdH6M+aQiOkSjCjNmNwXeNx582i3yj+9aAZ0uBUgYsbizJYVW1GmH/a?=
+ =?us-ascii?Q?YZQXSX1b1PJ8Y5z//ByKYrlgvQ4j/ygEqZwzdtH5w02qrekNQBmtPgzQ9wAH?=
+ =?us-ascii?Q?6JnaPONqjzDlQD350tsG60I3u4EBbGZyvj13G9SbE76L9wDgHD7jkIzvwC6q?=
+ =?us-ascii?Q?IU8XtjaN2jfwyKyo+580v4lPALZsU3dn70ZRcAmrbYdNI+TRqeNRTvbf9Q15?=
+ =?us-ascii?Q?AVNjojnP175u7KDrXB6tq7L21dMQL9Q3/yNaYX4R3O/talLUdX/qHlvMq98R?=
+ =?us-ascii?Q?espmAUGRzumr3hiVpn57+f/PVI3+N5a07NaBqlRtQCWTMOkHRIRY2HMptNW9?=
+ =?us-ascii?Q?H1Rtm3tYTg=3D=3D?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35c8d2f0-2588-461e-61ac-08df419570cd
+X-MS-Exchange-CrossTenant-AuthSource: GVXPR06MB9766.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 14:50:20.9989
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: +PrZ7sflqDS2I/d4OXPA9MkwUZ9aws8NCf6wfZNQs9ESQ3njEi1SznDIwy7KT0ZQs4MIa5DygHzjkbexu/G0wA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR06MB7747
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_064627_322583_EF30D50F 
-X-CRM114-Status: GOOD (  17.43  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261113_065034_209693_BAE92AE6 
+X-CRM114-Status: GOOD (  12.78  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -70,53 +141,73 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+cdns_rs485_config() sets up tx_timer only when RS-485 is enabled, but
+cancels it when RS-485 is disabled. A TIOCSRS485 that disables RS-485
+on a port that was never in RS-485 mode cancels a zero-filled hrtimer
+and oopses:
 
-On Fri, Nov 13, 2026 at 07:46:41AM +0200, Igor Velkov wrote:
-> Hi,
-> 
-> Cortex-A55 (Amlogic S905X3) reports EDDEVID.PCSample = 0, so
-> coresight-cpu-debug cannot use it. The PC is available through PMPCSR
-> in the external PMU frame (debug frame + 0x20000, PMDEVID.PCSample = 1).
-> A lab module reading PMPCSR caught the PC of a CPU stuck on a PCIe bus
-> access with IRQs off; on this GICv2 SoC the stop IPI never reaches it.
-> 
-> Two observations:
-> - A panic notifier samples too late: the other CPUs are stopped by
->   then, and on this SoC reading the PMU frame of a stopped CPU raises a
->   synchronous external abort. Sampling on entry to smp_send_stop()
->   works.
+  Unable to handle kernel NULL pointer dereference at virtual address 0000000c when read
+  PC is at hrtimer_active+0x4/0x94
+  LR is at hrtimer_cancel+0x10/0x64
+  ...
+  Call trace:
+   hrtimer_active from hrtimer_cancel+0x10/0x64
+   hrtimer_cancel from cdns_rs485_config+0x10c/0x11c
+   cdns_rs485_config from uart_ioctl+0x7a4/0xc3c
+   uart_ioctl from tty_ioctl+0x3ec/0xbcc
 
-Arm ARM, section I5.3.48 PMPCSR mentions "PMPCSR is in the Core power
-domain". The challenge is ensuring that the target core remains powered
-_throughout_ the access; checking its power state beforehand still
-leaves a race.
+Set the timer up once in probe instead. This also stops a TIOCSRS485
+that enables RS-485 again from re-initialising the timer while a
+transmit delay may have it queued. The callback is switched at run
+time by the existing call sites, so its initial value does not matter.
 
-For example, with CPUidle enabled, a CPU can be powered off any time so
-it still race even move sampling in smp_send_stop().
+Fixes: fccc9d9233f9 ("tty: serial: uartps: Add rs485 support to uartps driver")
+Cc: stable@vger.kernel.org
+Signed-off-by: Niko Mauno <niko.mauno@vaisala.com>
+---
+Tested on a Zynq-7000 board on 6.12.y: without this patch the first
+TIOCSRS485 that disables RS-485 after boot oopses as above; with it,
+repeated enable/transmit/disable cycles run clean. Also reproduced and
+verified on v7.4-rc1 in QEMU.
 
-This seems to be the main challenge. I'll check a bit if any guidance
-for safely accessing PMPCSR.
+ drivers/tty/serial/xilinx_uartps.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-> - Marvell has an out-of-tree patch, "coresight: cpu-debug: Add support
->   to dump PMPCSR" (2023, carried in linux-yocto); I could not find it
->   on the lists.
-> 
-> Is PMPCSR support in coresight-cpu-debug planned or welcome? And how
-> should such a PMU frame be described in DT: arm,coresight-cpu-debug or
-> a new compatible?
+diff --git a/drivers/tty/serial/xilinx_uartps.c b/drivers/tty/serial/xilinx_uartps.c
+index e8c4b1fa7658..f93e374f6d0e 100644
+--- a/drivers/tty/serial/xilinx_uartps.c
++++ b/drivers/tty/serial/xilinx_uartps.c
+@@ -1620,10 +1620,6 @@ static int cdns_rs485_config(struct uart_port *port, struct ktermios *termios,
+ 		val &= ~CDNS_UART_MODEMCR_FCM;
+ 		writel(val, port->membase + CDNS_UART_MODEMCR);
+ 
+-		/* Timer setup */
+-		hrtimer_setup(&cdns_uart->tx_timer, &cdns_rs485_tx_callback, CLOCK_MONOTONIC,
+-			      HRTIMER_MODE_REL);
+-
+ 		/* Disable transmitter and make Rx setup*/
+ 		cdns_uart_stop_tx(port);
+ 	} else {
+@@ -1782,6 +1778,8 @@ static int cdns_uart_probe(struct platform_device *pdev)
+ 	port->rs485_config = cdns_rs485_config;
+ 	port->rs485_supported = cdns_rs485_supported;
+ 	cdns_uart_data->port = port;
++	hrtimer_setup(&cdns_uart_data->tx_timer, &cdns_rs485_tx_callback,
++		      CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+ 	platform_set_drvdata(pdev, port);
+ 
+ 	rc = uart_get_rs485_mode(port);
 
-Would it make sense to describe external PMU frames in the PMU node
-and have cpu-debug reference its phandle? As Suzuki mentioned, this
-can be reviewed on patch.
+base-commit: 067c5c24cef23d913b67eaaf71ae67e7169a6620
+-- 
+2.47.3
 
-Thanks,
-Leo
 
