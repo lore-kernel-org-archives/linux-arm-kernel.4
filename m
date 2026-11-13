@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B153D606A881
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA79E606E0E3
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fVzO5RQ7;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n3qoJLPo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=VI0GUBe0;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fpi3rK7v
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,37 +14,37 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bbH2TQquUOC97ViKb2aXVBiUQChWmb/RmAEnkXSiyRU=; b=fVzO5RQ7r4U4zGohx4fZ9mAUdt
-	YxJyHWHbTDATZSno1kyFzWmwVkhFetcsL0oHf+DCVERdt++DVVM/OQ7+EstV6eCOIIhu6rYSvPz9v
-	+wpsvaAfyR6CM6SGB5Jt+sBseT/cRf4KFca9RNbPKsXzv7DkU6gGvUjIsvxAxk3PX1C0RZB1Fll8a
-	A3sUi1NPxSn3tTAE2xbZYv3fWZ3epDjzHGeRa6EKnhRTHuS5r0AJYeuIJyxgCA1XgtAtV5pSSaOvn
-	lD8CFQ+P0gf0a3CemTIvhN4c3VpPeYevLV0U83dBTyL3kJg/ZxezrgNR2093ecyPOKQNNQvKIuoiH
-	otkBPPag==;
+	bh=dUJYjdN1mbViyPCa9Ii5oLF+ArhVXAoKywBoKaNLkG8=; b=VI0GUBe08tOWD3YYF4TxQThw1e
+	F2fmoQcqFNKZcY3czcs9Oh8vxl4pKUjE0dmeCfCTq3mzAGHv9MPHp/lwP2TfuPlOKbny5Y1oLW8Ci
+	IhYaqzAsKa17w17utnNrlQJvV4lCykZUODKXNVoOt1KqF/Tu227j26zSVH8NOCDiZPhjqgHZHS8sI
+	AmT+MbqPOk1Afal7PTv1TxAYY48K8y1hMSS8hGd2SiHHUVIjcaWZv0DpNFu1diVifobFe+YMREJdd
+	OW8sDrMlYdZrVsEIYResjM+oRMqOntBt3SHYNTYPdtyK201KgTpI/I2lpNRYgEgwjniO74mcKjOk0
+	7rTmzEbg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmaN-0000000C1vc-27mO;
-	Fri, 13 Nov 2026 08:24:39 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRmak-0000000C28l-33R5;
+	Fri, 13 Nov 2026 08:25:02 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmZv-0000000C1VC-1NnC
+	id 1xRmae-0000000C26b-2k0n
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 08:24:11 +0000
+	Fri, 13 Nov 2026 08:24:56 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id A5BFB40866;
-	Fri, 13 Nov 2026 08:24:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB3121F000C4;
-	Fri, 13 Nov 2026 08:24:09 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1B9B1625EA;
+	Fri, 13 Nov 2026 08:24:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 095351F000C5;
+	Fri, 13 Nov 2026 08:24:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794558250;
-	bh=bbH2TQquUOC97ViKb2aXVBiUQChWmb/RmAEnkXSiyRU=;
+	s=k20260515; t=1794558295;
+	bh=dUJYjdN1mbViyPCa9Ii5oLF+ArhVXAoKywBoKaNLkG8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=n3qoJLPokG9v/YVuZSy+ta4GdPuE7rbzBOsn35dVoa98Z5Y31TGZbBOMf8vmyWOP1
-	 SZD7LXx9RELvy+anExj/i6b4iRZxX810CPDblBGUjHOQ/gt5PYwrnBwDSRnuI5j60w
-	 4DN92OXxwxXfYCijCvMu60zgg7W9NleojlekfX8jHJ6kqY85VibE3X/KIKpVxbki/m
-	 YsKDTtDfQ+P9ELxR4hIFAUmhFbFvdApxgw3i3585K9wRlo+uS0MCXNPJq6soK+l42d
-	 2aGdkNQLPUwJLADCVP8H/EqvyvvZ6EANHyiTK6jZrFGNzURME72vlqYQPceqFDt/qe
-	 JPKVjzNddZ3FA==
-Date: Fri, 13 Nov 2026 09:24:07 +0100
+	b=fpi3rK7vqXLZnf+x3lbCmQPmVELMx4JG82zA5/Hdy2qRkz7G25g8TetmxTnp0J+g5
+	 J5fggYQBkJ2J7YtpJD+0slSLVc9jhp/3f5+3W0L/kfnG1EsCd//PkUDNV+rrDmv8fV
+	 dMVHLqwNS6LVC/h/eKhTtcAFRbI2XzA3IXVB4PDlsAf5LZ+L5EqPiF40ZGLQb6VGVA
+	 TNjm5lmBTBZih6Mjqj2GOjBWolMOfqQYW07yEGIxHnLuG6O9ekezESLSQ7vtWW6lju
+	 QX5U4BZVKKdi2+zo3BDtXXPjjP4MRGr+M1BYI+BNDg2ces8+9/eyPhRECki3AQswUx
+	 d660E13XTDiZw==
+Date: Fri, 13 Nov 2026 09:24:52 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
@@ -55,16 +55,16 @@ Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
 	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: arm: stm32: Add clock-controller
- sub-node to STM32MP2 SYSCFG
-Message-ID: <20261113-honorable-competent-lynx-b1d5b8@quoll>
+Subject: Re: [PATCH v2 4/5] arm64: dts: st: add LTDC pixel clock controller
+ on stm32mp23
+Message-ID: <20261113-ape-of-inevitable-research-df4777@quoll>
 References: <20261110-ups_mp25_clk_syscfg-v2-0-624559bb8ec7@foss.st.com>
- <20261110-ups_mp25_clk_syscfg-v2-2-624559bb8ec7@foss.st.com>
+ <20261110-ups_mp25_clk_syscfg-v2-4-624559bb8ec7@foss.st.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20261110-ups_mp25_clk_syscfg-v2-2-624559bb8ec7@foss.st.com>
+In-Reply-To: <20261110-ups_mp25_clk_syscfg-v2-4-624559bb8ec7@foss.st.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,62 +83,40 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 10, 2026 at 02:10:22PM +0100, Gabriel Fernandez wrote:
-> The SYSCFG of the STM32MP23x and STM32MP25x SoCs is described as the
-> provider of the LTDC pixel clock, but the inputs of this mux (LTDC
-> kernel clock, LVDS PHY pixel clock and DSI PHY byte lane clock) can't
-> be described by the "clocks" property of the SYSCFG node: the SYSCFG is
-
-Not true, you can.
-
-> a syscon, whose first clock is taken as the clock of its registers and
-> enabled around each register access.
-
-That's a driver problem, fix drivers.
-
+On Tue, Nov 10, 2026 at 02:10:24PM +0100, Gabriel Fernandez wrote:
+> Describe the LTDC pixel clock multiplexer of the SYSCFG as a
+> clock-controller sub-node and use it as the LTDC "ref" clock instead of
+> the SYSCFG node itself, whose deprecated "#clock-cells" property is
+> removed.
 > 
-> Add a clock-controller sub-node to describe the mux with its own clock
-> inputs. It is required on STM32MP23x and STM32MP25x and not allowed on
-> the other SoCs.
-> 
-> Deprecate the '#clock-cells' property of the SYSCFG node, which is no
-> longer required. No driver ever registered a clock on the SYSCFG node,
-> so this doesn't change anything for existing devicetrees.
+> Only the LTDC kernel clock is available as parent on STM32MP231; the
+> LVDS and DSI clocks are added on STM32MP235.
 > 
 > Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 > ---
->  .../devicetree/bindings/arm/stm32/st,stm32-syscon.yaml        | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/st/stm32mp231.dtsi | 9 ++++++++-
+>  arch/arm64/boot/dts/st/stm32mp235.dtsi | 8 +++++++-
+>  2 files changed, 15 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> index a559f8b03b84..13c02844a91f 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/st,stm32-syscon.yaml
-> @@ -38,6 +38,10 @@ properties:
->  
->    "#clock-cells":
->      const: 0
-> +    deprecated: true
-> +    description:
-> +      The LTDC pixel clock multiplexer is described by the clock-controller
-> +      sub-node.
->  
->    "#address-cells":
->      const: 1
-> @@ -45,6 +49,10 @@ properties:
->    "#size-cells":
->      const: 1
->  
-> +  clock-controller:
-> +    type: object
-> +    $ref: /schemas/clock/st,stm32mp25-syscfg-clk.yaml#
-> +
->  patternProperties:
->    "^phy@2[48]00$":
+> diff --git a/arch/arm64/boot/dts/st/stm32mp231.dtsi b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> index fefbf6f4f153..df446f0c1539 100644
+> --- a/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> +++ b/arch/arm64/boot/dts/st/stm32mp231.dtsi
+> @@ -4,6 +4,7 @@
+>   * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
+>   */
+>  #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+> +#include <dt-bindings/clock/st,stm32mp25-syscfg-clk.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/regulator/st,stm32mp25-regulator.h>
+>  #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+> @@ -1121,10 +1122,16 @@ exti1: interrupt-controller@44220000 {
+>  		syscfg: syscon@44230000 {
+>  			compatible = "st,stm32mp23-syscfg", "syscon";
+>  			reg = <0x44230000 0x10000>;
+> -			#clock-cells = <0>;
 
-As you can easily see, each child needs addressing. This is one more
-argument why this is a fake device split, done only to match your driver
-limitation. Please fix your drivers.
+This breaks users.
 
 Best regards,
 Krzysztof
