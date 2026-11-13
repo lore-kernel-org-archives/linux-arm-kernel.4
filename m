@@ -2,114 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D239606A893
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 07:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E80E606A334
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 07:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FReETVLm;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=HL9Gmjkk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fnomx3LB;
+	dkim=pass (2048-bit key) header.d=fb.com header.i=@fb.com header.a=rsa-sha256 header.s=pps82601-s2048-2026-q3 header.b=t2eQgRLD
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=uQFAlRBHBpTrKEbc1EEKL9YBp7MmZvjWg94AE+sNfOM=; b=FReETVLmfSFY/kKZjhDeyFIT//
-	rSF/kfoHcQ9FG6ChjiTPemCvGwrOtwAy5wYYSnq/oilbmuHLObUqJ6+Ak/qR5fg2Mn7CvHdqiX6M6
-	T1uHmzftGXFO8saLP0ReGfK5XAjV5Swe6Z6kza8IgfBgN4GIrsAGYJ+cEvPY6SkySDyoZdYB5MB9p
-	8FzSjZ5Q4h01lLKyCk0unY/zMyxQcw0/wdDwmz99vbw+fGUKCWbZa/SJhVtpTRjdW9ErvNTP09yej
-	05e4tAEx0nC+KUTnOJaaDSASbShPsiWr2oy1xMl//qY3Ux5CqtSTH7pSUSty+4Nds4ZB+FNHpbMys
-	R372gSpw==;
+	bh=kbWlqp+PP/iOtneW45+dH29ZaoMSJzg0Kt8GaqbeqFg=; b=fnomx3LBhWIGwdKHOtf0+PvGBM
+	45DHzFH+86KQG48nW9ixVe42Zsv9Z+OPpjG4jwlUEISTryg7GwC+iV0t+fUX4BNSCieYroyYcPULE
+	yrzqIrcv1k3volScSqR6CjtfZ39v5k2XjvJsh/dN3B+LXcpL1OcC8Pkc22bzVPjDPXH4htxSXQjmg
+	u3WmCJmWwP64QIbV7MWy+DZziIUekRoAdZ1GWjgxz1lCKEGxfDzD17AEDwmnl/oAbVtVHX9A8R7Gv
+	oHhSLSGk4Dlc6Gf6Rj2O5Ye477xKrwikgB69vMztQnQVu598yh5z00dMNgZoGLausoGSvQVixtiD0
+	YTPIu7RA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRlyF-0000000Bw6K-0aC9;
-	Fri, 13 Nov 2026 07:45:15 +0000
-Received: from mail-lf1-x12f.google.com ([2a00:1450:4864:20::12f])
+	id 1xRlya-0000000BwA1-12Y5;
+	Fri, 13 Nov 2026 07:45:36 +0000
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRlyC-0000000Bw5P-0Bcq
+	id 1xRlyW-0000000Bw9M-1EXm
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 07:45:13 +0000
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5c0ea47f5b8so96261e87.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 23:45:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794555909; cv=none;
-        d=google.com; s=arc-20260327;
-        b=Oxk9rI24RhX74GwpNlNvlGe2VppgDYKZGRz2IdVcgHk/skxNLGPI27Sfx/qtNeK9px
-         7vLLwHBdA1pJvjrpwM6tVKdBoNifRGVK+Vgk4IJ5Gfo3wD/3lTVW5rxQn7lPB+lJQ/r4
-         EC9zyXtvJNeVvLBLhLHAMrT5I8U/LIRB84pJx92D0ISm1LPwN6CYguZzt5ymDBlQr5J4
-         P+Y+kiNDSAoopxtjD3o8wblcin7XDV8Jwt7BehICgBvzbFT009Kx9Bb5EpzjUh/KjpNE
-         76j6376DzEjgJSOsfYr0m1/LaWMXGlCVmAOS5qz+a5Ov7RIAe4FDqhPnluIwjKyFnZsF
-         22Ug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=uQFAlRBHBpTrKEbc1EEKL9YBp7MmZvjWg94AE+sNfOM=;
-        fh=5kZFMoj112pCp+42L9q8qG7HomLIGRuXgSc3gw5/ZII=;
-        b=VcnthXUKcpfhPKb0X07aoLnUH46QwRNYOI6COZgburS03NGADASuHDx0tVgsVWb6TV
-         U92WsfgOTKA3/JSA0Oel4z4Eqz3gC/DLuIYQS+HPzXCs3wZWESHZC9+aKEobB6+Kpe73
-         WzOoZs7YZK60DTu7zzH0c0W3TaDQtRUXHg1Bxbn2jJ0AkiTMj7bwmI1tQOt7sfQnoE2M
-         hDv9qEe9PCLE1m89Qj/+BIyIQaTt8C99n8BQvzYmaztuOeFMl3s1X2qw0no1La+Q7UBm
-         9fkE/CL9O0SbHjN2Sd6u/myTa/zZFfKVMGzuhaAWs+f7mucwRtslei0VHbeVuC0WXnNK
-         vDiA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794555909; x=1795160709; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=uQFAlRBHBpTrKEbc1EEKL9YBp7MmZvjWg94AE+sNfOM=;
-        b=HL9GmjkkbCf+hftsZMf1rU264z9Fs+BbGX/0sJ7mqa4HkMeCPa3RzZO1xnHWg4IRft
-         UyTEED2wQCJiCpIvsDGmgQl+hXrgedyP671r0AWsItsWMWq0OKWVOs4NU2nkbDfcWBMl
-         DgtiG0LGd4YKPuaRjY3hLC5WZs0+QTzAa3LzDtkV1fB2NFp8lbYD5M2vTAguBTiMoEH3
-         CB32EcBH6U9wtDxrr8qBiXhh0XUVS9pETuoaGqoNxZvZ2coceEoG49iDIOtXkVaD+yX+
-         UpGZ9vibHCX3uFTE3pHpOdGVEhIxPIIE1oJSBH24t9nWtD/W7zF8u5zb/k3I4I7tDZ2E
-         FWGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794555909; x=1795160709;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=uQFAlRBHBpTrKEbc1EEKL9YBp7MmZvjWg94AE+sNfOM=;
-        b=MKMwZIgBWsRkw5K6M5FbiHyESAoB1mRQ0ZAEFoX6ENkEYwgfoa1Ut0HHqXlXh3Rp2F
-         B49b5AeiFu4uLOwvWJGwNoDvCO3TLn/EiBoc/rRiC4GTwzqSFloaN5qxIMr7xX2r9ucQ
-         977d2S5Am8V64ZB/mS2oTton6NxxxPfT5oruLLdzSHzKshlX3Cjo+QsWBF2QsDUX8M9s
-         Y3cOyr/GVRE968iLkNiBTkI3++tHQIj1KR5B2ZELcFQAhwBPgbZis7d7Tao20GtOQ5eJ
-         lU3y2AyzAozoSIrcCVy6fLx4AyhGyIEmt3Rc8KJ5LgzpfyzjLGOJM2oszZcMyP/KP2Pl
-         zhuQ==
-X-Forwarded-Encrypted: i=1; AL+hErE6ERfd0xmnEuB/OQhUVrhB2VbhLUFUJZEYtvfxwy2QeCzzNs/3osBhZ5l6DOX2LVqHhy+Br8wKRT3I8fS7zm++@lists.infradead.org
-X-Gm-Message-State: APuU4Z9jd5UsRTNX+gBKV5/srIiZiLSrWv7u11CuPgVmAiQ8FoFW/ce6
-	GMeZmLDH9AIrezxAzFV+BqybHGKP34Ed0IN7fHk2yripelvyoGwQLpHayG78kNoyyqkK+NoIdqL
-	0TduIewOuM8HcLSJj2kG8YCRPGUA6+bQ=
-X-Gm-Gg: AYBFou1bMGhltv8w1TT1u/+VoUVuODQdK0Nuo5XLIveBn9t4Snxh+hGYOSJ/ko8tSbM
-	RuPTuGtl55db03x+0JtVHEEJqW9OmrbbTe9cd2yeNyPtkR8SFKRwgbgOcroj8YjifSLAUDX6Pet
-	EAnUOBusCogGQNU8zhO9vKf5Wlyr42r6NNuDBjgG+3CvsMGycIKkWt5XAU56+7fXX9xQWCyUJ3t
-	wUC/4jZCJgio8bfZNDGb4B4Kn1WoUzsEnou2rvGIPqeSxTn2y8MsjtwtA6U9RcvnHPbWLIXWBTF
-	rLId04/RslyM0iYUn8Jx3PwYHIoXwQo6vkYQ7gEkoHu+GZGDpDS4V7QLTF4YZiyVHL96iQ0jI+h
-	0NbX6g9tu110/H6hlh4NvT2VpSN+NnCg/lal9gb60m/lPcFar/9RxdrbDBAnnMt3x0ErMRgdBOe
-	xllGLAZK/V/reUmR5SyA==
-X-Received: by 2002:a05:6512:3d0f:b0:5bf:e6a1:3115 with SMTP id
- 2adb3069b0e04-5c170771fabmr758264e87.2.1794555908550; Thu, 12 Nov 2026
- 23:45:08 -0800 (PST)
+	Fri, 13 Nov 2026 07:45:34 +0000
+Received: from pps.filterd (m0528008.ppops.net [127.0.0.1])
+	by mx0a-00082601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AD59Ubn538073;
+	Thu, 12 Nov 2026 23:41:27 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pps82601-s2048-2026-q3; bh=kbWlqp+PP
+	/iOtneW45+dH29ZaoMSJzg0Kt8GaqbeqFg=; b=t2eQgRLD/RmvWb7N/qU5+bMRi
+	GhDv0VCkJTJ0s5wqGty4WdDQRTYeNPX4zYtl2lhZ/sD/Wqg9V0xGyWR6H4racf9j
+	v2St+1gHRTymjyqpbaO67tfLQD57W32EPy5gys+us5YzYlOI838NuT8vHeyfV/w5
+	FcI5ZKRTreF4Z09RCEtywhkDAQysTNFe+njzT9ckA52Z6AQpG40+NyAxr3eRfX5w
+	eiYisMSOfOCkJYMAhjzbfZX8TcV5okDb6eU74T0pA08q+BWm6UPVMjNSOuAS2Ztg
+	orIYa+n1ITNdrsSGHPRZIeRbj/PS7u10rmfDK5zWWucCXuw5sWt+LaPXciQaw==
+Received: from mail.thefacebook.com ([163.114.134.16])
+	by mx0a-00082601.pphosted.com (PPS) with ESMTPS id 4hwjg5m58y-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+	Thu, 12 Nov 2026 23:41:26 -0800 (PST)
+Received: from localhost (2620:10d:c085:208::f) by mail.thefacebook.com
+ (2620:10d:c08b:78::c78f) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.2562.56; Fri, 13 Nov
+ 2026 07:41:25 +0000
+From: Amir Ayupov <aaupov@fb.com>
+To: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Namhyung Kim
+	<namhyung@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Alexander
+ Shishkin <alexander.shishkin@linux.intel.com>,
+        Mark Rutland
+	<mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>
+CC: Ian Rogers <irogers@google.com>, Kan Liang <kan.liang@linux.intel.com>,
+        Will Deacon <will@kernel.org>, James Clark <james.clark@linaro.org>,
+        Leo Yan
+	<leo.yan@arm.com>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@arm.com>, <linux-perf-users@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <coresight@lists.linaro.org>
+Subject: [RFC] perf: SW strobing for AUX trace windows
+Date: Thu, 12 Nov 2026 23:41:18 -0800
+Message-ID: <20261113074125.4146687-1-aaupov@fb.com>
+X-Mailer: git-send-email 2.52.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261112-opi5-typec-self-powered-v2-1-751906d65b70@gmail.com> <lAAxUnzGTXWSlQTm8PmFcg@sntech.de>
-In-Reply-To: <lAAxUnzGTXWSlQTm8PmFcg@sntech.de>
-From: Arun Iyengar <aiyengar1990@gmail.com>
-Date: Thu, 12 Nov 2026 23:44:56 -0800
-X-Gm-Features: AclHuK-px0U6hKw50ELPgjTts3juNb6KJSAEdMlgQ9nDhQ9zdUWQkc1yUvT3LMY
-Message-ID: <CAEy9hNXiBRaj-JtjOAy4de_BQV1jAKUjUCkYzSpksu605HTNZw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Mark the Orange Pi 5/5B Type-C
- port self-powered
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: TeBQbyJhNnt7OsioNUmOuBeD9qrPZ2ef
+X-Proofpoint-GUID: TeBQbyJhNnt7OsioNUmOuBeD9qrPZ2ef
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEzMDAzMCBTYWx0ZWRfX8YgYw2Q5Vr3W
+ aB7/ij6KdmeTFP4tlH8bDd0ud6DM94XYAeOMl+p9Goe8mjlLZG5jBHp9Qcq0Hxq4YVX++iDMZVF
+ MFsAgPyS8EfOV0dUOUBFhCf4sMZ6V04=
+X-Authority-Analysis: v=2.4 cv=Mcb5KJ/f c=1 sm=1 tr=0 ts=6af6bf26 cx=c_pps
+ a=CB4LiSf2rd0gKozIdrpkBw==:117 a=CB4LiSf2rd0gKozIdrpkBw==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=7x6HtfJdh03M6CCDgxCd:22 a=_1IyUuN4QrATX339ibzo:22 a=PIE9aPrNAAAA:8
+ a=VwQbUJbxAAAA:8 a=FOH2dFAWAAAA:8 a=fzWWWYk9tbCSLr39xJAA:9
+ a=qcg49hLlgF0N60+LroqrWnV/Vu4=:19 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=fyCUWhYcF35ZrUaEDlGM:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEzMDAzMCBTYWx0ZWRfX0eHq8I9s5mZP
+ SRkR9GxFR/AkR1ywrf5JBBWBxn0tzL2ge3YoFFb92hvykbgzTMv7/31fNVBdR7r79mlrLC2Vy7V
+ dmR2WaNTTlP/oq5qvXJZGEacrZhJimzsi/zPcDP58EC27uyXQ5slGQMveB+iK14D3SIAX1QDeRG
+ zDhb3ag1KXX9EsgNdpu9X1999kootxIgIu6j+hpv2nnVjSga5I+iaYOBhxnrIqR3X+kOn18OdYE
+ gbF0OYLiSBWo09gstQ6jsqMlroQtqfGjhNsil8v5IIDEVCJ50Z3GPt3K+U92/ftAWPd+MnQsrBt
+ v68wqROmGqcD258UoiduSykPQL0gO06KNF+8Z6kgokQNOynWU6mBa3S6te3vZX0ObSLakq3wN1R
+ jfBpgfrbwMawnnm/LuHb0NoM7DZBpomfdOw+f6ns7MoKurLVOXAgX7ad06l5FVKNvkKWTaLaGUT
+ q0N+2ErIYbUlgXvB5yg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-13_02,2026-11-11_03,2025-10-01_01
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_234512_105578_F5CF54E7 
-X-CRM114-Status: GOOD (  11.84  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261112_234532_456187_48F3A8B4 
+X-CRM114-Status: GOOD (  20.17  )
+X-Spam-Score: -2.5 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -120,28 +112,182 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> As you describe this as fixing a stale state accross reboots, does
-> applying this before the tcpm patch degrade current functionality of
-> the device?
+Hello,
 
-I don't expect it to, but I have not run this patch on its own, only
-together with the tcpm series.
+I'm reaching out for an input on the preferred approach to add perf
+support for "software strobing": AUX trace windows started and stopped
+by PMU events. The context for this ask is context-sensitive sampling
+with ARM ETM: https://aaupov.github.io/blog/2026/10/02/csspgo-etm.
 
-Without the tcpm patch the tErrorRecovery wait at boot ends after a few
-microseconds, so CC is only open for a moment and boot should behave as
-it does today. A later error recovery opens CC for tErrorRecovery,
-which is what a self-powered port is supposed to do. The warm reboot
-with a DP cable attached often fails today, and I expect that to stay
-so until the tcpm series is in.
+I've prototyped three approaches explained below, but I'm open to
+alternatives (I'm not an expert and all options were explored with AI).
 
-If you prefer, hold this one until the tcpm patch is applied.
+Motivation
+--------
 
-Arun
+Context-sensitive profile needs "hybrid" samples with synchronized
+call- and branch stacks as input. On Intel, they're collected with LBR+
+PEBS. With tracing (ETM), sampling event needs to take a callchain
+sample (with fp or dwarf unwinder), and pause tracing. After trace
+decoding, synthesized branch stacks are attached to the pause event.
+
+AUX pause/resume _almost_ supports this:
+```
+  perf record -a -e '{cs_etm/aux-action=start-paused/,
+                      cycles/aux-action=resume/,
+                      cycles/aux-action=pause,call-graph=fp/}' -c 10000000
+```
+The problem is that there's no notion of tracing window:
+pause and resume events are unrelated, so the effective "window"
+can be of any length. What's worse, pause events falling into paused
+trace don't get the branch stack but still have overhead.
+
+What we need is some mechanism of setting those tracing windows with
+PMU events. There are several options how to achieve that, but they
+all need perf changes.
+
+pmu_pulse (coresight-only)
+----------------------------------------------
+
+The first attempt was to try to avoid perf/core entirely, and extend
+a coresight config with pulsing ETE external output on every cycle
+while tracing is enabled [1]. This way, pause event on TRCEXTOUTn
+ends the window after exacly N traced cycles. The use of ETE external
+output is pure coincidence, just a way to count cycles only while
+tracing is enabled.
+
+However, the review has raised that the config is not self-contained
+and requires a lot of checks to only enable it on capable HW:
+- needs a helper in the arm64 PMUv3 header and a move of PMU
+  definitions - needs arm64 maintainer's approval;
+- only works on ETE whose PMU counts TRCEXTOUTn,
+- the window is always measured in traced cycles;
+- is restricted to ETM, doesn't help Intel PT,
+- the further it is from a pure config change, the less understanding
+  I have to support the patch series further.
+
+I decided to abandon that approach and ask for a better/more general
+solution, hence this RFC.
+
+Option 1: userspace stagger, PERF_EVENT_IOC_PERIOD-based
+---------------------------------------------------------------------------
+
+I prototyped this as `perf record --aux-action-stagger=W`:
+- pause and resume count the same event with the same period,
+- opened with a long "guard" period,
+- on each cpu:
+- perf sets the resume period via ioc_period,
+- spins for W cycles in a busy loop,
+- sets pause period.
+
+Then both counters stay fixed window apart (not exact from run to run).
+Related: this approach is hit by an issue fixed for Intel PT
+in 2e17bf3a469a "perf/x86/intel/pt: Fix stop/start with no update".
+ARM coresight needs an equivalent fix.
+
+Cons:
+- It only works per CPU or system-wide, no pid targeting.
+- Inherited children start without the offset.
+- Minimum window is ~2000 cycles on neoverse v2
+- The code implementing "arming" is large/ugly because it does
+  an atomic kernel action in userspace.
+
+As a curiosity, the documentation lists that old ioc_period would make
+this stagger trivial:
+> PERF_EVENT_IOC_PERIOD
+    This updates the overflow period for the event.
+
+    Since Linux 3.7 (on ARM) and Linux 3.14 (all other
+    architectures), the new period takes effect immediately.
+    On older kernels, the new period did not take effect until
+    after the next overflow.
+
+- Open resume event with period T (without starting it),
+- Open pause event with first staggered period T+W,
+- Change second and subsequent pause periods to T using ioctl,
+- Enable the group, both counters start together on every CPU.
+
+Inheriting stagger in children would still be an issue though.
+
+Option 2: attr.first_period (small uapi change)
+---------------------------------------------------------
+
+To support this fixed stagger, we could add a new first_period field:
+if set, the first overflow would be set to first_period, then reloaded
+to sample_period.
+
+It addresses shortcomings of ioc stagger:
+- children inherit the field,
+- event group is scheduled together.
+
+The core change is starting period_left (and last_period) from
+first_period. PMUs opt in with a new capability, because software events
+and some PMUs set up period_left themselves; other PMUs return
+-EOPNOTSUPP. The arm PMU opts in. The attr grows to
+PERF_ATTR_SIZE_VER11.
+
+Cons: the window is in units of the sampling event.
+
+Option 3: cross-event "arming" (attr.aux_pause_armed)
+---------------------------------------------------------------------
+
+This extends aux-action with a new bit (aux_pause_armed):
+- aux pause event period is set in an overflow of aux resume in group,
+- restarts from the full period,
+- on overflow, pauses aux tracing:
+
+This is the most flexible and general solution:
+```
+  # resume every 10M cycles, trace 5000 cycles
+  -e '{cs_etm/aux-action=start-paused/,
+       cycles/aux-action=resume,period=10000000/,
+       cycles/aux-action=pause-armed,period=5000,call-graph=fp/}'
+
+  # resume on page faults, trace 100k instructions
+  -e '{intel_pt/aux-action=start-paused/,
+       page-faults/aux-action=resume/,
+       instructions/aux-action=pause-armed,period=100000/}'
+```
+
+Compared with second option:
+- The trigger and the window can count different events.
+- The pause event raises one interrupt per window.
+- It works with any hardware event, on any architecture with an AUX
+  tracer that supports pause (PT and ETM today).
+- It needs no PMU driver changes.
+
+The prototype adds about 60 lines to kernel/events/core.c, plus the
+uapi bit and perf support.
+
+Cons:
+1. the core has to keep a disarmed event stopped across group
+scheduling, throttling, ioc_period, power mgmt.
+2. rearming happens in the overflow handler (in NMI/IRQ).
+3. Software pause events are not supported.
+
+
+Question
+---------
+
+Does it sound reasonable for perf to support this, or it's better
+to pursue pt/coresight-specific solutions? In the end, my use case
+is about tracing.
+
+If yes, which option is preferable?
+- Option 1 with restoring first period behavior that was already there,
+- option 2 as cleaner fix,
+- option 3 as completely general but with more core state to track,
+- something else?
+
+[1] https://lore.kernel.org/r/cover.1792989860.git.aaupov@fb.com
+
+Thanks,
+Amir
 
