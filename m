@@ -2,122 +2,103 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5E0D606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43EA3606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=H7upcxt6;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=dnQEJhmH
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qhh8HIs8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=lXcHruhjRKAPEqFA6sg93KcL2jbWl+CKTptsYtYT2HQ=; b=H7upcxt6uumIVr
-	Cy7VX2vovq/jKHhIXr0TKP3+qhtI40eZYJf8PLZdRGOcJyAeq+GMtTDFQraIFSPBm9otOavJ1vPmB
-	+3Sj0kwC3PLnEnT6bqXp71IkEesjiGa4lwF8VNpizoLdMeOMqRw716LsCfXooO1gqFQGvBeeShxRo
-	LctDIxm/D2h7iNcCFlXNHFR+XKE19eLxl9XMygE5hKeTWDf8zgxPX8G0Jlfw/4U3iJ/fhWR+kpjPx
-	wFKzpjkHKRT8Wtkb3H8QZhRy8Cuoq0hUI33P2NumDSJWOWw6dDfEPV6mlQuLFrh7CsatAM31K+aRW
-	qseblSqrXw1jx1/AeJvw==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Content-Type:Cc:To:Subject:Message-ID:Date:From:
+	In-Reply-To:References:MIME-Version:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=l1+NgW92VziZf9PgBdzApbIe2BkR1TvVvXtYjUT220A=; b=qhh8HIs8so+zzObKirfXuVSM6h
+	2f98i/I3dPq0nURMMr0HDbKIPhsm8GjLZwNXL5ci6+UHzdWOpS8ZRr/mcwQSRoTANyCdrGo2fvFj+
+	QICz8fuy0aJtxO8aPc2SQNRTJEriUlGAtqEmtl5unq6hCXrz50g+zr1xot9IUYfJuXipytn8fi4eh
+	3LAwisO5R43AxrB4YmUsjqYkrDyYKwbci23rSPjh7k2N326pFzh9lIoF1940UIdNNL7i+pnyXSy9q
+	AMxXjI02ecyzQd/7V9cqYcG0LSa3gkI2rpSFpph884SocTzjPZd9agbtWEYER3p7kNt51w6+9Xany
+	qnI2NwGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRpYX-0000000CY98-16lU;
-	Fri, 13 Nov 2026 11:34:57 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xRpdz-0000000CYmo-3RqR;
+	Fri, 13 Nov 2026 11:40:35 +0000
+Received: from mail-yx1-f52.google.com ([74.125.224.52])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRpYU-0000000CY8f-0UsM;
-	Fri, 13 Nov 2026 11:34:55 +0000
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ADA50XJ1161799;
-	Fri, 13 Nov 2026 11:34:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lXcHruhjRKAPEqFA6sg93KcL2jbWl+CKTptsYtYT2HQ=; b=dnQEJhmHSAB8sliL
-	QkUiozPI7g33yoRsSzyJugUSvLfApSE07Xi6nydwc0h+PTaV/AMw3r0DJ2cHEP5k
-	NXE4adVSCy90lclUjEqiyPg+ii3/cSWx0yDRE+8t7iNK+tbP+OWfLPJ4yJW89PlL
-	FYyM5zrBtDJiFJMHE6BRLLWmn96tzsBXjJhZv5WJHAvchUhsJ8r+o7HNIplgS/fx
-	x7bc3DewWThxyziePCDxVBP/KjLUNJOgofoFE+qmIcQPs1hUiOGgqWdzvCCYkWZO
-	sV91fHx7TZjCBktlvz5tzVJm78jXRulVA2tAhTdobT6Q7tfyiUuBoPK3yfK79dKQ
-	fOjYDA==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hx0g208d2-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 13 Nov 2026 11:34:50 +0000 (GMT)
-Received: from pps.filterd (apblrppmta02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.11/8.18.1.11) with ESMTP id 6ADAtNaY2811647;
-	Fri, 13 Nov 2026 10:55:24 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-mdsor-hyd.qualcomm.com [10.147.243.209])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 6ADAtNJm2811660
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 13 Nov 2026 10:55:24 +0000 (GMT)
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4770534)
-	id D473EA75; Fri, 13 Nov 2026 16:25:21 +0530 (+0530)
-From: mohit.dsor@oss.qualcomm.com
-Date: Fri, 13 Nov 2026 16:25:19 +0530
-Subject: [PATCH 7/7] arm64: dts: qcom: lemans-draco-evk: Add Waveshare
- 8-inch DSI panel overlay
+	id 1xRpdv-0000000CYl4-2xx2
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 11:40:34 +0000
+Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-67be4f2f4d4so914066d50.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:40:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794570030; x=1795174830;
+        h=content-transfer-encoding:content-type:cc:to:subject:message-id
+         :date:from:reply-to:in-reply-to:references:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=l1+NgW92VziZf9PgBdzApbIe2BkR1TvVvXtYjUT220A=;
+        b=J51B5Nao9jS6qASY2TRZ8XmvkOtYsBULIMqx55tGHSLwL+2FwZq+eq+3Q65pvQ8LY3
+         FWmpHovJBEEJ1MnAY4QQzh98hR2zVxkOAy/m4XuYRteiWCbcALKZgvPMgvPrfyLyOkBn
+         Vnh7mtewi/iLBZIDJG9kn05Yocnzfy+bqK3eCbvxiqrOgmuhtTsriLXVp3x/QTZbTdfO
+         3q4OqAd+XVZigHlQe1z5uYIver2SAcMzrW8NjsqueTm7zUOONHlTeYcOXubySqGjv/wS
+         2/4T9zz7Osa+sHsahyUAkE6auCDFW+VF0VGefaE4UgWtGh+haVboPZN8Cu8HjVLETCL0
+         TD4w==
+X-Forwarded-Encrypted: i=1; AL+hErHJoE58GeBGAIo5KjcVY19jzXOCvzpixQZUGib/c3+ICTpxnabEGCi/x95SWDEHZMtF9BSUcyO4pSNU3KYd6ZPY@lists.infradead.org
+X-Gm-Message-State: APuU4Z8sHUCPPeVofOHFI5bS5g8m5k5SAK9kF7DVQG5EOkZuVFXA/Z7E
+	0mefK947Evh+r+woQTKsBOYBo9ruooa2wN2QpZ/aJUCOuuZF/G++kkkytPbK8KuzwTw=
+X-Gm-Gg: AYBFou0oiXO+kyLQrEdIWthQ7cMlDMapOX3h1HQ8/jnSgKeokGa9gG+lTdwB+3GZ6Cy
+	I4CUABudTL9uv97dNGmKqcR0QSYyOkaIvamnpUxAAUg4OitXWjOuwemwFkA2pHJZHtI/kEDgvz+
+	DsoohV5J1nL8wJ2F/LOe6T4tu9b3EiPgybJuIG6QsrFAHNoySxmUtdOs/k3vQRHRoc5Lk1ujphR
+	nheCUQdUXq7w3R07YzgXUGu1+KRANXRsUf3zRFj5XhyAMx7pHVtMcUVnsHj9xjqPuaSXeMD/Rby
+	yLTGpBiYD1zqlwsA/0RK7wdedUXqBpakGNL49cZ92v6fcmuBlss/DekoByeU3TwFhzqQJvOme/A
+	pbQWah0VQaGhDeFH9RLSD9UcjjIa01Xbn1gG3naov6+9eh+gIXeew28t5iqze/9DIjRzGAu1N0P
+	kKsSnJCAoAv2qO+mtLC6Uu7MrzD/2W2ncHgUC2CCzlfcq08j8H3Y/EfQu6ExD4UjnkBZBWPrQW/
+	nQS2j5eaNyPD72nxJuzz7brmPQcz/hnSytnjWQNUxKvaeJ26HOl01oaO5rEF1FVOkZSZb3HnDQS
+	/QsF2lggcs+5woGoXKkUMe/XkwIc2dw99DB37CEM/NOO7lgoEamHGMFPAlXmVZ9ZIqcowJELhn7
+	mpNOL3wiSb33bWnAs4XnIIeRuhQk4miBMZxuSy5IELYY7T8DXivtoLA==
+X-Received: by 2002:a05:690e:400b:b0:67c:55a7:c5f3 with SMTP id 956f58d0204a3-67d8965c15fmr1351254d50.43.1794570030436;
+        Fri, 13 Nov 2026 03:40:30 -0800 (PST)
+Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com. [74.125.224.52])
+        by smtp.gmail.com with ESMTPSA id 956f58d0204a3-67d8a5a4bb4sm1774655d50.11.2026.11.13.03.40.29
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Nov 2026 03:40:29 -0800 (PST)
+Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-67c6a0abc2eso847053d50.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:40:29 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErHAKFav+HQFrFwvUkiHQIWz1sU1LdWhhanRlQFIdtuE5WzTG2/9hL3ASVI5kglcW7+78T6aEhUTxj66osUD64l/@lists.infradead.org
+X-Received: by 2002:a05:690c:f85:b0:8b3:45b:a4f3 with SMTP id
+ 00721157ae682-8b4aa350595mr13731467b3.83.1794570029115; Fri, 13 Nov 2026
+ 03:40:29 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-draco-evk-display-v1-7-28a19c6aea87@oss.qualcomm.com>
-References: <20261113-draco-evk-display-v1-0-28a19c6aea87@oss.qualcomm.com>
-In-Reply-To: <20261113-draco-evk-display-v1-0-28a19c6aea87@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Mohit Dsor <mohit.dsor@oss.qualcomm.com>,
-        venkata.valluru@oss.qualcomm.com,
-        Vishnu Saini <vishnu.saini@oss.qualcomm.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794567321; l=3981;
- i=mohit.dsor@oss.qualcomm.com; s=20260808; h=from:subject:message-id;
- bh=JaOcqqVyw72kcQqad1xHiT/Aa9JC9TQrhpCYKdkfS+E=;
- b=HUnYYnQyxPXq9AtrRzsHuZ65Ew7TwgqhpeZYvf35XEBMTuP7BqduYHOca++GKAYhbnWReWqFe
- x420VMZSLFVCwvvFOeKZRgKPQcxk1qs7RRMEgD3esCoSpFVSO+5PJuH
-X-Developer-Key: i=mohit.dsor@oss.qualcomm.com; a=ed25519;
- pk=outHVBN53JhozDw1xkj3G1qrqqE5scMBP7M4WL3aHQQ=
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEzMDA0NiBTYWx0ZWRfX1KEVa1l+4JfQ
- 0wTcYVEdctG+3nx3qW35O/cGhtU/CwNOQq9ga0RKvYBFfqRZzNXYHeMK0yeIINri+G+tCxYYcUH
- 5QAXRPwgxsnOB/3/vbvMxe1Jh9P/byd+9zKcRIoWKQco5U4pg6EDjqlp4dDEIUFC02RxmwpSKP5
- N7sEKdo1V7LChmdf0s7VnP4m4YKapj+i4M2ibYv7gv/+xX0atwEYe/5zKKq4z6l1Hlitko2dm6o
- bKH+IjnRVQTnli3i+qNMtErhGneJ9SdUJCjt5BUrV5+n6mHF7AuAr7dasT0R5yc0bWTU0j3T94r
- Bpd7IIucDWAjZFrPoYwxcL2TLJUOZVMv47aMNoCCh044gfkvwpAxoj1nBrMslLNNQR7v44x9TQi
- ZgWSS7HaCRPeyk67VWUYJPwkqyT1BpXTb5Fj0BY+AOKn051W8xkPtyuPkWydh7vY0F8bAIBmW9N
- OKZaM0JBDiqwxk5vw3Q==
-X-Proofpoint-ORIG-GUID: 6YbI1vBd6xGV1H73Cd1eaobbSPfw8LVA
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEzMDA0NiBTYWx0ZWRfX/DSFV/GCEAGH
- 9Sp96ks01OWgARHqqRlQdDRPA9VkniJGcRRx6vgEQUtCDDw6v3JM/iUkilL+ampPngKFPBj76DJ
- rfLW07vS9y8JtAZfvp576p/0irJmdxs=
-X-Proofpoint-GUID: 6YbI1vBd6xGV1H73Cd1eaobbSPfw8LVA
-X-Authority-Analysis: v=2.4 cv=SpIFe/O0 c=1 sm=1 tr=0 ts=6af6f5db cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8
- a=LHCJLpAu2B1udcNI4aUA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-13_03,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 adultscore=0
- malwarescore=0 impostorscore=0 bulkscore=0 phishscore=0 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611130046
+References: <20261103163715.385394-1-tanure@linux.com> <20261103163715.385394-3-tanure@linux.com>
+ <20261105-stoic-cricket-of-tolerance-cb3014@quoll> <35dc1ebf-5194-4ec8-adfb-dcc8ea717750@amlogic.com>
+ <CAJX_Q+0QqBHGv-4nfmY8N_xr=KQgUFtwPQTVZBxTK1LHV0jGOQ@mail.gmail.com> <bbe0dedf-4b02-4cc6-97be-accfc06baa10@amlogic.com>
+In-Reply-To: <bbe0dedf-4b02-4cc6-97be-accfc06baa10@amlogic.com>
+From: Lucas Tanure <tanure@linux.com>
+Date: Fri, 13 Nov 2026 11:40:16 +0000
+X-Gmail-Original-Message-ID: <CAJX_Q+0seFwDvd6zksLnJjWYJJY1QcLc1gAjr=FN1p+aTdumpw@mail.gmail.com>
+X-Gm-Features: AclHuK9I2BMo6FvBmijHWWypkJRsPu48XUE9NXvVmMxUtTJAFVoacoB_pnoFyzs
+Message-ID: <CAJX_Q+0seFwDvd6zksLnJjWYJJY1QcLc1gAjr=FN1p+aTdumpw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/7] dt-bindings: net: amlogic,meson-dwmac: add amlogic,t7-dwmac
+To: Chuan Liu <chuan.liu@amlogic.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, xianwei.zhao@amlogic.com, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, 
+	Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Maxime Chevallier <maxime.chevallier@bootlin.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_033454_176970_15E9B453 
-X-CRM114-Status: GOOD (  14.98  )
-X-Spam-Score: -2.7 (--)
+X-CRM114-CacheID: sfid-20261113_034031_761970_348B6F25 
+X-CRM114-Status: GOOD (  34.94  )
+X-Spam-Score: 0.6 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -127,152 +108,219 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: tanure@linux.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+On Tue, Nov 10, 2026 at 11:43=E2=80=AFAM Chuan Liu <chuan.liu@amlogic.com> =
+wrote:
+>
+> Hi Lucas,
+>
+> On 11/9/2026 11:43 PM, Lucas Tanure wrote:
+> > [ EXTERNAL EMAIL ]
+> >
+> > On Fri, Nov 6, 2026 at 3:16=E2=80=AFAM Chuan Liu <chuan.liu@amlogic.com=
+> wrote:
+> >>
+> >> Hi Krzysztof, Lucas,
+> >>
+> >> On 11/5/2026 7:57 PM, Krzysztof Kozlowski wrote:
+> >>> [ EXTERNAL EMAIL ]
+> >>>
+> >>> On Tue, Nov 03, 2026 at 04:37:10PM +0000, Lucas Tanure wrote:
+> >>>>
+> >>>> Assisted-by: LLM
+> >>>
+> >>> Drop this one.
+> >>>
+> >>>> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> >>>> ---
+> >>>>    .../bindings/net/amlogic,meson-dwmac.yaml     | 59 ++++++++++++++=
++++++
+> >>>>    1 file changed, 59 insertions(+)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwm=
+ac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> >>>> index e769c9bb70d8..6de013e3e8f6 100644
+> >>>> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+> >>>> @@ -23,6 +23,7 @@ select:
+> >>>>              - amlogic,meson-gxbb-dwmac
+> >>>>              - amlogic,meson-axg-dwmac
+> >>>>              - amlogic,meson-g12a-dwmac
+> >>>> +          - amlogic,t7-dwmac
+> >>>>      required:
+> >>>>        - compatible
+> >>>>
+> >>>> @@ -57,6 +58,59 @@ allOf:
+> >>>>                - const: clkin1
+> >>>>                - const: timing-adjustment
+> >>>>
+> >>>> +  - if:
+> >>>> +      properties:
+> >>>> +        compatible:
+> >>>> +          contains:
+> >>>> +            const: amlogic,t7-dwmac
+> >>>> +    then:
+> >>>> +      properties:
+> >>>> +        clocks:
+> >>>> +          items:
+> >>>> +            - description: GMAC main clock
+> >>>> +            - description: First parent clock of the internal mux
+> >>>> +            - description: Second parent clock of the internal mux
+> >>>> +            - description:
+> >>>> +                clock of the pipeline stage inserted in the bus pat=
+h between
+> >>>> +                the controller and the DRAM. Without it, the contro=
+ller cannot
+> >>>> +                complete DMA transfers.
+> >>>> +            - description:
+> >>>> +                clock of the register block holding PRG_ETH0 and PR=
+G_ETH1.
+> >>>> +                Without it, the block reads as zero and ignores wri=
+tes.
+> >>>
+> >>> This sounds like you take clock from other block. That's wrong, that
+> >>> device should take its own clock.
+> >>
+> >> I see that the clock in the dts patch corresponds to <&clkc_periphs
+> >> CLKID_SYS_ETHPHY>. This clock provides the working clock for the APB B=
+us
+> >> of the ETH PHY controller, and this clock will affect the register
+> >> reading and writing of the ETH PHY (including the ETH_PLL). See sectio=
+n
+> >> 15.3.4.2 RegisterDescription in A311D2 Datasheet for details.
+> >
+> > Thanks. That section is the PHY block at 0xfe028000, the region of the
+> > mdio multiplexer node. The registers in this description are PRG_ETH0
+> > and PRG_ETH1 in eth_top at 0xfe024000. On the VIM4 the same gate feeds
+> > them too: with it off they read as zero and ignore writes. My datasheet
+> > revisions do not say which clock feeds eth_top. Can you confirm it is
+> > this one?
+>
+> The information I can confirm is:
+>    - The base address of eth_phy is 0xfe028000, and its corresponding
+> APB clock is <&clkc_periphs CLKID_SYS_ETHPHY>.
+>    - The base address of eth_top is 0xfe024000, and the base address of
+> eth_mac is 0xfdc00000; their corresponding APB clock is <&clkc_periphs
+> CLKID_SYS_ETH>.
 
-Add a DT overlay to enable Waveshare 8-inch DSI panel connected to
-JDISP1 22pin connector on the carrier card.
+That is not what the VIM4 does. The stmmac core enables
+CLKID_SYS_ETH before any glue code runs. With that clock on and
+CLKID_SYS_ETHPHY off, PRG_ETH0 and PRG_ETH1 read as zero and the
+driver's writes are lost: U-Boot's 0xa0000 was still in PRG_ETH1
+after the driver had written 0. Enabling CLKID_SYS_ETHPHY right
+before the write makes it land. That was the v3 bug, every frame a
+CRC error. I repeated it today on the running kernel, toggling only
+bit 4 of CLKCTRL_SYS_CLK_EN0_REG0 from user space, every other gate
+left on:
 
-DSI0 from SoC is routed through MUX which can be selected by DIP
-switch for enabling this 22pin connector. Add the JD9365DA-H3 panel,
-GPIO expander at I2C1 mux channel 0 address 0x45 for panel power,
-reset and backlight, and the Goodix GT9271 touch controller. DIP Switch
-SW2.4 need to be OFF for this to work.
+  both gates on        EN0=3Dffffffff EN1=3Dffffffff PRG_ETH0=3D00001601
+  ethphy off, eth on   EN0=3Dffffffef EN1=3Dffffffff PRG_ETH0=3D00000000
+  ethphy restored      EN0=3Dffffffff EN1=3Dffffffff PRG_ETH0=3D00001601
 
-Disable the default HDMI bridge and connector in favour of the
-Waveshare DSI panel.
+So on this chip CLKID_SYS_ETH alone does not give access to eth_top.
+Could the register interface of eth_top sit behind the eth_phy APB
+slave? Either way the MAC node has to enable CLKID_SYS_ETHPHY, and
+the binding will describe it as the clock of the glue registers.
 
-Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
-Signed-off-by: Mohit Dsor <mohit.dsor@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  4 +
- .../qcom/lemans-draco-evk-waveshare-dsi-8inch.dtso | 94 ++++++++++++++++++++++
- 2 files changed, 98 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index b100340e61d1..063b2aa4bca2 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -73,6 +73,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-draco-evk-lvds-auo,g133han01.dtbo
- lemans-draco-evk-raspberrypi-dsi-7inch-dtbs := lemans-draco-evk.dtb lemans-draco-evk-raspberrypi-dsi-7inch.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-draco-evk-raspberrypi-dsi-7inch.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-draco-evk-raspberrypi-dsi-7inch.dtbo
-+
-+lemans-draco-evk-waveshare-dsi-8inch-dtbs := lemans-draco-evk.dtb lemans-draco-evk-waveshare-dsi-8inch.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= lemans-draco-evk-waveshare-dsi-8inch.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= lemans-draco-evk-waveshare-dsi-8inch.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= mahua-crd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= milos-nothing-asteroids.dtb
-diff --git a/arch/arm64/boot/dts/qcom/lemans-draco-evk-waveshare-dsi-8inch.dtso b/arch/arm64/boot/dts/qcom/lemans-draco-evk-waveshare-dsi-8inch.dtso
-new file mode 100644
-index 000000000000..31cd1a46c32b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/lemans-draco-evk-waveshare-dsi-8inch.dtso
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	panel_avdd: regulator-panel-avdd {
-+		compatible = "regulator-fixed";
-+		gpios = <&wsgpio 0 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "panel-avdd";
-+		enable-active-high;
-+	};
-+
-+	panel_iovcc: regulator-panel-iovcc {
-+		compatible = "regulator-fixed";
-+		gpios = <&wsgpio 4 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "panel-iovcc";
-+		enable-active-high;
-+	};
-+
-+	panel_vcc: regulator-panel-vcc {
-+		compatible = "regulator-fixed";
-+		gpios = <&wsgpio 8 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "panel-vcc";
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+};
-+
-+&hdmi_bridge {
-+	status = "disabled";
-+};
-+
-+&hdmi_connector {
-+	status = "disabled";
-+};
-+
-+&i2c1 {
-+	i2c-mux@70 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			wsgpio: gpio@45 {
-+				compatible = "waveshare,dsi-touch-gpio";
-+				reg = <0x45>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+
-+			touch: goodix@5d {
-+				compatible = "goodix,gt9271";
-+				reg = <0x5d>;
-+				reset-gpios = <&wsgpio 9 GPIO_ACTIVE_HIGH>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss0_dsi0 {
-+	status = "okay";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	panel@0 {
-+		compatible = "waveshare,8.0-dsi-touch-a", "jadard,jd9365da-h3";
-+		reg = <0>;
-+
-+		backlight = <&wsgpio>;
-+		reset-gpios = <&wsgpio 1 GPIO_ACTIVE_LOW>;
-+		vccio-supply = <&panel_iovcc>;
-+		vdd-supply = <&panel_avdd>;
-+
-+		port {
-+			panel0_in: endpoint {
-+				remote-endpoint = <&mdss0_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss0_dsi0_out {
-+	remote-endpoint = <&panel0_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-
--- 
-2.34.1
-
+>
+> The CPU reads and writes the registers of these peripheral controllers
+> (or Processing Units) via the APB. Consequently, the registers of these
+> controllers cannot be read and written properly if the corresponding APB
+> clock (sys_clk/clk81) is not enabled.
+>
+> >
+> > Thanks,
+> > Lucas
+> >
+> >>
+> >>>
+> >>>
+> >>>> +
+> >>>> +        clock-names:
+> >>>> +          items:
+> >>>> +            - const: stmmaceth
+> >>>> +            - const: clkin0
+> >>>> +            - const: clkin1
+> >>>> +            - const: pipeline
+> >>>> +            - const: pclk
+> >>>> +
+> >>>> +        # The PHY adds the 2ns RGMII delays, see ethernet-controlle=
+r.yaml.
+> >>>> +        # The RX delay line of this glue is fine tuning in 200ps st=
+eps,
+> >>>> +        # added on top of what phy-mode describes. The TX side has =
+no fine
+> >>>> +        # tuning: its only step is a quarter of the clock period, t=
+he full
+> >>>> +        # 2ns at 1Gbit/s, so the TX property is not accepted.
+> >>>> +        tx-internal-delay-ps: false
+> >>>> +
+> >>>> +        # Deprecated: new SoCs use the standard *-internal-delay-ps
+> >>>> +        # properties instead.
+> >>>> +        amlogic,tx-delay-ns: false
+> >>>> +        amlogic,rx-delay-ns: false
+> >>>> +
+> >>>> +  # Delay definitions for Meson8b and newer
+> >>>> +  - if:
+> >>>> +      properties:
+> >>>> +        compatible:
+> >>>> +          contains:
+> >>>> +            enum:
+> >>>> +              - amlogic,meson8b-dwmac
+> >>>> +              - amlogic,meson8m2-dwmac
+> >>>> +              - amlogic,meson-gxbb-dwmac
+> >>>> +              - amlogic,meson-axg-dwmac
+> >>>> +              - amlogic,meson-g12a-dwmac
+> >>>> +    then:
+> >>>> +      properties:
+> >>>>            amlogic,tx-delay-ns:
+> >>>>              enum: [0, 2, 4, 6]
+> >>>>              default: 2
+> >>>> @@ -106,6 +160,7 @@ allOf:
+> >>>>              contains:
+> >>>>                enum:
+> >>>>                  - amlogic,meson-g12a-dwmac
+> >>>> +              - amlogic,t7-dwmac
+> >>>>        then:
+> >>>>          properties:
+> >>>>            rx-internal-delay-ps:
+> >>>> @@ -142,6 +197,10 @@ properties:
+> >>>>          - items:
+> >>>>              - const: amlogic,meson6-dwmac
+> >>>>              - const: snps,dwmac
+> >>>> +      - items:
+> >>>> +          - const: amlogic,t7-dwmac
+> >>>> +          - const: snps,dwmac-5.10a
+> >>>> +          - const: snps,dwmac
+> >>>
+> >>> I see no such hunk in the code, so not sure how to review this.
+> >>>
+> >>> Best regards,
+> >>> Krzysztof
+> >>>
+> >>>
+> >>> _______________________________________________
+> >>> linux-amlogic mailing list
+> >>> linux-amlogic@lists.infradead.org
+> >>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> >>
+> >> --
+> >> Best regards,
+> >> Chuan
+> >>
+>
+> --
+> Best regards,
+> Chuan
+>
+Thanks,
+Lucas
 
