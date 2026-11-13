@@ -2,69 +2,78 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD32E606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B185B606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:54:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=M2FI6Zek;
-	dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.a=rsa-sha256 header.s=20231125 header.b=Ox0bFsAL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=THPE1lUM;
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=BI6WdYdc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=NwR3ZK+dpWHuEemJ/KF8Oep+ReBdvcqp5qFB2zRlnOs=; b=M2FI6ZekXn7NRL
-	vShrKCuSscwvQhIhE3zMY3F5RjppcyE09lnBZgebvmbbbZoV7tqSuwd8IFwv9HL+Pi+QTIC8z2LQ6
-	gsIktUOHkpBh8VIdS2GzXpV2hF4xj63rC4S3B3mJRmCQl7U8PhOLGBUaWvm+4EZi2sEgv3nB8QehK
-	4pVq+4acTcZysBtlDNtMx7+XmRmexnNBqlbgZDxaR6P3hnn65RX26HHemdjMr8yF3LVXjo5ZFkY6c
-	a3zY1gLoX5iHgEpbRpwhdvTAOijXguWHoWPeNaaSE7Hk+EsC4je6bzvK/CFgqnEZ+DKo5x3zWjRaK
-	GVrTB4yz1nfWB072TGIw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
+	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=LiiTlo37cd7Mx61Wns5oLMYH6SZa01qZWw0uJ0Q/vyI=; b=THPE1lUMaPbD9jc/nZ+KHlpd3J
+	oMIlnWPni8txrBs09iAyy1rY82UfgBNHrKz5vO/SEZkyxrPVei8AxqPKdp3U1oVAnJVKuMxKYQXt7
+	9ckZWFspjlKNW+ZaDppo5eSW5C/+a81uOkR+12OqKdfT7bEwbC50KBoG3oe7qsCefowWeIgVHEdEy
+	TFOeS6vcnMhDTbDeSO+l8RHH3qLV0a+OQxIMA45yRuTgcfy3ue/R65gaIRBIM0UVMt8B0IoIntanL
+	mhKv0qcW7F3ktFC3DMAO18pjGNVtnyslnpT0ft5H+PmTs27LI8YT7ZllalsDQLBasJ2QsBvpmwGFI
+	G2P0OEVQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRseQ-0000000DFho-2W7d;
-	Fri, 13 Nov 2026 14:53:14 +0000
-Received: from smtp-bc0b.mail.infomaniak.ch ([45.157.188.11])
+	id 1xRsfr-0000000DGEw-1rfX;
+	Fri, 13 Nov 2026 14:54:43 +0000
+Received: from mout-p-103.mailbox.org ([80.241.56.161])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRse4-0000000DFK7-3RiL
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 14:53:02 +0000
-Received: from smtp-3-0001.mail.infomaniak.ch (smtp-3-0001.mail.infomaniak.ch [10.4.36.108])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4jR0c00rW7zD2F;
-	Fri, 13 Nov 2026 15:52:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=0leil.net;
-	s=20231125; t=1794581567;
-	bh=NwR3ZK+dpWHuEemJ/KF8Oep+ReBdvcqp5qFB2zRlnOs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Ox0bFsALlOMRbUap1XpX+WRVX9TYHqYr1BTeeahRyoNYtG4M7IjNBc/rVuzYaZjSp
-	 S1mLIb5FsYhZPDF+8P9FATPzg9kH3i+hQa1ls/6vszKxVLjvZhL/N29/qn5AP8DWdk
-	 d4Oz3x+OMlrIVl1OXxpCR2LE9qGBCNXSAjgk9UL1DtJ1ODmrLUb7ZHdlZl8okDetyi
-	 umxpFzr39/PxnNPceeq3lW/Od/ZeZh8U8P95Zh2m7eSOLlK8QX9HD0MKjCL/W2mJbm
-	 qDVCX5vRX46+ARYqieEsfiU6p+uaQ7O6zw0CjETtWZMYDbtZqOu0EHYzBEIfngRkK8
-	 X86692Amz/LFw==
-Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4jR0by754Czlwj;
-	Fri, 13 Nov 2026 15:52:46 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 13 Nov 2026 15:52:23 +0100
-Subject: [PATCH v2 1/2] arm64: dts: rockchip: enable OV9281 CAM0 P14 on
- RK3588 Jaguar
+	id 1xRsfo-0000000DGCu-1EkS;
+	Fri, 13 Nov 2026 14:54:42 +0000
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4jR0f12vLvzKnQG;
+	Fri, 13 Nov 2026 15:54:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1794581673;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LiiTlo37cd7Mx61Wns5oLMYH6SZa01qZWw0uJ0Q/vyI=;
+	b=BI6WdYdcVedfGyuD296xwBOk3ei9OLFIatflNebZWNtoOt4Ka+eplP24Bk/aMI/yy99JnB
+	qNHTlCEt1cnyPTTcXfeS0IU1QyigYJbfPDvOH/GV9U6G9MIlqvZM/3Hdr+zIZ6P0XD3KRS
+	pR5PJ8Ly/DKeYRHS2f1XvrDSTBZ7tB8ETgJpyp/JMzB6LHpDtxXfE/NfAPR69zh3406dcd
+	VtXbd5vl8UgQSX8PTtsRCDPyo4Hg9Xj9zz2UeRbPlO4VLDtxns8zffUnrgnz2trWDAKMsa
+	fc4bXU/IWxtaqrxyovBEmruPacm9QfZmBeJQiDOZfhPtyriX0d9t2F2EfS62+A==
+Message-ID: <0140bc0b3d1078bf8851340e0cb893b2907e146a.camel@mailbox.org>
+Subject: Re: [PATCH] ASoC: meson: aiu-fifo: prevent sleeping when spinlock
+ is held
+From: Manuel Ebner <manuelebner@mailbox.org>
+To: Valerio Setti <vsetti@baylibre.com>, Jerome Brunet
+ <jbrunet@baylibre.com>,  Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,  Takashi Iwai
+ <tiwai@suse.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+ <khilman@baylibre.com>,  Martin Blumenstingl
+ <martin.blumenstingl@googlemail.com>, Kuninori Morimoto
+ <kuninori.morimoto.gx@renesas.com>,  Christian Hewitt
+ <christianshewitt@gmail.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Date: Fri, 13 Nov 2026 15:54:29 +0100
+In-Reply-To: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
+References: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-jaguar-cam0-cam1-v2-1-3e9377e3c882@cherry.de>
-References: <20261113-jaguar-cam0-cam1-v2-0-3e9377e3c882@cherry.de>
-In-Reply-To: <20261113-jaguar-cam0-cam1-v2-0-3e9377e3c882@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.17-dev
-X-Infomaniak-Routing: alpha
+X-MBO-RS-ID: 1e7b1d7ce8dec38f883
+X-MBO-RS-META: cfbo8tz5cnod83gdmbzdxxfiyfdwomg3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_065253_076181_65C419D8 
-X-CRM114-Status: GOOD (  14.86  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261113_065440_662395_E0411A81 
+X-CRM114-Status: GOOD (  26.99  )
+X-Spam-Score: -2.8 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -75,242 +84,200 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+Hi Valerio,
 
-RK3588 Jaguar has two proprietary camera connectors, P14 and P15. This
-adds support for the only camera module we currently have for this
-connector, on P14.
+I have read your patch and have a question.
 
-The camera module has a 2-lane OV9281 camera sensor, an IMU, a
-magnetometer and an EEPROM.
+On Wed, 2026-11-11 at 11:09 +0100, Valerio Setti wrote:
+> dai_links in the gx-card are atomic which means that the DAI trigger
+> callback is called with the spinlock held. This means that usage of
+> potentially sleeping functions (e.g. mutexes) is not allowed here.
+>=20
+> 'snd_soc_component_write'/'snd_soc_component_read' take the component's
+> io_mutex on entry.
+>=20
+> Replace usage of these functions in:
+> - 'aiu_fifo_i2s_trigger'
+> - 'fifo_spdif_trigger'
+> - 'aiu_fifo_pointer'
+>=20
+> This is meant to resolve the following runtime bug found while starting I=
+2S
+> playback on an OdroidC2 device where the kernel was built enabling
+> CONFIG_DEBUG_ATOMIC_SLEEP and CONFIG_PROVE_LOCKING:
+>=20
+> [...]
+>=20
+> Fixes: e8712315c44d ("ASoC: soc-component: use io_mutex correctly")
+> Fixes: 6b59c53c8adc ("ASoC: meson: aiu: fifo-spdif: soft reset the S/PDIF=
+ datapath on start/stop")
+> Signed-off-by: Valerio Setti <vsetti@baylibre.com>
+> ---
+> I found this issue while working on [1].
+> This patch is independent of [1] and they can go in in any order. They
+> are fixing the same problem in different modules.
+>=20
+> [1]: https://lore.kernel.org/all/20261021-gx-formatter-use-spinlock-v1-1-=
+71ebc9224c03@baylibre.com/
+> ---
+> =C2=A0sound/soc/meson/aiu-fifo-i2s.c=C2=A0=C2=A0 | 15 ++++++++++++---
+> =C2=A0sound/soc/meson/aiu-fifo-spdif.c | 14 ++++++++++----
+> =C2=A0sound/soc/meson/aiu-fifo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 6 +++++-
+> =C2=A03 files changed, 27 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/sound/soc/meson/aiu-fifo-i2s.c b/sound/soc/meson/aiu-fifo-i2=
+s.c
+> index eccbc16b293ad..8f785241585df 100644
+> --- a/sound/soc/meson/aiu-fifo-i2s.c
+> +++ b/sound/soc/meson/aiu-fifo-i2s.c
+> @@ -5,6 +5,7 @@
+> =C2=A0
+> =C2=A0#include <linux/bitfield.h>
+> =C2=A0#include <linux/clk.h>
+> +#include <linux/regmap.h>
+> =C2=A0#include <sound/pcm_params.h>
+> =C2=A0#include <sound/soc.h>
+> =C2=A0#include <sound/soc-dai.h>
+> @@ -48,14 +49,22 @@ static int aiu_fifo_i2s_trigger(struct snd_pcm_substr=
+eam *substream, int cmd,
+> =C2=A0=09=09=09=09struct snd_soc_dai *dai)
+> =C2=A0{
+> =C2=A0=09struct snd_soc_component *component =3D dai->component;
+> +=09unsigned int val;
 
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/Makefile              |   5 +
- .../dts/rockchip/rk3588-jaguar-p14-ov9281.dtso     | 120 +++++++++++++++++++++
- arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts     |  36 ++++++-
- 3 files changed, 160 insertions(+), 1 deletion(-)
+Here is val.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 442d322a20cf7..cf977e883c374 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -204,6 +204,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-h96-max-v58.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-can1-can2-uart4.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-ethernet-switch.dtbo
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-p14-ov9281.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-lubancat-5io.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-mnt-reform2.dtb
-@@ -336,6 +337,10 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-can1-can2-uart4.dtb
- rk3588-jaguar-can1-can2-uart4-dtbs := rk3588-jaguar.dtb \
- 	rk3588-jaguar-can1-can2-uart4.dtbo
- 
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-p14-ov9281-p15-ov9281.dtb
-+rk3588-jaguar-p14-ov9281-p15-ov9281-dtbs := rk3588-jaguar.dtb \
-+	rk3588-jaguar-p14-ov9281.dtbo
-+
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-ethernet-switch.dtb
- rk3588-jaguar-ethernet-switch-dtbs := rk3588-jaguar.dtb \
- 	rk3588-jaguar-ethernet-switch.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar-p14-ov9281.dtso b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-p14-ov9281.dtso
-new file mode 100644
-index 0000000000000..bb4ce6718fa26
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-p14-ov9281.dtso
-@@ -0,0 +1,120 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Cherry Embedded Solutions GmbH
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/media/video-interfaces.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&csi_dphy0 {
-+	status = "okay";
-+};
-+
-+&csi2 {
-+	status = "okay";
-+};
-+
-+&csi2_in {
-+	csi2_input: endpoint {
-+		bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-+		data-lanes = <1 2>;
-+		link-frequencies = /bits/ 64 <400000000>;
-+		remote-endpoint = <&cam0_output>;
-+	};
-+};
-+
-+&i2c2 {
-+	#address-cells = <1>;
-+	clock-frequency = <400000>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	magnetometer@1e {
-+		compatible = "st,lis2mdl";
-+		reg = <0x1e>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC7 IRQ_TYPE_EDGE_RISING>;
-+		pinctrl-0 = <&cam0_imu_int3>;
-+		pinctrl-names = "default";
-+		vdd-supply = <&vcc_2v8_imu>;
-+		vddio-supply = <&vcc_1v8_s3>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "st,24c64", "atmel,24c64";
-+		reg = <0x50>;
-+		pagesize = <32>;
-+		vcc-supply = <&vcc_1v8_s3>;
-+	};
-+
-+	camera@60 {
-+		compatible = "ovti,ov9281";
-+		reg = <0x60>;
-+		assigned-clocks = <&cru CLK_MIPI_CAMARAOUT_M1>;
-+		assigned-clock-rates = <24000000>;
-+		avdd-supply = <&vcc_2v8_cam>;
-+		clocks = <&cru CLK_MIPI_CAMARAOUT_M1>;
-+		dovdd-supply = <&vcc_1v8_s3>;
-+		dvdd-supply = <&cam_vcc_1v2>;
-+		pinctrl-0 = <&cam0_rst &mipim0_camera1_clk>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&gpio0 RK_PB0 GPIO_ACTIVE_HIGH>;
-+
-+		port {
-+			cam0_output: endpoint {
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <400000000>;
-+				remote-endpoint = <&csi2_input>;
-+			};
-+		};
-+	};
-+
-+	imu@6a {
-+		compatible = "st,lsm6dsr";
-+		reg = <0x6a>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PC0 IRQ_TYPE_EDGE_RISING>;
-+		pinctrl-0 = <&csi0_imu_int1 &cam0_imu_cs &cam0_imu_sa0>;
-+		pinctrl-names = "default";
-+		vdd-supply = <&vcc_2v8_imu>;
-+		vddio-supply = <&vcc_1v8_s3>;
-+	};
-+};
-+
-+&pinctrl {
-+	cam0-p14 {
-+		cam0_imu_cs: cam0-imu-cs {
-+			rockchip,pins = <4 RK_PB2 RK_FUNC_GPIO &pcfg_output_high>;
-+		};
-+
-+		cam0_imu_int3: cam0-imu-int3 {
-+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		cam0_imu_sa0: cam0-imu-sa0 {
-+			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		cam0_rst: cam0-reset {
-+			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		csi0_imu_int1: csi0-imu-int1 {
-+			rockchip,pins = <1 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&vicap {
-+	status = "okay";
-+};
-+
-+&vicap_mmu {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
-index 0446834e84d5d..99baf89167d35 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar.dts
-@@ -40,6 +40,16 @@ aliases {
- 		rtc0 = &rtc_twi;
- 	};
- 
-+	cam_vcc_1v2: regulator-cam-vcc-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam_vcc_1v2";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc_1v2_s3>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial2:115200n8";
- 	};
-@@ -123,7 +133,26 @@ vcc_1v2_s3: regulator-vcc-1v2-s3 {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
--	/* Exposed on P14 and P15 */
-+	vcc_2v8_cam: regulator-vcc-2v8-cam {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_2v8_cam";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc_2v8_s3>;
-+	};
-+
-+	vcc_2v8_imu: regulator-vcc-2v8-imu {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_2v8_imu";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc_2v8_s3>;
-+	};
-+
- 	vcc_2v8_s3: regulator-vcc-2v8-s3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_2v8_s3";
-@@ -437,6 +466,11 @@ &i2c1 {
- 	pinctrl-names = "default";
- };
- 
-+&i2c2 {
-+	pinctrl-0 = <&i2c2m3_xfer>;
-+	pinctrl-names = "default";
-+};
-+
- &i2c6 {
- 	pinctrl-0 = <&i2c6m4_xfer>;
- 	pinctrl-names = "default";
+> +=09int ret;
+> =C2=A0
+> =C2=A0=09switch (cmd) {
+> =C2=A0=09case SNDRV_PCM_TRIGGER_START:
+> =C2=A0=09case SNDRV_PCM_TRIGGER_RESUME:
+> =C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
+> -=09=09=09=09=09AIU_RST_SOFT_I2S_FAST);
+> -=09=09snd_soc_component_read(component, AIU_I2S_SYNC);
+> +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT=
+_I2S_FAST);
+> +=09=09if (ret < 0)
+> +=09=09=09return snd_soc_ret(component->dev, ret,
+> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
+> +
+> +=09=09ret =3D regmap_read(component->regmap, AIU_I2S_SYNC, &val);
 
--- 
-2.56.1
+So as I understand val/&val is just there to listen and forget what gets re=
+turned.
+That's kinda weird, but not an issue.
 
+> +=09=09if (ret < 0)
+> +=09=09=09return snd_soc_ret(component->dev, ret,
+> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to read register on trigger");
+> =C2=A0=09=09break;
+> =C2=A0=09}
+> =C2=A0
+> diff --git a/sound/soc/meson/aiu-fifo-spdif.c b/sound/soc/meson/aiu-fifo-=
+spdif.c
+> index a9861c5d66374..297834bce1c7a 100644
+> --- a/sound/soc/meson/aiu-fifo-spdif.c
+> +++ b/sound/soc/meson/aiu-fifo-spdif.c
+> @@ -69,15 +69,21 @@ static int fifo_spdif_trigger(struct snd_pcm_substrea=
+m *substream, int cmd,
+> =C2=A0=09case SNDRV_PCM_TRIGGER_START:
+> =C2=A0=09case SNDRV_PCM_TRIGGER_RESUME:
+> =C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+> -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
+> -=09=09=09=09=09AIU_RST_SOFT_958_FAST);
+> +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT=
+_958_FAST);
+> +=09=09if (ret < 0)
+> +=09=09=09return snd_soc_ret(component->dev, ret,
+> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
+> +
+> =C2=A0=09=09fifo_spdif_dcu_enable(component, true);
+> =C2=A0=09=09break;
+> =C2=A0=09case SNDRV_PCM_TRIGGER_SUSPEND:
+> =C2=A0=09case SNDRV_PCM_TRIGGER_PAUSE_PUSH:
+> =C2=A0=09case SNDRV_PCM_TRIGGER_STOP:
+> -=09=09snd_soc_component_write(component, AIU_RST_SOFT,
+> -=09=09=09=09=09AIU_RST_SOFT_958_FAST);
+> +=09=09ret =3D regmap_write(component->regmap, AIU_RST_SOFT, AIU_RST_SOFT=
+_958_FAST);
+> +=09=09if (ret < 0)
+> +=09=09=09return snd_soc_ret(component->dev, ret,
+> +=09=09=09=09=09=C2=A0=C2=A0 "Failed to write register on trigger");
+> +
+> =C2=A0=09=09fifo_spdif_dcu_enable(component, false);
+> =C2=A0=09=09break;
+> =C2=A0=09default:
+> diff --git a/sound/soc/meson/aiu-fifo.c b/sound/soc/meson/aiu-fifo.c
+> index 8b54f9681d00c..f3cdcce1ebfe3 100644
+> --- a/sound/soc/meson/aiu-fifo.c
+> +++ b/sound/soc/meson/aiu-fifo.c
+> @@ -5,6 +5,7 @@
+> =C2=A0
+> =C2=A0#include <linux/bitfield.h>
+> =C2=A0#include <linux/clk.h>
+> +#include <linux/regmap.h>
+> =C2=A0#include <linux/dma-mapping.h>
+> =C2=A0#include <sound/pcm_params.h>
+> =C2=A0#include <sound/soc.h>
+> @@ -37,8 +38,11 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_comp=
+onent *component,
+> =C2=A0=09struct aiu_fifo *fifo =3D snd_soc_dai_dma_data_get_playback(dai)=
+;
+> =C2=A0=09struct snd_pcm_runtime *runtime =3D substream->runtime;
+> =C2=A0=09unsigned int addr;
+
+Here it's addr. It's not yours, you just kept it.
+
+> +=09int ret;
+> =C2=A0
+> -=09addr =3D snd_soc_component_read(component, fifo->mem_offset + AIU_MEM=
+_RD);
+> +=09ret =3D regmap_read(component->regmap, fifo->mem_offset + AIU_MEM_RD,=
+ &addr);
+
+Similar as above. But why is addr here and val above? I think it's the same=
+ role in regmap_read().
+Would it make sense to name both the same? If it does, I'm in favor of val,=
+ because that's in the
+kernel-doc of regmap_read().
+
+drivers/base/regmap/regmap.c:
+> /**
+>  * regmap_read() - Read a value from a single register
+>  *
+>  * @map: Register map to read from
+>  * @reg: Register to be read from
+>  * @val: Pointer to store read value
+
+
+> +=09if (ret < 0)
+> +=09=09return snd_soc_ret(component->dev, ret, "Failed to read FIFO point=
+er");
+> =C2=A0
+> =C2=A0=09return bytes_to_frames(runtime, addr - (unsigned int)runtime->dm=
+a_addr);
+Here addr is used, so it's not same as above.
+
+Looking forward to your POV.
+ Manuel
+
+> =C2=A0}
+>=20
+> ---
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+> change-id: 20261111-aiu-fifo-fix-sleep-on-spinlock-0ecec8d64a9b
+>=20
+> Best regards,
+> --=C2=A0=20
+> Valerio Setti <vsetti@baylibre.com>
 
