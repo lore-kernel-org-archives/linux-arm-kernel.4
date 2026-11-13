@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0090A606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3273606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Y67TsqSs;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=ba92yVh1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=5FC9nKyd;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=ux2gncfF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
@@ -14,92 +14,93 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=mLlFdlAUsckIoBDaS7lANsUL8Pv2vCZkw0CEClRgKQA=; b=Y67TsqSsx0kC22eXLLCTgtWLPA
-	YpLlonZfqswQ1JcydW7eXQUy/s5n3Gr4R+sj2vZMbvyVlepNPwm/7ignR8m06F7oC6LeRCD8v6Mj6
-	oWBcj5GS0w9j/rE681v6X4jOXVVzP7zwIdmPWK0RjJo/7Ee8UinRFX8kxRd+cUQ2oaCcRDg53IYPe
-	/VICtjMBc04C44Jzf8gRdRFzyHCuVlS9CH1FgNZA8c+KXBfOP1Vur81Kk5Ajq324l3MLDwylFiTXb
-	1ka6KPL9MdVpnZqtYP2geGWYWw/bmNiCnVJC16OyA61ikAdhqnqSVx+LeMpV/cQgWoZgm3q3gKWA+
-	qaOEYt4A==;
+	bh=bTBnO03FVproqb/6aEaVwSKFkOKpvQT6/xIPPhFQktM=; b=5FC9nKydE0F34qinGhf1bIfhsv
+	5vC0GMFW3qXnzCt9jQ/I2xOTnPVxwm3kX+4EOFAXGQRGejUFQZwiJQyHK1h9seRrupDpwTl6hVxh8
+	Rw0947mj8EcNibj4R1A5CIOG6FvjOf04ZKMdsvK/ndd0PhiGIYr7tpAKmcaQ2NX/sMIrpu6Uo7NHs
+	HF8cm8WWAqDTRyHV8Jwa+fBc7PEFzfkC+Wx+MY3C9H/pGz1Ojs1RNOpYS9awoNzP5Fqkf85idHV3j
+	i3D/5jd+H18uzoiNnbmEn4moM6jHefDIZG3zaffXfGSc+q1+2BpM7chylHLMbxRdwJTse9hmzShAb
+	h0E4x0kA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqnY-0000000Cnff-2KSm;
-	Fri, 13 Nov 2026 12:54:32 +0000
-Received: from mail-ed1-x52f.google.com ([2a00:1450:4864:20::52f])
+	id 1xRqsp-0000000CoGY-0yP5;
+	Fri, 13 Nov 2026 12:59:59 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqnV-0000000Cneb-1NYz
+	id 1xRqsk-0000000CoG6-2ftS
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 12:54:30 +0000
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-6b56c428212so1438643a12.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:54:28 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794574467; cv=none;
+	Fri, 13 Nov 2026 12:59:57 +0000
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6b58cb69927so1867011a12.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:59:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794574792; cv=none;
         d=google.com; s=arc-20260327;
-        b=HyYkUe2i1dDnlDYDKh/fCUIZMt5X8n7iUs7RjKE8jz4jzKNHlPJpfomEJjZsTmVq3p
-         9V/+aUAZOxyU/AhmdqyT2Ml3Jq6jOekwVk54lnZFsTDly04zbEyJlHC2PLhm1gILZ4iW
-         puaOCC9IKCH1J0bfdPnrptrY260rHRmAIyTKnHhnxOcdBJnd8oNdHqVvasqDgPGfvv0R
-         TlDsHNONmSfKYDxqbNEtv9UMz6G2JIksOW8Uel4/LLtSdcp6HEQbveGavM+LbPdUY8YM
-         mNMukIplMW0XDazPRQYc6oHCkxzb//jA5mQj4ZMamTZewD8SsDpRLo+CBN2cFyQXSDyi
-         U3tQ==
+        b=NIR4NcAhwZfHaVFhcZbO6IyWLPoY120nSzzpCueuSZ+Mv8y7Q41mYH5quYG1Uk0xoC
+         4fzjDnVvpOGAAQy/OEYI26ag82s6W36Pj+bERViBCLst1GUQJuf/whI+4q17NTbNkAIC
+         8o5jcnI5qKZk/VdhzMvoPBfGBD2bg4fl4lgo/y+dNKPDYZ3nc3eSChXVc1pLVNkeCUFM
+         dlSZXPMO0dDK/jxvpTzJPJIcubgN99bYnX9rU0kFCvTuMzYMdnWw7zL51a5XqmnBxdLx
+         59apSVGp1R+pfoKXGYkHjNNiB3e15L7+zB3L5nbA/DxSBv2DjHsgYdUscBiV7mntb8iz
+         Mnow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=mLlFdlAUsckIoBDaS7lANsUL8Pv2vCZkw0CEClRgKQA=;
-        fh=SiyyLG+C1rvmrXtpLeKwsRynH1TRbdZ0KWlgYC1S8mE=;
-        b=jnvePHuFDFlsOrTkpatjFGtl9rIe9xflXpMH4NsYh4nLWHXhaoRUXWKrTtN3XT/e7H
-         H68XCVZyhuYorSClRmj9PWeI2LiMgf6YzmzkepNtgbiDTpfyGiMCVmW1A5X24QL2/nSh
-         vaahuwJuCvoK+jeUceH2p9IypvlKjWsHfxX48e+SCix3m9GnfWe6AybYoN+YU96zo/Mi
-         VzvFe8RjrD2dtT+uS8TYfUo54S1bv4j0p1qp60IZ4NTXgojfOHJ56Q4XUBPEYAt4EFUZ
-         7IRq/P6yS+5c4tf+nBEBQTEm1dg0BqxXL3iDDS8CQsSt6RLqJwV81Lu9+wNXGF5jRrOk
-         Wa0w==;
+        bh=bTBnO03FVproqb/6aEaVwSKFkOKpvQT6/xIPPhFQktM=;
+        fh=aqnHS9ICfeo7hAXGCtlUlEcQ4htamJ0fso7jbAsbvMo=;
+        b=ToaapLi3C9P1Am0iQFQFwD3w2fzsUqGQvRgNSoIHg/sewFQ14S+a8T9ypdPzEZhzGk
+         bFq1u9L6DCg0ZodGx/PowtJt8xPTqBULzFCj3sUWBQbxCx1V0UAWxW9JpJOUzNPcJS01
+         N71Fn9eySc89XcAr41bBKzQSPkxxvv2rm+pbYzQR4aMz5btTdWbRlmyoN7Maccgk+aYO
+         cSHvN1zbOg0LpDd0OAhgDo658QluK+nzwlKrDeDinynDy4Cytc4JPveo7SZCepi/U6Ou
+         9zdFjHNNX2SCKNKQLfq882H/1vAkqFDP6Bf0o326MukbiPhSqeDGoVAvDJGJbo31jS0M
+         H9kg==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794574467; x=1795179267; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1794574792; x=1795179592; darn=lists.infradead.org;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=mLlFdlAUsckIoBDaS7lANsUL8Pv2vCZkw0CEClRgKQA=;
-        b=ba92yVh1In57jmfYmi2dXqh2SSoe4IcJjz53cnyJX5b4oiEqXDu2ElpTJD4yUaWMkQ
-         XgzibnszhzLVEN4jCKrVSX80L6oZ7yvCCxFX9xpYhICpklDZBgugdAPbqBh4eAjrmv5t
-         FKTdXtgK7laZ9pV7dyEWdXQqpneiDEy3nEnDgH/oDXQFFn4FIKc4ZE7lKSr9n9t2Bgbi
-         9BVM10dArR8UkxEIAT1Gr8QnUHfjYsoi2K/VxPsDHTptwvhb71peEW3cKvpSvDmWjxCW
-         sI6VBxi4Q416dNttgEpkFcR9FaaZdbdjKZn0eCPDYVhFFJSy9Pdfi6RU/YFpqnRWkgNb
-         AJvA==
+        bh=bTBnO03FVproqb/6aEaVwSKFkOKpvQT6/xIPPhFQktM=;
+        b=ux2gncfFlKih8Qh8OBz9HTZGPqDtbD5Wknh/tIl/U7mrbb/DOdW/On6BrOGWyDfjb2
+         EGdH4XIG3lX+bvZ7a6tei3KqB0yvmKMz2iq2i/qwRpNE/k5qOXCRr99zm0XCTMqcecLa
+         K0LY6RhJ5OE+KphRdFPDNiN5zVUWrqgLAUStIb2fpiK5c+lr/84Mjn7fjBGHUW/CW2wM
+         Htyy5AIm1msdmPvSuc4Um3qOEB6iIPXhzmLh/Jeifx1EJ+PGAlG+V55umCvnkw0Kx/OS
+         QVrLvTWbTM4U0VVZfdnw4jH0vX+1Hw3QqTuBX3AyAZxXjVsDHe59Sd1ZStarpQ5eoNK2
+         Po5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794574467; x=1795179267;
+        d=1e100.net; s=20260707; t=1794574792; x=1795179592;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=mLlFdlAUsckIoBDaS7lANsUL8Pv2vCZkw0CEClRgKQA=;
-        b=Mnc11l++in2RkebOTUqXbDroAKn0ZgZ/LE2wFgGAh6fNCqyVVHRhBPAGWK23wfKwwy
-         H+V9GuLpUdiirJJa59TuLV/2462KvmuZLJ+Uhhvfwo+wwRbDEEST85744Y40PAKAYjbF
-         Ya6EA1//HnQY94l8Y1dRZB+DQIPDAVQGKMPy+JZDUVo7jMIF2qP2Hdk6Arwol+gYjp43
-         T3M7yZ4aE5JmvGbxTZfFx3sXxECzkKmCaPY0BwYHdZ3sQpZuPRcNtKVmr9w8mp39bvXO
-         VjMedAsYEZkElsRAtgc2UlWlwxeT2Yga0L03/hzhHuacUm87nt+7jlNyDbvTAL8/ZgVo
-         91Ag==
-X-Forwarded-Encrypted: i=1; AL+hErH9w3K3V+ILBHZT3QFlZKqvPTVBuFtyDUdMuTZ4P+j46Qab0yyiNZik9m7vNpxm2L+V9R3svuPHITr8iL/ibnEw@lists.infradead.org
-X-Gm-Message-State: APuU4Z/yNLhtfWb4GCf6x2puZ1X8r2uZrEupJGz0pFB97GDvH5+W8gyB
-	qqwJkFCJ+EbEFpm7plELDeDpXXRL2EXsOegDpBUZ5cc7ttVi5SCb13nyW2pXIWgV4BkSK5mqnvq
-	x7hm7DE3vJeibFqVnOsvQ/8JjBSzX8ILd3IR7726T5w==
-X-Gm-Gg: AYBFou3BUMowaMY99qVzUg/EVeq3jsZ+niESccl5i70nRQDrW2Tn34kjhY3wMK/Uqfb
-	Ha1RaUcnHvBH2TaZ66C/EEp4YBNWkOW1OcOv/YoDKRlLG6ypAUGKsj0E2pHiVeTdjKZaWnfd0+w
-	hWbyswh/zCdp68zAnvdQAu335CwDBT2OMVw7pQlnfyYptP772iRAd04MxUmHh3+Bm8bU9Opk1P+
-	QbX3H/JN4uf2nU1p1GNgAcSATJFvGc/24+sCaFUxYsx9DxvxgNjtyObVpFLjFOAgG5zwmeENtkY
-	3HvLfvAuPSuJEsTbqg7kjHCFGj4ABuTSnHWjphSzImBBD03KxyMFQseQQM0fZpSEjI4qL3dziTH
-	MLPC6etZOzUDB/ULFt3Ll4Q8WiZyljg80NTzFpvUFiN5DPcTs75pJVdRuSqHb2Y19njoUPA==
-X-Received: by 2002:a05:6402:2804:b0:6b7:245a:a509 with SMTP id
- 4fb4d7f45d1cf-6b7c0d166cfmr1777902a12.40.1794574467313; Fri, 13 Nov 2026
- 04:54:27 -0800 (PST)
+        bh=bTBnO03FVproqb/6aEaVwSKFkOKpvQT6/xIPPhFQktM=;
+        b=08WL/PkLYiGbUpN7H7hUeFpB5NutQvuBaeeeXAAJmMHbjlfgcj7VErLs8b1TGB/6iV
+         kODJgqTzhTKsjj9ITgChIwodRVgtSnefx107LHdYhTyz5NxDXeMpQULjPS2Ka5Wh2/Mx
+         XNO6bc5jDFqE1er4crDzMDmf0xSssGocWcOeDsCk/sKyEN3aBF/sQls74ouEcQOFleDj
+         a/d8YsRjxOaMJBHiS1pA+EwvNS0nv9PHjyCIxPpBP2LUL/msDNFt0WAb2x5IDmjfjcMG
+         4+fQS8hiE+uEEGm6uStNNB6dAZC4by5rHT28NEv7i2/hjXOIyfmyB+EOAnqKcVLXWO7D
+         q1dQ==
+X-Forwarded-Encrypted: i=1; AL+hErFcqdIZTxHBxfzyH/ZmiVWZqmMxGrjE0PBDqySC14nvQD5xjLnK4nBgtE2w6yO2dc31NHmvxXMTpqLXuQX7TYVs@lists.infradead.org
+X-Gm-Message-State: APuU4Z+HBgM/x1JWON5f1nRGUoxkv2sDJFCAJMLu1Sndu3r6dB52sidW
+	5fzzmZpycHLgaalmPvXPqcauZtej78LbthEOyWHAvIYHqZS6wsjhTu15zJSZ04zkxYwhGsiFKiI
+	ht2VQxiaDFmXPjbqhWFujpp5OHswIqKl6LyHuPCjJxg==
+X-Gm-Gg: AYBFou2pk1m2L0CHW2v4nNI1joKBoe0CGX2kpTOnJLAoYcLvquFxEhtj5Pa7fzmyY2j
+	NzfU/khcVAv2mA7EnRyJSBeYTOnfsjSYjlYjuZsysLDja/941404r+oPGBxfKrwvbK+LPTaEvaz
+	6J/AAUXcIuH6Geo1WrW9wubW0/vOiVYrjEP18pZgjjnNs2au6gc9QmMTQ72icEQczvGhCb7j7b0
+	Za8nySLXwlrodR00TG4CQ8ud4m4bIrFWpcioqvBegfobTGnYCeN5AkPY/mX++MUiqB5z9uvlOkv
+	ef2pUob3gmYd7Yp7NIWcAR5lFHsAGnkESS1D0RfAGasIelEF2vIB3GrcW6j0QbuLJ+aXff62H2g
+	7PuF2loFmi8XAER2W1kag2JjyQazy7+bGxRMoGr1KKoAjKoU35JAb+TvEdm23ZwdRFyJMF6WlDl
+	EW6r+KLH+5f4a5+oQ=
+X-Received: by 2002:a17:907:3f9e:b0:c46:ca2b:84ab with SMTP id
+ a640c23a62f3a-c507bca4549mr587358566b.13.1794574792499; Fri, 13 Nov 2026
+ 04:59:52 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CGME20261113104853epcas5p175c566a1ced2547e533c21b21e60e993@epcas5p1.samsung.com>
- <20261113110612.3265841-1-raghav.s@samsung.com> <20261113110612.3265841-9-raghav.s@samsung.com>
-In-Reply-To: <20261113110612.3265841-9-raghav.s@samsung.com>
+References: <CGME20261113104901epcas5p26c1b8e9a324f133216b7980ac7ded44a@epcas5p2.samsung.com>
+ <20261113110612.3265841-1-raghav.s@samsung.com> <20261113110612.3265841-12-raghav.s@samsung.com>
+In-Reply-To: <20261113110612.3265841-12-raghav.s@samsung.com>
 From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 13 Nov 2026 12:54:14 +0000
-X-Gm-Features: AclHuK9WcGq9tEUmProC1B7yOVe2Lz9yBCRU5dHo1y04eEg6YkemqWw0onfqCbI
-Message-ID: <CADrjBPrzHP_97OgAYacJKKqeCcp9FURoi6=Dmopk6nisTdEbdA@mail.gmail.com>
-Subject: Re: [PATCH v3 08/14 RESEND] clk: samsung: exynos8855: add block peris
- clock support
+Date: Fri, 13 Nov 2026 12:59:40 +0000
+X-Gm-Features: AclHuK9cm82mhKCf1OM8U8MOAQmGsMU4pcM69WzWfUaEMzCzm0cQud7ofsYoc9E
+Message-ID: <CADrjBPpf_-pnzQRYrpqpzWUewgF_U5EbOA1CJprnH1XzQoDuLg@mail.gmail.com>
+Subject: Re: [PATCH v3 11/14 RESEND] arm64: dts: exynos8855: add cmu_top &
+ cmu_peric clock DT nodes
 To: Raghav Sharma <raghav.s@samsung.com>
 Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
 	alim.akhtar@samsung.com, sboyd@kernel.org, bmasney+clk@redhat.com, 
@@ -110,8 +111,8 @@ Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
 	pokala.reddy@samsung.com
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_045429_420595_218641D4 
-X-CRM114-Status: GOOD (  21.29  )
+X-CRM114-CacheID: sfid-20261113_045954_728116_1451FA25 
+X-CRM114-Status: GOOD (  14.84  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -131,130 +132,78 @@ X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Raghav,
-
 On Fri, 13 Nov 2026 at 10:54, Raghav Sharma <raghav.s@samsung.com> wrote:
 >
-> Register compatible and cmu_info data to support clocks.
-> CMU_PERIS, this provides clocks for PERIS
+> Add required dt node for cmu_top & cmu_peric block.
+> This also add sysreg_peric node. sysreg_peric contains
+> DRCG and MEMCLK SFRs bits which are used in clock driver.
 >
-> Co-developed-by: Alim Akhtar <alim.akhtar@samsung.com>
 > Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
 > Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
 > ---
->  drivers/clk/samsung/clk-exynos8855.c | 97 ++++++++++++++++++++++++++++
->  1 file changed, 97 insertions(+)
+
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+
+>  arch/arm64/boot/dts/exynos/exynos8855.dtsi | 32 ++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 >
-> diff --git a/drivers/clk/samsung/clk-exynos8855.c b/drivers/clk/samsung/clk-exynos8855.c
-> index dcf58f2459b0..12b5ae54b560 100644
-> --- a/drivers/clk/samsung/clk-exynos8855.c
-> +++ b/drivers/clk/samsung/clk-exynos8855.c
-> @@ -18,7 +18,9 @@
->  /* NOTE: Must be equal to the last clock ID increased by one */
->  #define CLKS_NR_TOP                     (CLKCMU_DOUT_G3D_HTU + 1)
->  #define CLKS_NR_PERIC                   (CLK_GOUT_USI_PERIC + 1)
-> +#define CLKS_NR_PERIS                   (CLK_GOUT_WDT1_PERIS + 1)
+> diff --git a/arch/arm64/boot/dts/exynos/exynos8855.dtsi b/arch/arm64/boot/dts/exynos/exynos8855.dtsi
+> index 0333b80eba84..2e5dc79d66bc 100644
+> --- a/arch/arm64/boot/dts/exynos/exynos8855.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynos8855.dtsi
+> @@ -10,6 +10,7 @@
+>   */
 >
-> +#define EXYNOS8855_PERIS_GATE_DBG_OFFSET      0x2004
->  #define EXYNOS8855_PERIC_GATE_DBG_OFFSET      0x2024
->  #define EXYNOS8855_TOP_GATE_DBG_OFFSET      0x20A0
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/clock/samsung,exynos8855.h>
 >
-> @@ -1092,6 +1094,98 @@ static const struct samsung_cmu_info peric_cmu_info __initconst = {
->         .memclk_offset          = EXYNOS8855_MEMCLK_OFFSET,
->  };
+>  / {
+>         compatible = "samsung,exynos8855";
+> @@ -170,12 +171,43 @@ pinctrl_cmgp: pinctrl@12030000 {
+>                         interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH>;
+>                 };
 >
-> +/* ---- CMU_PERIS --------------------------------------------------------- */
+> +               cmu_top: clock-controller@13900000 {
+> +                       compatible = "samsung,exynos8855-cmu-top";
+> +                       reg = <0x13900000 0x10000>;
+> +                       #clock-cells = <1>;
+> +                       clocks = <&oscclk>;
+> +                       clock-names = "oscclk";
+> +               };
 > +
-> +/* Register Offset definitions for CMU_PERIS (0x10030000) */
-> +#define CMU_PERIS_PLL_CON0_MUX_CLKCMU_PERIS_NOC_USER           0x600
-> +#define CMU_PERIS_CLK_CON_MUX_CLK_PERIS_GIC                    0x1000
-> +#define CMU_PERIS_PLL_CON0_MUX_CLK_PERIS_GIC_USER              0x610
-> +#define CMU_PERIS_CLK_CON_DIV_CLK_PERIS_NOCP                   0x1800
-> +#define CMU_PERIS_CLK_CON_DIV_CLK_PERIS_OTP                    0x1804
-> +#define CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_CMU_PERIS_IPCLKPORT_PCLK     0x201c
-> +#define CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_SYSREG_PERIS_IPCLKPORT_PCLK  0x2040
-> +#define CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_WDT0_IPCLKPORT_PCLK          0x2048
-> +#define CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_WDT1_IPCLKPORT_PCLK          0x204c
-> +#define CMU_PERIS_CONTROLLER_OPTION0_CMU_CTRL                  0x800
+>                 pinctrl_usi: pinctrl@15030000 {
+>                         compatible = "samsung,exynos8855-pinctrl";
+>                         reg = <0x15030000 0x1000>;
+>                         interrupts = <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>;
+>                 };
+>
+> +               cmu_peric: clock-controller@15400000 {
+> +                       compatible = "samsung,exynos8855-cmu-peric";
+> +                       reg = <0x15400000 0x10000>;
+> +                       #clock-cells = <1>;
 > +
-> +static const unsigned long peris_clk_regs[] __initconst = {
-> +       CMU_PERIS_PLL_CON0_MUX_CLKCMU_PERIS_NOC_USER,
-> +       CMU_PERIS_CLK_CON_MUX_CLK_PERIS_GIC,
-> +       CMU_PERIS_PLL_CON0_MUX_CLK_PERIS_GIC_USER,
-> +       CMU_PERIS_CLK_CON_DIV_CLK_PERIS_NOCP,
-> +       CMU_PERIS_CLK_CON_DIV_CLK_PERIS_OTP,
-> +       CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_CMU_PERIS_IPCLKPORT_PCLK,
-> +       CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_SYSREG_PERIS_IPCLKPORT_PCLK,
-> +       CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_WDT0_IPCLKPORT_PCLK,
-> +       CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_WDT1_IPCLKPORT_PCLK,
-> +       CMU_PERIS_CONTROLLER_OPTION0_CMU_CTRL,
-> +};
-
-Same comment about preserving register state from the bootloader when
-powering off/on PERIS block.
-
+> +                       clocks = <&oscclk>,
+> +                                <&cmu_top CLKCMU_DOUT_PERIC_NOC>,
+> +                                <&cmu_top CLKCMU_DOUT_PERIC_MMC_CARD>,
+> +                                <&cmu_top CLKCMU_DOUT_PERIC_IP>;
+> +                       clock-names = "oscclk",
+> +                                     "bus",
+> +                                     "mmc_card",
+> +                                     "ip";
+> +                       samsung,sysreg = <&sysreg_peric>;
+> +               };
 > +
-> +/* List of parent clocks for Muxes in CMU_PERIS */
-> +PNAME(mout_clkcmu_peris_noc_user_p) = { "oscclk", "dout_clkcmu_peris_noc" };
-> +PNAME(mout_clk_peris_gic_p) = { "oscclk", "mout_clkcmu_peris_gic_user" };
-> +PNAME(mout_clkcmu_peris_gic_user_p) = { "oscclk", "dout_clkcmu_peris_gic" };
+> +               sysreg_peric: syscon@15420000 {
+> +                       compatible = "samsung,exynos8855-peric-sysreg",
+> +                                     "syscon";
+> +                       reg = <0x15420000 0x10000>;
+> +                       clocks = <&cmu_peric CLK_GOUT_SYSREG_PERIC>;
+> +               };
 > +
-> +static const struct samsung_mux_clock peris_mux_clks[] __initconst = {
-> +       MUX(CLK_MOUT_PERIS_NOC_USER, "mout_clkcmu_peris_noc_user",
-> +           mout_clkcmu_peris_noc_user_p, CMU_PERIS_PLL_CON0_MUX_CLKCMU_PERIS_NOC_USER, 4, 1),
-> +       MUX(CLK_MOUT_PERIS_GIC, "mout_clk_peris_gic",
-> +           mout_clk_peris_gic_p, CMU_PERIS_CLK_CON_MUX_CLK_PERIS_GIC, 0, 1),
-> +       MUX(CLK_MOUT_PERIS_GIC_USER, "mout_clkcmu_peris_gic_user",
-> +           mout_clkcmu_peris_gic_user_p, CMU_PERIS_PLL_CON0_MUX_CLK_PERIS_GIC_USER, 4, 1),
-> +};
-> +
-> +static const struct samsung_div_clock peris_div_clks[] __initconst = {
-> +       DIV(CLK_DOUT_PERIS_NOCP, "dout_clkcmu_peris_nocp",
-> +           "mout_clkcmu_peris_noc_user", CMU_PERIS_CLK_CON_DIV_CLK_PERIS_NOCP,
-> +           0, 4),
-> +       DIV(CLK_DOUT_PERIS_OTP, "dout_clkcmu_peris_otp",
-> +           "oscclk", CMU_PERIS_CLK_CON_DIV_CLK_PERIS_OTP,
-> +           0, 4),
-> +};
-> +
-> +static const struct samsung_gate_clock peris_gate_clks[] __initconst = {
-> +       GATE(CLK_GOUT_CMU_PERIS, "gout_cmu_peris",
-> +            "dout_clkcmu_peris_nocp",
-> +            CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_CMU_PERIS_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_SYSREG_PERIS, "gout_sysreg_peris",
-> +            "dout_clkcmu_peris_nocp",
-> +            CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_SYSREG_PERIS_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_WDT0_PERIS, "gout_wdt0_peris",
-> +            "dout_clkcmu_peris_nocp",
-> +            CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_WDT0_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-> +       GATE(CLK_GOUT_WDT1_PERIS, "gout_wdt1_peris",
-> +            "dout_clkcmu_peris_nocp",
-> +            CMU_PERIS_CLK_CON_GAT_BLK_PERIS_UID_WDT1_IPCLKPORT_PCLK,
-> +            21, 0, 0),
-
-The Linux clock name strings look wrong here. It looks like you've
-generally followed the clk-gs101 clock name mangling in this series so
-it should be "gout_<block-name>_<IP-clock-name>, but you have
-"gout_IP-clock_name>-<block-name>". I know there is some "name
-diversity" in-tree for various SoCs, but with new SoCs using auto
-clocks I would like to keep the naming scheme following a similar
-style to clk-gs101.
-
-Also I guess with auto clocks now enabled from the start you may never
-need to expose all the CMU bus clocks, but I worry a bit you may have
-mangled the names here a bit too much. If you do need to expose extra
-gates you might get name collisions. For example in clk-gs101 we have
-both
-
-gout_apm_apm_usi0_uart_ipclk
-gout_apm_apm_usi0_uart_pclk
-
-So we kept the _pclk suffix in the Linux name to avoid a name collision.
-
-Thanks,
-
-Peter
+>                 pinctrl_peric: pinctrl@15440000 {
+>                         compatible = "samsung,exynos8855-pinctrl";
+>                         reg = <0x15440000 0x1000>;
+> --
+> 2.34.1
+>
 
