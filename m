@@ -2,109 +2,126 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4656B60A6F7C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:28:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787A4606B569
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 13:28:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c9747SVa;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VgGHwj+V
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=aKlqw3RX;
+	dkim=pass (2048-bit key, unprotected) header.d=arndb.de header.i=@arndb.de header.a=rsa-sha256 header.s=fm2 header.b=N0YpG+6V;
+	dkim=pass (2048-bit key, unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha256 header.s=fm3 header.b=Ov0C+g5q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=iDov9ZN1xjasSemK5K6oKfQPW5U/DY+XpLagOIBt0ec=; b=c9747SVaVyrcmYcY0NZo+HLYkw
-	xP3WctsdYSDhJ+Yxa6k4POL5oAsWLAke55Oow6v7g7hDkDJY1WE16ZxMdfPbZh+ghLQrA/+rLf29w
-	kfAImwp+RZptWlvnWuN8xgVTDpLkdsuz4mac3x7+tFz7Kh5Tp10rhcMnWGEfKx+BnpMeCTfHfhufJ
-	L5wgj7jyN4GMU9CKVJnm7f+sG5w1QNE4hD2EBqjYW50tZpF9+BUp4q4jcz/ustq+b+V240EIkFsUb
-	5QRLbB2Cy51BYUIhsnw608SE/Uof3CCDxc4i6t/iFbmv6SaZdK6w4wW6evBOvGB5aLP+Amwxm1n5R
-	YgvuYlog==;
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=9LjiGBOCX96rSSNvEfoUYGWvZrwuFjXNaoxWrBLQT6A=; b=aKlqw3RX3z5SHW
+	YVA+Cg/LWzfGOOQRsbrfarS4tZO3qxfr7RMZyFVGN2BJoaoSI1aQGhoCWbyl6er0wq+eaMU3zYy8O
+	e9B2PDYdaSC2gl50UHudIdhJaSvLpMX8rkUZwX+Ta6INHk71xxhptz/irsbN3xaIta0VnGPmze79O
+	gVX4j5JLdGbtB439+lQ3kTKSqJIFPuhAFy4sdUrN/YRfSpPHgOklG9Xd2s3vRjGHdOyBTwxg35VVw
+	9nV20bVZyLO+lzNtmqKZrc5/7xwiJtt/16+9M3WCfD/XnduQTmdE7OeRwXClmdvWW9vbOmqPq5yl5
+	fb9p1A8+OfbQzksRdgfg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrK3-0000000CwYV-39MY;
-	Fri, 13 Nov 2026 13:28:07 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRrKN-0000000CwlA-1NDo;
+	Fri, 13 Nov 2026 13:28:27 +0000
+Received: from fhigh-a5-smtp.messagingengine.com ([103.168.172.156])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRrJy-0000000CwWx-3eUw
+	id 1xRrK5-0000000CwYb-297J
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 13:28:06 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 35D326254A;
-	Fri, 13 Nov 2026 13:28:02 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794576481;
-	b=aL0yTxqBetnUeBlXkddYzcd9iqEA7E7JclnVd6I/FYWdCaz3/MJ0+v4uNbmRhIQ0m2K5
-	 Dx0EoGWavQvDzi46aPQzyoAXguE+Vn/Fr2EmkKFLHagbgLdAqDnCXnO2HleqAYshnJqSt
-	 y0z43NV8HK1NHBGRc0S7sw54YmUe9J0RJpTqPZtHsPnEL2YJiaZ2I1V+8cddIY9PQrcrT
-	 HmFwzcox/DcUFPq1WdgVNsogp9QJuMg4gN1gt50Fe69NLbi5e8BRqGPxZSuHnDpot6Eo/
-	 3pAe3GmUCaHOG3Fj3QaIlbxBo0FZtAqvgSu9okzqBIkSGoKwa6SXhdXKF7s0NMLM78w==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794576481;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=iDov9ZN1xjasSemK5K6oKfQPW5U/DY+XpLagOIBt0ec=;
-	b=a4hWgjHc9UXI8pa2+lqHIQW2IbFaeSr9LZzvwO8I19jEsI/U6PiMtVuLjVljO7zDA+Hp
-	 FfDdscISgVcPdChL6tVW8mnHBkNHITDJR51wCa5rdZkjk522U30mRgcksDH7B2lmS+X3X
-	 MvCi0BaeYVqFIiZSm3LaXQTR3EERvTpBuLPGf3JOLROtVwlFBQCHRhnACWM3kFwtzOQCE
-	 52iAPH+60JArWinTzPE+xO9F33qZvfbwP0hyCow5W40gkoblw2y4Da00iOQk/67Ca4p1J
-	 dxuDtx7HsjwLWno0gtcbg8fh8O+OEinbyL3TYjl7DBvbKDytNW7Ok7PvQZaGJZc2ByQ==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E87521F000C7;
-	Fri, 13 Nov 2026 13:28:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794576481;
-	bh=iDov9ZN1xjasSemK5K6oKfQPW5U/DY+XpLagOIBt0ec=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=VgGHwj+Vt6kHCvWhYnw2azRcpIfLcZZGoo2Cp+MPhwOcodlZUztpjgkGRrZ0PafAT
-	 pQDOpSmMWw/UPOe2U6tw0Bx3kh8oODfA3qB9j6sRgXQjXDICA1ZmgV9nmF6lDkiiSX
-	 CUBPuhdwyfgsYOy/hqvFAPwSYqaNjlr0NcVTW/ZAFKNT9i4p6DgxVCD5odbBGlOQNN
-	 CifvQpNIcST14/pSAXudFXeEeYt9sm9pvnBtEmgNAaxGuzUOJSr+uW8NQUroO6I/69
-	 FCovVxjWc01PJX9Y0aNY8Z66rLLXEy6fY1dRA9lc4yNL6TviwRyNblolRJEEPDOtvL
-	 1sK4PHVwWaaKQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 634A1477B8;
-	Fri, 13 Nov 2026 13:28:00 +0000 (UTC)
-From: Ghennadi Procopciuc via B4 Relay <devnull+ghennadi.procopciuc.oss.nxp.com@kernel.org>
-Date: Fri, 13 Nov 2026 15:27:46 +0200
-Subject: [PATCH RFC 1/2] firmware: arm_scmi: clock: discover clock domains
- on first use
+	Fri, 13 Nov 2026 13:28:12 +0000
+Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 85820140010E
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 08:28:07 -0500 (EST)
+Received: from ams-imap-03 ([10.64.2.23])
+  by ams-compute-02.internal (MEProxy); Fri, 13 Nov 2026 08:28:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1794576482;
+	 x=1794662882; bh=9LjiGBOCX96rSSNvEfoUYGWvZrwuFjXNaoxWrBLQT6A=; b=
+	N0YpG+6VotxmnaMHi3/JC2VdweYEB7M8XRDkaof1NUGOOcd0ZBtmR9r/lMmcYckv
+	EOcvdPvz2o3IaVYaMO3UffHmetwLHTJ0/3zxtjhEQd5VOdayFxW7UIrUl/pxJNKd
+	4kdMs3Jz83wfA/zXnSoxeXAUPq1WyxtvKHIO9qXFJyC36EUUc65djl4ts8Ivz85H
+	u8UII1h0IdXQ12zdPLCnAQmAde50Da7Udy9ijunLM57mxGQzxKxhIpjWznZOZA98
+	87w2sRKcK3nYCP9x5vxmWKyuWJ1X8G1RpuLB9N4rushPYrIItGdsfDK/CdWIu7an
+	VxxuUBie12c6guR2UrRnvA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1794576482; x=
+	1794662882; bh=9LjiGBOCX96rSSNvEfoUYGWvZrwuFjXNaoxWrBLQT6A=; b=O
+	v0C+g5qI9tqFVe2d85pPGKqA+YvASu2BW8zrxQKSSqQg13rvrpm/2QZNtgQe2OM9
+	g2EfTzMrDzcZjjkyd7gSjpYA/0LBhZmezlnCI2vxI3EYhE45NbG3LIBWMqVU/iVP
+	6JiBhtl6gHglEpqIMgGRtMffnrTbdsP6VMpglQMXLWmf45DuAW4NfrNB6TbXvrrH
+	B11c4W79p65GZdDuB/PrluWyuQfZAUUu84klK530xk3aXBqqN7SbP/f7/lUTkoAC
+	GzRlSVJjJKcXLnzXJQQPTbGT0A01XL1PvmBSdNF8d3htGwV+NERn0eyC59qvetI3
+	J7rQuIqDwG3GO1vl3dr9Q==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=sign d=arndb.de a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1794576482; d=arndb.de;
+	mf=PGFybmRAYXJuZGIuZGU+;
+	rt=PGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZz4=;
+	s=fm2:rsa-sha256:DczAUIc0iqgSfyWicN/Pb79nopOFvtar99FkzjOd4kZkvpl
+	wUi9yf4Amc7JXDvc9E+xxVJfFTqCLIFVdiMc8FcnM521c72WEianApsBkL8rqsj6
+	0wD+zAK7phhnZi0BHFW3+MFaeYTH1ku5PCiIzi6hHfVerDSWSRoG2UBhJlNorTMB
+	vVxqR8/CX6uY2pI3D/06A/BHiqIxZcFACUt9gXCaB2/D5VtcbPIkt3yA+sBx1GQb
+	gQ0k69zPQnQbtAbBZcRU0+7cfXGCUgix7MJHeLgMhtc385OeVXNu7hpihuJj0u1J
+	V7kJfhZCd3JpvmuiGv9KnDYdQEp0bjo9M+raPhg==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
+	repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
+	action=mi-m=1; hc=12;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1; h=sha256:+RjTD/Q6NsCEgZiZA8pRig93q5sJxLp5l6HZSEV+DLA=:O/OcHSU8JkRF9PSdP1ksG6mZ2UARTkzPpJRFqU1qOjI=;
+X-ME-Sender: <xms:WhD3auR40-FcGgLStJFAEfcRvrMX8H0mvFM410_VV1FS_ePeLU19Tg>
+    <xme:WhD3aukkZitBMSw0JDPCHF2enaff40UalIqHetZytUZZoz0QwbSiM6fvxx0JiQ9ex
+    Hyc7pInqRfaKe6cOLxuInmZ24kvcCI314Al9tWrn7W61VyduTfYvOtK>
+X-ME-Proxy-Cause: dmFkZTEFJNUm4FXXB3dty2rNQcE/EDDYqXdEkDcBe16pFUwLRr8Gp2x7ZSZu7gpf0p9f3Y
+    4d3ODBGKp/oGuX3xSeKhp3H+liRpNaxKLVbDIUNvU0I8zLx5fVOuQww3Hz2rhgRfM84oAQ
+    8k9XMWFDehywM8dzGAaWn0vmtnRDaTStO47BqZE5YhQVXiLdlnIY690QOItxDwiBdv9MMU
+    Z7UBxInI0ppBw6Hzow2yH3bF1UoA8At/iSCZ/JZhU5L9ecn3HGyThco2v/BekIAmvRmWJn
+    nqjGEapPHQzjNwlOabfCBHeMGt0FdoKp8KmgOym8Z5y0YmImYFgOmkdj7tnXi6IxKTWRD0
+    FbDPdpE4QNo6ffD4xFhSS1Xh34bByPoh6wcTCQeK3fm/52BwrTKvIEyJHoO+HeR8MyM+W0
+    NyMk8FRVDuj7m/xh9ao5EA7sxN/q2x+5PRZ26NAHI/Qo7U/0iWi1x07RBjIQhu5ZVY7A6A
+    6llRu3LXnxwAf2QcHbVGqiJAj83dWlPQssUKTurtC84L+XkNoEuw4KfIxLQHwoyU0H3vW8
+    q7+OKIuSNeUqb4GIfWSfcB5DlxiE+KxnQrb/r8Nbe7Ocjyr7+oCMrSVg2CuiLbOshXKZWu
+    eE0hF5SgnEempN0hxu1pQPY2zmLIoXsGm/rC9GYOfy4sdCJD92ElePHltaCg
+X-ME-Proxy: <xmx:XRD3an1fDyF-neVerilFGd5u0Zop4xn_s-2N7L6zT8xywKb734yc0g>
+    <xmx:XRD3avdB-CET59b-lFOEC3kIhpBrb1VS0j98K6ijbHfbYkv_YljGyg>
+    <xmx:XRD3agY-q1NvVxBmJthtyWKnQP9znqQPX5d7i8tFfmRNv17Yxic3aA>
+    <xmx:XRD3asVKYxec1BSUm6fqriuiDdr9xHzbjhrW20-xFWGhJQj7zhit-Q>
+    <xmx:YhD3apEu49FoFTAFU0avFw9DZejfgIEmbd-iCLg5FOUGeyh2yVwZFjGp>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.ams.internal (Postfix, from userid 501)
+	id 6893A32A0099; Fri, 13 Nov 2026 08:27:54 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-b4-scmi-clk-on-demand-v1-1-7fd162097b57@oss.nxp.com>
-References: <20261113-b4-scmi-clk-on-demand-v1-0-7fd162097b57@oss.nxp.com>
-In-Reply-To: <20261113-b4-scmi-clk-on-demand-v1-0-7fd162097b57@oss.nxp.com>
-To: Brian Masney <bmasney+clk@redhat.com>, 
- Sudeep Holla <sudeep.holla@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Cristian Marussi <cristian.marussi@arm.com>
-Cc: linux-doc@vger.kernel.org, Alberto Ruiz <aruizrui@redhat.com>, 
- linux-arm-kernel@lists.infradead.org, Christophe Lizzi <clizzi@redhat.com>, 
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- arm-scmi@vger.kernel.org, Eric Chanudet <echanude@redhat.com>, 
- Enric Balletbo <eballetb@redhat.com>, NXP S32 Linux Team <s32@nxp.com>, 
- Jonathan Corbet <corbet@lwn.net>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794576479; l=13263;
- i=ghennadi.procopciuc@oss.nxp.com; s=20261113; h=from:subject:message-id;
- bh=m6wgrgZ8AgVX0/wwAJXM4DOFHjBScSop3ClJXnn9sMw=;
- b=xApzx6ZSen2hAtw9bnDZ8DauhYWK7x6qHBqEqiK+W/e6gZJijVfqg6HoZtvi8VsARU2rSleN3
- 1hxLktsr6zRCcoFXQlxP9ShjD9fkuQXz72imXvoXYNMOjqncM3+t4c1
-X-Developer-Key: i=ghennadi.procopciuc@oss.nxp.com; a=ed25519;
- pk=hNLk4ZpONFOVJg3NdDWRU2LtaL+HBg4W2I1KU0+XBmo=
-X-Endpoint-Received: by B4 Relay for
- ghennadi.procopciuc@oss.nxp.com/20261113 with auth_id=1509
-X-Original-From: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+X-ThreadId: A1iXVo9thhaB
+Date: Fri, 13 Nov 2026 14:27:14 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Andrew Davis" <afd@ti.com>, "Russell King" <linux@armlinux.org.uk>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Mark Rutland" <mark.rutland@arm.com>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Paul Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>,
+ "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>
+Cc: linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Message-Id: <c7d332ad-09df-42ca-a73d-2dc48ff2c245@app.fastmail.com>
+In-Reply-To: <20261112214223.765100-1-afd@ti.com>
+References: <20261112214223.765100-1-afd@ti.com>
+Subject: Re: [PATCH] reset: Remove ARCH_HAS_RESET_CONTROLLER Kconfig symbol
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_052810_054903_E2CB3FC9 
+X-CRM114-Status: GOOD (  14.82  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -114,401 +131,44 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: ghennadi.procopciuc@oss.nxp.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
+On Thu, Nov 12, 2026, at 22:42, Andrew Davis wrote:
+> Many ARCH_HAS_* symbols change some behavior based on what an ARCH
+> supports, but ARCH_HAS_RESET_CONTROLLER is used only to set a default
+> for RESET_CONTROLLER. Those ARCH symbols that select this can skip the
+> middleman and directly select RESET_CONTROLLER, and many already do.
+>
+> Replace all selection of this symbol with a direct selection of
+> RESET_CONTROLLER when it is not already in the selection list. In the
+> latter case when RESET_CONTROLLER is also already selected we can simply
+> remove the ARCH_HAS_RESET_CONTROLLER without changing existing behavior.
 
-scmi_clock_protocol_init() queries the attributes, rates and parents of
-every clock domain the platform reports. With hundreds of clocks this is
-more than a thousand messages at init, most of them for clocks that are
-never used.
+This is fine
 
-Query only the protocol version and attributes at init, and discover
-each clock domain on the first operation that needs it.
+> Some ARCHs "select" this symbol when they actually "depend on" the
+> RESET_CONTROLLER framework to build, in those cases the indirect select
+> could lead to broken randconfig builds. In cases when it is not needed
+> for building the ARCH code, these selections can be switched to the weaker
+> "imply" to allow it deselected for minimal builds without reset support.
+> Additional checking will be needed to find such cases.
 
-Discovery can sleep, so the operations that can run in atomic context
-(enable, disable and OEM config) fail with -EAGAIN for a clock that is
-not discovered yet. A clock for which info_get() returned its info is
-always discovered.
+Please don't recommend the use of 'imply', this is rarely what you
+want and everyone misunderstands what it does.
 
-A failed discovery is returned to the caller, and the clock is
-discovered again on the next operation, so a transient transport error
-does not leave the clock unusable until the protocol is released. As a
-result, info_get() now returns NULL for a clock whose
-CLOCK_DESCRIBE_RATES fails, and clk-scmi does not register it. Before,
-the clock was registered without rate information.
+If you want to have a default, please add another symbol and use
+that as the default value, such as
 
-The rates and parents arrays are now allocated after the devres group of
-the protocol instance is closed, so allocate them with kcalloc() and free
-them in a new instance_deinit callback.
-
-is_notify_supported() is called for every clock when the protocol events
-are registered, before any clock is discovered, and must not trigger
-discovery. It now reports the protocol level support, and
-set_notify_enabled() discovers the clock and rejects it with -EOPNOTSUPP
-if it does not support the event. Every clock is then a supported source
-of the events the protocol supports, so enabling an event for all
-sources discovers every clock.
-No in-tree driver registers SCMI clock notifiers.
-
-Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
----
- drivers/firmware/arm/scmi/clock.c | 160 ++++++++++++++++++++++++++++----------
- include/linux/scmi_protocol.h     |   4 +-
- 2 files changed, 122 insertions(+), 42 deletions(-)
-
-diff --git a/drivers/firmware/arm/scmi/clock.c b/drivers/firmware/arm/scmi/clock.c
-index 0278705d809e..010b63b63703 100644
---- a/drivers/firmware/arm/scmi/clock.c
-+++ b/drivers/firmware/arm/scmi/clock.c
-@@ -5,9 +5,11 @@
-  * Copyright (C) 2018-2022 ARM Ltd.
-  */
- 
-+#include <linux/cleanup.h>
- #include <linux/math64.h>
- #include <linux/module.h>
- #include <linux/limits.h>
-+#include <linux/mutex.h>
- #include <linux/sort.h>
- 
- #include "protocols.h"
-@@ -159,6 +161,7 @@ struct scmi_clock_rate_notify_payld {
- 
- struct scmi_clock_desc {
- 	u32 id;
-+	bool discovered;
- 	unsigned int tot_rates;
- 	struct scmi_clock_rates r;
- #define	RATE_MIN	0
-@@ -175,6 +178,7 @@ struct clock_info {
- 	bool notify_rate_changed_cmd;
- 	bool notify_rate_change_requested_cmd;
- 	atomic_t cur_async_req;
-+	struct mutex discover_lock;	/* serializes the discovery of clkds */
- 	struct scmi_clock_desc *clkds;
- #define CLOCK_INFO(c, i)	(&(((c)->clkds + (i))->info))
- 	int (*clock_config_set)(const struct scmi_protocol_handle *ph,
-@@ -192,15 +196,6 @@ static enum scmi_clock_protocol_cmd evt_2_cmd[] = {
- 	CLOCK_RATE_CHANGE_REQUESTED_NOTIFY,
- };
- 
--static inline struct scmi_clock_info *
--scmi_clock_domain_lookup(struct clock_info *ci, u32 clk_id)
--{
--	if (clk_id >= ci->num_clocks)
--		return ERR_PTR(-EINVAL);
--
--	return CLOCK_INFO(ci, clk_id);
--}
--
- static int
- scmi_clock_protocol_attributes_get(const struct scmi_protocol_handle *ph,
- 				   struct clock_info *ci)
-@@ -271,9 +266,9 @@ static int iter_clk_possible_parents_update_state(struct scmi_iterator_state *st
- 	if (!st->max_resources) {
- 		int num_parents = st->num_returned + st->num_remaining;
- 
--		p->clkd->info.parents = devm_kcalloc(p->dev, num_parents,
--						     sizeof(*p->clkd->info.parents),
--						     GFP_KERNEL);
-+		p->clkd->info.parents = kcalloc(num_parents,
-+						sizeof(*p->clkd->info.parents),
-+						GFP_KERNEL);
- 		if (!p->clkd->info.parents)
- 			return -ENOMEM;
- 
-@@ -484,8 +479,8 @@ iter_clk_describe_update_state(struct scmi_iterator_state *st,
- 	if (!st->max_resources) {
- 		unsigned int tot_rates = st->num_returned + st->num_remaining;
- 
--		p->clkd->r.rates = devm_kcalloc(p->dev, tot_rates,
--						sizeof(*p->clkd->r.rates), GFP_KERNEL);
-+		p->clkd->r.rates = kcalloc(tot_rates, sizeof(*p->clkd->r.rates),
-+					   GFP_KERNEL);
- 		if (!p->clkd->r.rates)
- 			return -ENOMEM;
- 
-@@ -638,6 +633,74 @@ scmi_clock_describe_rates_get(const struct scmi_protocol_handle *ph,
- 	return 0;
- }
- 
-+/*
-+ * Discovery runs after the devres group of the protocol instance is closed,
-+ * so the rates and parents arrays cannot be devm-allocated and are freed
-+ * here instead.
-+ */
-+static void scmi_clock_desc_free(struct scmi_clock_desc *clkd)
-+{
-+	kfree(clkd->r.rates);
-+	kfree(clkd->info.parents);
-+}
-+
-+static int scmi_clock_discover(const struct scmi_protocol_handle *ph,
-+			       struct clock_info *ci, u32 clk_id)
-+{
-+	struct scmi_clock_desc *clkd = &ci->clkds[clk_id];
-+	int ret;
-+
-+	guard(mutex)(&ci->discover_lock);
-+
-+	if (clkd->discovered)
-+		return 0;
-+
-+	clkd->id = clk_id;
-+	ret = scmi_clock_attributes_get(ph, clk_id, ci);
-+	if (!ret)
-+		ret = scmi_clock_describe_rates_get(ph, clk_id, ci);
-+	if (ret) {
-+		/*
-+		 * Start the next attempt from a clean descriptor, so that a
-+		 * transient error does not leave the clock unusable and the
-+		 * iterators do not leak the arrays of this attempt.
-+		 */
-+		scmi_clock_desc_free(clkd);
-+		memset(clkd, 0, sizeof(*clkd));
-+		return ret;
-+	}
-+
-+	/* Pairs with the acquire in the lookup */
-+	smp_store_release(&clkd->discovered, true);
-+
-+	return 0;
-+}
-+
-+static struct scmi_clock_info *
-+scmi_clock_domain_lookup(const struct scmi_protocol_handle *ph,
-+			 struct clock_info *ci, u32 clk_id, bool atomic)
-+{
-+	struct scmi_clock_desc *clkd;
-+	int ret;
-+
-+	if (clk_id >= ci->num_clocks)
-+		return ERR_PTR(-EINVAL);
-+
-+	clkd = &ci->clkds[clk_id];
-+	/* Pairs with the release once the clock is discovered */
-+	if (!smp_load_acquire(&clkd->discovered)) {
-+		/* Discovery sleeps, so an atomic caller can only use known clocks */
-+		if (WARN_ON_ONCE(atomic))
-+			return ERR_PTR(-EAGAIN);
-+
-+		ret = scmi_clock_discover(ph, ci, clk_id);
-+		if (ret)
-+			return ERR_PTR(ret);
-+	}
-+
-+	return &clkd->info;
-+}
-+
- static int
- scmi_clock_rate_get(const struct scmi_protocol_handle *ph,
- 		    u32 clk_id, u64 *value)
-@@ -670,7 +733,7 @@ static int scmi_clock_rate_set(const struct scmi_protocol_handle *ph,
- 	struct clock_info *ci = ph->get_priv(ph);
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, false);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -726,7 +789,7 @@ static int scmi_clock_determine_rate(const struct scmi_protocol_handle *ph,
- 	if (!rate)
- 		return -EINVAL;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, false);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -768,7 +831,7 @@ scmi_clock_all_rates_get(const struct scmi_protocol_handle *ph, u32 clk_id)
- 	struct scmi_clock_desc *clkd;
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, false);
- 	if (IS_ERR(clk) || !clk->name[0])
- 		return NULL;
- 
-@@ -827,7 +890,7 @@ scmi_clock_set_parent(const struct scmi_protocol_handle *ph, u32 clk_id,
- 	struct clock_info *ci = ph->get_priv(ph);
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, false);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -923,7 +986,7 @@ static int scmi_clock_enable(const struct scmi_protocol_handle *ph, u32 clk_id,
- 	struct clock_info *ci = ph->get_priv(ph);
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, atomic);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -940,7 +1003,7 @@ static int scmi_clock_disable(const struct scmi_protocol_handle *ph, u32 clk_id,
- 	struct clock_info *ci = ph->get_priv(ph);
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, atomic);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -1041,7 +1104,7 @@ static int scmi_clock_config_oem_set(const struct scmi_protocol_handle *ph,
- 	struct clock_info *ci = ph->get_priv(ph);
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, atomic);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -1060,7 +1123,7 @@ static int scmi_clock_config_oem_get(const struct scmi_protocol_handle *ph,
- 	struct clock_info *ci = ph->get_priv(ph);
- 	struct scmi_clock_info *clk;
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, atomic);
- 	if (IS_ERR(clk))
- 		return PTR_ERR(clk);
- 
-@@ -1084,7 +1147,7 @@ scmi_clock_info_get(const struct scmi_protocol_handle *ph, u32 clk_id)
- 	struct scmi_clock_info *clk;
- 	struct clock_info *ci = ph->get_priv(ph);
- 
--	clk = scmi_clock_domain_lookup(ci, clk_id);
-+	clk = scmi_clock_domain_lookup(ph, ci, clk_id, false);
- 	if (IS_ERR(clk))
- 		return NULL;
- 
-@@ -1113,23 +1176,16 @@ static const struct scmi_clk_proto_ops clk_proto_ops = {
- static bool scmi_clk_notify_supported(const struct scmi_protocol_handle *ph,
- 				      u8 evt_id, u32 src_id)
- {
--	bool supported;
--	struct scmi_clock_info *clk;
- 	struct clock_info *ci = ph->get_priv(ph);
- 
--	if (evt_id >= ARRAY_SIZE(evt_2_cmd))
--		return false;
--
--	clk = scmi_clock_domain_lookup(ci, src_id);
--	if (IS_ERR(clk))
-+	if (evt_id >= ARRAY_SIZE(evt_2_cmd) || src_id >= ci->num_clocks)
- 		return false;
- 
-+	/* No clock is discovered yet, so report the protocol level support */
- 	if (evt_id == SCMI_EVENT_CLOCK_RATE_CHANGED)
--		supported = clk->rate_changed_notifications;
--	else
--		supported = clk->rate_change_requested_notifications;
-+		return ci->notify_rate_changed_cmd;
- 
--	return supported;
-+	return ci->notify_rate_change_requested_cmd;
- }
- 
- static int scmi_clk_rate_notify(const struct scmi_protocol_handle *ph,
-@@ -1157,10 +1213,23 @@ static int scmi_clk_set_notify_enabled(const struct scmi_protocol_handle *ph,
- 				       u8 evt_id, u32 src_id, bool enable)
- {
- 	int ret, cmd_id;
-+	bool supported;
-+	struct scmi_clock_info *clk;
-+	struct clock_info *ci = ph->get_priv(ph);
- 
- 	if (evt_id >= ARRAY_SIZE(evt_2_cmd))
- 		return -EINVAL;
- 
-+	clk = scmi_clock_domain_lookup(ph, ci, src_id, false);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	supported = evt_id == SCMI_EVENT_CLOCK_RATE_CHANGED ?
-+		    clk->rate_changed_notifications :
-+		    clk->rate_change_requested_notifications;
-+	if (!supported)
-+		return -EOPNOTSUPP;
-+
- 	cmd_id = evt_2_cmd[evt_id];
- 	ret = scmi_clk_rate_notify(ph, src_id, cmd_id, enable);
- 	if (ret)
-@@ -1229,9 +1298,20 @@ static const struct scmi_protocol_events clk_protocol_events = {
- 	.num_events = ARRAY_SIZE(clk_events),
- };
- 
-+static int scmi_clock_protocol_deinit(const struct scmi_protocol_handle *ph)
-+{
-+	struct clock_info *cinfo = ph->get_priv(ph);
-+	int i;
-+
-+	for (i = 0; i < cinfo->num_clocks; i++)
-+		scmi_clock_desc_free(&cinfo->clkds[i]);
-+
-+	return 0;
-+}
-+
- static int scmi_clock_protocol_init(const struct scmi_protocol_handle *ph)
- {
--	int clkid, ret;
-+	int ret;
- 	struct clock_info *cinfo;
- 
- 	dev_dbg(ph->dev, "Clock Version %d.%d\n",
-@@ -1250,12 +1330,9 @@ static int scmi_clock_protocol_init(const struct scmi_protocol_handle *ph)
- 	if (!cinfo->clkds)
- 		return -ENOMEM;
- 
--	for (clkid = 0; clkid < cinfo->num_clocks; clkid++) {
--		cinfo->clkds[clkid].id = clkid;
--		ret = scmi_clock_attributes_get(ph, clkid, cinfo);
--		if (!ret)
--			scmi_clock_describe_rates_get(ph, clkid, cinfo);
--	}
-+	ret = devm_mutex_init(ph->dev, &cinfo->discover_lock);
-+	if (ret)
-+		return ret;
- 
- 	if (PROTOCOL_REV_MAJOR(ph->version) >= 0x3) {
- 		cinfo->clock_config_set = scmi_clock_config_set_v2;
-@@ -1272,6 +1349,7 @@ static const struct scmi_protocol scmi_clock = {
- 	.id = SCMI_PROTOCOL_CLOCK,
- 	.owner = THIS_MODULE,
- 	.instance_init = &scmi_clock_protocol_init,
-+	.instance_deinit = &scmi_clock_protocol_deinit,
- 	.ops = &clk_proto_ops,
- 	.events = &clk_protocol_events,
- 	.supported_version = SCMI_PROTOCOL_SUPPORTED_VERSION,
-diff --git a/include/linux/scmi_protocol.h b/include/linux/scmi_protocol.h
-index 3f7cc35eb861..c326f4edc9a0 100644
---- a/include/linux/scmi_protocol.h
-+++ b/include/linux/scmi_protocol.h
-@@ -84,7 +84,9 @@ enum scmi_clock_oem_config {
-  *	by SCMI Clock Protocol
-  *
-  * @count_get: get the count of clocks provided by SCMI
-- * @info_get: get the information of the specified clock
-+ * @info_get: get the information of the specified clock. The clock is
-+ *	      discovered on the first call for it, which sends messages to
-+ *	      the platform, so this can sleep
-  * @rate_get: request the current clock rate of a clock
-  * @rate_set: set the clock rate of a clock
-  * @determine_rate: determine the effective rate that can be supported by a
-
--- 
-2.43.0
+config ARCH_WANT_RESET_CONTROLLER
+      bool
 
 
+
+       Arnd
 
