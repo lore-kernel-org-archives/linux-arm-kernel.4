@@ -2,99 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B3E1606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C57F606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oS6d3UZs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1Di1y1bh;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=LrnzyG24
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=9GQJLLepWwoaxFgy0WwYMme3cDh2Nvdn33ep+PsXVNo=; b=oS6d3UZsedmaVp
-	E623j5+LVXNqr7ouxNEKiUBtRAuQo59nmc41yYAxVYqMX+VHcXmOEHyFNkNojPhH4iqi7flWituZw
-	k4Xa5t9zBBTbpMXaJpQGab/pV+Ua2CuE/q0M40oFiJl6iyyKcGqQejBCsH6OqBX1DX0zOAVxQTlhj
-	2jkWVjrUVcjqLpgSL6Zy+F/bpxlyDPwQi45vZ9FRAK5m+29fC8Ztc/uMkGRa8QzIOihgZ7oJvqaJ8
-	jSD8xz9RJ7SBa/f+XGkQlVsjiZmFjz+wa0K7IPFUic1AACxJjjS/MeU0ZcAoo/HldIW6UgIZJjLCT
-	/GlVJqDupKShRDEQQ07A==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=Dn1URtd87rhGjVipjwsiO0ogDiCqEYx79Gj1SyGl1js=; b=1Di1y1bhwt/VWTDmK1ShGlok0o
+	ClDoEbm1liNgi7cpksUrTlVUYbk8YaYHo8EA4kDuJsfCevKDLFvu2+s/m5ctPhRlG+GeGdtRWLsKw
+	2Y4DF+WAh52VAl9A4+/FdE6ZOeiOEUSvt4bx21Iy0afXqrVNjlHoKzvAvrvMbm3D5yQlYIv8HVKs7
+	/gHFgoLOohLlhtNhecLy5BEVD2YkN1u/HmfW1lkRnvhRWnwFsaVeF4OCDcU4hD+Pc7sdlQYbUV0xB
+	2rPsNLajC0xIrNQiATi1AhR6/yEisdX2A7oAxhs/pXXVAT97APJSkydQxJO15hAZHa7UD1vfrssb+
+	cnmQdrzA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqKl-0000000CjDE-3T5X;
-	Fri, 13 Nov 2026 12:24:50 +0000
-Received: from mail-lf1-f53.google.com ([209.85.167.53])
+	id 1xRqNf-0000000Cjpv-3M9C;
+	Fri, 13 Nov 2026 12:27:47 +0000
+Received: from mail-ej1-x632.google.com ([2a00:1450:4864:20::632])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqKe-0000000Cj9H-3vSd
+	id 1xRqNc-0000000Cjoj-2eQa
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 12:24:43 +0000
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5be4a2d94adso1157425e87.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:24:40 -0800 (PST)
+	Fri, 13 Nov 2026 12:27:46 +0000
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-c50933bdf4bso232744766b.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:27:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794572862; cv=none;
+        d=google.com; s=arc-20260327;
+        b=Z8NASxsGmIyTrYvCUAWLgtePAaAsFLY+/Rt82hGAKG4fdxdAt9sQO149+qXGQkbBPE
+         wuVjM44ao4gLA+y+J11XvhItGnY9mveEyFDEXhQEDq4z6OeSqUg/XR42GUAltQUTzDvp
+         gwkQPI0e/7coIbGD18Y2eyGeKWRbMaH9yLAYzmNs+ayHNzSUhe1Xx5+earCRvZPWv/V/
+         pKtMLJoxF/4kP7Jq91Z9z1W4InNlkpRa9DxOO9X4g0JBXhiOVFV3Lic/UnEKDNY4GfBM
+         FAqA0m/i1lsTE0iiaW/obaTsRm+HGvA7L2IzDTxo1sg+G5fiDvXmltyk3NNGJuChhnXb
+         WIMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=Dn1URtd87rhGjVipjwsiO0ogDiCqEYx79Gj1SyGl1js=;
+        fh=BPb7tHMhik0lA+vDPMcrd+L1Q3ajDujIV5TBzWIkAQo=;
+        b=qNxPhgeKGp8oq4Y1KIa/KQlTFwPDUttzPfPhKxKb10YyRB4Ru2RKAlPg6L8/TtteUy
+         diXIvrxqAShlRgxpmTNT6B3DLvfKIvsIUenCS21YUMyhgCXMMtf+JW0Oh33qIBWOmpgF
+         /gXBEwUsZvyeBD8vizRKd5uFyoKLNoF0fuW0VgcjBEMDWh/QSmVwud7HgU7HSQ9jdu2Z
+         38INq4kI/eL912GHH87w5v4kZyLjTcc33FFdkCTuA/9RYVgp+XIOf3ITb51yCl1++wcW
+         DfCltjG0gpQljKezIPyQ5jYU7ThquitpGkKCR3CrOA9xy+OlcHdwV2GQVOcZzMVg4XwV
+         Cjfw==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1794572862; x=1795177662; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Dn1URtd87rhGjVipjwsiO0ogDiCqEYx79Gj1SyGl1js=;
+        b=LrnzyG24Ji10hZHdhzPSS5XbxcOhdonARwLAT+NV15djfeaG7E2XCCdZmtfwTcMMrb
+         vXMeF290MTz7fe2dea5li2Pf4otfYh7R2aucXuTM+SmsOTGJAr+JX9OzkGd1BgLQ+H+t
+         bKvAZ7MJowm21sNExXo5xapXpFddKWFwRQz43pNWnAnhOv0QkiohNRRumMdC7kL2hHbH
+         kpFp3dVvpEejPGaTAsPkPWJx3sGBHk6+nfwe8flzIDvpiASx/wHMoHiXHT6QCm1hW7vl
+         LTrwF3GwVgrrZGj4czXJ1oQtT38f/M5wD4bX1lDuKsL7bi/IshPacuh91MX3FFP05FJL
+         g5gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794572679; x=1795177479;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=9GQJLLepWwoaxFgy0WwYMme3cDh2Nvdn33ep+PsXVNo=;
-        b=CKpj4qQyd9bZXcBHoIHjFrda4zfUz8sYoJSWBGagIOmPg2YG+KKZeFvS9WfO1uhqd0
-         sFa5Aa7SusaeI9K5J5lahMGkULgBOZacZRnLcysgesi8XIOmj8RVlZRf7+pBT60Mx9f+
-         v+N2PjVlf1ag4lFbcS5WWW/k1FZ61HCwb60iaVdDiS5iWO9zQpY0zye/GhiZddCtH8tC
-         zh+qrZzWyalfC9dp+za0rKHMN+daqFMxtOppgKvczqOkRi8MUYIuNYoqkBq6jiY4I4GO
-         Dqv0Y14KDqJxKcYYDG6E6dscLEppolbAb6TZRJoWV6Dt/x1MM2uKoDZszhKm64rdTG3p
-         OoYQ==
-X-Forwarded-Encrypted: i=1; AL+hErGJi1RaK9ncs9PuaE1FpZh6KTpW6PDX1913NpTdmDwsElpEDvuJReitSKD4dtyCGA9mLdkuFr1ybDu8U8Uf4noO@lists.infradead.org
-X-Gm-Message-State: APuU4Z/KGvX/V6HQD9mSAaNwaQDznuqghcjqCDzr+Lz2NWjCGjoRpHMp
-	7ha4lGhPSpZgTvBcj23Y00O/s5xZIgsY+Nlyo6K0md8hmeOeLgGwl1bhD59Vy7qOzSi6Xg==
-X-Gm-Gg: AYBFou0Q4rBAYBNZAhF/7fTmCkE8f7BoBRkBo8rY4/ZXqSAlJSbe5ZTUmyrdIqDZTjZ
-	CNRIG+Ae0EF0zr5bLDbiLzH7rW+IqUSAhWlBBAJ2Gv93wCd2nOOxyxL0j6X1+aXPW4uF2svhn2J
-	CQAUGh0AO0THtTypwCk2M7ZCcpGccSuI3RgqabhY5521hJvX3M/wZGsji3MnpE5iKOo25eT1c3I
-	ZYN6NK0kYs0/oqIIShbyfUcowSeHSfoukbGpkkxikKghtJSkXtvG8L+zdHbWB1ClKhJZ73BmxU3
-	yCI2bdRDy9lqGDSJC38BcQsdFlvBgR50SEM61rF/Ni+YGfXlUmtTu/duS4iTyCvEvlHUkQVrsUJ
-	fTYHk3n3flNPkld8AFiWW7l17t0EtjVIjX3yFlRPMa2MOHH6CQ66FDYxKIuv5/btZaMPidKf6CW
-	TrrOg45pksvuJPhGcq8m8V9Rkg5xtBnHmqXlJCVZ365u6euBdoy6E1OPAV5p/nePECcpW5JJYpG
-	XfjG6sw0F91/skuuvBYHUNQ0+AZn5SGeHHBrf60oMvILzGDc+L4QdTQlyoAbvG2/c1n0c0VGBBD
-	8tdPZ3yt3yLsCrZdDHmICUxiwPwDoyEaxDpj5ox8k576mfsl4Z7oCKYKF3vo2MKVqHvL56LhR05
-	J2pJvwalARZErdRd3sxJBt8Km
-X-Received: by 2002:a05:6000:2c04:b0:491:3fdd:af42 with SMTP id ffacd0b85a97d-49c72c9c049mr5208825f8f.37.1794572338269;
-        Fri, 13 Nov 2026 04:18:58 -0800 (PST)
-Received: from threads.localdomain ([84.70.166.92])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c605e5b2fsm5167103f8f.40.2026.11.13.04.18.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 04:18:57 -0800 (PST)
-From: Lucas Tanure <tanure@linux.com>
-To: xianwei.zhao@amlogic.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net,
-	Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v7 5/7] arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
-Date: Fri, 13 Nov 2026 12:18:50 +0000
-Message-ID: <20261113121852.334604-6-tanure@linux.com>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <20261113121852.334604-1-tanure@linux.com>
-References: <20261113121852.334604-1-tanure@linux.com>
+        d=1e100.net; s=20260707; t=1794572862; x=1795177662;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=Dn1URtd87rhGjVipjwsiO0ogDiCqEYx79Gj1SyGl1js=;
+        b=HQ26oslCQjitkSi1FHSkMkfpO+73ZA7y1l3QolURkaKP/r/FsJvkVFBI8MSIaDZun3
+         i3L+rEOLXFaGyTCRIok+1bv7w1qSeI3MqQoVA3zRpCEXw1fZIgpnaB+GC/qgdACrEayi
+         JUlX/c2DtJQa8i93HTgzhAf3TcKsJu2ersHxjrexV1RTfDqQFJMjJxcu003aaS1sd9do
+         uPWWkvDJDYqdHwKhLV2coWNUbdWs0bz2gtrFFZcextoNK9jgSmANpoRbYE5vJGoazhwO
+         vnHt4F3qb/aOgd/fpE+0O+wnH3k1NLSYmX6RfbVy623ytIFkhvVbmrtZ1QDG57h1OvMx
+         kaFw==
+X-Forwarded-Encrypted: i=1; AL+hErGlc0d1JdK+ysOQZqWHx2SqJesVji+E7XYeJjiKrFtIn1M3zPQFW2yNvk/B/WNfggL0fTzE0AJSy+wQYdk+ENLE@lists.infradead.org
+X-Gm-Message-State: APuU4Z+nOO0KKWQmCmfLUIytgod8KzI6zcuCoRR8+QHv77GRVkxpki5c
+	MhiUKwb1J5hg9hfvXB3qc27yBP0apPNYXsWSb496a4o2lPo1RrnfRSrGM01eF9wrXQ+UeLzzB2z
+	3yJqTFsMij2FR/XzN8JRg7ZUbQqyWYQOMiuvpj/Zfzw==
+X-Gm-Gg: AYBFou1+oKlIs2tXUS8mf2Z9IH/xdtXe4MNQV49F3wyyACfjdn2ZTm5H3yvib0nXiHE
+	7pmOHMPin1TnzZZ1SICgwc5e/sd6aGln6ngNCukY/meB1XbHJwW9rJdbmE87dQ0MZlQPKkvXQKM
+	18ybZN0xqQdfOfVAcAD/SW7r5D7uMjN5xxxkRRMT6QkHiws/b4VIL4vNG7rr2JqCmPr0L2vsIDL
+	viW3kTkg93zTRv30ceYPinGVBu97lWknphAl8KmU+Pi+s+ZL4TLxOHvPSTmvdBHbR5Am19Znwky
+	lXosikzsfco74wP/KVO04c/TVg2QvNeNLfoW9GrQ3/q2ffPPZ0i/LOiiz8df/R+0LpBbD3hBX3y
+	pFC1ok0+TyfhJeYEfKs52U13OnPsx21P6TU4LoZ/8mLNeTcV8zcll4IJBPTlUrV6gHJH5dA==
+X-Received: by 2002:a17:907:3d8d:b0:c36:777f:824c with SMTP id
+ a640c23a62f3a-c507b3944a2mr522415966b.4.1794572862414; Fri, 13 Nov 2026
+ 04:27:42 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CGME20261113104847epcas5p1d970255218f1ca78b19690bfd097f303@epcas5p1.samsung.com>
+ <20261113110612.3265841-1-raghav.s@samsung.com> <20261113110612.3265841-7-raghav.s@samsung.com>
+In-Reply-To: <20261113110612.3265841-7-raghav.s@samsung.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 13 Nov 2026 12:27:30 +0000
+X-Gm-Features: AclHuK-p51p0Vx5xI8MvGi-0HN81TalHpuLQqDi6SVVgi93XmBwCD0wdDg3iAr0
+Message-ID: <CADrjBPoR7_LDZmxC_bOFigvqDaagVihmybfX5AdvSPr9-FVb8w@mail.gmail.com>
+Subject: Re: [PATCH v3 06/14 RESEND] clk: samsung: clk-pll: Add support for pll_4313
+To: Raghav Sharma <raghav.s@samsung.com>
+Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
+	alim.akhtar@samsung.com, sboyd@kernel.org, bmasney+clk@redhat.com, 
+	jbrunet+clk@baylibre.com, robh@kernel.org, conor+dt@kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, is.gandhi@samsung.com, ts.amit@samsung.com, 
+	pokala.reddy@samsung.com
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_042441_067075_CC46AF54 
-X-CRM114-Status: GOOD (  10.55  )
-X-Spam-Score: -0.8 (/)
+X-CRM114-CacheID: sfid-20261113_042744_689232_3F3C3889 
+X-CRM114-Status: GOOD (  21.95  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -105,69 +122,67 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The SoC brings its ethernet interface out on bank Z, but no pin groups
-were described, so a board had no way to hand those pins over to the
-MAC.
+Hi Raghav,
 
-Describe them as the two sets a board actually needs: the nine pins the
-interface always uses, and the five extra ones RGMII adds for its wider
-data path.
+On Fri, 13 Nov 2026 at 10:53, Raghav Sharma <raghav.s@samsung.com> wrote:
+>
+> From: Alim Akhtar <alim.akhtar@samsung.com>
+>
+> PLLs 4313 are found in the Exynos8855 SoC and it is similar
+> to pll_531x except for CON8 offset, so re-using code for
+> pll_4313
+>
+> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+> ---
+>  drivers/clk/samsung/clk-pll.c | 11 ++++++++++-
+>  drivers/clk/samsung/clk-pll.h |  1 +
+>  2 files changed, 11 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/samsung/clk-pll.c b/drivers/clk/samsung/clk-pll.c
+> index 3d837bd74355..7b0756127306 100644
+> --- a/drivers/clk/samsung/clk-pll.c
+> +++ b/drivers/clk/samsung/clk-pll.c
+> @@ -1306,7 +1306,15 @@ static unsigned long samsung_pll531x_recalc_rate(struct clk_hw *hw,
+>         u64 mdiv, fout = parent_rate;
+>
+>         pll_con0 = readl_relaxed(pll->con_reg);
+> -       pll_con8 = readl_relaxed(pll->con_reg + 20);
+> +       if (pll->type == pll_4313) {
+> +               /* Offset for PLL_CON8 which hold FDIV different for PLL_4313
+> +                * which is PLL_LOCKTIME_OFFSET - 0x4
+> +                */
+> +               pll_con8 = readl_relaxed(pll->lock_reg - 4);
+> +       } else {
+> +               pll_con8 = readl_relaxed(pll->con_reg + 20);
+> +       }
+> +
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Lucas Tanure <tanure@linux.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 30 +++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+This starts to feel a bit hacky (pll_con8 register being referenced as
+an offset from lock_reg). Is the register really called pll_con8 on
+8855? Or is it called something else, but happens to contain fdiv?
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index 6894c06a836b..7bd53ec16607 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -376,6 +376,36 @@ mux {
- 					};
- 				};
- 
-+				eth_pins: eth {
-+					mux {
-+						groups = "eth_mdio",
-+							 "eth_mdc",
-+							 "eth_rgmii_rx_clk",
-+							 "eth_rx_dv",
-+							 "eth_rxd0",
-+							 "eth_rxd1",
-+							 "eth_txen",
-+							 "eth_txd0",
-+							 "eth_txd1";
-+						function = "eth";
-+						drive-strength-microamp = <4000>;
-+						bias-disable;
-+					};
-+				};
-+
-+				eth_rgmii_pins: eth-rgmii {
-+					mux {
-+						groups = "eth_rxd2_rgmii",
-+							 "eth_rxd3_rgmii",
-+							 "eth_rgmii_tx_clk",
-+							 "eth_txd2_rgmii",
-+							 "eth_txd3_rgmii";
-+						function = "eth";
-+						drive-strength-microamp = <4000>;
-+						bias-disable;
-+					};
-+				};
-+
- 				i2c0_ao_d_pins: i2c0-ao-d {
- 					mux {
- 						groups = "i2c0_ao_sck_d",
--- 
-2.56.1
+I think something like this would look cleaner:
 
+u32 fdiv_reg;
+
+       if (pll->type == pll_4313) {
+               /* fdiv in <insert name> register
+               fdiv_reg = readl_relaxed(pll->lock_reg - 4);
+       } else {
+               /* fdiv in pll_con8 register */
+               fdiv_reg = readl_relaxed(pll->con_reg + 20);
+       }
+
+regards,
+
+Peter
 
