@@ -2,141 +2,66 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B920A606A89E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8269606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RA34V713;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=HNS619i/
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RH6L7746;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BeNe79yK
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=tlIkQpncnbBGeMcJy2AIlVGcKIUhGIxwUyEXyRTn0pU=; b=RA34V713iz4PIpE3/Pqo7rh90p
-	R3TjmU7Xc4YX5BYI6yq31Ms/fTBf418pj3878yzx4Qu0BNLB5EIGUXrCe9tHtm0F/7GVr0VgMTon0
-	w08tCCEAr8TSXTEseDBQiL95eOpyj+Kd1qtzDWWXMUVJezRfDZAL5HpKod/ANoqqgLtg8OwqObB41
-	6nJwFdduo8JVIBJmw2otyhZ6U8mQcQl7HzCOtH576xxX7QhLt9TtDAMWM/nsTE01vstk9CBaCvTMA
-	URwlYBoFh1x0kOF52oY0XxMRYmRtc6H/7siscKMSKJE07imoQb+UkGhNGPojU0KrckwAvjoHYpBbU
-	pGPBvhKw==;
+	bh=S62Apjunl/OYf6dm8P9jYppCwO2i0AlqtAXpPuIIy9U=; b=RH6L7746ufHxRCkEZ2sNVe3aAz
+	mNlfjqS4sqmJ9pJx+2pTd+fXR9iWMFhGo8118HQ7lcE7YToHAF9QZqB/oPq6Z0eWvqc3hxv9VIV9S
+	YUZ4FmczET9GPXpvQ+Lc0j2M7tuo18q8LqWmsepKJC35wOo6QPUrSiEY8F1UMjsWeAVVVcwqH33Y3
+	2HBKEkkGZBzQxizV3subj3qZTGP50iTF8T+aAlkLQ/RwSD2udgb5Oqpbyko3bNc0sLtuMbaoEKtZc
+	YSKmHjJVPL/l8187ZBOw5IPFW5ldE0DRLeo3V5bC5DS9GYrwizKffyrHdP4cIPej/icwRhVFY+J4C
+	PfkG5xkA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxrD-0000000EPAF-1bvn;
-	Fri, 13 Nov 2026 20:26:47 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xRxuV-0000000EPnt-1R0L;
+	Fri, 13 Nov 2026 20:30:11 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxr9-0000000EP8c-1dJT
+	id 1xRxuU-0000000EPmk-1NS7
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:26:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sCMkVmqPeJeJHaRkYvQruRDOqg9a3SUNaNDrtN4znS5+NOSeoLJjUQuL121/smH5/xqV6BomF7a1mSuHaqzSu2ptiRdrX06MIRs4oXkcz8cwYiaew6QS40GmPcGE5N6XRDuwWKHTebmQlSAvBFH/g6pyVWjrDvdo/ZvRIAdjmVwEugevm3qflTrHvzJUO7EuTKRDhv0/l2kMzb4uxGJrWwCacwscQzhf9SY64FL4YVa8IIeBSNppdAuRUXc6CO/2vNMq0A2i9Q5r6Ba22KC5X0+IS2DokqFO2sL7OcKn3Jnd3oFNpq40324lKmgn10BxHyRKEedx5w300/Kii9p9zQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tlIkQpncnbBGeMcJy2AIlVGcKIUhGIxwUyEXyRTn0pU=;
- b=BKLdDtZU3qEu8mWf9ZH1kTa5//w3Dc8n4YYTig10UaknbBk2K/9EbM7yHWU2j1vlhJyWSkmA+lceqW4rbLCKWIAUo63eKAE4VYR/SAgKMuQv+8CDYGpYXbBlFlhBcL4ianMWUGtAAZXM2SiwfhTsJRiKX25r+Q7phh4s9dJ/ZpKJa6xCFsIY6QCI8morzqVpJPZMqhmKaJWOhIBpWlEi/J6BOXPLDWm1ijaxsZr9X6dgWEQ2JFYZt0AQ896mE7rk99oE0xyaBurrDNW0xFk9u2oINwbSuSdzEbmiw3swkKQmDT1BNWU0EpzkYbX5/aUefx8IznX0ViYoV3tuLvhzmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tlIkQpncnbBGeMcJy2AIlVGcKIUhGIxwUyEXyRTn0pU=;
- b=HNS619i/A2TQn4vHRILl+q4gh6xoHexKxHMDO45aRiPB960aNGa1NSf3iP9FS7FmSbfapC9puwXuxgI7+vg+racBjvzJ0DTwUUZa2tyfrJAJvwfFoO2EY7gAcl6bzYD5ukqsXeznHvbwDRE6p2jwbpEqDCnI8ebiyme42EmH3ap5OeL+ScHRadpb9izSasOD45E/fXJS0YyOb2+w4fo3fcrnVD3/t6iLCKmJ9lweOw4Wq/QHrIudrUZuEU4p4KRmOQNVHflVIhKRlXhyTui+nJe6n0K1ZUscxEzRUpnf4n75V9bi60AMr8OGrz5XIcrlVCPPMKemN669wMKRxDh22Q==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by DBBPR04MB7612.eurprd04.prod.outlook.com (2603:10a6:10:202::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
- 2026 20:26:37 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
- 20:26:37 +0000
-Date: Fri, 13 Nov 2026 15:26:30 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Arnd Bergmann <arnd@arndb.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	Jens Kuske <jenskuske@gmail.com>,
-	Jean-Francois Moine <moinejf@free.fr>,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	Chengfeng Ye <cyeaa@connect.ust.hk>,
-	Nguyen Minh Tien <tien.nguyenminh@embeddedlinux.blog>,
-	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 9/9] dmaengine: sun6i: keep cyclic state with the
- prepared descriptor
-Message-ID: <avdydqA68HXljug8@lizhi-Precision-Tower-5810>
-References: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-0-ef1acb0be768@gmail.com>
- <20261023-submit-sun6i-dma-lifetime-next-v1-v3-9-ef1acb0be768@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-9-ef1acb0be768@gmail.com>
-X-ClientProxiedBy: DS1P220CA0022.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:8:44c::13) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Fri, 13 Nov 2026 20:30:10 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 4FC7362388;
+	Fri, 13 Nov 2026 20:30:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD4861F000C4;
+	Fri, 13 Nov 2026 20:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794601809;
+	bh=S62Apjunl/OYf6dm8P9jYppCwO2i0AlqtAXpPuIIy9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=BeNe79yKfO6VaeGdZVaILyXJXkxXK6N+jGXDa52kSZYaVeBsB4+hF8tfBAwWaFFkj
+	 IJMQAQcuXAWgQnga4ifLDbBhPfw/DSAU0VvYysoCPZd8nBQXc//IyKKo0Twx6lH1JI
+	 SUM6AK1lCqCh/dgIaA2ESjvDzrRug8fgi5HN1wnG4ougE8Gq9+r/IjETQ9ZeHrVUVD
+	 NDz4r5m6D/MwygzvI8v1cMOMbSPAj0S1+s+fu3hBeWHNQRX1fThTL9umlJJXHT28jj
+	 PWDKfeouNOa58I1CUd6TTE5AmqyVJYLDzlpi8LXEdF5u7UuOQVDbTxU8DJ3akZOYcw
+	 LH7eQI39LCr6A==
+Date: Fri, 13 Nov 2026 12:30:07 -0800
+From: Eric Biggers <ebiggers@kernel.org>
+To: Ard Biesheuvel <ardb@kernel.org>
+Cc: Nathan Chancellor <nathan@kernel.org>, linux-kbuild@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+	Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH 0/4] Get rid of all NEON intrinsics stdint.h type hacks
+Message-ID: <20261113203007.GB29151@quark>
+References: <20261029135020.272082-6-ardb+git@google.com>
+ <20261112222720.GA188816@ax162>
+ <bc58b973-3d54-4480-aaaa-f5d5269418ea@app.fastmail.com>
+ <20261113190150.GA2857474@ax162>
+ <b7f72b97-6e8e-4b07-a2a1-6ac8c6e596e4@app.fastmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DBBPR04MB7612:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8a0e25f-34f7-43aa-fe5a-08df41c46b11
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|23010399003|376014|7416014|366016|18002099003|22082099003|261009223027099003|56012099006|11063799006|4143699003|261102123227099003|261021123027099003|261026140227099003|261022105027099003|261022075727099003|261028144727099003|261021121427099003|10067099003|41080700001;
-X-Microsoft-Antispam-Message-Info: gqvc9Ylhft2fjbVYCkRcyzw9e2W9SYL2Pc0kjDWRN6RFg5rEyy6nFj6UWeXprKBCeHWAgs4u9acJx0TlWBuhsox46jZgdbVEayCsKa15U3mAQIgjO/jR4j+vI/ZLSORljflZqDRNuPtnCAeVx7z47hukT2xyYP2XfK4A8gcMwy9XVk1kor+QYxI2s5TszsotdFywDzQNFpzhNxN5B96YCBweeYYn9dUFIrm8Hhc8eXjIEOMa6wyU3Cmh9ftGYQtI0LpYRK61t6WkaiN3mTe34GxT+6ER76G6ipZvFH+ZMwpHYzuNMQMCj2rGvdQ9GfTlv4UR45XU2NHfHt2qSGPb5koBPznJK3x3y90n+GAehDWwtXgAFdvbAW/3yjlpDDBs+zuOCdbFaVuHJIfg+PxiTwP9mcTZhMOvTUH/OhoBTMKidzn9nT6V+PiUDKmGIa4Gvbp/dVmRGv/+eOaqA4A5gmde4x/EYQnQPrgHtevLXCDcvMaV0zvCTN7ISMBuAkLEx1FjTSk5KZg73x0zCtx35Hj9OBUc9cP4Y9F2FkTID2Xw9Ema42+6WGHldXvebnugNWKMZFao6he9CPwGMGoPxjg7t4dTKWzRTSLcLLpAqVignn0MibktQ6wq7SFHi3ABvOIDzce250HBpYMwdr7SUjhd4wh3SGmEKnu/Tj5fuxeXPt65QnAs91w0YIXpv9PA2kbohUdVGZNzlIHIqQ+toLL2CHoVtBwkTSrFMvRJEAU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(23010399003)(376014)(7416014)(366016)(18002099003)(22082099003)(261009223027099003)(56012099006)(11063799006)(4143699003)(261102123227099003)(261021123027099003)(261026140227099003)(261022105027099003)(261022075727099003)(261028144727099003)(261021121427099003)(10067099003)(41080700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bE7VLhhJvPc+o5DGXOLTKzScctyVOZgxf+cajzn3gch/ObNqTKhXhhCMATI0?=
- =?us-ascii?Q?EsbWGpI0IRD3kAnfcdH6kROCFq4+HPj1yBg98NFgaKftVAG68YRHLQfpQSGB?=
- =?us-ascii?Q?U25yZkriL5H02LOWEEFrftWimLyzCwPFGmClp4PMh3fwIpEsbO0Pr+S1p5/F?=
- =?us-ascii?Q?SY2Zn42DKgl7WxU9oJo8drQ3xZMWFzMSOE3FUWDyeEkvqtS+fB7s+hbcYoAC?=
- =?us-ascii?Q?QYnMdUdbLw2uPVnWEkhlD46mufjDiIMtkqDKJKWiOOIS0f5ySLw+4ynws843?=
- =?us-ascii?Q?6epMKVlQHwU79OKa9isM20r6uEu3rqBZtNNyU8Nd8pokm2AENQiiJl8hegao?=
- =?us-ascii?Q?hNnciVZTPv55GNdbxOA9ywF4igKL/dv/2jZVRLdY6H6vbzuQpO/gfntjKP0b?=
- =?us-ascii?Q?JP6OzYb7sEBe/PDID2qvWnWO7YpQyCUJfjDHhZ2v56gBbyNJSosKQj+MAgrz?=
- =?us-ascii?Q?yqMLYLdRjc++3Pzqgu+YvNTVixJlGiP1/XSA1SSRsLScCAIVkA/NBCHHwVM2?=
- =?us-ascii?Q?HcZFrhKMlChJevUs9y8IvAkzwbKN/5t0lsCI6+D8106+u6OJBsavOpw4iDz3?=
- =?us-ascii?Q?NPpK2AucxnwStQjIE5xUy+V1P/vNyeHH2Q/48pizd754A6I4zng8yQyHdci8?=
- =?us-ascii?Q?NiEMZKfWo5aCGUrJF0XNAOK1IrMd369cMtyp/vaXC32+GwbIGZtb9WsbzP42?=
- =?us-ascii?Q?jis8nscPeQYLxjx8DrzTq4/vK/LkYzGR9SC/0Anhf/Dca9fpRz9iafN/ldqA?=
- =?us-ascii?Q?HN6+JpuVEA1EGKi5cPLRmmKxmftMg9ODwa3N0wehr/2WavYlJiU3rCZIitSu?=
- =?us-ascii?Q?B1vv+s9vResbQ0rfePrCeeQvKTtQGdRIC8IxQv8WnC82GrZH5wsnJL1PDaKW?=
- =?us-ascii?Q?guzAk7nFdlmPEhy3GP3QyIHSx+H2GwDdvJZSF0miS0c72FYWTjU1UCtcUhYu?=
- =?us-ascii?Q?n7vcoHyrRlRCDZOABLpnWeEgIKHYrzprgjE9xcZ1fcorLAegRJL7h1WGR3gZ?=
- =?us-ascii?Q?UTIS0fb79uYT7BekmGViuBPppaMZl5KImxAWrzVVGLx0E/lOXjhB5AcikMZ3?=
- =?us-ascii?Q?JqVlwuU7AawHFVpV8Mkn4ZbxrK+QG5NJcWLtaQKlgI7HRmHGQWFx3i7YxaZ1?=
- =?us-ascii?Q?0Pw8oHkTwmSfM/HjIBIPMJg5mp93odqVabhha9zs74mzUyWX5Cw/BKzkDJV7?=
- =?us-ascii?Q?OZvGTmq37V6EVTo6UUqPIF5Gyz+hRv8tOopt+NiElPdNiKrYxwCYFzBZ1T7c?=
- =?us-ascii?Q?nmEphNVvIBtsn6neJaZL4ex5S/UgNfpoLdnH2DzSYf7ns9ckXyBbmyEGyQ5o?=
- =?us-ascii?Q?v07cFEhfEJAwnUl6jrpJvTDLWXm1C82VoTjoiCWzsQK8nGP5dgCzc+bQsKCP?=
- =?us-ascii?Q?TxSO/aUpohbi5RD2jASNTUfGDLLrdNZEtETwhvdOp4B6JREGg59xvwXPQsNB?=
- =?us-ascii?Q?ZAfmJxQQS64tSqxXMS0RWfk/9q/0AZ/dEnCdErdOwMWLJaEs7fWMoqC73SO5?=
- =?us-ascii?Q?zAeXPE5x9d/Gx+igJLxlXBvJNB3vPDeJ541vxQvFz0mhFbUCjeHNYUNOoV9N?=
- =?us-ascii?Q?F2D+B4ikyvmdy626WSoFMN/mZGguPWjuv62XCwz6WPw9wrj9RfTKVdb2CU6S?=
- =?us-ascii?Q?KeYF0QbaeGwVQVl+z+vILBvQpCuyA9PvzOHndMjHjUz0cgEZXaHS56Dzxjil?=
- =?us-ascii?Q?8EZ/FiT4mCMUQ+OZ+c1gnaVRJpSSRpGMKjLyZR/rkrzpFzHtzjaTWvsxGS3j?=
- =?us-ascii?Q?3dhEuLeCjVcaV9cWaDia0Yrt0ekLg4+Yt0uC6xH2nhjisy1XAbpF?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8a0e25f-34f7-43aa-fe5a-08df41c46b11
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 20:26:37.6274
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2zh/wRR+2pX5k2GDyYDVtJe3zTx1HtvB26Rxpr/e+RidkQfblrsN8J4TVSmUtU0LuJ0KwW+qnXeg4IkDS1W5+m32t8/xidXYlSzWxrqXc/D/BqUGMjz0eNq8YxMp4/el
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7612
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_122643_433112_1D11AF7B 
-X-CRM114-Status: GOOD (  22.59  )
-X-Spam-Score: 0.0 (/)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b7f72b97-6e8e-4b07-a2a1-6ac8c6e596e4@app.fastmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,100 +72,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 23, 2026 at 05:38:28PM -0600, James Hilliard wrote:
-> Preparing a cyclic transfer sets vchan->cyclic before the descriptor is
-> submitted. A finite transfer on that channel can then select package
-> interrupts and take the cyclic callback path instead of completing its
-> cookie. Merely preparing an unrelated future transfer must not change
-> the active transfer or the meaning of queued descriptors.
->
-> Store the flag in sun6i_desc and consult the active descriptor when
-> selecting interrupts, completing a transfer and terminating it. Finite
-> descriptors retain their zero-initialized flag. This also makes callback
-> retirement depend on the descriptor whose lifetime is being ended.
->
-> The shared state was identified during the H616 cyclic UART RX review.
->
-> Fixes: a90e173f3faf ("dmaengine: sun6i: Add cyclic capability")
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> ---
+On Fri, Nov 13, 2026 at 09:05:32PM +0100, Ard Biesheuvel wrote:
+> (cc Catalin)
+> 
+> Full thread:
+> https://lore.kernel.org/all/20261029135020.272082-6-ardb+git@google.com/
+> 
+> On Fri, 13 Nov 2026, at 20:01, Nathan Chancellor wrote:
+> > On Fri, Nov 13, 2026 at 09:23:03AM +0100, Ard Biesheuvel wrote:
+> >> On Thu, 12 Nov 2026, at 23:27, Nathan Chancellor wrote:
+> >> > Who do you think should take this series? It would be nice if it could
+> >> > start making its way to mainline sooner rather than later since tip of
+> >> > tree clang builds have been broken for over a month at this point.
+> >> >
+> >> 
+> >> Are the first two patches sufficient for that? Perhaps Eric can take them
+> >> through the CRC or libcrypto trees, and I can send the remaining ones
+> >> through the respective arch trees the following cycle.
+> >
+> > Unfortunately not :/ we need the third patch to resolve the error since
+> > that is where the conflict is originating.
+> >
+> 
+> OK in that case, maybe Catalin can take the whole thing via the arm64 tree? 
+> 
+> 
+> 
+> Diffstat:
+> 
+> Ard Biesheuvel (4):
+>   lib/crc: Don't include <linux/types.h> in NEON intrinsics code
+>   xor: arm/arm64: Move NEON xor_gen() dispatch into the glue code
+>   arm64: Drop stdint.h type overrides from asm/neon-intrinsics.h
+>   ARM: Drop stdint.h type overrides from asm/neon-intrinsics.h
+> 
+>  Documentation/arch/arm/kernel_mode_neon.rst | 10 +++--
+>  arch/arm/include/asm/neon-intrinsics.h      | 43 +++-----------------
+>  arch/arm64/include/asm/neon-intrinsics.h    | 24 +++--------
+>  lib/crc/crc64-neon.c                        | 10 ++---
+>  lib/raid/xor/arm/xor-neon-glue.c            |  3 ++
+>  lib/raid/xor/arm/xor-neon.h                 | 16 +++++++-
+>  lib/raid/xor/arm64/xor-eor3.c               | 15 ++-----
+>  lib/raid/xor/arm64/xor-neon-glue.c          |  5 +++
+>  lib/raid/xor/arm64/xor-neon.h               | 31 ++++++++++++--
+>  lib/raid/xor/xor-neon.c                     | 16 ++------
+>  10 files changed, 78 insertions(+), 95 deletions(-)
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+I agree the arm64 tree makes the most sense for cross-subsystem arm and
+arm64 infrastructure changes like this.
 
->  drivers/dma/sun6i-dma.c | 11 +++++------
->  1 file changed, 5 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/dma/sun6i-dma.c b/drivers/dma/sun6i-dma.c
-> index b83138745bd1..2152979f72f2 100644
-> --- a/drivers/dma/sun6i-dma.c
-> +++ b/drivers/dma/sun6i-dma.c
-> @@ -191,6 +191,7 @@ struct sun6i_desc {
->  	struct virt_dma_desc	vd;
->  	dma_addr_t		p_lli;
->  	struct sun6i_dma_lli	*v_lli;
-> +	bool			cyclic;
->  };
->
->  struct sun6i_pchan {
-> @@ -207,7 +208,6 @@ struct sun6i_vchan {
->  	struct sun6i_pchan	*phy;
->  	u8			port;
->  	u8			irq_type;
-> -	bool			cyclic;
->  	bool			paused;
->  };
->
-> @@ -507,7 +507,7 @@ static int sun6i_dma_start_desc(struct sun6i_vchan *vchan)
->  			     (DMA_IRQ_HALF | DMA_IRQ_PKG | DMA_IRQ_QUEUE) <<
->  			     (irq_offset * DMA_IRQ_CHAN_WIDTH));
->
-> -	vchan->irq_type = vchan->cyclic ? DMA_IRQ_PKG : DMA_IRQ_QUEUE;
-> +	vchan->irq_type = pchan->desc->cyclic ? DMA_IRQ_PKG : DMA_IRQ_QUEUE;
->
->  	irq_val = sun6i_read_irq_en(sdev, irq_reg);
->  	irq_val &= ~((DMA_IRQ_HALF | DMA_IRQ_PKG | DMA_IRQ_QUEUE) <<
-> @@ -610,7 +610,7 @@ static irqreturn_t sun6i_dma_interrupt(int irq, void *dev_id)
->  			desc = pchan->desc;
->  			if (vchan && desc && (status & vchan->irq_type)) {
->  				spin_lock(&vchan->vc.lock);
-> -				if (vchan->cyclic) {
-> +				if (desc->cyclic) {
->  					vchan_cyclic_callback(&desc->vd);
->  				} else {
->  					/* Completion transfers ownership to virt-dma. */
-> @@ -911,7 +911,7 @@ static struct dma_async_tx_descriptor *sun6i_dma_prep_dma_cyclic(
->
->  	prev->p_lli_next = txd->p_lli;		/* cyclic list */
->
-> -	vchan->cyclic = true;
-> +	txd->cyclic = true;
->
->  	return vchan_tx_prep(&vchan->vc, &txd->vd, flags);
->
-> @@ -1000,13 +1000,12 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
->  		struct virt_dma_desc *vd = &pchan->desc->vd;
->
->  		/* A cyclic callback may still hold this descriptor outside vc.lock. */
-> -		if (vchan->cyclic)
-> +		if (pchan->desc->cyclic)
->  			vchan_terminate_vdesc(vd);
->  		else
->  			list_add_tail(&vd->node, &head);
->  	}
->
-> -	vchan->cyclic = false;
->  	vchan->paused = false;
->  	/* Leave terminated cyclic descriptors for the sleepable synchronize. */
->  	list_splice_tail_init(&vchan->vc.desc_allocated, &head);
->
-> --
-> 2.53.0
->
+- Eric
 
