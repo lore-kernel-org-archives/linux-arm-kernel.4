@@ -2,80 +2,84 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34CB2606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D48606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZRj7P/n2;
-	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=KfIrpmdg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0w6iYsY0;
+	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=VlopeV3N
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:Cc
-	:To:Subject:From:Message-ID:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	:To:Subject:From:References:In-Reply-To:Message-ID:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bxaxghc2jPugp9fqdcujLfJj76940RCF2HnEXA8AlnQ=; b=ZRj7P/n2Byg39KKYa7XlLEjWIv
-	XHDgyrwtHGKjqos7cWHXaguHkiIup4iX6TENZB4RN7bsqx7pgQONUncGFGwKq/mHTV0jXDYBS5Di1
-	sSRErMvy2x0CWWh/a3Kf562KFq2enC+3ZPTq0QLMD1xaOuvvy5fYWHQ366ai65LReZ2zbGIqblB7v
-	ZprtZw/7R5T2JRF8ewL4igc370LNkE3vVE0npJBGs6B+nmeJAYmMNZ14wlxajMySMtnhNsbjQTXDS
-	aKdLrZnwCPlKpiZqmO+jTiWJAZNSIVIBf1hCed1p4BoUHjTekletqzglgXKIM6vWVrYrWlBxDrCKp
-	GxNL90Qw==;
+	bh=EwMHpSevVZJc3LGGji9zq4te1/1ENtsYUuV/5eNMPz0=; b=0w6iYsY0JyWfkrDzZrcig91Rnl
+	59LQnM8DXSFPu2RT5cj0S/oMMqoqSFuRs4qxLU+NJ1lWMHEntkKqC+S+2GnkeKhnq4xxlQwoguHGF
+	b3N/IeYIbRXyoj6PAJkMIegncdLu3HZwqGSMwNuZqdDOfY9O+aDutdWVtorVjHP4CmONdKcs/nfX/
+	temOlaiBLb/GGVQlsCOv6VvASf6XEp89ETP1J/sSbYJXIqDLA/Oh1a0G597PTHh5wbt6NrwrjKRn5
+	CBGuG4Y0hv2RDsu1NLrgI3QT3yVJZIMZPAi5iqJFuomuUjs12lZ96CBH9QHEDvP7JVskyeSWwKtKw
+	dIgx29/g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmmp-0000000C5Lc-0w9n;
-	Fri, 13 Nov 2026 08:37:34 +0000
-Received: from mail-pj2-x0b.google.com ([2607:f8b0:4864:39::b])
+	id 1xRmn2-0000000C5SM-0Q8p;
+	Fri, 13 Nov 2026 08:37:44 +0000
+Received: from mail-pj1-x1030.google.com ([2607:f8b0:4864:20::1030])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmmd-0000000C5GT-1gM5
+	id 1xRmmg-0000000C5I1-37xK
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 08:37:21 +0000
-Received: by mail-pj2-x0b.google.com with SMTP id d9443c01a7336-2ed0cabf65fso3069315ad.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:37:19 -0800 (PST)
+	Fri, 13 Nov 2026 08:37:30 +0000
+Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-3b15e46698aso653968a91.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chrisdown.name; s=google; t=1794559038; x=1795163838; darn=lists.infradead.org;
+        d=chrisdown.name; s=google; t=1794559042; x=1795163842; darn=lists.infradead.org;
         h=user-agent:content-disposition:content-type:mime-version:cc:to
-         :subject:from:message-id:date:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=bxaxghc2jPugp9fqdcujLfJj76940RCF2HnEXA8AlnQ=;
-        b=KfIrpmdg9C2+0dh+bLNjz2AcK24KKKL6s09LtE9ro11KnXkvcz+rvSJaPFSKJgCDIa
-         Ktg++zMcWT+gbewqbh1ilGIgDxB6JVb/6AZEB3LpiwYh8f2rAodCOil1eaPQokqwccZ+
-         Y3BJAok/Mn+aY1AhOeWjna70EyqC+bkIReuLI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794559038; x=1795163838;
-        h=user-agent:content-disposition:content-type:mime-version:cc:to
-         :subject:from:message-id:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:from:references:in-reply-to:message-id:date:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=bxaxghc2jPugp9fqdcujLfJj76940RCF2HnEXA8AlnQ=;
-        b=CEZtPtwzmvaQgcpD3hb5wohOTk7xiFuEtjG8qAaksQIFhFtfZIYWKwJtFMQ2vMiKWN
-         rglTS+HQPj1rjZUZlAKQ7OFgsMDDSMLLzfSSRf6mlOVrVf3r2fmmeJC7HHd2tATQ0KP6
-         qPf4434f2W1rvf2uWLBtfqiz4Wi9HGx3a7mC3cf6M6sRCv+bLTexcVMvJQwEqAvBeJ1N
-         tOsRSrJWJEm/w3+Q9zHWHXpvxi9UH6kxl3fL93MUEd6rL+uA/GBtdr8v+OeU80KrxK+4
-         e70ny0G14aWqMZQ+EWJeVz7E9uc+ud9DIULeWdCIwupqmaTOBZ6gOEbCZHuoWVwx5r2J
-         LQtQ==
-X-Forwarded-Encrypted: i=1; AL+hErEduWPkJH8oXsxAbVrOsxBBECjuyT3UC6+lrp8OD4+jMOD2my+xDdyVtEQNRBLkcbs+eugqeA+3OyPc+kcTzvm3@lists.infradead.org
-X-Gm-Message-State: APuU4Z/QsJ3svuQNA2/PQlxd/u76k8S2VoslHY6JAduJipOpuhsYkDKz
-	AjgGmDiDwVc18qWD6ea7sgMK21jj7MDoU+6ieD/JZQrJamJ2Guvci6SpNoHT6kBnOSI=
-X-Gm-Gg: AYBFou1xnfn2BcKajc8UF9VN7vfyvUVuV5+BmiuWi0yDrsi59lJ9CCuAYx//r0QLld6
-	wl0uPU+31bunJrvgMHkeKj2aCYf5l5sANPh6jrbM1z15sCWov44/4/jbDIw7WetsInJNCL1/OZx
-	ebMILeEkddj5HjCL7OJ/dvkRReADXvPbloSDUXEGy1IjuY7PwYE7ELnyslyOgTXnaxfUh0sWDoA
-	nuMbpcEBKMF2SihlivXy16wAMkvm2nzM90ZpKxL03FCs4+j5NeFoh8h/NZL7PEuJPcNQFbCnrPw
-	HYL3uKXWWAb0zFn0KDS0AUUpy724UJ4+A7DBnklZ7zPE7DePktNtzConG9n4Ggczk1+Md+ZXPI0
-	FO/bwULqTvXMe5rbYuKW0qsuxgPwM3EVMhv6at3dGy+1OR/QdULMj5tiLUvhmnu2GzwNMEEumOv
-	GOtDrxLe9l20o0c4NXYmG5j/XpAgIQMW4Vt6hZGE82B3y+sQXTShOifEZU6xx/Z5D1VE+R7EkTd
-	tV70RRidHnnFjWhF33hJh9IKLMTDAcy1y1FSrTlRh74/KDoDKv5jL1InRtfbSj6uornkChNoqNu
-	9lpWzyBHKpMF7gm2FKJNQWt1cmfP4NccigWW4TyoWPb02KZv/BjoKZqqBnhR89gpAyQ4ye+tg0r
-	jJScQOz1/P5aqyDwzgGacKuCbt5ER7737VIfB2to079PY85v+iBprPUgVejmECRecNc++CWE3Yi
-	768SWmcJEKvjyiGp4NnIlgeuW9GSNJczgL/Gu69Y4Hf0xnYUqVosJmko/ytkE=
-X-Received: by 2002:a17:903:120d:b0:2e9:5c51:19dc with SMTP id d9443c01a7336-2ee0dd14181mr18456195ad.41.1794559038435;
-        Fri, 13 Nov 2026 00:37:18 -0800 (PST)
+        bh=EwMHpSevVZJc3LGGji9zq4te1/1ENtsYUuV/5eNMPz0=;
+        b=VlopeV3NPudvCaC3HxB/X5NxRbNoMw9QlK+rR6G0mS7IS5xA0dxL95sQhV8eIXREJJ
+         lNF10ZlqbKImfD4fz44nnGhITeTeMDIiEKGZ6iWyQnF2mx6Z3gyvmpz2FCGe4H0hDuj8
+         ShZID3YARjpwDyPzCDhicryL9XQsmVNLOuqdE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794559042; x=1795163842;
+        h=user-agent:content-disposition:content-type:mime-version:cc:to
+         :subject:from:references:in-reply-to:message-id:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=EwMHpSevVZJc3LGGji9zq4te1/1ENtsYUuV/5eNMPz0=;
+        b=cIalW3ATFVRUMC3Yx9yPp81ALwF9PNxjBIsCuWM7s+CvaBvZkpZr0xnSDgXPNedoUk
+         9aZLCu/xn3WkbGVYPIsgyo+cW7X7aTdApfNO0oIySatqy/on2KQPMpHbY9J3fssJb1KL
+         eZbY6tqfUS4LS8sIgnoGkpnUBnvJWoIgLx2TSNDcyiBqMSYuXYXE5cHW+nWrK0IY+jvi
+         io6XY4xmndha//geOpsh3aWc1yIGu4gGPUFTSUOh8rE4wyR2cvebjjL1GMZTpTinvjaa
+         iZ3/+EPDL0g8A0R+20fn84ReGHZ51el11SpLv7rrcZrGEr29ZIKeLe4E3oPiMlN4Ou15
+         nl9g==
+X-Forwarded-Encrypted: i=1; AL+hErGu4qsHBSEz1Rkt6baTUpZJnxoQ4IqJ9/GC2C5P2EEZMewBvJHHolJ6X+sH+C6HQ/BfqzexchkAhxhQZ93tw1bH@lists.infradead.org
+X-Gm-Message-State: APuU4Z8ohRoe5xOlh7YnHJT8R4snbOQE4iTYVoAdhtrgEPySQoU5e3cG
+	wo0puX3vJ+zOyk7fglqe3vrFuJitySGFjJv+fbR7I4R2+LjWNkpL7vid//oSsCL1qUU=
+X-Gm-Gg: AYBFou1UeHwxmBzFCuW1c/LWcHKDhCbOj7Trus8w2R91e2dL+iRr6J49YYOVDy2WfZt
+	tajaMjHFTbjCIlhzbngPUa7FB4p9ErY/1xTOP+a8bl6p1u+K3ZLYclFj8t9LznTsbbbOG6BRrUb
+	h33YNTrE+99P8ekis0nKWoyAESJz17OqHZZ4TSfcfjG33R2GWibMJbINK+mKU6eJ6XpPSDRrvGx
+	sIbioA+kmJ+fnhUC+jPCXgV6GPwBCw7GnGAzavBiEugVwaF1PYBREGodfbGGJOCtrA/2fr05JFz
+	NIHpzqHkEzRzxYkFROcYS/WH2o+5AFBkYRWdLHfhbQXq6eLox6oUHDFih/s3qnMXBDqOeJE459g
+	xGU3bLLkvczzSWWWyxVzLnMbNa2gwyDQKu0/7Lp/E8LEJKssyvTorNwMCS+Q4XxB2XdlqoEwjsX
+	JwIWXVY2ED0fdrAawJrZv8I+/OOBhtV4dZScetYDslOtS1ws+pE0BWcV/sVL2H8CUTjUx1f5okL
+	rNunOgbiuflyQaewOFjyHT1KcFz58+b0z22/iZcCYi++1zsS6AdAr7kpjv4uLObwQbeGl6QcmuY
+	Fr0nBjMqJzEjY6F7zCYFQ1UYsyR1IFQn9Z6eLmgn/joO7jiBSZH34hvdO6/hRamHblTGBOxrkuy
+	3QE2EyK4YH7XN4QWmXlVPJxHamTU/D1l8JDuFCIfFswkFFdxQNyCkVlvLz0z3a8eqvfQ/7ZmllI
+	alVrHzBvEYpNcKFPgQHnaybyaG3sBjd0R5WaI/unGyE7KgLuJX5hcKwKs8qWI=
+X-Received: by 2002:a17:90b:5585:b0:3b0:ae41:2711 with SMTP id 98e67ed59e1d1-3b1b0a12f15mr1404120a91.24.1794559041771;
+        Fri, 13 Nov 2026 00:37:21 -0800 (PST)
 Received: from [172.22.0.2] ([50.175.87.158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ee0f874871sm6731535ad.54.2026.11.13.00.37.17
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b197d0fdbdsm8749569a91.10.2026.11.13.00.37.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 00:37:17 -0800 (PST)
-Date: Fri, 13 Nov 2026 00:37:14 -0800
-Message-ID: <cover.1794554867.git.chris@chrisdown.name>
+        Fri, 13 Nov 2026 00:37:21 -0800 (PST)
+Date: Fri, 13 Nov 2026 00:37:18 -0800
+Message-ID: <35b84656fe82fe1cff0ba3bc55ddc72dde70b089.1794554867.git.chris@chrisdown.name>
+In-Reply-To: <cover.1794554867.git.chris@chrisdown.name>
+References: <cover.1794554867.git.chris@chrisdown.name>
 From: Chris Down <chris@chrisdown.name>
-Subject: [PATCH v2 0/3] Make the scheduler stack end check selectable at boot
+Subject: [PATCH v2 1/3] scs: Skip the shadow stack end check when SCS is
+ disabled
 To: Peter Zijlstra <peterz@infradead.org>,
     Ingo Molnar <mingo@redhat.com>,
     Kees Cook <kees@kernel.org>
@@ -111,8 +115,8 @@ Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 User-Agent: Mutt/2.4.3 (cc9e3943) (2026-10-09)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_003719_666601_D9957C82 
-X-CRM114-Status: GOOD (  13.05  )
+X-CRM114-CacheID: sfid-20261113_003722_793062_6E8FB627 
+X-CRM114-Status: GOOD (  16.36  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,51 +128,70 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-At Meta, some of our host types enable CONFIG_SCHED_STACK_END_CHECK, but
-we don't want it generally on because of the extra work on every context
-switch.
+With CONFIG_DYNAMIC_SCS, shadow call stacks are only used when the boot
+CPU lacks pointer authentication. scs_release() already checks
+scs_is_enabled() before it looks at the shadow stack since commit
+9beccca09840 ("scs: add support for dynamic shadow call stacks"), but
+schedule_debug() does not.
 
-Right now this is only configurable by setting the Kconfig option at
-build time. Let's make it so we can also select it at boot with
-sched_stack_end_check=, so that those hosts can share one kernel image.
+With CONFIG_SCHED_STACK_END_CHECK=y it therefore checks init_task's
+unused shadow stack on every context switch. That is harmless right now,
+but the check is redundant and costs a load from an unrelated cache line
+in __schedule().
 
-(Patch 1 is a cleanup I happened upon while working on this, it can
-also be taken independently.)
+Make task_scs_end_corrupted() check scs_is_enabled() itself. It is a
+static branch, and it folds to true when CONFIG_DYNAMIC_SCS is not set.
 
-v2:
+Signed-off-by: Chris Down <chris@chrisdown.name>
+---
+ include/linux/scs.h | 19 +++++++++++--------
+ 1 file changed, 11 insertions(+), 8 deletions(-)
 
-- Check scs_is_enabled() inside task_scs_end_corrupted() rather than in
-  schedule_debug() (Peter)
-- Return 1 when sched_stack_end_check= can't be parsed (Randy)
-- Say in the changelog why the other task_stack_end_corrupted() callers
-  are left alone (Peter)
-- Rebase onto tip/sched/core
-
-v1: https://lore.kernel.org/r/cover.1793082868.git.chris@chrisdown.name
-
-Chris Down (3):
-  scs: Skip the shadow stack end check when SCS is disabled
-  sched/core: Add sched_stack_end_check= boot parameter
-  lkdtm/bugs: Add CORRUPT_STACK_END to test the scheduler stack end
-    check
-
- .../admin-guide/kernel-parameters.txt         |  8 +++++
- drivers/misc/lkdtm/bugs.c                     | 21 ++++++++++++
- include/linux/scs.h                           | 19 ++++++-----
- kernel/sched/core.c                           | 33 +++++++++++++++----
- tools/testing/selftests/lkdtm/tests.txt       |  1 +
- 5 files changed, 68 insertions(+), 14 deletions(-)
-
-
-base-commit: d7e670601af6c564ccf6d3b2ddf70ee4f41a6d1c
+diff --git a/include/linux/scs.h b/include/linux/scs.h
+index 4ab5bdc898cf..29ec2b8cf7bf 100644
+--- a/include/linux/scs.h
++++ b/include/linux/scs.h
+@@ -45,14 +45,6 @@ static inline unsigned long *__scs_magic(void *s)
+ 	return (unsigned long *)(s + SCS_SIZE) - 1;
+ }
+ 
+-static inline bool task_scs_end_corrupted(struct task_struct *tsk)
+-{
+-	unsigned long *magic = __scs_magic(task_scs(tsk));
+-	unsigned long sz = task_scs_sp(tsk) - task_scs(tsk);
+-
+-	return sz >= SCS_SIZE - 1 || READ_ONCE_NOCHECK(*magic) != SCS_END_MAGIC;
+-}
+-
+ DECLARE_STATIC_KEY_FALSE(dynamic_scs_enabled);
+ 
+ static inline bool scs_is_dynamic(void)
+@@ -69,6 +61,17 @@ static inline bool scs_is_enabled(void)
+ 	return scs_is_dynamic();
+ }
+ 
++static inline bool task_scs_end_corrupted(struct task_struct *tsk)
++{
++	unsigned long *magic = __scs_magic(task_scs(tsk));
++	unsigned long sz = task_scs_sp(tsk) - task_scs(tsk);
++
++	if (!scs_is_enabled())
++		return false;
++
++	return sz >= SCS_SIZE - 1 || READ_ONCE_NOCHECK(*magic) != SCS_END_MAGIC;
++}
++
+ #else /* CONFIG_SHADOW_CALL_STACK */
+ 
+ static inline void *scs_alloc(int node) { return NULL; }
 -- 
 2.56.1
 
