@@ -2,87 +2,74 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D91606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18074606A889
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SwkYMtyf;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=aPPqErKI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=XI/EoviB;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=GU+JXV4Q
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mw9lxkRBxKj9JE5m3ARV7nh2815fsUNpafnX9+FKPq0=; b=SwkYMtyf3hK22D
-	a42KS2BksJGogk5ys43Iike/g80HKXZMGf33AMDsSk/fOVb4MR2/dCxWypaVFIfu3LVJRzoMQwY5v
-	OaXONkYXGAd4kjWv3IykQ/fYErusaHCmoas6PpbJV4yywK2x+3WXAv191qWk+lqwjUJaRRjfGx750
-	mPW2R7s7OZSdS2cZScr8Jq+22YdzGFscG2p+Gkem6rEIjL9rXJlvcrGu/JxW850E62Rvg0G9c5lM0
-	vw/5eDjfdYfSatKoJCcU1O7I9WvvLOkrUpGcYxL/BrL8zkj/AUaGnClnRRAZZ0Y3VrxxLBpLadPWh
-	Z3it/oZppS012Ub46GYg==;
+	List-Owner; bh=+xvWra1IEANazOUIzu9aYSpzBjP8CbiiZ/8VsGzinn4=; b=XI/EoviBsLFjlK
+	+qd/i77qjmP7fMyIHnybB8xMlwvQLquUsX46Jw8+qUiVZh/HF1/cdDjcL32590++TVR58WRYaFlPg
+	RubrKIAhE69y3uMwcAkJ6Rg7cxmiCyyLk0zV5P3OLV38Sug3PIagAgdIYFOcznN/l3ZKYthhIAnCo
+	jjj/TUJSxaBkgckmM7Kbg4ZEku7/pKLcC3OoPNACSRbkLAFuaVEOI3rVlJIL8Be18B09FST9MV8NS
+	MEA5NgsNESpYUbRrbVMqTbLPIeuZhHWfIuhfBJlgeRe6okRuBU+PXE57uIQTrHfJjv1JwEepBcjW0
+	1B8DEb4iHjKt+nrV2FRA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmaG-0000000C1m7-3lCz;
-	Fri, 13 Nov 2026 08:24:33 +0000
-Received: from mail-m12894.netease.com ([103.209.128.94])
+	id 1xRmaI-0000000C1on-2LZR;
+	Fri, 13 Nov 2026 08:24:34 +0000
+Received: from smtpout-04.galae.net ([185.171.202.116])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmZQ-0000000C1Gi-1gSy;
-	Fri, 13 Nov 2026 08:23:47 +0000
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 54921be7d;
-	Fri, 13 Nov 2026 16:23:36 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Inki Dae <inki.dae@samsung.com>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andyshrk@163.com>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 15/18] drm/bridge: analogix_dp: Manage pm runtime and IRQ for native HPD pin detection
-Date: Fri, 13 Nov 2026 16:23:02 +0800
-Message-Id: <20261113082305.541652-16-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261113082305.541652-1-damon.ding@rock-chips.com>
-References: <20261113082305.541652-1-damon.ding@rock-chips.com>
+	id 1xRmZQ-0000000C1G7-18f9;
+	Fri, 13 Nov 2026 08:23:48 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id B1D71C4F76E;
+	Fri, 13 Nov 2026 08:23:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 1B0A5601D5;
+	Fri, 13 Nov 2026 08:23:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DF65B11BC06F0;
+	Fri, 13 Nov 2026 09:23:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794558214; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=+xvWra1IEANazOUIzu9aYSpzBjP8CbiiZ/8VsGzinn4=;
+	b=GU+JXV4QJPFmtQbnhkL9VJX0jszc0OySFQarr89JdBgAZRT+LZu/MiIgtdoT4ptk/co1XE
+	vsGS6kdmJMih+mTBZiY42Paf0jfqPWaS0sQrEYRKCsRXuVs3h7y0GZEXx46e01IYQ4tDdW
+	QgbC1iwhetxZ+CijzqOpweUJVEfygITk0Ez7uGaIhOga5s3OYpAQErtUi2dzqKRK6BXAel
+	f1LdK7ZKYvepAKJhW8QHJQkwXkg5cZVDWJLuzMeHfP+dFCbqU3HDpW9Au/mKkXgY9FNqua
+	Q5OELq4eunCmxyg9bXqytE5A+MO36ZAyOmCSDYGGl0ZQgkgkoW1VDuro8ehBYg==
+Message-ID: <36ecbf49-0d09-4abf-a93d-fc3f92191f7d@bootlin.com>
+Date: Fri, 13 Nov 2026 09:23:27 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0aa1d401477303a8kunm073aab0481aec
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHh9KVk0dQkoeTxgZS0JNQlYVFA
-	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
-	pKQk1VSktLVUpCWQY+
-DKIM-Signature: a=rsa-sha256;
-	b=aPPqErKIV5RJOsN048uFAydEnZFPMQQb4eTa0zWxE6qaphHY1+QzBk7vamu+5+p2aBBWaQL5KmWyLKn0I+T4GnEXTDIMeDJfRqc2cAkSW+W0pZhr+mZMdLwJPQ4jI/XE0CTTJqs5SsYXnrySntmWidOijy7qqiFuaySfNyKx210=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=mw9lxkRBxKj9JE5m3ARV7nh2815fsUNpafnX9+FKPq0=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next] net: stmmac: dwmac-rk: only read the delays the
+ MAC applies
+To: aiyengar1990@gmail.com, Heiko Stuebner <heiko@sntech.de>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-kernel@vger.kernel.org
+References: <20261110-stmmac-dwmac-rk-delays-v1-1-87abb6592921@gmail.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20261110-stmmac-dwmac-rk-delays-v1-1-87abb6592921@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_002345_370862_A71358A4 
-X-CRM114-Status: GOOD (  17.38  )
+X-CRM114-CacheID: sfid-20261113_002345_401746_69562CDE 
+X-CRM114-Status: GOOD (  13.44  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -94,136 +81,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This commit holds the runtime PM reference across the bind/unbind
-lifecycle on the RK3576 and RK3588 platforms, which rely on the native
-controller interrupt for hotplug detection. The hotplug IRQ is enabled
-only for the platforms which support hotplug detection, i.e., the GPIO
-HPD mode or the native HPD mode on RK3576 and RK3588, so that the IRQ
-thread is not run on the platforms without hotplug support.
+Hi,
 
-The force-connected and force-HPD modes are excluded from the hotplug
-detection support, since the HPD events shall not be reported for the
-fixed panels.
+On 11/10/26 08:13, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> The tx_delay and rx_delay properties are only used for the directions in
+> which the MAC inserts the RGMII clock delay itself: both for "rgmii",
+> TX for "rgmii-rxid" and RX for "rgmii-txid". For "rgmii-id" (the PHY
+> adds both delays, the recommended setup) and for RMII they are ignored
+> by rk_gmac_powerup().
+> 
+> The driver nevertheless parses both properties unconditionally and logs
+> an error, plus the default it picks, for each one that is missing. A
+> correct device tree using "rgmii-rxid" therefore gets
+> 
+>   Can not read property: rx_delay.
+>   set rx_delay to 0x10
+> 
+> and one using "rgmii-id" gets the same pair for tx_delay as well, for a
+> value that is never programmed.
+> 
+> Only parse the delay values that will actually be used, so the error is
+> reserved for device trees that really lack a required delay. Behaviour
+> for "rgmii", "rgmii-rxid" and "rgmii-txid" is unchanged.
+> 
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 
-Tested-by: Heiko Stuebner <heiko@sntech.de>
-Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+LGTM, I was worried about breaking compat but the rk_gmac_powerup() only
+applies the rx/tx delays based on the ID mode, so
 
----
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 
-Changes in v2:
-- Split IRQ enable/disable logic, handle native HPD pin and
-  GPIO/force-HPD modes separately to avoid unbalanced enable_irq()
-  calls. (Sashiko)
-
-Changes in v3:
-- Modify the commit msg according to the previous commit for moving IRQ
-  enabling/disabling.
-
-Changes in v4:
-- Add Tested-by tag.
-
-Changes in v5:
-- Limit the runtime PM holding to the RK3576/RK3588 platforms, which
-  are the only ones confirmed to support the DP mode hotplug
-  detection, and exclude the boards with a fixed panel, so that the
-  runtime suspend still works when the screen is blanked. (Sashiko)
-- Add a new commit declaring DRM_BRIDGE_OP_HPD on the Analogix DP
-  bridge and reporting the hotplug events via drm_bridge_hpd_notify().
-  (Sashiko)
-
-Changes in v6:
-- Enable the hotplug IRQ only for the platforms which support hotplug
-  detection (the GPIO HPD mode, or the native HPD mode on RK3576 and
-  RK3588). (Sashiko)
-- Exclude the force-connected and force-HPD modes from the hotplug
-  detection support check. (Sashiko)
-- Simplify the commit msg.
-- Add Tested-by tag.
----
- .../drm/bridge/analogix/analogix_dp_core.c    | 46 ++++++++++++++++++-
- 1 file changed, 44 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-index 7f6346d45a01..d72b66be6874 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
-@@ -42,6 +42,36 @@
- 
- static const bool verify_fast_training;
- 
-+/*
-+ * Only the RK3576 and RK3588 platforms are confirmed to support the
-+ * DP mode hotplug detection for now, which relies on their HDPTX PHY
-+ * and requires the controller to stay powered and clocked.  So the
-+ * runtime PM reference is held only for them, and not for the GPIO
-+ * HPD mode, the force HPD mode or the fixed panels, which need no
-+ * such detection.
-+ */
-+static bool analogix_dp_require_pm_for_hpd_irq(struct analogix_dp_device *dp)
-+{
-+	return (dp->plat_data->dev_type == RK3576_EDP || dp->plat_data->dev_type == RK3588_EDP) &&
-+	       !dp->hpd_gpiod && !dp->force_hpd && !dp->force_connected_mode;
-+}
-+
-+/*
-+ * The hotplug events are reported either through the optional GPIO HPD
-+ * pin or through the native controller interrupt, which is confirmed
-+ * to work only on the RK3576 and RK3588 platforms.
-+ */
-+static bool analogix_dp_supports_hpd(struct analogix_dp_device *dp)
-+{
-+	if (dp->force_connected_mode || dp->force_hpd)
-+		return false;
-+
-+	if (dp->hpd_gpiod)
-+		return true;
-+
-+	return dp->plat_data->dev_type == RK3576_EDP || dp->plat_data->dev_type == RK3588_EDP;
-+}
-+
- static void analogix_dp_init_dp(struct analogix_dp_device *dp)
- {
- 	analogix_dp_reset(dp);
-@@ -1616,7 +1646,14 @@ int analogix_dp_bind(struct analogix_dp_device *dp, struct drm_device *drm_dev)
- 		goto err_unregister_aux;
- 	}
- 
--	enable_irq(dp->irq);
-+	if (analogix_dp_require_pm_for_hpd_irq(dp)) {
-+		ret = pm_runtime_resume_and_get(dp->dev);
-+		if (ret)
-+			goto err_unregister_aux;
-+	}
-+
-+	if (analogix_dp_supports_hpd(dp))
-+		enable_irq(dp->irq);
- 
- 	return 0;
- 
-@@ -1629,7 +1666,12 @@ EXPORT_SYMBOL_GPL(analogix_dp_bind);
- 
- void analogix_dp_unbind(struct analogix_dp_device *dp)
- {
--	disable_irq(dp->irq);
-+	if (analogix_dp_supports_hpd(dp))
-+		disable_irq(dp->irq);
-+
-+	if (analogix_dp_require_pm_for_hpd_irq(dp))
-+		pm_runtime_put_sync(dp->dev);
-+
- 	drm_dp_aux_unregister(&dp->aux);
- }
- EXPORT_SYMBOL_GPL(analogix_dp_unbind);
--- 
-2.34.1
+Maxime
 
 
