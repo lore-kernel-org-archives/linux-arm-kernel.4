@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E06606A890
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B7F606B273
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QH4eiAUJ;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=hDCmT4Wh
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DUpyr6AR;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=e2gq6NZ4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
@@ -14,93 +14,92 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=EhSLziMRwdiehgWLSf2hbf4dn4hmC+KU+DWMadGd+hk=; b=QH4eiAUJqm3/2WbI7VutSi87Ae
-	3cfEmz2+SWFb8WoFXxeXUrXGu+Jsej2dVif3tboitMg54Q3/Ze1IHajNyVgyw4dny0zSg1pop1xSf
-	VpKjxiPWyNWm0mibkv6VNc9SslJaRMydCrJM/nKD8h1gCzsQtwmqa3rD4g8w2Iq/VDpqFr2BPHWJ2
-	baGTv2VaMG+DcmQ9oMg5YTptKKtcyt+ReRkjLy72uip7+6fLThiOE8i9OFtNiC8llj9Woc1CFUE9t
-	uxcVO94ayGVXEDOZrsUQ9QacGA49Pmn4g11P57HM/LIaNEh9GNsXAXRznxXcJLJWnxuLXfbRLNpWn
-	NzW5hqgw==;
+	bh=cnBurJ7zmT1evvY005qDgFpHdZ3WLhIUwmhdRCCTod8=; b=DUpyr6ARiWW0lJmeSa3TxqjK5v
+	/Q/x5Htu406ptOTyfoU9l7IYOO55XRZR96DEeumRbE57zBAWmW4ecX6AGt9WYyzUdP2uCIEZPvfBS
+	Epznbh6gCFfcK1ENpVZdCZhj7kANLCpDWztvmz14SwAAtFYemOJ60Gl0OlJLdMr7HT9WwvOg8PfIx
+	RP/DQARdQgbcVSujPqlxh2qV9ThkiZst02OLg96cGBYXb4hlSjUo7OlIfAkkXX7l6jhlwtNrR4Dz7
+	qFphBtHbL9cDVrg4/2eYE9kAYTIYyUBcHU+O16KFaXmfqgbQ/3uKQPTxP92/GgJAr8WkWbmlnIkBa
+	CB1NhMgg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRp28-0000000CRoX-1iD5;
-	Fri, 13 Nov 2026 11:01:29 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1xRp3c-0000000CS5t-0QB1;
+	Fri, 13 Nov 2026 11:03:00 +0000
+Received: from mail-ed1-x52c.google.com ([2a00:1450:4864:20::52c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRp25-0000000CRnh-2GjK
+	id 1xRp3Y-0000000CS4v-3z3M
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 11:01:27 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6b7221c0f2cso1584437a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:01:24 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794567683; cv=none;
+	Fri, 13 Nov 2026 11:02:59 +0000
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-6b408f2d936so1549122a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:02:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794567775; cv=none;
         d=google.com; s=arc-20260327;
-        b=d5klbOTo7dpvK3glSkSGgcs+4St7Hj7H0JLJtN4K4kS/nbK3LsY5xxFwzByw7l/+5b
-         5Z84V0HqYdslG8j7p3qeTP3gOhK0sLVfashq6WWxdMJcxTqDZ59QMqev7EtigmwrYbfv
-         2IuKfZipk6idahjJ8X+pBwtdY+rMV26KjeYwiycJyWMvmpamBVbB4I9Yb6242JCYfjLj
-         nY8LgbGpbBxin00Bm2+yXluNoNz04DHjZXToU5Rhi1uRwLjAitz6AcDwReCRuNkdyjRL
-         SUYgdiHjzIYLnBd3EhgUS5xPZbLY6RVRBKbCSWDVeDFhe+TpKLNofw1IqxqnrgoY2duY
-         g2Iw==
+        b=IFso/PPRdtMBDl9r+4JMtHlII26cue0ReqqN5gaqn+k8KTwtHaxCQp+vwtqnoaDFcA
+         DvhNNHFtxYChHXfooI8ECMLboF36ssAVbyiMuJUFxJtoEmqtAuZRS80cQZI5Hnc9Ey5a
+         m2IVsvdwD1K3PbpMEg0JUXq9kC1JKyap2rZpfruDkJDEB3vRZGlxaRb2sl8lxP43yk5D
+         sbzwaPji7Gp2AU5XKVBQNwO8lGnQPHSeUGe5etvtUSKx/HGhx6P+JyrPRYIKhANLiDds
+         I829BAl+XAMJckQrCRdR+UN1vJdu2KngUBNkC138XR3s7L3n1goCtZlgDhfWgRZbeaC5
+         MPyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=EhSLziMRwdiehgWLSf2hbf4dn4hmC+KU+DWMadGd+hk=;
-        fh=oKL36wDkOjdhqI7RXwvO8lIRfGYR6GbTGV8qcMA5c4M=;
-        b=HAIJ7yqtrc09l/vSI9zmn1IoI/BXpYuayDofBv+HeID+tQwmstrEOOZmQwOh4sD1RG
-         L69yCO1BNT3e1wK8rFVKhlEhuBVcbh0wYT+hPcXPAvW7PH6jKr+ZrvgYjn+SJ261LPNH
-         MYuc1yRhb8aqX8QTRNzlVHzNbCQaxnVUB0l1L2q1ouMq5wHprvFyGnd0KoY8pap6LClQ
-         xko7md6Kv+qxuVE+rubplok8rGG2z+EqpRYh7pAb7axKKnTA789hrm5csPzAkAKZppPk
-         59QmWcoZrHVlCtf/vczuNrrf/VU7pwSfE0734U8D83717DNh6uUj18XoiepAeavMVwtd
-         4hiQ==;
+        bh=cnBurJ7zmT1evvY005qDgFpHdZ3WLhIUwmhdRCCTod8=;
+        fh=txGt7Yf0slW0EFNkNI0fi1rCPT4WbHB7lmViZNZzjNo=;
+        b=fEpqgQgSAJWM0QH+zJDWEHa6Ysms9y4cNThREePa3sp+GYsp+MWiJ4jXPP04yNDzn/
+         cE83nhg2PDELFEA2lyuC9Jv7M+Sf6km7+R3n0NOQx3TmvIdUhU/Y1kaXYdD7NFuZ9Rec
+         GobOVjXpHOrYLxph+aTtkMZ1BPjHwJNdlLJsxJQQxfxbuXE/Qyw8Xb6Fk0RuPCAs6X8N
+         i80LumSuqMQNTPAAgJHZN2p3jCDeLaLImmvve3NL0UpuK+vrm75LIqXCqT/d4jbOnvpt
+         2L4ayzu2v4PM2xYjCs0oMJjtcboINDtRgL2Imxy4BEpySO4w16tKqw/BGlcqzDfjSdOy
+         0VWg==;
         darn=lists.infradead.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794567683; x=1795172483; darn=lists.infradead.org;
+        d=linaro.org; s=google; t=1794567775; x=1795172575; darn=lists.infradead.org;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=EhSLziMRwdiehgWLSf2hbf4dn4hmC+KU+DWMadGd+hk=;
-        b=hDCmT4Wh5aG5p1QIRH8PjMCYUPH5hca6RQdMe4XD2ljobkqI7RBOfzFPeZWnWYp1kb
-         vFeFWZ3eDeO04Dm6zrkXm5JIHPy0pB9W3aV+F2MrERH6mQ5JD27KRjw5C9wtZN9nYRBw
-         tUcZQOV32GR3VMl7IFK5A9bjKVYROjCTmHU6fHVsKUq4nojGNbNOnk7FeioAHdgsrkzj
-         Jji8LEvY5oPdv0NkatLk3xfBvt4gkRyV6lncctS36erOzx4CvY524LAmWBESp6m+JH6J
-         f7SVjXBFJaOvDtdww964///3k0/FpQs2aNSxKB2bMu9z7WezRYk5EiokylwqbGlQafXA
-         fd0A==
+        bh=cnBurJ7zmT1evvY005qDgFpHdZ3WLhIUwmhdRCCTod8=;
+        b=e2gq6NZ4eSSlU2bLK+iinQrXTP+qOVW3PaXhtnfKE2CDh4lw5XlQrzr3ydDPweM9lY
+         lDLesscEGWgwpqRAvmJcLLA/9CeTMlDLlq+DP17zJzHG7BLse/+cbZxDQ8M3optTPdi9
+         Lq6NbBwkqVBIEdGGThNFSNIqjPACJYcRGM2uBrAOSYG5TP22sXGXhdHfnSiEBae/iyWm
+         e48Y+YBb9/q9EZnUzlmAYbDh+1OjxqPywI81vCO/BT3O+EA3aECm1aJhbPRzx66hzE4O
+         iRPD/dBWaUQ/5xwaNlspV+emxojZ6FdNhF/FvqF5f8r03avOJtVyt3cdl9NlrhyD3Pwa
+         jIKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794567683; x=1795172483;
+        d=1e100.net; s=20260707; t=1794567775; x=1795172575;
         h=content-type:cc:to:subject:message-id:date:from:in-reply-to
          :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to:content-type;
-        bh=EhSLziMRwdiehgWLSf2hbf4dn4hmC+KU+DWMadGd+hk=;
-        b=S5DwmuxjM00lZPI1JWeFw4Y9SlI0rss8kctDcWxi391sc468woDpzGrDXkymQRZ/Dm
-         tI0gSd8d5lcRTX4oB/4Uzn0Fu0oRjkCnNQt779tMIGzqFVhc7aaAqAyYZLjE0QOJ5mDS
-         cjzRlvx47izif1xscffjMqd0/epKBDcU50OcBhqtRkVQU5ArKvkK6YmNhj1f4pN9tR8R
-         P45p0oit4JTrt4OhovBYJnqMIDwt9OnpRDVXIXnslTiDSbZ9MHwq5Qa5fRh5XjDwyWfW
-         FYlwzYQVn53k4DkYMki/in0O6vBqRnmuUU8jXM0kVPhOKuQ6avYEa9BArTrpXCS/TShT
-         q0fQ==
-X-Forwarded-Encrypted: i=1; AL+hErGtuKOztGZ7XJQ/WttmakYDGh+7ZbFI1+qNnP584qAQxXwZUdZ2Aa1JOqPWavFFSOcxRfzeYCuxFslwBfP5fVzG@lists.infradead.org
-X-Gm-Message-State: APuU4Z/K5azMwA2OvggrFMWFl1b8o+NNm1Ph55KygGSZgZ0eb+9Xk1kk
-	mR97rq4DtHyVp3eENbWWXfFftk52ndunfiQ0G18HJdp+ZGZwrav6Jl5pu1cQD/qKSV5bxgSPpmR
-	xhKnL4huQOb1JTQ2ZKkR23T/5Rty2EhmWnFy2Ambbkg==
-X-Gm-Gg: AYBFou19hRHQ/+fEHzPGUnUJjllFSPSnJCZgykgpLy8SAOfeyQPjBwgnjXYi0hyh9yJ
-	ru90ipKXTDrKMr2Mp80zS4YNcKEovKpNtcSsXXgeOHgfap7tdPr/t3BDjsqq6zWa9BiVCH3D9V2
-	hp+XKmyuZvi/Z56XSZrcFrxyt5Y2agfmNE+n91gDHWaS0V9DWk+GqR9RNnlcpNNAN6Gx1Guvc/c
-	++dJgQPIPGL2UFzXGh+cdLB0lx47X3YmUehIQq2UwhQ2wOmcrmLCsnmrTvPSyTBDiEyNdJwULVY
-	KeeBHTaNPo2ErlKteDOWTlUvah9pUht0kfmP1CplM5UD+Sx9Cg80ORrx8aExV0Qt8jAE+b8VJ5w
-	Y4Pv+H3im1QYWnfjXP2dgvDX811Hkp0gNhQRqAzpVQ9IeYMheeca3b3Ky1EBxwH/2zAGTgcW6DS
-	AVN9KlQVrs+suehCY=
-X-Received: by 2002:aa7:d1d0:0:b0:6b6:face:56ff with SMTP id
- 4fb4d7f45d1cf-6b7c0c1cecdmr1517334a12.33.1794567683121; Fri, 13 Nov 2026
- 03:01:23 -0800 (PST)
+        bh=cnBurJ7zmT1evvY005qDgFpHdZ3WLhIUwmhdRCCTod8=;
+        b=xeRETQZe4yaqltD7KXKYZ/RyIiSYtSjpYCix6EhHKTlxmzuebvmHqO7mfJ8lLjayQ9
+         qsz1OT/gQk8QnuvgCSay4QekyyIChElhqm0FRQg6tq3gKQ/VttdXez8MumzReA1l4/c3
+         NTfbpoITgF4zxV/CxpsPv2PAsq+V+xjM21Oee2Y5iVhsLxg8KmVLCNK+AVAoNRVGIk66
+         7ze5ffv75X04VzZGlU2vGF6vP7Pth1k8g3clbyIhGovsZI6ddjxohKye90OUCBF055OO
+         CxReQbpe/heAp/oNMWuhg3KWyB4/wG8aDZZFrkKoct5+KBKS+F0OD+EfMuLf7ppAgiM5
+         RYPg==
+X-Forwarded-Encrypted: i=1; AL+hErEh/gZZ/akLGWtVABshnIPGjryd9Z7cJQ47FVnhCxNzzCWePXLHzUZLMlvUQ6UvR9mX8BSLeghkCxdOB4xXl7Nn@lists.infradead.org
+X-Gm-Message-State: APuU4Z+Wj+lLVJqPWOiBcZVm/eU5joDZNFZ39yiGMj4qR7CL2KPK3Mlz
+	3ObwsYLZzQD62DgXEXZyiuyQUEjVDvlrNMpItVGzhrYrz8ec/uZUuIzo31bALgOd6D/kvRT8qfX
+	/+AC3cAV4y8TqGzNXkR3Izeye4tV3D7ikGiDjVGgiow==
+X-Gm-Gg: AYBFou3mDthECqBDfGQST6kXd6IB0Zv7ihBd/jks5rBjRXANUsjN0DpHpCYrtxc10qm
+	GRgDovgxg6fsdeWkjTksXA2ai/AKcEwX2KLRFSnWxGZrRdqPPlXdVNCnL77a+k9sD6tCzCdTgYI
+	sqo6J0BVOpR/QP85ZNjdjlM9zSk2YkMShtEhb/X5eq3NhUaL6+Hz2XMaL+tN/VMPMaKaaObeBRH
+	+DpWcdc9OtqAclzpx2lmBo9/36ph33v9hPgO3MH+amawyCc7LpzWJcXC49aqor/EhaNVdN5DIZI
+	Z31iVYaU4kWjbvIuFkXDlNnrW5RN8mknnvGEAWyEmUlxhEs378QlJQYuqzIFQ+CDLRCoNNb84n8
+	7uhmHsddW9S08DumCff1cyPpRi9vNvsBvGWaU8jBInrDq4+yEG6oi+ytP1xE53LivbrZb7w==
+X-Received: by 2002:a05:6402:13d1:b0:6b7:709f:85f with SMTP id
+ 4fb4d7f45d1cf-6b7c0c7fbb1mr1715682a12.36.1794567774860; Fri, 13 Nov 2026
+ 03:02:54 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CGME20261113104835epcas5p4771d9933265138321769ebe010ee7334@epcas5p4.samsung.com>
- <20261113110612.3265841-1-raghav.s@samsung.com> <973576304.21794567482719.JavaMail.epsvc@epcpadp2new>
-In-Reply-To: <973576304.21794567482719.JavaMail.epsvc@epcpadp2new>
+References: <CGME20261113104841epcas5p2823126ce22f44cc98fcbdf94403c32e3@epcas5p2.samsung.com>
+ <20261113110612.3265841-1-raghav.s@samsung.com> <1771243284.81794567483188.JavaMail.epsvc@epcpadp2new>
+In-Reply-To: <1771243284.81794567483188.JavaMail.epsvc@epcpadp2new>
 From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 13 Nov 2026 11:01:11 +0000
-X-Gm-Features: AclHuK_4eW2y5x1TJUXLIaUHvbg5Y5qQ1j28UjXn0i-1LLBtpN9OCJGbji06uaU
-Message-ID: <CADrjBPpwrT=njcZZjprSt9UHdGTO6Zyf1Bg3j8PWW2uqcJXeYQ@mail.gmail.com>
-Subject: Re: [PATCH v3 02/14 RESEND] dt-bindings: clock: exynos8855: add top &
- peric clock definitions
+Date: Fri, 13 Nov 2026 11:02:43 +0000
+X-Gm-Features: AclHuK-cUPGFMqYQ4aV0p1o7MZtl5WXavbyl1lomUd6smnM_F6LSvDHUWLAhm10
+Message-ID: <CADrjBPq0nD1ENZySUVZvG8gWGpYrf1464MMau9VswjfosHU6Wg@mail.gmail.com>
+Subject: Re: [PATCH v3 04/14 RESEND] dt-bindings: clock: exynos8855: add hsi
+ clock definitions
 To: Raghav Sharma <raghav.s@samsung.com>
 Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
 	alim.akhtar@samsung.com, sboyd@kernel.org, bmasney+clk@redhat.com, 
@@ -112,8 +111,8 @@ Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
 	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_030125_736280_7B29FDD8 
-X-CRM114-Status: GOOD (  20.43  )
+X-CRM114-CacheID: sfid-20261113_030257_976785_EDEFE16E 
+X-CRM114-Status: GOOD (  13.86  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,7 +134,7 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 On Fri, 13 Nov 2026 at 10:58, Raghav Sharma <raghav.s@samsung.com> wrote:
 >
-> Add device tree clock binding definitions for CMU_TOP & CMU_PERIC
+> Add device tree clock binding definitions for CMU_HSI
 >
 > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
@@ -143,363 +142,66 @@ On Fri, 13 Nov 2026 at 10:58, Raghav Sharma <raghav.s@samsung.com> wrote:
 
 Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
->  .../clock/samsung,exynos8855-clock.yaml       | 133 +++++++++++
->  .../dt-bindings/clock/samsung,exynos8855.h    | 206 ++++++++++++++++++
->  2 files changed, 339 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
->  create mode 100644 include/dt-bindings/clock/samsung,exynos8855.h
+>  .../clock/samsung,exynos8855-clock.yaml       | 21 +++++++++++++++++++
+>  .../dt-bindings/clock/samsung,exynos8855.h    |  8 +++++++
+>  2 files changed, 29 insertions(+)
 >
 > diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-> new file mode 100644
-> index 000000000000..486b7347ad44
-> --- /dev/null
+> index 53fc8040e173..21928235d131 100644
+> --- a/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
 > +++ b/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/samsung,exynos8855-clock.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Samsung Exynos 8855 SoC clock controller
-> +
-> +maintainers:
-> +  - Raghav Sharma <raghav.s@samsung.com>
-> +
-> +description: |
-> +  Exynos 8855 clock controller is comprised of several CMU units, generating
-> +  clocks for different domains. Those CMU units are modeled as separate device
-> +  tree nodes, and might depend on each other. Root clocks in that clock tree are
-> +  two external clocks:: OSCCLK/XTCXO (76.8 MHz) and RTCCLK/XrtcXTI (32768 Hz).
-> +  The external OSCCLK must be defined as fixed-rate clock in dts.
-> +
-> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
-> +  dividers; all other clocks of function blocks (other CMUs) are usually
-> +  derived from CMU_TOP.
-> +
-> +  Each clock is assigned an identifier and client nodes can use this identifier
-> +  to specify the clock which they consume. All clocks available for usage
-> +  in clock consumer nodes are defined as preprocessor macros in
-> +  'include/dt-bindings/clock/samsung,exynos8855.h' header.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - samsung,exynos8855-cmu-peric
-> +      - samsung,exynos8855-cmu-top
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  samsung,sysreg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to system registers interface.
-> +
-> +allOf:
+> @@ -28,6 +28,7 @@ description: |
+>  properties:
+>    compatible:
+>      enum:
+> +      - samsung,exynos8855-cmu-hsi
+>        - samsung,exynos8855-cmu-peric
+>        - samsung,exynos8855-cmu-peris
+>        - samsung,exynos8855-cmu-top
+> @@ -52,6 +53,26 @@ properties:
+>        Phandle to system registers interface.
+>
+>  allOf:
 > +  - if:
 > +      properties:
 > +        compatible:
 > +          contains:
-> +            const: samsung,exynos8855-cmu-peric
+> +            const: samsung,exynos8855-cmu-hsi
 > +
 > +    then:
 > +      properties:
 > +        clocks:
 > +          items:
 > +            - description: External reference clock (76.8 MHz)
-> +            - description: CMU_PERIC NOC clock (from CMU_TOP)
-> +            - description: CMU_PERIC MMC_CARD clock (from CMU_TOP)
-> +            - description: CMU_PERIC IP clock (from CMU_TOP)
+> +            - description: CMU_HSI NOC clock (from CMU_TOP)
+> +            - description: CMU_HSI UFS_EMBD clock (from CMU_TOP)
 > +
 > +        clock-names:
 > +          items:
 > +            - const: oscclk
 > +            - const: bus
-> +            - const: mmc_card
-> +            - const: ip
+> +            - const: ufs_embd
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynos8855-cmu-top
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (76.8 MHz)
-> +
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynos8855-cmu-top
-> +    then:
-> +      properties:
-> +        samsung,sysreg: false
-> +    else:
-> +      required:
-> +        - samsung,sysreg
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/samsung,exynos8855.h>
-> +
-> +    cmu_peric0: clock-controller@15400000 {
-> +        compatible = "samsung,exynos8855-cmu-peric";
-> +        reg = <0x15400000 0x8000>;
-> +        #clock-cells = <1>;
-> +
-> +        clocks = <&xtcxo>,
-> +                 <&cmu_top CLKCMU_DOUT_PERIC_NOC>,
-> +                 <&cmu_top CLKCMU_DOUT_PERIC_MMC_CARD>,
-> +                 <&cmu_top CLKCMU_DOUT_PERIC_IP>;
-> +        clock-names = "oscclk",
-> +                      "bus",
-> +                      "mmc_card",
-> +                      "ip";
-> +        samsung,sysreg = <&sysreg_peric>;
-> +    };
-> +
-> +...
+>    - if:
+>        properties:
+>          compatible:
 > diff --git a/include/dt-bindings/clock/samsung,exynos8855.h b/include/dt-bindings/clock/samsung,exynos8855.h
-> new file mode 100644
-> index 000000000000..cd445bb45070
-> --- /dev/null
+> index 5d8b38a744b5..67cd97d8fab8 100644
+> --- a/include/dt-bindings/clock/samsung,exynos8855.h
 > +++ b/include/dt-bindings/clock/samsung,exynos8855.h
-> @@ -0,0 +1,206 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2026 Samsung Electronics Co., Ltd.
-> + * Author: Raghav Sharma <raghav.s@samsung.com>
-> + *
-> + * Device Tree binding constants for Exynos 8855 clock controller.
-> + */
+> @@ -214,4 +214,12 @@
+>  #define CLK_GOUT_WDT0_PERIS                8
+>  #define CLK_GOUT_WDT1_PERIS                9
+>
+> +/* CMU_HSI */
+> +#define CLK_MOUT_HSI_NOC_USER              1
+> +#define CLK_MOUT_HSI_UFS_EMBD_USER         2
+> +#define CLK_GOUT_CMU_HSI                   3
+> +#define CLK_GOUT_SYSREG_HSI                4
+> +#define CLK_GOUT_UFS_EMBD_ACLK_HSI         5
+> +#define CLK_GOUT_UFS_EMBD_UNIPRO_HSI       6
 > +
-> +#ifndef _DT_BINDINGS_CLOCK_EXYNOS8855_H
-> +#define _DT_BINDINGS_CLOCK_EXYNOS8855_H
-> +
-> +/* CMU_TOP  */
-> +#define FOUT_SHARED0_PLL                  1
-> +#define FOUT_SHARED1_PLL                  2
-> +#define FOUT_SHARED2_PLL                  3
-> +#define FOUT_SHARED3_PLL                  4
-> +#define FOUT_SHARED4_PLL                  5
-> +#define FOUT_MMC_PLL                      6
-> +#define MOUT_SHARED0_PLL                  7
-> +#define MOUT_SHARED1_PLL                  8
-> +#define MOUT_SHARED2_PLL                  9
-> +#define MOUT_SHARED3_PLL                  10
-> +#define MOUT_SHARED4_PLL                  11
-> +#define MOUT_MMC_PLL                      12
-> +#define CLKCMU_MOUT_PERIC_NOC              13
-> +#define CLKCMU_MOUT_PERIC_MMC_CARD         14
-> +#define CLKCMU_MOUT_PERIC_IP               15
-> +#define CLKCMU_DOUT_PERIC_NOC              16
-> +#define CLKCMU_DOUT_PERIC_MMC_CARD         17
-> +#define CLKCMU_DOUT_PERIC_IP               18
-> +#define DOUT_SHARED0_DIV1                 19
-> +#define DOUT_SHARED0_DIV2                 20
-> +#define DOUT_SHARED0_DIV3                 21
-> +#define DOUT_SHARED0_DIV4                 22
-> +#define DOUT_SHARED1_DIV1                 23
-> +#define DOUT_SHARED1_DIV2                 24
-> +#define DOUT_SHARED1_DIV3                 25
-> +#define DOUT_SHARED1_DIV4                 26
-> +#define DOUT_SHARED2_DIV1                 27
-> +#define DOUT_SHARED2_DIV2                 28
-> +#define DOUT_SHARED2_DIV3                 29
-> +#define DOUT_SHARED2_DIV4                 30
-> +#define DOUT_SHARED3_DIV1                 31
-> +#define DOUT_SHARED3_DIV2                 32
-> +#define DOUT_SHARED3_DIV3                 33
-> +#define DOUT_SHARED3_DIV4                 34
-> +#define DOUT_SHARED4_DIV1                 35
-> +#define DOUT_SHARED4_DIV2                 36
-> +#define DOUT_SHARED4_DIV3                 37
-> +#define DOUT_SHARED4_DIV4                 38
-> +#define FOUT_MMC_PLL_DIV1                  39
-> +#define FOUT_MMC_PLL_DIV2                  40
-> +#define CLKCMU_MOUT_PERIS_GIC              41
-> +#define CLKCMU_MOUT_PERIS_NOC              42
-> +#define CLKCMU_DOUT_PERIS_GIC              43
-> +#define CLKCMU_DOUT_PERIS_NOC              44
-> +#define FOUT_MMC_PLL_CLKOUT_DIV2           45
-> +#define CLKCMU_MOUT_HSI_NOC                46
-> +#define CLKCMU_MOUT_HSI_UFS_EMBD           47
-> +#define CLKCMU_DOUT_HSI_NOC                48
-> +#define CLKCMU_DOUT_HSI_UFS_EMBD           49
-> +#define CLKCMU_MOUT_USB_NOC                50
-> +#define CLKCMU_MOUT_USB_USB20DRD           51
-> +#define CLKCMU_DOUT_USB_NOC                52
-> +#define CLKCMU_DOUT_USB_USB20DRD           53
-> +#define FOUT_MIF_SWITCH_PLL               54
-> +#define MOUT_MIF_SWITCH_PLL               55
-> +#define FOUT_MMC_PLL_DIV3                  56
-> +#define FOUT_MMC_PLL_DIV4                  57
-> +#define FOUT_MIF_SWITCH_PLL_DIV1           58
-> +#define FOUT_MIF_SWITCH_PLL_DIV2           59
-> +#define FOUT_MIF_SWITCH_PLL_DIV3           60
-> +#define FOUT_MIF_SWITCH_PLL_DIV4           61
-> +#define CLKCMU_MOUT_AUD_CPU                62
-> +#define CLKCMU_MOUT_AUD_NOC                63
-> +#define CLKCMU_MOUT_CPUCL0_SWITCH          64
-> +#define CLKCMU_MOUT_CPUCL0_NOCP            65
-> +#define CLKCMU_MOUT_DSU_SWITCH             66
-> +#define CLKCMU_MOUT_CPUCL1_SWITCH          67
-> +#define CLKCMU_MOUT_CIS_CLK0               68
-> +#define CLKCMU_MOUT_CIS_CLK1               69
-> +#define CLKCMU_MOUT_CIS_CLK2               70
-> +#define CLKCMU_MOUT_CIS_CLK3               71
-> +#define CLKCMU_MOUT_CIS_CLK4               72
-> +#define CLKCMU_MOUT_CMU_BOOST_TOP          73
-> +#define CLKCMU_MOUT_CMU_BOOST              74
-> +#define CLKCMU_MOUT_CMU_BOOST_CPU          75
-> +#define CLKCMU_MOUT_CMU_BOOST_MIF0         76
-> +#define CLKCMU_MOUT_CSIS_NOC               77
-> +#define CLKCMU_MOUT_CSTAT_NOC              78
-> +#define CLKCMU_MOUT_CSTAT_BYRP             79
-> +#define CLKCMU_MOUT_DPU_NOC                80
-> +#define CLKCMU_MOUT_G3DCORE_SWITCH         81
-> +#define CLKCMU_MOUT_M2M_NOC                82
-> +#define CLKCMU_MOUT_M2M_JPEG               83
-> +#define CLKCMU_MOUT_M2M_GDC                84
-> +#define CLKCMU_MOUT_MIF1_NOCP              85
-> +#define CLKCMU_MOUT_MFC_NOC                86
-> +#define CLKCMU_MOUT_MIF0_NOCP              87
-> +#define CLKCMU_MOUT_NOCL0_NOC              88
-> +#define CLKCMU_MOUT_NOCL1A_NOC             89
-> +#define CLKCMU_MOUT_RGBP_NOC               90
-> +#define CLKCMU_MOUT_YUVP_NOC               91
-> +#define CLKCMU_MOUT_ALIVE_NOC              92
-> +#define CLKCMU_MOUT_CSIS_DCPHY             93
-> +#define CLKCMU_MOUT_CSIS_OIS               94
-> +#define CLKCMU_MOUT_ICPU_NOCD_0            95
-> +#define CLKCMU_MOUT_ICPU_NOCD_1            96
-> +#define CLKCMU_MOUT_GNPU0_NOC              97
-> +#define CLKCMU_MOUT_GNPU0_XMAA             98
-> +#define CLKCMU_MOUT_SDMA_NOC               99
-> +#define CLKCMU_MOUT_DNC_HTU               100
-> +#define CLKCMU_MOUT_DNC_NOC               101
-> +#define CLKCMU_MOUT_PSP_NOC               102
-> +#define CLKCMU_MOUT_G3D_NOCP              103
-> +#define CLKCMU_MOUT_USI_NOC               104
-> +#define CLKCMU_MOUT_USI_IP                105
-> +#define CLKCMU_MOUT_CPUCL0_DBG_NOC        106
-> +#define CLKCMU_MOUT_BOOST_RCO             107
-> +#define CLKCMU_MOUT_MIF0_SWITCH           108
-> +#define CLKCMU_MOUT_MIF1_SWITCH           109
-> +#define CLKCMU_MOUT_NOCL1B_NOC            110
-> +#define CLKCMU_MOUT_CPUCL2_SWITCH         111
-> +#define CLKCMU_MOUT_CMU_BOOST_MIF1        112
-> +#define CLKCMU_MOUT_CSTAT_MCSC            113
-> +#define CLKCMU_MOUT_G3D_HTU               114
-> +#define CLKCMU_DOUT_AUD_CPU               115
-> +#define CLKCMU_DOUT_AUD_NOC               116
-> +#define CLKCMU_DOUT_CPUCL0_SWITCH         117
-> +#define CLKCMU_DOUT_CPUCL0_NOCP           118
-> +#define CLKCMU_DOUT_DSU_SWITCH            119
-> +#define CLKCMU_DOUT_CPUCL1_SWITCH         120
-> +#define CLKCMU_DOUT_CIS_CLK0              121
-> +#define CLKCMU_DOUT_CIS_CLK1              122
-> +#define CLKCMU_DOUT_CIS_CLK2              123
-> +#define CLKCMU_DOUT_CIS_CLK3              124
-> +#define CLKCMU_DOUT_CIS_CLK4              125
-> +#define CLKCMU_DOUT_CMU_BOOST_TOP         126
-> +#define CLKCMU_DOUT_CMU_BOOST             127
-> +#define CLKCMU_DOUT_CMU_BOOST_CPU         128
-> +#define CLKCMU_DOUT_CMU_BOOST_MIF0        129
-> +#define CLKCMU_DOUT_CSIS_NOC              130
-> +#define CLKCMU_DOUT_CSTAT_NOC             131
-> +#define CLKCMU_DOUT_CSTAT_BYRP            132
-> +#define CLKCMU_DOUT_DPU_NOC               133
-> +#define CLKCMU_DOUT_G3DCORE_SWITCH        134
-> +#define CLKCMU_DOUT_M2M_NOC               135
-> +#define CLKCMU_DOUT_M2M_JPEG              136
-> +#define CLKCMU_DOUT_M2M_GDC               137
-> +#define CLKCMU_DOUT_MIF1_NOCP             138
-> +#define CLKCMU_DOUT_MFC_NOC               139
-> +#define CLKCMU_DOUT_MIF0_NOCP             140
-> +#define CLKCMU_DOUT_NOCL0_NOC             141
-> +#define CLKCMU_DOUT_NOCL1A_NOC            142
-> +#define CLKCMU_DOUT_RGBP_NOC              143
-> +#define CLKCMU_DOUT_YUVP_NOC              144
-> +#define CLKCMU_DOUT_ALIVE_NOC             145
-> +#define CLKCMU_DOUT_CSIS_DCPHY            146
-> +#define CLKCMU_DOUT_CSIS_OIS              147
-> +#define CLKCMU_DOUT_ICPU_NOCD_0           148
-> +#define CLKCMU_DOUT_ICPU_NOCD_1           149
-> +#define CLKCMU_DOUT_GNPU0_NOC             150
-> +#define CLKCMU_DOUT_GNPU0_XMAA            151
-> +#define CLKCMU_DOUT_SDMA_NOC              152
-> +#define CLKCMU_DOUT_DNC_HTU               153
-> +#define CLKCMU_DOUT_DNC_NOC               154
-> +#define CLKCMU_DOUT_PSP_NOC               155
-> +#define CLKCMU_DOUT_G3D_NOCP              156
-> +#define CLKCMU_DOUT_USI_NOC               157
-> +#define CLKCMU_DOUT_USI_IP                158
-> +#define CLKCMU_DOUT_CPUCL0_DBG_NOC        159
-> +#define CLKCMU_DOUT_NOCL1B_NOC            160
-> +#define CLKCMU_DOUT_CPUCL2_SWITCH         161
-> +#define CLKCMU_DOUT_CMU_BOOST_MIF1        162
-> +#define CLKCMU_DOUT_CSTAT_MCSC            163
-> +#define CLKCMU_DOUT_G3D_HTU               164
-> +
-> +/* CMU_PERIC */
-> +#define CLK_MOUT_PERIC_IP_USER             1
-> +#define CLK_MOUT_PERIC_MMC_CARD_USER       2
-> +#define CLK_MOUT_PERIC_NOC_USER            3
-> +#define CLK_MOUT_PERIC_I2C                 4
-> +#define CLK_MOUT_PERIC_UART_DBG            5
-> +#define CLK_MOUT_PERIC_USI00               6
-> +#define CLK_MOUT_PERIC_USI01               7
-> +#define CLK_MOUT_PERIC_USI02               8
-> +#define CLK_MOUT_PERIC_USI03               9
-> +#define CLK_MOUT_PERIC_USI04               10
-> +#define CLK_MOUT_PERIC_USI09_USI_OIS       11
-> +#define CLK_MOUT_PERIC_USI10_USI_OIS       12
-> +#define CLK_DOUT_PERIC_NOCP                13
-> +#define CLK_DOUT_PERIC_UART_DBG            14
-> +#define CLK_DOUT_PERIC_USI00_USI           15
-> +#define CLK_DOUT_PERIC_USI01_USI           16
-> +#define CLK_DOUT_PERIC_USI02_USI           17
-> +#define CLK_DOUT_PERIC_USI03_USI           18
-> +#define CLK_DOUT_PERIC_USI04_USI           19
-> +#define CLK_DOUT_PERIC_USI09_USI_OIS       20
-> +#define CLK_DOUT_PERIC_USI10_USI_OIS       21
-> +#define CLK_DOUT_PERIC_USI_I2C             22
-> +#define CLK_GOUT_CMU_PERIC                 23
-> +#define CLK_GOUT_SYSREG_PERIC              24
-> +#define CLK_GOUT_UART_DBG_PERIC            25
-> +#define CLK_GOUT_USI_PERIC                 26
-> +
-> +#endif /* _DT_BINDINGS_CLOCK_EXYNOS8855_H */
+>  #endif /* _DT_BINDINGS_CLOCK_EXYNOS8855_H */
 > --
 > 2.34.1
 >
