@@ -2,84 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD66606A880
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55BB8606A880
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:11:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FQRIisWM;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.a=rsa-sha256 header.s=mchp header.b=LfgBZhML
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=j9cdj8Zz;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VHMSLTL+
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:CC:
-	Subject:To:From:Message-ID:Date:Content-Type:Content-Transfer-Encoding:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=j62tYvTCL3OY1v0AvDAlDk7Ai4ZdN74KnfRG5/OoDtU=; b=FQRIisWMsAoDXT
-	unRgFPlXF+bLuO//bDbY0ptvipEX4MbehcZZMV3+/rdLf8plDmjg4BaZKRW9/0E0GZ2j/F14/uRZv
-	1paQOJMMcTt6PcriBGow2hmMCNRDJq37FPtUa5zlJRY6BuPChezXk9joqGU5tdFZk9tGEHATzhtZC
-	dzG4IU0EIaxNpugPC8CoFpZryMldukDrYHl9Dz8BEPKzRkVDdL7Gkvzq4xrpr8F7kybbrclfTZIJv
-	3n5aqvneZ6rP/0ePqXw23AJ8B87Bh8mvcj/kG0gBRP8R8lJ47gEYh/kd3wMBgVQ4Tx83tqJsEm0wC
-	UdAh6do+Y3lAbzpUrcTA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=5tNehFBJ33R0z8lfodFC1+DglDViXOEHspTEflqBg3Y=; b=j9cdj8Zz6Gb0x7HQDj03kY5/tk
+	ZgZx9uF6QxRAuKzfW6BOaQfqgFHI2VcWx94RfHEfbLfbHXoo2JPMGbakrqPFp2C6/52AyimgGNqBe
+	SPexT6HPFONcNQB9wtbdVdsNxfcCmEYm9bLiyfPDoiS2gm/hXuRJ7kK3b2kaqKYW+GYREeAH9g1Uj
+	Pajd9c65yJmYow7cwIKTVuSUI+jQPMbZImUzGalezOc5d4xaoMYFQG/O4dYVHoP/ofLFOoWDODCUy
+	djOLR8IxSTAR6Qjbt/HNB3Tqtcon4Ftz3ca/37m6Y8MpMxsCNr9Ritvp/2SGZt5O6OrgPDrKSZVRF
+	qA4uoVaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRoDz-0000000CJ7P-1P7B;
-	Fri, 13 Nov 2026 10:09:39 +0000
-Received: from esa.microchip.iphmx.com ([68.232.154.123])
+	id 1xRoFj-0000000CJSA-0KPk;
+	Fri, 13 Nov 2026 10:11:27 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRoDw-0000000CJ6O-2bKR
+	id 1xRoFg-0000000CJRr-25bd
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 10:09:37 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1794564584; x=1826100584;
-  h=mime-version:content-transfer-encoding:date:message-id:
-   from:to:subject:cc:references:in-reply-to;
-  bh=aGiLs5yg7FQ0TEEB1cEWlhJ5ZGG2wgnap42vcQfu90M=;
-  b=LfgBZhMLZWHP6x7AwySxgXW3D3e/T6eVA/CUFSSgQ9IYTVwVsA1Bq0p0
-   gbtX4zPJIUFSOAuloz967uu2PxYCbSBqZa+LnLPPW7qOPsem0ynAk/i8K
-   Z2MBzJzw686zDye7J1S2bEDCFhtjJ5XnBIr5vJzOTl2UWArgUslKqfud6
-   dX8SMOL2LLdDLxl5fuPtjiuRn4/44kjqI/F+T10z+RliNC3eBVxNge41s
-   sp1YGXwqregkFYwntI11aBT8tDSlSPAIlTpEuk1592nIthEvBj5l+kqSQ
-   Lc2DCEJGbGy6M1SCsLn7eQUGkVe0t4RSksq9LQVyY11tmkgmkharpMgVX
-   g==;
-X-CSE-ConnectionGUID: G4RDakIhRGiom2dj40ZyqA==
-X-CSE-MsgGUID: KzZ/FC9rTfuDMaz5LyYbrg==
-X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
-   d="scan'208";a="66700852"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2026 03:09:42 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.56; Fri, 13 Nov 2026 03:09:34 -0700
-Received: from localhost (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.58 via Frontend
- Transport; Fri, 13 Nov 2026 03:09:34 -0700
+	Fri, 13 Nov 2026 10:11:24 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id D6D7262671;
+	Fri, 13 Nov 2026 10:11:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C54F61F000C5;
+	Fri, 13 Nov 2026 10:11:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794564683;
+	bh=5tNehFBJ33R0z8lfodFC1+DglDViXOEHspTEflqBg3Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=VHMSLTL+CGbJJ2JqEzecMys5HgjhxI4zl63jUdcIScw8CEURu7pAKKL1RyX+0pAUn
+	 nHtX/spyshS/I681BqHx2CfO0LOxpl5WfoSEcXRkitMHawDpl1EKB0BM8F2INP0z+c
+	 kfUTsAG48m2826AxPUIw5Lvr+4LDBoQlQklRo9uozv11QOfwwE45jSqInT6dRAcYFa
+	 QhWRa6GN8jFY43/lZ1EyGI04P/hLCOe7Uw2oI14YfBzweuRAa1SXxk6q2Ihpj3EjCP
+	 lAv3ARVaxLVBKKKA+9hFK7dMIsNC7MMe/tlVPwxrfYfe33dXqwp7Xt9d3gRhBzZSuQ
+	 ggRHW+FB1mMgg==
+Date: Fri, 13 Nov 2026 11:11:20 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lukasz Majewski <lukma@nabladev.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Daniel Baluta <daniel.baluta@nxp.com>, 
+	Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: Add National lm77
+ temperature sensor
+Message-ID: <20261113-roaring-relaxed-oryx-5cfa1e@quoll>
+References: <20261112163703.3358164-1-lukma@nabladev.com>
+ <20261112163703.3358164-2-lukma@nabladev.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Fri, 13 Nov 2026 11:09:32 +0100
-Message-ID: <DMU01RHMAO2W.R0WIEEHWHKZ5@microchip.com>
-From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
-	<jensemil.schulzostergaard@microchip.com>
-To: Mark Brown <broonie@kernel.org>,
-	=?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
-	<jensemil.schulzostergaard@microchip.com>
-Subject: Re: [PATCH] spi: atmel: poll short PIO transfers
-CC: Ryan Wanner <ryan.wanner@microchip.com>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	<linux-spi@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20261112-spi-atmel-poll-short-pio-transfers-v1-1-240ccc868cc3@microchip.com> <179451432977.339049.8591158302502636785.b4-review@b4>
-In-Reply-To: <179451432977.339049.8591158302502636785.b4-review@b4>
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_020936_773604_4A47FE79 
-X-CRM114-Status: GOOD (  20.96  )
-X-Spam-Score: -4.4 (----)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261112163703.3358164-2-lukma@nabladev.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -90,67 +74,21 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu Nov 12, 2026 at 9:12 PM CET, Mark Brown wrote:
->> Every PIO transfer enables the controller interrupt and sleeps in
->> wait_for_completion_timeout() until the interrupt handler has drained th=
-e
->> receive data. For a transfer of a few bytes, the interrupt, the
->> completion and the two context switches take several times longer than
->> the transfer on the wire. Devices that do their register IO over SPI,
->> such as SPI attached Ethernet switches, issue one message of a few short
->> transfers per register access, so this overhead dominates their register
->> access time.
->
->> Busy-wait on the status register instead of enabling the interrupt when
->> the transfer is estimated to take less than polling_limit_us, 30 us by
->> default, as spi-imx does. The estimate uses the effective clock rate and
->
-> How big is the FIFO?
->
+On Thu, Nov 12, 2026 at 05:37:02PM +0100, Lukasz Majewski wrote:
+> Add "national,lm77" as compatible for the National (now TI) LM77
+> digital I2C temperature sensor.
 
-It depends on the SoC. The SPI in lan966x, lan969x and sama7 has a 32
-data FIFO, sam9x60 and sam9x7 have 16, and sama5d2 has 16 or 32 depending
-on the instance. The older parts (sam9x5, sama5d3, sama5d4 and earlier)
-have none and take one interrupt per word.
+Are you sure this is a trivial device, not like LM75? No interrupts, no
+VS supply? Datasheet disagrees.
 
->> the word delay. Setting the module parameter to 0 disables polling.
->
-> If this is dubious enough to require the module parameter we shouldn't
-> be doing this.  Most likely it's perfectly sensible and we should just
-> do it as standard, other drivers don't make this optional.  If we do
-> have a parameter it needs to be documented.
->
+Best regards,
+Krzysztof
 
-I will drop the parameter in the next version and poll below a fixed 30
-us.
-
->> @@ -725,6 +736,9 @@ static void atmel_spi_next_xfer_fifo(struct spi_cont=
-roller *host,
->> =20
->>  	dev_vdbg(host->dev.parent, "atmel_spi_next_xfer_fifo\n");
->> =20
->> +	if (as->poll)
->> +		spi_writel(as, IDR, SPI_BIT(RXFTHF) | SPI_BIT(OVRES));
->
-> We should ensure there's no interrupt handler running or that could run
-> in future, especially with PREEMPT_RT which puts everything into a
-> thread.  If we timed out a transfer then an interrupt could be
-> delivered while we're polling and try to also process things.  A lock
-> while updating the flag and checking the flag before doing anything in
-> the interrupt would probably do the trick.
-
-Done as you suggest in v2. The poll flag is set and the interrupts are
-masked in the same locked section before the transfer starts. The PIO
-interrupt handler takes the lock before it reads the status register and
-returns IRQ_NONE without touching the controller while the flag is set.
-
-Thanks,
-Emil
 
