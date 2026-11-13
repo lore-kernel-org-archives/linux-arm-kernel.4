@@ -2,117 +2,91 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77C2D606A327
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D134606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:32:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gc4DxsFs;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=N3TOIlXg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UL5Bbdxw;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nDHtOsaW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=pw/GtRqnRmkmoV0EVd3bZWIv5BPfPAggSs7FVXENh7M=; b=gc4DxsFsvqNWGluVrU5KMPW/Jm
-	8kMgPQjpyrZJ0K+TjJxOvJsOQ7BVIuHiiWXn/QMUzAnuCONbxN9vcEPJzsMZsbNp+Wq+PCG3Vqoj7
-	Y68RXdMRecqDaKXAJkkTequDAWqsHo6S5lUfXP/tgvI8SoKlDcZrdQHbcpYdobuiSrOsTjcRtTLw8
-	Vy/R23YKVB0G57unN46hMOyErItX1KbtOZsOxUup9d58pbV7pvFqOW7Cq3X+H1wG3q5VrWy9CHG4W
-	Br0+5pnuL8IsukdHfrc1A1pu+4Bcuimol81fceQEC8bMDxUmFo3s0LPccji7NGH3eNUb7KNkVZ97g
-	AxmINWSA==;
+	bh=U6jYZ+Xb2RUTQwwnMpQL3qOxWFKiJS39xLrqJeDZ5fA=; b=UL5Bbdxw4ZYfXgKqAWPULH1KXy
+	ajUbKYjVh6ryk2USRa5qs1F6yumL5FEuzfq2z12bvQ2eFDLH+u56Hnyi+hLw/BMfY1YJNocz6Y42o
+	Q41OHWZ48cFcs2xYZjSvH+d/dpiBz5y6uESzDi8v9p1UbV+z7fCloQYUSOO2oDPXynUPY+JS4yCI3
+	3fV9vPDDGZNFxuGaTepDsSrWtFRxGC2/skejsOT+Bkh60nlkgZbbBd2fk3i3jK6xWgviCOykiS3p2
+	JiwDqIyux5v+WVpsZPcpxJ85BosMt9QwE7Wv2jGKTqTySGhoXNlRaAARbpnHf/cy1zDwnbuXzTL/K
+	lG8jWMLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRx0B-0000000EBp3-2Imt;
-	Fri, 13 Nov 2026 19:31:59 +0000
-Received: from mail-yw1-x1132.google.com ([2607:f8b0:4864:20::1132])
+	id 1xRx0k-0000000EBwf-3Hz8;
+	Fri, 13 Nov 2026 19:32:34 +0000
+Received: from mgamail.intel.com ([198.175.65.15])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwzv-0000000EBnN-3QBm
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 19:31:51 +0000
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-8b30cbfa628so14054417b3.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:31:43 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794598302; cv=none;
-        d=google.com; s=arc-20260327;
-        b=ie2Q0LbDpzYN+uaC62yHuGxs8quHm44uZUaRnENBPy1TOJqn7hpyCfpn/yXzbJprOc
-         jpw496u+5CGS1kh3caruiDBhvqNViD2jJif/n1lm2HG3CFCZ+ylTvj2vAKqvzNQRDMNC
-         hUX17MtKiQBSCYhIFRbSjyn3P07ALRXOb2ITUBu7v/a8j5FVowdnl64RV8/hThr6qyJ1
-         sG4QkwXMxNB/s9GBhwDiusu9d52P6MyBaoZ/as5FAH9ZM6x3m+59xxrNY+dAnuvBIeAN
-         s4LrtnK8ppbkpjhxsRCrdZKCuD5zDk1pEjFTAv4xlNsdYG/gA+Fgp0VuXhrnBu06ddaT
-         mnjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=pw/GtRqnRmkmoV0EVd3bZWIv5BPfPAggSs7FVXENh7M=;
-        fh=PyPxLUcuXh2piaXLP9OkrmamOoJWd//ohw0xkbYbovA=;
-        b=S0U06kFAMpRj0gBoTfnobXVdObHU0ZqhYZeaYjIBizJtrhZdmHwY3Eo9mQSGMtpLhP
-         4sqCRx21l3LQ2gBQhoeMgq3eMaxgEeuJXUYMIFpkejr3rx5rJ9+Bgj/22Bv3d1bpjx9w
-         GGdnie8e/hdKnlI/AAf+CGQeBtJ9BEfqZq0HzVlRYhqqqBET8zZiNDhLVANdjRCaDU9s
-         cRGPW5Ys4Iq+x3XsPl5zBJfrSb/K+Ckq6uyONyVGTafaLApWvf4oC0cXKiHCQmG/gTXH
-         NSGnYdXbRziDtJFoCZe8wzh2OH/799uoI3MxbM1alNHCxdOgHDnVdunJSKN/678BcBCQ
-         SOtA==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794598302; x=1795203102; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=pw/GtRqnRmkmoV0EVd3bZWIv5BPfPAggSs7FVXENh7M=;
-        b=N3TOIlXgRlFDDL320LmNAJxd6YdeJ3ttDpSuTkB5VsB2eGbkpsnLYSTQ16D8Om50mJ
-         8ZeA6syZg0hPZYsFK3ynH0T1w4FoOz4bmuoBDhgynRWqNzC1nIFERjbfJGE12wLhG2g0
-         A9ZxVTWy3ZtNeA5cNSDQp7ySVwVzHDJO56Ooz86laZKW93ajN0rTRtEgiq0zPF+oqPe7
-         owVFFPe3qMshlCXSmA9DB7C22i65Z7TdkwdCk57Hi6NWvrBJN54z6+fTiPXf296IMuSr
-         ubYSQ+mnW5GxXLOk1ahSgKZAwfV3Sd4fYEP0sTGmu7P7oPLTlAwrXRX+V4AANgCN99ri
-         xl2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794598302; x=1795203102;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=pw/GtRqnRmkmoV0EVd3bZWIv5BPfPAggSs7FVXENh7M=;
-        b=F5zJbBMJl9/wlALeNb9YhLLDd8vjcMjabI8VE65DVZAt0dAdcOG/AT53WEaxOwv2PV
-         AXRrpTR+agDbQFRVJYC99qBMQ5HGYxO/ZojHlpxjNj1xxBMHz04uO2CMIk+wixswsKQW
-         s9zOKeIpGWvHBlKerqbB87ndi+4TwEAeUhzgvjuzhbwjJtNzc3vYffclG48bJDh2tZ/v
-         eZPAfyy17CRmHMPtSas3kbAYnjNy+bcIt7/minLU6iD0ufqnhVulsGsOyiigCVK8+jwF
-         90IoUjH6jSN6Oi2st4k+aUULlBjGJZcfVPIrLxcDJVkcxf7nYmiEFS6ETAVEnXMBFJtu
-         YcwA==
-X-Forwarded-Encrypted: i=1; AL+hErGJRKS0IA5tpmnnPDA1Btsg5POXVc8VZD7dhebgapkFPIGNTHz7fk00jqqscMhfhUcjlCASGIEvhaJfjD9R5uQL@lists.infradead.org
-X-Gm-Message-State: APuU4Z9jGGf1SutT4SWo/4YYeWtAHxCG0akysPZvI/bu4VRcF7V3ZPca
-	QO9ihf+WizUuVanCC2V9uqUIlhttdj0gjKbdbB0ewhl9v3BE50FFjtWoZSbf2xb8KQ5oS1pWfVZ
-	LfHOrKiTuv2o2DK855S5AIENUicS1Ng0=
-X-Gm-Gg: AYBFou2ocMLWmjZH9e74Q40Ps35+3/kkwmlRJNJauwVrkll1ZpfO6n7O80tNtcr4AZv
-	FJgu7cSkbE5g0IuDUiQNPJIXvWUzoGkCnxilwLEb8aTGXMN1ruesGYI3ZzAbqioDSfnM5PYlt1m
-	CbIl1a0dQmIQLG0erN8q4VJixehwx6TVx8qqg/3IOqGXOrVn/76JLwfptw8Z3JOf7RnRIhhEcrV
-	i0m456qp3yctxKgdOS6+4P5kYbBuA0tWGMjUFff3LIHj8i1DbwGr2/Bq862KmkeOSniw/bxd/uK
-	JmCE+CoAR/Prrlrvcx38BZdLoXE3fmDSzQyk/1qS2ES79EfqtmzgaHAvuVlvxZAFWrQ6g0DpfUA
-	M0vPGZWOWnSRyYu8Hl8u98k+inZbpes7+KC5hXSTLh7/dyn5kWLCQcb99w3L5xlpJ3TGiWwmRHR
-	mXO+/3sSvTjQQMTpZ9nTdfcO7KO9fJW7ejQdFZOTcmF1GtHjtc4Adjt9/lDBE69d/HrQA/Lli8U
-	bfaz01m
-X-Received: by 2002:a05:690e:1384:b0:677:d804:94b4 with SMTP id
- 956f58d0204a3-67d896dbe48mr2401686d50.65.1794598302165; Fri, 13 Nov 2026
- 11:31:42 -0800 (PST)
+	id 1xRx0g-0000000EBuq-0Dmk;
+	Fri, 13 Nov 2026 19:32:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794598350; x=1826134350;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=C16sG7RV76XLEk2qA+4C2ckJRlKBWDd3KFO09Alt5n4=;
+  b=nDHtOsaWlRVrLxBj9sJ09EwpdtSy299KoHVHp44hfqGLGUWjBIo5XcxA
+   fDBy6ZSoMIshYImIcOcdwZ4cXfaAYNgs4abNWPxBj9ModzuoOsyJcT4B7
+   fuyJCxewTzksJK/LnIIbykPJwXA9NH0WWz5t1MvgPmLsW5wXAZnAC2v03
+   sbthl3K6vFb7R9vrtZJXyk6DnIyEhTz2tXR/7+ltlqoKtFbtiG7JQC8/p
+   0i+Qx29aSCyaLVkY2nAwIN7y+v7vV329i+JsPmzBFSOccms+1eOW2v2WU
+   h0b7gfR7ZtY0G1lAGxIxxYVH+ZNDKOflvl0kQLcFPQfDtSM1FbAPBoGk1
+   g==;
+X-CSE-ConnectionGUID: gZHQ9QlqT7GEFEAx3Q2ETA==
+X-CSE-MsgGUID: L6qdw/WLQL2d66IHUmAJKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3412652"
+X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
+   d="scan'208";a="3412652"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2026 11:32:28 -0800
+X-CSE-ConnectionGUID: vuBoyPenQ9GazlmpB0O6zA==
+X-CSE-MsgGUID: WCFSVtONQaugQB+cZYtX7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
+   d="scan'208";a="10784803"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa011.fm.intel.com with ESMTP; 13 Nov 2026 11:32:23 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xRx0W-000000013o9-39fS;
+	Fri, 13 Nov 2026 19:32:20 +0000
+Date: Sat, 14 Nov 2026 03:31:43 +0800
+From: kernel test robot <lkp@intel.com>
+To: John Crispin <john@phrozen.org>, Stefan Roese <sr@denx.de>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: oe-kbuild-all@lists.linux.dev, Christian Marangi <ansuelsmth@gmail.com>,
+	devicetree@vger.kernel.org, lei.dong@airoha.com,
+	Linqi.zhang@airoha.com, linux-arm-kernel@lists.infradead.org,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, Rajeev.kumar@airoha.com,
+	upstream@airoha.com, Weifeng.xu@airoha.com,
+	zhengping.zhang@airoha.com
+Subject: Re: [PATCH v2 3/3] i2c: mt7621: add support for Airoha AN7589
+Message-ID: <202611140348.p9TnfxBF-lkp@intel.com>
+References: <20261112185820.1315718-4-john@phrozen.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261112233807.70664-1-sidchintamaneni@gmail.com> <avdXkLKJwuNv0vZ4@kernel.org>
-In-Reply-To: <avdXkLKJwuNv0vZ4@kernel.org>
-From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
-Date: Fri, 13 Nov 2026 11:31:31 -0800
-X-Gm-Features: AclHuK8cZbEkeSRDtbCQkhfrXJYZHXhWNH4fr0GNR6OJpPd_lgMe_pOQXSkn9K4
-Message-ID: <CAE5sdEgEFjGz6W0e5g4uxRVC2Otyvr4Pak-aAZogObWaFtNsTA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] tpm: tpm_crb_ffa: Only register driver when ACPI
- TPM2 uses FF-A
-To: Jarkko Sakkinen <jarkko@kernel.org>
-Cc: Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>, 
-	Sudeep Holla <sudeep.holla@kernel.org>, Yeoreum Yun <yeoreum.yun@arm.com>, 
-	Stuart Yoder <stuart.yoder@arm.com>, apais@microsoft.com, rlmenge@gmail.com, 
-	hargar@linux.microsoft.com, linux-integrity@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261112185820.1315718-4-john@phrozen.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_113143_900256_86E38E56 
-X-CRM114-Status: GOOD (  23.12  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261113_113231_361642_F7BE8316 
+X-CRM114-Status: GOOD (  14.51  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,104 +97,88 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 13 Nov 2026 at 10:31, Jarkko Sakkinen <jarkko@kernel.org> wrote:
->
-> On Thu, Nov 12, 2026 at 11:38:07PM +0000, Siddharth Chintamaneni wrote:
-> > Prior to commit 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed
-> > when tpm_crb_ffa is built-in"), built-in tpm_crb_ffa only registered
-> > tpm_crb_ffa_driver from tpm_crb_ffa_init() after crb_acpi_probe()
-> > confirmed start_method == ACPI_TPM2_CRB_WITH_ARM_FFA. After that
-> > commit, tpm_crb_ffa unconditionally registers on the FF-A bus at
-> > device_initcall time (and when loaded as a module) without checking
-> > the platform's ACPI TPM2 table.
-> >
-> > A platform's firmware may expose a TPM CRB over FF-A Secure Partition
-> > for UEFI boot services while advertising a non-FF-A start method to
-> > the OS in the ACPI TPM2 table. When the ACPI TPM2 table designates a
-> > non-FF-A start method, Linux has no consumer for tpm_crb_ffa and
-> > should not probe the FF-A TPM service.
-> >
-> > On Microsoft Cobalt 200 systems, the ACPI TPM2 table does not use
-> > ACPI_TPM2_CRB_WITH_ARM_FFA, yet ffa_init() discovers the FF-A TPM
-> > partition and tpm_crb_ffa_probe() unconditionally sends
-> > CRB_FFA_GET_INTERFACE_VERSION via FFA_MSG_SEND_DIRECT_REQ2/REQ SMC.
-> > That request wedges the calling CPU in Secure World (with Non-Secure
-> > interrupts and GICv3 pseudo-NMIs masked), hanging boot with an RCU CPU
-> > stall:
-> >
-> >   [    5.507519] ARM FF-A: Driver version 1.2
-> >   [    5.507519] ARM FF-A: Firmware version 1.2 found
-> >   [    5.507551] ARM FF-A: Notification setup failed -61, not enabled
-> >   [    7.150580] Freeing initrd memory: 293640K
-> >   [   65.515248] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
-> >   [   65.521346] rcu:     10-...0: (3 GPs behind) idle=dd9c/1/0x4000000000000000 softirq=37/37 fqs=5262
-> >   [   65.530031] rcu:              hardirqs   softirqs   csw/system
-> >   [   65.535589] rcu:      number:        0          0            0
-> >   [   65.541146] rcu:     cputime:        0          0            0   ==> 30028(ms)
-> >   [   65.548102] rcu:     (detected by 66, t=15010 jiffies, g=-951, q=1384 ncpus=132)
-> >   [   65.555228] Sending NMI from CPU 66 to CPUs 10:
-> >   [   75.560686] After 10 seconds, these CPUS still haven't responded to the NMI: 10
-> >
-> > Check the ACPI TPM2 table in tpm_crb_ffa_driver_init() and return
-> > -ENODEV before calling ffa_register() unless the table is present and
-> > specifies ACPI_TPM2_CRB_WITH_ARM_FFA, matching the check_acpi_tpm2()
-> > pattern in tpm_tis.c. This ensures Linux only issues FF-A TPM requests
-> >
-> > when ACPI advertises the FF-A start method (for both built-in and
-> > modular builds), while preserving normal FF-A bus probing on platforms
-> > that use CRB over FF-A.
-> >
-> > Fixes: 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed when tpm_crb_ffa is built-in")
-> > Fixes: eb93f0734ef1 ("tpm_crb: ffa_tpm: Implement driver compliant to CRB over FF-A")
->
-> Pick the older.
->
-> I attached a prepending patch that caches the start method, which can be
-> later used in tpm_tis and tpm_crb.
->
-> So that totals four patches:
->
-> 1. My patch.
-> 2. Your fix using the cached value.
-> 3. tpm_tis update to use the cached value.
-> 4. tpm_crb update to use the cached value.
->
+Hi John,
 
-Sounds good! I can put together that 4 patch v2 series.
+kernel test robot noticed the following build errors:
 
-Two quick notes before I spin v2
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on andi-shyti/i2c/i2c-host linus/master v7.4-rc2 next-20261112]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-- Module loading with CONFIG_TCG_CRB=m and CONFIG_TCG_ARM_CRB_FFA=m:
-  As Sashiko flagged on v1 [1], because tpm_crb.ko directly references
-  tpm_crb_ffa_init() and tpm_crb_ffa_start(), returning -ENODEV from
-  tpm_crb_ffa's module_init would prevent modprobe from loading
-  tpm_crb.ko on non-FF-A systems. In v2, I will move the start_method
-  check into tpm_crb_ffa_probe() (matching check_acpi_tpm2() in tpm_tis)
-  so both modules load cleanly while still skipping the FF-A probe on
-  non-FF-A platforms
+url:    https://github.com/intel-lab-lkp/linux/commits/John-Crispin/dt-bindings-i2c-mt7621-add-Airoha-AN7589/20261112-195819
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20261112185820.1315718-4-john%40phrozen.org
+patch subject: [PATCH v2 3/3] i2c: mt7621: add support for Airoha AN7589
+config: sparc-randconfig-1000-20261113 (https://download.01.org/0day-ci/archive/20261114/202611140348.p9TnfxBF-lkp@intel.com/config)
+compiler: sparc-linux-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261114/202611140348.p9TnfxBF-lkp@intel.com/reproduce)
 
-- regarding the location of caching approach -
-  tpm_crb_ffa never allocates a struct tpm_chip, and both tpm_tis
-  (check_acpi_tpm2()) and tpm_crb (crb_acpi_probe()) check start_method
-  before calling tpmm_chip_alloc().  Would it work for you if patch 1
-  caches start_method once in tpm_init() (subsys_initcall in
-  tpm-interface.c) and exports a small helper (e.g.
-  tpm_acpi_start_method()) so tpm_crb_ffa_probe(), tpm_tis, and tpm_crb
-  can all query it before chip allocation? (Also noticed a small '||' ->
-  '&&' typo on the header.length check in the attached patch.)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611140348.p9TnfxBF-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from <command-line>:
+   In function 'mtk_i2c_init',
+       inlined from 'mtk_i2c_probe' at drivers/i2c/busses/i2c-mt7621.c:364:2:
+>> include/linux/compiler_types.h:702:38: error: call to '__compiletime_assert_437' declared with attribute error: clamp() low limit div_min greater than high limit div_max
+     _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+                                         ^
+   include/linux/compiler_types.h:683:4: note: in definition of macro '__compiletime_assert'
+       prefix ## suffix();    \
+       ^~~~~~
+   include/linux/compiler_types.h:702:2: note: in expansion of macro '_compiletime_assert'
+     _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+     ^~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:40:37: note: in expansion of macro 'compiletime_assert'
+    #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+                                        ^~~~~~~~~~~~~~~~~~
+   include/linux/minmax.h:188:2: note: in expansion of macro 'BUILD_BUG_ON_MSG'
+     BUILD_BUG_ON_MSG(statically_true(ulo > uhi),    \
+     ^~~~~~~~~~~~~~~~
+   include/linux/minmax.h:195:2: note: in expansion of macro '__clamp_once'
+     __clamp_once(type, val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
+     ^~~~~~~~~~~~
+   include/linux/minmax.h:206:28: note: in expansion of macro '__careful_clamp'
+    #define clamp(val, lo, hi) __careful_clamp(auto, val, lo, hi)
+                               ^~~~~~~~~~~~~~~
+   drivers/i2c/busses/i2c-mt7621.c:308:17: note: in expansion of macro 'clamp'
+     i2c->clk_div = clamp(rate / i2c->bus_freq - 1, div_min, div_max);
+                    ^~~~~
 
 
-[1] https://sashiko.dev/#/patchset/20261112233807.70664-1-sidchintamaneni%40gmail.com
+vim +/__compiletime_assert_437 +702 include/linux/compiler_types.h
 
-> Fast-forward when these are in the mainline, I can send my change with
-> Stable-dep-of tag to stable@vger.kernel.org.
->
-> Br, Jarkko
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  688  
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  689  #define _compiletime_assert(condition, msg, prefix, suffix) \
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  690  	__compiletime_assert(condition, msg, prefix, suffix)
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  691  
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  692  /**
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  693   * compiletime_assert - break build and emit msg if condition is false
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  694   * @condition: a compile-time constant condition to check
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  695   * @msg:       a message to emit if condition is false
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  696   *
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  697   * In tradition of POSIX assert, this macro will break the build if the
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  698   * supplied condition is *false*, emitting the supplied error message if the
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  699   * compiler has support to do so.
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  700   */
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  701  #define compiletime_assert(condition, msg) \
+eb5c2d4b45e3d2d Will Deacon 2020-07-21 @702  	_compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+eb5c2d4b45e3d2d Will Deacon 2020-07-21  703  
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
