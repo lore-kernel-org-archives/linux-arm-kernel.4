@@ -2,140 +2,140 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9B9606A882
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E6C606A33F
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:22:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WwcMJj98;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=C+3Hv5W1
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V78gN8IR;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=PewIO0Eg;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fOw+wygM
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Ax/kdWLwCm0fp4U9iXoyMs7cEsqioQpKuIsWZIA9kDc=; b=WwcMJj98ILqMWEFtQ7O/5h8D0w
-	ADJXoT5Q/lp2E4crno7prn35l0wY90naep4agXUR+VkxjPs69oaXDNhttFAso0N+E2QQJovz8Eimr
-	wg05olDuUG6TyKEiUSg2RsUC6DUcw33lpGQFA4O3Wkkeud7hXr1W24/pIjIFfgt6J/8EvcmyeEEkd
-	Uo4vVYSkP10/piNAtl7+3wiDeGcXZhQRGOi4P8D8vzQnl7G9bbHnDrld3PQ2ciNNN6ouHEJEoFKTm
-	nCg2PJDQ58cnr1IS6WLzg874jLF42otXRV95cA4PkIodEFdvwLZcZIAM9yRFU9Nj1d6HcJ7GuE2Vp
-	CKipeCnA==;
+	bh=xtumAuvNbWuwUXK0cxJRs7l5/r2sAahJH/6uzW92HAc=; b=V78gN8IRa7P2NJMc40bi2cn+/e
+	T0no2Y7pQmeARQ5JX/9oo6G2yO91pyaPPazMkY+Q781YioOXZlnSDmvC9Q5jUathTDhezoPlvWtWa
+	q7PHbygkjuQCPr3ptsR/6mLO0WPI47WBVLj7QbBjQ2cjObv2VhGqes0V6y+c+0zFNWCvV5twmlfaL
+	mo42xVtm5q//3X9fy2OxL43FJmnBs9ngG/Wqk+U2nqFj3s8uPirLvl8Lenxfz8vPk76zjSFdR/QGm
+	MIVW3wVKOqHxbHM4ft4j9pO6vY8Uaw3YHElNz9Sz2dyRNAzJ1dtDDnIzZJvo9AZtJVaTSmRI5fv63
+	fMViTR7Q==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxmn-0000000ENm2-1alM;
+	id 1xRxmn-0000000ENlc-0meP;
 	Fri, 13 Nov 2026 20:22:13 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxmi-0000000ENk4-3ylP
+	id 1xRxml-0000000ENkp-0xd7
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 13 Nov 2026 20:22:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Type:Cc:To:Subject:Message-ID:
+	Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=xtumAuvNbWuwUXK0cxJRs7l5/r2sAahJH/6uzW92HAc=; b=PewIO0EggX0biFdBIs7o5Fqgsx
+	Ycckl6YnHT//AiMB27iKBfPmjh2TAY96A7vZ5FF2MALM4r4+YmcMgSB8SHPbL2EsKbsGTNakCsjFy
+	D1P9TLfgl9y5UIJaGy8oIVPDxGro9ExvcY+/zELDdQvo9frJBLFGAtGnhHiky+GjCtINnRByDDudL
+	ZU0RIcigXCzl9r/+F0Busmj94SbxVi1rYMzXgQBGHJbcUIsHHGHLWugj8ldZPEFMpjjotzi8EFoaL
+	npporxqTJaolj99FAPJYaBvqbRHx7gtMrrweweCWZRgcJ+IhowJkLMSlIjFTyn9rfTL7mlFdKGNGG
+	+Dzyk/IQ==;
+Received: from mail-lj1-x235.google.com ([2a00:1450:4864:20::235])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRxmi-0000000BnYA-0kDJ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:22:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VfxqcKfwjKiQFtMVedDmvnkGN1HTd/axtKTVYky43fymyO8FoYp/j6nr0NIvI6eZ48HGixgfxFhFHrqbuZSgC8KXaksnwssq9l/D5OVBZAI+4yapBCaKvTbaULf7nYi/GfPGf5CsA6OnnSo/OOjWMqx87ApRWRANC2XatLt5kX5UC2+HT1oak8gdQG2921ZQHxu04dw3iZDsg8oS1U5MrhQ6z656gDCv+QMSm77HhCGN87QlNS+i1fh8CTjpV4lEzuW2/wvvHOzyGXN4LwCG0pgZYTKRR/ti7+x1p2OWSV9tVeui9j0nr6/FH8Uc9QJ+8cpyoPIJSmMCCLzRykd66g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ax/kdWLwCm0fp4U9iXoyMs7cEsqioQpKuIsWZIA9kDc=;
- b=V6NFVGkvwcZdxy6qMsWnjtuPbBjYZ7/5BxGe6uyuHUbhAj5F8oWYiPPwS60Od9vVboyccKUqxJdM6zrgQOdRap9wP8w3nqnQRa0Data4stI8HclW9hSVCs9kwSrgH/1u8wABDhhcBs8KqtjRU9yF2nUdQbITId4tlVwT/RNdcm/ZxFjN7EiSH1WoAwPeU+ciHAGevlPEll6oJqZuAFK7a70VVJerVLi2pbnLFXTMsKAeQqelQ2yY21V1Cll8Dnw033rRHJFxbX9BYsiDLKovV1GRor8jUwIAnvJXI0N98bOrK/u4efx0Dw5bdTDhyZGFid0iufhClAwiWuKB9JfH3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ax/kdWLwCm0fp4U9iXoyMs7cEsqioQpKuIsWZIA9kDc=;
- b=C+3Hv5W17smnPpnB7lwiVptjSYjtLGO9UvNNfDwahgPy8YbOu+aIfLhrKZ+pBNtxoT8P2vGADW/+ZIn+XAW6daji5fwfzZVPc0PShCEJbBRiwwtRQwjzay6OmaibP3yUxySm/61W32ooQZKBENcqXtAhGxSnYE7+SGevJ/NutDpLh3ioBvZBxbZOJIsqA+FVvmasCHTBkEWRnmLzPtA9Ax/ksaWLpza8NDcJVIKZjXJhUSzaGnnG4p0QGZYcrqu2P5z0ZfLeZ6UnM9ceHIcvhRiPRQ3yz+GXrde3L8YVFoXj6eL5+DHtSozFuKyysQA5kGnJOmInnO57tXX8rmw1XA==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV2PR04MB11589.eurprd04.prod.outlook.com (2603:10a6:150:2b1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
- 2026 20:22:02 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
- 20:22:02 +0000
-Date: Fri, 13 Nov 2026 15:21:55 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Arnd Bergmann <arnd@arndb.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	Jens Kuske <jenskuske@gmail.com>,
-	Jean-Francois Moine <moinejf@free.fr>,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	Chengfeng Ye <cyeaa@connect.ust.hk>,
-	Nguyen Minh Tien <tien.nguyenminh@embeddedlinux.blog>,
-	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] dmaengine: sun6i: track paused virtual channels
-Message-ID: <avdxY6a10_SOLJUB@lizhi-Precision-Tower-5810>
-References: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-0-ef1acb0be768@gmail.com>
- <20261023-submit-sun6i-dma-lifetime-next-v1-v3-7-ef1acb0be768@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-7-ef1acb0be768@gmail.com>
-X-ClientProxiedBy: DS1P220CA0027.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:8:44c::14) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Fri, 13 Nov 2026 20:22:10 +0000
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-3ae3b5b1027so243001fa.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:22:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794601325; cv=none;
+        d=google.com; s=arc-20260327;
+        b=gPadcoSSDFVmZUzXN3QzA6j/JKcxlUT9/I1VcX5GlmCLP3D1wpCTjvHPvbASRPr5la
+         S2LwtkJs+yHj7WDlCs9HOjcTnXSn54Ff8DYCdJio12z/ecsKP4h52hCuHFQOtJQmODiw
+         P/sp2BJXlf6Ylt41Vakk8iEqpgaYIR6HZOOQfzOqwZvva7degwOLPBZAscCeIcXwZ7b0
+         PHFLYEL88ufmF6KrXbjUpyELrmhHQmeLgVq7rwkKGvhpwCzgxbuQzKWKXCQif41S97s5
+         tVtGnllJoHunf59kyltmu7r4oYyqSsTNGHoQ1XomokW3ulQSvl/lRY1PWFodAFHFEiV3
+         HvoQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=xtumAuvNbWuwUXK0cxJRs7l5/r2sAahJH/6uzW92HAc=;
+        fh=/FgbJgjtyitYFCTeLJlMYdZBjYgHSVPcoGLL+wRpZMA=;
+        b=WfoF0B8r1EV/3WSLMj/OEbYYY0a4wzQm0kPXZd2feX7G5g+lPkMRoS4PpL5+W5WDaM
+         VultaeScRlnHr7jNPI3pGTXk9U1Pl71onMelWX2+ZzcvU1HD7scrPexG8eFfhyTmaImR
+         j+1jI9UUwidwa4v919lgozLqm9B/Ayptx70evhuvLkNO5HwZOzde5++rzj6giwzbSdS8
+         7fNdshjNQVw4Ri/TRoqYOsmQOwlGa6+3rkV2Rt5860SIW06rX5sQxrDJ+1ngICm4BNRa
+         MSaL9AFvqlv9rF1natqmCjIRGjQb5jkDAqGjxeJoo8bFzb8hNaPOqCkVvSKu8WdDf6QA
+         ZFeA==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794601325; x=1795206125; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xtumAuvNbWuwUXK0cxJRs7l5/r2sAahJH/6uzW92HAc=;
+        b=fOw+wygMkVmZMWAl7BBWqgRhKjaN3uPtCLuUVxIkFYNVRlF+PcBfW9llYNeWEnkGz+
+         VTrfZs6BmUOF7wmqjrctDDVkqjOcwMFD/8LOcecgiP+u0M6Ms8OD30jkoKTivqUv0qaZ
+         y4Z3VTOrL0fIS3q9QVUkZ13KHa/s6gg93hApYFWYzjly68M1EUds4Lopm0BWaqyNCz2R
+         guFeiRV/MZqWgDGEQTBCuqIwCuAVFxPuxk+rtwaGwbyOK5wXwsittfQSMiOkQ0YhAw/h
+         ygQ8p8Af+oDatyw1PP34xRxS9WGlRJyemBwbb4REXi1MnR0062czOYUQgd7bsEyLwlc+
+         85JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794601325; x=1795206125;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=xtumAuvNbWuwUXK0cxJRs7l5/r2sAahJH/6uzW92HAc=;
+        b=Xgdo3HBnVMBUM1bsLhb5mi3y36g7ViKa2TNP4/UuksjOlgK6WK/Y3iPCEn+3YoDvUR
+         55soI1QIGn+3ew640ygL+xfPXt1+pX//5ZVEMM/uXKfEJXZHwj6NndUeilzeAEMLQgqo
+         cAsq8/+HpGgUNbvQd+S8wQuZfe7D4cMUWnprHOJqBq9lbd93uBvgaVYiDcySSEtdlsvh
+         oua2YvW/smqbEb8AwQdiofJ0di3aDPA2xMCO5B8YureLcXE821Vb2SfjLYjwQ6pj7ncR
+         u5K+s6KlklxcKxZmGq3kYWi2JfnEckxNEexxOov62DbpRmAkIfVGh5/2v965Na5D5+4a
+         /sIQ==
+X-Forwarded-Encrypted: i=1; AL+hErEnmsc6ZeJhlaTQ3DMSqrmgEPmh1Ma/yhLlMakHKMxKh9QuGw9aMwCkiF5EFNqce10GfDcOj9DQVbpI4bGbLPPs@lists.infradead.org
+X-Gm-Message-State: APuU4Z95q5GeAo1IdMHFruJwsF6/RfGcNXcItSxFZs1BXhfVEdc9M/rp
+	aEHy0mXn/vzQWcFOtjZ76Px4bf3R96G3XKGRHKbik9EPe0oHKitBka0Nwyb0ST2Saa7nnhlDkEz
+	yzXJ09dOvCLJ3nqH6PdwCLeI4u6FYMbQ=
+X-Gm-Gg: AYBFou2+fcBOqbmKhpFoLaIEqppXgRll9mA74f1oJoJ7wKr0gyMdfnteRDVe1S54a1E
+	cIk97XAWWQzEWsZLziPE+VrBzltGqLlCmXM7VqurVD3HKzd0juALp8PRqZzInwZfdQvynDC3bxN
+	CGjQW+OJyPyzz0FTAHiRTdUfEEgz7/PpLkf16tDP9LR9s+Vrh3vCh76SdZsZvc/f6US3gLewJb1
+	n7kEt2qOcgXPO3gwcCCciATdw+O4JgGQqmPeEb7/PAn1tCyOBI7zeymmZq6VSpYO4Pqt0ew8PoQ
+	mN4XPKa6QHthuZaTkcd4eYOPpwzwXxJ6gWoAqummvI1liBcOFyfLvaHCrGcjN3Uj4uLpMZy2Rfr
+	Gph+x2dbVB4aznYoXYxp7mKaXdqAJ8r/laFXIJvLimW5SCf4WjYbLCIGQhoymxz1jUgGjrJpL/C
+	+iA96bMdDhz+1oBB6s
+X-Received: by 2002:a05:6512:1322:b0:5c1:57b9:90b2 with SMTP id
+ 2adb3069b0e04-5c170746a13mr1720283e87.1.1794601324638; Fri, 13 Nov 2026
+ 12:22:04 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV2PR04MB11589:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1a76066-fd85-422d-60a1-08df41c3c729
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|19092799006|23010399003|10067099003|11063799006|4143699003|5023799004|56012099006|261021123027099003|261021121427099003|261026140227099003|261022105027099003|261022075727099003|261028144727099003|261009223027099003|261026121527099003|261102123227099003|22082099003|18002099003|6133799003|3023799007|41080700001;
-X-Microsoft-Antispam-Message-Info: Wf+KKPlixOMRDaMQKY4VfrrLtelSHHC10BOi7FLs+5+tkuJeoxIbA8E6G4VNXlkE6Z4rJd649Er2U2NvG+hrjEXfVdlBWaVptyMoenjDfN1Yiar5+xOBo8i9zOWZSTy0RK8bXilbqORYlOLsQbihSVQDOsGoV3Y2EtjYDKh4aUxT4NF2KpSWslDzPJNha36W5qX83v0dlERO4fFZSa8M+SDHhV078mbujUHg1zyrMNrnGABgdL0v/lMxStw4prrunFzQWuI9dQ3I8zE/8hZ2tvmUTp1CGFOTw02maqGSYq39eTicW2pM7RNXmMvpBfM9y6lcLRFOVgK7dJcv++rrqxvtEivIk3Vba5KbpqA8lV4Ktg16UHbEsyOVcGrYPXkiJaShJJ/aP3d9MVdxlVBTDxsYPvCW1uJOdCUAUbqIY0+7Ym4ZdcWG1IZ0Yu1It4qJ0GxvsAzLXHlNlUHUiURlsrQgLZ84y5j1OMiXPe51JVy4b9DYbKfjIfMNWQwVC5SMGpRcG2CzGZL6IIJS6NPAar2T4AZ/ooFcvjWaVgofEfD9mtS1AHONBjidGbYrJq5+8TjfbMQhGU1h3Am5vkhoI8CztfEYFIJiod2PoLs+Y+MFrE0DbQ/OVmThRXwrW1rFAjZSLDQ04ioyGdRjryk4VI5yV5XRfRVgtrAry3OmOPgAT+M49FwU17AHMl5bjAYy1OM1P6bK+rxGozh66NcytlAzLHQ3fPhX5tjsT/Zw9cM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(19092799006)(23010399003)(10067099003)(11063799006)(4143699003)(5023799004)(56012099006)(261021123027099003)(261021121427099003)(261026140227099003)(261022105027099003)(261022075727099003)(261028144727099003)(261009223027099003)(261026121527099003)(261102123227099003)(22082099003)(18002099003)(6133799003)(3023799007)(41080700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bbctJTn2Y3abGNmZpt6cRCdxh6tTMU1urLMY68QTHU5RAfHE2cXPjPak6n6H?=
- =?us-ascii?Q?YSl18MmL7Ht9KBBBtVjS59br55wdt7uFeqHWz8aPwVZjOxTaqiZ3QTNYdhtF?=
- =?us-ascii?Q?iZZljBK4O0vYTn6QTjZ0hRy+MBXz+PB4W7zy4m9fr99PPUCLy61DZDDu3ach?=
- =?us-ascii?Q?EPvbKNsCcaRNqzoHoTwJuJIX9D1Olsbto+s0AeJK+k6BznL4K0/AjOKcyfPM?=
- =?us-ascii?Q?40XiyE84ormmvvcao1B6Qts7GaPaz2J0Prx8BvlZvY2srJkJARkJ1L4Uwn2z?=
- =?us-ascii?Q?3oUmk0nM0Ql9BB6VoihOOB1fr4ICC+Z1B4BXDP35SX1Fwgu/vjQZtmmZVHdV?=
- =?us-ascii?Q?H6ZhiBLiDeBtuLG+i2VmE5vvreJU9xy02qAn0wdzaF97wN7xB1GTOWymymIZ?=
- =?us-ascii?Q?jSDrp0jAzTjCzAH4f45OkNPKAWw4sUwcz58/xoC0/e2uS4TNUqM87+vcz03X?=
- =?us-ascii?Q?bod2uh5wkiQdPoor7UoiWYzjiIgO65z+pR2ujHRXt+j9Lej4ZFLDHp9NBnVI?=
- =?us-ascii?Q?Mg5SnjQSelW6ALj8PDs0PL61N9GLip5EtFb01PmLOY3Fs2MiTFyjSbAOxz2h?=
- =?us-ascii?Q?yO74dCrDkKafq/WAztjhFH5cBQhfM2U7DZVa7qa9maoJoeBenYxZahjTL/78?=
- =?us-ascii?Q?jRh2Tki+niJXMz3EQ66iCa0eP20vkDBFVMs3A2jQWjQGwHBpCNC5RT2q464U?=
- =?us-ascii?Q?xuULsNWvzDk4D2JH/NgyItpDKMLNQXKaI7l+JG1dgVA271gkB/a3ulxXRGBc?=
- =?us-ascii?Q?Ol+GYRRMiZacLXtrWvmXOAGI6adSS5xQoQhm9xBBbhaoh1VJqnHZjhaPxekw?=
- =?us-ascii?Q?VtNI8a9QYvh6w9rxf2s4U9Yjd0FQ2N4NxPNy9o2FGJd4rvdU4YIwk22KEdGn?=
- =?us-ascii?Q?igixw6SS3kkeN+NQ7br5jez1r9NwaOyq/7AiyRsWgph3cJOx/6OQL+45bZTD?=
- =?us-ascii?Q?2ffbMb4fDgLaE2seAZtBlmc680bc0kX4g1ri9GQeAaJwJt3s9gEyS5bamqnZ?=
- =?us-ascii?Q?s4PvNIBWx8A2OkWUjAo6DlVGUHaKZiybPK6cDx91rUzAxMf47GXw+lE8WVqZ?=
- =?us-ascii?Q?mBWBmHhjjDA+Y99PUWeIywR7tjLHm9aB04d41D9V9XbwJTbOAh1x+6i9WyVD?=
- =?us-ascii?Q?xB/6kCK10N4uy17A/lSLP240Tb0WrJxcw24/hR2kGpjWxIttLCAT+0Kxbs7l?=
- =?us-ascii?Q?CfnuvsgPzPXvnwkW2jn5anGHPbu3OrzFQfZr/TBHroZVXz9KrbzNr6Fa8swx?=
- =?us-ascii?Q?GmSs2z5X4NFaa8mEaOf+X7ixLUEfU/mxKeap8CMtImxArrBgu83xmmfZTfTu?=
- =?us-ascii?Q?fy00visYBKuQRH8yhRpFmp3K7kg6DBMd1clYkCFP+c2MeLSea7+l/zK5Z34C?=
- =?us-ascii?Q?F15hjmecoTBEwJ8PlCnRFmkqKe91r5VfmUAhRDunCUAt49b742Kv0VBpCET6?=
- =?us-ascii?Q?Clc2xUZWDky55AVbNSmBVbdou1LykV49lnRSOPC32uZGWFPuzoQwCtd9MtnB?=
- =?us-ascii?Q?i/Mp8oYQY7ZOOkXYLRolq5DpANm+Y5RuhlyNhveDTSBnXWbBxFktUWv9qAnX?=
- =?us-ascii?Q?faAmQi810I1V33prDBu5k479Lx8s1naiTVVhSrP+vEX7oTg4oOX6qz9HcUrV?=
- =?us-ascii?Q?5JQAs1muD3fE6y1ifEdo88DUpcQ9sY9lxzvPcsV4vTbP4TqaaEwbdBJfk2oy?=
- =?us-ascii?Q?On8zT6BxI5reN7MaRQl211wPIjetMHM5gOumolZjuYoetWhf5kpGFDvt6bBc?=
- =?us-ascii?Q?f+2wzL9u2PsJ+AUx5dlV26u3iSCNMajDV7bdWAusravW0U1JgsSE?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1a76066-fd85-422d-60a1-08df41c3c729
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 20:22:02.6376
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 185sm5J/IMexWHK3Pi8NuvmcCyZgbFRKEZddE1WqxOdnEmFIPwcbmOohnpp3j26sGjwTCBZCIhtzaknC8bMXzZi66qCMpSeXLFeIs6RSg9lsT7bq1XikAzC1J8osKRkc
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11589
+References: <20261112-hantro-robust-v2-0-18561fd48838@gmail.com>
+ <20261112-hantro-robust-v2-2-18561fd48838@gmail.com> <c97eef1ba88daf83d231d2ecc78b47fcf524385c.camel@pengutronix.de>
+ <f212840b-92fd-4d97-a6a7-2768a55483f7@collabora.com> <CAEy9hNU2ox76TFKtdisqUHDxZ=3gPVBDBcjz_W8RtCpCpK5d7g@mail.gmail.com>
+ <b3fa092ec9390cf5bfe2f4338af68327be70e6e1.camel@pengutronix.de>
+In-Reply-To: <b3fa092ec9390cf5bfe2f4338af68327be70e6e1.camel@pengutronix.de>
+From: Arun Iyengar <aiyengar1990@gmail.com>
+Date: Fri, 13 Nov 2026 12:21:52 -0800
+X-Gm-Features: AclHuK_r_rPrVJRj0pkug0EuQb97pNCsN4qnHk9bddNHOrBile8NMgFa-B299mE
+Message-ID: <CAEy9hNXNaAdcL4NMmNf7sETknV+jQBp-inqFd-qAPut041GjJw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] media: verisilicon: Don't hold the VPU in reset
+ after remove
+To: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, 
+	Andrzej Pietrasiewicz <andrzej.p@collabora.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+	Hans Verkuil <hverkuil@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Sergei Khomenkov <shomenkow@gmail.com>, 
+	Tharit Tangkijwanichakul <tharitt97@gmail.com>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_122211_095715_61359E09 
-X-CRM114-Status: GOOD (  24.13  )
-X-Spam-Score: -1.0 (-)
+X-CRM114-CacheID: sfid-20261113_202208_180013_32171ADE 
+X-CRM114-Status: UNSURE (   9.32  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: 0.1 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,134 +146,27 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 23, 2026 at 05:38:26PM -0600, James Hilliard wrote:
-> sun6i_dma_tx_status() only returns the cookie state, so a paused but
-> incomplete transfer is reported as DMA_IN_PROGRESS. The 8250 RX flush
-> path pauses the channel and calls its completion helper before terminating
-> it. That helper ignores an in-progress transfer to avoid consuming a new
-> RX operation. With sun6i it consequently drops the partial buffer and
-> leaves rx_running set, preventing another receive from being submitted.
->
-> Track pause state under the channel-assignment lock and report DMA_PAUSED
-> for incomplete cookies, including status queries without a residue output.
-> Flush the hardware pause request before returning. Completed cookies
-> remain DMA_COMPLETE.
->
-> Keep paused channels out of the pending queue and do not start a queued
-> descriptor when a paused channel's previous descriptor completes. Release
-> the completed physical channel so other virtual channels can use it, and
-> clear its hardware pause request before reassignment. The paused virtual
-> channel retains its queued descriptors until resume.
->
-> Resume requeues an unassigned channel only once and schedules the
-> allocator, so an idle controller does not require an unrelated completion
-> to resume it. Clear the pause state when terminating the channel.
->
-> Fixes: 555859308723 ("dmaengine: sun6i: Add driver for the Allwinner A31 DMA controller")
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> ---
->  drivers/dma/sun6i-dma.c | 18 +++++++++++++++---
->  1 file changed, 15 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/dma/sun6i-dma.c b/drivers/dma/sun6i-dma.c
-> index dab17b3863fc..25987f550707 100644
-> --- a/drivers/dma/sun6i-dma.c
-> +++ b/drivers/dma/sun6i-dma.c
-> @@ -208,6 +208,7 @@ struct sun6i_vchan {
->  	u8			port;
->  	u8			irq_type;
->  	bool			cyclic;
-> +	bool			paused;
->  };
->
->  struct sun6i_dma_dev {
-> @@ -537,13 +538,17 @@ static void sun6i_dma_tasklet(struct tasklet_struct *t)
->  		pchan = vchan->phy;
->
->  		if (pchan && !pchan->desc) {
-> -			if (sun6i_dma_start_desc(vchan)) {
-> +			if (vchan->paused || sun6i_dma_start_desc(vchan)) {
->  				/*
->  				 * No current txd associated with this channel
->  				 */
->  				dev_dbg(sdev->slave.dev, "pchan %u: free\n",
->  					pchan->idx);
->
-> +				/* The next owner must not inherit the pause request. */
-> +				writel(DMA_CHAN_PAUSE_RESUME,
-> +				       pchan->base + DMA_CHAN_PAUSE);
-> +
->  				/* Mark this channel free */
->  				vchan->phy = NULL;
->  				pchan->vchan = NULL;
-> @@ -935,10 +940,12 @@ static int sun6i_dma_pause(struct dma_chan *chan)
->  	dev_dbg(dmaengine_chan_dev(chan), "vchan %p: pause\n", &vchan->vc);
->
->  	spin_lock_irqsave(&sdev->lock, flags);
-> +	vchan->paused = true;
->  	pchan = vchan->phy;
->  	if (pchan) {
->  		writel(DMA_CHAN_PAUSE_PAUSE,
->  		       pchan->base + DMA_CHAN_PAUSE);
-> +		readl(pchan->base + DMA_CHAN_PAUSE);
+> Would that more correctly describe the hardware though?
 
-why need read back here?
+Yes. The IOMMU is inside the AV1 block and the TRM has no reset for it,
+only these four. v3 adds them to the vsi-iommu binding and node.
 
-Frank
->  	} else {
->  		list_del_init(&vchan->node);
->  	}
-> @@ -960,12 +967,14 @@ static int sun6i_dma_resume(struct dma_chan *chan)
->  	spin_lock(&vchan->vc.lock);
->  	pchan = vchan->phy;
->
-> +	vchan->paused = false;
->  	if (pchan) {
->  		writel(DMA_CHAN_PAUSE_RESUME,
->  		       pchan->base + DMA_CHAN_PAUSE);
-> -	} else if (!list_empty(&vchan->vc.desc_issued)) {
-> +	} else if (!list_empty(&vchan->vc.desc_issued) && list_empty(&vchan->node)) {
->  		list_add_tail(&vchan->node, &sdev->pending);
->  	}
-> +	tasklet_schedule(&sdev->task);
->
->  	spin_unlock(&vchan->vc.lock);
->  	spin_unlock_irqrestore(&sdev->lock, flags);
-> @@ -994,6 +1003,7 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
->  	}
->
->  	vchan->cyclic = false;
-> +	vchan->paused = false;
->  	vchan_get_all_descriptors(&vchan->vc, &head);
->
->  	if (pchan) {
-> @@ -1040,6 +1050,8 @@ static enum dma_status sun6i_dma_tx_status(struct dma_chan *chan,
->  	spin_lock_irqsave(&sdev->lock, flags);
->  	spin_lock(&vchan->vc.lock);
->  	ret = dma_cookie_status(chan, cookie, state);
-> +	if (ret == DMA_IN_PROGRESS && vchan->paused)
-> +		ret = DMA_PAUSED;
->  	if (ret == DMA_COMPLETE || !state)
->  		goto out;
->  	pchan = vchan->phy;
-> @@ -1074,7 +1086,7 @@ static void sun6i_dma_issue_pending(struct dma_chan *chan)
->  	spin_lock(&vchan->vc.lock);
->
->  	if (vchan_issue_pending(&vchan->vc)) {
-> -		if (!vchan->phy && list_empty(&vchan->node)) {
-> +		if (!vchan->paused && !vchan->phy && list_empty(&vchan->node)) {
->  			list_add_tail(&vchan->node, &sdev->pending);
->  			tasklet_schedule(&sdev->task);
->  			dev_dbg(dmaengine_chan_dev(chan), "vchan %p: issued\n",
->
-> --
-> 2.53.0
->
+> So this likely would require exclusive reset controls with
+> acquire/release.
+
+v3 does that: both drivers get them as released exclusive controls.
+vsi-iommu acquires them to deassert on probe, hantro for its probe
+deassert and for the timeout pulse of the encoder cores. Remove still
+leaves them deasserted.
+
+v3: https://lore.kernel.org/r/20261113-hantro-robust-v3-0-82383c722ad2@gmail.com
+
+Arun
 
