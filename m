@@ -2,87 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6E9606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118AC606A339
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 01:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZh9rkhb;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=Dt/E76kI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Qg5nxogX;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=EAeqLQhu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1vBgOZighXGOllRdyE42732n3hMUT8k/mfbvblMTQQA=; b=LZh9rkhbXRuUDn
-	JZQo29iqqPcbD9LXoqXLr/X58d58VYjzhHEBYCvkxC14TTg9RuN1meZWeKzdS1tmy0rufC8XpRMa1
-	OQnJs6GeRlw/kENs6Vs/m1CyEF/t3B6VTPhB5IQQHBIqIyvSl4cMLYjPHZwYZIARTAFaGywPDCycr
-	Ptd7MtizSq3oTADOE6NTpsaye7pkzBECPhMzo5GQwvNmG3knuYzDiIeKQVfP+MlryWQi5A13re6gR
-	uXSNDN4VQtVO4jiCzJAYCP1lli1+uuDjdgkVsOL8trwjKmLszqAqhlx85Yqe5tb9ZXncAXam22/Pd
-	NnkQVTz4Kp6+MjHnFy2w==;
+	List-Owner; bh=gVbU/8JPE5V4Tpy3sU+jiRyX3k8tAyApN/EFzo86Rhs=; b=Qg5nxogXAQzW8k
+	BSWpO7FSNwVUPc0cFR4QSrSqePiF/qgMrvTGvetl1dV8rNc5aYmejyRzm8GrmTfoz7r18oLODuVBS
+	MNgBQgLAcXxu4yPPmzPY4vcTeI6ouqPfXF99s1wohaXY/ox/QkR5LBBcAt6Z1dkOqKvuW63iJm3Pk
+	grE05gm4etQ+HzN9BdsIG3U5faYh4b6U78xkudHCU4daz6EiOO5pqFglUHOy1SXhypBsW64o93mon
+	JM+ertnCvM+RvTScWIiIFb21pab4L0d9I5I5+IhXHI1/hgkFYuPKmcBn1DCUbMskz/d0nLhO5poaf
+	DGk0ZObHAnhBpKVf/iaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfQw-0000000BNhG-0aXP;
-	Fri, 13 Nov 2026 00:46:26 +0000
-Received: from linux.microsoft.com ([13.77.154.182])
+	id 1xRfid-0000000BPAC-3ck4;
+	Fri, 13 Nov 2026 01:04:43 +0000
+Received: from foss.arm.com ([217.140.110.172])
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfQt-0000000BNg8-1rXz
+	id 1xRfia-0000000BP9h-2Iqq
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 00:46:24 +0000
-Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 040C620B7166;
-	Thu, 12 Nov 2026 16:46:17 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 040C620B7166
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1794530778;
-	bh=1vBgOZighXGOllRdyE42732n3hMUT8k/mfbvblMTQQA=;
+	Fri, 13 Nov 2026 01:04:42 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3C9E9169C;
+	Thu, 12 Nov 2026 17:04:36 -0800 (PST)
+Received: from [10.57.67.215] (unknown [10.57.67.215])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CC15A3F632;
+	Thu, 12 Nov 2026 17:04:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794531879; bh=9dMYhU0WWNPR+Ta4CK4SjyDUrDPMjrGxgkSS46Xa71E=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dt/E76kI/3MFpUYYHZOURgy6EkuaTi8S8z5ncW2I/9sTmvxARptIu+vmDL6Tjc4IN
-	 5gSmEOJ0Q1EPS7g1x//7jcGiliU1FVjk8KiQarz3eBVAdpjIXlT/6b+rBBy3Gmi2m7
-	 yhwafN52I0kemUkmW8gkwXEyUvkufDSSAKcNQa9U=
-Message-ID: <f74db23c-ee1d-e0b1-c463-55dad00f9c61@linux.microsoft.com>
-Date: Thu, 12 Nov 2026 16:46:21 -0800
+	b=EAeqLQhuToMk7SuICWPxyDE3Ru/0zt9OIGnbLWxeIMBMnawdnAWAiXgKwUhCMoE5I
+	 0TiiFj2Ker405Hyb4Z7ggwhCgllTXx3XD0Az0umrkvY4SnBM6H56bym2cv3bTOS21h
+	 efQZzplsXmEFAQz2xfKoEuLgjF3L6MikLDrO5yRo=
+Message-ID: <e1690e53-70fb-47fe-bd06-4758b1e196d2@arm.com>
+Date: Fri, 13 Nov 2026 01:04:34 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
- CCA Realms
-Content-Language: en-US
-To: Kameron Carr <kameroncarr@linux.microsoft.com>
-Cc: Michael Kelley <mhklinux@outlook.com>,
- "decui@microsoft.com" <decui@microsoft.com>,
- "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
- "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "mark.rutland@arm.com" <mark.rutland@arm.com>,
- "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
- "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
-References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
- <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
- <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
- <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
- <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
-From: Mukesh R <mrathor@linux.microsoft.com>
-In-Reply-To: <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/12] KVM: arm64: CCA: Tear down RTTs
+Content-Language: en-GB
+To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
+ kvmarm@lists.linux.dev
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261111145758.217946-1-steven.price@arm.com>
+ <20261111145758.217946-8-steven.price@arm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20261111145758.217946-8-steven.price@arm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_164623_523090_D5C47CF7 
-X-CRM114-Status: GOOD (  17.52  )
-X-Spam-Score: -4.5 (----)
+X-CRM114-CacheID: sfid-20261112_170440_683486_1C3A8514 
+X-CRM114-Status: GOOD (  38.70  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,103 +83,335 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/12/26 09:49, Kameron Carr wrote:
-> On 11/11/2026 6:43 PM, Mukesh R wrote:
->> On 11/11/26 10:01, Michael Kelley wrote:
->>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
->>>>
->>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
->>>> to be marked as decrypted (shared) for confidential VM isolation types.
->>>> This is already done for SNP and TDX isolation; extend the same handling
->>>> to Arm CCA Realm guests so that the host hypervisor can access the
->>>> shared hypercall buffers.
->>>>
->>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
->>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
->>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
->>>> Introduce a Hyper-V-specific helper following the established
->>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
->>>>
->>>> On architectures other than arm64 the weak default keeps the existing
->>>> behaviour.
->>>>
->>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
->>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
->>>> ---
->>>>    arch/arm64/hyperv/mshyperv.c   |  5 +++++
->>>>    drivers/hv/hv_common.c         | 17 +++++++++++++----
->>>>    include/asm-generic/mshyperv.h |  1 +
->>>>    3 files changed, 19 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
->>>> index 46ab2da..da6c3aa0 100644
->>>> --- a/arch/arm64/hyperv/mshyperv.c
->>>> +++ b/arch/arm64/hyperv/mshyperv.c
->>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
->>>>        return hyperv_initialized;
->>>>    }
->>>>    EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
->>>> +
->>>> +bool hv_isolation_type_cca(void)
->>>> +{
->>>> +    return is_realm_world();
->>>> +}
->>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
->>>> index 31256cb..a60c92c 100644
->>>> --- a/drivers/hv/hv_common.c
->>>> +++ b/drivers/hv/hv_common.c
->>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>        u64 msr_vp_index;
->>>>        gfp_t flags;
->>>>        const int pgcount = hv_output_page_exists() ? 2 : 1;
->>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
->>>>        void *mem;
->>>>        int ret = 0;
->>>>
->>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>         * online and then taken offline
->>>>         */
->>>>        if (!*inputarg) {
->>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
->>>> +        mem = kmalloc(alloc_size, flags);
->>>>            if (!mem)
->>>>                return -ENOMEM;
->>>>
->>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
->>>>            }
->>>>
->>>>            if (!ms_hyperv.paravisor_present &&
->>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
->>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
->>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>> +             hv_isolation_type_cca())) {
->>>
->>> Could this big "if" statement use "hv_is_isolation_supported()" instead
->>> of explicitly testing for each CoCo VM type? I ask partly because
->>> Mukesh Rathor has just submitted a patch [1] that introduces a new
->>> function that does something almost exactly the same as
->>> hv_is_isolation_supported() and uses it here.
->>
->>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->>>> +             hv_isolation_type_cca())) {
->>
->> With my change, this will become:
->>
->>          (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
+On 11/11/2026 14:57, Steven Price wrote:
+> The RMM owns the stage 2 page tables for a realm, and KVM must request
+> that the RMM creates/destroys entries as necessary. The physical pages
+> to store the page tables are delegated to the realm as required, and can
+> be undelegated when no longer used.
 > 
-> Any reason you wouldn't change hv_isolation_hw_cvm() to
+> Creating new RTTs is the easy part, tearing down is a little more
+> tricky. The result of realm_rtt_destroy() can be used to effectively
+> walk the tree and destroy the entries (undelegating pages that were
+> given to the realm).
 > 
->    return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
->      hv_isolation_type_cca()
+> Tear down a created Realm whether it is still new or has been activated.
+> Unmap the Realm IPA space once during stage-2 teardown. Defer
+> destruction of non-root RTTs until final Realm destruction, after
+> REALM_TERMINATE and before destroying the RD; root RTTs remain until the
+> RD has gone away.
 > 
-> That would seem more logical to me.
+> Signed-off-by: Steven Price <steven.price@arm.com>
 > 
+> ---
+> Changes since v1:
+> - Tear down created Realms in both NEW and ACTIVE states. Fix the
+>    RTT start level, page accounting on failed undelegation, and
+>    handling of RTT granules returned by RMI.
+> ---
+>   arch/arm64/include/asm/kvm_rmi.h |   9 ++
+>   arch/arm64/kvm/mmu.c             |  18 ++-
+>   arch/arm64/kvm/rmi.c             | 189 +++++++++++++++++++++++++++++++
+>   3 files changed, 215 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/include/asm/kvm_rmi.h b/arch/arm64/include/asm/kvm_rmi.h
+> index f1a1ed6b91f5..58d825e40bdf 100644
+> --- a/arch/arm64/include/asm/kvm_rmi.h
+> +++ b/arch/arm64/include/asm/kvm_rmi.h
+> @@ -57,6 +57,7 @@ enum realm_state {
+>    * @sro: Preallocated SRO state context for Realm MMU operations
+>    * @state: The lifetime state machine for the realm
+>    * @ia_bits: Number of valid Input Address bits in the IPA
+> + * @stage2_unmapped: The Realm stage-2 mappings have been removed
+>    */
+>   struct realm {
+>   	void *rd;
+> @@ -70,6 +71,7 @@ struct realm {
+>   	struct rmi_sro_state *sro;
+>   	enum realm_state state;
+>   	unsigned int ia_bits;
+> +	bool stage2_unmapped;
+>   };
+>   
+>   void kvm_init_rmi(void);
+> @@ -77,5 +79,12 @@ u32 kvm_rmm_ipa_limit(void);
+>   
+>   int kvm_init_realm(struct kvm *kvm);
+>   void kvm_destroy_realm(struct kvm *kvm);
+> +int kvm_realm_teardown_stage2(struct kvm *kvm);
+> +
+> +static inline bool kvm_realm_is_private_address(struct realm *realm,
+> +						unsigned long addr)
+> +{
+> +	return !(addr & BIT(realm->ia_bits - 1));
+> +}
+>   
+>   #endif /* __ASM_KVM_RMI_H */
+> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+> index 9df3f8d5b4ef..be014f6c00e7 100644
+> --- a/arch/arm64/kvm/mmu.c
+> +++ b/arch/arm64/kvm/mmu.c
+> @@ -1145,9 +1145,25 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct kvm_s2_mmu *mmu, unsigned long t
+>   	return err;
+>   }
+>   
+> +static void kvm_realm_uninit_stage2(struct kvm_s2_mmu *mmu)
+> +{
+> +	struct kvm *kvm = kvm_s2_mmu_to_kvm(mmu);
+> +
+> +	mutex_lock(&kvm->arch.config_lock);
+> +	if (kvm_realm_state(kvm) == REALM_STATE_NEW ||
+> +	    kvm_realm_state(kvm) == REALM_STATE_ACTIVE) {
+> +		kvm_set_realm_state(kvm, REALM_STATE_DYING);
+> +		WARN_ON(kvm_realm_teardown_stage2(kvm));
+> +	}
+> +	mutex_unlock(&kvm->arch.config_lock);
+> +}
+> +
+>   void kvm_uninit_stage2_mmu(struct kvm *kvm)
+>   {
+> -	kvm_free_stage2_pgd(&kvm->arch.mmu);
+> +	if (kvm_realm_is_created(kvm))
+> +		kvm_realm_uninit_stage2(&kvm->arch.mmu);
+> +	else
+> +		kvm_free_stage2_pgd(&kvm->arch.mmu);
 
-We could, I just don't know if on cca, the repeat hypercall has same
-behavior. I was leaving that for the arm team. Anyways, I sent question
-to the hyp team, if they say yes, i can update my patch to include that.
+We added kvm_free_stage2_pgd() from kvm_destroy_realm() for Realms in
+the previous patch. Should we move that here since, this is where we
 
-Thanks,
--Mukesh
+1. Deal with tearing down stage2
+2. And more importantly we are skipping it for Realms.
+
+
+>   	kvm_mmu_free_memory_cache(&kvm->arch.mmu.split_page_cache);
+>   }
+>   
+> diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
+> index 69c628cfb6c7..b904e6541fb0 100644
+> --- a/arch/arm64/kvm/rmi.c
+> +++ b/arch/arm64/kvm/rmi.c
+> @@ -11,16 +11,193 @@
+>   #include <asm/kvm_pgtable.h>
+>   #include <asm/virt.h>
+>   
+> +static inline unsigned long rmi_rtt_level_mapsize(int level)
+> +{
+> +	if (WARN_ON(level > KVM_PGTABLE_LAST_LEVEL))
+> +		return PAGE_SIZE;
+> +
+> +	return (1UL << ARM64_HW_PGTABLE_LEVEL_SHIFT(level));
+> +}
+> +
+
+We agreed to use kvm_granule_size() instead of this ?
+
+https://lore.kernel.org/all/cb183290-3fee-4535-aa3e-5cc172c2323a@arm.com
+
+
+
+>   u32 kvm_rmm_ipa_limit(void)
+>   {
+>   	return u64_get_bits(rmi_feat_reg(0), RMI_FEATURE_REGISTER_0_S2SZ);
+>   }
+>   
+> +static int get_start_level(struct realm *realm)
+> +{
+> +	return 4 - max(2, stage2_pgtable_levels(realm->ia_bits));
+
+I don't think we need this "max()". ia_bits is guaranteed to be
+ >= 32bit (ARM64_MIN_PARANGE_BITS, see kvm_init_ipa_range()), implying
+that we have at least 2 levels on all page sizes.
+
+> +}
+> +
+> +static void free_rtt(phys_addr_t phys)
+> +{
+> +	kvm_account_pgtable_pages(phys_to_virt(phys), -1);
+> +	if (rmi_free_delegated_page(phys))
+> +		kvm_account_pgtable_pages(phys_to_virt(phys), 1);
+
+Is there a reason why remove the account before freeing ? Could we do
+this after we have reclaimed it ?
+
+> +}
+> +
+> +/*
+> + * realm_rtt_destroy - Destroy an RTT at @level for @addr.
+> + *
+> + * Returns - Result of the RMI_RTT_DESTROY call, and:
+> + * @rtt_granule:	RTT granule, if the RTT was destroyed.
+> + * @next_addr:		IPA corresponding to the next possible valid entry we
+> + *			can target
+> + */
+> +static long realm_rtt_destroy(struct realm *realm, unsigned long addr,
+> +			      int level, phys_addr_t *rtt_granule,
+> +			      unsigned long *next_addr)
+> +{
+> +	unsigned long out_rtt;
+> +	long ret;
+> +
+> +	ret = rmi_rtt_destroy(virt_to_phys(realm->rd), addr, level,
+> +			      &out_rtt, next_addr);
+> +
+> +	if (ret == RMI_SUCCESS)
+> +		*rtt_granule = out_rtt;
+> +
+> +	return ret;
+> +}
+> +
+> +static int realm_tear_down_rtt_level(struct realm *realm, int level,
+> +				     unsigned long start, unsigned long end)
+> +{
+> +	ssize_t map_size;
+> +	unsigned long addr, next_addr;
+> +
+> +	if (WARN_ON(level > KVM_PGTABLE_LAST_LEVEL))
+> +		return -EINVAL;
+> +
+> +	map_size = rmi_rtt_level_mapsize(level - 1);
+> +
+
+We agreed to add a WARN_ON() here to ensure the start address is aligned ?
+
+
+Suzuki
+
+
+> +	for (addr = start; addr < end; addr = next_addr) {
+> +		phys_addr_t rtt_granule;
+> +		long ret;
+> +		unsigned long align_addr = ALIGN(addr, map_size);
+> +
+> +		next_addr = ALIGN(addr + 1, map_size);
+> +
+> +		if (next_addr > end || align_addr != addr) {
+> +			/*
+> +			 * The target range is smaller than what this level
+> +			 * covers, recurse deeper.
+> +			 */
+> +			ret = realm_tear_down_rtt_level(realm,
+> +							level + 1,
+> +							addr,
+> +							min(next_addr, end));
+> +			if (ret)
+> +				return ret;
+> +			continue;
+> +		}
+> +
+> +		ret = realm_rtt_destroy(realm, addr, level,
+> +					&rtt_granule, &next_addr);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		switch (RMI_RESULT_STATUS(ret)) {
+> +		case RMI_SUCCESS:
+> +			free_rtt(rtt_granule);
+> +			break;
+> +		case RMI_ERROR_RTT:
+> +			if (next_addr > addr) {
+> +				/* Missing RTT, skip */
+> +				break;
+> +			}
+> +			/*
+> +			 * We tear down the RTT range for the full IPA
+> +			 * space, after everything is unmapped. Also we
+> +			 * descend down only if we cannot tear down a
+> +			 * top level RTT. Thus RMM must be able to walk
+> +			 * to the requested level. e.g., a block mapping
+> +			 * exists at L1 or L2.
+> +			 */
+> +			if (WARN_ON(RMI_RESULT_DATA_LEVEL(ret) != level))
+> +				return -EBUSY;
+> +			if (WARN_ON(level == KVM_PGTABLE_LAST_LEVEL))
+> +				return -EBUSY;
+> +
+> +			/*
+> +			 * The table has active entries in it, recurse deeper
+> +			 * and tear down the RTTs.
+> +			 */
+> +			next_addr = ALIGN(addr + 1, map_size);
+> +			ret = realm_tear_down_rtt_level(realm,
+> +							level + 1,
+> +							addr,
+> +							next_addr);
+> +			if (ret)
+> +				return ret;
+> +			/*
+> +			 * Now that the child RTTs are destroyed,
+> +			 * retry at this level.
+> +			 */
+> +			next_addr = addr;
+> +			break;
+> +		default:
+> +			WARN_ON(1);
+> +			return -ENXIO;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int realm_tear_down_rtt_range(struct realm *realm,
+> +				     unsigned long start, unsigned long end)
+> +{
+> +	/*
+> +	 * Root level RTTs can only be destroyed after the RD is destroyed. So
+> +	 * tear down everything below the root level
+> +	 */
+> +	return realm_tear_down_rtt_level(realm, get_start_level(realm) + 1,
+> +					 start, end);
+> +}
+> +
+> +static int realm_destroy_rtts(struct kvm *kvm)
+> +{
+> +	struct realm *realm = &kvm->arch.realm;
+> +	unsigned int ia_bits = realm->ia_bits;
+> +
+> +	lockdep_assert_held(&kvm->arch.config_lock);
+> +
+> +	return realm_tear_down_rtt_range(realm, 0, (1UL << ia_bits));
+> +}
+> +
+> +static void realm_unmap_stage2(struct kvm *kvm)
+> +{
+> +	struct realm *realm = &kvm->arch.realm;
+> +
+> +	lockdep_assert_held(&kvm->arch.config_lock);
+> +
+> +	if (realm->stage2_unmapped)
+> +		return;
+> +
+> +	write_lock(&kvm->mmu_lock);
+> +	kvm_stage2_unmap_range(&kvm->arch.mmu, 0,
+> +			       BIT(realm->ia_bits - 1), true);
+> +	write_unlock(&kvm->mmu_lock);
+> +
+> +	realm->stage2_unmapped = true;
+> +}
+> +
+> +int kvm_realm_teardown_stage2(struct kvm *kvm)
+> +{
+> +	lockdep_assert_held(&kvm->arch.config_lock);
+> +
+> +	realm_unmap_stage2(kvm);
+> +	return 0;
+> +}
+> +
+>   void kvm_destroy_realm(struct kvm *kvm)
+>   {
+>   	struct realm *realm = &kvm->arch.realm;
+>   	size_t pgd_size = kvm_pgtable_stage2_pgd_size(kvm->arch.mmu.vtcr);
+>   
+> +	guard(mutex)(&kvm->arch.config_lock);
+
+Do we need to document, why we need this mutex ?
+
+Suzuki
 
