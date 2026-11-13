@@ -2,66 +2,96 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CC70606A880
-	for <linux-arm-kernel@archiver.kernel.org>; Thu, 12 Nov 2026 23:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE71606A89D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:15:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PeQdGZ/Y;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oXjY58Zw
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1VTypkfm;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=OMNGsFvI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=W/o2ML2sA5Yx8bm0rnJCzuTd+aUYDtMZYPL1uTEwFLU=; b=PeQdGZ/YyU8hHcUINw3SDVtbRq
-	QhpG3F8YK7K7yoR8bRdCVAepMcx+W4oZwFXKGV7l7hRHQtdiNNlEFMlgjC3m9uPK3PdANkAUhY4bq
-	wCnhaw8uxg23uVh4QuA9fYw+4kk4L00zf0wpvvPKSHDSrNApcKJxLlSdlFh+bkZ+vLHFllY0MwS/z
-	TDraoe0ZBBUKaX5hOuEGjUKivmn409tyqzousJzkYO2c3punv1kah9E3I9lnwSM/Ptv5gu5QYk7PA
-	PuS2Kr+PP4O3wvKyXl85mmm5QTz2owUjaDZ8jX+oqlKPW+mwkSCF3hqnQDOmDAFgb4EJoHOZK1kps
-	qT80RDFA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=C0NwRK6L86ei0geUzY72MeQ4QYzIRdqu97OV6zihIF0=; b=1VTypkfmt03emM
+	/50pRZzgEoXO7Uv2maUl4aBt9X9L20F0OilY3MvbsIj8TuGXmRwAYFy4NGlxOkyc+jIlrVXqyFy3i
+	9fzD/RNjBX+zp0+PhMFI/tSINyydocU615e44TbAFr7eCh6Fp+b++mt4Rzb4KFuCWbTX+4l/4YlqY
+	OLCtw6FNLtvNaZ4sqaWSgbSJSXy9KKb0J5lW78YDuUlJl6eragLjF5VB6ah3QhUfNAEbMbprOdI5l
+	fInmdj11BVYEpqE8QyPC/+HW4O+Su/LMMCTJ3FZ3RvAQJqOW+kFpGwMJ1eYyu7wSpWEgKQYU2+obg
+	LpwdPSYqjPHmA7oQxIKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xReW7-0000000BGn4-21bq;
-	Thu, 12 Nov 2026 23:47:43 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRewf-0000000BI6y-3AFB;
+	Fri, 13 Nov 2026 00:15:09 +0000
+Received: from mail-lj1-x234.google.com ([2a00:1450:4864:20::234])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xReW4-0000000BGlk-0koA;
-	Thu, 12 Nov 2026 23:47:40 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 82F09624C9;
-	Thu, 12 Nov 2026 23:47:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56FEB1F000C4;
-	Thu, 12 Nov 2026 23:47:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794527258;
-	bh=W/o2ML2sA5Yx8bm0rnJCzuTd+aUYDtMZYPL1uTEwFLU=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=oXjY58ZwDdAvoPY5W8yPU3vAkrAyx0m9Dh7jF5bWqephZVmqzUqbCBipYHF5/fmmC
-	 chcDOPeYgCRxKkTrlPa0lOGhHSkK2KyMIyEfFk60YIqxAWAN6iprFkDwwB2aObgO+c
-	 vAlYmLHx8cg2cG/L6tl1PbalaMfIr8CSfpCEPx8STivT2+Ufk1VQ1mvVPLmiaZFV22
-	 ++EgiZVgOfs/5X1L43u/Hq5VF68zNvPqQ4JpsRj8MKH1nXpECmuOC5eOeETB74SA/1
-	 U717HVvxEtVEWmB/bVzvOmW58CTyDK4D+lVR9KnGKatyUjjMA/YZG+mxbN6Itzqtb2
-	 Snr+dLZiUXPUA==
-Subject: Re: [PATCH net-next v4 3/3] net: ethernet: mtk_eth_soc: add 9K jumbo
-From: netdev-bot+sashiko@kernel.org
-To: sandeeph@loljews.com
-Cc: netdev@vger.kernel.org, nbd@nbd.name, lorenzo@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@kernel.org,
- kuba@kernel.org, pabeni@redhat.com, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, linux@armlinux.org.uk,
- mason-cw.chang@mediatek.com, frank-w@public-files.de,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Thu, 12 Nov 2026 23:47:36 +0000
-Message-ID: <179452725692.2199510.7733814065763991670@kernel.org>
-In-Reply-To: <patch-271a13eac7135a653a78c355e66438ab@loljews.com>
-References: <patch-271a13eac7135a653a78c355e66438ab@loljews.com>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	id 1xRewc-0000000BI6Y-0B7K
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 00:15:07 +0000
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-3ae1fd4252fso4231101fa.0
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:15:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794528903; x=1795133703; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=C0NwRK6L86ei0geUzY72MeQ4QYzIRdqu97OV6zihIF0=;
+        b=OMNGsFvIOYD8KOpas1AMqN3YVmxtTvPkP8vkn8LJ7qGCRVnCZKqgDurZ7QggSDlarK
+         TVZ6h5RdH2G2teO+Q9lRpnmTfBsWiJpcqKNtJ2lxFgPld1y/sOGJ2qaVlnbeVPpKfdjv
+         zDZyac+ewkR2W8PzbXNjJ59wTxnX/gO8jDx8mRGxCZsBpcrKrshkPF/BZRuuPU/9Hyz3
+         Nk2hxSouNXSKVJUGmmAH0KRZjCsn+Bko8Z3llpXzf0hsVo23dLe6fTLkTkvqrT8kbE7J
+         tqt8AlIb8+M6kb2vfn3hgGl7qjdiTbz3BIQQeNceOKajOVGCwsz4rL1SnqhAaVQjb42T
+         yzwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794528903; x=1795133703;
+        h=content-transfer-encoding:content-type:mime-version:references
+         :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=C0NwRK6L86ei0geUzY72MeQ4QYzIRdqu97OV6zihIF0=;
+        b=DaXGs+r2f/BbkK22B2UmvOFUdku6FpjnStc3FHovebGfDK2b01z/wC76o2mVOUh0EU
+         lBSe+U40UD+UFSEP6zBgokLsGzhtzHhHp5tVddbuWSclJ07VqdRfsJzkst81VAEFo9mu
+         +TyVdVkZIheqhNRVU+ez0UZM8qsdzbHGahRRqT2CNUxf9zF+dXQfCfkE7nsvVJj02IEq
+         cviS27wtcCCrw/LX1FLAsF5DvnoAW+F/Tds6soPtB78wP5sxh0Hz25bHrenCvkuF4f1G
+         N/mqn4CirADemdKE7ObVjgrHzrUF5W40fri3wM+MEnpc62U8Ur/MgIF+WholWrr+ROw5
+         IIMQ==
+X-Forwarded-Encrypted: i=1; AL+hErFn/nruiR8WawnybAOR90ixMBpsiVDKQPTuFc7+vzDfIJmYgp+1XUTTsH5h7wInmHoGYrGMu9bo/ZiMOwlaiKzL@lists.infradead.org
+X-Gm-Message-State: APuU4Z9+KzG7c/3dWXAcBbSYbexm0QCg8DS7vh1F9KcIO/2BZ13wHUUp
+	HLv/RXYMO47Li6BncicMAPK8VBLx/rP+QkfSwoDVJc7R1kPmeR/8aIs0FtV1a0UKNCM=
+X-Gm-Gg: AYBFou1W8HQMvISjcUDsGE1ZzNtrwBpJLDsrOBYG7MDjPuwlI9QEQ4zNyxuJXZU9ikS
+	B/lZAb243Wfyo9Zi0sBSr6hfo0sJ0QpH7ud2WlGNuhWfp7EYY8qptuOmsQTRmYdR1Uq95v9MGom
+	Ztsu0NnP4zWCIQ9FOGoN7dMSd/+MXDpANcI501rM1sXDgfJPTiQ0lCfQTtsGO4zB6+nKSKmnQXG
+	9fnE2JhofpgLxnhaBJ3gQqKqqWY5kI25J3IsTRx5YU7W3d9bO2GnQ5b5xUA8sCp54ZieZZSJSzE
+	jOdobwzCMEEV9BnRzZ50c1RuHU7rtOrdGGpAiRWt1NJw8OeIi5Dg4ytthYPFO0OvwDhY7K52R/o
+	HvGMo0oEq+vEv///m84sCIu5TDdy2aWbw8WEy9VruN12Q+h5iQhx00E8bFfarQZMwaPCjxLqfhL
+	XxcTdWTj2CwcIFm3/uvhnHY3XwcLZ8wVBciD1ALH/vRmzgJZ5W9BQxd59/bNNjoKyeOfbpFDVle
+	ZWwVYJsrwRoSLcNHvSTPTlm12xS6kDk8XX20jAneCkZW641voDtHGoGsaFh1uRylKZ0vOgFfhTz
+	SR5jxo+fAcLapDOExLqUcjaDGVvoTn2qG28zAbnSCEuYah3dIEKKfaqy0BTGEJyPueS3/LuDT92
+	i5eauikvCXQ==
+X-Received: by 2002:a05:6512:2302:b0:5c1:4974:c150 with SMTP id 2adb3069b0e04-5c1709c44admr353851e87.51.1794528903101;
+        Thu, 12 Nov 2026 16:15:03 -0800 (PST)
+Received: from SafoStation ([31.40.65.49])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5c17133ca01sm200968e87.36.2026.11.12.16.15.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2026 16:15:02 -0800 (PST)
+From: Safocl Stollmannovic <safocl88@gmail.com>
+To: Russell King <linux@armlinux.org.uk>
+Cc: linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 01/10] ARM: fix duplicate extern declarations
+Date: Fri, 13 Nov 2026 04:14:07 +0400
+Message-ID: <20261113001432.128201-2-safocl88@gmail.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261113001432.128201-1-safocl88@gmail.com>
+References: <20261113001432.128201-1-safocl88@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261112_161506_117226_F168D6D2 
+X-CRM114-Status: GOOD (  13.20  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -72,419 +102,54 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 7 potential
-issue(s) to consider.
-
-Critical: 0 · High: 0 (1) · Medium: 6 · Low: 1
-
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
-
-- [Medium] The shared RX length leaves no room for an 802.1Q tag at 1 KiB
-  boundaries, including the advertised max_mtu.
-- [Medium] GMAC1 (the built-in switch port and DSA conduit on MT7988)
-  advertises max_mtu = 9198, but the only receive limit the driver can…
-- [Medium] The unpolled QDMA RX ring is now filled with jumbo-sized
-  buffers.
-- [Medium] Possible kernel memory exposure (speculative).
-- [Medium] The PDMA RX max-frame (SDL) field may now be set 12 KiB above
-  the posted buffer size (speculative).
-- [Medium] net: mtk_eth_soc: mtk_xdp_setup() rejects XDP detach when MTU
-  is jumbo
-- [Low] The commit message hides a behaviour change on other SoCs and
-  gets the buffer sizes wrong.
-
-Pre-existing issues:
-- [High] This problem wasn't introduced by this patch, but on the first
-  open, a failure while filling an RX ring leaks the buffers and frees…
-
---
-
-net: ethernet: mtk_eth_soc: add 9K jumbo
-
-This adds an MTK_NETSYS_RX_9K capability for MT7988. With it, the XGMII
-MACs advertise a 9K max_mtu and the shared RX rings are sized from the
-largest MTU of any MAC. The PDMA RX SDL field and the XMAC_RX_CFG2 / MCR
-max-rx limits are programmed from that shared length, and larger-buffer MTU
-changes are rejected while DMA is running.
-
-Link: https://github.com/frank-w/BPI-Router-Linux/commit/b4c6cb1d5532
-Link: https://github.com/mediatek/mtk-openwrt-feeds
-
-> diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-> index 6768ab8ebe4aa..527fdaeec50f8 100644
-> --- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-> +++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-
-[ ... ]
-
-> @@ -2313,10 +2375,15 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
->  				skb_metadata_set(skb, metasize);
->  			skb_mark_for_recycle(skb);
->  		} else {
-> +			unsigned int alloc_size = ring->frag_size > PAGE_SIZE ?
-> +				mtk_buf_alloc_size(ring->frag_size) :
-> +				ring->frag_size;
-> +
-
-[Severity: Low]
-This also changes the HWLRO rings on SoCs that don't have MTK_NETSYS_RX_9K.
-On mt2701, mt7622, mt7623 and mt7629 the LRO rings use rx_data_len =
-MTK_MAX_LRO_RX_LENGTH (12288). Their frag_size is therefore above PAGE_SIZE,
-and alloc_size becomes 16384 instead of roughly 12.7 KiB.
-
-Those LRO skbs get a larger truesize, and skb_shared_info moves to the end
-of the order-2 page. The commit message says the other SoCs are left as
-before and links the truesize change only to large MTUs. Should this change
-be mentioned there?
-
-The buffer sizes in the commit message also don't seem to match:
-
-  Once any MAC's MTU needs more than ~3.5K, every RX buffer is a 16 KiB
-  compound page
-
-On arm64, NET_SKB_PAD is 64 and NET_IP_ALIGN is 0. With those values,
-frag_size first goes above PAGE_SIZE at rx_buf_len = 4096, which is any MTU
-above 3054.
-
-For rx_buf_len 4096 to 7168 (MTU 3055-7150), get_order() gives order-1
-(8 KiB) buffers. Only rx_buf_len 8192 and up (MTU 7151 and up) gives 16 KiB
-buffers.
-
->  			if (ring->frag_size <= PAGE_SIZE)
->  				new_data = napi_alloc_frag(ring->frag_size);
->  			else
-> -				new_data = mtk_max_lro_buf_alloc(GFP_ATOMIC);
-> +				new_data = mtk_max_buf_alloc(ring->frag_size,
-> +							     GFP_ATOMIC);
->  
->  			if (unlikely(!new_data)) {
->  				netdev->stats.rx_dropped++;
-> @@ -2339,7 +2406,7 @@ static int mtk_poll_rx(struct napi_struct *napi, int budget,
->  			dma_unmap_single(eth->dma_dev, ((u64)trxd.rxd1 | addr64),
->  					 ring->buf_size, DMA_FROM_DEVICE);
->  
-> -			skb = build_skb(data, ring->frag_size);
-> +			skb = build_skb(data, alloc_size);
-
-[Severity: Medium]
-Could this let the skb include memory the DMA engine never wrote?
-
-Before this change, the tailroom left after skb_reserve(NET_SKB_PAD +
-NET_IP_ALIGN) was exactly ring->buf_size, which is the DMA-mapped region.
-For a 9K ring (buf_size 9216 in a 16 KiB allocation) it is now about 16000
-bytes.
-
-A little further down, pktlen comes from the descriptor and goes straight
-into skb_put():
-
-	skb_reserve(skb, NET_SKB_PAD + NET_IP_ALIGN);
-	skb_put(skb, pktlen);
-
-Nothing checks pktlen against ring->buf_size. If the hardware ever reports
-a PLEN0 larger than the posted buffer, the old code hit skb_over_panic().
-The new code would instead pass several KB of stale memory from
-__get_free_pages() (no __GFP_ZERO) into the stack.
-
-The new PDMA SDL write makes this harder to rule out; see the comment on
-mtk_pdma_set_sdl() below.
-
-Would it make sense to drop descriptors with pktlen > ring->buf_size before
-skb_put()? Another option is to keep build_skb() at frag_size and account
-for truesize separately.
-
-[ ... ]
-
-> @@ -2818,8 +2885,8 @@ static int mtk_rx_alloc(struct mtk_eth *eth, int ring_no, int rx_flag)
->  		rx_dma_size = soc->rx.dma_size;
->  	}
->  
-> -	ring->frag_size = mtk_max_frag_size(rx_data_len);
-> -	ring->buf_size = mtk_max_buf_size(ring->frag_size);
-> +	ring->frag_size = mtk_max_frag_size(eth, rx_data_len);
-> +	ring->buf_size = mtk_max_buf_size(eth, ring->frag_size);
-
-[Severity: Medium]
-This sizing also applies to eth->rx_ring_qdma. On MT7988 (MTK_QDMA),
-mtk_dma_init() allocates that ring with soc->rx.dma_size = 2048 entries.
-
-As far as I can tell, that ring is only used in mtk_rx_alloc() and
-mtk_rx_clean(). mtk_poll_rx() only takes rings from mtk_get_rx_ring(), and
-that returns eth->rx_ring[].
-
-Once any MAC MTU is above about 7150, is each of those 2048 entries an
-order-2 16 KiB page from mtk_max_buf_alloc(..., GFP_KERNEL)? That would pin
-about 32 MiB for a ring the CPU never reads or refills, compared with about
-5 MiB of page frags before. It also doubles the number of high-order
-allocations at open.
-
-Could the QDMA RX ring stay at a fixed 2K buffer length, with the WARN_ON in
-mtk_max_buf_size() relaxed for it?
-
->  	ring->data = kcalloc(rx_dma_size, sizeof(*ring->data),
->  			     GFP_KERNEL);
->  	if (!ring->data)
-> @@ -2864,7 +2931,8 @@ static int mtk_rx_alloc(struct mtk_eth *eth, int ring_no, int rx_flag)
->  			if (ring->frag_size <= PAGE_SIZE)
->  				data = netdev_alloc_frag(ring->frag_size);
->  			else
-> -				data = mtk_max_lro_buf_alloc(GFP_KERNEL);
-> +				data = mtk_max_buf_alloc(ring->frag_size,
-> +							 GFP_KERNEL);
->  
->  			if (!data)
->  				return -ENOMEM;
-
-[Severity: High]
-This is a pre-existing issue and was not introduced by this patch. What
-happens to the entries that were already filled when this return is taken on
-the first open?
-
-eth comes from devm_kzalloc(), and mtk_rx_alloc() only sets ring->dma_size
-after the fill loop:
-
-	ring->dma_size = rx_dma_size;
-
-On a partial fill (an allocation failure or a dma_mapping_error()), the
-cleanup runs with ring->dma_size == 0:
-
-mtk_start_dma()
-  mtk_dma_free()
-    mtk_rx_clean()
-
-The buffer loop in mtk_rx_clean() visits nothing, so the filled buffers and
-their DMA mappings leak. It then calls:
-
-	mtk_dma_ring_free(eth, ring->dma_size * eth->soc->rx.desc_size,
-			  ring->dma, ring->phys, in_sram);
-
-That frees the descriptor ring with size 0. For a non-SRAM ring the path is:
-
-dma_free_coherent(dev, 0, ...)
-  dma_direct_free()
-    dma_free_contiguous()
-      __free_pages(page, get_order(0))
-
-Here the page is outside CMA. At runtime, get_order(0) is 52 on 64-bit with
-4K pages. Can that corrupt the buddy allocator?
-
-For rx_ring[0] in SRAM the call becomes gen_pool_free(pool, addr, 0), which
-looks like it leaks the SRAM block permanently.
-
-This patch adds GFP_KERNEL order-1 and order-2 allocations to this path for
-the MT7988 jumbo rings, so the path stays reachable. Would setting
-ring->dma_size (or a fill count) before the loop, or unwinding inside
-mtk_rx_alloc(), avoid this?
-
-[ ... ]
-
-> @@ -3260,6 +3328,56 @@ static int mtk_dma_busy_wait(struct mtk_eth *eth)
->  	return ret;
->  }
->  
-
-[ ... ]
-
-> +static u32 mtk_rx_buf_len_from_mtu(int max_mtu)
-> +{
-> +	int length = max_mtu + MTK_RX_ETH_HLEN;
-> +
-> +	if (length <= MTK_MAX_RX_LENGTH_2K)
-> +		return MTK_MAX_RX_LENGTH_2K;
-> +
-> +	return DIV_ROUND_UP(length, 1024) * 1024;
-> +}
-
-[Severity: Medium]
-Is there room for an 802.1Q tag here? MTK_RX_ETH_HLEN is ETH_HLEN +
-ETH_FCS_LEN (18 bytes) and does not include VLAN_HLEN. This one value sets
-the ring buf_size, the PDMA SDL field and XMAC_RX_CFG2.
-
-On MT7988 (arm64, NET_IP_ALIGN 0, NET_SKB_PAD 64), mtk_max_buf_size()
-returns exactly rx_buf_len, so the descriptor has no slack either.
-
-A full-size tagged frame is mtu + 22 bytes. That exceeds every limit when
-(mtu + 18) mod 1024 is 0, 1021, 1022 or 1023. Examples are MTU 3051-3054,
-4075-4078, ..., 9195-9198.
-
-That range includes the max_mtu now advertised in mtk_add_mac():
-
-	eth->netdev[id]->max_mtu =
-		MTK_MAX_RX_LENGTH_9K - MTK_RX_ETH_HLEN;
-
-MTU 9198 gives rx_buf_len 9216, but a tagged frame at that MTU is 9220
-bytes.
-
-The commit message says XMAC_RX_CFG2 is programmed "so 802.1Q-tagged frames
-fit at any MTU". That doesn't seem to hold at these MTUs.
-mtk_ppe_update_mtu() already adds VLAN_HLEN per tag for the same reason.
-
-Should the length be derived from mtu + VLAN_ETH_HLEN + ETH_FCS_LEN, or
-VLAN_HLEN added before rounding, with max_mtu lowered to match?
-
-[ ... ]
-
-> +static void mtk_pdma_set_sdl(struct mtk_eth *eth)
-> +{
-> +	const struct mtk_reg_map *reg_map = eth->soc->reg_map;
-> +	u32 val;
-> +
-> +	if (!mtk_is_netsys_v3_or_greater(eth))
-> +		return;
-> +
-> +	val = mtk_r32(eth, reg_map->pdma.rx_cfg);
-> +	val &= ~MTK_RX_CFG_SDL_MASK;
-> +	val |= FIELD_PREP(MTK_RX_CFG_SDL_MASK,
-> +			  MTK_PDMA_LRO_SDL + eth->rx_buf_len);
-> +	mtk_w32(eth, val, reg_map->pdma.rx_cfg);
-> +}
-
-[Severity: Medium]
-Has the offset encoding of this field been confirmed? MTK_PDMA_LRO_SDL was
-unused before this patch. Its value, 0x3000 (12288), equals
-MTK_MAX_LRO_RX_LENGTH, which suggests it is the LRO segment length in bytes
-rather than an offset.
-
-If the SDL field is a plain byte length, a stock MTU 1500 system gets
-0x3800 (14336) while its ring buffers are 2048 bytes, and a 9K setup gets
-0x5400. The DMA engine would then no longer limit frames to ring->buf_size.
-
-mtk_poll_rx() doesn't handle frames that span several descriptors, and it
-doesn't check pktlen against buf_size before skb_put(). The commit message
-also notes that the GMAC1 MAC limit may not be enforced.
-
-The "~1518" reset default in the commit message would be a register value of
-0x35EE under the offset reading and 0x05EE under a plain-length reading.
-
-There is also the field width. If the field is narrower than the 15 bits
-that GENMASK(30, 16) assumes, 0x5400 sets register bit 30.
-
-Hardware testing alone wouldn't catch a wrong encoding, because any value of
-9216 or more lets 9K frames through. Can the register definition be
-confirmed? Would programming rx_buf_len or ring->buf_size directly be more
-appropriate?
-
-[ ... ]
-
-> @@ -5021,8 +5170,17 @@ static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
->  	eth->netdev[id]->irq = eth->irq[MTK_FE_IRQ_SHARED];
->  	eth->netdev[id]->dev.of_node = np;
->  
-
-[ ... ]
-
->  	if (MTK_HAS_CAPS(eth->soc->caps, MTK_SOC_MT7628))
->  		eth->netdev[id]->max_mtu = MTK_MAX_RX_LENGTH - MTK_RX_ETH_HLEN;
-> +	else if (MTK_HAS_CAPS(eth->soc->caps, MTK_NETSYS_RX_9K) &&
-> +		 mtk_interface_mode_is_xgmii(eth, phy_mode))
-> +		eth->netdev[id]->max_mtu =
-> +			MTK_MAX_RX_LENGTH_9K - MTK_RX_ETH_HLEN;
-
-[Severity: Medium]
-Does this also give GMAC1 a max_mtu of 9198? On netsys v3,
-mtk_interface_mode_is_xgmii() returns true for PHY_INTERFACE_MODE_INTERNAL.
-That is the only interface GMAC1 supports on MT7988.
-
-mtk_set_mcr_max_rx() always sends GMAC1 down the MCR bucket path:
-
-	if (!mtk_interface_mode_is_xgmii(eth, mac->interface) ||
-	    mac->id == MTK_GMAC1_ID) {
-		...
-		else
-			mcr_new |= MAC_MCR_MAX_RX(MAC_MCR_MAX_RX_2048);
-
-MAC_MCR_MAX_RX_MASK is GENMASK(25, 24), so 2048 is the largest limit it can
-program.
-
-If the internal switch path enforces this field, frames above 2048 bytes
-sent to the CPU through the DSA conduit are dropped, and 9K on the DSA user
-ports doesn't work. If it doesn't enforce it, the GMAC1 MCR programming in
-mtk_mac_config(), mtk_hw_init() and mtk_change_mtu() has no effect.
-
-Should GMAC1's max_mtu be capped to what the driver can program, or can
-enforcement be confirmed on hardware before this is merged?
-
->  	else
->  		eth->netdev[id]->max_mtu = MTK_MAX_RX_LENGTH_2K - MTK_RX_ETH_HLEN;
->  
-
-[ ... ]
-
-> @@ -3788,12 +3906,26 @@ static int mtk_xdp_setup(struct net_device *dev, struct bpf_prog *prog,
->  		return -EOPNOTSUPP;
->  	}
->  
-> -	if (dev->mtu > MTK_PP_MAX_BUF_SIZE) {
-> +	need_update = !!eth->prog != !!prog;
-> +
-> +	/* XDP only runs on rings that have a page_pool, and the pool is
-> +	 * only created when the shared RX buffer length fits
-> +	 * MTK_PP_MAX_BUF_SIZE.  eth->rx_buf_len describes the live rings;
-> +	 * when the rings are not live, or this operation tears them down,
-> +	 * the next open re-derives it from the current MTUs, so check
-> +	 * that value instead.
-> +	 */
-> +	rx_buf_len = eth->rx_buf_len;
-> +	if (!refcount_read(&eth->dma_refcnt) ||
-> +	    (netif_running(dev) && need_update &&
-> +	     refcount_read(&eth->dma_refcnt) == 1))
-> +		rx_buf_len = mtk_rx_buf_len(eth);
-> +
-> +	if (rx_buf_len > MTK_PP_MAX_BUF_SIZE) {
->  		NL_SET_ERR_MSG_MOD(extack, "MTU too large for XDP");
->  		return -EOPNOTSUPP;
->  	}
->  
-> -	need_update = !!eth->prog != !!prog;
->  	if (netif_running(dev) && need_update)
->  		mtk_stop(dev);
->  
-
-[Severity: Medium]
-Should this check be skipped when prog is NULL? As written it also
-runs on a detach, and a detach does not need a page_pool at all.
-
-eth->prog is a single pointer shared by every MAC on the mtk_eth.
-The core, by contrast, tracks the attached program per net_device in
-dev->xdp_state.
-
-Take an MT7988 with programs attached to both eth0 and eth1.
-Detaching from eth0 clears eth->prog, but the core still records
-eth1's program or bpf_xdp_link. With eth->prog NULL, the XDP check in
-mtk_change_mtu() no longer fires. While DMA is down, eth1's MTU can
-then be raised to 9000, and mtk_rx_buf_len() returns 9216.
-
-A later detach on eth1 reaches this check with prog == NULL. It picks
-up rx_buf_len = 9216, either from mtk_rx_buf_len() with the rings
-down or from eth->rx_buf_len once they were rebuilt at the jumbo
-size. The detach then fails with -EOPNOTSUPP.
-
->From netlink, that leaves the administrator unable to remove the
-program. The other callers are worse. dev_xdp_uninstall() runs at
-unregister, and dev_xdp_detach_link() runs when the link is closed.
-Both wrap dev_xdp_install() in WARN_ON(), so the failure warns and
-leaves the core state out of sync with the driver.
-
-Before this patch max_mtu was at most 2030, so the old dev->mtu check
-could not fail. The 9K max_mtu is what makes this reachable.
-
-Would it be enough to apply the size check only when prog is
-non-NULL? The check in mtk_change_mtu() looks only at eth->prog, not
-at whether any netdev on this mtk_eth still has a program attached.
-Should that be tightened here, or left to a separate fix of the
-shared eth->prog handling?
-
+Compiling a kernel module with a C++ compiler results in a duplicate
+echo ‘extern’ specifier error.
+This occurs because the code contains , and
+expands to  when processed by a C++ compiler.
+The  specifier must be removed.
+https://bugzilla.kernel.org/show_bug.cgi?id=222257
+
+Signed-off-by: Safocl Stollmannovic <safocl88@gmail.com>
+---
+ arch/arm/include/asm/bug.h     | 2 +-
+ arch/arm/include/asm/opcodes.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/include/asm/bug.h b/arch/arm/include/asm/bug.h
+index ba8d9d7d2..985857d65 100644
+--- a/arch/arm/include/asm/bug.h
++++ b/arch/arm/include/asm/bug.h
+@@ -82,7 +82,7 @@ void hook_ifault_code(int nr, int (*fn)(unsigned long, unsigned int,
+ 				       struct pt_regs *),
+ 		     int sig, int code, const char *name);
+ 
+-extern asmlinkage void c_backtrace(unsigned long fp, int pmode,
++asmlinkage void c_backtrace(unsigned long fp, int pmode,
+ 				   const char *loglvl);
+ 
+ struct mm_struct;
+diff --git a/arch/arm/include/asm/opcodes.h b/arch/arm/include/asm/opcodes.h
+index 38e3eabff..afa29833f 100644
+--- a/arch/arm/include/asm/opcodes.h
++++ b/arch/arm/include/asm/opcodes.h
+@@ -8,7 +8,7 @@
+ 
+ #ifndef __ASSEMBLY__
+ #include <linux/linkage.h>
+-extern asmlinkage unsigned int arm_check_condition(u32 opcode, u32 psr);
++asmlinkage unsigned int arm_check_condition(u32 opcode, u32 psr);
+ #endif
+ 
+ #define ARM_OPCODE_CONDTEST_FAIL   0
 -- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/patch-fc08a7ef40667bf3017366e452e6d3c0%40loljews.com
+2.56.1
+
 
