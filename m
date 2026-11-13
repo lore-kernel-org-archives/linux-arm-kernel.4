@@ -2,75 +2,109 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4730B607105C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 18:58:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001DA606B2E9
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 18:59:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0H+4RXXx;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=B7lfJLX5
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WjJxKuyB;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.a=rsa-sha256 header.s=google header.b=g+WjvQyL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=4HGeEfIDbBHhrKlnUlvruB5x/9z02TagTkMS4moQX50=; b=0H+4RXXxVgyxSzKkwl8+sG42IF
-	aK87uCCGjm2Beqylz+qW6rukpMRnf40Po2bJHzXMNEeFcMJPDm5RmWnrRS/Cgg5wAEe6GP7QUhO5K
-	pxm/syMnH1+RBdXWZWw8I7M4f7w6+JnPW84a6yFcPZY6beZWXkNWUTMabdOW8jTQy9kHVu0kEE5n0
-	69kgB22h4TG2gL6UAEAcm+7vap37O8JT6occgbHIULXUWZCkRGWGv/Ugaw6jYzNRor+HdrrE50iTC
-	t0v30qyatEkUh8rgZ78rPPYVSwcNxbCTZ5myWl+hIyE9HPyPt1MJmtqk/7MZL7yys4Wjt3XwAxCmS
-	kuXRuT9w==;
+	bh=fCpK1V1D0Qc4NVcwIhFFojyHQLcyReT67X6u0KnmZoA=; b=WjJxKuyBTd+1lDNx24V6L61r/2
+	kcJ+8++9BPdEXTWVlfDQrV3jYuwsbVdYQODQU6wbC+W+CG++6ihmgJLm3zwqgN9v894PqF9awmXdB
+	EPcdnpuKMsZ/h3apzDwhXeEYp95+nKAXkO/Qsf8vei7uxf10XSBv35ZCf7ErqsXM110YE68w3Kq1H
+	AP2ZNjk54Q2ZPsMJueXb7t6lD8Fbodfpo0Yx2CBfuJebFMLU40mF3xYQRppILTawT4e4IRQenTEWU
+	j5Zx4SLclqxh+KxNoN1OPUO9vh/wjtBCgNTwpPesInMP+dYLkTuu6RGpDS0C7tQDzVJR09hTbyls7
+	F+3cduLQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwTu-0000000E3UY-0AA7;
-	Fri, 13 Nov 2026 18:58:38 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRwUo-0000000E3lR-0ROq;
+	Fri, 13 Nov 2026 18:59:34 +0000
+Received: from mail-pg1-x561.google.com ([2607:f8b0:4864:20::561])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwTq-0000000E3TT-1aMZ
+	id 1xRwUZ-0000000E3eb-3eI8
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 18:58:37 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 2143340B5A;
-	Fri, 13 Nov 2026 18:58:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 965A81F000C4;
-	Fri, 13 Nov 2026 18:58:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794596314;
-	bh=4HGeEfIDbBHhrKlnUlvruB5x/9z02TagTkMS4moQX50=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=B7lfJLX5++LlxUciYSI76JIOR6unoh5c5NhwiL/l4RaJE1J3W4GYKLDWCbiYUUQiX
-	 lhP6ZNL6VXTHFrN8wbgaIoSbt3k6uGOj5Tl3kFMKuEfg3zfk2SjIGd7Pl1b8yLMIXK
-	 shnk7LKSH9MuCAkDd4mxiRdM/0nRBsqZIdg2Nq5JLRbiHST7b8uYTEAG17IgGUfoKP
-	 PvrA19WXmsDnsqpo0fyRD6KBprGkcBN1G/Ww++h8qFYnVUC85labd9qIVakpEPTfb1
-	 FZNCCdQqCBuC9uLw1PIBwZR7zjzEBvxHdYSo8L5WA2iU03SH8Cv3aiXBZSZyk4F+2T
-	 Sm8lqMtKFJOtw==
-Date: Fri, 13 Nov 2026 18:58:24 +0000
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: linux-mm@kvack.org, Arnd Bergmann <arnd@arndb.de>, 
-	Andrew Morton <akpm@linux-foundation.org>, Andreas Larsson <andreas@gaisler.com>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	"David Hildenbrand (Arm)" <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Matthew Wilcox <willy@infradead.org>, 
-	Malin Jonsson <malin.jonsson@est.tech>, Richard Weinberger <richard@nod.at>, 
-	Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org, 
-	linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org, 
-	Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	"H. Peter Anvin" <hpa@zytor.com>, Madhavan Srinivasan <maddy@linux.ibm.com>, 
-	Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
-	Michal Simek <monstr@monstr.eu>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
-	Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, 
-	Michal Hocko <mhocko@suse.com>, Nishanth Menon <nm@ti.com>, Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH v2 5/6] arch/*: increase lowmem size to avoid highmem use
-Message-ID: <avddvZcf6bpbpFcU@gremlin>
-References: <20261112112528.1116405-1-arnd@kernel.org>
- <20261112112528.1116405-6-arnd@kernel.org>
+	Fri, 13 Nov 2026 18:59:33 +0000
+Received: by mail-pg1-x561.google.com with SMTP id 41be03b00d2f7-cd6acc50b8dso693611a12.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:59:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794596357; x=1795201157;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:dkim-signature:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=fCpK1V1D0Qc4NVcwIhFFojyHQLcyReT67X6u0KnmZoA=;
+        b=RfrcPBL9Uo9cp4T3/U1T2FfEK3OgWm8BUg67B7hBnSg+bo0xpl8OkElHyKRVOUNaNb
+         3Qacl5VCFllTUMznPXKktb6QmFICApyWehIH8GitfbaXGl6ZAKst9xUdWhYr97cQOuzC
+         HsykUsoxcbmd20MwUmoA2W2fro5p9NnmV90gPp/5MXyfx1fbQMXXrJTJmrnxoFrPCB9V
+         EFiPrhASI+3d2t34UhwDQJADbJNIybmJC9XHFlf7NXG8tWwoBcAoE5X52/59rhrmek9c
+         iwP5xO6PlNpLHa3XjIXesKtTt+uxkX/wnwSud3TNwCZWdaEFtkCVELM8c1+dJZi+8J6q
+         WfVA==
+X-Forwarded-Encrypted: i=1; AL+hErHQyMLbfKbhk5VKubMmKY07wwlMCKIrhKU3jFDGphp3S9rykr0t+rc5fM2Vp7jUSzM9eLX4gzJ1JtIh45YdYJNL@lists.infradead.org
+X-Gm-Message-State: APuU4Z8lkf1uThLc9eCceyviFkJ+cWdmgbIwdehaQoVlAYlQp3CwXZfW
+	KFCfFt3cG4J3ZHpQbQcCDFBUCimYAW9g+3t0rbLQhz0QgbQM7cN/qVofCo2eSjPlwM0RY2juVp8
+	KKXCwJZ7qoHmn6j9y/cDTjrlHs+AUsXZsj5QLDIABhbSWwlGu4amGpBL4Tnu+CzvKGgw5ql0zMV
+	xsHge9Xgce5hL/7kHvW1VMm9kO19ybdKga1rM8NMKnsAb+UTPNsWLwvqidmEE3qpL5B+EWcwlSf
+	AJg8XKFk18DPOTtwufIpM4=
+X-Gm-Gg: AYBFou0zm4MchfSe6iuGjbtOsjmBT8vVsldL19NRv2AvB+9YgCxHIR8R6mkEUERB1m0
+	K2FmEFiZR0FN+nH/612mDWZDqHwfKjhfmHryGfESgM05KeudvMyDgDnjoZ00ZN/SqDGytcSLOpe
+	It5zMd6r0owdlZ0vV8rS9SU65uaYcS2/TdAQAnd27vi7Ga+nYbvi8q7IubwbVID6+fvwGn7OucV
+	jcnfioCq66KKKxgSlQxmSTBI0LaDo+ZMskzas/PBVnKE95Gsn+5pGvsISOC1/ESyk4b1OdS6wZH
+	y+Gy2sFl5TOyU6EPTsjltw09M7uA63u8RcdINmwDxgzER8IzAZfglj+PFLQJteHdVUTyrM4QTOM
+	j5JsaP2IqJGxjIFwZPTO9KzP04GbJCBzen0JZHtQUKu3vlVspPIHUZH0YSBCOYpCMDb973+G7vK
+	vh/CDqWUYW10ysTYeL7GpMGrJNS3aGT0M=
+X-Received: by 2002:a17:90b:1807:b0:3aa:fdad:7d6c with SMTP id 98e67ed59e1d1-3b1b0ca59a4mr3203387a91.58.1794596356689;
+        Fri, 13 Nov 2026 10:59:16 -0800 (PST)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-121.dlp.protect.broadcom.com. [144.49.247.121])
+        by smtp-relay.gmail.com with ESMTPS id 98e67ed59e1d1-3b1b3c0a5a8sm2144009a91.2.2026.11.13.10.59.16
+        for <linux-arm-kernel@lists.infradead.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 13 Nov 2026 10:59:16 -0800 (PST)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-5383c05fb2fso18317951cf.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:59:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1794596355; x=1795201155; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=fCpK1V1D0Qc4NVcwIhFFojyHQLcyReT67X6u0KnmZoA=;
+        b=g+WjvQyLKmZywi6125lVz8LUjNS0hsMp5ltl86UQke9DCgkyPxmzLJ4i+m86a9opD1
+         TjcsTKrFkCXB3vGBRfPy4sHRYV1VNvvNyp0UXKTgbejF/IYrgNmVZBttdCFo+KhcbuXC
+         19gxa01SlGUumnXGBiNq65M2KAJQBtkRobHNE=
+X-Forwarded-Encrypted: i=1; AL+hErHm2Q4i0XLXVY1BKPPtwUNloe6QdH494k8wpq/a40YxM4panEXlAbuuKCMfczSc21idfe2PdLrKEojdM7UkfIiB@lists.infradead.org
+X-Received: by 2002:a05:6214:cca:b0:91e:f174:bc35 with SMTP id 6a1803df08f44-91f24217866mr51223816d6.27.1794595950635;
+        Fri, 13 Nov 2026 10:52:30 -0800 (PST)
+X-Received: by 2002:a05:6214:cca:b0:91e:f174:bc35 with SMTP id
+ 6a1803df08f44-91f24217866mr51223466d6.27.1794595950121; Fri, 13 Nov 2026
+ 10:52:30 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261112112528.1116405-6-arnd@kernel.org>
+References: <510bf9b037c522ccfba270926c95170291115ef3.1793602003.git.jirislaby@kernel.org>
+ <20261113181838.594023-1-florian.fainelli@broadcom.com>
+In-Reply-To: <20261113181838.594023-1-florian.fainelli@broadcom.com>
+From: Ray Jui <ray.jui@broadcom.com>
+Date: Fri, 13 Nov 2026 11:52:17 -0700
+X-Gm-Features: AclHuK8Gaa03a6YK8wdIy0hOQJz6AaBzp-hED-7M9ThqtXcPRNrlNZ6SGf6hTsc
+Message-ID: <CAJ8Y1dR8L-SzbRMJf5G6eMCa-1mqmpbDJEs3Sa1q8MCkfq1_mA@mail.gmail.com>
+Subject: Re: [PATCH v3] MAINTAINERS: fix bouncing {sbranden,rjui}@broadcom.com
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: bcm-kernel-feedback-list@broadcom.com, 
+	"Jiri Slaby (SUSE)" <jirislaby@kernel.org>, torvalds@linux-foundation.org, 
+	Florian Fainelli <f.fainelli@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Scott Branden <scott.branden@broadcom.com>
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+	boundary="00000000000049ac7d06602d06ec"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_105924_890862_96111B1A 
+X-CRM114-Status: GOOD (  15.62  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,384 +117,151 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 12:25:27PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> Most of the common 32-bit architectures (x86, arm, powerpc) all use the
-> default virtual memory layout that was already in place for i386 systems
-> in the 1990s, using exactly 3GiB of user TASK_SIZE, with the upper 1GiB
-> of addresses split between (at most 896MiB) lowmem and vmalloc.
->
-> Linux-2.3 introduced CONFIG_HIGHMEM for large x86 server machines that
-> had 4GiB of RAM or more, with the VMSPLIT_3G/2G/1G options added in
-> v2.6.16 for machines that had one or two gigabytes of memory but wanted
-> to avoid the overhead from managing highmem. Over time, similar options
-> appeared on other 32-bit architectures.
->
-> Twenty years later, it makes sense to reconsider the default settings,
-> as the tradeoffs have changed a bit:
->
->  - Configurations with more than 2GiB have become extremely rare,
->    as any users with large memory have moved on to 64-bit systems.
->    There were only ever a few Laptop models in this category: Apple
->    Powerbook G4 (2005), Macbook (2006), IBM Thinkpad X60 (2006), Arm
->    Chromebooks based on Exynos 5800 (2014), Tegra K1 (2014) and RK3288
->    (2015), and manufacturer support for all of these has ended in 2020
->    or (much) earlier.
->    Embedded systems with more than 2GiB use additional SoCs of a
->    similar vintage: Intel Atom Z5xx (2008), Freescale QorIQ (2008),
->    Marvell Armada XP (2010), Freescale i.MX6Q (2011), LSI Axxia (2013),
->    TI Keystone2 (2014), Renesas RZ/G1M (2015). Most boards based on
->    these have stopped receiving kernel upgrades and later 32-bit chips
->    only support smaller memory configurations, though in particular the
->    i.MX6Q and Keystone2 families have expected support cycles past 2035.
->    While 32-bit server installations used to support even larger memory,
->    none of those seem to still be used in production on any architecture.
->
->  - While general-purpose distributes for 32-bit targets were common,
->    it was rather risky to change the CONFIG_VMSPLIT setting because
->    there is always a possibility of running into device driver bugs or
->    applications that need a large virtual memory size. Presumably
->    a lot of these issues have been resolved now, so most setups should
->    be fine using a custom vmsplit instead of highmem now.
->
->  - As fewer users test highmem, the expectation is that it will
->    increasingly break in the future, so getting users to change the
->    vmsplit means that even if there is a bug to fix initially,
->    it improves the situation in the long run.
->
->  - Highmem will ultimately need to be removed, at least for the page
->    cache and most other code using it today. In a previous discussion, I
->    had suggested doing this as early as 2029, but based on the discussions
->    since ELC, the plan is now to leave highmem-enabled page cache as an
->    option until at least 2029, at which point remaining users will have
->    the choice between no longer updating kernels or using a combination of
->    a custom vmsplit and zram/zswap. Changing the defaults now should both
->    speed up the highmem deprecation and make it less painful for users.
->
->  - The most VM space intensive applications tend to be web browsers,
->    specifcally Chrome/ChromeOS and Firefox. Both have now stopped
->    providing binary updates.
->    Testing various combinations on Debian/armhf, I found that Firefox 140
->    can still show complex websites with VMSPLIT_2G_OPT with and without
->    HIGHMEM, though it failed for me both with the small address space
->    of VMSPLIT_1G and the small lowmem of VMSPLIT_3G_OPT when HIGHMEM
->    is disabled.
->    This is likely to get worse with future versions, so embedded users
->    may still be forced to migrate to specialized browsers like WPE Webkit
->    when HIGHMEM pagecache is finally removed.
->
-> Based on the above observations and the discussion at the kernel summit,
-> change the defaults to the most appropriate values: use 1GiB of lowmem on
-> non-highmem configurations, and either 2GiB or 1.75GiB of lowmem on highmem
-> builds, depending on what is available on the architecture.  As ARM_LPAE
-> and X86_PAE builds both require a gigabyte-aligned vmsplit, those get
-> to use VMSPLIT_2G. The result is that the majority of previous highmem
-> users now only need lowmem. For platform specific defconfig files that
-> are known to only support up to 1GiB of RAM, drop the CONFIG_HIGHMEM line
-> as well as a simplification.
->
-> On PowerPC and Microblaze, the options have somewhat different names but
-> should have the same effect. MIPS and Xtensa cannot support a larger
-> than 512MB of lowmem but are limited to small DDR2 memory in most
-> implementations, with MT7621 being a notable exception. ARC and C-Sky
-> could support a configurable vmsplit in theory, but it's not clear
-> if anyone still cares.
-> SPARC is currently limited to 192MB of lowmem and should get patched
-> to behave either like arm/x86 or powerpc/microblaze to support 2GiB
-> of lowmem.
->
-> There are likely going to be regressions from the changed defaults,
-> in particular when hitting previously hidden device driver bugs
-> that fail to set the correct DMA mask, or from applications that
-> need a large virtual address space.
-> Ideally the in-kernel problems should all be fixable, but as a fallback,
-> the previous behavior is still selectable based on CONFIG_EXPERT=y.
->
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Ingo Molnar <mingo@redhat.com>
-> Cc: Borislav Petkov <bp@alien8.de>
-> Cc: Dave Hansen <dave.hansen@linux.intel.com>
-> Cc: x86@kernel.org
-> Cc: "H. Peter Anvin" <hpa@zytor.com>
-> Cc: Madhavan Srinivasan <maddy@linux.ibm.com>
-> Cc: Michael Ellerman <mpe@ellerman.id.au>
-> Cc: Nicholas Piggin <npiggin@gmail.com>
-> Cc: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
-> Cc: linuxppc-dev@lists.ozlabs.org
-> Cc: Michal Simek <monstr@monstr.eu>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
-> Cc: Vlastimil Babka <vbabka@suse.cz>
-> Cc: Mike Rapoport <rppt@kernel.org>
-> Cc: Suren Baghdasaryan <surenb@google.com>
-> Cc: Michal Hocko <mhocko@suse.com>
-> Cc: Matthew Wilcox <willy@infradead.org>
-> Cc: linux-mm@kvack.org
-> Cc: Richard Weinberger <richard@nod.at>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Nishanth Menon <nm@ti.com>
-> Cc: Andreas Larsson <andreas@gaisler.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+--00000000000049ac7d06602d06ec
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Very nice, thanks! :)
+Thanks, Florian!
 
-Acked-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
-
-> ---
->  arch/arm/Kconfig                            |  5 ++++-
->  arch/arm/configs/aspeed_g5_defconfig        |  1 -
->  arch/arm/configs/u8500_defconfig            |  1 -
->  arch/arm/configs/vt8500_v6_v7_defconfig     |  2 --
->  arch/arm/mach-omap2/Kconfig                 |  1 -
->  arch/microblaze/Kconfig                     |  9 ++++++---
->  arch/microblaze/configs/mmu_defconfig       |  1 -
->  arch/powerpc/Kconfig                        | 14 +++++++++-----
->  arch/powerpc/configs/44x/akebono_defconfig  |  1 -
->  arch/powerpc/configs/85xx/ksi8560_defconfig |  1 -
->  arch/powerpc/configs/85xx/stx_gp3_defconfig |  1 -
->  arch/x86/Kconfig                            |  4 +++-
->  12 files changed, 22 insertions(+), 19 deletions(-)
+On Fri, Nov 13, 2026 at 11:18=E2=80=AFAM Florian Fainelli
+<florian.fainelli@broadcom.com> wrote:
 >
-> diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-> index fc66d52d847e..797705a94b28 100644
-> --- a/arch/arm/Kconfig
-> +++ b/arch/arm/Kconfig
-> @@ -1025,7 +1025,8 @@ config BL_SWITCHER_DUMMY_IF
->  choice
->  	prompt "Memory split"
->  	depends on MMU
-> -	default VMSPLIT_3G
-> +	default VMSPLIT_2G if HIGHMEM || ARM_LPAE
-> +	default VMSPLIT_3G_OPT
->  	help
->  	  Select the desired split between kernel and user memory.
+> From: Florian Fainelli <f.fainelli@gmail.com>
 >
-> @@ -1034,8 +1035,10 @@ choice
+> On Mon,  2 Nov 2026 07:47:06 +0100, "Jiri Slaby (SUSE)" <jirislaby@kernel=
+.org> wrote:
+> > Both emails are bouncing like:
+> >   Final-Recipient: rfc822; rjui@broadcom.com
+> >   Action: failed
+> >   Status: 5.1.3
+> >   Diagnostic-Code: smtp; The email account that you tried to reach does
+> >     not exist. Please try double-checking the recipient's email address
+> >     for typos or unnecessary spaces.
+> >
+> > According to Florian, it should be first.lastname@broadcom.com.
+> >
+> > Signed-off-by: Jiri Slaby (SUSE) <jirislaby@kernel.org>
+> > Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> > Link: https://lore.kernel.org/all/688738af-100b-48af-bee1-4bcbe4422f94@=
+broadcom.com
+> > Cc: bcm-kernel-feedback-list@broadcom.com
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: Scott Branden <scott.branden@broadcom.com>
+> > Cc: Ray Jui <ray.jui@broadcom.com>
+> > ---
 >
->  	config VMSPLIT_3G
->  		bool "3G/1G user/kernel split"
-> +		depends on !HIGHMEM || EXPERT
->  	config VMSPLIT_3G_OPT
->  		depends on !ARM_LPAE
-> +		depends on !HIGHMEM || EXPERT
->  		bool "3G/1G user/kernel split (for full 1G low memory)"
->  	config VMSPLIT_2G
->  		bool "2G/2G user/kernel split"
-> diff --git a/arch/arm/configs/aspeed_g5_defconfig b/arch/arm/configs/aspeed_g5_defconfig
-> index 1327a09e163a..7f077c667478 100644
-> --- a/arch/arm/configs/aspeed_g5_defconfig
-> +++ b/arch/arm/configs/aspeed_g5_defconfig
-> @@ -27,7 +27,6 @@ CONFIG_SMP=y
->  # CONFIG_ARM_CPU_TOPOLOGY is not set
->  CONFIG_VMSPLIT_2G=y
->  CONFIG_NR_CPUS=2
-> -CONFIG_HIGHMEM=y
->  CONFIG_UACCESS_WITH_MEMCPY=y
->  CONFIG_VFP=y
->  CONFIG_NEON=y
-> diff --git a/arch/arm/configs/u8500_defconfig b/arch/arm/configs/u8500_defconfig
-> index 2fe25f5eb9a5..b284c2c31758 100644
-> --- a/arch/arm/configs/u8500_defconfig
-> +++ b/arch/arm/configs/u8500_defconfig
-> @@ -6,7 +6,6 @@ CONFIG_KALLSYMS_ALL=y
->  CONFIG_ARCH_U8500=y
->  CONFIG_SMP=y
->  CONFIG_NR_CPUS=2
-> -CONFIG_HIGHMEM=y
->  CONFIG_ARM_APPENDED_DTB=y
->  CONFIG_ARM_ATAG_DTB_COMPAT=y
->  CONFIG_CMDLINE="root=/dev/ram0 console=ttyAMA2,115200n8"
-> diff --git a/arch/arm/configs/vt8500_v6_v7_defconfig b/arch/arm/configs/vt8500_v6_v7_defconfig
-> index 2925a1f1dbb6..1f6dca21d569 100644
-> --- a/arch/arm/configs/vt8500_v6_v7_defconfig
-> +++ b/arch/arm/configs/vt8500_v6_v7_defconfig
-> @@ -8,8 +8,6 @@ CONFIG_ARM_ERRATA_720789=y
->  CONFIG_ARM_ERRATA_754322=y
->  CONFIG_ARM_ERRATA_775420=y
->  CONFIG_HAVE_ARM_ARCH_TIMER=y
-> -CONFIG_HIGHMEM=y
-> -CONFIG_HIGHPTE=y
->  CONFIG_ARM_APPENDED_DTB=y
->  CONFIG_ARM_ATAG_DTB_COMPAT=y
->  CONFIG_VFP=y
-> diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
-> index f0f1d7a8640c..d145e448a6b8 100644
-> --- a/arch/arm/mach-omap2/Kconfig
-> +++ b/arch/arm/mach-omap2/Kconfig
-> @@ -135,7 +135,6 @@ config ARCH_OMAP2PLUS_TYPICAL
->  	bool "Typical OMAP configuration"
->  	default y
->  	select AEABI
-> -	select HIGHMEM if !CPU_CACHE_VIVT
->  	select I2C
->  	select I2C_OMAP
->  	select MENELAUS if ARCH_OMAP2
-> diff --git a/arch/microblaze/Kconfig b/arch/microblaze/Kconfig
-> index 9063a91cfb41..8ce8d108bfd7 100644
-> --- a/arch/microblaze/Kconfig
-> +++ b/arch/microblaze/Kconfig
-> @@ -164,7 +164,8 @@ config LOWMEM_SIZE_BOOL
->
->  config LOWMEM_SIZE
->  	hex "Maximum low memory size (in bytes)" if LOWMEM_SIZE_BOOL
-> -	default "0x30000000"
-> +	default "0x80000000" if HIGHMEM
-> +	default "0x40000000"
->
->  config MANUAL_RESET_VECTOR
->  	hex "Microblaze reset vector address setup"
-> @@ -190,7 +191,8 @@ config KERNEL_START_BOOL
->
->  config KERNEL_START
->  	hex "Virtual address of kernel base" if KERNEL_START_BOOL
-> -	default "0xc0000000"
-> +	default "0x70000000" if HIGHMEM
-> +	default "0xb0000000"
->
->  config TASK_SIZE_BOOL
->  	bool "Set custom user task size"
-> @@ -204,7 +206,8 @@ config TASK_SIZE_BOOL
->
->  config TASK_SIZE
->  	hex "Size of user task space" if TASK_SIZE_BOOL
-> -	default "0x80000000"
-> +	default "0x70000000" if HIGHMEM
-> +	default "0xb0000000"
->
->  config MB_MANAGER
->  	bool "Support for Microblaze Manager"
-> diff --git a/arch/microblaze/configs/mmu_defconfig b/arch/microblaze/configs/mmu_defconfig
-> index 7f9b19d0d9db..19a13d3ece5c 100644
-> --- a/arch/microblaze/configs/mmu_defconfig
-> +++ b/arch/microblaze/configs/mmu_defconfig
-> @@ -15,7 +15,6 @@ CONFIG_XILINX_MICROBLAZE0_USE_FPU=2
->  CONFIG_HZ_100=y
->  CONFIG_CMDLINE_BOOL=y
->  CONFIG_CMDLINE_FORCE=y
-> -CONFIG_HIGHMEM=y
->  CONFIG_MODULES=y
->  CONFIG_MODULE_UNLOAD=y
->  CONFIG_PARTITION_ADVANCED=y
-> diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
-> index c3b6cd655606..31e68cd32a10 100644
-> --- a/arch/powerpc/Kconfig
-> +++ b/arch/powerpc/Kconfig
-> @@ -489,6 +489,7 @@ menu "Kernel options"
->  config HIGHMEM
->  	bool "High memory support"
->  	depends on PPC32
-> +	depends on PPC_BOOK3S_32 || PPC_85xx || 44x
->  	select KMAP_LOCAL
->
->  source "kernel/Kconfig.hz"
-> @@ -1190,7 +1191,8 @@ config LOWMEM_SIZE_BOOL
->
->  config LOWMEM_SIZE
->  	hex "Maximum low memory size (in bytes)" if LOWMEM_SIZE_BOOL
-> -	default "0x30000000"
-> +	default "0x80000000" if HIGHMEM
-> +	default "0x40000000"
->
->  config LOWMEM_CAM_NUM_BOOL
->  	bool "Set number of CAMs to use to map low memory"
-> @@ -1242,7 +1244,8 @@ config PAGE_OFFSET_BOOL
->
->  config PAGE_OFFSET
->  	hex "Virtual address of memory base" if PAGE_OFFSET_BOOL
-> -	default "0xc0000000"
-> +	default "0x70000000" if HIGHMEM
-> +	default "0xb0000000"
->
->  config KERNEL_START_BOOL
->  	bool "Set custom kernel base address"
-> @@ -1258,8 +1261,9 @@ config KERNEL_START_BOOL
->  config KERNEL_START
->  	hex "Virtual address of kernel base" if KERNEL_START_BOOL
->  	default PAGE_OFFSET if PAGE_OFFSET_BOOL
-> -	default "0xc2000000" if CRASH_DUMP && !NONSTATIC_KERNEL
-> -	default "0xc0000000"
-> +	default "0x72000000" if HIGHMEM && CRASH_DUMP && !NONSTATIC_KERNEL
-> +	default "0xb2000000" if CRASH_DUMP && !NONSTATIC_KERNEL
-> +	default PAGE_OFFSET
->
->  config PHYSICAL_START_BOOL
->  	bool "Set physical address where the kernel is loaded"
-> @@ -1295,7 +1299,7 @@ config TASK_SIZE_BOOL
->  config TASK_SIZE
->  	hex "Size of maximum user task space" if TASK_SIZE_BOOL
->  	default "0x80000000" if PPC_8xx
-> -	default "0xc0000000"
-> +	default PAGE_OFFSET
->
->  config MODULES_SIZE_BOOL
->  	bool "Set custom size for modules/execmem area"
-> diff --git a/arch/powerpc/configs/44x/akebono_defconfig b/arch/powerpc/configs/44x/akebono_defconfig
-> index bdb0e6ece6ec..cc1e3da5f8f5 100644
-> --- a/arch/powerpc/configs/44x/akebono_defconfig
-> +++ b/arch/powerpc/configs/44x/akebono_defconfig
-> @@ -14,7 +14,6 @@ CONFIG_MODULE_UNLOAD=y
->  CONFIG_PPC_47x=y
->  # CONFIG_EBONY is not set
->  CONFIG_AKEBONO=y
-> -CONFIG_HIGHMEM=y
->  CONFIG_HZ_100=y
->  CONFIG_IRQ_ALL_CPUS=y
->  # CONFIG_COMPACTION is not set
-> diff --git a/arch/powerpc/configs/85xx/ksi8560_defconfig b/arch/powerpc/configs/85xx/ksi8560_defconfig
-> index 9cb211fb6d1e..f2ac1fc41303 100644
-> --- a/arch/powerpc/configs/85xx/ksi8560_defconfig
-> +++ b/arch/powerpc/configs/85xx/ksi8560_defconfig
-> @@ -9,7 +9,6 @@ CONFIG_PARTITION_ADVANCED=y
->  CONFIG_KSI8560=y
->  CONFIG_CPM2=y
->  CONFIG_GEN_RTC=y
-> -CONFIG_HIGHMEM=y
->  CONFIG_BINFMT_MISC=y
->  CONFIG_MATH_EMULATION=y
->  # CONFIG_SECCOMP is not set
-> diff --git a/arch/powerpc/configs/85xx/stx_gp3_defconfig b/arch/powerpc/configs/85xx/stx_gp3_defconfig
-> index 0a42072fa23c..1033977711d6 100644
-> --- a/arch/powerpc/configs/85xx/stx_gp3_defconfig
-> +++ b/arch/powerpc/configs/85xx/stx_gp3_defconfig
-> @@ -7,7 +7,6 @@ CONFIG_MODULES=y
->  CONFIG_MODVERSIONS=y
->  # CONFIG_BLK_DEV_BSG is not set
->  CONFIG_STX_GP3=y
-> -CONFIG_HIGHMEM=y
->  CONFIG_BINFMT_MISC=m
->  CONFIG_MATH_EMULATION=y
->  CONFIG_PCI=y
-> diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
-> index 58dce0b66179..18b3eeebb7ce 100644
-> --- a/arch/x86/Kconfig
-> +++ b/arch/x86/Kconfig
-> @@ -1410,7 +1410,9 @@ config HIGHMEM4G
->
->  choice
->  	prompt "Memory split" if EXPERT
-> -	default VMSPLIT_3G
-> +	default VMSPLIT_2G_OPT if HIGHMEM && !X86_PAE
-> +	default VMSPLIT_2G if X86_PAE
-> +	default VMSPLIT_3G_OPT
->  	depends on X86_32
->  	help
->  	  Select the desired split between kernel and user memory.
+> Applied to https://github.com/Broadcom/stblinux/commits/maintainers/fixes=
+, thanks!
 > --
-> 2.53.0
->
+> Florian
 
---
-Cheers, Lorenzo
+--00000000000049ac7d06602d06ec
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+Kea1UXiDNimY9XcISXAUrVauS3TPqfSofCP4tOVkOfR2zFsciCJ7DPbmanfMXAR2cY6kCgkZCqxY
+9Szy6beT2XZUSE9/jFymRSjXZNnLqAe30YCaVeVQUqW9X3NqlPdzO9Ce8AqKdgBlVt4isO6s3zJ5
+djaWSUM3zrweXgaVpSRF3iBUxK45Nb0qOkvz0hrBYM2r+iLWR2YbF+Z7W7lw2QMvkbeT1gXn+4pC
+K8f1aWKsB9e6Id7uBOkCAwEAAaOCAdgwggHUMA4GA1UdDwEB/wQEAwIFoDAMBgNVHRMBAf8EAjAA
+MIGTBggrBgEFBQcBAQSBhjCBgzBGBggrBgEFBQcwAoY6aHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
+LmNvbS9jYWNlcnQvZ3NnY2NyNnNtaW1lY2EyMDIzLmNydDA5BggrBgEFBQcwAYYtaHR0cDovL29j
+c3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyNnNtaW1lY2EyMDIzMGUGA1UdIAReMFwwCQYHZ4EMAQUD
+AzALBgkrBgEEAaAyASgwQgYKKwYBBAGgMgoDAjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5n
+bG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzBBBgNVHR8EOjA4MDagNKAyhjBodHRwOi8vY3JsLmds
+b2JhbHNpZ24uY29tL2dzZ2NjcjZzbWltZWNhMjAyMy5jcmwwHwYDVR0RBBgwFoEUcmF5Lmp1aUBi
+cm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYDVR0jBBgwFoAUACk2nlx6ug+vLVAt
+26AjhRiwoJIwHQYDVR0OBBYEFLfOZFpVhKW7s+LOyKdJX5PQH0f8MA0GCSqGSIb3DQEBCwUAA4IC
+AQB5Y3tHNG503cqE6g1lZJG3Z1SbuQD8ZXUbYqDNZCnUAd/+zUCraK7TYIOI83X+oof/CscTxVhf
+5mazzhESPjHYlC3TLkkxDHQZi06GwKbI00651REpC78vd9dOdZnKnGjpFeDiwJKNxdarSaYiZi/t
+6cZD3FIvDaJwYIQ+8HvZOm7FBicC41sMoaxGWZ/tdC6yRoLFckWRvhq0e7wyaBOH2ae8l30V6NXB
+RtJd4XemoNk74ybCcGMro0zyBCzQhREo2slK5r/uflroC607XCCIGjLuB6TptSxV97L/9/QSrE2U
+4JteFGVwRBJw1s7k8ICf4s22debUZ+OlB0mXjI+8EUDt6vdMeregn5ilQQSsDmBMnz2GzHfV30tb
+X92uoE5xui1g4Q3BWkUVwd9wVHaganr3rzc+lQDnQq5cddu1supu3SWp5FqKq36rtf3RX/3zHZ0C
+P2pCAlilDHYH2NRF8CYb+gqFySS/PUxwPmFWuD897Hewokex+ux0oZscsuRe0IttCbYfjl/+tSA0
+a6Rd+AmkiyASFgEHsLGl6q2OTPYU1PikjUe5RXTp0UC7bdPQXzxaORlh/KWilnz/kV2XblDdybuc
+Qz3eVIGvTANnIqPpz94oImrgHX48hMGiH5gGNznLwDBoQl4ZSfvlSi01TcUsYlHJD3LRZWbsh4VG
+PDGCAlcwggJTAgEBMGIwUjELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2Ex
+KDAmBgNVBAMTH0dsb2JhbFNpZ24gR0NDIFI2IFNNSU1FIENBIDIwMjMCDCsjlIbQJoxUU3h/cTAN
+BglghkgBZQMEAgEFAKCBxzAvBgkqhkiG9w0BCQQxIgQgwsRzD6R9Gy+coGmfGJmRyPH6kfBGzeVP
+2iMukDsr/UgwGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjYxMTEz
+MTg1OTE1WjBcBgkqhkiG9w0BCQ8xTzBNMAsGCWCGSAFlAwQBKjALBglghkgBZQMEARYwCwYJYIZI
+AWUDBAECMAoGCCqGSIb3DQMHMAsGCSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcNAQEB
+BQAEggEADO+qUwtfpVLd1fV/r69edbD31HkC91zqv26M4GOlBqsAhn5xF41So7NOskge9S29ngKd
+E9HJQ9/Q1HEXveulOAwu9jkpY1W9Nax3qJaIVg4zVuNnV6NHDByBvrMc7jVlC4+Qir8k6b7gSr4I
+vLIn5r2nUY0osBQ+mwHX62Dj3DNgWpvDWcbqP5CzjvYEOdLaOl2ptMbvmJVcaHgfPvMMx27KG4Zn
+TOweCb6OsSKoJgjGp7AEaAM2NSkxitr7CR7WlOiDM0/Z+HURR68EwNFajBP9WRfft7JfcWuvvgSg
+8puYIod4ypnR9BjLvtddf776+7kDBQejD8/ZAesT72uv2w==
+--00000000000049ac7d06602d06ec--
 
