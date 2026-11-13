@@ -2,112 +2,107 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A556606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:37:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D58606A88F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=wk5otiFp;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=tC3+E0yo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eeqXgMr6;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DGBrgu2V
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
+	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Content-Transfer-Encoding:Cc:To:Message-Id:Content-Type:MIME-Version:Subject:
+	Date:From:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=Zc5nkcsaAarYiO9DOZAswFCbsJkOvanCy4xOijJ/c5U=; b=wk5otiFpXn6bWSBbeoLTdadRZK
-	gRb3UI9TtV9cn/IC4VGcwDI50G1RnxlAlFS9CNAwLX3PI5F87DtYQhsdi4DinbZnRXtBOGQw1dKN2
-	OHgTyVfBwfAzV+tuYn0seSPVZe9T9eH5aK0+2mZaHSGpwTCamKLLNPDKKX6ERvh/qxuBgaita4n8u
-	scGQ889cX8GSm40pUR9PbUguyE+79DkIaOnSSd234QJi+rZ+zUxjbkTY/Xpw20O2YQRyPO9+CPs6c
-	FsqtTXS8uFMMZZc/ApoUCWEMCrFzCeZGvfuwXeRLYgUjcAc0tRx4zFD+PT2AKOByKzT1cSPiIKtSR
-	/T4y98gQ==;
+	bh=zcbGexqUs6AyY6rvNjsjQJWCSAAYmXVOXmh3IdhOCBM=; b=eeqXgMr6lE+2e8/KzR/Oum2Em9
+	B2qfw6xGQjERlQs6BwwVWIoeb3k6YYv2k0ALtxlB8wxwZ8OXLFhDXZnBLzkMy+rIjCo3yZhMI5qgL
+	WUuAs2kP/gCueWae2GktltPXifsaeI1asG2+rwv/NrahJNwD1CMOHd5vNFaZPNQLL7ljZ24hD1Y/1
+	qrl/+NMrWnl1l1MBCU6//ouwwunojFG3vI+zRonIMsJYil41ofnAZS3vViBRTjH/5ZwhiRCN1GfOX
+	9JKbaPXR/sDPfju9pIWcfkouCsRKat6Jh7oEwRq2Xv3nYadeA6o8p2D/w1yjI2/ah9qKbvuOatKCd
+	zRtjffKg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRy21-0000000ERl5-2cZG;
-	Fri, 13 Nov 2026 20:37:57 +0000
-Received: from mail-oo2-x09.google.com ([2607:f8b0:4864:31::9])
+	id 1xRy27-0000000ERoV-0gLB;
+	Fri, 13 Nov 2026 20:38:03 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRy1w-0000000ERju-24R5
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:37:56 +0000
-Received: by mail-oo2-x09.google.com with SMTP id 006d021491bc7-717028b412bso521802eaf.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:37:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794602271; x=1795207071; darn=lists.infradead.org;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=Zc5nkcsaAarYiO9DOZAswFCbsJkOvanCy4xOijJ/c5U=;
-        b=tC3+E0yocjsIbAYzV1os6gFAWb+yTJeqH3vfBhfs9CfBbiccAQnfJbCA5SxwUQhURk
-         t8z5oIvuNk1kv29IAcEqFVTky2cB+HhpPWROsDLa34GIrSTKcoYtyBQA8vDL5KPe0bNj
-         knIZU3Y+8rXDkWl5ChZfN2gBXQ3vX8iNfSBo/Qk/M7vZinPhu3hBq1R3PMMLTE3V8CEF
-         gfD0AkdU5btmomA1zDrJAj76Tvij/i2mRGe0/4X3/+yKEL/XKCOQjfFwd578DGgHdfAB
-         DkwpGthjKrLJZ/Z50QqiZmWrzwkY6DGzivDDV7YCcq3aWoHSZ5ppQcFBYPvXgBM4ADRB
-         5Q5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794602271; x=1795207071;
-        h=cc:to:message-id:content-transfer-encoding:content-type
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to:content-type;
-        bh=Zc5nkcsaAarYiO9DOZAswFCbsJkOvanCy4xOijJ/c5U=;
-        b=l6LOfHw8LBQAJ+9QYGg6LGrXuBwYZ+HHwheJ79CKR3yDP2PzMznMWFCjOGh3zCB7DV
-         sKsalvtd1uzy4JsACfimnEvvQzYnx8xw8TQN7W97xE5fFBjwWj6BoFyCsyBSsbYSZ+ME
-         xDcOSiigAgQpnlfLPnDQUf8fksCq0pPjUuS+buThwHJeuWpZudkQoiFsVswt3VpWAp1A
-         usZMHDdSlRXIHRDNYAdV9HwMgdJRjt6l1I/Wlyy3M2hG+fj62NtxVhBGaaDpG7hm2ppy
-         PNs6K2ISfXk0TSF8+gLJZnfO+rurQQTEcYmuosNfZacua5FPY6pB20um8KYHx6xxtc5o
-         7uTw==
-X-Forwarded-Encrypted: i=1; AL+hErEbXg4qZL+7/UsTdzBE35i8oXXxILzdZQzwSG7JYvky2ue1BF2hpND6tWcM4tSjpGlcb/MIOo6+Clt28ok4aVYT@lists.infradead.org
-X-Gm-Message-State: APuU4Z8M3Ryt4W2SWOS6AWEZ1Z3EhMFxhBG7dxkkLSg/kbmVLzcFCVaa
-	A/qJsQ+BwJ0zSWou4fGYDfeonwU3FMf/Q2lI6NZiNKRghVQ4hqGCe/1z
-X-Gm-Gg: AYBFou1XzWGmXltZ9NErHIXvGprNXyqaITNJQOd9uQgrMtgljI86sdHTQfq5vxzS13q
-	pukry+HBOblecKHu7Vp0iQcaJneZZwR9chwch3ku1xB2SN5mBHfh2HQYif2kTVWEstCrMsW10Xz
-	mTeU/Dzwk3Xt8dhx9CpyXUCgRUim2ZSY/mkkO1TqG4kxmwwElP67WfXwy/mtdnrPtS89EnqpKHw
-	Wt70Wvi1B2ZDUBbETZC4Ompz9jRveVK6anfRBZXNq2QNwTFzVpw2N9LYwLlQ6uB/z9g361Oug2L
-	bgUGwKQzOjlm11xEukb+/MDmkDM4HLlR5UMmkPukXx0pG7XulCAxBjaEMijbEz1baQ1sFkfSaGW
-	bJ0FA5Kns0gzazZR0MxrfSFpuMvh+ICfa9DbL3QW4OecXMoOFiNairKAKhb5LGzVOzBUwzfmBN5
-	FSUxXMf7HaAxhvwHNNVPwWHXSo87l6h8UzXKMOv1YrOBh8+S6WN5YRE6p4DQ8liETGIsh2FnlKq
-	Te6aJsGnvc46DKT3d7VwSd43/silP8/ZGrUdLBTK8vSgbfjSpZ9WmvfWf9UFJdnUo6GpF8I8D5n
-	OZ45QJHRNuvtFdp/aIuYu4ganops/m/qYxvjGB+pon1oFZqVxSSUF+XIy2u3XdomdGEV5RWmaC1
-	WinG+iisg2crGaRO044CWjilZRqkg6v7j58JUCbMg
-X-Received: by 2002:a05:6820:571b:20b0:711:1e14:d9b4 with SMTP id 006d021491bc7-71ab50733b0mr1707192eaf.39.1794602271380;
-        Fri, 13 Nov 2026 12:37:51 -0800 (PST)
-Received: from [10.10.18.223] (wsip-64-207-253-118.tu.ok.cox.net. [64.207.253.118])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-8628813346esm3202582a34.17.2026.11.13.12.37.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 12:37:50 -0800 (PST)
-From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Fri, 13 Nov 2026 14:37:48 -0600
-Subject: [PATCH RESEND v2] clk: mediatek: mt8173-mfgtop: do not use the clk
- API from power_on
+	id 1xRy21-0000000ERlX-42PX;
+	Fri, 13 Nov 2026 20:37:58 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id B5BD746EA2;
+	Fri, 13 Nov 2026 20:37:57 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+	t=1794602277;
+	b=v5BYhPzNZkRqAgpV0tgR3NYA9zY712vFNSIjr1vcgGzs/FfA+/wTJ9XoJMlm9wZuNMIJ
+	 Woop4HL3uE+jTYrhTOMtZfBebkZTw7HOKafeCpCQG+fjognYg2iGVulrCBx2Bk5NeJx0N
+	 cNjSChLc6s4NUR2LWz35VEhqdbtfe4rY7RcMirR15bPw/8pfkPLv0lAf6eu47FkKHcSKH
+	 3hKzq3qgTOlSK9FOx00i7HQEFwDsGwYFIRzeoZkrIRoj6/0buFc0lJVw0PNcqn4jLXODI
+	 p7zLOw12uQ9M1/MF3IdRswb6sYX4NwDgM795ymSeUN4fI3KxMiQ9ACtqt53UGYGy9VA==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+	c=relaxed/relaxed; t=1794602277;
+	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+	 Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+	 X-Original-From:Reply-To:Content-Transfer-Encoding;
+	bh=zcbGexqUs6AyY6rvNjsjQJWCSAAYmXVOXmh3IdhOCBM=;
+	b=1KBXuMvz+W9nyPwHc91KN1255Heq09pcKu0z2uiU0tqAQtFenc4aF4MUi4KZ5vvOqGI3
+	 WgF+qXYViPzsCQ107/noPqByuVG44oaWp3jAvoaWsvERCVtHBstFvzunOfZKGlcKqR0u3
+	 Q62EpMnp8114GJXA6M2DmXexRUQjOW9EeOMl1rjL/susk8kEhtdP1pN8Uy/00/nuehu+V
+	 9I+9I3XZ/YIUdMtmFgo6AL03LW9lOPqFOKIFrI1rcjGhtP8otgTcGKlX32oZhK2bgqIRR
+	 h+lydXXxUPNMYfPhmAN9Y1PWKInnesG/10/1I9z7nbzFsv2JByemuhdYaw8D4/qmmdA==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+	arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by smtp.kernel.org (Postfix) with ESMTPS id 2629B1F000C5;
+	Fri, 13 Nov 2026 20:37:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794602277;
+	bh=zcbGexqUs6AyY6rvNjsjQJWCSAAYmXVOXmh3IdhOCBM=;
+	h=From:Date:Subject:To:Cc:Reply-To;
+	b=DGBrgu2V0TLeGXO57K3WHeHX2F5btUEhAsCWTruq06By8FEhHvvbN+D3bcP/cLffV
+	 aIJTWEltyJMpkPIdGeP42pQ+FXwMbLbViG5/0Esvzotav9h9qanrGu9Zufz/texXqt
+	 sCD+qRv9tyHgbVb/ycM2LjSAmBma81RXnZcPdmaziL8B4iNeNEVCFPHJKQBXNj2ZrF
+	 qGp6XPOTKhneJCNPuKbKZeTWU03h28cjnsR1Ccj+2IYIn3OuOh5HCLPrx9wmNqGd5f
+	 Vtn7g66g9wNEH/yk0ua671FVkY/Dzw5RBqLDREOn7x9IUmKlv2eVC0/GVM+MAPdR+V
+	 e9vipkOnNOeaQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+	by lkml.kernel.org (Postfix) with ESMTP id 7B09D49ABD;
+	Fri, 13 Nov 2026 20:37:56 +0000 (UTC)
+From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
+Date: Fri, 13 Nov 2026 20:37:56 +0000
+Subject: [PATCH] arm64: dts: rockchip: Fix the order of the RK3588 AV1
+ decoder resets
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261113-rk3588-av1-reset-order-v1-1-d73f60222ff9@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXM0QqCQBCF4VeRuW6gcTW0VwkvdvVUU6AxYxKI7
+ +5Wlx+H86/kMIXTuVjJsKjrNGbIoaD+HscbWIdsKo/lSUQC2zPUTcNxETY4Zp5sgHGq8h7bOqY
+ 2UD6/DFf9/MKX7m9/pwf6+VujbdsBhO9S/noAAAA=
+X-Change-ID: 20261113-rk3588-av1-reset-order-b4261a95ab93
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Arun Iyengar <aiyengar1990@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794602276; l=1508;
+ i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
+ bh=YP+Ju9QjQfuU0YGwfWBljQdLr0V0QHLGHZyAd+cCC3w=;
+ b=h2Y6s+lUrSYGVaonyq4DMPUpiqk68iJw40e55HnQ6t7RM1x9PLBQhBMoWYd4m+8wB0YLKqp18
+ ZScq/59KbGvCoQqS2b+yERSYY7jGHr4Gf+2ESpKOOVfHH4VqwHLBUul
+X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
+ pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
+X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
+ auth_id=1480
+X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-mfgtop-no-clk-api-power-on-v2-1-7170b91716c0@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/43OMQ+CMBQE4L/SvNlnaAtWmRx0ddDROBT6gKpQ0
- iJqCP/diIuTcb1cvrsBAnlLAVI2gKfeBusaSJmYMcgr3ZSE1kDKQERiEa24wLooO9di4zC/XlC
- 3Flt3J4+uQZ1QpKWOZSYlzBi0ngr7mPAj7LeH7W4Dp08ebtmZ8u4tv5uVDZ3zz+lFz6f+P4M9R
- 46GCp4obbhQal3W2l7nuaunoV58U/InJZBjtoyV4lqaJDPf1DiOL49qBzYpAQAA
-X-Change-ID: 20260912-mfgtop-no-clk-api-power-on-a5e0a3a43b33
-To: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
- Jerome Brunet <jbrunet+clk@baylibre.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: Brian Masney <bmasney@redhat.com>, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, Ryan Brue <ryanbrue.dev@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794602269; l=6755;
- i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=v3U93jt8orAgu7mG/6da04OsfMNjJZpfnJCbViyIMBA=;
- b=cU0Bo1FdR39xrhVHWXnJGjZfzo1uEaSkQm/WaAkCDpxeltTvsMLmcWVv/n1HBi7WqDJs5RIQz
- 8qvKd8tIAIJCdwZBjXI03S/ak41novQye9/VhzttpqD+qQA1rGvfpZ2
-X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
- pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_123752_556907_B5AC6269 
-X-CRM114-Status: GOOD (  21.65  )
-X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -117,174 +112,56 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-clk_mt8173_mfgtop_power_on() calls clk_prepare_enable() on the mfg_26m gate
-that this same driver provides. That is a layering inversion which cannot
-work: clk_core_prepare() calls clk_pm_runtime_get() on the clock provider
--- this driver's own device -- and genpd power transitions run at _noirq
-time, where runtime PM is disabled and pm_runtime_resume_and_get() returns
--EACCES.
+From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Measured on mt8173 (amazon-suez) during resume from suspend-to-RAM,
-immediately after the secondary CPUs come back up:
+The binding lists the AV1 resets as AXI, AXI BIU, APB, APB BIU. Use that
+order. The driver gets them as an array, so only the order in which they
+are toggled changes.
 
-  clk-mt8173-mfgtop 13fff000.clock-controller: 26 MHz clock enable failed: -13
-
-The failure is not survivable, because genpd_sync_power_on() ignores what
-power_on() returns and marks the domain on regardless. The clock is then
-left ungated-but-unprepared, and the next power_off() underflows its
-refcount:
-
-  mfg_26m already disabled
-  mfg_26m already unprepared
-  WARNING: drivers/clk/clk.c:1048 at clk_core_unprepare
-  Workqueue: pm genpd_power_off_work_fn
-    clk_unprepare / clk_mt8173_mfgtop_power_off / _genpd_power_off
-
-Gate the bit with a direct regmap write instead. The vendor driver
-(mtk_mfgsys.c) also drives the four MFG CG bits with raw register writes
-from its power sequencing. The runtime-PM path was never affected, only the
-_noirq transitions of system suspend and resume. mfg_26m stays registered
-as a clock for any consumer that wants it; nothing currently does.
-
-Because the gate is now driven from the domain callbacks, its enable count
-in the clock framework stays 0 while the domain is on. Mark it
-CLK_IGNORE_UNUSED so that clk_disable_unused() does not gate the 26 MHz
-clock under an already-powered domain when a consumer probes before late
-init; the domain callbacks are the only writers.
-
-Fixes: ebd0b73d2137 ("clk: mediatek: Add mt8173-mfgtop driver")
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
+Fixes: dd6dc0c4c126 ("arm64: dts: rockchip: Add AV1 decoder node to rk3588s")
+Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
-RESEND: no changes since v2 [1], rebased onto v7.4-rc2, with Angelo's
-Reviewed-by collected. Jerome noted this goes through Angelo's MediaTek clk
-pull request for 7.5. The Assisted-by: LLM trailer, which the kernel no
-longer uses, is dropped. Regardless, the patch was still developed with the
-help of an LLM.
+Found while describing the same resets on the AV1 IOMMU (hantro-robust
+v3). AV1 fluster on RK3588S (Orange Pi 5) is unchanged (203/242).
 
-[1] https://lore.kernel.org/all/20260913-mfgtop-no-clk-api-power-on-v2-1-b84771a3d5bd@gmail.com/
-
-Changes in v2:
-- Mark mfg_26m CLK_IGNORE_UNUSED: with the gate driven from the domain
-  callbacks its CCF enable count stays 0, so clk_disable_unused() would gate
-  the 26 MHz clock under an already-powered domain if a consumer probed
-  before late init (reported by the Sashiko review of v1). Verified on the
-  Fire HD 10: the gate follows the domain (hardware Y with the GPU active, N
-  after unbind) while the enable count stays 0, and the GPU keeps working.
-- Link to v1: https://patch.msgid.link/20260912-mfgtop-no-clk-api-power-on-v1-1-def157ad1277@gmail.com
+Developed with Claude (Anthropic), which wrote the code and the commit
+message. I reviewed it.
 ---
- drivers/clk/mediatek/clk-mt8173-mfgtop.c | 29 +++++++++++------------------
- 1 file changed, 11 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/mediatek/clk-mt8173-mfgtop.c b/drivers/clk/mediatek/clk-mt8173-mfgtop.c
-index 3f4a1320930d..614b21e7ae9d 100644
---- a/drivers/clk/mediatek/clk-mt8173-mfgtop.c
-+++ b/drivers/clk/mediatek/clk-mt8173-mfgtop.c
-@@ -30,6 +30,8 @@ static const struct mtk_gate_regs mfg_cg_regs = {
- 	.set_ofs = 0x0004,
- };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+index d0f364547ae5..3d1e4369578b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+@@ -1471,7 +1471,8 @@ av1d: video-codec@fdc70000 {
+ 		clocks = <&cru ACLK_AV1>, <&cru PCLK_AV1>;
+ 		clock-names = "aclk", "hclk";
+ 		power-domains = <&power RK3588_PD_AV1>;
+-		resets = <&cru SRST_A_AV1>, <&cru SRST_P_AV1>, <&cru SRST_A_AV1_BIU>, <&cru SRST_P_AV1_BIU>;
++		resets = <&cru SRST_A_AV1>, <&cru SRST_A_AV1_BIU>,
++			 <&cru SRST_P_AV1>, <&cru SRST_P_AV1_BIU>;
+ 		iommus = <&av1d_mmu>;
+ 	};
  
-+#define MFG_CG_26M	BIT(3)
-+
- #define GATE_MFG(_id, _name, _parent, _shift, _flags)	\
- 	GATE_MTK_FLAGS(_id, _name, _parent, &mfg_cg_regs, _shift, &mtk_clk_gate_ops_setclr, _flags)
- 
-@@ -38,7 +40,8 @@ static const struct mtk_gate mfg_clks[] = {
- 	GATE_MFG(CLK_MFG_AXI, "mfg_axi", "axi_mfg_in_sel", 0, CLK_SET_RATE_PARENT),
- 	GATE_MFG(CLK_MFG_MEM, "mfg_mem", "mem_mfg_in_sel", 1, CLK_SET_RATE_PARENT),
- 	GATE_MFG(CLK_MFG_G3D, "mfg_g3d", "mfg_sel", 2, CLK_SET_RATE_PARENT),
--	GATE_MFG(CLK_MFG_26M, "mfg_26m", "clk26m", 3, 0),
-+	/* Driven by the power domain callbacks, not by a clk consumer */
-+	GATE_MFG(CLK_MFG_26M, "mfg_26m", "clk26m", 3, CLK_IGNORE_UNUSED),
- };
- 
- struct mt8173_mfgtop_data {
-@@ -46,7 +49,6 @@ struct mt8173_mfgtop_data {
- 	struct regmap *regmap;
- 	struct generic_pm_domain genpd;
- 	struct of_phandle_args parent_pd, child_pd;
--	struct clk *clk_26m;
- };
- 
- /* Delay count in clock cycles */
-@@ -66,12 +68,12 @@ struct mt8173_mfgtop_data {
- static int clk_mt8173_mfgtop_power_on(struct generic_pm_domain *domain)
- {
- 	struct mt8173_mfgtop_data *data = container_of(domain, struct mt8173_mfgtop_data, genpd);
--	int ret;
- 
--	/* drives internal power management */
--	ret = clk_prepare_enable(data->clk_26m);
--	if (ret)
--		return ret;
-+	/*
-+	 * Drives internal power management. Written directly: the clk API
-+	 * needs runtime PM, which is disabled during _noirq transitions.
-+	 */
-+	regmap_write(data->regmap, mfg_cg_regs.clr_ofs, MFG_CG_26M);
- 
- 	/* Power on/off delays for various signals */
- 	regmap_write(data->regmap, MFG_ACTIVE_POWER_CON0,
-@@ -103,7 +105,7 @@ static int clk_mt8173_mfgtop_power_off(struct generic_pm_domain *domain)
- 	regmap_write(data->regmap, 0xec, 0);
- 
- 	/* drives internal power management */
--	clk_disable_unprepare(data->clk_26m);
-+	regmap_write(data->regmap, mfg_cg_regs.set_ofs, MFG_CG_26M);
- 
- 	return 0;
- }
-@@ -155,16 +157,10 @@ static int clk_mt8173_mfgtop_probe(struct platform_device *pdev)
- 		goto put_pm_runtime;
- 	}
- 
--	data->clk_26m = clk_hw_get_clk(data->clk_data->hws[CLK_MFG_26M], "26m");
--	if (IS_ERR(data->clk_26m)) {
--		ret = dev_err_probe(dev, PTR_ERR(data->clk_26m), "Failed to get 26 MHz clock\n");
--		goto unregister_clks;
--	}
--
- 	ret = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, data->clk_data);
- 	if (ret) {
- 		dev_err_probe(dev, ret, "Failed to add clk OF provider\n");
--		goto put_26m_clk;
-+		goto unregister_clks;
- 	}
- 
- 	data->genpd.name = "mfg-top";
-@@ -197,8 +193,6 @@ static int clk_mt8173_mfgtop_probe(struct platform_device *pdev)
- 	pm_genpd_remove(&data->genpd);
- del_clk_provider:
- 	of_clk_del_provider(node);
--put_26m_clk:
--	clk_put(data->clk_26m);
- unregister_clks:
- 	mtk_clk_unregister_gates(mfg_clks, ARRAY_SIZE(mfg_clks), data->clk_data);
- put_pm_runtime:
-@@ -217,7 +211,6 @@ static void clk_mt8173_mfgtop_remove(struct platform_device *pdev)
- 	of_genpd_del_provider(node);
- 	pm_genpd_remove(&data->genpd);
- 	of_clk_del_provider(node);
--	clk_put(data->clk_26m);
- 	mtk_clk_unregister_gates(mfg_clks, ARRAY_SIZE(mfg_clks), data->clk_data);
- 	of_node_put(data->parent_pd.np);
- }
 
 ---
-base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
-change-id: 20260912-mfgtop-no-clk-api-power-on-a5e0a3a43b33
+base-commit: c3baae5f1a15645cddadcb2b9abddef5df291f59
+change-id: 20261113-rk3588-av1-reset-order-b4261a95ab93
 
 Best regards,
--- 
-Ryan Brue <ryanbrue.dev@gmail.com>
+--  
+Arun Iyengar <aiyengar1990@gmail.com>
+
 
 
