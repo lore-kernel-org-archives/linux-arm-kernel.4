@@ -2,68 +2,82 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34FDD606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 18:42:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D113606A8B6
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 18:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WCfW26AT;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=cfI/L2eY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Q8u/hbE+;
+	dkim=pass (2048-bit key, unprotected) header.d=packett.cool header.i=@packett.cool header.a=rsa-sha256 header.s=key1 header.b=wKqlIfso
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=VytgQi4p8wcmmELrEfY15mVmpLYzi4XAlS7bqFMpaOA=; b=WCfW26AThGrPw5keyCw/1Y2Qti
-	tywjVqZq8XdCz19wu6gxP+9WKYJOrQFKmztH5GqYAARMpV7adRCf4FUaffyiDAXnMVaFUsVsu+YKJ
-	KbU/MlDDAt73evP5EMxzGJQICt07l2GBtNV/u+QrUSA07ogLSymrP1RL3qy/AjmA0MB3ltbZMde3C
-	hQ0xEAnm/Hqw3MMBxI3RURCiIlbP2YLatCczhb1eR0lAqlvNcZ/+G+UDsTbmU0DWzYrnCAZznQUvM
-	gnNNsyHSWf+9yO5lZgv1CzY5lZ6keZEKls2cio1D2AMM8+XeZM+skytxw0FLD0w0JoZsd1QIr162a
-	2nxQ0LRg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=jnDAeo7CmnNaA/656fOLCkXGnntEEKJb98BwVbdJVSA=; b=Q8u/hbE+EKYy78
+	4PiJLDTYKXy7cajRTTfjlyJBlcG4hjAsUKL5WCHW0QSW9P0N/N7YBSZRaVLzDks1fRm12TDz2U4Rh
+	aumCtbfcxSWU2pBBGlzkH52o/HcT+fC8+9gGzEp69DG7X1YkUSuabpiMJSXB6lGsb3AQA+b3T4qe4
+	sqBHvA4t08MkjsRhKr7tJEWnk1ddvLfiLNQa2AcEA1+BC7HZ1WlsKCk2dvDc2uoF98oTaPg0xNDb1
+	QlxT5NBpI+n4TtPLn47ID+0/2lp8tBeTNLecKd2UmpVZR5ky8W21WIoC6HKDYwqAUC7/HFmeerut/
+	v3EeY8z+4O7YC7eBUsRg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwDq-0000000Dylp-1g4J;
-	Fri, 13 Nov 2026 18:42:02 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRwIa-0000000DzR1-0cPs;
+	Fri, 13 Nov 2026 18:46:56 +0000
+Received: from out-50.mta0.migadu.com ([2001:41d0:1004:224b::32] helo=mta0.migadu.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwDo-0000000DylE-1dJg
+	id 1xRwIX-0000000DzQD-0rz1
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 18:42:00 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CFC84615E4;
-	Fri, 13 Nov 2026 18:41:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E0221F000C4;
-	Fri, 13 Nov 2026 18:41:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794595319;
-	bh=VytgQi4p8wcmmELrEfY15mVmpLYzi4XAlS7bqFMpaOA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cfI/L2eY2qjwVL7APHC67QJOIGk/JNOUabcKBMNTHVN19Rcz72eUV6Yh3y5Ea/LHZ
-	 z5QbQ0lofex0YKPkP/CrCot0WtLB3Iun9cb9TpGzWGq7i0diBi7RiTfH+PMAtEzL2+
-	 C0j/tS7srsbkDAQQkLK7ashTa4LxtBlawzOcVQduTw15A7JC0FoBx70BE+lVHeY9Dq
-	 c07fq9ZOjzPKmREqLefO5blbiTlVapyN80u0xRg/xm4Y01ZY7klw7sdg1ydyXEPskb
-	 46DP+YMZNRJ2jvH8liJQifBhGUdO/X8ERo88dTaNWRmserH3XKGKSg7PzJ1GdT/0k3
-	 sU3CZpk80JuTg==
-Date: Fri, 13 Nov 2026 18:41:52 +0000
-From: "Lorenzo Stoakes (ARM)" <ljs@kernel.org>
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: linux-mm@kvack.org, Arnd Bergmann <arnd@arndb.de>, 
-	Andrew Morton <akpm@linux-foundation.org>, Andreas Larsson <andreas@gaisler.com>, 
-	"Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, Dave Hansen <dave.hansen@linux.intel.com>, 
-	"David Hildenbrand (Arm)" <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Matthew Wilcox <willy@infradead.org>, 
-	Malin Jonsson <malin.jonsson@est.tech>, Richard Weinberger <richard@nod.at>, 
-	Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org, 
-	linux-fsdevel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, x86@kernel.org
-Subject: Re: [PATCH v2 3/6] ARM: drop CONFIG_HIGHPTE support
-Message-ID: <avdZ5SCLnUg29Te8@gremlin>
-References: <20261112112528.1116405-1-arnd@kernel.org>
- <20261112112528.1116405-4-arnd@kernel.org>
+	Fri, 13 Nov 2026 18:46:55 +0000
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+DKIM-Signature: a=rsa-sha256; bh=YRNPDyKnF5AAnH1Nkcj0IpcYyCLG3qMSgftkaQIlJjM=;
+ c=simple/simple; d=packett.cool;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1794595610; v=1; x=1795200410;
+ b=wKqlIfsoAs0iiPyqGpYb1eUg2O8du+8UjqsDMtpATzTB6foPKYrKEZW3X/GCT6x0Htk3RdMS
+ rYqKk+9j35v5d7UF3Lgka/03jO7vWIae3pT1pqTd3i4mQfDNs8KV5Ho9Rdi1FIH34bCAKLKvKOz
+ Xpm868QO4MtJl7TzQeub6Z4v2Sin4Ltb5EMgyE6mw2mhX8JMm5q7T7KHupDQ5lM0SIvgtD1QKEB
+ yDfLlLnJSWRsFseTjO/pr746/CI5K1dLg8uSdw1YRFRXnF8Iuxl+fqd+QTIRhwy73cr0NDLmqtG
+ kF8OuSRi46q4kYjbqTbjjdB5YLwzVG2yLa+YGTyNhu13g==
+X-Envelope-To: linux-arm-kernel@lists.infradead.org
+Received: by smtp.migadu.com with ESMTPS id e856afca2a42441d;
+	Fri, 13 Nov 2026 18:46:50 +0000
+X-Mizu-Trace-ID: e856afca2a42441d
+X-Migadu-Flow: FLOW_OUT
+Message-ID: <4ce436ed-63b7-4764-afc5-dc5ffa4f0ba1@packett.cool>
+Date: Fri, 13 Nov 2026 15:46:40 -0300
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261112112528.1116405-4-arnd@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] arm64: dts: qcom: kodiak: Add GEM_NOC interconnect
+ for adreno SMMU
+To: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20260706-smmu_interconnect_addition-v3-0-afdca0125a65@oss.qualcomm.com>
+ <20260706-smmu_interconnect_addition-v3-3-afdca0125a65@oss.qualcomm.com>
+ <h6opbtr2ced3sannj3ym573qc2sjk7ek3clpto5j5mtqfrfk6w@34sk2zraoqtj>
+ <807f145d-88d3-460a-9862-b63fe2a52cf7@oss.qualcomm.com>
+ <a4f5sod3aflubxkk4mm4k5ozddydqcnqeac4s6vnozkd2nvxbi@hmh6zclsw5z3>
+ <4e5a3d82-b946-4490-885a-ea7061939c32@oss.qualcomm.com>
+ <ak5qkRKk2eHHLYmo@baldur>
+ <2c21041d-f84c-4fa7-a977-555f9203d8b5@oss.qualcomm.com>
+Content-Language: en-US
+From: Val Packett <val@packett.cool>
+In-Reply-To: <2c21041d-f84c-4fa7-a977-555f9203d8b5@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_104653_694628_9C9B0BFF 
+X-CRM114-Status: GOOD (  28.49  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,99 +88,127 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 12:25:25PM +0100, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> CONFIG_HIGHPTE was added in linux-2.6.32, a few years before 64-bit
-> support. At the time it made sense, as the CONFIG_ARM_LPAE option allowed
-> systems with 16GB of memory that made lowmem a particularly scarce
-> resource, and the HIGHPTE implementation gave feature parity with 32-bit
-> x86 and frv machines.
->
-> Since Arm is the last architecture remaining that uses this, and almost
-> no 32-bit machines support more than 4GB of RAM, the cost of continuing
-> to maintain HIGHPTE seems unjustified, so remove it here to allow
-> simplifying the generic page table handling.
->
-> Link: https://lore.kernel.org/lkml/20241204103042.1904639-8-arnd@kernel.org/T/#u
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
-> I sent a patch to drop HIGHPTE support on x86 today, see
-> https://lore.kernel.org/lkml/20241210144945.2325330-9-arnd@kernel.org/T/#u
->
-> If that one gets merged, we can merge this one instead of the one
-> that makes HIGHPTE depend on !PREEMPT_RT, but if we decide against
-> the x86 change, then we probably don't want this one either.
->
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Hi,
 
-With Mike's change applied, LGTM and:
+On 7/17/26 8:40 AM, Bibek Kumar Patro wrote:
+>
+>
+> On 7/8/2026 8:56 PM, Bjorn Andersson wrote:
+>> On Wed, Jul 08, 2026 at 03:31:07PM +0530, Bibek Kumar Patro wrote:
+>>>
+>>>
+>>> On 7/7/2026 10:14 PM, Dmitry Baryshkov wrote:
+>>>> On Tue, Jul 07, 2026 at 06:37:24PM +0530, Bibek Kumar Patro wrote:
+>>>>>
+>>>>>
+>>>>> On 7/6/2026 11:12 PM, Dmitry Baryshkov wrote:
+>>>>>> On Mon, Jul 06, 2026 at 10:26:36PM +0530, Bibek Kumar Patro wrote:
+>>>>>>> On Kodiak platforms, the Adreno SMMU requires a bandwidth vote on
+>>>>>>> the GEM_NOC path (MASTER_GPU_TCU -> SLAVE_EBI1) before its 
+>>>>>>> registers
+>>>>>>> are accessible. Without this vote, the SMMU may become unreachable,
+>>>>>>> leading to intermittent probe failures and runtime issues.
+>>>>>>>
+>>>>>>> Add the required interconnect to ensure reliable register access.
+>>>>>>>
+>>>>>>> Signed-off-by: Bibek Kumar Patro <bibek.patro@oss.qualcomm.com>
+>>>>>>> ---
+>>>>>>>     arch/arm64/boot/dts/qcom/kodiak.dtsi | 2 ++
+>>>>>>>     1 file changed, 2 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/kodiak.dtsi 
+>>>>>>> b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+>>>>>>> index 90e50c245c0c..721526f023dd 100644
+>>>>>>> --- a/arch/arm64/boot/dts/qcom/kodiak.dtsi
+>>>>>>> +++ b/arch/arm64/boot/dts/qcom/kodiak.dtsi
+>>>>>>> @@ -3389,6 +3389,8 @@ adreno_smmu: iommu@3da0000 {
+>>>>>>>                 power-domains = <&gpucc GPU_CC_CX_GDSC>;
+>>>>>>>                 dma-coherent;
+>>>>>>> +            interconnects = <&gem_noc MASTER_GPU_TCU 
+>>>>>>> QCOM_ICC_TAG_ALWAYS
+>>>>>>> +                     &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
+>>>>>>
+>>>>>> Why is it ALWAYS? Would it be better to declare it as ACTIVE_ONLY 
+>>>>>> and
+>>>>>
+>>>>> Added QCOM_ICC_TAG_ALWAYS, to hold the vote in SLEEP bucket as well
+>>>>> preventing gem_noc going to sleep when icc_set_bw is being called.
+>>>>
+>>>> _why_?
+>>>>
+>>>
+>>> Now when i think of where we implemented the hooks, ALWAYS is not 
+>>> needed. We
+>>> should keep it ACTIVE_ONLY since we are already voting it
+>>> back in resume pah. I'll fix it in next revision.
+>>>
+>>
+>> The path is between the SMMU and DDR, so clearly it has to do with the
+>> TCU's ability to fetch things from DDR.
+>>
+>
+> Yes as you rightly mentioned, this series is helping to resolve the 
+> race in TCU DDR clink
+>
+>> ACTIVE_ONLY states that the vote should only be applied when the
+>> application subsystem (CPUSS) is not in low-power mode (CPU is active).
+>>
+>> So, are you saying that in all cases that cpuidle might select such
+>> low-power state the GPU TCU is "stopped", and does not need to perform
+>> any memory transactions?
+>>
+>
+> I rechecked the architectural block diagram, GPU TCU is
+> independent of the CPUSS, unlike system TCU.
+>
+> This means CPUSS can be powered down while the GPU TCU remains voted 
+> up. While this series was intended to avoid a DDR voting race between the
+> GPU TCU and its clients, using ACTIVE_ONLY could have possibly
+> introduced a race between CPUSS and the GPU TCU itself.
+>
+> Thanks for catching this in my reply Bjorn.
+>
+> ACTIVE_ONLY would have been suitable for system TCU (apps_smmu)
+> for which the interconnect field is anyways not needed, but
+> unsuitable for GPU TCU.
+>
+>>
+>> To me these two are orthogonal and TAG_ALWAYS is logically correct, but
+>> perhaps there's some practical dependency that I'm missing?
+>>
+>
+> We can ignore my acknowledgment [1] on previous response, Dmitry.
+> ALWAYS TAG is correct here instead of ACTIVE_ONLY in the interconnect 
+> field for adreno SMMU. 
 
-Acked-by: Lorenzo Stoakes (ARM) <ljs@kernel.org>
 
-> ---
->  arch/arm/Kconfig               | 11 -----------
->  arch/arm/include/asm/pgalloc.h |  8 +-------
->  2 files changed, 1 insertion(+), 18 deletions(-)
->
-> diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
-> index fd01ccab9c12..fc66d52d847e 100644
-> --- a/arch/arm/Kconfig
-> +++ b/arch/arm/Kconfig
-> @@ -1225,17 +1225,6 @@ config HIGHMEM
->
->  	  If unsure, say n.
->
-> -config HIGHPTE
-> -	bool "Allocate 2nd-level pagetables from highmem" if EXPERT
-> -	depends on HIGHMEM && !PREEMPT_RT
-> -	default y
-> -	help
-> -	  The VM uses one page of physical memory for each page table.
-> -	  For systems with a lot of processes, this can use a lot of
-> -	  precious low memory, eventually leading to low memory being
-> -	  consumed by page tables.  Setting this option will allow
-> -	  user-space 2nd level page tables to reside in high memory.
-> -
->  config ARM_PAN
->  	bool "Enable privileged no-access"
->  	depends on MMU
-> diff --git a/arch/arm/include/asm/pgalloc.h b/arch/arm/include/asm/pgalloc.h
-> index a17f01235c29..ef6cb3e6d179 100644
-> --- a/arch/arm/include/asm/pgalloc.h
-> +++ b/arch/arm/include/asm/pgalloc.h
-> @@ -85,18 +85,12 @@ pte_alloc_one_kernel(struct mm_struct *mm)
->  	return pte;
->  }
->
-> -#ifdef CONFIG_HIGHPTE
-> -#define PGTABLE_HIGHMEM __GFP_HIGHMEM
-> -#else
-> -#define PGTABLE_HIGHMEM 0
-> -#endif
-> -
->  static inline pgtable_t
->  pte_alloc_one(struct mm_struct *mm)
->  {
->  	struct page *pte;
->
-> -	pte = __pte_alloc_one(mm, GFP_PGTABLE_USER | PGTABLE_HIGHMEM);
-> +	pte = __pte_alloc_one(mm, GFP_PGTABLE_USER);
->  	if (!pte)
->  		return NULL;
->  	if (!PageHighMem(pte))
-> --
-> 2.53.0
->
+This series seems to help with a really annoying bug on Kodiak phones 
+like sm7325-motorola-dubai where often boot would hang when initializing 
+the display panel (so it took a few reboots to successfully boot the 
+device).
 
---
-Cheers, Lorenzo
+And indeed it only helps with the ALWAYS tag..
+
+I've had this patch applied for a while (without even realizing that it 
+fixed that!! thought the issue was gone because of something else) and 
+today I went around kodiak.dtsi trying to remove unnecessary ALWAYS 
+votes… first boot after changing this tag to ACTIVE_ONLY and boom, hang.
+
+
+Tested-by: Val Packett <val@packett.cool> # sm7325-motorola-dubai
+
+(for patch 2 i.e. the driver code as well)
+
+
+Thanks,
+~val
+
 
