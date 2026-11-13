@@ -2,89 +2,93 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A101606BCB3
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:43:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632AB606A333
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=sF1oYiBj;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=LYyLmBMi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Du5Xgzav;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=XaNEHUo8
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=3p1f8Yec85jLXGY1wQELmw04hKpnMA5OmY/Vm2aQaMI=; b=sF1oYiBjizW2jS
-	DcgL8qDE/gsUzIVTAhurSn6O11vuaneDohtSRc9q/Nr35QzqIvY7PdkDNjwTTaypwu3LgWfzsAP17
-	FvV36ZPts0urE7enZ3CW4IkgnTZFAZmpy84BcCZ9HyYjTA1oXphP5RNXHo/k98IsoOl08Vl5zAsE3
-	xe/fwscfUhj7oRVCcDk6gBtZenF2OBAWWyi1bNZ68WOFdAm6Wb+r4OEfVZaYPDFyGR+SixdUHA1L1
-	oC6+offEB0zEaXMobvo0d68mocKUoBbFB1JDE1QMcm8PgQdwMRUdKTkHa7wCfQhcIuDbcaDMSG/4Z
-	fBxbtru9BCWM2a/xMYcQ==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=+YBuuAmTy41OiDGu1XUvHph2eW8UaCdom070kDsHJH4=; b=Du5XgzavknmtF3dl8Ye7CMrGF5
+	HBteR52scBjVKTGK7BPrWqaF7yS592Q0f7Z3mzaPoHcgWPtjlSkxaworpDbg5Zach0VcAUl8vTAPt
+	4NgZB9VyzVcmgFpWoqnDGLk38mYcn190SaIhTaFK4GRJs4nXno4OiygP7vvxgteplKqzDTVLkit9V
+	nhwBbqopK4hnZX9MiXy4Wi25DofGTh8keL0RPxjl1/0+hZQXYpybyu54ZHft6s4ZqPcJ48SGIYGD/
+	Y2Vaa/v1T0qvr9uSvdFvu/FlKNDisaRiwnOoo4FS/PHDT6z99hqt8IwAz95lwlUdOet6KoY0Pn1sW
+	uIg2FoFg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuMz-0000000DdES-1tJI;
+	id 1xRuMz-0000000DdFU-3ImG;
 	Fri, 13 Nov 2026 16:43:21 +0000
-Received: from mail-ot1-x344.google.com ([2607:f8b0:4864:20::344])
+Received: from mail-oo2-x06.google.com ([2607:f8b0:4864:31::6])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuMq-0000000Dd6l-3ERY
+	id 1xRuMo-0000000Dd6h-1MZq
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 13 Nov 2026 16:43:15 +0000
-Received: by mail-ot1-x344.google.com with SMTP id 46e09a7af769-86288992de5so1486772a34.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 08:43:12 -0800 (PST)
+Received: by mail-oo2-x06.google.com with SMTP id 006d021491bc7-6ddeba3e85dso346790eaf.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 08:43:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794588192; x=1795192992; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=3p1f8Yec85jLXGY1wQELmw04hKpnMA5OmY/Vm2aQaMI=;
-        b=LYyLmBMiw+5DUMVz6J2Sv/0+BF0OTUG0JFJ5CGP4wNilMOC7Mu/zHYnxNZrSuB2BwG
-         f9AchTLxfWSg+pio8DY9zexrHtj57oe1Jqp0vHjvq1shgZK89SwdtWSARZMkp5Typ1DE
-         9ilY78nFpnnFUq2hD+HVB1HYdatRxYfvIxqgtP+VKNRS4ZvujUkBW8R/7vHxJMA0PIAH
-         2O+dXJAGtB7q7Nq79PdPKPTR7ovtUBl/TD33DhlZMhRZP9MnRBJS4r8kSFSN2uC55bNe
-         nHrxi6xSqcIm1W9MOoVTOtyPtY9VDEbtcv0kDwcsXrBwHMaRyYsgn/H69L8cFCFyOfyo
-         1TAw==
+        d=gmail.com; s=20260707; t=1794588189; x=1795192989; darn=lists.infradead.org;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=+YBuuAmTy41OiDGu1XUvHph2eW8UaCdom070kDsHJH4=;
+        b=XaNEHUo84b5S+vho0m6u0nlrf63n6Xrh72JlKpRgi4jLQ9UHcFEfbkpr6B/wiQ2Kkp
+         QlJyOJyD+7sXbmLfbr8XYe9M7VcKJUmd+CgjIo8v61mWVfxqJ+aU2DbT57mKXJqE/cIl
+         ANyfpIG0IbkNe1opG5Kn7NPKddqCeg41vwpIdHwBalkX0tdR/2UogMvLdGXdHOuCd0IT
+         1U+i5YTzO9krP8zFDClLnEglHB63b8K6+wZ6BSITSGFN1CdddjK8M+8R2r2wTnM2v/SW
+         41R2XShW5eukP0HkLBDdjRsIkIMxoJI4xuRUr2UveMmq1WiT3hdOl92BcbQvC8ZMNiJr
+         YsZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794588192; x=1795192992;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=3p1f8Yec85jLXGY1wQELmw04hKpnMA5OmY/Vm2aQaMI=;
-        b=pbtqTwnvos829b9Y32BPK9TC/J/4VVhZatgbwqnQJqb6PBb5Rzxh1g3L6rsux/Yho6
-         e6TNMfw1B/LWwfXu1EQjxTZbsPCGAAP4xbJKljnjxoSMwNhVrR8t+n1qtRjG5AR3ECwn
-         GUIPHEzIkJe/aHPR7QnJ+hZoRZ17+iGoxzPFKQxT3DgNQKXsdqeA9RwfhL+qPfMVgUIh
-         mBkZgTlPnpW5G879V1m7R2/UaESM7KxGPk25PydOuwbMfcOR9kHt6vdwlawLdSs/LxLP
-         qDPYjEmvfhScGdHGKKxgBmG9Diiq1qxMmepQOytgypnhH0Bp3AN2RklL6AXaK538xotc
-         XfTQ==
-X-Forwarded-Encrypted: i=1; AL+hErFDg/t78rO/+xGFoyBjLJTsZYfc/xIGUauOPJRWl1w2EVnfMf9iU5WV4LhFGgL6DNQ1M/c44ztuPM0CMMzijTdi@lists.infradead.org
-X-Gm-Message-State: APuU4Z8LIuXcrSBOi3UfgGzO1AkG0yc284jQhB7Q8kNK/bmEiCAVK8MM
-	Rtx+QzXbCNQjOt6vPe6c5Y1H7vjXrmrh2BQjIxbUZrBzMjO0DUCBWtqJ
-X-Gm-Gg: AYBFou0kAF51rZD5t8z0/aSJqhwU4U/sMUQx16xTLYr0j1Czv5CNQUiOSMXijP7D5kY
-	qm+kYtpQaMWPaLm+wZ3tceiAJ1iUdoxyvXjEkbX7PewhOt9c3BK9NnMIbCo/rJGo0UY0Quw9N3u
-	lXlbJI966gL2cm+xydxwFbaPH6wdnHWqkeHjmDSlJD83XR/P4+e0zwOTjE+27p799fmWUUEnyna
-	tzxBGjTAnc5Sk9NsD3RQm4GAlxVV5IXbuGoVqir8aj80NO2hQARQbdxAeHXaoZUyQlUGzWMlpmx
-	scyCtIhs4nHXXdea9SLZbXOs8ZIBiltLToTbFKPHw2FukOt9sp/ZiVvCyFO8E63zwTBcjR3XBnp
-	JBQ1dCRLSLgDHie7s1YE0w0OXbcjNcfXh2ewnHR04TF8Mc8RAWyFV7qlKf3tgTiDcuTFym4zGYX
-	M7ZFishp+g7zc81pNtDb9/uz716CnvkhqQNBZwTU3phItjzX0UNPOuqd9I7Vy6GcqvaoImN+Jc0
-	A+MOgJ2QbQMU7UwZF/2HAJlWtz7MwsUP6teGLojB7iDbG0oBQLFAETL2AgudvA33sgYl5lbR9VA
-	iDyTSyT9L7Sv6U4TjrTs73/E+zMw7gHMeNXd1I4pOCr9mlexlOexNODy5o1f1enRKLpwBj65h85
-	Qlf6ve/z8J3H0yEGnO4I=
-X-Received: by 2002:a05:6830:8545:10b0:861:befc:9b95 with SMTP id 46e09a7af769-861befc9e27mr1819572a34.26.1794588191654;
-        Fri, 13 Nov 2026 08:43:11 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794588189; x=1795192989;
+        h=cc:to:content-transfer-encoding:content-type:mime-version
+         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=+YBuuAmTy41OiDGu1XUvHph2eW8UaCdom070kDsHJH4=;
+        b=t5ZHpFZ8mNKn1qQRg4JADLosjmm3OVvb+TNR0GZBxRMlSa5Zg3WDv1y5Uz214wJYux
+         RKwETae9ROrlt2DN1NIXNPsffcTEv2/7kBrPlkgWmFXiaA19HHTOHQw4sNHY7Ce/yD2Q
+         M0F4wWUkACRvlgE6Mf92o8p353FBL8l5KtqbZ1B8k6heJ6LTmOmfIKOmBDsRw+vIjrgn
+         +40mLiudWikgKBJ0ogH+2yHdY0jBEGcay/oG6eAvpA59YBQeCOQRIJWB/q2tuczKKy7t
+         juCRAoHE8NmDT3ahB7WqJukdVsDbvN6rhwNEE0N/UhqH55SaVQwUteD+qk/wl1sSMvxP
+         t3Xw==
+X-Forwarded-Encrypted: i=1; AL+hErFYIqMZCZ5dKHn2YKW1M5mOya8DLLN2jBjUful9UDy2rwGYQIKI5fhFJRowJOsyZhdTamilcBpvaN+xLruVUzRI@lists.infradead.org
+X-Gm-Message-State: APuU4Z+DXj805dR4OOLRkcsdKatYVKWoC4Qgu8UYxb/Kywfr1AXPqaj2
+	F4uLC1ignVV08Q/IYyiL8QbF0ga5bX5DrqZ7DrVSqi6WY/DSfMirI9DN
+X-Gm-Gg: AYBFou2I6evgstRk3vH58V3acUnUvmNvpTZb2DQdHVQXjbqXX5vL+WtHqfZTjVqRiW+
+	+XqlG5uCzSx6fR8JZmdi0myVi8v/t0F44BJDAQZdxPzGR41dhLEUQpYhrCotCojlu+jrLuZAj79
+	4GvQmIhDVpjYu8JdhyOYg1BDxIeowuD3QLWOlJhXi4uJRTT87pK3tjpBXwOTj5R0cozx94aQFMp
+	9mHbOg/tQfGZt/KmVypbAuBkdav6zii0GYYtzd6u2A4otkmTC9fKEvetqYSUcscUPU2jTX28nia
+	PbYCMoT/ZzMMmv9r8FX0OOYSHGwg/49NPIxUy8dy5lKeDbHUnrf33qgJYqA6Of8vNosAvycyCWG
+	shYWmnl3of6p/D6k1nisSB5tEHfo+s4RgZJSX/2LdXOeGUxufkJCt5fqTMHi3y14n6RulaSMF8Q
+	0dQocwrTXVZ805z/H4+uJzKqGFF28AJrcTEKTThrfohq1NpF1Z0yuSPEOvF8hfvl4w0MlMjO6SM
+	q0BG1NLMhy2mwSdsvXXEGcRPUVN2LXsPPuZeeI5tgEcQw6BtwEJfRoxzsYhYW9EXgVLhndapfBr
+	gq2MC1x+6Mhh3K6ThlW666LTuu+ltZleFVXeWy+YywaYNEMkooDTu9pR1idY1gYe4ZVznON0xnN
+	J5ZdbnjlBYJtQ4yRFM2s=
+X-Received: by 2002:a05:6820:3382:20b0:70d:a53e:845 with SMTP id 006d021491bc7-71ab4fbc207mr1421060eaf.17.1794588188901;
+        Fri, 13 Nov 2026 08:43:08 -0800 (PST)
 Received: from [10.10.18.223] (wsip-64-207-253-118.tu.ok.cox.net. [64.207.253.118])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-862880e5148sm2712816a34.10.2026.11.13.08.43.10
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-862880e5148sm2712816a34.10.2026.11.13.08.43.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 08:43:11 -0800 (PST)
+        Fri, 13 Nov 2026 08:43:08 -0800 (PST)
 From: Ryan Brue <ryanbrue.dev@gmail.com>
-Date: Fri, 13 Nov 2026 10:42:45 -0600
-Subject: [PATCH v2 2/3] arm64: dts: mediatek: mt8173: Add the keypad
- controller
+Subject: [PATCH v2 0/3] arm64: dts: mediatek: Add the Amazon Fire HD 10
+ (2017)
+Date: Fri, 13 Nov 2026 10:42:43 -0600
+Message-Id: <20261113-rbrue-suez-upstreaming-amazon-suez-dts-v2-0-d3b8865fa50f@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-rbrue-suez-upstreaming-amazon-suez-dts-v2-2-d3b8865fa50f@gmail.com>
-References: <20261113-rbrue-suez-upstreaming-amazon-suez-dts-v2-0-d3b8865fa50f@gmail.com>
-In-Reply-To: <20261113-rbrue-suez-upstreaming-amazon-suez-dts-v2-0-d3b8865fa50f@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAA/43QPW7EIBAF4Ksg6iXixwabKveIthhg7EUK9gawt
+ dmV7x7ZLlJFSjmv+d6bFy2YIxZqyYtmXGOJ80QtkRdC/Q2mEVkM1BIqudSCy4ZllxdkZcEnW+6
+ lZoQUp5FBguc8nXmohQmvjTPCBGUUvRB6zzjExwF9XM8749cSS6xn+MtZsmO8F39iqWrVGwbLA
+ 4JnLQopOy5b33K7trvmoCDzc0qxWmIa0yJ0ru200E4pzxsYXG+0H/jgAEIfglaDo3uvWyx1zt/
+ HP1ZxFDumCyH+O30VjDNjXGN8QDBcvo8J4uebnxO9btv2AwmaHLp0AQAA
+X-Change-ID: 20261024-rbrue-suez-upstreaming-amazon-suez-dts-1c67b717d373
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -94,19 +98,19 @@ To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  "Guilherme G. Piccoli" <gpiccoli@igalia.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Ryan Brue <ryanbrue.dev@gmail.com>
+ Ryan Brue <ryanbrue.dev@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794588187; l=1040;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794588187; l=3912;
  i=ryanbrue.dev@gmail.com; s=20260906; h=from:subject:message-id;
- bh=XWTgqrmP7rORvhppkX5O4ecuuFFQiKCRGXT4o7Blnls=;
- b=p1V9+WfESnlytGo+yWLkayiutHu52hR6G9rdCc885GFv0kK/66QQx3BmStt3S4rQZBGGzCuSb
- N1MV6nuLbwiCY6FjGl8S0MX7B0dx1kTM+hKuPoR9KcdWLmYpg/fcM72
+ bh=WylSHm4dzrdtVgGa+mGeS6ky2xLAeM7GIvqZAq6Kk08=;
+ b=nBxkN4N0lqElqm29Lbz4sWMFh/t7ntJ5rI6el+UpB4ylFVvJTBrByCx3qtBoZMZGo8JOaIrDj
+ UD1c/lyd9LbC+XyDdVqVaPXff+mVVwFC1EAlVeQuqGMZynvBNWDKrMi
 X-Developer-Key: i=ryanbrue.dev@gmail.com; a=ed25519;
  pk=KsUvVaP//v/2q+ZBuacc7cLbsyEYn+AD71Sn28oZWKo=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_084313_911376_5BC9A0FE 
-X-CRM114-Status: UNSURE (   9.82  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261113_084312_237104_21B79071 
+X-CRM114-Status: GOOD (  18.74  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -126,37 +130,89 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The MT8173's keypad controller is register-compatible with the MT6779's.
-Describe it, disabled, for boards to enable with their key map.
+This adds the Amazon Fire HD 10 (2017), codename suez, an MT8173 tablet
+with an MT6397 PMIC.
+
+Patch 1 adds the board's compatible, patch 2 the SoC's keypad controller
+to mt8173.dtsi, and patch 3 the board, with:
+
+- The eMMC and microSD slot
+- The micro-B port as a USB peripheral
+- The panel, the backlight, and the touchscreen
+- The accelerometer
+- The light sensor
+- The charger
+- The lid switch
+- The power and volume keys
+- CPU frequency scaling and the skin thermistors
+- The battery thermistor, on the PMIC AUXADC
+
+The keypad and MT6397 AUXADC bindings are applied for 7.5: the keypad
+binding [1] is in input (patches 2 and 3), and the AUXADC binding [2] is
+in IIO (patch 3).
+
+The board needs a PSCI 1.0 firmware. The stock BL31 implements PSCI 0.2,
+and its CPU_ON never powers on a secondary core, so with this device tree
+the stock firmware ends in a watchdog reset loop. On this board it runs
+TF-A's mt8173 port as BL31, started from the stock preloader by a small
+loader that hands it its parameters, with U-Boot as BL33.
+
+On an upstream kernel the panel also needs the DSI command mode fix [3],
+which is reviewed. If the bootloader leaves the display scanning out, as
+the stock one does, the board also needs the MediaTek power domain fix
+[4]. Without it a probe deferral of the power controller turns the
+display's domain off and on again under the live scanout, and the board
+hangs.
+
+Tested on the board, booting this device tree on a v7.4-rc2 based kernel
+with the pending drivers: everything listed above probes. The device tree
+validates against its bindings, checked on top of [1] and [2]; the one
+warning, on mmsys's assigned-clocks, comes from mt8173.dtsi, so every
+MT8173 board has it.
+
+The fuel gauge, the sound card, the MT6630 Wi-Fi and Bluetooth, and USB
+host mode will follow once those drivers and bindings are submitted and
+land.
+
+This series was developed with the help of an LLM.
+
+[1] https://lore.kernel.org/all/20260915-rbrue-suez-upstreaming-mt8173-keypad-v1-1-96c325efacbe@gmail.com/
+[2] https://lore.kernel.org/all/20261025-rbrue-suez-upstreaming-mt6397-auxadc-v5-0-5c3c7a5a1851@gmail.com/
+[3] https://lore.kernel.org/all/20261004-rbrue-suez-upstreaming-mtk-dsi-cmd-mode-v1-1-53a4f46ca489@gmail.com/
+[4] https://lore.kernel.org/all/20261110-rbrue-suez-upstreaming-mtk-pmdomain-defer-v2-1-3ad9ad0cc67c@gmail.com/
+[5] https://lore.kernel.org/all/20261111-rfc-v2-generated-v3-1-e49697d20806@gmail.com/
 
 Signed-off-by: Ryan Brue <ryanbrue.dev@gmail.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Changes in v2:
+- Add the board in one patch. The volume keys and the PMIC AUXADC are no
+  longer separate patches, and the keypad node comes before the board
+  (Krzysztof)
+- Don't disable the VPU, the video codecs, and the MDP. They work on this
+  board with upstream TF-A and the MDP fix [5]
+- Collect Krzysztof's Acked-by on the binding
+- Link to v1: https://lore.kernel.org/r/20261111-rbrue-suez-upstreaming-amazon-suez-dts-v1-0-77b47cdea702@gmail.com
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index 2ecdea33672e..61261fe643ab 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -555,6 +555,16 @@ pwrap: pwrap@1000d000 {
- 			clock-names = "spi", "wrap";
- 		};
- 
-+		keyboard: keyboard@10010000 {
-+			compatible = "mediatek,mt8173-keypad",
-+				     "mediatek,mt6779-keypad";
-+			reg = <0 0x10010000 0 0x1000>;
-+			interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_FALLING>;
-+			clocks = <&infracfg CLK_INFRA_KP>;
-+			clock-names = "kpd";
-+			status = "disabled";
-+		};
-+
- 		cec: cec@10013000 {
- 			compatible = "mediatek,mt8173-cec";
- 			reg = <0 0x10013000 0 0xbc>;
+---
+Ryan Brue (3):
+      dt-bindings: arm: mediatek: Add MT8173 Amazon suez
+      arm64: dts: mediatek: mt8173: Add the keypad controller
+      arm64: dts: mediatek: Add MT8173 Amazon suez
 
+ .../devicetree/bindings/arm/mediatek.yaml          |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile              |   1 +
+ .../arm64/boot/dts/mediatek/mt8173-amazon-suez.dts | 679 +++++++++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi           |  10 +
+ 4 files changed, 691 insertions(+)
+---
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+change-id: 20261024-rbrue-suez-upstreaming-amazon-suez-dts-1c67b717d373
+prerequisite-change-id: 20260914-rbrue-suez-upstreaming-mt6397-auxadc-5e1228025c50:v5
+prerequisite-patch-id: d709637c35c840fbd22b30dd39452d3116a8e8e4
+prerequisite-patch-id: 04f2ca8ae588298f0ad75af44266cd028d00bbe4
+
+Best regards,
 -- 
-2.56.0
+Ryan Brue <ryanbrue.dev@gmail.com>
 
 
