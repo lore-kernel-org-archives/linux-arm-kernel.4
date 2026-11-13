@@ -2,91 +2,60 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83EF5606A88E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECC960A2617
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c2wAm4Gk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AqHo836m
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R4p5wfYL;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=WSWhl2K6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=VvQJyhwgQ+YhbM+FtddDOciD0h7PQaqhxjTy41nTAJE=; b=c2wAm4GkkV98Tg
-	g3AQs0rJGzvvP9hPcBvCA3gounXiS3fZQd3S/+j04s5GgmtUOCpEzeXFkXOGvjDsj9VMpRQpdi7KQ
-	XjzJm/iyjZd102uFEA1ENTJ739uoZpUJJgV51O5ZRVwWUgobF+q2YP9xVl8b06REoFGPvQ04a14GE
-	1zs3wVtY5/pskTm31nTyOCnqvYKX5W/SINemDT+tH4WJe+0aAo4IPG3biIKzHD5pfzEDF/AcyrZR/
-	b5ELjRx2QGTUugDWfHQ8XOsThBbx/E+sbpsVrm6+lSrOo07YqxpGyl+BczJCsRDEneZLp/HMrSt84
-	YbdoYx5fPVOZS3nJ0IcA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
+	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
+	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=OzoadZhT6+7BRQ3IJcP5Fei5yMlRSCEB5hfbLUnwCWI=; b=R4p5wfYLL2452i8wxncIsTNjmn
+	N2aWFQbfkse6ctcyykkO1WUPT+hNWvtApocpZ8vczG3FUazElQAJce3rtkrlevgYRKCuGHFLr1bAE
+	7miP0Z3fd+NDt60v+uk6qnIZLxg5nPFgyOhm1O3aOS3WwoxbDHcHzOM+hL3qjfo9bl4tYRK2eMgoR
+	01TIhDkl3wSrwW//QFDt/TQQaetqXiIDGNVHux+5FlRz6z4oeMmaeyzkYiCbUTheGqRcwjfv7WzjU
+	KR5eeIGsBoK+msvqfqFSLw0ZK5X5PYXhpH2uzGvzVG4pYNYNH79wbDruUU7CclOZD/VwV3cGSoCIA
+	YNBrcEIg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxX5-0000000ELAj-0mIm;
-	Fri, 13 Nov 2026 20:05:59 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRxaB-0000000ELWT-24C7;
+	Fri, 13 Nov 2026 20:09:11 +0000
+Received: from gloria.sntech.de ([185.11.138.130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxX3-0000000ELAQ-2Xrj
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:05:57 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 16D31406FB
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 20:05:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34C521F000C7;
-	Fri, 13 Nov 2026 20:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794600357;
-	bh=VvQJyhwgQ+YhbM+FtddDOciD0h7PQaqhxjTy41nTAJE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject;
-	b=AqHo836mxfkCHsx9CdZoTG3M66PmGwuMD6kk2cYs4gZQ4EdDQfyT4DYzJyMzQzLtD
-	 wVi62IN+nPbMbG2aviIWa5Na6J30LQLbNQCePvLDDIZQzXjNBP29mHaoyVvAU7sTN5
-	 OQhgcGVNdJaVsLCnjcmgCPgcsiLa9hamMcvuD4PEklnu9C8F0G1bBAvWtvumzfdchc
-	 r2cAeNsCD8Mnhyv8KP4jDWwsiAX1XZxaCWrd/5ihG+UF9aPsv4eBVTNt1dX4CaJ67P
-	 RmXrcVAOqHunGcec5wPIRvOsZ79P2xExmv2kI9zfcurOHy1bD6tFOcFE10mHyJGn0I
-	 lLom6cKyKpHSg==
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfauth.ams.internal (Postfix) with ESMTP id 8B4E8198003A;
-	Fri, 13 Nov 2026 15:05:54 -0500 (EST)
-Received: from ams-imap-11 ([10.64.2.31])
-  by ams-compute-02.internal (MEProxy); Fri, 13 Nov 2026 15:05:54 -0500
-X-ME-Sender: <xms:oG33ala2Qs4dNCz_pgKY9qRFkQNTC8Md8bjb0LxB46k3LYEbFL24aw>
-    <xme:oG33anO6D0ny--CeA8YHwhOR2Bnxkws17cmN25HV8MXK2cJ7kSMiFxQLvCKELokaa
-    _P9FBJN182cikAmS_EWuQU6f2s5w5re3_lzq_YaU2r3zedxLFq2yi9M>
-X-ME-Proxy-Cause: dmFkZTFrh2j1YerPcsdYSEJl2fuNPZBBkrWfKhKGJpB+r05OZ52nQHlNbhYFKI0raic5S0
-    5bMlCyChL49t3w8ZhhOR0NlNe3z9Lg7QBBiJ59KgCh1sycLWSK809y0RE5D/RanX5bwkrc
-    EudQ9Fb7dAjmpZGKgucomUumnKpy8W0Ifj2G/RKLfrE67vIpEVZmZLp2GFgvO65vFSLxcv
-    +k7OYpW55f5SLyKg+v3yrBkk34QdbPV0RCfi+OvplFq/xqwI0LylgEtFVmCLGUyZvzK/lB
-    joRJw+3eq+P+s9M3NmX+1p1vZU043sdwYPKegHO9x2WqAdMAwNOhQR3RorxmNswidt5zkv
-    hJVDuN6TQrb50u5stQadctkO+AFYznGeqlthIJiuhnH9e6cQFD+7x4XCSZ60HbgKOaTYxF
-    tIl4yKFaQ4aLE3fwHNRQ99xcInMXWkrZDGLOJMIa1+jBcePoyMS5liR4ibrgMaOEWY2mih
-    4IVSRU7Xb3Mqn1LqYgWN8SGE2Bz7yTt6B3sKJ3//eXRiqQdfXcWUZ0n0CcQMy3kI/eHVs6
-    mfBsgf3cLFx9Pe5vb+hYqKSSuLVMgavmAWee3WBa4WNK7/kegauBOUj4lOghBSwIaWgxWy
-    yQ5mOeLhSTkY5m4sG8j6E8abAfc9Rqgy7aT9SUPpBGfe041MC/DINB2qovsw
-X-ME-Proxy: <xmx:om33av8JIDuF_Ma5r_he8EYFJwpuPdP3VGQh-jAlBjKuqbSUBCatiw>
-    <xmx:om33at9fgU3GD5mjgAg1Ga21D6YsgKrJ_wdZicKzXvTcqeRoj0KDng>
-    <xmx:om33avQHEOsTYqaVrKaWbbE4tRwGGfUvyQ1AeBEA3AgIlwpf6sUL0A>
-    <xmx:om33ahcJmPgNrYZJ-_PouhKo7piju3djExvLGCz_NLgX4u1PmOp2JQ>
-    <xmx:om33ajBdzwsFsd6xdno2q81dxNKuZUS8sa3B9bO6gXyXwln_S5LnVrFj>
-Feedback-ID: ice86485a:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id D33FBF8008E; Fri, 13 Nov 2026 15:05:52 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	id 1xRxa4-0000000ELVg-1Jcq;
+	Fri, 13 Nov 2026 20:09:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=OzoadZhT6+7BRQ3IJcP5Fei5yMlRSCEB5hfbLUnwCWI=; b=WSWhl2K65oqcQXRPW3xwJqF/pO
+	zFtu5vaJYoHz65FakgJo1v2gCjH/3pMRL5An5WODpB3VF4tU8B1kIEVDK70z/Z+OKmcPZr8lhisuc
+	vYSSOWoFAW1Igw+OpjRecyGJ2ZIgMqjr44BiO3MXe030HObNNVx6RcAeq6i3dEaPndEPyYsWHu115
+	oaq7Q+0o3At+Qv9pq0IPMNyxOW6BeaKnDGjS0/gc/iB9vE+7DD3FuorFsOtHO3OoPUZSio/IUCSzq
+	bB1rIRoQR3aO0k3a2aTl+1DNMx//skVXripCpxQ7dzEG6hFYhbZar0ZChkWFdgP+A7dCdVObJ729D
+	ff/NKobw==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, iav@iav.lv
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Igor Velkov <iav@iav.lv>
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable SDR104 on the ODROID-M1 SD card
+Date: Fri, 13 Nov 2026 21:09:01 +0100
+Message-ID: <ozv3Kw_6ToOMhu6IF4wDPQ@sntech.de>
+In-Reply-To: <20261110-odroid-m1-sdr104-v1-1-8edc6d5c1bf6@iav.lv>
+References: <20261110-odroid-m1-sdr104-v1-1-8edc6d5c1bf6@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 13 Nov 2026 21:05:32 +0100
-From: "Ard Biesheuvel" <ardb@kernel.org>
-To: "Nathan Chancellor" <nathan@kernel.org>
-Cc: linux-kbuild@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-crypto@vger.kernel.org, "Christoph Hellwig" <hch@lst.de>,
- "Eric Biggers" <ebiggers@kernel.org>
-Message-Id: <b7f72b97-6e8e-4b07-a2a1-6ac8c6e596e4@app.fastmail.com>
-In-Reply-To: <20261113190150.GA2857474@ax162>
-References: <20261029135020.272082-6-ardb+git@google.com>
- <20261112222720.GA188816@ax162>
- <bc58b973-3d54-4480-aaaa-f5d5269418ea@app.fastmail.com>
- <20261113190150.GA2857474@ax162>
-Subject: Re: [PATCH 0/4] Get rid of all NEON intrinsics stdint.h type hacks
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_120904_356116_95465D1D 
+X-CRM114-Status: GOOD (  20.29  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -97,56 +66,65 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-(cc Catalin)
+Am Dienstag, 10. November 2026, 03:50:01 Mitteleurop=C3=A4ische Normalzeit =
+schrieb Igor Velkov via B4 Relay:
+> From: Igor Velkov <iav@iav.lv>
+>=20
+> The SD card already switches to 1.8 V, but only SDR50 is allowed, and
+> clk_sdmmc0 on RK3568 is a mux without a divider: dw_mmc-rockchip asks
+> it for twice the card clock, 200 MHz for SDR50, the mux rounds down to
+> the 100 MHz parent and the card runs at 50 MHz.
+>=20
+> Allow SDR104 instead; the MMC core still falls back to SDR50 for cards
+> without SDR104. With the 150 MHz max-frequency from rk356x-base.dtsi
+> the clock comes from the 300 MHz parent and the card runs at 150 MHz.
+> Hardkernel's vendor kernel already uses sd-uhs-sdr104 on this board.
+> With a SanDisk 128 GB card, direct read goes from 22 MB/s to
+> 58-64 MB/s and direct write from 20 MB/s to 47-50 MB/s.
+>=20
+> Signed-off-by: Igor Velkov <iav@iav.lv>
+> ---
+> Tested with an Armbian 7.3.3 kernel (rockchip64), the property added to
+> the DTB with fdtput: reboot, sysrq-b, watchdog reset, poweroff, s2idle,
+> deep, hibernate, hybrid-sleep and suspend-then-hibernate; the card
+> re-tuned and came back in SDR104 at 150 MHz in all 29 runs.
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts b/arch/arm=
+64/boot/dts/rockchip/rk3568-odroid-m1.dts
+> index ec43dee18094..6f77e73abc8e 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts
+> @@ -610,7 +610,7 @@ &sdmmc0 {
+>  	disable-wp;
+>  	pinctrl-names =3D "default";
+>  	pinctrl-0 =3D <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> -	sd-uhs-sdr50;
+> +	sd-uhs-sdr104;
 
-Full thread:
-https://lore.kernel.org/all/20261029135020.272082-6-ardb+git@google.com/
+You then want both of them in the file.
+The devicetree does not care about what mmc drivers do internally, aka
+that fallback and the properties describe
 
-On Fri, 13 Nov 2026, at 20:01, Nathan Chancellor wrote:
-> On Fri, Nov 13, 2026 at 09:23:03AM +0100, Ard Biesheuvel wrote:
->> On Thu, 12 Nov 2026, at 23:27, Nathan Chancellor wrote:
->> > Who do you think should take this series? It would be nice if it could
->> > start making its way to mainline sooner rather than later since tip of
->> > tree clang builds have been broken for over a month at this point.
->> >
->> 
->> Are the first two patches sufficient for that? Perhaps Eric can take them
->> through the CRC or libcrypto trees, and I can send the remaining ones
->> through the respective arch trees the following cycle.
->
-> Unfortunately not :/ we need the third patch to resolve the error since
-> that is where the conflict is originating.
->
+SD UHS SDR50 speed is supported
+and
+SD UHS SDR104 speed is supported
 
-OK in that case, maybe Catalin can take the whole thing via the arm64 tree? 
+So both are needed.
+
+Thanks
+Heiko
 
 
-
-Diffstat:
-
-Ard Biesheuvel (4):
-  lib/crc: Don't include <linux/types.h> in NEON intrinsics code
-  xor: arm/arm64: Move NEON xor_gen() dispatch into the glue code
-  arm64: Drop stdint.h type overrides from asm/neon-intrinsics.h
-  ARM: Drop stdint.h type overrides from asm/neon-intrinsics.h
-
- Documentation/arch/arm/kernel_mode_neon.rst | 10 +++--
- arch/arm/include/asm/neon-intrinsics.h      | 43 +++-----------------
- arch/arm64/include/asm/neon-intrinsics.h    | 24 +++--------
- lib/crc/crc64-neon.c                        | 10 ++---
- lib/raid/xor/arm/xor-neon-glue.c            |  3 ++
- lib/raid/xor/arm/xor-neon.h                 | 16 +++++++-
- lib/raid/xor/arm64/xor-eor3.c               | 15 ++-----
- lib/raid/xor/arm64/xor-neon-glue.c          |  5 +++
- lib/raid/xor/arm64/xor-neon.h               | 31 ++++++++++++--
- lib/raid/xor/xor-neon.c                     | 16 ++------
- 10 files changed, 78 insertions(+), 95 deletions(-)
 
 
