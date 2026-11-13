@@ -2,92 +2,67 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD7F8606A333
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CA4606AE36
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hvq11tFe;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m9cRC5y4
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PfQ/EGxz;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Kca1aMbS
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Subject:References:In-Reply-To:Message-Id:Cc:To:From:Date:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=UvoCI+F3UN/r+kCCyYEcI97wbIPvzPchSwyBMSLm3Yw=; b=hvq11tFekykZSU
-	xStTGQZJuDZjVGalw7/U7p6f/bdYSB4ZvYmVdbmc1Dln3FlxxC1MYtbnhIzw6X+X3WniF+BDlLowa
-	q3vp867WBgwofa5A2PkV01I/sWa9BjBUIlBTopMVNK0AvodvLb4ag8UmOEMYHZtmVnO51qxUR+LXM
-	9PmAv0xM6tuzrcZKOrr+6JQMqwvUUJxzqOlEkAMEZA2MyHiqb0x6iCZoqnsEMLEORYoYItUtxmgd2
-	JalQPOxWCOTQ30vVFZBLvVVVVfb6NPyr6WbtPPCp2LY4jqskBbfnHk6q535fjoztzDix0mbocV0jQ
-	sory8x1dSiHQ72BVM6Sw==;
+	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
+	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=wtyVpuXy15dO4I4euvTy72oPkpvM3hhV0zuEi7/nVcc=; b=PfQ/EGxz4lcDXW
+	1I0JvfTAZDB1zhXllFal6xVcU5HsSNv+KoES93SSozbFEydU7nIiwECYkZi9LeGCQy45ZzGrQPeKG
+	9wB5QenUHDIET5jJRYqVhoaBaIVs7raf3hZbsR6OqaRkmemNOLyAdANlnRkNCRCS8Hb3RyxtTsxrt
+	+BUttayHIolTIp4KKD1zEXgc/sApZaWdL53NjQAqFkulPUhlEIz9mctVoUq7iKWP4cTuGzwOp7Il6
+	fq6px+8dUxPYjnRc0mUnHRPUR4Ha8XUDKl7JHK9x8IuBG4I6ekM+FWrVUCAb86bnj3VyyJ2biWTey
+	hUHZJkUXilsDGXjxonSw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtwU-0000000DWGq-2c1b;
-	Fri, 13 Nov 2026 16:15:58 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtwS-0000000DWGR-1Mr6
+	id 1xRtxT-0000000DWRZ-3f6X;
+	Fri, 13 Nov 2026 16:16:59 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRtxQ-0000000DWBQ-3oRe
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 16:15:56 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id CACD5458BD;
-	Fri, 13 Nov 2026 16:15:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B782C1F000C5;
-	Fri, 13 Nov 2026 16:15:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794586555;
-	bh=UvoCI+F3UN/r+kCCyYEcI97wbIPvzPchSwyBMSLm3Yw=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject;
-	b=m9cRC5y4jEqyeUfTSiVv1SHJ/FydJ1utrE8vOHrzFWXR2EPMNSdg41+mwBMikFNz4
-	 /MBj2cfNiV7S/OblzgS4W3wbSJAbURSzCfBuqgPpiaX+qPtP4pUftzY10ikl0jP4JU
-	 DxQ+ryIydfzMgIC9Jld37fyVF36gJIHuIZmjOzN1BpYWEYtejmGT2rHBltgVVY43A3
-	 YTtv4eMONGxHzrpotvKXTcqaOOssYWGYUboJiWiwCJrPOMTz05fkPkfxH7m+yfEpo2
-	 zpX9c2q+5rgsDzx48oYn5q8rjdufVgTLIDNnnCpjdKszr5Pp9WnCLmwtw1hr7/aNi2
-	 3+n20jkvBiauA==
-Received: from ams-compute-02.internal (ams-compute-02.internal [10.64.2.62])
-	by mailfauth.ams.internal (Postfix) with ESMTP id 0240D198003A;
-	Fri, 13 Nov 2026 11:15:53 -0500 (EST)
-Received: from ams-imap-11 ([10.64.2.31])
-  by ams-compute-02.internal (MEProxy); Fri, 13 Nov 2026 11:15:53 -0500
-X-ME-Sender: <xms:tjf3anI-XrM1rzyEKV3TsVn0tQkQzK2XUXBxRhJP5kB-KddizlLQ0w>
-    <xme:tjf3akk4lCV2YgUyysfOinfbMl0AeVuHNAC_TQGRnH4c7vErfaPMU63i_RYmyECVR
-    cmHz6vQlxJXJZKRdm4TljeAYvoPcntPZ4L4Vn961g_nqmsamp1ivLSO>
-X-ME-Proxy-Cause: dmFkZTFAQfv4vgc59PJfnI7+gnjbFo5pjWqPci2q637Dc+jTlN98BS3SOu191Kx5oeX5zT
-    cpsU4696TXwbo6E9T70+3zgZ4ZQT4u2WZYZrLNrdudOZVkNXMyzUwvt29gWlqjMBSeCuS9
-    xWLhKpKLiLkYBm/I4/mkEe9fPCWkZoThd9No+pzePTALJyZz0DWj5omvVUsTJm/N8GHQYm
-    DOd8INghd05soloR06GFbIa7ZzhmJnA5LN2JEN1zSxA5iEYfypiw5rdG7NEX58RL/EvMbS
-    7slEaTvIn0pajVNLktDqnig4nTGsVfUSIfAs0Ux0u7J4sDsFCJhyhxUP6Frqsgl8B1A/CG
-    s/j6i18iK4vWXI1FdcRk9LnIkKn74i9Yhk81YCSMJfEnMcLY20EVMRM/6UGEolaZOYQCzg
-    ZvC+RNRsBxv3IJxnLtOn70i8xsFr9xBrv/ED+iFr2bHy4x+BpbFRBEf7SfIb8XLr6hK8kF
-    Baaop2OXhbUjF5ZuU5duB/0k6jn1CPCJdS4dvDXPS3Bt8iXz9s6WH1dFfnVd7zGCchXAQG
-    E2n7fVlr1OZ0/+MDkpS4Kv5tFhlIodvqjId3+7qOGwlktbRSBVu8JWi6yCOMroglq/vqEM
-    4wP+wSNywxxU1uJBN1CbH4i7HphUnvs7PZo4+opuiJE8SPFkwU3I+VU4lUQA
-X-ME-Proxy: <xmx:uDf3ajCoYN_KPZOMcB6qtN-R6od7UDzch01jyl6v8tk6cBQxj2Cj4Q>
-    <xmx:uDf3avEbNlME5ubNM4a2O4OrZanjSXdVtBK6BowjWnUXilDqtk7mXA>
-    <xmx:uDf3aoLzod8yEADhATBJWWS2gEZOnq8dAHTLTmA0h7i_jo60t5MVIg>
-    <xmx:uDf3amq4GdBo6Xpqdf1_bUNO_PW5EFSPUTAP7JF17vb9ewtylzlYhg>
-    <xmx:uDf3avjcVhpjhgRD-idErmSAru7l6xJZID9o6TemQcneI_udBuOohP9R>
-Feedback-ID: ice86485a:Fastmail
-Received: by mailuser.ams.internal (Postfix, from userid 501)
-	id 768CAF80093; Fri, 13 Nov 2026 11:15:50 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	Fri, 13 Nov 2026 16:16:58 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 59500143D;
+	Fri, 13 Nov 2026 08:14:49 -0800 (PST)
+Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B8933F673;
+	Fri, 13 Nov 2026 08:14:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794586492; bh=i6MBxrF0w4JXCguJJvppWTYUK6SI7lS9eOj24tuyIBU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Kca1aMbSiP4ptaRyeru+VLQb0nS8xXxVVzqAZYvYOR0cT26gU1mSxylH7eMRaLIes
+	 sziSIN6XJ8JM52qwZoMPhgSSjMU/h14pAkGQEI80KvcCowz7SLkM/yMvY0xIpI5lV5
+	 IdKpweGRgrX1yXXn+FmW48X0P0I5Vr2qvLQlmgY8=
+Message-ID: <10f43d19-2994-4ad2-8a49-2891582e32e7@arm.com>
+Date: Fri, 13 Nov 2026 16:14:48 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 13 Nov 2026 17:15:29 +0100
-From: "Ard Biesheuvel" <ardb@kernel.org>
-To: "Jason Gunthorpe" <jgg@nvidia.com>, "Ard Biesheuvel" <ardb+git@google.com>
-Cc: linux-efi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- "Paul Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>,
- "Albert Ou" <aou@eecs.berkeley.edu>, "Huacai Chen" <chenhuacai@kernel.org>,
- loongarch@lists.linux.dev, linux-riscv@lists.infradead.org
-Message-Id: <274609cc-2c17-4bde-bcf3-f309655f0594@app.fastmail.com>
-In-Reply-To: <179458262195.3625095.6692761412463057203.b4-review@b4>
-References: <20261110121731.2728824-12-ardb+git@google.com>
- <20261110121731.2728824-16-ardb+git@google.com>
- <179458262195.3625095.6692761412463057203.b4-review@b4>
-Subject: Re: [PATCH v2 04/10] efi/libstub: Capture loaded image information in struct
- efi_image_info
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] fs/resctrl: Give a monitor domain the counters the
+ groups already use
+To: tizi4590 <ruanjinjie@huawei.com>, james.morse@arm.com,
+ reinette.chatre@intel.com, fenghuay@nvidia.com, tony.luck@intel.com,
+ Dave.Martin@arm.com, babu.moger@amd.com, will@kernel.org, jic23@kernel.org,
+ gshan@redhat.com, bp@alien8.de, x86@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20261113083506.4129060-1-ruanjinjie@huawei.com>
+ <20261113083506.4129060-3-ruanjinjie@huawei.com>
+Content-Language: en-US
+From: Ben Horgan <ben.horgan@arm.com>
+In-Reply-To: <20261113083506.4129060-3-ruanjinjie@huawei.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_081657_030421_1FAA3AB3 
+X-CRM114-Status: GOOD (  23.28  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -98,208 +73,79 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Hi Jinjie,
 
-On Fri, 13 Nov 2026, at 16:10, Jason Gunthorpe wrote:
->> [ ... 131 lines skipped ... ]
->> @@ -80,7 +87,8 @@ efi_status_t __efiapi efi_pe_entry(efi_handle_t handle,
->>  
->>  	kernel_image_offset = image_addr - (unsigned long)image->image_base;
->>  
->> -	status = efi_stub_common(handle, image, image_addr, cmdline_ptr);
->> +	status = efi_stub_common(handle, image, image_addr, cmdline_ptr,
->> +				 efistub_get_image_info());
->
-> efistub_get_image_info() always returns the pointer from the EFI stubs
-> location, but at this point the kernel has been relocated and now we
-> are passing an info pointer that is outside image to everything else
-> while the zboot path passes an info inside the image.
->
-> It would be better if info is always pointing inside the final
-> image. Then you can use info to always get a pointer inside the
-> ultimate kernel, which is what all the DRTM values need.
->
-> Having efistub_get_image_info() take in image_base, and then using
-> weak to overlay it with zboot's version would give a consistent
-> interface.
->
-> The adjustment can be calculated like this:
->
-> 	return (const void *)(image_base - efistub_image_info._text_offset);
->
-> That would allow cleaning up the primary_entry() flow to just use
-> info, and remove the weak functions:
->
-> void __noreturn efi_enter_kernel(const struct efi_image_info *image_info,
-> 				 unsigned long fdt_addr,
-> 				 unsigned long fdt_size)
-> {
-> 	void (* __noreturn enter_kernel)(u64, u64, u64, u64) =
->                  efistub_kernel_ptr(image_info, entry);
-> 	enter_kernel(fdt_addr, 0, 0, 0);
-> }
->
-> (see below for macro)
->
-> You could do the same by passing image_base and image_info everywhere,
-> but that seems less nice.
->
-
-I'd prefer to handle this by adding another offset, and an API to update
-it after moving the image. That way, the EFI stub code can still grab the
-info struct pointer without threading it through the API, while it will
-always remain valid.
-
->> [ ... 20 lines skipped ... ]
->> +++ b/drivers/firmware/efi/libstub/efistub.h
->> @@ -1148,11 +1148,53 @@ efi_status_t handle_kernel_image(unsigned long *image_addr,
->>  				 efi_loaded_image_t *image,
->>  				 efi_handle_t image_handle);
->>  
->> +struct efi_image_info {
->> +	s32	_text_offset;
->> +	s32	__inittext_end_offset;
->> +	s32	_edata_offset;
->> +	s32	_end_offset;
->> +	s32	entry_offset;
->> +};
->
-> This ends up in a cross-arch header.. It seems OK, the x86 voffset.h
-> parts can fit cross-arch like this too.
->
-> For DRTM I will do it like this:
->
-> #ifdef CONFIG_EFI_STUB_DRTM
-> 	s32	__drtm_measured_start_offset;
-> 	s32	__drtm_measured_end_offset;
-> 	s32	drtm_entry_offset;
-> 	s32	drtm_handoff_offset;
-> #endif
->
-> Which should be fine, every DRTM will need those four things at least.
->
-
-I think that is fine. We could add an arch substruct once we need it
-but that seems premature at this point.
-
->> +
->> +const struct efi_image_info *efistub_get_image_info(void);
->> +const struct efi_image_info *zboot_get_image_info(unsigned long image_base);
->> +
->> +static inline
->> +unsigned long efistub_kernel_base(const struct efi_image_info *image_info)
->> +{
->> +	return (unsigned long)offset_to_ptr(&image_info->_text_offset);
->> +}
->> +
->> +static inline
->> +unsigned long efistub_kernel_size(const struct efi_image_info *image_info)
->> +{
->> +	return image_info->_edata_offset - image_info->_text_offset;
->> +}
->> +
->> +static inline
->> +unsigned long efistub_kernel_memsize(const struct efi_image_info *image_info)
->> +{
->> +	return image_info->_end_offset - image_info->_text_offset;
->> +}
->> +
->> +static inline
->> +unsigned long efistub_kernel_codesize(const struct efi_image_info *image_info)
->> +{
->> +	return image_info->__inittext_end_offset - image_info->_text_offset;
->> +}
->> +
->> +static inline
->> +unsigned long efistub_kernel_entry_offset(const struct efi_image_info *image_info)
->> +{
->> +	return image_info->entry_offset - image_info->_text_offset;
->> +}
->
-> As above a little helper to get a void * would be useful:
->
->   static inline void *
->   __efistub_kernel_entry_ptr(const struct efi_image_info *image_info, 
-> s32 offset)
->   {
-> 	  return (void *)((offset - image_info->_text_offset) +
-> 			  efistub_kernel_base(image_info));
->   }
->   #define efistub_kernel_ptr(image_info, ptr) \
-> 	  __efistub_kernel_entry_ptr(image_info, (image_info)->ptr##_offset)
->
-> If the rework above is done this would replace
-> efistub_kernel_entry_offset()
->
->> [ ... 15 lines skipped ... ]
->> +++ b/drivers/firmware/efi/libstub/image_info.S
->> @@ -0,0 +1,12 @@
->> +/* SPDX-License-Identifier: GPL-2.0 */
->> +
->> +#define REL_REF(sym)	.long	sym - 0b
->
-> The code could consistently use the offset_to_ptr() macro if the label was
-> included in the macro?
+On 13/11/2026 08:35, tizi4590 wrote:
+> From: Jinjie Ruan <ruanjinjie@huawei.com>
 > 
->   #define REL_REF(sym)	0: .long	sym - 0b
->
-> It would make the efistub_kernel_ptr() simpler, and the three size
-> calculations would look like:
->
-> 	return efistub_kernel_ptr(image_info, __inittext_end) - 
-> 	       efistub_kernel_ptr(image_info, _text);
->
+> With assignable MBM counters, resctrl can be mounted while all CPUs of
+> a monitor domain go offline and one of them comes back, either through
+> CPU hotplug or because hibernation takes the non-boot CPUs offline. The
+> domain is destroyed and re-created, and the new domain starts with no
+> counters assigned. Counters are otherwise only assigned when a group is
+> created, when rdtgroup_assign_cntrs() takes a free counter in each
+> monitor domain for each MBM event, so no code revisits the groups that
+> already exist.
+> 
+> Those groups read "Unassigned" on the new domain, on any system with
+> assignable MBM counters. A counter assigned to them later through
+> mbm_L3_assignments is the lowest free one in that domain, so the same
+> group can end up with a different counter ID on different domains. For
+> example, with the counter ID each group uses for mbm_total_bytes and
+> "_" for none:
+> 
+>                                domain 0         domain 1
+>   mount, mkdir g1              default=0 g1=1   default=0 g1=1
+>   all CPUs of domain 1 offline default=0 g1=1   (destroyed)
+>   one CPU of domain 1 online   default=0 g1=1   default=_ g1=_
+>   assign g1 on domain 1        default=0 g1=1   default=_ g1=0
+> 
+> Each domain has its own counters, so g1 can use counter 0 on domain 1
+> and counter 1 on domain 0 without affecting the other domain, but until
+> it is assigned on domain 1 it reads Unassigned there.
 
-Again, probably cleaner to just refer to the copy of the struct once
-it exists.
+I brought this up before and it was assessed that no change was required:
+https://lore.kernel.org/lkml/171f92a3-fa2e-44fb-b0d1-1250c72e31d1@amd.com/
 
->> +
->> +	.globl		__efistub_efistub_image_info
->> +	.p2align	3
->> +__efistub_efistub_image_info:
->> +0:	REL_REF(_text)
->> +	REL_REF(__inittext_end)
->> +	REL_REF(_edata)
->> +	REL_REF(_end)
->> +	REL_REF(efi_primary_entry)
->
-> Can you put a
->
-> +	.section	".init.rodata", "a"
->
-> Here?
->
+Do you have any particular reason for wanting this behaviour?
 
-Ack
+Thanks,
 
-> The DRTM patch points this to various things in .init. sections and
-> modpost will complain. I think nothing outside the efi stub should
-> touch this stuct and it should be freed as init data right?
->
+Ben
 
-Yes.
-
->> [ ... 18 lines skipped ... ]
->> @@ -93,9 +100,15 @@ efi_zboot_entry(efi_handle_t handle, efi_system_table_t *systab)
->>  	}
->>  
->>  	// Decompress the payload into the newly allocated buffer
->> -	status = efi_zboot_decompress((void *)image_base, alloc_size) ?:
->> -	         efi_stub_common(handle, image, image_base, cmdline_ptr);
->> +	status = efi_zboot_decompress((void *)image_base, alloc_size);
->> +	if (status != EFI_SUCCESS)
->> +		goto error;
->>  
->> +	auto image_info = zboot_get_image_info(image_base);
->
-> auto is allowed in the kernel now?
->
-
-Yes.
+> 
+> Assign the counters when the domain comes online, after its state is
+> set up. Give each enabled MBM event of every group, including the
+> monitor groups under mon_groups/, the counter ID the group uses in
+> another domain, and leave the event unassigned when that ID is already
+> taken on the new domain. Skip groups in pseudo-lock mode, as their RMID
+> has been freed and they are not monitored.
+> 
+> A group that has no counter for an event in any domain stays unassigned
+> on the new domain, as it was before. mbm_assign_on_mkdir only applies
+> when a group is created, and counters that the user removed through
+> mbm_L3_assignments stay removed.
+> 
+> Fixes: ef712fe97ec5 ("fs/resctrl: Auto assign counters on mkdir and clean up on group removal")
+> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
+> Cc: <stable@vger.kernel.org>
+> Cc: Tony Luck <tony.luck@intel.com>
+> Cc: Reinette Chatre <reinette.chatre@intel.com>
+> Cc: Babu Moger <babu.moger@amd.com>
+> Cc: James Morse <james.morse@arm.com>
+> Cc: Ben Horgan <ben.horgan@arm.com>
+> Cc: Dave Martin <Dave.Martin@arm.com>
+> ---
+> Changes in v2:
+> - Drop the MPAM part of the changelog, the MPAM driver is fixed by
+>   "arm_mpam: resctrl: Use the domain's counter ID".
+> - Link to v1: https://lore.kernel.org/all/20261106094537.2337188-1-ruanjinjie@huawei.com/
 
