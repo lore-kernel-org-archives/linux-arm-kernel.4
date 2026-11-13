@@ -2,124 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDEAF606A891
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 04:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02710606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=eNrfWAfU;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=iRRpvnUs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=NpAIXnKD;
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.a=rsa-sha256 header.s=s201512 header.b=otsdPddm
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:
+	Message-ID:Date:Content-Transfer-Encoding:Content-Type:Mime-Version:Subject:
+	Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+lqkvsptNAsmFpGtYAdrOoSm4FQbFmznUqUV/049Skc=; b=eNrfWAfUtCM5ft
-	Hs/UFmeVRGxszPWgJDj2SXrBVeFdQ/EgdHzQTMKkF5lfMgf06khKjRXQ0HYBwIShTri5fu9N4MRfr
-	Q9gnEzeBIkzkq+iH/VOlmO3/MKNQMg5wdkWmoZR3fnnGIgKMnBtNDhVhb+nb3UR49qDTuX5uBXNFR
-	uPD/d8PgYLmJVC8DYY1huWHAhXRp5zAWquKiW8j4nP6d0JUTe9n/2iiZ8WhcoIKRawsU7iB3IOy9N
-	rwBLo0w47Hnshvf//vQTNjg/Z+hs6Q8Fxu7LU10TPFe2IPi3Fkr1F4d8tyEvOJBKbXIwE/eR1tA4R
-	wAuHrKukwEcV3dMP3zlA==;
+	List-Owner; bh=5Dp2IENZXY8vor5OQbmzVoL9tS9zDPmNAgbX16sKuWM=; b=NpAIXnKD3F2JlF
+	mLPedEMZfg96xQv3+FBkEx7uO8XNTHqipbnF3vTOuiwMaLetGbyj6YKoFbGuMt9iwgiQcdOWPTVf9
+	TXbp3MtcJFnchKBgkXCWsf/h6MbjP0Rfl84eno/VD+YsOGv2cnq2A4Hg0WG4b6Mlxwb+206Gg7NY1
+	E++joNAJaV8wbxZ2Fbkd7eyrV2BgAkH3AUlR/AB7viBO1RgI7Hqxb98qNlTvLJAeZB6kLXr6Ss5Pk
+	cgD++A7hrEVKw0fBjpELMF5JfajoxhghfivX3fiXGTzOP5HYjvlxMM71u7m9T9pMsowBcCy69pXim
+	wc4UN7pMGoUojzcCgeLg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRidh-0000000Bcws-2XUD;
-	Fri, 13 Nov 2026 04:11:49 +0000
-Received: from mail-eastus2azon11011016.outbound.protection.outlook.com ([52.101.57.16] helo=BN8PR05CU002.outbound.protection.outlook.com)
+	id 1xRjXF-0000000BfTa-1arq;
+	Fri, 13 Nov 2026 05:09:13 +0000
+Received: from out203-205-221-221.mail.qq.com ([203.205.221.221])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRidc-0000000BcwK-4BxY
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 04:11:47 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KfzyOukX8zhOhdcX1rWgIeLzbpM0dZbN5P1ZcINefqXBbjdn7trPZeDtSMeC3A6xS1dlks4VTeGhD+K6eF8HmUkO3ZCDgmJsN38OuuA0u00qZRBH1mTJH0DklcNXVgle0E7Acof86FMJ33H5JBmNMDNuLevdpffTHZyDu43A87vNFOJFPDF5owpHlWYiDLLfmQ3hopkue4fyf1xaXlyC3kdgXM0tveRdruW/otOP1jsVqrWsTDEkuTvXJiNgKZfYiTM4/wrzWce61nb1v/bLWUBP8DhmDNlHhZFp64Ur+rGFbMCKRhcKI6lqjf9Mb5LAkMG+BFSsJlHl/Iwu1F7HEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+lqkvsptNAsmFpGtYAdrOoSm4FQbFmznUqUV/049Skc=;
- b=WFIByYchdcw5BURknnPKAB3y8oiczzx/aj1vxFcSQ8yJ4BCTnYTD3raiZLQDf8eef8KJnNSwqcsmIkJ0ggT72n0zpgqa4w0fzH288oNec5d0BzpeV9//Hzkdr3S8GwPrgfOKBhHb5a014N39ILhjdYGC2W37C2bHG0scXz/6853ZMI5m3z4tqrRwP+3/TdzwiN93bSCE8JPl72T0Da+o7bA6SJZDf/1dYq8crH6QnNkCIeUj2TWjCA0KMdxWgteCvvj0UfnMIGgqpTaXsRp3mQtF4VCoNwbB0xjUK1qTdZLhLVOzUlcHCnVTsVsWnm+zvFkx2hbkZ3o89+X+9y5FXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+lqkvsptNAsmFpGtYAdrOoSm4FQbFmznUqUV/049Skc=;
- b=iRRpvnUs7+nyykI4HNsmPcvzgp9BWNG25oLgoC/jVCSxyNm9hRtpc5r0bsmKBYrU1NeHl0X5pGnwGBzvBSAWK1lfvsm7TIemxS18Eape6yidp7avVWJfTiBHlooyOELldlXy0R03SZO2j6coLkVO/wMavHv4V9Ly93RhooxqcVk=
-Received: from CY5P221CA0116.NAMP221.PROD.OUTLOOK.COM (2603:10b6:930:1f::28)
- by SJ0PR12MB6968.namprd12.prod.outlook.com (2603:10b6:a03:47b::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.9; Fri, 13 Nov
- 2026 04:11:39 +0000
-Received: from PH2PEPF00048917.namprd05.prod.outlook.com
- (2603:10b6:930:1f:cafe::67) by CY5P221CA0116.outlook.office365.com
- (2603:10b6:930:1f::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.8 via Frontend Transport; Fri, 13
- Nov 2026 04:11:38 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
-Received: from satlexmb08.amd.com (165.204.84.17) by
- PH2PEPF00048917.mail.protection.outlook.com (10.167.243.73) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Fri, 13 Nov 2026 04:11:32 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
- 2026 12:47:33 -0600
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
- Transport; Thu, 12 Nov 2026 12:47:27 -0600
-From: Srinivas Neeli <srinivas.neeli@amd.com>
-Date: Fri, 13 Nov 2026 00:16:48 +0530
-Subject: [PATCH net-next v4 4/8] net: xilinx: tsn: parse endpoint DMA
- channel configuration
+	id 1xRjX8-0000000BfSu-3S3t;
+	Fri, 13 Nov 2026 05:09:11 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1794546540; bh=5Dp2IENZXY8vor5OQbmzVoL9tS9zDPmNAgbX16sKuWM=;
+	h=From:To:Cc:Subject:Date:References:In-Reply-To;
+	b=otsdPddmRQeT+X5rLWjdUH3qgWfurnnL665INmuBmWvN57pDiYDOrSWpx8jTFUxlD
+	 fUiMGZcePYTsXUO2djmGY8Mbs/bjCxd6fZ2nF1tiE9b7k4oF9WumvHH4fI05Jzoaal
+	 LAN44/zOOrcoeeYn9ahWolD/LUahlc4PPttNE5HU=
+X-QQ-XMRINFO: MPJ6Tf5t3I/ylTmHUqvI8+Wpn+Gzalws3A==
+X-QQ-XMAILINFO: Nc5/rdswZ3xKSNAXNUazFI95a8UiJLoXzHexhkY/+iv7Dp45u0g3b4eGgS8eS9
+	 0owDJrRS0VqSesJrxHCup9iP71RVuztm9/kBOm9UYgEmvlEi7UNvzoAp6JJrUJBh1Av65Uv0tJwam
+	 ku+DAMQlhUHRSDFm4g0yJX53FVtc8L8ATWt8PKqbYtd56C77OpGSyM9vhfjYuaQHz7GQ+ek21Rwjf
+	 kgEUafJQ9wiqfTkr9EfsUxR6RvcNYOPns04V4Pgfojxwt8woUDTxeHyF1VHLyaOGr823UhwN30wta
+	 NhlxHWkEHlaQ5tbcv/bhhfCXJhYWdi1bjkxMjQpZ777W61tMaHLkDE6jImBJo4SBwTPFSAg/SvbDS
+	 GNN66WRB90V1VpeX39sH/kJvz6m6B6+wMvTWJjqPg6hnr1fZiQr0+04GvJQBgZS3jUzHddIxRzUAU
+	 S+kdrXRl2FtzD80EODeTo2MzUDG+5xLfFZDB/xyWIlOpyr1UXSjZr4QGa7SKL+am1HFzHihFY9/4r
+	 3c7izJ7L8C44y4YudG8hVwjwPwJeaOkOn6YQz0EyEb+qmdCEr55vX9F5ftxALxwb8NgTuPuJDc3DS
+	 9Drv9JWDiAJQL43LovOEm0BkXHHSxHnD21oJxWa0rU7JRhKucc0E7G1i0QPWWQ12L5aReEZ+eFE07
+	 uJlM2k68hP1nfQhY401tA/37lLJ4HOfW1qpQsSjaF0hXV1/97niLXvk1TbxfR3Bd7l/ziOS0xP6hu
+	 4T4iapXSkwX9ffHn0buc4JzTyN+puCX/h0IYHfrVjvZvPw6KmOkgx+T5LV97pJVXsO+anRs5e7CDY
+	 fvKwQIcYQ0qzXwo/aGvVj8/B4fc8bn/vbHRfOJ68Xs0TUoVuAsSlNpdTXwhPqjdmddIL13B4sMDAb
+	 QDjf1hFgBZOdm/cINbkT4YwgdMEqHhmc9I3ZtupR3FhSr+bm8b/SvXNxFDJjX6D3Tg5Cc3dZtr2I4
+	 fzHI5xQLBbIn5yuLknjm5xuwRhtxklzWBK93aAPnNq36u2AwUOA1P3MBrpGqf4T1bgS5+rUh5WBjF
+	 8ePJ+oA5tULHaN2CbPN4P+AEcAcqU3w3PxnMwN9PXKF39rgc=
+From: "=?utf-8?B?Q3VuaGFvIEx1?=" <1579567540@qq.com>
+To: "=?utf-8?B?bmV0ZGV2LWJvdCtzYXNoaWtv?=" <netdev-bot+sashiko@kernel.org>
+Cc: "=?utf-8?B?bWts?=" <mkl@pengutronix.de>, "=?utf-8?B?a2VybmVs?=" <kernel@pengutronix.de>, "=?utf-8?B?bWFpbGhvbA==?=" <mailhol@kernel.org>, "=?utf-8?B?aGVpa28=?=" <heiko@sntech.de>, "=?utf-8?B?c29ja2V0Y2Fu?=" <socketcan@hartkopp.net>, "=?utf-8?B?ZGF2ZW0=?=" <davem@davemloft.net>, "=?utf-8?B?ZWR1bWF6ZXQ=?=" <edumazet@kernel.org>, "=?utf-8?B?a3ViYQ==?=" <kuba@kernel.org>, "=?utf-8?B?cGFiZW5p?=" <pabeni@redhat.com>, "=?utf-8?B?aG9ybXM=?=" <horms@kernel.org>, "=?utf-8?B?Y29yYmV0?=" <corbet@lwn.net>, "=?utf-8?B?c2toYW4=?=" <skhan@linuxfoundation.org>, "=?utf-8?B?cmR1bmxhcA==?=" <rdunlap@infradead.org>, "=?utf-8?B?d2c=?=" <wg@grandegger.com>, "=?utf-8?B?bGludXgtY2Fu?=" <linux-can@vger.kernel.org>, "=?utf-8?B?bGludXgtYXJtLWtlcm5lbA==?=" <linux-arm-kernel@lists.infradead.org>, 
+	"=?utf-8?B?bGludXgtcm9ja2NoaXA=?=" <linux-rockchip@lists.infradead.org>, "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>, "=?utf-8?B?bGludXgtZG9j?=" <linux-doc@vger.kernel.org>, "=?utf-8?B?c3RhYmxl?=" <stable@vger.kernel.org>
+Subject: Re: [PATCH net v9 04/10] can: dev: check netif_running() before bus-off recovery
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261113-patches_v2_external-v4-4-56bb26f042a4@amd.com>
-References: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
-In-Reply-To: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
-To: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>, "Michal
- Simek" <michal.simek@amd.com>, Sebastian Andrzej Siewior
-	<bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, "Steven
- Rostedt" <rostedt@goodmis.org>, Eric Dumazet <edumazet@kernel.org>, "Eric
- Dumazet" <edumazet@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-rt-devel@lists.linux.dev>, Srinivas Neeli <srinivas.neeli@amd.com>,
-	<git@amd.com>, <neelisrinivas18@gmail.com>
-X-Mailer: b4 0.16.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH2PEPF00048917:EE_|SJ0PR12MB6968:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab04a08d-a7a8-4d97-6a15-08df413c337c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|23010399003|1800799024|36860700016|82310400026|921020|11063799006|261028144727099003|10067099003|5023799004|56012099006|261022105027099003|261021123027099003|261026121527099003|261026140227099003|261021121427099003|261022075727099003|261102123227099003|261009223027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: VA7cv4Mmp7cT/9M7KOj6FNaB0JiM1p5IynMmtcgwQctqKxpB3C1kMesL3Ckm++Mq6B2BckvMhec6jGwwZbF98HzXdcqNCFVUUSNY9cq+sciTsBE6oXcPs6D0PK1PrBDZymnGOBm5HxKd6qKgeVBuYv6Xi1FK04pyFju8GaQ0pom9S4LXeJAQy+s7Pa3J3q+RckD9XCexaIKX3cGUfItU4aF7m9eyuYhi1rMF/exa5QPWF4vUSU4cEqspMobfBVzx2/zswwHV+zQ+u74jO7MPBHQY9BeFf2kdPWKhi48rC7gAenKBe4eG+wrUPs6Fe2Wu7MrpnRdX4aFYyOkwCwLrgtj0DKYFgB4ZXhjD1k607FqOaggEhkoUskmxhByXp/gcQHNQwUpjdgFFYlleV9g/jav5eBjtLffLfRAAj4oXH3sGs+W1M9qQ6/mcViN2f7Y+UhtExzp8TkXeYDadSEWy287qsNzmzTLg/I+ba55MjWEj6vs+Wo+zL4Lz8CQJB4p82mNu1obFgyv19cGsj8Ulvb6ZZn85LUL3CUyHEG73ltwHlXFgI9iTZk8FIiHfccam2D77P3o2rxhg4txrkO2YwWPP71Ap9yyhInNjnDex1kQBrS8SBa8G9nvNrhb6YmN9Drjex1XK+hOv/O5hp8hllWjNGtzqQUiVovaVJFdtmabOWXBtc/oZeefWJ7gSOxo2S3J8vvYjwmhd0WcZ+7Oomc/+f68cvadA9ZeIAgdYx2K1H/aIMHgs+k/v2UuOmvcM
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(23010399003)(1800799024)(36860700016)(82310400026)(921020)(11063799006)(261028144727099003)(10067099003)(5023799004)(56012099006)(261022105027099003)(261021123027099003)(261026121527099003)(261026140227099003)(261021121427099003)(261022075727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 40EczBmyee+1jnAZQ+eMJbDYsUU2V0qBxinfJc1pZ1Xg3sUph/Isb4ZqS1J/ZI1VSt969/V0K2BEkGuiG0KuCQq8WUn0uhmJwNPjJbc5hdGGQlJxfEzmmZDmqR+AO5pldlsdkMH1XIVJDMl9b7ykY0B7wwnwaeuhQoi/cWDl8dR3OJqM5Pt74sqPUqMP4pTmxmNvBampJDk4/teF9jKeHLjDMr7KIj3mYWQ+RWM5ndIWJG7TNoE1gTFFjqUQoxaZJ7zM1Qw8DYbhBAZtFSJ5L4T+9YuSstppt+bk8kRq8vfkIZowuRKZIgNVRKdvHKDinj446xy2zw4C6zNMcaCx38r5fXjhnIztzQn7Mcs4noomCtuq5PHnfm5RGlcErgHNcpSzskvJov77rNTUNRFs7CyHVXx8VO+gBrwwv3is2XQnBKxZ47cKdwE9GEtMDmJO
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 04:11:32.6397
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab04a08d-a7a8-4d97-6a15-08df413c337c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: PH2PEPF00048917.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6968
+Mime-Version: 1.0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: base64
+Date: Fri, 13 Nov 2026 13:08:57 +0800
+X-Priority: 3
+Message-ID: <tencent_7BC3801D441CBFA5A6369A1F19AD848B9107@qq.com>
+X-QQ-MIME: TCMime 1.0 by Tencent
+X-Mailer: QQMail 2.x
+X-QQ-Mailer: QQMail 2.x
+References: <20261111-rockchip-canfd-restart-close-v9-4-6643f3825ba3@qq.com>
+	<179452272955.488853.2430789088711910750@kernel.org>
+In-Reply-To: <179452272955.488853.2430789088711910750@kernel.org>
+X-QQ-mid: xmsezb41-0t1794546537tvcfyebl0
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_201145_312045_81CDF600 
-X-CRM114-Status: GOOD (  29.89  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261112_210907_198889_42627215 
+X-CRM114-Status: GOOD (  11.07  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -130,326 +83,42 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,FROM_EXCESS_BASE64,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The endpoint has one MCDMA channel per TX queue and per RX queue, and
-the device tree lists them in "dma-names". The transmit path needs to
-know which channel backs each logical TX queue.
-
-Count the TX and RX channels in "dma-names" and allocate the conduit
-netdev with that many hardware queues. Parse the "tx-queues-config"
-child node to map each logical TX queue to its channel.
-
-The device tree describes one "queueN" child per TX channel under
-"tx-queues-config". Each child names its channel with
-"xlnx,dma-channel-num", given as the N of the tx_chanN entry in
-"dma-names". Every logical TX queue must be described exactly once and
-name a distinct channel that "dma-names" lists, and the TX channel count
-must equal "xlnx,num-priorities" on the parent IP node. Probe fails with
-dev_err_probe() when any of that does not hold.
-
-Co-developed-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
-Signed-off-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
-Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
-
----
-Changes in v4:
-- Use alloc_etherdev_mqs() so the standard eth%d name is registered with
-  NET_NAME_ENUM while preserving the TX and RX queue counts.
-- Reject xlnx,num-priorities outside the 2..8 range the binding allows.
-  A value of 1 used to probe with a single TX queue.
-
-Changes in v3:
-- State the device tree requirements in the commit body. One "queueN"
-  child per TX channel naming its channel with "xlnx,dma-channel-num",
-  every TX queue described exactly once, and the TX channel count equal
-  to "xlnx,num-priorities". They were only in the v2 changelog before.
-- Correct the kernel-doc for tx_dma_chan_map. It holds the N of a tx_chanN
-  entry in "dma-names", not a hardware channel number.
-- Name the counting helper ep_count_dma_channels() and its probe results
-  num_tx_dma_channels and num_rx_dma_channels. Both count MCDMA channels
-  listed in "dma-names", which "queues" did not convey.
-- Call the RX map rx_dma_chan_map, matching tx_dma_chan_map. Both hold the
-  N of a chanN entry in "dma-names", so one concept now has one name.
-- Keep the RX map in a probe local rather than copying it into the private
-  struct. Nothing outside probe reads it.
-
-Changes in v2:
-- Check xlnx,dma-channel-num against the channels that dma-names actually
-  lists, using a presence bitmask. Reject duplicates and out-of-range channels,
-  and index the channel arrays by logical queue.
-- Require one queue node per tx_chan and num-priorities equal to the TX channel
-  count. This also gives xlnx,num-priorities a consumer.
-- Cap TX and RX at 8 to match the binding.
-- Error out on an unknown dma-names entry instead of skipping it.
-- Drop the unreachable TX and RX count guards. The in-loop index and duplicate
-  checks already bound the count, so the channel arrays cannot be over-indexed.
----
- drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c | 203 +++++++++++++++++++++++-
- 1 file changed, 202 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-index b6458bb0ba0f..9458db38255d 100644
---- a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-+++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-@@ -5,9 +5,11 @@
-  * Copyright (C) 2026 Advanced Micro Devices, Inc.
-  */
- 
-+#include <linux/bitops.h>
- #include <linux/etherdevice.h>
- #include <linux/ethtool.h>
- #include <linux/if_ether.h>
-+#include <linux/if_vlan.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/netdevice.h>
-@@ -21,14 +23,31 @@
- 
- #define DRIVER_NAME			"xilinx_tsn_ep"
- 
-+#define TSN_DMA_CH_INVALID		0xFFU
-+#define TSN_MIN_PRIORITIES		2
-+#define TSN_MAX_TX_QUEUE		8
-+#define TSN_MAX_RX_QUEUE		8
-+
-+#define TSN_MAX_VLAN_FRAME_SIZE		(ETH_DATA_LEN + VLAN_ETH_HLEN + \
-+					 ETH_FCS_LEN)
-+
- /**
-  * struct xlnx_tsn_ep - EP MAC private data, embedded in net_device priv area
-  * @ndev: the conduit netdev
-  * @dev: backing device
-+ * @num_tx_queues: number of TX DMA channels (one per priority)
-+ * @num_rx_queues: number of RX DMA channels
-+ * @tx_dma_chan_map: TX queue to tx_chanN map, or TSN_DMA_CH_INVALID when
-+ *	the queue has no channel
-+ * @max_frm_size: maximum frame size accepted on RX
-  */
- struct xlnx_tsn_ep {
- 	struct net_device *ndev;
- 	struct device *dev;
-+	u32 num_tx_queues;
-+	u32 num_rx_queues;
-+	u32 tx_dma_chan_map[TSN_MAX_TX_QUEUE];
-+	u32 max_frm_size;
- };
- 
- static netdev_tx_t ep_start_xmit(struct sk_buff *skb, struct net_device *ndev)
-@@ -69,15 +88,180 @@ static const struct ethtool_ops ep_ethtool_ops = {
- 	.get_drvinfo	= ep_get_drvinfo,
- };
- 
-+/*
-+ * Parse the "tx-queues-config" child of the EP node. The logical queue
-+ * index is taken from the "queue<N>" node name, so the mapping does not
-+ * depend on the order the child nodes appear in the device tree.
-+ */
-+static int ep_parse_tx_queue_config(struct xlnx_tsn_ep *ep,
-+				    struct device_node *txcfg_np, u16 tx_present)
-+{
-+	DECLARE_BITMAP(queue_seen, TSN_MAX_TX_QUEUE) = {};
-+	DECLARE_BITMAP(chan_seen, TSN_MAX_TX_QUEUE) = {};
-+	unsigned int count = 0;
-+	int ret;
-+
-+	for_each_child_of_node_scoped(txcfg_np, qnode) {
-+		u32 chan, queue;
-+
-+		if (!str_has_prefix(qnode->name, "queue") ||
-+		    kstrtou32(qnode->name + strlen("queue"), 10, &queue) ||
-+		    queue >= ep->num_tx_queues)
-+			return dev_err_probe(ep->dev, -EINVAL,
-+					     "tx-config: invalid queue node %pOFn (have %u queues)\n",
-+					     qnode, ep->num_tx_queues);
-+
-+		if (test_and_set_bit(queue, queue_seen))
-+			return dev_err_probe(ep->dev, -EINVAL,
-+					     "tx-config: queue %u described twice\n",
-+					     queue);
-+
-+		ret = of_property_read_u32(qnode, "xlnx,dma-channel-num", &chan);
-+		if (ret)
-+			return dev_err_probe(ep->dev, ret,
-+					     "tx-config: queue %u missing xlnx,dma-channel-num\n",
-+					     queue);
-+
-+		if (chan >= TSN_MAX_TX_QUEUE || !(tx_present & BIT(chan)))
-+			return dev_err_probe(ep->dev, -EINVAL,
-+					     "tx-config: queue %u maps to channel %u not present in dma-names\n",
-+					     queue, chan);
-+
-+		if (test_and_set_bit(chan, chan_seen))
-+			return dev_err_probe(ep->dev, -EINVAL,
-+					     "tx-config: channel %u already assigned to another queue\n",
-+					     chan);
-+
-+		ep->tx_dma_chan_map[queue] = chan;
-+		count++;
-+	}
-+
-+	if (count != ep->num_tx_queues)
-+		return dev_err_probe(ep->dev, -EINVAL,
-+				     "tx-config: described %u queues but expected %u\n",
-+				     count, ep->num_tx_queues);
-+
-+	return 0;
-+}
-+
-+static int ep_count_dma_channels(struct device *dev, u32 *out_tx, u32 *out_rx,
-+				 u16 *tx_present, u32 *rx_dma_chan_map)
-+{
-+	u32 tx = 0, rx = 0;
-+	u16 rx_present = 0;
-+	int n, i, ret;
-+
-+	n = of_property_count_strings(dev->of_node, "dma-names");
-+	if (n < 0)
-+		return dev_err_probe(dev, n, "failed to read dma-names\n");
-+
-+	for (i = 0; i < n; i++) {
-+		const char *name;
-+		size_t plen;
-+		u32 idx;
-+
-+		ret = of_property_read_string_index(dev->of_node, "dma-names",
-+						    i, &name);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "failed to read dma-names[%d]\n", i);
-+
-+		plen = str_has_prefix(name, "tx_chan");
-+		if (plen) {
-+			if (kstrtou32(name + plen, 10, &idx) ||
-+			    idx >= TSN_MAX_TX_QUEUE)
-+				return dev_err_probe(dev, -EINVAL,
-+						     "invalid TX channel name %s\n",
-+						     name);
-+
-+			if (*tx_present & BIT(idx))
-+				return dev_err_probe(dev, -EINVAL,
-+						     "duplicate TX channel %s\n",
-+						     name);
-+
-+			*tx_present |= BIT(idx);
-+			tx++;
-+			continue;
-+		}
-+
-+		plen = str_has_prefix(name, "rx_chan");
-+		if (plen) {
-+			if (kstrtou32(name + plen, 10, &idx) ||
-+			    idx >= TSN_MAX_RX_QUEUE)
-+				return dev_err_probe(dev, -EINVAL,
-+						     "invalid RX channel name %s\n",
-+						     name);
-+
-+			if (rx_present & BIT(idx))
-+				return dev_err_probe(dev, -EINVAL,
-+						     "duplicate RX channel %s\n",
-+						     name);
-+
-+			rx_present |= BIT(idx);
-+			rx_dma_chan_map[rx] = idx;
-+			rx++;
-+			continue;
-+		}
-+
-+		return dev_err_probe(dev, -EINVAL,
-+				     "unrecognised dma-names entry %s\n", name);
-+	}
-+
-+	if (!tx)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "no TX channels in dma-names\n");
-+
-+	if (!rx)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "no RX channels in dma-names\n");
-+
-+	*out_tx = tx;
-+	*out_rx = rx;
-+
-+	return 0;
-+}
-+
- static int xlnx_tsn_ep_probe(struct platform_device *pdev)
- {
-+	u32 num_tx_dma_channels, num_rx_dma_channels, num_prio;
-+	u32 rx_dma_chan_map[TSN_MAX_RX_QUEUE];
- 	struct device *dev = &pdev->dev;
-+	struct device_node *txcfg_np;
-+	struct device_node *ip_np;
- 	struct net_device *ndev;
- 	struct xlnx_tsn_ep *ep;
- 	u8 mac_addr[ETH_ALEN];
-+	u16 tx_present = 0;
- 	int ret;
-+	int i;
-+
-+	ret = ep_count_dma_channels(dev, &num_tx_dma_channels,
-+				    &num_rx_dma_channels, &tx_present,
-+				    rx_dma_chan_map);
-+	if (ret)
-+		return ret;
-+
-+	ip_np = of_get_parent(dev->of_node);
-+	if (!ip_np)
-+		return dev_err_probe(dev, -EINVAL, "missing parent IP node\n");
-+
-+	ret = of_property_read_u32(ip_np, "xlnx,num-priorities", &num_prio);
-+	of_node_put(ip_np);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "missing xlnx,num-priorities\n");
-+
-+	if (num_prio < TSN_MIN_PRIORITIES || num_prio > TSN_MAX_TX_QUEUE)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "invalid xlnx,num-priorities %u\n",
-+				     num_prio);
- 
--	ndev = alloc_etherdev(sizeof(*ep));
-+	if (num_tx_dma_channels != num_prio)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "TX channel count %u must equal num-priorities %u\n",
-+				     num_tx_dma_channels, num_prio);
-+
-+	ndev = alloc_etherdev_mqs(sizeof(*ep), num_tx_dma_channels,
-+				  num_rx_dma_channels);
- 	if (!ndev)
- 		return -ENOMEM;
- 
-@@ -89,6 +273,23 @@ static int xlnx_tsn_ep_probe(struct platform_device *pdev)
- 	ep = netdev_priv(ndev);
- 	ep->ndev = ndev;
- 	ep->dev = dev;
-+	ep->num_tx_queues = num_tx_dma_channels;
-+	ep->num_rx_queues = num_rx_dma_channels;
-+	ep->max_frm_size = TSN_MAX_VLAN_FRAME_SIZE;
-+
-+	for (i = 0; i < TSN_MAX_TX_QUEUE; i++)
-+		ep->tx_dma_chan_map[i] = TSN_DMA_CH_INVALID;
-+
-+	txcfg_np = of_get_child_by_name(dev->of_node, "tx-queues-config");
-+	if (!txcfg_np) {
-+		ret = dev_err_probe(dev, -EINVAL,
-+				    "missing tx-queues-config node\n");
-+		goto err_free_ndev;
-+	}
-+	ret = ep_parse_tx_queue_config(ep, txcfg_np, tx_present);
-+	of_node_put(txcfg_np);
-+	if (ret)
-+		goto err_free_ndev;
- 
- 	ret = of_get_mac_address(dev->of_node, mac_addr);
- 	if (ret == -EPROBE_DEFER) {
-
--- 
-2.43.0
+SGksCgo+IFtTZXZlcml0eTogSGlnaF0KPiBDYW4gYSByZXN0YXJ0IHdvcmtlciBwYXNzIHRo
+aXMgY2hlY2sgYW5kIHN0aWxsIHJlc3RhcnQgdGhlIGNvbnRyb2xsZXIKPiB3aGlsZSBuZG9f
+c3RvcCgpIGlzIHJ1bm5pbmc/CgpZZXMuIFdpdGggcmVzdGFydC1tcyBlbmFibGVkLCBhIHdv
+cmtlciBjYW4gcGFzcyB0aGUgcnVubmluZyBjaGVjayBiZWZvcmUKY2xvc2UgY2xlYXJzIF9f
+TElOS19TVEFURV9TVEFSVC4gRmxleENBTiBjYWxscyBjbG9zZV9jYW5kZXYoKSBhZnRlcgpo
+YXJkd2FyZSBhbmQgb2ZmbG9hZCB0ZWFyZG93biwgc28gYW4gYWRtaXR0ZWQgd29ya2VyIGNh
+biBmbHVzaCBlY2hvIHNrYnMKZHVyaW5nIHRlYXJkb3duIG9yIHJlc3RhcnQgYW4gYWxyZWFk
+eSBzdG9wcGVkIGNoaXAuCgpUaGlzIHJhY2UgcHJlZGF0ZXMgdGhlIHBhdGNoLiBUaGUgcnVu
+bmluZyBjaGVja3MgbmFycm93IHRoZSB3aW5kb3cgYnV0CmRvIG5vdCBzZXJpYWxpemUgYW4g
+YWxyZWFkeSBhZG1pdHRlZCBjYWxsYmFjayB3aXRoIGNsb3NlLiBUaGlzIHBhdGNoCmRvZXMg
+bm90IGludHJvZHVjZSBvciB3aWRlbiB0aGUgcmFjZSBhbmQgZG9lcyBub3QgZml4IHRoYXQg
+c2h1dGRvd24Kb3JkZXJpbmcgaW4gb3RoZXIgZHJpdmVycy4gQSBjb21wbGV0ZSBmaXggbXVz
+dCB3YWl0IGZvciBhY3RpdmUgcmVjb3ZlcnkKYmVmb3JlIGRpc21hbnRsaW5nIGl0cyByZXNv
+dXJjZXMuIFRoZSBSb2NrY2hpcCBmb2xsb3ctdXAgcGF0Y2hlcyBhZGRyZXNzCnRoYXQgZHJp
+dmVyJ3Mgc2h1dGRvd24gb3JkZXJpbmcuCgpbU2V2ZXJpdHk6IEhpZ2hdCj4gQ2FuIHJlc3Rh
+cnRfd29yayBzdGlsbCBiZSBxdWV1ZWQgYWZ0ZXIgY2xvc2VfY2FuZGV2KCkgaGFzIGFscmVh
+ZHkKPiBjYW5jZWxsZWQgaXQ/CgpZZXMuIEhJMzExMCBjYWxscyBjbG9zZV9jYW5kZXYoKSBi
+ZWZvcmUgZnJlZV9pcnEoKS4gSXRzIElSUSB0aHJlYWQgY2FuCnNhbXBsZSB0aGUgcnVubmlu
+ZyBzdGF0ZSBiZWZvcmUgY2xvc2UgYW5kIGVucXVldWUgYWZ0ZXIgY2FuY2VsbGF0aW9uLgpB
+IGZhc3QgcmVvcGVuIGNhbiB0aGVuIGV4ZWN1dGUgc3RhbGUgcmVjb3ZlcnkgYW5kIGZsdXNo
+IGN1cnJlbnQgZWNobwplbnRyaWVzOyByZW1vdmFsIGNhbiBsZWF2ZSBkZWxheWVkIHdvcmsg
+cmVmZXJyaW5nIHRvIGZyZWVkIGNhbl9wcml2LgpDbGVhbmluZyB1cCB0aGUgZHJpdmVyJ3Mg
+cHJpdmF0ZSB3b3JrcXVldWUgZG9lcyBub3QgY2FuY2VsIHRoZSBDQU4gY29yZSdzCmRlbGF5
+ZWQgd29yay4KClRoaXMgcHJvZHVjZXIvY2FuY2VsIG9yZGVyaW5nIGFsc28gcHJlZGF0ZXMg
+dGhlIHBhdGNoIGFuZCBpcyB1bmNoYW5nZWQKYnkgaXQuIFRoZSBydW5uaW5nIGNoZWNrcyBy
+ZWR1Y2UgcmVjb3ZlcnkgYXR0ZW1wdHMgYnV0IGNhbm5vdCBwcm90ZWN0CmZyZWVkIG1lbW9y
+eS4gUXVpZXNjaW5nIHByb2R1Y2VycyBiZWZvcmUgdGhlIGZpbmFsIGNhbmNlbGxhdGlvbiwg
+b3IKcHJldmVudGluZyBsYXRlIGVucXVldWVzLCByZXF1aXJlcyBhIHNlcGFyYXRlIGxpZmV0
+aW1lIGZpeCBvdXRzaWRlIHRoaXMKcGF0Y2guCgpCZXN0IHJlZ2FyZHMsCkN1bmhhbyBMdQ==
 
 
