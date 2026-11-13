@@ -2,117 +2,106 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B85C606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DEE7606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:48:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=nRnE5MWd;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SgKG248P
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=41lyEtCi;
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=GDo6HpDX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=kMKP29RyHKjNRqJmoHbWeAmE+St+tTfGn10VMRCGONI=; b=nRnE5MWdCg/BPE
-	Y1w2eZyisrq97m+TCH5fZve9FKQWTPdGdcKE0WmNoOGupl56fDCMMgwdUnvzNJ3CZFTXI9pI8O0C8
-	TebfGmRc2uQ0IOqPEZuCC6IfQFd2Mb9MeE3/fF6W5z2WfAeNpib9fEvIrGnNE/DZaj5n17tKbKoGA
-	f4yws4BDqkvtDuRGmynMvb9MVFwQw6pjn+Drc/k06jl/U6Q/7z9asAwBuK7v8Mty0puHN3RjP1giJ
-	8jBbFjqsJ/+q6MA7YWi0gNCyWIKDdKrZVEPjhabnJvzjoFjMnmWZaXTLidff5dkA9ts7fv8mFwY/Z
-	qIRYZrPAjv8/zW48X/kg==;
+	List-Owner; bh=dmx7lZXkcixTl+10Zvhm8UM2FpQt4AXP/0UX1bcGrY0=; b=41lyEtCiUefyCO
+	SYxbqTKFhjXlD099Y1CtHQcNBfp175UIWTUeLpKZh9eWU4NYd9Jsb/nB4nykille3c2K4bie1CGwR
+	Fa0NRfYdmhiLVyGMV7KOWr3P4yr0QENFaCDMmuClCOmwZo6RYzNuRMizlQVHkhVfGvOMvaYVfiMg9
+	l0a/LkhWimK9McfyVs7CafSQxN2VMDg/zXL/LyWJSXPM3FYkkvNCbwwZ2A/RQS87wGb9m9DTaT6Yg
+	L5zhRWQbowigPfLy8B0HkrpqASQNQWSuu/uaukWOPMREQN+NUYNKpKynsTIDBkdWC2iKWzX3F37ip
+	vB2tqpijzGttlw47d2yA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqd5-0000000Clqh-0RJ0;
-	Fri, 13 Nov 2026 12:43:43 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRqhB-0000000CmOM-2E2B;
+	Fri, 13 Nov 2026 12:47:57 +0000
+Received: from mail-wm1-x331.google.com ([2a00:1450:4864:20::331])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqd3-0000000ClqZ-3SO8
+	id 1xRqh8-0000000CmN8-2aPr
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 12:43:41 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id CA3E860D10;
-	Fri, 13 Nov 2026 12:43:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E2D91F000C7;
-	Fri, 13 Nov 2026 12:43:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794573820;
-	bh=kMKP29RyHKjNRqJmoHbWeAmE+St+tTfGn10VMRCGONI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=SgKG248PDgjNTNmb3lcvA9hYPi33ggNOq2ENNk9W2Sqfn9W0ubdy2ydAwgRWPcX1b
-	 dJ3RMA90dtXv/MDxYwEjnv/5FL/lBlv4VL8t86Vfe8G6qYhBwS/qYtX9xCvhstdceW
-	 V9FiO+aVtXIiOxDxPlwqbFATeYMtPRpaFRvie6sWVwUcLmzDt58KIgEX3adOMjknD/
-	 m6UGccBBU/0nNqy8ybTYrE2M3eYldyHK9Ct6NPKaPHnkIo2T7GLEhWPs2yOo7T6rlo
-	 gBR1fr0kCzXejNiTc8THXV04lTTj+2OjAvltB3fprRzTzQJCiUp+Qhxu7f7U3jt3Ld
-	 heTWCnGsax0bg==
-Message-ID: <45881f93-3f30-49e4-98cb-677814b85664@kernel.org>
-Date: Fri, 13 Nov 2026 13:43:33 +0100
+	Fri, 13 Nov 2026 12:47:55 +0000
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-4a214af2076so5566935e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:47:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre.com; s=google; t=1794574072; x=1795178872; darn=lists.infradead.org;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=dmx7lZXkcixTl+10Zvhm8UM2FpQt4AXP/0UX1bcGrY0=;
+        b=GDo6HpDXB4v5VcO+R013dhhrIUwWIL2YYi16SsOCHDoip0TvkvtKxiXJWNY1/Suuf8
+         7Phy/6AdnyhgSAHMYdWYElpgbeZ7JXkuTA3AShC66xgs8SuEi+DG2Lw1wx4xwnSFSXDo
+         /igcQy3WdagcrOjXbaWXr+Wg6pK7QGGhkqVzKLqnX2/Cqr28YetO8X+qe+FRnx5fU7a8
+         KkM1j22/4qHw50ODRyLakiHWHdc62hWU4vp2NjjXO6V0S7/Gbos9bQ8WNQsNKbaXwOVV
+         Wa9KelEfLDURjgav+HajrNVcytHF0K1AzuJIonQoTcGrDFoOwyF2rLP/risMnQ6T5Of7
+         kyIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794574072; x=1795178872;
+        h=content-transfer-encoding:content-type:in-reply-to:from:references
+         :cc:to:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=dmx7lZXkcixTl+10Zvhm8UM2FpQt4AXP/0UX1bcGrY0=;
+        b=KB1+JpN0rkbVuRYpZxx9aUPNydr+/xVZWKL7aIK/pCG4WRiCCJwGMwiRZDeHjQAQFl
+         4+I3B0splxKZwPahkQiiZrx1kcos4e3qY5kkLh3dFCMiTtA3+/FS8fHXHeakbiTYm789
+         GYNRfB5bXVqO/ch9sjvfkpImjAihr3ZH3GdTWD22rk+4dLb+kJ5pnLhVHix45d6kT3mE
+         Otf6VACXrFHpRGsp7VEu8wgrSi2ms+w0bD/FA6oTL0rXQzCYjsV4SmAG72ByXrKhdOgY
+         TS9Q/5+NA/2TlRFE5je7rhqD/FyW9HFRnuWEN5JZ4vvN++qnb1k1CrUym7zSViw3I/pV
+         rUEw==
+X-Forwarded-Encrypted: i=1; AL+hErEFpnAVbSZpfU98xCqNMWu9xEd9188vB1m6Q3MvII64hb5xp4SX7MBbfHOa7qlyNM4wEw0/ao3RV/DNToPYpY0x@lists.infradead.org
+X-Gm-Message-State: APuU4Z8sJcDbd81sr8a3aeLULBzBNfPow+0VYClsUNQcBC52mqGqCt0V
+	gTUIOys8OunusjwX+5b7SToDaTRhmOjZm6N46dJxsZb8XaE3nLRdxV+gdcj9Eg6vMxZQBlVyVLw
+	Q3udZdxLWUA==
+X-Gm-Gg: AYBFou0e703wTn3xTrb3sR+H/oH9Ux7+3QlmLn9fFowTHrvQfZRhfCYljuayLC4nJhJ
+	IofAHWVOXPF0bgA7MMO6DFlKLBDgwkOGNR19u5lInKhBpTfqOfK29nUpImtGVxjCKkuqVvD4yl4
+	now3uJM6GhfSXER2XQhYOKdcISHDvZwgWbJUHOjEnsKVqh5VUSEHeE+BEsE5q12cSAIwat0q3L6
+	EnA1eB8xdew72VBEOiyh8hkxxEC0Q4Dvc328KoJEbqYkwQuEHNagRbdmY4lsZGybYFp337g2bbz
+	E9YI7mdzPGleAzCrdWbA2HkNfM84SNAYkJRd6DQp5xM9XqMdE0aSL/veLwQUGAFEs/y9kH4saWs
+	WipDoAWneyRmkHCp3ZsKHjFDWvUAN5//3h+CtbyrTwTm8JflQEyq0nQDWPSwxi2vvYJqy6IkTeJ
+	Xs6kdakdKoe1a15R9WzFE+UrblF0zRFGeEOz72ra1qRw9GC8s+LDI8nHDzDnSjpZj4brkoyHecG
+	crbRnPYb918zTABdaMlY6GhqHYK3iQXpsaugLnGJUGPLBAHO3i+8gJ56hJJEpCWFCTL9HkPNpoE
+	FRs3aJPZ4lUpluPXcQGofFovCBT1FfZP
+X-Received: by 2002:a05:600c:1c0d:b0:4ba:59f7:9032 with SMTP id 5b1f17b1804b1-4bb55c5f60dmr58910305e9.10.1794574072378;
+        Fri, 13 Nov 2026 04:47:52 -0800 (PST)
+Received: from [192.168.3.100] ([151.61.248.197])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e252f7fsm161390445e9.2.2026.11.13.04.47.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Nov 2026 04:47:51 -0800 (PST)
+Message-ID: <7a268a4a-692b-4aa4-82b3-a13006e9a3e3@baylibre.com>
+Date: Fri, 13 Nov 2026 13:47:50 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: trivial-devices: Add National lm77
- temperature sensor
-To: =?UTF-8?Q?=C5=81ukasz_Majewski?= <lukma@nabladev.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
- Guenter Roeck <linux@roeck-us.net>, Daniel Baluta <daniel.baluta@nxp.com>,
- Jonathan Cameron <jonathan.cameron@oss.qualcomm.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261112163703.3358164-1-lukma@nabladev.com>
- <20261112163703.3358164-2-lukma@nabladev.com>
- <20261113-roaring-relaxed-oryx-5cfa1e@quoll> <20261113120947.6c9fb820@wsk>
- <c6095d41-09a4-4928-a55e-f4af7a5509da@kernel.org>
- <20261113132231.631638ad@wsk>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] ASoC: meson: aiu-fifo: prevent sleeping when spinlock is
+ held
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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
-In-Reply-To: <20261113132231.631638ad@wsk>
-Content-Type: text/plain; charset=UTF-8
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Christian Hewitt <christianshewitt@gmail.com>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261111-aiu-fifo-fix-sleep-on-spinlock-v1-1-dc9ee401a7cf@baylibre.com>
+ <CAFBinCBLK3Ok7QpKUVT5XtOqDafVzGP2Tn1oBj3f=PUQ_DgnwQ@mail.gmail.com>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <CAFBinCBLK3Ok7QpKUVT5XtOqDafVzGP2Tn1oBj3f=PUQ_DgnwQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_044754_676969_EE0103AA 
+X-CRM114-Status: GOOD (  15.41  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -123,44 +112,53 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 13/11/2026 13:22, Łukasz Majewski wrote:
-> Hi Krzysztof,
-> 
->> On 13/11/2026 12:09, Łukasz Majewski wrote:
->>> Hi Krzysztof,
->>>   
->>>> On Thu, Nov 12, 2026 at 05:37:02PM +0100, Lukasz Majewski wrote:  
->>>>> Add "national,lm77" as compatible for the National (now TI) LM77
->>>>> digital I2C temperature sensor.    
->>>>
->>>> Are you sure this is a trivial device, not like LM75? No
->>>> interrupts, no VS supply? Datasheet disagrees.  
->>>
->>> In my case the T_CRIT_A and INT are not connected on the schematic.
->>> Moreover, the V+ is connected to board's 3V3.  
->>
->> But they are there and binding should be complete.
->> What's more,
->> existing lm75 binding does not require these so there is no issue
->> adding to the existing binding file.
-> 
-> Please be aware that internal operation of lm77 is a different than
-> lm75 and hence it has its own Linux driver.
-> 
-> It seems like I cannot re-use the lm75.yaml and will need to add new
-> national,lm77.yaml as lm77 has two interrupt outputs for hysteresis
-> (lm75 has only one interrupt).
-Can be a new binding file, "national,lm77.yaml". Indeed it looks like it
-has two lines, unlike 75 variant.
+Hi Martin
 
-Best regards,
-Krzysztof
+On 11/13/26 12:05 AM, Martin Blumenstingl wrote:
+> On Wed, Nov 11, 2026 at 11:09 AM Valerio Setti <vsetti@baylibre.com> wrote:
+> [...]
+>> @@ -37,8 +38,11 @@ snd_pcm_uframes_t aiu_fifo_pointer(struct snd_soc_component *component,
+>>          struct aiu_fifo *fifo = snd_soc_dai_dma_data_get_playback(dai);
+>>          struct snd_pcm_runtime *runtime = substream->runtime;
+>>          unsigned int addr;
+>> +       int ret;
+>>
+>> -       addr = snd_soc_component_read(component, fifo->mem_offset + AIU_MEM_RD);
+>> +       ret = regmap_read(component->regmap, fifo->mem_offset + AIU_MEM_RD, &addr);
+>> +       if (ret < 0)
+>> +               return snd_soc_ret(component->dev, ret, "Failed to read FIFO pointer");
+> As far as I understand:
+> - snd_pcm_uframes_t is "unsigned long"
+> - snd_soc_ret() returns a (signed) int
+> 
+> Doesn't that lead to a signed to unsigned conversion error (highest
+> bit set -> large value)?
+
+That's something that made me thinking a bit as well and the reason why 
+I implemented it this way is the following.
+'snd_soc_component_read' internally goes into 
+'soc_component_read_no_lock' and then to 'regmap_read'. If the latter 
+fails then 'return soc_component_ret_reg_rw()' is called and that calls 
+'return snd_soc_ret()' internally.
+
+So my goal was to keep the same return value in case of errors.
+
+> axg-fifo simply discards regmap_read's return value.
+> That seems odd at first, but knowing that its regmap is MMIO backed
+> (same as for AIU) means there can't ever be any error.
+
+That's a good point indeed. I will follow this design then.
+Thanks for pointing this out.
+
+-- 
+Valerio
+
 
