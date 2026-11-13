@@ -2,107 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05067606A88F
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:42:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5398F60A6F41
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:45:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WkpsUHtP;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MMsH+WPX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u2S8If/y;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=X/LCPl55
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
-	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Content-Transfer-Encoding:Cc:To:In-Reply-To:References:Message-Id:
-	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=6RD0iRHyV3oSIEvxm5WOpCDh4YoqPaiKGn/YFrw8//Y=; b=WkpsUHtPFNFl1xvHn8Pqb/Kfzh
-	qNu7+wn7w6VX64odjcd6Q8axvIfn/aXE298R97bA9GYif/UGNTcIn9lmWox03jk93wBw3+fU/9EEE
-	YKrlkd8nnk2H+bNNKg31vxDftB7t5hLwsV940XSzBJGGD5hFrX1Zlh0tIxE0mCsDeut47zpNeAMKI
-	OV9/s/+Dw3dwd9dbCdRDccFDd0drndCdow8sssCen7/B3G4PWSfhG3W2SmSAAQfcDZK5uPve/7oDm
-	us3IM/M8uVUudBsnjfxHwOQgzSXK3QLReURRZjSbd1/ysfrYWKnjj+9Mk5nUzp3xoYHjiERjhvokQ
-	MlcCPDbg==;
+	bh=yXyM6hInDsEKLWc7KcDerii+PLDeTJXkz+ckDBd2y54=; b=u2S8If/yHVnkct7+IuPqMlNJxw
+	yFf3+wlNC7apQSb4cc5ra/Z9Vb4Rvy8NcWiD/ZVPWWQVAXGtgPWR5yL7x5FDI5doWkpG3O9jfzsAL
+	BES3icTaTw0oV/0/NYnnNDk6VAHhdaSQzf+ECkpYcnzN/iyWqZZWHOQvbQ+sfU2zDA0/TVVJvjfI8
+	i3qmAyHJZscndYh0jMhOMUu7BksI26dUzwpoH2DHpO2yCS4qXrhSIKIJx9jxu5bY3xsDNI3ERdg17
+	svZQe4DrZDFmtDvlFUx7ZLxcF53K3VKcL3Pw1M3x+51i49MLVGPTvZijrKkPZF44ZZHb+NjFUurlN
+	Q6E7oTBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmrr-0000000C79r-3d57;
-	Fri, 13 Nov 2026 08:42:45 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRmtx-0000000C7k4-1cCx;
+	Fri, 13 Nov 2026 08:44:53 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmrI-0000000C6sB-1Z6E;
-	Fri, 13 Nov 2026 08:42:08 +0000
+	id 1xRmtq-0000000C7iD-0kK8;
+	Fri, 13 Nov 2026 08:44:46 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id F06204660B;
-	Fri, 13 Nov 2026 08:42:07 +0000 (UTC)
-Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
-ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794559327;
-	b=P4PjPkgmu3vywuSjo9I5pEe9Hs8csbN+UeK5nnxdVuyG+XD5bDsXErPqEgykxWDc+w3M
-	 hZNS+HnGUzYNOasCc4ix6LyZbOHIeJUGNIGbyDCXPPkc6aFoqNlUcGPo1gm0DdyF3Te2L
-	 Jb1u+YWm+MTaXVeNMBuwy9HsJ4ucdr6zPw+0PMnEFTr+fxnxNpQ5ZZEzWqP7H36iejNJW
-	 Qeps6rCU0vBfZwaVcEG63UZLMCStcBe3BNY/Ez4N7nbtKhp3yUGRPpQTWZ2ABS1Ft+NBI
-	 7lJTSN9t0d0T+xI9aaVHCoY6/TqdYBZrAzlXusYv8aVWaUUbwk/jihikRgdVNJCqv4Q==
-ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794559327;
-	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
-	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
-	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
-	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=6RD0iRHyV3oSIEvxm5WOpCDh4YoqPaiKGn/YFrw8//Y=;
-	b=hx8AXGLqqmvyFuYGJc7zRoPL41T2S1E1gG08cFg5rNemgfb2alwz2GrWN6ssx6GIzHNK
-	 eLwxCxr8qkfWqzLoSyJ9h/vJ0UpuMchw0BEA3N/YT+LrKOKC1PLXmyxixiQdu7xT2e0+f
-	 9teLJKOO7PD1T57niM2+hb6NPYyjbR3JLbNjki3kTxxgSJIGgsA4LuBJonVQhifBHHxMt
-	 J9ty7DdsF6z/IAxONSUO/1D7i1UFKus3yclFlaTRyFEaTH2pB8tQ5JaDWILgxUpHK7bQv
-	 oTAmXMJxHGYu3vGl9O3X2R6qOUbTEGTsWpzp3QIqZWejMehrz3iMhm2fvtdXHUJw1Sw==
-ARC-Authentication-Results: i=1; smtp.kernel.org; 
-	arc=none smtp.remote-ip=100.80.115.77
-Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 6010B1F000C7;
-	Fri, 13 Nov 2026 08:42:06 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8C08F62608;
+	Fri, 13 Nov 2026 08:44:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C03701F000C6;
+	Fri, 13 Nov 2026 08:44:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794559327;
-	bh=6RD0iRHyV3oSIEvxm5WOpCDh4YoqPaiKGn/YFrw8//Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=MMsH+WPXSW5g03fhNoNtt7cw3UnrFOWLkgYxCXyqZV255DVD6WGGBEiSsVXz4kFT8
-	 NQ17Rc5Hw+cuqHA3UdCBsF1IqbyZ7klyXvf/JSlr5OsJRCniNYI49ETBx3Nds+Q/1e
-	 f3H3PaI0LrPrbZy8BUmn+QY+gY8oY+xO4o422s9Kl8Lt9QwvOWXkG6P24MdTZkwVuN
-	 WsxyTyh6Lef9FgImuk6hoU+cHT2QyO5WLoZrria4Ky0DT8YcT5s5/Q5KFsHRPBJWHS
-	 M4pi/ZFLw7e7VBZv28g+U3GshkQUiWacENWqqvyQ0JyMWEM1O/SJWzxz9m9eGUaPre
-	 ltPINig6f02cQ==
-Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id DFB50476C0;
-	Fri, 13 Nov 2026 08:42:05 +0000 (UTC)
-From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 13 Nov 2026 08:42:07 +0000
-Subject: [PATCH v3 3/3] pmdomain: rockchip: use dev_err_probe() for the
- other probe errors
+	s=k20260515; t=1794559485;
+	bh=yXyM6hInDsEKLWc7KcDerii+PLDeTJXkz+ckDBd2y54=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=X/LCPl55qYD6SeFZ97GcEsZgUIkxJnRvc2a4PHzGkPZWmGaH3M2YdPhJI8nFCLr/J
+	 xwYzT9UYmONMc7y4BcjJ78Ryfj7oQCwPIKricR7P0C1Eotbh+mmy1kWFdMQMMXCpat
+	 hjorlMnB5+YnaTXovPQEXkGYXuaTUO/Mm2V+Iwwb5Plw0p7vV8uwaFRsEiHqwixd40
+	 EwsjL1KPOvLBTJ2NKmV03gkz9FUz/Gi0Uecv7Q+git9Z5LpO3dgyTpTzn/rQvzduvk
+	 NTO7VIEST6hPQPtL42ixv7cMCK+JSEvWmRKqtIYBsVGRZ4jryRQcKCJVBxGFT/wzS8
+	 i9LwUVUmbHrXg==
+Date: Fri, 13 Nov 2026 09:44:43 +0100
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: John Crispin <john@phrozen.org>
+Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
+	Jerome Brunet <jbrunet+clk@baylibre.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Christian Marangi <ansuelsmth@gmail.com>, lei.dong@airoha.com,
+	Linqi.zhang@airoha.com, linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org, Rajeev.kumar@airoha.com,
+	upstream@airoha.com, Weifeng.xu@airoha.com,
+	zhengping.zhang@airoha.com, Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH v2] clk: en7523: do not sleep in the EN7581 PCIe clock
+ disable
+Message-ID: <avbN-3nL6JNHozzz@lore-desk>
+References: <20261112185329.1314427-1-john@phrozen.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-pmdomain-rockchip-v3-3-b7039ca30b87@gmail.com>
-References: <20261113-pmdomain-rockchip-v3-0-b7039ca30b87@gmail.com>
-In-Reply-To: <20261113-pmdomain-rockchip-v3-0-b7039ca30b87@gmail.com>
-To: Ulf Hansson <ulfh@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Shawn Lin <shawn.lin@rock-chips.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Kevin Hilman <khilman@linaro.org>, Caesar Wang <wxt@rock-chips.com>, 
- Elaine Zhang <zhangqing@rock-chips.com>
-Cc: linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Yao Zi <me@ziyao.cc>, Igor Pecovnik <igor@armbian.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794559325; l=3464;
- i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=jsmPibxPhjpxlHK/IvT+cnklg4OFYYz83AQUwqAU878=;
- b=IxrL+3A5riS6YjEWmsnRPjrFOrTBBTPynh/cLXIdnCQWyRorfP27Dcq+Qjq41YBlxgtMDHm7T
- pEmaV2g5x4aCsz07hRhmfpf/4qmWXbuYs4ejSfC+8lyeROsKf5XfWLg
-X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
- pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
-X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
- auth_id=1480
-X-Original-From: Arun Iyengar <aiyengar1990@gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="F4RPVZbwfNP5GRwu"
+Content-Disposition: inline
+In-Reply-To: <20261112185329.1314427-1-john@phrozen.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -112,125 +75,76 @@ List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
 List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
-Reply-To: aiyengar1990@gmail.com
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	FREEMAIL_REPLYTO_END_DIGIT,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Arun Iyengar <aiyengar1990@gmail.com>
+--F4RPVZbwfNP5GRwu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Convert the remaining dev_err() and return pairs in the probe path to
-dev_err_probe(). The return values do not change.
+> en7581_pci_disable() is the .disable callback of the PCIe clock gate.
+> The clock core calls .disable with the enable spinlock held and
+> interrupts off, but the callback sleeps with usleep_range(). Every boot
+> where no consumer holds the clock reports "BUG: scheduling while atomic"
+> from clk_disable_unused(), and so does the unwind of a PCIe probe that
+> finds no link.
+>=20
+> Drop the sleep. Commit 90d4e466c9ea ("PCI: mediatek-gen3: Move reset
+> delay in mtk_pcie_en7581_power_up()") already moved the wait of the
+> enable side into the PCIe driver, and nothing depends on a wait after
+> the disable.
+>=20
+> Fixes: 66bc47326ce2 ("clk: en7523: Add EN7581 support")
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
----
- drivers/pmdomain/rockchip/pm-domains.c | 63 ++++++++++++++--------------------
- 1 file changed, 26 insertions(+), 37 deletions(-)
+Acked-by: Lorenzo Bianconi <lorenzo@kernel.org>
 
-diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/rockchip/pm-domains.c
-index a0b47d8c4b2a..d132fdd11a56 100644
---- a/drivers/pmdomain/rockchip/pm-domains.c
-+++ b/drivers/pmdomain/rockchip/pm-domains.c
-@@ -804,28 +804,22 @@ static int rockchip_pm_add_one_domain(struct rockchip_pmu *pmu,
- 	int error;
- 
- 	error = of_property_read_u32(node, "reg", &id);
--	if (error) {
--		dev_err(pmu->dev,
--			"%pOFn: failed to retrieve domain id (reg): %d\n",
--			node, error);
--		return -EINVAL;
--	}
--
--	if (id >= pmu->info->num_domains) {
--		dev_err(pmu->dev, "%pOFn: invalid domain id %d\n",
--			node, id);
--		return -EINVAL;
--	}
-+	if (error)
-+		return dev_err_probe(pmu->dev, -EINVAL,
-+				     "%pOFn: failed to retrieve domain id (reg)\n",
-+				     node);
-+
-+	if (id >= pmu->info->num_domains)
-+		return dev_err_probe(pmu->dev, -EINVAL,
-+				     "%pOFn: invalid domain id %d\n", node, id);
- 	/* RK3588 has domains with two parents (RKVDEC0/RKVDEC1) */
- 	if (pmu->genpd_data.domains[id])
- 		return 0;
- 
- 	pd_info = &pmu->info->domain_info[id];
--	if (!pd_info->pwr_mask && !pd_info->req_mask) {
--		dev_err(pmu->dev, "%pOFn: undefined domain id %d\n",
--			node, id);
--		return -EINVAL;
--	}
-+	if (!pd_info->pwr_mask && !pd_info->req_mask)
-+		return dev_err_probe(pmu->dev, -EINVAL,
-+				     "%pOFn: undefined domain id %d\n", node, id);
- 
- 	pd = devm_kzalloc_obj(pmu->dev, *pd);
- 	if (!pd)
-@@ -1033,12 +1027,10 @@ static int rockchip_pm_add_subdomain(struct rockchip_pmu *pmu,
- 		u32 idx;
- 
- 		error = of_property_read_u32(parent, "reg", &idx);
--		if (error) {
--			dev_err(pmu->dev,
--				"%pOFn: failed to retrieve domain id (reg): %d\n",
--				parent, error);
--			return error;
--		}
-+		if (error)
-+			return dev_err_probe(pmu->dev, error,
-+					     "%pOFn: failed to retrieve domain id (reg)\n",
-+					     parent);
- 		parent_domain = pmu->genpd_data.domains[idx];
- 
- 		error = rockchip_pm_add_one_domain(pmu, np);
-@@ -1046,23 +1038,20 @@ static int rockchip_pm_add_subdomain(struct rockchip_pmu *pmu,
- 			return error;
- 
- 		error = of_property_read_u32(np, "reg", &idx);
--		if (error) {
--			dev_err(pmu->dev,
--				"%pOFn: failed to retrieve domain id (reg): %d\n",
--				np, error);
--			return error;
--		}
-+		if (error)
-+			return dev_err_probe(pmu->dev, error,
-+					     "%pOFn: failed to retrieve domain id (reg)\n",
-+					     np);
- 		child_domain = pmu->genpd_data.domains[idx];
- 
- 		error = pm_genpd_add_subdomain(parent_domain, child_domain);
--		if (error) {
--			dev_err(pmu->dev, "%s failed to add subdomain %s: %d\n",
--				parent_domain->name, child_domain->name, error);
--			return error;
--		} else {
--			dev_dbg(pmu->dev, "%s add subdomain: %s\n",
--				parent_domain->name, child_domain->name);
--		}
-+		if (error)
-+			return dev_err_probe(pmu->dev, error,
-+					     "%s failed to add subdomain %s\n",
-+					     parent_domain->name, child_domain->name);
-+
-+		dev_dbg(pmu->dev, "%s add subdomain: %s\n",
-+			parent_domain->name, child_domain->name);
- 
- 		error = rockchip_pm_add_subdomain(pmu, np);
- 		if (error)
+> ---
+> Changes in v2:
+> - Drop "clk: en7523: add a reset operation". i2c-mt7621 now asserts
+>   and deasserts the reset line instead (Philipp).
+> - Link to v1: https://lore.kernel.org/r/20261111085650.632025-1-john@phro=
+zen.org
+>=20
+>  drivers/clk/clk-en7523.c | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+> index 24fdec2e6198..8f63482cbb7b 100644
+> --- a/drivers/clk/clk-en7523.c
+> +++ b/drivers/clk/clk-en7523.c
+> @@ -689,7 +689,6 @@ static void en7581_pci_disable(struct clk_hw *hw)
+>  	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1;
+>  	val =3D readl(np_base + REG_PCI_CONTROL);
+>  	writel(val & ~mask, np_base + REG_PCI_CONTROL);
+> -	usleep_range(1000, 2000);
+>  }
+> =20
+>  static void en7523_register_clocks(struct device *dev, struct clk_hw_one=
+cell_data *clk_data,
+>=20
+> base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
+> --=20
+> 2.34.1
+>=20
 
--- 
-2.55.0
+--F4RPVZbwfNP5GRwu
+Content-Type: application/pgp-signature; name=signature.asc
 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCavbN+wAKCRA6cBh0uS2t
+rJtDAPwLVmxAglv0nHD3+CuXP6UA0RXL4MmaMltEsCU4oiQIsgD9FhTEPRAQ6ARI
+lviULhURGR9ZX/xyrmm1dTiXdAaaVgc=
+=ezYL
+-----END PGP SIGNATURE-----
+
+--F4RPVZbwfNP5GRwu--
 
