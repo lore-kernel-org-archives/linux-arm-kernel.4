@@ -2,70 +2,122 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5398F60A6F41
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E383606A889
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=u2S8If/y;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=X/LCPl55
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ci/WTtup;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=S17o6Tvx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yXyM6hInDsEKLWc7KcDerii+PLDeTJXkz+ckDBd2y54=; b=u2S8If/yHVnkct7+IuPqMlNJxw
-	yFf3+wlNC7apQSb4cc5ra/Z9Vb4Rvy8NcWiD/ZVPWWQVAXGtgPWR5yL7x5FDI5doWkpG3O9jfzsAL
-	BES3icTaTw0oV/0/NYnnNDk6VAHhdaSQzf+ECkpYcnzN/iyWqZZWHOQvbQ+sfU2zDA0/TVVJvjfI8
-	i3qmAyHJZscndYh0jMhOMUu7BksI26dUzwpoH2DHpO2yCS4qXrhSIKIJx9jxu5bY3xsDNI3ERdg17
-	svZQe4DrZDFmtDvlFUx7ZLxcF53K3VKcL3Pw1M3x+51i49MLVGPTvZijrKkPZF44ZZHb+NjFUurlN
-	Q6E7oTBw==;
+	bh=x+fjXvjMRilqC/1PD9XiiBtX4xwfGR8XcMAZq+mM81o=; b=ci/WTtup4KicM/Su/Hxbmdze8m
+	PnJ761HtQJ6TSHbgv6cAEjnhRTkTKU3YrdxjAJTBp4uUwtnt5qstOmpL5O2ng2r9nWXp0d+xCfsvR
+	U73z1AAKS/RV/um9JVnglPalG2f4nngZwIhtTeOsgHYtnAZiAmhSq7UuyvxuxZViyjLyxmRXmlDSn
+	Co+8EEzcBJ9N1GHYQnRMvn2MWoUZIQ0YEfvU9Ew0x8fXEXk0Rxud2BESb2uJi+DNjvZyzXMz01T53
+	XqoqVEY86az0MYDNaYsNQwqnbnY3MXEVcx8SIWZ8UmOQDHyrVALI5soHadYmGAQdyRoEHVVk9P5OA
+	Xoi9rXsg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmtx-0000000C7k4-1cCx;
-	Fri, 13 Nov 2026 08:44:53 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRmuE-0000000C7qh-42xI;
+	Fri, 13 Nov 2026 08:45:14 +0000
+Received: from mail-lj1-x233.google.com ([2a00:1450:4864:20::233])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmtq-0000000C7iD-0kK8;
-	Fri, 13 Nov 2026 08:44:46 +0000
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8C08F62608;
-	Fri, 13 Nov 2026 08:44:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C03701F000C6;
-	Fri, 13 Nov 2026 08:44:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794559485;
-	bh=yXyM6hInDsEKLWc7KcDerii+PLDeTJXkz+ckDBd2y54=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=X/LCPl55qYD6SeFZ97GcEsZgUIkxJnRvc2a4PHzGkPZWmGaH3M2YdPhJI8nFCLr/J
-	 xwYzT9UYmONMc7y4BcjJ78Ryfj7oQCwPIKricR7P0C1Eotbh+mmy1kWFdMQMMXCpat
-	 hjorlMnB5+YnaTXovPQEXkGYXuaTUO/Mm2V+Iwwb5Plw0p7vV8uwaFRsEiHqwixd40
-	 EwsjL1KPOvLBTJ2NKmV03gkz9FUz/Gi0Uecv7Q+git9Z5LpO3dgyTpTzn/rQvzduvk
-	 NTO7VIEST6hPQPtL42ixv7cMCK+JSEvWmRKqtIYBsVGRZ4jryRQcKCJVBxGFT/wzS8
-	 i9LwUVUmbHrXg==
-Date: Fri, 13 Nov 2026 09:44:43 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: John Crispin <john@phrozen.org>
-Cc: Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>,
-	Jerome Brunet <jbrunet+clk@baylibre.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Christian Marangi <ansuelsmth@gmail.com>, lei.dong@airoha.com,
-	Linqi.zhang@airoha.com, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, Rajeev.kumar@airoha.com,
-	upstream@airoha.com, Weifeng.xu@airoha.com,
-	zhengping.zhang@airoha.com, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v2] clk: en7523: do not sleep in the EN7581 PCIe clock
- disable
-Message-ID: <avbN-3nL6JNHozzz@lore-desk>
-References: <20261112185329.1314427-1-john@phrozen.org>
+	id 1xRmty-0000000C7iy-1PpC
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 08:44:55 +0000
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-3acde6b7b29so1081581fa.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:44:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794559490; cv=none;
+        d=google.com; s=arc-20260327;
+        b=AHPUhamGK8sjIPnFYLaOiziQk3Io5oGPD3zFZVf4h5mOlhuTjFFDIgIGVDYNtsucc3
+         oXEFcAoh/1ksYHghSSYyZHILAZRF6qmCnvODH5zZisHEvOcKzehdb1u6W4hmoJNSj9WF
+         s1CCtXq/8k7u/ZZZ6BX4i9FsXo1jwyrVaizbwWqonqbLKunX3qe2OqYDNP75aLIhXZdO
+         3VyRKZcQdDnnOt89ZcQred0b0usbxuvre3cMaKki8yQbfOMOp3GGMpHAsGyGbY1GpM8R
+         DZGIhoSqkn3TEPkihf8l3YxA4RUPO7cCZ/dRcXxPQGA2RJ9f/prPBmdDDhbsQdode1rv
+         EfOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=x+fjXvjMRilqC/1PD9XiiBtX4xwfGR8XcMAZq+mM81o=;
+        fh=KeZfTRZnM0n6C09+NaunO6qmuBj9Ml7TXUCuWaNqWPA=;
+        b=qb/hYpnoR/035qclO6YoOg3BlnTWWBligApHrCvR3ah9zzypyLVmU/gzGIenUDUccg
+         7KLDtLZ84Fr6fYomLC6BSw1+E+XzI67jK6quZzQq5CQ4CULLEFv7RJUhjvOSJGOYjVst
+         20QzrcEj90vrj23xbWjj95euTxXJjXpL/R9R2CRiASThQxGMXtyupzvw5LUTvPoRjb/K
+         3gMPB15I0c8axJvd9HbeHFO7NJ0ohLyLdziJgfrGu7a0G9FXPu8GANGs+v3D1waXNZgy
+         B5doLlXK+36ZcreTdx4A2i89g65ZBnO4Wt2FNUA5jgSAwkqpuXOyUiXjCqBDrikz1fTC
+         /zTQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794559490; x=1795164290; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=x+fjXvjMRilqC/1PD9XiiBtX4xwfGR8XcMAZq+mM81o=;
+        b=S17o6TvxfOO+60dDgrcDGeAJ/2zOZFTTd94FCsv6dQPTHy9/d4FVOvPa1NIMdEt+sR
+         nPZJjzScywRuIN/rpu0pSVYZdY6LfOMMI7edHwaAF9pBwTcxmUWjz3EdcFNwmMUXvEsR
+         RfsDFZb5qCKYpZHkl6vgNtzFph9tgw6HRRad7GyG3Tzjk6xsoMhjkKg9UuL8MabaKuak
+         fV8DIIkDzdx3RCu8xpkrLNkZOah5ivRPojS16r0ZcX67qyQ7OK7cMwzVaK74M/HUsfSc
+         mfGnFSxdtWPbiwzTsn0mKI6s9ofHcPtXkk98LDMLjZbE/zean5/AVAd8ovZAr6XJOV86
+         exQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794559490; x=1795164290;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=x+fjXvjMRilqC/1PD9XiiBtX4xwfGR8XcMAZq+mM81o=;
+        b=xObFPlclw0dQJb8H7+EkE0ybQiUwaYHVwIKhOyT7f3tk3pzKSelYFEBpMO149ybBJw
+         YjP+JvNGc/4U/FmKf8mmB0glT7mJubueI54NTyYEzk9nVFr3rV6sCEyPTNMpA0YR4Bz+
+         8TfNzQAq/auDaqz3+AGQTXfj87WjxcC9nNCiIChXEZluITNZq2vGzq9x6kS4L3Jvvrqb
+         iK1XcvJ8F4p4I3LiUGepZm9a9lHU/SHNHSEuMspY6s4UDySaBs98AmB9azPlKEtZ28MA
+         6UMs2uKERIJlfN3qJobwAL+AtC/BFF7iFBOSN/rVm6WLLjMBOIGcVsLSgvIXXruyNQx4
+         PIzg==
+X-Forwarded-Encrypted: i=1; AL+hErEOCwSXUj2LO1zB9kd7jJ3eWxcuuk21k/VAGV8eY1J84PhHlj6oCTEaBOORRA3YGQAPXPPQMedLXUHsp0C62aEM@lists.infradead.org
+X-Gm-Message-State: APuU4Z/qTbWuMuR12rjO9PcmaB47DkIyvvCwm1Q3ryASqstDhIeWlpT6
+	wHSsihJliKQq8EwGoO7OCOFDNe26oK6bpZE7XCSAF4AEegKCrEsKuwayCWaanrWA4rrlOIk9ZXz
+	lk/kMXvNCy9HH3pcZZv84Q0yP+lJG5pU=
+X-Gm-Gg: AYBFou2551LXrBpPMcP7UU/NoU45YqttxQdaJkcRmZBQ3upLC7KUCjpPgjlsPVeuF1m
+	knGtH+jyVK4/U3duT5VJE7MXAZ8qklP+ONr8e/Gu38BoSYZoZxHj8Wp/9/To0fG53WwvXXVrNFA
+	BKyNAuYzyrmwC9PYsUgG6XSgUTKH+Vqt1IcbxyWust546USXzTDB637YLTE332YXGUUnm6nFcqA
+	AbnUUfWa4ebcRJxJa/H5NHA1kEg5OwSa1gpsNLaY4pk8zJle/1HDRg+tQaJxkCRWAmfUHzQX9qj
+	FKW+EcQ0yT6b9KWlugpkOB3GwSmn5/IjkSeX7x8v6Os/Dz4aNAGS6eCeQsDwMOD6mG5TnaoR6in
+	n9F4mtlIVOk+3m4e12eN8SgQpZ0AAT38/kSqea3ZkLgRIkY2IrxAWQsg/bmB+/Wcu68Lf3e+7EL
+	Fs1IZGauRM73jV2ZFu
+X-Received: by 2002:a05:6512:3e0d:b0:5bf:a66f:e5e with SMTP id
+ 2adb3069b0e04-5c17058b108mr873253e87.0.1794559490194; Fri, 13 Nov 2026
+ 00:44:50 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="F4RPVZbwfNP5GRwu"
-Content-Disposition: inline
-In-Reply-To: <20261112185329.1314427-1-john@phrozen.org>
+References: <20261110-smmu-v3-pcie-pd-v1-0-628819ca44b9@gmail.com>
+ <10924894.NyiUUSuA9g@diego> <ea8fa04c-4a8c-4c55-b4fa-f37d74267e93@rock-chips.com>
+ <9_7qTfdNSViwtNUGq9D13w@sntech.de> <avU2I_QzCiBPVTDC@venus>
+In-Reply-To: <avU2I_QzCiBPVTDC@venus>
+From: Arun Iyengar <aiyengar1990@gmail.com>
+Date: Fri, 13 Nov 2026 00:44:38 -0800
+X-Gm-Features: AclHuK8fX0XCl2Od3Qw3inFMre3WawrBORUXKfjsC28PcE94ozVVaEPRCoHPifo
+Message-ID: <CAEy9hNX8fmEZsy-RfTDQz8Th-H8Z+o5tQN4WseiK_+RpZkbTNg@mail.gmail.com>
+Subject: Re: [PATCH 0/5] iommu/arm-smmu-v3: power domain and clock of the
+ RK3588 PCIe SMMU
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+	Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	"Joerg Roedel (AMD)" <joro@8bytes.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Niklas Cassel <cassel@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>, 
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, Simon Xue <xxm@rock-chips.com>, 
+	"finley.xiao" <finley.xiao@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
+X-CRM114-CacheID: sfid-20261113_004454_403204_A8596DB0 
+X-CRM114-Status: UNSURE (   8.27  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -76,75 +128,22 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---F4RPVZbwfNP5GRwu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> And yes, I think the other smmu should also use the same handling.
 
-> en7581_pci_disable() is the .disable callback of the PCIe clock gate.
-> The clock core calls .disable with the enable spinlock held and
-> interrupts off, but the callback sleeps with usleep_range(). Every boot
-> where no consumer holds the clock reports "BUG: scheduling while atomic"
-> from clk_disable_unused(), and so does the unwind of a PCIe probe that
-> finds no link.
->=20
-> Drop the sleep. Commit 90d4e466c9ea ("PCI: mediatek-gen3: Move reset
-> delay in mtk_pcie_en7581_power_up()") already moved the wait of the
-> enable side into the PCIe driver, and nothing depends on a wait after
-> the disable.
->=20
-> Fixes: 66bc47326ce2 ("clk: en7523: Add EN7581 support")
-> Signed-off-by: John Crispin <john@phrozen.org>
+I'll send a series that enables mmu600_php with its clock; it is tested
+on an Orange Pi 5.
 
-Acked-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> @Arun care to also add a runtime-pm patch? :-)
 
-> ---
-> Changes in v2:
-> - Drop "clk: en7523: add a reset operation". i2c-mt7621 now asserts
->   and deasserts the reset line instead (Philipp).
-> - Link to v1: https://lore.kernel.org/r/20261111085650.632025-1-john@phro=
-zen.org
->=20
->  drivers/clk/clk-en7523.c | 1 -
->  1 file changed, 1 deletion(-)
->=20
-> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-> index 24fdec2e6198..8f63482cbb7b 100644
-> --- a/drivers/clk/clk-en7523.c
-> +++ b/drivers/clk/clk-en7523.c
-> @@ -689,7 +689,6 @@ static void en7581_pci_disable(struct clk_hw *hw)
->  	mask =3D REG_PCI_CONTROL_REFCLK_EN0 | REG_PCI_CONTROL_REFCLK_EN1;
->  	val =3D readl(np_base + REG_PCI_CONTROL);
->  	writel(val & ~mask, np_base + REG_PCI_CONTROL);
-> -	usleep_range(1000, 2000);
->  }
-> =20
->  static void en7523_register_clocks(struct device *dev, struct clk_hw_one=
-cell_data *clk_data,
->=20
-> base-commit: ddfe51b0a0f5dc9e415cc2c8ad8db17532dd426b
-> --=20
-> 2.34.1
->=20
+As Sebastian wrote, Pranjal's v11 adds it. I've tested its system sleep
+ops on mmu600_php (not runtime PM) and sent a Tested-by there.
 
---F4RPVZbwfNP5GRwu
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCavbN+wAKCRA6cBh0uS2t
-rJtDAPwLVmxAglv0nHD3+CuXP6UA0RXL4MmaMltEsCU4oiQIsgD9FhTEPRAQ6ARI
-lviULhURGR9ZX/xyrmm1dTiXdAaaVgc=
-=ezYL
------END PGP SIGNATURE-----
-
---F4RPVZbwfNP5GRwu--
+Arun
 
