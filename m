@@ -2,118 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E6E606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B3E1606A331
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=x1lG+WRq;
-	dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.a=rsa-sha256 header.s=google header.b=jZYSAdHE
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=oS6d3UZs
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=dDT+wka3iDhLnyTTI61/KdTvaTRDfkuzBYOliEPIK7Y=; b=x1lG+WRqUP9Q/jdoFcdIbFdjPJ
-	YUwBNOt9P45bAnR3G4VEVr825KeGX/pau2zPOACWxjFOBa6AoiKRs/icKUyPsx5UJye8ghCTaX++Q
-	x1z1ABN+R0+SgC87Ex8o57V0NRoqqOsuJgVRn0IJj3aPvRdGaFhuzNvva9XoqMw1TE/2Cyh7NtTqR
-	c9Z/5UsHCsNxEAFqqtfrd8R48DzPyi0Sc02uRwz1DWhmr593DK1a+mj9yQwtWRui1AjGrKJo5jJOX
-	mv2MJ7CACvlG16gIo19kR+MKlgCPk8nTfz/uDcNrOxRzDDI3Cm/ZOQYbI5CXwaqVcvhxt8vFOaLY8
-	+bIs3Avw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=9GQJLLepWwoaxFgy0WwYMme3cDh2Nvdn33ep+PsXVNo=; b=oS6d3UZsedmaVp
+	E623j5+LVXNqr7ouxNEKiUBtRAuQo59nmc41yYAxVYqMX+VHcXmOEHyFNkNojPhH4iqi7flWituZw
+	k4Xa5t9zBBTbpMXaJpQGab/pV+Ua2CuE/q0M40oFiJl6iyyKcGqQejBCsH6OqBX1DX0zOAVxQTlhj
+	2jkWVjrUVcjqLpgSL6Zy+F/bpxlyDPwQi45vZ9FRAK5m+29fC8Ztc/uMkGRa8QzIOihgZ7oJvqaJ8
+	jSD8xz9RJ7SBa/f+XGkQlVsjiZmFjz+wa0K7IPFUic1AACxJjjS/MeU0ZcAoo/HldIW6UgIZJjLCT
+	/GlVJqDupKShRDEQQ07A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqKd-0000000Cj9c-2wuu;
-	Fri, 13 Nov 2026 12:24:39 +0000
-Received: from mail-dl1-x122f.google.com ([2607:f8b0:4864:20::122f])
+	id 1xRqKl-0000000CjDE-3T5X;
+	Fri, 13 Nov 2026 12:24:50 +0000
+Received: from mail-lf1-f53.google.com ([209.85.167.53])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRqKW-0000000Cj7X-1nl1
+	id 1xRqKe-0000000Cj9H-3vSd
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 12:24:38 +0000
-Received: by mail-dl1-x122f.google.com with SMTP id a92af1059eb24-170135e43c7so486984c88.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:24:31 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794572671; cv=none;
-        d=google.com; s=arc-20260327;
-        b=PGSwsPryB18PhhXzEu1ehL6soRytHNMsvNRbeMbumeSWbsjffT4VxuTsK5qpxvg5yr
-         rRuqpr8HCp1rLQ5Qzl9Hfb+koEdMaN7hGTvx5Gjvjfhlc2UAA7bo5C9UzENGWBN2tjHX
-         oCHLqrAZykYseVNP82YtF4gQSpUPVUXm0EtUKqlHyNh+6qXBY0uUB/mEvZ4Jy44zEXIf
-         xQPErvv6c0IIsecu7IC4FNomB+SweLqK4nq4cEtoOrQ+/akETqEyAm5kTaDfW4m9SgKD
-         IILZy2zmXwAeSQCRg04I3JUNeLHboXbSVVlhTuQymK3HQ9tqoSc2c4TrGFwhuJx6xheA
-         LGxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=dDT+wka3iDhLnyTTI61/KdTvaTRDfkuzBYOliEPIK7Y=;
-        fh=rS0x4J2Sx7jeiwl7EnLGme8XJJBnLmVx3KGu/EUn18s=;
-        b=FYSzBWvqJVJduVVFneANpzhvbKF/KLGfOv+K4vnoyfdc9NiQxUT1eWNzI9lhjCk/+L
-         Z7ak0rdHDu0xnmvg9aaIDpAIMTz9YZlrLkmVKfZU+SJrHE2PpKR4ICn2XJtU8IPmbbk2
-         Hi3ziFyCEuzbQevHnehRdkm9WH10DlPaIV3lKwKFBVSY4sLBFLXKgun8qFb0t7S1ZBP3
-         f/YCcAJmKuFybUCFVKyi5xyLmnlay//dXyrNxhgaGLH6G+TpeA/1RvrwFEZJ+hMb0elD
-         x9D5DBvBPxt36CJejduG+ilopYozZYzYtn7G8gxalocLSG7I5JeE4R7CkVJd3svlhNr/
-         wMng==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar.org; s=google; t=1794572671; x=1795177471; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=dDT+wka3iDhLnyTTI61/KdTvaTRDfkuzBYOliEPIK7Y=;
-        b=jZYSAdHEwh6pXpUx18V0U6vbn92CQmEVLv/k8/TqXLqg9i91wxIbKkWoEY4Ul8B1oD
-         ud4pu1uSBqCq+TnJrV2pE9OpWSGhIIRD3r4Nj0rPE/WmriiJc02JJqzyi41KL8gg/AjG
-         nRJOcRd0ojQr1xfDK971lOwyrn64sH+4dAiEv/y1SjTCThr+TEAJlayqRaHkCfx7ZhVo
-         mBA+R1usPU4lqYLODGBl8Vw1KICfASjzkQgo58/QuexqDKj+EYM/dDB7uwQhrI2FdE68
-         mkaYDVrowJp4wS1hdbo8ghao1nafkRx/kOOBX+N3+aGaU90D0nAS/mBGA4DpWswLYC80
-         Db1A==
+	Fri, 13 Nov 2026 12:24:43 +0000
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5be4a2d94adso1157425e87.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:24:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794572671; x=1795177471;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=dDT+wka3iDhLnyTTI61/KdTvaTRDfkuzBYOliEPIK7Y=;
-        b=nblA+MTUhscPBrcBe2k+BrxF9V4Lm2SGMWqFoMWJjXa/wVQZj/Wv8dtgFHkb6jFzwO
-         3bQAbWTCeqPD3S1khbCmU3WRuDWGaKs9WXgE46JovSLs+7mKfSnqH1j3zqtwCRONNOMS
-         7CvBJdHsDWgNgy1X+h6xVQuREfUEPSJ34/JdxWl463Y3ZWtWi4T9qXNxDFKHQk1dTfx8
-         lBwGEPaT97AuKh/7G6btVIaE99842QUxTbYSWMlXEccVDJB6Ag3+VrXn+FG29IJC4jce
-         aJ7oTyGnPQNHOPLkEaDJcNWHRJKSyw8Q2O2B+3CLy6vPcVmpPwvILdps4PsqGownb74j
-         J5Vg==
-X-Forwarded-Encrypted: i=1; AL+hErHG8U7xTC/h8dJ/aMGGpJZ92TL+AJXHsPIqvTo0+qb6Pj8NH79bPDecStmSxG4MY9Jbk8Ntsx0UmjwDdZvU5i9/@lists.infradead.org
-X-Gm-Message-State: APuU4Z96FF5TODRIh0sR9nuAi5zCqsrWJX087Yn2yVVT+jg7UyCujTOB
-	FPvK/i9SI6hiv0uzC7eTwC/2JA6nLuhRDG63DeOdWR5aWyOqIozja82MxykezsIECYwD2pdSpNM
-	wBQ8JDB+Kp90kmeiiAfr1ItKKPOxmnFdpqyjrkGJJfw==
-X-Gm-Gg: AYBFou2dilkRzcZFXr+9yXplgMvBpuoy1sr7VygM1ClBZTuIa1UacnSGqdSt0qO4m+L
-	lnfpzPzRCt2aGnulEHmFDDhpg+jiba9+fTy12IvMIu3jJjtjy5+9vcQieqSYmlnUZZ340JY/4vO
-	m4egKeUZ4la8joJCSxsrQ9lbHcsOwzpX8wLzmKovLonLTGeN9wm/mzFoLYzKaspAldDS9haN/xI
-	cqBihW2RSFEzdDJZO8t1pjAiBnF68aKICWpzm0yFazCepWfUnpCod7BhthNJVnn4bm5sWBt69aZ
-	V4kYqTfUhlW3CRwJevM/7eJuYZiciVvmlApXjKoQuhcyMU0uq1/R4Tk9vGOzEnJ+bILBTy/u5Tv
-	SFoiMSw2EFpjUOun2nWMJkD1cai6TlTX1nGVQuiji7VWdZq1cUT2C5guh6D+vJV50jaMQ5NfblR
-	yCZ0z1DNFpP2BlInFc
-X-Received: by 2002:a05:7022:f4c:b0:1b2:6cba:7f48 with SMTP id
- a92af1059eb24-1b50315622fmr2098905c88.31.1794572671002; Fri, 13 Nov 2026
- 04:24:31 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794572679; x=1795177479;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=9GQJLLepWwoaxFgy0WwYMme3cDh2Nvdn33ep+PsXVNo=;
+        b=CKpj4qQyd9bZXcBHoIHjFrda4zfUz8sYoJSWBGagIOmPg2YG+KKZeFvS9WfO1uhqd0
+         sFa5Aa7SusaeI9K5J5lahMGkULgBOZacZRnLcysgesi8XIOmj8RVlZRf7+pBT60Mx9f+
+         v+N2PjVlf1ag4lFbcS5WWW/k1FZ61HCwb60iaVdDiS5iWO9zQpY0zye/GhiZddCtH8tC
+         zh+qrZzWyalfC9dp+za0rKHMN+daqFMxtOppgKvczqOkRi8MUYIuNYoqkBq6jiY4I4GO
+         Dqv0Y14KDqJxKcYYDG6E6dscLEppolbAb6TZRJoWV6Dt/x1MM2uKoDZszhKm64rdTG3p
+         OoYQ==
+X-Forwarded-Encrypted: i=1; AL+hErGJi1RaK9ncs9PuaE1FpZh6KTpW6PDX1913NpTdmDwsElpEDvuJReitSKD4dtyCGA9mLdkuFr1ybDu8U8Uf4noO@lists.infradead.org
+X-Gm-Message-State: APuU4Z/KGvX/V6HQD9mSAaNwaQDznuqghcjqCDzr+Lz2NWjCGjoRpHMp
+	7ha4lGhPSpZgTvBcj23Y00O/s5xZIgsY+Nlyo6K0md8hmeOeLgGwl1bhD59Vy7qOzSi6Xg==
+X-Gm-Gg: AYBFou0Q4rBAYBNZAhF/7fTmCkE8f7BoBRkBo8rY4/ZXqSAlJSbe5ZTUmyrdIqDZTjZ
+	CNRIG+Ae0EF0zr5bLDbiLzH7rW+IqUSAhWlBBAJ2Gv93wCd2nOOxyxL0j6X1+aXPW4uF2svhn2J
+	CQAUGh0AO0THtTypwCk2M7ZCcpGccSuI3RgqabhY5521hJvX3M/wZGsji3MnpE5iKOo25eT1c3I
+	ZYN6NK0kYs0/oqIIShbyfUcowSeHSfoukbGpkkxikKghtJSkXtvG8L+zdHbWB1ClKhJZ73BmxU3
+	yCI2bdRDy9lqGDSJC38BcQsdFlvBgR50SEM61rF/Ni+YGfXlUmtTu/duS4iTyCvEvlHUkQVrsUJ
+	fTYHk3n3flNPkld8AFiWW7l17t0EtjVIjX3yFlRPMa2MOHH6CQ66FDYxKIuv5/btZaMPidKf6CW
+	TrrOg45pksvuJPhGcq8m8V9Rkg5xtBnHmqXlJCVZ365u6euBdoy6E1OPAV5p/nePECcpW5JJYpG
+	XfjG6sw0F91/skuuvBYHUNQ0+AZn5SGeHHBrf60oMvILzGDc+L4QdTQlyoAbvG2/c1n0c0VGBBD
+	8tdPZ3yt3yLsCrZdDHmICUxiwPwDoyEaxDpj5ox8k576mfsl4Z7oCKYKF3vo2MKVqHvL56LhR05
+	J2pJvwalARZErdRd3sxJBt8Km
+X-Received: by 2002:a05:6000:2c04:b0:491:3fdd:af42 with SMTP id ffacd0b85a97d-49c72c9c049mr5208825f8f.37.1794572338269;
+        Fri, 13 Nov 2026 04:18:58 -0800 (PST)
+Received: from threads.localdomain ([84.70.166.92])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c605e5b2fsm5167103f8f.40.2026.11.13.04.18.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2026 04:18:57 -0800 (PST)
+From: Lucas Tanure <tanure@linux.com>
+To: xianwei.zhao@amlogic.com,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	davem@davemloft.net,
+	Eric Dumazet <edumazet@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7 5/7] arm64: dts: amlogic: t7: add the ethernet pinctrl nodes
+Date: Fri, 13 Nov 2026 12:18:50 +0000
+Message-ID: <20261113121852.334604-6-tanure@linux.com>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261113121852.334604-1-tanure@linux.com>
+References: <20261113121852.334604-1-tanure@linux.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261109120902.125242-1-cunyuan.liu@cixtech.com>
- <20261109120902.125242-3-cunyuan.liu@cixtech.com> <avLsAlL048MtIX4x@e142607> <avRm82TLBe6I6LAD@cix>
-In-Reply-To: <avRm82TLBe6I6LAD@cix>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 13 Nov 2026 12:24:18 +0000
-X-Gm-Features: AclHuK-6TzVh3nCVDRnwGMEM8YGOPOqHwZQu1e6cxT9cH1x835RSR9V7MLMVi7Y
-Message-ID: <CAPj87rOi0+T7E7Kge4z-8L9FuCSTt6dCqT+9+YtF3wDkd4vRVg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] drm/panthor: Add initial support for CIX Sky1
-To: Cunyuan Liu <cunyuan.liu@cixtech.com>
-Cc: Liviu Dudau <liviu.dudau@arm.com>, boris.brezillon@collabora.com, 
-	steven.price@arm.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gary.yang@cixtech.com, fugang.duan@cixtech.com, 
-	daniel.almeida@collabora.com, aliceryhl@google.com, p.zabel@pengutronix.de, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org, cix-kernel-upstream@cixtech.com, 
-	robin.wang@cixtech.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_042432_504204_0AEFD598 
-X-CRM114-Status: GOOD (  16.31  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261113_042441_067075_CC46AF54 
+X-CRM114-Status: GOOD (  10.55  )
+X-Spam-Score: -0.8 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,41 +105,69 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Cunyuan,
+The SoC brings its ethernet interface out on bank Z, but no pin groups
+were described, so a board had no way to hand those pins over to the
+MAC.
 
-On Wed, 11 Nov 2026 at 13:16, Cunyuan Liu <cunyuan.liu@cixtech.com> wrote:
-> On 2026-11-10 10:03:46 +0000, Liviu Dudau wrote:
-> > > +static const struct panthor_sysc_config sysc_config_cix_sky1 = {
-> > > +     /* Sky1 needs these SYSC_ALLOC policies for correct display of GPU output. */
-> > > +     .alloc = {
-> > > +             0x00230000, 0x00000023, 0x00000000, 0x00000000,
-> > > +             0x00523222, 0x00523200, 0x00000022, 0x00000032,
-> > > +     },
-> > > +};
-> >
-> > These should not be in the driver but in the device tree bindings. If you extract
-> > the system cache code into a separate patch we can have a proper discussion there.
->
-> I will move the eight SYSC_ALLOC values into a DT property, such as
-> arm,sysc-alloc, and submit the system-cache support as a separate patch.
+Describe them as the two sets a board actually needs: the nine pins the
+interface always uses, and the five extra ones RGMII adds for its wider
+data path.
 
-Whilst doing this, please break the properties out. At the moment,
-it's written as 32-bit groups of 4 source+RW pairs. I would much
-prefer to have groups of [<sourceR, sourceW>, <sourceR, sourceW>, ...]
-than just the raw register values to be dumped into SYSC_ALLOC*.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Lucas Tanure <tanure@linux.com>
+---
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 30 +++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-FWIW, I agree with everything else Liviu said. I don't have a strong
-opinion on skipping out devfreq if OPPs are not present vs. exposing a
-single fixed OPP from the clock provider, but the former does seem
-better for me.
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 6894c06a836b..7bd53ec16607 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -376,6 +376,36 @@ mux {
+ 					};
+ 				};
+ 
++				eth_pins: eth {
++					mux {
++						groups = "eth_mdio",
++							 "eth_mdc",
++							 "eth_rgmii_rx_clk",
++							 "eth_rx_dv",
++							 "eth_rxd0",
++							 "eth_rxd1",
++							 "eth_txen",
++							 "eth_txd0",
++							 "eth_txd1";
++						function = "eth";
++						drive-strength-microamp = <4000>;
++						bias-disable;
++					};
++				};
++
++				eth_rgmii_pins: eth-rgmii {
++					mux {
++						groups = "eth_rxd2_rgmii",
++							 "eth_rxd3_rgmii",
++							 "eth_rgmii_tx_clk",
++							 "eth_txd2_rgmii",
++							 "eth_txd3_rgmii";
++						function = "eth";
++						drive-strength-microamp = <4000>;
++						bias-disable;
++					};
++				};
++
+ 				i2c0_ao_d_pins: i2c0-ao-d {
+ 					mux {
+ 						groups = "i2c0_ao_sck_d",
+-- 
+2.56.1
 
-Cheers,
-Daniel
 
