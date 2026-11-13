@@ -2,96 +2,121 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC7CB606F707
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 17:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F886074B3C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 17:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Hq2pDdyA;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.a=rsa-sha256 header.s=mail header.b=AejoD/JD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N4XM2R32;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=MjhS0lND
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=vBhwvnJwnGkD1bnGzWjsQ07Q3jEMP9wwPRehR7yowkU=; b=Hq2pDdyA4RxvpRmoPklDNBSdXG
-	7j0VJvFCxJkF9XWGsH1uPZGH0L+7Qc/EdhHXH+Vz6OR0ui5QpoBDcVINYyrGHHyQPbYUtBe+coJQS
-	ZfopJZj+9tAAN2OLbFr5be+KGXQunhQ5IYXMYXoCQqt4sJcfuTRT6LfL0aqtuwyp25RIqgWTAlxKl
-	y+oCO0pDxhQjwjYhHniZWrRU+YmvHVIQXODKXjA94OgXObi17WVkbUj4w/izdpAoZBpWU4wRSXjLe
-	NJhUDMcM4Rh+bJtjISZr2bxDiN7A298QWMAvSzMEq9byMyr6stJV75j8Pvf+eOyZsd2zTwOd7XHbQ
-	5F3iX4uA==;
+	bh=EtswxBGyiXS8JSPC03lPz9UgjYYoAr3Fyq32GpLBvdM=; b=N4XM2R32IdU782LFdkqdTACd4r
+	MzOPZiLnwsRLp0tWkZn1G889sA4FJmQdibequ5Lh2zS32M1u4kYNDuTnXtZv2Li5ylJtumCI9wfwR
+	M/l2AzLMs4uveYUA4G8udcmsOlNqJ73/xTHDJ1OiAf/x2BqTAWSjj6WzOiXiTguf7dvpMg2U/2KwS
+	436xUaSDcTKW077YvrPCm1jz+PciF9BZsq2840HU4GOK9NDg6AHWlh42GiJuf1Z6N3mqN4q1YqGIE
+	5qxpB9E/j6XbVPXmM3/yWYo4MDJCe/gyJYnLLkc7lhmoHnOCcbqeVTUbZ1gEFtOoBGEVq+2GCVH2d
+	ZrvaKs1A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRv5L-0000000DkFN-0Smd;
-	Fri, 13 Nov 2026 17:29:11 +0000
-Received: from bali.collaboradmins.com ([2a01:4f8:201:9162::2])
+	id 1xRv7t-0000000DkYr-2Bfv;
+	Fri, 13 Nov 2026 17:31:49 +0000
+Received: from mail-yx1-xb130.google.com ([2607:f8b0:4864:20::b130])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRv5I-0000000DkEi-33jH;
-	Fri, 13 Nov 2026 17:29:10 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1794590946;
-	bh=vBhwvnJwnGkD1bnGzWjsQ07Q3jEMP9wwPRehR7yowkU=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=AejoD/JDjkToIWQiFRpmdMjB5o5Ebnp4DTGINsotDpycE2//JGqe68DRdgkmUOFvT
-	 HaEx1jaGfhcD4LWL7zJDHE40LqDKXD5nusxhqINjW9b1KWPzLf/U+m7yC38cnIcNjp
-	 L+IDGtMOKf0Yb1mY3g8SCzdbTliiRMz/B4binh4sWmYBp2oHFiNcXkmqq/dcPgPjtz
-	 3+S91Mq8JKXEqYTCiaOnULObQ/dLWTHZdrHKI64Qv4zhar8O9FyNczcE4k82NlKtop
-	 yLC5Fggr21g1QSNN/46q7Au6xg+DZevA5WYuBhcpSUd54h9hy2Z5zMVuSnA3nvKig/
-	 ker449JmvX29g==
-Received: from [100.64.0.214] (unknown [100.64.0.214])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 75E9717E0818;
-	Fri, 13 Nov 2026 18:29:03 +0100 (CET)
-Message-ID: <7691572c6787c3808296094fb97212979c3fb3b9.camel@collabora.com>
-Subject: Re: [PATCH v3 02/12] media: verisilicon: Check the match data in
- hantro_probe()
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: aiyengar1990@gmail.com, Benjamin Gaignard
- <benjamin.gaignard@collabora.com>,  Philipp Zabel <p.zabel@pengutronix.de>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring	 <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Nicolas Frattaroli
-	 <frattaroli.nicolas@gmail.com>, Andrzej Pietrasiewicz
- <andrzej.p@collabora.com>,  Ezequiel Garcia
- <ezequiel@vanguardiasur.com.ar>, Hans Verkuil <hverkuil@kernel.org>, Jernej
- Skrabec	 <jernej.skrabec@gmail.com>, "Joerg Roedel (AMD)"
- <joro@8bytes.org>, Will Deacon	 <will@kernel.org>, Robin Murphy
- <robin.murphy@arm.com>
-Cc: linux-media@vger.kernel.org, iommu@lists.linux.dev, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Sergei
- Khomenkov <shomenkow@gmail.com>, Tharit Tangkijwanichakul
- <tharitt97@gmail.com>, Sascha Hauer	 <s.hauer@pengutronix.de>
-Date: Fri, 13 Nov 2026 12:29:01 -0500
-In-Reply-To: <20261113-hantro-robust-v3-2-82383c722ad2@gmail.com>
-References: <20261113-hantro-robust-v3-0-82383c722ad2@gmail.com>
-	 <20261113-hantro-robust-v3-2-82383c722ad2@gmail.com>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-Pk9ID3Lh5PcmffxfFbdz"
-User-Agent: Evolution 3.62.1 (3.62.1-1.fc45) 
+	id 1xRv7n-0000000DkXZ-336H
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 17:31:45 +0000
+Received: by mail-yx1-xb130.google.com with SMTP id 956f58d0204a3-6798af41644so916512d50.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 09:31:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794591102; cv=none;
+        d=google.com; s=arc-20260327;
+        b=FSdRYABVKsBSFDNdPXkAeRfKcMs1nCcbkLTsccB4RMF5LVzJkZJteGgaIbrG4qujrN
+         jfozevS+0mzBgvm0DEWISt1Q3hHxmbtHzk/iol2/G8XQhUkBvtmN9Qjxn21ltNAQnCuf
+         K+i638OrW7MEtiE41Q13VX94Q5p0B6poAmgPkL+3HdP5NnXwLLSGQM+mM0sKwYKITpUE
+         yNG8lHxFkUUAlF24gMQtdx4K5Olqssnus8fq/n1UANjksKQWjutgkBSBjIluaFrglLid
+         XEw4EUPA+DXiuX1xXHbYRiZNefj0gFcwwTnS8wWyETmpwciDGpqCBcMP2ObTgAaAqRuZ
+         +8hg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=EtswxBGyiXS8JSPC03lPz9UgjYYoAr3Fyq32GpLBvdM=;
+        fh=BeoP65HOTLTpMcqYUlZY4iBvPAOA/QxTwvkd100Wmf8=;
+        b=MDtfm3aPaj6f4gxtudwHJG+4KvgxiHD7bOuBAugSUYOr5MSs+0mS7FFFEEu2ejmaWI
+         kHV0eMbzryU3//5vJ/eOTF9Li7qUl/m7hbBdfEeSlvjKeqCrXVKYil0+m+kpv3t98jCJ
+         Gmi8l+znssn9r5RLMNzjfTRA0qKOU5pT8G+QGLHE4gpWksjl0ShepjIR2uVepf/B6GnZ
+         7brZnY3bdMCr1YMfjOIZE17y8Mo5nd/g0sfOkKSwVhTdKWB4fcuEju1rEfsbmOOp4l/I
+         C6ndsV8cWvoqx7KtaphB//XhgTj6jbR/E4/DxxTkxy/fc+Odl1rt0wB/pyvjGVMeP6QI
+         RTgQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794591102; x=1795195902; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=EtswxBGyiXS8JSPC03lPz9UgjYYoAr3Fyq32GpLBvdM=;
+        b=MjhS0lNDiHuhAVUNoeA2W5ShUt0KLYWb/WHUSdRcQdDTDvOwdnBF4uvivlLDI0k+G4
+         RuDlgoDp6+si0fbZQb+QpcFRnjbo8uXJjlJ/kyS1wqpSyiLbJSCQ/qmig16BeLmO7UGT
+         ydf74V1V8awDnaNX93c+CxDPhhrpwsVY6uK3mztW/ulk/op3vAUepGUaL+7Xn5MBXCC4
+         kpYufUV+UT/u5JTg0btXiWqIGLRull9WrTAPz08ui6EuxEaNDmUsuX61U2cYQ6xm8Q8V
+         rFqgZo042d0MyUqgt5VlA/bSlgS4iHj/pr7+nVLSqbYh3qh+bYMKdTwCA4N5lXTwtcf4
+         oYUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794591102; x=1795195902;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=EtswxBGyiXS8JSPC03lPz9UgjYYoAr3Fyq32GpLBvdM=;
+        b=tUEpjp2g9NCMQLGv20rhZVbAkUXfuypt2iitCLC2I/vc2I64aSheReRthyVlS1Qxtz
+         yXd5ZMM3fIL8Q2etcpCeh1ZJOlZE4ZRaelovqVuQzS4/kjUAYisPi+nKTayeGAKbRVUG
+         cXzz8pgjPC9fSQFAPV+1Cy6JCRldCneQfxy6tA/KnlKb/pNmv5vKltAl50RgD6WBJmGR
+         SBE7Q+mvjiatC3n0J5zWWCHa8TTC3qiD2dU71vna5qyAvBpjAI34U/LBfCp7XqU3wDGA
+         89nYeWvDZEE6xK6OKGxpahEnwKYFOtvBNAkKO1C7zACVtLqlUeLjHpOqR/BPdGixYPBV
+         f6+A==
+X-Forwarded-Encrypted: i=1; AL+hErFOU2oyBGRvT0cD72E5E8VwOLm9ttNOihgkUN06kDirOo6no3RUabAJ3HjGJa1KnHSIRsU6m0kOB0PE9amyLige@lists.infradead.org
+X-Gm-Message-State: APuU4Z9p2Np/fJg8Ju1DAEPwmfln3nI0ZXqrO8mXo+Si850m9Um7U4+D
+	SAhITISeVilqJeyonpegXEmjWc5qzktS7TBRfNUw21HrGTh30rO0HqvbEDXCicI4HcL3RBI1AOm
+	X3EUhYxpMI25e1WI4PHTL6sChQI6F9T8=
+X-Gm-Gg: AYBFou2dY86XopFZcRlcZzvf/Yk6umHSG3PIstqEy0ePIe6zIafPh/wV0lKSi58+UhC
+	MWMKEZsmFyfYzGI/B2+3JfryhTG3gjpWUkmoT+RXhGA2yxN+pI0wMCOUTeeYjQe3tQVd0uUY2EK
+	4KW+7SiJLs74n88Dj57/7MzLp4gCG60HytxkNkK6fKyIGLt48ZjwcjlqozhddgcpqcTQc2HpPdm
+	4ACh6zDFX4zP31pMmQYj5O5Cgsdq+NEq8GAuVOlbOrYANzHf2biqkhK/g0kJ5CyF5UmEY3Rn2bB
+	+Ew1E+L5EfaS5RKebvT0B9Ibj9ungnAaA3MtORHWfDOpHaouStjgqVfVISTJEMHsr/hBtVkM+PN
+	u3Jnz+zUZr6sSpfYfH37TDgwZ9iIe/S154xlWtfCJ7s9klClp/Is66l2fgbmvS/CCQi7x
+X-Received: by 2002:a05:690e:4510:20b0:675:47ba:2183 with SMTP id
+ 956f58d0204a3-67d89709f2dmr1486987d50.53.1794591102378; Fri, 13 Nov 2026
+ 09:31:42 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <20261113003217.197757-1-ansuelsmth@gmail.com> <20261113003217.197757-11-ansuelsmth@gmail.com>
+ <737e3c57-9aad-4081-ac75-f79cb2084349@kernel.org>
+In-Reply-To: <737e3c57-9aad-4081-ac75-f79cb2084349@kernel.org>
+From: "Christian Marangi (Ansuel)" <ansuelsmth@gmail.com>
+Date: Fri, 13 Nov 2026 18:31:31 +0100
+X-Gm-Features: AclHuK_T9pn_LFNwcoFkFSy1mvqcLyRF0a8TMF1gVMEOv5saT-u9fzFGXIXxZrg
+Message-ID: <CA+_ehUxzPo--g+Ksd_0xJZo7_bhYZ-B17wG3OyGtU=3aa6B+WA@mail.gmail.com>
+Subject: Re: [PATCH net-next v19 10/15] net: Document PCS subsystem
+To: Matthieu Baerts <matttbe@kernel.org>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>, 
+	Lorenzo Bianconi <lorenzo@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Nathan Chancellor <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, 
+	Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, llvm@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_092908_969481_601EA2DE 
-X-CRM114-Status: UNSURE (   8.91  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261113_093143_797901_618B9F1C 
+X-CRM114-Status: GOOD (  14.14  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -103,42 +128,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---=-Pk9ID3Lh5PcmffxfFbdz
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Il giorno ven 13 nov 2026 alle ore 11:52 Matthieu Baerts
+<matttbe@kernel.org> ha scritto:
+>
+> Hi Christian,
+>
+> Thank you for the patch.
+>
+> On 13/11/2026 01:32, Christian Marangi wrote:
+> > Add extensive documentation of the new PCS subsystem and the fwnode
+> > implementation with producer/consumer API.
+> >
+> > Also update the sfp-phylink migration guide.
+>
+> FYI, the Netdev CI seems to have issues with this patch when building
+> the documentation, because a new warning is visible:
+>
+>
+> /srv/nipa-builds-contest/testing/wt-doc-build/Documentation/networking/pcs.rst:3:
+> WARNING: Duplicate C declaration, also defined at networking/kapi:486.
+>
+> When executing:
+>
+>   https://github.com/linux-netdev/nipa/blob/main/contest/tests/build-doc.sh
+>
+> Logs:
+>
+>   https://netdev-ctrl.bots.linux.dev/build/doc-build/results/909345/
+>
 
-Le vendredi 13 novembre 2026 =C3=A0 16:40 +0000, Arun Iyengar via B4 Relay =
-a =C3=A9crit=C2=A0:
-> From: Arun Iyengar <aiyengar1990@gmail.com>
->=20
-> A device bound through driver_override may have no OF match, and
-> hantro_probe() then dereferences a NULL match. Use
-> device_get_match_data() and fail with -ENODEV without match data.
->=20
-> Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
-> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+Hi Matt,
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+thanks for checking this... Yep I manage to reproduce and I fixed it.
 
---=-Pk9ID3Lh5PcmffxfFbdz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCavdI3QAKCRDZQZRRKWBy
-9L/GAQDFEJMjaukjIL6hsPbVKhY3JdjK2trma5iMW2z5o4dWmQEA0jyOVzJ7q5zj
-M7YvozDsuHiLH1Y/S548p4WbG4GM4QQ=
-=YkKR
------END PGP SIGNATURE-----
-
---=-Pk9ID3Lh5PcmffxfFbdz--
+Will be present in v20.
 
