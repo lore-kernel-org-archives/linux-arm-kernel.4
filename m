@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A94606A88C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 22:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6FE606A891
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 22:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=IjVpeUKM;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A4rV2/pT
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CWs1uriM;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E291gQyL
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=NM+WHKCC3xvJM0QYhS9cDObbL+6VtF3LXo9nejQ5V1k=; b=IjVpeUKMMgIhbOFMzVN2gPvrEv
-	m3jw5HCAZAaQFXoknGNYPAE9RPPY/pqCOjimCiYXUaUNM1fa4aF/6EKbZ7McdiKfwGRFk9qHv6Vo9
-	nzssytU9sg1DflUCaX60/jj+adJOyv5duKf8kw5vN836d5mijGStBev6+uZuauxnJXXHrLHL0Ceuk
-	2PFwC66Bg7pRHH0OCbUAnlXSN/ChE977JSieb2Nxkoc0wnO3yByQTctU7Kt+q+a9ra2x3Gus1hFrL
-	2sbQ32oeaqbYPeDdaUGObtvH+B2CEoDuxWCnJjmK0TTvt2B5ltrQ/L2/tv/d+k7otPmh73HW3t+XS
-	apZ4KZKA==;
+	bh=U8LstPPrHCW3ctEClTfo7NSAD6yF6+iQLjvIIR3H+/Q=; b=CWs1uriM2g9nUaLut+3yefVlY6
+	1uShrSqf2FqNqip5qK0pJEFIhyN19G0sdtM7Nv4Xaj40i+hL87/LrzrNmu3URav/NWKBL6M2G7pvS
+	yf0nG7DwQhnKhEqJjtPhdWLMUVaRYcjqa826wRTfiT0dHmLek9XhcI2mkNz5oEx7zPTAd6KEGrOBQ
+	OmEXLVAuxoPxSYoXwInAjNMhi3DNKwM9m8+FcFHMiJGpbMvjAgc6UO3GW9y7OfDf5Br1x2A5QNB8m
+	II57AQHHp7g6fyvJ7L4m+EhpekLMRvsvEffX6oGw6Jd9ExAZ67VNfWJKVcra8ASPfuqBOBL+9t56q
+	F5fbvtKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRzeU-0000000Eg1Y-30mf;
-	Fri, 13 Nov 2026 22:21:46 +0000
+	id 1xRzeV-0000000Eg24-26r0;
+	Fri, 13 Nov 2026 22:21:47 +0000
 Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRzeL-0000000Efwa-0HLG;
+	id 1xRzeL-0000000EfwM-0HLA;
 	Fri, 13 Nov 2026 22:21:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 56CB462DA5;
+	by tor.source.kernel.org (Postfix) with ESMTP id 362DB62910;
 	Fri, 13 Nov 2026 22:21:36 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794608496;
-	b=ewN0ntKT5lh0ACT6bDPfXguDsi65MwLDsFP/6fWkF/DIHwIOnix4b+PrjPJTnRIFf9dq
-	 wmUCtzsOUmmetGVg6zf/dQtnf7jrM7lI7lQy/bwyZZRxLWJfhjecH2w8UJBUu171m9frl
-	 GLk2wHFMFMZSAJWMyr9KRJ6SWQxuTUsrnlAAKNO8IT9jS+y4mNTg5NwAlx1IFTrgP3ytj
-	 AD4Anwl8XYvnqvKy6r2FDUTH9d95qr1v2xF+AL/EPMeDUhKR/8EkmjBZynHb+FFJNSyka
-	 6o8B7hPFbekdRLcbjih4AdrtcyAdYxpaOwzkvkaz4iOp4SZf8X90ZaIYL0RTsKj/siQ==
+	t=1794608495;
+	b=TL1/vAUYG2ExfX5S9RYJW//jRYC4g+v7s705qhJEVNRNef3QqiltRHq4Z3A9X+ml3FT3
+	 YA6NUsK3taFPB90Saurr+9AxCnUHFvp1Si32dHHETNJG1DvX2ihc5RUl2zL/1YHbEcd8D
+	 Cdjxj/f4kpf+vfuQMTHxWe5RbDCOQjcTx+o19kfNbXOm1PtT5OuHTNp5UhBy3CmiV2YXi
+	 Zhds9ZJM5I06eyU3q3r2QCwyIvCTMyzJsCTJ7enlgg1zWakjf/QfT88zUKfpwy3nRbSUX
+	 tWacJ/2l85/RMsARgDyTi5lrm7KpLDOLMrwe2IfM4F3ZtWHEUkpicfl4Jiyq+IbHtdA==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794608496;
+	c=relaxed/relaxed; t=1794608495;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=NM+WHKCC3xvJM0QYhS9cDObbL+6VtF3LXo9nejQ5V1k=;
-	b=PeA9HeKT3rt76RzRT28OneCUeNM0o0NryeOphAhSk6gf6JdF9nI2X1e9/CZRZ+zMBAQ6
-	 5mnR9K1X1x1T3UfM+Cy90ebh6wOBzFA9MotUgR52+2Iv5/77kZjOMDVXXc9ppF1exEJfk
-	 pNpdEcp78jYKjwhEsnC9eeDQG1YFqHahI80cX36F4JEPDuyflMHxqtoaEfs9BfZFVl0Li
-	 GmA+hV4PZs7To5U3Unk5/HwczFXVbdYoVzXc/9G600Etct470BwirYDPvbIK7BcHL4t76
-	 HDr8kXnNFATS506XTzfxvKWNnClIqomEj3tYXCm5upV/v8FaDxNWQ+UCZF38RrZ4Omw==
+	bh=U8LstPPrHCW3ctEClTfo7NSAD6yF6+iQLjvIIR3H+/Q=;
+	b=2ucIC5o7ifZuTxzUyDTZ6QprxgFOGcGI77mnF9NtFRVFNbnewFZfQ1pvkQ8zzRX5d6zQ
+	 LX30Q8U28kt/qJn0CmYkyYuTEz4UpwgLMFa/VxVYJNCtge/kNnfMR/MulBQnX7m3lCMwi
+	 b9KNoe71OHSOg3/6YNm8tdoXsCeI9WrSJ+NIaZZkyZnbQOfNE7VQkZBDzRxuqzG4BXH+L
+	 0MeRMKsrjDKB5Q8akgNkwKnF86RR5w7tjYO9zSdM+CItnngOxJ5ITit+7Le1D+/i76gAa
+	 3SxvEp0J4M3zahdjsv892vchhtvxLnSFz4eEkzU8ey87sBM60EV7lsH8eT3BTvWy6NQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id E719B1F000C4;
+	by smtp.kernel.org (Postfix) with ESMTPS id E726F1F000C5;
 	Fri, 13 Nov 2026 22:21:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794608496;
-	bh=NM+WHKCC3xvJM0QYhS9cDObbL+6VtF3LXo9nejQ5V1k=;
+	s=k20260515; t=1794608495;
+	bh=U8LstPPrHCW3ctEClTfo7NSAD6yF6+iQLjvIIR3H+/Q=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=A4rV2/pTR/o5tj8tgDPX2mFhjhe2p0JhsYavPoqUhvTCuQG0DYl9DBZ/kaKFdhXM8
-	 vsLJKgPWZerJVniKaynFPfRQlwZr2uoefBiBTRAfK8igRKUdtofDLo6wWA7FDAcBv9
-	 EM1fhX/B2gHPv0l6DvzPOojxuUcojMZgqhbH56SbOcidcCN1zUrqJxpHgnM7gxZvS0
-	 Y3bYH0PLtq9xvrhLpMtIU7sdtYrIgmn1pCVGC5kx1aSRgBYyhhJYuhCWgFvUGNOFvH
-	 lFWbZ4eJZ3jTM7UgfBHuujzLv8EYtA7pKErHbOjAowiRTp+PASs3OZGtyVQWP/Zplp
-	 K3K3lR9k2ZBow==
+	b=E291gQyLy6PootibV+pUePNMnGhLV9TOYkcA43DvtOQ1RHgTWi4Oo02R0DX6gT52A
+	 VOdZ6hK0rV3rTgoBBt5EMzupdYfWiaN6KELLaYt8zhFgEOPhSUCMFXFrxZ91sEydLd
+	 SbWJFC37KbkhlE/hj72I9OLVr6HXZIvX4N3vadik+EB46QAQ3ybNjH5SQYk02FKOc8
+	 V/7k2zQQbqnCEdJhYYzxAFEPMhjy84PvPVWEzVFv9jESbNgVO6DywoHvRMY8/54MdE
+	 kGnnMgKlVI47gjTrtO1tPumrqw5I2c6FNRsBeuJQotZPeqI3RRL8SBtU7o40c8/O/b
+	 pDELIA3d4+TlQ==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 56DBD49B4C;
+	by lkml.kernel.org (Postfix) with ESMTP id 4267349B22;
 	Fri, 13 Nov 2026 22:21:33 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 13 Nov 2026 22:21:33 +0000
-Subject: [PATCH RFC 2/3] media: verisilicon: Pick the hardware core for
- each job
+Date: Fri, 13 Nov 2026 22:21:32 +0000
+Subject: [PATCH RFC 1/3] media: verisilicon: Split probe into hardware init
+ and device registration
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-hantro-multicore-v1-2-43811eea14c4@gmail.com>
+Message-Id: <20261113-hantro-multicore-v1-1-43811eea14c4@gmail.com>
 References: <20261113-hantro-multicore-v1-0-43811eea14c4@gmail.com>
 In-Reply-To: <20261113-hantro-multicore-v1-0-43811eea14c4@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
@@ -95,11 +95,11 @@ Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
  Sergei Khomenkov <shomenkow@gmail.com>, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794608492; l=9150;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794608492; l=7068;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=9jWn2Gigd2wOwask/FFepVbUYfj7D/TpLOUOJvXCMTw=;
- b=r5PrlOXvvc8lwpCY2Qqeq30CFBTVyIZ+JOpHn8bsD5t0SNYqAEvdz505CHX/2u8wcphsXES8m
- A1IfiGTY7wZBowJpTao3uOYhSzPU1ByHClzcbvqqrgGrsaPsFW8/iHq
+ bh=w6qJkiLCLbyhDjp75hGrho7FBAJ1tiuNlQsSG9pOWtI=;
+ b=rYwXShfgTY/VH8fB0R1BuB/+cbigqnJMUZkaZ08g0Lt7UmROosTg5UQ5qv9WHrKpHlgc1OvVi
+ 4DBeO39m2FmDCrGxq6OvY0bSM6zP6dZFqUppTlbzJ+NfgdDX1Cdjmt3
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -127,263 +127,236 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-The driver assumes that the hardware instance running a job is the one
-that owns the mem2mem device, and finds the context of the running job
-with v4l2_m2m_get_curr_priv(). Neither holds once jobs can run on
-several identical cores in parallel.
+Move the acquisition of the per-instance hardware resources (clocks,
+resets, registers, interrupts, runtime PM) out of hantro_probe() into
+hantro_hw_init()/hantro_hw_cleanup(), and the creation of the mem2mem,
+video and media devices into hantro_register_devices() and
+hantro_unregister_devices().
 
-Give each hantro_dev a list of cores its jobs can run on, and pick an
-idle one in device_run(). The chosen core is stored in the context for
-the duration of the job, and the context in the core, so that the
-interrupt handler and the watchdog of a core find the job they belong
-to. The JPEG encoder of the VEPU2 now accesses the registers of the core
-running the job.
+This prepares for multi-core support, where every core needs its
+hardware set up, but only the main core registers the devices exposed to
+userspace, and only once all cores are known.
 
-For now the core list only contains the device itself, so no functional
-change intended.
+No functional change intended.
 
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/media/platform/verisilicon/hantro.h        | 18 ++++++
- drivers/media/platform/verisilicon/hantro_drv.c    | 73 +++++++++++++++++++---
- .../verisilicon/rockchip_vpu2_hw_jpeg_enc.c        |  4 +-
- .../media/platform/verisilicon/rockchip_vpu_hw.c   |  2 +-
- 4 files changed, 86 insertions(+), 11 deletions(-)
+ drivers/media/platform/verisilicon/hantro_drv.c | 158 +++++++++++++++---------
+ 1 file changed, 101 insertions(+), 57 deletions(-)
 
-diff --git a/drivers/media/platform/verisilicon/hantro.h b/drivers/media/platform/verisilicon/hantro.h
-index 0353de154a1e..eceaa74a634b 100644
---- a/drivers/media/platform/verisilicon/hantro.h
-+++ b/drivers/media/platform/verisilicon/hantro.h
-@@ -193,6 +193,14 @@ hantro_vdev_to_func(struct video_device *vdev)
-  *			shared with interrupt handlers.
-  * @variant:		Hardware variant-specific parameters.
-  * @watchdog_work:	Delayed work for hardware timeout handling.
-+ * @curr_ctx:		Context whose job is running on this instance, or NULL
-+ *			if the instance is idle. Protected by @cores_lock of
-+ *			the device the job was scheduled on.
-+ * @cores:		Hardware instances the jobs of this device can be
-+ *			scheduled on. The first entry is the device itself.
-+ * @num_cores:		Number of entries in @cores.
-+ * @cores_lock:		Spinlock protecting @cores, @num_cores and @curr_ctx
-+ *			of each core.
-  */
- struct hantro_dev {
- 	struct v4l2_device v4l2_dev;
-@@ -213,12 +221,21 @@ struct hantro_dev {
- 	spinlock_t irqlock;
- 	const struct hantro_variant *variant;
- 	struct delayed_work watchdog_work;
-+
-+	struct hantro_ctx *curr_ctx;
-+	struct hantro_dev **cores;
-+	unsigned int num_cores;
-+	spinlock_t cores_lock; /* protects the core list and curr_ctx */
- };
- 
- /**
-  * struct hantro_ctx - Context (instance) private data.
-  *
-  * @dev:		VPU driver data to which the context belongs.
-+ * @core:		VPU instance running the current job of this context,
-+ *			only valid while a job is running. Codec operations
-+ *			must access the hardware through it. It is the same
-+ *			as @dev unless the variant has multiple cores.
-  * @fh:			V4L2 file handler.
-  * @is_encoder:		Decoder or encoder context?
-  *
-@@ -248,6 +265,7 @@ struct hantro_dev {
-  */
- struct hantro_ctx {
- 	struct hantro_dev *dev;
-+	struct hantro_dev *core;
- 	struct v4l2_fh fh;
- 	bool is_encoder;
- 
 diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index d02988fc19ae..ab76251627fb 100644
+index 26e5d5547466..d02988fc19ae 100644
 --- a/drivers/media/platform/verisilicon/hantro_drv.c
 +++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -59,11 +59,51 @@ static const struct v4l2_event hantro_eos_event = {
- 	.type = V4L2_EVENT_EOS
- };
- 
-+/*
-+ * Pick an idle core for the job of @ctx. The mem2mem framework never runs
-+ * more jobs in parallel than there are cores, so this only fails if the
-+ * core accounting is broken.
-+ */
-+static struct hantro_dev *hantro_acquire_core(struct hantro_ctx *ctx)
-+{
-+	struct hantro_dev *vpu = ctx->dev;
-+	unsigned int i;
-+
-+	guard(spinlock_irqsave)(&vpu->cores_lock);
-+
-+	for (i = 0; i < vpu->num_cores; i++) {
-+		struct hantro_dev *core = vpu->cores[i];
-+
-+		if (!core->curr_ctx) {
-+			core->curr_ctx = ctx;
-+			ctx->core = core;
-+			return core;
-+		}
-+	}
-+
-+	return NULL;
-+}
-+
-+static void hantro_release_core(struct hantro_ctx *ctx)
-+{
-+	struct hantro_dev *vpu = ctx->dev;
-+
-+	guard(spinlock_irqsave)(&vpu->cores_lock);
-+
-+	if (ctx->core) {
-+		ctx->core->curr_ctx = NULL;
-+		ctx->core = NULL;
-+	}
-+}
-+
- static void hantro_job_finish_no_pm(struct hantro_ctx *ctx,
- 				    enum vb2_buffer_state result)
- {
- 	struct vb2_v4l2_buffer *src, *dst;
- 
-+	/* Make the core available to the next job before scheduling it. */
-+	hantro_release_core(ctx);
-+
- 	src = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
- 	dst = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
- 
-@@ -88,17 +128,20 @@ static void hantro_job_finish_no_pm(struct hantro_ctx *ctx,
- static void hantro_job_finish(struct hantro_ctx *ctx,
- 			      enum vb2_buffer_state result)
- {
--	struct hantro_dev *vpu = ctx->dev;
-+	struct hantro_dev *core = ctx->core;
- 
--	pm_runtime_put_autosuspend(vpu->dev);
-+	pm_runtime_put_autosuspend(core->dev);
- 	hantro_job_finish_no_pm(ctx, result);
+@@ -1069,38 +1069,16 @@ static struct v4l2_m2m_dev *hantro_get_v4l2_m2m_dev(struct hantro_dev *vpu)
+ 	return v4l2_m2m_init(&vpu_m2m_ops);
  }
  
+-static int hantro_probe(struct platform_device *pdev)
 +/*
-+ * Called from the interrupt handler of the VPU instance @vpu, which is the
-+ * core the job was running on.
++ * Acquire and initialize the hardware resources of one VPU instance:
++ * clocks, resets, registers, interrupts and runtime PM.
 + */
- void hantro_irq_done(struct hantro_dev *vpu,
- 		     enum vb2_buffer_state result)
++static int hantro_hw_init(struct hantro_dev *vpu)
  {
--	struct hantro_ctx *ctx =
--		v4l2_m2m_get_curr_priv(vpu->m2m_dev);
-+	struct hantro_ctx *ctx;
+-	const struct of_device_id *match;
+-	struct hantro_dev *vpu;
++	struct platform_device *pdev = vpu->pdev;
+ 	int num_bases;
+ 	int i, ret;
  
- 	/*
- 	 * If cancel_delayed_work returns false
-@@ -106,6 +149,7 @@ void hantro_irq_done(struct hantro_dev *vpu,
- 	 * and will take care of finishing the job.
- 	 */
- 	if (cancel_delayed_work(&vpu->watchdog_work)) {
-+		ctx = vpu->curr_ctx;
- 		if (result == VB2_BUF_STATE_DONE && ctx->codec_ops->done)
- 			ctx->codec_ops->done(ctx);
- 		hantro_job_finish(ctx, result);
-@@ -119,7 +163,7 @@ void hantro_watchdog(struct work_struct *work)
+-	vpu = devm_kzalloc(&pdev->dev, sizeof(*vpu), GFP_KERNEL);
+-	if (!vpu)
+-		return -ENOMEM;
+-
+-	vpu->dev = &pdev->dev;
+-	vpu->pdev = pdev;
+-	mutex_init(&vpu->vpu_mutex);
+-	spin_lock_init(&vpu->irqlock);
+-
+-	match = of_match_node(of_hantro_match, pdev->dev.of_node);
+-	vpu->variant = match->data;
+-
+-	ret = hantro_disable_multicore(vpu);
+-	if (ret)
+-		return ret;
+-
+-	/*
+-	 * Support for nxp,imx8mq-vpu is kept for backwards compatibility
+-	 * but it's deprecated. Please update your DTS file to use
+-	 * nxp,imx8mq-vpu-g1 or nxp,imx8mq-vpu-g2 instead.
+-	 */
+-	if (of_device_is_compatible(pdev->dev.of_node, "nxp,imx8mq-vpu"))
+-		dev_warn(&pdev->dev, "%s compatible is deprecated\n",
+-			 match->compatible);
+-
+ 	INIT_DELAYED_WORK(&vpu->watchdog_work, hantro_watchdog);
  
- 	vpu = container_of(to_delayed_work(work),
- 			   struct hantro_dev, watchdog_work);
--	ctx = v4l2_m2m_get_curr_priv(vpu->m2m_dev);
-+	ctx = vpu->curr_ctx;
- 	if (ctx) {
- 		vpu_err("frame processing timed out!\n");
- 		if (ctx->codec_ops->reset)
-@@ -160,21 +204,27 @@ void hantro_end_prepare_run(struct hantro_ctx *ctx)
- 				   &ctx->ctrl_handler);
+ 	vpu->clocks = devm_kcalloc(&pdev->dev, vpu->variant->num_clocks,
+@@ -1213,18 +1191,39 @@ static int hantro_probe(struct platform_device *pdev)
+ 		goto err_pm_disable_assert_reset;
+ 	}
  
- 	/* Kick the watchdog. */
--	schedule_delayed_work(&ctx->dev->watchdog_work,
-+	schedule_delayed_work(&ctx->core->watchdog_work,
- 			      msecs_to_jiffies(2000));
- }
- 
- static void device_run(void *priv)
- {
- 	struct hantro_ctx *ctx = priv;
--	struct hantro_dev *vpu = ctx->dev;
- 	struct vb2_v4l2_buffer *src, *dst;
-+	struct hantro_dev *core;
- 	int ret;
- 
- 	src = hantro_get_src_buf(ctx);
- 	dst = hantro_get_dst_buf(ctx);
- 
--	ret = pm_runtime_resume_and_get(vpu->dev);
-+	core = hantro_acquire_core(ctx);
-+	if (WARN_ON_ONCE(!core)) {
-+		hantro_job_finish_no_pm(ctx, VB2_BUF_STATE_ERROR);
-+		return;
-+	}
+-	ret = v4l2_device_register(&pdev->dev, &vpu->v4l2_dev);
+-	if (ret) {
+-		dev_err(&pdev->dev, "Failed to register v4l2 device\n");
+-		goto err_clk_unprepare;
+-	}
+-	platform_set_drvdata(pdev, vpu);
++	return 0;
 +
-+	ret = pm_runtime_resume_and_get(core->dev);
- 	if (ret < 0) {
- 		hantro_job_finish_no_pm(ctx, VB2_BUF_STATE_ERROR);
- 		return;
-@@ -1285,6 +1335,7 @@ static int hantro_probe(struct platform_device *pdev)
- 	vpu->pdev = pdev;
- 	mutex_init(&vpu->vpu_mutex);
- 	spin_lock_init(&vpu->irqlock);
-+	spin_lock_init(&vpu->cores_lock);
++err_pm_disable_assert_reset:
++	pm_runtime_dont_use_autosuspend(vpu->dev);
++	pm_runtime_disable(vpu->dev);
++	reset_control_assert(vpu->resets);
++	return ret;
++err_pm_disable:
++	pm_runtime_dont_use_autosuspend(vpu->dev);
++	pm_runtime_disable(vpu->dev);
++	return ret;
++}
++
++static void hantro_hw_cleanup(struct hantro_dev *vpu)
++{
++	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
++	pm_runtime_dont_use_autosuspend(vpu->dev);
++	pm_runtime_disable(vpu->dev);
++	reset_control_assert(vpu->resets);
++}
++
++/*
++ * Create the mem2mem device and register the video and media devices that
++ * expose the VPU to userspace. The v4l2_device must already be registered.
++ */
++static int hantro_register_devices(struct hantro_dev *vpu)
++{
++	int ret;
  
- 	match = of_match_node(of_hantro_match, pdev->dev.of_node);
- 	vpu->variant = match->data;
-@@ -1302,6 +1353,12 @@ static int hantro_probe(struct platform_device *pdev)
- 		dev_warn(&pdev->dev, "%s compatible is deprecated\n",
- 			 match->compatible);
+ 	vpu->m2m_dev = hantro_get_v4l2_m2m_dev(vpu);
+ 	if (IS_ERR(vpu->m2m_dev)) {
+ 		v4l2_err(&vpu->v4l2_dev, "Failed to init mem2mem device\n");
+-		ret = PTR_ERR(vpu->m2m_dev);
+-		goto err_v4l2_unreg;
++		return PTR_ERR(vpu->m2m_dev);
+ 	}
  
-+	vpu->cores = devm_kcalloc(&pdev->dev, 1, sizeof(*vpu->cores),
-+				  GFP_KERNEL);
-+	if (!vpu->cores)
+ 	vpu->mdev.dev = vpu->dev;
+@@ -1235,13 +1234,13 @@ static int hantro_probe(struct platform_device *pdev)
+ 
+ 	ret = hantro_add_enc_func(vpu);
+ 	if (ret) {
+-		dev_err(&pdev->dev, "Failed to register encoder\n");
++		dev_err(vpu->dev, "Failed to register encoder\n");
+ 		goto err_m2m_rel;
+ 	}
+ 
+ 	ret = hantro_add_dec_func(vpu);
+ 	if (ret) {
+-		dev_err(&pdev->dev, "Failed to register decoder\n");
++		dev_err(vpu->dev, "Failed to register decoder\n");
+ 		goto err_rm_enc_func;
+ 	}
+ 
+@@ -1260,18 +1259,70 @@ static int hantro_probe(struct platform_device *pdev)
+ err_m2m_rel:
+ 	media_device_cleanup(&vpu->mdev);
+ 	v4l2_m2m_put(vpu->m2m_dev);
++	return ret;
++}
++
++static void hantro_unregister_devices(struct hantro_dev *vpu)
++{
++	media_device_unregister(&vpu->mdev);
++	hantro_remove_dec_func(vpu);
++	hantro_remove_enc_func(vpu);
++	media_device_cleanup(&vpu->mdev);
++	v4l2_m2m_put(vpu->m2m_dev);
++}
++
++static int hantro_probe(struct platform_device *pdev)
++{
++	const struct of_device_id *match;
++	struct hantro_dev *vpu;
++	int ret;
++
++	vpu = devm_kzalloc(&pdev->dev, sizeof(*vpu), GFP_KERNEL);
++	if (!vpu)
 +		return -ENOMEM;
-+	vpu->cores[vpu->num_cores++] = vpu;
 +
- 	ret = hantro_hw_init(vpu);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c b/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
-index 61621b1be8a2..f7550470b43d 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu2_hw_jpeg_enc.c
-@@ -131,7 +131,7 @@ rockchip_vpu2_jpeg_enc_set_qtable(struct hantro_dev *vpu,
++	vpu->dev = &pdev->dev;
++	vpu->pdev = pdev;
++	mutex_init(&vpu->vpu_mutex);
++	spin_lock_init(&vpu->irqlock);
++
++	match = of_match_node(of_hantro_match, pdev->dev.of_node);
++	vpu->variant = match->data;
++
++	ret = hantro_disable_multicore(vpu);
++	if (ret)
++		return ret;
++
++	/*
++	 * Support for nxp,imx8mq-vpu is kept for backwards compatibility
++	 * but it's deprecated. Please update your DTS file to use
++	 * nxp,imx8mq-vpu-g1 or nxp,imx8mq-vpu-g2 instead.
++	 */
++	if (of_device_is_compatible(pdev->dev.of_node, "nxp,imx8mq-vpu"))
++		dev_warn(&pdev->dev, "%s compatible is deprecated\n",
++			 match->compatible);
++
++	ret = hantro_hw_init(vpu);
++	if (ret)
++		return ret;
++
++	ret = v4l2_device_register(&pdev->dev, &vpu->v4l2_dev);
++	if (ret) {
++		dev_err(&pdev->dev, "Failed to register v4l2 device\n");
++		goto err_hw_cleanup;
++	}
++	platform_set_drvdata(pdev, vpu);
++
++	ret = hantro_register_devices(vpu);
++	if (ret)
++		goto err_v4l2_unreg;
++
++	return 0;
++
+ err_v4l2_unreg:
+ 	v4l2_device_unregister(&vpu->v4l2_dev);
+-err_clk_unprepare:
+-	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
+-err_pm_disable_assert_reset:
+-	pm_runtime_dont_use_autosuspend(vpu->dev);
+-	pm_runtime_disable(vpu->dev);
+-	reset_control_assert(vpu->resets);
+-	return ret;
+-err_pm_disable:
+-	pm_runtime_dont_use_autosuspend(vpu->dev);
+-	pm_runtime_disable(vpu->dev);
++err_hw_cleanup:
++	hantro_hw_cleanup(vpu);
+ 	return ret;
+ }
  
- int rockchip_vpu2_jpeg_enc_run(struct hantro_ctx *ctx)
- {
--	struct hantro_dev *vpu = ctx->dev;
-+	struct hantro_dev *vpu = ctx->core;
- 	struct vb2_v4l2_buffer *src_buf, *dst_buf;
- 	struct hantro_jpeg_ctx jpeg_ctx;
- 	u32 reg;
-@@ -188,7 +188,7 @@ int rockchip_vpu2_jpeg_enc_run(struct hantro_ctx *ctx)
+@@ -1281,16 +1332,9 @@ static void hantro_remove(struct platform_device *pdev)
  
- void rockchip_vpu2_jpeg_enc_done(struct hantro_ctx *ctx)
- {
--	struct hantro_dev *vpu = ctx->dev;
-+	struct hantro_dev *vpu = ctx->core;
- 	u32 bytesused = vepu_read(vpu, VEPU_REG_STR_BUF_LIMIT) / 8;
- 	struct vb2_v4l2_buffer *dst_buf = hantro_get_dst_buf(ctx);
+ 	v4l2_info(&vpu->v4l2_dev, "Removing %s\n", pdev->name);
  
-diff --git a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-index 02673be9878e..f1f7f95b2652 100644
---- a/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-+++ b/drivers/media/platform/verisilicon/rockchip_vpu_hw.c
-@@ -488,7 +488,7 @@ static void rockchip_vpu2_dec_reset(struct hantro_ctx *ctx)
+-	media_device_unregister(&vpu->mdev);
+-	hantro_remove_dec_func(vpu);
+-	hantro_remove_enc_func(vpu);
+-	media_device_cleanup(&vpu->mdev);
+-	v4l2_m2m_put(vpu->m2m_dev);
++	hantro_unregister_devices(vpu);
+ 	v4l2_device_unregister(&vpu->v4l2_dev);
+-	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
+-	pm_runtime_dont_use_autosuspend(vpu->dev);
+-	pm_runtime_disable(vpu->dev);
+-	reset_control_assert(vpu->resets);
++	hantro_hw_cleanup(vpu);
+ }
  
- static void rockchip_vpu2_enc_reset(struct hantro_ctx *ctx)
- {
--	struct hantro_dev *vpu = ctx->dev;
-+	struct hantro_dev *vpu = ctx->core;
- 
- 	vepu_write(vpu, VEPU_REG_INTERRUPT_DIS_BIT, VEPU_REG_INTERRUPT);
- 	vepu_write(vpu, 0, VEPU_REG_ENCODE_START);
+ static int hantro_runtime_resume(struct device *dev)
 
 -- 
 2.55.0
