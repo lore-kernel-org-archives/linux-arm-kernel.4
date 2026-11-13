@@ -2,123 +2,116 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3076D606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:05:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F20DD606F933
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 12:06:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1ebq01vZ;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=cxxqjDJ7
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hj46hzfF;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=SgK6q3gB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:CC:To:In-Reply-To:References
-	:Message-ID:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=cu0W+xYu8Ur8iREfOVKM1Sg6ts8WzrHN5Mt/1Du8ils=; b=1ebq01vZ5QbYUm
-	CLFCKwX5/2k3XvZhTGyneLraD5GKp9E6wu+FacB6UEGEpxF8y0/x8Vq7aDWk3hAEw4nugU42QIwph
-	eFkY+47uqgUDA0OejhhgQVTYAzHl73o2e5PnP3RUpN/2MqpqpFrYPnjYAVzGHy/lfe7mPEu6wnIiF
-	l7bSAv/EzExtAAjt1nMLQKKNzcysxWMnAk+4abZJM+rkUF1QVlkMCfMFSzPAvNhyrjZtbgjHWz09I
-	GhZCnezf0GIRwoUkdCeM81PN8PFSr7nT5b+ysMrxBdccFgm6Dl5+BisFTJ6pwfMbREvy2jssUPCyU
-	U/stkzQXaBNMWks2eVnQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rrZ72aMFXIt9J0eJiunU6ye5nEAGfTC6WD38knv82lM=; b=hj46hzfFq8+IqHr+3UWwXlL1FQ
+	KZvYAtXVGwA8mGKflNdJ7P6bhrZgeCkpcNNCcGcVADF/QTFUpJAGcf6ahXORT3xFDpRP8VY1N6QCG
+	72QyYQ8bduGIlmlLRNI+jsVYG0/SN3/cna0LtoR3x1QCvG6Go7yAuhsolvp1y8LX9QrxP7qyDtdTN
+	nAI/+GcY5D+J/sDw4xBJbDgUrC/NI/nMkjNlQkuStb7EA5j9CZtu3yvbrVeN8BDR9Exe4O9SZvxrp
+	XR+I+wz82bBS18q5Nx/2qIM27VMQuxY1gveu9ij2RUP4lIvlI3/xbcdIHz91hCTwFo6cczpWJBf/B
+	ZnNDsT/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRq1V-0000000Ce5W-442S;
-	Fri, 13 Nov 2026 12:04:53 +0000
-Received: from mail-northcentralusazlp170120005.outbound.protection.outlook.com ([2a01:111:f403:c105::5] helo=CH5PR02CU005.outbound.protection.outlook.com)
+	id 1xRq38-0000000CeRg-3GPL;
+	Fri, 13 Nov 2026 12:06:34 +0000
+Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRq1T-0000000Ce4i-2TRH
+	id 1xRq33-0000000CeQO-3RTr
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 12:04:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rgQJZyeaINvO0RGWRtJ66ftqYt/TFcsvox4YCEIq+9sqeQYvBOJMx/TgIuSvTZNB9OHrWKSbwYdnGScZIGh4LB18DJi/ChmbSruR/8808VePEswNiGc4ALHG3w0C/gFYBs8XHPKRuBTuLqUHbJCb83SKZ/RHRtGJsk+1I6g1R4/VKLeqAJsvTdXwT+idmbZ6hTbmSlHD/QbD07Xwi/q49rlvY7W2/LWvYg1moDFFduSKbQPld1EXfEql2lrR24au3omhyexj9R2ND9wVDKNgNh5NZDPWzzMlv397xA8qQ7/E9vVkrclGVKEzczCdVwcuP5RTpnSZIWARMC6fCZBpeg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cu0W+xYu8Ur8iREfOVKM1Sg6ts8WzrHN5Mt/1Du8ils=;
- b=MoCiBfDSPiJcImn1spSsun7VYiOgFOD3KXDF4HLpB9vFckAXjlGNfePDoM+Jg8gMrcEeiZM5WahCdB2mvOH5s7u2IIekrrcn4M2MJ+sFhbpcUGUGkPZEiaJJ4+Z+pRLa3YBwGC6ex4xbBP9Ed5oRh7pW3+7cLzXNiuMO48+GHAm6ZCNyERT4KizmVWq1uP+b0vt1+Hrnf2CP2loXuLOMn8lnxG1Iybd0IXK35IA3FOGvCyDKOK4E/XlILk4kFhZWLEYIlSCDHV+fqRBjJ56vbF8flMqqI6S/a/I4wu1m/wwRull/PAiAmAJ51aGG5fbTA0bU81NqunwJ1vttBNExHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cu0W+xYu8Ur8iREfOVKM1Sg6ts8WzrHN5Mt/1Du8ils=;
- b=cxxqjDJ7+glqvduoI8dToV8TGE9mZXhsQ/O0JfZDc90gnW5pXG8v3Az6fDbBPGS59glxnk/eUgZMeVe7VMeeET2Y+Bqi13H+ysGVKvia8tSCjqF9mUYutLXUd0jIzkQzfgR4xL7o2pEwWimK2AX3U7QEhT8Z26k39eE0hWeSGuY=
-Received: from CH2PR20CA0017.namprd20.prod.outlook.com (2603:10b6:610:58::27)
- by CH2PR12MB4248.namprd12.prod.outlook.com (2603:10b6:610:7a::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
- 2026 12:01:42 +0000
-Received: from BL2PEPF000352CC.namprd02.prod.outlook.com
- (2603:10b6:610:58:cafe::1f) by CH2PR20CA0017.outlook.office365.com
- (2603:10b6:610:58::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Fri, 13
- Nov 2026 12:01:40 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL2PEPF000352CC.mail.protection.outlook.com (10.167.249.134) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Fri, 13 Nov 2026 12:01:40 +0000
-Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Thu, 12 Nov
- 2026 12:47:27 -0600
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by satlexmb08.amd.com
- (10.181.42.217) with Microsoft SMTP Server id 15.2.2562.53 via Frontend
- Transport; Thu, 12 Nov 2026 12:47:22 -0600
-From: Srinivas Neeli <srinivas.neeli@amd.com>
-Date: Fri, 13 Nov 2026 00:16:47 +0530
-Subject: [PATCH net-next v4 3/8] net: xilinx: tsn: add endpoint MAC driver
- skeleton
+	Fri, 13 Nov 2026 12:06:33 +0000
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6b587538a37so1620346a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 04:06:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794571588; cv=none;
+        d=google.com; s=arc-20260327;
+        b=JqGYX4WVBDNHhqfO8Dq43pR4QCWrppbZY8NsMx6DvQlV5/uhkFloWA/CLbnzYEvtRc
+         iBvbdfQRGljANeCg2f6nySwxgeoVZkMpxHwXFJ7lEIs6sRwSX3Fx0nqwngEeAlzM5HFf
+         3yRYReI3XQFXLt9FdvrsNThFJyEFe1HOZdyskoDecJngpwR3BH1IoCn3LAyqnkUjc7ta
+         Bwp84f1zF5iGpqmt8836YHh3XjFJ7HG5s71EmEzZQOP0AjWDwGsUaE0hhObLBSu3sJmJ
+         0k0jWlxvt1KykIGI0YUvkW5veqJCkKsCViMKovHMD0egpHAtXHQfNfv8gqLjIFfbYtG3
+         0cAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=rrZ72aMFXIt9J0eJiunU6ye5nEAGfTC6WD38knv82lM=;
+        fh=VPcj08olkE2ESiEbglURx0YI/yzQe+7c/dcx2msEHSY=;
+        b=aEwde1sHw0QvEAUqP9tXZ/+5GixQ0791PzSkSFlP8xSDU64AmNewSD+N764W+jjVTR
+         sMK/gJjaLx8KZs61V27j4opqBAKAAn/+PKSF7CzpyGtjzB0oC9MB8+kLjwgYKAmLbRZa
+         fRS0CsQqAjC9La62y+AoiCH6SNudnbI/9f1Nn0btXRMhOHrcER+RDNPpXvFgJ7rtuCK9
+         T51eYzj0/kbybF16/If5arG1tikTyHNNvnVoYm9FGWgq/nD2Sc/ChECovtF2KGc76CYr
+         KRxMSyiklmQ3NDSummZiJQh6Tvt6RKIW9ZnAjINOrM5mH8jMPBf2Csw4CMHVK1lW2GuR
+         4dlQ==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1794571588; x=1795176388; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=rrZ72aMFXIt9J0eJiunU6ye5nEAGfTC6WD38knv82lM=;
+        b=SgK6q3gB+y8fuQptujGmBCPDzS3jKFo64Vh8Em1J1IE0cx/RHwrb/LPMZUPnk6uvYJ
+         fk9IottVgIXibQPMbVVUzPQZnHe7ESgOU/ywfODWr4rh0I6itVdoPeX+X7B9VKGJYUKU
+         yYfESZuGtTQABy8npus/XNwd2A1sDclhyxmTGOnO1sy0HFWCgX1Yg5lzW7XNZyX/zhxx
+         iWrqCahO1L0OaQXPIHRaOsk7/gxrmkvRtEXuzhdq7VgVyd7YsXOpIhBrX2LCMq5Z7q9A
+         ffBzf0GcfnP2LV4QpUZRMKlSg/mr6nL0pz4sLmbHppWYgE4Mh7lIH2gNfl0rLim8diEx
+         usMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794571588; x=1795176388;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=rrZ72aMFXIt9J0eJiunU6ye5nEAGfTC6WD38knv82lM=;
+        b=GSz9O+w3gtFOIhKA2HHP78oTkSATTMXOI4ML5hLw5whLCQBE21OYtixXxvgFDIqN+a
+         XpWVt0N2GEUAj9cKKuaOwBZvwIq3YjJ5uts4JH4yJxKpPnRMif4bq30Pz5Eljfjnq9Eq
+         GVYZtGt++7jmUmXLJDoyJCiZXKYp+1QFhjs0PSxKHuR1gk5JRODdBfow8v66vUX9nk88
+         s074jhqTrFaThNFOET+XTgK/31SfvFlFSmZwpvJ686c/pg8Xi1Glch+7E35heT4km26A
+         0aF3Za7Tr8FyH7YpNr+nmC2oylDNCgPHr7lThGNf+cnk6xSInaGZ6y36si1mnOOqvCVN
+         PPyg==
+X-Forwarded-Encrypted: i=1; AL+hErHXvVTRkaY/v8Z/soVKsI5mBaBPogH+vQ2BhyBOOmRbsY2yaZWtWrFW/9JlaXWfgKzS3mzkzgrym0nYQhRGcvoP@lists.infradead.org
+X-Gm-Message-State: APuU4Z+7UzL7/l5FUCobNbDmH7h3PrmhXpVeaaXtDN7ipoziHgHhhXkZ
+	GdCxG0f3dIfe2Bzcb1TIx3xXlJP+pkOmHm2ifA+w84ue2h81/6889a/rkUM8SfRoU8vqTbFcq2W
+	vO9bh9r7qS+/fuA9pTx4bwwSkfszQwzF2FfTCBCc+kg==
+X-Gm-Gg: AYBFou0tPYuKOtSQsFrXB8xn1cM3pF1pG1SdCL0KtvuM8aCemS1J/u9onU+af+L86OJ
+	0D398w4II0gj3reSSGnJT2KZgyHHXz609gyuXHspFKQe2yGzg9t5yn1DmXK2+ww+t2caXqAIbac
+	BC70JU4+RMz69O9zh2KacraoNgcJiYkWsS/dq441e0bDxz+uepMpjhAOUResBtfaiRJzviH60GD
+	17fRHNENZ636uK39GTHFEZhkRVdnUsuR36ouOWNRTgpClb+PtAJg19ggF4OyCCJa3TV7G0Zm06C
+	xDAYB6tleYhnuSbJtEDPFK+MNbzbvvQh1ZeoLFKP/ifoypiULup9l5vBxd4gD7NB1GuDHfDugr2
+	iNtVV6OsJ+xgtHSpHL46d9T3wye3t9dWPYyKmOJUteC1l86ImQ4usW50cnWuPUtDUvwsZqw==
+X-Received: by 2002:a05:6402:2350:b0:6b7:6f9:2ef7 with SMTP id
+ 4fb4d7f45d1cf-6b7c0bc5f30mr1834438a12.11.1794571587568; Fri, 13 Nov 2026
+ 04:06:27 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261113-patches_v2_external-v4-3-56bb26f042a4@amd.com>
-References: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
-In-Reply-To: <20261113-patches_v2_external-v4-0-56bb26f042a4@amd.com>
-To: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>, Andrew Lunn
-	<andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>, "Michal
- Simek" <michal.simek@amd.com>, Sebastian Andrzej Siewior
-	<bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, "Steven
- Rostedt" <rostedt@goodmis.org>, Eric Dumazet <edumazet@kernel.org>, "Eric
- Dumazet" <edumazet@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-rt-devel@lists.linux.dev>, Srinivas Neeli <srinivas.neeli@amd.com>,
-	<git@amd.com>, <neelisrinivas18@gmail.com>
-X-Mailer: b4 0.16.0
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL2PEPF000352CC:EE_|CH2PR12MB4248:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08ffa4b1-593a-487a-2315-08df417de0a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700016|23010399003|22082099003|18002099003|921020|11063799006|261102123227099003|261026140227099003|261028144727099003|261026121527099003|261022075727099003|261022105027099003|261021121427099003|56012099006|261021123027099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: QaDJiIejak70rMsheAbneAWD8NVfhCQHiwMCY466E/j8w/5i7UWSqkJV3UiWQEMR4ovx70wuSyguh9HwMAsmLWO4fhtoCuaErev1pV+7hDX1KfrtM4LTzB8zkplFKkNG9uq/O4OBP6t4Pn90gqLZPoXhOjzLjjraHJreaxZ9h6HRS2fJ7aBUnoqvEzatXvI1mYK23Y6XgUQ1GCfukxrSmwVswa0hVVaHwZNlwxHAdfBJCJF+f8De4tVYbSWrZYO9rIZu1FmXoVYO+kq5nMznz5Nbq7MVQWLAQxs0zf1bfKRGA/4OWMKyWVTNgl2Pf6TwDWGpaf0CBQKvhDlKWSY1EXX8f2EmcBkBr/J1jryy8CnkG2qpB+UKcQt4d1U5opAQpjHFmxAAC82dTutb3G9d3eU/ttXtTc4SRKq1vpZjKWYZrLjZdn9+s09hBEe37tswnCxib6TJ+t2lW+W0ZIXcznX/oeEPJdmuqIwugwX1bBehqZWRxByUSo7l0i0VAaQ0CwuqE5KeA3R9xWuGDhOIhRRaZtMbOel/Ky/cvlUGavMkDKG+OKxH/+dNsX+GeNEpI1bQSySLSe4QIQWhMLFCWpWlNi3Bz3uge9toCJwhXiFCk0sJ1RCa8Qg+dfk7vOYhCkufjt5yupdAYznEn2AXcq36vEbkNsMLRtRwWoCCNg3hNM9OdcQDRNoic2r5wK5aLlvaxYAn1lA3KMx6mM227OcyWO/NPoTg+/h/ghVqRKqn6b0JFK1iVw32T0ABYzTU
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700016)(23010399003)(22082099003)(18002099003)(921020)(11063799006)(261102123227099003)(261026140227099003)(261028144727099003)(261026121527099003)(261022075727099003)(261022105027099003)(261021121427099003)(56012099006)(261021123027099003)(261009223027099003)(10067099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: haoWTkl4kgFjiLGwtz8U/4HD6MM9loVOLMQMNtvBQ0IiYZt+6jtgc+clBaMEV6lCC5da6cFnHsgPSSWhcpcuG+4AL2DWMxoltAI35+Z0hJmN7jLeduw3IlGR8tTAZKdcHo+JWkGkmwuGi1xxQvm8jtPQoJNmmNwjirrtREujKE2zQdNMIVwBNahDx1lan4o7gBxw29NXtfONksWrW/roDFOdBu6JBTc+lDY3+lw3xltc0czN2DBJ0kkYzAcIEn9M/WVep1Pr+b24z+6iYnk2Vky6Mt6wPM1EbNy9g8IZnbV1jZLHpLqVJrCep9i0HyVl9UxsyIgbapSNVfPIPPkEIeJwmJ0s5CZ6zlaemUV2UnaFdQyA//6yiy9wHL4k4Qc71+mfeOot/8fs60Lunm4SBHi/2n3wRS0zqw/DIWeRPyI5h6Pn3YnTRBbHHKfkW6S+
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 12:01:40.4349
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08ffa4b1-593a-487a-2315-08df417de0a5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2PEPF000352CC.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4248
+References: <CGME20261113104850epcas5p4ef9292af100475b1f12a2601bf5e1a84@epcas5p4.samsung.com>
+ <20261113110612.3265841-1-raghav.s@samsung.com> <20261113110612.3265841-8-raghav.s@samsung.com>
+In-Reply-To: <20261113110612.3265841-8-raghav.s@samsung.com>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 13 Nov 2026 12:06:15 +0000
+X-Gm-Features: AclHuK_PX8mgp8O_dlqBWaitzb8guO9jt4s7fw--0eo5yJf4LliJ6Zz_ShncF-Q
+Message-ID: <CADrjBPoAVMdxgU4P+shh+9O5rGJp+m3sRQMDd2c-7zbJ8qhiBQ@mail.gmail.com>
+Subject: Re: [PATCH v3 07/14 RESEND] clk: samsung: exynos8855: add block top
+ and peric clock support
+To: Raghav Sharma <raghav.s@samsung.com>
+Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
+	alim.akhtar@samsung.com, sboyd@kernel.org, bmasney+clk@redhat.com, 
+	jbrunet+clk@baylibre.com, robh@kernel.org, conor+dt@kernel.org, 
+	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, is.gandhi@samsung.com, ts.amit@samsung.com, 
+	pokala.reddy@samsung.com
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_040451_705394_46C5BD6D 
-X-CRM114-Status: GOOD (  27.67  )
+X-CRM114-CacheID: sfid-20261113_040631_981861_1E4AAB00 
+X-CRM114-Status: GOOD (  17.56  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -130,254 +123,291 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The TSN Endpoint MAC owns the IP's host-side MCDMA data path and is the
-netdev physically wired to the CPU. The DSA switch needs this netdev to
-exist as its conduit.
+Hi Raghav,
 
-Add a platform driver (compatible "xlnx,tsn-ep-mac") for the endpoint.
-Register the netdev with the standard eth%d name, set its MAC address, and
-provide minimal netdev and ethtool ops. ndo_open starts the queues and
-ndo_start_xmit drops frames.
+Nice to see you got the auto clock mode working on this SoC. Great
+Work! See some inline comments below
 
-Co-developed-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
-Signed-off-by: Nagadheeraj Rottela <nagadheeraj.rottela@amd.com>
-Signed-off-by: Srinivas Neeli <srinivas.neeli@amd.com>
+On Fri, 13 Nov 2026 at 10:53, Raghav Sharma <raghav.s@samsung.com> wrote:
+>
+> Register compatible and cmu_info data to support clocks.
+> CMU_TOP & CMU_PERIC, these provide clocks for TOP & PERIC
+>
+> Co-developed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Signed-off-by: Alim Akhtar <alim.akhtar@samsung.com>
+> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+> ---
+>  drivers/clk/samsung/Makefile         |    1 +
+>  drivers/clk/samsung/clk-exynos8855.c | 1130 ++++++++++++++++++++++++++
+>  2 files changed, 1131 insertions(+)
+>  create mode 100644 drivers/clk/samsung/clk-exynos8855.c
+>
+> diff --git a/drivers/clk/samsung/Makefile b/drivers/clk/samsung/Makefile
+> index b3e994bd525d..99c2c304ff48 100644
+> --- a/drivers/clk/samsung/Makefile
+> +++ b/drivers/clk/samsung/Makefile
+> @@ -29,6 +29,7 @@ obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK) += clk-exynos8895.o
+>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  += clk-exynos990.o
+>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  += clk-exynosautov9.o
+>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  += clk-exynosautov920.o
+> +obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  += clk-exynos8855.o
+>  obj-$(CONFIG_EXYNOS_ARM64_COMMON_CLK)  += clk-gs101.o
+>  obj-$(CONFIG_EXYNOS_ACPM_CLK)          += clk-acpm.o
+>  obj-$(CONFIG_S3C64XX_COMMON_CLK)       += clk-s3c64xx.o
+> diff --git a/drivers/clk/samsung/clk-exynos8855.c b/drivers/clk/samsung/clk-exynos8855.c
+> new file mode 100644
+> index 000000000000..dcf58f2459b0
+> --- /dev/null
+> +++ b/drivers/clk/samsung/clk-exynos8855.c
+> @@ -0,0 +1,1130 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2026 Samsung Electronics Co., Ltd.
+> + * Author: Raghav Sharma <raghav.s@samsung.com>
+> + *
+> + * Common Clock Framework support for Exynos 8855 SoC.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include <dt-bindings/clock/samsung,exynos8855.h>
+> +
+> +#include "clk.h"
+> +#include "clk-exynos-arm64.h"
+> +
+> +/* NOTE: Must be equal to the last clock ID increased by one */
+> +#define CLKS_NR_TOP                     (CLKCMU_DOUT_G3D_HTU + 1)
+> +#define CLKS_NR_PERIC                   (CLK_GOUT_USI_PERIC + 1)
+> +
+> +#define EXYNOS8855_PERIC_GATE_DBG_OFFSET      0x2024
+> +#define EXYNOS8855_TOP_GATE_DBG_OFFSET      0x20A0
+> +
+> +#define EXYNOS8855_DRCG_EN_OFFSET       0x104
+> +#define EXYNOS8855_MEMCLK_OFFSET        0x108
+> +
+> +/* ---- CMU_TOP --------------------------------------------------------- */
+> +
+> +/* Register Offset definitions for CMU_TOP (0x13900000) */
+> +/* PLL */
 
----
-Changes in v4:
-- Use alloc_etherdev() so the standard eth%d name is registered with
-  NET_NAME_ENUM.
+IIUC in clk-pll.c you are using PLL_LOCKTIME_PLL_SHARED* - 4 for the
+PLL_CON8 register offset? I was expecting to see those registers
+defined here
 
-Changes in v3:
-- Register the netdev with the standard eth%d name (NET_NAME_UNKNOWN) instead
-  of a custom "ep%d".
+> +#define PLL_LOCKTIME_PLL_SHARED0                            0x8
+> +#define PLL_LOCKTIME_PLL_SHARED1                            0x10
+> +#define PLL_LOCKTIME_PLL_SHARED2                            0x18
+> +#define PLL_LOCKTIME_PLL_MMC                                 0x20
+> +#define PLL_LOCKTIME_PLL_SHARED3                            0x28
+> +#define PLL_LOCKTIME_PLL_SHARED4                            0x38
+> +#define PLL_LOCKTIME_PLL_MIF_SWITCH                         0x30
+> +#define PLL_CON0_PLL_MMC                                    0x1c0
+> +#define PLL_CON3_PLL_MMC                                    0x1cc
+> +#define PLL_CON0_PLL_SHARED0                                0x100
+> +#define PLL_CON3_PLL_SHARED0                                0x10c
+> +#define PLL_CON0_PLL_SHARED1                                0x140
+> +#define PLL_CON3_PLL_SHARED1                                0x14c
+> +#define PLL_CON0_PLL_SHARED2                                0x180
+> +#define PLL_CON3_PLL_SHARED2                                0x18c
+> +#define PLL_CON0_PLL_SHARED3                                0x200
+> +#define PLL_CON3_PLL_SHARED3                                0x20c
+> +#define PLL_CON0_PLL_SHARED4                                0x280
+> +#define PLL_CON3_PLL_SHARED4                                0x28c
+> +#define PLL_CON0_PLL_MIF_SWITCH                             0x240
+> +#define PLL_CON3_PLL_MIF_SWITCH                             0x24c
+> +
+> +/* MUX & DIV */
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_AUD_CPU                   0x1000
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_AUD_NOC                   0x1004
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL0_SWITCH             0x1008
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL0_NOCP               0x100c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_DSU_SWITCH                0x1010
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL1_SWITCH             0x1014
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK0                  0x1018
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK1                  0x101c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK2                  0x1020
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK3                  0x1024
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CIS_CLK4                  0x1028
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_TOP             0x102c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST                 0x1030
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_CPU             0x1034
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_MIF0            0x1038
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CSIS_NOC                  0x103c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CSTAT_NOC                 0x1040
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CSTAT_BYRP                0x1044
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_DPU_NOC                   0x1048
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_G3DCORE_SWITCH            0x104c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_M2M_NOC                   0x1058
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_M2M_JPEG                  0x105c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_M2M_GDC                   0x1060
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF1_NOCP                 0x1064
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_MFC_NOC                   0x1068
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF0_NOCP                 0x106c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_NOCL0_NOC                 0x1070
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_NOCL1A_NOC                0x1074
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIC_NOC                 0x1078
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIC_MMC_CARD            0x107c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIC_IP                  0x1080
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_AUD_CPU                   0x1800
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_AUD_NOC                   0x1804
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL0_SWITCH             0x1808
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL0_NOCP               0x180c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_DSU_SWITCH                0x1810
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL1_SWITCH             0x1814
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK0                  0x1818
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK1                  0x181c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK2                  0x1820
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK3                  0x1824
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CIS_CLK4                  0x1828
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_TOP             0x182c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST                 0x1830
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CSIS_NOC                  0x1834
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_CPU             0x1838
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_MIF0            0x183c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CSTAT_NOC                 0x1840
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CSTAT_BYRP                0x1844
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_DPU_NOC                   0x1848
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_G3DCORE_SWITCH            0x184c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_M2M_NOC                   0x1858
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_M2M_JPEG                  0x185c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_M2M_GDC                   0x1860
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_MIF1_NOCP                 0x1864
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_MFC_NOC                   0x1868
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_MIF0_NOCP                 0x186c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_NOCL0_NOC                 0x1870
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_NOCL1A_NOC                0x1874
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIC_NOC                 0x1878
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIC_MMC_CARD            0x187c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIC_IP                 0x1880
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIS_GIC                 0x10c4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_PERIS_NOC                 0x10c8
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIS_GIC                 0x18c0
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_PERIS_NOC                 0x18c4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_HSI_NOC                   0x1050
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_HSI_UFS_EMBD              0x1054
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_HSI_NOC                   0x1850
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_HSI_UFS_EMBD              0x1854
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_RGBP_NOC                  0x1084
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_YUVP_NOC                  0x1090
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_ALIVE_NOC                 0x1094
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CSIS_DCPHY                0x1098
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CSIS_OIS                  0x109c
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_ICPU_NOCD_0               0x10a0
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_ICPU_NOCD_1               0x10a4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_GNPU0_NOC                 0x10ac
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_GNPU0_XMAA                0x10b0
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_SDMA_NOC                  0x10b4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_DNC_HTU                   0x10b8
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_DNC_NOC                   0x10bc
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_PSP_NOC                   0x10c0
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_G3D_NOCP                  0x10cc
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_USI_NOC                   0x10d0
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_USI_IP                    0x10d4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL0_DBG_NOC            0x10d8
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_BOOST_RCO                 0x10dc
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF0_SWITCH               0x10e0
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_MIF1_SWITCH               0x10e4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_NOCL1B_NOC                0x10e8
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CPUCL2_SWITCH             0x10ec
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CMU_BOOST_MIF1            0x10f0
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_CSTAT_MCSC                0x10f4
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_G3D_HTU                   0x10f8
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_RGBP_NOC                  0x1884
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_YUVP_NOC                  0x1890
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_ALIVE_NOC                 0x1894
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CSIS_DCPHY                0x1898
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CSIS_OIS                  0x189c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_ICPU_NOCD_0               0x18a0
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_ICPU_NOCD_1               0x18a4
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_GNPU0_NOC                 0x18a8
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_GNPU0_XMAA                0x18ac
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_SDMA_NOC                  0x18b0
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_DNC_HTU                   0x18b4
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_DNC_NOC                   0x18b8
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_PSP_NOC                   0x18bc
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_G3D_NOCP                  0x18c8
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_USI_NOC                   0x18cc
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_USI_IP                    0x18d0
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL0_DBG_NOC            0x18d4
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_NOCL1B_NOC                0x18d8
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CPUCL2_SWITCH             0x18dc
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CMU_BOOST_MIF1            0x18e0
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_CSTAT_MCSC                0x18e4
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_G3D_HTU                   0x18e8
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_USB_NOC                   0x1088
+> +#define CMU_TOP_CLK_CON_MUX_CLKCMU_USB_USB20DRD              0x108c
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_USB_NOC                   0x1888
+> +#define CMU_TOP_CLK_CON_DIV_CLKCMU_USB_USB20DRD              0x188c
+> +#define CMU_TOP_CONTROLLER_OPTION0_CMU_CTRL                  0x800
+> +
+> +static const unsigned long top_clk_regs[] __initconst = {
+> +       PLL_LOCKTIME_PLL_MMC,
 
-Changes in v2:
-- Name the netdev ep%d with NET_NAME_ENUM instead of a fixed "ep", so a second
-  IP instance does not clash on register_netdev(). The %d enumeration is what
-  NET_NAME_ENUM describes, and it matches the eth%d naming in net/dsa/user.c.
-- Drop the mapped but unused register window (ep->regs and its ioremap).
-  It was intended for QBV support, which is not part of this series, so the
-  endpoint driver does not use it. The mapping will be re-added when QBV
-  support lands.
-- Use dev_kfree_skb_any() on the drop path, not dev_kfree_skb().
-- Drop the mod_devicetable.h include, platform_device.h already pulls it in.
----
- drivers/net/ethernet/xilinx/tsn/Makefile          |   2 +-
- drivers/net/ethernet/xilinx/tsn/xilinx_tsn.h      |  15 +++
- drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c   | 143 ++++++++++++++++++++++
- drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c |   3 +
- 4 files changed, 162 insertions(+), 1 deletion(-)
+and also here
 
-diff --git a/drivers/net/ethernet/xilinx/tsn/Makefile b/drivers/net/ethernet/xilinx/tsn/Makefile
-index 6f99226f3dc8..5886828b386f 100644
---- a/drivers/net/ethernet/xilinx/tsn/Makefile
-+++ b/drivers/net/ethernet/xilinx/tsn/Makefile
-@@ -1,2 +1,2 @@
- obj-$(CONFIG_XILINX_TSN) += xilinx_tsn.o
--xilinx_tsn-y := xilinx_tsn_main.o
-+xilinx_tsn-y := xilinx_tsn_main.o xilinx_tsn_ep.o
-diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn.h b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn.h
-new file mode 100644
-index 000000000000..b0757e22d1fd
---- /dev/null
-+++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * AMD/Xilinx TSN Endpoint Ethernet MAC driver, shared definitions.
-+ *
-+ * Copyright (C) 2026 Advanced Micro Devices, Inc.
-+ */
-+
-+#ifndef _XILINX_TSN_H
-+#define _XILINX_TSN_H
-+
-+#include <linux/platform_device.h>
-+
-+extern struct platform_driver xlnx_tsn_ep_driver;
-+
-+#endif /* _XILINX_TSN_H */
-diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-new file mode 100644
-index 000000000000..b6458bb0ba0f
---- /dev/null
-+++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_ep.c
-@@ -0,0 +1,143 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * AMD/Xilinx TSN Endpoint MAC driver.
-+ *
-+ * Copyright (C) 2026 Advanced Micro Devices, Inc.
-+ */
-+
-+#include <linux/etherdevice.h>
-+#include <linux/ethtool.h>
-+#include <linux/if_ether.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/netdevice.h>
-+#include <linux/of.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+#include <linux/string.h>
-+#include <linux/types.h>
-+
-+#include "xilinx_tsn.h"
-+
-+#define DRIVER_NAME			"xilinx_tsn_ep"
-+
-+/**
-+ * struct xlnx_tsn_ep - EP MAC private data, embedded in net_device priv area
-+ * @ndev: the conduit netdev
-+ * @dev: backing device
-+ */
-+struct xlnx_tsn_ep {
-+	struct net_device *ndev;
-+	struct device *dev;
-+};
-+
-+static netdev_tx_t ep_start_xmit(struct sk_buff *skb, struct net_device *ndev)
-+{
-+	dev_kfree_skb_any(skb);
-+	DEV_STATS_INC(ndev, tx_dropped);
-+	return NETDEV_TX_OK;
-+}
-+
-+static int ep_open(struct net_device *ndev)
-+{
-+	netif_tx_start_all_queues(ndev);
-+
-+	return 0;
-+}
-+
-+static int ep_stop(struct net_device *ndev)
-+{
-+	netif_tx_disable(ndev);
-+
-+	return 0;
-+}
-+
-+static void ep_get_drvinfo(struct net_device *ndev, struct ethtool_drvinfo *ed)
-+{
-+	strscpy(ed->driver, DRIVER_NAME, sizeof(ed->driver));
-+}
-+
-+static const struct net_device_ops ep_netdev_ops = {
-+	.ndo_open		= ep_open,
-+	.ndo_stop		= ep_stop,
-+	.ndo_start_xmit		= ep_start_xmit,
-+	.ndo_validate_addr	= eth_validate_addr,
-+	.ndo_set_mac_address	= eth_mac_addr,
-+};
-+
-+static const struct ethtool_ops ep_ethtool_ops = {
-+	.get_drvinfo	= ep_get_drvinfo,
-+};
-+
-+static int xlnx_tsn_ep_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct net_device *ndev;
-+	struct xlnx_tsn_ep *ep;
-+	u8 mac_addr[ETH_ALEN];
-+	int ret;
-+
-+	ndev = alloc_etherdev(sizeof(*ep));
-+	if (!ndev)
-+		return -ENOMEM;
-+
-+	SET_NETDEV_DEV(ndev, dev);
-+	ndev->netdev_ops = &ep_netdev_ops;
-+	ndev->ethtool_ops = &ep_ethtool_ops;
-+	ndev->features = NETIF_F_SG;
-+
-+	ep = netdev_priv(ndev);
-+	ep->ndev = ndev;
-+	ep->dev = dev;
-+
-+	ret = of_get_mac_address(dev->of_node, mac_addr);
-+	if (ret == -EPROBE_DEFER) {
-+		goto err_free_ndev;
-+	} else if (!ret && is_valid_ether_addr(mac_addr)) {
-+		eth_hw_addr_set(ndev, mac_addr);
-+	} else {
-+		eth_hw_addr_random(ndev);
-+		dev_info(dev, "no valid MAC in DT, using random address %pM\n",
-+			 ndev->dev_addr);
-+	}
-+
-+	platform_set_drvdata(pdev, ep);
-+
-+	ret = register_netdev(ndev);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "failed to register net device\n");
-+		goto err_free_ndev;
-+	}
-+
-+	return 0;
-+
-+err_free_ndev:
-+	free_netdev(ndev);
-+	return ret;
-+}
-+
-+static void xlnx_tsn_ep_remove(struct platform_device *pdev)
-+{
-+	struct xlnx_tsn_ep *ep = platform_get_drvdata(pdev);
-+
-+	if (!ep)
-+		return;
-+
-+	unregister_netdev(ep->ndev);
-+	free_netdev(ep->ndev);
-+}
-+
-+static const struct of_device_id xlnx_tsn_ep_of_match[] = {
-+	{ .compatible = "xlnx,tsn-ep-mac" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, xlnx_tsn_ep_of_match);
-+
-+struct platform_driver xlnx_tsn_ep_driver = {
-+	.probe	= xlnx_tsn_ep_probe,
-+	.remove	= xlnx_tsn_ep_remove,
-+	.driver	= {
-+		.name		= DRIVER_NAME,
-+		.of_match_table	= xlnx_tsn_ep_of_match,
-+	},
-+};
-diff --git a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c
-index afe7609c67fb..d33a00dd6d15 100644
---- a/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c
-+++ b/drivers/net/ethernet/xilinx/tsn/xilinx_tsn_main.c
-@@ -15,6 +15,8 @@
- #include <linux/slab.h>
- #include <linux/types.h>
- 
-+#include "xilinx_tsn.h"
-+
- #define TSN_NUM_CLOCKS		6
- 
- /**
-@@ -85,6 +87,7 @@ static struct platform_driver tsn_driver = {
- 
- static struct platform_driver * const tsn_drivers[] = {
- 	&tsn_driver,
-+	&xlnx_tsn_ep_driver,
- };
- 
- static int __init xlnx_tsn_init(void)
+> +       PLL_LOCKTIME_PLL_SHARED0,
+> +       PLL_LOCKTIME_PLL_SHARED1,
+> +       PLL_LOCKTIME_PLL_SHARED2,
 
--- 
-2.43.0
+[..]
 
+> +/* Register CMU_TOP early, as it's a dependency for other early domains */
+> +CLK_OF_DECLARE(exynos8855_cmu_top, "samsung,exynos8855-cmu-top",
+> +              exynos8855_cmu_top_init);
+> +
+> +/* ---- CMU_PERIC --------------------------------------------------------- */
+> +
+> +/* Register Offset definitions for CMU_PERIC (0x15400000) */
+> +#define CMU_PERIC_PLL_CON0_MUX_CLKCMU_PERIC_IP_USER            0x600
+> +#define CMU_PERIC_PLL_CON0_MUX_CLKCMU_PERIC_MMC_CARD_USER      0x610
+> +#define CMU_PERIC_PLL_CON0_MUX_CLKCMU_PERIC_NOC_USER           0x620
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_I2C                    0x1000
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_UART_DBG               0x1004
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI00                  0x1008
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI01                  0x100c
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI02                  0x1010
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI03                  0x1014
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI04                  0x1018
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI09_USI_OIS          0x101c
+> +#define CMU_PERIC_CLK_CON_MUX_CLK_PERIC_USI10_USI_OIS          0x1020
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_NOCP                   0x1800
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_UART_DBG               0x1804
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI00_USI              0x1808
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI01_USI              0x180c
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI02_USI              0x1810
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI03_USI              0x1814
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI04_USI              0x1818
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI09_USI_OIS          0x181c
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI10_USI_OIS          0x1820
+> +#define CMU_PERIC_CLK_CON_DIV_CLK_PERIC_USI_I2C                0x1824
+> +#define CMU_PERIC_CLK_CON_GAT_BLK_PERIC_UID_CMU_PERIC_IPCLKPORT_PCLK    0x2004
+> +#define CMU_PERIC_CLK_CON_GAT_BLK_PERIC_UID_SYSREG_PERIC_IPCLKPORT_PCLK 0x2060
+> +#define CMU_PERIC_CLK_CON_GAT_BLK_PERIC_UID_UART_DBG_IPCLKPORT_PCLK     0x2064
+> +#define CMU_PERIC_CLK_CON_GAT_BLK_PERIC_UID_USI00_USI_IPCLKPORT_PCLK    0x206c
+> +#define CMU_PERIC_CONTROLLER_OPTION0_CMU_CTRL                  0x800
+> +
+
+If you don't define all registers (like QCH, etc.) in the CMUs that
+can be powered off, enabling power domains on this SoC might cause you
+to lose state configured by the bootloader (and quite possibly also
+suffer weird hard to debug timing/clock issues when enabling power
+management).
+
+Since auto clock mode is now used (and QCH registers are used by auto
+mode), I think it makes sense to define all the CMU registers that
+need their state preserved here.
+
+Thanks,
+
+Peter
 
