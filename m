@@ -2,90 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 628F3606A889
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 15:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85B1B606A88F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 15:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=b/GFrTt7;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=pDV01sby
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=mV7lg4JC;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=gME5EJ+n
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=m+BoVytq9UYzJLS/f6D3X7otTb8bTdPeXKJPYAbpP9I=; b=b/GFrTt7U54hgGa242AUeTPNdy
-	UcmdrpARMqhM5Ukhd11WCbLF6EmGlme07w6GFnXz/2iYF6j2kqwzh8GAa8XyhE+qHXQH2OXsTEp+u
-	V/jRYfg5589I4X7OQY3cf94cgy+T0aYjiDsc9DgW+8kr1G+3TTMnB37dpiqhw/EkmVg4y0F7hvR6J
-	bSHfP86EGDpMAhTV/rrfAMfWJ4gU5xi92+7AYj+3rScXqaLM0B3xky6Ul6zgrhmB1MSymvMp9rMqh
-	7naVMNsd7HxiEiYbpZLXOVJPFLVsHMvWmbQwUT8vhF4ucmYpaZlRBY+JLHvXtZtWDTNlc2urReSiq
-	Isl3m7kA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=+Ik0gHsfdd16nhHnjQyqDcxvqmph40nuj+OLJYJgm3k=; b=mV7lg4JCTvpe30
+	iuAxfrQMWL68ZX2OYoom2CsdLOyZ81c8ULVu6LqjwsdoNiAoNXcCALaIeMQ1bNTKeX01MIhiorCsZ
+	Qh19kfLOGyqcpTzNiRjdXnppFpbWaO1Tc7s4I34C5lMl3T6Ao30GN4XyMp+L95jm5nA5FG3URv0iO
+	JZXaoZCOkE+csd2sO/IaJ6J8ewclg1qnjbpVIefNhrlVEmbo6bQrg/261s/jUjbKaHFzk36yu2SOX
+	TONEtnL8WqlMqasX33Ub3gMmwzyCB73lM306/8UhQ2M0m+O+/1bHkHoPOJHTmWielHkPsDf7MQu8N
+	mRu61E/VJQdVEbaGMMqQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtZU-0000000DScX-0SUC;
-	Fri, 13 Nov 2026 15:52:12 +0000
+	id 1xRtZZ-0000000DSeL-0yO4;
+	Fri, 13 Nov 2026 15:52:17 +0000
 Received: from mail-vs1-xe2b.google.com ([2607:f8b0:4864:20::e2b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtZQ-0000000DSc2-3yVz
+	id 1xRtZV-0000000DSd8-2Luf
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 15:52:10 +0000
-Received: by mail-vs1-xe2b.google.com with SMTP id ada2fe7eead31-7cc013095d4so309625137.2
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 07:52:08 -0800 (PST)
+	Fri, 13 Nov 2026 15:52:14 +0000
+Received: by mail-vs1-xe2b.google.com with SMTP id ada2fe7eead31-7a6e560f580so1951597137.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 07:52:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794585127; x=1795189927; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=m+BoVytq9UYzJLS/f6D3X7otTb8bTdPeXKJPYAbpP9I=;
-        b=pDV01sbyySZSwfNbdI+RYqe3E0kHsw4VKGtWuQ7VffNtKaJuLrZkuPyI5sNt70ZPa7
-         5yYzC8aeT0J9K5MLh3XspXkC+5/EmkTt0wwxdDyyeFX68DsnHbcrlzWDO3SxWk5NipHs
-         SJ7QsIRfnWMphotXZsoeln/1+xHxlTymJJPoHNw8D0VWPenDR0HdUYaatkY2CfCR5tAh
-         5zdhl2c3egC1l0UWIJkA0thsyMRGVDr8908xg7KafTDkbb4TsfiBX4hDBcLJAFd9YhNP
-         BMYj1PfTv8pog3xGur9xph8kqiJKvM4L8c4cZLbXl51BKNmindzYpqaorPyJufC4T51U
-         4t1g==
+        d=gmail.com; s=20260707; t=1794585132; x=1795189932; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=+Ik0gHsfdd16nhHnjQyqDcxvqmph40nuj+OLJYJgm3k=;
+        b=gME5EJ+nvOIUJqD/a31T3vYxwa6l5p2YZ9VLgaSs55sOGNiTY6af15GCEEnP+ITWy/
+         O7OHn7rv0ONZraIYwyN+4Jc46fFWu43wSy2jC5THUjPGGc6ZLSkQ6MhSU9xaozoXxdwp
+         QXY1tTTF9wozQObUQ1RimjdQJZa6QG0YMQMT+/gQizowNde/TJa9kKLjuAXPMs31GNSp
+         LJnoTvRurLRQ/c2bZfDZwJBD0L4tj+C5ucW7vHdyvFtBTrtQH4bRJuf3XpmFa0EzEb4f
+         8ti0agY7ed3SC9wiqG8MXpZnxN73WCCz4iilmScR2so3YKLh79sLA9MEg5vxSKEUxpuy
+         KsCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794585127; x=1795189927;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=m+BoVytq9UYzJLS/f6D3X7otTb8bTdPeXKJPYAbpP9I=;
-        b=uf67q6v9QWRAu+UbHae5CBJJ1b6RcwewIm9YJiyx1bE7dE438WuO0ZUkcL3So9yknb
-         Q7Kq4DuWCwIUdeTiDNQhK0otre+4lo2pugufDY7BQbNHJFXiK0F4XIsNYzO+Wgi+Jafa
-         QwEKntLjRH5TnYSpWvkoTftxR/SxOM8E+ZkTZj8tH5xXj3HPVzHMP+llfYDP/iO2DRJN
-         ckjDv8pMQ+c1uz5NGB/T+IcTgzBXBv+uHGa80WTHuC13gRRhLFZbNDpcw/IKFo3VsbWL
-         Uyd9OhbqlIk6oz8QCNMTynEqf10SXeZ5J+MIWhSsbmP72hM3XWsjT/FbFp+1Wnkc6Wud
-         rD8A==
-X-Forwarded-Encrypted: i=1; AL+hErHFNpV44H+913j2732WDBFGLgBn+kL/V+BfRwiuco+fOUYwjq3c+QHlBTaKa8NZUU/VFHQGzdERTh3Bsu/wHtNK@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Bo8ammtFMI9NeEwtMwe9DiIgyamsNUbbpGhrnAdIHcuCycIgI
-	k9xLolJnXZpC6fIeUv7js791uT7O39t6N4Z27gyae6JIK1yUHWHnlqek
-X-Gm-Gg: AYBFou3yt1qlSZNfaSi21LtYdVylMGyF8BU+3/HL3/uumLDeR77O+4ecfeVusVnWzGH
-	TSaAxePUX7GLF9RBpRCHGTOrUY3sdhkMGLljcT6QvdfplDADUyZxfUaNWAn//nSc2VsCNMPIkn2
-	DCd0KaGrv7cMWx8YMksve978zMg6o5N1iDySqAMXeBRJ8UMa0+6PUldTYoDOvx1mhPTlwsJqW56
-	4tsXNzyJEh375kz7tUY9dhK4pv7/A3/Wvx5OGjdtCIyPZLGlobZTlVNBywqx6pMxcC1MsZDI8e0
-	44Ae+0WiUxU8/li5edaVoOdkzK+TOBryeTGvNAc6NhRR6hq15zQGJj5OD+86/hFDyi02u4DOUpX
-	Praawa8FbHiEmCLu8gy+MdYjnZ+nzwzgp269fppABmM/CPoNVhHol/cH0fEZ/GLB9meluQaV2dU
-	XejaZYCNVdA/aFkhpWiAX7zeA5sbNXicI6JOscoMnEfbPJT95NpWyVSRIPNMGM2XOa6aiYljnYi
-	5MZ+QxX+NF5QQksrYX3hWGGmTr11eNqmek1LyGNYhNeulFXiJm7ccCtigvafxUhcYsWnWEpTwbv
-	JppxZSouDFxFAY79E6llcnSCAB435Q+U
-X-Received: by 2002:a05:6102:f12:b0:7d2:8e49:f90e with SMTP id ada2fe7eead31-7d64d84030cmr745103137.27.1794585127400;
-        Fri, 13 Nov 2026 07:52:07 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794585132; x=1795189932;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=+Ik0gHsfdd16nhHnjQyqDcxvqmph40nuj+OLJYJgm3k=;
+        b=t6sJyKzsQd7i1DZxtB5b4t7rzPt29Ca1VcMFns696zZyCRdABFjDSNYThYm2wPbmBo
+         hmygq+s8wW2Md9tBgiigPMEaMrAvz1sQpGCM9zNesTgUOwrbFrUVglf4wghP7053Qt8U
+         ZkUBtqX9ifdH7qzj8iSDLXJcK/x3pEL6IeaUhpcM6h3tPcaB/7tni2XFAklBmmPV/Gx1
+         a5y3IbnMecyeBdrwXOTFDvjgcOttOXQJFpal+iRlNE3CK4Rn7siHIzh9RyGUUfxigdQ/
+         1unh8JJPXWJwN6xJtO/T1ThTTG6jOuZqpwUQ8xH2YMBo3XPlif3qnWCouC81YTbIvsQy
+         b5Vg==
+X-Forwarded-Encrypted: i=1; AL+hErFEbABOyDt+dKPbNDjMCpH0r1c33YavKcY7KSEcGNeTOz7roMnd+KTfzlU09oBfQDWoakdQlXl0R0eVtOeBW/Y4@lists.infradead.org
+X-Gm-Message-State: APuU4Z8ipPPV44WAoJ/417/KG5U2D39FG6di2+O0Hxo4g2HSpH88dXVx
+	eHmn6XgxKdWGOqRyctByoZbWFKcPSjEVRHkfu8xtH35gz1ZT3NSjSe69
+X-Gm-Gg: AYBFou1TS+vXOzgKSSEhLGizdT6oM8DrUVfISuNv7eAsEt8YK2o7/Q2G3PJIJl3F5l6
+	q4RJ205rgCLAOZDb+aNpCF+t9/VOlXLPpyXLD2q3OR+uBMzyOUBIdfzwVWa4Iljph0T1TUYs8wB
+	7YbhrSqFCpEiqoWUq3KpHX5lXuPvAWMvYc3oN8mq2KqONhFISRMep2Rw148iPDI9y4yfwr8w1Kb
+	FYUeUUNLrkbktps6WpXzE80weDRacH7/EC6MGJSMCupoFfLrm+EO78R/0WRYa1E7EtiuCV9dJI5
+	HSWc5xfjff18ykbSC1d4iQajvyUoa/63jfIjkQf2MGf1o5s03d6Wae6ZLt5jXVpc5REqo4FRRJ9
+	wNPsePAwpUmAON2EA8g6IeJbgNI6ADOBijR6KmiWMFXxsnEG9L/MNFSXrsHcBM7w75gDMSztsD9
+	QX8xO6RJo3Y6BAXdUdFYfdM1qzN6Msdxz0j05nax/OOzA0/cR19J1Or3VHmtdVyIWIifleTONWP
+	E9Uqr6/3T1wJthYGpbNGkK98t5V+qaSosg++lI7LOO8OQkWwy/+SP3elHfH6OoprsynG06XqX/o
+	J+/brbrMbaWrYdDn/7Jm6LLemma9DPNF
+X-Received: by 2002:a05:6102:6c4:b0:7d0:6cf3:d8f0 with SMTP id ada2fe7eead31-7d64d6f8a81mr959235137.18.1794585132255;
+        Fri, 13 Nov 2026 07:52:12 -0800 (PST)
 Received: from [127.0.1.1] ([179.160.39.42])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99c8428c7fcsm1635449241.9.2026.11.13.07.52.02
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-99c8428c7fcsm1635449241.9.2026.11.13.07.52.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 07:52:07 -0800 (PST)
+        Fri, 13 Nov 2026 07:52:11 -0800 (PST)
 From: Leonardo Costa <leoreis.costa@gmail.com>
-Subject: [PATCH v2 0/6] arm64: dts: freescale: Add SMARC iMX8MP display
- overlays
-Date: Fri, 13 Nov 2026 12:51:11 -0300
-Message-Id: <20261113-v1-arm-dts-freescale-imx8mp-toradex-smarc-add-lvds-displays-overlays-v2-0-327f5d37a9c5@toradex.com>
+Date: Fri, 13 Nov 2026 12:51:12 -0300
+Subject: [PATCH v2 1/6] arm64: dts: freescale: imx8mp-toradex-smarc: Add
+ DSI to HDMI adapter overlay
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAO8x92oC/y2OQQ7CIBBFr2JYOwZopOrKe5gukBmUpEjDVFJje
- nexYTdv8vP/+wqmHIjFZfcVmUrgkF4V9H4n3NO+HgQBKwsttVFSKygKbI6AM4PPROzsWDNxOcU
- J5pQt0gIcbXZgEWEsyICBp9F+GFKhvB1W9x2dJXmHKOrUlMmHZdO4DZWfgWvXZ7Mq6v9tAlK38
- rbYqoHf9xjmv5wEf+xPznT+bnpzbUoHl6IY1nX9AQyXlRHxAAAA
+Message-Id: <20261113-v1-arm-dts-freescale-imx8mp-toradex-smarc-add-lvds-displays-overlays-v2-1-327f5d37a9c5@toradex.com>
+References: <20261113-v1-arm-dts-freescale-imx8mp-toradex-smarc-add-lvds-displays-overlays-v2-0-327f5d37a9c5@toradex.com>
+In-Reply-To: <20261113-v1-arm-dts-freescale-imx8mp-toradex-smarc-add-lvds-displays-overlays-v2-0-327f5d37a9c5@toradex.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
  Sascha Hauer <s.hauer@pengutronix.de>, 
@@ -95,17 +93,16 @@ Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  ernest.vanhoecke@toradex.com, Leonardo Costa <leonardo.costa@toradex.com>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794585121; l=2798;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794585121; l=4733;
  i=leonardo.costa@toradex.com; s=20261001; h=from:subject:message-id;
- bh=1WzCApbm/N+lfLdjiZlJyPKQ+4AjAxmeXLq+NVpvXao=;
- b=yf3UBTTx8wHqJx9v3Stw00xASfc5loBUIuwai4kXTRF28vEGBey+xUGDbjXMB+7XoaGW8WThW
- ZmnAr1ndRq4Di9YRUlBeIFYVWcS6SaUNovwo2EBPH2mYxweV+v4/Vz1
+ bh=6gWisAoRL3n8veatx12VoVaqY4HAjgDwneKFrMNA53o=;
+ b=YbAc7Dfi9KrryWwhYmgXbDasotxsHNMYCe2MqmRznTR9jWWd4uQiWoDUXcz/S9ifj05cVTsJk
+ JBmp86tv4QrD8nPztn7gFCNOjifwXoLzo/61UqDUJ4/POQT8g+Tz7xD
 X-Developer-Key: i=leonardo.costa@toradex.com; a=ed25519;
  pk=4xvoVLDt+NxIz9D8BJHhT0fD43Ig6XgSDw4jRN/gHzk=
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_075209_003031_C1B84ACE 
-X-CRM114-Status: UNSURE (   9.87  )
-X-CRM114-Notice: Please train this message.
+X-CRM114-CacheID: sfid-20261113_075213_623812_A78D9D3D 
+X-CRM114-Status: GOOD (  13.81  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,61 +122,155 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds device tree overlays for display accessories on the
-Toradex SMARC iMX8MP with the Toradex SMARC Development Board.
+From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 
-This brings SMARC iMX8MP display support in line with the corresponding
-Verdin overlays and makes the same Toradex accessories available with
-the mainline kernel.
+Add a device tree overlay for the Toradex DSI to HDMI Adapter, an
+accessory that connects to the Toradex SMARC Development Board DSI
+connector and provides a full-size HDMI Type-A output. The adapter is
+based on the Lontium LT8912B DSI-to-HDMI bridge.
 
-The series adds support for:
-- DSI-to-HDMI adapter based on the Lontium LT8912B bridge
-- Toradex Capacitive Touch Display 7" and 10.1" DSI variants
-- Toradex Capacitive Touch Display 10.1" LVDS
-- Toradex Capacitive Touch Display 10.1" LVDS V2
+The overlay is also combined with the SMARC Development Board device
+tree to provide a ready-to-use DTB.
 
-The Makefile entries build the standalone overlays as DTBOs and add
-ready-to-use composed DTBs for the SMARC Development Board.
-
-The DSI-to-HDMI adapter, 10.1" DSI and 10.1" LVDS V1 and V2 overlays
-were run-tested on SMARC iMX8MP with the SMARC Development Board.
-
-This is the v2 for a series previously sent by Ernest Van Hoecke, and I
-am taking it over on his behalf.
-
-Changes in v2:
-- Rename display overlays to use the "tdx-" prefix, and add the "-v1"
-  suffix for the Toradex Capacitive Touch Display 10.1" LVDS overlay.
-- Add the Toradex Capacitive Touch Display 10.1" LVDS V2 overlay
-- Link to v1: https://lore.kernel.org/all/20261002-smarc-imx8mp-display-submit-v1-0-f578c63fb676@toradex.com/T/#u
-
+Link: https://developer.toradex.com/hardware/accessories/add-ons/dsi-hdmi-adapter
 Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 Signed-off-by: Leonardo Costa <leonardo.costa@toradex.com>
 ---
-Ernest Van Hoecke (5):
-      arm64: dts: freescale: imx8mp-toradex-smarc: Add DSI to HDMI adapter overlay
-      arm64: dts: freescale: imx8mp-toradex-smarc: Add Toradex Capacitive Touch Display 10.1" DSI
-      arm64: dts: freescale: imx8mp-toradex-smarc: Add on-carrier 3.3V regulator
-      arm64: dts: freescale: imx8mp-toradex-smarc: Add Toradex Capacitive Touch Display 10.1" LVDS
-      arm64: dts: freescale: imx8mp-toradex-smarc: Add Toradex Capacitive Touch Display 7" DSI
+ arch/arm64/boot/dts/freescale/Makefile             |   4 +
+ .../imx8mp-toradex-smarc-dsi-to-hdmi.dtso          | 103 +++++++++++++++++++++
+ 2 files changed, 107 insertions(+)
 
-Leonardo Costa (1):
-      arm64: dts: freescale: imx8mp-toradex-smarc: Add Toradex Capacitive Touch Display 10.1" LVDS V2
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index cfd5482843586..3c424071f8fc0 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -710,11 +710,15 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-bd500.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-hdmi.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-tian-g07017.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revc-jutouch-jt101tm023.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-toradex-smarc-dev-dsi-to-hdmi.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-toradex-smarc-dev.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-toradex-smarc-dsi-to-hdmi.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mp-ras314.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpqs-mb-smarc-2.dtb
+ 
++imx8mp-toradex-smarc-dev-dsi-to-hdmi-dtbs := imx8mp-toradex-smarc-dev.dtb imx8mp-toradex-smarc-dsi-to-hdmi.dtbo
++
+ imx8mp-tx8p-ml81-moduline-display-106-av101hdt-a10-dtbs += imx8mp-tx8p-ml81-moduline-display-106.dtb \
+ 	imx8mp-tx8p-ml81-moduline-display-106-av101hdt-a10.dtbo
+ imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17-dtbs += imx8mp-tx8p-ml81-moduline-display-106.dtb \
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dsi-to-hdmi.dtso b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dsi-to-hdmi.dtso
+new file mode 100644
+index 0000000000000..270cf567ace1c
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dsi-to-hdmi.dtso
+@@ -0,0 +1,103 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/*
++ * Copyright (c) Toradex
++ *
++ * Toradex DSI to HDMI Adapter connected via Toradex SMARC Development
++ * Board DSI connector J44. Open J95 to select the carrier DSI route.
++ *
++ * https://developer.toradex.com/hardware/accessories/add-ons/dsi-hdmi-adapter
++ * https://www.toradex.com/accessories/verdin-dsi-to-hdmi-adapter
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++
++#include "imx8mp-pinfunc.h"
++
++&{/} {
++	dsi-hdmi-connector {
++		compatible = "hdmi-connector";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_hdmi_hpd>;
++		/* I2C on DSI Connector Pins 52/54 */
++		ddc-i2c-bus = <&i2c_dsi_1>;
++		/* SMARC LCD1_BKLT_PWM (SMARC S122) - HPD */
++		hpd-gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
++		type = "a";
++
++		port {
++			dsi_hdmi_connector_in: endpoint {
++				remote-endpoint = <&dsi_hdmi_bridge_out>;
++			};
++		};
++	};
++};
++
++/* I2C on DSI Connector Pins 4/6 */
++&i2c_dsi_0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	hdmi-bridge@48 {
++		compatible = "lontium,lt8912b";
++		reg = <0x48>;
++		/* SMARC LCD1_BKLT_EN (SMARC S107) */
++		reset-gpios = <&som_gpio_expander 7 GPIO_ACTIVE_LOW>;
++		vcchdmipll-supply = <&reg_carrier_1p8v>;
++		vcchdmitx-supply = <&reg_carrier_1p8v>;
++		vcclvdspll-supply = <&reg_carrier_1p8v>;
++		vcclvdstx-supply = <&reg_carrier_1p8v>;
++		vccmipirx-supply = <&reg_carrier_1p8v>;
++		vccsysclk-supply = <&reg_carrier_1p8v>;
++		vdd-supply = <&reg_carrier_1p8v>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++
++				dsi_hdmi_bridge_in: endpoint {
++					data-lanes = <1 2 3 4>;
++					remote-endpoint = <&mipi_dsi_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++
++				dsi_hdmi_bridge_out: endpoint {
++					remote-endpoint = <&dsi_hdmi_connector_in>;
++				};
++			};
++		};
++	};
++};
++
++&lcdif1 {
++	status = "okay";
++};
++
++&mipi_dsi {
++	samsung,esc-clock-frequency = <16000000>;
++
++	status = "okay";
++};
++
++&mipi_dsi_out {
++	remote-endpoint = <&dsi_hdmi_bridge_in>;
++};
++
++/* SMARC LCD1_BKLT_PWM (SMARC S122) repurposed as HDMI HPD GPIO */
++&pwm1 {
++	status = "disabled";
++};
++
++&iomuxc {
++	pinctrl_hdmi_hpd: hdmihpdgpiogrp {
++		fsl,pins = <MX8MP_IOMUXC_SPDIF_EXT_CLK__GPIO5_IO05	0x104>; /* SMARC S122 - LCD1_BKLT_PWM */
++	};
++};
 
- arch/arm64/boot/dts/freescale/Makefile             |  20 ++++
- ...arc-adapter-tdx-panel-cap-touch-10inch-dsi.dtso | 123 ++++++++++++++++++++
- ...marc-adapter-tdx-panel-cap-touch-7inch-dsi.dtso | 124 +++++++++++++++++++++
- .../dts/freescale/imx8mp-toradex-smarc-dev.dts     |   7 ++
- .../imx8mp-toradex-smarc-dsi-to-hdmi.dtso          | 103 +++++++++++++++++
- ...x-smarc-tdx-panel-cap-touch-10inch-lvds-v1.dtso |  80 +++++++++++++
- ...x-smarc-tdx-panel-cap-touch-10inch-lvds-v2.dtso |  98 ++++++++++++++++
- 7 files changed, 555 insertions(+)
----
-base-commit: 45327d3207619a05bfbd7e6f2e116285ef726933
-change-id: 20261021-v1-arm-dts-freescale-imx8mp-toradex-smarc-add-lvds-displays-overlays-a273e90efcdd
-
-Best regards,
 -- 
-Leonardo Costa <leonardo.costa@toradex.com>
+2.43.0
 
 
