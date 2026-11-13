@@ -2,117 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEA50606A8B9
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1647D606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V+U2r10C;
-	dkim=pass (2048-bit key, unprotected) header.d=linaro.org header.i=@linaro.org header.a=rsa-sha256 header.s=google header.b=WSgozyBJ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tTlLmR3r;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=TXbSLkYR
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=WrGUC4aP2CzOib9bfxPwXz4WnawgPNUWDRuOBMHlbso=; b=V+U2r10Cx16Lj6Fj/BvkZHomwE
-	3qmFdVsqr7NBr2Ybvmk86sxUY1g02VE6X433TsU7BZBfo9l3ml0jNzP59q1UYVQkhUmqRjDBMjuHH
-	brb+Pemb7mfOqsqsGxU/3p9P9v0pVefQn1cvB85UY//7ViK2QSr2DGyS2SvT4LWR3O6Y+/LR56MjG
-	X9cx4dp7WenrE0Wmvn/U59c7/I3vp2X1PVnCUF7p3+em3RMOWgYbobpO7mdwRFszsc8xkf3q8QPiU
-	ht8Eu2Qw7AF84xNlx+Qlv3xV25mE4pVe8O7jBgIuRjmvmkGBZo937HbR/heKX77hn3v3fDXn9AjNT
-	njRyCHSQ==;
+	bh=k5kTzIC/xwbiOBwUmgidJlrRFiWrIZutr9d7t0kBwUc=; b=tTlLmR3roIdqfzxdJ/zH8Y7YPn
+	TJdSUBlVhqYmwrtVZSEH9m6xHpr9rmWnVSLXZI/ZFJDFi5gUaa+5E+N4A9t0EOo/mA0VVTLiq3ibk
+	OzZJcgkO6YFuV3l0SUNaB0Vyrjc09j1zCbYuhX0gcrT0obKNXUU0IqcVA0ogyzaWLY+oQ1OIg+zd0
+	URdRvRCNxCrOTbg7UolV2raz/mEHrAcotRPH7wCzUJO1wuFg92NM1HEJ5/S8T3xQngGE79Kze/Sdx
+	BGLho78LGBsk8NY7Axr7ZX9v4ZtqnqNUaWXrnpsbRr6Jg9r6MQidsEJuT+4yeQkbns7abZ5oIhX4l
+	2QP9H7EQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRp4P-0000000CSKE-2oM6;
-	Fri, 13 Nov 2026 11:03:49 +0000
-Received: from mail-ed1-x532.google.com ([2a00:1450:4864:20::532])
+	id 1xRp5g-0000000CSdS-3xjJ;
+	Fri, 13 Nov 2026 11:05:08 +0000
+Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRp4N-0000000CSJ4-1X4i
+	id 1xRp5d-0000000CScV-2OQU
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 11:03:48 +0000
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-6b6f42095bcso1546823a12.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:03:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794567825; cv=none;
-        d=google.com; s=arc-20260327;
-        b=PM3/ZFx2T8mJEOlftZG8XokKoW3I9rukbOasUo5W/2oZa4/GX957TIz9gH2rKWLjjE
-         xvi+50BshhfOlwuhnnhPwD3lqBigaHkdG6kdv8r11CyZGMMNV0zcBxwpX74SCUi7G5qx
-         Ei6HSlar/pdP3XOzfaStHksvVqiAkJfavHxwuwni/75PUpvvuhrhwkxT20jZ9Fi5vtdS
-         z76E/gFCS5BNYsY1oCv86Ds8WmRpZ4dbCRj7ar68mlF/5z/71zPq1sVr8aJnv660UtTy
-         1OjtGFvbEfYpfxLlbXuPX3X/A5SY50gdXLvFhFAgKsTrb6ZXgYQgscjgvW/YGcS4j6hO
-         VUPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=WrGUC4aP2CzOib9bfxPwXz4WnawgPNUWDRuOBMHlbso=;
-        fh=q9KegA4AcHEsG3Yw5S+i/se1EyLiKK+x0UqvLH0Y750=;
-        b=CjoGHJknxPaY8jQMIY6lwXYKDTYE5MWZlhghy7XSa4IKp/HQlRu+ye54Yv3nG/R+7M
-         zGay8mhRA8tHggpy21I/msGFSG5tAZiMZ7pxalsW8/fgYO6GEkZ6t0Eege2G7VH6JXC9
-         t4svAoPouq81PUtGnUntrSHyOZ2GrQL6xRPXRMNtnlbHym+i0GklPp/iW5L0tBCfyere
-         oLSE6mVWrnneCBudsJUzQrjv9I02nSsrfLfFl5rV8qFtuzxC2SmR/Pw1jQiasur6CIdA
-         3V9znumJHm5yps+UbAsDeHf2VKt7voETy8j4xckOaFg9xnZXvFKpkwfnLbAQ+GerwSoV
-         c0EQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	Fri, 13 Nov 2026 11:05:07 +0000
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a1fbd52ab6so8706635e9.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:05:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1794567825; x=1795172625; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=WrGUC4aP2CzOib9bfxPwXz4WnawgPNUWDRuOBMHlbso=;
-        b=WSgozyBJHKBf3sqt90dkH+9Rcu9ons+hlJeGSlxpmILT/dUCPdvITWjkn2sd5GCEoe
-         CikBD8mbaZ1nCl/mYK2Hlq+YqKRTnyK7607w8nrtma12VFlBhbvCwVpTI80RLdlioiWb
-         +xM8gHtcCOnMbKShxnmDLWF5jGskO1JO3JrlGNc5TRH2J3USPbzLXjndHAcmfGzAdhFi
-         IU1wKGCyoQBAWarZ42vlEjilbj7YM/045NOxFLcU4eWL6eL2itpTXby4MaYEnYqaYw5Q
-         UiLdJNjSYx0pzCxd1cwEtvgUSN2tdiStEGDbU97CrnaJpuFBOjt8zbujAo1qTLXUEA32
-         BXeQ==
+        d=gmail.com; s=20260707; t=1794567903; x=1795172703; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=k5kTzIC/xwbiOBwUmgidJlrRFiWrIZutr9d7t0kBwUc=;
+        b=TXbSLkYRjwNmnZI2YqUDX3fQzfxehKfl86MkJ+pEkTSZbLPISfBN2OEJvwxwHzxSo6
+         PoKyqECVBfIcJO9O3+GwUok0wfPOtiMvemYl89xjfgazuL3FP1aSXB5H/W4u/+flItR6
+         GKbZHXaRXZtUAz5kUC5xfuRrW5GXRA1Be5u4T8uQvK69Av8vvkOJiIEok0NJeIhjDPcB
+         vDK5hBib1F8PfEd0IaI8eV13wx8ZZAQHN++HZuySRPMEZTglPHMH27ua41E5/Pn1n0js
+         dfXIg/R1rxWvAwDV9pDSHImUSMg5w5DAwlMMgMb0AgNojutQsEsr+CyK1iBaahzQnZsP
+         wFCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794567825; x=1795172625;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=WrGUC4aP2CzOib9bfxPwXz4WnawgPNUWDRuOBMHlbso=;
-        b=glULUnaY92FK7+3eRcdl6Gs9nhymhTo2xV4oedF06dxL9YMxq4CRZBiDRC5p2Pnk7h
-         9vbXyIMX5FpLbkqrVJ8Edk0unu/Yb+GbLBS4dpObwtmlb3S7f67nJ0jW3Y4CGrFXe3VD
-         MyeIY65fhlrb6tX3QiSIg9rByNGRkXCr8p1TtEP13fnQulmcjfXlVsTWcXnp3O4nUAFP
-         IMnXcjNeLsCnQEO4y07ytjTEnuUpwQjp/xCbVFni4XfsXB81/t1ZxolGXffA6ocE/0uv
-         GdWi4bSLUKkj6THjC1xuYrcuV8JLbmGffgb/GccfIYnNyrukziTZlJeP7grVfaUufSqU
-         jefw==
-X-Forwarded-Encrypted: i=1; AL+hErFHPcJoy3yAUkY+XxEaw4O3AalmvM3+0LQkxvrgJJ7oICQcOGTmWVzhXs6RXVNmwWv8ndx9mhH4x7bd+Si9wdtn@lists.infradead.org
-X-Gm-Message-State: APuU4Z+PrwtfzGPrTkpSrBPoUVxU+PK8ZI4/JRDV9DwFbuSSN4A83Vee
-	WI2Y91e7f4FRM6ZHGkBVo+8g+xBLrlpF4VcgIa6j/id4SxXhsRGKTG/Ityyg8o+5unGhkJyLCqE
-	7rha39LmCBwlqOW0A2XYllHJCGNtvQPnG1lg5ngkQUQ==
-X-Gm-Gg: AYBFou1Fd+K3/puewjbiar9PPeUntm6ARW6d3oRciVecH5gGxKyoQJxVLsu6rNu7QQV
-	OuBLMkhSUOaK1xdOybf5KuGsI0uS3+lD32pI02HMJfQhP/NBMy9yj4GBr0Si+J8TPkzUDn0czyQ
-	Ohw9FrPQGC8Hrcas1XMNHJsXFAzijoYemoXPezWtjqSpqNT6sFOZWfVKoLjsPn4oYF7ouRDi1BA
-	55R+Ypjtr6PkBG94cjkUmIPHTUnEB57E+t8pyJFTQOQN/AxKh8OgNRhzxT/KgtYKaOWNQXXnu33
-	SusoA2g8qq75YxR80xQ1QUvm0nlvVvenrB4RJn29t0TsPxbObavgCrKoWkWJuheP0oNJFkWBgzk
-	skJcPtaja5rlvuJrWD2SfiUnkpzdpDg8MTHMJwJhu7ZvKJkiV4Vdfz/dJ1hpGcF8kydbLCQ==
-X-Received: by 2002:a05:6402:42cb:b0:6b1:d439:5c5 with SMTP id
- 4fb4d7f45d1cf-6b7c088fadfmr1814259a12.3.1794567825002; Fri, 13 Nov 2026
- 03:03:45 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794567903; x=1795172703;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=k5kTzIC/xwbiOBwUmgidJlrRFiWrIZutr9d7t0kBwUc=;
+        b=yELQF2Jqn7nVNOR+j5mJ24Vb2O7canH96lASYW/e+H2X8nhdTHdl8mhIkSFIHd8prb
+         G+JY7sdt1ekt2mvssppekh+xT0ILjQ0AkoL52TRXwaTfuzIRkEuNkmT3G2ROnLNHDHcI
+         hVmF8wvRX/iHU9Xkm+88NZQ1NqkFUdCQ+Fwo+AKkLNjkA8HUVi3BA+FcQE97WyeLamgg
+         6Ni2xribk3VsTP811yzvOYqKmycmR2sOI8KX2vuDT8daGOPAPYvrrxqbH/KkJz3syZNj
+         E0CFQykS/3/rpWTNwtT8Y+wwckzs/RarpZf+Ps/TVHKVZ6FPupvw9Al4mmhMbp0gR4XK
+         es7A==
+X-Forwarded-Encrypted: i=1; AL+hErFcLzP2ihfhkuCvjq+dQcEPdQ8qakcJIJrrTeP/7RQhyel4qgw42L+Ok9SoYV/4G5IOYQq8Q3NCTu6+cqdxziqQ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+kVaCmdAM6BMKshYuVy69uMXtmet8e3pHodaYlDiT753tXQllq
+	G3uqvrZsncLj3IEKIzDLapUv5CohY/fZC8GIbZq/bUqa1/6hP1fm4dMv
+X-Gm-Gg: AYBFou1T5oed7bU/kiReP/rN2F+rFksYOu3uXKYLPE9N0jXaU93cp8JCCjtCjjn9QK2
+	mo5tpnLBzQJTPDO0Xv0YDf25CuIoiXrSeehoaI0BfR8moJaOavw9fKH9HtKg4dkyZrhQnvyPaf9
+	XQTAOZ79PiDE9US1UtuQ5IrxmtrjmdGDhd2hfAuzCvHlTloAgQ4LhxBVg/99u3BcouRglS8UM5F
+	cBpSgk4jkpPLqi/ArMjv+JenNRPR4yvO7Rg7ZL9jvv5ifXujzJN0ysD+uhCg1x3mfVK77LB9eAO
+	npSLwo05ps5D/RwjnWZ4Tmv0phrnkRIGiYZzmuY7sTrYCuO+rUsMJ7/rgdwFrN3fGf9ydBxLVVR
+	vmGrI9XWUzg0XgFHrr8CxR9+m8W7S1AiIzymUj8yoa3wAA/Da7oxbRuAmz/x6IehkhNV57HRzF5
+	x0iG0duLdBdWe6n0DReeDIWozvExvYsU/UZdpT/0wHAZdOLmfVZi1ZsMH8pOK052yWOety9Z/hX
+	Wh89JAROMXtl38b8ZyGGdziqppjQCS6QkAC8uOpekwuRCXkAZYivmCwXBBkHJSYHBJJ99dr1BwZ
+	IlQdeHAOCw2hLUu7T4zCMjvfeMgwKqjplS0=
+X-Received: by 2002:a05:600c:c4a3:b0:4a1:6992:f861 with SMTP id 5b1f17b1804b1-4bb55a02932mr43197405e9.1.1794567903271;
+        Fri, 13 Nov 2026 03:05:03 -0800 (PST)
+Received: from deb05.proceq.com ([213.160.61.66])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb55afb6absm57515955e9.15.2026.11.13.03.05.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2026 03:05:02 -0800 (PST)
+From: Mehmet Fide <mehmet.fide@gmail.com>
+To: Andi Shyti <andi.shyti@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	linux-i2c@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH] i2c: imx: test the block read flag of the message that is read
+Date: Fri, 13 Nov 2026 12:05:01 +0100
+Message-ID: <20261113110501.1142036-1-mehmet.fide@gmail.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <CGME20261113104844epcas5p4c1cb0c31de8b5b445f7f0060f81cf753@epcas5p4.samsung.com>
- <20261113110612.3265841-1-raghav.s@samsung.com> <927327686.61794567483016.JavaMail.epsvc@epcpadp2new>
-In-Reply-To: <927327686.61794567483016.JavaMail.epsvc@epcpadp2new>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 13 Nov 2026 11:03:32 +0000
-X-Gm-Features: AclHuK-nQAzdHNmzELAlgOYeQ9PIbGnRzQK2xJ_UxA7DGsqbyIcTqa_Es6uaAxk
-Message-ID: <CADrjBPpUSot+jCUBKb4S4A8C5HazvqQbB-+wDvjJtjB5XGCytw@mail.gmail.com>
-Subject: Re: [PATCH v3 05/14 RESEND] dt-bindings: clock: exynos8855: add usb
- clock definitions
-To: Raghav Sharma <raghav.s@samsung.com>
-Cc: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
-	alim.akhtar@samsung.com, sboyd@kernel.org, bmasney+clk@redhat.com, 
-	jbrunet+clk@baylibre.com, robh@kernel.org, conor+dt@kernel.org, 
-	linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, is.gandhi@samsung.com, ts.amit@samsung.com, 
-	pokala.reddy@samsung.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_030347_432800_AB53DDF3 
-X-CRM114-Status: GOOD (  13.60  )
+X-CRM114-CacheID: sfid-20261113_030505_626009_BD5375B1 
+X-CRM114-Status: GOOD (  15.63  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -124,86 +106,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 13 Nov 2026 at 10:58, Raghav Sharma <raghav.s@samsung.com> wrote:
->
-> Add device tree clock binding definitions for CMU_USB
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
-> ---
+From: Mehmet Fide <mehmet.fide@screeningeagle.com>
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+i2c_imx_xfer_common() decides between the DMA and the interrupt driven
+read with I2C_M_RECV_LEN of the first message of the transfer instead of
+the message at hand. A block read of DMA_THRESHOLD bytes or more that
+follows another message is therefore done with DMA, which reads the
+initial length and does not look at the count byte.
 
->  .../clock/samsung,exynos8855-clock.yaml       | 21 +++++++++++++++++++
->  .../dt-bindings/clock/samsung,exynos8855.h    |  8 +++++++
->  2 files changed, 29 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-> index 21928235d131..c68a64eb35c5 100644
-> --- a/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos8855-clock.yaml
-> @@ -32,6 +32,7 @@ properties:
->        - samsung,exynos8855-cmu-peric
->        - samsung,exynos8855-cmu-peris
->        - samsung,exynos8855-cmu-top
-> +      - samsung,exynos8855-cmu-usb
->
->    clocks:
->      minItems: 1
-> @@ -143,6 +144,26 @@ allOf:
->        required:
->          - samsung,sysreg
->
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: samsung,exynos8855-cmu-usb
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: External reference clock (76.8 MHz)
-> +            - description: CMU_USB NOC clock (from CMU_TOP)
-> +            - description: CMU_USB USB20DRD clock (from CMU_TOP)
-> +
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +            - const: bus
-> +            - const: usb20drd
-> +
->  required:
->    - compatible
->    - "#clock-cells"
-> diff --git a/include/dt-bindings/clock/samsung,exynos8855.h b/include/dt-bindings/clock/samsung,exynos8855.h
-> index 67cd97d8fab8..f4261956ab4a 100644
-> --- a/include/dt-bindings/clock/samsung,exynos8855.h
-> +++ b/include/dt-bindings/clock/samsung,exynos8855.h
-> @@ -222,4 +222,12 @@
->  #define CLK_GOUT_UFS_EMBD_ACLK_HSI         5
->  #define CLK_GOUT_UFS_EMBD_UNIPRO_HSI       6
->
-> +/* CMU_USB */
-> +#define CLK_MOUT_USB_NOC_USER              1
-> +#define CLK_MOUT_USB_USB20DRD              2
-> +#define CLK_MOUT_USB_USB20DRD_USER         3
-> +#define CLK_DOUT_USB_NOC_DIV3              4
-> +#define CLK_GOUT_CMU_USB                   5
-> +#define CLK_GOUT_SYSREG_USB                6
-> +
->  #endif /* _DT_BINDINGS_CLOCK_EXYNOS8855_H */
-> --
-> 2.34.1
->
->
+Fixes: b460b15b3cc2 ("i2c: imx: separate atomic, dma and non-dma use case")
+Cc: stable@vger.kernel.org
+Signed-off-by: Mehmet Fide <mehmet.fide@screeningeagle.com>
+---
+Reported by the Sashiko review of another i2c-imx patch:
+https://sashiko.dev/#/bug/linux-f62df5ed-ad96-43f2-872a-ae2c0100b73f
+
+Tested on a Colibri VF50 (i2c0 with DMA) with a v6.12.117 kernel that
+carries the i2c-imx changes of v6.13 and later as backports; on this
+base compile tested only. An I2C_RDWR transfer of a one byte write
+followed by a read with I2C_M_RECV_LEN and an initial length of 16:
+without the patch 16 bytes are read and the count byte is taken as data,
+with it the count byte is evaluated (here -EPROTO, the device answers
+with 0x25).
+
+The line is from v6.13, the patch applies to 6.18.y and 7.3.y.
+
+ drivers/i2c/busses/i2c-imx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
+index ccf08cd63151..9abe0a26c877 100644
+--- a/drivers/i2c/busses/i2c-imx.c
++++ b/drivers/i2c/busses/i2c-imx.c
+@@ -1713,7 +1713,7 @@ static int i2c_imx_xfer_common(struct i2c_adapter *adapter,
+ 			msgs[i].flags & I2C_M_DMA_SAFE &&
+ 			!(msgs[i].flags & I2C_M_NOSTART);
+ 		if (msgs[i].flags & I2C_M_RD) {
+-			int block_data = msgs->flags & I2C_M_RECV_LEN;
++			int block_data = msgs[i].flags & I2C_M_RECV_LEN;
+ 
+ 			if (atomic)
+ 				result = i2c_imx_atomic_read(i2c_imx, &msgs[i], is_lastmsg);
+
+base-commit: 25e7ab89f4774b0f842cee0e8a20c11f755924d5
+-- 
+2.56.0
+
 
