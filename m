@@ -2,120 +2,71 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BEA606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 02:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A80BD606A33A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 02:59:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xBST3KDt;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.a=rsa-sha256 header.s=google header.b=InmTmHUi
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0Uv3pRiM;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=Qdg4MUZ5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=ww5MKM6poDK+IczcuuMJkcSdFtjq/phga8CrflKC7U4=; b=xBST3KDtrXbcDS
-	LiYg/pT2r9IJFPyyEipjXU/ZktdGu7d/ishIVLwBK3QJL1rWlLjhvjnWPfQTkQGPMjLZH0jRRYGR+
-	L3qn+iNTjQseBAhjQndj90iwquHZhV5ZqUv7cIaoGFA9FV6mOvy7wV6GCrN46LHuIq4kXuOP+TfYu
-	M1VBmwodzRDeB5BMFdh6hq4k92nuxYCj8H2J/XtGG8C0zXsxDLwS/+p5xk29vkikBgLWc4Nz5dlHx
-	iSKShpamc53qH+NbVHI0TxV5459Aq2NDdF4iKwmVCo9nvv4rfPJF8MFz68qGsgRtiN+xExP4sro1l
-	fnWjZKBojCEBrfjUx39Q==;
+	List-Owner; bh=7f0VgzKYfj5CawodwOdHpH247rLlZpKsDV1GNlXMq38=; b=0Uv3pRiMwpOgO2
+	9Rifq9X2GGFUvdjADzsSThD6wywH/MOAdokQhb5rHs0rlIMJ5PRwgHe1l/AsIjtAwExknwnYNSTuF
+	/MaFJwo4YO2g4kbcKpKGKPg97XojJSpCxAKE5k5dTScl7DtHvrXrs7ZT2yevZTLldv+n792c+IWwP
+	5xDdXeobw4MKwGtrfELJe/PAzmaAOXgOLd0ronNsVqFhzvHqxIYuEH0SRFXIk/ada+u7wuPX8h6LD
+	8/boQ6VcnwlWdCSGI16MG8EnP70DYXFGGk53I2DRIYOEDFqzkoeh0cWPQLHFPbj7M1A2vydjgaUQ9
+	urjqt97cCssCMGtu/uaQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRhRX-0000000BX5R-22e3;
-	Fri, 13 Nov 2026 02:55:11 +0000
-Received: from mail-yx1-xb12b.google.com ([2607:f8b0:4864:20::b12b])
+	id 1xRhVg-0000000BXbG-0LWu;
+	Fri, 13 Nov 2026 02:59:28 +0000
+Received: from mail-m12843.netease.com ([103.209.128.43])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRhRV-0000000BX4b-1wvd
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 02:55:10 +0000
-Received: by mail-yx1-xb12b.google.com with SMTP id 956f58d0204a3-6798eb0d190so337064d50.3
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 18:55:09 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794538508; cv=none;
-        d=google.com; s=arc-20260327;
-        b=eUCfGhtu5IF4OBrWBZ1y8M3bx36feJKNH+TEWPbxlKjcZp9cZq/rodhg64C0XBD2E4
-         5UKuNmAqcym9uK0fEoNnjZVwlQV3B4bF/N35ifCmOoXUCHhVav9qx/D92NDzCmcOzupi
-         6wGIOuVRDkB7O3Ray3OBZQ8QoJYRIVgbee9CE/znHRXYs7mUBP15hrMAwMtSCQigTu5j
-         kihCvMyVBKdOzL/p8rfcx7mqC4TiE57gUKwOHfc0HRDgDzPktkmxKswEvd8rBA4ehCo/
-         tEV2hBItWk3NqMeYcYck1Qty8fHCnV6PunEIcpKOITif5e4HuaY1uGayiHQwx0evFm5d
-         +37w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ww5MKM6poDK+IczcuuMJkcSdFtjq/phga8CrflKC7U4=;
-        fh=kJYa781K3fgDEjLoNouCWreL1G4BBV+uI8a55TEPqRM=;
-        b=Rp81PIY45QXFNr92+JmATenLFpC7JikLMbervLyjuOQz3qs8I8uLF22+5stesBl0l5
-         GV6AotyZtg8KD8/6ktXv3vHJEwMbhvmZz6aVqMX+3yQRZG6crj70ewiGd89SVjD3bxKW
-         e9+F+P6rVVeaPUM0Hk+Xb4rlJj0k4ZOjVKMoxVotoTzuySfXIN78VJW75TuWO5D7ZC38
-         2lEqb83eHDzzsx+ZxIXVzrhzOm71v3xqWyPd3fh+dYzJoov4yYmyj+KgxnL4pL1/AVjJ
-         gUrNNrnGmsYIFJmVwPbxTapNkBtRXXFGDn/7MVm30aYfFwKw52hqQMlYJHCs79ji8p5B
-         T/CQ==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1794538508; x=1795143308; darn=lists.infradead.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ww5MKM6poDK+IczcuuMJkcSdFtjq/phga8CrflKC7U4=;
-        b=InmTmHUifgrsK1Dw1Ff1HKu8wlt8kS4ZUUMo2quMLqsfbLyFgsDnNoTOJOzu0N7JM/
-         A4YXIp0jugQyKZLmb/8adbL5RFBWMBKYrAp/VIqYJCJFv7+oYE0UN/372lDJN3UzUFjR
-         v9R0vLM5G9fIAJaqF4TsdjHT5gOgRQv3GqfvE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794538508; x=1795143308;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=ww5MKM6poDK+IczcuuMJkcSdFtjq/phga8CrflKC7U4=;
-        b=zy4uvrJs4smjN5EutR6S4ZqDZ2xtPCG7AvxyAcS0dKAzACTv69/sYl07FElv/U9ppN
-         IFmXUIoyoU+qdOr2cOdorT1VXJKlDTg961fRc9wFtG56P6FxjvhUiybaq0jWyOoaKdbH
-         9H/0l9Trj0cXrtQ7kmfmEzN8SpRa9JVzTC0XNrJOQeI41BnRfpLYeCRfh47qYCRrxCvS
-         rGhDplwnwftM8xr7/B0IadbQPgPxDMWvoL9HgCWyzAr5Ll4I1f3UV+fm7JnBCku0I37+
-         Qf24aRcqgqb8EZO+8+5O4RtOQxt/G/qVpIiMCnUyTIaD9gthMpHDsFnMGrdWIndJcIdo
-         HkPg==
-X-Forwarded-Encrypted: i=1; AL+hErFbEiYeXpi4EjZCQFPu9H1ook4hRdIK4ADW8RF9Ajr55B2GxbohnVDrovaksvUf6pbjb4SpqIYgCU4v4lu5ISVB@lists.infradead.org
-X-Gm-Message-State: APuU4Z86RzUa5CR+uXVK23tGxqM9sRpsGz4LPGr0ijfG5ZVRoREh1HdD
-	GRm5a3ffWGaZ1jx+EP7FsNMzsWIWG/SiS+Bhii/qhHVuqPvATm2GqeaAbM8HUcW/PGgJKRGhXJA
-	nziWK6KdU4mb5YfMQrf4CS9FLz2ZlDvFi8hKd9DcB
-X-Gm-Gg: AYBFou1DZAXIM06evU9C2dXSW7YXsqmmBlsFZqWTI3OJ9OtWZN8PSQIuuTif9PLMLra
-	o/lWePZqNtlTsOM1fs3Rlfcm4JBwV1Nm5m15uqbpMWsittU6va22Tg4hPJVdk2Mazazo8j0gijX
-	f1rP4nsM8NFhzVwzUHbEGzVy9esv4RQ8VPtsV+ZSfLZdG7khOoF6qZkSdfH1CDZia+nKz74+dvX
-	1BKn3I3TOmqsT+Pb06wMgG5+XSD3Z03+YOYZgxlYP6I43EjXFXOz3EFgFMXpFqhUhMu+Btd2Hft
-	EXM+6KlPgTnESxoOj0uCBXyl7ecx/PKhPxMl+dCNq01YH7SZxOwmbSC21OMcgMi/T9D5//3EFDh
-	Hd70jvaEvuYvPui2nVLWjVffagxiNI+KL5XjVqA==
-X-Received: by 2002:a53:d5c2:0:b0:67c:7317:de93 with SMTP id
- 956f58d0204a3-67d8976bb2cmr676238d50.91.1794538508154; Thu, 12 Nov 2026
- 18:55:08 -0800 (PST)
+	id 1xRhVc-0000000BXa6-04sA;
+	Fri, 13 Nov 2026 02:59:26 +0000
+Received: from [172.16.12.74] (unknown [61.154.14.86])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 548728669;
+	Fri, 13 Nov 2026 10:59:19 +0800 (GMT+08:00)
+Message-ID: <72fb3540-e08e-40be-8f3d-63727063be6a@rock-chips.com>
+Date: Fri, 13 Nov 2026 10:59:18 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261026214359.3122870-1-briannorris@chromium.org>
- <20261026144346.2.Ib692ddd35c1dbea1757d9b1db6c1c7e938fc4ea6@changeid>
- <20261028-rapid-daffodil-rat-0adc6a@quoll> <aulIoq2oVjJ3DVzL@google.com>
- <d4a430de-715a-4936-8adb-35ff57a52b5f@kernel.org> <avZkfg6WMlMzOxpn@google.com>
-In-Reply-To: <avZkfg6WMlMzOxpn@google.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 13 Nov 2026 11:54:56 +0900
-X-Gm-Features: AclHuK-84j9IBFkhrVUuvk8buFltZEjB8ro1aPwuBHaC_xvB0gZrSc9m2OIxmfE
-Message-ID: <CAGXv+5G5z75HGP8nv_i_nwEeSd3qkvyL_h_MYzV_XPT9BpR4jg@mail.gmail.com>
-Subject: Re: [PATCH 2/9] dt-bindings: soc: google: Add Google Tensor CPM binding
-To: Brian Norris <briannorris@chromium.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Brian Masney <bmasney+clk@redhat.com>, 
-	Jerome Brunet <jbrunet+clk@baylibre.com>, Thomas Gleixner <tglx@kernel.org>, 
-	Ulf Hansson <ulfh@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Peter Griffin <peter.griffin@linaro.org>, devicetree@vger.kernel.org, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Radu Rendec <radu@rendec.net>, 
-	linux-arm-kernel@lists.infradead.org, 
-	Mariano Marciello <mmarciello@google.com>, Douglas Anderson <dianders@chromium.org>, linux-clk@vger.kernel.org, 
-	=?UTF-8?Q?Jakub_G=C5=82owacki?= <jglow@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/9] drm/rockchip: vop2: Don't use uninitialised
+ dividers on RK3588
+To: aiyengar1990@gmail.com, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, Andy Yan
+ <andyshrk@163.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Piotr Zalewski <pZ010001011111@proton.me>,
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
+ <20261112-vop2-fixes-v2-2-8218c1cf8ac8@gmail.com>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20261112-vop2-fixes-v2-2-8218c1cf8ac8@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0aa1d2d8660c03a8kunm99272d8254646
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZS04dVkMfH0hJGk5CGUtOQlYVFA
+	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
+	9PT0hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Qdg4MUZ5Y5J5AttCyLUfn9lIM32IW8XAcaVforshf1MHKrWmIjs5KPzF7sr5ykNqk4XWdPqxd/kZqOSYOCZRct3O6ZciBOTaddFdowkjYuaDeHkiVOJ+Pputz/rl2wt+RHFdr6fNS8xAE5b+cJEXtrfgF7Tdnc0btK8nXnye/dY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=7f0VgzKYfj5CawodwOdHpH247rLlZpKsDV1GNlXMq38=;
+	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_185509_544847_95A46AF6 
-X-CRM114-Status: GOOD (  13.99  )
+X-CRM114-CacheID: sfid-20261112_185924_631546_9A247033 
+X-CRM114-Status: GOOD (  22.44  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -127,35 +78,84 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 11:48=E2=80=AFAM Brian Norris <briannorris@chromium=
-.org> wrote:
+Hi Arun,
 
-[...]
+On 11/12/2026 4:33 PM, Arun Iyengar via B4 Relay wrote:
+> From: Arun Iyengar <aiyengar1990@gmail.com>
+> 
+> rk3588_calc_cru_cfg() converts all four dividers to their register
+> encoding with ilog2(), but only sets the ones the interface uses:
+> dclk_out_div is left uninitialised for HDMI, eDP and DPI, and
+> if_pixclk_div/if_dclk_div for DP and DPI. The garbage is then written to
+> RK3588_VP_CLK_CTRL; on an Orange Pi 5 the dclk_out divider of the HDMI
+> video port reads back as 3 (/8) in every mode.
+> 
 
-> If I do keep these as literal firmware IDs: does that mean you'd prefer
-> these not be in dt-bindings/? Many of them (especially the IRQ IDs
-> you're pointing at) are not needed at all in the kernel side; they serve
-> more as naming documentation than anything else. I can just inline them
-> into the DTS. But I'd prefer having macro names for LPCM IDs and
-> similar, as it vastly helps DTS readability.
+The comments are not entirely accurate. The divider relationship is:
 
-I think Krzysztof said as much when we added macros for MediaTek pinctrl
-numbers. They are just symbolic names for easier reference. OTOH a binding
-is a contract between the device tree and the software implementation.
-And if it's not a binding, then it doesn't belong in the bindings directory=
-.
+dclk_out_div: HDMI(dsc mode), DP and MIPI
+if_pixclk_div: All interfaces
+if_dclk_div: HDMI and eDP
 
-What MediaTek did was put the header files together with the .dts files.
+> Start all dividers at 1. dclk_out only feeds DP and MIPI (and HDMI with
+> DSC, which is not supported), so for the other interfaces keep it at the
+> dclk_core rate, as the vendor kernel does for HDMI with DSC, instead of
+> letting it run at the full DCLK rate.
+> 
+> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>   drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> index c44648e1bc0d..659fd0a3ab63 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+> @@ -1579,6 +1579,15 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+>   	unsigned long if_pixclk_rate;
+>   	int K = 1;
+>   
+> +	/*
+> +	 * Not every interface uses every divider: dclk_out only feeds DP and
+> +	 * MIPI, the interface dividers are unused for DP. Start from 1 so that
+> +	 * no divider is left uninitialised when its value is converted below.
+> +	 */
+> +	*dclk_out_div = 1;
+> +	*if_pixclk_div = 1;
+> +	*if_dclk_div = 1;
+> +
+>   	if (vop2_output_if_is_hdmi(id)) {
+>   		/*
+>   		 * K = 2: dclk_core = if_pixclk_rate > if_dclk_rate
+> @@ -1648,6 +1657,9 @@ static unsigned long rk3588_calc_cru_cfg(struct vop2_video_port *vp, int id,
+>   	}
+>   
+>   	*dclk_core_div = dclk_rate / dclk_core_rate;
+> +	/* An unused dclk_out must not run faster than dclk_core */
+> +	if (!vop2_output_if_is_dp(id) && !vop2_output_if_is_mipi(id))
+> +		*dclk_out_div = *dclk_core_div;
+>   	*if_pixclk_div = ilog2(*if_pixclk_div);
+>   	*if_dclk_div = ilog2(*if_dclk_div);
+>   	*dclk_core_div = ilog2(*dclk_core_div);
+> 
 
-Hope that helps.
+I think we can drop the previous divider initialization, and configure 
+the correct dividers for specific interfaces.
 
+- dclk_core_div and if_pixclk_div just remain unchanged.
+- if_dclk_div is set for HDMI and eDP interfaces; all others are set to 0.
+- dclk_out_div is set for DP and MIPI interfaces; the rest are set to 0.
 
-ChenYu
+Best regards,
+Damon
+
 
