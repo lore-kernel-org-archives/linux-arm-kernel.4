@@ -2,149 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F772606A321
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82BC606A32D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=cd2y9tz5;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=pLruQmzb;
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=LWdk4EdM
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=gwhYAFab;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nnPB7bJi
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=P6PGMZFxc6UhpNPssneEJ0B1sY5J1KKjecVwvvRM188=; b=cd2y9tz5YlB9kWZlYRJj0wreVk
-	f8xxrxJvTKYIYiw/XqZbyaH88Jn82fgl/t781DHjSzErJqieq+L5sXewwU2snQ9ZtyeWIDPdFIixH
-	i1BlQSY6ZvuIMU0y+vqasYNaWSG+cNEFCFX2J51L4bVqCYoMWYaACkEtM2F28VP6LLZp9M5U7DGJB
-	mBFSGrEKZW62QkSiO5oRck8RLnFtqUGzHxg0KdOH3dmIb8GWiDUISK0fnFeOjJYSPSK5rnbjBug8Z
-	7vBS7s9KXJwJMCdmgauR6fEhvDbg+ZC5gyVJ8S+4KEmpUO1MUvK1rgAwUKpWuQDVVPGccvYWgSxL9
-	5pc8WneQ==;
+	bh=qx6anf3hBdJB8SU0X3cTGKNeyaZPKU1W0S8sS4JiQgM=; b=gwhYAFabgFEYTZR2oWAXiaHS5z
+	wdiZlFb5WDPKFQeJs6eYV3dzBtwwzJ0rl+31bXuAytT9yltMYX54bwDmCVqqFnKgY3s0YHgn26jo7
+	ZfvfKxKcLfMaK0e2Y+jqUPnTl3yw8NqBCRp/aZN9QJUcxEKf1RIbsVcWnKd5YMtbzanZkPjZ83W73
+	fT4EcJIig0JNFvsVYtB42ydXIso1EZiF8HZ3lj7NA8yzcJYzXdvdUSV2aHV4dqMyPU9rHik/nz9Ej
+	5Q9lO98gAfcYCy635p4JoeC9ic7880w4G5ZJGkpjpE3HoZFxj9JvorB/N5lizXgKgriVilIMAhxTh
+	suLVklcg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmxK-0000000C8nz-0H6v;
-	Fri, 13 Nov 2026 08:48:22 +0000
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131])
+	id 1xRmy2-0000000C8zb-2Xfr;
+	Fri, 13 Nov 2026 08:49:06 +0000
+Received: from mail-pl1-x635.google.com ([2607:f8b0:4864:20::635])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmx4-0000000C8iR-02iw
+	id 1xRmxz-0000000C8z9-3XvZ
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 08:48:16 +0000
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6AD8VJib2515649
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 08:48:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=P6PGMZFxc6UhpNPssneEJ0B1
-	sY5J1KKjecVwvvRM188=; b=pLruQmzbk64QqOwvEb8+G4xkq5jhWCxdWZPr0xhI
-	WIQPs0PLzldrHLuiBnylPRHumzBXeSdxxAzx2p9PmUCK3kiDSZCkbwCfzQW2W53R
-	0YCPCGHhc9JuUlguBcuc3K0UduB0b9uy+7cTcc7Q8KgXDMwFnkUSKQZlVyKogDB5
-	xLqUeWjAzpDzjqeCOA/DuX97Cb+jgpOy0FVHrPUm6HP8J+bapHiWSJ2Lk3ssi4+m
-	UouEmDn0Ol3UnT+55MQX9DGVzp7EhRWck/3FzJirTYo9hY27E1JnuPgf/aGgSlpd
-	XIl4RHm3JzOI9PYuImUhdD4SLntCCItuiPSek9DlJGF96g==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hwg1bb9vw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 08:48:05 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-91e8badc80fso12102966d6.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:48:05 -0800 (PST)
+	Fri, 13 Nov 2026 08:49:05 +0000
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-2edd50e36f2so4385395ad.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:49:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1794559684; x=1795164484; darn=lists.infradead.org;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=P6PGMZFxc6UhpNPssneEJ0B1sY5J1KKjecVwvvRM188=;
-        b=LWdk4EdMewWfvMn5taHTFJQekj6MXecmjtpC63utTCEHvyE/zLUGAcRsvg+ESKwE1C
-         g8zigrmbNOjZHNmB+gaXHFbWSsjjrPZg0bXZBtXOC482Eevd7NKK8jchSKTt97PniKtH
-         QrMC5FCSd97d6230HNIddv/U1Pj2kiusR4K1SjhVGrSdpYvF414q83rL+kSfWJ4oN2DY
-         Uj8ilO+wSQk1OnFhXtaGpNzm7EL309uP0CTT3XzystmmtNu8ihZgiPENyvJTpC2n2RRJ
-         2tABbql1MKgqubSkfx8Si5Jcx7HtDbMJDtt66YXFCXKG9B7AAeXjE8jLJNQOPqu7+QFB
-         2n+w==
+        d=gmail.com; s=20260707; t=1794559742; x=1795164542; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=qx6anf3hBdJB8SU0X3cTGKNeyaZPKU1W0S8sS4JiQgM=;
+        b=nnPB7bJiklS1FgqujTxs18i6XZONvL04P5c8xg2fKq10XWaXKDy1HboDci/Ioc/KGB
+         AU0/AcRxWr7/AyMWPL3EobBFqBo56Ab7e9XsRK0XZzImDtpOqjNtt1DMrsjlyLs6gpQG
+         arbiQCs/VAfi2vmSd0f70rBehsJEDv/Bj5hrsmE6DQFSciMu3+NTCuZsyuKyzDLm7bq2
+         svr303gyk2RNtZkgTNEAbp/f5x16EPPmK4+KDuiXT0u2VfxuIgNfAXLXss6/ozjZHi/5
+         S3K/BRzul1RbtAN4FRuQmT31jxuSSBTOY0t68xogDtJwIasBxeLswX2cxCipQbp6loEK
+         68cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794559684; x=1795164484;
-        h=in-reply-to:content-disposition:content-type:mime-version
-         :references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=P6PGMZFxc6UhpNPssneEJ0B1sY5J1KKjecVwvvRM188=;
-        b=oKL+3qqiInIMkq3ROnJLNSbTj2OmMg2q73WkZnUbIa93OvKSUNPqSuWcTlTzFIIJW8
-         G5gJg3Peh4c5atV8xGAJ0WiMWR43Fl49fYCroTcHvQikAsi6F+eud3aKx9tK3UbhIVN3
-         bNaFsKuZda5FgmdobmCOvS0SvAcyRYBT2sOfTpxcL0qZ6xcJWiDF7tHPrr9x7qylJ8JW
-         mBXjpH/a+XhNSFFNKbAWGTBDrDQLsEw/c+4kwDFaixKYcycnRfQfYQOzVx2SQgE1sXqN
-         SYMZkQ2naDp+AWcHQumWRTn0uqxtNIyEp+pBu/1unrqWfTT89pEFqc0erCHI7k9+tQiX
-         J4Hw==
-X-Forwarded-Encrypted: i=1; AL+hErHfTm12SYdeSrmogYitgCyNdA48IZtJInMVUWzhQTUZ10sD8Pjf40LAWkP+fPTQHlXqHVuGb6plvZSR0zifOE0R@lists.infradead.org
-X-Gm-Message-State: APuU4Z8T7vk46pVu/ffWSF5+60TS6mWDxWAOAepEr3yO/n3i/Z3OvLQ7
-	6/srEKWNNg7UNAC7UEIoQyey4reE94pSprFdz0j05Qelo8MRTl6TVKMZ7MpXwq9x5MhbBXyOVUP
-	T5jdnfoD2rg9M/ByWaioLfDtjj2uvuuhgukdsqrKIRS9978my3AsR171WFNh6vUERsM81SRLQta
-	M0teszbALwWw==
-X-Gm-Gg: AYBFou0qJLSgNlfCThTz1lmCvp7//1SvVkAs69gpncaGqB/lONQJW/5g08dnKd5UAi2
-	iI3pZLmshcjvf/5aIXrhAzod0WDNr1e9F4aTYTqp3gPf+UNgRE+W2CCd+mHz4WFiIncr8j8ECJD
-	jCaj1xAtOPSa8pdpwchN3Mlcx5oztcf5cuigPEo+7eNzwi0T6/45+61zyyFfKp5M1hJzzfT9h5P
-	NYeSqjFbOXfeDdYSOZvCevlVGHZt0K+CBELQS8t1AciMxrvFsHgmsOeEzjUzYwKsUEyW7KFUywf
-	BkrxrmyYFkFdrp5Y7jplGXX7UpuaNV1Vtg2g4ljnu4Q6ilWQylDvqPBm2Qb1GIGBQ882He1ERnN
-	vY8xdRIEDVAHNJ3eq/43W7Z4qeBWP7yM8vJL9mHjh6REIOotCapxX9ShId8Qi3Q==
-X-Received: by 2002:a05:6214:5906:b0:91c:77ef:21f3 with SMTP id 6a1803df08f44-91f241e0909mr25559586d6.35.1794559684201;
-        Fri, 13 Nov 2026 00:48:04 -0800 (PST)
-X-Received: by 2002:a05:6214:5906:b0:91c:77ef:21f3 with SMTP id 6a1803df08f44-91f241e0909mr25559336d6.35.1794559683623;
-        Fri, 13 Nov 2026 00:48:03 -0800 (PST)
-Received: from localhost ([93.66.91.126])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c60ca70a7sm3689140f8f.51.2026.11.13.00.48.02
+        d=1e100.net; s=20260707; t=1794559742; x=1795164542;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=qx6anf3hBdJB8SU0X3cTGKNeyaZPKU1W0S8sS4JiQgM=;
+        b=WopmplRAVYftPvaFtkxq2Yqw4moSN2VwxHZnShvH+fUR0ifb1wK2ON/76Waw1m0glc
+         RU8/focfJXGd41B6O/gSJqlVklmytFOalobysfvy+yBQw5Agw/4sDnw+GYoLjCcCvXPL
+         c+5V3Zt0VHbVby3+txTo1sKqDmHWck5Eo81O452nw4uweWIYvPaLHoPYwVJ/Kh+jik5G
+         7fXmPzr4w45UU7i+9bmzhqK21uBaqNDRKfhOsUxu1shIi/+aewWVhvSBU2bNQA7tRisK
+         wr/etWzEV8joanJmgQ4KMKLkHTH8oDwUIREhmRyzRYutYuuZxaYxHllnjkR4Nr0I+1oy
+         wA+Q==
+X-Forwarded-Encrypted: i=1; AL+hErH7Ku9CT/cO1OmjEYe4yTs4b2RN4P69ynqW5A1ZAhMdEc191dJLjCbCLyQxqkXVduz6+nkJAEC9oDBAp68q593W@lists.infradead.org
+X-Gm-Message-State: APuU4Z+wZyBvCGYSYGjMTYs+/Smg3bY5Y4eTHTMLIchrAmAJ0GWGOsyt
+	fFVDtJMSp35201V6AybfMNW5uf4PU+te0fGCMu1JV5cy/cOhBKnXWLQ7
+X-Gm-Gg: AYBFou0sxJa1BgqNNTcVfyu/Teud++oN2yhAAlrihEF+zZ95P86iJLHzzCv7eWJzF9D
+	7h8D2Tj2t802GqyiPiPsNxNkSABaBNR/sFGK9GHOWyX8WBAr+NReLMkwQEYGBy6LdSqxDnWNPQN
+	phAALdnl9Yrl/wfnptInD0GPDNCQM9DZExHzFVpgC4xybXWWbwjqvkIGCtgtp6KWFjpzv/SKkPa
+	xqN4eXPldcbzeDjWNc1nsY13QgNagAI392OWmZzRaECCJAjxigDbZWyQjF+ADocWoDdixDPHihd
+	MMKZ2GyokuW4fDBdL+OUg5tDP8V1vI164n8CMpQRLMMCjfv1K0mE0Ohy2nk95Qj4EG+eP1dARZQ
+	CWdwVju6am+p7MV46ddYuIshEvHbsW9EhNLyFzF2rR4VGQahKbaMs2kyTP/mrZ+2FYwTIYRrT1t
+	eGgMdXMQlUVtyYANZ2fsISq8dsTNCyKOTlwF6j6F3/uazWyUXuDUu4qrJR/9frRYm/BEjsDzuql
+	WyyWjJscsg+Ve79wUOsDaPIlhxp6H51w8U0t+iJuviGrORjsjBkEANK1yPmLXZJwIckavavaLce
+	0PJzi3qLpzV/jYgkHCSJ1dnrzshmUBZk1Rv+yOo/ystjf0Vb+PdmVuP2oN8sgci7XYXcpPjgZMh
+	aZvhw
+X-Received: by 2002:a05:6a20:a11c:b0:3e0:eae8:7525 with SMTP id adf61e73a8af0-3f7a8bd20camr1630922637.64.1794559742523;
+        Fri, 13 Nov 2026 00:49:02 -0800 (PST)
+Received: from fyhsueh.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bececcce76sm742540b3a.5.2026.11.13.00.48.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 00:48:02 -0800 (PST)
-Date: Fri, 13 Nov 2026 09:48:01 +0100
-From: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Jose Abreu <Jose.Abreu@synopsys.com>, netdev@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net] net: stmmac: re-base EST after PTP settime64
-Message-ID: <avbOwepxkFf1F717@lore-desk>
-References: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
- <ea9ae0f9-d373-4e97-b96b-3855c01100ee@bootlin.com>
+        Fri, 13 Nov 2026 00:49:02 -0800 (PST)
+From: Feng-Yi Hsueh <fyhsueh4linux@gmail.com>
+To: dmitry.torokhov@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] Add Nuvoton MA35D1 keypad controller support
+Date: Fri, 13 Nov 2026 16:48:50 +0800
+Message-ID: <20261113084852.32727-1-fyhsueh4linux@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8vOlyl6HxoyVuXhq"
-Content-Disposition: inline
-In-Reply-To: <ea9ae0f9-d373-4e97-b96b-3855c01100ee@bootlin.com>
-X-Authority-Analysis: v=2.4 cv=c6Q+0h9l c=1 sm=1 tr=0 ts=6af6cec5 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=vJIuTH4p0ATK6gluz4evpA==:17
- a=zJRp6_cAMcgA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8
- a=2dOafQFslBOt0hFCmmYA:9 a=CjuIK1q_8ugA:10 a=-1ZYPXEuWJ9im3w4qA0A:9
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: 1BwIgd323VDnjWWckDTjk3SktGioFZKY
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEzMDAzNCBTYWx0ZWRfX0yeEy67f+xn6
- Gv2AM6dDz3mYNuZX9FeEOtDRrMdO6JD3QlYeQnv3MMYrbqI7ddtiXHCFhKVz7yiW9V+LtlXSJT8
- MR48s4OU30MP9kRLTfeMx2ChDFyEfkdVn/08pOw4oyPxSxMSjBrz+3MukllCjrx2aufhTr7F5mj
- nwQ4TCNvAE7Uj2pccl6MNI27O3SXC00Vy/VWjZTBnQlYeN5+c268sKwGdarog9uVDus3mowm/O0
- ixxhfs38M69iOV74X7+dj+otBg/TJy1EqRh+A74rVUy/6ye18nXK7bKiwfHFKH0tcFBECWBko4r
- Npb62pe1/14EYjmf46lePfLuMh93COnhYP86mYrJFBkZTW3e9DOcSlu2Y8XTt9qL3r+gcL4ZE4x
- tYV95Ebs3cqXUp9Ab3kBhiSIjZAJvDGGU85sc0TwWzQla/ASE7TaTgnbsGBPD2U3SYMPhqLUoOW
- HpuPM5i8BfhxbtO4zfw==
-X-Proofpoint-ORIG-GUID: 1BwIgd323VDnjWWckDTjk3SktGioFZKY
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEzMDAzNCBTYWx0ZWRfX9FFObNch4XZh
- tB8S4qhlucVSBxsTZvvUaQr+XtI+Eg7GmXIGFj9mCYR0JxULK82Rm8RccHcaCi31XFc794udfq6
- lGx44A63CPi+aNNiuIfgSXoTQFqn+Wg=
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-11-13_03,2026-11-11_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611130034
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_004806_142966_A3E1B262 
-X-CRM114-Status: GOOD (  29.17  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261113_004903_941981_11AE3EC6 
+X-CRM114-Status: GOOD (  11.67  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -155,114 +105,46 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---8vOlyl6HxoyVuXhq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The Nuvoton MA35D1 SoC provides a hardware matrix keypad
+controller supporting up to eight rows and eight columns.
 
-On Nov 12, Maxime Chevallier wrote:
-> Hi Lorenzo,
->=20
-> On 11/11/26 10:54, Lorenzo Bianconi wrote:
-> > stmmac_set_time() initializes the PTP clock through
-> > stmmac_init_systime() (TSINIT) while holding only ptp_lock.  It neither
-> > takes est_lock nor disables and re-bases EST around the step, unlike
-> > stmmac_adjust_time(), which performs TSUPDT through
-> > stmmac_adjust_systime() under est_lock.
-> >=20
-> > Both operations change the PHC system time, so both invalidate the
-> > absolute EST base time.  With settime64, a concurrent
-> > tc_taprio_configure() can read the pre-step clock through gettimex64()
-> > and program EST with a base time that is already stale once TSINIT
-> > lands.  Separately, a taprio offload installed before the clock_settime=
-()
-> > is never re-based and keeps running with its old base time until taprio
-> > is reconfigured.
-> >=20
-> > Take est_lock for the whole disable/step/reprogram sequence, as
-> > stmmac_adjust_time() does: disable EST before initializing the clock and
-> > call __stmmac_setup_est() afterwards so the base time is recomputed from
-> > the reserved taprio base time and the new clock.
-> >=20
-> > This keeps the established est_lock -> ptp_lock ordering:
-> > stmmac_init_systime() only uses readl_poll_timeout_atomic() under
-> > ptp_lock, and __stmmac_setup_est() takes ptp_lock through gettimex64().
-> >=20
-> > Fixes: b60189e0392f ("net: stmmac: Integrate EST with TAPRIO scheduler =
-API")
-> > Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
->=20
-> This LGTM, the return values from stmmac_est_configure/__stmmac_setup_est=
- are=20
-> ignored though, the [cl|s]ashiko gang may not like that.
->=20
-> Besides one of the EST commands timing out, it seems unlikely though.
+This series adds the Device Tree binding and input driver
+for key press/release events, clock management, and system
+suspend/resume support.
 
-I used the same approach used in stmmac_adjust_time(). I guess we can update
-both of them if required.
+Tested on a Nuvoton MA35D1 board with a 4x1 keypad
+configuration and a 1 MHz KPI clock using evtest.
 
-Regards,
-Lorenzo
+Feng-Yi Hsueh (2):
+  dt-bindings: input: Add Nuvoton MA35D1 keypad controller
+  Input: keyboard: Add Nuvoton MA35D1 keypad driver
 
->=20
-> Maxime
->=20
-> > ---
-> >  drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >=20
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c b/drivers=
-/net/ethernet/stmicro/stmmac/stmmac_ptp.c
-> > index 31a66e855d6b..6370bdc6c58b 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
-> > @@ -129,10 +129,19 @@ static int stmmac_set_time(struct ptp_clock_info =
-*ptp,
-> >  	    container_of(ptp, struct stmmac_priv, ptp_clock_ops);
-> >  	unsigned long flags;
-> > =20
-> > +	mutex_lock(&priv->est_lock);
-> > +	if (priv->est && priv->est->enable)
-> > +		stmmac_est_configure(priv, priv, priv->est,
-> > +				     priv->plat->clk_ptp_rate, false);
-> > +
-> >  	write_lock_irqsave(&priv->ptp_lock, flags);
-> >  	stmmac_init_systime(priv, priv->ptpaddr, ts->tv_sec, ts->tv_nsec);
-> >  	write_unlock_irqrestore(&priv->ptp_lock, flags);
-> > =20
-> > +	if (priv->est && priv->est->enable)
-> > +		__stmmac_setup_est(priv);
-> > +	mutex_unlock(&priv->est_lock);
-> > +
-> >  	return 0;
-> >  }
-> > =20
-> >=20
-> > ---
-> > base-commit: 22b7cb932c6a0f7566d41072be6956cb6c8af4e1
-> > change-id: 20261111-stmmac_set_time-est_lock-f74f4ce678b7
-> >=20
-> > Best regards,
->=20
+---
+Changes since v1:
+  - dt-bindings: add optional resets and reference input.yaml.
+  - dt-bindings: fix interrupt, clock, and keymap formatting.
+  - input: use guard(mutex) in suspend/resume callbacks.
+  - input: rename error variables from ret to error and
+    explicitly return 0 on successful resume.
+  - input: remove the unnecessary linux/mod_devicetable.h include.
 
---8vOlyl6HxoyVuXhq
-Content-Type: application/pgp-signature; name=signature.asc
+ .../bindings/input/nuvoton,ma35d1-keypad.yaml |  75 ++++
+ drivers/input/keyboard/Kconfig                |  11 +
+ drivers/input/keyboard/Makefile               |   1 +
+ drivers/input/keyboard/ma35d1_keypad.c        | 407 ++++++++++++++++++
+ 4 files changed, 494 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+ create mode 100644 drivers/input/keyboard/ma35d1_keypad.c
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.43.0
 
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCavbOwQAKCRA6cBh0uS2t
-rP9pAP0We69d9Ja/MXjMeW89Cr8mxmls0sCUfHoNch9W4wFTyQD+PQGPg/6xOrPm
-7DwhYebqBdZ1m1ZFNeW4g5iWhoPSsgs=
-=OVPM
------END PGP SIGNATURE-----
-
---8vOlyl6HxoyVuXhq--
 
