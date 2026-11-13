@@ -2,76 +2,76 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1647D606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4184D606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 11:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tTlLmR3r;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=TXbSLkYR
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V73VBgrK;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=QxB9IQQe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=k5kTzIC/xwbiOBwUmgidJlrRFiWrIZutr9d7t0kBwUc=; b=tTlLmR3roIdqfzxdJ/zH8Y7YPn
-	TJdSUBlVhqYmwrtVZSEH9m6xHpr9rmWnVSLXZI/ZFJDFi5gUaa+5E+N4A9t0EOo/mA0VVTLiq3ibk
-	OzZJcgkO6YFuV3l0SUNaB0Vyrjc09j1zCbYuhX0gcrT0obKNXUU0IqcVA0ogyzaWLY+oQ1OIg+zd0
-	URdRvRCNxCrOTbg7UolV2raz/mEHrAcotRPH7wCzUJO1wuFg92NM1HEJ5/S8T3xQngGE79Kze/Sdx
-	BGLho78LGBsk8NY7Axr7ZX9v4ZtqnqNUaWXrnpsbRr6Jg9r6MQidsEJuT+4yeQkbns7abZ5oIhX4l
-	2QP9H7EQ==;
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=QftI3K44ZZiobTwr/u+4ZTOlGFkxNtcO4iEVZ0vgnek=; b=V73VBgrKK9547E
+	8QvjD384C7C9FDCafH+GFWCPE3xe50BNgpIb6hhOSoGR97wvRX55yMeHR7CJ2+LmT2Fc3kR8Ux0Lh
+	UyYZYnAPBQZ8GA/P1gPWitSj63qIOVP0UQoKvAkdFz0Teqcu2UYtFt3t6vT6MsTpYA73D9+31yj81
+	RI5YlxeTkLBcdVUujV7/Ggs0T9FbQHgqU1DB3ZIL44VBSV+ou22o8p/GkmKmukKyz2sLzMCwsWix+
+	letFt5LLQKT/ChOaJ/jbWwoZ+9IXpbKTnHORPU4mRJ4Ad79BUgi+NuxH4WopG+o6B8jnd55hyzPqh
+	nnVx0eiJerV6RJcAA24g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRp5g-0000000CSdS-3xjJ;
-	Fri, 13 Nov 2026 11:05:08 +0000
-Received: from mail-wm1-x330.google.com ([2a00:1450:4864:20::330])
+	id 1xRp5x-0000000CShT-0Dc6;
+	Fri, 13 Nov 2026 11:05:25 +0000
+Received: from mail-wm1-x32d.google.com ([2a00:1450:4864:20::32d])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRp5d-0000000CScV-2OQU
+	id 1xRp5s-0000000CSg4-29zE
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 11:05:07 +0000
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-4a1fbd52ab6so8706635e9.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:05:04 -0800 (PST)
+	Fri, 13 Nov 2026 11:05:24 +0000
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4a9a8d6cea8so8068305e9.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 03:05:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794567903; x=1795172703; darn=lists.infradead.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=k5kTzIC/xwbiOBwUmgidJlrRFiWrIZutr9d7t0kBwUc=;
-        b=TXbSLkYRjwNmnZI2YqUDX3fQzfxehKfl86MkJ+pEkTSZbLPISfBN2OEJvwxwHzxSo6
-         PoKyqECVBfIcJO9O3+GwUok0wfPOtiMvemYl89xjfgazuL3FP1aSXB5H/W4u/+flItR6
-         GKbZHXaRXZtUAz5kUC5xfuRrW5GXRA1Be5u4T8uQvK69Av8vvkOJiIEok0NJeIhjDPcB
-         vDK5hBib1F8PfEd0IaI8eV13wx8ZZAQHN++HZuySRPMEZTglPHMH27ua41E5/Pn1n0js
-         dfXIg/R1rxWvAwDV9pDSHImUSMg5w5DAwlMMgMb0AgNojutQsEsr+CyK1iBaahzQnZsP
-         wFCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794567903; x=1795172703;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20260707; t=1794567918; x=1795172718; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=k5kTzIC/xwbiOBwUmgidJlrRFiWrIZutr9d7t0kBwUc=;
-        b=yELQF2Jqn7nVNOR+j5mJ24Vb2O7canH96lASYW/e+H2X8nhdTHdl8mhIkSFIHd8prb
-         G+JY7sdt1ekt2mvssppekh+xT0ILjQ0AkoL52TRXwaTfuzIRkEuNkmT3G2ROnLNHDHcI
-         hVmF8wvRX/iHU9Xkm+88NZQ1NqkFUdCQ+Fwo+AKkLNjkA8HUVi3BA+FcQE97WyeLamgg
-         6Ni2xribk3VsTP811yzvOYqKmycmR2sOI8KX2vuDT8daGOPAPYvrrxqbH/KkJz3syZNj
-         E0CFQykS/3/rpWTNwtT8Y+wwckzs/RarpZf+Ps/TVHKVZ6FPupvw9Al4mmhMbp0gR4XK
-         es7A==
-X-Forwarded-Encrypted: i=1; AL+hErFcLzP2ihfhkuCvjq+dQcEPdQ8qakcJIJrrTeP/7RQhyel4qgw42L+Ok9SoYV/4G5IOYQq8Q3NCTu6+cqdxziqQ@lists.infradead.org
-X-Gm-Message-State: APuU4Z+kVaCmdAM6BMKshYuVy69uMXtmet8e3pHodaYlDiT753tXQllq
-	G3uqvrZsncLj3IEKIzDLapUv5CohY/fZC8GIbZq/bUqa1/6hP1fm4dMv
-X-Gm-Gg: AYBFou1T5oed7bU/kiReP/rN2F+rFksYOu3uXKYLPE9N0jXaU93cp8JCCjtCjjn9QK2
-	mo5tpnLBzQJTPDO0Xv0YDf25CuIoiXrSeehoaI0BfR8moJaOavw9fKH9HtKg4dkyZrhQnvyPaf9
-	XQTAOZ79PiDE9US1UtuQ5IrxmtrjmdGDhd2hfAuzCvHlTloAgQ4LhxBVg/99u3BcouRglS8UM5F
-	cBpSgk4jkpPLqi/ArMjv+JenNRPR4yvO7Rg7ZL9jvv5ifXujzJN0ysD+uhCg1x3mfVK77LB9eAO
-	npSLwo05ps5D/RwjnWZ4Tmv0phrnkRIGiYZzmuY7sTrYCuO+rUsMJ7/rgdwFrN3fGf9ydBxLVVR
-	vmGrI9XWUzg0XgFHrr8CxR9+m8W7S1AiIzymUj8yoa3wAA/Da7oxbRuAmz/x6IehkhNV57HRzF5
-	x0iG0duLdBdWe6n0DReeDIWozvExvYsU/UZdpT/0wHAZdOLmfVZi1ZsMH8pOK052yWOety9Z/hX
-	Wh89JAROMXtl38b8ZyGGdziqppjQCS6QkAC8uOpekwuRCXkAZYivmCwXBBkHJSYHBJJ99dr1BwZ
-	IlQdeHAOCw2hLUu7T4zCMjvfeMgwKqjplS0=
-X-Received: by 2002:a05:600c:c4a3:b0:4a1:6992:f861 with SMTP id 5b1f17b1804b1-4bb55a02932mr43197405e9.1.1794567903271;
-        Fri, 13 Nov 2026 03:05:03 -0800 (PST)
+        bh=QftI3K44ZZiobTwr/u+4ZTOlGFkxNtcO4iEVZ0vgnek=;
+        b=QxB9IQQe+7jq6U6BsFAG/sNngG8sXL3SuRvf3dsLZmZzbi59xPo42Oj3fIvG0AdLUw
+         3+8SmkpYZOGI+x3fc0sac30aD+4PjX0V40oTopKGVV8d31lNnjK2dZ7l6bgEDnpDf8w3
+         UWwwHl1+pMoB7jmUobwreLZG0OA96lVdQCpvztqnh1XlfLqFxkha/mcGbW32xhf8DdUt
+         AvKDxldNX4G0CpJ5Dqr5nJC1FJMbYN+DSE3qwk22uFJrkDrimg+b6PocgccBL+xW0jIM
+         ZNaaRA4TVJjUqvgSxGT4AyiUHlNDWNTXX7qZIWVCln9e5Sgzq/QoksCTlzoGqHkw6RhZ
+         lNPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794567918; x=1795172718;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=QftI3K44ZZiobTwr/u+4ZTOlGFkxNtcO4iEVZ0vgnek=;
+        b=wux5v5VGBzK/YL+4qx9n8fg9uF8KAVa9pCCsXqCQMt2DTSlcwXe+C4MSq1aHI+9Lhi
+         UjWDld02GPFE0hvtPdszC2NEiZaga1pmRSBMBdN62KYlz9FvLn09mIcaMV3GOSkI2VoM
+         yir5qg/yUkDmdXnurnv0RIg9vEp9OP6jsGRMTrOLtHO+SlwqMp0J7QtD11MQhoUCR9ka
+         nib5Xi4QjnkHLTcrMdlWpQiY7mDPGvA6IeBFEErFkBEykjMo5fpUsZJVXrwSRzCUlLCj
+         MJAuJ19qQCk3N58uLRazIHbOygxlbbj7HfR9VYrHfH5R7zitW9dc3HI2hYxzkp2Nk89Y
+         /syw==
+X-Forwarded-Encrypted: i=1; AL+hErGmtsjzLttjucQauc+WS13BlNCT9eaLhOTxRIqDuntKsiydm5tyfBI7zEnCTRjFCOBQ6QqepL0YVLNRwIq69X+1@lists.infradead.org
+X-Gm-Message-State: APuU4Z9G8wt+xWlMxYoAoHSWVerNv+L/GT70JFQzVfIUHUAOkcPnyZEe
+	2JL6Q3X1MLvNFtWPJj75lXhKBO/gdwNJAXPpuZs4TEWGYfqbyLZUb04ulh6EiWAV
+X-Gm-Gg: AYBFou0LK3JWFZq29fSq4fVMQPBtHvm1crSs/ZpIUOCCclsx6LnJ9ruIqLLPsExN57V
+	qIsIkpYXGRtL9lUi+c7lnn7SCISo/kf4qqdZgjWqEzMVCR1MNj9FDgCR6Kkb0DXa1tZU8uwizFu
+	gQNShcu7MazV/2ACDQ5KOWqMVQyIMNiUL9OBf9l8ClwPWFqPX8/5Kd4sdtG5EBKkK4eC3TcMKdH
+	0BWAqru1Tnd2FH94fKynMZFr9j/0+nHgosnWmggQPt9dOthCs5/tCySBq5l9/QASQFakCOCAPg0
+	Ql4QNmnqY7ZZT0+qbkDr8YL1pyu2GP5LTgReGrLqenJYYRXtJ6Ziczf0ibkbmwH0YWguRZBR39T
+	ojZHch+bkM63qndgeZVtDCWFlHmm6sOKLEhDKqzNal+br4gLDUWtEAbtpvrUFrRVphpkFxBJmso
+	vkzc430AOHE6W0oVG+l7R0IrdmY9JmhYk8ehLOqeCzv7s0BM/IP8YTLAi0W/Q0pNrKnybFb9NrW
+	aMBZE6D6MPQVwVcdjg4lp2gVxGA1AtbEdmZDt5uPLIXujZSunCUz3kfLPxBP+m9OCoxt1oUVxfl
+	xsxjSfoa4+79x8JwjWPwArcP8JK3x4YRO0g=
+X-Received: by 2002:a05:600c:3b16:b0:4a2:1960:6fa with SMTP id 5b1f17b1804b1-4bb55a6116bmr46200125e9.4.1794567918385;
+        Fri, 13 Nov 2026 03:05:18 -0800 (PST)
 Received: from deb05.proceq.com ([213.160.61.66])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb55afb6absm57515955e9.15.2026.11.13.03.05.02
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c605e4a2asm4788105f8f.39.2026.11.13.03.05.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 03:05:02 -0800 (PST)
+        Fri, 13 Nov 2026 03:05:17 -0800 (PST)
 From: Mehmet Fide <mehmet.fide@gmail.com>
 To: Andi Shyti <andi.shyti@kernel.org>,
 	Oleksij Rempel <o.rempel@pengutronix.de>
@@ -79,22 +79,26 @@ Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Frank Li <Frank.Li@nxp.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	Yao Yuan <yao.yuan@freescale.com>,
+	Wolfram Sang <wsa@kernel.org>,
 	linux-i2c@vger.kernel.org,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Subject: [PATCH] i2c: imx: test the block read flag of the message that is read
-Date: Fri, 13 Nov 2026 12:05:01 +0100
-Message-ID: <20261113110501.1142036-1-mehmet.fide@gmail.com>
+Subject: Re: [PATCH 2/2] i2c: imx: return -ENXIO at once when a DMA write is not acknowledged
+Date: Fri, 13 Nov 2026 12:05:16 +0100
+Message-ID: <20261113110517.1142293-1-mehmet.fide@gmail.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261113073250.1037215-3-mehmet.fide@gmail.com>
+References: 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_030505_626009_BD5375B1 
-X-CRM114-Status: GOOD (  15.63  )
+X-CRM114-CacheID: sfid-20261113_030520_567364_07A0A57F 
+X-CRM114-Status: UNSURE (   8.75  )
+X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -106,58 +110,19 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Mehmet Fide <mehmet.fide@screeningeagle.com>
+Please do not apply this patch as it is. Sashiko is right on both
+points: the new -ENXIO path leaves the DMA buffer mapped, as the timeout
+path does today, and a NACK of the last byte the DMA writes can be
+missed. v2 fixes both. Patch 1/2 is not affected.
 
-i2c_imx_xfer_common() decides between the DMA and the interrupt driven
-read with I2C_M_RECV_LEN of the first message of the transfer instead of
-the message at hand. A block read of DMA_THRESHOLD bytes or more that
-follows another message is therefore done with DMA, which reads the
-initial length and does not look at the count byte.
-
-Fixes: b460b15b3cc2 ("i2c: imx: separate atomic, dma and non-dma use case")
-Cc: stable@vger.kernel.org
-Signed-off-by: Mehmet Fide <mehmet.fide@screeningeagle.com>
----
-Reported by the Sashiko review of another i2c-imx patch:
-https://sashiko.dev/#/bug/linux-f62df5ed-ad96-43f2-872a-ae2c0100b73f
-
-Tested on a Colibri VF50 (i2c0 with DMA) with a v6.12.117 kernel that
-carries the i2c-imx changes of v6.13 and later as backports; on this
-base compile tested only. An I2C_RDWR transfer of a one byte write
-followed by a read with I2C_M_RECV_LEN and an initial length of 16:
-without the patch 16 bytes are read and the count byte is taken as data,
-with it the count byte is evaluated (here -EPROTO, the device answers
-with 0x25).
-
-The line is from v6.13, the patch applies to 6.18.y and 7.3.y.
-
- drivers/i2c/busses/i2c-imx.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/i2c/busses/i2c-imx.c b/drivers/i2c/busses/i2c-imx.c
-index ccf08cd63151..9abe0a26c877 100644
---- a/drivers/i2c/busses/i2c-imx.c
-+++ b/drivers/i2c/busses/i2c-imx.c
-@@ -1713,7 +1713,7 @@ static int i2c_imx_xfer_common(struct i2c_adapter *adapter,
- 			msgs[i].flags & I2C_M_DMA_SAFE &&
- 			!(msgs[i].flags & I2C_M_NOSTART);
- 		if (msgs[i].flags & I2C_M_RD) {
--			int block_data = msgs->flags & I2C_M_RECV_LEN;
-+			int block_data = msgs[i].flags & I2C_M_RECV_LEN;
- 
- 			if (atomic)
- 				result = i2c_imx_atomic_read(i2c_imx, &msgs[i], is_lastmsg);
-
-base-commit: 25e7ab89f4774b0f842cee0e8a20c11f755924d5
--- 
-2.56.0
-
+The block_data remark on patch 1/2 is a separate bug; I have sent a
+patch for it on its own.
 
