@@ -2,12 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87E1606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B97606A8AF
 	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=QZJlgzP/;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=PErNCUXT;
-	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=Y9v4pOya
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Vw+Z4A8q;
+	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=Xy3KArTh
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Content-Type:
@@ -15,98 +14,84 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yst+eH4qPHKZ+Mz1qLQUp8ASMlTj1NxEgEqc21eSWaw=; b=QZJlgzP/4LmHJep4rKJnjqKRd9
-	A3fFM8lr5+rBTghCE7J3G+do9MjLlrylz/0+YTsju6dWhOOV5vn11Nqp1zmdkfLTahdvLZHlPc9zb
-	NIayjR/fR7tyujEkxGQkUtYbsmANIBSAhg3TstD8KmbpkUfjVt+g/mw+GiW6+NK66IrLfttKCjLKz
-	/cXVIkGufHCR+MCC3v+YYaWYqxNFEbgparMSIvvKLJ7wthSeauvw6581WqSB9M/LBX0BItOVpobLe
-	1xwRrhBkiAjmHor4gOq5vNRqEEOemVs7+UcoOVQCtvDayuAroUE2pt/WFdwKw3esGxXODLnf4BMpl
-	cODgqeZA==;
+	bh=C0F5qYv7gtQEkIA9c8+UTK9jR4byuBtt4GhvmbtO5Uk=; b=Vw+Z4A8qdwzR7z/O9tvCFtUY1w
+	g/DEzv1hOfq5vWlzW+9zBmtn5s+SVYgF629lLebILVYSpJFjAdFJi8IvLUWqBsnVrMuuBFgMD5tmc
+	aQFRP4bL2M6CvkLd5wtaRufzlJzohhHTcOBFXSAqO7zqAiJB/38fbfl3Zn+iALE0RONu5zGf05JYN
+	lWI/cOXhs/Bh44Q5UY67VOyyyFmHoPXisNl6pb2oWe3ixinOLtrgtHKWuwedZR0jsRemzZl3w2KQ8
+	MK80bGGUDqcAvuwWYS1vevNw1fWM+Kh6Eb1TtlkP7ZdAMQl5Fm4xwv1rcOiNaXrnENdPpHNsXXW/Z
+	XMKx3txQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmnY-0000000C5iq-3MvZ;
+	id 1xRmnT-0000000C5fS-3Bsi;
 	Fri, 13 Nov 2026 08:38:16 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+Received: from mail-pj1-x102b.google.com ([2607:f8b0:4864:20::102b])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmmw-0000000C5Nl-34wO
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 13 Nov 2026 08:37:39 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Message-ID:Content-Type:MIME-Version:
-	References:In-Reply-To:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=yst+eH4qPHKZ+Mz1qLQUp8ASMlTj1NxEgEqc21eSWaw=; b=PErNCUXT0VkmNYNBwwoNPxJnoG
-	Xq+QQraDqx6wGLgO5EhrMdcIErvasF5Kll8LX4NIzc/YqnBn+q2W0ad8EB+gN6WGyatyre9C1Scn+
-	HFKxnOZ0tW1QFs36nI/HgB+RAWeK4oMIxCZsnSJe0/3b1RWDK4iLk/T9Yx23LeEpn+GhpieSZU0dh
-	lmeiDeV0ygwKKcnItE4sKYrgHbapf30Kpg7ivt2F6Vx1J8kAQlq7CG0WYUMpGyia+Yg/+Cg8YBWaH
-	KCGb5En1kDS+fWSBcnRKYq3b0X1/r89pxZc+rRYTUd9CY4eLAo7EPAwGurs8NDtgwISz6xc0DQZXa
-	RMI1Y0sg==;
-Received: from mail-pl1-x636.google.com ([2607:f8b0:4864:20::636])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmmu-0000000B4r6-0dor
+	id 1xRmmo-0000000C5Kj-1XiM
 	for linux-arm-kernel@lists.infradead.org;
 	Fri, 13 Nov 2026 08:37:37 +0000
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-2ed28bac8d7so2980905ad.0
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:37:35 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-3adac5c10e3so333547a91.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:37:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chrisdown.name; s=google; t=1794559053; x=1795163853; darn=lists.infradead.org;
+        d=chrisdown.name; s=google; t=1794559049; x=1795163849; darn=lists.infradead.org;
         h=user-agent:message-id:content-disposition:content-type:mime-version
          :references:in-reply-to:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to:content-type;
-        bh=yst+eH4qPHKZ+Mz1qLQUp8ASMlTj1NxEgEqc21eSWaw=;
-        b=Y9v4pOyaS9lemRIxNyGFz+asVqMohjPnn7Xe9Nnfv8rdpelqkiVoRzaDr0hy0mEIMy
-         LDe2ufX/INSGliHQx1R2ill/YQ5i/yeOWIuvgLP6feWaTFItUXoQtIVySpvQlGXhRAna
-         FROSSOKZ0XkuDGe97ppHOXgwhVOaEd45OGWg4=
+        bh=C0F5qYv7gtQEkIA9c8+UTK9jR4byuBtt4GhvmbtO5Uk=;
+        b=Xy3KArThCW6mkPlIOHWXn36On0tvWvLRweMMZsRroLw091LI1JkZCS8o58zLwGSYEw
+         s1IuDdZVAAGZJlHKK0btA+dqR1rV5ANLtpdaCoew2sRvX2Hu86A9xMXlVOTaUyMEZkGz
+         JpEgqWa3yK6I886EZLjkBl6fdvuXLtqQkffQM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794559053; x=1795163853;
+        d=1e100.net; s=20260707; t=1794559049; x=1795163849;
         h=user-agent:message-id:content-disposition:content-type:mime-version
          :references:in-reply-to:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=yst+eH4qPHKZ+Mz1qLQUp8ASMlTj1NxEgEqc21eSWaw=;
-        b=TRcn0a+T3fiDGixzOJm82u3irK61cko+Z1CT63GxxfjMS5LFjowd1Ftn9KCL7sAHJl
-         XsoH++jkcM8VyFfMu1SGhxYyZW5Sm5UAOumxRJj43FNrjBsEpUdHEv83PR+KY18+Jr5D
-         VjYuN4T82O0CNoUucgl1Nm49NRs/eDBIzt68INInixTH2unBvJMVAGUof2/o3XwLXyP/
-         wi4KrCx2kHMGfN8Oz1kHjpXJYDI9T1gTXP40qZK+e4tX9vDWXoQox34WSv//GGmz0JfL
-         DF+UppGD2Km6f7y/RAdeF2fN39yKl1QNNhne0fJOZ/XGhQPIq7GDg3XB6I8cKkfjsQ+x
-         gL+A==
-X-Forwarded-Encrypted: i=1; AL+hErF1QccOHdWWV4IP4xoHw+kGomSg7lt50hcoddl0suVgfK8S8YrDIfyc+ARew/+bltu7HJzjT9vjrZruqNXHMSMI@lists.infradead.org
-X-Gm-Message-State: APuU4Z9ecDFmP4q3ghOgYYp34t25xZV+IxpCQrXL14J1EyPpg8hxxSq8
-	0e4+f7cm1+hp514Y8riLeGmqcFH3arVlXTenv+AEx6dNyjzKNjmLL6MqG6a4q8mWY+s=
-X-Gm-Gg: AYBFou3c3+VTcTfjfYgOhqTGU0hjimGmzeixIbCE/1T+ckf9q6cLAepSfSvoEZofQ+O
-	a2YMSveWZldGyVDDRywvpWxIScb/TmBlCvM5zsBVlic0ui5JuPWLFTQDLoOosctVE4Kmey66rte
-	w9WewNLFVER9r7FfTIEnc5skLSXRnNL9N0BFSFtlX8Ewfez1HOC9vKVQfh/epCPuEsBDWFDUvsf
-	2/Qmbk5o9T6bU2VgZ3ug3JK0mtdsQC+Xh2W6oCcYL3DjvF8viiKgmTfcvCj3WqyvNPxO1iS1ZRS
-	OL2nKu+3/PymciAGQ8iNnzv5y3Tao6ExgMtc0tLsUjjitct4HXENP1dFuIUQNYffk71uALOYox3
-	cABHN5eBYr8JB4eJfIxSvCI4UgIYPe1icvjKo8ofAa737up4fXrbs+dPipZoAaPyqMtPEysWC36
-	7fwEoVoyiI6mGmmoeherLx1nos3RIKJWeXc3vJYnPL7qMDCsG8KUq/b7Sisnihv/enmAHXXJa3p
-	obPJ7472Umq/UucaIBAyRxsYWT41Y89O1ctnnrw7sPVNNOr7e0oU0fIkR7EA458+VbJWuQF3kFh
-	0Ln+duX+mo3UswMu+Di5WLLsDFvZlA1AiSCuHiaSUB8pzWUFGmy43zXLy7GNgSb7myJ5RyOowS1
-	XWpraWkyntoun8gcuwhXmkq274xx59ZQZ/BfQtl3fjcGSY6Nmn3dJkFGFVAE4QNBF+HiSnGt7wm
-	S+jaK74JVnFerixAPc0wFaH+O50hF6oHMVHFPCvxpbiTG6aJ2/c3iqRt9H30qVsVSn0q/V22I4Y
-	wWRyyeg
-X-Received: by 2002:a17:903:3c6e:b0:2e9:8202:508a with SMTP id d9443c01a7336-2edf1ed6cdemr37400075ad.16.1794559053599;
-        Fri, 13 Nov 2026 00:37:33 -0800 (PST)
+        bh=C0F5qYv7gtQEkIA9c8+UTK9jR4byuBtt4GhvmbtO5Uk=;
+        b=C5HhYvMUNr9yJ7LdIYEcXORlkwjQhwk6M7hXqhzyDXD8+T0LzDj7tIjhD3KW/FLeOI
+         b/ErfklA8eWDLmW7/TXx7hvCHbYvhQACiHzxksdSmwoW9IJOtz0eyCXIvBO8WaIBDfZV
+         L0yjZc16qikDgVimIAzbptjXUfolTMtoMb5c0kjPRpa139hpeSepA0k0eDQBNNbYBL8G
+         +v1WY5wmqCAG6G/90QiYnD6lzflLMHLI3tL2Op99NqGtfraMgEObjYqI3vqnMLkE5Mfx
+         RaQN3BNY1cNusyqywAvHhRVU2VX0PKLy43wWs6zQCAqs9tMhq1uEKIMVcxPH0xIyVAVP
+         uIsA==
+X-Forwarded-Encrypted: i=1; AL+hErEQq+/YyWIjfUhrIe2zYtX1Nr8RGTR9muu6b5xxxAFmIkkvvlB2KLS8LCWNE8N2cjhyaLKi0tSHYa7ItYVIikIh@lists.infradead.org
+X-Gm-Message-State: APuU4Z8r+A3+sn1UkTi2Ergj+8RLJDmT6P3ZHAsIvqFnIaYAKIvVl9r2
+	T9QiKr8f9E5k03osbQkX0oBAEA6jmq00lcZQEIH3lCQ/Rxm4xvDibbdiXUnmed6Mpn0=
+X-Gm-Gg: AYBFou15c49cm44uezu2AmfECqKBuEzZR91TKm7ygBLFvCSjcih6+YrQc4wIIP6yDnX
+	gJu352GLAyUjZRlI6EaOU1ZkVDtnN3a8ExsEATIzl04z7cOKfjpS9TggvlKnZe0XYHaEQlARS4w
+	mqDIMCTmP3MNYzakhJCa8o8E9eYSwL8RN0ttOM0uN2ORuKnkFWhvVX95s+PMJNaHWyZFUTS4x2h
+	KSOkA55cSNwXIckFpxMUlcDwg0ax2Iisb8oW714zpLPeHIpUJW0Lq7cqUtTJExgT7hkLekgNZf1
+	NGPb/KLuj0FQ+984K5q9HvxN408EcKifYoZciSlwCT8bPClCb3BMzriC//jnDYZYwQgRjrUYqLy
+	FRGQUA63DX6tjOGhi2rhXudR1BELa0g0BzGn+UdP+dF5YDSGOAyqLTUYh1Yi2w2nzOVtwuhp9Hh
+	LYNpyfrMfANoiBn2ZDTCGzjDNkW1/w27EMabyTmd8oNRCUBQUJ7QOPdvJANm191/Lw94KLgr/D8
+	ezAH/WYswQhRt90zOnFRyt+KqCYaP+KjqucHk3IuNSx/+KzlmUlHBdbto9frYy+sOMH8ckDtcSQ
+	pVj4qGhGBEfejEJHF46LexBNxq01m4KG0Z7yc3OvkhBzEOEaGP51AumTq1wx2CoG3BTBJRCImUI
+	AAOLBiQ0QM0SQDIdJ4WmD8zbSP1zoMIAuHfiFlzBMGLWklhgsTE6jLwfYWfVw1yaDmbgV9hZAuY
+	nZPO2aRFF2qHqlOhGl3ut3w+3bekAqs7zA4t8EZSr6dD+r3kZM9Yx7B11FbjEAevpVbd9/uydow
+	27WZXEa
+X-Received: by 2002:a17:90b:4c0e:b0:3ac:8741:e2e8 with SMTP id 98e67ed59e1d1-3b1b07ef0bemr1782230a91.8.1794559049401;
+        Fri, 13 Nov 2026 00:37:29 -0800 (PST)
 Received: from [172.22.0.2] ([50.175.87.158])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ee0f75ebbcsm6475845ad.26.2026.11.13.00.37.32
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1aeb17042sm3384750a91.6.2026.11.13.00.37.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 00:37:32 -0800 (PST)
-Date: Fri, 13 Nov 2026 00:37:31 -0800
+        Fri, 13 Nov 2026 00:37:28 -0800 (PST)
+Date: Fri, 13 Nov 2026 00:37:26 -0800
 From: Chris Down <chris@chrisdown.name>
-To: Randy Dunlap <rdunlap@infradead.org>
-Cc: Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, Kees Cook <kees@kernel.org>, Juri Lelli <juri.lelli@redhat.com>, Vincent Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann <dietmar.eggemann@arm.com>, Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>, K Prateek Nayak <kprateek.nayak@amd.com>, Ard Biesheuvel <ardb@kernel.org>, Will Deacon <will@kernel.org>, Sami Tolvanen <samitolvanen@google.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, kernel-team@meta.com
-Subject: Re: [PATCH 2/3] sched/core: Add sched_stack_end_check= boot parameter
-In-Reply-To: <099dc59b-0699-4c2d-875e-289cf6d32cce@infradead.org>
-References: <cover.1793082868.git.chris@chrisdown.name> <3d2bb6a8508b9d801878bb82c88165a1b1ff5f40.1793082868.git.chris@chrisdown.name> <099dc59b-0699-4c2d-875e-289cf6d32cce@infradead.org>
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: Ingo Molnar <mingo@redhat.com>, Kees Cook <kees@kernel.org>, Juri Lelli <juri.lelli@redhat.com>, Vincent Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann <dietmar.eggemann@arm.com>, Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>, K Prateek Nayak <kprateek.nayak@amd.com>, Ard Biesheuvel <ardb@kernel.org>, Will Deacon <will@kernel.org>, Sami Tolvanen <samitolvanen@google.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, kernel-team@meta.com
+Subject: Re: [PATCH 1/3] sched/core: Skip the shadow stack end check when SCS is disabled
+In-Reply-To: <20261027100843.GA2668564@noisy.programming.kicks-ass.net>
+References: <cover.1793082868.git.chris@chrisdown.name> <0e607d3aa7c2c4cc1b5b8ba7b0e25ebdb55726af.1793082868.git.chris@chrisdown.name> <20261027100843.GA2668564@noisy.programming.kicks-ass.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Disposition: inline
-Message-ID: <20261113003731.5754ed6732d351dc@chrisdown.name>
+Message-ID: <20261113003726.68aef052ac869097@chrisdown.name>
 User-Agent: Mutt/2.4.3 (cc9e3943) (2026-10-09)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_083736_149062_8A89194F 
-X-CRM114-Status: GOOD (  11.28  )
-X-Spam-Score: -0.2 (/)
+X-CRM114-CacheID: sfid-20261113_003730_652780_9395DDF1 
+X-CRM114-Status: UNSURE (   8.93  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -125,16 +110,13 @@ X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Randy,
+Hi Peter,
 
-Randy Dunlap writes:
->This error branch should return 1 since it handled the command
->line parameter -- it just didn't like the "value."
->
->Returning 0 causes the option string to be added to init's
->environment, which is not wanted in this case.
+Peter Zijlstra writes:
+>How about you push that scs_is_enabled() into task_scs_end_corrupted(),
+>this makes less noise here, and also keeps the next patch saner, no?
 
-Good catch. I've fixed that for v2.
+Yep, that's nicer. I've done that for v2.
 
 Thanks!
 
