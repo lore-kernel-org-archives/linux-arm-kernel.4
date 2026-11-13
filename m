@@ -2,68 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D0A606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2517606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 06:05:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n2kLZASk;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aA1FJUQW
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=fSp9auFv;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=REIrOkJz
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
-	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
+	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LANplOGl/IujYksPR/YOrSZcasHgqJlzVsMCgKPcbSc=; b=n2kLZASkN+gdSUKPzN2slfn80G
-	+Hu6fUMba+sW6A4xs3e0QoqM9xcuKMd4YMmPLHs5Qk2qHKLA81ZgnG9ePj8VXG8lY52M2vEcKy12u
-	D/UdXK99fHoCPGXA2BtRFLl/ioSHLX1vnVTh+hORlgLUh7t8iJXnKePQZrAmhW1CQRQTsWWrYGwc3
-	m4sgiFkYGV6MQD1Tq2AvwSgb/9OVXm0s8BV/WxhQ84gYWoKP1NDmYTJGWHEhXT/XCD8/QnxLjhbpK
-	kLpGKOVJfbqhSEwrYF/aA97IOEtGZqn+FeeYkICrCvjL6wy7pLRX6Bd0ZRkqbXt+oeCvubw7dG3JF
-	Rb6K5jXw==;
+	bh=2Q0Kw6VKjPJ4bBmVqAq5ZaWu4zc0H8m2mSoY9o/wgk0=; b=fSp9auFvr0V5MVLMQxTfTXQCya
+	tCfcXKQ0Yoekb5PMmPbspcp8qKzoQYDYl8ZEC5/CON8PTCTBorA/0Vos9yg3P+wZR9w5JME3NhGFF
+	B/O2oAyv1jSWkuuXQL6rx1GXU5aFWPfGcd/Ey6G9Y8PXOtaz1HMyYuAzT/o2liq071Np0R7ElGIYz
+	StYEzCiuuPUrn5D7fCse0lM60+Q6tt2ubsTsoO1nXaIW6SPbcBt2+r7GQcpumFeyCiwj6W7A/8Jtw
+	uOwcHUuS86DltZjHJoSt+/u+gPnVxpO6Zf7MCel/iZT+hvz3Q4YZVvuyZjXj7TY57ozLqVu4HtDuE
+	UsXzcWhQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkCM-0000000BiyY-2kIu;
-	Fri, 13 Nov 2026 05:51:42 +0000
-Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
+	id 1xRkPG-0000000BkJv-1PlB;
+	Fri, 13 Nov 2026 06:05:02 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkCC-0000000Biu3-0UOw;
-	Fri, 13 Nov 2026 05:51:32 +0000
+	id 1xRkPF-0000000BkJh-1L4P
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 06:05:01 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 8C66B62530;
-	Fri, 13 Nov 2026 05:51:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44BD41F00925;
-	Fri, 13 Nov 2026 05:51:30 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id BD5ED41807;
+	Fri, 13 Nov 2026 06:05:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C26F61F000C4;
+	Fri, 13 Nov 2026 06:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794549091;
-	bh=LANplOGl/IujYksPR/YOrSZcasHgqJlzVsMCgKPcbSc=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=aA1FJUQWvmVyKCMaGNbnhQ/CSPlv+LzHzApYMzxMhm3zkyQb3k4PVjqJjprnP5yhL
-	 MPaOl4dvJh04hFrFS7m+9tMYXnn3RktAnoy1dg87CCjB5E6Lt6Myc/slDGxih3KiV8
-	 OVBLZQlz5P/YXiKTJFbNbxri4tJN/IWUjIxlHnHDzrAg3TPnCR34iAWBsaWtiY3I5W
-	 TuIK6AYitM9SSD1djcQj65gyICIua5A89ZdTxgYW75TwDd9xxvsiytCvLrRkkJBZm8
-	 3ufPL4LPvMoFKOeW+ow4l/0+6TSt/Yf/5TqXnaAtbUaWWQXXSM6DzFccAcbe2Vi/7w
-	 PDF9CDEughw5A==
-Subject: Re: [PATCH net v5 4/4] net: phy: postpone PHY interrupts during sleep
- with MAC-managed PM
-From: netdev-bot+sashiko@kernel.org
-To: iav@iav.lv
-Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
- davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
- maxime.chevallier@bootlin.com, lukas@wunner.de, rafael.j.wysocki@intel.com,
- wei.fang@nxp.com, niklas.soderlund@ragnatech.se, paul@pbarker.dev,
- florian.fainelli@broadcom.com, opendmb@gmail.com, Thangaraj.S@microchip.com,
- shenwei.wang@nxp.com, Haoning.CHENG@cn.bosch.com, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Date: Fri, 13 Nov 2026 05:51:29 +0000
-Message-ID: <179454908985.2199510.13649467977536691436@kernel.org>
-In-Reply-To: <20261111-b4-phylib-mac-pm-irq-v3-v5-4-bbfdb5afb7d3@iav.lv>
-References: <20261111-b4-phylib-mac-pm-irq-v3-v5-4-bbfdb5afb7d3@iav.lv>
-X-sashiko-severity: Medium
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20260515; t=1794549900;
+	bh=2Q0Kw6VKjPJ4bBmVqAq5ZaWu4zc0H8m2mSoY9o/wgk0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date;
+	b=REIrOkJz2AHn01Jmb34bj98BYasFg8BqbFiumMW4g2v27buVo7lZVCCUbaiZW3RuM
+	 +wxBJ3/gX4+BELRdWdNU/J6PCzSOCrnZ2IYYh1A2ba4YSznn84fKf9sjN+D9wF4QHM
+	 SvSMtf7+mrJ13TBMzOObc8QfHQSTE5vcrsg2P1RmXkJF0g5vPmFE7R+/836jM3RdJi
+	 TzgoEtGCv25Lk+l6gF0k+8wxuzvl7lHKBraB7e32jqTKlGJ4O5Q7j1CSPzLdUvrLN9
+	 TNkSDm8aEPPw+MSqEDh6WgmRs0zAuMxpqzrInD6NnrBYPRGuHiYCIIX3C/vf+TCuxV
+	 RFWMNY2pAu6Nw==
+X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
+From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
+To: Alexey Kardashevskiy <aik@amd.com>, iommu@lists.linux.dev
+Cc: Alex Williamson <alex@shazbot.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Jacob Pan <jacob.pan@linux.microsoft.com>,
+	Jason Gunthorpe <jgg@ziepe.ca>,
+	Joerg Roedel <joro@8bytes.org>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Kevin Tian <kevin.tian@intel.com>,
+	Krishna Reddy <vdumpa@nvidia.com>,
+	Lukas Wunner <lukas@wunner.de>,
+	Nicolin Chen <nicolinc@nvidia.com>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Samuel Ortiz <sameo@rivosinc.com>,
+	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
+	Steven Price <steven.price@arm.com>,
+	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Thierry Reding <thierry.reding@kernel.org>,
+	Vasant Hegde <vasant.hegde@amd.com>,
+	Will Deacon <will@kernel.org>,
+	Xu Yilun <yilun.xu@linux.intel.com>, kvm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-coco@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v8 03/15] virt: coco: tsm: Complete PCI registration
+ before publishing the device
+In-Reply-To: <9773f2fa-f80a-449c-9e9e-722d1c71f989@amd.com>
+References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
+ <20261104161632.3547423-4-aneesh.kumar@kernel.org>
+ <9773f2fa-f80a-449c-9e9e-722d1c71f989@amd.com>
+Date: Fri, 13 Nov 2026 11:34:48 +0530
+Message-ID: <yq5ah5hlmflr.fsf@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,142 +93,26 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue(s) to consider.
+Alexey Kardashevskiy <aik@amd.com> writes:
 
-Critical: 0 · High: 0 · Medium: 1 · Low: 0
+> On 5/11/26 03:16, Aneesh Kumar K.V (Arm) wrote:
 
-If you believe none of the issues are legitimate, please reply to each
-issue of Medium severity or higher and explain why the AI is wrong.
-If any of them are legitimate and you plan to respin, please let patchwork
-know by including "pw-bot: cr" as a separate line at the end of your reply
-(one such reply per series is enough).
+ [ ... 97 lines skipped ... ] 
 
-- [Medium] The new wakeup policy treats every postponed PHY interrupt as
-  a system wakeup whenever phy_may_wakeup() is true, including link-…
+>
+> Why do we do this only when pci_ops!=NULL? Also, why do we even allow
+> pci_ops==NULL? [a minute later] ah 04/15 does just that. Make it first
+> in the series so following patches get simpler?
+>
 
---
+Sure, I'll move it to the beginning of the series.
 
-net: phy: postpone PHY interrupts during sleep with MAC-managed PM
-
-This commit sets irq_suspended for PHYs whose MAC manages PHY PM. With it
-set, phy_interrupt() postpones the PHY driver's handler for the whole
-sleep transition instead of accessing an MDIO bus that may be powered
-down. The wakeup event a postponed interrupt reports is now decided in
-mdio_bus_phy_suspend() and stored in the new irq_wake field.
-
-> diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
-> index 110c9dfcbd916..2dc13dd1afb66 100644
-> --- a/drivers/net/phy/phy_device.c
-> +++ b/drivers/net/phy/phy_device.c
-> @@ -332,6 +332,44 @@ static bool mdio_bus_phy_may_suspend(struct phy_device *phydev)
->  	return !phydev->suspended;
->  }
->  
-> +static __maybe_unused enum phy_irq_wake
-> +phy_irq_wake_source(struct phy_device *phydev)
-> +{
-> +	struct net_device *netdev = phydev->attached_dev;
-> +	bool phy_wol;
-> +
-> +	if (!netdev)
-> +		return PHY_IRQ_WAKE_NONE;
-> +
-> +	/* phy_suspend() cached the answer of a suspended PHY, which may
-> +	 * not be reachable over MDIO.
-> +	 */
-> +	if (phydev->suspended && !phy_can_wakeup(phydev))
-> +		phy_wol = phydev->wol_phy;
-> +	else
-> +		phy_wol = phy_may_wakeup(phydev);
-> +
-> +	if (phy_wol)
-> +		return PHY_IRQ_WAKE_SYSTEM;
-> +
-> +	/* With MAC-managed PM, only Wake-on-LAN in the PHY makes its
-> +	 * interrupt a wakeup: the MAC stops the PHY itself.
-> +	 */
-> +	if (phydev->mac_managed_pm)
-> +		return PHY_IRQ_WAKE_NONE;
-
-[Severity: Medium]
-Can a link-change interrupt caused by the MAC's own suspend path abort
-system suspend here?
-
-Take a MAC-managed PHY where phy_may_wakeup() is true. The phy_may_wakeup()
-check comes before the mac_managed_pm check, so irq_wake is set to
-PHY_IRQ_WAKE_SYSTEM. This happens in mdio_bus_phy_suspend(), which runs
-before the MAC's suspend callback.
-
-With stmmac, which sets config->wol_phy_speed_ctrl = true, the MAC
-suspend then does:
-
-stmmac_suspend()
-  phylink_suspend()
-    phylink_stop()
-    phylink_speed_down(pl, false)    /* gated on phy_may_wakeup() */
-      phy_speed_down(phydev, false)
-        phy_config_aneg()            /* restarts autoneg, link drops */
-
-phy_stop() does not mask the PHY interrupt. On PHYs whose INT pin carries
-both link and WoL events, the link-fail interrupt then fires while
-irq_suspended is set, and phy_interrupt() does:
-
-		case PHY_IRQ_WAKE_SYSTEM:
-			pm_system_wakeup();
-			break;
-
-This runs without reading the interrupt status, so a link change cannot be
-told apart from a PME/WoL event. The phy_speed_down() kernel-doc already
-warns about this:
-
-  WARNING: Setting sync to false may cause the system being unable to suspend
-  in case the PHY generates an interrupt when finishing the autonegotiation.
-
-Resume speeds the link back up and the next suspend speeds it down again.
-Wouldn't every retry abort in the same way?
-
-Two configurations where this looks reachable:
-
-AR8031/AR8035 (at803x) with WoL enabled. AT803X_INTR_ENABLE_WOL shares
-AT803X_INTR_ENABLE and the INT pin with the link fail/success bits. These
-PHYs lack PHY_ALWAYS_CALL_SUSPEND, so phy_suspend() returns -EBUSY and the
-link interrupts are never masked.
-
-BCM54xx with a DT interrupt and no WoL configured. bcm54xx_phy_probe()
-calls device_init_wakeup(&phydev->mdio.dev, true) whenever
-bcm54xx_phy_can_wakeup() is true, which is whenever
-phy_interrupt_is_valid(). So phy_may_wakeup() is true by default, and the
-speed-down and PHY_IRQ_WAKE_SYSTEM apply on every suspend.
-
-Before this patch, MAC-managed PHYs never reported a wakeup from
-phy_interrupt(). The driver handler read the status, and handlers such as
-rtl8211f_handle_interrupt() report a wakeup only on the PME bit.
-
-This also seems to contradict the commit message:
-
-  ... and the MAC device may
-  wake the system on its own, so a link interrupt the MAC causes must not
-  abort suspend.
-
-The Helios64 result ("no suspend aborted") seems to depend on
-rtl8211f_suspend() writing RTL8211F_INER_PME to RTL821x_INER before the
-speed-down. That masks the link interrupt, and other PHY drivers do not do
-the same.
-
-The postponed path also never reads or clears the status. Doesn't that
-leave a level-triggered INT asserted, with the line disabled by
-disable_irq_nosync() until resume?
-
-[ ... ]
-
--- 
-Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-b4-phylib-mac-pm-irq-v3-v5-0-bbfdb5afb7d3%40iav.lv
+-aneesh
 
