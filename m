@@ -2,100 +2,110 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCD760A2607
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51789606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:38:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=N8fR2Lxe;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Kj6fSXOb
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=V7UMhurL;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=BJm+tiGS;
+	dkim=pass (1024-bit key) header.d=chrisdown.name header.i=@chrisdown.name header.a=rsa-sha256 header.s=google header.b=c4QAiMe/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:Message-ID:Date:References:In-Reply-To
-	:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Message-ID:Content-Type:
+	MIME-Version:References:In-Reply-To:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=LGw1WVYMB7/uWOhnON2ZjpYzLsk6t5+hMJ8zM0UGs2g=; b=N8fR2LxeJph6xXkGP1nD38qmlY
-	EGu2FFyx1Y5Yo1UYSX4mOHgZybamX8dNJgzoHaYHFexb54P/wOsg+lY58yhbeQOqTd3TqJJbPlXX5
-	lS40TzqWLIA6pibOnznSWVi41UoZwxdVmr2v9FVV5WceODlqjagDXdM0otYYD46Ewrk3ZINdGIF9z
-	DkA7zOJojGi/GYN/9viEksBFQ0RE7JQAPjqnwN+UIZl9ySikjbWKujdlkEUYN1ci3CMJ1DhnpzebK
-	Gob2IQunmfEQEYDB5lJ6ZWU0S/YhbxtwdI9+i4PUghIFQ0+gFvUsz9HGbTeaD2aldI7dR76UCBUUt
-	pW/EzZOA==;
+	bh=sJIOxVLfQnp7+n8nARFfMr89PNvEkzC0ewnXg1DK67c=; b=V7UMhurL6XO0NGqJVGLA/Bc5vT
+	hy2VghAUaJO4ZQiuPV0jsrLuN/kzov0uZgledkrIu1F7rhB0hhQd6iPzNukhuCA/S/LQzJCaO581/
+	wthkEow1cUvFAgXEF9+ofmeHxAZGZjrLQO+TR3H5tNluVMbpzggk70X4SCAsCAebqLEsLu6MLkiAG
+	HAvBwo9TLTdhII7NcO0KiXOFFCcraGJTWtxmvqT/+Z8xOujmyaVOjZOpz4o0T1++JPDEm8+GEBOkB
+	u1W7hiFAaR9FjRyMWu072FO270mdrVNTXDCFQEYF0kckGE+Dcqn/zR7KrZuuHYPVOSr842t+XII7+
+	T9dFPLjA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmmx-0000000C5P2-2u3M;
-	Fri, 13 Nov 2026 08:37:40 +0000
-Received: from mail-pf1-x432.google.com ([2607:f8b0:4864:20::432])
+	id 1xRmnI-0000000C5aD-1UVl;
+	Fri, 13 Nov 2026 08:38:00 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmmf-0000000C5H9-0kOF
+	id 1xRmmu-0000000C5MI-3exa
+	for linux-arm-kernel@bombadil.infradead.org;
+	Fri, 13 Nov 2026 08:37:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Message-ID:Content-Type:MIME-Version:
+	References:In-Reply-To:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=sJIOxVLfQnp7+n8nARFfMr89PNvEkzC0ewnXg1DK67c=; b=BJm+tiGSuoAxWT5d7IruPUMoYg
+	3qhIb/e4klP/a+DvBPzUdneEFAqnW0q6wGz+8kJehwVy04actl81NSrc/5tZYRlqUJRj44NF9tM0w
+	9MwtzSHFVEYbpV88iyihoLkBZuZhJvfmYJWnHfnYuTzsHH1h1qM6zNvYHMcQrlOo+xeSjwmVkr/4P
+	3b6YSnVSSbWKYOOdskMVUia+rN+1Fdwvz/b3jjEQzGTbjkdkleHO6gFoTmBWDtCa78nXLKr95bAFb
+	AoUYwE9YvzM6Eoi6S6aAEoCZeK+Xwd22ftDdRI1Qf0wDVgerKC10qck3UziOeRJvz6vImvlA/3fIp
+	JYEZu5wQ==;
+Received: from mail-pl1-x62e.google.com ([2607:f8b0:4864:20::62e])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRmmr-0000000B4px-29yA
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 08:37:27 +0000
-Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-8b5e147f101so112758b3a.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:37:20 -0800 (PST)
+	Fri, 13 Nov 2026 08:37:34 +0000
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-2ed1414df17so5056785ad.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 00:37:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794559040; x=1795163840; darn=lists.infradead.org;
-        h=mime-version:content-transfer-encoding:content-type:message-id:date
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=LGw1WVYMB7/uWOhnON2ZjpYzLsk6t5+hMJ8zM0UGs2g=;
-        b=Kj6fSXObTxlUDtd7yoUbWLL1u0B/1By/K3AEpFidDSlriQO5D4BRQm70AIg0li048v
-         G9loWIowQg1NjYusCvv98BsM+Q+EOcFXJNivLypPGlot7+oAjkQul/ZiTnKXk8tGIHtS
-         o4t4VwO2KapyLtxHsodNSqVLjoUn6F0pDP805SqCct24IIvpKiuvPZkrw4CemPPfjRoA
-         J+b0tVv8rqXVEMo9eqLOEP1OO7LK+cPHNAOvlOiqpO1niecscIfvhXAiVWinWd/H/0np
-         7v9drhksfx4fddTXO7HZg3J9XdYjk5VVBaonC8dYu11xgUTq226Lw1VH/4xd3OUn+Bue
-         59VQ==
+        d=chrisdown.name; s=google; t=1794559051; x=1795163851; darn=lists.infradead.org;
+        h=user-agent:message-id:content-disposition:content-type:mime-version
+         :references:in-reply-to:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to:content-type;
+        bh=sJIOxVLfQnp7+n8nARFfMr89PNvEkzC0ewnXg1DK67c=;
+        b=c4QAiMe/rq7lddv9XtO8mKYFho+JrEerk6wMRvqzMCYo832eepQ11fiPd8i/NSEVwI
+         HIgvaP/2fgKdsfymHuEHE8anJupKrAjoyebKGZ8kjzgf4bkUMLxZELNfKbCutZVOmnV8
+         VsleW0D4IE62Q27Mek9Zu6tly2Y14eHaTKQ+k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794559040; x=1795163840;
-        h=mime-version:content-transfer-encoding:content-type:message-id:date
-         :references:in-reply-to:subject:cc:to:from:x-gm-gg
+        d=1e100.net; s=20260707; t=1794559051; x=1795163851;
+        h=user-agent:message-id:content-disposition:content-type:mime-version
+         :references:in-reply-to:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=LGw1WVYMB7/uWOhnON2ZjpYzLsk6t5+hMJ8zM0UGs2g=;
-        b=1tH1BEVJ/V966gHxHVSTudrVt8G2mMuvRKhzgKt7Eu+G20Pqel7u8vvtAO6+87Ly+m
-         ytvYbjxjGt25jU0LbPaezUa+D+l86ek0pxVMK2f+I2z6AmfUeORDJr/phERYsLrOjPFW
-         mAP23/oe+aV9c9zmXvxpFtAdMG3lClAYSfzmFy1+Jc0+LqKGHTf0AHEV3WjWxNNA125j
-         kcYxjqg7ZQUJcXCe02dtINHti7D1dCZM7BtI9rx+ivdJbcSC2O/U7gzExoZZJttZV5QL
-         XwmWLeEIOEkQFBpNXh41AQ38aFYFZr2MOw21MPdugV1zNprKBuBnZhHrYb148ZgGlaY2
-         ahsQ==
-X-Forwarded-Encrypted: i=1; AL+hErFJB0DMKv1fjhdhmVzqw4vqVc71NTCz+Vc1ITcBNejtZYuDbVxhGXDTLU8LJ+goqjG5dOBkYzX05VW6M27wJOv7@lists.infradead.org
-X-Gm-Message-State: APuU4Z8yeHc2VZ8uQu6Tn2R3XtmLXKnl2u3oM4m9fMAqSvaBcXH9HFSF
-	wdvfdv+yBzeXSFsaGWeULt3Db3L2y6uh7FSBCzjpdoqSrSyZxIMHMCvUjNwLsyNm3Eg=
-X-Gm-Gg: AYBFou3XfCa7GxzfIh0TlFgVjN+qs/VroiReJJb+W5/rgExsJe4gVgdSrXXkZQybBzd
-	iBp5yKCgydyK2XXSKYJAhC/citV5wNrhx59PmVMyqGrsPGQ3BgB5aOI1j9+DNF4ac8c5sNo3OQM
-	NS2jjYl1NCUgf3TSnKp7JduYtNQqn6fiEdsHfZzAYb3/NiLk8fGC1Bb86QWvZVyti3v0IAbat5v
-	SEuKC+lDpuZngVtCzctabKnXn2SXYSP65OfmDVfACtHsqsAuca7GZsZ/ceUYwGM4+n64KxOnDX3
-	oUP9dcFUq2heApFNt9oU4SV4QPchNQBTFMAZcwRpmAWoihHJD3EujCzb9Cuh4mxb6bRNp5l5h+J
-	PfTEeLtXhWIHdAC7LWxt5nVnsFQ8Dh0Dgo5R0qVWr7A4J7HQ7RqgJ+iDt+2hZ5xyada6U6RqbNM
-	vFpz8H+32Ji/iD4QVqTiR+7sP2zmG3sg/IamZUlyn8/ps5lKAdKkFUOGsTuj+aaE9QOfVuPMt9g
-	zi9NSxod2jhwHFErnZE3kNfmSVsp8S2lcyJ39zHDNekTuCTfN/Dhyk2BiRsASrj4LcLHQ+DaucB
-	JGlrwAks+bh4+pDSklVtkZ7usMniojLAoBFImpiktInnBa+m44V2Hc3WIuJsr6GLaWLj5SF4+0Z
-	LEt0MO2D3ufZ6I6XrKmfCqzmvES4=
-X-Received: by 2002:a05:6a20:eec8:10b0:3e2:2228:c62c with SMTP id adf61e73a8af0-3f7a74c090bmr1701640637.2.1794559040122;
-        Fri, 13 Nov 2026 00:37:20 -0800 (PST)
-Received: from claudebox.iyengar.cloud ([50.39.139.68])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed1a6db53sm747372b3a.21.2026.11.13.00.37.19
+        bh=sJIOxVLfQnp7+n8nARFfMr89PNvEkzC0ewnXg1DK67c=;
+        b=iPX9bjPTGbRMuOnqpcaOzIkEXBwU5ssE3vW//tZCYneL5IQ8CXWx91mvyQF5WVg/SR
+         OW0S46+NgHprl60uB/+Dz6T0n4NNebqOv8Ad4B6SK5X/GooVdeAmATwVoMXJapsnDQVC
+         owU4Pvx3VR1YERwxe7Mm6ooN/FTOY7rL21AMVmPEzRmi5tnMdMEmCtoeFsZdqCw3zuQw
+         fUdn2rjMd3KG0FnSEseH/WmKNYIgGksUZyBCXIGgnXKdD3yjrertu6YFOeMoLUGIAgWP
+         TLwcXEhFsZLgzMFj3lBW+HT1i3cFPwkjb8xYl0Q9+Iff1APqB2Rlr1/rgax8nEcfKfWG
+         kBCQ==
+X-Forwarded-Encrypted: i=1; AL+hErG2OzvP4qbWzafBtQYWyJfP899rFpP2VVX4pgBYSbbeRx3ainCYvwdKds0+h7tSO/LW+fGbU0I8177dpg27wyNn@lists.infradead.org
+X-Gm-Message-State: APuU4Z95o46c//2Ez5Re/NzF/TUksaXB0MpMZwN3wGMK3mXjXq7q03eV
+	qlax9QcAGQ/K2nKJh2O6W4JgfJjNvMdwAGcWehhobA4QLn3llAKHD+iwAz9HtZpeYek=
+X-Gm-Gg: AYBFou2uKRaJ0FMIy5t7PhxAvcPP1VkKjBWyh9uHP3pqn/1zAUs4gcjL3/NXuNk151z
+	MR9SEf8eVAxmaGKpwyXQ3HRvqZhfOD36ioQuXF48didavoZote7nCFDjbU4X6ntY9OH8icHBGwi
+	CqRXsbKTeLPbXUE0AgUhqoat89OYnXFf8nABL5TgbRPl8pHvnZKiZjVcYLAmNyEwNlsE2Qi0fBs
+	75wjbpslEvChVj557X0dp/5csvK1Zy0MfxqLl/YqZIdvap7Mmn+b+kWWMIeAO8IgaLGtsYn/RWe
+	FXk9ke85ftrWstGlquVvxNM4KgjT849I+REOjzR4ZqXJ4m3hG1EsJP55heq1dB9xTXUWW0K+Q0Q
+	ee5xz5wj5tcQ8p3pXiClTLhJTO1rOFtdCQdrqW2npo/c0bGE28CvOsi1qRRoqusX2xJTdeVCcSk
+	mX8En1VNG2RpwjCXqW3DTYu+nXLc2KOuUhIqu+mUp/4j/MGr1ghV6x0c1wE0rHOdabCwSm5Vurc
+	4iZZi2M7VRDqKIUegOU50gMRlxFovZiDdyr0uKGmhVx14t2F7QYfNcW1ICBkiRRrlwQvZZ+dBwm
+	YK1ZYjKuDIFhUaCEo5sOsXJ+qnYEdxUONZ1w57s8kUEFUvXi8RLcvG91L+XlcvGJNZJsQsZ/4zg
+	kKCEG9SNz8DmTZgaz6yDehNJkwwMsMVplBsPL6cdswkig57ayLZecgXBWn1bk88kFzhXgZeunCy
+	j+dLyXeGmU4p7hvdM6aHKts0Xv87hXuWfeupRG0rnjM4OTTGJUdPCJHbs8vBM=
+X-Received: by 2002:a17:903:2b07:b0:2ed:3057:4f79 with SMTP id d9443c01a7336-2ee0de41b68mr16715855ad.20.1794559051439;
+        Fri, 13 Nov 2026 00:37:31 -0800 (PST)
+Received: from [172.22.0.2] ([50.175.87.158])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ee0f75dde9sm6785655ad.22.2026.11.13.00.37.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 00:37:19 -0800 (PST)
-From: Arun Iyengar <aiyengar1990@gmail.com>
-To: Pranjal Shrivastava <praan@google.com>
-Cc: iommu@lists.linux.dev, Will Deacon <will@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, Robin Murphy <robin.murphy@arm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Mostafa Saleh <smostafa@google.com>,
- Nicolin Chen <nicolinc@nvidia.com>, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 00/16] iommu/arm-smmu-v3: Implement Runtime/System Sleep ops
-In-Reply-To: <20260929034510.2023173-1-praan@google.com>
-References: <20260929034510.2023173-1-praan@google.com>
-Date: Fri, 13 Nov 2026 08:37:18 +0000
-Message-ID: <179455903885.2418534.14656921897583011972@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+        Fri, 13 Nov 2026 00:37:30 -0800 (PST)
+Date: Fri, 13 Nov 2026 00:37:29 -0800
+From: Chris Down <chris@chrisdown.name>
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: Ingo Molnar <mingo@redhat.com>, Kees Cook <kees@kernel.org>, Juri Lelli <juri.lelli@redhat.com>, Vincent Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann <dietmar.eggemann@arm.com>, Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>, K Prateek Nayak <kprateek.nayak@amd.com>, Ard Biesheuvel <ardb@kernel.org>, Will Deacon <will@kernel.org>, Sami Tolvanen <samitolvanen@google.com>, Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Randy Dunlap <rdunlap@infradead.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, linux-arm-kernel@lists.infradead.org, linux-riscv@lists.infradead.org, linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, linux-kernel@vger.kernel.org, kernel-team@meta.com
+Subject: Re: [PATCH 2/3] sched/core: Add sched_stack_end_check= boot parameter
+In-Reply-To: <20261027101703.GB2668564@noisy.programming.kicks-ass.net>
+References: <cover.1793082868.git.chris@chrisdown.name> <3d2bb6a8508b9d801878bb82c88165a1b1ff5f40.1793082868.git.chris@chrisdown.name> <20261027101703.GB2668564@noisy.programming.kicks-ass.net>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Message-ID: <20261113003729.4a4222d8270db2bd@chrisdown.name>
+User-Agent: Mutt/2.4.3 (cc9e3943) (2026-10-09)
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_003721_334913_38768092 
-X-CRM114-Status: UNSURE (   6.19  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261113_083733_431273_29150CFA 
+X-CRM114-Status: GOOD (  21.25  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -106,26 +116,62 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Pranjal,
+Hi Peter,
 
-Tested the system sleep ops on RK3588 (Orange Pi 5), MMU600_PHP, no
-power domain in DT, with USB3 and GMAC translated:
-- s2idle x3: OK.
-- deep suspend x3: the SMMU loses its state (CR0, GBPA, STRTAB_BASE
-  read 0 at resume); your resume path restores it, USB3 and Ethernet
-  work, no errors. Without it the SMMU would resume in bypass.
+Peter Zijlstra writes:
+>I just noticed that there's a number of task_stack_end_corrupted()
+>checks that:
+>
+> - do not also do task_scs_end_corrupted(); should
+>   task_scs_end_corrupted() be put inside task_stack_end_corrupted() to
+>   make sure they're always done in tandem and the shadow stack check
+>   isn't lost?
 
-Not tested: runtime PM, MSI restore, CMDQV.
+I had a look at the other callers, and I don't think the shadow stack
+check is being lost in any of them. Two are the oops paths in the x86 and
+powerpc fault handlers, and neither architecture has
+CONFIG_SHADOW_CALL_STACK. So putting it inside task_stack_end_corrupted()
+would only change __might_resched() and the stack tracer, and only on
+arm64 and riscv.
 
-Tested-by: Arun Iyengar <aiyengar1990@gmail.com> # RK3588, system sleep
+Both of those are about the task stack in particular. __might_resched()
+got its hint in
+a8b686b3af44 ("sched/debug: Check for stack overflow in ___might_sleep()")
+because at the time a stack overrun could corrupt thread_info and trigger
+the warning on its own. The stack tracer checks right after it has
+recorded a new maximum depth for the task stack. Neither has anything to
+do with the shadow stack as far as I can see.
 
-Arun
+schedule_debug() would also still want to check the two separately, so
+that the panic message keeps saying which stack it was.
+
+> - should these other sites also respect this switch? It seems weird to
+>   only have this one site affected.
+
+It is a bit odd, but I think only this one should follow it. None of the
+others depend on CONFIG_SCHED_STACK_END_CHECK today, and the switch is
+only meant to be the boot time version of that option. They also only
+look at the magic once something has already gone wrong and we're
+printing a report about it. The stack tracer is the exception, but it
+only looks when it's enabled and sees a new maximum. So there's no cost
+to avoid by turning them off.
+
+If they did follow the switch, anyone who leaves it off would lose the
+"Thread overran stack" hint from their oopses.
+
+So I've left both as they are in v2, and the changelog now says why the
+other callers don't follow the switch. Let me know if you'd still rather
+have them folded together, though.
+
+Thanks!
+
+Chris
 
