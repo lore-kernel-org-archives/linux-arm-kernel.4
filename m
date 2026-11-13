@@ -2,65 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B78606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:33:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D65F606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=WaxUXo+s
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KSJG6m0I;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=iav.lv header.i=@iav.lv header.a=rsa-sha256 header.s=zoho header.b=Hb6WZoyW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gO4fXpmHkGGnhp/y5ktDMWAcVpm6cOdhfAwLKdNSs34=; b=WaxUXo+s4GR1Fn
-	RfaVVffkDJu+OrTc3DZgQtGGN5/t0BEgkg572O1gGwzOZDkwbxYC2/n9REnnEqrYBR8r5HnWRBzLc
-	n1vqh+ax9FqdlVdgdjpY5oS1693qN2eVn9WYMmeFWbQlVUe4b83K8YUciwIgZ6kKWnH/1LpDkNPv0
-	OgXNtaU7E8WsFI5hcwsx6zd4iDXdRSzoEP5V5RgEsFCfIUjK6MkQdGFsWi7/uFJGCHVuNCM2q9Yj3
-	6eEMWuY5enj+sw/ypKE7YiVaOyd4jV5/h35dGiPLHPnxtdxdHnbVUslGGHHGS8JUExg8zpel3zTu6
-	jDWlrX/f3tSC047n6mAg==;
+	Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rPzEgBE106yaQqByyeXscMcg7AQKZ3fm1kcWw+tpiss=; b=KSJG6m0Is70XlkRv5FuGjpZDln
+	TTC59dzvHEAQEx2quQNl1LQp5TEbCPCUvt0uaozf8yebM/qTf/0UsihdJvbP60MGLdZZjpR/Tnm2y
+	CDc8dzQ/GmQ1efMxbwnrMUB8RNDVn4hKmRU5xRQQzHeTE4cqja7auALXpsG/fs6ibPAMWlqZCqlQX
+	M5VZkR05oa6giExBMeDplRiTA+HpXEl3iYI8ZqqOD11ZciRdJsFdv2ZiwSKDcMH25/+dyq2zMAWzI
+	A9ose6oYYo6wpv5Hqujg5sakJKkTpFgdjw5M6aHII+DwHnT8WNZeIhRSZktuNngTtatlmq6/2O2Ri
+	jrU9kShw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRjuA-0000000Bh6d-0LtH;
-	Fri, 13 Nov 2026 05:32:54 +0000
-Received: from out28-170.mail.aliyun.com ([115.124.28.170])
+	id 1xRk7g-0000000BiWF-3rQo;
+	Fri, 13 Nov 2026 05:46:52 +0000
+Received: from sender-op-o17.zoho.eu ([136.143.169.17])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRjts-0000000BgyK-25bk;
-	Fri, 13 Nov 2026 05:32:38 +0000
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1082897|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.214202-0.00041429-0.785383;FP=9475219001989795462|0|0|0|0|-1|-1|-1;HT=maildocker-contentspam033045099153;MF=wangxiaolei01@kaihong.com;NM=1;PH=DS;RN=16;RT=16;SR=0;TI=SMTPD_---.k13i.Sy_1794547951;
-Received: from nj-vm-261.pxvirt.local(mailfrom:wangxiaolei01@kaihong.com fp:SMTPD_---.k13i.Sy_1794547951 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Fri, 13 Nov 2026 13:32:32 +0800
-From: Xiaolei Wang <wangxiaolei01@kaihong.com>
-To: linusw@kernel.org,
-	florian.fainelli@broadcom.com,
-	rjui@broadcom.com,
-	sbranden@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	daniel@dragonzap.com,
-	wangxiaolei01@kaihong.com,
-	iivanov@suse.de,
-	andrea.porta@suse.com,
-	phil@raspberrypi.com
-Cc: linux-gpio@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v2 4/4] pinctrl: bcm: Add missing SGPIO entries to the BCM2712 AON tables
-Date: Fri, 13 Nov 2026 05:32:21 +0000
-Message-Id: <20261113053221.3131068-5-wangxiaolei01@kaihong.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261113053221.3131068-1-wangxiaolei01@kaihong.com>
-References: <20261113053221.3131068-1-wangxiaolei01@kaihong.com>
+	id 1xRk7e-0000000BiVg-2LdF
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 05:46:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; t=1794548803; cv=none; 
+	d=zohomail.eu; s=zohoarc; 
+	b=EcgdRAIhrL6M22CtxlBH6d1xOWnTZzSQ3LEcA0MzcFsgo42VCIRZof9KZFR2b8yV3qalkZ4KUw68LPa64HsJiGVNww991k14pPkZ4MGb2b9M+hwL2lycM53VFn9ZjrJyd0Cf2Dhdoq6ZgrhcqXrIAYBxt/Q3+uWi9CRDT1kGPI8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+	t=1794548803; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=rPzEgBE106yaQqByyeXscMcg7AQKZ3fm1kcWw+tpiss=; 
+	b=fRZ+VFkfojqAVIJtTyev52eNh3A9330xPG0HyptKd9RfNwInNobJqruvoz5aWwvOeIIkIHmbv0UmblJgMcrPa6MT5io5WyPwDmdezKI452C1k2jEdf7hnzh+t75nQKMsmVfBw0rBX92Kvz8tvKI4bfE1rscG8SFJMBNKD/r0kGE=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+	dkim=pass  header.i=iav.lv;
+	spf=pass  smtp.mailfrom=iav@iav.lv;
+	dmarc=pass header.from=<iav@iav.lv>
+DKIM-Signature: a=rsa-sha256; b=Hb6WZoyW3Q0tgRjIK+xSk6Q6TGfttfabmRur6SiMGcVhe+xqauo7mvRB/nQuNOUU95LM0+1kXc5SK4oV7O7cxn0/n0Jmtol3VfVtupLmQyMDYNUCc9HWn94KSQpC/+zHXIl+CIcqs3mWuok/RntMUuhmhN+IuhgtYrfK1sQQ4JQ=; c=relaxed/relaxed; s=zoho; d=iav.lv; v=1; bh=rPzEgBE106yaQqByyeXscMcg7AQKZ3fm1kcWw+tpiss=; h=Content-Description:Content-ID:Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:List-Subscribe:List-Post:List-Owner:List-Id:List-Archive:List-Help:List-Unsubscribe:MIME-Version:Message-ID:Resent-Sender:Resent-Cc:Resent-Date:Resent-To:Reply-To:Resent-Message-ID:Resent-From:Sender:Subject:To:Date:From:Message-Id:Reply-To:Subject:To:Cc;
+Received: by smtp.zoho.eu with SMTPS id 17945488025851002.7582991725606;
+	Fri, 13 Nov 2026 06:46:42 +0100 (CET)
+Date: Fri, 13 Nov 2026 07:46:41 +0200
+From: Igor Velkov <iav@iav.lv>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Igor Velkov <iav@iav.lv>, Mike Leach <mike.leach@arm.com>,
+ James Clark <james.clark@linaro.org>, Leo Yan <leo.yan@arm.com>,
+ coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org
+Subject: coresight: cpu-debug: PC sampling via PMPCSR (FEAT_PCSRv8p2)?
+Message-ID: <20261113-coresight-pmpcsr-question-1@iav.lv>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_213237_089027_31539657 
-X-CRM114-Status: UNSURE (   9.92  )
+X-CRM114-CacheID: sfid-20261112_214650_879894_1BAEE346 
+X-CRM114-Status: UNSURE (   7.01  )
 X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -71,78 +70,34 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-16.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNPARSEABLE_RELAY,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The BCM2712 AON controller describes six SGPIO pins as pin 32..37, but
-the AON function tables stop at the last normal GPIO: pin 16 for C0 and
-pin 14 for D0. Both are indexed by pin number, so dumping the pin list
-walks past the end of the table:
+Hi,
 
-  A=/sys/kernel/debug/pinctrl/107d510700.pinctrl-aon-pinctrl-bcm2712
-  cat $A/pins
+Cortex-A55 (Amlogic S905X3) reports EDDEVID.PCSample = 0, so
+coresight-cpu-debug cannot use it. The PC is available through PMPCSR
+in the external PMU frame (debug frame + 0x20000, PMDEVID.PCSample = 1).
+A lab module reading PMPCSR caught the PC of a CPU stuck on a PCIe bus
+access with IRQs off; on this GICv2 SoC the stop IPI never reaches it.
 
-pinctrl_pins_show() hands desc->pins[i].number to pin_dbg_show(), so the
-list jumps from the last GPIO pin to pin 32, where a valid mux bit makes
-brcmstb_pinctrl_fsel_get() evaluate pin_funcs[32].funcs[] outside the
-array. The set path walks the same table for any DT node that assigns a
-function to aon_sgpio0..5.
+Two observations:
+- A panic notifier samples too late: the other CPUs are stopped by
+  then, and on this SoC reading the PMU frame of a stopped CPU raises a
+  synchronous external abort. Sampling on entry to smp_send_stop()
+  works.
+- Marvell has an out-of-tree patch, "coresight: cpu-debug: Add support
+  to dump PMPCSR" (2023, carried in linux-yocto); I could not find it
+  on the lists.
 
-Add the entries as pin 32..37 to match pin_regs[] and pins[]. The values
-are from the downstream driver (rpi-6.12.y), which keeps separate C0 and
-D0 tables; they differ on the HDMI1 and PMIC pins, where D0 selects
-vc_i2c0 and vc_i2c3 while C0 uses vc_i2c4 and vc_i2c5. The empty indices
-in between are harmless, their mux bit is zero.
+Is PMPCSR support in coresight-cpu-debug planned or welcome? And how
+should such a PMU frame be described in DT: arm,coresight-cpu-debug or
+a new compatible?
 
-Tested on a Raspberry Pi 5 (C0): "cat $A/pins" triggers a KASAN
-global-out-of-bounds report in brcmstb_pctl_pin_dbg_show() with the
-driver as-is. The D0 table is not runtime tested.
-
-Fixes: 657cbf9b24ba ("pinctrl: bcm: Add STB family pin controller driver")
-Cc: Jonathan Bell <jonathan@raspberrypi.com>
-Cc: Phil Elwell <phil@raspberrypi.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Xiaolei Wang <wangxiaolei01@kaihong.com>
----
- drivers/pinctrl/bcm/pinctrl-brcmstb-bcm2712.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/pinctrl/bcm/pinctrl-brcmstb-bcm2712.c b/drivers/pinctrl/bcm/pinctrl-brcmstb-bcm2712.c
-index 752b78e2c0d8..1720c220cf3e 100644
---- a/drivers/pinctrl/bcm/pinctrl-brcmstb-bcm2712.c
-+++ b/drivers/pinctrl/bcm/pinctrl-brcmstb-bcm2712.c
-@@ -510,6 +510,12 @@ static const struct brcmstb_pin_funcs bcm2712_c0_aon_gpio_pin_funcs[] = {
- 	BRCMSTB_PIN(14, bsc_m1, uart0, vc_uart0, uui, vc_spi5, arm_jtag, vc_uart2, vc_i2c3),
- 	BRCMSTB_PIN(15, ir_in, aon_fp_4sec_resetb, vc_uart0, pm_led_out, ctl_hdmi_5v, aon_pwm, aon_gpclk, _),
- 	BRCMSTB_PIN(16, aon_cpu_standbyb, gpclk0, pm_led_out, ctl_hdmi_5v, vc_pwm0, usb_pwr, aud_fs_clk0, _),
-+	BRCMSTB_PIN(32, hdmi_tx0_bsc, hdmi_tx0_auto_i2c, bsc_m0, vc_i2c0, _, _, _, _),
-+	BRCMSTB_PIN(33, hdmi_tx0_bsc, hdmi_tx0_auto_i2c, bsc_m0, vc_i2c0, _, _, _, _),
-+	BRCMSTB_PIN(34, hdmi_tx1_bsc, hdmi_tx1_auto_i2c, bsc_m1, vc_i2c4, ctl_hdmi_5v, _, _, _),
-+	BRCMSTB_PIN(35, hdmi_tx1_bsc, hdmi_tx1_auto_i2c, bsc_m1, vc_i2c4, _, _, _, _),
-+	BRCMSTB_PIN(36, avs_pmu_bsc, bsc_m2, vc_i2c5, ctl_hdmi_5v, _, _, _, _),
-+	BRCMSTB_PIN(37, avs_pmu_bsc, bsc_m2, vc_i2c5, _, _, _, _, _),
- };
- 
- static const struct brcmstb_pin_funcs bcm2712_c0_gpio_pin_funcs[] = {
-@@ -585,6 +591,12 @@ static const struct brcmstb_pin_funcs bcm2712_d0_aon_gpio_pin_funcs[] = {
- 	BRCMSTB_PIN(12, uart1, vc_uart2, vc_uart0, vc_spi0, usb_pwr, vc_uart2, vc_spi3, _),
- 	BRCMSTB_PIN(13, bsc_m1, vc_uart0, uui, vc_spi0, arm_jtag, vc_uart2, vc_i2c3, _),
- 	BRCMSTB_PIN(14, bsc_m1, aon_gpclk, vc_uart0, uui, vc_spi0, arm_jtag, vc_uart2, vc_i2c3),
-+	BRCMSTB_PIN(32, hdmi_tx0_bsc, hdmi_tx0_auto_i2c, bsc_m0, vc_i2c0, _, _, _, _),
-+	BRCMSTB_PIN(33, hdmi_tx0_bsc, hdmi_tx0_auto_i2c, bsc_m0, vc_i2c0, _, _, _, _),
-+	BRCMSTB_PIN(34, hdmi_tx1_bsc, hdmi_tx1_auto_i2c, bsc_m1, vc_i2c0, ctl_hdmi_5v, _, _, _),
-+	BRCMSTB_PIN(35, hdmi_tx1_bsc, hdmi_tx1_auto_i2c, bsc_m1, vc_i2c0, _, _, _, _),
-+	BRCMSTB_PIN(36, avs_pmu_bsc, bsc_m2, vc_i2c3, ctl_hdmi_5v, _, _, _, _),
-+	BRCMSTB_PIN(37, avs_pmu_bsc, bsc_m2, vc_i2c3, _, _, _, _, _),
- };
- 
- static const struct brcmstb_pin_funcs bcm2712_d0_gpio_pin_funcs[] = {
--- 
-2.34.1
-
+Thanks,
+Igor
 
