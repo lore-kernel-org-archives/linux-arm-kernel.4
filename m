@@ -2,141 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B2FB606A323
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB0C606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OPjTkWiN;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=f016oQMs
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SHDdfJsk;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=D7ZFZGyJ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=yEkKIWE9scLfnkFWuN228FfBYIJU+kf051m6ibPvm+Y=; b=OPjTkWiN2FcLcIJ9oCfw6JVuJC
-	tTq45O9Wtyvidcr/b6Bif80GKPurrIybvw61Ykjm9ca7hjkdJk0pC02m2TnspqIm5R37VTt/2jGYO
-	Jl0A09IkkFivuhg0+Rq/grA/bGD91eJ2tSwB4dSH2coWOxNc9y2KtNCxx7/FTg4zEoR+DtjN8FUA/
-	+S90Db6wylYgDwORf47BQ+X5vu/H5Qfwngi9YyKuatJjTX95dgnwWczDmIjQi4AqJ8yrI6HhFYf86
-	o18FsDjv2wgQBRgyrDYf88CiD0H3nfoBW7TqDope1dbQM41f7EiKC1Ro38vBK+uJddv7N8tuK9wXW
-	s+OZr1hQ==;
+	bh=lDAm+zBD66b88hz5K7F1FDsYw+RIkjC9cHi9f3iS4y8=; b=SHDdfJskEBnPJxrVqYFYtHIAtB
+	hPt86IPHWNY1WDRyMYoVUyWc831hPfWKbEKwkEQ2i7fHUMlvxC5vSQLJu3z3h3iLlsLcllCYQ0bzQ
+	N7pdr/k1bEFxX5BuOk+p6myB+aGFsdaFZBHizaqSAUxm19D5Q2PJsL4VgwVIC+t689fQUdoxoBznw
+	vzVNWFCHN/Xi+6ErMm20q1SzEgO8Ier46bTPxGVOPLiardacU5LPtekIukRyHdsI1ZYLrgoLM4oAg
+	lTfAVpde6FBX//KFv4PJh9R6SSgFmrQhtbCZUBJ7nFVA1KRquexUbeVs8vz4zwEwt5qfNoRRkBS4z
+	jiDdkVHA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxjt-0000000ENFT-1dGT;
-	Fri, 13 Nov 2026 20:19:13 +0000
-Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
+	id 1xRxlS-0000000ENWD-32hp;
+	Fri, 13 Nov 2026 20:20:50 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxjq-0000000ENEo-3zRM
+	id 1xRxlR-0000000ENW5-3ZtS
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:19:12 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U9X6zBLtxK6TGifalUC3YjFKMEbVY+J9KJLoog7cnFjo9pvDvllq7pEfBW6RW2Dn/lL0hAJwlPl8tF3HY4ANt8QlKprCEJ8Au9T517zeDq2q2GQSVPWS/RmrW5M1dwpZXDxOCN2Fm+hYpK7pjy1BKo06RWqzfPMwG5DKxIhIoioCqC/6Q3gg9wsQYQE4gXzZlkVAvTKWO8ZzSHS5XvByW23WKu19TyGk+7u7y0MgObw+QfMhiv/NzABeEse749y+ae4Ka7QrzPDu6AVr+56mysQYnfaD1e+FUODromzgvHykXmhsAKgRHWqn+I7VfdiUMU/Pg4LVnGExsE6SyPKkrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yEkKIWE9scLfnkFWuN228FfBYIJU+kf051m6ibPvm+Y=;
- b=F7EOysfXV7RUN6P0gkCOHQdjQR0EDfyDTSBlU/kgs7oTRqbcl21sCz6fuZDkKqZ2aKgbCH4R6L9LpHkG1vAXVWesuMKc5QYSYvK1G5LPpHAySJN6rQzdOfx5qIBwP47NVI88A+7iPWpGsziXJnRouQqN0bO4juZMy+452Qd+WLvyMiO6no1yD7OvPGNyqGyR67bfyQ8X1EhWH3fke2ZwXOdLDkvy8k2tZh712DkWOHYQpn9De2x8+fG5/W3GlmuICmdpELdhxAeBswtw20S3CJyAS2KPCKb/Xc7FR4JRyd9HMHtbFgkBvgYYTEBSXWYRpzKTjdJh+hypqwxxw3gEmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yEkKIWE9scLfnkFWuN228FfBYIJU+kf051m6ibPvm+Y=;
- b=f016oQMsYPOrqUL68umSUG8Np2ztifefTNAXm9FvqFh6JEpfWL2B1sf6iZVVx44E0acBoyMNmQQYcdmEDoDR0743cuhi29TCzHLqHb7f6gEBOpM1c9VN9w8Xov7UJCqO3JAQ0vFXn1wtN9/JK2qDexQ6ZcQzt+L5JkiVNxcplTTmc1Z76NyuqUFvS/YRgBDpWj5fbCrtsvaMpPsjMt7DhMtHkBCpcqbKvjpJj4ClWBYhowW2zoXbIuGvh2vONYC87e56pROQ7ZTohIg4DtM7klrqsZW0N2tDjp9omgTX9op021/Pqtp5KcFaS51fU73UNidCEnwbWdUURAwf0ztLyg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by GV2PR04MB11589.eurprd04.prod.outlook.com (2603:10a6:150:2b1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
- 2026 20:19:04 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
- 20:19:04 +0000
-Date: Fri, 13 Nov 2026 15:18:56 -0500
-From: Frank Li <Frank.li@oss.nxp.com>
-To: James Hilliard <james.hilliard1@gmail.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
-	Chen-Yu Tsai <wens@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>, Arnd Bergmann <arnd@arndb.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	Jens Kuske <jenskuske@gmail.com>,
-	Jean-Francois Moine <moinejf@free.fr>,
-	Hongling Zeng <zenghongling@kylinos.cn>,
-	Chengfeng Ye <cyeaa@connect.ust.hk>,
-	Nguyen Minh Tien <tien.nguyenminh@embeddedlinux.blog>,
-	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/9] dmaengine: sun6i: retire interrupt state before
- reusing physical channels
-Message-ID: <avdwsLngQ1zBP7pH@lizhi-Precision-Tower-5810>
-References: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-0-ef1acb0be768@gmail.com>
- <20261023-submit-sun6i-dma-lifetime-next-v1-v3-6-ef1acb0be768@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-6-ef1acb0be768@gmail.com>
-X-ClientProxiedBy: DS7PR03CA0130.namprd03.prod.outlook.com
- (2603:10b6:5:3b4::15) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Fri, 13 Nov 2026 20:20:49 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with UTF8SMTP id 978AE437F5;
+	Fri, 13 Nov 2026 20:20:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id EF9351F000C4;
+	Fri, 13 Nov 2026 20:20:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794601249;
+	bh=lDAm+zBD66b88hz5K7F1FDsYw+RIkjC9cHi9f3iS4y8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=D7ZFZGyJQXMWawyYsmDGFMzswQ9j6Aevq/SNOuHwRx809Bf/ZTxaitWJZrNI2+Rh6
+	 hD1kHONqfBmuMRZnMtq2bozUvHa1QPt94QYnhlc2mnn5b6sWUNQYR6wZJzpFDtuKNA
+	 mUDaEFEl+HNy725s//wTx85CURGa0YUOEsy4/S6z+K5Wh8/RwNxbwiu006YV2tAuSF
+	 Tm820A1tX4ElFYz7M5MYxblO8aJ3v/r/xu7ZwIHxS0iXPCfPBx944QNBX2G+DeRUX0
+	 nf8SVYjNbWC2zJ1X5aKvm4EBnBLGf3hMFYSityFxtvWOT6GqLBjiC+V4CjPNs9VljV
+	 jtq1ViTjK/ZeQ==
+Date: Fri, 13 Nov 2026 22:20:45 +0200
+From: Jarkko Sakkinen <jarkko@kernel.org>
+To: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Cc: Peter Huewe <peterhuewe@gmx.de>, Jason Gunthorpe <jgg@ziepe.ca>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Yeoreum Yun <yeoreum.yun@arm.com>,
+	Stuart Yoder <stuart.yoder@arm.com>, apais@microsoft.com,
+	rlmenge@gmail.com, hargar@linux.microsoft.com,
+	linux-integrity@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v1 1/1] tpm: tpm_crb_ffa: Only register driver when ACPI
+ TPM2 uses FF-A
+Message-ID: <avdxHSKkqubIrAZ5@kernel.org>
+References: <20261112233807.70664-1-sidchintamaneni@gmail.com>
+ <avdXkLKJwuNv0vZ4@kernel.org>
+ <CAE5sdEgEFjGz6W0e5g4uxRVC2Otyvr4Pak-aAZogObWaFtNsTA@mail.gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|GV2PR04MB11589:EE_
-X-MS-Office365-Filtering-Correlation-Id: 60028740-394e-4d4b-cd38-08df41c35d0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|19092799006|23010399003|10067099003|11063799006|4143699003|56012099006|261021123027099003|261021121427099003|261026140227099003|261022105027099003|261022075727099003|261028144727099003|261009223027099003|261026121527099003|261102123227099003|22082099003|18002099003|41080700001;
-X-Microsoft-Antispam-Message-Info: sMCaFcm+CY+MDzi2iWFnTHhk2G29aJVm1eHLjTWyqc//tcsbye8a/mu7LOKRBsIcJ8SmgCZWf/MgrAaih0J91Y9G6IZ1oD/NTt247i8giVCJ7mvy4lQYCrfeXZOWU6WVZtYQuQwHIvIZb3LrHS4NNdvn8GTAkHHQODO9QNNJZWRQ1JQuRPpRISMnRzlV11qDvfZBSBDzoBrDMBZhLPCJ+ke62Jvfk8/Z5CycRQWfbBXUuO1Vy7/qDJGK23FUvCqM9DJ2Bqckpcd/uZ7TSMrjcoslek99cinf9Yl/KbcslfHvr2Gv4QN7DTPpyVyJylCcvx1ONkdSayNYzojmit4Ks94ldRHav3kdfLXc4r0qSUPYzR9zEl0IgD+pKjTe9lsLJ8sxibair8dp0dhoVa6pzrDZpKsvIHaJMRRwvlLDmGN+JWV3lwA/zrk/+UXObHIBAqKxquIt9aiTHv/d+El7nAD4gExWYlSebU9qzJOEljPOt+o6FwDiO6C6rLklaHjYtZbYPn1SADk9h70wR9LVr2qGnvYs/QFnk+l/+YRaq3sNQ1g/kj5yO/Ju9XSjNT+GiCE0Ced/6bdzInW+aj3kZlWH/H92p6ROdrgcf+pLqwD3NJDffr5ZzdXP6PUfBYonDxYOVOHxNnxvzCZZLPoEx843RLLbGTgFKGmMqr3kpbsg7Rh9ssFoihrj6xS+LcGLKj5ugKbwEFrnpx3lf5QKdX+p9LZ8PfynWdI2utdsQEI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(19092799006)(23010399003)(10067099003)(11063799006)(4143699003)(56012099006)(261021123027099003)(261021121427099003)(261026140227099003)(261022105027099003)(261022075727099003)(261028144727099003)(261009223027099003)(261026121527099003)(261102123227099003)(22082099003)(18002099003)(41080700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rS3aLpjcHYi9EjWiGFwxnbEAU9D0Jz3JNbthlN3cgFQaEqTvuvncJj9N42T3?=
- =?us-ascii?Q?A758tbP8D2tQh0ubDutNKfHC8Z8kRAMEhgpE7CO9Cq1P8OzG7xMFJe8eC0fL?=
- =?us-ascii?Q?9tNwFrPwFBSkQXRV1WCyWy93vZAW8g+h8IrhhTAFXp04ZDAMejAUkXzAJFPT?=
- =?us-ascii?Q?U1vpvaUA1Y9JxNoBn7ncRPFEkSmO0B5GsfUcdMpb1TpVT+v5Kgcy9YWek9Og?=
- =?us-ascii?Q?eHiquNFE+c6m5yn1RJLidCZetv5Av4Fve/YtKP5uwXQ7VxDrm48XTT6HTIfn?=
- =?us-ascii?Q?ibBKHMJGjvVehArQXA1xv9v6bqovcaWXzzhhUIzYfoCVjB66FtutRaIgXJhj?=
- =?us-ascii?Q?DG6Mm6qS7YHaeRNDiyoCk/08u+D5W27+8W7LQcpQcthn49lNI5v7QjaG4izX?=
- =?us-ascii?Q?3HD84pvtPzwWIlbQ7sCbj1BAmparPaH+we+htciO8PAru4sLXOG7yvKrD1/R?=
- =?us-ascii?Q?Y9FyJDQ0nCxZxrszS0tsk+/BjWwbcn5jUh3Topy9eEgF49q3DT9txFnqEl6+?=
- =?us-ascii?Q?J9WENuRQ13zju6rTVUlyMWZsXDnvs7bmcomTGevMGYV0AVxQ7YqZFFz8lFxB?=
- =?us-ascii?Q?TwucmxhfRbm8tKjXU6k/95xh+qfv1hkvd8DYM7S6jMXBB1y+3MT4TedB8PPX?=
- =?us-ascii?Q?J42s5I2a1I2y2XWC70eJZXx6XCRGPqRbr17xRvXxVKi2Rg0pnys+AJVhT/Ne?=
- =?us-ascii?Q?3Tv8uT+15Qsvc48VrK0r3xohOSxJgUBELj1CPvHUwxVEznDDMc5JsXSKTWH3?=
- =?us-ascii?Q?fqnQr2jK9YvAJut/hiIuhjOePx9GGTIQd9nOWpM1wLxLStVpfe532CIY8TcZ?=
- =?us-ascii?Q?S1YqEVOGx+OMXjb1cWyvEzfE3/0cMRV/rnxUHuizCeRbSTub5wcINacCl4UP?=
- =?us-ascii?Q?NhZhvOlVVL6Cnt5xBUs+xaEjtkP1NiWUWhnDvQzZp/Fy43ryf5RyxzsleVHl?=
- =?us-ascii?Q?TguQq88Hij+unm8SrVLGl7lyEkcwE5FFcv/YU3X0+7PQou44RrLWHwHVfxzi?=
- =?us-ascii?Q?chUsnAqCnd1diFEdSL/ibYH5K+jMfwC+CwarhJ2pjoP/m66wsIeqDyp4RyWY?=
- =?us-ascii?Q?BfJM2lO7HDGPKgpsH2cDqO6ywd/tjGdzxlah+CI6JMDvjf6Q/iP3GMfOLZRh?=
- =?us-ascii?Q?t2BsBUt2JsMt14YlG3WX5TkES2Sj5q4wQLj3dwXXi3g0OJhKPqVN/FCHIp/3?=
- =?us-ascii?Q?/Xlut4L0WSSslkPaQHf3H3QQWr0rXMyn4cRBn31MBASaDcnqnNOT+zVUrhyA?=
- =?us-ascii?Q?fD7Z0olBJ7+rmIlvt4ijVap/HRalpuO+vJDAyFMId1aNx8NY6X4P0n174HR1?=
- =?us-ascii?Q?dstK2QWwM4meN13tJ1qMZX/N+hVOgLWHUU4kDJvxJVvlkTxf+GuRb2wI5mXf?=
- =?us-ascii?Q?nKwNvgDMfCxObQxVgEnkvuspDwyr4VkDhe3MTrztuHGdRD6c35CEFs7flsKb?=
- =?us-ascii?Q?9HDLoluTBTzDyukAC72KcpiVNG2ROL/b2G3C0EXFv7yGB4X1aKe6oRULhg6R?=
- =?us-ascii?Q?mMkFnmhlom22hlfwUhMOuy4ifQN8Nng1AJalpfKxtI347CyY7PKK0Wn+r6eq?=
- =?us-ascii?Q?O6mhSlzZhLhDl0u+vTva7zhnCkW6k9cqr/n+LMzd7xqR/n3CcPVLyBCcxCRM?=
- =?us-ascii?Q?OD4AtmTNhjB+yiKiJODlV4i1eeT++fBtal3pZeSCkwRw+ZYf6ii+WImiqtqm?=
- =?us-ascii?Q?HQPAZ+I9SVrTEZTligqzm5Z/AHixtpWSo/l9nycSzXXsutJlnicfmKgFF9jA?=
- =?us-ascii?Q?l5pHVGnAQUbxiJEkTw7NbTid6/qAOQb5Nv7P3T8RZXanfFOcW2ph?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 60028740-394e-4d4b-cd38-08df41c35d0d
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 20:19:04.6596
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: j/kvxHGXw4OwOSMQBaTmoFSNJbd+tyIGQyTml2GQ5qStLkV/xxq0fBxFBwy2p5nR5dpIKcq8rYXHfMoL5H0mfxImF8tvW27QmoOfR0qHidlHNZ5qn/xdQq4nwBdofVMI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11589
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_121911_015920_871258BA 
-X-CRM114-Status: GOOD (  19.36  )
-X-Spam-Score: 0.0 (/)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE5sdEgEFjGz6W0e5g4uxRVC2Otyvr4Pak-aAZogObWaFtNsTA@mail.gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -147,85 +76,111 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 23, 2026 at 05:38:25PM -0600, James Hilliard wrote:
-> Termination stops a physical channel and drops its owner without masking
-> or clearing its interrupt state. A completion latched by the old transfer
-> can therefore be delivered to a descriptor installed after reassignment.
->
-> Mask and acknowledge the stopped channel's interrupts before releasing
-> its ownership, and clear pending status before starting a new descriptor.
-> Keep these register updates under the same device lock used to sample and
-> acknowledge interrupts in the handler.
->
-> Schedule the allocator after termination so pending virtual channels can
-> use the released physical channel even when no further interrupt occurs.
->
-> Fixes: 555859308723 ("dmaengine: sun6i: Add driver for the Allwinner A31 DMA controller")
-> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
-> ---
+On Fri, Nov 13, 2026 at 11:31:31AM -0800, Siddharth Chintamaneni wrote:
+> On Fri, 13 Nov 2026 at 10:31, Jarkko Sakkinen <jarkko@kernel.org> wrote:
+> >
+> > On Thu, Nov 12, 2026 at 11:38:07PM +0000, Siddharth Chintamaneni wrote:
+> > > Prior to commit 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed
+> > > when tpm_crb_ffa is built-in"), built-in tpm_crb_ffa only registered
+> > > tpm_crb_ffa_driver from tpm_crb_ffa_init() after crb_acpi_probe()
+> > > confirmed start_method == ACPI_TPM2_CRB_WITH_ARM_FFA. After that
+> > > commit, tpm_crb_ffa unconditionally registers on the FF-A bus at
+> > > device_initcall time (and when loaded as a module) without checking
+> > > the platform's ACPI TPM2 table.
+> > >
+> > > A platform's firmware may expose a TPM CRB over FF-A Secure Partition
+> > > for UEFI boot services while advertising a non-FF-A start method to
+> > > the OS in the ACPI TPM2 table. When the ACPI TPM2 table designates a
+> > > non-FF-A start method, Linux has no consumer for tpm_crb_ffa and
+> > > should not probe the FF-A TPM service.
+> > >
+> > > On Microsoft Cobalt 200 systems, the ACPI TPM2 table does not use
+> > > ACPI_TPM2_CRB_WITH_ARM_FFA, yet ffa_init() discovers the FF-A TPM
+> > > partition and tpm_crb_ffa_probe() unconditionally sends
+> > > CRB_FFA_GET_INTERFACE_VERSION via FFA_MSG_SEND_DIRECT_REQ2/REQ SMC.
+> > > That request wedges the calling CPU in Secure World (with Non-Secure
+> > > interrupts and GICv3 pseudo-NMIs masked), hanging boot with an RCU CPU
+> > > stall:
+> > >
+> > >   [    5.507519] ARM FF-A: Driver version 1.2
+> > >   [    5.507519] ARM FF-A: Firmware version 1.2 found
+> > >   [    5.507551] ARM FF-A: Notification setup failed -61, not enabled
+> > >   [    7.150580] Freeing initrd memory: 293640K
+> > >   [   65.515248] rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+> > >   [   65.521346] rcu:     10-...0: (3 GPs behind) idle=dd9c/1/0x4000000000000000 softirq=37/37 fqs=5262
+> > >   [   65.530031] rcu:              hardirqs   softirqs   csw/system
+> > >   [   65.535589] rcu:      number:        0          0            0
+> > >   [   65.541146] rcu:     cputime:        0          0            0   ==> 30028(ms)
+> > >   [   65.548102] rcu:     (detected by 66, t=15010 jiffies, g=-951, q=1384 ncpus=132)
+> > >   [   65.555228] Sending NMI from CPU 66 to CPUs 10:
+> > >   [   75.560686] After 10 seconds, these CPUS still haven't responded to the NMI: 10
+> > >
+> > > Check the ACPI TPM2 table in tpm_crb_ffa_driver_init() and return
+> > > -ENODEV before calling ffa_register() unless the table is present and
+> > > specifies ACPI_TPM2_CRB_WITH_ARM_FFA, matching the check_acpi_tpm2()
+> > > pattern in tpm_tis.c. This ensures Linux only issues FF-A TPM requests
+> > >
+> > > when ACPI advertises the FF-A start method (for both built-in and
+> > > modular builds), while preserving normal FF-A bus probing on platforms
+> > > that use CRB over FF-A.
+> > >
+> > > Fixes: 677042afb97a ("tpm: tpm_crb_ffa: revert defered_probed when tpm_crb_ffa is built-in")
+> > > Fixes: eb93f0734ef1 ("tpm_crb: ffa_tpm: Implement driver compliant to CRB over FF-A")
+> >
+> > Pick the older.
+> >
+> > I attached a prepending patch that caches the start method, which can be
+> > later used in tpm_tis and tpm_crb.
+> >
+> > So that totals four patches:
+> >
+> > 1. My patch.
+> > 2. Your fix using the cached value.
+> > 3. tpm_tis update to use the cached value.
+> > 4. tpm_crb update to use the cached value.
+> >
+> 
+> Sounds good! I can put together that 4 patch v2 series.
+> 
+> Two quick notes before I spin v2
+> 
+> - Module loading with CONFIG_TCG_CRB=m and CONFIG_TCG_ARM_CRB_FFA=m:
+>   As Sashiko flagged on v1 [1], because tpm_crb.ko directly references
+>   tpm_crb_ffa_init() and tpm_crb_ffa_start(), returning -ENODEV from
+>   tpm_crb_ffa's module_init would prevent modprobe from loading
+>   tpm_crb.ko on non-FF-A systems. In v2, I will move the start_method
+>   check into tpm_crb_ffa_probe() (matching check_acpi_tpm2() in tpm_tis)
+>   so both modules load cleanly while still skipping the FF-A probe on
+>   non-FF-A platforms
+> 
+> - regarding the location of caching approach -
+>   tpm_crb_ffa never allocates a struct tpm_chip, and both tpm_tis
+>   (check_acpi_tpm2()) and tpm_crb (crb_acpi_probe()) check start_method
+>   before calling tpmm_chip_alloc().  Would it work for you if patch 1
+>   caches start_method once in tpm_init() (subsys_initcall in
+>   tpm-interface.c) and exports a small helper (e.g.
+>   tpm_acpi_start_method()) so tpm_crb_ffa_probe(), tpm_tis, and tpm_crb
+>   can all query it before chip allocation? (Also noticed a small '||' ->
+>   '&&' typo on the header.length check in the attached patch.)
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Move it to tpm_init() and store the result to a global variable, let's
+say tpm2_acpi_start_method. There's only one of these so it's all fine.
 
->  drivers/dma/sun6i-dma.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->
-> diff --git a/drivers/dma/sun6i-dma.c b/drivers/dma/sun6i-dma.c
-> index 900bb629ba3b..dab17b3863fc 100644
-> --- a/drivers/dma/sun6i-dma.c
-> +++ b/drivers/dma/sun6i-dma.c
-> @@ -501,6 +501,11 @@ static int sun6i_dma_start_desc(struct sun6i_vchan *vchan)
->  	irq_reg = pchan->idx / sdev->cfg->num_channels_per_reg;
->  	irq_offset = pchan->idx % sdev->cfg->num_channels_per_reg;
->
-> +	/* Do not deliver a previous transfer's interrupt to this descriptor. */
-> +	sun6i_write_irq_stat(sdev, irq_reg,
-> +			     (DMA_IRQ_HALF | DMA_IRQ_PKG | DMA_IRQ_QUEUE) <<
-> +			     (irq_offset * DMA_IRQ_CHAN_WIDTH));
-> +
->  	vchan->irq_type = vchan->cyclic ? DMA_IRQ_PKG : DMA_IRQ_QUEUE;
->
->  	irq_val = sun6i_read_irq_en(sdev, irq_reg);
-> @@ -973,6 +978,7 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
->  	struct sun6i_dma_dev *sdev = to_sun6i_dma_dev(chan->device);
->  	struct sun6i_vchan *vchan = to_sun6i_vchan(chan);
->  	struct sun6i_pchan *pchan;
-> +	u32 irq_reg, irq_shift, irq_mask;
->  	unsigned long flags;
->  	LIST_HEAD(head);
->
-> @@ -994,6 +1000,14 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
->  		writel(DMA_CHAN_ENABLE_STOP, pchan->base + DMA_CHAN_ENABLE);
->  		writel(DMA_CHAN_PAUSE_RESUME, pchan->base + DMA_CHAN_PAUSE);
->
-> +		irq_reg = pchan->idx / sdev->cfg->num_channels_per_reg;
-> +		irq_shift = (pchan->idx % sdev->cfg->num_channels_per_reg) *
-> +			    DMA_IRQ_CHAN_WIDTH;
-> +		irq_mask = (DMA_IRQ_HALF | DMA_IRQ_PKG | DMA_IRQ_QUEUE) << irq_shift;
-> +		sun6i_write_irq_en(sdev, irq_reg,
-> +				   sun6i_read_irq_en(sdev, irq_reg) & ~irq_mask);
-> +		sun6i_write_irq_stat(sdev, irq_reg, irq_mask);
-> +
->  		vchan->phy = NULL;
->  		pchan->vchan = NULL;
->  		pchan->desc = NULL;
-> @@ -1003,6 +1017,8 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
->  	spin_unlock_irqrestore(&sdev->lock, flags);
->
->  	vchan_dma_desc_free_list(&vchan->vc, &head);
-> +	if (!atomic_read(&sdev->tasklet_shutdown))
-> +		tasklet_schedule(&sdev->task);
->
->  	return 0;
->  }
->
-> --
-> 2.53.0
->
+You can then mark the resulting commit as:
+
+Signed-off-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Co-developed-by: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Signed-off-by: Jarkko Sakkinen <jarkko@kernel.org>
+
+I just put those tag because it is easy to mix up with Co-by tag,
+when using it.
+
+Br, Jarkko
 
