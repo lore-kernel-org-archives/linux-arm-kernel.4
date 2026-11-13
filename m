@@ -2,126 +2,124 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBDF606F5C5
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53076606A337
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 17:09:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=BV706nTs;
-	dkim=pass (2048-bit key, unprotected) header.d=foss.st.com header.i=@foss.st.com header.a=rsa-sha256 header.s=selector2 header.b=TVP+Stmj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=rRiF7t4u;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=cvq14Rxc
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=mbQLA9RhCWmXcAWxbqzsBqYRPUnBHPgRA659HER5bFU=; b=BV706nTs5ieysI
-	3CmHSnZ6iRRSGYp/R252HSjvFJ2+EfqM+U0henguo+6xMc6lp9k47YF/7moBv5yU4zNX8IzHXRm77
-	SZ8yPRxVxSY3bzSqH6ekyww4+z1MpV5RFtjfa3RlUfHNDB+4EU4Jcou8Q1wiTEagxmpnkuvY/FfbV
-	zbQH/Obu8hAvVutULFU0MYgbpQQsPLn1lBko4At6smnBCWb11TXjPMZgmhAu8U0CBPtUiMcIlgg7Y
-	ZcbFE1p9bniSigegjSl1wAnbzcoIEH2jBUbLRIm2PmAzqhdGL89KLyVzxy2Z59sVz927Fvg7eFSKE
-	gcd6YDaD+JlNvDaq5MeA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
+	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=zTGaV1UloT0Chf0ol30qq10ZNwEvfaESId1U8G45Gn0=; b=rRiF7t4u/bYcH5Itr0yxG5snln
+	LDW3ObYD6CL7yHju9J4Mlo0R7NBDJ000U/u+7cUdqh+Lqg1LK9UzQnK2qfRWFc0exA8BoVH5FBA6m
+	ZQ6jd9jrdq/faE0svmLGmdIMMO6g6P6RjBHPE13cR6dHF1hhEx6l9N0+7qlajpG9pbXq6VuVQ8mwY
+	5M7Rr9P0eEXsGiEf1HFs5k7vncbDyQvi4HRwKjKOf8uekmchgGzbCdxlcm6Dvb7qczAkUKJaDW+py
+	LNOtUwRgqDy6zjixQuyU8r4s8kq50MiXesvWmJB7/n868jwjEZAkcU4n51cog/V0/d4+asZW6aHyY
+	yvCLotBg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuXU-0000000DfmO-0Mo0;
-	Fri, 13 Nov 2026 16:54:12 +0000
-Received: from mail-swedencentralazlp170130007.outbound.protection.outlook.com ([2a01:111:f403:c202::7] helo=GVXPR05CU001.outbound.protection.outlook.com)
+	id 1xRulx-0000000Dh82-3OI7;
+	Fri, 13 Nov 2026 17:09:09 +0000
+Received: from mail-yx1-xb12c.google.com ([2607:f8b0:4864:20::b12c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuXR-0000000DflO-2FUz
+	id 1xRulv-0000000Dh7c-1TWC
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 16:54:11 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=quyeqhBU1ZVELHVUmh2Ul5oQY7D2gxBziNZXxIaJucJ2xh9Wod2T9RFcifEKjMgJrqcCVOqWRhvj2CY/SYuacwWM4Mq9NA+wxpFcxFTpU1nKntGbZbkv9rnkm2cfXlOCEdU712nRMSv27U+8yePDdGkYVmgXSe+Lw/xCNTTfgenn06x64920LN7gJvhpaSqHGTHaek77WhayB4nU6F6KdsNPj5tSTdt8agOr6wYoOevIO1+7C0X9Ij5N0UmNNMvUOcgStrc9sLqs08eVX45wNhMxM9/atHRwR/yG8bTmCtFnL7dsqHGRX/UIPWr7u55SogJGQtE87bU9Q1kLYdxsTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mbQLA9RhCWmXcAWxbqzsBqYRPUnBHPgRA659HER5bFU=;
- b=o4GNV3iE6/doAHOz6MhTXjTrbdGXT5XEqlmf6VVrVmLGaMbF/Vhp9vEPigvI+pr0jr8e881cjDLRR1/L+VrRpghEXQMKEmeTsi/EkTNWrdUIdZHHrbmS6uKwGsE+K/LEbQoGCP+qwrS2Iw/17AceLcTKlRaw8jf6+dve7+98tEbYvjqfgVzyh4mOXjQW0FCg7HwYOCNWTXSJnZ1SL2Gn6m1FZvMjkd6NclfatNRP16D4X2dpM3yYVIQQnvhvPC2pXNHRyF+qP5kOL/BUnZw4GcjyMsHHE0Sl1a/qqfZxKbhIu28yZQgeWPxBGM0oCXtPLmA5HWfYxUOVZQUvxkS39A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=oss.qualcomm.com smtp.mailfrom=foss.st.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mbQLA9RhCWmXcAWxbqzsBqYRPUnBHPgRA659HER5bFU=;
- b=TVP+Stmj5HP2lRUFtAZBmLGTVK6T3fXOOhJTBW1Ox66dTq8pNRN2/41rSDkfJnu/8iyz2jfv86VxCkwExNU9IE7bHxtSeUqa69B89a2UnVps8s+8GbTiT0Uw0cwGQZpephomPp5Uk/aMyxgheTT631JO1fkNeEFfdD6xWkrOv4BYIjcyZeMtvvB8fXqhVs0iunbYP3o4bTR/sB6BK1DQ/43SsIoF1gkb3oT879iWmx4Gh/TC5GJPuVnZyCHz3jAhVhpJj/57kYgcR4n6jQuD+mRx1irZ/B0/6HGn1Yjgj/KhU7oURG2ik7E/FFNNvuvEfZlQSzhDh6E9VcJqvtoNMg==
-Received: from AS9PR06CA0473.eurprd06.prod.outlook.com (2603:10a6:20b:49a::25)
- by AM0PR10MB3667.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:158::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.8; Fri, 13 Nov
- 2026 16:54:01 +0000
-Received: from AM2PEPF00070CF3.eurprd02.prod.outlook.com
- (2603:10a6:20b:49a:cafe::3) by AS9PR06CA0473.outlook.office365.com
- (2603:10a6:20b:49a::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Fri, 13
- Nov 2026 16:54:01 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=fail (sender IP
- is 164.130.1.59) smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- AM2PEPF00070CF3.mail.protection.outlook.com (10.167.242.5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Fri, 13 Nov 2026 16:54:00 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.56; Fri, 13 Nov
- 2026 17:54:39 +0100
-Received: from [10.48.86.101] (10.48.86.101) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Fri, 13 Nov
- 2026 17:53:56 +0100
-Message-ID: <e996f9ab-6373-4a27-b5ae-591ba33845c5@foss.st.com>
-Date: Fri, 13 Nov 2026 17:53:50 +0100
+	Fri, 13 Nov 2026 17:09:08 +0000
+Received: by mail-yx1-xb12c.google.com with SMTP id 956f58d0204a3-67d8221074dso1302732d50.1
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 09:09:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794589746; cv=none;
+        d=google.com; s=arc-20260327;
+        b=ha+0/5iHv54dfLXpTfGrMWZA3ieqpkCLu4+/uHuwfDaky6nIwei2Ei2YV5Skz+4a5S
+         RHWWNGBI8zDUtoXEOJO0sGsAIaljYzdzlz3sRbnQIMsycKnWqZG0s3NmL8LkvArg4kz7
+         NMKxnI+q4W1PCeQ1i4/z0qElqYEhcMkGx7Cw/jazNWcy34ESPxWPqoJpqed44+llJxQu
+         P68QFrDmtAfmWDGJkegVyQrGSltzF3ZiN8Mm3+OwkZ8cecsqFGjBBcX8wOJ4OBoFhOlL
+         w4doYy9XhTS2Kctc5Mt9SpfyBVBMkdzDIIBC0awnjyIWCIOYRLzBod7S1nrTV2dporgA
+         qa7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=zTGaV1UloT0Chf0ol30qq10ZNwEvfaESId1U8G45Gn0=;
+        fh=7ioYfRgAa60zyEL+va/kb7l79qqVs01TGLI1mMzkkq4=;
+        b=DcxoCfqsKBdcrtOE553Sacrc1fBDBVKaYp4NBT1zdtZWSAo2l/2eQuSQ7nD+RrkNIj
+         7IVS2c9frL7zt3UwIJcbcABJb9uAZCK1yIJvQ8rUPDYKmDhEZDrTmYDewZXOwB/Q8keS
+         IWNiSY9EpO4UQT6L7c1RXDW+lB8R+F8+2NW1eWliVeEpxQbHZdDOYVk0Mvy29qKjHTa7
+         PfwtRxj3ThljwtummzzJVh8Laa02wOZ3NbHsuIJ+Gmcb6fTRQPuco77+tfO6anf2rn2z
+         HB1keMegfLFV/VitjDqK8tnItSuYXx4EI1IBdDBy3wGR4RrSFt1LV25o2PyTJrbRxqpJ
+         MW0g==;
+        darn=lists.infradead.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794589746; x=1795194546; darn=lists.infradead.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=zTGaV1UloT0Chf0ol30qq10ZNwEvfaESId1U8G45Gn0=;
+        b=cvq14RxcwBNzn/XxWROlAM2hBiW5X5tEk85l6uwVD13JlRO4j/EZo683DB5t8d61ug
+         yARxpkzvsEKI+WykMHbfQXVjUZi5v3eDbdr+UIo9jGdh2X5/0MCKEVy3fqLkpTZtiful
+         E32iGn/PP/SlY1bPuNsm/LbKyG9BwbaQ1BjOtK7cS0xWEWp3MN6g1IdqFG60Vx4+0yHN
+         /1YOuzwbwL3lGjYhuxlMRFcIa2CyJHE0BrCIODcgCCZVNn45vAetxHquspxtnijsdpkP
+         DCfovGN1of79N1ffr39cH2kOIbMr/4xUyN0pWblGmGUyiq7U2BLZUCpeY31R6vCySMrJ
+         krYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794589746; x=1795194546;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=zTGaV1UloT0Chf0ol30qq10ZNwEvfaESId1U8G45Gn0=;
+        b=xhGqKfQ6Ng3jCgZtaWLm/GX4HueOXfDLVWq8G8m16/Cfm1Dsu6eOPVKM/oUwX6Oywr
+         0wFtFKQINaOy6ga+mRj1WhuwLepRHyrVmWF3LYdjVz3dFDIzZfQrOidpp59CKd3KVmsr
+         zU+uNqmj10VDkCCQ0mdw/tWWFp1+X2mobrlppAKKGySEtcuNLWuEs6jtTvDzoSIgeul0
+         zB3S/Gz0mIEbWmIBSNhwM2L2gW6tM2UAIDgHI3a4rlajmtHCViUULB78Z6XEDSmo3UxT
+         eQkdEOHwMam0BHrc1PXckqklMyUD14sRr8MQ/R1HeIsMx8CJhwieE7hskgD3R3JP5LUr
+         xM2A==
+X-Forwarded-Encrypted: i=1; AL+hErHW8pq4ldee6QVqqrMxPa6j7nPz29TwG3iU2Ijvrj2/giw+0pu+K5lCtQh63B1XcvL1fRG1HOhHH8TdGqVYHgnJ@lists.infradead.org
+X-Gm-Message-State: APuU4Z+dwXE/vT6ZJ8jj0zOS6094yApI5HRGI79MP7vSGceaaAXPpVF+
+	H1CrAE0aXoqwfAMNupETs3RjFoMzv6bA0xSczQNI+cOKDTIM4O6FEyjqO7G0jJN9ri6/OCM+wWZ
+	XLQw4bB8vSPHQ9D8K3pB8Gkjq64cfekg=
+X-Gm-Gg: AYBFou0994mQiSOPfW+xDob/+Aia7mfJbJbL3dThaeeEnnxIl9Uu4eHKdAZAqUVmSoK
+	lOPYem0sZDoYGnYuGv5Fnyt6ADim9c3CadfYzU/4wzv524WLAkoC3ACpXbxe6d4+E37+SotS+Lp
+	U91LWbXmMZAu6ZnWqfE78lJCtrW1wSgj4deswxizQFqNavDXHAlU1GwldBeGofKZFUh3gY9cWWt
+	zhTDkoC9Q1B8NoZf0ucaT8f8pKtwY06ZLKxveRUigQarV4m5KcjI3GzDhqJmnKBqCBFbWq1FbVU
+	0CSLxkmOECMEorr5uasXE7+xXsdnbEvR4SoEIn1FFZwu8dPPYVdCtem+TcrzypFYpSvx31L/Stk
+	N5Gdzyaz+Z67XbD8nfbfnKu4Hav7St1xT/0k6QxlmRLbnfZmo59IPHf2R7K4DGCMsbetcDDxfeJ
+	4K0GfU5E3CzmvtgumPmEoLHyNbs0kW+1zX2/TUbaRZMTVFkBDRHfM3FqfCAxCjC5hNuXOvlVhPf
+	SGrvpfv
+X-Received: by 2002:a05:690e:b83:b0:67c:1fc:2a49 with SMTP id
+ 956f58d0204a3-67d970207c9mr377453d50.54.1794589746003; Fri, 13 Nov 2026
+ 09:09:06 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mmc: mmci: stm32: handle mmc power up
-To: Ulf Hansson <ulf.hansson@oss.qualcomm.com>, Marek Vasut
-	<marex@nabladev.com>
-CC: <linux-mmc@vger.kernel.org>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Ulf Hansson <ulfh@kernel.org>, <kernel@dh-electronics.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>
-References: <20261030215427.488298-1-marex@nabladev.com>
- <CAPx+jO8sc8gbxNQTjK2tx+1UPLqwwEof3E9vknHNc4kmbeB7oA@mail.gmail.com>
- <51207e63-ec60-4805-bf6a-b10647ee3866@nabladev.com>
- <CAPx+jO89Z0Z241L1jyB_3sUygdEwGicqT-WfHc6ppG8egHUO2w@mail.gmail.com>
- <c3cbd7ab-e689-4a9b-b311-af43980738d2@nabladev.com>
- <CAPx+jO8=nVBUuOQ==Q66nOnH+VeXur88DetmETe8qmOiS_NCWQ@mail.gmail.com>
-Content-Language: en-US
-From: Christophe KERELLO <christophe.kerello@foss.st.com>
-In-Reply-To: <CAPx+jO8=nVBUuOQ==Q66nOnH+VeXur88DetmETe8qmOiS_NCWQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM2PEPF00070CF3:EE_|AM0PR10MB3667:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8459cac2-f557-492f-cb27-08df41a6b73f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|1800799024|23010399003|376014|36860700016|261021123027099003|11063799006|4143699003|261026121527099003|56012099006|5023799004|261009223027099003|261021121427099003|18002099003|22082099003|261102123227099003|10067099003|13003099007;
-X-Microsoft-Antispam-Message-Info: MlGW5nof5PIUMgnFmp0GQVdBvFJBFCu6tEE/nMXCv4xbQG5ci/XSPSNUHy0ON+rj9yfKRuetAwBLH++J0aWNr74z8Nk41tRfYR5Fo0OKIQGhtIZU0768ssX5TfFpZoRBg9ZvTx+QKwSIJA5ZcnExur/BdbNB+shEOZo6f4EJJrRgdHbSYoFJTYyFCOWHsK7wAPb3s6UXmtEHwtXeudVeKxMiKt2ITNNdYa6VBJZ5O0WQFzGIyYqeDt+FKrRrbgCY/ExCAFO/XY4W/6Vf9wWOGRf2jR9mKJyPmV6G5W5LQZYT3W0EbNV1GsEC6DeFZ9jAY0J6Mrgl8v7m+EtqYBHTwgJop5cTz9BcITiUzWMEbt0mWqJbGxsuUnpaZIkNptiKyTQQjlJ5mW0XpRlkUe6Mjnn/qiwIPt/fiEYQsFTimqyYndTzFAvqYMxs10f6MbV4Vs2MnCnhz5rYjFsB62noFOHRL/fGrypYZSMRLt8yoyksi8ROsYor5hIHK+2s6WDOCxIm/YlSqYderwlZPJxk1O1XIGi2oltRKicn0BxiEC/nRxlUFW2SHFTKIcdQlhcNcEiKZfE+OI0VsLvuUeAARl/eqzz7gYp6wpWOu5Mk+KsGapHe91rqu71chmgzhvVmMi7ouyqhDlrN5PHF+rZ4YoPaKA5hBM+bRf0/OLUXoe0=
-X-Forefront-Antispam-Report: CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(23010399003)(376014)(36860700016)(261021123027099003)(11063799006)(4143699003)(261026121527099003)(56012099006)(5023799004)(261009223027099003)(261021121427099003)(18002099003)(22082099003)(261102123227099003)(10067099003)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: /N6tdmRDO3+BvlHUnhT1JBpG3baSeZoK8DhYXjgJd7GSvlS+jvG5EdDIzcD16ztc2DDTY5FWaxckJqrsmuI/f7Gy3RzaR2qoT1viRoJ+ValDxPBYzaUhSqi11OSpUt3a1jpxCGsLV8OQ6xbENM00i+lubbCA6zEPzRekpd3m52bMykdIqLCiw+AS2YevBcZ3eZhPUA++lzSXvnn6wJTdOwQ7XQxsG2WVYtpm/A26G/2SXJCjmw7WywiON599ZYUZ4mAkeat88Qqy/6CzdGfk3TqoL+0HVzmzII8oh7D6vSY/gUr+WkmOs09xbHPt5zXKzBGrAmScuD1HdjHAbCRb99GcXW0QTorF0Ck4UOYUjUbCzHOGlhBBAmiwLS7HYsLYx6iN4gceJfz3mYNEVkU0sllWPbniEGYC0Ulqj/zbWszTh2Hmnm93g7bj3vFTgy/S
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 16:54:00.3900
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8459cac2-f557-492f-cb27-08df41a6b73f
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource: AM2PEPF00070CF3.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3667
+References: <20261023070110.1833446-1-fuad.tabba@linux.dev>
+ <20261023070110.1833446-2-fuad.tabba@linux.dev> <86fqxwzul7.wl-maz@kernel.org>
+ <CA+EHjTw08SZC_3Uodt6ew6vXVH-doW-8G41fVCF-rmaKsv+0fQ@mail.gmail.com>
+ <86ecdgzp6m.wl-maz@kernel.org> <CA+EHjTy0jpY3sdVCENJRj_kfRDwbZ6TpkCAHQ2xUO-7ZuErpcA@mail.gmail.com>
+ <ad724195-3452-495a-a50a-5e5c8093a483@app.fastmail.com> <CA+EHjTyLnAXanf9R7SuoL3gFZUNewX7QOnW=mc3qzwvaxg7jJg@mail.gmail.com>
+ <040cf379-baba-4e3a-bf3d-6bc009a9e28d@app.fastmail.com> <20261112180741.17614-1-sidchintamaneni@gmail.com>
+ <0a5e252e-1494-4b0f-a761-d984238c9d0d@app.fastmail.com>
+In-Reply-To: <0a5e252e-1494-4b0f-a761-d984238c9d0d@app.fastmail.com>
+From: Siddharth Chintamaneni <sidchintamaneni@gmail.com>
+Date: Fri, 13 Nov 2026 09:08:54 -0800
+X-Gm-Features: AclHuK_eSsuSs47N6QK3g2E7GgnMGVY8PMc7m7IxLZzX0JjkDZoYycjEKtYvyFw
+Message-ID: <CAE5sdEjVx-eGz4hkN3bMMJAag_g0hm+J18G6JvFH814Z4_ZGaA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] KVM: arm64: Hide FEAT_LS64_ACCDATA from guests
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Fuad Tabba <fuad.tabba@linux.dev>, Marc Zyngier <maz@kernel.org>, 
+	Oliver Upton <oupton@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+	Suzuki K Poulose <suzuki.poulose@arm.com>, Joey Gouly <joey.gouly@arm.com>, 
+	Zenghui Yu <yuzenghui@huawei.com>, Steffen Eiden <seiden@linux.ibm.com>, 
+	Zhou Wang <wangzhou1@hisilicon.com>, Navneet Singh <navneetsingh@microsoft.com>, 
+	apais@microsoft.com, rlmenge@gmail.com, hargar@linux.microsoft.com, 
+	kvmarm@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	kvm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_085409_661385_66DA84D5 
-X-CRM114-Status: GOOD (  18.08  )
+X-CRM114-CacheID: sfid-20261113_090907_409005_9DFDB249 
+X-CRM114-Status: GOOD (  25.11  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -133,68 +131,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-7.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=no autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hello Ulf,
-
-On 11/13/26 12:46, Ulf Hansson wrote:
-> On Thu, Nov 12, 2026 at 7:26 AM Marek Vasut <marex@nabladev.com> wrote:
->> On 11/11/26 12:45 PM, Ulf Hansson wrote:
->>
->> Hello Ulf,
->>
->>>>>> -       if (ios.power_mode == MMC_POWER_OFF) {
->>>>>> +       if (ios.power_mode == MMC_POWER_OFF ||
->>>>>> +           ios.power_mode == MMC_POWER_UP) {
->>>>>>                    /* Only a reset could power-off sdmmc */
->>>>>>                    reset_control_assert(host->rst);
->>>>>>                    udelay(2);
->>>>> What exactly will this reset?
->>>> The controller.
->>> Okay, I see.
->>>
->>> In that case, this reset also makes us reset preceding updates to any
->>> other registers, for example the clock register. I would not recommend
->>> doing that here, but perhaps there is no better option.
->> Does that pose a problem in the MMC_POWER_OFF/UP state ? I agree this
->> would pose a problem in the MMC_POWER_ON state, but here the card is not ON.
-> I think it is a problem, yes. If you have a closer look at what
-> happens in mmci_set_ios(), I think you will agree.
+On Fri, 13 Nov 2026 at 03:31, Arnd Bergmann <arnd@arndb.de> wrote:
 >
->>> If I may I suggest an alternative solution, perhaps we can manage this
->>> in the ->runtime_resume() callback instead. If the power_mode ==
->>> MMC_POWER_OFF, perhaps do this reset there instead? Would that work?
-> Can you try this?
-
-I have sent a new patch based on your proposal:
-https://lore.kernel.org/linux-mmc/20261113-fix-resume-reset-v1-1-115b3da5764d@foss.st.com/
-
-It works fine on my side.
-
-Hi Marek,
-Could you also test it on your board to confirm that it fixes the issue 
-you reported?
-
-Regards,
-Christophe Kerello.
-
+> On Thu, Nov 12, 2026, at 19:07, Siddharth Chintamaneni wrote:
+> > On Tue, Oct 27, 2026 at 02:48:29PM +0100, Arnd Bergmann wrote:
+> >> On Sat, Oct 24, 2026, at 09:14, Fuad Tabba wrote:
+> >> > On a host that runs at EL1 (nVHE or hVHE), this also requires
+> >> > __init_el2_fgt to set nACCDATA_EL1 in HFGRTR_EL2 and HFGWTR_EL2, and
+> >> > __init_el2_hcrx to set HCRX_EL2.EnAS0. Without them, the ACCDATA_EL1
+> >> > access traps to EL2 and the hypervisor panics, and so does ST64BV0
+> >> > once SCTLR_EL1.EnAS0 is set. Happy to write those and the KVM change
+> >> > once you're ready to post this.
+> >>
+> >> Thanks for the offer, that part is definitely not my area.
+> >
+> > We are preparing to post the Microsoft Smart Data Accelerator (SDA) VF
+> > dmaengine driver for Microsoft Cobalt SoCs, which uses IOMMU SVA with
+> > direct EL0 ST64BV0 portal submissions carrying the process PASID in
+> > ACCDATA_EL1.
+> >
+> > Now that Fuad's KVM guest FEAT_LS64_ACCDATA series is queued, are you
+> > planning to post the host ST64BV0 SVA + EL2/KVM patches as a standalone
+> > series soon?
 >
->>> Anothing thing that caught my eyes was the MCI_STM32_PWR_CYC bit that
->>> gets written at MMC_POWER_OFF. This bit becomes cached in
->>> host->pwr_reg, hence it's also rewritten at MMC_POWER_ON. Is that
->>> intentional?
->> I _think_ so, this seems to be used to power cycle the card.
-> Well, we are not power-cycling the card at MMC_POWER_ON, we are turning it on.
+> Yes, sorry for the delay on my side, I'll try to get it to you ASAP.
 >
-> Seems like we could use some support from the ST guys to understand this better.
+> For my understanding of your requirements:
 >
-> Kind regards
-> Uffe
+> - Is that hardware using an SMMUv3 or a different type of IOMMU?
 
+SMMUv3.
+
+
+> - Do you have userspace calling ST64BV0 on the host, guest or possibly both?
+>
+
+We are focusing on guest VMs first, where guest userspace calls ST64BV0 on
+the portal mmap'd by the guest VF driver (with bare-metal host follow later).
+
+> > Either way, we have Cobalt hardware with FEAT_LS64_ACCDATA available and
+> > would be happy to test your patches on silicon, or help put together and
+> > carry any remaining pieces alongside our driver series if you prefer.
+>
+> Sounds good, thanks!
+>
+>     Arnd
 
