@@ -2,77 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C26606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 09:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0019D606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 09:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qfFrAcZG;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=f0vffpVZ
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=B4CJ2RM2;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Y1DpnByB
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=m9B2HLqDdiE/y5FWXTFo38VfZGVo4F39dSrwK05GBbY=; b=qfFrAcZGuQl9ku
-	0yBX9lgUOIh1/fomttj5spHAAFtXZwZ/I9LHB6YGQE9ohYWv3qu+fa/n4Ek7uMoxQsDpIKhamPwgj
-	lFewd3XgdgI7XAPnaZMpGiVY9AQS8/KFiKFH05jFK0zKIk4W+t8JAkU1ojTHnhj6v5S62z2DndwaV
-	7/TmBjcOThRZHLkBTtsrXP1zjXSyAd5uvE+MaDisK9U7h8uT3TPIKald/X8XazXE0Z0C52mPaxQoW
-	OMuZJbAS9ZZHYfMP9+2gbVfMf7W9qtVOpA2BeigR//KZCeW7fyd4wATcCU0TDo5UOTc0r+nhx8HcZ
-	WfGmifLQ2DW84bZnBvBw==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=rcCOAgaNQ6mOxfEeq0aJhRnhXgr/WD3qzoIXLp7iAwM=; b=B4CJ2RM2w/AWUYLXn8rkxc9ATz
+	+n3KSG3xVmaRQFE2a+pyb7hgrRsHhf0MLY132hH5Ak3RvJFThLgWo/x/Rcjh9qLekwV0Q/T9yOKB8
+	UlN5BHUWJDBxPSMhEDXadN5PWymeoYIYrAoGn7PMms7MZyuKonF5MBUvM/3DSbgvlO7AzQfqWJB35
+	JmXJaspEcBwRXe+9R6UZUuEv2Wx3oD7lFM4T6T9FNjhYij/nXOlB3RjhDIaHkOuKPDLlihVHrjcks
+	y4q4kSssr12qucGpGbrWwRoLW1MwefJQv6aK0fZwgZIgaN3AVSHHHaO1U812I3v+ASjnG63euNiAI
+	IgAtiQTg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRnEh-0000000CBO1-2rmr;
-	Fri, 13 Nov 2026 09:06:19 +0000
-Received: from smtpout-02.galae.net ([185.246.84.56])
+	id 1xRnMH-0000000CC4G-11AQ;
+	Fri, 13 Nov 2026 09:14:09 +0000
+Received: from mgamail.intel.com ([192.198.163.18])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRnEK-0000000CBKn-12Rn
+	id 1xRnMD-0000000CC3e-3kZn
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 09:06:17 +0000
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 14E5E1A164C;
-	Fri, 13 Nov 2026 09:05:53 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D57B7601D5;
-	Fri, 13 Nov 2026 09:05:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1469611BC04C2;
-	Fri, 13 Nov 2026 10:05:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1794560752; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=m9B2HLqDdiE/y5FWXTFo38VfZGVo4F39dSrwK05GBbY=;
-	b=f0vffpVZZrslinjhbIpY9qf8M3/CTvC1z9yRuJJogyIu+IMIeQXQfStNZCfvTBfaholj0T
-	XaUi5RncKXMF7GgfOhQVDBRYLBVRFb5xKn4JFbmA7GBQjCWX675/Mp4q0uAlmhPbkYexMp
-	9BVS2T1GmGDfln9dDKXTOClFTBVMsv+n0CadBkAkLrnTz494mmEpVvD8eiqM0gdGSByExO
-	bEJoOGwXZBlIhKafG9ATQYOfWbZvmV28m3FFXd0ZU1yGK8PgofIRLbNVkIbZrZwQAxmfD6
-	4SgqesLYSHv0C1TIzkodXek6GjHCpZ0gw2QZYIxh9kwnrThjZzgVWgWre5XuhQ==
-Message-ID: <03612a8a-0899-47e9-b992-d166bc7fd63a@bootlin.com>
-Date: Fri, 13 Nov 2026 10:05:43 +0100
+	Fri, 13 Nov 2026 09:14:07 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1794561246; x=1826097246;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3YQC2srLmB0eRjZt+W5Kk9zvcxE/nqYSAZ8PFwWwbRU=;
+  b=Y1DpnByBB4sZ1LxBDhsUPcSSPeilLfV6OlC7umEGQthehoEC4lEkaQUU
+   kNr4bqUGUpBi6Gs4b8/Z98ZSLQf3nZnTQ6363AvXGzBCJ+sh+hKg9G3mo
+   H345EH5U2+NCZM4IsH0H4Oo6s59ROJg3KPhaSqw4tUNC8pRsVGFPwc0aM
+   sGH5Ci1uMxwmkvLXMm2t/+7efSmm7UqG53pNllX7t93BDnqI/hlJNf/54
+   CVeMhV24+UIDQ095/X9B2+M0Xxt5/ald9YzieHFR0mFK3p9SOnaoqoCbM
+   mo0NafxQnqyI+1F/aMqI63raOCdY35pvdMRWs865rR/w19Eg2MBkhZhV8
+   Q==;
+X-CSE-ConnectionGUID: U3900rPXSg+95x338lnzVQ==
+X-CSE-MsgGUID: sT+Rr4A+Tqa0giP0pcpbqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3388893"
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="3388893"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Nov 2026 01:14:04 -0800
+X-CSE-ConnectionGUID: 918UqnjfQUaNbjvAweC7Xw==
+X-CSE-MsgGUID: NDVEmg+mRYOn7n4rQPLLqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="10656371"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+  by fmviesa011.fm.intel.com with ESMTP; 13 Nov 2026 01:14:02 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1xRnM7-000000012ch-3Yr3;
+	Fri, 13 Nov 2026 09:13:59 +0000
+Date: Fri, 13 Nov 2026 17:13:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sudeep Holla <sudeep.holla@kernel.org>, linux-acpi@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: oe-kbuild-all@lists.linux.dev, Sudeep Holla <sudeep.holla@kernel.org>,
+	Jamie Nguyen <jamien@nvidia.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Dat Mach <dmach@nvidia.com>
+Subject: Re: [PATCH v2 3/3] firmware: arm_ffa: Share FF-A version negotiation
+Message-ID: <202611131749.3XbZQkPM-lkp@intel.com>
+References: <20261112-acpi_ffh_ffa-v2-3-575a9dbed22b@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net] net: stmmac: re-base EST after PTP settime64
-To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Jose Abreu <Jose.Abreu@synopsys.com>, netdev@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
- <ea9ae0f9-d373-4e97-b96b-3855c01100ee@bootlin.com>
- <avbOwepxkFf1F717@lore-desk>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <avbOwepxkFf1F717@lore-desk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261112-acpi_ffh_ffa-v2-3-575a9dbed22b@kernel.org>
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_010556_477072_C252A9B7 
-X-CRM114-Status: GOOD (  13.56  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261113_011405_944436_4CFCE1B5 
+X-CRM114-Status: GOOD (  11.19  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -83,102 +92,56 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Hi Sudeep,
 
-On 11/13/26 09:48, Lorenzo Bianconi wrote:
-> On Nov 12, Maxime Chevallier wrote:
->> Hi Lorenzo,
->>
->> On 11/11/26 10:54, Lorenzo Bianconi wrote:
->>> stmmac_set_time() initializes the PTP clock through
->>> stmmac_init_systime() (TSINIT) while holding only ptp_lock.  It neither
->>> takes est_lock nor disables and re-bases EST around the step, unlike
->>> stmmac_adjust_time(), which performs TSUPDT through
->>> stmmac_adjust_systime() under est_lock.
->>>
->>> Both operations change the PHC system time, so both invalidate the
->>> absolute EST base time.  With settime64, a concurrent
->>> tc_taprio_configure() can read the pre-step clock through gettimex64()
->>> and program EST with a base time that is already stale once TSINIT
->>> lands.  Separately, a taprio offload installed before the clock_settime()
->>> is never re-based and keeps running with its old base time until taprio
->>> is reconfigured.
->>>
->>> Take est_lock for the whole disable/step/reprogram sequence, as
->>> stmmac_adjust_time() does: disable EST before initializing the clock and
->>> call __stmmac_setup_est() afterwards so the base time is recomputed from
->>> the reserved taprio base time and the new clock.
->>>
->>> This keeps the established est_lock -> ptp_lock ordering:
->>> stmmac_init_systime() only uses readl_poll_timeout_atomic() under
->>> ptp_lock, and __stmmac_setup_est() takes ptp_lock through gettimex64().
->>>
->>> Fixes: b60189e0392f ("net: stmmac: Integrate EST with TAPRIO scheduler API")
->>> Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
->>
->> This LGTM, the return values from stmmac_est_configure/__stmmac_setup_est are 
->> ignored though, the [cl|s]ashiko gang may not like that.
->>
->> Besides one of the EST commands timing out, it seems unlikely though.
-> 
-> I used the same approach used in stmmac_adjust_time(). I guess we can update
-> both of them if required.
+kernel test robot noticed the following build warnings:
 
-Bah, I'm OK doing that as a followup then,
+[auto build test WARNING on 7475ea8b58616b33c04afb976cf0fbaad9dd63fb]
 
-Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+url:    https://github.com/intel-lab-lkp/linux/commits/Sudeep-Holla/firmware-arm_ffa-Share-FF-A-register-field-definitions/20261112-111406
+base:   7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+patch link:    https://lore.kernel.org/r/20261112-acpi_ffh_ffa-v2-3-575a9dbed22b%40kernel.org
+patch subject: [PATCH v2 3/3] firmware: arm_ffa: Share FF-A version negotiation
+config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20261113/202611131749.3XbZQkPM-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 16.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261113/202611131749.3XbZQkPM-lkp@intel.com/reproduce)
 
-Maxime
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202611131749.3XbZQkPM-lkp@intel.com/
 
-> 
-> Regards,
-> Lorenzo
-> 
->>
->> Maxime
->>
->>> ---
->>>  drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c | 9 +++++++++
->>>  1 file changed, 9 insertions(+)
->>>
->>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
->>> index 31a66e855d6b..6370bdc6c58b 100644
->>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
->>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
->>> @@ -129,10 +129,19 @@ static int stmmac_set_time(struct ptp_clock_info *ptp,
->>>  	    container_of(ptp, struct stmmac_priv, ptp_clock_ops);
->>>  	unsigned long flags;
->>>  
->>> +	mutex_lock(&priv->est_lock);
->>> +	if (priv->est && priv->est->enable)
->>> +		stmmac_est_configure(priv, priv, priv->est,
->>> +				     priv->plat->clk_ptp_rate, false);
->>> +
->>>  	write_lock_irqsave(&priv->ptp_lock, flags);
->>>  	stmmac_init_systime(priv, priv->ptpaddr, ts->tv_sec, ts->tv_nsec);
->>>  	write_unlock_irqrestore(&priv->ptp_lock, flags);
->>>  
->>> +	if (priv->est && priv->est->enable)
->>> +		__stmmac_setup_est(priv);
->>> +	mutex_unlock(&priv->est_lock);
->>> +
->>>  	return 0;
->>>  }
->>>  
->>>
->>> ---
->>> base-commit: 22b7cb932c6a0f7566d41072be6956cb6c8af4e1
->>> change-id: 20261111-stmmac_set_time-est_lock-f74f4ce678b7
->>>
->>> Best regards,
->>
+All warnings (new ones prefixed by >>):
 
+   In file included from drivers/tee/optee/ffa_abi.c:8:
+>> include/linux/arm_ffa.h:189:37: warning: 'struct arm_smccc_1_2_regs' declared inside parameter list will not be visible outside of this definition or declaration
+     189 |         void (*invoke)(const struct arm_smccc_1_2_regs *args,
+         |                                     ^~~~~~~~~~~~~~~~~~
+
+
+vim +189 include/linux/arm_ffa.h
+
+   182	
+   183	#if IS_BUILTIN(CONFIG_ARM_FFA_VERSION_NEGOTIATION)
+   184	int arm_ffa_version_get(void (*invoke)(const struct arm_smccc_1_2_regs *args,
+   185					       struct arm_smccc_1_2_regs *res),
+   186				u32 input_version, u32 *version);
+   187	#else
+   188	static inline int arm_ffa_version_get(
+ > 189		void (*invoke)(const struct arm_smccc_1_2_regs *args,
+   190			       struct arm_smccc_1_2_regs *res),
+   191		u32 input_version, u32 *version) { return -EOPNOTSUPP; }
+   192	#endif /* CONFIG_ARM_FFA_VERSION_NEGOTIATION */
+   193	
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
