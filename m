@@ -2,67 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CA4606AE36
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57377606B5D9
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=PfQ/EGxz;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=Kca1aMbS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=X37spp32;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UP3iRfnN
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=wtyVpuXy15dO4I4euvTy72oPkpvM3hhV0zuEi7/nVcc=; b=PfQ/EGxz4lcDXW
-	1I0JvfTAZDB1zhXllFal6xVcU5HsSNv+KoES93SSozbFEydU7nIiwECYkZi9LeGCQy45ZzGrQPeKG
-	9wB5QenUHDIET5jJRYqVhoaBaIVs7raf3hZbsR6OqaRkmemNOLyAdANlnRkNCRCS8Hb3RyxtTsxrt
-	+BUttayHIolTIp4KKD1zEXgc/sApZaWdL53NjQAqFkulPUhlEIz9mctVoUq7iKWP4cTuGzwOp7Il6
-	fq6px+8dUxPYjnRc0mUnHRPUR4Ha8XUDKl7JHK9x8IuBG4I6ekM+FWrVUCAb86bnj3VyyJ2biWTey
-	hUHZJkUXilsDGXjxonSw==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=07DDAqi5jXuAZ5tD6WNu4TNE10HQBGSmuS9KSWqF5f0=; b=X37spp32MvGRFJ
+	4lZvKdXF97Jl1m4CJliYIEhgakjw3QUrlRmnzU04KNDPrT8itqw1cNSlAdiHUh1QKNOQ9Rz89HdwJ
+	zo91IlKcY9wn3pLCRTxGqvH3W0fHGA1nijf2MOWTKMnAudjzMpazVWcteP4CBEVU5qutccyiHjlND
+	8Bk4UH3cOVtn/1MaQ2LHyIFlgusKQuekSTjKN87ST9S9uvT2Q+GJPZqtSS/tj0Hh3N3ZSxBMaL1LT
+	prtU3jff0bagcM9H6wYKYVBwvbb+CSP8G5fZpjQTy0ZResPI/2siKGErvf4E+IXgbC8upOpTIe0ZH
+	PvBBKGNn7mBCiprYLMEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtxT-0000000DWRZ-3f6X;
-	Fri, 13 Nov 2026 16:16:59 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtxQ-0000000DWBQ-3oRe
+	id 1xRtyF-0000000DWXT-0DdS;
+	Fri, 13 Nov 2026 16:17:47 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRtyE-0000000DWX8-0hmh
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 16:16:58 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 59500143D;
-	Fri, 13 Nov 2026 08:14:49 -0800 (PST)
-Received: from [10.2.212.8] (e134344.arm.com [10.2.212.8])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B8933F673;
-	Fri, 13 Nov 2026 08:14:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794586492; bh=i6MBxrF0w4JXCguJJvppWTYUK6SI7lS9eOj24tuyIBU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Kca1aMbSiP4ptaRyeru+VLQb0nS8xXxVVzqAZYvYOR0cT26gU1mSxylH7eMRaLIes
-	 sziSIN6XJ8JM52qwZoMPhgSSjMU/h14pAkGQEI80KvcCowz7SLkM/yMvY0xIpI5lV5
-	 IdKpweGRgrX1yXXn+FmW48X0P0I5Vr2qvLQlmgY8=
-Message-ID: <10f43d19-2994-4ad2-8a49-2891582e32e7@arm.com>
-Date: Fri, 13 Nov 2026 16:14:48 +0000
+	Fri, 13 Nov 2026 16:17:46 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id E03E446064
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 16:17:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C897E1F00929
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 16:17:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794586665;
+	bh=07DDAqi5jXuAZ5tD6WNu4TNE10HQBGSmuS9KSWqF5f0=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=UP3iRfnNQrQGSiNIp6w+6flT9KSUoUMKC0Z5owz+KWHvq+o7kwFCw34OanpEGcufS
+	 LhCj1yLWeHggKugNkQGiKAEqgG3h52h4cHDaIuqQn9Zfq9r7r6LPTR5vzjPtl4B2QA
+	 BelwHsJJJbcQu9eYuAP5LkLrOyIRJnRmAo2xCJSjQxZ8SW3PESdWCKHc4Yepar1ujo
+	 YP5GQo80I63bHz3Sq7um7txMqk6jCOesu8ZnB+tz23IodrTiUk4qPBRCzgPztImjAe
+	 EpUZljGI+IJgOxbRNxTbrkbWoFp/e9pPPZDVrWhFTI/h+yKDmPQTFXvMvI76csYJnp
+	 uefCeo9JPBSRQ==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3adfc004920so17283011fa.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 08:17:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErEVmzK1aTkde3Rv9if3Y/Y0YB0ukfbAUCyt7fJw0sh8kMb81AnAHPFhRrG4+csE9j769fvxbakrBQkBauMOgTXB@lists.infradead.org
+X-Gm-Message-State: APuU4Z+11X4erx97xjTMEbrR14qrQ/tjsJYoyf1xE7HRjW3RjGh1WATK
+	sCq6S00NVrarAYCzgQP9p2sX9H+n47eX18VBapU9IEez21zI8OUgG3hxjJWT2XZGuqxRgqMbuYL
+	LViKnuMz8cBuepbZjCl8O8Rpej8Dg3Gk=
+X-Received: by 2002:a05:651c:41d1:b0:3ab:1207:bd2f with SMTP id
+ 38308e7fff4ca-3ae2b4bad8cmr14071971fa.11.1794586663709; Fri, 13 Nov 2026
+ 08:17:43 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] fs/resctrl: Give a monitor domain the counters the
- groups already use
-To: tizi4590 <ruanjinjie@huawei.com>, james.morse@arm.com,
- reinette.chatre@intel.com, fenghuay@nvidia.com, tony.luck@intel.com,
- Dave.Martin@arm.com, babu.moger@amd.com, will@kernel.org, jic23@kernel.org,
- gshan@redhat.com, bp@alien8.de, x86@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261113083506.4129060-1-ruanjinjie@huawei.com>
- <20261113083506.4129060-3-ruanjinjie@huawei.com>
-Content-Language: en-US
-From: Ben Horgan <ben.horgan@arm.com>
-In-Reply-To: <20261113083506.4129060-3-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_081657_030421_1FAA3AB3 
-X-CRM114-Status: GOOD (  23.28  )
-X-Spam-Score: -4.4 (----)
+References: <cover.1794567577.git.ukleinek@kernel.org>
+In-Reply-To: <cover.1794567577.git.ukleinek@kernel.org>
+From: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
+Date: Fri, 13 Nov 2026 17:17:30 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0jC5YXsLgB6Qd55KNCU0oCsN86X5WpRfL+Ycz0MJ8vGqA@mail.gmail.com>
+X-Gm-Features: AclHuK8x25sOZXVMSbQCD89ASNTaRnpnKVCTik8ql8SNDsY_N4yuXW7y6aXTE5U
+Message-ID: <CAJZ5v0jC5YXsLgB6Qd55KNCU0oCsN86X5WpRfL+Ycz0MJ8vGqA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/4] ACPI: Use named initializers for acpi_device_id arrays
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig_=28The_Capable_Hub=29?= <u.kleine-koenig@baylibre.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
+	Len Brown <lenb@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Hanjun Guo <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Dan Williams <djbw@kernel.org>, Vishal Verma <vishal.l.verma@intel.com>, 
+	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
+	Ira Weiny <iweiny@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Zhang Rui <rui.zhang@intel.com>, 
+	"Mario Limonciello (AMD)" <superm1@kernel.org>, Saranya Gopal <saranya.gopal@intel.com>, 
+	Gergo Koteles <soyer@irl.hu>, Jakob Riemenschneider <riemenschneiderjakob@gmail.com>, 
+	Yauhen Kharuzhy <jekhor@gmail.com>, Pawel Zalewski <pzalewski@thegoodpenguin.co.uk>, 
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, nvdimm@lists.linux.dev, 
+	linux-pci@vger.kernel.org, Kai-Heng Feng <kaihengf@nvidia.com>, 
+	Tony Luck <tony.luck@intel.com>, Borislav Petkov <bp@alien8.de>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Shuai Xue <xueshuai@linux.alibaba.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Dave Hansen <dave.hansen@linux.intel.com>, 
+	Chu Guangqing <chuguangqing@inspur.com>, Andy Shevchenko <andy@kernel.org>, 
+	Mika Westerberg <westeri@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,79 +93,58 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Jinjie,
+On Fri, Nov 13, 2026 at 12:14=E2=80=AFPM Uwe Kleine-K=C3=B6nig (The Capable=
+ Hub)
+<u.kleine-koenig@baylibre.com> wrote:
+>
+> From: Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>
+>
+> Hello,
+>
+> this series is about preparing drivers/acpi for a change to struct
+> acpi_device_id. The idea is to replace .driver_data by an anonymous
+> union, see
+> https://lore.kernel.org/all/cover.1780048925.git.u.kleine-koenig@baylibre=
+.com/
+> for more details. (The linked example is about platform_device_id, I
+> intend to apply it acpi_device_id and several others, too.)
+>
+> Before this union can be added, all initializers must use named
+> initializers (C99 calls them designated initializers), which IMHO is a
+> nice cleanup that can stand for itself as it makes the code easier to
+> read.
+>
+> Pawel sent a similar series earlier, find it at
+> https://lore.kernel.org/all/20260727-acpi-refactor-v1-0-ff900aa326ee@theg=
+oodpenguin.co.uk/.
+> Compared to that the patch splitting is done differently and the base
+> here is newer.
+>
+> I checked for the other *_device_id and for these there is nothing to do
+> below drivers/acpi because the few instances already use named
+> initializers.
+>
+> The last patch in this series is just some cosmetic to align the coding
+> style. If you consider it churn, just drop it.
+>
+> It would be great to get this series in soon, as keeping it up to date
+> for a later resend is an annoying effort. Thanks for your cooperation.
+>
+> Best regards
+> Uwe
+>
+> Uwe Kleine-K=C3=B6nig (The Capable Hub) (4):
+>   ACPI: Unify acpi_device_id list terminators
+>   ACPI: Drop unused .driver_data initializers in acpi_device_id arrays
+>   ACPI: Use named initializers for acpi_device_id arrays
+>   ACPI: Unify *_device_id list terminators
 
-On 13/11/2026 08:35, tizi4590 wrote:
-> From: Jinjie Ruan <ruanjinjie@huawei.com>
-> 
-> With assignable MBM counters, resctrl can be mounted while all CPUs of
-> a monitor domain go offline and one of them comes back, either through
-> CPU hotplug or because hibernation takes the non-boot CPUs offline. The
-> domain is destroyed and re-created, and the new domain starts with no
-> counters assigned. Counters are otherwise only assigned when a group is
-> created, when rdtgroup_assign_cntrs() takes a free counter in each
-> monitor domain for each MBM event, so no code revisits the groups that
-> already exist.
-> 
-> Those groups read "Unassigned" on the new domain, on any system with
-> assignable MBM counters. A counter assigned to them later through
-> mbm_L3_assignments is the lowest free one in that domain, so the same
-> group can end up with a different counter ID on different domains. For
-> example, with the counter ID each group uses for mbm_total_bytes and
-> "_" for none:
-> 
->                                domain 0         domain 1
->   mount, mkdir g1              default=0 g1=1   default=0 g1=1
->   all CPUs of domain 1 offline default=0 g1=1   (destroyed)
->   one CPU of domain 1 online   default=0 g1=1   default=_ g1=_
->   assign g1 on domain 1        default=0 g1=1   default=_ g1=0
-> 
-> Each domain has its own counters, so g1 can use counter 0 on domain 1
-> and counter 1 on domain 0 without affecting the other domain, but until
-> it is assigned on domain 1 it reads Unassigned there.
-
-I brought this up before and it was assessed that no change was required:
-https://lore.kernel.org/lkml/171f92a3-fa2e-44fb-b0d1-1250c72e31d1@amd.com/
-
-Do you have any particular reason for wanting this behaviour?
-
-Thanks,
-
-Ben
-
-> 
-> Assign the counters when the domain comes online, after its state is
-> set up. Give each enabled MBM event of every group, including the
-> monitor groups under mon_groups/, the counter ID the group uses in
-> another domain, and leave the event unassigned when that ID is already
-> taken on the new domain. Skip groups in pseudo-lock mode, as their RMID
-> has been freed and they are not monitored.
-> 
-> A group that has no counter for an event in any domain stays unassigned
-> on the new domain, as it was before. mbm_assign_on_mkdir only applies
-> when a group is created, and counters that the user removed through
-> mbm_L3_assignments stay removed.
-> 
-> Fixes: ef712fe97ec5 ("fs/resctrl: Auto assign counters on mkdir and clean up on group removal")
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> Cc: <stable@vger.kernel.org>
-> Cc: Tony Luck <tony.luck@intel.com>
-> Cc: Reinette Chatre <reinette.chatre@intel.com>
-> Cc: Babu Moger <babu.moger@amd.com>
-> Cc: James Morse <james.morse@arm.com>
-> Cc: Ben Horgan <ben.horgan@arm.com>
-> Cc: Dave Martin <Dave.Martin@arm.com>
-> ---
-> Changes in v2:
-> - Drop the MPAM part of the changelog, the MPAM driver is fixed by
->   "arm_mpam: resctrl: Use the domain's counter ID".
-> - Link to v1: https://lore.kernel.org/all/20261106094537.2337188-1-ruanjinjie@huawei.com/
+All patches applied as 7.5 material, thanks!
 
