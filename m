@@ -2,67 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 574C9606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 09:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA53606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4L1GjViu;
-	dkim=pass (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=ERhw5e7X
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qA+JOa9r;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QB5z+R34
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=mDCrY3T+VfZdtZlaxXLBeMjsbFqx3DNTndl6jA165tY=; b=4L1GjViuD+UYQ1X3UFBx0R4ISE
-	zOUV4aXQS0Ktatjg0ST9Hda+ORRAUeqXLTB7hSK62smjYBJYmwrjzB1CCypyPjRNRWapMjPcbUd8j
-	mPzvp7l6iLr5bxJj8aDAn6ms+8L79cUIijCyzqQ2v183exzS7KwGkMgb/pDx2P35pxNN4wR5bGQYe
-	UaqjLslMwdRTNTzJmM37TBU3kx3xs3gUFBrFJHdq9shRXJp/7l1U8TqQ+g+/2DixglIt963smIH90
-	u+AN4xJYyfHbVWoMIZq/43Mb8nMXciUVxpOD7bsAz/Xv906/eQmgSSIc/1AVU1Kcw6PJrOSVRR8h6
-	qLsdwuBA==;
+	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=S0XA8lNxZ3R3GHk2klTObywwFs3Z7RSzUthP5GZiX6o=; b=qA+JOa9rHjnwyC
+	AU4Wr/DREvXf0u6zHrliSqE9DFoKMh3U5Df63rEcRwSU5b9008QNCngssguPO+oZ+EzK+KOi4U2c/
+	nI+hyulK61BshMLN2ASungnzbwAJrWVvM+Qylv665WR/SOd8rKYg7FwaUL5MpXdKNsMZ/GrIq/2XT
+	JWlz9Cj5Nskp3BKCyKu25y7GW6CuerGNE0JnyiwX3tBK3KPRbocp1IRUypsvrvurxdgYxPMj3BagK
+	O2FSNzlIIGvuHKnfr92w4+XojOpHvgLVBytL232TGpRdQjY4trAwIOLgbKPNXGS6SADGfNJm2UCXn
+	ab5NAucZMK79CT2bTH4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRo1u-0000000CHDZ-11E3;
-	Fri, 13 Nov 2026 09:57:10 +0000
-Received: from out-163.mta1.migadu.com ([2001:41d0:203:375::a3] helo=mta1.migadu.com)
+	id 1xRoCM-0000000CIsK-1E7G;
+	Fri, 13 Nov 2026 10:07:58 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRo1s-0000000CHCL-0SM2
+	id 1xRoCK-0000000CIrn-1Bqn
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 09:57:09 +0000
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-DKIM-Signature: a=rsa-sha256; bh=lOsW+kFmaNLmxVVYY/0ykrsQLE9+KLi12EdY2vBuJyg=;
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794563824; v=1; x=1795168624;
- b=ERhw5e7XrXdCNhbB0G9amRhzx9HP44fEGZN0/+aNbQxXV3shm5fOYU7bMAhWeniBqoEoI+cn
- P0+EjyXPl1sdFM0vsOw4W/otv2kvhNK/PNt6gMw8wjp26TEF32F7wqdiF4Q5c+RD4e03EYYSfpj
- VfjPq3tKjtAXjTrmqSEs9muI=
-X-Envelope-To: linux-arm-kernel@lists.infradead.org
-Received: by smtp.migadu.com with ESMTPS id 9aff9a9311754da3;
-	Fri, 13 Nov 2026 09:57:04 +0000
-X-Mizu-Trace-ID: 9aff9a9311754da3
-X-Migadu-Flow: FLOW_OUT
-From: Fuad Tabba <fuad.tabba@linux.dev>
-To: Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>,
-	Marc Zyngier <maz@kernel.org>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Fuad Tabba <tabba@google.com>
-Subject: [PATCH] arm64: cpufeature: Check the override in __read_sysreg_by_encoding()
-Date: Fri, 13 Nov 2026 09:57:01 +0000
-Message-ID: <20261113095701.2042858-1-fuad.tabba@linux.dev>
-X-Mailer: git-send-email 2.47.3
+	Fri, 13 Nov 2026 10:07:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 54FCF6265D
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:07:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DAF21F000C7
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794564475;
+	bh=S0XA8lNxZ3R3GHk2klTObywwFs3Z7RSzUthP5GZiX6o=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc;
+	b=QB5z+R34JgjSKXfdTuQQ4z5Vl3JWBLQzBFWeEA6acYvWfibhM2Rffli/kvKZux4vr
+	 MYh8+DiEPhITQf8jKKKz9vDQQ85fvRos4R7RZkzlBjyxhUlkHAgy0OSfr2SFn5c+Ww
+	 S4z7xJqcTzwnh86Gm7zTVOFPrh+KSN/vdKlOa+T9t/TWDrPQ4h2xQr1FmXNwUqUyOl
+	 2X9yIEHKT9wjquLxU2vag5N0nS+K0iVjdAkr/IaACUbpFSr0dnZRZtnO2x+NkM98v5
+	 d4zfoXbk/7ZWF1eF3UTKkTvs1uzp6Z74ISEzKGLl/Ct8OVqU2MHngWy07ePd3k6Tsf
+	 yf927Q1beTwRQ==
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-6fe4372c5f3so973396eaf.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 02:07:54 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AL+hErG83SiEpn90CSnJDkazASxjcNA8XjFUARUzjuzbzpVEbN1XVoeR2+xiv3nCrMzMNAFyxX81+H6k0hPD/RTEpWmu@lists.infradead.org
+X-Gm-Message-State: APuU4Z9o3oOD2rf0+pNvg8mdgrFq5aauIB89FE17R8eoyeaRB5jib7jv
+	Rcl36BVAOLjB67S8WumLepN9kBWTMEEHmnKRQYaAZvHC9jH7yhuW13Q45AlGGKSEsoATMc6CYol
+	ka+CuZkdrg5/cczQ1jr7xiROOxdsThbY=
+X-Received: by 2002:a05:6820:7084:10b0:716:c53c:3f4b with SMTP id
+ 006d021491bc7-71ab52797f9mr747028eaf.88.1794564474160; Fri, 13 Nov 2026
+ 02:07:54 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_015708_354258_5922EFCE 
-X-CRM114-Status: UNSURE (   8.53  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -2.1 (--)
+References: <20261030-clegoffic-pinctrl-scmi-gpio-v1-0-52d92843ad97@baylibre.com>
+ <20261030-clegoffic-pinctrl-scmi-gpio-v1-1-52d92843ad97@baylibre.com>
+In-Reply-To: <20261030-clegoffic-pinctrl-scmi-gpio-v1-1-52d92843ad97@baylibre.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 13 Nov 2026 11:07:38 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkjbHxbJ2-p4oe3ecdpdC4Gh9fTiufkrvKBzF+bfz1HNw@mail.gmail.com>
+X-Gm-Features: AclHuK-a3uoEAZFrK5h2rEztceybIFl9qYaKDq9CCMUyZ6HAOHlDJiKihMms9VA
+Message-ID: <CAD++jLkjbHxbJ2-p4oe3ecdpdC4Gh9fTiufkrvKBzF+bfz1HNw@mail.gmail.com>
+Subject: Re: [PATCH 01/11] pinctrl: scmi: send the drive strength in microamperes
+To: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clegoffic@baylibre.com>
+Cc: Sudeep Holla <sudeep.holla@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>, 
+	Peng Fan <peng.fan@nxp.com>, Oleksii Moisieiev <oleksii_moisieiev@epam.com>, 
+	Andy Shevchenko <andy@kernel.org>, Dhruva Gole <d-gole@ti.com>, Bartosz Golaszewski <brgl@kernel.org>, 
+	arm-scmi@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,68 +81,28 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-__read_sysreg_by_encoding() backs the capability checks a secondary
-runs before its cpuinfo is stored, and folds an ID register override
-into the value it reads without checking it against that CPU. A
-secondary whose field is below an override the boot CPU accepted
-passes verification and comes online without the feature.
+On Fri, Oct 30, 2026 at 4:58=E2=80=AFPM Cl=C3=A9ment Le Goffic
+<clegoffic@baylibre.com> wrote:
 
-Apply the override through arm64_ftr_reg_override(), as the cpuinfo
-store does, so that it only applies where it is safe against that CPU's
-value.
+> SCMI gives the drive strength in microamperes, but
+> PIN_CONFIG_DRIVE_STRENGTH is in milliamperes and was sent unchanged.
+> Convert it on set and on get. It is the only unit that differs: the
+> debounce is in microseconds and the pull resistances in ohms on both
+> sides, and every other value is a flag or implementation defined.
+>
+> Fixes: eb524cb651b7 ("pinctrl: Implementation of the generic scmi-pinctrl=
+ driver")
+> Signed-off-by: Cl=C3=A9ment Le Goffic <clegoffic@baylibre.com>
 
-Fixes: b3341ae0efa2 ("arm64: cpufeature: Use IDreg override in __read_sysreg_by_encoding()")
-Reported-by: Catalin Marinas <catalin.marinas@arm.com>
-Link: https://lore.kernel.org/all/abwXl35xQ2ze1XwJ@arm.com/
-Suggested-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-Signed-off-by: Fuad Tabba <fuad.tabba@linux.dev>
----
+Patch applied for fixes.
 
-Notes:
-    Based on v7.4-rc1 (6628e7d4c6b2), where arm64_ftr_reg_override() was
-    added.
-
- arch/arm64/kernel/cpufeature.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
-
-diff --git a/arch/arm64/kernel/cpufeature.c b/arch/arm64/kernel/cpufeature.c
-index 34c5c03c0c9b4..3980acdd6e1b7 100644
---- a/arch/arm64/kernel/cpufeature.c
-+++ b/arch/arm64/kernel/cpufeature.c
-@@ -1415,7 +1415,6 @@ EXPORT_SYMBOL_GPL(read_sanitised_ftr_reg);
-  */
- u64 __read_sysreg_by_encoding(u32 sys_id)
- {
--	struct arm64_ftr_reg *regp;
- 	u64 val;
- 
- 	switch (sys_id) {
-@@ -1468,13 +1467,7 @@ u64 __read_sysreg_by_encoding(u32 sys_id)
- 		return 0;
- 	}
- 
--	regp  = get_arm64_ftr_reg(sys_id);
--	if (regp) {
--		val &= ~regp->override->mask;
--		val |= (regp->override->val & regp->override->mask);
--	}
--
--	return val;
-+	return arm64_ftr_reg_override(sys_id, val);
- }
- 
- #include <linux/irqchip/arm-gic-v3.h>
-
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
--- 
-2.47.3
-
+Yours,
+Linus Walleij
 
