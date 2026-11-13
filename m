@@ -2,118 +2,141 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96894606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B920A606A89E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 20:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FXmDvimD;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=TVMglc2G
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=RA34V713;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=HNS619i/
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:Cc:To:Subject:
-	Message-ID:Date:From:In-Reply-To:References:MIME-Version:Reply-To:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=YavfHroeJbmr+VHcPmcN/QbM0vDy2kwirUjQA6La55g=; b=FXmDvimDpiUnAEbIwQWVDVZ+EA
-	NFmgt3te9lnHjWY5mLiNbAR1L1Dd9ayegcaPZRxAYx33Vf0xWXcWSbx+i8X2UFc1C/g8CCwfCyAZy
-	2yunuFZJdSRbnUgRoUjJI6YMoECKgd+7P8DvWNuy3ElVf8hd6LWCfVAVA+u14QBGZo+CtfiBNQM9h
-	Cp1RGk8kBxc/RYadCukuvssqjU48PkmLP6cuwJaaccK+VDsu7TMQbGvgtuX0fbp2GAT6X4CLjakXh
-	SYseXBVRpXuCoWm60zeL+62MxrFDP2QltSIcPsDci8SICnQPmwOTCo4DU1gV71OT27UcskFmqauCR
-	biHCoWFA==;
+	bh=tlIkQpncnbBGeMcJy2AIlVGcKIUhGIxwUyEXyRTn0pU=; b=RA34V713iz4PIpE3/Pqo7rh90p
+	R3TjmU7Xc4YX5BYI6yq31Ms/fTBf418pj3878yzx4Qu0BNLB5EIGUXrCe9tHtm0F/7GVr0VgMTon0
+	w08tCCEAr8TSXTEseDBQiL95eOpyj+Kd1qtzDWWXMUVJezRfDZAL5HpKod/ANoqqgLtg8OwqObB41
+	6nJwFdduo8JVIBJmw2otyhZ6U8mQcQl7HzCOtH576xxX7QhLt9TtDAMWM/nsTE01vstk9CBaCvTMA
+	URwlYBoFh1x0kOF52oY0XxMRYmRtc6H/7siscKMSKJE07imoQb+UkGhNGPojU0KrckwAvjoHYpBbU
+	pGPBvhKw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxqV-0000000EOyu-1V01;
-	Fri, 13 Nov 2026 20:26:03 +0000
-Received: from mail-lj1-x231.google.com ([2a00:1450:4864:20::231])
+	id 1xRxrD-0000000EPAF-1bvn;
+	Fri, 13 Nov 2026 20:26:47 +0000
+Received: from mail-westeuropeazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c201::3] helo=AS8PR04CU009.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRxqR-0000000EOxb-1OIm
+	id 1xRxr9-0000000EP8c-1dJT
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 20:26:02 +0000
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-3ab43d1dbceso2766691fa.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 12:25:58 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794601557; cv=none;
-        d=google.com; s=arc-20260327;
-        b=cVTK0Y1HxiKp58we2oAPGlb6Fe1AF3huQhcNwC3BBA5KGmlj/LCn5O37yjKg94CywA
-         SJpGBUR8FI/MuhyZZiBNzl/XHYEDVAkUtPC35ENAsChEDsh7Ku5gl1yziH8QJBZGcoNR
-         Dy5xuTNlEuW3j0Bb4pTKcGaOQ6cqfVo0sqLs4Qda4Jo5sUmFvxaDJqD6zc2nDtQhHbCs
-         rKUSbnghIr03xVxRU5RZHt9YSX6JH+7UUrz/+7HvmZGFVK0WOgBwF/A43m3eK1iuS7ds
-         kh67+8DErxxCoLKa+844yrX65bs3rWdd4cBPDSH8g7xf6lnyOmmKsIq2+Ch2vOUTvaZE
-         AAig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=YavfHroeJbmr+VHcPmcN/QbM0vDy2kwirUjQA6La55g=;
-        fh=Fyco2rnM6ib6smwqxIKEaSqKSHS2Vaal6hnqA1+AgOg=;
-        b=Q0Uqudjvq+YazvQP3+5KLMLxdYVOiO3VyAfBwW+vl1y+yCcv2MZVEXQ29eJGlIVy+d
-         p3F0KEwertdxAgL5iZGPfLp1keqDcnq0Uq9+iyfZCZavNCIySA44q1PJZMwD81WfMe2+
-         bklu6bFasGR5hNmLwaEVvND1UymfQ0IKbcg/q/x99zCNurZl4bAmZZq4apbjZU3bRrAZ
-         URoCsV1vKv+pVriM6h8mnmqMo/ST9HHp43mbdAft6YrllTFMB4e5NWpHoYWWWHfTVigL
-         ARfEIkyqrtVPwCsV+OmcOiJkuNmfq4sKdlAvDfJSekyDxsaZichcdXSwkGpqiRHRUTtK
-         ok2g==;
-        darn=lists.infradead.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794601557; x=1795206357; darn=lists.infradead.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=YavfHroeJbmr+VHcPmcN/QbM0vDy2kwirUjQA6La55g=;
-        b=TVMglc2GfJY+rrEND6EBGUHWYZbdjCgdrhxg6/bzvplDe9O3PoUrS6+Tm+5r8ISH8y
-         HYiQmYvUzsm8+Iaq2Dx/EW7G92Wz00znb1av7vg+qsHuYwJNTr1498WsHnQrMoLlhvRP
-         qRnvZhZy6A+Al+KPK6eY7WRa2mpW8Nw1pmOtDX1whin/O7EQZraMrzopTouXNCuazcFw
-         ZQDjJDDjiDQLIxaHr2Cxw3Ci28qC50HE9hDS43dOC7C6vqWxPVTHXuE74xy4op+dA0I5
-         ircSmFHdHtGg9sGIfGPCizTIEBHK5Rq0V9nzbl2p9CUTOEc11dvEQPAfe7+uSNLZw/GZ
-         ufaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794601557; x=1795206357;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=YavfHroeJbmr+VHcPmcN/QbM0vDy2kwirUjQA6La55g=;
-        b=SDI4uneAJ6aFbvUiIFoHWVdcCSIZJRUIZJXXuwyeUYk9ykwbN3/2gjgzgp4nGst1Bx
-         gFt3ygud6J3JMFbJ3kgxNQXWGwTK2qtHEzxl9J62mA7XR1BSHDeyK5IZNwUp/bd8ZlWb
-         eAabwBj8UPaqJbKrcOhCB6JMLnqwlfCtmUg3Sxvi28cobHG0cHsUnsKwQlzAC/96njOv
-         PBbbi93HzO68TarPRobZ5BkizG7edFEIi17rRMX1MzozGCw6vgE5dkNvs4IqWjPN8ZUp
-         qY9HyCsH0psd7cYL2MZ4FWc45lgyhE4LoicFpACyQAu8RJPIIAmUBeZZQFRztBn4VOwr
-         Oi2Q==
-X-Forwarded-Encrypted: i=1; AL+hErG6TkNxR1ChzTGON3L5LtxGPXw1TdMIUg6OxqPji5SNEajU+Rl8ih7IugBG/I1wqVEl4djxqNXm7wjR5iPBvSsd@lists.infradead.org
-X-Gm-Message-State: APuU4Z9nRd4xXkN/cjMhs3sh2nUhRbMmTC1m2TEzd0chG+Nlk4JgyG8W
-	tWy2SYLrdTjXPcIQnXr5M0vnAKqIr1+qd009XTfyt7c2VUvctR56mvkG4Xv+pqQW+UUF90zICGe
-	DRPntJ6RA5AZBTkA+vZHHux0kIltrpv0=
-X-Gm-Gg: AYBFou3SE9eYmi38omRCGcNEOpr//NJnMgJWue0ht99JlmGWj55xtdfgbkkOFjxDMfO
-	bT2L3uzAa0AdmJOzhF7qTOC6PFbC6BVZhVmNeo1QyHtYMsMAqwxV4IDRs/tk39C6n5oqhxoTiC0
-	fSN3NotdCdz6arGUdS5ZB0E09n2wfAxsnDaHOFgCwy1l5nNtOsJmDoWcP9TaANYo2d4kwUDysvc
-	fEZmJpOVuElKCEY0n7ffh7zgIqWzhhc/n2zs4PEDF7S/yXD6uZn1TLhRLmDnX2aTqclsS+/lNSO
-	PFs/I0FaI7l+V1l8fykFUz74f4UMBpCYRlFETuErImnryRR7//yeVKHZLLTsqX89HOBu0gF/aVt
-	0dOkUFJ2I+k410y1xCJtEBOcFxDqysdWcxmN+Vk3HJsn2kMgjUXdV2FtdN+7ugK/F2gI4b4PN
-X-Received: by 2002:a05:6512:1326:b0:5bf:d00a:b6c0 with SMTP id
- 2adb3069b0e04-5c17076e20cmr1778621e87.3.1794601556720; Fri, 13 Nov 2026
- 12:25:56 -0800 (PST)
+	Fri, 13 Nov 2026 20:26:46 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sCMkVmqPeJeJHaRkYvQruRDOqg9a3SUNaNDrtN4znS5+NOSeoLJjUQuL121/smH5/xqV6BomF7a1mSuHaqzSu2ptiRdrX06MIRs4oXkcz8cwYiaew6QS40GmPcGE5N6XRDuwWKHTebmQlSAvBFH/g6pyVWjrDvdo/ZvRIAdjmVwEugevm3qflTrHvzJUO7EuTKRDhv0/l2kMzb4uxGJrWwCacwscQzhf9SY64FL4YVa8IIeBSNppdAuRUXc6CO/2vNMq0A2i9Q5r6Ba22KC5X0+IS2DokqFO2sL7OcKn3Jnd3oFNpq40324lKmgn10BxHyRKEedx5w300/Kii9p9zQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tlIkQpncnbBGeMcJy2AIlVGcKIUhGIxwUyEXyRTn0pU=;
+ b=BKLdDtZU3qEu8mWf9ZH1kTa5//w3Dc8n4YYTig10UaknbBk2K/9EbM7yHWU2j1vlhJyWSkmA+lceqW4rbLCKWIAUo63eKAE4VYR/SAgKMuQv+8CDYGpYXbBlFlhBcL4ianMWUGtAAZXM2SiwfhTsJRiKX25r+Q7phh4s9dJ/ZpKJa6xCFsIY6QCI8morzqVpJPZMqhmKaJWOhIBpWlEi/J6BOXPLDWm1ijaxsZr9X6dgWEQ2JFYZt0AQ896mE7rk99oE0xyaBurrDNW0xFk9u2oINwbSuSdzEbmiw3swkKQmDT1BNWU0EpzkYbX5/aUefx8IznX0ViYoV3tuLvhzmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tlIkQpncnbBGeMcJy2AIlVGcKIUhGIxwUyEXyRTn0pU=;
+ b=HNS619i/A2TQn4vHRILl+q4gh6xoHexKxHMDO45aRiPB960aNGa1NSf3iP9FS7FmSbfapC9puwXuxgI7+vg+racBjvzJ0DTwUUZa2tyfrJAJvwfFoO2EY7gAcl6bzYD5ukqsXeznHvbwDRE6p2jwbpEqDCnI8ebiyme42EmH3ap5OeL+ScHRadpb9izSasOD45E/fXJS0YyOb2+w4fo3fcrnVD3/t6iLCKmJ9lweOw4Wq/QHrIudrUZuEU4p4KRmOQNVHflVIhKRlXhyTui+nJe6n0K1ZUscxEzRUpnf4n75V9bi60AMr8OGrz5XIcrlVCPPMKemN669wMKRxDh22Q==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by DBBPR04MB7612.eurprd04.prod.outlook.com (2603:10a6:10:202::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
+ 2026 20:26:37 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
+ 20:26:37 +0000
+Date: Fri, 13 Nov 2026 15:26:30 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Arnd Bergmann <arnd@arndb.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Jens Kuske <jenskuske@gmail.com>,
+	Jean-Francois Moine <moinejf@free.fr>,
+	Hongling Zeng <zenghongling@kylinos.cn>,
+	Chengfeng Ye <cyeaa@connect.ust.hk>,
+	Nguyen Minh Tien <tien.nguyenminh@embeddedlinux.blog>,
+	dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 9/9] dmaengine: sun6i: keep cyclic state with the
+ prepared descriptor
+Message-ID: <avdydqA68HXljug8@lizhi-Precision-Tower-5810>
+References: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-0-ef1acb0be768@gmail.com>
+ <20261023-submit-sun6i-dma-lifetime-next-v1-v3-9-ef1acb0be768@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261023-submit-sun6i-dma-lifetime-next-v1-v3-9-ef1acb0be768@gmail.com>
+X-ClientProxiedBy: DS1P220CA0022.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:8:44c::13) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
- <20261112-vop2-fixes-v2-4-8218c1cf8ac8@gmail.com> <380996af-b987-4854-8b52-a3a214b19e79@rock-chips.com>
-In-Reply-To: <380996af-b987-4854-8b52-a3a214b19e79@rock-chips.com>
-From: Arun Iyengar <aiyengar1990@gmail.com>
-Date: Fri, 13 Nov 2026 12:25:44 -0800
-X-Gm-Features: AclHuK9Z0XxZveIpcBwbR-1StXFvWIPfHqJtynCF1BYTTbRYTOBUF4wn1ddT13s
-Message-ID: <CAEy9hNUnZkqyg95DsShdr7UF6CiQvKhpvJxrx0TSoq3do2nyEw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/9] drm/rockchip: vop2: Don't accept AFBC YTR for
- RGB565 on RK3588
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
-	Andy Yan <andyshrk@163.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Piotr Zalewski <pZ010001011111@proton.me>, 
-	dri-devel@lists.freedesktop.org, linux-rockchip@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|DBBPR04MB7612:EE_
+X-MS-Office365-Filtering-Correlation-Id: a8a0e25f-34f7-43aa-fe5a-08df41c46b11
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|19092799006|1800799024|23010399003|376014|7416014|366016|18002099003|22082099003|261009223027099003|56012099006|11063799006|4143699003|261102123227099003|261021123027099003|261026140227099003|261022105027099003|261022075727099003|261028144727099003|261021121427099003|10067099003|41080700001;
+X-Microsoft-Antispam-Message-Info: gqvc9Ylhft2fjbVYCkRcyzw9e2W9SYL2Pc0kjDWRN6RFg5rEyy6nFj6UWeXprKBCeHWAgs4u9acJx0TlWBuhsox46jZgdbVEayCsKa15U3mAQIgjO/jR4j+vI/ZLSORljflZqDRNuPtnCAeVx7z47hukT2xyYP2XfK4A8gcMwy9XVk1kor+QYxI2s5TszsotdFywDzQNFpzhNxN5B96YCBweeYYn9dUFIrm8Hhc8eXjIEOMa6wyU3Cmh9ftGYQtI0LpYRK61t6WkaiN3mTe34GxT+6ER76G6ipZvFH+ZMwpHYzuNMQMCj2rGvdQ9GfTlv4UR45XU2NHfHt2qSGPb5koBPznJK3x3y90n+GAehDWwtXgAFdvbAW/3yjlpDDBs+zuOCdbFaVuHJIfg+PxiTwP9mcTZhMOvTUH/OhoBTMKidzn9nT6V+PiUDKmGIa4Gvbp/dVmRGv/+eOaqA4A5gmde4x/EYQnQPrgHtevLXCDcvMaV0zvCTN7ISMBuAkLEx1FjTSk5KZg73x0zCtx35Hj9OBUc9cP4Y9F2FkTID2Xw9Ema42+6WGHldXvebnugNWKMZFao6he9CPwGMGoPxjg7t4dTKWzRTSLcLLpAqVignn0MibktQ6wq7SFHi3ABvOIDzce250HBpYMwdr7SUjhd4wh3SGmEKnu/Tj5fuxeXPt65QnAs91w0YIXpv9PA2kbohUdVGZNzlIHIqQ+toLL2CHoVtBwkTSrFMvRJEAU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(23010399003)(376014)(7416014)(366016)(18002099003)(22082099003)(261009223027099003)(56012099006)(11063799006)(4143699003)(261102123227099003)(261021123027099003)(261026140227099003)(261022105027099003)(261022075727099003)(261028144727099003)(261021121427099003)(10067099003)(41080700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bE7VLhhJvPc+o5DGXOLTKzScctyVOZgxf+cajzn3gch/ObNqTKhXhhCMATI0?=
+ =?us-ascii?Q?EsbWGpI0IRD3kAnfcdH6kROCFq4+HPj1yBg98NFgaKftVAG68YRHLQfpQSGB?=
+ =?us-ascii?Q?U25yZkriL5H02LOWEEFrftWimLyzCwPFGmClp4PMh3fwIpEsbO0Pr+S1p5/F?=
+ =?us-ascii?Q?SY2Zn42DKgl7WxU9oJo8drQ3xZMWFzMSOE3FUWDyeEkvqtS+fB7s+hbcYoAC?=
+ =?us-ascii?Q?QYnMdUdbLw2uPVnWEkhlD46mufjDiIMtkqDKJKWiOOIS0f5ySLw+4ynws843?=
+ =?us-ascii?Q?6epMKVlQHwU79OKa9isM20r6uEu3rqBZtNNyU8Nd8pokm2AENQiiJl8hegao?=
+ =?us-ascii?Q?hNnciVZTPv55GNdbxOA9ywF4igKL/dv/2jZVRLdY6H6vbzuQpO/gfntjKP0b?=
+ =?us-ascii?Q?JP6OzYb7sEBe/PDID2qvWnWO7YpQyCUJfjDHhZ2v56gBbyNJSosKQj+MAgrz?=
+ =?us-ascii?Q?yqMLYLdRjc++3Pzqgu+YvNTVixJlGiP1/XSA1SSRsLScCAIVkA/NBCHHwVM2?=
+ =?us-ascii?Q?HcZFrhKMlChJevUs9y8IvAkzwbKN/5t0lsCI6+D8106+u6OJBsavOpw4iDz3?=
+ =?us-ascii?Q?NPpK2AucxnwStQjIE5xUy+V1P/vNyeHH2Q/48pizd754A6I4zng8yQyHdci8?=
+ =?us-ascii?Q?NiEMZKfWo5aCGUrJF0XNAOK1IrMd369cMtyp/vaXC32+GwbIGZtb9WsbzP42?=
+ =?us-ascii?Q?jis8nscPeQYLxjx8DrzTq4/vK/LkYzGR9SC/0Anhf/Dca9fpRz9iafN/ldqA?=
+ =?us-ascii?Q?HN6+JpuVEA1EGKi5cPLRmmKxmftMg9ODwa3N0wehr/2WavYlJiU3rCZIitSu?=
+ =?us-ascii?Q?B1vv+s9vResbQ0rfePrCeeQvKTtQGdRIC8IxQv8WnC82GrZH5wsnJL1PDaKW?=
+ =?us-ascii?Q?guzAk7nFdlmPEhy3GP3QyIHSx+H2GwDdvJZSF0miS0c72FYWTjU1UCtcUhYu?=
+ =?us-ascii?Q?n7vcoHyrRlRCDZOABLpnWeEgIKHYrzprgjE9xcZ1fcorLAegRJL7h1WGR3gZ?=
+ =?us-ascii?Q?UTIS0fb79uYT7BekmGViuBPppaMZl5KImxAWrzVVGLx0E/lOXjhB5AcikMZ3?=
+ =?us-ascii?Q?JqVlwuU7AawHFVpV8Mkn4ZbxrK+QG5NJcWLtaQKlgI7HRmHGQWFx3i7YxaZ1?=
+ =?us-ascii?Q?0Pw8oHkTwmSfM/HjIBIPMJg5mp93odqVabhha9zs74mzUyWX5Cw/BKzkDJV7?=
+ =?us-ascii?Q?OZvGTmq37V6EVTo6UUqPIF5Gyz+hRv8tOopt+NiElPdNiKrYxwCYFzBZ1T7c?=
+ =?us-ascii?Q?nmEphNVvIBtsn6neJaZL4ex5S/UgNfpoLdnH2DzSYf7ns9ckXyBbmyEGyQ5o?=
+ =?us-ascii?Q?v07cFEhfEJAwnUl6jrpJvTDLWXm1C82VoTjoiCWzsQK8nGP5dgCzc+bQsKCP?=
+ =?us-ascii?Q?TxSO/aUpohbi5RD2jASNTUfGDLLrdNZEtETwhvdOp4B6JREGg59xvwXPQsNB?=
+ =?us-ascii?Q?ZAfmJxQQS64tSqxXMS0RWfk/9q/0AZ/dEnCdErdOwMWLJaEs7fWMoqC73SO5?=
+ =?us-ascii?Q?zAeXPE5x9d/Gx+igJLxlXBvJNB3vPDeJ541vxQvFz0mhFbUCjeHNYUNOoV9N?=
+ =?us-ascii?Q?F2D+B4ikyvmdy626WSoFMN/mZGguPWjuv62XCwz6WPw9wrj9RfTKVdb2CU6S?=
+ =?us-ascii?Q?KeYF0QbaeGwVQVl+z+vILBvQpCuyA9PvzOHndMjHjUz0cgEZXaHS56Dzxjil?=
+ =?us-ascii?Q?8EZ/FiT4mCMUQ+OZ+c1gnaVRJpSSRpGMKjLyZR/rkrzpFzHtzjaTWvsxGS3j?=
+ =?us-ascii?Q?3dhEuLeCjVcaV9cWaDia0Yrt0ekLg4+Yt0uC6xH2nhjisy1XAbpF?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a8a0e25f-34f7-43aa-fe5a-08df41c46b11
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 20:26:37.6274
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2zh/wRR+2pX5k2GDyYDVtJe3zTx1HtvB26Rxpr/e+RidkQfblrsN8J4TVSmUtU0LuJ0KwW+qnXeg4IkDS1W5+m32t8/xidXYlSzWxrqXc/D/BqUGMjz0eNq8YxMp4/el
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7612
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_122600_604363_BF387B66 
-X-CRM114-Status: UNSURE (   7.58  )
-X-CRM114-Notice: Please train this message.
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261113_122643_433112_1D11AF7B 
+X-CRM114-Status: GOOD (  22.59  )
+X-Spam-Score: 0.0 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -124,26 +147,100 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-2.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Chaoyi,
+On Fri, Oct 23, 2026 at 05:38:28PM -0600, James Hilliard wrote:
+> Preparing a cyclic transfer sets vchan->cyclic before the descriptor is
+> submitted. A finite transfer on that channel can then select package
+> interrupts and take the cyclic callback path instead of completing its
+> cookie. Merely preparing an unrelated future transfer must not change
+> the active transfer or the meaning of queued descriptors.
+>
+> Store the flag in sun6i_desc and consult the active descriptor when
+> selecting interrupts, completing a transfer and terminating it. Finite
+> descriptors retain their zero-initialized flag. This also makes callback
+> retirement depend on the descriptor whose lifetime is being ended.
+>
+> The shared state was identified during the H616 cyclic UART RX review.
+>
+> Fixes: a90e173f3faf ("dmaengine: sun6i: Add cyclic capability")
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> ---
 
-> That' true. The TRM says RK3588 only support XRGB888/RGB888 AFBC YTR format.
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-v3 follows the TRM: YTR is only accepted for the 8 bit RGB formats, and
-the comment is gone.
-
-That also refuses XRGB2101010 with YTR, which displays correctly on my
-board (AFBC 16x16 | SPARSE | YTR from the Mali-G610, HDMI and DP). May
-the 10 bit formats keep YTR?
-
-v3 5/8: https://lore.kernel.org/r/20261113-vop2-fixes-v3-5-08ae37e83b5c@gmail.com
-
-Best regards,
-Arun
+>  drivers/dma/sun6i-dma.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/dma/sun6i-dma.c b/drivers/dma/sun6i-dma.c
+> index b83138745bd1..2152979f72f2 100644
+> --- a/drivers/dma/sun6i-dma.c
+> +++ b/drivers/dma/sun6i-dma.c
+> @@ -191,6 +191,7 @@ struct sun6i_desc {
+>  	struct virt_dma_desc	vd;
+>  	dma_addr_t		p_lli;
+>  	struct sun6i_dma_lli	*v_lli;
+> +	bool			cyclic;
+>  };
+>
+>  struct sun6i_pchan {
+> @@ -207,7 +208,6 @@ struct sun6i_vchan {
+>  	struct sun6i_pchan	*phy;
+>  	u8			port;
+>  	u8			irq_type;
+> -	bool			cyclic;
+>  	bool			paused;
+>  };
+>
+> @@ -507,7 +507,7 @@ static int sun6i_dma_start_desc(struct sun6i_vchan *vchan)
+>  			     (DMA_IRQ_HALF | DMA_IRQ_PKG | DMA_IRQ_QUEUE) <<
+>  			     (irq_offset * DMA_IRQ_CHAN_WIDTH));
+>
+> -	vchan->irq_type = vchan->cyclic ? DMA_IRQ_PKG : DMA_IRQ_QUEUE;
+> +	vchan->irq_type = pchan->desc->cyclic ? DMA_IRQ_PKG : DMA_IRQ_QUEUE;
+>
+>  	irq_val = sun6i_read_irq_en(sdev, irq_reg);
+>  	irq_val &= ~((DMA_IRQ_HALF | DMA_IRQ_PKG | DMA_IRQ_QUEUE) <<
+> @@ -610,7 +610,7 @@ static irqreturn_t sun6i_dma_interrupt(int irq, void *dev_id)
+>  			desc = pchan->desc;
+>  			if (vchan && desc && (status & vchan->irq_type)) {
+>  				spin_lock(&vchan->vc.lock);
+> -				if (vchan->cyclic) {
+> +				if (desc->cyclic) {
+>  					vchan_cyclic_callback(&desc->vd);
+>  				} else {
+>  					/* Completion transfers ownership to virt-dma. */
+> @@ -911,7 +911,7 @@ static struct dma_async_tx_descriptor *sun6i_dma_prep_dma_cyclic(
+>
+>  	prev->p_lli_next = txd->p_lli;		/* cyclic list */
+>
+> -	vchan->cyclic = true;
+> +	txd->cyclic = true;
+>
+>  	return vchan_tx_prep(&vchan->vc, &txd->vd, flags);
+>
+> @@ -1000,13 +1000,12 @@ static int sun6i_dma_terminate_all(struct dma_chan *chan)
+>  		struct virt_dma_desc *vd = &pchan->desc->vd;
+>
+>  		/* A cyclic callback may still hold this descriptor outside vc.lock. */
+> -		if (vchan->cyclic)
+> +		if (pchan->desc->cyclic)
+>  			vchan_terminate_vdesc(vd);
+>  		else
+>  			list_add_tail(&vd->node, &head);
+>  	}
+>
+> -	vchan->cyclic = false;
+>  	vchan->paused = false;
+>  	/* Leave terminated cyclic descriptors for the sleepable synchronize. */
+>  	list_splice_tail_init(&vchan->vc.desc_allocated, &head);
+>
+> --
+> 2.53.0
+>
 
