@@ -2,77 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0F0606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3A0606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=W/3i6VDD;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nNts+pLk
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=C1zp/eij;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=WIg8ETDX
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=0q3RmALjF/bvDrFsLW6GlXC44FE9KFMVqpsZYQovitI=; b=W/3i6VDDb9vuVW
-	GyVhIYl5cc0sfij7u7bYXLMfLybaNUe2Fm09nDuIYgh20KDojOwz2d+fVRRrdVCNk5wY6j1mTR5YV
-	nK5aDLSaxmQYAZqjGqGFSgseNMavL3SmVlVmhRBj8tnxLd++luxfsueUj+PTncEKymdL7DrqE206j
-	4Dgtw9PNE8phyo+FzRBxjs33+K3Ep65b6+B8QnBA6xRmCc0MO7TRhwHlCii3i3YH5yrQ0Cktpy5bO
-	bHIxWHmhSC8tjemwj5K+GOewszj8AHS8f4XoDXgM7flzuQfIgq9dtSaOOHVSUhZ//HjigRSoCDLyX
-	5zBhDn/InSkb44EupXAA==;
+	List-Owner; bh=Mb8tlnodrofCrSAqZEvoJQbBu1LG0AIHx4hhl5dhBKA=; b=C1zp/eijeh8kJi
+	9xTz+WM5U4mWQRbkhcb0TLK3qS7dztnXMChO+S3eBJKHiFFk3Cy95KjVk9x19ui2em0gCR5oeaQsS
+	UAxGn56EtzfVdo/jR9SvSREMzRoj0+NRfb63RDg32maL9rVqHuSvHUjXaI+TZ5G9s0WoEP6z7F7Dh
+	VdaMEkYt98WV5GnXLbBBY1I5CSio+a/P78yGRp/DeJYVWbSY8Q8WQ3tZBffH4XqstW6gZx4hdNCNd
+	6Am1HDOA2f5dJC86xZN3FNVo/Ww1XUDhJln0A94aTLEZ8PYF+M/2Jr5MFXcSPTHWZqRkRG0DXGZ8T
+	Q/cIeEXzIHDfL5vhJXXw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRofP-0000000COOi-2Omf;
-	Fri, 13 Nov 2026 10:37:59 +0000
-Received: from mail-pf1-x434.google.com ([2607:f8b0:4864:20::434])
+	id 1xRofW-0000000COQw-2zvS;
+	Fri, 13 Nov 2026 10:38:06 +0000
+Received: from mail-pg1-x535.google.com ([2607:f8b0:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRofN-0000000CONv-18au
+	id 1xRofU-0000000COQN-3H2g
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 10:37:58 +0000
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-8b5efadd183so867210b3a.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 02:37:57 -0800 (PST)
+	Fri, 13 Nov 2026 10:38:06 +0000
+Received: by mail-pg1-x535.google.com with SMTP id 41be03b00d2f7-cd60c5da24cso1000310a12.0
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 02:38:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794566276; x=1795171076; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794566284; x=1795171084; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=0q3RmALjF/bvDrFsLW6GlXC44FE9KFMVqpsZYQovitI=;
-        b=nNts+pLkkgPop3T2C3uspjr9sIkvTYmvHug6aY5ptXfzfv1t7DLbxk4hTZoEHrFNxq
-         nr7ffbqlhbKJdi/spLIQnbxmBx/EccP2tyA9Ta3/wnU5Npq2pDkKWOsS4ix+3sv4njMX
-         cfgGJPx9A4kspz+TN0gf73Xu+pq+STn4qOF1ae+TqpcZLIbiAMApVGQPgpziphyhLczT
-         47NOQCi2syYWSkmJNV/cMa8z+z5aySGhuNHEECgk5W8fb9jxnY8EvqDZt+Yp0ubqdFnl
-         uIel9Xw2tcZJN0j6Uh0T9QhblNE6LzLuth4BrQgMezITmYiiBP201b4h/lnsk8cj1KiP
-         WYLg==
+        bh=Mb8tlnodrofCrSAqZEvoJQbBu1LG0AIHx4hhl5dhBKA=;
+        b=WIg8ETDXqa0uaj0EEC80gAxUJyhnuvDV1deLR5SwxAmJYLoAcw9t8JKCO33ykxahau
+         1LjwIFn8t3SvX7ZNDq1QAowNnkMQ0BpeicI7n6D1+KsR8Ecrujk9/bsNTKGVYhWlvfJR
+         V+rFNTyjAKeNHR8b4E0y/pdaIQY+XYv926cwiEOR9VC76yo4g5k8OAxgb0QMqRrVtvj+
+         EnD4lesxi40T9DNIKaf6XfQ1uO8ExNMaG3BLaxnDuOTaBVyGPyOliyGydeyrggNsfDG9
+         gXk8T7f+aWygs9Di29tL3pjqUfp0yeulER+m6z7p9/Ra2XgNfIPiLAQq+Mnc8YRW1ish
+         A7sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794566276; x=1795171076;
+        d=1e100.net; s=20260707; t=1794566284; x=1795171084;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=0q3RmALjF/bvDrFsLW6GlXC44FE9KFMVqpsZYQovitI=;
-        b=Ry98W0uc7LhGgchLtP5ks5AN6y1rIDsIhl3iPonL7pMCF2NB4Wduy2n+7Dc9fii/xg
-         EHdE7TwMN9HQmQjdwAB/6wJwhmQMe3x88/QGgtB6gNpLBMAqDlZ/9qbtVZlvOpSj7tVZ
-         wwkAdbuUQdTRn8SZpHPawKcdGgEkilQPWw4E7eZLddDp5ubsadV9xGcUtF1KJGGbA8qw
-         UkGfjcU7jmOuJzHB39yIplcyBacyvhLUh0GdHwajGzX3I/WkFBrFD60vWWlHDBWOZGCi
-         eYgynQP5CEl8ceZfRH0zZlIMTP4Go4qEf1V2FbkAus/eJXnIOdvu8PtaS7K/lX/Q0ZQS
-         OVbw==
-X-Forwarded-Encrypted: i=1; AL+hErHX1ZirfzAz1SST4NmnchODgxTVr7cVFp+tQJvgcTMv4RUv6INAdapMi/Nbk7KIyFZcLAJTwPOblTDWBJWXa652@lists.infradead.org
-X-Gm-Message-State: APuU4Z+7CafO1K1eT111FlRb8JpHNfFKlw9VmQ0Hv50c/P4XK7dCm44d
-	FZPmL9EMEQofdVQGsD0o9OX+92Mz+KS7KcN86vFwM3GOLj2BEjiW1++P
-X-Gm-Gg: AYBFou0zBURNULXhphKY5ogpFarrJ8+o9AZXqyQmSQM6C9ZfsmXFd+IBfmZuazS0veX
-	e6CKojowfl7vKF8eqeQ1GajFdG4Io0G7qJm1dS+ahudzqVyG2wpaAodNbmkXVCtO1OeHvOyO/aE
-	kLD6cz+BbqqpLkI8EbsxkiRhk3oNLoch5COg35X7ifaOzNTNmmfDHwzxZebfUUHV2ep5ZgB3zFM
-	HDnkLZ3ygrfhGHCnywXl6eyHA100R0DT8KdjRzsY1bevYvcVFghkE5iwfIauB26/IMRa5nY45hN
-	wHgeC0QOb2KBrPsFq3NxdZ85zPZBao7syzIXGPHpRBKtAm1tqmVao/wyC3xPHJ+N8uZC+d0q7iD
-	tzs8anmOqgGv6fiN9crIrNQu3bUko4STAfkn8r8hQm+7yVHxcKlKY+n87mbyPdJrs6ZLaD/4a62
-	sWInh1meC8wYuo5TbtHWWlpyHMIJ842Lw1RIMPeve2seXS14X9jnlG126wFJRAQOs7gbiOrvFnz
-	JK2V7MEtnj+T0anAeK3tYR8jaGfud9ddwuzsF13VaAlL/nqOQDYlsXaReVHCptwG/M/tWgRtDeS
-	1xDARZVmsVQos1mf4gPTRVXUCK6v+wacqdNpNpz9fu3DJ8u4ujWt1Zp5Ag9k25LoeBOMfgCuJZG
-	HV9lnFf8gqhS5G/xgV+01MtmwoeQbbGvEjBTPK4y4+rcb
-X-Received: by 2002:a05:6a00:886:b0:8a0:2d72:17c3 with SMTP id d2e1a72fcca58-8beb619fbe8mr1640146b3a.15.1794566276302;
-        Fri, 13 Nov 2026 02:37:56 -0800 (PST)
+        bh=Mb8tlnodrofCrSAqZEvoJQbBu1LG0AIHx4hhl5dhBKA=;
+        b=eAXDu8b4X9hFDYYkZOwR+CFOR1n9KK6dGySyA6XSoMxD/HGwjvFG2xCrWBnqG63XED
+         krPEDrS44unWHHbxhxWMySwq1CDanBmzY53SzFVXovyGNu/ekNWetZ3QOazvgaqo/YLW
+         n7Aw7LcCMp7/h50se+ftY30bv0KQ06we1HbWScEACljtGY6roIKpbFdM7HlxoZo/SpNF
+         XiyDP8WqT8n4IsWl2ySP7ClrQ7KNZhOBSZQl/laV/4sgkz5cBeu6ttNMh9vJNiYrdVBG
+         h3EJFCfD5i4xuIWZL5wI+Lx50gsMxQP4qZIN3xsMuixADMYcFxUP6OqiQKO+T7v/iYaj
+         fqQg==
+X-Forwarded-Encrypted: i=1; AL+hErGiyrI2XU516Pxh8SjZYfLcyRDdGtJxdQQBKkljxI+IqPOzikD0iyEpJWnVebZhiRDc8Xa12Z+7KwdQZNVy+BOL@lists.infradead.org
+X-Gm-Message-State: APuU4Z9R7zeXrI3G2JRG4D7H4kWV5O/b9u8Vose+Q6CwyLOOz3eRpk9l
+	S6BghOn9/11YER65NRLggp1WvONUQaO0VxUBseCINTEg3JnNbKFzyf3K
+X-Gm-Gg: AYBFou1zBqcxE6E2O3EC7n6AzmzXq6D5s8+Ul+Wzjlx4wyqlv83bZUsfg8DfJS+JTGm
+	3YLz7Z981IMJnI+tRuwWuuFPwvENdzyWO5+ccYnCwcRB7+oc5BBaZqs0GfEQu4VFblxWdwYw7gS
+	n5+/HXgEkN4+CoLDiv4xFy9GrUD17qN9DOYgQKcQAJPrWFJrpgzqnpiRb/UdUwGxLaQqBWq1TZJ
+	3/F1n+YVT/hnIujEl00EDjTleC9CAf/PU4+ht++BHCfb4Oze4T8EBYu3+3GNshIguac/2n5WtCb
+	MI8XteMFcjwXaR5rbn19zQgkb+zY1L6whQp50xGkLolEBc4VjTTROT/Cs0h/7y9REhTwrBRUr5c
+	5jlK63x0BwYVrCxuJNsTCGLuc6u3Wec79UyuW5kvjf084cXRSJ50S7TL4zamF6RCHSk8ScO05lf
+	t2AM2fuRSxzYT3QbX2W6dz+OYxFFEUmA1Y3h4oNw0MC5a06vQkd9xydTKxdMtLJEBgnrUZU8npv
+	85iEnfqVZa1k1z8wL7DMy2k4lR1Bv2FpaThd5A6Ev19E0pVBYNZtG6a0P6IGjb7MBN3iGtAk/zD
+	+1v6QRnBmgSz3NZuTNVnUW56gZqNDCRDKF2wn6I5jRuqQm7yQh7TTOw1YEhhcy/MsoQAvj5ouG/
+	FIFkT9mzP8/7wxZMfyHCBr58jL1RqbV7UaEVYC3oTdXTy
+X-Received: by 2002:a05:6a21:687:b0:3e0:d032:31c3 with SMTP id adf61e73a8af0-3f7a7ac97ebmr1933929637.46.1794566283860;
+        Fri, 13 Nov 2026 02:38:03 -0800 (PST)
 Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed12a8682sm890955b3a.10.2026.11.13.02.37.52
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8bed12a8682sm890955b3a.10.2026.11.13.02.37.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 02:37:54 -0800 (PST)
+        Fri, 13 Nov 2026 02:38:02 -0800 (PST)
 From: phucduc.bui@gmail.com
 To: Mark Brown <broonie@kernel.org>,
 	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
@@ -86,9 +86,9 @@ Cc: Liam Girdwood <lgirdwood@gmail.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH 1/2] ASoC: atmel-classd: Simplify probe error handling
-Date: Fri, 13 Nov 2026 17:37:26 +0700
-Message-ID: <20261113103727.30449-2-phucduc.bui@gmail.com>
+Subject: [PATCH 2/2] ASoC: atmel-classd: Enable pclk during probe
+Date: Fri, 13 Nov 2026 17:37:27 +0700
+Message-ID: <20261113103727.30449-3-phucduc.bui@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261113103727.30449-1-phucduc.bui@gmail.com>
 References: <20261113103727.30449-1-phucduc.bui@gmail.com>
@@ -96,8 +96,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_023757_348730_112217EE 
-X-CRM114-Status: GOOD (  12.70  )
+X-CRM114-CacheID: sfid-20261113_023804_828942_4EF7F954 
+X-CRM114-Status: GOOD (  12.78  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -119,78 +119,56 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: bui duc phuc <phucduc.bui@gmail.com>
 
-Use dev_err_probe() for clock acquisition to suppress probe deferral
-logs and remove the unnecessary cleanup label, as all resources are
-managed by devm.
+The peripheral clock is enabled in the startup callback but never
+disabled, causing its enable reference count to increase on each
+startup and preventing the clock from being gated.
+
+Use devm_clk_get_enabled() to enable pclk once during probe and
+automatically disable it on device removal.
 
 Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 ---
- sound/soc/atmel/atmel-classd.c | 29 ++++++++++-------------------
- 1 file changed, 10 insertions(+), 19 deletions(-)
+ sound/soc/atmel/atmel-classd.c | 15 +++------------
+ 1 file changed, 3 insertions(+), 12 deletions(-)
 
 diff --git a/sound/soc/atmel/atmel-classd.c b/sound/soc/atmel/atmel-classd.c
-index 6693bdcbb8f5..117c8e400184 100644
+index 117c8e400184..b6d815804e33 100644
 --- a/sound/soc/atmel/atmel-classd.c
 +++ b/sound/soc/atmel/atmel-classd.c
-@@ -547,18 +547,14 @@ static int atmel_classd_probe(struct platform_device *pdev)
- 		return dd->irq;
+@@ -122,19 +122,10 @@ static int atmel_classd_cpu_dai_startup(struct snd_pcm_substream *substream,
+ {
+ 	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+ 	struct atmel_classd *dd = snd_soc_card_get_drvdata(rtd->card);
+-	int err;
  
- 	dd->pclk = devm_clk_get(dev, "pclk");
--	if (IS_ERR(dd->pclk)) {
--		ret = PTR_ERR(dd->pclk);
--		dev_err(dev, "failed to get peripheral clock: %d\n", ret);
--		return ret;
+ 	regmap_write(dd->regmap, CLASSD_THR, 0x0);
+ 
+-	err = clk_prepare_enable(dd->pclk);
+-	if (err)
+-		return err;
+-	err = clk_prepare_enable(dd->gclk);
+-	if (err) {
+-		clk_disable_unprepare(dd->pclk);
+-		return err;
 -	}
-+	if (IS_ERR(dd->pclk))
-+		return dev_err_probe(dev, PTR_ERR(dd->pclk),
-+				     "failed to get peripheral clock\n");
- 
- 	dd->gclk = devm_clk_get(dev, "gclk");
--	if (IS_ERR(dd->gclk)) {
--		ret = PTR_ERR(dd->gclk);
--		dev_err(dev, "failed to get GCK clock: %d\n", ret);
--		return ret;
--	}
-+	if (IS_ERR(dd->gclk))
-+		return dev_err_probe(dev, PTR_ERR(dd->gclk),
-+				     "failed to get GCK clock\n");
- 
- 	io_base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
- 	if (IS_ERR(io_base))
-@@ -593,29 +589,24 @@ static int atmel_classd_probe(struct platform_device *pdev)
- 
- 	/* register sound card */
- 	card = devm_kzalloc(dev, sizeof(*card), GFP_KERNEL);
--	if (!card) {
--		ret = -ENOMEM;
--		goto unregister_codec;
--	}
-+	if (!card)
-+		return -ENOMEM;
- 
- 	snd_soc_card_set_drvdata(card, dd);
- 
- 	ret = atmel_classd_asoc_card_init(dev, card);
- 	if (ret) {
- 		dev_err(dev, "failed to init sound card\n");
--		goto unregister_codec;
-+		return ret;
- 	}
- 
- 	ret = devm_snd_soc_register_card(dev, card);
- 	if (ret) {
- 		dev_err(dev, "failed to register sound card: %d\n", ret);
--		goto unregister_codec;
-+		return ret;
- 	}
- 
- 	return 0;
--
--unregister_codec:
--	return ret;
+-	return 0;
++	return clk_prepare_enable(dd->gclk);
  }
  
- static struct platform_driver atmel_classd_driver = {
+ /* platform */
+@@ -546,10 +537,10 @@ static int atmel_classd_probe(struct platform_device *pdev)
+ 	if (dd->irq < 0)
+ 		return dd->irq;
+ 
+-	dd->pclk = devm_clk_get(dev, "pclk");
++	dd->pclk = devm_clk_get_enabled(dev, "pclk");
+ 	if (IS_ERR(dd->pclk))
+ 		return dev_err_probe(dev, PTR_ERR(dd->pclk),
+-				     "failed to get peripheral clock\n");
++				     "failed to get/enable peripheral clock\n");
+ 
+ 	dd->gclk = devm_clk_get(dev, "gclk");
+ 	if (IS_ERR(dd->gclk))
 -- 
 2.43.0
 
