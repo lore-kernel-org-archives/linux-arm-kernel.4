@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE9660A382B
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 17:15:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5DC606E21A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 17:19:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=roNogDJu;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K+G53xRS
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lBczeS3B;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BlAWRyt9
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
@@ -14,64 +14,54 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1suJMfr4F2t+hvLEf/eqvweGBr12R4RYJ9ohUXZMmLQ=; b=roNogDJuJoCtXI0VyIbI/0KLtj
-	ROzkJiI0IauIO62SvZz9xtjyXlXtbtr7nMoyu5JNNaH9KOKNhdbrcEi7gzqOPbB7ZOgx+/h2/bxr6
-	77SFk3bZpUzB01KYAOVDR6E2Ix2petQ50BY2Ziq10RbyIzF2xAid6+n0GDJBV7WWOk8JCPREGftWi
-	Rz5QKzF31ZIKOg33OKszsTaVHCwsZSmwNMu3ccGW4CfujWc1OcUnTDD7MzraYoeo6KprZjFFmCULn
-	9JxbY7MGuh/OKczkBCiWSMrTBo2Z8ivyA9xy277GTMfDAq2vQo8PiV+rwF/BUg0qp+8qHpbwmyr1y
-	/rlcH8uw==;
+	bh=+cycbEhwswLeXCs3zWykLJjiooQDa12N5+D+GVlohvs=; b=lBczeS3BwscNm5rbHUo54SLSCD
+	6W6NnGDaAZ2MTfL822lj36DfpjCKcZopqc3nMeXmzZYIKmJOAhY+fzZns1Z985n6T7VBEjtdL/D+O
+	jE0XUNENCp+NttOdcgEc5oM22rHyD1zoA+8kmThvY2KGfOsbT/7+k/Xr/PmoBkdIpHisVSE4Rwh+3
+	P/brlwQ7UpxZiuJsAHI+n/CQAsV330RbFZsMN8e1YU3ek+hACr/g5CLGOw1xtTJPwEUpYwB3ezyMd
+	eJPUtN4GvuFT0zENcRsOPOXPnkJt4+MfotM8mk8j3FGcBPLEJpR9PPWlmjZjioKTfVYtcZr3sv835
+	s3RbkJgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRurf-0000000DiNj-3N3C;
-	Fri, 13 Nov 2026 17:15:03 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRuvW-0000000DiwG-1Ahz;
+	Fri, 13 Nov 2026 17:19:02 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRurd-0000000DiMy-35e3;
-	Fri, 13 Nov 2026 17:15:01 +0000
+	id 1xRuvU-0000000DiwA-2mJu
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 17:19:00 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 79F7E46B12;
-	Fri, 13 Nov 2026 17:15:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CE6D1F000C4;
-	Fri, 13 Nov 2026 17:14:57 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 2243C42E83;
+	Fri, 13 Nov 2026 17:19:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23CC1F000CA;
+	Fri, 13 Nov 2026 17:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794590101;
-	bh=1suJMfr4F2t+hvLEf/eqvweGBr12R4RYJ9ohUXZMmLQ=;
+	s=k20260515; t=1794590340;
+	bh=+cycbEhwswLeXCs3zWykLJjiooQDa12N5+D+GVlohvs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=K+G53xRSt8vDf6/x/l3LPjRGhF5omdp/pkv805gZbqnCe+Upy/fEqej9LIoLRdbPJ
-	 /nOLeWFABGHPoNdRgJwqooL/MmPecQBEz+bMZ7V++L2Tne5kYqrIxTANG0vKtVwv6P
-	 wNTGd7Rp4FC4jYxpC0Tgd/GwGTsHDEqnwV44JgLiu1zEz0QZZeHT1WcxRRavSYFxS3
-	 EdCKfUgokXaR0RjcDOSkrzUMRr39pcOoGI/UkkG+H1mNo8al9Fp7ahMRbfUSqaFW34
-	 YVYkUHXsjcbamC8vAlS84fx1DwCL0+U5WrxxPNeewpO79OQR1hFo8W4qV+XtJed9tY
-	 LOunxBwh6Py/A==
-Date: Fri, 13 Nov 2026 17:14:55 +0000
+	b=BlAWRyt9y4N6pMImSO+7YGb6aFuWf1N5xw+Saz3m/m/ecfT61/jDu8UrNaiDmZEjs
+	 Sr6GpgqHYTPaa3UOE3QIE5rnK/3PrPFDoljOSdFXluj8nY3BcK/FvAfqfypHjNfFDB
+	 krEJK6jW84RQ+oJ0iG6o3FsHIDA6i4Bud/jQWBmge/nH0z7skUjYyNtOkQfP5avw89
+	 UqYBMsqEFed7mrwkdtXVVZiYyMxjQuFOrgUSnX6tTAip9M58CwjrjoIoUAAqQbZ3TR
+	 VBqyFhtLTQLEYcqvXbLWOA+QrXf0JUR+bFRvQnMETCyKiYRAPT5MXmyD+m1PX0JhXg
+	 Zpy33ag/ZIWxg==
+Date: Fri, 13 Nov 2026 17:18:55 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Lucas Tanure <tanure@linux.com>
-Cc: xianwei.zhao@amlogic.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	davem@davemloft.net, Eric Dumazet <edumazet@kernel.org>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/7] dt-bindings: net: add amlogic,t7-dwmac
-Message-ID: <20261113-headband-resistant-354bae47c2b2@spud>
-References: <20261113121852.334604-1-tanure@linux.com>
- <20261113121852.334604-3-tanure@linux.com>
+To: Feng-Yi Hsueh <fyhsueh4linux@gmail.com>
+Cc: dmitry.torokhov@gmail.com, linux-input@vger.kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	ychuang3@nuvoton.com, schung@nuvoton.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
+ controller
+Message-ID: <20261113-stadium-prowler-0bb8a177a2ec@spud>
+References: <20261113084852.32727-1-fyhsueh4linux@gmail.com>
+ <20261113085959.32798-1-fyhsueh4linux@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LpKzrxi3dFo/IMea"
+	protocol="application/pgp-signature"; boundary="eKOVTR4HhWToRLNa"
 Content-Disposition: inline
-In-Reply-To: <20261113121852.334604-3-tanure@linux.com>
+In-Reply-To: <20261113085959.32798-1-fyhsueh4linux@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -89,23 +79,23 @@ X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---LpKzrxi3dFo/IMea
+--eKOVTR4HhWToRLNa
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 pw-bot: not-applicable
 
---LpKzrxi3dFo/IMea
+--eKOVTR4HhWToRLNa
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavdFjwAKCRB4tDGHoIJi
-0iKAAQD8cRe2UwvrgIAurM7gqjc5GRJvmH08nxT23alr7Ij1fgD/XhJ/l3gmDO8e
-WxfYr9fWD1PaIuMhdEbBltsE/3a4gAo=
-=4R2d
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCavdGfwAKCRB4tDGHoIJi
+0gZVAP9nvT2zzc/A55G8N7PyXKYNDaweWMOhgMmpZ/K2Z3kH0wD/ZSR8UzoZ/Fx4
+viG8gqdUBHOhXvvEBQXaRDWCciupiQg=
+=Cy+e
 -----END PGP SIGNATURE-----
 
---LpKzrxi3dFo/IMea--
+--eKOVTR4HhWToRLNa--
 
