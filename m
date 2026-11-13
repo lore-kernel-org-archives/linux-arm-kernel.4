@@ -2,68 +2,69 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C48E606A8A3
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 23:36:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6CE606A8B0
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 23:36:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=c0AKoHvh;
-	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=C3z0Cd1v
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vXqzh+Zu;
+	dkim=pass (2048-bit key) header.d=nabladev.com header.i=@nabladev.com header.a=rsa-sha256 header.s=dkim header.b=NwCSwwiW
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:To:Subject:MIME-Version:Date:
-	Message-ID:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From
-	:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=1onknRTcb3fwBFQdXWEqphYJTPnuK96XjIBjd9ShqHE=; b=c0AKoHvhXFkQW9
-	IVWJJHKoCZYGl8EZ7nP89JpcaHcEXs0xozNCTA9DnzoiUpeQiusYt2RDgd1iqJL/LiWMSI0k2a1Ad
-	9tuoADDSQ3uciOkw5FKIyGyIkhgtzNrv55cIRfuUA8Nnq1UheSKdovWUBrH/X/Shai+CSoqy/8b/a
-	hC40EXqcF1WFz6E2WafwgLKhhLkL2IjmGacOSS6jse/hP3EL+XRUJ2VkEcUiOueYxZL6bqmPnszXG
-	3mA/dzfo46T0YNgD5PPIkoz9fStr9RZuKvw+gt4dWtb75XAlMxQFyuSIoOCXJpX4Jw7fMTsiDATCi
-	lJeLqWRtsDeIP7coCgpA==;
+	Content-Type:In-Reply-To:References:Cc:To:Subject:From:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=DyAnx0ByVIsAT/f0Q66p40vTde+JF3ipSreAz2l30GU=; b=vXqzh+ZuXjzGu1
+	gJV6JJzaBarsVMcJY3vkVztPYXejiTHcjr6I1EP/lzLA7/hNVuTYLbnbzuixC5wyOBXgakhBEDowN
+	1NTpdc0di5pZI59cfHR/idjMCUEEFPBBQeJpHUmcRIX+eT2WNE7MN4grGNtocUVGvm9Dwt8CRU873
+	nysHmnw7Kp7zOjrMmJg6zFEvdpFgqGvoy1j2AX3bNR+pm9iP8eqPRlHfqX90gbiR3jXdndkfJq6dc
+	DVUVtzfWtrvpSrVrVhe1I3Cz1uAeXCtvZBreocClCgRj6KwOaeFQoDciGN/S24Bq+fh+s9FY1ckKO
+	7/N582Iv1aTIKqM4UdGw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS0oL-0000000EoIU-2dhQ;
-	Fri, 13 Nov 2026 23:36:01 +0000
+	id 1xS0oQ-0000000EoKL-3B5c;
+	Fri, 13 Nov 2026 23:36:06 +0000
 Received: from mx.nabladev.com ([2a00:f820:417:0:178:251:229:89])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xS0oJ-0000000EoGl-2bBv
+	id 1xS0oN-0000000EoJ1-3quk
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 23:36:01 +0000
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 58CCE10E507;
-	Sat, 14 Nov 2026 00:35:51 +0100 (CET)
+	Fri, 13 Nov 2026 23:36:05 +0000
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A3F6B10E7E8;
+	Sat, 14 Nov 2026 00:35:57 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nabladev.com;
-	s=dkim; t=1794612953; h=from:subject:date:message-id:to:mime-version:content-type:
+	s=dkim; t=1794612958;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=1onknRTcb3fwBFQdXWEqphYJTPnuK96XjIBjd9ShqHE=;
-	b=C3z0Cd1vAfIygPbS/8heuYyhSvJlYLo3H9yWuEO0OC0fmiqOVwY5pQ61zmYOkj/RWeNxts
-	cMwouyCr2q7mh53mt9fTKGdmRHNF3IANt94j/pEsOjB/wfZ/ht1+SVa29YLuQQsy4Pyv5Z
-	Wly8UUoR8vqYg4Ib2ruV1hCx2MccQ0f9mnxyych9m7Oh3syLnoiA4x5LSQBTchPoxaM57B
-	rVQg3lAit+Moe4UPZd0baLnyuhTDyfD5mgsoHqzhp8F5IHZml970Xd/ZVeu1hhle1JuFhs
-	ul4JdD+hxbXMWThYaSxMCsYVDYaPr2OQnONB44UX7aNsOFCmK8pXqoyOD6xZHQ==
-Message-ID: <2cfc503c-8da2-478b-bf5e-c4dc87bbb2d3@nabladev.com>
-Date: Sat, 14 Nov 2026 00:34:52 +0100
+	bh=DyAnx0ByVIsAT/f0Q66p40vTde+JF3ipSreAz2l30GU=;
+	b=NwCSwwiWQbQHDDLCsQhCbyzc63tJLDIL73/nT4Gn+keHWEYFtv/LEwySStIS3hLesioadd
+	pHaLCHR1f2xsNRhdDtK7oTfaAHP95uKBzVbP5nh+idg8uE5Cf2fPp1pqkS7cI1QzkQCKHW
+	Y9j+kl5R3sGyptA8wzR8psVlDBYJVvK4gioZJ2LZf7/KZQHv+qUG3HVnIvNHEsrL1Z8oFE
+	ymQ4ETQg/6OIJMykskqtYCyxRygLJtNP708k58kXcBBtaL0H9/Dxtq2H5P53MDHpfQTBjI
+	ATAPOC5LiZKezsq2AHZVRq5rDLC1SLYWYaAHJmo28Mb6kDJF3ybra4vzTxjoww==
+Message-ID: <bf2c6945-f72d-4aa9-a077-7d86f2071da5@nabladev.com>
+Date: Sat, 14 Nov 2026 00:35:20 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: st: Correct white-space style in
- stm32mp2xxx-dhcos
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Christoph Niedermaier <cniedermaier@dh-electronics.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>, devicetree@vger.kernel.org,
- kernel@dh-electronics.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20261113185402.183367-2-krzysztof.kozlowski@oss.qualcomm.com>
-Content-Language: en-US
 From: Marek Vasut <marex@nabladev.com>
-In-Reply-To: <20261113185402.183367-2-krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: st: Update gpio-line-names on STM32MP23xx
+ DHCOS SoM
+To: linux-arm-kernel@lists.infradead.org,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ kernel@dh-electronics.com, linux-kernel@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20261026125240.76753-1-marex@nabladev.com>
+Content-Language: en-US
+In-Reply-To: <20261026125240.76753-1-marex@nabladev.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_153559_841665_BBFDF650 
-X-CRM114-Status: UNSURE (   5.62  )
+X-CRM114-CacheID: sfid-20261113_153604_096453_E680357B 
+X-CRM114-Status: UNSURE (   7.48  )
 X-CRM114-Notice: Please train this message.
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
@@ -84,11 +85,13 @@ X-Spam-Status: No, score=-12.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/13/26 7:54 PM, Krzysztof Kozlowski wrote:
-> Correct minor style issue around white-space - missing space.
+On 10/26/26 1:52 PM, Marek Vasut wrote:
+> Adjust gpio-line-names to match both STM32MP23xx and STM32MP25xx DHCOS
+> SoM pads respectively in their matching SoM DTs.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Reviewed-by: Marek Vasut <marex@nabladev.com>
+> Fixes: 6642d6a47901 ("arm64: dts: st: Add support for DH electronics STM32MP23xx/STM32MP25xx DHCOS SoM and Breakout Board and DHSBC")
+> Signed-off-by: Marek Vasut <marex@nabladev.com>
 
-I hope ST can pick up the various fixes for 7.4 .
+Is there anything to do regarding this fix ? It would be good to include 
+this in 7.4 before it is out.
 
