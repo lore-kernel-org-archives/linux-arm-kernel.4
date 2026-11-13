@@ -2,92 +2,88 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B067C606A8B7
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:07:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B875D60A262A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:07:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=CfMGQmjU;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=G7mS0eUz
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0SuFlwE2;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=b7f1bETo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:Subject:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
+	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=+au4NSAQlywMAWAnW8gI9v9WGhRbYIokFF+zwZ5t/v0=; b=CfMGQmjUvK924YAV0VspI56Zp2
-	RCU16wtVOxyPN99k6cT0pPy/XBWRaWqMVKBcC8GkE5Djfp5lG+G/wwkXvdu9Krriv+8+oa07TXGfE
-	EIiIL7cbhr3N4dj/YAdjDv11XUYCLviM5CL9wSguEdNQwSisp3CynnlRmSfzYk3hUgiSl1wkSyPa+
-	fwtNX8Mdze5WKJIvOcgeYI02udx5SQrUDIFXldedjAJ/EmyfdaW+Nu/I56SIl5DUcZOdjn6GNcZkr
-	JXd9OhW10xh7f8R9F62ZFa0oHdnN+4XdRYc+gZS0haDcQQoKDjNyc2AAFN6Jjfln+4juY4EYl5ZJB
-	rVFXG8vA==;
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=X0kISij2dA5dG+ZLDMffjTugHXeo/ScalkLGjjtZzlg=; b=0SuFlwE2TCrquT
+	P8mz2fUe1/3gjf8Xq2wMtfnBUnjnLXgPEhnJ7RqqKVw5scS92Jd9T/8XS754FqBSv4aq2vnQ8q8+X
+	RaX2GlppNArF55irYhYtdY4lovpuEOFCi4ZvE0ZrsSE0EyhDRYoPJujZlh4k+DC4fyoAIx4BdEP9U
+	HXVSC9YY30C74QW0Bkptx+CCvjWgTZZtM7f7AFjUOJR6sPoquObL163YhtspiB0qkDIw9yDsQJVc8
+	YtnelxK8D2hgK7k5UC8FEVCVypyHYwlP/KSIOBa6rfapzz1DszoqOg/dc/ISBP9DCgttp7xdys5JL
+	gOTg1qoLYjarnBraTOcQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwcl-0000000E5XS-2CrH;
-	Fri, 13 Nov 2026 19:07:47 +0000
-Received: from mail-ej1-x636.google.com ([2a00:1450:4864:20::636])
+	id 1xRwcr-0000000E5co-0WV6;
+	Fri, 13 Nov 2026 19:07:53 +0000
+Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwci-0000000E5VX-1eFG
+	id 1xRwck-0000000E5WF-06Vk
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 19:07:46 +0000
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-c50ac25cdd4so64754666b.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:07:43 -0800 (PST)
+	Fri, 13 Nov 2026 19:07:47 +0000
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-c4cac7a7d3cso226811866b.3
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:07:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794596862; x=1795201662; darn=lists.infradead.org;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=+au4NSAQlywMAWAnW8gI9v9WGhRbYIokFF+zwZ5t/v0=;
-        b=G7mS0eUz5/j4MiyyluqgpyAfEeKoDxZPCq58/Ud3dYFR/ndvqSFn1o4P2etogRItLx
-         HOXzyGNX8q7VRyQzIkTs9ZxFM7AGGoRW5xY9ZJMbJlkheeWKq7U+FVdzExCjK4FQik/T
-         TGUC9csKcq7TPDFip1oXtt5k+ZKz3V9umy26CzxO0k4hE2e5Vipku43PPV/VZbml6ikY
-         YX3ZYPDlhOK6k6RkBFrna7Jz+zcAkwiM5V1EezrpuC38Ds0qIZtPbC78RLZQ3AFFDa+l
-         17K5NEyzS679lqiMPm/69MYDkvKlF9L7F7ojVq7Ev8i06oG6XaGkYlKC04DRLwofXCma
-         wt4Q==
+        d=gmail.com; s=20260707; t=1794596864; x=1795201664; darn=lists.infradead.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=X0kISij2dA5dG+ZLDMffjTugHXeo/ScalkLGjjtZzlg=;
+        b=b7f1bEToNvitVQ9iAroFBKsSh9U30TmoFe2YTTrCp6wIRM5N3gJ+Kxp138ndu5AiiW
+         HIEvNvi4cZ7dn/uegt+dSHYEWWKckoGW8CGLYFY2umI4uKHXs9jxMyZSPdpW3SIZ4yF5
+         zynkh5uWIuScvklTPH7xni7Wc/55swNyokniOeZ7g/KEEkKkBXTGLvV0qZARvCgIk5tI
+         SLvFoT69aZrdeBORtL9/qdV5P2WH2PLO1Yee3XaEXHf1ax+KAfzGhOtfGg9imUeWcCM6
+         wRPiwNRfFM/KHIv8CRdbtjK1kLA6o996XLgTr3Izowpp34WR/LfopA9vRlBqpy/iAGO4
+         oyXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794596862; x=1795201662;
-        h=cc:to:content-transfer-encoding:content-type:mime-version
-         :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=+au4NSAQlywMAWAnW8gI9v9WGhRbYIokFF+zwZ5t/v0=;
-        b=N9V/lXJ/YEaE3kib32rrpx6h5I04RyrMiK8bNEqx/jKpMeHXciYsr4GxJfB4jf/bmT
-         1ozPHCadd9lhhEtj8VvNd6w8zR79D889oTg91HEjbLfM5DftVfeXQknoW/tuqechOZm4
-         nd7uCrWAtN5pmra1DOYNq171sHxercgR6WxppZFtHyKCh5cRY44QsHLgkWEjLDjSmcoy
-         oeaVsoE9KWvEbqDFGdwUBh3bwWQtAGZ/qGO+oC7y/WUJnuqwHHRJcVyHWxRhVTptlJLE
-         SaoPYG2zkY0SJ7lS9ruAslXjey7/vuKuALi83qrfqH5kMr6sbKDofOMXUGCwmsZSlDfs
-         S06g==
-X-Forwarded-Encrypted: i=1; AL+hErF28MTzcEbWiJFTo93nv644pkYCceC42ok0jgruIY8I3mKH66eYeBItMm6SZ3gjLrlSWmMQSnCGYx5i+REKmRhw@lists.infradead.org
-X-Gm-Message-State: APuU4Z9pwESmW5MiqxoZyCxeTeQRsJiw1qAbk07yUNqYraju78PbQq/2
-	7w8XG6Wew7C/CxAIlGNSWXRtCGNBrj5jPuufyII8Wp02umROfLMcj4y2
-X-Gm-Gg: AYBFou21qOb7XMUrdOItReA922tVTdoVGLTE0s7LegNrumRicz1D/hIgl3WE45Ytlk2
-	skIeYiV+pr5CDCgU/fhrVxDxA1GysBzD842mDD3ht6C6YxZSC5AEoE/gcW2kjKX5N+NKOLecOsP
-	nYkDd5R9NIo9lI6xaBeQMHbtPJPshkp11mvuomvLzsaOUIjcm1kKYd8LcFHyLhGtJGcXwxKmHPX
-	Np6RCZ8nmTsBDkbdGS5FcwNzqPEXlY0U+swqrYq5hPG4TsGaOjJjDeGyBVvncJTm5bB1UJM4DZS
-	Dp3hHpmktAptB4j6lSNE7xzEVvtlNzhg4CC5cWdGAjwIBstrW71fq6jXeV1ojOvr3pdypo51f7L
-	5ltwtwQ9/xKDCH83Pp5A4ZepBUYuNOC9zFGgiUTw5IgWsrxwSVKqw3WRpLEvfm/XR21dBPZKyyS
-	xsFrAhMKRkE5dlhmUw+An1E0kycAoqeRHLVn3ZLRfDBlUK6lvunfg8BAQ2omD1BZIMJWOR9nPi6
-	k8AUbakqJnu7bSqHs4+izFZYrQP8eQnTOVvDttddKD8Tuo5++x0WYG5feoylQty2YdYXt4AcMeK
-	sHNL9iuzk/9Vs932FJWKCjfPBWBmNslr/yL3U97VwmY1Fj57WLOuY5DC4vZgnU+D
-X-Received: by 2002:a17:906:7c49:b0:c4d:167d:dcee with SMTP id a640c23a62f3a-c509641047amr235459366b.40.1794596861569;
-        Fri, 13 Nov 2026 11:07:41 -0800 (PST)
+        d=1e100.net; s=20260707; t=1794596864; x=1795201664;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :content-type:mime-version:subject:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=X0kISij2dA5dG+ZLDMffjTugHXeo/ScalkLGjjtZzlg=;
+        b=RjeZArIuty8HEd1Cj1K9bBulkauk5Vn5dUK1LUwVEQMRqGdf75XEp66trCpXc1iOrj
+         khHNwRsK39q9H1YfwykQo5D6LVvF5IjLLmtYAlrtYKj2g+dRx2q4LFDCYeoPAN6hLGlg
+         132G7UQP6ESpwS0zL95w11WDJnVTtt5c2XS4mxBiQtMfmAGJTrdcZplMyS2kKCf/GvJ3
+         ++9j4Zz2DP9o2FWGnPCyHkVb8YTUqs0iAy5ApM71qyjo22JeNQN16Lk9ODt9wuDLVhyU
+         REi+5W/ZAespW9HjoAJRAIgUP/1QsMJUgX55/8EKcGn8AodOLnGrzZ9XS93bzMm41ph4
+         YqVg==
+X-Forwarded-Encrypted: i=1; AL+hErGUGttZxpCu+ISl+nrAqwd6R7s5lOfFi29bJyayv+0qPYoTaU828lg7OXSVgk08tLeysI2B/RHAUW13hR1572mS@lists.infradead.org
+X-Gm-Message-State: APuU4Z/u55zQdCpLke7G61TL9YGQSnl9YErk54zpMLSSZXkPk32d4SEW
+	5XjNfVjyBjSHtE/scYg/efO04/7uFvlXrNIG8J7fxqAB4Q5KkP3SAA6A
+X-Gm-Gg: AYBFou3L5Xv2Nhlb5hvG6lWRhJDY5dXb++9rgDhcfxkUI7aq2JDjIw6OXJv/LxZrZ7i
+	nGeLyVxW7m2scR/pdvYoievFIcGoPqhS8F+TnYHcanXkI84LnYxaz3Hya2yGd51HRQ+Ys1BhkUU
+	lzznW57PUiSB9xnMpDpz8gwDi0rmQtl1HXKxOfRoFO252yo8dma0CQLJUOkuayy+Ml3M3Yx3qj9
+	ny0DUPM8OLtZBLM7ELSpTBWm/LSC1ae3jL2yfc2A/Q3gnV2v6C332v8Vb15GuSNHLp/Ma38FbU/
+	/sv26o5JEa14UtLNYjK0c7JxVPOcvopV3sl7KckQ7U9mZ70mQonLiEDwdaxYe4QQgi8STo+fmWA
+	X1bM1O3Ym0ELRsSOwoelYkuS8+Pn6cULf7Ca6VGz4uMNn0VLtFGyKBDH/Xtpg5c9/iP3l0BBYYW
+	7VkQdkgNtPmwGIfwYH16vqj7r0nZM8T0cBR30P9Xt+1uaHzh7VxLJwOLoNFbRKkMNqJch/YSu0l
+	I5RO7BHcOIcOztoVL1vQWJswoHmVVUJRCdHCWRYHdsZZcQdfqcjCMW1b+BuXsGb9aWFqReTZ97d
+	eS/g97zZbQrzxIg3Dt/mNahYYvpDNhTvvzdiwqdekxu+dx5HZ9guNr0ef352Jrjc
+X-Received: by 2002:a17:907:9305:b0:c2e:4e08:19ab with SMTP id a640c23a62f3a-c50963d50e5mr310340266b.16.1794596864130;
+        Fri, 13 Nov 2026 11:07:44 -0800 (PST)
 Received: from [192.168.1.100] ([163.245.50.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b23b09sm129444166b.26.2026.11.13.11.07.38
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b23b09sm129444166b.26.2026.11.13.11.07.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 11:07:40 -0800 (PST)
+        Fri, 13 Nov 2026 11:07:43 -0800 (PST)
 From: Alexander Letuchiy <asalde.le1@gmail.com>
-Subject: [PATCH v2 0/9] arm64: mediatek: Add initial MT6895 and Xiaomi Poco
- X4 GT support
-Date: Fri, 13 Nov 2026 22:04:56 +0300
-Message-Id: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
+Date: Fri, 13 Nov 2026 22:04:57 +0300
+Subject: [PATCH v2 1/9] dt-bindings: arm: mediatek: Add MT6895 and Xiaomi
+ Poco X4 GT
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/0WOzW7DIBAGX8XiXCwWg7Gtqup7VDksZEmo/JMCs
- VpFefdiJ2qPI+3ONzeWKAZKbKhuLNIaUljmAvKlYu6M84l4OBZmUsgWAAQPc8gBRz7ltus1h5Y
- 8WEDyWrPydInkw/cu/Dg8OF3tJ7m8WbaLc0h5iT/74grb3VMutATRSllr2RhlOHBMOB6pHgneT
- xOGsXbLxA73hzbS17Xk5scWmygl3HOH6vUp7PglzC7Hv9oVuODeCOWUamwD+O9929osJuIFppC
- HqlNoba+1BQFaGYMIgH1L0jfowPZNZ43xqitF919F2EzfSAEAAA==
-X-Change-ID: 20261110-initial-mt6895-16ef1b1aef55
+Message-Id: <20261113-initial-mt6895-v2-1-4ab0aa9fa391@gmail.com>
+References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
+In-Reply-To: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -108,12 +104,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
  linux-input@vger.kernel.org, phone-devel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
- Alexander Letuchiy <asalde.le1@gmail.com>, 
- Conor Dooley <conor.dooley@microchip.com>
+ Alexander Letuchiy <asalde.le1@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_110744_480799_738ACB74 
-X-CRM114-Status: GOOD (  22.53  )
+X-CRM114-CacheID: sfid-20261113_110746_113483_83CEB8D2 
+X-CRM114-Status: GOOD (  10.72  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -125,141 +120,41 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds initial support for the MediaTek MT6895 (Dimensity
-8000/8100) SoC and the Xiaomi xaga board, sold as Xiaomi Poco X4 GT, Redmi
-Note 11T Pro/Pro+ and Redmi K50i. It is enough to boot to an initramfs
-with a serial console, CPU idle, the CPU and DSU PMUs and the volume down
-key.
+Add the compatible for the MediaTek MT6895 (Dimensity 8000/8100) SoC,
+along with the Xiaomi xaga board based on it, which is sold as Xiaomi
+Poco X4 GT, Redmi Note 11T Pro/Pro+ and Redmi K50i.
 
-Dependencies
-------------
-The SoC DT describes the pin controller and the board DT uses its pinmux
-macros, so this series depends on the MT6895 pinctrl series:
-https://lore.kernel.org/r/20261108-pinctrl-mt6895-v1-0-f704c443b31a@gmail.com
-
-Bootloader dependency
----------------------
-This was tested with a modified LK bootloader that is not public.
-The stock LK cannot boot this DT, as its Android fixups expect nodes
-that are not present here.
-
-The DT relies on the bootloader to:
-
- - update the /memory node
- - add all firmware carveouts to /reserved-memory
- - pass the command line from the boot image
-
-The carveout addresses are therefore not listed in the DT, as the
-bootloader allocates some of them dynamically. I can describe the
-fixed ones in the DT if that is preferred.
-
-Firmware behaviour
-------------------
-Two things in the stock TF-A affect what the DT describes, but not the
-DT itself:
-
- - TF-A rejects CPU_SUSPEND for about the first 40 seconds after boot.
-   The vendor kernel lifts this earlier with a SiP call, so with this
-   series the idle states only start to be used after that time.
- - The DSU PMU registers are lost when the cluster powers down. TF-A
-   can preserve them (PRESERVE_DSU_PMU_REGS), but the MediaTek firmware
-   does not, so DSU PMU counts are only reliable while the cluster stays
-   powered up.
-
-Testing
--------
-Tested on a Poco X4 GT with 8 GiB of RAM, using a minimal config and a
-script in the initramfs. The results were:
-
- - All 8 CPUs come up and match the DT (A55 on 0-3, A78 on 4-7), and
-   CPUs 1-7 can be taken offline and brought back through PSCI.
- - The cache sizes and geometry in sysfs match the CCSIDR registers on
-   every CPU.
- - The redistributor is found for each CPU, and timer interrupts reach
-   every CPU.
- - Once TF-A accepts CPU_SUSPEND, every CPU enters the CPU and cluster
-   power down states, and the system timer wakes them up as the
-   broadcast timer.
- - Each core PMU counts only on its own CPUs, and its overflow interrupt
-   arrives on the right CPU through its PPI partition.
- - The DSU PMU counts, and its overflow interrupt arrives on SPI 18.
- - The pin configuration of the UART0 and keypad pins matches the DT.
- - The volume down key reports presses and releases, with no bounce
-   through the 32 ms debounce.
- - UART0 output works at 921600 baud, and its TX interrupt fires on the
-   expected line.
- - About 7 GiB of RAM was written and verified with no errors, with the
-   carveouts added by the bootloader.
- - The watchdog resets the board once it is no longer pinged, and the
-   ramoops console log survives that reset.
-
-UART1 is disabled and was not tested. Only a minimal config was tested
-on the device, not defconfig.
-
-Tool use
---------
-The commit messages, this cover letter and the test script were
-drafted with Claude Code (Claude Opus 5.5). I reviewed them
-and tested the result on the device.
-
-Based on next-20261113.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
 ---
-Changes in v2:
-- Describe MT6895 as Dimensity 8000/8100 in the commit messages.
-- watchdog binding: drop the mediatek,mt6589-wdt fallback, as the
-  MT6895 reset layout is not known, and drop Conor's Acked-by.
-- New patch: add the MT6895 compatible to the mtk_wdt driver.
-- New patches: system timer and keypad bindings, pinmux header.
-- SoC DT: add the cache nodes, CPU capacities and idle states, the CPU
-  PMUs with PPI partitions, the DSU PMU, the system timer with a 13 MHz
-  clock, the pin controller and the keypad.
-- SoC DT: use IRQ_TYPE_LEVEL_HIGH for the architected timer PPIs.
-- SoC DT: order the nodes as required by dt-check-style.
-- Board DT: add the UART0 pins and the volume down key.
-- The series now depends on the MT6895 pinctrl series.
-- Link to v1: https://patch.msgid.link/20261105210622.523747-1-asalde.le1@gmail.com
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
----
-Alexander Letuchiy (9):
-      dt-bindings: arm: mediatek: Add MT6895 and Xiaomi Poco X4 GT
-      dt-bindings: serial: mediatek,uart: Add compatible for MT6895
-      dt-bindings: watchdog: mediatek,mtk-wdt: Add compatible for MT6895
-      watchdog: mediatek: Add support for MT6895
-      dt-bindings: timer: mediatek,timer: Add compatible for MT6895
-      dt-bindings: input: mediatek,mt6779-keypad: Add compatible for MT6895
-      arm64: dts: mediatek: Add MT6895 pinmux macro header file
-      arm64: dts: mediatek: Add MT6895 SoC
-      arm64: dts: mediatek: Add Xiaomi Poco X4 GT
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 180e6e4948e7..28180ed0e815 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -72,6 +72,10 @@ properties:
+               - archermind,mt6797-x20-dev
+               - mediatek,mt6797-evb
+           - const: mediatek,mt6797
++      - items:
++          - enum:
++              - xiaomi,xaga
++          - const: mediatek,mt6895
+       - items:
+           - enum:
+               - bananapi,bpi-r64
 
- .../devicetree/bindings/arm/mediatek.yaml          |    4 +
- .../bindings/input/mediatek,mt6779-keypad.yaml     |    1 +
- .../devicetree/bindings/serial/mediatek,uart.yaml  |    1 +
- .../devicetree/bindings/timer/mediatek,timer.yaml  |    1 +
- .../bindings/watchdog/mediatek,mtk-wdt.yaml        |    1 +
- arch/arm64/boot/dts/mediatek/Makefile              |    1 +
- arch/arm64/boot/dts/mediatek/mt6895-pinfunc.h      | 1524 ++++++++++++++++++++
- .../arm64/boot/dts/mediatek/mt6895-xiaomi-xaga.dts |   87 ++
- arch/arm64/boot/dts/mediatek/mt6895.dtsi           |  461 ++++++
- drivers/watchdog/mtk_wdt.c                         |    1 +
- 10 files changed, 2082 insertions(+)
----
-base-commit: 84abb955b1015477aa11a96e2f3ac1b938b77f48
-change-id: 20261110-initial-mt6895-16ef1b1aef55
-prerequisite-message-id: <20261108-pinctrl-mt6895-v1-0-f704c443b31a@gmail.com>
-prerequisite-patch-id: 68c077b6ff907e42d02115ed9b95bb5349eae7ef
-prerequisite-patch-id: 09c2602edc0cdb6ca34ecbae12f608ab530da477
-
-Best regards,
---  
-Alexander Letuchiy <asalde.le1@gmail.com>
+-- 
+2.56.0
 
 
