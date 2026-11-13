@@ -2,45 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C7E560A2619
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 21:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9839C60A261C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 21:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=xD/p69oa;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=p5fVi0mu
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=EbaWSFfF;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=cKaxfs3Q;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.a=rsa-sha256 header.s=gloria202408 header.b=HeooFUrx
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:
 	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=r2gkPj5kQuz9YqUKX4TJeW3u1cPMLY58iyNWLASDipA=; b=xD/p69oaJ9ilcE
-	YVOIG48iXknbJT9c3rRRSCDRG3/gr/386jqrqRoWgobb+aG7dd/70Xrb1ZUiWzbo5Zs0HVu79HIxp
-	zfJpeYb1PQDXwINdpK9KuSHLnzJC5tJx36UtfZ7JhBXznhO0ziWkDezIir7lQE1KWC51bFrsesLpL
-	3xL0vtZYJxMpzxyTRW4PNPf/hMtSMhNHcW1xpWaPua7RTKWxyHxZX7rSlVDFlrewlnJ34gtq3PIeP
-	Gdz7y9msSzmLPpN3vpYbBkUdnDXcQqxdE1OoKcnoJLo/bFgBNmkqIlQsPjKWgDU7OU+081dOJ+aqs
-	+LgQhnNR4WJu5/zuR7eg==;
+	List-Owner; bh=QuFwSAi/+d10dPqCgFOszj9I6LnlETDJ/cydaZMm5dc=; b=EbaWSFfFfXbyOL
+	9l0SOaOi0Yy03WZ1EXJt9FKq33f8sgRiJ5XIkQ85wlfphNDqe+rNDriM00bz96f6hvcASk21X7KBI
+	8S/vT3TzeMh7EifjeBqk0B/A9Li8vsMNTj4K01RUp/rFlBlCG06oEDKGJpBbfS8UOBX6FsiwegNM9
+	/1VKXgMv+qhCBbq99+2d035RQOcUHLrVxVdoKNWcFsVqTJhHIOcqjDHrLiuOW+WqVrR9QSS2G0jO8
+	VRSZWCJoUlKgh5n4DpC3KOGBqIMltSmu7b0E234qjXnynNLpSoAivehDUpZfySTpjKeQqJ7UOBKQv
+	cgHpQdji6Hk1HL8d13Tw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRyVO-0000000EWoV-2yVl;
-	Fri, 13 Nov 2026 21:08:18 +0000
-Received: from gloria.sntech.de ([185.11.138.130])
+	id 1xRyVi-0000000EWvm-0E0Z;
+	Fri, 13 Nov 2026 21:08:38 +0000
+Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRyVK-0000000EWlI-2wmf;
-	Fri, 13 Nov 2026 21:08:15 +0000
+	id 1xRyVN-0000000EWnZ-3A4v;
+	Fri, 13 Nov 2026 21:08:18 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=QuFwSAi/+d10dPqCgFOszj9I6LnlETDJ/cydaZMm5dc=; b=cKaxfs3Q2T9hHQzaoYb6/nAmR9
+	f49wKmlbPB+hu1fvByrh0AanVK6qgV45PeWRv27mYLULISsHs55YNsR4u3PWRIlho+o74QdBRBgfp
+	pOK53rI8PhSixGotPSKtiFzc7FTYIJpOdCZbuqdIiv33fVYRRsyObaFjWlLQylW3PlQhfnzVXv/gD
+	xMi8yZylJ56H9h/+zqkpxECO9ZaND15F4J5cq7jVIl3VsLx6phpatsNjOVo9o/HOVJn64+LHVW/vv
+	X1fhCpY6X8C6a4XFSVS5/Pg1ozS+ht0IByNYUVRZ2SbnjANQUZowh2LT8+YzmFqpxJ0vSpsxsU17F
+	dJhWAkJA==;
+Received: from gloria.sntech.de ([185.11.138.130])
+	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRyVK-0000000Br4K-3U32;
+	Fri, 13 Nov 2026 21:08:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=r2gkPj5kQuz9YqUKX4TJeW3u1cPMLY58iyNWLASDipA=; b=p5fVi0muYoS+ENLYrw5ud36LFT
-	zNplE/CmOFckyyUm2RutQKe3KeivclMTP411SN74kLmPsSZyrRnXVzj5lhcNODYBQnLs9gEWfnJGT
-	vs9U47u3fqEnX7AKgU9o8Dinud+QKqrMI4w7Db0U1IURk9Bf/QEdn7d0mDTnXp2cIWrV5UN2THIWx
-	wZXE8+k3phwgqIqyZVeEZOwh50ez2GUQcPEXs7Lr0TS5uF0VZYf7oThAaYjEGy4XI7aj+7/p/LHF8
-	7DUetwlOmWmNhtfzHxD3xlvmyKknn6zRwyd6/leWm/QRYGe7TGJBRYARx5TG/s8kgBXcVhjOSSIeG
-	hdM2yO2w==;
+	bh=QuFwSAi/+d10dPqCgFOszj9I6LnlETDJ/cydaZMm5dc=; b=HeooFUrxRI80cVLbD8RuYzIOAO
+	ZPFPV2Kq7Wg+hLjTmJ3qDg3zMaCUU4nsECnm2psXGp2QoPCkUFJU/lI/ug52hcmDHKGVDDsYf/p2n
+	PYBnZtfHvfyarN/jgTua30Jg+Dk8GcQGx2hHn+vqNbDI86xyg6n7xzHtE1vilnlYrS/Ag4slcD3DU
+	xlLuuM4LIbSQoH8l23PgDRJY/NhacGdHmCDls1Vgfzkjx1PV8F3iW9yLBejm91ytbSbrVKkT9VVJT
+	v37QrLbpu5quuVv0VzlA/UWkXT6GQs1X6/VQYIAtKWA6BTgw2VFjTtynIIBGDZIWJmXoC6aST2NNi
+	tvr4PWDw==;
 From: Heiko Stuebner <heiko@sntech.de>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Igor Velkov <iav@iav.lv>
+	Alexey Charkov <alchark@gmail.com>,
+	Alexey Charkov <alchark@flipper.net>,
+	Joachim Eastwood <joachim.eastwood@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
 	broonie@kernel.org,
 	devicetree@vger.kernel.org,
@@ -49,20 +66,20 @@ Cc: Heiko Stuebner <heiko@sntech.de>,
 	linux-rockchip@lists.infradead.org,
 	linux-sound@vger.kernel.org,
 	luca.ceresoli@bootlin.com
-Subject: Re: [PATCH] arm64: dts: rockchip: Enable all CPU OPPs on Kobol Helios64
-Date: Fri, 13 Nov 2026 22:08:01 +0100
-Message-ID: <179460406461.1165597.1626712698379788020.b4-ty@b4>
+Subject: Re: [PATCH] arm64: dts: rockchip: fix pcie wlan chip on rk3588-h96-max-v58
+Date: Fri, 13 Nov 2026 22:08:04 +0100
+Message-ID: <179460406444.1165597.590397049163238524.b4-ty@b4>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261108-helios64-cpu-opps-v1-1-31aa4afb7eb8@iav.lv>
-References: <20261108-helios64-cpu-opps-v1-1-31aa4afb7eb8@iav.lv>
+In-Reply-To: <20261112-b4-fix-h96-max-v58-wlan-v1-1-7e918fc85b88@gmail.com>
+References: <20261112-b4-fix-h96-max-v58-wlan-v1-1-7e918fc85b88@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_130814_776978_1DF1778D 
-X-CRM114-Status: GOOD (  10.13  )
-X-Spam-Score: -2.1 (--)
+X-CRM114-CacheID: sfid-20261113_210814_909729_839753A7 
+X-CRM114-Status: GOOD (  12.47  )
+X-Spam-Score: -0.2 (/)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,21 +98,21 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On Sun, 08 Nov 2026 22:02:51 +0000, Igor Velkov wrote:
-> The Helios64 device tree deletes the lower OPPs of both CPU clusters
-> because the board was not stable with cpufreq.
+On Thu, 12 Nov 2026 19:34:56 +0100, Joachim Eastwood wrote:
+> Correct the gpio used for regulator-3v3-pcie. This pin was found digging
+> through the vendor dts. Also add the this regulator to the pcie port so
+> it will actually be enabled.
 > 
-> With all OPPs and regulator-ramp-delay = <1000> on vdd_cpu_b, the board
-> hung about 9.5 s into boot both times we tried. With 40000 it ran 40
-> boots and three one-hour DVFS runs under load without errors. We did not
-> find out why the slower ramp hangs.
+> After this fix the BCM43752 shows up in lspci and WiFi works with the
+> correct firmware.
+> 0002:21:00.0 Network controller: BCM43752 802.11ax Dual Band Wireless LAN Controller (rev 02)
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Enable all CPU OPPs on Kobol Helios64
-      commit: 30eb5fd93649928b9e4149d24fa182c8521fdc20
+[1/1] arm64: dts: rockchip: fix pcie wlan chip on rk3588-h96-max-v58
+      commit: e794aacace8ed0f3ee1aa34924e25399d370e039
 
 Best regards,
 -- 
