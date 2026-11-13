@@ -2,100 +2,101 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3749606B563
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:37:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA11606DEBA
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kHl4Wi3M;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=c15syWlD
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kc2i2H+u;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dpO2XFbj
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
 	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=5wNJJzk3hTiNr6RLY2D3wmDAEcehs+iUFvfGtxABCR4=; b=kHl4Wi3MIWjoFZ
-	/neSDMDsDud1HL5/yTrx/hA1knnPkNIzyZHlJ0mG7ikVuBoA5yFEfp6425WaZbTupxwRl9WCaSyvr
-	oQr++U+MAFQO2jip+JAAWqPW86k2/TuFVO2I5DPRtsksVKCxcYkXTWrfUw5w25zIVjeTD0gbfIM1k
-	EUruw6XAiQ0TCN8+1pC6rJBqcLnQxEd1jwCAfpr5XNrN0Jsuu96fZd/sW4Kh9fMqLZucsbGfcw3jd
-	68AMT/WQn4Xni/6xNzwtWMkJd2yltp+Otl5AsOFl1LKn0nEWwYGugz6uJG9R4gmmAfXHNori2WZs+
-	NWB4tCOjPiXfvWaMhWUA==;
+	List-Owner; bh=TJKl/9+9/GgYtmdNqCwcVE25Z6LMmrJm+ZVyrujB+G0=; b=kc2i2H+u0V5oSn
+	/DQ26d/r181SRZ5DHzw6oJi7dZ9/xRmW0pZ9p0Is6eZB9vVKMJIAzX/y+mBUdFj2+mhUpb5HNdPK/
+	Vx8TMw8EWDtnVZGSn8+zM83qpY0sOFfga2yPHDDR7aY1F3ZzqMPW2yIpuvBuJbdum7extZQI3xfFm
+	QJ4FVi3KEg8nAn46nOppJllcv91Xxz4s5iKmIcCu/eEdMlC4dooNJWIsHyBF48TaGBnyuVFqrViI/
+	U4AbAPH6hk5jnAu/BwLKyDkwAF/Hcyg41dfKSN7UERcB75tNPnkp8HHZGgCsUz/rmnWlOoZUz/tBz
+	aprQ1EzP07t5W2PFwsEA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfI9-0000000BLHk-3Z7R;
-	Fri, 13 Nov 2026 00:37:21 +0000
-Received: from mail-wm1-x329.google.com ([2a00:1450:4864:20::329])
+	id 1xRfIT-0000000BLR7-43Rq;
+	Fri, 13 Nov 2026 00:37:41 +0000
+Received: from mail-wr1-x434.google.com ([2a00:1450:4864:20::434])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfI0-0000000BLEV-444c
+	id 1xRfI7-0000000BLFi-2JGf
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 00:37:14 +0000
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4ba013938d7so4529765e9.2
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:37:12 -0800 (PST)
+	Fri, 13 Nov 2026 00:37:20 +0000
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-490d59c3edaso191476f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:37:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794530231; x=1795135031; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794530238; x=1795135038; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=5wNJJzk3hTiNr6RLY2D3wmDAEcehs+iUFvfGtxABCR4=;
-        b=c15syWlDi2+82SCQct9mQv4MDhoPtrkk+VNcPeBBUMga42snJVrsF2Ce7klyiAIoro
-         hi4/ZCnuL1g+5xYESyb8+2SPqBKmyAze/aIZdJzHp746l1Q39gaCaNt31iJm/GEiFnTd
-         Is1zzFUPiBxuxbidpwGH5j7+JHGfGvEUUW6beZMLpwoM4zbY+XcEHvWPqEdFPyWmWku8
-         SAQrM6nG1uGI9rAG/D4bWS8DsOpt0g3Tq2FuDHLwS4y+eaQI191hQvY2tNCiH2nc8WRg
-         F8p2y7cds+j/z3mpftcAkknvR4kqv/uGu8DXt8jtxJ/xKIq+wU8gO8qzHxznoqyQTII6
-         oLQg==
+        bh=TJKl/9+9/GgYtmdNqCwcVE25Z6LMmrJm+ZVyrujB+G0=;
+        b=dpO2XFbjU9ASw7gM3SnuSw4er7SkAAQYVNzSyw/Ao/I4AFS7LhzJlG6zqvqt1yAn2F
+         QiWfTjX2ybYXc8nJS7Fxct2ucFopK8ENSM/unTWWSr6PFQeP81Fv+qce8qhFChKg+4MQ
+         Ja541BKzSJTXXH2a1iDCcbaEEzzSWYw/wfgn9dUOm6GCI8QlgjsGiBegRh0zyNoyDTv1
+         5pdaNo0yJhO6Nzgp5ZeoZ6mXIxhZASOGyQLRFuhakltm93kYDg5b8+ijDo4f0zZfZK8b
+         MIqvoGwvOj+JRqTvXiEdo3ztAXPrh3OI2mbmyRc9gtxGrzbDWQViyLRA9gYGxphz8ZXM
+         yYCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794530231; x=1795135031;
+        d=1e100.net; s=20260707; t=1794530238; x=1795135038;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=5wNJJzk3hTiNr6RLY2D3wmDAEcehs+iUFvfGtxABCR4=;
-        b=B5H6SY568llesi4ofurq7qDQF+K3gl4fyBdIyDpkEZlwES01j+o458R1lACckEowgg
-         61dPL2uTczieZqP8qfDJQ+MpBwr/v+BxtEe4qTdxPCAq1NMtleeXJFVBZSlvfrvcOzl1
-         9Po00+EkAKSn3vM5ZgK+KDeR3DwDBLt38SvrJLmLfzLeR4FvE7DKESfCJufOBeqJ2am/
-         yM1kneS2EB6VVe2Eoth9rlEgTWLF2JlQ3MOVfkeNcqk5TVl+aNHOAwGCS9h2ar1jXxyr
-         dzP9o5kYkpMXWKVJe1Jaz3Y1N7wYQnlFKPddo8RlylVj47H0Y1jHxwdEQVKZQ6oInlWL
-         YVQQ==
-X-Gm-Message-State: APuU4Z+3QZO9YREYf90OEViyyMTvgRDrpJZqbhiKHJ3ugOuHkbuL2xW3
-	eDW+xnartpOGHFPGJiaCebtNtS2AGRftTwaUiPsFRkaRnchsCbgLlYtj
-X-Gm-Gg: AYBFou1RY1/CT0P8Rqd9eZx+MFIDWgQW18nKXtg7ahE6jdQy06amqlH8E06HRAgRqOu
-	nMSlSqZxavBQfWMxyqbeH0UbnIiXbI5vC31C2hcDNExT7X6gwuy4al1IHhJ6rbzPo0LFhiXcCG4
-	eIUo5odcs47Tq/SrkkBjsNDll2AFx1udomGyJThCRYkhfG/Z9VmAQrcDP20v50h10/EWDxK59tP
-	ctBKfnr7ZaBC6Y89qMPQR0ZFCFCeRSbawvzrK+/oevqVnC9a1ETPpU8bj1+3B2njrUUDKzMabTF
-	hmkA0gvbeWwb2+W7aeVz6OOah1KHyiKvFKRRhlsOq1qbIS6WG+UlQ/FDO9pXSRjPTPMVscvHqQX
-	aeDig+Ye3gK/dsImYw27mq8K4LdprfySZci2za1VIeSEYDWs/iwN1iIKdEUWBfFzC6wty+AjbG8
-	5Kd6sUvBkdWJ4cGMto5+LI5lhMWGQ7tnirxZFlZ+JoBR34cHraqtHT+slRuV5JLnNQhVKByqo7t
-	IAvyQC2TqSKZFWcqqKbIBN76+AOBvj6CzlXF6RWeKWRggMhAWw1F2h4rZiYTqv9iCIlLoCK7np8
-	5F81V6V3kKQysCSKj1loqbTV+I4T30SrtVeHWgQQFaEOPiJ1KYH4aYcriw0Twkts6/UDYoH68tm
-	ObgpHLa4Gop2idk8zSUGPg3E/8oN94VCWg8GUZ8QJfCttZhvtZzaemmj6HthN31g2ffnzMKFshH
-	Q0b4WIHnwhJWXGm+Nt
-X-Received: by 2002:a05:600c:4e92:b0:4a1:acaa:9d4c with SMTP id 5b1f17b1804b1-4bb55a850d8mr18959695e9.25.1794530231396;
-        Thu, 12 Nov 2026 16:37:11 -0800 (PST)
+        bh=TJKl/9+9/GgYtmdNqCwcVE25Z6LMmrJm+ZVyrujB+G0=;
+        b=yspoHRlqVJXos5eU0TAdaZAaFCepzMB0ZGk3WWrNcNC4q+7j4M9A/nvysqHgw6ieDj
+         86sEwamLGAvFcioMivLEbwH/caQFKtZivpm8RM9cvcxQdXo2Z3z9vlzPA1YhpN6Qotbg
+         oyf+EPsGN5Xu+DTP1uat27HmFwNjDsnEg0XObQKsbyLxaPOxZ+xbmbJG3Wl468+3KFdQ
+         Ap3Q2GYOn+8OjDz43t0SZ84vEG6shVVdI6V9qqB7zDPBelWWUBL8cO7Gds3CNvuX0Cfi
+         br7K1xg5XOhDd6PyJuBE2a7kx3SrLZ72RfVDIPcVF0V3/33/uYKTPYBEpoCHgAYCy89l
+         z+9g==
+X-Gm-Message-State: APuU4Z/WriFRUMlhka0Iam7VTMsmNJQPIfLSXiHMOKVqr2B/tfh9haVF
+	T4wC3p18EvcRpw6p2XA3lBVFv5liIMtfSg/uhSVvY8HY7LoDEEv4sqjE
+X-Gm-Gg: AYBFou0Q2BJlVJGE/dstn3nZphI0dBzd6W5X3IeFhUSxER2wsXJFtzEaBHtJUsFtnXw
+	GxQmI1gGv1jp7vM24OwvRHEfQGnJWkfsQcvwxlraQYLpRDFXsBHzINlCLt3WFHJ1TbUIQMDVnIE
+	3+/bRFOAKmCs44A1SM+bjTiUSvcbAMHAO6nKRicPGySSXw2XnljUZQ9JEVarlD2SnEz9s8jqvBc
+	6QrPCvl5pD9Vq7HqMrSKL6whOPkklQ7Pery7VMvYXaKMy+IUxBYeOqRH0suRB/ZliU/VNQB6iIJ
+	UFW3ZOyhCGtKSOq313Mh3yvD3sh68xUn/B101jdI99gSa7Cp5PKCMcbjBiEHnlXZq8+/DZAN+E1
+	PGtGgh7Z2toD7WfA5fZ9nwvgEgkCdOj4D0SRqyIuGuZUdCMWcpEygQEv2ihZyH87BrEblpFOrAk
+	2OGkVI8yE4Ls28goIz5SZ09F7g8RaHtJGHbv17XvWfJoGxBJK6wxf70fe3X6oR7CGoPmIKVQois
+	cPf/JnVFMIsHIewPIFueQhQonH3ovGLatJ93GdG8vLwE/T6s8Miy4QoEjBXYV0ySE5Z4lcngrDQ
+	qRwmWfttBR9UxLJrS0DmOqDxjyaKjbMmGbSJowupPq2A9paxJd3Pk7AEu3jEZ3UWeeH7xXoR7EN
+	PTmVkxwx2TuRzAu/tALawYCOclz6KT64bhb4HVufIMUkCfSSK/epAe6QGPOem7irTZrUBUajgpS
+	ysOnalbh4TKV/B5C5G2UpMui4hbUMOEW/MXGCYiw==
+X-Received: by 2002:a05:6000:4b12:b0:491:1468:a504 with SMTP id ffacd0b85a97d-49c70cee81cmr2469854f8f.21.1794530237680;
+        Thu, 12 Nov 2026 16:37:17 -0800 (PST)
 Received: from navid-pc ([2a01:4b00:a856:6220::a11])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb4e1f9e5asm102305995e9.0.2026.11.12.16.37.10
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-49c5f5972a7sm1937527f8f.21.2026.11.12.16.37.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 16:37:10 -0800 (PST)
+        Thu, 12 Nov 2026 16:37:17 -0800 (PST)
 From: Navid Ghahremani <ghahramani.navid@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
+To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: linux-arm-kernel@lists.infradead.org,
 	arnd@arndb.de,
 	stefandoesinger@gmail.com,
-	krzk@kernel.org,
+	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	linux-spi@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 24/24] ARM: dts: zte: Add ZTE ZXHN H3600 board
-Date: Fri, 13 Nov 2026 00:37:10 +0000
-Message-ID: <20261113003710.3666410-1-ghahramani.navid@gmail.com>
+Subject: Re: [PATCH v2 19/24] dt-bindings: spi: Add ZTE ZX family SPI flash controller binding
+Date: Fri, 13 Nov 2026 00:37:16 +0000
+Message-ID: <20261113003716.3666756-1-ghahramani.navid@gmail.com>
 X-Mailer: git-send-email 2.56.0
-In-Reply-To: <0386c1dc-5026-4c45-9679-cc6e76f58e36@lunn.ch>
-References: <20261014072109.1759502-1-ghahramani.navid@gmail.com> <20261014072109.1759502-25-ghahramani.navid@gmail.com> <0386c1dc-5026-4c45-9679-cc6e76f58e36@lunn.ch>
+In-Reply-To: <20261015-khaki-gibbon-of-persistence-a552df@quoll>
+References: <20261014072109.1759502-1-ghahramani.navid@gmail.com> <20261014072109.1759502-20-ghahramani.navid@gmail.com> <20261015-khaki-gibbon-of-persistence-a552df@quoll>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_163713_026482_3A839F69 
-X-CRM114-Status: GOOD (  10.49  )
+X-CRM114-CacheID: sfid-20261112_163719_611902_92ED6962 
+X-CRM114-Status: GOOD (  13.24  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -115,16 +116,31 @@ X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Andrew,
+Hi Krzysztof,
 
-Andrew Lunn wrote:
-> You have phy-mode == gmii. Such a PHY does not need a SERDES. We need
-> a better understanding of what is actually used here.
+Krzysztof Kozlowski wrote:
+> Where are all other properties your driver is using? DMAs? Resets and
+> whatnot?
 
-Agreed. gmii is just what my driver has always used, I never measured
-it. I answered in more detail in the PHY thread, 16/24. I still have to
-find out what the link really is and will do that before I send the
-networking patches again.
+You are right. The driver used an optional reset and the rx and tx DMA
+channels, and the binding described none of them.
+
+> Did you actually test your DTS against bindings?
+
+Not properly. For v2 I only validated the binding files with
+dt-doc-validate. I have now run make CHECK_DTBS=y on the v2 H3600 DTS.
+It passes, but only because my SPI node also leaves out the DMA
+channels and the reset, so the check could not show the gap. The
+binding has to describe what the hardware and the driver use and not
+only what my DTS uses.
+
+I am dropping this binding and the SPI driver from my series since
+Stefan will submit a driver. For the rest of the series I run make
+dt_binding_check and make CHECK_DTBS=y on the board DTS before sending,
+and I compare each binding with the properties its driver reads.
+
+From your other mail on this patch, none of the subjects in the next
+version will have the redundant word binding.
 
 Best regards,
 Navid
