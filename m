@@ -2,43 +2,44 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F7D7606A32D
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 01:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C118606A336
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 01:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=vf43YErL;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=G+FEhYgL
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ZkDIDgQw;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=NRK1Ogzd
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=+jyT50e30BCzbDPlXbs0zLStHSPuFBJFusAtjz5vVgo=; b=vf43YErLL7qso+
-	naNV6ID8SmkRUKeHL2X75GpvychPKHFHRq5u/BkZ9G2bPmQFBA2/hAg0dW0A54O1jB9+VTijnSPRt
-	YYElY2PA1Y0Ck+8Fxad4sw+AcTHdegFhBxBVkNSnUYWXPvnueiD3IimiRP7nQtuUv79YMn4vMlNX7
-	bD5QkDXCYmEj8sNQtDUZpEivrsk+saHEgZdVw8XRh/YWGvYNkTxVge8LwkfJGSeGKJifewh2T1EWd
-	9IQCyxTzYD8VsQ2lPLS/GycewFNDce95bxNvKwhGZ15DV1B94v2DWDE02R7NZFN9raPCzjZDmTZ9O
-	1cKbvp0jHltP3p7sfOWg==;
+	List-Owner; bh=yUomd9KXnjseidZCb+3NrIiSfYZB9y809aXsxz/VNIE=; b=ZkDIDgQw5IS9Ce
+	892oDv6NrTEm10KhvJbgWxdau6efdJXmG0UYc6g0PG2NBycOOcyHVXiwbtmeBpuolRKcqpMXYKbWp
+	HGL2rW7GpDdC5CqHjFdj3m1NT9sks6kM4xDRU0DMd6eidJxiCwJG/f9SPEGpxax5bXQz+vJAeRMiK
+	yXgqm5pi42hhcx4tu3yVZQAPibbQ/9XQQhwFFu9V/0yePCqGcc4YA/kRI2W39wmhqFNVaNmNVu1gw
+	3sKZ5Md1AQS9qlGJnJv654PDuOZRzldU3vUyJIwbQ43tGflBzVsqHL7eMVPQaSOpA9l0e0z+KdqU+
+	7OBSNBdHIMonEyMhjNgw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRg89-0000000BRHn-1h6w;
-	Fri, 13 Nov 2026 01:31:05 +0000
-Received: from mail-m1602365397.xmail.ntesmail.com ([160.236.53.97])
+	id 1xRgDL-0000000BRni-0gI7;
+	Fri, 13 Nov 2026 01:36:27 +0000
+Received: from mail-m25475.xmail.ntesmail.com ([103.129.254.75])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRg85-0000000BRFH-3ZGy;
-	Fri, 13 Nov 2026 01:31:03 +0000
+	id 1xRgDH-0000000BRn9-35VA;
+	Fri, 13 Nov 2026 01:36:25 +0000
 Received: from [172.16.12.90] (unknown [61.154.14.86])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5483bfae5;
-	Fri, 13 Nov 2026 09:30:55 +0800 (GMT+08:00)
-Message-ID: <408c3dde-772b-4ebf-8b3f-4e51eeb43713@rock-chips.com>
-Date: Fri, 13 Nov 2026 09:30:53 +0800
+	by smtp.qiye.163.com (Hmail) with ESMTP id 5483f8bd3;
+	Fri, 13 Nov 2026 09:36:19 +0800 (GMT+08:00)
+Message-ID: <781db207-ca0e-4e41-8706-c0769b58385f@rock-chips.com>
+Date: Fri, 13 Nov 2026 09:36:16 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/9] drm/rockchip: vop2: Find the first mixer of a
- video port with Esmart3 too
+Subject: Re: [PATCH v2 3/9] drm/rockchip: vop2: Fix the HDMI sync polarity on
+ RK3588
 To: aiyengar1990@gmail.com
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
  <heiko@sntech.de>, Andy Yan <andyshrk@163.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
@@ -48,25 +49,25 @@ Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
  linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
 References: <20261112-vop2-fixes-v2-0-8218c1cf8ac8@gmail.com>
- <20261112-vop2-fixes-v2-7-8218c1cf8ac8@gmail.com>
+ <20261112-vop2-fixes-v2-3-8218c1cf8ac8@gmail.com>
 Content-Language: en-US
 From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <20261112-vop2-fixes-v2-7-8218c1cf8ac8@gmail.com>
+In-Reply-To: <20261112-vop2-fixes-v2-3-8218c1cf8ac8@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0aa1d287779c03a7kunm15aa9e14a218a
+X-HM-Tid: 0aa1d28c68f003a7kunm3ed8a3c2a36d2
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVkZGkweVklJHxkeGh5OSEpJSFYVFA
+	tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlDTUJIVhlOH0ofTR1CH00aGlYVFA
 	kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSU
 	9PT0hVSktLVUpCS0tZBg++
 DKIM-Signature: a=rsa-sha256;
-	b=G+FEhYgLL0kLZeE1GZkJG/uiFrVftUgs+ypjx24aZRkDhMZQsmsQu1eVffBxH3NphuRT/3580Z7wm2UV4Ptf4qqiithPcG9iLqyAyH6ZUZMK/QTYnB8XDAaWav28mLILAYEWaVpoCXQHWhTg4O4IXyX+6MjmDMN2+rHzLAZ1DSY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=+jyT50e30BCzbDPlXbs0zLStHSPuFBJFusAtjz5vVgo=;
+	b=NRK1OgzdCmB0whylUbps83DuQoBR+n4HlZoHbh9r3cb/rRAS1LmfPW6CJBFracLEP2OjBWzSwHIRlCOx5ZgWV4+srjQntk06TeTXvD8Xvua0J5PX+oSN0N2tCeZvWAtxonYwNljqL5muGYLMjOh2y6mgMc0Cg8AlBD5CZYQ3ncY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=yUomd9KXnjseidZCb+3NrIiSfYZB9y809aXsxz/VNIE=;
 	h=date:mime-version:subject:message-id:from;
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_173102_213957_3EE7F6E8 
-X-CRM114-Status: GOOD (  17.19  )
+X-CRM114-CacheID: sfid-20261112_173624_024660_2750A82C 
+X-CRM114-Status: GOOD (  16.10  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -86,54 +87,59 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+
+Oh wow, nobody even noticed this.
+
 On 11/12/2026 4:33 PM, Arun Iyengar via B4 Relay wrote:
 > From: Arun Iyengar <aiyengar1990@gmail.com>
 > 
-> vop2_find_start_mixer_id_for_vp() looks for the first layer that holds a
-> window of the video port, but for_each_set_bit() takes the number of bits
-> to search, and ROCKCHIP_VOP2_ESMART3 is the highest window id, so Esmart3
-> is never found. A video port whose bottom layer shows Esmart3 then starts
-> its alpha setup at the mixer of a higher layer, or, if Esmart3 is its
-> only window, past all layers, and programs mixers of other video ports.
+> rk3588_set_intf_mux() passes the POLFLAG bits of the mode to
+> rk3588_get_hdmi_pol(), which decodes them as DRM mode flags: the
+> VSYNC_POSITIVE bit is taken for DRM_MODE_FLAG_NHSYNC and POLFLAG_DCLK_INV
+> for DRM_MODE_FLAG_NVSYNC. As a result GRF_VO1_CON0 marks the HSYNC of
+> every +HSync/+VSync mode (e.g. all 1080p, 2160p CTA modes) as negative
+> and both syncs of -HSync/-VSync modes (e.g. 720x480, 640x480) as
+> positive.
 > 
-> Add ROCKCHIP_VOP2_MAX_LAYER_ID after the last window id and search up to
-> it.
+> The bits in GRF_VO1_CON0 are set for a negative sync; that is how the
+> vendor kernel programs them (vop2_get_hdmi_pol(), called with the mode
+> flags, sets them for DRM_MODE_FLAG_NHSYNC/NVSYNC on RK3588). Decode the
+> POLFLAG bits accordingly.
 > 
-> Fixes: d3fe9aa49585 ("drm/rockchip: vop2: Use OVL_LAYER_SEL configuration instead of use win_mask calculate used layers")
+> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
 > Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 
 Reviewed-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
 > ---
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h | 1 +
->  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 2 +-
->  2 files changed, 2 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-> index ccbfbdb8d246..290990632388 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-> @@ -857,6 +857,7 @@ enum vop2_layer_phy_id {
->  	ROCKCHIP_VOP2_CLUSTER3,
->  	ROCKCHIP_VOP2_ESMART2,
->  	ROCKCHIP_VOP2_ESMART3,
-> +	ROCKCHIP_VOP2_MAX_LAYER_ID,
->  	ROCKCHIP_VOP2_PHY_ID_INVALID = -1,
->  };
->  
 > diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> index 83203d18865b..088c1f3a972f 100644
+> index 659fd0a3ab63..7c48b440cb29 100644
 > --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
 > +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> @@ -1889,7 +1889,7 @@ static int vop2_find_start_mixer_id_for_vp(struct vop2_video_port *vp)
+> @@ -1687,12 +1687,16 @@ static u32 rk3588_get_mipi_port_mux(int vp_id)
+>  		return 0;
+>  }
 >  
->  	for (i = 0; i < 31; i += 4) {
->  		match = false;
-> -		for_each_set_bit(phys_id, &win_mask, ROCKCHIP_VOP2_ESMART3) {
-> +		for_each_set_bit(phys_id, &win_mask, ROCKCHIP_VOP2_MAX_LAYER_ID) {
->  			win = vop2_find_win_by_phys_id(vop2, phys_id);
->  			if (win->data->layer_sel_id[vp->id] == ((layer_sel >> i) & 0xf)) {
->  				match = true;
+> -static u32 rk3588_get_hdmi_pol(u32 flags)
+> +/*
+> + * The HDMI sync polarity bits in GRF_VO1_CON0 are set for an active low
+> + * (negative) sync.
+> + */
+> +static u32 rk3588_get_hdmi_pol(u32 polflags)
+>  {
+>  	u32 val;
+>  
+> -	val = (flags & DRM_MODE_FLAG_NHSYNC) ? BIT(HSYNC_POSITIVE) : 0;
+> -	val |= (flags & DRM_MODE_FLAG_NVSYNC) ? BIT(VSYNC_POSITIVE) : 0;
+> +	val = (polflags & BIT(HSYNC_POSITIVE)) ? 0 : BIT(HSYNC_POSITIVE);
+> +	val |= (polflags & BIT(VSYNC_POSITIVE)) ? 0 : BIT(VSYNC_POSITIVE);
+>  
+>  	return val;
+>  }
 > 
 
 -- 
