@@ -2,87 +2,68 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DBD7606A330
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83F2606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 05:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=yEslM2j4;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=n+IV7MCg
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=lrXeDiq5;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lkNi0WJe
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:MIME-Version:
-	Message-ID:Date:References:In-Reply-To:Subject:Cc:To:From:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
+	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Message-ID:Date
+	:Cc:To:From:Subject:Reply-To:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=1QCHCXTpwhaXOHfzz5l15bpjdkFUiznzxAOCYs8/1D0=; b=yEslM2j4D4d92qdEnPk0va6kZk
-	Shq+GWNNTmvtSC/ya6SrQ4yC6znqBxVc/OBv7EzTOry9MtKkQboDj4yqnl2cGZcPV0E1gVxH3NJ0s
-	wndyPeUEXWhZ3RgUDb+PgR2TzuAx70At85lebRD2WHRKsGBjKARSWajHvkTFQlUdSby7ccAgyrnhC
-	gGzOeCugfNAdtBaBcvyjGZGlhOuruaj+47zR91bk3B9HkejUPEMu3F7+/us51oLDxkUcpT2KfEuJ/
-	L+1qfOCkgMRVyB1c9hubpqK1gkqs7actYe4uIW4TOqjeIWFTLkFldws1XQx0qM1rD0RwwA3l9dwEh
-	yLqzDc4Q==;
+	bh=GjFNdrxT3EZFR3J6YnNd1f/Z2k934t/npf1oL+Xxd74=; b=lrXeDiq5sJdr2Fx2bZy19WY3j2
+	hsMuxls/D7dP5OaZbJtY0M3/Heo6DTCbNVpaUBO/9vExtRHg55rNDQl8oU5CEZYAThx5lL5ieBhd5
+	KxYxNxBG/0ahbKK3sb94T/cMXBJ+ldZCTJTEILb4QA9WWR9V2D2se5ugTJFFMVvl2Ee1u6MKQhi0e
+	yWh+4njjMk/iWB17n1BOX9kw3we0zwY5hteKOVom3bKksdOjNCakg2MlD8aJ6ZnN7xKQrKbhQUNKY
+	ojSrU3ngMUHvi9tA16GKGMMknjiKXYEg4PStlnHoBKuXqtjwk7fIGIcVFEnYqUkl8gQFdkHZhOcHC
+	6opymHlA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkAj-0000000Bim6-1fg8;
-	Fri, 13 Nov 2026 05:50:01 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+	id 1xRkC9-0000000BisX-0mL7;
+	Fri, 13 Nov 2026 05:51:29 +0000
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRkAh-0000000BilP-3gPt
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 05:49:59 +0000
+	id 1xRkC7-0000000BisE-3NWg;
+	Fri, 13 Nov 2026 05:51:27 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0535C60234;
-	Fri, 13 Nov 2026 05:49:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C2A01F000C6;
-	Fri, 13 Nov 2026 05:49:48 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 8DB6D61404;
+	Fri, 13 Nov 2026 05:51:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 117941F000C8;
+	Fri, 13 Nov 2026 05:51:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794548998;
-	bh=1QCHCXTpwhaXOHfzz5l15bpjdkFUiznzxAOCYs8/1D0=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date;
-	b=n+IV7MCgQdlJEEHAi6QKi/kWy8yzp/3uca4izpMGuczcmGYuWXP3sYO6HEulgaSBr
-	 jiPtYks0VWhhv6b2H6VteZ5IaAhh5Zd1R7Q4rLovkGkISG7tPg3bxeb2G1DXjlB6qP
-	 VDyDvwuF4X1U7cRFjeD2owWdYNi28hs7F7wxcGqpCUmQtrw4osKtcRuZM/NooYos0O
-	 sJd4CYmm5Y50NXab3eCYjqRnjvTWUiEw4GDByC7PDQE+k0Q4B6nt+VDWI6ysFMK5zr
-	 /KLvD3AiUaFTwd3rQgKN4RRszouPPgU26Q/Db8U6YHBXoV5XrhRsmcRCyb/Io6mwFw
-	 l2Ohtqal/D2+Q==
-X-Mailer: emacs 31.1 (via feedmail 11-beta-1 I)
-From: Aneesh Kumar K.V <aneesh.kumar@kernel.org>
-To: Alexey Kardashevskiy <aik@amd.com>, iommu@lists.linux.dev
-Cc: Alex Williamson <alex@shazbot.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Jacob Pan <jacob.pan@linux.microsoft.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>,
-	Joerg Roedel <joro@8bytes.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Kevin Tian <kevin.tian@intel.com>,
-	Krishna Reddy <vdumpa@nvidia.com>,
-	Lukas Wunner <lukas@wunner.de>,
-	Nicolin Chen <nicolinc@nvidia.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Samuel Ortiz <sameo@rivosinc.com>,
-	Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>,
-	Steven Price <steven.price@arm.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Thierry Reding <thierry.reding@kernel.org>,
-	Vasant Hegde <vasant.hegde@amd.com>,
-	Will Deacon <will@kernel.org>,
-	Xu Yilun <yilun.xu@linux.intel.com>, kvm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-coco@lists.linux.dev,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v8 02/15] virt: coco: tsm: Remove the device from lookup
- before PCI teardown
-In-Reply-To: <9eb572d7-fa3a-4734-9773-44a3fb465b6a@amd.com>
-References: <20261104161632.3547423-1-aneesh.kumar@kernel.org>
- <20261104161632.3547423-3-aneesh.kumar@kernel.org>
- <9eb572d7-fa3a-4734-9773-44a3fb465b6a@amd.com>
-Date: Fri, 13 Nov 2026 11:19:45 +0530
-Message-ID: <yq5ajymhmgau.fsf@kernel.org>
+	s=k20260515; t=1794549086;
+	bh=GjFNdrxT3EZFR3J6YnNd1f/Z2k934t/npf1oL+Xxd74=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=lkNi0WJeOwuHsOONt4kswun2pDApIBs0KFMSAwcGgXveBRLLWwsWzxZiBA+wmzVRm
+	 aDXJz5A/WG+ht+rX6gAiKuUcIys5pvIHz/8YRLkgVnR+d3vXeNdO9ly1lcAzmvoUgL
+	 750MWv3GfoMcL1A8aFvgbMO35MyG+jKdssBcJW0K2XqbPyWTYPVtro3PedEkB7txfa
+	 S+csPzK/tfaFktsR9fkycsF0Zo3imP1STx+9L4YL1z22Jib8n8p1qrSdWZ3MRr2KBU
+	 qjsVvgzJnMahByMt1sTaQD+OGz89baO2mADlxNS28Fg8/Mx5bQzrvn+ATWEROOYk/V
+	 QT4rDzwwq0AbQ==
+Subject: Re: [PATCH net v5 1/4] net: phy: move irq_suspended and irq_rerun out
+ of the bitfield
+From: netdev-bot+sashiko@kernel.org
+To: iav@iav.lv
+Cc: andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+ davem@davemloft.net, edumazet@kernel.org, kuba@kernel.org, pabeni@redhat.com,
+ maxime.chevallier@bootlin.com, lukas@wunner.de, rafael.j.wysocki@intel.com,
+ wei.fang@nxp.com, niklas.soderlund@ragnatech.se, paul@pbarker.dev,
+ florian.fainelli@broadcom.com, opendmb@gmail.com, Thangaraj.S@microchip.com,
+ shenwei.wang@nxp.com, Haoning.CHENG@cn.bosch.com, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Date: Fri, 13 Nov 2026 05:51:24 +0000
+Message-ID: <179454908461.2199510.508928890759611464@kernel.org>
+In-Reply-To: <20261111-b4-phylib-mac-pm-irq-v3-v5-1-bbfdb5afb7d3@iav.lv>
+References: <20261111-b4-phylib-mac-pm-irq-v3-v5-1-bbfdb5afb7d3@iav.lv>
+X-sashiko-severity: Low
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -93,71 +74,100 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Alexey Kardashevskiy <aik@amd.com> writes:
+Thank you for your contribution! Sashiko AI review found more severe
+issue(s) in other patches of this series. This mail is only an FYI, in case
+you want to address the nit picks below when you respin.
 
-> On 5/11/26 03:16, Aneesh Kumar K.V (Arm) wrote:
->> PCI connect looks up a TSM by ID under pci_tsm_rwsem. Previously,
->> tsm_unregister() released that lock after tearing down PCI state while
->> the TSM was still in the class lookup. 
+Low priority / nit picks for your consideration:
+
+- [Low] The patch adds the comment "/* Written without phydev->lock, so
+  not bitfields */" above irq_suspended and irq_rerun in struct…
+
+--
+
+net: phy: move irq_suspended and irq_rerun out of the bitfield
+
+This commit turns irq_suspended and irq_rerun in struct phy_device from
+1-bit bitfields into bools. phy_interrupt() sets irq_rerun without
+phydev->lock, and that write could lose an update to link and
+autoneg_complete, which share the same word. After this change the two
+flags are separate memory locations.
+
+> diff --git a/include/linux/phy.h b/include/linux/phy.h
+> index 21afc2082b174..bbe28ff97e51c 100644
+> --- a/include/linux/phy.h
+> +++ b/include/linux/phy.h
+> @@ -726,8 +726,9 @@ struct phy_device {
+>  
+>  	/* Interrupts are enabled */
+>  	unsigned interrupts:1;
+> -	unsigned irq_suspended:1;
+> -	unsigned irq_rerun:1;
+> +	/* Written without phydev->lock, so not bitfields */
+
+[Severity: Low]
+This isn't a bug, but the new comment states a rule that the
+neighbouring fields don't follow. Several of them are written without
+phydev->lock. They are still 1-bit bitfields in the same run as link
+and autoneg_complete, and the state machine writes those two under the
+lock.
+
+interrupts, the field just above, is written in phy_config_interrupt():
+
+drivers/net/phy/phy.c:phy_config_interrupt() {
+    ...
+	phydev->interrupts = interrupts ? 1 : 0;
+    ...
+}
+
+This is reached from phy_request_interrupt()/phy_free_interrupt(). Some
+PHY drivers also set it in their suspend/resume paths (dp83867, micrel,
+marvell-88q2xxx).
+
+phy_suspend() writes wol_enabled and suspended:
+
+drivers/net/phy/phy_device.c:phy_suspend() {
+    ...
+	phydev->wol_enabled = phy_may_wakeup(phydev) ||
+    ...
+		phydev->suspended = true;
+    ...
+}
+
+mdio_bus_phy_suspend() and mdio_bus_phy_resume() write
+suspended_by_mdio_bus:
+
+	phydev->suspended_by_mdio_bus = 1;
+
+The commit message itself names these unlocked writers of the same word.
+
+Later in the series, "net: phy: postpone PHY interrupts during sleep
+with MAC-managed PM" adds another bitfield to this word, wol_phy:1.
+phy_suspend() writes it without phydev->lock, and phy_irq_wake_source()
+reads it.
+
+Could the comment say that these two fields are split out because
+phy_interrupt() writes them from the IRQ thread? As written, a reader
+could assume the remaining bitfields are all lock-protected.
+
+If any of those unlocked writers can run at the same time as each
+other, or as the locked link/autoneg_complete writers, the lost-update
+problem this commit describes would still apply to them. I haven't
+shown that concurrency here.
+
+> +	bool irq_suspended;
+> +	bool irq_rerun;
+>  
+>  	unsigned default_timestamp:1;
 >
-> tsm_unregister() is not touching that lock, what do I miss?
->
 
-pci_tsm_unregister(). It uses guard(rwsem_write)(&pci_tsm_rwsem), so the
-lock is released when pci_tsm_unregister() returns. We previously called
-device_unregister() only after that.
-
->
->> A racing connect could then
->> attach a new PCI context that the teardown would never see.
->> 
->> Remove the device from the class lookup first, then take the PCI write
->> lock to drain in-flight operations and destroy their contexts. Drop the
->> device reference only after PCI teardown completes.
->> 
->> Fixes: 3225f52cde56 ("PCI/TSM: Establish Secure Sessions and Link Encryption")
->> Signed-off-by: Aneesh Kumar K.V (Arm) <aneesh.kumar@kernel.org>
->> ---
->>   drivers/virt/coco/tsm-core.c | 22 ++++++++++++++--------
->>   1 file changed, 14 insertions(+), 8 deletions(-)
->> 
->> diff --git a/drivers/virt/coco/tsm-core.c b/drivers/virt/coco/tsm-core.c
->> index e784993353d8..f79135986102 100644
->> --- a/drivers/virt/coco/tsm-core.c
->> +++ b/drivers/virt/coco/tsm-core.c
->> @@ -56,26 +56,25 @@ static struct tsm_dev *alloc_tsm_dev(struct device *parent)
->>   	return no_free_ptr(tsm_dev);
->>   }
->>   
->> -static struct tsm_dev *tsm_register_pci_or_reset(struct tsm_dev *tsm_dev,
->> -						 struct pci_tsm_ops *pci_ops)
->> +static int tsm_register_pci(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
->
-> Why changing a pointer to an int here as later tsm_register() converts
-> it back to a pointer?
->
-
-At the end of the series we have
-static int tsm_register_pci(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
-
-
->
-> And I never understood what is _reset for here (so +1 for that) but
-> now we have tsm_register_pci() and pci_tsm_register() which is weird.
-> May be just open code it? Thanks,
->
-
-How about rename that to 
-__tsm_register(struct tsm_dev *tsm_dev, struct pci_tsm_ops *pci_ops)
-
-
--aneesh
+-- 
+Sashiko AI review · https://netdev-ai.bots.linux.dev/sashiko/#/patchset/20261111-b4-phylib-mac-pm-irq-v3-v5-0-bbfdb5afb7d3%40iav.lv
 
