@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB259606C818
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B30F606C800
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yg15esys;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XMrCe3lG
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=SSRtdzdr;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=liHHypdb
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,94 +14,93 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=2LPQB+GAGQcPlLlWJwVhJDSba8lCqXwa15hdG+xLrLE=; b=Yg15esysWQ7Z/b8X0+VYOW4W1k
-	TmXBOa7Lblv3Af5lTWJmg0HjuSHCIBhwRxFgtsVruReOHGNhesDYOQTSnIAmp2ksv+BTJBACy+6NF
-	XpQ7mNOtqzD+YwelOwI1SGgndVUB+aSTpqE0JYOMw9butFhapFh1HBYa+I81BP1rQBrNJXK/UZtBm
-	RfFVK23pTVDMUQN0X1OibGmNCWqPao8le0EqXMF4O32YGMMzudK1LZfvwTs5Y5oi5uhTghtjbtvra
-	sy3ajt+ap87ipEpcYZmxVhJxYWlyYwev3sAwpS2jHPjOySQeuctKDOgFVYUVT/Y4CBwde5pshYFr4
-	FO4C0tgg==;
+	bh=7zpkorwus004YyxUUcOl7JyvlAtNECWRC9I0Q9NEaTU=; b=SSRtdzdriqLcZY/TatBjOX04m5
+	YmNrbyTxu+twnh+ss3vONQxu0awIUd4V14cvdHlHG6L0uPYdf40n/wQtwzIqrnSbensMReUz9wkmS
+	6NO/Mb2EQfctTy059dkksMIpaiaZiAtyNj6ChjWofj5ySO6Hiyr47P9ZBZRtw2KB780dUVI4t2jNZ
+	6UqDL2Je7EeBl6R4gsImqWpkS2WHIS8ezywquhUFsoTyTnz1GcNEF4kFYSDeIAsP3eulwo+5X2w8O
+	RAtKPQshCQ81xCjwKKFf3NO6xvxRIDUemPAF7U6jUfqJrYYZnxyGPhPVQm5k7b+zIyFkZ7Vm80Um7
+	thPU6sWg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuJL-0000000DZst-0nTm;
-	Fri, 13 Nov 2026 16:39:35 +0000
-Received: from sea.source.kernel.org ([172.234.252.31])
+	id 1xRuJM-0000000DZup-24V4;
+	Fri, 13 Nov 2026 16:39:36 +0000
+Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuIe-0000000DZAE-0udp;
-	Fri, 13 Nov 2026 16:38:52 +0000
+	id 1xRuJ5-0000000DZaz-3Yd6;
+	Fri, 13 Nov 2026 16:39:19 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1EAE1466A3;
-	Fri, 13 Nov 2026 16:38:52 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8927B40A78;
+	Fri, 13 Nov 2026 16:39:19 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794587932;
-	b=xxXCvVGUT9OdBi1vsNPhR0wklQZO4lW3iDAkfQb05eMQsNxg4j8P+5t7RaTbew2uFok/
-	 LABAsoujTZLYMvDtir8ImSZj1o1nQnjFKi0KXtzve/NqajTu89AdXFm982SJBNDTCDUt1
-	 LK/w4hm8ZP4tOXnl7m1zzseSxHd9BZPkJciIe90KFUzRGmIdSRZ1FJT/jDk1t6bQBeCT+
-	 s3ntixmXMde2IhTrV0zqE0sWELGkmWObmb4M4QpdgU4RV0h0gYV0B2CI2u/AHMbdIjLHh
-	 VRlppsEb7UXlRcw3C8HrEL+GsvuDc3PTQTZg3THqZMZyRFlSzUOYYECvBN2CPnxZ5lw==
+	t=1794587959;
+	b=pxtisLY8NTsy762MMvDnwTI14w3Pa53mGQZFD7Ekk3H27zeE3BCWVAVn404Q9by1+zL1
+	 pP7XLxOCxZB2nUIeAUoe1uaYhSwAP7BYXKwo3LN3vYEUAeU6qABvjbKnXwVFPcz8e5sDs
+	 wtTn/KLe3wJ31zsZJ4WK7EmxSDJ7hbdX2gL+ZLwr7RS8TBXVrQ4jRw/bBrjD2A2XithbG
+	 NqZ41K3V4hOeEd11sYjXwOkrO/fKNriHcKgMNo8wmGbrNHKqzCfrYrTTSDFGYT0Kr3UkK
+	 +uabgI0zRZXiXUzpxZTRMIQodeGsf828ToecN3Ovd6WW9IKExuBmYawVuAqIxrD5wBQ==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794587932;
+	c=relaxed/relaxed; t=1794587959;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=2LPQB+GAGQcPlLlWJwVhJDSba8lCqXwa15hdG+xLrLE=;
-	b=pSYl2SYEhTtF3v9xQ0Hd7xS4QvDtAfsS17rb34NOGLziliqf6DLY4k7zA/gOaISzuTV6
-	 7Hs2ITc9Bvm0mRfU6/YS3gDQJJENkZnu5KB2CM2+k6813j1yUHoMcmpiF+//Pns17a1bH
-	 h/ScFwdXm5SkwTRjpxPjoFOzd39wPXNQze1G1VsuO0bYjaHW+AzVKOTzCrlIlej3rgkKG
-	 LjD/81Spjd0wzl9GXC1W+XqP+mqSMygisxCcN0MV9FPN7TPB2DenhMNsWizZGgeOEbyOn
-	 sF3qvLar+pXXskEjd5rEAxtqQ81kh4WoHPjH5WuEhgKaVP8vVOUawiOJ890wfOvthGg==
+	bh=7zpkorwus004YyxUUcOl7JyvlAtNECWRC9I0Q9NEaTU=;
+	b=L5DDuBqwUf1gjAJhzQ9JjcpTiarLCAljJBh2vjfVvkIdQawNZoDMchJKBZwX9TB0GtF/
+	 jMWchb2ViMHlQuUbrNnVUxND8yeqD7SuLNixQaU0L8s9I1YTa+IdbCaUJtZjnFgXV7n0R
+	 NrV+7trpbUp0NSAQ/1t9bsN7SbLgw1DU1u1sPiqgIp88x4hXOKsSM1Hacm3RsWOH1xnGQ
+	 PulSYHp78VSK9R8yLL4OtYukOvyZuv+f3G8K7wW08O0bgc8UlT3+yE/PvbpvamMI/7ETn
+	 SFJUW2127vB3TzkZZzuzKCUCTbfD2QRLHe5W8DutmrmAmjOeReBq4jo5vNweTMJVdjQ==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 9196C1F000CC;
-	Fri, 13 Nov 2026 16:38:50 +0000 (UTC)
+	by smtp.kernel.org (Postfix) with ESMTPS id E4D5B1F000C7;
+	Fri, 13 Nov 2026 16:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794587931;
-	bh=2LPQB+GAGQcPlLlWJwVhJDSba8lCqXwa15hdG+xLrLE=;
+	s=k20260515; t=1794587959;
+	bh=7zpkorwus004YyxUUcOl7JyvlAtNECWRC9I0Q9NEaTU=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=XMrCe3lGZYZPfoqs4BB8ISp3Fc+ZjgN38SJ4DkYM8hjAOjwYRS92OPDyE1t7EnVBf
-	 V7QEl6qMgbfgdvHHKxgbILy/dzWv/pCqVpaPZaaZxJHa9nKzsGtLqZzXzOw56teKlo
-	 Ll2NH30gGs3YslYqwIwJoaG64Rv84t1Bjc7DCob5OaKztogxyrs8Dc0TzBVimdOzSN
-	 NLFuK8ToLOgxat8b2uqv1omdYgNRE9kq7eOxRNTCPF4gPNeI/9G7ykKEbdQiVrtLoj
-	 NHIrEpYzslqHpvd8sAfhOquqIfFXRl2DULcCDmWutndrCJ6Oif0OIAH+xUZBaoMduo
-	 Z/weLjfnUFNlA==
+	b=liHHypdbqq+1mNlpkUHAmBMwR4jXHGgNoLdOCknNBNSjX82KbNJa0z8IAGsMe1PPO
+	 pq6F5z0XnrNsTQeq4zIA3GftwSNx5IfzDRi/XSRLLUojmzEvZI25cQYKO58yzEw4e+
+	 zw7WUtPGMHxWbcza+ib+hVop3MWwdTEMzoWdaMNb72a597mj9kyIJ1q1DgzWoZxORX
+	 XEI6vaF0DeAm4MmQWw6Xrj6oHFA00MQOse5VKLbdgh29ze/jCxxB574honn7IHmNZI
+	 9Aw+awQ2X4B2nECwO/tgG7Fz4Vt4JWLp9RqhynUnR+gbaFOemltFXc+y2ozqxXowFD
+	 hhfnEnTuZDRFA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id 1F23E499B2;
-	Fri, 13 Nov 2026 16:38:49 +0000 (UTC)
+	by lkml.kernel.org (Postfix) with ESMTP id 77359499AA;
+	Fri, 13 Nov 2026 16:39:18 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 13 Nov 2026 16:38:55 +0000
-Subject: [PATCH 9/9] arm64: dts: rockchip: Enable the RK3588 PHP SMMU
+Date: Fri, 13 Nov 2026 16:39:18 +0000
+Subject: [PATCH v3 1/8] drm/rockchip: vop2: Take the UV plane address from
+ the second GEM object
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-mmu600-php-v1-9-231196049a3b@gmail.com>
-References: <20261113-mmu600-php-v1-0-231196049a3b@gmail.com>
-In-Reply-To: <20261113-mmu600-php-v1-0-231196049a3b@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- David Wu <david.wu@rock-chips.com>, Damien Le Moal <dlemoal@kernel.org>, 
- Niklas Cassel <cassel@kernel.org>, Serge Semin <fancer.lancer@gmail.com>, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org, 
- Pranjal Shrivastava <praan@google.com>, Will Deacon <will@kernel.org>, 
- Robin Murphy <robin.murphy@arm.com>, iommu@lists.linux.dev, 
- Shawn Lin <shawn.lin@rock-chips.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Arun Iyengar <aiyengar1990@gmail.com>
+Message-Id: <20261113-vop2-fixes-v3-1-08ae37e83b5c@gmail.com>
+References: <20261113-vop2-fixes-v3-0-08ae37e83b5c@gmail.com>
+In-Reply-To: <20261113-vop2-fixes-v3-0-08ae37e83b5c@gmail.com>
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andyshrk@163.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Piotr Zalewski <pZ010001011111@proton.me>, 
+ Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+ Damon Ding <damon.ding@rock-chips.com>, dri-devel@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Arun Iyengar <aiyengar1990@gmail.com>, 
+ stable@vger.kernel.org
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794587927; l=915;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794587957; l=1358;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=4ZmzBM5N9jnNuYTiHIYDASnKZmkuELiFGEfiQed/VEM=;
- b=9nRVvarFiIbiga3zvvB8t4RnRG95GwOLtsETdu1rIreww2yx1869NX4XiuZ4gNhq3OMMnZUwR
- k6gzh4xD/bGCyX8cwf/QisIjRmWfOWJBKa8+I4+NG5xwYSODUKSGQpz
+ bh=NyEom6Ygar2g2E7rLCqTeR+IWUlMO87YHp3qaA5pe+8=;
+ b=CJPvsRb+FeVzYc8gP6W0cF136DeokOuAD1BCNIGfE8dNt1REZCVnpFJ49KJgBJlBuQBo0FjL6
+ Jatlf+XM37dA1SJ3GZlKWla6xcQrmz2pBEgjBC4I6zKcqAZy83iSe60
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -129,29 +128,36 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-Its masters now have StreamIDs and iommus, and the SMMU has its clock.
+vop2_plane_atomic_update() takes the chroma plane address from
+fb->obj[0]. The planes of a framebuffer can be in different GEM objects
+(ADDFB2 with two handles, e.g. NV12M from a V4L2 decoder), and the
+window then fetches the chroma plane from the luma buffer.
 
-PD_PHP is powered off in deep suspend and the SMMU resumes from reset
-in bypass, so this needs arm-smmu-v3 system sleep support [1].
+Use fb->obj[1] for formats with more than one plane.
 
-Link: https://lore.kernel.org/r/20260929034510.2023173-1-praan@google.com [1]
+Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://lore.kernel.org/all/sashiko-outbox-206550@kernel.org/
+Cc: stable@vger.kernel.org
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index cb0a39f63788..0c3d59a39182 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -574,7 +574,6 @@ mmu600_php: iommu@fcb00000 {
- 		clocks = <&cru ACLK_MMU_PHP>;
- 		resets = <&cru SRST_A_MMU_PHP>;
- 		#iommu-cells = <1>;
--		status = "disabled";
- 	};
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 76d151b8bc52..e8ef83d6924b 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -1369,7 +1369,8 @@ static void vop2_plane_atomic_update(struct drm_plane *plane,
+ 		if ((pstate->rotation & DRM_MODE_REFLECT_Y) && !afbc_en)
+ 			offset += fb->pitches[1] * ((pstate->src_h >> 16) - 2) / vsub;
  
- 	pmu1grf: syscon@fd58a000 {
+-		rk_obj = to_rockchip_obj(fb->obj[0]);
++		if (fb->format->num_planes > 1)
++			rk_obj = to_rockchip_obj(fb->obj[1]);
+ 		uv_mst = rk_obj->dma_addr + offset + fb->offsets[1];
+ 	}
+ 
 
 -- 
 2.55.0
