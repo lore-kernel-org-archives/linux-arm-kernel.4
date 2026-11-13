@@ -2,86 +2,86 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B875D60A262A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:07:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D147360A3823
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:08:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=0SuFlwE2;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=b7f1bETo
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=1e0xugK2;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=xIoBe2kv
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
 	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
 	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=X0kISij2dA5dG+ZLDMffjTugHXeo/ScalkLGjjtZzlg=; b=0SuFlwE2TCrquT
-	P8mz2fUe1/3gjf8Xq2wMtfnBUnjnLXgPEhnJ7RqqKVw5scS92Jd9T/8XS754FqBSv4aq2vnQ8q8+X
-	RaX2GlppNArF55irYhYtdY4lovpuEOFCi4ZvE0ZrsSE0EyhDRYoPJujZlh4k+DC4fyoAIx4BdEP9U
-	HXVSC9YY30C74QW0Bkptx+CCvjWgTZZtM7f7AFjUOJR6sPoquObL163YhtspiB0qkDIw9yDsQJVc8
-	YtnelxK8D2hgK7k5UC8FEVCVypyHYwlP/KSIOBa6rfapzz1DszoqOg/dc/ISBP9DCgttp7xdys5JL
-	gOTg1qoLYjarnBraTOcQ==;
+	List-Owner; bh=498bVPav8qEVV2GYaYtJAWa131hP7OjDlibTUA65Q0o=; b=1e0xugK2YaXKd/
+	VIWWna6wGwT9E0IsivU2Q9o/33KXU+Hs/EOhEcJRlcRefXMUIWwxR7dok3GCDgcl0pbPnSwJuYodI
+	/c0L1Y5FGKIAaP70UHpyL6T4qZjlZxhOT9+pAO5UOeIAB4wTAvtTOcwvNWDddEc00Pdhy7THhgGsE
+	NFzuW4YpEk0AzPxscTwVRnYh3kAZOvgbAGh3rsmGidajkXXPMaJBj9Y9L8l1ZxDy9+tuw9DgPa09U
+	RNJ3ShZQlaeOCxivgfivb7Y7CWvCVzSgIVtcyIFR3qNI7CclwBPez5dTjrrk3qsrxgwpT4VApMHTC
+	kqwesDrY9Dp4rNiQj4Tg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwcr-0000000E5co-0WV6;
-	Fri, 13 Nov 2026 19:07:53 +0000
-Received: from mail-ej1-x634.google.com ([2a00:1450:4864:20::634])
+	id 1xRwd0-0000000E5mr-2vmB;
+	Fri, 13 Nov 2026 19:08:02 +0000
+Received: from mail-ed1-x535.google.com ([2a00:1450:4864:20::535])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwck-0000000E5WF-06Vk
+	id 1xRwcq-0000000E5aV-0uMi
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 19:07:47 +0000
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-c4cac7a7d3cso226811866b.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:07:45 -0800 (PST)
+	Fri, 13 Nov 2026 19:07:53 +0000
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-6b571979178so2683523a12.2
+        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:07:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794596864; x=1795201664; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794596870; x=1795201670; darn=lists.infradead.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:from:to:cc:subject:date
          :message-id:reply-to:content-type;
-        bh=X0kISij2dA5dG+ZLDMffjTugHXeo/ScalkLGjjtZzlg=;
-        b=b7f1bEToNvitVQ9iAroFBKsSh9U30TmoFe2YTTrCp6wIRM5N3gJ+Kxp138ndu5AiiW
-         HIEvNvi4cZ7dn/uegt+dSHYEWWKckoGW8CGLYFY2umI4uKHXs9jxMyZSPdpW3SIZ4yF5
-         zynkh5uWIuScvklTPH7xni7Wc/55swNyokniOeZ7g/KEEkKkBXTGLvV0qZARvCgIk5tI
-         SLvFoT69aZrdeBORtL9/qdV5P2WH2PLO1Yee3XaEXHf1ax+KAfzGhOtfGg9imUeWcCM6
-         wRPiwNRfFM/KHIv8CRdbtjK1kLA6o996XLgTr3Izowpp34WR/LfopA9vRlBqpy/iAGO4
-         oyXQ==
+        bh=498bVPav8qEVV2GYaYtJAWa131hP7OjDlibTUA65Q0o=;
+        b=xIoBe2kvC5kUyFUOr/xqBA5aN1HZwwbbTQNZUp975SyRTRm0zulvB7tYJG3Bs2iyiA
+         /rru693yGx8t7Gh64H5FSrSvY6MpFxUa6kaRSA4QoSD1tp14ZgJcicp1ft0cq0oObHPV
+         yTiXcq2QsTvkyUJX6wA2NFW0rAxUjkB1NkvhrCIgkS0gdvxpi7dxNGKH9TigYXvK7K5k
+         4LCD9Nv21PTSku0c6LIfxj14Gb1qT+i/W/QZ4IX0lcez2PLTYtpF8klSSJzu99Ii4vQA
+         1HgGmLZx1QpsQxdTkdkKrQWgZAzQghjlVZ+vMEKc9LUKU4fWCBcYCBkjQlwmUfbUad7T
+         jh/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794596864; x=1795201664;
+        d=1e100.net; s=20260707; t=1794596870; x=1795201670;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :content-type:mime-version:subject:date:from:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=X0kISij2dA5dG+ZLDMffjTugHXeo/ScalkLGjjtZzlg=;
-        b=RjeZArIuty8HEd1Cj1K9bBulkauk5Vn5dUK1LUwVEQMRqGdf75XEp66trCpXc1iOrj
-         khHNwRsK39q9H1YfwykQo5D6LVvF5IjLLmtYAlrtYKj2g+dRx2q4LFDCYeoPAN6hLGlg
-         132G7UQP6ESpwS0zL95w11WDJnVTtt5c2XS4mxBiQtMfmAGJTrdcZplMyS2kKCf/GvJ3
-         ++9j4Zz2DP9o2FWGnPCyHkVb8YTUqs0iAy5ApM71qyjo22JeNQN16Lk9ODt9wuDLVhyU
-         REi+5W/ZAespW9HjoAJRAIgUP/1QsMJUgX55/8EKcGn8AodOLnGrzZ9XS93bzMm41ph4
-         YqVg==
-X-Forwarded-Encrypted: i=1; AL+hErGUGttZxpCu+ISl+nrAqwd6R7s5lOfFi29bJyayv+0qPYoTaU828lg7OXSVgk08tLeysI2B/RHAUW13hR1572mS@lists.infradead.org
-X-Gm-Message-State: APuU4Z/u55zQdCpLke7G61TL9YGQSnl9YErk54zpMLSSZXkPk32d4SEW
-	5XjNfVjyBjSHtE/scYg/efO04/7uFvlXrNIG8J7fxqAB4Q5KkP3SAA6A
-X-Gm-Gg: AYBFou3L5Xv2Nhlb5hvG6lWRhJDY5dXb++9rgDhcfxkUI7aq2JDjIw6OXJv/LxZrZ7i
-	nGeLyVxW7m2scR/pdvYoievFIcGoPqhS8F+TnYHcanXkI84LnYxaz3Hya2yGd51HRQ+Ys1BhkUU
-	lzznW57PUiSB9xnMpDpz8gwDi0rmQtl1HXKxOfRoFO252yo8dma0CQLJUOkuayy+Ml3M3Yx3qj9
-	ny0DUPM8OLtZBLM7ELSpTBWm/LSC1ae3jL2yfc2A/Q3gnV2v6C332v8Vb15GuSNHLp/Ma38FbU/
-	/sv26o5JEa14UtLNYjK0c7JxVPOcvopV3sl7KckQ7U9mZ70mQonLiEDwdaxYe4QQgi8STo+fmWA
-	X1bM1O3Ym0ELRsSOwoelYkuS8+Pn6cULf7Ca6VGz4uMNn0VLtFGyKBDH/Xtpg5c9/iP3l0BBYYW
-	7VkQdkgNtPmwGIfwYH16vqj7r0nZM8T0cBR30P9Xt+1uaHzh7VxLJwOLoNFbRKkMNqJch/YSu0l
-	I5RO7BHcOIcOztoVL1vQWJswoHmVVUJRCdHCWRYHdsZZcQdfqcjCMW1b+BuXsGb9aWFqReTZ97d
-	eS/g97zZbQrzxIg3Dt/mNahYYvpDNhTvvzdiwqdekxu+dx5HZ9guNr0ef352Jrjc
-X-Received: by 2002:a17:907:9305:b0:c2e:4e08:19ab with SMTP id a640c23a62f3a-c50963d50e5mr310340266b.16.1794596864130;
-        Fri, 13 Nov 2026 11:07:44 -0800 (PST)
+        bh=498bVPav8qEVV2GYaYtJAWa131hP7OjDlibTUA65Q0o=;
+        b=aIhhrtRt5ZphxQ6Opnm49DUsnldAyeaItyBQkCJm/2HmmrqCnvDVckVRlqiGuilzb1
+         r51bpPItM3tuChbc+BXD9cikj1aBL5jlFOamyLSEcmGP+8YQodp81hrTIWZYSm6Gcp2z
+         KCP3HS6F8luV7i8IqrddmXnWm9cXvBYBz24/OHVr0wiAWYJgDw06XD20Tu0UhrBtvg3y
+         SBKBHj/bj6dEFA9UrDrObjFQukzTogy5oGdeXt4b7Y2YqzenFInvgI5KVRH7otB4+ohP
+         njJqvXtevKpUu09edFK5R2HQCxqyOyog703CJ1onGBQ+MYXqWICUERH3ewvaD2GdPXMK
+         cDpw==
+X-Forwarded-Encrypted: i=1; AL+hErGVXyGIr/yw9TidR4PI4qBUwsfMV54Z1bSYsDcDkoNDPDk7Aw8Kpsi6zcUVV19av0Yb8Pj4ypmRPtndzXMCHuac@lists.infradead.org
+X-Gm-Message-State: APuU4Z/ZxGk5skh3NSRmQZaJsm8FVv+sibtJQydFheUOFgxGQWA+xuko
+	CThoBgHpddcpMj7TrLrBCE/Rlym7C6SI/vaCoU0pQu6CsjiCCvx8DVjt
+X-Gm-Gg: AYBFou1pKH7exU9v2ndkAje0vyCk2rtTL1bbKn0HGsHC3s85r/95NZhbPkSIh+ynJgw
+	VqyULuKwf4D8nB4ayI8X6ufJ+4Wwdmn3gshf1L5RBQDrGPVm9dNoLWpGTG17+g4G6TMJ96GQ3jv
+	BtLtx396u7sV8slh82i5/wW0XbsEW9oNDlfSUXlnhzjs4hBj2fLbyS4AjrX1ehhFgW7mEdIx0pU
+	/XwrDKQ2IPKs5ZvSpWGPeazuXhwyAtvDvUiLA6qCr1wIh3KRfbDnRggxyKu4AsXpIoma7Dv9dvI
+	ZbHJsBFicwWjoYjwIxgWi+oJAZbkaeTAW8t5UhH9xVT6ZQMKqPEoFZ9J2GgzrNaGHOeb0hS4P+Y
+	7wGnOHveZrAzkLBiQy77CATlwdJ0iQKC/HIuwcAAeEbDpr6rSbUKn0P8ipItOAX7ykthxdZQOxa
+	GVwYceeHNv23du34cPWwCnjNnZN/uCt3gYDf0XdgWQi8KdIv8ZC4xSY4cXMKZVOc3uxqJDmEKmF
+	SvaWFG2xIf23o4HrmTo4b11VmMSILy++PPNR3j0QkAzCRI5F+zH1Nmxe1gWn0CqkXsJFwjuWA78
+	T63i3zax/zU3pE5qLFb2+faAJVeLzeReR90lSS7uhUC7fNKQElLxuf2KDZ5IxhC0
+X-Received: by 2002:a17:907:3f02:b0:c50:5186:6dc2 with SMTP id a640c23a62f3a-c509636b5f5mr389984566b.24.1794596870123;
+        Fri, 13 Nov 2026 11:07:50 -0800 (PST)
 Received: from [192.168.1.100] ([163.245.50.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b23b09sm129444166b.26.2026.11.13.11.07.41
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b23b09sm129444166b.26.2026.11.13.11.07.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 11:07:43 -0800 (PST)
+        Fri, 13 Nov 2026 11:07:49 -0800 (PST)
 From: Alexander Letuchiy <asalde.le1@gmail.com>
-Date: Fri, 13 Nov 2026 22:04:57 +0300
-Subject: [PATCH v2 1/9] dt-bindings: arm: mediatek: Add MT6895 and Xiaomi
- Poco X4 GT
+Date: Fri, 13 Nov 2026 22:04:59 +0300
+Subject: [PATCH v2 3/9] dt-bindings: watchdog: mediatek,mtk-wdt: Add
+ compatible for MT6895
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-initial-mt6895-v2-1-4ab0aa9fa391@gmail.com>
+Message-Id: <20261113-initial-mt6895-v2-3-4ab0aa9fa391@gmail.com>
 References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
 In-Reply-To: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -103,12 +103,11 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
  linux-input@vger.kernel.org, phone-devel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
  Alexander Letuchiy <asalde.le1@gmail.com>
 X-Mailer: b4 0.15.2
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_110746_113483_83CEB8D2 
-X-CRM114-Status: GOOD (  10.72  )
+X-CRM114-CacheID: sfid-20261113_110752_289625_021062EA 
+X-CRM114-Status: GOOD (  11.07  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -128,31 +127,28 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the compatible for the MediaTek MT6895 (Dimensity 8000/8100) SoC,
-along with the Xiaomi xaga board based on it, which is sold as Xiaomi
-Poco X4 GT, Redmi Note 11T Pro/Pro+ and Redmi K50i.
+Add a compatible string for the watchdog of the MediaTek MT6895
+(Dimensity 8000/8100) SoC. It does not fall back to mediatek,mt6589-wdt,
+which implies the MT6589 TOPRGU reset layout, as the MT6895 one is not
+known yet.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 180e6e4948e7..28180ed0e815 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -72,6 +72,10 @@ properties:
-               - archermind,mt6797-x20-dev
-               - mediatek,mt6797-evb
-           - const: mediatek,mt6797
-+      - items:
-+          - enum:
-+              - xiaomi,xaga
-+          - const: mediatek,mt6895
-       - items:
-           - enum:
-               - bananapi,bpi-r64
+diff --git a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+index 8e8991ac95ea..d0a73b9c81d6 100644
+--- a/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/mediatek,mtk-wdt.yaml
+@@ -24,6 +24,7 @@ properties:
+           - mediatek,mt6589-wdt
+           - mediatek,mt6735-wdt
+           - mediatek,mt6795-wdt
++          - mediatek,mt6895-wdt
+           - mediatek,mt7986-wdt
+           - mediatek,mt7988-wdt
+           - mediatek,mt8163-wdt
 
 -- 
 2.56.0
