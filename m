@@ -2,140 +2,79 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75C9606B5F3
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03652606B2ED
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=KXv2RWAF;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=SQewAFsY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=hWg7CmXo;
+	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=um0Z1Mgu
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
-	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=bTvZQ/J3zwV6a9C3C2/3Sw+smxQQBAB7hx36IzcWwnQ=; b=KXv2RWAFqn7oQmLfJlIxrHQVui
-	c95wj6S/NG1c4H9Adh6KyAMM82deKWjQEd+TVSrvn8ieUoNg3ykuZ2zePAnI7k7AuGxTMisGBS1tS
-	BayTBpKAHMeERPlDiVF1pmPq+gnTYCSgUV/9wi4ASRMI7NDI2EW89cquQ1nrnkaXu+66jmIYnIAEU
-	6M0JfiVrfiUL86nKwYWYvuk1PiFiiCFREJYgMFogUEg+kvdHZYMxBn/gVlUWTl1xsToKUR70h9PAU
-	5NGg2hJoOzcNNoNrrsZTjC5I6jIJo4FG7JfDYJXCgn/PxgdRfqFIWw81kheJVL2wJXRd55zO2f9Fk
-	bVtANl1Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=QhfGUW32CZ1pQ3WZy3XxoZITm270vtUPhzCkGIyBM7o=; b=hWg7CmXojFBcNQ
+	ZL6ArGdlRdnjd8+lpMqZyvBefMYaCdPSQXkFj5ms1/sMNc6/OKedHI4NLD41Ta5lhCj4NcDOOYG0K
+	FSHRGs3QpNQq7NsnvhchjZG7SN/A4veUPH4Tj0ZM3uuoG0kQYBuMjp54OxpyJrXSh4VtVDt1jkkiF
+	x/vJ33RR2S79EsXidRkiHLMcvMKjAWVjiSAJuZGuYj+vtIZfu/2XB1SzgffXTJjBmLK/k44lTJtbb
+	ee5CSGDVvhnvl+A1VvA08bIshuJ9GEe9gO8CpvSakbnk3egCSDb//9w9pxyFDZdJLMKaF2ruvAha/
+	aScBLGWccEULQDGyI0+A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtys-0000000DWeO-0oGl;
-	Fri, 13 Nov 2026 16:18:26 +0000
-Received: from mail-francesouthazlp170110003.outbound.protection.outlook.com ([2a01:111:f403:c207::3] helo=MRWPR03CU001.outbound.protection.outlook.com)
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRtyp-0000000DWcs-281u
+	id 1xRu7C-0000000DXti-2UmD;
+	Fri, 13 Nov 2026 16:27:02 +0000
+Received: from foss.arm.com ([217.140.110.172])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRu79-0000000DXsg-3BSR
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 16:18:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YT+Jn+sR4/Q7kwPVC0Q3usOlvY73KWzZHMtXV0lmK97fdTTWNMa52OCi2K2Q32SwrdhFlxJJbPn7pUqcgZVlpAUaaWaZYo13talCJr8Y1ogHonX5oZoSZbew167L9KAqzWIrnzEBRnbjq8qRuYWl2WqLbERZmxmUtaQefUrY+QvfPe3s483k8WQFIOXtHMvVN6nXs2m8j9RTyV+3v+BTutIWQ5XTE1xyehfYy/0Cl+iVYQdAKqbWNG9Rdc2ifmGWMAJkzhMu//6XyGvmlF1D0j7PW0KBdusIaqKXb8sQbPD0YhlTo9r91Yos0x5Kc+DDGRHCUB14uPTPylb8E2acRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bTvZQ/J3zwV6a9C3C2/3Sw+smxQQBAB7hx36IzcWwnQ=;
- b=eJ0ubKBtwrhr0Pfq8IdCAWdf5c8U9iT661mB1AZfGDPyl/kZZ0gzvk4tSUZW6O7w5kNPlC42LRSuLTO75O8lDA15obE96z61i7IctIUWNrg1ErweyZ9ufDc6eRaFYeS/1U8X61XOSFCUHfnIyIDzJlkqUzchLV/ZcLlgHjRxVY7gXbUi7+XtWqo6Vl569OWj62hoG2L99nPvVIVK3h2uziLTBBWkjY7lXRUs8bF6HaDrA/Mg7JV0/PnDVjqW6HEMrt+vyakmPKUMEBZl0sAAdG+VsKUcZArdpfP1/J3va6LoLkaVY+SEiDhtQNEBzAzCvTQ+QLSP68l57Apj/m05lw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bTvZQ/J3zwV6a9C3C2/3Sw+smxQQBAB7hx36IzcWwnQ=;
- b=SQewAFsYFMWWbow9O0WD/Ds5FoO+t5ArvsPNWgvm5VdP4ux506TMzCWWYCbaFfopx7Q+B9/Z+ZsH0gCGHylHBFS0oz5JXmKwlEu/2ZPY5ovUzDv9IEUqyP76uyRzbj+hsa6hkvudc1OapmiqQnNSAy1QP8DNfzUHerYIMCA60B+4BgYWfrSKw2J3RgU/hZgbbwXjnGyba5rpWUsNBfKfGyZfKaSN/Dj17VImc67j8N2mp3WwfLuEyvOa0v/9zatdKsO4VInu/GARxLU+hlKiNgziv1Bx5vGRDfoQbKmd7KLBLWNRzSRB9E9E9CykDb/EeCVp9tJkdZEMXS9CIIsvYg==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
- by AS8PR04MB9062.eurprd04.prod.outlook.com (2603:10a6:20b:445::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
- 2026 16:18:15 +0000
-Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
- ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
- 16:18:15 +0000
-Date: Fri, 13 Nov 2026 10:18:07 -0600
-From: Frank Li <Frank.li@oss.nxp.com>
-To: Marek Vasut <marex@nabladev.com>
-Cc: Vinod Koul <vkoul@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-can@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v6 1/3] dt-bindings: phy: ti,tcan104x-can:
- Document Microchip ATA6563
-Message-ID: <avc4P65RjTlVnO5d@SMW015318>
-References: <20260930214729.809649-1-marex@nabladev.com>
- <179447423905.428303.6835437411622016722.b4-ty@kernel.org>
- <077477f7-3b1e-4ed5-ac53-45ebc01c47d9@nabladev.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <077477f7-3b1e-4ed5-ac53-45ebc01c47d9@nabladev.com>
-X-ClientProxiedBy: DS7P220CA0017.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:8:223::11) To MI3PR04MB12438.eurprd04.prod.outlook.com
- (2603:10a6:290:76::14)
+	Fri, 13 Nov 2026 16:27:01 +0000
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9D37E143D;
+	Fri, 13 Nov 2026 08:26:52 -0800 (PST)
+Received: from [10.57.67.215] (unknown [10.57.67.215])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 343483F673;
+	Fri, 13 Nov 2026 08:26:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1794587215; bh=dx8muCVYeDPy2QKy19aHXLOssocMH92hk+wTEOh+S2c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=um0Z1MguqXQ8blB8JQE/qq8Zfq1bjvAzBvhOvIMT2Q6WCh2xsGWLNMiYlpJJx/RT8
+	 0/q22nwbKtcU1lUiKqeDaCDNKTHPeR8Ew8RenrzpRN/Kx6x1f+sGSI6pNMCsZk0kdw
+	 vBmst7zYpt+0NFsc/w8bPy44Rc8krIKETT+fI79E=
+Message-ID: <020d220a-6f21-46a9-a0d6-51e56a7b3a5a@arm.com>
+Date: Fri, 13 Nov 2026 16:26:50 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS8PR04MB9062:EE_
-X-MS-Office365-Filtering-Correlation-Id: c43c5473-0558-4154-a832-08df41a1b8ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|23010399003|376014|1800799024|366016|19092799006|10067099003|4143699003|11063799006|56012099006|261028144727099003|261022105027099003|261026140227099003|261026121527099003|261021123027099003|261009223027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: /3PXbPaDgvJtuQ6Ks/sDcy2iKToXKFCNudKckh8VVASpmE3TyGJ6evZp3WOfcAghVqkLq75/EkVIElysUA9GLe8BxfKAoVGoFtXWAq5ASKg7caofe2m8wKeTftHDsRmp7mEWpge+T97u4KEavLM90SrVoOtMNOvHS4zNc2hlIBV5cqEZgUvPTfonGdMTMuR3hyDJV+Nx2rHVjMNM5/GZ4wtInijSlZ9p2n5Jph/r7meJsI61OJa6lX1t1tdPG3aly4LL1s4U+gvLBREvIyqpAyZ1JOkhlg5BSNuzUkiETqVTsf2lX5DMVZIi6kKYAnqAp7Q96sSgGRnc3kA2k7ZXqTSb+nGyNP7Y8C1D+yFqqcd8MubXKHGlJ+J5+bR0en429DaYmMvPU4MU56OXUuD0qcBOJwqHxXhznTNoEHrMpEzrnMHfWYQNsdwevkl804sqOuynCq0KN9VNPdBVJTUFM6ibaaAsVMRTwUaTMxaEE7YOPc7UfYrd3nOcEzX13yW9lbN2q+LWYzWSb2LSK9HCK2lZRT81d8twT/kJKtxwxb1U7RaJFoQC0goMTgcoVAxMnQnGW0itrNqWXvVsHvDvIA7E+n+X/LEu48DcLBU7x8DTkFqkY3MP1tLMJ3PpZ1vuXSt3ZjN009NQmscDCQjL1GzTeVNxapHbMVXvtglolqE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(23010399003)(376014)(1800799024)(366016)(19092799006)(10067099003)(4143699003)(11063799006)(56012099006)(261028144727099003)(261022105027099003)(261026140227099003)(261026121527099003)(261021123027099003)(261009223027099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CQ6MIWmQDDGmu/aPFzaape9TZrOAYImZieX6oDoAGfLkkeHEtIKQFlP6f3Jz?=
- =?us-ascii?Q?53gexyUav8qt7+YeVCqZ2i9brHr7cziaFGA1j+3r/GPNlWusLpAknJFxRrft?=
- =?us-ascii?Q?4Dh+TJzB6Oreqjyo6ZS4PJ6VAODs02afPdZqeeaNzacSiyMI9eN5775Poofl?=
- =?us-ascii?Q?E8CTH/KEsewTTrYwPfq0iwzfIuQ2oxaxjuZ6I23t92dLLwcrWQluURK8DdFb?=
- =?us-ascii?Q?iQklUiX3I3yb7FQ27yXgGw1cSmuf12WQvg1Z0I8YNvnjqE0CqX/d3S7tIr24?=
- =?us-ascii?Q?CfIOZ1iXfWROZSliGBOXKDOGEpMaM7wuQuOSYR0uNFWDxbnENMWHzrmJSQnJ?=
- =?us-ascii?Q?VlV4g3EnGjDRXvTucLwRmhwjZeCu3s7b9nLQ3JqHae2Lq0Y62ykdwYNPpwvf?=
- =?us-ascii?Q?Vd8oChvyI+oZtV4nqEC0mwQukTL3nYtIkU4a5Hvi3vsA3FD0mlvQD+ivVZRx?=
- =?us-ascii?Q?txl44Vc331o+jlyb69Cbb8xw9TR9d1OzmL5DANDhwI6tX6x00p6pxDtTM5lI?=
- =?us-ascii?Q?Zi8rXBAwf8pU3w8OWSgovDsCkVsAPWdX0rmNbHeiW89HLD2RgGaXUbJqf/Fn?=
- =?us-ascii?Q?2Q/d8pU6iOaGnFmint7S/jWzI8H091dxkGFQTYzLZo93FiudJRNqTC3tD+SU?=
- =?us-ascii?Q?eAFph8/k3k6eJnaKDktn1MxI0iKlyEWAtg0fuM7xIxWdS7R7xcu2diDvzGvh?=
- =?us-ascii?Q?Vgm+7jKY+OHQXYt9n5UJbZhIhkjTOf4dmRAORweExc1beiS+K7OUz8x4vPhM?=
- =?us-ascii?Q?GLusEbwvJaKMFZJDayKvRUGc4xQdj3pwUtsBhyPoA4UBFvs8cq1IB2wY+wiy?=
- =?us-ascii?Q?Hh9K8/hkY3tX+6OzCJ+W5ww/NjZ5N71WKlgZUYHTFEF2bY3FCwomqDbCegO1?=
- =?us-ascii?Q?jr/E8tuL+s/pnYQSsBwA3e6WvxaZgDHfkLMPsYxxE0a2Fhaz7+ak1BdSRdTz?=
- =?us-ascii?Q?aaQy9hc3nigxKCqzdgEEFRUnWBsre1lLGQte7dDtHhQV11QUpWM8l5N5OwW1?=
- =?us-ascii?Q?1oKwCZuz7ltym/II2Yzrsl1k5XR7NIqh7lQtwmrbrBWnbjWmE0Y3n9rX/Yi2?=
- =?us-ascii?Q?usfZH0I9gQXQc8+lkk3PUh/mXdmU1DHfMzqEkpB8N0hoF8Qdj5sQMQCpFA4w?=
- =?us-ascii?Q?pwuenogPEHxSgUtpTZOijAyuFj2QlBpRUkHIoOXUQJnPvawxKH+Qb4yw7BZj?=
- =?us-ascii?Q?hsnlryTzxdpeQf+D7dxs2Rb/QMUIA4vK/Kjwqztlavnnj8srbJxRpRPU1Kut?=
- =?us-ascii?Q?3G+NEAdM3vreaEqEWsoNaTUBdNDEEOSFdq/IPOv35EKxSx/mI0jLRjpUnpYk?=
- =?us-ascii?Q?OPgZBlw5azuE4pi4g67s1Ebn6/gm2v4TIQjoh9qe/lKPeRBcAizwhQn9J9bP?=
- =?us-ascii?Q?43v3sjGnCddRP7DBcrhYiuIHU59jE79IwcpnawpcRAySKrJHTzm5/T4YI/c9?=
- =?us-ascii?Q?IH3yaZ/5W4UEiDlHJzJVulhBMbVw+hHaMalFBIyDh0dfScrnz5LXtyhxOQah?=
- =?us-ascii?Q?WGKg4pLatLDvINXsiJyf8P8XhMpMPjckNVXMwPqLUSTY7VBmKR5G5QPQ7HN1?=
- =?us-ascii?Q?DIXsLBECwuwrejObfse5wV3CNZdqSuymUG9p4AM6F0qdqGC4nLhr5FMwOyl8?=
- =?us-ascii?Q?gyujqoshau8hRjNoSCdJeq9QlDkHvjzNhzTJmIGcuLMDMipJHI0DNlKTFDHQ?=
- =?us-ascii?Q?WoaHfFg/xfeBLbWMFmqXsvQpASKUIICm07mG7ag2jgT7LJ5ZEAlQm+BDXafu?=
- =?us-ascii?Q?RTkbHVkLkGDauf6crZNY9iIccI4ZvgNL3dPQUiSdRbUIxpM2OW5l?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c43c5473-0558-4154-a832-08df41a1b8ee
-X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 16:18:15.8851
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ghaS0jxI0gFDe0vUKURxej5ZZ3GfA8+tbyu/l8zep0mEZ5T6iJvG0cXdD4/TIh3395aS2S3cBkzTXpI/WvHwENjVuS+AhlU4dFfYOuirlsOPCiBakJ5AjxSJUZvfZ58m
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9062
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 07/12] KVM: arm64: CCA: Tear down RTTs
+Content-Language: en-GB
+To: Steven Price <steven.price@arm.com>, kvm@vger.kernel.org,
+ kvmarm@lists.linux.dev
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Marc Zyngier <maz@kernel.org>,
+ Will Deacon <will@kernel.org>, James Morse <james.morse@arm.com>,
+ Oliver Upton <oliver.upton@linux.dev>, Zenghui Yu <yuzenghui@huawei.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Joey Gouly <joey.gouly@arm.com>, Alexandru Elisei
+ <alexandru.elisei@arm.com>, Christoffer Dall <christoffer.dall@arm.com>,
+ Fuad Tabba <tabba@google.com>, linux-coco@lists.linux.dev,
+ Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+ Gavin Shan <gshan@redhat.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ Alper Gun <alpergun@google.com>, "Aneesh Kumar K . V"
+ <aneesh.kumar@kernel.org>, Emi Kisanuki <fj0570is@fujitsu.com>,
+ Vishal Annapurve <vannapurve@google.com>, WeiLin.Chang@arm.com,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kohei Enju <enju.kohei@fujitsu.com>
+References: <20261111145758.217946-1-steven.price@arm.com>
+ <20261111145758.217946-8-steven.price@arm.com>
+ <e1690e53-70fb-47fe-bd06-4758b1e196d2@arm.com>
+ <6c362b9e-6ac3-4cbb-8e9d-d666f87ef8c2@arm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <6c362b9e-6ac3-4cbb-8e9d-d666f87ef8c2@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_081823_550324_9D4D25C5 
-X-CRM114-Status: GOOD (  11.92  )
-X-Spam-Score: 0.0 (/)
+X-CRM114-CacheID: sfid-20261113_082700_140370_B327777C 
+X-CRM114-Status: GOOD (  25.28  )
+X-Spam-Score: -4.4 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -146,35 +85,147 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-3.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 12, 2026 at 01:35:17PM +0100, Marek Vasut wrote:
-> On 11/12/26 10:03 AM, Vinod Koul wrote:
-> >
-> > On Wed, 30 Sep 2026 23:46:38 +0200, Marek Vasut wrote:
-> > > Microchip ATA6563 is High-Speed CAN Transceiver with Standby Mode.
-> > > It is pin-compatible with TI TCAN1042 and has a compatible programming
-> > > model, therefore use ti,tcan1042 as fallback compatible.
-> > >
-> > >
-> >
-> > Applied, thanks!
-> >
-> > [1/3] dt-bindings: phy: ti,tcan104x-can: Document Microchip ATA6563
-> >        commit: b338621a7e68bb9dc91d08e1774262deb0db50f6
-> Thank you.
->
-> Frank, I think you can now proceed with the rest ?
+On 13/11/2026 15:05, Steven Price wrote:
+> On 13/11/2026 01:04, Suzuki K Poulose wrote:
+>> On 11/11/2026 14:57, Steven Price wrote:
+>>> The RMM owns the stage 2 page tables for a realm, and KVM must request
+>>> that the RMM creates/destroys entries as necessary. The physical pages
+>>> to store the page tables are delegated to the realm as required, and can
+>>> be undelegated when no longer used.
+>>>
+>>> Creating new RTTs is the easy part, tearing down is a little more
+>>> tricky. The result of realm_rtt_destroy() can be used to effectively
+>>> walk the tree and destroy the entries (undelegating pages that were
+>>> given to the realm).
+>>>
+>>> Tear down a created Realm whether it is still new or has been activated.
+>>> Unmap the Realm IPA space once during stage-2 teardown. Defer
+>>> destruction of non-root RTTs until final Realm destruction, after
+>>> REALM_TERMINATE and before destroying the RD; root RTTs remain until the
+>>> RD has gone away.
+>>>
+>>> Signed-off-by: Steven Price <steven.price@arm.com>
+>>>
 
-Can you rebase to imx/dt64? There are not base-commit informaiton, I can't
-apply.
+...
 
-Frank
+>>>      #endif /* __ASM_KVM_RMI_H */
+>>> diff --git a/arch/arm64/kvm/mmu.c b/arch/arm64/kvm/mmu.c
+>>> index 9df3f8d5b4ef..be014f6c00e7 100644
+>>> --- a/arch/arm64/kvm/mmu.c
+>>> +++ b/arch/arm64/kvm/mmu.c
+>>> @@ -1145,9 +1145,25 @@ int kvm_init_stage2_mmu(struct kvm *kvm, struct
+>>> kvm_s2_mmu *mmu, unsigned long t
+>>>        return err;
+>>>    }
 
->
+...
+
+>>>    void kvm_uninit_stage2_mmu(struct kvm *kvm)
+>>>    {
+>>> -    kvm_free_stage2_pgd(&kvm->arch.mmu);
+>>> +    if (kvm_realm_is_created(kvm))
+>>> +        kvm_realm_uninit_stage2(&kvm->arch.mmu);
+>>> +    else
+>>> +        kvm_free_stage2_pgd(&kvm->arch.mmu);
+>>
+>> We added kvm_free_stage2_pgd() from kvm_destroy_realm() for Realms in
+>> the previous patch. Should we move that here since, this is where we
+>>
+>> 1. Deal with tearing down stage2
+>> 2. And more importantly we are skipping it for Realms.
+> 
+> I'm not quite sure what you're asking for here. We can't free the stage2
+> PGD while the realm is existing (because the RMM has the pages) - so we
+> defer it.
+
+I understand. My point is, we are deferring the stage2 free for Realm
+in this patch, without explicitly showing where it is done. We have
+introduced that as part of kvm_destroy_realm() in Patch 6.
+
+My recommendation is to add kvm_free_stage2_pgd() to kvm_destroy_realm()
+in this patch, where we are showing when this is deferred to. e.g.,
+this patch functionally leaves the reader with no clue when this is
+actually freed.
+
+Does that make sense ?
+
+
+> 
+>>>        kvm_mmu_free_memory_cache(&kvm->arch.mmu.split_page_cache);
+>>>    }
+>>>    diff --git a/arch/arm64/kvm/rmi.c b/arch/arm64/kvm/rmi.c
+>>> index 69c628cfb6c7..b904e6541fb0 100644
+>>> --- a/arch/arm64/kvm/rmi.c
+>>> +++ b/arch/arm64/kvm/rmi.c
+>>> @@ -11,16 +11,193 @@
+>>>    #include <asm/kvm_pgtable.h>
+>>>    #include <asm/virt.h>
+>>>    +static inline unsigned long rmi_rtt_level_mapsize(int level)
+>>> +{
+>>> +    if (WARN_ON(level > KVM_PGTABLE_LAST_LEVEL))
+>>> +        return PAGE_SIZE;
+>>> +
+>>> +    return (1UL << ARM64_HW_PGTABLE_LEVEL_SHIFT(level));
+>>> +}
+>>> +
+>>
+>> We agreed to use kvm_granule_size() instead of this ?
+>>
+>> https://lore.kernel.org/all/cb183290-3fee-4535-aa3e-5cc172c2323a@arm.com
+> 
+> That was a screw-up when I was squashing fixes back in - the next patch
+> removes the code. I'll fix this up in the next version so it never
+> appears. Thanks for pointing it out.
+> 
+>>>    u32 kvm_rmm_ipa_limit(void)
+>>>    {
+>>>        return u64_get_bits(rmi_feat_reg(0), RMI_FEATURE_REGISTER_0_S2SZ);
+>>>    }
+>>>    +static int get_start_level(struct realm *realm)
+>>> +{
+>>> +    return 4 - max(2, stage2_pgtable_levels(realm->ia_bits));
+>>
+>> I don't think we need this "max()". ia_bits is guaranteed to be
+>>> = 32bit (ARM64_MIN_PARANGE_BITS, see kvm_init_ipa_range()), implying
+>> that we have at least 2 levels on all page sizes.
+> 
+> Ah, very true - Sashiko complained, but I hadn't noticed
+> ARM64_MIN_PARANGE_BITS provided an effective minimum. I'll remove the
+> max() and add a comment.
+> 
+>>> +}
+>>> +
+>>> +static void free_rtt(phys_addr_t phys)
+>>> +{
+>>> +    kvm_account_pgtable_pages(phys_to_virt(phys), -1);
+>>> +    if (rmi_free_delegated_page(phys))
+>>> +        kvm_account_pgtable_pages(phys_to_virt(phys), 1);
+>>
+>> Is there a reason why remove the account before freeing ? Could we do
+>> this after we have reclaimed it ?
+> 
+> Sashiko again:
+> 
+>> Does calling kvm_account_pgtable_pages() after rmi_free_delegated_page()
+>> access the page after it has already been freed and uncharged from its
+>> memcg?
+> 
+> Basically the problem is that rmi_free_delegated_page() frees the page
+> back to the allocator. So doing the account after freeing means that
+> technically the page could have been reused.
+
+Thanks, for the explanation, that makes sense.
+
+Cheers
+Suzuki
+
 
