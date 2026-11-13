@@ -2,73 +2,62 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B08606A33A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EE32606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 10:18:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=jsQsc1re;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BEGSWt5P
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=GZvM5ORh;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EyEMYem5
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
-	Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
-	MIME-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=KZ74UW0TYHmPuEppZWYj1rqUKpEM+BQypI3pzsCGhK4=; b=jsQsc1reFn6psh
-	dyUIS8DLSj09ZcLD2FLQP9Uet6ttQIg35bVWvHfD3m0aKTH/dedVnCiVxdcr2kju7SbAYQuWbMYfB
-	7yncQxV0ywoylC9Tdw7FZ63AqDvQm8TvZ1SMlWyfcY8u+tFMeOlxgmNAKBn8QcwOL0ILAfkNnB+g3
-	+eTiaQX5svAAftN1nX71c+OT1/gibhbtAPPc3vqNkNitVCcytgZ5xrXGUayT7X0MnR2BT10Ye9kkm
-	abDtgED77Nqlhnc4ksFEG8y4i6Aiq1/ac7Dy25KbsBm+P7wZJUGwhKyfYdIRITgoqSbPBAJcUXz/N
-	G3yxl29X+PWxTEdwafnA==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=GGgxWdsm93oOtNMk87CKDJ/BAFYtLSNmS1bccCNzaVk=; b=GZvM5ORh4pSfR4ZtHpKy3jvQle
+	mb2Sfemul4drIVHC1aU98mc++JF5SCPHKhGidW611sSGx1PgB+e24Nl4vbYYxrEpssmk6d/Cku+mK
+	GWoA9Hnpsu6HbPdw+l7068ITH0ps1fYquSp0AM52/3q4NjGRq84x8FkDgjAFOQF9qdicy2s2AJBnW
+	7RTRjzQ38OiVggHQcsbKDVZbEWvr2lFpiPCf70Nab2sJl2Mn1n3SJAYLpBFDJS6FnICLQ8j/HHFm5
+	StHzyHm8APeR4DKsE6O1DZorqVaB875s+N2T/6OLtMU5OE/Zbw5CEkr0MfkpuvEOZrnH5xDJlPikd
+	i0bIASKQ==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRoKN-0000000CKFf-0eQC;
-	Fri, 13 Nov 2026 10:16:15 +0000
-Received: from sea.source.kernel.org ([2600:3c0a:e001:78e:0:1991:8:25])
+	id 1xRoM0-0000000CKUe-1LIo;
+	Fri, 13 Nov 2026 10:17:56 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRoKL-0000000CKFE-0sR8
+	id 1xRoLz-0000000CKU9-07O3
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 10:16:13 +0000
+	Fri, 13 Nov 2026 10:17:55 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by sea.source.kernel.org (Postfix) with ESMTP id DB4F544E83
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:16:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C079F1F000CA
-	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:16:12 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8736C4668E
+	for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 10:17:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D74291F000C7;
+	Fri, 13 Nov 2026 10:17:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794564972;
-	bh=KZ74UW0TYHmPuEppZWYj1rqUKpEM+BQypI3pzsCGhK4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc;
-	b=BEGSWt5PyoYcoZmBiIeq0CohHcsrFxELU+qdTbmL74Ij9U6IK5oGbyQQ422CpXCqM
-	 VIHgV8e0jJqEbibLIypOeJiNatRsdrd551N13qRMc8pJAft4U30ARBSYVdhFsaFYdk
-	 S7Dsd2GfRO5tHPvcEkLnGRM+saM6utpot+xeBxXg010G2IOrVqPziCd51gdUBWf0jH
-	 SbZAW8bJvsDj8SOKpn8h5YRCaXerVjMZStXQ7UBhVaKPw1yvJdkXzSlxj1SAJ2h9zw
-	 fq5c4jzYVz0PTdMD+tpsvR6QFNQWk1wJnzCNB86VKNJaLqwoJTv0MUCcnSApJXRlRv
-	 IAYUDTQaP6Twg==
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-48ed0b68895so965200fac.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 02:16:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AL+hErFze3SyNlwyfYAYVwdG4kTXqOF7AvzJ33d6snflY92iHuwsd2udiCSB8V8MicVf72iCoyMuhpBnO+GT+IH6bKep@lists.infradead.org
-X-Gm-Message-State: APuU4Z+W2vCewtWdSWA4o887nCDfuO3+3DrJf8UEozOtKF93JXTvpNkh
-	/CiOXeiDWNY/QeaqiAhSrwvg9pYoSR8UdOX4YOwufV6jXQTJ23ssUbRNs1JmdPieuZ5yO4OZ2A+
-	QU492IVxZRLcpLo6Br48ynV9ZpeFBpdA=
-X-Received: by 2002:a05:6871:824:b0:48f:e157:eb25 with SMTP id
- 586e51a60fabf-4afdf7391e8mr2102560fac.44.1794564971946; Fri, 13 Nov 2026
- 02:16:11 -0800 (PST)
+	s=k20260515; t=1794565074;
+	bh=GGgxWdsm93oOtNMk87CKDJ/BAFYtLSNmS1bccCNzaVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=EyEMYem5OQwfLEDudOU/czDVpOeZtcMY8XF+TmxL/ln6bhl5jo5U3MKMeYMOp1bZU
+	 /CeTF5BnUKsXFfcmaMf0tEoGzkpNFwCs+ZN2IKVikeLpSRdIL8fkp9doIP1uGS0oKM
+	 82BLxNcwHYVEmqVEwxDmJX+0LJZ4ecZI/dmlXUekSeTuzdmCEuiJ9ELRU8A32VLKCI
+	 yjdc2FbX9ZBJucQE4T05/TORhbYTHpk3i1PndM67+i4VvFGTOpZPBuHjk/+z9uU1Jx
+	 V3bqKNq5mlg1hjJ+9UjKr4yHDBQ3OlSUGGShKw6elvWbWrF4POM5VCPHE9nqputC0z
+	 UwVogOc20F4uA==
+Date: Fri, 13 Nov 2026 11:17:51 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: devicetree@vger.kernel.org, Bartosz Golaszewski <brgl@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: gpio: nomadik: Describe DB8500 and GPIO hogs
+Message-ID: <20261113-antique-ninja-serpent-ac4f09@quoll>
+References: <20261107-ux500-gpio-hogs-v1-1-123fb308fe90@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261104140820.65243-1-asv@kernel.org>
-In-Reply-To: <20261104140820.65243-1-asv@kernel.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 13 Nov 2026 11:15:56 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn=T5YPDG--pPsdbV4tGxjNFH16ZaceN-Lw7B=TSJqhMw@mail.gmail.com>
-X-Gm-Features: AclHuK_xp4juiDSf6WxJ1r0I6C2KBl-UfweFaPL-sasy9mlFdKqm6R0MIJqytLM
-Message-ID: <CAD++jLn=T5YPDG--pPsdbV4tGxjNFH16ZaceN-Lw7B=TSJqhMw@mail.gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: pinctrl-single: Add Alexander Sverdlin
-To: Alexander Sverdlin <asv@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Lokesh Vutla <lokeshvutla@ti.com>, 
-	Nishanth Menon <nm@ti.com>, Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Tony Lindgren <tony@atomide.com>, Haojian Zhuang <haojian.zhuang@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261107-ux500-gpio-hogs-v1-1-123fb308fe90@kernel.org>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -81,25 +70,26 @@ List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
 X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
 	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 4, 2026 at 3:08=E2=80=AFPM Alexander Sverdlin <asv@kernel.org> =
-wrote:
+On Sat, Nov 07, 2026 at 09:35:00AM +0100, Linus Walleij wrote:
+>    "#interrupt-cells":
+> @@ -60,6 +68,11 @@ properties:
+>    resets:
+>      maxItems: 1
+>  
+> +patternProperties:
+> +  "-hog$":
+> +    type: object
+> +    $ref: /schemas/gpio/gpio-hog.yaml#
 
-> Add myself as a co-maintainer of pinctrl-single driver.
->
-> Link: https://lore.kernel.org/all/CAD++jLn8yxh3LmUzbb2vZfJFJB=3D_mCZ+VeQh=
-nZktfmuMiv5uEg@mail.gmail.com/
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Haojian Zhuang <haojian.zhuang@linaro.org>
-> Cc: Linus Walleij <linusw@kernel.org>
-> Signed-off-by: Alexander Sverdlin <asv@kernel.org>
+Instead for the name and schema:
+https://elixir.bootlin.com/linux/v6.11-rc5/source/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml#L72
 
-Patch applied!
+Best regards,
+Krzysztof
 
-Yours,
-Linus Walleij
 
