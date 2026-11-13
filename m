@@ -2,73 +2,64 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B39C6606A331
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2993606A327
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 14:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=y+4IXItQ;
-	dkim=pass (2048-bit key) header.d=0leil.net header.i=@0leil.net header.a=rsa-sha256 header.s=20231125 header.b=RR6557OX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ib/JY9G+;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PYlt8ay7
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:Message-Id:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:From:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
-	List-Unsubscribe-Post:List-Owner;
-	bh=9SHVJ3ztCnSJ27zC/+zhu0OPeKjyVFzIDEXKL3ZFpaM=; b=y+4IXItQ+9eRuIWSUfJhxYqLt4
-	nY1wqq2tOUqG2CvnhSJPA4EiTh3/+K+ykwCqOQPUOufo5znUrh4t5rLM9K02ahupqPU7z/dPCQZAe
-	0vFl447IKSsa/6FTfi31lsv9L5QpZrMYd8j/HRhHWeLMiMlVS76R7Lyd2VmfJQOj3fF6QUpPrtlZ/
-	XX83faDIK13xxNjmDDLq3qAWjzl+yLnW05AVhzV7f0dpgCLiXtwo0w9JEqldORXA+6aXtLKAxIPo4
-	jVw27ZcHvFS6na1O7VPLzbfO/x3XcqchqTkMlIP2ETE+WA8lGPIL1vndNmSGzUWG4HOeMgNRHbGbk
-	4t5sruaQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Date:Message-Id:Subject:References:In-Reply-To:Cc:
+	To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=zbkck7rK9ZeAo1XYOdrmCRWw5wC2GxwTnQHKjlo4UCA=; b=Ib/JY9G+LWlSE7
+	JoFv648NH1Y+45gF0T0RpripCxm/g+QovT347KBuGR8XaWqXrEvKUbt/VwqUfqhFkTx8Jf+qiffj0
+	JF9tuWymHybmi/xFDw1g+bJzQYuXZTMOLEs+/z9dkg7y4K9k1/rkALMFGOldN7G0HCHKfv9KZWWWD
+	pWRF+vZvS3Cn5XvZPO+G9HIsAuesOcjvv7VINfzif1K2AGR/3qCA6bKkv+u9sa5UU3hKmvZAHGP6b
+	iUa214S4SSfkRNw7V6moVLBurKubfrrTqdYp2qcXr6C+mnjGqYP0l29JsnuMA/Ug8/m6jDZj7lsVU
+	nzZFbWWbMbnYbBZLWX9w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRsgt-0000000DGf0-0QoB;
-	Fri, 13 Nov 2026 14:55:47 +0000
-Received: from smtp-8fad.mail.infomaniak.ch ([83.166.143.173])
+	id 1xRsh8-0000000DGmF-43lr;
+	Fri, 13 Nov 2026 14:56:02 +0000
+Received: from sea.source.kernel.org ([172.234.252.31])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRsgp-0000000DGcp-1fJw
+	id 1xRsh7-0000000DGla-284R
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 14:55:45 +0000
-Received: from smtp-3-0000.mail.infomaniak.ch (smtp-3-0000.mail.infomaniak.ch [10.4.36.107])
-	by smtp-4-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4jR0gK0t2CzHPN;
-	Fri, 13 Nov 2026 15:55:41 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=0leil.net;
-	s=20231125; t=1794581740;
-	bh=9SHVJ3ztCnSJ27zC/+zhu0OPeKjyVFzIDEXKL3ZFpaM=;
-	h=From:Date:Subject:To:Cc:From;
-	b=RR6557OX7nqTqnRLnpCH/gRxUYBPmETC/asPEUMkD7oDnhbpzqMxEMp3CinARlePr
-	 WSrNRWdDCc0dW23DOC1GPxutrNZVYBDwFGe+UETNdKfwXnjpdp/kL4ra+fjDrsZy5J
-	 r+LJvnGE7EJiiPPh+L5365SCQfahJjAfVai3T06f8pNW0pZ4qPEZJ881dPiU8akezD
-	 +wsFj8GCUYi3kS4O3t+xg8rN/qQQ8T9BT6bRbVgXGudSajukI1mRc/MRJzT2e8EE+Q
-	 +sNSsrx5trlCoXL606uzwnFh4E8PfyqFeq30Q4i7FMUnKuFyAoepm9s3DVTCHfzZvO
-	 H0xZ04yOeMxbg==
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4jR0gH4tFTzqcg;
-	Fri, 13 Nov 2026 15:55:39 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Fri, 13 Nov 2026 15:55:28 +0100
-Subject: [PATCH v2] arm64: dts: rockchip: support camera module on Haikou
- Video Demo on RK3399 Puma
+	Fri, 13 Nov 2026 14:56:01 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 0337F40711;
+	Fri, 13 Nov 2026 14:56:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7F4E1F000C4;
+	Fri, 13 Nov 2026 14:55:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794581760;
+	bh=zbkck7rK9ZeAo1XYOdrmCRWw5wC2GxwTnQHKjlo4UCA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=PYlt8ay7/f01k+uAtrpNqYuG1hJw+/7LJttkyP9OcoJhqFsQjdDouFWy74sFH4Kmw
+	 +v3JSPjXTu8L5t9L/6vLbPR5xwY6kwSjLkzJ1qjh50v//sNp4RcwtxoSTE9jLbba95
+	 hEoV5EW0v6d1HLpQWgmW4R09uAG0WoD0WlG9FOUfjA4PPQwLig5FMRf5NIOb4XGlRF
+	 MLV89MQJVgkELPF47LPzdjydQ/7v8/L9KmyO52d8bb3+Kg0C9j7nopohNTBTDuzSn+
+	 snMiWc9AsHkyNsbFxq2lc/Fx28LQGBjUq77kdmGXRHkkT2BgRq3xRkKbqtDvesbv4J
+	 KSK+ANyLaVrRg==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Sven Peter <sven@kernel.org>, 
+ Janne Grunau <j@jannau.net>, Yuvan Shen <yuvanshen09@gmail.com>
+Cc: Neal Gompa <neal@gompa.dev>, Hector Martin <marcan@marcan.st>, 
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ mfd@lists.linux.dev, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+In-Reply-To: <20261101-upstream-macsmc-key-info-v1-1-fa9ff863d199@gmail.com>
+References: <20261101-upstream-macsmc-key-info-v1-1-fa9ff863d199@gmail.com>
+Subject: Re: (subset) [PATCH] mfd: macsmc: Hold the lock while reading key
+ info
+Message-Id: <179458175847.70591.13412979849674221335.b4-ty@b4>
+Date: Fri, 13 Nov 2026 14:55:58 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-rk3399-puma-haikou-video-demo-cam-v2-1-e71acf307f92@cherry.de>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAA/5WOQQ6CMBBFr9LM2jGUKlJW3sOwKO0oI4GSFhoJ4
- e4GPIHLn7z891aIFJgiVGKFQIkj+wEqkZ8E2NYML0J2UAnIs7yQMlMYOqW0xnHuDbaGOz9jYkc
- eHfUerenRlUVDhdJGS4KTgDHQkz+H41H/dpybN9lpP96JluPkw3JEJLlz//iSRInaXLTTt1Lp5
- nq3LYWwnB1BvW3bF0/XkrbkAAAA
-X-Change-ID: 20261103-rk3399-puma-haikou-video-demo-cam-d86be639a91e
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.17-dev
-X-Infomaniak-Routing: alpha
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_065543_582315_6AD9B8A1 
-X-CRM114-Status: GOOD (  13.63  )
-X-Spam-Score: -2.1 (--)
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.16-dev-ad80c
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -79,141 +70,29 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-23.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-8.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+On Sun, 01 Nov 2026 11:51:58 -0600, Yuvan Shen wrote:
+> apple_smc_get_key_info() releases the SMC mutex when apple_smc_cmd()
+> returns, and only then copies the reply out of the shared memory buffer.
+> A command issued by another thread in between can overwrite the buffer,
+> so the key's size, type and flags can come from a different reply. The
+> hwmon and power sub-devices call it from their probe functions, while
+> the other sub-devices may already be issuing commands.
+> 
+> [...]
 
-The Haikou Video Demo adapter has a proprietary connector for a camera
-module which has an OV5675 camera sensor and a companion DW9714 focus
-lens driver.
+Applied, thanks!
 
-This adds support for the camera module on RK3399 Puma module fitted on
-a Haikou devkit with the Haikou Video Demo adapter.
+[1/1] mfd: macsmc: Hold the lock while reading key info
+      commit: 8734b221c98ea48b16c4d9389183e869b72b0e5f
 
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
-Camera only works once the ov5675 driver is adapted[1] to work with
-24MHz MCLK. With the similar work done for RK3588 Tiger[2], we now have
-all our modules supporting the same set of features when used in
-conjunction with Haikou Video Demo.
-
-Same request as made in [2], please only merge this once the OV5675
-series[1] is merged.
-
-[1] https://lore.kernel.org/linux-media/20261026101646.2450051-1-heiko@sntech.de/
-[2] https://lore.kernel.org/linux-rockchip/20261026102027.2451025-1-heiko@sntech.de/
----
-Changes in v2:
-- added missing #address-cells and #size-cells to &isp1/ports,
-- Link to v1: https://patch.msgid.link/20261103-rk3399-puma-haikou-video-demo-cam-v1-1-9a49d97839b5@cherry.de
----
- .../rockchip/rk3399-puma-haikou-video-demo.dtso    | 58 ++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-index 141a921a06e47..013920d9a3392 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou-video-demo.dtso
-@@ -16,6 +16,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/leds/common.h>
-+#include <dt-bindings/media/video-interface-devices.h>
- #include <dt-bindings/pinctrl/rockchip.h>
- 
- &{/} {
-@@ -100,6 +101,12 @@ &i2c1 {
- 	/* OV5675, GT911, DW9714 are limited to 400KHz */
- 	clock-frequency = <400000>;
- 
-+	focus: focus@c {
-+		compatible = "dongwoon,dw9714";
-+		reg = <0xc>;
-+		vcc-supply = <&cam_afvdd_2v8>;
-+	};
-+
- 	touchscreen@14 {
- 		compatible = "goodix,gt911";
- 		reg = <0x14>;
-@@ -122,6 +129,53 @@ pca9670: gpio@27 {
- 		pinctrl-names = "default";
- 		reset-gpios = <&gpio4 RK_PD6 GPIO_ACTIVE_LOW>;
- 	};
-+
-+	camera@36 {
-+		compatible = "ovti,ov5675";
-+		reg = <0x36>;
-+		assigned-clocks = <&cru SCLK_CIF_OUT>;
-+		assigned-clock-rates = <24000000>;
-+		clocks = <&cru SCLK_CIF_OUT>;
-+		avdd-supply = <&cam_avdd_2v8>;
-+		dvdd-supply = <&cam_dvdd_1v2>;
-+		dovdd-supply = <&cam_dovdd_1v8>;
-+		lens-focus = <&focus>;
-+		orientation = <MEDIA_ORIENTATION_FRONT>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cif_clkouta>;
-+		reset-gpios = <&pca9670 6 GPIO_ACTIVE_LOW>;
-+		rotation = <180>;
-+
-+		port {
-+			cam_output: endpoint {
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <450000000>;
-+				remote-endpoint = <&mipi_in_cam>;
-+			};
-+		};
-+	};
-+};
-+
-+&isp1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			mipi_in_cam: endpoint@0 {
-+				reg = <0>;
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <450000000>;
-+				remote-endpoint = <&cam_output>;
-+			};
-+		};
-+	};
-+};
-+
-+&isp1_mmu {
-+	status = "okay";
- };
- 
- &mipi_dsi {
-@@ -145,6 +199,10 @@ mipi_in_panel: endpoint {
- 	};
- };
- 
-+&mipi_dsi1 {
-+	status = "okay";
-+};
-+
- &mipi_out {
- 	mipi_out_panel: endpoint {
- 		remote-endpoint = <&mipi_in_panel>;
-
----
-base-commit: 05441d697f7f9a927264f4058cbbc6a03dfcac9d
-base-tree: git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git master
-change-id: 20261103-rk3399-puma-haikou-video-demo-cam-d86be639a91e
-
-Best regards,
---  
-Quentin Schulz <quentin.schulz@cherry.de>
+--
+Lee Jones [李琼斯]
 
 
