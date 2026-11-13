@@ -2,89 +2,70 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C9F606A339
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B790606A33F
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 08:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=uAgqC19f;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=desiato.20200630 header.b=Qp8IgAEo;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.a=rsa-sha256 header.s=dkim header.b=WrW71oZA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=UKvrRA1M;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PBzV4Wsp
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Type:
-	Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date
-	:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:Resent-Date:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=X132ufY391nPowA86jFdiKtqLmI5hdL3TIQJBsPEY5Y=; b=uAgqC19fG+LOJHtwCkn6GEJ9+3
-	Il0n2Cm9deAcOssMGnyGLOg2qwAc+pRrstcqLP0AFsLd9jrj2uS83XxQ164X2HyR/5dPl15sw2WsZ
-	/PlivKQ9b9eOUWn/K4PMaP3V6X+zPo9J7rMyU9D4OG0bl0cHJUMIKLePmvpLRWqUDIwdfzMhye2m1
-	RZ6fcPm19gNdvazQveBJ5zFzsRT5W8E7awPGdZKQNNIDQByXq4M2yezrqySXTcgtfDHQbqoQVE4uM
-	yfPWWoPFKeB74XbFc5zVQV0fUxCgWs1TueUhg7Jsm5iaHmN2acIiOvPPCPy8SexrKLMrxf3mEMSIA
-	Mq7N2XaA==;
+	bh=WcbMZkXCoDF1VinxpXAJnqvIlxoOmrzgyATGNwq43+A=; b=UKvrRA1MaK7A55eBWG2rbJek91
+	BMy1+tJLJNS+6t2BAVhUC9ksV+qx4ywXYEi0QqIp/SbdbvXCr89nwNQ2w+073PBsV43hxwrVnOpPP
+	g13tvjijcAStvV3opKP0ck0Ax3o3s9ixp2fJq+Z3rNU5vtX9i8DOw2UnV9DFqtQEgsJ4gCeFSyPWy
+	B8jIzyv5r7axft80SBcZiOFFF1QwUV15MPnPFOhZMdoeYuBWPT37tP5Ey52j4fV/64w72dEmXju1c
+	cbaL/3xh1ZeZFft12yeMRbIZSK2G5HJ2S3IgVDC1sfT0tTfb91WR/9H1NLwpr7IJNaiepas3JP/tC
+	xPRatvLw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRmlG-0000000C4zN-0hdc;
-	Fri, 13 Nov 2026 08:35:54 +0000
-Received: from desiato.infradead.org ([2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+	id 1xRmmJ-0000000C5AT-1s0x;
+	Fri, 13 Nov 2026 08:36:59 +0000
+Received: from tor.source.kernel.org ([172.105.4.254])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRml7-0000000C4xC-1Eto
-	for linux-arm-kernel@bombadil.infradead.org;
-	Fri, 13 Nov 2026 08:35:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=desiato.20200630; h=Content-Type:Content-Transfer-Encoding
-	:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:
-	Sender:Reply-To:Content-ID:Content-Description;
-	bh=X132ufY391nPowA86jFdiKtqLmI5hdL3TIQJBsPEY5Y=; b=Qp8IgAEogC3/N9Kw/hXl/yqPEb
-	l+i4MyPEtYdt0bkrEuQdocHsfGqxqKCasas5nGkzs1Ki6phUnhGbM+v7c0ehbwyPeSoN4LYYAhL7z
-	nyK/JoiP/ZJnMl5QWbKvd9zTrtvvIP3A1ylthyFx3jcI2cJO+fpoPvtHkr1eN57NVRxoL6WWXS/i0
-	RwzVsVvtBPA1pRRisLlvRKZHFctSA6cc3TmFF0IKAwbqlbs6wTptL+I6MEQoMB+SJ6EM6D4lGqy2K
-	JgwokCjzRCqZzVL58Qn5YVIopZ/Cbw39Ph+x+tS3Th7vrcAHq8fmEUwd0goQEi3/Oh1RR9tRip4WW
-	KqIBPF0w==;
-Received: from canpmsgout05.his.huawei.com ([113.46.200.220])
-	by desiato.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRml3-0000000B4cs-3DhS
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 08:35:44 +0000
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=X132ufY391nPowA86jFdiKtqLmI5hdL3TIQJBsPEY5Y=;
-	b=WrW71oZAFiPYxMVFVMl3ViygYlPi7dt+ejCVwZDuinjevodweib4+lQWIc+UYWXJxz1MsiaFm
-	XlZPIYbLPat0g64E+AiDV5J4duF03Ta6lT2KU/jarGbElgQZYVhN8ZBq83Uh4cQfJSVOaAKzeJM
-	+ys8BVD403yC23fziZ1WGuw=
-Received: from mail.maildlp.com (unknown [172.19.162.223])
-	by canpmsgout05.his.huawei.com (SkyGuard) with ESMTPS id 4jQrDb338mz12LJy;
-	Fri, 13 Nov 2026 16:35:27 +0800 (CST)
-Received: from kwepemk200008.china.huawei.com (unknown [7.202.194.74])
-	by mail.maildlp.com (Postfix) with ESMTPS id 605DF40575;
-	Fri, 13 Nov 2026 16:35:21 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemk200008.china.huawei.com
- (7.202.194.74) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Fri, 13 Nov
- 2026 16:35:20 +0800
-From: tizi4590 <ruanjinjie@huawei.com>
-To: <james.morse@arm.com>, <ben.horgan@arm.com>, <reinette.chatre@intel.com>,
-	<fenghuay@nvidia.com>, <tony.luck@intel.com>, <Dave.Martin@arm.com>,
-	<babu.moger@amd.com>, <will@kernel.org>, <jic23@kernel.org>,
-	<gshan@redhat.com>, <bp@alien8.de>, <x86@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: <ruanjinjie@huawei.com>
-Subject: [PATCH v2 2/2] fs/resctrl: Give a monitor domain the counters the groups already use
-Date: Fri, 13 Nov 2026 16:35:06 +0800
-Message-ID: <20261113083506.4129060-3-ruanjinjie@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261113083506.4129060-1-ruanjinjie@huawei.com>
-References: <20261113083506.4129060-1-ruanjinjie@huawei.com>
+	id 1xRmmG-0000000C59q-2p7l;
+	Fri, 13 Nov 2026 08:36:56 +0000
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id C664F625CE;
+	Fri, 13 Nov 2026 08:36:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D5641F000C4;
+	Fri, 13 Nov 2026 08:36:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1794559015;
+	bh=WcbMZkXCoDF1VinxpXAJnqvIlxoOmrzgyATGNwq43+A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=PBzV4WsppZXw4ka2DOy1kwykexWL4bAIMtz3UGqpszC8BjXZOqibQVEak+Kq8c2AD
+	 E9MoBORWZjLCTHwkZw2yNrZpnDZYomFvPvujDxPrnlTKZhareQb8KW03DjiHggPsVD
+	 tKHuFgUA1YCBXSlUCpujHQPA63MU1r4pjl7ydLipOTatGwpsKnG2FqYBuSZz0w9Qcy
+	 8VYFjAuReeAASmkWQEv7vtyws10AHAFWupq+Efm/0Pcw3uODhzFFTmxZQW9IbZ64c9
+	 Buwdmzq1v2xC4k+hKLTIiIQ1FoKFwnZTNDkNRnOtkRClPBEcafGl1qVLk+RzZWSyaX
+	 PHmF4rAz+hHjQ==
+Date: Fri, 13 Nov 2026 09:36:49 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Arun Iyengar <aiyengar1990@gmail.com>
+Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, 
+	Andrzej Pietrasiewicz <andrzej.p@collabora.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+	Hans Verkuil <hverkuil@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Sergei Khomenkov <shomenkow@gmail.com>, Tharit Tangkijwanichakul <tharitt97@gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: media: rockchip,rk3568-vepu: Add the
+ reset lines
+Message-ID: <20261113-eminent-vociferous-walrus-2d63df@quoll>
+References: <20261112-hantro-robust-v2-0-18561fd48838@gmail.com>
+ <20261112-hantro-robust-v2-1-18561fd48838@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: kwepems100002.china.huawei.com (7.221.188.206) To
- kwepemk200008.china.huawei.com (7.202.194.74)
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_083542_277481_147267EF 
-X-CRM114-Status: GOOD (  29.94  )
-X-Spam-Score: -0.2 (/)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20261112-hantro-robust-v2-1-18561fd48838@gmail.com>
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -95,249 +76,30 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-18.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
 	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Jinjie Ruan <ruanjinjie@huawei.com>
+On Thu, Nov 12, 2026 at 08:30:47AM +0000, Arun Iyengar wrote:
+> The VEPU121 encoder cores of the RK3588 each have their own AXI and AHB
+> reset lines in the CRU (SRST_A_JPEG_ENCODERx and SRST_H_JPEG_ENCODERx).
+> They are needed to recover a core that is stuck on the bus, which its
+> registers can't stop.
+> 
+> Describe them as optional, so that existing device trees stay valid.
+> 
+> Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
+> ---
+>  .../devicetree/bindings/media/rockchip,rk3568-vepu.yaml        | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 
-With assignable MBM counters, resctrl can be mounted while all CPUs of
-a monitor domain go offline and one of them comes back, either through
-CPU hotplug or because hibernation takes the non-boot CPUs offline. The
-domain is destroyed and re-created, and the new domain starts with no
-counters assigned. Counters are otherwise only assigned when a group is
-created, when rdtgroup_assign_cntrs() takes a free counter in each
-monitor domain for each MBM event, so no code revisits the groups that
-already exist.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Those groups read "Unassigned" on the new domain, on any system with
-assignable MBM counters. A counter assigned to them later through
-mbm_L3_assignments is the lowest free one in that domain, so the same
-group can end up with a different counter ID on different domains. For
-example, with the counter ID each group uses for mbm_total_bytes and
-"_" for none:
-
-                               domain 0         domain 1
-  mount, mkdir g1              default=0 g1=1   default=0 g1=1
-  all CPUs of domain 1 offline default=0 g1=1   (destroyed)
-  one CPU of domain 1 online   default=0 g1=1   default=_ g1=_
-  assign g1 on domain 1        default=0 g1=1   default=_ g1=0
-
-Each domain has its own counters, so g1 can use counter 0 on domain 1
-and counter 1 on domain 0 without affecting the other domain, but until
-it is assigned on domain 1 it reads Unassigned there.
-
-Assign the counters when the domain comes online, after its state is
-set up. Give each enabled MBM event of every group, including the
-monitor groups under mon_groups/, the counter ID the group uses in
-another domain, and leave the event unassigned when that ID is already
-taken on the new domain. Skip groups in pseudo-lock mode, as their RMID
-has been freed and they are not monitored.
-
-A group that has no counter for an event in any domain stays unassigned
-on the new domain, as it was before. mbm_assign_on_mkdir only applies
-when a group is created, and counters that the user removed through
-mbm_L3_assignments stay removed.
-
-Fixes: ef712fe97ec5 ("fs/resctrl: Auto assign counters on mkdir and clean up on group removal")
-Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-Cc: <stable@vger.kernel.org>
-Cc: Tony Luck <tony.luck@intel.com>
-Cc: Reinette Chatre <reinette.chatre@intel.com>
-Cc: Babu Moger <babu.moger@amd.com>
-Cc: James Morse <james.morse@arm.com>
-Cc: Ben Horgan <ben.horgan@arm.com>
-Cc: Dave Martin <Dave.Martin@arm.com>
----
-Changes in v2:
-- Drop the MPAM part of the changelog, the MPAM driver is fixed by
-  "arm_mpam: resctrl: Use the domain's counter ID".
-- Link to v1: https://lore.kernel.org/all/20261106094537.2337188-1-ruanjinjie@huawei.com/
----
- fs/resctrl/internal.h |   2 +
- fs/resctrl/monitor.c  | 121 +++++++++++++++++++++++++++++++++++++++++-
- fs/resctrl/rdtgroup.c |   4 ++
- 3 files changed, 125 insertions(+), 2 deletions(-)
-
-diff --git a/fs/resctrl/internal.h b/fs/resctrl/internal.h
-index 5a3a11a5bd5c..2e092fbd3051 100644
---- a/fs/resctrl/internal.h
-+++ b/fs/resctrl/internal.h
-@@ -438,6 +438,8 @@ int resctrl_available_mbm_cntrs_show(struct kernfs_open_file *of, struct seq_fil
- 
- void rdtgroup_assign_cntrs(struct rdtgroup *rdtgrp);
- 
-+void resctrl_mbm_cntr_assign_domain(struct rdt_resource *r, struct rdt_l3_mon_domain *d);
-+
- void rdtgroup_unassign_cntrs(struct rdtgroup *rdtgrp);
- 
- int event_filter_show(struct kernfs_open_file *of, struct seq_file *seq, void *v);
-diff --git a/fs/resctrl/monitor.c b/fs/resctrl/monitor.c
-index bb6e6e509f4d..604b42d1133f 100644
---- a/fs/resctrl/monitor.c
-+++ b/fs/resctrl/monitor.c
-@@ -427,6 +427,52 @@ static int mbm_cntr_get(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
- 	return -ENOENT;
- }
- 
-+/*
-+ * mbm_cntr_get_other_domain() - Return the counter ID @rdtgrp uses for @evtid
-+ * on a domain other than @d.
-+ *
-+ * Counters are allocated on every domain together, so a group usually has the
-+ * same ID everywhere. The first domain that has a counter ID for the event is
-+ * used. @d is skipped in case it is already on the list.
-+ *
-+ * Context: Called with cpus_read_lock() held.
-+ *
-+ * Return:
-+ * Valid counter ID on success, or -ENOENT on failure.
-+ */
-+static int mbm_cntr_get_other_domain(struct rdt_resource *r,
-+				     struct rdt_l3_mon_domain *d,
-+				     struct rdtgroup *rdtgrp,
-+				     enum resctrl_event_id evtid)
-+{
-+	struct rdt_l3_mon_domain *dom;
-+
-+	lockdep_assert_cpus_held();
-+
-+	list_for_each_entry_rcu(dom, &r->mon_domains, hdr.list, lockdep_is_cpus_held()) {
-+		int cntr_id;
-+
-+		if (dom == d)
-+			continue;
-+
-+		cntr_id = mbm_cntr_get(r, dom, rdtgrp, evtid);
-+		if (cntr_id >= 0)
-+			return cntr_id;
-+	}
-+
-+	return -ENOENT;
-+}
-+
-+/*
-+ * mbm_cntr_claim() - Mark the counter @cntr_id in domain @d as used by @rdtgrp.
-+ */
-+static void mbm_cntr_claim(struct rdt_l3_mon_domain *d, int cntr_id,
-+			   struct rdtgroup *rdtgrp, enum resctrl_event_id evtid)
-+{
-+	d->cntr_cfg[cntr_id].rdtgrp = rdtgrp;
-+	d->cntr_cfg[cntr_id].evtid = evtid;
-+}
-+
- /*
-  * mbm_cntr_alloc() - Initialize and return a new counter ID in the domain @d.
-  * Caller must ensure that the specified event is not assigned already.
-@@ -441,8 +487,7 @@ static int mbm_cntr_alloc(struct rdt_resource *r, struct rdt_l3_mon_domain *d,
- 
- 	for (cntr_id = 0; cntr_id < r->mon.num_mbm_cntrs; cntr_id++) {
- 		if (!d->cntr_cfg[cntr_id].rdtgrp) {
--			d->cntr_cfg[cntr_id].rdtgrp = rdtgrp;
--			d->cntr_cfg[cntr_id].evtid = evtid;
-+			mbm_cntr_claim(d, cntr_id, rdtgrp, evtid);
- 			return cntr_id;
- 		}
- 	}
-@@ -1423,6 +1468,78 @@ void rdtgroup_assign_cntrs(struct rdtgroup *rdtgrp)
- 					   &mon_event_all[QOS_L3_MBM_LOCAL_EVENT_ID]);
- }
- 
-+/*
-+ * resctrl_mbm_cntr_assign_group() - Give @rdtgrp, on @d, the counter IDs it
-+ * uses on the other domains.
-+ */
-+static void resctrl_mbm_cntr_assign_group(struct rdt_resource *r,
-+					  struct rdt_l3_mon_domain *d,
-+					  struct rdtgroup *rdtgrp)
-+{
-+	struct mon_evt *mevt;
-+
-+	/* Pseudo-locked groups have no RMID and are not monitored. */
-+	if (rdtgrp->mode == RDT_MODE_PSEUDO_LOCKSETUP ||
-+	    rdtgrp->mode == RDT_MODE_PSEUDO_LOCKED)
-+		return;
-+
-+	for_each_mon_event(mevt) {
-+		int cntr_id;
-+
-+		if (mevt->rid != r->rid || !mevt->enabled ||
-+		    !resctrl_is_mbm_event(mevt->evtid))
-+			continue;
-+
-+		/* A group without a counter on any domain stays unassigned. */
-+		cntr_id = mbm_cntr_get_other_domain(r, d, rdtgrp, mevt->evtid);
-+		if (cntr_id < 0)
-+			continue;
-+
-+		/* Keep the group's ID; do not allocate a different one. */
-+		if (d->cntr_cfg[cntr_id].rdtgrp) {
-+			pr_warn_ratelimited("Counter %d for %s is in use in domain %d\n",
-+					    cntr_id, mevt->name, d->hdr.id);
-+			continue;
-+		}
-+
-+		mbm_cntr_claim(d, cntr_id, rdtgrp, mevt->evtid);
-+		rdtgroup_assign_cntr(r, d, mevt->evtid, rdtgrp->mon.rmid,
-+				     rdtgrp->closid, cntr_id, true);
-+	}
-+}
-+
-+/**
-+ * resctrl_mbm_cntr_assign_domain() - Assign counters to the existing groups on
-+ *				      a monitor domain that has just come online.
-+ * @r:	The resource the domain belongs to.
-+ * @d:	The domain that has just come online.
-+ *
-+ * A new domain has no counters assigned. Give each group, including the
-+ * monitor groups below a control group, the counter IDs it uses in the other
-+ * domains. A group that has no counter for an event in any domain stays
-+ * unassigned: mbm_assign_on_mkdir only applies when a group is created, and
-+ * counters that the user removed through mbm_L3_assignments stay removed.
-+ *
-+ * Context: Called with rdtgroup_mutex and cpus_read_lock() held while resctrl
-+ * is mounted.
-+ */
-+void resctrl_mbm_cntr_assign_domain(struct rdt_resource *r, struct rdt_l3_mon_domain *d)
-+{
-+	struct rdtgroup *prgrp, *crgrp;
-+
-+	lockdep_assert_held(&rdtgroup_mutex);
-+
-+	if (!resctrl_arch_mbm_cntr_assign_enabled(r))
-+		return;
-+
-+	list_for_each_entry(prgrp, &rdt_all_groups, rdtgroup_list) {
-+		resctrl_mbm_cntr_assign_group(r, d, prgrp);
-+
-+		list_for_each_entry(crgrp, &prgrp->mon.crdtgrp_list, mon.crdtgrp_list)
-+			resctrl_mbm_cntr_assign_group(r, d, crgrp);
-+	}
-+}
-+
- /*
-  * rdtgroup_free_unassign_cntr() - Unassign and reset the counter ID configuration
-  * for the event pointed to by @mevt within the domain @d and resctrl group @rdtgrp.
-diff --git a/fs/resctrl/rdtgroup.c b/fs/resctrl/rdtgroup.c
-index 40b8f34c3d56..abe5244da379 100644
---- a/fs/resctrl/rdtgroup.c
-+++ b/fs/resctrl/rdtgroup.c
-@@ -4744,6 +4744,10 @@ int resctrl_online_mon_domain(struct rdt_resource *r, struct rdt_domain_hdr *hdr
- 	if (err)
- 		goto out_unlock;
- 
-+	/* The new domain has no counters for the existing groups yet. */
-+	if (resctrl_mounted)
-+		resctrl_mbm_cntr_assign_domain(r, d);
-+
- 	if (resctrl_is_mbm_enabled()) {
- 		INIT_DELAYED_WORK(&d->mbm_over, mbm_handle_overflow);
- 		mbm_setup_overflow_handler(d, MBM_OVERFLOW_INTERVAL,
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
