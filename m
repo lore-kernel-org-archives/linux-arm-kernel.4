@@ -2,111 +2,136 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D873F606A8A1
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5F2606A335
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=pmqKkWqn;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DxiFU5D0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Yij5pZ0v;
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-NXP1-onmicrosoft-com header.b=exOnpRP4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gbvwDyU+Acc05Vuh8BWsHE5JqO4e+EP9kLEpKSKS7JE=; b=pmqKkWqneRbm9/
-	XIxiZQXgxH+BFpQvrws/xxF5RPXLKGnXBD0Njq39GS+T1Rfo2wdYrWH/SRZNmfVBd1Dedak7gpd93
-	hXrr0OK5wF1KFIxVK4uhI+5e78RwCuE41BNRhpM2lJJt3kFPvmei9mvn9d5NEfQKiy60aXyKbIV55
-	RQ32ICOmjFYYHexGn2S5VAkpa9ASO+/wqFSrxSp7x5nYfIlgJvIGAmxqpqk7anxc+z1syvdH5g+Jm
-	DsTCqfyWLJt9vrBYAaR2n0GWWSqKdjgjjya3fplR0CrCKX5y7X3TruSQNPCrOf3Y4QDwCME1ybw1g
-	VECInGgoXnb2pWpZVF9Q==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:In-Reply-To:
+	Content-Type:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	List-Unsubscribe-Post:List-Owner;
+	bh=b1XYnIt1lApY4YFM4IKFhv+AVRPEbUIREWKuYtNAHXI=; b=Yij5pZ0vC4mMThi9WnTQOagQqM
+	3Dz1hvMXHv8umzRFK4xuCENPkWaBZJUgHCAq2NmoWzsOpnWCHuQYTkTxcZtVY+r6aDoBCwUf4Afbl
+	g9xQfKd1JUhRxsPWo3kIEkWQdHPRWuM+gc+LbI8hodeEzE74YEVco741IjIYpZHFKCEnwZYkYdepQ
+	eB+7sP7tvQwde1rBKSC6q5a+q8ToJqHjZSLnCpFXssM9/S/1xVDTQuZj4oGm5ukUxzFDUt3VoHjo1
+	GvJQMvQpcB5sXRDA37nAhV5Mc+2nPpnEHSJcd05KHELqX6eJBR1a8Cwig3LPxxVSA+V0D17fkcwMx
+	kIxVRWIA==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwdo-0000000E6WL-0k0E;
-	Fri, 13 Nov 2026 19:08:52 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+	id 1xRwlv-0000000E8cX-0ZA4;
+	Fri, 13 Nov 2026 19:17:15 +0000
+Received: from mail-northeuropeazon11011040.outbound.protection.outlook.com ([52.101.65.40] helo=DU2PR03CU002.outbound.protection.outlook.com)
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwd7-0000000E5xd-1Qm3
+	id 1xRwlt-0000000E8bv-0t1A
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 19:08:17 +0000
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-c4d427836e9so221892366b.1
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:08:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794596888; x=1795201688; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=gbvwDyU+Acc05Vuh8BWsHE5JqO4e+EP9kLEpKSKS7JE=;
-        b=DxiFU5D0ikMi9POe4QRM8bAu5zzA6nVKikpeFBFWPRhmLBgtmNLo4GR+S4BvCwHns8
-         gJuuyMDqKh8TqMUQ5mdzIoflJYISaQ9k3wfto7/LcR3cBQbm6KZ8T1oGrArcy4Ip4iPs
-         w7del8y+yWVH4+WesnLm4hF+FRrvXWGo/h/sQPjy7nKEhTWsJiutLldVphKI+CPAzDth
-         IoqS1pwNKTTTsCA34mWxlbqWLdCOega3x3oCOt80lMldp0HKLu/35XOyGyyBaWF2a1WS
-         uRZBTwoIho1kbsAJdQkdSMs4k7X9O672bLD2YjDsnhRd7eNmdjJFHzE6nz5HMAUZXUNH
-         mBFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794596888; x=1795201688;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=gbvwDyU+Acc05Vuh8BWsHE5JqO4e+EP9kLEpKSKS7JE=;
-        b=lFO0piRLAGHWm2gxOFb86k/O6W1hg76LlQAnNvld8EEq0dqPRAXELBa6HAXIIgUqDc
-         +At7YqFjPrCPOuGIb+7b73IWbjyOzRDcJcwnBqK6v0vNoJuD2DL0TEqjlfHLG5WossPx
-         QyGn4zO5hbO0wvt3WVOmFtmaqujBqGCf6qZVfdf7G+mb4IrKLYoMF83Hrfh2HxwKMkhA
-         owmYXBZUjZez4apM5c9ZXrb27BECdN7yiVzYRFT9ai+hHahcuNoiR6G8yG9k0U6k0BVA
-         lJFsw6ZgEKoTdwCLnjvN/7ydfZGU6WM8ORir6q/jWf5cdkrIszHQC8B2oO+gDhjFzCVH
-         DqgA==
-X-Forwarded-Encrypted: i=1; AL+hErFD/j+3KKsI4q5x+yipDfzFVr4rwQsEXAEMSTofJlVyaoCd5jEweB8YTuaikzjI8+aW5vFL0QqOJJ5pL30+YLIo@lists.infradead.org
-X-Gm-Message-State: APuU4Z+Jm7bW9jrU+UPwUgh++M1B26hjz6o4dRf1mmtVxlHA4MWS2xR5
-	IkY1qoE3TYXHMUwX+CNxlxJSmQKivS2hkSM9juOobnPtmttWaqBCU8oS
-X-Gm-Gg: AYBFou0HPyArgz4PDatLZ8wxCoVuOnVIwB6sA4mYL8b8GasD336HyV9LVom8cXK3ncQ
-	MQE9sO1tLT1EZUlYh98eG7bu6cc92oqXeco4iRSVf7aIzRtxOCbp271yQI6tR5TB5WL68K5INij
-	vloWGefZQWtiFTz69POair0H2C3jFOYJKHBd6wn+lWXuidIjLYvTpEdh/o+E6aUZBNGIlV7fld2
-	BeZ8Z90Bim/YV51u2QlrxP3ZmypU4tL62mxt7NKSb/J1Po5NKpH5tRu9eONcaEaEMHUtBhgNT4R
-	s5HgSBGi5YlqnY9AX6QEc48dNClDqUq3HTn6/9omHlhZiNW5UHm2ARRcv0TwVMZH8DKyDA3Qy7B
-	Ljieb0pbL9nZf3ylY/YYTMe/rg2ZMLqM+AfXovBBQ/56XLA3CVPEmUAXLSinK6pSYrjx4Vakjiv
-	N0pZkbWSNfct/3QZraQDO3NboSoRYQHSGIbeqAgjzjOYzo0Osz/Xij9j/8s9XD+QwrqNcFRZe/e
-	9IMULO3Pq1utkFHkaWfmKZ6ACkQWSA6eAHznHGUqQOp4MWJQOMZ0cqq23qX5lzjmjCZrlxUlxrl
-	dxqxSImM72JM/TF+k7oYEWoCu8d9Yx+6vtmlasvoz3s5XhXX9sziY+n8CUuBV31C
-X-Received: by 2002:a17:907:8687:b0:c46:7645:86c with SMTP id a640c23a62f3a-c509641d1eamr287876866b.47.1794596887578;
-        Fri, 13 Nov 2026 11:08:07 -0800 (PST)
-Received: from [192.168.1.100] ([163.245.50.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b23b09sm129444166b.26.2026.11.13.11.08.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 11:08:07 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-Date: Fri, 13 Nov 2026 22:05:05 +0300
-Subject: [PATCH v2 9/9] arm64: dts: mediatek: Add Xiaomi Poco X4 GT
+	Fri, 13 Nov 2026 19:17:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LBrHZgrqerMEDQ+oyQ3ujrCfL2g8L8J07GCrh4FKeu2++xz8GWBgGfYgNt0ZTIWcyJFryuZ8VTvEOHFe3F4VXEvjrSjajUQB/YIq7ecp2La0/FNDBrE1i5I6Y9uI3+yqhy6s2+4HLS9ir1mMY8k1eIpkTRYOa43yI/v+kw4fmb0oBuiimaGRqlB9/yfXFzDwvwLAR2xB9M1tk4Jf6ozzRIxncsB0rO+ygCdoZzbIJY9BTujIyUNsxQY+znsXu2dnug0RAHSOVPl9ydie+EP4pOPfKpgJDTDk3fQFfAyvh1NM3aOBXB4ECJO3cRjTJ7qkEgNWY5uGMXVq4M4iUYnshg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b1XYnIt1lApY4YFM4IKFhv+AVRPEbUIREWKuYtNAHXI=;
+ b=cTlav3DCdPrWsFrnfj35ZYPwPKcEuvsmFxCSfiJJtLEAKMLpNv8mrMRoPbld8lbjSszHxBlWyzV5WPjPSEMnMj154nTMRoTMggEah1cyPDYLqJFtzJEx68XTuK0F5oeApHJIUFjZFrFEzrPRkGKI0Yh9jcrCB+MQleUkSq+yMjPt0263G07+lZmdZbs37CwpN7zjrqE1gaTpjTvm7kjkuzFbNmjhGkzJagrI4rZbx7ZMNQgLd+02F/HgKBZSW3n12ViF8BHwM2S2IDFhkPGrjOtNRAj88O9XN2MOM0oraMdA9GCZBEQE3BXshefGnbmgAvsNI3rmQ7lrVNq6AYeauQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b1XYnIt1lApY4YFM4IKFhv+AVRPEbUIREWKuYtNAHXI=;
+ b=exOnpRP4oaejmv2lFL+yP2KA3KH9uNlcjUTIoklJaQZTkX4ftohpvyGSgDUMAPXReiWHtwfsBkOuanGYLxI9g36U8rFnYmkxMIOrqn8e66Vk4a+VQGAvwxnZIVApYHb4Mz8EKOzra+Gw/NVCiaDiQKNdsCKR0+iAsWKdHsDKvd9Aw+/ERibeTpTq1HV1RRjR+rfT4ObybB9urM4ijALS0BbGdLDp5+dPX+M8XuQiVotN+sBpDC0D2qvPqFdYNIojibHgGAPF27tgmp+qOeLBFtf2kKRXN9J4/K0E+ATLwijRowF4R+ysUUNbvU0dRIlxNMNI9VN/QDXfvTuIF2NODw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com (2603:10a6:290:76::14)
+ by AS8PR04MB8898.eurprd04.prod.outlook.com (2603:10a6:20b:42d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Fri, 13 Nov
+ 2026 19:17:09 +0000
+Received: from MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b]) by MI3PR04MB12438.eurprd04.prod.outlook.com
+ ([fe80::c715:c32:8bb1:b70b%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
+ 19:17:09 +0000
+Date: Fri, 13 Nov 2026 14:17:02 -0500
+From: Frank Li <Frank.li@oss.nxp.com>
+To: James Hilliard <james.hilliard1@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Emilio =?iso-8859-1?Q?L=F3pez?= <emilio@elopez.com.ar>,
+	Maxime Ripard <mripard@kernel.org>, dmaengine@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dmaengine: sun4i: retain cyclic descriptors until
+ callbacks drain
+Message-ID: <avdiLjdrrdLsuooY@lizhi-Precision-Tower-5810>
+References: <20261103-submit-sun4i-dma-callback-lifetime-v1-v1-1-4c5a0653104f@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261103-submit-sun4i-dma-callback-lifetime-v1-v1-1-4c5a0653104f@gmail.com>
+X-ClientProxiedBy: DM6PR03CA0088.namprd03.prod.outlook.com
+ (2603:10b6:5:333::21) To MI3PR04MB12438.eurprd04.prod.outlook.com
+ (2603:10a6:290:76::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-initial-mt6895-v2-9-4ab0aa9fa391@gmail.com>
-References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
-In-Reply-To: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, 
- Mattijs Korpershoek <mkorpershoek@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- linux-input@vger.kernel.org, phone-devel@vger.kernel.org, 
- Alexander Letuchiy <asalde.le1@gmail.com>
-X-Mailer: b4 0.15.2
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI3PR04MB12438:EE_|AS8PR04MB8898:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3183ca99-0bed-4adf-9817-08df41bab697
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|23010399003|1800799024|366016|19092799006|7416014|376014|3023799007|56012099006|261026121527099003|261009223027099003|261026140227099003|5023799004|261021123027099003|11063799006|261102123227099003|261022075727099003|261021121427099003|261028144727099003|261022105027099003|10067099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: Ao5KzpXuSLGHkUgVRRryRh5DZn9HS/Y1/okbQ4ZFkWyYvuN14TS0cx6Emp2vW6NVnAj8F1O9U14rxKBHKkuwsTO4Otb1H1oGyDvETa2+rOCgE8SEolWWhlMitFB7DrY3DjY+gPsmhYB5xw2urpnX1iOFeauF+FpdrA7xsKjA6+OEpoLGzRtjdk5fbeAvbJ+CfAsPZHIYT+57jncAFgIml9ibz16Bm68ls0phWGErURj/kQjabFpIYprnq3nRbtxkwZIFUhxbXuSPrccQsr/0NS2r/ToUhZ6W211tGCjCLJ+ElUTnPwIxyXXY46bw2YZrtC3+qbXgLNBEEhMs4UC8d3GcnmFC8uqNGByADBvoJscxu1vhKdqoDEX3E6Yusllp8TyL0s8bcp1+cWpvZqDxNTIPmwdhiu3okRBgVAdMBEf6TiOTkQoo1js3kWrHD7v8US6UcfZewuB3uAqXxbaBMNEouW9xYS+C60MrTJrVNPvi30Po91CaecoQSxIkcr57ozvytP9m/4UqNZhMYQjifpN3g3pcoBp/avlQINQ04lADD7k2866c5LIDTxX8D/p1ZYUdr3wVgUh8EC5laqgzNQGpPKB6fCW7aZ8NqkumDgOIMaR5ylOTJCnheR4v7z8rUDOhvl5Oj6V6c4MuUso7lJYBQcBEwmffWXeSRPv0KXY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MI3PR04MB12438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(366016)(19092799006)(7416014)(376014)(3023799007)(56012099006)(261026121527099003)(261009223027099003)(261026140227099003)(5023799004)(261021123027099003)(11063799006)(261102123227099003)(261022075727099003)(261021121427099003)(261028144727099003)(261022105027099003)(10067099003)(18002099003)(22082099003)(6133799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iTd0MuBEVke5JOf8srRf8zkeMwgGsFC86/3sTDYcCUEiFohpZLrd0nUBqhh6?=
+ =?us-ascii?Q?aZyXBVmWs9WKP9E8IBrf4H5QIo956ndi5+9a3or68Gqk4dWjKt0H3oCPmV5H?=
+ =?us-ascii?Q?wbS5b6QZz9AGqcZ9Nt0Gk3/oCY3hyyJvn+GUIQ90JIzIP9IdXFaKNOFBuOHD?=
+ =?us-ascii?Q?64FS0fJ/etqlGsAtrorqbdz8EX5g/buOGnmD63SN/uULDbsJL+R57XVc+VGO?=
+ =?us-ascii?Q?1/aGCbo7uN1w825TfqBRGdhheSdXxMvOv7L+808WzWFsgAtdWiJ22hrhN1Zx?=
+ =?us-ascii?Q?iERV1jbOnji6SuFDURzkQ1VlhsJr/ai8CQ6uOIwztfOqKyIchVxX8zUxD8kE?=
+ =?us-ascii?Q?112xD81SjjxLepw+MP+DPOj0nMIQ63TWsCfWDiq9r1tFaG9nCcwXxB6v+uJm?=
+ =?us-ascii?Q?qnjv0d3pGyB13MWUsRvZMn/+z1JP9H54pAgJvBHccAl4UVwB8oNeYeFwkeo0?=
+ =?us-ascii?Q?07t5wn9qTDoAKllk/MWxnE63bWhukdNzj8uckJFfPqciHjMso6a+3vD4Cqh5?=
+ =?us-ascii?Q?xSwL9bdGkhTGNPO0KA1sm8GC/jODKB6L+lforiE2TtGKQB88Fl+tQ0BoLBBo?=
+ =?us-ascii?Q?7zCnEwOADLz9Iz8dmYL7kQRvTmUJj4VSivBqAYhkB+kKTAWCp69cvMFXqdSO?=
+ =?us-ascii?Q?TrcR/g1B8Z2LlqsKRkzd5pVvfSgKx1v8N/sStT+UVcgQXOy3A3/e7L2fONx0?=
+ =?us-ascii?Q?DJqVvLIfQHpaxYAdJxziDH98qB/bgJOQ6fL2OT9YtSfG7e7/X2gP4fBYOfs7?=
+ =?us-ascii?Q?XawQ5rRKvYswq5YAkQITxmFgG7daZ7GPEyD5nkSowkDMykjhoPDUctSRAZfy?=
+ =?us-ascii?Q?EitiRcSx/UiiolQpKoasP6Oa3ZG+UytAD12pBRjPQibzWq6L9PGjHOwiMR36?=
+ =?us-ascii?Q?9M4HcVgqx96x96NwdIFwHGz0D3FMEF+Qq3IeM9RjvG/GpqJKiWugX1b9cAbF?=
+ =?us-ascii?Q?DrG4O5AZCpTwNzg+3GUes2n9jXhuWl2MzHJvSwTUUBiMJDwTIcI37m2b1Q4x?=
+ =?us-ascii?Q?kTEddDMFpzegKd2wkB+50SgA3CfjR0t12hAighyaeGtIXNBJYnHukacaDPfE?=
+ =?us-ascii?Q?fYBSnayRsrhaQdSOY4B3Duz3jgq7D15dMM/yUFmyjEBsl89z0KnVlV2dM3u8?=
+ =?us-ascii?Q?SIUkjrVyrVKIFLrn+Cf5jzDa1VESIlKe39MYD5QkFdVCHk2WfYQjKx+a/Xu0?=
+ =?us-ascii?Q?rXf0968OY/f5CsYjnSnN+ei//T9hT+Kvs1zfmsnAcS9KVKYonwbaQJHyAQ/W?=
+ =?us-ascii?Q?XCFG5GKVVw5PYP/hu6Cjk1F2Q55NxSzUs/3hrILGeMV8v5lkR7mLLWnyvDS5?=
+ =?us-ascii?Q?D089dmmcX4K73d4SQKlgktt2ZvvK7WETP3wtrbonXPemjgEA03YIi6IQoc1Z?=
+ =?us-ascii?Q?vMRiGTY2/V5uhsekPjqEwghr3BajhZPXNLrZDzeKem1UwLo5wrJfAYRADKGe?=
+ =?us-ascii?Q?d93U6myFqPQQwSpSzcZ6to2j8dfkO0XLzI1Dfbj9sIzn9h6mW/Wyq9E7x8Gk?=
+ =?us-ascii?Q?qbUlGn5uuyuZDmLH55ddbfeyExB+rY02GADJHUrigfITu0NtgVAoLyuMDRBD?=
+ =?us-ascii?Q?9f0tT8rnEv4bniUEPMFRxMF20y1NYS7i0dLoPn4vc8lJN0ArGU9BBbCpomMB?=
+ =?us-ascii?Q?9/TJwzsEuIMjo8p3a93mUOl2km4AJ8dAASz2p+MSkRZYHjYHHGmD+UxMqVCU?=
+ =?us-ascii?Q?g8snKfc80rwfOw3fevcGRGuddkDUzuFH0WtkaxOkxj9xxczUfFtOmTNeHaqh?=
+ =?us-ascii?Q?RckML+0EV80OGfV1c82ycHc/aYRHkvZk0ZphSafPyceCAcc5umGl?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3183ca99-0bed-4adf-9817-08df41bab697
+X-MS-Exchange-CrossTenant-AuthSource: MI3PR04MB12438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 19:17:09.4679
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fHn/QxxQNe/rOzCPG+T0FgrypotUKU0HCf9maCqIyzGdRtVLY13G8lbWRVFGQgtn445GnwrTPtJB6DZvnPRUB3Lmx+o0L59ovafUeRTVDgU1O6BXfmSRLldwYiraEhuY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8898
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_110812_233233_357C63A7 
-X-CRM114-Status: GOOD (  18.91  )
+X-CRM114-CacheID: sfid-20261113_111713_395710_5406E284 
+X-CRM114-Status: GOOD (  30.90  )
 X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -118,142 +143,187 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.9 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a device tree for the Xiaomi xaga board, which is sold as Xiaomi
-Poco X4 GT, Redmi Note 11T Pro/Pro+ and Redmi K50i. It enables a serial
-console on UART0 and the volume down key on the SoC keypad. The power
-and volume up keys are connected to the MT6363 PMIC, which isn't
-supported yet.
+On Tue, Nov 03, 2026 at 11:25:58PM -0700, James Hilliard wrote:
+> A cyclic IRQ queues a virt-dma tasklet with a pointer to the active
+> descriptor. sun4i_dma_terminate_all() frees it without clearing the queued
+> cyclic callback or waiting for one which has already started. The tasklet
+> can subsequently access the freed descriptor. There is no
+> device_synchronize callback to let clients drain these callbacks before
+> releasing their own resources either.
+>
+> Serialize both half-transfer and end-transfer IRQ handling with termination
+> under the virtual-channel lock. Recheck the physical-channel association
+> after acquiring that lock so an IRQ which looked up the channel before
+> termination cannot use its detached transfer state.
+>
+> Move terminated cyclic descriptors to the virt-dma terminated list. This
+> clears any pending cyclic callback. Retain them until a new synchronize
+> callback has waited for the IRQ handler and drained the tasklet. Drain
+> callbacks before freeing channel resources as well. Termination itself
+> remains usable from atomic context and from a completion callback.
+>
+> Keep freeing other collected descriptors immediately: an in-flight
+> non-cyclic callback owns its descriptor on the tasklet's private list.
+>
+> Fixes: b096c1377d1e ("dmaengine: sun4i: Add support for the DMA engine on sun[457]i SoCs")
+> Signed-off-by: James Hilliard <james.hilliard1@gmail.com>
+> ---
+>  drivers/dma/sun4i-dma.c | 46 +++++++++++++++++++++++++++++++++++-----------
+>  1 file changed, 35 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/dma/sun4i-dma.c b/drivers/dma/sun4i-dma.c
+> index 225e4a53502b..b92cd9c8676e 100644
+> --- a/drivers/dma/sun4i-dma.c
+> +++ b/drivers/dma/sun4i-dma.c
+> @@ -293,10 +293,20 @@ static int convert_buswidth(enum dma_slave_buswidth addr_width)
+>  	return (addr_width >> 1);
+>  }
+>
+> +static void sun4i_dma_synchronize(struct dma_chan *chan)
+> +{
+> +	struct sun4i_dma_dev *priv = to_sun4i_dma_dev(chan->device);
+> +	struct sun4i_dma_vchan *vchan = to_sun4i_dma_vchan(chan);
+> +
+> +	synchronize_irq(priv->irq);
+> +	vchan_synchronize(&vchan->vc);
+> +}
+> +
+>  static void sun4i_dma_free_chan_resources(struct dma_chan *chan)
+>  {
+>  	struct sun4i_dma_vchan *vchan = to_sun4i_dma_vchan(chan);
+>
+> +	sun4i_dma_synchronize(chan);
+>  	vchan_free_chan_resources(&vchan->vc);
+>  }
+>
+> @@ -322,7 +332,7 @@ static struct sun4i_dma_pchan *find_and_use_pchan(struct sun4i_dma_dev *priv,
+>  	spin_lock_irqsave(&priv->lock, flags);
+>  	for_each_clear_bit_from(i, priv->pchans_used, max) {
+>  		pchan = &pchans[i];
+> -		pchan->vchan = vchan;
+> +		WRITE_ONCE(pchan->vchan, vchan);
+>  		set_bit(i, priv->pchans_used);
+>  		break;
+>  	}
+> @@ -339,7 +349,7 @@ static void release_pchan(struct sun4i_dma_dev *priv,
+>
+>  	spin_lock_irqsave(&priv->lock, flags);
+>
+> -	pchan->vchan = NULL;
+> +	WRITE_ONCE(pchan->vchan, NULL);
+>  	clear_bit(nr, priv->pchans_used);
+>
+>  	spin_unlock_irqrestore(&priv->lock, flags);
+> @@ -970,13 +980,13 @@ static int sun4i_dma_terminate_all(struct dma_chan *chan)
+>  {
+>  	struct sun4i_dma_dev *priv = to_sun4i_dma_dev(chan->device);
+>  	struct sun4i_dma_vchan *vchan = to_sun4i_dma_vchan(chan);
+> -	struct sun4i_dma_pchan *pchan = vchan->pchan;
+> +	struct sun4i_dma_pchan *pchan;
+> +	struct virt_dma_desc *vd, *tmp;
+>  	LIST_HEAD(head);
+>  	unsigned long flags;
+>
+>  	spin_lock_irqsave(&vchan->vc.lock, flags);
+> -	vchan_get_all_descriptors(&vchan->vc, &head);
+> -	spin_unlock_irqrestore(&vchan->vc.lock, flags);
+> +	pchan = vchan->pchan;
+>
+>  	/*
+>  	 * Clearing the configuration register will halt the pchan. Interrupts
+> @@ -991,10 +1001,20 @@ static int sun4i_dma_terminate_all(struct dma_chan *chan)
+>  		release_pchan(priv, pchan);
+>  	}
+>
+> -	spin_lock_irqsave(&vchan->vc.lock, flags);
+>  	/* Clear these so the vchan is usable again */
+>  	vchan->processing = NULL;
+>  	vchan->pchan = NULL;
+> +	vchan->contract = NULL;
+> +
+> +	/* A tasklet may already be using the active cyclic descriptor. */
+> +	vchan_get_all_descriptors(&vchan->vc, &head);
+> +	list_for_each_entry_safe(vd, tmp, &head, node) {
+> +		if (!to_sun4i_dma_contract(vd)->is_cyclic)
+> +			continue;
+> +
+> +		list_del(&vd->node);
+> +		vchan_terminate_vdesc(vd);
+> +	}
 
-The DT only describes the memory that Linux itself uses, which is the
-ramoops region. The bootloader updates the /memory node and adds the
-firmware carveouts to /reserved-memory, so their addresses are not
-hardcoded here. This DT must not be booted with a bootloader that does
-not do this, as Linux would then use memory owned by the firmware.
+Can you move this logic to vchan-dma.c/h ? I supose other vchan should use
+this similar logic also.
 
-The ramoops zone sizes place the console zone at the offset where the
-bootloader expects to find it.
+Frank
 
-Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
----
- arch/arm64/boot/dts/mediatek/Makefile              |  1 +
- .../arm64/boot/dts/mediatek/mt6895-xiaomi-xaga.dts | 87 ++++++++++++++++++++++
- 2 files changed, 88 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index a86fb313b1a9..d73489149ab5 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-sony-xperia-m5.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt6895-xiaomi-xaga.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt7981b-cudy-wr3000-v1.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt6895-xiaomi-xaga.dts b/arch/arm64/boot/dts/mediatek/mt6895-xiaomi-xaga.dts
-new file mode 100644
-index 000000000000..8d529062eea1
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt6895-xiaomi-xaga.dts
-@@ -0,0 +1,87 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2026 Alexander Letuchiy <asalde.le1@gmail.com>
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/input/input.h>
-+
-+#include "mt6895.dtsi"
-+
-+/ {
-+	model = "Xiaomi Poco X4 GT";
-+	compatible = "xiaomi,xaga", "mediatek,mt6895";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:921600n8";
-+	};
-+
-+	memory@40000000 {
-+		device_type = "memory";
-+		/* The size is updated by the bootloader. */
-+		reg = <0x0 0x40000000 0x2 0x0>;
-+	};
-+
-+	reserved-memory {
-+		ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		/* The firmware carveouts are added by the bootloader. */
-+
-+		ramoops@48090000 {
-+			compatible = "ramoops";
-+			reg = <0 0x48090000 0 0xe0000>;
-+			no-map;
-+			record-size = <0x10000>;
-+			console-size = <0x40000>;
-+			ftrace-size = <0x10000>;
-+			pmsg-size = <0x10000>;
-+		};
-+	};
-+};
-+
-+&keypad {
-+	pinctrl-0 = <&keypad_pins>;
-+	pinctrl-names = "default";
-+	debounce-delay-ms = <32>;
-+	keypad,num-columns = <1>;
-+	keypad,num-rows = <1>;
-+	linux,keymap = <MATRIX_KEY(0, 0, KEY_VOLUMEDOWN)>;
-+
-+	status = "okay";
-+};
-+
-+&pio {
-+	keypad_pins: keypad-pins {
-+		pins-col {
-+			pinmux = <PINMUX_GPIO107__FUNC_KPCOL0>;
-+			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
-+			input-enable;
-+		};
-+	};
-+
-+	uart0_pins: uart0-pins {
-+		pins-rx {
-+			pinmux = <PINMUX_GPIO88__FUNC_URXD0>;
-+			bias-pull-up;
-+			input-enable;
-+		};
-+
-+		pins-tx {
-+			pinmux = <PINMUX_GPIO89__FUNC_UTXD0>;
-+		};
-+	};
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-
--- 
-2.56.0
-
+>  	spin_unlock_irqrestore(&vchan->vc.lock, flags);
+>
+>  	vchan_dma_desc_free_list(&vchan->vc, &head);
+> @@ -1128,9 +1148,15 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
+>
+>  	for_each_set_bit(bit, &pendirq, 32) {
+>  		pchan = &pchans[bit >> 1];
+> -		vchan = pchan->vchan;
+> +		vchan = READ_ONCE(pchan->vchan);
+>  		if (!vchan) /* a terminated channel may still interrupt */
+>  			continue;
+> +
+> +		spin_lock(&vchan->vc.lock);
+> +		if (vchan->pchan != pchan || !vchan->processing) {
+> +			spin_unlock(&vchan->vc.lock);
+> +			continue;
+> +		}
+>  		contract = vchan->contract;
+>
+>  		/*
+> @@ -1138,8 +1164,6 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
+>  		 * interrupt (odd bit)
+>  		 */
+>  		if (bit & 1) {
+> -			spin_lock(&vchan->vc.lock);
+> -
+>  			/*
+>  			 * Move the promise into the completed list now that
+>  			 * we're done with it
+> @@ -1173,8 +1197,6 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
+>  				disableirqs |= BIT(bit);
+>  				release_pchan(priv, pchan);
+>  			}
+> -
+> -			spin_unlock(&vchan->vc.lock);
+>  		} else {
+>  			/* Half done interrupt */
+>  			if (contract->is_cyclic)
+> @@ -1182,6 +1204,7 @@ static irqreturn_t sun4i_dma_interrupt(int irq, void *dev_id)
+>  			else
+>  				disableirqs |= BIT(bit);
+>  		}
+> +		spin_unlock(&vchan->vc.lock);
+>  	}
+>
+>  	/* Disable the IRQs for events we handled */
+> @@ -1276,6 +1299,7 @@ static int sun4i_dma_probe(struct platform_device *pdev)
+>  	priv->slave.device_prep_dma_cyclic	= sun4i_dma_prep_dma_cyclic;
+>  	priv->slave.device_config		= sun4i_dma_config;
+>  	priv->slave.device_terminate_all	= sun4i_dma_terminate_all;
+> +	priv->slave.device_synchronize	= sun4i_dma_synchronize;
+>  	priv->slave.copy_align			= 2;
+>  	priv->slave.src_addr_widths		= BIT(DMA_SLAVE_BUSWIDTH_1_BYTE) |
+>  						  BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) |
+>
+> ---
+> base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
+> change-id: 20261103-submit-sun4i-dma-callback-lifetime-v1-b6192060b76f
+>
+> Best regards,
+> --
+> James Hilliard <james.hilliard1@gmail.com>
+>
 
