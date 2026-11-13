@@ -2,67 +2,99 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34AB606A8A0
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 03:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6350606A321
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 03:43:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=zPikxrww;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=cQzJAi9q
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=OQNsx2QS;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UhKYADaF
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:
 	List-Unsubscribe-Post:List-Owner;
-	bh=bOwK+5oLftQk320DH0GEbzZnadmplgpiQL2jCJ+yV24=; b=zPikxrwwz5JOp6A+9IzTpjmtDO
-	pm28vzsXB/Y+Wl2gByYQFLrvab/otCvQ84BsI4PgJSNq9TVlvIpw0JpGkK09U9hYhBF/jzEQ8Q63b
-	AB6YVpCKOnfoinXET1g0WgghSI4/S6wZzk/gq5/zyELWNUuMBgB6LUGJ8FO/ib9HV7popxhbM5BhL
-	BEbOVZZ51dYP+qIRSE9Qrajg74r+KLNfKL1jCFYOQTQmUYj5zidqQj7U1xzpJkQaJBypMntSbJcb4
-	aorGx5VJpreuI/0lihQ+tCPlyrO8ZQ07Slv+5hjrDuHpnFYRnvZ0yc2JgbJ+jgwWgZJ5UYJe2ZfQ0
-	ms5OS9Gg==;
+	bh=7wqtaClkA87RYbtDZICJouKtI7I+Hc/L5x4RkEdLrEQ=; b=OQNsx2QSKn/P11UWi6qetvo7OJ
+	OMgEsQCn3F5yaPV/XmGdgH50+/xxwZM9E/3OmnksKBoJHY54qbUPNYEBPJmPp39aeEdr41AOUQJ8r
+	63/X7wrc7ImH+3u/6EKAQI9vwjBrOH65eQ/346xH+3JRa0EcAkJf6+plqAn+m1rPxMND7QpCStWjr
+	zrgE2GFfLNUkwuwxX9W6lMVWiukjy3UOnpe6ypbmzextSmb/F5Bxok70MoZf8wx/KCUStrIIFxjya
+	DQBS6f4ytrG8MdF4pmugr4pFowFWnbv3GDoUIougQuYF//aZFQ28qqyl3f7G/uol+BG4qC8HtJxyy
+	3pXMqc1w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRhyG-0000000Ba9U-21nn;
-	Fri, 13 Nov 2026 03:29:00 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRhyD-0000000Ba8h-3rfa
+	id 1xRiBh-0000000Bb3Y-3K0T;
+	Fri, 13 Nov 2026 03:42:53 +0000
+Received: from mail-dy1-x1334.google.com ([2607:f8b0:4864:20::1334])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRiBc-0000000Bb2r-2kvA
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 03:28:59 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C6D24175A;
-	Thu, 12 Nov 2026 19:28:51 -0800 (PST)
-Received: from localhost (a085714.arm.com [10.164.19.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 106C63F632;
-	Thu, 12 Nov 2026 19:28:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794540534; bh=kLEU3+bkOweqD+kWRCMnCgNUSxxZISweiL/OZrrvsQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cQzJAi9qDEf+g9Wu+39XmiWj8YhBA0INOILUGffcjMUE8/Tf9z7R4Xduj/J3XnJva
-	 NIkTXHmTBtDOBXymBVjpVAXOyuDh6Q8LHelosDBddoa2rtGosn/7Xf/ohNpiQnHq7C
-	 yISkFw1TmXdLfYUuB5eNB4w4khmLNN95v7wKKgUE=
-Date: Fri, 13 Nov 2026 08:58:51 +0530
-From: Anshuman Khandual <anshuman.khandual@arm.com>
-To: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
-	will@kernel.org
-Cc: Ryan Roberts <ryan.roberts@arm.com>, 
-	Mark Rutland <mark.rutland@arm.com>, Lorenzo Stoakes <ljs@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>, 
-	Mike Rapoport <rppt@kernel.org>, Linu Cherian <linu.cherian@arm.com>, 
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org
-Subject: Re: [PATCH V4 0/4] arm64/mm: Convert pgtable READ_ONCE() as
- pxdp_get()
-Message-ID: <vtaekdnpxd5avhpv3hlmeswwq5raf57ila2qyilxvddu3w5nnq@lkenzauzv7hy>
-References: <20261105043403.3326445-1-anshuman.khandual@arm.com>
+	Fri, 13 Nov 2026 03:42:49 +0000
+Received: by mail-dy1-x1334.google.com with SMTP id 5a478bee46e88-36f6295304dso422579eec.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 19:42:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794541367; x=1795146167; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=7wqtaClkA87RYbtDZICJouKtI7I+Hc/L5x4RkEdLrEQ=;
+        b=UhKYADaFic9qUvLS7ZzEy6HXB+EOmKtJuEF4uvglfvJPfl1h0zyP5JmCD84FJ2fFah
+         hZDgzQR+NyGITJYv6DS9hQl2ubHDA6rrdUZ2IOtJMnyGHBzUXTUPmL4AnnloFky/NLRg
+         dJcEp87r+I3CYcw2TMXzzSXh+gkmEbpntBCUrVzih3J4QO6xnJP5KKyawB63wQh556sd
+         +Nw1bhRAfdMO3EAV9Curjag6QgC+Q4Img1IU6yUToMZ5bfvXYOcgYUtmRk65F7RN7d+T
+         EjMx8NQxbcH9Ga/9ZoMPnVR2K01/tr5lCs77jGe1DSoQJobNlW7MpcjcOtv58m5PIHID
+         hXbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794541367; x=1795146167;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=7wqtaClkA87RYbtDZICJouKtI7I+Hc/L5x4RkEdLrEQ=;
+        b=O3AhbfAcs7cHg0gTnoSSiXDc9mtuUuio9YgjI+KrWXlTlUrCInM3Afsa690IjxmSKx
+         5iYpIsuIW93S1nAvWUGD+5EvX79//LTx9xF6lneS6b66Bjue5/sIKEQ22FrT6odNEVIq
+         isSRxq/vigmD0f6YSKlfpV2tN04lCNJ4Avql5VeKTcVizMw5GsG/Wczsr4nitUdRUvvO
+         ZzwUKPwK/9lYkH+soiiHxKM7NhTdGLGKibYElOqbXHG/hwlWOetgOdStL/BnvC6khCmx
+         nZS/BJZyzRIGPJqugt4+u6SZUsnYjLssS7/njIqjZSoh6IG6v5niWy6TVHbO/gC10BYT
+         dRyA==
+X-Forwarded-Encrypted: i=1; AL+hErGLvXlkpoB41fHJ5IENOUBLL1jKFnMU4T09b1Juy8youJkN1IZdicOW4B/mt6Irgyb8qqA/Gw5m6yZrJr9ZsigV@lists.infradead.org
+X-Gm-Message-State: APuU4Z+EaZHlObjd2Rx76NUuoRRb6a0ssJ/lNw/KXwZtDyIgKRHMNvSi
+	XgeCyVymy2D4FuB/0EwsYEp6uJ3XBwQGJ21pGipk0Fc4io7a6bsUefWQ
+X-Gm-Gg: AYBFou210eighgIo0XuTDmnbnJZ4m37580pPIFFXTjNGdB9i+Q9N8uPVkpGQq6JPYM+
+	N03tEteCP8PObDvyqK0aY0aDZP+trpFKZ34U3V+VJD7AOACHe/1qyHynqNJqmeSig6vRbg5HX41
+	3GsZdMGsBzSA1wkJ4d3ZS/jNOSVvwApDs1tZ+EKYH1t2K5SaFXMasr6gI9Ck/fZWpxztbcF/Rws
+	JS64tj6/J3wbnz6x9QNPE9KDHkZmA0ODtp6xytSfgr7ub0Zyc/h0RyBeCeZR6bcR3TEOto0rV6M
+	/BLdryZe1Dk2SLl0A5XpHRIJf02Ti4rTHIIY8PSCptKv93jFtT3B1YHD10e4WSkGi7oS6ts1Nax
+	GzJ6bZEARTsYatXrXfL2itNQjKrxgbwQRU/2E7stcBdGGhE9PV9j3M0Z8rWUyaUTyIHzEHNEJdb
+	oQfWKt79Tdvd+d0nYfzeZelUUcHVHymmkKxVCjiS910FibF8MohxT+1qGaUk5WQx9Pe/p8jlSBf
+	oydFQIwzFpNkhEbbXp9HOaGlXuum6DoZE9U7YGtY3qLUrnJLyjMQ7NTNeAFeeNTF5StBijp4Xzm
+	HGLHrSEi3Svtl8GrOQNy5IjQ+9MiTSum0Xs4EO6r0cfR
+X-Received: by 2002:a05:7301:540d:b0:36f:4d62:2884 with SMTP id 5a478bee46e88-3796721cfcdmr1081571eec.30.1794541367340;
+        Thu, 12 Nov 2026 19:42:47 -0800 (PST)
+Received: from debian.prasanth ([114.79.136.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-37955e0d966sm2999565eec.15.2026.11.12.19.42.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2026 19:42:46 -0800 (PST)
+From: Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+To: srini@kernel.org
+Cc: joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	ryan_chen@aspeedtech.com,
+	billy_tsai@aspeedtech.com,
+	neal_liu@aspeedtech.com,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	Prasanth Kumar Padarthi <prasanth.padarthi10@gmail.com>
+Subject: [PATCH v1 0/1] nvmem: aspeed: Add read-only AST2600 OTP support
+Date: Fri, 13 Nov 2026 09:12:12 +0530
+Message-ID: <20261113034213.158390-1-prasanth.padarthi10@gmail.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261105043403.3326445-1-anshuman.khandual@arm.com>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_192858_122940_B3E87B6A 
-X-CRM114-Status: GOOD (  22.33  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_194248_694591_CEA2ADA3 
+X-CRM114-Status: UNSURE (   7.53  )
+X-CRM114-Notice: Please train this message.
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -73,113 +105,35 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 05, 2026 at 10:03:59AM +0530, Anshuman Khandual wrote:
-> Route READ_ONCE() accesses on pgtable entries via level specific generic MM
-> pxdp_get() helpers which platforms could then override when required. These
-> accessors on arm64, will help in ensuring page table accesses are performed
-> in an atomic manner while reading 128 bit page table entries later. But for
-> now they just default to READ_ONCE(), thus preserving existing behaviour on
-> current D64 translation a well.
-> 
-> This is similar to generic MM where all atomic accesses have already been
-> converted from READ_ONCE() into pgtable level specific accessors.
-> 
-> These are preparatory patches for D128 enablement, although standing their
-> own for D64 translation as well. These patches are split from earlier D128
-> V1 series. There are no functional changes here, and besides mm kselftests
-> do not show any regression.
-> 
-> https://lore.kernel.org/linux-mm/20260729122452.3797443-1-anshuman.khandual@arm.com/
-> 
-> This series applies on v7.4-rc1 and have been hosted below for reference.
-> 
-> git@git.gitlab.arm.com:linux-arm/linux-anshuman.git (arm64_pxdp_get_v4)
-> 
-> Changes in V4:
-> 
-> - Dropped all pxdp_get() platform overrides per Catalin
-> - Moved pmdp_test_and_clear_young() and [pud|p4d]_offset[_phys]()
->   helpers inside arch/arm64/mm/mmu.c to avoid build problems
-> - Updated all commit messages as required
+Add a root-only, read-only NVMEM provider for AST2600 OTP, with serialized
+controller access, bounded polling and configured secure-prefix checks.
+The driver adapts ASPEED's downstream read sequence and preserves its
+attribution.
 
-This series has run into some KASAN fault issues during boot with 5 level
-pgtables but also unlike Sashio suggestions these would require more code
-churn to fix. Please find the details below.
+Tested on ASRock Rack B650D4U (AST2600 A3), OpenBMC Linux 6.18.24:
+- Repeated, paired and cross-pair reads matched.
+- Four concurrent readers completed 40 matching reads.
+- Bytes 8172..8183 matched a separate vendor-derived reader.
+- Synthetic pre-MMIO timeout, failure latching and rebind recovery passed.
 
-https://lore.kernel.org/all/ohyhflzuoxdemccemutoosmj5hsfwylrlt6tvnyehulerk7gf3@ada6wu4zrzkp/
+Host fault-injection tests also passed all 42 polling-timeout cases using
+simulated registers and virtual time.
 
-NOTE: somehow Sashiko had dropped LAKML from the thread although it shows
-up in MM list.
+Prasanth Kumar Padarthi (1):
+  nvmem: aspeed: Add read-only AST2600 OTP support
 
-Given the above scenario, I would suggest falling back on the V3 series,
-that defined and override pxdp_get() helpers for arm64 platform. Although
-similar to generic MM default fallback, they prevented code movement into
-arch/arm64/mm/mmu.c file causing these KASAN issues in the first place.
-
-https://lore.kernel.org/all/20260924062214.1635078-1-anshuman.khandual@arm.com/
-
-V3 series apples cleanly, builds, boots and also clears MM selftests on
-v7.4-rc2 as well.
-
-> 
-> Changes in V3:
-> 
-> https://lore.kernel.org/all/20260924062214.1635078-1-anshuman.khandual@arm.com/
-> 
-> - Added overrides for pxdp_get() and replaced remaining READ_ONCE()
-> - Updated all commit messages as required
-> - Dropped previous tags
-> 
-> Changes in V2:
-> 
-> https://lore.kernel.org/all/20260922061638.3967467-1-anshuman.khandual@arm.com/
-> 
-> - Rebased on v7.3-rc4 along with all latest dependencies
-> - Updated commit messages per Ryan
-> - Added tags from Ryan
-> 
-> Changes in V1:
-> 
-> https://lore.kernel.org/all/20260903060657.2717457-1-anshuman.khandual@arm.com/
-> 
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Cc: Ryan Roberts <ryan.roberts@arm.com>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Lorenzo Stoakes <ljs@kernel.org>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Mike Rapoport <rppt@kernel.org>
-> Cc: Linu Cherian <linu.cherian@arm.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-mm@kvack.org
-> 
-> Anshuman Khandual (4):
->   arm64/mm: Use pmdp_get() for PMD accesses
->   arm64/mm: Use pudp_get() for PUD accesses
->   arm64/mm: Use p4dp_get() for P4D accesses
->   arm64/mm: Use pgdp_get() for PGD accesses
-> 
->  arch/arm64/include/asm/pgtable.h | 38 +++----------
->  arch/arm64/mm/fault.c            |  8 +--
->  arch/arm64/mm/fixmap.c           |  6 +-
->  arch/arm64/mm/hugetlbpage.c      | 10 ++--
->  arch/arm64/mm/kasan_init.c       | 18 +++---
->  arch/arm64/mm/mmu.c              | 97 ++++++++++++++++++++++----------
->  arch/arm64/mm/pageattr.c         |  8 +--
->  arch/arm64/mm/trans_pgd.c        | 14 ++---
->  8 files changed, 108 insertions(+), 91 deletions(-)
-> 
-> -- 
-> 2.43.0
-> 
+ MAINTAINERS                 |   1 +
+ drivers/nvmem/Kconfig       |  12 ++
+ drivers/nvmem/Makefile      |   1 +
+ drivers/nvmem/ast2600-otp.c | 259 ++++++++++++++++++++++++++++++++++++
+ 4 files changed, 273 insertions(+)
+ create mode 100644 drivers/nvmem/ast2600-otp.c
 
