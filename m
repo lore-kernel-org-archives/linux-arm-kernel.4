@@ -2,11 +2,11 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBA7606A883
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965EA606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 16:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=t8UZAq1F;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aOpfZLNA
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=htGfTuz9;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RIjsIC+X
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:Reply-To:List-Subscribe:
 	List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
@@ -14,72 +14,72 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	Content-Type:MIME-Version:Subject:Date:From:Content-ID:Content-Description:
 	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
 	List-Unsubscribe-Post:List-Owner;
-	bh=duaSgK5diYqNhsVVmsc0RbAG9oAaNnkgjzWifl8mDlg=; b=t8UZAq1FV5YXQJPFIxCJNG2Few
-	zTDRofxbvttwwLuWQ9IuoR/uAySwb3Y7wwboo7nx07wfyRlHs/gZ1cbWqTCLpxyp4HvJ1VXhFVvXb
-	ZFr4FXzf7AFmiGzz1czX9XuS1bFHq96XKK3WSxIGagLDU2Pub/EOBEu3a5p0yMUnd3ebPzRRUZqPZ
-	ekR3oVEWza4WAw4y08xsBydKkNzsT6lx52e/k0JWtMwPYOm8go95MyEt1Pmq35HDXpODg6Jfve61C
-	/0j6HOIIpZMRtPPGKEtzPmsfZ7oOxBwk610OI2bEkAQ3niEBXOHxk1YKEVJDQ0Q8h+X/T8q141kTl
-	+TjTeNGg==;
+	bh=DxUKnJSoxh5R0Lqzvv32zTimhe+hLNG3ZBbQWBwfczg=; b=htGfTuz95FXV3izjkuIOdxC7O6
+	YgiNMlYMiNUSusrTp9KDFCaIcCCPtjzkSHPOBMPLLHVR8DL9OmzDuHOjCS2mpslHZsR71rEF8Ga9c
+	+E55cThsT2ocTKgJ3qbF/BLtgeTaotZdsBJYfQj9+hYEXmiYB+wsVKrXxZpQ8dC/P95hRboDwMHXu
+	imPuqJhuumnCXWmKm3JwHFXFzV/n/gZzvjIZUGXgxs0HObpGAdIyHk2qg9Ee7yFWR9CChuKaYjmat
+	Ipd5CbOwoc+H17Rd7wMdvWidXEpK/lzWEy8VMSvfM8wKhy6CwSdR2d3wT6LqFjPoFUkcxHhPgZpUo
+	DPovStJg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuKy-0000000DbRs-1vpx;
+	id 1xRuKy-0000000DbSc-2p7s;
 	Fri, 13 Nov 2026 16:41:16 +0000
-Received: from tor.source.kernel.org ([172.105.4.254])
+Received: from tor.source.kernel.org ([2600:3c04:e001:324:0:1991:8:25])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRuKK-0000000Dax3-2Ub8;
-	Fri, 13 Nov 2026 16:40:36 +0000
+	id 1xRuKL-0000000DaxL-0SYw;
+	Fri, 13 Nov 2026 16:40:37 +0000
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
-	by tor.source.kernel.org (Postfix) with ESMTP id 0EC6B628D4;
+	by tor.source.kernel.org (Postfix) with ESMTP id 8E01B628EC;
 	Fri, 13 Nov 2026 16:40:36 +0000 (UTC)
 Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
 ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
-	t=1794588035;
-	b=qrAU3FLkhEyPBnaNKdTSnecs8bkj4iMGBqXvLxNN+MDkMhnUd238VkzzIpszASOmrLIb
-	 UEmQliIyqNXJjUiTbprSOQxRTnZ9biad/prvE01tHUkCZNCyU0fMsHQH3VIz0evSCEP1w
-	 lp5Ea0cE/vpoa0Xe6HiGAKAhmpiOD1fDCJx+TSxDu8XikeFOcwLsXQW7ZIT21X77wzpOf
-	 roARRTs8JqNUhEGjm/Rn2U07JPgyyQFL2xbL5RO+BR2Xihr3CkXj5tLM9QupkdupemkHa
-	 uvw8AdJZPc6I/TSVz1/1u7Yd6N1/EU37ROv48cHCteUucKMHUegQ3JpZ2JsB9v+5bCg==
+	t=1794588036;
+	b=ej0bCZZMx3s/eMYrZoC6WZAsB0HI3mHxiGSUXjPaJ9qHk20EEYKVv21YzdS3MdX5kdG+
+	 AcrtucW5u8uVWmrNXLyrXNHl19Rplr55m3uJv0Mb6wdGr/becxAmgYRFEQvzN8pM2EvRh
+	 u8lAbhpv1rg6m56hn0h2PQ3XPK/NHcduqJ8WNeRfBpiCr45MdQtYjYgyvrmdSZI813oqM
+	 1BaxMpSkSCxQ0WBkDsbH+u0ZwbjCRkPTfW5t/uWib/D2fjOTVyE/uOhkNgI0sR9yeftLM
+	 iO4iIOHAVoNu0PclaYm8RsbUTu6FSnvWwF6JD0b+GjF2qJjIQsSH85ZK1VjTH4hr3Cg==
 ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
-	c=relaxed/relaxed; t=1794588035;
+	c=relaxed/relaxed; t=1794588036;
 	h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
 	 Message-Id:References:In-Reply-To:To:Cc:X-Mailer:
 	 X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
 	 X-Original-From:Reply-To:Content-Transfer-Encoding;
-	bh=duaSgK5diYqNhsVVmsc0RbAG9oAaNnkgjzWifl8mDlg=;
-	b=16xPJOTpoONspMCw7SLyChltXW7T+iCNY9TpGVHGv7bfsqdAQ5ka9GCa5unDxX4kRn7n
-	 P16U1Rp3sa+Z/bf6rXIcmr8Sfu28tsIPyK1CoCE56k+CIkll+Me8ZUKmpo+68HeI4eR1j
-	 kp5QnGTT0+/QyUcl+7H/c1JNQoSmyvWld51Uql1H7YqPPnbTSdqUBQhIGoSNzqQSSg741
-	 MzDA8BdFZxbWsS1VGTY3jvaUHylGoz6/Iw287eToL93HzpzYVQm8pRntdPi0IJknN1pHL
-	 3m0pwBd07nC3ALVb+xalcXPwJdJ2z8INeA1tmqsvc98E6ZrF14XYf06bcyA/hAPZofA==
+	bh=DxUKnJSoxh5R0Lqzvv32zTimhe+hLNG3ZBbQWBwfczg=;
+	b=gnWHT76Hgk6oYb62v/M7DR5gpkpHyUX0C+8ccvxtqKi1dogrhcndZ2QWoGib+fMOxUf4
+	 jE0uZ+Zqp/G3MsGjzfd2DQPrrkUqs6X5X0otYCVoLHCB6b7HOIFA2PqYdB10D22sCuLwM
+	 xN866L2GgEvyvLja5H4PrzmGPTUJU2vfgjy8upCQKu4rTIoqJYMyTjcTDLBCLLf3g0+nK
+	 nugiWGR1W8pbGRRKOzDZKO/abqo5nlMQZO5HdXgGZTx0rnnirrdrJqPe5ZkhFFt4MQPhN
+	 9lUN/2R7N/tOIZxuayQmJDPRMA7nFWIS17Cykm2IIr7FuJGipcK96vL9ePCSFCeXU2A==
 ARC-Authentication-Results: i=1; smtp.kernel.org; 
 	arc=none smtp.remote-ip=100.80.115.77
 Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.kernel.org (Postfix) with ESMTPS id 44BDC1F000C6;
+	by smtp.kernel.org (Postfix) with ESMTPS id 5E73D1F000C8;
 	Fri, 13 Nov 2026 16:40:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
-	s=k20260515; t=1794588035;
-	bh=duaSgK5diYqNhsVVmsc0RbAG9oAaNnkgjzWifl8mDlg=;
+	s=k20260515; t=1794588036;
+	bh=DxUKnJSoxh5R0Lqzvv32zTimhe+hLNG3ZBbQWBwfczg=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To;
-	b=aOpfZLNAqPDgdsVQLWfibmOde6PcXaMcHCp8aPXc4VDsLgYbyCTM4OXgvSTUgdbtH
-	 UFXwokyuCOlH6zdeH6Cq7dYy90anJAx9Dg+c8usbwiPUcGxC0wDFZ4vuNCsuXTo5Y9
-	 Dqiwy9kMJ3jUs348qa1Dch/9A6FKN4djpYOB4JqjIFaOYXog2do7XN/WUegkplO9Tu
-	 tQ3s1g2INnMyHF5MIYMTW9Ag6+HRYwbm9z3jQoKvNAJrPJ8GT3Z7lQk/8plmod81ie
-	 DvgV6hKcA4v/zKOlLvVI5qxN2BfjdXFBhoyWJLGa/3kFZGuujOGg6KyXpT4QdFsKhF
-	 eOcJMzBXrWZQg==
+	b=RIjsIC+XXwPwlP6sgBYp7s2rBD4I2LpgvZ7dzXI08xo/X5RsdFFOxeHkYVSVVJmSU
+	 SJ9SrdnKP2N7LXuHmGCpvX5xgvHSijbFRwjPtKRzzSpKDz6wv6+BkGNAvbz/4CQ35X
+	 Rk9JP0J/k7MX2K2x8POQzF/IedLy0nf+mPivdTwyN2HsenmBe+2/L9uvk8FV48pxCn
+	 zdQQDkL9GR4YPUmbIP6+tsf5x8FsZnH9C8n42aORoCdnz7t6PsTSkPVjXbez7ncuXq
+	 G5wBPm9Mn87HsYf/YHxPNq9buLoHKVW8K26PKsmCnEHojspUEqeccQGaHaJuSvjk78
+	 LROtvxFmcpDjA==
 Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
-	by lkml.kernel.org (Postfix) with ESMTP id C9760499DB;
+	by lkml.kernel.org (Postfix) with ESMTP id E44FD499DF;
 	Fri, 13 Nov 2026 16:40:32 +0000 (UTC)
 From: Arun Iyengar via B4 Relay <devnull+aiyengar1990.gmail.com@kernel.org>
-Date: Fri, 13 Nov 2026 16:40:33 +0000
-Subject: [PATCH v3 02/12] media: verisilicon: Check the match data in
- hantro_probe()
+Date: Fri, 13 Nov 2026 16:40:34 +0000
+Subject: [PATCH v3 03/12] media: verisilicon: Complete the request when the
+ VPU can't resume
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Message-Id: <20261113-hantro-robust-v3-2-82383c722ad2@gmail.com>
+Message-Id: <20261113-hantro-robust-v3-3-82383c722ad2@gmail.com>
 References: <20261113-hantro-robust-v3-0-82383c722ad2@gmail.com>
 In-Reply-To: <20261113-hantro-robust-v3-0-82383c722ad2@gmail.com>
 To: Nicolas Dufresne <nicolas.dufresne@collabora.com>, 
@@ -103,11 +103,11 @@ Cc: linux-media@vger.kernel.org, iommu@lists.linux.dev,
  Sascha Hauer <s.hauer@pengutronix.de>, 
  Arun Iyengar <aiyengar1990@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794588032; l=2017;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794588032; l=1356;
  i=aiyengar1990@gmail.com; s=20261110; h=from:subject:message-id;
- bh=USarBI/8QLSUU7n4QQXOd3oICBoakGw0nlmY2gPzpAo=;
- b=VHn9biPtTSPgjKSK+LlZtbRsJG7aomHpah4FtXX6wvlrtziNtNDasva9saf6Y9Yd21xb7URUY
- Kjqx/X9W7idCWs6uQxrP6bjU0Ed9vIN+cDEtGVVGMiPaQ5Mq44mzyFX
+ bh=dcuFbBUH76d1uZ1BUVv0QU7AVt7L3akWWbZ+Mrdvg+I=;
+ b=YS62kIkVRY6LHDmN/vH4lFvz33jKVGNFKm/SlC2vyNIpKbNOEVMlQ4zjchnMUSOlOD9PgdR/D
+ nojFp3hpkZwCWE0o5NH26npE1Kg342s81Ds9ADxyFjTFwHYy7gEZsbN
 X-Developer-Key: i=aiyengar1990@gmail.com; a=ed25519;
  pk=zXpRgUTrhaFe6jLyPqbBy3ccfkj04w0g2690Wv3mg+0=
 X-Endpoint-Received: by B4 Relay for aiyengar1990@gmail.com/20261110 with
@@ -135,58 +135,45 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Arun Iyengar <aiyengar1990@gmail.com>
 
-A device bound through driver_override may have no OF match, and
-hantro_probe() then dereferences a NULL match. Use
-device_get_match_data() and fail with -ENODEV without match data.
+If pm_runtime_resume_and_get() fails, device_run() returns the buffers
+without completing the controls of the request, and the request stays
+queued forever. Complete them on that path.
 
-Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
+Fixes: 7d47b45dc590 ("media: rockchip/vpu: Support the Request API")
 Signed-off-by: Arun Iyengar <aiyengar1990@gmail.com>
 ---
- drivers/media/platform/verisilicon/hantro_drv.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/media/platform/verisilicon/hantro_drv.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/media/platform/verisilicon/hantro_drv.c b/drivers/media/platform/verisilicon/hantro_drv.c
-index 26e5d5547466..e86eb943d16a 100644
+index e86eb943d16a..42822b2b376c 100644
 --- a/drivers/media/platform/verisilicon/hantro_drv.c
 +++ b/drivers/media/platform/verisilicon/hantro_drv.c
-@@ -17,6 +17,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm.h>
- #include <linux/pm_runtime.h>
-+#include <linux/property.h>
- #include <linux/slab.h>
- #include <linux/videodev2.h>
- #include <linux/workqueue.h>
-@@ -1071,7 +1072,6 @@ static struct v4l2_m2m_dev *hantro_get_v4l2_m2m_dev(struct hantro_dev *vpu)
+@@ -176,16 +176,20 @@ static void device_run(void *priv)
+ 	dst = hantro_get_dst_buf(ctx);
  
- static int hantro_probe(struct platform_device *pdev)
- {
--	const struct of_device_id *match;
- 	struct hantro_dev *vpu;
- 	int num_bases;
- 	int i, ret;
-@@ -1085,8 +1085,9 @@ static int hantro_probe(struct platform_device *pdev)
- 	mutex_init(&vpu->vpu_mutex);
- 	spin_lock_init(&vpu->irqlock);
+ 	ret = pm_runtime_resume_and_get(vpu->dev);
+-	if (ret < 0) {
+-		hantro_job_finish_no_pm(ctx, VB2_BUF_STATE_ERROR);
+-		return;
+-	}
++	if (ret < 0)
++		goto err_cancel_job;
  
--	match = of_match_node(of_hantro_match, pdev->dev.of_node);
--	vpu->variant = match->data;
-+	vpu->variant = device_get_match_data(&pdev->dev);
-+	if (!vpu->variant)
-+		return -ENODEV;
+ 	v4l2_m2m_buf_copy_metadata(src, dst);
  
- 	ret = hantro_disable_multicore(vpu);
+ 	ret = ctx->codec_ops->run(ctx);
  	if (ret)
-@@ -1098,8 +1099,7 @@ static int hantro_probe(struct platform_device *pdev)
- 	 * nxp,imx8mq-vpu-g1 or nxp,imx8mq-vpu-g2 instead.
- 	 */
- 	if (of_device_is_compatible(pdev->dev.of_node, "nxp,imx8mq-vpu"))
--		dev_warn(&pdev->dev, "%s compatible is deprecated\n",
--			 match->compatible);
-+		dev_warn(&pdev->dev, "nxp,imx8mq-vpu compatible is deprecated\n");
+ 		hantro_job_finish(ctx, VB2_BUF_STATE_ERROR);
++
++	return;
++
++err_cancel_job:
++	v4l2_ctrl_request_complete(src->vb2_buf.req_obj.req, &ctx->ctrl_handler);
++	hantro_job_finish_no_pm(ctx, VB2_BUF_STATE_ERROR);
+ }
  
- 	INIT_DELAYED_WORK(&vpu->watchdog_work, hantro_watchdog);
- 
+ static const struct v4l2_m2m_ops vpu_m2m_ops = {
 
 -- 
 2.55.0
