@@ -2,149 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FF4606A882
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 09:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C26606A31C
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 09:06:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=FP4Ue+pg;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=C0Mh/tUY
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=qfFrAcZG;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=f0vffpVZ
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=IN2mFPnuQd6vKEXAVZ/AVu2voATkxJGZ8A+IFo/BFG4=; b=FP4Ue+pgpNyXsm
-	WH6k0sxref/MOKnuYf6F7RFUFmA8TlfS0TSt/8V2Jpfx1loXmkCC1w5FtFpJJwZuIm4W15+OyaJvv
-	XdngHUmsE3+bnf84uzqFgl/0b9FWztiHxkhufC+mOFpBEhMtvKvL9FW6uP9GRmFODlDWirietnMby
-	K0Oh1uRwX2k9HSq3uYOZ6Y8sNBIHvB196tfTZnqQ3GjJp2Gl6L7FuKiLM978lt72WNDu+Cr9Z+YNM
-	09g7ZeSclU+45CTeArp4+DecYCLG8oApEutmFj8ggVlipAr59EXzXmicbjzHcwktYjtq8AGpjTq/M
-	Ewh/CbJivfl1mo6W649w==;
+	List-Owner; bh=m9B2HLqDdiE/y5FWXTFo38VfZGVo4F39dSrwK05GBbY=; b=qfFrAcZGuQl9ku
+	0yBX9lgUOIh1/fomttj5spHAAFtXZwZ/I9LHB6YGQE9ohYWv3qu+fa/n4Ek7uMoxQsDpIKhamPwgj
+	lFewd3XgdgI7XAPnaZMpGiVY9AQS8/KFiKFH05jFK0zKIk4W+t8JAkU1ojTHnhj6v5S62z2DndwaV
+	7/TmBjcOThRZHLkBTtsrXP1zjXSyAd5uvE+MaDisK9U7h8uT3TPIKald/X8XazXE0Z0C52mPaxQoW
+	OMuZJbAS9ZZHYfMP9+2gbVfMf7W9qtVOpA2BeigR//KZCeW7fyd4wATcCU0TDo5UOTc0r+nhx8HcZ
+	WfGmifLQ2DW84bZnBvBw==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRnC3-0000000CB5s-0XyZ;
-	Fri, 13 Nov 2026 09:03:35 +0000
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+	id 1xRnEh-0000000CBO1-2rmr;
+	Fri, 13 Nov 2026 09:06:19 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRnC0-0000000CB53-0YS1
+	id 1xRnEK-0000000CBKn-12Rn
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 09:03:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1794560609;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=IN2mFPnuQd6vKEXAVZ/AVu2voATkxJGZ8A+IFo/BFG4=;
-	b=C0Mh/tUYqxlFPv8NZDFiC6LfTMgkf4LnAPLXPYsLlpAKRpd4/7n9ttGyO8Th1jVQJJUC7L
-	SzGMyPSr4+Rb3fPUn9puAxLRRz4HQdDMnwUF6otjHZdT8lWR1De15+fbSXrL9ghnpSso4E
-	FKUtrtqcdFEwEMM/HnhqMWtMqmNBGYE=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-340-K4mxcmFENjGB2KKheFzNQw-1; Fri, 13 Nov 2026 04:03:28 -0500
-X-MC-Unique: K4mxcmFENjGB2KKheFzNQw-1
-X-Mimecast-MFC-AGG-ID: K4mxcmFENjGB2KKheFzNQw_1794560607
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-4a0284121c6so3842705e9.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 01:03:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794560607; x=1795165407;
-        h=content-transfer-encoding:content-type:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=IN2mFPnuQd6vKEXAVZ/AVu2voATkxJGZ8A+IFo/BFG4=;
-        b=a1YWrYXwHw/bFdvdysv2fjiK4klg+U8rJqU+juMJQ2qm6ONW6otpUrpCbo0/gHu5LI
-         LL4fD+pJ8w/CZn4QbqPoF4KIG29ycmAvrFgn75otA80iNu7LBZaTCoTZmLgFh09AoU5T
-         YSGNII1qhSMTIqgQuozMuFG4JLkz1XcVj6/jBzAolqKUmPH/D0jKemwQFrcDszAAIPBW
-         to00jRuoytdbhQ8VJXE9otmNnTs7TYA06UfbF7ITbWbGbmZQrScYSug9iBimv74oQTjV
-         roYpOVakcm71WklVR9iRuGwFB1Ww66KzzKAhNWe0fThkhi+NsiNBDD69uRwEHpNtnZfM
-         G8WQ==
-X-Forwarded-Encrypted: i=1; AL+hErFBMNfXU1tkYviG+byCvfwd5dVdcHC0emB6z8DW1i+RHL239PF43hQ+QFudkset/01IgNZGNNpwUSRX0pm8rUsK@lists.infradead.org
-X-Gm-Message-State: APuU4Z+eb4NAqkmJDZUAkKIaVNkDyeg+/cuT4mlMnraCJJwncMvT7XKj
-	P1JePpCmFWLIWfjzuE3gpwkQelJztjW8biSlHDPC2+GvPwqRndl9IHupwKFWPqef2OdLlqIi/cG
-	yDaJmFNgHK9i4ky5m+kCfph2/2L2WajjA/VHMJm4zrO/CkQk9e4biOK49Q6NjrOyJ9Xxu7+qSWE
-	9TD22iHWAj
-X-Gm-Gg: AYBFou0rSn5hE9qJaSe7JlQw5N+ohljp5xyHX0Bmr+HrGaenOUoUAYUk6nps/c42POH
-	5/RIdivbw1WLZdNz5CULi4u4yMM1EeDhVIXcxk1H09mBe5yndSvIkdcu4C7yiKrOYyeFfmfAqts
-	un8+Pzt2yjE1nDoYz0Py6B/ZFprDpuF8NigC10RDMIQr98BRDXzGFuUrQvZHuSc1fx8q+N7dI02
-	mDanKcDsDjM2V0Zt6SolXFLG4ONAE97cLQUSfEHbonrudjFeVOY/4BoWIaI+vyr0Y0xTGPeJjC0
-	3w1k74EX3bdASlKVYBNYxIPr9BrZ97Ta8qHo4TkjlURLy5IZqhCvT7hSZJk5DSdZu2oCIEONJRm
-	ViRrx5kAxXdEWAC0fK4N+LgL/sMpGkrX2EpP/QgUSjKPD6Q==
-X-Received: by 2002:a05:600c:1f90:b0:4a1:7d9b:d4ae with SMTP id 5b1f17b1804b1-4bb55a45050mr35631375e9.5.1794560606920;
-        Fri, 13 Nov 2026 01:03:26 -0800 (PST)
-X-Received: by 2002:a05:600c:1f90:b0:4a1:7d9b:d4ae with SMTP id 5b1f17b1804b1-4bb55a45050mr35631095e9.5.1794560606485;
-        Fri, 13 Nov 2026 01:03:26 -0800 (PST)
-Received: from [192.168.0.9] ([47.64.115.75])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4bb566220edsm61931075e9.0.2026.11.13.01.03.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Nov 2026 01:03:25 -0800 (PST)
-Message-ID: <d8e52741-8275-47bd-997c-7b5339a1d213@redhat.com>
-Date: Fri, 13 Nov 2026 10:03:24 +0100
+	Fri, 13 Nov 2026 09:06:17 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 14E5E1A164C;
+	Fri, 13 Nov 2026 09:05:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D57B7601D5;
+	Fri, 13 Nov 2026 09:05:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1469611BC04C2;
+	Fri, 13 Nov 2026 10:05:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794560752; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=m9B2HLqDdiE/y5FWXTFo38VfZGVo4F39dSrwK05GBbY=;
+	b=f0vffpVZZrslinjhbIpY9qf8M3/CTvC1z9yRuJJogyIu+IMIeQXQfStNZCfvTBfaholj0T
+	XaUi5RncKXMF7GgfOhQVDBRYLBVRFb5xKn4JFbmA7GBQjCWX675/Mp4q0uAlmhPbkYexMp
+	9BVS2T1GmGDfln9dDKXTOClFTBVMsv+n0CadBkAkLrnTz494mmEpVvD8eiqM0gdGSByExO
+	bEJoOGwXZBlIhKafG9ATQYOfWbZvmV28m3FFXd0ZU1yGK8PgofIRLbNVkIbZrZwQAxmfD6
+	4SgqesLYSHv0C1TIzkodXek6GjHCpZ0gw2QZYIxh9kwnrThjZzgVWgWre5XuhQ==
+Message-ID: <03612a8a-0899-47e9-b992-d166bc7fd63a@bootlin.com>
+Date: Fri, 13 Nov 2026 10:05:43 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] lib/crc: Don't include <linux/types.h> in NEON
- intrinsics code
-To: Ard Biesheuvel <ardb+git@google.com>, linux-kbuild@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org
-Cc: Ard Biesheuvel <ardb@kernel.org>, Christoph Hellwig <hch@lst.de>,
- Eric Biggers <ebiggers@kernel.org>, Nathan Chancellor <nathan@kernel.org>
-References: <20261029135020.272082-6-ardb+git@google.com>
- <20261029135020.272082-7-ardb+git@google.com>
-From: Thomas Huth <thuth@redhat.com>
-Autocrypt: addr=thuth@redhat.com; keydata=
- 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
-In-Reply-To: <20261029135020.272082-7-ardb+git@google.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: TXu2E4iQKuHZ7NJcYgHerDJ0UFSTp5W_JpDht6k4eqY_1794560607
-X-Mimecast-Originator: redhat.com
+Subject: Re: [PATCH net] net: stmmac: re-base EST after PTP settime64
+To: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Richard Cochran <richardcochran@gmail.com>,
+ Jose Abreu <Jose.Abreu@synopsys.com>, netdev@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20261111-stmmac_set_time-est_lock-v1-1-da1554f233e6@oss.qualcomm.com>
+ <ea9ae0f9-d373-4e97-b96b-3855c01100ee@bootlin.com>
+ <avbOwepxkFf1F717@lore-desk>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
 Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <avbOwepxkFf1F717@lore-desk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_010332_271450_12CEB798 
-X-CRM114-Status: GOOD (  20.53  )
-X-Spam-Score: -2.8 (--)
+X-CRM114-CacheID: sfid-20261113_010556_477072_C252A9B7 
+X-CRM114-Status: GOOD (  13.56  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -163,64 +91,94 @@ X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Am 29.10.26 um 14:50 schrieb Ard Biesheuvel:
-> From: Ard Biesheuvel <ardb@kernel.org>
-> 
-> The kernel's definitions of uint64_t and int64_t in <linux/types.h> are based
-> on [unsigned] long long, whereas the ones provided by <stdint.h>, which is
-> included by <arm_neon.h>, are based on [unsigned] long on arm64. On 32-bit ARM,
-> a similar mismatch exists for intptr_t.
-> 
-> Including both into the same compilation unit currently only works because
-> asm/neon-intrinsics.h overrides the predefined macros that the compiler's
-> freestanding <stdint.h> uses to define these types. In order to be able to get
-> rid of those overrides, stop including <linux/types.h> into the CRC64 NEON
-> intrinsics code.
-> 
-> Instead, use <stddef.h> for the definition of size_t, and rely on
-> <asm/neon-intrinsics.h> to provide the u8 and u64 types used in the prototype
-> of crc64_nvme_neon(), which is shared with code that does include
-> <linux/types.h>. Use uint64_t for the arrays of constants that are passed to
-> vld1q_u64(), so that they match its prototype regardless of how uint64_t is
-> defined.
-> 
-> No change in generated code.
-> 
-> Signed-off-by: Ard Biesheuvel <ardb@kernel.org>
-> ---
->   lib/crc/crc64-neon.c | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/lib/crc/crc64-neon.c b/lib/crc/crc64-neon.c
-> index 4753fb94a4be..1267df1310be 100644
-> --- a/lib/crc/crc64-neon.c
-> +++ b/lib/crc/crc64-neon.c
-> @@ -3,7 +3,7 @@
->    * Accelerated CRC64 (NVMe) using ARM NEON C intrinsics
->    */
->   
-> -#include <linux/types.h>
-> +#include <stddef.h>
->   #include <asm/neon-intrinsics.h>
->   
->   #include "crc64-neon.h"
-> @@ -11,11 +11,11 @@
->   u64 crc64_nvme_neon(u64 crc, const u8 *p, size_t len);
->   
->   /* x^191 mod G, x^127 mod G */
-> -static const u64 fold_consts_val[2] = { 0xeadc41fd2ba3d420ULL,
-> -					0x21e9761e252621acULL };
-> +static const uint64_t fold_consts_val[2] = { 0xeadc41fd2ba3d420ULL,
-> +					     0x21e9761e252621acULL };
->   /* floor(x^127 / G), (G - x^64) / x */
-> -static const u64 bconsts_val[2] = { 0x27ecfa329aef9f77ULL,
-> -				    0x34d926535897936aULL };
-> +static const uint64_t bconsts_val[2] = { 0x27ecfa329aef9f77ULL,
-> +					 0x34d926535897936aULL };
->   
->   u64 crc64_nvme_neon(u64 crc, const u8 *p, size_t len)
->   {
+Hi,
 
-Reviewed-by: Thomas Huth <thuth@redhat.com>
+On 11/13/26 09:48, Lorenzo Bianconi wrote:
+> On Nov 12, Maxime Chevallier wrote:
+>> Hi Lorenzo,
+>>
+>> On 11/11/26 10:54, Lorenzo Bianconi wrote:
+>>> stmmac_set_time() initializes the PTP clock through
+>>> stmmac_init_systime() (TSINIT) while holding only ptp_lock.  It neither
+>>> takes est_lock nor disables and re-bases EST around the step, unlike
+>>> stmmac_adjust_time(), which performs TSUPDT through
+>>> stmmac_adjust_systime() under est_lock.
+>>>
+>>> Both operations change the PHC system time, so both invalidate the
+>>> absolute EST base time.  With settime64, a concurrent
+>>> tc_taprio_configure() can read the pre-step clock through gettimex64()
+>>> and program EST with a base time that is already stale once TSINIT
+>>> lands.  Separately, a taprio offload installed before the clock_settime()
+>>> is never re-based and keeps running with its old base time until taprio
+>>> is reconfigured.
+>>>
+>>> Take est_lock for the whole disable/step/reprogram sequence, as
+>>> stmmac_adjust_time() does: disable EST before initializing the clock and
+>>> call __stmmac_setup_est() afterwards so the base time is recomputed from
+>>> the reserved taprio base time and the new clock.
+>>>
+>>> This keeps the established est_lock -> ptp_lock ordering:
+>>> stmmac_init_systime() only uses readl_poll_timeout_atomic() under
+>>> ptp_lock, and __stmmac_setup_est() takes ptp_lock through gettimex64().
+>>>
+>>> Fixes: b60189e0392f ("net: stmmac: Integrate EST with TAPRIO scheduler API")
+>>> Signed-off-by: Lorenzo Bianconi <lorenzo.bianconi@oss.qualcomm.com>
+>>
+>> This LGTM, the return values from stmmac_est_configure/__stmmac_setup_est are 
+>> ignored though, the [cl|s]ashiko gang may not like that.
+>>
+>> Besides one of the EST commands timing out, it seems unlikely though.
+> 
+> I used the same approach used in stmmac_adjust_time(). I guess we can update
+> both of them if required.
+
+Bah, I'm OK doing that as a followup then,
+
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
+Maxime
+
+> 
+> Regards,
+> Lorenzo
+> 
+>>
+>> Maxime
+>>
+>>> ---
+>>>  drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c | 9 +++++++++
+>>>  1 file changed, 9 insertions(+)
+>>>
+>>> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+>>> index 31a66e855d6b..6370bdc6c58b 100644
+>>> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+>>> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_ptp.c
+>>> @@ -129,10 +129,19 @@ static int stmmac_set_time(struct ptp_clock_info *ptp,
+>>>  	    container_of(ptp, struct stmmac_priv, ptp_clock_ops);
+>>>  	unsigned long flags;
+>>>  
+>>> +	mutex_lock(&priv->est_lock);
+>>> +	if (priv->est && priv->est->enable)
+>>> +		stmmac_est_configure(priv, priv, priv->est,
+>>> +				     priv->plat->clk_ptp_rate, false);
+>>> +
+>>>  	write_lock_irqsave(&priv->ptp_lock, flags);
+>>>  	stmmac_init_systime(priv, priv->ptpaddr, ts->tv_sec, ts->tv_nsec);
+>>>  	write_unlock_irqrestore(&priv->ptp_lock, flags);
+>>>  
+>>> +	if (priv->est && priv->est->enable)
+>>> +		__stmmac_setup_est(priv);
+>>> +	mutex_unlock(&priv->est_lock);
+>>> +
+>>>  	return 0;
+>>>  }
+>>>  
+>>>
+>>> ---
+>>> base-commit: 22b7cb932c6a0f7566d41072be6956cb6c8af4e1
+>>> change-id: 20261111-stmmac_set_time-est_lock-f74f4ce678b7
+>>>
+>>> Best regards,
+>>
 
 
