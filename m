@@ -2,78 +2,77 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F03606B55A
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C948606A33D
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=DzRWvBKU;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=kUnvp+Nl
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=kFjf/pc6;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=X5EjDUf4
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:To:From:Reply-To:
 	Cc:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=i5OFynf0yQ74EmgbLuwy7WCyI+wmTmFQ0TT8iw9nuIc=; b=DzRWvBKUHSEkBT
-	slCrrMBN7B6+7tVV0gK3tuXu+9eeqkiifflEL3ISDeEt/JDJjT91U+omEh0MAts2e2oKS2zDfKHYB
-	rq2IalJg4Ii96N483U8KmkdCNb/k9dHQ/3hVfOSVkJ9e9vsEj1TBb91VfH30QtII3rf6h9C8tRVKN
-	QSlb0kKRJYC5KDCOz7KcljwvBWaLeCfWRicizJOQEwVCLrB1ROjFMC9X5mBtBaokl3qAkrudQeBDL
-	FkNZ6glgYAeFTCAyEM/mWRjThXDIOXfwVGfkTw2jOBbxbbFipsVkusb0hh04AknvbnoXzJWIAPhyR
-	S4Ip699b/VIFV9t2uvMg==;
+	List-Owner; bh=au6wRe5V9xe+nBj4SXQtqBwfAHos0gKRmRourkWUPB0=; b=kFjf/pc6rHXcyJ
+	1AB6yGQAEQB5OmCmdY/OTpjQzB7JAf88VkyHG7P8znbFat8kP9Y1912qnQpIpWmr46zuBYnl5usj4
+	HKwom1p+DPXaCGuaFuqT0Azpn/LzURnvY7F1a1BHvlqO2KoZciMcdk8p7GwwlO6ky/g5FEHqrjrWZ
+	tJn3ThTfOaTXHXf0i0VQoZI72YR9EQ8S9roGX6nrpPubkm3I0Fr5LnIH05zdkSiCj7kcid6RPaXo9
+	WVP6pKY46DEfvDC8es8ZPc627c2Ufkow4dAwATzAF9bAjTWHZuNNDQhRWlKLlx4tac65DO2ET71Ss
+	NlnEhHQkkfz3Ym2QL/4w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfDr-0000000BJTe-3R09;
-	Fri, 13 Nov 2026 00:32:55 +0000
-Received: from mail-wr1-x42e.google.com ([2a00:1450:4864:20::42e])
+	id 1xRfDs-0000000BJVp-488r;
+	Fri, 13 Nov 2026 00:32:57 +0000
+Received: from mail-wr1-x42c.google.com ([2a00:1450:4864:20::42c])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfDh-0000000BJHd-1hsh
+	id 1xRfDj-0000000BJJb-3vbn
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 00:32:46 +0000
-Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-498f5fa4f70so447698f8f.0
-        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:32:44 -0800 (PST)
+	Fri, 13 Nov 2026 00:32:49 +0000
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-49465892f7bso363729f8f.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 16:32:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794529963; x=1795134763; darn=lists.infradead.org;
+        d=gmail.com; s=20260707; t=1794529966; x=1795134766; darn=lists.infradead.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to:content-type;
-        bh=i5OFynf0yQ74EmgbLuwy7WCyI+wmTmFQ0TT8iw9nuIc=;
-        b=kUnvp+Nl84GVc8lvhQbV8Nk9cxYTeWe9QuTd9mJGPC2Oj2wgoqNPv8puP1e/yk/Q5w
-         nhroUlKfUmfQir1ih/1vW7fYilPx2OPH74NGEfQ4xWZtOB6KEBbH2Smj5RGPy1vRefHO
-         znaPczrondALeaYh+6NJRqGcuRjBPZXpi9wraf66Dp6gmMPTgFirmWhbjkSbvsY6UIam
-         91Z4mOZFuRm5dwD0wyQQ0DzP9XlOOmzctO2hDX5iUu+bumz8SVJxBzbGNYCQKpYMPlNg
-         a7woyol6aYIAsXnX88ZrWVOnKh7mxWYQb6FgRhXjDfxss54I2papPrKWyeY1TSyIwnQo
-         uXoA==
+        bh=au6wRe5V9xe+nBj4SXQtqBwfAHos0gKRmRourkWUPB0=;
+        b=X5EjDUf4ygRLXfe+jhpPONYrCETvKue0ECEe8GhZhivXa5ACLxXpvUHnBHp2FVwJFa
+         1XKiNLE2FMYzV6cdTjCGAD5bP0bI4HcZab/KqID3ra3yCFe4+kwAeaYXq1gcjtw2Jmtu
+         UcXuIeUMQpm5IxfI1RzR5WQP/PutCBwLwLZB17IRs4/5O9XwThi8qo5pMIpHwn21kPVs
+         mO2YfHxFzkRHqahIWU4lkRfQj5xrj4DP+DuDRVxRbLCfNZ1yXU0TGys1n4Ezx50As/aa
+         awX6w9VT52FR9MlWPRxEUvj2UTxXhBwCaW1sf0Qf8esT86+tNIew76yLrUaSI2k7LE8G
+         mFvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794529963; x=1795134763;
+        d=1e100.net; s=20260707; t=1794529966; x=1795134766;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to:content-type;
-        bh=i5OFynf0yQ74EmgbLuwy7WCyI+wmTmFQ0TT8iw9nuIc=;
-        b=a1Jab22d1BMB6JDTZkGt5di0lHTFPRVQqEdbjhxW4Swf/BnR+VqUVXksqN19/2oCT9
-         +ULKUwA2UZtYI9DjI4BAacb1QXcCNiLAIYJQaLAe4NWffdTI1LLn24E4VBhKadR/UZik
-         vK3xsgLQLpE4yj8pYw/z648ln8/zeUx6Y5XmrPdV+a1QyaHcwa8gsCem4ieCcoFrqaQ7
-         Z47kjFaUeQJKMwR7jcQ220Q2hNVUlSJ+sZE3zUKKWBkA6V53MBAM1jyK+dDRfKgNQ7Jm
-         iZPsvuii/JhBPnSQInJk73fkHSg0S6Qeo+R3blBV2ony31hs9OAA5CA63+szzhFRJ/Nw
-         Dl+w==
-X-Forwarded-Encrypted: i=1; AL+hErEUIITi1NPETEm/rUc4VG2TkFtaFeOKc67Q1O6AaXzZ/egs/3twuPLtA0v52CGxn4mRcLkpufhftsSEDAQFQUoa@lists.infradead.org
-X-Gm-Message-State: APuU4Z9mpep1EuIAEqO/75m06Xj6BN3ZWb1LNrbBn8bA59H9G1fkc4tP
-	2tW5EUzkPKq6ki7OSrpbBVybitxrdAiEHiYURi4hP4LZQYKiYbL343xh
-X-Gm-Gg: AYBFou3McvEQS8zujQReCWZcvOsIxK+3eQtpFHOI7Rj8EkiL4QzJdRiRHVPNMrRcN6M
-	ClelZ1VETZZ7v7WhYBOjbNzS+IszTc4snsqhkU45XGR/iw/cuhqwQxZ0oygJ/2iQ59vUbKss+q1
-	yuFDbTPM/M/UVobR5BMAYKyl4NdSvwOB/9azeJg+Y/9+4cko9TObXv9OJsGXhCVbJXzSpsWGCiE
-	UOn3axOie2ieQeYiSUGWiGvfutevhW2fn2rBPIbFpDrscQxi6D+1DUbl9J5nNg653eRYmiEzXdT
-	jm3wqaEopmPC4Cg7MToJF8YeSaI/IHmQw+vPXc93mhG1mfuIScktjQn1qRPf34KXeANEAmxN6q9
-	lAU+sJClGYfZZIK/1uXF4EwAgT+3Aj/YopMDQBYbVdIYbMSKwSYHl4JPrddU5+sg3qQ0HYphXAw
-	bCY4sIp9FLuaVYtBIvVK//0Xa7b67pps9f+5GxbVNqw73BsfNuvEp9Lsn07kROXTgp8YZqW/h3s
-	JNpIcCBxk6QQ256RbUNsTCltynh7Ff2NS+ATF20sBcTRfNRR+Jq25EaFwWsON1J4WWQBMmVPXxD
-	Ue9t7VbknIg8MFEciTG2kxBnx+Z7zmD7LCT+5zpNBI8KpvQ8PW3H+TZCnj9m/hYNJEqC2qH1tss
-	N0Kkjm9iEcVeYW4lQ8AkUxfAOEovl+8lzQTuDXG8vnn/gdd+CPyOgBr3yW9pBZLeHmCqnKZFRUb
-	s=
-X-Received: by 2002:a05:6000:2085:b0:48e:4e00:b737 with SMTP id ffacd0b85a97d-49c73a050e5mr2244067f8f.54.1794529963290;
-        Thu, 12 Nov 2026 16:32:43 -0800 (PST)
+        bh=au6wRe5V9xe+nBj4SXQtqBwfAHos0gKRmRourkWUPB0=;
+        b=TyzZnh2B9rXhUYkjfNkwDGNqWwjBep52LP1vVZxkTwQF+XMSdEGdE4aAyHMtQrJatZ
+         ChZaGP5CT+C+O4Go7zNcUKxsmz7M1XFz3EGMtxdJ1koaKBth63ALxaPA+g5No8UmXCsi
+         cQieHI8zXaRwvT2mR+O1tzehzPaYP3Z0Zf/R1ujCNo5v5hg3k6TzUCEQ9uc7WPp/dsa4
+         I6wlVU1/WTVXL1XAnd58JnhWiFqpDto/HzJpyC7ORSXHTQCpY+sPqIvnsQMOaOFikC3X
+         FK/lWo6RnYqMba9moCKB/8UFfvhwAnUZdfj1mXYLnTq93E/KW5aL23gFjqB0VD14uzMM
+         2yjw==
+X-Forwarded-Encrypted: i=1; AL+hErGW189Vk7LByNlmOId/7wHpQFXksFak+rgJBr9R3Lge+Y6bb7AoZiO9ODXCNxzpIpTCzFhazuZH6dYjzHuEa8jU@lists.infradead.org
+X-Gm-Message-State: APuU4Z8XNKTCb3iWwsNBhU5aAmewjFydk4KG8b1/J7/9wIw7eHvJmbWL
+	Tj7oDnjIbHFxzsp0fn/rU1u79ayoRw+jOhDM0Yl17wgm9Fw89ltZXLv7
+X-Gm-Gg: AYBFou0HQQWQjkW5eeiyOeRrd/2g6R8UgyHJL6Brrtck2EJVx3VQprrzb+0bnp3OwdB
+	mQ78ck3V54xPDV7EGzsxt8A1E9mOq/GbnGF/GhVQJWrNGHmb0rllzBSbRGnFImksZ5dLQgE5YbE
+	KqkwyfTxGfaVSp2kgIGNTr3gAPxJ5Xn1jwNzpNoHE++rzQcWblt2KtE7Bycyse8MLwX31yYl3gP
+	oIjQApRJ1TURQaVu6B7hIzAXql2XSXP6GpPnlukwVoE3r7Xsr4bAcKjC/skMMrMl6RLph/nUJm4
+	gR0eLoL0L8ipVedPJDwqhhEWGGxdhPFwd9QTPmFlAWZjdR6xs7pePxnRtiMnf3NVnrW08ZTZDrC
+	W10Vf1p+3pbs6k4sXlst9h5yHGCbHTQ85mYrfdE3qRFiqvrJaRkC7xiUJ4UlYMS9NihH8L2W+X3
+	/cAF2XjVSpHQ69wZ+ryOCiHO7xB4P1f4B+hHmmsa8UCiC07A3u0GkW9T3kqBJ0b5ArkIufEzXPH
+	bWMTjv2hgE+4HAjvd8/HtBko3a07xIWS8ioRNB9pT1o8VswkXgkUMx7f97TsyME8XW2Ai02TmfX
+	YmkxGltJbZO0LN4T1IJcKUkuZ/7qP2et+dfPWi9kedtqJJ+RLM0x29KFXysXOESqhklFsMoAsAp
+	mrOU4EbsX+RHiqji3dqzIWwCIxFQLqsyJBCSzuTH81Qmv15Rn2WCnZwA=
+X-Received: by 2002:a05:6000:4917:b0:48e:2114:8ab9 with SMTP id ffacd0b85a97d-49c71d47601mr2274012f8f.31.1794529965915;
+        Thu, 12 Nov 2026 16:32:45 -0800 (PST)
 Received: from Ansuel-XPS24.localdomain (host-212-171-11-167.retail.telecomitalia.it. [212.171.11.167])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-49c5f7828a4sm2029768f8f.23.2026.11.12.16.32.40
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-49c5f7828a4sm2029768f8f.23.2026.11.12.16.32.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2026 16:32:42 -0800 (PST)
+        Thu, 12 Nov 2026 16:32:45 -0800 (PST)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -104,9 +103,9 @@ To: Maxime Chevallier <maxime.chevallier@bootlin.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org,
 	llvm@lists.linux.dev
-Subject: [PATCH net-next v19 06/15] net: phylink: make phylink_validate state locked
-Date: Fri, 13 Nov 2026 01:31:56 +0100
-Message-ID: <20261113003217.197757-7-ansuelsmth@gmail.com>
+Subject: [PATCH net-next v19 07/15] net: phylink: add capabilities helper and track modified advertising
+Date: Fri, 13 Nov 2026 01:31:57 +0100
+Message-ID: <20261113003217.197757-8-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261113003217.197757-1-ansuelsmth@gmail.com>
 References: <20261113003217.197757-1-ansuelsmth@gmail.com>
@@ -114,8 +113,8 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_163245_473298_DA820170 
-X-CRM114-Status: GOOD (  18.66  )
+X-CRM114-CacheID: sfid-20261112_163247_999343_1E2A8DD8 
+X-CRM114-Status: GOOD (  17.69  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -135,132 +134,109 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In preparation for support for PCS release/late attach, rework the
-phylink_validate functions to be locked under the state mutex.
+In preparation for PCS release/late attach, it's needed to introduce an
+helper to calculate the capabilities after a PCS is removed/added and it's
+needed to track the advertising in link_config changed by the user compared
+to the originally one calculated in phylink_create().
 
-With the introduction of a notifier that can be called concurrently while a
-phylink_create is called or an interface mode validation is being run, on
-recalculating the supported interface and capabilities, an inconsistency
-can be introduced with 2 validation run at the same time.
+To archieve this, introduce a dedicated advertising in phylink struct and
+update it when the new phylink_calculate_capabilities() is called.
 
-To handle this, make the phylink_validate lock under the phylink state
-mutex, add lockless variant for phylink_validate_mask and phylink_validate
-and add lockdep check to make sure the mutex is held in the inner
-validate functions.
+phylink_calculate_capabilities() will then compare the advertising saved in
+phylink instance with the one in link_config (that can be modified by the
+user to disable modes), compose the modes that are user-disabled, calculate
+the new supported modes and the new capabilities, update the full
+advertising in phylink and restore the user-disabled modes.
 
-Function that already run phylink_validate under state mutex, are updated
-to use the lockless variant.
+phylink_create() is also updated to init the phylink advertising and
+link_config advertising.
+
+linkmode_xor() is added in addition to other logic operation to parse the
+user-disabled advertised modes.
 
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- drivers/net/phy/phylink.c | 47 +++++++++++++++++++++++++++++++++------
- 1 file changed, 40 insertions(+), 7 deletions(-)
+ drivers/net/phy/phylink.c | 28 +++++++++++++++++++++++++---
+ include/linux/linkmode.h  |  6 ++++++
+ 2 files changed, 31 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-index e2e0b313fd61..918aa95e5a64 100644
+index 918aa95e5a64..9f9715403215 100644
 --- a/drivers/net/phy/phylink.c
 +++ b/drivers/net/phy/phylink.c
-@@ -9,6 +9,7 @@
- #include <linux/ethtool.h>
- #include <linux/export.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/lockdep.h>
- #include <linux/netdevice.h>
- #include <linux/of.h>
- #include <linux/of_mdio.h>
-@@ -550,6 +551,8 @@ static int phylink_validate_mac_and_pcs(struct phylink *pl,
- 	unsigned long capabilities;
- 	int ret;
+@@ -61,6 +61,7 @@ struct phylink {
+ 	u8 link_port;			/* The current non-phy ethtool port */
+ 	__ETHTOOL_DECLARE_LINK_MODE_MASK(supported);
+ 	__ETHTOOL_DECLARE_LINK_MODE_MASK(supported_lpi);
++	__ETHTOOL_DECLARE_LINK_MODE_MASK(advertising);
  
-+	lockdep_assert_held(&pl->state_mutex);
-+
- 	/* Get the PCS for this interface mode */
- 	if (pl->mac_ops->mac_select_pcs) {
- 		pcs = pl->mac_ops->mac_select_pcs(pl->config, state->interface);
-@@ -628,6 +631,8 @@ static void phylink_validate_one(struct phylink *pl, struct phy_device *phy,
- 	__ETHTOOL_DECLARE_LINK_MODE_MASK(tmp_supported);
- 	struct phylink_link_state tmp_state;
- 
-+	lockdep_assert_held(&pl->state_mutex);
-+
- 	linkmode_copy(tmp_supported, supported);
- 
- 	tmp_state = *state;
-@@ -648,15 +653,17 @@ static void phylink_validate_one(struct phylink *pl, struct phy_device *phy,
- 	}
+ 	/* The link configuration settings */
+ 	struct phylink_link_state link_config;
+@@ -715,6 +716,27 @@ static int phylink_validate(struct phylink *pl, unsigned long *supported,
+ 	return ret;
  }
  
--static int phylink_validate_mask(struct phylink *pl, struct phy_device *phy,
--				 unsigned long *supported,
--				 struct phylink_link_state *state,
--				 const unsigned long *interfaces)
-+static int __phylink_validate_mask(struct phylink *pl, struct phy_device *phy,
-+				   unsigned long *supported,
-+				   struct phylink_link_state *state,
-+				   const unsigned long *interfaces)
- {
- 	__ETHTOOL_DECLARE_LINK_MODE_MASK(all_adv) = { 0, };
- 	__ETHTOOL_DECLARE_LINK_MODE_MASK(all_s) = { 0, };
- 	int interface;
- 
-+	lockdep_assert_held(&pl->state_mutex);
-+
- 	for_each_set_bit(interface, interfaces, PHY_INTERFACE_MODE_MAX)
- 		phylink_validate_one(pl, phy, supported, state, interface,
- 				     all_s, all_adv);
-@@ -667,8 +674,22 @@ static int phylink_validate_mask(struct phylink *pl, struct phy_device *phy,
- 	return phylink_is_empty_linkmode(supported) ? -EINVAL : 0;
- }
- 
--static int phylink_validate(struct phylink *pl, unsigned long *supported,
--			    struct phylink_link_state *state)
-+static int phylink_validate_mask(struct phylink *pl, struct phy_device *phy,
-+				 unsigned long *supported,
-+				 struct phylink_link_state *state,
-+				 const unsigned long *interfaces)
++static void phylink_calculate_capabilities(struct phylink *pl)
 +{
-+	int ret;
++	__ETHTOOL_DECLARE_LINK_MODE_MASK(disabled_advertising);
 +
-+	mutex_lock(&pl->state_mutex);
-+	ret = __phylink_validate_mask(pl, phy, supported, state, interfaces);
-+	mutex_unlock(&pl->state_mutex);
++	/* Get user-disabled advertising modes */
++	linkmode_xor(disabled_advertising, pl->advertising,
++		     pl->link_config.advertising);
 +
-+	return ret;
-+}
++	/* Calculate the full supported advertisement */
++	linkmode_fill(pl->supported);
++	linkmode_copy(pl->link_config.advertising, pl->supported);
++	phylink_validate(pl, pl->supported, &pl->link_config);
 +
-+static int __phylink_validate(struct phylink *pl, unsigned long *supported,
-+			      struct phylink_link_state *state)
- {
- 	const unsigned long *interfaces = pl->supported_interfaces;
- 
-@@ -682,6 +703,18 @@ static int phylink_validate(struct phylink *pl, unsigned long *supported,
- 	return phylink_validate_mac_and_pcs(pl, supported, state);
- }
- 
-+static int phylink_validate(struct phylink *pl, unsigned long *supported,
-+			    struct phylink_link_state *state)
-+{
-+	int ret;
++	/* Save the newly calculated full advertisement */
++	linkmode_copy(pl->advertising, pl->link_config.advertising);
 +
-+	mutex_lock(&pl->state_mutex);
-+	ret = __phylink_validate(pl, supported, state);
-+	mutex_unlock(&pl->state_mutex);
-+
-+	return ret;
++	/* Keep user-disabled modes out of the active advertisement. */
++	linkmode_andnot(pl->link_config.advertising,
++			pl->link_config.advertising, disabled_advertising);
 +}
 +
  static void phylink_fill_fixedlink_supported(unsigned long *supported)
  {
  	linkmode_set_bit(ETHTOOL_LINK_MODE_Pause_BIT, supported);
-@@ -2117,7 +2150,7 @@ void phylink_update_mac_pause_capabilities(struct phylink *pl, unsigned long mac
- 	else if (pl->sfp_bus)
- 		linkmode_and(pl->supported, pl->supported, pl->sfp_support);
+@@ -2250,6 +2272,8 @@ struct phylink *phylink_create(struct phylink_config *config,
+ 	pl->link_config.pause = MLO_PAUSE_AN;
+ 	pl->link_config.speed = SPEED_UNKNOWN;
+ 	pl->link_config.duplex = DUPLEX_UNKNOWN;
++	linkmode_fill(pl->advertising);
++	linkmode_fill(pl->link_config.advertising);
+ 	pl->pcs_state = PCS_STATE_DOWN;
+ 	pl->mac_ops = mac_ops;
+ 	__set_bit(PHYLINK_DISABLE_STOPPED, &pl->phylink_disable_state);
+@@ -2273,9 +2297,7 @@ struct phylink *phylink_create(struct phylink_config *config,
+ 				 pl->supported_interfaces,
+ 				 pcs->supported_interfaces);
  
--	phylink_validate(pl, pl->supported, config);
-+	__phylink_validate(pl, pl->supported, config);
+-	linkmode_fill(pl->supported);
+-	linkmode_copy(pl->link_config.advertising, pl->supported);
+-	phylink_validate(pl, pl->supported, &pl->link_config);
++	phylink_calculate_capabilities(pl);
  
- 	pause_state = config->pause;
+ 	ret = phylink_parse_mode(pl, fwnode);
+ 	if (ret < 0)
+diff --git a/include/linux/linkmode.h b/include/linux/linkmode.h
+index 3b9de09871f6..a8290d021994 100644
+--- a/include/linux/linkmode.h
++++ b/include/linux/linkmode.h
+@@ -32,6 +32,12 @@ static inline void linkmode_or(unsigned long *dst, const unsigned long *a,
+ 	bitmap_or(dst, a, b, __ETHTOOL_LINK_MODE_MASK_NBITS);
+ }
  
++static inline void linkmode_xor(unsigned long *dst, const unsigned long *a,
++				const unsigned long *b)
++{
++	bitmap_xor(dst, a, b, __ETHTOOL_LINK_MODE_MASK_NBITS);
++}
++
+ static inline bool linkmode_empty(const unsigned long *src)
+ {
+ 	return bitmap_empty(src, __ETHTOOL_LINK_MODE_MASK_NBITS);
 -- 
 2.55.0
 
