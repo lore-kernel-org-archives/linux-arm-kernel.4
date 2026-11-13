@@ -2,68 +2,100 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51090606A31C
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 06:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E7E606A32A
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 06:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=n0T4suxR;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=sCJ9eEuX
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=R2GctE5U;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=dOl9ygyG
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=2V+tV4ewaynofE8kPco4QPP/Avu9AgLsEkRfsCohWsI=; b=n0T4suxRs/RMo0rSz7GuexkUHi
-	p/tXYXwIIbSsoUQ2J0cESBIP7QWqTI7cQxpB+KfeZEjogMP6pvOwNKuLsgt7H1xiqPPOc7DrqOzE7
-	T2UT0s89UScYeWfABfXJzifOAMhCt9ixZ5YMk9qo79QrnBcI1yOrh+VeUNsipTC+e1OdKsfmiORWv
-	LKlboKsUb6Bx6KnZGbA864adJsVSH/Iyn484VGbZFveg89RfnqtyxoOQWFTVq64B05EgNc7GuQERH
-	b/2fz2VGG8mlFCew2oRp1UcGFIaVWm3eTRmloLYnTid90QEUmoVCgmwakaJiHe8W2wCqvR6fvG3oy
-	EvmDDTIQ==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:
+	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=VIJHAgcH0kNWNFXAVV2FGeNxRIHtnxTUPfAN1k4v8u4=; b=R2GctE5UdjiJLJ
+	U9uHbtb8sWE8UWfXb4jYLO25hqzkRqR/kOfjj+uka+HN1M/iizVRlRNsqDl7EfSjRFc71+OO2REbK
+	K4R/e5MVFu9hmct66LrqkxK32OvHEaiMqIU2numwryw2gDcwPni3IjQEER2dnTgoi7uRgQRuLwzd8
+	QVNtdD1rqlezFcOxS0swFsnisAwiBvRc0xXkXS2IrJeL4pggEZF8MLPqfQjLD4W+TRbhRNVuL/wEO
+	ZwnTdcQm/he1uZMqg7mgNzB73D9vT9/yRvh0hlnxgl168S7AYYG99cb3KIzmlQKXkL3CQxj2wfUwk
+	ru+QE6QUOpJsOorijSkg==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRl4u-0000000BoLS-3jye;
-	Fri, 13 Nov 2026 06:48:04 +0000
-Received: from foss.arm.com ([217.140.110.172])
-	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRl4q-0000000BoL0-42Gu
+	id 1xRl9h-0000000BoqX-1frA;
+	Fri, 13 Nov 2026 06:53:01 +0000
+Received: from mail-pg1-x52d.google.com ([2607:f8b0:4864:20::52d])
+	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRl9e-0000000Boq1-3WR9
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 06:48:02 +0000
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C066616F2;
-	Thu, 12 Nov 2026 22:47:55 -0800 (PST)
-Received: from localhost (a085714.arm.com [10.164.19.28])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0EFBB3F85F;
-	Thu, 12 Nov 2026 22:47:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
-	t=1794552478; bh=5i7fDyuQrBPfqbfudFwvrfilL8nz8d+trbu034WceBU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sCJ9eEuXBnkpPB+5xYYSTJZKQIv2FyOza6IduZmLGvxBm/AjRigGwtWQ0bh8UmagQ
-	 TbYwfJoXNo+ZuQpa2iGOFgo5MFSasfVKaJiXzi8QljIpJh8j533RoyPp5LSAlsh8rA
-	 wz0XuEGtjc868dTQbbtg4WNXfApl4kI2T02vXAYo=
-Date: Fri, 13 Nov 2026 12:17:55 +0530
-From: Anshuman Khandual <anshuman.khandual@arm.com>
-To: linux-arm-kernel@lists.infradead.org, catalin.marinas@arm.com, 
-	will@kernel.org
-Cc: Ryan Roberts <ryan.roberts@arm.com>, 
-	Mark Rutland <mark.rutland@arm.com>, Lorenzo Stoakes <ljs@kernel.org>, 
-	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>, 
-	Mike Rapoport <rppt@kernel.org>, Linu Cherian <linu.cherian@arm.com>, 
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org
-Subject: Re: [PATCH V4 0/4] arm64/mm: Convert pgtable READ_ONCE() as
- pxdp_get()
-Message-ID: <ikp346hhtfkswk4gabydkaxgtuvoygrj75clezzv25r2j7t6gz@q32fppupesvt>
-References: <20261105043403.3326445-1-anshuman.khandual@arm.com>
- <vtaekdnpxd5avhpv3hlmeswwq5raf57ila2qyilxvddu3w5nnq@lkenzauzv7hy>
+	Fri, 13 Nov 2026 06:53:00 +0000
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-cdba1b5ed8dso267970a12.1
+        for <linux-arm-kernel@lists.infradead.org>; Thu, 12 Nov 2026 22:52:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20260707; t=1794552778; x=1795157578; darn=lists.infradead.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=VIJHAgcH0kNWNFXAVV2FGeNxRIHtnxTUPfAN1k4v8u4=;
+        b=dOl9ygyGdQ1bSPD/fPSbWdCqTWdyvMcgCvuT855aVElb3QHRohbgg6i8OZFIkNJ3Qi
+         A7167XP4EQXU1SVAkw6rv/qFHVejvtIt1JKT8ILFetu2pMS+HfV7gmR3xhzmwkAhpNJH
+         VAK8Bv2r90I75vwwdaHh3ek1J4vlXNXLovs1wZGqoJipg7UP3E89JOB6EolFf3smEnMf
+         j9/6G0UNAh/Ks+xtzr3kGkPCLAiL43M7dY5wUIuqCH7qWhsw+7i9hCVEP7QCLnO9GTrz
+         mQNYEPOJ9uYjZgJtcXlOYrTXT7VMU75bNJA0xd0cisCO3ZK48RlVacQGqvUctN1/GY8x
+         75ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1794552778; x=1795157578;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=VIJHAgcH0kNWNFXAVV2FGeNxRIHtnxTUPfAN1k4v8u4=;
+        b=N/KXHBk57uDIVmR9gVA3l2ybDZhxkpQ9mvpQSMtcTvYrrrdJNJezSdNFiujEu5IcVn
+         MZeJV9zJ5bfN0xHIsDgR+iL6MwWC7PMxb5UcA1eKt+2gyUEA0IzFyoQuoN8qqBhsoz6h
+         K8ClZVZxj0b6ZsKQEOOrDEMIH9KVZDmrqh2mrJNprh/F2Jw3eqBikRiY818F7RYBegHA
+         ww1UGm265pRJ16ppZJgInc51MSgaQGY4X6o2T/fYLByafn3exCrquG/wcjxCeWWSJ24A
+         169uoNztcb2+pa+1Bb5S8N73PcDFIJ9yrXdkDbE3UhEVoBGDw55WoFXHgUxKHNh0tULL
+         s7lA==
+X-Forwarded-Encrypted: i=1; AL+hErG7i/VOdSRY16jNMIO9B7EACo0Ym5DsXS2t4gT3bGYo5Bd19PbqCSU2J5t4T45hEzOD4Xir7rn/LHcAEYUkS7ZW@lists.infradead.org
+X-Gm-Message-State: APuU4Z9rOSaXF1Eknh3kPubdExGu/L09bgiYGcW4SeLZjqPktw5MWhYp
+	OwTSJoXeiJF+/DhqE25jsVAYYctORo63CPRhY/GFZ3c207r+Q8P0oifR
+X-Gm-Gg: AYBFou2EyWRJd9QdkyVHYIG4aE6fNRITRAYh0fH5JtdGq7XBWZFlJTCsNaLqgc5JA/r
+	pO2HJgWwuYNWxWn/tE3bu7QTn7DSfWAgGnynLDbL9TIPVDELZeQwBuHLYU70iYigBTtMi6pAFBC
+	qUXVKVwG3WEjndH+Y67rK9aMdQvSE4GApScgT2/D9GTdCDVNcYJc/IQDlAqFAdMXsGuK03ZxZz6
+	IVmXnPDSKJdC727jTeulLHG3tbGZhVck4r2XONefu45SsvtYq0SaA3S/o/vcO8OSdzaSlOThkUl
+	fqJc0rl7uNXqv23jcXM/HVF8XYrPC+h4eFHma2sO9Ueq4lym7/1+bdPnSEjZUXyl9tY9Dn9AzCX
+	Hn0AapodM9EJ/HsBGdOTmDmhC0I5SvKh5qPT4sz2apUNW+rn+7ax0J4s61WihisAjYjfX0/9Ssv
+	XCpsfT0pOgoM/0ZidjiZwts8UysY6HwGXv7e4wl7VjQQdOjGXvLD6BA9GlQkYIxFdqgcDpARW2Z
+	Wqis8TwEgyAecTbM8jR6vOArEvNUWZdo3FM88lPnwM3wnLcibtyhVzE54MLDw1fPJ8LFFdskFy+
+	rQET9chA+RbSEcCcaqvq
+X-Received: by 2002:a17:90b:5910:b0:3ae:3b3d:c617 with SMTP id 98e67ed59e1d1-3b1b0cc8f69mr806113a91.29.1794552777743;
+        Thu, 12 Nov 2026 22:52:57 -0800 (PST)
+Received: from a1-free ([161.33.196.121])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3b1b3d279d8sm869257a91.2.2026.11.12.22.52.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2026 22:52:57 -0800 (PST)
+From: TAKANO Mitsuhiro <takano32@gmail.com>
+To: linux-perf-users@vger.kernel.org,
+	Arnaldo Carvalho de Melo <acme@kernel.org>,
+	Namhyung Kim <namhyung@kernel.org>
+Cc: James Clark <james.clark@linaro.org>,
+	Ian Rogers <irogers@google.com>,
+	John Garry <john.garry@linux.dev>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	TAKANO Mitsuhiro <takano32@gmail.com>
+Subject: [PATCH v2] perf vendor events arm64 AmpereOneX: Fix misspelled PublicDescription keys
+Date: Fri, 13 Nov 2026 06:52:53 +0000
+Message-ID: <20261113065253.746615-1-takano32@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261108183846.3804875-1-takano32@gmail.com>
+References: <20261108183846.3804875-1-takano32@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <vtaekdnpxd5avhpv3hlmeswwq5raf57ila2qyilxvddu3w5nnq@lkenzauzv7hy>
+Content-Transfer-Encoding: 8bit
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_224801_179459_2097E1B0 
-X-CRM114-Status: GOOD (  28.72  )
-X-Spam-Score: -4.4 (----)
+X-CRM114-CacheID: sfid-20261112_225258_965151_54148D96 
+X-CRM114-Status: GOOD (  13.65  )
+X-Spam-Score: -1.9 (-)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -74,124 +106,164 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-10.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
+	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 08:58:51AM +0530, Anshuman Khandual wrote:
-> On Thu, Nov 05, 2026 at 10:03:59AM +0530, Anshuman Khandual wrote:
-> > Route READ_ONCE() accesses on pgtable entries via level specific generic MM
-> > pxdp_get() helpers which platforms could then override when required. These
-> > accessors on arm64, will help in ensuring page table accesses are performed
-> > in an atomic manner while reading 128 bit page table entries later. But for
-> > now they just default to READ_ONCE(), thus preserving existing behaviour on
-> > current D64 translation a well.
-> > 
-> > This is similar to generic MM where all atomic accesses have already been
-> > converted from READ_ONCE() into pgtable level specific accessors.
-> > 
-> > These are preparatory patches for D128 enablement, although standing their
-> > own for D64 translation as well. These patches are split from earlier D128
-> > V1 series. There are no functional changes here, and besides mm kselftests
-> > do not show any regression.
-> > 
-> > https://lore.kernel.org/linux-mm/20260729122452.3797443-1-anshuman.khandual@arm.com/
-> > 
-> > This series applies on v7.4-rc1 and have been hosted below for reference.
-> > 
-> > git@git.gitlab.arm.com:linux-arm/linux-anshuman.git (arm64_pxdp_get_v4)
-> > 
-> > Changes in V4:
-> > 
-> > - Dropped all pxdp_get() platform overrides per Catalin
-> > - Moved pmdp_test_and_clear_young() and [pud|p4d]_offset[_phys]()
-> >   helpers inside arch/arm64/mm/mmu.c to avoid build problems
-> > - Updated all commit messages as required
-> 
-> This series has run into some KASAN fault issues during boot with 5 level
-> pgtables but also unlike Sashio suggestions these would require more code
-> churn to fix. Please find the details below.
-> 
-> https://lore.kernel.org/all/ohyhflzuoxdemccemutoosmj5hsfwylrlt6tvnyehulerk7gf3@ada6wu4zrzkp/
-> 
-> NOTE: somehow Sashiko had dropped LAKML from the thread although it shows
-> up in MM list.
-> 
-> Given the above scenario, I would suggest falling back on the V3 series,
-> that defined and override pxdp_get() helpers for arm64 platform. Although
-> similar to generic MM default fallback, they prevented code movement into
-> arch/arm64/mm/mmu.c file causing these KASAN issues in the first place.
-> 
-> https://lore.kernel.org/all/20260924062214.1635078-1-anshuman.khandual@arm.com/
-> 
-> V3 series apples cleanly, builds, boots and also clears MM selftests on
-> v7.4-rc2 as well.
+Sixteen of the 28 entries in mmu.json spell PublicDescription as
+"PublicDescrition"; the other 12 spell it correctly.  jevents.py reads
+only the keys it asks for by name, so those 16 fields are dead.
 
-The following upstream commit had changed pxdp_get() arguments as 'const'
-(since V3 was posted) which would now require similar changes to be made
-in all platform overrides for pxdp_get().
+Fixing them does not change the perf list output: every one of the 16
+entries has a BriefDescription with the same text, and jevents.py drops
+the long description when it equals the brief one (jevents.py:405).
+Running jevents.py for arm64 before and after this change gives a
+byte-identical generated string table (1580383 bytes both times).
 
-48bd5dc504cc ("constify arguments in default pxdp_get()")
+The file becomes self-consistent again, and the field works if the brief
+text is ever changed on its own.  No text, name, code or expression
+changes.
 
-Hence will repost V3 series as V5 after changing the arguments as 'const
-pgprot_t *' if there are no other conerns.
+Written with Hermes Agent, an LLM assistant; the author reviewed it and
+ran the generator as described.  perf was built, not run against
+hardware.
 
-> 
-> > 
-> > Changes in V3:
-> > 
-> > https://lore.kernel.org/all/20260924062214.1635078-1-anshuman.khandual@arm.com/
-> > 
-> > - Added overrides for pxdp_get() and replaced remaining READ_ONCE()
-> > - Updated all commit messages as required
-> > - Dropped previous tags
-> > 
-> > Changes in V2:
-> > 
-> > https://lore.kernel.org/all/20260922061638.3967467-1-anshuman.khandual@arm.com/
-> > 
-> > - Rebased on v7.3-rc4 along with all latest dependencies
-> > - Updated commit messages per Ryan
-> > - Added tags from Ryan
-> > 
-> > Changes in V1:
-> > 
-> > https://lore.kernel.org/all/20260903060657.2717457-1-anshuman.khandual@arm.com/
-> > 
-> > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > Cc: Will Deacon <will@kernel.org>
-> > Cc: Ryan Roberts <ryan.roberts@arm.com>
-> > Cc: Mark Rutland <mark.rutland@arm.com>
-> > Cc: Lorenzo Stoakes <ljs@kernel.org>
-> > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > Cc: David Hildenbrand <david@kernel.org>
-> > Cc: Mike Rapoport <rppt@kernel.org>
-> > Cc: Linu Cherian <linu.cherian@arm.com>
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-mm@kvack.org
-> > 
-> > Anshuman Khandual (4):
-> >   arm64/mm: Use pmdp_get() for PMD accesses
-> >   arm64/mm: Use pudp_get() for PUD accesses
-> >   arm64/mm: Use p4dp_get() for P4D accesses
-> >   arm64/mm: Use pgdp_get() for PGD accesses
-> > 
-> >  arch/arm64/include/asm/pgtable.h | 38 +++----------
-> >  arch/arm64/mm/fault.c            |  8 +--
-> >  arch/arm64/mm/fixmap.c           |  6 +-
-> >  arch/arm64/mm/hugetlbpage.c      | 10 ++--
-> >  arch/arm64/mm/kasan_init.c       | 18 +++---
-> >  arch/arm64/mm/mmu.c              | 97 ++++++++++++++++++++++----------
-> >  arch/arm64/mm/pageattr.c         |  8 +--
-> >  arch/arm64/mm/trans_pgd.c        | 14 ++---
-> >  8 files changed, 108 insertions(+), 91 deletions(-)
-> > 
-> > -- 
-> > 2.43.0
-> > 
+Signed-off-by: TAKANO Mitsuhiro <takano32@gmail.com>
+---
+v2: rebased on 7.4-rc2.  The arm64 string table generated with
+    jevents.py is byte identical before and after the change
+    (1580383 bytes), measured again on this base.
+
+ .../arch/arm64/ampere/ampereonex/mmu.json     | 32 +++++++++----------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
+index 66d83b680651..9457f9be4ecc 100644
+--- a/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
++++ b/tools/perf/pmu-events/arch/arm64/ampere/ampereonex/mmu.json
+@@ -30,37 +30,37 @@
+         "BriefDescription": "Data TLB translation cache hit on S2L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data TLB translation cache hit on S2L1 walk cache entry",
++        "PublicDescription": "Data TLB translation cache hit on S2L1 walk cache entry",
+         "EventCode": "0xd805",
+         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L1_WALK",
+         "BriefDescription": "Data TLB translation cache hit on S2L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data TLB translation cache hit on S2L0 walk cache entry",
++        "PublicDescription": "Data TLB translation cache hit on S2L0 walk cache entry",
+         "EventCode": "0xd806",
+         "EventName": "MMU_D_TRANS_CACHE_HIT_S2L0_WALK",
+         "BriefDescription": "Data TLB translation cache hit on S2L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Data-side S1 page walk cache lookup",
++        "PublicDescription": "Data-side S1 page walk cache lookup",
+         "EventCode": "0xd807",
+         "EventName": "MMU_D_S1_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Data-side S1 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Data-side S1 page walk cache refill",
++        "PublicDescription": "Data-side S1 page walk cache refill",
+         "EventCode": "0xd808",
+         "EventName": "MMU_D_S1_WALK_CACHE_REFILL",
+         "BriefDescription": "Data-side S1 page walk cache refill"
+     },
+     {
+-        "PublicDescrition": "Data-side S2 page walk cache lookup",
++        "PublicDescription": "Data-side S2 page walk cache lookup",
+         "EventCode": "0xd809",
+         "EventName": "MMU_D_S2_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Data-side S2 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Data-side S2 page walk cache refill",
++        "PublicDescription": "Data-side S2 page walk cache refill",
+         "EventCode": "0xd80a",
+         "EventName": "MMU_D_S2_WALK_CACHE_REFILL",
+         "BriefDescription": "Data-side S2 page walk cache refill"
+@@ -90,61 +90,61 @@
+         "BriefDescription": "Level 2 instruction translation buffer allocation"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L2 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry",
+         "EventCode": "0xd901",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L2_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L1 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry",
+         "EventCode": "0xd902",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L1_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S1L0 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry",
+         "EventCode": "0xd903",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S1L0_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S1L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L2 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry",
+         "EventCode": "0xd904",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L2_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L2 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L1 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry",
+         "EventCode": "0xd905",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L1_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L1 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction TLB translation cache hit on S2L0 walk cache entry",
++        "PublicDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry",
+         "EventCode": "0xd906",
+         "EventName": "MMU_I_TRANS_CACHE_HIT_S2L0_WALK",
+         "BriefDescription": "Instruction TLB translation cache hit on S2L0 walk cache entry"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S1 page walk cache lookup",
++        "PublicDescription": "Instruction-side S1 page walk cache lookup",
+         "EventCode": "0xd907",
+         "EventName": "MMU_I_S1_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Instruction-side S1 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S1 page walk cache refill",
++        "PublicDescription": "Instruction-side S1 page walk cache refill",
+         "EventCode": "0xd908",
+         "EventName": "MMU_I_S1_WALK_CACHE_REFILL",
+         "BriefDescription": "Instruction-side S1 page walk cache refill"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S2 page walk cache lookup",
++        "PublicDescription": "Instruction-side S2 page walk cache lookup",
+         "EventCode": "0xd909",
+         "EventName": "MMU_I_S2_WALK_CACHE_LOOKUP",
+         "BriefDescription": "Instruction-side S2 page walk cache lookup"
+     },
+     {
+-        "PublicDescrition": "Instruction-side S2 page walk cache refill",
++        "PublicDescription": "Instruction-side S2 page walk cache refill",
+         "EventCode": "0xd90a",
+         "EventName": "MMU_I_S2_WALK_CACHE_REFILL",
+         "BriefDescription": "Instruction-side S2 page walk cache refill"
+
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
+-- 
+2.53.0
+
 
