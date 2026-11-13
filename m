@@ -2,92 +2,75 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E102F606A8B7
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 15:23:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5365606A323
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 15:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=ht3FEXLv;
-	dkim=pass (2048-bit key) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=XjKpJXXj
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=bypP+iJg;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=nFxA6vUo
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:MIME-Version:
-	Content-Transfer-Encoding:Content-Type:References:In-Reply-To:Date:Cc:To:From
-	:Subject:Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	List-Unsubscribe-Post:List-Owner;
-	bh=96d7rXyRoBWG/8fCv9Y/Bl4rLafDhcPE/agEQqITANg=; b=ht3FEXLvagG0Fq8q+0lYxacNc4
-	P6eGlLpENk65FJrL/t5Xn9u5gLXNHKx29UbbI2PSfUEiQKlyK3jCPWeaD80vLXpaEoOhVep9lyFjw
-	6igNymJXGIuG/tye2si+c4LW8D5jzURYOOkEft/vL4UcCxzYhcgE7NYrl+wixkZbyGeDeleoJQLkJ
-	8DC9mQ57mqNbeltbGY9nlG4CKn5ZJj484VPq5Nlro/0547EoYz5PgdmQXJz3lgUpcYiy0SL1ewEus
-	G0/UVzWg/Nu/q6qX4Ge/x8SdICflnmYsBvzsNVg4smQ0rXGZT/RC5nGbaSXhQP2zbw0D9nGsh3slu
-	zwpLfyhg==;
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:In-Reply-To:References:From:
+	To:Cc:Subject:Message-Id:Date:Content-Type:Content-Transfer-Encoding:
+	Mime-Version:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
+	List-Owner; bh=rHB1s2IjKO7bwiIKX5FWkoy/jmzbxhzjzTrvBEzLn5E=; b=bypP+iJgEn0yaM
+	nLdO/EmaNyVyUyq6TEhiF6zLtIYNBbT+lo221ybqeUn3aRZ/r8ptXP24Z7pojfQZl4mrcIjqJ5RuR
+	94pXaO0SM2/BigBIoaI3E231iJRywR/ySF5DUBsxRa6xI1euiSMsgWwYPCLUMsXilSEOuG8NIqCx6
+	v5VZHACWxgclujKKzDTXnv4UOj70OyAsytjPjeUYru41JJFFbRmD1X7+NOi1cIaiXVS2KDU9BWt7T
+	W8Wc8NRoBKNmwA6SLtjxRHy+OByMRoGyGmhch1TnoV8hcFI4YZTUjXLBM1RT5pADucvR3bLPnaJ7R
+	d8K3RTsKhxOE1AD/Zt5g==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRt7Q-0000000DO1Y-0At0;
-	Fri, 13 Nov 2026 15:23:12 +0000
-Received: from mx1.white.stw.pengutronix.de ([185.203.200.13])
+	id 1xRtQ0-0000000DQgz-0c9w;
+	Fri, 13 Nov 2026 15:42:24 +0000
+Received: from smtpout-02.galae.net ([185.246.84.56])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRt7M-0000000DNwM-1dry;
-	Fri, 13 Nov 2026 15:23:09 +0000
-Received: from [IPv6:2a0a:edc0:0:900:1d::4e] (lupine.office.stw.pengutronix.de [IPv6:2a0a:edc0:0:900:1d::4e])
-	(Authenticated sender: pza@pengutronix.de)
-	by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 8934520215A;
-	Fri, 13 Nov 2026 16:22:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794583374;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=96d7rXyRoBWG/8fCv9Y/Bl4rLafDhcPE/agEQqITANg=;
-	b=XjKpJXXjyICTClmTDekFig7pk7sXE8Ln8nC5rPnkE/jXN/q8or26hgleNdx+7KmNHXBcoq
-	ZtaPj+v9sGI1n6fSA8p0WqsNCoAjAZeguuN+5WmCKjMktODRKi4oGQGD4aeiMR9puQTWqM
-	JYBrXNQHxU3am3lmP38F+vcP7Q6evson1xSbdm2gWZfj4R0Jp59Z58J278w5QCP2706kwx
-	tpCrIPo7N+gQ9KIvZuP8+ijGqW13Q6xtbyCrubt9vdh7NpaTjLRbqQSEpGGnoCbM9x9raU
-	wumR6oEp2GZ0DE1UE3gwhctm1uj5E+9iT1kT5hT0OIhSlG1SzR13g7dzkK/3Qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
-	s=20260414; t=1794583374;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=96d7rXyRoBWG/8fCv9Y/Bl4rLafDhcPE/agEQqITANg=;
-	b=JDWV+fP3hzmzv/V0oew3qal05UUmfLCXfHvPSTapnHfmokx/Uxg3RfFhFbCt6skyC2Td2m
-	YHFXHST/RM0hRc0zazl2NvZuIcGeVmw3sRY0NNggqMwiVf+Vuq7YnTmBUVtZhOEZPqHxrG
-	W68lUzGZbf9QzhX0/4sy5jGlLVjealMaVs6W3sfgg7pdIgGBGOnsMfIyIzLzDD/u5f+vdX
-	2ei9YvTK37c+q/h1q2pcefzmWba8K74OqJhOH7ySbn5+6FGb1o2Ew89gDMV3AqiFQ7P6bb
-	3Egsu2hiHmtW89u8mjQatDo/DFlC+4ixBNa+hiiexLbQMw6peQrNzXZaxLESpg==
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1794583374; a=rsa-sha256;
-	cv=none;
-	b=Y93HUGG9IIGXbhDVKXGZLgfbhIoON9AbJNL7AS7vMgwaVjpN36B9te8I6kxWebjqG0zoUn
-	KwhNIILKG33jur6V8RXREN4K6MmRZeXvVnIBobPeWNvz4BSo/Cu6nCcKSphLozpAUYRKHL
-	mnXCLYtDg+VpOvU0+4pHuCB3Aob3dFYMG3cs5hNb938TzXUpCBqxmj+Y52b36RrLy7ShtP
-	D6PSWrQC/Yqh/vOtk3OCFIkORpa+bRYTm3RzxmGvK4c6FRTS1KCE/M0q+D40+V4P+u5zjM
-	fzo8qK4U+5eAXLdbRMbXGbWYx7XAY+HK3oSaBEDwSPl4hw1p6CaHecRWDZDGfg==
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=pza@pengutronix.de smtp.mailfrom=p.zabel@pengutronix.de
-Message-ID: <7baedb8836f538707d008b03e259780bc4fc8bd9.camel@pengutronix.de>
-Subject: Re: [PATCH] reset: Remove ARCH_HAS_RESET_CONTROLLER Kconfig symbol
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Andrew Davis <afd@ti.com>, Russell King <linux@armlinux.org.uk>, Catalin
- Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Mark
- Rutland	 <mark.rutland@arm.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>,  Paul Walmsley	 <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou	 <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Arnd Bergmann	 <arnd@arndb.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Date: Fri, 13 Nov 2026 16:22:54 +0100
-In-Reply-To: <20261112214223.765100-1-afd@ti.com>
-References: <20261112214223.765100-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	id 1xRtPt-0000000DQej-0Wvf
+	for linux-arm-kernel@lists.infradead.org;
+	Fri, 13 Nov 2026 15:42:22 +0000
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id F3FBE1A164F;
+	Fri, 13 Nov 2026 15:42:12 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C707360015;
+	Fri, 13 Nov 2026 15:42:12 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 216FA11BC11E7;
+	Fri, 13 Nov 2026 16:41:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1794584527; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=rHB1s2IjKO7bwiIKX5FWkoy/jmzbxhzjzTrvBEzLn5E=;
+	b=nFxA6vUoH0x4DTtoCgCXxJmVcI3pdkHLUk/3kmd7oD/49D39QXUjVuJLZLwTecCZkhIcNl
+	PXCqJZXRvM/0ZP12N5JH5FNHiMRoDWR+gPyByVcVZ6HeiMGWoCNIkCLClvZFEwvruvfKI9
+	ZzDTRQoYOrCsfLu8mtNiKhKFbw6z1FlP5h2DnU/dTUgLuHPXxJazAMbnatXFvaqOOqF2Ah
+	DZEReUJk6f4zc6HkVPom4VPQXb74rha0hpB6vWrFE/6v199j1bALFfj54wht54zFUYswX2
+	SvwVzQBX6uUjEBLD4nfOUhIiIHGHUp0/Tlb2FwSbVdwqlImG9cF39sUgOlkdvw==
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 13 Nov 2026 16:41:56 +0100
+Message-Id: <DMU749TMB523.3OCGPYVI4NZDU@bootlin.com>
+Subject: Re: [PATCH v3] drm/bridge: analogix_dp: use devm_phy_optional_get()
+ for the DP PHY
+Cc: <Laurent.pinchart@ideasonboard.com>, <airlied@gmail.com>,
+ <andrzej.hajda@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <heiko@sntech.de>, <jernej.skrabec@gmail.com>, <jonas@kwiboo.se>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>, <luca.ceresoli@bootlin.com>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <neil.armstrong@linaro.org>, <rfoss@kernel.org>, <simona@ffwll.ch>,
+ <tzimmermann@suse.de>
+To: "Jun Yan" <jerrysteve1101@gmail.com>, <damon.ding@rock-chips.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.22.0
+References: <385a67f0-e5cd-4dba-9b9c-5b766462c6c0@rock-chips.com>
+ <20261113131248.2804840-1-jerrysteve1101@gmail.com>
+In-Reply-To: <20261113131248.2804840-1-jerrysteve1101@gmail.com>
+X-Last-TLS-Session-Version: TLSv1.3
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_072308_585459_5D89D05F 
-X-CRM114-Status: GOOD (  20.19  )
+X-CRM114-CacheID: sfid-20261113_074217_300064_54AF6905 
+X-CRM114-Status: GOOD (  17.52  )
 X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
@@ -99,89 +82,61 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.9 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Do, 2026-11-12 at 15:42 -0600, Andrew Davis wrote:
-> Many ARCH_HAS_* symbols change some behavior based on what an ARCH
-> supports, but ARCH_HAS_RESET_CONTROLLER is used only to set a default
-> for RESET_CONTROLLER. Those ARCH symbols that select this can skip the
-> middleman and directly select RESET_CONTROLLER, and many already do.
->=20
-> Replace all selection of this symbol with a direct selection of
-> RESET_CONTROLLER when it is not already in the selection list. In the
-> latter case when RESET_CONTROLLER is also already selected we can simply
+Hello,
 
-"In the latter case" and "when RESET_CONTROLLER is also already
-selected" are saying the same thing. I'd choose one and drop the other.
+On Fri Nov 13, 2026 at 2:12 PM CET, Jun Yan wrote:
+> Hi Damon,
+>
+>> You are right, this is really a valid concern.
+>>
+>> If CONFIG_GENERIC_PHY is disabled, the old code could still proceed and
+>> keep the driver probing, while the new version would return an error
+>> directly.
+>
+> -ENOSYS can only come from the !CONFIG_GENERIC_PHY stubs in
+> include/linux/phy/phy.h; the real implementation in drivers/phy/phy-core.=
+c
+> never returns it. And the stub for the optional variant returns NULL, not
+> -ENOSYS:
+>
+>     static inline struct phy *devm_phy_optional_get(struct device *dev,
+>                                                     const char *string)
+>     {
+>             return NULL;
+>     }
+>
+> So with CONFIG_GENERIC_PHY disabled the PHY is still treated as absent
+> (NULL), exactly as the old -ENOSYS branch did. With CONFIG_GENERIC_PHY
+> enabled, -ENOSYS cannot occur, devm_phy_optional_get() turns -ENODEV into
+> NULL, and any other error is still propagated - same as the open-coded
+> check.
+>
+>> It should be better to keep the -ENOSYS handling to preserve the
+>> original behavior.
+>
+> Overall the behaviour is unchanged in both configurations, so no separate
+> handling is needed.
 
-> remove the ARCH_HAS_RESET_CONTROLLER without changing existing behavior.
->=20
-> Some ARCHs "select" this symbol when they actually "depend on" the
-> RESET_CONTROLLER framework to build, in those cases the indirect select
-> could lead to broken randconfig builds. In cases when it is not needed
-> for building the ARCH code, these selections can be switched to the weake=
-r
-> "imply" to allow it deselected for minimal builds without reset support.
+Thanks for the analysis! Cna you send a v4 with that explained in the
+commit message, possibly in a more concise way, maybe with bullets for the
+various CONFIG_GENERIC_PHY on/off cases or so, for readability?
 
-Can't it just be dropped completely for those? See for example mach-
-gemini below.
+Reading it now, this v3 commit message kind of said the same things. but it
+misled both me and Damon, so it's worth a clear explanation.
 
-> Additional checking will be needed to find such cases.
->=20
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  arch/arm/Kconfig               | 2 +-
->  arch/arm/Kconfig.platforms     | 1 -
->  arch/arm/mach-bcm/Kconfig      | 4 ++--
->  arch/arm/mach-berlin/Kconfig   | 2 +-
->  arch/arm/mach-ep93xx/Kconfig   | 2 +-
->  arch/arm/mach-gemini/Kconfig   | 2 +-
->  arch/arm/mach-imx/Kconfig      | 2 +-
->  arch/arm/mach-keystone/Kconfig | 2 +-
->  arch/arm/mach-mmp/Kconfig      | 6 +++---
->  arch/arm/mach-omap2/Kconfig    | 1 -
->  arch/arm/mach-rockchip/Kconfig | 2 +-
->  arch/arm/mach-socfpga/Kconfig  | 1 -
->  arch/arm/mach-sti/Kconfig      | 1 -
->  arch/arm/mach-stm32/Kconfig    | 1 -
->  arch/arm/mach-sunxi/Kconfig    | 1 -
->  arch/arm/mach-tegra/Kconfig    | 1 -
->  arch/arm/mach-zynq/Kconfig     | 2 +-
->  arch/arm64/Kconfig.platforms   | 9 +++------
->  arch/mips/Kconfig              | 6 ++----
->  arch/riscv/Kconfig.socs        | 2 +-
->  drivers/reset/Kconfig          | 4 ----
->  21 files changed, 19 insertions(+), 35 deletions(-)
->=20
-[...]
-> diff --git a/arch/arm/mach-gemini/Kconfig b/arch/arm/mach-gemini/Kconfig
-> index f436a2009eca3..11e0e966c3bb6 100644
-> --- a/arch/arm/mach-gemini/Kconfig
-> +++ b/arch/arm/mach-gemini/Kconfig
-> @@ -3,7 +3,7 @@ menuconfig ARCH_GEMINI
->  	bool "Cortina Systems Gemini"
->  	depends on ARCH_MULTI_V4
->  	depends on CPU_LITTLE_ENDIAN
-> -	select ARCH_HAS_RESET_CONTROLLER
-> +	select RESET_CONTROLLER
+Thanks!
 
-I don't think this is required. There is no reset controller
-implementation in arch/arm/mach-gemini ...
+Luca
 
->  	select ARM_AMBA
->  	select ARM_APPENDED_DTB # Old Redboot bootloaders deployed
->  	select COMMON_CLK_GEMINI
-
-... and COMMON_CLK_GEMINI already selects RESET_CONTROLLER in
-drivers/clk/Kconfig.
-
-
-regards
-Philipp
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
