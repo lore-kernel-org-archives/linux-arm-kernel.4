@@ -2,113 +2,179 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4EE606A32E
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54202606A32E
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 19:08:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=AvUPfFjL;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YQysNWT0
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=4pFPPefr;
+	dkim=pass (2048-bit key) header.d=ti.com header.i=@ti.com header.a=rsa-sha256 header.s=proofpoint-05-2026 header.b=k5zOlm2R;
+	dkim=pass (1024-bit key) header.d=ticloud.onmicrosoft.com header.i=@ticloud.onmicrosoft.com header.a=rsa-sha256 header.s=selector1-ticloud-onmicrosoft-com header.b=n1Kq45z6
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
-	:List-Post:List-Archive:List-Unsubscribe:List-Id:Cc:To:In-Reply-To:References
-	:Message-Id:Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:Date:
-	From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:
+	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=XeIdUEn41huggshJVY5dteXJQUSowVHL3L4Q/+1iZEE=; b=AvUPfFjLGuXa2A
-	Bf/Fyq36wsdBrmTMF4MmKUGoHSl8fYDi87pikUYKnQg/XlWmla1+kUafMahDiXNhal/ZDhKgcMeg/
-	8ic+HQIvxgzharbZ/s7q5JMrr08kOv9DKack8xWnU2ZR12zBSOT0nTss2lkwWzZ3Zfmik0unl9a4U
-	LjKpqNYXeYuiamnqaBr/tPb/14sbODyYltySd7JGvQmH3AfQy/kj+5vpkrYsoYvoEoH5vnT55Qf3J
-	6xidZ9xzwij56JRAzclT94166aNhITxVLZVnR116fDn9XLnPZzKrw7L6BYURDcR4lgQNKw6nnrO1l
-	c/TU4lxFu39rOwYRz+Hg==;
+	List-Owner; bh=+ZYV7qXENnQKI2uj139nCEoDqjGbKVU2N1/Wx8WKrNc=; b=4pFPPefrZnrplg
+	URnaka+hzta3o4BVcXpW+MDWFhyIRb2JpbhEWFcQW822o3HPQZgvie/9s6WNMyUPK3X/yNwRbL2Tr
+	QtIRLpjGPnIY0vCAOWxN9nxwwBcXvz1LgX1P9vW74a425hLyF9+aZBm+/d5mQKhVQrnzJWm4Ypn8u
+	cAF6xH+3WqbhbwYJY3aVKonA2bnY5kxmkAs8CBc4U27wELe6FEWnIBNFXh756S5xeepkz3Le5pUt4
+	am2L0S8x5uvTjDm+omJ9RHiCvezCHcg92sP9zmxJri6bCKc1FKJgpuqTwdz8TJD6QqGwe9MiNlnuR
+	FxfTz0Myr2lf6JOiaY/A==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwdP-0000000E6A7-0peq;
+	id 1xRwdP-0000000E6AR-1Rpo;
 	Fri, 13 Nov 2026 19:08:27 +0000
-Received: from mail-ej1-x629.google.com ([2a00:1450:4864:20::629])
+Received: from mx0b-0002e601.pphosted.com ([148.163.154.28])
 	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRwcy-0000000E5jQ-0tCB
-	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 19:08:04 +0000
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-c45551fa84eso342008866b.3
-        for <linux-arm-kernel@lists.infradead.org>; Fri, 13 Nov 2026 11:07:59 -0800 (PST)
+	id 1xRwcz-0000000E5ja-1x7c;
+	Fri, 13 Nov 2026 19:08:07 +0000
+Received: from pps.filterd (m0374956.ppops.net [127.0.0.1])
+	by mx0b-0002e601.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6ADIwSjD2034475;
+	Fri, 13 Nov 2026 13:07:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=
+	proofpoint-05-2026; bh=+ZYV7qXENnQKI2uj139nCEoDqjGbKVU2N1/Wx8WKr
+	Nc=; b=k5zOlm2RWxWntzSRWzTYnT/xX1FRU6w3iyMNfIqDyHYvKtiKiAukYKsa6
+	RpjEsEnpEXV5YAGlUkDlRt2EXaD6abHe+SS34kO75A6tL6HZPBZwpBVMX60sMbut
+	AHYOksKEzo1RH0q+5+1kY1PngP93mwGzM1dAZauPeygDc3VJbfRRWE+wmzlc2vDc
+	Ohz7h3OnfSC+usH8ByT3nUTax3EmUVplodTeryY88uI2D1ZLHiavNcPBUIKczFea
+	ZhQhbTwMwguJt6t4Tct40Se85hjtv8Hqw9YMOjzjl7i3h+hVQ7hcFhov0U7MOn++
+	vCg1O7HbX7KzHMQsGUNmTu5sucigw==
+Received: from dm5pr21cu001.outbound.protection.outlook.com (mail-centralusazon11011041.outbound.protection.outlook.com [52.101.62.41])
+	by mx0b-0002e601.pphosted.com (PPS) with ESMTPS id 4hwym3bdjn-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Fri, 13 Nov 2026 13:07:34 -0600 (CST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kGV4nl3+DkB/BGzPKefDOgx8h4oUVsAjAfAZTNR1J5nTeT8ts4uYaox2PAz3Cgw7p9XtfcaMdAE206Z2rMCRG2YZUy3HNaF1Ctq0suUtZZEB6TSyZjeK3reLfVtyoc4lQmvqO0IYJ03L2vMOTonBWoHyl3QQ+8pSDSZoQU0/aU6f4NaPBEmP32p3nGD8jijtjoJBnG9tqJflDzHI6xQTkCYSIR3tkDdnZOGaYjBML1ehZpnqyH5KKp95cIVQu5hLxVlTEF9oOXh5iKgIVqWqw6x8VNOGozROe2mtYJn07yomsnrGNNK6ukRhXaM7u/smMjDqOrwI24mWagHZiPVtwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+ZYV7qXENnQKI2uj139nCEoDqjGbKVU2N1/Wx8WKrNc=;
+ b=Oa92j2WrBVoGoFBBCttukxMr1zaL8kJGgpqK89o3hg+K9Tu8gFE+h+z16zNWVavgpZRMrk8keYgE13G89CgxZoBSNjLHfuGQKWn44E8dATdghqneql0aUAoU5aCj6mnxi6xwR9es2ZAGegFOh1GcMj95NR/1TABIbbrOUcM1xvkCwG0YAuXabCcGWqoh2gSSyZsjHjMeTsYs9c/iPQvHVLdnBewJa9SYNvte2T0e5GZ6ZaCBiZhg89cVvWr6A4Vxkr045TvDwkdTic60aGU5391pO8a2ZmZfRGbUsOOstcX9n6axUoTfT5bb4VYxmBDtQ9nP6wLt97oH/tqkSJDNNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1794596878; x=1795201678; darn=lists.infradead.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=XeIdUEn41huggshJVY5dteXJQUSowVHL3L4Q/+1iZEE=;
-        b=YQysNWT0xUbUYoQrgF+w/5j8kPP2dLBOLEJSE7xHIryjLPOLBy7BX23aXXxBj2JEM0
-         0upjRUiH1WvxvI1HiB2mxTtsAq9CAoMZ9ToMN7C6FyNxRDzXaCjX873Mw9074jZapCzG
-         hQTkZ6rFOiMK4yaqW1scu1ZgiyeZVVFSPVBmBiXalO8BpHK9iK++3BSlJUsJ7WdwcmeC
-         O27uc2d+jD6j3V6oNUsbUPhdR/pYSwgnv5s32tT28REvvJvVpjwOO3TnhrkgHTjDC8SJ
-         lwg0eY73y+eY2PvB5cvCNsDH4W1AvhbyqKsIc3+2lLbudwBjThDxjOXXOLZFdDTOupwc
-         c4IA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794596878; x=1795201678;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :content-type:mime-version:subject:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=XeIdUEn41huggshJVY5dteXJQUSowVHL3L4Q/+1iZEE=;
-        b=p8wYSRwUtwcpZ0bJ/VrNpv56PwxrpwP0ePGTvVnSLc0N983Yn6cmQGVTG8HkOwZsPV
-         zdJnrmJ2vIjrx2La1sf+hyXZCFo6wSThZHHkZPS+LsbQuqtsd4zEe2Kh81Dnr+aqLVV+
-         rbWge2KLYL4V9n88NzJGM5xXZdAzNpxTJtkalEaK0Ze+0xX0VNSIab7ZNNecLRKcQpdn
-         5s2n3jbxv5efwYEnCRBYWxde3XVLdFGBh/1O7GpC4j97vbmi+/5/Wg9emLrYW9UxWJAh
-         dXMwpDq+XHWpNBIa5oYnYHS4xCDxiLolyAuubmEv9exIYxjRr/2nbc3gq1syTGwfz9qQ
-         KHKQ==
-X-Forwarded-Encrypted: i=1; AL+hErGxf9xIffDa5i7V2oaDfizmJZtsEM2Rq1ngzfxUVN6v/cuBUrFkmNtvmStqORMzM59SqXxFFwzh6r9nQzedLkgC@lists.infradead.org
-X-Gm-Message-State: APuU4Z8RJrTfvdLj98602CDKyynREQbh/u7OK3IMKTOD0RXFmFnjplNA
-	hHaA1f4R91tV39tnPgDeTRl1hAMLHP8O9TT2MT8I0EhTNX4skshl+E3L
-X-Gm-Gg: AYBFou0JzrHPDxdqK0MnRK56pDelPPOairxyTYYh2Mgo3epfWy9P9Id1f4F4xwyNoU/
-	tm4zwCD7zJV0U+1cbeg+QcNg1PQyC4BduOz08U6N0PM8AA4n1nsZkjgwhgfaZyDn5B2iRGqtoDC
-	bptgpqSSPboQd5BOLFVWJySxAmYPVlePXU0Mv2q0kndYLUqo5NF7DChKqlg3rA3xDYlUGvGyvnJ
-	OI3dOYJZQAMvK7jCCiwvX4YiYrF4WH05sTbuxkiqdTvg3CCPaa2F1MMHErGw8HwlQKnFGMUmNNR
-	0furSwuLwgnXvRktLumxoEiTZlbZzez3L9bZR85vRQZwhHsOkFEVWs38kBrdjLTcAasPjBnu899
-	CQgEFSIBLHwMBncKqJgBMGLGJtay383RmEDSDBsghC4EWMgayjpnDEa5DuiT6DORlxVHGb3lyf7
-	nNbmWirGxu7QsqU7+UAIoBYGfNSKy4i1S04HK9/l1J+MOAYj8XXUo6dxhJKXDAiAV9Zhqw0824/
-	cEwSDVR89sfo5Sb9IAXVPdXFu7m5WKgS/eKNPRBd+3VFQroVej+eYbDQbHKZSwVfxcR+KNnRxfL
-	qFfyF0A0/E4wSswszy2h/adgfNBsU/WB0jLyl1M1KIiLhE+8xXvWpI+LLOkmtvV3
-X-Received: by 2002:a17:907:2d89:b0:c46:8063:220c with SMTP id a640c23a62f3a-c5096398047mr303416966b.11.1794596878270;
-        Fri, 13 Nov 2026 11:07:58 -0800 (PST)
-Received: from [192.168.1.100] ([163.245.50.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c5095b23b09sm129444166b.26.2026.11.13.11.07.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2026 11:07:57 -0800 (PST)
-From: Alexander Letuchiy <asalde.le1@gmail.com>
-Date: Fri, 13 Nov 2026 22:05:02 +0300
-Subject: [PATCH v2 6/9] dt-bindings: input: mediatek,mt6779-keypad: Add
- compatible for MT6895
+ d=ticloud.onmicrosoft.com; s=selector1-ticloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+ZYV7qXENnQKI2uj139nCEoDqjGbKVU2N1/Wx8WKrNc=;
+ b=n1Kq45z6DRwQYaasftPBnxrpvEoC0aZh48yphrNhZ6aBMmEJ/S3ztByrxJOcODYC/Ap0868YbsOY1UiGhnoiK/AKE7ECPhpbYT8NM6AmGfvMyzxba4dseTTZh/1fvM1LPOcBjRxiAHYUNTGVj2rrblcWyVN2wtNm3RaGBhZhKMc=
+Received: from MW4PR04CA0198.namprd04.prod.outlook.com (2603:10b6:303:86::23)
+ by DS0PR10MB7127.namprd10.prod.outlook.com (2603:10b6:8:df::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
+ 2026 19:04:52 +0000
+Received: from CO1PEPF00012E64.namprd05.prod.outlook.com
+ (2603:10b6:303:86:cafe::34) by MW4PR04CA0198.outlook.office365.com
+ (2603:10b6:303:86::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.9 via Frontend Transport; Fri, 13
+ Nov 2026 19:04:52 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 198.47.23.195) smtp.mailfrom=ti.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CO1PEPF00012E64.mail.protection.outlook.com (10.167.249.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.639.5 via Frontend Transport; Fri, 13 Nov 2026 19:04:52 +0000
+Received: from DLEE201.ent.ti.com (157.170.170.76) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Fri, 13 Nov
+ 2026 13:04:30 -0600
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Fri, 13 Nov
+ 2026 13:04:10 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45 via Frontend
+ Transport; Fri, 13 Nov 2026 13:04:09 -0600
+Received: from [10.249.34.41] ([10.249.34.41])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6ADJ49uA552279;
+	Fri, 13 Nov 2026 13:04:09 -0600
+Message-ID: <445ce7d5-ce8c-4e0a-abb9-83920fe2ef33@ti.com>
+Date: Fri, 13 Nov 2026 13:04:08 -0600
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] reset: Remove ARCH_HAS_RESET_CONTROLLER Kconfig symbol
+To: Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King
+	<linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will
+ Deacon" <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        "Thomas
+ Bogendoerfer" <tsbogend@alpha.franken.de>,
+        Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+        Arnd Bergmann <arnd@arndb.de>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20261112214223.765100-1-afd@ti.com>
+ <7baedb8836f538707d008b03e259780bc4fc8bd9.camel@pengutronix.de>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <7baedb8836f538707d008b03e259780bc4fc8bd9.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261113-initial-mt6895-v2-6-4ab0aa9fa391@gmail.com>
-References: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
-In-Reply-To: <20261113-initial-mt6895-v2-0-4ab0aa9fa391@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, 
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Thomas Gleixner <tglx@kernel.org>, 
- Mattijs Korpershoek <mkorpershoek@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Kees Cook <kees@kernel.org>, 
- Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- linux-input@vger.kernel.org, phone-devel@vger.kernel.org, 
- Alexander Letuchiy <asalde.le1@gmail.com>
-X-Mailer: b4 0.15.2
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E64:EE_|DS0PR10MB7127:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4289cfe-3153-4a88-30fa-08df41b8ff3b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|36860700016|23010399003|7416014|82310400026|1800799024|921020|4143699003|10067099003|5023799004|56012099006|261021121427099003|261021123027099003|261026121527099003|261021135927099003|261102123227099003|261009223027099003|22082099003|18002099003|10063799003;
+X-Microsoft-Antispam-Message-Info: k8KqoNKRsF3WmlfeWUzdasmEBWpfwfBcG84fkKReCRPrxBzzJ4yH1Uh6zhPUXuoTQ718G2N3MtU8djPTJItVSRBy01sjg5SD6FnFb9L7jhnEXmkn5FwIfatkFyYxQ+NhkoAh+orWkOgOej2eHITqAUVYFDz5iPZ2vQqaotvVm0dtYwiAsdN53+dD3zo7DkJaBuYMtlOFC1rCWJClEMHQH/dL9VwukumyfChCBVwcigP2c0W7e4sP2OOODkSTjIvEroL0TbCMmoCYeHZTvDryZPggSD0Tgodspr2xdhLiYoo/B07FDLhqAmPN5RQ/okfjAZdM/LgrbsbLrayyT3Qt3lD2cjFuBl3H3ac/8Kw/xpkluK3Fzh/nHA+NicWnooycOUalZwF4/nd2JRsf4/onF3D86xZ4HkakqhaKRgrhFBOHfh0ODvMDE91MopcI9HtRbDbg+rNt6xACfx3dZGPMEUXcx2kYbkZOWdZEX05b4yIfLjq46GHybSQQfpKRm5xXI3p1dj2uWOmsv8UH7ZwwKUWan0Pb1a6/dkpGX5WQa6BP8hShdU5lhlaqHVvmywBwiVPS+dAAV0pjIyt7eFkLx6Nm29Y+ZPVS9seREolNWhRX8DpafamFZsDRzC1EkqSZKu2Z7VZigE7P79tC1VUP0nusf61mc82xx+loPIyBijZA8FXkdEJ+8A5hZ9XBWWaV3XSlp+pDEE1WKBsTTC8GLX55Y1pT/T33bpRdCob4OL84fQ27uKxaeen27geCHTXH
+X-Forefront-Antispam-Report: CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700016)(23010399003)(7416014)(82310400026)(1800799024)(921020)(4143699003)(10067099003)(5023799004)(56012099006)(261021121427099003)(261021123027099003)(261026121527099003)(261021135927099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(10063799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: w2ldNcOb8KZBvtEv7Ow5mlhrK5MYTb8bkYlr1RxhN3P0KOWPr8XBrgNtQNPHCYTYfsfgnCAJ3aTGxm33ElvxOj4IzPBui5amIQqAZjwLDdRqJeiHclWczKefQv/lUxPIw3VQssEHxiRtIY5tXdDH9BNgRQUsbbLGMM1kJWkptfnv9uYWqOCzBShIxSAOGm5Px8plr6WCSD/XejCJTNCYmnmKNPfQtduY4G1GZ91KxzFrB2VZ506fW3OKfAPwGXJILgQv8j5rJsdVspYI4+u774JtgP3oyVCgNxyIBb7zjkipPY7ELXuoI2WafNmxttxAXaPdR/v0Efy2/FVEJ4c7bULjPqygMXCasmDp5vNTneO/3ezKHVkAXgoeRCOJT2KK73I95e46IIMgEApEV5Qb/daDm0fj+biCbrCTGPwItNZSWpyf72UZBD1Gdqw9mYQw
+X-Exchange-RoutingPolicyChecked: spXETPAgrj5HO1mEt4tseJEeVgteWcMCZY+7Vr3plH3H2xGhIlSQS3PU39B03nkh+5su7WzsOTyWcuBPvpLNsoYPvh+ORe+Rfz/dO02pi96CicjLpSvvb29cfWtqugXoFeXt2O1U8xl+nNDUtxfAKOQUOSuHPtu1RX7wNXp5Z3Txi/MYinTn8CSJ4AcMcSOEzUvWsGn/WiEnxgX8fH4rsloBnKZUpn8vmnBfORZ7vn+SglXV5lJ9kiG44O4CVvznTp0ziAItia5SMMdo2A5if3xh01z1RDjb3+wNJpub3XIHNM15kXx1zotSaweD2ce4BYFThmqX4QPeRkZlVM2DFg==
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 19:04:52.0467
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4289cfe-3153-4a88-30fa-08df41b8ff3b
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00012E64.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7127
+X-Authority-Analysis: v=2.4 cv=cpgOAF4i c=1 sm=1 tr=0 ts=6af75ff6 cx=c_pps
+ a=ouBVT1c3MJkzDXWVqRnxag==:117 a=f+v6EHfkeJbVwR46tk4DMg==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
+ a=s63m1ICgrNkA:10 a=AlMIdn_sM9wA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Z8NIEmU8O1QQgoT56wFK:22 a=jwouBfj2j3NM8CExmVVE:22 a=sozttTNsAAAA:8
+ a=jAvk1HlfEtAzNKpL7CwA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: ohSjOhOp0waD3OouP50Vg1Uvt6CFOyuT
+X-Proofpoint-GUID: ohSjOhOp0waD3OouP50Vg1Uvt6CFOyuT
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTEzMDA3NSBTYWx0ZWRfX7VgpA4HDTJZI
+ eqZJRdBpt0kcPuBtQvfh9VdbeR8XC9tXjBF5exfqOClM72AeZhqa5qRTymAK3N34nHpx+7CZ6D6
+ SjBnjcidUWybK8SSyme3oatZ9/EJTyw=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTEzMDA3NSBTYWx0ZWRfX8MKoNzScksMB
+ afn3KlhBis0qcgpgOV+Sl1Fnx6P1J/OzwAyy38/xRnA/gl2y2bpm+4WKjO3XKlu5KTNFZhRNN9v
+ i5WUn4VEY4WV/7953J/bto3stKyzWDGSnG90vP2F1ijTO2PfVSUnudt7aIsDxzESvy9Xe+n/FKe
+ INkWvtttjr905vL8rLu4l1TRZfROUYWV/IiMcrdzSZtJNoiVyXmUXjIKzqadQARCaAmWG9YqZLE
+ +Kzel8wOVdMpPRF8pvaFAcCAaYFqavWfZ8uai/dPOm89gvCbLj3eDlobVRMb0Qpds05z7ip5rYI
+ XMzgSsJ1/65T+33cQAzzgL6Lon97Hafoi9QdXR5ZrqoDObYG5MMY/Vd7flnywtZ9Ilbhfmxkf6A
+ XlmeN2tkLBBKROToK/2QWvdeCozdR/XX7FGLNngQuWNjqTHO2tgd/joAh2GxPEJ6TPvvFAa6pr5
+ uvmkGXqI0JlQ0bKpIaw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-13_06,2026-11-11_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 phishscore=0 clxscore=1015
+ suspectscore=0 bulkscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611130075
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261113_110801_124660_B63E40C5 
-X-CRM114-Status: GOOD (  11.63  )
-X-Spam-Score: -1.9 (-)
+X-CRM114-CacheID: sfid-20261113_110801_754903_E407359C 
+X-CRM114-Status: GOOD (  26.23  )
+X-Spam-Score: -2.1 (--)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -119,37 +185,110 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,
-	FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.4 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a compatible string for the keypad of the MediaTek MT6895 (Dimensity
-8000/8100) SoC. Its registers are the same as on MT6779, so it works
-with the existing driver through the mediatek,mt6779-keypad fallback.
+On 11/13/26 9:22 AM, Philipp Zabel wrote:
+> On Do, 2026-11-12 at 15:42 -0600, Andrew Davis wrote:
+>> Many ARCH_HAS_* symbols change some behavior based on what an ARCH
+>> supports, but ARCH_HAS_RESET_CONTROLLER is used only to set a default
+>> for RESET_CONTROLLER. Those ARCH symbols that select this can skip the
+>> middleman and directly select RESET_CONTROLLER, and many already do.
+>>
+>> Replace all selection of this symbol with a direct selection of
+>> RESET_CONTROLLER when it is not already in the selection list. In the
+>> latter case when RESET_CONTROLLER is also already selected we can simply
+> 
+> "In the latter case" and "when RESET_CONTROLLER is also already
+> selected" are saying the same thing. I'd choose one and drop the other.
+> 
 
-Signed-off-by: Alexander Letuchiy <asalde.le1@gmail.com>
----
- Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Sure, it is a little long winded, will clean that up.
 
-diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-index 9f0da1240187..9a1369c9ff4c 100644
---- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-+++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-@@ -29,6 +29,7 @@ properties:
-               - mediatek,mt6572-keypad
-               - mediatek,mt6595-keypad
-               - mediatek,mt6873-keypad
-+              - mediatek,mt6895-keypad
-               - mediatek,mt8173-keypad
-               - mediatek,mt8183-keypad
-               - mediatek,mt8365-keypad
+>> remove the ARCH_HAS_RESET_CONTROLLER without changing existing behavior.
+>>
+>> Some ARCHs "select" this symbol when they actually "depend on" the
+>> RESET_CONTROLLER framework to build, in those cases the indirect select
+>> could lead to broken randconfig builds. In cases when it is not needed
+>> for building the ARCH code, these selections can be switched to the weaker
+>> "imply" to allow it deselected for minimal builds without reset support.
+> 
+> Can't it just be dropped completely for those? See for example mach-
+> gemini below.
+> 
 
--- 
-2.56.0
+Yes, in some of these cases it wasn't needed and can be dropped such
+as the mach-gemini case you point out. But my intention here was to
+mechanical and not make any functional changes, going back and cleaning
+up cases when it wasn't needed in the first place would come next.
+
+Take the ARCH_BRCMSTB case, nothing in its arch code needs RESET_CONTROLLER
+but if we remove that select, then nothing else selects RESET_CONTROLLER and
+RESET_BRCMSTB is no longer enabled, when before it would have been enabled
+by simply selecting ARCH_BRCMSTB.
+
+Not saying that was correct behavior before either, but at least this patch
+doesn't change any current default behavior and allows us to start to clean
+some more odd cases.
+
+Andrew
+
+>> Additional checking will be needed to find such cases.
+>>
+>> Signed-off-by: Andrew Davis <afd@ti.com>
+>> ---
+>>   arch/arm/Kconfig               | 2 +-
+>>   arch/arm/Kconfig.platforms     | 1 -
+>>   arch/arm/mach-bcm/Kconfig      | 4 ++--
+>>   arch/arm/mach-berlin/Kconfig   | 2 +-
+>>   arch/arm/mach-ep93xx/Kconfig   | 2 +-
+>>   arch/arm/mach-gemini/Kconfig   | 2 +-
+>>   arch/arm/mach-imx/Kconfig      | 2 +-
+>>   arch/arm/mach-keystone/Kconfig | 2 +-
+>>   arch/arm/mach-mmp/Kconfig      | 6 +++---
+>>   arch/arm/mach-omap2/Kconfig    | 1 -
+>>   arch/arm/mach-rockchip/Kconfig | 2 +-
+>>   arch/arm/mach-socfpga/Kconfig  | 1 -
+>>   arch/arm/mach-sti/Kconfig      | 1 -
+>>   arch/arm/mach-stm32/Kconfig    | 1 -
+>>   arch/arm/mach-sunxi/Kconfig    | 1 -
+>>   arch/arm/mach-tegra/Kconfig    | 1 -
+>>   arch/arm/mach-zynq/Kconfig     | 2 +-
+>>   arch/arm64/Kconfig.platforms   | 9 +++------
+>>   arch/mips/Kconfig              | 6 ++----
+>>   arch/riscv/Kconfig.socs        | 2 +-
+>>   drivers/reset/Kconfig          | 4 ----
+>>   21 files changed, 19 insertions(+), 35 deletions(-)
+>>
+> [...]
+>> diff --git a/arch/arm/mach-gemini/Kconfig b/arch/arm/mach-gemini/Kconfig
+>> index f436a2009eca3..11e0e966c3bb6 100644
+>> --- a/arch/arm/mach-gemini/Kconfig
+>> +++ b/arch/arm/mach-gemini/Kconfig
+>> @@ -3,7 +3,7 @@ menuconfig ARCH_GEMINI
+>>   	bool "Cortina Systems Gemini"
+>>   	depends on ARCH_MULTI_V4
+>>   	depends on CPU_LITTLE_ENDIAN
+>> -	select ARCH_HAS_RESET_CONTROLLER
+>> +	select RESET_CONTROLLER
+> 
+> I don't think this is required. There is no reset controller
+> implementation in arch/arm/mach-gemini ...
+> 
+>>   	select ARM_AMBA
+>>   	select ARM_APPENDED_DTB # Old Redboot bootloaders deployed
+>>   	select COMMON_CLK_GEMINI
+> 
+> ... and COMMON_CLK_GEMINI already selects RESET_CONTROLLER in
+> drivers/clk/Kconfig.
+> 
+> 
+> regards
+> Philipp
 
 
