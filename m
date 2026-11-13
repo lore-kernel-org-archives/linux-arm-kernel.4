@@ -2,145 +2,87 @@ Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674E0606A8B6
-	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:44:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6E9606A330
+	for <linux-arm-kernel@archiver.kernel.org>; Fri, 13 Nov 2026 00:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=Ox6QYHOL;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=roeck-us.net header.i=@roeck-us.net header.a=rsa-sha256 header.s=default header.b=NFsDDVSI
+	dkim=pass (2048-bit key) header.d=lists.infradead.org header.i=@lists.infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=LZh9rkhb;
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.a=rsa-sha256 header.s=default header.b=Dt/E76kI
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.infradead.org; s=bombadil.20210309; h=Sender:List-Subscribe:List-Help
 	:List-Post:List-Archive:List-Unsubscribe:List-Id:Content-Transfer-Encoding:
 	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
 	Message-ID:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Unsubscribe-Post:
-	List-Owner; bh=gPEqd6cD/fqQw04EbCe32E6BIonMlduxm+Jx4+v1FHE=; b=Ox6QYHOLlxJlZU
-	Dr2vTcZhgPz3DbH+g1Jy64/QGjOSV3CVGiaKUtKAoB48R3xoNwo2jXJoshm0S2ut6T1e3RYwjdO2x
-	6jHmr0Cp/qS5eW7oSIVDBky/UnA7OQ6iVdGzIw37AJpgvljAvzecAYE3BEqnLgrDnKRC5/uN8pl5z
-	uDGkfhHhsAHXwPH14VYdxu6oLz20D11heYLBRrLWSBUu8zQevj2lahFefNskcaM9r07kcFbNbiFmB
-	cE9VHXiFlPlfdNE1yhqZu+ftXXS22pw2dmERqUMF4i0Rrfb0b/zPBJZoCeoB1VVHxBuYwkf6nmOmn
-	zqPftrotPKnLODHWnATg==;
+	List-Owner; bh=1vBgOZighXGOllRdyE42732n3hMUT8k/mfbvblMTQQA=; b=LZh9rkhbXRuUDn
+	JZQo29iqqPcbD9LXoqXLr/X58d58VYjzhHEBYCvkxC14TTg9RuN1meZWeKzdS1tmy0rufC8XpRMa1
+	OQnJs6GeRlw/kENs6Vs/m1CyEF/t3B6VTPhB5IQQHBIqIyvSl4cMLYjPHZwYZIARTAFaGywPDCycr
+	Ptd7MtizSq3oTADOE6NTpsaye7pkzBECPhMzo5GQwvNmG3knuYzDiIeKQVfP+MlryWQi5A13re6gR
+	uXSNDN4VQtVO4jiCzJAYCP1lli1+uuDjdgkVsOL8trwjKmLszqAqhlx85Yqe5tb9ZXncAXam22/Pd
+	NnkQVTz4Kp6+MjHnFy2w==;
 Received: from localhost ([::1] helo=bombadil.infradead.org)
 	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfP2-0000000BNJs-3RZO;
-	Fri, 13 Nov 2026 00:44:28 +0000
-Received: from omta38.uswest2.a.cloudfilter.net ([35.89.44.37])
-	by bombadil.infradead.org with esmtps (Exim 4.100.1 #2 (Red Hat Linux))
-	id 1xRfP0-0000000BNHH-2BMQ
+	id 1xRfQw-0000000BNhG-0aXP;
+	Fri, 13 Nov 2026 00:46:26 +0000
+Received: from linux.microsoft.com ([13.77.154.182])
+	by bombadil.infradead.org with esmtp (Exim 4.100.1 #2 (Red Hat Linux))
+	id 1xRfQt-0000000BNg8-1rXz
 	for linux-arm-kernel@lists.infradead.org;
-	Fri, 13 Nov 2026 00:44:27 +0000
-Received: from eig-obgw-5006b.ext.cloudfilter.net ([10.0.29.217])
-	by cmsmtp with ESMTPS
-	id RejWxBzk7VK9URfOoxZ3ex; Fri, 13 Nov 2026 00:44:14 +0000
-Received: from 162-215-252-36.unifiedlayer.com ([208.91.199.152])
-	by cmsmtp with ESMTPS
-	id RfNKxpw1gSeuLRfNLxwFkM; Fri, 13 Nov 2026 00:42:43 +0000
-X-Authority-Analysis: v=2.4 cv=NYvm13D4 c=1 sm=1 tr=0 ts=6af65d03
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=M0FbrtG7MMAA:10 a=pGLkceISAAAA:8
- a=u2c38VbFgFXAgpsfhD0A:9 a=QEXdDO2ut3YA:10 a=KPbNTLLc3YvdawN95zVk:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Unsubscribe-Post:List-Subscribe:List-Post:List-Owner:
-	List-Archive; bh=gPEqd6cD/fqQw04EbCe32E6BIonMlduxm+Jx4+v1FHE=; b=NFsDDVSI3739
-	BFP/m9EezS79Uh7f+eZwoFR9ze53dIuj7/S/TYa1YgvCO2CXb7oskLS6ARti8hlH44YRPhEI4jdS6
-	18T//UjOyARN7Y8rnJ1CsxYcWfEWm8kYp/HF/0aUTqTBUTNskuaj3xy++H6R9g/p9ElUQr3AMA4p3
-	qae5rKX/wPSGSDI7xWmosRrRpLfwqiv8Q9zw6Fkvz5H0t0bX++xFMUhdC6BBhJzQhDoYeGBlht244
-	h6vP2l9oNoakywR/w7nGdp3NUlSgboaZu+jnMv8FckacgWi2NSIGRCjXFaWjGn2mOuMZj/8NOb1T0
-	oSR1/M2Of2T4N8+dD9/S4Q==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:42682)
-	by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.100.1)
-	(envelope-from <linux@roeck-us.net>)
-	id 1xRfNK-00000003M8j-1MrI;
-	Fri, 13 Nov 2026 06:12:42 +0530
-Message-ID: <468e51cb-5852-4c8a-938d-bda2aca8c83e@roeck-us.net>
-Date: Thu, 12 Nov 2026 16:42:41 -0800
+	Fri, 13 Nov 2026 00:46:24 +0000
+Received: from [192.168.0.88] (192-184-212-33.fiber.dynamic.sonic.net [192.184.212.33])
+	by linux.microsoft.com (Postfix) with ESMTPSA id 040C620B7166;
+	Thu, 12 Nov 2026 16:46:17 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 040C620B7166
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1794530778;
+	bh=1vBgOZighXGOllRdyE42732n3hMUT8k/mfbvblMTQQA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Dt/E76kI/3MFpUYYHZOURgy6EkuaTi8S8z5ncW2I/9sTmvxARptIu+vmDL6Tjc4IN
+	 5gSmEOJ0Q1EPS7g1x//7jcGiliU1FVjk8KiQarz3eBVAdpjIXlT/6b+rBBy3Gmi2m7
+	 yhwafN52I0kemUkmW8gkwXEyUvkufDSSAKcNQa9U=
+Message-ID: <f74db23c-ee1d-e0b1-c463-55dad00f9c61@linux.microsoft.com>
+Date: Thu, 12 Nov 2026 16:46:21 -0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] watchdog: vt8500: Add a restart handler
-To: Alexey Charkov <alchark@gmail.com>, Krzysztof Kozlowski
- <krzk@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>,
- Thomas Gleixner <tglx@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-References: <20261112-vt8500-timer-updates-v6-0-fd1cea645d1f@gmail.com>
- <20261112-vt8500-timer-updates-v6-4-fd1cea645d1f@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v6 4/6] Drivers: hv: Mark shared memory as decrypted for
+ CCA Realms
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20261112-vt8500-timer-updates-v6-4-fd1cea645d1f@gmail.com>
+To: Kameron Carr <kameroncarr@linux.microsoft.com>
+Cc: Michael Kelley <mhklinux@outlook.com>,
+ "decui@microsoft.com" <decui@microsoft.com>,
+ "haiyangz@microsoft.com" <haiyangz@microsoft.com>,
+ "wei.liu@kernel.org" <wei.liu@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-hyperv@vger.kernel.org" <linux-hyperv@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "mark.rutland@arm.com" <mark.rutland@arm.com>,
+ "sudeep.holla@kernel.org" <sudeep.holla@kernel.org>,
+ "thuth@redhat.com" <thuth@redhat.com>, "will@kernel.org" <will@kernel.org>
+References: <20261031001412.4150488-1-kameroncarr@linux.microsoft.com>
+ <20261031001412.4150488-5-kameroncarr@linux.microsoft.com>
+ <MN2PR02MB6863AA6357C8E0D4881F5FEAD4712@MN2PR02MB6863.namprd02.prod.outlook.com>
+ <c6b7f583-878d-1f1e-60cc-e602e277d075@linux.microsoft.com>
+ <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
+From: Mukesh R <mrathor@linux.microsoft.com>
+In-Reply-To: <af057438-a684-4840-815c-581b866678c1@linux.microsoft.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - lists.infradead.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1xRfNK-00000003M8j-1MrI
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:42682
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 3
-X-Org: HG=direseller_whb_net_legacy;ORG=directi;
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfBzC6foHFX+jAuSuv7WosdzwmqVMTtgAhptxTmCSpi/ZyiO96xa7cLPxM1tYojhrEodY1BsrLTJ7XdQLg0w9SHKeEcHL8f8s74xixMlSEek/C/BIN9+E
- NERS6Y1Kd7uxLatY/8vHLOZ/oRWJL/0JqQ8A9wSnLhPFqhX8sN5sPokQ//T/fvKKZch8M+KKLl7q9OzwHH4Vo+rZzsdWAYqIV9C08Z6Stv03o8cpTtVyki7j
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,NICE_REPLY_A,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
+	aws-us-west-2-korg-listserv-alma10-1
 X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.9.0 (BSD) ) MR-646709E3 
-X-CRM114-CacheID: sfid-20261112_164426_591926_80489337 
-X-CRM114-Status: GOOD (  20.97  )
-X-Spam-Score: -0.1 (/)
+X-CRM114-CacheID: sfid-20261112_164623_523090_D5C47CF7 
+X-CRM114-Status: GOOD (  17.52  )
+X-Spam-Score: -4.5 (----)
 X-BeenThere: linux-arm-kernel@lists.infradead.org
 X-Mailman-Version: 2.1.34
 Precedence: list
@@ -151,89 +93,103 @@ List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
 List-Subscribe: <http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
  <mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
 Sender: "linux-arm-kernel" <linux-arm-kernel-bounces@lists.infradead.org>
-X-Spam-Status: No, score=-15.4 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
-X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
-	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/12/26 10:55, Alexey Charkov wrote:
-> Reset the SoC through the watchdog when the machine's own restart hook
-> leaves it running: the PMSR write in vt8500_restart() has no effect on
-> WM8950, so a reboot there ends in "Reboot failed -- System halted"
-> unless a watchdog armed from userspace happens to fire.
+On 11/12/26 09:49, Kameron Carr wrote:
+> On 11/11/2026 6:43 PM, Mukesh R wrote:
+>> On 11/11/26 10:01, Michael Kelley wrote:
+>>> From: Kameron Carr <kameroncarr@linux.microsoft.com> Sent: Friday, October 30, 2026 5:14 PM
+>>>>
+>>>> In hv_common_cpu_init(), the per-CPU hypercall input/output pages need
+>>>> to be marked as decrypted (shared) for confidential VM isolation types.
+>>>> This is already done for SNP and TDX isolation; extend the same handling
+>>>> to Arm CCA Realm guests so that the host hypervisor can access the
+>>>> shared hypercall buffers.
+>>>>
+>>>> is_realm_world() is declared in include/linux/arm-rsi-cmds.h which only
+>>>> builds on arm64 (it includes <asm/memory.h>), so using it directly in
+>>>> the arch-neutral drivers/hv/hv_common.c would break the x86 build.
+>>>> Introduce a Hyper-V-specific helper following the established
+>>>> hv_isolation_type_snp() / hv_isolation_type_tdx() pattern.
+>>>>
+>>>> On architectures other than arm64 the weak default keeps the existing
+>>>> behaviour.
+>>>>
+>>>> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
+>>>> Signed-off-by: Kameron Carr <kameroncarr@linux.microsoft.com>
+>>>> ---
+>>>>    arch/arm64/hyperv/mshyperv.c   |  5 +++++
+>>>>    drivers/hv/hv_common.c         | 17 +++++++++++++----
+>>>>    include/asm-generic/mshyperv.h |  1 +
+>>>>    3 files changed, 19 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/hyperv/mshyperv.c b/arch/arm64/hyperv/mshyperv.c
+>>>> index 46ab2da..da6c3aa0 100644
+>>>> --- a/arch/arm64/hyperv/mshyperv.c
+>>>> +++ b/arch/arm64/hyperv/mshyperv.c
+>>>> @@ -182,3 +182,8 @@ bool hv_is_hyperv_initialized(void)
+>>>>        return hyperv_initialized;
+>>>>    }
+>>>>    EXPORT_SYMBOL_GPL(hv_is_hyperv_initialized);
+>>>> +
+>>>> +bool hv_isolation_type_cca(void)
+>>>> +{
+>>>> +    return is_realm_world();
+>>>> +}
+>>>> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+>>>> index 31256cb..a60c92c 100644
+>>>> --- a/drivers/hv/hv_common.c
+>>>> +++ b/drivers/hv/hv_common.c
+>>>> @@ -476,6 +476,7 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>        u64 msr_vp_index;
+>>>>        gfp_t flags;
+>>>>        const int pgcount = hv_output_page_exists() ? 2 : 1;
+>>>> +    const size_t alloc_size = ALIGN((size_t)pgcount * HV_HYP_PAGE_SIZE, PAGE_SIZE);
+>>>>        void *mem;
+>>>>        int ret = 0;
+>>>>
+>>>> @@ -489,7 +490,7 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>         * online and then taken offline
+>>>>         */
+>>>>        if (!*inputarg) {
+>>>> -        mem = kmalloc_array(pgcount, HV_HYP_PAGE_SIZE, flags);
+>>>> +        mem = kmalloc(alloc_size, flags);
+>>>>            if (!mem)
+>>>>                return -ENOMEM;
+>>>>
+>>>> @@ -499,14 +500,16 @@ int hv_common_cpu_init(unsigned int cpu)
+>>>>            }
+>>>>
+>>>>            if (!ms_hyperv.paravisor_present &&
+>>>> -            (hv_isolation_type_snp() || hv_isolation_type_tdx())) {
+>>>> -            ret = set_memory_decrypted((unsigned long)mem, pgcount);
+>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>> +             hv_isolation_type_cca())) {
+>>>
+>>> Could this big "if" statement use "hv_is_isolation_supported()" instead
+>>> of explicitly testing for each CoCo VM type? I ask partly because
+>>> Mukesh Rathor has just submitted a patch [1] that introduces a new
+>>> function that does something almost exactly the same as
+>>> hv_is_isolation_supported() and uses it here.
+>>
+>>>> +            (hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>>>> +             hv_isolation_type_cca())) {
+>>
+>> With my change, this will become:
+>>
+>>          (hv_isolation_hw_cvm() || hv_isolation_type_cca())) {
 > 
-> Arm the match a millisecond ahead of the current count, which leaves
-> ample margin for the register writes to land.
+> Any reason you wouldn't change hv_isolation_hw_cvm() to
 > 
-> Register at priority 128, the default for restart handlers and also the
-> priority of the ARM machine restart hook. That hook is registered first,
-> from setup_arch(), and handlers of equal priority run in registration
-> order, so this one runs right after it and only matters where the hook
-> fails to reset the SoC.
+>    return hv_isolation_type_snp() || hv_isolation_type_tdx() ||
+>      hv_isolation_type_cca()
+> 
+> That would seem more logical to me.
+> 
 
-This isn't really the idea of restart handlers. The sequence should be well
-defined. That is what the priorities are for. Why not give it a slightly
-lower priority ?
-
-> 
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->   drivers/watchdog/vt8500-wdt.c | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/drivers/watchdog/vt8500-wdt.c b/drivers/watchdog/vt8500-wdt.c
-> index e0f838fd1d50..0ce1e2b06410 100644
-> --- a/drivers/watchdog/vt8500-wdt.c
-> +++ b/drivers/watchdog/vt8500-wdt.c
-> @@ -25,6 +25,9 @@
->   
->   #define VT8500_WDT_DEFAULT_TIMEOUT	30	/* seconds */
->   
-> +/* How far ahead of the current count to arm the match for a restart */
-> +#define VT8500_WDT_RESTART_TICKS	(VT8500_TIMER_HZ / 1000)	/* 1 ms */
-> +
->   static bool nowayout = WATCHDOG_NOWAYOUT;
->   module_param(nowayout, bool, 0);
->   MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-> @@ -75,9 +78,18 @@ static int vt8500_watchdog_stop(struct watchdog_device *wdd)
->   	return 0;
->   }
->   
-> +static int vt8500_watchdog_restart(struct watchdog_device *wdd,
-> +				   unsigned long action, void *data)
-> +{
-> +	struct vt8500_wdt_info *info = watchdog_get_drvdata(wdd);
-> +
-> +	return vt8500_watchdog_arm(info, VT8500_WDT_RESTART_TICKS);
-
-This sets a 1-ms timer and doesn't wait for it to fire, so the next
-restart handler (if it exists) will be called. That seems odd,
-and may introduce unexpected behavior. Is this intentional ? If so,
-it should be explained.
+We could, I just don't know if on cca, the repeat hypercall has same
+behavior. I was leaving that for the arm team. Anyways, I sent question
+to the hyp team, if they say yes, i can update my patch to include that.
 
 Thanks,
-Guenter
-
-> +}
-> +
->   static const struct watchdog_ops vt8500_watchdog_ops = {
->   	.start			= vt8500_watchdog_start,
->   	.stop			= vt8500_watchdog_stop,
-> +	.restart		= vt8500_watchdog_restart,
->   };
->   
->   static const struct watchdog_info vt8500_watchdog_info = {
-> @@ -107,6 +119,7 @@ static int vt8500_wdt_probe(struct auxiliary_device *auxdev,
->   	info = container_of(auxdev, struct vt8500_wdt_info, auxdev);
->   	watchdog_set_drvdata(wdd, info);
->   	watchdog_set_nowayout(wdd, nowayout);
-> +	watchdog_set_restart_priority(wdd, 128);
->   
->   	/* Let the core feed a watchdog left running, e.g. across kexec */
->   	if (readl(info->regbase + VT8500_WDT_EN_REG) & VT8500_WDT_EN)
-> 
-
+-Mukesh
 
